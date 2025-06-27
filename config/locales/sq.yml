@@ -1255,6 +1255,20 @@ sq:
     s_blog: Blogu i %{name}
     then_instructions: Mandej, shtoni te fusha më poshtë emrin e përkatësisë së botimit.
     title: Atribuim autorësh
+  bulk_mailer:
+    announcement_published:
+      description: 'Përgjegjësit e %{domain} po bëjnë një njoftim:'
+      subject: Njoftim shërbimi
+      title: Njoftim shërbimi %{domain}
+    terms_of_service_changed:
+      agreement: Duke vazhduar të përdorni %{domain}, pajtoheni më këto terma. Nëse s’pajtoheni me termat e përditësuar, mund të përfundoni pajtimin tuaj me %{domain} në çfarëdo kohe, përmes fshirjes së llogarisë tuaj.
+      changelog: 'Me një vështrim, ja se ç’do të thotë ky përditësim për ju:'
+      description: 'Po e merrni këtë email ngaqë po bëjmë disa ndryshime te kushtet tona të shërbimit te %{domain}. Këto përditësime do të hyjnë në fuqi më %{date}. Ju nxisim të shqyrtoni kushtet e përditësuara të plota këtu:'
+      description_html: Po e merrni këtë email ngaqë po bëjmë disa ndryshime te kushtet tona të shërbimit te %{domain}. Këto përditësime do të hyjnë në fuqi më <strong>%{date}</strong>. Ju nxisim t’i shqyrtoni <a href="%{path}" target="_blank">të plota kushtet e përditësuara këtu</a>.
+      sign_off: Ekipi i %{domain}
+      subject: Përditësime të termave tanë të shërbimit
+      subtitle: Termat e shërbimit të %{domain} po ndryshojnë
+      title: Përditësim i rëndësishëm
   challenge:
     confirm: Vazhdo
     hint_html: "<strong>Ndihmëz:</strong> S’do t’ju pyesim për fjalëkalimin tuaj sërish, për një orë."
@@ -1950,10 +1964,6 @@ sq:
     recovery_instructions_html: Në ndodhtë që të humbni hyrje te telefoni juaj, mund të përdorni një nga kodet e rikthimit më poshtë, që të rifitoni hyrje te llogaria juaj. <strong>Mbajini të parrezik kodet e rikthimeve</strong>. Për shembull, mund t’i shtypni dhe t’i ruani tok me dokumente të tjerë të rëndësishëm.
     webauthn: Kyçe sigurie
   user_mailer:
-    announcement_published:
-      description: 'Përgjegjësit e %{domain} po bëjnë një njoftim:'
-      subject: Njoftim shërbimi
-      title: Njoftim shërbimi %{domain}
     appeal_approved:
       action: Rregullime Llogarie
       explanation: Apelimi i paralajmërimit kundër llogarisë tuaj më %{strike_date}, të cilin e parashtruar më %{appeal_date} është miratuar. Llogaria juaj është sërish në pozita të mira.
@@ -1983,15 +1993,6 @@ sq:
       further_actions_html: Nëse s’ishit ju, këshillojmë të %{action} menjëherë dhe të aktivizoni mirëfilltësim dyfaktorësh, për ta mbajtur llogarinë tuaj të sigurt.
       subject: Llogaria juaj është përdorur që nga një adresë e re IP
       title: Hyrje e re
-    terms_of_service_changed:
-      agreement: Duke vazhduar të përdorni %{domain}, pajtoheni më këto terma. Nëse s’pajtoheni me termat e përditësuar, mund të përfundoni pajtimin tuaj me %{domain} në çfarëdo kohe, përmes fshirjes së llogarisë tuaj.
-      changelog: 'Me një vështrim, ja se ç’do të thotë ky përditësim për ju:'
-      description: 'Po e merrni këtë email ngaqë po bëjmë disa ndryshime te kushtet tona të shërbimit te %{domain}. Këto përditësime do të hyjnë në fuqi më %{date}. Ju nxisim të shqyrtoni kushtet e përditësuara të plota këtu:'
-      description_html: Po e merrni këtë email ngaqë po bëjmë disa ndryshime te kushtet tona të shërbimit te %{domain}. Këto përditësime do të hyjnë në fuqi më <strong>%{date}</strong>. Ju nxisim t’i shqyrtoni <a href="%{path}" target="_blank">të plota kushtet e përditësuara këtu</a>.
-      sign_off: Ekipi i %{domain}
-      subject: Përditësime të termave tanë të shërbimit
-      subtitle: Termat e shërbimit të %{domain} po ndryshojnë
-      title: Përditësim i rëndësishëm
     warning:
       appeal: Parashtroni një apelim
       appeal_description: Nëse besoni se është gabim, mund t’i parashtroni një apelim stafit të %{instance}.

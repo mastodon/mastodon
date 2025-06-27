@@ -1255,6 +1255,20 @@ eo:
     s_blog: Blogo de %{name}
     then_instructions: Poste, aldonu la domajnan nomon de la publikigado en la suba kampo.
     title: Atribuo de aŭtoro
+  bulk_mailer:
+    announcement_published:
+      description: 'La administrantoj de %{domain} faras anoncon:'
+      subject: Serva anonco
+      title: "%{domain} serva anonco"
+    terms_of_service_changed:
+      agreement: Se vi daŭrige uzos %{domain}, vi aŭtomate interkonsentos pri ĉi tiuj kondiĉoj. Se vi malkonsentas pri la novaj kondiĉoj, vi ĉiutempe rajtas nuligi la interkonsenton kun %{domain} per forigi vian konton.
+      changelog: 'Facile dirite, la ŝanĝoj estas la jenaj:'
+      description: 'Vi ricevas ĉi tiun retmesaĝon ĉar ni faras iujn ŝanĝojn al niaj servokondiĉoj ĉe %{domain}. Ĉi tiuj ĝisdatigoj efektiviĝos %{date}. Ni instigas vin revizii la ĝisdatigitajn terminojn plene ĉi tie:'
+      description_html: Vi ricevas ĉi tiun retmesaĝon ĉar ni faras iujn ŝanĝojn al niaj servokondiĉoj ĉe %{domain}. Ĉi tiuj ĝisdatigoj efektiviĝos <strong>%{date}</strong> Ni instigas vin revizii la <a href="%{path}" target="_blank">ĝisdatigitajn terminojn plene ĉi tie</a>.
+      sign_off: La teamo de %{domain}
+      subject: Ĝisdatigoj al niaj kondiĉoj de servo
+      subtitle: La kondiĉoj de la servo de %{domain} ŝanĝiĝas
+      title: Grava ĝisdatigo
   challenge:
     confirm: Daŭrigi
     hint_html: "<strong>Konsileto:</strong> Ni ne demandos pri via pasvorto ĝis 1 horo."
@@ -1947,10 +1961,6 @@ eo:
     recovery_instructions_html: Se vi perdas aliron al via telefono, vi povas uzi unu el la subaj realiraj kodoj por rehavi aliron al via konto. <strong>Konservu realirajn kodojn sekure</strong>. Ekzemple, vi povas printi ilin kaj konservi ilin kun aliaj gravaj dokumentoj.
     webauthn: Sekurecaj ŝlosiloj
   user_mailer:
-    announcement_published:
-      description: 'La administrantoj de %{domain} faras anoncon:'
-      subject: Serva anonco
-      title: "%{domain} serva anonco"
     appeal_approved:
       action: Konto-agordoj
       explanation: La apelacio de la admono kontra via konto je %{strike_date} pri sendodato %{appeal_date} aprobitas.
@@ -1980,15 +1990,6 @@ eo:
       further_actions_html: Se ne estas vi, ni rekomendas ke vi %{action} tuj por sekurigi vian konton.
       subject: Via konto estas alirita de nova IP-adreso
       title: Nova saluto
-    terms_of_service_changed:
-      agreement: Se vi daŭrige uzos %{domain}, vi aŭtomate interkonsentos pri ĉi tiuj kondiĉoj. Se vi malkonsentas pri la novaj kondiĉoj, vi ĉiutempe rajtas nuligi la interkonsenton kun %{domain} per forigi vian konton.
-      changelog: 'Facile dirite, la ŝanĝoj estas la jenaj:'
-      description: 'Vi ricevas ĉi tiun retmesaĝon ĉar ni faras iujn ŝanĝojn al niaj servokondiĉoj ĉe %{domain}. Ĉi tiuj ĝisdatigoj efektiviĝos %{date}. Ni instigas vin revizii la ĝisdatigitajn terminojn plene ĉi tie:'
-      description_html: Vi ricevas ĉi tiun retmesaĝon ĉar ni faras iujn ŝanĝojn al niaj servokondiĉoj ĉe %{domain}. Ĉi tiuj ĝisdatigoj efektiviĝos <strong>%{date}</strong> Ni instigas vin revizii la <a href="%{path}" target="_blank">ĝisdatigitajn terminojn plene ĉi tie</a>.
-      sign_off: La teamo de %{domain}
-      subject: Ĝisdatigoj al niaj kondiĉoj de servo
-      subtitle: La kondiĉoj de la servo de %{domain} ŝanĝiĝas
-      title: Grava ĝisdatigo
     warning:
       appeal: Sendi apelacion
       appeal_description: Se vi pensas ke ĉi tio estas eraro, vi povas sendi apelacion al la teamo de %{instance}.

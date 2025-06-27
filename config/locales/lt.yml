@@ -880,6 +880,18 @@ lt:
     s_blog: "%{name} tinklaraštis"
     then_instructions: Tada toliau esančiame lauke įrašykite leidinio domeno vardą.
     title: Autoriaus (-ės) atribucija
+  bulk_mailer:
+    announcement_published:
+      description: "%{domain} administratoriai daro skelbimą:"
+      subject: Paslaugos skelbimas
+      title: "%{domain} paslaugos skelbimas"
+    terms_of_service_changed:
+      agreement: Tęsiant naudojimąsi %{domain}, jūs sutinkate su šiomis sąlygomis. Jei nesutinkate su atnaujintomis sąlygomis, bet kuriuo metu galite nutraukti sutartį su %{domain} ištrindami savo paskyrą.
+      changelog: Trumpai apie tai, ką šis naujinimas reiškia jums
+      sign_off: "%{domain} komanda"
+      subject: Paslaugų sąlygų atnaujinimai
+      subtitle: Keičiasi %{domain} paslaugų sąlygos
+      title: Svarbus naujinimas
   challenge:
     hint_html: "<strong>Patarimas:</strong> artimiausią valandą daugiau neprašysime tavo slaptažodžio."
   datetime:
@@ -1226,10 +1238,6 @@ lt:
     recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti, ir laikyti kartu su kitais svarbiais dokumentais.
     webauthn: Saugumo raktai
   user_mailer:
-    announcement_published:
-      description: "%{domain} administratoriai daro skelbimą:"
-      subject: Paslaugos skelbimas
-      title: "%{domain} paslaugos skelbimas"
     appeal_approved:
       action: Paskyros nustatymai
       subtitle: Tavo paskyros būklė vėl yra gera.
@@ -1248,13 +1256,6 @@ lt:
       title: Nepavyko atlikti dvigubo tapatybės nustatymo
     suspicious_sign_in:
       further_actions_html: Jei tai buvai ne tu, rekomenduojame nedelsiant %{action} ir įjungti dvigubą tapatybės nustatymą, kad tavo paskyra būtų saugi.
-    terms_of_service_changed:
-      agreement: Tęsiant naudojimąsi %{domain}, jūs sutinkate su šiomis sąlygomis. Jei nesutinkate su atnaujintomis sąlygomis, bet kuriuo metu galite nutraukti sutartį su %{domain} ištrindami savo paskyrą.
-      changelog: Trumpai apie tai, ką šis naujinimas reiškia jums
-      sign_off: "%{domain} komanda"
-      subject: Paslaugų sąlygų atnaujinimai
-      subtitle: Keičiasi %{domain} paslaugų sąlygos
-      title: Svarbus naujinimas
     warning:
       categories:
         spam: Šlamštas

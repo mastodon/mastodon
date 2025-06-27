@@ -1254,6 +1254,20 @@ ko:
     s_blog: "%{name}의 블로그"
     then_instructions: 그리고 발행처의 도메인 네임을 아래 입력란에 추가하세요.
     title: 작성자 기여
+  bulk_mailer:
+    announcement_published:
+      description: "%{domain}의 관리자가 공지사항을 게시했습니다:"
+      subject: 서비스 공지사항
+      title: "%{domain} 서비스 공지사항"
+    terms_of_service_changed:
+      agreement: "%{domain}을 계속 사용하는 것으로 약관에 동의하는 것으로 간주합니다. 약관에 동의하지 않는 경우 계정을 삭제함으로써 언제든 동의를 철회할 수 있습니다."
+      changelog: '이번 변경사항의 주요 내용입니다:'
+      description: "%{domain}의 이용 약관이 변경되었기 때문에 발송된 이메일입니다. 이 변경사항은 %{date}부터 효력을 발휘합니다. 변경된 전체 약관을 확인하시길 권합니다:"
+      description_html: '%{domain}의 이용 약관이 변경되었기 때문에 발송된 이메일입니다. 이 변경사항은 <strong>%{date}</strong>부터 효력을 발휘합니다. <a href="%{path}" target="_blank">변경된 전체 약관</a>을 확인하시길 권합니다.'
+      sign_off: "%{domain} 팀"
+      subject: 변경된 이용 약관
+      subtitle: "%{domain}의 이용 약관이 변경됩니다"
+      title: 중요한 알림
   challenge:
     confirm: 계속
     hint_html: "<strong>팁:</strong> 한 시간 동안 다시 암호를 묻지 않을 것입니다."
@@ -1925,10 +1939,6 @@ ko:
     recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
     webauthn: 보안 키
   user_mailer:
-    announcement_published:
-      description: "%{domain}의 관리자가 공지사항을 게시했습니다:"
-      subject: 서비스 공지사항
-      title: "%{domain} 서비스 공지사항"
     appeal_approved:
       action: 계정 설정
       explanation: "%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했으며 승낙되었습니다. 당신의 계정은 정상적인 상태로 돌아왔습니다."
@@ -1958,15 +1968,6 @@ ko:
       further_actions_html: 직접 로그인한 것이 아니라면, 지금 바로 %{action}과 2단계 인증을 활성화하여 계정을 안전하게 보호하시길 권해드립니다.
       subject: 계정이 새로운 IP에서 접근됨
       title: 새로운 로그인
-    terms_of_service_changed:
-      agreement: "%{domain}을 계속 사용하는 것으로 약관에 동의하는 것으로 간주합니다. 약관에 동의하지 않는 경우 계정을 삭제함으로써 언제든 동의를 철회할 수 있습니다."
-      changelog: '이번 변경사항의 주요 내용입니다:'
-      description: "%{domain}의 이용 약관이 변경되었기 때문에 발송된 이메일입니다. 이 변경사항은 %{date}부터 효력을 발휘합니다. 변경된 전체 약관을 확인하시길 권합니다:"
-      description_html: '%{domain}의 이용 약관이 변경되었기 때문에 발송된 이메일입니다. 이 변경사항은 <strong>%{date}</strong>부터 효력을 발휘합니다. <a href="%{path}" target="_blank">변경된 전체 약관</a>을 확인하시길 권합니다.'
-      sign_off: "%{domain} 팀"
-      subject: 변경된 이용 약관
-      subtitle: "%{domain}의 이용 약관이 변경됩니다"
-      title: 중요한 알림
     warning:
       appeal: 이의 제출하기
       appeal_description: 이것이 오류라고 생각한다면, %{instance}의 중재자에게 이의신청을 할 수 있습니다.

@@ -1276,6 +1276,20 @@ is:
     s_blog: Bloggsvæði hjá %{name}
     then_instructions: Síðan skaltu bæta lénsheiti útgefandans í reitinn hér fyrir neðan.
     title: Framlag höfundar
+  bulk_mailer:
+    announcement_published:
+      description: 'Stjórnendur %{domain} eru að senda frá sér yfirlýsingu:'
+      subject: Auglýsing vegna þjónustu
+      title: Auglýsing vegna þjónustu %{domain}
+    terms_of_service_changed:
+      agreement: Með því að halda áfram að nota %{domain}, ert þú þar með að samþykkja þessa skilmála. Ef þú ert ósammála þessum uppfærðu skilmálum, geturðu hvenær sem er sagt upp samþykki þínu gagnvart %{domain} með því að eyða notandaaðgangi þínum.
+      changelog: 'Í stuttu máli er það þetta sem þessi uppfærsla þýðir fyrir þig:'
+      description: 'Þú ert að fá þennan tölvupóst vegna þess að við erum að gera breytingar á þjónustuskilmálum á %{domain}. Þessar breytingar taka gildi þann %{date}. Við hvetjum þig til að kynna þér þessar breytingar hér:'
+      description_html: Þú ert að fá þennan tölvupóst vegna þess að við erum að gera breytingar á þjónustuskilmálum á %{domain}. Þessar breytingar taka gildi þann <strong>%{date}</strong>. Við hvetjum þig til að kynna þér <a href="%{path}" target="_blank">þessar breytingar hér</a>.
+      sign_off: "%{domain}-teymið"
+      subject: Breytingar á þjónustuskilmálum okkar
+      subtitle: Þjónustuskilmálar eru að breytast á %{domain}
+      title: Mikilvæg uppfærsla
   challenge:
     confirm: Halda áfram
     hint_html: "<strong>Ábending:</strong> Við munum ekki spyrja þig um lykilorðið aftur næstu klukkustundina."
@@ -1971,10 +1985,6 @@ is:
     recovery_instructions_html: Ef þú tapar símanum þínum geturðu notað einn af endurheimtukóðunum hér fyrir neðan til að fá aftur samband við notandaaðganginn þinn. <strong>Geymdu endurheimtukóðana á öruggum stað</strong>. Sem dæmi gætirðu prentað þá út og geymt með öðrum mikilvægum skjölum.
     webauthn: Öryggislyklar
   user_mailer:
-    announcement_published:
-      description: 'Stjórnendur %{domain} eru að senda frá sér yfirlýsingu:'
-      subject: Auglýsing vegna þjónustu
-      title: Auglýsing vegna þjónustu %{domain}
     appeal_approved:
       action: Stillingar notandaaðgangs
       explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið samþykkt. Notandaaðgangurinn þinn er aftur í góðu lagi.
@@ -2004,15 +2014,6 @@ is:
       further_actions_html: Ef þetta varst ekki þú, þá mælum við með að þú %{action} strax og virkjir tveggja-þátta auðkenningu til að halda aðgangnum þínum öruggum.
       subject: Skráð hefur verið inn á aðganginn þinn frá nýju IP-vistfangi
       title: Ný innskráning
-    terms_of_service_changed:
-      agreement: Með því að halda áfram að nota %{domain}, ert þú þar með að samþykkja þessa skilmála. Ef þú ert ósammála þessum uppfærðu skilmálum, geturðu hvenær sem er sagt upp samþykki þínu gagnvart %{domain} með því að eyða notandaaðgangi þínum.
-      changelog: 'Í stuttu máli er það þetta sem þessi uppfærsla þýðir fyrir þig:'
-      description: 'Þú ert að fá þennan tölvupóst vegna þess að við erum að gera breytingar á þjónustuskilmálum á %{domain}. Þessar breytingar taka gildi þann %{date}. Við hvetjum þig til að kynna þér þessar breytingar hér:'
-      description_html: Þú ert að fá þennan tölvupóst vegna þess að við erum að gera breytingar á þjónustuskilmálum á %{domain}. Þessar breytingar taka gildi þann <strong>%{date}</strong>. Við hvetjum þig til að kynna þér <a href="%{path}" target="_blank">þessar breytingar hér</a>.
-      sign_off: "%{domain}-teymið"
-      subject: Breytingar á þjónustuskilmálum okkar
-      subtitle: Þjónustuskilmálar eru að breytast á %{domain}
-      title: Mikilvæg uppfærsla
     warning:
       appeal: Senda inn áfrýjun
       appeal_description: Ef þú álítur að um mistök sé að ræða, geturðu sent áfrýjun til umsjónarmanna %{instance}.

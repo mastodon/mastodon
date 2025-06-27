@@ -1,0 +1,14 @@
+<%= t('.title') %>
+
+===
+
+<%= t('.description', domain: site_hostname, date: l(@terms_of_service.effective_date || Time.zone.today)) %>
+
+=> <%= terms_of_service_version_url(date: @terms_of_service.effective_date) %>
+
+<%= t('.changelog') %>
+
+<%= @terms_of_service.changelog %>
+<%= t('.agreement', domain: site_hostname) %>
+
+<%= t('.sign_off', domain: site_hostname) %>

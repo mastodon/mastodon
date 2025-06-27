@@ -1265,6 +1265,18 @@ sv:
     s_blog: "%{name}s blogg"
     then_instructions: Lägg sedan till domännamnet för publikationen i fältet nedan.
     title: Författarattribution
+  bulk_mailer:
+    announcement_published:
+      description: 'Administratörerna på %{domain} gör ett tillkännagivande:'
+      subject: Tjänstkungörelse
+      title: Kungörelser från %{domain}
+    terms_of_service_changed:
+      agreement: Genom att fortsätta använda %{domain} godkänner du dessa villkor. Om du inte håller med om de uppdaterade villkoren kan du när som helst säga upp ditt avtal med %{domain} genom att radera ditt konto.
+      changelog: 'I korthet, här är vad denna uppdatering innebär för dig:'
+      sign_off: "%{domain} teamet"
+      subject: Uppdateringar till våra användarvillkor
+      subtitle: Villkoren för tjänsten på %{domain} ändras
+      title: Viktig uppdatering
   challenge:
     confirm: Fortsätt
     hint_html: "<strong>Tips:</strong> Vi frågar dig inte efter ditt lösenord igen under nästkommande timme."
@@ -1960,10 +1972,6 @@ sv:
     recovery_instructions_html: Om du någonsin tappar åtkomst till din telefon kan du använda någon av återställningskoderna nedan för att återställa åtkomst till ditt konto. <strong> Håll återställningskoderna säkra </strong>. Du kan till exempel skriva ut dem och lagra dem med andra viktiga dokument.
     webauthn: Säkerhetsnycklar
   user_mailer:
-    announcement_published:
-      description: 'Administratörerna på %{domain} gör ett tillkännagivande:'
-      subject: Tjänstkungörelse
-      title: Kungörelser från %{domain}
     appeal_approved:
       action: Kontoinställningar
       explanation: Överklagandet du skickade in den %{appeal_date} för pricken på ditt konto den %{strike_date} har godkänts. Ditt konto har återigen bra anseende.
@@ -1993,13 +2001,6 @@ sv:
       further_actions_html: Om detta inte var du, rekommenderar vi att du snarast %{action} och aktiverar tvåfaktorsautentisering för att hålla ditt konto säkert.
       subject: Ditt konto har nåtts från en ny IP-adress
       title: En ny inloggning
-    terms_of_service_changed:
-      agreement: Genom att fortsätta använda %{domain} godkänner du dessa villkor. Om du inte håller med om de uppdaterade villkoren kan du när som helst säga upp ditt avtal med %{domain} genom att radera ditt konto.
-      changelog: 'I korthet, här är vad denna uppdatering innebär för dig:'
-      sign_off: "%{domain} teamet"
-      subject: Uppdateringar till våra användarvillkor
-      subtitle: Villkoren för tjänsten på %{domain} ändras
-      title: Viktig uppdatering
     warning:
       appeal: Skicka överklagan
       appeal_description: Om du anser detta felaktigt kan du skicka överklagan till administratörerna av %{instance}.

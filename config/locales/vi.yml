@@ -1253,6 +1253,20 @@ vi:
     s_blog: "%{name}'s Blog"
     then_instructions: Sau đó, thêm URL của báo/blog trong trường bên dưới.
     title: Ghi nhận tác giả
+  bulk_mailer:
+    announcement_published:
+      description: 'Quản trị viên %{domain} gửi một thông báo:'
+      subject: Thông báo dịch vụ
+      title: "%{domain} thông báo dịch vụ"
+    terms_of_service_changed:
+      agreement: Tiếp tục sử dụng %{domain}, đồng nghĩa bạn đồng ý điều khoản dịch vụ. Nếu bạn không đồng ý với các điều khoản đã cập nhật, hãy xóa tài khoản %{domain} của bạn.
+      changelog: 'Nhìn sơ qua, bản cập nhật này:'
+      description: 'Bạn nhận được email này vì chúng tôi đang thực hiện một số thay đổi đối với các điều khoản dịch vụ tại %{domain}. Thay đổi sẽ có hiệu lực từ %{date}. Hãy xem lại đầy đủ các điều khoản đã cập nhật tại đây:'
+      description_html: Bạn nhận được email này vì chúng tôi đang thực hiện một số thay đổi đối với các điều khoản dịch vụ tại %{domain}. Thay đổi sẽ có hiệu lực từ <strong>%{date}</strong>. Hãy xem lại <a href="%{path}" target="_blank">đầy đủ các điều khoản được cập nhật ở đây</a>.
+      sign_off: Đội ngũ %{domain}
+      subject: Cập nhật điều khoản dịch vụ
+      subtitle: Điều khoản dịch vụ tại %{domain} đã thay đổi
+      title: Cập nhật quan trọng
   challenge:
     confirm: Tiếp tục
     hint_html: "<strong>Mẹo:</strong> Chúng tôi sẽ không hỏi lại mật khẩu của bạn sau này."
@@ -1924,10 +1938,6 @@ vi:
     recovery_instructions_html: Nếu bạn bị mất điện thoại, hãy dùng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong>. Ví dụ, bạn có thể in chúng ra giấy.
     webauthn: Khóa bảo mật
   user_mailer:
-    announcement_published:
-      description: 'Quản trị viên %{domain} gửi một thông báo:'
-      subject: Thông báo dịch vụ
-      title: "%{domain} thông báo dịch vụ"
     appeal_approved:
       action: Cài đặt tài khoản
       explanation: Khiếu nại về tài khoản của bạn vào %{strike_date}, được gửi lúc %{appeal_date} đã được chấp nhận. Tài khoản của bạn đã có thể sử dụng bình thường.
@@ -1957,15 +1967,6 @@ vi:
       further_actions_html: Nếu đây không phải là bạn, hãy %{action} lập tức và bật xác minh hai bước để giữ tài khoản được an toàn.
       subject: Đăng nhập tài khoản từ địa chỉ IP mới
       title: Lần đăng nhập mới
-    terms_of_service_changed:
-      agreement: Tiếp tục sử dụng %{domain}, đồng nghĩa bạn đồng ý điều khoản dịch vụ. Nếu bạn không đồng ý với các điều khoản đã cập nhật, hãy xóa tài khoản %{domain} của bạn.
-      changelog: 'Nhìn sơ qua, bản cập nhật này:'
-      description: 'Bạn nhận được email này vì chúng tôi đang thực hiện một số thay đổi đối với các điều khoản dịch vụ tại %{domain}. Thay đổi sẽ có hiệu lực từ %{date}. Hãy xem lại đầy đủ các điều khoản đã cập nhật tại đây:'
-      description_html: Bạn nhận được email này vì chúng tôi đang thực hiện một số thay đổi đối với các điều khoản dịch vụ tại %{domain}. Thay đổi sẽ có hiệu lực từ <strong>%{date}</strong>. Hãy xem lại <a href="%{path}" target="_blank">đầy đủ các điều khoản được cập nhật ở đây</a>.
-      sign_off: Đội ngũ %{domain}
-      subject: Cập nhật điều khoản dịch vụ
-      subtitle: Điều khoản dịch vụ tại %{domain} đã thay đổi
-      title: Cập nhật quan trọng
     warning:
       appeal: Gửi khiếu nại
       appeal_description: Nếu bạn nghĩ đây chỉ là nhầm lẫn, hãy gửi một khiếu nại cho %{instance}.

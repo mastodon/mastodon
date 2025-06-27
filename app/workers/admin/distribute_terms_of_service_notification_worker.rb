@@ -2,7 +2,7 @@
 
 class Admin::DistributeTermsOfServiceNotificationWorker
   include Sidekiq::IterableJob
-  include BulkMailer
+  include BulkMailingConcern
 
   def build_enumerator(terms_of_service_id, cursor:)
     @terms_of_service = TermsOfService.find(terms_of_service_id)
@@ -13,7 +13,7 @@ class Admin::DistributeTermsOfServiceNotificationWorker
   end
 
   def each_iteration(batch_of_users, _terms_of_service_id)
-    push_bulk_mailer(UserMailer, :terms_of_service_changed, batch_of_users.map { |user| [user, @terms_of_service] })
+    push_bulk_mailer(BulkMailer, :terms_of_service_changed, batch_of_users.map { |user| [user, @terms_of_service] })
   end
 
   def on_start

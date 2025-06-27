@@ -1310,6 +1310,20 @@ cs:
     s_blog: Blog %{name}
     then_instructions: Poté přidejte název domény publikace do níže uvedeného pole.
     title: Připisování autorství
+  bulk_mailer:
+    announcement_published:
+      description: 'Správci %{domain} oznamují:'
+      subject: Oznámení služby
+      title: Oznámení služby %{domain}
+    terms_of_service_changed:
+      agreement: Pokračováním v používání %{domain} souhlasíte s těmito podmínkami. Pokud nesouhlasíte s aktualizovanými podmínkami, můžete svůj souhlas s %{domain} kdykoliv ukončit odstraněním vašeho účtu.
+      changelog: 'Ve zkratce, zde je to, co tato změna znamená pro vás:'
+      description: 'Tento e-mail jste obdrželi, protože na %{domain} provádíme určité změny našich smluvních podmínek. Tyto aktualizace budou platné od %{date}. Doporučujeme vám zkontrolovat aktualizované podmínky v celém znění zde:'
+      description_html: Tento e-mail jste obdrželi, protože na %{domain} provádíme určité změny našich smluvních podmínek. Tyto aktualizace budou platné od <strong>%{date}</strong>. Doporučujeme vám zkontrolovat <a href="%{path}" target="_blank">aktualizované podmínky v celém znění zde</a>.
+      sign_off: Tým %{domain}
+      subject: Aktualizace našich podmínek služby
+      subtitle: Podmínky služby %{domain} se mění
+      title: Důležitá aktualizace
   challenge:
     confirm: Pokračovat
     hint_html: "<strong>Tip:</strong> Po dobu jedné hodiny vás o heslo nebudeme znovu žádat."
@@ -2053,10 +2067,6 @@ cs:
     recovery_instructions_html: Ztratíte-li někdy přístup ke svému telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
     webauthn: Bezpečnostní klíče
   user_mailer:
-    announcement_published:
-      description: 'Správci %{domain} oznamují:'
-      subject: Oznámení služby
-      title: Oznámení služby %{domain}
     appeal_approved:
       action: Možnosti Účtu
       explanation: Odvolání proti prohřešku vašeho účtu ze dne %{strike_date}, které jste podali %{appeal_date}, bylo schváleno. Váš účet je opět v pořádku.
@@ -2086,15 +2096,6 @@ cs:
       further_actions_html: Pokud jste to nebyli vy, doporučujeme pro zabezpečení vašeho účtu okamžitě %{action} a zapnout dvoufázové ověřování.
       subject: Váš účet byl použit z nové IP adresy
       title: Nové přihlášení
-    terms_of_service_changed:
-      agreement: Pokračováním v používání %{domain} souhlasíte s těmito podmínkami. Pokud nesouhlasíte s aktualizovanými podmínkami, můžete svůj souhlas s %{domain} kdykoliv ukončit odstraněním vašeho účtu.
-      changelog: 'Ve zkratce, zde je to, co tato změna znamená pro vás:'
-      description: 'Tento e-mail jste obdrželi, protože na %{domain} provádíme určité změny našich smluvních podmínek. Tyto aktualizace budou platné od %{date}. Doporučujeme vám zkontrolovat aktualizované podmínky v celém znění zde:'
-      description_html: Tento e-mail jste obdrželi, protože na %{domain} provádíme určité změny našich smluvních podmínek. Tyto aktualizace budou platné od <strong>%{date}</strong>. Doporučujeme vám zkontrolovat <a href="%{path}" target="_blank">aktualizované podmínky v celém znění zde</a>.
-      sign_off: Tým %{domain}
-      subject: Aktualizace našich podmínek služby
-      subtitle: Podmínky služby %{domain} se mění
-      title: Důležitá aktualizace
     warning:
       appeal: Podat odvolání
       appeal_description: Pokud se domníváte, že se jedná o chybu, můžete podat odvolání personálu %{instance}.

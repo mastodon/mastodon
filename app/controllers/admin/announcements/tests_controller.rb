@@ -5,7 +5,7 @@ class Admin::Announcements::TestsController < Admin::BaseController
 
   def create
     authorize @announcement, :distribute?
-    UserMailer.announcement_published(current_user, @announcement).deliver_later!
+    BulkMailer.announcement_published(current_user, @announcement).deliver_later!
     redirect_to admin_announcements_path
   end
 

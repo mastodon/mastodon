@@ -1272,6 +1272,20 @@ de:
     s_blog: Blog von %{name}
     then_instructions: Ergänze anschließend im unteren Feld die Domain, auf der sich deine Inhalte befinden.
     title: Verifizierung als Autor*in
+  bulk_mailer:
+    announcement_published:
+      description: 'Ankündigung der Administrator*innen von %{domain}:'
+      subject: Ankündigung
+      title: Ankündigung von %{domain}
+    terms_of_service_changed:
+      agreement: Du stimmst den neuen Nutzungsbedingungen automatisch zu, wenn du %{domain} weiterhin verwendest. Falls du mit diesen nicht einverstanden bist, kannst du die Vereinbarung mit %{domain} jederzeit widerrufen, indem du dein Konto dort löschst.
+      changelog: 'Die Änderungen im Überblick:'
+      description: 'Du erhältst diese E-Mail, weil wir für %{domain} einige Änderungen an unseren Nutzungsbedingungen vorgenommen haben. Diese Änderungen gelten ab %{date}. Wir empfehlen, die vollständig aktualisierte Fassung hier zu lesen:'
+      description_html: Du erhältst diese E-Mail, weil wir für %{domain} einige Änderungen an unseren Nutzungsbedingungen vorgenommen haben. Diese Änderungen gelten ab <strong>%{date}</strong>. Wir empfehlen, die <a href="%{path}" target="_blank">vollständig aktualisierte Fassung hier zu lesen</a>.
+      sign_off: Das Team von %{domain}
+      subject: Aktualisierung unserer Nutzungsbedingungen
+      subtitle: Die Nutzungsbedingungen von %{domain} ändern sich
+      title: Wichtige Mitteilung
   challenge:
     confirm: Fortfahren
     hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
@@ -1967,10 +1981,6 @@ de:
     recovery_instructions_html: Falls du jemals den Zugang zu deinem Smartphone verlierst, kannst du einen der unten aufgeführten Wiederherstellungscodes verwenden, um wieder Zugang zu deinem Konto zu erhalten. <strong>Bewahre die Wiederherstellungscodes sicher auf</strong>. Du kannst sie zum Beispiel ausdrucken und zusammen mit anderen wichtigen Dokumenten aufbewahren.
     webauthn: Sicherheitsschlüssel
   user_mailer:
-    announcement_published:
-      description: 'Ankündigung der Administrator*innen von %{domain}:'
-      subject: Ankündigung
-      title: Ankündigung von %{domain}
     appeal_approved:
       action: Kontoeinstellungen
       explanation: Der Einspruch gegen deinen Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde genehmigt. Dein Konto ist wieder in Ordnung.
@@ -2000,15 +2010,6 @@ de:
       further_actions_html: Wenn du das nicht warst, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentisierung für dein Konto zu aktivieren, um es abzusichern.
       subject: Es wurde auf dein Konto von einer neuen IP-Adresse zugegriffen
       title: Eine neue Anmeldung
-    terms_of_service_changed:
-      agreement: Du stimmst den neuen Nutzungsbedingungen automatisch zu, wenn du %{domain} weiterhin verwendest. Falls du mit diesen nicht einverstanden bist, kannst du die Vereinbarung mit %{domain} jederzeit widerrufen, indem du dein Konto dort löschst.
-      changelog: 'Die Änderungen im Überblick:'
-      description: 'Du erhältst diese E-Mail, weil wir für %{domain} einige Änderungen an unseren Nutzungsbedingungen vorgenommen haben. Diese Änderungen gelten ab %{date}. Wir empfehlen, die vollständig aktualisierte Fassung hier zu lesen:'
-      description_html: Du erhältst diese E-Mail, weil wir für %{domain} einige Änderungen an unseren Nutzungsbedingungen vorgenommen haben. Diese Änderungen gelten ab <strong>%{date}</strong>. Wir empfehlen, die <a href="%{path}" target="_blank">vollständig aktualisierte Fassung hier zu lesen</a>.
-      sign_off: Das Team von %{domain}
-      subject: Aktualisierung unserer Nutzungsbedingungen
-      subtitle: Die Nutzungsbedingungen von %{domain} ändern sich
-      title: Wichtige Mitteilung
     warning:
       appeal: Einspruch erheben
       appeal_description: Wenn du glaubst, dass es sich um einen Fehler handelt, kannst du einen Einspruch an die Administration von %{instance} senden.

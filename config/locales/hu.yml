@@ -1272,6 +1272,20 @@ hu:
     s_blog: "%{name} blogja"
     then_instructions: Aztán add meg a publikáció domain-nevét az alábbi mezőben.
     title: Szerző forrásmegjelölése
+  bulk_mailer:
+    announcement_published:
+      description: 'A(z) %{domain} adminisztrátorai a következő bejelentést teszik:'
+      subject: Szolgáltatási közlemény
+      title: A(z) %{domain} szolgáltatási közleménye
+    terms_of_service_changed:
+      agreement: A(z) %{domain} használatának folytatásával beleegyezel ezekbe a feltételekbe. Ha nem értesz egyet a frissített feltételekkel, akkor a fiókod törlésével megszakíthatod a(z) %{domain} weboldallal való megállapodásodat.
+      changelog: 'Dióhéjban ez a frissítés ezt jelenti számodra:'
+      description: 'Azért kapod ezt az e-mailt, mert változtatunk a(z) %{domain} felhasználási feltételein. A változások ekkor lépnek életbe: %{date}. Javasoljuk, hogy tekintsd át a frissített feltételeket teljes egészében itt:'
+      description_html: 'Azért kapod ezt az e-mailt, mert változtatunk a(z) %{domain} felhasználási feltételein. A változások ekkor lépnek életbe: <strong>%{date}</strong>. Javasoljuk, hogy tekintsd át a <a href="%{path}" target="_blank">frissített feltételeket teljes egészében itt</a>.'
+      sign_off: A(z) %{domain} csapata
+      subject: A felhasználási feltételei frissítései
+      subtitle: A(z) %{domain} felhasználási feltételei megváltoznak
+      title: Fontos frissítés
   challenge:
     confirm: Folytatás
     hint_html: "<strong>Hasznos:</strong> Nem fogjuk megint a jelszavadat kérdezni a következő órában."
@@ -1967,10 +1981,6 @@ hu:
     recovery_instructions_html: A visszaállítási kódok egyikének segítségével tudsz majd belépni, ha elveszítenéd a telefonod. <strong>Tartsd biztos helyen a visszaállítási kódjaid</strong>! Például nyomtasd ki őket és tárold a többi fontos iratoddal együtt.
     webauthn: Biztonsági kulcsok
   user_mailer:
-    announcement_published:
-      description: 'A(z) %{domain} adminisztrátorai a következő bejelentést teszik:'
-      subject: Szolgáltatási közlemény
-      title: A(z) %{domain} szolgáltatási közleménye
     appeal_approved:
       action: Fiók Beállításai
       explanation: A fiókod %{appeal_date}-i fellebbezése, mely a %{strike_date}-i vétségeddel kapcsolatos, jóváhagyásra került. A fiókod megint makulátlan.
@@ -2000,15 +2010,6 @@ hu:
       further_actions_html: Ha nem te voltál, akkor azt javasoljuk, hogy azonnal %{action} és engedélyezd a kétlépcsős hitelesítést, hogy biztonságban tudd a fiókodat.
       subject: A fiókodat egy új IP-címről érték el
       title: Új bejelentkezés
-    terms_of_service_changed:
-      agreement: A(z) %{domain} használatának folytatásával beleegyezel ezekbe a feltételekbe. Ha nem értesz egyet a frissített feltételekkel, akkor a fiókod törlésével megszakíthatod a(z) %{domain} weboldallal való megállapodásodat.
-      changelog: 'Dióhéjban ez a frissítés ezt jelenti számodra:'
-      description: 'Azért kapod ezt az e-mailt, mert változtatunk a(z) %{domain} felhasználási feltételein. A változások ekkor lépnek életbe: %{date}. Javasoljuk, hogy tekintsd át a frissített feltételeket teljes egészében itt:'
-      description_html: 'Azért kapod ezt az e-mailt, mert változtatunk a(z) %{domain} felhasználási feltételein. A változások ekkor lépnek életbe: <strong>%{date}</strong>. Javasoljuk, hogy tekintsd át a <a href="%{path}" target="_blank">frissített feltételeket teljes egészében itt</a>.'
-      sign_off: A(z) %{domain} csapata
-      subject: A felhasználási feltételei frissítései
-      subtitle: A(z) %{domain} felhasználási feltételei megváltoznak
-      title: Fontos frissítés
     warning:
       appeal: Fellebbezés beküldése
       appeal_description: Ha azt gondolod, hogy ez hibás, beküldhetsz egy fellebbezést a(z) %{instance} szerver csapatának.

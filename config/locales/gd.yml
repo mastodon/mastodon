@@ -1303,6 +1303,20 @@ gd:
     s_blog: Bloga aig %{name}
     then_instructions: An uair sin, cuir ainm àrainn an fhoillseachaidh ris an raon gu h-ìosal.
     title: Aithris air an ùghdar
+  bulk_mailer:
+    announcement_published:
+      description: 'Tha na rianairean aig %{domain} a’ dèanamh brath-fios:'
+      subject: Brath-fios na seirbheise
+      title: Brath-fios na seirbheise %{domain}
+    terms_of_service_changed:
+      agreement: Ma chumas tu a’ dol a chleachdadh %{domain}, aontaichidh tu ris na teirmichean seo. Mur aontaich thu ris na teirmichean ùra, ’s urrainn dhut crìoch a chur air d’ aonta le %{domain} uair sam bith le sguabadh às a’ chunntais agad.
+      changelog: 'Ann am priobadh na sùla, seo na tha an t-ùrachadh seo a’ ciallachadh dhut:'
+      description: 'Tha thu a’ faighinn a’ phuist-d seo air sgàth ’s gu bheil sinn ag atharrachadh teirmichean na seirbheise againn airson %{domain}. Bidh na h-ùrachaidhean seo èifeachdach an %{date}. Mholamaid gun dèan thu lèirmheas air na teirmichean ùra slàna an-seo:'
+      description_html: Tha thu a’ faighinn a’ phuist-d seo air sgàth ’s gu bheil sinn ag atharrachadh teirmichean na seirbheise againn airson %{domain}. Bidh na h-ùrachaidhean seo èifeachdach an <strong>%{date}</strong>. Mholamaid gun dèan thu lèirmheas air <a href="%{path}" target="_blank">na teirmichean ùra slàna an-seo</a>.
+      sign_off: Sgioba %{domain}
+      subject: Ùrachaidhean air teirmichean na seirbheise againn
+      subtitle: Tha teirmichean na seirbheise aig %{domain} gan atharrachadh
+      title: Naidheachd cudromach
   challenge:
     confirm: Lean air adhart
     hint_html: "<strong>Gliocas:</strong> Chan iarr sinn am facal-faire agad ort a-rithist fad uair a thìde."
@@ -2046,10 +2060,6 @@ gd:
     recovery_instructions_html: Ma chailleas tu an t-inntrigeadh dhan fhòn agad, ’s urrainn dhut fear dhe na còdan aisig gu h-ìosal a chleachdadh airson faighinn a-steach dhan chunntas agad a-rithist. <strong>Cùm na còdan aisig sàbhailte</strong>. Mar eisimpleir, ’s urrainn dhut an clò-bhualadh ’s a chumail far a bheil thu a’ cumail na sgrìobhainnean cudromach eile agad.
     webauthn: Iuchraichean tèarainteachd
   user_mailer:
-    announcement_published:
-      description: 'Tha na rianairean aig %{domain} a’ dèanamh brath-fios:'
-      subject: Brath-fios na seirbheise
-      title: Brath-fios na seirbheise %{domain}
     appeal_approved:
       action: Roghainnean a’ chunntais
       explanation: Chaidh aontachadh ris an ath-thagradh agad air an rabhadh o %{strike_date} a chuir thu a-null %{appeal_date}. Tha an cunntas agad ann an deagh-chor a-rithist.
@@ -2079,15 +2089,6 @@ gd:
       further_actions_html: Mur e thu fhèin a bh’ ann, mholamaid gun %{action} sa bhad agus gun cuir thu an dearbhadh dà-cheumnach an comas airson an cunntas agad a chumail tèarainte.
       subject: Chaidh an cunntas agad inntrigeadh o sheòladh IP ùr
       title: Clàradh a-steach ùr
-    terms_of_service_changed:
-      agreement: Ma chumas tu a’ dol a chleachdadh %{domain}, aontaichidh tu ris na teirmichean seo. Mur aontaich thu ris na teirmichean ùra, ’s urrainn dhut crìoch a chur air d’ aonta le %{domain} uair sam bith le sguabadh às a’ chunntais agad.
-      changelog: 'Ann am priobadh na sùla, seo na tha an t-ùrachadh seo a’ ciallachadh dhut:'
-      description: 'Tha thu a’ faighinn a’ phuist-d seo air sgàth ’s gu bheil sinn ag atharrachadh teirmichean na seirbheise againn airson %{domain}. Bidh na h-ùrachaidhean seo èifeachdach an %{date}. Mholamaid gun dèan thu lèirmheas air na teirmichean ùra slàna an-seo:'
-      description_html: Tha thu a’ faighinn a’ phuist-d seo air sgàth ’s gu bheil sinn ag atharrachadh teirmichean na seirbheise againn airson %{domain}. Bidh na h-ùrachaidhean seo èifeachdach an <strong>%{date}</strong>. Mholamaid gun dèan thu lèirmheas air <a href="%{path}" target="_blank">na teirmichean ùra slàna an-seo</a>.
-      sign_off: Sgioba %{domain}
-      subject: Ùrachaidhean air teirmichean na seirbheise againn
-      subtitle: Tha teirmichean na seirbheise aig %{domain} gan atharrachadh
-      title: Naidheachd cudromach
     warning:
       appeal: Cuir ath-thagradh a-null
       appeal_description: Ma tha thu dhen bheachd gur e mearachd a th’ ann, ’s urrainn dhut ath-thagradh a chur a-null gun sgioba aig %{instance}.

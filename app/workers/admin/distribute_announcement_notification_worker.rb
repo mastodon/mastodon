@@ -2,7 +2,7 @@
 
 class Admin::DistributeAnnouncementNotificationWorker
   include Sidekiq::IterableJob
-  include BulkMailer
+  include BulkMailingConcern
 
   def build_enumerator(announcement_id, cursor:)
     @announcement = Announcement.find(announcement_id)
@@ -13,6 +13,6 @@ class Admin::DistributeAnnouncementNotificationWorker
   end
 
   def each_iteration(batch_of_users, _announcement_id)
-    push_bulk_mailer(UserMailer, :announcement_published, batch_of_users.map { |user| [user, @announcement] })
+    push_bulk_mailer(BulkMailer, :announcement_published, batch_of_users.map { |user| [user, @announcement] })
   end
 end

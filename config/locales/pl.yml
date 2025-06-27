@@ -1255,6 +1255,14 @@ pl:
     s_blog: Blog %{name}
     then_instructions: Potem, dodaj domenę publikacji do pola poniżej.
     title: Przypis do autora
+  bulk_mailer:
+    terms_of_service_changed:
+      agreement: Kontynuując używanie %{domain}, zgadzasz się na te warunki. Jeśli nie zgadzasz się ze zaktualizowanymi warunkami, możesz wypowiedzieć umowę z %{domain} w dowolnym momencie, usuwając swoje konto.
+      changelog: 'W skrócie oto co oznacza dla Ciebie ta aktualizacja:'
+      sign_off: Zespół %{domain}
+      subject: Aktualizacja warunków korzystania z usług
+      subtitle: Warunki korzystania z %{domain} zmieniają się
+      title: Ważna aktualizacja
   challenge:
     confirm: Kontynuuj
     hint_html: "<strong>Informacja:</strong> Nie będziemy prosić Cię o ponowne podanie hasła przez następną godzinę."
@@ -2018,13 +2026,6 @@ pl:
       further_actions_html: Jeśli to nie Ty, zalecamy %{action} natychmiastowo i włącz uwierzytelnianie dwuetapowe, aby Twoje konto było bezpieczne.
       subject: Uzyskano dostęp do twojego konta z nowego adresu IP
       title: Nowe logowanie
-    terms_of_service_changed:
-      agreement: Kontynuując używanie %{domain}, zgadzasz się na te warunki. Jeśli nie zgadzasz się ze zaktualizowanymi warunkami, możesz wypowiedzieć umowę z %{domain} w dowolnym momencie, usuwając swoje konto.
-      changelog: 'W skrócie oto co oznacza dla Ciebie ta aktualizacja:'
-      sign_off: Zespół %{domain}
-      subject: Aktualizacja warunków korzystania z usług
-      subtitle: Warunki korzystania z %{domain} zmieniają się
-      title: Ważna aktualizacja
     warning:
       appeal: Złóż odwołanie
       appeal_description: Jeśli uważasz, że zaszło nieporozumienie, możesz złożyć odwołanie do zespołu %{instance}.

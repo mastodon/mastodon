@@ -1217,6 +1217,14 @@ en-GB:
     s_blog: "%{name}'s Blog"
     then_instructions: Then, add the domain name of the publication in the field below.
     title: Author attribution
+  bulk_mailer:
+    terms_of_service_changed:
+      agreement: By continuing to use %{domain}, you are agreeing to these terms. If you disagree with the updated terms, you may terminate your agreement with %{domain} at any time by deleting your account.
+      changelog: 'At a glance, here is what this update means for you:'
+      sign_off: The %{domain} team
+      subject: Updates to our terms of service
+      subtitle: The terms of service of %{domain} are changing
+      title: Important update
   challenge:
     confirm: Continue
     hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
@@ -1932,13 +1940,6 @@ en-GB:
       further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
       subject: Your account has been accessed from a new IP address
       title: A new login
-    terms_of_service_changed:
-      agreement: By continuing to use %{domain}, you are agreeing to these terms. If you disagree with the updated terms, you may terminate your agreement with %{domain} at any time by deleting your account.
-      changelog: 'At a glance, here is what this update means for you:'
-      sign_off: The %{domain} team
-      subject: Updates to our terms of service
-      subtitle: The terms of service of %{domain} are changing
-      title: Important update
     warning:
       appeal: Submit an appeal
       appeal_description: If you believe this is an error, you can submit an appeal to the staff of %{instance}.

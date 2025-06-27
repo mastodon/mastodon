@@ -5,7 +5,7 @@ class Admin::TermsOfService::TestsController < Admin::BaseController
 
   def create
     authorize @terms_of_service, :distribute?
-    UserMailer.terms_of_service_changed(current_user, @terms_of_service).deliver_later!
+    BulkMailer.terms_of_service_changed(current_user, @terms_of_service).deliver_later!
     redirect_to admin_terms_of_service_preview_path(@terms_of_service)
   end
 

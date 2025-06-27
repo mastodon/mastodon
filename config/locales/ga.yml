@@ -1329,6 +1329,20 @@ ga:
     s_blog: Blag %{name}
     then_instructions: Ansin, cuir ainm fearainn an fhoilseacháin sa réimse thíos.
     title: Leithdháil an údair
+  bulk_mailer:
+    announcement_published:
+      description: 'Tá riarthóirí %{domain} ag déanamh fógra:'
+      subject: Fógra seirbhíse
+      title: "%{domain} fógra seirbhíse"
+    terms_of_service_changed:
+      agreement: Má leanann tú ar aghaidh ag úsáid %{domain}, tá tú ag aontú leis na téarmaí seo. Mura n-aontaíonn tú leis na téarmaí nuashonraithe, is féidir leat do chomhaontú le %{domain} a fhoirceannadh am ar bith trí do chuntas a scriosadh.
+      changelog: 'Sracfhéachaint, seo é a chiallaíonn an nuashonrú seo duit:'
+      description: 'Tá an ríomhphost seo á fháil agat toisc go bhfuil roinnt athruithe á ndéanamh againn ar ár dtéarmaí seirbhíse ag %{domain}. Beidh na nuashonruithe seo i bhfeidhm ar %{date}. Molaimid duit athbhreithniú iomlán a dhéanamh ar na téarmaí nuashonraithe anseo:'
+      description_html: Tá an ríomhphost seo á fháil agat toisc go bhfuil roinnt athruithe á ndéanamh againn ar ár dtéarmaí seirbhíse ag %{domain}. Tiocfaidh na nuashonruithe seo i bhfeidhm ar <strong>%{date}</strong>. Molaimid duit athbhreithniú a dhéanamh ar na <a href="%{path}" target="_blank">téarmaí nuashonraithe ina n-iomláine anseo</a>.
+      sign_off: Foireann %{domain}
+      subject: Nuashonruithe ar ár dtéarmaí seirbhíse
+      subtitle: Tá téarmaí seirbhíse %{domain} ag athrú
+      title: Nuashonrú tábhachtach
   challenge:
     confirm: Lean ar aghaidh
     hint_html: "<strong>Leid:</strong> Ní iarrfaimid do phasfhocal ort arís go ceann uair an chloig eile."
@@ -2096,10 +2110,6 @@ ga:
     recovery_instructions_html: Má chailleann tú rochtain ar do ghuthán riamh, is féidir leat ceann de na cóid athshlánaithe thíos a úsáid chun rochtain a fháil ar do chuntas arís. <strong>Coinnigh na cóid athshlánaithe slán</strong>. Mar shampla, is féidir leat iad a phriontáil agus iad a stóráil le doiciméid thábhachtacha eile.
     webauthn: Eochracha slándála
   user_mailer:
-    announcement_published:
-      description: 'Tá riarthóirí %{domain} ag déanamh fógra:'
-      subject: Fógra seirbhíse
-      title: "%{domain} fógra seirbhíse"
     appeal_approved:
       action: Socruithe cuntas
       explanation: Ceadaíodh achomharc na stailce i gcoinne do chuntais ar %{strike_date} a chuir tú isteach ar %{appeal_date}. Tá seasamh maith ag do chuntas arís.
@@ -2129,15 +2139,6 @@ ga:
       further_actions_html: Mura tusa a bhí ann, molaimid duit %{action} a dhéanamh láithreach agus fíordheimhniú dhá fhachtóir a chumasú chun do chuntas a choinneáil slán.
       subject: Fuarthas rochtain ar do chuntas ó sheoladh IP nua
       title: Síniú isteach nua
-    terms_of_service_changed:
-      agreement: Má leanann tú ar aghaidh ag úsáid %{domain}, tá tú ag aontú leis na téarmaí seo. Mura n-aontaíonn tú leis na téarmaí nuashonraithe, is féidir leat do chomhaontú le %{domain} a fhoirceannadh am ar bith trí do chuntas a scriosadh.
-      changelog: 'Sracfhéachaint, seo é a chiallaíonn an nuashonrú seo duit:'
-      description: 'Tá an ríomhphost seo á fháil agat toisc go bhfuil roinnt athruithe á ndéanamh againn ar ár dtéarmaí seirbhíse ag %{domain}. Beidh na nuashonruithe seo i bhfeidhm ar %{date}. Molaimid duit athbhreithniú iomlán a dhéanamh ar na téarmaí nuashonraithe anseo:'
-      description_html: Tá an ríomhphost seo á fháil agat toisc go bhfuil roinnt athruithe á ndéanamh againn ar ár dtéarmaí seirbhíse ag %{domain}. Tiocfaidh na nuashonruithe seo i bhfeidhm ar <strong>%{date}</strong>. Molaimid duit athbhreithniú a dhéanamh ar na <a href="%{path}" target="_blank">téarmaí nuashonraithe ina n-iomláine anseo</a>.
-      sign_off: Foireann %{domain}
-      subject: Nuashonruithe ar ár dtéarmaí seirbhíse
-      subtitle: Tá téarmaí seirbhíse %{domain} ag athrú
-      title: Nuashonrú tábhachtach
     warning:
       appeal: Cuir achomharc isteach
       appeal_description: Má chreideann tú gur earráid é seo, is féidir leat achomharc a chur isteach chuig foireann %{instance}.

@@ -19,3 +19,18 @@ production:
     tls: <%= ENV.fetch('SMTP_TLS', false) == 'true' ? true : nil %>
     ssl: <%= ENV.fetch('SMTP_SSL', false) == 'true' ? true : nil %>
     read_timeout: 20
+  bulk_mail:
+    smtp_settings:
+      port: <%= ENV.fetch('BULK_SMTP_PORT', nil) %>
+      address: <%= ENV.fetch('BULK_SMTP_SERVER', nil) %>
+      user_name: <%= ENV.fetch('BULK_SMTP_LOGIN', nil) %>
+      password: <%= ENV.fetch('BULK_SMTP_PASSWORD', nil) %>
+      domain: <%= ENV.fetch('BULK_SMTP_DOMAIN', ENV.fetch('LOCAL_DOMAIN', nil)) %>
+      authentication: <%= ENV.fetch('BULK_SMTP_AUTH_METHOD', 'plain') %>
+      ca_file: <%= ENV.fetch('BULK_SMTP_CA_FILE', '/etc/ssl/certs/ca-certificates.crt') %>
+      openssl_verify_mode: <%= ENV.fetch('BULK_SMTP_OPENSSL_VERIFY_MODE', nil) %>
+      enable_starttls: <%= ENV.fetch('BULK_SMTP_ENABLE_STARTTLS', nil) %>
+      enable_starttls_auto: <%= ENV.fetch('BULK_SMTP_ENABLE_STARTTLS_AUTO', true) != 'false' %>
+      tls: <%= ENV.fetch('BULK_SMTP_TLS', false) == 'true' ? true : nil %>
+      ssl: <%= ENV.fetch('BULK_SMTP_SSL', false) == 'true' ? true : nil %>
+      read_timeout: 20
