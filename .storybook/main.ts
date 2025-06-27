@@ -1,3 +1,5 @@
+import { resolve } from 'node:path';
+
 import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
@@ -26,6 +28,12 @@ const config: StorybookConfig = {
       'oops.png',
     ].map((path) => ({ from: `../public/${path}`, to: `/${path}` })),
   ],
+  viteFinal(config) {
+    // For an unknown reason, Storybook does not use the root
+    // from the Vite config so we need to set it manually.
+    config.root = resolve(__dirname, '../app/javascript');
+    return config;
+  },
 };
 
 export default config;

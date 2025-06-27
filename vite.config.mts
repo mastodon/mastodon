@@ -147,7 +147,7 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
           manifestPaths: ['.vite/manifest.json', '.vite/manifest-assets.json'],
         }),
       VitePWA({
-        srcDir: 'mastodon/service_worker',
+        srcDir: path.resolve(jsRoot, 'mastodon/service_worker'),
         // We need to use injectManifest because we use our own service worker
         strategies: 'injectManifest',
         manifest: false,
