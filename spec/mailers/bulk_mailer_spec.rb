@@ -28,7 +28,7 @@ RSpec.describe BulkMailer do
         Rails.configuration.x.email = nil
       end
 
-      it 'uses the buld mailer settings' do
+      it 'uses the bulk mailer settings' do
         expect(mail.message.delivery_method.settings).to eq({
           address: 'localhost',
           port: 25,
