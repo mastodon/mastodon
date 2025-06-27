@@ -18,13 +18,20 @@ class TranslationService
         configuration.libre_translate[:endpoint],
         configuration.libre_translate[:api_key]
       )
+    elsif configuration.openai[:model].present? && configuration.openai[:endpoint].present?
+      TranslationService::OpenAI.new(
+        configuration.openai[:endpoint],
+        configuration.openai[:api_key],
+        configuration.openai[:model]
+      )
     else
       raise NotConfiguredError
     end
   end
 
   def self.configured?
-    configuration.deepl[:api_key].present? || configuration.libre_translate[:endpoint].present?
+    configuration.deepl[:api_key].present? || configuration.libre_translate[:endpoint].present? ||
+      (configuration.openai[:model].present? && configuration.openai[:endpoint].present?)
   end
 
   def self.configuration
