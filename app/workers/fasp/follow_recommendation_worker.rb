@@ -23,8 +23,12 @@ class Fasp::FollowRecommendationWorker
       Fasp::Request.new(provider).get("/follow_recommendation/v0/accounts?#{params}").each do |uri|
         next if Account.where(uri:).any?
 
-        account = fetch_service.call(uri)
-        async_refresh.increment_result_count(by: 1) if account.present?
+        new_account = fetch_service.call(uri)
+
+        if new_account.present?
+          Fasp::FollowRecommendation.find_or_create_by(requesting_account: account, recommended_account: new_account)
+          async_refresh.increment_result_count(by: 1)
+        end
       end
     end
   rescue ActiveRecord::RecordNotFound

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_05_110215) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_27_132728) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -191,8 +191,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_05_110215) do
     t.boolean "hide_collections"
     t.integer "avatar_storage_schema_version"
     t.integer "header_storage_schema_version"
-    t.integer "suspension_origin"
     t.datetime "sensitized_at", precision: nil
+    t.integer "suspension_origin"
     t.boolean "trendable"
     t.datetime "reviewed_at", precision: nil
     t.datetime "requested_review_at", precision: nil
@@ -465,6 +465,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_05_110215) do
     t.index ["fasp_provider_id"], name: "index_fasp_debug_callbacks_on_fasp_provider_id"
   end
 
+  create_table "fasp_follow_recommendations", force: :cascade do |t|
+    t.bigint "requesting_account_id", null: false
+    t.bigint "recommended_account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recommended_account_id"], name: "index_fasp_follow_recommendations_on_recommended_account_id"
+    t.index ["requesting_account_id"], name: "index_fasp_follow_recommendations_on_requesting_account_id"
+  end
+
   create_table "fasp_providers", force: :cascade do |t|
     t.boolean "confirmed", default: false, null: false
     t.string "name", null: false
@@ -604,12 +613,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_05_110215) do
   end
 
   create_table "ip_blocks", force: :cascade do |t|
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.datetime "expires_at", precision: nil
     t.inet "ip", default: "0.0.0.0", null: false
     t.integer "severity", default: 0, null: false
+    t.datetime "expires_at", precision: nil
     t.text "comment", default: "", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["ip"], name: "index_ip_blocks_on_ip", unique: true
   end
 
@@ -1367,6 +1376,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_05_110215) do
   add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
   add_foreign_key "fasp_backfill_requests", "fasp_providers"
   add_foreign_key "fasp_debug_callbacks", "fasp_providers"
+  add_foreign_key "fasp_follow_recommendations", "accounts", column: "recommended_account_id"
+  add_foreign_key "fasp_follow_recommendations", "accounts", column: "requesting_account_id"
   add_foreign_key "fasp_subscriptions", "fasp_providers"
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade
   add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
