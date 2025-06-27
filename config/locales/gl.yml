@@ -1272,6 +1272,20 @@ gl:
     s_blog: Blog de %{name}
     then_instructions: Despois engade o nome de dominio da publicación no campo inferior.
     title: Atribución da autoría
+  bulk_mailer:
+    announcement_published:
+      description: A administración de %{domain} publicou un anuncio
+      subject: Información de servizo
+      title: Información de servizo de %{domain}
+    terms_of_service_changed:
+      agreement: Se continúas a usar %{domain} aceptas estas condicións. Se non aceptas as condicións actualizadas podería rematar o acordo con %{domain} en calquera momento e eliminarse a túa conta.
+      changelog: 'Dunha ollada, aquí tes o que implican os cambios para ti:'
+      description: 'Estás a recibir este correo porque fixemos cambios nas condicións do servizo en %{domain}. Estas actualizacións terán efecto desde o %{date}. Convidámoste a que revises os termos ao completo aquí:'
+      description_html: 'Estás a recibir este correo porque fixemos algúns cambios nas nósas condicións do servizo en %{domain}. Estas actualizacións terán efecto desde o <strong>%{date}</strong>. Convidámoste a que leas <a href="%{path}" target="_blank">aquí as condicións actualizadas ao completo</a>:'
+      sign_off: O equipo de %{domain}
+      subject: Actualización das condicións do servizo
+      subtitle: Cambiaron as condicións do servizo de %{domain}
+      title: Notificación importante
   challenge:
     confirm: Continuar
     hint_html: "<strong>Nota:</strong> Non che pediremos o contrasinal na seguinte hora."
@@ -1967,10 +1981,6 @@ gl:
     recovery_instructions_html: Se perdeses o acceso ao teu teléfono, podes utilizar un dos códigos de recuperación inferiores para recuperar o acceso á conta. <strong>Garda os códigos nun lugar seguro</strong>. Por exemplo, podes imprimilos e gardalos xunto con outros documentos importantes.
     webauthn: Chaves de seguridade
   user_mailer:
-    announcement_published:
-      description: A administración de %{domain} publicou un anuncio
-      subject: Información de servizo
-      title: Información de servizo de %{domain}
     appeal_approved:
       action: Axustes da conta
       explanation: A apelación da acción contra a túa conta o %{strike_date} que enviaches o %{appeal_date} foi aprobada. A túa conta volve ao estado normal de uso.
@@ -2000,15 +2010,6 @@ gl:
       further_actions_html: Se non foches ti, aconsellámosche %{action} inmediatamente e activar o segundo factor de autenticación para manter conta segura.
       subject: Accedeuse á túa conta desde novos enderezos IP
       title: Novo acceso
-    terms_of_service_changed:
-      agreement: Se continúas a usar %{domain} aceptas estas condicións. Se non aceptas as condicións actualizadas podería rematar o acordo con %{domain} en calquera momento e eliminarse a túa conta.
-      changelog: 'Dunha ollada, aquí tes o que implican os cambios para ti:'
-      description: 'Estás a recibir este correo porque fixemos cambios nas condicións do servizo en %{domain}. Estas actualizacións terán efecto desde o %{date}. Convidámoste a que revises os termos ao completo aquí:'
-      description_html: 'Estás a recibir este correo porque fixemos algúns cambios nas nósas condicións do servizo en %{domain}. Estas actualizacións terán efecto desde o <strong>%{date}</strong>. Convidámoste a que leas <a href="%{path}" target="_blank">aquí as condicións actualizadas ao completo</a>:'
-      sign_off: O equipo de %{domain}
-      subject: Actualización das condicións do servizo
-      subtitle: Cambiaron as condicións do servizo de %{domain}
-      title: Notificación importante
     warning:
       appeal: Enviar unha apelación
       appeal_description: Se cres que esto é un erro, podes enviar un recurso á administración de %{instance}.

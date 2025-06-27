@@ -1238,6 +1238,20 @@ fr-CA:
     s_blog: Blog de %{name}
     then_instructions: Ensuite, ajoutez le nom de domaine de la publication dans le champ ci-dessous.
     title: Attribution de l'auteur·e
+  bulk_mailer:
+    announcement_published:
+      description: 'Les administrateurs de %{domain} font une annonce :'
+      subject: Annonce de service
+      title: Annonce de service de %{domain}
+    terms_of_service_changed:
+      agreement: En continuant d'utiliser %{domain}, vous acceptez ces conditions. Si vous n'êtes pas d'accord avec les conditions mises à jour, vous pouvez résilier votre accord avec %{domain} à tout moment en supprimant votre compte.
+      changelog: 'En un coup d''œil, voici ce que cette mise à jour signifie pour vous :'
+      description: 'Vous recevez cet e-mail parce que nous apportons des modifications à nos conditions de service à %{domain}. Ces modifications entreront en vigueur le %{date}. Nous vous encourageons à consulter l''intégralité des conditions mises à jour ici :'
+      description_html: Vous recevez cet e-mail parce que nous apportons des modifications à nos conditions de service à %{domain}. Ces mises à jour entreront en vigueur le <strong>%{date}</strong>. Nous vous encourageons à consulter l'intégralité des <a href="%{path}" target="_blank">conditions mises à jour ici</a>.
+      sign_off: L'équipe %{domain}
+      subject: Mises à jour de nos conditions d'utilisation
+      subtitle: Les conditions d'utilisation de `%{domain}` changent
+      title: Mise à jour importante
   challenge:
     confirm: Continuer
     hint_html: "<strong>Astuce :</strong> Nous ne vous demanderons plus votre mot de passe pour la prochaine heure."
@@ -1924,10 +1938,6 @@ fr-CA:
     recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour retrouver l’accès à votre compte. <strong>Conservez les codes de récupération en sécurité</strong>. Par exemple, en les imprimant et en les stockant avec vos autres documents importants.
     webauthn: Clés de sécurité
   user_mailer:
-    announcement_published:
-      description: 'Les administrateurs de %{domain} font une annonce :'
-      subject: Annonce de service
-      title: Annonce de service de %{domain}
     appeal_approved:
       action: Paramètres du compte
       explanation: L'appel de la sanction contre votre compte mise en place le %{strike_date} que vous avez soumis le %{appeal_date} a été approuvé. Votre compte est de nouveau en règle.
@@ -1957,15 +1967,6 @@ fr-CA:
       further_actions_html: Si ce n’était pas vous, nous vous recommandons de %{action} immédiatement et d’activer l’authentification à deux facteurs afin de garder votre compte sécurisé.
       subject: Votre compte a été accédé à partir d'une nouvelle adresse IP
       title: Une nouvelle connexion
-    terms_of_service_changed:
-      agreement: En continuant d'utiliser %{domain}, vous acceptez ces conditions. Si vous n'êtes pas d'accord avec les conditions mises à jour, vous pouvez résilier votre accord avec %{domain} à tout moment en supprimant votre compte.
-      changelog: 'En un coup d''œil, voici ce que cette mise à jour signifie pour vous :'
-      description: 'Vous recevez cet e-mail parce que nous apportons des modifications à nos conditions de service à %{domain}. Ces modifications entreront en vigueur le %{date}. Nous vous encourageons à consulter l''intégralité des conditions mises à jour ici :'
-      description_html: Vous recevez cet e-mail parce que nous apportons des modifications à nos conditions de service à %{domain}. Ces mises à jour entreront en vigueur le <strong>%{date}</strong>. Nous vous encourageons à consulter l'intégralité des <a href="%{path}" target="_blank">conditions mises à jour ici</a>.
-      sign_off: L'équipe %{domain}
-      subject: Mises à jour de nos conditions d'utilisation
-      subtitle: Les conditions d'utilisation de `%{domain}` changent
-      title: Mise à jour importante
     warning:
       appeal: Faire appel
       appeal_description: Si vous pensez qu'il s'agit d'une erreur, vous pouvez faire appel auprès de l'équipe de %{instance}.

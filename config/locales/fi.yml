@@ -1270,6 +1270,20 @@ fi:
     s_blog: Käyttäjän %{name} blogi
     then_instructions: Lisää sitten julkaisun verkkotunnus seuraavaan tekstikenttään.
     title: Tekijän nimeäminen
+  bulk_mailer:
+    announcement_published:
+      description: 'Palvelimen %{domain} ylläpito tiedottaa:'
+      subject: Palvelutiedote
+      title: Palvelimen %{domain} palvelutiedote
+    terms_of_service_changed:
+      agreement: Jatkamalla palvelun %{domain} käyttöä hyväksyt nämä ehdot. Jos et hyväksy päivitettyjä ehtoja, voit milloin tahansa päättää sopimuksesi palvelun %{domain} kanssa poistamalla tilisi.
+      changelog: 'Lyhyesti, mitä tämä päivitys tarkoittaa sinulle:'
+      description: 'Sait tämän sähköpostiviestin, koska muutamme palvelun %{domain} käyttöehtoja. Muutokset tulevat voimaan %{date}. Kehotamme tutustumaan päivitettyihin ehtoihin kokonaisuudessaan täällä:'
+      description_html: Sait tämän sähköpostiviestin, koska muutamme palvelun %{domain} käyttöehtoja. Muutokset tulevat voimaan <strong>%{date}</strong>. Kehotamme tutustumaan <a href="%{path}" target="_blank">päivitettyihin ehtoihin kokonaisuudessaan täällä</a>.
+      sign_off: Palvelimen %{domain} tiimi
+      subject: Käyttöehtojemme päivitykset
+      subtitle: Palvelimen %{domain} käyttöehdot muuttuvat
+      title: Tärkeä päivitys
   challenge:
     confirm: Jatka
     hint_html: "<strong>Vihje:</strong> Emme pyydä sinulta salasanaa uudelleen seuraavan tunnin aikana."
@@ -1965,10 +1979,6 @@ fi:
     recovery_instructions_html: Jos menetät puhelimesi, voit kirjautua tilillesi jollakin alla olevista palautuskoodeista. <strong>Pidä palautuskoodit hyvässä tallessa</strong>. Voit esimerkiksi tulostaa ne ja säilyttää muiden tärkeiden papereiden joukossa.
     webauthn: Suojausavaimet
   user_mailer:
-    announcement_published:
-      description: 'Palvelimen %{domain} ylläpito tiedottaa:'
-      subject: Palvelutiedote
-      title: Palvelimen %{domain} palvelutiedote
     appeal_approved:
       action: Tilin asetukset
       explanation: "%{appeal_date} lähettämäsi valitus tiliisi kohdistuvasta varoituksesta %{strike_date} on hyväksytty. Tilisi on jälleen hyvässä kunnossa."
@@ -1998,15 +2008,6 @@ fi:
       further_actions_html: Jos tämä et ollut sinä, suosittelemme, että %{action} heti ja otat käyttöön kaksivaiheisen todennuksen pitääksesi tilisi turvassa.
       subject: Tiliäsi on käytetty uudesta IP-osoitteesta
       title: Uusi kirjautuminen
-    terms_of_service_changed:
-      agreement: Jatkamalla palvelun %{domain} käyttöä hyväksyt nämä ehdot. Jos et hyväksy päivitettyjä ehtoja, voit milloin tahansa päättää sopimuksesi palvelun %{domain} kanssa poistamalla tilisi.
-      changelog: 'Lyhyesti, mitä tämä päivitys tarkoittaa sinulle:'
-      description: 'Sait tämän sähköpostiviestin, koska muutamme palvelun %{domain} käyttöehtoja. Muutokset tulevat voimaan %{date}. Kehotamme tutustumaan päivitettyihin ehtoihin kokonaisuudessaan täällä:'
-      description_html: Sait tämän sähköpostiviestin, koska muutamme palvelun %{domain} käyttöehtoja. Muutokset tulevat voimaan <strong>%{date}</strong>. Kehotamme tutustumaan <a href="%{path}" target="_blank">päivitettyihin ehtoihin kokonaisuudessaan täällä</a>.
-      sign_off: Palvelimen %{domain} tiimi
-      subject: Käyttöehtojemme päivitykset
-      subtitle: Palvelimen %{domain} käyttöehdot muuttuvat
-      title: Tärkeä päivitys
     warning:
       appeal: Lähetä valitus
       appeal_description: Jos uskot, että tämä on virhe, voit hakea muutosta palvelimen %{instance} ylläpidolta.

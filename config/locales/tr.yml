@@ -1272,6 +1272,20 @@ tr:
     s_blog: "%{name} kişisinin Günlüğü"
     then_instructions: Daha sonra, yayının alan adını aşağıda sahaya girin.
     title: Yazar atıfı
+  bulk_mailer:
+    announcement_published:
+      description: "%{domain} yöneticileri bir duyuru yapıyorlar:"
+      subject: Hizmet duyurusu
+      title: "%{domain} hizmet duyurusu"
+    terms_of_service_changed:
+      agreement: "%{domain} sunucusunu kullanmaya devam ederek bu şartları kabul etmiş olursunuz. Güncellenen şartları kabul etmiyorsanız, %{domain} ile olan sözleşmenizi istediğiniz zaman hesabınızı silerek feshedebilirsiniz."
+      changelog: 'Bir bakışta, bu güncellemenin sizin için anlamı şudur:'
+      description: 'Bu e-postayı alıyorsunuz çünkü %{domain} adresindeki hizmet şartlarımızda bazı değişiklikler yapıyoruz. Bu değişiklikler %{date} tarihinde geçerli olacak. Aşağıda tümü yer alan güncellenen şartları incelemenizi öneriyoruz:'
+      description_html: Bu e-postayı alıyorsunuz çünkü %{domain} adresindeki hizmet şartlarımızda bazı değişiklikler yapıyoruz. Bu değişiklikler <strong>%{date}</strong> tarihinde geçerli olacak. <a href="%{path}" target="_blank">Tüm güncellenen şartları</a> incelemenizi öneriyoruz.
+      sign_off: "%{domain} Ekibi"
+      subject: Şimdiki hizmet şartlarımıza güncellemeler
+      subtitle: "%{domain} adresindeki hizmet şartları değişiyor"
+      title: Önemli güncelleme
   challenge:
     confirm: Devam et
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
@@ -1967,10 +1981,6 @@ tr:
     recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. <strong>Kurtarma kodlarınızı güvenli halde tutunuz.</strong> Örneğin: kodların çıktısını alıp diğer önemli belgeleriniz ile birlikte saklayabilirsiniz.'
     webauthn: Güvenlik anahtarları
   user_mailer:
-    announcement_published:
-      description: "%{domain} yöneticileri bir duyuru yapıyorlar:"
-      subject: Hizmet duyurusu
-      title: "%{domain} hizmet duyurusu"
     appeal_approved:
       action: Hesap Ayarları
       explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız onaylandı. Hesabınız artık tekrar iyi durumda."
@@ -2000,15 +2010,6 @@ tr:
       further_actions_html: Eğer oturum açan siz değildiyseniz, hesabınızı güvenli tutmanız için hemen %{action} yapmanızı ve iki aşamalı yetkilendirmeyi etkinleştirmenizi öneriyoruz.
       subject: Hesabınıza yeni bir IP adresinden erişim oldu
       title: Yeni bir oturum açma
-    terms_of_service_changed:
-      agreement: "%{domain} sunucusunu kullanmaya devam ederek bu şartları kabul etmiş olursunuz. Güncellenen şartları kabul etmiyorsanız, %{domain} ile olan sözleşmenizi istediğiniz zaman hesabınızı silerek feshedebilirsiniz."
-      changelog: 'Bir bakışta, bu güncellemenin sizin için anlamı şudur:'
-      description: 'Bu e-postayı alıyorsunuz çünkü %{domain} adresindeki hizmet şartlarımızda bazı değişiklikler yapıyoruz. Bu değişiklikler %{date} tarihinde geçerli olacak. Aşağıda tümü yer alan güncellenen şartları incelemenizi öneriyoruz:'
-      description_html: Bu e-postayı alıyorsunuz çünkü %{domain} adresindeki hizmet şartlarımızda bazı değişiklikler yapıyoruz. Bu değişiklikler <strong>%{date}</strong> tarihinde geçerli olacak. <a href="%{path}" target="_blank">Tüm güncellenen şartları</a> incelemenizi öneriyoruz.
-      sign_off: "%{domain} Ekibi"
-      subject: Şimdiki hizmet şartlarımıza güncellemeler
-      subtitle: "%{domain} adresindeki hizmet şartları değişiyor"
-      title: Önemli güncelleme
     warning:
       appeal: Bir itiraz gönder
       appeal_description: Bunun bir hata olduğunu düşünüyorsanız, %{instance} sunucusunun personeline bir itiraz gönderebilirsiniz.

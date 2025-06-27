@@ -1272,6 +1272,20 @@ es:
     s_blog: Blog de %{name}
     then_instructions: A continuación, añade el nombre de dominio de la publicación en el campo inferior.
     title: Atribución del autor
+  bulk_mailer:
+    announcement_published:
+      description: 'Los administradores de %{domain} están haciendo un anuncio:'
+      subject: Anuncio
+      title: Anuncio de %{domain}
+    terms_of_service_changed:
+      agreement: Al seguir usando %{domain}, aceptas estos términos. Si no estás de acuerdo con los términos actualizados, puedes cancelar tu acuerdo con %{domain} en cualquier momento eliminando tu cuenta.
+      changelog: 'En resumen, esto es lo que esta actualización significa para ti:'
+      description: 'Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos de servicio en %{domain}. Estas actualizaciones entrarán en vigor en %{date}. Te animamos a revisar los términos actualizados en su totalidad aquí:'
+      description_html: Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos de servicio en %{domain}. Estas actualizaciones entrarán en vigor en <strong>%{date}</strong>. Te animamos a revisar los <a href="%{path}" target="_blank"> términos actualizados en su totalidad aquí</a>.
+      sign_off: El equipo de %{domain}
+      subject: Actualizaciones en nuestros términos del servicio
+      subtitle: Los términos del servicio de %{domain} están cambiando
+      title: Actualización importante
   challenge:
     confirm: Continuar
     hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
@@ -1967,10 +1981,6 @@ es:
     recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
     webauthn: Claves de seguridad
   user_mailer:
-    announcement_published:
-      description: 'Los administradores de %{domain} están haciendo un anuncio:'
-      subject: Anuncio
-      title: Anuncio de %{domain}
     appeal_approved:
       action: Ajustes de la cuenta
       explanation: La apelación de la amonestación contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue aprobada. Tu cuenta se encuentra de nuevo en buen estado.
@@ -2000,15 +2010,6 @@ es:
       further_actions_html: Si no fuiste tú, te recomendamos que %{action} inmediatamente y habilites la autenticación de dos factores para mantener tu cuenta segura.
       subject: Tu cuenta ha sido accedida desde una nueva dirección IP
       title: Un nuevo inicio de sesión
-    terms_of_service_changed:
-      agreement: Al seguir usando %{domain}, aceptas estos términos. Si no estás de acuerdo con los términos actualizados, puedes cancelar tu acuerdo con %{domain} en cualquier momento eliminando tu cuenta.
-      changelog: 'En resumen, esto es lo que esta actualización significa para ti:'
-      description: 'Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos de servicio en %{domain}. Estas actualizaciones entrarán en vigor en %{date}. Te animamos a revisar los términos actualizados en su totalidad aquí:'
-      description_html: Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos de servicio en %{domain}. Estas actualizaciones entrarán en vigor en <strong>%{date}</strong>. Te animamos a revisar los <a href="%{path}" target="_blank"> términos actualizados en su totalidad aquí</a>.
-      sign_off: El equipo de %{domain}
-      subject: Actualizaciones en nuestros términos del servicio
-      subtitle: Los términos del servicio de %{domain} están cambiando
-      title: Actualización importante
     warning:
       appeal: Enviar una apelación
       appeal_description: Si crees que esto es un error, puedes enviar una apelación al personal de %{instance}.

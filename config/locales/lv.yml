@@ -1278,6 +1278,19 @@ lv:
     s_blog: "%{name} emuāri"
     then_instructions: Tad jāpievieno publicējuma domēna vārds zemāk esošajā laukā.
     title: Autora attiecinājums
+  bulk_mailer:
+    announcement_published:
+      description: "%{domain} pārvaldītāji veic paziņojumu:"
+      subject: Pakalpojuma paziņojums
+      title: "%{domain} pakalpojuma paziņojums"
+    terms_of_service_changed:
+      agreement: Ar %{domain} izmantošanas tuprināšanu tiek piekrists šiem noteikumiem. Ja ir iebildumi pret atjauninātajiem noteikumiem, savu piekrišanu var atcelt jebkurā laikā ar sava konta izdzēšanu.
+      changelog: 'Šeit īsumā ir aprakstīts, ko šis atjauninājums nozīmē:'
+      description: 'Šis e-pasta ziņojums tika saņemts, jo mēs veicam dažas izmaiņas savos pakalpojuma izmantošanas noteikumos %{domain}. Šie atjauninājumi stāsies spēkā %{date}. Mēs aicinām pārskatīt pilnus atjauninātos noteikumus šeit:'
+      sign_off: "%{domain} komanda"
+      subject: Mūsu pakalpojuma izmantošanas noteikumu atjauninājumi
+      subtitle: Mainās %{domain} pakalpojuma izmantošanas noteikumi
+      title: Svarīgs atjauninājums
   challenge:
     confirm: Turpināt
     hint_html: "<strong>Padoms:</strong> Nākamās stundas laikā mēs tev vairs neprasīsim paroli."
@@ -1997,10 +2010,6 @@ lv:
     recovery_instructions_html: Ja kādreiz zaudēsi piekļuvi savam tālrunim, vari izmantot kādu no zemāk norādītajiem atkopes kodiem, lai atgūtu piekļuvi savam kontam. <strong>Atkpes kodi jātur drošībā</strong>. Piemēram, tos var izdrukāt un glabāt kopā ar citiem svarīgiem dokumentiem.
     webauthn: Drošības atslēgas
   user_mailer:
-    announcement_published:
-      description: "%{domain} pārvaldītāji veic paziņojumu:"
-      subject: Pakalpojuma paziņojums
-      title: "%{domain} pakalpojuma paziņojums"
     appeal_approved:
       action: Konta iestatījumi
       explanation: Pārsūdzība par brīdinājumu Tavam kontam %{strike_date}, ko iesniedzi %{appeal_date}, ir apstiprināta. Tavs konts atkal ir labā stāvoklī.
@@ -2030,14 +2039,6 @@ lv:
       further_actions_html: Ja tas nebiji tu, iesakām nekavējoties %{action} un iespējot divu faktoru autentifikāciju, lai tavs konts būtu drošībā.
       subject: Tavam kontam ir piekļūts no jaunas IP adreses
       title: Jauna pieteikšanās
-    terms_of_service_changed:
-      agreement: Ar %{domain} izmantošanas tuprināšanu tiek piekrists šiem noteikumiem. Ja ir iebildumi pret atjauninātajiem noteikumiem, savu piekrišanu var atcelt jebkurā laikā ar sava konta izdzēšanu.
-      changelog: 'Šeit īsumā ir aprakstīts, ko šis atjauninājums nozīmē:'
-      description: 'Šis e-pasta ziņojums tika saņemts, jo mēs veicam dažas izmaiņas savos pakalpojuma izmantošanas noteikumos %{domain}. Šie atjauninājumi stāsies spēkā %{date}. Mēs aicinām pārskatīt pilnus atjauninātos noteikumus šeit:'
-      sign_off: "%{domain} komanda"
-      subject: Mūsu pakalpojuma izmantošanas noteikumu atjauninājumi
-      subtitle: Mainās %{domain} pakalpojuma izmantošanas noteikumi
-      title: Svarīgs atjauninājums
     warning:
       appeal: Iesniegt pārsūdzību
       appeal_description: Ja uzskati, ka tā ir kļūda, vari iesniegt pārsūdzību %{instance} personālam.

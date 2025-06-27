@@ -1204,6 +1204,15 @@ et:
     s_blog: Kasutaja %{name} blogi
     then_instructions: Siis lisa avaldaja domeeninimi allolevasse välja.
     title: Autori tunnustamine
+  bulk_mailer:
+    announcement_published:
+      subject: Saidi teadaanne teenuste kohta
+      title: "%{domain} saidi teadaanne teenuste kohta"
+    terms_of_service_changed:
+      sign_off: "%{domain} saidi tiim"
+      subject: Meie kasutustingimuste uuendused
+      subtitle: "%{domain} saidi kasutustingimused muutuvad"
+      title: Oluline uuendus
   challenge:
     confirm: Jätka
     hint_html: "<strong>Nõuanne:</strong> Me ei küsi salasõna uuesti järgmise tunni jooksul."
@@ -1894,9 +1903,6 @@ et:
     recovery_instructions_html: Kui telefon peaks kaotsi minema, on võimalik kontole sisenemisel kasutada ühte järgnevatest taastekoodidest. <strong>Hoia taastekoode turvaliselt</strong>. Näiteks võib neid prindituna hoida koos teiste tähtsate dokumentidega.
     webauthn: Turvavõtmed
   user_mailer:
-    announcement_published:
-      subject: Saidi teadaanne teenuste kohta
-      title: "%{domain} saidi teadaanne teenuste kohta"
     appeal_approved:
       action: Konto seaded
       explanation: "%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on rahuldatud. Konto on ennistatud."
@@ -1926,11 +1932,6 @@ et:
       further_actions_html: Kui see tuleb üllatusena, soovitame viivitamata %{action} ja lülitada konto turvamiseks sisse kaheastmeline autentimine.
       subject: Kontole sisenemine uuelt IP-aadressilt
       title: Uus sisenemine
-    terms_of_service_changed:
-      sign_off: "%{domain} saidi tiim"
-      subject: Meie kasutustingimuste uuendused
-      subtitle: "%{domain} saidi kasutustingimused muutuvad"
-      title: Oluline uuendus
     warning:
       appeal: Vaidlustuse esitamine
       appeal_description: Kui see võib olla eksitus, on võimalik %{instance} haldajatele esitada vaidlustus.

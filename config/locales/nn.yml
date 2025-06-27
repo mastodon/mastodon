@@ -1265,6 +1265,20 @@ nn:
     s_blog: Bloggen til %{name}
     then_instructions: Så legg du til domenenamnet for publikasjonen i feltet under.
     title: Forfattarkreditering
+  bulk_mailer:
+    announcement_published:
+      description: 'Styrarane på %{domain} har ei kunngjering:'
+      subject: Kunngjering om tenesta
+      title: Kunngjering frå %{domain}
+    terms_of_service_changed:
+      agreement: Viss du held fram å bruka %{domain}, seier du deg einig i vilkåra. Viss du er usamd i dei oppdaterte vilkåra, kan du slutta å bruka %{domain} når du vil ved å sletta brukarkontoen din.
+      changelog: 'Denne oppdateringa, kort fortalt:'
+      description: 'Du får denne eposten fordi me har endra tenestvilkåra på %{domain}. Desse endringane kjem i kraft %{date}. Me oppmodar deg til å sjå på dei oppdaterte vilkåra her:'
+      description_html: Du får denne eposten fordi me har endra tenestvilkåra på %{domain}. Desse endringane kjem i kraft <strong>%{date}</strong>. Me oppmodar deg til å sjå på <a href="%{path}" target="_blank">dei oppdaterte vilkåra her</a>.
+      sign_off: Folka på %{domain}
+      subject: Endra bruksvilkår
+      subtitle: Bruksvilkåra på %{domain} er endra
+      title: Viktig oppdatering
   challenge:
     confirm: Hald fram
     hint_html: "<strong>Tips:</strong> Vi skal ikkje spørja deg om passordet ditt igjen i laupet av den neste timen."
@@ -1960,10 +1974,6 @@ nn:
     recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til din konto. <strong>Oppbevar gjenopprettingskodene sikkert</strong>, for eksempel ved å skrive dem ut og gjemme dem på et lurt sted bare du vet om.
     webauthn: Sikkerhetsnøkler
   user_mailer:
-    announcement_published:
-      description: 'Styrarane på %{domain} har ei kunngjering:'
-      subject: Kunngjering om tenesta
-      title: Kunngjering frå %{domain}
     appeal_approved:
       action: Kontoinnstillingar
       explanation: Apellen på prikken mot din kontor på %{strike_date} som du la inn på %{appeal_date} har blitt godkjend. Din konto er nok ein gong i god stand.
@@ -1993,15 +2003,6 @@ nn:
       further_actions_html: Om dette ikkje var deg, tilrår vi at du %{action} no og aktiverar 2-trinnsinnlogging for å halde kontoen din sikker.
       subject: Din konto er opna frå ei ny IP-adresse
       title: Ei ny pålogging
-    terms_of_service_changed:
-      agreement: Viss du held fram å bruka %{domain}, seier du deg einig i vilkåra. Viss du er usamd i dei oppdaterte vilkåra, kan du slutta å bruka %{domain} når du vil ved å sletta brukarkontoen din.
-      changelog: 'Denne oppdateringa, kort fortalt:'
-      description: 'Du får denne eposten fordi me har endra tenestvilkåra på %{domain}. Desse endringane kjem i kraft %{date}. Me oppmodar deg til å sjå på dei oppdaterte vilkåra her:'
-      description_html: Du får denne eposten fordi me har endra tenestvilkåra på %{domain}. Desse endringane kjem i kraft <strong>%{date}</strong>. Me oppmodar deg til å sjå på <a href="%{path}" target="_blank">dei oppdaterte vilkåra her</a>.
-      sign_off: Folka på %{domain}
-      subject: Endra bruksvilkår
-      subtitle: Bruksvilkåra på %{domain} er endra
-      title: Viktig oppdatering
     warning:
       appeal: Send inn anke
       appeal_description: Om du meiner dette er ein feil, kan du sende inn ei klage til gjengen i %{instance}.

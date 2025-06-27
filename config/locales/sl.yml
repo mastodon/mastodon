@@ -1260,6 +1260,20 @@ sl:
     s_blog: Spletni dnevnik %{name}
     then_instructions: Nato dodajte ime domene, kamor objavljate, v spodnje polje.
     title: Priznanje avtorstva
+  bulk_mailer:
+    announcement_published:
+      description: 'Skrbniki domene %{domain} oznanjajo:'
+      subject: Storitveno oznanilo
+      title: Storitveno oznanilo %{domain}
+    terms_of_service_changed:
+      agreement: Če boste še naprej uporabljali %{domain}, se strinjate s temi pogoji. Če se ne, lahko kadarkoli odstopite od dogovora z domeno %{domain} tako, da izbrišete svoj račun.
+      changelog: 'Kratek povzetek tega, kaj ta posodobitev pomeni za vas:'
+      description: 'To e-poštno sporočilo ste prejeli, ker smo spremenili pogoje uporabe v domeni %{domain}. Posodobitve bodo začele veljati %{date}. Vabimo vas, da si posodobljene pogoje preberete tukaj:'
+      description_html: To e-poštno sporočilo ste prejeli, ker smo spremenili pogoje uporabe v domeni %{domain}. Posodobitve bodo začele veljati <strong>%{date}</strong>. Vabimo vas, da si posodobljene pogoje preberete <a href="%{path}" target="_blank">na tej povezavi</a>.
+      sign_off: Ekipa %{domain}
+      subject: Posodobitve naših pogojev uporabe
+      subtitle: Spreminjajo se pogoji uporabe domene %{domain}
+      title: Pomembna posodobitev
   challenge:
     confirm: Nadaljuj
     hint_html: "<strong>Namig:</strong> naslednjo uro vas ne bomo več vprašali po vašem geslu."
@@ -1994,10 +2008,6 @@ sl:
     recovery_instructions_html: Če kdaj izgubite dostop do telefona, lahko uporabite eno od spodnjih obnovitvenih kod, da ponovno pridobite dostop do svojega računa. <strong>Shranite obnovitvene kode</strong>. Lahko jih natisnete in shranite z drugimi pomembnimi dokumenti.
     webauthn: Varnostni ključi
   user_mailer:
-    announcement_published:
-      description: 'Skrbniki domene %{domain} oznanjajo:'
-      subject: Storitveno oznanilo
-      title: Storitveno oznanilo %{domain}
     appeal_approved:
       action: Nastavitve računa
       explanation: Pritožbi na ukrep proti vašemu računu z dne %{strike_date}, ki ste jo oddali dne %{appeal_date}, je bilo ugodeno. Vaš račun je znova nesporen.
@@ -2027,15 +2037,6 @@ sl:
       further_actions_html: Če to niste bili vi, priporočamo da takoj ukrepate (%{action}) in omogočite dvo-ravensko overjanje (2FA), da ohranite račun varen.
       subject: Do vašega računa je bil opravljen dostop z novega naslova IP
       title: Nova prijava
-    terms_of_service_changed:
-      agreement: Če boste še naprej uporabljali %{domain}, se strinjate s temi pogoji. Če se ne, lahko kadarkoli odstopite od dogovora z domeno %{domain} tako, da izbrišete svoj račun.
-      changelog: 'Kratek povzetek tega, kaj ta posodobitev pomeni za vas:'
-      description: 'To e-poštno sporočilo ste prejeli, ker smo spremenili pogoje uporabe v domeni %{domain}. Posodobitve bodo začele veljati %{date}. Vabimo vas, da si posodobljene pogoje preberete tukaj:'
-      description_html: To e-poštno sporočilo ste prejeli, ker smo spremenili pogoje uporabe v domeni %{domain}. Posodobitve bodo začele veljati <strong>%{date}</strong>. Vabimo vas, da si posodobljene pogoje preberete <a href="%{path}" target="_blank">na tej povezavi</a>.
-      sign_off: Ekipa %{domain}
-      subject: Posodobitve naših pogojev uporabe
-      subtitle: Spreminjajo se pogoji uporabe domene %{domain}
-      title: Pomembna posodobitev
     warning:
       appeal: Pošlji pritožbo
       appeal_description: Če menite, da gre za napako, lahko pošljete pritožbo osebju %{instance}.

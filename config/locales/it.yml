@@ -1267,6 +1267,20 @@ it:
     s_blog: Blog di %{name}
     then_instructions: Quindi, aggiungi il nome di dominio della pubblicazione nel campo sottostante.
     title: Attribuzione autore
+  bulk_mailer:
+    announcement_published:
+      description: 'Gli amministratori di %{domain} stanno facendo un annuncio:'
+      subject: Annuncio di servizio
+      title: Annuncio di servizio da %{domain}
+    terms_of_service_changed:
+      agreement: Continuando a usare %{domain}, accetti questi termini. Se non sei d'accordo con i termini aggiornati, puoi terminare il tuo accordo con %{domain} in qualsiasi momento eliminando il tuo account.
+      changelog: 'Ecco, in sintesi, cosa significa per te questo aggiornamento:'
+      description: 'Stai ricevendo questa e-mail perché stiamo apportando alcune modifiche ai nostri termini di servizio su %{domain}. Questi aggiornamenti entreranno in vigore il %{date}. Ti invitiamo a leggere i termini aggiornati per intero qui:'
+      description_html: Stai ricevendo questa e-mail perché stiamo apportando alcune modifiche ai nostri termini di servizio su %{domain}. Questi aggiornamenti entreranno in vigore il <strong>%{date}</strong>. Ti invitiamo a leggere i <a href="%{path}" target="_blank">termini aggiornati per intero qui</a>.
+      sign_off: Il team di %{domain}
+      subject: Aggiornamenti ai nostri termini di servizio
+      subtitle: I termini di servizio di %{domain} stanno cambiando
+      title: Aggiornamento importante
   challenge:
     confirm: Continua
     hint_html: "<strong>Suggerimento:</strong> Non ti chiederemo di nuovo la tua password per la prossima ora."
@@ -1962,10 +1976,6 @@ it:
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
     webauthn: Chiavi di sicurezza
   user_mailer:
-    announcement_published:
-      description: 'Gli amministratori di %{domain} stanno facendo un annuncio:'
-      subject: Annuncio di servizio
-      title: Annuncio di servizio da %{domain}
     appeal_approved:
       action: Impostazioni account
       explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato approvato. Il tuo account ha riottenuto la buona reputazione.
@@ -1995,15 +2005,6 @@ it:
       further_actions_html: Se non eri tu, ti consigliamo di %{action} subito e di abilitare l'autenticazione a due fattori per mantenere il tuo account al sicuro.
       subject: C'è stato un accesso al tuo account da un nuovo indirizzo IP
       title: Un nuovo accesso
-    terms_of_service_changed:
-      agreement: Continuando a usare %{domain}, accetti questi termini. Se non sei d'accordo con i termini aggiornati, puoi terminare il tuo accordo con %{domain} in qualsiasi momento eliminando il tuo account.
-      changelog: 'Ecco, in sintesi, cosa significa per te questo aggiornamento:'
-      description: 'Stai ricevendo questa e-mail perché stiamo apportando alcune modifiche ai nostri termini di servizio su %{domain}. Questi aggiornamenti entreranno in vigore il %{date}. Ti invitiamo a leggere i termini aggiornati per intero qui:'
-      description_html: Stai ricevendo questa e-mail perché stiamo apportando alcune modifiche ai nostri termini di servizio su %{domain}. Questi aggiornamenti entreranno in vigore il <strong>%{date}</strong>. Ti invitiamo a leggere i <a href="%{path}" target="_blank">termini aggiornati per intero qui</a>.
-      sign_off: Il team di %{domain}
-      subject: Aggiornamenti ai nostri termini di servizio
-      subtitle: I termini di servizio di %{domain} stanno cambiando
-      title: Aggiornamento importante
     warning:
       appeal: Presenta un appello
       appeal_description: Se credi che si tratti di un errore, puoi presentare un appello allo staff di %{instance}.

@@ -24,7 +24,7 @@ RSpec.describe Admin::DistributeAnnouncementNotificationWorker do
         expect(emails.first)
           .to have_attributes(
             to: [user.email],
-            subject: I18n.t('user_mailer.announcement_published.subject')
+            subject: I18n.t('bulk_mailer.announcement_published.subject')
           )
       end
     end

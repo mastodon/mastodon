@@ -1255,6 +1255,24 @@ zh-TW:
     s_blog: "%{name} 的部落格"
     then_instructions: 接著，將發表處網域加入以下欄位中。
     title: 作者署名
+  bulk_mailer:
+    announcement_published:
+      description: "%{domain} 之管理員正在進行公告："
+      subject: 服務公告
+      title: "%{domain} 服務公告"
+    terms_of_service_changed:
+      agreement: 透過繼續使用 %{domain}，您將同意這些條款。若您不同意此條款異動，您能隨時終止與 %{domain} 之協議並刪除您的帳號。
+      changelog: 簡而言之，此次更新對您將意味著：
+      description: |-
+        您收到此 e-mail 係因我們正在更新 %{domain} 之服務條款。
+        這些異動將於 %{date} 起生效。我們鼓勵您審視此處之服務條款更新全文：
+      description_html: |-
+        您收到此 e-mail 係因我們正在更新 %{domain} 之服務條款。
+        這些異動將於 <strong>%{date} 起</strong> 生效。我們鼓勵您審視 <a href="%{path}" target="_blank">此處之服務條款更新全文</a>。
+      sign_off: "%{domain} 團隊"
+      subject: 我們的服務條款更新
+      subtitle: "%{domain} 之服務條款正在悄悄發生變化"
+      title: 重要更新
   challenge:
     confirm: 繼續
     hint_html: "<strong>温馨小提醒：</strong> 我們於接下來一小時內不會再要求您輸入密碼。"
@@ -1926,10 +1944,6 @@ zh-TW:
     recovery_instructions_html: 若您的手機無法使用，您可以使用下列任意一個備用驗證碼來重新獲得帳號的存取權。<strong>請妥善保管好您的備用驗證碼</strong>（例如，可以將它們列印出來，與您的其他重要文件放在一起）。
     webauthn: 安全金鑰
   user_mailer:
-    announcement_published:
-      description: "%{domain} 之管理員正在進行公告："
-      subject: 服務公告
-      title: "%{domain} 服務公告"
     appeal_approved:
       action: 帳號設定
       explanation: 您於 %{appeal_date} 遞交的針對您帳號的 %{strike_date} 警示之申訴已獲批准。您的帳號再次享有良好的信譽。
@@ -1959,19 +1973,6 @@ zh-TW:
       further_actions_html: 如果這個不是您，我們建議您立即 %{action} ，並且啟用二階段驗證 (2FA) 以確保帳號安全。
       subject: 您的帳號已被新 IP 位址存取
       title: 新登入
-    terms_of_service_changed:
-      agreement: 透過繼續使用 %{domain}，您將同意這些條款。若您不同意此條款異動，您能隨時終止與 %{domain} 之協議並刪除您的帳號。
-      changelog: 簡而言之，此次更新對您將意味著：
-      description: |-
-        您收到此 e-mail 係因我們正在更新 %{domain} 之服務條款。
-        這些異動將於 %{date} 起生效。我們鼓勵您審視此處之服務條款更新全文：
-      description_html: |-
-        您收到此 e-mail 係因我們正在更新 %{domain} 之服務條款。
-        這些異動將於 <strong>%{date} 起</strong> 生效。我們鼓勵您審視 <a href="%{path}" target="_blank">此處之服務條款更新全文</a>。
-      sign_off: "%{domain} 團隊"
-      subject: 我們的服務條款更新
-      subtitle: "%{domain} 之服務條款正在悄悄發生變化"
-      title: 重要更新
     warning:
       appeal: 遞交申訴
       appeal_description: 若您認為這是錯誤，您可以向 %{instance} 的工作人員提出申訴。

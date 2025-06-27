@@ -1229,6 +1229,20 @@ ia:
     s_blog: Blog de %{name}
     then_instructions: Postea, adde le nomine de dominio del publication in le campo sequente.
     title: Attribution de autor
+  bulk_mailer:
+    announcement_published:
+      description: 'Le administratores de %{domain} face un annuncio:'
+      subject: Annuncio de servicio
+      title: Annuncio de servicio de %{domain}
+    terms_of_service_changed:
+      agreement: Si tu continua a usar %{domain}, tu accepta iste conditiones. Si tu non es de accordo con le conditiones actualisate, tu pote sempre eliminar tu conto pro terminar tu accordo con %{domain}.
+      changelog: 'In summario, ecce lo que iste actualisation significa pro te:'
+      description: 'Tu recipe iste e-mail proque nos face alcun cambios al nostre conditiones de servicio a %{domain}. Iste actualisationes entrara in vigor in %{date}. Nos te invita a revider integralmente le conditiones actualisate hic:'
+      description_html: Tu recipe iste e-mail proque nos face alcun cambios al nostre conditiones de servicio a %{domain}. Iste actualisationes entrara in vigor in <strong>%{date}</strong>. Nos te invita a revider <a href="%{path}" target="_blank">integralmente le conditiones actualisate hic</a>.
+      sign_off: Le equipa de %{domain}
+      subject: Actualisationes de nostre conditiones de servicio
+      subtitle: Le conditiones de servicio de %{domain} ha cambiate
+      title: Actualisation importante
   challenge:
     confirm: Continuar
     hint_html: "<strong>Consilio:</strong> Nos non te demandara tu contrasigno de novo in le proxime hora."
@@ -1924,10 +1938,6 @@ ia:
     recovery_instructions_html: Si tu perde le accesso a tu telephono, tu pote usar un del codices de recuperation hic infra pro reganiar le accesso a tu conto. <strong>Mantene le codices de recuperation secur.</strong> Per exemplo, tu pote imprimer los e guardar los con altere documentos importante.
     webauthn: Claves de securitate
   user_mailer:
-    announcement_published:
-      description: 'Le administratores de %{domain} face un annuncio:'
-      subject: Annuncio de servicio
-      title: Annuncio de servicio de %{domain}
     appeal_approved:
       action: Parametros de conto
       explanation: Le appello contra le sanction del %{strike_date} contra tu conto, que tu ha submittite le %{appeal_date}, ha essite approbate. Tu conto es de bon reputation de novo.
@@ -1957,15 +1967,6 @@ ia:
       further_actions_html: Si non se tractava de te, nos recommenda %{action} immediatemente e activar le authentication bifactorial pro mantener tu conto secur.
       subject: Alcuno ha accedite a tu conto desde un nove adresse IP
       title: Un nove apertura de session
-    terms_of_service_changed:
-      agreement: Si tu continua a usar %{domain}, tu accepta iste conditiones. Si tu non es de accordo con le conditiones actualisate, tu pote sempre eliminar tu conto pro terminar tu accordo con %{domain}.
-      changelog: 'In summario, ecce lo que iste actualisation significa pro te:'
-      description: 'Tu recipe iste e-mail proque nos face alcun cambios al nostre conditiones de servicio a %{domain}. Iste actualisationes entrara in vigor in %{date}. Nos te invita a revider integralmente le conditiones actualisate hic:'
-      description_html: Tu recipe iste e-mail proque nos face alcun cambios al nostre conditiones de servicio a %{domain}. Iste actualisationes entrara in vigor in <strong>%{date}</strong>. Nos te invita a revider <a href="%{path}" target="_blank">integralmente le conditiones actualisate hic</a>.
-      sign_off: Le equipa de %{domain}
-      subject: Actualisationes de nostre conditiones de servicio
-      subtitle: Le conditiones de servicio de %{domain} ha cambiate
-      title: Actualisation importante
     warning:
       appeal: Submitter un appello
       appeal_description: Si tu crede que se tracta de un error, tu pote presentar un appello al personal de %{instance}.

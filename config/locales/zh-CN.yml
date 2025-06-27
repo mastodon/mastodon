@@ -1241,6 +1241,20 @@ zh-CN:
     s_blog: "%{name} 的博客"
     then_instructions: 然后，在下面的文本框中添加你用于发布文章的域名。
     title: 作者归属
+  bulk_mailer:
+    announcement_published:
+      description: "%{domain}管理员发布了一则公告："
+      subject: 服务公告
+      title: "%{domain}服务公告"
+    terms_of_service_changed:
+      agreement: 继续使用你在 %{domain} 的账号即表示您同意这些条款。如果你不同意更新后的条款，你可以随时删除账号以终止与 %{domain} 的协议。
+      changelog: 本次更新的要点如下：
+      description: 你收到此邮件是因为我们更新了 %{domain} 的服务条款。这些更新将于 %{date} 生效。我们建议你在此查看变更后的服务条款：
+      description_html: 你收到此邮件是因为我们更新了 %{domain} 的服务条款。这些更新将于 <strong>%{date}</strong> 生效。我们建议你在此查看 <a href="%{path}" target="_blank">更新后的条款</a>。
+      sign_off: "%{domain} 运营团队"
+      subject: 服务条款变更
+      subtitle: "%{domain} 更新了服务条款"
+      title: 重要变更
   challenge:
     confirm: 继续
     hint_html: "<strong>注意：</strong>接下来一小时内我们不会再次要求你输入密码。"
@@ -1912,10 +1926,6 @@ zh-CN:
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对账号的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
     webauthn: 安全密钥
   user_mailer:
-    announcement_published:
-      description: "%{domain}管理员发布了一则公告："
-      subject: 服务公告
-      title: "%{domain}服务公告"
     appeal_approved:
       action: 账号设置
       explanation: 你于 %{appeal_date} 对 %{strike_date} 在你账号上做出的处罚提出的申诉已被批准，你的账号已回到正常状态。
@@ -1945,15 +1955,6 @@ zh-CN:
       further_actions_html: 如果不是你本人操作，我们建议你立即 %{action} 并启用双因素认证，以确保账号安全。
       subject: 已有新 IP 地址访问了你的账号
       title: 一次新登录
-    terms_of_service_changed:
-      agreement: 继续使用你在 %{domain} 的账号即表示您同意这些条款。如果你不同意更新后的条款，你可以随时删除账号以终止与 %{domain} 的协议。
-      changelog: 本次更新的要点如下：
-      description: 你收到此邮件是因为我们更新了 %{domain} 的服务条款。这些更新将于 %{date} 生效。我们建议你在此查看变更后的服务条款：
-      description_html: 你收到此邮件是因为我们更新了 %{domain} 的服务条款。这些更新将于 <strong>%{date}</strong> 生效。我们建议你在此查看 <a href="%{path}" target="_blank">更新后的条款</a>。
-      sign_off: "%{domain} 运营团队"
-      subject: 服务条款变更
-      subtitle: "%{domain} 更新了服务条款"
-      title: 重要变更
     warning:
       appeal: 提交申诉
       appeal_description: 如果你认为此结果有误，可以向 %{instance} 的工作人员提交申诉。

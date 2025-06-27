@@ -1191,6 +1191,9 @@ th:
     s_blog: บล็อกของ %{name}
     then_instructions: จากนั้น เพิ่มชื่อโดเมนของการเผยแพร่ในช่องด้านล่าง
     title: การระบุแหล่งที่มาผู้สร้าง
+  bulk_mailer:
+    terms_of_service_changed:
+      sign_off: ทีม %{domain}
   challenge:
     confirm: ดำเนินการต่อ
     hint_html: "<strong>เคล็ดลับ:</strong> เราจะไม่ถามรหัสผ่านของคุณกับคุณสำหรับชั่วโมงถัดไป"
@@ -1882,8 +1885,6 @@ th:
       further_actions_html: หากนี่ไม่ใช่คุณ เราแนะนำให้คุณ %{action} ทันทีและเปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยเพื่อรักษาบัญชีของคุณให้ปลอดภัย
       subject: มีการเข้าถึงบัญชีของคุณจากที่อยู่ IP ใหม่
       title: การลงชื่อเข้าใหม่
-    terms_of_service_changed:
-      sign_off: ทีม %{domain}
     warning:
       appeal: ส่งการอุทธรณ์
       appeal_description: หากคุณเชื่อว่านี่เป็นข้อผิดพลาด คุณสามารถส่งการอุทธรณ์ไปยังพนักงานของ %{instance}

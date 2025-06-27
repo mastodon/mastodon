@@ -1265,6 +1265,20 @@ fy:
     s_blog: Weblog fan %{name}
     then_instructions: Foegje dernei de domeinnamme fan de publikaasje yn it ûndersteande fjild ta.
     title: Auteur-attribúsje
+  bulk_mailer:
+    announcement_published:
+      description: 'De behearders fan %{domain} dogge in meidieling:'
+      subject: Service-oankundiging
+      title: Service-oankundiging %{domain}
+    terms_of_service_changed:
+      agreement: Troch %{domain} brûke te bliuwen, geane jo akkoard mei dizze betingsten. As jo it net iens binne mei de bywurke betingsten, kinne jo jo oerienkomst mei %{domain} op elk winske momint beëinigje troch jo account fuort te smiten.
+      changelog: 'Yn ien eachopslach betsjut dizze update foar jo:'
+      description: 'Jo ûntfange dit berjocht, omdat wy inkelde wizigingen oanbringe yn ús gebrûksbetingsten by %{domain}. Dizze oanpassingen wurde fan krêft op %{date}. Wy riede jo oan om de bywurke betingsten hjir folslein te besjen:'
+      description_html: Jo ûntfange dit e-mailberjocht, omdat wy inkelde wizigingen oanbringe yn ús gebrûksbetingsten by %{domain}. Dizze oanpassingen wurde fan krêft op <strong>%{date}</strong>. Wy riede jo oan om de <a href="%{path}" target="_blank">bywurke betingsten hjir folslein te besjen</a>.
+      sign_off: It %{domain}-team
+      subject: Aktualisaasje fan ús tsjinstbetingsten
+      subtitle: De gebrûksbetingsten fan %{domain} wizigje
+      title: Wichtige update
   challenge:
     confirm: Trochgean
     hint_html: "<strong>Tip:</strong> Wy freegje jo it kommende oere net mear nei jo wachtwurd."
@@ -1960,10 +1974,6 @@ fy:
     recovery_instructions_html: Wannear’t jo ea de tagong ta jo telefoan ferlieze, kinne jo mei help fan ien fan de werstelkoaden hjirûnder opnij tagong krije ta jo account. <strong>Soargje derfoar dat jo de werstelkoaden op in feilich plak bewarje</strong>. Jo kinne se bygelyks ôfdrukke en se tegearre mei oare wichtige dokuminten bewarje.
     webauthn: Befeiligingskaaien
   user_mailer:
-    announcement_published:
-      description: 'De behearders fan %{domain} dogge in meidieling:'
-      subject: Service-oankundiging
-      title: Service-oankundiging %{domain}
     appeal_approved:
       action: Accountynstellingen
       explanation: It beswier tsjin in troch in moderator fêststelde skeining fan jo op %{strike_date}, yntsjinne op %{appeal_date}, is goedkard. De earder fêststelde skeining is hjirby net langer jildich.
@@ -1993,15 +2003,6 @@ fy:
       further_actions_html: Wannear’t jo dit net wiene, advisearje wy om daliks %{action} en om twa-stapsferifikaasje yn te skeakeljen, om sa jo account feilich te hâlden.
       subject: Jo account is fan in nij IP-adres ôf benadere
       title: In nije registraasje
-    terms_of_service_changed:
-      agreement: Troch %{domain} brûke te bliuwen, geane jo akkoard mei dizze betingsten. As jo it net iens binne mei de bywurke betingsten, kinne jo jo oerienkomst mei %{domain} op elk winske momint beëinigje troch jo account fuort te smiten.
-      changelog: 'Yn ien eachopslach betsjut dizze update foar jo:'
-      description: 'Jo ûntfange dit berjocht, omdat wy inkelde wizigingen oanbringe yn ús gebrûksbetingsten by %{domain}. Dizze oanpassingen wurde fan krêft op %{date}. Wy riede jo oan om de bywurke betingsten hjir folslein te besjen:'
-      description_html: Jo ûntfange dit e-mailberjocht, omdat wy inkelde wizigingen oanbringe yn ús gebrûksbetingsten by %{domain}. Dizze oanpassingen wurde fan krêft op <strong>%{date}</strong>. Wy riede jo oan om de <a href="%{path}" target="_blank">bywurke betingsten hjir folslein te besjen</a>.
-      sign_off: It %{domain}-team
-      subject: Aktualisaasje fan ús tsjinstbetingsten
-      subtitle: De gebrûksbetingsten fan %{domain} wizigje
-      title: Wichtige update
     warning:
       appeal: Beswier yntsjinje
       appeal_description: Wannear’t jo tinke dat dit in flater is, kinne jo in beswier yntsjinje by de meiwurkers fan %{instance}.

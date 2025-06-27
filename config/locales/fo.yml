@@ -1272,6 +1272,20 @@ fo:
     s_blog: Bloggurin hjá %{name}
     then_instructions: Skriva síðani økisnavnið, har tað verður lagt út, í teigin niðanfyri.
     title: Ískoyti høvundans
+  bulk_mailer:
+    announcement_published:
+      description: 'Umsitararnir av %{domain} kunngera:'
+      subject: Tænastukunngerð
+      title: "%{domain} tænastukunngerð"
+    terms_of_service_changed:
+      agreement: Við framhaldandi at brúka %{domain} góðtekur tú hesar treytir. Tekur tú ikki undir við dagførdu treytunum, so kanst tú til einhvørja tíð uppsiga avtaluna við %{domain} við at strika kontu tína.
+      changelog: 'Í stuttum merkir henda dagføringin:'
+      description: 'Tú móttekur hetta teldubrævið, tí at vit gera nakrar broytingar í okkara tænastutreytum á %{domain}. Broytingarnar vera galdandi frá %{date}. Vit eggja tær til at eftirhyggja dagførdu treytirnar her:'
+      description_html: Tú móttekur hetta teldubrævið, tí at vit gera nakrar broytingar í okkara tænastutreytum á %{domain}. Broytingarnar vera galdandi frá <strong>%{date}</strong>. Vit eggja tær til at eftirhyggja <a href="%{path}" target="_blank">dagførdu treytirnar her</a>.
+      sign_off: "%{domain} toymið"
+      subject: Dagføringar til okkara tænastutreytir
+      subtitle: Tænastutreytirnar hjá %{domain} eru við at verða broyttar
+      title: Týdningarmikil dagføring
   challenge:
     confirm: Hald á
     hint_html: "<strong>Góð ráð:</strong> vit spyrja teg ikki aftur um loyniorðið næsta tíman."
@@ -1962,10 +1976,6 @@ fo:
     recovery_instructions_html: Missir tú atgongd til telefonina, so kanst tú brúka eina av kodunum til endurgerð niðanfyri at fáa atgongd aftur til kontu tína. <strong>Goym kodurnar til endurgerð trygt</strong>. Til dømis kanst tú prenta tær og goyma tær saman við øðrum týdningarmiklum skjølum.
     webauthn: Trygdarlyklar
   user_mailer:
-    announcement_published:
-      description: 'Umsitararnir av %{domain} kunngera:'
-      subject: Tænastukunngerð
-      title: "%{domain} tænastukunngerð"
     appeal_approved:
       action: Kontustillingar
       explanation: Kæran um atsóknina móti kontu tínari %{strike_date}, sum tú sendi inn %{appeal_date}, er góðkend. Konta tín er aftur tignarlig.
@@ -1995,15 +2005,6 @@ fo:
       further_actions_html: Var hetta ikki tú, so mæla vit til, at tú %{action} beinan vegin og at tú ger váttan í tveimum stigum virkna fyri at konta tín kann vera trygg.
       subject: Atgongd er fingin til kontu tína frá eini nýggjari IP adressu
       title: Ein nýggj innritan
-    terms_of_service_changed:
-      agreement: Við framhaldandi at brúka %{domain} góðtekur tú hesar treytir. Tekur tú ikki undir við dagførdu treytunum, so kanst tú til einhvørja tíð uppsiga avtaluna við %{domain} við at strika kontu tína.
-      changelog: 'Í stuttum merkir henda dagføringin:'
-      description: 'Tú móttekur hetta teldubrævið, tí at vit gera nakrar broytingar í okkara tænastutreytum á %{domain}. Broytingarnar vera galdandi frá %{date}. Vit eggja tær til at eftirhyggja dagførdu treytirnar her:'
-      description_html: Tú móttekur hetta teldubrævið, tí at vit gera nakrar broytingar í okkara tænastutreytum á %{domain}. Broytingarnar vera galdandi frá <strong>%{date}</strong>. Vit eggja tær til at eftirhyggja <a href="%{path}" target="_blank">dagførdu treytirnar her</a>.
-      sign_off: "%{domain} toymið"
-      subject: Dagføringar til okkara tænastutreytir
-      subtitle: Tænastutreytirnar hjá %{domain} eru við at verða broyttar
-      title: Týdningarmikil dagføring
     warning:
       appeal: Innsend eina kæru
       appeal_description: Trýrt tú, at hetta er ein feilur, so kanst tú senda eina kæru til starvsfólkini á %{instance}.
