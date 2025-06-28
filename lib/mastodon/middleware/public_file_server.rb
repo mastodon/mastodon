@@ -22,7 +22,7 @@ module Mastodon
         status, headers, response = file
 
         # Set cache headers on static files. Some paths require different cache headers
-        headers['Cache-Control'] = begin
+        headers['cache-control'] = begin
           request_path = env['REQUEST_PATH']
 
           if request_path.start_with?('/sw.js')
