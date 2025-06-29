@@ -4,6 +4,7 @@ import type { Draft, UnknownAction } from '@reduxjs/toolkit';
 import type { List as ImmutableList } from 'immutable';
 
 import { timelineDelete } from 'mastodon/actions/timelines_typed';
+import type { AsyncRefreshHeader } from 'mastodon/api';
 import type { ApiRelationshipJSON } from 'mastodon/api_types/relationships';
 import type {
   ApiStatusJSON,
@@ -12,7 +13,7 @@ import type {
 import type { Status } from 'mastodon/models/status';
 
 import { blockAccountSuccess, muteAccountSuccess } from '../actions/accounts';
-import { fetchContext } from '../actions/statuses';
+import { fetchContext, completeContextRefresh } from '../actions/statuses';
 import { TIMELINE_UPDATE } from '../actions/timelines';
 import { compareId } from '../compare_id';
 
@@ -25,11 +26,13 @@ interface TimelineUpdateAction extends UnknownAction {
 interface State {
   inReplyTos: Record<string, string>;
   replies: Record<string, string[]>;
+  refreshing: Record<string, AsyncRefreshHeader>;
 }
 
 const initialState: State = {
   inReplyTos: {},
   replies: {},
+  refreshing: {},
 };
 
 const normalizeContext = (
@@ -127,6 +130,13 @@ export const contextsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchContext.fulfilled, (state, action) => {
       normalizeContext(state, action.meta.arg.statusId, action.payload.context);
+
+      if (action.payload.refresh) {
+        state.refreshing[action.meta.arg.statusId] = action.payload.refresh;
+      }
+    })
+    .addCase(completeContextRefresh, (state, action) => {
+      delete state.refreshing[action.payload.statusId];
     })
     .addCase(blockAccountSuccess, (state, action) => {
       filterContexts(
