@@ -55,7 +55,7 @@ class ActivityPub::FetchAllRepliesWorker
     replies_collection_or_uri = get_replies_uri(status)
     return if replies_collection_or_uri.nil?
 
-    ActivityPub::FetchAllRepliesService.new.call(value_or_id(status), replies_collection_or_uri, max_pages: max_pages, **options.deep_symbolize_keys)
+    ActivityPub::FetchAllRepliesService.new.call(value_or_id(status), replies_collection_or_uri, max_pages: max_pages, async_refresh_key: "context:#{@root_status.id}:refresh", **options.deep_symbolize_keys)
   end
 
   # Get the URI of the replies collection of a status
