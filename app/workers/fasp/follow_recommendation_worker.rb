@@ -32,6 +32,9 @@ class Fasp::FollowRecommendationWorker
       end
     end
 
+    # Invalidate follow recommendation cache so it does not
+    # take up to 15 minutes for the new recommendations to
+    # show up
     Rails.cache.delete("follow_recommendations/#{account.id}")
   rescue ActiveRecord::RecordNotFound
     # Nothing to be done
