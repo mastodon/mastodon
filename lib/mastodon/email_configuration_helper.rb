@@ -6,7 +6,7 @@ module Mastodon
 
     # Convert smtp settings from environment variables (or defaults in
     # `config/email.yml`) into the format that `ActionMailer` understands
-    def smtp_settings(config)
+    def convert_smtp_settings(config)
       enable_starttls = nil
       enable_starttls_auto = nil
 

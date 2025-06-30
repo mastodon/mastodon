@@ -110,7 +110,7 @@ Rails.application.configure do
   config.action_mailer.default_options[:reply_to]    = config.x.email.reply_to if config.x.email.reply_to.present?
   config.action_mailer.default_options[:return_path] = config.x.email.return_path if config.x.email.return_path.present?
 
-  config.action_mailer.smtp_settings = Mastodon::EmailConfigurationHelper.smtp_settings(config.x.email.smtp_settings)
+  config.action_mailer.smtp_settings = Mastodon::EmailConfigurationHelper.convert_smtp_settings(config.x.email.smtp_settings)
 
   config.action_mailer.delivery_method = config.x.email.delivery_method.to_sym
 

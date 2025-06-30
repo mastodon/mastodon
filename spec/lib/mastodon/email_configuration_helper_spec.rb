@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Mastodon::EmailConfigurationHelper do
-  describe '#smtp_settings' do
+  describe '#convert_smtp_settings' do
     subject { described_class }
 
-    let(:converted_settings) { subject.smtp_settings(configuration) }
+    let(:converted_settings) { subject.convert_smtp_settings(configuration) }
     let(:base_configuration) do
       {
         address: 'localhost',

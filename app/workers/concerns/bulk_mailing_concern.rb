@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module BulkMailer
+module BulkMailingConcern
   def push_bulk_mailer(mailer_class, mailer_method, args_array)
     raise ArgumentError, "No method #{mailer_method} on class #{mailer_class.name}" unless mailer_class.respond_to?(mailer_method)
 
