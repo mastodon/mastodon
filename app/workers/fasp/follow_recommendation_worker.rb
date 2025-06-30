@@ -31,6 +31,8 @@ class Fasp::FollowRecommendationWorker
         end
       end
     end
+
+    Rails.cache.delete("follow_recommendations/#{account.id}")
   rescue ActiveRecord::RecordNotFound
     # Nothing to be done
   ensure
