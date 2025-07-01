@@ -23,7 +23,7 @@ All notable changes to this project will be documented in this file.
   Support for verifying remote quotes according to [FEP-044f](https://codeberg.org/fediverse/fep/src/branch/main/fep/044f/fep-044f.md) and displaying them in the Web UI has been implemented.\
   Quoting other people is not implemented yet, and it is currently not possible to mark your own posts as allowing quotes. However, a new “Who can quote” setting has been added to the “Posting defaults” section of the user settings. This setting allows you to set a default that will be used for new posts made on Mastodon 4.5 and newer, when quote posts will be fully implemented.\
   In the REST API, quote posts are represented by a new `quote` attribute on `Status` and `StatusEdit` entities: https://docs.joinmastodon.org/entities/StatusEdit/#quote https://docs.joinmastodon.org/entities/Status/#quote
-- Add ability to reorder and translate server rules (#34637, #34737, #34494, #34756, #34820 and #34997 by @ChaosExAnima and @ClearlyClaire)\
+- Add ability to reorder and translate server rules (#34637, #34737, #34494, #34756, #34820, #34997, #35170, #35174 and #35174 by @ChaosExAnima and @ClearlyClaire)\
   Rules are now shown in the user’s language, if a translation has been set.\
   In the REST API, `Rule` entities now have a new `translations` attribute: https://docs.joinmastodon.org/entities/Rule/#translations
 - Add emoji from Twemoji 15.1.0, including in the emoji picker/completion (#33395, #34321, #34620, and #34677 by @ChaosExAnima, @ClearlyClaire, @TheEssem, and @eramdam)
@@ -38,8 +38,11 @@ All notable changes to this project will be documented in this file.
   Server administrators can now chose to opt in to transmit referrer information when following an external link. Only the domain name is transmitted, not the referrer path.
 - Add double tap to zoom and swipe to dismiss to media modal in web UI (#34210 by @Gargron)
 - Add link from Web UI for Hashtags to the Moderation UI (#31448 by @ThisIsMissEm)
-- **Add terms of service** (#33055, #33233, #33230, #33703, #33699, #33994, #33993, #34105, #34122, #34200, #34527 and #35053 by @ClearlyClaire, @Gargron, @mjankowski, and @oneiros)\
-  Server administrators can now fill in Terms of Service, optionally using a provided template.
+- **Add terms of service** (#33055, #33233, #33230, #33703, #33699, #33994, #33993, #34105, #34122, #34200, #34527, #35053, #35115, #35126 and #35127 by @ClearlyClaire, @Gargron, @mjankowski, and @oneiros)\
+  Server administrators can now fill in Terms of Service and notify their users of upcoming changes.
+- Add optional bulk mailer settings (#35191 and #35203 by @oneiros)\
+  This adds the optional environment variables `BULK_SMTP_PORT`, `BULK_SMTP_SERVER`, `BULK_SMTP_LOGIN` and so on analogous to `SMTP_PORT`, `SMTP_SERVER`, `SMTP_LOGIN` and related SMTP configuration environment variables.\
+  When `BULK_SMTP_SERVER` is set, this group of variables is used instead of the regular ones for sending announcement notification emails and Terms of Service notification emails.
 - **Add age verification on sign-up** (#34150, #34663, and #34636 by @ClearlyClaire and @Gargron)\
   Server administrators now have a setting to set a minimum age requirement for creating a new server, asking users for their date of birth. The date of birth is checked against the minimum age requirement server-side but not stored.\
   The following REST API changes have been made to accommodate this:
@@ -48,10 +51,12 @@ All notable changes to this project will be documented in this file.
 - Add ability to dismiss alt text badge by tapping it in web UI (#33737 by @Gargron)
 - Add loading indicator to timeline gap indicators in web UI (#33762 by @Gargron)
 - Add interaction modal when trying to interact with a poll while logged out (#32609 by @ThisIsMissEm)
-- **Add experimental FASP support** (#34031, #34415, #34765, #34965, and #34964 by @oneiros)\
+- **Add experimental FASP support** (#34031, #34415, #34765, #34965, #34964, #34033 and #35218 by @oneiros)\
   This is a first step towards supporting “Fediverse Auxiliary Service Providers” (https://github.com/mastodon/fediverse_auxiliary_service_provider_specifications). This is mostly interesting to developers who would like to implement their own FASP, but also includes the capability to share data with a discovery provider (see https://www.fediscovery.org).
 - Add ability for admins to send announcements to all users via email (#33928 and #34411 by @ClearlyClaire)\
   This is meant for critical announcements only, as this will potentially send a lot of emails and cannot be opted out of by users.
+- Add Server Moderation Notes (#31529 by @ThisIsMissEm)
+- Add loading spinner to “Post” button when sending a post (#35153 by @diondiondion)
 - Add option to use system scrollbar styling (#32117 by @vmstan)
 - Add hover cards to follow suggestions (#33749 by @ClearlyClaire)
 - Add `t` hotkey for post translations (#33441 by @ClearlyClaire)
@@ -59,7 +64,7 @@ All notable changes to this project will be documented in this file.
 - Add dropdown menu with quick actions to lists of accounts in web UI (#34391, #34709, and #34767 by @Gargron, @diondiondion, and @mkljczk)
 - Add support for displaying “year in review” notification in web UI (#32710, #32765, #32709, #32807, #32914, #33148, and #33882 by @Gargron and @mjankowski)\
   Note that the notification is currently not generated automatically, and at the moment requires a manual undocumented administrator action.
-- Add experimental support for receiving HTTP Message Signatures (RFC9421) (#34814 and #35033 by @oneiros)\
+- Add experimental support for receiving HTTP Message Signatures (RFC9421) (#34814, #35033 and #35109 by @oneiros)\
   For now, this needs to be explicitly enabled through the `http_message_signatures` feature flag (`EXPERIMENTAL_FEATURES=http_message_signatures`). This currently only covers verifying such signatures (inbound HTTP requests), not issuing them (outbound HTTP requests).
 - Add experimental Async Refreshes API (#34918 by @oneiros)
 - Add experimental server-side feature to fetch remote replies (#32615, #34147, #34149, #34151, #34615, #34682, and #34702 by @ClearlyClaire and @sneakers-the-rat)\
@@ -112,7 +117,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Change design of navigation panel in Web UI, change layout on narrow screens (#34910, #34987, #35017, #34986, #35029, #35065, #35067 and #35072 by @ClearlyClaire, @Gargron, and @diondiondion)
+- Change design of navigation panel in Web UI, change layout on narrow screens (#34910, #34987, #35017, #34986, #35029, #35065, #35067, #35072, #35074, #35075, #35101, #35173, #35183, #35193 and #35225 by @ClearlyClaire, @Gargron, and @diondiondion)
 - Change design of lists in web UI (#32881, #33054, and #33036 by @Gargron)
 - Change design of edit media modal in web UI (#33516, #33702, #33725, #33725, #33771, and #34345 by @Gargron)
 - Change design of audio player in web UI (#34520, #34740, #34865, #34929, #34933, and #35034 by @ClearlyClaire, @Gargron, and @diondiondion)
@@ -126,15 +131,17 @@ All notable changes to this project will be documented in this file.
   Moderators will still be able to access them while they are kept, but they won't be accessible to the public in the meantime.
 - Change language names in compose box language picker to be localized (#33402 by @c960657)
 - Change onboarding flow in web UI (#32998, #33119, #33471 and #34962 by @ClearlyClaire and @Gargron)
+- Change Advanced Web UI to use the new main menu instead of the “Getting started” column (#35117 by @diondiondion)
 - Change emoji categories in admin interface to be ordered by name (#33630 by @ShadowJonathan)
 - Change design of rich text elements in web UI (#32633 by @Gargron)
 - Change wording of “single choice” to “pick one” in poll authoring form (#32397 by @ThisIsMissEm)
 - Change returned favorite and boost counts to use those provided by the remote server, if available (#32620, #34594, #34618, and #34619 by @ClearlyClaire and @sneakers-the-rat)
 - Change label of favourite notifications on private mentions (#31659 by @ClearlyClaire)
+- Change wording of "discard draft?" confirmation dialogs (#35192 by @diondiondion)
 - Change `libvips` to be enabled by default in place of ImageMagick (#34741 and #34753 by @ClearlyClaire and @diondiondion)
 - Change avatar and header size limits from 2MB to 8MB when using libvips (#33002 by @Gargron)
 - Change search to use query params in web UI (#32949 and #33670 by @ClearlyClaire and @Gargron)
-- Change build system from Webpack to Vite (#34454, #34450, #34758, #34768, #34813, #34808, #34837, #34732, #35007 and #35035 by @ChaosExAnima, @ClearlyClaire, @mjankowski, and @renchap)
+- Change build system from Webpack to Vite (#34454, #34450, #34758, #34768, #34813, #34808, #34837, #34732, #35007, #35035 and #35177 by @ChaosExAnima, @ClearlyClaire, @mjankowski, and @renchap)
 - Change account creation API to forbid creation from user tokens (#34828 by @ThisIsMissEm)
 - Change `/api/v2/instance` to be enabled without authentication when limited federation mode is enabled (#34576 by @ClearlyClaire)
 - Change `DEFAULT_LOCALE` to not override unauthenticated users’ browser language (#34535 by @ClearlyClaire)\
@@ -202,17 +209,22 @@ All notable changes to this project will be documented in this file.
 - Fix not being able to scroll dropdown on touch devices in web UI (#34873 by @Gargron)
 - Fix inconsistent filtering of silenced accounts for other silenced accounts (#34863 by @ClearlyClaire)
 - Fix update checker listing updates older or equal to current running version (#33906 by @ClearlyClaire)
+- Fix clicking a status multiple times causing duplicate entries in browser history (#35118 by @ClearlyClaire)
+- Fix “Alt text” button submitting form in moderation interface (#35147 by @ClearlyClaire)
+- Fix Firefox sometimes not updating spellcheck language in textarea (#35148 by @ClearlyClaire)
 - Fix `NoMethodError` in edge case of emoji cache handling (#34749 by @dariusk)
 - Fix handling of inlined `featured` collections in ActivityPub actor objects (#34789 and #34811 by @ClearlyClaire)
 - Fix long link names in admin sidebar being truncated (#34727 by @diondiondion)
 - Fix admin dashboard crash on specific Elasticsearch connection errors (#34683 by @ClearlyClaire)
 - Fix OIDC account creation failing for long display names (#34639 by @defnull)
 - Fix use of the deprecated `/api/v1/instance` endpoint in the moderation interface (#34613 by @renchap)
+- Fix search operators sometimes getting lost (#35190 by @ClearlyClaire)
 - Fix directory scroll position reset (#34560 by @przucidlo)
 - Fix needlessly complex SVG paths for oEmbed and logo (#34538 by @edent)
 - Fix avatar sizing with long account name in some UI elements (#34514 by @gomasy)
 - Fix empty menu section in status dropdown (#34431 by @ClearlyClaire)
 - Fix the delete suggestion button not working (#34396 and #34398 by @ClearlyClaire and @renchap)
+- Fix popover/dialog backgrounds not being blurred on older Webkit browsers (#35220 by @diondiondion)
 - Fix radio buttons not always being correctly centered (#34389 by @ChaosExAnima)
 - Fix visual glitches with adding post filters (#34387 by @ChaosExAnima)
 - Fix bugs with upload progress (#34325 by @ChaosExAnima)
@@ -220,7 +232,7 @@ All notable changes to this project will be documented in this file.
 - Fix extra space under left-indented vertical videos (#34313 by @ClearlyClaire)
 - Fix glitchy iOS media attachment drag interactions (#35057 by @diondiondion)
 - Fix zoomed images being blurry in Safari (#35052 by @diondiondion)
-- Fix redundant focus stop within status component in Web UI (#35037 and #35051 by @diondiondion)
+- Fix redundant focus stop within status component in Web UI and make focus style more noticeable (#35037, #35051, #35096 and #35150 by @diondiondion)
 - Fix digits in media player time readout not having a consistent width (#35038 by @diondiondion)
 - Fix wrong text color for “Open in advanced web interface” banner in high-contrast theme (#35032 by @diondiondion)
 - Fix hover card for limited accounts not hiding information as expected (#35024 by @diondiondion)

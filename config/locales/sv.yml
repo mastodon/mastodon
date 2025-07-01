@@ -578,6 +578,13 @@ sv:
         all: Alla
         limited: Begränsad
         title: Moderering
+      moderation_notes:
+        create: Lägg till anteckning för modereringen
+        created_msg: Skapandet av anteckningen för modereringen av den här instansen lyckades!
+        description_html: Visa och lämna anteckningar för andra moderatorer och ditt framtida jag
+        destroyed_msg: Borttagningen av anteckningen för modereringen av instansen lyckades!
+        placeholder: Information om den här instansen, åtgärder som har vidtagits eller något annat som kommer att hjälpa dig att moderera den här instansen i framtiden.
+        title: Anteckningar för modereringen
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
       purge: Rensa
@@ -1996,6 +2003,8 @@ sv:
     terms_of_service_changed:
       agreement: Genom att fortsätta använda %{domain} godkänner du dessa villkor. Om du inte håller med om de uppdaterade villkoren kan du när som helst säga upp ditt avtal med %{domain} genom att radera ditt konto.
       changelog: 'I korthet, här är vad denna uppdatering innebär för dig:'
+      description: 'Du får det här e-postmeddelandet eftersom att vi gör vissa ändringar i våra användarvillkor för %{domain}. De här uppdateringarna kommer att börja gälla %{date}. Vi uppmuntrar dig att granska de uppdaterade villkoren här i sin helhet:'
+      description_html: Du får det här e-postmeddelandet eftersom att vi gör några ändringar till våra användningsvillkor för %{domain}. De här uppdateringarna kommer att börja gälla från <strong>%{date}</strong>. Vi uppmuntrar dig att granska de uppdaterade villkoren i sin helhet <a href="%{path}" target="_blank">här</a>.
       sign_off: "%{domain} teamet"
       subject: Uppdateringar till våra användarvillkor
       subtitle: Villkoren för tjänsten på %{domain} ändras
