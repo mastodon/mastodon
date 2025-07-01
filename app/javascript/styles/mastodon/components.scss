@@ -3247,6 +3247,7 @@ a.account__display-name {
 .columns-area__panels__pane--overlay {
   pointer-events: auto;
   background: rgba($base-overlay-background, 0.5);
+  z-index: 3;
 
   .columns-area__panels__pane__inner {
     box-shadow: var(--dropdown-shadow);
