@@ -26,7 +26,7 @@ const MS_CLAUS_CODE = 0x1f936;
 
 export function unicodeToTwemojiHex(unicodeHex: string): string {
   const codes = hexStringToNumbers(unicodeHex);
-  const normalizedCodes: string[] = [];
+  const normalizedCodes: number[] = [];
   for (let i = 0; i < codes.length; i++) {
     const code = codes[i];
     if (!code) {
@@ -44,10 +44,10 @@ export function unicodeToTwemojiHex(unicodeHex: string): string {
       }
     }
     // This removes zero padding to correctly match the SVG filenames
-    normalizedCodes.push(code.toString(16).toUpperCase());
+    normalizedCodes.push(code);
   }
 
-  return normalizedCodes.join('-');
+  return hexNumbersToString(normalizedCodes, 0);
 }
 
 interface TwemojiSpecificEmoji {
@@ -93,7 +93,7 @@ export function twemojiToUnicodeInfo(
 
   let mappedCodes: unknown[] = codes;
 
-  if (codes.at(-1) === CHRISTMAS_TREE_CODE && codes.length >= 3) {
+  if (codes.at(-1) === CHRISTMAS_TREE_CODE && codes.length >= 3 && gender) {
     // Twemoji uses the christmas tree with a ZWJ for Mr. and Mrs. Claus,
     // but in Unicode that only works for Mx. Claus.
     const START_CODE =
@@ -124,12 +124,12 @@ function hexStringToNumbers(hexString: string): number[] {
     .filter((code) => !Number.isNaN(code));
 }
 
-function hexNumbersToString(codes: unknown[]): string {
+function hexNumbersToString(codes: unknown[], padding = 4): string {
   return codes
     .filter(
       (code): code is number =>
         typeof code === 'number' && code > 0 && !Number.isNaN(code),
     )
-    .map((code) => code.toString(16).padStart(4, '0').toUpperCase())
+    .map((code) => code.toString(16).padStart(padding, '0').toUpperCase())
     .join('-');
 }
