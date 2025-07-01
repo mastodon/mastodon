@@ -50,6 +50,13 @@ module WebAppControllerConcern
     return unless current_user&.require_tos_interstitial?
 
     @terms_of_service = TermsOfService.published.first
+
+    # Handle case where terms of service have been removed from the database
+    if @terms_of_service.nil?
+      current_user.update(require_tos_interstitial: false)
+      return
+    end
+
     render 'terms_of_service_interstitial/show', layout: 'auth'
   end
 
