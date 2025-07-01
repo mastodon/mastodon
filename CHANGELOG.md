@@ -42,7 +42,8 @@ All notable changes to this project will be documented in this file.
   Server administrators can now fill in Terms of Service and notify their users of upcoming changes.
 - Add optional bulk mailer settings (#35191 and #35203 by @oneiros)\
   This adds the optional environment variables `BULK_SMTP_PORT`, `BULK_SMTP_SERVER`, `BULK_SMTP_LOGIN` and so on analogous to `SMTP_PORT`, `SMTP_SERVER`, `SMTP_LOGIN` and related SMTP configuration environment variables.\
-  When `BULK_SMTP_SERVER` is set, this group of variables is used instead of the regular ones for sending announcement notification emails and Terms of Service notification emails.- **Add age verification on sign-up** (#34150, #34663, and #34636 by @ClearlyClaire and @Gargron)\
+  When `BULK_SMTP_SERVER` is set, this group of variables is used instead of the regular ones for sending announcement notification emails and Terms of Service notification emails.
+- **Add age verification on sign-up** (#34150, #34663, and #34636 by @ClearlyClaire and @Gargron)\
   Server administrators now have a setting to set a minimum age requirement for creating a new server, asking users for their date of birth. The date of birth is checked against the minimum age requirement server-side but not stored.\
   The following REST API changes have been made to accommodate this:
   - `registrations.min_age` has been added to the `Instance` entity: https://docs.joinmastodon.org/entities/Instance/#registrations-min_age
