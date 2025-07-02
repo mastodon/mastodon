@@ -44,22 +44,24 @@ RSpec.describe TermsOfService do
     end
 
     describe '.live' do
-      let!(:not_effective) { Fabricate :terms_of_service }
+      # The `pre_effective_date` record captures a period before the value was tracked
+      # The update in the `before` block creates an invalid (but historically plausible) record
+      let!(:pre_effective_date) { travel_to(10.days.ago) { Fabricate :terms_of_service, effective_date: Time.zone.today } }
       let!(:effective_past) { travel_to(3.days.ago) { Fabricate :terms_of_service, effective_date: Time.zone.today } }
       let!(:effective_future) { Fabricate :terms_of_service, effective_date: 3.days.from_now }
 
-      before { not_effective.update_attribute(:effective_date, nil) }
+      before { pre_effective_date.update_attribute(:effective_date, nil) }
 
       it 'returns records without effective or with past effective' do
         expect(described_class.live)
-          .to include(not_effective)
+          .to include(pre_effective_date)
           .and include(effective_past)
           .and not_include(effective_future)
       end
     end
 
     describe '.upcoming' do
-      let!(:unpublished) { Fabricate :terms_of_service, published_at: nil }
+      let!(:unpublished) { Fabricate :terms_of_service, published_at: nil, effective_date: 10.days.from_now }
       let!(:effective_past) { travel_to(3.days.ago) { Fabricate :terms_of_service, effective_date: Time.zone.today } }
       let!(:effective_future_near) { Fabricate :terms_of_service, effective_date: 3.days.from_now }
       let!(:effective_future_far) { Fabricate :terms_of_service, effective_date: 5.days.from_now }
