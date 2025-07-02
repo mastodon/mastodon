@@ -10,23 +10,57 @@ nan:
     followers:
       other: 跟tuè ê
     following: Leh跟tuè
+    instance_actor_flash: Tsit ê口座是虛ê，用來代表tsit臺服侍器，毋是個人用者ê。伊用來做聯邦ê路用，毋好kā伊ê權限停止。
     last_active: 頂kái活動ê時間
     link_verified_on: Tsit ê連結ê所有權佇 %{date} 受檢查
+    nothing_here: Tsia內底無物件！
+    pin_errors:
+      following: Lí著tāi先跟tuè想beh推薦ê用者。
     posts:
       other: PO文
     posts_tab_heading: PO文
+    self_follow_error: 跟tuè家己ê口座無允准
   admin:
+    account_actions:
+      action: 執行動作
+      already_silenced: Tsit ê口座有受著限制。
+      already_suspended: Tsit ê口座ê權限已經hōo lâng停止。
+      title: Kā %{acct} 做審核ê動作
     account_moderation_notes:
       create: 留記錄
       created_msg: 管理記錄成功建立！
       destroyed_msg: 管理記錄成功thâi掉！
     accounts:
+      add_email_domain_block: 封鎖電子phue ê網域
+      approve: 允准
+      approved_msg: 成功審核 %{username} ê註冊申請ah
+      are_you_sure: Lí kám確定？
+      avatar: 標頭
+      by_domain: 域名
+      change_email:
+        changed_msg: Email改成功ah！
+        current_email: 現在ê email
+        label: 改email
+        new_email: 新ê email
+        submit: 改email
+        title: 替 %{username} 改email
+      change_role:
+        changed_msg: 角色改成功ah！
+        edit_roles: 管理用者ê角色
+        label: 改角色
+        no_role: 無角色
+        title: 替 %{username} 改角色
+      confirm: 確認
+      confirmed: 確認ah
+      confirming: Teh確認
+      custom: 自訂
+      delete: Thâi資料
       deleted: Thâi掉ah
       demote: 降級
       destroyed_msg: Teh-beh thâi掉 %{username} ê資料
       disable: 冷凍
       disable_sign_in_token_auth: 停止用電子phue ê token認證
-      disable_two_factor_authentication: 停止用2FA
+      disable_two_factor_authentication: 停止用雙因素認證
       disabled: 冷凍起來ah
       display_name: 顯示ê名
       domain: 域名
@@ -34,11 +68,269 @@ nan:
       email: 電子phue箱
       email_status: 電子phue ê狀態
       enable: 取消冷凍
+      enable_sign_in_token_auth: 啟用電子phue ê token認證
+      enabled: 啟用ah
+      enabled_msg: 成功kā %{username} ê口座退冰
+      followers: 跟tuè lí ê
+      follows: Lí跟tuè ê
+      header: 封面ê圖
+      inbox_url: 收件kheh-á ê URL
+      invite_request_text: 加入ê理由
+      invited_by: 邀請ê lâng
+      ip: IP
+      joined: 加入ê時
       location:
         all: Kui ê
         local: 本地
         remote: 別ê站
         title: 位置
+      login_status: 登入ê狀態
+      media_attachments: 媒體ê附件
+      memorialize: 變做故人ê口座
+      memorialized: 變做故人ê口座ah
+      memorialized_msg: 成功kā %{username} 變做故人ê口座ah
+      moderation:
+        active: 活ê
+        all: 全部
+        disabled: 停止使用ah
+        pending: Teh審核
+        silenced: 受限制
+        suspended: 權限中止ah
+        title: 管理
+      moderation_notes: 管理ê註釋
+      most_recent_activity: 最近ê活動時間
+      most_recent_ip: 最近ê IP
+      no_account_selected: 因為無揀任何口座，所以lóng無改變
+      no_limits_imposed: 無受著限制
+      no_role_assigned: 無分著角色
+      not_subscribed: 無訂
+      pending: Teh等審核
+      perform_full_suspension: 中止權限
+      previous_strikes: Khah早ê處份
+      previous_strikes_description_html:
+        other: Tsit ê口座有 <strong>%{count}</strong> kái警告。
+      promote: 權限the̍h懸
+      protocol: 協定
+      public: 公開ê
+      push_subscription_expires: 訂PuSH ê期間過ah
+      redownload: 重頭整理個人檔案
+      redownloaded_msg: Tuì來源站kā %{username} ê個人資料成功重頭整理
+      reject: 拒絕
+      rejected_msg: 成功拒絕 %{username} ê註冊申請ah
+      remote_suspension_irreversible: Tsit ê口座ê資料已經hōo lâng thâi掉，bē當復原。
+      remote_suspension_reversible_hint_html: Tsit ê口座ê權限佇tsit ê服侍器hōo lâng停止ah，資料ē佇 %{date} lóng總thâi掉。佇hit日前，遠距離ê服侍器ē當復原tsit ê口座，無任何pháinn作用。Nā lí想beh liâm-mī thâi掉tsit ê口座ê任何資料，ē當佇下跤操作。
+      remove_avatar: Thâi掉標頭
+      remove_header: Thâi掉封面ê圖
+      removed_avatar_msg: 成功thâi掉 %{username} ê 標頭影像
+      removed_header_msg: 成功thâi掉 %{username} ê封面ê圖
+      resend_confirmation:
+        already_confirmed: Tsit ê用者有受tio̍h確認
+        send: 重送確認ê連結
+        success: 確認連結傳成功ah！
+      reset: 重頭設
+      reset_password: Kā密碼重頭設
+      resubscribe: 重頭訂
+      role: 角色
+      search: Tshiau-tshuē
+      search_same_email_domain: 其他電子phue域名相kâng ê用者
+      search_same_ip: 其他IP相kâng ê用者
+      security: 安全
+      security_measures:
+        only_password: Kan-ta用密碼
+        password_and_2fa: 密碼kap雙因素驗證(2FA)
+      sensitive: 強制標做敏感ê
+      sensitized: 標做敏感ê ah
+      shared_inbox_url: 做伙用ê收件kheh-á (Shared Inbox) ê URL
+      show:
+        created_reports: 檢舉記錄
+        targeted_reports: Hōo別lâng檢舉
+      silence: 靜音
+      silenced: 受靜音
+      statuses: PO文
+      strikes: Khah早ê處份
+      subscribe: 訂
+      suspend: 中止權限
+      suspended: 權限中止ah
+      suspension_irreversible: Tsit ê口座ê資料已經thâi掉，bē當回復。Lí ē當取消停止tsit ê口座ê權限，予伊ē當使用，但是bē當回復任何khah早ê資料。
+      suspension_reversible_hint_html: Tsit ê口座ê權限hōo lâng停止ah，資料ē佇 %{date} lóng總thâi掉。佇hit日前，tsit ê口座ē當復原，無任何pháinn作用。Nā lí想beh liâm-mī thâi掉tsit ê口座ê任何資料，ē當佇下跤操作。
+      title: 口座
+      unblock_email: 取消封鎖電子phue ê地址
+      unblocked_email_msg: 成功取消封鎖 %{username} ê電子phue地址
+      unconfirmed_email: 無驗證ê電子phue
+      undo_sensitized: 取消強制標做敏感ê
+      undo_silenced: 取消限制
+      undo_suspension: 取消停止權限
+      unsilenced_msg: 成功kā %{username} ê口座取消限制
+      unsubscribe: 取消訂
+      unsuspended_msg: 成功kā %{username} ê口座取消停止權限
+      username: 用者ê名
+      view_domain: 看域名ê摘要
+      warn: 警告
+      web: 網頁
+      whitelisted: 允准佇聯邦傳資料
+    action_logs:
+      action_types:
+        approve_appeal: 批准投訴
+        approve_user: 批准用者
+        assigned_to_self_report: 分配檢舉
+        change_email_user: 替用者改email
+        change_role_user: 改用者ê角色
+        confirm_user: 確認用者
+        create_account_warning: 建立警告
+        create_announcement: 加添公告
+        create_canonical_email_block: 加添電子phue ê封鎖
+        create_custom_emoji: 加添自訂ê Emoji
+        create_domain_allow: 加添允准ê域名
+        create_domain_block: 加添封鎖ê域名
+        create_email_domain_block: 加添電子phue域名ê封鎖
+        create_ip_block: 加添IP規則
+        create_unavailable_domain: 建立bē當用ê域名
+        create_user_role: 建立角色
+        demote_user: Kā用者降級
+        destroy_announcement: Thâi掉公告
+        destroy_canonical_email_block: Thâi掉電子phue ê封鎖
+        destroy_custom_emoji: Thâi掉自訂ê Emoji
+        destroy_domain_allow: Thâi掉允准ê域名
+        destroy_domain_block: Thâi掉封鎖ê域名
+        destroy_email_domain_block: Thâi掉電子phue域名ê封鎖
+        destroy_instance: 清掉域名
+        destroy_ip_block: Thâi掉IP規則
+        destroy_status: Thâi掉PO文
+        destroy_unavailable_domain: Thâi掉bē當用ê域名
+        destroy_user_role: Thâi掉角色
+        disable_2fa_user: 停止用雙因素認證
+        disable_custom_emoji: 停止用自訂ê Emoji
+        disable_sign_in_token_auth_user: 停止用使用者電子phue ê token認證
+        disable_user: 停止用口座
+        enable_custom_emoji: 啟用自訂ê Emoji
+        enable_sign_in_token_auth_user: 啟用使用者電子phue ê token認證
+        enable_user: 啟用口座
+        memorialize_account: 設做故人ê口座
+        promote_user: Kā用者升級
+        reject_appeal: 拒絕申訴
+        reject_user: 拒絕用者
+        remove_avatar_user: Thâi掉標頭
+        reopen_report: 重頭kā檢舉phah開
+        resend_user: 重送確認ê phue
+        reset_password_user: Kā密碼重頭設
+        resolve_report: Kā檢舉處理好ah
+        sensitive_account: Kā口座內底ê媒體強制標敏感內容
+        silence_account: Kā口座靜音
+        suspend_account: 停止口座ê權限
+        unassigned_report: 取消分配檢舉
+        unblock_email_account: 取消封鎖電子phue ê地址
+        unsensitive_account: 取消kā口座內底ê媒體強制標敏感內容
+        unsilence_account: 取消kā口座靜音
+        unsuspend_account: 取消停止口座ê權限
+        update_announcement: 更新公告
+        update_custom_emoji: 更新自訂ê Emoji
+        update_domain_block: 更新封鎖ê域名
+        update_ip_block: 更新IP規則
+        update_report: 更新檢舉
+        update_status: 更新PO文
+        update_user_role: 更新角色
+      actions:
+        approve_appeal_html: "%{name} 允准 %{target} 所寫ê tuì審核決定ê投訴"
+        approve_user_html: "%{name} 允准 %{target} ê 註冊"
+        assigned_to_self_report_html: "%{name} kā報告 %{target} 分配hōo家tī"
+        change_email_user_html: "%{name} 改變 %{target} ê電子phue地址"
+        change_role_user_html: "%{name} 改變 %{target} ê角色"
+        confirm_user_html: "%{name} 確認 %{target} ê電子phue地址"
+        create_account_warning_html: "%{name} 送警告hōo %{target}"
+        create_announcement_html: "%{name} kā公告 %{target} 建立ah"
+        create_canonical_email_block_html: "%{name} kā hash是 %{target} ê電子phue封鎖ah"
+        create_custom_emoji_html: "%{name} kā 新ê emoji %{target} 傳上去ah"
+        create_domain_allow_html: "%{name} 允准 %{target} 域名加入聯邦宇宙"
+        create_domain_block_html: "%{name} 封鎖域名 %{target}"
+        create_email_domain_block_html: "%{name} kā 電子phue域名 %{target} 封鎖ah"
+        create_ip_block_html: "%{name} 建立 IP %{target} ê規則"
+        create_unavailable_domain_html: "%{name} 停止送kàu域名 %{target}"
+        create_user_role_html: "%{name} 建立 %{target} 角色"
+        demote_user_html: "%{name} kā用者 %{target} 降級"
+        destroy_announcement_html: "%{name} kā公告 %{target} thâi掉ah"
+        destroy_canonical_email_block_html: "%{name} kā hash是 %{target} ê電子phue取消封鎖ah"
+        destroy_custom_emoji_html: "%{name} kā 新ê emoji %{target} thâi掉ah"
+        destroy_domain_allow_html: "%{name} 無允准 %{target} 域名加入聯邦宇宙"
+        destroy_domain_block_html: "%{name} 取消封鎖域名 %{target}"
+        destroy_email_domain_block_html: "%{name} kā 電子phue域名 %{target} 取消封鎖ah"
+        destroy_instance_html: "%{name} 清除域名 %{target}"
+        destroy_ip_block_html: "%{name} thâi掉 IP %{target} ê規則"
+        destroy_status_html: "%{name} kā %{target} ê PO文thâi掉"
+        destroy_unavailable_domain_html: "%{name} 恢復送kàu域名 %{target}"
+        destroy_user_role_html: "%{name} thâi掉 %{target} 角色"
+        disable_2fa_user_html: "%{name} 停止使用者 %{target} 用雙因素驗證"
+        disable_custom_emoji_html: "%{name} kā 新ê emoji %{target} 停止使用ah"
+        disable_sign_in_token_auth_user_html: "%{name} 停止 %{target} 用電子phue ê token驗證"
+        disable_user_html: "%{name} kā 用者 %{target} 設做bē當登入"
+        enable_custom_emoji_html: "%{name} kā 新ê emoji %{target} 啟用ah"
+        enable_sign_in_token_auth_user_html: "%{name} 啟用 %{target} ê電子phue ê token驗證"
+        enable_user_html: "%{name} kā 用者 %{target} 設做允准登入"
+        memorialize_account_html: "%{name} kā %{target} 設做故人口座"
+        promote_user_html: "%{name} kā 用者 %{target} 升級"
+        reject_appeal_html: "%{name} 拒絕 %{target} 所寫ê tuì審核決定ê投訴"
+        reject_user_html: "%{name} 拒絕 %{target} ê 註冊"
+        remove_avatar_user_html: "%{name} thâi掉 %{target} ê標頭"
+        reopen_report_html: "%{name} 重開 %{target} ê檢舉"
+        resend_user_html: "%{name} 重頭送確認phue hōo %{target}"
+        reset_password_user_html: "%{name} kā 用者 %{target} 重頭設密碼ah"
+        resolve_report_html: "%{name} 已經處理 %{target} ê檢舉"
+        sensitive_account_html: "%{name} kā %{target} ê媒體標做敏感ê內容"
+        silence_account_html: "%{name} 限制 %{target} ê口座"
+        suspend_account_html: "%{name} kā %{target} ê口座停止權限ah"
+        unassigned_report_html: "%{name} 取消分配 %{target} ê檢舉"
+        unblock_email_account_html: "%{name} 取消封鎖 %{target} ê電子phue地址"
+        unsensitive_account_html: "%{name} kā %{target} ê媒體取消標做敏感ê內容"
+        unsilence_account_html: "%{name} 取消限制 %{target} ê口座"
+        unsuspend_account_html: "%{name} kā %{target} ê口座恢復權限ah"
+        update_announcement_html: "%{name} kā公告 %{target} 更新ah"
+        update_custom_emoji_html: "%{name} kā 新ê emoji %{target} 更新ah"
+        update_domain_block_html: "%{name} kā %{target} ê域名封鎖更新ah"
+        update_ip_block_html: "%{name} 改變 IP %{target} ê規則"
+        update_report_html: "%{name} 更新 %{target} ê檢舉"
+        update_status_html: "%{name} kā %{target} ê PO文更新"
+        update_user_role_html: "%{name} 更改 %{target} 角色"
+      deleted_account: thâi掉ê口座
+      empty: Tshuē無log。
+      filter_by_action: 照動作過濾
+      filter_by_user: 照用者過濾
+      title: 審查日誌
+      unavailable_instance: "（域名bē當用）"
+    announcements:
+      destroyed_msg: 公告成功thâi掉ah！
+      edit:
+        title: 編輯公告
+      empty: Tshuē無公告。
+      live: Teh公開
+      new:
+        create: 加添公告
+        title: 新ê公告
+      publish: 公開
+      published_msg: 公告成功公佈ah！
+      scheduled_for: 排tī %{time}
+      scheduled_msg: 已經排好公告ê發布時間！
+      title: 公告
+      unpublish: 取消公佈
+      unpublished_msg: 公告成功取消ah！
+      updated_msg: 公告成功更新ah！
+    critical_update_pending: 愛處理ê重大更新
+    custom_emojis:
+      assign_category: 分配類別
+      by_domain: 域名
+      copied_msg: 成功kā emoji khóo-pih kàu本地
+      copy: Khóo-pih
+      copy_failed_msg: Bē當kā hit ê emoji khóo-pih kàu本地
+      create_new_category: 開新ê分類
+      created_msg: Emoji成功加添ah！
+      delete: Thâi掉
+      destroyed_msg: Emoji成功thâi掉ah！
+      disable: 停止使用
+      disabled: 停止使用ê
+      disabled_msg: Hit ê emoji成功停止使用ah
+      emoji: Emoji
+      enable: 啟用
+      enabled: 啟用ê
+      enabled_msg: Hit ê emoji成功啟用ah
+      image_hint: Sài-suh無超過 %{size} ê PNG á是 GIF
     instances:
       dashboard:
         instance_languages_dimension: Tsia̍p用ê語言
@@ -64,6 +356,9 @@ nan:
     too_soon: 預定PO文ê時間kan-ta tī未來
   statuses:
     default_language: Kap界面ê語言sio kâng
+  two_factor_authentication:
+    disable: 停止用雙因素認證
   user_mailer:
     welcome:
+      feature_creativity: Mastodon支持聲音、影kap圖片êPO文、容易使用性ê描述、投票、內容ê警告、動畫ê標頭、自訂ê繪文字kap裁縮小圖ê控制等等，幫tsān lí展現家己。無論beh發表藝術作品、音樂，á是podcast，Mastodon佇tsia為lí服務。
       sign_in_action: 登入

@@ -15,7 +15,7 @@ cy:
       two: Dilynwyr
       zero: Dilynwyr
     following: Yn dilyn
-    instance_actor_flash: Mae'r cyfrif hwn yn actor rhithwir sy'n cael ei ddefnyddio i gynrychioli'r gweinydd ei hun ac nid unrhyw ddefnyddiwr unigol. Fe'i defnyddir at ddibenion ffederasiwn ac ni ddylid ei atal.
+    instance_actor_flash: Mae'r cyfrif hwn yn actor rhithwir sy'n cael ei ddefnyddio i gynrychioli'r gweinydd ei hun ac nid unrhyw ddefnyddiwr unigol. Mae'n cael ei ddefnyddio at ddibenion ffederasiwn ac ni ddylid ei atal.
     last_active: gweithgar ddiwethaf
     link_verified_on: Gwiriwyd perchnogaeth y ddolen yma ar %{date}
     nothing_here: Does dim byd yma!
@@ -879,7 +879,7 @@ cy:
       deleted: Dilëwyd
       favourites: Ffefrynnau
       history: Hanes fersiynau
-      in_reply_to: Ymateb i
+      in_reply_to: Mewn ymateb i
       language: Iaith
       media:
         title: Cyfryngau
@@ -1255,7 +1255,7 @@ cy:
   date:
     formats:
       default: "%b %d %Y"
-      with_month_name: "%b %d %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}a"
@@ -1469,18 +1469,18 @@ cy:
       overwrite: Trosysgrifio
       overwrite_long: Amnewid y cofnodion cyfredol gyda'r rhai newydd
     overwrite_preambles:
-      blocking_html: Rydych ar fin <strong>amnewid eich rhestr rhwystro</strong> gyda hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
-      bookmarks_html: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{total_items} o bostiadau</strong> gan <strong>%{filename}</strong> .
-      domain_blocking_html: Rydych ar fin <strong>amnewid eich rhestr rhwystro parth</strong> gyda hyd at <strong>%{total_items} parth</strong> o <strong>%{filename}</strong> .
-      following_html: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> a <strong>pheidio a ddilyn unrhyw un arall</strong> .
-      lists_html: Rydych ar fin <strong>amnewid eich rhestrau</strong> gyda chynnwys <strong>%{filename}</strong> . Bydd hyd at <strong>%{total_items} o gyfrifon</strong> yn cael eu hychwanegu at restrau newydd.
-      muting_html: Rydych ar fin <strong>amnewid eich rhestr o gyfrifon tawel</strong> gyda hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
+      blocking_html: Rydych ar fin <strong>amnewid eich rhestr rhwystro</strong> gyda hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong>.
+      bookmarks_html: Rydych ar fin <strong>amnewid eich nodau tudalen</strong> gyda hyd at <strong>%{total_items} o bostiadau</strong> gan <strong>%{filename}</strong>.
+      domain_blocking_html: Rydych ar fin <strong>amnewid eich rhestr rhwystro parth</strong> gyda hyd at <strong>%{total_items} parth</strong> o <strong>%{filename}</strong>.
+      following_html: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> a <strong>pheidio a ddilyn unrhyw un arall</strong>.
+      lists_html: Rydych ar fin <strong>amnewid eich rhestrau</strong> gyda chynnwys <strong>%{filename}</strong>. Bydd hyd at <strong>%{total_items} o gyfrifon</strong> yn cael eu hychwanegu at restrau newydd.
+      muting_html: Rydych ar fin <strong>amnewid eich rhestr o gyfrifon tawel</strong> gyda hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong>.
     preambles:
-      blocking_html: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> .
-      bookmarks_html: Rydych ar fin ychwanegu hyd at <strong>%{total_items} o bostiadau</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong> .
-      domain_blocking_html: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{total_items} parth</strong> o <strong>%{filename}</strong> .
-      following_html: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{total_items} cyfrif</strong> gan <strong>%{filename}</strong> .
-      lists_html: Rydych ar fin ychwanegu hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> at eich <strong>rhestrau</strong> . Bydd rhestrau newydd yn cael eu creu os nad oes rhestr i ychwanegu ati.
+      blocking_html: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong>.
+      bookmarks_html: Rydych ar fin ychwanegu hyd at <strong>%{total_items} o bostiadau</strong> o <strong>%{filename}</strong> at eich <strong>nodau tudalen</strong>.
+      domain_blocking_html: Rydych ar fin <strong>rhwystro</strong> hyd at <strong>%{total_items} parth</strong> o <strong>%{filename}</strong>.
+      following_html: Rydych ar fin <strong>dilyn</strong> hyd at <strong>%{total_items} cyfrif</strong> gan <strong>%{filename}</strong>.
+      lists_html: Rydych ar fin ychwanegu hyd at <strong>%{total_items} o gyfrifon</strong> o <strong>%{filename}</strong> at eich <strong>rhestrau</strong>. Bydd rhestrau newydd yn cael eu creu os nad oes rhestr i ychwanegu ati.
       muting_html: Rydych ar fin <strong>anwybyddu</strong> hyd at <strong>%{total_items} cyfrif</strong> o <strong>%{filename}</strong>.
     preface: Gallwch fewnforio data rydych chi wedi'i allforio o weinydd arall, fel rhestr o'r bobl rydych chi'n eu dilyn neu'n eu blocio.
     recent_imports: Mewnforion diweddar
@@ -1556,7 +1556,7 @@ cy:
     unsubscribe:
       action: Iawn, dad-danysgrifio
       complete: Dad-danysgrifiwyd
-      confirmation_html: Ydych chi'n siŵr eich bod am ddad-danysgrifio rhag derbyn %{type} Mastodon ar %{domain} i'ch e-bost yn %{email}? Gallwch ail-danysgrifio o'ch <a href="%{settings_path}">gosodiadau hysbysu e-bost</a> rhywbryd eto .
+      confirmation_html: Ydych chi'n siŵr eich bod am ddad-danysgrifio rhag derbyn %{type} Mastodon ar %{domain} i'ch e-bost yn %{email}? Gallwch ail-danysgrifio o'ch <a href="%{settings_path}">gosodiadau hysbysu e-bost</a> rhywbryd eto.
       emails:
         notification_emails:
           favourite: e-bost hysbysu hoffi
@@ -1632,7 +1632,7 @@ cy:
       subject: 'Dilynwr yn aros: %{name}'
       title: Cais dilynwr newydd
     mention:
-      action: Ateb
+      action: Ymateb
       body: 'Caswoch eich crybwyll gan %{name} yn:'
       subject: Cawsoch eich crybwyll gan %{name}
       title: Crywbylliad newydd
@@ -1801,7 +1801,7 @@ cy:
     back: Nôl i Mastodon
     delete: Dileu cyfrif
     development: Datblygu
-    edit_profile: Golygu proffil
+    edit_profile: Golygu'r proffil
     export: Allforio
     featured_tags: Prif hashnodau
     import: Mewnforio

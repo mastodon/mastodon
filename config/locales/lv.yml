@@ -2,7 +2,7 @@
 lv:
   about:
     about_mastodon_html: 'Nākotnes sabiedriskais tīkls: bez reklāmām, bez korporatīvās novērošanas, ētiska projektēšana un decentralizēšana. Pārvaldi savus datus ar Mastodon!'
-    contact_missing: Nav uzstādīts
+    contact_missing: Nav iestatīts
     contact_unavailable: N/A
     hosted_on: Mastodon mitināts %{domain}
     title: Par
@@ -17,12 +17,12 @@ lv:
     link_verified_on: Šīs saites piederība tika pārbaudīta %{date}
     nothing_here: Šeit nekā nav.
     pin_errors:
-      following: Tev ir jāseko personai, kuru vēlies atbalstīt
+      following: Tev ir jāseko cilvēkam, kuru vēlies atbalstīt
     posts:
-      one: Ziņa
-      other: Ziņas
-      zero: Ziņu
-    posts_tab_heading: Ziņas
+      one: Ieraksts
+      other: Ieraksti
+      zero: Ierakstu
+    posts_tab_heading: Ieraksti
     self_follow_error: Nav ļauts sekot savam kontam
   admin:
     account_actions:
@@ -120,7 +120,7 @@ lv:
       public: Publisks
       push_subscription_expires: PuSH abonements beidzas
       redownload: Atsvaidzināt profilu
-      redownloaded_msg: "%{username} profils sekmīgi atsvaidzināts no izcelsmes"
+      redownloaded_msg: "%{username} profils sekmīgi atsvaidzināts no pirmavota"
       reject: Noraidīt
       rejected_msg: "%{username} reģistrēšanās pieteikums sekmīgi noraidīts"
       remote_suspension_irreversible: Šī konta dati ir neatgriezeniski dzēsti.
@@ -152,7 +152,7 @@ lv:
         targeted_reports: Ziņojuši citi
       silence: Ierobežot
       silenced: Ierobežots
-      statuses: Ziņas
+      statuses: Ieraksti
       strikes: Iepriekšējie streiki
       subscribe: Abonēt
       suspend: Apturēt
@@ -176,7 +176,7 @@ lv:
       whitelisted: Atļauts federācijai
     action_logs:
       action_types:
-        approve_appeal: Apstiprināt Apelāciju
+        approve_appeal: Apstiprināt pārsūdzību
         approve_user: Apstiprināt lietotāju
         assigned_to_self_report: Piešķirt Pārskatu
         change_email_user: Mainīt lietotāja e-pasta adresi
@@ -213,11 +213,11 @@ lv:
         enable_user: Ieslēgt Lietotāju
         memorialize_account: Saglabāt Kontu Piemiņai
         promote_user: Izceltt Lietotāju
-        reject_appeal: Noraidīt Apelāciju
+        reject_appeal: Noraidīt pārsūdzību
         reject_user: Noraidīt lietotāju
         remove_avatar_user: Noņemt profila attēlu
         reopen_report: Atkārtoti Atvērt Ziņojumu
-        resend_user: Atkārtoti nosūtīt Apstiprinājuma Pastu
+        resend_user: Atkārtoti nosūtīt apstiprinājuma e-pasta ziņojumu
         reset_password_user: Atiestatīt Paroli
         resolve_report: Atrisināt Ziņojumu
         sensitive_account: Uzspiesti atzimēt kontu kā jūtīgu
@@ -236,7 +236,7 @@ lv:
         update_status: Atjaunināt ziņu
         update_user_role: Atjaunināt lomu
       actions:
-        approve_appeal_html: "%{name} apstiprināja satura pārraudzības lēmuma iebildumu no %{target}"
+        approve_appeal_html: "%{name} apstiprināja satura pārraudzības lēmuma pārsūdzību no %{target}"
         approve_user_html: "%{name} apstiprināja reģistrēšanos no %{target}"
         assigned_to_self_report_html: "%{name} piešķīra pārskatu %{target} sev"
         change_email_user_html: "%{name} nomainīja lietotāja %{target} e-pasta adresi"
@@ -254,9 +254,11 @@ lv:
         create_user_role_html: "%{name} nomainīja %{target} lomu"
         demote_user_html: "%{name} pazemināja lietotāju %{target}"
         destroy_announcement_html: "%{name} izdzēsa paziņojumu %{target}"
+        destroy_canonical_email_block_html: "%{name} atcēla e-pasta adreses liegumu ar jaucējvērtību %{target}"
         destroy_custom_emoji_html: "%{name} izdzēsa emocijzīmi %{target}"
         destroy_domain_allow_html: "%{name} neatļāva federāciju ar domēnu %{target}"
         destroy_domain_block_html: "%{name} atbloķēja domēnu %{target}"
+        destroy_email_domain_block_html: "%{name} atcēla e-pasta domēna %{target} liegumu"
         destroy_instance_html: "%{name} attīrija domēnu %{target}"
         destroy_ip_block_html: "%{name} izdzēsa nosacījumu priekš IP %{target}"
         destroy_status_html: "%{name} noņēma ziņu %{target}"
@@ -269,7 +271,7 @@ lv:
         enable_user_html: "%{name} iespējoja pieteikšanos lietotājam %{target}"
         memorialize_account_html: "%{name} pārvērta %{target} kontu par atmiņas lapu"
         promote_user_html: "%{name} paaugstināja lietotāju %{target}"
-        reject_appeal_html: "%{name} noraidīja satura pārraudzības lēmuma iebildumu no %{target}"
+        reject_appeal_html: "%{name} noraidīja satura pārraudzības lēmuma pārsūdzību no %{target}"
         reject_user_html: "%{name} noraidīja reģistrēšanos no %{target}"
         remove_avatar_user_html: "%{name} noņēma %{target} profila attēlu"
         reopen_report_html: "%{name} atkārtoti atvēra ziņojumu %{target}"
@@ -319,7 +321,7 @@ lv:
       assign_category: Piešķirt kategoriju
       by_domain: Domēns
       copied_msg: Emocijzīmes vietējā kopija ir sekmīgi izveidota
-      copy: Kopēt
+      copy: Ievietot starpliktuvē
       copy_failed_msg: Nevarēja izveidot šīs emocijzīmes vietējo kopiju
       create_new_category: Izveidot jaunu kategoriju
       created_msg: Emocijzīme sekmīgi izveidota.
@@ -356,9 +358,9 @@ lv:
       new_users: jauni lietotāji
       opened_reports: atvērtie ziņojumi
       pending_appeals_html:
-        one: "<strong>%{count}</strong> izskatāmā apelācija"
-        other: "<strong>%{count}</strong> izskatāmās apelācijas"
-        zero: "<strong>%{count}</strong> izskatāmo apelāciju"
+        one: "<strong>%{count}</strong> izskatāma pārsūdzība"
+        other: "<strong>%{count}</strong> izskatāmas pārsūdzības"
+        zero: "<strong>%{count}</strong> izskatāmu pārsūdzību"
       pending_reports_html:
         one: "<strong>%{count}</strong>ziņojums gaida"
         other: "<strong>%{count}</strong>ziņojumi gaida"
@@ -381,8 +383,8 @@ lv:
       website: Tīmekļa vietne
     disputes:
       appeals:
-        empty: Apelācijas netika atrastas.
-        title: Apelācijas
+        empty: Netika atrasta neviena pārsūdzība.
+        title: Pārsūdzības
     domain_allows:
       add_new: Atļaut federāciju ar domēnu
       created_msg: Domēns tika sekmīgi atļauts federācijai
@@ -398,7 +400,7 @@ lv:
         permanent_action: Apturēšanas atsaukšana neatjaunos nekādus datus vai attiecības.
         preamble_html: Tu gatavojies apturēt domēna <strong>%{domain}</strong> un tā apakšdomēnu darbību.
         remove_all_data: Tādējādi no tava servera tiks noņemts viss šī domēna kontu saturs, multivide un profila dati.
-        stop_communication: Jūsu serveris pārtrauks sazināties ar šiem serveriem.
+        stop_communication: Tavs serveris pārtrauks sazināties ar šiem serveriem.
         title: Apstiprināt domēna %{domain} bloķēšanu
         undo_relationships: Tādējādi tiks atsauktas jebkuras sekošanas attiecības starp šo un tavu serveru kontiem.
       created_msg: Domēna bloķēšana tagad tiek apstrādāta
@@ -449,7 +451,9 @@ lv:
         create: Pievienot domēnu
         resolve: Atrisināt domēnu
         title: Liegt jaunu e-pasta domēnu
+      no_email_domain_block_selected: Neviens e-pasta domēna bloks netika mainīts, jo neviens netika atlasīts
       not_permitted: Nav atļauta
+      resolved_dns_records_hint_html: Domēna vārds saistās ar zemāk norādītajiem MX domēniem, kuri beigās ir atbildīgi par e-pasta pieņemšana. MX domēna liegšana liegs reģistrēšanos no jebkuras e-pasta adreses, kas izmanto to pašu MX domēnu, pat ja redzamais domēna vārds ir atšķirīgs. <strong>Jāuzmanās, lai neliegtu galvenos e-pasta pakalpojuma sniedzējus.</strong>
       resolved_through_html: Atrisināts, izmantojot %{domain}
       title: Bloķētie e-pasta domēni
     export_domain_allows:
@@ -460,7 +464,7 @@ lv:
       import:
         description_html: Tu gatavojies importēt domēna bloku sarakstu. Lūdzu, ļoti rūpīgi pārskati šo sarakstu, it īpaši, ja tu pats neesi to veidojis.
         existing_relationships_warning: Esošās sekošanas attiecības
-        private_comment_description_html: 'Lai palīdzētu tev izsekot, no kurienes nāk importētie bloki, tiks izveidoti importētie bloki ar šādu privātu komentāru: <q>%{comment}</q>'
+        private_comment_description_html: 'Lai palīdzētu Tev izsekot ievietoto bloku izcelsmei, tiks izveidoti ievietotie bloki ar šādu privātu piebildi: <q>%{comment}</q>'
         private_comment_template: Importēt no %{source} %{date}
         title: Importēt bloķētos domēnus
       invalid_domain_block: 'Viens vai vairāki domēna bloķi tika izlaisti šādas kļūdas(-u) dēļ: %{error}'
@@ -517,7 +521,7 @@ lv:
         instance_languages_dimension: Populārākās valodas
         instance_media_attachments_measure: saglabātie multivides pielikumi
         instance_reports_measure: ziņojumi par viņiem
-        instance_statuses_measure: saglabātās ziņas
+        instance_statuses_measure: saglabātie ieraksti
       delivery:
         all: Visas
         clear: Notīrīt piegādes kļūdas
@@ -582,7 +586,7 @@ lv:
       disable: Atspējot
       disabled: Atspējots
       enable: Iespējot
-      enable_hint: Kad tas būs iespējots, tavs serveris abonēs visas publiskās ziņas no šī releja un sāks tam sūtīt šī servera publiskās ziņas.
+      enable_hint: Tiklīdz iespējots, serveris abonēs visus šī releja publiskos ierakstus un sāks tam sūtīt šī iservera publiskos ierakstus.
       enabled: Iespējots
       inbox_url: Releja URL
       pending: Gaida apstiprinājumu no releja
@@ -613,6 +617,9 @@ lv:
       actions_description_remote_html: Izlem, kādas darbības jāveic, lai atrisinātu šo ziņojumu. Tas ietekmēs tikai to, kā <strong>tavs</strong> serveris sazinās ar šo attālo kontu un apstrādā tā saturu.
       actions_no_posts: Šim ziņojumam nav saistītu ierakstu, kurus izdzēst
       add_to_report: Pievienot varāk paziņošanai
+      already_suspended_badges:
+        local: Jau ir apturēts šajā serverī
+        remote: Jau ir apturēts viņu serverī
       are_you_sure: Vai esi pārliecināts?
       assign_to_self: Piešķirt man
       assigned: Piešķirtais satura pārraudzītājs
@@ -663,7 +670,7 @@ lv:
           silence_html: 'Jūs gatavojaties <strong>ierobežot</strong> <strong>@%{acct}</strong> kontu. Tas:'
           suspend_html: 'Jūs gatavojaties <strong>apturēt</strong> <strong>@%{acct}</strong> kontu. Tas:'
         actions:
-          delete_html: Noņemt aizskarošās ziņas
+          delete_html: Noņemt aizskarošos ierakstus
           mark_as_sensitive_html: Atzīmēt aizskarošo ierakstu informācijas nesējus kā jūtīgus
           silence_html: Ievērojami ierobežo <strong>@%{acct}</strong> sasniedzamību, padarot viņa profilu un saturu redzamu tikai cilvēkiem, kas jau seko tam vai pašrocīgi uzmeklē profilu
           suspend_html: Apturēt <strong>@%{acct}</strong>, padarot viņu profilu un saturu nepieejamu un neiespējamu mijiedarbību ar
@@ -672,8 +679,9 @@ lv:
         delete_data_html: Dzēsiet lietotāja <strong>@%{acct}</strong> profilu un saturu pēc 30 dienām, ja vien to darbība pa šo laiku netiks atcelta
         preview_preamble_html: "<strong>@%{acct}</strong> saņems brīdinājumu ar šādu saturu:"
         record_strike_html: Ierakstiet brīdinājumu pret <strong>@%{acct}</strong>, lai palīdzētu jums izvērst turpmākus pārkāpumus no šī konta
+        send_email_html: Nosūtīt <strong>@%{acct}</strong> brīdinājuma e-pasta ziņojumu
         warning_placeholder: Izvēles papildu pamatojums satura pārraudzības darbībai.
-      target_origin: Ziņotā konta izcelsme
+      target_origin: Konta, par kuru ziņots, izcelsme
       title: Ziņojumi
       unassign: Atsaukt
       unknown_action_msg: 'Nezināms konts: %{action}'
@@ -710,9 +718,10 @@ lv:
         invite_users_description: Ļauj lietotājiem uzaicināt jaunus cilvēkus uz šo serveri
         manage_announcements: Pārvaldīt Paziņojumus
         manage_announcements_description: Ļauj lietotājiem pārvaldīt paziņojumus serverī
-        manage_appeals: Pārvaldīt Pārsūdzības
-        manage_appeals_description: Ļauj lietotājiem pārskatīt iebildumus pret satura pārraudzības darbībām
+        manage_appeals: Pārvaldīt pārsūdzības
+        manage_appeals_description: Ļauj lietotājiem pārskatīt pārsūdzības pret satura pārraudzības darbībām
         manage_blocks: Pārvaldīt Bloķus
+        manage_blocks_description: Ļauj lietotājiem liegt e-pasta pakalpojumu sniedzējus un IP adreses
         manage_custom_emojis: Pārvaldīt Pielāgotās Emocijzīmes
         manage_custom_emojis_description: Ļauj lietotājiem pārvaldīt pielāgotās emocijzīmes serverī
         manage_federation: Pārvaldīt Federāciju
@@ -730,6 +739,7 @@ lv:
         manage_taxonomies: Pārvaldīt Taksonomijas
         manage_taxonomies_description: Ļauj lietotājiem pārskatīt aktuālāko saturu un atjaunināt tēmturu iestatījumus
         manage_user_access: Pārvaldīt Lietotāju Piekļuves
+        manage_user_access_description: Ļauj lietotājiem atspējot citu lietotāju divupakāpju autentificēšanos, mainīt savu e-pasta adresi un atiestatīt savu paroli
         manage_users: Pārvaldīt Lietotājus
         manage_users_description: Ļauj lietotājiem skatīt citu lietotāju informāciju un veikt pret viņiem satura pārraudzības darbības
         manage_webhooks: Pārvaldīt Tīmekļa Aizķeres
@@ -804,6 +814,7 @@ lv:
       destroyed_msg: Vietnes augšupielāde sekmīgi izdzēsta.
     software_updates:
       critical_update: Kritiski - lūdzu, ātri atjaunini
+      description: Ir ieteicams uzturēt savu Mastodon serveri atjauninātu, lai gūtu labumu no jaunākajiem labojumiem un iespējām. Vēl jo vairāk, dažreiz ir ļoti svarīgi savlaicīgi atjaunināt Mastodon, lai izvairītos no drošības nepilnībām. Šo iemeslu dēļ Mastodon pārbauda atjauninājumus ik pēc 30 minūtēm, un paziņos atbilstoši e-pasta paziņojumu iestatījumiem.
       documentation_link: Uzzināt vairāk
       release_notes: Laidiena piezīmes
       title: Pieejamie atjauninājumi
@@ -829,11 +840,11 @@ lv:
       media:
         title: Multivide
       metadata: Metadati
-      no_status_selected: Neviena ziņa netika mainīta, jo neviena netika atlasīta
+      no_status_selected: Neviens ieraksts netika mainīts, jo nekas netika atlasīts
       open: Atvērt ziņu
-      original_status: Oriģinālā ziņa
+      original_status: Sākotnējais ieraksts
       reblogs: Reblogi
-      status_changed: Ziņa mainīta
+      status_changed: Ieraksts izmainīts
       title: Konta ieraksti
       trending: Aktuāli
       visibility: Redzamība
@@ -848,8 +859,8 @@ lv:
         silence: "%{name} ierobežoja %{target} kontu"
         suspend: "%{name} apturēja %{target} kontu"
       appeal_approved: Pārsūdzēts
-      appeal_pending: Apelācija tiek izskatīta
-      appeal_rejected: Apelācija noraidīta
+      appeal_pending: Pārsūdzība gaida izskatīšanu
+      appeal_rejected: Pārsūdzība noraidīta
     system_checks:
       database_schema_check:
         message_html: Ir nepabeigtas datubāzes migrācijas. Lūgums palaist tās, lai nodrošinātu, ka lietotne darbojas, kā paredzēts
@@ -894,11 +905,13 @@ lv:
         message_html: "<strong>Tava objektu krātuve ir nepareizi konfigurēta. Tavu lietotāju privātums ir apdraudēts.</strong>"
     tags:
       moderation:
+        not_trendable: Nav izplatīts
         not_usable: Nav izmantojams
         pending_review: Gaida pārskatīšanu
         review_requested: Pieprasīta pārskatīšana
         reviewed: Pārskatīts
         title: Stāvoklis
+        trendable: Izplatīts
         unreviewed: Nepārskatīts
         usable: Izmantojams
       name: Nosaukums
@@ -919,31 +932,31 @@ lv:
       disallow: Neatļaut
       links:
         allow: Atļaut saiti
-        allow_provider: Atļaut publicētāju
+        allow_provider: Atļaut ievietotāju
         confirm_allow: Vai tiešām atļaut atlasītās saites?
         confirm_allow_provider: Vai tiešām atļaut atlasītos nodrošinātājus?
         confirm_disallow: Vai tiešām neatļaut atlasītās saites?
         confirm_disallow_provider: Vai tiešām neatļaut atlasītos nodrošinātājus?
         description_html: Šīs ir saites, kuras pašlaik bieži koplieto konti, no kuriem Tavs serveris redz ziņas. Tas var palīdzēt Taviem lietotājiem uzzināt, kas notiek pasaulē. Neviena saite netiek publiski rādīta, līdz tu apstiprini izdevēju. Tu vari arī atļaut vai noraidīt atsevišķas saites.
         disallow: Neatļaut saiti
-        disallow_provider: Neatļaut publicētāju
+        disallow_provider: Neatļaut ievietotāju
         no_link_selected: Neviena saite netika mainīta, jo neviena netika atlasīta
         publishers:
-          no_publisher_selected: Neviens publicētājs netika mainīts, jo neviens netika atlasīts
+          no_publisher_selected: Neviens ievietotājs netika mainīts, jo neviens netika atlasīts
         shared_by_over_week:
           one: Pēdējās nedēļas laikā kopīgoja viens cilvēks
           other: Pēdējās nedēļas laikā kopīgoja %{count} cilvēki
           zero: Pēdējās nedēļas laikā kopīgoja %{count} cilvēku
         title: Populārākās saites
-        usage_comparison: Šodien kopīgots %{today} reizes, salīdzinot ar %{yesterday} vakar
+        usage_comparison: Šodien kopīgota %{today} reizes, salīdzinot ar %{yesterday} vakar
       not_allowed_to_trend: Popularizešana nav atļauta
       only_allowed: Tikai atļautās
       pending_review: Gaida pārskatīšanu
       preview_card_providers:
-        allowed: Šī publicētāja saites var mainīties
+        allowed: Šī ievietotāja saites var kļūt izplatītas
         description_html: Tie ir domēni, no kuriem tavā serverī bieži tiek koplietotas saites. Saites nebūs publiski pieejamas, ja vien saites domēns netiks apstiprināts. Tavs apstiprinājums (vai noraidījums) attiecas arī uz apakšdomēniem.
-        rejected: Saites no šī publicētāja nebūs tendence
-        title: Publicētāji
+        rejected: Saites no šī ievietotāja nekļūs izplatītas
+        title: Ievietotāji
       rejected: Noraidīts
       statuses:
         allow: Ļaut veikt ierakstus
@@ -958,12 +971,12 @@ lv:
         no_status_selected: Neviena populāra ziņa netika mainīta, jo neviena netika atlasīta
         not_discoverable: Autors nav izvēlējies būt atklājams
         shared_by:
-          one: Vienreiz kopīgots vai pievienots izlasei
-          other: Kopīgots un pievienots izlasei %{friendly_count} reizes
-          zero: "%{friendly_count} reižu kopīgots vai pievienots izlasei"
+          one: "%{friendly_count} reizi kopīgots un pievienots izlasei"
+          other: "%{friendly_count} reizes kopīgots un pievienots izlasei"
+          zero: "%{friendly_count} reižu kopīgots un pievienots izlasei"
         title: Populārākās ziņas
       tags:
-        current_score: Pašreizējais rezultāts %{score}
+        current_score: Pašreizējais novērtējums %{score}
         dashboard:
           tag_accounts_measure: unikāli lietojumi
           tag_languages_dimension: Populārākās valodas
@@ -1018,6 +1031,7 @@ lv:
   admin_mailer:
     auto_close_registrations:
       body: Nesenu satura pārraudzības darbību trūkuma dēļ reģistrācija %{instance} ir automātiski pārslēgta nepieciešamība pēc pašrocīgas izskatīšanas, lai novērstu %{instance} izmantošana kā platformu iespējami sliktiem dalībniekiem. Jebkurā brīdī var ieslēgt atpakaļ atvērtu reģistrēšanos.
+      subject: Reģistrēšanās %{instance} tika automātiski pārslēgta, lai pieprasītu apstiprināšanu
     new_appeal:
       actions:
         delete_statuses: lai izdzēstu viņu ierakstus
@@ -1027,9 +1041,9 @@ lv:
         sensitive: lai atzīmētu viņu kontu kā jūtīgu
         silence: lai ierobežotu viņu kontu
         suspend: lai apturētu viņu kontu
-      body: "%{target} iebilst %{action_taken_by} satura pārraudzības lēmumam no %{date}, kas bija %{type}. Viņi rakstīja:"
-      next_steps: Vari apstiprināt iebildumu, lai atsauktu satura pārraudzības lēmumu, vai neņemt to vērā.
-      subject: "%{username} iebilst satura pārraudzības lēmumam par %{instance}"
+      body: "%{target} iebilst %{action_taken_by} satura pārraudzības lēmumam no %{date}, kas bija, %{type}. Viņi rakstīja:"
+      next_steps: Vari apstiprināt pārsūdzību, lai atsauktu satura pārraudzības lēmumu, vai neņemt to vērā.
+      subject: "%{username} pārsūdz satura pārraudzības lēmumam par %{instance}"
     new_critical_software_updates:
       body: Ir izlaistas jaunas Mastodon svarīgās versijas, iespējams, vēlēsies to atjaunināt pēc iespējas ātrāk!
       subject: "%{instance} ir pieejami svarīgi Mastodon atjauninājumi!"
@@ -1044,7 +1058,7 @@ lv:
       body: Ir izlaistas jaunas Mastodon versijas, iespējams, vēlēsies atjaunināt!
       subject: "%{instance} ir pieejamas jaunas Mastodon versijas!"
     new_trends:
-      body: 'Tālāk norādītie vienumi ir jāpārskata, lai tos varētu parādīt publiski:'
+      body: 'Zemāk norādītie vienumi ir jāpārskata, lai tos varētu padarīt redzamus visiem:'
       new_trending_links:
         title: Populārākās saites
       new_trending_statuses:
@@ -1090,10 +1104,10 @@ lv:
     apply_for_account: Pieprasīt kontu
     captcha_confirmation:
       help_html: Ja Tev ir sarežģījumi ar CAPTCHA risināšanu, Tu vari sazināties ar mums e-pasta adresē %{email}, un mēs varēsim Tev palīdzēt.
-      hint_html: Vēl tikai viena lieta! Mums ir jāapstiprina, ka tu esi cilvēks (tas ir tāpēc, lai mēs varētu nepieļaut surogātpasta izsūtīšanu!). Atrisini tālāk norādīto CAPTCHA un noklikšķini uz "Turpināt".
+      hint_html: Vēl tikai viena lieta. Mums ir jāapstiprina, ka Tu esi cilvēks (tas ir tāpēc, lai mēs novērst mēstuļu sūtīšanu). Atrisini CAPTCHA un klikšķini uz "Turpināt"!
       title: Drošības pārbaude
     confirmations:
-      awaiting_review: E-pasta adrese ir apstiprināta. %{domain} darbinieki tagad pārskata reģistrāciju. Tiks saņemts e-pasta ziņojums, ja viņi apstiprinās kontu.
+      awaiting_review: E-pasta adrese ir apstiprināta. %{domain} personāls tagad pārskata reģistrāciju. Tiks saņemts e-pasta ziņojums, ja viņi apstiprinās kontu.
       awaiting_review_title: Tava reģistrācija tiek izskatīta
       clicking_this_link: klikšķinot šo saiti
       login_link: pieteikties
@@ -1160,6 +1174,7 @@ lv:
       account_status: Konta statuss
       confirming: Gaida e-pasta adreses apstiprināšanas pabeigšanu.
       functional: Tavs konts ir pilnā darba kārtībā.
+      pending: Tavs pieteikums ir rindā uz izskatīšanu, ko veic mūsu personāls. Tas var aizņemt kādu laiku. Tu saņemsi e-pasta ziņojumu, ja Tavs pieteikums tiks apstiprināts.
       redirecting_to: Tavs konts ir neaktīvs, jo pašlaik tas tiek novirzīts uz %{acct}.
       self_destruct: Tā kā %{domain} tiek slēgts, tu iegūsi tikai ierobežotu piekļuvi savam kontam.
       view_strikes: Skati iepriekšējos brīdinājumus par savu kontu
@@ -1167,8 +1182,11 @@ lv:
     use_security_key: Lietot drošības atslēgu
   author_attribution:
     example_title: Parauga teksts
+    hint_html: Vai Tu Raksti ziņu vai emuāra rakstus ārpus Mastodon? Pārraugi apliecinājumus, kad raksti tiek kopīgoti Mastodon.
+    instructions: 'Jāpārliecinās, ka šis kods ir raksta HTML:'
     more_from_html: Vairāk no %{name}
     s_blog: "%{name} emuāri"
+    then_instructions: Tad jāpievieno publicējuma domēna vārds zemāk esošajā laukā.
     title: Autora attiecinājums
   challenge:
     confirm: Turpināt
@@ -1216,19 +1234,19 @@ lv:
   disputes:
     strikes:
       action_taken: Veiktā darbība
-      appeal: Apelācija
+      appeal: Pārsūdzēt
       appeal_approved: Šis brīdinājums tika sekmīgi pārsūdzēts un vairs nav spēkā
-      appeal_rejected: Apelācija ir noraidīta
-      appeal_submitted_at: Apelācija iesniegta
-      appealed_msg: Jūsu apelācija ir iesniegta. Ja tā tiks apstiprināta, jums tiks paziņots.
+      appeal_rejected: Pārsūdzība ir noraidīta
+      appeal_submitted_at: Pārsūdzība iesniegta
+      appealed_msg: Tava pārsūdzība ir iesniegta. Ja tā tiks apstiprināta, Tev tiks paziņots.
       appeals:
-        submit: Iesniegt apelāciju
-      approve_appeal: Apstiprināt apelāciju
+        submit: Iesniegt pārsūdzību
+      approve_appeal: Apstiprināt pārsūdzību
       associated_report: Saistītais ziņojums
       created_at: Datēts
-      description_html: Šīs ir darbības, kas veiktas pret Tavu kontu, un brīdinājumi, kurus Tev ir nosūtījuši %{instance} darbinieki.
+      description_html: Šīs ir darbības, kas veiktas pret Tavu kontu, un brīdinājumi, kurus Tev ir nosūtījuši %{instance} personāls.
       recipient: Adresēts
-      reject_appeal: Noraidīt apelāciju
+      reject_appeal: Noraidīt pārsūdzību
       status: 'Publikācija #%{id}'
       status_removed: Publikācija jau ir noņemta no sistēmas
       title: "%{action} kopš %{date}"
@@ -1240,9 +1258,9 @@ lv:
         sensitive: Konta atzīmēšana kā jūtīgu
         silence: Konta ierobežošana
         suspend: Konta apturēšana
-      your_appeal_approved: Jūsu apelācija ir apstiprināta
-      your_appeal_pending: Jūs esat iesniedzis apelāciju
-      your_appeal_rejected: Jūsu apelācija ir noraidīta
+      your_appeal_approved: Tava pārsūdzība tika apstiprināta
+      your_appeal_pending: Tu iesniedzi pārsūdzību
+      your_appeal_rejected: Tava pārsūdzība tika noraidīta
   edit_profile:
     basic_information: Pamata informācija
     hint_html: "<strong>Pielāgo, ko cilvēki redz Tavā publiskajā profilā un blakus Taviem ierakstiem.</strong> Ir lielāka iespējamība, ka citi clivēki sekos Tev un mijiedarbosies ar Tevi, ja Tev ir aizpildīts profils un profila attēls."
@@ -1296,7 +1314,7 @@ lv:
       add_keyword: Pievienot atslēgvārdu
       keywords: Atslēgvārdi
       statuses: Individuālās ziņas
-      statuses_hint_html: Šis filtrs attiecas uz atsevišķām ziņām neatkarīgi no tā, vai tās atbilst tālāk norādītajiem atslēgvārdiem. <a href="%{path}">Pārskatīt vai noņemt ziņas no filtra</a>.
+      statuses_hint_html: Šis atlase attiecas uz atsevišķiem ierakstiem neatkarīgi no tā, vai tie atbilst zemāk norādītajiem atslēgvārdiem. <a href="%{path}">Pārskatīt vai noņemt ierakstus no atlasītāja</a>.
       title: Labot atlasi
     errors:
       deprecated_api_multiple_keywords: Šos parametrus šajā lietojumprogrammā nevar mainīt, jo tie attiecas uz vairāk nekā vienu filtra atslēgvārdu. Izmanto jaunāku lietojumprogrammu vai tīmekļa saskarni.
@@ -1343,7 +1361,7 @@ lv:
     cancel: Atcelt
     changes_saved_msg: Izmaiņas sekmīgi saglabātas.
     confirm: Apstiprināt
-    copy: Kopēt
+    copy: Ievietot starpliktuvē
     delete: Dzēst
     deselect: Atcelt visu atlasi
     none: Neviens
@@ -1458,6 +1476,7 @@ lv:
     unsubscribe:
       action: Jā, atcelt abonēšanu
       complete: Anulēts
+      confirmation_html: Vai tiešām atteikties no %{type} saņemšanas savā e-pasta adresē %{email} par %{domain} esošo Mastodon? Vienmēr var abonēt no jauna savos <a href="%{settings_path}">e-pasta paziņojumu iestatījumos</a>.
       emails:
         notification_emails:
           favourite: izlases paziņojumu e-pasta ziņojumi
@@ -1465,10 +1484,13 @@ lv:
           follow_request: sekošanas pieprasījumu e-pasta ziņojumi
           mention: pieminēšanas paziņojumu e-pasta ziņojumi
           reblog: pastiprinājumu paziņojumu e-pasta ziņojumi
+      resubscribe_html: Ja abonements tika atcelts kļūdas dēļ, abonēt no jauna var savos <a href="%{settings_path}">e-pasta paziņojumu iestatījumos</a>.
+      success_html: Tu vairs savā e-pasta adresē %{email} nesaņemsi %{type} par %{domain} esošo Mastodon.
       title: Atcelt abonēšanu
   media_attachments:
     validations:
       images_and_video: Nevar pievienot videoklipu tādai ziņai, kura jau satur attēlus
+      not_found: Informācijas nesējs %{ids} nav atrasts vai jau pievienots citam ierakstam
       not_ready: Nevar pievienot failus, kuru apstrāde nav pabeigta. Pēc brīža mēģini vēlreiz!
       too_many: Nevar pievienot vairāk kā 4 failus
   migrations:
@@ -1521,12 +1543,12 @@ lv:
       subject: "%{name} pievienoja tavu ziņu izlasei"
       title: Jauna izlase
     follow:
-      body: "%{name} tagad tev seko!"
-      subject: "%{name} tagad tev seko"
+      body: "%{name} tagad seko Tev."
+      subject: "%{name} tagad seko Tev"
       title: Jauns sekotājs
     follow_request:
       action: Pārvaldīt sekošanas pieprasījumus
-      body: "%{name} vēlas tev sekot"
+      body: "%{name} vēlas Tev sekot"
       subject: 'Gaidošs sekotājs: %{name}'
       title: Jauns sekotāja pieprasījums
     mention:
@@ -1546,6 +1568,7 @@ lv:
       subject: "%{name} laboja ierakstu"
   notifications:
     administration_emails: Pārvaldītāju e-pasta paziņojumi
+    email_events: E-pasta paziņojumu notikumi
     email_events_hint: 'Atlasi notikumus, par kuriem vēlies saņemt paziņojumus:'
   number:
     human:
@@ -1592,7 +1615,7 @@ lv:
     privacy: Privātums
     privacy_hint_html: Kontrolē, cik daudz vēlies izpaust citu labā. Cilvēki atklāj interesantus profilus un lieliskas lietotnes, pārlūkojot citu cilvēku sekotājus un redzot, no kurām lietotnēm viņi izliek ziņas, taču tu, iespējams, vēlēsies to slēpt.
     reach: Sasniedzamība
-    reach_hint_html: Kontrolē, vai vēlies, lai tevi atklātu un sekotu jauni cilvēki. Vai vēlies, lai tavas ziņas tiktu parādītas ekrānā Izpēte? Vai vēlies, lai citi cilvēki tevi redzētu savos ieteikumos? Vai vēlies automātiski pieņemt visus jaunos sekotājus vai arī tev ir pilnīga kontrole pār katru?
+    reach_hint_html: Pārvaldi, vai vēlies, lai Tevi atklātu un sekotu jauni cilvēki. Vai vēlies, lai Tavas ziņas tiktu parādītas skatā "Izpēte"? Vai vēlies, lai citi cilvēki Tevi redzētu savos ieteikumos? Vai vēlies automātiski pieņemt visus jaunos sekotājus vai iegūt izvērstu pārvaldību par katru atsevišķi?
     search: Meklēt
     search_hint_html: Nosaki, kā vēlies tikt atrasts! Vai vēlies, lai cilvēki Tevi atrod pēc tā, par ko esi veicis visiem redzamus ierakstus? Vai vēlies, lai cilvēki ārpus Mastodon atrastu Tavu profilu, meklējot tīmeklī? Lūdzu, ņem vērā, ka nevar nodrošināt visiem redzamas informācijas pilnīgu izslēgšanu no visām meklētājiem!
     title: Privātums un sasniedzamība
@@ -1602,6 +1625,9 @@ lv:
     errors:
       limit_reached: Sasniegts dažādu reakciju limits
       unrecognized_emoji: nav atpazīta emocijzīme
+  redirects:
+    prompt: Ja uzticies šai saitei, jāklikšķina uz tās, lai turpinātu.
+    title: Tu atstāj %{instance}.
   relationships:
     activity: Konta aktivitāte
     confirm_follow_selected_followers: Vai tiešām vēlies sekot atlasītajiem sekotājiem?
@@ -1691,7 +1717,7 @@ lv:
     account_settings: Konta iestatījumi
     aliases: Konta aizstājvārdi
     appearance: Izskats
-    authorized_apps: Autorizētās lietotnes
+    authorized_apps: Pilnvarotās lietotnes
     back: Atgriezties Mastodon
     delete: Konta dzēšana
     development: Izstrāde
@@ -1713,10 +1739,13 @@ lv:
   severed_relationships:
     download: Lejupielādēt (%{count})
     event_type:
+      account_suspension: Konta apturēšana (%{target_name})
+      domain_block: Servera apturēšana (%{target_name})
       user_domain_block: Jūs bloķējāt %{target_name}
     lost_followers: Zaudētie sekotāji
     lost_follows: Zaudētie sekojumi
     preamble: Tu vari zaudēt sekojamos un sekotājus, kad liedz domēnu vai kad satura pārraudzītāji izlemj apturēt attālu serveri. Kad t as notiek, būs iespējams lejupielādēt sarakstus ar pārtrauktajām saiknēm, kurus tad var izpētīt un, iespējams, ievietot citā serverī.
+    purged: Informāciju par šo serveri notīrīja Tava servera pārvaldītāji.
     type: Notikums
   statuses:
     attached:
@@ -1760,7 +1789,7 @@ lv:
       unlisted_long: Redzams visiem, bet nav uzskaitīts visiem pieejamās laika joslās
   statuses_cleanup:
     enabled: Automātiski dzēst vecās ziņas
-    enabled_hint: Automātiski izdzēš tavas ziņas, tiklīdz tās sasniedz noteiktu vecuma slieksni, ja vien tās neatbilst kādam no tālāk norādītajiem izņēmumiem
+    enabled_hint: Automātiski izdzēš Tavus ierakstus, tiklīdz tie sasniedz noteiktu vecuma slieksni, ja vien tie neatbilst kādam no zemāk norādītajiem izņēmumiem
     exceptions: Izņēmumi
     explanation: Tā kā ziņu dzēšana ir dārga darbība, tā tiek veikta lēnām laika gaitā, kad serveris nav citādi aizņemts. Šī iemesla dēļ tavas ziņas var tikt izdzēstas kādu laiku pēc vecuma sliekšņa sasniegšanas.
     ignore_favs: Ignorēt izlasi
@@ -1790,20 +1819,21 @@ lv:
       '7889238': 3 mēneši
     min_age_label: Vecuma slieksnis
     min_favs: Saglabāt ziņas izlsasē vismaz
-    min_favs_hint: Nedzēš nevienu jūsu ziņu, kas ir saņēmusi vismaz tik daudz izcēlumu. Atstājiet tukšu, lai dzēstu ziņas neatkarīgi no to izcēlumu skaita
+    min_favs_hint: Neizdzēš nevienu no Taviem ierakstiem, kas ir pievienoti šādā daudzumā izlašu. Atstāt tukšu, lai izdzēstu ierakstus neatkarīgi no tā, cik izlasēs tie ir pievienoti
     min_reblogs: Saglabāt ziņas izceltas vismaz
     min_reblogs_hint: Neizdzēš nevienu no tavām ziņām, kas ir izceltas vismaz tik reižu. Atstāj tukšu, lai dzēstu ziņas neatkarīgi no to izcēlumu skaita
   stream_entries:
     sensitive_content: Jūtīgs saturs
   strikes:
     errors:
-      too_late: Brīdinājuma apstrīdēšanas laiks ir nokavēts
+      too_late: Par vēlu pārsūdzēt šo brīdinājumu
   tags:
     does_not_match_previous_name: nesakrīt ar iepriekšējo nosaukumu
   themes:
     contrast: Mastodon (Augsts kontrasts)
     default: Mastodon (Tumšs)
     mastodon-light: Mastodon (Gaišs)
+    system: Automātisks (ievēro sistēmas izskatu)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1832,26 +1862,36 @@ lv:
   user_mailer:
     appeal_approved:
       action: Konta iestatījumi
-      explanation: Apelācija par brīdinājumu jūsu kontam %{strike_date}, ko iesniedzāt %{appeal_date}, ir apstiprināta. Jūsu konts atkal ir labā stāvoklī.
-      subject: Jūsu %{date} apelācija ir apstiprināta
-      title: Apelācija apstiprināta
+      explanation: Pārsūdzība par brīdinājumu Tavam kontam %{strike_date}, ko iesniedzi %{appeal_date}, ir apstiprināta. Tavs konts atkal ir labā stāvoklī.
+      subject: Tava %{date} iesniegtā pārsūdzība tika apstiprināta
+      subtitle: Tavs konts atkal ir labā stāvoklī.
+      title: Pārsūdzība apstiprināta
     appeal_rejected:
-      explanation: Apelācija par brīdinājumu jūsu kontam %{strike_date}, ko iesniedzāt %{appeal_date}, ir noraidīta.
-      subject: Jūsu %{date} apelācija ir noraidīta
-      title: Apelācija noraidīta
+      explanation: Pārsūdzība par brīdinājumu Tavam kontam %{strike_date}, ko iesniedzi %{appeal_date}, tika noraidīta.
+      subject: Tava %{date} iesniegta pārsūdzība tika noraidīta
+      subtitle: Tava pārsūdzība tika noraidīta.
+      title: Pārsūdzība noraidīta
     backup_ready:
+      explanation: Tu pieprasīji pilnu sava Mastodon konta rezerves kopiju.
+      extra: Tā tagad ir gatava lejupielādei.
       subject: Tavs arhīvs ir gatavs lejupielādei
       title: Arhīva līdzņemšana
+    failed_2fa:
+      details: 'Šeit ir informācija par pieteikšanās mēģinājumu:'
+      explanation: Kāds mēģināja pieteikties Tavā kontā, bet norādīja nederīgu otro autentificēšanās soli.
+      further_actions_html: Ja tas nebiji Tu, mēs iesakām nekavējoties %{action}, jo var būt noticis drošības pārkāpums.
+      subject: Otrās pakāpes autentificēšanās atteice
+      title: Neizdevās otrās pakāpes autentificēšanās
     suspicious_sign_in:
       change_password: mainīt paroli
-      details: 'Šeit ir pieteikšanās izvērsums:'
+      details: 'Šeit ir informācija par pieteikšanos:'
       explanation: Esam noteikuši pieteikšanos Tavā kontā no jaunas IP adreses.
       further_actions_html: Ja tas nebiji tu, iesakām nekavējoties %{action} un iespējot divu faktoru autentifikāciju, lai tavs konts būtu drošībā.
       subject: Tavam kontam ir piekļūts no jaunas IP adreses
       title: Jauna pieteikšanās
     warning:
-      appeal: Iesniegt apelāciju
-      appeal_description: Ja uzskatāt, ka tā ir kļūda, varat iesniegt apelāciju %{instance} darbiniekiem.
+      appeal: Iesniegt pārsūdzību
+      appeal_description: Ja uzskati, ka tā ir kļūda, vari iesniegt pārsūdzību %{instance} personālam.
       categories:
         spam: Spams
         violation: Saturs pārkāpj šādas kopienas pamatnostādnes
@@ -1860,7 +1900,7 @@ lv:
         disable: Tu vairs nevari izmantot savu kontu, taču tavs profils un citi dati paliek neskarti. Tu vari pieprasīt savu datu dublējumu, mainīt konta iestatījumus vai dzēst kontu.
         mark_statuses_as_sensitive: "%{instance} satura pārraudzītāji dažus no Taviem ierakstiem ir atzīmējuši kā jūtīgus. Tas nozīmē, ka cilvēkiem būs jāpiesit ierakstos esošajiem informāijas nesējiem, pirms tiek attēlots to priekšskatījums. Tu pats vari atzīmēt informācijas nesēju kā jūtīgu, kad nākotnē tādu ievietosi."
         sensitive: Turpmāk visi augšupielādētās informācijas nesēju datnes tiks atzīmētas kā jūtīgas un paslēptas aiz klikšķināma brīdinājuma.
-        silence: Tu joprojām vari izmantot savu kontu, taču tikai tie cilvēki, kuri jau tev seko, redzēs tavas ziņas šajā serverī, un tev var tikt liegtas dažādas atklāšanas funkcijas. Tomēr citi joprojām var tev manuāli sekot.
+        silence: Tu joprojām vari izmantot savu kontu, taču tikai tie cilvēki, kuri jau seko Tev, redzēs Tavas ziņas šajā serverī, un Tevi var neiekļaut dažādās atklāšanas iespējās. Tomēr citi joprojām var pašrocīgi sekot Tev.
         suspend: Tu vairs nevari izmantot savu kontu, un tavs profils un citi dati vairs nav pieejami. Tu joprojām vari pieteikties, lai pieprasītu savu datu dublēšanu, līdz dati tiks pilnībā noņemti aptuveni 30 dienu laikā, taču mēs saglabāsim dažus pamata datus, lai neļautu tev izvairīties no apturēšanas.
       reason: 'Iemesls:'
       statuses: 'Citētās ziņas:'
@@ -1889,7 +1929,10 @@ lv:
       edit_profile_title: Pielāgo savu profilu
       explanation: Šeit ir daži padomi, kā sākt darbu
       feature_action: Uzzināt vairāk
+      feature_audience_title: Veido savu sekotāju pulku ar pārliecību
+      feature_control_title: Turi savu laika joslu savā pārvaldībā
       feature_creativity: Mastodon nodrošina skaņas, video un attēlu ierakstus, pieejamības aprakstus, aptaujas, satura brīdinājumus, animētus profila attēlus, pielāgotas emocijzīmes, sīktēlu apgriešanas vadīklas un vēl, lai palīdzētu Tev sevi izpaust tiešsaistē. Vai Tu izplati savu mākslu, mūziku vai aplādes, Mastodon ir šeit ar Tevi.
+      feature_creativity_title: Nepārspējams radošums
       feature_moderation: Mastodon nodod lēmumu pieņemšanu atpakaļ Tavās rokās. Katrs serveris izveido savus noteikumus un nosacījumus, kas tiek nodrošināti vietēji, ne kā lieliem uzņēmumiem piederošos sabiedriskajos medijiem, padarot katru serveri par vispielāgojamāko un visatsaucīgāko dažādu cilvēku kopu vajadzībām. Pievienojies serverim, kura noteikumiem Tu piekrīti, vai izvieto savu!
       feature_moderation_title: Satura pārraudzība, kādai tai būtu jābūt
       follow_action: Sekot
@@ -1926,7 +1969,7 @@ lv:
     extra_instructions_html: <strong>Padoms:</strong> saite Tavā vietnē var būt neredzama. Svarīga daļa ir <code>rel="me"</code>, kas novērš uzdošanos vietnēs ar lietotāju izveidotu saturu. Tu pat vari lapas galvenē izmantot tagu <code>link</code>, nevis <code>a</code>, taču HTML ir jābūt pieejamam bez JavaScript izpildīšanas.
     here_is_how: Lūk, kā
     hint_html: "<strong>Ikviens var apliecināt savu identitāti Mastodon.</strong> Balstīts uz atvērtiem tīmekļa standartiem, tagad un uz visiem laikiem bez maksas. Viss, kas Tev nepieciešams, ir personīga vietne, pēc kuras cilvēki Tevi atpazīst. Kad savā profilu sasaistīsi ar šo tīmekļvietni, mēs pārbaudīsim, vai tīmekļvietnei ir saite uz Tavu profilu, un tajā tiks parādīts redzama norāde."
-    instructions_html: Ievieto starpliktuvē un ielīmē tālāk norādīto kodu savas tīmekļvietnes HTML! Tad pievieno savas tīmekļvietnes adresi vienā no papildu laukiem savā profila cilnē "Labot profilu" un saglabā izmaiņas!
+    instructions_html: Ievieto starpliktuvē un ielīmē zemāk norādīto kodu savas tīmekļvietnes HTML! Tad pievieno savas tīmekļvietnes adresi vienā no papildu laukiem savā profila cilnē "Labot profilu" un saglabā izmaiņas!
     verification: Pārbaude
     verified_links: Tavas verifikācijas saites
     website_verification: Tīmekļvietnes apliecināšana

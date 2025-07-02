@@ -4,12 +4,12 @@ vi:
     hints:
       account:
         attribution_domains_as_text: Mỗi cái một dòng. Bảo vệ khỏi những sự gán ghép sai.
-        discoverable: Hồ sơ và tút công khai của bạn được đề xuất cho những người dùng Mastodon khác.
+        discoverable: Mọi người có thể được đề xuất hồ sơ và tút công khai của bạn.
         display_name: Tên đầy đủ hoặc biệt danh đều được.
-        fields: Trang blog của bạn, nghề nghiệp, tuổi hoặc bất cứ thứ gì.
+        fields: Blog của bạn, nghề nghiệp, tuổi hoặc bất cứ gì.
         indexable: Mọi người có thể tìm kiếm và tương tác với những tút công khai của bạn trên Mastodon.
         note: 'Bạn có thể @aiđó hoặc #hashtags.'
-        show_collections: Mọi người sẽ biết những bạn theo dõi và người theo dõi bạn.
+        show_collections: Mọi người sẽ biết bạn theo dõi ai và ai theo dõi bạn.
         unlocked: Mọi người sẽ theo dõi bạn mà không cần bạn cho phép.
       account_alias:
         acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
@@ -42,7 +42,7 @@ vi:
         autofollow: Những người đăng ký sẽ tự động theo dõi bạn
         avatar: WEBP, PNG, GIF hoặc JPG, tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         bot: Tài khoản này tự động thực hiện các hành động và không được quản lý bởi người thật
-        context: Chọn những nơi mà bộ lọc sẽ áp dụng
+        context: Chọn những nơi áp dụng bộ lọc
         current_password: Để bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
         digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
@@ -54,7 +54,7 @@ vi:
         password: Tối thiểu 8 ký tự
         phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
         scopes: Ứng dụng sẽ được phép truy cập những API nào. Nếu bạn chọn quyền cấp cao nhất, không cần chọn quyền nhỏ.
-        setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì những lượt đăng lại sau sẽ không hiện trên bảng tin nữa
+        setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì sẽ không hiện những lượt đăng lại khác trên bảng tin
         setting_always_send_emails: Bình thường thì sẽ không gửi khi bạn đang dùng Mastodon
         setting_default_sensitive: Bắt buộc nhấn vào mới có thể xem
         setting_display_media_default: Click để xem
@@ -72,10 +72,10 @@ vi:
       featured_tag:
         name: 'Các hashtag mà bạn đã sử dụng gần đây:'
       filters:
-        action: Chọn hành động sẽ thực hiện khi một tút khớp với bộ lọc
+        action: Chọn hành động áp dụng khi một tút khớp với bộ lọc
         actions:
           hide: Ẩn hoàn toàn, như thể nó không tồn tại
-          warn: Hiện cảnh báo và bộ lọc
+          warn: Ẩn nội dung tút sau cảnh báo và tên bộ lọc
       form_admin_settings:
         activity_api_enabled: Số lượng tút được đăng trong máy chủ, người dùng đang hoạt động và đăng ký mới hàng tuần
         app_icon: WEBP, PNG, GIF hoặc JPG. Dùng biểu tượng tùy chỉnh trên thiết bị di động.
@@ -126,11 +126,11 @@ vi:
         webauthn: Nếu đây là USB key, hãy cắm vào và thử xoay chiều.
       settings:
         indexable: Trang của bạn có thể xuất hiện trong kết quả tìm kiếm trên Google, Bing và các nơi khác.
-        show_application: Bạn sẽ luôn có thể xem ứng dụng nào đã đăng tút của mình.
+        show_application: Bạn luôn có thể xem ứng dụng đã đăng tút của mình.
       tag:
         name: Bạn có thể thay đổi cách viết hoa các chữ cái để giúp nó dễ đọc hơn
       user:
-        chosen_languages: Chỉ hiển thị những tút viết bằng các ngôn ngữ sau
+        chosen_languages: Chỉ hiển thị những ngôn ngữ tút sau
         role: Vai trò kiểm soát những quyền mà người dùng có.
       user_role:
         color: Màu được sử dụng cho vai trò trong toàn bộ giao diện người dùng, dưới dạng RGB ở định dạng hex
@@ -145,13 +145,13 @@ vi:
     labels:
       account:
         attribution_domains_as_text: Các trang web được ghi nhận cho bạn
-        discoverable: Cho phép khám phá hồ sơ
+        discoverable: Đề xuất hồ sơ và tút
         fields:
           name: Nhãn
           value: Nội dung
-        indexable: Cho phép hiện tút công khai trong kết quả tìm kiếm
+        indexable: Hiện tút công khai trong kết quả tìm kiếm
         show_collections: Hiện lượt theo dõi và người theo dõi
-        unlocked: Duyệt tự động người theo dõi mới
+        unlocked: Tự động duyệt người theo dõi mới
       account_alias:
         acct: Tài khoản cũ
       account_migration:
@@ -183,7 +183,7 @@ vi:
         autofollow: Mời theo dõi tài khoản của bạn
         avatar: Ảnh đại diện
         bot: Đây là tài khoản Bot
-        chosen_languages: Chọn ngôn ngữ
+        chosen_languages: Ngôn ngữ mong muốn
         confirm_new_password: Xác nhận mật khẩu mới
         confirm_password: Nhập lại mật khẩu
         context: Áp dụng
@@ -198,23 +198,23 @@ vi:
         inbox_url: Hộp thư relay
         irreversible: Xóa bỏ vĩnh viễn
         locale: Ngôn ngữ
-        max_uses: Số lần dùng tối đa
+        max_uses: Lượt dùng tối đa
         new_password: Mật khẩu mới
         note: Giới thiệu
         otp_attempt: Mã xác minh 2 bước
         password: Mật khẩu
         phrase: Từ khóa hoặc cụm từ
-        setting_advanced_layout: Bật bố cục nhiều cột
+        setting_advanced_layout: Bố cục nhiều cột
         setting_aggregate_reblogs: Không hiện lượt đăng lại trùng lặp
         setting_always_send_emails: Luôn gửi email thông báo
         setting_auto_play_gif: Tự động phát ảnh GIF
         setting_boost_modal: Hỏi trước khi đăng lại tút
-        setting_default_language: Ngôn ngữ đăng
-        setting_default_privacy: Kiểu đăng
+        setting_default_language: Ngôn ngữ tút
+        setting_default_privacy: Kiểu tút
         setting_default_sensitive: Đánh dấu media nhạy cảm
         setting_delete_modal: Hỏi trước khi xóa tút
-        setting_disable_hover_cards: Tắt thẻ xem trước hồ sơ
-        setting_disable_swiping: Tắt thao tác vuốt
+        setting_disable_hover_cards: Không popup hồ sơ
+        setting_disable_swiping: Không thao tác vuốt
         setting_display_media: Media nhạy cảm
         setting_display_media_default: Mặc định
         setting_display_media_hide_all: Ẩn toàn bộ
@@ -222,12 +222,12 @@ vi:
         setting_expand_spoilers: Luôn mở rộng tút chứa nội dung ẩn
         setting_hide_network: Ẩn quan hệ của bạn
         setting_reduce_motion: Giảm chuyển động ảnh GIF
-        setting_system_font_ui: Dùng phông chữ mặc định hệ thống
+        setting_system_font_ui: Phông chữ mặc định hệ thống
         setting_theme: Giao diện
-        setting_trends: Hiển thị xu hướng trong ngày
+        setting_trends: Hiện xu hướng trong ngày
         setting_unfollow_modal: Hỏi trước khi bỏ theo dõi ai đó
-        setting_use_blurhash: Làm mờ media nhạy cảm
-        setting_use_pending_items: Không tự động cập nhật bảng tin
+        setting_use_blurhash: Làm mờ media bị ẩn
+        setting_use_pending_items: Không tự động làm mới bảng tin
         severity: Mức độ nghiêm trọng
         sign_in_token_attempt: Mã an toàn
         title: Tựa đề
@@ -241,7 +241,7 @@ vi:
         name: Hashtag
       filters:
         actions:
-          hide: Ẩn toàn bộ
+          hide: Ẩn hoàn toàn
           warn: Ẩn kèm theo cảnh báo
       form_admin_settings:
         activity_api_enabled: Công khai số liệu thống kê tổng hợp về hoạt động của người dùng trong API
@@ -255,7 +255,7 @@ vi:
         mascot: Tùy chỉnh linh vật (kế thừa)
         media_cache_retention_period: Thời hạn lưu trữ cache media
         peers_api_enabled: Công khai danh sách các máy chủ được phát hiện trong API
-        profile_directory: Cho phép hiện danh sách thành viên
+        profile_directory: Cho phép hiện danh bạ thành viên
         registrations_mode: Ai có thể đăng ký
         require_invite_text: Yêu cầu lí do đăng ký
         show_domain_blocks: Xem máy chủ chặn
@@ -310,7 +310,7 @@ vi:
         hint: Thông tin thêm
         text: Nội quy
       settings:
-        indexable: Cho phép hiện hồ sơ trong công cụ tìm kiếm
+        indexable: Hiện hồ sơ trong công cụ tìm kiếm
         show_application: Hiện ứng dụng dùng để đăng tút
       tag:
         listable: Cho phép xuất hiện trong tìm kiếm và đề xuất

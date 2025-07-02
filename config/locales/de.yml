@@ -313,7 +313,7 @@ de:
       scheduled_msg: Ankündigung ist zur Veröffentlichung vorgemerkt!
       title: Ankündigungen
       unpublish: Veröffentlichung rückgängig machen
-      unpublished_msg: Ankündigung erfolgreich unveröffentlicht!
+      unpublished_msg: Ankündigung ist jetzt nicht mehr sichtbar!
       updated_msg: Ankündigung erfolgreich aktualisiert!
     critical_update_pending: Kritisches Update ausstehend
     custom_emojis:
@@ -802,7 +802,7 @@ de:
       destroyed_msg: Upload erfolgreich gelöscht!
     software_updates:
       critical_update: Kritisch — bitte zügig aktualisieren
-      description: Es wird empfohlen, deine Mastodon-Installation auf dem aktuellen Stand zu halten, um von den neuesten Fehlerbehebungen und Funktionen zu profitieren. Darüber hinaus ist es wichtig, Mastodon zeitnah zu aktualisieren, um Sicherheitslücken zu schließen. Aus diesen Gründen prüft Mastodon alle 30 Minuten auf Updates und du wirst entsprechend deiner Einstellungen per E-Mail informiert.
+      description: Es wird empfohlen, deine Mastodon-Installation auf dem aktuellen Stand zu halten, um von den neuesten Fehlerkorrekturen und Funktionen zu profitieren. Darüber hinaus ist es wichtig, Mastodon zeitnah zu aktualisieren, um Sicherheitslücken zu schließen. Aus diesen Gründen prüft Mastodon alle 30 Minuten auf Updates und du wirst deinen Einstellungen entsprechend per E-Mail informiert.
       documentation_link: Mehr erfahren
       release_notes: Versionshinweise
       title: Verfügbare Updates
@@ -810,7 +810,7 @@ de:
       types:
         major: Hauptversion
         minor: Nebenversion
-        patch: Revision — Fehlerbehebungen und einfach zu implementierende Änderungen
+        patch: Revision — Fehlerkorrekturen und einfach zu implementierende Änderungen
       version: Version
     statuses:
       account: Autor*in
@@ -884,7 +884,7 @@ de:
         message_html: Ein kritisches Mastodon-Update ist verfügbar – bitte aktualisiere so schnell wie möglich.
       software_version_patch_check:
         action: Verfügbare Updates ansehen
-        message_html: Ein Mastodon-Update für Fehlerbehebungen ist verfügbar.
+        message_html: Ein Mastodon-Update für Fehlerkorrekturen ist verfügbar.
       upload_check_privacy_error:
         action: Für weitere Informationen hier klicken
         message_html: "<strong>Die Konfiguration deines Servers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
@@ -1471,7 +1471,7 @@ de:
       too_many: Mehr als vier Dateien können nicht angehängt werden
   migrations:
     acct: umgezogen nach
-    cancel: Weiterleitung beenden
+    cancel: Nicht mehr weiterleiten
     cancel_explanation: Das Abbrechen der Weiterleitung wird dein aktuelles Konto erneut aktivieren, aber keine Follower zurückholen, die auf dieses Konto verschoben wurden.
     cancelled_msg: Die Weiterleitung wurde erfolgreich beendet.
     errors:

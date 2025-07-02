@@ -21,7 +21,7 @@ nn:
       one: Tut
       other: Tut
     posts_tab_heading: Tut
-    self_follow_error: Det er ikkje tillate å følgje din eigen konto
+    self_follow_error: Du kan ikkje fylgja deg sjølv
   admin:
     account_actions:
       action: Utfør
@@ -469,7 +469,7 @@ nn:
       description_html: "<strong>Fylgjeforslag hjelper nye brukarar å finna interessant innhald raskt</strong>. Om ein brukar ikkje har samhandla nok med andre til å få tilpassa fylgjeforslag, blir desse kontoane føreslått i staden. Dei blir rekna ut på nytt kvar dag ut frå ei blanding av kva kontoar som har mykje nyleg aktivitet og høgast tal på fylgjarar på eit bestemt språk."
       language: For språk
       status: Status
-      suppress: Demp følgjeforslag
+      suppress: Demp fylgjeforslag
       suppressed: Dempa
       title: Fylgjeforslag
       unsuppress: Nullstill fylgjeforslag
@@ -1285,8 +1285,8 @@ nn:
   featured_tags:
     add_new: Legg til ny
     errors:
-      limit: Du har allereie framheva så mange emneknaggar som det går an å gjera
-    hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
+      limit: Du har allereie valt ut så mange emneknaggar som det går an å gjera
+    hint_html: "<strong>Vel ut dei viktigaste emneknaggane på profilen din.</strong> Utvalde emneknaggar er eit flott verkty for å halda oversikt over kreativt arbeid og langtidsprosjekt. Dei er lette å sjå på profilen din, og gjev deg rask tilgang til dine eigne innlegg."
   filters:
     contexts:
       account: Profiler
@@ -1611,9 +1611,9 @@ nn:
     confirm_remove_selected_follows: Er du sikker på at du ikkje vil fylgja desse?
     dormant: I dvale
     follow_failure: Greidde ikkje fylgja alle kontoane du valde.
-    follow_selected_followers: Følg valgte tilhengere
+    follow_selected_followers: Fylg desse som fylgjer deg
     followers: Fylgjarar
-    following: Følginger
+    following: Folk du fylgjer
     invited: Innboden
     last_active: Sist aktiv
     most_recent: Sist
@@ -1699,7 +1699,7 @@ nn:
     development: Utvikling
     edit_profile: Endr profil
     export: Eksporter
-    featured_tags: Utvalgte emneknagger
+    featured_tags: Utvalde emneknaggar
     import: Hent inn
     import_and_export: Importer og eksporter
     migrate: Kontoflytting
@@ -1866,7 +1866,7 @@ nn:
       appeal_description: Om du meiner dette er ein feil, kan du sende inn ei klage til gjengen i %{instance}.
       categories:
         spam: Søppelpost
-        violation: Innhald bryter følgjande retningslinjer
+        violation: Innhaldet bryt med desse retningslinene
       explanation:
         delete_statuses: Nokre av innlegga dine er bryt éin eller fleire retningslinjer, og har så blitt fjerna av moderatorene på %{instance}.
         disable: Du kan ikkje lenger bruke kontoen, men profilen din og andre data er intakt. Du kan be om ein sikkerhetskopi av dine data, endre kontoinnstillingar eller slette din konto.
