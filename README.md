@@ -26,7 +26,7 @@ Mastodon is a **free, open-source social network server** based on [ActivityPub]
   - [View sponsors](https://joinmastodon.org/sponsors)
 - [Blog 📰](https://blog.joinmastodon.org)
 - [Documentation 📚](https://docs.joinmastodon.org)
-- [Official Docker image 🐋](https://github.com/mastodon/mastodon/pkgs/container/mastodon)
+- [Official container image 🚢](https://github.com/mastodon/mastodon/pkgs/container/mastodon)
 
 ## Features
 
@@ -34,9 +34,9 @@ Mastodon is a **free, open-source social network server** based on [ActivityPub]
 
 **Part of the Fediverse. Based on open standards, with no vendor lock-in.** - the network goes beyond just Mastodon; anything that implements ActivityPub is part of a broader social network known as [the Fediverse](https://jointhefediverse.net/). You can follow and interact with users on other servers (including those running different software), and they can follow you back.
 
-**Real-time, chronological timeline updates** - updates of people you're following appear in real-time in the UI, via WebSockets.
+**Real-time, chronological timeline updates** - updates of people you're following appear in real-time in the UI.
 
-**Media attachments (images and short videos)** - upload and view images and videos (WebM/MP4) attached to the updates. Videos with no audio track are treated like animated GIFs; normal videos loop continuously.
+**Media attachments** - upload and view images and videos attached to the updates. Videos with no audio track are treated like animated GIFs; normal videos loop continuously.
 
 **Safety and moderation tools** - Mastodon includes private posts, locked accounts, phrase filtering, muting, blocking, and many other features, along with a reporting and moderation system.
 
@@ -51,7 +51,7 @@ Mastodon is a **free, open-source social network server** based on [ActivityPub]
 - [Redis](https://redis.io/) and [Sidekiq](https://sidekiq.org/) are used for caching and queueing.
 - [Node.js](https://nodejs.org/) powers the streaming API.
 - [React.js](https://reactjs.org/) and [Redux](https://redux.js.org/) are used for the dynamic parts of the interface.
-- [BrowserStack](https://www.browserstack.com/) supports us testing on real devices and browsers.
+- [BrowserStack](https://www.browserstack.com/) supports testing on real devices and browsers.
 - [Chromatic](https://www.chromatic.com/) provides visual regression testing.
 
 ### Requirements
