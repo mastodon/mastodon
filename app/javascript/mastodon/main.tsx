@@ -9,6 +9,7 @@ import * as perf from 'mastodon/performance';
 import ready from 'mastodon/ready';
 import { store } from 'mastodon/store';
 
+import { initializeEmoji } from './features/emoji';
 import { isProduction, isDevelopment } from './utils/environment';
 
 function main() {
@@ -32,6 +33,9 @@ function main() {
     const root = createRoot(mountNode);
     root.render(<Mastodon {...props} />);
     store.dispatch(setupBrowserNotifications());
+
+    // TEST - REMOVE BEFORE MERGE
+    initializeEmoji();
 
     if (isProduction() && me && 'serviceWorker' in navigator) {
       const { Workbox } = await import('workbox-window');
