@@ -1,8 +1,8 @@
-import type { CompactEmoji, Locale } from 'emojibase';
+import type { CompactEmoji, FlatCompactEmoji, Locale } from 'emojibase';
 import { flattenEmojiData, SUPPORTED_LOCALES } from 'emojibase';
 
 // Simple cache. This will be replaced with an IndexedDB cache in the future.
-const localeCache = new Map<Locale, Map<string, CompactEmoji>>();
+const localeCache = new Map<Locale, Map<string, FlatCompactEmoji>>();
 
 export async function unicodeToLocaleLabel(
   unicodeHex: string,
@@ -11,7 +11,7 @@ export async function unicodeToLocaleLabel(
   const locale = toSupportedLocale(localeString);
   let hexMap = localeCache.get(locale);
   if (!hexMap) {
-    hexMap = await loadLocaleLabels(locale);
+    hexMap = await loadLocaleEmojis(locale);
     localeCache.set(locale, hexMap);
   }
 
@@ -24,7 +24,7 @@ export async function unicodeToLocaleLabel(
   return label;
 }
 
-async function loadLocaleLabels(
+async function loadLocaleEmojis(
   locale: Locale,
 ): Promise<Map<string, CompactEmoji>> {
   const { default: localeEmoji } = ((await import(
@@ -34,7 +34,7 @@ async function loadLocaleLabels(
     throw new Error(`Locale data for ${locale} not found`);
   }
   const hexMapEntries = flattenEmojiData(localeEmoji).map(
-    (emoji) => [emoji.hexcode, emoji] satisfies [string, CompactEmoji],
+    (emoji) => [emoji.hexcode, emoji] satisfies [string, FlatCompactEmoji],
   );
   return new Map(hexMapEntries);
 }
