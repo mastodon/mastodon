@@ -3,8 +3,10 @@ id:
   simple_form:
     hints:
       account:
+        attribution_domains_as_text: Satu per baris. Melindungi dari atribusi yang salah.
         discoverable: Postingan dan profil publik Anda mungkin ditampilkan atau direkomendasikan di berbagai area Mastodon dan profil Anda mungkin disarankan ke pengguna lain.
         display_name: Nama lengkap Anda atau nama lucu Anda.
+        unlocked: Seseorang bisa mengikuti kamu tanpa permintaan persetujuan. Jangan centang jika kamu ingin meninjau permintaan mengikuti dan memilih untuk menerima atau menolak pengikut baru.
       account_alias:
         acct: Tentukan namapengguna@domain akun yang ingin Anda pindah
       account_migration:
@@ -118,6 +120,7 @@ id:
         url: Di mana peristiwa akan dikirim
     labels:
       account:
+        attribution_domains_as_text: Website yang diizinkan untuk memberikan kredit
         fields:
           name: Label
           value: Konten

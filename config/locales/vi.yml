@@ -15,7 +15,7 @@ vi:
     link_verified_on: Liên kết này đã được xác minh quyền sở hữu vào %{date}
     nothing_here: Trống trơn!
     pin_errors:
-      following: Để tôn vinh người nào đó, bạn phải theo dõi họ trước
+      following: Để nêu bật ai đó, bạn phải theo dõi họ trước
     posts:
       other: Tút
     posts_tab_heading: Tút
@@ -319,7 +319,7 @@ vi:
       copied_msg: Tạo thành công Emoji
       copy: Sao chép
       copy_failed_msg: Không thể tạo một bản sao cục bộ của biểu tượng cảm xúc đó
-      create_new_category: Tạo danh mục mới
+      create_new_category: Tạo bộ lọc mới
       created_msg: Emoji được tạo thành công!
       delete: Xóa bỏ
       destroyed_msg: Đã xóa Emoji thành công!
@@ -757,7 +757,7 @@ vi:
       discovery:
         follow_recommendations: Gợi ý theo dõi
         preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trong Mastodon. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
-        profile_directory: Cộng đồng
+        profile_directory: Danh bạ
         public_timelines: Bảng tin
         publish_discovered_servers: Công khai các máy chủ được phát hiện
         publish_statistics: Công khai số liệu thống kê
@@ -1041,7 +1041,7 @@ vi:
     remove: Bỏ liên kết bí danh
   appearance:
     advanced_web_interface: Bố cục
-    advanced_web_interface_hint: Chia giao diện thành nhiều cột, phù hợp với màn hình rộng.
+    advanced_web_interface_hint: Xếp giao diện thành nhiều cột, hợp với màn hình rộng.
     animations_and_accessibility: Hiệu ứng
     confirmation_dialogs: Hộp thoại xác nhận
     discovery: Khám phá
@@ -1083,7 +1083,7 @@ vi:
       welcome_title: Chào mừng, %{name}!
       wrong_email_hint: Nếu địa chỉ email đó không chính xác, bạn có thể đổi lại trong cài đặt tài khoản.
     delete_account: Xóa tài khoản
-    delete_account_html: Nếu bạn muốn xóa tài khoản của mình, hãy <a href="%{path}">yêu cầu tại đây</a>. Bạn sẽ được yêu cầu xác nhận.
+    delete_account_html: Thực hiện <a href="%{path}">xóa tài khoản</a> của bạn.
     description:
       prefix_invited_by_user: "@%{name} mời bạn tham gia máy chủ Mastodon này!"
       prefix_sign_up: Tham gia Mastodon ngay hôm nay!
@@ -1098,7 +1098,7 @@ vi:
     login: Đăng nhập
     logout: Đăng xuất
     migrate_account: Chuyển sang tài khoản khác
-    migrate_account_html: Nếu bạn muốn bỏ tài khoản này để dùng một tài khoản khác, bạn có thể <a href="%{path}">thiết lập tại đây</a>.
+    migrate_account_html: Nếu bạn muốn bỏ tài khoản này để dùng một tài khoản khác, hãy <a href="%{path}">thiết lập tại đây</a>.
     or_log_in_with: Hoặc đăng nhập bằng
     privacy_policy_agreement_html: Tôi đã đọc và đồng ý <a href="%{privacy_policy_path}" target="_blank">chính sách bảo mật</a>
     progress:
@@ -1148,12 +1148,12 @@ vi:
     use_security_key: Dùng khóa bảo mật
   author_attribution:
     example_title: Văn bản mẫu
-    hint_html: Bạn là nhà báo hoặc blogger bên ngoài Mastodon? Kiểm soát cách bài viết của bạn được ghi nhận khi chia sẻ trên Mastodon.
+    hint_html: Bạn là nhà báo hoặc blogger? Kiểm soát cách ghi nhận bài viết của bạn khi chúng được chia sẻ trên Mastodon.
     instructions: 'Đặt mã này trong HTML bài viết:'
     more_from_html: Viết bởi %{name}
     s_blog: "%{name}'s Blog"
     then_instructions: Sau đó, thêm URL của báo/blog trong trường bên dưới.
-    title: Ghi nhận người đăng
+    title: Ghi nhận tác giả
   challenge:
     confirm: Tiếp tục
     hint_html: "<strong>Mẹo:</strong> Chúng tôi sẽ không hỏi lại mật khẩu của bạn sau này."
@@ -1182,7 +1182,7 @@ vi:
       x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Thông tin bạn nhập không chính xác
-    confirm_password: Nhập mật khẩu hiện tại của bạn để xác minh danh tính của bạn
+    confirm_password: Nhập mật khẩu hiện tại của bạn để xác minh
     confirm_username: Nhập tên người dùng của bạn để hoàn tất thủ tục
     proceed: Xóa tài khoản
     success_msg: Tài khoản của bạn đã được xóa thành công
@@ -1229,7 +1229,7 @@ vi:
       your_appeal_rejected: Khiếu nại của bạn bị từ chối
   edit_profile:
     basic_information: Thông tin cơ bản
-    hint_html: "<strong>Tùy chỉnh những gì mọi người nhìn thấy trên hồ sơ công khai và bên cạnh tút của bạn.</strong> Mọi người sẽ muốn theo dõi và tương tác với bạn hơn nếu bạn có ảnh đại diện và một hồ sơ hoàn chỉnh."
+    hint_html: Mọi người sẽ muốn theo dõi và tương tác với bạn hơn nếu bạn có ảnh đại diện và hồ sơ hoàn chỉnh.
     other: Khác
   errors:
     '400': Yêu cầu bạn gửi không hợp lệ hoặc sai hình thức.
@@ -1268,7 +1268,7 @@ vi:
     add_new: Thêm mới
     errors:
       limit: Bạn đã đạt tới số lượng hashtag tối đa
-    hint_html: "<strong>Làm nổi bật những hashtag thường dùng.</strong> Một công cụ tuyệt vời để theo dõi các tác phẩm sáng tạo và dự án dài hạn của bạn, cũng như giúp truy cập nhanh vào các tút."
+    hint_html: "<strong>Nêu bật những hashtag thường dùng.</strong> Một công cụ tuyệt vời để theo dõi chuỗi tác phẩm sáng tạo và dự án dài hạn của bạn, cũng như giúp truy cập nhanh vào các tút."
   filters:
     contexts:
       account: Trang hồ sơ
@@ -1279,8 +1279,8 @@ vi:
     edit:
       add_keyword: Thêm từ khoá
       keywords: Từ khóa
-      statuses: Những tút riêng lẻ
-      statuses_hint_html: Bộ lọc này áp dụng cho các tút riêng lẻ được chọn bất kể chúng có khớp với các từ khóa bên dưới hay không. <a href="%{path}">Xem lại hoặc xóa các tút từ bộ lọc</a>.
+      statuses: Lọc riêng từng tút
+      statuses_hint_html: Bộ lọc này áp dụng cho các tút riêng lẻ được chọn, bất kể chúng có khớp với các từ khóa ở dưới. <a href="%{path}">Xem lại hoặc bỏ tút khỏi bộ lọc</a>.
       title: Chỉnh sửa bộ lọc
     errors:
       deprecated_api_multiple_keywords: Không thể thay đổi các tham số này từ ứng dụng này vì chúng áp dụng cho nhiều hơn một từ khóa bộ lọc. Sử dụng ứng dụng mới hơn hoặc giao diện web.
@@ -1306,7 +1306,7 @@ vi:
       batch:
         remove: Xóa khỏi bộ lọc
       index:
-        hint: Bộ lọc này áp dụng để chọn các tút riêng lẻ bất kể các tiêu chí khác. Bạn có thể thêm các tút khác vào bộ lọc này từ giao diện web.
+        hint: Bộ lọc này áp dụng cho các tút riêng lẻ bất kể các tiêu chí khác. Bạn có thể thêm các tút vào bộ lọc này từ giao diện web.
         title: Những tút đã lọc
   generic:
     all: Tất cả
@@ -1467,7 +1467,7 @@ vi:
     set_redirect: Thiết lập chuyển hướng
     warning:
       backreference_required: Bạn cần phải đăng ký tài khoản mới ở máy chủ khác trước
-      before: 'Trước khi tiếp tục, xin vui lòng đọc các lưu ý:'
+      before: 'Trước khi tiếp tục, xin vui lòng lưu ý:'
       cooldown: Bạn sẽ bị hạn chế chuyển sang tài khoản mới trong thời gian sắp tới
       disabled_account: Tài khoản này sẽ không thể tiếp tục dùng nữa. Tuy nhiên, bạn có quyền truy cập để xuất dữ liệu cũng như kích hoạt lại.
       followers: Hành động này sẽ chuyển tất cả người theo dõi từ tài khoản hiện tại sang tài khoản mới
@@ -1507,7 +1507,7 @@ vi:
       subject: Bạn vừa được nhắc đến bởi %{name}
       title: Lượt nhắc mới
     poll:
-      subject: Cuộc bình chọn của %{name} kết thúc
+      subject: Vốt của %{name} đã kết thúc
     reblog:
       body: Tút của bạn vừa được %{name} đăng lại
       subject: "%{name} vừa đăng lại tút của bạn"
@@ -1518,7 +1518,7 @@ vi:
       subject: "%{name} đã sửa một tút"
   notifications:
     administration_emails: Thông báo email admin
-    email_events: Những sự kiện thông báo email
+    email_events: Hoạt động thông báo email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
   number:
     human:
@@ -1546,14 +1546,14 @@ vi:
     truncate: "&hellip;"
   polls:
     errors:
-      already_voted: Bạn đã bình chọn xong rồi
+      already_voted: Bạn đã vốt xong rồi
       duplicate_options: chứa các lựa chọn trùng lặp
       duration_too_long: quá xa so với thời điểm hiện tại
       duration_too_short: quá sớm
-      expired: Cuộc bình chọn đã kết thúc
+      expired: Vốt đã kết thúc
       invalid_choice: Lựa chọn không tồn tại
       over_character_limit: độ dài tối đa %{max} ký tự
-      self_vote: Bạn không thể bình chọn cho tút của chính bạn
+      self_vote: Bạn không thể tự vốt cho tút của mình
       too_few_options: phải có nhiều hơn một mục
       too_many_options: tối đa %{max} lựa chọn
   preferences:
@@ -1561,11 +1561,11 @@ vi:
     posting_defaults: Mặc định cho tút
     public_timelines: Bảng tin
   privacy:
-    hint_html: "<strong>Tùy chỉnh cách mọi người tìm thấy hồ sơ và tút của bạn.</strong> Hãy đảm bảo các thiết lập sau phù hợp với bạn."
+    hint_html: Tùy chỉnh cách mọi người tìm thấy hồ sơ và tút của bạn.
     privacy: Riêng tư
     privacy_hint_html: Kiểm soát mức độ chi tiết bạn muốn tiết lộ. Mọi người khám phá các hồ sơ thú vị và các ứng dụng thú vị bằng cách theo dõi những người khác và xem họ đăng từ ứng dụng nào, nhưng có thể bạn muốn ẩn nó đi.
     reach: Tiếp cận
-    reach_hint_html: Kiểm soát cách bạn được khám phá và theo dõi. Bạn có muốn tút của mình xuất hiện trên màn hình Khám phá không? Bạn có muốn người khác nhìn thấy bạn trong các đề xuất theo dõi của họ không? Bạn muốn tự động chấp nhận tất cả những người theo dõi mới hay tự duyệt từng người theo dõi?
+    reach_hint_html: Kiểm soát cách bạn được đề xuất và theo dõi. Bạn có muốn tút của mình xuất hiện trên trang Khám phá không? Bạn có muốn bạn xuất hiện trong các đề xuất theo dõi của người khác không? Bạn muốn tự động chấp nhận tất cả những người theo dõi mới hay tự duyệt từng người theo dõi?
     search: Tìm kiếm
     search_hint_html: Kiểm soát cách tìm thấy bạn. Bạn có muốn mọi người tìm thấy bạn bằng những gì bạn đã đăng công khai không? Bạn có muốn những người bên ngoài Mastodon tìm thấy hồ sơ của bạn khi tìm kiếm trên web không? Lưu ý là không thể đảm bảo tránh khỏi các công cụ tìm kiếm đối với thông tin công khai.
     title: Riêng tư và tiếp cận
@@ -1576,8 +1576,8 @@ vi:
       limit_reached: Bạn không nên thao tác liên tục
       unrecognized_emoji: không phải là emoji
   redirects:
-    prompt: Nếu bạn tin tưởng, hãy nhấn tiếp tục.
-    title: Bạn đang thoát khỏi %{instance}.
+    prompt: Nếu tin tưởng liên kết dưới, hãy nhấn tiếp tục.
+    title: Bạn đang rời khỏi %{instance}
   relationships:
     activity: Tương tác
     confirm_follow_selected_followers: Bạn có chắc muốn theo dõi những người đã chọn?
@@ -1672,7 +1672,7 @@ vi:
     delete: Xóa tài khoản
     development: Lập trình
     edit_profile: Sửa hồ sơ
-    export: Xuất
+    export: Xuất dữ liệu
     featured_tags: Hashtag thường dùng
     import: Nhập dữ liệu
     import_and_export: Dữ liệu
@@ -1681,7 +1681,7 @@ vi:
     preferences: Chung
     profile: Hồ sơ
     relationships: Quan hệ
-    severed_relationships: Quan hệ bị cắt đứt
+    severed_relationships: Quan hệ đứt gãy
     statuses_cleanup: Tự động xóa tút cũ
     strikes: Lần cảnh cáo
     two_factor_authentication: Xác minh 2 bước
@@ -1694,7 +1694,7 @@ vi:
       user_domain_block: Bạn đã chặn %{target_name}
     lost_followers: Mất người theo dõi
     lost_follows: Mất người đang theo dõi
-    preamble: Khi bạn hoặc kiểm duyệt viên máy chủ của bạn chặn một máy chủ, người bạn đang theo dõi và người theo dõi bạn có thể sẽ bị mất. Khi điều đó xảy ra, hãy vào đây tải xuống danh sách các mối quan hệ đã bị cắt đứt, và nhập thủ công.
+    preamble: Khi bạn hoặc kiểm duyệt viên máy chủ của bạn chặn một máy chủ, người bạn đang theo dõi và người theo dõi bạn có thể sẽ bị mất. Khi điều đó xảy ra, hãy vào đây tải xuống danh sách các mối quan hệ đứt gãy, và nhập thủ công.
     purged: Thông tin về máy chủ này đã bị quản trị viên máy chủ của bạn xóa sạch.
     type: Sự kiện
   statuses:
@@ -1708,7 +1708,7 @@ vi:
         other: "%{count} video"
     boosted_from_html: Đã đăng lại từ %{acct_link}
     content_warning: 'Cảnh báo nội dung: %{warning}'
-    default_language: Giống ngôn ngữ giao diện
+    default_language: Giống giao diện
     disallowed_hashtags:
       other: 'chứa các hashtag bị cấm: %{tags}'
     edited_at_html: Sửa %{date}
@@ -1731,21 +1731,21 @@ vi:
       unlisted_long: Không hiện trên bảng tin máy chủ
   statuses_cleanup:
     enabled: Tự động xóa những tút cũ
-    enabled_hint: Tự động xóa các tút của bạn khi chúng tới thời điểm nhất định, trừ những trường hợp ngoại lệ bên dưới
+    enabled_hint: Trừ những ngoại lệ bên dưới
     exceptions: Ngoại lệ
     explanation: Số lượng tút sẽ tăng dần theo năm tháng. Bạn nên xóa những tút cũ khi tới một thời điểm nhất định.
-    ignore_favs: Bỏ qua số lượt thích
-    ignore_reblogs: Bỏ qua lượt đăng lại
-    interaction_exceptions: Ngoại lệ dựa trên tương tác
+    ignore_favs: Số lượt thích
+    ignore_reblogs: Số lượt đăng lại
+    interaction_exceptions: Ngoại lệ dựa theo tương tác
     interaction_exceptions_explanation: Lưu ý là không có gì đảm bảo rằng các tút sẽ bị xóa nếu chúng bị giảm lượt thích hoặc đăng lại, dù đã từng đạt.
-    keep_direct: Giữ lại tin nhắn
-    keep_direct_hint: Không xóa tin nhắn của bạn
-    keep_media: Giữ lại những tút có đính kèm media
+    keep_direct: Giữ lại những tút nhắn riêng
+    keep_direct_hint: Không xóa những tút nhắn riêng của bạn
+    keep_media: Giữ lại những tút có media
     keep_media_hint: Không xóa những tút có đính kèm media của bạn
     keep_pinned: Giữ lại những tút đã ghim
     keep_pinned_hint: Không xóa những tút đã ghim của bạn
-    keep_polls: Giữ lại những cuộc bình chọn
-    keep_polls_hint: Không xóa những tút dạng bình chọn
+    keep_polls: Giữ lại những vốt
+    keep_polls_hint: Không xóa bất kỳ vốt nào
     keep_self_bookmark: Giữ lại những tút đã lưu
     keep_self_bookmark_hint: Không xóa những tút của bạn nếu bạn có lưu chúng
     keep_self_fav: Giữ lại những tút yêu thích
@@ -1759,11 +1759,11 @@ vi:
       '604800': 1 tuần
       '63113904': 2 năm
       '7889238': 3 tháng
-    min_age_label: Thời điểm
-    min_favs: Giữ những tút yêu thích lâu hơn
-    min_favs_hint: Những tút có lượt thích nhiều hơn số này sẽ không bị xóa. Để trống nếu bạn muốn xóa hết
-    min_reblogs: Giữ những tút đã đăng lại lâu hơn
-    min_reblogs_hint: Những tút có lượt đăng lại nhiều hơn số này sẽ không bị xóa. Để trống nếu bạn muốn xóa hết
+    min_age_label: Sau thời điểm
+    min_favs: Giữ lại những tút có lượt thích tối thiểu
+    min_favs_hint: Những tút có lượt thích lớn hơn số này sẽ không bị xóa. Để trống nếu bạn muốn xóa hết
+    min_reblogs: Giữ lại những tút có lượt đăng lại tối thiểu
+    min_reblogs_hint: Những tút có lượt đăng lại lớn hơn số này sẽ không bị xóa. Để trống nếu bạn muốn xóa hết
   stream_entries:
     sensitive_content: NSFW
   strikes:

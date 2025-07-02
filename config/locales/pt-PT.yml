@@ -834,7 +834,7 @@ pt-PT:
       reblogs: Impulsos
       status_changed: Publicação alterada
       title: Publicações da conta
-      trending: Em tendência
+      trending: Em destaque
       visibility: Visibilidade
       with_media: Com multimédia
     strikes:
@@ -893,13 +893,13 @@ pt-PT:
         message_html: "<strong>O seu armazenamento de objetos está mal configurado. A privacidade dos seus utilizadores está em risco.</strong>"
     tags:
       moderation:
-        not_trendable: Não pode ser tendência
+        not_trendable: Não pode ser destacado
         not_usable: Não utilizável
         pending_review: Revisão pendente
         review_requested: Revisão solicitada
         reviewed: Revista
         title: Estado
-        trendable: Pode ser tendência
+        trendable: Pode ser destaque
         unreviewed: Não revista
         usable: Utilizável
       name: Nome
@@ -934,15 +934,15 @@ pt-PT:
         shared_by_over_week:
           one: Partilhado por uma pessoa na última semana
           other: Partilhado por %{count} pessoas na última semana
-        title: Hiperligações em tendência
+        title: Hiperligações em destaque
         usage_comparison: Partilhado %{today} vezes hoje, em comparação com %{yesterday} ontem
-      not_allowed_to_trend: Não permitido para tendência
+      not_allowed_to_trend: Não permitido para destaque
       only_allowed: Apenas permitidos
       pending_review: Pendente de revisão
       preview_card_providers:
-        allowed: As hiperligações deste editor podem ser tendência
-        description_html: Estes são os domínios a partir dos quais hiperligações são frequentemente partilhadas no seu servidor. As suas hiperligações não serão colocadas em alta a menos que o seu domínio de origem seja aprovado. A sua aprovação (ou rejeição) estende-se a subdomínios.
-        rejected: As hiperligações deste editor não podem ser tendência
+        allowed: As hiperligações deste editor podem ser destaque
+        description_html: Estes são os domínios a partir dos quais hiperligações são frequentemente partilhadas no seu servidor. As hiperligações não serão colocadas em destaque sem que o seu domínio de origem seja aprovado. A sua aprovação (ou rejeição) estende-se a subdomínios.
+        rejected: As hiperligações deste editor não podem ser destaque
         title: Editores
       rejected: Rejeitado
       statuses:
@@ -952,15 +952,15 @@ pt-PT:
         confirm_allow_account: Tem a certeza que pretende aceitar as contas selecionadas?
         confirm_disallow: Tem a certeza que pretende rejeitar os estados selecionados?
         confirm_disallow_account: Tem a certeza que pretende rejeitar as contas selecionadas?
-        description_html: Estas são publicações que o seu servidor conhece e que estão a ser muito partilhadas e adicionadas aos favoritos neste momento. Pode ajudar os seus utilizadores novos e antigos a encontrar mais pessoas para seguir. Nenhuma publicação é apresentada publicamente até que o autor seja aprovado e o autor permita que a sua conta seja sugerida a outros. Também pode permitir ou rejeitar mensagens individuais.
+        description_html: Estas são publicações que o seu servidor conhece e que estão a ser muito partilhadas e adicionadas aos favoritos neste momento. Pode ajudar os seus utilizadores novos e que estão a regressar a encontrar mais pessoas para seguir. Nenhuma publicação é apresentada publicamente até que o autor seja aprovado e o autor permita que a sua conta seja sugerida a outros. Também pode permitir ou rejeitar mensagens individuais.
         disallow: Não permitir publicação
         disallow_account: Não permitir autor
-        no_status_selected: Não foram alteradas quaisquer publicações de tendências, uma vez que nenhuma foi selecionada
+        no_status_selected: Não foram alteradas quaisquer publicações em destaque, uma vez que nenhuma foi selecionada
         not_discoverable: O autor optou por não permitir que a sua conta seja sugerida a outros
         shared_by:
           one: Partilhada ou adicionada aos favoritos uma vez
           other: Partilhada ou adicionada aos favoritos %{friendly_count} vezes
-        title: Publicações em tendência
+        title: Publicações em destaque
       tags:
         current_score: Pontuação atual %{score}
         dashboard:
@@ -976,16 +976,16 @@ pt-PT:
         not_trendable: Não aparecerá nas tendências
         not_usable: Não pode ser utilizada
         peaked_on_and_decaying: No auge em %{date}, agora em declínio
-        title: Etiquetas em tendência
-        trendable: Pode aparecer nas tendências
+        title: Etiquetas em destaques
+        trendable: Pode aparecer nos destaques
         trending_rank: 'Tendência #%{rank}'
         usable: Pode ser utilizada
         usage_comparison: Utilizada %{today} vezes hoje, em comparação com %{yesterday} ontem
         used_by_over_week:
           one: Utilizada por uma pessoa na última semana
           other: Utilizada por %{count} pessoas na última semana
-      title: Recomendações e tendências
-      trending: Em tendência
+      title: Recomendações e destaques
+      trending: Em destaque
     warning_presets:
       add_new: Adicionar novo
       delete: Eliminar
@@ -1044,12 +1044,12 @@ pt-PT:
     new_trends:
       body: 'Os seguintes itens necessitam de uma revisão antes de poderem ser apresentados publicamente:'
       new_trending_links:
-        title: Hiperligações em tendência
+        title: Hiperligações em destaque
       new_trending_statuses:
-        title: Publicações em tendência
+        title: Publicações em destaque
       new_trending_tags:
-        title: Etiquetas em tendência
-      subject: Novas tendências para serem revistas em %{instance}
+        title: Etiquetas em destaque
+      subject: Novos destaques para revisão em %{instance}
   aliases:
     add_new: Criar pseudónimo
     created_msg: Criaste com sucesso um novo pseudónimo. Podes agora iniciar a migração da conta antiga.
@@ -1921,9 +1921,9 @@ pt-PT:
       hashtags_recent_count:
         one: "%{people} pessoa nos últimos 2 dias"
         other: "%{people} pessoas nos últimos 2 dias"
-      hashtags_subtitle: Explore o que está em tendência desde os últimos 2 dias
-      hashtags_title: Etiquetas em tendência
-      hashtags_view_more: Ver mais etiquetas em tendência
+      hashtags_subtitle: Explore o que está em destaque nos últimos 2 dias
+      hashtags_title: Etiquetas em destaque
+      hashtags_view_more: Ver mais etiquetas em destaque
       post_action: Compor
       post_step: Diz olá para o mundo com texto, fotos, vídeos ou sondagens.
       post_title: Faz a tua primeira publicação

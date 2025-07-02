@@ -8,7 +8,7 @@ da:
         display_name: Dit fulde navn eller dit sjove navn.
         fields: Din hjemmeside, dine pronominer, din alder, eller hvad du har lyst til.
         indexable: Dine offentlige indlæg vil kunne vises i Mastodon-søgeresultater. Folk, som har interageret med dem, vil kunne finde dem uanset.
-        note: 'Du kan @omtale andre personer eller #etiketter.'
+        note: 'Du kan @omtale andre personer eller #hashtags.'
         show_collections: Folk vil ikke kunne tjekke dine Følger og Følgere. Folk, du selv følger, vil stadig kunne se dette.
         unlocked: Folk vil kunne følge dig uden krav om godkendelse. Fjern markeringen, såfremt du ønsker at tjekke Følg-anmodninger og individuelt acceptere eller afvise nye Følgere.
       account_alias:
@@ -16,7 +16,7 @@ da:
       account_migration:
         acct: Angiv brugernavn@domain for den konto, hvortil du vil flytte
       account_warning_preset:
-        text: Du kan bruge indlægssyntaks, såsom URL'er, etiketter og omtaler
+        text: Du kan bruge indlægssyntaks, såsom URL'er, hashtags og omtaler
         title: Valgfri. Ikke synlig for modtageren
       admin_account_action:
         include_statuses: Brugeren vil se, hvilke indlæg, som har forårsaget modereringen/advarslen
@@ -70,11 +70,11 @@ da:
         domain: Dette kan være domænenavnet vist i den benyttede i e-mailadresse eller MX-post. Begge tjekkes under tilmelding.
         with_dns_records: Et forsøg på at opløse det givne domænes DNS-poster foretages, og resultaterne blokeres ligeledes
       featured_tag:
-        name: 'Her er nogle af dine hyppigst brugte etiketter:'
+        name: 'Her er nogle af dine hyppigst brugte hashtags:'
       filters:
         action: Vælg handlingen til eksekvering, når et indlæg matcher filteret
         actions:
-          hide: Skjul filtreret indhold helt (adfærd som om, det ikke fandtes)
+          hide: Skjul det filtrerede indhold fuldstændigt og gør, som om det ikke eksisterer
           warn: Skjul filtreret indhold bag en advarsel, der nævner filterets titel
       form_admin_settings:
         activity_api_enabled: Antal lokalt opslåede indlæg, aktive brugere samt nye tilmeldinger i ugentlige opdelinger
@@ -101,7 +101,7 @@ da:
         thumbnail: Et ca. 2:1 billede vist sammen med serveroplysningerne.
         timeline_preview: Udloggede besøgende kan gennemse serverens seneste offentlige indlæg.
         trendable_by_default: Spring manuel gennemgang af trendindhold over. Individuelle elementer kan stadig fjernes fra trends efter kendsgerningen.
-        trends: Tendenser viser, hvilke indlæg, etiketter og nyheder opnår momentum på serveren.
+        trends: Tendenser viser, hvilke indlæg, hashtags og nyheder opnår momentum på serveren.
         trends_as_landing_page: Vis tendensindhold til udloggede brugere og besøgende i stedet for en beskrivelse af denne server. Kræver, at tendenser er aktiveret.
       form_challenge:
         current_password: Du bevæger dig ind på et sikkert område
@@ -150,8 +150,8 @@ da:
           name: Etiket
           value: Indhold
         indexable: Medtag offentlige indlæg i søgeresultater
-        show_collections: Vis Følger og Følgere på profil
-        unlocked: Acceptér automatisk nye Følgere
+        show_collections: Vis følger og følgere på profil
+        unlocked: Acceptér automatisk nye følgere
       account_alias:
         acct: Brugernavn på den gamle konto
       account_migration:
@@ -193,7 +193,7 @@ da:
         email: E-mailadresse
         expires_in: Udløb efter
         fields: Profilmetadata
-        header: Overskrift
+        header: Bannerbillede
         honeypot: "%{label} (udfyld ikke)"
         inbox_url: URL til videreformidlingsindbakken
         irreversible: Fjern istedet for skjul
@@ -219,13 +219,13 @@ da:
         setting_display_media_default: Standard
         setting_display_media_hide_all: Skjul alle
         setting_display_media_show_all: Vis alle
-        setting_expand_spoilers: Ekspandér altid indlæg markeret med indholdsadvarsler
+        setting_expand_spoilers: Udvid altid indlæg markeret med indholdsadvarsler
         setting_hide_network: Skjul din sociale graf
         setting_reduce_motion: Reducér animationsbevægelse
         setting_system_font_ui: Brug systemets standardskrifttype
         setting_theme: Webstedstema
-        setting_trends: Vis dagens tendenser
-        setting_unfollow_modal: Vis bekræftelsesdialog før ophør med at følge nogen
+        setting_trends: Vis dagens trends
+        setting_unfollow_modal: Vis bekræftelsesdialog, før du stopper med at følge nogen
         setting_use_blurhash: Vis farverige gradienter for skjulte medier
         setting_use_pending_items: Langsom tilstand
         severity: Alvorlighed
@@ -270,7 +270,7 @@ da:
         theme: Standardtema
         thumbnail: Serverminiaturebillede
         timeline_preview: Tillad ikke-godkendt adgang til offentlige tidslinjer
-        trendable_by_default: Tillad ikke-reviderede tendenser
+        trendable_by_default: Tillad ikke-reviderede trends
         trends: Aktivér trends
         trends_as_landing_page: Brug tendenser som destinationssiden
       interactions:
@@ -313,10 +313,10 @@ da:
         indexable: Inkludér profilside i søgemaskiner
         show_application: Vis, fra hvilken app et indlæg er sendt
       tag:
-        listable: Tillad visning af denne etiket i søgninger og forslag
+        listable: Tillad visning af dette hashtag i søgninger og forslag
         name: Hashtag
-        trendable: Tillad visning af denne etiket under tendenser
-        usable: Tillad indlæg at benytte denne etiket lokalt
+        trendable: Tillad visning af dette hashtag under trends
+        usable: Tillad indlæg at benytte dette hashtag lokalt
       user:
         role: Rolle
         time_zone: Tidszone

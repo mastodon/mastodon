@@ -38,7 +38,7 @@ zh-HK:
         current_email: 現時電郵
         label: 更改電郵
         new_email: 新的電郵
-        submit: 改變電郵
+        submit: 更改電郵
         title: 改變 %{username} 的電郵
       change_role:
         changed_msg: 成功更改身份！
@@ -833,7 +833,12 @@ zh-HK:
         action: 在此查看更多資訊
         message_html: "<strong>你的對象儲存配置錯誤。你的使用者的私隱有危險。</strong>"
     tags:
+      name: 名稱
+      newest: 最新
+      oldest: 最舊
+      reset: 重設
       review: 審核文章
+      search: 搜尋
       updated_msg: 成功更新主題標籤設定
     title: 管理
     trends:
@@ -1063,6 +1068,8 @@ zh-HK:
       view_strikes: 查看針對你的帳戶的過往警告
     too_fast: 你太快遞交了，請再試一次。
     use_security_key: 使用安全密鑰裝置
+  author_attribution:
+    example_title: 範例文字
   challenge:
     confirm: 繼續
     hint_html: "<strong>温馨提示</strong> 我們在未來一小時內不會再要求你填寫密碼。"
@@ -1564,10 +1571,12 @@ zh-HK:
     delete: 刪除帳戶
     development: 開發
     edit_profile: 修改個人資料
+    export: 匯出
     featured_tags: 推薦的標籤
     import: 匯入
     import_and_export: 匯入及匯出
     migrate: 帳戶遷移
+    notifications: 電郵通知
     preferences: 偏好設定
     profile: 個人資料
     relationships: 關注及追隨者
@@ -1806,6 +1815,7 @@ zh-HK:
     instructions_html: 複製並貼上以下的程式碼到你網站的 HTML 中，然後在個人檔案的「修改個人檔案」頁籤中的額外欄位加入你該網址，並儲存變更。
     verification: 驗證
     verified_links: 已驗證的連結
+    website_verification: 網站驗證
   webauthn_credentials:
     add: 新增安全密鑰裝置
     create:

@@ -3,63 +3,63 @@ ru:
   activerecord:
     attributes:
       poll:
-        expires_at: Срок окончания голосования
-        options: Варианты
+        expires_at: Продолжительность опроса
+        options: Варианты ответа
       user:
-        agreement: Соглашение с условиями сервиса
-        email: Адрес эл. почты
+        agreement: Пользовательское соглашение
+        email: Адрес электронной почты
         locale: Язык
         password: Пароль
       user/account:
         username: Имя пользователя
       user/invite_request:
-        text: Причина
+        text: Текст заявки на регистрацию
     errors:
       attributes:
         domain:
-          invalid: не является действующим доменным именем
+          invalid: не является корректным доменным именем
       messages:
-        invalid_domain_on_line: "%{value} Не является действительным доменным именем"
-        too_many_lines: Превышает предел %{limit} строк
+        invalid_domain_on_line: "%{value} не является корректным доменным именем"
+        too_many_lines: превышает максимально допустимое количество строк (%{limit})
       models:
         account:
           attributes:
             username:
-              invalid: только буквы, цифры и символ подчёркивания
+              invalid: может содержать только буквы, цифры и символы подчёркивания
               reserved: зарезервировано
         admin/webhook:
           attributes:
             url:
-              invalid: не является допустимым URL
+              invalid: не является действительным URL
         doorkeeper/application:
           attributes:
             website:
-              invalid: не является допустимым URL
+              invalid: не является действительным URL
         import:
           attributes:
             data:
-              malformed: неверный формат
+              malformed: имеет недопустимый формат
         status:
           attributes:
             reblog:
-              taken: пост уже существует
+              taken: поста уже существует
         user:
           attributes:
             email:
-              blocked: использует запрещённого провайдера эл. почты
+              blocked: размещён у запрещённого провайдера электронной почты
               unreachable: не существует
             role_id:
               elevated: не может быть выше вашей текущей роли
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: включить разрешения, небезопасные для базовой роли
-              elevated: не может включать разрешения, которыми не обладает ваша текущая роль
-              own_role: невозможно изменить с вашей текущей ролью
+              dangerous: содержит разрешения, небезопасные для базовой роли
+              elevated: не может содержать разрешения, которыми не обладает ваша текущая роль
+              own_role: не может быть изменена с вашей текущей ролью
             position:
               elevated: не может быть выше, чем ваша текущая роль
-              own_role: невозможно изменить с вашей текущей ролью
+              own_role: не может быть изменена с вашей текущей ролью
         webhook:
           attributes:
             events:
-              invalid_permissions: нельзя включать события, к которым у вас нет прав
+              invalid_permissions: не может содержать события, к которым у вас нет доступа

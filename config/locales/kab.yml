@@ -378,6 +378,8 @@ kab:
       everyone: Tisirag timezwura
       privileges:
         administrator: Anedbal
+        manage_settings: Asefrek n iɣewwaṛen
+        view_dashboard: Timẓriwt n tfelwit
     rules:
       add_new: Rnu alugen
       delete: Kkes
@@ -391,6 +393,7 @@ kab:
         title: Udem
       discovery:
         profile_directory: Akaram n imaɣnuten
+        title: Asnirem
         trends: Ayen mucaɛen
       domain_blocks:
         all: I medden akk
@@ -431,6 +434,9 @@ kab:
       software_version_patch_check:
         action: Wali ileqqman yellan
     tags:
+      name: Isem
+      newest: Amaynut
+      oldest: Aqbur
       search: Anadi
       title: Ihacṭagen
     title: Tadbelt
@@ -597,7 +603,7 @@ kab:
   filters:
     contexts:
       account: Imeɣna
-      notifications: Alɣuten
+      notifications: Ilɣa
       thread: Idiwenniyen
     edit:
       add_keyword: Rnu awal tasarut
@@ -701,6 +707,7 @@ kab:
         units:
           billion: AṬ
           million: A
+          thousand: GM
           trillion: Am
   otp_authentication:
     enable: Rmed
@@ -760,7 +767,7 @@ kab:
       weibo: Weibo
     current_session: Tiɣimit tamirant
     date: Azemz
-    description: "%{browser} s %{platform}"
+    description: "%{browser} ɣef %{platform}"
     explanation: Ha-t-en yiminigen web ikecmen akka tura ɣer umiḍan-ik·im Mastodon.
     ip: IP
     platforms:
@@ -791,7 +798,7 @@ kab:
     import: Kter
     import_and_export: Taktert d usifeḍ
     migrate: Tunigin n umiḍan
-    notifications: Alɣuten s imayl
+    notifications: Ilɣa s imayl
     preferences: Imenyafen
     profile: Ameɣnu
     relationships: Imeḍfaṛen akked wid i teṭṭafaṛeḍ
@@ -856,6 +863,7 @@ kab:
     warning:
       categories:
         spam: Aspam
+      reason: 'Taɣẓint:'
       title:
         disable: Amiḍan i igersen
         none: Ɣur-wat

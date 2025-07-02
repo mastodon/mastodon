@@ -4,7 +4,7 @@ de:
     hints:
       account:
         attribution_domains_as_text: Eine Domain pro Zeile. Dadurch können falsche Zuschreibungen unterbunden werden.
-        discoverable: Deine öffentlichen Beiträge und dein Profil können in verschiedenen Bereichen auf Mastodon angezeigt oder empfohlen werden und dein Profil kann anderen vorgeschlagen werden.
+        discoverable: Deine öffentlichen Beiträge und dein Profil können in verschiedenen Bereichen auf Mastodon vorgestellt oder empfohlen werden, ebenso kann dein Profil anderen vorgeschlagen werden.
         display_name: Dein richtiger Name oder dein Fantasiename.
         fields: Deine Website, Pronomen, dein Alter – alles, was du möchtest.
         indexable: Deine öffentlichen Beiträge können in den Suchergebnissen auf Mastodon erscheinen. Profile, die bereits mit deinen Beiträgen interagiert haben, können deine Beiträge immer auffinden.
@@ -54,7 +54,7 @@ de:
         password: Verwende mindestens 8 Zeichen
         phrase: Wird unabhängig von der Groß- und Kleinschreibung im Text oder der Inhaltswarnung eines Beitrags abgeglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
-        setting_aggregate_reblogs: Beiträge, die erst kürzlich geteilt wurden, werden nicht noch einmal angezeigt (wirkt sich nur auf zukünftige geteilte Beiträge aus)
+        setting_aggregate_reblogs: Beiträge, die erst kürzlich geteilt wurden, werden nicht noch einmal angezeigt (betrifft nur zukünftig geteilte Beiträge)
         setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail versendet, wenn du gerade auf Mastodon aktiv bist
         setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden – je nach Einstellung – erst nach einem zusätzlichen Klick angezeigt
         setting_display_media_default: Medien mit Inhaltswarnung ausblenden
@@ -82,7 +82,7 @@ de:
         backups_retention_period: Nutzer*innen haben die Möglichkeit, Archive ihrer Beiträge zu erstellen, die sie später herunterladen können. Wenn ein positiver Wert gesetzt ist, werden diese Archive nach der festgelegten Anzahl von Tagen automatisch aus deinem Speicher gelöscht.
         bootstrap_timeline_accounts: Diese Konten werden bei den Follower-Empfehlungen für neu registrierte Nutzer*innen oben angeheftet.
         closed_registrations_message: Wird angezeigt, wenn Registrierungen deaktiviert sind
-        content_cache_retention_period: Sämtliche Beiträge von anderen Servern (einschließlich geteilte Beiträge und Antworten) werden, unabhängig von der Interaktion der lokalen Nutzer*innen mit diesen Beiträgen, nach der festgelegten Anzahl von Tagen gelöscht. Das betrifft auch Beiträge, die von lokalen Nutzer*innen favorisiert oder als Lesezeichen gespeichert wurden. Private Erwähnungen zwischen Nutzer*innen von verschiedenen Servern werden ebenfalls verloren gehen und können nicht wiederhergestellt werden. Das Verwenden dieser Option richtet sich ausschließlich an Server für spezielle Zwecke und wird die allgemeine Nutzungserfahrung beeinträchtigen, wenn sie für den allgemeinen Gebrauch aktiviert ist.
+        content_cache_retention_period: Sämtliche Beiträge von anderen Servern (einschließlich geteilte Beiträge und Antworten) werden, unabhängig von der Interaktion der lokalen Nutzer*innen mit diesen Beiträgen, nach der festgelegten Anzahl von Tagen gelöscht. Das betrifft auch Beiträge, die von lokalen Nutzer*innen favorisiert oder als Lesezeichen gespeichert wurden. Private Erwähnungen zwischen Nutzer*innen von verschiedenen Servern werden ebenfalls verloren gehen und können nicht wiederhergestellt werden. Diese Option richtet sich ausschließlich an Server mit speziellen Zwecken und wird die allgemeine Nutzungserfahrung beeinträchtigen, wenn sie für den allgemeinen Gebrauch aktiviert ist.
         custom_css: Du kannst benutzerdefinierte Stile auf die Web-Version von Mastodon anwenden.
         favicon: WEBP, PNG, GIF oder JPG. Überschreibt das Standard-Mastodon-Favicon mit einem eigenen Symbol.
         mascot: Überschreibt die Abbildung in der erweiterten Weboberfläche.
@@ -304,7 +304,7 @@ de:
           critical: Nur über kritische Updates informieren
           label: Eine neue Mastodon-Version ist verfügbar
           none: Nie über Updates informieren (nicht empfohlen)
-          patch: Über Fehlerbehebungen informieren
+          patch: Über Fehlerkorrekturen informieren
         trending_tag: Neuer Trend erfordert eine Überprüfung
       rule:
         hint: Zusätzliche Informationen
