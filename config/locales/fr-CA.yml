@@ -485,9 +485,12 @@ fr-CA:
     fasp:
       debug:
         callbacks:
+          created_at: Créé à
           delete: Supprimer
           ip: Adresse IP
       providers:
+        name: Nom
+        providers: Fournisseur
         registrations:
           confirm: Confirmer
           reject: Rejeter
@@ -563,6 +566,8 @@ fr-CA:
         all: Tout
         limited: Limité
         title: Modération
+      moderation_notes:
+        title: Notes d'arbitrage
       private_comment: Commentaire privé
       public_comment: Commentaire public
       purge: Purge
@@ -771,11 +776,14 @@ fr-CA:
       title: Rôles
     rules:
       add_new: Ajouter une règle
+      add_translation: Ajouter une traduction
       delete: Supprimer
       description_html: Bien que la plupart des gens prétende avoir lu les conditions d'utilisation avant de les accepter, généralement les utilisateur·rice·s ne les lisent vraiment que lorsque un problème apparaît. <strong>Pour faciliter la visualisation des règles de votre serveur en un seul coup d’œil, présentez-les sous la forme d'une liste à puces !</strong> Essayez de garder chacune des règles simple et concise, mais faites attention à ne pas non plus les diviser en de trop nombreux éléments distincts.
       edit: Modifier la règle
       empty: Aucune règle de serveur n'a été définie pour l'instant.
       title: Règles du serveur
+      translation: Traduction
+      translations: Traductions
     settings:
       about:
         manage_rules: Gérer les règles du serveur

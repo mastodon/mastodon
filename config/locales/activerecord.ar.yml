@@ -18,9 +18,13 @@ ar:
       attributes:
         domain:
           invalid: ليس بإسم نطاق صالح
+      messages:
+        invalid_domain_on_line: "%{value} ليس إسم نطاق صالح"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: يحتوي على قيم مع تسميات مفقودة
             username:
               invalid: يجب فقط أن يحتوي على حروف، وأرقام، وخطوط سفلية
               reserved: محجوز
@@ -36,12 +40,23 @@ ar:
           attributes:
             data:
               malformed: معتل
+        list_account:
+          attributes:
+            account_id:
+              taken: موجود مسبقاً على القائمة
+          must_be_following: يجب أن يكون حساباً تتابعه
         status:
           attributes:
             reblog:
               taken: المنشور موجود مِن قبل
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: مبكر للغاية، يجب أن يكون بعد %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: دون الحد العمري
             email:
               blocked: يستخدم مزوّد بريد إلكتروني غير مسموح به
               unreachable: يبدو أنه لا وجود له
