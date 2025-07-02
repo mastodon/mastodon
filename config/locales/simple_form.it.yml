@@ -90,7 +90,7 @@ it:
         favicon: WEBP, PNG, GIF o JPG. Sostituisce la favicon predefinita di Mastodon con un'icona personalizzata.
         mascot: Sostituisce l'illustrazione nell'interfaccia web avanzata.
         media_cache_retention_period: I file multimediali da post fatti da utenti remoti sono memorizzati nella cache sul tuo server. Quando impostato a un valore positivo, i media verranno eliminati dopo il numero specificato di giorni. Se i dati multimediali sono richiesti dopo che sono stati eliminati, saranno nuovamente scaricati, se il contenuto sorgente è ancora disponibile. A causa di restrizioni su quanto spesso link anteprima carte sondaggio siti di terze parti, si consiglia di impostare questo valore ad almeno 14 giorni, o le schede di anteprima link non saranno aggiornate su richiesta prima di quel tempo.
-        min_age: Gli utenti saranno invitati a confermare la loro data di nascita durante la registrazione
+        min_age: Agli utenti verrà chiesto di confermare la propria data di nascita durante l'iscrizione
         peers_api_enabled: Un elenco di nomi di dominio che questo server ha incontrato nel fediverse. Qui non sono inclusi dati sul fatto se si federano con un dato server, solo che il server ne è a conoscenza. Questo viene utilizzato dai servizi che raccolgono statistiche sulla federazione in senso generale.
         profile_directory: La directory del profilo elenca tutti gli utenti che hanno acconsentito ad essere individuabili.
         require_invite_text: 'Quando le iscrizioni richiedono l''approvazione manuale, rendi la domanda: "Perché vuoi unirti?" obbligatoria anziché facoltativa'
