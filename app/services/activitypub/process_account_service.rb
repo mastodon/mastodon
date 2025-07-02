@@ -199,7 +199,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def process_duplicate_accounts!
-    return unless Account.where(uri: @account.uri).where.not(id: @account.id).exists?
+    return unless Account.where(uri: @account.uri).excluding(@account).exists?
 
     AccountMergingWorker.perform_async(@account.id)
   end
