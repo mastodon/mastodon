@@ -20,8 +20,9 @@ class Admin::AccountAction
                 :report_id,
                 :warning_preset_id
 
-  attr_reader :warning, :send_email_notification, :include_statuses
+  attr_reader :warning, :send_notification, :send_email_notification, :include_statuses
 
+  alias send_notification? send_notification
   alias send_email_notification? send_email_notification
   alias include_statuses? include_statuses
 
@@ -29,14 +30,19 @@ class Admin::AccountAction
   validates :type, inclusion: { in: TYPES }
 
   def initialize(attributes = {})
+    @send_notification = true
     @send_email_notification = true
-    @include_statuses        = true
+    @include_statuses = true
 
     super
   end
 
   def send_email_notification=(value)
     @send_email_notification = ActiveModel::Type::Boolean.new.cast(value)
+  end
+
+  def send_notification=(value)
+    @send_notification = ActiveModel::Type::Boolean.new.cast(value)
   end
 
   def include_statuses=(value)
@@ -169,12 +175,12 @@ class Admin::AccountAction
   def process_notification!
     return unless warnable?
 
-    UserMailer.warning(target_account.user, warning).deliver_later!
+    UserMailer.warning(target_account.user, warning).deliver_later! if send_email_notification?
     LocalNotificationWorker.perform_async(target_account.id, warning.id, 'AccountWarning', 'moderation_warning')
   end
 
   def warnable?
-    send_email_notification? && target_account.local?
+    send_notification && target_account.local?
   end
 
   def status_ids

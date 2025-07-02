@@ -31,7 +31,8 @@ class Api::V1::Admin::AccountActionsController < Api::BaseController
       :report_id,
       :warning_preset_id,
       :text,
-      :send_email_notification
+      :send_email_notification,
+      :send_notification
     )
   end
 end

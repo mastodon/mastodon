@@ -7,7 +7,7 @@ module Admin
     def new
       authorize @account, :show?
 
-      @account_action  = Admin::AccountAction.new(type: params[:type], report_id: params[:report_id], send_email_notification: true, include_statuses: true)
+      @account_action  = Admin::AccountAction.new(type: params[:type], report_id: params[:report_id], send_email_notification: true, send_notification: true, include_statuses: true)
       @warning_presets = AccountWarningPreset.all
     end
 
@@ -35,7 +35,7 @@ module Admin
 
     def resource_params
       params
-        .expect(admin_account_action: [:type, :report_id, :warning_preset_id, :text, :send_email_notification, :include_statuses])
+        .expect(admin_account_action: [:type, :report_id, :warning_preset_id, :text, :send_email_notification, :send_notification, :include_statuses])
     end
   end
 end
