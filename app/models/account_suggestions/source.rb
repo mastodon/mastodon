@@ -19,7 +19,7 @@ class AccountSuggestions::Source
       .where.not(follow_requests_sql, id: account.id)
       .not_excluded_by_account(account)
       .not_domain_blocked_by_account(account)
-      .where.not(id: account.id)
+      .excluding(account)
       .where.not(follow_recommendation_mutes_sql, id: account.id)
   end
 
