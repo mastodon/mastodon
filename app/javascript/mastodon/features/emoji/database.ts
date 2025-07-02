@@ -52,11 +52,7 @@ export function searchCustomEmojiByShortcode(shortcode: string) {
 }
 
 export async function loadLatestEtag(localeString: string) {
-  let locale = localeString.toLowerCase();
-  if (locale !== 'custom') {
-    locale = toSupportedLocale(localeString);
-  }
-
+  const locale = toSupportedLocaleOrCustom(localeString);
   const table = tableEtag();
   return (await table.get(locale))?.etag ?? null;
 }
