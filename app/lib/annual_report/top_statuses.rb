@@ -2,10 +2,6 @@
 
 class AnnualReport::TopStatuses < AnnualReport::Source
   def generate
-    most_reblogged_status_id = most_reblogged_status&.id
-    most_favourited_status_id = most_favourited_status&.id
-    most_replied_status_id = most_replied_status&.id
-
     {
       top_statuses: {
         by_reblogs: most_reblogged_status_id&.to_s,
@@ -16,6 +12,18 @@ class AnnualReport::TopStatuses < AnnualReport::Source
   end
 
   private
+
+  def most_reblogged_status_id
+    most_reblogged_status&.id
+  end
+
+  def most_favourited_status_id
+    most_favourited_status&.id
+  end
+
+  def most_replied_status_id
+    most_replied_status&.id
+  end
 
   def most_reblogged_status
     base_scope.order(reblogs_count: :desc).first
