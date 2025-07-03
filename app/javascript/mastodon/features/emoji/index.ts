@@ -1,7 +1,8 @@
 import initialState from '@/mastodon/initial_state';
 
-import { initEmojiDB } from './database';
 import { toSupportedLocale } from './locale';
+
+const serverLocale = toSupportedLocale(initialState?.meta.locale ?? 'en');
 
 const worker =
   'Worker' in window
@@ -11,17 +12,17 @@ const worker =
     : null;
 
 export async function initializeEmoji() {
-  const serverLocale = toSupportedLocale(initialState?.meta.locale ?? 'en');
-
-  initEmojiDB();
-  await loadEmojiLocale(serverLocale);
-
-  // Load custom emojis
   if (worker) {
-    worker.postMessage('custom');
+    worker.addEventListener('message', (event: MessageEvent<string>) => {
+      const { data: message } = event;
+      if (message === 'ready') {
+        worker.postMessage(serverLocale);
+        worker.postMessage('custom');
+      }
+    });
   } else {
-    const { importCustomEmojiData } = await import('./loader');
-    await importCustomEmojiData();
+    const { importCustomEmojiData, importEmojiData } = await import('./loader');
+    await Promise.all([importCustomEmojiData(), importEmojiData(serverLocale)]);
   }
 }
 

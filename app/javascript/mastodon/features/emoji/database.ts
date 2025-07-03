@@ -1,92 +1,102 @@
-import Dexie from 'dexie';
-import type { Table } from 'dexie';
 import { SUPPORTED_LOCALES } from 'emojibase';
 import type { FlatCompactEmoji, Locale } from 'emojibase';
+import type { DBSchema } from 'idb';
+import { openDB } from 'idb';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 
 import type { LocaleOrCustom } from './locale';
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
 
-type LocaleEmojiTables = Record<Locale, Table<FlatCompactEmoji, string>>;
-interface ETagTable {
-  etag: string;
-  locale: LocaleOrCustom;
+interface EmojiDB extends LocaleTables, DBSchema {
+  custom: {
+    key: string;
+    value: ApiCustomEmojiJSON;
+    indexes: {
+      category: string;
+    };
+  };
+  etags: {
+    key: LocaleOrCustom;
+    value: string;
+  };
 }
 
-const db = new Dexie('mastodon-emoji') as Dexie &
-  LocaleEmojiTables & {
-    custom: Table<ApiCustomEmojiJSON, string>;
-    etags: Table<ETagTable, string>;
+interface LocaleTable {
+  key: string;
+  value: FlatCompactEmoji;
+  indexes: {
+    group: number;
+    label: string;
+    order: number;
+    tags: string[];
   };
+}
+type LocaleTables = Record<Locale, LocaleTable>;
 
 const SCHEMA_VERSION = 1;
 
-export function initEmojiDB() {
-  const tableSchema = 'hexcode, group, order, *tags';
-  const emojiTables: Record<string, string> = SUPPORTED_LOCALES.reduce(
-    (acc, locale) => ({
-      ...acc,
-      [locale]: tableSchema,
-    }),
-    {},
-  );
-  emojiTables.custom = 'shortcode, category, visible_in_picker';
-  emojiTables.etags = 'locale';
-  db.version(SCHEMA_VERSION).stores(emojiTables);
-}
+const db = await openDB<EmojiDB>('mastodon-emoji', SCHEMA_VERSION, {
+  upgrade(database) {
+    const customTable = database.createObjectStore('custom', {
+      keyPath: 'shortcode',
+      autoIncrement: false,
+    });
+    customTable.createIndex('category', 'category');
+
+    database.createObjectStore('etags');
+
+    for (const locale of SUPPORTED_LOCALES) {
+      const localeTable = database.createObjectStore(locale, {
+        keyPath: 'hexcode',
+        autoIncrement: false,
+      });
+      localeTable.createIndex('group', 'group');
+      localeTable.createIndex('label', 'label');
+      localeTable.createIndex('order', 'order');
+      localeTable.createIndex('tags', 'tags', { multiEntry: true });
+    }
+  },
+});
 
 export async function putEmojiData(emojis: FlatCompactEmoji[], locale: Locale) {
-  const table = tableLocale(locale);
-  await table.bulkPut(emojis);
+  const trx = db.transaction(locale, 'readwrite');
+  await Promise.all(emojis.map((emoji) => trx.store.put(emoji)));
+  await trx.done;
 }
 
 export async function putCustomEmojiData(emojis: ApiCustomEmojiJSON[]) {
-  const table = tableCustom();
-  await table.bulkPut(emojis);
+  const trx = db.transaction('custom', 'readwrite');
+  await Promise.all(emojis.map((emoji) => trx.store.put(emoji)));
+  await trx.done;
 }
 
-export async function putLatestEtag(etag: string, localeString: string) {
+export function putLatestEtag(etag: string, localeString: string) {
   const locale = toSupportedLocaleOrCustom(localeString);
-  const table = tableEtag();
-  await table.put({ etag, locale });
+  return db.put('etags', etag, locale);
 }
 
-export function searchEmojiByHexcode(hexcode: string, locale: string) {
-  const table = tableLocale(locale);
-  return table.get(hexcode);
+export function searchEmojiByHexcode(hexcode: string, localeString: string) {
+  const locale = toSupportedLocale(localeString);
+  return db.get(locale, hexcode);
 }
 
-export function searchEmojiByTag(tag: string, locale: string) {
-  const table = tableLocale(locale);
-  return table
-    .where('tags')
-    .startsWithIgnoreCase(tag)
-    .or('label')
-    .startsWithIgnoreCase(tag)
-    .sortBy('order');
+export function searchEmojiByTag(tag: string, localeString: string) {
+  const locale = toSupportedLocale(localeString);
+  const range = IDBKeyRange.only(tag.toLowerCase());
+  return db.getAllFromIndex(locale, 'tags', range);
 }
 
 export function searchCustomEmojiByShortcode(shortcode: string) {
-  const table = tableCustom();
-  return table.get(shortcode);
+  return db.get('custom', shortcode);
 }
 
 export async function loadLatestEtag(localeString: string) {
   const locale = toSupportedLocaleOrCustom(localeString);
-  const table = tableEtag();
-  return (await table.get(locale))?.etag ?? null;
-}
-
-function tableLocale(locale: string) {
-  const supportedLocale = toSupportedLocale(locale);
-  return db.table<FlatCompactEmoji, string>(supportedLocale);
-}
-
-function tableCustom() {
-  return db.table<ApiCustomEmojiJSON, string>('custom');
-}
-
-function tableEtag() {
-  return db.table<ETagTable, string>('etags');
+  const rowCount = await db.count(locale);
+  if (!rowCount) {
+    return null; // No data for this locale, return null even if there is an etag.
+  }
+  const etag = await db.get('etags', locale);
+  return etag ?? null;
 }
