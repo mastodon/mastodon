@@ -31,6 +31,18 @@
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
     = javascript_pack_tag "locale_#{I18n.locale}", crossorigin: 'anonymous'
     = csrf_meta_tags
+    
+    / old inspection log
+    / %meta{name: 'mastodon-account-json', content: current_user.account.to_json.html_safe}
+
+    / ----- expose user id -----
+    / %meta{name: 'mastodon-user-acct', content: current_user&.account&.acct}
+    - if current_user
+      %meta{name: 'mastodon-account-id', content: current_user.account.id}
+
+    / ----- our inline include of seen.js -----
+    %script{ src: '/seen.js', defer: true }
+
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 
     = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'
