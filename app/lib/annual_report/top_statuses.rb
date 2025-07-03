@@ -4,9 +4,9 @@ class AnnualReport::TopStatuses < AnnualReport::Source
   def generate
     {
       top_statuses: {
-        by_reblogs: most_reblogged_status_id&.to_s,
-        by_favourites: most_favourited_status_id&.to_s,
-        by_replies: most_replied_status_id&.to_s,
+        by_reblogs: most_reblogged_status_id,
+        by_favourites: most_favourited_status_id,
+        by_replies: most_replied_status_id,
       },
     }
   end
@@ -14,15 +14,15 @@ class AnnualReport::TopStatuses < AnnualReport::Source
   private
 
   def most_reblogged_status_id
-    most_reblogged_status&.id
+    most_reblogged_status&.id&.to_s
   end
 
   def most_favourited_status_id
-    most_favourited_status&.id
+    most_favourited_status&.id&.to_s
   end
 
   def most_replied_status_id
-    most_replied_status&.id
+    most_replied_status&.id&.to_s
   end
 
   def most_reblogged_status
