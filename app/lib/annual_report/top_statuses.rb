@@ -15,6 +15,8 @@ class AnnualReport::TopStatuses < AnnualReport::Source
     }
   end
 
+  private
+
   def base_scope
     report_statuses.public_visibility.joins(:status_stat)
   end
