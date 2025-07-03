@@ -32,8 +32,8 @@ class Admin::AccountAction
   validates :type, :target_account, :current_account, presence: true
   validates :type, inclusion: { in: TYPES }
 
-  def save!
-    raise ActiveRecord::RecordInvalid, self unless valid?
+  def save
+    return false unless valid?
 
     ApplicationRecord.transaction do
       process_action!
@@ -43,6 +43,12 @@ class Admin::AccountAction
 
     process_notification!
     process_queue!
+
+    true
+  end
+
+  def save!
+    raise ActiveRecord::RecordInvalid, self unless save
   end
 
   def report
