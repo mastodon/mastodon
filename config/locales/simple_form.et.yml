@@ -19,7 +19,7 @@ et:
         title: Valikuline. Ei ole nähtav saajale
       admin_account_action:
         include_statuses: Kasutaja näeb, millised postitused on põhjustanud moderaatori otsuse või hoiatuse
-        send_email_notification: Konto omanik saab selgituse selle kohta, mis juhtus nende kontoga
+        send_email_notification: Kasutajakonto omanik saab selgituse selle kohta, mis juhtus tema kontoga
         text_html: Valikuline. On võimalik kasutada postituse süntaksi. On võimalik <a href="%{path}">lisada hoiatuste eelseadistusi</a> säästmaks aega
         type_html: Vali, mida teha kasutajaga <strong>%{acct}</strong>
         types:
@@ -47,7 +47,7 @@ et:
         digest: Saadetakse ainult pärast pikka tegevusetuse perioodi ja ainult siis, kui on saadetud otsesõnumeid
         email: Sulle saadetakse e-posti teel kinnituskiri
         header: WEBP, PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
-        inbox_url: Kopeeri soovitud vahendaja avalehe URL
+        inbox_url: Kopeeri soovitud sõnumivahendusserveri avalehe võrguaadress
         irreversible: Filtreeritud postitused kaovad taastamatult, isegi kui filter on hiljem eemaldatud
         locale: Kasutajaliidese, e-kirjade ja tõuketeadete keel
         password: Vajalik on vähemalt 8 märki
@@ -196,7 +196,7 @@ et:
         fields: Veebiviited
         header: Päis
         honeypot: "%{label} (ära sisesta)"
-        inbox_url: Vahendaja sisendkausta URL
+        inbox_url: Sõnumivahendusserveri sisendkausta võrguaadress
         irreversible: Kustuta selle asemel, et peita
         locale: Kasutajaliidese keel
         max_uses: Maksimum kasutajate arv
@@ -212,6 +212,7 @@ et:
         setting_boost_modal: Näita enne jagamist kinnitusdialoogi
         setting_default_language: Postituse keel
         setting_default_privacy: Postituse nähtavus
+        setting_default_quote_policy: Kes võivad tsiteerida
         setting_default_sensitive: Alati märgista meedia tundlikuks
         setting_delete_modal: Näita kinnitusdialoogi enne postituse kustutamist
         setting_disable_hover_cards: Keela profiili eelvaade kui hõljutada
@@ -224,6 +225,7 @@ et:
         setting_hide_network: Peida oma võrk
         setting_reduce_motion: Vähenda animatsioonides liikumist
         setting_system_font_ui: Kasuta süsteemi vaikefonti
+        setting_system_scrollbars_ui: Kasuta süsteemi vaikimisi kerimisriba
         setting_theme: Saidi teema
         setting_trends: Näita tänaseid trende
         setting_unfollow_modal: Näita kinnitusdialoogi enne jälgimise eemaldamist
@@ -242,6 +244,7 @@ et:
         name: Silt
       filters:
         actions:
+          blur: Peida hoiatusega meedia
           hide: Peida täielikult
           warn: Peida hoiatusega
       form_admin_settings:

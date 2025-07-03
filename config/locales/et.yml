@@ -187,6 +187,7 @@ et:
         create_domain_block: Domeeni blokeerimine
         create_email_domain_block: Loo e-posti domeeni blokeering
         create_ip_block: IP-reegli lisamine
+        create_relay: Loo sõnumivahendusserver
         create_unavailable_domain: Kättesaamatu domeeni lisamine
         create_user_role: Loo roll
         demote_user: Alandas kasutaja
@@ -198,14 +199,17 @@ et:
         destroy_email_domain_block: Kustuta e-posti domeeni blokeering
         destroy_instance: Domeeni kustutamine
         destroy_ip_block: IP-reegli kustutamine
+        destroy_relay: Kustuta sõnumivahendusserver
         destroy_status: Kustuta postitus
         destroy_unavailable_domain: Kättesaamatu domeeni kustutamine
         destroy_user_role: Rolli kustutamine
         disable_2fa_user: Keela 2FA
         disable_custom_emoji: Keelas kohandatud emotikoni
+        disable_relay: Lülita sõnumivahendusserver välja
         disable_sign_in_token_auth_user: Keela e-posti võtme abil autentimine kasutajale
         disable_user: Keelas kasutaja
         enable_custom_emoji: Lubas kohandatud emotikoni
+        enable_relay: Lülita sõnumivahendusserver sisse
         enable_sign_in_token_auth_user: Luba e-posti võtme abil autentimine kasutajale
         enable_user: Lubas kasutaja
         memorialize_account: Igaveselt lahkunuks märkimine
@@ -248,6 +252,7 @@ et:
         create_domain_block_html: "%{name} keelas domeeni %{target}"
         create_email_domain_block_html: "%{name} blokeeris e-posti domeeni %{target}"
         create_ip_block_html: "%{name} lõi IP-aadressile %{target} reegli"
+        create_relay_html: "%{name} lõi sõnumivahendusserveri: %{target}"
         create_unavailable_domain_html: "%{name} lõpetas edastamise domeeni %{target}"
         create_user_role_html: "%{name} lõi rolli %{target}"
         demote_user_html: "%{name} alandas kasutajat %{target}"
@@ -259,14 +264,17 @@ et:
         destroy_email_domain_block_html: "%{name} eemaldas blokeeringu e-posti domeenilt %{target}"
         destroy_instance_html: "%{name} kustutas domeeni %{target}"
         destroy_ip_block_html: "%{name} kustutas IP-aadressi %{target} reegli"
+        destroy_relay_html: "%{name} kustutas sõnumivahendusserveri: %{target}"
         destroy_status_html: "%{name} kustutas %{target} postituse"
         destroy_unavailable_domain_html: "%{name} taastas edastamise domeeni %{target}"
         destroy_user_role_html: "%{name} kustutas %{target} rolli"
         disable_2fa_user_html: "%{name} eemaldas kasutaja %{target} kahe etapise nõude"
         disable_custom_emoji_html: "%{name} keelas emotikooni %{target}"
+        disable_relay_html: "%{name} eemaldas sõnumivahendusserveri kasutuselt: %{target}"
         disable_sign_in_token_auth_user_html: "%{name} keelas e-posti võtme abil autentimise %{target} jaoks"
         disable_user_html: "%{name} keelas %{target} sisenemise"
         enable_custom_emoji_html: "%{name} lubas emotikooni %{target}"
+        enable_relay_html: "%{name} võttis sõnumivahendusserveri kasutusele: %{target}"
         enable_sign_in_token_auth_user_html: "%{name} lubas e-posti võtme abil autentimise %{target} jaoks"
         enable_user_html: "%{name} lubas %{target} sisenemise"
         memorialize_account_html: "%{name} märkis %{target} igaveselt lahkunuks"
@@ -354,7 +362,7 @@ et:
       updated_msg: Emotikoni uuendamine õnnestus!
       upload: Lae üles
     dashboard:
-      active_users: aktiivsed kasutajad
+      active_users: aktiivseid kasutajaid
       interactions: interaktsioonid
       media_storage: Meedia hoidla
       new_users: uued kasutajad
@@ -469,9 +477,32 @@ et:
         title: Domeenikeeldude import
       no_file: Faili pole valitud
     fasp:
+      debug:
+        callbacks:
+          created_at: 'Loodud:'
+          delete: Kustuta
+          ip: IP-aadress
+          request_body: Päringu sisu
       providers:
+        active: Aktiivne
+        callback: Pöördliiklus
+        delete: Kustuta
+        edit: Muuda teenusepakkujat
+        finish_registration: Lõpeta registreerimine
+        name: Nimi
+        providers: Teenusepakkujad
+        public_key_fingerprint: Avaliku võtme sõrmejälg
+        registration_requested: Registreerimispäring
+        registrations:
+          confirm: Kinnita
+          description: Sa oled saanud FASP-i registreerimispäringu. Kui sa seda ise ei algatanud, siis keeldu. Kui algatasid, siis enne kinnitamist kontrolli nime ja võtme sõrmejälge.
+          reject: Keeldu
+          title: Kinnita FASP-i registreerimine
+        save: Salvesta
         sign_in: Logi sisse
         status: Olek
+        title: Täiendavad teenusepakkujad Födiversumis (FASP - Fediverse Auxiliary Service Providers)
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Jälgimissoovitused aitavad uutel kasutajatel kiirelt leida huvipakkuvat sisu</strong>. Kui kasutaja pole teistega piisavalt läbi käinud, et saaks luua personaalseid soovitusi, soovitatakse neid kontosid. Need arvutatakse ümber igapäevaselt konkreetse keele populaarseimate postituste ja enim jälgitavate kontode seast."
       language: Keel
@@ -540,6 +571,13 @@ et:
         all: Kõik
         limited: Piiratud
         title: Modereerimine
+      moderation_notes:
+        create: Lisa modereerimisteade
+        created_msg: Serveri modereerimisteate koostamine õnnestus!
+        description_html: Vaata ja lisa teade teistele moderaatoritele ning endalegi tulevikus
+        destroyed_msg: Serveri modereerimisteate kustutamine õnnestus!
+        placeholder: Teave selle koduserveri kohta, tehtud toimingud või mis iganes muu oluline, mis võimaldab sul või teistel serverit tulevikus modereerida.
+        title: Modereerimisteated
       private_comment: Privaatne kommentaar
       public_comment: Avalik kommentaar
       purge: Kustuta
@@ -578,7 +616,7 @@ et:
     relationships:
       title: "%{acct}-i suhted"
     relays:
-      add_new: Lisa uus vahendaja
+      add_new: Lisa uus sõnumivahendusserver
       delete: Kustuta
       description_html: "<strong>Födereerumisvahendaja</strong> on vahendav server, mis kannab üle suures koguses avalikke postitusi nende serverite vahel, mis on sellega liitunud ja edastavad sellele oma postitusi. <strong>See aitab väikestel ja keskmistel serveritel avastada födiversumi sellist sisu</strong>, mis muidu eeldaks kohalikelt kasutajatelt nende serverite kasutajate jälgitavaks märkimist."
       disable: Keela
@@ -586,13 +624,13 @@ et:
       enable: Luba
       enable_hint: Kui lubatud, siis server tellib sellelt vahendajalt kõik avalikud postitused ning hakkab ka enda avalikke postitusi sellele saatma.
       enabled: Lubatud
-      inbox_url: Vahendaja URL
-      pending: Ootab vahendaja nõusolekut
+      inbox_url: Sõnumivahendusserveri võrguaadress
+      pending: Ootan sõnumivahendusserveri kinnitust
       save_and_enable: Salvesta ja luba
       setup: Sea üles vahendav ühendus
-      signatures_not_enabled: Vahendamine ei tööta korrektselt kuniks turvarežiim või lubatud nimekirja režiim on sisse lülitatud
+      signatures_not_enabled: Vahendamine ei tööta korrektselt kui turvarežiim või lubatud nimekirja režiim on sisse lülitatud
       status: Olek
-      title: Vahendajad
+      title: Sõnumivahendusserverid
     report_notes:
       created_msg: Teade edukalt koostatud!
       destroyed_msg: Teade edukalt kustutatud!
@@ -830,6 +868,7 @@ et:
       back_to_account: Tagasi konto lehele
       back_to_report: Tagasi raporti lehele
       batch:
+        add_to_report: 'Lisa teatisele #%{id}'
         remove_from_report: Eemalda raportist
         report: Raport
       contents: Sisu
@@ -941,6 +980,13 @@ et:
         explanation_html: Esitatud teenusetingimuste näidis on mõeldud ainult teavitamise eesmärgil ja seda ei tohiks tõlgendada kui juriidilist nõuannet mis tahes küsimuses. Palun konsulteeri olukorra ja konkreetsete juriidiliste küsimuste osas oma õigusnõustajaga.
         title: Teenuse tingimuste seadistamine
       history: Ajalugu
+      notify_users: Teata kasutajatele
+      preview:
+        explanation_html: 'See e-kiri saadetakse <strong>%{display_count}-le kasutajale</strong>, kes olid liitunud enne %{date}. E-kirjas sisaldub järgnev tekst:'
+        send_preview: Saada eelvaade %{email} e-posti aadressile
+        send_to_all:
+          one: Saada %{display_count} e-kiri
+          other: Saada %{display_count} e-kirja
       publish: Postita
       published_on_html: Postitatud %{date}
       title: Kasutustingimused
@@ -1180,7 +1226,7 @@ et:
       new_confirmation_instructions_sent: Saad mõne minuti pärast uue kinnituslingiga e-kirja!
       title: Kontrolli sisendkasti
     sign_in:
-      preamble_html: Logi sisse oma kasutajakontoga serveris <strong>%{domain}</strong>. Kui konto asub teises serveris, siis sa ei saa siin sisse logida.
+      preamble_html: Logi sisse oma kasutajakontoga serverisse <strong>%{domain}</strong>. Kui konto asub teises serveris, siis sa ei saa siin sisse logida.
       title: Logi sisse serverisse %{domain}
     sign_up:
       manual_review: Liitumised kohas %{domain} vaadatakse meie moderaatorite poolt käsitsi läbi. Aitamaks meil sinu taotlust läbi vaadata, kirjuta palun natuke endast ja miks soovid kontot kohas %{domain}.
@@ -1808,6 +1854,8 @@ et:
       reblog: Jagamist ei saa kinnitada
     quote_policies:
       followers: Jälgijad ja mainitud kasutajad
+      nobody: Vaid mainitud kasutajad
+      public: Kõik
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Otsene
@@ -1863,6 +1911,11 @@ et:
     does_not_match_previous_name: ei ühti eelmise nimega
   terms_of_service:
     title: Kasutustingimused
+  terms_of_service_interstitial:
+    future_preamble_html: Alates <strong>%{date}</strong> muudame me oma kasutustingimusi. Palun vaata muutunud tingimused üle.
+    past_preamble_html: Peale sinu viimast külastust oleme muutnud oma kasutustingimusi. Palun vaata muutunud tingimused üle.
+    review_link: Vaata üle kasutustingimused
+    title: "%{domain} saidi kasutustingimused muutuvad"
   themes:
     contrast: Mastodon (Kõrge kontrast)
     default: Mastodon (Tume)
@@ -1895,6 +1948,7 @@ et:
     webauthn: Turvavõtmed
   user_mailer:
     announcement_published:
+      description: "%{domain} saidi peakasutajate teadaanne:"
       subject: Saidi teadaanne teenuste kohta
       title: "%{domain} saidi teadaanne teenuste kohta"
     appeal_approved:
@@ -1927,6 +1981,8 @@ et:
       subject: Kontole sisenemine uuelt IP-aadressilt
       title: Uus sisenemine
     terms_of_service_changed:
+      agreement: Jätkates %{domain} teenuse kasutamisega nõustud sa kasutustingimustega. Kui sa pole tingimustega nõus, siis võid oma kasutajakonto kustutamisega lepingu %{domain} saidiga alati lõpetada.
+      changelog: 'Selle uuenduse ülevaade sinu jaoks:'
       sign_off: "%{domain} saidi tiim"
       subject: Meie kasutustingimuste uuendused
       subtitle: "%{domain} saidi kasutustingimused muutuvad"
