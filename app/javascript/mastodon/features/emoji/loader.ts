@@ -1,4 +1,5 @@
-import type { FlatCompactEmoji } from 'emojibase';
+import { flattenEmojiData } from 'emojibase';
+import type { CompactEmoji, FlatCompactEmoji } from 'emojibase';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 import { isDevelopment } from '@/mastodon/utils/environment';
@@ -14,11 +15,12 @@ import type { LocaleOrCustom } from './locale';
 
 export async function importEmojiData(localeString: string) {
   const locale = toSupportedLocale(localeString);
-  const emojis = await fetchAndCheckEtag<FlatCompactEmoji[]>(locale);
+  const emojis = await fetchAndCheckEtag<CompactEmoji[]>(locale);
   if (!emojis) {
     return;
   }
-  await putEmojiData(emojis, locale);
+  const flattenedEmojis: FlatCompactEmoji[] = flattenEmojiData(emojis);
+  await putEmojiData(flattenedEmojis, locale);
 }
 
 export async function importCustomEmojiData() {
@@ -33,7 +35,6 @@ async function fetchAndCheckEtag<ResultType extends object[]>(
   localeOrCustom: LocaleOrCustom,
 ): Promise<ResultType | null> {
   const locale = toSupportedLocaleOrCustom(localeOrCustom);
-  const oldEtag = await loadLatestEtag(locale);
 
   let uri: string;
   if (locale === 'custom') {
@@ -42,6 +43,7 @@ async function fetchAndCheckEtag<ResultType extends object[]>(
     uri = `/packs${isDevelopment() ? '-dev' : ''}/emoji/${locale}.json`;
   }
 
+  const oldEtag = await loadLatestEtag(locale);
   const response = await fetch(uri, {
     headers: {
       'Content-Type': 'application/json',
