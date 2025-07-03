@@ -10,6 +10,7 @@ import {
   unicodeToTwemojiHex,
   CODES_WITH_DARK_BORDER,
   CODES_WITH_LIGHT_BORDER,
+  emojiToUnicodeHex,
 } from './normalize';
 
 const emojiSVGFiles = await readdir(
@@ -27,6 +28,22 @@ const svgFileNamesWithoutBorder = svgFileNames.filter(
 );
 
 const unicodeEmojis = flattenEmojiData(unicodeRawEmojis);
+
+describe('emojiToUnicodeHex', () => {
+  test.concurrent.for([
+    ['🎱', '1F3B1'],
+    ['🐜', '1F41C'],
+    ['⚫', '26AB'],
+    ['🖤', '1F5A4'],
+    ['💀', '1F480'],
+    ['💂‍♂️', '1F482-200D-2642-FE0F'],
+  ] as const)(
+    'emojiToUnicodeHex converts %s to %s',
+    ([emoji, hexcode], { expect }) => {
+      expect(emojiToUnicodeHex(emoji)).toBe(hexcode);
+    },
+  );
+});
 
 describe('unicodeToTwemojiHex', () => {
   test.concurrent.for(
@@ -52,7 +69,7 @@ describe('twemojiHasBorder', () => {
           CODES_WITH_DARK_BORDER.includes(hexCode),
         ] as const;
       }),
-  )('twemojiHasBorder for %s', ([hexCode, isLight, isDark]) => {
+  )('twemojiHasBorder for %s', ([hexCode, isLight, isDark], { expect }) => {
     const result = twemojiHasBorder(hexCode);
     expect(result).toHaveProperty('hexCode', hexCode);
     expect(result).toHaveProperty('hasLightBorder', isLight);

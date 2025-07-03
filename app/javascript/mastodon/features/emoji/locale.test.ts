@@ -46,14 +46,14 @@ describe('unicodeToLocaleLabel', () => {
     ]),
   );
 
-  test.for(
+  test.concurrent.for(
     emojiTestCases.flatMap((code) => [
       [code, 'en', emojiTestEnLabels.get(code) ?? null],
       [code, 'fr', emojiTestFrLabels.get(code) ?? null],
     ]) satisfies [string, string, string | null][],
   )(
     'returns correct label for %s for %s locale',
-    async ([unicodeHex, locale, expectedLabel]) => {
+    async ([unicodeHex, locale, expectedLabel], { expect }) => {
       const label = await unicodeToLocaleLabel(unicodeHex, locale);
       expect(label).toBe(expectedLabel);
     },
