@@ -20,6 +20,22 @@ const db = new Dexie('mastodon-emoji') as Dexie &
     etags: Table<ETagTable, string>;
   };
 
+const SCHEMA_VERSION = 1;
+
+export function initEmojiDB() {
+  const tableSchema = 'hexcode, group, order, *tags';
+  const emojiTables: Record<string, string> = SUPPORTED_LOCALES.reduce(
+    (acc, locale) => ({
+      ...acc,
+      [locale]: tableSchema,
+    }),
+    {},
+  );
+  emojiTables.custom = 'shortcode, category, visible_in_picker';
+  emojiTables.etags = 'locale';
+  db.version(SCHEMA_VERSION).stores(emojiTables);
+}
+
 export async function putEmojiData(emojis: FlatCompactEmoji[], locale: Locale) {
   const table = tableLocale(locale);
   await table.bulkPut(emojis);
@@ -43,7 +59,12 @@ export function searchEmojiByHexcode(hexcode: string, locale: string) {
 
 export function searchEmojiByTag(tag: string, locale: string) {
   const table = tableLocale(locale);
-  return table.where('tags').startsWithIgnoreCase(tag).sortBy('order');
+  return table
+    .where('tags')
+    .startsWithIgnoreCase(tag)
+    .or('label')
+    .startsWithIgnoreCase(tag)
+    .sortBy('order');
 }
 
 export function searchCustomEmojiByShortcode(shortcode: string) {
@@ -59,37 +80,13 @@ export async function loadLatestEtag(localeString: string) {
 
 function tableLocale(locale: string) {
   const supportedLocale = toSupportedLocale(locale);
-  initEmojiDB();
   return db.table<FlatCompactEmoji, string>(supportedLocale);
 }
 
 function tableCustom() {
-  initEmojiDB();
   return db.table<ApiCustomEmojiJSON, string>('custom');
 }
 
 function tableEtag() {
-  initEmojiDB();
   return db.table<ETagTable, string>('etags');
-}
-
-const SCHEMA_VERSION = 1;
-
-let isDBInitialized = false;
-function initEmojiDB() {
-  if (isDBInitialized) {
-    return;
-  }
-  const tableSchema = 'hexcode, group, order, *tags';
-  const emojiTables: Record<string, string> = SUPPORTED_LOCALES.reduce(
-    (acc, locale) => ({
-      ...acc,
-      [locale]: tableSchema,
-    }),
-    {},
-  );
-  emojiTables.custom = 'shortcode, category, visible_in_picker';
-  emojiTables.etags = 'locale';
-  db.version(SCHEMA_VERSION).stores(emojiTables);
-  isDBInitialized = true;
 }

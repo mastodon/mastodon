@@ -2,7 +2,11 @@ import { flattenEmojiData, SUPPORTED_LOCALES } from 'emojibase';
 import emojiEnData from 'emojibase-data/en/compact.json';
 import emojiFrData from 'emojibase-data/fr/compact.json';
 
-import { toSupportedLocale, unicodeToLocaleLabel } from './locale';
+import {
+  toSupportedLocale,
+  toSupportedLocaleOrCustom,
+  unicodeToLocaleLabel,
+} from './locale';
 
 const flattenedEnData = flattenEmojiData(emojiEnData);
 const flattenedFrData = flattenEmojiData(emojiFrData);
@@ -67,6 +71,17 @@ describe('toSupportedLocale', () => {
     const unsupportedLocales = ['xx', 'fr-CA'];
     for (const locale of unsupportedLocales) {
       expect(toSupportedLocale(locale)).toBe('en');
+    }
+  });
+});
+
+describe('toSupportedLocaleOrCustom', () => {
+  test('returns custom for "custom" locale', () => {
+    expect(toSupportedLocaleOrCustom('custom')).toBe('custom');
+  });
+  test('returns supported locale for valid locales', () => {
+    for (const locale of SUPPORTED_LOCALES) {
+      expect(toSupportedLocaleOrCustom(locale)).toBe(locale);
     }
   });
 });
