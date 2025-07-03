@@ -51,8 +51,8 @@ Mastodon is a **free, open-source social network server** based on [ActivityPub]
 - [Redis](https://redis.io/) and [Sidekiq](https://sidekiq.org/) are used for caching and queueing.
 - [Node.js](https://nodejs.org/) powers the streaming API.
 - [React.js](https://reactjs.org/) and [Redux](https://redux.js.org/) are used for the dynamic parts of the interface.
-- [BrowserStack](https://www.browserstack.com/) supports testing on real devices and browsers.
-- [Chromatic](https://www.chromatic.com/) provides visual regression testing.
+- [BrowserStack](https://www.browserstack.com/) supports testing on real devices and browsers. (This project is tested with BrowserStack)
+- [Chromatic](https://www.chromatic.com/) provides visual regression testing. (This project is tested with Chromatic)
 
 ### Requirements
 
