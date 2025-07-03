@@ -297,7 +297,7 @@ class DeleteAccountService < BaseService
   end
 
   def reported_status_ids
-    @reported_status_ids ||= Report.where(target_account: @account).unresolved.pluck(:status_ids).flatten.uniq
+    @reported_status_ids ||= @account.targeted_reports.unresolved.pluck(:status_ids).flatten.uniq
   end
 
   def associations_for_destruction

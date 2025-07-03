@@ -185,7 +185,7 @@ class Admin::AccountAction
     @reports ||= if type == 'none'
                    with_report? ? [report] : []
                  else
-                   Report.where(target_account: target_account).unresolved
+                   target_account.targeted_reports.unresolved
                  end
   end
 
