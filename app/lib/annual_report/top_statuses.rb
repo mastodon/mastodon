@@ -2,15 +2,15 @@
 
 class AnnualReport::TopStatuses < AnnualReport::Source
   def generate
-    top_reblogs = base_scope.order(reblogs_count: :desc).first&.id
-    top_favourites = base_scope.where.not(id: top_reblogs).order(favourites_count: :desc).first&.id
-    top_replies = base_scope.where.not(id: [top_reblogs, top_favourites]).order(replies_count: :desc).first&.id
+    most_reblogged_status_id = base_scope.order(reblogs_count: :desc).first&.id
+    most_favourited_status_id = base_scope.where.not(id: most_reblogged_status_id).order(favourites_count: :desc).first&.id
+    most_replied_status_id = base_scope.where.not(id: [most_reblogged_status_id, most_favourited_status_id]).order(replies_count: :desc).first&.id
 
     {
       top_statuses: {
-        by_reblogs: top_reblogs&.to_s,
-        by_favourites: top_favourites&.to_s,
-        by_replies: top_replies&.to_s,
+        by_reblogs: most_reblogged_status_id&.to_s,
+        by_favourites: most_favourited_status_id&.to_s,
+        by_replies: most_replied_status_id&.to_s,
       },
     }
   end
