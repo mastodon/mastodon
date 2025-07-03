@@ -12,9 +12,7 @@ export async function unicodeToLocaleLabel(
   const locale = toSupportedLocale(localeString);
   const emoji = await searchEmojiByHexcode(unicodeHex, locale);
   if (!emoji) {
-    throw new Error(
-      `Label for unicode hex ${unicodeHex} not found in locale ${locale}`,
-    );
+    return null;
   }
   return emoji.label;
 }

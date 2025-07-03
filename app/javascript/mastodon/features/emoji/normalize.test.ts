@@ -60,7 +60,7 @@ describe('twemojiHasBorder', () => {
   });
 });
 
-describe.only('twemojiToUnicodeInfo', () => {
+describe('twemojiToUnicodeInfo', () => {
   const unicodeCodeSet = new Set(unicodeEmojis.map((emoji) => emoji.hexcode));
 
   test.concurrent.for(svgFileNamesWithoutBorder)(

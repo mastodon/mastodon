@@ -4,6 +4,16 @@ import emojiFrData from 'emojibase-data/fr/compact.json';
 
 import { toSupportedLocale, unicodeToLocaleLabel } from './locale';
 
+const flattenedEnData = flattenEmojiData(emojiEnData);
+const flattenedFrData = flattenEmojiData(emojiFrData);
+
+vi.mock('./database', () => ({
+  searchEmojiByHexcode: vi.fn((hexcode, locale) => {
+    const data = locale === 'fr' ? flattenedFrData : flattenedEnData;
+    return data.find((emoji) => emoji.hexcode === hexcode);
+  }),
+}));
+
 describe('unicodeToLocaleLabel', () => {
   const emojiTestCases = [
     '1F3CB-1F3FF-200D-2640-FE0F', // 🏋🏿‍♀️ Woman weightlifter, dark skin
@@ -16,10 +26,8 @@ describe('unicodeToLocaleLabel', () => {
     '1F935-1F3FC-200D-2640-FE0F', // 🤵🏼‍♀️ Woman in tuxedo, medium-light skin
     '1F9D1-1F3FC', // 🧑🏼 Person, medium-light skin
     '1F9D4-1F3FE', // 🧔🏾 Person with beard, medium-dark skin
+    '0-0-0-0', // Placeholder for an invalid code
   ];
-
-  const flattenedEnData = flattenEmojiData(emojiEnData);
-  const flattenedFrData = flattenEmojiData(emojiFrData);
 
   const emojiTestEnLabels = new Map(
     emojiTestCases.map((code) => [
@@ -36,9 +44,9 @@ describe('unicodeToLocaleLabel', () => {
 
   test.for(
     emojiTestCases.flatMap((code) => [
-      [code, 'en', emojiTestEnLabels.get(code)],
-      [code, 'fr', emojiTestFrLabels.get(code)],
-    ]) satisfies [string, string, string | undefined][],
+      [code, 'en', emojiTestEnLabels.get(code) ?? null],
+      [code, 'fr', emojiTestFrLabels.get(code) ?? null],
+    ]) satisfies [string, string, string | null][],
   )(
     'returns correct label for %s for %s locale',
     async ([unicodeHex, locale, expectedLabel]) => {
