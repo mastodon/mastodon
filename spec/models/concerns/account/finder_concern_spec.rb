@@ -11,7 +11,7 @@ RSpec.describe Account::FinderConcern do
 
       it 'updates the username to the new value' do
         expect { Account.representative }
-          .to change { Account.find(Account::INSTANCE_ACTOR_ID).username }.from(legacy_value).to('mastodon.internal')
+          .to change { Account.find(Account::INSTANCE_ACTOR_ID).username }.from(legacy_value).to(Account::INSTANCE_ACTOR_USERNAME)
       end
     end
 
