@@ -4,6 +4,10 @@ Doorkeeper.configure do
   # Change the ORM that doorkeeper will use (needs plugins)
   orm :active_record
 
+  access_grant_class 'OAuth::AccessGrant'
+  access_token_class 'OAuth::AccessToken'
+  application_class 'OAuth::Application'
+
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
     current_user || redirect_to(new_user_session_url)
