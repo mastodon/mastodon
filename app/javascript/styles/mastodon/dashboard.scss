@@ -62,9 +62,18 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   grid-gap: 10px;
+  align-content: start;
 
   @media screen and (width <= 1350px) {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  &__hint {
+    display: flex;
+    gap: 4px;
+    grid-column: span 3;
+    align-items: center;
+    color: $darker-text-color;
   }
 
   &__item {
@@ -117,5 +126,9 @@
     strong {
       font-weight: 700;
     }
+  }
+
+  &--instance-overview {
+    min-height: 400px;
   }
 }
