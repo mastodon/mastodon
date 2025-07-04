@@ -84,7 +84,9 @@ const NewList: React.FC<{
     id ? state.lists.get(id) : undefined,
   );
   const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [exclusive, setExclusive] = useState(false);
+  const [isPublic, setIsPublic] = useState(false);
   const [repliesPolicy, setRepliesPolicy] = useState<RepliesPolicyType>('list');
   const [submitting, setSubmitting] = useState(false);
 
@@ -109,11 +111,25 @@ const NewList: React.FC<{
     [setTitle],
   );
 
+  const handleDescriptionChange = useCallback(
+    ({ target: { value } }: React.ChangeEvent<HTMLTextAreaElement>) => {
+      setDescription(value);
+    },
+    [setDescription],
+  );
+
   const handleExclusiveChange = useCallback(
     ({ target: { checked } }: React.ChangeEvent<HTMLInputElement>) => {
       setExclusive(checked);
     },
     [setExclusive],
+  );
+
+  const handleIsPublicChange = useCallback(
+    ({ target: { checked } }: React.ChangeEvent<HTMLInputElement>) => {
+      setIsPublic(checked);
+    },
+    [setIsPublic],
   );
 
   const handleRepliesPolicyChange = useCallback(
@@ -131,8 +147,10 @@ const NewList: React.FC<{
         updateList({
           id,
           title,
+          description,
           exclusive,
           replies_policy: repliesPolicy,
+          type: isPublic ? 'public_list' : 'private_list',
         }),
       ).then(() => {
         setSubmitting(false);
@@ -142,8 +160,10 @@ const NewList: React.FC<{
       void dispatch(
         createList({
           title,
+          description,
           exclusive,
           replies_policy: repliesPolicy,
+          type: isPublic ? 'public_list' : 'private_list',
         }),
       ).then((result) => {
         setSubmitting(false);
@@ -156,7 +176,17 @@ const NewList: React.FC<{
         return '';
       });
     }
-  }, [history, dispatch, setSubmitting, id, title, exclusive, repliesPolicy]);
+  }, [
+    history,
+    dispatch,
+    setSubmitting,
+    id,
+    title,
+    description,
+    exclusive,
+    isPublic,
+    repliesPolicy,
+  ]);
 
   return (
     <Column
@@ -192,6 +222,28 @@ const NewList: React.FC<{
                     maxLength={30}
                     required
                     placeholder=' '
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className='fields-group'>
+            <div className='input with_label'>
+              <div className='label_input'>
+                <label htmlFor='list_title'>
+                  <FormattedMessage
+                    id='lists.list_description'
+                    defaultMessage='Description'
+                  />
+                </label>
+
+                <div className='label_input__wrapper'>
+                  <textarea
+                    id='list_description'
+                    value={description}
+                    onChange={handleDescriptionChange}
+                    maxLength={120}
                   />
                 </div>
               </div>
@@ -243,6 +295,32 @@ const NewList: React.FC<{
               <MembersLink id={id} />
             </div>
           )}
+
+          <div className='fields-group'>
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <label className='app-form__toggle'>
+              <div className='app-form__toggle__label'>
+                <strong>
+                  <FormattedMessage
+                    id='lists.make_public'
+                    defaultMessage='Make public'
+                  />
+                </strong>
+                <span className='hint'>
+                  <FormattedMessage
+                    id='lists.make_public_hint'
+                    defaultMessage='When you make a list public, anyone with a link can see it.'
+                  />
+                </span>
+              </div>
+
+              <div className='app-form__toggle__toggle'>
+                <div>
+                  <Toggle checked={isPublic} onChange={handleIsPublicChange} />
+                </div>
+              </div>
+            </label>
+          </div>
 
           <div className='fields-group'>
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
