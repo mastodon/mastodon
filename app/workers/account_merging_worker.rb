@@ -10,7 +10,7 @@ class AccountMergingWorker
 
     return true if account.nil? || account.local?
 
-    Account.where(uri: account.uri).where.not(id: account.id).find_each do |duplicate|
+    Account.where(uri: account.uri).excluding(account).find_each do |duplicate|
       account.merge_with!(duplicate)
       duplicate.destroy
     end
