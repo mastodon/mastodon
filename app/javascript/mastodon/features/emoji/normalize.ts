@@ -1,19 +1,12 @@
-// Utility codes
-const VARIATION_SELECTOR_CODE = 0xfe0f;
-const KEYCAP_CODE = 0x20e3;
-
-// Gender codes
-const GENDER_FEMALE_CODE = 0x2640;
-const GENDER_MALE_CODE = 0x2642;
-
-// Skin tone codes
-const SKIN_TONE_CODES = [
-  0x1f3fb, // Light skin tone
-  0x1f3fc, // Medium-light skin tone
-  0x1f3fd, // Medium skin tone
-  0x1f3fe, // Medium-dark skin tone
-  0x1f3ff, // Dark skin tone
-] as const;
+import {
+  VARIATION_SELECTOR_CODE,
+  KEYCAP_CODE,
+  GENDER_FEMALE_CODE,
+  GENDER_MALE_CODE,
+  SKIN_TONE_CODES,
+  EMOJIS_WITH_DARK_BORDER,
+  EMOJIS_WITH_LIGHT_BORDER,
+} from './constants';
 
 // Misc codes that have special handling
 const SKIER_CODE = 0x26f7;
@@ -23,6 +16,17 @@ const EYE_CODE = 0x1f441;
 const LEVITATING_PERSON_CODE = 0x1f574;
 const SPEECH_BUBBLE_CODE = 0x1f5e8;
 const MS_CLAUS_CODE = 0x1f936;
+
+export function emojiToUnicodeHex(emoji: string): string {
+  const codes: number[] = [];
+  for (const char of emoji) {
+    const code = char.codePointAt(0);
+    if (code !== undefined) {
+      codes.push(code);
+    }
+  }
+  return hexNumbersToString(codes);
+}
 
 export function unicodeToTwemojiHex(unicodeHex: string): string {
   const codes = hexStringToNumbers(unicodeHex);
@@ -48,6 +52,35 @@ export function unicodeToTwemojiHex(unicodeHex: string): string {
   }
 
   return hexNumbersToString(normalizedCodes, 0);
+}
+
+interface TwemojiBorderInfo {
+  hexCode: string;
+  hasLightBorder: boolean;
+  hasDarkBorder: boolean;
+}
+
+export const CODES_WITH_DARK_BORDER =
+  EMOJIS_WITH_DARK_BORDER.map(emojiToUnicodeHex);
+
+export const CODES_WITH_LIGHT_BORDER =
+  EMOJIS_WITH_LIGHT_BORDER.map(emojiToUnicodeHex);
+
+export function twemojiHasBorder(twemojiHex: string): TwemojiBorderInfo {
+  const normalizedHex = twemojiHex.toUpperCase();
+  let hasLightBorder = false;
+  let hasDarkBorder = false;
+  if (CODES_WITH_LIGHT_BORDER.includes(normalizedHex)) {
+    hasLightBorder = true;
+  }
+  if (CODES_WITH_DARK_BORDER.includes(normalizedHex)) {
+    hasDarkBorder = true;
+  }
+  return {
+    hexCode: normalizedHex,
+    hasLightBorder,
+    hasDarkBorder,
+  };
 }
 
 interface TwemojiSpecificEmoji {
@@ -84,10 +117,15 @@ export function twemojiToUnicodeInfo(
   let gender: undefined | number;
   let skin: undefined | number;
   for (const code of codes) {
-    if (code in GENDER_CODES_MAP) {
+    if (!gender && code in GENDER_CODES_MAP) {
       gender = GENDER_CODES_MAP[code];
-    } else if (code in SKIN_TONE_CODES) {
+    } else if (!skin && code in SKIN_TONE_CODES) {
       skin = code;
+    }
+
+    // Exit if we have both skin and gender
+    if (skin && gender) {
+      break;
     }
   }
 
@@ -103,8 +141,8 @@ export function twemojiToUnicodeInfo(
     // For key emoji, insert the variation selector
     mappedCodes = [codes[0], VARIATION_SELECTOR_CODE, KEYCAP_CODE];
   } else if (
-    codes.at(0) === SKIER_CODE ||
-    codes.at(0) === LEVITATING_PERSON_CODE
+    (codes.at(0) === SKIER_CODE || codes.at(0) === LEVITATING_PERSON_CODE) &&
+    codes.length > 1
   ) {
     // Twemoji offers more gender and skin options for the skier and levitating person emoji.
     return {
