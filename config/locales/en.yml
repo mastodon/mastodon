@@ -842,6 +842,10 @@ en:
         all: To everyone
         disabled: To no one
         users: To logged-in local users
+      protections:
+        activitypub: ActivityPub
+        preamble: Settings to protect your server
+        title: Protection
       registrations:
         moderation_recommandation: Please make sure you have an adequate and reactive moderation team before you open registrations to everyone!
         preamble: Control who can create an account on your server.
@@ -1178,6 +1182,7 @@ en:
   applications:
     created: Application successfully created
     destroyed: Application successfully deleted
+    invalid_regexp: 'The provided Regexp is invalid: %{message}'
     logout: Logout
     regenerate_token: Regenerate access token
     token_regenerated: Access token successfully regenerated
