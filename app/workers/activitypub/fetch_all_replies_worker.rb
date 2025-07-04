@@ -16,6 +16,7 @@ class ActivityPub::FetchAllRepliesWorker
   MAX_PAGES = (ENV['FETCH_REPLIES_MAX_PAGES'] || 500).to_i
 
   def perform(root_status_id, options = {})
+    @async_refresh = AsyncRefresh.new("context:#{root_status_id}:refresh")
     @root_status = Status.remote.find_by(id: root_status_id)
     return unless @root_status&.should_fetch_replies?
 
@@ -38,6 +39,7 @@ class ActivityPub::FetchAllRepliesWorker
 
       uris_to_fetch.concat(new_reply_uris)
       fetched_uris = fetched_uris.merge(new_reply_uris)
+      @async_refresh.increment_result_count(by: new_reply_uris.size)
       n_pages += new_n_pages
     end
 
@@ -45,6 +47,8 @@ class ActivityPub::FetchAllRepliesWorker
 
     # Workers shouldn't be returning anything, but this is used in tests
     fetched_uris
+  ensure
+    @async_refresh.finish!
   end
 
   private
