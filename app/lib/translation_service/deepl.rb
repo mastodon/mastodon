@@ -11,6 +11,7 @@ class TranslationService::DeepL < TranslationService
   end
 
   def translate(texts, source_language, target_language)
+    source_language = nil if source_language == 'und'
     form = { text: texts, source_lang: source_language&.upcase, target_lang: target_language, tag_handling: 'html' }
     request(:post, '/v2/translate', form: form) do |res|
       transform_response(res.body_with_limit)
@@ -18,7 +19,7 @@ class TranslationService::DeepL < TranslationService
   end
 
   def languages
-    source_languages = [nil] + fetch_languages('source')
+    source_languages = ['und'] + fetch_languages('source')
 
     # In DeepL, EN and PT are deprecated in favor of EN-GB/EN-US and PT-BR/PT-PT, so
     # they are supported but not returned by the API.
