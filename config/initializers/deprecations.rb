@@ -29,3 +29,17 @@ if ENV.key?('WHITELIST_MODE')
     LIMITED_FEDERATION_MODE. Please update your configuration.
   MESSAGE
 end
+
+if ENV.key?('EMAIL_DOMAIN_BLACKLIST')
+  warn(<<~MESSAGE.squish)
+    WARNING: The environment variable EMAIL_DOMAIN_BLACKLIST has been replaced
+    with EMAIL_DOMAIN_DENYLIST. Please update your configuration.
+  MESSAGE
+end
+
+if ENV.key?('EMAIL_DOMAIN_WHITELIST')
+  warn(<<~MESSAGE.squish)
+    WARNING: The environment variable EMAIL_DOMAIN_WHITELIST has been replaced
+    with EMAIL_DOMAIN_ALLOWLIST. Please update your configuration.
+  MESSAGE
+end
