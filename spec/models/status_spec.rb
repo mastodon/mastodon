@@ -191,6 +191,19 @@ RSpec.describe Status do
     end
   end
 
+  describe '.not_replying_to_account' do
+    let(:account) { Fabricate :account }
+    let!(:status_from_account) { Fabricate :status, account: account }
+    let!(:reply_to_account_status) { Fabricate :status, thread: status_from_account }
+    let!(:reply_to_other) { Fabricate :status, thread: Fabricate(:status) }
+
+    it 'returns records not in reply to provided account' do
+      expect(described_class.not_replying_to_account(account))
+        .to not_include(reply_to_account_status)
+        .and include(reply_to_other)
+    end
+  end
+
   describe '#untrusted_favourites_count' do
     before do
       alice.update(domain: 'example.com')
