@@ -5,9 +5,33 @@ require_relative 'base'
 
 module Mastodon::CLI
   class EmailDomainBlocks < Base
+    option :only_blocked, type: :boolean, defaut: false
+    option :only_with_approval, type: :boolean, default: false
     desc 'list', 'List blocked e-mail domains'
+    long_desc <<-LONG_DESC
+      By default this command lists all domains in the email domain block list
+      and their associated MX records (if included).
+
+      If the --only-blocked option is provided, this command will list only email
+      domains that are fully blocked from signup.
+
+      If the --only-with-approval option is provided, this command will list only
+      email domains that are allowed to be used but require manual approval.
+
+      The --only-blocked and --only-with-approval options are mutually exclusive.
+    LONG_DESC
     def list
-      EmailDomainBlock.parents.find_each do |parent|
+      fail_with_message 'Cannot specify both --only-blocked and --only-with-approval' if options[:only_blocked] && options[:only_with_approval]
+
+      base_query = EmailDomainBlock.parents
+
+      if options[:only_blocked]
+        base_query = base_query.where(allow_with_approval: false)
+      elsif options[:only_with_approval]
+        base_query = base_query.where(allow_with_approval: true)
+      end
+
+      base_query.find_each do |parent|
         say(parent.domain.to_s, :white)
 
         shell.indent do
@@ -19,6 +43,7 @@ module Mastodon::CLI
     end
 
     option :with_dns_records, type: :boolean
+    option :allow_with_approval, type: :boolean, defaut: false
     desc 'add DOMAIN...', 'Block e-mail domain(s)'
     long_desc <<-LONG_DESC
       Blocking an e-mail domain prevents users from signing up
@@ -30,6 +55,9 @@ module Mastodon::CLI
       This can be helpful if you are blocking an e-mail server that has many
       different domains pointing to it as it allows you to essentially block
       it at the root.
+
+      When the --allow-with-approval option is set, the email domains provided will
+      have to be manually approved for signup.
     LONG_DESC
     def add(*domains)
       fail_with_message 'No domain(s) given' if domains.empty?
@@ -47,19 +75,18 @@ module Mastodon::CLI
         other_domains = []
         other_domains = DomainResource.new(domain).mx if options[:with_dns_records]
 
-        email_domain_block = EmailDomainBlock.new(domain: domain, other_domains: other_domains)
+        email_domain_block = EmailDomainBlock.new(domain: domain, other_domains: other_domains, allow_with_approval: options[:allow_with_approval])
         email_domain_block.save!
         processed += 1
 
         (email_domain_block.other_domains || []).uniq.each do |hostname|
-          another_email_domain_block = EmailDomainBlock.new(domain: hostname, parent: email_domain_block)
-
           if EmailDomainBlock.exists?(domain: hostname)
             say("#{hostname} is already blocked.", :yellow)
             skipped += 1
             next
           end
 
+          another_email_domain_block = EmailDomainBlock.new(domain: hostname, parent: email_domain_block, allow_with_approval: options[:allow_with_approval])
           another_email_domain_block.save!
           processed += 1
         end
