@@ -356,6 +356,12 @@ namespace :api, format: false do
 
       resources :accounts, only: [:index], module: :notifications
     end
+
+    resources :statuses, only: [] do
+      member do
+        get :context
+      end
+    end
   end
 
   namespace :web do
