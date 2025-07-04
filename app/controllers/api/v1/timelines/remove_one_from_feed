@@ -1,4 +1,4 @@
-class Api::V1::Timelines::RemoveOneFromFeed < Api::BaseController
+class Api::V1::Timelines::RemoveOneFromFeedController < Api::BaseController
     def create
         remove_one_from_feed
     end
@@ -28,7 +28,7 @@ class Api::V1::Timelines::RemoveOneFromFeed < Api::BaseController
         # unless current_user.admin? || current_user.account.id == account.id
         #   render json: { error: "Forbidden" }, status: :forbidden and return
         # end
-        
+
         result = FeedManager.instance.unpush_from_home(account, status)
         if result
             render json: { message: "Status removed from feed for account #{account.id}" }, status: :accepted
