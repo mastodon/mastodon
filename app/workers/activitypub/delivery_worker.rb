@@ -50,7 +50,7 @@ class ActivityPub::DeliveryWorker
     Request.new(:post, @inbox_url, body: @json, http_client: http_client).tap do |request|
       request.on_behalf_of(@source_account, sign_with: @options[:sign_with])
       request.add_headers(HEADERS)
-      request.add_headers({ 'Collection-Synchronization' => synchronization_header }) if ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] != 'true' && @options[:synchronize_followers]
+      request.add_headers({ 'Collection-Synchronization' => synchronization_header }) if !Rails.configuration.x.mastodon.disable_followers_synchronization && @options[:synchronize_followers]
     end
   end
 
