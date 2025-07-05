@@ -56,6 +56,7 @@ eu:
         scopes: Zeintzuk API atzitu ditzakeen aplikazioak. Goi mailako arloa aukeratzen baduzu, ez dituzu azpikoak aukeratu behar.
         setting_aggregate_reblogs: Ez erakutsi bultzada berriak berriki bultzada jaso duten tootentzat (berriki jasotako bultzadei eragiten die bakarrik)
         setting_always_send_emails: Normalean eposta jakinarazpenak ez dira bidaliko Mastodon aktiboki erabiltzen ari zaren bitartean
+        setting_default_quote_policy: Aipaturiko erabiltzaileek beti dute aipatzeko baimena. Ezarpen honek Mastodon-en hurrengo bertsioarekin sortutako argitalpenetan bakarrik izango du eragina, baina prestatzean lehentasuna hauta dezakezu
         setting_default_sensitive: Multimedia hunkigarria lehenetsita ezkutatzen da, eta sakatuz ikusi daiteke
         setting_display_media_default: Ezkutatu hunkigarri gisa markatutako multimedia
         setting_display_media_hide_all: Ezkutatu multimedia guztia beti
@@ -75,6 +76,7 @@ eu:
       filters:
         action: Aukeratu ze ekintza burutu behar den bidalketa bat iragazkiarekin bat datorrenean
         actions:
+          blur: Ezkutatu edukia ohar baten atzean, testua bera ezkutatu gabe
           hide: Ezkutatu erabat iragazitako edukia, existituko ez balitz bezala
           warn: Ezkutatu iragazitako edukia iragazkiaren izenburua duen abisu batekin
       form_admin_settings:
@@ -88,6 +90,7 @@ eu:
         favicon: WEBP, PNG, GIF or JPG. Mastodon-en favicon-a gainidazten du ikono pertsonalizatu batekin.
         mascot: Web interfaze aurreratuko ilustrazioa gainidazten du.
         media_cache_retention_period: Multimedia-fitxategiak dituzten urruneko erabiltzaileen argitalpenak zure zerbitzarian gordetzen dira cachean. Balio positiboa ezartzean, multimedia zehazturiko egunen buruan ezabatuko da. Multimedia-datuak eskatzen badira ezabatu ostean, berriro deskargatuko dira, iturburuko edukia oraindik erabilgarri badago. Estekaren aurrebistako txartelek hirugarrenen guneei zenbatetan dei diezaieketen mugatzen dieten murrizketak direla eta, balio honi, gutxienez, 14 egunen balioa ezartzea gomendatzen da, bestela, esteken aurrebistako txartelak ez dira eguneratuko eskatu ahala denbora horren aurretik.
+        min_age: Erabiltzaileei jaiotze-data berresteko eskatuko zaie izen-ematean
         peers_api_enabled: Zerbitzari honek fedibertsoan ikusi dituen zerbitzarien domeinu-izenen zerrenda. Ez da daturik ematen zerbitzari jakin batekin federatzearen ala ez federatzearen inguruan, zerbitzariak haien berri duela soilik. Federazioari buruzko estatistika orokorrak biltzen dituzten zerbitzuek erabiltzen dute hau.
         profile_directory: Profilen direktorioan ikusgai egotea aukeratu duten erabiltzaile guztiak zerrendatzen dira.
         require_invite_text: Izen emateak eskuz onartu behar direnean, "Zergatik elkartu nahi duzu?" testu sarrera derrigorrezko bezala ezarri, ez hautazko
@@ -132,9 +135,12 @@ eu:
         name: Letrak maiuskula/minuskulara aldatu ditzakezu besterik ez, adibidez irakurterrazago egiteko
       terms_of_service:
         changelog: Markdown-en sintaxiarekin egitura daiteke.
+        effective_date: Zentzuzko epe bat 10 eta 30 egun bitartekoa izan daiteke, erabiltzaileei jakinarazten diezun egunetik kontatzen hasita.
         text: Markdown-en sintaxiarekin egitura daiteke.
       terms_of_service_generator:
         admin_email: Legezko abisuak, kontraindikazioak, agindu judizialak, erretiratzeko eskaerak eta legea betetzeko eskaerak barne.
+        arbitration_address: Goiko helbide fisikoa edo "N/A" bera izan daiteke posta elektronikoa erabiliz gero.
+        arbitration_website: Web formularioa izan daiteke, edo "N/A" posta elektronikoa erabiliz gero.
       user:
         chosen_languages: Markatzean, hautatutako hizkuntzetan dauden tutak besterik ez dira erakutsiko.
       user_role:
@@ -327,6 +333,9 @@ eu:
       terms_of_service_generator:
         domain: Domeinua
       user:
+        date_of_birth_1i: Eguna
+        date_of_birth_2i: Hilabetea
+        date_of_birth_3i: Urtea
         role: Rola
         time_zone: Ordu zona
       user_role:

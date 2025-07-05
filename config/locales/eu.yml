@@ -450,6 +450,27 @@ eu:
       new:
         title: Domeinu-blokeoak inportatu
       no_file: Ez da fitxategirik hautatu
+    fasp:
+      debug:
+        callbacks:
+          delete: Ezabatu
+          ip: IP helbidea
+      providers:
+        active: Aktibo
+        base_url: Oinarrizko URL-a
+        delete: Ezabatu
+        edit: Editatu hornitzailea
+        finish_registration: Izen-ematea bukatu
+        name: Izena
+        providers: Hornitzaileak
+        public_key_fingerprint: Gako publikoaren hatz-marka
+        registration_requested: Izen-ematea eskatuta
+        registrations:
+          confirm: Berretsi
+          reject: Ukatu
+        save: Gorde
+        sign_in: Hasi saioa
+        status: Egoera
     follow_recommendations:
       description_html: "<strong>Jarraitzeko gomendioek erabiltzaile berriei eduki interesgarria azkar aurkitzen laguntzen diete</strong>. Erabiltzaile batek jarraitzeko gomendio pertsonalizatuak jasotzeko adina interakzio izan ez duenean, kontu hauek gomendatzen zaizkio. Egunero birkalkulatzen dira hizkuntza bakoitzerako, azken aldian parte-hartze handiena izan duten eta jarraitzaile lokal gehien dituzten kontuak nahasiz."
       language: Hizkuntza
@@ -717,11 +738,14 @@ eu:
       title: Rolak
     rules:
       add_new: Gehitu araua
+      add_translation: Gehitu itzulpena
       delete: Ezabatu
       description_html: Gehienek erabilera baldintzak irakurri eta onartu dituztela baieztatzen badute ere, orokorrean arazoren bat dagoen arte ez dituzte irakurtzen. <strong>Zerbitzariaren arauak begirada batean ikustea errazteko buletadun zerrenda batean bildu.</strong> Saiatu arauak labur eta sinple idazten, baina elementu askotan banatu gabe.
       edit: Editatu araua
       empty: Ez da zerbitzariko araurik definitu oraindik.
       title: Zerbitzariaren arauak
+      translation: Itzulpena
+      translations: Itzulpenak
     settings:
       about:
         manage_rules: Kudeatu zerbitzariaren arauak
@@ -747,6 +771,7 @@ eu:
       discovery:
         follow_recommendations: Jarraitzeko gomendioak
         preamble: Eduki interesgarria aurkitzea garrantzitsua da Mastodoneko erabiltzaile berrientzat, behar bada inor ez dutelako ezagutuko. Kontrolatu zure zerbitzariko aurkikuntza-ezaugarriek nola funtzionatzen duten.
+        privacy: Pribatutasuna
         profile_directory: Profil-direktorioa
         public_timelines: Denbora-lerro publikoak
         publish_statistics: Argitaratu estatistikak
@@ -794,6 +819,7 @@ eu:
       batch:
         remove_from_report: Kendu txostenetik
         report: Salatu
+      contents: Edukiak
       deleted: Ezabatuta
       favourites: Gogokoak
       history: Bertsio-historia
@@ -802,6 +828,7 @@ eu:
       media:
         title: Multimedia
       metadata: Metadatuak
+      no_history: Bidalketa hau ez da editatu
       no_status_selected: Ez da bidalketarik aldatu ez delako bat ere hautatu
       open: Ireki bidalketa
       original_status: Jatorrizko bidalketa
@@ -849,6 +876,8 @@ eu:
         message_html: Ez duzu zerbitzariaren araurik definitu.
       sidekiq_process_check:
         message_html: Ez da ari Sidekiq prozesurik exekutatzen %{value} ilad(et)an. Egiaztatu Sidekiq konfigurazioa
+      software_version_check:
+        message_html: Mastodon eguneratze bat eskuragarri dago.
       software_version_critical_check:
         action: Ikusi eguneraketa eskuragarriak
         message_html: Mastodon eguneraketa kritikoa eskuragarri, mesedez eguneratu ahal bezain azkar.
@@ -862,8 +891,35 @@ eu:
         action: Ikus hemen informazio gehiagorako
         message_html: "<strong>Zure objektuen biltegiratzea ez dago ongi konfiguratua. Zure erabiltzaileen pribatutasuna arriskuan dago.</strong>"
     tags:
+      moderation:
+        not_usable: Ez erabilgarri
+        pending_review: Berrikusketaren zain
+        reviewed: Berrikusita
+        title: Egoera
+        unreviewed: Berrikusi gabe
+        usable: Erabilgarri
+      name: Izena
+      newest: Berriena
+      oldest: Zaharrena
+      open: Publikoki ikusi
+      reset: Berrezarri
       review: Berrikusketaren egoera
+      search: Bilatu
+      title: Traolak
       updated_msg: Traola-ezarpenak ongi eguneratu dira
+    terms_of_service:
+      changelog: Zer aldatu da
+      current: Oraingoa
+      draft: Zirriborroa
+      generate: Txantiloila erabili
+      generates:
+        action: Sortu
+      history: Historia
+      live: Zuzenean
+      publish: Argitaratu
+      published_on_html: "%{date}(e)an argitaratua"
+      save_draft: Gorde zirriborroa
+      title: Zerbitzuaren baldintzak
     title: Administrazioa
     trends:
       allow: Onartu
@@ -1056,6 +1112,7 @@ eu:
     migrate_account_html: Kontu hau beste batera birbideratu nahi baduzu, <a href="%{path}">hemen konfiguratu</a> dezakezu.
     or_log_in_with: Edo hasi saioa honekin
     progress:
+      confirm: Berretsi e-mail helbidea
       details: Zure xehetasunak
       review: Gure berrikuspena
       rules: Onartu arauak
@@ -1077,6 +1134,7 @@ eu:
     security: Segurtasuna
     set_new_password: Ezarri pasahitza berria
     setup:
+      email_below_hint_html: Begiratu zure spameko karpetan, edo eskatu beste bat. Zure helbide elektronikoa zuzen dezakezu oker badago.
       link_not_received: Ez duzu estekarik jaso?
       title: Begiratu zure sarrera-ontzia
     sign_in:
@@ -1587,10 +1645,12 @@ eu:
     delete: Kontuaren ezabaketa
     development: Garapena
     edit_profile: Editatu profila
+    export: Esportatu
     featured_tags: Nabarmendutako traolak
     import: Inportazioa
     import_and_export: Inportatu eta esportatu
     migrate: Kontuaren migrazioa
+    notifications: Posta bidezko jakinarazpenak
     preferences: Hobespenak
     profile: Profila
     relationships: Jarraitutakoak eta jarraitzaileak
@@ -1637,6 +1697,10 @@ eu:
       limit: Gehienez finkatu daitekeen bidalketa kopurua finkatu duzu jada
       ownership: Ezin duzu beste norbaiten bidalketa bat finkatu
       reblog: Bultzada bat ezin da finkatu
+    quote_policies:
+      followers: Jarraitzaileak eta aipatutako erabiltzaileak
+      nobody: Aipatutako erabiltzaileak soilik
+      public: Guztiak
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Zuzena
@@ -1688,6 +1752,8 @@ eu:
       too_late: Beranduegi da neurri hau apelatzeko
   tags:
     does_not_match_previous_name: ez dator aurreko izenarekin bat
+  terms_of_service:
+    title: Erabilera baldintzak
   themes:
     contrast: Mastodon (Kontraste altua)
     default: Mastodon (Iluna)
@@ -1833,6 +1899,7 @@ eu:
     instructions_html: Kopiatu eta itsatsi ondoko kodea zure webguneko HTMLan. Ondoren, gehitu zure webgunearen helbidea zure profileko eremu gehigarrietako batean, "Editatu profila" fitxatik eta gorde aldaketak.
     verification: Egiaztaketa
     verified_links: Zure lotura egiaztatuak
+    website_verification: Web orriaren egiaztapena
   webauthn_credentials:
     add: Gehitu segurtasun gako berria
     create:
