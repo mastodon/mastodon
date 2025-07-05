@@ -49,8 +49,14 @@ eu:
           attributes:
             reblog:
               taken: mezu honentzat bazegoen aurretik
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: goizegi da, %{date} baino geroagokoa izan behar da
         user:
           attributes:
+            date_of_birth:
+              below_limit: adinaren mugaren azpitik dago
             email:
               blocked: onartu gabeko e-posta hornitzaile bat erabiltzen du
               unreachable: dirudienez ez da existitzen
