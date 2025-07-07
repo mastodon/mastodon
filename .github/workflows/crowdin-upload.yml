@@ -14,6 +14,7 @@ on:
       - config/locales/devise.en.yml
       - config/locales/doorkeeper.en.yml
       - .github/workflows/crowdin-upload.yml
+  workflow_dispatch:
 
 jobs:
   upload-translations:
