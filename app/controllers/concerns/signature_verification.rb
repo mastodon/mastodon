@@ -10,6 +10,11 @@ module SignatureVerification
   EXPIRATION_WINDOW_LIMIT = 12.hours
   CLOCK_SKEW_MARGIN       = 1.hour
 
+  included do
+    # Starry parses headers, so a parse error means malformed headers
+    rescue_from Starry::ParseError, with: :bad_request
+  end
+
   def require_account_signature!
     render json: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
   end
