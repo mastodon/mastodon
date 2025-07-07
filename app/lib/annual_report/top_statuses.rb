@@ -4,16 +4,16 @@ class AnnualReport::TopStatuses < AnnualReport::Source
   def generate
     {
       top_statuses: {
-        by_reblogs: formatted_status(most_reblogged_status),
-        by_favourites: formatted_status(most_favourited_status),
-        by_replies: formatted_status(most_replied_status),
+        by_reblogs: status_identifier(most_reblogged_status),
+        by_favourites: status_identifier(most_favourited_status),
+        by_replies: status_identifier(most_replied_status),
       },
     }
   end
 
   private
 
-  def formatted_status(status)
+  def status_identifier(status)
     status.id.to_s if status.present?
   end
 
