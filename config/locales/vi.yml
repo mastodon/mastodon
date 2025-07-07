@@ -60,7 +60,7 @@ vi:
       destroyed_msg: Dữ liệu %{username} sẽ được lên lịch xóa ngay bây giờ
       disable: Khóa
       disable_sign_in_token_auth: Tắt xác minh bằng email
-      disable_two_factor_authentication: Vô hiệu hóa xác minh 2 bước
+      disable_two_factor_authentication: Vô hiệu hóa xác thực 2 bước
       disabled: Tạm khóa
       display_name: Biệt danh
       domain: Máy chủ
@@ -265,7 +265,7 @@ vi:
         destroy_status_html: "%{name} đã xóa tút của %{target}"
         destroy_unavailable_domain_html: "%{name} tiếp tục liên hợp với máy chủ %{target}"
         destroy_user_role_html: "%{name} đã xóa vai trò %{target}"
-        disable_2fa_user_html: "%{name} đã vô hiệu hóa xác minh hai bước của %{target}"
+        disable_2fa_user_html: "%{name} đã vô hiệu hóa xác thực 2 bước của %{target}"
         disable_custom_emoji_html: "%{name} đã ẩn emoji %{target}"
         disable_relay_html: "%{name} đã tắt relay %{target}"
         disable_sign_in_token_auth_user_html: "%{name} đã tắt xác minh email của %{target}"
@@ -765,7 +765,7 @@ vi:
         manage_taxonomies: Quản lý phân loại
         manage_taxonomies_description: Cho phép đánh giá nội dung xu hướng và cập nhật cài đặt hashtag
         manage_user_access: Quản lý người truy cập
-        manage_user_access_description: Cho phép người dùng tắt xác minh hai bước của người khác, đổi địa chỉ email và đặt lại mật khẩu của họ
+        manage_user_access_description: Cho phép người dùng tắt xác thực 2 bước của người khác, đổi địa chỉ email và đặt lại mật khẩu của họ
         manage_users: Quản lý người
         manage_users_description: Cho phép xem thông tin chi tiết của người khác và thực hiện các hành động kiểm duyệt
         manage_webhooks: Quản lý Webhook
@@ -1524,11 +1524,11 @@ vi:
       limit: Bạn đã đạt đến số lượng danh sách tối đa
   login_activities:
     authentication_methods:
-      otp: xác minh 2 bước
+      otp: xác thực 2 bước
       password: mật khẩu
       sign_in_token: mã an toàn email
       webauthn: khóa bảo mật
-    description_html: Nếu có lần đăng nhập đáng ngờ, hãy đổi ngay mật khẩu và bật xác minh 2 bước.
+    description_html: Nếu có lần đăng nhập đáng ngờ, hãy đổi ngay mật khẩu và bật xác thực 2 bước.
     empty: Không có lịch sử đăng nhập
     failed_sign_in_html: Đăng nhập thất bại bằng %{method} từ %{ip} (%{browser})
     successful_sign_in_html: Đăng nhập bằng %{method} từ %{ip} (%{browser})
@@ -1795,7 +1795,7 @@ vi:
     severed_relationships: Quan hệ đứt gãy
     statuses_cleanup: Tự động xóa tút cũ
     strikes: Lần cảnh cáo
-    two_factor_authentication: Xác minh 2 bước
+    two_factor_authentication: Xác thực 2 bước
     webauthn_authentication: Khóa bảo mật
   severed_relationships:
     download: Tải xuống (%{count})
@@ -1911,10 +1911,10 @@ vi:
   two_factor_authentication:
     add: Thêm
     disable: Vô hiệu hóa
-    disabled_success: Đã vô hiệu hóa xác minh 2 bước
+    disabled_success: Đã vô hiệu hóa xác thực 2 bước
     edit: Sửa
-    enabled: Đã kích hoạt xác minh 2 bước
-    enabled_success: Xác minh 2 bước được kích hoạt thành công
+    enabled: Đã kích hoạt xác thực 2 bước
+    enabled_success: Xác thực 2 bước được kích hoạt thành công
     generate_recovery_codes: Tạo mã khôi phục
     lost_recovery_codes: Mã khôi phục cho phép bạn lấy lại quyền truy cập vào tài khoản của mình nếu bạn mất điện thoại. Nếu bạn bị mất mã khôi phục, bạn có thể tạo lại chúng ở đây. Mã khôi phục cũ của bạn sẽ bị vô hiệu.
     methods: Phương pháp xác minh
@@ -1948,13 +1948,13 @@ vi:
       details: 'Chi tiết thông tin đăng nhập:'
       explanation: Ai đó đã cố đăng nhập vào tài khoản của bạn nhưng cung cấp yếu tố xác thực thứ hai không hợp lệ.
       further_actions_html: Nếu không phải bạn, hãy lập tức %{action} vì có thể có rủi ro.
-      subject: Xác minh hai bước thất bại
-      title: Xác minh hai bước thất bại
+      subject: Xác thực 2 bước thất bại
+      title: Xác thực 2 bước thất bại
     suspicious_sign_in:
       change_password: đổi mật khẩu của bạn
       details: 'Chi tiết thông tin đăng nhập:'
       explanation: Chúng tôi phát hiện tài khoản của bạn đăng nhập bất thường từ một địa chỉ IP mới.
-      further_actions_html: Nếu đây không phải là bạn, hãy %{action} lập tức và bật xác minh hai bước để giữ tài khoản được an toàn.
+      further_actions_html: Nếu đây không phải là bạn, hãy %{action} lập tức và bật xác thực 2 bước để giữ tài khoản được an toàn.
       subject: Đăng nhập tài khoản từ địa chỉ IP mới
       title: Lần đăng nhập mới
     terms_of_service_changed:
@@ -2039,7 +2039,7 @@ vi:
   users:
     follow_limit_reached: Bạn chỉ có thể theo dõi tối đa %{limit} người
     go_to_sso_account_settings: Thiết lập tài khoản nhà cung cấp danh tính
-    invalid_otp_token: Mã xác minh 2 bước không hợp lệ
+    invalid_otp_token: Mã xác thực 2 bước không hợp lệ
     otp_lost_help_html: Nếu bạn mất quyền truy cập vào cả hai, bạn có thể đăng nhập bằng %{email}
     rate_limited: Quá nhiều lần thử, vui lòng thử lại sau.
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
@@ -2067,5 +2067,5 @@ vi:
     nickname_hint: Nhập tên mới cho khóa bảo mật của bạn
     not_enabled: Bạn chưa kích hoạt WebAuthn
     not_supported: Trình duyệt của bạn không hỗ trợ khóa bảo mật
-    otp_required: Để dùng khóa bảo mật, trước tiên hãy kích hoạt xác minh 2 bước.
+    otp_required: Để dùng khóa bảo mật, trước tiên hãy kích hoạt xác thực 2 bước.
     registered_on: Đăng ký vào %{date}
