@@ -476,7 +476,7 @@ Rails.application.routes.draw do
         resource :regenerate, only: :create, controller: :regenerate
         resource :add_to_feed, only: :create, controller: :add_to_feed
         resource :clean_feeds, only: :create, controller: :clean_feeds
-        resource :remove_one_from_feed, only: :create, controller: :remove_one_from_feed
+        resource :remove_from_feed, only: :create, controller: :remove_from_feed
       end
 
       resources :streaming, only: [:index]

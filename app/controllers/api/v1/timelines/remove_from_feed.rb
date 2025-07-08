@@ -1,4 +1,4 @@
-class Api::V1::Timelines::RemoveOneFromFeedController < Api::BaseController
+class Api::V1::Timelines::RemoveFromFeedController < Api::BaseController
     def create
         remove_one_from_feed
     end
