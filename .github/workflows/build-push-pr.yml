@@ -33,7 +33,7 @@ jobs:
     with:
       file_to_build: Dockerfile
       push_to_images: |
-        ghcr.io/mastodon/mastodon
+        ghcr.io/fediway/mastodon
       version_metadata: ${{ needs.compute-suffix.outputs.metadata }}
       flavor: |
         latest=auto
@@ -48,7 +48,7 @@ jobs:
     with:
       file_to_build: streaming/Dockerfile
       push_to_images: |
-        ghcr.io/mastodon/mastodon-streaming
+        ghcr.io/fediway/mastodon-streaming
       version_metadata: ${{ needs.compute-suffix.outputs.metadata }}
       flavor: |
         latest=auto

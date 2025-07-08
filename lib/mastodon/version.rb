@@ -16,6 +16,10 @@ module Mastodon
       0
     end
 
+    def suffix
+      '+fediway-0.1.0'
+    end
+
     def default_prerelease
       ''
     end
@@ -33,7 +37,7 @@ module Mastodon
     end
 
     def to_s
-      components = [to_a.join('.')]
+      components = [to_a.join('.'), suffix]
       components << "-#{prerelease}" if prerelease.present?
       components << "+#{build_metadata}" if build_metadata.present?
       components.join
