@@ -628,11 +628,11 @@ RSpec.describe 'signature verification concern' do
           'sig1=("@method" "@target-uri" "content-digest");created=1703066400;keyid="https://remote.domain/users/bob#main-key"'
         end
         let(:signature_header) do
-          'sig1=:c4jGY/PnOV4CwyvNnAmY6NLX0sf6EtbKu7kYseNARRZaq128PrP0GNQ4cd3XsX9cbMfJMw1ntI4zuEC81ncW8g+90OHP02bX0LkT57RweUtN4CSA01hRqSVe/MW32tjGixCiItvWqjNHoIZnZApu1bd+M3zMR+VCEue4/8a0D2eRrvfQxJUUBXZR1ZTRFlf1LNFDW3U7cuTbAKYr2zWVr7on+h2vA+vzEND9WE8z1SHd6SIFFgP0QRqrCXYx+vsTs3aLusTsamRWissoycJGexb64mI9iqiD8SD+uN1xk6iRU3nkUmhUquugjlOFyjxbbLo5ZnYjsECMt/BW+Catxw==:' # rubocop:disable Layout/LineLength
+          'sig1=:aXua24cIlBi8akNXg/Vc5pU8fNGXo0f4U2qQk42iWoIaCcH3G+z2edPMQTNM/aZmD0bULqvb/yi6ZXgRls1ereq3OqnvA4JBLKx15O/jLayS/FhR4d/2vaeXuBOYXM7EGXItKkFxEXn3J+FCQPb5wY31GlbljrESjsiZ6gtrSmwryBluQCwMJ59LACzocxbWo42Kv3cpSig2aCu9CYXKC4sCH3eSKjwPtjdlpmX1VkYX5ge+JaZMn7A218ZgZOc9xpPawESOuIF9axcKW5PDEhOwmswFd2G65c8H9kJY6zEnqbArP9lRQMmjuAb011NILClaaRZOOupz2HZUdm+91Q==:' # rubocop:disable Layout/LineLength
         end
 
         it 'returns `400` (Bad Request)', :aggregate_failures do
-          post '/activitypub/success', params: 'Hello world', headers: {
+          post '/activitypub/signature_required', params: 'Hello world', headers: {
             'Host' => 'www.example.com',
             'Content-Digest' => digest_header,
             'Signature-Input' => signature_input,
@@ -640,6 +640,9 @@ RSpec.describe 'signature verification concern' do
           }
 
           expect(response).to have_http_status(400)
+          expect(response.parsed_body).to match(
+            error: 'Content-Digest could not be parsed. It does not contain a valid RFC8941 dictionary.'
+          )
         end
       end
     end
