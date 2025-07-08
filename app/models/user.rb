@@ -85,6 +85,7 @@ class User < ApplicationRecord
   has_many :invites, inverse_of: :user, dependent: nil
   has_many :login_activities, inverse_of: :user, dependent: :destroy
   has_many :markers, inverse_of: :user, dependent: :destroy
+  has_many :session_activations, dependent: :destroy
   has_many :webauthn_credentials, dependent: :destroy
   has_many :ips, class_name: 'UserIp', inverse_of: :user, dependent: nil
 
@@ -126,8 +127,6 @@ class User < ApplicationRecord
   normalizes :locale, with: ->(locale) { I18n.available_locales.exclude?(locale.to_sym) ? nil : locale }
   normalizes :time_zone, with: ->(time_zone) { ActiveSupport::TimeZone[time_zone].nil? ? nil : time_zone }
   normalizes :chosen_languages, with: ->(chosen_languages) { chosen_languages.compact_blank.presence }
-
-  has_many :session_activations, dependent: :destroy
 
   delegate :can?, to: :role
 
