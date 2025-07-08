@@ -54,7 +54,7 @@ module Mastodon
     end
 
     def repository
-      source_configuration[:repository]
+      ENV.fetch('GITHUB_REPOSITORY', 'fediway/mastodon')
     end
 
     def source_base_url
