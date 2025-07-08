@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.4.0] - UNRELEASED
+## [4.4.0] - 2025-07-08
 
 ### Added
 
@@ -38,7 +38,7 @@ All notable changes to this project will be documented in this file.
   Server administrators can now chose to opt in to transmit referrer information when following an external link. Only the domain name is transmitted, not the referrer path.
 - Add double tap to zoom and swipe to dismiss to media modal in web UI (#34210 by @Gargron)
 - Add link from Web UI for Hashtags to the Moderation UI (#31448 by @ThisIsMissEm)
-- **Add terms of service** (#33055, #33233, #33230, #33703, #33699, #33994, #33993, #34105, #34122, #34200, #34527, #35053, #35115, #35126 and #35127 by @ClearlyClaire, @Gargron, @mjankowski, and @oneiros)\
+- **Add terms of service** (#33055, #33233, #33230, #33703, #33699, #33994, #33993, #34105, #34122, #34200, #34527, #35053, #35115, #35126, #35127 and #35233 by @ClearlyClaire, @Gargron, @mjankowski, and @oneiros)\
   Server administrators can now fill in Terms of Service and notify their users of upcoming changes.
 - Add optional bulk mailer settings (#35191 and #35203 by @oneiros)\
   This adds the optional environment variables `BULK_SMTP_PORT`, `BULK_SMTP_SERVER`, `BULK_SMTP_LOGIN` and so on analogous to `SMTP_PORT`, `SMTP_SERVER`, `SMTP_LOGIN` and related SMTP configuration environment variables.\
@@ -51,7 +51,7 @@ All notable changes to this project will be documented in this file.
 - Add ability to dismiss alt text badge by tapping it in web UI (#33737 by @Gargron)
 - Add loading indicator to timeline gap indicators in web UI (#33762 by @Gargron)
 - Add interaction modal when trying to interact with a poll while logged out (#32609 by @ThisIsMissEm)
-- **Add experimental FASP support** (#34031, #34415, #34765, #34965, #34964, #34033 and #35218 by @oneiros)\
+- **Add experimental FASP support** (#34031, #34415, #34765, #34965, #34964, #34033, #35218, #35262 and #35263 by @oneiros)\
   This is a first step towards supporting “Fediverse Auxiliary Service Providers” (https://github.com/mastodon/fediverse_auxiliary_service_provider_specifications). This is mostly interesting to developers who would like to implement their own FASP, but also includes the capability to share data with a discovery provider (see https://www.fediscovery.org).
 - Add ability for admins to send announcements to all users via email (#33928 and #34411 by @ClearlyClaire)\
   This is meant for critical announcements only, as this will potentially send a lot of emails and cannot be opted out of by users.
@@ -64,7 +64,7 @@ All notable changes to this project will be documented in this file.
 - Add dropdown menu with quick actions to lists of accounts in web UI (#34391, #34709, and #34767 by @Gargron, @diondiondion, and @mkljczk)
 - Add support for displaying “year in review” notification in web UI (#32710, #32765, #32709, #32807, #32914, #33148, and #33882 by @Gargron and @mjankowski)\
   Note that the notification is currently not generated automatically, and at the moment requires a manual undocumented administrator action.
-- Add experimental support for receiving HTTP Message Signatures (RFC9421) (#34814, #35033 and #35109 by @oneiros)\
+- Add experimental support for receiving HTTP Message Signatures (RFC9421) (#34814, #35033, #35109 and #35278 by @oneiros)\
   For now, this needs to be explicitly enabled through the `http_message_signatures` feature flag (`EXPERIMENTAL_FEATURES=http_message_signatures`). This currently only covers verifying such signatures (inbound HTTP requests), not issuing them (outbound HTTP requests).
 - Add experimental Async Refreshes API (#34918 by @oneiros)
 - Add experimental server-side feature to fetch remote replies (#32615, #34147, #34149, #34151, #34615, #34682, and #34702 by @ClearlyClaire and @sneakers-the-rat)\
@@ -218,6 +218,7 @@ All notable changes to this project will be documented in this file.
 - Fix admin dashboard crash on specific Elasticsearch connection errors (#34683 by @ClearlyClaire)
 - Fix OIDC account creation failing for long display names (#34639 by @defnull)
 - Fix use of the deprecated `/api/v1/instance` endpoint in the moderation interface (#34613 by @renchap)
+- Fix inaccessible “Clear search” button (#35152 and #35281 by @diondiondion)
 - Fix search operators sometimes getting lost (#35190 by @ClearlyClaire)
 - Fix directory scroll position reset (#34560 by @przucidlo)
 - Fix needlessly complex SVG paths for oEmbed and logo (#34538 by @edent)
@@ -232,7 +233,7 @@ All notable changes to this project will be documented in this file.
 - Fix extra space under left-indented vertical videos (#34313 by @ClearlyClaire)
 - Fix glitchy iOS media attachment drag interactions (#35057 by @diondiondion)
 - Fix zoomed images being blurry in Safari (#35052 by @diondiondion)
-- Fix redundant focus stop within status component in Web UI and make focus style more noticeable (#35037, #35051, #35096 and #35150 by @diondiondion)
+- Fix redundant focus stop within status component in Web UI and make focus style more noticeable (#35037, #35051, #35096, #35150 and #35251 by @diondiondion)
 - Fix digits in media player time readout not having a consistent width (#35038 by @diondiondion)
 - Fix wrong text color for “Open in advanced web interface” banner in high-contrast theme (#35032 by @diondiondion)
 - Fix hover card for limited accounts not hiding information as expected (#35024 by @diondiondion)
