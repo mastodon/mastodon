@@ -547,8 +547,8 @@ RSpec.describe Account do
       it { is_expected.to validate_absence_of(:shared_inbox_url).on(:create) }
       it { is_expected.to validate_absence_of(:uri).on(:create) }
 
-      it { is_expected.to allow_values([], ['example.com'], (1..100).to_a).for(:attribution_domains) }
-      it { is_expected.to_not allow_values(['example com'], ['@'], (1..101).to_a).for(:attribution_domains) }
+      it { is_expected.to allow_values([], ['example.com'], Array.new(described_class::ATTRIBUTION_DOMAINS_LIMIT, &:to_s)).for(:attribution_domains) }
+      it { is_expected.to_not allow_values(['example com'], ['@'], Array.new(described_class::ATTRIBUTION_DOMAINS_LIMIT * 2, &:to_s)).for(:attribution_domains) }
     end
 
     context 'when account is remote' do
