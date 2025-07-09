@@ -22,7 +22,21 @@ export function MastodonThemes(): Plugin {
       projectRoot = userConfig.envDir;
       jsRoot = userConfig.root;
 
-      const entrypoints: Record<string, string> = {};
+      let entrypoints: Record<string, string> = {};
+
+      const existingInputs = userConfig.build?.rollupOptions?.input;
+
+      if (typeof existingInputs === 'string') {
+        entrypoints[path.basename(existingInputs)] = existingInputs;
+      } else if (Array.isArray(existingInputs)) {
+        for (const input of existingInputs) {
+          if (typeof input === 'string') {
+            entrypoints[path.basename(input)] = input;
+          }
+        }
+      } else if (typeof existingInputs === 'object') {
+        entrypoints = existingInputs;
+      }
 
       // Get all files mentioned in the themes.yml file.
       const themes = await loadThemesFromConfig(projectRoot);
