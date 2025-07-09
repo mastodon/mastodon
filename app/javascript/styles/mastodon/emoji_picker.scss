@@ -104,7 +104,7 @@
     background: $ui-base-color;
     color: $darker-text-color;
     border: 1px solid var(--background-border-color);
-    border-radius: 4px;
+    border-radius: var(--radius);
 
     &::-moz-focus-inner {
       border: 0;

@@ -13,9 +13,9 @@ interface Props {
 export const AvatarOverlay: React.FC<Props> = ({
   account,
   friend,
-  size = 46,
-  baseSize = 36,
-  overlaySize = 24,
+  size = 35,
+  baseSize = 28,
+  overlaySize = 18,
 }) => {
   const { hovering, handleMouseEnter, handleMouseLeave } =
     useHovering(autoPlayGif);

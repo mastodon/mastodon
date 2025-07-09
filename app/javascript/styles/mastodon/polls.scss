@@ -11,7 +11,7 @@
   }
 
   &__chart {
-    border-radius: 4px;
+    border-radius: var(--radius);
     display: block;
     background: darken($ui-primary-color, 5%);
     height: 5px;
@@ -37,12 +37,12 @@
     // Those rules need to be entirely separate or they won't work, hence the
     // duplication
     &::-moz-progress-bar {
-      border-radius: 4px;
+      border-radius: var(--radius);
       background: darken($ui-primary-color, 5%);
     }
 
     &::-webkit-progress-value {
-      border-radius: 4px;
+      border-radius: var(--radius);
       background: darken($ui-primary-color, 5%);
     }
   }
@@ -83,7 +83,7 @@
       font-family: inherit;
       background: $ui-base-color;
       border: 1px solid $darker-text-color;
-      border-radius: 4px;
+      border-radius: var(--radius);
       padding: 8px 12px;
 
       &:focus {
@@ -118,7 +118,7 @@
     flex: 0 0 auto;
 
     &.checkbox {
-      border-radius: 4px;
+      border-radius: var(--radius);
     }
 
     &:active,

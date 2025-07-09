@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import {
   domain,
-  version,
+  // version,
   source_url,
   statusPageUrl,
   profile_directory as canProfileDirectory,
@@ -93,8 +93,8 @@ export const LinkFooter: React.FC<{
             defaultMessage='View source code'
           />
         </a>
-        <DividingCircle />
-        <span className='version'>v{version}</span>
+        {/* <DividingCircle />
+        <span className='version'>v{version}</span> */}
       </p>
     </div>
   );

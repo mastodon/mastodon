@@ -37,12 +37,12 @@ export const SignInBanner: React.FC = () => {
             />
           </strong>
         </p>
-        <p>
+        {/* <p>
           <FormattedMessage
             id='sign_in_banner.follow_anyone'
             defaultMessage='Follow anyone across the fediverse and see it all in chronological order. No algorithms, ads, or clickbait in sight.'
           />
-        </p>
+        </p> */}
         <a
           href={sso_redirect}
           data-method='post'
@@ -90,12 +90,12 @@ export const SignInBanner: React.FC = () => {
           />
         </strong>
       </p>
-      <p>
+      {/* <p>
         <FormattedMessage
           id='sign_in_banner.follow_anyone'
           defaultMessage='Follow anyone across the fediverse and see it all in chronological order. No algorithms, ads, or clickbait in sight.'
         />
-      </p>
+      </p> */}
       {signupButton}
       <a href='/auth/sign_in' className='button button--block button-tertiary'>
         <FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' />
