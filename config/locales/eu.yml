@@ -187,6 +187,7 @@ eu:
         create_domain_block: Sortu domeinu blokeoa
         create_email_domain_block: Sortu email domeinu blokeoa
         create_ip_block: Sortu IP araua
+        create_relay: Erreleboa sortu
         create_unavailable_domain: Sortu eskuragarri ez dagoen domeinua
         create_user_role: Sortu rola
         demote_user: Jaitsi erabiltzailearen maila
@@ -198,11 +199,13 @@ eu:
         destroy_email_domain_block: Ezabatu email domeinu blokeoa
         destroy_instance: Ezabatu betiko domeinua
         destroy_ip_block: Ezabatu IP araua
+        destroy_relay: Erreleboa ezabatu
         destroy_status: Ezabatu bidalketa
         destroy_unavailable_domain: Ezabatu eskuragarri ez dagoen domeinua
         destroy_user_role: Ezabatu rola
         disable_2fa_user: Desgaitu 2FA
         disable_custom_emoji: Desgaitu emoji pertsonalizatua
+        disable_relay: Erreleboa desaktibatu
         disable_sign_in_token_auth_user: Desgaitu email token autentifikazioa erabiltzailearentzat
         disable_user: Desgaitu erabiltzailea
         enable_custom_emoji: Gaitu emoji pertsonalizatua
@@ -210,6 +213,7 @@ eu:
         enable_user: Gaitu erabiltzailea
         memorialize_account: Bihurtu kontua oroigarri
         promote_user: Igo erabiltzailea mailaz
+        publish_terms_of_service: Zerbitzu-baldintzak argitaratu
         reject_appeal: Baztertu apelazioa
         reject_user: Baztertu erabiltzailea
         remove_avatar_user: Kendu abatarra
@@ -229,23 +233,29 @@ eu:
         update_custom_emoji: Eguneratu emoji pertsonalizatua
         update_domain_block: Eguneratu domeinu-blokeoa
         update_ip_block: Eguneratu IP araua
+        update_report: Txostena eguneratu
         update_status: Eguneratu bidalketa
         update_user_role: Eguneratu rola
       actions:
         approve_appeal_html: "%{name} erabiltzaileak %{target} erabiltzailearen moderazio erabakiaren apelazioa onartu du"
         approve_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen izen-ematea onartu du"
         assigned_to_self_report_html: "%{name} erabiltzaileak %{target} salaketa bere buruari esleitu dio"
+        change_email_user_html: "%{name}(e)k %{target} erabiltzailearen e-posta helbidea aldatu du"
         change_role_user_html: "%{name} erabiltzaileak %{target} kontuaren rola aldatu du"
+        confirm_user_html: "%{name}(e)k %{target} erabiltzailearen e-posta helbidea berretsi du"
         create_account_warning_html: "%{name} erabiltzaileak abisua bidali dio %{target} erabiltzaileari"
         create_announcement_html: "%{name} erabiltzaileak %{target} iragarpen berria sortu du"
+        create_canonical_email_block_html: "%{name}(e)k %{target} hash-a duen helbide elektronikoa blokeatu du"
         create_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji berria kargatu du"
         create_domain_allow_html: "%{name} erabiltzaileak %{target} domeinuarekin federazioa onartu du"
         create_domain_block_html: "%{name} erabiltzaileak %{target} domeinua blokeatu du"
+        create_email_domain_block_html: "%{name}(e)k %{target} e-posta helbideen domeinua blokeatu du"
         create_ip_block_html: "%{name} kontuak %{target} IParen araua sortu du"
         create_unavailable_domain_html: "%{name}(e)k %{target} domeinurako banaketa gelditu du"
         create_user_role_html: "%{name} erabiltzaileak %{target} rola sortu du"
         demote_user_html: "%{name} erabiltzaileak %{target} erabiltzailea mailaz jaitsi du"
         destroy_announcement_html: "%{name} erabiltzaileak %{target} iragarpena ezabatu du"
+        destroy_canonical_email_block_html: "%{name}(e)k %{target} hash-a duen helbide elektronikoa desblokeatu du"
         destroy_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a ezabatu du"
         destroy_domain_allow_html: "%{name} erabiltzaileak %{target} domeinuarekin federatzea debekatu du"
         destroy_domain_block_html: "%{name} erabiltzaileak %{target} domeinua desblokeatu du"
@@ -286,7 +296,9 @@ eu:
       filter_by_action: Iragazi ekintzen arabera
       filter_by_user: Iragazi erabiltzaileen arabera
       title: Auditoria-egunkaria
+      unavailable_instance: "(domeinu izena ez dago erabilgarri)"
     announcements:
+      back: Oharretara bueltatu
       destroyed_msg: Iragarpena ongi ezabatu da!
       edit:
         title: Editatu iragarpena
@@ -433,8 +445,10 @@ eu:
       new:
         create: Gehitu domeinua
         resolve: Ebatzi domeinua
+        title: Posta domeinu berria blokeatu
       not_permitted: Baimendu gabea
       resolved_through_html: "%{domain} domeinuaren bidez ebatzia"
+      title: Email domeinua blokeatuta
     export_domain_allows:
       new:
         title: Baimendutako domeinuak inportatu
@@ -471,6 +485,8 @@ eu:
         save: Gorde
         sign_in: Hasi saioa
         status: Egoera
+        title: Fedibertsoko zerbitzu osagarrien hornitzaileak
+      title: FZOH
     follow_recommendations:
       description_html: "<strong>Jarraitzeko gomendioek erabiltzaile berriei eduki interesgarria azkar aurkitzen laguntzen diete</strong>. Erabiltzaile batek jarraitzeko gomendio pertsonalizatuak jasotzeko adina interakzio izan ez duenean, kontu hauek gomendatzen zaizkio. Egunero birkalkulatzen dira hizkuntza bakoitzerako, azken aldian parte-hartze handiena izan duten eta jarraitzaile lokal gehien dituzten kontuak nahasiz."
       language: Hizkuntza
@@ -536,6 +552,10 @@ eu:
         all: Denak
         limited: Mugatua
         title: Moderazioa
+      moderation_notes:
+        create: Gehitu Moderazio Oharra
+        created_msg: Instantziako moderazio oharra ongi sortu da!
+        description_html: Ikusi eta idatzi oharrak beste moderatzaileentzat eta zuretzat etorkizunerako
       private_comment: Iruzkin pribatua
       public_comment: Iruzkin publikoa
       purge: Ezabatu betiko
