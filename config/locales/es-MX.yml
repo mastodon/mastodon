@@ -214,6 +214,7 @@ es-MX:
         enable_user: Habilitar Usuario
         memorialize_account: Transformar en Cuenta Conmemorativa
         promote_user: Promover Usuario
+        publish_terms_of_service: Publicar condiciones del servicio
         reject_appeal: Rechazar apelación
         reject_user: Rechazar Usuario
         remove_avatar_user: Eliminar Avatar
@@ -278,6 +279,7 @@ es-MX:
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
         promote_user_html: "%{name} promoción al usuario %{target}"
+        publish_terms_of_service_html: "%{name} publicó actualizaciones de las condiciones del servicio"
         reject_appeal_html: "%{name} rechazó la solicitud de moderación de %{target}"
         reject_user_html: "%{name} rechazó el registro de %{target}"
         remove_avatar_user_html: "%{name} eliminó el avatar de %{target}"
@@ -307,6 +309,7 @@ es-MX:
       title: Log de auditoría
       unavailable_instance: "(nombre de dominio no disponible)"
     announcements:
+      back: Volver a la sección de anuncios
       destroyed_msg: "¡Anuncio eliminado con éxito!"
       edit:
         title: Editar anuncio
@@ -315,6 +318,10 @@ es-MX:
       new:
         create: Crear anuncio
         title: Nuevo anuncio
+      preview:
+        disclaimer: Como los usuarios no pueden optar por no recibirlas, las notificaciones por correo electrónico deben limitarse a anuncios importantes, como la violación de datos personales o las notificaciones de cierre de servidores.
+        explanation_html: 'El correo electrónico se enviará a <strong>%{display_count} usuarios</strong>. En el correo electrónico se incluirá el siguiente texto:'
+        title: Vista previa de la notificación del anuncio
       publish: Publicar
       published_msg: "¡Anuncio publicado con éxito!"
       scheduled_for: Programado para %{time}
@@ -473,6 +480,36 @@ es-MX:
       new:
         title: Importar bloqueos de dominio
       no_file: No hay archivo seleccionado
+    fasp:
+      debug:
+        callbacks:
+          created_at: Creado el
+          delete: Eliminar
+          ip: Dirección IP
+          request_body: Cuerpo de la solicitud
+          title: Depurar devoluciones de llamada
+      providers:
+        active: Activo
+        base_url: URL base
+        callback: Devolución de llamada
+        delete: Eliminar
+        edit: Editar proveedor
+        finish_registration: Terminar el registro
+        name: Nombre
+        providers: Proveedores
+        public_key_fingerprint: Huella digital de clave pública
+        registration_requested: Se solicitó el registro
+        registrations:
+          confirm: Confirmar
+          description: Has recibido un registro de un FASP. Recházalo si no lo iniciaste tú. Si lo comenzaste tú, compara cuidadosamente el nombre y la huella de la clave antes de confirmar el registro.
+          reject: Rechazar
+          title: Confirmar registro FASP
+        save: Guardar
+        select_capabilities: Selecciona las capacidades
+        sign_in: Iniciar sesión
+        status: Estado
+        title: Fediverse Auxiliary Service Providers (Proveedores de Servicio Auxiliares del Fediverso)
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Las recomendaciones de cuentas ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para suscitar recomendaciones personalizadas de cuentas a las que seguir, en su lugar se le recomiendan estas cuentas. Se recalculan diariamente a partir de una mezcla de cuentas con el mayor número de interacciones recientes y con el mayor número de seguidores locales con un idioma determinado."
       language: Para el idioma
@@ -541,6 +578,13 @@ es-MX:
         all: Todos
         limited: Limitado
         title: Moderación
+      moderation_notes:
+        create: Añadir nota de moderación
+        created_msg: "¡Nota de moderación de instancia creada exitosamente!"
+        description_html: Ver y dejar notas para otros moderadores y a tu yo futuro
+        destroyed_msg: "¡Nota de moderación de instancia eliminada exitosamente!"
+        placeholder: Información acerca de esta instancia, acciones tomadas o cualquier otra cosa que te ayude a moderar esta instancia en el futuro.
+        title: Notas de moderación
       private_comment: Comentario privado
       public_comment: Comentario público
       purge: Purgar
@@ -749,17 +793,26 @@ es-MX:
       title: Roles
     rules:
       add_new: Añadir norma
+      add_translation: Agregar traducción
       delete: Eliminar
       description_html: Aunque la mayoría afirma haber leído y estar de acuerdo con los términos de servicio, la gente normalmente no los lee hasta después de que surja algún problema. <strong>Haz que sea más fácil ver las normas de tu servidor de un vistazo estipulándolas en una lista de puntos.</strong> Intenta que cada norma sea corta y sencilla, pero sin estar divididas en muchos puntos.
       edit: Editar norma
       empty: Aún no se han definido las normas del servidor.
+      move_down: Mover hacia abajo
+      move_up: Mover hacia arriba
       title: Normas del servidor
+      translation: Traducción
+      translations: Traducciones
+      translations_explanation: Opcionalmente, puedes añadir traducciones para las reglas. Se mostrará el valor por defecto si no hay ninguna versión traducida disponible. Por favor, asegúrate siempre de que cualquier traducción proporcionada esté sincronizada con el valor por defecto.
     settings:
       about:
         manage_rules: Administrar reglas del servidor
         preamble: Proporciona información detallada sobre cómo el servidor es operado, moderado y financiado.
         rules_hint: Hay un área dedicada para las reglas a las que se espera que tus usuarios se adhieran.
         title: Acerca de
+      allow_referrer_origin:
+        desc: Cuando tus usuarios hagan clic en enlaces a sitios externos, su navegador podría enviar la dirección de su servidor Mastodon como referencia. Deshabilita esta opción si esto pudiera identificar de forma exclusiva a tus usuarios, por ejemplo, si se trata de un servidor Mastodon personal.
+        title: Permitir que sitios externos vean tu servidor Mastodon como fuente de tráfico
       appearance:
         preamble: Personalizar la interfaz web de Mastodon.
         title: Apariencia
@@ -779,9 +832,9 @@ es-MX:
       discovery:
         follow_recommendations: Recomendaciones de cuentas
         preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controla cómo funcionan varias opciones de descubrimiento en tu servidor.
+        privacy: Privacidad
         profile_directory: Directorio de perfiles
         public_timelines: Lineas de tiempo públicas
-        publish_discovered_servers: Publicar servidores descubiertos
         publish_statistics: Publicar estadísticas
         title: Descubrimiento
         trends: Tendencias
@@ -866,6 +919,8 @@ es-MX:
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecútalas para asegurarte de que la aplicación funciona como debería
+      elasticsearch_analysis_index_mismatch:
+        message_html: La configuración del analizador de índices de Elasticsearch no está actualizada. Por favor, ejecute <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Clúster de Elasticsearch no es saludable (estado rojo), las funciones de búsqueda no están disponibles
       elasticsearch_health_yellow:
@@ -925,6 +980,36 @@ es-MX:
       search: Buscar
       title: Etiquetas
       updated_msg: Etiquetas actualizadas exitosamente
+    terms_of_service:
+      back: Regresar a las condiciones del servicio
+      changelog: Lo que ha cambiado
+      create: Usa los tuyos
+      current: Actual
+      draft: Borrador
+      generate: Usar plantilla
+      generates:
+        action: Generar
+        chance_to_review_html: "<strong>Las condiciones de servicio generadas no se publicarán automáticamente.</strong> Tendrás la oportunidad de revisar los resultados. Por favor, rellena los datos necesarios para continuar."
+        explanation_html: La plantilla de condiciones de servicio que se proporciona tiene únicamente fines informativos y no debe interpretarse como asesoramiento jurídico sobre ningún tema. Por favor, consulte con su propio asesor legal sobre su situación y las cuestiones legales específicas que tenga.
+        title: Configuración de las condiciones del servicio
+      going_live_on_html: En vigor desde %{date}
+      history: Historial
+      live: Actual
+      no_history: No se han registrado cambios en las condiciones del servicio hasta el momento.
+      no_terms_of_service_html: Actualmente, no tiene configuradas condiciones del servicio. Las condiciones del servicio están diseñadas para proporcionar claridad y protegerte de posibles responsabilidades en disputas con tus usuarios.
+      notified_on_html: Usuarios notificados el %{date}
+      notify_users: Notificar usuarios
+      preview:
+        explanation_html: 'El correo electrónico se enviará a <strong>%{display_count} usuarios</strong> que se hayan registrado antes de %{date}. En el correo electrónico se incluirá el siguiente texto:'
+        send_preview: Enviar vista previa a %{email}
+        send_to_all:
+          one: Enviar %{display_count} correo electrónico
+          other: Enviar %{display_count} correos electrónicos
+        title: Vista previa de la notificación de las condiciones del servicio
+      publish: Publicar
+      published_on_html: Publicado el %{date}
+      save_draft: Guardar borrador
+      title: Condiciones del servicio
     title: Administración
     trends:
       allow: Permitir
@@ -1132,7 +1217,6 @@ es-MX:
     migrate_account: Mudarse a otra cuenta
     migrate_account_html: Si deseas redireccionar esta cuenta a otra distinta, puedes <a href="%{path}">configurarlo aquí</a>.
     or_log_in_with: O inicia sesión con
-    privacy_policy_agreement_html: He leído y acepto la <a href="%{privacy_policy_path}" target="_blank">política de privacidad</a>
     progress:
       confirm: Confirmar dirección de correo
       details: Tus detalles
@@ -1157,7 +1241,7 @@ es-MX:
     set_new_password: Establecer nueva contraseña
     setup:
       email_below_hint_html: Comprueba tu carpeta de correo no deseado o solicita otro enlace de confirmación. Puedes corregir tu dirección de correo electrónico si está mal.
-      email_settings_hint_html: Pulsa el enlace que te hemos enviado para verificar %{email}. Esperaremos aquí mismo.
+      email_settings_hint_html: Haz clic en el enlace que te enviamos a %{email} para comenzar a usar Mastodon. Te esperamos aquí.
       link_not_received: "¿No recibiste un enlace?"
       new_confirmation_instructions_sent: "¡Recibirás un nuevo correo electrónico con el enlace de confirmación en unos minutos!"
       title: Revisa tu bandeja de entrada
@@ -1166,7 +1250,7 @@ es-MX:
       title: Registrate en %{domain}
     sign_up:
       manual_review: Los registros en %{domain} pasan por la revisión manual de nuestros moderadores. Para ayudarnos a procesar tu registro, escribe un poco sobre ti mismo y por qué quieres una cuenta en %{domain}.
-      preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra persona en la red, independientemente del servidor en el que se encuentre.
+      preamble: Al tener una cuenta en este servidor de Mastodon, tendrás la oportunidad de seguir a cualquier persona en el fediverso, sin importar en qué plataforma esté alojada su cuenta.
       title: Crear cuenta de Mastodon en %{domain}.
     status:
       account_status: Estado de la cuenta
@@ -1178,6 +1262,8 @@ es-MX:
       view_strikes: Ver amonestaciones pasadas contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, inténtelo de nuevo.
     use_security_key: Usar la clave de seguridad
+    user_agreement_html: He leído y acepto las <a href="%{terms_of_service_path}" target="_blank">condiciones del servicio</a> y la <a href="%{privacy_policy_path}" target="_blank">política de privacidad</a>
+    user_privacy_agreement_html: Leí y acepto la <a href="%{privacy_policy_path}" target="_blank">política de privacidad</a>
   author_attribution:
     example_title: Texto de ejemplo
     hint_html: "¿Estás escribiendo artículos de noticias o blogs fuera de Mastodon? Controla cómo te acreditan cuando se comparten en Mastodon."
@@ -1263,6 +1349,10 @@ es-MX:
     basic_information: Información básica
     hint_html: "<strong>Personaliza lo que la gente ve en tu perfil público junto a tus publicaciones.</strong> Es más probable que otras personas te sigan e interactúen contigo cuando completes tu perfil y agregues una foto."
     other: Otro
+  emoji_styles:
+    auto: Automático
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': La solicitud que has enviado no es valida o estaba malformada.
     '403': No tienes permiso para acceder a esta página.
@@ -1788,6 +1878,10 @@ es-MX:
       limit: Ya has fijado el número máximo de publicaciones
       ownership: La publicación de alguien más no puede fijarse
       reblog: No se puede fijar una publicación impulsada
+    quote_policies:
+      followers: Seguidores y usuarios mencionados
+      nobody: Solo usuarios mencionados
+      public: Cualquiera
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Directa
@@ -1839,6 +1933,13 @@ es-MX:
       too_late: Es demasiado tarde para apelar esta amonestación
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior
+  terms_of_service:
+    title: Condiciones del servicio
+  terms_of_service_interstitial:
+    future_preamble_html: Estamos realizando cambios en nuestros términos de servicio, que serán aplicados el <strong>%{date}</strong>. Te recomendamos que revises los términos actualizados.
+    past_preamble_html: Hemos cambiado nuestros términos de servicio desde tu última visita. Te animamos a que revises los términos actualizados.
+    review_link: Revisar los términos de servicio
+    title: Los términos de servicio de %{domain} van a cambiar
   themes:
     contrast: Alto contraste
     default: Mastodon
@@ -1870,6 +1971,10 @@ es-MX:
     recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
     webauthn: Claves de seguridad
   user_mailer:
+    announcement_published:
+      description: 'Los administradores de %{domain} están haciendo un anuncio:'
+      subject: Anuncio
+      title: Anuncio de %{domain}
     appeal_approved:
       action: Ajustes de la cuenta
       explanation: La apelación de la amonestación contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue aprobada. Tu cuenta se encuentra de nuevo en buen estado.
@@ -1899,6 +2004,15 @@ es-MX:
       further_actions_html: Si no fuiste tú, te recomendamos que %{action} inmediatamente y habilites la autenticación de dos factores para mantener tu cuenta segura.
       subject: Tu cuenta ha sido accedida desde una nueva dirección IP
       title: Un nuevo inicio de sesión
+    terms_of_service_changed:
+      agreement: Al seguir usando %{domain}, aceptas estas condiciones. Si no estás de acuerdo con las condiciones actualizadas, puedes cancelar tu acuerdo con %{domain} en cualquier momento eliminando tu cuenta.
+      changelog: 'En pocas palabras, esto es lo que esta actualización implica para ti:'
+      description: 'Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos de servicio en %{domain}. Estas actualizaciones entrarán en vigor en %{date}. Te animamos a revisar los términos actualizados en su totalidad aquí:'
+      description_html: Estás recibiendo este correo electrónico porque estamos haciendo algunos cambios en nuestros términos de servicio en %{domain}. Estas actualizaciones entrarán en vigor en <strong>%{date}</strong>. Te animamos a revisar los <a href="%{path}" target="_blank"> términos actualizados en su totalidad aquí</a>.
+      sign_off: El equipo de %{domain}
+      subject: Actualizaciones en nuestras condiciones del servicio
+      subtitle: Las condiciones del servicio de %{domain} han cambiado
+      title: Actualización importante
     warning:
       appeal: Enviar una apelación
       appeal_description: Si crees que esto es un error, puedes enviar una apelación al equipo de %{instance}.
@@ -1965,7 +2079,6 @@ es-MX:
       post_action: Redacta
       post_step: Di hola al mundo con texto, fotos, vídeos o encuestas.
       post_title: Haz tu primera publicación
-      share_action: Comparte
       share_step: Dile a tus amigos cómo encontrarte en Mastodon.
       share_title: Comparte tu perfil de Mastodon
       sign_in_action: Regístrate

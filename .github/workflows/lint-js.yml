@@ -11,7 +11,7 @@ on:
       - 'tsconfig.json'
       - '.nvmrc'
       - '.prettier*'
-      - '.eslint*'
+      - 'eslint.config.mjs'
       - '**/*.js'
       - '**/*.jsx'
       - '**/*.ts'
@@ -25,7 +25,7 @@ on:
       - 'tsconfig.json'
       - '.nvmrc'
       - '.prettier*'
-      - '.eslint*'
+      - 'eslint.config.mjs'
       - '**/*.js'
       - '**/*.jsx'
       - '**/*.ts'
@@ -44,7 +44,7 @@ jobs:
         uses: ./.github/actions/setup-javascript
 
       - name: ESLint
-        run: yarn lint:js --max-warnings 0
+        run: yarn workspaces foreach --all --parallel run lint:js --max-warnings 0
 
       - name: Typecheck
         run: yarn typecheck

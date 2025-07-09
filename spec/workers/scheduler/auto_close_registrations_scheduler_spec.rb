@@ -9,8 +9,8 @@ RSpec.describe Scheduler::AutoCloseRegistrationsScheduler do
     let(:moderator_activity_date) { Time.now.utc }
 
     before do
-      Fabricate(:user, role: UserRole.find_by(name: 'Owner'), current_sign_in_at: 10.years.ago)
-      Fabricate(:user, role: UserRole.find_by(name: 'Moderator'), current_sign_in_at: moderator_activity_date)
+      Fabricate(:owner_user, current_sign_in_at: 10.years.ago)
+      Fabricate(:moderator_user, current_sign_in_at: moderator_activity_date)
     end
 
     context 'when registrations are open' do

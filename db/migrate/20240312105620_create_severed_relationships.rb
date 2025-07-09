@@ -14,8 +14,10 @@ class CreateSeveredRelationships < ActiveRecord::Migration[7.0]
       t.integer :direction, null: false
 
       # Those attributes are carried over from the `follows` table
+      # rubocop:disable Rails/ThreeStateBooleanColumn
       t.boolean :show_reblogs
       t.boolean :notify
+      # rubocop:enable Rails/ThreeStateBooleanColumn
       t.string :languages, array: true
 
       t.timestamps

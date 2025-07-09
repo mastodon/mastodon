@@ -29,21 +29,21 @@ pt-PT:
       edit:
         title: Editar aplicação
       form:
-        error: Ups! Verifique que o formulário não tem erros
+        error: Oops! Verifica que o formulário não tem erros
       help:
         native_redirect_uri: Usar %{native_redirect_uri} para testes locais
         redirect_uri: Usar uma linha por URI
-        scopes: Separe os âmbitos de aplicação com espaços. Deixe em branco para utilizar os âmbitos de aplicação predefinidos.
+        scopes: Separa os âmbitos de aplicação com espaços. Deixa em branco para utilizar os âmbitos de aplicação predefinidos.
       index:
         application: Aplicação
         callback_url: URL de retorno
         delete: Eliminar
-        empty: Não tem aplicações.
+        empty: Não tens aplicações.
         name: Nome
         new: Nova aplicação
         scopes: Âmbitos
         show: Mostrar
-        title: As suas aplicações
+        title: As tuas aplicações
       new:
         title: Nova aplicação
       show:
@@ -60,18 +60,19 @@ pt-PT:
       error:
         title: Ocorreu um erro
       new:
+        prompt_html: "%{client_name} gostaria de obter autorização para aceder à tua conta. <strong>Só deves aprovar este pedido se reconheceres e confiares nesta fonte.</strong>"
         review_permissions: Rever permissões
         title: Autorização necessária
       show:
-        title: Copie este código de autorização e cole-o na aplicação.
+        title: Copia este código de autorização e cola-o na aplicação.
     authorized_applications:
       buttons:
         revoke: Revogar
       confirmations:
-        revoke: Tem a certeza?
+        revoke: Tens a certeza?
       index:
         authorized_at: Autorizado em %{date}
-        description_html: Estas são as aplicações que podem aceder à sua conta utilizando a API. Se houver aplicações que não reconhece aqui, ou se uma aplicação estiver a comportar-se mal, pode revogar o seu acesso.
+        description_html: Estas são as aplicações que podem aceder à tua conta utilizando a API. Se houver aplicações que não reconheces aqui, ou se uma aplicação estiver a dar problemas, podes revogar o seu acesso.
         last_used_at: Última utilização em %{date}
         never_used: Nunca utilizado
         scopes: Permissões
@@ -129,14 +130,14 @@ pt-PT:
         crypto: Encriptação ponta a ponta
         favourites: Favoritos
         filters: Filtros
-        follow: A seguir, a silenciar e a bloquear
+        follow: A seguir, a ocultar e a bloquear
         follows: Seguidores
         lists: Listas
-        media: Anexos de media
-        mutes: Silenciados
+        media: Anexos multimédia
+        mutes: Ocultados
         notifications: Notificações
-        profile: O seu perfil Mastodon
-        push: Notificações push
+        profile: O teu perfil Mastodon
+        push: Notificações "push"
         reports: Denúncias
         search: Pesquisar
         statuses: Publicações
@@ -150,15 +151,15 @@ pt-PT:
     scopes:
       admin:read: ler todos os dados no servidor
       admin:read:accounts: ler informações sensíveis de todas as contas
-      admin:read:canonical_email_blocks: ler informações sensíveis de todos os bloqueios de endereços de e-mail canônicos
-      admin:read:domain_allows: ler informações sensíveis de todos os domínios permitios
+      admin:read:canonical_email_blocks: ler informações sensíveis de todos os bloqueios de endereços de e-mail canónicos
+      admin:read:domain_allows: ler informações sensíveis de todos os domínios permitidos
       admin:read:domain_blocks: ler informações sensíveis de todos os bloqueios de domínio
       admin:read:email_domain_blocks: ler informações sensíveis de todos os bloqueios de domínio de e-mail
       admin:read:ip_blocks: ler informações sensíveis de todos os bloqueios de IPs
-      admin:read:reports: ler informações sensíveis de todas as denúnicas e contas denunciadas
+      admin:read:reports: ler informações sensíveis de todas as denúncias e contas denunciadas
       admin:write: modificar todos os dados no servidor
       admin:write:accounts: executar ações de moderação em contas
-      admin:write:canonical_email_blocks: executar ações de moderação no bloqueio de endereços de e-mail canônicos
+      admin:write:canonical_email_blocks: executar ações de moderação no bloqueio de endereços de e-mail canónicos
       admin:write:domain_allows: executar ações de moderação na permissão de domínios
       admin:write:domain_blocks: executar ações de moderação no bloqueio de domínios
       admin:write:email_domain_blocks: executar ações de moderação no bloqueio de domínios de e-mail
@@ -166,32 +167,32 @@ pt-PT:
       admin:write:reports: executar ações de moderação em denúncias
       crypto: usar encriptação ponta a ponta
       follow: alterar relações de conta
-      profile: ler apenas as informações do perfil da sua conta
-      push: receber as suas notificações push
-      read: ler todos os dados da sua conta
+      profile: ler apenas as informações do perfil da tua conta
+      push: receber as tuas notificações "push"
+      read: ler todos os dados da tua conta
       read:accounts: ver as informações da conta
-      read:blocks: ver os seus bloqueios
-      read:bookmarks: ver os seus marcadores
-      read:favourites: ver os seus favoritos
-      read:filters: ver os seus filtros
-      read:follows: ver quem você segue
-      read:lists: ver as suas listas
-      read:mutes: ver os utilizadores que silenciou
-      read:notifications: ver as suas notificações
-      read:reports: ver as suas denúncias
-      read:search: pesquisar em seu nome
+      read:blocks: ver os teus bloqueios
+      read:bookmarks: ver os teus marcadores
+      read:favourites: ver os teus favoritos
+      read:filters: ver os teus filtros
+      read:follows: ver quem segues
+      read:lists: ver as tuas listas
+      read:mutes: ver os utilizadores que ocultaste
+      read:notifications: ver as tuas notificações
+      read:reports: ver as tuas denúncias
+      read:search: pesquisar em teu nome
       read:statuses: ver todas as publicações
-      write: alterar todos os dados da sua conta
-      write:accounts: alterar o seu perfil
+      write: alterar todos os dados da tua conta
+      write:accounts: alterar o teu perfil
       write:blocks: bloquear contas e domínios
       write:bookmarks: marcar publicações
-      write:conversations: silenciar e eliminar conversas
-      write:favourites: favoritar publicações
+      write:conversations: ocultar e eliminar conversas
+      write:favourites: assinalar como favoritas
       write:filters: criar filtros
       write:follows: seguir pessoas
       write:lists: criar listas
-      write:media: enviar ficheiros de media
-      write:mutes: silenciar pessoas e conversas
-      write:notifications: limpar as suas notificações
+      write:media: enviar ficheiros multimédia
+      write:mutes: ocultar pessoas e conversas
+      write:notifications: limpar as tuas notificações
       write:reports: denunciar outras pessoas
       write:statuses: publicar publicações

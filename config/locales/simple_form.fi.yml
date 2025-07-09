@@ -3,13 +3,13 @@ fi:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Yksi riviä kohti. Suojaa vääriltä tunnustuksilta.
+        attribution_domains: Yksi riviä kohti. Suojaa vääriltä tekijän nimeämisiltä.
         discoverable: Julkisia julkaisujasi ja profiiliasi voidaan pitää esillä tai suositella Mastodonin eri alueilla ja profiiliasi voidaan ehdottaa toisille käyttäjille.
         display_name: Koko nimesi tai lempinimesi.
         fields: Verkkosivustosi, pronominisi, ikäsi ja mitä ikinä haluatkaan ilmoittaa.
         indexable: Julkiset julkaisusi voivat näkyä Mastodonin hakutuloksissa. Käyttäjät, jotka ovat olleet vuorovaikutuksessa julkaisujesi kanssa, voivat etsiä niitä asetuksesta riippumatta.
         note: 'Voit @mainita muita käyttäjiä tai #aihetunnisteita.'
-        show_collections: Käyttäjät voivat selata seurattujasi ja seuraajiasi. Käyttäjät, joita seuraat, näkevät joka tapauksessa, että seuraat heitä.
+        show_collections: Käyttäjät voivat selata seurattaviasi ja seuraajiasi. Käyttäjät, joita seuraat, näkevät joka tapauksessa, että seuraat heitä.
         unlocked: Käyttäjät voivat seurata sinua pyytämättä hyväksyntääsi. Poista valinta, jos haluat tarkistaa sekä hyväksyä tai hylätä vastaanottamasi seurantapyynnöt.
       account_alias:
         acct: Määrittele sen tilin käyttäjänimi@verkkotunnus, josta haluat muuttaa
@@ -56,6 +56,7 @@ fi:
         scopes: Mihin ohjelmointirajapintoihin sovelluksella on pääsy. Jos valitset ylätason käyttöoikeuden, sinun ei tarvitse valita yksittäisiä.
         setting_aggregate_reblogs: Älä näytä uusia tehostuksia julkaisuille, joita on äskettäin tehostettu (koskee vain juuri vastaanotettuja tehostuksia)
         setting_always_send_emails: Yleensä sähköposti-ilmoituksia ei lähetetä, kun käytät Mastodonia aktiivisesti
+        setting_default_quote_policy: Mainitut käyttäjät saavat aina lainata. Tämä asetus koskee vain julkaisuja, jotka on luotu seuraavalla Mastodon-versiolla, mutta voit valita asetuksesi valmistautuaksesi
         setting_default_sensitive: Arkaluonteinen media piilotetaan oletusarvoisesti, ja se voidaan näyttää yhdellä napsautuksella
         setting_display_media_default: Piilota arkaluonteiseksi merkitty mediasisältö
         setting_display_media_hide_all: Piilota mediasisältö aina
@@ -75,6 +76,7 @@ fi:
       filters:
         action: Valitse, mikä toiminto suoritetaan, kun julkaisu vastaa suodatinta
         actions:
+          blur: Piilota media varoituksen taakse piilottamatta itse tekstiä
           hide: Piilota suodatettu sisältö kokonaan, ikään kuin sitä ei olisi olemassa
           warn: Piilota suodatettu sisältö varoituksen taakse, jossa mainitaan suodattimen nimi
       form_admin_settings:
@@ -88,6 +90,7 @@ fi:
         favicon: WEBP, PNG, GIF tai JPG. Korvaa oletusarvoisen Mastodonin sivustokuvakkeen haluamallasi kuvakkeella.
         mascot: Korvaa kuvituksen edistyneessä selainkäyttöliittymässä.
         media_cache_retention_period: Etäkäyttäjien tekemien julkaisujen mediatiedostot ovat välimuistissa palvelimellasi. Kun kentän arvo on positiivinen, media poistuu, kun määritetty määrä päiviä on kulunut. Jos mediaa pyydetään sen poistamisen jälkeen, se ladataan uudelleen, jos lähdesisältö on vielä saatavilla. Koska linkkien esikatselun kyselyitä kolmansien osapuolien sivustoille on rajoitettu, on suositeltavaa asettaa tämä arvo vähintään 14 päivään, tai linkkien kortteja ei päivitetä pyynnöstä ennen tätä ajankohtaa.
+        min_age: Käyttäjiä pyydetään rekisteröitymisen aikana vahvistamaan syntymäpäivänsä
         peers_api_enabled: Luettelo verkkotunnuksista, jotka tämä palvelin on kohdannut fediversumissa. Se ei kerro, federoitko tietyn palvelimen kanssa, vaan että palvelimesi on ylipäätään tietoinen siitä. Tätä tietoa käytetään palveluissa, jotka keräävät tilastoja federoinnista yleisellä tasolla.
         profile_directory: Profiilihakemisto luetteloi kaikki käyttäjät, jotka ovat valinneet olla löydettävissä.
         require_invite_text: Kun rekisteröityminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” -tekstikentästä pakollinen vapaaehtoisen sijaan
@@ -130,8 +133,24 @@ fi:
         show_application: Voit silti aina nähdä, mistä sovelluksesta julkaisusi lähetettiin.
       tag:
         name: Voit esimerkiksi vaihtaa suur- ja pienaakkosten kesken helppolukuistaaksesi tekstiäsi
+      terms_of_service:
+        changelog: Voidaan jäsentää Markdown-syntaksilla.
+        effective_date: Sopiva aika on 10–30 päivää siitä, kun olet ilmoittanut ehdoista käyttäjillesi.
+        text: Voidaan jäsentää Markdown-syntaksilla.
+      terms_of_service_generator:
+        admin_email: Oikeudellisiin ilmoituksiin kuuluvat vastailmoitukset, oikeuden määräykset, poistopyynnöt ja lainvalvontaviranomaisten pyynnöt.
+        arbitration_address: Voi olla sama kuin edellä mainittu Fyysinen osoite tai ”N/A”, jos käytät sähköpostia.
+        arbitration_website: Voi olla verkkolomake tai ”N/A”, jos käytät sähköpostia.
+        dmca_address: Yhdysvaltalaisten operaattoreiden on käytettävä DMCA Designated Agent Directory -luetteloon rekisteröityä osoitetta. Postilokeroluettelo on saatavissa suoralla pyynnöllä, joten käytä DMCA Designated Agent Post Office Box Waiver Request -lomaketta lähettääksesi sähköpostia tekijänoikeusvirastolle ja kuvaile, että olet kotona toimiva sisältömoderaattori, joka pelkää kostoa tai rangaistusta toimistaan ja tarvitsee postilokeroa pitääkseen kotiosoitteensa poissa julkisuudesta.
+        dmca_email: Voi olla sama kuin edellä mainittu ”Sähköpostiosoite oikeudellisille ilmoituksille”.
+        domain: Tarjoamasi verkkopalvelun yksilöllinen tunniste.
+        jurisdiction: Mainitse valtio, jossa laskujen maksaja asuu. Jos kyseessä on yritys tai muu yhteisö, mainitse valtio, johon se on rekisteröity, ja tarvittaessa kaupunki, alue, territorio tai osavaltio.
+        min_age: Ei pidä alittaa lainkäyttöalueesi lakien vaatimaa vähimmäisikää.
       user:
         chosen_languages: Jos valitset kieliä oheisesta luettelosta, vain niidenkieliset julkaisut näkyvät sinulle julkisilla aikajanoilla
+        date_of_birth:
+          one: Meidän on varmistettava, että olet vähintään %{count}, jotta voi käyttää Mastodonia. Emme tallenna tätä.
+          other: Meidän on varmistettava, että olet vähintään %{count}, jotta voi käyttää Mastodonia. Emme tallenna tätä.
         role: Rooli määrää, millaiset käyttöoikeudet käyttäjällä on.
       user_role:
         color: Väri, jota käytetään roolille kaikkialla käyttöliittymässä, RGB-heksadesimaalimuodossa
@@ -145,13 +164,13 @@ fi:
         url: Mihin tapahtumat lähetetään
     labels:
       account:
-        attribution_domains_as_text: Verkkosivustot, jotka voivat antaa sinulle tunnustusta
+        attribution_domains: Verkkosivustot, jotka voivat antaa sinulle tunnustusta
         discoverable: Pidä profiiliasi ja julkaisujasi esillä löytämisalgoritmeissa
         fields:
           name: Nimike
           value: Sisältö
         indexable: Sisällytä julkiset julkaisut hakutuloksiin
-        show_collections: Näytä seuratut ja seuraajat profiilissa
+        show_collections: Näytä seurattavat ja seuraajat profiilissa
         unlocked: Hyväksy uudet seuraajat automaattisesti
       account_alias:
         acct: Vanhan tilin käyttäjätunnus
@@ -212,6 +231,7 @@ fi:
         setting_boost_modal: Kysy vahvistusta ennen tehostusta
         setting_default_language: Julkaisun kieli
         setting_default_privacy: Julkaisun näkyvyys
+        setting_default_quote_policy: Kuka voi lainata
         setting_default_sensitive: Merkitse media aina arkaluonteiseksi
         setting_delete_modal: Kysy vahvistusta ennen julkaisun poistamista
         setting_disable_hover_cards: Poista käytöstä profiilin esikatselu osoitettaessa
@@ -220,8 +240,10 @@ fi:
         setting_display_media_default: Oletus
         setting_display_media_hide_all: Piilota kaikki
         setting_display_media_show_all: Näytä kaikki
+        setting_emoji_style: Emojityyli
         setting_expand_spoilers: Laajenna aina sisältövaroituksilla merkityt julkaisut
         setting_hide_network: Piilota verkostotietosi
+        setting_missing_alt_text_modal: Näytä vahvistusikkuna ennen kuin julkaistaan mediaa ilman vaihtoehtoista tekstiä
         setting_reduce_motion: Vähennä animaatioiden liikettä
         setting_system_font_ui: Käytä järjestelmän oletusfonttia
         setting_system_scrollbars_ui: Käytä järjestelmän oletusarvoista vierityspalkkia
@@ -243,6 +265,7 @@ fi:
         name: Aihetunniste
       filters:
         actions:
+          blur: Piilota media varoittaen
           hide: Piilota kokonaan
           warn: Piilota varoittaen
       form_admin_settings:
@@ -256,6 +279,7 @@ fi:
         favicon: Sivustokuvake
         mascot: Mukautettu maskotti (vanhentunut)
         media_cache_retention_period: Mediasisällön välimuistin säilytysaika
+        min_age: Vähimmäisikävaatimus
         peers_api_enabled: Julkaise löydettyjen palvelinten luettelo ohjelmointirajapinnassa
         profile_directory: Ota profiilihakemisto käyttöön
         registrations_mode: Kuka voi rekisteröityä
@@ -319,7 +343,23 @@ fi:
         name: Aihetunniste
         trendable: Salli tämän aihetunnisteen näkyä trendeissä
         usable: Salli julkaisujen käyttää tätä aihetunnistetta paikallisesti
+      terms_of_service:
+        changelog: Mikä on muuttunut?
+        effective_date: Voimaantulopäivä
+        text: Käyttöehdot
+      terms_of_service_generator:
+        admin_email: Sähköpostiosoite oikeudellisille ilmoituksille
+        arbitration_address: Fyysinen osoite välimiesmenettelyn ilmoituksille
+        arbitration_website: Sähköpostiosoite välimiesmenettelyn ilmoituksille
+        dmca_address: Fyysinen osoite DMCA-/tekijänoikeusilmoituksille
+        dmca_email: Sähköpostiosoite DMCA-/tekijänoikeusilmoituksille
+        domain: Verkkotunnus
+        jurisdiction: Lainkäyttöalue
+        min_age: Vähimmäisikä
       user:
+        date_of_birth_1i: Päivä
+        date_of_birth_2i: Kuukausi
+        date_of_birth_3i: Vuosi
         role: Rooli
         time_zone: Aikavyöhyke
       user_role:

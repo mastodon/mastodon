@@ -15,7 +15,7 @@ class Trends::Statuses < Trends::Base
   class Query < Trends::Query
     def to_arel
       scope = Status.joins(:trend).reorder(score: :desc)
-      scope = scope.reorder(language_order_clause.desc, score: :desc) if preferred_languages.present?
+      scope = scope.reorder(language_order_clause, score: :desc) if preferred_languages.present?
       scope = scope.merge(StatusTrend.allowed) if @allowed
       scope = scope.not_excluded_by_account(@account).not_domain_blocked_by_account(@account) if @account.present?
       scope = scope.offset(@offset) if @offset.present?
@@ -25,8 +25,8 @@ class Trends::Statuses < Trends::Base
 
     private
 
-    def language_order_clause
-      Arel::Nodes::Case.new.when(StatusTrend.arel_table[:language].in(preferred_languages)).then(1).else(0)
+    def trend_class
+      StatusTrend
     end
   end
 
@@ -89,7 +89,15 @@ class Trends::Statuses < Trends::Base
   private
 
   def eligible?(status)
-    status.created_at.past? && status.public_visibility? && status.account.discoverable? && !status.account.silenced? && !status.account.sensitized? && status.spoiler_text.blank? && !status.sensitive? && !status.reply? && valid_locale?(status.language)
+    status.created_at.past? &&
+      status.public_visibility? &&
+      status.account.discoverable? &&
+      !status.account.silenced? &&
+      !status.account.sensitized? &&
+      status.spoiler_text.blank? &&
+      !status.sensitive? &&
+      !status.reply? &&
+      valid_locale?(status.language)
   end
 
   def calculate_scores(statuses, at_time)

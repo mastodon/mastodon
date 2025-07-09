@@ -33,7 +33,7 @@ RSpec.describe 'Media API', :attachment_processing do
       let(:params) do
         {
           file: fixture_file_upload('attachment-jpg.123456_abcd', 'image/jpeg'),
-          description: 'aa' * MediaAttachment::MAX_DESCRIPTION_LENGTH,
+          description: 'a' * MediaAttachment::MAX_DESCRIPTION_LENGTH * 2,
         }
       end
 

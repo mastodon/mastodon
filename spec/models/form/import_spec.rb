@@ -61,10 +61,7 @@ RSpec.describe Form::Import do
       let(:import_type) { 'following' }
       let(:import_file) { 'boop.ogg' }
 
-      it 'has errors' do
-        # NOTE: not testing more specific error because we don't know the string to match
-        expect(subject).to model_have_error_on_field(:data)
-      end
+      it { is_expected.to_not allow_value(data).for(:data) }
     end
 
     context 'when importing more follows than allowed' do

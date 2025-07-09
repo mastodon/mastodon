@@ -11,11 +11,13 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
+    = vite_client_tag
+    = vite_react_refresh_tag
+    = vite_polyfills_tag
     = theme_style_tags 'mastodon-light'
-    = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
-    = preload_pack_asset "locale/#{I18n.locale}-json.js"
+    = vite_preload_file_tag "mastodon/locales/#{I18n.locale}.json"
     = render_initial_state
-    = javascript_pack_tag 'embed', integrity: true, crossorigin: 'anonymous'
+    = vite_typescript_tag 'embed.tsx', integrity: true, crossorigin: 'anonymous'
   %body.embed
     = yield
 

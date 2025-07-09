@@ -15,6 +15,9 @@
       user/invite_request:
         text: Årsak
     errors:
+      attributes:
+        domain:
+          invalid: er ikke et gyldig domenenavn
       models:
         account:
           attributes:

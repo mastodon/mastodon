@@ -161,4 +161,116 @@ RSpec.describe 'Tags' do
       end
     end
   end
+
+  describe 'POST /api/v1/tags/:id/feature' do
+    subject do
+      post "/api/v1/tags/#{name}/feature", headers: headers
+    end
+
+    let!(:tag) { Fabricate(:tag) }
+    let(:name) { tag.name }
+    let(:scopes) { 'write:accounts' }
+
+    it_behaves_like 'forbidden for wrong scope', 'read read:follows'
+
+    context 'when the tag exists' do
+      it 'creates featured tag', :aggregate_failures do
+        subject
+
+        expect(response).to have_http_status(:success)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(FeaturedTag.where(tag: tag, account: user.account)).to exist
+      end
+    end
+
+    context 'when the tag does not exist' do
+      let(:name) { 'hoge' }
+
+      it 'creates a new tag with the specified name', :aggregate_failures do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(Tag.where(name: name)).to exist
+        expect(FeaturedTag.where(tag: Tag.find_by(name: name), account: user.account)).to exist
+      end
+    end
+
+    context 'when the tag name is invalid' do
+      let(:name) { 'tag-name' }
+
+      it 'returns http not found' do
+        subject
+
+        expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
+      end
+    end
+
+    context 'when the Authorization header is missing' do
+      let(:headers) { {} }
+      let(:name)    { 'unauthorized' }
+
+      it 'returns http unauthorized' do
+        subject
+
+        expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
+      end
+    end
+  end
+
+  describe 'POST #unfeature' do
+    subject do
+      post "/api/v1/tags/#{name}/unfeature", headers: headers
+    end
+
+    let(:name) { tag.name }
+    let!(:tag) { Fabricate(:tag, name: 'foo') }
+    let(:scopes) { 'write:accounts' }
+
+    before do
+      Fabricate(:featured_tag, account: user.account, tag: tag)
+    end
+
+    it_behaves_like 'forbidden for wrong scope', 'read read:follows'
+
+    it 'removes the featured tag', :aggregate_failures do
+      subject
+
+      expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(FeaturedTag.where(tag: tag, account: user.account)).to_not exist
+    end
+
+    context 'when the tag name is invalid' do
+      let(:name) { 'tag-name' }
+
+      it 'returns http not found' do
+        subject
+
+        expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
+      end
+    end
+
+    context 'when the Authorization header is missing' do
+      let(:headers) { {} }
+      let(:name)    { 'unauthorized' }
+
+      it 'returns http unauthorized' do
+        subject
+
+        expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
+      end
+    end
+  end
 end

@@ -16,7 +16,7 @@ class MentionResolveWorker
 
     return if account.nil?
 
-    status.mentions.create!(account: account, silent: false)
+    status.mentions.upsert({ account_id: account.id, silent: false }, unique_by: %w(status_id account_id))
   rescue ActiveRecord::RecordNotFound
     # Do nothing
   rescue Mastodon::UnexpectedResponseError => e

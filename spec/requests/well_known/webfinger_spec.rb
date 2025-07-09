@@ -26,8 +26,8 @@ RSpec.describe 'The /.well-known/webfinger endpoint' do
 
       expect(response.parsed_body)
         .to include(
-          subject: eq('acct:alice@cb6e6126.ngrok.io'),
-          aliases: include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')
+          subject: eq(alice.to_webfinger_s),
+          aliases: include("https://#{Rails.configuration.x.local_domain}/@alice", "https://#{Rails.configuration.x.local_domain}/users/alice")
         )
     end
   end
@@ -116,24 +116,22 @@ RSpec.describe 'The /.well-known/webfinger endpoint' do
       perform_request!
     end
 
-    it 'returns http success' do
+    it 'returns http success with expect headers and media type' do
       expect(response).to have_http_status(200)
-    end
 
-    it 'sets only a Vary Origin header' do
       expect(response.headers['Vary']).to eq('Origin')
-    end
 
-    it 'returns application/jrd+json' do
       expect(response.media_type).to eq 'application/jrd+json'
-    end
 
-    it 'returns links for the internal account' do
       expect(response.parsed_body)
         .to include(
-          subject: 'acct:mastodon.internal@cb6e6126.ngrok.io',
-          aliases: ['https://cb6e6126.ngrok.io/actor']
+          subject: instance_actor.to_webfinger_s,
+          aliases: [instance_actor_url]
         )
+    end
+
+    def instance_actor
+      Account.where(id: Account::INSTANCE_ACTOR_ID).first
     end
   end
 
@@ -178,7 +176,7 @@ RSpec.describe 'The /.well-known/webfinger endpoint' do
 
     context 'with limited federation mode' do
       before do
-        allow(Rails.configuration.x).to receive(:limited_federation_mode).and_return(true)
+        allow(Rails.configuration.x.mastodon).to receive(:limited_federation_mode).and_return(true)
       end
 
       it 'does not return avatar in response' do

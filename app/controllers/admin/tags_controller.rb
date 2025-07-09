@@ -37,7 +37,8 @@ module Admin
     end
 
     def tag_params
-      params.require(:tag).permit(:name, :display_name, :trendable, :usable, :listable)
+      params
+        .expect(tag: [:name, :display_name, :trendable, :usable, :listable])
     end
 
     def filtered_tags

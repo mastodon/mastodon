@@ -11,9 +11,13 @@ module Mastodon::CLI
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, aliases: [:v]
     option :dry_run, type: :boolean, default: false
+    option :skip_filled_timelines
     desc 'build [USERNAME]', 'Build home and list feeds for one or all users'
     long_desc <<-LONG_DESC
       Build home and list feeds that are stored in Redis from the database.
+
+      With the --skip-filled-timelines, timelines which contain more than half
+      the maximum number of posts will be skipped.
 
       With the --all option, all active users will be processed.
       Otherwise, a single user specified by USERNAME.
@@ -21,7 +25,7 @@ module Mastodon::CLI
     def build(username = nil)
       if options[:all] || username.nil?
         processed, = parallelize_with_progress(active_user_accounts) do |account|
-          PrecomputeFeedService.new.call(account) unless dry_run?
+          PrecomputeFeedService.new.call(account, skip_filled_timelines: options[:skip_filled_timelines]) unless dry_run?
         end
 
         say("Regenerated feeds for #{processed} accounts #{dry_run_mode_suffix}", :green, true)
@@ -30,7 +34,7 @@ module Mastodon::CLI
 
         fail_with_message 'No such account' if account.nil?
 
-        PrecomputeFeedService.new.call(account) unless dry_run?
+        PrecomputeFeedService.new.call(account, skip_filled_timelines: options[:skip_filled_timelines]) unless dry_run?
 
         say("OK #{dry_run_mode_suffix}", :green, true)
       else

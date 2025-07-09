@@ -129,8 +129,8 @@ RSpec.describe AccountStatusesCleanupPolicy do
     let(:account_statuses_cleanup_policy) { Fabricate(:account_statuses_cleanup_policy, account: account) }
 
     it 'records the given id' do
-      account_statuses_cleanup_policy.record_last_inspected(42)
-      expect(account_statuses_cleanup_policy.last_inspected).to eq 42
+      expect { account_statuses_cleanup_policy.record_last_inspected(42) }
+        .to change(account_statuses_cleanup_policy, :last_inspected).from(nil).to(42)
     end
   end
 
@@ -153,8 +153,8 @@ RSpec.describe AccountStatusesCleanupPolicy do
         end
 
         it 'does not change the recorded id' do
-          subject
-          expect(account_statuses_cleanup_policy.last_inspected).to eq 42
+          expect { subject }
+            .to_not change(account_statuses_cleanup_policy, :last_inspected).from(42)
         end
       end
 
@@ -164,8 +164,8 @@ RSpec.describe AccountStatusesCleanupPolicy do
         end
 
         it 'records the older id' do
-          subject
-          expect(account_statuses_cleanup_policy.last_inspected).to eq 10
+          expect { subject }
+            .to change(account_statuses_cleanup_policy, :last_inspected).from(42).to(10)
         end
       end
     end
@@ -179,8 +179,8 @@ RSpec.describe AccountStatusesCleanupPolicy do
         end
 
         it 'does not change the recorded id' do
-          subject
-          expect(account_statuses_cleanup_policy.last_inspected).to eq 42
+          expect { subject }
+            .to_not change(account_statuses_cleanup_policy, :last_inspected).from(42)
         end
       end
 
@@ -190,8 +190,8 @@ RSpec.describe AccountStatusesCleanupPolicy do
         end
 
         it 'records the older id' do
-          subject
-          expect(account_statuses_cleanup_policy.last_inspected).to eq 10
+          expect { subject }
+            .to change(account_statuses_cleanup_policy, :last_inspected).from(42).to(10)
         end
       end
     end
@@ -205,8 +205,8 @@ RSpec.describe AccountStatusesCleanupPolicy do
         end
 
         it 'does not change the recorded id' do
-          subject
-          expect(account_statuses_cleanup_policy.last_inspected).to eq 42
+          expect { subject }
+            .to_not change(account_statuses_cleanup_policy, :last_inspected).from(42)
         end
       end
 
@@ -216,8 +216,8 @@ RSpec.describe AccountStatusesCleanupPolicy do
         end
 
         it 'records the older id' do
-          subject
-          expect(account_statuses_cleanup_policy.last_inspected).to eq 10
+          expect { subject }
+            .to change(account_statuses_cleanup_policy, :last_inspected).from(42).to(10)
         end
       end
     end
@@ -227,8 +227,8 @@ RSpec.describe AccountStatusesCleanupPolicy do
       let(:status) { Fabricate(:status, account: account) }
 
       it 'does not change the recorded id' do
-        subject
-        expect(account_statuses_cleanup_policy.last_inspected).to eq 42
+        expect { subject }
+          .to_not change(account_statuses_cleanup_policy, :last_inspected).from(42)
       end
     end
   end

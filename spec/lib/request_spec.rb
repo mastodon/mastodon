@@ -4,7 +4,9 @@ require 'rails_helper'
 require 'securerandom'
 
 RSpec.describe Request do
-  subject { described_class.new(:get, 'http://example.com') }
+  subject { described_class.new(:get, 'http://example.com', **options) }
+
+  let(:options) { {} }
 
   describe '#headers' do
     it 'returns user agent' do
@@ -39,8 +41,8 @@ RSpec.describe Request do
   end
 
   describe '#perform' do
-    context 'with valid host' do
-      before { stub_request(:get, 'http://example.com') }
+    context 'with valid host and non-persistent connection' do
+      before { stub_request(:get, 'http://example.com').to_return(body: 'lorem ipsum') }
 
       it 'executes a HTTP request' do
         expect { |block| subject.perform(&block) }.to yield_control
@@ -58,23 +60,42 @@ RSpec.describe Request do
         expect(a_request(:get, 'http://example.com')).to have_been_made.once
       end
 
-      it 'sets headers' do
-        expect { |block| subject.perform(&block) }.to yield_control
-        expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made
-      end
-
-      it 'closes underlying connection' do
+      it 'makes a request with expected headers, yields, and closes the underlying connection' do
         allow(subject.send(:http_client)).to receive(:close)
 
         expect { |block| subject.perform(&block) }.to yield_control
 
+        expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made
         expect(subject.send(:http_client)).to have_received(:close)
       end
 
-      it 'returns response which implements body_with_limit' do
+      it 'yields response' do
         subject.perform do |response|
-          expect(response).to respond_to :body_with_limit
+          expect(response.body_with_limit).to eq 'lorem ipsum'
         end
+      end
+    end
+
+    context 'with a redirect and HTTP signatures' do
+      let(:account) { Fabricate(:account) }
+
+      before do
+        stub_request(:get, 'http://example.com').to_return(status: 301, headers: { Location: 'http://redirected.example.com/foo' })
+        stub_request(:get, 'http://redirected.example.com/foo').to_return(body: 'lorem ipsum')
+      end
+
+      it 'makes a request with expected headers and follows redirects' do
+        expect { |block| subject.on_behalf_of(account).perform(&block) }.to yield_control
+
+        # request.headers includes the `Signature` sent for the first request
+        expect(a_request(:get, 'http://example.com').with(headers: subject.headers)).to have_been_made.once
+
+        # request.headers includes the `Signature`, but it has changed
+        expect(a_request(:get, 'http://redirected.example.com/foo').with(headers: subject.headers.merge({ 'Host' => 'redirected.example.com' }))).to_not have_been_made
+
+        # `with(headers: )` matching tests for inclusion, so strip `Signature`
+        # This doesn't actually test that there is a signature, but it tests that the original signature is not passed
+        expect(a_request(:get, 'http://redirected.example.com/foo').with(headers: subject.headers.without('Signature').merge({ 'Host' => 'redirected.example.com' }))).to have_been_made.once
       end
     end
 
@@ -93,6 +114,43 @@ RSpec.describe Request do
         allow(Resolv::DNS).to receive(:open).and_yield(resolver)
 
         expect { subject.perform }.to raise_error Mastodon::ValidationError
+      end
+    end
+
+    context 'with persistent connection' do
+      before { stub_request(:get, 'http://example.com').to_return(body: SecureRandom.random_bytes(2.megabytes)) }
+
+      let(:http_client) { described_class.http_client.persistent('http://example.com') }
+      let(:options) { { http_client: http_client } }
+
+      it 'leaves connection open after completely consumed response' do
+        allow(http_client).to receive(:close)
+
+        subject.perform { |response| response.truncated_body(3.megabytes) }
+
+        expect(http_client).to_not have_received(:close)
+      end
+
+      it 'leaves connection open after nearly consumed response' do
+        allow(http_client).to receive(:close)
+
+        subject.perform { |response| response.truncated_body(1.8.megabytes) }
+
+        expect(http_client).to_not have_received(:close)
+      end
+
+      it 'closes connection after unconsumed response' do
+        allow(http_client).to receive(:close)
+
+        subject.perform
+
+        expect(http_client).to have_received(:close)
+      end
+
+      it 'yields response' do
+        subject.perform do |response|
+          expect(response.body_with_limit(2.megabytes).size).to eq 2.megabytes
+        end
       end
     end
   end

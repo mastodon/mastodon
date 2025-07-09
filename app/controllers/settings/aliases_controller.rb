@@ -30,7 +30,7 @@ class Settings::AliasesController < Settings::BaseController
   private
 
   def resource_params
-    params.require(:account_alias).permit(:acct)
+    params.expect(account_alias: [:acct])
   end
 
   def set_alias

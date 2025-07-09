@@ -16,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
     if (confirmationMessage) {
       dispatch(
         openModal({
+          previousModalProps: confirmationMessage.props,
           modalType: 'CONFIRM',
           modalProps: {
             message: confirmationMessage.message,
@@ -24,7 +25,8 @@ const mapDispatchToProps = dispatch => ({
               modalType: undefined,
               ignoreFocus: { ignoreFocus },
             })),
-          } }),
+          },
+        }),
       );
     } else {
       dispatch(closeModal({

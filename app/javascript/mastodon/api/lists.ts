@@ -13,6 +13,8 @@ export const apiCreate = (list: Partial<ApiListJSON>) =>
 export const apiUpdate = (list: Partial<ApiListJSON>) =>
   apiRequestPut<ApiListJSON>(`v1/lists/${list.id}`, list);
 
+export const apiGetLists = () => apiRequestGet<ApiListJSON[]>('v1/lists');
+
 export const apiGetAccounts = (listId: string) =>
   apiRequestGet<ApiAccountJSON[]>(`v1/lists/${listId}/accounts`, {
     limit: 0,

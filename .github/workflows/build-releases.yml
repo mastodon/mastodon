@@ -13,8 +13,6 @@ jobs:
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: Dockerfile
-      platforms: linux/amd64,linux/arm64
-      use_native_arm64_builder: true
       push_to_images: |
         tootsuite/mastodon
         ghcr.io/mastodon/mastodon
@@ -30,12 +28,9 @@ jobs:
     secrets: inherit
 
   build-image-streaming:
-    if: startsWith(github.ref, 'refs/tags/v4.3.')
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: streaming/Dockerfile
-      platforms: linux/amd64,linux/arm64
-      use_native_arm64_builder: true
       push_to_images: |
         tootsuite/mastodon-streaming
         ghcr.io/mastodon/mastodon-streaming

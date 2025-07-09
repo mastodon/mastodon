@@ -3,15 +3,15 @@ import { createReducer } from '@reduxjs/toolkit';
 import { closeDropdownMenu, openDropdownMenu } from '../actions/dropdown_menu';
 
 interface DropdownMenuState {
-  openId: string | null;
+  openId: number | null;
   keyboard: boolean;
-  scrollKey: string | null;
+  scrollKey: string | undefined;
 }
 
 const initialState: DropdownMenuState = {
   openId: null,
   keyboard: false,
-  scrollKey: null,
+  scrollKey: undefined,
 };
 
 export const dropdownMenuReducer = createReducer(initialState, (builder) => {
@@ -27,7 +27,7 @@ export const dropdownMenuReducer = createReducer(initialState, (builder) => {
     .addCase(closeDropdownMenu, (state, { payload: { id } }) => {
       if (state.openId === id) {
         state.openId = null;
-        state.scrollKey = null;
+        state.scrollKey = undefined;
       }
     });
 });

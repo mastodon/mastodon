@@ -17,7 +17,7 @@ class MigrateSettings < ActiveRecord::Migration[4.2]
       t.remove_index [:thing_type, :thing_id, :var]
       t.rename :thing_id, :target_id
       t.rename :thing_type, :target_type
-      t.column :target_id, :integer, null: false
+      t.column :target_id, :integer, null: false # rubocop:disable Rails/NotNullColumn
       t.column :target_type, :string, null: false, default: ''
       t.index [:target_type, :target_id, :var], unique: true
     end

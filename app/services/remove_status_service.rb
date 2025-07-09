@@ -123,8 +123,8 @@ class RemoveStatusService < BaseService
     return if skip_streaming?
 
     @status.tags.map(&:name).each do |hashtag|
-      redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}", @payload)
-      redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:local", @payload) if @status.local?
+      redis.publish("timeline:hashtag:#{hashtag.downcase}", @payload)
+      redis.publish("timeline:hashtag:#{hashtag.downcase}:local", @payload) if @status.local?
     end
   end
 
@@ -147,9 +147,13 @@ class RemoveStatusService < BaseService
   end
 
   def remove_media
-    return if @options[:redraft] || !permanently?
+    return if @options[:redraft]
 
-    @status.media_attachments.destroy_all
+    if permanently?
+      @status.media_attachments.destroy_all
+    else
+      UpdateMediaAttachmentsPermissionsService.new.call(@status.media_attachments, :private)
+    end
   end
 
   def permanently?

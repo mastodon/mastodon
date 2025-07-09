@@ -192,6 +192,7 @@ module Mastodon::CLI
       verify_schema_version!
       verify_sidekiq_not_active!
       verify_backup_warning!
+      disable_timeout!
     end
 
     def process_deduplications
@@ -249,6 +250,13 @@ module Mastodon::CLI
       say 'This task will take a long time to run and is potentially destructive.', :yellow
       say 'Please make sure to stop Mastodon and have a backup.', :yellow
       fail_with_message 'Maintenance process stopped.' unless yes?('Continue? (Yes/No)')
+    end
+
+    def disable_timeout!
+      # Remove server-configured timeout if present
+      database_connection.execute(<<~SQL.squish)
+        SET statement_timeout = 0
+      SQL
     end
 
     def deduplicate_accounts!

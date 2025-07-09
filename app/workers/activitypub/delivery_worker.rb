@@ -62,12 +62,16 @@ class ActivityPub::DeliveryWorker
     stoplight_wrapper.run do
       request_pool.with(@host) do |http_client|
         build_request(http_client).perform do |response|
-          raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response)
+          raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response) || unsalvageable_authorization_failure?(response)
 
           @performed = true
         end
       end
     end
+  end
+
+  def unsalvageable_authorization_failure?(response)
+    @source_account.permanently_unavailable? && response.code == 401
   end
 
   def stoplight_wrapper

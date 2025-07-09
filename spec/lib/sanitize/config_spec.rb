@@ -39,15 +39,15 @@ RSpec.describe Sanitize::Config do
     end
 
     it 'keeps a with href' do
-      expect(Sanitize.fragment('<a href="http://example.com">Test</a>', subject)).to eq '<a href="http://example.com" rel="nofollow noopener noreferrer" target="_blank">Test</a>'
+      expect(Sanitize.fragment('<a href="http://example.com">Test</a>', subject)).to eq '<a href="http://example.com" rel="nofollow noopener" target="_blank">Test</a>'
     end
 
     it 'keeps a with translate="no"' do
-      expect(Sanitize.fragment('<a href="http://example.com" translate="no">Test</a>', subject)).to eq '<a href="http://example.com" translate="no" rel="nofollow noopener noreferrer" target="_blank">Test</a>'
+      expect(Sanitize.fragment('<a href="http://example.com" translate="no">Test</a>', subject)).to eq '<a href="http://example.com" translate="no" rel="nofollow noopener" target="_blank">Test</a>'
     end
 
     it 'removes "translate" attribute with invalid value' do
-      expect(Sanitize.fragment('<a href="http://example.com" translate="foo">Test</a>', subject)).to eq '<a href="http://example.com" rel="nofollow noopener noreferrer" target="_blank">Test</a>'
+      expect(Sanitize.fragment('<a href="http://example.com" translate="foo">Test</a>', subject)).to eq '<a href="http://example.com" rel="nofollow noopener" target="_blank">Test</a>'
     end
 
     it 'removes a with unparsable href' do
@@ -55,7 +55,7 @@ RSpec.describe Sanitize::Config do
     end
 
     it 'keeps a with supported scheme and no host' do
-      expect(Sanitize.fragment('<a href="dweb:/a/foo">Test</a>', subject)).to eq '<a href="dweb:/a/foo" rel="nofollow noopener noreferrer" target="_blank">Test</a>'
+      expect(Sanitize.fragment('<a href="dweb:/a/foo">Test</a>', subject)).to eq '<a href="dweb:/a/foo" rel="nofollow noopener" target="_blank">Test</a>'
     end
 
     it 'sanitizes math to LaTeX' do

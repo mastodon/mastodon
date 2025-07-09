@@ -3,7 +3,7 @@
 class AddTypeToMediaAttachments < ActiveRecord::Migration[5.0]
   class MigrationMediaAttachment < ApplicationRecord
     self.table_name = :media_attachments
-    enum type: [:image, :gifv, :video]
+    enum :type, [:image, :gifv, :video]
     IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
     VIDEO_MIME_TYPES = ['video/webm', 'video/mp4'].freeze
   end

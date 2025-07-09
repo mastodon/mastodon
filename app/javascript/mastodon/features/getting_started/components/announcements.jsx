@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { PureComponent, useCallback, useMemo } from 'react';
 
 import { defineMessages, injectIntl, FormattedMessage, FormattedDate } from 'react-intl';
 
@@ -9,8 +9,7 @@ import { withRouter } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import TransitionMotion from 'react-motion/lib/TransitionMotion';
-import spring from 'react-motion/lib/spring';
+import { animated, useTransition } from '@react-spring/web';
 import ReactSwipeableViews from 'react-swipeable-views';
 
 import elephantUIPlane from '@/images/elephant_ui_plane.svg';
@@ -85,7 +84,7 @@ class ContentWithRouter extends ImmutablePureComponent {
       }
 
       link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener noreferrer');
+      link.setAttribute('rel', 'noopener');
     }
   }
 
@@ -239,72 +238,75 @@ class Reaction extends ImmutablePureComponent {
     }
 
     return (
-      <button className={classNames('reactions-bar__item', { active: reaction.get('me') })} onClick={this.handleClick} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} title={`:${shortCode}:`} style={this.props.style}>
+      <animated.button className={classNames('reactions-bar__item', { active: reaction.get('me') })} onClick={this.handleClick} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} title={`:${shortCode}:`} style={this.props.style}>
         <span className='reactions-bar__item__emoji'><Emoji hovered={this.state.hovered} emoji={reaction.get('name')} emojiMap={this.props.emojiMap} /></span>
         <span className='reactions-bar__item__count'><AnimatedNumber value={reaction.get('count')} /></span>
-      </button>
+      </animated.button>
     );
   }
 
 }
 
-class ReactionsBar extends ImmutablePureComponent {
+const ReactionsBar = ({
+  announcementId,
+  reactions,
+  emojiMap,
+  addReaction,
+  removeReaction,
+}) => {
+  const visibleReactions = useMemo(() => reactions.filter(x => x.get('count') > 0).toArray(), [reactions]);
 
-  static propTypes = {
-    announcementId: PropTypes.string.isRequired,
-    reactions: ImmutablePropTypes.list.isRequired,
-    addReaction: PropTypes.func.isRequired,
-    removeReaction: PropTypes.func.isRequired,
-    emojiMap: ImmutablePropTypes.map.isRequired,
-  };
+  const handleEmojiPick = useCallback((emoji) => {
+    addReaction(announcementId, emoji.native.replaceAll(/:/g, ''));
+  }, [addReaction, announcementId]);
 
-  handleEmojiPick = data => {
-    const { addReaction, announcementId } = this.props;
-    addReaction(announcementId, data.native.replace(/:/g, ''));
-  };
+  const transitions = useTransition(visibleReactions, {
+    from: {
+      scale: 0,
+    },
+    enter: {
+      scale: 1,
+    },
+    leave: {
+      scale: 0,
+    },
+    keys: visibleReactions.map(x => x.get('name')),
+  });
 
-  willEnter () {
-    return { scale: reduceMotion ? 1 : 0 };
-  }
+  return (
+    <div
+      className={classNames('reactions-bar', {
+        'reactions-bar--empty': visibleReactions.length === 0
+      })}
+    >
+      {transitions(({ scale }, reaction) => (
+        <Reaction
+          key={reaction.get('name')}
+          reaction={reaction}
+          style={{ transform: scale.to((s) => `scale(${s})`) }}
+          addReaction={addReaction}
+          removeReaction={removeReaction}
+          announcementId={announcementId}
+          emojiMap={emojiMap}
+        />
+      ))}
 
-  willLeave () {
-    return { scale: reduceMotion ? 0 : spring(0, { stiffness: 170, damping: 26 }) };
-  }
-
-  render () {
-    const { reactions } = this.props;
-    const visibleReactions = reactions.filter(x => x.get('count') > 0);
-
-    const styles = visibleReactions.map(reaction => ({
-      key: reaction.get('name'),
-      data: reaction,
-      style: { scale: reduceMotion ? 1 : spring(1, { stiffness: 150, damping: 13 }) },
-    })).toArray();
-
-    return (
-      <TransitionMotion styles={styles} willEnter={this.willEnter} willLeave={this.willLeave}>
-        {items => (
-          <div className={classNames('reactions-bar', { 'reactions-bar--empty': visibleReactions.isEmpty() })}>
-            {items.map(({ key, data, style }) => (
-              <Reaction
-                key={key}
-                reaction={data}
-                style={{ transform: `scale(${style.scale})`, position: style.scale < 0.5 ? 'absolute' : 'static' }}
-                announcementId={this.props.announcementId}
-                addReaction={this.props.addReaction}
-                removeReaction={this.props.removeReaction}
-                emojiMap={this.props.emojiMap}
-              />
-            ))}
-
-            {visibleReactions.size < 8 && <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} button={<Icon id='plus' icon={AddIcon} />} />}
-          </div>
-        )}
-      </TransitionMotion>
-    );
-  }
-
-}
+      {visibleReactions.length < 8 && (
+        <EmojiPickerDropdown
+          onPickEmoji={handleEmojiPick}
+          button={<Icon id='plus' icon={AddIcon} />}
+        />
+      )}
+    </div>
+  );
+};
+ReactionsBar.propTypes = {
+  announcementId: PropTypes.string.isRequired,
+  reactions: ImmutablePropTypes.list.isRequired,
+  addReaction: PropTypes.func.isRequired,
+  removeReaction: PropTypes.func.isRequired,
+  emojiMap: ImmutablePropTypes.map.isRequired,
+};
 
 class Announcement extends ImmutablePureComponent {
 
@@ -335,15 +337,29 @@ class Announcement extends ImmutablePureComponent {
     const endsAt = announcement.get('ends_at') && new Date(announcement.get('ends_at'));
     const now = new Date();
     const hasTimeRange = startsAt && endsAt;
-    const skipYear = hasTimeRange && startsAt.getFullYear() === endsAt.getFullYear() && endsAt.getFullYear() === now.getFullYear();
-    const skipEndDate = hasTimeRange && startsAt.getDate() === endsAt.getDate() && startsAt.getMonth() === endsAt.getMonth() && startsAt.getFullYear() === endsAt.getFullYear();
     const skipTime = announcement.get('all_day');
+
+    let timestamp = null;
+    if (hasTimeRange) {
+      const skipYear = startsAt.getFullYear() === endsAt.getFullYear() && endsAt.getFullYear() === now.getFullYear();
+      const skipEndDate = startsAt.getDate() === endsAt.getDate() && startsAt.getMonth() === endsAt.getMonth() && startsAt.getFullYear() === endsAt.getFullYear();
+      timestamp = (
+        <>
+          <FormattedDate value={startsAt} year={(skipYear || startsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric'} month='short' day='2-digit' hour={skipTime ? undefined : '2-digit'} minute={skipTime ? undefined : '2-digit'} /> - <FormattedDate value={endsAt} year={(skipYear || endsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric'} month={skipEndDate ? undefined : 'short'} day={skipEndDate ? undefined : '2-digit'} hour={skipTime ? undefined : '2-digit'} minute={skipTime ? undefined : '2-digit'} />
+        </>
+      );
+    } else {
+      const publishedAt = new Date(announcement.get('published_at'));
+      timestamp = (
+        <FormattedDate value={publishedAt} year={publishedAt.getFullYear() === now.getFullYear() ? undefined : 'numeric'} month='short' day='2-digit' hour={skipTime ? undefined : '2-digit'} minute={skipTime ? undefined : '2-digit'} />
+      );
+    }
 
     return (
       <div className='announcements__item'>
         <strong className='announcements__item__range'>
           <FormattedMessage id='announcement.announcement' defaultMessage='Announcement' />
-          {hasTimeRange && <span> · <FormattedDate value={startsAt} year={(skipYear || startsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric'} month='short' day='2-digit' hour={skipTime ? undefined : '2-digit'} minute={skipTime ? undefined : '2-digit'} /> - <FormattedDate value={endsAt} year={(skipYear || endsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric'} month={skipEndDate ? undefined : 'short'} day={skipEndDate ? undefined : '2-digit'} hour={skipTime ? undefined : '2-digit'} minute={skipTime ? undefined : '2-digit'} /></span>}
+          <span> · {timestamp}</span>
         </strong>
 
         <Content announcement={announcement} />

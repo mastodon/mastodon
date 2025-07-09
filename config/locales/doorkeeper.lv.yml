@@ -19,7 +19,7 @@ lv:
   doorkeeper:
     applications:
       buttons:
-        authorize: Autorizēt
+        authorize: Pilnvarot
         cancel: Atcelt
         destroy: Iznīcināt
         edit: Labot
@@ -55,40 +55,40 @@ lv:
         title: 'Lietotne: %{name}'
     authorizations:
       buttons:
-        authorize: Autorizēt
-        deny: Aizliegt
+        authorize: Pilnvarot
+        deny: Noraidīt
       error:
         title: Radās kļūda
       new:
         prompt_html: "%{client_name} vēlas atļauju piekļūt Tavam kontam. <strong>Apstiprini šo pieprasījumu tikai tad, ja atpazīsti un uzticies šim avotam!</strong>"
         review_permissions: Pārskatīt atļaujas
-        title: Nepieciešama autorizācija
+        title: Nepieciešama pilnvarošana
       show:
-        title: Nokopē šo autorizācijas kodu un ielīmē to lietotnē.
+        title: Šis pilnvarošanas kods jāievieto starpliktuvē un jāielīmē lietotnē.
     authorized_applications:
       buttons:
         revoke: Atsaukt
       confirmations:
         revoke: Vai tiešām?
       index:
-        authorized_at: Autorizētas %{date}
+        authorized_at: Pilnvarotas %{date}
         description_html: Šīs ir lietotnes, kas var piekļūt Tavam kontam ar API. Ja šeit ir lietotnes, kuras neatpazīsti, vai lietotne darbojas ne tā, kā paredzēts, vari atsaukt tās piekļuvi.
         last_used_at: Pēdējo reizi lietotas %{date}
         never_used: Nekad nav lietotas
         scopes: Atļaujas
         superapp: Iekšējs
-        title: Tevis autorizētās lietotnes
+        title: Tevis pilnvarotās lietotnes
     errors:
       messages:
-        access_denied: Resursa īpašnieks vai autorizācijas serveris pieprasījumu noraidīja.
+        access_denied: Resursa īpašnieks vai pilnvarošanas serveris noraidīja pieprasījumu.
         credential_flow_not_configured: Resursa īpašnieka paroles akreditācijas datu plūsma neizdevās, jo Doorkeeper.configure.resource_owner_from_credentials nebija konfigurēts.
         invalid_client: Klienta autentifikācija neizdevās nezināma klienta, klienta autentifikācijas vai neatbalstītas autentifikācijas metodes dēļ.
         invalid_code_challenge_method: Koda izaicinājuma veidam jābūt S256, vienkāršs netiek atbalstīts.
-        invalid_grant: Sniegtā autorizācijas piekrišana nav derīga, tai ir beidzies derīguma termiņš, tā ir atsaukta, tā neatbilst autorizācijas pieprasījumā izmantotajam novirzīšanas URI vai tika izsniegta citam klientam.
+        invalid_grant: Sniegtais pilnvarošanas piešķīrums nav derīgs, tam ir beidzies derīgums, tas ir atsaukts, tas neatbilst pilnvarošanas pieprasījumā izmantotajam pārvirzīšanas URI vai tika izsniegts citam klientam.
         invalid_redirect_uri: Iekļauts novirzīšanas uri nav derīgs.
         invalid_request:
           missing_param: 'Trūkst pieprasītā parametra: %{value}.'
-          request_not_authorized: Pieprasījums ir jāautorizē. Trūkst vai nav derīgs pieprasījuma autorizēšanai nepieciešamais parametrs.
+          request_not_authorized: Pieprasījums ir jāpilnvaro. Trūkst vai nav derīgas pieprasījuma pilnvarošanai nepieciešamās vērtības.
           unknown: Pieprasījumā trūkst nepieciešamā parametra, tajā ir neatbalstīta parametra vērtība vai tas ir citādi nepareizi veidots.
         invalid_resource_owner: Norādītie resursa īpašnieka akreditācijas dati nav derīgi, vai arī resursa īpašnieku nevar atrast
         invalid_scope: Pieprasītā darbības joma nav derīga, nav zināma vai ir nepareizi veidota.
@@ -97,11 +97,11 @@ lv:
           revoked: Piekļuves pilnvara tika atsaukta
           unknown: Piekļuves pilnvara nav derīga
         resource_owner_authenticator_not_configured: Resursa īpašnieka atrašana neizdevās, jo Doorkeeper.configure.resource_owner_authenticator nav savienots.
-        server_error: Autorizācijas serverim radās neparedzēts nosacījums, kas neļāva izpildīt pieprasījumu.
-        temporarily_unavailable: Autorizācijas serveris pašlaik nevar apstrādāt pieprasījumu servera īslaicīgas pārslodzes vai apkopes dēļ.
+        server_error: Pilnvarošanas serverim radās neparedzēti apstākļi, kas tam neļāva izpildīt pieprasījumu.
+        temporarily_unavailable: Pilnvarošanas serveris šobrīd nevar apstrādāt pieprasījumu servera īslaicīgas pārslodzes vai uzturēšanas darbu dēļ.
         unauthorized_client: Klients nav pilnvarots izpildīt šo pieprasījumu, izmantojot šo metodi.
-        unsupported_grant_type: Autorizācijas serveris neatbalsta atļaujas piešķiršanas veidu.
-        unsupported_response_type: Autorizācijas serveris neatbalsta šo atbildes veidu.
+        unsupported_grant_type: Pilnvarošanas serveris neatbalsta atļaujas piešķiršanas veidu.
+        unsupported_response_type: Pilnvarošanas serveris neatbalsta šo atbildes veidu.
     flash:
       applications:
         create:
@@ -123,14 +123,14 @@ lv:
         admin/accounts: Kontu pārvaldīšana
         admin/all: Visas administrēšanas funkcijas
         admin/reports: Ziņojumu pārvaldīšana
-        all: Pilna piekļuve tavam Mastodon kontam
+        all: Pilna piekļuve Tavam Mastodon kontam
         blocks: Bloķētie
         bookmarks: Grāmatzīmes
         conversations: Sarunas
         crypto: Pilnīga šifrēšana
         favourites: Izlase
         filters: Filtri
-        follow: Seko, Izslēdz un Bloķē
+        follow: Seko, apklusina un liedz
         follows: Seko
         lists: Saraksti
         media: Multividesu pielikumi
@@ -147,16 +147,16 @@ lv:
           applications: Lietotnes
           oauth2_provider: OAuth2 nodrošinātājs
       application:
-        title: OAuth nepieciešama autorizācija
+        title: Nepieciešama OAuth pilnvarošana
     scopes:
       admin:read: lasīt visus datus uz servera
-      admin:read:accounts: lasīt sensitīvu informāciju no visiem kontiem
-      admin:read:canonical_email_blocks: lasīt sensitīvu informāciju par visiem kanoniskajiem e-pasta blokiem
-      admin:read:domain_allows: lasīt visu domēnu sensitīvo informāciju, ko atļauj
-      admin:read:domain_blocks: lasīt sensitīvu informāciju par visiem domēna blokiem
-      admin:read:email_domain_blocks: lasīt sensitīvu informāciju par visiem e-pasta domēna blokiem
-      admin:read:ip_blocks: lasīt sensitīvu informāciju par visiem IP blokiem
-      admin:read:reports: lasīt sensitīvu informāciju no visiem pārskatiem un kontiem, par kuriem ziņots
+      admin:read:accounts: lasīt jūtīgu informāciju no visiem kontiem
+      admin:read:canonical_email_blocks: lasīt jūtīgu informāciju par visiem kanoniskajiem e-pasta blokiem
+      admin:read:domain_allows: lasīt jūtīgu informāciju par visiem atļautajiem domēniem
+      admin:read:domain_blocks: lasīt jūtīgu informāciju par visiem domēna blokiem
+      admin:read:email_domain_blocks: lasīt jūtīgu informāciju par visiem e-pasta domēna blokiem
+      admin:read:ip_blocks: lasīt jūtīgu informāciju par visiem IP blokiem
+      admin:read:reports: lasīt jūtīgu informāciju no visiem pārskatiem un kontiem, par kuriem ziņots
       admin:write: modificēt visus datus uz servera
       admin:write:accounts: veikt satura pārraudzības darbības kontos
       admin:write:canonical_email_blocks: veikt satura pārraudzības darbības kanoniskajos e-pasta blokos

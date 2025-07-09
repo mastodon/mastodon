@@ -18,7 +18,7 @@ class Mention < ApplicationRecord
 
   has_one :notification, as: :activity, dependent: :destroy
 
-  validates :account, uniqueness: { scope: :status }
+  validates :account_id, uniqueness: { scope: :status_id }
 
   scope :active, -> { where(silent: false) }
   scope :silent, -> { where(silent: true) }

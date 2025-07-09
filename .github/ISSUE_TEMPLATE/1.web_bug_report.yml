@@ -48,8 +48,8 @@ body:
     attributes:
       label: Mastodon version
       description: |
-        This is displayed at the bottom of the About page, eg. `v4.4.0-alpha.1`
-      placeholder: v4.3.0
+        This is displayed at the bottom of the About page, eg. `v4.4.0-beta.1`
+      placeholder: v4.4.0-beta.1
     validations:
       required: true
   - type: input
@@ -57,7 +57,7 @@ body:
       label: Browser name and version
       description: |
         What browser are you using when getting this bug? Please specify the version as well.
-      placeholder: Firefox 131.0.0
+      placeholder: Firefox 139.0.0
     validations:
       required: true
   - type: input
@@ -65,7 +65,7 @@ body:
       label: Operating system
       description: |
         What OS are you running? Please specify the version as well.
-      placeholder: macOS 15.0.1
+      placeholder: macOS 15.5
     validations:
       required: true
   - type: textarea

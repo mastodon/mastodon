@@ -5,10 +5,51 @@ tt:
       poll:
         options: Сайлаулар
       user:
-        email: Почта адресы
+        email: Эл. почта адресы
         locale: Тел
         password: Серсүз
       user/account:
         username: Кулланучы исеме
       user/invite_request:
         text: Сәбәп
+    errors:
+      attributes:
+        domain:
+          invalid: бу домен исеме гамәлдә түгел
+      messages:
+        invalid_domain_on_line: "%{value} дөрес домен исеме түгел"
+      models:
+        account:
+          attributes:
+            username:
+              invalid: хәрефләр, цифрлар һәм ассызыклау билгеләре генә ярый
+        admin/webhook:
+          attributes:
+            url:
+              invalid: рөхсәт ителгән URL түгел
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: рөхсәт ителгән URL түгел
+        import:
+          attributes:
+            data:
+              malformed: формат дөрес түгел
+        list_account:
+          attributes:
+            account_id:
+              taken: инде исемлектә
+        status:
+          attributes:
+            reblog:
+              taken: язма инде бар
+        user:
+          attributes:
+            email:
+              blocked: ярамаган эл. почта провайдерын куллана
+            role_id:
+              elevated: сезнең хәзерге ролегездән югарырак була алмый
+        user_role:
+          attributes:
+            position:
+              elevated: сезнең хәзерге ролегездән югарырак була алмый

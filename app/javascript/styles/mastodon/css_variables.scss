@@ -1,0 +1,45 @@
+@use 'sass:color';
+@use 'functions' as *;
+@use 'variables' as *;
+
+:root {
+  --dropdown-border-color: #{lighten($ui-base-color, 4%)};
+  --dropdown-background-color: #{rgba(darken($ui-base-color, 8%), 0.9)};
+  --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
+    0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
+  --modal-background-color: #{rgba(darken($ui-base-color, 8%), 0.7)};
+  --modal-background-variant-color: #{rgba($ui-base-color, 0.7)};
+  --modal-border-color: #{lighten($ui-base-color, 4%)};
+  --background-border-color: #{lighten($ui-base-color, 4%)};
+  --background-color: #{darken($ui-base-color, 8%)};
+  --background-color-tint: #{rgba(darken($ui-base-color, 8%), 0.9)};
+  --surface-background-color: #{darken($ui-base-color, 4%)};
+  --surface-variant-background-color: #{$ui-base-color};
+  --surface-variant-active-background-color: #{lighten($ui-base-color, 4%)};
+  --on-surface-color: #{color.adjust($ui-base-color, $alpha: -0.5)};
+  --avatar-border-radius: 8px;
+  --media-outline-color: #{rgba(#fcf8ff, 0.15)};
+  --overlay-icon-shadow: drop-shadow(0 0 8px #{rgba($base-shadow-color, 0.35)});
+  --error-background-color: #{darken($error-red, 16%)};
+  --error-active-background-color: #{darken($error-red, 12%)};
+  --on-error-color: #fff;
+  --rich-text-container-color: rgba(87, 24, 60, 100%);
+  --rich-text-text-color: rgba(255, 175, 212, 100%);
+  --rich-text-decorations-color: rgba(128, 58, 95, 100%);
+  --nested-card-background: color(from #{$ui-highlight-color} srgb r g b / 5%);
+  --nested-card-text: #{$secondary-text-color};
+  --nested-card-border: 1px solid
+    color(from #{$ui-highlight-color} srgb r g b / 15%);
+  --input-placeholder-color: #{$dark-text-color};
+  --input-background-color: var(--surface-variant-background-color);
+  --on-input-color: #{$secondary-text-color};
+}
+
+body {
+  // Variable for easily inverting directional UI elements,
+  --text-x-direction: 1;
+
+  &.rtl {
+    --text-x-direction: -1;
+  }
+}

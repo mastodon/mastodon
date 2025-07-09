@@ -1,6 +1,3 @@
-/* eslint-disable import/no-commonjs --
-   We need to use CommonJS here as its imported into a preval file (`emoji_compressed.js`) */
-
 function padLeft(str, num) {
   while (str.length < num) {
     str = '0' + str;
@@ -9,7 +6,7 @@ function padLeft(str, num) {
   return str;
 }
 
-exports.unicodeToUnifiedName = (str) => {
+export const unicodeToUnifiedName = (str) => {
   let output = '';
 
   for (let i = 0; i < str.length; i += 2) {

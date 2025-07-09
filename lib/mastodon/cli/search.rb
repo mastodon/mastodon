@@ -20,6 +20,7 @@ module Mastodon::CLI
     option :import, type: :boolean, default: true, desc: 'Import data from the database to the index'
     option :clean, type: :boolean, default: true, desc: 'Remove outdated documents from the index'
     option :reset_chewy, type: :boolean, default: false, desc: "Reset Chewy's internal index"
+    option :only_mapping, type: :boolean, default: false, desc: 'Update the index specification without re-index'
     desc 'deploy', 'Create or upgrade Elasticsearch indices and populate them'
     long_desc <<~LONG_DESC
       If Elasticsearch is empty, this command will create the necessary indices
@@ -51,6 +52,20 @@ module Mastodon::CLI
       )
 
       Chewy::Stash::Specification.reset! if options[:reset_chewy]
+
+      if options[:only_mapping]
+        indices.select { |index| index.specification.changed? }.each do |index|
+          progress.title = "Updating mapping for #{index} "
+          index.update_specification
+          index.specification.lock!
+        end
+
+        progress.title = 'Done! '
+        progress.finish
+
+        say('Updated index mappings', :green, true)
+        return
+      end
 
       # First, ensure all indices are created and have the correct
       # structure, so that live data can already be written

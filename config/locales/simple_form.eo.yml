@@ -3,7 +3,7 @@ eo:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Unu por linio. Protektas kontraŭ falsaj atribuoj.
+        attribution_domains: Unu por linio. Protektas kontraŭ falsaj atribuoj.
         discoverable: Viaj publikaj afiŝoj kaj profilo povas esti prezentitaj aŭ rekomenditaj en diversaj lokoj de Mastodon kaj via profilo povas esti proponita al aliaj uzantoj.
         display_name: Via plena nomo aŭ via kromnomo.
         fields: Via retpaĝo, pronomoj, aĝo, ĉio, kion vi volas.
@@ -56,10 +56,10 @@ eo:
         scopes: Kiujn API-ojn la aplikaĵo permesiĝos atingi. Se vi elektas supran amplekson, vi ne bezonas elekti la individuajn.
         setting_aggregate_reblogs: Ne montri novajn plusendojn de mesaĝoj lastatempe plusenditaj (nur efikas al nove ricevitaj plusendoj)
         setting_always_send_emails: Normale, la sciigoj per retpoŝto ne estos senditaj kiam vi uzas Mastodon aktive
-        setting_default_sensitive: Tiklaj plurmedioj estas kaŝitaj implicite, kaj povas esti montritaj per klako
+        setting_default_sensitive: La tiklaj vidaŭdaĵoj estas implicite kaŝitaj kaj povas esti malkaŝitaj per alklako
         setting_display_media_default: Kaŝi plurmediojn markitajn kiel tiklaj
-        setting_display_media_hide_all: Ĉiam kaŝi la plurmediojn
-        setting_display_media_show_all: Ĉiam montri la plurmediojn
+        setting_display_media_hide_all: Ĉiam kaŝi la vidaŭdaĵojn
+        setting_display_media_show_all: Ĉiam montri la vidaŭdaĵojn
         setting_system_scrollbars_ui: Aplikas nur por surtablaj retumiloj baziĝas de Safari kaj Chrome
         setting_use_blurhash: Transirojn estas bazita sur la koloroj de la kaŝitaj aŭdovidaĵoj sed ne montri iun ajn detalon
         setting_use_pending_items: Kaŝi tempoliniajn ĝisdatigojn malantaŭ klako anstataŭ aŭtomate rulumi la fluon
@@ -75,6 +75,7 @@ eo:
       filters:
         action: Elekti ago kiam mesaĝo kongruas la filtrilon
         actions:
+          blur: Kaŝi amaskomunikilaron malantaŭ averto, sen kaŝi la tekston mem
           hide: Tute kaŝigi la filtritajn enhavojn, kvazau ĝi ne ekzistis
           warn: Kaŝi la enhavon filtritan malantaŭ averto mencianta la nomon de la filtro
       form_admin_settings:
@@ -88,6 +89,7 @@ eo:
         favicon: WEBP, PNG, GIF aŭ JPG. Anstataŭigas la defaŭltan Mastodon-favikono kun propra bildsimbolo.
         mascot: Anstatauigi la ilustraĵon en la altnivela retinterfaco.
         media_cache_retention_period: Amaskomunikilaj dosieroj de afiŝoj faritaj de foraj uzantoj estas konservitaj en kaŝmemoro en via servilo. Kiam agordita al pozitiva valoro, amaskomunikilaro estos forigita post la specifita nombro da tagoj. Se la amaskomunikilaro-datumoj estas petitaj post kiam ĝi estas forigita, ĝi estos re-elŝutita, se la fonta enhavo ankoraŭ disponeblas. Pro limigoj pri kiom ofte ligaj antaŭrigardaj kartoj enketas retejojn de ekstera liveranto, oni rekomendas agordi ĉi tiun valoron al almenaŭ 14 tagoj, aŭ ligaj antaŭrigardaj kartoj ne estos ĝisdatigitaj laŭpostule antaŭ tiu tempo.
+        min_age: Uzantoj demandos konfirmi siajn naskiĝtagon dum registrado
         peers_api_enabled: Listo de domajnaj nomoj kiujn ĉi tiu servilo renkontis en la fediverso. Neniuj datumoj estas inkluditaj ĉi tie pri ĉu vi federacias kun donita servilo, nur ke via servilo scias pri ĝi. Ĉi tio estas uzata de servoj kiuj kolektas statistikojn pri federacio en ĝenerala signifo.
         profile_directory: La profilujo listigas ĉiujn uzantojn kiu volonte malkovrebli.
         require_invite_text: Kiam registroj bezonas permanan aprobon, igi la "Kial vi volas aliĝi?" tekstoenigon deviga anstau nedeviga
@@ -130,6 +132,20 @@ eo:
         show_application: Vi ĉiam povos vidi kiu aplikaĵo publikigis vian afiŝon ĉiaokaze.
       tag:
         name: Vi povas ŝanĝi nur la majuskladon de la literoj, ekzemple, por igi ĝin pli legebla
+      terms_of_service:
+        changelog: Povas esti strukturita per sintakso Markdown-a.
+        effective_date: Racia tempodaŭro povas varii ie ajn de 10 ĝis 30 tagoj de la dato, kiam vi sciigas viajn uzantojn.
+        text: Povas esti strukturita per sintakso Markdown-a.
+      terms_of_service_generator:
+        admin_email: Legalaj sciigoj povas esti kontraŭsciigoj, postulaĵoj de tribunalo, postulaĵoj pri forigo, kaj postulaĵoj de la policaro.
+        arbitration_address: Povas esti la sama kiel fizika adreso supre, aŭ "N/A" se oni uzas retpoŝton.
+        arbitration_website: Povas esti retformularo, aŭ "N/A" se oni uzas retpoŝton.
+        choice_of_law: Urbo, regiono, teritorio aŭ ŝtato, kies internaj substantivaj leĝoj regos iujn kaj ĉiujn asertojn.
+        dmca_address: Por tenantoj en Usono, uzu la adreson registritan en la DMCA Designated Agenŭ Directory. Registrolibro de poŝtskatoloj haveblas per direkta postulo, uzu la DMCA Designated Agent Post Office Box Waiver Request por retpoŝti la Ofico de Kopirajto kaj priskribu, ke vi estas hejm-trovigita administranto por enhavo kaj devas uzi Poŝtskatolon por forigi vian hejmadreson de publika vido.
+        dmca_email: Povas esti la sama retpoŝtadreso uzita en "Retpoŝtadreso por legalaj sciigoj" supre.
+        domain: Unika identigilo de la retaj servicoj, ke vi provizas.
+        jurisdiction: Enlistigu la landon, kie loĝas kiu pagas la fakturojn. Se ĝi estas kompanio aŭ alia ento, listigu la landon, kie ĝi estas enkorpigita, kaj la urbon, regionon, teritorion aŭ ŝtaton laŭeble.
+        min_age: Ne devus esti malsupre la minimuma aĝo postulita de la leĝoj de via jurisdikcio.
       user:
         chosen_languages: Kun tio markita nur mesaĝoj en elektitaj lingvoj aperos en publikaj tempolinioj
         role: La rolo kontrolas kiujn permesojn la uzanto havas.
@@ -145,7 +161,7 @@ eo:
         url: Kien eventoj sendotas
     labels:
       account:
-        attribution_domains_as_text: Retejoj permesitaj krediti vin
+        attribution_domains: Retejoj permesitaj krediti vin
         discoverable: Elstarigi profilon kaj afiŝojn en eltrovantaj algoritmoj
         fields:
           name: Etikedo
@@ -182,8 +198,8 @@ eo:
         text: Klarigu kial ĉi tiu decido devas inversigitis
       defaults:
         autofollow: Inviti al sekvi vian konton
-        avatar: Rolfiguro
-        bot: Tio estas robota konto
+        avatar: Profilbildo
+        bot: Ĉi tio estas aŭtomata konto
         chosen_languages: Filtri lingvojn
         confirm_new_password: Konfirmi novan pasvorton
         confirm_password: Konfirmi pasvorton
@@ -212,16 +228,17 @@ eo:
         setting_boost_modal: Montri konfirman fenestron antaŭ ol diskonigi mesaĝon
         setting_default_language: Publikada lingvo
         setting_default_privacy: Privateco de afiŝado
-        setting_default_sensitive: Ĉiam marki plurmediojn kiel tiklaj
+        setting_default_sensitive: Ĉiam marki la vidaŭdaĵojn kiel tiklaj
         setting_delete_modal: Montri konfirman fenestron antaŭ ol forigi mesaĝon
         setting_disable_hover_cards: Malebligi profilan antaŭmontron kiam oni musumas
         setting_disable_swiping: Malebligi svingajn movojn
-        setting_display_media: Montrado de plurmedioj
+        setting_display_media: Vidigo de vidaŭdaĵoj
         setting_display_media_default: Implicita
         setting_display_media_hide_all: Kaŝi ĉiujn
         setting_display_media_show_all: Montri ĉiujn
         setting_expand_spoilers: Ĉiam malfoldas mesaĝojn markitajn per averto pri enhavo
         setting_hide_network: Kaŝi viajn sekvantojn kaj sekvatojn
+        setting_missing_alt_text_modal: Montru konfirman dialogon antaŭ afiŝado de aŭdvidaĵoj sen altteksto
         setting_reduce_motion: Redukti la movecojn de la animacioj
         setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
         setting_system_scrollbars_ui: Uzu la defaŭltan rulumilon de la sistemo
@@ -243,6 +260,7 @@ eo:
         name: Kradvorto
       filters:
         actions:
+          blur: Kaŝi amaskomunikilaron kun averto
           hide: Kaŝi komplete
           warn: Kaŝi malantaŭ averto
       form_admin_settings:
@@ -256,6 +274,7 @@ eo:
         favicon: Favorikono
         mascot: Propa maskoto
         media_cache_retention_period: Audovidaĵkaŝaĵretendauro
+        min_age: Minimuma aĝo postulo
         peers_api_enabled: Eldonu liston de malkovritaj serviloj en la API
         profile_directory: Ŝalti la profilujon
         registrations_mode: Kiu povas krei konton
@@ -319,7 +338,24 @@ eo:
         name: Kradvorto
         trendable: Permesi al ĉi tiu kradvorto aperi en furoraĵoj
         usable: Permesi afiŝojn uzi ĉi tiun kradvorton loke
+      terms_of_service:
+        changelog: Kio ŝanĝiĝis?
+        effective_date: Ekvalida dato
+        text: Kondiĉoj de uzado
+      terms_of_service_generator:
+        admin_email: Retpoŝtadreso por laŭleĝaj avizoj
+        arbitration_address: Fizika adreso por arbitraciaj avizoj
+        arbitration_website: Retejo por sendi arbitraciajn avizojn
+        choice_of_law: Elekto de leĝo
+        dmca_address: Fizika adreso por DMCA/kopirajto-avizoj
+        dmca_email: Retpoŝtadreso por DMCA/kopirajto-avizoj
+        domain: Domajno
+        jurisdiction: Laŭleĝa jurisdikcio
+        min_age: Minimuma aĝo
       user:
+        date_of_birth_1i: Tago
+        date_of_birth_2i: Monato
+        date_of_birth_3i: Jaro
         role: Rolo
         time_zone: Horzono
       user_role:

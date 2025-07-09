@@ -38,6 +38,9 @@ RSpec.describe 'Settings applications page' do
       expect(page)
         .to have_content(I18n.t('doorkeeper.applications.index.title'))
         .and have_content('My new app')
+        .and have_content('read')
+        .and have_content('write')
+        .and have_content('follow')
     end
 
     it 'does not save with invalid form values' do
@@ -73,10 +76,12 @@ RSpec.describe 'Settings applications page' do
 
       fill_in form_app_name_label,
               with: 'My new app name with a new value'
+      check 'push', id: :doorkeeper_application_scopes_push
       submit_form
 
       expect(page)
         .to have_content('My new app name with a new value')
+        .and have_checked_field('push', id: :doorkeeper_application_scopes_push)
     end
 
     it 'does not update with wrong values' do
@@ -91,12 +96,12 @@ RSpec.describe 'Settings applications page' do
     end
 
     def submit_form
-      click_on I18n.t('generic.save_changes')
+      click_on(submit_button)
     end
   end
 
   describe 'Destroying an application' do
-    let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
+    let(:redis_pipeline_stub) { instance_double(Redis::PipelinedConnection, publish: nil) }
     let!(:access_token) { Fabricate(:accessible_access_token, application: application) }
 
     before { stub_redis_pipeline }

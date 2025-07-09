@@ -1,0 +1,5 @@
+shared:
+  enabled: <%= ENV.fetch('CACHE_BUSTER_ENABLED', 'false') == 'true' %>
+  secret_header: <%= ENV.fetch('CACHE_BUSTER_SECRET_HEADER', nil)&.to_json %>
+  secret: <%= ENV.fetch('CACHE_BUSTER_SECRET', nil)&.to_json %>
+  http_method: <%= ENV.fetch('CACHE_BUSTER_HTTP_METHOD', 'GET') %>

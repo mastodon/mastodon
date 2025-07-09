@@ -155,7 +155,7 @@ export const processNewNotificationForGroups = createAppAsyncThunk(
 
     const showInColumn =
       activeFilter === 'all'
-        ? notificationShows[notification.type]
+        ? notificationShows[notification.type] !== false
         : activeFilter === notification.type;
 
     if (!showInColumn) return;

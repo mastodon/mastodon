@@ -1,3 +1,6 @@
+@use 'variables' as *;
+@use 'functions' as *;
+
 .table {
   width: 100%;
   max-width: 100%;
@@ -149,6 +152,14 @@ a.table-action-link {
 }
 
 .batch-table {
+  &--no-toolbar {
+    .batch-table__toolbar {
+      position: static;
+      height: 4px;
+      border-bottom: none;
+    }
+  }
+
   &__toolbar,
   &__row {
     display: flex;

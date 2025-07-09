@@ -98,4 +98,14 @@ class UserMailerPreview < ActionMailer::Preview
   def failed_2fa
     UserMailer.failed_2fa(User.first, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:75.0) Gecko/20100101 Firefox/75.0', Time.now.utc)
   end
+
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/terms_of_service_changed
+  def terms_of_service_changed
+    UserMailer.terms_of_service_changed(User.first, TermsOfService.live.first)
+  end
+
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/announcement_published
+  def announcement_published
+    UserMailer.announcement_published(User.first, Announcement.last)
+  end
 end

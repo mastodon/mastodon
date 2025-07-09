@@ -12,6 +12,7 @@ import AddPhotoAlternateIcon from '@/material-icons/400-24px/add_photo_alternate
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import PersonIcon from '@/material-icons/400-24px/person.svg?react';
 import { updateAccount } from 'mastodon/actions/accounts';
+import { closeOnboarding } from 'mastodon/actions/onboarding';
 import { Button } from 'mastodon/components/button';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
@@ -58,7 +59,9 @@ export const Profile: React.FC<{
   );
   const [avatar, setAvatar] = useState<File>();
   const [header, setHeader] = useState<File>();
-  const [discoverable, setDiscoverable] = useState(true);
+  const [discoverable, setDiscoverable] = useState(
+    account?.discoverable ?? true,
+  );
   const [isSaving, setIsSaving] = useState(false);
   const [errors, setErrors] = useState<ApiAccountErrors>();
   const avatarFileRef = createRef<HTMLInputElement>();
@@ -132,6 +135,7 @@ export const Profile: React.FC<{
     )
       .then(() => {
         history.push('/start/follows');
+        dispatch(closeOnboarding());
         return '';
       })
       // eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable

@@ -118,7 +118,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with the first tag is invalid JSON' do
@@ -136,7 +136,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with the first tag is null' do
@@ -154,7 +154,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with preceding block of unsupported LD+JSON' do
@@ -194,7 +194,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with unsupported in same block LD+JSON' do
@@ -218,7 +218,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with author names as array' do
@@ -247,6 +247,44 @@ RSpec.describe LinkDetailsExtractor do
 
       it 'joins author names' do
         expect(subject.author_name).to eq 'Author 1, Author 2'
+      end
+    end
+
+    context 'with embedded arrays' do
+      let(:ld_json) do
+        {
+          '@context' => 'https://schema.org',
+          '@type' => 'NewsArticle',
+          'headline' => 'A lot of authors',
+          'description' => 'But we decided to cram them into one',
+          'author' => [[{
+            '@type' => 'Person',
+            'name' => ['Author 1'],
+          }]],
+          'publisher' => [[{
+            '@type' => 'NewsMediaOrganization',
+            'name' => 'Pet News',
+            'url' => 'https://example.com',
+          }]],
+        }.to_json
+      end
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      it 'gives correct author_name' do
+        expect(subject.author_name).to eq 'Author 1'
+      end
+
+      it 'gives provider_name' do
+        expect(subject.provider_name).to eq 'Pet News'
       end
     end
   end

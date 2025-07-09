@@ -5,12 +5,12 @@
 # Table name: announcement_reactions
 #
 #  id              :bigint(8)        not null, primary key
-#  account_id      :bigint(8)
-#  announcement_id :bigint(8)
 #  name            :string           default(""), not null
-#  custom_emoji_id :bigint(8)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  account_id      :bigint(8)        not null
+#  announcement_id :bigint(8)        not null
+#  custom_emoji_id :bigint(8)
 #
 
 class AnnouncementReaction < ApplicationRecord

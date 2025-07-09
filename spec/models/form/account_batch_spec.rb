@@ -8,7 +8,7 @@ RSpec.describe Form::AccountBatch do
   describe '#save' do
     subject           { account_batch.save }
 
-    let(:account)     { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+    let(:account)     { Fabricate(:admin_user).account }
     let(:account_ids) { [] }
     let(:query)       { Account.none }
 

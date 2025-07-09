@@ -28,4 +28,13 @@ RSpec.describe 'Invites' do
       end
     end
   end
+
+  describe 'POST /invites' do
+    it 'gracefully handles invalid nested params' do
+      post invites_path(invite: 'invalid')
+
+      expect(response)
+        .to have_http_status(400)
+    end
+  end
 end

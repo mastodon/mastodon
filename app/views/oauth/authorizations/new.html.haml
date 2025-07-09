@@ -35,7 +35,8 @@
         = form.hidden_field :scope,
                             value: @pre_auth.scope
         = form.button t('doorkeeper.authorizations.buttons.authorize'),
-                      type: :submit
+                      type: :submit,
+                      class: 'btn'
 
       = form_with url: oauth_authorization_path, method: :delete do |form|
         = form.hidden_field :client_id,
@@ -52,4 +53,4 @@
                             value: @pre_auth.scope
         = form.button t('doorkeeper.authorizations.buttons.deny'),
                       type: :submit,
-                      class: 'negative'
+                      class: 'btn negative'

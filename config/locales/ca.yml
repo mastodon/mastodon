@@ -214,6 +214,7 @@ ca:
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
+        publish_terms_of_service: Publicar les condicions de servei
         reject_appeal: Rebutja l'apel·lació
         reject_user: Rebutja l'usuari
         remove_avatar_user: Eliminar avatar
@@ -278,6 +279,7 @@ ca:
         enable_user_html: "%{name} ha activat l'accés del usuari %{target}"
         memorialize_account_html: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
         promote_user_html: "%{name} ha promogut l'usuari %{target}"
+        publish_terms_of_service_html: "%{name} ha publicat actualitzacions a les condicions de servei"
         reject_appeal_html: "%{name} ha rebutjat l'apel·lació a la decisió de moderació de %{target}"
         reject_user_html: "%{name} ha rebutjat el registre de %{target}"
         remove_avatar_user_html: "%{name} ha eliminat l'avatar de %{target}"
@@ -307,6 +309,7 @@ ca:
       title: Registre d'auditoria
       unavailable_instance: "(nom de domini no disponible)"
     announcements:
+      back: Torna als anuncis
       destroyed_msg: L’anunci s’ha esborrat amb èxit!
       edit:
         title: Edita l'anunci
@@ -315,6 +318,10 @@ ca:
       new:
         create: Crea un anunci
         title: Nou anunci
+      preview:
+        disclaimer: Com els usuaris no poden ometre-les, les notificacions per correu-e s'han de limitar a anuncis importants, com de violacions de dades personals o de tancament del servidor.
+        explanation_html: 'S''enviarà el correu-e a <strong>%{display_count} usuaris</strong>. S''hi inclourà el text següent:'
+        title: Vista prèvia de la notificació d'anunci
       publish: Publica
       published_msg: L’anunci s’ha publicat amb èxit!
       scheduled_for: Programat per a %{time}
@@ -473,6 +480,36 @@ ca:
       new:
         title: Importa dominis bloquejats
       no_file: No s'ha seleccionat cap fitxer
+    fasp:
+      debug:
+        callbacks:
+          created_at: Data de creació
+          delete: Elimina
+          ip: Adreça IP
+          request_body: Solicita el cos
+          title: Depuració de les trucades
+      providers:
+        active: Actiu
+        base_url: URL base
+        callback: Torna la trucada
+        delete: Elimina
+        edit: Editeu el perfil
+        finish_registration: Final del registre
+        name: Nom
+        providers: Proveïdors
+        public_key_fingerprint: Empremta de clau pública
+        registration_requested: Petició de registre
+        registrations:
+          confirm: Confirma
+          description: Heu rebut un registre d'un FASP. Rebutgeu-lo si no l'heu iniciat. Si ho heu fet, compareu amb cura el nom i la clau d'empremta abans de confirmar el registre.
+          reject: Rebutja
+          title: Confirmeu el registre a FASP
+        save: Desa
+        select_capabilities: Seleccioneu les capacitats
+        sign_in: Inicieu la sessió
+        status: Estat
+        title: Proveïdors de Serveis Auxiliars del Fedivers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb altres per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen diàriament a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
       language: Per idioma
@@ -749,11 +786,17 @@ ca:
       title: Rols
     rules:
       add_new: Afegir norma
+      add_translation: Afegeix traducció
       delete: Elimina
-      description_html: Tot i que molts diuen que han llegit les normes i estan d'acord amb els termes del servei, normalment no les llegeixen fins que surgeix un problema. <strong>Fes que sigui més fàcil veure les normes del teu servidor d'una ullada proporcionant-les en una llista de punts.</strong> Intenta mantenir les normes individuals curtes i senzilles però sense dividir-les en massa parts separades.
+      description_html: Tot i que molts diuen que han llegit les normes i estan d'acord amb les condicions de servei, normalment no les llegeixen fins que surgeix un problema. <strong>Fes que sigui més fàcil veure les normes del teu servidor d'una ullada proporcionant-les en una llista de punts.</strong> Intenta mantenir les normes individuals curtes i senzilles però sense dividir-les en massa parts separades.
       edit: Edita la norma
       empty: Encara no s'han definit les normes del servidor.
+      move_down: Mou cap avall
+      move_up: Mou cap amunt
       title: Normes del servidor
+      translation: Traducció
+      translations: Traduccions
+      translations_explanation: Teniu l'opció d'afegir traduccions a les regles. Si no hi ha cap traducció a l'abast, es mostrarà el valor per defecte. Assegureu-vos que tota traducció se sincronitzi sempre amb el valor per defecte.
     settings:
       about:
         manage_rules: Gestiona les normes del servidor
@@ -779,9 +822,9 @@ ca:
       discovery:
         follow_recommendations: Seguir les recomanacions
         preamble: L'aparició de contingut interessant és fonamental per atraure els nous usuaris que podrien no saber res de Mastodon. Controla com funcionen diverses opcions de descobriment en el teu servidor.
+        privacy: Privacitat
         profile_directory: Directori de perfils
         public_timelines: Línies de temps públiques
-        publish_discovered_servers: Publica els servidors descoberts
         publish_statistics: Publica estadístiques
         title: Descobriment
         trends: Tendències
@@ -866,6 +909,8 @@ ca:
     system_checks:
       database_schema_check:
         message_html: Hi ha pendents migracions de la base de dades. Executeu-les per a assegurar que l'aplicació es comporta com s'espera
+      elasticsearch_analysis_index_mismatch:
+        message_html: La configuració de l'índex de l'analitzador d'Elasticsearch està desactualizada. Executa <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: El cluster de Elasticsearch no es saludable (estat vermell), les funcions de cerca no estan disponibles
       elasticsearch_health_yellow:
@@ -925,6 +970,36 @@ ca:
       search: Cerca
       title: Etiquetes
       updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
+    terms_of_service:
+      back: Tornar a les condicions de servei
+      changelog: Què ha canviat
+      create: Feu servir el vostre
+      current: Actual
+      draft: Esborrany
+      generate: Fer servir la plantilla
+      generates:
+        action: Generar
+        chance_to_review_html: "<strong>Les condicions de servei generades no es publicaran automàticament.</strong> Tindreu l'oportunitat de revisar-ne els resultats. Empleneu els detalls necessaris per a procedir."
+        explanation_html: La plantilla de condicions de servei proveïda ho és només a títol informatiu i no s'ha d'interpretar com a consell jurídic en cap cas. Consulteu el vostre propi servei legal sobre la vostra situació i les qüestions legals específiques que tingueu.
+        title: Configuració de les condicions de servei
+      going_live_on_html: En vigor; des de %{date}
+      history: Historial
+      live: En ús
+      no_history: Encara no hi ha enregistrats canvis en les condicions de servei.
+      no_terms_of_service_html: Ara no teniu cap condició de servei configurada. Aquestes tenen per objectiu clarificar drets i obligacions i protegir-vos de responsabilitats potencials en disputes amb els vostres usuaris.
+      notified_on_html: Usuaris notificats el %{date}
+      notify_users: Notifica els usuaris
+      preview:
+        explanation_html: 'Aquest correu-e s''enviarà a <strong>%{display_count} usuaris</strong> que han signat abans de %{date}. S''hi inclourà aquest text:'
+        send_preview: Envia una vista prèvia a %{email}
+        send_to_all:
+          one: Envia %{display_count} correu-e
+          other: Envia %{display_count} correus-e
+        title: Vista prèvia de la notificació de les condicions de servei
+      publish: Publica
+      published_on_html: Publicada el %{date}
+      save_draft: Desa l'esborrany
+      title: Condicions de servei
     title: Administració
     trends:
       allow: Permet
@@ -1132,7 +1207,6 @@ ca:
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots <a href="%{path}">configurar aquí</a>.
     or_log_in_with: O inicia sessió amb
-    privacy_policy_agreement_html: He llegit i estic d'acord amb la <a href="%{privacy_policy_path}" target="_blank">política de privacitat</a>
     progress:
       confirm: Confirmar email
       details: Els teus detalls
@@ -1157,7 +1231,7 @@ ca:
     set_new_password: Estableix una contrasenya nova
     setup:
       email_below_hint_html: Verifiqueu la carpeta de correu brossa o demaneu-ne un altre. Podeu corregir l'adreça de correu-e si no és correcta.
-      email_settings_hint_html: Toca l'enllaç que t'hem enviat per a verificar %{email}. Esperarem aquí mateix.
+      email_settings_hint_html: Feu clic a l'enllaç que us hem enviat a %{email} per a començar a utilitzar Mastodon. Us esperem.
       link_not_received: No has rebut l'enllaç?
       new_confirmation_instructions_sent: Rebràs un nou correu amb l'enllaç de confirmació en pocs minuts!
       title: Comprova la teva safata d'entrada
@@ -1166,7 +1240,7 @@ ca:
       title: Inicia sessió a %{domain}
     sign_up:
       manual_review: Els registres a %{domain} passen per una revisió manual dels nostres moderadors. Per ajudar-nos a processar el teu registre, escriu-nos quelcom sobre tu i perquè vols un compte a %{domain}.
-      preamble: Amb un compte en aquest servidor Mastodon podràs seguir qualsevol altra persona de la xarxa, independentment d'on tingui el compte.
+      preamble: Amb un compte en aquest servidor de Mastodon podreu seguir qualsevol altra persona al Fedivers, sense importar a quin servidor tingui el compte.
       title: Configurem-te a %{domain}.
     status:
       account_status: Estat del compte
@@ -1178,6 +1252,8 @@ ca:
       view_strikes: Veure accions del passat contra el teu compte
     too_fast: Formulari enviat massa ràpid, torna a provar-ho.
     use_security_key: Usa clau de seguretat
+    user_agreement_html: He llegit i estic d'acord amb les <a href="%{terms_of_service_path}" target="_blank">condicions de servei</a> i la <a href="%{privacy_policy_path}" target="_blank">política de privacitat</a>
+    user_privacy_agreement_html: He llegit i estic d'acord amb la <a href="%{privacy_policy_path}" target="_blank">política de privacitat</a>
   author_attribution:
     example_title: Text d'exemple
     hint_html: Escriviu notícies o un blog fora de Mastodon? Controleu quin crèdit rebeu quan es comparteixen aquí.
@@ -1226,7 +1302,7 @@ ca:
       email_contact_html: Si encara no arriba, podeu enviar un correu-e a <a href="mailto:%{email}">%{email}</a> per a demanar ajuda
       email_reconfirmation_html: Si no rebeu el correu electrònic de confirmació <a href="%{path}">, podeu tornar-lo a demanar</a>
       irreversible: No seràs capaç de restaurar o reactivar el teu compte
-      more_details_html: Per a més detalls, llegeix la <a href="%{terms_path}">política de privadesa</a>.
+      more_details_html: Per a més detalls, llegeix la <a href="%{terms_path}">política de privacitat</a>.
       username_available: El teu nom d'usuari esdevindrà altre cop disponible
       username_unavailable: El teu nom d'usuari quedarà inutilitzable
   disputes:
@@ -1382,6 +1458,22 @@ ca:
       merge_long: Mantenir els registres existents i afegir-ne de nous
       overwrite: Sobreescriu
       overwrite_long: Reemplaça els registres actuals amb els nous
+    overwrite_preambles:
+      blocking_html:
+        one: Esteu a punt de <strong>reemplaçar la vostra llista de blocats</strong> amb fins a <strong>%{count} compte</strong> des de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>reemplaçar la vostra llista de blocats</strong> amb fins a <strong>%{count} comptes</strong> des de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Esteu a punt de <strong>reemplaçar els vostres marcadors</strong> amb fins a <strong>%{count} publicació</strong> des de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>reemplaçar els vostres marcadors</strong> amb fins a <strong>%{count} publicacions</strong> des de <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Esteu a punt de <strong>reemplaçar la vostra llista de dominis blocats</strong> amb fins a <strong>%{count} domini</strong> des de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>reemplaçar la vostra llista de dominis blocats</strong> amb fins a <strong>%{count} dominis</strong> des de <strong>%{filename}</strong>.
+      following_html:
+        one: Esteu a punt de <strong>seguir</strong> fins a <strong>%{count} compte</strong> des de <strong>%{filename}</strong> i <strong>deixar de seguir la resta</strong>.
+        other: Esteu a punt de <strong>seguir</strong> fins a <strong>%{count} comptes</strong> des de <strong>%{filename}</strong> i <strong>deixar de seguir la resta</strong>.
+      lists_html:
+        one: Esteu a punt de <strong>reemplaçar les vostres llistes</strong> amb contactes de <strong>%{filename}</strong>. S'afegirà <strong>%{count} compte</strong> a les noves llistes.
+        other: Esteu a punt de <strong>reemplaçar les vostres llistes</strong> amb contactes de <strong>%{filename}</strong>. S'afegiran fins a <strong>%{count} comptes</strong> a les noves llistes.
     preface: Pots importar algunes les dades que has exportat des d'un altre servidor, com ara el llistat de les persones que estàs seguint o bloquejant.
     recent_imports: Importacions recents
     states:
@@ -1750,6 +1842,10 @@ ca:
       limit: Ja has fixat el màxim nombre de tuts
       ownership: No es pot fixar el tut d'algú altre
       reblog: No es pot fixar un impuls
+    quote_policies:
+      followers: Seguidors i usuaris mencionats
+      nobody: Només usuaris mencionats
+      public: Tothom
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Directe
@@ -1801,6 +1897,13 @@ ca:
       too_late: És massa tard per a apel·lar aquesta acció
   tags:
     does_not_match_previous_name: no coincideix amb el nom anterior
+  terms_of_service:
+    title: Condicions de servei
+  terms_of_service_interstitial:
+    future_preamble_html: Hem fet canvis a les condicions de servei que entraran en efecte el <strong>%{date}</strong>. Us recomanem que hi doneu un cop d'ull.
+    past_preamble_html: Hem fet canvis a les condicions de servei des de la vostra darrera visita. Us recomanem que hi doneu un cop d'ull.
+    review_link: Revisió de les condicions de servei
+    title: Les condicions de servei de %{domain} han canviat
   themes:
     contrast: Mastodon (alt contrast)
     default: Mastodon (fosc)
@@ -1832,6 +1935,10 @@ ca:
     recovery_instructions_html: Si mai perds l'accés al teu telèfon, pots fer servir un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
     webauthn: Claus de seguretat
   user_mailer:
+    announcement_published:
+      description: 'L''administració de %{domain} fa un anunci:'
+      subject: Anunci de servei
+      title: Anunci de servei de %{domain}
     appeal_approved:
       action: Configuració del compte
       explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat aprovada. El teu compte torna a estar en bon estat.
@@ -1861,6 +1968,15 @@ ca:
       further_actions_html: Si no has estat tu, %{action} immediatament i activa l'autenticació de dos-factors per a mantenir el teu compte segur.
       subject: S'ha accedit al teu compte des d'una adreça IP nova
       title: Un inici de sessió nou
+    terms_of_service_changed:
+      agreement: En continuar fent servir %{domain} accepteu aquestes condicions. Si no esteu d'acord amb els nous termes, podeu acabar el vostre acord amb %{domain} tot esborrant el vostre compte.
+      changelog: 'En un cop d''ull, això és el que aquest canvi us implica:'
+      description: 'Heu rebut aquest correu-e perquè hem fet alguns canvis a les condicions de servei de %{domain}. Aquests canvis tindran efecte el %{date}. Us recomanem que hi doneu un cop d''ull:'
+      description_html: Heu rebut aquest correu-e perquè hem fet alguns canvis a les condicions de servei de %{domain}. Aquests canvis tindran efecte el <strong>%{date}</strong>. Us recomanem que<a href="%{path}" target="_blank"> hi doneu un cop d'ull</a>.
+      sign_off: L'equip de %{domain}
+      subject: Actualitzacions de les condicions de servei
+      subtitle: Les condicions de servei de %{domain} canvien
+      title: Actualització important
     warning:
       appeal: Envia una apel·lació
       appeal_description: Si creus que això és un error, pots enviar una apel·lació a l'equip de %{instance}.
@@ -1927,7 +2043,6 @@ ca:
       post_action: Redacteu
       post_step: Saludeu el món amb text, fotos, vídeos o enquestes.
       post_title: Feu la primera publicació
-      share_action: Compartiu
       share_step: Permeteu als vostres amics de saber com trobar-vos a Mastodon.
       share_title: Compartiu el perfil
       sign_in_action: Inicieu sessió

@@ -214,6 +214,7 @@ sq:
         enable_user: Aktivizo Përdorues
         memorialize_account: Bëje Llogari Përkujtimore
         promote_user: Promovojeni Përdoruesin
+        publish_terms_of_service: Boto Kushte Shërbimi
         reject_appeal: Hidheni Poshtë Apelimin
         reject_user: Hidhe Poshtë Përdoruesin
         remove_avatar_user: Hiqe Avatarin
@@ -278,6 +279,7 @@ sq:
         enable_user_html: "%{name} aktivizoi hyrje për përdoruesin %{target}"
         memorialize_account_html: "%{name} e shndërroi llogarinë e %{target} në një faqe përkujtimore"
         promote_user_html: "%{name} gradoi përdoruesin %{target}"
+        publish_terms_of_service_html: "%{name} botoi përditësime të kushteve të shërbimit"
         reject_appeal_html: "%{name} hodhi poshtë apelim vendimi moderimi nga %{target}"
         reject_user_html: "%{name} hodhi poshtë regjistrimin nga %{target}"
         remove_avatar_user_html: "%{name} hoqi avatarin e %{target}"
@@ -307,6 +309,7 @@ sq:
       title: Regjistër auditimesh
       unavailable_instance: "(emër përkatësie jo i passhëm)"
     announcements:
+      back: Mbrapsht te njoftimet
       destroyed_msg: Lajmërimi u fshi me sukses!
       edit:
         title: Përpunoni lajmërimin
@@ -315,6 +318,10 @@ sq:
       new:
         create: Krijoni lajmërim
         title: Lajmërim i ri
+      preview:
+        disclaimer: Ngaqë përdoruesit s’mund të zgjedhin lënien jashtë tyre, njoftimet me email do të kufizohen te njoftime të rëndësishme, të tilla si cenim të dhënash personale, ose njoftime mbylljesh shërbyesish.
+        explanation_html: 'Email-i do të dërgohet te <strong>%{display_count} përdorues</strong>. Te email-i do të përfshihet teksti vijues:'
+        title: Bëni paraparje të shënimit për njoftimin
       publish: Publikoje
       published_msg: Lajmërimi u botua me sukses!
       scheduled_for: Vënë në plan për më %{time}
@@ -473,6 +480,32 @@ sq:
       new:
         title: Importoni bllokime përkatësish
       no_file: S’u përzgjodh kartelë
+    fasp:
+      debug:
+        callbacks:
+          created_at: Krijuar më
+          delete: Fshije
+          ip: Adresë IP
+          request_body: Lëndë kërkese
+      providers:
+        active: Aktivë
+        delete: Fshije
+        edit: Përpunoni Shërbim
+        finish_registration: Përfundoje regjistrimin
+        name: Emër
+        providers: Shërbime
+        public_key_fingerprint: Shenja gishtash kyçi publik
+        registration_requested: Lyp regjistrim
+        registrations:
+          confirm: Ripohojeni
+          description: Morët një regjistrim nga një FASP. Nëse s’e filluat ju, hidheni tej. Nëse e filluat ju, krahasoni me kujdes emrin dhe shenjat e gishtave, para se të ripohoni regjistrimin.
+          reject: Hidhe tej
+          title: Ripohoni Regjistrim në FASP
+        save: Ruaje
+        select_capabilities: Përzgjidhni Aftësi
+        sign_in: Hyni
+        status: Gjendje
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Rekomandimet për ndjekje ndihmojnë përdoruesit e rinj të gjejnë shpejt lëndë me interes</strong>. Kur një përdorues nuk ka ndërvepruar mjaftueshëm me të tjerët, që të formohen rekomandime të personalizuara ndjekjeje, rekomandohen këto llogari. Ato përzgjidhen çdo ditë, prej një përzierje llogarish me shkallën më të lartë të angazhimit dhe numrin më të lartë të ndjekësve vendorë për një gjuhë të dhënë."
       language: Për gjuhën
@@ -540,6 +573,13 @@ sq:
         all: Krejt
         limited: Të kufizuarat
         title: Moderim
+      moderation_notes:
+        create: Shtoni Shënim Moderimi
+        created_msg: Shënimi për moderim instance u krijua me sukses!
+        description_html: Shihni dhe lini shënime për moderatorë të tjerë dhe për veten tuaj si referencë në të ardhme
+        destroyed_msg: Shënimi për moderim instance u fshi me sukses!
+        placeholder: Informacion rreth kësaj instance, veprimeve të ndërmarra, apo çfarëdo tjetër që do t’ju ndihmojë të moderoni këtë instancë në të ardhmen.
+        title: Shënime Moderimi
       private_comment: Koment privat
       public_comment: Koment publik
       purge: Spastroje
@@ -746,17 +786,26 @@ sq:
       title: Role
     rules:
       add_new: Shtoni rregull
+      add_translation: Shtoni përkthim
       delete: Fshije
       description_html: Edhe pse shumica pretendon se kanë lexuar dhe pajtohen me kushtet e shërbimit, zakonisht njerëzit nuk e lexojnë nga fillimi në fund, deri kur del një problem. <strong>Bëjeni më të lehtë parjen e rregullave të shërbyesit tuaj me një vështrim, duke i dhënë në një listë të thjeshtë me pika.</strong> Përpiquni që rregullat të jenë secili të shkurtër dhe të thjeshtë, por as mos u përpiqni t’i ndani në shumë zëra të veçantë.
       edit: Përpunoni rregull
       empty: S’janë përcaktuar ende rregulla shërbyesi.
+      move_down: Lëvize poshtë
+      move_up: Lëvize sipër
       title: Rregulla shërbyesi
+      translation: Përkthim
+      translations: Përkthime
+      translations_explanation: Në daçi, mund të shtoni përkthime për rregullat. Nëse s’ka version të përkthyer, do të shfaqet vlera parazgjedhje. Ju lutemi, garantoni përherë se përkthimi i dhënë është i njëkohësuar me vlerën parazgjedhje.
     settings:
       about:
         manage_rules: Administroni rregulla shërbyesi
         preamble: Jepni informacion të hollësishëm rreth se si mbahet në punë, si moderohet dhe si financohet shërbyesi.
         rules_hint: Ka një zonë enkas për rregulla me të cilat pritet që përdoruesit tuaj të pajtohen.
         title: Mbi
+      allow_referrer_origin:
+        desc: Kur përdoruesit tuaj klikojnë lidhje në sajte të jashtëm, shfletuesi i tyre mund të dërgojë si referues adresën e shërbyesit tuaj Mastodon. Çaktivizojeni këtë, nëse kjo do të lejonte identifikim unik të përdoruesve tuaj, për shembull, nëse është një shërbyes personal Mastodon.
+        title: Lejoni sajte të jashtëm të shohin shërbyesin tuaj Mastodon si burim traffiku
       appearance:
         preamble: Përshtatni ndërfaqen web të Mastodon-it.
         title: Dukje
@@ -776,9 +825,9 @@ sq:
       discovery:
         follow_recommendations: Rekomandime ndjekjeje
         preamble: Shpërfaqja e lëndës interesante është me rëndësi kyçe për mirëseardhjen e përdoruesve të rinj që mund të mos njohin njeri në Mastodon. Kontrolloni se si funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi.
+        privacy: Privatësi
         profile_directory: Drejtori profilesh
         public_timelines: Rrjedha kohore publike
-        publish_discovered_servers: Publiko shërbyes të njohur
         publish_statistics: Publiko statistika
         title: Zbulim
         trends: Në modë
@@ -863,6 +912,8 @@ sq:
     system_checks:
       database_schema_check:
         message_html: Ka migrime bazash të dhënash pezull. Ju lutemi, kryejini, për të qenë të sigurt se aplikacioni sillet siç priteet
+      elasticsearch_analysis_index_mismatch:
+        message_html: Rregulliemt për analizues treguesi Elasticsearch janë të vjetruara. Ju lutemi, ekzekutoni <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Grupi juaj i instancave Elasticsearch s’është i shëndetshëm (gjendje e verdhë), s’mund të përdoren veçoritë e kërkimit
       elasticsearch_health_yellow:
@@ -920,6 +971,36 @@ sq:
       search: Kërkim
       title: Hashtag-ë
       updated_msg: Rregullimet për hashtag-ët u përditësuan me sukses
+    terms_of_service:
+      back: Mbrapsht te kushte shërbimi
+      changelog: Ç’ka ndryshuar
+      create: Përdorni tuajat
+      current: Të tanishmet
+      draft: Skicë
+      generate: Përdorni gjedhe
+      generates:
+        action: Prodhoji
+        chance_to_review_html: "<strong>Termat e shërbimit të prodhuar s’do të botohen automatikisht.</strong> Do të keni një mundësi të shqyrtoni përfundimet. Ju lutemi, që të vazhdohet, plotësoni hollësitë e nevojshme."
+        explanation_html: Gjedhja e dhënë për kushtet e shërbimit është vetëm për qëllime njohjeje dhe s’duhet marrë si këshillë ligjore, për çfarëdo çështje. Ju lutemi, për situatën tuaj dhe pyetje specifike ligjore, lidhuni me juristin tuaj.
+        title: Ujdisje Termash Shërbimi
+      going_live_on_html: Funksionalë, në fuqi që prej %{date}
+      history: Historik
+      live: Drejtpërdrejt
+      no_history: Ende s’ka ndryshime të regjistruara të kushteve të shërbimit.
+      no_terms_of_service_html: Aktualisht s’keni të formësuar terma shërbimit. Termat e shërbimit janë menduar të japin qartësi dhe t’ju mbrojnë nga penalitete potenciale në çështje gjyqësore me përdoruesit tuaj.
+      notified_on_html: Përdoruesi u njoftuan më %{date}
+      notify_users: Njoftoji përdoruesit
+      preview:
+        explanation_html: 'Email-i do t’u dërgohet <strong>%{display_count} përdoruesve</strong> që janë regjistruar para %{date}. Te email-i do të përfshihet teksti vijues:'
+        send_preview: Dërgo paraparje te %{email}
+        send_to_all:
+          one: Dërgo %{display_count} email
+          other: Dërgo %{display_count} email-e
+        title: Bëni paraparje të njoftimit të shërbimt
+      publish: Botoje
+      published_on_html: Botuar më %{date}
+      save_draft: Ruaje skicën
+      title: Kushte Shërbimi
     title: Administrim
     trends:
       allow: Lejojeni
@@ -1126,7 +1207,6 @@ sq:
     migrate_account: Kaloni në një tjetër llogari
     migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
     or_log_in_with: Ose bëni hyrjen me
-    privacy_policy_agreement_html: I kam lexuar dhe pajtohem me <a href="%{privacy_policy_path}" target="_blank">rregullat e privatësisë</a>
     progress:
       confirm: Ripohoni email-in
       details: Hollësitë tuaja
@@ -1151,7 +1231,7 @@ sq:
     set_new_password: Caktoni fjalëkalim të ri
     setup:
       email_below_hint_html: Shihni te dosja juaj e të padëshiruarve, ose kërkoni një tjetër. Mundeni të saktësoni adresën tuaj email, nëse është gabim.
-      email_settings_hint_html: Që të verifikoni %{email}, klikoni lidhjen që ju dërguam. Do të presim këtu.
+      email_settings_hint_html: Që të filloni të përdorni Mastodon-in, klikoni mbi lidhjen që dërguam te%{email}. Do të presim këtu.
       link_not_received: S’morët lidhje?
       new_confirmation_instructions_sent: Brenda pak mintuash do të merrni një email të ri me lidhjen e ripohimit!
       title: Shihni te email-et tuaj
@@ -1160,7 +1240,7 @@ sq:
       title: Bëni hyrjen te %{domain}
     sign_up:
       manual_review: Regjistrimet te %{domain} kalojnë një shqyrtim dorazi nga moderatorët tanë. Që të na ndihmoni të përfundojmë regjistrimin tuaj, na shkruani pakëz mbi veten dhe pse doni një llogari në %{domain}.
-      preamble: Me një llogari në këtë shërbyes Mastodon, do të jeni në gjendje të ndiqni cilindo person tjetër në rrjet, pavarësisht se ku strehohet llogaria e tyre.
+      preamble: Me një llogari te ky shërbyes Mastodon do të jeni në gjendje të ndiqni cilindo person në fedivers, pavarësisht se ku strehohet llogaria e tij.
       title: Le të ujdisim llogarinë tuaj në %{domain}.
     status:
       account_status: Gjendje llogarie
@@ -1172,6 +1252,8 @@ sq:
       view_strikes: Shihni paralajmërime të dikurshme kundër llogarisë tuaj
     too_fast: Formulari u parashtrua shumë shpejt, riprovoni.
     use_security_key: Përdor kyç sigurie
+    user_agreement_html: I kam lexuar dhe pajtohen me <a href="%{terms_of_service_path}" target="_blank">kushtet e shërbimit</a> dhe <a href="%{privacy_policy_path}" target="_blank">rregullat e privatësisë</a>
+    user_privacy_agreement_html: I kam lexuar dhe pajtohem me <a href="%{privacy_policy_path}" target="_blank">rregullat e privatësisë</a>
   author_attribution:
     example_title: Tekst shembull
     hint_html: Shkruani lajme, apo artikuj blogu jashtë Mastodon-it? Kontrolloni se si ju jepet hakë, kur ndahen me të tjerët në Mastodon.
@@ -1782,6 +1864,10 @@ sq:
       limit: Keni fiksuar tashmë numrin maksimum të mesazheve
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       reblog: S’mund të fiksohet një përforcim
+    quote_policies:
+      followers: Ndjekës dhe përdorues të përmendur
+      nobody: Vetëm përdorues të përmendur
+      public: Këdo
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: I drejtpërdrejtë
@@ -1833,6 +1919,13 @@ sq:
       too_late: Është shumë vonë për apelim të këtij paralajmërimi
   tags:
     does_not_match_previous_name: s’përputhet me emrin e mëparshëm
+  terms_of_service:
+    title: Kushte Shërbimi
+  terms_of_service_interstitial:
+    future_preamble_html: Po bëjmë disa ndryshime te termat e shërbimit tonë, që do të hyjnë në fuqi më <strong>%{date}</strong>. Ju nxisim të shqyrtoni termat e përditësuar.
+    past_preamble_html: Kemi ndryshuar termat tanë të shërbimit, që prej vizitës tuaj të fundit. Ju nxisim të shqyrtoni termat e përditësuar.
+    review_link: Shqyrtoni termat e shërbimit
+    title: Termat e shërbimit të %{domain} po ndryshojnë
   themes:
     contrast: Mastodon (Me shumë kontrast)
     default: Mastodon (I errët)
@@ -1864,6 +1957,10 @@ sq:
     recovery_instructions_html: Në ndodhtë që të humbni hyrje te telefoni juaj, mund të përdorni një nga kodet e rikthimit më poshtë, që të rifitoni hyrje te llogaria juaj. <strong>Mbajini të parrezik kodet e rikthimeve</strong>. Për shembull, mund t’i shtypni dhe t’i ruani tok me dokumente të tjerë të rëndësishëm.
     webauthn: Kyçe sigurie
   user_mailer:
+    announcement_published:
+      description: 'Përgjegjësit e %{domain} po bëjnë një njoftim:'
+      subject: Njoftim shërbimi
+      title: Njoftim shërbimi %{domain}
     appeal_approved:
       action: Rregullime Llogarie
       explanation: Apelimi i paralajmërimit kundër llogarisë tuaj më %{strike_date}, të cilin e parashtruar më %{appeal_date} është miratuar. Llogaria juaj është sërish në pozita të mira.
@@ -1893,6 +1990,15 @@ sq:
       further_actions_html: Nëse s’ishit ju, këshillojmë të %{action} menjëherë dhe të aktivizoni mirëfilltësim dyfaktorësh, për ta mbajtur llogarinë tuaj të sigurt.
       subject: Llogaria juaj është përdorur që nga një adresë e re IP
       title: Hyrje e re
+    terms_of_service_changed:
+      agreement: Duke vazhduar të përdorni %{domain}, pajtoheni më këto terma. Nëse s’pajtoheni me termat e përditësuar, mund të përfundoni pajtimin tuaj me %{domain} në çfarëdo kohe, përmes fshirjes së llogarisë tuaj.
+      changelog: 'Me një vështrim, ja se ç’do të thotë ky përditësim për ju:'
+      description: 'Po e merrni këtë email ngaqë po bëjmë disa ndryshime te kushtet tona të shërbimit te %{domain}. Këto përditësime do të hyjnë në fuqi më %{date}. Ju nxisim të shqyrtoni kushtet e përditësuara të plota këtu:'
+      description_html: Po e merrni këtë email ngaqë po bëjmë disa ndryshime te kushtet tona të shërbimit te %{domain}. Këto përditësime do të hyjnë në fuqi më <strong>%{date}</strong>. Ju nxisim t’i shqyrtoni <a href="%{path}" target="_blank">të plota kushtet e përditësuara këtu</a>.
+      sign_off: Ekipi i %{domain}
+      subject: Përditësime të termave tanë të shërbimit
+      subtitle: Termat e shërbimit të %{domain} po ndryshojnë
+      title: Përditësim i rëndësishëm
     warning:
       appeal: Parashtroni një apelim
       appeal_description: Nëse besoni se është gabim, mund t’i parashtroni një apelim stafit të %{instance}.
@@ -1959,7 +2065,6 @@ sq:
       post_action: Hartoni
       post_step: Përshëndetni botën me tekst, foto, video, ose pyetësorë.
       post_title: Shkruani postimin tuaj të parë
-      share_action: Ndajeni me të tjerë
       share_step: Bëjuni të ditur shokëve si t’ju gjejnë në Mastodon.
       share_title: Ndani me të tjerët profilin tuaj Mastodon
       sign_in_action: Hyni

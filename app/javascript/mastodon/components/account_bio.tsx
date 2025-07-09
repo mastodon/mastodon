@@ -1,4 +1,4 @@
-import { useLinks } from 'mastodon/../hooks/useLinks';
+import { useLinks } from 'mastodon/hooks/useLinks';
 
 export const AccountBio: React.FC<{
   note: string;

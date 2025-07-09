@@ -8,6 +8,7 @@ class AccountSuggestions
     AccountSuggestions::FriendsOfFriendsSource,
     AccountSuggestions::SimilarProfilesSource,
     AccountSuggestions::GlobalSource,
+    AccountSuggestions::FaspSource,
   ].freeze
 
   BATCH_SIZE = 40

@@ -89,10 +89,8 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :accounts, name: :index_accounts_on_username_and_domain_lower
-          _remote_account = Fabricate(:account, username: duplicate_account_username, domain: duplicate_account_domain)
-          _remote_account_dupe = Fabricate.build(:account, username: duplicate_account_username, domain: duplicate_account_domain).save(validate: false)
-          _local_account = Fabricate(:account, username: duplicate_account_username, domain: nil)
-          _local_account_dupe = Fabricate.build(:account, username: duplicate_account_username, domain: nil).save(validate: false)
+          duplicate_record(:account, username: duplicate_account_username, domain: duplicate_account_domain)
+          duplicate_record(:account, username: duplicate_account_username, domain: nil)
         end
 
         def choose_local_account_to_keep
@@ -127,8 +125,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :users, :email
-          Fabricate(:user, email: duplicate_email)
-          Fabricate.build(:user, email: duplicate_email).save(validate: false)
+          duplicate_record(:user, email: duplicate_email)
         end
       end
 
@@ -156,8 +153,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :users, :confirmation_token
-          Fabricate(:user, confirmation_token: duplicate_confirmation_token)
-          Fabricate.build(:user, confirmation_token: duplicate_confirmation_token).save(validate: false)
+          duplicate_record(:user, confirmation_token: duplicate_confirmation_token)
         end
       end
 
@@ -185,8 +181,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :users, :reset_password_token
-          Fabricate(:user, reset_password_token: duplicate_reset_password_token)
-          Fabricate.build(:user, reset_password_token: duplicate_reset_password_token).save(validate: false)
+          duplicate_record(:user, reset_password_token: duplicate_reset_password_token)
         end
       end
 
@@ -214,8 +209,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :account_domain_blocks, [:account_id, :domain]
-          Fabricate(:account_domain_block, account: account, domain: duplicate_domain)
-          Fabricate.build(:account_domain_block, account: account, domain: duplicate_domain).save(validate: false)
+          duplicate_record(:account_domain_block, account: account, domain: duplicate_domain)
         end
       end
 
@@ -244,8 +238,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :announcement_reactions, [:account_id, :announcement_id, :name]
-          Fabricate(:announcement_reaction, account: account, announcement: announcement, name: name)
-          Fabricate.build(:announcement_reaction, account: account, announcement: announcement, name: name).save(validate: false)
+          duplicate_record(:announcement_reaction, account: account, announcement: announcement, name: name)
         end
       end
 
@@ -272,8 +265,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :conversations, :uri
-          Fabricate(:conversation, uri: uri)
-          Fabricate.build(:conversation, uri: uri).save(validate: false)
+          duplicate_record(:conversation, uri: uri)
         end
       end
 
@@ -301,8 +293,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :custom_emojis, [:shortcode, :domain]
-          Fabricate(:custom_emoji, shortcode: duplicate_shortcode, domain: duplicate_domain)
-          Fabricate.build(:custom_emoji, shortcode: duplicate_shortcode, domain: duplicate_domain).save(validate: false)
+          duplicate_record(:custom_emoji, shortcode: duplicate_shortcode, domain: duplicate_domain)
         end
       end
 
@@ -329,8 +320,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :custom_emoji_categories, :name
-          Fabricate(:custom_emoji_category, name: duplicate_name)
-          Fabricate.build(:custom_emoji_category, name: duplicate_name).save(validate: false)
+          duplicate_record(:custom_emoji_category, name: duplicate_name)
         end
       end
 
@@ -357,8 +347,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :domain_allows, :domain
-          Fabricate(:domain_allow, domain: domain)
-          Fabricate.build(:domain_allow, domain: domain).save(validate: false)
+          duplicate_record(:domain_allow, domain: domain)
         end
       end
 
@@ -385,8 +374,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :domain_blocks, :domain
-          Fabricate(:domain_block, domain: domain)
-          Fabricate.build(:domain_block, domain: domain).save(validate: false)
+          duplicate_record(:domain_block, domain: domain)
         end
       end
 
@@ -413,8 +401,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :email_domain_blocks, :domain
-          Fabricate(:email_domain_block, domain: domain)
-          Fabricate.build(:email_domain_block, domain: domain).save(validate: false)
+          duplicate_record(:email_domain_block, domain: domain)
         end
       end
 
@@ -441,8 +428,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :media_attachments, :shortcode
-          Fabricate(:media_attachment, shortcode: shortcode)
-          Fabricate.build(:media_attachment, shortcode: shortcode).save(validate: false)
+          duplicate_record(:media_attachment, shortcode: shortcode)
         end
       end
 
@@ -469,8 +455,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :preview_cards, :url
-          Fabricate(:preview_card, url: url)
-          Fabricate.build(:preview_card, url: url).save(validate: false)
+          duplicate_record(:preview_card, url: url)
         end
       end
 
@@ -530,8 +515,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :tags, name: 'index_tags_on_name_lower_btree'
-          Fabricate(:tag, name: name)
-          Fabricate.build(:tag, name: name).save(validate: false)
+          duplicate_record(:tag, name: name)
         end
       end
 
@@ -558,8 +542,7 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :webauthn_credentials, :external_id
-          Fabricate(:webauthn_credential, external_id: external_id)
-          Fabricate.build(:webauthn_credential, external_id: external_id).save(validate: false)
+          duplicate_record(:webauthn_credential, external_id: external_id)
         end
       end
 
@@ -586,9 +569,13 @@ RSpec.describe Mastodon::CLI::Maintenance do
 
         def prepare_duplicate_data
           ActiveRecord::Base.connection.remove_index :webhooks, :url
-          Fabricate(:webhook, url: url)
-          Fabricate.build(:webhook, url: url).save(validate: false)
+          duplicate_record(:webhook, url: url)
         end
+      end
+
+      def duplicate_record(fabricator, options = {})
+        Fabricate(fabricator, options)
+        Fabricate.build(fabricator, options).save(validate: false)
       end
 
       def agree_to_backup_warning

@@ -20,10 +20,11 @@ pt-BR:
           invalid: não é um nome de domínio válido
       messages:
         invalid_domain_on_line: "%{value} não é um nome de domínio válido"
-        too_many_lines: está acima do limite de %{limit} linhas
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: contém valores sem rótulos
             username:
               invalid: apenas letras, números e underlines ( "_" )
               reserved: já existe
@@ -38,7 +39,7 @@ pt-BR:
         import:
           attributes:
             data:
-              malformed: Está malformado
+              malformed: está malformado
         list_account:
           attributes:
             account_id:
@@ -48,13 +49,19 @@ pt-BR:
           attributes:
             reblog:
               taken: do toot já existe
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: está muito próxima, deve ser posterior a %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: está abaixo do limite de idade
             email:
               blocked: usa provedor de e-mail não permitido
               unreachable: parece não existir
             role_id:
-              elevated: não pode maior que sua função atual
+              elevated: não pode ser maior que a sua função atual
         user_role:
           attributes:
             permissions_as_keys:

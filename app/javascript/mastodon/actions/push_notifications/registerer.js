@@ -33,7 +33,7 @@ const unsubscribe = ({ registration, subscription }) =>
   subscription ? subscription.unsubscribe().then(() => registration) : registration;
 
 const sendSubscriptionToBackend = (subscription) => {
-  const params = { subscription };
+  const params = { subscription: { ...subscription.toJSON(), standard: true } };
 
   if (me) {
     const data = pushNotificationsSetting.get(me);

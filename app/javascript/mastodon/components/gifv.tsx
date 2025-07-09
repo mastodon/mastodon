@@ -1,70 +1,70 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, forwardRef } from 'react';
 
 interface Props {
   src: string;
-  key: string;
   alt?: string;
   lang?: string;
-  width: number;
-  height: number;
-  onClick?: () => void;
+  width?: number;
+  height?: number;
+  onClick?: React.MouseEventHandler;
+  onMouseDown?: React.MouseEventHandler;
+  onTouchStart?: React.TouchEventHandler;
 }
 
-export const GIFV: React.FC<Props> = ({
-  src,
-  alt,
-  lang,
-  width,
-  height,
-  onClick,
-}) => {
-  const [loading, setLoading] = useState(true);
+export const GIFV = forwardRef<HTMLVideoElement, Props>(
+  (
+    { src, alt, lang, width, height, onClick, onMouseDown, onTouchStart },
+    ref,
+  ) => {
+    const [loading, setLoading] = useState(true);
 
-  const handleLoadedData: React.ReactEventHandler<HTMLVideoElement> =
-    useCallback(() => {
+    const handleLoadedData = useCallback(() => {
       setLoading(false);
     }, [setLoading]);
 
-  const handleClick: React.MouseEventHandler = useCallback(
-    (e) => {
-      if (onClick) {
+    const handleClick = useCallback(
+      (e: React.MouseEvent) => {
         e.stopPropagation();
-        onClick();
-      }
-    },
-    [onClick],
-  );
+        onClick?.(e);
+      },
+      [onClick],
+    );
 
-  return (
-    <div className='gifv' style={{ position: 'relative' }}>
-      {loading && (
-        <canvas
-          width={width}
-          height={height}
+    return (
+      <div className='gifv'>
+        {loading && (
+          <canvas
+            role='button'
+            tabIndex={0}
+            aria-label={alt}
+            title={alt}
+            lang={lang}
+            onClick={handleClick}
+          />
+        )}
+
+        <video
+          ref={ref}
+          src={src}
           role='button'
           tabIndex={0}
           aria-label={alt}
           title={alt}
           lang={lang}
+          width={width}
+          height={height}
+          muted
+          loop
+          autoPlay
+          playsInline
           onClick={handleClick}
+          onLoadedData={handleLoadedData}
+          onMouseDown={onMouseDown}
+          onTouchStart={onTouchStart}
         />
-      )}
+      </div>
+    );
+  },
+);
 
-      <video
-        src={src}
-        role='button'
-        tabIndex={0}
-        aria-label={alt}
-        title={alt}
-        lang={lang}
-        muted
-        loop
-        autoPlay
-        playsInline
-        onClick={handleClick}
-        onLoadedData={handleLoadedData}
-        style={{ position: loading ? 'absolute' : 'static', top: 0, left: 0 }}
-      />
-    </div>
-  );
-};
+GIFV.displayName = 'GIFV';

@@ -94,6 +94,16 @@ class Trends::Query
     to_arel.to_a
   end
 
+  def language_order_clause
+    Arel::Nodes::Case.new.when(language_is_preferred).then(1).else(0).desc
+  end
+
+  def language_is_preferred
+    trend_class
+      .arel_table[:language]
+      .in(preferred_languages)
+  end
+
   def preferred_languages
     if @account&.chosen_languages.present?
       @account.chosen_languages

@@ -9,6 +9,8 @@ class ActivityPub::ProcessAccountService < BaseService
   SUBDOMAINS_RATELIMIT = 10
   DISCOVERIES_PER_REQUEST = 400
 
+  VALID_URI_SCHEMES = %w(http https).freeze
+
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
   def call(username, domain, json, options = {})
@@ -55,7 +57,7 @@ class ActivityPub::ProcessAccountService < BaseService
     after_suspension_change! if suspension_changed?
 
     unless @options[:only_key] || @account.suspended?
-      check_featured_collection! if @account.featured_collection_url.present?
+      check_featured_collection! if @json['featured'].present?
       check_featured_tags_collection! if @json['featuredTags'].present?
       check_links! if @account.fields.any?(&:requires_verification?)
     end
@@ -96,18 +98,30 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def set_immediate_protocol_attributes!
-    @account.inbox_url               = @json['inbox'] || ''
-    @account.outbox_url              = @json['outbox'] || ''
-    @account.shared_inbox_url        = (@json['endpoints'].is_a?(Hash) ? @json['endpoints']['sharedInbox'] : @json['sharedInbox']) || ''
-    @account.followers_url           = @json['followers'] || ''
+    @account.inbox_url               = valid_collection_uri(@json['inbox'])
+    @account.outbox_url              = valid_collection_uri(@json['outbox'])
+    @account.shared_inbox_url        = valid_collection_uri(@json['endpoints'].is_a?(Hash) ? @json['endpoints']['sharedInbox'] : @json['sharedInbox'])
+    @account.followers_url           = valid_collection_uri(@json['followers'])
     @account.url                     = url || @uri
     @account.uri                     = @uri
     @account.actor_type              = actor_type
     @account.created_at              = @json['published'] if @json['published'].present?
   end
 
+  def valid_collection_uri(uri)
+    uri = uri.first if uri.is_a?(Array)
+    uri = uri['id'] if uri.is_a?(Hash)
+    return '' unless uri.is_a?(String)
+
+    parsed_uri = Addressable::URI.parse(uri)
+
+    VALID_URI_SCHEMES.include?(parsed_uri.scheme) && parsed_uri.host.present? ? parsed_uri : ''
+  rescue Addressable::URI::InvalidURIError
+    ''
+  end
+
   def set_immediate_attributes!
-    @account.featured_collection_url = @json['featured'] || ''
+    @account.featured_collection_url = valid_collection_uri(@json['featured'])
     @account.display_name            = @json['name'] || ''
     @account.note                    = @json['summary'] || ''
     @account.locked                  = @json['manuallyApprovesFollowers'] || false
@@ -172,7 +186,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def check_featured_collection!
-    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id, { 'hashtag' => @json['featuredTags'].blank?, 'request_id' => @options[:request_id] })
+    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id, { 'hashtag' => @json['featuredTags'].blank?, 'collection' => @json['featured'], 'request_id' => @options[:request_id] })
   end
 
   def check_featured_tags_collection!
@@ -268,10 +282,11 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def collection_info(type)
-    return [nil, nil] if @json[type].blank?
+    collection_uri = valid_collection_uri(@json[type])
+    return [nil, nil] if collection_uri.blank?
     return @collections[type] if @collections.key?(type)
 
-    collection = fetch_resource_without_id_validation(@json[type])
+    collection = fetch_resource_without_id_validation(collection_uri)
 
     total_items = collection.is_a?(Hash) && collection['totalItems'].present? && collection['totalItems'].is_a?(Numeric) ? collection['totalItems'] : nil
     has_first_page = collection.is_a?(Hash) && collection['first'].present?

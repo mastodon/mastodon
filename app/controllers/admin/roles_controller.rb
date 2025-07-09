@@ -61,7 +61,8 @@ module Admin
     end
 
     def resource_params
-      params.require(:user_role).permit(:name, :color, :highlighted, :position, permissions_as_keys: [])
+      params
+        .expect(user_role: [:name, :color, :highlighted, :position, permissions_as_keys: []])
     end
   end
 end

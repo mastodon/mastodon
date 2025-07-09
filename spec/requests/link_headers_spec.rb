@@ -10,8 +10,8 @@ RSpec.describe 'Link headers' do
       get short_account_path(username: account)
 
       expect(response)
-        .to have_http_link_header('https://cb6e6126.ngrok.io/.well-known/webfinger?resource=acct%3Atest%40cb6e6126.ngrok.io').for(rel: 'lrdd', type: 'application/jrd+json')
-        .and have_http_link_header('https://cb6e6126.ngrok.io/users/test').for(rel: 'alternate', type: 'application/activity+json')
+        .to have_http_link_header(webfinger_url(resource: account.to_webfinger_s)).for(rel: 'lrdd', type: 'application/jrd+json')
+        .and have_http_link_header(account_url(account)).for(rel: 'alternate', type: 'application/activity+json')
     end
   end
 end

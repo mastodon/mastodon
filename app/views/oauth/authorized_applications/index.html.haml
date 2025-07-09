@@ -9,7 +9,7 @@
   - @applications.each do |application|
     .applications-list__item{ id: dom_id(application) }
       - if application.website.present?
-        = link_to application.name, application.website, target: '_blank', rel: 'noopener noreferrer', class: 'announcements-list__item__title'
+        = link_to application.name, application.website, target: '_blank', rel: 'noopener', class: 'announcements-list__item__title'
       - else
         %strong.announcements-list__item__title
           = application.name

@@ -1,9 +1,0 @@
-inherit_from: ../../.rubocop.yml
-
-Naming/VariableNumber:
-  CheckSymbols: false
-
-# Enabled here as workaround for https://docs.rubocop.org/rubocop/configuration.html#path-relativity
-Rails/CreateTableWithTimestamps:
-  Include:
-    - '*.rb'

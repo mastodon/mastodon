@@ -27,7 +27,7 @@ class Settings::MigrationsController < Settings::BaseController
   private
 
   def resource_params
-    params.require(:account_migration).permit(:acct, :current_password, :current_username)
+    params.expect(account_migration: [:acct, :current_password, :current_username])
   end
 
   def set_migrations

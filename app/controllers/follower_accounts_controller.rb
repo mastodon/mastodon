@@ -46,7 +46,7 @@ class FollowerAccountsController < ApplicationController
   end
 
   def page_url(page)
-    account_followers_url(@account, page: page) unless page.nil?
+    ActivityPub::TagManager.instance.followers_uri_for(@account, page: page) unless page.nil?
   end
 
   def next_page_url

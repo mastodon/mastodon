@@ -9,6 +9,8 @@ RSpec.describe Status do
   let(:bob)   { Fabricate(:account, username: 'bob') }
   let(:other) { Fabricate(:status, account: bob, text: 'Skulls for the skull god! The enemy\'s gates are sideways!') }
 
+  it_behaves_like 'Status::Visibility'
+
   describe '#local?' do
     it 'returns true when no remote URI is set' do
       expect(subject.local?).to be true
@@ -81,36 +83,6 @@ RSpec.describe Status do
     it 'is comment when the status replies to another' do
       subject.thread = other
       expect(subject.object_type).to be :comment
-    end
-  end
-
-  describe '#hidden?' do
-    context 'when private_visibility?' do
-      it 'returns true' do
-        subject.visibility = :private
-        expect(subject.hidden?).to be true
-      end
-    end
-
-    context 'when direct_visibility?' do
-      it 'returns true' do
-        subject.visibility = :direct
-        expect(subject.hidden?).to be true
-      end
-    end
-
-    context 'when public_visibility?' do
-      it 'returns false' do
-        subject.visibility = :public
-        expect(subject.hidden?).to be false
-      end
-    end
-
-    context 'when unlisted_visibility?' do
-      it 'returns false' do
-        subject.visibility = :unlisted
-        expect(subject.hidden?).to be false
-      end
     end
   end
 
@@ -377,6 +349,17 @@ RSpec.describe Status do
     it 'contains true value' do
       Fabricate(:status, account: account, reblog: status)
       expect(subject[status.id]).to be true
+    end
+  end
+
+  describe '.only_reblogs' do
+    let!(:status) { Fabricate :status }
+    let!(:reblog) { Fabricate :status, reblog: Fabricate(:status) }
+
+    it 'returns the expected statuses' do
+      expect(described_class.only_reblogs)
+        .to include(reblog)
+        .and not_include(status)
     end
   end
 

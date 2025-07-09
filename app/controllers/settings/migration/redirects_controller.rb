@@ -33,6 +33,6 @@ class Settings::Migration::RedirectsController < Settings::BaseController
   private
 
   def resource_params
-    params.require(:form_redirect).permit(:acct, :current_password, :current_username)
+    params.expect(form_redirect: [:acct, :current_password, :current_username])
   end
 end

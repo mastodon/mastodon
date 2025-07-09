@@ -26,8 +26,13 @@ RSpec.describe 'Home', :inline_jobs do
       before do
         user.account.follow!(bob)
         user.account.follow!(ana)
-        PostStatusService.new.call(bob, text: 'New toot from bob.')
+        quoted = PostStatusService.new.call(bob, text: 'New toot from bob.')
         PostStatusService.new.call(tim, text: 'New toot from tim.')
+        reblogged = PostStatusService.new.call(tim, text: 'New toot from tim, which will end up boosted.')
+        ReblogService.new.call(bob, reblogged)
+        # TODO: use PostStatusService argument when available rather than manually creating quote
+        quoting = PostStatusService.new.call(bob, text: 'Self-quote from bob.')
+        Quote.create!(status: quoting, quoted_status: quoted, state: :accepted)
         PostStatusService.new.call(ana, text: 'New toot from ana.')
       end
 
@@ -61,7 +66,8 @@ RSpec.describe 'Home', :inline_jobs do
     end
 
     context 'when the timeline is regenerating' do
-      let(:timeline) { instance_double(HomeFeed, regenerating?: true, get: []) }
+      let(:async_refresh) { AsyncRefresh.create("account:#{user.account_id}:regeneration") }
+      let(:timeline) { instance_double(HomeFeed, regenerating?: true, get: [], async_refresh:) }
 
       before do
         allow(HomeFeed).to receive(:new).and_return(timeline)
@@ -71,6 +77,7 @@ RSpec.describe 'Home', :inline_jobs do
         subject
 
         expect(response).to have_http_status(206)
+        expect(response.headers['Mastodon-Async-Refresh']).to eq "id=\"#{async_refresh.id}\", retry=5"
         expect(response.content_type)
           .to start_with('application/json')
       end

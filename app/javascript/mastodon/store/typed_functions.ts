@@ -1,5 +1,5 @@
 import type { GetThunkAPI } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSelector } from '@reduxjs/toolkit';
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -23,6 +23,8 @@ export const createAppAsyncThunk = createAsyncThunk.withTypes<{
   dispatch: AppDispatch;
   rejectValue: AsyncThunkRejectValue;
 }>();
+
+export const createAppSelector = createSelector.withTypes<RootState>();
 
 interface AppThunkConfig {
   state: RootState;

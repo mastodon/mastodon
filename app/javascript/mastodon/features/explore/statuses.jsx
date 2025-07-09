@@ -58,7 +58,6 @@ class Statuses extends PureComponent {
     return (
       <StatusList
         trackScroll
-        prepend={<DismissableBanner id='explore/statuses'><FormattedMessage id='dismissable_banner.explore_statuses' defaultMessage='These posts from across the fediverse are gaining traction today. Newer posts with more boosts and favorites are ranked higher.' /></DismissableBanner>}
         alwaysPrepend
         timelineId='explore'
         statusIds={statusIds}

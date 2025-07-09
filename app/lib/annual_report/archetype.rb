@@ -32,7 +32,7 @@ class AnnualReport::Archetype < AnnualReport::Source
   end
 
   def reblogs_count
-    @reblogs_count ||= report_statuses.where.not(reblog_of_id: nil).count
+    @reblogs_count ||= report_statuses.only_reblogs.count
   end
 
   def replies_count

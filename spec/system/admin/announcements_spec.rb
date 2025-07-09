@@ -117,10 +117,10 @@ RSpec.describe 'Admin::Announcements' do
   end
 
   def text_label
-    I18n.t('simple_form.labels.announcement.text')
+    form_label('announcement.text')
   end
 
   def admin_user
-    Fabricate(:user, role: UserRole.find_by(name: 'Admin'))
+    Fabricate(:admin_user)
   end
 end

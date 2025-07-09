@@ -6,7 +6,7 @@ RSpec.describe Admin::ExportDomainAllowsController do
   render_views
 
   before do
-    sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
+    sign_in Fabricate(:admin_user), scope: :user
   end
 
   describe 'GET #new' do
@@ -32,15 +32,16 @@ RSpec.describe Admin::ExportDomainAllowsController do
     it 'allows imported domains' do
       post :import, params: { admin_import: { data: fixture_file_upload('domain_allows.csv') } }
 
-      expect(response).to redirect_to(admin_instances_path)
+      expect(response)
+        .to redirect_to(admin_instances_path)
 
-      # Header should not be imported
-      expect(DomainAllow.where(domain: '#domain').present?).to be(false)
-
-      # Domains should now be added
-      get :export, params: { format: :csv }
-      expect(response).to have_http_status(200)
-      expect(response.body).to eq(domain_allows_csv_file)
+      # Header row should not be imported, but domains should
+      expect(DomainAllow)
+        .to_not exist(domain: '#domain')
+      expect(DomainAllow)
+        .to exist(domain: 'good.domain')
+      expect(DomainAllow)
+        .to exist(domain: 'better.domain')
     end
 
     it 'displays error on no file selected' do

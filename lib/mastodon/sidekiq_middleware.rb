@@ -3,8 +3,10 @@
 class Mastodon::SidekiqMiddleware
   BACKTRACE_LIMIT = 3
 
-  def call(*, &block)
-    Chewy.strategy(:mastodon, &block)
+  def call(_worker_class, job, _queue, &block)
+    setup_query_log_tags(job) do
+      Chewy.strategy(:mastodon, &block)
+    end
   rescue Mastodon::HostValidationError
     # Do not retry
   rescue => e
@@ -60,5 +62,15 @@ class Mastodon::SidekiqMiddleware
   def clean_up_statsd_socket!
     Thread.current[:statsd_socket]&.close
     Thread.current[:statsd_socket] = nil
+  end
+
+  def setup_query_log_tags(job, &block)
+    if Rails.configuration.active_record.query_log_tags_enabled
+      # If `wrapped` is set, this is an `ActiveJob` which is already in the execution context
+      sidekiq_job_class = job['wrapped'].present? ? nil : job['class'].to_s
+      ActiveSupport::ExecutionContext.set(sidekiq_job_class: sidekiq_job_class, &block)
+    else
+      yield
+    end
   end
 end

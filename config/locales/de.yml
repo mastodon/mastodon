@@ -214,6 +214,7 @@ de:
         enable_user: Benutzer*in aktivieren
         memorialize_account: Gedenkkonto
         promote_user: Benutzer*in hochstufen
+        publish_terms_of_service: Nutzungsbedingungen veröffentlichen
         reject_appeal: Einspruch ablehnen
         reject_user: Benutzer*in ablehnen
         remove_avatar_user: Profilbild entfernen
@@ -278,6 +279,7 @@ de:
         enable_user_html: "%{name} aktivierte den Zugang für %{target}"
         memorialize_account_html: "%{name} wandelte das Konto von %{target} in eine Gedenkseite um"
         promote_user_html: "%{name} beförderte %{target}"
+        publish_terms_of_service_html: "%{name} aktualisierte die Nutzungsbedingungen"
         reject_appeal_html: "%{name} hat den Einspruch gegen eine Moderationsentscheidung von %{target} abgelehnt"
         reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
         remove_avatar_user_html: "%{name} entfernte das Profilbild von %{target}"
@@ -307,6 +309,7 @@ de:
       title: Audit-Log
       unavailable_instance: "(Server nicht verfügbar)"
     announcements:
+      back: Zurück zu den Ankündigungen
       destroyed_msg: Ankündigung erfolgreich gelöscht!
       edit:
         title: Ankündigung bearbeiten
@@ -315,13 +318,17 @@ de:
       new:
         create: Ankündigung erstellen
         title: Neue Ankündigung
+      preview:
+        disclaimer: Da sich Profile nicht davon abmelden können, sollten Benachrichtigungen per E-Mail auf wichtige Ankündigungen wie z. B. zu Datenpannen oder Serverabschaltung beschränkt sein.
+        explanation_html: 'Die E-Mail wird an <strong>%{display_count} Nutzer*innen</strong> gesendet. Folgendes wird in der E-Mail enthalten sein:'
+        title: Vorschau der Ankündigung
       publish: Veröffentlichen
       published_msg: Ankündigung erfolgreich veröffentlicht!
       scheduled_for: Geplant für %{time}
       scheduled_msg: Ankündigung ist zur Veröffentlichung vorgemerkt!
       title: Ankündigungen
       unpublish: Veröffentlichung rückgängig machen
-      unpublished_msg: Ankündigung erfolgreich unveröffentlicht!
+      unpublished_msg: Ankündigung ist jetzt nicht mehr sichtbar!
       updated_msg: Ankündigung erfolgreich aktualisiert!
     critical_update_pending: Kritisches Update ausstehend
     custom_emojis:
@@ -473,6 +480,36 @@ de:
       new:
         title: Domains importieren
       no_file: Keine Datei ausgewählt
+    fasp:
+      debug:
+        callbacks:
+          created_at: Erstellt am
+          delete: Entfernen
+          ip: IP-Adresse
+          request_body: Body anfragen
+          title: Callback testen
+      providers:
+        active: Aktiv
+        base_url: Basis-URL
+        callback: Callback
+        delete: Entfernen
+        edit: Anbieter bearbeiten
+        finish_registration: Registrierung abschließen
+        name: Name
+        providers: Anbieter
+        public_key_fingerprint: Fingerabdruck des öffentlichen Schlüssels
+        registration_requested: Registrierung angefordert
+        registrations:
+          confirm: Bestätigen
+          description: Sie haben eine Registrierung von einer FASP erhalten. Lehnen Sie ab, wenn Sie dies nicht initiiert haben. Wenn Sie dies initiiert haben, vergleichen Sie Namen und Fingerabdruck vor der Bestätigung der Registrierung.
+          reject: Ablehnen
+          title: FASP-Registrierung bestätigen
+        save: Speichern
+        select_capabilities: Leistungsfähigkeit auswählen
+        sign_in: Anmelden
+        status: Status
+        title: Fediverse Auxiliary Service Providers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Follower-Empfehlungen helfen neuen Nutzer*innen, interessante Inhalte schnell zu finden</strong>. Wenn ein*e Nutzer*in noch nicht genug mit anderen interagiert hat, um personalisierte Follower-Empfehlungen zu erhalten, werden stattdessen diese Profile vorgeschlagen. Sie werden täglich, basierend auf einer Mischung aus am meisten interagierenden Konten und jenen mit den meisten Followern für eine bestimmte Sprache neu berechnet."
       language: Für Sprache
@@ -541,6 +578,13 @@ de:
         all: Alle
         limited: Eingeschränkt
         title: Server
+      moderation_notes:
+        create: Moderationsnotiz hinzufügen
+        created_msg: Moderationsnotiz für diesen Server erfolgreich erstellt!
+        description_html: Hinterlasse Notizen für dich und deine Moderator*innen
+        destroyed_msg: Moderationsnotiz für diesen Server erfolgreich entfernt!
+        placeholder: Informationen über diesen Server, ergriffene Maßnahmen oder andere Sachverhalte, die in Zukunft nützlich sein könnten.
+        title: Moderationsnotizen
       private_comment: Privater Kommentar
       public_comment: Öffentlicher Kommentar
       purge: Säubern
@@ -717,7 +761,7 @@ de:
         manage_appeals: Einsprüche verwalten
         manage_appeals_description: Erlaubt es Benutzer*innen, Entscheidungen der Moderator*innen zu widersprechen
         manage_blocks: Sperrungen verwalten
-        manage_blocks_description: Erlaubt Nutzer*innen das Sperren von E-Mail-Providern und IP-Adressen
+        manage_blocks_description: Erlaubt Nutzer*innen das Sperren von E-Mail-Anbietern und IP-Adressen
         manage_custom_emojis: Eigene Emojis verwalten
         manage_custom_emojis_description: Erlaubt es Benutzer*innen, eigene Emojis auf dem Server zu verwalten
         manage_federation: Föderation verwalten
@@ -749,17 +793,26 @@ de:
       title: Rollen
     rules:
       add_new: Regel hinzufügen
+      add_translation: Übersetzung hinzufügen
       delete: Löschen
       description_html: Während die meisten behaupten, die Nutzungsbedingungen tatsächlich gelesen zu haben, bekommen viele sie erst nach einem Problem mit. <strong>Vereinfache und reduziere daher die Serverregeln mit Stichpunkten.</strong> Versuche dabei, die einzelnen Vorgaben kurz und einfach zu halten, aber vermeide, sie in viele verschiedene Elemente aufzuteilen.
       edit: Regel bearbeiten
       empty: Es wurden bisher keine Serverregeln definiert.
+      move_down: Abwärts
+      move_up: Aufwärts
       title: Serverregeln
+      translation: Übersetzung
+      translations: Übersetzungen
+      translations_explanation: Du kannst Serverregeln übersetzen. Der Standardwert wird angezeigt, wenn keine übersetzte Version verfügbar ist. Bitte vergewissere dich, dass jede Übersetzung mit dem Standardwert übereinstimmt.
     settings:
       about:
         manage_rules: Serverregeln verwalten
         preamble: Schildere ausführlich, wie dein Server betrieben, moderiert und finanziert wird.
         rules_hint: Es gibt einen eigenen Bereich für Regeln, die deine Benutzer*innen einhalten müssen.
         title: Über
+      allow_referrer_origin:
+        desc: Klicken Nutzer*innen auf Links zu externen Seiten, kann der Browser die Adresse deines Mastodon-Servers als Referrer (Verweis) übermitteln. Diese Option sollte deaktiviert werden, wenn Nutzer*innen dadurch eindeutig identifiziert würden – z. B. wenn es sich um einen privaten Mastodon-Server handelt.
+        title: Externen Seiten erlauben, diesen Mastodon-Server als Quelle zu sehen
       appearance:
         preamble: Passe das Webinterface von Mastodon an.
         title: Design
@@ -779,9 +832,9 @@ de:
       discovery:
         follow_recommendations: Follower-Empfehlungen
         preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
+        privacy: Datenschutz
         profile_directory: Profilverzeichnis
         public_timelines: Öffentliche Timeline
-        publish_discovered_servers: Entdeckte Server offenlegen
         publish_statistics: Statistiken veröffentlichen
         title: Entdecken
         trends: Trends
@@ -810,7 +863,7 @@ de:
       destroyed_msg: Upload erfolgreich gelöscht!
     software_updates:
       critical_update: Kritisch — bitte zügig aktualisieren
-      description: Es wird empfohlen, deine Mastodon-Installation auf dem aktuellen Stand zu halten, um von den neuesten Fehlerbehebungen und Funktionen zu profitieren. Darüber hinaus ist es wichtig, Mastodon zeitnah zu aktualisieren, um Sicherheitslücken zu schließen. Aus diesen Gründen prüft Mastodon alle 30 Minuten auf Updates und du wirst entsprechend deiner Einstellungen per E-Mail informiert.
+      description: Es wird empfohlen, deine Mastodon-Installation auf dem aktuellen Stand zu halten, um von den neuesten Fehlerkorrekturen und Funktionen zu profitieren. Darüber hinaus ist es wichtig, Mastodon zeitnah zu aktualisieren, um Sicherheitslücken zu schließen. Aus diesen Gründen prüft Mastodon alle 30 Minuten auf Updates und du wirst deinen Einstellungen entsprechend per E-Mail informiert.
       documentation_link: Mehr erfahren
       release_notes: Versionshinweise
       title: Verfügbare Updates
@@ -818,7 +871,7 @@ de:
       types:
         major: Hauptversion
         minor: Nebenversion
-        patch: Revision — Fehlerbehebungen und einfach zu implementierende Änderungen
+        patch: Revision — Fehlerkorrekturen und einfach zu implementierende Änderungen
       version: Version
     statuses:
       account: Autor*in
@@ -866,6 +919,8 @@ de:
     system_checks:
       database_schema_check:
         message_html: Es gibt ausstehende Datenbankmigrationen. Bitte führe sie aus, um sicherzustellen, dass sich die Anwendung wie erwartet verhält
+      elasticsearch_analysis_index_mismatch:
+        message_html: 'Die Einstellungen für die Indexanalyse von Elasticsearch sind veraltet. Bitte führe diesen Code aus: <code>tootctl search deploy --only-mapping --only=%{value}</code>'
       elasticsearch_health_red:
         message_html: Elasticsearch-Cluster ist fehlerhaft (roter Status) – Suchfunktionen sind nicht verfügbar
       elasticsearch_health_yellow:
@@ -898,7 +953,7 @@ de:
         message_html: Ein kritisches Mastodon-Update ist verfügbar – bitte aktualisiere so schnell wie möglich.
       software_version_patch_check:
         action: Verfügbare Updates ansehen
-        message_html: Ein Mastodon-Update für Fehlerbehebungen ist verfügbar.
+        message_html: Ein Mastodon-Update für Fehlerkorrekturen ist verfügbar.
       upload_check_privacy_error:
         action: Für weitere Informationen hier klicken
         message_html: "<strong>Die Konfiguration deines Servers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
@@ -925,6 +980,36 @@ de:
       search: Suchen
       title: Hashtags
       updated_msg: Hashtag-Einstellungen erfolgreich aktualisiert
+    terms_of_service:
+      back: Zurück zu den Nutzungsbedingungen
+      changelog: Was sich geändert hat
+      create: Eigene erstellen
+      current: Aktuell
+      draft: Entwurf
+      generate: Vorlage verwenden
+      generates:
+        action: Erstellen
+        chance_to_review_html: "<strong>Die durch diese Vorlage erstellten Nutzungsbedingungen werden nicht automatisch veröffentlicht.</strong> Du wirst alles noch einmal überprüfen können. Bitte fülle alle Felder mit den notwendigen Informationen aus, um fortzufahren."
+        explanation_html: Die Vorlage für die Nutzungsbedingungen dient ausschließlich zu Informationszwecken und sollte nicht als Rechtsberatung zu einem bestimmten Thema verstanden werden. Bei rechtlichen Fragen, konsultiere bitte deinen Rechtsbeistand.
+        title: Nutzungsbedingungen festlegen
+      going_live_on_html: Aktuell gültig (ab %{date})
+      history: Verlauf
+      live: Aktuell gültig
+      no_history: Es wurden noch keine Änderungen an den Nutzungsbedingungen aufgezeichnet.
+      no_terms_of_service_html: Du hast derzeit keine Nutzungsbedingungen bereitgestellt. Nutzungsbedingungen verschaffen Klarheit und schützen vor möglicher Haftung bei Streitigkeiten mit deinen Nutzer*innen.
+      notified_on_html: Nutzer*innen wurden am %{date} benachrichtigt
+      notify_users: Nutzer*innen benachrichtigen
+      preview:
+        explanation_html: 'Die E-Mail wird an <strong>%{display_count} Nutzer*innen</strong> gesendet, die sich vor dem %{date} registriert haben. Folgendes wird in der E-Mail enthalten sein:'
+        send_preview: Vorschau an %{email} senden
+        send_to_all:
+          one: "%{display_count} E-Mail senden"
+          other: "%{display_count} E-Mails senden"
+        title: Vorschau zu den neuen Nutzungsbedingungen
+      publish: Veröffentlichen
+      published_on_html: Veröffentlicht am %{date}
+      save_draft: Entwurf speichern
+      title: Nutzungsbedingungen
     title: Administration
     trends:
       allow: Erlauben
@@ -936,9 +1021,9 @@ de:
         allow: Link erlauben
         allow_provider: Herausgeber*in erlauben
         confirm_allow: Möchtest du die ausgewählten Links wirklich erlauben?
-        confirm_allow_provider: Möchtest du die ausgewählten Provider wirklich erlauben?
+        confirm_allow_provider: Möchtest du die ausgewählten Anbieter wirklich erlauben?
         confirm_disallow: Möchtest du die ausgewählten Links wirklich verbieten?
-        confirm_disallow_provider: Möchtest du die ausgewählten Provider wirklich verbieten?
+        confirm_disallow_provider: Möchtest du die ausgewählten Anbieter wirklich verbieten?
         description_html: Dies sind Links, die derzeit von zahlreichen Konten geteilt werden und die deinem Server aufgefallen sind. Die Benutzer*innen können darüber herausfinden, was in der Welt vor sich geht. Die Links werden allerdings erst dann öffentlich vorgeschlagen, wenn du die Herausgeber*innen genehmigt hast. Du kannst alternativ aber auch nur einzelne URLs zulassen oder ablehnen.
         disallow: Link verbieten
         disallow_provider: Herausgeber*in verbieten
@@ -1132,7 +1217,6 @@ de:
     migrate_account: Zu einem anderen Konto umziehen
     migrate_account_html: Wenn du dieses Konto auf ein anderes weiterleiten möchtest, kannst du es <a href="%{path}">hier konfigurieren</a>.
     or_log_in_with: Oder anmelden mit
-    privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> gelesen und stimme ihr zu
     progress:
       confirm: E-Mail bestätigen
       details: Deine Daten
@@ -1157,7 +1241,7 @@ de:
     set_new_password: Neues Passwort einrichten
     setup:
       email_below_hint_html: Überprüfe deinen Spam-Ordner oder lass dir den Bestätigungslink erneut zusenden. Falls die angegebene E-Mail-Adresse falsch ist, kannst du sie auch korrigieren.
-      email_settings_hint_html: Klicke auf den Bestätigungslink, den wir an %{email} gesendet haben, um die Adresse zu verifizieren. Wir warten hier solange auf dich.
+      email_settings_hint_html: Klicke auf den Link, den wir an %{email} gesendet haben, um mit Mastodon loszulegen. Wir warten hier solange auf dich.
       link_not_received: Keinen Bestätigungslink erhalten?
       new_confirmation_instructions_sent: In wenigen Minuten wirst du eine neue E-Mail mit dem Bestätigungslink erhalten!
       title: Überprüfe dein E-Mail-Postfach
@@ -1166,7 +1250,7 @@ de:
       title: Bei %{domain} anmelden
     sign_up:
       manual_review: Registrierungen für den Server %{domain} werden manuell durch unsere Moderator*innen überprüft. Um uns dabei zu unterstützen, schreibe etwas über dich und sage uns, weshalb du ein Konto auf %{domain} anlegen möchtest.
-      preamble: Mit einem Konto auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Konto registriert ist.
+      preamble: Mit einem Konto auf diesem Mastodon-Server kannst du jeder anderen Person im Fediverse folgen, unabhängig davon, wo ihr Konto registriert ist.
       title: Lass uns dein Konto auf %{domain} einrichten.
     status:
       account_status: Kontostatus
@@ -1178,6 +1262,8 @@ de:
       view_strikes: Vorherige Verstöße deines Kontos ansehen
     too_fast: Formular zu schnell übermittelt. Bitte versuche es erneut.
     use_security_key: Sicherheitsschlüssel verwenden
+    user_agreement_html: Ich stimme den <a href="%{terms_of_service_path}" target="_blank">Nutzungsbedingungen</a> sowie der <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> zu
+    user_privacy_agreement_html: Ich stimme der <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> zu
   author_attribution:
     example_title: Beispieltext
     hint_html: Schreibst du außerhalb von Mastodon journalistische Artikel oder andere Texte, beispielsweise in einem Blog? Lege hier fest, wann auf dein Profil verwiesen werden soll, wenn Links zu deinen Werken auf Mastodon geteilt werden.
@@ -1263,6 +1349,10 @@ de:
     basic_information: Allgemeine Informationen
     hint_html: "<strong>Bestimme, was andere auf deinem öffentlichen Profil und neben deinen Beiträgen sehen können.</strong> Wenn du ein Profilbild festlegst und dein Profil vervollständigst, werden andere eher mit dir interagieren und dir folgen."
     other: Andere
+  emoji_styles:
+    auto: Automatisch
+    native: Nativ
+    twemoji: Twemoji
   errors:
     '400': Die Anfrage, die du gestellt hast, war ungültig oder fehlerhaft.
     '403': Dir fehlt die Berechtigung, diese Seite aufzurufen.
@@ -1509,7 +1599,7 @@ de:
       too_many: Mehr als vier Dateien können nicht angehängt werden
   migrations:
     acct: umgezogen nach
-    cancel: Weiterleitung beenden
+    cancel: Nicht mehr weiterleiten
     cancel_explanation: Das Abbrechen der Weiterleitung wird dein aktuelles Konto erneut aktivieren, aber keine Follower zurückholen, die auf dieses Konto verschoben wurden.
     cancelled_msg: Die Weiterleitung wurde erfolgreich beendet.
     errors:
@@ -1788,6 +1878,10 @@ de:
       limit: Du hast bereits die maximale Anzahl an Beiträgen angeheftet
       ownership: Du kannst nur eigene Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
+    quote_policies:
+      followers: Follower und erwähnte Profile
+      nobody: Nur erwähnte Profile
+      public: Alle
     title: "%{name}: „%{quote}“"
     visibilities:
       direct: Direktnachricht
@@ -1839,6 +1933,13 @@ de:
       too_late: Es ist zu spät, um gegen diese Maßnahme Einspruch zu erheben
   tags:
     does_not_match_previous_name: entspricht nicht dem vorherigen Namen
+  terms_of_service:
+    title: Nutzungsbedingungen
+  terms_of_service_interstitial:
+    future_preamble_html: Wir aktualisieren unsere Nutzungsbedingungen, die am <strong>%{date}</strong> in Kraft treten. Bitte lies dir die aktualisierten Bedingungen sorgfältig durch.
+    past_preamble_html: Wir haben unsere Nutzungsbedingungen seit deinem letzten Besuch geändert. Bitte lies dir die aktualisierten Bedingungen sorgfältig durch.
+    review_link: Nutzungsbedingungen lesen
+    title: Die Nutzungsbedingungen von %{domain} ändern sich
   themes:
     contrast: Mastodon (Hoher Kontrast)
     default: Mastodon (Dunkel)
@@ -1870,6 +1971,10 @@ de:
     recovery_instructions_html: Falls du jemals den Zugang zu deinem Smartphone verlierst, kannst du einen der unten aufgeführten Wiederherstellungscodes verwenden, um wieder Zugang zu deinem Konto zu erhalten. <strong>Bewahre die Wiederherstellungscodes sicher auf</strong>. Du kannst sie zum Beispiel ausdrucken und zusammen mit anderen wichtigen Dokumenten aufbewahren.
     webauthn: Sicherheitsschlüssel
   user_mailer:
+    announcement_published:
+      description: 'Ankündigung der Administrator*innen von %{domain}:'
+      subject: Ankündigung
+      title: Ankündigung von %{domain}
     appeal_approved:
       action: Kontoeinstellungen
       explanation: Der Einspruch gegen deinen Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde genehmigt. Dein Konto ist wieder in Ordnung.
@@ -1899,6 +2004,15 @@ de:
       further_actions_html: Wenn du das nicht warst, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentisierung für dein Konto zu aktivieren, um es abzusichern.
       subject: Es wurde auf dein Konto von einer neuen IP-Adresse zugegriffen
       title: Eine neue Anmeldung
+    terms_of_service_changed:
+      agreement: Du stimmst den neuen Nutzungsbedingungen automatisch zu, wenn du %{domain} weiterhin verwendest. Falls du mit diesen nicht einverstanden bist, kannst du die Vereinbarung mit %{domain} jederzeit widerrufen, indem du dein Konto dort löschst.
+      changelog: 'Die Änderungen im Überblick:'
+      description: 'Du erhältst diese E-Mail, weil wir für %{domain} einige Änderungen an unseren Nutzungsbedingungen vorgenommen haben. Diese Änderungen gelten ab %{date}. Wir empfehlen, die vollständig aktualisierte Fassung hier zu lesen:'
+      description_html: Du erhältst diese E-Mail, weil wir für %{domain} einige Änderungen an unseren Nutzungsbedingungen vorgenommen haben. Diese Änderungen gelten ab <strong>%{date}</strong>. Wir empfehlen, die <a href="%{path}" target="_blank">vollständig aktualisierte Fassung hier zu lesen</a>.
+      sign_off: Das Team von %{domain}
+      subject: Aktualisierung unserer Nutzungsbedingungen
+      subtitle: Die Nutzungsbedingungen von %{domain} ändern sich
+      title: Wichtige Mitteilung
     warning:
       appeal: Einspruch erheben
       appeal_description: Wenn du glaubst, dass es sich um einen Fehler handelt, kannst du einen Einspruch an die Administration von %{instance} senden.
@@ -1965,7 +2079,6 @@ de:
       post_action: Verfassen
       post_step: Begrüße die Welt mit Text, Fotos, Videos oder Umfragen.
       post_title: Erstelle deinen ersten Beitrag
-      share_action: Teilen
       share_step: Lass deine Freund*innen wissen, wie sie dich auf Mastodon finden können.
       share_title: Teile dein Mastodon-Profil
       sign_in_action: Anmelden

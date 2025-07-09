@@ -8,8 +8,4 @@ class REST::ScheduledStatusSerializer < ActiveModel::Serializer
   def id
     object.id.to_s
   end
-
-  def params
-    object.params.without(:application_id)
-  end
 end

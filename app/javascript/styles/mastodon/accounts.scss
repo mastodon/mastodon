@@ -1,3 +1,6 @@
+@use 'variables' as *;
+@use 'functions' as *;
+
 .card {
   & > a {
     display: block;
@@ -159,7 +162,7 @@
 .nothing-here {
   background: $ui-base-color;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-  color: $light-text-color;
+  color: $darker-text-color;
   font-size: 14px;
   font-weight: 500;
   text-align: center;

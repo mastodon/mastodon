@@ -143,6 +143,53 @@ RSpec.describe 'Notifications' do
       end
     end
 
+    context 'when there are numerous notifications for the same final group' do
+      before do
+        user.account.notifications.destroy_all
+        5.times.each { FavouriteService.new.call(Fabricate(:account), user.account.statuses.first) }
+      end
+
+      context 'with no options' do
+        it 'returns a notification group covering all notifications' do
+          subject
+
+          notification_ids = user.account.notifications.order(id: :asc).pluck(:id)
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:notification_groups].size)
+            .to eq(1)
+          expect(response.parsed_body.dig(:notification_groups, 0))
+            .to include(type: 'favourite')
+            .and(include(sample_account_ids: have_attributes(size: 5)))
+            .and(include(page_max_id: notification_ids.last.to_s))
+            .and(include(page_min_id: notification_ids.first.to_s))
+        end
+      end
+
+      context 'with min_id param' do
+        let(:params) { { min_id: user.account.notifications.order(id: :asc).first.id - 1 } }
+
+        it 'returns a notification group covering all notifications' do
+          subject
+
+          notification_ids = user.account.notifications.order(id: :asc).pluck(:id)
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:notification_groups].size)
+            .to eq(1)
+          expect(response.parsed_body.dig(:notification_groups, 0))
+            .to include(type: 'favourite')
+            .and(include(sample_account_ids: have_attributes(size: 5)))
+            .and(include(page_max_id: notification_ids.last.to_s))
+            .and(include(page_min_id: notification_ids.first.to_s))
+        end
+      end
+    end
+
     context 'with no options' do
       it 'returns expected notification types', :aggregate_failures do
         subject
@@ -316,6 +363,18 @@ RSpec.describe 'Notifications' do
         .to start_with('application/json')
     end
 
+    context 'with an ungrouped notification' do
+      let(:notification) { Fabricate(:notification, account: user.account, type: :favourite) }
+
+      it 'returns http success' do
+        get "/api/v2/notifications/ungrouped-#{notification.id}", headers: headers
+
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+      end
+    end
+
     context 'when notification belongs to someone else' do
       let(:notification) { Fabricate(:notification, group_key: 'foobar') }
 
@@ -345,6 +404,19 @@ RSpec.describe 'Notifications' do
       expect(response.content_type)
         .to start_with('application/json')
       expect { notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    context 'with an ungrouped notification' do
+      let(:notification) { Fabricate(:notification, account: user.account, type: :favourite) }
+
+      it 'destroys the notification' do
+        post "/api/v2/notifications/ungrouped-#{notification.id}/dismiss", headers: headers
+
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect { notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
 
     context 'when notification belongs to someone else' do

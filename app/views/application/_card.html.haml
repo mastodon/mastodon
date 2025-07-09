@@ -2,7 +2,7 @@
 - compact ||= false
 
 .card.h-card
-  = link_to account_url, target: '_blank', rel: 'noopener noreferrer' do
+  = link_to account_url, target: '_blank', rel: 'noopener' do
     - unless compact
       .card__img
         = image_tag account.header.url, alt: ''

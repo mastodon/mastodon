@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationController do
+  render_views
+
   controller do
     def success
       head 200
@@ -21,11 +23,24 @@ RSpec.describe ApplicationController do
     end
   end
 
-  shared_examples 'respond_with_error' do |code|
+  shared_examples 'error response' do |code|
     it "returns http #{code} for http and renders template" do
-      expect(subject).to render_template("errors/#{code}", layout: 'error')
+      subject
 
-      expect(response).to have_http_status(code)
+      expect(response)
+        .to have_http_status(code)
+      expect(response.parsed_body)
+        .to have_css('body[class=error]')
+      expect(response.parsed_body.css('h1').to_s)
+        .to include(error_content(code))
+    end
+
+    def error_content(code)
+      if code == 422
+        I18n.t('errors.422.content')
+      else
+        I18n.t("errors.#{code}")
+      end
     end
   end
 
@@ -36,7 +51,7 @@ RSpec.describe ApplicationController do
       post 'success'
     end
 
-    include_examples 'respond_with_error', 422
+    it_behaves_like 'error response', 422
   end
 
   describe 'helper_method :current_account' do
@@ -108,7 +123,7 @@ RSpec.describe ApplicationController do
       get 'routing_error'
     end
 
-    include_examples 'respond_with_error', 404
+    it_behaves_like 'error response', 404
   end
 
   context 'with ActiveRecord::RecordNotFound' do
@@ -117,7 +132,7 @@ RSpec.describe ApplicationController do
       get 'record_not_found'
     end
 
-    include_examples 'respond_with_error', 404
+    it_behaves_like 'error response', 404
   end
 
   context 'with ActionController::InvalidAuthenticityToken' do
@@ -126,7 +141,7 @@ RSpec.describe ApplicationController do
       get 'invalid_authenticity_token'
     end
 
-    include_examples 'respond_with_error', 422
+    it_behaves_like 'error response', 422
   end
 
   describe 'before_action :check_suspension' do
@@ -171,7 +186,7 @@ RSpec.describe ApplicationController do
       get 'route_forbidden'
     end
 
-    include_examples 'respond_with_error', 403
+    it_behaves_like 'error response', 403
   end
 
   describe 'not_found' do
@@ -186,7 +201,7 @@ RSpec.describe ApplicationController do
       get 'route_not_found'
     end
 
-    include_examples 'respond_with_error', 404
+    it_behaves_like 'error response', 404
   end
 
   describe 'gone' do
@@ -201,7 +216,7 @@ RSpec.describe ApplicationController do
       get 'route_gone'
     end
 
-    include_examples 'respond_with_error', 410
+    it_behaves_like 'error response', 410
   end
 
   describe 'unprocessable_entity' do
@@ -216,6 +231,6 @@ RSpec.describe ApplicationController do
       get 'route_unprocessable_entity'
     end
 
-    include_examples 'respond_with_error', 422
+    it_behaves_like 'error response', 422
   end
 end

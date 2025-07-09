@@ -16,7 +16,7 @@ RSpec.describe Admin::Disputes::AppealsController do
   let(:appeal) { Fabricate(:appeal, strike: strike, account: target_account) }
 
   describe 'GET #index' do
-    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let(:current_user) { Fabricate(:admin_user) }
 
     before { appeal }
 
@@ -32,7 +32,7 @@ RSpec.describe Admin::Disputes::AppealsController do
   describe 'POST #approve' do
     subject { post :approve, params: { id: appeal.id } }
 
-    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let(:current_user) { Fabricate(:admin_user) }
 
     it 'redirects back to the strike page and notifies target account about approved appeal', :inline_jobs do
       emails = capture_emails { subject }
@@ -56,7 +56,7 @@ RSpec.describe Admin::Disputes::AppealsController do
   describe 'POST #reject' do
     subject { post :reject, params: { id: appeal.id } }
 
-    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let(:current_user) { Fabricate(:admin_user) }
 
     it 'redirects back to the strike page and notifies target account about rejected appeal', :inline_jobs do
       emails = capture_emails { subject }

@@ -5,13 +5,13 @@
 # Table name: custom_filters
 #
 #  id         :bigint(8)        not null, primary key
-#  account_id :bigint(8)
+#  action     :integer          default("warn"), not null
+#  context    :string           default([]), not null, is an Array
 #  expires_at :datetime
 #  phrase     :text             default(""), not null
-#  context    :string           default([]), not null, is an Array
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  action     :integer          default("warn"), not null
+#  account_id :bigint(8)        not null
 #
 
 class CustomFilter < ApplicationRecord
@@ -33,7 +33,7 @@ class CustomFilter < ApplicationRecord
   include Expireable
   include Redisable
 
-  enum :action, { warn: 0, hide: 1 }, suffix: :action
+  enum :action, { warn: 0, hide: 1, blur: 2 }, suffix: :action, validate: true
 
   belongs_to :account
   has_many :keywords, class_name: 'CustomFilterKeyword', inverse_of: :custom_filter, dependent: :destroy

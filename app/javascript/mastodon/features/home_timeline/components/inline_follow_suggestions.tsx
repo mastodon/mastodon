@@ -145,13 +145,13 @@ const Card: React.FC<{
       />
 
       <div className='inline-follow-suggestions__body__scrollable__card__avatar'>
-        <Link to={`/@${account?.acct}`}>
+        <Link to={`/@${account?.acct}`} data-hover-card-account={account?.id}>
           <Avatar account={account} size={72} />
         </Link>
       </div>
 
       <div className='inline-follow-suggestions__body__scrollable__card__text-stack'>
-        <Link to={`/@${account?.acct}`}>
+        <Link to={`/@${account?.acct}`} data-hover-card-account={account?.id}>
           <DisplayName account={account} />
         </Link>
         {firstVerifiedField ? (

@@ -51,5 +51,25 @@ RSpec.describe REST::StatusSerializer do
         expect(subject['favourites_count']).to eq(40)
       end
     end
+
+    context 'with created_at' do
+      it 'is serialized as RFC 3339 datetime' do
+        expect(subject)
+          .to include(
+            'created_at' => match_api_datetime_format
+          )
+      end
+    end
+
+    context 'when edited_at is populated' do
+      let(:status) { Fabricate.build :status, edited_at: 3.days.ago }
+
+      it 'is serialized as RFC 3339 datetime' do
+        expect(subject)
+          .to include(
+            'edited_at' => match_api_datetime_format
+          )
+      end
+    end
   end
 end

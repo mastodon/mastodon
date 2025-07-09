@@ -44,7 +44,8 @@ module Admin
     private
 
     def resource_params
-      params.require(:custom_emoji).permit(:shortcode, :image, :visible_in_picker)
+      params
+        .expect(custom_emoji: [:shortcode, :image, :visible_in_picker])
     end
 
     def filtered_custom_emojis
@@ -74,7 +75,8 @@ module Admin
     end
 
     def form_custom_emoji_batch_params
-      params.require(:form_custom_emoji_batch).permit(:action, :category_id, :category_name, custom_emoji_ids: [])
+      params
+        .expect(form_custom_emoji_batch: [:action, :category_id, :category_name, custom_emoji_ids: []])
     end
   end
 end

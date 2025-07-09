@@ -8,7 +8,7 @@ class NoteLengthValidator < ActiveModel::EachValidator
   private
 
   def too_long?(value)
-    countable_text(value).mb_chars.grapheme_length > options[:maximum]
+    countable_text(value).each_grapheme_cluster.size > options[:maximum]
   end
 
   def countable_text(value)

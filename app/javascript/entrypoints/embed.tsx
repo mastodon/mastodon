@@ -1,14 +1,10 @@
-import './public-path';
 import { createRoot } from 'react-dom/client';
 
-import { afterInitialRender } from 'mastodon/../hooks/useRenderSignal';
+import { afterInitialRender } from 'mastodon/hooks/useRenderSignal';
 
-import { start } from '../mastodon/common';
 import { Status } from '../mastodon/features/standalone/status';
 import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
-
-start();
 
 function loaded() {
   const mountNode = document.getElementById('mastodon-status');
@@ -59,6 +55,10 @@ window.addEventListener('message', (e) => {
   if (!e.data || !isSetHeightMessage(e.data) || !window.parent) return;
 
   const data = e.data;
+
+  // Only set overflow to `hidden` once we got the expected `message` so the post can still be scrolled if
+  // embedded without parent Javascript support
+  document.body.style.overflow = 'hidden';
 
   // We use a timeout to allow for the React page to render before calculating the height
   afterInitialRender(() => {

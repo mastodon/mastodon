@@ -2,6 +2,6 @@
 
 class AddSkipSignInTokenToUsers < ActiveRecord::Migration[6.1]
   def change
-    add_column :users, :skip_sign_in_token, :boolean
+    add_column :users, :skip_sign_in_token, :boolean # rubocop:disable Rails/ThreeStateBooleanColumn
   end
 end

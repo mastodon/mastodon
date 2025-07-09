@@ -9,7 +9,7 @@ RSpec.describe Appeal do
     it { is_expected.to validate_length_of(:text).is_at_most(described_class::TEXT_LENGTH_LIMIT) }
 
     context 'with a strike created too long ago' do
-      let(:strike) { Fabricate.build :account_warning, created_at: 100.days.ago }
+      let(:strike) { Fabricate.build :account_warning, created_at: (AccountWarning::APPEAL_WINDOW * 2).ago }
 
       it { is_expected.to_not allow_values(strike).for(:strike).against(:base).on(:create) }
     end

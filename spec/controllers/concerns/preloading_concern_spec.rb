@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe PreloadingConcern do
   controller(ApplicationController) do
-    include PreloadingConcern
+    include PreloadingConcern # rubocop:disable RSpec/DescribedClass
 
     def empty_array
       render plain: preload_collection([], Status).size

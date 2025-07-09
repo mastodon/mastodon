@@ -52,4 +52,28 @@ RSpec.describe 'API Web Push Subscriptions' do
       end
     end
   end
+
+  describe 'POST /api/web/push_subscriptions' do
+    before { sign_in Fabricate :user }
+
+    it 'gracefully handles invalid nested params' do
+      post api_web_push_subscriptions_path, params: { subscription: 'invalid' }
+
+      expect(response)
+        .to have_http_status(400)
+    end
+  end
+
+  describe 'PUT /api/web/push_subscriptions' do
+    before { sign_in Fabricate :user }
+
+    let(:subscription) { Fabricate :web_push_subscription }
+
+    it 'gracefully handles invalid nested params' do
+      put api_web_push_subscription_path(subscription), params: { data: 'invalid' }
+
+      expect(response)
+        .to have_http_status(400)
+    end
+  end
 end

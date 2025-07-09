@@ -44,7 +44,7 @@
         = t("statuses.visibilities.#{status.visibility}")
         ·
 
-        = link_to ActivityPub::TagManager.instance.url_for(status.proper), class: 'detailed-status__link', rel: 'noopener noreferrer' do
+        = link_to ActivityPub::TagManager.instance.url_for(status.proper), class: 'detailed-status__link', rel: 'noopener' do
           = t('admin.statuses.view_publicly')
 
         - if status.proper.sensitive?

@@ -39,7 +39,8 @@ module Admin
     private
 
     def resource_params
-      params.require(:invite).permit(:max_uses, :expires_in)
+      params
+        .expect(invite: [:max_uses, :expires_in])
     end
 
     def filtered_invites

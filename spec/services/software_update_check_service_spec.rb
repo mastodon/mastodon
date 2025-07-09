@@ -9,7 +9,7 @@ RSpec.describe SoftwareUpdateCheckService do
     let(:full_update_check_url) { "#{update_check_url}?version=#{Mastodon::Version.to_s.split('+')[0]}" }
 
     let(:devops_role)     { Fabricate(:user_role, name: 'DevOps', permissions: UserRole::FLAGS[:view_devops]) }
-    let(:owner_user)      { Fabricate(:user, role: UserRole.find_by(name: 'Owner')) }
+    let(:owner_user)      { Fabricate(:owner_user) }
     let(:old_devops_user) { Fabricate(:user) }
     let(:none_user)       { Fabricate(:user, role: devops_role) }
     let(:patch_user)      { Fabricate(:user, role: devops_role) }

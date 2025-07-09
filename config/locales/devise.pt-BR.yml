@@ -14,7 +14,7 @@ pt-BR:
       not_found_in_database: "%{authentication_keys} ou senha inválida."
       omniauth_user_creation_failure: Erro ao criar uma conta para esta identidade.
       pending: Sua conta está sendo revisada.
-      timeout: Sua sessão expirou. Faça ‘login’ novamente para continuar.
+      timeout: Sua sessão expirou. Por favor, entre novamente para continuar.
       unauthenticated: Você precisa entrar ou criar uma conta antes de continuar.
       unconfirmed: Você precisa confirmar o seu endereço de e-mail antes de continuar.
     mailer:
@@ -48,12 +48,12 @@ pt-BR:
         subject: 'Mastodon: Instruções para alterar senha'
         title: Redefinir senha
       two_factor_disabled:
-        explanation: O ‘login’ agora é possível usando apenas o endereço eletrônico e senha.
+        explanation: Agora você pode entrar usando apenas seu e-mail e senha.
         subject: 'Mastodon: Autenticação de dois fatores desativada'
         subtitle: A autenticação de dois fatores foi desativada.
         title: 2FA desativada
       two_factor_enabled:
-        explanation: Será necessário um código gerado pelo aplicativo de autenticação TOTP para fazer login.
+        explanation: Um código de autenticação de dois fatores será necessário para entrar em sua conta.
         subject: 'Mastodon: Autenticação de dois fatores ativada'
         subtitle: A autenticação de dois fatores foi ativada para sua conta.
         title: 2FA ativada
@@ -75,11 +75,11 @@ pt-BR:
           title: Uma das suas chaves de segurança foi excluída
       webauthn_disabled:
         explanation: A autenticação por chaves de segurança foi desativada para sua conta.
-        extra: Agora você pode fazer login usando apenas o código gerado pelo aplicativo de autenticação TOTP.
+        extra: Agora você pode entrar usando apenas o código de autenticação de dois fatores.
         subject: 'Mastodon: Autenticação por chaves de segurança desativada'
         title: Chaves de segurança desativadas
       webauthn_enabled:
-        explanation: A autenticação por chave de segurança foi ativada para sua conta.
+        explanation: A autenticação por chave de segurança foi ativada.
         extra: Sua chave de segurança agora pode ser usada para ‘login’.
         subject: 'Mastodon: Autenticação por chaves de segurança ativada'
         title: Chaves de segurança ativadas
@@ -94,11 +94,6 @@ pt-BR:
       updated_not_active: Sua senha foi alterada com sucesso.
     registrations:
       destroyed: Adeus! Sua conta foi cancelada. Talvez um dia possamos nos ver de novo.
-      signed_up: Boas vindas! Conta criada.
-      signed_up_but_inactive: Conta criada! Agora você deve confirmá-la.
-      signed_up_but_locked: Você se cadastrou com sucesso. Contudo, não pudemos entrar na sua conta porque ela está bloqueada.
-      signed_up_but_pending: Um e-mail com um link de confirmação foi enviado para o seu endereço de e-mail. Após você entrar no link, revisaremos sua solicitação e você será notificado caso seja aprovado.
-      signed_up_but_unconfirmed: Um e-mail com instruções para confirmar o seu endereço de e-mail foi enviado. Verifique sua caixa de spam caso ainda não o tenha recebido.
       update_needs_confirmation: Você alterou seu endereço de e-mail ou sua senha, porém é preciso confirmar a alteração. Entre no link que foi enviado para o seu novo endereço de e-mail e verifique sua caixa de spam caso ainda não o tenha recebido.
       updated: Sua conta foi alterada com sucesso.
     sessions:

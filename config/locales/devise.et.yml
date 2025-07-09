@@ -22,7 +22,7 @@ et:
         action: Kinnita e-postiaadress
         action_with_app: Kinnita ja naase %{app}
         explanation: Oled loonud %{host} konto selle e-postiaadressiga. Oled konto aktiveerimisest ühe kliki kaugusel. Kui see polnud sina, palun eira seda kirja.
-        explanation_when_pending: "Selle e-postiaadressiga on esitatud taotlus saada %{host} kasutajaks. E-postiaadress vajab kinnitamist. Pärast seda vaatame me taotluse üle. Saad siseneda, et oma andmeid muuta või konto kustutada, aga enamustele tegevustele ei pääse enne ligi, kui konto on meie moderaatorite poolt kinnitatud. Kui konto on kinnitatud, saabub selle kohta eraldi e-kiri.\nKui taotlus lükatakse aga tagasi, kustutatakse ka andmed ja mingit järeltegevust pole vaja. \nKui see polnud sina, siis palume seda kirja eirata."
+        explanation_when_pending: "Selle e-postiaadressiga on esitatud taotlus saada %{host} kasutajaks. E-postiaadress vajab kinnitamist. Pärast seda vaatame me taotluse üle. Saad siseneda, et oma andmeid muuta või konto kustutada, aga enamustele tegevustele ei pääse enne ligi, kui konto on meie moderaatorite poolt kinnitatud. Kui konto on kinnitatud, saabub selle kohta eraldi e-kiri.\nKui taotlus lükatakse aga tagasi, kustutatakse ka andmed ja mingit järeltegevust pole vaja. \nKui see polnud sina, siis palun eira seda kirja."
         extra_html: Palun tutvu <a href="%{terms_path}">meie serveri reeglitega</a> ning <a href="%{policy_path}">meie kasutustingimustega</a>.
         subject: 'Mastodon: %{instance} kinnitamisjuhised'
         title: Kinnita e-postiaadress
@@ -94,17 +94,12 @@ et:
       updated_not_active: Sinu salasõna muutmine õnnestus.
     registrations:
       destroyed: Nägemist! Sinu konto sulgemine õnnestus. Me loodame sind varsti taas näha.
-      signed_up: Tere tulemast! Sinu konto loomine õnnestus.
-      signed_up_but_inactive: Sinu konto loodi edukalt, kuid me ei saanud sind sisse logida, kuna konto pole veel aktiveeritud.
-      signed_up_but_locked: Sinu konto loodi edukalt, kuid me ei saanud sind sisse logida, kuna konto on lukustatud.
-      signed_up_but_pending: Kiri kinnituslingiga saadeti sinu e-postile. Pärast seda, kui oled vajutanud kinnituslingile, vaatame me taotluse üle. Saad teavituse, kui taotlus on vastu võetud.
-      signed_up_but_unconfirmed: Kiri kinnituslingiga saadeti sinu e-postile. Palun järgi linki, et oma konto aktiveerida. Palun kontrolli rämpspostikausta, kui selline kiri ei saabunud.
       update_needs_confirmation: Konto uuendamine õnnestus, kuid e-postiaadress tuleb veel kinnitada. Palun kontrolli oma e-posti ning järgi kirjas olevat kinnituslinki, et e-postiaadress kinnitada. Palun kontrolli rämpspostikausta, kui selline kiri ei saabunud.
       updated: Konto uuendamine õnnestus.
     sessions:
-      already_signed_out: Väljumine õnnestus.
+      already_signed_out: Välja logimine õnnestus.
       signed_in: Sisenemine õnnestus.
-      signed_out: Väljumine õnnestus.
+      signed_out: Välja logimine õnnestus.
     unlocks:
       send_instructions: Saad paari minuti pärast juhistega e-kirja, kuidas oma konto lukust lahti teha. Palun kontrolli oma rämpsposti kausta, kui selline kiri ei saabunud.
       send_paranoid_instructions: Kui konto on olemas, saabub paari minuti pärast e-kiri juhistega, kuidas konto lukust lahti teha. Palun kontrolli rämpsposti kausta, kui selline e-kiri ei saabunud.
