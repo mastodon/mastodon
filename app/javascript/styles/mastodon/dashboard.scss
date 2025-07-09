@@ -17,7 +17,7 @@
     & > a {
       padding: 20px;
       background: var(--background-color);
-      border-radius: 4px;
+      border-radius: var(--radius);
       border: 1px solid var(--background-border-color);
       box-sizing: border-box;
       height: 100%;
@@ -84,7 +84,7 @@
   &__quick-access {
     display: flex;
     align-items: baseline;
-    border-radius: 4px;
+    border-radius: var(--radius);
     background: $ui-button-background-color;
     color: $primary-text-color;
     transition: all 100ms ease-in;

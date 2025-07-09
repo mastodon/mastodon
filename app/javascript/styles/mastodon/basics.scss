@@ -155,7 +155,7 @@ body {
 
 a {
   &:focus {
-    border-radius: 4px;
+    border-radius: var(--radius);
     outline: $ui-button-focus-outline;
   }
 

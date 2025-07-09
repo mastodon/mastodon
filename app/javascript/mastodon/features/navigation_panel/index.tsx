@@ -21,7 +21,7 @@ import NotificationsActiveIcon from '@/material-icons/400-24px/notifications-fil
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
 import PersonAddActiveIcon from '@/material-icons/400-24px/person_add-fill.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
-import PublicIcon from '@/material-icons/400-24px/public.svg?react';
+// import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 import StarActiveIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import StarIcon from '@/material-icons/400-24px/star.svg?react';
@@ -35,7 +35,11 @@ import { Search } from 'mastodon/features/compose/components/search';
 import { ColumnLink } from 'mastodon/features/ui/components/column_link';
 import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'mastodon/identity_context';
-import { timelinePreview, trendsEnabled, me } from 'mastodon/initial_state';
+import {
+  // timelinePreview,
+  trendsEnabled,
+  me,
+} from 'mastodon/initial_state';
 import { transientSingleColumn } from 'mastodon/is_mobile';
 import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
@@ -176,12 +180,12 @@ const ProfileCard: React.FC = () => {
   );
 };
 
-const isFirehoseActive = (
-  match: unknown,
-  { pathname }: { pathname: string },
-) => {
-  return !!match || pathname.startsWith('/public');
-};
+// const isFirehoseActive = (
+//   match: unknown,
+//   { pathname }: { pathname: string },
+// ) => {
+//   return !!match || pathname.startsWith('/public');
+// };
 
 const MENU_WIDTH = 284;
 
@@ -257,7 +261,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
           />
         )}
 
-        {(signedIn || timelinePreview) && (
+        {/* {(signedIn || timelinePreview) && (
           <ColumnLink
             transparent
             to='/public/local'
@@ -266,7 +270,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
             isActive={isFirehoseActive}
             text={intl.formatMessage(messages.firehose)}
           />
-        )}
+        )} */}
 
         {signedIn && (
           <>

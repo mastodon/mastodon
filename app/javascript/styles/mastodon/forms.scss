@@ -501,7 +501,7 @@ code {
     font-size: 14px;
     padding: 10px;
     border: 1px solid $dark-text-color;
-    border-radius: 4px;
+    border-radius: var(--radius);
   }
 
   input[type='text'],
@@ -522,7 +522,7 @@ code {
     resize: vertical;
     background: $ui-base-color;
     border: 1px solid var(--background-border-color);
-    border-radius: 4px;
+    border-radius: var(--radius);
     padding: 10px 16px;
 
     &:invalid {
@@ -599,7 +599,7 @@ code {
     display: block;
     width: 100%;
     border: 0;
-    border-radius: 4px;
+    border-radius: var(--radius);
     background: $ui-button-background-color;
     color: $ui-button-color;
     font-size: 15px;
@@ -653,7 +653,7 @@ code {
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>")
       no-repeat right 8px center / auto 14px;
     border: 1px solid var(--background-border-color);
-    border-radius: 4px;
+    border-radius: var(--radius);
     padding-inline-start: 10px;
     padding-inline-end: 30px;
     height: 41px;
@@ -727,7 +727,7 @@ code {
   background: var(--background-color);
   color: $highlight-text-color;
   border: 1px solid $highlight-text-color;
-  border-radius: 4px;
+  border-radius: var(--radius);
   padding: 15px 10px;
   margin-bottom: 30px;
   text-align: center;
@@ -843,15 +843,15 @@ code {
     border-top-width: 0;
 
     &:first-child {
-      border-radius: 4px 4px 0 0;
+      border-radius: var(--radius) var(--radius) 0 0;
       border-top-width: 1px;
     }
 
     &:last-child {
-      border-radius: 0 0 4px 4px;
+      border-radius: 0 0 var(--radius) var(--radius);
 
       &:first-child {
-        border-radius: 4px;
+        border-radius: var(--radius);
       }
     }
   }
@@ -935,7 +935,7 @@ code {
 
   .permissions-list {
     border: 1px solid $ui-base-color;
-    border-radius: 4px;
+    border-radius: var(--radius);
     background: darken($ui-base-color, 4%);
     margin-bottom: 30px;
   }
@@ -992,7 +992,7 @@ code {
     color: $primary-text-color;
     text-shadow: 1px 1px 0 rgba($base-shadow-color, 0.3);
     box-shadow: 0 2px 6px rgba($base-shadow-color, 0.4);
-    border-radius: 4px;
+    border-radius: var(--radius);
     padding: 10px;
     margin-bottom: 15px;
 
@@ -1083,7 +1083,7 @@ code {
 .input-copy {
   background: darken($ui-base-color, 10%);
   border: 1px solid darken($ui-base-color, 14%);
-  border-radius: 4px;
+  border-radius: var(--radius);
   display: flex;
   align-items: center;
   padding-inline-end: 4px;

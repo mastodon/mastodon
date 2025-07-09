@@ -64,7 +64,7 @@ $content-width: 840px;
         font-size: 18px;
         padding: 10px;
         margin: 5px 10px;
-        border-radius: 4px;
+        border-radius: var(--radius);
 
         &:focus {
           background: $ui-base-color;
@@ -223,7 +223,7 @@ $content-width: 840px;
           display: inline-flex;
           align-items: center;
           padding: 7px 10px;
-          border-radius: 4px;
+          border-radius: var(--radius);
           color: $darker-text-color;
           text-decoration: none;
           font-weight: 500;
@@ -724,7 +724,7 @@ body,
   padding-inline-start: 15px * 2 + 40px;
   background: var(--background-color);
   border: 1px solid var(--background-border-color);
-  border-radius: 4px;
+  border-radius: var(--radius);
   position: relative;
   text-decoration: none;
   color: $darker-text-color;
@@ -850,7 +850,7 @@ a.name-tag,
 .report-card {
   background: var(--background-color);
   border: 1px solid var(--background-border-color);
-  border-radius: 4px;
+  border-radius: var(--radius);
   margin-bottom: 20px;
 
   &__profile {
@@ -972,7 +972,7 @@ a.name-tag,
   .account__header__content {
     background: var(--background-color);
     border: 1px solid var(--background-border-color);
-    border-radius: 4px;
+    border-radius: var(--radius);
     height: 100%;
   }
 
@@ -985,7 +985,7 @@ a.name-tag,
     }
 
     dl:first-child .verified {
-      border-radius: 0 4px 0 0;
+      border-radius: 0 var(--radius) 0 0;
     }
 
     .verified a {
@@ -1009,7 +1009,7 @@ a.name-tag,
   padding: 15px 0;
   background: var(--background-color);
   border: 1px solid var(--background-border-color);
-  border-radius: 4px;
+  border-radius: var(--radius);
   margin-top: 15px;
 }
 
@@ -1026,7 +1026,7 @@ a.name-tag,
 .announcements-list,
 .filters-list {
   border: 1px solid var(--background-border-color);
-  border-radius: 4px;
+  border-radius: var(--radius);
   border-bottom: none;
 
   &__item {
@@ -1197,7 +1197,7 @@ a.name-tag,
   display: block;
   text-decoration: none;
   background: var(--background-color);
-  border-radius: 4px;
+  border-radius: var(--radius);
   border: 1px solid var(--background-border-color);
   padding: 0;
   position: relative;
@@ -1284,7 +1284,7 @@ a.sparkline {
   );
   background-size: 200px 100%;
   background-repeat: no-repeat;
-  border-radius: 4px;
+  border-radius: var(--radius);
   display: inline-block;
   line-height: 1;
   width: 100%;
@@ -1354,7 +1354,7 @@ a.sparkline {
 }
 
 .report-reason-selector {
-  border-radius: 4px;
+  border-radius: var(--radius);
   background: var(--background-color);
   margin-bottom: 20px;
 
@@ -1420,7 +1420,7 @@ a.sparkline {
 }
 
 .account-card {
-  border-radius: 4px;
+  border-radius: var(--radius);
   border: 1px solid var(--background-border-color);
   position: relative;
 
@@ -1429,7 +1429,7 @@ a.sparkline {
     padding: 4px 10px;
     top: 10px;
     inset-inline-start: 10px;
-    border-radius: 4px;
+    border-radius: var(--radius);
     background:
       url('@/images/warning-stripes.svg') repeat-y left,
       url('@/images/warning-stripes.svg') repeat-y right,
@@ -1443,7 +1443,7 @@ a.sparkline {
 
   &__header {
     padding: 4px;
-    border-radius: 4px;
+    border-radius: var(--radius);
     height: 128px;
 
     img {
@@ -1760,7 +1760,7 @@ a.sparkline {
   box-sizing: border-box;
   min-height: 100%;
   border: 1px solid var(--background-border-color);
-  border-radius: 4px;
+  border-radius: var(--radius);
 
   a {
     color: $highlight-text-color;
@@ -1800,7 +1800,7 @@ a.sparkline {
   }
 
   &__statuses-list {
-    border-radius: 4px;
+    border-radius: var(--radius);
     border: 1px solid var(--background-border-color);
     font-size: 13px;
     line-height: 18px;
@@ -1926,14 +1926,14 @@ a.sparkline {
     .status {
       border: 1px solid lighten($ui-base-color, 4%);
       background: $ui-base-color;
-      border-radius: 4px;
+      border-radius: var(--radius);
     }
   }
 }
 
 .status__card {
   padding: 15px;
-  border-radius: 4px;
+  border-radius: var(--radius);
   background: $ui-base-color;
   font-size: 15px;
   line-height: 20px;
