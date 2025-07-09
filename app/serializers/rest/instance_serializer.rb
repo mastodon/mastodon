@@ -12,6 +12,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   attributes :domain, :title, :version, :source_url, :description,
              :usage, :thumbnail, :icon, :languages, :configuration,
+             :max_toot_chars,
              :registrations, :api_versions
 
   has_one :contact, serializer: ContactSerializer
@@ -117,6 +118,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def api_versions
     Mastodon::Version.api_versions
+  end
+
+  def max_toot_chars
+    StatusLengthValidator::MAX_CHARS
   end
 
   private
