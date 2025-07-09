@@ -30,7 +30,7 @@
     "test:storybook": "vitest --project=storybook",
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "VITE_RUBY_PUBLIC_OUTPUT_DIR='.' VITE_RUBY_PUBLIC_DIR='./storybook-static' storybook build",
+    "build-storybook": "storybook build",
     "chromatic": "npx chromatic -d storybook-static"
   },
   "repository": {
