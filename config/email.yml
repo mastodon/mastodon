@@ -9,7 +9,7 @@ production:
     port: <%= ENV.fetch('SMTP_PORT', nil) %>
     address: <%= ENV.fetch('SMTP_SERVER', nil) %>
     user_name: <%= ENV.fetch('SMTP_LOGIN', nil) %>
-    password: <%= ENV.fetch('SMTP_PASSWORD', nil) %>
+    password: "<%= ENV.fetch('SMTP_PASSWORD', nil) %>"
     domain: <%= ENV.fetch('SMTP_DOMAIN', ENV.fetch('LOCAL_DOMAIN', nil)) %>
     authentication: <%= ENV.fetch('SMTP_AUTH_METHOD', 'plain') %>
     ca_file: <%= ENV.fetch('SMTP_CA_FILE', '/etc/ssl/certs/ca-certificates.crt') %>
