@@ -83,7 +83,9 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       format: 'es',
     },
     plugins: [
-      tsconfigPaths(),
+      tsconfigPaths({
+        projects: [path.resolve(__dirname, 'tsconfig.json')],
+      }),
       RailsPlugin({
         compress: mode === 'production' && command === 'build',
         sri: {
