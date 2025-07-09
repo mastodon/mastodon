@@ -24,7 +24,7 @@ class GeneratedAnnualReport < ApplicationRecord
   end
 
   def view!
-    update!(viewed_at: Time.now.utc)
+    touch(:viewed_at)
   end
 
   def account_ids
