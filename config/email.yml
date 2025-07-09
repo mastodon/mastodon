@@ -2,14 +2,14 @@
 # keys are added here.
 production:
   delivery_method: <%= ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp') %>
-  from_address: <%= ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost') %>
-  reply_to: <%= ENV.fetch('SMTP_REPLY_TO', nil) %>
-  return_path: <%= ENV.fetch('SMTP_RETURN_PATH', nil) %>
+  from_address: <%= ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost')&.to_json %>
+  reply_to: <%= ENV.fetch('SMTP_REPLY_TO', nil)&.to_json %>
+  return_path: <%= ENV.fetch('SMTP_RETURN_PATH', nil)&.to_json %>
   smtp_settings:
     port: <%= ENV.fetch('SMTP_PORT', nil) %>
-    address: <%= ENV.fetch('SMTP_SERVER', nil) %>
-    user_name: <%= ENV.fetch('SMTP_LOGIN', nil) %>
-    password: <%= ENV.fetch('SMTP_PASSWORD', nil) %>
+    address: <%= ENV.fetch('SMTP_SERVER', nil)&.to_json %>
+    user_name: <%= ENV.fetch('SMTP_LOGIN', nil)&.to_json %>
+    password: <%= ENV.fetch('SMTP_PASSWORD', nil)&.to_json %>
     domain: <%= ENV.fetch('SMTP_DOMAIN', ENV.fetch('LOCAL_DOMAIN', nil)) %>
     authentication: <%= ENV.fetch('SMTP_AUTH_METHOD', 'plain') %>
     ca_file: <%= ENV.fetch('SMTP_CA_FILE', '/etc/ssl/certs/ca-certificates.crt') %>
@@ -22,9 +22,9 @@ production:
   bulk_mail:
     smtp_settings:
       port: <%= ENV.fetch('BULK_SMTP_PORT', nil) %>
-      address: <%= ENV.fetch('BULK_SMTP_SERVER', nil) %>
-      user_name: <%= ENV.fetch('BULK_SMTP_LOGIN', nil) %>
-      password: <%= ENV.fetch('BULK_SMTP_PASSWORD', nil) %>
+      address: <%= ENV.fetch('BULK_SMTP_SERVER', nil)&.to_json %>
+      user_name: <%= ENV.fetch('BULK_SMTP_LOGIN', nil)&.to_json %>
+      password: <%= ENV.fetch('BULK_SMTP_PASSWORD', nil)&.to_json %>
       domain: <%= ENV.fetch('BULK_SMTP_DOMAIN', ENV.fetch('LOCAL_DOMAIN', nil)) %>
       authentication: <%= ENV.fetch('BULK_SMTP_AUTH_METHOD', 'plain') %>
       ca_file: <%= ENV.fetch('BULK_SMTP_CA_FILE', '/etc/ssl/certs/ca-certificates.crt') %>
