@@ -75,10 +75,13 @@ export const Footer: React.FC<{
 
       if (askReplyConfirmation) {
         dispatch(
-          openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }),
+          openModal({
+            modalType: 'CONFIRM_REPLY',
+            modalProps: { status: status.set('account', account) },
+          }),
         );
       } else {
-        dispatch(replyCompose(status));
+        dispatch(replyCompose(status.set('account', account)));
       }
     } else {
       dispatch(
@@ -92,7 +95,7 @@ export const Footer: React.FC<{
         }),
       );
     }
-  }, [dispatch, status, signedIn, askReplyConfirmation, onClose]);
+  }, [dispatch, account, status, signedIn, askReplyConfirmation, onClose]);
 
   const handleFavouriteClick = useCallback(() => {
     if (!status) {
