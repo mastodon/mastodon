@@ -363,6 +363,28 @@ RSpec.describe Status do
     end
   end
 
+  describe '.only_polls' do
+    let!(:poll_status) { Fabricate :status, poll: Fabricate(:poll) }
+    let!(:no_poll_status) { Fabricate :status }
+
+    it 'returns the expected statuses' do
+      expect(described_class.only_polls)
+        .to include(poll_status)
+        .and not_include(no_poll_status)
+    end
+  end
+
+  describe '.without_polls' do
+    let!(:poll_status) { Fabricate :status, poll: Fabricate(:poll) }
+    let!(:no_poll_status) { Fabricate :status }
+
+    it 'returns the expected statuses' do
+      expect(described_class.without_polls)
+        .to not_include(poll_status)
+        .and include(no_poll_status)
+    end
+  end
+
   describe '.tagged_with' do
     let(:tag_cats) { Fabricate(:tag, name: 'cats') }
     let(:tag_dogs) { Fabricate(:tag, name: 'dogs') }
