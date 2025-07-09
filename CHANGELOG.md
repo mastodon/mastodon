@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.1] - 2025-07-09
+
+### Fixed
+
+- Fix nearly every sub-directory being crawled as part of Vite build (#35323 by @ClearlyClaire)
+- Fix assets not building when Redis is unavailable (#35321 by @oneiros)
+- Fix replying from media modal or pop-in-player tagging user `@undefined` (#35317 by @ClearlyClaire)
+- Fix support for special characters in various environment variables (#35314 by @mjankowski and @ClearlyClaire)
+- Fix some database migrations failing for indexes manually removed by admins (#35309 by @mjankowski)
+
 ## [4.4.0] - 2025-07-08
 
 ### Added
