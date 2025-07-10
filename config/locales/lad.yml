@@ -186,6 +186,7 @@ lad:
         create_domain_block: Kriya bloko de domeno
         create_email_domain_block: Kriya bloko de domeno de posta
         create_ip_block: Kriya regla de IP
+        create_relay: Kriya relevo
         create_unavailable_domain: Kriya domeno no desponivle
         create_user_role: Kriya rolo
         demote_user: Degrada utilizador
@@ -197,6 +198,7 @@ lad:
         destroy_email_domain_block: Efasa bloko de domeno de posta
         destroy_instance: Efasa domeno
         destroy_ip_block: Efasa regla de IP
+        destroy_relay: Efasa relevo
         destroy_status: Efasa publikasyon
         destroy_unavailable_domain: Efasa domeno no desponivle
         destroy_user_role: Efasa rolo
@@ -205,6 +207,7 @@ lad:
         disable_sign_in_token_auth_user: Inkapasita la autentifikasyon por token de posta elektronika para el utilizador
         disable_user: Inkapasita utilizador
         enable_custom_emoji: Kapasita emoji personalizados
+        enable_relay: Aktiva relevo
         enable_sign_in_token_auth_user: Kapasita la autentifikasyon por token de posta para el utilizador
         enable_user: Kapasita utilizador
         memorialize_account: Transforma en kuento komemorativo
@@ -229,6 +232,7 @@ lad:
         update_custom_emoji: Aktualiza emoji personalizado
         update_domain_block: Aktualiza bloko de domeno
         update_ip_block: Aktualiza regla de IP
+        update_report: Aktualiza raporto
         update_status: Aktualiza publikasyon
         update_user_role: Aktualiza rolo
       actions:
@@ -466,10 +470,13 @@ lad:
     fasp:
       debug:
         callbacks:
+          created_at: Kriyado en
           delete: Efasa
+          ip: Adreso IP
       providers:
         active: Aktivo
         delete: Efasa
+        finish_registration: Finaliza enrejistrasyon
         name: Nombre
         registrations:
           confirm: Konfirma
@@ -542,6 +549,12 @@ lad:
         all: Todos
         limited: Limitado
         title: Moderasyon
+      moderation_notes:
+        create: Adjusta nota de moderasyon
+        created_msg: Nota de moderasyon de sirvidor kriyada kon sukseso!
+        description_html: Ve i desha notas a otros moderadores i a tu yo futuro
+        destroyed_msg: Nota de moderasyon de sirvidor efasada kon sukseso!
+        title: Notas de moderasyon
       private_comment: Komento privado
       public_comment: Komento publiko
       purge: Purga
@@ -748,6 +761,7 @@ lad:
       title: Rolos
     rules:
       add_new: Adjusta regla
+      add_translation: Adjusta traduksyon
       delete: Efasa
       description_html: Aunke la majorita afirma aver meldado i estar de akodro kon los terminos de servisyo, la djente normalmente no los melda asta dempues de ke surja algun problema. <strong>Az ke sea mas kolay ver las normas de tu sirvidor de un vistazo estipulándolas en una lista de puntos.</strong> Aprova ke kada norma sea corta i kolay, ama sin estar divididas en munchos puntos.
       edit: Edita regla
@@ -920,6 +934,9 @@ lad:
       updated_msg: Konfigurasyon de etiketas aktualizada kon sukseso
     terms_of_service:
       changelog: Ke troko
+      current: Aktual
+      generates:
+        action: Djenera
       history: Istorya
       live: En bivo
       publish: Publika
@@ -1245,6 +1262,10 @@ lad:
     basic_information: Enformasyon bazika
     hint_html: "<strong>Personaliza lo ke la djente ve en tu profil publiko i kon tus publikasyones.</strong> Es mas probavle ke otras personas te sigan i enteraktuen kontigo kuando kompletas tu profil i foto."
     other: Otros
+  emoji_styles:
+    auto: Otomatiko
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': La solisitasyon ke enviates no fue valida o fue malformada.
     '403': No tienes permiso para ver esta pajina.
