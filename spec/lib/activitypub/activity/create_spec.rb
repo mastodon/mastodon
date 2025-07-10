@@ -887,6 +887,55 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+      context 'with preview of an unsupported type' do
+        let(:object_json) do
+          build_object(
+            type: 'Article',
+            summary: 'This is the summary of the article',
+            content: 'This is the long form content',
+            preview: {
+              type: 'Note',
+              content: 'This is the short form',
+            }
+          )
+        end
+
+        it 'creates status from the preview' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+          expect(status.spoiler_text).to eq ''
+          expect(status.text).to eq 'This is the short form'
+        end
+      end
+
+      context 'with a converted type and no preview' do
+        let(:object_json) do
+          build_object(
+            type: 'Video',
+            name: 'Foo bar',
+            content: 'This is the description of the video',
+            url: [
+              {
+                type: 'Link',
+                mediaType: 'text/html',
+                href: 'https://example.com/video',
+              },
+            ]
+          )
+        end
+
+        it 'creates status' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+          expect(status.spoiler_text).to eq ''
+          expect(status.text).to eq "<h2>Foo bar</h2>\n\n<p><a href=\"https://example.com/video\" target=\"_blank\" rel=\"nofollow noopener\" translate=\"no\"><span class=\"invisible\">https://</span><span class=\"\">example.com/video</span><span class=\"invisible\"></span></a></p>"
+        end
+      end
+
       context 'with an unverifiable quote of a known post' do
         let(:quoted_status) { Fabricate(:status) }
 
