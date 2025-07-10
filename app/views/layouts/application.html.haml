@@ -37,6 +37,9 @@
     = csrf_meta_tags unless skip_csrf_meta_tags?
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 
+    - if ENV['PLAUSIBLE_SCRIPT'].present?
+      %script{ defer: true, 'data-domain': ENV.fetch('LOCAL_DOMAIN', nil), src: ENV.fetch('PLAUSIBLE_SCRIPT', nil) }
+
     = custom_stylesheet
 
     = yield :header_tags
