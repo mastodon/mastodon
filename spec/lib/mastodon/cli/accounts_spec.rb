@@ -1288,49 +1288,64 @@ RSpec.describe Mastodon::CLI::Accounts do
 
   describe '#prune' do
     let(:action) { :prune }
-    let!(:local_account)     { Fabricate(:account) }
-    let!(:bot_account)       { Fabricate(:account, bot: true, domain: 'example.com') }
-    let!(:group_account)     { Fabricate(:account, actor_type: 'Group', domain: 'example.com') }
-    let!(:mentioned_account) { Fabricate(:account, domain: 'example.com') }
-    let!(:prunable_accounts) do
-      Fabricate.times(2, :account, domain: 'example.com', bot: false, suspended_at: nil, silenced_at: nil)
-    end
+    let(:viable_attrs) { { domain: 'example.com', bot: false, suspended: false, silenced: false } }
+    let!(:local_account) { Fabricate(:account) }
+    let!(:bot_account) { Fabricate(:account, bot: true, domain: 'example.com') }
+    let!(:group_account) { Fabricate(:account, actor_type: 'Group', domain: 'example.com') }
+    let!(:account_mentioned) { Fabricate(:account, viable_attrs) }
+    let!(:account_with_favourite) { Fabricate(:account, viable_attrs) }
+    let!(:account_with_status) { Fabricate(:account, viable_attrs) }
+    let!(:account_with_follow) { Fabricate(:account, viable_attrs) }
+    let!(:account_targeted_follow) { Fabricate(:account, viable_attrs) }
+    let!(:account_with_block) { Fabricate(:account, viable_attrs) }
+    let!(:account_targeted_block) { Fabricate(:account, viable_attrs) }
+    let!(:account_targeted_mute) { Fabricate(:account, viable_attrs) }
+    let!(:account_targeted_report) { Fabricate(:account, viable_attrs) }
+    let!(:account_with_follow_request) { Fabricate(:account, viable_attrs) }
+    let!(:account_targeted_follow_request) { Fabricate(:account, viable_attrs) }
+    let!(:prunable_accounts) { Fabricate.times(2, :account, viable_attrs) }
 
     before do
-      Fabricate(:mention, account: mentioned_account, status: Fabricate(:status, account: Fabricate(:account)))
+      Fabricate :mention, account: account_mentioned, status: Fabricate(:status, account: Fabricate(:account))
+      Fabricate :favourite, account: account_with_favourite
+      Fabricate :status, account: account_with_status
+      Fabricate :follow, account: account_with_follow
+      Fabricate :follow, target_account: account_targeted_follow
+      Fabricate :block, account: account_with_block
+      Fabricate :block, target_account: account_targeted_block
+      Fabricate :mute, target_account: account_targeted_mute
+      Fabricate :report, target_account: account_targeted_report
+      Fabricate :follow_request, account: account_with_follow_request
+      Fabricate :follow_request, target_account: account_targeted_follow_request
       stub_parallelize_with_progress!
-    end
-
-    def expect_prune_remote_accounts_without_interaction
-      prunable_account_ids = prunable_accounts.pluck(:id)
-
-      expect(Account.where(id: prunable_account_ids).count).to eq(0)
     end
 
     it 'displays a successful message and handles accounts correctly' do
       expect { subject }
         .to output_results("OK, pruned #{prunable_accounts.size} accounts")
-      expect_prune_remote_accounts_without_interaction
-      expect_not_prune_local_accounts
-      expect_not_prune_bot_accounts
-      expect_not_prune_group_accounts
-      expect_not_prune_mentioned_accounts
+      expect(prunable_account_records)
+        .to have_attributes(count: eq(0))
+      expect(Account.all)
+        .to include(local_account)
+        .and include(bot_account)
+        .and include(group_account)
+        .and include(account_mentioned)
+        .and include(account_with_favourite)
+        .and include(account_with_status)
+        .and include(account_with_follow)
+        .and include(account_targeted_follow)
+        .and include(account_with_block)
+        .and include(account_targeted_block)
+        .and include(account_targeted_mute)
+        .and include(account_targeted_report)
+        .and include(account_with_follow_request)
+        .and include(account_targeted_follow_request)
+        .and not_include(prunable_accounts.first)
+        .and not_include(prunable_accounts.last)
     end
 
-    def expect_not_prune_local_accounts
-      expect(Account.exists?(id: local_account.id)).to be(true)
-    end
-
-    def expect_not_prune_bot_accounts
-      expect(Account.exists?(id: bot_account.id)).to be(true)
-    end
-
-    def expect_not_prune_group_accounts
-      expect(Account.exists?(id: group_account.id)).to be(true)
-    end
-
-    def expect_not_prune_mentioned_accounts
-      expect(Account.exists?(id: mentioned_account.id)).to be true
+    def prunable_account_records
+      Account.where(id: prunable_accounts.pluck(:id))
     end
 
     context 'with --dry-run option' do
