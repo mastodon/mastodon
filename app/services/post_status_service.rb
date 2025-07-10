@@ -101,9 +101,6 @@ class PostStatusService < BaseService
       # TODO: produce a QuoteAuthorization
       status.quote.accept!
     end
-
-    # TODO: the following has yet to be implemented:
-    # - send a QuoteRequest for quotes of remote users
   end
 
   def safeguard_mentions!(status)
@@ -147,6 +144,7 @@ class PostStatusService < BaseService
     DistributionWorker.perform_async(@status.id)
     ActivityPub::DistributionWorker.perform_async(@status.id)
     PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
+    ActivityPub::QuoteRequestWorker.perform_async(@status.quote.id) if @status.quote&.quoted_status.present? && !@status.quote&.quoted_status&.local?
   end
 
   def validate_media!
