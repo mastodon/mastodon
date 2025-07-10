@@ -44,6 +44,12 @@ Rails.application.config.content_security_policy do |p|
     p.frame_src   :self, :https
     p.style_src   :self, assets_host
   end
+
+  if ENV['PLAUSIBLE_SCRIPT'].present?
+    plausible_domain = URI.parse(ENV['PLAUSIBLE_SCRIPT']).host
+    p.script_src :self, plausible_domain
+    p.connect_src :self, plausible_domain
+  end
 end
 
 # Report CSP violations to a specified URI
