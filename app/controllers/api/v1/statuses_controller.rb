@@ -9,6 +9,7 @@ class Api::V1::StatusesController < Api::BaseController
   before_action :set_statuses, only:         [:index]
   before_action :set_status, only:           [:show, :context]
   before_action :set_thread, only:           [:create]
+  before_action :set_quoted_status, only:    [:create]
   before_action :check_statuses_limit, only: [:index]
 
   override_rate_limit_headers :create, family: :statuses
@@ -67,6 +68,7 @@ class Api::V1::StatusesController < Api::BaseController
       current_user.account,
       text: status_params[:status],
       thread: @thread,
+      quoted_status: @quoted_status,
       media_ids: status_params[:media_ids],
       sensitive: status_params[:sensitive],
       spoiler_text: status_params[:spoiler_text],
@@ -138,6 +140,16 @@ class Api::V1::StatusesController < Api::BaseController
     render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: 404
   end
 
+  def set_quoted_status
+    return unless Mastodon::Feature.outgoing_quotes_enabled?
+
+    @quoted_status = Status.find(status_params[:quoted_status_id]) if status_params[:quoted_status_id].present?
+    authorize(@quoted_status, :quote?) if @quoted_status.present?
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
+    # TODO: distinguish between non-existing and non-quotable posts
+    render json: { error: I18n.t('statuses.errors.quoted_status_not_found') }, status: 404
+  end
+
   def check_statuses_limit
     raise(Mastodon::ValidationError) if status_ids.size > DEFAULT_STATUSES_LIMIT
   end
@@ -154,6 +166,7 @@ class Api::V1::StatusesController < Api::BaseController
     params.permit(
       :status,
       :in_reply_to_id,
+      :quoted_status_id,
       :sensitive,
       :spoiler_text,
       :visibility,
