@@ -117,6 +117,7 @@ class Status < ApplicationRecord
   scope :with_accounts, ->(ids) { where(id: ids).includes(:account) }
   scope :without_replies, -> { not_reply.or(reply_to_account) }
   scope :not_reply, -> { where(reply: false) }
+  scope :only_replies, -> { where.not(in_reply_to_id: nil) }
   scope :only_reblogs, -> { where.not(reblog_of_id: nil) }
   scope :only_polls, -> { where.not(poll_id: nil) }
   scope :without_polls, -> { where(poll_id: nil) }
