@@ -28,7 +28,7 @@ class AnnualReport::Archetype < AnnualReport::Source
   end
 
   def polls_count
-    @polls_count ||= report_statuses.where.not(poll_id: nil).count
+    @polls_count ||= report_statuses.only_polls.count
   end
 
   def reblogs_count
