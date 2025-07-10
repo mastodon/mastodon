@@ -41,4 +41,20 @@ RSpec.describe ActivityPub::NoteSerializer do
       .and(not_include(reply_by_other_first.uri)) # Replies from others
       .and(not_include(reply_by_account_visibility_direct.uri)) # Replies with direct visibility
   end
+
+  context 'with a quote' do
+    let(:quoted_status) { Fabricate(:status) }
+    let(:approval_uri) { 'https://example.com/foo/bar' }
+    let!(:quote) { Fabricate(:quote, status: parent, quoted_status: quoted_status, approval_uri: approval_uri) }
+
+    it 'has the expected shape' do
+      expect(subject).to include({
+        'type' => 'Note',
+        'quote' => ActivityPub::TagManager.instance.uri_for(quote.quoted_status),
+        'quoteUri' => ActivityPub::TagManager.instance.uri_for(quote.quoted_status),
+        '_misskey_quote' => ActivityPub::TagManager.instance.uri_for(quote.quoted_status),
+        'quoteAuthorization' => approval_uri,
+      })
+    end
+  end
 end
