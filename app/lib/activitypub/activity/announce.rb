@@ -26,6 +26,9 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
 
       Trends.register!(@status)
 
+      # If we got a new reblog, the account is probably not suspended at origin anymore
+      @account.schedule_suspension_recheck!(interaction_time: @status.created_at)
+
       distribute
     end
 
