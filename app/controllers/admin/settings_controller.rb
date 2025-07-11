@@ -14,8 +14,7 @@ module Admin
       @admin_settings = Form::AdminSettings.new(settings_params)
 
       if @admin_settings.save
-        flash[:notice] = I18n.t('generic.changes_saved_msg')
-        redirect_to after_update_redirect_path
+        redirect_to after_update_redirect_path, notice: t('generic.changes_saved_msg')
       else
         render :show
       end
