@@ -72,5 +72,6 @@ if (languageDetectorInGlobalThis) {
   module = await import('./language_detection_with_laude');
 }
 const debouncedGuess = module.debouncedGuess;
+console.log(debouncedGuess)
 
 export { debouncedGuess, countLetters, ISO_639_MAP };
