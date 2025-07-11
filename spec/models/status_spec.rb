@@ -376,6 +376,17 @@ RSpec.describe Status do
     end
   end
 
+  describe '.only_replies' do
+    let!(:status) { Fabricate :status }
+    let!(:replying_status) { Fabricate :status, thread: Fabricate(:status) }
+
+    it 'returns the expected statuses' do
+      expect(described_class.only_replies)
+        .to include(replying_status)
+        .and not_include(status)
+    end
+  end
+
   describe '.only_polls' do
     let!(:poll_status) { Fabricate :status, poll: Fabricate(:poll) }
     let!(:no_poll_status) { Fabricate :status }
