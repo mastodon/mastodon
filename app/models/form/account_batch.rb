@@ -128,7 +128,7 @@ class Form::AccountBatch
 
     # Suspending a single account closes their associated reports, so
     # mass-suspending would be consistent.
-    Report.where(target_account: account).unresolved.find_each do |report|
+    account.targeted_reports.unresolved.find_each do |report|
       authorize(report, :update?)
       log_action(:resolve, report)
       report.resolve!(current_account)

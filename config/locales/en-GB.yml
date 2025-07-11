@@ -309,6 +309,7 @@ en-GB:
       title: Audit log
       unavailable_instance: "(domain name unavailable)"
     announcements:
+      back: Back to announcements
       destroyed_msg: Announcement successfully deleted!
       edit:
         title: Edit announcement
@@ -317,6 +318,10 @@ en-GB:
       new:
         create: Create announcement
         title: New announcement
+      preview:
+        disclaimer: As users cannot opt out of them, email notifications should be limited to important announcements such as personal data breach or server closure notifications.
+        explanation_html: 'The email will be sent to <strong>%{display_count} users</strong>. The following text will be included in the e-mail:'
+        title: Preview announcement notification
       publish: Publish
       published_msg: Announcement successfully published!
       scheduled_for: Scheduled for %{time}
@@ -475,6 +480,36 @@ en-GB:
       new:
         title: Import domain blocks
       no_file: No file selected
+    fasp:
+      debug:
+        callbacks:
+          created_at: Created at
+          delete: Delete
+          ip: IP address
+          request_body: Request body
+          title: Debug Callbacks
+      providers:
+        active: Active
+        base_url: Base URL
+        callback: Callback
+        delete: Delete
+        edit: Edit Provider
+        finish_registration: Finish registration
+        name: Name
+        providers: Providers
+        public_key_fingerprint: Public key fingerprint
+        registration_requested: Registration requested
+        registrations:
+          confirm: Confirm
+          description: You received a registration from a FASP. Reject it if you did not initiate this. If you initiated this, carefully compare name and key fingerprint before confirming the registration.
+          reject: Reject
+          title: Confirm FASP Registration
+        save: Save
+        select_capabilities: Select Capabilities
+        sign_in: Sign In
+        status: Status
+        title: Fediverse Auxiliary Service Providers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Follow recommendations help new users quickly find interesting content</strong>. When a user has not interacted with others enough to form personalised follow recommendations, these accounts are recommended instead. They are re-calculated on a daily basis from a mix of accounts with the highest recent engagements and highest local follower counts for a given language."
       language: For language
@@ -543,6 +578,13 @@ en-GB:
         all: All
         limited: Limited
         title: Moderation
+      moderation_notes:
+        create: Add Moderation Note
+        created_msg: Instance moderation note successfully created!
+        description_html: View and leave notes for other moderators and your future self
+        destroyed_msg: Instance moderation note successfully deleted!
+        placeholder: Information about this instance, actions taken, or anything else that will help you moderate this instance in the future.
+        title: Moderation Notes
       private_comment: Private comment
       public_comment: Public comment
       purge: Purge
@@ -751,17 +793,26 @@ en-GB:
       title: Roles
     rules:
       add_new: Add rule
+      add_translation: Add translation
       delete: Delete
       description_html: While most claim to have read and agree to the terms of service, usually people do not read through until after a problem arises. <strong>Make it easier to see your server's rules at a glance by providing them in a flat bullet point list.</strong> Try to keep individual rules short and simple, but try not to split them up into many separate items either.
       edit: Edit rule
       empty: No server rules have been defined yet.
+      move_down: Move down
+      move_up: Move up
       title: Server rules
+      translation: Translation
+      translations: Translations
+      translations_explanation: You can optionally add translations for the rules. The default value will be shown if no translated version is available. Please always ensure any provided translation is in sync with the default value.
     settings:
       about:
         manage_rules: Manage server rules
         preamble: Provide in-depth information about how the server is operated, moderated, funded.
         rules_hint: There is a dedicated area for rules that your users are expected to adhere to.
         title: About
+      allow_referrer_origin:
+        desc: When your users click links to external sites, their browser may send the address of your Mastodon server as the referrer. Disable this if this would uniquely identify your users, e.g. if this is a personal Mastodon server.
+        title: Allow external sites to see your Mastodon server as a traffic source
       appearance:
         preamble: Customise Mastodon's web interface.
         title: Appearance
@@ -781,6 +832,7 @@ en-GB:
       discovery:
         follow_recommendations: Follow recommendations
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
+        privacy: Privacy
         profile_directory: Profile directory
         public_timelines: Public timelines
         publish_statistics: Publish statistics
@@ -867,6 +919,8 @@ en-GB:
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch index analyser settings are outdated. Please run <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch cluster is unhealthy (red status), search features are unavailable
       elasticsearch_health_yellow:
@@ -938,6 +992,7 @@ en-GB:
         chance_to_review_html: "<strong>The generated terms of service will not be published automatically.</strong> You will have a chance to review the results. Please fill in the necessary details to proceed."
         explanation_html: The terms of service template provided is for informational purposes only, and should not be construed as legal advice on any subject matter. Please consult with your own legal counsel on your situation and specific legal questions you have.
         title: Terms of Service Setup
+      going_live_on_html: Live, effective %{date}
       history: History
       live: Live
       no_history: There are no recorded changes of the terms of service yet.
@@ -1294,6 +1349,10 @@ en-GB:
     basic_information: Basic information
     hint_html: "<strong>Customise what people see on your public profile and next to your posts.</strong> Other people are more likely to follow you back and interact with you when you have a filled out profile and a profile picture."
     other: Other
+  emoji_styles:
+    auto: Auto
+    native: Native
+    twemoji: Twemoji
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -1819,6 +1878,10 @@ en-GB:
       limit: You have already pinned the maximum number of posts
       ownership: Someone else's post cannot be pinned
       reblog: A boost cannot be pinned
+    quote_policies:
+      followers: Followers and mentioned users
+      nobody: Only mentioned users
+      public: Everyone
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direct
@@ -1872,6 +1935,11 @@ en-GB:
     does_not_match_previous_name: does not match the previous name
   terms_of_service:
     title: Terms of Service
+  terms_of_service_interstitial:
+    future_preamble_html: We're making some changes to our terms of service, which will be effective on <strong>%{date}</strong>. We encourage you to review the updated terms.
+    past_preamble_html: We have changed our terms of service since your last visit. We encourage you to review the updated terms.
+    review_link: Review terms of service
+    title: The terms of service of %{domain} are changing
   themes:
     contrast: Mastodon (High contrast)
     default: Mastodon (Dark)
@@ -1903,6 +1971,10 @@ en-GB:
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
     webauthn: Security keys
   user_mailer:
+    announcement_published:
+      description: 'The administrators of %{domain} are making an announcement:'
+      subject: Service announcement
+      title: "%{domain} service announcement"
     appeal_approved:
       action: Account Settings
       explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been approved. Your account is once again in good standing.
@@ -1935,6 +2007,8 @@ en-GB:
     terms_of_service_changed:
       agreement: By continuing to use %{domain}, you are agreeing to these terms. If you disagree with the updated terms, you may terminate your agreement with %{domain} at any time by deleting your account.
       changelog: 'At a glance, here is what this update means for you:'
+      description: 'You are receiving this e-mail because we''re making some changes to our terms of service at %{domain}. These updates will take effect on %{date}. We encourage you to review the updated terms in full here:'
+      description_html: You are receiving this e-mail because we're making some changes to our terms of service at %{domain}. These updates will take effect on <strong>%{date}</strong>. We encourage you to review the <a href="%{path}" target="_blank">updated terms in full here</a>.
       sign_off: The %{domain} team
       subject: Updates to our terms of service
       subtitle: The terms of service of %{domain} are changing

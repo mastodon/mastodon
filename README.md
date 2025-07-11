@@ -17,71 +17,71 @@
     <img src="https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg" alt="Crowdin" /></a>
 </p>
 
-Mastodon is a **free, open-source social network server** based on ActivityPub where users can follow friends and discover new ones. On Mastodon, users can publish anything they want: links, pictures, text, and video. All Mastodon servers are interoperable as a federated network (users on one server can seamlessly communicate with users from another one, including non-Mastodon software that implements ActivityPub!)
+Mastodon is a **free, open-source social network server** based on [ActivityPub](https://www.w3.org/TR/activitypub/) where users can follow friends and discover new ones. On Mastodon, users can publish anything they want: links, pictures, text, and video. All Mastodon servers are interoperable as a federated network (users on one server can seamlessly communicate with users from another one, including non-Mastodon software that implements ActivityPub!)
 
 ## Navigation
 
 - [Project homepage 🐘](https://joinmastodon.org)
-- [Support the development via Patreon][patreon]
-- [View sponsors](https://joinmastodon.org/sponsors)
-- [Blog](https://blog.joinmastodon.org)
-- [Documentation](https://docs.joinmastodon.org)
-- [Roadmap](https://joinmastodon.org/roadmap)
-- [Official Docker image](https://github.com/mastodon/mastodon/pkgs/container/mastodon)
-- [Browse Mastodon servers](https://joinmastodon.org/communities)
-- [Browse Mastodon apps](https://joinmastodon.org/apps)
-
-[patreon]: https://www.patreon.com/mastodon
+- [Donate to support development 🎁](https://joinmastodon.org/sponsors#donate)
+  - [View sponsors](https://joinmastodon.org/sponsors)
+- [Blog 📰](https://blog.joinmastodon.org)
+- [Documentation 📚](https://docs.joinmastodon.org)
+- [Official container image 🚢](https://github.com/mastodon/mastodon/pkgs/container/mastodon)
 
 ## Features
 
-<img src="/app/javascript/images/elephant_ui_working.svg?raw=true" align="right" width="30%" />
+<img src="./app/javascript/images/elephant_ui_working.svg?raw=true" align="right" width="30%" />
 
-**No vendor lock-in: Fully interoperable with any conforming platform** - It doesn't have to be Mastodon; whatever implements ActivityPub is part of the social network! [Learn more](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/)
+**Part of the Fediverse. Based on open standards, with no vendor lock-in.** - the network goes beyond just Mastodon; anything that implements ActivityPub is part of a broader social network known as [the Fediverse](https://jointhefediverse.net/). You can follow and interact with users on other servers (including those running different software), and they can follow you back.
 
-**Real-time, chronological timeline updates** - updates of people you're following appear in real-time in the UI via WebSockets. There's a firehose view as well!
+**Real-time, chronological timeline updates** - updates of people you're following appear in real-time in the UI.
 
-**Media attachments like images and short videos** - upload and view images and WebM/MP4 videos attached to the updates. Videos with no audio track are treated like GIFs; normal videos loop continuously!
+**Media attachments** - upload and view images and videos attached to the updates. Videos with no audio track are treated like animated GIFs; normal videos loop continuously.
 
-**Safety and moderation tools** - Mastodon includes private posts, locked accounts, phrase filtering, muting, blocking, and all sorts of other features, along with a reporting and moderation system. [Learn more](https://blog.joinmastodon.org/2018/07/cage-the-mastodon/)
+**Safety and moderation tools** - Mastodon includes private posts, locked accounts, phrase filtering, muting, blocking, and many other features, along with a reporting and moderation system.
 
-**OAuth2 and a straightforward REST API** - Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Streaming APIs. This results in a rich app ecosystem with a lot of choices!
+**OAuth2 and a straightforward REST API** - Mastodon acts as an OAuth2 provider, and third party apps can use the REST and Streaming APIs. This results in a [rich app ecosystem](https://joinmastodon.org/apps) with a variety of choices!
 
 ## Deployment
 
 ### Tech stack
 
-- **Ruby on Rails** powers the REST API and other web pages
-- **React.js** and **Redux** are used for the dynamic parts of the interface
-- **Node.js** powers the streaming API
+- [Ruby on Rails](https://github.com/rails/rails) powers the REST API and other web pages.
+- [PostgreSQL](https://www.postgresql.org/) is the main database.
+- [Redis](https://redis.io/) and [Sidekiq](https://sidekiq.org/) are used for caching and queueing.
+- [Node.js](https://nodejs.org/) powers the streaming API.
+- [React.js](https://reactjs.org/) and [Redux](https://redux.js.org/) are used for the dynamic parts of the interface.
+- [BrowserStack](https://www.browserstack.com/) supports testing on real devices and browsers. (This project is tested with BrowserStack)
+- [Chromatic](https://www.chromatic.com/) provides visual regression testing. (This project is tested with Chromatic)
 
 ### Requirements
 
+- **Ruby** 3.2+
 - **PostgreSQL** 13+
 - **Redis** 6.2+
-- **Ruby** 3.2+
 - **Node.js** 20+
 
-The repository includes deployment configurations for **Docker and docker-compose** as well as specific platforms like **Heroku**, and **Scalingo**. For Helm charts, reference the [mastodon/chart repository](https://github.com/mastodon/chart). The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
+This repository includes deployment configurations for **Docker and docker-compose**, as well as for other environments like Heroku and Scalingo. For Helm charts, reference the [mastodon/chart repository](https://github.com/mastodon/chart). A [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the main documentation.
 
 ## Contributing
 
-Mastodon is **free, open-source software** licensed under **AGPLv3**.
+Mastodon is **free, open-source software** licensed under **AGPLv3**. We welcome contributions and help from anyone who wants to improve the project.
 
-You can open issues for bugs you've found or features you think are missing. You
-can also submit pull requests to this repository or translations via Crowdin. To
-get started, look at the [CONTRIBUTING] and [DEVELOPMENT] guides. For changes
-accepted into Mastodon, you can request to be paid through our [OpenCollective].
+You should read the overall [CONTRIBUTING](https://github.com/mastodon/.github/blob/main/CONTRIBUTING.md) guide, which covers our development processes.
 
-**IRC channel**: #mastodon on [`irc.libera.chat`](https://libera.chat)
+You should also read and understand the [CODE OF CONDUCT](https://github.com/mastodon/.github/blob/main/CODE_OF_CONDUCT.md) that enables us to maintain a welcoming and inclusive community. Collaboration begins with mutual respect and understanding.
 
-## License
+You can learn about setting up a development environment in the [DEVELOPMENT](docs/DEVELOPMENT.md) documentation.
+
+If you would like to help with translations 🌐 you can do so on [Crowdin](https://crowdin.com/project/mastodon).
+
+## LICENSE
 
 Copyright (c) 2016-2025 Eugen Rochko (+ [`mastodon authors`](AUTHORS.md))
 
 Licensed under GNU Affero General Public License as stated in the [LICENSE](LICENSE):
 
-```
+```text
 Copyright (c) 2016-2025 Eugen Rochko & other Mastodon contributors
 
 This program is free software: you can redistribute it and/or modify it under
@@ -97,7 +97,3 @@ details.
 You should have received a copy of the GNU Affero General Public License along
 with this program. If not, see https://www.gnu.org/licenses/
 ```
-
-[CONTRIBUTING]: CONTRIBUTING.md
-[DEVELOPMENT]: docs/DEVELOPMENT.md
-[OpenCollective]: https://opencollective.com/mastodon

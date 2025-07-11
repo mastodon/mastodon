@@ -118,6 +118,15 @@ RSpec.describe 'Search API' do
             .to start_with('application/json')
         end
       end
+
+      context 'when `account_search` FASP is enabled', feature: :fasp do
+        it 'enqueues a retrieval job and adds a header to inform the client' do
+          get '/api/v2/search', headers: headers, params: params
+
+          expect(Fasp::AccountSearchWorker).to have_enqueued_sidekiq_job
+          expect(response.headers['Mastodon-Async-Refresh']).to be_present
+        end
+      end
     end
   end
 

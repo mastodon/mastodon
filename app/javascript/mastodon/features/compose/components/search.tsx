@@ -29,6 +29,7 @@ import { HASHTAG_REGEX } from 'mastodon/utils/hashtags';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
+  clearSearch: { id: 'search.clear', defaultMessage: 'Clear search' },
   placeholderSignedIn: {
     id: 'search.search_or_paste',
     defaultMessage: 'Search or paste URL',
@@ -46,8 +47,32 @@ const labelForRecentSearch = (search: RecentSearch) => {
   }
 };
 
-const unfocus = () => {
-  document.querySelector('.ui')?.parentElement?.focus();
+const ClearButton: React.FC<{
+  onClick: () => void;
+  hasValue: boolean;
+}> = ({ onClick, hasValue }) => {
+  const intl = useIntl();
+
+  return (
+    <div
+      className={classNames('search__icon-wrapper', { 'has-value': hasValue })}
+    >
+      <Icon id='search' icon={SearchIcon} className='search__icon' />
+      <button
+        type='button'
+        onClick={onClick}
+        className='search__icon search__icon--clear-button'
+        tabIndex={hasValue ? undefined : -1}
+        aria-hidden={!hasValue}
+      >
+        <Icon
+          id='times-circle'
+          icon={CancelIcon}
+          aria-label={intl.formatMessage(messages.clearSearch)}
+        />
+      </button>
+    </div>
+  );
 };
 
 interface SearchOption {
@@ -77,6 +102,11 @@ export const Search: React.FC<{
     setQuickActions([]);
   }, [initialValue]);
   const searchOptions: SearchOption[] = [];
+
+  const unfocus = useCallback(() => {
+    document.querySelector('.ui')?.parentElement?.focus();
+    setExpanded(false);
+  }, []);
 
   if (searchEnabled) {
     searchOptions.push(
@@ -253,7 +283,7 @@ export const Search: React.FC<{
       history.push({ pathname: '/search', search: queryParams.toString() });
       unfocus();
     },
-    [dispatch, history],
+    [dispatch, history, unfocus],
   );
 
   const handleChange = useCallback(
@@ -373,14 +403,15 @@ export const Search: React.FC<{
 
       setQuickActions(newQuickActions);
     },
-    [dispatch, history, signedIn, setValue, setQuickActions, submit],
+    [signedIn, dispatch, unfocus, history, submit],
   );
 
   const handleClear = useCallback(() => {
     setValue('');
     setQuickActions([]);
     setSelectedOption(-1);
-  }, [setValue, setQuickActions, setSelectedOption]);
+    unfocus();
+  }, [unfocus]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -431,7 +462,7 @@ export const Search: React.FC<{
           break;
       }
     },
-    [navigableOptions, value, selectedOption, setSelectedOption, submit],
+    [unfocus, navigableOptions, selectedOption, submit, value],
   );
 
   const handleFocus = useCallback(() => {
@@ -451,12 +482,38 @@ export const Search: React.FC<{
   }, [setExpanded, setSelectedOption, singleColumn]);
 
   const handleBlur = useCallback(() => {
-    setExpanded(false);
     setSelectedOption(-1);
-  }, [setExpanded, setSelectedOption]);
+  }, [setSelectedOption]);
+
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    // If the search popover is expanded, close it when tabbing or
+    // clicking outside of it or the search form, while allowing
+    // tabbing or clicking inside of the popover
+    if (expanded) {
+      function closeOnLeave(event: FocusEvent | MouseEvent) {
+        const form = formRef.current;
+        const isClickInsideForm =
+          form &&
+          (form === event.target || form.contains(event.target as Node));
+        if (!isClickInsideForm) {
+          setExpanded(false);
+        }
+      }
+      document.addEventListener('focusin', closeOnLeave);
+      document.addEventListener('click', closeOnLeave);
+
+      return () => {
+        document.removeEventListener('focusin', closeOnLeave);
+        document.removeEventListener('click', closeOnLeave);
+      };
+    }
+    return () => null;
+  }, [expanded]);
 
   return (
-    <form className={classNames('search', { active: expanded })}>
+    <form ref={formRef} className={classNames('search', { active: expanded })}>
       <input
         ref={searchInputRef}
         className='search__input'
@@ -474,21 +531,9 @@ export const Search: React.FC<{
         onBlur={handleBlur}
       />
 
-      <button type='button' className='search__icon' onClick={handleClear}>
-        <Icon
-          id='search'
-          icon={SearchIcon}
-          className={hasValue ? '' : 'active'}
-        />
-        <Icon
-          id='times-circle'
-          icon={CancelIcon}
-          className={hasValue ? 'active' : ''}
-          aria-label={intl.formatMessage(messages.placeholder)}
-        />
-      </button>
+      <ClearButton hasValue={hasValue} onClick={handleClear} />
 
-      <div className='search__popout'>
+      <div className='search__popout' tabIndex={-1}>
         {!hasValue && (
           <>
             <h4>

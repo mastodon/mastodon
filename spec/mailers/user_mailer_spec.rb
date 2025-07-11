@@ -14,6 +14,43 @@ RSpec.describe UserMailer do
     end
   end
 
+  shared_examples 'optional bulk mailer settings' do
+    context 'when no optional bulk mailer settings are present' do
+      it 'does not include delivery method options' do
+        expect(mail.message.delivery_method.settings).to be_empty
+      end
+    end
+
+    context 'when optional bulk mailer settings are present' do
+      let(:smtp_settings) do
+        {
+          address: 'localhost',
+          port: 25,
+          authentication: 'none',
+        }
+      end
+
+      before do
+        Rails.configuration.x.email ||= ActiveSupport::OrderedOptions.new
+        Rails.configuration.x.email.update({ bulk_mail: { smtp_settings: } })
+      end
+
+      after do
+        Rails.configuration.x.email = nil
+      end
+
+      it 'uses the bulk mailer settings' do
+        expect(mail.message.delivery_method.settings).to eq({
+          address: 'localhost',
+          port: 25,
+          authentication: nil,
+          enable_starttls: nil,
+          enable_starttls_auto: true,
+        })
+      end
+    end
+  end
+
   let(:receiver) { Fabricate(:user) }
 
   describe '#confirmation_instructions' do
@@ -316,6 +353,8 @@ RSpec.describe UserMailer do
         .and(have_subject(I18n.t('user_mailer.terms_of_service_changed.subject')))
         .and(have_body_text(I18n.t('user_mailer.terms_of_service_changed.changelog')))
     end
+
+    it_behaves_like 'optional bulk mailer settings'
   end
 
   describe '#announcement_published' do
@@ -328,5 +367,7 @@ RSpec.describe UserMailer do
         .and(have_subject(I18n.t('user_mailer.announcement_published.subject')))
         .and(have_body_text(I18n.t('user_mailer.announcement_published.description', domain: local_domain_uri.host)))
     end
+
+    it_behaves_like 'optional bulk mailer settings'
   end
 end

@@ -22,10 +22,10 @@
   %td{ rowspan: can?(:create, :email_domain_block) ? 3 : 2 }= account.user_email
   %td= table_link_to 'edit', t('admin.accounts.change_email.label'), admin_account_change_email_path(account.id) if can?(:change_email, account.user)
 %tr
-  %td= table_link_to 'search', t('admin.accounts.search_same_email_domain'), admin_accounts_path(email: "%@#{account.user_email.split('@').last}")
+  %td= table_link_to 'search', t('admin.accounts.search_same_email_domain'), admin_accounts_path(email: "%@#{account.user_email_domain}")
 - if can?(:create, :email_domain_block)
   %tr
-    %td= table_link_to 'hide_source', t('admin.accounts.add_email_domain_block'), new_admin_email_domain_block_path(_domain: account.user_email.split('@').last)
+    %td= table_link_to 'hide_source', t('admin.accounts.add_email_domain_block'), new_admin_email_domain_block_path(_domain: account.user_email_domain)
 - if account.user_unconfirmed_email.present?
   %tr
     %th= t('admin.accounts.unconfirmed_email')
