@@ -6,7 +6,7 @@ export const AccountBio: React.FC<{
 }> = ({ note, className }) => {
   const handleClick = useLinks();
 
-  if (note.length === 0 || note === '<p></p>') {
+  if (note.length === 0) {
     return null;
   }
 
