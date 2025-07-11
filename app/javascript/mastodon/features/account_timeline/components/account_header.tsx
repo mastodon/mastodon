@@ -899,6 +899,7 @@ export const AccountHeader: React.FC<{
 
                 <AccountBio
                   note={account.note_emojified}
+                  dropdownAccountId={accountId}
                   className='account__header__content'
                 />
 

@@ -15,7 +15,7 @@ const isHashtagClick = (element: HTMLAnchorElement) =>
   element.textContent?.[0] === '#' ||
   element.previousSibling?.textContent?.endsWith('#');
 
-export const useLinks = () => {
+export const useLinks = (skipHashtags?: boolean) => {
   const history = useHistory();
   const dispatch = useAppDispatch();
 
@@ -62,12 +62,12 @@ export const useLinks = () => {
       if (isMentionClick(target)) {
         e.preventDefault();
         void handleMentionClick(target);
-      } else if (isHashtagClick(target)) {
+      } else if (isHashtagClick(target) && !skipHashtags) {
         e.preventDefault();
         handleHashtagClick(target);
       }
     },
-    [handleMentionClick, handleHashtagClick],
+    [skipHashtags, handleMentionClick, handleHashtagClick],
   );
 
   return handleClick;
