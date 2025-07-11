@@ -291,6 +291,14 @@ RSpec.describe PostStatusService do
     )
   end
 
+  it 'correctly requests a quote for remote posts' do
+    account = Fabricate(:account)
+    quoted_status = Fabricate(:status, account: Fabricate(:account, domain: 'example.com'))
+
+    expect { subject.call(account, text: 'test', quoted_status: quoted_status) }
+      .to enqueue_sidekiq_job(ActivityPub::QuoteRequestWorker)
+  end
+
   it 'returns existing status when used twice with idempotency key' do
     account = Fabricate(:account)
     status1 = subject.call(account, text: 'test', idempotency: 'meepmeep')
