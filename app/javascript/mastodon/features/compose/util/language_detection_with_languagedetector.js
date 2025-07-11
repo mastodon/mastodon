@@ -1,6 +1,5 @@
 import { debounce } from 'lodash';
 
-import { countLetters } from './language_detection';
 import { urlRegex } from './url_regex';
 
 const guessLanguage = async (text) => {
@@ -8,17 +7,15 @@ const guessLanguage = async (text) => {
     .replace(urlRegex, '')
     .replace(/(^|[^/\w])@(([a-z0-9_]+)@[a-z0-9.-]+[a-z0-9]+)/ig, '');
 
-  if (countLetters(text) > 5) {
-    try {
-      const languageDetector = await self.LanguageDetector.create();
-      let {detectedLanguage, confidence} = (await languageDetector.detect(text))[0];
-      if (confidence > 0.8) {
-        detectedLanguage = detectedLanguage.split('-')[0];
-        return detectedLanguage;
-      }
-    } catch {
-      return '';
+  try {
+    const languageDetector = await globalThis.LanguageDetector.create();
+    let {detectedLanguage, confidence} = (await languageDetector.detect(text))[0];
+    if (confidence > 0.8) {
+      detectedLanguage = detectedLanguage.split('-')[0];
+      return detectedLanguage;
     }
+  } catch {
+    return '';
   }
 
   return '';
@@ -26,23 +23,17 @@ const guessLanguage = async (text) => {
 
 const debouncedGuess = (() => {
   let resolver = null;
-  let rejecter = null;
 
-  const debounced = debounce(async (text) => {
-    try {
-      const result = await guessLanguage(text);
-      if (resolver) {
-        resolver(result);
-        resolver = null;
-      }
-    } catch {
-      rejecter('');
+  const debounced = debounce((text) => {
+    const result = guessLanguage(text);
+    if (resolver) {
+      resolver(result);
+      resolver = null;
     }
   }, 500, { maxWait: 1500, leading: true, trailing: true });
 
-  return (text) => new Promise((resolve, reject) => {
+  return (text) => new Promise((resolve) => {
     resolver = resolve;
-    rejecter = reject;
     debounced(text);
   });
 })();

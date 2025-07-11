@@ -65,13 +65,12 @@ let module;
 if (languageDetectorInGlobalThis) {
   if (!languageDetectorSupportedAndReady) {
     // …trigger the model download
-    self.LanguageDetector.create();
+    globalThis.LanguageDetector.create();
   }
   module = await import('./language_detection_with_languagedetector');
 } else {
   module = await import('./language_detection_with_laude');
 }
 const debouncedGuess = module.debouncedGuess;
-console.log(debouncedGuess)
 
 export { debouncedGuess, countLetters, ISO_639_MAP };

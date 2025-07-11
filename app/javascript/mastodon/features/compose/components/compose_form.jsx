@@ -11,7 +11,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 
 import { missingAltTextModal } from 'mastodon/initial_state';
-import { changeComposeLanguage } from 'mastodon/actions/compose';
 
 import AutosuggestInput from 'mastodon/components/autosuggest_input';
 import AutosuggestTextarea from 'mastodon/components/autosuggest_textarea';
@@ -44,10 +43,6 @@ const messages = defineMessages({
   publish: { id: 'compose_form.publish', defaultMessage: 'Post' },
   saveChanges: { id: 'compose_form.save_changes', defaultMessage: 'Update' },
   reply: { id: 'compose_form.reply', defaultMessage: 'Reply' },
-});
-
-const mapStateToProps = (state) => ({
-  currentLanguage: state.meta.get('locale'),
 });
 
 class ComposeForm extends ImmutablePureComponent {
@@ -105,25 +100,6 @@ class ComposeForm extends ImmutablePureComponent {
       this.handleSubmit();
     }
   };
-
-  handleKeyUp = async (e) => {
-    const text = this.getFulltextForCharacterCounting().trim();
-    const currentLanguage = this.props.currentLanguage;
-    if (!text || countLetters(text) <= 5) {
-      this.props.dispatch(changeComposeLanguage(currentLanguage));
-      return;
-    }
-    try {
-      let detectedLanguage = await debouncedGuess(text);
-      if (!detectedLanguage) {
-        this.props.dispatch(changeComposeLanguage(currentLanguage));
-        return;
-      }
-      this.props.dispatch(changeComposeLanguage(detectedLanguage));
-    } catch {
-      this.props.dispatch(changeComposeLanguage(currentLanguage));
-    }
-  }
 
   getFulltextForCharacterCounting = () => {
     return [this.props.spoiler? this.props.spoilerText: '', countableText(this.props.text)].join('');
@@ -301,7 +277,6 @@ class ComposeForm extends ImmutablePureComponent {
               suggestions={this.props.suggestions}
               onFocus={this.handleFocus}
               onKeyDown={this.handleKeyDown}
-              onKeyUp={this.handleKeyUp}
               onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
               onSuggestionsClearRequested={this.onSuggestionsClearRequested}
               onSuggestionSelected={this.onSuggestionSelected}
@@ -338,7 +313,7 @@ class ComposeForm extends ImmutablePureComponent {
                 >
                   {intl.formatMessage(
                     this.props.isEditing ?
-                      messages.saveChanges : 
+                      messages.saveChanges :
                       (this.props.isInReply ? messages.reply : messages.publish)
                   )}
                 </Button>
@@ -352,4 +327,4 @@ class ComposeForm extends ImmutablePureComponent {
 
 }
 
-export default injectIntl(connect(mapStateToProps)(ComposeForm));
+export default injectIntl(ComposeForm);
