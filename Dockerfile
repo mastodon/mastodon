@@ -286,7 +286,7 @@ COPY --from=node /usr/local/lib /usr/local/lib
 RUN \
   # Configure Corepack
   rm /usr/local/bin/yarn*; \
-  corepack enable; \
+  npm i -g corepack; \
   corepack prepare --activate;
 
 # hadolint ignore=DL3008
