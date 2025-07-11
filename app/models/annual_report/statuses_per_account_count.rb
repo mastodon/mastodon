@@ -14,7 +14,7 @@ class AnnualReport::StatusesPerAccountCount < ApplicationRecord
   def self.refresh(year)
     connection.exec_query(<<~SQL.squish)
       INSERT INTO #{table_name} (year, account_id, statuses_count)
-      #{AccountStatusCountQuery.new(year)}
+      #{AccountStatusCountQuery.new(year).to_sql}
       ON CONFLICT (year, account_id) DO NOTHING
     SQL
   end
@@ -24,7 +24,7 @@ class AnnualReport::StatusesPerAccountCount < ApplicationRecord
       @year = year
     end
 
-    def to_s
+    def to_sql
       Status
         .unscoped
         .local
