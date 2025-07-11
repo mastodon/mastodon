@@ -41,7 +41,7 @@ class Api::V1::StatusesController < Api::BaseController
 
     ancestors_limit         = CONTEXT_LIMIT
     descendants_limit       = CONTEXT_LIMIT
-    descendants_depth_limit = nil
+    descendants_depth_limit = CONTEXT_LIMIT
 
     if current_account.nil?
       ancestors_limit         = ANCESTORS_LIMIT
@@ -50,14 +50,14 @@ class Api::V1::StatusesController < Api::BaseController
     end
 
     ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(ancestors_limit, current_account)
-    descendants_results = @status.descendants(descendants_limit, current_account, descendants_depth_limit)
+    descendants_results = @status.descendants(current_account, limit: descendants_limit, depth: descendants_depth_limit).select { |result| result.is_a?(Status) }
     loaded_ancestors    = preload_collection(ancestors_results, Status)
     loaded_descendants  = preload_collection(descendants_results, Status)
 
     @context = Context.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
     statuses = [@status] + @context.ancestors + @context.descendants
 
-    render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
+    render json: @context, serializer: REST::V1::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
 
     ActivityPub::FetchAllRepliesWorker.perform_async(@status.id) if !current_account.nil? && @status.should_fetch_replies?
   end
