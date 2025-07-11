@@ -653,7 +653,7 @@ da:
         mark_as_sensitive_description_html: Medierne i det anmeldte indlæg markeres som sensitive, og en advarsel (strike) registreres mhp. eskalering ved evt. fremtidige overtrædelser fra samme konto.
         other_description_html: Se flere muligheder for at kontrollere kontoens adfærd og tilpasse kommunikationen til den anmeldte konto.
         resolve_description_html: Ingen foranstaltninger træffes mod den anmeldte konto, ingen advarsel (strike) registreres og anmeldelsen lukkes.
-        silence_description_html: Kontoen vil kun være synlig for følgerene eller dem, som manuelt slå den op, hvilket markant begrænser dens udbredelse. Kan altid omgøres. Lukker alle indrapporteringer af kontoen.
+        silence_description_html: Kontoen vil kun være synlig for dem, der allerede følger den eller manuelt slår den op, hvilket alvorligt begrænser dens rækkevidde. Kan altid omgøres. Lukker alle indrapporteringer af denne konto.
         suspend_description_html: Kontoen inkl. alt indhold utilgængeliggøres og interaktion umuliggøres, og den slettes på et tidspunkt. Kan omgøres inden for 30 dage. Lukker alle indrapporteringer af kontoen.
       actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Ved en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
       actions_description_remote_html: Fastslå en nødvendig handling mhp. at løse denne anmeldelse. Dette vil kun påvirke <strong>din</strong> servers kommunikation med, og indholdshåndtering for, fjernkontoen.
@@ -1266,8 +1266,8 @@ da:
     user_privacy_agreement_html: Jeg accepterer <a href="%{privacy_policy_path}" target="_blank">fortrolighedspolitikken</a>
   author_attribution:
     example_title: Eksempeltekst
-    hint_html: Skriver du nyheder eller blogartikler uden for Mastodon? Styr, hvordan man bliver krediteret, når disse deles på Mastodon.
-    instructions: 'Sørg for, at denne kode er i artikelens HTML:'
+    hint_html: Skriver du nyheder eller blogartikler uden for Mastodon? Styr, hvordan du bliver krediteret, når de bliver delt på Mastodon.
+    instructions: 'Sørg for, at denne kode er i din artikels HTML:'
     more_from_html: Flere fra %{name}
     s_blog: "%{name}s blog"
     then_instructions: Tilføj dernæst publikationsdomænenavnet i feltet nedenfor.
@@ -1718,11 +1718,11 @@ da:
     hint_html: "<strong>Tilpas hvordan din profil og dine indlæg kan findes.</strong> En række funktioner i Mastodon kan hjælpe dig med at nå ud til et bredere publikum, hvis du aktiverer dem. Tjek indstillingerne herunder for at sikre, at de passer til dit brugsscenarie."
     privacy: Privatliv
     privacy_hint_html: Styr, hvor meget der ønskes synliggjort til gavn for andre. Folk finder interessante profiler og apps ved at tjekke andres følgere ud, samt se hvilke apps de sender fra, men dine præferencer ønskes muligvis ikke synliggjort.
-    reach: Udbredelse
+    reach: Rækkevidde
     reach_hint_html: Indstil om du vil blive opdaget og fulgt af nye mennesker. Ønsker du, at dine indlæg skal vises på Udforsk-siden? Ønsker du, at andre skal se dig i deres følg-anbefalinger? Ønsker du at acceptere alle nye følgere automatisk, eller vil du have detaljeret kontrol over hver og en?
-    search: Søg
+    search: Søgning
     search_hint_html: Indstil hvordan du vil findes. Ønsker du, at folk skal finde dig gennem hvad du har skrevet offentligt? Vil du have folk udenfor Mastodon til at finde din profil, når de søger på nettet? Vær opmærksom på, at det ikke kan garanteres at dine offentlige indlæg er udelukket fra alle søgemaskiner.
-    title: Fortrolighed og udbredelse
+    title: Fortrolighed og rækkevidde
   privacy_policy:
     title: Privatlivspolitik
   reactions:
@@ -1923,7 +1923,7 @@ da:
       '7889238': 3 måneder
     min_age_label: Alderstærskel
     min_favs: Behold indlæg favoritmarkeret mindst
-    min_favs_hint: Sletter ingen dine egne indlæg, som har modtaget minimum dette antal favoritmarkeringer. Lad stå tomt for at slette indlæg uanset antal favoritmarkeringer
+    min_favs_hint: Sletter ingen af dine egne indlæg, som har modtaget minimum dette antal favoritmarkeringer. Lad stå tom for at slette indlæg uanset antal favoritmarkeringer
     min_reblogs: Behold indlæg fremhævet mindst
     min_reblogs_hint: Sletter ingen af dine egne indlæg, som er fremhævet flere end dette antal gange. Lad stå tom for at slette indlæg uanset antallet af fremhævelser
   stream_entries:
@@ -2095,7 +2095,7 @@ da:
   verification:
     extra_instructions_html: <strong>Tip:</strong> Linket på din hjemmeside kan være usynligt. Den vigtige del er <code>rel="me"</code> , som forhindrer impersonation på websteder med brugergenereret indhold. Du kan endda bruge et <code>link</code> tag i overskriften på siden i stedet for <code>a</code>, men HTML skal være tilgængelig uden at udføre JavaScript.
     here_is_how: Sådan gør du
-    hint_html: "<strong>Bekræftelse af din identitet på Mastodon er for alle.</strong> Baseret på åbne webstandarder, nu og for evigt gratis. Alt du behøver er en personlig hjemmeside, som folk genkende dig ved. Når du linker til denne hjemmeside fra din profil, vi vil kontrollere, at hjemmesiden linker tilbage til din profil og vise en visuel indikator på det."
+    hint_html: "<strong>Verificering af din identitet på Mastodon er for alle.</strong> Baseret på åbne webstandarder, nu og for altid gratis. Alt, hvad du behøver, er en personlig hjemmeside, som folk kender dig fra. Når du linker til denne hjemmeside fra din profil, kontrollerer vi, at hjemmesiden linker tilbage til din profil, og viser en visuel indikator på den."
     instructions_html: Kopier og indsæt koden nedenfor i HTML på din hjemmeside. Tilføj derefter adressen på din hjemmeside i et af de ekstra felter på din profil på fanen "Redigér profil" og gem ændringer.
     verification: Bekræftelse
     verified_links: Dine bekræftede links
