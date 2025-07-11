@@ -19,7 +19,7 @@ const messages = defineMessages({
 export const CopyIconButton: React.FC<{
   title: string;
   value: string;
-  className: string;
+  className?: string;
 }> = ({ title, value, className }) => {
   const [copied, setCopied] = useState(false);
   const dispatch = useAppDispatch();
