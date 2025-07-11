@@ -20,7 +20,7 @@ import { languages as preloadedLanguages } from 'mastodon/initial_state';
 import type { RootState } from 'mastodon/store';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import { debouncedGuess } from '../util/language_detection';
+import { debouncedGuess, countLetters } from '../util/language_detection';
 
 const messages = defineMessages({
   changeLanguage: {
@@ -375,12 +375,25 @@ export const LanguageDropdown: React.FC = () => {
   );
 
   useEffect(() => {
-    if (text.length > 20) {
-      debouncedGuess(text, setGuess);
+    let canceled = false;
+
+    if (countLetters(text) >= 5) {
+      debouncedGuess(text)
+        .then((lang) => {
+          if (!canceled) {
+            setGuess(lang ?? '');
+          }
+        })
+        .catch(() => {
+          setGuess('');
+        });
     } else {
-      debouncedGuess.cancel();
       setGuess('');
     }
+
+    return () => {
+      canceled = true;
+    };
   }, [text, setGuess]);
 
   return (

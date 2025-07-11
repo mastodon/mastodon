@@ -10,8 +10,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { length } from 'stringz';
 
-import debounce from 'lodash.debounce';
-
 import { missingAltTextModal } from 'mastodon/initial_state';
 import { changeComposeLanguage } from 'mastodon/actions/compose';
 
@@ -24,6 +22,7 @@ import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { countableText } from '../util/counter';
+import { debouncedGuess, countLetters } from '../util/language_detection';
 
 import { CharacterCounter } from './character_counter';
 import { EditIndicator } from './edit_indicator';
@@ -49,24 +48,6 @@ const messages = defineMessages({
 const mapStateToProps = (state) => ({
   currentLanguage: state.meta.get('locale'),
 });
-
-const languageDetectorInGlobalThis = 'LanguageDetector' in globalThis;
-let supportsLanguageDetector = languageDetectorInGlobalThis && await globalThis.LanguageDetector.availability() === 'available';
-let languageDetector;
-// If the API is supported, but the model not loaded yet…
-if (languageDetectorInGlobalThis && !supportsLanguageDetector) {
-  // …trigger the model download
-  LanguageDetector.create().then((_languageDetector) => {
-    supportsLanguageDetector = true
-    languageDetector = _languageDetector
-  })
-}
-
-function countLetters(text) {
-  const segmenter = new Intl.Segmenter('und', { granularity: 'grapheme' })
-  const letters = [...segmenter.segment(text)]
-  return letters.length
-}
 
 class ComposeForm extends ImmutablePureComponent {
   static propTypes = {
@@ -112,7 +93,6 @@ class ComposeForm extends ImmutablePureComponent {
   constructor(props) {
     super(props);
     this.textareaRef = createRef(null);
-    this.debouncedHandleKeyUp = debounce(this._handleKeyUp.bind(this), 500);
   }
 
   handleChange = (e) => {
@@ -125,30 +105,21 @@ class ComposeForm extends ImmutablePureComponent {
     }
   };
 
-  handleKeyUp = (e) => {
-   this.debouncedHandleKeyUp(e);
-  }
-
-  _handleKeyUp = async (e) => {
-    if (!supportsLanguageDetector) {
-      return;
-    }
-    if (!languageDetector) {
-      languageDetector = await globalThis.LanguageDetector.create();
-    }
+  handleKeyUp = async (e) => {
     const text = this.getFulltextForCharacterCounting().trim();
     const currentLanguage = this.props.currentLanguage;
     if (!text || countLetters(text) <= 5) {
       this.props.dispatch(changeComposeLanguage(currentLanguage));
       return;
     }
-
     try {
-      let detectedLanguage = (await languageDetector.detect(text))[0].detectedLanguage
-      detectedLanguage = detectedLanguage === 'und' ? currentLanguage : detectedLanguage.substring(0, 2);
+      let detectedLanguage = await debouncedGuess(text);
+      if (!detectedLanguage) {
+        this.props.dispatch(changeComposeLanguage(currentLanguage));
+        return;
+      }
       this.props.dispatch(changeComposeLanguage(detectedLanguage));
-    }
-    catch {
+    } catch {
       this.props.dispatch(changeComposeLanguage(currentLanguage));
     }
   }
@@ -218,7 +189,6 @@ class ComposeForm extends ImmutablePureComponent {
 
   componentWillUnmount () {
     if (this.timeout) clearTimeout(this.timeout);
-    this.debouncedHandleKeyUp.cancel();
   }
 
   componentDidUpdate (prevProps) {
