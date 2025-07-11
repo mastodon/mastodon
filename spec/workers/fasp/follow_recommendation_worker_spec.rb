@@ -7,7 +7,7 @@ RSpec.describe Fasp::FollowRecommendationWorker, feature: :fasp do
 
   let(:provider) { Fabricate(:follow_recommendation_fasp) }
   let(:account) { Fabricate(:account) }
-  let(:fetch_service) { instance_double(ActivityPub::FetchRemoteActorService, call: true) }
+  let(:fetch_service) { instance_double(ActivityPub::FetchRemoteActorService) }
 
   let!(:stubbed_request) do
     account_uri = ActivityPub::TagManager.instance.uri_for(account)
@@ -23,6 +23,8 @@ RSpec.describe Fasp::FollowRecommendationWorker, feature: :fasp do
 
   before do
     allow(ActivityPub::FetchRemoteActorService).to receive(:new).and_return(fetch_service)
+
+    allow(fetch_service).to receive(:call).and_invoke(->(_) { Fabricate(:account, domain: 'fedi.example.com') })
   end
 
   it "sends the requesting account's uri to provider and fetches received account uris" do
@@ -47,5 +49,11 @@ RSpec.describe Fasp::FollowRecommendationWorker, feature: :fasp do
     described_class.new.perform(account.id)
 
     expect(async_refresh.reload.result_count).to eq 2
+  end
+
+  it 'persists the results' do
+    expect do
+      described_class.new.perform(account.id)
+    end.to change(Fasp::FollowRecommendation, :count).by(2)
   end
 end

@@ -223,6 +223,12 @@ class User < ApplicationRecord
     end
   end
 
+  def email_domain
+    Mail::Address.new(email).domain
+  rescue Mail::Field::ParseError
+    nil
+  end
+
   def update_sign_in!(new_sign_in: false)
     old_current = current_sign_in_at
     new_current = Time.now.utc

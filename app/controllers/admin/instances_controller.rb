@@ -14,6 +14,9 @@ module Admin
 
     def show
       authorize :instance, :show?
+
+      @instance_moderation_note = @instance.moderation_notes.new
+      @instance_moderation_notes = @instance.moderation_notes.includes(:account).chronological
       @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
       @action_logs = Admin::ActionLogFilter.new(target_domain: @instance.domain).results.limit(LOGS_LIMIT)
     end
@@ -52,7 +55,8 @@ module Admin
     private
 
     def set_instance
-      @instance = Instance.find_or_initialize_by(domain: TagManager.instance.normalize_domain(params[:id]&.strip))
+      domain = params[:id]&.strip
+      @instance = Instance.find_or_initialize_by(domain: TagManager.instance.normalize_domain(domain))
     end
 
     def set_instances

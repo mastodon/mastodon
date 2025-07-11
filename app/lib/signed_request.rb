@@ -196,6 +196,8 @@ class SignedRequest
       return if body_digest == received_digest
 
       raise Mastodon::SignatureVerificationError, "Invalid Digest value. Computed SHA-256 digest: #{body_digest}; given: #{received_digest}"
+    rescue Starry::ParseError
+      raise Mastodon::MalformedHeaderError, 'Content-Digest could not be parsed. It does not contain a valid RFC8941 dictionary.'
     end
 
     def created_time

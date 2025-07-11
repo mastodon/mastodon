@@ -66,11 +66,14 @@
     "cross-env": "^7.0.3",
     "detect-passive-events": "^2.0.3",
     "emoji-mart": "npm:emoji-mart-lazyload@latest",
+    "emojibase": "^16.0.0",
+    "emojibase-data": "^16.0.3",
     "escape-html": "^1.0.3",
     "fuzzysort": "^3.0.0",
     "history": "^4.10.1",
     "hoist-non-react-statics": "^3.3.2",
     "http-link-header": "^1.1.1",
+    "idb": "^8.0.3",
     "immutable": "^4.3.0",
     "intl-messageformat": "^10.7.16",
     "js-yaml": "^4.1.0",
@@ -115,6 +118,7 @@
     "vite-plugin-pwa": "^1.0.0",
     "vite-plugin-rails": "^0.5.0",
     "vite-plugin-ruby": "^5.1.1",
+    "vite-plugin-static-copy": "^3.1.0",
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "^5.1.4",
     "wicg-inert": "^3.1.2",
@@ -172,6 +176,8 @@
     "globals": "^16.0.0",
     "husky": "^9.0.11",
     "lint-staged": "^16.0.0",
+    "msw": "^2.10.2",
+    "msw-storybook-addon": "^2.0.5",
     "playwright": "^1.52.0",
     "prettier": "^3.3.3",
     "react-test-renderer": "^18.2.0",
@@ -202,5 +208,10 @@
     "react-router-dom": {
       "optional": true
     }
+  },
+  "msw": {
+    "workerDirectory": [
+      ".storybook/static"
+    ]
   }
 }

@@ -578,6 +578,13 @@ es-AR:
         all: Todas
         limited: Limitadas
         title: Moderación
+      moderation_notes:
+        create: Agregar nota de moderación
+        created_msg: "¡Nota de moderación de instancia creada!"
+        description_html: Ver y dejar notas para otros moderadores y a tu yo futuro
+        destroyed_msg: "¡Nota de moderación de instancia eliminada con éxito!"
+        placeholder: Información sobre esta instancia, acciones tomadas o cualquier otra cosa que te ayude a moderar esta instancia en el futuro.
+        title: Notas de moderación
       private_comment: Comentario privado
       public_comment: Comentario público
       purge: Purgar
@@ -1342,6 +1349,10 @@ es-AR:
     basic_information: Información básica
     hint_html: "<strong>Personalizá lo que la gente ve en tu perfil público y junto a tus publicaciones.</strong> Es más probable que otras personas te sigan e interactúen con vos cuando tengas un perfil completo y una foto de perfil."
     other: Otros
+  emoji_styles:
+    auto: Automático
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': La solicitud que enviaste no era válida o estaba corrompida.
     '403': No tenés permiso para ver esta página.

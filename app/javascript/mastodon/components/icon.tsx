@@ -13,14 +13,13 @@ interface Props extends React.SVGProps<SVGSVGElement> {
   children?: never;
   id: string;
   icon: IconProp;
-  title?: string;
 }
 
 export const Icon: React.FC<Props> = ({
   id,
   icon: IconComponent,
   className,
-  title: titleProp,
+  'aria-label': ariaLabel,
   ...other
 }) => {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
@@ -34,18 +33,19 @@ export const Icon: React.FC<Props> = ({
     IconComponent = CheckBoxOutlineBlankIcon;
   }
 
-  const ariaHidden = titleProp ? undefined : true;
+  const ariaHidden = ariaLabel ? undefined : true;
   const role = !ariaHidden ? 'img' : undefined;
 
   // Set the title to an empty string to remove the built-in SVG one if any
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-  const title = titleProp || '';
+  const title = ariaLabel || '';
 
   return (
     <IconComponent
       className={classNames('icon', `icon-${id}`, className)}
       title={title}
       aria-hidden={ariaHidden}
+      aria-label={ariaLabel}
       role={role}
       {...other}
     />

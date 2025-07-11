@@ -6,7 +6,7 @@
     = date_range(@time_period)
 
   - if @instance.persisted?
-    = render 'dashboard', instance_domain: @instance.domain, period_end_at: @time_period.last, period_start_at: @time_period.first
+    = render 'admin/instances/dashboard', instance_domain: @instance.domain, period_end_at: @time_period.last, period_start_at: @time_period.first
   - else
     %p
       = t('admin.instances.unknown_instance')
@@ -55,6 +55,24 @@
       = render partial: 'admin/action_logs/action_log', collection: @action_logs
     = link_to t('admin.instances.audit_log.view_all'), admin_action_logs_path(target_domain: @instance.domain), class: 'button'
 
+%hr.spacer/
+
+- if @instance.domain.present?
+  %h3#instance-notes= t('admin.instances.moderation_notes.title')
+  %p= t('admin.instances.moderation_notes.description_html')
+  .report-notes
+    = render partial: 'admin/report_notes/report_note', collection: @instance_moderation_notes
+
+  = simple_form_for @instance_moderation_note, url: admin_instance_moderation_notes_path(instance_id: @instance.domain) do |form|
+    = render 'shared/error_messages', object: @instance_moderation_note
+
+    .field-group
+      = form.input :content, input_html: { placeholder: t('admin.instances.moderation_notes.placeholder'), maxlength: InstanceModerationNote::CONTENT_SIZE_LIMIT, rows: 6, autofocus: @instance_moderation_note.errors.any? }
+
+    .actions
+      = form.button :button, t('admin.instances.moderation_notes.create'), type: :submit
+
+- if @instance.persisted?
   %hr.spacer/
 
   %h3= t('admin.instances.availability.title')
