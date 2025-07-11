@@ -2,6 +2,8 @@
 
 module Mastodon
   module MigrationWarning
+    include ActionView::Helpers::TextHelper
+
     WARNING_SECONDS = 10
 
     DEFAULT_WARNING = <<~WARNING_MESSAGE.freeze
@@ -23,7 +25,7 @@ module Mastodon
 
     def announce_countdown
       WARNING_SECONDS.downto(1) do |i|
-        say "Continuing in #{i} second#{'s' unless i == 1}...", true
+        say "Continuing in #{pluralize i, 'second'}}...", true
         sleep 1
       end
     end
