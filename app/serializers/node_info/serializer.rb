@@ -34,7 +34,7 @@ class NodeInfo::Serializer < ActiveModel::Serializer
   end
 
   def open_registrations
-    Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode
+    Setting.registrations_mode != 'none' && !Rails.configuration.x.mastodon.single_user_mode
   end
 
   def metadata
