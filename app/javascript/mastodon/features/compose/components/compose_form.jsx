@@ -10,6 +10,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { length } from 'stringz';
 
+import debounce from 'lodash.debounce';
+
 import { missingAltTextModal } from 'mastodon/initial_state';
 import { changeComposeLanguage } from 'mastodon/actions/compose';
 
@@ -110,6 +112,7 @@ class ComposeForm extends ImmutablePureComponent {
   constructor(props) {
     super(props);
     this.textareaRef = createRef(null);
+    this.debouncedHandleKeyUp = debounce(this._handleKeyUp.bind(this), 500);
   }
 
   handleChange = (e) => {
@@ -122,7 +125,11 @@ class ComposeForm extends ImmutablePureComponent {
     }
   };
 
-  handleKeyUp = async (e) => {
+  handleKeyUp = (e) => {
+   this.debouncedHandleKeyUp(e);
+  }
+
+  _handleKeyUp = async (e) => {
     if (!supportsLanguageDetector) {
       return;
     }
@@ -211,6 +218,7 @@ class ComposeForm extends ImmutablePureComponent {
 
   componentWillUnmount () {
     if (this.timeout) clearTimeout(this.timeout);
+    this.debouncedHandleKeyUp.cancel();
   }
 
   componentDidUpdate (prevProps) {
