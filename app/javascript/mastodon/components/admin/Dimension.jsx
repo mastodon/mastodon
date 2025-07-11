@@ -60,7 +60,7 @@ export default class Dimension extends PureComponent {
           </tbody>
         </table>
       );
-    } else {
+    } else if (data[0].data.length > 0) {
       const sum = data[0].data.reduce((sum, cur) => sum + (cur.value * 1), 0);
 
       content = (
@@ -78,6 +78,16 @@ export default class Dimension extends PureComponent {
                 </td>
               </tr>
             ))}
+          </tbody>
+        </table>
+      );
+    } else {
+      content = (
+        <table>
+          <tbody>
+            <tr className='dimension__item'>
+              <td>No data available</td>
+            </tr>
           </tbody>
         </table>
       );
