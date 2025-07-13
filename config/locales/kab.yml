@@ -280,6 +280,7 @@ kab:
         registrations:
           confirm: Sentem
         save: Sekles
+        sign_in: Qqen
       title: FASP
     follow_recommendations:
       language: I tutlayt
@@ -383,6 +384,9 @@ kab:
       updated_at: Yettwaleqqem
       view_profile: Wali amaɣnu
     roles:
+      assigned_users:
+        one: "%{count} n useqdac"
+        other: "%{count} n iseqdacen"
       categories:
         administration: Tadbelt
         invites: Iɛeṛṛuḍen
@@ -395,16 +399,20 @@ kab:
         view_dashboard: Timẓriwt n tfelwit
     rules:
       add_new: Rnu alugen
+      add_translation: Ad yernu tasuqilt
       delete: Kkes
       edit: Ẓreg alugen
       empty: Mazal ur ttwasbadun ara yilugan n uqeddac.
       title: Ilugan n uqeddac
+      translation: Tasuqilt
+      translations: Tisuqilin
     settings:
       about:
         title: Ɣef
       appearance:
         title: Udem
       discovery:
+        privacy: Tabaḍnit
         profile_directory: Akaram n imaɣnuten
         title: Asnirem
         trends: Ayen mucaɛen
@@ -440,6 +448,10 @@ kab:
       visibility: Abani
       with_media: S umidya
     system_checks:
+      elasticsearch_preset:
+        action: Wali tasemlit
+      elasticsearch_preset_single_node:
+        action: Wali tasemlit
       rules_check:
         action: Sefrek ilugan n uqeddac
       software_version_critical_check:
@@ -601,6 +613,8 @@ kab:
     basic_information: Talɣut tamatut
     hint_html: "<strong>Mudd udem i wayen ttwalin medden deg umaɣnu-inek azayez ɣer yidis n yiznan-ik.</strong> Imdanen niḍen zemren ad k-ḍefren yernu ad gen assaɣ yid-k mi ara tesɛuḍ amaɣnu yeccuṛen ed tugna n umaɣnu."
     other: Ayen nniḍen
+  emoji_styles:
+    auto: Awurman
   errors:
     '404': Asebter i tettnadiḍ ulac-it da.
     '500':
@@ -835,6 +849,8 @@ kab:
         one: "%{count} n tbidyutt"
         other: "%{count} n tbidyutin"
     edited_at_html: Tettwaẓreg ass n %{date}
+    quote_policies:
+      public: Yal yiwen
     title: '%{name} : "%{quote}"'
     visibilities:
       direct: Usrid

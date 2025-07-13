@@ -1,6 +1,5 @@
 // @ts-check
 
-
 /**
  * @typedef {[code: string, name: string, localName: string]} InitialStateLanguage
  */
@@ -64,6 +63,7 @@
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
  * @property {Role?} role
+ * @property {string[]} features
  */
 
 const element = document.getElementById('initial-state');
@@ -138,6 +138,14 @@ export const languages = initialState?.languages?.map(lang => {
  */
 export function getAccessToken() {
   return getMeta('access_token');
+}
+
+/**
+ * @param {string} feature
+ * @returns {boolean}
+ */
+export function isFeatureEnabled(feature) {
+  return initialState?.features?.includes(feature) || false;
 }
 
 export default initialState;
