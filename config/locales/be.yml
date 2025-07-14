@@ -18,7 +18,7 @@ be:
     link_verified_on: Права ўласнасці на гэтую спасылку праверана %{date}
     nothing_here: Тут нічога няма!
     pin_errors:
-      following: Вы павінны быць падпісаны на чалавека, якога жадаеце рэкамендаваць
+      following: Трэба падпісацца на чалавека, якога вы хочаце рэкамендаваць
     posts:
       few: Допісы
       many: Допісаў
@@ -28,6 +28,8 @@ be:
   admin:
     account_actions:
       action: Выканаць дзеянне
+      already_silenced: Гэты ўліковы запіс ужо абмежаваны.
+      already_suspended: Гэты ўліковы запіс ужо прыпынены.
       title: Мадэраваць %{acct}
     account_moderation_notes:
       create: Пакінуць нататку
@@ -107,7 +109,7 @@ be:
       no_role_assigned: Роля не прызначана
       not_subscribed: Не падпісаны
       pending: Чакае праверкі
-      perform_full_suspension: Выключыць
+      perform_full_suspension: Прыпыніць
       previous_strikes: Ранейшыя скаргі
       previous_strikes_description_html:
         few: Гэты ўліковы запіс мае <strong>%{count}</strong> скаргі.
@@ -164,7 +166,7 @@ be:
       unconfirmed_email: Непацверджаны адрас эл. пошты
       undo_sensitized: Прыбраць прымусовую пазнаку далікатнасці
       undo_silenced: Адмяніць ліміт
-      undo_suspension: Разблакаваць карыстальніка
+      undo_suspension: Разблакіраваць карыстальніка
       unsilenced_msg: З уліковага запісу %{username} зняты абмежаванні
       unsubscribe: Адпісацца
       unsuspended_msg: Уліковы запіс %{username} адноўлены
@@ -189,7 +191,7 @@ be:
         create_domain_block: Стварыць даменны блок
         create_email_domain_block: Стварыць даменны блок электроннай пошты
         create_ip_block: Стварыць IP правіла
-        create_relay: Стварыць паўтор
+        create_relay: Стварыць рэтранслятар
         create_unavailable_domain: Стварыць недаступны Дамен
         create_user_role: Стварыць ролю
         demote_user: Панізіць карыстальніка
@@ -201,22 +203,22 @@ be:
         destroy_email_domain_block: Выдаліць даменны блок электроннай пошты
         destroy_instance: Вычысціць дамен
         destroy_ip_block: Выдаліць IP правіла
-        destroy_relay: Выдаліць паўтор
+        destroy_relay: Выдаліць рэтранслятар
         destroy_status: Выдаліць допіс
         destroy_unavailable_domain: Выдаліць недаступны дамен
         destroy_user_role: Выдаліць ролю
         disable_2fa_user: Адключыць двухэтапнае спраўджанне
         disable_custom_emoji: Адключыць адвольныя эмодзі
-        disable_relay: Выключыць паўтор
+        disable_relay: Выключыць рэтранслятар
         disable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для карыстальніка
         disable_user: Адключыць карыстальніка
         enable_custom_emoji: Уключыць адвольныя эмодзі
-        enable_relay: Уключыць паўтор
+        enable_relay: Уключыць рэтранслятар
         enable_sign_in_token_auth_user: Уключыць аўтарызацыю праз электронную пошту для карыстальніка
         enable_user: Уключыць карыстальніка
         memorialize_account: Запомніць уліковы запіс
         promote_user: Павысіць правы Карыстальніка
-        publish_terms_of_service: Апублікаваць Умовы выкарыстаньня
+        publish_terms_of_service: Апублікаваць умовы выкарыстання
         reject_appeal: Адхіліць абскарджанне
         reject_user: Адмовіць карыстальніку
         remove_avatar_user: Выдаліць аватар
@@ -226,13 +228,13 @@ be:
         resolve_report: Вырашыць скаргу
         sensitive_account: Уліковы запіс прымусова пазначаны як далікатны
         silence_account: Абмежаваць уліковы запіс
-        suspend_account: Выключыць уліковы запіс
+        suspend_account: Прыпыніць уліковы запіс
         unassigned_report: Прыбраць прызначэнне скаргі
         unblock_email_account: Разблакіраваць электронны адрас
         unsensitive_account: Прымусовая пазнака далікатнасці прыбраная
         unsilence_account: Уліковы запіс больш не абмежаваны
         unsuspend_account: Аднавіць уліковы запіс
-        update_announcement: Абнавіць аб'яву
+        update_announcement: Абнавіць аб’яву
         update_custom_emoji: Абнавіць адвольныя эмодзі
         update_domain_block: Актуалізаваць блакіроўку дамена
         update_ip_block: Абнавіць IP правіла
@@ -254,34 +256,34 @@ be:
         create_domain_block_html: "%{name} заблакіраваў дамен %{target}"
         create_email_domain_block_html: "%{name} заблакіраваў дамен эл. пошты %{target}"
         create_ip_block_html: "%{name} стварыў правіла для IP %{target}"
-        create_relay_html: "%{name} стварыў(-а) паўтор %{target}"
+        create_relay_html: "%{name} стварыў(-ла) рэтранслятар %{target}"
         create_unavailable_domain_html: "%{name} прыпыніў дастаўку да дамена %{target}"
         create_user_role_html: "%{name} зрабіў ролю %{target}"
         demote_user_html: "%{name} прыбраў карыстальніка %{target}"
         destroy_announcement_html: "%{name} выдаліў аб'яву %{target}"
         destroy_canonical_email_block_html: "%{name} разблакіраваў эл. пошту з хэшам %{target}"
-        destroy_custom_emoji_html: "%{name} выдаліў(а) эмоджі %{target}"
-        destroy_domain_allow_html: "%{name} зняў дазвол на аб'яднанне з даменам %{target}\n"
+        destroy_custom_emoji_html: "%{name} выдаліў(-ла) эмодзі %{target}"
+        destroy_domain_allow_html: "%{name} зняў(-ла) дазвол на аб’яднанне з даменам %{target}"
         destroy_domain_block_html: "%{name} разблакаваў дамен %{target}"
         destroy_email_domain_block_html: "%{name} разблакіраваў дамен эл. пошты %{target}"
         destroy_instance_html: "%{name} цалкам прыбраў дамен %{target}"
         destroy_ip_block_html: "%{name} выдаліў правіла для IP %{target}"
-        destroy_relay_html: "%{name} выдаліў(-ла) паўтор %{target}"
+        destroy_relay_html: "%{name} выдаліў(-ла) рэтранслятар %{target}"
         destroy_status_html: "%{name} выдаліў допіс %{target}"
         destroy_unavailable_domain_html: "%{name} дазволіў працягнуць адпраўку на дамен %{target}"
         destroy_user_role_html: "%{name} выдаліў ролю %{target}"
         disable_2fa_user_html: "%{name} амяніў абавязковую двухфактарную верыфікацыю для карыстальніка %{target}"
         disable_custom_emoji_html: "%{name} заблакіраваў эмодзі %{target}"
-        disable_relay_html: "%{name} выключыў(-ла) паўтор %{target}"
+        disable_relay_html: "%{name} выключыў(-ла) рэтранслятар %{target}"
         disable_sign_in_token_auth_user_html: "%{name} адключыў уваход праз эл. пошту для %{target}"
         disable_user_html: "%{name} адключыў уваход для карыстальніка %{target}"
         enable_custom_emoji_html: "%{name} уключыў эмодзі %{target}"
-        enable_relay_html: "%{name} уключыў(-ла) паўтор %{target}"
+        enable_relay_html: "%{name} уключыў(-ла) рэтранслятар %{target}"
         enable_sign_in_token_auth_user_html: "%{name} уключыў уваход праз эл. пошту для %{target}"
         enable_user_html: "%{name} уключыў уваход для карыстальніка %{target}"
         memorialize_account_html: Карыстальнік %{name} пераключыў уліковы запіс %{target} у старонку памяці
         promote_user_html: "%{name} павысіў карыстальніка %{target}"
-        publish_terms_of_service_html: "%{name} апублікаваў абнаўленьне ўмоваў абслугоўваньня"
+        publish_terms_of_service_html: "%{name} апублікаваў(-ла) абнаўленні ва ўмовах выкарыстання"
         reject_appeal_html: "%{name} адхіліў запыт на абскарджанне %{target}"
         reject_user_html: "%{name} адхіліў рэгістрацыю з %{target}"
         remove_avatar_user_html: "%{name} выдаліў аватар %{target}"
@@ -291,13 +293,13 @@ be:
         resolve_report_html: "%{name} вырашыў скаргу %{target}"
         sensitive_account_html: "%{name} адзначыў медыя %{target} як далікатнае"
         silence_account_html: "%{name} абмежаваў уліковы запіс %{target}"
-        suspend_account_html: Уліковы запіс %{target} выключаны %{name}
+        suspend_account_html: Уліковы запіс %{target} прыпынены %{name}
         unassigned_report_html: "%{name} знял(а) прызначэнне скаргі %{target}"
         unblock_email_account_html: "%{name} разблакіраваў эл. пошту %{target}"
         unsensitive_account_html: "%{name} зняў адзнаку далікатнае з медыя %{target}"
         unsilence_account_html: "%{name} зняў ліміт з уліковага запісу %{target}"
         unsuspend_account_html: Уліковы запіс %{target} адноўлены %{name}
-        update_announcement_html: "%{name} абнавіў аб'яву %{target}"
+        update_announcement_html: "%{name} абнавіў(-ла) аб’яву %{target}"
         update_custom_emoji_html: "%{name} абнавіў эмодзі %{target}"
         update_domain_block_html: "%{name} абнавіў блакіроўку дамена для %{target}"
         update_ip_block_html: "%{name} змяніў правіла для IP %{target}"
@@ -311,7 +313,7 @@ be:
       title: Аўдыт
       unavailable_instance: "(імя дамена недаступнае)"
     announcements:
-      destroyed_msg: Аб'ява паспяхова выдалена!
+      destroyed_msg: Аб’ява выдалена!
       edit:
         title: Рэдагаваць абвестку
       empty: Не знайдзена ніводнай абвесткі
@@ -325,26 +327,26 @@ be:
       scheduled_msg: Аб'ява запланавана да публікацыі!
       title: Аб'явы
       unpublish: Зняць з публікацыі
-      unpublished_msg: Аб'ява паспяхова схована!
-      updated_msg: Аб'ява паспяхова адноўлена!
+      unpublished_msg: Аб’ява схавана!
+      updated_msg: Аб’ява абноўлена!
     critical_update_pending: Чакаецца абнаўленне
     custom_emojis:
       assign_category: Прызначыць катэгорыю
       by_domain: Дамен
-      copied_msg: Лакальная копія эмодзі паспяхова створана
+      copied_msg: Створана лакальная копія эмодзі
       copy: Скапіраваць
       copy_failed_msg: Немагчыма зрабіць лакальную копію гэтага эмодзі
       create_new_category: Стварыць новую катэгорыю
       created_msg: Эмодзі паспяхова створана!
       delete: Выдаліць
-      destroyed_msg: Смайлік паспяхова прыбраны!
+      destroyed_msg: Уласнае эмодзі знішчана!
       disable: Адключыць
       disabled: Адключана
       disabled_msg: Смайлік паспяхова адключаны
       emoji: Эмодзі
       enable: Уключыць
       enabled: Уключана
-      enabled_msg: Смайлік паспяхова ўключаны
+      enabled_msg: Эмодзі паспяхова ўключана
       image_hint: PNG або GIF да %{size}
       list: Паказваць
       listed: Паказваецца
@@ -423,7 +425,7 @@ be:
       domain: Дамен
       edit: Рэдагаваць блакіраванне дамену
       existing_domain_block: Вы ўжо налажылі стражэйшыя абмежаванні на %{name}.
-      existing_domain_block_html: Вы ўжо налажылі стражэйшыя абмежаванні на %{name}, спачатку вам неабходна <a href="%{unblock_url}">разблакаваць гэты акаўнт</a>.
+      existing_domain_block_html: Вы ўжо наклалі больш строгія абмежаванні на %{name}, спачатку вам трэба <a href="%{unblock_url}">разблакіраваць гэты ўліковы запіс</a>.
       export: Экспарт
       import: Імпарт
       new:
@@ -433,7 +435,7 @@ be:
           desc_html: "<strong>Абмежаванне</strong> зробіць допісы людзей з гэтага дамену нябачнымі для тых, хто на іх не падпісаны. <strong>Выключэнне</strong> выдаліць усё змесціва, медыя і даныя профіляў дамену з вашага серверу. <strong>«Нічога»</strong> проста адхіліць медыя файлы."
           noop: Пуста
           silence: Абмежаваць
-          suspend: Выключыць
+          suspend: Прыпыніць
         title: Новы блок дамену
       no_domain_block_selected: Блакіроўкі даменаў не былі змененыя, таму што ні адзін з іх не быў выбраны
       not_permitted: Вам забаронена выконваць гэта дзеянне
@@ -478,7 +480,7 @@ be:
       no_file: Файл не выбраны
     export_domain_blocks:
       import:
-        description_html: Вы збіраецеся імпартаваць спіс даменных блокаў. Калі ласка, праглядзіце гэты спіс вельмі ўважліва, асабліва калі вы асабіста не з'яўляецеся аўтарам гэтага спісу.
+        description_html: Вы збіраецеся імпартаваць спіс даменных блокаў. Праглядзіце гэты спіс вельмі ўважліва, асабліва калі вы асабіста не з’яўляецеся аўтарам гэтага спіса.
         existing_relationships_warning: Наяўныя зносіны
         private_comment_description_html: 'Каб дапамагчы вам адсочваць, адкуль паходзяць імпартаваныя блокі, імпартаваныя блокі будуць створаны з наступным прыватным каментарыем: <q>%{comment}</q>'
         private_comment_template: Імпартавана з %{source} %{date}
@@ -487,6 +489,26 @@ be:
       new:
         title: Імпарт блакіровак дамену
       no_file: Файл не выбраны
+    fasp:
+      debug:
+        callbacks:
+          delete: Выдаліць
+          ip: IP-адрас
+      providers:
+        active: Актыўны
+        base_url: Базавы URL-адрас
+        delete: Выдаліць
+        edit: Рэдагаваць пастаўшчыка
+        finish_registration: Завяршыць рэгістрацыю
+        name: Назва
+        providers: Пастаўшчыкі
+        public_key_fingerprint: Лічбавы адбітак публічнага ключа
+        registrations:
+          confirm: Пацвердзіць
+          reject: Адхіліць
+        save: Захаваць
+        sign_in: Увайсці
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Рэкамендацыі падпісак, дапамогаюць новым карыстальнікам хутка знайсці цікавы кантэнт</strong>. Калі карыстальнік недастаткова ўзаемадзейнічаў з іншымі, каб сфарміраваць персанальныя рэкамендацыі прытрымлівацца, замест гэтага рэкамендуюцца гэтыя ўліковыя запісы. Яны штодзённа пераразлічваюцца з сумесі ўліковых запісаў з самымі апошнімі ўзаемадзеяннямі і найбольшай колькасцю мясцовых падпісчыкаў для дадзенай мовы."
       language: Для мовы
@@ -527,7 +549,7 @@ be:
           reject_media: Адхіліць мультымедыя
           reject_reports: Адхіліць справаздачы
           silence: Ліміт
-          suspend: Выключыць
+          suspend: Прыпыніць
         policy: Палітыка
         reason: Публічная прычына
         title: Палітыкі кантэнту
@@ -561,6 +583,11 @@ be:
         all: Усе
         limited: Абмежаваныя
         title: Мадэрацыя
+      moderation_notes:
+        create: Дадаць нататку мадэратара
+        created_msg: Нататка мадэратара для экзэмпляра сервера створана!
+        destroyed_msg: Нататка мадэратара экзэмпляра сервера выдалена!
+        title: Нататкі мадэратараў
       private_comment: Прыватны каментарый
       public_comment: Публічны каментарый
       purge: Ачысціць
@@ -601,7 +628,7 @@ be:
     relays:
       add_new: Дадаць новы рэтранслятар
       delete: Выдаліць
-      description_html: "<strong>Федэрацыйны рэтранслятар</strong> - гэта прамежкавы сервер, які абменьваецца вялікімі аб'ёмамі публічных паведамленняў паміж серверамі, якія падпісваюцца і публікуюць на ім. <strong>Гэта можа дапамагчы малым і сярэднім серверам выяўляць кантэнт з fediverse</strong>, для чаго лакальным карыстальнікам у адваротным выпадку трэба было б уручную сачыць за іншымі людзьмі на аддаленых серверах."
+      description_html: "<strong>Федэрацыйны рэтранслятар</strong> - гэта прамежкавы сервер, які абменьваецца вялікімі аб’ёмамі публічных паведамленняў паміж серверамі, якія падпісваюцца і робяць публікацыі на ім. <strong>Гэта можа дапамагчы малым і сярэднім серверам выяўляць змесціва з fediverse</strong>, бо ў іншым выпадку лакальным карыстальнікам трэба было б уручную сачыць за іншымі людзьмі на аддаленых серверах."
       disable: Адключыць
       disabled: Адключана
       enable: Уключыць
@@ -635,11 +662,11 @@ be:
         suspend_description_html: Уліковы запіс і ўсё яго змесціва будзе недаступна і ў далейшым выдалены, узаемадзеянне з ім будзе немагчыма. Магчыма адмяніць на працягу 30 дзён. Закрывае ўсе скаргі на гэты ўліковы запіс.
       actions_description_html: Вырашыце, якія дзеянні распачаць, каб вырашыць гэтую скаргу. Калі вы прымеце меры пакарання ў дачыненні да ўліковага запісу, пра які паведамляецца, ім будзе адпраўлена апавяшчэнне па электроннай пошце, за выключэннем выпадкаў, калі выбрана катэгорыя <strong>Спам</strong>.
       actions_description_remote_html: Вырашыце як паступіць з гэтай скаргай. Гэта паўплывае толькі на тое як <strong>ваш</strong> сервер звязваецца з аддалёным уліковым запісам і апрацоўвае яго кантэнт.
-      actions_no_posts: У гэтай скаргі няма зьвязаных паведамленьняў для выдаленьня
+      actions_no_posts: Да гэтай скаргі не прывязаны допісы да выдалення
       add_to_report: Дадаць яшчэ дэталяў да скаргі
       already_suspended_badges:
-        local: Ужо прыпынена на гэтым сэрвэры
-        remote: Ужо прыпынена на іх сэрвэры
+        local: Ужо прыпынена на гэтым серверы
+        remote: Ужо прыпынена на іх серверы
       are_you_sure: Вы ўпэўнены?
       assign_to_self: Прызначыць мне
       assigned: Прызначаны мадэратар
@@ -668,7 +695,7 @@ be:
         delete: Выдаліць
         placeholder: Апішыце, якія дзеянні былі зроблены, або любыя іншыя звязаныя абнаўленні...
         title: Нататкі
-      notes_description_html: Праглядвайце і пакідайце нататкі іншым мадэратарам і сабе ў будучыні
+      notes_description_html: Праглядайце і пакідайце нататкі для іншых мадэратараў і сябе ў будучыні
       processed_msg: 'Скарга #%{id} паспяхова апрацавана'
       quick_actions_description_html: 'Выканайце хуткае дзеянне або пракруціце ўніз, каб убачыць змесціва, на якое пададзена скарга:'
       remote_user_placeholder: аддалены карыстальнік з %{instance}
@@ -738,12 +765,12 @@ be:
         delete_user_data_description: Дазваляе карыстальнікам без затрымкі выдаляць даныя іншых карыстальнікаў
         invite_users: Запрашэнне карыстальнікаў
         invite_users_description: Дазваляе запрашаць новых людзей на сервер
-        manage_announcements: Кіраванне аб'явамі
-        manage_announcements_description: Дазваляе кіраваць аб'явамі на серверы
+        manage_announcements: Кіраванне аб’явамі
+        manage_announcements_description: Дазваляе кіраваць аб’явамі на серверы
         manage_appeals: Кіраванне апеляцыямі
         manage_appeals_description: Дазваляе карыстальнікам разглядаць апеляцыі на дзеянні мадэратара
         manage_blocks: Кіраванне блакіроўкамі
-        manage_blocks_description: Дазваляе блакаваць пэўныя паштовыя правайдэры і IP адрасы
+        manage_blocks_description: Дазваляе блакіраваць пэўных пастаўшчыкоў паслуг электроннай пошты і IP адрасы
         manage_custom_emojis: Кіраванне адвольнымі эмодзі
         manage_custom_emojis_description: Дазваляе кіраваць адвольнымі эмодзі на серверы
         manage_federation: Кіраваць федэрацыяй
@@ -775,11 +802,14 @@ be:
       title: Ролі
     rules:
       add_new: Дадаць правіла
+      add_translation: Дадаць пераклад
       delete: Выдаліць
       description_html: Большасць сцвярджаюць, што прачыталі ўмовы абслугоўвання і згаджаюцца з імі, але звычайна людзі не чытаюць іх да канца, пакуль не ўзнікне праблема. <strong>Таму зрабіце правілы вашага сервера простымі з першага погляду, прадставіўшы іх у выглядзе маркіраванага спісу.</strong> Старайцеся рабіць правілы кароткімі і простымі, але не разбіваць іх на шмат асобных пунктаў.
       edit: Рэдагаваць правіла
       empty: Правілы сервера яшчэ не вызначаны.
       title: Правілы сервера
+      translation: Пераклад
+      translations: Пераклады
     settings:
       about:
         manage_rules: Кіраваць правіламі сервера
@@ -793,7 +823,7 @@ be:
         preamble: Брэндынг вашага сервера адрознівае яго ад іншых сервераў у сетцы. Гэтая інфармацыя можа адлюстроўвацца ў розных асяроддзях, напрыклад, у вэб-інтэрфейсе Mastodon, уласных праграмах, у папярэднім праглядзе спасылак на іншых вэб-сайтах і ў праграмах абмену паведамленнямі і гэтак далей. Па гэтай прычыне лепш трымаць гэтую інфармацыю яснай, кароткай і сціслай.
         title: Брэндынг
       captcha_enabled:
-        desc_html: Гэта функцыянальнасць залежыць ад знешніх скрыптоў hCaptcha, што можа быць праблемай бяспекі і прыватнасці. Акрамя таго, <strong>гэта можа зрабіць працэс рэгістрацыі значна менш даступным для некаторых людзей, асабліва інвалідаў</strong>. Па гэтых прычынах, калі ласка, разгледзьце альтэрнатыўныя меры, такія як рэгістрацыя на аснове зацвярджэння або запрашэння.
+        desc_html: Гэта функцыянальнасць залежыць ад знешніх скрыптоў hCaptcha, што можа быць праблемай бяспекі і прыватнасці. Акрамя таго, <strong>гэта можыць зменшыць даступнасць працэсу рэгістрацыі для некаторых людзей (асабліва інвалідаў)</strong>. Па гэтых прычынах, разгледзьце альтэрнатыўныя меры, такія як рэгістрацыя на аснове зацвярджэння або запрашэння.
         title: Патрабаваць ад новых карыстальнікаў рашэння CAPTCHA для пацверджання іх уліковага запісу
       content_retention:
         danger_zone: Небяспечная зона
@@ -805,11 +835,12 @@ be:
       discovery:
         follow_recommendations: Выконвайце рэкамендацыі
         preamble: Прадстаўленне цікавага кантэнту дапамагае прыцягнуць новых карыстальнікаў, якія могуць не ведаць нікога на Mastodon. Кантралюйце працу розных функцый выяўлення на вашым серверы.
+        privacy: Прыватнасць
         profile_directory: Дырэкторыя профіляў
         public_timelines: Публічная паслядоўнасць публікацый
         publish_statistics: Апублікаваць статыстыку
         title: Выяўленне
-        trends: Актуальныя
+        trends: Трэнды
       domain_blocks:
         all: Для ўсіх
         disabled: Нікому
@@ -854,7 +885,7 @@ be:
         add_to_report: 'Дадаць да скаргі #%{id}'
         remove_from_report: Выдаліць са справаздачы
         report: Справаздача
-      contents: Зьмест
+      contents: Змест
       deleted: Выдалены
       favourites: Упадабаныя
       history: Гісторыя версій
@@ -863,7 +894,7 @@ be:
       media:
         title: Медыя
       metadata: Метаданыя
-      no_history: Гэты пост не рэдагаваўся
+      no_history: Гэты допіс не рэдагаваўся
       no_status_selected: Ніводная публікацыя не была зменена, бо ніводная не была выбрана
       open: Адкрыць допіс
       original_status: Зыходны допіс
@@ -872,7 +903,7 @@ be:
       status_changed: Допіс зменены
       status_title: Допіс карыстальніка @%{name}
       title: Допісы карыстальніка - @%{name}
-      trending: Папулярныя
+      trending: Трэндавае
       view_publicly: Глядзець публічна
       visibility: Бачнасць
       with_media: З медыя
@@ -890,13 +921,13 @@ be:
       appeal_rejected: Абскарджанне адхілена
     system_checks:
       database_schema_check:
-        message_html: Ёсць незавершаныя міграцыі базы дадзеных. Калі ласка, запусціце іх, каб пераканацца, што дадатак паводзіць сябе належным чынам
+        message_html: Ёсць незавершаныя міграцыі базы даных. Запусціце іх, каб пераканацца, што праграма паводзіць сябе належным чынам
       elasticsearch_health_red:
         message_html: Кластар Elasticsearch нездаровы (чырвоны статус), функцыі пошуку недаступныя
       elasticsearch_health_yellow:
         message_html: Кластар Elasticsearch нездаровы (жоўты статус), магчыма, неабходна высветліць прычыну
       elasticsearch_index_mismatch:
-        message_html: Супастаўленне індэксаў Elasticsearch састарэла. Калі ласка, выканайце каманду <code>tootctl search deploy --only=%{value}</code>
+        message_html: Супастаўленне індэксаў Elasticsearch састарэла. Выканайце каманду <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_preset:
         action: Падрабязней у дакументацыі
         message_html: Ваш кластар Elasticsearch мае больш за адзін вузел, але Mastodon не наладжаны на іх выкарыстанне.
@@ -906,7 +937,7 @@ be:
       elasticsearch_reset_chewy:
         message_html: Ваш сістэмны індэкс Elasticsearch састарэлы з-за змены налад. Для яго абнаўлення выканайце каманду <code>tootctl search deploy --reset-chewy</code>.
       elasticsearch_running_check:
-        message_html: Немагчыма падключыцца да Elasticsearch. Калі ласка, праверце, што ён запушчаны, або адключыце паўнатэкставы пошук
+        message_html: Немагчыма падключыцца да Elasticsearch. Праверце, што ён запушчаны, або адключыце пошук па ўсім тэксце
       elasticsearch_version_check:
         message_html: 'Несумяшчальная версія Elasticsearch: %{value}'
         version_comparison: Elasticsearch %{running_version} выяўлены, але патрабуецца %{required_version}
@@ -916,11 +947,11 @@ be:
       sidekiq_process_check:
         message_html: Не працуе працэс Sidekiq для %{value} чаргі. Калі ласка праверце вашу канфігурацыю Sidekiq
       software_version_check:
-        action: Праверыць наяўнасьць абнаўленьняў
-        message_html: Даступна абнаўленьне Mastodon.
+        action: Праверыць наяўнасць абнаўленняў
+        message_html: Даступна абнаўленне Mastodon.
       software_version_critical_check:
         action: Прагледзець даступныя абнаўленні
-        message_html: Даступна крытычнае абнаўленне Mastodon, калі ласка, зрабіце абнаўленне як мага хутчэй.
+        message_html: Даступна крытычнае абнаўленне Mastodon, абнавіцеся як мага хутчэй.
       software_version_patch_check:
         action: Прагледзець даступныя абнаўленні
         message_html: Даступна абнаўленне Mastodon з выпраўленнем памылак.
@@ -932,13 +963,13 @@ be:
         message_html: "<strong>Ваша сховішча не наладжана. Прыватнасць карыстальнікаў пад пагрозай.</strong>"
     tags:
       moderation:
-        not_trendable: Не ў трэндзе
+        not_trendable: Не можа трапіць у трэнды
         not_usable: Непрыгодныя
         pending_review: Чакае праверкі
         review_requested: Патрабуюць прагледжвання
         reviewed: Прагледжаныя
         title: Стан
-        trendable: У трэндзе
+        trendable: Можа трапіць у трэнды
         unreviewed: Непрагледжаныя
         usable: Прыгодныя
       name: Назва
@@ -951,18 +982,26 @@ be:
       title: Хэштэгі
       updated_msg: Налады хэштэгаў паспяхова змененыя
     terms_of_service:
-      back: Вернуцца да ўмоваў абслугоўваньня
-      changelog: Што зьмянілася
-      create: Выкарыстоўвайце свой уласны
-      current: Цякучы
+      back: Вернуцца да ўмоў выкарыстання
+      changelog: Што змянілася
+      create: Выкарыстоўвайце свой тэкст
+      current: Бягучыя
       draft: Чарнавік
       generate: Выкарыстаць шаблон
       generates:
-        action: Зґенераваць
+        action: Згенерыраваць
+      history: Гісторыя
+      live: Дзейнічае
+      notify_users: Апавясціць карыстальнікаў
+      publish: Апублікаваць
+      published_on_html: Апублікавана %{date}
+      save_draft: Захаваць чарнавік
+      title: Умовы выкарыстання
     title: Адміністрацыя
     trends:
       allow: Дазволіць
       approved: Пацверджаны
+      confirm_allow: Вы ўпэўнены, што хочаце дазволіць выбраныя тэгі?
       disallow: Забараніць
       links:
         allow: Дазволіць спасылка
@@ -978,15 +1017,15 @@ be:
           many: Абагулілі %{count} чалавек за апошні тыдзень
           one: Абагуліў адзін чалавек за апошні тыдзень
           other: Абагулілі %{count} чалавек за апошні тыдзень
-        title: Актуальныя спасылкі
+        title: Трэндавыя спасылкі
         usage_comparison: Выкарыстоўвалася %{today} разоў сёння, у параўнанні з %{yesterday} учора
-      not_allowed_to_trend: Забаронена выходзіць у актуальныя
+      not_allowed_to_trend: Забаронена выходзіць у трэнды
       only_allowed: Толькі дазволенае
       pending_review: Чакае праверкі
       preview_card_providers:
         allowed: Спасылкі ад гэтага выдаўца не будуць у трэндзе
         description_html: Спасылкі з гэтых даменаў часта абагульняюцца на вашым серверы. Спасылкі не трапяць у публічныя трэнды, калі дамен спасылкі не ўхвалены. Вашае ўхваленне (ці адхіленне) распаўсюдзіцца на субдамены.
-        rejected: Спасылкі ад гэтага выдаўца не будуць у трэнде
+        rejected: Спасылкі ад гэтага выдаўца не будуць у трэндзе
         title: Выдаўцы
       rejected: Адхілена
       statuses:
@@ -1002,7 +1041,7 @@ be:
           many: Пашыраны або ўпадабаны %{friendly_count} разоў
           one: Пашыраны або ўпадабаны %{friendly_count} раз
           other: Пашыраны або ўпадабаны %{friendly_count} разоў
-        title: Актуальныя допісы
+        title: Трэндавыя допісы
       tags:
         current_score: Бягучы рэзультат %{score}
         dashboard:
@@ -1015,11 +1054,11 @@ be:
         listable: Можа быць прапанавана
         no_tag_selected: Ніводны тэг не быў зменены, бо ніводны не быў выбраны
         not_listable: Не будзе прапанавана
-        not_trendable: Не з'явіцца ў трэндах
+        not_trendable: Не з’явіцца сярод трэндаў
         not_usable: Немагчыма выкарыстаць
         peaked_on_and_decaying: На піку %{date}, зараз спадае
         title: Актуальныя хэштэгі
-        trendable: Можа з'явіцца сярод трэндаў
+        trendable: Можа з’явіцца сярод трэндаў
         trending_rank: 'Папулярнае #%{rank}'
         usable: Магчыма выкарыстаць
         usage_comparison: Выкарыстоўвалася %{today} разоў сёння, у параўнанні з %{yesterday} учора
@@ -1029,7 +1068,7 @@ be:
           one: Выкарыстаў адзін чалавек за апошні тыдзень
           other: Выкарысталі %{count} чалавек за апошні тыдзень
       title: Рэкамендацыі і трэнды
-      trending: Папулярныя
+      trending: Трэндавае
     warning_presets:
       add_new: Дадаць новы
       delete: Выдаліць
@@ -1070,7 +1109,7 @@ be:
         none: папярэджанне
         sensitive: пазначыць уліковы запіс як далікатны
         silence: абмежаваць уліковы запіс
-        suspend: выключыць уліковы запіс
+        suspend: каб прыпыніць гэты ўліковы запіс
       body: "%{target} абскарджвае рашэнне мадэратара %{action_taken_by} ад %{date}, якая была %{type}. Яны напісалі:"
       next_steps: Вы можаце ўхваліць апеляцыю каб адмяніць рашэнне мадэратараў ці ігнараваць яе.
       subject: "%{username} абскарджвае рашэнне мадэратараў на %{instance}"
@@ -1090,12 +1129,12 @@ be:
     new_trends:
       body: 'Гэтыя элементы трэба праверыць, перш чым публікаваць:'
       new_trending_links:
-        title: Папулярныя спасылкі
+        title: Трэндавыя спасылкі
       new_trending_statuses:
-        title: Папулярныя допісы
+        title: Трэндавыя допісы
       new_trending_tags:
-        title: Папулярныя хэштэгі
-      subject: Новае ў папулярным для разгляду %{instance}
+        title: Трэндавыя хэштэгі
+      subject: Новыя трэнды да прагляду %{instance}
   aliases:
     add_new: Стварыць псеўданім
     created_msg: Створаны новы псеўданім. Цяпер вы можаце пачаць пераход са старога ўліковага запісу.
@@ -1147,7 +1186,7 @@ be:
       welcome_title: Вітаем, %{name}!
       wrong_email_hint: Калі гэты адрас электроннай пошты памылковы, вы можаце змяніць яго ў наладах уліковага запісу.
     delete_account: Выдаліць уліковы запіс
-    delete_account_html: Калі вы жадаеце выдаліць ваш уліковы запіс, можаце <a href="%{path}">працягнуць тут</a>. Ад вас будзе запатрабавана пацвярджэнне.
+    delete_account_html: Калі вы жадаеце выдаліць свой уліковы запіс, вы можаце <a href="%{path}">працягнуць тут</a>. Ад вас спатрэбіцца пацвярджэнне.
     description:
       prefix_invited_by_user: "@%{name} запрашае вас далучыцца да гэтага сервера ў Mastodon!"
       prefix_sign_up: Зарэгістравацца ў Mastodon сёння!
@@ -1166,7 +1205,7 @@ be:
     or_log_in_with: Або ўвайсці з дапамогай
     progress:
       confirm: Пацвердзіць email
-      details: Вашы дадзеныя
+      details: Вашы даныя
       review: Наш водгук
       rules: Прыняць правілы
     providers:
@@ -1207,6 +1246,10 @@ be:
       view_strikes: Праглядзець мінулыя папярэджанні для вашага ўліковага запісу
     too_fast: Форма адпраўлена занадта хутка, паспрабуйце яшчэ раз.
     use_security_key: Выкарыстаеце ключ бяспекі
+  author_attribution:
+    example_title: Прыклад тэксту
+    s_blog: Блог %{name}
+    title: Пазначэнне аўтарства
   challenge:
     confirm: Працягнуць
     hint_html: "<strong>Парада:</strong> Мы не будзем запытваць ваш пароль зноўку на працягу наступнай гадзіны."
@@ -1276,7 +1319,7 @@ be:
         none: Папярэджанне
         sensitive: Пазначэнне ўліковага запісу як далікатнага
         silence: Абмежаванне ўліковага запісу
-        suspend: Выключэнне ўліковага запісу
+        suspend: Прыпыненне ўліковага запісу
       your_appeal_approved: Ваша абскарджанне было ўхвалена
       your_appeal_pending: Вы адправілі апеляцыю
       your_appeal_rejected: Ваша абскарджанне было адхілена
@@ -1284,6 +1327,10 @@ be:
     basic_information: Асноўная інфармацыя
     hint_html: "<strong>Наладзьце тое, што людзі будуць бачыць у вашым профілі і побач з вашымі паведамленнямі.</strong> Іншыя людзі з большай верагоднасцю будуць сачыць і ўзаемадзейнічаць з вамі, калі ў вас ёсць запоўнены профіль і фота профілю."
     other: Іншае
+  emoji_styles:
+    auto: Аўтаматычны
+    native: Мясцовы
+    twemoji: Twemoji
   errors:
     '400': Запыт, які вы адправілі, памылковы або няправільны.
     '403': У вас няма дазволу на прагляд гэтай старонкі.
@@ -1398,10 +1445,10 @@ be:
       other: Выберыце %{count} элементаў, якія адпавядаюць вашаму пошуку.
     today: сёння
     validation_errors:
-      few: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылкі ніжэй
-      many: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылак ніжэй
-      one: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце памылку ніжэй
-      other: Штосьці пакуль не зусім правільна! Калі ласка, праглядзіце %{count} памылак ніжэй
+      few: Штосьці тут пакуль не сыходзіцца! Праглядзіце %{count} памылкі ніжэй
+      many: Штосьці тут пакуль не сыходзіцца! Праглядзіце %{count} памылак ніжэй
+      one: Штосьці тут пакуль не сыходзіцца! Праглядзіце памылку ніжэй
+      other: Штосьці тут пакуль не сыходзіцца! Праглядзіце %{count} памылак ніжэй
   imports:
     errors:
       empty: Пусты CSV файл
@@ -1413,7 +1460,7 @@ be:
     imported: Імпартавана
     mismatched_types_warning: Здаецца, вы выбралі няправільны тып для гэтага імпарту, праверце яшчэ раз.
     modes:
-      merge: Аб'яднаць
+      merge: Аб’яднаць
       merge_long: Захаваць існуючыя запісы і дадаць новыя
       overwrite: Перазапісаць
       overwrite_long: Замяніць бягучыя запісы на новыя
@@ -1489,7 +1536,7 @@ be:
     unsubscribe:
       action: Так, адпісацца
       complete: Адпісаны
-      confirmation_html: Вы ўпэўнены, што жадаеце адмовіцца ад %{type} з Mastodon на дамене %{domain} на вашу электронную пошту %{email}? Вы заўсёды можаце паўторна падпісацца у <a href="%{settings_path}">наладах апавяшчэнняў па электроннай пошце</a>.
+      confirmation_html: Вы ўпэўнены, што жадаеце адмовіцца ад атрымання %{type} з Mastodon на дамене %{domain} на сваю электронную пошту %{email}? Вы заўсёды можаце паўторна падпісацца ў <a href="%{settings_path}">наладах апавяшчэнняў па электроннай пошце</a>.
       emails:
         notification_emails:
           favourite: апавяшчэнні на пошту пра упадабанае
@@ -1529,7 +1576,7 @@ be:
     set_redirect: Задаць перанакіраванне
     warning:
       backreference_required: Спачатку трэба наладзіць зваротнае спасыланне новага ўліковага запісу на бягучы
-      before: 'Перш чым працягнуць, калі ласка, уважліва прачытайце гэтыя заўвагі:'
+      before: 'Перш чым працягнуць, уважліва прачытайце гэтыя заўвагі:'
       cooldown: Пасля «пераезду» будзе перыяд чакання, на працягу якога вы не зможаце зноў «пераехаць»
       disabled_account: Пасля гэтага ваш бягучы ўліковы запіс не будзе цалкам даступны. Аднак у вас будзе доступ да экспарту даных, а таксама да паўторнай актывацыі.
       followers: Гэтае дзеянне будзе «пераносіць» усіх падпісчыкаў з бягучага ўліковага запісу на новы
@@ -1642,9 +1689,9 @@ be:
     title: Вы пакідаеце %{instance}.
   relationships:
     activity: Актыўнасць ул. запісу
-    confirm_follow_selected_followers: Вы ўпэўнены, што жадаеце падпісацца на выбраных падпісчыкаў?
-    confirm_remove_selected_followers: Вы ўпэўнены, што жадаеце выдаліць выбраных падпісчыкаў?
-    confirm_remove_selected_follows: Вы ўпэўнены, што жадаеце выдаліць выбраныя падпіскі?
+    confirm_follow_selected_followers: Вы ўпэўнены, што хочаце падпісацца на выбраных падпісчыкаў?
+    confirm_remove_selected_followers: Вы ўпэўнены, што хочаце выдаліць выбраных падпісчыкаў?
+    confirm_remove_selected_follows: Вы ўпэўнены, што хочаце выдаліць выбраныя падпіскі?
     dormant: Занядбаны
     follow_failure: Вы не можаце падпісацца на некаторыя акаўнты.
     follow_selected_followers: Падпісацца на выбраных падпісчыкаў
@@ -1674,6 +1721,7 @@ be:
   scheduled_statuses:
     over_daily_limit: Вы перавысілі ліміт ў %{limit} запланаваных на сёння допісаў
     over_total_limit: Вы перавысілі ліміт ў %{limit} запланаваных допісаў
+    too_soon: дата публікацыі мусіць быць у будучыні
   self_destruct:
     lead_html: На жаль, дамен <strong>%{domain}</strong> зачыняецца назаўсёды. Калі ў вас быў уліковы запіс, вы не зможаце працягваць выкарыстоўваць яго, але вы ўсё яшчэ можаце запытаць рэзервовае капіраванне вашых даных.
     title: Гэты сервер зачыняецца
@@ -1789,10 +1837,14 @@ be:
       in_reply_not_found: Здаецца, допіс, на які вы спрабуеце адказаць, не існуе.
     over_character_limit: перавышаная колькасць сімвалаў у %{max}
     pin_errors:
-      direct: Допісы, бачныя толькі згаданым карыстальнікам, не могуць быць замацаваныя
+      direct: Допісы, бачныя толькі згаданым карыстальнікам, нельга замацаваць
       limit: Вы ўжо замацавалі максімальную колькасць допісаў
       ownership: Немагчыма замацаваць чужы допіс
       reblog: Немагчыма замацаваць пашырэнне
+    quote_policies:
+      followers: Падпісчыкі і згаданыя карыстальнікі
+      nobody: Толькі згаданыя карыстальнікі
+      public: Усе
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Асабіста
@@ -1845,7 +1897,7 @@ be:
   tags:
     does_not_match_previous_name: не супадае з папярэднім імям
   terms_of_service:
-    title: Умовы абслугоўваньня
+    title: Умовы выкарыстання
   themes:
     contrast: Mastodon (высокі кантраст)
     default: Mastodon (цёмная)
@@ -1874,7 +1926,7 @@ be:
     otp: Праграма аўтэнтыфікацыі
     recovery_codes: Абнавіць коды аднаўлення
     recovery_codes_regenerated: Новыя коды аднаўлення паспяхова створаныя
-    recovery_instructions_html: Калі раптам вы страціце доступ да вашага тэлефона, вы можаце скарыстацца адным з кодаў аднаўлення ніжэй каб аднавіць доступ да вашага ўліковага запісу. <strong>Захоўвайце іх у бяспечным месцы</strong>. Напрыклад, вы можаце раздрукаваць іх і захоўваць разам з іншымі важнымі дакументамі.
+    recovery_instructions_html: Калі раптам вы страціце доступ да свайго тэлефона, вы можаце скарыстаць адзін з кодаў аднаўлення ніжэй каб аднавіць доступ да свайго ўліковага запісу. <strong>Захоўвайце іх у бяспечным месцы</strong>. Напрыклад, вы можаце раздрукаваць іх і захоўваць разам з іншымі важнымі дакументамі.
     webauthn: Ключы бяспекі
   user_mailer:
     appeal_approved:
@@ -1895,10 +1947,10 @@ be:
       title: Ваш архіў можна спампаваць
     failed_2fa:
       details: 'Вось падрабязнасці ўваходу:'
-      explanation: Хтосьці спрабаваў увайсці ў ваш уліковы запіс, але ўвёў няправільны другі фактар аўтэнтыфікацыі.
+      explanation: Хтосьці спрабаваў увайсці ў ваш уліковы запіс, але ўвёў няправільны часовы пароль.
       further_actions_html: Калі гэта не вы, мы рэкамендуем неадкладна %{action}, бо ён можа быць скампраметаваны.
-      subject: Збой аўтэнтыфікацыі па другім фактары
-      title: Няўдалая аўтэнтыфікацыя па другім фактары
+      subject: Збой двухфактарнай аўтэнтыфікацыі
+      title: Двухфактарная аўтэнтыфікацыя не ўдалася
     suspicious_sign_in:
       change_password: змяніць свой пароль
       details: 'Вось падрабязнасці ўваходу:'
@@ -1906,6 +1958,9 @@ be:
       further_actions_html: Калі гэта былі не вы, раім вам неадкладна %{action}, а таксама ўключыць двухфактарную аўтэнтыфікацыю, каб захаваць бяспеку вашага ўліковага запісу.
       subject: У вас уліковы запіс зайшлі з новага IP-адрасу
       title: Новы ўваход
+    terms_of_service_changed:
+      sign_off: Каманда %{domain}
+      title: Важнае абнаўленне
     warning:
       appeal: Падаць апеляцыю
       appeal_description: "Калі вы лічыце гэта памылкай, вы можаце падаць апеляцыю \nсупрацоўнікам %{instance}."
@@ -1936,7 +1991,7 @@ be:
         none: Папярэджанне
         sensitive: Уліковыя запісы, пазначаныя як далікатныя
         silence: Уліковы запіс абмежаваны
-        suspend: Уліковы запіс выключаны
+        suspend: Уліковы запіс прыпынены
     welcome:
       apps_android_action: Спампаваць з Google Play
       apps_ios_action: Спампваваць з App Store
@@ -1968,9 +2023,9 @@ be:
         many: "%{people} чалавек за апошнія 2 дні"
         one: "%{people} чалавек за апошнія 2 дні"
         other: "%{people} чалавека за апошнія 2 дні"
-      hashtags_subtitle: Даведайцеся што было папулярна ў апошнія 2 дні
+      hashtags_subtitle: Даведайцеся што было ў трэндзе за апошнія 2 дні
       hashtags_title: Папулярныя хэштэгі
-      hashtags_view_more: Прагледзець іншыя папулярныя хэштэгі
+      hashtags_view_more: Прагледзець іншыя трэндавыя хэштэгі
       post_action: Стварыць
       post_step: Скажыце ўсім прывітанне з дапамогай тэксту, фатаграфій, відэа і апытанняў.
       post_title: Стварыце свой першы допіс
@@ -1983,7 +2038,7 @@ be:
     follow_limit_reached: Вы не можаце падпісацца на большую колькасць людзей чым %{limit}
     go_to_sso_account_settings: Перайдзіце ў налады ідэнтыфікацыі вашага ўліковага запісу
     invalid_otp_token: Няправільны код двухфактарнай аўтэнтыфікацыі
-    otp_lost_help_html: Калі вы страцілі доступ да абодвух, вы можаце скарыстацца %{email}
+    otp_lost_help_html: Калі вы страцілі доступ да абодвух, вы можаце звязацца з намі праз %{email}
     rate_limited: Занадта шмат спробаў аўтэнтыфікацыі, паспрабуйце пазней.
     seamless_external_login: Вы ўвайшлі праз знешні сэрвіс, таму налады пароля і эл. пошты недаступныя.
     signed_in_as: 'Увайшлі як:'
