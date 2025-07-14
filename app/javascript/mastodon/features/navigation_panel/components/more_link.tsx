@@ -112,7 +112,7 @@ export const MoreLink: React.FC = () => {
   }, [intl, dispatch, permissions]);
 
   return (
-    <Dropdown items={menu}>
+    <Dropdown items={menu} placement='bottom-start'>
       <button className='column-link column-link--transparent'>
         <Icon id='' icon={MoreHorizIcon} className='column-link__icon' />
 
