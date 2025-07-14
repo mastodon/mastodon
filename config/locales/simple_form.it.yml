@@ -61,6 +61,7 @@ it:
         setting_display_media_default: Nascondi media segnati come sensibili
         setting_display_media_hide_all: Nascondi sempre tutti i media
         setting_display_media_show_all: Mostra sempre i media segnati come sensibili
+        setting_emoji_style: Come visualizzare gli emoji. "Automatico" proverà a usare gli emoji nativi, ma per i browser più vecchi ricorrerà a Twemoji.
         setting_system_scrollbars_ui: Si applica solo ai browser desktop basati su Safari e Chrome
         setting_use_blurhash: I gradienti sono basati sui colori delle immagini nascoste ma offuscano tutti i dettagli
         setting_use_pending_items: Fare clic per mostrare i nuovi messaggi invece di aggiornare la timeline automaticamente
@@ -90,7 +91,7 @@ it:
         favicon: WEBP, PNG, GIF o JPG. Sostituisce la favicon predefinita di Mastodon con un'icona personalizzata.
         mascot: Sostituisce l'illustrazione nell'interfaccia web avanzata.
         media_cache_retention_period: I file multimediali da post fatti da utenti remoti sono memorizzati nella cache sul tuo server. Quando impostato a un valore positivo, i media verranno eliminati dopo il numero specificato di giorni. Se i dati multimediali sono richiesti dopo che sono stati eliminati, saranno nuovamente scaricati, se il contenuto sorgente è ancora disponibile. A causa di restrizioni su quanto spesso link anteprima carte sondaggio siti di terze parti, si consiglia di impostare questo valore ad almeno 14 giorni, o le schede di anteprima link non saranno aggiornate su richiesta prima di quel tempo.
-        min_age: Gli utenti saranno invitati a confermare la loro data di nascita durante la registrazione
+        min_age: Agli utenti verrà chiesto di confermare la propria data di nascita durante l'iscrizione
         peers_api_enabled: Un elenco di nomi di dominio che questo server ha incontrato nel fediverse. Qui non sono inclusi dati sul fatto se si federano con un dato server, solo che il server ne è a conoscenza. Questo viene utilizzato dai servizi che raccolgono statistiche sulla federazione in senso generale.
         profile_directory: La directory del profilo elenca tutti gli utenti che hanno acconsentito ad essere individuabili.
         require_invite_text: 'Quando le iscrizioni richiedono l''approvazione manuale, rendi la domanda: "Perché vuoi unirti?" obbligatoria anziché facoltativa'
@@ -241,6 +242,7 @@ it:
         setting_display_media_default: Predefinita
         setting_display_media_hide_all: Nascondi tutti
         setting_display_media_show_all: Mostra tutti
+        setting_emoji_style: Stile emoji
         setting_expand_spoilers: Espandi sempre post con content warning
         setting_hide_network: Nascondi la tua rete
         setting_missing_alt_text_modal: Chiedi di confermare prima di pubblicare media senza testo alternativo

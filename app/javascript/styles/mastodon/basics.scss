@@ -1,6 +1,20 @@
 @use 'variables' as *;
 @use 'functions' as *;
 
+html.has-modal {
+  &,
+  body {
+    touch-action: none;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    overflow: hidden !important;
+  }
+}
+
 body {
   font-family: $font-sans-serif, sans-serif;
   background: var(--background-color);
@@ -63,20 +77,6 @@ body {
       width: 100%;
       height: 100%;
       padding-bottom: env(safe-area-inset-bottom);
-    }
-
-    &.with-modals--active {
-      overflow-y: hidden;
-      overscroll-behavior: none;
-    }
-  }
-
-  &.with-modals {
-    overflow-x: hidden;
-    overflow-y: scroll;
-
-    &--active {
-      overflow-y: hidden;
     }
   }
 

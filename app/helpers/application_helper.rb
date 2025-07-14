@@ -66,7 +66,7 @@ module ApplicationHelper
 
   def provider_sign_in_link(provider)
     label = Devise.omniauth_configs[provider]&.strategy&.display_name.presence || I18n.t("auth.providers.#{provider}", default: provider.to_s.chomp('_oauth2').capitalize)
-    link_to label, omniauth_authorize_path(:user, provider), class: "button button-#{provider}", method: :post
+    link_to label, omniauth_authorize_path(:user, provider), class: "btn button-#{provider}", method: :post
   end
 
   def locale_direction

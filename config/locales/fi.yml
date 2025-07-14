@@ -576,6 +576,13 @@ fi:
         all: Kaikki
         limited: Rajoitettu
         title: Moderointi
+      moderation_notes:
+        create: Lisää moderointimuistiinpano
+        created_msg: Instanssin moderointimuistiinpanon luonti onnistui!
+        description_html: Tarkastele ja jätä muistiinpanoja muille moderaattoreille ja itsellesi tulevaisuuteen
+        destroyed_msg: Instanssin moderointimuistiinpano poistettu!
+        placeholder: Tietoa tästä instanssista, tehdyistä toimista tai muusta sellaisesta, joka auttaa moderoimaan tätä instanssia tulevaisuudessa.
+        title: Moderointimuistiinpanot
       private_comment: Yksityinen kommentti
       public_comment: Julkinen kommentti
       purge: Tyhjennä
@@ -1340,6 +1347,10 @@ fi:
     basic_information: Perustiedot
     hint_html: "<strong>Mukauta, mitä ihmiset näkevät julkisessa profiilissasi ja julkaisujesi vieressä.</strong> Sinua seurataan takaisin ja kanssasi ollaan vuorovaikutuksessa todennäköisemmin, kun sinulla on täytetty profiili ja profiilikuva."
     other: Muut
+  emoji_styles:
+    auto: Automaattinen
+    native: Natiivi
+    twemoji: Twemoji
   errors:
     '400': Lähettämäsi pyyntö oli virheellinen tai muotoiltu virheellisesti.
     '403': Sinulla ei ole oikeutta nähdä tätä sivua.

@@ -578,6 +578,12 @@ ca:
         all: Totes
         limited: Limitades
         title: Moderació
+      moderation_notes:
+        create: Afegeix una nota de moderació
+        created_msg: S'ha creat la nota de moderació d'instància.
+        description_html: Mireu i deixeu notes per als altres moderadors i per a un mateix
+        destroyed_msg: S'ha esborrat la nota de moderació d'instància.
+        title: Notes de moderació
       private_comment: Comentari privat
       public_comment: Comentari públic
       purge: Purga
@@ -803,6 +809,8 @@ ca:
         preamble: Proporciona informació detallada sobre com funciona, com es modera i com es financia el servidor.
         rules_hint: Hi ha un àrea dedicada a les normes a les que s'espera que els teus usuaris s'hi adhereixin.
         title: Quant a
+      allow_referrer_origin:
+        title: Permeteu que llocs externs vegin el vostre servidor de Mastodon com a font de trànsit
       appearance:
         preamble: Personalitza l'interfície web de Mastodon.
         title: Aparença
@@ -1339,6 +1347,10 @@ ca:
     basic_information: Informació bàsica
     hint_html: "<strong>Personalitza el que la gent veu en el teu perfil públic i a prop dels teus tuts..</strong> És més probable que altres persones et segueixin i interaccionin amb tu quan tens emplenat el teu perfil i amb la teva imatge."
     other: Altres
+  emoji_styles:
+    auto: Automàtic
+    native: Nadiu
+    twemoji: Twemoji
   errors:
     '400': La sol·licitud que vas emetre no era vàlida o no era correcta.
     '403': No tens permís per a veure aquesta pàgina.
@@ -1474,6 +1486,28 @@ ca:
       lists_html:
         one: Esteu a punt de <strong>reemplaçar les vostres llistes</strong> amb contactes de <strong>%{filename}</strong>. S'afegirà <strong>%{count} compte</strong> a les noves llistes.
         other: Esteu a punt de <strong>reemplaçar les vostres llistes</strong> amb contactes de <strong>%{filename}</strong>. S'afegiran fins a <strong>%{count} comptes</strong> a les noves llistes.
+      muting_html:
+        one: Esteu a punt de <strong>reemplaçar la vostra llista de comptes silenciats</strong> amb fins a <strong>%{count} compte</strong> de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>reemplaçar la vostra llista de comptes silenciats</strong> amb fins a <strong>%{count} comptes</strong> de <strong>%{filename}</strong>.
+    preambles:
+      blocking_html:
+        one: Esteu a punt de <strong>blocar</strong> fins a <strong>%{count} compte</strong> de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>blocar</strong> fins a <strong>%{count} comptes</strong> de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Esteu a punt d'afegir fins a <strong>%{count} publicació</strong> de <strong>%{filename}</strong> als vostres <strong>marcadors</strong>.
+        other: Esteu a punt d'afegir fins a <strong>%{count} publicacions</strong> de <strong>%{filename}</strong> als vostres <strong>marcadors</strong>.
+      domain_blocking_html:
+        one: Esteu a punt de <strong>blocar</strong> fins a <strong>%{count} domini</strong> de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>blocar</strong> fins a <strong>%{count} dominis</strong> de <strong>%{filename}</strong>.
+      following_html:
+        one: Esteu a punt de <strong>seguir</strong> fins a <strong>%{count} compte</strong> de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>seguir</strong> fins a <strong>%{count} comptes</strong> de <strong>%{filename}</strong>.
+      lists_html:
+        one: Esteu a punt d'afegir <strong>%{count} compte</strong> de <strong>%{filename}</strong> a les vostres <strong>llistes</strong>. Es crearan noves llistes si no n'hi ha cap on afegir-lo.
+        other: Esteu a punt d'afegir <strong>%{count} comptes</strong> de <strong>%{filename}</strong> a les vostres <strong>llistes</strong>. Es crearan noves llistes si no n'hi ha cap on afegir-los.
+      muting_html:
+        one: Esteu a punt de <strong>silenciar</strong> fins a <strong>%{count} compte</strong> de <strong>%{filename}</strong>.
+        other: Esteu a punt de <strong>silenciar</strong> fins a <strong>%{count} comptes</strong> de <strong>%{filename}</strong>.
     preface: Pots importar algunes les dades que has exportat des d'un altre servidor, com ara el llistat de les persones que estàs seguint o bloquejant.
     recent_imports: Importacions recents
     states:

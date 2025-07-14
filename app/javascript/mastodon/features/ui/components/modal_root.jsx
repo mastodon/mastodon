@@ -20,7 +20,6 @@ import {
   IgnoreNotificationsModal,
   AnnualReportModal,
 } from 'mastodon/features/ui/util/async-components';
-import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
 
 import BundleContainer from '../containers/bundle_container';
 
@@ -89,20 +88,6 @@ export default class ModalRoot extends PureComponent {
   state = {
     backgroundColor: null,
   };
-
-  getSnapshotBeforeUpdate () {
-    return { visible: !!this.props.type };
-  }
-
-  componentDidUpdate (prevProps, prevState, { visible }) {
-    if (visible) {
-      document.body.classList.add('with-modals--active');
-      document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
-    } else {
-      document.body.classList.remove('with-modals--active');
-      document.documentElement.style.marginRight = '0';
-    }
-  }
 
   setBackgroundColor = color => {
     this.setState({ backgroundColor: color });

@@ -81,3 +81,6 @@ AUTHORS.md
 
 # Process a few selected JS files
 !lint-staged.config.js
+
+# Ignore config YAML files that include ERB/ruby code prettier does not understand
+/config/email.yml

@@ -49,8 +49,8 @@ class Tag < ApplicationRecord
 
   validates :name, presence: true, format: { with: HASHTAG_NAME_RE }
   validates :display_name, format: { with: HASHTAG_NAME_RE }
-  validate :validate_name_change, if: -> { !new_record? && name_changed? }
-  validate :validate_display_name_change, if: -> { !new_record? && display_name_changed? }
+  validate :validate_name_change, on: :update, if: :name_changed?
+  validate :validate_display_name_change, on: :update, if: :display_name_changed?
 
   scope :pending_review, -> { unreviewed.where.not(requested_review_at: nil) }
   scope :usable, -> { where(usable: [true, nil]) }

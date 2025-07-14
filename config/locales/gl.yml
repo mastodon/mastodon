@@ -578,6 +578,13 @@ gl:
         all: Todo
         limited: Limitado
         title: Moderación
+      moderation_notes:
+        create: Engadir nota de moderación
+        created_msg: Creouse correctamente a nota de moderación da instancia!
+        description_html: Ver e deixar notas de referencia para ti e outras moderadoras
+        destroyed_msg: Eliminouse correctamente a nota de moderación!
+        placeholder: Información sobre esta instancia, accións realizadas, ou calquera outra cousa que che axude no futuro a moderar esta instancia.
+        title: Notas de moderación
       private_comment: Comentario privado
       public_comment: Comentario público
       purge: Purgar
@@ -1342,6 +1349,10 @@ gl:
     basic_information: Información básica
     hint_html: "<strong>Personaliza o que van ver no teu perfil público e ao lado das túas publicacións.</strong> As outras persoas estarán máis animadas a seguirte e interactuar contigo se engades algún dato sobre ti así como unha imaxe de perfil."
     other: Outros
+  emoji_styles:
+    auto: Auto
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': A solicitude que enviou non é válida ou ten formato incorrecto.
     '403': Non ten permiso para ver esta páxina.

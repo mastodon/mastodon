@@ -11,6 +11,21 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {},
   },
+  staticDirs: [
+    './static',
+    // We need to manually specify the assets because of the symlink in public/sw.js
+    ...[
+      'avatars',
+      'emoji',
+      'headers',
+      'sounds',
+      'badge.png',
+      'loading.gif',
+      'loading.png',
+      'oops.gif',
+      'oops.png',
+    ].map((path) => ({ from: `../public/${path}`, to: `/${path}` })),
+  ],
 };
 
 export default config;

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Oauth Userinfo Endpoint' do
+RSpec.describe 'OAuth Userinfo Endpoint' do
   include RoutingHelper
 
   let(:user)     { Fabricate(:user) }

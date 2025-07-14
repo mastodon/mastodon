@@ -64,6 +64,9 @@ module SignatureVerification
     return (@signed_request_actor = actor) if signed_request.verified?(actor)
 
     fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri}"
+  rescue Mastodon::MalformedHeaderError => e
+    @signature_verification_failure_code = 400
+    fail_with! e.message
   rescue Mastodon::SignatureVerificationError => e
     fail_with! e.message
   rescue *Mastodon::HTTP_CONNECTION_ERRORS => e

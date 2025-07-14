@@ -5,7 +5,7 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings,
-             :languages
+             :languages, :features
 
   attribute :critical_updates_pending, if: -> { object&.role&.can?(:view_devops) && SoftwareUpdate.check_enabled? }
 
@@ -85,6 +85,10 @@ class InitialStateSerializer < ActiveModel::Serializer
     LanguagesHelper::SUPPORTED_LOCALES.map { |(key, value)| [key, value[0], value[1]] }
   end
 
+  def features
+    Mastodon::Feature.enabled_features
+  end
+
   private
 
   def default_meta_store
@@ -110,7 +114,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       trends_as_landing_page: Setting.trends_as_landing_page,
       trends_enabled: Setting.trends,
       version: instance_presenter.version,
-      terms_of_service_enabled: TermsOfService.live.exists?,
+      terms_of_service_enabled: TermsOfService.current.present?,
     }
   end
 

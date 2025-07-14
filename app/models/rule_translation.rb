@@ -17,4 +17,11 @@ class RuleTranslation < ApplicationRecord
 
   validates :language, presence: true, uniqueness: { scope: :rule_id }
   validates :text, presence: true, length: { maximum: Rule::TEXT_SIZE_LIMIT }
+
+  scope :for_locale, ->(locale) { where(language: I18n::Locale::Tag.tag(locale).to_a.first) }
+  scope :by_language_length, -> { order(Arel.sql('LENGTH(LANGUAGE)').desc) }
+
+  def self.languages
+    RuleTranslation.joins(:rule).merge(Rule.kept).select(:language).distinct.pluck(:language).sort
+  end
 end
