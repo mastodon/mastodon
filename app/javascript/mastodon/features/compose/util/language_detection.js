@@ -69,7 +69,7 @@ if (languageDetectorInGlobalThis) {
   }
   module = await import('./language_detection_with_languagedetector');
 } else {
-  module = await import('./language_detection_with_laude');
+  module = await import('./language_detection_with_lande');
 }
 const debouncedGuess = module.debouncedGuess;
 
