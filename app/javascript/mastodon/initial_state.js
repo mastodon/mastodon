@@ -45,6 +45,7 @@
  * @property {string} sso_redirect
  * @property {string} status_page_url
  * @property {boolean} terms_of_service_enabled
+ * @property {string?} emoji_style
  */
 
 /**
