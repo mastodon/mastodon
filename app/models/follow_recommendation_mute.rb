@@ -11,16 +11,10 @@
 #  updated_at        :datetime         not null
 #
 class FollowRecommendationMute < ApplicationRecord
+  include RecommendationMaintenance
+
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'
 
   validates :target_account_id, uniqueness: { scope: :account_id }
-
-  after_commit :invalidate_follow_recommendations_cache
-
-  private
-
-  def invalidate_follow_recommendations_cache
-    Rails.cache.delete("follow_recommendations/#{account_id}")
-  end
 end
