@@ -24,6 +24,7 @@ RSpec.describe User do
 
   describe 'Associations' do
     it { is_expected.to belong_to(:account).required }
+    it { is_expected.to have_many(:login_activities) }
   end
 
   describe 'Validations' do
