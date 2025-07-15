@@ -22,7 +22,7 @@ RSpec.describe ActivityPub::Activity::Accept do
             actor: ActivityPub::TagManager.instance.uri_for(recipient),
             object: ActivityPub::TagManager.instance.uri_for(sender),
           },
-        }.with_indifferent_access
+        }.deep_stringify_keys
       end
 
       context 'with a regular Follow' do

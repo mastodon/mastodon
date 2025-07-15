@@ -13,7 +13,7 @@ RSpec.describe ActivityPub::Activity::Reject do
       type: 'Reject',
       actor: ActivityPub::TagManager.instance.uri_for(sender),
       object: object_json,
-    }.with_indifferent_access
+    }.deep_stringify_keys
   end
 
   describe '#perform' do
