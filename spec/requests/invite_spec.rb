@@ -6,13 +6,34 @@ RSpec.describe 'invites' do
   let(:invite) { Fabricate(:invite) }
 
   context 'when requesting a JSON document' do
-    it 'returns a JSON document with expected attributes' do
-      get "/invite/#{invite.code}", headers: { 'Accept' => 'application/activity+json' }
+    subject { get "/invite/#{invite.code}", headers: { 'Accept' => 'application/activity+json' } }
 
-      expect(response).to have_http_status(200)
-      expect(response.media_type).to eq 'application/json'
+    context 'when invite is valid' do
+      it 'returns a JSON document with expected attributes' do
+        subject
 
-      expect(response.parsed_body[:invite_code]).to eq invite.code
+        expect(response)
+          .to have_http_status(200)
+        expect(response.media_type)
+          .to eq 'application/json'
+        expect(response.parsed_body)
+          .to include(invite_code: invite.code)
+      end
+    end
+
+    context 'when invite is expired' do
+      before { invite.update(expires_at: 3.days.ago) }
+
+      it 'returns a JSON document with expected attributes' do
+        subject
+
+        expect(response)
+          .to have_http_status(401)
+        expect(response.media_type)
+          .to eq 'application/json'
+        expect(response.parsed_body)
+          .to include(error: I18n.t('invites.invalid'))
+      end
     end
   end
 
