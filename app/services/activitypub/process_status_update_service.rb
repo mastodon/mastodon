@@ -66,6 +66,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       update_interaction_policies!
       update_poll!(allow_significant_changes: false)
       queue_poll_notifications!
+      update_quote!(allow_significant_changes: false)
       update_counts!
     end
   end
@@ -270,7 +271,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     end
   end
 
-  def update_quote!
+  def update_quote!(allow_significant_changes: true)
     quote_uri = @status_parser.quote_uri
 
     if quote_uri.present?
@@ -280,6 +281,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       if @status.quote.present?
         # If the quoted post has changed, discard the old object and create a new one
         if @status.quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(@status.quote.quoted_status) != quote_uri
+          return unless allow_significant_changes
+
           @status.quote.destroy
           quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
           @quote_changed = true
@@ -288,6 +291,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
           quote.update(approval_uri: approval_uri, state: :pending, legacy: @status_parser.legacy_quote?) if quote.approval_uri != @status_parser.quote_approval_uri
         end
       else
+        return unless allow_significant_changes
+
         quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
         @quote_changed = true
       end
@@ -296,6 +301,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
       fetch_and_verify_quote!(quote, quote_uri)
     elsif @status.quote.present?
+      return unless allow_significant_changes
+
       @status.quote.destroy!
       @quote_changed = true
     end
