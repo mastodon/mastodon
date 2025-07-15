@@ -2848,7 +2848,6 @@ a.account__display-name {
     &__pane {
       height: 100%;
       overflow: hidden;
-      pointer-events: none;
       display: flex;
       justify-content: flex-end;
       min-width: 285px;
@@ -2860,7 +2859,6 @@ a.account__display-name {
       &__inner {
         position: fixed;
         width: 285px;
-        pointer-events: auto;
         height: 100%;
       }
     }
