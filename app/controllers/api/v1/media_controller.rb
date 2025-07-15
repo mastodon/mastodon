@@ -5,6 +5,10 @@ class Api::V1::MediaController < Api::BaseController
   before_action :require_user!
   before_action :set_media_attachment, except: [:create, :destroy]
   before_action :check_processing, except: [:create, :destroy]
+  with_options only: :destroy do
+    before_action :set_current_account_media_attachment
+    before_action :check_usage_by_status
+  end
 
   def show
     render json: @media_attachment, serializer: REST::MediaAttachmentSerializer, status: status_code_for_media_attachment
@@ -26,10 +30,6 @@ class Api::V1::MediaController < Api::BaseController
   end
 
   def destroy
-    @media_attachment = current_account.media_attachments.find(params[:id])
-
-    return render json: in_usage_error, status: 422 unless @media_attachment.status_id.nil?
-
     @media_attachment.destroy
     render_empty
   end
@@ -42,6 +42,14 @@ class Api::V1::MediaController < Api::BaseController
 
   def set_media_attachment
     @media_attachment = current_account.media_attachments.where(status_id: nil).find(params[:id])
+  end
+
+  def set_current_account_media_attachment
+    @media_attachment = current_account.media_attachments.find(params[:id])
+  end
+
+  def check_usage_by_status
+    render json: in_usage_error, status: 422 if @media_attachment.status_id?
   end
 
   def check_processing
