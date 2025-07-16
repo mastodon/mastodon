@@ -21,7 +21,7 @@ class StatusPolicy < ApplicationPolicy
 
   # This is about requesting a quote post, not validating it
   def quote?
-    owned? || active_mention_exists? || quote_approved_by_policy?
+    record.quote_policy_for_account(current_account, preloaded_relations: @preloaded_relations) != :denied
   end
 
   def reblog?
@@ -44,14 +44,6 @@ class StatusPolicy < ApplicationPolicy
 
   private
 
-  def quote_approved_by_policy?
-    flattened_policy = record.quote_approval_policy | (record.quote_approval_policy >> 16)
-    return true if flattened_policy & (Status::QUOTE_APPROVAL_POLICY_FLAGS[:unknown] | Status::QUOTE_APPROVAL_POLICY_FLAGS[:public]) != 0
-
-    # TODO: support `:followed`
-    (flattened_policy & Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] != 0) && following_author?
-  end
-
   def requires_mention?
     record.direct_visibility? || record.limited_visibility?
   end
@@ -71,16 +63,6 @@ class StatusPolicy < ApplicationPolicy
       record.mentions.any? { |mention| mention.account_id == current_account.id }
     else
       record.mentions.exists?(account: current_account)
-    end
-  end
-
-  def active_mention_exists?
-    return false if current_account.nil?
-
-    if record.active_mentions.loaded?
-      record.active_mentions.any? { |mention| mention.account_id == current_account.id }
-    else
-      record.active_mentions.exists?(account: current_account)
     end
   end
 
