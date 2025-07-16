@@ -4,12 +4,16 @@ import type { DBSchema } from 'idb';
 import { openDB } from 'idb';
 
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
-import type { CustomEmoji, UnicodeEmoji, LocaleOrCustom } from './types';
+import type {
+  CustomEmojiData,
+  UnicodeEmojiData,
+  LocaleOrCustom,
+} from './types';
 
 interface EmojiDB extends LocaleTables, DBSchema {
   custom: {
     key: string;
-    value: CustomEmoji;
+    value: CustomEmojiData;
     indexes: {
       category: string;
     };
@@ -22,7 +26,7 @@ interface EmojiDB extends LocaleTables, DBSchema {
 
 interface LocaleTable {
   key: string;
-  value: UnicodeEmoji;
+  value: UnicodeEmojiData;
   indexes: {
     group: number;
     label: string;
@@ -57,13 +61,13 @@ const db = await openDB<EmojiDB>('mastodon-emoji', SCHEMA_VERSION, {
   },
 });
 
-export async function putEmojiData(emojis: UnicodeEmoji[], locale: Locale) {
+export async function putEmojiData(emojis: UnicodeEmojiData[], locale: Locale) {
   const trx = db.transaction(locale, 'readwrite');
   await Promise.all(emojis.map((emoji) => trx.store.put(emoji)));
   await trx.done;
 }
 
-export async function putCustomEmojiData(emojis: CustomEmoji[]) {
+export async function putCustomEmojiData(emojis: CustomEmojiData[]) {
   const trx = db.transaction('custom', 'readwrite');
   await Promise.all(emojis.map((emoji) => trx.store.put(emoji)));
   await trx.done;
