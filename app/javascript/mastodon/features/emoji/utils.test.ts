@@ -1,4 +1,4 @@
-import { stringHasEmoji, stringHasFlags } from './utils';
+import { stringHasUnicodeEmoji, stringHasUnicodeFlags } from './utils';
 
 describe('stringHasEmoji', () => {
   test.concurrent.for([
@@ -21,7 +21,7 @@ describe('stringHasEmoji', () => {
   ] as const)(
     'stringHasEmoji has emojis in "%s": %o',
     ([text, expected], { expect }) => {
-      expect(stringHasEmoji(text)).toBe(expected);
+      expect(stringHasUnicodeEmoji(text)).toBe(expected);
     },
   );
 });
@@ -41,7 +41,7 @@ describe('stringHasFlags', () => {
   ] as const)(
     'stringHasFlags has flag in "%s": %o',
     ([text, expected], { expect }) => {
-      expect(stringHasFlags(text)).toBe(expected);
+      expect(stringHasUnicodeFlags(text)).toBe(expected);
     },
   );
 });
