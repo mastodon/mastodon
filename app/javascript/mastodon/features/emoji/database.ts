@@ -1,17 +1,15 @@
 import { SUPPORTED_LOCALES } from 'emojibase';
-import type { FlatCompactEmoji, Locale } from 'emojibase';
+import type { Locale } from 'emojibase';
 import type { DBSchema } from 'idb';
 import { openDB } from 'idb';
 
-import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
-
-import type { LocaleOrCustom } from './locale';
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
+import type { CustomEmoji, UnicodeEmoji, LocaleOrCustom } from './types';
 
 interface EmojiDB extends LocaleTables, DBSchema {
   custom: {
     key: string;
-    value: ApiCustomEmojiJSON;
+    value: CustomEmoji;
     indexes: {
       category: string;
     };
@@ -24,7 +22,7 @@ interface EmojiDB extends LocaleTables, DBSchema {
 
 interface LocaleTable {
   key: string;
-  value: FlatCompactEmoji;
+  value: UnicodeEmoji;
   indexes: {
     group: number;
     label: string;
@@ -59,13 +57,13 @@ const db = await openDB<EmojiDB>('mastodon-emoji', SCHEMA_VERSION, {
   },
 });
 
-export async function putEmojiData(emojis: FlatCompactEmoji[], locale: Locale) {
+export async function putEmojiData(emojis: UnicodeEmoji[], locale: Locale) {
   const trx = db.transaction(locale, 'readwrite');
   await Promise.all(emojis.map((emoji) => trx.store.put(emoji)));
   await trx.done;
 }
 
-export async function putCustomEmojiData(emojis: ApiCustomEmojiJSON[]) {
+export async function putCustomEmojiData(emojis: CustomEmoji[]) {
   const trx = db.transaction('custom', 'readwrite');
   await Promise.all(emojis.map((emoji) => trx.store.put(emoji)));
   await trx.done;
