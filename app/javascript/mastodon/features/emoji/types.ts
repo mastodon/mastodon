@@ -15,9 +15,9 @@ export type EmojiMode =
 
 export type LocaleOrCustom = Locale | 'custom';
 
-export type CustomEmoji = ApiCustomEmojiJSON;
-export type UnicodeEmoji = FlatCompactEmoji;
-export type AnyEmoji = CustomEmoji | UnicodeEmoji;
+export type CustomEmojiData = ApiCustomEmojiJSON;
+export type UnicodeEmojiData = FlatCompactEmoji;
+export type AnyEmojiData = CustomEmojiData | UnicodeEmojiData;
 
 export interface CustomEmojiToken {
   type: 'custom';
@@ -33,4 +33,24 @@ export interface TwemojiBorderInfo {
   hexCode: string;
   hasLightBorder: boolean;
   hasDarkBorder: boolean;
+}
+
+// Type Guards
+
+export function isUnicodeEmojiData(data: unknown): data is UnicodeEmojiData {
+  return (
+    typeof data === 'object' &&
+    !!data &&
+    'hexcode' in data &&
+    typeof data.hexcode === 'string'
+  );
+}
+
+export function isCustomEmojiData(data: unknown): data is CustomEmojiData {
+  return (
+    typeof data === 'object' &&
+    !!data &&
+    'static_url' in data &&
+    typeof data.static_url === 'string'
+  );
 }
