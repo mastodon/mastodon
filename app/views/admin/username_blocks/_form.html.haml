@@ -1,0 +1,12 @@
+.fields-group
+  = form.input :username,
+               wrapper: :with_block_label,
+               input_html: { autocomplete: 'off', pattern: '[a-zA-Z0-9_]+' }
+
+.fields-group
+  = form.input :exact,
+               wrapper: :with_label
+
+.fields-group
+  = form.input :allow_with_approval,
+               wrapper: :with_label

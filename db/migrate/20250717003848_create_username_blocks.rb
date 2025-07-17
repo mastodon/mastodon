@@ -1,0 +1,45 @@
+# frozen_string_literal: true
+
+class CreateUsernameBlocks < ActiveRecord::Migration[8.0]
+  def change
+    create_table :username_blocks do |t|
+      t.string :username, null: false
+      t.boolean :exact, null: false, default: false
+      t.boolean :allow_with_approval, null: false, default: false
+
+      t.timestamps
+    end
+
+    add_index :username_blocks, 'lower(username)', unique: true, opclass: :text_pattern_ops, name: 'index_username_blocks_on_username_lower_btree'
+
+    reversible do |dir|
+      dir.up do
+        %w(
+          abuse
+          account
+          accounts
+          admin
+          administration
+          administrator
+          admins
+          help
+          helpdesk
+          instance
+          mod
+          moderator
+          moderators
+          mods
+          owner
+          root
+          security
+          server
+          staff
+          support
+          webmaster
+        ).each do |str|
+          UsernameBlock.create(username: str, exact: true)
+        end
+      end
+    end
+  end
+end
