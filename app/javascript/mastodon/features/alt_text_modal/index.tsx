@@ -261,7 +261,9 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
     );
     const lang = useAppSelector(
       (state) =>
-        (state.compose as ImmutableMap<string, unknown>).get('lang') as string,
+        (state.compose as ImmutableMap<string, unknown>).get(
+          'language',
+        ) as string,
     );
     const focusX =
       (media?.getIn(['meta', 'focus', 'x'], 0) as number | undefined) ?? 0;

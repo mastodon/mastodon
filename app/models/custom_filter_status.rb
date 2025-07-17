@@ -17,12 +17,14 @@ class CustomFilterStatus < ApplicationRecord
   belongs_to :custom_filter
   belongs_to :status
 
-  validates :status, uniqueness: { scope: :custom_filter }
-  validate :validate_status_access
+  validates :status_id, uniqueness: { scope: :custom_filter_id }
+  validate :validate_status_access, if: [:custom_filter_account, :status]
+
+  delegate :account, to: :custom_filter, prefix: true, allow_nil: true
 
   private
 
   def validate_status_access
-    errors.add(:status_id, :invalid) unless StatusPolicy.new(custom_filter.account, status).show?
+    errors.add(:status_id, :invalid) unless StatusPolicy.new(custom_filter_account, status).show?
   end
 end
