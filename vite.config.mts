@@ -1,18 +1,24 @@
 import path from 'node:path';
+import { readdir } from 'node:fs/promises';
 
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
-import { PluginOption } from 'vite';
+import glob from 'fast-glob';
+import postcssPresetEnv from 'postcss-preset-env';
+import Compress from 'rollup-plugin-gzip';
 import { visualizer } from 'rollup-plugin-visualizer';
+import {
+  PluginOption,
+  defineConfig,
+  UserConfigFnPromise,
+  UserConfig,
+} from 'vite';
+import manifestSRI from 'vite-plugin-manifest-sri';
 import { VitePWA } from 'vite-plugin-pwa';
-import RailsPlugin from 'vite-plugin-rails';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
-
-import { defineConfig, UserConfigFnPromise, UserConfig } from 'vite';
-import postcssPresetEnv from 'postcss-preset-env';
 
 import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
@@ -22,8 +28,26 @@ import { MastodonNameLookup } from './config/vite/plugin-name-lookup';
 const jsRoot = path.resolve(__dirname, 'app/javascript');
 
 export const config: UserConfigFnPromise = async ({ mode, command }) => {
+  const isProdBuild = mode === 'production' && command === 'build';
+
+  let outDirName = 'packs-dev';
+  if (mode === 'test') {
+    outDirName = 'packs-test';
+  } else if (mode === 'production') {
+    outDirName = 'packs';
+  }
+  const outDir = path.resolve('public', outDirName);
+
   return {
     root: jsRoot,
+    base: `/${outDirName}/`,
+    envDir: __dirname,
+    resolve: {
+      alias: {
+        '~/': `${jsRoot}/`,
+        '@/': `${jsRoot}/`,
+      },
+    },
     css: {
       postcss: {
         plugins: [
@@ -41,12 +65,18 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         // but it needs to be scoped to the whole domain
         'Service-Worker-Allowed': '/',
       },
+      port: 3036,
     },
     build: {
       commonjsOptions: { transformMixedEsModules: true },
       chunkSizeWarningLimit: 1 * 1024 * 1024, // 1MB
       sourcemap: true,
+      emptyOutDir: mode !== 'production',
+      manifest: true,
+      outDir,
+      assetsDir: 'assets',
       rollupOptions: {
+        input: await findEntrypoints(),
         output: {
           chunkFileNames({ facadeModuleId, name }) {
             if (!facadeModuleId) {
@@ -84,18 +114,12 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     },
     plugins: [
       tsconfigPaths({ projects: [path.resolve(__dirname, 'tsconfig.json')] }),
-      RailsPlugin({
-        compress: mode === 'production' && command === 'build',
-        sri: {
-          manifestPaths: ['.vite/manifest.json', '.vite/manifest-assets.json'],
-        },
-      }),
-      MastodonThemes(),
       react({
         babel: {
           plugins: ['formatjs', 'transform-react-remove-prop-types'],
         },
       }),
+      MastodonThemes(),
       viteStaticCopy({
         targets: [
           {
@@ -117,8 +141,13 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         renderLegacyChunks: false,
         modernPolyfills: true,
       }),
+      isProdBuild && (Compress() as PluginOption),
+      command === 'build' &&
+        manifestSRI({
+          manifestPaths: ['.vite/manifest.json', '.vite/manifest-assets.json'],
+        }),
       VitePWA({
-        srcDir: 'mastodon/service_worker',
+        srcDir: path.resolve(jsRoot, 'mastodon/service_worker'),
         // We need to use injectManifest because we use our own service worker
         strategies: 'injectManifest',
         manifest: false,
@@ -149,5 +178,55 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     ],
   } satisfies UserConfig;
 };
+
+async function findEntrypoints() {
+  const entrypoints: Record<string, string> = {};
+
+  // First, JS entrypoints
+  const jsEntrypoints = await readdir(path.resolve(jsRoot, 'entrypoints'), {
+    withFileTypes: true,
+  });
+  const jsExtTest = /\.[jt]sx?$/;
+  for (const file of jsEntrypoints) {
+    if (file.isFile() && jsExtTest.test(file.name)) {
+      entrypoints[file.name.replace(jsExtTest, '')] = path.resolve(
+        file.parentPath,
+        file.name,
+      );
+    }
+  }
+
+  // Next, SCSS entrypoints
+  const scssEntrypoints = await readdir(
+    path.resolve(jsRoot, 'styles/entrypoints'),
+    { withFileTypes: true },
+  );
+  const scssExtTest = /\.s?css$/;
+  for (const file of scssEntrypoints) {
+    if (file.isFile() && scssExtTest.test(file.name)) {
+      entrypoints[file.name.replace(scssExtTest, '')] = path.resolve(
+        file.parentPath,
+        file.name,
+      );
+    }
+  }
+
+  // Lastly other assets
+  const assetEntrypoints = await glob('{fonts,icons,images}/**/*', {
+    cwd: jsRoot,
+    absolute: true,
+  });
+  const excludeExts = ['', '.md'];
+  for (const file of assetEntrypoints) {
+    const ext = path.extname(file);
+    if (excludeExts.includes(ext)) {
+      continue;
+    }
+    const name = path.basename(file);
+    entrypoints[name] = path.resolve(jsRoot, file);
+  }
+
+  return entrypoints;
+}
 
 export default defineConfig(config);

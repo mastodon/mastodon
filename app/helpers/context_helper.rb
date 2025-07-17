@@ -30,7 +30,7 @@ module ContextHelper
       'quote' => 'https://w3id.org/fep/044f#quote',
       'quoteUri' => 'http://fedibird.com/ns#quoteUri',
       '_misskey_quote' => 'https://misskey-hub.net/ns#_misskey_quote',
-      'quoteAuthorization' => 'https://w3id.org/fep/044f#quoteAuthorization',
+      'quoteAuthorization' => { '@id' => 'https://w3id.org/fep/044f#quoteAuthorization', '@type' => '@id' },
     },
     interaction_policies: {
       'gts' => 'https://gotosocial.org/ns#',

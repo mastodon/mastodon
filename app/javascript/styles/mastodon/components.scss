@@ -939,6 +939,7 @@ body > [data-popper-placement] {
         line-height: 20px;
         letter-spacing: 0.1px;
         color: $highlight-text-color;
+        background-color: var(--input-background-color);
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -2848,7 +2849,6 @@ a.account__display-name {
     &__pane {
       height: 100%;
       overflow: hidden;
-      pointer-events: none;
       display: flex;
       justify-content: flex-end;
       min-width: 285px;
@@ -2860,7 +2860,6 @@ a.account__display-name {
       &__inner {
         position: fixed;
         width: 285px;
-        pointer-events: auto;
         height: 100%;
       }
     }
@@ -3874,16 +3873,18 @@ a.account__display-name {
   display: flex;
   align-items: center;
   gap: 8px;
+  width: 100%;
+  padding: 12px;
   font-size: 16px;
   font-weight: 400;
-  padding: 12px;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
-  border: 0;
-  background: transparent;
   color: $secondary-text-color;
+  background: transparent;
+  border: 0;
   border-left: 4px solid transparent;
+  box-sizing: border-box;
 
   &:hover,
   &:focus,
