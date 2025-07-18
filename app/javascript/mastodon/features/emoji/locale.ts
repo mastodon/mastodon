@@ -1,7 +1,7 @@
 import type { Locale } from 'emojibase';
 import { SUPPORTED_LOCALES } from 'emojibase';
 
-export type LocaleOrCustom = Locale | 'custom';
+import type { LocaleOrCustom } from './types';
 
 export function toSupportedLocale(localeBase: string): Locale {
   const locale = localeBase.toLowerCase();

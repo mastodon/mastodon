@@ -4,7 +4,7 @@ import { Globals } from '@react-spring/web';
 
 import { setupBrowserNotifications } from 'mastodon/actions/notifications';
 import Mastodon from 'mastodon/containers/mastodon';
-import { me, reduceMotion } from 'mastodon/initial_state';
+import { isFeatureEnabled, me, reduceMotion } from 'mastodon/initial_state';
 import * as perf from 'mastodon/performance';
 import ready from 'mastodon/ready';
 import { store } from 'mastodon/store';
@@ -27,6 +27,11 @@ function main() {
       Globals.assign({
         skipAnimation: true,
       });
+    }
+
+    if (isFeatureEnabled('modern_emojis')) {
+      const { initializeEmoji } = await import('@/mastodon/features/emoji');
+      await initializeEmoji();
     }
 
     const root = createRoot(mountNode);

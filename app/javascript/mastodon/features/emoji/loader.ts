@@ -11,7 +11,7 @@ import {
   putLatestEtag,
 } from './database';
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
-import type { LocaleOrCustom } from './locale';
+import type { LocaleOrCustom } from './types';
 
 export async function importEmojiData(localeString: string) {
   const locale = toSupportedLocale(localeString);
