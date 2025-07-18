@@ -9,7 +9,7 @@ export function useEmojiAppState(): EmojiAppState {
     toSupportedLocale(state.meta.get('locale') as string),
   );
   const mode = useAppSelector((state) =>
-    determineEmojiMode(state.meta.get('emojiStyle') as string),
+    determineEmojiMode(state.meta.get('emoji_style') as string),
   );
 
   return { currentLocale: locale, locales: [locale], mode };
