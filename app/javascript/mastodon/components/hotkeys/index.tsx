@@ -2,34 +2,90 @@ import { useEffect, useRef } from 'react';
 
 import { normalizeKey, isKeyboardEvent } from './utils';
 
-type KeyMatcher = (event: KeyboardEvent, bufferedKey?: string) => boolean;
+const hotkeyPriority = {
+  singleKey: 0,
+  combo: 1,
+  sequence: 2,
+} as const;
 
-function just(key: string): KeyMatcher {
-  return (event: KeyboardEvent) => normalizeKey(event.key) === key;
+/**
+ * This type of function receives a keyboard event and an array of
+ * previously pressed keys (within the last second), and should return
+ * whether the pressed keys match a hotkey
+ */
+type KeyMatcher = (
+  event: KeyboardEvent,
+  bufferedKeys?: string[],
+) => {
+  /**
+   * Whether the event.key matches the hotkey
+   */
+  isMatch: boolean;
+  /**
+   * If there are multiple matching hotkeys, the
+   * first one with the highest priority will be handled
+   */
+  priority: (typeof hotkeyPriority)[keyof typeof hotkeyPriority];
+};
+
+/**
+ * Matches a single key
+ */
+function just(keyName: string): KeyMatcher {
+  return (event) => ({
+    isMatch: normalizeKey(event.key) === keyName,
+    priority: hotkeyPriority.singleKey,
+  });
 }
 
+/**
+ * Matches any single key out of those provided
+ */
 function any(...keys: string[]): KeyMatcher {
-  return (event: KeyboardEvent) => keys.some((key) => just(key)(event));
+  return (event) => ({
+    isMatch: keys.some((keyName) => just(keyName)(event).isMatch),
+    priority: hotkeyPriority.singleKey,
+  });
 }
 
+/**
+ * Matches a single key combined with the option/alt modifier
+ */
 function optionPlus(key: string): KeyMatcher {
-  return (event: KeyboardEvent) =>
-    event.altKey && normalizeKey(event.key) === key;
+  return (event) => ({
+    isMatch: event.altKey && normalizeKey(event.key) === key,
+    priority: hotkeyPriority.combo,
+  });
 }
 
-function sequence(firstKey: string, secondKey: string): KeyMatcher {
-  return (event: KeyboardEvent, bufferedKey?: string) =>
-    !!bufferedKey &&
-    bufferedKey === firstKey &&
-    normalizeKey(event.key) === secondKey;
+/**
+ * Matches when all provided keys are pressed in sequence.
+ */
+function sequence(...sequence: string[]): KeyMatcher {
+  return (event, bufferedKeys) => {
+    const lastKeyInSequence = sequence.at(-1);
+    const startOfSequence = sequence.slice(0, -1);
+    const relevantBufferedKeys = bufferedKeys?.slice(-startOfSequence.length);
+
+    const bufferMatchesStartOfSequence =
+      !!relevantBufferedKeys &&
+      startOfSequence.join('') === relevantBufferedKeys.join('');
+
+    return {
+      isMatch:
+        bufferMatchesStartOfSequence &&
+        normalizeKey(event.key) === lastKeyInSequence,
+      priority: hotkeyPriority.sequence,
+    };
+  };
 }
 
 const hotkeyMatcherMap = {
   help: just('?'),
-  new: just('n'),
   search: any('s', '/'),
+  back: just('backspace'),
+  new: just('n'),
   forceNew: optionPlus('n'),
-  toggleComposeSpoilers: optionPlus('x'),
   focusColumn: any('1', '2', '3', '4', '5', '6', '7', '8', '9'),
   reply: just('r'),
   favourite: just('f'),
@@ -39,7 +95,11 @@ const hotkeyMatcherMap = {
   openProfile: just('p'),
   moveDown: any('down', 'j'),
   moveUp: any('up', 'k'),
-  back: just('backspace'),
+  toggleHidden: just('x'),
+  toggleSensitive: just('h'),
+  toggleComposeSpoilers: optionPlus('x'),
+  openMedia: just('e'),
+  onTranslate: just('t'),
   goToHome: sequence('g', 'h'),
   goToNotifications: sequence('g', 'n'),
   goToLocal: sequence('g', 'l'),
@@ -52,10 +112,6 @@ const hotkeyMatcherMap = {
   goToBlocked: sequence('g', 'b'),
   goToMuted: sequence('g', 'm'),
   goToRequests: sequence('g', 'r'),
-  toggleHidden: just('x'),
-  toggleSensitive: just('h'),
-  openMedia: just('e'),
-  onTranslate: just('t'),
 } as const;
 
 type HotkeyName = keyof typeof hotkeyMatcherMap;
@@ -87,25 +143,39 @@ export function useAppHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
         !['input', 'textarea', 'select'].includes(tagName);
 
       if (shouldHandleEvent && isKeyboardEvent(event)) {
-        // Handle hotkey if its matcher matches
+        const matchCandidates: {
+          handler: (event: KeyboardEvent) => void;
+          priority: number;
+        }[] = [];
+
         (Object.keys(hotkeyMatcherMap) as HotkeyName[]).forEach(
           (handlerName) => {
             const handler = handlersRef.current[handlerName];
 
             if (handler) {
-              const lastBufferedKey = bufferedKeys.current.at(-1);
               const hotkeyMatcher = hotkeyMatcherMap[handlerName];
 
-              const isMatch = hotkeyMatcher(event, lastBufferedKey);
+              const { isMatch, priority } = hotkeyMatcher(
+                event,
+                bufferedKeys.current,
+              );
 
               if (isMatch) {
-                handler(event);
-                event.stopPropagation();
-                event.preventDefault();
+                matchCandidates.push({ handler, priority });
               }
             }
           },
         );
+
+        // Sort all matches by priority
+        matchCandidates.sort((a, b) => b.priority - a.priority);
+
+        const bestMatchingHandler = matchCandidates.at(0)?.handler;
+        if (bestMatchingHandler) {
+          bestMatchingHandler(event);
+          event.stopPropagation();
+          event.preventDefault();
+        }
 
         // Add last keypress to buffer
         bufferedKeys.current.push(normalizeKey(event.key));
