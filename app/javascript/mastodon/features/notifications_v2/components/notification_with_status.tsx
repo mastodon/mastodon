@@ -2,8 +2,7 @@ import { useMemo } from 'react';
 
 import classNames from 'classnames';
 
-import { HotKeys } from 'react-hotkeys';
-
+import { AppHotkeys } from '@/mastodon/components/app_hotkeys';
 import { replyComposeById } from 'mastodon/actions/compose';
 import { toggleReblog, toggleFavourite } from 'mastodon/actions/interactions';
 import {
@@ -83,7 +82,7 @@ export const NotificationWithStatus: React.FC<{
   if (!statusId || isFiltered) return null;
 
   return (
-    <HotKeys handlers={handlers}>
+    <AppHotkeys handlers={handlers}>
       <div
         role='button'
         className={classNames(
@@ -111,6 +110,6 @@ export const NotificationWithStatus: React.FC<{
           unfocusable
         />
       </div>
-    </HotKeys>
+    </AppHotkeys>
   );
 };

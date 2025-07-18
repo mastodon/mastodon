@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
 
-import { HotKeys } from 'react-hotkeys';
-
 import { navigateToProfile } from 'mastodon/actions/accounts';
 import { mentionComposeById } from 'mastodon/actions/compose';
+import { AppHotkeys } from 'mastodon/components/app_hotkeys';
 import type { NotificationGroup as NotificationGroupModel } from 'mastodon/models/notification_group';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
@@ -156,5 +155,5 @@ export const NotificationGroup: React.FC<{
       return null;
   }
 
-  return <HotKeys handlers={handlers}>{content}</HotKeys>;
+  return <AppHotkeys handlers={handlers}>{content}</AppHotkeys>;
 };

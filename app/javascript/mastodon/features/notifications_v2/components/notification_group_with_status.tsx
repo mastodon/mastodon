@@ -3,10 +3,9 @@ import type { JSX } from 'react';
 
 import classNames from 'classnames';
 
-import { HotKeys } from 'react-hotkeys';
-
 import { replyComposeById } from 'mastodon/actions/compose';
 import { navigateToStatus } from 'mastodon/actions/statuses';
+import { AppHotkeys } from 'mastodon/components/app_hotkeys';
 import { Avatar } from 'mastodon/components/avatar';
 import { AvatarGroup } from 'mastodon/components/avatar_group';
 import type { IconProp } from 'mastodon/components/icon';
@@ -91,7 +90,7 @@ export const NotificationGroupWithStatus: React.FC<{
   );
 
   return (
-    <HotKeys handlers={handlers}>
+    <AppHotkeys handlers={handlers}>
       <div
         role='button'
         className={classNames(
@@ -149,6 +148,6 @@ export const NotificationGroupWithStatus: React.FC<{
           )}
         </div>
       </div>
-    </HotKeys>
+    </AppHotkeys>
   );
 };
