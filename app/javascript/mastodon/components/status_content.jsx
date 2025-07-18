@@ -180,10 +180,12 @@ class StatusContent extends PureComponent {
     const contentLocale = intl.locale.replace(/[_-].*/, '');
     const targetLanguages = languages?.get(status.get('language') || 'und');
 
+    // The Translator API translates all locally on the client, so private and direct toots are fine to translate.
+    const allowedVisibilities = supportsTranslator ? ['public', 'unlisted', 'private', 'direct'] : ['public', 'unlisted'];
     const shouldAttemptTranslate =
       this.props.onTranslate &&
       this.props.identity.signedIn &&
-      ['public', 'unlisted'].includes(status.get('visibility')) &&
+      allowedVisibilities.includes(status.get('visibility')) &&
       status.get('search_index').trim().length > 0;
 
     if (!shouldAttemptTranslate) return;
