@@ -68,6 +68,13 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       port: 3036,
     },
     build: {
+      assetsInlineLimit(filePath, _content) {
+        const relativePath = path.relative(jsRoot, filePath);
+
+        if (relativePath.startsWith('fonts/')) {
+          return false;
+        }
+      },
       commonjsOptions: { transformMixedEsModules: true },
       chunkSizeWarningLimit: 1 * 1024 * 1024, // 1MB
       sourcemap: true,
