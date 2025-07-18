@@ -50,7 +50,12 @@ import { DomainPill } from 'mastodon/features/account/components/domain_pill';
 import FollowRequestNoteContainer from 'mastodon/features/account/containers/follow_request_note_container';
 import { useLinks } from 'mastodon/hooks/useLinks';
 import { useIdentity } from 'mastodon/identity_context';
-import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
+import {
+  autoPlayGif,
+  me,
+  domain as localDomain,
+  isFeatureEnabled,
+} from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import {
@@ -898,7 +903,11 @@ export const AccountHeader: React.FC<{
                 )}
 
                 <AccountBio
-                  note={account.note_emojified}
+                  note={
+                    isFeatureEnabled('modern_emojis')
+                      ? account.note
+                      : account.note_emojified
+                  }
                   dropdownAccountId={accountId}
                   className='account__header__content'
                 />

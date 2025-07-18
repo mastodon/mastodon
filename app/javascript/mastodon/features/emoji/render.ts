@@ -1,6 +1,7 @@
 import type { Locale } from 'emojibase';
 import EMOJI_REGEX from 'emojibase-regex/emoji-loose';
 
+import { autoPlayGif } from '@/mastodon/initial_state';
 import { assetHost } from '@/mastodon/utils/config';
 
 import { loadEmojiLocale } from '.';
@@ -43,8 +44,7 @@ export async function emojifyElement<Element extends HTMLElement>(
   element: Element,
   appState: EmojiAppState,
 ): Promise<Element> {
-  const elementCopy = element.cloneNode(true) as Element;
-  const queue: (HTMLElement | Text)[] = [elementCopy];
+  const queue: (HTMLElement | Text)[] = [element];
   while (queue.length > 0) {
     const current = queue.shift();
     if (
@@ -55,17 +55,16 @@ export async function emojifyElement<Element extends HTMLElement>(
       continue;
     }
 
-    if (current instanceof Text && current.textContent) {
-      const emojifiedNode = await emojifyText(current.textContent, appState);
-      if (emojifiedNode) {
-        current.replaceWith(emojifiedNode);
-      }
-      continue; // Text nodes cannot have children.
-    } else if (current.textContent && !current.hasChildNodes()) {
-      const emojifiedText = await emojifyText(current.textContent, appState);
-      if (emojifiedText) {
-        current.textContent = null;
-        current.appendChild(emojifiedText);
+    if (
+      current.textContent &&
+      (current instanceof Text || !current.hasChildNodes())
+    ) {
+      const renderedContent = await emojifyText(current.textContent, appState);
+      if (renderedContent) {
+        if (!(current instanceof Text)) {
+          current.textContent = null; // Clear the text content if it's not a Text node.
+        }
+        current.replaceWith(renderedToHTMLFragment(renderedContent));
       }
       continue;
     }
@@ -76,7 +75,7 @@ export async function emojifyElement<Element extends HTMLElement>(
       }
     }
   }
-  return elementCopy;
+  return element;
 }
 
 export async function emojifyText(text: string, appState: EmojiAppState) {
@@ -96,7 +95,7 @@ export async function emojifyText(text: string, appState: EmojiAppState) {
   await ensureLocalesAreLoaded(appState.locales);
   await loadMissingEmojiIntoCache(tokens, appState.locales);
 
-  const fragment = document.createDocumentFragment();
+  const renderedFragments: (string | HTMLImageElement)[] = [];
   for (const token of tokens) {
     if (typeof token !== 'string' && shouldRenderImage(token, appState.mode)) {
       let state: EmojiState | undefined;
@@ -112,15 +111,15 @@ export async function emojifyText(text: string, appState: EmojiAppState) {
       // If the state is valid, create an image element. Otherwise, just append as text.
       if (state && typeof state !== 'string') {
         const image = stateToImage(state);
-        fragment.appendChild(image);
+        renderedFragments.push(image);
         continue;
       }
     }
     const text = typeof token === 'string' ? token : token.code;
-    fragment.appendChild(document.createTextNode(text));
+    renderedFragments.push(text);
   }
 
-  return fragment;
+  return renderedFragments;
 }
 
 // Private functions
@@ -278,6 +277,7 @@ function stateToImage(state: EmojiLoadedState) {
   const image = document.createElement('img');
   image.draggable = false;
   image.classList.add('emojione');
+
   if (state.type === EMOJI_TYPE_UNICODE) {
     const emojiInfo = twemojiHasBorder(unicodeToTwemojiHex(state.data.hexcode));
     if (emojiInfo.hasLightBorder) {
@@ -295,8 +295,22 @@ function stateToImage(state: EmojiLoadedState) {
     image.classList.add('custom-emoji');
     image.alt = shortCode;
     image.title = shortCode;
-    image.src = state.data.static_url;
+    image.src = autoPlayGif ? state.data.url : state.data.static_url;
+    image.dataset.original = state.data.url;
+    image.dataset.static = state.data.static_url;
   }
 
   return image;
+}
+
+function renderedToHTMLFragment(renderedArray: (string | HTMLImageElement)[]) {
+  const fragment = document.createDocumentFragment();
+  for (const fragmentItem of renderedArray) {
+    if (typeof fragmentItem === 'string') {
+      fragment.appendChild(document.createTextNode(fragmentItem));
+    } else if (fragmentItem instanceof HTMLImageElement) {
+      fragment.appendChild(fragmentItem);
+    }
+  }
+  return fragment;
 }
