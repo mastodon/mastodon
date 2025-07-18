@@ -4,26 +4,42 @@ class Api::Web::EmbedsController < Api::Web::BaseController
   include Authorization
 
   before_action :set_status
+  before_action :verify_embed_allowed
+  with_options unless: -> { @status.local? } do
+    before_action :require_signed_in
+    before_action :set_oembed
+    before_action :populate_oembed_html
+  end
 
   def show
-    return not_found if @status.hidden?
-
     if @status.local?
       render json: @status, serializer: OEmbedSerializer
     else
-      return not_found unless user_signed_in?
+      render json: @oembed
+    end
+  end
 
-      url = ActivityPub::TagManager.instance.url_for(@status)
-      oembed = FetchOEmbedService.new.call(url)
-      return not_found if oembed.nil?
+  private
 
-      begin
-        oembed[:html] = Sanitize.fragment(oembed[:html], Sanitize::Config::MASTODON_OEMBED)
-      rescue ArgumentError
-        return not_found
-      end
+  def verify_embed_allowed
+    not_found if @status.hidden?
+  end
 
-      render json: oembed
+  def require_signed_in
+    not_found unless user_signed_in?
+  end
+
+  def set_oembed
+    url = ActivityPub::TagManager.instance.url_for(@status)
+    @oembed = FetchOEmbedService.new.call(url)
+    not_found if @oembed.nil?
+  end
+
+  def populate_oembed_html
+    begin
+      @oembed[:html] = Sanitize.fragment(@oembed[:html], Sanitize::Config::MASTODON_OEMBED)
+    rescue ArgumentError
+      not_found
     end
   end
 
