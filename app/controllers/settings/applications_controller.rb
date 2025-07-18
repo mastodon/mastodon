@@ -10,7 +10,7 @@ class Settings::ApplicationsController < Settings::BaseController
   def show; end
 
   def new
-    @application = Doorkeeper::Application.new(
+    @application = OAuth::Application.new(
       redirect_uri: Doorkeeper.configuration.native_redirect_uri,
       scopes: 'profile'
     )
@@ -59,6 +59,6 @@ class Settings::ApplicationsController < Settings::BaseController
   end
 
   def application_params
-    params.expect(doorkeeper_application: [:name, :redirect_uri, :website, scopes: []])
+    params.expect(oauth_application: [:name, :redirect_uri, :website, scopes: []])
   end
 end
