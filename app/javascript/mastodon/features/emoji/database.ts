@@ -83,6 +83,17 @@ export function searchEmojiByHexcode(hexcode: string, localeString: string) {
   return db.get(locale, hexcode);
 }
 
+export function searchEmojisByHexcodes(
+  hexcodes: string[],
+  localeString: string,
+) {
+  const locale = toSupportedLocale(localeString);
+  return db.getAll(
+    locale,
+    IDBKeyRange.bound(hexcodes[0], hexcodes[hexcodes.length - 1]),
+  );
+}
+
 export function searchEmojiByTag(tag: string, localeString: string) {
   const locale = toSupportedLocale(localeString);
   const range = IDBKeyRange.only(tag.toLowerCase());
@@ -91,6 +102,25 @@ export function searchEmojiByTag(tag: string, localeString: string) {
 
 export function searchCustomEmojiByShortcode(shortcode: string) {
   return db.get('custom', shortcode);
+}
+
+export function searchCustomEmojisByShortcodes(shortcodes: string[]) {
+  return db.getAll(
+    'custom',
+    IDBKeyRange.bound(shortcodes[0], shortcodes[shortcodes.length - 1]),
+  );
+}
+
+export async function findMissingLocales(localeStrings: string[]) {
+  const locales = new Set(localeStrings.map(toSupportedLocale));
+  const missingLocales: Locale[] = [];
+  for (const locale of locales) {
+    const rowCount = await db.count(locale);
+    if (!rowCount) {
+      missingLocales.push(locale);
+    }
+  }
+  return missingLocales;
 }
 
 export async function loadLatestEtag(localeString: string) {

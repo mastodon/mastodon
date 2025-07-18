@@ -6,6 +6,10 @@ import type {
   EMOJI_MODE_NATIVE,
   EMOJI_MODE_NATIVE_WITH_FLAGS,
   EMOJI_MODE_TWEMOJI,
+  EMOJI_STATE_LOADING,
+  EMOJI_STATE_MISSING,
+  EMOJI_TYPE_CUSTOM,
+  EMOJI_TYPE_UNICODE,
 } from './constants';
 
 export type EmojiMode =
@@ -13,44 +17,49 @@ export type EmojiMode =
   | typeof EMOJI_MODE_NATIVE_WITH_FLAGS
   | typeof EMOJI_MODE_TWEMOJI;
 
-export type LocaleOrCustom = Locale | 'custom';
+export type LocaleOrCustom = Locale | typeof EMOJI_TYPE_CUSTOM;
+
+export interface EmojiAppState {
+  locales: Locale[];
+  currentLocale: Locale;
+  mode: EmojiMode;
+}
+
+export interface UnicodeEmojiToken {
+  type: typeof EMOJI_TYPE_UNICODE;
+  code: string;
+}
+export interface CustomEmojiToken {
+  type: typeof EMOJI_TYPE_CUSTOM;
+  code: string;
+}
+export type EmojiToken = UnicodeEmojiToken | CustomEmojiToken;
 
 export type CustomEmojiData = ApiCustomEmojiJSON;
 export type UnicodeEmojiData = FlatCompactEmoji;
 export type AnyEmojiData = CustomEmojiData | UnicodeEmojiData;
 
-export interface CustomEmojiToken {
-  type: 'custom';
-  code: string;
+export type EmojiStateLoading = typeof EMOJI_STATE_LOADING;
+export type EmojiStateMissing = typeof EMOJI_STATE_MISSING;
+export interface EmojiStateUnicode {
+  type: typeof EMOJI_TYPE_UNICODE;
+  data: UnicodeEmojiData;
 }
-export interface UnicodeEmojiToken {
-  type: 'unicode';
-  code: string;
+export interface EmojiStateCustom {
+  type: typeof EMOJI_TYPE_CUSTOM;
+  data: CustomEmojiData;
 }
-export type EmojiToken = CustomEmojiToken | UnicodeEmojiToken;
+export type EmojiState =
+  | EmojiStateLoading
+  | EmojiStateMissing
+  | EmojiStateUnicode
+  | EmojiStateCustom;
+export type EmojiLoadedState = EmojiStateUnicode | EmojiStateCustom;
+
+export type EmojiStateMap = Map<string, EmojiState>;
 
 export interface TwemojiBorderInfo {
   hexCode: string;
   hasLightBorder: boolean;
   hasDarkBorder: boolean;
-}
-
-// Type Guards
-
-export function isUnicodeEmojiData(data: unknown): data is UnicodeEmojiData {
-  return (
-    typeof data === 'object' &&
-    !!data &&
-    'hexcode' in data &&
-    typeof data.hexcode === 'string'
-  );
-}
-
-export function isCustomEmojiData(data: unknown): data is CustomEmojiData {
-  return (
-    typeof data === 'object' &&
-    !!data &&
-    'static_url' in data &&
-    typeof data.static_url === 'string'
-  );
 }
