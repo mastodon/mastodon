@@ -112,6 +112,19 @@ const hotkeyMatcherMap = {
   goToBlocked: sequence('g', 'b'),
   goToMuted: sequence('g', 'm'),
   goToRequests: sequence('g', 'r'),
+  donate: sequence(
+    'up',
+    'up',
+    'down',
+    'down',
+    'left',
+    'right',
+    'left',
+    'right',
+    'b',
+    'a',
+    'enter',
+  ),
 } as const;
 
 type HotkeyName = keyof typeof hotkeyMatcherMap;
