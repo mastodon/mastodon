@@ -1,3 +1,4 @@
+import { Avatar } from 'mastodon/components/avatar';
 import { useHovering } from 'mastodon/hooks/useHovering';
 import { autoPlayGif } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
@@ -19,12 +20,6 @@ export const AvatarOverlay: React.FC<Props> = ({
 }) => {
   const { hovering, handleMouseEnter, handleMouseLeave } =
     useHovering(autoPlayGif);
-  const accountSrc = hovering
-    ? account?.get('avatar')
-    : account?.get('avatar_static');
-  const friendSrc = hovering
-    ? friend?.get('avatar')
-    : friend?.get('avatar_static');
 
   return (
     <div
@@ -34,20 +29,19 @@ export const AvatarOverlay: React.FC<Props> = ({
       onMouseLeave={handleMouseLeave}
     >
       <div className='account__avatar-overlay-base'>
-        <div
-          className='account__avatar'
-          style={{ width: `${baseSize}px`, height: `${baseSize}px` }}
-        >
-          {accountSrc && <img src={accountSrc} alt={account?.get('acct')} />}
-        </div>
+        <Avatar
+          account={account}
+          size={baseSize}
+          animate={hovering || autoPlayGif}
+        />
       </div>
+
       <div className='account__avatar-overlay-overlay'>
-        <div
-          className='account__avatar'
-          style={{ width: `${overlaySize}px`, height: `${overlaySize}px` }}
-        >
-          {friendSrc && <img src={friendSrc} alt={friend?.get('acct')} />}
-        </div>
+        <Avatar
+          account={friend}
+          size={overlaySize}
+          animate={hovering || autoPlayGif}
+        />
       </div>
     </div>
   );
