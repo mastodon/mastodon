@@ -30,6 +30,7 @@ import type {
   EmojiState,
   EmojiStateMap,
   EmojiToken,
+  ExtraCustomEmojiMap,
   LocaleOrCustom,
   UnicodeEmojiToken,
 } from './types';
@@ -43,6 +44,7 @@ const localeCacheMap = new Map<LocaleOrCustom, EmojiStateMap>([
 export async function emojifyElement<Element extends HTMLElement>(
   element: Element,
   appState: EmojiAppState,
+  extraEmojis: ExtraCustomEmojiMap = {},
 ): Promise<Element> {
   const queue: (HTMLElement | Text)[] = [element];
   while (queue.length > 0) {
@@ -59,7 +61,11 @@ export async function emojifyElement<Element extends HTMLElement>(
       current.textContent &&
       (current instanceof Text || !current.hasChildNodes())
     ) {
-      const renderedContent = await emojifyText(current.textContent, appState);
+      const renderedContent = await emojifyText(
+        current.textContent,
+        appState,
+        extraEmojis,
+      );
       if (renderedContent) {
         if (!(current instanceof Text)) {
           current.textContent = null; // Clear the text content if it's not a Text node.
@@ -78,7 +84,11 @@ export async function emojifyElement<Element extends HTMLElement>(
   return element;
 }
 
-export async function emojifyText(text: string, appState: EmojiAppState) {
+export async function emojifyText(
+  text: string,
+  appState: EmojiAppState,
+  extraEmojis: ExtraCustomEmojiMap = {},
+) {
   // Exit if no text to convert.
   if (!text.trim()) {
     return null;
@@ -100,7 +110,12 @@ export async function emojifyText(text: string, appState: EmojiAppState) {
     if (typeof token !== 'string' && shouldRenderImage(token, appState.mode)) {
       let state: EmojiState | undefined;
       if (token.type === EMOJI_TYPE_CUSTOM) {
-        state = emojiForLocale(token.code, EMOJI_TYPE_CUSTOM);
+        const extraEmojiData = extraEmojis[token.code];
+        if (extraEmojiData) {
+          state = { type: EMOJI_TYPE_CUSTOM, data: extraEmojiData };
+        } else {
+          state = emojiForLocale(token.code, EMOJI_TYPE_CUSTOM);
+        }
       } else {
         state = emojiForLocale(
           emojiToUnicodeHex(token.code),

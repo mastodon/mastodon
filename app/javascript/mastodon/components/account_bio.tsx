@@ -3,28 +3,50 @@ import { useCallback } from 'react';
 import { useLinks } from 'mastodon/hooks/useLinks';
 
 import { EmojiHTML } from '../features/emoji/emoji_html';
+import type { ExtraCustomEmojiMap } from '../features/emoji/types';
+import { isFeatureEnabled } from '../initial_state';
+import { useAppSelector } from '../store';
 
 interface AccountBioProps {
-  note: string;
   className: string;
-  dropdownAccountId?: string;
+  accountId: string;
+  showDropdown?: boolean;
 }
 
 export const AccountBio: React.FC<AccountBioProps> = ({
-  note,
   className,
-  dropdownAccountId,
+  accountId,
+  showDropdown = false,
 }) => {
-  const handleClick = useLinks(!!dropdownAccountId);
+  const handleClick = useLinks(showDropdown);
   const handleNodeChange = useCallback(
     (node: HTMLDivElement | null) => {
-      if (!dropdownAccountId || !node || node.childNodes.length === 0) {
+      if (!showDropdown || !node || node.childNodes.length === 0) {
         return;
       }
-      addDropdownToHashtags(node, dropdownAccountId);
+      addDropdownToHashtags(node, accountId);
     },
-    [dropdownAccountId],
+    [showDropdown, accountId],
   );
+  const extraEmoji = useAppSelector((state) => {
+    const account = state.accounts.get(accountId);
+    if (!account || account.emojis.size === 0) {
+      return {};
+    }
+    return account.emojis.reduce((map, emoji) => {
+      map[emoji.shortcode] = emoji.toJS();
+      return map;
+    }, {} as ExtraCustomEmojiMap);
+  });
+  const note = useAppSelector((state) => {
+    const account = state.accounts.get(accountId);
+    if (!account) {
+      return '';
+    }
+    return isFeatureEnabled('modern_emojis')
+      ? account.note
+      : account.note_emojified;
+  });
 
   if (note.length === 0) {
     return null;
@@ -36,7 +58,7 @@ export const AccountBio: React.FC<AccountBioProps> = ({
       onClickCapture={handleClick}
       ref={handleNodeChange}
     >
-      <EmojiHTML htmlString={note} />
+      <EmojiHTML htmlString={note} extraEmojis={extraEmoji} />
     </div>
   );
 };

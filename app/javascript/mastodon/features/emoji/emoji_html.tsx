@@ -5,12 +5,17 @@ import { isFeatureEnabled } from '@/mastodon/initial_state';
 import emojify from './emoji';
 import { useEmojiAppState } from './hooks';
 import { emojifyElement } from './render';
+import type { ExtraCustomEmojiMap } from './types';
 
 interface EmojiHTMLProps {
   htmlString: string;
+  extraEmojis?: ExtraCustomEmojiMap;
 }
 
-export const EmojiHTML: React.FC<EmojiHTMLProps> = ({ htmlString: text }) => {
+export const EmojiHTML: React.FC<EmojiHTMLProps> = ({
+  htmlString: text,
+  extraEmojis = {},
+}) => {
   const appState = useEmojiAppState();
   const [innerHTML, setInnerHTML] = useState('');
 
@@ -18,7 +23,7 @@ export const EmojiHTML: React.FC<EmojiHTMLProps> = ({ htmlString: text }) => {
     const cb = async () => {
       const div = document.createElement('div');
       div.innerHTML = text;
-      const ele = await emojifyElement(div, appState);
+      const ele = await emojifyElement(div, appState, extraEmojis);
       setInnerHTML(ele.innerHTML);
     };
     if (isFeatureEnabled('modern_emojis')) {
@@ -26,7 +31,7 @@ export const EmojiHTML: React.FC<EmojiHTMLProps> = ({ htmlString: text }) => {
     } else {
       setInnerHTML(emojify(text));
     }
-  }, [text, appState]);
+  }, [text, appState, extraEmojis]);
 
   if (!innerHTML) {
     return null;
