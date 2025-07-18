@@ -47,6 +47,13 @@ describe('emojifyElement', () => {
   const testElement = document.createElement('div');
   testElement.innerHTML = '<p>Hello 😊🇪🇺!</p><p>:custom:</p>';
 
+  const expectedSmileImage =
+    '<img draggable="false" class="emojione" alt="😊" title="smiling face with smiling eyes" src="/emoji/1F60A.svg">';
+  const expectedFlagImage =
+    '<img draggable="false" class="emojione" alt="🇪🇺" title="flag-eu" src="/emoji/1F1EA-1F1FA.svg">';
+  const expectedCustomEmojiImage =
+    '<img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:" src="emoji/static" data-original="emoji/custom" data-static="emoji/static">';
+
   function cloneTestElement() {
     return testElement.cloneNode(true) as HTMLElement;
   }
@@ -58,8 +65,7 @@ describe('emojifyElement', () => {
       currentLocale: 'en',
     });
     expect(emojifiedElement.innerHTML).toBe(
-      '<p>Hello 😊🇪🇺!</p>' +
-        '<p><img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:" src="emoji/static"></p>',
+      `<p>Hello 😊🇪🇺!</p><p>${expectedCustomEmojiImage}</p>`,
     );
   });
 
@@ -70,8 +76,7 @@ describe('emojifyElement', () => {
       currentLocale: 'en',
     });
     expect(emojifiedElement.innerHTML).toBe(
-      '<p>Hello 😊<img draggable="false" class="emojione" alt="🇪🇺" title="flag-eu" src="/emoji/1F1EA-1F1FA.svg">!</p>' +
-        '<p><img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:" src="emoji/static"></p>',
+      `<p>Hello 😊${expectedFlagImage}!</p><p>${expectedCustomEmojiImage}</p>`,
     );
   });
 
@@ -82,9 +87,7 @@ describe('emojifyElement', () => {
       currentLocale: 'en',
     });
     expect(emojifiedElement.innerHTML).toBe(
-      '<p>Hello <img draggable="false" class="emojione" alt="😊" title="smiling face with smiling eyes" src="/emoji/1F60A.svg">' +
-        '<img draggable="false" class="emojione" alt="🇪🇺" title="flag-eu" src="/emoji/1F1EA-1F1FA.svg">!</p>' +
-        '<p><img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:" src="emoji/static"></p>',
+      `<p>Hello ${expectedSmileImage}${expectedFlagImage}!</p><p>${expectedCustomEmojiImage}</p>`,
     );
   });
 });
