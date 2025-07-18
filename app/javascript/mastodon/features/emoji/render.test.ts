@@ -4,6 +4,44 @@ import {
   EMOJI_MODE_TWEMOJI,
 } from './constants';
 import { emojifyElement, tokenizeText } from './render';
+import type { CustomEmojiData, UnicodeEmojiData } from './types';
+
+vitest.mock('./database', () => ({
+  searchCustomEmojisByShortcodes: vitest.fn(
+    () =>
+      [
+        {
+          shortcode: 'custom',
+          static_url: 'emoji/static',
+          url: 'emoji/custom',
+          category: 'test',
+          visible_in_picker: true,
+        },
+      ] satisfies CustomEmojiData[],
+  ),
+  searchEmojisByHexcodes: vitest.fn(
+    () =>
+      [
+        {
+          hexcode: '1F60A',
+          group: 0,
+          label: 'smiling face with smiling eyes',
+          order: 0,
+          tags: ['smile', 'happy'],
+          unicode: '😊',
+        },
+        {
+          hexcode: '1F1EA-1F1FA',
+          group: 0,
+          label: 'flag-eu',
+          order: 0,
+          tags: ['flag', 'european union'],
+          unicode: '🇪🇺',
+        },
+      ] satisfies UnicodeEmojiData[],
+  ),
+  findMissingLocales: vitest.fn(() => []),
+}));
 
 describe('emojifyElement', () => {
   const testElement = document.createElement('div');
@@ -17,7 +55,7 @@ describe('emojifyElement', () => {
     });
     expect(emojifiedElement.innerHTML).toBe(
       '<p>Hello 😊🇪🇺!</p>' +
-        '<p><img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:"></p>',
+        '<p><img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:" src="emoji/static"></p>',
     );
   });
 
@@ -28,8 +66,8 @@ describe('emojifyElement', () => {
       currentLocale: 'en',
     });
     expect(emojifiedElement.innerHTML).toBe(
-      '<p>Hello 😊<img draggable="false" class="emojione" alt="🇪🇺" data-code="1F1EA-1F1FA">!</p>' +
-        '<p><img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:"></p>',
+      '<p>Hello 😊<img draggable="false" class="emojione" alt="🇪🇺" title="flag-eu" src="/emoji/1F1EA-1F1FA.svg">!</p>' +
+        '<p><img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:" src="emoji/static"></p>',
     );
   });
 
@@ -40,9 +78,9 @@ describe('emojifyElement', () => {
       currentLocale: 'en',
     });
     expect(emojifiedElement.innerHTML).toBe(
-      '<p>Hello <img draggable="false" class="emojione" alt="😊" data-code="1F60A">' +
-        '<img draggable="false" class="emojione" alt="🇪🇺" data-code="1F1EA-1F1FA">!</p>' +
-        '<p><img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:"></p>',
+      '<p>Hello <img draggable="false" class="emojione" alt="😊" title="smiling face with smiling eyes" src="/emoji/1F60A.svg">' +
+        '<img draggable="false" class="emojione" alt="🇪🇺" title="flag-eu" src="/emoji/1F1EA-1F1FA.svg">!</p>' +
+        '<p><img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:" src="emoji/static"></p>',
     );
   });
 });

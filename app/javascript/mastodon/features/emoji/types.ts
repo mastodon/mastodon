@@ -6,7 +6,6 @@ import type {
   EMOJI_MODE_NATIVE,
   EMOJI_MODE_NATIVE_WITH_FLAGS,
   EMOJI_MODE_TWEMOJI,
-  EMOJI_STATE_LOADING,
   EMOJI_STATE_MISSING,
   EMOJI_TYPE_CUSTOM,
   EMOJI_TYPE_UNICODE,
@@ -39,7 +38,6 @@ export type CustomEmojiData = ApiCustomEmojiJSON;
 export type UnicodeEmojiData = FlatCompactEmoji;
 export type AnyEmojiData = CustomEmojiData | UnicodeEmojiData;
 
-export type EmojiStateLoading = typeof EMOJI_STATE_LOADING;
 export type EmojiStateMissing = typeof EMOJI_STATE_MISSING;
 export interface EmojiStateUnicode {
   type: typeof EMOJI_TYPE_UNICODE;
@@ -50,7 +48,6 @@ export interface EmojiStateCustom {
   data: CustomEmojiData;
 }
 export type EmojiState =
-  | EmojiStateLoading
   | EmojiStateMissing
   | EmojiStateUnicode
   | EmojiStateCustom;

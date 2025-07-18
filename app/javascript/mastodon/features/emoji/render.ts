@@ -5,7 +5,6 @@ import { assetHost } from '@/mastodon/utils/config';
 
 import { loadEmojiLocale } from '.';
 import {
-  EMOJI_STATE_LOADING,
   EMOJI_MODE_NATIVE,
   EMOJI_MODE_NATIVE_WITH_FLAGS,
   EMOJI_TYPE_UNICODE,
@@ -100,10 +99,19 @@ export async function emojifyText(text: string, appState: EmojiAppState) {
   const fragment = document.createDocumentFragment();
   for (const token of tokens) {
     if (typeof token !== 'string' && shouldRenderImage(token, appState.mode)) {
-      const state = emojiForLocale(token.code, appState.currentLocale);
+      let state: EmojiState | undefined;
+      if (token.type === EMOJI_TYPE_CUSTOM) {
+        state = emojiForLocale(token.code, EMOJI_TYPE_CUSTOM);
+      } else {
+        state = emojiForLocale(
+          emojiToUnicodeHex(token.code),
+          appState.currentLocale,
+        );
+      }
+
       // If the state is valid, create an image element. Otherwise, just append as text.
       if (state && typeof state !== 'string') {
-        const image = stateToElement(state);
+        const image = stateToImage(state);
         fragment.appendChild(image);
         continue;
       }
@@ -191,19 +199,23 @@ async function loadMissingEmojiIntoCache(
     if (typeof token === 'string') {
       continue; // Skip plain strings.
     }
-    const code = token.code;
 
     // If this is a custom emoji, check it separately.
     if (token.type === EMOJI_TYPE_CUSTOM) {
-      const codeState = emojiForLocale(code, EMOJI_TYPE_CUSTOM);
-      if (!codeState || codeState === EMOJI_STATE_LOADING) {
+      const code = token.code;
+      const emojiState = emojiForLocale(code, EMOJI_TYPE_CUSTOM);
+      if (!emojiState) {
         missingCustomEmoji.add(code);
       }
       // Otherwise this is a unicode emoji, so check it against all locales.
-    } else if (!missingUnicodeEmoji.has(code)) {
+    } else {
+      const code = emojiToUnicodeHex(token.code);
+      if (missingUnicodeEmoji.has(code)) {
+        continue; // Already marked as missing.
+      }
       for (const locale of locales) {
         const emojiState = emojiForLocale(code, locale);
-        if (!emojiState || emojiState === EMOJI_STATE_LOADING) {
+        if (!emojiState) {
           // If it's missing in one locale, we consider it missing for all.
           missingUnicodeEmoji.add(code);
         }
@@ -225,6 +237,7 @@ async function loadMissingEmojiIntoCache(
       for (const code of notFoundEmojis) {
         cache.set(code, EMOJI_STATE_MISSING); // Mark as missing if not found, as it's probably not a valid emoji.
       }
+      localeCacheMap.set(locale, cache);
     }
   }
 
@@ -241,6 +254,7 @@ async function loadMissingEmojiIntoCache(
     for (const code of notFoundEmojis) {
       cache.set(code, EMOJI_STATE_MISSING); // Mark as missing if not found, as it's probably not a valid emoji.
     }
+    localeCacheMap.set(EMOJI_TYPE_CUSTOM, cache);
   }
 }
 
@@ -260,21 +274,19 @@ function shouldRenderImage(token: EmojiToken, mode: EmojiMode): boolean {
   return true;
 }
 
-function stateToElement(state: EmojiLoadedState) {
+function stateToImage(state: EmojiLoadedState) {
   const image = document.createElement('img');
   image.draggable = false;
   image.classList.add('emojione');
   if (state.type === EMOJI_TYPE_UNICODE) {
-    const emojiInfo = twemojiHasBorder(
-      unicodeToTwemojiHex(emojiToUnicodeHex(state.data.hexcode)),
-    );
+    const emojiInfo = twemojiHasBorder(unicodeToTwemojiHex(state.data.hexcode));
     if (emojiInfo.hasLightBorder) {
       image.dataset.lightCode = `${emojiInfo.hexCode}_BORDER`;
     } else if (emojiInfo.hasDarkBorder) {
       image.dataset.darkCode = `${emojiInfo.hexCode}_BORDER`;
     }
 
-    image.alt = state.data.hexcode;
+    image.alt = state.data.unicode;
     image.title = state.data.label;
     image.src = `${assetHost}/emoji/${emojiInfo.hexCode}.svg`;
   } else {
