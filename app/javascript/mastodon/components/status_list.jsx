@@ -56,7 +56,7 @@ export default class StatusList extends ImmutablePureComponent {
     const elementIndex = this.getCurrentStatusIndex(id, featured) - 1;
     this._selectChild(elementIndex, true);
   };
-
+  
   handleMoveDown = (id, featured) => {
     const elementIndex = this.getCurrentStatusIndex(id, featured) + 1;
     this._selectChild(elementIndex, false);
@@ -69,6 +69,7 @@ export default class StatusList extends ImmutablePureComponent {
 
   _selectChild (index, align_top) {
     const container = this.node.node;
+    // TODO: This breaks at the inline-follow-suggestions container
     const element = container.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
 
     if (element) {

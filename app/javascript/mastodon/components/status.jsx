@@ -8,10 +8,9 @@ import { Link } from 'react-router-dom';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import { HotKeys } from 'react-hotkeys';
-
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import { Hotkeys } from 'mastodon/components/hotkeys';
 import { ContentWarning } from 'mastodon/components/content_warning';
 import { FilterWarning } from 'mastodon/components/filter_warning';
 import { Icon }  from 'mastodon/components/icon';
@@ -35,7 +34,6 @@ import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
 import { StatusThreadLabel } from './status_thread_label';
 import { VisibilityIcon } from './visibility_icon';
-
 const domParser = new DOMParser();
 
 export const textForScreenReader = (intl, status, rebloggedByText = false) => {
@@ -325,11 +323,11 @@ class Status extends ImmutablePureComponent {
   };
 
   handleHotkeyMoveUp = e => {
-    this.props.onMoveUp(this.props.status.get('id'), e.target.getAttribute('data-featured'));
+    this.props.onMoveUp?.(this.props.status.get('id'), this.node.getAttribute('data-featured'));
   };
 
   handleHotkeyMoveDown = e => {
-    this.props.onMoveDown(this.props.status.get('id'), e.target.getAttribute('data-featured'));
+    this.props.onMoveDown?.(this.props.status.get('id'), this.node.getAttribute('data-featured'));
   };
 
   handleHotkeyToggleHidden = () => {
@@ -437,13 +435,13 @@ class Status extends ImmutablePureComponent {
 
     if (hidden) {
       return (
-        <HotKeys handlers={handlers} tabIndex={unfocusable ? null : -1}>
+        <Hotkeys handlers={handlers} focusable={!unfocusable}>
           <div ref={this.handleRef} className={classNames('status__wrapper', { focusable: !this.props.muted })} tabIndex={unfocusable ? null : 0}>
             <span>{status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}</span>
             {status.get('spoiler_text').length > 0 && (<span>{status.get('spoiler_text')}</span>)}
             {expanded && <span>{status.get('content')}</span>}
           </div>
-        </HotKeys>
+        </Hotkeys>
       );
     }
 
@@ -543,7 +541,7 @@ class Status extends ImmutablePureComponent {
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
 
     return (
-      <HotKeys handlers={handlers} tabIndex={unfocusable ? null : -1}>
+      <Hotkeys handlers={handlers} focusable={!unfocusable}>
         <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), unread, focusable: !this.props.muted })} tabIndex={this.props.muted || unfocusable ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText)} ref={this.handleRef} data-nosnippet={status.getIn(['account', 'noindex'], true) || undefined}>
           {!skipPrepend && prepend}
 
@@ -604,7 +602,7 @@ class Status extends ImmutablePureComponent {
             }
           </div>
         </div>
-      </HotKeys>
+      </Hotkeys>
     );
   }
 

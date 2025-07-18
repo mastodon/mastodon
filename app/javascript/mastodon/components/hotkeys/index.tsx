@@ -1,0 +1,231 @@
+import { useEffect, useRef } from 'react';
+
+import { normalizeKey, isKeyboardEvent } from './utils';
+
+const hotkeyPriority = {
+  singleKey: 0,
+  combo: 1,
+  sequence: 2,
+} as const;
+
+/**
+ * This type of function receives a keyboard event and an array of
+ * previously pressed keys (within the last second), and should return
+ * whether the pressed keys match a hotkey
+ */
+type KeyMatcher = (
+  event: KeyboardEvent,
+  bufferedKeys?: string[],
+) => {
+  /**
+   * Whether the event.key matches the hotkey
+   */
+  isMatch: boolean;
+  /**
+   * If there are multiple matching hotkeys, the
+   * first one with the highest priority will be handled
+   */
+  priority: (typeof hotkeyPriority)[keyof typeof hotkeyPriority];
+};
+
+/**
+ * Matches a single key
+ */
+function just(keyName: string): KeyMatcher {
+  return (event) => ({
+    isMatch: normalizeKey(event.key) === keyName,
+    priority: hotkeyPriority.singleKey,
+  });
+}
+
+/**
+ * Matches any single key out of those provided
+ */
+function any(...keys: string[]): KeyMatcher {
+  return (event) => ({
+    isMatch: keys.some((keyName) => just(keyName)(event).isMatch),
+    priority: hotkeyPriority.singleKey,
+  });
+}
+
+/**
+ * Matches a single key combined with the option/alt modifier
+ */
+function optionPlus(key: string): KeyMatcher {
+  return (event) => ({
+    isMatch: event.altKey && normalizeKey(event.key) === key,
+    priority: hotkeyPriority.combo,
+  });
+}
+
+/**
+ * Matches when all provided keys are pressed in sequence.
+ */
+function sequence(...sequence: string[]): KeyMatcher {
+  return (event, bufferedKeys) => {
+    const lastKeyInSequence = sequence.at(-1);
+    const startOfSequence = sequence.slice(0, -1);
+    const relevantBufferedKeys = bufferedKeys?.slice(-startOfSequence.length);
+
+    const bufferMatchesStartOfSequence =
+      !!relevantBufferedKeys &&
+      startOfSequence.join('') === relevantBufferedKeys.join('');
+
+    return {
+      isMatch:
+        bufferMatchesStartOfSequence &&
+        normalizeKey(event.key) === lastKeyInSequence,
+      priority: hotkeyPriority.sequence,
+    };
+  };
+}
+
+const hotkeyMatcherMap = {
+  help: just('?'),
+  search: any('s', '/'),
+  back: just('backspace'),
+  new: just('n'),
+  forceNew: optionPlus('n'),
+  focusColumn: any('1', '2', '3', '4', '5', '6', '7', '8', '9'),
+  reply: just('r'),
+  favourite: just('f'),
+  boost: just('b'),
+  mention: just('m'),
+  open: any('enter', 'o'),
+  openProfile: just('p'),
+  moveDown: any('down', 'j'),
+  moveUp: any('up', 'k'),
+  toggleHidden: just('x'),
+  toggleSensitive: just('h'),
+  toggleComposeSpoilers: optionPlus('x'),
+  openMedia: just('e'),
+  onTranslate: just('t'),
+  goToHome: sequence('g', 'h'),
+  goToNotifications: sequence('g', 'n'),
+  goToLocal: sequence('g', 'l'),
+  goToFederated: sequence('g', 't'),
+  goToDirect: sequence('g', 'd'),
+  goToStart: sequence('g', 's'),
+  goToFavourites: sequence('g', 'f'),
+  goToPinned: sequence('g', 'p'),
+  goToProfile: sequence('g', 'u'),
+  goToBlocked: sequence('g', 'b'),
+  goToMuted: sequence('g', 'm'),
+  goToRequests: sequence('g', 'r'),
+  donate: sequence(
+    'up',
+    'up',
+    'down',
+    'down',
+    'left',
+    'right',
+    'left',
+    'right',
+    'b',
+    'a',
+    'enter',
+  ),
+} as const;
+
+type HotkeyName = keyof typeof hotkeyMatcherMap;
+
+type HandlerMap = Partial<Record<HotkeyName, (event: KeyboardEvent) => void>>;
+
+export function useAppHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
+  const ref = useRef<T>(null);
+  const bufferedKeys = useRef<string[]>([]);
+  const sequenceTimer = useRef<NodeJS.Timeout | null>(null);
+
+  /**
+   * Store the latest handlers object in a ref so we don't need to
+   * add it as a dependency to the main event listener effect
+   */
+  const handlersRef = useRef(handlers);
+  useEffect(() => {
+    handlersRef.current = handlers;
+  }, [handlers]);
+
+  useEffect(() => {
+    const element = ref.current ?? document;
+
+    function listener(event: Event) {
+      // Ignore key presses from input, textarea, or select elements
+      const tagName = (event.target as HTMLElement).tagName.toLowerCase();
+      const shouldHandleEvent =
+        !event.defaultPrevented &&
+        !['input', 'textarea', 'select'].includes(tagName);
+
+      if (shouldHandleEvent && isKeyboardEvent(event)) {
+        const matchCandidates: {
+          handler: (event: KeyboardEvent) => void;
+          priority: number;
+        }[] = [];
+
+        (Object.keys(hotkeyMatcherMap) as HotkeyName[]).forEach(
+          (handlerName) => {
+            const handler = handlersRef.current[handlerName];
+
+            if (handler) {
+              const hotkeyMatcher = hotkeyMatcherMap[handlerName];
+
+              const { isMatch, priority } = hotkeyMatcher(
+                event,
+                bufferedKeys.current,
+              );
+
+              if (isMatch) {
+                matchCandidates.push({ handler, priority });
+              }
+            }
+          },
+        );
+
+        // Sort all matches by priority
+        matchCandidates.sort((a, b) => b.priority - a.priority);
+
+        const bestMatchingHandler = matchCandidates.at(0)?.handler;
+        if (bestMatchingHandler) {
+          bestMatchingHandler(event);
+          event.stopPropagation();
+          event.preventDefault();
+        }
+
+        // Add last keypress to buffer
+        bufferedKeys.current.push(normalizeKey(event.key));
+
+        // Reset the timeout
+        if (sequenceTimer.current) {
+          clearTimeout(sequenceTimer.current);
+        }
+        sequenceTimer.current = setTimeout(() => {
+          bufferedKeys.current = [];
+        }, 1000);
+      }
+    }
+    element.addEventListener('keydown', listener);
+
+    return () => {
+      element.removeEventListener('keydown', listener);
+      if (sequenceTimer.current) {
+        clearTimeout(sequenceTimer.current);
+      }
+    };
+  }, []);
+
+  return ref;
+}
+
+export const Hotkeys: React.FC<{
+  handlers: HandlerMap;
+  global?: boolean;
+  focusable?: boolean;
+  children: React.ReactNode;
+}> = ({ handlers, global, focusable = true, children }) => {
+  const ref = useAppHotkeys<HTMLDivElement>(handlers);
+
+  return (
+    <div ref={global ? undefined : ref} tabIndex={focusable ? -1 : undefined}>
+      {children}
+    </div>
+  );
+};
