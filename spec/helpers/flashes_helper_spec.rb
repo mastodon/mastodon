@@ -10,6 +10,7 @@ RSpec.describe FlashesHelper do
       flash[:error] = 'an error'
       flash[:notice] = 'a notice'
       flash[:success] = 'a success'
+      flash[:warning] = 'a warning'
       flash[:not_user_facing] = 'a not user facing flash'
       # rubocop:enable Rails/I18nLocaleTexts
     end
@@ -19,7 +20,8 @@ RSpec.describe FlashesHelper do
         'alert' => 'an alert',
         'error' => 'an error',
         'notice' => 'a notice',
-        'success' => 'a success'
+        'success' => 'a success',
+        'warning' => 'a warning'
       )
     end
   end
