@@ -143,6 +143,10 @@ class ActivityPub::Activity
     @follow_request_from_object ||= FollowRequest.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
   end
 
+  def quote_request_from_object
+    @quote_request_from_object ||= Quote.find_by(quoted_account: @account, activity_uri: object_uri) unless object_uri.nil?
+  end
+
   def follow_from_object
     @follow_from_object ||= ::Follow.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
   end

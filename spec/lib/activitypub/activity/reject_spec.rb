@@ -125,5 +125,27 @@ RSpec.describe ActivityPub::Activity::Reject do
         expect(relay.reload.rejected?).to be true
       end
     end
+
+    context 'with a QuoteRequest' do
+      let(:status) { Fabricate(:status, account: recipient) }
+      let(:quoted_status) { Fabricate(:status, account: sender) }
+      let(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, activity_uri: 'https://abc-123/456') }
+      let(:approval_uri) { "https://#{sender.domain}/approvals/1" }
+
+      let(:object_json) do
+        {
+          id: 'https://abc-123/456',
+          type: 'QuoteRequest',
+          actor: ActivityPub::TagManager.instance.uri_for(recipient),
+          object: ActivityPub::TagManager.instance.uri_for(quoted_status),
+          instrument: ActivityPub::TagManager.instance.uri_for(status),
+        }.with_indifferent_access
+      end
+
+      it 'marks the quote as rejected' do
+        expect { subject.perform }
+          .to change { quote.reload.rejected? }.from(false).to(true)
+      end
+    end
   end
 end
