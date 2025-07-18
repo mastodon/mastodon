@@ -47,8 +47,12 @@ describe('emojifyElement', () => {
   const testElement = document.createElement('div');
   testElement.innerHTML = '<p>Hello 😊🇪🇺!</p><p>:custom:</p>';
 
+  function cloneTestElement() {
+    return testElement.cloneNode(true) as HTMLElement;
+  }
+
   test('emojifies custom emoji in native mode', async () => {
-    const emojifiedElement = await emojifyElement(testElement, {
+    const emojifiedElement = await emojifyElement(cloneTestElement(), {
       locales: ['en'],
       mode: EMOJI_MODE_NATIVE,
       currentLocale: 'en',
@@ -60,7 +64,7 @@ describe('emojifyElement', () => {
   });
 
   test('emojifies flag emoji in native-with-flags mode', async () => {
-    const emojifiedElement = await emojifyElement(testElement, {
+    const emojifiedElement = await emojifyElement(cloneTestElement(), {
       locales: ['en'],
       mode: EMOJI_MODE_NATIVE_WITH_FLAGS,
       currentLocale: 'en',
@@ -72,7 +76,7 @@ describe('emojifyElement', () => {
   });
 
   test('emojifies everything in twemoji mode', async () => {
-    const emojifiedElement = await emojifyElement(testElement, {
+    const emojifiedElement = await emojifyElement(cloneTestElement(), {
       locales: ['en'],
       mode: EMOJI_MODE_TWEMOJI,
       currentLocale: 'en',

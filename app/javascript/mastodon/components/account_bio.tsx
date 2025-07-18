@@ -2,6 +2,8 @@ import { useCallback } from 'react';
 
 import { useLinks } from 'mastodon/hooks/useLinks';
 
+import { EmojiHTML } from '../features/emoji/emoji_html';
+
 interface AccountBioProps {
   note: string;
   className: string;
@@ -31,10 +33,11 @@ export const AccountBio: React.FC<AccountBioProps> = ({
   return (
     <div
       className={`${className} translate`}
-      dangerouslySetInnerHTML={{ __html: note }}
       onClickCapture={handleClick}
       ref={handleNodeChange}
-    />
+    >
+      <EmojiHTML htmlString={note} />
+    </div>
   );
 };
 
