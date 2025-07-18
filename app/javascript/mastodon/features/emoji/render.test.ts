@@ -1,31 +1,44 @@
-import { EMOJI_MODE_NATIVE, EMOJI_MODE_NATIVE_WITH_FLAGS } from './constants';
+import {
+  EMOJI_MODE_NATIVE,
+  EMOJI_MODE_NATIVE_WITH_FLAGS,
+  EMOJI_MODE_TWEMOJI,
+} from './constants';
 import { emojifyElement, tokenizeText } from './render';
 
 describe('emojifyElement', () => {
   const testElement = document.createElement('div');
   testElement.innerHTML = '<p>Hello 😊🇪🇺!</p><p>:custom:</p>';
 
-  test('emojifies custom emoji in native mode', () => {
-    const emojifiedElement = emojifyElement(testElement, EMOJI_MODE_NATIVE);
+  test('emojifies custom emoji in native mode', async () => {
+    const emojifiedElement = await emojifyElement(testElement, {
+      locales: ['en'],
+      mode: EMOJI_MODE_NATIVE,
+      currentLocale: 'en',
+    });
     expect(emojifiedElement.innerHTML).toBe(
       '<p>Hello 😊🇪🇺!</p>' +
         '<p><img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:"></p>',
     );
   });
 
-  test('emojifies flag emoji in native-with-flags mode', () => {
-    const emojifiedElement = emojifyElement(
-      testElement,
-      EMOJI_MODE_NATIVE_WITH_FLAGS,
-    );
+  test('emojifies flag emoji in native-with-flags mode', async () => {
+    const emojifiedElement = await emojifyElement(testElement, {
+      locales: ['en'],
+      mode: EMOJI_MODE_NATIVE_WITH_FLAGS,
+      currentLocale: 'en',
+    });
     expect(emojifiedElement.innerHTML).toBe(
       '<p>Hello 😊<img draggable="false" class="emojione" alt="🇪🇺" data-code="1F1EA-1F1FA">!</p>' +
         '<p><img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:"></p>',
     );
   });
 
-  test('emojifies everything in twemoji mode', () => {
-    const emojifiedElement = emojifyElement(testElement, 'twemoji');
+  test('emojifies everything in twemoji mode', async () => {
+    const emojifiedElement = await emojifyElement(testElement, {
+      locales: ['en'],
+      mode: EMOJI_MODE_TWEMOJI,
+      currentLocale: 'en',
+    });
     expect(emojifiedElement.innerHTML).toBe(
       '<p>Hello <img draggable="false" class="emojione" alt="😊" data-code="1F60A">' +
         '<img draggable="false" class="emojione" alt="🇪🇺" data-code="1F1EA-1F1FA">!</p>' +
