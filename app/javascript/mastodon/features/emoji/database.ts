@@ -1,6 +1,6 @@
 import { SUPPORTED_LOCALES } from 'emojibase';
 import type { Locale } from 'emojibase';
-import type { DBSchema } from 'idb';
+import type { DBSchema, IDBPDatabase } from 'idb';
 import { openDB } from 'idb';
 
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
@@ -38,73 +38,92 @@ type LocaleTables = Record<Locale, LocaleTable>;
 
 const SCHEMA_VERSION = 1;
 
-const db = await openDB<EmojiDB>('mastodon-emoji', SCHEMA_VERSION, {
-  upgrade(database) {
-    const customTable = database.createObjectStore('custom', {
-      keyPath: 'shortcode',
-      autoIncrement: false,
-    });
-    customTable.createIndex('category', 'category');
+let db: IDBPDatabase<EmojiDB> | null = null;
 
-    database.createObjectStore('etags');
-
-    for (const locale of SUPPORTED_LOCALES) {
-      const localeTable = database.createObjectStore(locale, {
-        keyPath: 'hexcode',
+async function loadDB() {
+  if (db) {
+    return db;
+  }
+  db = await openDB<EmojiDB>('mastodon-emoji', SCHEMA_VERSION, {
+    upgrade(database) {
+      const customTable = database.createObjectStore('custom', {
+        keyPath: 'shortcode',
         autoIncrement: false,
       });
-      localeTable.createIndex('group', 'group');
-      localeTable.createIndex('label', 'label');
-      localeTable.createIndex('order', 'order');
-      localeTable.createIndex('tags', 'tags', { multiEntry: true });
-    }
-  },
-});
+      customTable.createIndex('category', 'category');
+
+      database.createObjectStore('etags');
+
+      for (const locale of SUPPORTED_LOCALES) {
+        const localeTable = database.createObjectStore(locale, {
+          keyPath: 'hexcode',
+          autoIncrement: false,
+        });
+        localeTable.createIndex('group', 'group');
+        localeTable.createIndex('label', 'label');
+        localeTable.createIndex('order', 'order');
+        localeTable.createIndex('tags', 'tags', { multiEntry: true });
+      }
+    },
+  });
+  return db;
+}
 
 export async function putEmojiData(emojis: UnicodeEmojiData[], locale: Locale) {
+  const db = await loadDB();
   const trx = db.transaction(locale, 'readwrite');
   await Promise.all(emojis.map((emoji) => trx.store.put(emoji)));
   await trx.done;
 }
 
 export async function putCustomEmojiData(emojis: CustomEmojiData[]) {
+  const db = await loadDB();
   const trx = db.transaction('custom', 'readwrite');
   await Promise.all(emojis.map((emoji) => trx.store.put(emoji)));
   await trx.done;
 }
 
-export function putLatestEtag(etag: string, localeString: string) {
+export async function putLatestEtag(etag: string, localeString: string) {
   const locale = toSupportedLocaleOrCustom(localeString);
+  const db = await loadDB();
   return db.put('etags', etag, locale);
 }
 
-export function searchEmojiByHexcode(hexcode: string, localeString: string) {
+export async function searchEmojiByHexcode(
+  hexcode: string,
+  localeString: string,
+) {
   const locale = toSupportedLocale(localeString);
+  const db = await loadDB();
   return db.get(locale, hexcode);
 }
 
-export function searchEmojisByHexcodes(
+export async function searchEmojisByHexcodes(
   hexcodes: string[],
   localeString: string,
 ) {
   const locale = toSupportedLocale(localeString);
+  const db = await loadDB();
   return db.getAll(
     locale,
     IDBKeyRange.bound(hexcodes[0], hexcodes[hexcodes.length - 1]),
   );
 }
 
-export function searchEmojiByTag(tag: string, localeString: string) {
+export async function searchEmojiByTag(tag: string, localeString: string) {
   const locale = toSupportedLocale(localeString);
   const range = IDBKeyRange.only(tag.toLowerCase());
+  const db = await loadDB();
   return db.getAllFromIndex(locale, 'tags', range);
 }
 
-export function searchCustomEmojiByShortcode(shortcode: string) {
+export async function searchCustomEmojiByShortcode(shortcode: string) {
+  const db = await loadDB();
   return db.get('custom', shortcode);
 }
 
-export function searchCustomEmojisByShortcodes(shortcodes: string[]) {
+export async function searchCustomEmojisByShortcodes(shortcodes: string[]) {
+  const db = await loadDB();
   return db.getAll(
     'custom',
     IDBKeyRange.bound(shortcodes[0], shortcodes[shortcodes.length - 1]),
@@ -114,6 +133,7 @@ export function searchCustomEmojisByShortcodes(shortcodes: string[]) {
 export async function findMissingLocales(localeStrings: string[]) {
   const locales = new Set(localeStrings.map(toSupportedLocale));
   const missingLocales: Locale[] = [];
+  const db = await loadDB();
   for (const locale of locales) {
     const rowCount = await db.count(locale);
     if (!rowCount) {
@@ -125,6 +145,7 @@ export async function findMissingLocales(localeStrings: string[]) {
 
 export async function loadLatestEtag(localeString: string) {
   const locale = toSupportedLocaleOrCustom(localeString);
+  const db = await loadDB();
   const rowCount = await db.count(locale);
   if (!rowCount) {
     return null; // No data for this locale, return null even if there is an etag.
