@@ -5,9 +5,9 @@ import classNames from 'classnames';
 
 import { replyComposeById } from 'mastodon/actions/compose';
 import { navigateToStatus } from 'mastodon/actions/statuses';
-import { AppHotkeys } from 'mastodon/components/app_hotkeys';
 import { Avatar } from 'mastodon/components/avatar';
 import { AvatarGroup } from 'mastodon/components/avatar_group';
+import { Hotkeys } from 'mastodon/components/hotkeys';
 import type { IconProp } from 'mastodon/components/icon';
 import { Icon } from 'mastodon/components/icon';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
@@ -90,7 +90,7 @@ export const NotificationGroupWithStatus: React.FC<{
   );
 
   return (
-    <AppHotkeys handlers={handlers}>
+    <Hotkeys handlers={handlers}>
       <div
         role='button'
         className={classNames(
@@ -148,6 +148,6 @@ export const NotificationGroupWithStatus: React.FC<{
           )}
         </div>
       </div>
-    </AppHotkeys>
+    </Hotkeys>
   );
 };

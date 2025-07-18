@@ -132,7 +132,7 @@ export function useAppHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
   return ref;
 }
 
-export const AppHotkeys: React.FC<{
+export const Hotkeys: React.FC<{
   handlers: HandlerMap;
   global?: boolean;
   focusable?: boolean;
