@@ -317,54 +317,6 @@ RSpec.describe Status do
     end
   end
 
-  describe '.mutes_map' do
-    subject { described_class.mutes_map([status.conversation.id], account) }
-
-    let(:status)  { Fabricate(:status) }
-    let(:account) { Fabricate(:account) }
-
-    it 'returns a hash' do
-      expect(subject).to be_a Hash
-    end
-
-    it 'contains true value' do
-      account.mute_conversation!(status.conversation)
-      expect(subject[status.conversation.id]).to be true
-    end
-  end
-
-  describe '.favourites_map' do
-    subject { described_class.favourites_map([status], account) }
-
-    let(:status)  { Fabricate(:status) }
-    let(:account) { Fabricate(:account) }
-
-    it 'returns a hash' do
-      expect(subject).to be_a Hash
-    end
-
-    it 'contains true value' do
-      Fabricate(:favourite, status: status, account: account)
-      expect(subject[status.id]).to be true
-    end
-  end
-
-  describe '.reblogs_map' do
-    subject { described_class.reblogs_map([status], account) }
-
-    let(:status)  { Fabricate(:status) }
-    let(:account) { Fabricate(:account) }
-
-    it 'returns a hash' do
-      expect(subject).to be_a Hash
-    end
-
-    it 'contains true value' do
-      Fabricate(:status, account: account, reblog: status)
-      expect(subject[status.id]).to be true
-    end
-  end
-
   describe '.only_reblogs' do
     let!(:status) { Fabricate :status }
     let!(:reblog) { Fabricate :status, reblog: Fabricate(:status) }
