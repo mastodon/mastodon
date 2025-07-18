@@ -36,7 +36,7 @@ class AnnualReport::Archetype < AnnualReport::Source
   end
 
   def replies_count
-    @replies_count ||= report_statuses.where.not(in_reply_to_id: nil).not_replying_to_account(@account).count
+    @replies_count ||= report_statuses.only_replies.not_replying_to_account(@account).count
   end
 
   def standalone_count
