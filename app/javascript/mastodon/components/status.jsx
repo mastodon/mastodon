@@ -323,12 +323,10 @@ class Status extends ImmutablePureComponent {
   };
 
   handleHotkeyMoveUp = e => {
-    console.log('Move up in status!', e, this.props.onMoveUp)
     this.props.onMoveUp?.(this.props.status.get('id'), this.node.getAttribute('data-featured'));
   };
 
   handleHotkeyMoveDown = e => {
-    console.log('Move down in status!', e, this.props.onMoveDown)
     this.props.onMoveDown?.(this.props.status.get('id'), this.node.getAttribute('data-featured'));
   };
 
