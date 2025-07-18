@@ -19,7 +19,7 @@ import { FollowButton } from 'mastodon/components/follow_button';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { useFetchFamiliarFollowers } from 'mastodon/features/account_timeline/hooks/familiar_followers';
-import { domain, isFeatureEnabled } from 'mastodon/initial_state';
+import { domain } from 'mastodon/initial_state';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
@@ -102,11 +102,7 @@ export const HoverCardAccount = forwardRef<
             <>
               <div className='hover-card__text-row'>
                 <AccountBio
-                  note={
-                    isFeatureEnabled('modern_emojis')
-                      ? account.note
-                      : account.note_emojified
-                  }
+                  accountId={account.id}
                   className='hover-card__bio'
                 />
                 <AccountFields fields={account.fields} limit={2} />

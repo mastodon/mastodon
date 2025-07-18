@@ -55,6 +55,8 @@ export type EmojiLoadedState = EmojiStateUnicode | EmojiStateCustom;
 
 export type EmojiStateMap = Map<string, EmojiState>;
 
+export type ExtraCustomEmojiMap = Record<string, ApiCustomEmojiJSON>;
+
 export interface TwemojiBorderInfo {
   hexCode: string;
   hasLightBorder: boolean;
