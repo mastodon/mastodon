@@ -2,6 +2,7 @@
 
 class Api::V1::StatusesController < Api::BaseController
   include Authorization
+  include AsyncRefreshesConcern
 
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :update, :destroy]
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :update, :destroy]
@@ -57,9 +58,17 @@ class Api::V1::StatusesController < Api::BaseController
     @context = Context.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
     statuses = [@status] + @context.ancestors + @context.descendants
 
-    render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
+    refresh_key = "context:#{@status.id}:refresh"
+    async_refresh = AsyncRefresh.new(refresh_key)
 
-    ActivityPub::FetchAllRepliesWorker.perform_async(@status.id) if !current_account.nil? && @status.should_fetch_replies?
+    if async_refresh.running?
+      add_async_refresh_header(async_refresh)
+    elsif !current_account.nil? && @status.should_fetch_replies?
+      add_async_refresh_header(AsyncRefresh.create(refresh_key))
+      ActivityPub::FetchAllRepliesWorker.perform_async(@status.id)
+    end
+
+    render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
   end
 
   def create
