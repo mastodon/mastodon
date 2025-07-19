@@ -230,4 +230,10 @@ namespace :admin do
   end
 
   resources :software_updates, only: [:index]
+
+  resources :username_blocks, except: [:show] do
+    collection do
+      post :batch
+    end
+  end
 end
