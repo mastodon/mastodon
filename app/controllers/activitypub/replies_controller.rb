@@ -64,27 +64,39 @@ class ActivityPub::RepliesController < ActivityPub::BaseController
   def next_page
     if only_other_accounts?
       # Only consider remote accounts
-      return nil if @replies.size < DESCENDANTS_LIMIT
+      return nil if fewer_replies_than_limit?
 
       account_status_replies_url(
         @account,
         @status,
         page: true,
-        min_id: @replies&.last&.id,
+        min_id: last_reply_id,
         only_other_accounts: true
       )
     else
       # For now, we're serving only self-replies, but next page might be other accounts
-      next_only_other_accounts = @replies&.last&.account_id != @account.id || @replies.size < DESCENDANTS_LIMIT
+      next_only_other_accounts = last_reply_not_from_account? || fewer_replies_than_limit?
 
       account_status_replies_url(
         @account,
         @status,
         page: true,
-        min_id: next_only_other_accounts ? nil : @replies&.last&.id,
+        min_id: next_only_other_accounts ? nil : last_reply_id,
         only_other_accounts: next_only_other_accounts
       )
     end
+  end
+
+  def fewer_replies_than_limit?
+    @replies.size < DESCENDANTS_LIMIT
+  end
+
+  def last_reply_not_from_account?
+    @replies&.last&.account_id != @account.id
+  end
+
+  def last_reply_id
+    @replies&.last&.id
   end
 
   def page_params
