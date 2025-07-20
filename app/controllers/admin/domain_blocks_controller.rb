@@ -8,6 +8,7 @@ module Admin
       before_action :populate_domain_block_from_params
       before_action :prevent_downgrade
       before_action :attempt_transparent_upgrade, if: :existing_domain_block
+      before_action :verify_confirmation_needed
     end
 
     PERMITTED_PARAMS = %i(
@@ -44,9 +45,6 @@ module Admin
     end
 
     def create
-      # Require explicit confirmation when suspending
-      return render :confirm_suspension if requires_confirmation?
-
       if @domain_block.save
         DomainBlockWorker.perform_async(@domain_block.id)
         log_action :create, @domain_block
@@ -106,6 +104,11 @@ module Admin
         @domain_block = existing_domain_block
         @domain_block.assign_attributes(resource_params)
       end
+    end
+
+    def verify_confirmation_needed
+      # Require explicit confirmation when suspending
+      render :confirm_suspension if requires_confirmation?
     end
 
     def existing_domain_block
