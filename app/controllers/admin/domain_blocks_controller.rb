@@ -4,6 +4,8 @@ module Admin
   class DomainBlocksController < BaseController
     before_action :set_domain_block, only: [:destroy, :edit, :update]
 
+    before_action :authorize_domain_block_create, only: [:batch, :new, :edit, :create]
+
     PERMITTED_PARAMS = %i(
       domain
       obfuscate
@@ -17,7 +19,6 @@ module Admin
     PERMITTED_UPDATE_PARAMS = PERMITTED_PARAMS.without(:domain).freeze
 
     def batch
-      authorize :domain_block, :create?
       @form = Form::DomainBlockBatch.new(form_domain_block_batch_params.merge(current_account: current_account, action: action_from_button))
       @form.save
     rescue ActionController::ParameterMissing
@@ -31,17 +32,12 @@ module Admin
     end
 
     def new
-      authorize :domain_block, :create?
       @domain_block = DomainBlock.new(domain: params[:_domain])
     end
 
-    def edit
-      authorize :domain_block, :create?
-    end
+    def edit; end
 
     def create
-      authorize :domain_block, :create?
-
       @domain_block = DomainBlock.new(resource_params)
       existing_domain_block = resource_params[:domain].present? ? DomainBlock.rule_for(resource_params[:domain]) : nil
 
@@ -96,6 +92,10 @@ module Admin
     end
 
     private
+
+    def authorize_domain_block_create
+      authorize :domain_block, :create?
+    end
 
     def set_domain_block
       @domain_block = DomainBlock.find(params[:id])
