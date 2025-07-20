@@ -506,6 +506,8 @@ RSpec.describe Account do
     context 'when account is local' do
       subject { Fabricate.build :account, domain: nil }
 
+      let(:domains_limit) { described_class::ATTRIBUTION_DOMAINS_LIMIT }
+
       context 'with an existing differently-cased username account' do
         before { Fabricate :account, username: 'the_doctor' }
 
@@ -547,8 +549,8 @@ RSpec.describe Account do
       it { is_expected.to validate_absence_of(:shared_inbox_url).on(:create) }
       it { is_expected.to validate_absence_of(:uri).on(:create) }
 
-      it { is_expected.to allow_values([], ['example.com'], (1..100).to_a).for(:attribution_domains) }
-      it { is_expected.to_not allow_values(['example com'], ['@'], (1..101).to_a).for(:attribution_domains) }
+      it { is_expected.to allow_values([], ['example.com'], (1..domains_limit).to_a).for(:attribution_domains) }
+      it { is_expected.to_not allow_values(['example com'], ['@'], (1..(domains_limit + 1)).to_a).for(:attribution_domains) }
     end
 
     context 'when account is remote' do

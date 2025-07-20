@@ -939,6 +939,7 @@ body > [data-popper-placement] {
         line-height: 20px;
         letter-spacing: 0.1px;
         color: $highlight-text-color;
+        background-color: var(--input-background-color);
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -1856,7 +1857,10 @@ body > [data-popper-placement] {
 }
 
 .status__quote {
-  --quote-margin: 36px;
+  // --status-gutter-width is currently only set inside of
+  // .notification-ungrouped, so everywhere else this will fall back
+  // to the pixel values
+  --quote-margin: var(--status-gutter-width, 36px);
 
   position: relative;
   margin-block-start: 16px;
@@ -1867,7 +1871,7 @@ body > [data-popper-placement] {
   border: var(--nested-card-border);
 
   @container (width > 460px) {
-    --quote-margin: 56px;
+    --quote-margin: var(--status-gutter-width, 56px);
   }
 }
 
@@ -2848,7 +2852,6 @@ a.account__display-name {
     &__pane {
       height: 100%;
       overflow: hidden;
-      pointer-events: none;
       display: flex;
       justify-content: flex-end;
       min-width: 285px;
@@ -2860,7 +2863,6 @@ a.account__display-name {
       &__inner {
         position: fixed;
         width: 285px;
-        pointer-events: auto;
         height: 100%;
       }
     }
@@ -3874,16 +3876,18 @@ a.account__display-name {
   display: flex;
   align-items: center;
   gap: 8px;
+  width: 100%;
+  padding: 12px;
   font-size: 16px;
   font-weight: 400;
-  padding: 12px;
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
-  border: 0;
-  background: transparent;
   color: $secondary-text-color;
+  background: transparent;
+  border: 0;
   border-left: 4px solid transparent;
+  box-sizing: border-box;
 
   &:hover,
   &:focus,
@@ -10816,21 +10820,23 @@ noscript {
     }
   }
 
-  .status {
+  .status:not(.status--is-quote) {
     border: 0;
     padding: 0;
-
-    &__avatar {
-      width: 40px;
-      height: 40px;
-    }
   }
 
   .status__wrapper-direct {
     background: transparent;
   }
 
-  $icon-margin: 48px; // 40px avatar + 8px gap
+  .status {
+    // 40px avatar + 8px gap
+    --status-gutter-width: 48px;
+  }
+
+  .status--is-quote {
+    --status-gutter-width: 0;
+  }
 
   .status__content,
   .status__action-bar,
@@ -10844,16 +10850,16 @@ noscript {
   .hashtag-bar,
   .content-warning,
   .filter-warning {
-    margin-inline-start: $icon-margin;
-    width: calc(100% - $icon-margin);
+    margin-inline-start: var(--status-gutter-width);
+    width: calc(100% - var(--status-gutter-width));
   }
 
   .more-from-author {
-    width: calc(100% - $icon-margin + 2px);
+    width: calc(100% - var(--status-gutter-width) + 2px);
   }
 
   .status__content__read-more-button {
-    margin-inline-start: $icon-margin;
+    margin-inline-start: var(--status-gutter-width);
   }
 
   .notification__report {

@@ -6,66 +6,47 @@ RSpec.describe ActivityPub::Activity::Accept do
   let(:sender)    { Fabricate(:account) }
   let(:recipient) { Fabricate(:account) }
 
-  let(:json) do
-    {
-      '@context': 'https://www.w3.org/ns/activitystreams',
-      id: 'foo',
-      type: 'Accept',
-      actor: ActivityPub::TagManager.instance.uri_for(sender),
-      object: {
-        id: 'bar',
-        type: 'Follow',
-        actor: ActivityPub::TagManager.instance.uri_for(recipient),
-        object: ActivityPub::TagManager.instance.uri_for(sender),
-      },
-    }.with_indifferent_access
-  end
-
   describe '#perform' do
     subject { described_class.new(json, sender) }
 
-    before do
-      allow(RemoteAccountRefreshWorker).to receive(:perform_async)
-      Fabricate(:follow_request, account: recipient, target_account: sender)
-      subject.perform
-    end
+    context 'with a Follow request' do
+      let(:json) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Accept',
+          actor: ActivityPub::TagManager.instance.uri_for(sender),
+          object: {
+            id: 'https://abc-123/456',
+            type: 'Follow',
+            actor: ActivityPub::TagManager.instance.uri_for(recipient),
+            object: ActivityPub::TagManager.instance.uri_for(sender),
+          },
+        }.deep_stringify_keys
+      end
 
-    it 'creates a follow relationship' do
-      expect(recipient.following?(sender)).to be true
-    end
+      context 'with a regular Follow' do
+        before do
+          Fabricate(:follow_request, account: recipient, target_account: sender)
+        end
 
-    it 'removes the follow request' do
-      expect(recipient.requested?(sender)).to be false
-    end
+        it 'creates a follow relationship, removes the follow request, and queues a refresh' do
+          expect { subject.perform }
+            .to change { recipient.following?(sender) }.from(false).to(true)
+            .and change { recipient.requested?(sender) }.from(true).to(false)
 
-    it 'queues a refresh' do
-      expect(RemoteAccountRefreshWorker).to have_received(:perform_async).with(sender.id)
-    end
-  end
+          expect(RemoteAccountRefreshWorker).to have_enqueued_sidekiq_job(sender.id)
+        end
+      end
 
-  context 'when given a relay' do
-    subject { described_class.new(json, sender) }
+      context 'when given a relay' do
+        let!(:relay) { Fabricate(:relay, state: :pending, follow_activity_id: 'https://abc-123/456') }
 
-    let!(:relay) { Fabricate(:relay, state: :pending, follow_activity_id: 'https://abc-123/456') }
-
-    let(:json) do
-      {
-        '@context': 'https://www.w3.org/ns/activitystreams',
-        id: 'foo',
-        type: 'Accept',
-        actor: ActivityPub::TagManager.instance.uri_for(sender),
-        object: {
-          id: 'https://abc-123/456',
-          type: 'Follow',
-          actor: ActivityPub::TagManager.instance.uri_for(recipient),
-          object: ActivityPub::TagManager.instance.uri_for(sender),
-        },
-      }.with_indifferent_access
-    end
-
-    it 'marks the relay as accepted' do
-      subject.perform
-      expect(relay.reload.accepted?).to be true
+        it 'marks the relay as accepted' do
+          expect { subject.perform }
+            .to change { relay.reload.accepted? }.from(false).to(true)
+        end
+      end
     end
   end
 end

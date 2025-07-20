@@ -405,9 +405,69 @@ nan:
         remove_all_data: Tse ē tī lí ê服侍器內底，kā tuì tsit ê域名ê口座來ê所有內容、媒體kap個人資料lóng thâi掉。
         stop_communication: Lí ê服侍器ē停止kap hia ê服侍器聯絡。
         title: 確認封鎖域名 %{domain}
+        undo_relationships: Tse ē取消任何ê佇in ê服侍器ê口座kap lí ê之間ê跟tuè關係。
+      created_msg: 當leh封鎖網域
+      destroyed_msg: 已經取消封鎖域名
+      domain: 域名
       edit: 編輯域名封鎖
+      existing_domain_block: Lí已經kā %{name} 下koh khah嚴ê限制。
+      existing_domain_block_html: Lí已經kā %{name} 下koh khah嚴ê限制，lí著先<a href="%{unblock_url}">解除封鎖</a>。
       export: 輸出
       import: 輸入
+      new:
+        create: 加添封鎖
+        hint: 封鎖域名bē當擋口座記錄受加添佇資料庫，m̄-kú ē 自動自尾kàu頭，kā hia ê口座使用指定ê管理方式。
+        severity:
+          desc_html: "<strong>限制</strong>ē kā hit ê域名ê口座所送ê PO文，設做kan-ta跟tuè伊ê tsiah通看見。<strong>中止權限</strong>ē thâi掉tī lí ê 服侍器內底，所有tuì hit ê域名ê口座來ê內容、媒體kap個人資料。Nā kan-ta beh拒絕媒體檔案，請用<strong>無</strong>。"
+          noop: 無
+          silence: 限制
+          suspend: 中止權限
+        title: 新ê域名封鎖
+      no_domain_block_selected: 因為無揀任何域名封鎖，所以lóng無改變
+      not_permitted: Lí無允准行tsit ê動作
+      obfuscate: Kā域名舞bē清
+      obfuscate_hint: Nā beh啟用廣告域名列單ê限制，tiō tī列單kā域名ê部份舞buē清。
+      private_comment: 私人評論
+      private_comment_hint: 請評論關係tsit ê域名ê制限，hōo管理員做內部ê路用。
+      public_comment: 公開ê評論
+      public_comment_hint: 請為一般大眾評論關係tsit ê域名ê制限，若beh啟用廣告域名列單ê限制。
+      reject_media: 拒絕媒體檔案
+      reject_media_hint: Thâi掉本地tiông ê媒體檔案，mā bē koh kā任何tuì hia來ê載落去。Hām中止權限無tī-tāi
+      reject_reports: 拒絕檢舉
+      reject_reports_hint: 忽略ta̍k ê tuì tsit ê域名來ê檢舉，hām中止權限無tī-tāi。
+      undo: 取消域名封鎖
+      view: 檢視域名封鎖
+    email_domain_blocks:
+      add_new: 加新ê
+      allow_registrations_with_approval: 許可了後允准註冊
+      attempts_over_week:
+        other: 頂禮拜lóng總有 %{count} pái試註冊
+      created_msg: 成功封鎖電子phue域名
+      delete: Thâi掉
+      dns:
+        types:
+          mx: MX記錄
+      domain: 域名
+      new:
+        create: 加添域名
+        resolve: 解析域名
+        title: 封鎖新ê電子phue網域
+      no_email_domain_block_selected: 因為無揀任何電子phue域名封鎖，所以lóng無改變
+      not_permitted: 無允准
+      resolved_through_html: 通過 %{domain} 解析
+      title: 封鎖ê電子phue網域
+    export_domain_allows:
+      new:
+        title: 輸入允准ê域名
+      no_file: Iáu bē揀檔案
+    export_domain_blocks:
+      import:
+        description_html: Lí teh-beh輸入封鎖域名ê列單。請koh kā tsit ê列單斟酌檢查，特別是lí無家tī編tsit ê列單ê時。
+        existing_relationships_warning: 有ê跟tuè關係
+        private_comment_description_html: 為著幫tsān lí追蹤輸入ê封鎖tuì toh來，輸入ê封鎖ē kap下kha ê私人評論sann-kap加添：<q>%{comment}</q>
+        private_comment_template: 佇 %{date} tuì %{source} 輸入
+        title: 輸入域名封鎖
+      invalid_domain_block: 因為下kha ê錯誤，làng過tsi̍t ê以上ê域名封鎖：%{error}
     instances:
       dashboard:
         instance_languages_dimension: Tsia̍p用ê語言

@@ -74,18 +74,18 @@ vi:
           subject: 'Mastodon: Xóa khóa bảo mật'
           title: Một trong những khóa bảo mật của bạn vừa bị xóa
       webauthn_disabled:
-        explanation: Xác minh bằng khóa bảo mật đã bị vô hiệu hóa đối với tài khoản của bạn.
+        explanation: Xác thực bằng khóa bảo mật đã bị vô hiệu hóa đối với tài khoản của bạn.
         extra: Hiện tại, bạn chỉ có thể đăng nhập bằng cách sử dụng mã token được tạo bởi ứng dụng TOTP được ghép nối.
         subject: 'Mastodon: Vô hiệu hóa xác thực bằng khóa bảo mật'
         title: Đã vô hiệu hóa khóa bảo mật
       webauthn_enabled:
         explanation: Khóa bảo mật đã được bật cho tài khoản của bạn.
         extra: Hiện bạn đã có thể dùng khóa bảo mật để đăng nhập.
-        subject: 'Mastodon: Kích hoạt xác minh bằng khóa bảo mật'
+        subject: 'Mastodon: Kích hoạt xác thực bằng khóa bảo mật'
         title: Đã kích hoạt khóa bảo mật
     omniauth_callbacks:
-      failure: Không thể xác minh bạn từ %{kind} bởi vì "%{reason}".
-      success: Xác minh tài khoản %{kind} thành công.
+      failure: Không thể xác thực bạn từ %{kind} bởi vì "%{reason}".
+      success: Xác thực tài khoản %{kind} thành công.
     passwords:
       no_token: Bạn chỉ có thể truy cập trang này khi nhận được email khôi phục mật khẩu. Nếu vẫn không được, vui lòng chắc chắn rằng bạn đã dùng chính xác URL được cung cấp.
       send_instructions: Nếu địa chỉ email của bạn tồn tại trong cơ sở dữ liệu của chúng tôi, bạn sẽ nhận được liên kết khôi phục mật khẩu sau vài phút. Xin kiểm tra thư rác nếu như bạn không thấy email này.

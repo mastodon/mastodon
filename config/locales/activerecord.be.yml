@@ -15,6 +15,9 @@ be:
       user/invite_request:
         text: Прычына
     errors:
+      attributes:
+        domain:
+          invalid: не з’яўляецца сапраўдным даменным імем
       models:
         account:
           attributes:
@@ -37,7 +40,7 @@ be:
           attributes:
             account_id:
               taken: ужо ў спісе
-          must_be_following: мусіць быць падпісаным уліковым запісам
+          must_be_following: мусіць быць карыстальнікам у вашых падпісках
         status:
           attributes:
             reblog:

@@ -61,6 +61,7 @@ sv:
         setting_display_media_default: Dölj media markerad som känslig
         setting_display_media_hide_all: Dölj alltid all media
         setting_display_media_show_all: Visa alltid media markerad som känslig
+        setting_emoji_style: Hur emojier visas. "Automatiskt" kommer att försöka använda webbläsarens emojier, men faller tillbaka till Twemoji för äldre webbläsare.
         setting_system_scrollbars_ui: Gäller endast för webbläsare som är baserade på Safari och Chrome
         setting_use_blurhash: Gradienter är baserade på färgerna av de dolda objekten men fördunklar alla detaljer
         setting_use_pending_items: Dölj tidslinjeuppdateringar bakom ett klick istället för att automatiskt bläddra i flödet
@@ -149,9 +150,6 @@ sv:
         min_age: Bör inte vara lägre än den minimiålder som krävs enligt lagarna i din jurisdiktion.
       user:
         chosen_languages: Vid aktivering visas bara inlägg på dina valda språk i offentliga tidslinjer
-        date_of_birth:
-          one: Vi måste se till att du är minst %{count} för att använda Mastodon. Vi lagrar inte denna information.
-          other: Vi måste se till att du är minst %{count} för att använda Mastodon. Vi lagrar inte denna information.
         role: Rollen styr vilka behörigheter användaren har.
       user_role:
         color: Färgen som ska användas för rollen i användargränssnittet, som RGB i hex-format
@@ -241,6 +239,7 @@ sv:
         setting_display_media_default: Standard
         setting_display_media_hide_all: Dölj alla
         setting_display_media_show_all: Visa alla
+        setting_emoji_style: Emoji-stil
         setting_expand_spoilers: Utöka alltid tutningar markerade med innehållsvarningar
         setting_hide_network: Göm ditt nätverk
         setting_missing_alt_text_modal: Visa bekräftelsedialog innan du skickar media utan alt-text
