@@ -7,6 +7,7 @@ module Admin
     with_options only: :create do
       before_action :populate_domain_block_from_params
       before_action :prevent_downgrade
+      before_action :attempt_transparent_upgrade, if: :existing_domain_block
     end
 
     PERMITTED_PARAMS = %i(
@@ -43,12 +44,6 @@ module Admin
     end
 
     def create
-      # Allow transparently upgrading a domain block
-      if existing_domain_block.present? && existing_domain_block.domain == TagManager.instance.normalize_domain(@domain_block.domain.strip)
-        @domain_block = existing_domain_block
-        @domain_block.assign_attributes(resource_params)
-      end
-
       # Require explicit confirmation when suspending
       return render :confirm_suspension if requires_confirmation?
 
@@ -102,6 +97,14 @@ module Admin
         flash.now[:alert] = I18n.t('admin.domain_blocks.existing_domain_block_html', name: existing_domain_block.domain, unblock_url: admin_domain_block_path(existing_domain_block)).html_safe
         @domain_block.errors.delete(:domain)
         render :new
+      end
+    end
+
+    def attempt_transparent_upgrade
+      # Allow transparently upgrading a domain block when existing is an exact match for domain value
+      if existing_domain_block.domain == TagManager.instance.normalize_domain(@domain_block.domain.strip)
+        @domain_block = existing_domain_block
+        @domain_block.assign_attributes(resource_params)
       end
     end
 
