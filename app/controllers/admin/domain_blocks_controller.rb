@@ -3,8 +3,8 @@
 module Admin
   class DomainBlocksController < BaseController
     before_action :set_domain_block, only: [:destroy, :edit, :update]
-
     before_action :authorize_domain_block_create, only: [:batch, :new, :edit, :create]
+    before_action :populate_domain_block_from_params, only: :create
 
     PERMITTED_PARAMS = %i(
       domain
@@ -38,8 +38,6 @@ module Admin
     def edit; end
 
     def create
-      @domain_block = DomainBlock.new(resource_params)
-
       # Disallow accidentally downgrading a domain block
       if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
         @domain_block.validate
@@ -94,6 +92,10 @@ module Admin
 
     def authorize_domain_block_create
       authorize :domain_block, :create?
+    end
+
+    def populate_domain_block_from_params
+      @domain_block = DomainBlock.new(resource_params)
     end
 
     def existing_domain_block
