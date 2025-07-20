@@ -41,7 +41,6 @@ module Admin
 
     def create
       @domain_block = DomainBlock.new(resource_params)
-      existing_domain_block = resource_params[:domain].present? ? DomainBlock.rule_for(resource_params[:domain]) : nil
 
       # Disallow accidentally downgrading a domain block
       if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
@@ -97,6 +96,10 @@ module Admin
 
     def authorize_domain_block_create
       authorize :domain_block, :create?
+    end
+
+    def existing_domain_block
+      @existing_domain_block ||= DomainBlock.rule_for(resource_params[:domain]) if resource_params[:domain].present?
     end
 
     def set_domain_block
