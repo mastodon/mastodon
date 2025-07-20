@@ -4,7 +4,10 @@ module Admin
   class DomainBlocksController < BaseController
     before_action :set_domain_block, only: [:destroy, :edit, :update]
     before_action :authorize_domain_block_create, only: [:batch, :new, :create]
-    before_action :populate_domain_block_from_params, only: :create
+    with_options only: :create do
+      before_action :populate_domain_block_from_params
+      before_action :prevent_downgrade
+    end
 
     PERMITTED_PARAMS = %i(
       domain
@@ -40,14 +43,6 @@ module Admin
     end
 
     def create
-      # Disallow accidentally downgrading a domain block
-      if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
-        @domain_block.validate
-        flash.now[:alert] = I18n.t('admin.domain_blocks.existing_domain_block_html', name: existing_domain_block.domain, unblock_url: admin_domain_block_path(existing_domain_block)).html_safe
-        @domain_block.errors.delete(:domain)
-        return render :new
-      end
-
       # Allow transparently upgrading a domain block
       if existing_domain_block.present? && existing_domain_block.domain == TagManager.instance.normalize_domain(@domain_block.domain.strip)
         @domain_block = existing_domain_block
@@ -98,6 +93,16 @@ module Admin
 
     def populate_domain_block_from_params
       @domain_block = DomainBlock.new(resource_params)
+    end
+
+    def prevent_downgrade
+      # Disallow accidental downgrade of an existing domain block record
+      if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
+        @domain_block.validate
+        flash.now[:alert] = I18n.t('admin.domain_blocks.existing_domain_block_html', name: existing_domain_block.domain, unblock_url: admin_domain_block_path(existing_domain_block)).html_safe
+        @domain_block.errors.delete(:domain)
+        render :new
+      end
     end
 
     def existing_domain_block
