@@ -41,7 +41,7 @@ RSpec.describe 'API V1 Trends Statuses' do
       end
 
       context 'with a comically inflated external interactions count' do
-        def prepare_fake_trends
+        before do
           fake_remote_account = Fabricate(:account, domain: 'other.com')
           fake_status = Fabricate(:status, account: fake_remote_account, text: 'I am a big faker', trendable: true, language: 'en')
           fake_status.status_stat.tap do |status_stat|
@@ -66,7 +66,6 @@ RSpec.describe 'API V1 Trends Statuses' do
         end
 
         it 'ignores the feeble attempts at deception' do
-          prepare_fake_trends
           stub_const('Api::BaseController::DEFAULT_STATUSES_LIMIT', 10)
           get '/api/v1/trends/statuses'
 

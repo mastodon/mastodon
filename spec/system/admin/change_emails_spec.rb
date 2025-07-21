@@ -28,8 +28,19 @@ RSpec.describe 'Admin Change Emails' do
     def process_change_email
       expect { click_on I18n.t('admin.accounts.change_email.submit') }
         .to not_change { user.reload.email }
-        .and(change { user.reload.unconfirmed_email }.to('test@host.example'))
-        .and(change { user.reload.confirmation_token }.from(nil).to(be_present))
+        .and(change_unconfirmed_email)
+        .and(change_confirmation_token)
+    end
+
+    def change_unconfirmed_email
+      change { user.reload.unconfirmed_email }
+        .to('test@host.example')
+    end
+
+    def change_confirmation_token
+      change { user.reload.confirmation_token }
+        .from(nil)
+        .to(be_present)
     end
   end
 end

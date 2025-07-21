@@ -61,18 +61,25 @@ RSpec.describe Mastodon::CLI::Search do
 
     def stub_search_indexes
       described_class::INDICES.each do |index|
-        allow(index)
-          .to receive_messages(
-            specification: instance_double(Chewy::Index::Specification, changed?: true, lock!: nil),
-            purge: nil
-          )
-
-        importer_double = importer_double_for(index)
-        allow(importer_double).to receive(:on_progress).and_yield([indexed_count, deleted_count])
-        allow("Importer::#{index}Importer".constantize)
-          .to receive(:new)
-          .and_return(importer_double)
+        stub_index_spec(index)
+        stub_index_importer(index)
       end
+    end
+
+    def stub_index_spec(index)
+      allow(index)
+        .to receive_messages(
+          specification: instance_double(Chewy::Index::Specification, changed?: true, lock!: nil),
+          purge: nil
+        )
+    end
+
+    def stub_index_importer(index)
+      importer_double = importer_double_for(index)
+      allow(importer_double).to receive(:on_progress).and_yield([indexed_count, deleted_count])
+      allow("Importer::#{index}Importer".constantize)
+        .to receive(:new)
+        .and_return(importer_double)
     end
 
     def importer_double_for(index)

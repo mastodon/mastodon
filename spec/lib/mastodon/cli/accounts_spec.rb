@@ -1124,14 +1124,17 @@ RSpec.describe Mastodon::CLI::Accounts do
       end
 
       def expect_delete_inactive_remote_accounts
-        expect(delete_account_service).to have_received(:call).with(bob, reserve_username: false).once
-        expect(delete_account_service).to have_received(:call).with(gon, reserve_username: false).once
+        [bob, gon].each do |account|
+          expect(delete_account_service)
+            .to have_received(:call).with(account, reserve_username: false).once
+        end
       end
 
       def expect_not_delete_active_accounts
-        expect(delete_account_service).to_not have_received(:call).with(tom, reserve_username: false)
-        expect(delete_account_service).to_not have_received(:call).with(ana, reserve_username: false)
-        expect(delete_account_service).to_not have_received(:call).with(tales, reserve_username: false)
+        [tom, ana, tales].each do |account|
+          expect(delete_account_service)
+            .to_not have_received(:call).with(account, reserve_username: false)
+        end
       end
 
       it 'touches inactive remote accounts that have not been deleted and summarizes activity' do

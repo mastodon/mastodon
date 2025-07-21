@@ -13,6 +13,8 @@ RSpec.describe BulkImportService do
   end
 
   describe '#call' do
+    let(:resolve_account_service_double) { instance_double(ResolveAccountService) }
+
     context 'when importing follows' do
       let(:import_type) { 'following' }
       let(:overwrite)   { false }
@@ -337,18 +339,22 @@ RSpec.describe BulkImportService do
     end
 
     def stub_resolve_account_and_drain_workers
-      resolve_account_service_double = instance_double(ResolveAccountService)
       allow(ResolveAccountService)
         .to receive(:new)
         .and_return(resolve_account_service_double)
+
+      register_resolve_account_calls
+
+      Import::RowWorker.drain
+    end
+
+    def register_resolve_account_calls
       allow(resolve_account_service_double)
         .to receive(:call)
         .with('user@foo.bar', any_args) { Fabricate(:account, username: 'user', domain: 'foo.bar', protocol: :activitypub) }
       allow(resolve_account_service_double)
         .to receive(:call)
         .with('unknown@unknown.bar', any_args) { Fabricate(:account, username: 'unknown', domain: 'unknown.bar', protocol: :activitypub) }
-
-      Import::RowWorker.drain
     end
 
     def stub_fetch_remote_and_drain_workers
