@@ -257,7 +257,12 @@ class StatusContent extends PureComponent {
       return (
         <>
           <div className={classNames} ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-            <div className='status__content__text status__content__text--visible translate' lang={language} dangerouslySetInnerHTML={content} />
+            <EmojiHTML
+              className='status__content__text status__content__text--visible translate'
+              lang={language}
+              htmlString={content}
+              extraEmojis={status.get('emojis')}
+            />
 
             {poll}
             {translateButton}
