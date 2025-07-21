@@ -27,7 +27,7 @@ export function getStatusContent(status) {
   if (isFeatureEnabled('modern_emojis')) {
     return status.getIn(['translation', 'content']) || status.get('content');
   }
-  return status.getIn(['translation', 'content']) || status.get('content');
+  return status.getIn(['translation', 'contentHtml']) || status.get('contentHtml');
 }
 
 class TranslateButton extends PureComponent {
