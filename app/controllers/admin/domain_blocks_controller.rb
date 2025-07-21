@@ -7,7 +7,7 @@ module Admin
     with_options only: :create do
       before_action :populate_domain_block_from_params
       before_action :prevent_downgrade
-      before_action :attempt_transparent_upgrade, if: :existing_domain_block
+      before_action :perform_transparent_upgrade, if: :existing_domain_block_matches_domain?
       before_action :verify_confirmation_needed
     end
 
@@ -98,12 +98,15 @@ module Admin
       end
     end
 
-    def attempt_transparent_upgrade
-      # Allow transparently upgrading a domain block when existing is an exact match for domain value
-      if existing_domain_block.domain == TagManager.instance.normalize_domain(@domain_block.domain.strip)
-        @domain_block = existing_domain_block
-        @domain_block.assign_attributes(resource_params)
-      end
+    def perform_transparent_upgrade
+      @domain_block = existing_domain_block
+      @domain_block.assign_attributes(resource_params)
+    end
+
+    def existing_domain_block_matches_domain?
+      # Existing domain block exists and the domain is exact match for the value from incoming params
+      existing_domain_block.present? &&
+        existing_domain_block.domain == TagManager.instance.normalize_domain(@domain_block.domain.strip)
     end
 
     def verify_confirmation_needed
