@@ -6,7 +6,7 @@ module Admin
     before_action :authorize_domain_block_create, only: [:batch, :new, :create]
     with_options only: :create do
       before_action :populate_domain_block_from_params
-      before_action :prevent_downgrade
+      before_action :prevent_downgrade, if: :attempting_downgrade?
       before_action :perform_transparent_upgrade, if: :existing_domain_block_matches_domain?
       before_action :verify_confirmation_needed
     end
@@ -89,13 +89,15 @@ module Admin
     end
 
     def prevent_downgrade
-      # Disallow accidental downgrade of an existing domain block record
-      if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
-        @domain_block.validate
-        flash.now.alert = unblock_first_alert
-        @domain_block.errors.delete(:domain)
-        render :new
-      end
+      @domain_block.validate
+      flash.now.alert = unblock_first_alert
+      @domain_block.errors.delete(:domain)
+      render :new
+    end
+
+    def attempting_downgrade?
+      # Existing domain block exists and the new value is less strict than the existing
+      existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
     end
 
     def perform_transparent_upgrade
