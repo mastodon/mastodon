@@ -92,7 +92,7 @@ module Admin
       # Disallow accidental downgrade of an existing domain block record
       if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
         @domain_block.validate
-        flash.now[:alert] = unblock_first_alert
+        flash.now.alert = unblock_first_alert
         @domain_block.errors.delete(:domain)
         render :new
       end
