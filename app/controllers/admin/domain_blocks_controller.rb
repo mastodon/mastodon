@@ -3,7 +3,7 @@
 module Admin
   class DomainBlocksController < BaseController
     before_action :set_domain_block, only: [:destroy, :edit, :update]
-    before_action :authorize_domain_block_create, only: [:batch, :new, :edit, :create]
+    before_action :authorize_domain_block_create, only: [:batch, :new, :create]
     with_options only: :create do
       before_action :populate_domain_block_from_params
       before_action :prevent_downgrade
@@ -40,7 +40,9 @@ module Admin
       @domain_block = DomainBlock.new(domain: params[:_domain])
     end
 
-    def edit; end
+    def edit
+      authorize :domain_block, :update?
+    end
 
     def create
       if @domain_block.save
