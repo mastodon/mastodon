@@ -92,7 +92,20 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onChange(e.target.value);
   };
 
-  handleKeyDown = (e) => {
+  blurOnEscape = (e) => {
+    if (['esc', 'escape'].includes(e.key.toLowerCase())) {
+      e.target.blur();
+    }
+  }
+
+  handleKeyDownPost = (e) => {
+    if (e.key.toLowerCase() === 'enter' && (e.ctrlKey || e.metaKey)) {
+        this.handleSubmit();
+    }
+    this.blurOnEscape(e);
+  };
+
+  handleKeyDownSpoiler = (e) => {
     if (e.key.toLowerCase() === 'enter') {
       if (e.ctrlKey || e.metaKey) {
         this.handleSubmit();
@@ -101,9 +114,7 @@ class ComposeForm extends ImmutablePureComponent {
         this.textareaRef.current?.focus();
       }
     }
-    if (['esc', 'escape'].includes(e.key.toLowerCase())) {
-      this.textareaRef.current?.blur();
-    }
+    this.blurOnEscape(e);
   };
 
   getFulltextForCharacterCounting = () => {
@@ -256,7 +267,7 @@ class ComposeForm extends ImmutablePureComponent {
                   value={this.props.spoilerText}
                   disabled={isSubmitting}
                   onChange={this.handleChangeSpoilerText}
-                  onKeyDown={this.handleKeyDown}
+                  onKeyDown={this.handleKeyDownSpoiler}
                   ref={this.setSpoilerText}
                   suggestions={this.props.suggestions}
                   onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -281,7 +292,7 @@ class ComposeForm extends ImmutablePureComponent {
               onChange={this.handleChange}
               suggestions={this.props.suggestions}
               onFocus={this.handleFocus}
-              onKeyDown={this.handleKeyDown}
+              onKeyDown={this.handleKeyDownPost}
               onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
               onSuggestionsClearRequested={this.onSuggestionsClearRequested}
               onSuggestionSelected={this.onSuggestionSelected}
