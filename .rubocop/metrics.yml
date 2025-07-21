@@ -2,6 +2,7 @@
 Metrics/AbcSize:
   Exclude:
     - lib/mastodon/cli/*.rb
+    - db/*migrate/*.rb
 
 Metrics/BlockLength:
   Enabled: false
@@ -12,6 +13,7 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Exclude:
     - lib/mastodon/cli/*.rb
+    - db/*migrate/*.rb
 
 Metrics/MethodLength:
   Enabled: false
@@ -21,3 +23,7 @@ Metrics/ModuleLength:
 
 Metrics/ParameterLists:
   CountKeywordArgs: false
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - db/*migrate/*.rb
