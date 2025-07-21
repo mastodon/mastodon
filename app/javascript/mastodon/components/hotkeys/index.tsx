@@ -2,6 +2,11 @@ import { useEffect, useRef } from 'react';
 
 import { normalizeKey, isKeyboardEvent } from './utils';
 
+/**
+ * In case of multiple hotkeys matching the pressed key(s),
+ * the hotkey with a higher priority is selected. All others
+ * are ignored.
+ */
 const hotkeyPriority = {
   singleKey: 0,
   combo: 1,
@@ -10,8 +15,10 @@ const hotkeyPriority = {
 
 /**
  * This type of function receives a keyboard event and an array of
- * previously pressed keys (within the last second), and should return
- * whether the pressed keys match a hotkey
+ * previously pressed keys (within the last second), and returns
+ * `isMatch` (whether the pressed keys match a hotkey) and `priority`
+ * (a weighting used to resolve conflicts when two hotkeys match the
+ * pressed keys)
  */
 type KeyMatcher = (
   event: KeyboardEvent,
@@ -53,7 +60,9 @@ function any(...keys: string[]): KeyMatcher {
  */
 function optionPlus(key: string): KeyMatcher {
   return (event) => ({
-    isMatch: event.altKey && normalizeKey(event.key) === key,
+    // Matching against event.code here as alt combos are often
+    // mapped to other characters
+    isMatch: event.altKey && event.code === `Key${key.toUpperCase()}`,
     priority: hotkeyPriority.combo,
   });
 }
@@ -80,6 +89,11 @@ function sequence(...sequence: string[]): KeyMatcher {
   };
 }
 
+/**
+ * This is a map of all global hotkeys we support.
+ * To trigger a hotkey, a handler with a matching name must be
+ * provided to the `useHotkeys` hook or `Hotkeys` component.
+ */
 const hotkeyMatcherMap = {
   help: just('?'),
   search: any('s', '/'),
@@ -131,7 +145,7 @@ type HotkeyName = keyof typeof hotkeyMatcherMap;
 
 type HandlerMap = Partial<Record<HotkeyName, (event: KeyboardEvent) => void>>;
 
-export function useAppHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
+export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
   const ref = useRef<T>(null);
   const bufferedKeys = useRef<string[]>([]);
   const sequenceTimer = useRef<NodeJS.Timeout | null>(null);
@@ -152,10 +166,15 @@ export function useAppHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
       // Ignore key presses from input, textarea, or select elements
       const tagName = (event.target as HTMLElement).tagName.toLowerCase();
       const shouldHandleEvent =
+        isKeyboardEvent(event) &&
         !event.defaultPrevented &&
-        !['input', 'textarea', 'select'].includes(tagName);
+        !['input', 'textarea', 'select'].includes(tagName) &&
+        !(
+          ['a', 'button'].includes(tagName) &&
+          normalizeKey(event.key) === 'enter'
+        );
 
-      if (shouldHandleEvent && isKeyboardEvent(event)) {
+      if (shouldHandleEvent) {
         const matchCandidates: {
           handler: (event: KeyboardEvent) => void;
           priority: number;
@@ -217,11 +236,15 @@ export function useAppHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
 
 export const Hotkeys: React.FC<{
   handlers: HandlerMap;
+  /**
+   * When enabled, hotkeys will be matched against the document root
+   * rather than only inside of this component's DOM node.
+   */
   global?: boolean;
   focusable?: boolean;
   children: React.ReactNode;
 }> = ({ handlers, global, focusable = true, children }) => {
-  const ref = useAppHotkeys<HTMLDivElement>(handlers);
+  const ref = useHotkeys<HTMLDivElement>(handlers);
 
   return (
     <div ref={global ? undefined : ref} tabIndex={focusable ? -1 : undefined}>
