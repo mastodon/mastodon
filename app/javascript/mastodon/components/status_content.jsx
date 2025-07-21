@@ -13,7 +13,7 @@ import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react'
 import { Icon }  from 'mastodon/components/icon';
 import { Poll } from 'mastodon/components/poll';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';
+import { autoPlayGif, isFeatureEnabled, languages as preloadedLanguages } from 'mastodon/initial_state';
 import { EmojiHTML } from '../features/emoji/emoji_html';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
@@ -24,6 +24,9 @@ const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
  * @returns {string}
  */
 export function getStatusContent(status) {
+  if (isFeatureEnabled('modern_emojis')) {
+    return status.getIn(['translation', 'content']) || status.get('content');
+  }
   return status.getIn(['translation', 'content']) || status.get('content');
 }
 
