@@ -92,7 +92,7 @@ module Admin
       # Disallow accidental downgrade of an existing domain block record
       if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
         @domain_block.validate
-        flash.now[:alert] = I18n.t('admin.domain_blocks.existing_domain_block_html', name: existing_domain_block.domain, unblock_url: admin_domain_block_path(existing_domain_block)).html_safe
+        flash.now[:alert] = unblock_first_alert
         @domain_block.errors.delete(:domain)
         render :new
       end
@@ -117,6 +117,14 @@ module Admin
 
     def set_domain_block
       @domain_block = DomainBlock.find(params[:id])
+    end
+
+    def unblock_first_alert
+      I18n.t(
+        'admin.domain_blocks.existing_domain_block_html',
+        name: existing_domain_block.domain,
+        unblock_url: admin_domain_block_path(existing_domain_block)
+      ).html_safe
     end
 
     def update_params
