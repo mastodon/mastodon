@@ -153,9 +153,10 @@ export const Default = {
             the app.
           </p>
           <p>
-            After clicking this <button>Button</button>, &quot;
+            When a <button>Button</button> is focused, &quot;
             <kbd>Enter</kbd>
-            &quot; should not trigger open, but &quot;<kbd>o</kbd>&quot; should.
+            &quot; should not trigger &quot;open&quot;, but &quot;<kbd>o</kbd>
+            &quot; should.
           </p>
           <p>
             When an input element is focused, hotkeys should not interfere with
