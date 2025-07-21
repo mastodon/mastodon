@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.10] - 2025-07-23
+
+### Security
+
+- Updated dependencies
+
 ## [4.3.9] - 2025-07-02
 
 ### Changed
