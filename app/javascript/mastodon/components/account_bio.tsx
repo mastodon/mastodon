@@ -3,7 +3,6 @@ import { useCallback } from 'react';
 import { useLinks } from 'mastodon/hooks/useLinks';
 
 import { EmojiHTML } from '../features/emoji/emoji_html';
-import type { ExtraCustomEmojiMap } from '../features/emoji/types';
 import { isFeatureEnabled } from '../initial_state';
 import { useAppSelector } from '../store';
 
@@ -28,16 +27,6 @@ export const AccountBio: React.FC<AccountBioProps> = ({
     },
     [showDropdown, accountId],
   );
-  const extraEmoji = useAppSelector((state) => {
-    const account = state.accounts.get(accountId);
-    if (!account || account.emojis.size === 0) {
-      return {};
-    }
-    return account.emojis.reduce((map, emoji) => {
-      map[emoji.shortcode] = emoji.toJS();
-      return map;
-    }, {} as ExtraCustomEmojiMap);
-  });
   const note = useAppSelector((state) => {
     const account = state.accounts.get(accountId);
     if (!account) {
@@ -46,6 +35,10 @@ export const AccountBio: React.FC<AccountBioProps> = ({
     return isFeatureEnabled('modern_emojis')
       ? account.note
       : account.note_emojified;
+  });
+  const extraEmojis = useAppSelector((state) => {
+    const account = state.accounts.get(accountId);
+    return account?.emojis;
   });
 
   if (note.length === 0) {
@@ -58,7 +51,7 @@ export const AccountBio: React.FC<AccountBioProps> = ({
       onClickCapture={handleClick}
       ref={handleNodeChange}
     >
-      <EmojiHTML htmlString={note} extraEmojis={extraEmoji} />
+      <EmojiHTML htmlString={note} extraEmojis={extraEmojis} />
     </div>
   );
 };

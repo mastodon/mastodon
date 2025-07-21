@@ -14,6 +14,7 @@ import { Icon }  from 'mastodon/components/icon';
 import { Poll } from 'mastodon/components/poll';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';
+import { EmojiHTML } from '../features/emoji/emoji_html';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -23,7 +24,7 @@ const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
  * @returns {string}
  */
 export function getStatusContent(status) {
-  return status.getIn(['translation', 'contentHtml']) || status.get('contentHtml');
+  return status.getIn(['translation', 'content']) || status.get('content');
 }
 
 class TranslateButton extends PureComponent {
@@ -228,7 +229,7 @@ class StatusContent extends PureComponent {
     const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
     const renderTranslate = this.props.onTranslate && this.props.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('search_index').trim().length > 0 && targetLanguages?.includes(contentLocale);
 
-    const content = { __html: statusContent ?? getStatusContent(status) };
+    const content = statusContent ?? getStatusContent(status);
     const language = status.getIn(['translation', 'language']) || status.get('language');
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.props.history,
@@ -265,7 +266,12 @@ class StatusContent extends PureComponent {
     } else {
       return (
         <div className={classNames} ref={this.setRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-          <div className='status__content__text status__content__text--visible translate' lang={language} dangerouslySetInnerHTML={content} />
+          <EmojiHTML
+            className='status__content__text status__content__text--visible translate'
+            lang={language}
+            htmlString={content}
+            extraEmojis={status.get('emojis')}
+          />
 
           {poll}
           {translateButton}
