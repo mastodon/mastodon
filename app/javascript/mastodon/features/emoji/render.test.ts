@@ -48,9 +48,9 @@ describe('emojifyElement', () => {
   testElement.innerHTML = '<p>Hello 😊🇪🇺!</p><p>:custom:</p>';
 
   const expectedSmileImage =
-    '<img draggable="false" class="emojione" alt="😊" title="smiling face with smiling eyes" src="/emoji/1F60A.svg">';
+    '<img draggable="false" class="emojione" alt="😊" title="smiling face with smiling eyes" src="/emoji/1f60a.svg">';
   const expectedFlagImage =
-    '<img draggable="false" class="emojione" alt="🇪🇺" title="flag-eu" src="/emoji/1F1EA-1F1FA.svg">';
+    '<img draggable="false" class="emojione" alt="🇪🇺" title="flag-eu" src="/emoji/1f1ea-1f1fa.svg">';
   const expectedCustomEmojiImage =
     '<img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:" src="emoji/static" data-original="emoji/custom" data-static="emoji/static">';
 
