@@ -36,17 +36,21 @@ RSpec.describe DeleteAccountService do
     end
 
     def expect_deletion_of_associated_owned_records
-      expect { status.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { status_with_mention.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { mention.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { media_attachment.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { favourite.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { active_relationship.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { passive_relationship.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { poll.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { poll_vote.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { account_note.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      [
+        account_note,
+        active_relationship,
+        favourite,
+        media_attachment,
+        mention,
+        notification,
+        passive_relationship,
+        poll_vote,
+        poll,
+        status_with_mention,
+        status,
+      ].each do |record|
+        expect { record.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
 
     def expect_deletion_of_associated_target_records
@@ -54,11 +58,15 @@ RSpec.describe DeleteAccountService do
     end
 
     def expect_deletion_of_associated_target_notifications
-      expect { favourite_notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { follow_notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { mention_notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { poll_notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
-      expect { status_notification.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      [
+        favourite_notification,
+        follow_notification,
+        mention_notification,
+        poll_notification,
+        status_notification,
+      ].each do |record|
+        expect { record.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
   end
 
