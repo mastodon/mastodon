@@ -143,7 +143,9 @@ const hotkeyMatcherMap = {
 
 type HotkeyName = keyof typeof hotkeyMatcherMap;
 
-type HandlerMap = Partial<Record<HotkeyName, (event: KeyboardEvent) => void>>;
+export type HandlerMap = Partial<
+  Record<HotkeyName, (event: KeyboardEvent) => void>
+>;
 
 export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
   const ref = useRef<T>(null);
@@ -234,13 +236,39 @@ export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
   return ref;
 }
 
+/**
+ * The Hotkeys component allows us to globally register keyboard combinations
+ * under a name and assign actions to them, either globally or scoped to a portion
+ * of the app.
+ *
+ * ### How to use
+ *
+ * To add a new hotkey, add its key combination to the `hotkeyMatcherMap` object
+ * and give it a name.
+ *
+ * Use the `<Hotkeys>` component or the `useHotkeys` hook in the part of of the app
+ * where you want to handle the action, and pass in a handlers object.
+ *
+ * ```tsx
+ * <Hotkeys handlers={{open: openStatus}} />
+ * ```
+ *
+ * Now this function will be called when the 'open' hotkey is pressed by the user.
+ */
 export const Hotkeys: React.FC<{
+  /**
+   * An object containing functions to be run when a hotkey is pressed.
+   * The key must be the name of a registered hotkey, e.g. "help" or "search"
+   */
   handlers: HandlerMap;
   /**
    * When enabled, hotkeys will be matched against the document root
    * rather than only inside of this component's DOM node.
    */
   global?: boolean;
+  /**
+   * Allow the rendered `div` to be focused
+   */
   focusable?: boolean;
   children: React.ReactNode;
 }> = ({ handlers, global, focusable = true, children }) => {
