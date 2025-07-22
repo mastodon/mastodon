@@ -8,7 +8,13 @@ RSpec.describe 'Admin::EmailDomainBlocks' do
   before { sign_in current_user }
 
   describe 'Managing email domain blocks' do
-    before { configure_dns(domain: 'example.com', results: []) }
+    before do
+      Fabricate :email_domain_block, domain: 'tester.example'
+      allow(DomainResource)
+        .to receive(:new)
+        .with('example.com')
+        .and_return(instance_double(DomainResource, mx: ['test.example', 'tester.example']))
+    end
 
     let!(:email_domain_block) { Fabricate :email_domain_block }
 
@@ -28,8 +34,12 @@ RSpec.describe 'Admin::EmailDomainBlocks' do
       expect(page)
         .to have_content(I18n.t('admin.email_domain_blocks.new.title'))
 
+      find('input[checked_value="test.example"]').click
+      find('input[checked_value="tester.example"]').click
       expect { submit_create }
         .to change(EmailDomainBlock.where(domain: 'example.com'), :count).by(1)
+        .and change(EmailDomainBlock.where.associated(:parent).where(domain: 'test.example'), :count).by(1)
+        .and not_change(EmailDomainBlock.where.associated(:parent).where(domain: 'tester.example'), :count)
       expect(page)
         .to have_content(I18n.t('admin.email_domain_blocks.title'))
         .and have_content(I18n.t('admin.email_domain_blocks.created_msg'))
