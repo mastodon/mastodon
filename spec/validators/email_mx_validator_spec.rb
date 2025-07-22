@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe EmailMxValidator do
   describe '#validate' do
     let(:user) { instance_double(User, email: 'foo@example.com', sign_up_ip: '1.2.3.4', errors: instance_double(ActiveModel::Errors, add: nil)) }
-    let(:resolv_dns_double) { instance_double(Resolv::DNS) }
+    let(:resolv_dns_double) { instance_double(Resolv::DNS, :timeouts= => nil) }
 
     context 'with an e-mail domain that is explicitly allowed' do
       around do |block|
@@ -88,21 +88,17 @@ RSpec.describe EmailMxValidator do
   end
 
   def configure_resolver(domain, options = {})
-    allow(resolv_dns_double)
-      .to receive(:getresources)
-      .with(domain, Resolv::DNS::Resource::IN::MX)
-      .and_return(Array(options[:mx]))
-    allow(resolv_dns_double)
-      .to receive(:getresources)
-      .with(domain, Resolv::DNS::Resource::IN::A)
-      .and_return(Array(options[:a]))
-    allow(resolv_dns_double)
-      .to receive(:getresources)
-      .with(domain, Resolv::DNS::Resource::IN::AAAA)
-      .and_return(Array(options[:aaaa]))
-    allow(resolv_dns_double)
-      .to receive(:timeouts=)
-      .and_return(nil)
+    {
+      Resolv::DNS::Resource::IN::MX => :mx,
+      Resolv::DNS::Resource::IN::A => :a,
+      Resolv::DNS::Resource::IN::AAAA => :aaaa,
+    }.each do |klass, option|
+      allow(resolv_dns_double)
+        .to receive(:getresources)
+        .with(domain, klass)
+        .and_return(Array(options[option]))
+    end
+
     allow(Resolv::DNS)
       .to receive(:open)
       .and_yield(resolv_dns_double)

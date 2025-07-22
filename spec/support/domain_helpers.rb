@@ -2,49 +2,34 @@
 
 module DomainHelpers
   def configure_mx(domain:, exchange:, ip_v4_addr: '2.3.4.5', ip_v6_addr: 'fd00::2')
-    resolver = instance_double(Resolv::DNS, :timeouts= => nil)
+    {
+      Resolv::DNS::Resource::IN::MX => [double_mx(exchange)],
+      Resolv::DNS::Resource::IN::A => [],
+      Resolv::DNS::Resource::IN::AAAA => [],
+    }.each do |klass, values|
+      stub_getresources(values, domain, klass)
+    end
 
-    allow(resolver).to receive(:getresources)
-      .with(domain, Resolv::DNS::Resource::IN::MX)
-      .and_return([double_mx(exchange)])
-    allow(resolver)
-      .to receive(:getresources)
-      .with(domain, Resolv::DNS::Resource::IN::A)
-      .and_return([])
-    allow(resolver)
-      .to receive(:getresources)
-      .with(domain, Resolv::DNS::Resource::IN::AAAA)
-      .and_return([])
-    allow(resolver)
-      .to receive(:getresources)
-      .with(exchange, Resolv::DNS::Resource::IN::A)
-      .and_return([double_resource_v4(ip_v4_addr)])
-    allow(resolver)
-      .to receive(:getresources)
-      .with(exchange, Resolv::DNS::Resource::IN::AAAA)
-      .and_return([double_resource_v6(ip_v6_addr)])
-    allow(Resolv::DNS)
-      .to receive(:open)
-      .and_yield(resolver)
+    {
+      Resolv::DNS::Resource::IN::A => [double_resource_v4(ip_v4_addr)],
+      Resolv::DNS::Resource::IN::AAAA => [double_resource_v4(ip_v6_addr)],
+    }.each do |klass, values|
+      stub_getresources(values, exchange, klass)
+    end
+
+    stub_resolv_dns_open
   end
 
   def configure_dns(domain:, results:)
-    resolver = instance_double(Resolv::DNS, :timeouts= => nil)
+    {
+      Resolv::DNS::Resource::IN::MX => results,
+      Resolv::DNS::Resource::IN::A => results,
+      Resolv::DNS::Resource::IN::AAAA => results,
+    }.each do |klass, values|
+      stub_getresources(values, domain, klass)
+    end
 
-    allow(resolver).to receive(:getresources)
-      .with(domain, Resolv::DNS::Resource::IN::MX)
-      .and_return(results)
-    allow(resolver)
-      .to receive(:getresources)
-      .with(domain, Resolv::DNS::Resource::IN::A)
-      .and_return(results)
-    allow(resolver)
-      .to receive(:getresources)
-      .with(domain, Resolv::DNS::Resource::IN::AAAA)
-      .and_return(results)
-    allow(Resolv::DNS)
-      .to receive(:open)
-      .and_yield(resolver)
+    stub_resolv_dns_open
   end
 
   def local_domain_uri
@@ -52,6 +37,23 @@ module DomainHelpers
   end
 
   private
+
+  def resolver
+    @resolver ||= instance_double(Resolv::DNS, :timeouts= => nil)
+  end
+
+  def stub_getresources(values, *)
+    allow(resolver)
+      .to receive(:getresources)
+      .with(*)
+      .and_return(values)
+  end
+
+  def stub_resolv_dns_open
+    allow(Resolv::DNS)
+      .to receive(:open)
+      .and_yield(resolver)
+  end
 
   def double_mx(exchange)
     instance_double(Resolv::DNS::Resource::MX, exchange: exchange)
