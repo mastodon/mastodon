@@ -2868,6 +2868,8 @@ a.account__display-name {
     }
 
     &__main {
+      --column-header-height: 60px;
+
       box-sizing: border-box;
       width: 100%;
       flex: 0 1 auto;
@@ -8814,6 +8816,10 @@ noscript {
 .status__wrapper,
 .conversation {
   position: relative;
+
+  // When scrolling these elements into view, take into account
+  // the column header and 2px for the focus outline
+  scroll-margin-top: calc(2px + var(--column-header-height, 0));
 
   &.unread {
     &::before {

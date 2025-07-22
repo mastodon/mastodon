@@ -53,34 +53,57 @@ export default class StatusList extends ImmutablePureComponent {
   };
 
   handleMoveUp = (id, featured) => {
-    const elementIndex = this.getCurrentStatusIndex(id, featured) - 1;
-    this._selectChild(elementIndex, true);
+    const index = this.getCurrentStatusIndex(id, featured);
+    this._selectChild(id, index, -1);
   };
   
   handleMoveDown = (id, featured) => {
-    const elementIndex = this.getCurrentStatusIndex(id, featured) + 1;
-    this._selectChild(elementIndex, false);
+    const index = this.getCurrentStatusIndex(id, featured);
+    this._selectChild(id, index, 1);
   };
+
+  _selectChild = (id, index, direction) => {
+    const listContainer = this.node.node;
+    let elementContainer = listContainer.querySelector(
+      // :nth-of-type uses 1-based indexing
+      `article:nth-of-type(${index + 1 + direction})`
+    );
+    
+    if (!elementContainer) {
+      return;
+    }
+
+    // If selected container element is empty, we skip it
+    if (elementContainer.matches(':empty')) {
+      this._selectChild(id, index + direction, direction);
+      return;
+    }
+
+    const loadMoreButton = elementContainer.querySelector('.load-more.load-gap');
+    const element = loadMoreButton ?? elementContainer.querySelector('.focusable');
+
+    if (element) {
+      const elementRect = element.getBoundingClientRect();
+
+      const columnHeaderHeight = 60;
+      const fullyVisible =
+        elementRect.top >= columnHeaderHeight &&
+        elementRect.bottom <= window.innerHeight;
+
+      if (!fullyVisible) {
+        element.scrollIntoView({
+          block: direction === 1 ? 'start' : 'center',
+        });
+      }
+
+      element.focus();
+    }
+  }
 
   handleLoadOlder = debounce(() => {
     const { statusIds, lastId, onLoadMore } = this.props;
     onLoadMore(lastId || (statusIds.size > 0 ? statusIds.last() : undefined));
   }, 300, { leading: true });
-
-  _selectChild (index, align_top) {
-    const container = this.node.node;
-    // TODO: This breaks at the inline-follow-suggestions container
-    const element = container.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
-
-    if (element) {
-      if (align_top && container.scrollTop > element.offsetTop) {
-        element.scrollIntoView(true);
-      } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
-        element.scrollIntoView(false);
-      }
-      element.focus();
-    }
-  }
 
   setRef = c => {
     this.node = c;
