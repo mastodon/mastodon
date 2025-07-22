@@ -22,20 +22,33 @@ class AccountsController < ApplicationController
 
       format.rss do
         expires_in 1.minute, public: true
-
-        limit     = params[:limit].present? ? [params[:limit].to_i, PAGE_SIZE_MAX].min : PAGE_SIZE
-        @statuses = filtered_statuses.without_reblogs.limit(limit)
-        @statuses = preload_collection(@statuses, Status)
+        @statuses = preload_status_collection
       end
 
       format.json do
-        expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
+        expires_in 3.minutes, public: not_authorized_fetch_with_signed_request_account?
         render_with_cache json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter
       end
     end
   end
 
   private
+
+  def preload_status_collection
+    preload_collection(limited_statuses_without_reblogs, Status)
+  end
+
+  def limited_statuses_without_reblogs
+    filtered_statuses.without_reblogs.limit(limit_or_page_size)
+  end
+
+  def limit_or_page_size
+    params[:limit].present? ? [params[:limit].to_i, PAGE_SIZE_MAX].min : PAGE_SIZE
+  end
+
+  def not_authorized_fetch_with_signed_request_account?
+    !(authorized_fetch_mode? && signed_request_account.present?)
+  end
 
   def filtered_statuses
     default_statuses.tap do |statuses|
