@@ -65,8 +65,8 @@ export default class StatusList extends ImmutablePureComponent {
   _selectChild = (id, index, direction) => {
     const listContainer = this.node.node;
     let elementContainer = listContainer.querySelector(
-      // :nth-of-type uses 1-based indexing
-      `article:nth-of-type(${index + 1 + direction})`
+      // :nth-child uses 1-based indexing
+      `.item-list > :nth-child(${index + 1 + direction})`
     );
     
     if (!elementContainer) {
@@ -79,7 +79,7 @@ export default class StatusList extends ImmutablePureComponent {
       return;
     }
 
-    const loadMoreButton = elementContainer.querySelector('.load-more.load-gap');
+    const loadMoreButton = elementContainer.matches('.load-more') ? elementContainer : null;
     const element = loadMoreButton ?? elementContainer.querySelector('.focusable');
 
     if (element) {
