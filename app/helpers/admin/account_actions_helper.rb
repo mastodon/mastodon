@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module Admin::AccountActionsHelper
+  def account_warning_presets
+    AccountWarningPreset.alphabetic
+  end
+
   def account_action_type_label(type)
     safe_join(
       [
