@@ -33,17 +33,7 @@ module Admin
       @email_domain_block = EmailDomainBlock.new(resource_params)
 
       if action_from_button == 'save'
-        EmailDomainBlock.transaction do
-          @email_domain_block.save!
-          log_action :create, @email_domain_block
-
-          (@email_domain_block.other_domains || []).uniq.each do |domain|
-            next if EmailDomainBlock.exists?(domain: domain)
-
-            other_email_domain_block = EmailDomainBlock.create!(domain: domain, allow_with_approval: @email_domain_block.allow_with_approval, parent: @email_domain_block)
-            log_action :create, other_email_domain_block
-          end
-        end
+        process_email_domain_block
 
         redirect_to admin_email_domain_blocks_path, notice: I18n.t('admin.email_domain_blocks.created_msg')
       else
@@ -56,6 +46,37 @@ module Admin
     end
 
     private
+
+    def process_email_domain_block
+      EmailDomainBlock.transaction do
+        @email_domain_block.save!
+        log_action :create, @email_domain_block
+        save_other_domains
+      end
+    end
+
+    def save_other_domains
+      other_domains_from_block.each do |domain|
+        next if EmailDomainBlock.exists?(domain: domain)
+
+        log_action :create, block_child_domain(domain)
+      end
+    end
+
+    def block_child_domain(domain)
+      EmailDomainBlock.create!(
+        allow_with_approval: @email_domain_block.allow_with_approval,
+        domain: domain,
+        parent: @email_domain_block
+      )
+    end
+
+    def other_domains_from_block
+      @email_domain_block
+        .other_domains
+        .to_a
+        .uniq
+    end
 
     def set_resolved_records
       @resolved_records = DomainResource.new(@email_domain_block.domain).mx
