@@ -40,6 +40,12 @@ export default class StatusList extends ImmutablePureComponent {
     trackScroll: true,
   };
 
+  componentDidMount() {
+    this.columnHeaderHeight = parseFloat(
+      getComputedStyle(this.node.node).getPropertyValue('--column-header-height')
+    ) || 0;
+  }
+
   getFeaturedStatusCount = () => {
     return this.props.featuredStatusIds ? this.props.featuredStatusIds.size : 0;
   };
@@ -64,39 +70,49 @@ export default class StatusList extends ImmutablePureComponent {
 
   _selectChild = (id, index, direction) => {
     const listContainer = this.node.node;
-    let elementContainer = listContainer.querySelector(
+    let listItem = listContainer.querySelector(
       // :nth-child uses 1-based indexing
       `.item-list > :nth-child(${index + 1 + direction})`
     );
     
-    if (!elementContainer) {
+    if (!listItem) {
       return;
     }
 
     // If selected container element is empty, we skip it
-    if (elementContainer.matches(':empty')) {
+    if (listItem.matches(':empty')) {
       this._selectChild(id, index + direction, direction);
       return;
     }
 
-    const loadMoreButton = elementContainer.matches('.load-more') ? elementContainer : null;
-    const element = loadMoreButton ?? elementContainer.querySelector('.focusable');
+    // Check if the list item is a post
+    let targetElement = listItem.querySelector('.focusable');
 
-    if (element) {
-      const elementRect = element.getBoundingClientRect();
+    // Otherwise, check if the item contains follow suggestions or
+    // is a 'load more' button.
+    if (
+      !targetElement && (
+        listItem.querySelector('.inline-follow-suggestions') ||
+        listItem.matches('.load-more')
+      )
+    ) {
+      targetElement = listItem;
+    }
 
-      const columnHeaderHeight = 60;
-      const fullyVisible =
-        elementRect.top >= columnHeaderHeight &&
+    if (targetElement) {
+      const elementRect = targetElement.getBoundingClientRect();
+
+      const isFullyVisible =
+        elementRect.top >= this.columnHeaderHeight &&
         elementRect.bottom <= window.innerHeight;
 
-      if (!fullyVisible) {
-        element.scrollIntoView({
+      if (!isFullyVisible) {
+        targetElement.scrollIntoView({
           block: direction === 1 ? 'start' : 'center',
         });
       }
 
-      element.focus();
+      targetElement.focus();
     }
   }
 
