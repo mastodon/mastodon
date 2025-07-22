@@ -9,6 +9,7 @@ RSpec.describe 'Admin Account Actions' do
 
   describe 'Creating a new account action on an account' do
     let(:account) { Fabricate(:account) }
+    let!(:account_warning_preset) { Fabricate :account_warning_preset }
 
     it 'creates the action and redirects to the account page' do
       visit new_admin_account_action_path(account_id: account.id)
@@ -23,6 +24,7 @@ RSpec.describe 'Admin Account Actions' do
 
       # Valid submission
       choose(option: 'silence')
+      select account_warning_preset.to_label, from: 'admin_account_action_warning_preset_id'
       expect { submit_form }
         .to change { account.strikes.count }.by(1)
       expect(page)
