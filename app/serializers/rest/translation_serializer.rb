@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class REST::TranslationSerializer < ActiveModel::Serializer
-  attributes :detected_source_language, :language, :provider, :spoiler_text, :content
+  attributes :source_language, :detected_source_language, :language, :provider, :spoiler_text, :content
 
   class PollSerializer < ActiveModel::Serializer
     attribute :id

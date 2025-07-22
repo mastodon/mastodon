@@ -122,12 +122,12 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     });
   },
 
-  onTranslate (status) {
-    if (status.get('translation')) {
-      dispatch(undoStatusTranslation(status.get('id'), status.get('poll')));
-    } else {
-      dispatch(translateStatus(status.get('id')));
-    }
+  onTranslate (status, sourceLanguage) {
+    dispatch(translateStatus(status.get('id'), sourceLanguage));
+  },
+
+  onUndoStatusTranslation (status) {
+    dispatch(undoStatusTranslation(status.get('id'), status.get('poll')));
   },
 
   onDirect (account) {
