@@ -12,15 +12,36 @@ import { useEmojiAppState } from './hooks';
 import { emojifyElement } from './render';
 import type { ExtraCustomEmojiMap } from './types';
 
-interface EmojiHTMLProps {
+type EmojiHTMLProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'dangerouslySetInnerHTML'
+> & {
   htmlString: string;
   extraEmojis?: ExtraCustomEmojiMap | ImmutableList<CustomEmoji>;
-}
+};
 
-export const EmojiHTML: React.FC<
-  EmojiHTMLProps &
-    Omit<HTMLAttributes<HTMLDivElement>, 'dangerouslySetInnerHTML'>
-> = ({ extraEmojis: rawEmojis, htmlString: text, ...props }) => {
+export const EmojiHTML: React.FC<EmojiHTMLProps> = ({
+  htmlString,
+  extraEmojis,
+  ...props
+}) => {
+  if (isFeatureEnabled('modern_emojis')) {
+    return (
+      <ModernEmojiHTML
+        htmlString={htmlString}
+        extraEmojis={extraEmojis}
+        {...props}
+      />
+    );
+  }
+  return <div dangerouslySetInnerHTML={{ __html: htmlString }} {...props} />;
+};
+
+const ModernEmojiHTML: React.FC<EmojiHTMLProps> = ({
+  extraEmojis: rawEmojis,
+  htmlString: text,
+  ...props
+}) => {
   const appState = useEmojiAppState();
   const [innerHTML, setInnerHTML] = useState('');
 
@@ -49,11 +70,7 @@ export const EmojiHTML: React.FC<
       const ele = await emojifyElement(div, appState, extraEmojis);
       setInnerHTML(ele.innerHTML);
     };
-    if (isFeatureEnabled('modern_emojis')) {
-      void cb();
-    } else {
-      setInnerHTML(text); // Assume the text is already emojified
-    }
+    void cb();
   }, [text, appState, extraEmojis]);
 
   if (!innerHTML) {
