@@ -16,9 +16,9 @@ RSpec.describe MfaForceConcern do
   end
 
   describe 'MFA force functionality' do
-    context 'when MFA_FORCE is enabled' do
+    context 'when REQUIRE_MULTI_FACTOR_AUTH is enabled' do
       before do
-        allow(ENV).to receive(:[]).with('MFA_FORCE').and_return('true')
+        allow(ENV).to receive(:[]).with('REQUIRE_MULTI_FACTOR_AUTH').and_return('true')
         sign_in user, scope: :user
       end
 
@@ -45,7 +45,7 @@ RSpec.describe MfaForceConcern do
 
         it 'shows the required message' do
           get :index
-          expect(flash[:warning]).to eq(I18n.t('mfa_force.required_message'))
+          expect(flash[:warning]).to eq(I18n.t('require_multi_factor_auth.required_message'))
         end
 
         context 'when accessing MFA setup pages' do
@@ -70,9 +70,9 @@ RSpec.describe MfaForceConcern do
       end
     end
 
-    context 'when MFA_FORCE is disabled' do
+    context 'when REQUIRE_MULTI_FACTOR_AUTH is disabled' do
       before do
-        allow(ENV).to receive(:[]).with('MFA_FORCE').and_return('false')
+        allow(ENV).to receive(:[]).with('REQUIRE_MULTI_FACTOR_AUTH').and_return('false')
         sign_in user, scope: :user
         user.update(otp_required_for_login: false)
       end
@@ -85,7 +85,7 @@ RSpec.describe MfaForceConcern do
 
     context 'when user is not signed in' do
       before do
-        allow(ENV).to receive(:[]).with('MFA_FORCE').and_return('true')
+        allow(ENV).to receive(:[]).with('REQUIRE_MULTI_FACTOR_AUTH').and_return('true')
       end
 
       it 'allows access to normal pages' do
