@@ -1,4 +1,5 @@
 import initialState from '@/mastodon/initial_state';
+import { loadWorker } from '@/mastodon/utils/workers';
 
 import { toSupportedLocale } from './locale';
 
@@ -9,9 +10,8 @@ let worker: Worker | null = null;
 export async function initializeEmoji() {
   if (!worker && 'Worker' in window) {
     try {
-      worker = new Worker(new URL('./worker', import.meta.url), {
+      worker = loadWorker(new URL('./worker', import.meta.url), {
         type: 'module',
-        credentials: 'omit',
       });
     } catch (err) {
       console.warn('Error creating web worker:', err);

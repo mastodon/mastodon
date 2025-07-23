@@ -65,6 +65,11 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         // but it needs to be scoped to the whole domain
         'Service-Worker-Allowed': '/',
       },
+      hmr: {
+        // Forcing the protocol to be insecure helps if you are proxying your dev server with SSL,
+        // because Vite still tries to connect to localhost.
+        protocol: 'ws',
+      },
       port: 3036,
     },
     build: {

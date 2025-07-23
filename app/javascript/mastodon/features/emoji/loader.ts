@@ -36,15 +36,16 @@ async function fetchAndCheckEtag<ResultType extends object[]>(
 ): Promise<ResultType | null> {
   const locale = toSupportedLocaleOrCustom(localeOrCustom);
 
-  let uri: string;
+  // Use location.origin as this script may be loaded from a CDN domain.
+  const url = new URL(location.origin);
   if (locale === 'custom') {
-    uri = '/api/v1/custom_emojis';
+    url.pathname = '/api/v1/custom_emojis';
   } else {
-    uri = `/packs${isDevelopment() ? '-dev' : ''}/emoji/${locale}.json`;
+    url.pathname = `/packs${isDevelopment() ? '-dev' : ''}/emoji/${locale}.json`;
   }
 
   const oldEtag = await loadLatestEtag(locale);
-  const response = await fetch(uri, {
+  const response = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
       'If-None-Match': oldEtag ?? '', // Send the old ETag to check for modifications
