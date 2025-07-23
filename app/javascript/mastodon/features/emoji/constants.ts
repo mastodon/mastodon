@@ -1,3 +1,5 @@
+import EMOJI_REGEX from 'emojibase-regex/emoji-loose';
+
 // Utility codes
 export const VARIATION_SELECTOR_CODE = 0xfe0f;
 export const KEYCAP_CODE = 0x20e3;
@@ -14,6 +16,16 @@ export const SKIN_TONE_CODES = [
   0x1f3fe, // Medium-dark skin tone
   0x1f3ff, // Dark skin tone
 ] as const;
+
+export const UNICODE_EMOJI_REGEX = EMOJI_REGEX;
+export const CUSTOM_EMOJI_REGEX = /:([a-z0-9_]+):/i;
+export const ANY_EMOJI_REGEX = new RegExp(
+  `(${EMOJI_REGEX.source}|${CUSTOM_EMOJI_REGEX.source})`,
+  'g',
+);
+// From https://github.com/talkjs/country-flag-emoji-polyfill/blob/master/src/index.ts#L49-L50
+export const EMOJIS_FLAGS_REGEX =
+  /[\u{1F1E6}-\u{1F1FF}|\u{E0062}-\u{E0063}|\u{E0065}|\u{E0067}|\u{E006C}|\u{E006E}|\u{E0073}-\u{E0074}|\u{E0077}|\u{E007F}]+/u;
 
 // Emoji rendering modes. A mode is what we are using to render emojis, a style is what the user has selected.
 export const EMOJI_MODE_NATIVE = 'native';

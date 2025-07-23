@@ -1,13 +1,22 @@
-import EMOJI_REGEX from 'emojibase-regex/emoji-loose';
+import {
+  ANY_EMOJI_REGEX,
+  CUSTOM_EMOJI_REGEX,
+  EMOJIS_FLAGS_REGEX,
+  UNICODE_EMOJI_REGEX,
+} from './constants';
 
-export function stringHasUnicodeEmoji(text: string): boolean {
-  return EMOJI_REGEX.test(text);
+export function stringHasUnicodeEmoji(input: string): boolean {
+  return UNICODE_EMOJI_REGEX.test(input);
 }
 
-// From https://github.com/talkjs/country-flag-emoji-polyfill/blob/master/src/index.ts#L49-L50
-const EMOJIS_FLAGS_REGEX =
-  /[\u{1F1E6}-\u{1F1FF}|\u{E0062}-\u{E0063}|\u{E0065}|\u{E0067}|\u{E006C}|\u{E006E}|\u{E0073}-\u{E0074}|\u{E0077}|\u{E007F}]+/u;
+export function stringHasUnicodeFlags(input: string): boolean {
+  return EMOJIS_FLAGS_REGEX.test(input);
+}
 
-export function stringHasUnicodeFlags(text: string): boolean {
-  return EMOJIS_FLAGS_REGEX.test(text);
+export function stringHasCustomEmoji(input: string) {
+  return CUSTOM_EMOJI_REGEX.test(input);
+}
+
+export function stringHasAnyEmoji(input: string) {
+  return ANY_EMOJI_REGEX.test(input);
 }

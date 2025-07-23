@@ -1,5 +1,4 @@
 import type { Locale } from 'emojibase';
-import EMOJI_REGEX from 'emojibase-regex/emoji-loose';
 
 import { autoPlayGif } from '@/mastodon/initial_state';
 import { assetHost } from '@/mastodon/utils/config';
@@ -10,6 +9,7 @@ import {
   EMOJI_TYPE_UNICODE,
   EMOJI_TYPE_CUSTOM,
   EMOJI_STATE_MISSING,
+  ANY_EMOJI_REGEX,
 } from './constants';
 import {
   findMissingLocales,
@@ -146,12 +146,6 @@ async function ensureLocalesAreLoaded(locales: Locale[]) {
   }
 }
 
-const CUSTOM_EMOJI_REGEX = /:([a-z0-9_]+):/i;
-const TOKENIZE_REGEX = new RegExp(
-  `(${EMOJI_REGEX.source}|${CUSTOM_EMOJI_REGEX.source})`,
-  'g',
-);
-
 type TokenizedText = (string | EmojiToken)[];
 
 export function tokenizeText(text: string): TokenizedText {
@@ -161,7 +155,7 @@ export function tokenizeText(text: string): TokenizedText {
 
   const tokens = [];
   let lastIndex = 0;
-  for (const match of text.matchAll(TOKENIZE_REGEX)) {
+  for (const match of text.matchAll(ANY_EMOJI_REGEX)) {
     if (match.index > lastIndex) {
       tokens.push(text.slice(lastIndex, match.index));
     }
