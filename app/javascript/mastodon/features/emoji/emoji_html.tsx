@@ -11,6 +11,7 @@ import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 import { useEmojiAppState } from './hooks';
 import { emojifyElement } from './render';
 import type { ExtraCustomEmojiMap } from './types';
+import { stringHasAnyEmoji } from './utils';
 
 type EmojiHTMLProps = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -25,7 +26,7 @@ export const EmojiHTML: React.FC<EmojiHTMLProps> = ({
   extraEmojis,
   ...props
 }) => {
-  if (isModernEmojiEnabled()) {
+  if (isModernEmojiEnabled() && !stringHasAnyEmoji(htmlString)) {
     return (
       <ModernEmojiHTML
         htmlString={htmlString}
