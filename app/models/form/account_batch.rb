@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
-class Form::AccountBatch
-  include ActiveModel::Model
-  include Authorization
-  include AccountableConcern
+class Form::AccountBatch < Form::BaseBatch
   include Payloadable
 
-  attr_accessor :account_ids, :action, :current_account,
-                :select_all_matching, :query
+  attr_accessor :account_ids,
+                :query,
+                :select_all_matching
 
   def save
     case action

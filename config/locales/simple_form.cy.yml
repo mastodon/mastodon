@@ -61,6 +61,7 @@ cy:
         setting_display_media_default: Cuddio cyfryngau wedi eu marcio'n sensitif
         setting_display_media_hide_all: Cuddio cyfryngau bob tro
         setting_display_media_show_all: Dangos cyfryngau bob tro
+        setting_emoji_style: Sut i arddangos emojis. Bydd "Awto" yn ceisio defnyddio emoji cynhenid, ond mae'n disgyn yn ôl i Twemoji ar gyfer porwyr traddodiadol.
         setting_system_scrollbars_ui: Yn berthnasol i borwyr bwrdd gwaith yn seiliedig ar Safari a Chrome yn unig
         setting_use_blurhash: Mae graddiannau wedi'u seilio ar liwiau'r delweddau cudd ond maen nhw'n cuddio unrhyw fanylion
         setting_use_pending_items: Cuddio diweddariadau llinell amser y tu ôl i glic yn lle sgrolio'n awtomatig
@@ -149,6 +150,13 @@ cy:
         min_age: Ni ddylai fod yn is na'r isafswm oedran sy'n ofynnol gan gyfreithiau eich awdurdodaeth.
       user:
         chosen_languages: Wedi eu dewis, dim ond tŵtiau yn yr ieithoedd hyn bydd yn cael eu harddangos mewn ffrydiau cyhoeddus
+        date_of_birth:
+          few: Mae'n rhaid i ni sicrhau eich bod chi yn o leiaf %{count} oed i ddefnyddio %{domain}. Fyddwn ni ddim yn cadw hyn.
+          many: Mae'n rhaid i ni sicrhau eich bod chi yn o leiaf %{count} oed i ddefnyddio %{domain}. Fyddwn ni ddim yn cadw hyn.
+          one: Mae'n rhaid i ni sicrhau eich bod chi yn o leiaf %{count} oed i ddefnyddio %{domain}. Fyddwn ni ddim yn cadw hyn.
+          other: Mae'n rhaid i ni sicrhau eich bod chi yn o leiaf %{count} oed i ddefnyddio %{domain}. Fyddwn ni ddim yn cadw hyn.
+          two: Mae'n rhaid i ni sicrhau eich bod chi yn o leiaf %{count} oed i ddefnyddio %{domain}. Fyddwn ni ddim yn cadw hyn.
+          zero: Mae'n rhaid i ni sicrhau eich bod chi yn o leiaf %{count} oed i ddefnyddio %{domain}. Fyddwn ni ddim yn cadw hyn.
         role: Mae'r rôl yn rheoli pa ganiatâd sydd gan y defnyddiwr.
       user_role:
         color: Lliw i'w ddefnyddio ar gyfer y rôl drwy'r UI, fel RGB mewn fformat hecs
@@ -238,6 +246,7 @@ cy:
         setting_display_media_default: Rhagosodiad
         setting_display_media_hide_all: Cuddio popeth
         setting_display_media_show_all: Dangos popeth
+        setting_emoji_style: Arddull Emojis
         setting_expand_spoilers: Dangos postiadau wedi'u marcio â rhybudd cynnwys bob tro
         setting_hide_network: Cuddio eich graff cymdeithasol
         setting_missing_alt_text_modal: Dangos deialog cadarnhau cyn postio cyfrwng heb destun amgen

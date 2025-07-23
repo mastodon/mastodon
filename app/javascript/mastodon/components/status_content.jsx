@@ -15,7 +15,8 @@ import { undoStatusTranslation } from 'mastodon/actions/statuses';
 import { Icon }  from 'mastodon/components/icon';
 import { Poll } from 'mastodon/components/poll';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';
+import { autoPlayGif, isFeatureEnabled, languages as preloadedLanguages } from 'mastodon/initial_state';
+import { EmojiHTML } from '../features/emoji/emoji_html';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -27,6 +28,9 @@ const supportsTranslator = 'Translator' in globalThis;
  * @returns {string}
  */
 export function getStatusContent(status) {
+  if (isFeatureEnabled('modern_emojis')) {
+    return status.getIn(['translation', 'content']) || status.get('content');
+  }
   return status.getIn(['translation', 'contentHtml']) || status.get('contentHtml');
 }
 
@@ -294,7 +298,7 @@ class StatusContent extends PureComponent {
 
     const renderReadMore = this.props.onClick && status.get('collapsed');
 
-    const content = { __html: statusContent ?? getStatusContent(status) };
+    const content = statusContent ?? getStatusContent(status);
     const language = status.getIn(['translation', 'language']) || status.get('language');
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.props.history,
@@ -319,7 +323,12 @@ class StatusContent extends PureComponent {
       return (
         <>
           <div className={classNames} ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-            <div className='status__content__text status__content__text--visible translate' lang={language} dangerouslySetInnerHTML={content} />
+            <EmojiHTML
+              className='status__content__text status__content__text--visible translate'
+              lang={language}
+              htmlString={content}
+              extraEmojis={status.get('emojis')}
+            />
 
             {poll}
             {translateButton}
@@ -331,7 +340,12 @@ class StatusContent extends PureComponent {
     } else {
       return (
         <div className={classNames} ref={this.setRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-          <div className='status__content__text status__content__text--visible translate' lang={language} dangerouslySetInnerHTML={content} />
+          <EmojiHTML
+            className='status__content__text status__content__text--visible translate'
+            lang={language}
+            htmlString={content}
+            extraEmojis={status.get('emojis')}
+          />
 
           {poll}
           {translateButton}
