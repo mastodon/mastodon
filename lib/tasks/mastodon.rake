@@ -5,8 +5,7 @@ require 'tty-prompt'
 namespace :mastodon do
   desc 'Configure the instance for production use'
   task :setup do
-    prompt = TTY::Prompt.new
-    env    = {}
+    env = {}
 
     if ENV['LOCAL_DOMAIN']
       prompt.warn "It looks like you already configured Mastodon for domain '#{ENV['LOCAL_DOMAIN']}'."
@@ -17,8 +16,6 @@ namespace :mastodon do
     clear_environment!
 
     begin
-      errors = []
-
       prompt.say('Your instance is identified by its domain name. Changing it afterward will break things.')
       env['LOCAL_DOMAIN'] = prompt.ask('Domain name:') do |q|
         q.required true
@@ -502,23 +499,7 @@ namespace :mastodon do
           end
         end
 
-        unless using_docker
-          prompt.say "\n"
-          prompt.say 'The final step is compiling CSS/JS assets.'
-          prompt.say 'This may take a while and consume a lot of RAM.'
-
-          if prompt.yes?('Compile the assets now?')
-            prompt.say 'Running `RAILS_ENV=production rails assets:precompile` ...'
-            prompt.say "\n\n"
-
-            if system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' }), 'rails assets:precompile')
-              prompt.say 'Done!'
-            else
-              prompt.error 'That failed! Maybe you need swap space?'
-              errors << 'Compiling assets failed.'
-            end
-          end
-        end
+        compile_assets(env) unless using_docker
 
         prompt.say "\n"
         if errors.any?
@@ -579,6 +560,32 @@ namespace :mastodon do
   end
 
   private
+
+  def prompt
+    @prompt ||= TTY::Prompt.new
+  end
+
+  def errors
+    @errors ||= []
+  end
+
+  def compile_assets(env)
+    prompt.say "\n"
+    prompt.say 'The final step is compiling CSS/JS assets.'
+    prompt.say 'This may take a while and consume a lot of RAM.'
+
+    if prompt.yes?('Compile the assets now?')
+      prompt.say 'Running `RAILS_ENV=production rails assets:precompile` ...'
+      prompt.say "\n\n"
+
+      if system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' }), 'rails assets:precompile')
+        prompt.say 'Done!'
+      else
+        prompt.error 'That failed! Maybe you need swap space?'
+        errors << 'Compiling assets failed.'
+      end
+    end
+  end
 
   def clear_environment!
     # When the application code gets loaded, it runs `lib/mastodon/redis_configuration.rb`.
