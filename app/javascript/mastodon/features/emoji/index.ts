@@ -4,19 +4,27 @@ import { toSupportedLocale } from './locale';
 
 const userLocale = toSupportedLocale(initialState?.meta.locale ?? 'en');
 
-const worker =
-  'Worker' in window
-    ? new Worker(new URL('./worker', import.meta.url), {
-        type: 'module',
-      })
-    : null;
+let worker: Worker | null = null;
 
 export async function initializeEmoji() {
+  if (!worker && 'Worker' in window) {
+    try {
+      worker = new Worker(new URL('./worker', import.meta.url), {
+        type: 'module',
+        credentials: 'omit',
+      });
+    } catch (err) {
+      console.warn('Error creating web worker:', err);
+    }
+  }
+
   if (worker) {
-    worker.addEventListener('message', (event: MessageEvent<string>) => {
+    // Assign worker to const to make TS happy inside the event listener.
+    const thisWorker = worker;
+    thisWorker.addEventListener('message', (event: MessageEvent<string>) => {
       const { data: message } = event;
       if (message === 'ready') {
-        worker.postMessage('custom');
+        thisWorker.postMessage('custom');
         void loadEmojiLocale(userLocale);
         // Load English locale as well, because people are still used to
         // using it from before we supported other locales.
