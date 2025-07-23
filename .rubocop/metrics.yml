@@ -21,3 +21,7 @@ Metrics/ModuleLength:
 
 Metrics/ParameterLists:
   CountKeywordArgs: false
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - lib/mastodon/cli/*.rb
