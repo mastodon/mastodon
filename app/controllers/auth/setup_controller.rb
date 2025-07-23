@@ -8,6 +8,7 @@ class Auth::SetupController < ApplicationController
   before_action :set_user
 
   skip_before_action :require_functional!
+  skip_before_action :check_mfa_requirement
 
   def show; end
 
@@ -36,10 +37,5 @@ class Auth::SetupController < ApplicationController
 
   def user_params
     params.expect(user: [:email])
-  end
-
-  def skip_mfa_force?
-    # Allow auth setup even when MFA is required
-    true
   end
 end

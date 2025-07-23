@@ -18,6 +18,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   skip_before_action :check_self_destruct!, only: [:edit, :update]
   skip_before_action :require_functional!, only: [:edit, :update]
+  skip_before_action :check_mfa_requirement, only: [:edit, :update]
 
   def new
     super(&:build_invite_request)
@@ -143,10 +144,5 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     else
       super
     end
-  end
-
-  def skip_mfa_force?
-    # Allow profile editing even when MFA is required
-    %w(edit update).include?(action_name)
   end
 end

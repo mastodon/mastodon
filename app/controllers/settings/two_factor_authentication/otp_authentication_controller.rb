@@ -6,6 +6,7 @@ module Settings
       include ChallengableConcern
 
       skip_before_action :require_functional!
+      skip_before_action :check_mfa_requirement
 
       before_action :verify_otp_not_enabled, only: [:show]
       before_action :require_challenge!, only: [:create]
@@ -24,10 +25,6 @@ module Settings
 
       def verify_otp_not_enabled
         redirect_to settings_two_factor_authentication_methods_path if current_user.otp_enabled?
-      end
-
-      def skip_mfa_force?
-        true
       end
     end
   end

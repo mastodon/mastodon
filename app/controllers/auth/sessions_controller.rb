@@ -11,6 +11,7 @@ class Auth::SessionsController < Devise::SessionsController
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :require_functional!
   skip_before_action :update_user_sign_in
+  skip_before_action :check_mfa_requirement, only: [:destroy]
 
   prepend_before_action :check_suspicious!, only: [:create]
 
@@ -193,17 +194,8 @@ class Auth::SessionsController < Devise::SessionsController
 
   def respond_to_on_destroy
     respond_to do |format|
-      format.json do
-        render json: {
-          redirect_to: after_sign_out_path_for(resource_name),
-        }, status: 200
-      end
-      format.all { super }
+      format.any(*navigational_formats) { redirect_to after_sign_out_path_for(:user) }
+      format.all { head 204 }
     end
-  end
-
-  def skip_mfa_force?
-    # Allow logout to work even when MFA is required
-    action_name == 'destroy'
   end
 end

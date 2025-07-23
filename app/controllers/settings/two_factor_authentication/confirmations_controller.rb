@@ -6,6 +6,7 @@ module Settings
       include ChallengableConcern
 
       skip_before_action :require_functional!
+      skip_before_action :check_mfa_requirement
 
       before_action :require_challenge!
       before_action :ensure_otp_secret
@@ -52,10 +53,6 @@ module Settings
 
       def ensure_otp_secret
         redirect_to settings_otp_authentication_path if session[:new_otp_secret].blank?
-      end
-
-      def skip_mfa_force?
-        true
       end
     end
   end
