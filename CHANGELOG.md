@@ -10,12 +10,11 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Disable `useDrag` hook when main menu is not openable (#35414 by @diondiondion)
+- Fix menu not clickable in Firefox (#35390 and #35414 by @diondiondion)
 - Add `lang` attribute to current composer language in alt text modal (#35412 by @diondiondion)
 - Fix quote posts styling on notifications page (#35411 by @diondiondion)
 - Improve a11y of custom select menus in notifications settings (#35403 by @diondiondion)
 - Fix selected item in poll select menus is unreadable in Firefox (#35402 by @diondiondion)
-- Only remove pointer-events when necessary (#35390 by @diondiondion)
 - Update age limit wording (#35387 by @diondiondion)
 - Fix support for quote verification in implicit status updates (#35384 by @ClearlyClaire)
 - Improve `Dropdown` component accessibility (#35373 by @diondiondion)
