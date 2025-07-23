@@ -10,7 +10,6 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Don't require JSDoc params & return in TS (#35426 by @diondiondion)
 - Disable `useDrag` hook when main menu is not openable (#35414 by @diondiondion)
 - Add `lang` attribute to current composer language in alt text modal (#35412 by @diondiondion)
 - Fix quote posts styling on notifications page (#35411 by @diondiondion)
