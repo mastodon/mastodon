@@ -18,6 +18,23 @@ RSpec.describe StatusRelationshipsPresenter do
     let(:status_ids)         { statuses.map(&:id) + statuses.filter_map(&:reblog_of_id) }
     let(:default_map)        { { 1 => true } }
 
+    context 'when current_account_id is nil' do
+      let(:current_account_id) { nil }
+      let(:options) { {} }
+
+      it 'sets empty maps' do
+        expect(presenter).to have_attributes(
+          attributes_map: eq({}),
+          bookmarks_map: eq({}),
+          favourites_map: eq({}),
+          filters_map: eq({}),
+          mutes_map: eq({}),
+          pins_map: eq({}),
+          reblogs_map: eq({})
+        )
+      end
+    end
+
     context 'when options are not set' do
       let(:options) { {} }
 

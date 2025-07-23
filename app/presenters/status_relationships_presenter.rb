@@ -14,14 +14,7 @@ class StatusRelationshipsPresenter
     @statuses = statuses
 
     if current_account_id.nil?
-      @preloaded_account_relations = {}
-      @filters_map     = {}
-      @reblogs_map     = {}
-      @favourites_map  = {}
-      @bookmarks_map   = {}
-      @mutes_map       = {}
-      @pins_map        = {}
-      @attributes_map  = {}
+      prepare_empty_maps
     else
       @preloaded_account_relations = nil
 
@@ -52,6 +45,17 @@ class StatusRelationshipsPresenter
   end
 
   private
+
+  def prepare_empty_maps
+    @attributes_map = {}
+    @bookmarks_map = {}
+    @favourites_map = {}
+    @filters_map = {}
+    @mutes_map = {}
+    @pins_map = {}
+    @preloaded_account_relations = {}
+    @reblogs_map = {}
+  end
 
   def build_filters_map(statuses, current_account_id)
     active_filters = CustomFilter.cached_filters_for(current_account_id)
