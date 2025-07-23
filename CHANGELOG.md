@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Security
 
-- update dependency `nokogiri`
+- Update dependencies
 
 ### Fixed
 
