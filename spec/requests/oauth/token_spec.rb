@@ -25,17 +25,15 @@ RSpec.describe 'Managing OAuth Tokens' do
         }
       end
 
-      let(:code) do
-        access_grant = Fabricate(:access_grant, application: application, redirect_uri: 'urn:ietf:wg:oauth:2.0:oob', scopes: 'read write')
-        access_grant.plaintext_token
-      end
+      let(:access_grant) { Fabricate(:access_grant, application: application, redirect_uri: 'urn:ietf:wg:oauth:2.0:oob', scopes: 'read write') }
+      let(:code) { access_grant.plaintext_token }
 
       shared_examples 'returns a correctly scoped access token' do
         it 'returns the scopes requested by the authorization code' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(response.parsed_body[:scope]).to eq 'read write'
+          expect(response.parsed_body[:scope]).to eq access_grant.scopes.to_s
         end
 
         context 'with additional parameters not used by the grant type' do
