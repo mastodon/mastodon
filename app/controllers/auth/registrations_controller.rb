@@ -100,12 +100,13 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  private
-
   def set_invite
     @invite = begin
-      invite = Invite.find_by(code: invite_code) if invite_code.present?
-      invite if invite&.valid_for_use?
+      if invite_code.present?
+        Invite.find_by(code: invite_code)
+      elsif params[:invite_code].present?
+        Invite.find_by(code: params[:invite_code])
+      end
     end
   end
 
@@ -132,17 +133,20 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   def require_rules_acceptance!
     return if @rules.empty? || (session[:accept_token].present? && params[:accept] == session[:accept_token])
 
-    @accept_token = session[:accept_token] = SecureRandom.hex
-    @invite_code  = invite_code
-
-    set_locale { render :rules }
+    session[:accept_token] = SecureRandom.hex(16)
+    redirect_to new_user_registration_path(accept: session[:accept_token])
   end
 
   def is_flashing_format? # rubocop:disable Naming/PredicatePrefix
     if params[:action] == 'create'
-      false # Disable flash messages for sign-up
+      false
     else
       super
     end
+  end
+
+  def skip_mfa_force?
+    # Allow profile editing even when MFA is required
+    %w(edit update).include?(action_name)
   end
 end

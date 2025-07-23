@@ -37,4 +37,9 @@ class Auth::SetupController < ApplicationController
   def user_params
     params.expect(user: [:email])
   end
+
+  def skip_mfa_force?
+    # Allow auth setup even when MFA is required
+    true
+  end
 end

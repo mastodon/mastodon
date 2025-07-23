@@ -53,6 +53,10 @@ module Settings
       def ensure_otp_secret
         redirect_to settings_otp_authentication_path if session[:new_otp_secret].blank?
       end
+
+      def skip_mfa_force?
+        true
+      end
     end
   end
 end

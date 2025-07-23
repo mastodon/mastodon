@@ -201,4 +201,9 @@ class Auth::SessionsController < Devise::SessionsController
       format.all { super }
     end
   end
+
+  def skip_mfa_force?
+    # Allow logout to work even when MFA is required
+    action_name == 'destroy'
+  end
 end

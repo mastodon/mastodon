@@ -12,7 +12,7 @@ module MfaForceConcern
   def check_mfa_requirement
     return unless mfa_force_enabled?
     return if current_user.otp_enabled?
-    return if mfa_setup_allowed_paths?
+    return if mfa_force_skipped?
 
     flash[:alert] = I18n.t('require_multi_factor_auth.required_message')
     redirect_to settings_otp_authentication_path
@@ -22,19 +22,10 @@ module MfaForceConcern
     mfa_config[:force_enabled]
   end
 
-  def mfa_setup_allowed_paths?
-    allowed_paths = [
-      settings_otp_authentication_path,
-      new_settings_two_factor_authentication_confirmation_path,
-      settings_two_factor_authentication_confirmation_path,
-      settings_two_factor_authentication_methods_path,
-      settings_two_factor_authentication_recovery_codes_path,
-      destroy_user_session_path,
-      auth_setup_path,
-      edit_user_registration_path,
-    ]
-
-    allowed_paths.any? { |path| request.path.start_with?(path) }
+  def mfa_force_skipped?
+    # Allow controllers to opt out of MFA force requirement
+    # by defining skip_mfa_force? method
+    respond_to?(:skip_mfa_force?) && skip_mfa_force?
   end
 
   def mfa_config

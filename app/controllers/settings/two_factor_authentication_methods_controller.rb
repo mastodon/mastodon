@@ -24,5 +24,9 @@ module Settings
     def require_otp_enabled
       redirect_to settings_otp_authentication_path unless current_user.otp_enabled?
     end
+
+    def skip_mfa_force?
+      true
+    end
   end
 end
