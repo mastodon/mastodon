@@ -156,7 +156,7 @@ export const Footer: React.FC<{
 
       onClose();
 
-      history.push(`/@${account?.acct}/${status.get('id') as string}`);
+      history.push(`/@${account?.get('acct')}/${status.get('id') as string}`);
     },
     [history, status, account, onClose],
   );
@@ -256,7 +256,7 @@ export const Footer: React.FC<{
           icon='external-link'
           iconComponent={OpenInNewIcon}
           onClick={handleOpenClick}
-          href={`/@${account?.acct}/${status.get('id') as string}`}
+          href={`/@${account?.get('acct')}/${status.get('id') as string}`}
         />
       )}
     </div>
