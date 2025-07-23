@@ -18,8 +18,9 @@ RSpec.describe MfaForceConcern do
   describe 'MFA force functionality' do
     context 'when REQUIRE_MULTI_FACTOR_AUTH is enabled' do
       before do
-        allow(ENV).to receive(:[]).with('REQUIRE_MULTI_FACTOR_AUTH').and_return('true')
-        sign_in user, scope: :user
+        ClimateControl.modify(REQUIRE_MULTI_FACTOR_AUTH: 'true') do
+          sign_in user, scope: :user
+        end
       end
 
       context 'when user has MFA enabled' do
@@ -28,8 +29,10 @@ RSpec.describe MfaForceConcern do
         end
 
         it 'allows access to normal pages' do
-          get :index
-          expect(response).to have_http_status(200)
+          ClimateControl.modify(REQUIRE_MULTI_FACTOR_AUTH: 'true') do
+            get :index
+            expect(response).to have_http_status(200)
+          end
         end
       end
 
@@ -39,32 +42,42 @@ RSpec.describe MfaForceConcern do
         end
 
         it 'redirects to MFA setup page' do
-          get :index
-          expect(response).to redirect_to(settings_otp_authentication_path)
+          ClimateControl.modify(REQUIRE_MULTI_FACTOR_AUTH: 'true') do
+            get :index
+            expect(response).to redirect_to(settings_otp_authentication_path)
+          end
         end
 
         it 'shows the required message' do
-          get :index
-          expect(flash[:warning]).to eq(I18n.t('require_multi_factor_auth.required_message'))
+          ClimateControl.modify(REQUIRE_MULTI_FACTOR_AUTH: 'true') do
+            get :index
+            expect(flash[:alert]).to eq(I18n.t('require_multi_factor_auth.required_message'))
+          end
         end
 
         context 'when accessing MFA setup pages' do
           it 'allows access to OTP authentication page' do
-            allow(controller.request).to receive(:path).and_return('/settings/otp_authentication')
-            get :index
-            expect(response).to have_http_status(200)
+            ClimateControl.modify(REQUIRE_MULTI_FACTOR_AUTH: 'true') do
+              allow(controller.request).to receive(:path).and_return('/settings/otp_authentication')
+              get :index
+              expect(response).to have_http_status(200)
+            end
           end
 
           it 'allows access to MFA confirmation page' do
-            allow(controller.request).to receive(:path).and_return('/settings/two_factor_authentication/confirmation')
-            get :index
-            expect(response).to have_http_status(200)
+            ClimateControl.modify(REQUIRE_MULTI_FACTOR_AUTH: 'true') do
+              allow(controller.request).to receive(:path).and_return('/settings/two_factor_authentication/confirmation')
+              get :index
+              expect(response).to have_http_status(200)
+            end
           end
 
           it 'allows access to logout' do
-            allow(controller.request).to receive(:path).and_return('/auth/sign_out')
-            get :index
-            expect(response).to have_http_status(200)
+            ClimateControl.modify(REQUIRE_MULTI_FACTOR_AUTH: 'true') do
+              allow(controller.request).to receive(:path).and_return('/auth/sign_out')
+              get :index
+              expect(response).to have_http_status(200)
+            end
           end
         end
       end
@@ -72,25 +85,26 @@ RSpec.describe MfaForceConcern do
 
     context 'when REQUIRE_MULTI_FACTOR_AUTH is disabled' do
       before do
-        allow(ENV).to receive(:[]).with('REQUIRE_MULTI_FACTOR_AUTH').and_return('false')
-        sign_in user, scope: :user
-        user.update(otp_required_for_login: false)
+        ClimateControl.modify(REQUIRE_MULTI_FACTOR_AUTH: 'false') do
+          sign_in user, scope: :user
+          user.update(otp_required_for_login: false)
+        end
       end
 
       it 'allows access to normal pages' do
-        get :index
-        expect(response).to have_http_status(200)
+        ClimateControl.modify(REQUIRE_MULTI_FACTOR_AUTH: 'false') do
+          get :index
+          expect(response).to have_http_status(200)
+        end
       end
     end
 
     context 'when user is not signed in' do
-      before do
-        allow(ENV).to receive(:[]).with('REQUIRE_MULTI_FACTOR_AUTH').and_return('true')
-      end
-
       it 'allows access to normal pages' do
-        get :index
-        expect(response).to have_http_status(200)
+        ClimateControl.modify(REQUIRE_MULTI_FACTOR_AUTH: 'true') do
+          get :index
+          expect(response).to have_http_status(200)
+        end
       end
     end
   end

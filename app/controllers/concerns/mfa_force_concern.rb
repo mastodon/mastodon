@@ -14,7 +14,7 @@ module MfaForceConcern
     return if current_user.otp_enabled?
     return if mfa_setup_allowed_paths?
 
-    flash[:warning] = I18n.t('require_multi_factor_auth.required_message')
+    flash[:alert] = I18n.t('require_multi_factor_auth.required_message')
     redirect_to settings_otp_authentication_path
   end
 
