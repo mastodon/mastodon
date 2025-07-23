@@ -4,7 +4,7 @@ module MfaForceConcern
   extend ActiveSupport::Concern
 
   included do
-    before_action :check_mfa_requirement, if: :user_signed_in?
+    prepend_before_action :check_mfa_requirement, if: :user_signed_in?
   end
 
   private
