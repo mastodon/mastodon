@@ -454,6 +454,7 @@ nan:
         title: 封鎖新ê電子phue網域
       no_email_domain_block_selected: 因為無揀任何電子phue域名封鎖，所以lóng無改變
       not_permitted: 無允准
+      resolved_dns_records_hint_html: 域名解析做下kha ê MX域名，tsiah ê域名上後負責收電子phue。封鎖MX域名ē封任何有siâng款MX域名ê電子郵件ê註冊，就算通看見ê域名無kâng，mā án-ne。<strong>Tio̍h細膩，m̄通封鎖主要ê電子phue提供者。</strong>
       resolved_through_html: 通過 %{domain} 解析
       title: 封鎖ê電子phue網域
     export_domain_allows:
@@ -468,9 +469,78 @@ nan:
         private_comment_template: 佇 %{date} tuì %{source} 輸入
         title: 輸入域名封鎖
       invalid_domain_block: 因為下kha ê錯誤，làng過tsi̍t ê以上ê域名封鎖：%{error}
+      new:
+        title: 輸入域名封鎖
+      no_file: Iáu bē揀檔案
+    fasp:
+      debug:
+        callbacks:
+          created_at: 建立佇
+          delete: Thâi掉
+          ip: IP地址
+          request_body: 請求主文
+          title: 除蟲callback
+      providers:
+        active: 有效
+        base_url: 基本URL
+        callback: Callback
+        delete: Thâi掉
+        edit: 編輯提供者
+        finish_registration: 完成註冊
+        name: 名
+        providers: 提供者
+        public_key_fingerprint: 公開鎖匙ê指頭仔螺(public key fingerprint)
+        registration_requested: 註冊請求ah
+        registrations:
+          confirm: 確認
+          description: Lí收著FASP ê註冊ah。nā準lí bô啟動，請拒絕。若有啟動，請佇確認註冊以前，細膩比較名kap鎖匙ê指頭仔螺。
+          reject: 拒絕
+          title: 確認FASP註冊
+        save: 儲存
+        select_capabilities: 揀功能
+        sign_in: 登入
+        status: 狀態
+        title: 聯邦宇宙輔助服務提供者 (FASP)
+      title: FASP
+    follow_recommendations:
+      description_html: "<strong>跟tuè建議幫tsān新用者緊tshuē著心適ê內容</strong>。Nā使用者無hām別lâng有夠額ê互動，來形成個人化ê跟tuè建議，就ē推薦tsiah ê口座。In是佇指定語言內底，由最近上tsia̍p參與ê，kap上tsē lâng跟tuè ê口座，用ta̍k kang做基礎，相濫koh計算出來ê。"
+      language: 揀語言
+      status: 狀態
+      suppress: Khàm掉跟tuè建議
+      suppressed: Khàm掉ê
+      title: 跟tuè建議
+      unsuppress: 恢復跟tuè建議
     instances:
+      audit_log:
+        title: 最近ê審核日誌
+        view_all: 看完整ê審核日誌
+      availability:
+        description_html:
+          other: Nā佇 <strong>%{count} kang</strong>內，寄送kàu hit ê域名lóng失敗，除非收著hit ê域名<em>來ê</em>寄送，a̍h無buē koh試寄送。
+        failure_threshold_reached: 佇 %{date} kàu失敗ê底限。
+        failures_recorded:
+          other: 連suà %{count} kang lóng寄失敗。
+        no_failures_recorded: 報告內底無失敗。
+        title: 可用性
+        warning: 頂kái試連接tsit臺服侍器是無成功
+      back_to_all: 全部
+      back_to_limited: 受限制
+      back_to_warning: 警告
+      by_domain: 域名
+      confirm_purge: Lí kám確定beh永永thâi掉tsit ê域名來ê資料？
+      content_policies:
+        comment: 內部ê筆記
+        description_html: Lí ē當定義用tī所有tuì tsit ê域名kap伊ê子域名來ê口座ê內容政策。
       dashboard:
         instance_languages_dimension: Tsia̍p用ê語言
+    invites:
+      filter:
+        available: 通用ê
+        expired: 過期ê
+        title: 過濾器
+      title: 邀請
+    ip_blocks:
+      add_new: 建立規則
     statuses:
       language: 語言
     trends:

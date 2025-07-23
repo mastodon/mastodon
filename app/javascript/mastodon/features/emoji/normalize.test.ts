@@ -22,9 +22,9 @@ const emojiSVGFiles = await readdir(
 );
 const svgFileNames = emojiSVGFiles
   .filter((file) => file.isFile() && file.name.endsWith('.svg'))
-  .map((file) => basename(file.name, '.svg').toUpperCase());
+  .map((file) => basename(file.name, '.svg'));
 const svgFileNamesWithoutBorder = svgFileNames.filter(
-  (fileName) => !fileName.endsWith('_BORDER'),
+  (fileName) => !fileName.endsWith('_border'),
 );
 
 const unicodeEmojis = flattenEmojiData(unicodeRawEmojis);
@@ -60,13 +60,13 @@ describe('unicodeToTwemojiHex', () => {
 describe('twemojiHasBorder', () => {
   test.concurrent.for(
     svgFileNames
-      .filter((file) => file.endsWith('_BORDER'))
+      .filter((file) => file.endsWith('_border'))
       .map((file) => {
-        const hexCode = file.replace('_BORDER', '');
+        const hexCode = file.replace('_border', '');
         return [
           hexCode,
-          CODES_WITH_LIGHT_BORDER.includes(hexCode),
-          CODES_WITH_DARK_BORDER.includes(hexCode),
+          CODES_WITH_LIGHT_BORDER.includes(hexCode.toUpperCase()),
+          CODES_WITH_DARK_BORDER.includes(hexCode.toUpperCase()),
         ] as const;
       }),
   )('twemojiHasBorder for %s', ([hexCode, isLight, isDark], { expect }) => {
