@@ -19,7 +19,7 @@ module MfaForceConcern
   end
 
   def mfa_force_enabled?
-    ENV['REQUIRE_MULTI_FACTOR_AUTH'] == 'true'
+    mfa_config[:force_enabled]
   end
 
   def mfa_setup_allowed_paths?
@@ -35,5 +35,9 @@ module MfaForceConcern
     ]
 
     allowed_paths.any? { |path| request.path.start_with?(path) }
+  end
+
+  def mfa_config
+    @mfa_config ||= Rails.application.config_for(:mfa)
   end
 end
