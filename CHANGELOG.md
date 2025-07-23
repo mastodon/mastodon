@@ -21,9 +21,8 @@ All notable changes to this project will be documented in this file.
 - Fix support for quote verification in implicit status updates (#35384 by @ClearlyClaire)
 - Always give local quote of remote posts a quote request URI (#35383 by @ClearlyClaire)
 - Refactor `ActivityPub::Activity::Accept` and `ActivityPub::Activity::Reject` specs (#35382 by @ClearlyClaire)
-- Fix `quoteAuthorization` type in JSON-LD context (#35380 by @ClearlyClaire)
 - Improve `Dropdown` component accessibility (#35373 by @diondiondion)
-- Fix quote attributes missing from Mastodon's context (#35354 by @ClearlyClaire)
+- Fix processing some incoming quotes failing because of missing JSON-LD context (#35354 and #35380 by @ClearlyClaire)
 - Make bio hashtags open the local page instead of the remote instance (#35349 by @ChaosExAnima)
 - Fix styling of external log-in button (#35320 by @ClearlyClaire)
 
