@@ -5,6 +5,7 @@ module Admin
     before_action :set_tag, except: [:index]
 
     PER_PAGE = 20
+    PERIOD_DAYS = 6.days
 
     def index
       authorize :tag, :index?
@@ -15,7 +16,7 @@ module Admin
     def show
       authorize @tag, :show?
 
-      @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
+      @time_period = report_range
     end
 
     def update
@@ -24,7 +25,7 @@ module Admin
       if @tag.update(tag_params.merge(reviewed_at: Time.now.utc))
         redirect_to admin_tag_path(@tag.id), notice: I18n.t('admin.tags.updated_msg')
       else
-        @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
+        @time_period = report_range
 
         render :show
       end
@@ -34,6 +35,10 @@ module Admin
 
     def set_tag
       @tag = Tag.find(params[:id])
+    end
+
+    def report_range
+      (PERIOD_DAYS.ago.to_date...Time.now.utc.to_date)
     end
 
     def tag_params
