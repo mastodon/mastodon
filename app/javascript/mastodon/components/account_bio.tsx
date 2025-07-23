@@ -2,27 +2,44 @@ import { useCallback } from 'react';
 
 import { useLinks } from 'mastodon/hooks/useLinks';
 
+import { EmojiHTML } from '../features/emoji/emoji_html';
+import { isFeatureEnabled } from '../initial_state';
+import { useAppSelector } from '../store';
+
 interface AccountBioProps {
-  note: string;
   className: string;
-  dropdownAccountId?: string;
+  accountId: string;
+  showDropdown?: boolean;
 }
 
 export const AccountBio: React.FC<AccountBioProps> = ({
-  note,
   className,
-  dropdownAccountId,
+  accountId,
+  showDropdown = false,
 }) => {
-  const handleClick = useLinks(!!dropdownAccountId);
+  const handleClick = useLinks(showDropdown);
   const handleNodeChange = useCallback(
     (node: HTMLDivElement | null) => {
-      if (!dropdownAccountId || !node || node.childNodes.length === 0) {
+      if (!showDropdown || !node || node.childNodes.length === 0) {
         return;
       }
-      addDropdownToHashtags(node, dropdownAccountId);
+      addDropdownToHashtags(node, accountId);
     },
-    [dropdownAccountId],
+    [showDropdown, accountId],
   );
+  const note = useAppSelector((state) => {
+    const account = state.accounts.get(accountId);
+    if (!account) {
+      return '';
+    }
+    return isFeatureEnabled('modern_emojis')
+      ? account.note
+      : account.note_emojified;
+  });
+  const extraEmojis = useAppSelector((state) => {
+    const account = state.accounts.get(accountId);
+    return account?.emojis;
+  });
 
   if (note.length === 0) {
     return null;
@@ -31,10 +48,11 @@ export const AccountBio: React.FC<AccountBioProps> = ({
   return (
     <div
       className={`${className} translate`}
-      dangerouslySetInnerHTML={{ __html: note }}
       onClickCapture={handleClick}
       ref={handleNodeChange}
-    />
+    >
+      <EmojiHTML htmlString={note} extraEmojis={extraEmojis} />
+    </div>
   );
 };
 

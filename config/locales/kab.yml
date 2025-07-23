@@ -444,7 +444,7 @@ kab:
       media:
         title: Amidya
       open: Ldi tasuffeɣt
-      trending: Ayen mucaɛen
+      trending: Inezzaɣ
       visibility: Abani
       with_media: S umidya
     system_checks:
@@ -475,12 +475,16 @@ kab:
     title: Tadbelt
     trends:
       allow: Sireg
+      links:
+        title: Iseɣwan inezzaɣ
       statuses:
-        title: Tisuffaɣ mucaɛen
+        title: Tisuffaɣ tinezzaɣ
       tags:
         dashboard:
           tag_languages_dimension: Tutlayin ifazen
-      trending: Ayen mucaɛen
+        title: Ihacṭagen inezzaɣ
+        trending_rank: 'Anezzuɣ #%{rank}'
+      trending: Inezzaɣ
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
@@ -492,8 +496,12 @@ kab:
       body: "%{reporter} yettwazen ɣef %{target}"
       subject: Aneqqis amaynut i %{instance} (#%{id})
     new_trends:
+      new_trending_links:
+        title: Iseɣwan inezzaɣ
       new_trending_statuses:
-        title: Tisuffaɣ mucaɛen
+        title: Tisuffaɣ tinezzaɣ
+      new_trending_tags:
+        title: Ihacṭagen inezzaɣ
   appearance:
     advanced_web_interface: Agrudem n web leqqayen
     discovery: Asnirem
@@ -916,12 +924,13 @@ kab:
       edit_profile_title: Sagen amaɣnu-inek·inem
       feature_action: Issin ugar
       follow_action: Ḍfeṛ
+      follow_title: Sagen isuddam n yisallen n wejgu-k·m agejdan
       follows_subtitle: Ḍfer imiḍanen yettwassnen mliḥ
       follows_title: Anwa ara ḍefṛeḍ
       follows_view_more: Ssken-d ugar n medden ay tzemred ad tḍefred
-      hashtags_subtitle: Wali ayen ileḥḥun seg sin wussan-a iεeddan
-      hashtags_title: Ihacṭagen mucaɛen
-      hashtags_view_more: Sken-d ugar n yihacṭagen mucaɛen
+      hashtags_subtitle: Snirem ayen yellan d anezzuɣ deg 2 n wussan-a iεeddan
+      hashtags_title: Ihacṭagen inezzaɣ
+      hashtags_view_more: Sken-d ugar n yihacṭagen inezzaɣ
       post_step: Ini-as azul i umaḍal s uḍris, s tiwlafin, s tividyutin neɣ s tefranin.
       post_title: Aru tasuffeɣt-inek·inem tamezwarut
       share_step: Init-asen i yimeddukal-nwen amek ara ken-id-afen deg Mastodon.
