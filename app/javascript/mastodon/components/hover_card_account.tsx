@@ -102,7 +102,7 @@ export const HoverCardAccount = forwardRef<
             <>
               <div className='hover-card__text-row'>
                 <AccountBio
-                  accountId={account.id}
+                  note={account.note_emojified}
                   className='hover-card__bio'
                 />
                 <AccountFields fields={account.fields} limit={2} />
