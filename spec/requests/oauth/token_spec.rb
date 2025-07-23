@@ -17,15 +17,8 @@ RSpec.describe 'Managing OAuth Tokens' do
     end
 
     context "with grant_type 'authorization_code'" do
-      let(:params) do
-        {
-          grant_type: 'authorization_code',
-          redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
-          code: code,
-        }
-      end
-
       let(:access_grant) { Fabricate(:access_grant, application: application, redirect_uri: 'urn:ietf:wg:oauth:2.0:oob', scopes: 'read write') }
+      let(:access_grant_scopes) { access_grant.scopes.to_s }
       let(:code) { access_grant.plaintext_token }
 
       shared_examples 'returns a correctly scoped access token' do
@@ -33,7 +26,7 @@ RSpec.describe 'Managing OAuth Tokens' do
           subject
 
           expect(response).to have_http_status(200)
-          expect(response.parsed_body[:scope]).to eq access_grant.scopes.to_s
+          expect(response.parsed_body[:scope]).to eq access_grant_scopes
         end
 
         context 'with additional parameters not used by the grant type' do
@@ -50,7 +43,7 @@ RSpec.describe 'Managing OAuth Tokens' do
             subject
 
             expect(response).to have_http_status(200)
-            expect(response.parsed_body[:scope]).to eq 'read write'
+            expect(response.parsed_body[:scope]).to eq access_grant_scopes
           end
         end
       end
@@ -77,6 +70,14 @@ RSpec.describe 'Managing OAuth Tokens' do
           }
         end
 
+        let(:params) do
+          {
+            grant_type: 'authorization_code',
+            redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
+            code: code,
+          }
+        end
+
         it_behaves_like 'returns a correctly scoped access token'
       end
     end
@@ -86,7 +87,7 @@ RSpec.describe 'Managing OAuth Tokens' do
         context 'with no scopes specified' do
           let(:scope) { nil }
 
-          it 'returns only the default scope' do
+          it 'returns only the authorization server default scope (read)' do
             subject
 
             expect(response).to have_http_status(200)
