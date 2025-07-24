@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.2] - 2025-07-23
+
+### Security
+
+- Update dependencies
+
+### Fixed
+
+- Fix menu not clickable in Firefox (#35390 and #35414 by @diondiondion)
+- Add `lang` attribute to current composer language in alt text modal (#35412 by @diondiondion)
+- Fix quote posts styling on notifications page (#35411 by @diondiondion)
+- Improve a11y of custom select menus in notifications settings (#35403 by @diondiondion)
+- Fix selected item in poll select menus is unreadable in Firefox (#35402 by @diondiondion)
+- Update age limit wording (#35387 by @diondiondion)
+- Fix support for quote verification in implicit status updates (#35384 by @ClearlyClaire)
+- Improve `Dropdown` component accessibility (#35373 by @diondiondion)
+- Fix processing some incoming quotes failing because of missing JSON-LD context (#35354 and #35380 by @ClearlyClaire)
+- Make bio hashtags open the local page instead of the remote instance (#35349 by @ChaosExAnima)
+- Fix styling of external log-in button (#35320 by @ClearlyClaire)
+
 ## [4.4.1] - 2025-07-09
 
 ### Fixed
