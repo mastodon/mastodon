@@ -5,9 +5,8 @@ import type { List as ImmutableList } from 'immutable';
 import { isList } from 'immutable';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
-import { isFeatureEnabled } from '@/mastodon/initial_state';
 import type { CustomEmoji } from '@/mastodon/models/custom_emoji';
-import { isDevelopment } from '@/mastodon/utils/environment';
+import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 
 import { useEmojiAppState } from './hooks';
 import { emojifyElement } from './render';
@@ -26,7 +25,7 @@ export const EmojiHTML: React.FC<EmojiHTMLProps> = ({
   extraEmojis,
   ...props
 }) => {
-  if (isFeatureEnabled('modern_emojis') && isDevelopment()) {
+  if (isModernEmojiEnabled()) {
     return (
       <ModernEmojiHTML
         htmlString={htmlString}
