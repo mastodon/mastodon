@@ -5,13 +5,12 @@ import { Route } from 'react-router-dom';
 
 import { Provider as ReduxProvider } from 'react-redux';
 
-import { ScrollContext } from 'react-router-scroll-4';
-
 import { fetchCustomEmojis } from 'mastodon/actions/custom_emojis';
 import { hydrateStore } from 'mastodon/actions/store';
 import { connectUserStream } from 'mastodon/actions/streaming';
 import ErrorBoundary from 'mastodon/components/error_boundary';
 import { Router } from 'mastodon/components/router';
+import ScrollContext from 'mastodon/containers/scroll_container';
 import UI from 'mastodon/features/ui';
 import { IdentityContext, createIdentityContext } from 'mastodon/identity_context';
 import initialState, { title as siteTitle } from 'mastodon/initial_state';
@@ -45,10 +44,6 @@ export default class Mastodon extends PureComponent {
     }
   }
 
-  shouldUpdateScroll (prevRouterProps, { location }) {
-    return !(location.state?.mastodonModalKey && location.state?.mastodonModalKey !== prevRouterProps?.location?.state?.mastodonModalKey);
-  }
-
   render () {
     return (
       <IdentityContext.Provider value={this.identity}>
@@ -56,7 +51,7 @@ export default class Mastodon extends PureComponent {
           <ReduxProvider store={store}>
             <ErrorBoundary>
               <Router>
-                <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
+                <ScrollContext>
                   <Route path='/' component={UI} />
                 </ScrollContext>
                 <BodyScrollLock />
