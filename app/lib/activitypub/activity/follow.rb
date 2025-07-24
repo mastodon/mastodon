@@ -8,6 +8,8 @@ class ActivityPub::Activity::Follow < ActivityPub::Activity
 
     return if target_account.nil? || !target_account.local? || delete_arrived_first?(@json['id'])
 
+    @account.schedule_suspension_recheck!
+
     # Update id of already-existing follow requests
     existing_follow_request = ::FollowRequest.find_by(account: @account, target_account: target_account)
     unless existing_follow_request.nil?

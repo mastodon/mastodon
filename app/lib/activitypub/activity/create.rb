@@ -53,6 +53,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     process_quote
     process_audience
 
+    # If we got a new status, the account is probably not suspended at origin anymore
+    @account.schedule_suspension_recheck!(interaction_time: @params[:created_at])
+
     ApplicationRecord.transaction do
       @status = Status.create!(@params)
       attach_tags(@status)
