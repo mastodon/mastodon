@@ -4,12 +4,16 @@ import { Globals } from '@react-spring/web';
 
 import { setupBrowserNotifications } from 'mastodon/actions/notifications';
 import Mastodon from 'mastodon/containers/mastodon';
-import { isFeatureEnabled, me, reduceMotion } from 'mastodon/initial_state';
+import { me, reduceMotion } from 'mastodon/initial_state';
 import * as perf from 'mastodon/performance';
 import ready from 'mastodon/ready';
 import { store } from 'mastodon/store';
 
-import { isProduction, isDevelopment } from './utils/environment';
+import {
+  isProduction,
+  isDevelopment,
+  isModernEmojiEnabled,
+} from './utils/environment';
 
 function main() {
   perf.start('main()');
@@ -29,7 +33,7 @@ function main() {
       });
     }
 
-    if (isFeatureEnabled('modern_emojis')) {
+    if (isModernEmojiEnabled()) {
       const { initializeEmoji } = await import('@/mastodon/features/emoji');
       await initializeEmoji();
     }
