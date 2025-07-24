@@ -113,10 +113,15 @@ RSpec.describe Trends::Statuses do
     let!(:status_foo) { Fabricate(:status, text: 'Foo', language: 'en', trendable: true, created_at: yesterday) }
     let!(:status_bar) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today) }
     let!(:status_baz) { Fabricate(:status, text: 'Baz', language: 'en', trendable: true, created_at: today) }
+    let!(:untrendable) { Fabricate(:status, text: 'Untrendable', language: 'en', trendable: true, visibility: :unlisted) }
+    let!(:quote_post) { Fabricate(:status, text: 'Quote!', language: 'en', trendable: true, created_at: today, quote: Quote.new(state: :accepted, quoted_status: status_foo)) }
+    let!(:untrendable_quote) { Fabricate(:status, text: 'Untrendable quote!', language: 'en', trendable: true, created_at: today, quote: Quote.new(state: :accepted, quoted_status: untrendable)) }
 
     before do
       default_threshold_value.times { reblog(status_foo, today) }
       default_threshold_value.times { reblog(status_bar, today) }
+      default_threshold_value.times { reblog(untrendable, today) }
+      default_threshold_value.times { reblog(quote_post, today) }
       (default_threshold_value - 1).times { reblog(status_baz, today) }
     end
 
@@ -128,8 +133,8 @@ RSpec.describe Trends::Statuses do
       it 'returns correct statuses from query' do
         results = subject.query.limit(10).to_a
 
-        expect(results).to eq [status_bar, status_foo]
-        expect(results).to_not include(status_baz)
+        expect(results).to eq [quote_post, status_bar, status_foo]
+        expect(results).to_not include(status_baz, untrendable, untrendable_quote)
       end
     end
 
