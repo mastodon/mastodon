@@ -193,10 +193,11 @@ async function findEntrypoints() {
     withFileTypes: true,
   });
   const jsExtTest = /\.[jt]sx?$/;
+  const jsEntrypointsDir = path.resolve(jsRoot, 'entrypoints');
   for (const file of jsEntrypoints) {
     if (file.isFile() && jsExtTest.test(file.name)) {
       entrypoints[file.name.replace(jsExtTest, '')] = path.resolve(
-        file.parentPath,
+        jsEntrypointsDir,
         file.name,
       );
     }
@@ -208,10 +209,11 @@ async function findEntrypoints() {
     { withFileTypes: true },
   );
   const scssExtTest = /\.s?css$/;
+  const scssEntrypointsDir = path.resolve(jsRoot, 'styles/entrypoints');
   for (const file of scssEntrypoints) {
     if (file.isFile() && scssExtTest.test(file.name)) {
       entrypoints[file.name.replace(scssExtTest, '')] = path.resolve(
-        file.parentPath,
+        scssEntrypointsDir,
         file.name,
       );
     }
