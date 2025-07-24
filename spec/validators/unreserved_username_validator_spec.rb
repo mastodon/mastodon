@@ -6,6 +6,7 @@ RSpec.describe UnreservedUsernameValidator do
   let(:record_class) do
     Class.new do
       include ActiveModel::Validations
+
       attr_accessor :username
 
       validates_with UnreservedUsernameValidator
