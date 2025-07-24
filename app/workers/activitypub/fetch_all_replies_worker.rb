@@ -45,6 +45,11 @@ class ActivityPub::FetchAllRepliesWorker
 
     # Workers shouldn't be returning anything, but this is used in tests
     fetched_uris
+  rescue
+    # If the worker fails for any reason, mark the async refresh as finished to avoid an
+    # infinite loading spinner on the client
+    AsyncRefresh.new(async_refresh_key).finish!
+    raise
   end
 
   private
@@ -55,7 +60,7 @@ class ActivityPub::FetchAllRepliesWorker
     replies_collection_or_uri = get_replies_uri(status)
     return if replies_collection_or_uri.nil?
 
-    ActivityPub::FetchAllRepliesService.new.call(value_or_id(status), replies_collection_or_uri, max_pages: max_pages, async_refresh_key: "context:#{@root_status.id}:refresh", **options.deep_symbolize_keys)
+    ActivityPub::FetchAllRepliesService.new.call(value_or_id(status), replies_collection_or_uri, max_pages: max_pages, async_refresh_key: async_refresh_key, **options.deep_symbolize_keys)
   end
 
   # Get the URI of the replies collection of a status
@@ -83,5 +88,9 @@ class ActivityPub::FetchAllRepliesWorker
     FetchReplyWorker.perform_async(root_status_uri, { **options.deep_stringify_keys, 'prefetched_body' => root_status_body })
 
     get_replies(root_status_body, MAX_PAGES, options)
+  end
+
+  def async_refresh_key
+    "context:#{@root_status.id}:refresh"
   end
 end
