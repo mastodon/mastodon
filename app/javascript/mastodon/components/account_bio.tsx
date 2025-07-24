@@ -5,6 +5,7 @@ import { useLinks } from 'mastodon/hooks/useLinks';
 import { EmojiHTML } from '../features/emoji/emoji_html';
 import { isFeatureEnabled } from '../initial_state';
 import { useAppSelector } from '../store';
+import { isDevelopment } from '../utils/environment';
 
 interface AccountBioProps {
   className: string;
@@ -32,7 +33,7 @@ export const AccountBio: React.FC<AccountBioProps> = ({
     if (!account) {
       return '';
     }
-    return isFeatureEnabled('modern_emojis')
+    return isFeatureEnabled('modern_emojis') && isDevelopment()
       ? account.note
       : account.note_emojified;
   });

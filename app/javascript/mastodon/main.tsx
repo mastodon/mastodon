@@ -29,7 +29,7 @@ function main() {
       });
     }
 
-    if (isFeatureEnabled('modern_emojis')) {
+    if (isFeatureEnabled('modern_emojis') && isDevelopment()) {
       const { initializeEmoji } = await import('@/mastodon/features/emoji');
       await initializeEmoji();
     }
