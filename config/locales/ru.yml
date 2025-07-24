@@ -1477,56 +1477,56 @@ ru:
       other: Проверьте введённые вами данные! Далее по странице вы можете увидеть %{count} сообщений об ошибке
   imports:
     errors:
-      empty: Пустой CSV-файл
-      incompatible_type: Несовместимость с выбранным типом импорта
-      invalid_csv_file: 'Неверный файл CSV. Ошибка: %{error}'
+      empty: Файл CSV пуст
+      incompatible_type: Несовместим с выбранным типом данных для импорта
+      invalid_csv_file: 'Ошибка при чтении файла CSV: %{error}'
       over_rows_processing_limit: содержит более %{count} строк
       too_large: Файл слишком большой
     failures: Ошибки
-    imported: Импортирован
-    mismatched_types_warning: Возможно, вы выбрали неверный тип для этого импорта, пожалуйста, перепроверьте.
+    imported: Импортировано
+    mismatched_types_warning: По-видимому, вы выбрали неверный тип данных для импорта. Проверьте всё внимательно!
     modes:
       merge: Объединить
-      merge_long: Сохранить имеющиеся данные и добавить новые.
-      overwrite: Перезаписать
-      overwrite_long: Перезаписать имеющиеся данные новыми.
+      merge_long: Добавить новые данные к уже имеющимся
+      overwrite: Заменить
+      overwrite_long: Заменить имеющиеся данные новыми
     overwrite_preambles:
       blocking_html:
-        few: Вы собираетесь <strong>заменить свой список блокировки</strong>, в котором сейчас <strong>%{count} аккаунта</strong>, из файла <strong>%{filename}</strong>.
-        many: Вы собираетесь <strong>заменить свой список блокировки</strong>, в котором сейчас <strong>%{count} аккаунов</strong>, из файла <strong>%{filename}</strong>.
-        one: Вы собираетесь <strong>заменить свой список блокировки</strong>, в котором сейчас <strong>%{count} аккаунт</strong>, из файла <strong>%{filename}</strong>.
-        other: Вы собираетесь <strong>заменить свой список блокировки</strong>, в котором сейчас <strong>%{count} аккаунтов</strong>, из файла <strong>%{filename}</strong>.
+        few: Вы собираетесь <strong>заменить свой список заблокированных пользователей</strong> данными из файла <strong>%{filename}</strong>, после чего вы будете блокировать <strong>%{count} пользователей</strong>.
+        many: Вы собираетесь <strong>заменить свой список заблокированных пользователей</strong> данными из файла <strong>%{filename}</strong>, после чего вы будете блокировать <strong>%{count} пользователей</strong>.
+        one: Вы собираетесь <strong>заменить свой список заблокированных пользователей</strong> данными из файла <strong>%{filename}</strong>, после чего вы будете блокировать <strong>%{count} пользователя</strong>.
+        other: Вы собираетесь <strong>заменить свой список заблокированных пользователей</strong> данными из файла <strong>%{filename}</strong>, после чего вы будете блокировать <strong>%{count} пользователей</strong>.
       bookmarks_html:
-        few: Вы собираетесь <strong>заменить свои закладки</strong>, в которых сейчас <strong>%{count} поста</strong>, из файла <strong>%{filename}</strong>.
-        many: Вы собираетесь <strong>заменить свои закладки</strong>, в которых сейчас <strong>%{count} постов</strong>, из файла <strong>%{filename}</strong>.
-        one: Вы собираетесь <strong>заменить свои закладки</strong>, в которых сейчас <strong>%{count} пост</strong>, из файла <strong>%{filename}</strong>.
-        other: Вы собираетесь <strong>заменить свои закладки</strong>, в которых сейчас <strong>%{count} постов</strong>, из файла <strong>%{filename}</strong>.
+        few: Вы собираетесь <strong>заменить свои закладки</strong> данными из файла <strong>%{filename}</strong>, после чего у вас в закладках будет <strong>%{count} поста</strong>.
+        many: Вы собираетесь <strong>заменить свои закладки</strong> данными из файла <strong>%{filename}</strong>, после чего у вас в закладках будет <strong>%{count} постов</strong>.
+        one: Вы собираетесь <strong>заменить свои закладки</strong> данными из файла <strong>%{filename}</strong>, после чего у вас в закладках будет <strong>%{count} пост</strong>.
+        other: Вы собираетесь <strong>заменить свои закладки</strong> данными из файла <strong>%{filename}</strong>, после чего у вас в закладках будет <strong>%{count} постов</strong>.
       domain_blocking_html:
-        few: Вы собираетесь <strong>заменить свой список доменных блокировок</strong>, в котором сейчас <strong>%{count} домена</strong>, из файла <strong>%{filename}</strong>.
-        many: Вы собираетесь <strong>заменить свой список доменных блокировок</strong>, в котором сейчас <strong>%{count} доменов</strong>, из файла <strong>%{filename}</strong>.
-        one: Вы собираетесь <strong>заменить свой список доменных блокировок</strong>, в котором сейчас <strong>%{count} домен</strong>, из файла <strong>%{filename}</strong>.
-        other: Вы собираетесь <strong>заменить свой список доменных блокировок</strong>, в котором сейчас <strong>%{count} доменов</strong>, из файла <strong>%{filename}</strong>.
+        few: Вы собираетесь <strong>заменить свой список заблокированных доменов</strong> данными из файла <strong>%{filename}</strong>, после чего вы будете блокировать <strong>%{count} домена</strong>.
+        many: Вы собираетесь <strong>заменить свой список заблокированных доменов</strong> данными из файла <strong>%{filename}</strong>, после чего вы будете блокировать <strong>%{count} доменов</strong>.
+        one: Вы собираетесь <strong>заменить свой список заблокированных доменов</strong> данными из файла <strong>%{filename}</strong>, после чего вы будете блокировать <strong>%{count} домен</strong>.
+        other: Вы собираетесь <strong>заменить свой список заблокированных доменов</strong> данными из файла <strong>%{filename}</strong>, после чего вы будете блокировать <strong>%{count} доменов</strong>.
       following_html:
-        few: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} аккаунта</strong> из файла <strong>%{filename}</strong> и <strong>отписаться от всех прочих</strong>.
-        many: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} аккаунтов</strong> из файла <strong>%{filename}</strong> и <strong>отписаться от всех прочих</strong>.
-        one: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} аккаунт</strong> из файла <strong>%{filename}</strong> и <strong>отписаться от всех прочих</strong>.
-        other: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} аккаунтов</strong> из файла <strong>%{filename}</strong> и <strong>отписаться от всех прочих</strong>.
+        few: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong> и <strong>отписаться от всех прочих</strong>.
+        many: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong> и <strong>отписаться от всех прочих</strong>.
+        one: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} пользователя</strong> из файла <strong>%{filename}</strong> и <strong>отписаться от всех прочих</strong>.
+        other: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong> и <strong>отписаться от всех прочих</strong>.
       lists_html:
-        few: Вы собираетесь <strong>заменить свои списки</strong> содержимым файла <strong>%{filename}</strong>. В новые списки будут добавлены <strong>%{count} аккаунта</strong>.
-        many: Вы собираетесь <strong>заменить свои списки</strong> содержимым файла <strong>%{filename}</strong>. В новые списки будут добавлены <strong>%{count} аккаунтов</strong>.
-        one: Вы собираетесь <strong>заменить свои списки</strong> содержимым файла <strong>%{filename}</strong>. В новые списки будет добавлен <strong>%{count} аккаунт</strong>.
-        other: Вы собираетесь <strong>заменить свои списки</strong> содержимым файла <strong>%{filename}</strong>. В новые списки будут добавлены <strong>%{count} аккаунтов</strong>.
+        few: Вы собираетесь <strong>заменить свои списки</strong> содержимым файла <strong>%{filename}</strong>. В новые списки будут добавлены <strong>%{count} пользователя</strong>.
+        many: Вы собираетесь <strong>заменить свои списки</strong> содержимым файла <strong>%{filename}</strong>. В новые списки будут добавлены <strong>%{count} пользователей</strong>.
+        one: Вы собираетесь <strong>заменить свои списки</strong> содержимым файла <strong>%{filename}</strong>. В новые списки будет добавлен <strong>%{count} пользователь</strong>.
+        other: Вы собираетесь <strong>заменить свои списки</strong> содержимым файла <strong>%{filename}</strong>. В новые списки будут добавлены <strong>%{count} пользователей</strong>.
       muting_html:
-        few: Вы собираетесь <strong>заменить свой список игнорируемых пользователей</strong> списком из <strong>%{count} аккаунтов</strong> из файла <strong>%{filename}</strong>.
-        many: Вы собираетесь <strong>заменить свой список игнорируемых пользователей</strong> списком из <strong>%{count} аккаунтов</strong> из файла <strong>%{filename}</strong>.
-        one: Вы собираетесь <strong>заменить свой список игнорируемых пользователей</strong> списком из <strong>%{count} аккаунта</strong> из файла <strong>%{filename}</strong>.
-        other: Вы собираетесь <strong>заменить свой список игнорируемых пользователей</strong> списком из <strong>%{count} аккаунтов</strong> из файла <strong>%{filename}</strong>.
+        few: Вы собираетесь <strong>заменить свой список игнорируемых пользователей</strong> данными из файла <strong>%{filename}</strong>, после чего вы будете игнорировать <strong>%{count} пользователей</strong>.
+        many: Вы собираетесь <strong>заменить свой список игнорируемых пользователей</strong> данными из файла <strong>%{filename}</strong>, после чего вы будете игнорировать <strong>%{count} пользователей</strong>.
+        one: Вы собираетесь <strong>заменить свой список игнорируемых пользователей</strong> данными из файла <strong>%{filename}</strong>, после чего вы будете игнорировать <strong>%{count} пользователя</strong>.
+        other: Вы собираетесь <strong>заменить свой список игнорируемых пользователей</strong> данными из файла <strong>%{filename}</strong>, после чего вы будете игнорировать <strong>%{count} пользователей</strong>.
     preambles:
       blocking_html:
-        few: Вы собираетесь <strong>заблокировать</strong> <strong>%{count} аккаунта</strong> из файла <strong>%{filename}</strong>.
-        many: Вы собираетесь <strong>заблокировать</strong> <strong>%{count} аккаунтов</strong> из файла <strong>%{filename}</strong>.
-        one: Вы собираетесь <strong>заблокировать</strong> <strong>%{count} аккаунт</strong> из файла <strong>%{filename}</strong>.
-        other: Вы собираетесь <strong>заблокировать</strong> <strong>%{count} аккаунтов</strong> из файла <strong>%{filename}</strong>.
+        few: Вы собираетесь <strong>заблокировать</strong> <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong>.
+        many: Вы собираетесь <strong>заблокировать</strong> <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong>.
+        one: Вы собираетесь <strong>заблокировать</strong> <strong>%{count} пользователя</strong> из файла <strong>%{filename}</strong>.
+        other: Вы собираетесь <strong>заблокировать</strong> <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong>.
       bookmarks_html:
         few: Вы собираетесь добавить <strong>%{count} поста</strong> из файла <strong>%{filename}</strong> в свои <strong>закладки</strong>.
         many: Вы собираетесь добавить <strong>%{count} постов</strong> из файла <strong>%{filename}</strong> в свои <strong>закладки</strong>.
@@ -1538,20 +1538,20 @@ ru:
         one: Вы собираетесь <strong>заблокировать</strong> <strong>%{count} домен</strong> из файла <strong>%{filename}</strong>.
         other: Вы собираетесь <strong>заблокировать</strong> <strong>%{count} доменов</strong> из файла <strong>%{filename}</strong>.
       following_html:
-        few: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} аккаунта</strong> из файла <strong>%{filename}</strong>.
-        many: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} аккаунтов</strong> из файла <strong>%{filename}</strong>.
-        one: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} аккаунт</strong> из файла <strong>%{filename}</strong>.
-        other: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} аккаунтов</strong> из файла <strong>%{filename}</strong>.
+        few: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong>.
+        many: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong>.
+        one: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} пользователя</strong> из файла <strong>%{filename}</strong>.
+        other: Вы собираетесь <strong>подписаться</strong> на <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong>.
       lists_html:
-        few: Вы собираетесь добавить <strong>%{count} аккаунта</strong> из файла <strong>%{filename}</strong> в свои <strong>списки</strong>. Если соответствующих списков нет, они будут созданы.
-        many: Вы собираетесь добавить <strong>%{count} аккаунтов</strong> из файла <strong>%{filename}</strong> в свои <strong>списки</strong>. Если соответствующих списков нет, они будут созданы.
-        one: Вы собираетесь добавить <strong>%{count} аккаунт</strong> из файла <strong>%{filename}</strong> в свои <strong>списки</strong>. Если соответствующих списков нет, они будут созданы.
-        other: Вы собираетесь добавить <strong>%{count} аккаунтов</strong> из файла <strong>%{filename}</strong> в свои <strong>списки</strong>. Если соответствующих списков нет, они будут созданы.
+        few: Вы собираетесь добавить <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong> в свои <strong>списки</strong>. Если соответствующих списков нет, они будут созданы.
+        many: Вы собираетесь добавить <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong> в свои <strong>списки</strong>. Если соответствующих списков нет, они будут созданы.
+        one: Вы собираетесь добавить <strong>%{count} пользователя</strong> из файла <strong>%{filename}</strong> в свои <strong>списки</strong>. Если соответствующих списков нет, они будут созданы.
+        other: Вы собираетесь добавить <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong> в свои <strong>списки</strong>. Если соответствующих списков нет, они будут созданы.
       muting_html:
-        few: Вы собираетесь <strong>начать игнорировать</strong> <strong>%{count} аккаунта</strong> из файла <strong>%{filename}</strong>.
-        many: Вы собираетесь <strong>начать игнорировать</strong> <strong>%{count} аккаунтов</strong> из файла <strong>%{filename}</strong>.
-        one: Вы собираетесь <strong>начать игнорировать</strong> <strong>%{count} аккаунт</strong> из файла <strong>%{filename}</strong>.
-        other: Вы собираетесь <strong>начать игнорировать</strong> <strong>%{count} аккаунтов</strong> из файла <strong>%{filename}</strong>.
+        few: Вы собираетесь <strong>игнорировать</strong> <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong>.
+        many: Вы собираетесь <strong>игнорировать</strong> <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong>.
+        one: Вы собираетесь <strong>игнорировать</strong> <strong>%{count} пользователя</strong> из файла <strong>%{filename}</strong>.
+        other: Вы собираетесь <strong>игнорировать</strong> <strong>%{count} пользователей</strong> из файла <strong>%{filename}</strong>.
     preface: Вы можете загрузить некоторые данные, например, списки людей, на которых Вы подписаны или которых блокируете, в Вашу учётную запись на этом узле из файлов, экспортированных с другого узла.
     recent_imports: Недавно импортированное
     states:
@@ -1563,23 +1563,23 @@ ru:
     success: Ваши данные были успешно загружены и будут обработаны с должной скоростью
     time_started: Началось в
     titles:
-      blocking: Импорт заблокированных аккаунтов
+      blocking: Импорт списка заблокированных пользователей
       bookmarks: Импорт закладок
-      domain_blocking: Импорт заблокированных доменов
-      following: Импорт последующих аккаунтов
-      lists: Импортировать список
-      muting: Импорт отключенных аккаунтов
+      domain_blocking: Импорт списка заблокированных доменов
+      following: Импорт подписок
+      lists: Импорт списков
+      muting: Импорт списка игнорируемых пользователей
     type: Тип импорта
     type_groups:
       constructive: Подписки и закладки
       destructive: Блокировки и игнорируемые
     types:
-      blocking: Список блокировки
+      blocking: Заблокированные пользователи
       bookmarks: Закладки
-      domain_blocking: Список доменных блокировок
+      domain_blocking: Заблокированные домены
       following: Подписки
       lists: Списки
-      muting: Список глушения
+      muting: Игнорируемые пользователи
     upload: Загрузить
   invites:
     delete: Удалить
