@@ -49,8 +49,8 @@ module HomeHelper
     end
   end
 
-  def custom_field_classes(field)
-    if field.verified?
+  def field_verified_class(verified)
+    if verified
       'verified'
     else
       'emojify'
