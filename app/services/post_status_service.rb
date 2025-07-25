@@ -96,13 +96,11 @@ class PostStatusService < BaseService
     # NOTE: for now this is only for convenience in testing, as we don't support the request flow nor serialize quotes in ActivityPub
     # we only support incoming quotes so far
 
-    status.quote = Quote.new(quoted_status: @quoted_status)
-    status.quote.accept! if @status.account == @quoted_status.account || @quoted_status.active_mentions.exists?(mentions: { account_id: status.account_id })
-
-    # TODO: the following has yet to be implemented:
-    # - handle approval of local users (requires the interactionPolicy PR)
-    # - produce a QuoteAuthorization for quotes of local users
-    # - send a QuoteRequest for quotes of remote users
+    status.quote = Quote.create(quoted_status: @quoted_status, status: status)
+    if @quoted_status.local? && StatusPolicy.new(@status.account, @quoted_status).quote?
+      # TODO: produce a QuoteAuthorization
+      status.quote.accept!
+    end
   end
 
   def safeguard_mentions!(status)
@@ -146,6 +144,7 @@ class PostStatusService < BaseService
     DistributionWorker.perform_async(@status.id)
     ActivityPub::DistributionWorker.perform_async(@status.id)
     PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
+    ActivityPub::QuoteRequestWorker.perform_async(@status.quote.id) if @status.quote&.quoted_status.present? && !@status.quote&.quoted_status&.local?
   end
 
   def validate_media!

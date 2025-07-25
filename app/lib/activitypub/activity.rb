@@ -116,6 +116,20 @@ class ActivityPub::Activity
     fetch_remote_original_status
   end
 
+  def quote_from_request_json(json)
+    quoted_status_uri = value_or_id(json['object'])
+    quoting_status_uri = value_or_id(json['instrument'])
+    return if quoting_status_uri.nil? || quoted_status_uri.nil?
+
+    quoting_status = status_from_uri(quoting_status_uri)
+    return unless quoting_status.present? && quoting_status.quote.present?
+
+    quoted_status = status_from_uri(quoted_status_uri)
+    return unless quoted_status.present? && quoted_status.account == @account && quoting_status.quote.quoted_status == quoted_status
+
+    quoting_status.quote
+  end
+
   def dereference_object!
     return unless @object.is_a?(String)
 
@@ -141,6 +155,10 @@ class ActivityPub::Activity
 
   def follow_request_from_object
     @follow_request_from_object ||= FollowRequest.find_by(target_account: @account, uri: object_uri) unless object_uri.nil?
+  end
+
+  def quote_request_from_object
+    @quote_request_from_object ||= Quote.find_by(quoted_account: @account, activity_uri: object_uri) unless object_uri.nil?
   end
 
   def follow_from_object

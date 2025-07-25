@@ -45,7 +45,9 @@ class EmojiFormatter
         i += 1
 
         if inside_shortname && text[i] == ':'
-          inside_shortname = false
+          # https://github.com/rubocop/rubocop/issues/14383
+          # False positive in line below, remove disable when resolved
+          inside_shortname = false # rubocop:disable Lint/UselessAssignment
           shortcode = text[(shortname_start_index + 1)..(i - 1)]
           char_after = text[i + 1]
 

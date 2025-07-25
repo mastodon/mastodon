@@ -142,12 +142,4 @@ export function getAccessToken() {
   return getMeta('access_token');
 }
 
-/**
- * @param {string} feature
- * @returns {boolean}
- */
-export function isFeatureEnabled(feature) {
-  return initialState?.features?.includes(feature) || false;
-}
-
 export default initialState;

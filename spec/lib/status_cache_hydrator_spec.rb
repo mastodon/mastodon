@@ -28,6 +28,18 @@ RSpec.describe StatusCacheHydrator do
         end
       end
 
+      context 'when handling a status with a quote policy', feature: :outgoing_quotes do
+        let(:status) { Fabricate(:status, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16) }
+
+        before do
+          account.follow!(status.account)
+        end
+
+        it 'renders the same attributes as a full render' do
+          expect(subject).to eql(compare_to_hash)
+        end
+      end
+
       context 'when handling a filtered status' do
         let(:status) { Fabricate(:status, text: 'this toot is about that banned word') }
 

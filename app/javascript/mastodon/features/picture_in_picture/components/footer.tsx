@@ -21,6 +21,7 @@ import { openModal } from 'mastodon/actions/modal';
 import { IconButton } from 'mastodon/components/icon_button';
 import { useIdentity } from 'mastodon/identity_context';
 import { me } from 'mastodon/initial_state';
+import type { Account } from 'mastodon/models/account';
 import type { Status } from 'mastodon/models/status';
 import { makeGetStatus } from 'mastodon/selectors';
 import type { RootState } from 'mastodon/store';
@@ -66,10 +67,7 @@ export const Footer: React.FC<{
   const dispatch = useAppDispatch();
   const getStatus = useMemo(() => makeGetStatus(), []) as GetStatusSelector;
   const status = useAppSelector((state) => getStatus(state, { id: statusId }));
-  const accountId = status?.get('account') as string | undefined;
-  const account = useAppSelector((state) =>
-    accountId ? state.accounts.get(accountId) : undefined,
-  );
+  const account = status?.get('account') as Account | undefined;
   const askReplyConfirmation = useAppSelector(
     (state) => (state.compose.get('text') as string).trim().length !== 0,
   );
