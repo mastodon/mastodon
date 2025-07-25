@@ -2,6 +2,7 @@ import type { Locale } from 'emojibase';
 
 import { autoPlayGif } from '@/mastodon/initial_state';
 import { assetHost } from '@/mastodon/utils/config';
+import * as perf from '@/mastodon/utils/performance';
 
 import {
   EMOJI_MODE_NATIVE,
@@ -34,18 +35,28 @@ import type {
   LocaleOrCustom,
   UnicodeEmojiToken,
 } from './types';
-import { stringHasUnicodeFlags } from './utils';
+import { stringHasAnyEmoji, stringHasUnicodeFlags } from './utils';
 
-const localeCacheMap = new Map<LocaleOrCustom, EmojiStateMap>([
-  [EMOJI_TYPE_CUSTOM, new Map()],
-]);
-
-// Emojifies an element. This modifies the element in place, replacing text nodes with emojified versions.
+/**
+ * Emojifies an element. This modifies the element in place, replacing text nodes with emojified versions.
+ */
 export async function emojifyElement<Element extends HTMLElement>(
   element: Element,
   appState: EmojiAppState,
   extraEmojis: ExtraCustomEmojiMap = {},
 ): Promise<Element> {
+  const key = cacheKey(element, { appState, extraEmojis });
+  const cached = checkCache(key);
+  if (cached) {
+    return cached as Element;
+  } else if (cached === null) {
+    return element;
+  }
+  if (!stringHasAnyEmoji(element.innerHTML)) {
+    updateCache(key);
+    return element;
+  }
+  perf.start('emojifyElement()');
   const queue: (HTMLElement | Text)[] = [element];
   while (queue.length > 0) {
     const current = queue.shift();
@@ -81,14 +92,50 @@ export async function emojifyElement<Element extends HTMLElement>(
       }
     }
   }
+  perf.stop('emojifyElement()');
+  updateCache(key, element);
   return element;
 }
 
-export async function emojifyText(
+// Private functions
+
+const emojiCache = new Map<string, HTMLElement | null>();
+const keySet = new Set<string>();
+const MAX_CACHE_SIZE = 100;
+
+function cacheKey(text: string | HTMLElement, extra: Record<string, unknown>) {
+  if (text instanceof HTMLElement) {
+    text = text.innerHTML;
+  }
+  return `${text}~${JSON.stringify(extra)}`;
+}
+
+function checkCache(key: string) {
+  const result = emojiCache.get(key);
+  return result;
+}
+
+function updateCache(key: string, rendered: HTMLElement | null = null) {
+  emojiCache.set(key, rendered);
+  // If the key is already in the set, move it to the front.
+  if (keySet.has(key)) {
+    keySet.delete(key);
+  }
+  keySet.add(key);
+  const lastKey = keySet.values().toArray().at(-1);
+  if (keySet.size > MAX_CACHE_SIZE && lastKey) {
+    keySet.delete(lastKey);
+    emojiCache.delete(lastKey);
+  }
+}
+
+type EmojifiedTextArray = (string | HTMLImageElement)[];
+
+async function emojifyText(
   text: string,
   appState: EmojiAppState,
   extraEmojis: ExtraCustomEmojiMap = {},
-) {
+): Promise<EmojifiedTextArray | null> {
   // Exit if no text to convert.
   if (!text.trim()) {
     return null;
@@ -105,7 +152,7 @@ export async function emojifyText(
   await ensureLocalesAreLoaded(appState.locales);
   await loadMissingEmojiIntoCache(tokens, appState.locales);
 
-  const renderedFragments: (string | HTMLImageElement)[] = [];
+  const renderedFragments: EmojifiedTextArray = [];
   for (const token of tokens) {
     if (typeof token !== 'string' && shouldRenderImage(token, appState.mode)) {
       let state: EmojiState | undefined;
@@ -125,7 +172,7 @@ export async function emojifyText(
 
       // If the state is valid, create an image element. Otherwise, just append as text.
       if (state && typeof state !== 'string') {
-        const image = stateToImage(state);
+        const image = stateToImage(state, appState);
         renderedFragments.push(image);
         continue;
       }
@@ -136,8 +183,6 @@ export async function emojifyText(
 
   return renderedFragments;
 }
-
-// Private functions
 
 async function ensureLocalesAreLoaded(locales: Locale[]) {
   const missingLocales = await findMissingLocales(locales);
@@ -182,6 +227,10 @@ export function tokenizeText(text: string): TokenizedText {
   }
   return tokens;
 }
+
+const localeCacheMap = new Map<LocaleOrCustom, EmojiStateMap>([
+  [EMOJI_TYPE_CUSTOM, new Map()],
+]);
 
 function cacheForLocale(locale: LocaleOrCustom): EmojiStateMap {
   return localeCacheMap.get(locale) ?? (new Map() as EmojiStateMap);
@@ -282,22 +331,24 @@ function shouldRenderImage(token: EmojiToken, mode: EmojiMode): boolean {
   return true;
 }
 
-function stateToImage(state: EmojiLoadedState) {
+function stateToImage(state: EmojiLoadedState, appState: EmojiAppState) {
   const image = document.createElement('img');
   image.draggable = false;
   image.classList.add('emojione');
 
   if (state.type === EMOJI_TYPE_UNICODE) {
     const emojiInfo = twemojiHasBorder(unicodeToTwemojiHex(state.data.hexcode));
-    if (emojiInfo.hasLightBorder) {
-      image.dataset.lightCode = `${emojiInfo.hexCode}_BORDER`;
-    } else if (emojiInfo.hasDarkBorder) {
-      image.dataset.darkCode = `${emojiInfo.hexCode}_BORDER`;
+    let fileName = emojiInfo.hexCode;
+    if (
+      (appState.darkTheme && emojiInfo.hasDarkBorder) ||
+      (!appState.darkTheme && emojiInfo.hasLightBorder)
+    ) {
+      fileName = `${emojiInfo.hexCode}_border`;
     }
 
     image.alt = state.data.unicode;
     image.title = state.data.label;
-    image.src = `${assetHost}/emoji/${emojiInfo.hexCode}.svg`;
+    image.src = `${assetHost}/emoji/${fileName}.svg`;
   } else {
     // Custom emoji
     const shortCode = `:${state.data.shortcode}:`;

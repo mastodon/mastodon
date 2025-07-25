@@ -1,5 +1,4 @@
 import {
-  ANY_EMOJI_REGEX,
   CUSTOM_EMOJI_REGEX,
   UNICODE_EMOJI_REGEX,
   UNICODE_FLAG_EMOJI_REGEX,
@@ -18,5 +17,5 @@ export function stringHasCustomEmoji(input: string) {
 }
 
 export function stringHasAnyEmoji(input: string) {
-  return ANY_EMOJI_REGEX.test(input);
+  return stringHasUnicodeEmoji(input) || stringHasCustomEmoji(input);
 }

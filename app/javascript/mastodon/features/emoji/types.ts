@@ -22,6 +22,7 @@ export interface EmojiAppState {
   locales: Locale[];
   currentLocale: Locale;
   mode: EmojiMode;
+  darkTheme: boolean;
 }
 
 export interface UnicodeEmojiToken {
