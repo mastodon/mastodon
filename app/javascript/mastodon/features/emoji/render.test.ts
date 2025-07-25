@@ -44,9 +44,6 @@ vitest.mock('./database', () => ({
 }));
 
 describe('emojifyElement', () => {
-  const testElement = document.createElement('div');
-  testElement.innerHTML = '<p>Hello 😊🇪🇺!</p><p>:custom:</p>';
-
   const expectedSmileImage =
     '<img draggable="false" class="emojione" alt="😊" title="smiling face with smiling eyes" src="/emoji/1f60a.svg">';
   const expectedFlagImage =
@@ -54,15 +51,18 @@ describe('emojifyElement', () => {
   const expectedCustomEmojiImage =
     '<img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:" src="emoji/static" data-original="emoji/custom" data-static="emoji/static">';
 
-  function cloneTestElement() {
-    return testElement.cloneNode(true) as HTMLElement;
+  function testElement() {
+    const testElement = document.createElement('div');
+    testElement.innerHTML = '<p>Hello 😊🇪🇺!</p><p>:custom:</p>';
+    return testElement;
   }
 
   test('emojifies custom emoji in native mode', async () => {
-    const emojifiedElement = await emojifyElement(cloneTestElement(), {
+    const emojifiedElement = await emojifyElement(testElement(), {
       locales: ['en'],
       mode: EMOJI_MODE_NATIVE,
       currentLocale: 'en',
+      darkTheme: false,
     });
     expect(emojifiedElement.innerHTML).toBe(
       `<p>Hello 😊🇪🇺!</p><p>${expectedCustomEmojiImage}</p>`,
@@ -70,10 +70,11 @@ describe('emojifyElement', () => {
   });
 
   test('emojifies flag emoji in native-with-flags mode', async () => {
-    const emojifiedElement = await emojifyElement(cloneTestElement(), {
+    const emojifiedElement = await emojifyElement(testElement(), {
       locales: ['en'],
       mode: EMOJI_MODE_NATIVE_WITH_FLAGS,
       currentLocale: 'en',
+      darkTheme: false,
     });
     expect(emojifiedElement.innerHTML).toBe(
       `<p>Hello 😊${expectedFlagImage}!</p><p>${expectedCustomEmojiImage}</p>`,
@@ -81,10 +82,11 @@ describe('emojifyElement', () => {
   });
 
   test('emojifies everything in twemoji mode', async () => {
-    const emojifiedElement = await emojifyElement(cloneTestElement(), {
+    const emojifiedElement = await emojifyElement(testElement(), {
       locales: ['en'],
       mode: EMOJI_MODE_TWEMOJI,
       currentLocale: 'en',
+      darkTheme: false,
     });
     expect(emojifiedElement.innerHTML).toBe(
       `<p>Hello ${expectedSmileImage}${expectedFlagImage}!</p><p>${expectedCustomEmojiImage}</p>`,

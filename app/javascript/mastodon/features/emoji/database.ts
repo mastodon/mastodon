@@ -130,14 +130,20 @@ export async function searchCustomEmojisByShortcodes(shortcodes: string[]) {
   );
 }
 
+const loadedLocales = new Set<Locale>();
 export async function findMissingLocales(localeStrings: string[]) {
   const locales = new Set(localeStrings.map(toSupportedLocale));
+  if (locales.isSubsetOf(loadedLocales)) {
+    return [];
+  }
   const missingLocales: Locale[] = [];
   const db = await loadDB();
   for (const locale of locales) {
     const rowCount = await db.count(locale);
     if (!rowCount) {
       missingLocales.push(locale);
+    } else {
+      loadedLocales.add(locale);
     }
   }
   return missingLocales;

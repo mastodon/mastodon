@@ -12,5 +12,10 @@ export function useEmojiAppState(): EmojiAppState {
     determineEmojiMode(state.meta.get('emoji_style') as string),
   );
 
-  return { currentLocale: locale, locales: [locale], mode };
+  return {
+    currentLocale: locale,
+    locales: [locale],
+    mode,
+    darkTheme: document.body.classList.contains('theme-default'),
+  };
 }

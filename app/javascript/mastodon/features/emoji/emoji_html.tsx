@@ -26,7 +26,14 @@ export const EmojiHTML: React.FC<EmojiHTMLProps> = ({
   extraEmojis,
   ...props
 }) => {
-  if (isModernEmojiEnabled() && !stringHasAnyEmoji(htmlString)) {
+  const hasEmoji = useMemo(
+    () =>
+      isModernEmojiEnabled() &&
+      !!htmlString.trim() &&
+      stringHasAnyEmoji(htmlString),
+    [htmlString],
+  );
+  if (hasEmoji) {
     return (
       <ModernEmojiHTML
         htmlString={htmlString}
@@ -35,7 +42,7 @@ export const EmojiHTML: React.FC<EmojiHTMLProps> = ({
       />
     );
   }
-  return <div dangerouslySetInnerHTML={{ __html: htmlString }} {...props} />;
+  return <div {...props} dangerouslySetInnerHTML={{ __html: htmlString }} />;
 };
 
 const ModernEmojiHTML: React.FC<EmojiHTMLProps> = ({
@@ -44,7 +51,7 @@ const ModernEmojiHTML: React.FC<EmojiHTMLProps> = ({
   ...props
 }) => {
   const appState = useEmojiAppState();
-  const [innerHTML, setInnerHTML] = useState('');
+  const [innerHTML, setInnerHTML] = useState<string | null>(null);
 
   const extraEmojis: ExtraCustomEmojiMap = useMemo(() => {
     if (!rawEmojis) {
@@ -62,7 +69,7 @@ const ModernEmojiHTML: React.FC<EmojiHTMLProps> = ({
   }, [rawEmojis]);
 
   useEffect(() => {
-    if (!text) {
+    if (!text || innerHTML !== null) {
       return;
     }
     const cb = async () => {
@@ -72,9 +79,9 @@ const ModernEmojiHTML: React.FC<EmojiHTMLProps> = ({
       setInnerHTML(ele.innerHTML);
     };
     void cb();
-  }, [text, appState, extraEmojis]);
+  }, [text, appState, extraEmojis, innerHTML]);
 
-  if (!innerHTML) {
+  if (innerHTML === null) {
     return null;
   }
 
