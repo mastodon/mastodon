@@ -94,19 +94,19 @@ RSpec.describe StatusPolicy, type: :model do
         expect(subject).to permit(status.account, status)
       end
 
-      it 'grants access when direct and viewer is mentioned' do
+      it 'does not grant access access when direct and viewer is mentioned but not explicitly allowed' do
         status.visibility = :direct
-        status.mentions = [Fabricate(:mention, account: alice)]
+        status.mentions = [Fabricate(:mention, account: bob)]
 
-        expect(subject).to permit(alice, status)
+        expect(subject).to_not permit(bob, status)
       end
 
-      it 'grants access when direct and non-owner viewer is mentioned and mentions are loaded' do
+      it 'does not grant access access when direct and viewer is mentioned but not explicitly allowed and mentions are loaded' do
         status.visibility = :direct
         status.mentions = [Fabricate(:mention, account: bob)]
         status.active_mentions.load
 
-        expect(subject).to permit(bob, status)
+        expect(subject).to_not permit(bob, status)
       end
 
       it 'denies access when direct and viewer is not mentioned' do
@@ -123,11 +123,11 @@ RSpec.describe StatusPolicy, type: :model do
         expect(subject).to_not permit(viewer, status)
       end
 
-      it 'grants access when private and viewer is mentioned' do
+      it 'grants access when private and viewer is mentioned but not otherwise allowed' do
         status.visibility = :private
         status.mentions = [Fabricate(:mention, account: bob)]
 
-        expect(subject).to permit(bob, status)
+        expect(subject).to_not permit(bob, status)
       end
 
       it 'denies access when private and non-viewer is mentioned' do
