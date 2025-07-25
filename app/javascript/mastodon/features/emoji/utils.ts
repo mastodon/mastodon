@@ -1,8 +1,8 @@
 import {
   ANY_EMOJI_REGEX,
   CUSTOM_EMOJI_REGEX,
-  EMOJIS_FLAGS_REGEX,
   UNICODE_EMOJI_REGEX,
+  UNICODE_FLAG_EMOJI_REGEX,
 } from './constants';
 
 export function stringHasUnicodeEmoji(input: string): boolean {
@@ -10,7 +10,7 @@ export function stringHasUnicodeEmoji(input: string): boolean {
 }
 
 export function stringHasUnicodeFlags(input: string): boolean {
-  return EMOJIS_FLAGS_REGEX.test(input);
+  return UNICODE_FLAG_EMOJI_REGEX.test(input);
 }
 
 export function stringHasCustomEmoji(input: string) {
