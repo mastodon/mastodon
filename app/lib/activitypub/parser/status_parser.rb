@@ -152,9 +152,6 @@ class ActivityPub::Parser::StatusParser
     # Remove the special-meaning actor URI
     allowed_actors.delete(@options[:actor_uri])
 
-    # Tagged users are always allowed, so remove them
-    allowed_actors -= as_array(@object['tag']).filter_map { |tag| tag['href'] if equals_or_includes?(tag['type'], 'Mention') }
-
     # Any unrecognized actor is marked as unknown
     flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:unknown] unless allowed_actors.empty?
 

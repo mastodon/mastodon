@@ -267,9 +267,9 @@ RSpec.describe ActivityPub::VerifyQuoteService do
         quoted_status.mentions << Mention.new(account: account)
       end
 
-      it 'updates the status' do
+      it 'does not the status' do
         expect { subject.call(quote) }
-          .to change(quote, :state).to('accepted')
+          .to_not change(quote, :state).from('pending')
       end
     end
   end
