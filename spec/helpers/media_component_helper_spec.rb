@@ -6,7 +6,7 @@ RSpec.describe MediaComponentHelper do
   before { helper.extend controller_helpers }
 
   describe 'render_video_component' do
-    let(:media) { Fabricate(:media_attachment, type: :video, status: Fabricate(:status)) }
+    let(:media) { Fabricate(:media_attachment, type: :video, status: Fabricate.build(:status)) }
     let(:result) { helper.render_video_component(media.status) }
 
     it 'renders a react component for the video' do
@@ -15,7 +15,7 @@ RSpec.describe MediaComponentHelper do
   end
 
   describe 'render_audio_component' do
-    let(:media) { Fabricate(:media_attachment, type: :audio, status: Fabricate(:status)) }
+    let(:media) { Fabricate(:media_attachment, type: :audio, status: Fabricate.build(:status)) }
     let(:result) { helper.render_audio_component(media.status) }
 
     it 'renders a react component for the audio' do
@@ -24,7 +24,7 @@ RSpec.describe MediaComponentHelper do
   end
 
   describe 'render_media_gallery_component' do
-    let(:media) { Fabricate(:media_attachment, type: :audio, status: Fabricate(:status)) }
+    let(:media) { Fabricate(:media_attachment, type: :audio, status: Fabricate.build(:status)) }
     let(:result) { helper.render_media_gallery_component(media.status) }
 
     it 'renders a react component for the media gallery' do
