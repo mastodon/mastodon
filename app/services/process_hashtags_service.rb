@@ -21,20 +21,32 @@ class ProcessHashtagsService < BaseService
   def update_featured_tags!
     return unless @status.distributable?
 
-    added_tags = @current_tags - @previous_tags
+    process_added_tags! unless added_tags.empty?
 
-    unless added_tags.empty?
-      @account.featured_tags.where(tag_id: added_tags.map(&:id)).find_each do |featured_tag|
-        featured_tag.increment(@status.created_at)
-      end
+    process_removed_tags! unless removed_tags.empty?
+  end
+
+  def process_added_tags!
+    featured_tags_on(added_tags).find_each do |featured_tag|
+      featured_tag.increment(@status.created_at)
     end
+  end
 
-    removed_tags = @previous_tags - @current_tags
-
-    unless removed_tags.empty?
-      @account.featured_tags.where(tag_id: removed_tags.map(&:id)).find_each do |featured_tag|
-        featured_tag.decrement(@status)
-      end
+  def process_removed_tags!
+    featured_tags_on(removed_tags).find_each do |featured_tag|
+      featured_tag.decrement(@status)
     end
+  end
+
+  def featured_tags_on(tags)
+    @account.featured_tags.where(tag_id: tags.map(&:id))
+  end
+
+  def added_tags
+    @current_tags - @previous_tags
+  end
+
+  def removed_tags
+    @previous_tags - @current_tags
   end
 end
