@@ -32,6 +32,8 @@ class List < ApplicationRecord
 
   before_destroy :clean_feed_manager
 
+  scope :with_list_account, ->(account) { joins(:list_accounts).where(list_accounts: { account: }) }
+
   private
 
   def validate_account_lists_limit
