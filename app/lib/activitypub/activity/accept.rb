@@ -35,18 +35,13 @@ class ActivityPub::Activity::Accept < ActivityPub::Activity
   end
 
   def accept_embedded_quote_request
-    quoted_status_uri = value_or_id(@object['object'])
-    quoting_status_uri = value_or_id(@object['instrument'])
     approval_uri = value_or_id(first_of_value(@json['result']))
-    return if quoted_status_uri.nil? || quoting_status_uri.nil? || approval_uri.nil?
+    return if approval_uri.nil?
 
-    quoting_status = status_from_uri(quoting_status_uri)
-    return unless quoting_status.local?
+    quote = quote_from_request_json(@object)
+    return unless quote.present? && quote.status.local?
 
-    quoted_status = status_from_uri(quoted_status_uri)
-    return unless quoted_status.present? && quoted_status.account == @account && quoting_status.quote.quoted_status == quoted_status
-
-    accept_quote!(quoting_status.quote)
+    accept_quote!(quote)
   end
 
   def accept_quote!(quote)

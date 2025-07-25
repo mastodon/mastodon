@@ -33,15 +33,8 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
   end
 
   def reject_embedded_quote_request
-    quoted_status_uri = value_or_id(@object['object'])
-    quoting_status_uri = value_or_id(@object['instrument'])
-    return if quoted_status_uri.nil? || quoted_uri.nil?
-
-    quoting_status = status_from_uri(quoting_status_uri)
-    return unless quoting_status.local?
-
-    quoted_status = status_from_uri(quoted_status_uri)
-    return unless quoted_status.present? && quoting_status.quote.present? && quoted_status.account == @account && quoting_status.quote.quoted_status == quoted_status
+    quote = quote_from_request_json(@object)
+    return unless quote.present? && quote.status.local?
 
     reject_quote!(quoting_status.quote)
   end
