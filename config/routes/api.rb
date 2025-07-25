@@ -18,6 +18,8 @@ namespace :api, format: false do
         resource :reblog, only: :create
         post :unreblog, to: 'reblogs#destroy'
 
+        resources :quotes, only: :index
+
         resource :favourite, only: :create
         post :unfavourite, to: 'favourites#destroy'
 

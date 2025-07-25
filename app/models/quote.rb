@@ -17,6 +17,8 @@
 #  status_id         :bigint(8)        not null
 #
 class Quote < ApplicationRecord
+  include Paginable
+
   BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
   REFRESH_DEADLINE = 6.hours
 
