@@ -6,12 +6,23 @@ class UnmuteService < BaseService
 
     account.unmute!(target_account)
 
-    if account.following?(target_account)
-      MergeWorker.perform_async(target_account.id, account.id, 'home')
+    process_merges(account, target_account) if account.following?(target_account)
+  end
 
-      MergeWorker.push_bulk(account.owned_lists.with_list_account(target_account).pluck(:id)) do |list_id|
-        [target_account.id, list_id, 'list']
-      end
+  private
+
+  def process_merges(account, target_account)
+    MergeWorker.perform_async(target_account.id, account.id, 'home')
+
+    MergeWorker.push_bulk(mergeable_list_ids(account, target_account)) do |list_id|
+      [target_account.id, list_id, 'list']
     end
+  end
+
+  def mergeable_list_ids(account, target_account)
+    account
+      .owned_lists
+      .with_list_account(target_account)
+      .pluck(:id)
   end
 end
