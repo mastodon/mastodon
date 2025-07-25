@@ -209,19 +209,27 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     added_tags = current_tags - previous_tags
 
-    unless added_tags.empty?
-      @account.featured_tags.where(tag_id: added_tags.pluck(:id)).find_each do |featured_tag|
-        featured_tag.increment(@status.created_at)
-      end
-    end
+    increment_featured_tags(added_tags) unless added_tags.empty?
 
     removed_tags = previous_tags - current_tags
 
-    unless removed_tags.empty?
-      @account.featured_tags.where(tag_id: removed_tags.pluck(:id)).find_each do |featured_tag|
-        featured_tag.decrement(@status)
-      end
+    decrement_featured_tags(removed_tags) unless removed_tags.empty?
+  end
+
+  def increment_featured_tags(added_tags)
+    featured_tags_for(added_tags).find_each do |featured_tag|
+      featured_tag.increment(@status.created_at)
     end
+  end
+
+  def decrement_featured_tags(removed_tags)
+    featured_tags_for(removed_tags).find_each do |featured_tag|
+      featured_tag.decrement(@status)
+    end
+  end
+
+  def featured_tags_for(tags)
+    @account.featured_tags.where(tag_id: tags.pluck(:id))
   end
 
   def update_mentions!
