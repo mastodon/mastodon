@@ -8,7 +8,7 @@ module Account::Sensitizes
   end
 
   def sensitized?
-    sensitized_at.present?
+    sensitized_at?
   end
 
   def sensitize!(date = Time.now.utc)
