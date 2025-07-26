@@ -42,7 +42,7 @@
           %span.red= t('admin.accounts.suspended')
         - elsif target_account.silenced?
           %span.red= t('admin.accounts.silenced')
-        - elsif target_account.user&.disabled?
+        - elsif target_account.user_disabled?
           %span.red= t('admin.accounts.disabled')
         - else
           %span.neutral= t('admin.accounts.no_limits_imposed')
