@@ -56,7 +56,7 @@ class Announcement < ApplicationRecord
   end
 
   def notification_sent?
-    notification_sent_at.present?
+    notification_sent_at?
   end
 
   def mentions
