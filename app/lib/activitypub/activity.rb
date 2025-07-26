@@ -78,7 +78,7 @@ class ActivityPub::Activity
   end
 
   def unsupported_object_type?
-    @object.is_a?(String) || !(supported_object_type? || converted_object_type?)
+    @object.is_a?(String) || !(supported_object_type? || converted_object_type? || supported_preview?)
   end
 
   def supported_object_type?
@@ -87,6 +87,10 @@ class ActivityPub::Activity
 
   def converted_object_type?
     equals_or_includes_any?(@object['type'], CONVERTED_TYPES)
+  end
+
+  def supported_preview?
+    @object['preview'].is_a?(Hash) && equals_or_includes_any?(@object['preview']['type'], SUPPORTED_TYPES)
   end
 
   def delete_arrived_first?(uri)
