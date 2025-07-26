@@ -24,24 +24,24 @@ module ThemeHelper
   end
 
   def custom_stylesheet
-    if active_custom_stylesheet.present?
-      stylesheet_link_tag(
-        custom_css_path(active_custom_stylesheet),
-        host: root_url,
-        media: :all,
-        skip_pipeline: true
-      )
-    end
+    return if active_custom_stylesheet.blank?
+
+    stylesheet_link_tag(
+      custom_css_path(active_custom_stylesheet),
+      host: root_url,
+      media: :all,
+      skip_pipeline: true
+    )
   end
 
   private
 
   def active_custom_stylesheet
-    if cached_custom_css_digest.present?
-      [:custom, cached_custom_css_digest.to_s.first(8)]
-        .compact_blank
-        .join('-')
-    end
+    return if cached_custom_css_digest.blank?
+
+    [:custom, cached_custom_css_digest.to_s.first(8)]
+      .compact_blank
+      .join('-')
   end
 
   def cached_custom_css_digest
