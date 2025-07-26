@@ -2,28 +2,49 @@
 
 class Admin::Reports::ActionsController < Admin::BaseController
   before_action :set_report
+  before_action :verify_report_permissions
+  before_action :unknown_action, unless: :valid_button_action?, only: :create
+
+  STATUS_ACTIONS = %w(
+    delete
+    mark_as_sensitive
+  ).freeze
+
+  ACCOUNT_ACTIONS = %w(
+    silence
+    suspend
+  ).freeze
 
   def preview
-    authorize @report, :show?
     @moderation_action = action_from_button
   end
 
   def create
-    authorize @report, :show?
-
     case action_from_button
-    when 'delete', 'mark_as_sensitive'
+    when *STATUS_ACTIONS
       Admin::StatusBatchAction.new(status_batch_action_params).save!
-    when 'silence', 'suspend'
+    when *ACCOUNT_ACTIONS
       Admin::AccountAction.new(account_action_params).save!
-    else
-      return redirect_to admin_report_path(@report), alert: I18n.t('admin.reports.unknown_action_msg', action: action_from_button)
     end
 
     redirect_to admin_reports_path, notice: I18n.t('admin.reports.processed_msg', id: @report.id)
   end
 
   private
+
+  def verify_report_permissions
+    authorize @report, :show?
+  end
+
+  def unknown_action
+    redirect_to admin_report_path(@report), alert: t('admin.reports.unknown_action_msg', action: action_from_button)
+  end
+
+  def valid_button_action?
+    [STATUS_ACTIONS, ACCOUNT_ACTIONS]
+      .flatten
+      .include?(action_from_button)
+  end
 
   def status_batch_action_params
     shared_params
