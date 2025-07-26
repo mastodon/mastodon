@@ -466,16 +466,17 @@ class User < ApplicationRecord
 
     yield
 
-    if new_user
-      # Avoid extremely unlikely race condition when approving and confirming
-      # the user at the same time
-      reload unless approved?
+    after_confirmation_tasks if new_user
+  end
 
-      if approved?
-        prepare_new_user!
-      else
-        notify_staff_about_pending_account!
-      end
+  def after_confirmation_tasks
+    # Handle condition when approving and confirming a user at the same time
+    reload unless approved?
+
+    if approved?
+      prepare_new_user!
+    else
+      notify_staff_about_pending_account!
     end
   end
 
