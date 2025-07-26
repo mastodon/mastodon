@@ -58,7 +58,7 @@ class Status < ApplicationRecord
   update_index('statuses', :proper)
   update_index('public_statuses', :proper)
 
-  belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
+  belongs_to :application, class_name: 'OAuth::Application', optional: true
 
   belongs_to :account, inverse_of: :statuses
   belongs_to :in_reply_to_account, class_name: 'Account', optional: true
