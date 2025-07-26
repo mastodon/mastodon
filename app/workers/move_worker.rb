@@ -104,7 +104,7 @@ class MoveWorker
 
   def carry_blocks_over!
     @source_account.blocked_by_relationships.where(account: Account.local).find_each do |block|
-      unless block.account.blocking?(@target_account) || block.account.following?(@target_account)
+      unless skip_block_move?(block)
         BlockService.new.call(block.account, @target_account)
         add_account_note_if_needed!(block.account, 'move_handler.carry_blocks_over_text')
       end
@@ -115,7 +115,7 @@ class MoveWorker
 
   def carry_mutes_over!
     @source_account.muted_by_relationships.where(account: Account.local).find_each do |mute|
-      MuteService.new.call(mute.account, @target_account, notifications: mute.hide_notifications) unless mute.account.muting?(@target_account) || mute.account.following?(@target_account)
+      MuteService.new.call(mute.account, @target_account, notifications: mute.hide_notifications) unless skip_mute_move?(mute)
       add_account_note_if_needed!(mute.account, 'move_handler.carry_mutes_over_text')
     rescue => e
       @deferred_error = e
@@ -129,5 +129,13 @@ class MoveWorker
       end
       AccountNote.create!(account: account, target_account: @target_account, comment: text)
     end
+  end
+
+  def skip_mute_move?(mute)
+    mute.account.muting?(@target_account) || mute.account.following?(@target_account)
+  end
+
+  def skip_block_move?(block)
+    block.account.blocking?(@target_account) || block.account.following?(@target_account)
   end
 end
