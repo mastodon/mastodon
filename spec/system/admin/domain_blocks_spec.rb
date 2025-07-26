@@ -57,6 +57,30 @@ RSpec.describe 'blocking domains through the moderation interface' do
     end
   end
 
+  context 'when suspending an already suspended domain and using a lower severity' do
+    before { Fabricate :domain_block, domain: 'example.com', severity: 'silence' }
+
+    it 'warns about downgrade and does not update' do
+      visit new_admin_domain_block_path
+
+      submit_domain_block('example.com', 'noop')
+
+      expect(page)
+        .to have_content(/You have already imposed stricter limits on example.com/)
+    end
+  end
+
+  context 'when failing to provide a domain value' do
+    it 'provides an error about the missing value' do
+      visit new_admin_domain_block_path
+
+      submit_domain_block('', 'noop')
+
+      expect(page)
+        .to have_content(/review the error below/)
+    end
+  end
+
   context 'when suspending a subdomain of an already-silenced domain' do
     it 'presents a confirmation screen before suspending the domain' do
       domain_block = Fabricate(:domain_block, domain: 'example.com', severity: 'silence')
