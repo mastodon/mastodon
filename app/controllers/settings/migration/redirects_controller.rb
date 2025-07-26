@@ -22,7 +22,7 @@ class Settings::Migration::RedirectsController < Settings::BaseController
   end
 
   def destroy
-    if current_account.moved_to_account_id.present?
+    if current_account.moved?
       current_account.update!(moved_to_account: nil)
       ActivityPub::UpdateDistributionWorker.perform_async(current_account.id)
     end
