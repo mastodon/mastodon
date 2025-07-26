@@ -13,7 +13,7 @@ module User::Confirmation
   end
 
   def confirmed?
-    confirmed_at.present?
+    confirmed_at?
   end
 
   def unconfirmed?

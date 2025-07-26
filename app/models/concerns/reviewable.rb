@@ -13,11 +13,11 @@ module Reviewable
   end
 
   def reviewed?
-    reviewed_at.present?
+    reviewed_at?
   end
 
   def requested_review?
-    requested_review_at.present?
+    requested_review_at?
   end
 
   def requires_review_notification?

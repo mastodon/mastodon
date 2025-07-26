@@ -8,7 +8,7 @@ module Status::SnapshotConcern
   end
 
   def edited?
-    edited_at.present?
+    edited_at?
   end
 
   def build_snapshot(account_id: nil, at_time: nil, rate_limit: true)

@@ -17,7 +17,7 @@ module User::Activity
   end
 
   def signed_in_recently?
-    current_sign_in_at.present? && current_sign_in_at >= ACTIVE_DURATION.ago
+    current_sign_in_at? && current_sign_in_at >= ACTIVE_DURATION.ago
   end
 
   private

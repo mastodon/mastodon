@@ -9,7 +9,7 @@ module Account::Silences
   end
 
   def silenced?
-    silenced_at.present?
+    silenced_at?
   end
 
   def silence!(date = Time.now.utc)

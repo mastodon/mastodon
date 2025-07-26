@@ -47,7 +47,7 @@ class AccountWarning < ApplicationRecord
   end
 
   def overruled?
-    overruled_at.present?
+    overruled_at?
   end
 
   def appeal_eligible?

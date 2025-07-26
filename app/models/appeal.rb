@@ -40,11 +40,11 @@ class Appeal < ApplicationRecord
   end
 
   def approved?
-    approved_at.present?
+    approved_at?
   end
 
   def rejected?
-    rejected_at.present?
+    rejected_at?
   end
 
   def approve!(current_account)

@@ -29,7 +29,7 @@ class PollExpirationNotifyWorker
   end
 
   def not_due_yet?
-    @poll.expires_at.present? && !@poll.expired?
+    @poll.expires_at? && !@poll.expired?
   end
 
   def requeue!
