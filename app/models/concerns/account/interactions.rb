@@ -23,9 +23,6 @@ module Account::Interactions
     # Hashtag follows
     has_many :tag_follows, inverse_of: :account, dependent: :destroy
 
-    # Account notes
-    has_many :account_notes, dependent: :destroy
-
     # Block relationships
     with_options class_name: 'Block', dependent: :destroy do
       has_many :block_relationships, foreign_key: 'account_id', inverse_of: :account
