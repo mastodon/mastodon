@@ -40,8 +40,11 @@ type KeyMatcher = (
  */
 function just(keyName: string): KeyMatcher {
   return (event) => ({
-    isMatch: normalizeKey(event.key) === keyName
-      && !event.altKey && !event.ctrlKey && !event.metaKey,
+    isMatch:
+      normalizeKey(event.key) === keyName &&
+      !event.altKey &&
+      !event.ctrlKey &&
+      !event.metaKey,
     priority: hotkeyPriority.singleKey,
   });
 }
