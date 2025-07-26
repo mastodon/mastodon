@@ -17,6 +17,7 @@ RSpec.describe Tag do
         subject { Fabricate :tag, name: 'original' }
 
         it { is_expected.to_not allow_value('changed').for(:name).with_message(previous_name_error_message) }
+        it { is_expected.to allow_value('ORIGINAL').for(:name) }
       end
     end
 
@@ -31,6 +32,7 @@ RSpec.describe Tag do
         subject { Fabricate :tag, name: 'original', display_name: 'OriginalDisplayName' }
 
         it { is_expected.to_not allow_value('ChangedDisplayName').for(:display_name).with_message(previous_name_error_message) }
+        it { is_expected.to allow_value('ORIGINAL').for(:display_name) }
       end
     end
 
