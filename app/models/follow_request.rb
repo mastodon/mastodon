@@ -20,6 +20,7 @@ class FollowRequest < ApplicationRecord
   include RelationshipCacheable
   include RateLimitable
   include FollowLimitable
+  include RecommendationMaintenance
 
   rate_limit by: :account, family: :follows
 
@@ -52,15 +53,10 @@ class FollowRequest < ApplicationRecord
   end
 
   before_validation :set_uri, only: :create
-  after_commit :invalidate_follow_recommendations_cache
 
   private
 
   def set_uri
     self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil?
-  end
-
-  def invalidate_follow_recommendations_cache
-    Rails.cache.delete("follow_recommendations/#{account_id}")
   end
 end

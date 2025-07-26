@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Block do
+  it_behaves_like 'Recommendation Maintenance'
+
   describe 'Associations' do
     it { is_expected.to belong_to(:account).required }
     it { is_expected.to belong_to(:target_account).required }
