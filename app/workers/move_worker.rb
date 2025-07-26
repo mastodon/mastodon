@@ -84,17 +84,17 @@ class MoveWorker
   end
 
   def copy_account_notes!
-    AccountNote.where(target_account: @source_account).find_each do |note|
+    @source_account.targeted_account_notes.find_each do |note|
       text = I18n.with_locale(note.account.user_locale.presence || I18n.default_locale) do
         I18n.t('move_handler.copy_account_note_text', acct: @source_account.acct)
       end
 
-      new_note = AccountNote.find_by(account: note.account, target_account: @target_account)
+      new_note = @target_account.targeted_account_notes.find_by(account: note.account)
       if new_note.nil?
         begin
-          AccountNote.create!(account: note.account, target_account: @target_account, comment: [text, note.comment].join("\n"))
+          @target_account.targeted_account_notes.create!(account: note.account, comment: [text, note.comment].join("\n"))
         rescue ActiveRecord::RecordInvalid
-          AccountNote.create!(account: note.account, target_account: @target_account, comment: note.comment)
+          @target_account.targeted_account_notes.create!(account: note.account, comment: note.comment)
         end
       else
         new_note.update!(comment: [text, note.comment, "\n", new_note.comment].join("\n"))
@@ -129,7 +129,7 @@ class MoveWorker
   end
 
   def add_account_note_if_needed!(account, id)
-    return if AccountNote.exists?(account: account, target_account: @target_account)
+    return if @target_account.targeted_account_notes.exists?(account:)
 
     text = I18n.with_locale(account.user_locale.presence || I18n.default_locale) do
       I18n.t(id, acct: @source_account.acct)
