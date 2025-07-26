@@ -14,11 +14,6 @@ Lint/NonLocalExitFromIterator:
 Metrics/AbcSize:
   Max: 82
 
-# Configuration parameters: CountBlocks, CountModifierForms, Max.
-Metrics/BlockNesting:
-  Exclude:
-    - 'lib/tasks/mastodon.rake'
-
 # Configuration parameters: AllowedMethods, AllowedPatterns.
 Metrics/CyclomaticComplexity:
   Max: 25
