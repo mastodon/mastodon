@@ -33,15 +33,7 @@ module Status::InteractionPolicyConcern
     automatic_policy = quote_approval_policy >> 16
     manual_policy = quote_approval_policy & 0xFFFF
 
-    # Checking for public policy first because it's less expensive than looking at mentions
     return :automatic if automatic_policy.anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:public])
-
-    # Mentioned users are always allowed to quote
-    if active_mentions.loaded?
-      return :automatic if active_mentions.any? { |mention| mention.account_id == other_account.id }
-    elsif active_mentions.exists?(account: other_account)
-      return :automatic
-    end
 
     if automatic_policy.anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:followers])
       following_author = preloaded_relations[:following] ? preloaded_relations[:following][account_id] : other_account.following?(account) if following_author.nil?
