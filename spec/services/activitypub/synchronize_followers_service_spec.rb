@@ -6,7 +6,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
   subject { described_class.new }
 
   let(:actor)          { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/account', inbox_url: 'http://example.com/inbox') }
-  let(:alice)          { Fabricate(:account, username: 'alice') }
+  let(:alice)          { Fabricate(:account, username: 'alice', id_scheme: :numeric_ap_id) }
   let(:bob)            { Fabricate(:account, username: 'bob') }
   let(:eve)            { Fabricate(:account, username: 'eve') }
   let(:mallory)        { Fabricate(:account, username: 'mallory') }
