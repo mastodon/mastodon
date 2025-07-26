@@ -9,7 +9,7 @@ class UnmuteService < BaseService
     if account.following?(target_account)
       MergeWorker.perform_async(target_account.id, account.id, 'home')
 
-      MergeWorker.push_bulk(List.where(account: account).joins(:list_accounts).where(list_accounts: { account_id: target_account.id }).pluck(:id)) do |list_id|
+      MergeWorker.push_bulk(account.owned_lists.with_list_account(target_account).pluck(:id)) do |list_id|
         [target_account.id, list_id, 'list']
       end
     end
