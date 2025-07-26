@@ -190,6 +190,7 @@ en:
         create_relay: Create Relay
         create_unavailable_domain: Create Unavailable Domain
         create_user_role: Create Role
+        create_username_block: Create Username Block
         demote_user: Demote User
         destroy_announcement: Delete Announcement
         destroy_canonical_email_block: Delete Email Block
@@ -203,6 +204,7 @@ en:
         destroy_status: Delete Post
         destroy_unavailable_domain: Delete Unavailable Domain
         destroy_user_role: Destroy Role
+        destroy_username_block: Delete Username Block
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
         disable_relay: Disable Relay
@@ -237,6 +239,7 @@ en:
         update_report: Update Report
         update_status: Update Post
         update_user_role: Update Role
+        update_username_block: Update Username Block
       actions:
         approve_appeal_html: "%{name} approved moderation decision appeal from %{target}"
         approve_user_html: "%{name} approved sign-up from %{target}"
@@ -255,6 +258,7 @@ en:
         create_relay_html: "%{name} created a relay %{target}"
         create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
         create_user_role_html: "%{name} created %{target} role"
+        create_username_block_html: "%{name} blocked usernames containing %{target}"
         demote_user_html: "%{name} demoted user %{target}"
         destroy_announcement_html: "%{name} deleted announcement %{target}"
         destroy_canonical_email_block_html: "%{name} unblocked email with the hash %{target}"
@@ -268,6 +272,7 @@ en:
         destroy_status_html: "%{name} removed post by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
         destroy_user_role_html: "%{name} deleted %{target} role"
+        destroy_username_block_html: "%{name} unblocked usernames containing %{target}"
         disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji_html: "%{name} disabled emoji %{target}"
         disable_relay_html: "%{name} disabled the relay %{target}"
@@ -302,6 +307,7 @@ en:
         update_report_html: "%{name} updated report %{target}"
         update_status_html: "%{name} updated post by %{target}"
         update_user_role_html: "%{name} changed %{target} role"
+        update_username_block_html: "%{name} updated block for usernames containing %{target}"
       deleted_account: deleted account
       empty: No logs found.
       filter_by_action: Filter by action
@@ -1085,6 +1091,22 @@ en:
           other: Used by %{count} people over the last week
       title: Recommendations & Trends
       trending: Trending
+    username_blocks:
+      add_new: Add new
+      created_msg: Successfully blocked username
+      delete: Delete
+      destroyed_msg: Successfully removed blocked username
+      edit:
+        title: Edit blocked username
+      exact: Exact match
+      new:
+        create: Add username
+        title: Block new username
+      no_username_block_selected: No username blocks were changed as none were selected
+      not_permitted: Not permitted
+      partial: Match within words
+      title: Blocked usernames
+      updated_msg: Successfully updated blocked username
     warning_presets:
       add_new: Add new
       delete: Delete

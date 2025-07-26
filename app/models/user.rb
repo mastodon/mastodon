@@ -443,7 +443,7 @@ class User < ApplicationRecord
 
   def set_approved
     self.approved = begin
-      if sign_up_from_ip_requires_approval? || sign_up_email_requires_approval?
+      if sign_up_from_ip_requires_approval? || sign_up_email_requires_approval? || sign_up_username_requires_approval?
         false
       else
         open_registrations? || valid_invitation? || external?
@@ -496,6 +496,10 @@ class User < ApplicationRecord
     records = DomainResource.new(domain).mx unless self.class.skip_mx_check?
 
     EmailDomainBlock.requires_approval?(records + [domain], attempt_ip: sign_up_ip)
+  end
+
+  def sign_up_username_requires_approval?
+    account.username.present? && UsernameBlock.matches?(account.username, allow_with_approval: true)
   end
 
   def open_registrations?
