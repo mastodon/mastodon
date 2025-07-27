@@ -9,17 +9,10 @@ module Status::SearchConcern
 
   def searchable_by
     @searchable_by ||= begin
-      ids = []
-
-      ids << account_id if local?
-
-      ids += local_mentioned.pluck(:id)
-      ids += local_favorited.pluck(:id)
-      ids += local_reblogged.pluck(:id)
-      ids += local_bookmarked.pluck(:id)
-      ids += preloadable_poll.local_voters.pluck(:id) if preloadable_poll.present?
-
-      ids.uniq
+      [].tap do |account_ids|
+        account_ids << account_id if local?
+        searchable_by_sources.each { |source| account_ids << source.pluck(:id) }
+      end.uniq
     end
   end
 
@@ -33,16 +26,36 @@ module Status::SearchConcern
   end
 
   def searchable_properties
-    [].tap do |properties|
-      properties << 'image' if ordered_media_attachments.any?(&:image?)
-      properties << 'video' if ordered_media_attachments.any?(&:video?)
-      properties << 'audio' if ordered_media_attachments.any?(&:audio?)
-      properties << 'media' if with_media?
-      properties << 'poll' if with_poll?
-      properties << 'link' if with_preview_card?
-      properties << 'embed' if preview_card&.video?
-      properties << 'sensitive' if sensitive?
-      properties << 'reply' if reply?
+    searchable_properties_map
+      .select { |_, value| value }
+      .keys
+      .map(&:to_s)
+  end
+
+  private
+
+  def searchable_by_sources
+    [
+      local_bookmarked,
+      local_favorited,
+      local_mentioned,
+      local_reblogged,
+    ].tap do |list|
+      list << preloadable_poll.local_voters if preloadable_poll.present?
     end
+  end
+
+  def searchable_properties_map
+    {
+      audio: ordered_media_attachments.any?(&:audio?),
+      image: ordered_media_attachments.any?(&:image?),
+      video: ordered_media_attachments.any?(&:video?),
+      embed: preview_card&.video?,
+      link: with_preview_card?,
+      media: with_media?,
+      poll: with_poll?,
+      reply: reply?,
+      sensitive: sensitive?,
+    }
   end
 end
