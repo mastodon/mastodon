@@ -97,7 +97,7 @@ nan:
         silenced: 受限制
         suspended: 權限中止ah
         title: 管理
-      moderation_notes: 管理ê註釋
+      moderation_notes: 管理ê筆記
       most_recent_activity: 最近ê活動時間
       most_recent_ip: 最近ê IP
       no_account_selected: 因為無揀任何口座，所以lóng無改變
@@ -245,7 +245,7 @@ nan:
         create_announcement_html: "%{name} kā公告 %{target} 建立ah"
         create_canonical_email_block_html: "%{name} kā hash是 %{target} ê電子phue封鎖ah"
         create_custom_emoji_html: "%{name} kā 新ê emoji %{target} 傳上去ah"
-        create_domain_allow_html: "%{name} 允准 %{target} 域名加入聯邦宇宙"
+        create_domain_allow_html: "%{name} 允准 %{target} 域名加入聯邦"
         create_domain_block_html: "%{name} 封鎖域名 %{target}"
         create_email_domain_block_html: "%{name} kā 電子phue域名 %{target} 封鎖ah"
         create_ip_block_html: "%{name} 建立 IP %{target} ê規則"
@@ -256,7 +256,7 @@ nan:
         destroy_announcement_html: "%{name} kā公告 %{target} thâi掉ah"
         destroy_canonical_email_block_html: "%{name} kā hash是 %{target} ê電子phue取消封鎖ah"
         destroy_custom_emoji_html: "%{name} kā 新ê emoji %{target} thâi掉ah"
-        destroy_domain_allow_html: "%{name} 無允准 %{target} 域名加入聯邦宇宙"
+        destroy_domain_allow_html: "%{name} 無允准 %{target} 域名加入聯邦"
         destroy_domain_block_html: "%{name} 取消封鎖域名 %{target}"
         destroy_email_domain_block_html: "%{name} kā 電子phue域名 %{target} 取消封鎖ah"
         destroy_instance_html: "%{name} 清除域名 %{target}"
@@ -531,16 +531,111 @@ nan:
       content_policies:
         comment: 內部ê筆記
         description_html: Lí ē當定義用tī所有tuì tsit ê域名kap伊ê子域名來ê口座ê內容政策。
+        limited_federation_mode_description_html: Lí通選擇kám beh允准tsit ê域名加入聯邦。
+        policies:
+          reject_media: 拒絕媒體
+          reject_reports: 拒絕檢舉
+          silence: 限制
+          suspend: 中止權限
+        policy: 政策
+        reason: 公開ê理由
+        title: 內容政策
       dashboard:
+        instance_accounts_dimension: 上tsē lâng跟tuè ê口座
+        instance_accounts_measure: 儲存ê口座
+        instance_followers_measure: lán tī hia ê跟tuè者
+        instance_follows_measure: in tī tsia ê跟tuè者
         instance_languages_dimension: Tsia̍p用ê語言
+        instance_media_attachments_measure: 儲存ê媒體附件
+        instance_reports_measure: 關係in ê檢舉
+        instance_statuses_measure: 儲存ê PO文
+      delivery:
+        all: 全部
+        clear: 清寄送ê錯誤
+        failing: 失敗
+        restart: 重頭啟動寄送
+        stop: 停止寄送
+        unavailable: Bē當用
+      delivery_available: 通寄送
+      delivery_error_days: 寄送錯誤ê日數
+      delivery_error_hint: Nā連續 %{count} kang bē當寄送，就ē自動標做bē當寄送。
+      destroyed_msg: Tuì %{domain} 來ê資料，teh排隊beh thâi掉。
+      empty: Tshuē無域名。
+      known_accounts:
+        other: "%{count} ê知影ê口座"
+      moderation:
+        all: 全部
+        limited: 受限制
+        title: 管理
+      moderation_notes:
+        create: 加添管理筆記
+        created_msg: 站臺ê管理記錄成功建立！
+        description_html: 檢視á是替別ê管理者kap未來ê家己留筆記
+        destroyed_msg: 站臺ê管理記錄成功thâi掉！
+        placeholder: 關係本站、行ê行動，á是其他通幫tsān lí未來管本站ê資訊。
+        title: 管理ê筆記
+      private_comment: 私人評論
+      public_comment: 公開ê評論
+      purge: 清除
+      purge_description_html: Nā lí想講tsit ê域名ē永永斷線，ē當tuì儲存內底thâi掉uì tsit ê域名來ê所有口座記錄kap相關資料。Huân-sè ē開點á時間。
+      title: 聯邦
+      total_blocked_by_us: Hōo lán封鎖
+      total_followed_by_them: Hōo in跟tuè
+      total_followed_by_us: Hōo lán跟tuè
+      total_reported: 關係in ê檢舉
+      total_storage: 媒體ê附件
+      totals_time_period_hint_html: 下kha顯示ê總計包含ta̍k時ê資料。
+      unknown_instance: 佇本服務器，現tsú時iáu無tsit ê域名ê記錄。
     invites:
+      deactivate_all: Lóng停用
       filter:
+        all: 全部
         available: 通用ê
         expired: 過期ê
         title: 過濾器
       title: 邀請
     ip_blocks:
       add_new: 建立規則
+      created_msg: 成功加添新ê IP規則
+      delete: Thâi掉
+      expires_in:
+        '1209600': 2 禮拜
+        '15778476': 6個月
+        '2629746': 1 個月
+        '31556952': 1 年
+        '86400': 1 kang
+        '94670856': 3 年
+      new:
+        title: 建立新ê IP規則
+      no_ip_block_selected: 因為無揀任何IP規則，所以lóng無改變
+      title: IP規則
+    relationships:
+      title: "%{acct} ê關係"
+    relays:
+      add_new: 加添新ê中繼
+      delete: Thâi掉
+      description_html: "<strong>聯邦ê中繼站</strong> 是中lâng ê服侍器，ē tī訂koh公開kàu hit ê中繼站ê服侍器之間，交換tsē-tsē ê 公開PO文。<strong>中繼站通幫tsān小型kap中型服侍器tuì聯邦宇宙發現內容</strong>，本地ê用者免手動跟tuè遠距離ê服侍器ê別lâng。"
+      disable: 停止使用
+      disabled: 停止使用ê
+      enable: 啟用
+      enable_hint: Lí ê服侍器tsi̍t-ē啟動，ē訂tuì tsit ê中繼逐ê公開PO文，mā ē開始送tsit ê服侍器ê公開PO文kàu hia。
+      enabled: 啟用ê
+      inbox_url: 中繼 URL
+      pending: Teh等中繼站允准
+      save_and_enable: 儲存koh啟用
+      setup: 設定中繼ê連結
+      signatures_not_enabled: Nā啟用安全模式á是受限ê聯邦模式，中繼可能buē-tàng正常運作
+      status: 狀態
+      title: 中繼
+    report_notes:
+      created_msg: 檢舉記錄成功建立！
+      destroyed_msg: 檢舉記錄成功thâi掉！
+    reports:
+      account:
+        notes:
+          other: "%{count} 篇筆記"
+      action_log: 審查日誌
+      action_taken_by: 操作由
     statuses:
       language: 語言
     trends:
