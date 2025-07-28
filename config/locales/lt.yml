@@ -912,6 +912,10 @@ lt:
       your_appeal_rejected: Tavo apeliacija buvo atmesta
   edit_profile:
     hint_html: "<strong>Tinkink tai, ką žmonės mato tavo viešame profilyje ir šalia įrašų.</strong> Kiti žmonės labiau linkę sekti atgal ir bendrauti su tavimi, jei tavo profilis yra užpildytas ir turi profilio nuotrauką."
+  emoji_styles:
+    auto: Automatinis
+    native: Vietiniai
+    twemoji: Tvejaustukai
   errors:
     '403': Jūs neturie prieigos matyti šiam puslapiui.
     '404': Puslapis nerastas.
@@ -1183,6 +1187,8 @@ lt:
         other: "%{count} vaizdų"
     boosted_from_html: Pakelta iš %{acct_link}
     content_warning: 'Turinio įspėjimas: %{warning}'
+    errors:
+      quoted_status_not_found: Įrašas, kurį bandote cituoti, atrodo, neegzistuoja.
     over_character_limit: pasiektas %{max} simbolių limitas
     pin_errors:
       limit: Jūs jau prisegėte maksimalų toot'ų skaičų
