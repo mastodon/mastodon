@@ -159,3 +159,11 @@ export async function loadLatestEtag(localeString: string) {
   const etag = await db.get('etags', locale);
   return etag ?? null;
 }
+
+// Testing helpers
+export function testClearDB() {
+  db = null;
+}
+export function testClearLocales() {
+  loadedLocales.clear();
+}
