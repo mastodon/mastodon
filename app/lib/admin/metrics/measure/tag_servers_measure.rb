@@ -35,7 +35,7 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
           INNER JOIN accounts ON statuses.account_id = accounts.id
           WHERE statuses_tags.tag_id = :tag_id
             AND statuses.id BETWEEN :earliest_status_id AND :latest_status_id
-            AND date_trunc('day', statuses.created_at)::date = axis.period
+            AND #{matching_day(Status, :created_at)}
         )
         SELECT COUNT(*) FROM tag_servers
       ) AS value
