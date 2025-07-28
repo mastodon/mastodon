@@ -540,10 +540,10 @@ class User < ApplicationRecord
 
   def regenerate_feed!
     home_feed = HomeFeed.new(account)
-    unless home_feed.regenerating?
-      home_feed.regeneration_in_progress!
-      RegenerationWorker.perform_async(account_id)
-    end
+    return if home_feed.regenerating?
+
+    home_feed.regeneration_in_progress!
+    RegenerationWorker.perform_async(account_id)
   end
 
   def needs_feed_update?
