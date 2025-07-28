@@ -56,12 +56,12 @@ da:
         scopes: De API'er, som applikationen vil kunne tilgå. Vælges en topniveaudstrækning, vil detailvalg være unødvendige.
         setting_aggregate_reblogs: Vis ikke nye fremhævelser for nyligt fremhævede indlæg (påvirker kun nyligt modtagne fremhævelser)
         setting_always_send_emails: Normalt sendes ingen e-mailnotifikationer under aktivt brug af Mastodon
-        setting_default_quote_policy: Nævnte brugere har altid lov til at citere. Denne indstilling vil kun træde i kraft for indlæg oprettet med den næste Mastodon-version, men man kan som forberedelse vælge sin præference
+        setting_default_quote_policy: Nævnte brugere har altid lov til at citere. Denne indstilling vil kun træde i kraft for indlæg oprettet med den næste Mastodon-version, men du kan som forberedelse vælge din præference
         setting_default_sensitive: Sensitive medier er som standard skjult og kan vises med et klik
         setting_display_media_default: Skjul medier med sensitiv-markering
         setting_display_media_hide_all: Skjul altid medier
         setting_display_media_show_all: Vis altid medier
-        setting_system_scrollbars_ui: Gælder kun for computerwebbrowsere baseret på Safari og Chrome
+        setting_system_scrollbars_ui: Gælder kun for desktop-browsere baseret på Safari og Chrome
         setting_use_blurhash: Gradienter er baseret på de skjulte grafikelementers farver, men slører alle detaljer
         setting_use_pending_items: Skjul tidslinjeopdateringer bag et klik i stedet for brug af auto-feedrulning
         username: Bogstaver, cifre og understregningstegn kan benyttes
@@ -150,8 +150,8 @@ da:
       user:
         chosen_languages: Når markeret, vil kun indlæg på de valgte sprog fremgå på offentlige tidslinjer
         date_of_birth:
-          one: Vi er nødt til at sikre, at man er fyldt %{count} for at bruge Mastodon. Denne information gemmes ikke.
-          other: Vi er nødt til at sikre, at man er fyldt %{count} for at bruge Mastodon. Denne information gemmes ikke.
+          one: Vi skal sikre os, at du er mindst %{count} for at kunne bruge %{domain}. Informationen gemmes ikke.
+          other: Vi skal sikre os, at du er mindst %{count} for at kunne bruge %{domain}. Informationen gemmes ikke.
         role: Rollen styrer, hvilke tilladelser brugeren er tildelt.
       user_role:
         color: Farven, i RGB hex-format, der skal bruges til rollen i hele UI'en
@@ -232,7 +232,7 @@ da:
         setting_boost_modal: Vis bekræftelsesdialog inden fremhævelse
         setting_default_language: Sprog for indlæg
         setting_default_privacy: Fortrolighed for indlæg
-        setting_default_quote_policy: Hvem, som kan citere
+        setting_default_quote_policy: Hvem kan citere
         setting_default_sensitive: Markér altid medier som sensitive
         setting_delete_modal: Vis bekræftelsesdialog før et indlæg slettes
         setting_disable_hover_cards: Deaktivér profilforhåndsvisning ved svæv (hover)

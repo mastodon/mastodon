@@ -280,6 +280,7 @@ kab:
         registrations:
           confirm: Sentem
         save: Sekles
+        sign_in: Qqen
       title: FASP
     follow_recommendations:
       language: I tutlayt
@@ -383,6 +384,9 @@ kab:
       updated_at: Yettwaleqqem
       view_profile: Wali amaɣnu
     roles:
+      assigned_users:
+        one: "%{count} n useqdac"
+        other: "%{count} n iseqdacen"
       categories:
         administration: Tadbelt
         invites: Iɛeṛṛuḍen
@@ -395,16 +399,20 @@ kab:
         view_dashboard: Timẓriwt n tfelwit
     rules:
       add_new: Rnu alugen
+      add_translation: Ad yernu tasuqilt
       delete: Kkes
       edit: Ẓreg alugen
       empty: Mazal ur ttwasbadun ara yilugan n uqeddac.
       title: Ilugan n uqeddac
+      translation: Tasuqilt
+      translations: Tisuqilin
     settings:
       about:
         title: Ɣef
       appearance:
         title: Udem
       discovery:
+        privacy: Tabaḍnit
         profile_directory: Akaram n imaɣnuten
         title: Asnirem
         trends: Ayen mucaɛen
@@ -436,10 +444,14 @@ kab:
       media:
         title: Amidya
       open: Ldi tasuffeɣt
-      trending: Ayen mucaɛen
+      trending: Inezzaɣ
       visibility: Abani
       with_media: S umidya
     system_checks:
+      elasticsearch_preset:
+        action: Wali tasemlit
+      elasticsearch_preset_single_node:
+        action: Wali tasemlit
       rules_check:
         action: Sefrek ilugan n uqeddac
       software_version_critical_check:
@@ -463,12 +475,16 @@ kab:
     title: Tadbelt
     trends:
       allow: Sireg
+      links:
+        title: Iseɣwan inezzaɣ
       statuses:
-        title: Tisuffaɣ mucaɛen
+        title: Tisuffaɣ tinezzaɣ
       tags:
         dashboard:
           tag_languages_dimension: Tutlayin ifazen
-      trending: Ayen mucaɛen
+        title: Ihacṭagen inezzaɣ
+        trending_rank: 'Anezzuɣ #%{rank}'
+      trending: Inezzaɣ
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
@@ -480,8 +496,12 @@ kab:
       body: "%{reporter} yettwazen ɣef %{target}"
       subject: Aneqqis amaynut i %{instance} (#%{id})
     new_trends:
+      new_trending_links:
+        title: Iseɣwan inezzaɣ
       new_trending_statuses:
-        title: Tisuffaɣ mucaɛen
+        title: Tisuffaɣ tinezzaɣ
+      new_trending_tags:
+        title: Ihacṭagen inezzaɣ
   appearance:
     advanced_web_interface: Agrudem n web leqqayen
     discovery: Asnirem
@@ -835,6 +855,8 @@ kab:
         one: "%{count} n tbidyutt"
         other: "%{count} n tbidyutin"
     edited_at_html: Tettwaẓreg ass n %{date}
+    quote_policies:
+      public: Yal yiwen
     title: '%{name} : "%{quote}"'
     visibilities:
       direct: Usrid
@@ -900,12 +922,13 @@ kab:
       edit_profile_title: Sagen amaɣnu-inek·inem
       feature_action: Issin ugar
       follow_action: Ḍfeṛ
+      follow_title: Sagen isuddam n yisallen n wejgu-k·m agejdan
       follows_subtitle: Ḍfer imiḍanen yettwassnen mliḥ
       follows_title: Anwa ara ḍefṛeḍ
       follows_view_more: Ssken-d ugar n medden ay tzemred ad tḍefred
-      hashtags_subtitle: Wali ayen ileḥḥun seg sin wussan-a iεeddan
-      hashtags_title: Ihacṭagen mucaɛen
-      hashtags_view_more: Sken-d ugar n yihacṭagen mucaɛen
+      hashtags_subtitle: Snirem ayen yellan d anezzuɣ deg 2 n wussan-a iεeddan
+      hashtags_title: Ihacṭagen inezzaɣ
+      hashtags_view_more: Sken-d ugar n yihacṭagen inezzaɣ
       post_step: Ini-as azul i umaḍal s uḍris, s tiwlafin, s tividyutin neɣ s tefranin.
       post_title: Aru tasuffeɣt-inek·inem tamezwarut
       share_step: Init-asen i yimeddukal-nwen amek ara ken-id-afen deg Mastodon.

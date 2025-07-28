@@ -7,7 +7,7 @@ class ActivityPub::QuoteRequestSerializer < ActivityPub::Serializer
   attribute :virtual_object, key: :object
 
   def id
-    object.activity_uri || [ActivityPub::TagManager.instance.uri_for(object.target_account), '#quote_requests/', object.id].join
+    object.activity_uri
   end
 
   def type
