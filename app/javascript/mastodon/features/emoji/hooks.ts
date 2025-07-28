@@ -17,7 +17,8 @@ import type {
 import { stringHasAnyEmoji } from './utils';
 
 export function useEmojify(text: string, extraEmojis?: CustomEmojiMapArg) {
-  const hasEmoji = useHasEmoji(text);
+  const [emojifiedText, setEmojifiedText] = useState<string | null>(null);
+
   const appState = useEmojiAppState();
   const extra: ExtraCustomEmojiMap = useMemo(() => {
     if (!extraEmojis) {
@@ -33,31 +34,26 @@ export function useEmojify(text: string, extraEmojis?: CustomEmojiMapArg) {
     }
     return extraEmojis;
   }, [extraEmojis]);
-  const [innerHTML, setInnerHTML] = useState<string | null>(null);
 
   const emojify = useCallback(
     async (input: string) => {
       const div = document.createElement('div');
       div.innerHTML = input;
       const ele = await emojifyElement(div, appState, extra);
-      setInnerHTML(ele.innerHTML);
+      setEmojifiedText(ele.innerHTML);
     },
     [appState, extra],
   );
   useEffect(() => {
-    if (hasEmoji) {
+    if (isModernEmojiEnabled() && !!text.trim() && stringHasAnyEmoji(text)) {
       void emojify(text);
+    } else {
+      // If no emoji or we don't want to render, fall back.
+      setEmojifiedText(text);
     }
-  }, [emojify, hasEmoji, text]);
+  }, [emojify, text]);
 
-  return innerHTML;
-}
-
-export function useHasEmoji(text: string): boolean {
-  return useMemo(
-    () => isModernEmojiEnabled() && !!text.trim() && stringHasAnyEmoji(text),
-    [text],
-  );
+  return emojifiedText;
 }
 
 export function useEmojiAppState(): EmojiAppState {

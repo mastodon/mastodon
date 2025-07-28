@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'react';
 
-import { useEmojify, useHasEmoji } from './hooks';
+import { useEmojify } from './hooks';
 import type { CustomEmojiMapArg } from './types';
 
 type EmojiHTMLProps = Omit<
@@ -12,24 +12,6 @@ type EmojiHTMLProps = Omit<
 };
 
 export const EmojiHTML: React.FC<EmojiHTMLProps> = ({
-  htmlString,
-  extraEmojis,
-  ...props
-}) => {
-  const hasEmoji = useHasEmoji(htmlString);
-  if (hasEmoji) {
-    return (
-      <ModernEmojiHTML
-        htmlString={htmlString}
-        extraEmojis={extraEmojis}
-        {...props}
-      />
-    );
-  }
-  return <div {...props} dangerouslySetInnerHTML={{ __html: htmlString }} />;
-};
-
-const ModernEmojiHTML: React.FC<EmojiHTMLProps> = ({
   extraEmojis,
   htmlString,
   ...props

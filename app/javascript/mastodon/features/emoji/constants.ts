@@ -15,6 +15,7 @@ export const SKIN_TONE_CODES = [
   0x1f3ff, // Dark skin tone
 ] as const;
 
+// TODO: Test and create fallback for browsers that do not handle the /v flag.
 export const UNICODE_EMOJI_REGEX = /\p{RGI_Emoji}/v;
 // See: https://www.unicode.org/reports/tr51/#valid-emoji-tag-sequences
 export const UNICODE_FLAG_EMOJI_REGEX =
