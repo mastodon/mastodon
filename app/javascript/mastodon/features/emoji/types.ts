@@ -4,6 +4,7 @@ import type { FlatCompactEmoji, Locale } from 'emojibase';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 import type { CustomEmoji } from '@/mastodon/models/custom_emoji';
+import type { LimitedCache } from '@/mastodon/utils/cache';
 
 import type {
   EMOJI_MODE_NATIVE,
@@ -57,7 +58,7 @@ export type EmojiState =
   | EmojiStateCustom;
 export type EmojiLoadedState = EmojiStateUnicode | EmojiStateCustom;
 
-export type EmojiStateMap = Map<string, EmojiState>;
+export type EmojiStateMap = LimitedCache<string, EmojiState>;
 
 export type CustomEmojiMapArg =
   | ExtraCustomEmojiMap

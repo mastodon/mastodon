@@ -235,11 +235,11 @@ export function tokenizeText(text: string): TokenizedText {
 }
 
 const localeCacheMap = new Map<LocaleOrCustom, EmojiStateMap>([
-  [EMOJI_TYPE_CUSTOM, new Map()],
+  [EMOJI_TYPE_CUSTOM, createLimitedCache<EmojiState>()],
 ]);
 
 function cacheForLocale(locale: LocaleOrCustom): EmojiStateMap {
-  return localeCacheMap.get(locale) ?? (new Map() as EmojiStateMap);
+  return localeCacheMap.get(locale) ?? createLimitedCache<EmojiState>();
 }
 
 function emojiForLocale(

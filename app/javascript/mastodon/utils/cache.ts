@@ -1,4 +1,4 @@
-interface CacheReturn<CacheKey, CacheValue> {
+export interface LimitedCache<CacheKey, CacheValue> {
   has: (key: CacheKey) => boolean;
   get: (key: CacheKey) => CacheValue | undefined;
   delete: (key: CacheKey) => void;
@@ -7,7 +7,7 @@ interface CacheReturn<CacheKey, CacheValue> {
 
 export function createLimitedCache<CacheValue, CacheKey = string>(
   maxSize = 100,
-): CacheReturn<CacheKey, CacheValue> {
+): LimitedCache<CacheKey, CacheValue> {
   const cacheMap = new Map<CacheKey, CacheValue>();
   const cacheKeys = new Set<CacheKey>();
 
