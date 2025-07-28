@@ -38,7 +38,7 @@ class Admin::Metrics::Measure::InstanceReportsMeasure < Admin::Metrics::Measure:
           SELECT reports.id
           FROM reports
           INNER JOIN accounts ON accounts.id = reports.target_account_id
-          WHERE date_trunc('day', reports.created_at)::date = axis.period
+          WHERE #{matching_day(Report, :created_at)}
             AND #{account_domain_sql(params[:include_subdomains])}
         )
         SELECT count(*) FROM new_reports

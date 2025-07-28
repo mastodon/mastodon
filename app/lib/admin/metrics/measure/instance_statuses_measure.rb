@@ -40,7 +40,7 @@ class Admin::Metrics::Measure::InstanceStatusesMeasure < Admin::Metrics::Measure
           INNER JOIN accounts ON accounts.id = statuses.account_id
           WHERE statuses.id BETWEEN :earliest_status_id AND :latest_status_id
             AND #{account_domain_sql(params[:include_subdomains])}
-            AND date_trunc('day', statuses.created_at)::date = axis.period
+            AND #{matching_day(Status, :created_at)}
         )
         SELECT count(*) FROM new_statuses
       ) AS value

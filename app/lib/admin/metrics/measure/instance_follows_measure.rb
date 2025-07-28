@@ -38,7 +38,7 @@ class Admin::Metrics::Measure::InstanceFollowsMeasure < Admin::Metrics::Measure:
           SELECT follows.id
           FROM follows
           INNER JOIN accounts ON follows.target_account_id = accounts.id
-          WHERE date_trunc('day', follows.created_at)::date = axis.period
+          WHERE #{matching_day(Follow, :created_at)}
             AND #{account_domain_sql(params[:include_subdomains])}
         )
         SELECT count(*) FROM new_follows

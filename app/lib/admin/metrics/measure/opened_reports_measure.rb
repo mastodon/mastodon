@@ -27,7 +27,7 @@ class Admin::Metrics::Measure::OpenedReportsMeasure < Admin::Metrics::Measure::B
         WITH new_reports AS (
           SELECT reports.id
           FROM reports
-          WHERE date_trunc('day', reports.created_at)::date = axis.period
+          WHERE #{matching_day(Report, :created_at)}
         )
         SELECT count(*) FROM new_reports
       ) AS value

@@ -27,7 +27,7 @@ class Admin::Metrics::Measure::NewUsersMeasure < Admin::Metrics::Measure::BaseMe
         WITH new_users AS (
           SELECT users.id
           FROM users
-          WHERE date_trunc('day', users.created_at)::date = axis.period
+          WHERE #{matching_day(User, :created_at)}
         )
         SELECT count(*) FROM new_users
       ) AS value
