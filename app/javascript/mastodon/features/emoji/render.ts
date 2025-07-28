@@ -1,6 +1,7 @@
 import type { Locale } from 'emojibase';
 
 import { autoPlayGif } from '@/mastodon/initial_state';
+import { createCache } from '@/mastodon/utils/cache';
 import { assetHost } from '@/mastodon/utils/config';
 import * as perf from '@/mastodon/utils/performance';
 
@@ -45,15 +46,15 @@ export async function emojifyElement<Element extends HTMLElement>(
   appState: EmojiAppState,
   extraEmojis: ExtraCustomEmojiMap = {},
 ): Promise<Element> {
-  const key = cacheKey(element, { appState, extraEmojis });
-  const cached = checkCache(key);
+  const cacheKey = [element, appState, extraEmojis] as const;
+  const cached = getCached(cacheKey);
   if (cached) {
     return cached as Element;
   } else if (cached === null) {
     return element;
   }
   if (!stringHasAnyEmoji(element.innerHTML)) {
-    updateCache(key);
+    updateCache(cacheKey, null);
     return element;
   }
   perf.start('emojifyElement()');
@@ -93,41 +94,16 @@ export async function emojifyElement<Element extends HTMLElement>(
     }
   }
   perf.stop('emojifyElement()');
-  updateCache(key, element);
+  updateCache(cacheKey, element);
   return element;
 }
 
 // Private functions
 
-const emojiCache = new Map<string, HTMLElement | null>();
-const keySet = new Set<string>();
-const MAX_CACHE_SIZE = 100;
-
-function cacheKey(text: string | HTMLElement, extra: Record<string, unknown>) {
-  if (text instanceof HTMLElement) {
-    text = text.innerHTML;
-  }
-  return `${text}~${JSON.stringify(extra)}`;
-}
-
-function checkCache(key: string) {
-  const result = emojiCache.get(key);
-  return result;
-}
-
-function updateCache(key: string, rendered: HTMLElement | null = null) {
-  emojiCache.set(key, rendered);
-  // If the key is already in the set, move it to the front.
-  if (keySet.has(key)) {
-    keySet.delete(key);
-  }
-  keySet.add(key);
-  const lastKey = keySet.values().toArray().at(-1);
-  if (keySet.size > MAX_CACHE_SIZE && lastKey) {
-    keySet.delete(lastKey);
-    emojiCache.delete(lastKey);
-  }
-}
+const { set: updateCache, get: getCached } = createCache<
+  HTMLElement | null,
+  readonly [HTMLElement, EmojiAppState, ExtraCustomEmojiMap]
+>();
 
 type EmojifiedTextArray = (string | HTMLImageElement)[];
 
