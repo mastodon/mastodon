@@ -1,6 +1,9 @@
+import type { List as ImmutableList } from 'immutable';
+
 import type { FlatCompactEmoji, Locale } from 'emojibase';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
+import type { CustomEmoji } from '@/mastodon/models/custom_emoji';
 
 import type {
   EMOJI_MODE_NATIVE,
@@ -56,6 +59,9 @@ export type EmojiLoadedState = EmojiStateUnicode | EmojiStateCustom;
 
 export type EmojiStateMap = Map<string, EmojiState>;
 
+export type CustomEmojiMapArg =
+  | ExtraCustomEmojiMap
+  | ImmutableList<CustomEmoji>;
 export type ExtraCustomEmojiMap = Record<string, ApiCustomEmojiJSON>;
 
 export interface TwemojiBorderInfo {
