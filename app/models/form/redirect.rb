@@ -40,7 +40,7 @@ class Form::Redirect
     if target_account.nil?
       errors.add(:acct, I18n.t('migrations.errors.not_found'))
     else
-      errors.add(:acct, I18n.t('migrations.errors.already_moved')) if account.moved_to_account_id.present? && account.moved_to_account_id == target_account.id
+      errors.add(:acct, I18n.t('migrations.errors.already_moved')) if account.moved? && account.moved_to_account_id == target_account.id
       errors.add(:acct, I18n.t('migrations.errors.move_to_self')) if account.id == target_account.id
     end
   end

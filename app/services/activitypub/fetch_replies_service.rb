@@ -17,7 +17,12 @@ class ActivityPub::FetchRepliesService < BaseService
 
     batch = WorkerBatch.new
     batch.connect(async_refresh_key) if async_refresh_key.present?
-    batch.add_jobs(FetchReplyWorker.push_bulk(@items) { |reply_uri| [reply_uri, { 'request_id' => request_id, 'batch_id' => batch.id }] })
+    batch.finish! if @items.empty?
+    batch.within do
+      FetchReplyWorker.push_bulk(@items) do |reply_uri|
+        [reply_uri, { 'request_id' => request_id, 'batch_id' => batch.id }]
+      end
+    end
 
     [@items, n_pages]
   end
