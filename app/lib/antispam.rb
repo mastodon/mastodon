@@ -33,9 +33,10 @@ class Antispam
   end
 
   def local_preflight_check!(status)
-    return unless spammy_texts.any? { |spammy_text| status.text.include?(spammy_text) }
+    all_time_ban = all_time_spammy_texts.any? { |spammy_text| status.text.include?(spammy_text) }
+    return unless all_time_ban || spammy_texts.any? { |spammy_text| status.text.include?(spammy_text) }
     return unless suspicious_reply_or_mention?(status)
-    return unless status.account.created_at >= ACCOUNT_AGE_EXEMPTION.ago
+    return unless all_time_ban || status.account.created_at >= ACCOUNT_AGE_EXEMPTION.ago
 
     report_if_needed!(status.account)
 
@@ -46,6 +47,10 @@ class Antispam
 
   def spammy_texts
     redis.smembers('antispam:spammy_texts')
+  end
+
+  def all_time_spammy_texts
+    redis.smembers('antispam:all_time_spammy_texts')
   end
 
   def suspicious_reply_or_mention?(status)
