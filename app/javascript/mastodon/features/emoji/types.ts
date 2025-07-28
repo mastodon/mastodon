@@ -49,7 +49,7 @@ export interface EmojiStateUnicode {
 }
 export interface EmojiStateCustom {
   type: typeof EMOJI_TYPE_CUSTOM;
-  data: CustomEmojiData;
+  data: CustomEmojiRenderFields;
 }
 export type EmojiState =
   | EmojiStateMissing
@@ -62,7 +62,11 @@ export type EmojiStateMap = Map<string, EmojiState>;
 export type CustomEmojiMapArg =
   | ExtraCustomEmojiMap
   | ImmutableList<CustomEmoji>;
-export type ExtraCustomEmojiMap = Record<string, ApiCustomEmojiJSON>;
+export type CustomEmojiRenderFields = Pick<
+  CustomEmojiData,
+  'shortcode' | 'static_url' | 'url'
+>;
+export type ExtraCustomEmojiMap = Record<string, CustomEmojiRenderFields>;
 
 export interface TwemojiBorderInfo {
   hexCode: string;

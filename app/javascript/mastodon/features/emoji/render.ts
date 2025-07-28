@@ -1,7 +1,7 @@
 import type { Locale } from 'emojibase';
 
 import { autoPlayGif } from '@/mastodon/initial_state';
-import { createCache } from '@/mastodon/utils/cache';
+import { createLimitedCache } from '@/mastodon/utils/cache';
 import { assetHost } from '@/mastodon/utils/config';
 import * as perf from '@/mastodon/utils/performance';
 
@@ -46,11 +46,12 @@ export async function emojifyElement<Element extends HTMLElement>(
   appState: EmojiAppState,
   extraEmojis: ExtraCustomEmojiMap = {},
 ): Promise<Element> {
-  const cacheKey = [element, appState, extraEmojis] as const;
+  const cacheKey: CacheKey = [element, appState, extraEmojis];
   const cached = getCached(cacheKey);
-  if (cached) {
-    return cached as Element;
-  } else if (cached === null) {
+  if (cached !== undefined) {
+    if (cached !== null) {
+      element.innerHTML = cached;
+    }
     return element;
   }
   if (!stringHasAnyEmoji(element.innerHTML)) {
@@ -73,7 +74,7 @@ export async function emojifyElement<Element extends HTMLElement>(
       current.textContent &&
       (current instanceof Text || !current.hasChildNodes())
     ) {
-      const renderedContent = await emojifyText(
+      const renderedContent = await textToElementArray(
         current.textContent,
         appState,
         extraEmojis,
@@ -82,7 +83,7 @@ export async function emojifyElement<Element extends HTMLElement>(
         if (!(current instanceof Text)) {
           current.textContent = null; // Clear the text content if it's not a Text node.
         }
-        current.replaceWith(renderedToHTMLFragment(renderedContent));
+        current.replaceWith(renderedToHTML(renderedContent));
       }
       continue;
     }
@@ -93,21 +94,50 @@ export async function emojifyElement<Element extends HTMLElement>(
       }
     }
   }
+  updateCache(cacheKey, element.innerHTML);
   perf.stop('emojifyElement()');
-  updateCache(cacheKey, element);
   return element;
+}
+
+export async function emojifyText(
+  text: string,
+  appState: EmojiAppState,
+  extraEmojis: ExtraCustomEmojiMap = {},
+): Promise<string | null> {
+  const cacheKey: CacheKey = [text, appState, extraEmojis];
+  const cached = getCached(cacheKey);
+  if (cached !== undefined) {
+    return cached ?? text;
+  }
+  if (!stringHasAnyEmoji(text)) {
+    updateCache(cacheKey, null);
+    return text;
+  }
+  const eleArray = await textToElementArray(text, appState, extraEmojis);
+  if (!eleArray) {
+    updateCache(cacheKey, null);
+    return text;
+  }
+  const rendered = renderedToHTML(eleArray, document.createElement('div'));
+  updateCache(cacheKey, rendered.innerHTML);
+  return rendered.innerHTML;
 }
 
 // Private functions
 
-const { set: updateCache, get: getCached } = createCache<
-  HTMLElement | null,
-  readonly [HTMLElement, EmojiAppState, ExtraCustomEmojiMap]
+type CacheKey = readonly [
+  HTMLElement | string,
+  EmojiAppState,
+  ExtraCustomEmojiMap,
+];
+const { set: updateCache, get: getCached } = createLimitedCache<
+  string | null,
+  CacheKey
 >();
 
 type EmojifiedTextArray = (string | HTMLImageElement)[];
 
-async function emojifyText(
+async function textToElementArray(
   text: string,
   appState: EmojiAppState,
   extraEmojis: ExtraCustomEmojiMap = {},
@@ -339,8 +369,16 @@ function stateToImage(state: EmojiLoadedState, appState: EmojiAppState) {
   return image;
 }
 
-function renderedToHTMLFragment(renderedArray: (string | HTMLImageElement)[]) {
-  const fragment = document.createDocumentFragment();
+function renderedToHTML(renderedArray: EmojifiedTextArray): DocumentFragment;
+function renderedToHTML<ParentType extends ParentNode>(
+  renderedArray: EmojifiedTextArray,
+  parent: ParentType,
+): ParentType;
+function renderedToHTML(
+  renderedArray: EmojifiedTextArray,
+  parent: ParentNode | null = null,
+) {
+  const fragment = parent ?? document.createDocumentFragment();
   for (const fragmentItem of renderedArray) {
     if (typeof fragmentItem === 'string') {
       fragment.appendChild(document.createTextNode(fragmentItem));

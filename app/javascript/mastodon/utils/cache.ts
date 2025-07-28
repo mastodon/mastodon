@@ -5,7 +5,7 @@ interface CacheReturn<CacheKey, CacheValue> {
   set: (key: CacheKey, value: CacheValue) => void;
 }
 
-export function createCache<CacheValue, CacheKey = string>(
+export function createLimitedCache<CacheValue, CacheKey = string>(
   maxSize = 100,
 ): CacheReturn<CacheKey, CacheValue> {
   const cacheMap = new Map<CacheKey, CacheValue>();

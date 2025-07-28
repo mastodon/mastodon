@@ -1,8 +1,8 @@
-import { createCache } from '../cache';
+import { createLimitedCache } from '../cache';
 
 describe('createCache', () => {
   it('returns expected methods', () => {
-    const actual = createCache();
+    const actual = createLimitedCache();
     expect(actual).toBeTypeOf('object');
     expect(actual).toHaveProperty('get');
     expect(actual).toHaveProperty('has');
@@ -11,27 +11,27 @@ describe('createCache', () => {
   });
 
   it('caches values provided to it', () => {
-    const cache = createCache();
+    const cache = createLimitedCache();
     cache.set('test', 'result');
     expect(cache.get('test')).toBe('result');
   });
 
   it('has returns expected values', () => {
-    const cache = createCache();
+    const cache = createLimitedCache();
     cache.set('test', 'result');
     expect(cache.has('test')).toBeTruthy();
     expect(cache.has('not found')).toBeFalsy();
   });
 
   it('updates a value if keys are the same', () => {
-    const cache = createCache();
+    const cache = createLimitedCache();
     cache.set('test1', 1);
     cache.set('test1', 2);
     expect(cache.get('test1')).toBe(2);
   });
 
   it('delete removes an item', () => {
-    const cache = createCache();
+    const cache = createLimitedCache();
     cache.set('test', 'result');
     expect(cache.has('test')).toBeTruthy();
     cache.delete('test');
@@ -40,7 +40,7 @@ describe('createCache', () => {
   });
 
   it('removes oldest item cached if it exceeds a set size', () => {
-    const cache = createCache(1);
+    const cache = createLimitedCache(1);
     cache.set('test1', 1);
     cache.set('test2', 2);
     expect(cache.get('test1')).toBeUndefined();
@@ -48,7 +48,7 @@ describe('createCache', () => {
   });
 
   it('retrieving a value bumps up last access', () => {
-    const cache = createCache(2);
+    const cache = createLimitedCache(2);
     cache.set('test1', 1);
     cache.set('test2', 2);
     expect(cache.get('test1')).toBe(1);
