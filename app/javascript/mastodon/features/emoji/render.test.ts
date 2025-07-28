@@ -3,7 +3,16 @@ import {
   EMOJI_MODE_NATIVE_WITH_FLAGS,
   EMOJI_MODE_TWEMOJI,
 } from './constants';
-import { emojifyElement, emojifyText, tokenizeText } from './render';
+import {
+  searchCustomEmojisByShortcodes,
+  searchEmojisByHexcodes,
+} from './database';
+import {
+  emojifyElement,
+  emojifyText,
+  testCacheClear,
+  tokenizeText,
+} from './render';
 import type {
   CustomEmojiData,
   EmojiAppState,
@@ -82,6 +91,25 @@ describe('emojifyElement', () => {
     return testElement;
   }
 
+  beforeEach(() => {
+    testCacheClear();
+    vitest.mocked(searchEmojisByHexcodes).mockClear();
+    vitest.mocked(searchCustomEmojisByShortcodes).mockClear();
+  });
+
+  test('caches element rendering results', async () => {
+    await emojifyElement(testElement(), testAppState());
+    await emojifyElement(testElement(), testAppState());
+    await emojifyElement(testElement(), testAppState());
+    expect(searchEmojisByHexcodes).toHaveBeenCalledExactlyOnceWith(
+      ['1F1EA-1F1FA', '1F60A'],
+      'en',
+    );
+    expect(searchCustomEmojisByShortcodes).toHaveBeenCalledExactlyOnceWith([
+      'custom',
+    ]);
+  });
+
   test('emojifies custom emoji in native mode', async () => {
     const emojifiedElement = await emojifyElement(
       testElement(),
@@ -90,6 +118,7 @@ describe('emojifyElement', () => {
     expect(emojifiedElement.innerHTML).toBe(
       `<p>Hello 😊🇪🇺!</p><p>${expectedCustomEmojiImage}</p>`,
     );
+    expect(searchEmojisByHexcodes).not.toHaveBeenCalled();
   });
 
   test('emojifies flag emoji in native-with-flags mode', async () => {
@@ -100,6 +129,7 @@ describe('emojifyElement', () => {
     expect(emojifiedElement.innerHTML).toBe(
       `<p>Hello 😊${expectedFlagImage}!</p><p>${expectedCustomEmojiImage}</p>`,
     );
+    expect(searchEmojisByHexcodes).toHaveBeenCalledOnce();
   });
 
   test('emojifies everything in twemoji mode', async () => {
@@ -110,6 +140,8 @@ describe('emojifyElement', () => {
     expect(emojifiedElement.innerHTML).toBe(
       `<p>Hello ${expectedSmileImage}${expectedFlagImage}!</p><p>${expectedCustomEmojiImage}</p>`,
     );
+    expect(searchEmojisByHexcodes).toHaveBeenCalledOnce();
+    expect(searchCustomEmojisByShortcodes).toHaveBeenCalledOnce();
   });
 
   test('emojifies with provided custom emoji', async () => {
@@ -121,6 +153,8 @@ describe('emojifyElement', () => {
     expect(actual.innerHTML).toBe(
       `<p>hi ${expectedRemoteCustomEmojiImage}</p>`,
     );
+    expect(searchEmojisByHexcodes).not.toHaveBeenCalled();
+    expect(searchCustomEmojisByShortcodes).not.toHaveBeenCalled();
   });
 });
 

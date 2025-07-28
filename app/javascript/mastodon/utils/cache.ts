@@ -3,6 +3,7 @@ export interface LimitedCache<CacheKey, CacheValue> {
   get: (key: CacheKey) => CacheValue | undefined;
   delete: (key: CacheKey) => void;
   set: (key: CacheKey, value: CacheValue) => void;
+  clear: () => void;
 }
 
 export function createLimitedCache<CacheValue, CacheKey = string>(
@@ -36,6 +37,10 @@ export function createLimitedCache<CacheValue, CacheKey = string>(
         cacheMap.delete(lastKey);
         cacheKeys.delete(lastKey);
       }
+    },
+    clear: () => {
+      cacheMap.clear();
+      cacheKeys.clear();
     },
   };
 }

@@ -46,7 +46,7 @@ export async function emojifyElement<Element extends HTMLElement>(
   appState: EmojiAppState,
   extraEmojis: ExtraCustomEmojiMap = {},
 ): Promise<Element> {
-  const cacheKey: CacheKey = [element, appState, extraEmojis];
+  const cacheKey = createCacheKey(element, appState, extraEmojis);
   const cached = getCached(cacheKey);
   if (cached !== undefined) {
     if (cached !== null) {
@@ -104,7 +104,7 @@ export async function emojifyText(
   appState: EmojiAppState,
   extraEmojis: ExtraCustomEmojiMap = {},
 ): Promise<string | null> {
-  const cacheKey: CacheKey = [text, appState, extraEmojis];
+  const cacheKey = createCacheKey(text, appState, extraEmojis);
   const cached = getCached(cacheKey);
   if (cached !== undefined) {
     return cached ?? text;
@@ -125,15 +125,23 @@ export async function emojifyText(
 
 // Private functions
 
-type CacheKey = readonly [
-  HTMLElement | string,
-  EmojiAppState,
-  ExtraCustomEmojiMap,
-];
-const { set: updateCache, get: getCached } = createLimitedCache<
-  string | null,
-  CacheKey
->();
+const {
+  set: updateCache,
+  get: getCached,
+  clear: cacheClear,
+} = createLimitedCache<string | null>();
+
+function createCacheKey(
+  input: HTMLElement | string,
+  appState: EmojiAppState,
+  extraEmojis: ExtraCustomEmojiMap,
+) {
+  return JSON.stringify([
+    input instanceof HTMLElement ? input.outerHTML : input,
+    appState,
+    extraEmojis,
+  ]);
+}
 
 type EmojifiedTextArray = (string | HTMLImageElement)[];
 
@@ -156,7 +164,7 @@ async function textToElementArray(
 
   // Get all emoji from the state map, loading any missing ones.
   await ensureLocalesAreLoaded(appState.locales);
-  await loadMissingEmojiIntoCache(tokens, appState.locales);
+  await loadMissingEmojiIntoCache(tokens, appState, extraEmojis);
 
   const renderedFragments: EmojifiedTextArray = [];
   for (const token of tokens) {
@@ -252,7 +260,8 @@ function emojiForLocale(
 
 async function loadMissingEmojiIntoCache(
   tokens: TokenizedText,
-  locales: Locale[],
+  { mode, locales }: EmojiAppState,
+  extraEmojis: ExtraCustomEmojiMap,
 ) {
   const missingUnicodeEmoji = new Set<string>();
   const missingCustomEmoji = new Set<string>();
@@ -266,12 +275,15 @@ async function loadMissingEmojiIntoCache(
     // If this is a custom emoji, check it separately.
     if (token.type === EMOJI_TYPE_CUSTOM) {
       const code = token.code;
+      if (code in extraEmojis) {
+        continue; // We don't care about extra emoji.
+      }
       const emojiState = emojiForLocale(code, EMOJI_TYPE_CUSTOM);
       if (!emojiState) {
         missingCustomEmoji.add(code);
       }
       // Otherwise this is a unicode emoji, so check it against all locales.
-    } else {
+    } else if (shouldRenderImage(token, mode)) {
       const code = emojiToUnicodeHex(token.code);
       if (missingUnicodeEmoji.has(code)) {
         continue; // Already marked as missing.
@@ -388,3 +400,9 @@ function renderedToHTML(
   }
   return fragment;
 }
+
+// Testing helpers
+export const testCacheClear = () => {
+  cacheClear();
+  localeCacheMap.clear();
+};
