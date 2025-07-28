@@ -37,7 +37,7 @@ class Admin::Metrics::Measure::InstanceAccountsMeasure < Admin::Metrics::Measure
         WITH new_accounts AS (
           SELECT accounts.id
           FROM accounts
-          WHERE date_trunc('day', accounts.created_at)::date = axis.period
+          WHERE #{matching_day(Account, :created_at)}
             AND #{account_domain_sql(params[:include_subdomains])}
         )
         SELECT count(*) FROM new_accounts
