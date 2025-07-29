@@ -163,12 +163,13 @@ RSpec.describe User do
 
   describe '#update_sign_in!' do
     context 'with an existing user' do
-      let!(:user) { Fabricate :user, last_sign_in_at: 10.days.ago, current_sign_in_at: 1.hour.ago, sign_in_count: 123 }
+      let!(:user) { Fabricate :user, last_sign_in_at: 10.days.ago, current_sign_in_at:, sign_in_count: 123 }
+      let(:current_sign_in_at) { 1.hour.ago }
 
       context 'with new sign in false' do
         it 'updates timestamps but not counts' do
           expect { user.update_sign_in!(new_sign_in: false) }
-            .to change(user, :last_sign_in_at)
+            .to change(user, :last_sign_in_at).to(current_sign_in_at)
             .and change(user, :current_sign_in_at)
             .and not_change(user, :sign_in_count)
         end
@@ -177,9 +178,20 @@ RSpec.describe User do
       context 'with new sign in true' do
         it 'updates timestamps and counts' do
           expect { user.update_sign_in!(new_sign_in: true) }
-            .to change(user, :last_sign_in_at)
+            .to change(user, :last_sign_in_at).to(current_sign_in_at)
             .and change(user, :current_sign_in_at)
             .and change(user, :sign_in_count).by(1)
+        end
+      end
+
+      context 'when the user does not have a current_sign_in_at value' do
+        let(:current_sign_in_at) { nil }
+
+        before { travel_to(1.minute.ago) }
+
+        it 'updates last sign in to now' do
+          expect { user.update_sign_in! }
+            .to change(user, :last_sign_in_at).to(Time.now.utc)
         end
       end
     end
