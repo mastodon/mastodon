@@ -4,13 +4,14 @@ require 'rails_helper'
 
 RSpec.describe 'API V1 Statuses Quotes' do
   let(:user) { Fabricate(:user) }
-  let(:scopes)  { 'read:statuses' }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
 
   describe 'GET /api/v1/statuses/:status_id/quotes' do
     subject do
       get "/api/v1/statuses/#{status.id}/quotes", headers: headers, params: { limit: 2 }
     end
+
+    let(:scopes) { 'read:statuses' }
 
     let(:status) { Fabricate(:status, account: user.account) }
     let!(:accepted_quote) { Fabricate(:quote, quoted_status: status, state: :accepted) }
@@ -20,6 +21,8 @@ RSpec.describe 'API V1 Statuses Quotes' do
 
     context 'with an OAuth token' do
       let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+
+      it_behaves_like 'forbidden for wrong scope', 'write write:statuses'
 
       it 'returns http success and statuses quoting this post' do
         subject
@@ -56,6 +59,55 @@ RSpec.describe 'API V1 Statuses Quotes' do
           expect(response.content_type)
             .to start_with('application/json')
         end
+      end
+    end
+
+    context 'without an OAuth token' do
+      let(:headers) { {} }
+
+      it 'returns http unauthorized' do
+        subject
+
+        expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
+      end
+    end
+  end
+
+  describe 'POST /api/v1/statuses/:status_id/quotes/:id/revoke' do
+    subject do
+      post "/api/v1/statuses/#{status.id}/quotes/#{quote.status.id}/revoke", headers: headers
+    end
+
+    let(:scopes) { 'write:statuses' }
+
+    let(:status) { Fabricate(:status, account: user.account) }
+    let!(:quote) { Fabricate(:quote, quoted_status: status, state: :accepted) }
+
+    context 'with an OAuth token' do
+      let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+
+      it_behaves_like 'forbidden for wrong scope', 'read read:statuses'
+
+      context 'with a different user than the post owner' do
+        let(:status) { Fabricate(:status) }
+
+        it 'returns http forbidden' do
+          subject
+
+          expect(response).to have_http_status(403)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
+      end
+
+      it 'revokes the quote and returns HTTP success' do
+        expect { subject }
+          .to change { quote.reload.state }.from('accepted').to('revoked')
+
+        expect(response)
+          .to have_http_status(200)
       end
     end
 

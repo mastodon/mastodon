@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 class Api::V1::Statuses::QuotesController < Api::V1::Statuses::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }
+  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: :index
+  before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only: :revoke
+
   before_action :check_owner!
-  after_action :insert_pagination_headers
+  before_action :set_quote, only: :revoke
+  after_action :insert_pagination_headers, only: :index
 
   def index
     cache_if_unauthenticated!
@@ -11,10 +14,22 @@ class Api::V1::Statuses::QuotesController < Api::V1::Statuses::BaseController
     render json: @statuses, each_serializer: REST::StatusSerializer
   end
 
+  def revoke
+    authorize @quote, :revoke?
+
+    RevokeQuoteService.new.call(@quote)
+
+    render_empty # TODO: do we want to return something? an updated status?
+  end
+
   private
 
   def check_owner!
     authorize @status, :list_quotes?
+  end
+
+  def set_quote
+    @quote = @status.quotes.find_by!(status_id: params[:id])
   end
 
   def load_statuses
