@@ -10,6 +10,7 @@ RSpec.describe User do
   let(:account) { Fabricate(:account, username: 'alice') }
 
   it_behaves_like 'two_factor_backupable'
+  it_behaves_like 'User::Activity'
   it_behaves_like 'User::Confirmation'
 
   describe 'otp_secret' do
@@ -66,26 +67,6 @@ RSpec.describe User do
       end
     end
 
-    describe 'signed_in_recently' do
-      it 'returns a relation of users who have signed in during the recent period' do
-        recent_sign_in_user = Fabricate(:user, current_sign_in_at: within_duration_window_days.ago)
-        Fabricate(:user, current_sign_in_at: exceed_duration_window_days.ago)
-
-        expect(described_class.signed_in_recently)
-          .to contain_exactly(recent_sign_in_user)
-      end
-    end
-
-    describe 'not_signed_in_recently' do
-      it 'returns a relation of users who have not signed in during the recent period' do
-        no_recent_sign_in_user = Fabricate(:user, current_sign_in_at: exceed_duration_window_days.ago)
-        Fabricate(:user, current_sign_in_at: within_duration_window_days.ago)
-
-        expect(described_class.not_signed_in_recently)
-          .to contain_exactly(no_recent_sign_in_user)
-      end
-    end
-
     describe 'account_not_suspended' do
       it 'returns with linked accounts that are not suspended' do
         suspended_account = Fabricate(:account, suspended_at: 10.days.ago)
@@ -119,14 +100,6 @@ RSpec.describe User do
 
         expect(described_class.matches_ip('2160:2160::/32')).to contain_exactly(user1)
       end
-    end
-
-    def exceed_duration_window_days
-      described_class::ACTIVE_DURATION + 2.days
-    end
-
-    def within_duration_window_days
-      described_class::ACTIVE_DURATION - 2.days
     end
   end
 
