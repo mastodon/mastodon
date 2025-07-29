@@ -2,8 +2,6 @@ import { useEffect, useState, useCallback } from 'react';
 
 import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
-
 import {
   fetchContext,
   completeContextRefresh,
@@ -22,8 +20,7 @@ const messages = defineMessages({
 
 export const RefreshController: React.FC<{
   statusId: string;
-  withBorder?: boolean;
-}> = ({ statusId, withBorder }) => {
+}> = ({ statusId }) => {
   const refresh = useAppSelector(
     (state) => state.contexts.refreshing[statusId],
   );
@@ -78,12 +75,7 @@ export const RefreshController: React.FC<{
 
   if (ready && !loading) {
     return (
-      <button
-        className={classNames('load-more load-gap', {
-          'timeline-hint--with-descendants': withBorder,
-        })}
-        onClick={handleClick}
-      >
+      <button className='load-more load-gap' onClick={handleClick}>
         <FormattedMessage
           id='status.context.load_new_replies'
           defaultMessage='New replies available'
@@ -98,9 +90,7 @@ export const RefreshController: React.FC<{
 
   return (
     <div
-      className={classNames('load-more load-gap', {
-        'timeline-hint--with-descendants': withBorder,
-      })}
+      className='load-more load-gap'
       aria-busy
       aria-live='polite'
       aria-label={intl.formatMessage(messages.loading)}

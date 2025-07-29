@@ -66,7 +66,11 @@ class Api::V1::StatusesController < Api::BaseController
       add_async_refresh_header(async_refresh)
     elsif !current_account.nil? && @status.should_fetch_replies?
       add_async_refresh_header(AsyncRefresh.create(refresh_key))
-      ActivityPub::FetchAllRepliesWorker.perform_async(@status.id)
+
+      WorkerBatch.new.within do |batch|
+        batch.connect(refresh_key, threshold: 1.0)
+        ActivityPub::FetchAllRepliesWorker.perform_async(@status.id, { 'batch_id' => batch.id })
+      end
     end
 
     render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)

@@ -160,6 +160,10 @@ en:
         name: Public name of the role, if role is set to be displayed as a badge
         permissions_as_keys: Users with this role will have access to...
         position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
+      username_block:
+        allow_with_approval: Instead of preventing sign-up outright, matching sign-ups will require your approval
+        comparison: Please be mindful of the Scunthorpe Problem when blocking partial matches
+        username: Will be matched regardless of casing and common homoglyphs like "4" for "a" or "3" for "e"
       webhook:
         events: Select events to send
         template: Compose your own JSON payload using variable interpolation. Leave blank for default JSON.
@@ -371,6 +375,10 @@ en:
         name: Name
         permissions_as_keys: Permissions
         position: Priority
+      username_block:
+        allow_with_approval: Allow registrations with approval
+        comparison: Method of comparison
+        username: Word to match
       webhook:
         events: Enabled events
         template: Payload template
