@@ -142,9 +142,10 @@ class User < ApplicationRecord
   delegate :can?, to: :role
 
   attr_reader :invite_code, :date_of_birth
-  attr_writer :bypass_registration_checks, :current_account
+  attr_writer :current_account
 
   attribute :external, :boolean, default: false
+  attribute :bypass_registration_checks, :boolean, default: false
 
   def self.those_who_can(*any_of_privileges)
     matching_role_ids = UserRole.that_can(*any_of_privileges).map(&:id)
@@ -489,10 +490,6 @@ class User < ApplicationRecord
 
   def open_registrations?
     Setting.registrations_mode == 'open'
-  end
-
-  def bypass_registration_checks?
-    @bypass_registration_checks
   end
 
   def sanitize_role
