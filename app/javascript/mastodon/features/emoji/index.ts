@@ -2,10 +2,13 @@ import initialState from '@/mastodon/initial_state';
 import { loadWorker } from '@/mastodon/utils/workers';
 
 import { toSupportedLocale } from './locale';
+import { emojiLogger } from './utils';
 
 const userLocale = toSupportedLocale(initialState?.meta.locale ?? 'en');
 
 let worker: Worker | null = null;
+
+const log = emojiLogger('index');
 
 export async function initializeEmoji() {
   if (!worker && 'Worker' in window) {
@@ -24,6 +27,7 @@ export async function initializeEmoji() {
     thisWorker.addEventListener('message', (event: MessageEvent<string>) => {
       const { data: message } = event;
       if (message === 'ready') {
+        log('worker is ready');
         thisWorker.postMessage('custom');
         void loadEmojiLocale(userLocale);
         // Load English locale as well, because people are still used to
@@ -34,6 +38,7 @@ export async function initializeEmoji() {
       }
     });
   } else {
+    log('falling back to main thread');
     const { importCustomEmojiData } = await import('./loader');
     await importCustomEmojiData();
     await loadEmojiLocale(userLocale);

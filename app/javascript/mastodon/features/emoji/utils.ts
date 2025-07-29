@@ -1,8 +1,14 @@
+import debug from 'debug';
+
 import {
   CUSTOM_EMOJI_REGEX,
   UNICODE_EMOJI_REGEX,
   UNICODE_FLAG_EMOJI_REGEX,
 } from './constants';
+
+export function emojiLogger(segment: string) {
+  return debug(`emojis:${segment}`);
+}
 
 export function stringHasUnicodeEmoji(input: string): boolean {
   return UNICODE_EMOJI_REGEX.test(input);

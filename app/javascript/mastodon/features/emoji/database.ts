@@ -1,4 +1,3 @@
-import debug from 'debug';
 import { SUPPORTED_LOCALES } from 'emojibase';
 import type { Locale } from 'emojibase';
 import type { DBSchema, IDBPDatabase } from 'idb';
@@ -10,6 +9,7 @@ import type {
   UnicodeEmojiData,
   LocaleOrCustom,
 } from './types';
+import { emojiLogger } from './utils';
 
 interface EmojiDB extends LocaleTables, DBSchema {
   custom: {
@@ -43,7 +43,7 @@ const SCHEMA_VERSION = 1;
 
 const loadedLocales = new Set<Locale>();
 
-const log = debug('emojis:database');
+const log = emojiLogger('database');
 
 // Loads the database in a way that ensures it's only loaded once.
 const loadDB = (() => {

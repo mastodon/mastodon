@@ -1,5 +1,3 @@
-import debug from 'debug';
-
 import { autoPlayGif } from '@/mastodon/initial_state';
 import { createLimitedCache } from '@/mastodon/utils/cache';
 import { assetHost } from '@/mastodon/utils/config';
@@ -34,9 +32,9 @@ import type {
   LocaleOrCustom,
   UnicodeEmojiToken,
 } from './types';
-import { stringHasAnyEmoji, stringHasUnicodeFlags } from './utils';
+import { emojiLogger, stringHasAnyEmoji, stringHasUnicodeFlags } from './utils';
 
-const log = debug('emojis:render');
+const log = emojiLogger('render');
 
 /**
  * Emojifies an element. This modifies the element in place, replacing text nodes with emojified versions.

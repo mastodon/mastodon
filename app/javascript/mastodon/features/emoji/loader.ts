@@ -1,4 +1,3 @@
-import debug from 'debug';
 import { flattenEmojiData } from 'emojibase';
 import type { CompactEmoji, FlatCompactEmoji } from 'emojibase';
 
@@ -13,8 +12,9 @@ import {
 } from './database';
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
 import type { LocaleOrCustom } from './types';
+import { emojiLogger } from './utils';
 
-const log = debug('emojis:loader');
+const log = emojiLogger('loader');
 
 export async function importEmojiData(localeString: string) {
   const locale = toSupportedLocale(localeString);
