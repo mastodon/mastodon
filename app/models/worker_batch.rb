@@ -24,7 +24,7 @@ class WorkerBatch
 
     begin
       Thread.current[:batch] = self
-      yield
+      yield(self)
     ensure
       Thread.current[:batch] = nil
     end
@@ -33,10 +33,7 @@ class WorkerBatch
   # Add jobs to the batch. Usually when the batch is created.
   # @param [Array<String>] jids
   def add_jobs(jids)
-    if jids.blank?
-      finish!
-      return
-    end
+    return if jids.empty?
 
     redis.multi do |pipeline|
       pipeline.sadd(key('jobs'), jids)
@@ -48,7 +45,7 @@ class WorkerBatch
 
   # Remove a job from the batch, such as when it's been processed or it has failed.
   # @param [String] jid
-  def remove_job(jid)
+  def remove_job(jid, increment: false)
     _, pending, processed, async_refresh_key, threshold = redis.multi do |pipeline|
       pipeline.srem(key('jobs'), jid)
       pipeline.hincrby(key, 'pending', -1)
@@ -57,10 +54,8 @@ class WorkerBatch
       pipeline.hget(key, 'threshold')
     end
 
-    if async_refresh_key.present?
-      async_refresh = AsyncRefresh.new(async_refresh_key)
-      async_refresh.increment_result_count(by: 1)
-    end
+    async_refresh = AsyncRefresh.new(async_refresh_key) if async_refresh_key.present?
+    async_refresh&.increment_result_count(by: 1) if increment
 
     if pending.zero? || processed >= (threshold || 1.0).to_f * (processed + pending)
       async_refresh&.finish!

@@ -42,14 +42,6 @@ RSpec.describe WorkerBatch do
       it 'does not persist the job IDs' do
         expect(subject.jobs).to eq []
       end
-
-      context 'when async refresh is connected' do
-        let(:async_refresh) { AsyncRefresh.new(async_refresh_key) }
-
-        it 'immediately marks the async refresh as finished' do
-          expect(async_refresh.reload.finished?).to be true
-        end
-      end
     end
 
     context 'when called with an array of job IDs' do
@@ -71,7 +63,7 @@ RSpec.describe WorkerBatch do
     before do
       subject.connect(async_refresh_key, threshold: 0.5) if async_refresh.present?
       subject.add_jobs(%w(foo bar baz))
-      subject.remove_job('foo')
+      subject.remove_job('foo', increment: true)
     end
 
     it 'removes the job from pending jobs' do
