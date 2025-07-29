@@ -5,10 +5,7 @@ import {
   EMOJI_MODE_NATIVE_WITH_FLAGS,
   EMOJI_MODE_TWEMOJI,
 } from './constants';
-import {
-  searchCustomEmojisByShortcodes,
-  searchEmojisByHexcodes,
-} from './database';
+import * as db from './database';
 import {
   emojifyElement,
   emojifyText,
@@ -17,22 +14,27 @@ import {
 } from './render';
 import type { EmojiAppState, ExtraCustomEmojiMap } from './types';
 
-vitest.mock('./database', () => ({
-  searchCustomEmojisByShortcodes: vitest.fn(() => [customEmojiFactory()]),
-  searchEmojisByHexcodes: vitest.fn(() => [
-    unicodeEmojiFactory({
-      hexcode: '1F60A',
-      label: 'smiling face with smiling eyes',
-      unicode: '😊',
-    }),
-    unicodeEmojiFactory({
-      hexcode: '1F1EA-1F1FA',
-      label: 'flag-eu',
-      unicode: '🇪🇺',
-    }),
-  ]),
-  findMissingLocales: vitest.fn(() => []),
-}));
+function mockDatabase() {
+  return {
+    searchCustomEmojisByShortcodes: vi
+      .spyOn(db, 'searchCustomEmojisByShortcodes')
+      .mockResolvedValue([customEmojiFactory()]),
+    searchEmojisByHexcodes: vi
+      .spyOn(db, 'searchEmojisByHexcodes')
+      .mockResolvedValue([
+        unicodeEmojiFactory({
+          hexcode: '1F60A',
+          label: 'smiling face with smiling eyes',
+          unicode: '😊',
+        }),
+        unicodeEmojiFactory({
+          hexcode: '1F1EA-1F1FA',
+          label: 'flag-eu',
+          unicode: '🇪🇺',
+        }),
+      ]),
+  };
+}
 
 const expectedSmileImage =
   '<img draggable="false" class="emojione" alt="😊" title="smiling face with smiling eyes" src="/emoji/1f60a.svg">';
@@ -68,13 +70,14 @@ describe('emojifyElement', () => {
     return testElement;
   }
 
-  beforeEach(() => {
+  afterEach(() => {
     testCacheClear();
-    vitest.mocked(searchEmojisByHexcodes).mockClear();
-    vitest.mocked(searchCustomEmojisByShortcodes).mockClear();
+    vi.restoreAllMocks();
   });
 
   test('caches element rendering results', async () => {
+    const { searchCustomEmojisByShortcodes, searchEmojisByHexcodes } =
+      mockDatabase();
     await emojifyElement(testElement(), testAppState());
     await emojifyElement(testElement(), testAppState());
     await emojifyElement(testElement(), testAppState());
@@ -88,6 +91,7 @@ describe('emojifyElement', () => {
   });
 
   test('emojifies custom emoji in native mode', async () => {
+    const { searchEmojisByHexcodes } = mockDatabase();
     const emojifiedElement = await emojifyElement(
       testElement(),
       testAppState({ mode: EMOJI_MODE_NATIVE }),
@@ -99,6 +103,7 @@ describe('emojifyElement', () => {
   });
 
   test('emojifies flag emoji in native-with-flags mode', async () => {
+    const { searchEmojisByHexcodes } = mockDatabase();
     const emojifiedElement = await emojifyElement(
       testElement(),
       testAppState({ mode: EMOJI_MODE_NATIVE_WITH_FLAGS }),
@@ -110,6 +115,8 @@ describe('emojifyElement', () => {
   });
 
   test('emojifies everything in twemoji mode', async () => {
+    const { searchCustomEmojisByShortcodes, searchEmojisByHexcodes } =
+      mockDatabase();
     const emojifiedElement = await emojifyElement(
       testElement(),
       testAppState(),
@@ -122,6 +129,8 @@ describe('emojifyElement', () => {
   });
 
   test('emojifies with provided custom emoji', async () => {
+    const { searchCustomEmojisByShortcodes, searchEmojisByHexcodes } =
+      mockDatabase();
     const actual = await emojifyElement(
       testElement('<p>hi :remote:</p>'),
       testAppState(),
@@ -142,11 +151,13 @@ describe('emojifyText', () => {
   });
 
   test('renders Unicode emojis to twemojis', async () => {
+    mockDatabase();
     const actual = await emojifyText('Hello 😊🇪🇺!', testAppState());
     expect(actual).toBe(`Hello ${expectedSmileImage}${expectedFlagImage}!`);
   });
 
   test('renders custom emojis', async () => {
+    mockDatabase();
     const actual = await emojifyText('Hello :custom:!', testAppState());
     expect(actual).toBe(`Hello ${expectedCustomEmojiImage}!`);
   });

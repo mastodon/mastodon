@@ -93,7 +93,7 @@ export async function putCustomEmojiData(emojis: CustomEmojiData[]) {
 export async function putLatestEtag(etag: string, localeString: string) {
   const locale = toSupportedLocaleOrCustom(localeString);
   const db = await loadDB();
-  return db.put('etags', etag, locale);
+  await db.put('etags', etag, locale);
 }
 
 export async function loadEmojiByHexcode(
