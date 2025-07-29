@@ -1,3 +1,5 @@
+import debug from 'debug';
+
 import { autoPlayGif } from '@/mastodon/initial_state';
 import { createLimitedCache } from '@/mastodon/utils/cache';
 import { assetHost } from '@/mastodon/utils/config';
@@ -34,6 +36,8 @@ import type {
 } from './types';
 import { stringHasAnyEmoji, stringHasUnicodeFlags } from './utils';
 
+const log = debug('emojis:render');
+
 /**
  * Emojifies an element. This modifies the element in place, replacing text nodes with emojified versions.
  */
@@ -45,6 +49,7 @@ export async function emojifyElement<Element extends HTMLElement>(
   const cacheKey = createCacheKey(element, appState, extraEmojis);
   const cached = getCached(cacheKey);
   if (cached !== undefined) {
+    log('Cache hit on %s', element.outerHTML);
     if (cached !== null) {
       element.innerHTML = cached;
     }
@@ -103,6 +108,7 @@ export async function emojifyText(
   const cacheKey = createCacheKey(text, appState, extraEmojis);
   const cached = getCached(cacheKey);
   if (cached !== undefined) {
+    log('Cache hit on %s', text);
     return cached ?? text;
   }
   if (!stringHasAnyEmoji(text)) {
@@ -125,7 +131,7 @@ const {
   set: updateCache,
   get: getCached,
   clear: cacheClear,
-} = createLimitedCache<string | null>();
+} = createLimitedCache<string | null>({ log });
 
 function createCacheKey(
   input: HTMLElement | string,
@@ -231,11 +237,11 @@ export function tokenizeText(text: string): TokenizedText {
 }
 
 const localeCacheMap = new Map<LocaleOrCustom, EmojiStateMap>([
-  [EMOJI_TYPE_CUSTOM, createLimitedCache<EmojiState>()],
+  [EMOJI_TYPE_CUSTOM, createLimitedCache<EmojiState>({ log })],
 ]);
 
 function cacheForLocale(locale: LocaleOrCustom): EmojiStateMap {
-  return localeCacheMap.get(locale) ?? createLimitedCache<EmojiState>();
+  return localeCacheMap.get(locale) ?? createLimitedCache<EmojiState>({ log });
 }
 
 function emojiForLocale(

@@ -6,9 +6,15 @@ export interface LimitedCache<CacheKey, CacheValue> {
   clear: () => void;
 }
 
-export function createLimitedCache<CacheValue, CacheKey = string>(
+interface LimitedCacheArguments {
+  maxSize?: number;
+  log?: (...args: unknown[]) => void;
+}
+
+export function createLimitedCache<CacheValue, CacheKey = string>({
   maxSize = 100,
-): LimitedCache<CacheKey, CacheValue> {
+  log = () => null,
+}: LimitedCacheArguments = {}): LimitedCache<CacheKey, CacheValue> {
   const cacheMap = new Map<CacheKey, CacheValue>();
   const cacheKeys = new Set<CacheKey>();
 
@@ -36,6 +42,14 @@ export function createLimitedCache<CacheValue, CacheKey = string>(
       if (cacheMap.size > maxSize && lastKey) {
         cacheMap.delete(lastKey);
         cacheKeys.delete(lastKey);
+        log(
+          'Added %s and deleted %s from cache, now size %d',
+          key,
+          lastKey,
+          cacheMap.size,
+        );
+      } else {
+        log('Added %s to cache, now size %d', key, cacheMap.size);
       }
     },
     clear: () => {
