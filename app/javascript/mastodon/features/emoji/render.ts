@@ -1,5 +1,3 @@
-import type { Locale } from 'emojibase';
-
 import { autoPlayGif } from '@/mastodon/initial_state';
 import { createLimitedCache } from '@/mastodon/utils/cache';
 import { assetHost } from '@/mastodon/utils/config';
@@ -14,11 +12,9 @@ import {
   ANY_EMOJI_REGEX,
 } from './constants';
 import {
-  findMissingLocales,
   searchCustomEmojisByShortcodes,
   searchEmojisByHexcodes,
 } from './database';
-import { loadEmojiLocale } from './index';
 import {
   emojiToUnicodeHex,
   twemojiHasBorder,
@@ -163,7 +159,6 @@ async function textToElementArray(
   }
 
   // Get all emoji from the state map, loading any missing ones.
-  await ensureLocalesAreLoaded(appState.locales);
   await loadMissingEmojiIntoCache(tokens, appState, extraEmojis);
 
   const renderedFragments: EmojifiedTextArray = [];
@@ -196,13 +191,6 @@ async function textToElementArray(
   }
 
   return renderedFragments;
-}
-
-async function ensureLocalesAreLoaded(locales: Locale[]) {
-  const missingLocales = await findMissingLocales(locales);
-  for (const locale of missingLocales) {
-    await loadEmojiLocale(locale);
-  }
 }
 
 type TokenizedText = (string | EmojiToken)[];
@@ -260,7 +248,7 @@ function emojiForLocale(
 
 async function loadMissingEmojiIntoCache(
   tokens: TokenizedText,
-  { mode, locales }: EmojiAppState,
+  { mode, currentLocale }: EmojiAppState,
   extraEmojis: ExtraCustomEmojiMap,
 ) {
   const missingUnicodeEmoji = new Set<string>();
@@ -288,32 +276,28 @@ async function loadMissingEmojiIntoCache(
       if (missingUnicodeEmoji.has(code)) {
         continue; // Already marked as missing.
       }
-      for (const locale of locales) {
-        const emojiState = emojiForLocale(code, locale);
-        if (!emojiState) {
-          // If it's missing in one locale, we consider it missing for all.
-          missingUnicodeEmoji.add(code);
-        }
+      const emojiState = emojiForLocale(code, currentLocale);
+      if (!emojiState) {
+        // If it's missing in one locale, we consider it missing for all.
+        missingUnicodeEmoji.add(code);
       }
     }
   }
 
   if (missingUnicodeEmoji.size > 0) {
     const missingEmojis = Array.from(missingUnicodeEmoji).toSorted();
-    for (const locale of locales) {
-      const emojis = await searchEmojisByHexcodes(missingEmojis, locale);
-      const cache = cacheForLocale(locale);
-      for (const emoji of emojis) {
-        cache.set(emoji.hexcode, { type: EMOJI_TYPE_UNICODE, data: emoji });
-      }
-      const notFoundEmojis = missingEmojis.filter((code) =>
-        emojis.every((emoji) => emoji.hexcode !== code),
-      );
-      for (const code of notFoundEmojis) {
-        cache.set(code, EMOJI_STATE_MISSING); // Mark as missing if not found, as it's probably not a valid emoji.
-      }
-      localeCacheMap.set(locale, cache);
+    const emojis = await searchEmojisByHexcodes(missingEmojis, currentLocale);
+    const cache = cacheForLocale(currentLocale);
+    for (const emoji of emojis) {
+      cache.set(emoji.hexcode, { type: EMOJI_TYPE_UNICODE, data: emoji });
     }
+    const notFoundEmojis = missingEmojis.filter((code) =>
+      emojis.every((emoji) => emoji.hexcode !== code),
+    );
+    for (const code of notFoundEmojis) {
+      cache.set(code, EMOJI_STATE_MISSING); // Mark as missing if not found, as it's probably not a valid emoji.
+    }
+    localeCacheMap.set(currentLocale, cache);
   }
 
   if (missingCustomEmoji.size > 0) {

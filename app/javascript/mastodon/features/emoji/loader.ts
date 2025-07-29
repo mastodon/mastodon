@@ -1,3 +1,4 @@
+import debug from 'debug';
 import { flattenEmojiData } from 'emojibase';
 import type { CompactEmoji, FlatCompactEmoji } from 'emojibase';
 
@@ -13,6 +14,8 @@ import {
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
 import type { LocaleOrCustom } from './types';
 
+const log = debug('emojis:loader');
+
 export async function importEmojiData(localeString: string) {
   const locale = toSupportedLocale(localeString);
   const emojis = await fetchAndCheckEtag<CompactEmoji[]>(locale);
@@ -20,6 +23,7 @@ export async function importEmojiData(localeString: string) {
     return;
   }
   const flattenedEmojis: FlatCompactEmoji[] = flattenEmojiData(emojis);
+  log('loaded %d for %s locale', flattenedEmojis.length, locale);
   await putEmojiData(flattenedEmojis, locale);
 }
 
@@ -28,6 +32,7 @@ export async function importCustomEmojiData() {
   if (!emojis) {
     return;
   }
+  log('loaded %d custom emojis', emojis.length);
   await putCustomEmojiData(emojis);
 }
 

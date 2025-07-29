@@ -1,3 +1,4 @@
+import debug from 'debug';
 import { SUPPORTED_LOCALES } from 'emojibase';
 import type { Locale } from 'emojibase';
 import type { DBSchema, IDBPDatabase } from 'idb';
@@ -38,7 +39,11 @@ type LocaleTables = Record<Locale, LocaleTable>;
 
 const SCHEMA_VERSION = 1;
 
+const loadedLocales = new Set<Locale>();
+
 let db: IDBPDatabase<EmojiDB> | null = null;
+
+const log = debug('emojis:database');
 
 async function loadDB() {
   if (db) {
@@ -66,10 +71,12 @@ async function loadDB() {
       }
     },
   });
+  await syncLocales();
   return db;
 }
 
 export async function putEmojiData(emojis: UnicodeEmojiData[], locale: Locale) {
+  loadedLocales.add(locale);
   const db = await loadDB();
   const trx = db.transaction(locale, 'readwrite');
   await Promise.all(emojis.map((emoji) => trx.store.put(emoji)));
@@ -89,11 +96,11 @@ export async function putLatestEtag(etag: string, localeString: string) {
   return db.put('etags', etag, locale);
 }
 
-export async function searchEmojiByHexcode(
+export async function loadEmojiByHexcode(
   hexcode: string,
   localeString: string,
 ) {
-  const locale = toSupportedLocale(localeString);
+  const locale = toLoadedLocale(localeString);
   const db = await loadDB();
   return db.get(locale, hexcode);
 }
@@ -102,51 +109,39 @@ export async function searchEmojisByHexcodes(
   hexcodes: string[],
   localeString: string,
 ) {
-  const locale = toSupportedLocale(localeString);
+  const locale = toLoadedLocale(localeString);
   const db = await loadDB();
-  return db.getAll(
+  const sortedCodes = hexcodes.toSorted();
+  const results = await db.getAll(
     locale,
-    IDBKeyRange.bound(hexcodes[0], hexcodes[hexcodes.length - 1]),
+    IDBKeyRange.bound(sortedCodes.at(0), sortedCodes.at(-1)),
   );
+  return results.filter((emoji) => hexcodes.includes(emoji.hexcode));
 }
 
-export async function searchEmojiByTag(tag: string, localeString: string) {
-  const locale = toSupportedLocale(localeString);
-  const range = IDBKeyRange.only(tag.toLowerCase());
+export async function searchEmojisByTag(tag: string, localeString: string) {
+  const locale = toLoadedLocale(localeString);
+  const range = IDBKeyRange.bound(
+    tag.toLowerCase(),
+    `${tag.toLowerCase()}\uffff`,
+  );
   const db = await loadDB();
   return db.getAllFromIndex(locale, 'tags', range);
 }
 
-export async function searchCustomEmojiByShortcode(shortcode: string) {
+export async function loadCustomEmojiByShortcode(shortcode: string) {
   const db = await loadDB();
   return db.get('custom', shortcode);
 }
 
 export async function searchCustomEmojisByShortcodes(shortcodes: string[]) {
   const db = await loadDB();
-  return db.getAll(
+  const sortedCodes = shortcodes.toSorted();
+  const results = await db.getAll(
     'custom',
-    IDBKeyRange.bound(shortcodes[0], shortcodes[shortcodes.length - 1]),
+    IDBKeyRange.bound(sortedCodes.at(0), sortedCodes.at(-1)),
   );
-}
-
-const loadedLocales = new Set<Locale>();
-export async function findMissingLocales(localeStrings: string[]) {
-  const locales = new Set(localeStrings.map(toSupportedLocale));
-  if (locales.isSubsetOf(loadedLocales)) {
-    return [];
-  }
-  const missingLocales: Locale[] = [];
-  const db = await loadDB();
-  for (const locale of locales) {
-    const rowCount = await db.count(locale);
-    if (!rowCount) {
-      missingLocales.push(locale);
-    } else {
-      loadedLocales.add(locale);
-    }
-  }
-  return missingLocales;
+  return results.filter((emoji) => shortcodes.includes(emoji.shortcode));
 }
 
 export async function loadLatestEtag(localeString: string) {
@@ -160,10 +155,49 @@ export async function loadLatestEtag(localeString: string) {
   return etag ?? null;
 }
 
-// Testing helpers
-export function testClearDB() {
-  db = null;
+// Private functions
+
+async function syncLocales() {
+  const locales = await Promise.all(
+    SUPPORTED_LOCALES.map(
+      async (locale) =>
+        [locale, await hasLocale(locale)] satisfies [Locale, boolean],
+    ),
+  );
+  for (const [locale, loaded] of locales) {
+    if (loaded) {
+      loadedLocales.add(locale);
+    } else {
+      loadedLocales.delete(locale);
+    }
+  }
 }
-export function testClearLocales() {
+
+function toLoadedLocale(localeString: string) {
+  const locale = toSupportedLocale(localeString);
+  if (localeString !== locale) {
+    log(`Locale ${locale} is different from provided ${localeString}`);
+  }
+  if (!loadedLocales.has(locale)) {
+    throw new Error(`Locale ${locale} is not loaded in emoji database`);
+  }
+  return locale;
+}
+
+async function hasLocale(locale: Locale): Promise<boolean> {
+  if (loadedLocales.has(locale)) {
+    return true;
+  }
+  const db = await loadDB();
+  const rowCount = await db.count(locale);
+  return !!rowCount;
+}
+
+// Testing helpers
+export function testGet() {
+  return { db, loadedLocales };
+}
+export function testClear() {
+  db = null;
   loadedLocales.clear();
 }

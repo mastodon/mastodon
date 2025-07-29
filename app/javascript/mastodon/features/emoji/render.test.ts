@@ -1,3 +1,5 @@
+import { customEmojiFactory, unicodeEmojiFactory } from '@/testing/factories';
+
 import {
   EMOJI_MODE_NATIVE,
   EMOJI_MODE_NATIVE_WITH_FLAGS,
@@ -13,47 +15,22 @@ import {
   testCacheClear,
   tokenizeText,
 } from './render';
-import type {
-  CustomEmojiData,
-  EmojiAppState,
-  ExtraCustomEmojiMap,
-  UnicodeEmojiData,
-} from './types';
+import type { EmojiAppState, ExtraCustomEmojiMap } from './types';
 
 vitest.mock('./database', () => ({
-  searchCustomEmojisByShortcodes: vitest.fn(
-    () =>
-      [
-        {
-          shortcode: 'custom',
-          static_url: 'emoji/static',
-          url: 'emoji/custom',
-          category: 'test',
-          visible_in_picker: true,
-        },
-      ] satisfies CustomEmojiData[],
-  ),
-  searchEmojisByHexcodes: vitest.fn(
-    () =>
-      [
-        {
-          hexcode: '1F60A',
-          group: 0,
-          label: 'smiling face with smiling eyes',
-          order: 0,
-          tags: ['smile', 'happy'],
-          unicode: '😊',
-        },
-        {
-          hexcode: '1F1EA-1F1FA',
-          group: 0,
-          label: 'flag-eu',
-          order: 0,
-          tags: ['flag', 'european union'],
-          unicode: '🇪🇺',
-        },
-      ] satisfies UnicodeEmojiData[],
-  ),
+  searchCustomEmojisByShortcodes: vitest.fn(() => [customEmojiFactory()]),
+  searchEmojisByHexcodes: vitest.fn(() => [
+    unicodeEmojiFactory({
+      hexcode: '1F60A',
+      label: 'smiling face with smiling eyes',
+      unicode: '😊',
+    }),
+    unicodeEmojiFactory({
+      hexcode: '1F1EA-1F1FA',
+      label: 'flag-eu',
+      unicode: '🇪🇺',
+    }),
+  ]),
   findMissingLocales: vitest.fn(() => []),
 }));
 
@@ -62,7 +39,7 @@ const expectedSmileImage =
 const expectedFlagImage =
   '<img draggable="false" class="emojione" alt="🇪🇺" title="flag-eu" src="/emoji/1f1ea-1f1fa.svg">';
 const expectedCustomEmojiImage =
-  '<img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:" src="emoji/static" data-original="emoji/custom" data-static="emoji/static">';
+  '<img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:" src="emoji/custom/static" data-original="emoji/custom" data-static="emoji/custom/static">';
 const expectedRemoteCustomEmojiImage =
   '<img draggable="false" class="emojione custom-emoji" alt=":remote:" title=":remote:" src="remote.social/static" data-original="remote.social/custom" data-static="remote.social/static">';
 
