@@ -58,6 +58,7 @@ class User < ApplicationRecord
 
   include LanguagesHelper
   include Redisable
+  include User::Confirmation
   include User::HasSettings
   include User::LdapAuthenticable
   include User::Omniauthable
@@ -118,8 +119,6 @@ class User < ApplicationRecord
   scope :recent, -> { order(id: :desc) }
   scope :pending, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }
-  scope :confirmed, -> { where.not(confirmed_at: nil) }
-  scope :unconfirmed, -> { where(confirmed_at: nil) }
   scope :enabled, -> { where(disabled: false) }
   scope :disabled, -> { where(disabled: true) }
   scope :active, -> { confirmed.signed_in_recently.account_not_suspended }
@@ -182,10 +181,6 @@ class User < ApplicationRecord
     current_sign_in_at.present? && current_sign_in_at >= ACTIVE_DURATION.ago
   end
 
-  def confirmed?
-    confirmed_at.present?
-  end
-
   def invited?
     invite_id.present?
   end
@@ -208,12 +203,6 @@ class User < ApplicationRecord
 
   def to_log_route_param
     account_id
-  end
-
-  def confirm
-    wrap_email_confirmation do
-      super
-    end
   end
 
   # Mark current email as confirmed, bypassing Devise
@@ -260,10 +249,6 @@ class User < ApplicationRecord
 
   def functional_or_moved?
     confirmed? && approved? && !disabled? && !account.unavailable? && !account.memorial?
-  end
-
-  def unconfirmed?
-    !confirmed?
   end
 
   def unconfirmed_or_pending?

@@ -10,6 +10,7 @@ RSpec.describe User do
   let(:account) { Fabricate(:account, username: 'alice') }
 
   it_behaves_like 'two_factor_backupable'
+  it_behaves_like 'User::Confirmation'
 
   describe 'otp_secret' do
     it 'encrypts the saved value' do
@@ -62,14 +63,6 @@ RSpec.describe User do
         first_user = Fabricate(:user)
         second_user = Fabricate(:user)
         expect(described_class.recent).to eq [second_user, first_user]
-      end
-    end
-
-    describe 'confirmed' do
-      it 'returns an array of users who are confirmed' do
-        Fabricate(:user, confirmed_at: nil)
-        confirmed_user = Fabricate(:user, confirmed_at: Time.zone.now)
-        expect(described_class.confirmed).to contain_exactly(confirmed_user)
       end
     end
 
@@ -224,79 +217,6 @@ RSpec.describe User do
       it 'does not persist the user' do
         expect { user.update_sign_in! }
           .to_not change(user, :persisted?).from(false)
-      end
-    end
-  end
-
-  describe '#confirmed?' do
-    it 'returns true when a confirmed_at is set' do
-      user = Fabricate.build(:user, confirmed_at: Time.now.utc)
-      expect(user.confirmed?).to be true
-    end
-
-    it 'returns false if a confirmed_at is nil' do
-      user = Fabricate.build(:user, confirmed_at: nil)
-      expect(user.confirmed?).to be false
-    end
-  end
-
-  describe '#confirm' do
-    subject { user.confirm }
-
-    let(:new_email) { 'new-email@example.com' }
-
-    before do
-      allow(TriggerWebhookWorker).to receive(:perform_async)
-    end
-
-    context 'when the user is already confirmed' do
-      let!(:user) { Fabricate(:user, confirmed_at: Time.now.utc, approved: true, unconfirmed_email: new_email) }
-
-      it 'sets email to unconfirmed_email and does not trigger web hook' do
-        expect { subject }.to change { user.reload.email }.to(new_email)
-
-        expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
-      end
-    end
-
-    context 'when the user is a new user' do
-      let(:user) { Fabricate(:user, confirmed_at: nil, unconfirmed_email: new_email) }
-
-      context 'when the user is already approved' do
-        before do
-          Setting.registrations_mode = 'approved'
-          user.approve!
-        end
-
-        it 'sets email to unconfirmed_email and triggers `account.approved` web hook' do
-          expect { subject }.to change { user.reload.email }.to(new_email)
-
-          expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
-        end
-      end
-
-      context 'when the user does not require explicit approval' do
-        before do
-          Setting.registrations_mode = 'open'
-        end
-
-        it 'sets email to unconfirmed_email and triggers `account.approved` web hook' do
-          expect { subject }.to change { user.reload.email }.to(new_email)
-
-          expect(TriggerWebhookWorker).to have_received(:perform_async).with('account.approved', 'Account', user.account_id).once
-        end
-      end
-
-      context 'when the user requires explicit approval but is not approved' do
-        before do
-          Setting.registrations_mode = 'approved'
-        end
-
-        it 'sets email to unconfirmed_email and does not trigger web hook' do
-          expect { subject }.to change { user.reload.email }.to(new_email)
-
-          expect(TriggerWebhookWorker).to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
-        end
       end
     end
   end
