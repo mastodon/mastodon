@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useLayoutEffect, useMemo, useState } from 'react';
 
 import { isList } from 'immutable';
 
@@ -48,7 +48,7 @@ export function useEmojify(text: string, extraEmojis?: CustomEmojiMapArg) {
     },
     [appState, extra],
   );
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (isModernEmojiEnabled() && !!text.trim() && stringHasAnyEmoji(text)) {
       void emojify(text);
     } else {
