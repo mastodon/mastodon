@@ -1,6 +1,6 @@
 import { IDBFactory } from 'fake-indexeddb';
 
-import { customEmojiFactory, unicodeEmojiFactory } from '@/testing/factories';
+import { unicodeEmojiFactory } from '@/testing/factories';
 
 import {
   putEmojiData,
@@ -9,7 +9,6 @@ import {
   searchEmojisByTag,
   testClear,
   testGet,
-  putCustomEmojiData,
 } from './database';
 
 describe('emoji database', () => {
@@ -136,18 +135,5 @@ describe('emoji database', () => {
       const actual = await searchEmojisByTag('not found', 'en');
       expect(actual).toHaveLength(0);
     });
-  });
-
-  describe('searchCustomEmojisByShortcodes', () => {
-    const data = [
-      customEmojiFactory({ shortcode: 'test 1' }),
-      customEmojiFactory({ shortcode: 'test 2' }),
-      customEmojiFactory({ shortcode: 'test 3' }),
-    ];
-    beforeEach(async () => {
-      await putCustomEmojiData(data);
-    });
-
-    test('');
   });
 });

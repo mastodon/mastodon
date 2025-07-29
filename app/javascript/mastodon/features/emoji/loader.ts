@@ -2,7 +2,6 @@ import { flattenEmojiData } from 'emojibase';
 import type { CompactEmoji, FlatCompactEmoji } from 'emojibase';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
-import { isDevelopment } from '@/mastodon/utils/environment';
 
 import {
   putEmojiData,
@@ -46,7 +45,9 @@ async function fetchAndCheckEtag<ResultType extends object[]>(
   if (locale === 'custom') {
     url.pathname = '/api/v1/custom_emojis';
   } else {
-    url.pathname = `/packs${isDevelopment() ? '-dev' : ''}/emoji/${locale}.json`;
+    // This doesn't use isDevelopment() as that module loads initial state
+    // which breaks workers, as they cannot access the DOM.
+    url.pathname = `/packs${import.meta.env.DEV ? '-dev' : ''}/emoji/${locale}.json`;
   }
 
   const oldEtag = await loadLatestEtag(locale);

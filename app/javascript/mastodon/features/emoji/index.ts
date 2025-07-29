@@ -10,7 +10,8 @@ let worker: Worker | null = null;
 
 const log = emojiLogger('index');
 
-export async function initializeEmoji() {
+export function initializeEmoji() {
+  log('initializing emojis');
   if (!worker && 'Worker' in window) {
     try {
       worker = loadWorker(new URL('./worker', import.meta.url), {
@@ -24,10 +25,16 @@ export async function initializeEmoji() {
   if (worker) {
     // Assign worker to const to make TS happy inside the event listener.
     const thisWorker = worker;
+    const timeoutId = setTimeout(() => {
+      log('worker is not ready after timeout');
+      worker = null;
+      void fallbackLoad();
+    }, 500);
     thisWorker.addEventListener('message', (event: MessageEvent<string>) => {
       const { data: message } = event;
       if (message === 'ready') {
-        log('worker is ready');
+        log('worker ready, loading data');
+        clearTimeout(timeoutId);
         thisWorker.postMessage('custom');
         void loadEmojiLocale(userLocale);
         // Load English locale as well, because people are still used to
@@ -35,16 +42,22 @@ export async function initializeEmoji() {
         if (userLocale !== 'en') {
           void loadEmojiLocale('en');
         }
+      } else {
+        log('got worker message: %s', message);
       }
     });
   } else {
-    log('falling back to main thread');
-    const { importCustomEmojiData } = await import('./loader');
-    await importCustomEmojiData();
-    await loadEmojiLocale(userLocale);
-    if (userLocale !== 'en') {
-      await loadEmojiLocale('en');
-    }
+    void fallbackLoad();
+  }
+}
+
+async function fallbackLoad() {
+  log('falling back to main thread for loading');
+  const { importCustomEmojiData } = await import('./loader');
+  await importCustomEmojiData();
+  await loadEmojiLocale(userLocale);
+  if (userLocale !== 'en') {
+    await loadEmojiLocale('en');
   }
 }
 

@@ -35,7 +35,7 @@ function main() {
 
     if (isModernEmojiEnabled()) {
       const { initializeEmoji } = await import('@/mastodon/features/emoji');
-      await initializeEmoji();
+      initializeEmoji();
     }
 
     const root = createRoot(mountNode);
