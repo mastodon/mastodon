@@ -45,19 +45,20 @@ export async function emojifyElement<Element extends HTMLElement>(
   element: Element,
   appState: EmojiAppState,
   extraEmojis: ExtraCustomEmojiMap = {},
-): Promise<Element> {
+): Promise<Element | null> {
   const cacheKey = createCacheKey(element, appState, extraEmojis);
   const cached = getCached(cacheKey);
   if (cached !== undefined) {
     log('Cache hit on %s', element.outerHTML);
-    if (cached !== null) {
-      element.innerHTML = cached;
+    if (cached === null) {
+      return null;
     }
+    element.innerHTML = cached;
     return element;
   }
   if (!stringHasAnyEmoji(element.innerHTML)) {
     updateCache(cacheKey, null);
-    return element;
+    return null;
   }
   perf.start('emojifyElement()');
   const queue: (HTMLElement | Text)[] = [element];
@@ -131,7 +132,7 @@ const {
   set: updateCache,
   get: getCached,
   clear: cacheClear,
-} = createLimitedCache<string | null>({ log });
+} = createLimitedCache<string | null>({ log: log.extend('cache') });
 
 function createCacheKey(
   input: HTMLElement | string,
@@ -237,11 +238,17 @@ export function tokenizeText(text: string): TokenizedText {
 }
 
 const localeCacheMap = new Map<LocaleOrCustom, EmojiStateMap>([
-  [EMOJI_TYPE_CUSTOM, createLimitedCache<EmojiState>({ log })],
+  [
+    EMOJI_TYPE_CUSTOM,
+    createLimitedCache<EmojiState>({ log: log.extend('custom') }),
+  ],
 ]);
 
 function cacheForLocale(locale: LocaleOrCustom): EmojiStateMap {
-  return localeCacheMap.get(locale) ?? createLimitedCache<EmojiState>({ log });
+  return (
+    localeCacheMap.get(locale) ??
+    createLimitedCache<EmojiState>({ log: log.extend(locale) })
+  );
 }
 
 function emojiForLocale(

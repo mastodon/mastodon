@@ -19,7 +19,7 @@ describe('emoji database', () => {
   });
   describe('putEmojiData', () => {
     test('adds to loaded locales', async () => {
-      const { loadedLocales } = testGet();
+      const { loadedLocales } = await testGet();
       expect(loadedLocales).toHaveLength(0);
       await putEmojiData([], 'en');
       expect(loadedLocales).toContain('en');
@@ -27,8 +27,8 @@ describe('emoji database', () => {
 
     test('loads emoji into indexedDB', async () => {
       await putEmojiData([unicodeEmojiFactory()], 'en');
-      const { db } = testGet();
-      await expect(db?.get('en', 'test')).resolves.toEqual(
+      const { db } = await testGet();
+      await expect(db.get('en', 'test')).resolves.toEqual(
         unicodeEmojiFactory(),
       );
     });

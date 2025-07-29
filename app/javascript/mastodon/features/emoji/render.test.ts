@@ -92,11 +92,12 @@ describe('emojifyElement', () => {
 
   test('emojifies custom emoji in native mode', async () => {
     const { searchEmojisByHexcodes } = mockDatabase();
-    const emojifiedElement = await emojifyElement(
+    const actual = await emojifyElement(
       testElement(),
       testAppState({ mode: EMOJI_MODE_NATIVE }),
     );
-    expect(emojifiedElement.innerHTML).toBe(
+    assert(actual);
+    expect(actual.innerHTML).toBe(
       `<p>Hello 😊🇪🇺!</p><p>${expectedCustomEmojiImage}</p>`,
     );
     expect(searchEmojisByHexcodes).not.toHaveBeenCalled();
@@ -104,11 +105,12 @@ describe('emojifyElement', () => {
 
   test('emojifies flag emoji in native-with-flags mode', async () => {
     const { searchEmojisByHexcodes } = mockDatabase();
-    const emojifiedElement = await emojifyElement(
+    const actual = await emojifyElement(
       testElement(),
       testAppState({ mode: EMOJI_MODE_NATIVE_WITH_FLAGS }),
     );
-    expect(emojifiedElement.innerHTML).toBe(
+    assert(actual);
+    expect(actual.innerHTML).toBe(
       `<p>Hello 😊${expectedFlagImage}!</p><p>${expectedCustomEmojiImage}</p>`,
     );
     expect(searchEmojisByHexcodes).toHaveBeenCalledOnce();
@@ -117,11 +119,9 @@ describe('emojifyElement', () => {
   test('emojifies everything in twemoji mode', async () => {
     const { searchCustomEmojisByShortcodes, searchEmojisByHexcodes } =
       mockDatabase();
-    const emojifiedElement = await emojifyElement(
-      testElement(),
-      testAppState(),
-    );
-    expect(emojifiedElement.innerHTML).toBe(
+    const actual = await emojifyElement(testElement(), testAppState());
+    assert(actual);
+    expect(actual.innerHTML).toBe(
       `<p>Hello ${expectedSmileImage}${expectedFlagImage}!</p><p>${expectedCustomEmojiImage}</p>`,
     );
     expect(searchEmojisByHexcodes).toHaveBeenCalledOnce();
@@ -136,11 +136,21 @@ describe('emojifyElement', () => {
       testAppState(),
       mockExtraCustom,
     );
+    assert(actual);
     expect(actual.innerHTML).toBe(
       `<p>hi ${expectedRemoteCustomEmojiImage}</p>`,
     );
     expect(searchEmojisByHexcodes).not.toHaveBeenCalled();
     expect(searchCustomEmojisByShortcodes).not.toHaveBeenCalled();
+  });
+
+  test('returns null when no emoji are found', async () => {
+    mockDatabase();
+    const actual = await emojifyElement(
+      testElement('<p>here is just text :)</p>'),
+      testAppState(),
+    );
+    expect(actual).toBeNull();
   });
 });
 
