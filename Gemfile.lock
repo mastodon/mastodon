@@ -834,10 +834,9 @@ GEM
       redis-client (>= 0.22.2)
     sidekiq-bulk (0.2.0)
       sidekiq
-    sidekiq-scheduler (5.0.6)
+    sidekiq-scheduler (6.0.1)
       rufus-scheduler (~> 3.2)
-      sidekiq (>= 6, < 8)
-      tilt (>= 1.4.0, < 3)
+      sidekiq (>= 7.3, < 9)
     sidekiq-unique-jobs (8.0.11)
       concurrent-ruby (~> 1.0, >= 1.0.5)
       sidekiq (>= 7.0.0, < 9.0.0)
@@ -1084,7 +1083,7 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq (< 8)
   sidekiq-bulk (~> 0.2.0)
-  sidekiq-scheduler (~> 5.0)
+  sidekiq-scheduler (~> 6.0)
   sidekiq-unique-jobs (> 8)
   simple-navigation (~> 4.4)
   simple_form (~> 5.2)
