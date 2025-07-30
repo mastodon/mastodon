@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('admin.relays.add_new')
 
-= simple_form_for @relay, url: admin_relays_path do |f|
+= simple_form_for [:admin, @relay] do |f|
   = render 'shared/error_messages', object: @relay
 
   .field-group
