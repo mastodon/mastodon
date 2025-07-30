@@ -17,7 +17,7 @@ module Admin
     PERMITTED_UPDATE_PARAMS = PERMITTED_PARAMS.without(:domain).freeze
 
     def batch
-      authorize :domain_block, :index?
+      authorize :domain_block, :create?
       @form = Form::DomainBlockBatch.new(form_domain_block_batch_params.merge(current_account: current_account, action: action_from_button))
       @form.save
     rescue ActionController::ParameterMissing
