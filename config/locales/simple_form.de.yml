@@ -160,6 +160,10 @@ de:
         name: Name der Rolle, der auch öffentlich als Badge angezeigt wird, sofern dies unten aktiviert ist
         permissions_as_keys: Benutzer*innen mit dieser Rolle haben Zugriff auf...
         position: Höhere Rollen entscheiden über Konfliktlösungen zu gewissen Situationen. Bestimmte Aktionen können nur mit geringfügigeren Rollen durchgeführt werden
+      username_block:
+        allow_with_approval: Anstatt Registrierungen komplett zu verhindern, benötigen übereinstimmende Treffer eine Genehmigung
+        comparison: Bitte beachte das Scunthorpe-Problem, wenn teilweise übereinstimmende Treffer gesperrt werden
+        username: Abgleich erfolgt unabhängig der Groß- und Kleinschreibung sowie gängiger Homoglyphen („4“ für „a“ oder „3“ für „e“)
       webhook:
         events: Zu sendende Ereignisse auswählen
         template: Erstelle deine eigenen JSON-Nutzdaten mit Hilfe von Variablen-Interpolation. Leer lassen für Standard-JSON.
@@ -371,6 +375,10 @@ de:
         name: Name
         permissions_as_keys: Berechtigungen
         position: Priorität
+      username_block:
+        allow_with_approval: Registrierungen mit Genehmigung zulassen
+        comparison: Vergleichsmethode
+        username: Übereinstimmendes Wort
       webhook:
         events: Aktivierte Ereignisse
         template: Nutzdaten-Vorlage

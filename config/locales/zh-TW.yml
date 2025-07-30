@@ -187,6 +187,7 @@ zh-TW:
         create_relay: 新增中繼
         create_unavailable_domain: 新增無法存取的網域
         create_user_role: 新增角色
+        create_username_block: 新增使用者名稱規則
         demote_user: 將用戶降級
         destroy_announcement: 刪除公告
         destroy_canonical_email_block: 刪除電子郵件封鎖
@@ -200,6 +201,7 @@ zh-TW:
         destroy_status: 刪除狀態
         destroy_unavailable_domain: 刪除無法存取的網域
         destroy_user_role: 移除角色
+        destroy_username_block: 刪除使用者名稱規則
         disable_2fa_user: 停用兩階段驗證
         disable_custom_emoji: 停用自訂 emoji 表情符號
         disable_relay: 停用中繼
@@ -234,6 +236,7 @@ zh-TW:
         update_report: 更新檢舉報告
         update_status: 更新狀態
         update_user_role: 更新角色
+        update_username_block: 變更使用者名稱規則
       actions:
         approve_appeal_html: "%{name} 已批准來自 %{target} 的審核決定申訴"
         approve_user_html: "%{name} 已批准自 %{target} 而來的註冊"
@@ -252,6 +255,7 @@ zh-TW:
         create_relay_html: "%{name} 已新增中繼 %{target}"
         create_unavailable_domain_html: "%{name} 停止發送至網域 %{target}"
         create_user_role_html: "%{name} 已新增 %{target} 角色"
+        create_username_block_html: "%{name} 已新增使用者名稱包含 %{target} 之規則"
         demote_user_html: "%{name} 將使用者 %{target} 降級"
         destroy_announcement_html: "%{name} 已刪除公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 已解除封鎖 hash 為 %{target} 之電子郵件"
@@ -265,6 +269,7 @@ zh-TW:
         destroy_status_html: "%{name} 已刪除 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 已恢復對網域 %{target} 的發送"
         destroy_user_role_html: "%{name} 已刪除 %{target} 角色"
+        destroy_username_block_html: "%{name} 已移除使用者名稱包含 %{target} 之規則"
         disable_2fa_user_html: "%{name} 已停用使用者 %{target} 的兩階段驗證 (2FA) "
         disable_custom_emoji_html: "%{name} 已停用自訂 emoji 表情符號 %{target}"
         disable_relay_html: "%{name} 已停用中繼 %{target}"
@@ -299,6 +304,7 @@ zh-TW:
         update_report_html: "%{name} 已更新 %{target} 的檢舉"
         update_status_html: "%{name} 已更新 %{target} 的嘟文"
         update_user_role_html: "%{name} 已變更 %{target} 角色"
+        update_username_block_html: "%{name} 已變更使用者名稱包含 %{target} 之規則"
       deleted_account: 已刪除帳號
       empty: 找不到 log
       filter_by_action: 按動作過濾
@@ -1069,6 +1075,25 @@ zh-TW:
           other: 上週被 %{count} 個人使用
       title: 推薦內容與熱門趨勢
       trending: 熱門
+    username_blocks:
+      add_new: 新增
+      block_registrations: 禁止註冊
+      comparison:
+        contains: 包含
+        equals: 等於
+      contains_html: 包含 %{string}
+      created_msg: 已成功新增使用者名稱規則
+      delete: 刪除
+      edit:
+        title: 編輯使用者名稱規則
+      matches_exactly_html: 等於 %{string}
+      new:
+        create: 新增規則
+        title: 新增使用者名稱規則
+      no_username_block_selected: 因未選取任何使用者名稱規則，所以什麼事都沒發生
+      not_permitted: 不允許
+      title: 使用者名稱規則
+      updated_msg: 已成功變更使用者名稱規則
     warning_presets:
       add_new: 新增
       delete: 刪除

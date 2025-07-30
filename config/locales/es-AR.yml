@@ -190,6 +190,7 @@ es-AR:
         create_relay: Crear relé
         create_unavailable_domain: Crear dominio no disponible
         create_user_role: Crear rol
+        create_username_block: Crear regla de nombre de usuario
         demote_user: Descender usuario
         destroy_announcement: Eliminar anuncio
         destroy_canonical_email_block: Eliminar bloqueo de correo electrónico
@@ -203,6 +204,7 @@ es-AR:
         destroy_status: Eliminar mensaje
         destroy_unavailable_domain: Eliminar dominio no disponible
         destroy_user_role: Destruir rol
+        destroy_username_block: Eliminar regla de nombre de usuario
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar emoji personalizado
         disable_relay: Deshabilitar relé
@@ -237,6 +239,7 @@ es-AR:
         update_report: Actualizar denuncia
         update_status: Actualizar mensaje
         update_user_role: Actualizar rol
+        update_username_block: Actualizar regla de nombre de usuario
       actions:
         approve_appeal_html: "%{name} aprobó la solicitud de moderación de %{target}"
         approve_user_html: "%{name} aprobó el registro de %{target}"
@@ -255,6 +258,7 @@ es-AR:
         create_relay_html: "%{name} creó el relé %{target}"
         create_unavailable_domain_html: "%{name} detuvo la entrega al dominio %{target}"
         create_user_role_html: "%{name} creó el rol %{target}"
+        create_username_block_html: "%{name} agregó una regla para los nombres de usuario que contienen %{target}"
         demote_user_html: "%{name} bajó de nivel al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueó el correo electrónico con el hash %{target}"
@@ -268,6 +272,7 @@ es-AR:
         destroy_status_html: "%{name} eliminó el mensaje de %{target}"
         destroy_unavailable_domain_html: "%{name} reanudó la entrega al dominio %{target}"
         destroy_user_role_html: "%{name} eliminó el rol %{target}"
+        destroy_username_block_html: "%{name} eliminó una regla para los nombres de usuario que contienen %{target}"
         disable_2fa_user_html: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} deshabilitó el emoji %{target}"
         disable_relay_html: "%{name} deshabilitó el relé %{target}"
@@ -302,6 +307,7 @@ es-AR:
         update_report_html: "%{name} actualizó la denuncia %{target}"
         update_status_html: "%{name} actualizó el mensaje de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
+        update_username_block_html: "%{name} actualizó una regla para los nombres de usuario que contienen %{target}"
       deleted_account: cuenta eliminada
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
@@ -1085,6 +1091,25 @@ es-AR:
           other: Usada por %{count} personas durante la última semana
       title: Recomendaciones y tendencias
       trending: En tendencia
+    username_blocks:
+      add_new: Agregar nueva
+      block_registrations: Bloquear registros
+      comparison:
+        contains: Contiene
+        equals: Es igual a
+      contains_html: Contiene %{string}
+      created_msg: Regla de nombre de usuario creada exitosamente
+      delete: Eliminar
+      edit:
+        title: Editar regla de nombre de usuario
+      matches_exactly_html: Es igual a %{string}
+      new:
+        create: Crear regla
+        title: Crear nueva regla de nombre de usuario
+      no_username_block_selected: No se cambiaron las reglas de nombre de usuario, ya que no se seleccionó ninguna
+      not_permitted: No permitido
+      title: Reglas de nombre de usuario
+      updated_msg: Regla de nombre de usuario actualizada exitosamente
     warning_presets:
       add_new: Agregar nuevo
       delete: Eliminar

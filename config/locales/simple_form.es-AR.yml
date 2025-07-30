@@ -160,6 +160,10 @@ es-AR:
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a…
         position: Un rol más alto decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con prioridad inferior
+      username_block:
+        allow_with_approval: En lugar de impedir el registro total, los registros coincidentes requerirán tu aprobación
+        comparison: Por favor, tené en cuenta el Problema de Scunthorpe al bloquear coincidencias parciales
+        username: Coincidirá sin importar la capitalización de letras y los homoglifos comunes como «4» para «a», o «3» para «e»
       webhook:
         events: Seleccionar eventos para enviar
         template: Creá tu propio archivo JSON usando interpolación variable. Dejalo en blanco para usar el archivo JSON predeterminado.
@@ -371,6 +375,10 @@ es-AR:
         name: Nombre
         permissions_as_keys: Permisos
         position: Prioridad
+      username_block:
+        allow_with_approval: Permitir registros con aprobación
+        comparison: Método de comparación
+        username: Palabra a coincidir
       webhook:
         events: Eventos habilitados
         template: Plantilla de carga

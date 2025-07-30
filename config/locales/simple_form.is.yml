@@ -160,6 +160,10 @@ is:
         name: Opinbert heiti hlutverks, ef birta á hlutverk sem merki
         permissions_as_keys: Notendur með þetta hlutverk munu hafa aðgang að...
         position: Rétthærra hlutverk ákvarðar lausn árekstra í ákveðnum tilfellum. Sumar aðgerðir er aðeins hægt að framkvæma á hlutverk með lægri forgangi
+      username_block:
+        allow_with_approval: Í stað þess að loka alfarið á nýskráningar, munu samsvarandi nýskráningar þurfa samþykki þitt
+        comparison: Hafðu í huga Scunthorpe-vandamálið (Scunthorpe inniheldur orð sem ýmsar síur reyna að banna) þegar þú útilokar samsvarandi orðhluta
+        username: Mun samsvara án tillits til stafstöðu eða algengra táknlíkinga á borð við "4" í stað "a" eða "3" í stað "e"
       webhook:
         events: Veldu atburði sem á að senda
         template: Sníddu eigin JSON með breytilegri brúun. Skiljið eftir autt fyrir sjálfgefið JSON.
@@ -371,6 +375,10 @@ is:
         name: Nafn
         permissions_as_keys: Heimildir
         position: Forgangur
+      username_block:
+        allow_with_approval: Leyfa skráningar með samþykki
+        comparison: Aðferð við samanburð
+        username: Orð sem samsvara
       webhook:
         events: Virkjaðir atburðir
         template: Sniðmát gagna

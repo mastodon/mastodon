@@ -159,6 +159,10 @@ zh-TW:
         name: 角色的公開名稱，如果角色設定為顯示為徽章
         permissions_as_keys: 有此角色的使用者將有權存取...
         position: 某些情況下，衝突的解決方式由更高階的角色決定。某些動作只能由優先程度較低的角色執行
+      username_block:
+        allow_with_approval: 不直接禁止註冊，符合規則之註冊將需要您的審核
+        comparison: 當您封鎖部分匹配時，請留心 Scunthorpe 問題
+        username: 將匹配不限大小寫與常見同形異義字，如以「4」代替「A」或以「3」代替「E」
       webhook:
         events: 請選擇要傳送的事件
         template: 使用變數代換組合您自己的 JSON payload。留白以使用預設 JSON 。
@@ -370,6 +374,10 @@ zh-TW:
         name: 名稱
         permissions_as_keys: 權限
         position: 優先權
+      username_block:
+        allow_with_approval: 經審核後可註冊
+        comparison: 比較方式
+        username: 字詞匹配
       webhook:
         events: 已啟用的事件
         template: Payload 樣板

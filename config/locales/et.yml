@@ -190,6 +190,7 @@ et:
         create_relay: Loo sõnumivahendusserver
         create_unavailable_domain: Kättesaamatu domeeni lisamine
         create_user_role: Loo roll
+        create_username_block: Lisa kasutajanime reegel
         demote_user: Alandas kasutaja
         destroy_announcement: Eemaldas teadaande
         destroy_canonical_email_block: Kustuta e-posti blokeering
@@ -203,6 +204,7 @@ et:
         destroy_status: Kustuta postitus
         destroy_unavailable_domain: Kättesaamatu domeeni kustutamine
         destroy_user_role: Rolli kustutamine
+        destroy_username_block: Kustuta kasutajanime reegel
         disable_2fa_user: Keela 2FA
         disable_custom_emoji: Keelas kohandatud emotikoni
         disable_relay: Lülita sõnumivahendusserver välja
@@ -237,6 +239,7 @@ et:
         update_report: Uuendamise raport
         update_status: Uuenda postitust
         update_user_role: Uuenda rolli
+        update_username_block: Uuenda kasutajanime reeglit
       actions:
         approve_appeal_html: "%{name} kiitis heaks modereerimise otsuse vaidlustuse %{target} poolt"
         approve_user_html: "%{name} kiitis heaks registreerimise %{target} poolt"
@@ -255,6 +258,7 @@ et:
         create_relay_html: "%{name} lõi sõnumivahendusserveri: %{target}"
         create_unavailable_domain_html: "%{name} lõpetas edastamise domeeni %{target}"
         create_user_role_html: "%{name} lõi rolli %{target}"
+        create_username_block_html: "%{name} lisas kasutajanime reegli, milles sisaldub %{target}"
         demote_user_html: "%{name} alandas kasutajat %{target}"
         destroy_announcement_html: "%{name} kustutas teadaande %{target}"
         destroy_canonical_email_block_html: "%{name} eemaldas blokeeringu e-postilt räsiga %{target}"
@@ -268,6 +272,7 @@ et:
         destroy_status_html: "%{name} kustutas %{target} postituse"
         destroy_unavailable_domain_html: "%{name} taastas edastamise domeeni %{target}"
         destroy_user_role_html: "%{name} kustutas %{target} rolli"
+        destroy_username_block_html: "%{name} eemaldas kasutajanime reegli, milles sisaldub %{target}"
         disable_2fa_user_html: "%{name} eemaldas kasutaja %{target} kahe etapise nõude"
         disable_custom_emoji_html: "%{name} keelas emotikooni %{target}"
         disable_relay_html: "%{name} eemaldas sõnumivahendusserveri kasutuselt: %{target}"
@@ -302,6 +307,7 @@ et:
         update_report_html: "%{name} uuendas raportit %{target}"
         update_status_html: "%{name} muutis %{target} postitust"
         update_user_role_html: "%{name} muutis %{target} rolli"
+        update_username_block_html: "%{name} uuendas kasutajanime reeglit, milles sisaldub %{target}"
       deleted_account: kustutatud konto
       empty: Logisi ei leitud.
       filter_by_action: Filtreeri tegevuse järgi
@@ -806,6 +812,8 @@ et:
         preamble: Täpsem kirjeldus, kuidas serverit käitatakse, modereeritakse ja rahastatakse.
         rules_hint: Reeglitele, millega kasutajad peavad nõustuma, on vastav piirkond.
         title: Teave
+      allow_referrer_origin:
+        title: Luba välistel serveritel näha Mastodoni teenust linkide viitajana
       appearance:
         preamble: Kohanda Mastodoni veebiliidest.
         title: Välimus
@@ -993,6 +1001,7 @@ et:
           other: Saada %{display_count} e-kirja
       publish: Postita
       published_on_html: Postitatud %{date}
+      save_draft: Salvesta kavandina
       title: Kasutustingimused
     title: Administreerimine
     trends:
@@ -1069,6 +1078,25 @@ et:
           other: Kasutatud %{count} kasutaja poolt viimase nädala jooksul
       title: Soovitused ja trendid
       trending: Trendid
+    username_blocks:
+      add_new: Lisa uus
+      block_registrations: Blokeeri registreerimisi
+      comparison:
+        contains: Sisaldab
+        equals: Võrdub
+      contains_html: 'Sisaldab: %{string}'
+      created_msg: Kasutajanime reegli lisamine õnnestus
+      delete: Kustuta
+      edit:
+        title: Muuda kasutajanime reeglit
+      matches_exactly_html: 'Võrdub: %{string}'
+      new:
+        create: Lisa reegel
+        title: Lisa uus kasutajanime reegel
+      no_username_block_selected: Ühtegi kasutajanimereeglit ei muudetud, kuna midagi polnud valitud
+      not_permitted: Ei ole lubatud
+      title: Kasutajanime reeglid
+      updated_msg: Kasutajanime reegli uuendamine õnnestus
     warning_presets:
       add_new: Lisa uus
       delete: Kustuta
@@ -1331,6 +1359,10 @@ et:
     basic_information: Põhiinfo
     hint_html: "<strong>Kohanda, mida inimesed näevad su avalikul profiilil ja postituste kõrval.</strong> Inimesed alustavad tõenäolisemalt sinu jälgimist ja interakteeruvad sinuga, kui sul on täidetud profiil ja profiilipilt."
     other: Muu
+  emoji_styles:
+    auto: Automaatne
+    native: Rakenduseomane
+    twemoji: Twemoji
   errors:
     '400': Esitatud päring oli vigane või valesti vormindatud.
     '403': Sul puudub õigus seda lehte vaadata.
@@ -1850,6 +1882,7 @@ et:
     edited_at_html: Muudetud %{date}
     errors:
       in_reply_not_found: Postitus, millele üritad vastata, ei näi enam eksisteerivat.
+      quoted_status_not_found: Postitus, mida üritad tsiteerida, ei näi enam eksisteerivat.
     over_character_limit: tähtmärkide limiit %{max} ületatud
     pin_errors:
       direct: Ei saa kinnitada postitusi, mis on nähtavad vaid mainitud kasutajatele

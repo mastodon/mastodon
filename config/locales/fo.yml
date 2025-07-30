@@ -190,6 +190,7 @@ fo:
         create_relay: Stovna reiðlag
         create_unavailable_domain: Stovna navnaøki, sum ikki er tøkt
         create_user_role: Stovna leiklut
+        create_username_block: Stovna brúkaranavnsreglu
         demote_user: Lækka brúkara í tign
         destroy_announcement: Strika kunngerð
         destroy_canonical_email_block: Strika t-postablokk
@@ -203,6 +204,7 @@ fo:
         destroy_status: Strika post
         destroy_unavailable_domain: Strika navnaøki, sum ikki er tøkt
         destroy_user_role: Bein burtur leiklut
+        destroy_username_block: Strika brúkaranavnsreglu
         disable_2fa_user: Ger 2FA óvirkið
         disable_custom_emoji: Ger serligt kenslutekn óvirkið
         disable_relay: Ger reiðlag óvirkið
@@ -237,6 +239,7 @@ fo:
         update_report: Dagfør frágreiðing
         update_status: Dagfør Uppslag
         update_user_role: Dagfør Leiklut
+        update_username_block: Dagfør brúkaranavnsreglu
       actions:
         approve_appeal_html: "%{name} góðkendi umsjónaráheitan frá %{target}"
         approve_user_html: "%{name} góðtók umsókn frá %{target}"
@@ -255,6 +258,7 @@ fo:
         create_relay_html: "%{name} gjørdi eitt reiðlag %{target}"
         create_unavailable_domain_html: "%{name} steðgaði veiting til navnaøkið %{target}"
         create_user_role_html: "%{name} stovnaði %{target} leiklutin"
+        create_username_block_html: "%{name} legði reglu afturat fyri brúkaranøvn, sum innihalda %{target}"
         demote_user_html: "%{name} lækkaði tignina hjá brúkaranum %{target}"
         destroy_announcement_html: "%{name} strikaðar fráboðanir %{target}"
         destroy_canonical_email_block_html: "%{name} strikaði blokeringina av teldupostin við hashkodu %{target}"
@@ -268,6 +272,7 @@ fo:
         destroy_status_html: "%{name} slettaði upplegg hjá %{target}"
         destroy_unavailable_domain_html: "%{name} tók upp aftir veiting til navnaøkið %{target}"
         destroy_user_role_html: "%{name} slettaði leiklutin hjá %{target}"
+        destroy_username_block_html: "%{name} strikaði reglu fyri brúkaranøvn, sum innihalda %{target}"
         disable_2fa_user_html: "%{name} slepti kravið um váttan í tveimum stigum fyri brúkaran %{target}"
         disable_custom_emoji_html: "%{name} gjørdi kensluteknið %{target} óvirkið"
         disable_relay_html: "%{name} gjørdi reiðlagið %{target} óvirkið"
@@ -302,6 +307,7 @@ fo:
         update_report_html: "%{name} dagførdi meldingina %{target}"
         update_status_html: "%{name} dagførdi postin hjá %{target}"
         update_user_role_html: "%{name} broyttir %{target} leiklutir"
+        update_username_block_html: "%{name} dagførdi reglu fyri brúkaranøvn, sum innihalda %{target}"
       deleted_account: strikað konta
       empty: Eingir loggar funnir.
       filter_by_action: Filtrera eftir atgerð
@@ -1085,6 +1091,25 @@ fo:
           other: Brúkt av %{count} brúkarum seinastu vikuna
       title: Tilmæli & rák
       trending: Vælumtókt
+    username_blocks:
+      add_new: Legg afturat
+      block_registrations: Blokera skrásetingar
+      comparison:
+        contains: Inniheldur
+        equals: Er tað sama sum
+      contains_html: Inniheldur %{string}
+      created_msg: Eydnaðist at leggja brúkaranavnsreglu afturat
+      delete: Strika
+      edit:
+        title: Broyt brúkaranavnsreglu
+      matches_exactly_html: Tað sama sum %{string}
+      new:
+        create: Stovna reglu
+        title: Stovna brúkaranavnsreglu
+      no_username_block_selected: Ongar brúkaranavnsreglur vóru broyttar, tí ongar vóru valdar
+      not_permitted: Ikki loyvt
+      title: Brúkaranavnsreglur
+      updated_msg: Eydnaðist at dagføra brúkaranavnsreglu
     warning_presets:
       add_new: Legg afturat
       delete: Strika
