@@ -12,7 +12,7 @@ import { initialize, mswLoader } from 'msw-storybook-addon';
 import { action } from 'storybook/actions';
 
 import type { LocaleData } from '@/mastodon/locales';
-import { reducerWithInitialState, rootReducer } from '@/mastodon/reducers';
+import { reducerWithInitialState } from '@/mastodon/reducers';
 import { defaultMiddleware } from '@/mastodon/store/store';
 import { mockHandlers, unhandledRequestHandler } from '@/testing/api';
 
@@ -49,12 +49,17 @@ const preview: Preview = {
     locale: 'en',
   },
   decorators: [
-    (Story, { parameters }) => {
+    (Story, { parameters, globals }) => {
+      const { locale } = globals as { locale: string };
       const { state = {} } = parameters;
-      let reducer = rootReducer;
-      if (typeof state === 'object' && state) {
-        reducer = reducerWithInitialState(state as Record<string, unknown>);
-      }
+      const reducer = reducerWithInitialState(
+        {
+          meta: {
+            locale,
+          },
+        },
+        state as Record<string, unknown>,
+      );
       const store = configureStore({
         reducer,
         middleware(getDefaultMiddleware) {
