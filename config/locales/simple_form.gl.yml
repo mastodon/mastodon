@@ -160,6 +160,10 @@ gl:
         name: Nome público do rol, se o rol se mostra como unha insignia
         permissions_as_keys: As usuarias con este rol terán acceso a...
         position: O rol superior decide nos conflitos en certas situacións. Algunhas accións só poden aplicarse sobre roles cunha prioridade menor
+      username_block:
+        allow_with_approval: No lugar de evitar a cración directa de contas, as contas mediante regras van precisar a túa aprobación
+        comparison: Ten en conta o Sunthorpe Problem cando se bloquean coincidencias parciais
+        username: Vai crear unha coincidencia sen importar se son maiúsculas ou minúsculas e homoglifos como «4» por «a» ou «3» por «e».
       webhook:
         events: Escoller eventos a enviar
         template: Crea o teu propio JSON interpolando variables. Déixao en branco para usar o JSON predeterminado.
@@ -371,6 +375,10 @@ gl:
         name: Nome
         permissions_as_keys: Permisos
         position: Prioridade
+      username_block:
+        allow_with_approval: Permitir crear contas con aprobación
+        comparison: Método de comparación
+        username: Palabra a comparar
       webhook:
         events: Eventos activados
         template: Modelo de carga

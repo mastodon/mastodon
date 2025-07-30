@@ -190,6 +190,7 @@ gl:
         create_relay: Crear Repetidor
         create_unavailable_domain: Crear dominio Non dispoñible
         create_user_role: Crear Rol
+        create_username_block: Crear regra para Identificadores
         demote_user: Degradar usuaria
         destroy_announcement: Eliminar anuncio
         destroy_canonical_email_block: Eliminar bloqueo do correo
@@ -203,6 +204,7 @@ gl:
         destroy_status: Eliminar publicación
         destroy_unavailable_domain: Eliminar dominio Non dispoñible
         destroy_user_role: Eliminar Rol
+        destroy_username_block: Eliminar regra para Identificadores
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar emoticona personalizada
         disable_relay: Desactivar Repetidor
@@ -237,6 +239,7 @@ gl:
         update_report: Actualización da denuncia
         update_status: Actualizar publicación
         update_user_role: Actualizar Rol
+        update_username_block: Actualizar regra para Identificadores
       actions:
         approve_appeal_html: "%{name} aprobou a apelación da decisión da moderación de %{target}"
         approve_user_html: "%{name} aprobou o rexistro de %{target}"
@@ -255,6 +258,7 @@ gl:
         create_relay_html: "%{name} creou un repetidor en %{target}"
         create_unavailable_domain_html: "%{name} deixou de interactuar co dominio %{target}"
         create_user_role_html: "%{name} creou o rol %{target}"
+        create_username_block_html: "%{name} engadiu unha regra para identificadores que contén %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
         destroy_announcement_html: "%{name} eliminou o anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o correo con suma de comprobación %{target}"
@@ -268,6 +272,7 @@ gl:
         destroy_status_html: "%{name} eliminou a publicación de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a interacción co dominio %{target}"
         destroy_user_role_html: "%{name} eliminou o rol %{target}"
+        destroy_username_block_html: "%{name} retirou unha regra para identificadores que contén %{target}"
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
         disable_relay_html: "%{name} desactivou o repetidor %{target}"
@@ -302,6 +307,7 @@ gl:
         update_report_html: "%{name} actualizou a denuncia %{target}"
         update_status_html: "%{name} actualizou a publicación de %{target}"
         update_user_role_html: "%{name} cambiou o rol %{target}"
+        update_username_block_html: "%{name} actualizou a regra para identificadores que contén %{target}"
       deleted_account: conta eliminada
       empty: Non se atoparon rexistros.
       filter_by_action: Filtrar por acción
@@ -1085,6 +1091,25 @@ gl:
           other: Utilizado por %{count} persoas na última semana
       title: Recomendacións e Suxestións
       trending: Popularidade
+    username_blocks:
+      add_new: Engadir nova
+      block_registrations: Bloqueo dos rexistros
+      comparison:
+        contains: Contén
+        equals: É igual a
+      contains_html: Contén %{string}
+      created_msg: Creouse correctamente a regra para identificadores
+      delete: Eliminar
+      edit:
+        title: Editar regra para identificadores
+      matches_exactly_html: É igual a %{string}
+      new:
+        create: Crear regra
+        title: Crear nova regra para identificadores
+      no_username_block_selected: Non se cambiou ningunha regra porque non se seleccionou ningunha
+      not_permitted: Non permitido
+      title: Regras para identificadores
+      updated_msg: Actualizouse correctamente a regra
     warning_presets:
       add_new: Engadir novo
       delete: Eliminar

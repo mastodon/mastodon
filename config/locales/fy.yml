@@ -190,6 +190,7 @@ fy:
         create_relay: Relay oanmeitsje
         create_unavailable_domain: Net beskikber domein oanmeitsje
         create_user_role: Rol oanmeitsje
+        create_username_block: Brûkersnammeregel oanmeitsje
         demote_user: Brûker degradearje
         destroy_announcement: Meidieling fuortsmite
         destroy_canonical_email_block: E-mailblokkade fuortsmite
@@ -203,6 +204,7 @@ fy:
         destroy_status: Toot fuortsmite
         destroy_unavailable_domain: Net beskikber domein fuortsmite
         destroy_user_role: Rol permanint fuortsmite
+        destroy_username_block: Brûkersnammeregel fuortsmite
         disable_2fa_user: Twa-stapsferifikaasje útskeakelje
         disable_custom_emoji: Lokale emoji útskeakelje
         disable_relay: Relay útskeakelje
@@ -237,6 +239,7 @@ fy:
         update_report: Rapportaazje bywurkje
         update_status: Berjocht bywurkje
         update_user_role: Rol bywurkje
+        update_username_block: Brûkersnammeregel bywurkje
       actions:
         approve_appeal_html: "%{name} hat it beswier tsjin de moderaasjemaatregel fan %{target} goedkard"
         approve_user_html: "%{name} hat de registraasje fan %{target} goedkard"
@@ -255,6 +258,7 @@ fy:
         create_relay_html: "%{name} hat in relay oanmakke %{target}"
         create_unavailable_domain_html: "%{name} hat de besoarging foar domein %{target} beëinige"
         create_user_role_html: "%{name} hat de rol %{target} oanmakke"
+        create_username_block_html: "%{name} hat in brûkersnammeregel mei %{target} tafoege"
         demote_user_html: Brûker %{target} is troch %{name} degradearre
         destroy_announcement_html: "%{name} hat de meidieling %{target} fuortsmiten"
         destroy_canonical_email_block_html: "%{name} hat it e-mailberjocht mei de hash %{target} deblokkearre"
@@ -268,6 +272,7 @@ fy:
         destroy_status_html: Berjocht fan %{target} is troch %{name} fuortsmiten
         destroy_unavailable_domain_html: "%{name} hat de besoarging foar domein %{target} opnij starte"
         destroy_user_role_html: "%{name} hat de rol %{target} fuortsmiten"
+        destroy_username_block_html: "%{name} hat in brûkersnammeregel mei %{target} fuortsmiten"
         disable_2fa_user_html: De fereaske twa-stapsferifikaasje foar %{target} is troch %{name} útskeakele
         disable_custom_emoji_html: Emoji %{target} is troch %{name} útskeakele
         disable_relay_html: "%{name} hat de relay %{target} útskeakele"
@@ -302,6 +307,7 @@ fy:
         update_report_html: Rapportaazje %{target} is troch %{name} bywurke
         update_status_html: "%{name} hat de berjochten %{target} bywurke"
         update_user_role_html: "%{name} hat de rol %{target} wizige"
+        update_username_block_html: "%{name} hat in brûkersnammeregel mei %{target} bywurke"
       deleted_account: fuortsmiten account
       empty: Gjin lochboeken fûn.
       filter_by_action: Op aksje filterje
@@ -1085,6 +1091,25 @@ fy:
           other: Dizze wike troch %{count} persoanen brûkt
       title: Oanrekommandaasjes & trends
       trending: Trending
+    username_blocks:
+      add_new: Nije tafoegje
+      block_registrations: Registraasjes blokkearje
+      comparison:
+        contains: Befettet
+        equals: Is lyk oan
+      contains_html: Befettet %{string}
+      created_msg: Brûkersnammeregel mei sukses oanmakke
+      delete: Fuortsmite
+      edit:
+        title: Brûkersnammeregel bywurkje
+      matches_exactly_html: Is lyk oan %{string}
+      new:
+        create: Regel oanmeitsje
+        title: Brûkersnammeregel oanmeitsje
+      no_username_block_selected: Der binne gjin brûkersnammeregels wizige, omdat der gjin ien selektearre waard
+      not_permitted: Net tastien
+      title: Brûkersnammeregels
+      updated_msg: Brûkersnammeregel mei sukses bywurke
     warning_presets:
       add_new: Nije tafoegje
       delete: Fuortsmite
@@ -1872,6 +1897,7 @@ fy:
     edited_at_html: Bewurke op %{date}
     errors:
       in_reply_not_found: It berjocht wêrop jo probearje te reagearjen liket net te bestean.
+      quoted_status_not_found: It berjocht dy’t jo probearje te sitearjen liket net te bestean.
     over_character_limit: Oer de limyt fan %{max} tekens
     pin_errors:
       direct: Berjochten dy’t allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde

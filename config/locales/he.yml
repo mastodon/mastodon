@@ -196,6 +196,7 @@ he:
         create_relay: יצירת ממסר
         create_unavailable_domain: יצירת דומיין בלתי זמין
         create_user_role: יצירת תפקיד
+        create_username_block: יצירת חוק שמות משתמש
         demote_user: הורדת משתמש בדרגה
         destroy_announcement: מחיקת הכרזה
         destroy_canonical_email_block: מחיקת חסימת דואל
@@ -209,6 +210,7 @@ he:
         destroy_status: מחיקת הודעה
         destroy_unavailable_domain: מחיקת דומיין בלתי זמין
         destroy_user_role: מחיקת תפקיד
+        destroy_username_block: מחיקת חוק שמות משתמש
         disable_2fa_user: השעיית זיהוי דו-גורמי
         disable_custom_emoji: השעיית אמוג'י מיוחד
         disable_relay: השבתת ממסר
@@ -243,6 +245,7 @@ he:
         update_report: עדכון דו"ח עבירה
         update_status: סטטוס עדכון
         update_user_role: עדכון תפקיד
+        update_username_block: עדכון חוק שמות משתמש
       actions:
         approve_appeal_html: "%{name} אישר/ה ערעור על החלטת מנהלי הקהילה מ-%{target}"
         approve_user_html: "%{name} אישר/ה הרשמה מ-%{target}"
@@ -261,6 +264,7 @@ he:
         create_relay_html: "%{name} יצרו את הממסר %{target}"
         create_unavailable_domain_html: "%{name} הפסיק/ה משלוח לדומיין %{target}"
         create_user_role_html: "%{name} יצר את התפקיד של %{target}"
+        create_username_block_html: "%{name} הוסיפו חוק לשמות משתמש המכילים %{target}"
         demote_user_html: "%{name} הוריד/ה בדרגה את המשתמש %{target}"
         destroy_announcement_html: "%{name} מחק/ה את ההכרזה %{target}"
         destroy_canonical_email_block_html: "%{name} הסירו חסימה מדואל %{target}"
@@ -274,6 +278,7 @@ he:
         destroy_status_html: ההודעה של %{target} הוסרה ע"י %{name}
         destroy_unavailable_domain_html: "%{name} התחיל/ה מחדש משלוח לדומיין %{target}"
         destroy_user_role_html: "%{name} ביטל את התפקיד של %{target}"
+        destroy_username_block_html: "%{name} הסירו חוק לשמות משתמש המכילים %{target}"
         disable_2fa_user_html: "%{name} ביטל/ה את הדרישה לאימות דו-גורמי למשתמש %{target}"
         disable_custom_emoji_html: "%{name} השבית/ה את האמוג'י %{target}"
         disable_relay_html: "%{name} השביתו את הממסר %{target}"
@@ -308,6 +313,7 @@ he:
         update_report_html: '%{name} עדכן/ה דו"ח %{target}'
         update_status_html: "%{name} עדכן/ה הודעה של %{target}"
         update_user_role_html: "%{name} שינה את התפקיד של %{target}"
+        update_username_block_html: "%{name} עידכנו חוק לשמות משתמש המכילים %{target}"
       deleted_account: חשבון מחוק
       empty: לא נמצאו יומנים.
       filter_by_action: סינון לפי פעולה
@@ -1121,6 +1127,25 @@ he:
           two: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
       title: המלצות ונושאים חמים
       trending: נושאים חמים
+    username_blocks:
+      add_new: הוספת חדש
+      block_registrations: חסימת הרשמות
+      comparison:
+        contains: מכיל
+        equals: שווה
+      contains_html: מכיל %{string}
+      created_msg: חוק שמות משתמשים נוצר בהצלחה
+      delete: מחיקה
+      edit:
+        title: עריכת חוק שמות משתמש
+      matches_exactly_html: מתאים ל־%{string}
+      new:
+        create: יצירת כלל
+        title: יצירת חוק חדש לשמות משתמש
+      no_username_block_selected: לא בוצעו שינויים בחוקי בחירת שמות שכן לא נבחרו כאלו
+      not_permitted: שמות אסורים
+      title: חוקי שמות
+      updated_msg: חוק שמות משתמשים עודכן בהצלחה
     warning_presets:
       add_new: הוספת חדש
       delete: למחוק

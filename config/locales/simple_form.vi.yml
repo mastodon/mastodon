@@ -159,6 +159,10 @@ vi:
         name: Tên công khai của vai trò, nếu vai trò được đặt để hiển thị dưới dạng huy hiệu
         permissions_as_keys: Người có vai trò này sẽ có quyền truy cập vào...
         position: Vai trò cao hơn sẽ có quyền quyết định xung đột trong các tình huống. Các vai trò có mức độ ưu tiên thấp hơn chỉ có thể thực hiện một số hành động nhất định
+      username_block:
+        allow_with_approval: Thay vì cấm đăng ký ngay lập tức, bạn sẽ duyệt phù hợp trước khi đăng ký
+        comparison: Xin hãy lưu ý đến Vấn đề Scunthorpe khi chặn các từ trùng khớp một phần
+        username: Sẽ được khớp bất kể chữ hoa và chữ tượng hình phổ biến như "4" cho "a" hoặc "3" cho "e"
       webhook:
         events: Chọn sự kiện để gửi
         template: Soạn JSON payload của riêng bạn bằng phép nội suy biến. Để trống để dùng JSON mặc định.
@@ -370,6 +374,10 @@ vi:
         name: Tên
         permissions_as_keys: Quyền
         position: Mức độ ưu tiên
+      username_block:
+        allow_with_approval: Cho đăng ký nhưng duyệt thủ công
+        comparison: Phương pháp so sánh
+        username: Khớp từ
       webhook:
         events: Những sự kiện đã bật
         template: Mẫu payload
