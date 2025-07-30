@@ -228,10 +228,7 @@ class User < ApplicationRecord
     self.last_sign_in_at     = old_current || new_current
     self.current_sign_in_at  = new_current
 
-    if new_sign_in
-      self.sign_in_count ||= 0
-      self.sign_in_count  += 1
-    end
+    increment(:sign_in_count) if new_sign_in
 
     save(validate: false) unless new_record?
     prepare_returning_user!
