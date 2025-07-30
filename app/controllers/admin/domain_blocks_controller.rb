@@ -36,7 +36,7 @@ module Admin
     end
 
     def edit
-      authorize :domain_block, :create?
+      authorize :domain_block, :update?
     end
 
     def create
