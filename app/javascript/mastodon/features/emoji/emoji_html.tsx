@@ -7,12 +7,13 @@ import type { CustomEmojiMapArg } from './types';
 
 type EmojiHTMLProps<Element extends ElementType = 'div'> = Omit<
   ComponentPropsWithoutRef<Element>,
-  'dangerouslySetInnerHTML'
+  'dangerouslySetInnerHTML' | 'className'
 > & {
   htmlString: string;
   extraEmojis?: CustomEmojiMapArg;
   as?: Element;
   shallow?: boolean;
+  className?: string;
 };
 
 export const ModernEmojiHTML = ({
@@ -20,6 +21,7 @@ export const ModernEmojiHTML = ({
   htmlString,
   as: Wrapper = 'div', // Rename for syntax highlighting
   shallow,
+  className = '',
   ...props
 }: EmojiHTMLProps<ElementType>) => {
   const emojifiedHtml = useEmojify({
@@ -33,7 +35,11 @@ export const ModernEmojiHTML = ({
   }
 
   return (
-    <Wrapper {...props} dangerouslySetInnerHTML={{ __html: emojifiedHtml }} />
+    <Wrapper
+      {...props}
+      className={`${className} animate-parent`}
+      dangerouslySetInnerHTML={{ __html: emojifiedHtml }}
+    />
   );
 };
 
