@@ -129,7 +129,7 @@ module Admin
     end
 
     def requires_confirmation?
-      @domain_block.valid? && (@domain_block.new_record? || @domain_block.severity_changed?) && @domain_block.severity.to_s == 'suspend' && !params[:confirm]
+      @domain_block.valid? && (@domain_block.new_record? || @domain_block.severity_changed?) && @domain_block.suspend? && !params[:confirm]
     end
   end
 end
