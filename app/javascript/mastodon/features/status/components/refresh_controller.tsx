@@ -24,6 +24,11 @@ export const RefreshController: React.FC<{
   const refresh = useAppSelector(
     (state) => state.contexts.refreshing[statusId],
   );
+  const autoRefresh = useAppSelector(
+    (state) =>
+      !state.contexts.replies[statusId] ||
+      state.contexts.replies[statusId].length === 0,
+  );
   const dispatch = useAppDispatch();
   const intl = useIntl();
   const [ready, setReady] = useState(false);
@@ -39,6 +44,11 @@ export const RefreshController: React.FC<{
             dispatch(completeContextRefresh({ statusId }));
 
             if (result.async_refresh.result_count > 0) {
+              if (autoRefresh) {
+                void dispatch(fetchContext({ statusId }));
+                return '';
+              }
+
               setReady(true);
             }
           } else {
@@ -57,7 +67,7 @@ export const RefreshController: React.FC<{
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [dispatch, setReady, statusId, refresh]);
+  }, [dispatch, setReady, statusId, refresh, autoRefresh]);
 
   const handleClick = useCallback(() => {
     setLoading(true);
