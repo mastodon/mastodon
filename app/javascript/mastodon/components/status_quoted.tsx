@@ -3,19 +3,15 @@ import { useEffect, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 
 import type { Map as ImmutableMap } from 'immutable';
 
-import ArticleIcon from '@/material-icons/400-24px/article.svg?react';
-import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
-import { Icon } from 'mastodon/components/icon';
+import { LearnMoreLink } from 'mastodon/components/learn_more_link';
 import StatusContainer from 'mastodon/containers/status_container';
 import type { Status } from 'mastodon/models/status';
 import type { RootState } from 'mastodon/store';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
-import QuoteIcon from '../../images/quote.svg?react';
 import { fetchStatus } from '../actions/statuses';
 import { makeGetStatus } from '../selectors';
 
@@ -31,7 +27,6 @@ const QuoteWrapper: React.FC<{
         'status__quote--error': isError,
       })}
     >
-      <Icon id='quote' icon={QuoteIcon} className='status__quote-icon' />
       {children}
     </div>
   );
@@ -45,27 +40,20 @@ const NestedQuoteLink: React.FC<{
     accountId ? state.accounts.get(accountId) : undefined,
   );
 
-  const quoteAuthorName = account?.display_name_html;
+  const quoteAuthorName = account?.acct;
 
   if (!quoteAuthorName) {
     return null;
   }
 
-  const quoteAuthorElement = (
-    <span dangerouslySetInnerHTML={{ __html: quoteAuthorName }} />
-  );
-  const quoteUrl = `/@${account.get('acct')}/${status.get('id') as string}`;
-
   return (
-    <Link to={quoteUrl} className='status__quote-author-button'>
+    <div className='status__quote-author-button'>
       <FormattedMessage
         id='status.quote_post_author'
-        defaultMessage='Post by {name}'
-        values={{ name: quoteAuthorElement }}
+        defaultMessage='Quoted a post by @{name}'
+        values={{ name: quoteAuthorName }}
       />
-      <Icon id='chevron_right' icon={ChevronRightIcon} />
-      <Icon id='article' icon={ArticleIcon} />
-    </Link>
+    </div>
   );
 };
 
@@ -112,39 +100,42 @@ export const QuotedStatus: React.FC<{
         defaultMessage='Hidden due to one of your filters'
       />
     );
-  } else if (quoteState === 'deleted') {
-    quoteError = (
-      <FormattedMessage
-        id='status.quote_error.removed'
-        defaultMessage='This post was removed by its author.'
-      />
-    );
-  } else if (quoteState === 'unauthorized') {
-    quoteError = (
-      <FormattedMessage
-        id='status.quote_error.unauthorized'
-        defaultMessage='This post cannot be displayed as you are not authorized to view it.'
-      />
-    );
   } else if (quoteState === 'pending') {
     quoteError = (
-      <FormattedMessage
-        id='status.quote_error.pending_approval'
-        defaultMessage='This post is pending approval from the original author.'
-      />
+      <>
+        <FormattedMessage
+          id='status.quote_error.pending_approval'
+          defaultMessage='Post pending'
+        />
+
+        <LearnMoreLink>
+          <h6>
+            <FormattedMessage
+              id='status.quote_error.pending_approval_popout.title'
+              defaultMessage='Pending quote? Remain calm'
+            />
+          </h6>
+          <p>
+            <FormattedMessage
+              id='status.quote_error.pending_approval_popout.body'
+              defaultMessage='Quotes shared across the Fediverse may take time to display, as different servers have different protocols.'
+            />
+          </p>
+        </LearnMoreLink>
+      </>
     );
-  } else if (quoteState === 'rejected' || quoteState === 'revoked') {
+  } else if (
+    !status ||
+    !quotedStatusId ||
+    quoteState === 'deleted' ||
+    quoteState === 'rejected' ||
+    quoteState === 'revoked' ||
+    quoteState === 'unauthorized'
+  ) {
     quoteError = (
       <FormattedMessage
-        id='status.quote_error.rejected'
-        defaultMessage='This post cannot be displayed as the original author does not allow it to be quoted.'
-      />
-    );
-  } else if (!status || !quotedStatusId) {
-    quoteError = (
-      <FormattedMessage
-        id='status.quote_error.not_found'
-        defaultMessage='This post cannot be displayed.'
+        id='status.quote_error.not_available'
+        defaultMessage='Post unavailable'
       />
     );
   }
@@ -168,7 +159,7 @@ export const QuotedStatus: React.FC<{
         isQuotedPost
         id={quotedStatusId}
         contextType={contextType}
-        avatarSize={40}
+        avatarSize={32}
       >
         {canRenderChildQuote && (
           <QuotedStatus
