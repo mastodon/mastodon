@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { accountFactoryState } from '@/testing/factories';
 
-import { DisplayName } from '.';
+import { DisplayName, LinkedDisplayName } from '.';
 
 type PageProps = Omit<ComponentProps<typeof DisplayName>, 'account'> & {
   name: string;
@@ -65,5 +65,17 @@ export const LocalUser: Story = {
     username: 'locale',
     name: 'Local User',
     localDomain: '',
+  },
+};
+
+export const Linked: Story = {
+  render({ name, username, loading, ...args }) {
+    const account = !loading
+      ? accountFactoryState({
+          display_name: name,
+          acct: username,
+        })
+      : undefined;
+    return <LinkedDisplayName {...args} account={account} />;
   },
 };

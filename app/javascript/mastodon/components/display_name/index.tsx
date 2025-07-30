@@ -1,6 +1,9 @@
 import type { ComponentPropsWithoutRef, FC } from 'react';
 import { useMemo } from 'react';
 
+import type { LinkProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 import { EmojiHTML } from '@/mastodon/features/emoji/emoji_html';
 import type { Account } from '@/mastodon/models/account';
 import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
@@ -52,36 +55,64 @@ export const DisplayName: FC<Props & ComponentPropsWithoutRef<'span'>> = ({
       </span>
     );
   }
+  const accountName = isModernEmojiEnabled()
+    ? account.get('display_name')
+    : account.get('display_name_html');
   if (simple) {
     return (
-      <EmojiHTML
-        {...props}
-        htmlString={
-          isModernEmojiEnabled()
-            ? account.get('display_name')
-            : account.get('display_name_html')
-        }
-        shallow
-        as='span'
-      />
+      <bdi>
+        <EmojiHTML {...props} htmlString={accountName} shallow as='span' />
+      </bdi>
     );
   }
+
   return (
     <span {...props} className={`display-name ${className}`}>
       <bdi>
         <EmojiHTML
           {...props}
           className={`display-name__html ${className}`}
-          htmlString={
-            isModernEmojiEnabled()
-              ? account.get('display_name')
-              : account.get('display_name_html')
-          }
+          htmlString={accountName}
           shallow
           as='strong'
         />
       </bdi>
       {username && <span className='display-name__account'>{username}</span>}
     </span>
+  );
+};
+
+export const LinkedDisplayName: FC<
+  Props & { asProps?: ComponentPropsWithoutRef<'span'> } & Partial<LinkProps>
+> = ({
+  account,
+  asProps = {},
+  className,
+  localDomain,
+  simple,
+  noDomain,
+  ...linkProps
+}) => {
+  const displayProps = {
+    account,
+    className,
+    localDomain,
+    simple,
+    noDomain,
+    ...asProps,
+  };
+  if (!account) {
+    return <DisplayName {...displayProps} />;
+  }
+
+  return (
+    <Link
+      to={`/@${account.acct}`}
+      title={`@${account.acct}`}
+      data-hover-card-account={account.id}
+      {...linkProps}
+    >
+      <DisplayName {...displayProps} />
+    </Link>
   );
 };
