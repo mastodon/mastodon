@@ -190,6 +190,7 @@ de:
         create_relay: Relay erstellen
         create_unavailable_domain: Nicht verfügbare Domain erstellen
         create_user_role: Rolle erstellen
+        create_username_block: Regel für Profilnamen erstellen
         demote_user: Benutzer*in herabstufen
         destroy_announcement: Ankündigung löschen
         destroy_canonical_email_block: E-Mail-Sperre entfernen
@@ -203,6 +204,7 @@ de:
         destroy_status: Beitrag entfernen
         destroy_unavailable_domain: Nicht-verfügbare Domain entfernen
         destroy_user_role: Rolle entfernen
+        destroy_username_block: Regel für Profilnamen löschen
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Eigenes Emoji deaktivieren
         disable_relay: Relay deaktivieren
@@ -237,6 +239,7 @@ de:
         update_report: Meldung aktualisieren
         update_status: Beitrag aktualisieren
         update_user_role: Rolle bearbeiten
+        update_username_block: Regel für Profilnamen aktualisieren
       actions:
         approve_appeal_html: "%{name} hat den Einspruch gegen eine Moderationsentscheidung von %{target} genehmigt"
         approve_user_html: "%{name} genehmigte die Registrierung von %{target}"
@@ -255,6 +258,7 @@ de:
         create_relay_html: "%{name} erstellte ein Relay %{target}"
         create_unavailable_domain_html: "%{name} beendete die Zustellung an die Domain %{target}"
         create_user_role_html: "%{name} erstellte die Rolle %{target}"
+        create_username_block_html: "%{name} erstellte eine Regel für Profilnamen mit %{target}"
         demote_user_html: "%{name} stufte %{target} herunter"
         destroy_announcement_html: "%{name} löschte die Ankündigung %{target}"
         destroy_canonical_email_block_html: "%{name} entsperrte die E-Mail mit dem Hash %{target}"
@@ -268,6 +272,7 @@ de:
         destroy_status_html: "%{name} entfernte einen Beitrag von %{target}"
         destroy_unavailable_domain_html: "%{name} nahm die Zustellung an die Domain %{target} wieder auf"
         destroy_user_role_html: "%{name} löschte die Rolle %{target}"
+        destroy_username_block_html: "%{name} entfernte eine Regel für Profilnamen mit %{target}"
         disable_2fa_user_html: "%{name} deaktivierte die Zwei-Faktor-Authentisierung für %{target}"
         disable_custom_emoji_html: "%{name} deaktivierte das Emoji %{target}"
         disable_relay_html: "%{name} deaktivierte das Relay %{target}"
@@ -302,6 +307,7 @@ de:
         update_report_html: "%{name} überarbeitete die Meldung %{target}"
         update_status_html: "%{name} überarbeitete einen Beitrag von %{target}"
         update_user_role_html: "%{name} änderte die Rolle von %{target}"
+        update_username_block_html: "%{name} aktualisierte eine Regel für Profilnamen mit %{target}"
       deleted_account: gelöschtes Konto
       empty: Protokolle nicht gefunden.
       filter_by_action: Nach Aktion filtern
@@ -1085,6 +1091,25 @@ de:
           other: In den vergangenen 7 Tagen von %{count} Profilen verwendet
       title: Empfehlungen & Trends
       trending: Angesagt
+    username_blocks:
+      add_new: Neue Regel
+      block_registrations: Registrierungen sperren
+      comparison:
+        contains: Enthält
+        equals: Entspricht
+      contains_html: Enthält %{string}
+      created_msg: Regel für Profilnamen erfolgreich erstellt
+      delete: Löschen
+      edit:
+        title: Regel für Profilnamen bearbeiten
+      matches_exactly_html: Entspricht %{string}
+      new:
+        create: Regel erstellen
+        title: Neue Regel für Profilnamen erstellen
+      no_username_block_selected: Keine Regeln für Profilnamen wurden geändert, weil keine ausgewählt wurde(n)
+      not_permitted: Nicht gestattet
+      title: Regeln für Profilnamen
+      updated_msg: Regel für Profilnamen erfolgreich aktualisiert
     warning_presets:
       add_new: Neu hinzufügen
       delete: Löschen

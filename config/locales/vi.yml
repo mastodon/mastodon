@@ -187,6 +187,7 @@ vi:
         create_relay: Tạo relay
         create_unavailable_domain: Bỏ liên hợp
         create_user_role: Tạo vai trò
+        create_username_block: Tạo quy tắc tên người dùng
         demote_user: Hạ vai trò
         destroy_announcement: Xóa thông báo
         destroy_canonical_email_block: Bỏ chặn địa chỉ email biến thể
@@ -200,6 +201,7 @@ vi:
         destroy_status: Xóa tút
         destroy_unavailable_domain: Cho phép liên hợp
         destroy_user_role: Xóa vai trò
+        destroy_username_block: Xóa quy tắc tên người dùng
         disable_2fa_user: Vô hiệu hóa 2FA
         disable_custom_emoji: Vô hiệu hóa emoji
         disable_relay: Tắt relay
@@ -234,6 +236,7 @@ vi:
         update_report: Cập nhật báo cáo
         update_status: Cập nhật tút
         update_user_role: Cập nhật vai trò
+        update_username_block: Cập nhật quy tắc tên người dùng
       actions:
         approve_appeal_html: "%{name} đã chấp nhận khiếu nại từ %{target}"
         approve_user_html: "%{name} đã chấp nhận đăng ký từ %{target}"
@@ -252,6 +255,7 @@ vi:
         create_relay_html: "%{name} đã tạo relay %{target}"
         create_unavailable_domain_html: "%{name} đã bỏ liên hợp với máy chủ %{target}"
         create_user_role_html: "%{name} đã tạo vai trò %{target}"
+        create_username_block_html: "%{name} thêm quy tắc cho tên người dùng chứa %{target}"
         demote_user_html: "%{name} đã hạ vai trò của %{target}"
         destroy_announcement_html: "%{name} đã xóa thông báo %{target}"
         destroy_canonical_email_block_html: "%{name} đã bỏ chặn địa chỉ email biến thể %{target}"
@@ -265,6 +269,7 @@ vi:
         destroy_status_html: "%{name} đã xóa tút của %{target}"
         destroy_unavailable_domain_html: "%{name} tiếp tục liên hợp với máy chủ %{target}"
         destroy_user_role_html: "%{name} đã xóa vai trò %{target}"
+        destroy_username_block_html: "%{name} xóa quy tắc cho tên người dùng chứa %{target}"
         disable_2fa_user_html: "%{name} đã vô hiệu hóa xác thực 2 bước của %{target}"
         disable_custom_emoji_html: "%{name} đã ẩn emoji %{target}"
         disable_relay_html: "%{name} đã tắt relay %{target}"
@@ -299,6 +304,7 @@ vi:
         update_report_html: "%{name} đã cập nhật báo cáo %{target}"
         update_status_html: "%{name} đã cập nhật tút của %{target}"
         update_user_role_html: "%{name} đã cập nhật vai trò %{target}"
+        update_username_block_html: "%{name} đã cập nhật quy tắc cho tên người dùng chứa %{target}"
       deleted_account: tài khoản đã xóa
       empty: Không tìm thấy bản ghi.
       filter_by_action: Theo hành động
@@ -1067,6 +1073,25 @@ vi:
           other: "%{count} người dùng tuần rồi"
       title: Đề xuất & Xu hướng
       trending: Xu hướng
+    username_blocks:
+      add_new: Thêm mới
+      block_registrations: Cấm đăng ký
+      comparison:
+        contains: Có chứa
+        equals: Tương tự
+      contains_html: Có chứa %{string}
+      created_msg: Đã tạo quy tắc tên người dùng thành công
+      delete: Xóa
+      edit:
+        title: Sửa quy tắc tên người dùng
+      matches_exactly_html: Có chứa %{string}
+      new:
+        create: Tạo quy tắc
+        title: Tạo quy tắc tên người dùng mới
+      no_username_block_selected: Chưa chọn quy tắc tên người dùng nào
+      not_permitted: Cấm
+      title: Quy tắc tên người dùng
+      updated_msg: Đã cập nhật quy tắc tên người dùng thành công
     warning_presets:
       add_new: Thêm mới
       delete: Xóa bỏ

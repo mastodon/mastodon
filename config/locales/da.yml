@@ -190,6 +190,7 @@ da:
         create_relay: Opret Videresendelse
         create_unavailable_domain: Opret Utilgængeligt Domæne
         create_user_role: Opret rolle
+        create_username_block: Opret brugernavn-regel
         demote_user: Degradér bruger
         destroy_announcement: Slet bekendtgørelse
         destroy_canonical_email_block: Slet e-mailblokering
@@ -203,6 +204,7 @@ da:
         destroy_status: Slet indlæg
         destroy_unavailable_domain: Slet Utilgængeligt Domæne
         destroy_user_role: Ødelæg rolle
+        destroy_username_block: Slet brugernavn-regel
         disable_2fa_user: Deaktivér 2FA
         disable_custom_emoji: Deaktivér tilpasset emoji
         disable_relay: Deaktivér Videresendelse
@@ -237,6 +239,7 @@ da:
         update_report: Opdatér anmeldelse
         update_status: Opdatér indlæg
         update_user_role: Opdatér rolle
+        update_username_block: Opdatér brugernavn-regel
       actions:
         approve_appeal_html: "%{name} godkendte moderationsafgørelsesappellen fra %{target}"
         approve_user_html: "%{name} godkendte tilmeldingen fra %{target}"
@@ -255,6 +258,7 @@ da:
         create_relay_html: "%{name} oprettede videresendelsen %{target}"
         create_unavailable_domain_html: "%{name} stoppede levering til domænet %{target}"
         create_user_role_html: "%{name} oprettede %{target}-rolle"
+        create_username_block_html: "%{name} tilføjede regel for brugernavne indeholdende %{target}"
         demote_user_html: "%{name} degraderede brugeren %{target}"
         destroy_announcement_html: "%{name} slettede bekendtgørelsen %{target}"
         destroy_canonical_email_block_html: "%{name} afblokerede e-mailen med hash'et %{target}"
@@ -268,6 +272,7 @@ da:
         destroy_status_html: "%{name} fjernede indlægget fra %{target}"
         destroy_unavailable_domain_html: "%{name} genoptog levering til domænet %{target}"
         destroy_user_role_html: "%{name} slettede %{target}-rolle"
+        destroy_username_block_html: "%{name} fjernede regel for brugernavne indeholdende %{target}"
         disable_2fa_user_html: "%{name} deaktiverede tofaktorkravet for brugeren %{target}"
         disable_custom_emoji_html: "%{name} deaktiverede emojien %{target}"
         disable_relay_html: "%{name} deaktiverede videresendelsen %{target}"
@@ -302,6 +307,7 @@ da:
         update_report_html: "%{name} opdaterede rapporten %{target}"
         update_status_html: "%{name} opdaterede indlægget fra %{target}"
         update_user_role_html: "%{name} ændrede %{target}-rolle"
+        update_username_block_html: "%{name} opdaterede regel for brugernavne indeholdende %{target}"
       deleted_account: slettet konto
       empty: Ingen logger fundet.
       filter_by_action: Filtrér efter handling
@@ -1085,6 +1091,25 @@ da:
           other: Brugt af %{count} personer den seneste uge
       title: Anbefalinger og trends
       trending: Trender
+    username_blocks:
+      add_new: Tilføj ny
+      block_registrations: Blokér registreringer
+      comparison:
+        contains: Indeholder
+        equals: Er lig
+      contains_html: Indeholder %{string}
+      created_msg: Brugernavn-regel er hermed oprettet
+      delete: Slet
+      edit:
+        title: Redigér brugernavn-regel
+      matches_exactly_html: Er lig med %{string}
+      new:
+        create: Opret regel
+        title: Opret ny brugernavn-regel
+      no_username_block_selected: Ingen brugernavn-regler ændret (ingen var valgt)
+      not_permitted: Ikke tilladt
+      title: Brugernavn-regler
+      updated_msg: Brugernavn-regel opdateret
     warning_presets:
       add_new: Tilføj ny
       delete: Slet
