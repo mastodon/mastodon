@@ -75,7 +75,7 @@ class ActivityPub::VerifyQuoteService < BaseService
     return if uri.nil? || @quote.quoted_status.present?
 
     status = ActivityPub::TagManager.instance.uri_to_resource(uri, Status)
-    raise Mastodon::RecursionLimitExceededError if @depth > MAX_SYNCHRONOUS_DEPTH
+    raise Mastodon::RecursionLimitExceededError if @depth > MAX_SYNCHRONOUS_DEPTH && status.nil?
 
     status ||= ActivityPub::FetchRemoteStatusService.new.call(uri, on_behalf_of: @quote.account.followers.local.first, prefetched_body:, request_id: @request_id, depth: @depth + 1)
 
