@@ -40,7 +40,7 @@ class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension
 
   def media_size
     value = [
-      MediaAttachment.sum(Arel.sql('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')),
+      MediaAttachment.sum(MediaAttachment.combined_media_file_size),
       CustomEmoji.sum(:image_file_size),
       PreviewCard.sum(:image_file_size),
       Account.sum(Arel.sql('COALESCE(avatar_file_size, 0) + COALESCE(header_file_size, 0)')),
