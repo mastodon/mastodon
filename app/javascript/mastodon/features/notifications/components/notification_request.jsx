@@ -20,6 +20,7 @@ import { IconButton } from 'mastodon/components/icon_button';
 import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { makeGetAccount } from 'mastodon/selectors';
 import { toCappedNumber } from 'mastodon/utils/numbers';
+import { DisplayName } from '@/mastodon/components/display_name';
 
 const getAccount = makeGetAccount();
 
@@ -96,7 +97,7 @@ export const NotificationRequest = ({ id, accountId, notificationsCount, checked
 
         <div className='notification-request__name'>
           <div className='notification-request__name__display-name'>
-            <bdi><strong dangerouslySetInnerHTML={{ __html: account?.get('display_name_html') }} /></bdi>
+            <DisplayName account={account} simple />
           </div>
 
           <span>@{account?.get('acct')}</span>

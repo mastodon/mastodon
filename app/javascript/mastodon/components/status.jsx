@@ -405,12 +405,24 @@ class Status extends ImmutablePureComponent {
     const matchedFilters = status.get('matched_filters');
 
     if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
-      const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
+      const name = (
+        <Link
+          to={`/@${status.getIn(['account', 'acct'])}`}
+          data-id={status.getIn(['account', 'id'])}
+          data-hover-card-account={status.getIn(['account', 'id'])}
+        >
+          <DisplayName
+            account={status.get('account')}
+            className="muted"
+            noDomain
+          />
+        </Link>
+      );
 
       prepend = (
-        <div className='status__prepend'>
-          <div className='status__prepend__icon'><Icon id='retweet' icon={RepeatIcon} /></div>
-          <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <Link data-id={status.getIn(['account', 'id'])} data-hover-card-account={status.getIn(['account', 'id'])} to={`/@${status.getIn(['account', 'acct'])}`} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></Link> }} />
+        <div className="status__prepend">
+          <Icon id='retweet' icon={RepeatIcon} className="status__prepend__icon" />
+          <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name }} />
         </div>
       );
 

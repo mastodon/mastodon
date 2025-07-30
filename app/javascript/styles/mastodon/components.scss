@@ -1655,21 +1655,22 @@ body > [data-popper-placement] {
   font-weight: 500;
   color: $dark-text-color;
 
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   &__icon {
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
-
-    .icon {
-      width: 16px;
-      height: 16px;
-    }
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
+    width: 16px;
+    height: 16px;
   }
 
   > span {

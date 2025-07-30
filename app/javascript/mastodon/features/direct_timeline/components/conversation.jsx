@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { createSelector } from '@reduxjs/toolkit';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -25,6 +25,7 @@ import StatusContent from 'mastodon/components/status_content';
 import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { autoPlayGif } from 'mastodon/initial_state';
 import { makeGetStatus } from 'mastodon/selectors';
+import { LinkedDisplayName } from '@/mastodon/components/display_name';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
@@ -147,15 +148,8 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
 
   menu.push({ text: intl.formatMessage(messages.delete), action: handleDelete });
 
-  const names = accounts.map(a => (
-    <Link to={`/@${a.get('acct')}`} key={a.get('id')} data-hover-card-account={a.get('id')}>
-      <bdi>
-        <strong
-          className='display-name__html'
-          dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }}
-        />
-      </bdi>
-    </Link>
+  const names = accounts.map(account => (
+    <LinkedDisplayName account={account} simple />
   )).reduce((prev, cur) => [prev, ', ', cur]);
 
   const handlers = {

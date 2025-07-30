@@ -29,6 +29,7 @@ import FollowRequestContainer from '../containers/follow_request_container';
 import { ModerationWarning } from './moderation_warning';
 import { RelationshipsSeveranceEvent } from './relationships_severance_event';
 import Report from './report';
+import { LinkedDisplayName } from '@/mastodon/components/display_name';
 
 const messages = defineMessages({
   favourite: { id: 'notification.favourite', defaultMessage: '{name} favorited your post' },
@@ -434,8 +435,7 @@ class Notification extends ImmutablePureComponent {
     }
 
     const targetAccount = report.get('target_account');
-    const targetDisplayNameHtml = { __html: targetAccount.get('display_name_html') };
-    const targetLink = <bdi><Link className='notification__display-name' title={targetAccount.get('acct')} data-hover-card-account={targetAccount.get('id')} to={`/@${targetAccount.get('acct')}`} dangerouslySetInnerHTML={targetDisplayNameHtml} /></bdi>;
+    const targetLink = <LinkedDisplayName account={targetAccount} className='notification__display-name' simple />
 
     return (
       <Hotkeys handlers={this.getHandlers()}>
@@ -457,8 +457,7 @@ class Notification extends ImmutablePureComponent {
   render () {
     const { notification } = this.props;
     const account          = notification.get('account');
-    const displayNameHtml  = { __html: account.get('display_name_html') };
-    const link             = <bdi><Link className='notification__display-name' href={`/@${account.get('acct')}`} title={account.get('acct')} data-hover-card-account={account.get('id')} to={`/@${account.get('acct')}`} dangerouslySetInnerHTML={displayNameHtml} /></bdi>;
+    const link             = <LinkedDisplayName account={account} className='notification__display-name' simple />;
 
     switch(notification.get('type')) {
     case 'follow':
