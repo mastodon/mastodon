@@ -61,13 +61,19 @@ export const DisplayName: FC<Props & ComponentPropsWithoutRef<'span'>> = ({
   if (simple) {
     return (
       <bdi>
-        <EmojiHTML {...props} htmlString={accountName} shallow as='span' />
+        <EmojiHTML
+          {...props}
+          className={`animate-parent ${className}`}
+          htmlString={accountName}
+          shallow
+          as='span'
+        />
       </bdi>
     );
   }
 
   return (
-    <span {...props} className={`display-name ${className}`}>
+    <span {...props} className={`display-name animate-parent ${className}`}>
       <bdi>
         <EmojiHTML
           {...props}

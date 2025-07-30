@@ -1,6 +1,7 @@
-import initialState from '@/mastodon/initial_state';
+import initialState, { autoPlayGif } from '@/mastodon/initial_state';
 import { loadWorker } from '@/mastodon/utils/workers';
 
+import { handleAnimateGif } from './handlers';
 import { toSupportedLocale } from './locale';
 import { emojiLogger } from './utils';
 
@@ -20,6 +21,11 @@ export function initializeEmoji() {
     } catch (err) {
       console.warn('Error creating web worker:', err);
     }
+  }
+
+  if (typeof document !== 'undefined' && !autoPlayGif) {
+    document.addEventListener('mouseover', handleAnimateGif, { passive: true });
+    document.addEventListener('mouseout', handleAnimateGif, { passive: true });
   }
 
   if (worker) {
@@ -51,16 +57,6 @@ export function initializeEmoji() {
   }
 }
 
-async function fallbackLoad() {
-  log('falling back to main thread for loading');
-  const { importCustomEmojiData } = await import('./loader');
-  await importCustomEmojiData();
-  await loadEmojiLocale(userLocale);
-  if (userLocale !== 'en') {
-    await loadEmojiLocale('en');
-  }
-}
-
 export async function loadEmojiLocale(localeString: string) {
   const locale = toSupportedLocale(localeString);
 
@@ -69,5 +65,15 @@ export async function loadEmojiLocale(localeString: string) {
   } else {
     const { importEmojiData } = await import('./loader');
     await importEmojiData(locale);
+  }
+}
+
+async function fallbackLoad() {
+  log('falling back to main thread for loading');
+  const { importCustomEmojiData } = await import('./loader');
+  await importCustomEmojiData();
+  await loadEmojiLocale(userLocale);
+  if (userLocale !== 'en') {
+    await loadEmojiLocale('en');
   }
 }
