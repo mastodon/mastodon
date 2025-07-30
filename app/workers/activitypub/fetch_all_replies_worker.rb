@@ -86,9 +86,7 @@ class ActivityPub::FetchAllRepliesWorker
 
     return if root_status_body.nil?
 
-    @batch.within do
-      FetchReplyWorker.perform_async(root_status_uri, { **options.deep_stringify_keys, 'prefetched_body' => root_status_body })
-    end
+    FetchReplyWorker.perform_async(root_status_uri, { **options.deep_stringify_keys.except('batch_id'), 'prefetched_body' => root_status_body })
 
     get_replies(root_status_body, MAX_PAGES, options)
   end
