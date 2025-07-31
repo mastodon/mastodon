@@ -19,8 +19,12 @@ export function isFeatureEnabled(feature: Features) {
 }
 
 export function isModernEmojiEnabled() {
-  return (
-    isFeatureEnabled('modern_emojis') &&
-    localStorage.getItem('experiments')?.split(',').includes('modern_emojis')
-  );
+  try {
+    return (
+      isFeatureEnabled('modern_emojis') &&
+      localStorage.getItem('experiments')?.split(',').includes('modern_emojis')
+    );
+  } catch {
+    return false;
+  }
 }
