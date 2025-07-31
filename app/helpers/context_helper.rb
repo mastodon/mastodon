@@ -39,6 +39,12 @@ module ContextHelper
       'automaticApproval' => { '@id' => 'gts:automaticApproval', '@type' => '@id' },
       'manualApproval' => { '@id' => 'gts:manualApproval', '@type' => '@id' },
     },
+    quote_authorizations: {
+      'gts' => 'https://gotosocial.org/ns#',
+      'quoteAuthorization' => { '@id' => 'https://w3id.org/fep/044f#quoteAuthorization', '@type' => '@id' },
+      'interactingObject' => { '@id' => 'gts:interactingObject' },
+      'interactionTarget' => { '@id' => 'gts:interactionTarget' },
+    },
   }.freeze
 
   def full_context

@@ -44,8 +44,7 @@ RSpec.describe ActivityPub::NoteSerializer do
 
   context 'with a quote' do
     let(:quoted_status) { Fabricate(:status) }
-    let(:approval_uri) { 'https://example.com/foo/bar' }
-    let!(:quote) { Fabricate(:quote, status: parent, quoted_status: quoted_status, approval_uri: approval_uri) }
+    let!(:quote) { Fabricate(:quote, status: parent, quoted_status: quoted_status, state: :accepted) }
 
     it 'has the expected shape' do
       expect(subject).to include({
@@ -53,7 +52,7 @@ RSpec.describe ActivityPub::NoteSerializer do
         'quote' => ActivityPub::TagManager.instance.uri_for(quote.quoted_status),
         'quoteUri' => ActivityPub::TagManager.instance.uri_for(quote.quoted_status),
         '_misskey_quote' => ActivityPub::TagManager.instance.uri_for(quote.quoted_status),
-        'quoteAuthorization' => approval_uri,
+        'quoteAuthorization' => ActivityPub::TagManager.instance.approval_uri_for(quote),
       })
     end
   end
