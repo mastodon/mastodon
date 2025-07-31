@@ -419,6 +419,23 @@ namespace :dev do
         activity_uri: 'https://foo/cross-account-quote',
         state: :accepted
       ).find_or_create_by!(id: 10_000_012)
+
+      quoted = Status.create_with(
+        text: 'This should have a preview card: https://joinmastodon.org',
+        account: showcase_account,
+        visibility: :public
+      ).find_or_create_by!(id: 10_000_028)
+      LinkCrawlWorker.perform_async(10_000_028)
+      quoting = Status.create_with(
+        text: 'This should quote a post with a preview card',
+        account: showcase_account,
+        visibility: :public
+      ).find_or_create_by!(id: 10_000_029)
+      Quote.create_with(
+        status: quoting,
+        quoted_status: quoted,
+        state: :accepted
+      ).find_or_create_by!(id: 10_000_013)
     end
   end
 end
