@@ -298,6 +298,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       if @status.quote.present?
         # If the quoted post has changed, discard the old object and create a new one
         if @status.quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(@status.quote.quoted_status) != quote_uri
+          # Revoke the quote while we get a chance… maybe this should be a `before_destroy` hook?
+          RevokeQuoteService.new.call(@status.quote) if @status.quote.quoted_account&.local? && @status.quote.accepted?
           @status.quote.destroy
           quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
           @quote_changed = true
