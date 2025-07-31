@@ -160,6 +160,10 @@ nl:
         name: Openbare naam van de rol, wanneer de rol als badge op profielpagina's wordt getoond
         permissions_as_keys: Gebruikers met deze rol hebben toegang tot...
         position: Een hogere rol beslist in bepaalde situaties over het oplossen van conflicten. Bepaalde acties kunnen alleen worden uitgevoerd op rollen met een lagere prioriteit
+      username_block:
+        allow_with_approval: In plaats van inschrijving helemaal te voorkomen, zullen overeenkomstige inschrijvingen jouw goedkeuring vereisen
+        comparison: Houd rekening met het Scunthorpe-probleem wanneer je gedeeltelijke overeenkomsten blokkeert
+        username: Wordt gezien als overeenkomst ongeacht de lettergrootte en gangbare lettervervangingen zoals "4" voor "a" of "3" voor "e"
       webhook:
         events: Selecteer de te verzenden gebeurtenissen
         template: Maak een eigen JSON payload aan met variabele interpolatie. Laat leeg voor standaard JSON.
@@ -371,6 +375,10 @@ nl:
         name: Naam
         permissions_as_keys: Rechten
         position: Prioriteit
+      username_block:
+        allow_with_approval: Registraties met goedkeuring toestaan
+        comparison: Methode van vergelijking
+        username: Overeen te komen woord
       webhook:
         events: Ingeschakelde gebeurtenissen
         template: Sjabloon Payload

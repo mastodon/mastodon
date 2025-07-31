@@ -190,6 +190,7 @@ el:
         create_relay: Δημιουργία Relay
         create_unavailable_domain: Δημιουργία Μη Διαθέσιμου Τομέα
         create_user_role: Δημιουργία Ρόλου
+        create_username_block: Δημιουργία Κανόνα Ονόματος Χρήστη
         demote_user: Υποβιβασμός Χρήστη
         destroy_announcement: Διαγραφή Ανακοίνωσης
         destroy_canonical_email_block: Διαγραφή Αποκλεισμού Email
@@ -203,6 +204,7 @@ el:
         destroy_status: Διαγραφή Ανάρτησης
         destroy_unavailable_domain: Διαγραφή Μη Διαθέσιμου Τομέα
         destroy_user_role: Καταστροφή Ρόλου
+        destroy_username_block: Διαγραφή Κανόνα Ονόματος Χρήστη
         disable_2fa_user: Απενεργοποίηση 2FA
         disable_custom_emoji: Απενεργοποίηση Προσαρμοσμένων Emoji
         disable_relay: Απενεργοποίηση Relay
@@ -237,6 +239,7 @@ el:
         update_report: Ενημέρωση Αναφοράς
         update_status: Ενημέρωση Ανάρτησης
         update_user_role: Ενημέρωση ρόλου
+        update_username_block: Ενημέρωση Κανόνα Ονόματος Χρήστη
       actions:
         approve_appeal_html: Ο/Η %{name} ενέκρινε την ένσταση της απόφασης των συντονιστών από %{target}
         approve_user_html: ο/η %{name} ενέκρινε την εγγραφή του %{target}
@@ -255,6 +258,7 @@ el:
         create_relay_html: Ο χρήστης %{name} δημιούργησε ένα relay %{target}
         create_unavailable_domain_html: Ο/Η %{name} σταμάτησε να τροφοδοτεί τον τομέα %{target}
         create_user_role_html: Ο/Η %{name} δημιούργησε ρόλο %{target}
+        create_username_block_html: "%{name} πρόσθεσε κανόνα για ονόματα χρηστών που περιέχουν %{target}"
         demote_user_html: Ο/Η %{name} υποβίβασε τον χρήστη %{target}
         destroy_announcement_html: Ο/Η %{name} διέγραψε την ανακοίνωση %{target}
         destroy_canonical_email_block_html: Ο χρήστης %{name} έκανε άρση αποκλεισμού email με το hash %{target}
@@ -268,6 +272,7 @@ el:
         destroy_status_html: Ο/Η %{name} αφαίρεσε την ανάρτηση του/της %{target}
         destroy_unavailable_domain_html: Ο/Η %{name} ξανάρχισε να τροφοδοτεί το domain %{target}
         destroy_user_role_html: Ο/Η %{name} διέγραψε τον ρόλο του %{target}
+        destroy_username_block_html: "%{name} αφαίρεσε κανόνα για ονόματα χρηστών που περιέχουν %{target}"
         disable_2fa_user_html: Ο/Η %{name} απενεργοποίησε την απαίτηση για ταυτοποίηση δύο παραγόντων για τον χρήστη %{target}
         disable_custom_emoji_html: Ο/Η %{name} απενεργοποίησε το emoji %{target}
         disable_relay_html: Ο χρήστης %{name} απενεργοποίησε το relay %{target}
@@ -302,6 +307,7 @@ el:
         update_report_html: Ο χρήστης %{name} ενημέρωσε την αναφορά %{target}
         update_status_html: Ο/Η %{name} ενημέρωσε την ανάρτηση του/της %{target}
         update_user_role_html: Ο/Η %{name} άλλαξε τον ρόλο %{target}
+        update_username_block_html: "%{name} ενημέρωσε κανόνα για ονόματα χρηστών που περιέχουν %{target}"
       deleted_account: διαγεγραμμένος λογαριασμός
       empty: Δεν βρέθηκαν αρχεία καταγραφής.
       filter_by_action: Φιλτράρισμα ανά ενέργεια
@@ -1085,6 +1091,25 @@ el:
           other: Χρησιμοποιήθηκε από %{count} άτομα την τελευταία εβδομάδα
       title: Προτάσεις και τάσεις
       trending: Τάσεις
+    username_blocks:
+      add_new: Προσθήκη νέου
+      block_registrations: Φραγή εγγραφών
+      comparison:
+        contains: Περιέχει
+        equals: Ισούται
+      contains_html: Περιέχει %{string}
+      created_msg: Ο κανόνας ονόματος χρήστη δημιουργήθηκε με επιτυχία
+      delete: Διαγραφή
+      edit:
+        title: Επεξεργασία κανόνα ονόματος χρήστη
+      matches_exactly_html: Ισούται με %{string}
+      new:
+        create: Δημιουργία κανόνα
+        title: Δημιουργία νέου κανόνα ονόματος χρήστη
+      no_username_block_selected: Δεν άλλαξαν οι κανόνες ονόματος χρήστη καθώς κανένας δεν επιλέχθηκε
+      not_permitted: Δεν επιτρέπεται
+      title: Κανόνες ονόματος χρήστη
+      updated_msg: Ο κανόνας ονόματος χρήστη ενημερώθηκε με επιτυχία
     warning_presets:
       add_new: Πρόσθεση νέου
       delete: Διαγραφή
