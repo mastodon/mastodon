@@ -160,6 +160,10 @@ it:
         name: Nome pubblico del ruolo, se il ruolo è impostato per essere visualizzato come distintivo
         permissions_as_keys: Gli utenti con questo ruolo avranno accesso a...
         position: Un ruolo più alto decide la risoluzione dei conflitti in determinate situazioni. Alcune azioni possono essere eseguite solo su ruoli con priorità più bassa
+      username_block:
+        allow_with_approval: Invece di impedire del tutto l'iscrizione, le iscrizioni corrispondenti richiederanno la tua approvazione
+        comparison: Si prega di tenere presente il problema di Scunthorpe quando si bloccano corrispondenze parziali
+        username: Coinciderà indipendentemente da lettere e omoglifi comuni come "4" per "a" o "3" per "e"
       webhook:
         events: Seleziona eventi da inviare
         template: Componi il tuo carico utile JSON utilizzando l'interpolazione variabile. Lascia vuoto per il JSON predefinito.
@@ -371,6 +375,10 @@ it:
         name: Nome
         permissions_as_keys: Permessi
         position: Priorità
+      username_block:
+        allow_with_approval: Consenti le registrazioni con approvazione
+        comparison: Metodo di confronto
+        username: Parola da abbinare
       webhook:
         events: Eventi abilitati
         template: Modello di carico utile

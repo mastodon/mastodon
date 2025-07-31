@@ -160,6 +160,10 @@ hu:
         name: A szerep nyilvános neve, ha a szerepet úgy állították be, hogy jelvényként látható legyen
         permissions_as_keys: A felhasználók ezzel a szereppel elérhetik a...
         position: A magasabb szerepkör oldja fel az ütközéseket bizonyos helyzetekben. Bizonyos műveleteket csak alacsonyabb prioritású szerepkörrel lehet elvégezni.
+      username_block:
+        allow_with_approval: A regisztráció azonnali megakadályozása helyett az illeszkedő regisztrációkhoz jóváhagyás szükséges
+        comparison: Vegye figyelembe a Scunthorpe-problémát, amikor részleges egyezéseket blokkol
+        username: Az illeszkedés egyezőnek tekinti a kis- és nagybetűket, valamint a gyakori homoglifákat, mint a „4” és az „a” vagy a „3” és az „e”
       webhook:
         events: Válaszd ki a küldendő eseményeket
         template: Saját JSON adatcsomagot állíthatsz össze változó-behelyettesítés használatával. Hagyd üresen az alapértelmezett JSON adatcsomaghoz.
@@ -371,6 +375,10 @@ hu:
         name: Név
         permissions_as_keys: Engedélyek
         position: Prioritás
+      username_block:
+        allow_with_approval: Regisztráció engedélyezése jóváhagyással
+        comparison: Összehasonlítás módja
+        username: Ellenőrzendő szó
       webhook:
         events: Engedélyezett események
         template: Adatcsomag sablon
