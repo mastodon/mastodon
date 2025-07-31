@@ -45,14 +45,7 @@ class ActivityPub::VerifyQuoteService < BaseService
       true
     end
 
-    # Always allow someone to quote posts in which they are mentioned
-    if @quote.quoted_status.active_mentions.exists?(mentions: { account_id: @quote.account_id })
-      @quote.accept!
-
-      true
-    else
-      false
-    end
+    false
   end
 
   def fetch_approval_object(uri, prefetched_body: nil)
