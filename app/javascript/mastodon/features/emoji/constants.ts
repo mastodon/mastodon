@@ -15,6 +15,17 @@ export const SKIN_TONE_CODES = [
   0x1f3ff, // Dark skin tone
 ] as const;
 
+// TODO: Test and create fallback for browsers that do not handle the /v flag.
+export const UNICODE_EMOJI_REGEX = /\p{RGI_Emoji}/v;
+// See: https://www.unicode.org/reports/tr51/#valid-emoji-tag-sequences
+export const UNICODE_FLAG_EMOJI_REGEX =
+  /\p{RGI_Emoji_Flag_Sequence}|\p{RGI_Emoji_Tag_Sequence}/v;
+export const CUSTOM_EMOJI_REGEX = /:([a-z0-9_]+):/i;
+export const ANY_EMOJI_REGEX = new RegExp(
+  `(${UNICODE_EMOJI_REGEX.source}|${CUSTOM_EMOJI_REGEX.source})`,
+  'gv',
+);
+
 // Emoji rendering modes. A mode is what we are using to render emojis, a style is what the user has selected.
 export const EMOJI_MODE_NATIVE = 'native';
 export const EMOJI_MODE_NATIVE_WITH_FLAGS = 'native-flags';
