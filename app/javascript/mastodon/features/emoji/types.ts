@@ -4,7 +4,6 @@ import type { FlatCompactEmoji, Locale } from 'emojibase';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 import type { CustomEmoji } from '@/mastodon/models/custom_emoji';
-import type { LimitedCache } from '@/mastodon/utils/cache';
 
 import type {
   EMOJI_MODE_NATIVE,
@@ -29,36 +28,31 @@ export interface EmojiAppState {
   darkTheme: boolean;
 }
 
-export interface UnicodeEmojiToken {
-  type: typeof EMOJI_TYPE_UNICODE;
-  code: string;
-}
-export interface CustomEmojiToken {
-  type: typeof EMOJI_TYPE_CUSTOM;
-  code: string;
-}
-export type EmojiToken = UnicodeEmojiToken | CustomEmojiToken;
+export type EmojiType = typeof EMOJI_TYPE_UNICODE | typeof EMOJI_TYPE_CUSTOM;
 
 export type CustomEmojiData = ApiCustomEmojiJSON;
 export type UnicodeEmojiData = FlatCompactEmoji;
 export type AnyEmojiData = CustomEmojiData | UnicodeEmojiData;
 
-export type EmojiStateMissing = typeof EMOJI_STATE_MISSING;
 export interface EmojiStateUnicode {
   type: typeof EMOJI_TYPE_UNICODE;
-  data: UnicodeEmojiData;
+  code: UnicodeEmojiData['hexcode'];
+  data?: UnicodeEmojiData;
 }
 export interface EmojiStateCustom {
   type: typeof EMOJI_TYPE_CUSTOM;
-  data: CustomEmojiRenderFields;
+  code: CustomEmojiRenderFields['shortcode'];
+  data?: CustomEmojiRenderFields;
 }
+
+export type EmojiStateMissing = typeof EMOJI_STATE_MISSING;
+export type EmojiLoadedState = Required<EmojiStateUnicode | EmojiStateCustom>;
+export type EmojiStateToken = Exclude<EmojiState, EmojiStateMissing>;
+
 export type EmojiState =
   | EmojiStateMissing
   | EmojiStateUnicode
   | EmojiStateCustom;
-export type EmojiLoadedState = EmojiStateUnicode | EmojiStateCustom;
-
-export type EmojiStateMap = LimitedCache<string, EmojiState>;
 
 export type CustomEmojiMapArg =
   | ExtraCustomEmojiMap
@@ -68,9 +62,3 @@ export type CustomEmojiRenderFields = Pick<
   'shortcode' | 'static_url' | 'url'
 >;
 export type ExtraCustomEmojiMap = Record<string, CustomEmojiRenderFields>;
-
-export interface TwemojiBorderInfo {
-  hexCode: string;
-  hasLightBorder: boolean;
-  hasDarkBorder: boolean;
-}

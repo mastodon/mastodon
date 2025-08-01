@@ -14,7 +14,6 @@ import type {
   EmojiAppState,
   ExtraCustomEmojiMap,
 } from './types';
-import { stringHasAnyEmoji } from './utils';
 
 export function useEmojify(text: string, extraEmojis?: CustomEmojiMapArg) {
   const [emojifiedText, setEmojifiedText] = useState<string | null>(null);
@@ -36,25 +35,23 @@ export function useEmojify(text: string, extraEmojis?: CustomEmojiMapArg) {
   }, [extraEmojis]);
 
   const emojify = useCallback(
-    async (input: string) => {
+    (input: string) => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = input;
-      const result = await emojifyElement(wrapper, appState, extra);
-      if (result) {
-        setEmojifiedText(result.innerHTML);
-      } else {
-        setEmojifiedText(input);
-      }
+      return emojifyElement(wrapper, appState, extra);
     },
     [appState, extra],
   );
   useLayoutEffect(() => {
-    if (isModernEmojiEnabled() && !!text.trim() && stringHasAnyEmoji(text)) {
-      void emojify(text);
-    } else {
-      // If no emoji or we don't want to render, fall back.
-      setEmojifiedText(text);
+    if (isModernEmojiEnabled() && !!text.trim()) {
+      const result = emojify(text);
+      if (result) {
+        setEmojifiedText(result.innerHTML);
+        return;
+      }
     }
+    // If no emoji or we don't want to render, fall back.
+    setEmojifiedText(text);
   }, [emojify, text]);
 
   return emojifiedText;
