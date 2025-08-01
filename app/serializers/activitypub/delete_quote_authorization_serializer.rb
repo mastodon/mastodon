@@ -7,11 +7,11 @@ class ActivityPub::DeleteQuoteAuthorizationSerializer < ActivityPub::Serializer
   attribute :virtual_object, key: :object
 
   def id
-    [object.approval_uri, '#delete'].join
+    [ActivityPub::TagManager.instance.approval_uri_for(object, check_approval: false), '#delete'].join
   end
 
   def virtual_object
-    object.approval_uri
+    ActivityPub::TagManager.instance.approval_uri_for(object, check_approval: false)
   end
 
   def type

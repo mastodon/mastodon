@@ -51,6 +51,13 @@ class ActivityPub::TagManager
     end
   end
 
+  def approval_uri_for(quote, check_approval: true)
+    return quote.approval_uri unless quote.quoted_account&.local?
+    return if check_approval && !quote.accepted?
+
+    account_quote_authorization_url(quote.quoted_account, quote)
+  end
+
   def key_uri_for(target)
     [uri_for(target), '#main-key'].join
   end
