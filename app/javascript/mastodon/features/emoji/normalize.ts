@@ -7,7 +7,6 @@ import {
   EMOJIS_WITH_DARK_BORDER,
   EMOJIS_WITH_LIGHT_BORDER,
 } from './constants';
-import type { TwemojiBorderInfo } from './types';
 
 // Misc codes that have special handling
 const SKIER_CODE = 0x26f7;
@@ -61,21 +60,18 @@ export const CODES_WITH_DARK_BORDER =
 export const CODES_WITH_LIGHT_BORDER =
   EMOJIS_WITH_LIGHT_BORDER.map(emojiToUnicodeHex);
 
-export function twemojiHasBorder(twemojiHex: string): TwemojiBorderInfo {
-  const normalizedHex = twemojiHex.toUpperCase();
-  let hasLightBorder = false;
-  let hasDarkBorder = false;
-  if (CODES_WITH_LIGHT_BORDER.includes(normalizedHex)) {
-    hasLightBorder = true;
+export function unicodeToTwemojiFilename(
+  unicodeHex: string,
+  darkMode: boolean,
+): string {
+  const hexCode = unicodeToTwemojiHex(unicodeHex);
+  if (
+    (!darkMode && CODES_WITH_LIGHT_BORDER.includes(hexCode)) ||
+    (darkMode && CODES_WITH_DARK_BORDER.includes(hexCode))
+  ) {
+    return `${hexCode}_border`;
   }
-  if (CODES_WITH_DARK_BORDER.includes(normalizedHex)) {
-    hasDarkBorder = true;
-  }
-  return {
-    hexCode: twemojiHex,
-    hasLightBorder,
-    hasDarkBorder,
-  };
+  return hexCode;
 }
 
 interface TwemojiSpecificEmoji {

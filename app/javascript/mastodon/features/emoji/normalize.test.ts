@@ -5,7 +5,7 @@ import { flattenEmojiData } from 'emojibase';
 import unicodeRawEmojis from 'emojibase-data/en/data.json';
 
 import {
-  twemojiHasBorder,
+  unicodeToTwemojiFilename,
   twemojiToUnicodeInfo,
   unicodeToTwemojiHex,
   CODES_WITH_DARK_BORDER,
@@ -70,10 +70,19 @@ describe('twemojiHasBorder', () => {
         ] as const;
       }),
   )('twemojiHasBorder for %s', ([hexCode, isLight, isDark], { expect }) => {
-    const result = twemojiHasBorder(hexCode);
-    expect(result).toHaveProperty('hexCode', hexCode);
-    expect(result).toHaveProperty('hasLightBorder', isLight);
-    expect(result).toHaveProperty('hasDarkBorder', isDark);
+    const lightResult = unicodeToTwemojiFilename(hexCode, false);
+    if (isLight) {
+      expect(lightResult).toBe(`${hexCode}_border`);
+    } else {
+      expect(lightResult).toBe(hexCode);
+    }
+
+    const darkResult = unicodeToTwemojiFilename(hexCode, true);
+    if (isDark) {
+      expect(darkResult).toBe(`${hexCode}_border`);
+    } else {
+      expect(darkResult).toBe(hexCode);
+    }
   });
 });
 
