@@ -41,40 +41,6 @@ RSpec.describe HomeHelper do
     end
   end
 
-  describe 'obscured_counter' do
-    context 'with a value of less than zero' do
-      let(:count) { -10 }
-
-      it 'returns the correct string' do
-        expect(helper.obscured_counter(count)).to eq '0'
-      end
-    end
-
-    context 'with a value of zero' do
-      let(:count) { 0 }
-
-      it 'returns the correct string' do
-        expect(helper.obscured_counter(count)).to eq '0'
-      end
-    end
-
-    context 'with a value of one' do
-      let(:count) { 1 }
-
-      it 'returns the correct string' do
-        expect(helper.obscured_counter(count)).to eq '1'
-      end
-    end
-
-    context 'with a value of more than one' do
-      let(:count) { 10 }
-
-      it 'returns the correct string' do
-        expect(helper.obscured_counter(count)).to eq '1+'
-      end
-    end
-  end
-
   describe 'field_verified_class' do
     subject { helper.field_verified_class(verified) }
 
