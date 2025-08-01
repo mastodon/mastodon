@@ -199,6 +199,7 @@ ga:
         create_relay: Cruthaigh Leaschraolacháin
         create_unavailable_domain: Cruthaigh Fearann ​​Gan Fáil
         create_user_role: Cruthaigh Ról
+        create_username_block: Cruthaigh Riail Ainm Úsáideora
         demote_user: Ísligh úsáideoir
         destroy_announcement: Scrios Fógra
         destroy_canonical_email_block: Scrios Bloc Ríomhphoist
@@ -212,6 +213,7 @@ ga:
         destroy_status: Scrios Postáil
         destroy_unavailable_domain: Scrios Fearann ​​Gan Fáil
         destroy_user_role: Scrios ról
+        destroy_username_block: Scrios an Riail Ainm Úsáideora
         disable_2fa_user: Díchumasaigh 2FA
         disable_custom_emoji: Díchumasaigh Emoji Saincheaptha
         disable_relay: Díchumasaigh Leaschraolacháin
@@ -246,6 +248,7 @@ ga:
         update_report: Tuairisc Nuashonraithe
         update_status: Nuashonraigh Postáil
         update_user_role: Nuashonraigh Ról
+        update_username_block: Nuashonraigh an Riail Ainm Úsáideora
       actions:
         approve_appeal_html: Cheadaigh %{name} achomharc ar chinneadh modhnóireachta ó %{target}
         approve_user_html: Cheadaigh %{name} clárú ó %{target}
@@ -264,6 +267,7 @@ ga:
         create_relay_html: Chruthaigh %{name} athsheoladh %{target}
         create_unavailable_domain_html: Chuir %{name} deireadh leis an seachadadh chuig fearann ​​%{target}
         create_user_role_html: Chruthaigh %{name} %{target} ról
+        create_username_block_html: Chuir %{name} riail leis d'ainmneacha úsáideora ina bhfuil %{target}
         demote_user_html: "%{name} úsáideoir scriosta %{target}"
         destroy_announcement_html: "%{name} fógra scriosta %{target}"
         destroy_canonical_email_block_html: "%{name} ríomhphost díchoiscthe leis an hash %{target}"
@@ -277,6 +281,7 @@ ga:
         destroy_status_html: Bhain %{name} postáil le %{target}
         destroy_unavailable_domain_html: D'athchrom %{name} ar an seachadadh chuig fearann ​​%{target}
         destroy_user_role_html: Scrios %{name} ról %{target}
+        destroy_username_block_html: Bhain %{name} riail as ainmneacha úsáideora ina bhfuil %{target}
         disable_2fa_user_html: Dhíchumasaigh %{name} riachtanas dhá fhachtóir don úsáideoir %{target}
         disable_custom_emoji_html: Dhíchumasaigh %{name} emoji %{target}
         disable_relay_html: Dhíchumasaigh %{name} an athsheoladh %{target}
@@ -311,6 +316,7 @@ ga:
         update_report_html: "%{name} tuairisc nuashonraithe %{target}"
         update_status_html: "%{name} postáil nuashonraithe faoi %{target}"
         update_user_role_html: D'athraigh %{name} ról %{target}
+        update_username_block_html: Nuashonraíodh riail %{name} le haghaidh ainmneacha úsáideora ina bhfuil %{target}
       deleted_account: cuntas scriosta
       empty: Níor aimsíodh aon logaí.
       filter_by_action: Scag de réir gnímh
@@ -1139,6 +1145,25 @@ ga:
           two: Úsáidte ag %{count} duine le seachtain anuas
       title: Moltaí & Treochtaí
       trending: Treocht
+    username_blocks:
+      add_new: Cuir nua leis
+      block_registrations: Clárúcháin blocála
+      comparison:
+        contains: Ina bhfuil
+        equals: Cothrom le
+      contains_html: Tá %{string} ann
+      created_msg: Cruthaíodh riail ainm úsáideora go rathúil
+      delete: Scrios
+      edit:
+        title: Cuir riail ainm úsáideora in eagar
+      matches_exactly_html: Cothrom le %{string}
+      new:
+        create: Cruthaigh riail
+        title: Cruthaigh riail ainm úsáideora nua
+      no_username_block_selected: Níor athraíodh aon rialacha ainm úsáideora mar nár roghnaíodh aon cheann acu
+      not_permitted: Ní cheadaítear
+      title: Rialacha ainm úsáideora
+      updated_msg: Nuashonraíodh an riail ainm úsáideora go rathúil
     warning_presets:
       add_new: Cuir nua leis
       delete: Scrios
@@ -2009,8 +2034,8 @@ ga:
       ownership: Ní féidir postáil duine éigin eile a phionnáil
       reblog: Ní féidir treisiú a phinnáil
     quote_policies:
-      followers: Leantóirí agus úsáideoirí luaite
-      nobody: Úsáideoirí luaite amháin
+      followers: Do leanúna amháin
+      nobody: Aon duine
       public: Gach duine
     title: '%{name}: "%{quote}"'
     visibilities:

@@ -1776,40 +1776,40 @@ ru:
     prompt: Переходите по ссылке только в том случае, если доверяете сайту, на который она ведёт.
     title: Вы покидаете %{instance}.
   relationships:
-    activity: Активность учётной записи
-    confirm_follow_selected_followers: Вы уверены, что хотите подписаться на выбранных подписчиков?
-    confirm_remove_selected_followers: Вы уверены, что хотите удалить выбранных подписчиков?
-    confirm_remove_selected_follows: Вы уверены, что хотите удалить выбранные подписки?
-    dormant: Заброшенная
+    activity: Фильтр по активности
+    confirm_follow_selected_followers: Вы уверены, что хотите взаимно подписаться на выбранных пользователей?
+    confirm_remove_selected_followers: Вы уверены, что хотите убрать выбранных пользователей из подписчиков?
+    confirm_remove_selected_follows: Вы уверены, что хотите отписаться от выбранных пользователей?
+    dormant: Неактивные
     follow_failure: Не удалось подписаться за некоторыми из выбранных аккаунтов.
-    follow_selected_followers: Подписаться на выбранных подписчиков
+    follow_selected_followers: Подписаться в ответ
     followers: Подписчики
     following: Подписки
     invited: Приглашённые
-    last_active: По последней активности
-    most_recent: По недавности
-    moved: Мигрировавшая
+    last_active: Сначала активные
+    most_recent: Сначала новые
+    moved: Перенаправленные
     mutual: Взаимные подписки
-    primary: Основная
-    relationship: Связь
-    remove_selected_domains: Удалить всех подписчиков для выбранных доменов
-    remove_selected_followers: Удалить выбранных подписчиков
+    primary: Действующие
+    relationship: Вид отношений
+    remove_selected_domains: Убрать всех подписчиков с того же сервера
+    remove_selected_followers: Убрать из подписчиков
     remove_selected_follows: Отписаться от выбранных пользователей
-    status: Статус учётной записи
+    status: Фильтр по состоянию учётной записи
   remote_follow:
     missing_resource: Поиск требуемого перенаправления URL для Вашей учётной записи завершился неудачей
   reports:
     errors:
-      invalid_rules: не ссылается на действительные правила
+      invalid_rules: должны соответствовать правилам сервера
   rss:
     content_warning: 'Предупреждение о содержании:'
     descriptions:
       account: Публичные посты @%{acct}
-      tag: 'Публичные посты отмеченные хэштегом #%{hashtag}'
+      tag: 'Публичные посты с хештегом #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Вы превысили лимит в %{limit} запланированных постов на указанный день
-    over_total_limit: Вы превысили лимит на %{limit} запланированных постов
-    too_soon: дата публикации должна быть в будущем
+    over_daily_limit: За сутки можно создать не более %{limit} отложенных постов
+    over_total_limit: Всего можно создать не более %{limit} отложенных постов
+    too_soon: задано слишком рано
   self_destruct:
     lead_html: К сожалению, <strong>%{domain}</strong> закрывается навсегда. Если вас учётная запись находиться здесь вы не сможете продолжить использовать его, но вы можете запросить резервную копию ваших данных.
     title: Этот сервер закрывается
@@ -1818,13 +1818,13 @@ ru:
     browser: Браузер
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
       firefox: Firefox
       generic: Неизвестный браузер
-      huawei_browser: Huawei Browser
+      huawei_browser: Браузер Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -1836,10 +1836,10 @@ ru:
       uc_browser: UC Browser
       unknown_browser: Неизвестный браузер
       weibo: Weibo
-    current_session: Текущая сессия
+    current_session: Текущий сеанс
     date: Дата
-    description: "%{browser} на %{platform}"
-    explanation: Здесь отображаются все браузеры, с которых выполнен вход в вашу учётную запись. Авторизованные приложения находятся в секции «Приложения».
+    description: "%{platform}, %{browser}"
+    explanation: Здесь перечислены все устройства, на которых вы используете свою учётную запись Mastodon. Также вы можете
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1848,46 +1848,46 @@ ru:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
-      kai_os: OS Кай
+      kai_os: KaiOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       unknown_platform: Неизвестная платформа
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: Завершить
-    revoke_success: Сессия завершена
-    title: Сессии
-    view_authentication_history: Посмотреть историю входов с учётной записью
+    revoke_success: Сеанс завершён
+    title: Сеансы
+    view_authentication_history: просмотреть историю входов в вашу учётную запись
   settings:
     account: Учётная запись
-    account_settings: Управление учётной записью
-    aliases: Псевдонимы учётной записи
+    account_settings: Настройки учётной записи
+    aliases: Связанные учётные записи
     appearance: Внешний вид
     authorized_apps: Приложения
     back: Назад в Mastodon
     delete: Удаление учётной записи
     development: Разработчикам
-    edit_profile: Изменить профиль
+    edit_profile: " Данные профиля"
     export: Экспорт
-    featured_tags: Избранные хэштеги
+    featured_tags: Рекомендации хештегов
     import: Импорт
     import_and_export: Импорт и экспорт
-    migrate: Миграция учётной записи
-    notifications: E-mail уведомление
+    migrate: Настройка перенаправления
+    notifications: Уведомления по эл. почте
     preferences: Настройки
     profile: Профиль
     relationships: Подписки и подписчики
     severed_relationships: Разорванные отношения
-    statuses_cleanup: Авто-удаление постов
+    statuses_cleanup: Автоудаление постов
     strikes: Замечания модерации
     two_factor_authentication: Подтверждение входа
     webauthn_authentication: Электронные ключи
   severed_relationships:
     download: Скачать (%{count})
     event_type:
-      account_suspension: Приостановка аккаунта (%{target_name})
-      domain_block: Приостановка сервера (%{target_name})
+      account_suspension: Пользователь был заблокирован модераторами (%{target_name})
+      domain_block: Сервер был заблокирован модераторами (%{target_name})
       user_domain_block: Вы заблокировали %{target_name}
     lost_followers: Потерянные подписчики
     lost_follows: Потерянные подписки

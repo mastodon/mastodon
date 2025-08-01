@@ -56,7 +56,7 @@ cs:
         scopes: Která API bude aplikace moct používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat jednotlivě.
         setting_aggregate_reblogs: Nezobrazovat nové boosty pro příspěvky, které byly nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
         setting_always_send_emails: Jinak nebudou e-mailové notifikace posílány, když Mastodon aktivně používáte
-        setting_default_quote_policy: Zmínení uživatelé mají vždy povoleno citovat. Toto nastavení se projeví pouze u příspěvků vytvořených s další verzí Mastodonu, ale můžete si vybrat vaše předvolby v předstihu
+        setting_default_quote_policy: Toto nastavení se projeví pouze u příspěvků vytvořených s další verzí Mastodon, ale svou předvolbu si můžete vybrat předem.
         setting_default_sensitive: Citlivá média jsou ve výchozím stavu skryta a mohou být zobrazena kliknutím
         setting_display_media_default: Skrývat média označená jako citlivá
         setting_display_media_hide_all: Vždy skrývat média
@@ -162,6 +162,10 @@ cs:
         name: Veřejný název role, pokud má být role zobrazena jako odznak
         permissions_as_keys: Uživatelé s touto rolí budou moci...
         position: Vyšší role rozhoduje o řešení konfliktů v určitých situacích. Některé akce lze provádět pouze na rolích s nižší prioritou
+      username_block:
+        allow_with_approval: Namísto toho, aby se zabránilo registraci, bude vyžadováno vaše schválení
+        comparison: Mějte prosím na paměti 'Scunthorpe problém' při blokování částečných shod
+        username: Bude součástí shod bez ohledu na kapitalizace a běžné homoglyfy jako "4" pro "a" nebo "3" pro "e"
       webhook:
         events: Zvolte odesílané události
         template: Sestavte si vlastní JSON payload pomocí interpolace proměnných. Pro výchozí JSON ponechte prázdné.
@@ -373,6 +377,10 @@ cs:
         name: Název
         permissions_as_keys: Oprávnění
         position: Priorita
+      username_block:
+        allow_with_approval: Povolit registrace se schválením
+        comparison: Srovnávací metoda
+        username: Na základě slov
       webhook:
         events: Zapnuté události
         template: Šablona payloadu
