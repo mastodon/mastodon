@@ -103,7 +103,7 @@ export async function emojifyText(
   text: string,
   appState: EmojiAppState,
   extraEmojis: ExtraCustomEmojiMap = {},
-): Promise<string | null> {
+) {
   const cacheKey = createCacheKey(text, appState, extraEmojis);
   const cached = getCached(cacheKey);
   if (cached !== undefined) {

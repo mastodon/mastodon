@@ -15,6 +15,8 @@ import { DisplayName } from 'mastodon/components/display_name';
 import { Icon } from 'mastodon/components/icon';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
+import { handleAnimateEnter, handleAnimateLeave } from '../../emoji/handlers';
+
 import { EmbeddedStatusContent } from './embedded_status_content';
 
 export type Mention = RecordOf<{ url: string; acct: string }>;
@@ -76,31 +78,9 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
     [clickCoordinatesRef, statusId, account, history],
   );
 
-  const handleMouseEnter = useCallback<React.MouseEventHandler<HTMLDivElement>>(
-    ({ currentTarget }) => {
-      const emojis =
-        currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
+  const handleMouseEnter = useCallback(handleAnimateEnter, []);
 
-      for (const emoji of emojis) {
-        const newSrc = emoji.getAttribute('data-original');
-        if (newSrc) emoji.src = newSrc;
-      }
-    },
-    [],
-  );
-
-  const handleMouseLeave = useCallback<React.MouseEventHandler<HTMLDivElement>>(
-    ({ currentTarget }) => {
-      const emojis =
-        currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
-
-      for (const emoji of emojis) {
-        const newSrc = emoji.getAttribute('data-static');
-        if (newSrc) emoji.src = newSrc;
-      }
-    },
-    [],
-  );
+  const handleMouseLeave = useCallback(handleAnimateLeave, []);
 
   const handleContentWarningClick = useCallback(() => {
     dispatch(toggleStatusSpoilers(statusId));
@@ -123,7 +103,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
 
   return (
     <div
-      className='notification-group__embedded-status'
+      className='notification-group__embedded-status animate-parent'
       role='button'
       tabIndex={-1}
       onMouseDown={handleMouseDown}

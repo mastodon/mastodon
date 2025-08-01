@@ -20,15 +20,7 @@ export const MovedNote: React.FC<{
           id='account.moved_to'
           defaultMessage='{name} has indicated that their new account is now:'
           values={{
-            name: (
-              <bdi>
-                <strong
-                  dangerouslySetInnerHTML={{
-                    __html: from?.display_name_html ?? '',
-                  }}
-                />
-              </bdi>
-            ),
+            name: <DisplayName account={from} simple />,
           }}
         />
       </div>
