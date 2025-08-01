@@ -1,0 +1,28 @@
+- content_for :page_title do
+  = @instance.domain
+
+- content_for :heading do
+  %h2= t('admin.instances.instance.title', domain: @instance.domain)
+  = render partial: 'admin/instances/shared/links', locals: { instance: @instance }
+
+- if @instance.persisted?
+  %p.lead= t('admin.instances.statistics.subtitle', domain: @instance.domain)
+  .dashboard
+    .dashboard__item
+      = react_admin_component :dimension,
+                              dimension: 'instance_accounts',
+                              label: t('admin.instances.dashboard.instance_accounts_dimension'),
+                              params: { domain: @instance.domain },
+                              start_at: @time_period.first,
+                              end_at: @time_period.last,
+                              limit: 8
+    .dashboard__item
+      = react_admin_component :dimension,
+                              dimension: 'instance_languages',
+                              label: t('admin.instances.dashboard.instance_languages_dimension'),
+                              params: { domain: @instance.domain },
+                              start_at: @time_period.first,
+                              end_at: @time_period.last,
+                              limit: 8
+- else
+  %p.lead= t('admin.instances.availability.unknown_instance')

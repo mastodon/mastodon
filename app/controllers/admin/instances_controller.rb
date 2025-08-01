@@ -21,6 +21,15 @@ module Admin
       @action_logs = Admin::ActionLogFilter.new(target_domain: @instance.domain).results.limit(LOGS_LIMIT)
     end
 
+    def availability
+      authorize :instance, :show?
+    end
+
+    def statistics
+      authorize :instance, :show?
+      @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
+    end
+
     def destroy
       authorize :instance, :destroy?
       Admin::DomainPurgeWorker.perform_async(@instance.domain)
@@ -31,7 +40,7 @@ module Admin
     def clear_delivery_errors
       authorize :delivery, :clear_delivery_errors?
       @instance.delivery_failure_tracker.clear_failures!
-      redirect_to admin_instance_path(@instance.domain)
+      redirect_to availability_admin_instance_path(@instance.domain)
     end
 
     def restart_delivery
@@ -42,14 +51,14 @@ module Admin
         log_action :destroy, @instance.unavailable_domain
       end
 
-      redirect_to admin_instance_path(@instance.domain)
+      redirect_to availability_admin_instance_path(@instance.domain)
     end
 
     def stop_delivery
       authorize :delivery, :stop_delivery?
       unavailable_domain = UnavailableDomain.create!(domain: @instance.domain)
       log_action :create, unavailable_domain
-      redirect_to admin_instance_path(@instance.domain)
+      redirect_to availability_admin_instance_path(@instance.domain)
     end
 
     private

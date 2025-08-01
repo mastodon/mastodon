@@ -1,6 +1,10 @@
 - content_for :page_title do
   = @instance.domain
 
+- content_for :heading do
+  %h2= t('admin.instances.instance.title', domain: @instance.domain)
+  = render partial: 'admin/instances/shared/links', locals: { instance: @instance }
+
 - if current_user.can?(:view_dashboard)
   - content_for :heading_actions do
     = date_range(@time_period)
@@ -13,34 +17,49 @@
 
 %hr.spacer/
 
-%h3= t('admin.instances.content_policies.title')
+%h3= t('admin.instances.federation_policies.title')
 
 - if limited_federation_mode?
-  %p= t('admin.instances.content_policies.limited_federation_mode_description_html')
+  %p= t('admin.instances.federation_policies.limited_federation_mode_description_html')
 
   - if @instance.domain_allow
     = link_to t('admin.domain_allows.undo'), admin_domain_allow_path(@instance.domain_allow), class: 'button button--destructive', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
   - else
     = link_to t('admin.domain_allows.add_new'), admin_domain_allows_path(domain_allow: { domain: @instance.domain }), class: 'button', method: :post
 - else
-  %p= t('admin.instances.content_policies.description_html')
+  %p= t('admin.instances.federation_policies.description_html')
 
   - if @instance.domain_block
     .table-wrapper
       %table.table.horizontal-table
+        %thead
+          %tr
+            %th{ width: '28%' }
+            %th
         %tbody
           %tr
-            %th= t('admin.instances.content_policies.comment')
-            %td= @instance.domain_block.private_comment
+            %th= t('admin.instances.federation_policies.comment')
+            %td
+              - if @instance.domain_block.private_comment.present?
+                = @instance.domain_block.private_comment
+              - else
+                %em= t('admin.instances.federation_policies.no_comment')
           %tr
-            %th= t('admin.instances.content_policies.reason')
-            %td= @instance.domain_block.public_comment
+            %th= t('admin.instances.federation_policies.reason')
+            %td
+              - if @instance.domain_block.public_comment.present?
+                = @instance.domain_block.public_comment
+              - else
+                %em= t('admin.instances.federation_policies.no_comment')
           %tr
-            %th= t('admin.instances.content_policies.policy')
-            %td= @instance.domain_block.policies.map { |policy| t(policy, scope: 'admin.instances.content_policies.policies') }.join(' · ')
+            %th= t('admin.instances.federation_policies.policy')
+            %td= @instance.domain_block.policies.map { |policy| t(policy, scope: 'admin.instances.federation_policies.policies') }.join(' · ')
 
-    = link_to t('admin.domain_blocks.edit'), edit_admin_domain_block_path(@instance.domain_block), class: 'button'
-    = link_to t('admin.domain_blocks.undo'), admin_domain_block_path(@instance.domain_block), class: 'button', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
+    .button-group
+      = link_to t('admin.domain_blocks.edit'), edit_admin_domain_block_path(@instance.domain_block), class: 'button'
+      = link_to t('admin.domain_blocks.undo'), admin_domain_block_path(@instance.domain_block), class: 'button button-secondary', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
+      - if @instance.purgeable?
+        = link_to t('admin.instances.federation_policies.purge_data'), admin_instance_path(@instance), data: { confirm: t('admin.instances.confirm_purge'), method: :delete }, class: 'button button-tertiary button--destructive button-group__button--end'
   - else
     = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @instance.domain), class: 'button'
 
@@ -48,12 +67,13 @@
   %hr.spacer/
 
   %h3= t('admin.instances.audit_log.title')
+  %p= t('admin.instances.audit_log.description')
   - if @action_logs.empty?
     %p= t('accounts.nothing_here')
   - else
     .report-notes
       = render partial: 'admin/action_logs/action_log', collection: @action_logs
-    = link_to t('admin.instances.audit_log.view_all'), admin_action_logs_path(target_domain: @instance.domain), class: 'button'
+    = link_to t('admin.instances.audit_log.view_all'), admin_action_logs_path(target_domain: @instance.domain), class: 'button button-secondary'
 
 %hr.spacer/
 
@@ -71,35 +91,3 @@
 
     .actions
       = form.button :button, t('admin.instances.moderation_notes.create'), type: :submit
-
-- if @instance.persisted?
-  %hr.spacer/
-
-  %h3= t('admin.instances.availability.title')
-
-  %p
-    = t('admin.instances.availability.description_html', count: DeliveryFailureTracker::FAILURE_DAYS_THRESHOLD)
-
-  .availability-indicator
-    %ul.availability-indicator__graphic
-      - @instance.availability_over_days(14).each do |(date, failing)|
-        %li.availability-indicator__graphic__item{ class: failing ? 'negative' : 'neutral', title: l(date) }
-    .availability-indicator__hint
-      - if @instance.unavailable?
-        %span.negative-hint
-          = t('admin.instances.availability.failure_threshold_reached', date: l(@instance.unavailable_domain.created_at.to_date))
-          = link_to t('admin.instances.delivery.restart'), restart_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }
-      - elsif @instance.exhausted_deliveries_days.empty?
-        %span.positive-hint
-          = t('admin.instances.availability.no_failures_recorded')
-          = link_to t('admin.instances.delivery.stop'), stop_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }
-      - else
-        %span.negative-hint
-          = t('admin.instances.availability.failures_recorded', count: @instance.delivery_failure_tracker.days)
-          %span= link_to t('admin.instances.delivery.clear'), clear_delivery_errors_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post } unless @instance.exhausted_deliveries_days.empty?
-          %span= link_to t('admin.instances.delivery.stop'), stop_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }
-
-  - if @instance.purgeable?
-    %p= t('admin.instances.purge_description_html')
-
-    = link_to t('admin.instances.purge'), admin_instance_path(@instance), data: { confirm: t('admin.instances.confirm_purge'), method: :delete }, class: 'button button--destructive'

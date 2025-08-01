@@ -526,8 +526,9 @@ en:
       unsuppress: Restore follow recommendation
     instances:
       audit_log:
-        title: Recent Audit Logs
-        view_all: View full audit logs
+        description: These are the 5 most recent audit log entries relating to this instance.
+        title: Audit Logs
+        view_all: View all audit logs
       availability:
         description_html:
           one: If delivering to the domain fails <strong>%{count} day</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
@@ -537,25 +538,16 @@ en:
           one: Failed attempt on %{count} day.
           other: Failed attempts on %{count} different days.
         no_failures_recorded: No failures on record.
+        period_description: The bars shown are for delivery status over the last %{count} days.
+        subtitle: Instance availability measures how successfully we've been able to federate
         title: Availability
+        unknown_instance: There is no data available for this instance as this server doesn't currently federate with it.
         warning: The last attempt to connect to this server has been unsuccessful
       back_to_all: All
       back_to_limited: Limited
       back_to_warning: Warning
       by_domain: Domain
       confirm_purge: Are you sure you want to permanently delete data from this domain?
-      content_policies:
-        comment: Internal note
-        description_html: You can define content policies that will be applied to all accounts from this domain and any of its subdomains.
-        limited_federation_mode_description_html: You can chose whether to allow federation with this domain.
-        policies:
-          reject_media: Reject media
-          reject_reports: Reject reports
-          silence: Limit
-          suspend: Suspend
-        policy: Policy
-        reason: Public reason
-        title: Content policies
       dashboard:
         instance_accounts_dimension: Most followed accounts
         instance_accounts_measure: stored accounts
@@ -577,6 +569,22 @@ en:
       delivery_error_hint: If delivery is not possible for %{count} days, it will be automatically marked as undeliverable.
       destroyed_msg: Data from %{domain} is now queued for imminent deletion.
       empty: No domains found.
+      federation_policies:
+        comment: Private note
+        description_html: You can set a federation policy that will be applied to all accounts from this domain and any of its subdomains.
+        limited_federation_mode_description_html: You can chose whether to allow federation with this domain.
+        no_comment: None
+        policies:
+          reject_media: Reject media
+          reject_reports: Reject reports
+          silence: Limit
+          suspend: Suspend
+        policy: Policy
+        purge_data: Purge Data
+        reason: Public reason
+        title: Federation policy
+      instance:
+        title: Federation with %{domain}
       known_accounts:
         one: "%{count} known account"
         other: "%{count} known accounts"
@@ -593,15 +601,19 @@ en:
         title: Moderation Notes
       private_comment: Private comment
       public_comment: Public comment
-      purge: Purge
+      purge: Purge Data
       purge_description_html: If you believe this domain is offline for good, you can delete all account records and associated data from this domain from your storage. This may take a while.
+      purge_title: Purge Data
+      statistics:
+        subtitle: Below are a few statistics about %{domain}, that you may find interesting.
+        title: Statistics
       title: Federation
       total_blocked_by_us: Blocked by us
       total_followed_by_them: Followed by them
       total_followed_by_us: Followed by us
       total_reported: Reports about them
       total_storage: Media attachments
-      totals_time_period_hint_html: The totals displayed below include data for all time.
+      totals_time_period_hint_html: The totals displayed above include data for all time.
       unknown_instance: There is currently no record of this domain on this server.
     invites:
       deactivate_all: Deactivate all

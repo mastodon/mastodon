@@ -309,6 +309,27 @@ $content-width: 840px;
       font-weight: 500;
     }
 
+    em {
+      font-style: italic;
+    }
+
+    .lead {
+      font-size: 17px;
+      line-height: 22px;
+      color: $secondary-text-color;
+      margin-bottom: 30px;
+
+      a {
+        color: $highlight-text-color;
+      }
+    }
+
+    p.with-icon {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
     .fields-group h6 {
       color: $primary-text-color;
       font-weight: 500;
@@ -607,6 +628,25 @@ body,
 .simple_form.new_report_note,
 .simple_form.new_account_moderation_note {
   max-width: 100%;
+}
+
+.simple_form {
+  .actions {
+    margin-top: 15px;
+  }
+
+  .button {
+    font-size: 15px;
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+
+  &__button--end {
+    margin-left: auto;
+  }
 }
 
 .batch-form-box {
@@ -1835,7 +1875,7 @@ a.sparkline {
 .availability-indicator {
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 14px;
   line-height: 21px;
 

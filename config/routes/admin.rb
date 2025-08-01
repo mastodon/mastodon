@@ -87,6 +87,8 @@ namespace :admin do
 
   resources :instances, only: [:index, :show, :destroy], constraints: { id: %r{[^/]+} }, format: 'html' do
     member do
+      get :availability
+      get :statistics
       post :clear_delivery_errors
       post :restart_delivery
       post :stop_delivery
