@@ -75,12 +75,12 @@ describe('emojifyElement', () => {
     vi.restoreAllMocks();
   });
 
-  test('caches element rendering results', async () => {
+  test('caches element rendering results', () => {
     const { searchCustomEmojisByShortcodes, searchEmojisByHexcodes } =
       mockDatabase();
-    await emojifyElement(testElement(), testAppState());
-    await emojifyElement(testElement(), testAppState());
-    await emojifyElement(testElement(), testAppState());
+    emojifyElement(testElement(), testAppState());
+    emojifyElement(testElement(), testAppState());
+    emojifyElement(testElement(), testAppState());
     expect(searchEmojisByHexcodes).toHaveBeenCalledExactlyOnceWith(
       ['1F1EA-1F1FA', '1F60A'],
       'en',
@@ -90,9 +90,9 @@ describe('emojifyElement', () => {
     ]);
   });
 
-  test('emojifies custom emoji in native mode', async () => {
+  test('emojifies custom emoji in native mode', () => {
     const { searchEmojisByHexcodes } = mockDatabase();
-    const actual = await emojifyElement(
+    const actual = emojifyElement(
       testElement(),
       testAppState({ mode: EMOJI_MODE_NATIVE }),
     );
@@ -103,9 +103,9 @@ describe('emojifyElement', () => {
     expect(searchEmojisByHexcodes).not.toHaveBeenCalled();
   });
 
-  test('emojifies flag emoji in native-with-flags mode', async () => {
+  test('emojifies flag emoji in native-with-flags mode', () => {
     const { searchEmojisByHexcodes } = mockDatabase();
-    const actual = await emojifyElement(
+    const actual = emojifyElement(
       testElement(),
       testAppState({ mode: EMOJI_MODE_NATIVE_WITH_FLAGS }),
     );
@@ -116,10 +116,10 @@ describe('emojifyElement', () => {
     expect(searchEmojisByHexcodes).toHaveBeenCalledOnce();
   });
 
-  test('emojifies everything in twemoji mode', async () => {
+  test('emojifies everything in twemoji mode', () => {
     const { searchCustomEmojisByShortcodes, searchEmojisByHexcodes } =
       mockDatabase();
-    const actual = await emojifyElement(testElement(), testAppState());
+    const actual = emojifyElement(testElement(), testAppState());
     assert(actual);
     expect(actual.innerHTML).toBe(
       `<p>Hello ${expectedSmileImage}${expectedFlagImage}!</p><p>${expectedCustomEmojiImage}</p>`,
@@ -128,10 +128,10 @@ describe('emojifyElement', () => {
     expect(searchCustomEmojisByShortcodes).toHaveBeenCalledOnce();
   });
 
-  test('emojifies with provided custom emoji', async () => {
+  test('emojifies with provided custom emoji', () => {
     const { searchCustomEmojisByShortcodes, searchEmojisByHexcodes } =
       mockDatabase();
-    const actual = await emojifyElement(
+    const actual = emojifyElement(
       testElement('<p>hi :remote:</p>'),
       testAppState(),
       mockExtraCustom,
@@ -144,9 +144,9 @@ describe('emojifyElement', () => {
     expect(searchCustomEmojisByShortcodes).not.toHaveBeenCalled();
   });
 
-  test('returns null when no emoji are found', async () => {
+  test('returns null when no emoji are found', () => {
     mockDatabase();
-    const actual = await emojifyElement(
+    const actual = emojifyElement(
       testElement('<p>here is just text :)</p>'),
       testAppState(),
     );
@@ -155,25 +155,25 @@ describe('emojifyElement', () => {
 });
 
 describe('emojifyText', () => {
-  test('returns original input when no emoji are in string', async () => {
-    const actual = await emojifyText('nothing here', testAppState());
+  test('returns original input when no emoji are in string', () => {
+    const actual = emojifyText('nothing here', testAppState());
     expect(actual).toBe('nothing here');
   });
 
-  test('renders Unicode emojis to twemojis', async () => {
+  test('renders Unicode emojis to twemojis', () => {
     mockDatabase();
-    const actual = await emojifyText('Hello 😊🇪🇺!', testAppState());
+    const actual = emojifyText('Hello 😊🇪🇺!', testAppState());
     expect(actual).toBe(`Hello ${expectedSmileImage}${expectedFlagImage}!`);
   });
 
-  test('renders custom emojis', async () => {
+  test('renders custom emojis', () => {
     mockDatabase();
-    const actual = await emojifyText('Hello :custom:!', testAppState());
+    const actual = emojifyText('Hello :custom:!', testAppState());
     expect(actual).toBe(`Hello ${expectedCustomEmojiImage}!`);
   });
 
-  test('renders provided extra emojis', async () => {
-    const actual = await emojifyText(
+  test('renders provided extra emojis', () => {
+    const actual = emojifyText(
       'remote emoji :remote:',
       testAppState(),
       mockExtraCustom,
@@ -184,15 +184,15 @@ describe('emojifyText', () => {
 
 describe('tokenizeText', () => {
   test('returns empty array for string with only whitespace', () => {
-    expect(tokenizeText('   \n')).toEqual([]);
+    expect(tokenizeText('   \n', EMOJI_MODE_TWEMOJI)).toEqual([]);
   });
 
   test('returns an array of text to be a single token', () => {
-    expect(tokenizeText('Hello')).toEqual(['Hello']);
+    expect(tokenizeText('Hello', EMOJI_MODE_TWEMOJI)).toEqual(['Hello']);
   });
 
   test('returns tokens for text with emoji', () => {
-    expect(tokenizeText('Hello 😊 🇿🇼!!')).toEqual([
+    expect(tokenizeText('Hello 😊 🇿🇼!!', EMOJI_MODE_TWEMOJI)).toEqual([
       'Hello ',
       {
         type: 'unicode',
@@ -208,7 +208,7 @@ describe('tokenizeText', () => {
   });
 
   test('returns tokens for text with custom emoji', () => {
-    expect(tokenizeText('Hello :smile:!!')).toEqual([
+    expect(tokenizeText('Hello :smile:!!', EMOJI_MODE_TWEMOJI)).toEqual([
       'Hello ',
       {
         type: 'custom',
@@ -219,7 +219,7 @@ describe('tokenizeText', () => {
   });
 
   test('handles custom emoji with underscores and numbers', () => {
-    expect(tokenizeText('Hello :smile_123:!!')).toEqual([
+    expect(tokenizeText('Hello :smile_123:!!', EMOJI_MODE_TWEMOJI)).toEqual([
       'Hello ',
       {
         type: 'custom',
@@ -230,7 +230,7 @@ describe('tokenizeText', () => {
   });
 
   test('returns tokens for text with mixed emoji', () => {
-    expect(tokenizeText('Hello 😊 :smile:!!')).toEqual([
+    expect(tokenizeText('Hello 😊 :smile:!!', EMOJI_MODE_TWEMOJI)).toEqual([
       'Hello ',
       {
         type: 'unicode',
@@ -246,7 +246,7 @@ describe('tokenizeText', () => {
   });
 
   test('does not capture custom emoji with invalid characters', () => {
-    expect(tokenizeText('Hello :smile-123:!!')).toEqual([
+    expect(tokenizeText('Hello :smile-123:!!', EMOJI_MODE_TWEMOJI)).toEqual([
       'Hello :smile-123:!!',
     ]);
   });

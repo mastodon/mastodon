@@ -1062,6 +1062,11 @@ body > [data-popper-placement] {
   img {
     width: auto;
   }
+
+  // TODO: Make this look actually nice
+  &.loading {
+    background-color: grey;
+  }
 }
 
 .status__content--with-action {
