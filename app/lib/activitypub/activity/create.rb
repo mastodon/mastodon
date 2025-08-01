@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
-  include FormattingHelper
-
   def perform
     @account.schedule_refresh_if_stale!
 
@@ -90,15 +88,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       object: @object
     )
 
-    attachment_ids = process_attachments.take(Status::MEDIA_ATTACHMENTS_LIMIT).map(&:id)
+    attachment_ids = process_attachments(!supported_object_type? && supported_preview? ? @object['preview'] : @object).take(Status::MEDIA_ATTACHMENTS_LIMIT).map(&:id)
 
     @params = {
       uri: @status_parser.uri,
       url: @status_parser.url || @status_parser.uri,
       account: @account,
-      text: converted_object_type? ? converted_text : (@status_parser.text || ''),
+      text: @status_parser.text || '',
       language: @status_parser.language,
-      spoiler_text: converted_object_type? ? '' : (@status_parser.spoiler_text || ''),
+      spoiler_text: @status_parser.spoiler_text || '',
       created_at: @status_parser.created_at,
       edited_at: @status_parser.edited_at && @status_parser.edited_at != @status_parser.created_at ? @status_parser.edited_at : nil,
       override_timestamps: @options[:override_timestamps],
@@ -112,6 +110,28 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       poll: process_poll,
       quote_approval_policy: @status_parser.quote_policy,
     }
+
+    # If it's a Note or Question, we're done
+    return if supported_object_type?
+
+    # If it's an unsupported type, rely on the preview from FEP-b2b8 if available
+    if supported_preview?
+      preview_parser = ActivityPub::Parser::StatusParser.new(
+        @json,
+        followers_collection: @account.followers_url,
+        actor_uri: ActivityPub::TagManager.instance.uri_for(@account),
+        object: @object['preview']
+      )
+
+      @params[:text] = preview_parser.text || ''
+      @params[:spoiler_text] = preview_parser.spoiler_text || ''
+
+      return
+    end
+
+    # If there is no preview, fall back to building our own preview
+    @params[:text] = ActivityPub::PreviewBuilder.new(@status_parser).text
+    @params[:spoiler_text] = ''
   end
 
   def process_audience
@@ -277,12 +297,12 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
   end
 
-  def process_attachments
-    return [] if @object['attachment'].nil?
+  def process_attachments(parent)
+    return [] if parent['attachment'].nil?
 
     media_attachments = []
 
-    as_array(@object['attachment']).each do |attachment|
+    as_array(parent['attachment']).each do |attachment|
       media_attachment_parser = ActivityPub::Parser::MediaAttachmentParser.new(attachment)
 
       next if media_attachment_parser.remote_url.blank? || media_attachments.size >= Status::MEDIA_ATTACHMENTS_LIMIT
@@ -403,18 +423,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def in_reply_to_uri
     value_or_id(@object['inReplyTo'])
-  end
-
-  def converted_text
-    [formatted_title, @status_parser.spoiler_text.presence, formatted_url].compact.join("\n\n")
-  end
-
-  def formatted_title
-    "<h2>#{@status_parser.title}</h2>" if @status_parser.title.present?
-  end
-
-  def formatted_url
-    linkify(@status_parser.url || @status_parser.uri)
   end
 
   def unsupported_media_type?(mime_type)
