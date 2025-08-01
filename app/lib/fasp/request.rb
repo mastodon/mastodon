@@ -32,8 +32,12 @@ class Fasp::Request
                .send(verb, url, body:)
 
     validate!(response)
+    @provider.delivery_failure_tracker.track_success!
 
     response.parse if response.body.present?
+  rescue *::Mastodon::HTTP_CONNECTION_ERRORS
+    @provider.delivery_failure_tracker.track_failure!
+    raise
   end
 
   def request_headers(_verb, _url, body = '')
