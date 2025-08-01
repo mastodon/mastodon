@@ -33,6 +33,8 @@ class UsernameBlock < ApplicationRecord
 
   before_save :set_normalized_username
 
+  normalizes :normalized_username, with: ->(value) { value.downcase.gsub(Regexp.union(HOMOGLYPHS.keys), HOMOGLYPHS) }
+
   def comparison
     exact? ? 'equals' : 'contains'
   end
@@ -42,7 +44,7 @@ class UsernameBlock < ApplicationRecord
   end
 
   def self.matches?(str, allow_with_approval: false)
-    normalized_str = str.downcase.gsub(Regexp.union(HOMOGLYPHS.keys), HOMOGLYPHS)
+    normalized_str = normalize_value_for(:normalized_username, str)
     where(allow_with_approval: allow_with_approval).matches_exactly(normalized_str).or(matches_partially(normalized_str)).any?
   end
 
@@ -53,10 +55,6 @@ class UsernameBlock < ApplicationRecord
   private
 
   def set_normalized_username
-    self.normalized_username = normalize(username)
-  end
-
-  def normalize(str)
-    str.downcase.gsub(Regexp.union(HOMOGLYPHS.keys), HOMOGLYPHS)
+    self.normalized_username = username
   end
 end
