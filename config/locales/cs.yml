@@ -196,6 +196,7 @@ cs:
         create_relay: Vytvořit relay
         create_unavailable_domain: Vytvořit nedostupnou doménu
         create_user_role: Vytvořit roli
+        create_username_block: Vytvořit pravidlo pro uživatelská jména
         demote_user: Snížit roli uživatele
         destroy_announcement: Odstranit oznámení
         destroy_canonical_email_block: Odblokovat email
@@ -209,6 +210,7 @@ cs:
         destroy_status: Odstranit Příspěvek
         destroy_unavailable_domain: Smazat nedostupnou doménu
         destroy_user_role: Zničit roli
+        destroy_username_block: Odstranit pravidlo pro uživatelská jména
         disable_2fa_user: Vypnout 2FA
         disable_custom_emoji: Zakázat vlastní emoji
         disable_relay: Deaktivovat relay
@@ -243,6 +245,7 @@ cs:
         update_report: Upravit hlášení
         update_status: Aktualizovat Příspěvek
         update_user_role: Aktualizovat roli
+        update_username_block: Aktualizovat pravidlo pro uživatelská jména
       actions:
         approve_appeal_html: Uživatel %{name} schválil odvolání proti rozhodnutí moderátora %{target}
         approve_user_html: "%{name} schválil registraci od %{target}"
@@ -261,6 +264,7 @@ cs:
         create_relay_html: "%{name} vytvořil*a relay %{target}"
         create_unavailable_domain_html: "%{name} zastavil doručování na doménu %{target}"
         create_user_role_html: "%{name} vytvořil %{target} roli"
+        create_username_block_html: "%{name} přidali pravidlo pro uživatelská jména obsahující %{target}"
         demote_user_html: Uživatel %{name} degradoval uživatele %{target}
         destroy_announcement_html: Uživatel %{name} odstranil oznámení %{target}
         destroy_canonical_email_block_html: "%{name} odblokoval*a e-mail s hashem %{target}"
@@ -274,6 +278,7 @@ cs:
         destroy_status_html: Uživatel %{name} odstranil příspěvek uživatele %{target}
         destroy_unavailable_domain_html: "%{name} obnovil doručování na doménu %{target}"
         destroy_user_role_html: "%{name} odstranil %{target} roli"
+        destroy_username_block_html: "%{name} odstranili pravidlo pro uživatelská jména obsahující %{target}"
         disable_2fa_user_html: Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}
         disable_custom_emoji_html: Uživatel %{name} zakázal emoji %{target}
         disable_relay_html: "%{name} deaktivoval*a relay %{target}"
@@ -308,6 +313,7 @@ cs:
         update_report_html: "%{name} aktualizoval hlášení %{target}"
         update_status_html: Uživatel %{name} aktualizoval příspěvek uživatele %{target}
         update_user_role_html: "%{name} změnil %{target} roli"
+        update_username_block_html: "%{name} aktualizovali pravidlo pro uživatelská jména obsahující %{target}"
       deleted_account: smazaný účet
       empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
@@ -1121,6 +1127,25 @@ cs:
           other: Použit %{count} lidmi za poslední týden
       title: Doporučení & Trendy
       trending: Populární
+    username_blocks:
+      add_new: Přidat
+      block_registrations: Blokovat registrace
+      comparison:
+        contains: Obsahuje
+        equals: Rovná se
+      contains_html: Obsahuje %{string}
+      created_msg: Vytvořeno pravidlo pro uživatelská jména
+      delete: Smazat
+      edit:
+        title: Upravit pravidlo pro uživatelská jména
+      matches_exactly_html: Rovná se %{string}
+      new:
+        create: Vytvořit pravidlo
+        title: Vytvořit nové pravidlo pro uživatelská jména
+      no_username_block_selected: Nebyla změněna žádná pravidla pro uživatelská jména, protože žádná nebyla vybrána
+      not_permitted: Není povoleno
+      title: Pravidla uživatelských jmen
+      updated_msg: Pravidlo pro jména uživatelů bylo úspěšně aktualizováno
     warning_presets:
       add_new: Přidat nové
       delete: Smazat
@@ -1966,8 +1991,8 @@ cs:
       ownership: Nelze připnout příspěvek někoho jiného
       reblog: Boosty nelze připnout
     quote_policies:
-      followers: Sledující a zmínění uživatelé
-      nobody: Pouze zmínění uživatelé
+      followers: Pouze vaši sledující
+      nobody: Nikdo
       public: Všichni
     title: "%{name}: „%{quote}“"
     visibilities:
