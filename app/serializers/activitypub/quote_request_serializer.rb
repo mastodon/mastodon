@@ -23,6 +23,7 @@ class ActivityPub::QuoteRequestSerializer < ActivityPub::Serializer
   end
 
   def instrument
+    # TODO: inline object?
     ActivityPub::TagManager.instance.uri_for(object.status)
   end
 end
