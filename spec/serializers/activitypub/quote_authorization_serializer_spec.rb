@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::DeleteQuoteAuthorizationSerializer do
+RSpec.describe ActivityPub::QuoteAuthorizationSerializer do
   subject { serialized_record_json(quote, described_class, adapter: ActivityPub::Adapter) }
 
   describe 'serializing an object' do
@@ -12,9 +12,10 @@ RSpec.describe ActivityPub::DeleteQuoteAuthorizationSerializer do
     it 'returns expected attributes' do
       expect(subject.deep_symbolize_keys)
         .to include(
-          actor: eq(ActivityPub::TagManager.instance.uri_for(status.account)),
-          object: ActivityPub::TagManager.instance.approval_uri_for(quote, check_approval: false),
-          type: 'Delete'
+          attributedTo: eq(ActivityPub::TagManager.instance.uri_for(status.account)),
+          interactionTarget: ActivityPub::TagManager.instance.uri_for(status),
+          interactingObject: ActivityPub::TagManager.instance.uri_for(quote.status),
+          type: 'QuoteAuthorization'
         )
     end
   end

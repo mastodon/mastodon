@@ -10,7 +10,7 @@ RSpec.describe RevokeQuoteService do
 
   let(:status) { Fabricate(:status, account: alice) }
 
-  let(:quote) { Fabricate(:quote, quoted_status: status, state: :accepted, approval_uri: "https://#{Rails.configuration.x.web_domain}/approvals/1234") }
+  let(:quote) { Fabricate(:quote, quoted_status: status, state: :accepted) }
 
   before do
     hank.follow!(alice)
