@@ -93,14 +93,16 @@ class CompareHistoryModal extends PureComponent {
                   <ul>
                     {currentVersion.getIn(['poll', 'options']).map(option => (
                       <li key={option.get('title')}>
-                        <span className='poll__input disabled' />
-
-                        <EmojiHTML
-                          as="span"
-                          className='poll__option__text translate'
-                          htmlString={emojify(escapeTextContentForBrowser(option.get('title')), emojiMap)}
-                          lang={language}
-                        />
+                        <label className='poll__option editable'>
+                          {/* FIXME: does not support multiple choice, #35632 */}
+                          <span className='poll__input' />
+                          <EmojiHTML
+                            as="span"
+                            className='poll__option__text translate'
+                            htmlString={emojify(escapeTextContentForBrowser(option.get('title')), emojiMap)}
+                            lang={language}
+                          />
+                        </label>
                       </li>
                     ))}
                   </ul>
