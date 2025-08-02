@@ -43,11 +43,26 @@ class StatusEdit < ApplicationRecord
   scope :ordered, -> { order(id: :asc) }
 
   delegate :local?, :application, :edited?, :edited_at,
-           :discarded?, :visibility, :language, to: :status
+           :discarded?, :reply?, :visibility, :language, to: :status
 
-  def with_media?
-    ordered_media_attachments.any?
+  def with_poll?
+    poll_options.present?
   end
+
+  def poll
+    return @poll if defined?(@poll)
+    return @poll = nil if poll_options.blank?
+
+    @poll = Poll.new({
+      # not the correct ID, but it works with the redux cache
+      id: id,
+      options: poll_options,
+      account_id: account_id,
+      status_id: status_id,
+    })
+  end
+
+  alias preloadable_poll poll
 
   def emojis
     return @emojis if defined?(@emojis)
@@ -70,6 +85,14 @@ class StatusEdit < ApplicationRecord
 
   def proper
     self
+  end
+
+  def with_media?
+    ordered_media_attachments.any?
+  end
+
+  def with_preview_card?
+    false
   end
 
   def reblog?
