@@ -98,6 +98,20 @@ export const HoverCardAccount = forwardRef<
                 />
               )}
             </div>
+          ) : account.moved ? (
+            <div className='hover-card__moved-notice'>
+              <FormattedMessage
+                id='account.moved_to_short'
+                defaultMessage='This account has moved to {acct}'
+                values={{
+                  acct: (
+                    <Link to={`/@${account.moved.acct}`}>
+                      <strong>@{account.moved.acct}</strong>
+                    </Link>
+                  ),
+                }}
+              />
+            </div>
           ) : (
             <>
               <div className='hover-card__text-row'>
