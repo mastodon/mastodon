@@ -1,4 +1,5 @@
 import { Map as ImmutableMap } from 'immutable';
+
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { accountFactory, accountFactoryState } from '@/testing/factories';
@@ -19,9 +20,16 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <div style={{ padding: '20px', backgroundColor: '#f5f5f5', minHeight: '300px' }}>
+      <div
+        style={{
+          padding: '20px',
+          backgroundColor: '#f5f5f5',
+          minHeight: '300px',
+        }}
+      >
         <p style={{ marginBottom: '20px', color: '#666' }}>
-          Hover card examples - demonstrating Issue #35623 fix for moved accounts
+          Hover card examples - demonstrating Issue #35623 fix for moved
+          accounts
         </p>
         <Story />
       </div>
@@ -54,7 +62,7 @@ const regularAccount = accountFactoryState({
 const movedAccount = accountFactoryState({
   id: '2',
   username: 'bob_old',
-  acct: 'bob_old@mastodon.social', 
+  acct: 'bob_old@mastodon.social',
   display_name: 'Bob Smith (Moved)',
   note: 'I have moved to a new account. Please follow me there!',
   followers_count: 890,
