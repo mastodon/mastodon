@@ -204,7 +204,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def quote_authorization?
-    object.quote&.approval_uri.present?
+    object.quote.present? && ActivityPub::TagManager.instance.approval_uri_for(object.quote).present?
   end
 
   def quote
@@ -213,8 +213,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def quote_authorization
-    # TODO: approval of local quotes may work differently, perhaps?
-    object.quote.approval_uri
+    ActivityPub::TagManager.instance.approval_uri_for(object.quote)
   end
 
   class MediaAttachmentSerializer < ActivityPub::Serializer

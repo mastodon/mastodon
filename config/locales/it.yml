@@ -190,6 +190,7 @@ it:
         create_relay: Crea Relay
         create_unavailable_domain: Crea Dominio Non Disponibile
         create_user_role: Crea Ruolo
+        create_username_block: Crea regola del nome utente
         demote_user: Retrocedi Utente
         destroy_announcement: Elimina Annuncio
         destroy_canonical_email_block: Elimina il blocco dell'e-mail
@@ -203,6 +204,7 @@ it:
         destroy_status: Elimina Toot
         destroy_unavailable_domain: Elimina Dominio Non Disponibile
         destroy_user_role: Distruggi Ruolo
+        destroy_username_block: Cancella regola del nome utente
         disable_2fa_user: Disabilita A2F
         disable_custom_emoji: Disabilita Emoji Personalizzata
         disable_relay: Disabilita Relay
@@ -237,6 +239,7 @@ it:
         update_report: Aggiorna segnalazione
         update_status: Aggiorna Toot
         update_user_role: Aggiorna Ruolo
+        update_username_block: Aggiorna regola del nome utente
       actions:
         approve_appeal_html: "%{name} ha approvato il ricorso sulla decisione di moderazione da %{target}"
         approve_user_html: "%{name} ha approvato l'iscrizione da %{target}"
@@ -255,6 +258,7 @@ it:
         create_relay_html: "%{name} ha creato un relay %{target}"
         create_unavailable_domain_html: "%{name} ha interrotto la consegna al dominio %{target}"
         create_user_role_html: "%{name} ha creato il ruolo %{target}"
+        create_username_block_html: "%{name} ha aggiunto la regola per i nomi utente contenenti %{target}"
         demote_user_html: "%{name} ha retrocesso l'utente %{target}"
         destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
         destroy_canonical_email_block_html: "%{name} ha sbloccato l'e-mail con l'hash %{target}"
@@ -268,6 +272,7 @@ it:
         destroy_status_html: "%{name} ha rimosso il toot di %{target}"
         destroy_unavailable_domain_html: "%{name} ha ripreso la consegna al dominio %{target}"
         destroy_user_role_html: "%{name} ha eliminato il ruolo %{target}"
+        destroy_username_block_html: "%{name} ha rimosso la regola per i nomi utente contenenti %{target}"
         disable_2fa_user_html: "%{name} ha disabilitato l'autenticazione a due fattori per l'utente %{target}"
         disable_custom_emoji_html: "%{name} ha disabilitato emoji %{target}"
         disable_relay_html: "%{name} ha disabilitato il relay %{target}"
@@ -302,6 +307,7 @@ it:
         update_report_html: "%{name} ha aggiornato la segnalazione %{target}"
         update_status_html: "%{name} ha aggiornato lo status di %{target}"
         update_user_role_html: "%{name} ha modificato il ruolo %{target}"
+        update_username_block_html: "%{name} ha aggiornato la regola per i nomi utente contenenti %{target}"
       deleted_account: account eliminato
       empty: Nessun log trovato.
       filter_by_action: Filtra per azione
@@ -1085,6 +1091,25 @@ it:
           other: Usato da %{count} persone nell'ultima settimana
       title: Raccomandazioni & Tendenze
       trending: Di tendenza
+    username_blocks:
+      add_new: Aggiungi una nuova
+      block_registrations: Blocco delle registrazioni
+      comparison:
+        contains: Contiene
+        equals: Uguale a
+      contains_html: Contiene %{string}
+      created_msg: Regola del nome utente creata con successo
+      delete: Elimina
+      edit:
+        title: Modifica regola del nome utente
+      matches_exactly_html: Uguale a %{string}
+      new:
+        create: Crea regola
+        title: Crea una nuova regola del nome utente
+      no_username_block_selected: Non sono state modificate le regole del nome utente in quanto non sono state selezionate
+      not_permitted: Non consentito
+      title: Regole del nome utente
+      updated_msg: Regola del nome utente aggiornata con successo
     warning_presets:
       add_new: Aggiungi nuovo
       delete: Cancella
@@ -1874,6 +1899,7 @@ it:
     edited_at_html: Modificato il %{date}
     errors:
       in_reply_not_found: Il post a cui stai tentando di rispondere non sembra esistere.
+      quoted_status_not_found: Il post che stai cercando di citare non sembra esistere.
     over_character_limit: Limite caratteri superato di %{max}
     pin_errors:
       direct: I messaggi visibili solo agli utenti citati non possono essere fissati in cima
@@ -1881,8 +1907,6 @@ it:
       ownership: Non puoi fissare in cima un post di qualcun altro
       reblog: Un toot condiviso non può essere fissato in cima
     quote_policies:
-      followers: Seguaci e utenti menzionati
-      nobody: Solo gli utenti menzionati
       public: Tutti
     title: '%{name}: "%{quote}"'
     visibilities:

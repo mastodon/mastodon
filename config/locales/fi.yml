@@ -190,6 +190,7 @@ fi:
         create_relay: Luo välittäjä
         create_unavailable_domain: Luo ei-saatavilla oleva verkkotunnus
         create_user_role: Luo rooli
+        create_username_block: Luo käyttäjänimisääntö
         demote_user: Alenna käyttäjä
         destroy_announcement: Poista tiedote
         destroy_canonical_email_block: Poista sähköpostiosoitteen esto
@@ -203,6 +204,7 @@ fi:
         destroy_status: Poista julkaisu
         destroy_unavailable_domain: Poista ei-saatavilla oleva verkkotunnus
         destroy_user_role: Hävitä rooli
+        destroy_username_block: Poista käyttäjänimisääntö
         disable_2fa_user: Poista kaksivaiheinen todennus käytöstä
         disable_custom_emoji: Poista mukautettu emoji käytöstä
         disable_relay: Poista välittäjä käytöstä
@@ -237,6 +239,7 @@ fi:
         update_report: Päivitä raportti
         update_status: Päivitä julkaisu
         update_user_role: Päivitä rooli
+        update_username_block: Päivitä käyttäjänimisääntö
       actions:
         approve_appeal_html: "%{name} hyväksyi käyttäjän %{target} valituksen moderointipäätöksestä"
         approve_user_html: "%{name} hyväksyi käyttäjän %{target} rekisteröitymisen"
@@ -255,6 +258,7 @@ fi:
         create_relay_html: "%{name} loi välittäjän %{target}"
         create_unavailable_domain_html: "%{name} pysäytti toimituksen verkkotunnukseen %{target}"
         create_user_role_html: "%{name} loi roolin %{target}"
+        create_username_block_html: "%{name} lisäsi säännön käyttäjänimille, joihin sisältyy %{target}"
         demote_user_html: "%{name} alensi käyttäjän %{target}"
         destroy_announcement_html: "%{name} poisti tiedotteen %{target}"
         destroy_canonical_email_block_html: "%{name} kumosi eston tiivistettä %{target} vastaavalta sähköpostiosoitteelta"
@@ -268,6 +272,7 @@ fi:
         destroy_status_html: "%{name} poisti käyttäjän %{target} julkaisun"
         destroy_unavailable_domain_html: "%{name} jatkoi toimitusta verkkotunnukseen %{target}"
         destroy_user_role_html: "%{name} poisti roolin %{target}"
+        destroy_username_block_html: "%{name} poisti säännön käyttäjänimiltä, joihin sisältyy %{target}"
         disable_2fa_user_html: "%{name} poisti käyttäjältä %{target} vaatimuksen kaksivaiheiseen todentamiseen"
         disable_custom_emoji_html: "%{name} poisti emojin %{target} käytöstä"
         disable_relay_html: "%{name} poisti välittäjän %{target} käytöstä"
@@ -302,6 +307,7 @@ fi:
         update_report_html: "%{name} päivitti raportin %{target}"
         update_status_html: "%{name} päivitti käyttäjän %{target} julkaisun"
         update_user_role_html: "%{name} muutti roolia %{target}"
+        update_username_block_html: "%{name} päivitti säännön käyttäjänimille, joihin sisältyy %{target}"
       deleted_account: poisti tilin
       empty: Lokeja ei löytynyt.
       filter_by_action: Suodata toimen mukaan
@@ -1083,6 +1089,25 @@ fi:
           other: Käyttänyt %{count} käyttäjää viimeisen viikon aikana
       title: Suositukset ja trendit
       trending: Trendaus
+    username_blocks:
+      add_new: Lisää uusi
+      block_registrations: Estä rekisteröitymiset
+      comparison:
+        contains: Sisältää
+        equals: Vastaa
+      contains_html: Sisältää merkkijonon %{string}
+      created_msg: Käyttäjänimisääntö luotiin onnistuneesti
+      delete: Poista
+      edit:
+        title: Muokkaa käyttäjänimisääntöä
+      matches_exactly_html: Vastaa merkkijonoa %{string}
+      new:
+        create: Luo sääntö
+        title: Luo uusi käyttäjänimisääntö
+      no_username_block_selected: Käyttäjänimisääntöjä ei muutettu, koska yhtään ei ollut valittuna
+      not_permitted: Ei sallittu
+      title: Käyttäjänimisäännöt
+      updated_msg: Käyttäjänimisääntö päivitettiin onnistuneesti
     warning_presets:
       add_new: Lisää uusi
       delete: Poista
@@ -1870,6 +1895,7 @@ fi:
     edited_at_html: Muokattu %{date}
     errors:
       in_reply_not_found: Julkaisua, johon yrität vastata, ei näytä olevan olemassa.
+      quoted_status_not_found: Julkaisua, jota yrität lainata, ei näytä olevan olemassa.
     over_character_limit: merkkimäärän rajoitus %{max} ylitetty
     pin_errors:
       direct: Vain mainituille käyttäjille näkyviä julkaisuja ei voi kiinnittää
@@ -1877,8 +1903,8 @@ fi:
       ownership: Muiden julkaisuja ei voi kiinnittää
       reblog: Tehostusta ei voi kiinnittää
     quote_policies:
-      followers: Seuraajat ja mainitut käyttäjät
-      nobody: Vain mainitut käyttäjät
+      followers: Vain seuraajasi
+      nobody: Ei kukaan
       public: Kaikki
     title: "%{name}: ”%{quote}”"
     visibilities:

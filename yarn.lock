@@ -2632,6 +2632,7 @@ __metadata:
     "@storybook/react-vite": "npm:^9.0.4"
     "@testing-library/dom": "npm:^10.2.0"
     "@testing-library/react": "npm:^16.0.0"
+    "@types/debug": "npm:^4"
     "@types/emoji-mart": "npm:3.0.14"
     "@types/escape-html": "npm:^1.0.2"
     "@types/hoist-non-react-statics": "npm:^3.3.1"
@@ -2673,11 +2674,11 @@ __metadata:
     color-blend: "npm:^4.0.0"
     core-js: "npm:^3.30.2"
     cross-env: "npm:^10.0.0"
+    debug: "npm:^4.4.1"
     detect-passive-events: "npm:^2.0.3"
     emoji-mart: "npm:emoji-mart-lazyload@latest"
     emojibase: "npm:^16.0.0"
     emojibase-data: "npm:^16.0.3"
-    emojibase-regex: "npm:^16.0.0"
     escape-html: "npm:^1.0.3"
     eslint: "npm:^9.23.0"
     eslint-import-resolver-typescript: "npm:^4.2.5"
@@ -2689,6 +2690,7 @@ __metadata:
     eslint-plugin-react: "npm:^7.37.4"
     eslint-plugin-react-hooks: "npm:^5.2.0"
     eslint-plugin-storybook: "npm:^9.0.4"
+    fake-indexeddb: "npm:^6.0.1"
     fast-glob: "npm:^3.3.3"
     fuzzysort: "npm:^3.0.0"
     globals: "npm:^16.0.0"
@@ -3931,6 +3933,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/debug@npm:^4":
+  version: 4.1.12
+  resolution: "@types/debug@npm:4.1.12"
+  dependencies:
+    "@types/ms": "npm:*"
+  checksum: 10c0/5dcd465edbb5a7f226e9a5efd1f399c6172407ef5840686b73e3608ce135eeca54ae8037dcd9f16bdb2768ac74925b820a8b9ecc588a58ca09eca6acabe33e2f
+  languageName: node
+  linkType: hard
+
 "@types/deep-eql@npm:*":
   version: 4.0.2
   resolution: "@types/deep-eql@npm:4.0.2"
@@ -4109,6 +4120,13 @@ __metadata:
   version: 1.3.5
   resolution: "@types/mime@npm:1.3.5"
   checksum: 10c0/c2ee31cd9b993804df33a694d5aa3fa536511a49f2e06eeab0b484fef59b4483777dbb9e42a4198a0809ffbf698081fdbca1e5c2218b82b91603dfab10a10fbc
+  languageName: node
+  linkType: hard
+
+"@types/ms@npm:*":
+  version: 2.1.0
+  resolution: "@types/ms@npm:2.1.0"
+  checksum: 10c0/5ce692ffe1549e1b827d99ef8ff71187457e0eb44adbae38fdf7b9a74bae8d20642ee963c14516db1d35fa2652e65f47680fdf679dcbde52bbfadd021f497225
   languageName: node
   linkType: hard
 
@@ -6599,13 +6617,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"emojibase-regex@npm:^16.0.0":
-  version: 16.0.0
-  resolution: "emojibase-regex@npm:16.0.0"
-  checksum: 10c0/8ee5ff798e51caa581434b1cb2f9737e50195093c4efa1739df21a50a5496f80517924787d865e8cf7d6a0b4c90dbedc04bdc506dcbcc582e14cdf0bb47af0f0
-  languageName: node
-  linkType: hard
-
 "emojibase@npm:^16.0.0":
   version: 16.0.0
   resolution: "emojibase@npm:16.0.0"
@@ -7367,6 +7378,13 @@ __metadata:
     utils-merge: "npm:1.0.1"
     vary: "npm:~1.1.2"
   checksum: 10c0/38168fd0a32756600b56e6214afecf4fc79ec28eca7f7a91c2ab8d50df4f47562ca3f9dee412da7f5cea6b1a1544b33b40f9f8586dbacfbdada0fe90dbb10a1f
+  languageName: node
+  linkType: hard
+
+"fake-indexeddb@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "fake-indexeddb@npm:6.0.1"
+  checksum: 10c0/60f4ccdfd5ecb37bb98019056c688366847840cce7146e0005c5ca54823238455403b0a8803b898a11cf80f6147b1bb553457c6af427a644a6e64566cdbe42ec
   languageName: node
   linkType: hard
 

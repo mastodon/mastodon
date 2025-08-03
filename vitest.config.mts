@@ -49,6 +49,7 @@ const legacyTests: TestProjectInlineConfiguration = {
       'tmp/**',
     ],
     globals: true,
+    setupFiles: ['fake-indexeddb/auto'],
   },
 };
 

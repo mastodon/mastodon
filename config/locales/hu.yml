@@ -190,6 +190,7 @@ hu:
         create_relay: Továbbító létrehozása
         create_unavailable_domain: Elérhetetlen domain létrehozása
         create_user_role: Szerepkör létrehozása
+        create_username_block: Felhasználónév-szabály létrehozása
         demote_user: Felhasználó lefokozása
         destroy_announcement: Közlemény törlése
         destroy_canonical_email_block: E-mail-tiltás törlése
@@ -203,6 +204,7 @@ hu:
         destroy_status: Bejegyzés törlése
         destroy_unavailable_domain: Elérhetetlen domain törlése
         destroy_user_role: Szerepkör eltávolítása
+        destroy_username_block: Felhasználónév-szabály törlése
         disable_2fa_user: Kétlépcsős hitelesítés letiltása
         disable_custom_emoji: Egyéni emodzsi letiltása
         disable_relay: Továbbító letiltása
@@ -237,6 +239,7 @@ hu:
         update_report: Bejelentés frissítése
         update_status: Bejegyzés frissítése
         update_user_role: Szerepkör frissítése
+        update_username_block: Felhasználónév-szabály frissítése
       actions:
         approve_appeal_html: "%{name} jóváhagyott egy fellebbezést %{target} moderátori döntéséről"
         approve_user_html: "%{name} jóváhagyta %{target} regisztrációját"
@@ -255,6 +258,7 @@ hu:
         create_relay_html: "%{name} létrehozta az átirányítót: %{target}"
         create_unavailable_domain_html: "%{name} leállította a kézbesítést a %{target} domainbe"
         create_user_role_html: "%{name} létrehozta a(z) %{target} szerepkört"
+        create_username_block_html: "%{name} az ezt tartalmazó felhasználónevekre vonatkozó szabályt hozott létre: %{target}"
         demote_user_html: "%{name} lefokozta %{target} felhasználót"
         destroy_announcement_html: "%{name} törölte a %{target} közleményt"
         destroy_canonical_email_block_html: "%{name} engedélyezte a(z) %{target} hashű e-mailt"
@@ -268,6 +272,7 @@ hu:
         destroy_status_html: "%{name} eltávolította %{target} felhasználó bejegyzését"
         destroy_unavailable_domain_html: "%{name} újraindította a kézbesítést a %{target} domainbe"
         destroy_user_role_html: "%{name} törölte a(z) %{target} szerepkört"
+        destroy_username_block_html: "%{name} az ezt tartalmazó felhasználónevekre vonatkozó szabályt törölt: %{target}"
         disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős hitelesítést %{target} felhasználó fiókján"
         disable_custom_emoji_html: "%{name} letiltotta az emodzsit: %{target}"
         disable_relay_html: "%{name} letiltotta az átirányítót: %{target}"
@@ -302,6 +307,7 @@ hu:
         update_report_html: "%{name} frissítette a %{target} bejelentést"
         update_status_html: "%{name} frissítette %{target} felhasználó bejegyzését"
         update_user_role_html: "%{name} módosította a(z) %{target} szerepkört"
+        update_username_block_html: "%{name} az ezt tartalmazó felhasználónevekre vonatkozó szabályt frissített: %{target}"
       deleted_account: törölt fiók
       empty: Nem található napló.
       filter_by_action: Szűrés művelet alapján
@@ -1085,6 +1091,25 @@ hu:
           other: "%{count} ember használta a múlt héten"
       title: Ajánlások és trendek
       trending: Felkapott
+    username_blocks:
+      add_new: Új hozzáadása
+      block_registrations: Regisztrációk blokkolása
+      comparison:
+        contains: Tartalmazza
+        equals: Megegyezik vele
+      contains_html: 'Tartalmazza ezt: %{string}'
+      created_msg: Felhasználónév-szabály sikeresen létrehozva
+      delete: Törlés
+      edit:
+        title: Felhasználónév-szabály szerkesztése
+      matches_exactly_html: 'Megegyezik ezzel: %{string}'
+      new:
+        create: Szabály létrehozása
+        title: Új felhasználónév-szabály létrehozása
+      no_username_block_selected: Nem változott meg egy felhasználónév-szabály sem, mert semmi sem volt kiválasztva
+      not_permitted: Nem engedélyezett
+      title: Felhasználónév-szabályok
+      updated_msg: Felhasználónév-szabály sikeresen frissítve
     warning_presets:
       add_new: Új hozzáadása
       delete: Törlés
@@ -1880,8 +1905,6 @@ hu:
       ownership: Nem tűzheted ki valaki más bejegyzését
       reblog: Megtolt bejegyzést nem tudsz kitűzni
     quote_policies:
-      followers: Követők és említett felhasználók
-      nobody: Csak említett felhasználók
       public: Mindenki
     title: "%{name}: „%{quote}”"
     visibilities:

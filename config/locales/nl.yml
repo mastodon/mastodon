@@ -190,6 +190,7 @@ nl:
         create_relay: Relay aanmaken
         create_unavailable_domain: Niet beschikbaar domein aanmaken
         create_user_role: Rol aanmaken
+        create_username_block: Gebruikersnaam-regel aanmaken
         demote_user: Gebruiker degraderen
         destroy_announcement: Mededeling verwijderen
         destroy_canonical_email_block: E-mailblokkade verwijderen
@@ -203,6 +204,7 @@ nl:
         destroy_status: Toot verwijderen
         destroy_unavailable_domain: Niet beschikbaar domein verwijderen
         destroy_user_role: Rol permanent verwijderen
+        destroy_username_block: Gebruikersnaam-regel verwijderen
         disable_2fa_user: Tweestapsverificatie uitschakelen
         disable_custom_emoji: Lokale emojij uitschakelen
         disable_relay: Relay uitschakelen
@@ -237,6 +239,7 @@ nl:
         update_report: Rapportage bijwerken
         update_status: Bericht bijwerken
         update_user_role: Rol bijwerken
+        update_username_block: Gebruikersnaam-regel bijwerken
       actions:
         approve_appeal_html: "%{name} heeft het bezwaar tegen de moderatiemaatregel van %{target} goedgekeurd"
         approve_user_html: "%{name} heeft de registratie van %{target} goedgekeurd"
@@ -255,6 +258,7 @@ nl:
         create_relay_html: "%{name} heeft een relay aangemaakt %{target}"
         create_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} beëindigd"
         create_user_role_html: "%{name} maakte de rol %{target} aan"
+        create_username_block_html: "%{name} heeft regel toegevoegd voor gebruikersnamen die %{target} bevatten"
         demote_user_html: Gebruiker %{target} is door %{name} gedegradeerd
         destroy_announcement_html: "%{name} heeft de mededeling %{target} verwijderd"
         destroy_canonical_email_block_html: "%{name} deblokkeerde e-mail met de hash %{target}"
@@ -268,6 +272,7 @@ nl:
         destroy_status_html: Bericht van %{target} is door %{name} verwijderd
         destroy_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} hervat"
         destroy_user_role_html: "%{name} verwijderde de rol %{target}"
+        destroy_username_block_html: "%{name} heeft regel verwijderd voor gebruikersnamen die %{target} bevatten"
         disable_2fa_user_html: De vereiste tweestapsverificatie voor %{target} is door %{name} uitgeschakeld
         disable_custom_emoji_html: Emoji %{target} is door %{name} uitgeschakeld
         disable_relay_html: "%{name} heeft de relay %{target} uitgeschakeld"
@@ -302,6 +307,7 @@ nl:
         update_report_html: Rapportage %{target} is door %{name} bijgewerkt
         update_status_html: "%{name} heeft de berichten van %{target} bijgewerkt"
         update_user_role_html: "%{name} wijzigde de rol %{target}"
+        update_username_block_html: "%{name} heeft regel bijgewerkt voor gebruikersnamen die %{target} bevatten"
       deleted_account: verwijderd account
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
@@ -1085,6 +1091,25 @@ nl:
           other: Door %{count} mensen tijdens de afgelopen week gebruikt
       title: Aanbevelingen & trends
       trending: Trending
+    username_blocks:
+      add_new: Nieuwe toevoegen
+      block_registrations: Registraties blokkeren
+      comparison:
+        contains: Bevat
+        equals: Is gelijk aan
+      contains_html: Bevat %{string}
+      created_msg: Gebruikersnaam-regel succesvol aangemaakt
+      delete: Verwijderen
+      edit:
+        title: Gebruikersnaam-regel bewerken
+      matches_exactly_html: Is gelijk aan %{string}
+      new:
+        create: Regel aanmaken
+        title: Nieuwe gebruikersnaam-regel aanmaken
+      no_username_block_selected: Er zijn geen gebruikersnaam-regels gewijzigd omdat er geen zijn geselecteerd
+      not_permitted: Niet toegestaan
+      title: Gebruikersnaam-regels
+      updated_msg: Gebruikersnaam-regel succesvol bijgewerkt
     warning_presets:
       add_new: Nieuwe toevoegen
       delete: Verwijderen
@@ -1880,8 +1905,8 @@ nl:
       ownership: Een bericht van iemand anders kan niet worden vastgemaakt
       reblog: Een boost kan niet worden vastgezet
     quote_policies:
-      followers: Volgers en vermelde gebruikers
-      nobody: Alleen vermelde gebruikers
+      followers: Alleen jouw volgers
+      nobody: Niemand
       public: Iedereen
     title: '%{name}: "%{quote}"'
     visibilities:

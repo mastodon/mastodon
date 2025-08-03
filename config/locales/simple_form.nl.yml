@@ -56,7 +56,7 @@ nl:
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
         setting_aggregate_reblogs: Geen nieuwe boosts tonen voor berichten die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
         setting_always_send_emails: Normaliter worden er geen e-mailmeldingen verstuurd wanneer je actief Mastodon gebruikt
-        setting_default_quote_policy: Het is voor gebruikers die vermeld worden altijd toegestaan om te citeren. Deze instelling is alleen van kracht voor berichten die gemaakt zijn met de volgende Mastodon-versie, maar je kunt je voorkeur nu alvast instellen
+        setting_default_quote_policy: Deze instelling is alleen van kracht voor berichten die gemaakt zijn met de volgende Mastodon-versie, maar je kunt je voorkeur nu alvast instellen.
         setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
@@ -160,6 +160,10 @@ nl:
         name: Openbare naam van de rol, wanneer de rol als badge op profielpagina's wordt getoond
         permissions_as_keys: Gebruikers met deze rol hebben toegang tot...
         position: Een hogere rol beslist in bepaalde situaties over het oplossen van conflicten. Bepaalde acties kunnen alleen worden uitgevoerd op rollen met een lagere prioriteit
+      username_block:
+        allow_with_approval: In plaats van dat het registreren helemaal wordt voorkomen, zullen overeenkomstige registraties jouw goedkeuring vereisen
+        comparison: Houd rekening met het Scunthorpe-probleem wanneer je gedeeltelijke overeenkomsten blokkeert
+        username: Wordt gezien als overeenkomst ongeacht de lettergrootte en gangbare lettervervangingen zoals "4" voor "a" of "3" voor "e"
       webhook:
         events: Selecteer de te verzenden gebeurtenissen
         template: Maak een eigen JSON payload aan met variabele interpolatie. Laat leeg voor standaard JSON.
@@ -371,6 +375,10 @@ nl:
         name: Naam
         permissions_as_keys: Rechten
         position: Prioriteit
+      username_block:
+        allow_with_approval: Registraties met goedkeuring toestaan
+        comparison: Methode van vergelijking
+        username: Overeen te komen woord
       webhook:
         events: Ingeschakelde gebeurtenissen
         template: Sjabloon Payload

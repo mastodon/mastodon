@@ -4,15 +4,15 @@
 
 import * as marky from 'marky';
 
-import { isDevelopment } from './utils/environment';
+import { isDevelopment } from './environment';
 
-export function start(name) {
+export function start(name: string) {
   if (isDevelopment()) {
     marky.mark(name);
   }
 }
 
-export function stop(name) {
+export function stop(name: string) {
   if (isDevelopment()) {
     marky.stop(name);
   }
