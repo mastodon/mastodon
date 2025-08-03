@@ -45,6 +45,10 @@ class StatusEdit < ApplicationRecord
   delegate :local?, :application, :edited?, :edited_at,
            :discarded?, :visibility, :language, to: :status
 
+  def with_media?
+    ordered_media_attachments.any?
+  end
+
   def emojis
     return @emojis if defined?(@emojis)
 
