@@ -7,7 +7,7 @@ export function emojiLogger(segment: string) {
 }
 
 export function stringHasUnicodeEmoji(input: string): boolean {
-  return EMOJI_REGEX.test(input);
+  return new RegExp(EMOJI_REGEX, supportedFlags()).test(input);
 }
 
 export function stringHasUnicodeFlags(input: string): boolean {
@@ -36,14 +36,21 @@ export function stringHasAnyEmoji(input: string) {
 }
 
 export function anyEmojiRegex() {
-  if (supportsRegExpSets()) {
-    return new RegExp(`\\p{RGI_Emoji}|${CUSTOM_EMOJI_REGEX.source}`, 'giv');
-  }
-  return new RegExp(`${EMOJI_REGEX.source}|${CUSTOM_EMOJI_REGEX.source}`, 'gi');
+  return new RegExp(
+    `${EMOJI_REGEX}|${CUSTOM_EMOJI_REGEX.source}`,
+    supportedFlags('gi'),
+  );
 }
 
 function supportsRegExpSets() {
   return 'unicodeSets' in RegExp.prototype;
 }
 
-const EMOJI_REGEX = emojiRegexPolyfill ?? new RegExp('\\p{RGI_Emoji}', 'v');
+function supportedFlags(flags = '') {
+  if (supportsRegExpSets()) {
+    return `${flags}v`;
+  }
+  return flags;
+}
+
+const EMOJI_REGEX = emojiRegexPolyfill?.source ?? '\\p{RGI_Emoji}';
