@@ -64,7 +64,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     resolve_thread(@status)
     resolve_unresolved_mentions(@status)
     fetch_replies(@status)
-    fetch_and_verify_quote(@status)
+    fetch_and_verify_quote
     distribute
     forward_for_reply
   end
@@ -374,7 +374,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     Rails.logger.warn "Error fetching replies: #{e}"
   end
 
-  def fetch_and_verify_quote(_status)
+  def fetch_and_verify_quote
     return if @quote.nil?
 
     embedded_quote = safe_prefetched_embed(@account, @status_parser.quoted_object, @json['context'])
