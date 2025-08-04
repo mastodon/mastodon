@@ -101,6 +101,11 @@ export const MuteModal = ({ accountId, acct }) => {
           </div>
 
           <div>
+            <div className='safety-action-modal__bullet-points__icon'><Icon icon={VisibilityOffIcon} /></div>
+            <div><FormattedMessage id='mute_modal.you_wont_see_reblogs' defaultMessage="They can still see your boosts, but you won't see theirs." /></div>
+          </div>
+
+          <div>
             <div className='safety-action-modal__bullet-points__icon'><Icon icon={AlternateEmailIcon} /></div>
             <div><FormattedMessage id='mute_modal.you_wont_see_mentions' defaultMessage="You won't see posts that mention them." /></div>
           </div>
