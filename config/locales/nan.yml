@@ -255,6 +255,7 @@ nan:
         create_relay_html: "%{name} 建立中繼 %{target}"
         create_unavailable_domain_html: "%{name} 停止送kàu域名 %{target}"
         create_user_role_html: "%{name} 建立 %{target} 角色"
+        create_username_block_html: "%{name} 加添用者ê名包含 %{target} ê規則ah"
         demote_user_html: "%{name} kā用者 %{target} 降級"
         destroy_announcement_html: "%{name} kā公告 %{target} thâi掉ah"
         destroy_canonical_email_block_html: "%{name} kā hash是 %{target} ê電子phue取消封鎖ah"
@@ -268,6 +269,7 @@ nan:
         destroy_status_html: "%{name} kā %{target} ê PO文thâi掉"
         destroy_unavailable_domain_html: "%{name} 恢復送kàu域名 %{target}"
         destroy_user_role_html: "%{name} thâi掉 %{target} 角色"
+        destroy_username_block_html: "%{name} thâi掉用者ê名包含 %{target} ê規則ah"
         disable_2fa_user_html: "%{name} 停止使用者 %{target} 用雙因素驗證"
         disable_custom_emoji_html: "%{name} kā 新ê emoji %{target} 停止使用ah"
         disable_relay_html: "%{name} 停止使用中繼 %{target}"
@@ -302,6 +304,7 @@ nan:
         update_report_html: "%{name} 更新 %{target} ê檢舉"
         update_status_html: "%{name} kā %{target} ê PO文更新"
         update_user_role_html: "%{name} 更改 %{target} 角色"
+        update_username_block_html: "%{name} 更新用者ê名包含 %{target} ê規則ah"
       deleted_account: thâi掉ê口座
       empty: Tshuē無log。
       filter_by_action: 照動作過濾
@@ -639,6 +642,57 @@ nan:
           other: "%{count} 篇筆記"
       action_log: 審查日誌
       action_taken_by: 操作由
+      actions:
+        delete_description_html: 受檢舉ê PO文ē thâi掉，而且ē用tsi̍t ue̍h橫tsuā記錄，幫tsān lí提升kâng tsi̍t ê用戶未來ê違規。
+        mark_as_sensitive_description_html: 受檢舉ê PO文內ê媒體ē標做敏感，而且ē用tsi̍t ue̍h橫tsuā記錄，幫tsān lí提升kâng tsi̍t ê用戶未來ê違規。
+        other_description_html: 看其他控制tsit ê口座ê所行，kap自訂聯絡受檢舉ê口座ê選項。
+        resolve_description_html: Buē用行動控制受檢舉ê口座，mā無用橫tsuā記錄，而且tsit ê報告ē關掉。
+        silence_description_html: 本口座kan-ta ē hōo早前跟tuè ê á是手動tshiau ê看見，大大限制看見ê範圍。設定隨時ē當回復。請關所有tuì tsit ê口座ê檢舉。
+        suspend_description_html: Tsit ê口座kap伊ê內容ē bē當用，落尾ē thâi掉，mā bē當hām伊互動。30 kang以內通回復。請關所有tuì tsit ê口座ê檢舉。
+      actions_description_html: 決定行siánn物行動來解決tsit ê檢舉。Nā lí tuì受檢舉ê口座採用處罰，電子phue通知ē送予in，除非選擇 <strong>Pùn-sò phue</strong> 類別。
+      actions_description_remote_html: 決定行siánn物行動來解決tsit ê檢舉。Tse kan-ta ē影響 <strong>lí ê</strong> 服侍器hām tsit ê遠距離服侍器聯絡kap處理伊ê內容ê方法。
+      actions_no_posts: Tsit份檢舉無beh thâi掉ê相關PO文
+      add_to_report: 加添其他ê內容kàu檢舉
+      already_suspended_badges:
+        local: 已經佇tsit ê服侍器停止權限ah
+        remote: 已經佇in ê服侍器停止權限ah
+      are_you_sure: Lí kám確定？
+      assign_to_self: 分配hōo家kī
+      assigned: 分配管理者
+      by_target_domain: 受檢舉ê口座ê網域
+      cancel: 取消
+      category: 類別
+      category_description_html: Tsit ê 受檢舉ê口座kap/á是內容，ē佇kap tsit ê口座ê聯絡內底引用。
+      comment:
+        none: 無
+      comment_description_html: 為著提供其他資訊，%{name} 寫：
+      confirm: 確認
+      confirm_action: 確認kā %{acct} 審核ê動作
+      created_at: 檢舉tī
+      delete_and_resolve: Thâi掉PO文
+      forwarded: 轉送ah
+      forwarded_replies_explanation: 本報告是tuì別站ê用者送ê，關係別站ê內容。本報告轉hōo lí，因為受檢舉ê內容是回應lí ê服侍器ê用者。
+      forwarded_to: 有轉送kàu %{domain}
+      mark_as_resolved: 標做「解決ah」
+      mark_as_sensitive: 標做敏感
+      mark_as_unresolved: 標做「無解決」
+      no_one_assigned: 無lâng
+      notes:
+        create: 加添筆記
+        create_and_resolve: 標「處理ah」，留筆記
+        create_and_unresolve: 留筆記，koh重開
+        delete: Thâi掉
+        placeholder: 描述有行siánn物行動，á是其他關聯ê更新……
+        title: 筆記
+      notes_description_html: 檢視á是留筆記hōo別ê管理者kap未來ê家己
+      processed_msg: '檢舉 #%{id} 處理成功ah'
+      quick_actions_description_html: 緊行行動，á是giú kàu下kha，看檢舉ê內容：
+      remote_user_placeholder: tuì %{instance} 來ê遠距離用者
+      reopen: 重頭phah開檢舉
+      report: '檢舉 #%{id}'
+    roles:
+      privileges:
+        manage_announcements: 管理公告
     statuses:
       language: 語言
     trends:

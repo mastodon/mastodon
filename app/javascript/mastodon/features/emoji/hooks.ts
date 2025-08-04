@@ -8,7 +8,6 @@ import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 
 import { toSupportedLocale } from './locale';
 import { determineEmojiMode } from './mode';
-import { emojifyElement } from './render';
 import type {
   CustomEmojiMapArg,
   EmojiAppState,
@@ -39,6 +38,7 @@ export function useEmojify(text: string, extraEmojis?: CustomEmojiMapArg) {
     async (input: string) => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = input;
+      const { emojifyElement } = await import('./render');
       const result = await emojifyElement(wrapper, appState, extra);
       if (result) {
         setEmojifiedText(result.innerHTML);

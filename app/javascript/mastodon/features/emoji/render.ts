@@ -9,7 +9,6 @@ import {
   EMOJI_TYPE_UNICODE,
   EMOJI_TYPE_CUSTOM,
   EMOJI_STATE_MISSING,
-  ANY_EMOJI_REGEX,
 } from './constants';
 import {
   searchCustomEmojisByShortcodes,
@@ -32,7 +31,12 @@ import type {
   LocaleOrCustom,
   UnicodeEmojiToken,
 } from './types';
-import { emojiLogger, stringHasAnyEmoji, stringHasUnicodeFlags } from './utils';
+import {
+  anyEmojiRegex,
+  emojiLogger,
+  stringHasAnyEmoji,
+  stringHasUnicodeFlags,
+} from './utils';
 
 const log = emojiLogger('render');
 
@@ -207,7 +211,7 @@ export function tokenizeText(text: string): TokenizedText {
 
   const tokens = [];
   let lastIndex = 0;
-  for (const match of text.matchAll(ANY_EMOJI_REGEX)) {
+  for (const match of text.matchAll(anyEmojiRegex())) {
     if (match.index > lastIndex) {
       tokens.push(text.slice(lastIndex, match.index));
     }

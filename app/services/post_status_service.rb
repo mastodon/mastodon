@@ -93,14 +93,10 @@ class PostStatusService < BaseService
   def attach_quote!(status)
     return if @quoted_status.nil?
 
-    # NOTE: for now this is only for convenience in testing, as we don't support the request flow nor serialize quotes in ActivityPub
-    # we only support incoming quotes so far
-
     status.quote = Quote.create(quoted_status: @quoted_status, status: status)
-    if @quoted_status.local? && StatusPolicy.new(@status.account, @quoted_status).quote?
-      # TODO: produce a QuoteAuthorization
-      status.quote.accept!
-    end
+    status.quote.ensure_quoted_access
+
+    status.quote.accept! if @quoted_status.local? && StatusPolicy.new(@status.account, @quoted_status).quote?
   end
 
   def safeguard_mentions!(status)
