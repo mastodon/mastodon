@@ -1,7 +1,7 @@
 ---
 tr:
   about:
-    about_mastodon_html: Jetub Max<em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezi olmayan</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Jetub Max sunucusunu kurabilir ve sorunsuz bir şekilde Jetub Max<em>sosyal ağına</em> dahil edebilir!
+    about_mastodon_html: 'Geleceğin sosyal ağı: Reklam yok, kurumsal gözetim yok, etik tasarım ve merkeziyetsizlik! Mastodon ile verilerinizin sahibi olun!'
     contact_missing: Ayarlanmadı
     contact_unavailable: Bulunamadı
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
@@ -190,6 +190,7 @@ tr:
         create_relay: Aktarıcı Oluştur
         create_unavailable_domain: Mevcut Olmayan Alan Adı Oluştur
         create_user_role: Rol Oluştur
+        create_username_block: Kullanıcı Adı Kuralı Oluştur
         demote_user: Kullanıcıyı Düşür
         destroy_announcement: Duyuru Sil
         destroy_canonical_email_block: E-Posta Engelini Sil
@@ -203,6 +204,7 @@ tr:
         destroy_status: Durumu Sil
         destroy_unavailable_domain: Mevcut Olmayan Alan Adı Sil
         destroy_user_role: Rolü Kaldır
+        destroy_username_block: Kullanıcı Adı Kuralını Sil
         disable_2fa_user: 2AD Kapat
         disable_custom_emoji: Özel İfadeyi Devre Dışı Bırak
         disable_relay: Aktarıcıyı Devre Dışı Bırak
@@ -237,6 +239,7 @@ tr:
         update_report: Raporu Güncelle
         update_status: Durumu Güncelle
         update_user_role: Rolü Güncelle
+        update_username_block: Kullanıcı Adı Kuralını Güncelle
       actions:
         approve_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını kabul etti"
         approve_user_html: "%{name}, %{target} konumundan kaydı onayladı"
@@ -255,6 +258,7 @@ tr:
         create_relay_html: "%{name}, %{target} aktarıcısını oluşturdu"
         create_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı durdurdu"
         create_user_role_html: "%{name}, %{target} rolünü oluşturdu"
+        create_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural ekledi"
         demote_user_html: "%{name}, %{target} kullanıcısını düşürdü"
         destroy_announcement_html: "%{name}, %{target} duyurusunu sildi"
         destroy_canonical_email_block_html: "%{name}, %{target} karmasıyla e-posta engelini kaldırdı"
@@ -268,6 +272,7 @@ tr:
         destroy_status_html: "%{name}, %{target} kullanıcısının gönderisini kaldırdı"
         destroy_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı sürdürdü"
         destroy_user_role_html: "%{name}, %{target} rolünü sildi"
+        destroy_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural silindi"
         disable_2fa_user_html: "%{name}, %{target} kullanıcısının iki aşamalı doğrulama gereksinimini kapattı"
         disable_custom_emoji_html: "%{name}, %{target} emojisini devre dışı bıraktı"
         disable_relay_html: "%{name}, %{target} aktarıcısını devre dışı bıraktı"
@@ -302,6 +307,7 @@ tr:
         update_report_html: "%{name}, %{target} raporunu güncelledi"
         update_status_html: "%{name}, %{target} kullanıcısının gönderisini güncelledi"
         update_user_role_html: "%{name}, %{target} rolünü değiştirdi"
+        update_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural güncellendi"
       deleted_account: hesap silindi
       empty: Kayıt bulunamadı.
       filter_by_action: Eyleme göre filtre
@@ -1085,6 +1091,25 @@ tr:
           other: Geçen hafta %{count} kişi tarafından kullanıldı
       title: Öneriler ve Öne Çıkanlar
       trending: Öne çıkanlar
+    username_blocks:
+      add_new: Yeni ekle
+      block_registrations: Kayıtları engelle
+      comparison:
+        contains: İçerir
+        equals: Eşit
+      contains_html: "%{string} içerir"
+      created_msg: Kullanıcı adı kuralı başarıyla oluşturuldu
+      delete: Sil
+      edit:
+        title: Kullanıcı adı kuralını düzenle
+      matches_exactly_html: "%{string} değerine eşittir"
+      new:
+        create: Kural oluştur
+        title: Yeni kullanıcı adı kuralı oluştur
+      no_username_block_selected: Hiçbir kullanıcı adı kuralı değiştirilmedi çünkü hiçbiri seçilmedi
+      not_permitted: İzin verilmiyor
+      title: Kullanıcı adı kuralları
+      updated_msg: Kullanıcı adı kuralı başarıyla güncellendi
     warning_presets:
       add_new: Yeni ekle
       delete: Sil
@@ -1880,6 +1905,8 @@ tr:
       ownership: Başkasının gönderisi sabitlenemez
       reblog: Bir gönderi sabitlenemez
     quote_policies:
+      followers: Yalnızca takipçileriniz
+      nobody: Hiç kimse
       public: Herkes
     title: '%{name}: "%{quote}"'
     visibilities:
