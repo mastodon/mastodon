@@ -148,9 +148,9 @@ export function createAccountFromServerJSON(serverJSON: ApiAccountJSON) {
     note_emojified: emojify(accountNote, emojiMap),
     note_plain: unescapeHTML(accountNote),
     url:
-      (accountJSON.url?.startsWith('http://') || 
-      accountJSON.url?.startsWith('https://')) ? 
-      accountJSON.url: 
-      accountJSON.uri,
+      accountJSON.url.startsWith('http://') ||
+      accountJSON.url.startsWith('https://')
+        ? accountJSON.url
+        : accountJSON.uri,
   });
 }
