@@ -50,9 +50,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return reject_payload! if unsupported_object_type? || non_matching_uri_hosts?(@account.uri, object_uri) || tombstone_exists? || !related_to_local_activity?
 
     with_redis_lock("create:#{object_uri}") do
-      return if delete_arrived_first?(object_uri) || poll_vote?
+      Status.uncached do
+        return if delete_arrived_first?(object_uri) || poll_vote?
 
-      @status = find_existing_status
+        @status = find_existing_status
+      end
 
       if @status.nil?
         process_status
