@@ -18,6 +18,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @poll_changed              = false
     @quote_changed             = false
     @request_id                = request_id
+    @quote                     = nil
 
     # Only native types can be updated at the moment
     return @status if !expected_type? || already_updated_more_recently?
@@ -49,6 +50,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         create_edits!
       end
 
+      fetch_and_verify_quote!(@quote, @status_parser.quote_uri) if @quote.present?
       download_media_files!
       queue_poll_notifications!
 
@@ -310,10 +312,10 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         @quote_changed = true
       end
 
+      @quote = quote
       quote.save
-
-      fetch_and_verify_quote!(quote, quote_uri)
     elsif @status.quote.present?
+      @quote = nil
       @status.quote.destroy!
       @quote_changed = true
     end
