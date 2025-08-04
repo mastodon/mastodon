@@ -27,6 +27,7 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
     # Sanity check
     return unless status.quote.quoted_status == quoted_status
 
+    status.quote.ensure_quoted_access
     status.quote.update!(activity_uri: @json['id'])
     status.quote.accept!
 
