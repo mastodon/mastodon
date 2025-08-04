@@ -3925,11 +3925,11 @@ __metadata:
   linkType: hard
 
 "@types/cors@npm:^2.8.16":
-  version: 2.8.18
-  resolution: "@types/cors@npm:2.8.18"
+  version: 2.8.19
+  resolution: "@types/cors@npm:2.8.19"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 10c0/9dd1075de0e3a40c304826668960c797e67e597a734fb8e8ab404561f31ef2bd553ef5500eb86da7e91a344bee038a59931d2fbf182fbce09f13816f51fdd80e
+  checksum: 10c0/b5dd407040db7d8aa1bd36e79e5f3f32292f6b075abc287529e9f48df1a25fda3e3799ba30b4656667ffb931d3b75690c1d6ca71e39f7337ea6dfda8581916d0
   languageName: node
   linkType: hard
 
@@ -4016,14 +4016,14 @@ __metadata:
   linkType: hard
 
 "@types/express@npm:^4.17.17":
-  version: 4.17.22
-  resolution: "@types/express@npm:4.17.22"
+  version: 4.17.23
+  resolution: "@types/express@npm:4.17.23"
   dependencies:
     "@types/body-parser": "npm:*"
     "@types/express-serve-static-core": "npm:^4.17.33"
     "@types/qs": "npm:*"
     "@types/serve-static": "npm:*"
-  checksum: 10c0/15c10a5ebb40a0356baa95ed374a2150d862786c9fccbdd724df12acc9c8cb08fbe1d34b446b1bcef2dbe5305cb3013fb39fba791baa54ef6df8056482776abb
+  checksum: 10c0/60490cd4f73085007247e7d4fafad0a7abdafa34fa3caba2757512564ca5e094ece7459f0f324030a63d513f967bb86579a8682af76ae2fd718e889b0a2a4fe8
   languageName: node
   linkType: hard
 
@@ -4035,12 +4035,13 @@ __metadata:
   linkType: hard
 
 "@types/hoist-non-react-statics@npm:^3.3.1":
-  version: 3.3.6
-  resolution: "@types/hoist-non-react-statics@npm:3.3.6"
+  version: 3.3.7
+  resolution: "@types/hoist-non-react-statics@npm:3.3.7"
   dependencies:
-    "@types/react": "npm:*"
     hoist-non-react-statics: "npm:^3.3.0"
-  checksum: 10c0/149a4c217d81f21f8a1e152160a59d5b99b6a9aa6d354385d5f5bc02760cbf1e170a8442ba92eb653befff44b0c5bc2234bb77ce33e0d11a65f779e8bab5c321
+  peerDependencies:
+    "@types/react": "*"
+  checksum: 10c0/ed8f4e88338f7d021d0f956adf6089d2a12b2e254a03c05292324f2e986d2376eb9efdb8a4f04596823e8fca88c9d06361d20dab4a2a00dc935fb36ac911de55
   languageName: node
   linkType: hard
 
@@ -4096,9 +4097,9 @@ __metadata:
   linkType: hard
 
 "@types/lodash@npm:^4.14.195":
-  version: 4.17.17
-  resolution: "@types/lodash@npm:4.17.17"
-  checksum: 10c0/8e75df02a15f04d4322c5a503e4efd0e7a92470570ce80f17e9f11ce2b1f1a7c994009c9bcff39f07e0f9ffd8ccaff09b3598997c404b801abd5a7eee5a639dc
+  version: 4.17.20
+  resolution: "@types/lodash@npm:4.17.20"
+  checksum: 10c0/98cdd0faae22cbb8079a01a3bb65aa8f8c41143367486c1cbf5adc83f16c9272a2a5d2c1f541f61d0d73da543c16ee1d21cf2ef86cb93cd0cc0ac3bced6dd88f
   languageName: node
   linkType: hard
 
@@ -4154,13 +4155,13 @@ __metadata:
   linkType: hard
 
 "@types/pg@npm:^8.6.6":
-  version: 8.15.4
-  resolution: "@types/pg@npm:8.15.4"
+  version: 8.15.5
+  resolution: "@types/pg@npm:8.15.5"
   dependencies:
     "@types/node": "npm:*"
     pg-protocol: "npm:*"
     pg-types: "npm:^2.2.0"
-  checksum: 10c0/7f9295cb2d934681bba84f7caad529c3b100d87e83ad0732c7fe496f4f79e42a795097321db54e010fcff22cb5e410cf683b4c9941907ee4564c822242816e91
+  checksum: 10c0/19a3cc1811918753f8c827733648c3a85c7b0355bf207c44eb1a3b79b2e6a0d85cb5457ec550d860fc9be7e88c7587a3600958ec8c61fa1ad573061c63af93f0
   languageName: node
   linkType: hard
 
@@ -4172,9 +4173,9 @@ __metadata:
   linkType: hard
 
 "@types/prop-types@npm:*, @types/prop-types@npm:^15.7.5":
-  version: 15.7.14
-  resolution: "@types/prop-types@npm:15.7.14"
-  checksum: 10c0/1ec775160bfab90b67a782d735952158c7e702ca4502968aa82565bd8e452c2de8601c8dfe349733073c31179116cf7340710160d3836aa8a1ef76d1532893b1
+  version: 15.7.15
+  resolution: "@types/prop-types@npm:15.7.15"
+  checksum: 10c0/b59aad1ad19bf1733cf524fd4e618196c6c7690f48ee70a327eb450a42aab8e8a063fbe59ca0a5701aebe2d92d582292c0fb845ea57474f6a15f6994b0e260b2
   languageName: node
   linkType: hard
 
