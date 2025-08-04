@@ -1,7 +1,6 @@
 import { autoPlayGif } from '@/mastodon/initial_state';
 import { createLimitedCache } from '@/mastodon/utils/cache';
 import { assetHost } from '@/mastodon/utils/config';
-import * as perf from '@/mastodon/utils/performance';
 
 import {
   EMOJI_MODE_NATIVE,
@@ -38,16 +37,17 @@ export function emojifyElement<Element extends HTMLElement>(
   appState: EmojiAppState,
   extraEmojis: ExtraCustomEmojiMap = {},
 ): Element | null {
+  const finish = timingMeasurementHelper('emojifyElement');
   // Check the cache and return it if we get a hit.
   const cacheKey = createTextCacheKey(element, appState, extraEmojis);
   const cached = textCache.get(cacheKey);
   if (cached !== undefined) {
     log('Cache hit on %s', element.outerHTML);
     if (cached === null) {
-      return null;
+      // return null;
     }
-    element.innerHTML = cached;
-    return element;
+    // element.innerHTML = cached;
+    // return element;
   }
 
   // Exit if there are no emoji in the string.
@@ -56,7 +56,6 @@ export function emojifyElement<Element extends HTMLElement>(
     return null;
   }
 
-  perf.start('emojifyElement()');
   const queue: (HTMLElement | Text)[] = [element];
   while (queue.length > 0) {
     const current = queue.shift();
@@ -72,8 +71,9 @@ export function emojifyElement<Element extends HTMLElement>(
       current.textContent &&
       (current instanceof Text || !current.hasChildNodes())
     ) {
-      const renderedContent = textToElementArray(
-        current.textContent,
+      const tokens = tokenizeText(current.textContent, appState.mode);
+      const renderedContent = tokensToElementArray(
+        tokens,
         appState,
         extraEmojis,
       );
@@ -93,7 +93,7 @@ export function emojifyElement<Element extends HTMLElement>(
     }
   }
   textCache.set(cacheKey, element.innerHTML);
-  perf.stop('emojifyElement()');
+  finish();
   return element;
 }
 
@@ -112,7 +112,8 @@ export function emojifyText(
     textCache.set(cacheKey, null);
     return text;
   }
-  const eleArray = textToElementArray(text, appState, extraEmojis);
+  const tokens = tokenizeText(text, appState.mode);
+  const eleArray = tokensToElementArray(tokens, appState, extraEmojis);
   if (!eleArray) {
     textCache.set(cacheKey, null);
     return text;
@@ -154,50 +155,13 @@ function cacheForType(type: EmojiType) {
   return type === EMOJI_TYPE_UNICODE ? unicodeEmojiCache : customEmojiCache;
 }
 
-type EmojifiedTextArray = (string | HTMLImageElement)[];
-
-function textToElementArray(
-  text: string,
-  appState: EmojiAppState,
-  extraEmojis: ExtraCustomEmojiMap = {},
-): EmojifiedTextArray | null {
-  // Exit if no text to convert.
-  if (!text.trim()) {
-    return null;
-  }
-
-  const tokens = tokenizeText(text, appState.mode);
-
-  // If only one token and it's a string, exit early.
-  if (tokens.length === 1 && typeof tokens[0] === 'string') {
-    return null;
-  }
-
-  const renderedFragments: EmojifiedTextArray = [];
-  for (const token of tokens) {
-    // Plain text does not need to be converted.
-    if (typeof token === 'string') {
-      renderedFragments.push(token);
-      continue;
-    }
-
-    // Check if this is a provided custom emoji and use that if so.
-    if (token.type === EMOJI_TYPE_CUSTOM) {
-      const extraEmojiData = extraEmojis[token.code];
-      if (extraEmojiData) {
-        token.data = extraEmojiData;
-      }
-    }
-
-    // Create an image element from the token and add it to the the fragments.
-    const image = stateToImage(token, appState);
-    renderedFragments.push(image);
-  }
-
-  return renderedFragments;
-}
+// Tokenization. This takes the HTML string and converts it into an array of emoji types that are cached.
 
 type TokenizedText = (string | Exclude<EmojiState, EmojiStateMissing>)[];
+
+const tokenCache = createLimitedCache<TokenizedText>({
+  log: log.extend('tokens'),
+});
 
 /**
  * Accepts incoming text strings and breaks them into an array of state tokens.
@@ -205,6 +169,13 @@ type TokenizedText = (string | Exclude<EmojiState, EmojiStateMissing>)[];
 export function tokenizeText(text: string, mode: EmojiMode): TokenizedText {
   if (!text.trim()) {
     return [];
+  }
+
+  const finish = timingMeasurementHelper('tokenizeText');
+
+  const cached = tokenCache.get(text);
+  if (cached) {
+    // return cached;
   }
 
   const tokens = [];
@@ -235,10 +206,9 @@ export function tokenizeText(text: string, mode: EmojiMode): TokenizedText {
 
     if (cachedData === EMOJI_STATE_MISSING) {
       continue; // Exit if we know this is missing.
-    } else if (cachedData) {
-      tokens.push(cachedData); // We already cached this token, so just use that.
     } else {
       // This is possibly an emoji!
+      // We are not saving the data in here to keep cache sizes small.
       tokens.push({
         type,
         code,
@@ -253,6 +223,7 @@ export function tokenizeText(text: string, mode: EmojiMode): TokenizedText {
   if (lastIndex < text.length) {
     tokens.push(text.slice(lastIndex));
   }
+  finish();
   return tokens;
 }
 
@@ -270,9 +241,57 @@ function shouldRenderUnicodeImage(code: string, mode: EmojiMode): boolean {
   return true;
 }
 
+type EmojifiedTextArray = (string | HTMLImageElement)[];
+
+function tokensToElementArray(
+  tokens: TokenizedText,
+  appState: EmojiAppState,
+  extraEmojis: ExtraCustomEmojiMap = {},
+): EmojifiedTextArray | null {
+  // If only one token and it's a string, exit early.
+  if (tokens.length === 1 && typeof tokens[0] === 'string') {
+    return null;
+  }
+
+  const finish = timingMeasurementHelper('tokensToElementArray');
+
+  const renderedFragments: EmojifiedTextArray = [];
+  for (const token of tokens) {
+    // Plain text does not need to be converted.
+    if (typeof token === 'string') {
+      renderedFragments.push(token);
+      continue;
+    }
+
+    // Check if this is a provided custom emoji and use that if so.
+    if (token.type === EMOJI_TYPE_CUSTOM) {
+      const extraEmojiData = extraEmojis[token.code];
+      if (extraEmojiData) {
+        token.data = extraEmojiData;
+      }
+    }
+    // Otherwise, load the data from the cache if it exists.
+    if (!token.data) {
+      const cache = cacheForType(token.type);
+      const cached = cache.get(token.code);
+      if (cached !== EMOJI_STATE_MISSING && cached?.data) {
+        token.data = cached.data;
+      }
+    }
+
+    // Create an image element from the token and add it to the the fragments.
+    const image = stateToImage(token, appState);
+    renderedFragments.push(image);
+  }
+
+  finish();
+  return renderedFragments;
+}
+
 const EMOJI_SIZE = 16;
 
 function stateToImage(state: EmojiStateToken, appState: EmojiAppState) {
+  const finish = timingMeasurementHelper('stateToImage');
   const image = document.createElement('img');
   image.draggable = false;
   image.classList.add('emojione');
@@ -292,6 +311,7 @@ function stateToImage(state: EmojiStateToken, appState: EmojiAppState) {
     imageAttributesFromState(image, state, appState.darkTheme);
   }
 
+  finish();
   return image;
 }
 
@@ -389,6 +409,14 @@ function renderedToHTML(
     }
   }
   return fragment;
+}
+
+function timingMeasurementHelper(name: string) {
+  const start = performance.now();
+  return () => {
+    const duration = performance.now() - start;
+    log.extend('timing')('timing for %s: %d', name, duration);
+  };
 }
 
 // Testing helpers
