@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 
 import classNames from 'classnames';
 
+import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { replyComposeById } from 'mastodon/actions/compose';
 import { toggleReblog, toggleFavourite } from 'mastodon/actions/interactions';
 import {
@@ -15,7 +16,6 @@ import { StatusQuoteManager } from 'mastodon/components/status_quoted';
 import { getStatusHidden } from 'mastodon/selectors/filters';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import { DisplayedName } from './displayed_name';
 import type { LabelRenderer } from './notification_group_with_status';
 
 export const NotificationWithStatus: React.FC<{
@@ -39,9 +39,12 @@ export const NotificationWithStatus: React.FC<{
 }) => {
   const dispatch = useAppDispatch();
 
+  const account = useAppSelector((state) =>
+    state.accounts.get(accountIds.at(0) ?? ''),
+  );
   const label = useMemo(
-    () => labelRenderer(<DisplayedName accountIds={accountIds} />, count),
-    [labelRenderer, accountIds, count],
+    () => labelRenderer(<LinkedDisplayName account={account} simple />, count),
+    [labelRenderer, count, account],
   );
 
   const isPrivateMention = useAppSelector(

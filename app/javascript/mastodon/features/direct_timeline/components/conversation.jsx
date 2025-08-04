@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { createSelector } from '@reduxjs/toolkit';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -23,8 +23,9 @@ import { IconButton } from 'mastodon/components/icon_button';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import StatusContent from 'mastodon/components/status_content';
 import { Dropdown } from 'mastodon/components/dropdown_menu';
-import { autoPlayGif } from 'mastodon/initial_state';
 import { makeGetStatus } from 'mastodon/selectors';
+import { LinkedDisplayName } from '@/mastodon/components/display_name';
+import { handleAnimateEnter, handleAnimateLeave } from '@/mastodon/features/emoji/handlers';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
@@ -56,31 +57,8 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
   const lastStatus = useSelector(state => getStatus(state, { id: lastStatusId }));
   const accounts = useSelector(state => getAccounts(state, accountIds));
 
-  const handleMouseEnter = useCallback(({ currentTarget }) => {
-    if (autoPlayGif) {
-      return;
-    }
-
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
-
-    for (var i = 0; i < emojis.length; i++) {
-      let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-original');
-    }
-  }, []);
-
-  const handleMouseLeave = useCallback(({ currentTarget }) => {
-    if (autoPlayGif) {
-      return;
-    }
-
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
-
-    for (var i = 0; i < emojis.length; i++) {
-      let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-static');
-    }
-  }, []);
+  const handleMouseEnter = useCallback(handleAnimateEnter, []);
+  const handleMouseLeave = useCallback(handleAnimateLeave, []);
 
   const handleClick = useCallback(() => {
     if (unread) {
@@ -147,15 +125,8 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
 
   menu.push({ text: intl.formatMessage(messages.delete), action: handleDelete });
 
-  const names = accounts.map(a => (
-    <Link to={`/@${a.get('acct')}`} key={a.get('id')} data-hover-card-account={a.get('id')}>
-      <bdi>
-        <strong
-          className='display-name__html'
-          dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }}
-        />
-      </bdi>
-    </Link>
+  const names = accounts.map(account => (
+    <LinkedDisplayName account={account} simple />
   )).reduce((prev, cur) => [prev, ', ', cur]);
 
   const handlers = {
@@ -179,7 +150,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
               {unread && <span className='conversation__unread' />} <RelativeTimestamp timestamp={lastStatus.get('created_at')} />
             </div>
 
-            <div className='conversation__content__names' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <div className='conversation__content__names animate-parent' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
               <FormattedMessage id='conversation.with' defaultMessage='With {names}' values={{ names: <span>{names}</span> }} />
             </div>
           </div>

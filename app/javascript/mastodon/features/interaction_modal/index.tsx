@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { escapeRegExp } from 'lodash';
 import { useDebouncedCallback } from 'use-debounce';
 
+import { DisplayName } from '@/mastodon/components/display_name';
 import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
 import PersonAddIcon from '@/material-icons/400-24px/person_add.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
@@ -411,15 +412,14 @@ const InteractionModal: React.FC<{
   type: 'reply' | 'reblog' | 'favourite' | 'follow' | 'vote';
 }> = ({ accountId, url, type }) => {
   const dispatch = useAppDispatch();
-  const displayNameHtml = useAppSelector(
-    (state) => state.accounts.get(accountId)?.display_name_html ?? '',
-  );
   const signupUrl = useAppSelector(
     (state) =>
       (state.server.getIn(['server', 'registrations', 'url'], null) ||
         '/auth/sign_up') as string,
   );
-  const name = <bdi dangerouslySetInnerHTML={{ __html: displayNameHtml }} />;
+
+  const account = useAppSelector((state) => state.accounts.get(accountId));
+  const name = <DisplayName account={account} simple />;
 
   const handleSignupClick = useCallback(() => {
     dispatch(
