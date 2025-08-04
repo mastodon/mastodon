@@ -10,6 +10,6 @@ class FetchReplyWorker
     batch  = WorkerBatch.new(options.delete('batch_id')) if options['batch_id']
     result = FetchRemoteStatusService.new.call(child_url, **options.symbolize_keys)
   ensure
-    batch&.remove_job(jid, increment: result.present?)
+    batch&.remove_job(jid, increment: result&.previously_new_record?)
   end
 end
