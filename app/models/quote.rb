@@ -56,6 +56,12 @@ class Quote < ApplicationRecord
     accepted? || !legacy?
   end
 
+  def ensure_quoted_access
+    status.mentions.create!(account: quoted_account, silent: true)
+  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
+    nil
+  end
+
   def schedule_refresh_if_stale!
     return unless quoted_status_id.present? && approval_uri.present? && updated_at <= BACKGROUND_REFRESH_INTERVAL.ago
 

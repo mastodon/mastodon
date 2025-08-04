@@ -196,6 +196,7 @@ pl:
         create_relay: Utwórz przekaźnik
         create_unavailable_domain: Utwórz niedostępną domenę
         create_user_role: Utwórz rolę
+        create_username_block: Utwórz zasadę nazwy użytkownika
         demote_user: Zdegraduj użytkownika
         destroy_announcement: Usuń ogłoszenie
         destroy_canonical_email_block: Usuń blokadę e-mail
@@ -209,6 +210,7 @@ pl:
         destroy_status: Usuń wpis
         destroy_unavailable_domain: Usuń niedostępną domenę
         destroy_user_role: Zlikwiduj rolę
+        destroy_username_block: Usuń zasadę nazwy użytkownika
         disable_2fa_user: Wyłącz 2FA
         disable_custom_emoji: Wyłącz niestandardowe emoji
         disable_relay: Wyłącz przekaźnik
@@ -243,6 +245,7 @@ pl:
         update_report: Wiadomości or raporcie
         update_status: Aktualizuj wpis
         update_user_role: Aktualizuj rolę
+        update_username_block: Zaktualizuj zasadę nazwy użytkownika
       actions:
         approve_appeal_html: "%{name} zatwierdził(-a) odwołanie decyzji moderacyjnej od %{target}"
         approve_user_html: "%{name} zatwierdził rejestrację od %{target}"
@@ -261,6 +264,7 @@ pl:
         create_relay_html: "%{name} utworzył przekaźnik %{target}"
         create_unavailable_domain_html: "%{name} przestał(a) doręczać na domenę %{target}"
         create_user_role_html: "%{name} utworzył rolę %{target}"
+        create_username_block_html: Użytkownik %{name} dodał zasadę dla nazw użytkowników zawierających %{target}
         demote_user_html: "%{name} zdegradował(a) użytkownika %{target}"
         destroy_announcement_html: "%{name} usunął(-ęła) ogłoszenie %{target}"
         destroy_canonical_email_block_html: "%{name} odblokował(a) e-mail z hashem %{target}"
@@ -274,6 +278,7 @@ pl:
         destroy_status_html: "%{name} usunął(-ęła) wpis użytkownika %{target}"
         destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
         destroy_user_role_html: "%{name} usunął rolę %{target}"
+        destroy_username_block_html: Użytkownik %{name} usunął zasadę dla nazw użytkowników zawierających %{target}
         disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwuskładnikowe użytkownikowi %{target}"
         disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
         disable_relay_html: "%{name} wyłączył przekaźnik %{target}"
@@ -308,6 +313,7 @@ pl:
         update_report_html: "%{target} zaktualizowany przez %{name}"
         update_status_html: "%{name} zaktualizował(a) wpis użytkownika %{target}"
         update_user_role_html: "%{name} zmienił rolę %{target}"
+        update_username_block_html: Użytkownik %{name} zaktualizował zasadę dla nazw użytkowników zawierających %{target}
       deleted_account: usunięte konto
       empty: Nie znaleziono aktywności w dzienniku.
       filter_by_action: Filtruj według działania
@@ -315,6 +321,7 @@ pl:
       title: Dziennik działań administracyjnych
       unavailable_instance: "(domena niedostępna)"
     announcements:
+      back: Powrót do ogłoszeń
       destroyed_msg: Pomyślnie usunięto ogłoszenie!
       edit:
         title: Edytuj ogłoszenie
@@ -323,6 +330,9 @@ pl:
       new:
         create: Utwórz ogłoszenie
         title: Nowe ogłoszenie
+      preview:
+        explanation_html: 'Wiadomość e-mail zostanie wysłana do <strong>%{display_count} użytkowników</strong>. Otrzymają oni wiadomość o następującej treści:'
+        title: Podgląd powiadomienia
       publish: Opublikuj
       published_msg: Pomyślnie opublikowano ogłoszenie!
       scheduled_for: Zaplanowano na %{time}
@@ -491,6 +501,29 @@ pl:
       new:
         title: Importuj zablokowane domeny
       no_file: Nie wybrano pliku
+    fasp:
+      debug:
+        callbacks:
+          created_at: 'Utworzono:'
+          delete: Usuń
+          ip: Adres IP
+      providers:
+        active: Aktywne
+        base_url: Podstawowy adres URL
+        delete: Usuń
+        edit: Edytuj dostawców
+        finish_registration: Zakończ rejestrację
+        name: Nazwa
+        providers: Dostawca
+        registration_requested: Wymagana rejestracja
+        registrations:
+          confirm: Zatwierdź
+          reject: Odrzuć
+        save: Zapisz
+        sign_in: Zaloguj się
+        status: Status
+        title: Dostawcy usług pomocniczych Fediverse (Fediverse Auxiliary Service Providers)
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Polecane obserwacje pomagają nowym użytkownikom szybko odnaleźć interesujące treści</strong>. Jeżeli użytkownik nie wchodził w interakcje z innymi wystarczająco często, aby powstały spersonalizowane rekomendacje, polecane są te konta. Są one obliczane każdego dnia na podstawie kombinacji kont o największej liczbie niedawnej aktywności i największej liczbie lokalnych obserwatorów dla danego języka."
       language: Dla języka
@@ -565,6 +598,8 @@ pl:
         all: Wszystkie
         limited: Ograniczone
         title: Moderacja
+      moderation_notes:
+        title: Notatki moderacyjne
       private_comment: Prywatny komentarz
       public_comment: Publiczny komentarz
       purge: Wyczyść
@@ -779,11 +814,16 @@ pl:
       title: Role
     rules:
       add_new: Dodaj zasadę
+      add_translation: Dodaj tłumaczenie
       delete: Usuń
       description_html: Chociaż większość twierdzi, że przeczytała i zgadza się z warunkami korzystania z usługi, zwykle ludzie nie czytają ich, dopóki nie pojawi się problem. <strong>Ułatw użytkownikom szybkie przejrzenie zasad serwera, umieszczając je na prostej liście punktowanej.</strong> Postaraj się, aby poszczególne zasady były krótkie i proste, ale staraj się też nie dzielić ich na wiele oddzielnych elementów.
       edit: Edytuj zasadę
       empty: Jeszcze nie zdefiniowano zasad serwera.
+      move_down: Przenieś w dół
+      move_up: Przenieś w górę
       title: Regulamin serwera
+      translation: Tłumaczenie
+      translations: Tłumaczenia
     settings:
       about:
         manage_rules: Zarządzaj regułami serwera
@@ -809,6 +849,7 @@ pl:
       discovery:
         follow_recommendations: Polecane konta
         preamble: Prezentowanie interesujących treści ma kluczowe znaczenie dla nowych użytkowników, którzy mogą nie znać nikogo z Mastodona. Kontroluj, jak różne funkcje odkrywania działają na Twoim serwerze.
+        privacy: Prywatność
         profile_directory: Katalog profilów
         public_timelines: Publiczne osie czasu
         publish_statistics: Publikuj statystyki
@@ -1066,6 +1107,22 @@ pl:
           other: Użyte przez %{count} osób w ciągu ostatniego tygodnia
       title: Rekomendacje i Trendy
       trending: Popularne
+    username_blocks:
+      add_new: Dodaj nową
+      comparison:
+        contains: Zawiera
+        equals: Równa się
+      contains_html: Zawiera %{string}
+      delete: Usuń
+      edit:
+        title: Edytuj zasadę nazwy użytkownika
+      matches_exactly_html: Równa się %{string}
+      new:
+        create: Dodaj zasadę
+        title: Utwórz zasadę nazwy użytkownika
+      not_permitted: Brak uprawnień
+      title: Zasady nazwy użytkownika
+      updated_msg: Pomyślnie zaktualizowano zasadę nazwy użytkownika
     warning_presets:
       add_new: Dodaj nowy
       delete: Usuń
@@ -1332,6 +1389,10 @@ pl:
     basic_information: Podstawowe informacje
     hint_html: "<strong>Dostosuj to, co ludzie widzą na Twoim profilu publicznym i obok Twoich wpisów.</strong> Inne osoby są bardziej skłonne obserwować Cię i wchodzić z Tobą w interakcje, gdy masz wypełniony profil i zdjęcie profilowe."
     other: Inne
+  emoji_styles:
+    auto: Automatycznie
+    native: Natywny
+    twemoji: Twemoji
   errors:
     '400': Wysłane zgłoszenie jest nieprawidłowe lub uszkodzone.
     '403': Nie masz uprawnień, aby wyświetlić tę stronę.
@@ -1899,12 +1960,17 @@ pl:
     edited_at_html: Edytowane %{date}
     errors:
       in_reply_not_found: Post, na który próbujesz odpowiedzieć, nie istnieje.
+      quoted_status_not_found: Wpis, który próbujesz zacytować, nie istnieje.
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
       direct: Nie możesz przypiąć wpisu, który jest widoczny tylko dla wspomnianych użytkowników
       limit: Przekroczyłeś maksymalną liczbę przypiętych wpisów
       ownership: Nie możesz przypiąć cudzego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
+    quote_policies:
+      followers: Tylko obserwujący
+      nobody: Nikt
+      public: Wszyscy
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Bezpośredni

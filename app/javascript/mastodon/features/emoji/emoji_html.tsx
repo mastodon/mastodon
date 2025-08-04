@@ -1,5 +1,7 @@
 import type { ComponentPropsWithoutRef, ElementType } from 'react';
 
+import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
+
 import { useEmojify } from './hooks';
 import type { CustomEmojiMapArg } from './types';
 
@@ -12,7 +14,7 @@ type EmojiHTMLProps<Element extends ElementType = 'div'> = Omit<
   as?: Element;
 };
 
-export const EmojiHTML = <Element extends ElementType>({
+export const ModernEmojiHTML = <Element extends ElementType>({
   extraEmojis,
   htmlString,
   as: asElement, // Rename for syntax highlighting
@@ -27,5 +29,20 @@ export const EmojiHTML = <Element extends ElementType>({
 
   return (
     <Wrapper {...props} dangerouslySetInnerHTML={{ __html: emojifiedHtml }} />
+  );
+};
+
+export const EmojiHTML = <Element extends ElementType>(
+  props: EmojiHTMLProps<Element>,
+) => {
+  if (isModernEmojiEnabled()) {
+    return <ModernEmojiHTML {...props} />;
+  }
+  const Wrapper = props.as ?? 'div';
+  return (
+    <Wrapper
+      {...props}
+      dangerouslySetInnerHTML={{ __html: props.htmlString }}
+    />
   );
 };
