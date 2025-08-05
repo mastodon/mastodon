@@ -43,7 +43,7 @@ class UsernameBlock < ApplicationRecord
 
   def self.matches?(str, allow_with_approval: false)
     normalized_str = str.downcase.gsub(Regexp.union(HOMOGLYPHS.keys), HOMOGLYPHS)
-    where(allow_with_approval: allow_with_approval).matches_exactly(normalized_str).or(matches_partially(normalized_str)).any?
+    matches_exactly(normalized_str).or(matches_partially(normalized_str)).where(allow_with_approval: allow_with_approval).any?
   end
 
   def to_log_human_identifier

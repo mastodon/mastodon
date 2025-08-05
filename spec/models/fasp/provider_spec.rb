@@ -206,4 +206,12 @@ RSpec.describe Fasp::Provider do
       end
     end
   end
+
+  describe '#delivery_failure_tracker' do
+    subject { Fabricate(:fasp_provider) }
+
+    it 'returns a `DeliverFailureTracker` instance' do
+      expect(subject.delivery_failure_tracker).to be_a(DeliveryFailureTracker)
+    end
+  end
 end
