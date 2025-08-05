@@ -10,8 +10,6 @@ import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
-import type { List as ImmutableList, Map as ImmutableMap } from 'immutable';
-
 import { useSpring, animated } from '@react-spring/web';
 import Textarea from 'react-textarea-autosize';
 import { length } from 'stringz';
@@ -28,7 +26,6 @@ import { CharacterCounter } from 'mastodon/features/compose/components/character
 import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
 import { Video, getPointerPosition } from 'mastodon/features/video';
 import { me } from 'mastodon/initial_state';
-import type { MediaAttachment } from 'mastodon/models/media_attachment';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 import { assetHost } from 'mastodon/utils/config';
 
@@ -113,11 +110,7 @@ const Preview: React.FC<{
     immediate: draggingRef.current,
   });
   const media = useAppSelector((state) =>
-    (
-      (state.compose as ImmutableMap<string, unknown>).get(
-        'media_attachments',
-      ) as ImmutableList<MediaAttachment>
-    ).find((x) => x.get('id') === mediaId),
+    state.compose.media_attachments.find((x) => x.get('id') === mediaId),
   );
   const account = useAppSelector((state) =>
     me ? state.accounts.get(me) : undefined,
@@ -253,18 +246,9 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
     const intl = useIntl();
     const dispatch = useAppDispatch();
     const media = useAppSelector((state) =>
-      (
-        (state.compose as ImmutableMap<string, unknown>).get(
-          'media_attachments',
-        ) as ImmutableList<MediaAttachment>
-      ).find((x) => x.get('id') === mediaId),
+      state.compose.media_attachments.find((x) => x.get('id') === mediaId),
     );
-    const lang = useAppSelector(
-      (state) =>
-        (state.compose as ImmutableMap<string, unknown>).get(
-          'language',
-        ) as string,
-    );
+    const lang = useAppSelector((state) => state.compose.language);
     const focusX =
       (media?.getIn(['meta', 'focus', 'x'], 0) as number | undefined) ?? 0;
     const focusY =

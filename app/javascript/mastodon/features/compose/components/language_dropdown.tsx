@@ -332,10 +332,8 @@ export const LanguageDropdown: React.FC = () => {
   const intl = useIntl();
 
   const dispatch = useAppDispatch();
-  const value = useAppSelector(
-    (state) => state.compose.get('language') as string,
-  );
-  const text = useAppSelector((state) => state.compose.get('text') as string);
+  const value = useAppSelector((state) => state.compose.language);
+  const text = useAppSelector((state) => state.compose.text);
 
   const current =
     (preloadedLanguages as Language[]).find((lang) => lang[0] === value) ?? [];

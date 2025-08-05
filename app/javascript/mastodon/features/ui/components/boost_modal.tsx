@@ -28,7 +28,7 @@ export const BoostModal: React.FC<{
   const intl = useIntl();
 
   const defaultPrivacy = useAppSelector(
-    (state) => state.compose.get('default_privacy') as StatusVisibility,
+    (state) => state.compose.default_privacy,
   );
 
   const statusId = status.get('id') as string;

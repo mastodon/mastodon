@@ -98,7 +98,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
     dispatch((_, getState) => {
       let state = getState();
 
-      if (state.getIn(['compose', 'text']).trim().length !== 0) {
+      if (state.compose.text.trim().length !== 0) {
         dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status: lastStatus } }));
       } else {
         dispatch(replyCompose(lastStatus));

@@ -6,7 +6,7 @@ import { isUserTouching } from '../../../is_mobile';
 import PrivacyDropdown from '../components/privacy_dropdown';
 
 const mapStateToProps = state => ({
-  value: state.getIn(['compose', 'privacy']),
+  value: state.compose.privacy,
 });
 
 const mapDispatchToProps = dispatch => ({

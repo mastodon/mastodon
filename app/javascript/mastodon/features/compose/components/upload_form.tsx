@@ -2,11 +2,7 @@ import { useState, useCallback, useMemo } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import type {
-  List,
-  Map as ImmutableMap,
-  List as ImmutableList,
-} from 'immutable';
+import type { List } from 'immutable';
 
 import type {
   DragStartEvent,
@@ -67,21 +63,13 @@ export const UploadForm: React.FC = () => {
   const intl = useIntl();
   const mediaIds = useAppSelector(
     (state) =>
-      (
-        (state.compose as ImmutableMap<string, unknown>).get(
-          'media_attachments',
-        ) as ImmutableList<MediaAttachment>
-      ).map((item: MediaAttachment) => item.get('id')) as List<string>,
+      state.compose.media_attachments.map((item: MediaAttachment) =>
+        item.get('id'),
+      ) as List<string>,
   );
-  const active = useAppSelector(
-    (state) => state.compose.get('is_uploading') as boolean,
-  );
-  const progress = useAppSelector(
-    (state) => state.compose.get('progress') as number,
-  );
-  const isProcessing = useAppSelector(
-    (state) => state.compose.get('is_processing') as boolean,
-  );
+  const active = useAppSelector((state) => state.compose.is_uploading);
+  const progress = useAppSelector((state) => state.compose.progress);
+  const isProcessing = useAppSelector((state) => state.compose.is_processing);
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const sensors = useSensors(
     useSensor(PointerSensor, {

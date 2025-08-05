@@ -90,7 +90,7 @@ const messages = defineMessages({
 });
 
 export const ensureComposeIsVisible = (getState) => {
-  if (!getState().getIn(['compose', 'mounted'])) {
+  if (!getState().compose.mounted) {
     browserHistory.push('/publish');
   }
 };
@@ -184,10 +184,14 @@ export function directCompose(account) {
 }
 
 export function submitCompose() {
+  /**
+   * @param {import('../store').AppDispatch} dispatch
+   * @param {() => import('../store').RootState} getState
+   */
   return function (dispatch, getState) {
-    const status   = getState().getIn(['compose', 'text'], '');
-    const media    = getState().getIn(['compose', 'media_attachments']);
-    const statusId = getState().getIn(['compose', 'id'], null);
+    const status   = getState().compose.text;
+    const media    = getState().compose.media_attachments;
+    const statusId = getState().compose.id;
 
     if ((!status || !status.length) && media.size === 0) {
       return;
@@ -220,17 +224,17 @@ export function submitCompose() {
       method: statusId === null ? 'post' : 'put',
       data: {
         status,
-        in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
+        in_reply_to_id: getState().compose.in_reply_to,
         media_ids: media.map(item => item.get('id')),
         media_attributes,
-        sensitive: getState().getIn(['compose', 'sensitive']),
-        spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
-        visibility: getState().getIn(['compose', 'privacy']),
-        poll: getState().getIn(['compose', 'poll'], null),
-        language: getState().getIn(['compose', 'language']),
+        sensitive: getState().compose.sensitive,
+        spoiler_text: getState().compose.spoiler ? getState().compose.spoiler_text : '',
+        visibility: getState().compose.privacy,
+        poll: getState().compose.poll,
+        language: getState().compose.language,
       },
       headers: {
-        'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
+        'Idempotency-Key': getState().compose.idempotencyKey,
       },
     }).then(function (response) {
       if ((browserHistory.location.pathname === '/publish' || browserHistory.location.pathname === '/statuses/new') && window.history.state) {
@@ -296,11 +300,16 @@ export function submitComposeFail(error) {
   };
 }
 
+/** @param {FileList} files */
 export function uploadCompose(files) {
+  /**
+   * @param {import('../store').AppDispatch} dispatch
+   * @param {() => import('../store').RootState} getState
+   */
   return function (dispatch, getState) {
     const uploadLimit = getState().getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']);
-    const media = getState().getIn(['compose', 'media_attachments']);
-    const pending = getState().getIn(['compose', 'pending_media_attachments']);
+    const media = getState().compose.media_attachments;
+    const pending = getState().compose.pending_media_attachments;
     const progress = new Array(files.length).fill(0);
 
     let total = Array.from(files).reduce((a, v) => a + v.size, 0);
@@ -310,7 +319,7 @@ export function uploadCompose(files) {
       return;
     }
 
-    if (getState().getIn(['compose', 'poll'])) {
+    if (getState().compose.poll) {
       dispatch(showAlert({ message: messages.uploadErrorPoll }));
       return;
     }
@@ -438,7 +447,7 @@ export function changeUploadCompose(id, params) {
   return (dispatch, getState) => {
     dispatch(changeUploadComposeRequest());
 
-    let media = getState().getIn(['compose', 'media_attachments']).find((item) => item.get('id') === id);
+    let media = getState().compose.media_attachments.find((item) => item.get('id') === id);
 
     // Editing already-attached media is deferred to editing the post itself.
     // For simplicity's sake, fake an API reply.
@@ -701,7 +710,7 @@ export function hydrateCompose() {
 function insertIntoTagHistory(recognizedTags, text) {
   return (dispatch, getState) => {
     const state = getState();
-    const oldHistory = state.getIn(['compose', 'tagHistory']);
+    const oldHistory = state.compose.tagHistory;
     const me = state.getIn(['meta', 'me']);
 
     // FIXME: Matching input hashtags with recognized hashtags has become more

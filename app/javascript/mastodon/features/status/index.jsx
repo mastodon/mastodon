@@ -97,7 +97,7 @@ const makeMapStateToProps = () => {
       status,
       ancestorsIds,
       descendantsIds,
-      askReplyConfirmation: state.getIn(['compose', 'text']).trim().length !== 0,
+      askReplyConfirmation: state.compose.text.trim().length !== 0,
       domain: state.getIn(['meta', 'domain']),
       pictureInPicture: getPictureInPicture(state, { id: props.params.statusId }),
     };

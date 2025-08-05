@@ -55,7 +55,7 @@ const DiscardDraftConfirmationModal: React.FC<
   } & BaseConfirmationModalProps
 > = ({ onConfirm, onClose }) => {
   const intl = useIntl();
-  const isEditing = useAppSelector((state) => !!state.compose.get('id'));
+  const isEditing = useAppSelector((state) => !!state.compose.id);
 
   const contextualMessages = isEditing ? editMessages : postMessages;
 

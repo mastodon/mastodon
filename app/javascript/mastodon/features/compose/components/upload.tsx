@@ -4,8 +4,6 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
-import type { Map as ImmutableMap, List as ImmutableList } from 'immutable';
-
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
@@ -16,7 +14,6 @@ import { undoUploadCompose } from 'mastodon/actions/compose';
 import { openModal } from 'mastodon/actions/modal';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon } from 'mastodon/components/icon';
-import type { MediaAttachment } from 'mastodon/models/media_attachment';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 export const Upload: React.FC<{
@@ -29,15 +26,9 @@ export const Upload: React.FC<{
 }> = ({ id, dragging, draggable = true, overlay, tall, wide }) => {
   const dispatch = useAppDispatch();
   const media = useAppSelector((state) =>
-    (
-      (state.compose as ImmutableMap<string, unknown>).get(
-        'media_attachments',
-      ) as ImmutableList<MediaAttachment>
-    ).find((item) => item.get('id') === id),
+    state.compose.media_attachments.find((item) => item.get('id') === id),
   );
-  const sensitive = useAppSelector(
-    (state) => state.compose.get('spoiler') as boolean,
-  );
+  const sensitive = useAppSelector((state) => state.compose.spoiler);
 
   const handleUndoClick = useCallback(() => {
     dispatch(undoUploadCompose(id));

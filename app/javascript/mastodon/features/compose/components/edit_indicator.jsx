@@ -22,7 +22,7 @@ const messages = defineMessages({
 export const EditIndicator = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
-  const id = useSelector(state => state.getIn(['compose', 'id']));
+  const id = useSelector(state => state.compose.id);
   const status = useSelector(state => state.getIn(['statuses', id]));
   const account = useSelector(state => state.getIn(['accounts', status?.get('account')]));
 

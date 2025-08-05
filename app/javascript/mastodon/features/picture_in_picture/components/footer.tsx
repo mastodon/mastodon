@@ -69,7 +69,7 @@ export const Footer: React.FC<{
   const status = useAppSelector((state) => getStatus(state, { id: statusId }));
   const account = status?.get('account') as Account | undefined;
   const askReplyConfirmation = useAppSelector(
-    (state) => (state.compose.get('text') as string).trim().length !== 0,
+    (state) => state.compose.text.trim().length !== 0,
   );
 
   const handleReplyClick = useCallback(() => {

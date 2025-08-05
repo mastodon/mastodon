@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     dispatch((_, getState) => {
       let state = getState();
 
-      if (state.getIn(['compose', 'text']).trim().length !== 0) {
+      if (state.compose.text.trim().length !== 0) {
         dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status } }));
       } else {
         dispatch(replyCompose(status));
@@ -118,7 +118,7 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
   onEdit (status) {
     dispatch((_, getState) => {
       let state = getState();
-      if (state.getIn(['compose', 'text']).trim().length !== 0) {
+      if (state.compose.text.trim().length !== 0) {
         dispatch(openModal({ modalType: 'CONFIRM_EDIT_STATUS', modalProps: { statusId: status.get('id') } }));
       } else {
         dispatch(editStatus(status.get('id')));

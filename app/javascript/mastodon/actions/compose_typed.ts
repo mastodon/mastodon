@@ -1,4 +1,4 @@
-import type { List as ImmutableList, Map as ImmutableMap } from 'immutable';
+import { createAction } from '@reduxjs/toolkit';
 
 import { apiUpdateMedia } from 'mastodon/api/compose';
 import type { ApiMediaAttachmentJSON } from 'mastodon/api_types/media_attachments';
@@ -29,6 +29,10 @@ const simulateModifiedApiResponse = (
   return data;
 };
 
+export const quoteComposeById = createAction<number>(
+  'compose/quoteComposeById',
+);
+
 export const changeUploadCompose = createDataLoadingThunk(
   'compose/changeUpload',
   async (
@@ -42,11 +46,9 @@ export const changeUploadCompose = createDataLoadingThunk(
     },
     { getState },
   ) => {
-    const media = (
-      (getState().compose as ImmutableMap<string, unknown>).get(
-        'media_attachments',
-      ) as ImmutableList<MediaAttachment>
-    ).find((item) => item.get('id') === id);
+    const media = getState().compose.media_attachments.find(
+      (item) => item.get('id') === id,
+    );
 
     // Editing already-attached media is deferred to editing the post itself.
     // For simplicity's sake, fake an API reply.

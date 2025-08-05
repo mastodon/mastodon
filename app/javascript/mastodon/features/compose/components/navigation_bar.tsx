@@ -16,9 +16,7 @@ const messages = defineMessages({
 export const NavigationBar: React.FC = () => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
-  const isReplying = useAppSelector(
-    (state) => !!state.compose.get('in_reply_to'),
-  );
+  const isReplying = useAppSelector((state) => !!state.compose.in_reply_to);
 
   const handleCancelClick = useCallback(() => {
     dispatch(cancelReplyCompose());

@@ -52,44 +52,7 @@ import { me } from '../initial_state';
 import { unescapeHTML } from '../utils/html';
 import { uuid } from '../uuid';
 
-const initialState = ImmutableMap({
-  mounted: 0,
-  sensitive: false,
-  spoiler: false,
-  spoiler_text: '',
-  privacy: null,
-  id: null,
-  text: '',
-  focusDate: null,
-  caretPosition: null,
-  preselectDate: null,
-  in_reply_to: null,
-  is_composing: false,
-  is_submitting: false,
-  is_changing_upload: false,
-  is_uploading: false,
-  should_redirect_to_compose_page: false,
-  progress: 0,
-  isUploadingThumbnail: false,
-  thumbnailProgress: 0,
-  media_attachments: ImmutableList(),
-  pending_media_attachments: 0,
-  poll: null,
-  suggestion_token: null,
-  suggestions: ImmutableList(),
-  default_privacy: 'public',
-  default_sensitive: false,
-  default_language: 'en',
-  resetFileKey: Math.floor((Math.random() * 0x10000)),
-  idempotencyKey: null,
-  tagHistory: ImmutableList(),
-});
-
-const initialPoll = ImmutableMap({
-  options: ImmutableList(['', '']),
-  expires_in: 24 * 3600,
-  multiple: false,
-});
+import { initialState, initialPollState } from './compose_typed';
 
 function statusToTextMentions(state, status) {
   let set = ImmutableOrderedSet([]);
@@ -321,7 +284,7 @@ export const composeReducer = (state = initialState, action) => {
 
   switch(action.type) {
   case STORE_HYDRATE:
-    return hydrate(state, action.state.get('compose'));
+    return hydrate(state, action.state.compose);
   case COMPOSE_MOUNT:
     return state
       .set('mounted', state.get('mounted') + 1)
@@ -538,7 +501,7 @@ export const composeReducer = (state = initialState, action) => {
       }
     });
   case COMPOSE_POLL_ADD:
-    return state.set('poll', initialPoll);
+    return state.set('poll', initialPollState);
   case COMPOSE_POLL_REMOVE:
     return state.set('poll', null);
   case COMPOSE_POLL_OPTION_CHANGE:

@@ -12,7 +12,7 @@ import { Icon } from 'mastodon/components/icon';
 import { EmbeddedStatusContent } from 'mastodon/features/notifications_v2/components/embedded_status_content';
 
 export const ReplyIndicator = () => {
-  const inReplyToId = useSelector(state => state.getIn(['compose', 'in_reply_to']));
+  const inReplyToId = useSelector(state => state.compose.in_reply_to);
   const status = useSelector(state => state.getIn(['statuses', inReplyToId]));
   const account = useSelector(state => state.getIn(['accounts', status?.get('account')]));
 

@@ -14,8 +14,8 @@ const messages = defineMessages({
 
 const mapStateToProps = (state, { intl }) => ({
   iconComponent: WarningIcon,
-  title: intl.formatMessage(state.getIn(['compose', 'spoiler']) ? messages.marked : messages.unmarked),
-  active: state.getIn(['compose', 'spoiler']),
+  title: intl.formatMessage(state.compose.spoiler ? messages.marked : messages.unmarked),
+  active: state.compose.spoiler,
   ariaControls: 'cw-spoiler-input',
   size: 18,
   inverted: true,

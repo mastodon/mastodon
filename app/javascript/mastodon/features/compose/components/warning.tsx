@@ -10,9 +10,9 @@ import type { RootState } from 'mastodon/store';
 import { HASHTAG_PATTERN_REGEX } from 'mastodon/utils/hashtags';
 
 const selector = createSelector(
-  (state: RootState) => state.compose.get('privacy') as string,
+  (state: RootState) => state.compose.privacy,
   (state: RootState) => !!state.accounts.getIn([me, 'locked']),
-  (state: RootState) => state.compose.get('text') as string,
+  (state: RootState) => state.compose.text,
   (privacy, locked, text) => ({
     needsLockWarning: privacy === 'private' && !locked,
     hashtagWarning: privacy !== 'public' && HASHTAG_PATTERN_REGEX.test(text),

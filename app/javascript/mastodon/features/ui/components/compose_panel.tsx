@@ -21,7 +21,7 @@ export const ComposePanel: React.FC = () => {
   }, [dispatch]);
   const { signedIn } = useIdentity();
   const hideComposer = useAppSelector((state) => {
-    const mounted = state.compose.get('mounted');
+    const mounted = state.compose.mounted;
     if (typeof mounted === 'number') {
       return mounted > 1;
     }
@@ -65,8 +65,8 @@ export const ComposePanel: React.FC = () => {
 export const RedirectToMobileComposeIfNeeded: React.FC = () => {
   const history = useAppHistory();
 
-  const shouldRedirect = useAppSelector((state) =>
-    state.compose.get('should_redirect_to_compose_page'),
+  const shouldRedirect = useAppSelector(
+    (state) => state.compose.should_redirect_to_compose_page,
   );
 
   useLayoutEffect(() => {

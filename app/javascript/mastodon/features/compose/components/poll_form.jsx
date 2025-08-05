@@ -56,8 +56,8 @@ Select.propTypes = {
 const Option = ({ multipleChoice, index, title, autoFocus }) => {
   const intl = useIntl();
   const dispatch = useDispatch();
-  const suggestions = useSelector(state => state.getIn(['compose', 'suggestions']));
-  const lang = useSelector(state => state.getIn(['compose', 'language']));
+  const suggestions = useSelector(state => state.compose.suggestions);
+  const lang = useSelector(state => state.compose.language);
   const maxOptions = useSelector(state => state.getIn(['server', 'server', 'configuration', 'polls', 'max_options']));
 
   const handleChange = useCallback(({ target: { value } }) => {
@@ -108,7 +108,7 @@ Option.propTypes = {
 export const PollForm = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
-  const poll = useSelector(state => state.getIn(['compose', 'poll']));
+  const poll = useSelector(state => state.compose.poll);
   const options = poll?.get('options');
   const expiresIn = poll?.get('expires_in');
   const isMultiple = poll?.get('multiple');
