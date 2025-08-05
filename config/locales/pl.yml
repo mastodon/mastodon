@@ -315,6 +315,7 @@ pl:
       title: Dziennik działań administracyjnych
       unavailable_instance: "(domena niedostępna)"
     announcements:
+      back: Powrót do ogłoszeń
       destroyed_msg: Pomyślnie usunięto ogłoszenie!
       edit:
         title: Edytuj ogłoszenie
@@ -323,6 +324,9 @@ pl:
       new:
         create: Utwórz ogłoszenie
         title: Nowe ogłoszenie
+      preview:
+        explanation_html: 'Wiadomość e-mail zostanie wysłana do <strong>%{display_count} użytkowników</strong>. Otrzymają oni wiadomość o następującej treści:'
+        title: Podgląd powiadomienia
       publish: Opublikuj
       published_msg: Pomyślnie opublikowano ogłoszenie!
       scheduled_for: Zaplanowano na %{time}
@@ -491,6 +495,29 @@ pl:
       new:
         title: Importuj zablokowane domeny
       no_file: Nie wybrano pliku
+    fasp:
+      debug:
+        callbacks:
+          created_at: 'Utworzono:'
+          delete: Usuń
+          ip: Adres IP
+      providers:
+        active: Aktywne
+        base_url: Podstawowy adres URL
+        delete: Usuń
+        edit: Edytuj dostawców
+        finish_registration: Zakończ rejestrację
+        name: Nazwa
+        providers: Dostawca
+        registration_requested: Wymagana rejestracja
+        registrations:
+          confirm: Zatwierdź
+          reject: Odrzuć
+        save: Zapisz
+        sign_in: Zaloguj się
+        status: Status
+        title: Dostawcy usług pomocniczych Fediverse (Fediverse Auxiliary Service Providers)
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Polecane obserwacje pomagają nowym użytkownikom szybko odnaleźć interesujące treści</strong>. Jeżeli użytkownik nie wchodził w interakcje z innymi wystarczająco często, aby powstały spersonalizowane rekomendacje, polecane są te konta. Są one obliczane każdego dnia na podstawie kombinacji kont o największej liczbie niedawnej aktywności i największej liczbie lokalnych obserwatorów dla danego języka."
       language: Dla języka
@@ -565,6 +592,8 @@ pl:
         all: Wszystkie
         limited: Ograniczone
         title: Moderacja
+      moderation_notes:
+        title: Notatki moderacyjne
       private_comment: Prywatny komentarz
       public_comment: Publiczny komentarz
       purge: Wyczyść
@@ -779,11 +808,16 @@ pl:
       title: Role
     rules:
       add_new: Dodaj zasadę
+      add_translation: Dodaj tłumaczenie
       delete: Usuń
       description_html: Chociaż większość twierdzi, że przeczytała i zgadza się z warunkami korzystania z usługi, zwykle ludzie nie czytają ich, dopóki nie pojawi się problem. <strong>Ułatw użytkownikom szybkie przejrzenie zasad serwera, umieszczając je na prostej liście punktowanej.</strong> Postaraj się, aby poszczególne zasady były krótkie i proste, ale staraj się też nie dzielić ich na wiele oddzielnych elementów.
       edit: Edytuj zasadę
       empty: Jeszcze nie zdefiniowano zasad serwera.
+      move_down: Przenieś w dół
+      move_up: Przenieś w górę
       title: Regulamin serwera
+      translation: Tłumaczenie
+      translations: Tłumaczenia
     settings:
       about:
         manage_rules: Zarządzaj regułami serwera
@@ -809,6 +843,7 @@ pl:
       discovery:
         follow_recommendations: Polecane konta
         preamble: Prezentowanie interesujących treści ma kluczowe znaczenie dla nowych użytkowników, którzy mogą nie znać nikogo z Mastodona. Kontroluj, jak różne funkcje odkrywania działają na Twoim serwerze.
+        privacy: Prywatność
         profile_directory: Katalog profilów
         public_timelines: Publiczne osie czasu
         publish_statistics: Publikuj statystyki
@@ -1905,6 +1940,10 @@ pl:
       limit: Przekroczyłeś maksymalną liczbę przypiętych wpisów
       ownership: Nie możesz przypiąć cudzego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
+    quote_policies:
+      followers: Tylko obserwujący
+      nobody: Nikt
+      public: Wszyscy
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Bezpośredni

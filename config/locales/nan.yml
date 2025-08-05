@@ -97,7 +97,7 @@ nan:
         silenced: 受限制
         suspended: 權限中止ah
         title: 管理
-      moderation_notes: 管理ê註釋
+      moderation_notes: 管理ê筆記
       most_recent_activity: 最近ê活動時間
       most_recent_ip: 最近ê IP
       no_account_selected: 因為無揀任何口座，所以lóng無改變
@@ -245,7 +245,7 @@ nan:
         create_announcement_html: "%{name} kā公告 %{target} 建立ah"
         create_canonical_email_block_html: "%{name} kā hash是 %{target} ê電子phue封鎖ah"
         create_custom_emoji_html: "%{name} kā 新ê emoji %{target} 傳上去ah"
-        create_domain_allow_html: "%{name} 允准 %{target} 域名加入聯邦宇宙"
+        create_domain_allow_html: "%{name} 允准 %{target} 域名加入聯邦"
         create_domain_block_html: "%{name} 封鎖域名 %{target}"
         create_email_domain_block_html: "%{name} kā 電子phue域名 %{target} 封鎖ah"
         create_ip_block_html: "%{name} 建立 IP %{target} ê規則"
@@ -256,7 +256,7 @@ nan:
         destroy_announcement_html: "%{name} kā公告 %{target} thâi掉ah"
         destroy_canonical_email_block_html: "%{name} kā hash是 %{target} ê電子phue取消封鎖ah"
         destroy_custom_emoji_html: "%{name} kā 新ê emoji %{target} thâi掉ah"
-        destroy_domain_allow_html: "%{name} 無允准 %{target} 域名加入聯邦宇宙"
+        destroy_domain_allow_html: "%{name} 無允准 %{target} 域名加入聯邦"
         destroy_domain_block_html: "%{name} 取消封鎖域名 %{target}"
         destroy_email_domain_block_html: "%{name} kā 電子phue域名 %{target} 取消封鎖ah"
         destroy_instance_html: "%{name} 清除域名 %{target}"
@@ -531,16 +531,162 @@ nan:
       content_policies:
         comment: 內部ê筆記
         description_html: Lí ē當定義用tī所有tuì tsit ê域名kap伊ê子域名來ê口座ê內容政策。
+        limited_federation_mode_description_html: Lí通選擇kám beh允准tsit ê域名加入聯邦。
+        policies:
+          reject_media: 拒絕媒體
+          reject_reports: 拒絕檢舉
+          silence: 限制
+          suspend: 中止權限
+        policy: 政策
+        reason: 公開ê理由
+        title: 內容政策
       dashboard:
+        instance_accounts_dimension: 上tsē lâng跟tuè ê口座
+        instance_accounts_measure: 儲存ê口座
+        instance_followers_measure: lán tī hia ê跟tuè者
+        instance_follows_measure: in tī tsia ê跟tuè者
         instance_languages_dimension: Tsia̍p用ê語言
+        instance_media_attachments_measure: 儲存ê媒體附件
+        instance_reports_measure: 關係in ê檢舉
+        instance_statuses_measure: 儲存ê PO文
+      delivery:
+        all: 全部
+        clear: 清寄送ê錯誤
+        failing: 失敗
+        restart: 重頭啟動寄送
+        stop: 停止寄送
+        unavailable: Bē當用
+      delivery_available: 通寄送
+      delivery_error_days: 寄送錯誤ê日數
+      delivery_error_hint: Nā連續 %{count} kang bē當寄送，就ē自動標做bē當寄送。
+      destroyed_msg: Tuì %{domain} 來ê資料，teh排隊beh thâi掉。
+      empty: Tshuē無域名。
+      known_accounts:
+        other: "%{count} ê知影ê口座"
+      moderation:
+        all: 全部
+        limited: 受限制
+        title: 管理
+      moderation_notes:
+        create: 加添管理筆記
+        created_msg: 站臺ê管理記錄成功建立！
+        description_html: 檢視á是替別ê管理者kap未來ê家己留筆記
+        destroyed_msg: 站臺ê管理記錄成功thâi掉！
+        placeholder: 關係本站、行ê行動，á是其他通幫tsān lí未來管本站ê資訊。
+        title: 管理ê筆記
+      private_comment: 私人評論
+      public_comment: 公開ê評論
+      purge: 清除
+      purge_description_html: Nā lí想講tsit ê域名ē永永斷線，ē當tuì儲存內底thâi掉uì tsit ê域名來ê所有口座記錄kap相關資料。Huân-sè ē開點á時間。
+      title: 聯邦
+      total_blocked_by_us: Hōo lán封鎖
+      total_followed_by_them: Hōo in跟tuè
+      total_followed_by_us: Hōo lán跟tuè
+      total_reported: 關係in ê檢舉
+      total_storage: 媒體ê附件
+      totals_time_period_hint_html: 下kha顯示ê總計包含ta̍k時ê資料。
+      unknown_instance: 佇本服務器，現tsú時iáu無tsit ê域名ê記錄。
     invites:
+      deactivate_all: Lóng停用
       filter:
+        all: 全部
         available: 通用ê
         expired: 過期ê
         title: 過濾器
       title: 邀請
     ip_blocks:
       add_new: 建立規則
+      created_msg: 成功加添新ê IP規則
+      delete: Thâi掉
+      expires_in:
+        '1209600': 2 禮拜
+        '15778476': 6個月
+        '2629746': 1 個月
+        '31556952': 1 年
+        '86400': 1 kang
+        '94670856': 3 年
+      new:
+        title: 建立新ê IP規則
+      no_ip_block_selected: 因為無揀任何IP規則，所以lóng無改變
+      title: IP規則
+    relationships:
+      title: "%{acct} ê關係"
+    relays:
+      add_new: 加添新ê中繼
+      delete: Thâi掉
+      description_html: "<strong>聯邦ê中繼站</strong> 是中lâng ê服侍器，ē tī訂koh公開kàu hit ê中繼站ê服侍器之間，交換tsē-tsē ê 公開PO文。<strong>中繼站通幫tsān小型kap中型服侍器tuì聯邦宇宙發現內容</strong>，本地ê用者免手動跟tuè遠距離ê服侍器ê別lâng。"
+      disable: 停止使用
+      disabled: 停止使用ê
+      enable: 啟用
+      enable_hint: Lí ê服侍器tsi̍t-ē啟動，ē訂tuì tsit ê中繼逐ê公開PO文，mā ē開始送tsit ê服侍器ê公開PO文kàu hia。
+      enabled: 啟用ê
+      inbox_url: 中繼 URL
+      pending: Teh等中繼站允准
+      save_and_enable: 儲存koh啟用
+      setup: 設定中繼ê連結
+      signatures_not_enabled: Nā啟用安全模式á是受限ê聯邦模式，中繼可能buē-tàng正常運作
+      status: 狀態
+      title: 中繼
+    report_notes:
+      created_msg: 檢舉記錄成功建立！
+      destroyed_msg: 檢舉記錄成功thâi掉！
+    reports:
+      account:
+        notes:
+          other: "%{count} 篇筆記"
+      action_log: 審查日誌
+      action_taken_by: 操作由
+      actions:
+        delete_description_html: 受檢舉ê PO文ē thâi掉，而且ē用tsi̍t ue̍h橫tsuā記錄，幫tsān lí提升kâng tsi̍t ê用戶未來ê違規。
+        mark_as_sensitive_description_html: 受檢舉ê PO文內ê媒體ē標做敏感，而且ē用tsi̍t ue̍h橫tsuā記錄，幫tsān lí提升kâng tsi̍t ê用戶未來ê違規。
+        other_description_html: 看其他控制tsit ê口座ê所行，kap自訂聯絡受檢舉ê口座ê選項。
+        resolve_description_html: Buē用行動控制受檢舉ê口座，mā無用橫tsuā記錄，而且tsit ê報告ē關掉。
+        silence_description_html: 本口座kan-ta ē hōo早前跟tuè ê á是手動tshiau ê看見，大大限制看見ê範圍。設定隨時ē當回復。請關所有tuì tsit ê口座ê檢舉。
+        suspend_description_html: Tsit ê口座kap伊ê內容ē bē當用，落尾ē thâi掉，mā bē當hām伊互動。30 kang以內通回復。請關所有tuì tsit ê口座ê檢舉。
+      actions_description_html: 決定行siánn物行動來解決tsit ê檢舉。Nā lí tuì受檢舉ê口座採用處罰，電子phue通知ē送予in，除非選擇 <strong>Pùn-sò phue</strong> 類別。
+      actions_description_remote_html: 決定行siánn物行動來解決tsit ê檢舉。Tse kan-ta ē影響 <strong>lí ê</strong> 服侍器hām tsit ê遠距離服侍器聯絡kap處理伊ê內容ê方法。
+      actions_no_posts: Tsit份檢舉無beh thâi掉ê相關PO文
+      add_to_report: 加添其他ê內容kàu檢舉
+      already_suspended_badges:
+        local: 已經佇tsit ê服侍器停止權限ah
+        remote: 已經佇in ê服侍器停止權限ah
+      are_you_sure: Lí kám確定？
+      assign_to_self: 分配hōo家kī
+      assigned: 分配管理者
+      by_target_domain: 受檢舉ê口座ê網域
+      cancel: 取消
+      category: 類別
+      category_description_html: Tsit ê 受檢舉ê口座kap/á是內容，ē佇kap tsit ê口座ê聯絡內底引用。
+      comment:
+        none: 無
+      comment_description_html: 為著提供其他資訊，%{name} 寫：
+      confirm: 確認
+      confirm_action: 確認kā %{acct} 審核ê動作
+      created_at: 檢舉tī
+      delete_and_resolve: Thâi掉PO文
+      forwarded: 轉送ah
+      forwarded_replies_explanation: 本報告是tuì別站ê用者送ê，關係別站ê內容。本報告轉hōo lí，因為受檢舉ê內容是回應lí ê服侍器ê用者。
+      forwarded_to: 有轉送kàu %{domain}
+      mark_as_resolved: 標做「解決ah」
+      mark_as_sensitive: 標做敏感
+      mark_as_unresolved: 標做「無解決」
+      no_one_assigned: 無lâng
+      notes:
+        create: 加添筆記
+        create_and_resolve: 標「處理ah」，留筆記
+        create_and_unresolve: 留筆記，koh重開
+        delete: Thâi掉
+        placeholder: 描述有行siánn物行動，á是其他關聯ê更新……
+        title: 筆記
+      notes_description_html: 檢視á是留筆記hōo別ê管理者kap未來ê家己
+      processed_msg: '檢舉 #%{id} 處理成功ah'
+      quick_actions_description_html: 緊行行動，á是giú kàu下kha，看檢舉ê內容：
+      remote_user_placeholder: tuì %{instance} 來ê遠距離用者
+      reopen: 重頭phah開檢舉
+      report: '檢舉 #%{id}'
+    roles:
+      privileges:
+        manage_announcements: 管理公告
     statuses:
       language: 語言
     trends:

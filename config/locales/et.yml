@@ -319,6 +319,8 @@ et:
         create: Loo teadaanne
         title: Uus teadaanne
       preview:
+        disclaimer: Kuna kasutajd ei saa neist postiitustest keelduda, siis peaksid teavituskirjad keskenduma vaid olulistele teemadele nagi võimalik isiklike andmete leke või serveri tegevuse lõpetamine.
+        explanation_html: 'See e-kiri saadetakse <strong>%{display_count}-le kasutajale</strong>. E-kirjas sisaldub järgnev tekst:'
         title: Info teavituse üle vaatamine
       publish: Postita
       published_msg: Teadaande avaldamine õnnestus!
@@ -806,6 +808,8 @@ et:
         preamble: Täpsem kirjeldus, kuidas serverit käitatakse, modereeritakse ja rahastatakse.
         rules_hint: Reeglitele, millega kasutajad peavad nõustuma, on vastav piirkond.
         title: Teave
+      allow_referrer_origin:
+        title: Luba välistel serveritel näha Mastodoni teenust linkide viitajana
       appearance:
         preamble: Kohanda Mastodoni veebiliidest.
         title: Välimus
@@ -984,6 +988,7 @@ et:
         explanation_html: Esitatud teenusetingimuste näidis on mõeldud ainult teavitamise eesmärgil ja seda ei tohiks tõlgendada kui juriidilist nõuannet mis tahes küsimuses. Palun konsulteeri olukorra ja konkreetsete juriidiliste küsimuste osas oma õigusnõustajaga.
         title: Teenuse tingimuste seadistamine
       history: Ajalugu
+      notified_on_html: 'Kasutajad on teavitatud: %{date}'
       notify_users: Teata kasutajatele
       preview:
         explanation_html: 'See e-kiri saadetakse <strong>%{display_count}-le kasutajale</strong>, kes olid liitunud enne %{date}. E-kirjas sisaldub järgnev tekst:'
@@ -993,6 +998,7 @@ et:
           other: Saada %{display_count} e-kirja
       publish: Postita
       published_on_html: Postitatud %{date}
+      save_draft: Salvesta kavandina
       title: Kasutustingimused
     title: Administreerimine
     trends:
@@ -1857,8 +1863,6 @@ et:
       ownership: Kellegi teise postitust ei saa kinnitada
       reblog: Jagamist ei saa kinnitada
     quote_policies:
-      followers: Jälgijad ja mainitud kasutajad
-      nobody: Vaid mainitud kasutajad
       public: Kõik
     title: '%{name}: "%{quote}"'
     visibilities:
