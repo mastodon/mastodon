@@ -111,6 +111,10 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     }
   },
 
+  onRevokeQuote (status) {
+    dispatch(openModal({ modalType: 'CONFIRM_REVOKE_QUOTE', modalProps: { statusId: status.get('id'), quotedStatusId: status.getIn(['quote', 'quoted_status']) }}));
+  },
+
   onEdit (status) {
     dispatch((_, getState) => {
       let state = getState();
