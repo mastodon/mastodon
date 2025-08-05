@@ -1687,6 +1687,10 @@ da:
       title: Ny omtale
     poll:
       subject: En afstemning fra %{name} er afsluttet
+    quote:
+      body: 'Dit indlæg blev citeret af %{name}:'
+      subject: "%{name} citerede dit indlæg"
+      title: Nyt citat
     reblog:
       body: 'Dit indlæg blev fremhævet af %{name}:'
       subject: "%{name} fremhævede dit indlæg"
@@ -1905,7 +1909,7 @@ da:
       ownership: Andres indlæg kan ikke fastgøres
       reblog: En fremhævelse kan ikke fastgøres
     quote_policies:
-      followers: Kun egne følgere
+      followers: Kun dine følgere
       nobody: Ingen
       public: Alle
     title: '%{name}: "%{quote}"'
