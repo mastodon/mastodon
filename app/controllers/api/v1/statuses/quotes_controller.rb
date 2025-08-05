@@ -19,7 +19,7 @@ class Api::V1::Statuses::QuotesController < Api::V1::Statuses::BaseController
 
     RevokeQuoteService.new.call(@quote)
 
-    render_empty # TODO: do we want to return something? an updated status?
+    render json: @quote.status, serializer: REST::StatusSerializer
   end
 
   private

@@ -108,6 +108,12 @@ RSpec.describe 'API V1 Statuses Quotes' do
 
         expect(response)
           .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to match(
+            a_hash_including(id: quote.status.id.to_s, quote: a_hash_including(state: 'revoked'))
+          )
       end
     end
 
