@@ -351,7 +351,7 @@ et:
       updated_msg: Emotikoni uuendamine õnnestus!
       upload: Lae üles
     dashboard:
-      active_users: aktiivsed kasutajad
+      active_users: aktiivseid kasutajaid
       interactions: interaktsioonid
       media_storage: Meedia hoidla
       new_users: uued kasutajad
@@ -571,7 +571,7 @@ et:
     relationships:
       title: "%{acct}-i suhted"
     relays:
-      add_new: Lisa uus vahendaja
+      add_new: Lisa uus sõnumivahendusserver
       delete: Kustuta
       description_html: "<strong>Födereerumisvahendaja</strong> on vahendav server, mis kannab üle suures koguses avalikke postitusi nende serverite vahel, mis on sellega liitunud ja edastavad sellele oma postitusi. <strong>See aitab väikestel ja keskmistel serveritel avastada födiversumi sellist sisu</strong>, mis muidu eeldaks kohalikelt kasutajatelt nende serverite kasutajate jälgitavaks märkimist."
       disable: Keela
@@ -579,13 +579,13 @@ et:
       enable: Luba
       enable_hint: Kui lubatud, siis server tellib sellelt vahendajalt kõik avalikud postitused ning hakkab ka enda avalikke postitusi sellele saatma.
       enabled: Lubatud
-      inbox_url: Vahendaja URL
-      pending: Ootab vahendaja nõusolekut
+      inbox_url: Sõnumivahendusserveri võrguaadress
+      pending: Ootan sõnumivahendusserveri kinnitust
       save_and_enable: Salvesta ja luba
       setup: Sea üles vahendav ühendus
-      signatures_not_enabled: Vahendamine ei tööta korrektselt kuniks turvarežiim või lubatud nimekirja režiim on sisse lülitatud
+      signatures_not_enabled: Vahendamine ei tööta korrektselt kui turvarežiim või lubatud nimekirja režiim on sisse lülitatud
       status: Olek
-      title: Vahendajad
+      title: Sõnumivahendusserverid
     report_notes:
       created_msg: Teade edukalt koostatud!
       destroyed_msg: Teade edukalt kustutatud!
@@ -1148,7 +1148,7 @@ et:
       new_confirmation_instructions_sent: Saad mõne minuti pärast uue kinnituslingiga e-kirja!
       title: Kontrolli sisendkasti
     sign_in:
-      preamble_html: Logi sisse oma kasutajakontoga serveris <strong>%{domain}</strong>. Kui konto asub teises serveris, siis sa ei saa siin sisse logida.
+      preamble_html: Logi sisse oma kasutajakontoga serverisse <strong>%{domain}</strong>. Kui konto asub teises serveris, siis sa ei saa siin sisse logida.
       title: Logi sisse serverisse %{domain}
     sign_up:
       manual_review: Liitumised kohas %{domain} vaadatakse meie moderaatorite poolt käsitsi läbi. Aitamaks meil sinu taotlust läbi vaadata, kirjuta palun natuke endast ja miks soovid kontot kohas %{domain}.
