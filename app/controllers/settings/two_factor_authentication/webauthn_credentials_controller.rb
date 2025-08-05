@@ -52,7 +52,7 @@ module Settings
             end
           else
             flash[:error] = I18n.t('webauthn_credentials.create.error')
-            status = :unprocessable_entity
+            status = :unprocessable_content
           end
         else
           flash[:error] = t('webauthn_credentials.create.error')
