@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.11] - 2025-08-05
+
+### Security
+
+- Update dependencies
+- Fix incorrect rate-limit handling [GHSA-84ch-6436-c7mg](https://github.com/mastodon/mastodon/security/advisories/GHSA-84ch-6436-c7mg)
+
+### Fixed
+
+- Fix race condition caused by ActiveRecord query cache in `Create` critical path (#35662 by @ClearlyClaire)
+- Fix WebUI crashing for accounts with `null` URL (#35651 by @ClearlyClaire)
+- Fix friends-of-friends recommendations suggesting already-requested accounts (#35604 by @ClearlyClaire)
+
 ## [4.3.10] - 2025-07-23
 
 ### Security
