@@ -56,7 +56,7 @@ fi:
         scopes: Mihin ohjelmointirajapintoihin sovelluksella on pääsy. Jos valitset ylätason käyttöoikeuden, sinun ei tarvitse valita yksittäisiä.
         setting_aggregate_reblogs: Älä näytä uusia tehostuksia julkaisuille, joita on äskettäin tehostettu (koskee vain juuri vastaanotettuja tehostuksia)
         setting_always_send_emails: Yleensä sähköposti-ilmoituksia ei lähetetä, kun käytät Mastodonia aktiivisesti
-        setting_default_quote_policy: Mainitut käyttäjät saavat aina lainata. Tämä asetus koskee vain julkaisuja, jotka on luotu seuraavalla Mastodon-versiolla, mutta voit valita asetuksesi valmistautuaksesi
+        setting_default_quote_policy: Tämä asetus tulee voimaan vain julkaisuissa, jotka on luotu seuraavalla Mastodon-versiolla, mutta voit valita asetuksesi jo etukäteen.
         setting_default_sensitive: Arkaluonteinen media piilotetaan oletusarvoisesti, ja se voidaan näyttää yhdellä napsautuksella
         setting_display_media_default: Piilota arkaluonteiseksi merkitty mediasisältö
         setting_display_media_hide_all: Piilota mediasisältö aina
@@ -148,6 +148,9 @@ fi:
         min_age: Ei pidä alittaa lainkäyttöalueesi lakien vaatimaa vähimmäisikää.
       user:
         chosen_languages: Jos valitset kieliä oheisesta luettelosta, vain niidenkieliset julkaisut näkyvät sinulle julkisilla aikajanoilla
+        date_of_birth:
+          one: Meidän tulee varmistaa, että olet vähintään %{count}, jotta voit käyttää %{domain}. Emme tallenna tätä.
+          other: Meidän tulee varmistaa, että olet vähintään %{count}, jotta voit käyttää %{domain}. Emme tallenna tätä.
         role: Rooli määrää, millaiset käyttöoikeudet käyttäjällä on.
       user_role:
         color: Väri, jota käytetään roolille kaikkialla käyttöliittymässä, RGB-heksadesimaalimuodossa
@@ -347,6 +350,7 @@ fi:
         admin_email: Sähköpostiosoite oikeudellisille ilmoituksille
         arbitration_address: Fyysinen osoite välimiesmenettelyn ilmoituksille
         arbitration_website: Sähköpostiosoite välimiesmenettelyn ilmoituksille
+        choice_of_law: Sovellettava lainsäädäntö
         dmca_address: Fyysinen osoite DMCA-/tekijänoikeusilmoituksille
         dmca_email: Sähköpostiosoite DMCA-/tekijänoikeusilmoituksille
         domain: Verkkotunnus

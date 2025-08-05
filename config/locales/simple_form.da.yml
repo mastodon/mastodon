@@ -9,7 +9,7 @@ da:
         fields: Din hjemmeside, dine pronominer, din alder, eller hvad du har lyst til.
         indexable: Dine offentlige indlæg vil kunne vises i Mastodon-søgeresultater. Folk, som har interageret med dem, vil kunne finde dem uanset.
         note: 'Du kan @omtale andre personer eller #hashtags.'
-        show_collections: Folk vil ikke kunne tjekke dine Følger og Følgere. Folk, du selv følger, vil stadig kunne se dette.
+        show_collections: Folk vil kunne se, hvem du følger, og hvem der følger dig. Personer, som du følger, vil kunne se, at du følger dem.
         unlocked: Man vil kunne følges af folk uden først at godkende dem. Ønsker man at gennemgå Følg-anmodninger og individuelt acceptere/afvise nye følgere, så fjern markeringen.
       account_alias:
         acct: Angiv brugernavn@domain for den konto, hvorfra du vil flytte
@@ -56,7 +56,7 @@ da:
         scopes: De API'er, som applikationen vil kunne tilgå. Vælges en topniveaudstrækning, vil detailvalg være unødvendige.
         setting_aggregate_reblogs: Vis ikke nye fremhævelser for nyligt fremhævede indlæg (påvirker kun nyligt modtagne fremhævelser)
         setting_always_send_emails: Normalt sendes ingen e-mailnotifikationer under aktivt brug af Mastodon
-        setting_default_quote_policy: Nævnte brugere har altid lov til at citere. Denne indstilling vil kun træde i kraft for indlæg oprettet med den næste Mastodon-version, men du kan som forberedelse vælge din præference
+        setting_default_quote_policy: Denne indstilling træder kun i kraft for indlæg oprettet med den næste Mastodon-version, men egne præference kan vælges som forberedelse.
         setting_default_sensitive: Sensitive medier er som standard skjult og kan vises med et klik
         setting_display_media_default: Skjul medier med sensitiv-markering
         setting_display_media_hide_all: Skjul altid medier
@@ -74,7 +74,7 @@ da:
       featured_tag:
         name: 'Her er nogle af dine hyppigst brugte hashtags:'
       filters:
-        action: Vælg handlingen til eksekvering, når et indlæg matcher filteret
+        action: Vælg, hvilken handling, der skal udføres, når et indlæg matcher filteret
         actions:
           blur: Skjul medier bag en advarsel, uden at skjule selve teksten
           hide: Skjul det filtrerede indhold fuldstændigt og gør, som om det ikke eksisterer
