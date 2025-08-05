@@ -283,6 +283,10 @@ class ComposeForm extends ImmutablePureComponent {
                 <div className='spoiler-input__border' />
               </div>
             )}
+            <div className='compose-form__dropdowns'>
+              <PrivacyDropdownContainer disabled={this.props.isEditing} />
+              <LanguageDropdown />
+            </div>
 
             <AutosuggestTextarea
               ref={this.textareaRef}
@@ -306,11 +310,6 @@ class ComposeForm extends ImmutablePureComponent {
           <PollForm />
 
           <div className='compose-form__footer'>
-            <div className='compose-form__dropdowns'>
-              <PrivacyDropdownContainer disabled={this.props.isEditing} />
-              <LanguageDropdown />
-            </div>
-
             <div className='compose-form__actions'>
               <div className='compose-form__buttons'>
                 <UploadButtonContainer />
@@ -329,7 +328,7 @@ class ComposeForm extends ImmutablePureComponent {
                 >
                   {intl.formatMessage(
                     this.props.isEditing ?
-                      messages.saveChanges : 
+                      messages.saveChanges :
                       (this.props.isInReply ? messages.reply : messages.publish)
                   )}
                 </Button>
