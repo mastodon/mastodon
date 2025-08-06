@@ -190,6 +190,7 @@ pt-PT:
         create_relay: Criar retransmissor
         create_unavailable_domain: Criar domínio indisponível
         create_user_role: Criar função
+        create_username_block: Criar Regra de Nome de Utilizador
         demote_user: Despromover utilizador
         destroy_announcement: Eliminar mensagem de manutenção
         destroy_canonical_email_block: Eliminar bloqueio de e-mail
@@ -203,6 +204,7 @@ pt-PT:
         destroy_status: Eliminar publicação
         destroy_unavailable_domain: Eliminar domínio indisponível
         destroy_user_role: Eliminar função
+        destroy_username_block: Eliminar Regra de Nome de Utilizador
         disable_2fa_user: Desativar 2FA
         disable_custom_emoji: Desativar emoji personalizado
         disable_relay: Desativar retransmissor
@@ -237,6 +239,7 @@ pt-PT:
         update_report: Atualizar denúncia
         update_status: Atualizar publicação
         update_user_role: Atualizar função
+        update_username_block: Atualizar Regra de Nome de Utilizador
       actions:
         approve_appeal_html: "%{name} aprovou a contestação da decisão de moderação de %{target}"
         approve_user_html: "%{name} aprovou a inscrição de %{target}"
@@ -255,6 +258,7 @@ pt-PT:
         create_relay_html: "%{name} criou o retransmissor %{target}"
         create_unavailable_domain_html: "%{name} parou as entregas ao domínio %{target}"
         create_user_role_html: "%{name} criou a função %{target}"
+        create_username_block_html: "%{name} adicionou regra para nomes de utilizadores que contêm %{target}"
         demote_user_html: "%{name} despromoveu o utilizador %{target}"
         destroy_announcement_html: "%{name} eliminou a mensagem de manutenção %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o e-mail com a hash %{target}"
@@ -268,6 +272,7 @@ pt-PT:
         destroy_status_html: "%{name} removeu a publicação de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou as entregas ao domínio %{target}"
         destroy_user_role_html: "%{name} eliminou a função %{target}"
+        destroy_username_block_html: "%{name} removeu regra para nomes de utilizadores que contêm %{target}"
         disable_2fa_user_html: "%{name} desativou o requerimento de autenticação em dois passos para o utilizador %{target}"
         disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
         disable_relay_html: "%{name} desativou o retransmissor %{target}"
@@ -302,6 +307,7 @@ pt-PT:
         update_report_html: "%{name} atualizou a denúncia %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
         update_user_role_html: "%{name} alterou a função %{target}"
+        update_username_block_html: "%{name} atualizou regra para nomes de utilizadores que contêm %{target}"
       deleted_account: conta eliminada
       empty: Não foram encontrados registos.
       filter_by_action: Filtrar por ação
@@ -1085,6 +1091,25 @@ pt-PT:
           other: Utilizada por %{count} pessoas na última semana
       title: Recomendações e destaques
       trending: Em destaque
+    username_blocks:
+      add_new: Adicionar novo
+      block_registrations: Bloquear inscrições
+      comparison:
+        contains: Contém
+        equals: Igual a
+      contains_html: Contém %{string}
+      created_msg: Regra de nome de utilizador criada com sucesso
+      delete: Eliminar
+      edit:
+        title: Editar regra de nome de utilizador
+      matches_exactly_html: Igual a %{string}
+      new:
+        create: Criar regra
+        title: Criar nova regra de utilizador
+      no_username_block_selected: Não foi alterada nenhuma regra de nome de utilizador, pois nenhuma foi selecionada
+      not_permitted: Não permitido
+      title: Regras de nome de utilizador
+      updated_msg: Regra de nome de utilizador atualizada com sucesso
     warning_presets:
       add_new: Adicionar novo
       delete: Eliminar
@@ -1662,6 +1687,10 @@ pt-PT:
       title: Nova menção
     poll:
       subject: A sondagem de %{name} terminou
+    quote:
+      body: 'A sua publicação foi citada por %{name}:'
+      subject: "%{name} citou a sua publicação"
+      title: Nova citação
     reblog:
       body: 'A tua publicação foi impulsionada por %{name}:'
       subject: "%{name} impulsionou a tua publicação"
@@ -1880,6 +1909,8 @@ pt-PT:
       ownership: Não podem ser fixadas publicações de outras pessoas
       reblog: Não é possível fixar um impulso
     quote_policies:
+      followers: Apenas os seus seguidores
+      nobody: Ninguém
       public: Todos
     title: '%{name}: "%{quote}"'
     visibilities:

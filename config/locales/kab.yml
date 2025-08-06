@@ -485,12 +485,20 @@ kab:
         title: Ihacṭagen inezzaɣ
         trending_rank: 'Anezzuɣ #%{rank}'
       trending: Inezzaɣ
+    username_blocks:
+      add_new: Rnu amaynut
+      comparison:
+        contains: Igber
+      new:
+        create: Rnu alugen
+        title: Rnu alugen n useqdac amaynut
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
     webhooks:
       delete: Kkes
       enable: Rmed
+      enabled: D urmid
   admin_mailer:
     new_report:
       body: "%{reporter} yettwazen ɣef %{target}"
@@ -623,6 +631,7 @@ kab:
     other: Ayen nniḍen
   emoji_styles:
     auto: Awurman
+    twemoji: Twemoji
   errors:
     '404': Asebter i tettnadiḍ ulac-it da.
     '500':
@@ -858,6 +867,8 @@ kab:
         other: "%{count} n tbidyutin"
     edited_at_html: Tettwaẓreg ass n %{date}
     quote_policies:
+      followers: Ala wid i k·m-yeṭṭafaṛen
+      nobody: Ula yiwen
       public: Yal yiwen
     title: '%{name} : "%{quote}"'
     visibilities:
@@ -904,6 +915,8 @@ kab:
   user_mailer:
     appeal_approved:
       action: Iɣewwaṛen n umiḍan
+    suspicious_sign_in:
+      change_password: snifel awal-ik·im n uɛeddi
     terms_of_service_changed:
       sign_off: Agraw n %{domain}
     warning:
