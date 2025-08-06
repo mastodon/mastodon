@@ -56,4 +56,19 @@ RSpec.describe ActivityPub::NoteSerializer do
       })
     end
   end
+
+  context 'with a quote policy', feature: :outgoing_quotes do
+    let(:parent) { Fabricate(:status, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16) }
+
+    it 'has the expected shape' do
+      expect(subject).to include({
+        'type' => 'Note',
+        'interactionPolicy' => a_hash_including(
+          'canQuote' => a_hash_including(
+            'automaticApproval' => [ActivityPub::TagManager.instance.followers_uri_for(parent.account)]
+          )
+        ),
+      })
+    end
+  end
 end
