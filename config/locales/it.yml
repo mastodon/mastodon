@@ -1689,6 +1689,10 @@ it:
       title: Nuova menzione
     poll:
       subject: Un sondaggio da %{name} è terminato
+    quote:
+      body: 'Il tuo post è stato citato da %{name}:'
+      subject: "%{name} ha citato il tuo post"
+      title: Nuova citazione
     reblog:
       body: 'Il tuo status è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
@@ -1907,6 +1911,8 @@ it:
       ownership: Non puoi fissare in cima un post di qualcun altro
       reblog: Un toot condiviso non può essere fissato in cima
     quote_policies:
+      followers: Solo i tuoi seguaci
+      nobody: Nessuno
       public: Tutti
     title: '%{name}: "%{quote}"'
     visibilities:
