@@ -40,6 +40,10 @@
         %th= t('exports.bookmarks')
         %td= number_with_delimiter @export_summary.total_bookmarks
         %td= table_link_to 'download', t('exports.csv'), settings_exports_bookmarks_path(format: :csv)
+      %tr
+        %th= t('exports.filters')
+        %td= number_with_delimiter @export_summary.total_filters
+        %td= table_link_to 'download', t('exports.csv'), settings_exports_filters_path(format: :csv)
 
 %hr.spacer/
 

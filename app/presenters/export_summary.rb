@@ -10,6 +10,7 @@ class ExportSummary
     :owned_lists,
     :media_attachments,
     :muting,
+    :custom_filters,
     to: :account,
     prefix: true
   )
@@ -47,6 +48,10 @@ class ExportSummary
     counts[:muting].value
   end
 
+  def total_filters
+    counts[:filters].value
+  end
+
   def total_statuses
     account.statuses_count
   end
@@ -64,6 +69,7 @@ class ExportSummary
       domain_blocks: account_domain_blocks.async_count,
       owned_lists: account_owned_lists.async_count,
       muting: account_muting.async_count,
+      filters: account_custom_filters.async_count,
       storage: account_media_attachments.async_sum(:file_file_size),
     }
   end

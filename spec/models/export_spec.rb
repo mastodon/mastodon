@@ -103,4 +103,18 @@ RSpec.describe Export do
         )
     end
   end
+
+  describe '#to_filters_csv' do
+    before { Fabricate.times(2, :custom_filters, account: account) }
+
+    let(:export) { CSV.parse(subject.to_filters_csv) }
+
+    it 'returns a csv of custom filters' do
+      expect(export)
+        .to contain_exactly(
+          include(/statuses/),
+          include(/statuses/)
+        )
+    end
+  end
 end
