@@ -82,6 +82,7 @@ class Api::V1::StatusesController < Api::BaseController
       text: status_params[:status],
       thread: @thread,
       quoted_status: @quoted_status,
+      quote_approval_policy: quote_approval_policy,
       media_ids: status_params[:media_ids],
       sensitive: status_params[:sensitive],
       spoiler_text: status_params[:spoiler_text],
@@ -113,7 +114,8 @@ class Api::V1::StatusesController < Api::BaseController
       sensitive: status_params[:sensitive],
       language: status_params[:language],
       spoiler_text: status_params[:spoiler_text],
-      poll: status_params[:poll]
+      poll: status_params[:poll],
+      quote_approval_policy: quote_approval_policy
     )
 
     render json: @status, serializer: REST::StatusSerializer
@@ -180,6 +182,7 @@ class Api::V1::StatusesController < Api::BaseController
       :status,
       :in_reply_to_id,
       :quoted_status_id,
+      :quote_approval_policy,
       :sensitive,
       :spoiler_text,
       :visibility,
@@ -200,6 +203,23 @@ class Api::V1::StatusesController < Api::BaseController
         options: [],
       ]
     )
+  end
+
+  def quote_approval_policy
+    # TODO: handle `nil` separately
+    return nil unless Mastodon::Feature.outgoing_quotes_enabled? && status_params[:quote_approval_policy].present?
+
+    case status_params[:quote_approval_policy]
+    when 'public'
+      Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16
+    when 'followers'
+      Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16
+    when 'nobody'
+      0
+    else
+      # TODO: raise more useful message
+      raise ActiveRecord::RecordInvalid
+    end
   end
 
   def serializer_for_status
