@@ -56,6 +56,7 @@ pt-PT:
         scopes: Quais as API a que a aplicação terá permissão para aceder. Se selecionar um âmbito de nível superior, não precisa de selecionar âmbitos individuais.
         setting_aggregate_reblogs: Não mostrar os novos impulsos para publicações que tenham sido recentemente impulsionadas (apenas afeta os impulsos recentemente recebidos)
         setting_always_send_emails: Normalmente as notificações por e-mail não serão enviadas quando estiver a utilizar ativamente o Mastodon
+        setting_default_quote_policy: Esta configuração só terá efeito nas publicações criadas com a próxima versão do Mastodon, mas pode desde já selecionar a sua preferência.
         setting_default_sensitive: Os multimédia sensíveis são ocultados por predefinição e podem ser revelados com um clique/toque
         setting_display_media_default: Esconder multimédia marcada como sensível
         setting_display_media_hide_all: Esconder sempre toda a multimédia
@@ -159,6 +160,10 @@ pt-PT:
         name: Nome público da função, se esta estiver definida para ser apresentada com um emblema
         permissions_as_keys: Utilizadores com esta função terão acesso a...
         position: Funções mais altas decidem a resolução de conflitos em certas situações. Certas ações só podem ser executadas com certas funções com uma menor prioridade
+      username_block:
+        allow_with_approval: Em vez de impedir totalmente a inscrição, as inscrições correspondentes exigirão a sua aprovação
+        comparison: Tenha em atenção o Problema de Scunthorpe ao bloquear correspondências parciais
+        username: Terá correspondência independentemente das maiúsculas e minúsculas e de homógrafos comuns, como "4" para "a" ou "3" para "e"
       webhook:
         events: Selecione os eventos a enviar
         template: Componha o seu próprio conteúdo JSON utilizando a interpolação de variáveis. Deixar em branco para o JSON predefinido.
@@ -324,6 +329,7 @@ pt-PT:
         follow_request: Alguém pediu para ser seu seguidor
         mention: Alguém o mencionou
         pending_account: Uma nova conta aguarda aprovação
+        quote: Alguém o citou
         reblog: Alguém impulsionou uma publicação sua
         report: Uma nova denúncia foi submetida
         software_updates:
@@ -370,6 +376,10 @@ pt-PT:
         name: Nome
         permissions_as_keys: Permissões
         position: Prioridade
+      username_block:
+        allow_with_approval: Permitir inscrições com aprovação
+        comparison: Método de comparação
+        username: Palavra a corresponder
       webhook:
         events: Eventos ativados
         template: Modelo de conteúdo
