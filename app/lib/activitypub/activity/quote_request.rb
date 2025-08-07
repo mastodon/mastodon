@@ -21,7 +21,7 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
   def accept_quote_request!(quoted_status)
     status = status_from_uri(@json['instrument'])
     # TODO: import inlined quote post if possible
-    status ||= ActivityPub::FetchRemoteStatusService.new.call(@json['instrument'], on_behalf_of: @account.followers.local.first, request_id: @options[:request_id])
+    status ||= ActivityPub::FetchRemoteStatusService.new.call(@json['instrument'], on_behalf_of: quoted_status.account, request_id: @options[:request_id])
     # TODO: raise if status is nil
 
     # Sanity check
