@@ -1,6 +1,7 @@
 import type { ApiStatusJSON } from './statuses';
 
 export type ApiQuoteState = 'accepted' | 'pending' | 'revoked' | 'unauthorized';
+export type ApiQuotePolicy = 'public' | 'followers' | 'nobody';
 
 interface ApiQuoteEmptyJSON {
   state: Exclude<ApiQuoteState, 'accepted'>;

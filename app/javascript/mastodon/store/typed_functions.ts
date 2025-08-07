@@ -18,6 +18,11 @@ interface AppMeta {
   useLoadingBar?: boolean;
 }
 
+export type TypedThunkAction = (
+  dispatch: AppDispatch,
+  getState: () => RootState,
+) => void;
+
 export const createAppAsyncThunk = createAsyncThunk.withTypes<{
   state: RootState;
   dispatch: AppDispatch;
