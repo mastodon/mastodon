@@ -20,5 +20,16 @@ export function loadPolyfills() {
     loadIntlPolyfills(),
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- those properties might not exist in old browsers, even if they are always here in types
     needsExtraPolyfills && importExtraPolyfills(),
+    loadEmojiPolyfills(),
   ]);
 }
+
+// In the case of no /v support, rely on the emojibase data.
+async function loadEmojiPolyfills() {
+  if (!('unicodeSets' in RegExp.prototype)) {
+    emojiRegexPolyfill = (await import('emojibase-regex/emoji')).default;
+  }
+}
+
+// Null unless polyfill is needed.
+export let emojiRegexPolyfill: RegExp | null = null;

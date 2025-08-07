@@ -56,7 +56,7 @@ is:
         scopes: Að hvaða API-kerfisviðmótum forritið fær aðgang. Ef þú velur efsta-stigs svið, þarftu ekki að gefa einstakar heimildir.
         setting_aggregate_reblogs: Ekki sýna nýjar endurbirtingar á færslum sem hafa nýlega verið endurbirtar (hefur bara áhrif á ný-mótteknar endurbirtingar)
         setting_always_send_emails: Venjulega eru tilkynningar í tölvupósti ekki sendar þegar þú ert virk/ur í að nota Mastodon
-        setting_default_quote_policy: Notendur sem minnst er á geta alltaf gert tilvitnanir. Þessi stilling virkar einungis á færslur sem gerðar hafa verið í næstu útgáfu Mastodon, en þú getur samt valið þetta til að undirbúa þig
+        setting_default_quote_policy: Þessi stilling gildir einungis fyrir færslur sem útbúnar eru með næstu útgáfu Mastodon, en þú getur valið þetta fyrirfram til undirbúnings.
         setting_default_sensitive: Viðkvæmt myndefni er sjálfgefið falið og er hægt að birta með smelli
         setting_display_media_default: Fela myndefni sem merkt er viðkvæmt
         setting_display_media_hide_all: Alltaf fela allt myndefni
@@ -160,6 +160,10 @@ is:
         name: Opinbert heiti hlutverks, ef birta á hlutverk sem merki
         permissions_as_keys: Notendur með þetta hlutverk munu hafa aðgang að...
         position: Rétthærra hlutverk ákvarðar lausn árekstra í ákveðnum tilfellum. Sumar aðgerðir er aðeins hægt að framkvæma á hlutverk með lægri forgangi
+      username_block:
+        allow_with_approval: Í stað þess að loka alfarið á nýskráningar, munu samsvarandi nýskráningar þurfa samþykki þitt
+        comparison: Hafðu í huga Scunthorpe-vandamálið (Scunthorpe inniheldur orð sem ýmsar síur reyna að banna) þegar þú útilokar samsvarandi orðhluta
+        username: Mun samsvara án tillits til stafstöðu eða algengra táknlíkinga á borð við "4" í stað "a" eða "3" í stað "e"
       webhook:
         events: Veldu atburði sem á að senda
         template: Sníddu eigin JSON með breytilegri brúun. Skiljið eftir autt fyrir sjálfgefið JSON.
@@ -325,6 +329,7 @@ is:
         follow_request: Einhver hefur beðið um að fylgjast með þér
         mention: Einhver minntist á þig
         pending_account: Nýr notandaaðgangur þarfnast yfirferðar
+        quote: Einhver vitnaði í þig
         reblog: Einhver endurbirti færsluna þína
         report: Ný kæra hefur verið send inn
         software_updates:
@@ -371,6 +376,10 @@ is:
         name: Nafn
         permissions_as_keys: Heimildir
         position: Forgangur
+      username_block:
+        allow_with_approval: Leyfa skráningar með samþykki
+        comparison: Aðferð við samanburð
+        username: Orð sem samsvara
       webhook:
         events: Virkjaðir atburðir
         template: Sniðmát gagna

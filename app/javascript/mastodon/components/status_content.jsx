@@ -15,8 +15,9 @@ import { undoStatusTranslation } from 'mastodon/actions/statuses';
 import { Icon }  from 'mastodon/components/icon';
 import { Poll } from 'mastodon/components/poll';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import { autoPlayGif, isFeatureEnabled, languages as preloadedLanguages } from 'mastodon/initial_state';
+import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';
 import { EmojiHTML } from '../features/emoji/emoji_html';
+import { isModernEmojiEnabled } from '../utils/environment';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -28,7 +29,7 @@ const supportsTranslator = 'Translator' in globalThis;
  * @returns {string}
  */
 export function getStatusContent(status) {
-  if (isFeatureEnabled('modern_emojis')) {
+  if (isModernEmojiEnabled()) {
     return status.getIn(['translation', 'content']) || status.get('content');
   }
   return status.getIn(['translation', 'contentHtml']) || status.get('contentHtml');
@@ -51,13 +52,13 @@ class TranslateButton extends PureComponent {
 
       return (
         <div className='translate-button'>
-          <div className='translate-button__meta'>
-            <FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider }} />
-          </div>
-
           <button className='link-button' onClick={onClick}>
             <FormattedMessage id='status.show_original' defaultMessage='Show original' />
           </button>
+
+          <div className='translate-button__meta'>
+            <FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider }} />
+          </div>
         </div>
       );
     }
@@ -148,6 +149,16 @@ class StatusContent extends PureComponent {
           && status.get('spoiler_text').length === 0;
 
       onCollapsedToggle(collapsed);
+    }
+
+    // Remove quote fallback link from the DOM so it doesn't
+    // mess with paragraph margins
+    if (!!status.get('quote')) {
+      const inlineQuote = node.querySelector('.quote-inline');
+
+      if (inlineQuote) {
+        inlineQuote.remove();
+      }
     }
   }
 

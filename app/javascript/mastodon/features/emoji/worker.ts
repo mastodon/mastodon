@@ -5,9 +5,14 @@ self.postMessage('ready'); // After the worker is ready, notify the main thread
 
 function handleMessage(event: MessageEvent<string>) {
   const { data: locale } = event;
+  void loadData(locale);
+}
+
+async function loadData(locale: string) {
   if (locale !== 'custom') {
-    void importEmojiData(locale);
+    await importEmojiData(locale);
   } else {
-    void importCustomEmojiData();
+    await importCustomEmojiData();
   }
+  self.postMessage(`loaded ${locale}`);
 }

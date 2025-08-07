@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.3] - 2025-08-05
+
+### Security
+
+- Update dependencies
+- Fix incorrect rate-limit handling [GHSA-84ch-6436-c7mg](https://github.com/mastodon/mastodon/security/advisories/GHSA-84ch-6436-c7mg)
+
+### Fixed
+
+- Fix race condition caused by ActiveRecord query cache in `Create` critical path (#35662 by @ClearlyClaire)
+- Fix race condition caused by quote post processing (#35657 by @ClearlyClaire)
+- Fix WebUI crashing for accounts with `null` URL (#35651 by @ClearlyClaire)
+- Fix friends-of-friends recommendations suggesting already-requested accounts (#35604 by @ClearlyClaire)
+- Fix synchronous recursive fetching of deeply-nested quoted posts (#35600 by @ClearlyClaire)
+- Fix “Expand this post” link including user `@undefined` (#35478 by @ClearlyClaire)
+
+### Changed
+
+- Change `StatusReachFinder` to consider quotes as well as reblogs (#35601 by @ClearlyClaire)
+- Add restrictions on which quote posts can trend (#35507 by @ClearlyClaire)
+- Change quote verification to not bypass authorization flow for mentions (#35528 by @ClearlyClaire)
+
+## [4.4.2] - 2025-07-23
+
+### Security
+
+- Update dependencies
+
+### Fixed
+
+- Fix menu not clickable in Firefox (#35390 and #35414 by @diondiondion)
+- Add `lang` attribute to current composer language in alt text modal (#35412 by @diondiondion)
+- Fix quote posts styling on notifications page (#35411 by @diondiondion)
+- Improve a11y of custom select menus in notifications settings (#35403 by @diondiondion)
+- Fix selected item in poll select menus is unreadable in Firefox (#35402 by @diondiondion)
+- Update age limit wording (#35387 by @diondiondion)
+- Fix support for quote verification in implicit status updates (#35384 by @ClearlyClaire)
+- Improve `Dropdown` component accessibility (#35373 by @diondiondion)
+- Fix processing some incoming quotes failing because of missing JSON-LD context (#35354 and #35380 by @ClearlyClaire)
+- Make bio hashtags open the local page instead of the remote instance (#35349 by @ChaosExAnima)
+- Fix styling of external log-in button (#35320 by @ClearlyClaire)
+
 ## [4.4.1] - 2025-07-09
 
 ### Fixed

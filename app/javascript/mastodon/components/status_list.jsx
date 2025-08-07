@@ -41,9 +41,11 @@ export default class StatusList extends ImmutablePureComponent {
   };
 
   componentDidMount() {
-    this.columnHeaderHeight = parseFloat(
-      getComputedStyle(this.node.node).getPropertyValue('--column-header-height')
-    ) || 0;
+    this.columnHeaderHeight = this.node?.node
+      ? parseFloat(
+          getComputedStyle(this.node.node).getPropertyValue('--column-header-height')
+        ) || 0
+      : 0;
   }
 
   getFeaturedStatusCount = () => {
@@ -69,8 +71,8 @@ export default class StatusList extends ImmutablePureComponent {
   };
 
   _selectChild = (id, index, direction) => {
-    const listContainer = this.node.node;
-    let listItem = listContainer.querySelector(
+    const listContainer = this.node?.node;
+    let listItem = listContainer?.querySelector(
       // :nth-child uses 1-based indexing
       `.item-list > :nth-child(${index + 1 + direction})`
     );

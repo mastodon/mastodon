@@ -1660,6 +1660,10 @@ ca:
       title: Nova menció
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
+    quote:
+      body: 'La vostra publicació ha estat citada per %{name}:'
+      subject: "%{name} ha citat la vostra publicació"
+      title: Nova citació
     reblog:
       body: "%{name} ha impulsat el teu estat:"
       subject: "%{name} ha impulsat el teu estat"
@@ -1870,6 +1874,7 @@ ca:
     edited_at_html: Editat %{date}
     errors:
       in_reply_not_found: El tut al qual intentes respondre sembla que no existeix.
+      quoted_status_not_found: Sembla que la publicació que vols citar no existeix.
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
       direct: Els tuts que només són visibles per als usuaris mencionats no poden ser fixats
@@ -1877,8 +1882,8 @@ ca:
       ownership: No es pot fixar el tut d'algú altre
       reblog: No es pot fixar un impuls
     quote_policies:
-      followers: Seguidors i usuaris mencionats
-      nobody: Només usuaris mencionats
+      followers: Només els vostres seguidors
+      nobody: Ningú
       public: Tothom
     title: '%{name}: "%{quote}"'
     visibilities:

@@ -118,6 +118,10 @@ class Fasp::Provider < ApplicationRecord
     save!
   end
 
+  def delivery_failure_tracker
+    @delivery_failure_tracker ||= DeliveryFailureTracker.new(base_url, resolution: :minutes)
+  end
+
   private
 
   def create_keypair

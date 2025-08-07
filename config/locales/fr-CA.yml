@@ -319,6 +319,7 @@ fr-CA:
         create: Créer une annonce
         title: Nouvelle annonce
       preview:
+        disclaimer: Étant donné que les utilisateurs ne peuvent pas s'en retirer, les notifications par courriel devraient être limitées à des annonces importantes telles que des violations de données personnelles ou des notifications de fermeture de serveur.
         explanation_html: 'L''e-mail sera envoyé à <strong>%{display_count} utilisateurs</strong>. Le texte suivant sera inclus :'
         title: Aperçu de la notification d'annonce
       publish: Publier
@@ -1852,7 +1853,9 @@ fr-CA:
       ownership: Vous ne pouvez pas épingler un message ne vous appartenant pas
       reblog: Un partage ne peut pas être épinglé
     quote_policies:
-      followers: Abonné·e·s et utilisateur·trice·s mentionné·e·s
+      followers: Vos abonné·es seulement
+      nobody: Personne
+      public: Tout le monde
     title: "%{name} : « %{quote} »"
     visibilities:
       direct: Direct

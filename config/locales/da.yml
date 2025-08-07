@@ -190,6 +190,7 @@ da:
         create_relay: Opret Videresendelse
         create_unavailable_domain: Opret Utilgængeligt Domæne
         create_user_role: Opret rolle
+        create_username_block: Opret brugernavn-regel
         demote_user: Degradér bruger
         destroy_announcement: Slet bekendtgørelse
         destroy_canonical_email_block: Slet e-mailblokering
@@ -203,6 +204,7 @@ da:
         destroy_status: Slet indlæg
         destroy_unavailable_domain: Slet Utilgængeligt Domæne
         destroy_user_role: Ødelæg rolle
+        destroy_username_block: Slet brugernavn-regel
         disable_2fa_user: Deaktivér 2FA
         disable_custom_emoji: Deaktivér tilpasset emoji
         disable_relay: Deaktivér Videresendelse
@@ -237,6 +239,7 @@ da:
         update_report: Opdatér anmeldelse
         update_status: Opdatér indlæg
         update_user_role: Opdatér rolle
+        update_username_block: Opdatér brugernavn-regel
       actions:
         approve_appeal_html: "%{name} godkendte moderationsafgørelsesappellen fra %{target}"
         approve_user_html: "%{name} godkendte tilmeldingen fra %{target}"
@@ -255,6 +258,7 @@ da:
         create_relay_html: "%{name} oprettede videresendelsen %{target}"
         create_unavailable_domain_html: "%{name} stoppede levering til domænet %{target}"
         create_user_role_html: "%{name} oprettede %{target}-rolle"
+        create_username_block_html: "%{name} tilføjede regel for brugernavne indeholdende %{target}"
         demote_user_html: "%{name} degraderede brugeren %{target}"
         destroy_announcement_html: "%{name} slettede bekendtgørelsen %{target}"
         destroy_canonical_email_block_html: "%{name} afblokerede e-mailen med hash'et %{target}"
@@ -268,6 +272,7 @@ da:
         destroy_status_html: "%{name} fjernede indlægget fra %{target}"
         destroy_unavailable_domain_html: "%{name} genoptog levering til domænet %{target}"
         destroy_user_role_html: "%{name} slettede %{target}-rolle"
+        destroy_username_block_html: "%{name} fjernede regel for brugernavne indeholdende %{target}"
         disable_2fa_user_html: "%{name} deaktiverede tofaktorkravet for brugeren %{target}"
         disable_custom_emoji_html: "%{name} deaktiverede emojien %{target}"
         disable_relay_html: "%{name} deaktiverede videresendelsen %{target}"
@@ -302,6 +307,7 @@ da:
         update_report_html: "%{name} opdaterede rapporten %{target}"
         update_status_html: "%{name} opdaterede indlægget fra %{target}"
         update_user_role_html: "%{name} ændrede %{target}-rolle"
+        update_username_block_html: "%{name} opdaterede regel for brugernavne indeholdende %{target}"
       deleted_account: slettet konto
       empty: Ingen logger fundet.
       filter_by_action: Filtrér efter handling
@@ -1085,6 +1091,25 @@ da:
           other: Brugt af %{count} personer den seneste uge
       title: Anbefalinger og trends
       trending: Trender
+    username_blocks:
+      add_new: Tilføj ny
+      block_registrations: Blokér registreringer
+      comparison:
+        contains: Indeholder
+        equals: Er lig
+      contains_html: Indeholder %{string}
+      created_msg: Brugernavn-regel er hermed oprettet
+      delete: Slet
+      edit:
+        title: Redigér brugernavn-regel
+      matches_exactly_html: Er lig med %{string}
+      new:
+        create: Opret regel
+        title: Opret ny brugernavn-regel
+      no_username_block_selected: Ingen brugernavn-regler ændret (ingen var valgt)
+      not_permitted: Ikke tilladt
+      title: Brugernavn-regler
+      updated_msg: Brugernavn-regel opdateret
     warning_presets:
       add_new: Tilføj ny
       delete: Slet
@@ -1205,7 +1230,7 @@ da:
       prefix_invited_by_user: "@%{name} inviterer dig ind på denne Mastodon-server!"
       prefix_sign_up: Tilmeld dig Mastodon i dag!
       suffix: Du vil med en konto kunne følge personer, indsende opdateringer og udveksle beskeder med brugere fra enhver Mastodon-server, og meget mere!
-    didnt_get_confirmation: Intet bekræftelseslink modtaget?
+    didnt_get_confirmation: Ikke modtaget bekræftelseslink?
     dont_have_your_security_key: Har ikke din sikkerhedsnøgle?
     forgot_password: Glemt din adgangskode?
     invalid_reset_password_token: Adgangskodenulstillingstoken ugyldigt eller udløbet. Anmod om et nyt.
@@ -1394,7 +1419,7 @@ da:
   filters:
     contexts:
       account: Profiler
-      home: Hjemmetidslinje
+      home: Hjem og lister
       notifications: Notifikationer
       public: Offentlig tidslinje
       thread: Samtaler
@@ -1403,7 +1428,7 @@ da:
       keywords: Nøgleord
       statuses: Individuelle indlæg
       statuses_hint_html: Dette filter gælder for udvalgte, individuelle indlæg, uanset om de matcher nøgleordene nedenfor. <a href="%{path}">Gennemgå eller fjern indlæg fra filteret</a>.
-      title: Redigere filter
+      title: Rediger filter
     errors:
       deprecated_api_multiple_keywords: Disse parametre kan ikke ændres fra denne applikation, da de gælder for flere end ét filternøgleord. Brug en nyere applikation eller webgrænsefladen.
       invalid_context: Ingen eller ugyldig kontekst angivet
@@ -1662,6 +1687,10 @@ da:
       title: Ny omtale
     poll:
       subject: En afstemning fra %{name} er afsluttet
+    quote:
+      body: 'Dit indlæg blev citeret af %{name}:'
+      subject: "%{name} citerede dit indlæg"
+      title: Nyt citat
     reblog:
       body: 'Dit indlæg blev fremhævet af %{name}:'
       subject: "%{name} fremhævede dit indlæg"
@@ -1719,7 +1748,7 @@ da:
     privacy: Privatliv
     privacy_hint_html: Styr, hvor meget du vil afsløre til gavn for andre. Folk opdager interessante profiler og apps ved at gennemse andres følgere og se, hvilke apps de sender fra, men du foretrækker måske at holde det skjult.
     reach: Rækkevidde
-    reach_hint_html: Indstil om du vil blive opdaget og fulgt af nye mennesker. Ønsker du, at dine indlæg skal vises på Udforsk-siden? Ønsker du, at andre skal se dig i deres følg-anbefalinger? Ønsker du at acceptere alle nye følgere automatisk, eller vil du have detaljeret kontrol over hver og en?
+    reach_hint_html: Indstil, om du vil opdages og følges af nye personer. Vil du have, at dine indlæg skal vises på Udforsk-siden? Vil du have, at andre skal kunne se dig i deres følg-anbefalinger? Vil du acceptere alle nye følgere automatisk eller have detaljeret kontrol over hver enkelt?
     search: Søgning
     search_hint_html: Indstil hvordan du vil findes. Ønsker du, at folk skal finde dig gennem hvad du har skrevet offentligt? Vil du have folk udenfor Mastodon til at finde din profil, når de søger på nettet? Vær opmærksom på, at det ikke kan garanteres at dine offentlige indlæg er udelukket fra alle søgemaskiner.
     title: Fortrolighed og rækkevidde
@@ -1872,6 +1901,7 @@ da:
     edited_at_html: Redigeret %{date}
     errors:
       in_reply_not_found: Indlægget, der forsøges besvaret, ser ikke ud til at eksistere.
+      quoted_status_not_found: Indlægget, du forsøger at citere, ser ikke ud til at eksistere.
     over_character_limit: grænsen på %{max} tegn overskredet
     pin_errors:
       direct: Indlæg, som kun kan ses af omtalte brugere, kan ikke fastgøres
@@ -1879,8 +1909,8 @@ da:
       ownership: Andres indlæg kan ikke fastgøres
       reblog: En fremhævelse kan ikke fastgøres
     quote_policies:
-      followers: Følgere og nævnte brugere
-      nobody: Kun nævnte brugere
+      followers: Kun dine følgere
+      nobody: Ingen
       public: Alle
     title: '%{name}: "%{quote}"'
     visibilities:

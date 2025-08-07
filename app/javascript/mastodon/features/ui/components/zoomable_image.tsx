@@ -306,10 +306,8 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({
 
       <animated.img
         style={{ transform }}
-        role='presentation'
         ref={imageRef}
         alt={alt}
-        title={alt}
         lang={lang}
         src={src}
         width={width}

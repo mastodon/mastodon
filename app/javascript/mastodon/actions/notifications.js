@@ -31,7 +31,7 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 
     let filtered = false;
 
-    if (['mention', 'status'].includes(notification.type) && notification.status.filtered) {
+    if (['mention', 'status', 'quote'].includes(notification.type) && notification.status.filtered) {
       const filters = notification.status.filtered.filter(result => result.filter.context.includes('notifications'));
 
       if (filters.some(result => result.filter.filter_action === 'hide')) {

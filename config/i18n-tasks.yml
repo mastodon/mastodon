@@ -72,6 +72,8 @@ ignore_unused:
   - 'preferences.other' # some locales are missing other keys, therefore leading i18n-tasks to detect `preferences` as plural and not finding use
   - 'edit_profile.other' # some locales are missing other keys, therefore leading i18n-tasks to detect `preferences` as plural and not finding use
   - 'admin.terms_of_service.generate' # temporarily disabled
+  - 'admin.username_blocks.matches_exactly_html'
+  - 'admin.username_blocks.contains_html'
 
 ignore_inconsistent_interpolations:
   - '*.one'

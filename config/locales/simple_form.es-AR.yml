@@ -56,7 +56,7 @@ es-AR:
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionás el alcance de nivel más alto, no necesitás seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevas adhesiones de los mensajes que fueron recientemente adheridos (sólo afecta a las adhesiones recibidas recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
-        setting_default_quote_policy: Los usuarios mencionados siempre pueden citar. Este ajuste solo afecta a las publicaciones creadas con la próxima versión de Mastodon, pero podés seleccionar tus preferencias con antelación.
+        setting_default_quote_policy: Este ajuste solo tendrá efecto en mensajes creados usando la próxima versión mayor de Mastodon, pero podés configurarlo con anticipación.
         setting_default_sensitive: El contenido de medios sensibles está oculto predeterminadamente y puede ser mostrado con un clic
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Siempre ocultar todos los medios
@@ -160,6 +160,10 @@ es-AR:
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a…
         position: Un rol más alto decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con prioridad inferior
+      username_block:
+        allow_with_approval: En lugar de impedir el registro total, los registros coincidentes requerirán tu aprobación
+        comparison: Por favor, tené en cuenta el Problema de Scunthorpe al bloquear coincidencias parciales
+        username: Coincidirá sin importar la capitalización de letras y los homoglifos comunes como «4» para «a», o «3» para «e»
       webhook:
         events: Seleccionar eventos para enviar
         template: Creá tu propio archivo JSON usando interpolación variable. Dejalo en blanco para usar el archivo JSON predeterminado.
@@ -325,6 +329,7 @@ es-AR:
         follow_request: Una cuenta solicita seguirte
         mention: Una cuenta te menciona
         pending_account: Una nueva cuenta necesita revisión
+        quote: Alguien te citó
         reblog: Una cuenta adhiere a tu mensaje
         report: Se envió una nueva denuncia
         software_updates:
@@ -371,6 +376,10 @@ es-AR:
         name: Nombre
         permissions_as_keys: Permisos
         position: Prioridad
+      username_block:
+        allow_with_approval: Permitir registros con aprobación
+        comparison: Método de comparación
+        username: Palabra a coincidir
       webhook:
         events: Eventos habilitados
         template: Plantilla de carga

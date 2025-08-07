@@ -65,12 +65,12 @@ module FormattingHelper
   end
 
   def rss_content_preroll(status)
-    if status.spoiler_text?
-      safe_join [
-        tag.p { spoiler_with_warning(status) },
-        tag.hr,
-      ]
-    end
+    return unless status.spoiler_text?
+
+    safe_join [
+      tag.p { spoiler_with_warning(status) },
+      tag.hr,
+    ]
   end
 
   def spoiler_with_warning(status)
@@ -81,10 +81,10 @@ module FormattingHelper
   end
 
   def rss_content_postroll(status)
-    if status.preloadable_poll
-      tag.p do
-        poll_option_tags(status)
-      end
+    return unless status.preloadable_poll
+
+    tag.p do
+      poll_option_tags(status)
     end
   end
 
