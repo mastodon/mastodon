@@ -9,13 +9,11 @@ module CanonicalEmail
 
   class_methods do
     def canonicalize_email(email)
-      Mail::Address
-        .new(email)
-        .then { |address| [canonical_username(address.local), address.domain] }
-        .join('@')
-        .downcase
-    rescue Mail::Field::FieldError
       email
+        .downcase
+        .split('@', 2)
+        .then { |local, domain| [canonical_username(local), domain] }
+        .join('@')
     end
 
     def canonical_username(username)

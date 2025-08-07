@@ -9,7 +9,6 @@ RSpec.describe CanonicalEmailBlock do
 
   describe 'Normalizations' do
     describe 'email' do
-      it { is_expected.to normalize(:email).from('  test @ host.example  ').to('test@host.example') }
       it { is_expected.to normalize(:email).from('TEST@HOST.EXAMPLE').to('test@host.example') }
       it { is_expected.to normalize(:email).from('test+more@host.example').to('test@host.example') }
       it { is_expected.to normalize(:email).from('test.user@host.example').to('testuser@host.example') }
