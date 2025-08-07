@@ -190,6 +190,7 @@ is:
         create_relay: Búa til endurvarpa
         create_unavailable_domain: Útbúa lén sem ekki er tiltækt
         create_user_role: Útbúa hlutverk
+        create_username_block: Búa til notandanafnsreglu
         demote_user: Lækka notanda í tign
         destroy_announcement: Eyða tilkynningu
         destroy_canonical_email_block: Eyða útilokunarblokk tölvupósts
@@ -203,6 +204,7 @@ is:
         destroy_status: Eyða færslu
         destroy_unavailable_domain: Eyða léni sem ekki er tiltækt
         destroy_user_role: Eyða hlutverki
+        destroy_username_block: Eyða notandanafnsreglu
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
         disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
         disable_relay: Gera endurvarpa óvirkan
@@ -237,6 +239,7 @@ is:
         update_report: Uppfæra kæru
         update_status: Uppfæra færslu
         update_user_role: Uppfæra hlutverk
+        update_username_block: Uppfæra notandanafnsreglu
       actions:
         approve_appeal_html: "%{name} samþykkti áfrýjun á ákvörðun umsjónarmanns frá %{target}"
         approve_user_html: "%{name} samþykkti nýskráningu frá %{target}"
@@ -255,6 +258,7 @@ is:
         create_relay_html: "%{name} bjó til endurvarpa %{target}"
         create_unavailable_domain_html: "%{name} stöðvaði afhendingu til lénsins %{target}"
         create_user_role_html: "%{name} útbjó %{target} hlutverk"
+        create_username_block_html: "%{name} bætti við reglu varðandi notendanöfn sem innihalda %{target}"
         demote_user_html: "%{name} lækkaði notandann %{target} í tign"
         destroy_announcement_html: "%{name} eyddi tilkynninguni %{target}"
         destroy_canonical_email_block_html: "%{name} tók af útilokun á tölvupósti með tætigildið %{target}"
@@ -268,6 +272,7 @@ is:
         destroy_status_html: "%{name} fjarlægði færslu frá %{target}"
         destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
         destroy_user_role_html: "%{name} eyddi hlutverki %{target}"
+        destroy_username_block_html: "%{name} fjarlægði reglu varðandi notendanöfn sem innihalda %{target}"
         disable_2fa_user_html: "%{name} gerði kröfu um tveggja-þátta innskráningu óvirka fyrir notandann %{target}"
         disable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} óvirkt"
         disable_relay_html: "%{name} gerði endurvarpann %{target} óvirkan"
@@ -302,6 +307,7 @@ is:
         update_report_html: "%{name} uppfærði kæru %{target}"
         update_status_html: "%{name} uppfærði færslu frá %{target}"
         update_user_role_html: "%{name} breytti hlutverki %{target}"
+        update_username_block_html: "%{name} uppfærði reglu varðandi notendanöfn sem innihalda %{target}"
       deleted_account: eyddur notandaaðgangur
       empty: Engar atvikaskrár fundust.
       filter_by_action: Sía eftir aðgerð
@@ -1087,6 +1093,25 @@ is:
           other: Notað af %{count} aðilum síðustu vikuna
       title: Meðmæli og vinsælt
       trending: Vinsælt
+    username_blocks:
+      add_new: Bæta við nýju
+      block_registrations: Loka á nýskráningar
+      comparison:
+        contains: Inniheldur
+        equals: Er jafnt og
+      contains_html: Inniheldur %{string}
+      created_msg: Tókst að útbúa notandanafnsreglu
+      delete: Eyða
+      edit:
+        title: Breyta notandanafnsreglu
+      matches_exactly_html: Er jafnt og %{string}
+      new:
+        create: Búa til reglu
+        title: Búa til nýja notandanafnsreglu
+      no_username_block_selected: Engum notandanafnsreglum var breytt þar sem engar voru valdar
+      not_permitted: Ekki leyft
+      title: Notendanafnareglur
+      updated_msg: Tókst að uppfæra notandanafnsreglu
     warning_presets:
       add_new: Bæta við nýju
       delete: Eyða
@@ -1666,6 +1691,10 @@ is:
       title: Ný tilvísun
     poll:
       subject: Könnun frá %{name} er lokið
+    quote:
+      body: "%{name} vitnaði í færsluna þína:"
+      subject: "%{name} vitnaði í færsluna þína"
+      title: Ný tilvitnun
     reblog:
       body: "%{name} endurbirti færsluna þína:"
       subject: "%{name} endurbirti færsluna þína"
@@ -1876,6 +1905,7 @@ is:
     edited_at_html: Breytt %{date}
     errors:
       in_reply_not_found: Færslan sem þú ert að reyna að svara að er líklega ekki til.
+      quoted_status_not_found: Færslan sem þú ert að reyna að vitna í virðist ekki vera til.
     over_character_limit: hámarksfjölda stafa (%{max}) náð
     pin_errors:
       direct: Ekki er hægt að festa færslur sem einungis eru sýnilegar þeim notendum sem minnst er á
@@ -1883,8 +1913,8 @@ is:
       ownership: Færslur frá einhverjum öðrum er ekki hægt að festa
       reblog: Ekki er hægt að festa endurbirtingu
     quote_policies:
-      followers: Fylgjendur og notendur sem minnst er á
-      nobody: Einungis notendur sem minnst er á
+      followers: Einungis þeir sem fylgjast með þér
+      nobody: Enginn
       public: Allir
     title: "%{name}: „%{quote}‟"
     visibilities:

@@ -3,12 +3,8 @@
 module RateLimitable
   extend ActiveSupport::Concern
 
-  def rate_limit=(value)
-    @rate_limit = value
-  end
-
-  def rate_limit?
-    @rate_limit
+  included do
+    attribute :rate_limit, :boolean, default: false
   end
 
   def rate_limiter(by, options = {})

@@ -10,6 +10,7 @@ class Api::V1::StatusesController < Api::BaseController
   before_action :set_statuses, only:         [:index]
   before_action :set_status, only:           [:show, :context]
   before_action :set_thread, only:           [:create]
+  before_action :set_quoted_status, only:    [:create]
   before_action :check_statuses_limit, only: [:index]
 
   override_rate_limit_headers :create, family: :statuses
@@ -65,7 +66,11 @@ class Api::V1::StatusesController < Api::BaseController
       add_async_refresh_header(async_refresh)
     elsif !current_account.nil? && @status.should_fetch_replies?
       add_async_refresh_header(AsyncRefresh.create(refresh_key))
-      ActivityPub::FetchAllRepliesWorker.perform_async(@status.id)
+
+      WorkerBatch.new.within do |batch|
+        batch.connect(refresh_key, threshold: 1.0)
+        ActivityPub::FetchAllRepliesWorker.perform_async(@status.id, { 'batch_id' => batch.id })
+      end
     end
 
     render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
@@ -76,6 +81,8 @@ class Api::V1::StatusesController < Api::BaseController
       current_user.account,
       text: status_params[:status],
       thread: @thread,
+      quoted_status: @quoted_status,
+      quote_approval_policy: quote_approval_policy,
       media_ids: status_params[:media_ids],
       sensitive: status_params[:sensitive],
       spoiler_text: status_params[:spoiler_text],
@@ -107,7 +114,8 @@ class Api::V1::StatusesController < Api::BaseController
       sensitive: status_params[:sensitive],
       language: status_params[:language],
       spoiler_text: status_params[:spoiler_text],
-      poll: status_params[:poll]
+      poll: status_params[:poll],
+      quote_approval_policy: quote_approval_policy
     )
 
     render json: @status, serializer: REST::StatusSerializer
@@ -147,6 +155,16 @@ class Api::V1::StatusesController < Api::BaseController
     render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: 404
   end
 
+  def set_quoted_status
+    return unless Mastodon::Feature.outgoing_quotes_enabled?
+
+    @quoted_status = Status.find(status_params[:quoted_status_id]) if status_params[:quoted_status_id].present?
+    authorize(@quoted_status, :quote?) if @quoted_status.present?
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
+    # TODO: distinguish between non-existing and non-quotable posts
+    render json: { error: I18n.t('statuses.errors.quoted_status_not_found') }, status: 404
+  end
+
   def check_statuses_limit
     raise(Mastodon::ValidationError) if status_ids.size > DEFAULT_STATUSES_LIMIT
   end
@@ -163,6 +181,8 @@ class Api::V1::StatusesController < Api::BaseController
     params.permit(
       :status,
       :in_reply_to_id,
+      :quoted_status_id,
+      :quote_approval_policy,
       :sensitive,
       :spoiler_text,
       :visibility,
@@ -183,6 +203,23 @@ class Api::V1::StatusesController < Api::BaseController
         options: [],
       ]
     )
+  end
+
+  def quote_approval_policy
+    # TODO: handle `nil` separately
+    return nil unless Mastodon::Feature.outgoing_quotes_enabled? && status_params[:quote_approval_policy].present?
+
+    case status_params[:quote_approval_policy]
+    when 'public'
+      Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16
+    when 'followers'
+      Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16
+    when 'nobody'
+      0
+    else
+      # TODO: raise more useful message
+      raise ActiveRecord::RecordInvalid
+    end
   end
 
   def serializer_for_status

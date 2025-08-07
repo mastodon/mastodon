@@ -1433,10 +1433,6 @@ body > [data-popper-placement] {
   }
 }
 
-.status--has-quote .quote-inline {
-  display: none;
-}
-
 .status {
   padding: 16px;
   min-height: 54px;
@@ -1468,10 +1464,6 @@ body > [data-popper-placement] {
   .audio-player,
   .attachment-list {
     margin-top: 16px;
-  }
-
-  &--is-quote {
-    border: none;
   }
 
   &--in-thread {
@@ -1860,79 +1852,99 @@ body > [data-popper-placement] {
   // --status-gutter-width is currently only set inside of
   // .notification-ungrouped, so everywhere else this will fall back
   // to the pixel values
-  --quote-margin: var(--status-gutter-width, 36px);
+  --quote-margin: var(--status-gutter-width);
 
   position: relative;
   margin-block-start: 16px;
   margin-inline-start: calc(var(--quote-margin) + var(--thread-margin, 0px));
-  border-radius: 8px;
+  border-radius: 12px;
   color: var(--nested-card-text);
-  background: var(--nested-card-background);
-  border: var(--nested-card-border);
-
-  @container (width > 460px) {
-    --quote-margin: var(--status-gutter-width, 56px);
-  }
+  border: 1px solid var(--surface-border-color);
 }
 
 .status__quote--error {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
   padding: 12px;
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  min-height: 56px;
+
+  .link-button {
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+  }
 }
 
 .status__quote-author-button {
   position: relative;
   overflow: hidden;
-  display: inline-flex;
-  width: auto;
-  margin-block-start: 10px;
-  padding: 5px 12px;
+  display: flex;
+  margin-top: 8px;
+  padding: 8px 12px;
   align-items: center;
-  gap: 6px;
   font-family: inherit;
   font-size: 14px;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 0;
-  text-decoration: none;
-  color: $highlight-text-color;
-  background: var(--nested-card-background);
-  border: var(--nested-card-border);
-  border-radius: 4px;
-
-  &:active,
-  &:focus,
-  &:hover {
-    border-color: lighten($highlight-text-color, 4%);
-    color: lighten($highlight-text-color, 4%);
-  }
-
-  &:focus-visible {
-    outline: $ui-button-icon-focus-outline;
-  }
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: $darker-text-color;
+  background: var(--surface-variant-background-color);
+  border-radius: 8px;
+  cursor: default;
 }
 
-.status__quote-icon {
-  position: absolute;
-  inset-block-start: 18px;
-  inset-inline-start: -40px;
-  display: block;
-  width: 26px;
-  height: 26px;
-  padding: 5px;
-  color: #6a49ba;
-  z-index: 10;
+.status--is-quote {
+  border: none;
+  padding: 12px;
 
-  .status__quote--error & {
-    inset-block-start: 50%;
-    transform: translateY(-50%);
+  .status__info {
+    padding-bottom: 8px;
   }
 
-  @container (width > 460px) {
-    inset-inline-start: -50px;
+  .display-name,
+  .status__relative-time {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+  }
+
+  .display-name__account {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.5px;
+  }
+
+  .status__content {
+    display: -webkit-box;
+    font-size: 14px;
+    letter-spacing: 0.25px;
+    line-height: 20px;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    p {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .media-gallery,
+  .video-player,
+  .audio-player,
+  .attachment-list,
+  .poll {
+    margin-top: 8px;
   }
 }
 
@@ -2149,6 +2161,27 @@ body > [data-popper-placement] {
         text-decoration: none;
       }
     }
+  }
+}
+
+.learn-more__popout {
+  gap: 8px;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  h6 {
+    font-size: inherit;
+    font-weight: 500;
+    line-height: inherit;
+    letter-spacing: 0.1px;
+  }
+
+  .link-button {
+    font-weight: 500;
   }
 }
 

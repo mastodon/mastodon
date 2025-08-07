@@ -90,13 +90,13 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     aes_key_wrap (1.1.0)
     android_key_attestation (0.3.0)
-    annotaterb (4.17.0)
+    annotaterb (4.18.0)
       activerecord (>= 6.0.0)
       activesupport (>= 6.0.0)
     ast (2.4.3)
     attr_required (1.0.2)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1131.0)
+    aws-partitions (1.1135.0)
     aws-sdk-core (3.215.1)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -144,7 +144,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    capybara-playwright-driver (0.5.6)
+    capybara-playwright-driver (0.5.7)
       addressable
       capybara
       playwright-ruby-client (>= 1.16.0)
@@ -175,9 +175,9 @@ GEM
     css_parser (1.21.1)
       addressable
     csv (3.3.5)
-    database_cleaner-active_record (2.2.1)
+    database_cleaner-active_record (2.2.2)
       activerecord (>= 5.a)
-      database_cleaner-core (~> 2.0.0)
+      database_cleaner-core (~> 2.0)
     database_cleaner-core (2.0.1)
     date (3.4.1)
     debug (1.11.0)
@@ -233,7 +233,7 @@ GEM
     fabrication (3.0.0)
     faker (3.5.2)
       i18n (>= 1.8.11, < 2)
-    faraday (2.13.2)
+    faraday (2.13.4)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -287,7 +287,7 @@ GEM
       activesupport (>= 5.1)
       haml (>= 4.0.6)
       railties (>= 5.1)
-    haml_lint (0.65.0)
+    haml_lint (0.66.0)
       haml (>= 5.0)
       parallel (~> 1.10)
       rainbow
@@ -315,7 +315,7 @@ GEM
     http_accept_language (2.1.1)
     httpclient (2.9.0)
       mutex_m
-    httplog (1.7.1)
+    httplog (1.7.2)
       rack (>= 2.0)
       rainbow (>= 2.0.0)
     i18n (1.14.7)
@@ -345,7 +345,7 @@ GEM
       azure-blob (~> 0.5.2)
       hashie (~> 5.0)
     jmespath (1.6.2)
-    json (2.13.0)
+    json (2.13.2)
     json-canonicalization (1.0.0)
     json-jwt (1.16.7)
       activesupport (>= 4.2)
@@ -438,7 +438,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0715)
+    mime-types-data (3.2025.0729)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     minitest (5.25.5)
@@ -468,7 +468,7 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
       rack-protection
-    omniauth-cas (3.0.1)
+    omniauth-cas (3.0.2)
       addressable (~> 2.8)
       nokogiri (~> 1.12)
       omniauth (~> 2.1)
@@ -601,16 +601,16 @@ GEM
     ox (2.14.23)
       bigdecimal (>= 3.0)
     parallel (1.27.0)
-    parser (3.3.8.0)
+    parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
     parslet (2.0.0)
     pastel (0.8.0)
       tty-color (~> 0.5)
-    pg (1.5.9)
+    pg (1.6.1)
     pghero (3.7.0)
       activerecord (>= 7.1)
-    playwright-ruby-client (1.54.0)
+    playwright-ruby-client (1.54.1)
       concurrent-ruby (>= 1.1.6)
       mime-types (>= 3.0)
     pp (0.6.2)
@@ -635,7 +635,7 @@ GEM
       date
       stringio
     public_suffix (6.0.2)
-    puma (6.6.0)
+    puma (6.6.1)
       nio4r (~> 2.0)
     pundit (2.5.0)
       activesupport (>= 3.0.0)
@@ -721,7 +721,7 @@ GEM
       connection_pool
     redlock (1.3.2)
       redis (>= 3.0.0, < 6.0)
-    regexp_parser (2.10.0)
+    regexp_parser (2.11.0)
     reline (0.6.2)
       io-console (~> 0.5)
     request_store (1.7.0)
@@ -731,7 +731,7 @@ GEM
       railties (>= 5.2)
     rexml (3.4.1)
     rotp (6.3.0)
-    rouge (4.5.2)
+    rouge (4.6.0)
     rpam2 (4.0.2)
     rqrcode (3.1.0)
       chunky_png (~> 1.0)
@@ -765,7 +765,7 @@ GEM
       rspec-mocks (~> 3.0)
       sidekiq (>= 5, < 9)
     rspec-support (3.13.4)
-    rubocop (1.78.0)
+    rubocop (1.79.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -773,7 +773,7 @@ GEM
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
-      rubocop-ast (>= 1.45.1, < 2.0)
+      rubocop-ast (>= 1.46.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.46.0)
@@ -805,7 +805,7 @@ GEM
     ruby-prof (1.7.2)
       base64
     ruby-progressbar (1.13.0)
-    ruby-saml (1.18.0)
+    ruby-saml (1.18.1)
       nokogiri (>= 1.13.10)
       rexml
     ruby-vips (2.2.4)
@@ -833,10 +833,9 @@ GEM
       redis-client (>= 0.22.2)
     sidekiq-bulk (0.2.0)
       sidekiq
-    sidekiq-scheduler (5.0.6)
+    sidekiq-scheduler (6.0.1)
       rufus-scheduler (~> 3.2)
-      sidekiq (>= 6, < 8)
-      tilt (>= 1.4.0, < 3)
+      sidekiq (>= 7.3, < 9)
     sidekiq-unique-jobs (8.0.11)
       concurrent-ruby (~> 1.0, >= 1.0.5)
       sidekiq (>= 7.0.0, < 9.0.0)
@@ -859,7 +858,7 @@ GEM
     stoplight (4.1.1)
       redlock (~> 1.0)
     stringio (3.1.7)
-    strong_migrations (2.4.0)
+    strong_migrations (2.5.0)
       activerecord (>= 7.1)
     swd (2.0.3)
       activesupport (>= 3)
@@ -867,7 +866,7 @@ GEM
       faraday (~> 2.0)
       faraday-follow_redirects
     sysexits (1.2.0)
-    temple (0.10.3)
+    temple (0.10.4)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
     terrapin (1.1.1)
@@ -1082,7 +1081,7 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq (< 8)
   sidekiq-bulk (~> 0.2.0)
-  sidekiq-scheduler (~> 5.0)
+  sidekiq-scheduler (~> 6.0)
   sidekiq-unique-jobs (> 8)
   simple-navigation (~> 4.4)
   simple_form (~> 5.2)
@@ -1106,4 +1105,4 @@ RUBY VERSION
    ruby 3.4.1p0
 
 BUNDLED WITH
-   2.7.0
+   2.7.1

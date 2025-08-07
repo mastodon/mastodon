@@ -31,7 +31,9 @@ import { NOTIFICATIONS_FILTER_SET } from './notifications';
 import { saveSettings } from './settings';
 
 function excludeAllTypesExcept(filter: string) {
-  return allNotificationTypes.filter((item) => item !== filter);
+  return allNotificationTypes.filter(
+    (item) => item !== filter && !(item === 'quote' && filter === 'mention'),
+  );
 }
 
 function getExcludedTypes(state: RootState) {
@@ -156,12 +158,15 @@ export const processNewNotificationForGroups = createAppAsyncThunk(
     const showInColumn =
       activeFilter === 'all'
         ? notificationShows[notification.type] !== false
-        : activeFilter === notification.type;
+        : activeFilter === notification.type ||
+          (activeFilter === 'mention' && notification.type === 'quote');
 
     if (!showInColumn) return;
 
     if (
-      (notification.type === 'mention' || notification.type === 'update') &&
+      (notification.type === 'mention' ||
+        notification.type === 'update' ||
+        notification.type === 'quote') &&
       notification.status?.filtered
     ) {
       const filters = notification.status.filtered.filter((result) =>

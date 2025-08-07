@@ -1872,6 +1872,7 @@ sv:
     edited_at_html: 'Ändrad: %{date}'
     errors:
       in_reply_not_found: Inlägget du försöker svara på verkar inte existera.
+      quoted_status_not_found: Inlägget du försöker svara på verkar inte existera.
     over_character_limit: teckengräns på %{max} har överskridits
     pin_errors:
       direct: Inlägg som endast är synliga för nämnda användare kan inte fästas
@@ -1879,8 +1880,6 @@ sv:
       ownership: Någon annans inlägg kan inte fästas
       reblog: En boost kan inte fästas
     quote_policies:
-      followers: Följare och omnämnda användare
-      nobody: Endast nämnda användare
       public: Alla
     title: '%{name}: "%{quote}"'
     visibilities:

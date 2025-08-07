@@ -56,7 +56,7 @@ zh-TW:
         scopes: 允許使應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
         setting_aggregate_reblogs: 不顯示最近已被轉嘟之嘟文的最新轉嘟（只影響最新收到的嘟文）
         setting_always_send_emails: 一般情況下若您活躍使用 Mastodon ，我們不會寄送電子郵件通知
-        setting_default_quote_policy: 已提及使用者總是能引用嘟文。此設定將僅生效於下一版本 Mastodon 建立之嘟文，但您可以預先選好您的偏好設定
+        setting_default_quote_policy: 此設定將僅生效於下一版本 Mastodon 建立之嘟文，但您可以預先選好您的偏好設定。
         setting_default_sensitive: 敏感內容媒體預設隱藏，且按一下即可重新顯示
         setting_display_media_default: 隱藏標為敏感內容的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
@@ -159,6 +159,10 @@ zh-TW:
         name: 角色的公開名稱，如果角色設定為顯示為徽章
         permissions_as_keys: 有此角色的使用者將有權存取...
         position: 某些情況下，衝突的解決方式由更高階的角色決定。某些動作只能由優先程度較低的角色執行
+      username_block:
+        allow_with_approval: 不直接禁止註冊，符合規則之註冊將需要您的審核
+        comparison: 當您封鎖部分匹配時，請留心 Scunthorpe 問題
+        username: 將匹配不限大小寫與常見同形異義字，如以「4」代替「A」或以「3」代替「E」
       webhook:
         events: 請選擇要傳送的事件
         template: 使用變數代換組合您自己的 JSON payload。留白以使用預設 JSON 。
@@ -324,6 +328,7 @@ zh-TW:
         follow_request: 當有使用者請求跟隨您時，傳送電子郵件通知
         mention: 當有使用者於嘟文提及您時，傳送電子郵件通知
         pending_account: 有新的帳號需要審核
+        quote: 當有使用者引用您的嘟文時
         reblog: 當有使用者轉嘟您的嘟文時，傳送電子郵件通知
         report: 新回報已遞交
         software_updates:
@@ -370,6 +375,10 @@ zh-TW:
         name: 名稱
         permissions_as_keys: 權限
         position: 優先權
+      username_block:
+        allow_with_approval: 經審核後可註冊
+        comparison: 比較方式
+        username: 字詞匹配
       webhook:
         events: 已啟用的事件
         template: Payload 樣板

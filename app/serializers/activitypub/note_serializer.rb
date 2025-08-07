@@ -3,7 +3,7 @@
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
   include FormattingHelper
 
-  context_extensions :atom_uri, :conversation, :sensitive, :voters_count
+  context_extensions :atom_uri, :conversation, :sensitive, :voters_count, :quotes, :interaction_policies
 
   attributes :id, :type, :summary,
              :in_reply_to, :published, :url,
@@ -29,6 +29,13 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   attribute :closed, if: :poll_and_expired?
 
   attribute :voters_count, if: :poll_and_voters_count?
+
+  attribute :quote, if: :quote?
+  attribute :quote, key: :_misskey_quote, if: :quote?
+  attribute :quote, key: :quote_uri, if: :quote?
+  attribute :quote_authorization, if: :quote_authorization?
+
+  attribute :interaction_policy, if: -> { Mastodon::Feature.outgoing_quotes_enabled? }
 
   def id
     ActivityPub::TagManager.instance.uri_for(object)
@@ -192,6 +199,40 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   def poll_and_voters_count?
     object.preloadable_poll&.voters_count
+  end
+
+  def quote?
+    object.quote&.present?
+  end
+
+  def quote_authorization?
+    object.quote.present? && ActivityPub::TagManager.instance.approval_uri_for(object.quote).present?
+  end
+
+  def quote
+    # TODO: handle inlining self-quotes
+    ActivityPub::TagManager.instance.uri_for(object.quote.quoted_status)
+  end
+
+  def quote_authorization
+    ActivityPub::TagManager.instance.approval_uri_for(object.quote)
+  end
+
+  def interaction_policy
+    approved_uris = []
+
+    # On outgoing posts, only automatic approval is supported
+    policy = object.quote_approval_policy >> 16
+    approved_uris << ActivityPub::TagManager::COLLECTIONS[:public] if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:public])
+    approved_uris << ActivityPub::TagManager.instance.followers_uri_for(object.account) if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers])
+    approved_uris << ActivityPub::TagManager.instance.following_uri_for(object.account) if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:followed])
+    approved_uris << ActivityPub::TagManager.instance.uri_for(object.account) if approved_uris.empty?
+
+    {
+      canQuote: {
+        automaticApproval: approved_uris,
+      },
+    }
   end
 
   class MediaAttachmentSerializer < ActivityPub::Serializer

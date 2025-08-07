@@ -18,6 +18,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @poll_changed              = false
     @quote_changed             = false
     @request_id                = request_id
+    @quote                     = nil
 
     # Only native types can be updated at the moment
     return @status if !expected_type? || already_updated_more_recently?
@@ -49,6 +50,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         create_edits!
       end
 
+      fetch_and_verify_quote!(@quote, @status_parser.quote_uri) if @quote.present?
       download_media_files!
       queue_poll_notifications!
 
@@ -278,10 +280,10 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     return unless quote_uri.present? && @status.quote.present?
 
     quote = @status.quote
-    return if quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(quote.quoted_status) != quote_uri
+    return if quote.quoted_status.present? && (ActivityPub::TagManager.instance.uri_for(quote.quoted_status) != quote_uri || quote.quoted_status.local?)
 
     approval_uri = @status_parser.quote_approval_uri
-    approval_uri = nil if unsupported_uri_scheme?(approval_uri)
+    approval_uri = nil if unsupported_uri_scheme?(approval_uri) || TagManager.instance.local_url?(approval_uri)
 
     quote.update(approval_uri: approval_uri, state: :pending, legacy: @status_parser.legacy_quote?) if quote.approval_uri != @status_parser.quote_approval_uri
 
@@ -293,11 +295,13 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     if quote_uri.present?
       approval_uri = @status_parser.quote_approval_uri
-      approval_uri = nil if unsupported_uri_scheme?(approval_uri)
+      approval_uri = nil if unsupported_uri_scheme?(approval_uri) || TagManager.instance.local_url?(approval_uri)
 
       if @status.quote.present?
         # If the quoted post has changed, discard the old object and create a new one
         if @status.quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(@status.quote.quoted_status) != quote_uri
+          # Revoke the quote while we get a chance… maybe this should be a `before_destroy` hook?
+          RevokeQuoteService.new.call(@status.quote) if @status.quote.quoted_account&.local? && @status.quote.accepted?
           @status.quote.destroy
           quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
           @quote_changed = true
@@ -310,10 +314,10 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         @quote_changed = true
       end
 
+      @quote = quote
       quote.save
-
-      fetch_and_verify_quote!(quote, quote_uri)
     elsif @status.quote.present?
+      @quote = nil
       @status.quote.destroy!
       @quote_changed = true
     end

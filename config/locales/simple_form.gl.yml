@@ -56,7 +56,7 @@ gl:
         scopes: A que APIs terá acceso a aplicación. Se escolles un ámbito de alto nivel, non precisas seleccionar elementos individuais.
         setting_aggregate_reblogs: Non mostrar novas promocións de publicacións que foron promovidas recentemente (só afecta a promocións recén recibidas)
         setting_always_send_emails: Como norma xeral non che enviamos correos electrónicos se usas activamente Mastodon
-        setting_default_quote_policy: As usuarias mencionadas sempre teñen permiso para citar. Este axuste só ten efecto para publicacións creadas coa próxima versión de Mastodon, pero xa podes ir preparando o axuste.
+        setting_default_quote_policy: O axuste só afectará ás publicación creadas coa próxima versión de Mastodon, pero podes establecer o axuste con antelación.
         setting_default_sensitive: Medios sensibles marcados como ocultos por defecto e móstranse cun click
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Ocultar sempre os medios
@@ -160,6 +160,10 @@ gl:
         name: Nome público do rol, se o rol se mostra como unha insignia
         permissions_as_keys: As usuarias con este rol terán acceso a...
         position: O rol superior decide nos conflitos en certas situacións. Algunhas accións só poden aplicarse sobre roles cunha prioridade menor
+      username_block:
+        allow_with_approval: No lugar de evitar a cración directa de contas, as contas mediante regras van precisar a túa aprobación
+        comparison: Ten en conta o Sunthorpe Problem cando se bloquean coincidencias parciais
+        username: Vai crear unha coincidencia sen importar se son maiúsculas ou minúsculas e homoglifos como «4» por «a» ou «3» por «e».
       webhook:
         events: Escoller eventos a enviar
         template: Crea o teu propio JSON interpolando variables. Déixao en branco para usar o JSON predeterminado.
@@ -325,6 +329,7 @@ gl:
         follow_request: Enviar un correo cando alguén solicita seguirte
         mention: Enviar un correo cando alguén te menciona
         pending_account: Enviar un correo cando unha nova conta precisa revisión
+        quote: Citoute alguén
         reblog: Enviar un correo cando alguén promociona a tua mensaxe
         report: Enviouse unha nova denuncia
         software_updates:
@@ -371,6 +376,10 @@ gl:
         name: Nome
         permissions_as_keys: Permisos
         position: Prioridade
+      username_block:
+        allow_with_approval: Permitir crear contas con aprobación
+        comparison: Método de comparación
+        username: Palabra a comparar
       webhook:
         events: Eventos activados
         template: Modelo de carga

@@ -1,4 +1,8 @@
 import type { ApiRelationshipJSON } from '@/mastodon/api_types/relationships';
+import type {
+  CustomEmojiData,
+  UnicodeEmojiData,
+} from '@/mastodon/features/emoji/types';
 import { createAccountFromServerJSON } from '@/mastodon/models/account';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 
@@ -68,3 +72,26 @@ export const relationshipsFactory: FactoryFunction<ApiRelationshipJSON> = ({
   showing_reblogs: true,
   ...data,
 });
+
+export function unicodeEmojiFactory(
+  data: Partial<UnicodeEmojiData> = {},
+): UnicodeEmojiData {
+  return {
+    hexcode: 'test',
+    label: 'Test',
+    unicode: '🧪',
+    ...data,
+  };
+}
+
+export function customEmojiFactory(
+  data: Partial<CustomEmojiData> = {},
+): CustomEmojiData {
+  return {
+    shortcode: 'custom',
+    static_url: 'emoji/custom/static',
+    url: 'emoji/custom',
+    visible_in_picker: true,
+    ...data,
+  };
+}
