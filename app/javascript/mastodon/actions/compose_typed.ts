@@ -4,8 +4,10 @@ import type { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 import { apiUpdateMedia } from 'mastodon/api/compose';
 import type { ApiMediaAttachmentJSON } from 'mastodon/api_types/media_attachments';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
-import type { TypedThunkAction } from 'mastodon/store/typed_functions';
-import { createDataLoadingThunk } from 'mastodon/store/typed_functions';
+import {
+  createDataLoadingThunk,
+  createAppThunk,
+} from 'mastodon/store/typed_functions';
 
 import type { ApiQuotePolicy } from '../api_types/quotes';
 import type { Status } from '../models/status';
@@ -76,26 +78,22 @@ export const changeUploadCompose = createDataLoadingThunk(
   },
 );
 
-/** For the reducer. You typically should call quoteComposeByStatus or quoteComposeById. */
-export const quoteComposeStatus = createAction<Status>(
+export const quoteComposeByStatus = createAppThunk(
   'compose/quoteComposeStatus',
+  (status: Status, { getState }) => {
+    ensureComposeIsVisible(getState);
+    return status;
+  },
 );
 
-export function quoteComposeByStatus(status: Status): TypedThunkAction {
-  return (dispatch, getState) => {
-    dispatch(quoteComposeStatus(status));
-    ensureComposeIsVisible(getState);
-  };
-}
-
-export function quoteComposeById(statusId: string): TypedThunkAction {
-  return (dispatch, getState) => {
+export const quoteComposeById = createAppThunk(
+  (statusId: string, { dispatch, getState }) => {
     const status = getState().statuses.get(statusId);
     if (status) {
       dispatch(quoteComposeByStatus(status));
     }
-  };
-}
+  },
+);
 
 export const quoteComposeCancel = createAction('compose/quoteComposeCancel');
 

@@ -2,7 +2,7 @@ import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrde
 
 import {
   changeUploadCompose,
-  quoteComposeStatus,
+  quoteComposeByStatus,
   quoteComposeCancel,
   setQuotePolicy,
 } from 'mastodon/actions/compose_typed';
@@ -329,7 +329,7 @@ export const composeReducer = (state = initialState, action) => {
     return state.set('is_changing_upload', true);
   } else if (changeUploadCompose.rejected.match(action)) {
     return state.set('is_changing_upload', false);
-  } else if (quoteComposeStatus.match(action)) {
+  } else if (quoteComposeByStatus.match(action)) {
     const status = action.payload;
     if (status.getIn(['quote_approval', 'current_user']) === 'automatic') {
       return state.set('quoted_status_id', status.get('id'));
