@@ -82,13 +82,22 @@ class ReportService < BaseService
     return AccountStatusesFilter.new(@target_account, @source_account).results.with_discarded.find(Array(@status_ids)).pluck(:id) if @source_account.local?
 
     # If the account making reports is remote, it is likely anonymized so we have to relax the requirements for attaching statuses.
-    domain = @source_account.domain.to_s.downcase
-    has_followers = @target_account.followers.with_domain(domain).exists?
-    visibility = has_followers ? %i(public unlisted private) : %i(public unlisted)
     scope = @target_account.statuses.with_discarded
-    scope.merge!(scope.where(visibility: visibility).or(scope.where('EXISTS (SELECT 1 FROM mentions m JOIN accounts a ON m.account_id = a.id WHERE lower(a.domain) = ?)', domain)))
+    scope.merge!(visibility_scope(scope).or(scope.where('EXISTS (SELECT 1 FROM mentions m JOIN accounts a ON m.account_id = a.id WHERE lower(a.domain) = ?)', @source_account.domain.to_s.downcase)))
     # Allow missing posts to not drop reports that include e.g. a deleted post
     scope.where(id: Array(@status_ids)).pluck(:id)
+  end
+
+  def visibility_scope(scope)
+    if target_has_source_domain_followers?
+      scope.list_eligible_visibility
+    else
+      scope.distributable_visibility
+    end
+  end
+
+  def target_has_source_domain_followers?
+    @target_account.followers.with_domain(@source_account.domain).exists?
   end
 
   def payload
