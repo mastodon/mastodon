@@ -112,8 +112,9 @@ RSpec.describe Export do
     it 'returns a csv of custom filters' do
       expect(export)
         .to contain_exactly(
-          include(/statuses/),
-          include(/statuses/)
+          contain_exactly('Title', 'Context', 'Keywords', 'Action', 'Expire after'),
+          include('discourse', 'home,notifications', 'discourse', 'warn', be_blank),
+          include(be_present)
         )
     end
   end

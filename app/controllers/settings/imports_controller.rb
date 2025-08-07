@@ -13,6 +13,7 @@ class Settings::ImportsController < Settings::BaseController
     domain_blocking: 'blocked_domains_failures.csv',
     bookmarks: 'bookmarks_failures.csv',
     lists: 'lists_failures.csv',
+    filters: 'filters_failures.csv',
   }.freeze
 
   TYPE_TO_HEADERS_MAP = {
@@ -22,6 +23,7 @@ class Settings::ImportsController < Settings::BaseController
     domain_blocking: false,
     bookmarks: false,
     lists: false,
+    filters: false,
   }.freeze
 
   RECENT_IMPORTS_LIMIT = 10
