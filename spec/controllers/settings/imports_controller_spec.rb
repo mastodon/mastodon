@@ -229,6 +229,18 @@ RSpec.describe Settings::ImportsController do
 
       it_behaves_like 'export failed rows', "Amigos,user@example.com\nFrenemies,user@org.org\n"
     end
+
+    context 'with filters' do
+      let(:import_type) { 'filters' }
+
+      let(:rows) do
+        [
+          { 'title' => 'Invalid Filter', 'context' => ['waffles'], 'keywords' => ['mean stuff'], 'action' => 'hide', 'expires_at' => nil },
+        ]
+      end
+
+      it_behaves_like 'export failed rows', "Invalid Filter,\"[\"\"waffles\"\"]\",\"[\"\"mean stuff\"\"]\",hide,\n"
+    end
   end
 
   describe 'POST #create' do
