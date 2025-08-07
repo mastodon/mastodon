@@ -61,6 +61,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
     ActivityPub::Forwarder.new(@account, @json, @quote.status).forward!
     @quote.reject!
+    DistributionWorker.perform_async(@quote.status_id, { 'update' => true })
   end
 
   def forwarder
