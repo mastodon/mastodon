@@ -4,11 +4,11 @@ module CanonicalEmail
   extend ActiveSupport::Concern
 
   included do
-    normalizes :email, with: ->(value) { canonicalize(value) }
+    normalizes :email, with: ->(value) { canonicalize_email(value) }
   end
 
   class_methods do
-    def canonicalize(email)
+    def canonicalize_email(email)
       Mail::Address
         .new(email)
         .then { |address| [canonical_username(address.local), address.domain] }
