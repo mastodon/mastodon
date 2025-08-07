@@ -7,6 +7,14 @@ RSpec.describe CanonicalEmailBlock do
     it { is_expected.to belong_to(:reference_account).class_name('Account').optional }
   end
 
+  describe 'Normalizations' do
+    describe 'email' do
+      it { is_expected.to normalize(:email).from('TEST@HOST.EXAMPLE').to('test@host.example') }
+      it { is_expected.to normalize(:email).from('test+more@host.example').to('test@host.example') }
+      it { is_expected.to normalize(:email).from('test.user@host.example').to('testuser@host.example') }
+    end
+  end
+
   describe 'Scopes' do
     describe '.matching_email' do
       subject { described_class.matching_email(email) }
