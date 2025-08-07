@@ -61,22 +61,29 @@ const messages = defineMessages({
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
+  revokeQuote: { id: 'status.revoke_quote', defaultMessage: 'Remove my post from @{name}’s post' },
 });
 
-const mapStateToProps = (state, { status }) => ({
-  relationship: state.getIn(['relationships', status.getIn(['account', 'id'])]),
-});
+const mapStateToProps = (state, { status }) => {
+  const quotedStatusId = status.getIn(['quote', 'quoted_status']);
+  return ({
+    relationship: state.getIn(['relationships', status.getIn(['account', 'id'])]),
+    quotedAccountId: quotedStatusId ? state.getIn(['statuses', quotedStatusId, 'account']) : null,
+  });
+};
 
 class ActionBar extends PureComponent {
   static propTypes = {
     identity: identityContextPropShape,
     status: ImmutablePropTypes.map.isRequired,
     relationship: ImmutablePropTypes.record,
+    quotedAccountId: ImmutablePropTypes.string,
     onReply: PropTypes.func.isRequired,
     onReblog: PropTypes.func.isRequired,
     onFavourite: PropTypes.func.isRequired,
     onBookmark: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
+    onRevokeQuote: PropTypes.func,
     onEdit: PropTypes.func.isRequired,
     onDirect: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
@@ -112,6 +119,10 @@ class ActionBar extends PureComponent {
   handleDeleteClick = () => {
     this.props.onDelete(this.props.status);
   };
+
+  handleRevokeQuoteClick = () => {
+    this.props.onRevokeQuote(this.props.status);
+  }
 
   handleRedraftClick = () => {
     this.props.onDelete(this.props.status, true);
@@ -193,7 +204,7 @@ class ActionBar extends PureComponent {
   };
 
   render () {
-    const { status, relationship, intl } = this.props;
+    const { status, relationship, quotedAccountId, intl } = this.props;
     const { signedIn, permissions } = this.props.identity;
 
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
@@ -236,6 +247,10 @@ class ActionBar extends PureComponent {
       } else {
         menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });
         menu.push(null);
+
+        if (quotedAccountId === me) {
+          menu.push({ text: intl.formatMessage(messages.revokeQuote, { name: account.get('username') }), action: this.handleRevokeQuoteClick, dangerous: true });
+        }
 
         if (relationship && relationship.get('muting')) {
           menu.push({ text: intl.formatMessage(messages.unmute, { name: account.get('username') }), action: this.handleMuteClick });
