@@ -1,1 +1,26 @@
+---
 az:
+  doorkeeper:
+    errors:
+      messages:
+        invalid_token:
+          expired: Erişim tokeninin vaxtı bitib
+          revoked: Erişim tokeni ləğv edilib
+          unknown: Erişim tokeni yararsızdır
+    grouped_scopes:
+      access:
+        read: Yalnız oxuma erişimi
+        read/write: Oxuma və yazma erişimi
+        write: Yalnız yazma erişimi
+      title:
+        all: Mastodon hesabınıza tam erişim
+    scopes:
+      admin:read: serverdəki bütün veriləri oxuma
+      admin:write: serverdəki bütün veriləri dəyişdirmə
+      admin:write:accounts: hesablarda moderasiya əməliyyatlarını icra et
+      admin:write:canonical_email_blocks:
+      admin:write:domain_allows: domen icazələri üzərində moderasiya əməliyyatlarını icra et
+      admin:write:ip_blocks: IP əngəlləmələri üzrə moderasiya əməliyyatlarını icra et
+      admin:write:reports: hesabatlarda moderasiya əməliyyatlarını icra et
+      read: hesabınızın bütün verilərini oxuma
+      write: hesabınızın bütün verilərini dəyişdirmə
