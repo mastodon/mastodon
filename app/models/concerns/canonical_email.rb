@@ -17,7 +17,11 @@ module CanonicalEmail
     end
 
     def canonical_username(username)
-      username.to_s.delete('.').split('+', 2).first
+      username
+        .to_s
+        .delete('.')
+        .split('+', 2)
+        .first
     end
   end
 end
