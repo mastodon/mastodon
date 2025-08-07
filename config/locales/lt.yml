@@ -188,6 +188,7 @@ lt:
         create_relay: Kurti perdavimą
         create_unavailable_domain: Kurti nepasiekiamą domeną
         create_user_role: Kurti vaidmenį
+        create_username_block: Kurti naudotojo vardo taisyklę
         demote_user: Pažeminti naudotoją
         destroy_announcement: Ištrinti skelbimą
         destroy_custom_emoji: Ištrinti pasirinktinį jaustuką
@@ -199,6 +200,7 @@ lt:
         destroy_status: Ištrinti įrašą
         destroy_unavailable_domain: Ištrinti nepasiekiamą domeną
         destroy_user_role: Sunaikinti vaidmenį
+        destroy_username_block: Ištrinti naudotojo vardo taisyklę
         disable_2fa_user: Išjungti 2FA
         disable_custom_emoji: Išjungti pasirinktinį jaustuką
         disable_relay: Išjungti perdavimą
@@ -231,6 +233,7 @@ lt:
         update_report: Atnaujinti ataskaitą
         update_status: Atnaujinti įrašą
         update_user_role: Atnaujinti vaidmenį
+        update_username_block: Atnaujinti naudotojo vardo taisyklę
       actions:
         approve_appeal_html: "%{name} patvirtino prižiūjimo veiksmo apeliaciją iš %{target}"
         approve_user_html: "%{name} patvirtino registraciją iš %{target}"
@@ -245,6 +248,7 @@ lt:
         create_relay_html: "%{name} sukūrė perdavimą %{target}"
         create_unavailable_domain_html: "%{name} sustabdė tiekimą į domeną %{target}"
         create_user_role_html: "%{name} sukūrė %{target} vaidmenį"
+        create_username_block_html: "%{name} pridėjo taisyklę naudotojo vardams, turintiems %{target}"
         demote_user_html: "%{name} pažemino naudotoją %{target}"
         destroy_announcement_html: "%{name} ištrynė skelbimą %{target}"
         destroy_custom_emoji_html: "%{name} ištrynė jaustuką %{target}"
@@ -256,6 +260,7 @@ lt:
         destroy_status_html: "%{name} pašalino įrašą %{target}"
         destroy_unavailable_domain_html: "%{name} pratęsė tiekimą į domeną %{target}"
         destroy_user_role_html: "%{name} ištrynė %{target} vaidmenį"
+        destroy_username_block_html: "%{name} pašalino taisyklę naudotojo vardams, turintiems %{target}"
         disable_2fa_user_html: "%{name} išjungė dviejų veiksnių reikalavimą naudotojui %{target}"
         disable_custom_emoji_html: "%{name} išjungė jaustuką %{target}"
         disable_relay_html: "%{name} išjungė perdavimą %{target}"
@@ -287,6 +292,7 @@ lt:
         update_report_html: "%{name} atnaujino ataskaitą %{target}"
         update_status_html: "%{name} atnaujino įrašą %{target}"
         update_user_role_html: "%{name} pakeitė %{target} vaidmenį"
+        update_username_block_html: "%{name} atnaujino taisyklę naudotojo vardams, turintiems %{target}"
       deleted_account: ištrinta paskyra
       empty: Žurnalų nerasta.
       filter_by_action: Filtruoti pagal veiksmą
@@ -746,6 +752,22 @@ lt:
         trending_rank: 'Tendencinga #%{rank}'
       title: Rekomendacijos ir tendencijos
       trending: Tendencinga
+    username_blocks:
+      add_new: Pridėti naują
+      block_registrations: Blokuoti registracijas
+      comparison:
+        contains: Yra
+        equals: Lygus
+      contains_html: Yra %{string}
+      created_msg: Sėkmingai sukurta naudotojo vardo taisyklė.
+      delete: Ištrinti
+      edit:
+        title: Redaguoti naudotojo vardo taisyklę
+      matches_exactly_html: Lygus %{string}
+      new:
+        create: Kurti taisyklę
+        title: Kurti naują naudotojo vardo taisyklę
+      no_username_block_selected: Jokios naudotojo vardo taisyklės nebuvo pakeistos, nes nė viena buvo pasirinkta.
     warning_presets:
       add_new: Pridėti naują
       delete: Ištrinti

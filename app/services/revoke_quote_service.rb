@@ -8,10 +8,17 @@ class RevokeQuoteService < BaseService
     @account = quote.quoted_account
 
     @quote.reject!
+    distribute_update!
     distribute_stamp_deletion!
   end
 
   private
+
+  def distribute_update!
+    return if @quote.status_id.nil?
+
+    DistributionWorker.perform_async(@quote.status_id, { 'update' => true })
+  end
 
   def distribute_stamp_deletion!
     ActivityPub::DeliveryWorker.push_bulk(inboxes, limit: 1_000) do |inbox_url|
