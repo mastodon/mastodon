@@ -25,7 +25,7 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
     # TODO: raise if status is nil
 
     # Sanity check
-    return unless status.quote.quoted_status == quoted_status
+    return unless status.quote.quoted_status == quoted_status && status.account == @account
 
     status.quote.ensure_quoted_access
     status.quote.update!(activity_uri: @json['id'])
