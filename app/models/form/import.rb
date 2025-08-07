@@ -33,6 +33,13 @@ class Form::Import
     '#domain' => 'domain',
     '#uri' => 'uri',
     'List name' => 'list_name',
+
+    # Filters
+    'Title' => 'title',
+    'Context' => 'context',
+    'Keywords' => 'keywords',
+    'Action' => 'action',
+    'Expire after' => 'expires_at',
   }.freeze
 
   class EmptyFileError < StandardError; end
@@ -114,10 +121,11 @@ class Form::Import
     return @csv_data if defined?(@csv_data)
 
     csv_converter = lambda do |field, field_info|
-      if :type == :filters
+      case type.to_sym
+      when :filters
         case field_info.header
         when 'Context', 'Keywords'
-          field&.split(',')&.map(&:strip)&.presence
+          Oj.load(field)
         when 'Expire after'
           field.blank? ? nil : Time.zone.parse(field)
         else

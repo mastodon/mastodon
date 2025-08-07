@@ -57,6 +57,8 @@ class Settings::ImportsController < Settings::BaseController
               csv << [row.data['uri']]
             when :lists
               csv << [row.data['list_name'], row.data['acct']]
+            when :filters
+              csv << [row.data['title'], row.data['context'], row.data['keywords'], row.data['action'], row.data['expires_at']]
             end
           end
         end

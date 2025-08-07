@@ -39,6 +39,13 @@ class BulkImportRowService
       FollowService.new.call(@account, @target_account) unless @account.id == @target_account.id
 
       list.accounts << @target_account
+    when :filters
+      filter = @account.custom_filters.find_or_initialize_by(title: @data['title'])
+      filter.context = @data['context']
+      filter.keywords = @data['keywords'].map { |keyword| CustomFilterKeyword.new(keyword: keyword) }
+      filter.action = @data['action'].to_sym
+      filter.expires_at = @data['expires_at']
+      filter.save!
     end
 
     true
