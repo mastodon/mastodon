@@ -10,6 +10,7 @@ Warden::Manager.after_set_user except: :fetch do |user, warden|
     value: session_id,
     expires: 1.year.from_now,
     httponly: true,
+    secure: Rails.env.production? || Rails.configuration.force_ssl,
     same_site: :lax,
   }
 end
@@ -24,6 +25,7 @@ Warden::Manager.after_fetch do |user, warden|
       value: session_id,
       expires: 1.year.from_now,
       httponly: true,
+      secure: Rails.env.production? || Rails.configuration.force_ssl,
       same_site: :lax,
     }
   else

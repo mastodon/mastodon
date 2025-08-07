@@ -35,14 +35,21 @@ Rails.application.config.content_security_policy do |p|
     front_end_build_urls = %w(ws http).map { |protocol| "#{protocol}#{'s' if ViteRuby.config.https}://#{vite_public_host}" }
 
     p.connect_src :self, :data, :blob, *media_hosts, Rails.configuration.x.streaming_api_base_url, *front_end_build_urls
+    # Allow unsafe-inline only in development for hot reloading
     p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host
     p.frame_src   :self, :https, :http
     p.style_src   :self, assets_host, :unsafe_inline
   else
     p.connect_src :self, :data, :blob, *media_hosts, Rails.configuration.x.streaming_api_base_url
-    p.script_src  :self, assets_host, "'wasm-unsafe-eval'"
+    # Removed 'wasm-unsafe-eval' for better security - use nonce-based approach instead
+    p.script_src  :self, assets_host
     p.frame_src   :self, :https
     p.style_src   :self, assets_host
+    
+    # Add additional security directives for production
+    p.object_src  :none
+    p.plugin_types :none
+    p.report_uri  ENV['CSP_REPORT_URI'] if ENV['CSP_REPORT_URI'].present?
   end
 end
 

@@ -153,6 +153,26 @@ class Rack::Attack
     req.warden_user_id if (req.put? || req.patch?) && (req.path_matches?('/auth') || req.path_matches?('/auth/password'))
   end
 
+  # Throttle adicional para admin actions
+  throttle('throttle_admin_actions/account', limit: 100, period: 1.hour) do |req|
+    req.warden_user_id if req.path.start_with?('/admin') && (req.post? || req.put? || req.patch? || req.delete?)
+  end
+
+  # Throttle para webhooks y callbacks
+  throttle('throttle_webhooks/ip', limit: 50, period: 1.hour) do |req|
+    req.throttleable_remote_ip if req.path.include?('webhook') || req.path.include?('callback')
+  end
+
+  # Throttle para búsquedas
+  throttle('throttle_search/ip', limit: 100, period: 10.minutes) do |req|
+    req.throttleable_remote_ip if req.get? && req.path.include?('search')
+  end
+
+  # Throttle para uploads de media
+  throttle('throttle_media_upload/ip', limit: 20, period: 10.minutes) do |req|
+    req.throttleable_remote_ip if req.post? && req.path.match?(%r{\A/api/v\d+/media\z}i)
+  end
+
   self.throttled_responder = lambda do |request|
     now        = Time.now.utc
     match_data = request.env['rack.attack.match_data']
@@ -163,6 +183,9 @@ class Rack::Attack
       'X-RateLimit-Remaining' => '0',
       'X-RateLimit-Reset' => (now + (match_data[:period] - (now.to_i % match_data[:period]))).iso8601(6),
     }
+
+    # Log rate limiting events for security monitoring
+    Rails.logger.warn("Rate limit exceeded: #{request.env['rack.attack.matched']} for IP #{request.remote_ip}")
 
     [429, headers, [{ error: I18n.t('errors.429') }.to_json]]
   end
