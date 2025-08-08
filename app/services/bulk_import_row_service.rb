@@ -42,7 +42,7 @@ class BulkImportRowService
     when :filters
       filter = @account.custom_filters.find_or_initialize_by(title: @data['title'])
       filter.context = @data['context']
-      filter.keywords = @data['keywords'].map { |keyword| CustomFilterKeyword.new(keyword: keyword) }
+      filter.keywords = @data['keywords'].map.with_index { |keyword, i| CustomFilterKeyword.new(keyword: keyword, whole_word: @data['whole_word'][i]) }
       filter.action = @data['action'].to_sym
       filter.expires_at = @data['expires_at']
       filter.save!

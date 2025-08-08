@@ -19,7 +19,7 @@ class Form::Import
     domain_blocking: ['#domain'],
     bookmarks: ['#uri'],
     lists: ['List name', 'Account address'],
-    filters: ['Title', 'Context', 'Keywords', 'Action', 'Expire after'],
+    filters: ['Title', 'Context', 'Keywords', 'Whole Word', 'Action', 'Expire after'],
   }.freeze
 
   KNOWN_FIRST_HEADERS = EXPECTED_HEADERS_BY_TYPE.values.map(&:first).uniq.freeze
@@ -38,6 +38,7 @@ class Form::Import
     'Title' => 'title',
     'Context' => 'context',
     'Keywords' => 'keywords',
+    'Whole Word' => 'whole_word',
     'Action' => 'action',
     'Expire after' => 'expires_at',
   }.freeze
@@ -124,7 +125,7 @@ class Form::Import
       case type.to_sym
       when :filters
         case field_info.header
-        when 'Context', 'Keywords'
+        when 'Context', 'Keywords', 'Whole Word'
           Oj.load(field)
         when 'Expire after'
           field.blank? ? nil : Time.zone.parse(field)
