@@ -23,6 +23,12 @@ module Admin::Metrics::Measure::QueryHelper
     )
   end
 
+  def matching_day(model, column)
+    <<~SQL.squish
+      DATE_TRUNC('day', #{model.table_name}.#{column})::date = axis.period
+    SQL
+  end
+
   def account_domain_sql(include_subdomains)
     if include_subdomains
       "accounts.domain IN (SELECT domain FROM instances WHERE reverse('.' || domain) LIKE reverse('.' || :domain::text))"
