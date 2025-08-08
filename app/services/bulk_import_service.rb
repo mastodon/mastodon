@@ -18,6 +18,8 @@ class BulkImportService < BaseService
       import_bookmarks!
     when :lists
       import_lists!
+    when :account_notes
+      import_account_notes!
     end
 
     @import.update!(state: :finished, finished_at: Time.now.utc) if @import.processed_items == @import.total_items
@@ -176,6 +178,34 @@ class BulkImportService < BaseService
 
     included_lists.each do |title|
       @account.owned_lists.find_or_create_by!(title: title)
+    end
+
+    Import::RowWorker.push_bulk(rows) do |row|
+      [row.id]
+    end
+  end
+
+  def import_account_notes!
+    rows_by_acct = extract_rows_by_acct
+
+    if @import.overwrite?
+      @account.account_notes.reorder(nil).find_each do |account_note|
+        row = rows_by_acct.delete(account_note.target_account.acct)
+
+        if row.nil?
+          account_note.destroy!
+        else
+          row.destroy
+          @import.processed_items += 1
+          @import.imported_items += 1
+          @note = AccountNote.find_or_initialize_by(account: @account, target_account: row.data['acct'])
+          @note.comment = row.data['comment']
+          @note.save! if @note.changed?
+        end
+      end
+
+      # Save pending infos due to `overwrite?` handling
+      @import.save!
     end
 
     Import::RowWorker.push_bulk(rows) do |row|

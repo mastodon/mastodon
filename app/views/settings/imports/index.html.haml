@@ -5,7 +5,7 @@
   .field-group
     = f.input :type,
               as: :grouped_select,
-              collection: { constructive: %i(following bookmarks lists), destructive: %i(muting blocking domain_blocking) },
+              collection: { constructive: %i(following bookmarks lists), destructive: %i(muting blocking domain_blocking), other: %i(account_notes) },
               group_label_method: ->(group) { I18n.t("imports.type_groups.#{group.first}") },
               group_method: :last,
               hint: t('imports.preface'),
