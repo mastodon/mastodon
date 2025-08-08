@@ -114,7 +114,7 @@ class Form::Import
     when :lists
       ['List name', 'Account address']
     when :filters
-      ['Title', 'Context', 'Keywords', 'Action', 'Expire after']
+      ['Title', 'Context', 'Keywords', 'Whole Word', 'Action', 'Expire after']
     end
   end
 
