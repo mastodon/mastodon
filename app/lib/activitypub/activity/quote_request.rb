@@ -19,13 +19,13 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
   private
 
   def accept_quote_request!(quoted_status)
-    status = status_from_uri(@json['instrument'])
-    # TODO: import inlined quote post if possible
-    status ||= ActivityPub::FetchRemoteStatusService.new.call(@json['instrument'], on_behalf_of: @account.followers.local.first, request_id: @options[:request_id])
+    status = status_from_uri(instrument_uri)
+    status ||= import_instrument(quoted_status)
+    status ||= ActivityPub::FetchRemoteStatusService.new.call(instrument_uri, on_behalf_of: quoted_status.account, request_id: @options[:request_id])
     # TODO: raise if status is nil
 
     # Sanity check
-    return unless status.quote.quoted_status == quoted_status
+    return unless status.quote.quoted_status == quoted_status && status.account == @account
 
     status.quote.ensure_quoted_access
     status.quote.update!(activity_uri: @json['id'])
@@ -35,15 +35,30 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
     ActivityPub::DeliveryWorker.perform_async(json, quoted_status.account_id, @account.inbox_url)
   end
 
+  def import_instrument(quoted_status)
+    return unless @json['instrument'].is_a?(Hash)
+
+    # NOTE: Replacing the object's context by that of the parent activity is
+    # not sound, but it's consistent with the rest of the codebase
+    instrument = @json['instrument'].merge({ '@context' => @json['@context'] })
+    return if non_matching_uri_hosts?(instrument['id'], @account.uri)
+
+    ActivityPub::FetchRemoteStatusService.new.call(instrument['id'], prefetched_body: instrument, on_behalf_of: quoted_status.account, request_id: @options[:request_id])
+  end
+
   def reject_quote_request!(quoted_status)
     quote = Quote.new(
       quoted_status: quoted_status,
       quoted_account: quoted_status.account,
-      status: Status.new(account: @account, uri: @json['instrument']),
+      status: Status.new(account: @account, uri: instrument_uri),
       account: @account,
       activity_uri: @json['id']
     )
     json = Oj.dump(serialize_payload(quote, ActivityPub::RejectQuoteRequestSerializer))
     ActivityPub::DeliveryWorker.perform_async(json, quoted_status.account_id, @account.inbox_url)
+  end
+
+  def instrument_uri
+    value_or_id(@json['instrument'])
   end
 end

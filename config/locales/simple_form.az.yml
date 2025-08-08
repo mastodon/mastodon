@@ -1,1 +1,32 @@
+---
 az:
+  simple_form:
+    hints:
+      admin_account_action:
+        include_statuses: İstifadəçi, hansı göndərişlərin moderasiya əməliyyatına və ya xəbərdarlığına səbəb olduğunu görəcək
+      defaults:
+        current_password: Təhlükəsizlik səbəblərinə görə lütfən hazırkı hesabın parolunu daxil edin
+        phrase: Mətndəki böyük-kiçik hərfdən və ya göndərişin məzmun xəbərdarlığından asılı olmayaraq uyuşdurulacaq
+      ip_block:
+        severities:
+          no_access: Bütün resurslara erişimi əngəllə
+      sessions:
+        otp: 'Telefon tətbiqiniz tərəfindən yaradılmış iki faktorlu kodu daxil edin və ya geri qaytarma kodlarınızdan birini istifadə edin:'
+      user_role:
+        permissions_as_keys: Bu rola sahib istifadəçilər bunlara erişə biləcək...
+    labels:
+      defaults:
+        confirm_new_password: Yeni parolu təsdiqlə
+        confirm_password: Parolu təsdiqlə
+        current_password: Hazırkı parol
+        data: Veri
+        new_password: Yeni parol
+        password: Parol
+        setting_system_scrollbars_ui: Sistemin ilkin diyircəyini istifadə edin
+      ip_block:
+        severities:
+          no_access: Erişimi əngəllə
+      notification_emails:
+        appeal: Kimsə, bir moderasiya qərarına etiraz edir
+      username_block:
+        username: Uyuşacaq söz
