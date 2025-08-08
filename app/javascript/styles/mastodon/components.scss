@@ -610,7 +610,7 @@ body > [data-popper-placement] {
     min-height: 0;
     position: relative;
     background: var(--input-background-color);
-    overflow-y: auto;
+    overflow: hidden;
 
     &.active {
       transition: none;
@@ -673,6 +673,11 @@ body > [data-popper-placement] {
       flex: 1 1 auto;
       border-bottom: 1px solid var(--background-border-color);
     }
+  }
+
+  &__input > textarea {
+    overflow-y: auto;
+    max-height: 370px;
   }
 
   .autosuggest-textarea__textarea,
@@ -946,6 +951,21 @@ body > [data-popper-placement] {
         text-overflow: ellipsis;
         overflow: hidden;
       }
+    }
+  }
+
+  .status__quote {
+    --max-lines: 2;
+
+    margin-block-start: 0;
+    margin: 0 8px;
+    max-height: 200px;
+    overflow: hidden;
+
+    .status__content__text {
+      max-height: calc(20px * var(--max-lines));
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }

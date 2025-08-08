@@ -48,7 +48,7 @@ const restoreVolume = (audio: HTMLAudioElement) => {
 
 const HOVER_FADE_DELAY = 4000;
 
-export const Audio: React.FC<{
+export interface AudioProps {
   src: string;
   alt?: string;
   lang?: string;
@@ -80,7 +80,9 @@ export const Audio: React.FC<{
     },
   ) => void;
   matchedFilters?: string[];
-}> = ({
+}
+
+export const Audio: React.FC<AudioProps> = ({
   src,
   alt,
   lang,

@@ -155,7 +155,7 @@ const registerHotkeyEvent = (
   setHotkeyEvents(() => [{ key: hotkeyEventId++, ...event }]);
 };
 
-export const Video: React.FC<{
+export interface VideoProps {
   preview?: string;
   frameRate?: string;
   aspectRatio?: string;
@@ -189,7 +189,9 @@ export const Video: React.FC<{
   startVolume?: number;
   startMuted?: boolean;
   matchedFilters?: string[];
-}> = ({
+}
+
+export const Video: React.FC<VideoProps> = ({
   preview,
   frameRate = '25',
   aspectRatio,
