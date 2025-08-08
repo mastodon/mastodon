@@ -97,5 +97,27 @@ RSpec.describe ActivityPub::Activity::Delete do
           .to change { quote.reload.state }.to('revoked')
       end
     end
+
+    context 'when the deleted object is an inlined quote authorization' do
+      let(:quoter) { Fabricate(:account, domain: 'b.example.com') }
+      let(:status) { Fabricate(:status, account: quoter) }
+      let(:quoted_status) { Fabricate(:status, account: sender, uri: 'https://example.com/statuses/1234') }
+      let!(:quote) { Fabricate(:quote, approval_uri: 'https://example.com/approvals/1234', state: :accepted, status: status, quoted_status: quoted_status) }
+
+      let(:object_json) do
+        {
+          type: 'QuoteAuthorization',
+          id: quote.approval_uri,
+          attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
+          interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
+          interactingObject: ActivityPub::TagManager.instance.uri_for(status),
+        }.deep_stringify_keys
+      end
+
+      it 'revokes the authorization' do
+        expect { subject.perform }
+          .to change { quote.reload.state }.to('revoked')
+      end
+    end
   end
 end
