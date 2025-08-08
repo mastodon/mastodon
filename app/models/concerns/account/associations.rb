@@ -12,6 +12,8 @@ module Account::Associations
         has_many :account_pins
         has_many :account_warnings
         has_many :aliases, class_name: 'AccountAlias'
+        has_many :announcement_mutes
+        has_many :announcement_reactions
         has_many :bookmarks
         has_many :conversations, class_name: 'AccountConversation'
         has_many :custom_filters

@@ -17,8 +17,11 @@ class AnnouncementReaction < ApplicationRecord
   before_validation :set_custom_emoji, if: :name?
   after_commit :queue_publish
 
-  belongs_to :account
-  belongs_to :announcement, inverse_of: :announcement_reactions
+  with_options inverse_of: :announcement_reactions do
+    belongs_to :account
+    belongs_to :announcement
+  end
+
   belongs_to :custom_emoji, optional: true
 
   validates :name, presence: true

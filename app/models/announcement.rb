@@ -24,8 +24,10 @@ class Announcement < ApplicationRecord
   scope :chronological, -> { order(coalesced_chronology_timestamps.asc) }
   scope :reverse_chronological, -> { order(coalesced_chronology_timestamps.desc) }
 
-  has_many :announcement_mutes, dependent: :destroy
-  has_many :announcement_reactions, dependent: :destroy
+  with_options dependent: :destroy, inverse_of: :announcement do
+    has_many :announcement_mutes
+    has_many :announcement_reactions
+  end
 
   validates :text, presence: true
   validates :starts_at, presence: true, if: :ends_at?

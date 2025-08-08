@@ -12,8 +12,10 @@
 #
 
 class AnnouncementMute < ApplicationRecord
-  belongs_to :account
-  belongs_to :announcement, inverse_of: :announcement_mutes
+  with_options inverse_of: :announcement_mutes do
+    belongs_to :account
+    belongs_to :announcement
+  end
 
   validates :account_id, uniqueness: { scope: :announcement_id }
 end

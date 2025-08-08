@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe Announcement do
+  describe 'Associations' do
+    it { is_expected.to have_many(:announcement_mutes).inverse_of(:announcement).dependent(:destroy) }
+    it { is_expected.to have_many(:announcement_reactions).inverse_of(:announcement).dependent(:destroy) }
+  end
+
   describe 'Scopes' do
     context 'with published and unpublished records' do
       let!(:published) { Fabricate(:announcement, published: true) }
