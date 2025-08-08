@@ -37,29 +37,7 @@ class Settings::ImportsController < Settings::BaseController
 
     respond_to do |format|
       format.csv do
-        filename = TYPE_TO_FILENAME_MAP[@bulk_import.type.to_sym]
-        headers = TYPE_TO_HEADERS_MAP[@bulk_import.type.to_sym]
-
-        export_data = CSV.generate(headers: headers, write_headers: true) do |csv|
-          @bulk_import.rows.find_each do |row|
-            case @bulk_import.type.to_sym
-            when :following
-              csv << [row.data['acct'], row.data.fetch('show_reblogs', true), row.data.fetch('notify', false), row.data['languages']&.join(', ')]
-            when :blocking
-              csv << [row.data['acct']]
-            when :muting
-              csv << [row.data['acct'], row.data.fetch('hide_notifications', true)]
-            when :domain_blocking
-              csv << [row.data['domain']]
-            when :bookmarks
-              csv << [row.data['uri']]
-            when :lists
-              csv << [row.data['list_name'], row.data['acct']]
-            end
-          end
-        end
-
-        send_data export_data, filename: filename
+        send_data export_data, filename: filename_for_type
       end
     end
   end
@@ -88,6 +66,22 @@ class Settings::ImportsController < Settings::BaseController
   end
 
   private
+
+  def export_data
+    CSV.generate(headers: headers_for_type, write_headers: true) do |csv|
+      @bulk_import.rows.find_each do |row|
+        csv << row.to_csv
+      end
+    end
+  end
+
+  def filename_for_type
+    TYPE_TO_FILENAME_MAP[@bulk_import.type.to_sym]
+  end
+
+  def headers_for_type
+    TYPE_TO_HEADERS_MAP[@bulk_import.type.to_sym]
+  end
 
   def import_params
     params.expect(form_import: [:data, :type, :mode])
