@@ -126,7 +126,7 @@ export function createAppThunk<Arg = void, Returned = void, ExtraArg = unknown>(
     },
   }));
 
-  return Object.assign({}, action, actionCreator);
+  return Object.assign(actionCreator, action);
 }
 
 const createBaseAsyncThunk = rtkCreateAsyncThunk.withTypes<AppThunkConfig>();
