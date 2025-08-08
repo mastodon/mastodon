@@ -289,6 +289,8 @@ RSpec.describe Settings::ImportsController do
     it_behaves_like 'successful import', 'domain_blocking', 'domain_blocks.csv', 'overwrite'
     it_behaves_like 'successful import', 'bookmarks', 'bookmark-imports.txt', 'merge'
     it_behaves_like 'successful import', 'bookmarks', 'bookmark-imports.txt', 'overwrite'
+    it_behaves_like 'successful import', 'filters', 'filters.csv', 'merge'
+    it_behaves_like 'successful import', 'filters', 'filters.csv', 'overwrite'
 
     it_behaves_like 'unsuccessful import', 'following', 'domain_blocks.csv', 'merge'
     it_behaves_like 'unsuccessful import', 'following', 'domain_blocks.csv', 'overwrite'
@@ -296,6 +298,8 @@ RSpec.describe Settings::ImportsController do
     it_behaves_like 'unsuccessful import', 'blocking', 'domain_blocks.csv', 'overwrite'
     it_behaves_like 'unsuccessful import', 'muting', 'domain_blocks.csv', 'merge'
     it_behaves_like 'unsuccessful import', 'muting', 'domain_blocks.csv', 'overwrite'
+    it_behaves_like 'unsuccessful import', 'filters', 'domain_blocks.csv', 'merge'
+    it_behaves_like 'unsuccessful import', 'filters', 'domain_blocks.csv', 'overwrite'
 
     it_behaves_like 'unsuccessful import', 'following', 'empty.csv', 'merge'
     it_behaves_like 'unsuccessful import', 'following', 'empty.csv', 'overwrite'
