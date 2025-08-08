@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe AnnouncementReaction do
   describe 'Associations' do
-    it { is_expected.to belong_to(:account) }
+    it { is_expected.to belong_to(:account).inverse_of(:announcement_reactions) }
     it { is_expected.to belong_to(:announcement).inverse_of(:announcement_reactions) }
     it { is_expected.to belong_to(:custom_emoji).optional }
   end
