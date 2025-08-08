@@ -235,11 +235,11 @@ RSpec.describe Settings::ImportsController do
 
       let(:rows) do
         [
-          { 'title' => 'Invalid Filter', 'context' => ['waffles'], 'keywords' => ['mean stuff'], 'action' => 'hide', 'expires_at' => nil },
+          { 'title' => 'Invalid Filter', 'context' => ['waffles'], 'keywords' => ['mean stuff'], 'whole_word' => [true], 'action' => 'hide', 'expires_at' => nil },
         ]
       end
 
-      it_behaves_like 'export failed rows', "Invalid Filter,\"[\"\"waffles\"\"]\",\"[\"\"mean stuff\"\"]\",hide,\n"
+      it_behaves_like 'export failed rows', "Invalid Filter,\"[\"\"waffles\"\"]\",\"[\"\"mean stuff\"\"]\",[true],hide,\n"
     end
   end
 

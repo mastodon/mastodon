@@ -105,7 +105,11 @@ RSpec.describe Export do
   end
 
   describe '#to_filters_csv' do
-    before { Fabricate.times(2, :custom_filter, account: account) }
+    before do
+      Fabricate.times(2, :custom_filter, account: account) do
+        keywords { [Fabricate(:custom_filter_keyword)] }
+      end
+    end
 
     let(:export) { CSV.parse(subject.to_filters_csv) }
 
@@ -113,7 +117,8 @@ RSpec.describe Export do
       expect(export)
         .to contain_exactly(
           contain_exactly('Title', 'Context', 'Keywords', 'Whole Word', 'Action', 'Expire after'),
-          include('discourse', '["home", "notifications"]', '["discourse"]', '[true]', 'warn', be_blank)
+          include('discourse', '["home", "notifications"]', '["discourse"]', '[true]', 'warn', be_blank),
+          include(be_present)
         )
     end
   end
