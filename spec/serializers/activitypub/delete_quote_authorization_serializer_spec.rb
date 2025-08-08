@@ -13,7 +13,10 @@ RSpec.describe ActivityPub::DeleteQuoteAuthorizationSerializer do
       expect(subject.deep_symbolize_keys)
         .to include(
           actor: eq(ActivityPub::TagManager.instance.uri_for(status.account)),
-          object: ActivityPub::TagManager.instance.approval_uri_for(quote, check_approval: false),
+          object: a_hash_including(
+            type: 'QuoteAuthorization',
+            id: ActivityPub::TagManager.instance.approval_uri_for(quote, check_approval: false)
+          ),
           type: 'Delete'
         )
     end
