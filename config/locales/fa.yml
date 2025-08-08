@@ -190,6 +190,7 @@ fa:
         create_relay: ایجاد رله
         create_unavailable_domain: ایجاد دامنهٔ ناموجود
         create_user_role: ایجاد نقش
+        create_username_block: ایجاد قانون نام‌کاربری
         demote_user: تنزل کاربر
         destroy_announcement: حذف اعلامیه
         destroy_canonical_email_block: حذف انسداد رایانامه
@@ -203,6 +204,7 @@ fa:
         destroy_status: حذف وضعیت
         destroy_unavailable_domain: حذف دامنهٔ ناموجود
         destroy_user_role: نابودی نقش
+        destroy_username_block: حذف قانون نام‌کاربری
         disable_2fa_user: از کار انداختن ورود دومرحله‌ای
         disable_custom_emoji: از کار انداختن شکلک سفارشی
         disable_relay: غیرفعال‌سازی رله
@@ -237,6 +239,7 @@ fa:
         update_report: به‌روز رسانی گزارش
         update_status: به‌روز رسانی وضعیت
         update_user_role: به روزرسانی نقش
+        update_username_block: به‌روزرسانی قانون نام‌کاربری
       actions:
         approve_appeal_html: "%{name} درخواست تجدیدنظر تصمیم مدیر را از %{target} پذیرفت"
         approve_user_html: "%{name} ثبت نام %{target} را تایید کرد"
@@ -1085,6 +1088,8 @@ fa:
           other: در هفته گذشته توسط %{count} نفر استفاده شده است
       title: توصیه ها و روندها
       trending: پرطرفدار
+    username_blocks:
+      delete: حذف
     warning_presets:
       add_new: افزودن تازه
       delete: زدودن
@@ -1662,6 +1667,10 @@ fa:
       title: اشارهٔ جدید
     poll:
       subject: نظرسنجی‌ای از %{name} پایان یافت
+    quote:
+      body: 'فرسته‌تان توسط %{name} نقل شد:'
+      subject: "%{name} فرسته‌تان را نقل کرد"
+      title: نقل‌قول جدید
     reblog:
       body: "%{name} فرستهٔ شما را تقویت کرد:"
       subject: "%{name} فرستهٔ شما را تقویت کرد"
@@ -1880,6 +1889,8 @@ fa:
       ownership: نوشته‌های دیگران را نمی‌توان ثابت کرد
       reblog: تقویت نمی‌تواند سنجاق شود
     quote_policies:
+      followers: تنها پی‌گیرندگانتان
+      nobody: هیچ‌کس
       public: هرکسی
     title: "%{name}: «%{quote}»"
     visibilities:
