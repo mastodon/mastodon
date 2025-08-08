@@ -672,6 +672,11 @@ body > [data-popper-placement] {
     }
   }
 
+  &__input > textarea {
+    overflow-y: auto;
+    max-height: 370px;
+  }
+
   .autosuggest-textarea__textarea,
   .spoiler-input__input {
     display: block;
@@ -944,6 +949,21 @@ body > [data-popper-placement] {
         text-overflow: ellipsis;
         overflow: hidden;
       }
+    }
+  }
+
+  .status__quote {
+    --max-lines: 2;
+
+    margin-block-start: 0;
+    margin: 0 8px;
+    max-height: 200px;
+    overflow: hidden;
+
+    .status__content__text {
+      max-height: calc(20px * var(--max-lines));
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
