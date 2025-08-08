@@ -1408,10 +1408,10 @@ en:
     bookmarks: Bookmarks
     csv: CSV
     domain_blocks: Domain blocks
+    filters: Filters
     lists: Lists
     mutes: You mute
     storage: Media storage
-    filters: Filters
   featured_tags:
     add_new: Add new
     errors:
@@ -1508,6 +1508,9 @@ en:
       domain_blocking_html:
         one: You are about to <strong>replace your domain block list</strong> with up to <strong>%{count} domain</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>replace your domain block list</strong> with up to <strong>%{count} domains</strong> from <strong>%{filename}</strong>.
+      filters_html:
+        one: You are about to <strong>replace your filters</strong> with up to <strong>%{count} filter</strong> from <strong>%{filename}</strong>.
+        other: You are about to <strong>replace your filters</strong> with up to <strong>%{count} filters</strong> from <strong>%{filename}</strong>.
       following_html:
         one: You are about to <strong>follow</strong> up to <strong>%{count} account</strong> from <strong>%{filename}</strong> and <strong>stop following anyone else</strong>.
         other: You are about to <strong>follow</strong> up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong> and <strong>stop following anyone else</strong>.
@@ -1517,9 +1520,6 @@ en:
       muting_html:
         one: You are about to <strong>replace your list of muted account</strong> with up to <strong>%{count} account</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>replace your list of muted accounts</strong> with up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong>.
-      filters_html:
-        one: You are about to <strong>replace your filters</strong> with up to <strong>%{count} filter</strong> from <strong>%{filename}</strong>.
-        other: You are about to <strong>replace your filters</strong> with up to <strong>%{count} filters</strong> from <strong>%{filename}</strong>.
     preambles:
       blocking_html:
         one: You are about to <strong>block</strong> up to <strong>%{count} account</strong> from <strong>%{filename}</strong>.
@@ -1530,6 +1530,9 @@ en:
       domain_blocking_html:
         one: You are about to <strong>block</strong> up to <strong>%{count} domain</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>block</strong> up to <strong>%{count} domains</strong> from <strong>%{filename}</strong>.
+      filters_html:
+        one: You are about to <strong>add</strong> up to <strong>%{count} filter</strong> from <strong>%{filename}</strong>.
+        other: You are about to <strong>add</strong> up to <strong>%{count} filters</strong> from <strong>%{filename}</strong>.
       following_html:
         one: You are about to <strong>follow</strong> up to <strong>%{count} account</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>follow</strong> up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong>.
@@ -1539,9 +1542,6 @@ en:
       muting_html:
         one: You are about to <strong>mute</strong> up to <strong>%{count} account</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>mute</strong> up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong>.
-      filters_html:
-        one: You are about to <strong>add</strong> up to <strong>%{count} filter</strong> from <strong>%{filename}</strong>.
-        other: You are about to <strong>add</strong> up to <strong>%{count} filters</strong> from <strong>%{filename}</strong>.
     preface: You can import data that you have exported from another server, such as a list of the people you are following or blocking.
     recent_imports: Recent imports
     states:
@@ -1567,10 +1567,10 @@ en:
       blocking: Blocking list
       bookmarks: Bookmarks
       domain_blocking: Domain blocking list
+      filters: Filters
       following: Following list
       lists: Lists
       muting: Muting list
-      filters: Filters
     upload: Upload
   invites:
     delete: Deactivate
