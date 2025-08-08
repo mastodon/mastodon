@@ -80,6 +80,7 @@ RSpec.describe CustomEmoji, :attachment_processing do
 
   describe 'Normalizations' do
     describe 'domain' do
+      it { is_expected.to normalize(:domain).from('  www.mastodon.host   ').to('www.mastodon.host') }
       it { is_expected.to normalize(:domain).from('wWw.MaStOdOn.CoM').to('www.mastodon.com') }
       it { is_expected.to normalize(:domain).from(nil).to(nil) }
     end
