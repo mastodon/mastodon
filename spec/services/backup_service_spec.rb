@@ -59,15 +59,27 @@ RSpec.describe BackupService do
     json = Oj.load(body)
 
     aggregate_failures do
-      expect(body.scan('@context').count).to eq 1
-      expect(body.scan('orderedItems').count).to eq 1
-      expect(json['@context']).to_not be_nil
-      expect(json['type']).to eq 'OrderedCollection'
-      expect(json['totalItems']).to eq 2
-      expect(json['orderedItems'][0]['@context']).to be_nil
-      expect(json['orderedItems'][0]).to include_create_item(status)
-      expect(json['orderedItems'][1]).to include_create_item(private_status)
+      expect_outbox_single_keys(body)
+      expect_outbox_content(json)
     end
+  end
+
+  def expect_outbox_single_keys(body)
+    expect(body.scan('@context').count).to eq 1
+    expect(body.scan('orderedItems').count).to eq 1
+  end
+
+  def expect_outbox_content(json)
+    expect(json)
+      .to include(
+        '@context' => be_present,
+        'type' => 'OrderedCollection',
+        'totalItems' => eq(2),
+        'orderedItems' => contain_exactly(
+          include_create_item(status).and(not_include('@context')),
+          include_create_item(private_status)
+        )
+      )
   end
 
   def expect_likes_export
