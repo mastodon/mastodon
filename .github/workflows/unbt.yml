@@ -1,0 +1,21 @@
+name: UNBT Timeline Reader
+
+on:
+  workflow_dispatch:
+
+jobs:
+  read-timeline:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install node-fetch
+      - name: Read Mastodon Timeline
+        env:
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+        run: node .github/scripts/script_automation.js
