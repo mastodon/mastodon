@@ -57,7 +57,7 @@
 
 %hr.spacer/
 
-%h3= t('admin.statuses.history')
+%h3#history= t('admin.statuses.history')
 - if @status.edits.empty?
   %p= t('admin.statuses.no_history')
 - else

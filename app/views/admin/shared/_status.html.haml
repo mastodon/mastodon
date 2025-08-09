@@ -20,7 +20,7 @@
       %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     - if status.edited?
       ·
-      = conditional_link_to can?(:show, status), admin_account_status_path(status.account.id, status), class: 'detailed-status__datetime' do
+      = conditional_link_to can?(:show, status), admin_account_status_path(status.account.id, status, { anchor: 'history' }), class: 'detailed-status__datetime' do
         = t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'relative-formatted'))
     - if status.discarded?
       ·
