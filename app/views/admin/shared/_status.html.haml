@@ -27,8 +27,9 @@
       %span.negative-hint= t('admin.statuses.deleted')
     - unless status.reblog?
       &nbsp;·
-      = material_symbol(visibility_icon(status))
-      = t("statuses.visibilities.#{status.visibility}")
+      %span<
+        = material_symbol(visibility_icon(status))
+        = t("statuses.visibilities.#{status.visibility}")
     - if status.proper.sensitive?
       &nbsp;·
       = material_symbol('visibility_off')
