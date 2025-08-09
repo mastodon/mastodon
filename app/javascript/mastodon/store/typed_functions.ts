@@ -1,5 +1,12 @@
-import type { GetThunkAPI } from '@reduxjs/toolkit';
-import { createAsyncThunk, createSelector } from '@reduxjs/toolkit';
+import type {
+  ActionCreatorWithPreparedPayload,
+  GetThunkAPI,
+} from '@reduxjs/toolkit';
+import {
+  createAsyncThunk as rtkCreateAsyncThunk,
+  createSelector,
+  createAction,
+} from '@reduxjs/toolkit';
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -18,7 +25,7 @@ interface AppMeta {
   useLoadingBar?: boolean;
 }
 
-export const createAppAsyncThunk = createAsyncThunk.withTypes<{
+export const createAppAsyncThunk = rtkCreateAsyncThunk.withTypes<{
   state: RootState;
   dispatch: AppDispatch;
   rejectValue: AsyncThunkRejectValue;
@@ -43,9 +50,88 @@ interface AppThunkOptions<Arg> {
   ) => boolean;
 }
 
-const createBaseAsyncThunk = createAsyncThunk.withTypes<AppThunkConfig>();
+// Type definitions for the sync thunks.
+type AppThunk<Arg = void, Returned = void> = (
+  arg: Arg,
+) => (dispatch: AppDispatch, getState: () => RootState) => Returned;
 
-export function createThunk<Arg = void, Returned = void>(
+type AppThunkCreator<Arg = void, Returned = void, ExtraArg = unknown> = (
+  arg: Arg,
+  api: AppThunkApi,
+  extra?: ExtraArg,
+) => Returned;
+
+type AppThunkActionCreator<
+  Arg = void,
+  Returned = void,
+> = ActionCreatorWithPreparedPayload<
+  [Returned, Arg],
+  Returned,
+  string,
+  never,
+  { arg: Arg }
+>;
+
+// Version that does not dispatch it's own action.
+export function createAppThunk<Arg = void, Returned = void, ExtraArg = unknown>(
+  creator: AppThunkCreator<Arg, Returned, ExtraArg>,
+  extra?: ExtraArg,
+): AppThunk<Arg, Returned>;
+
+// Version that dispatches an named action with the result of the creator callback.
+export function createAppThunk<Arg = void, Returned = void, ExtraArg = unknown>(
+  name: string,
+  creator: AppThunkCreator<Arg, Returned, ExtraArg>,
+  extra?: ExtraArg,
+): AppThunk<Arg, Returned> & AppThunkActionCreator<Arg, Returned>;
+
+/** Creates a thunk that dispatches an action. */
+export function createAppThunk<Arg = void, Returned = void, ExtraArg = unknown>(
+  nameOrCreator: string | AppThunkCreator<Arg, Returned, ExtraArg>,
+  maybeCreatorOrExtra?: AppThunkCreator<Arg, Returned, ExtraArg> | ExtraArg,
+  maybeExtra?: ExtraArg,
+) {
+  const isDispatcher = typeof nameOrCreator === 'string';
+  const name = isDispatcher ? nameOrCreator : undefined;
+  const creator = isDispatcher
+    ? (maybeCreatorOrExtra as AppThunkCreator<Arg, Returned, ExtraArg>)
+    : nameOrCreator;
+  const extra = isDispatcher ? maybeExtra : (maybeCreatorOrExtra as ExtraArg);
+  let action: null | AppThunkActionCreator<Arg, Returned> = null;
+
+  // Creates a thunk that dispatches the action with the result of the creator.
+  const actionCreator: AppThunk<Arg, Returned> = (arg) => {
+    return (dispatch, getState) => {
+      const result = creator(arg, { dispatch, getState }, extra);
+      if (action) {
+        // Dispatches the action with the result.
+        const actionObj = action(result, arg);
+        dispatch(actionObj);
+      }
+      return result;
+    };
+  };
+
+  // No action name provided, return the thunk directly.
+  if (!name) {
+    return actionCreator;
+  }
+
+  // Create the action and assign the action creator to it in order
+  // to have things like `toString` and `match` available.
+  action = createAction(name, (payload: Returned, arg: Arg) => ({
+    payload,
+    meta: {
+      arg,
+    },
+  }));
+
+  return Object.assign({}, action, actionCreator);
+}
+
+const createBaseAsyncThunk = rtkCreateAsyncThunk.withTypes<AppThunkConfig>();
+
+export function createAsyncThunk<Arg = void, Returned = void>(
   name: string,
   creator: (arg: Arg, api: AppThunkApi) => Returned | Promise<Returned>,
   options: AppThunkOptions<Arg> = {},
@@ -104,7 +190,7 @@ export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
   name: string,
   loadData: (args: Args) => Promise<LoadDataResult>,
   thunkOptions?: AppThunkOptions<Args>,
-): ReturnType<typeof createThunk<Args, LoadDataResult>>;
+): ReturnType<typeof createAsyncThunk<Args, LoadDataResult>>;
 
 // Overload when the `onData` method returns discardLoadDataInPayload, then the payload is empty
 export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
@@ -114,7 +200,7 @@ export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
     | AppThunkOptions<Args>
     | OnData<Args, LoadDataResult, DiscardLoadData>,
   thunkOptions?: AppThunkOptions<Args>,
-): ReturnType<typeof createThunk<Args, void>>;
+): ReturnType<typeof createAsyncThunk<Args, void>>;
 
 // Overload when the `onData` method returns nothing, then the mayload is the `onData` result
 export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
@@ -124,7 +210,7 @@ export function createDataLoadingThunk<LoadDataResult, Args extends ArgsType>(
     | AppThunkOptions<Args>
     | OnData<Args, LoadDataResult, void>,
   thunkOptions?: AppThunkOptions<Args>,
-): ReturnType<typeof createThunk<Args, LoadDataResult>>;
+): ReturnType<typeof createAsyncThunk<Args, LoadDataResult>>;
 
 // Overload when there is an `onData` method returning something
 export function createDataLoadingThunk<
@@ -138,7 +224,7 @@ export function createDataLoadingThunk<
     | AppThunkOptions<Args>
     | OnData<Args, LoadDataResult, Returned>,
   thunkOptions?: AppThunkOptions<Args>,
-): ReturnType<typeof createThunk<Args, Returned>>;
+): ReturnType<typeof createAsyncThunk<Args, Returned>>;
 
 /**
  * This function creates a Redux Thunk that handles loading data asynchronously (usually from the API), dispatching `pending`, `fullfilled` and `rejected` actions.
@@ -189,7 +275,7 @@ export function createDataLoadingThunk<
     thunkOptions = maybeThunkOptions;
   }
 
-  return createThunk<Args, Returned>(
+  return createAsyncThunk<Args, Returned>(
     name,
     async (arg, { getState, dispatch }) => {
       const data = await loadData(arg, {
