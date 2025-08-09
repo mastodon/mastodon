@@ -103,7 +103,7 @@ module ApplicationHelper
   end
 
   def conditional_link_to(condition, name, options = {}, html_options = {}, &block)
-    if condition
+    if condition && !current_page?(block_given? ? name : options)
       link_to(name, options, html_options, &block)
     elsif block_given?
       content_tag(:span, options, html_options, &block)
