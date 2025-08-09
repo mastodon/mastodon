@@ -1,5 +1,4 @@
-// .github/scripts/script_automation.js
-
+/* eslint-env node */
 import fetch from 'node-fetch';
 
 const INSTANCE_URL = 'https://mastodon.social'; // Or your Mastodon instance
@@ -31,7 +30,7 @@ async function readTimeline() {
     data.slice(0, 5).forEach((status, i) => {
       const content = status.content.replace(/<[^>]+>/g, '');
       const acct = status.account?.acct || 'unknown';
-      console.log(`[${i + 1}] @${acct}: ${content}`);
+      console.warn(`[${i + 1}] @${acct}: ${content}`);
     });
   } catch (error) {
     console.error('Failed to fetch timeline:', error);
