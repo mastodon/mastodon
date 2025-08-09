@@ -18,9 +18,13 @@ be:
       attributes:
         domain:
           invalid: не з’яўляецца сапраўдным даменным імем
+      messages:
+        invalid_domain_on_line: "%{value} не пасуе для карэктнай назвы сервера"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: утрымлівае значэнні без апісанняў
             username:
               invalid: павінна змяшчаць толькі літары, лічбы і ніжнія падкрэсліванні
               reserved: зарэзервавана
@@ -45,8 +49,14 @@ be:
           attributes:
             reblog:
               taken: гэтага допісу ўжо існуе
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: занадта рана, мусіць быць пасля %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: ніжэй за дазволены ўзрост
             email:
               blocked: выкарыстоўвае забароненую крыніцу электроннай пошты
               unreachable: не існуе
