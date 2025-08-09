@@ -282,6 +282,12 @@ RSpec.describe Form::Import do
       { 'acct' => 'foo@example.com', 'list_name' => 'test' },
     ]
 
+    it_behaves_like 'on successful import', 'filters', 'merge', 'filters.csv', [
+      { 'title' => 'current events', 'context' => %w(home public account), 'keywords' => ['minions song contest'], 'whole_word' => [true], 'action' => 'warn', 'expires_at' => Time.zone.parse('2025-08-14 21:33:29 UTC') },
+      { 'title' => 'unwanted solicitations', 'context' => %w(notifications thread), 'keywords' => ['wizard school enrolment'], 'whole_word' => [false], 'action' => 'hide', 'expires_at' => nil },
+      { 'title' => 'scary things', 'context' => %w(home public), 'keywords' => ['flying sharks', 'sapient crabs'], 'whole_word' => [true, false], 'action' => 'blur', 'expires_at' => nil },
+    ]
+
     # Based on the bug report 20571 where UTF-8 encoded domains were rejecting import of their users
     #
     # https://github.com/mastodon/mastodon/issues/20571
