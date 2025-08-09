@@ -1,10 +1,9 @@
 // .github/scripts/script_automation.js
 
-const fetch = require('node-fetch');
+const fetch = require('node-fetch'); // node-fetch v2
 
-// This is the load balancer URL for the Mastodon instance.
-// All API requests should go through this endpoint.
-const INSTANCE_URL = 'https://universalbit.it';
+// Replace with your instance, e.g. 'https://mastodon.social'
+const INSTANCE_URL = 'https://mastodon.social';
 const API_ENDPOINT = `${INSTANCE_URL}/api/v1/timelines/home`;
 
 const MASTODON_TOKEN = process.env.MASTODON_TOKEN;
@@ -29,10 +28,11 @@ async function readTimeline() {
     }
 
     const data = await response.json();
-    // Print the latest 5 posts with basic info (remove HTML tags from content)
+    // Print the latest 5 posts with basic info (removing HTML tags from content)
     data.slice(0, 5).forEach((status, i) => {
-      const content = status.content.replace(/<[^>]+>/g, '');
-      console.log(`[${i+1}] @${status.account.acct}: ${content}`);
+      const content = status.content.replace(/<[^>]+>/g, ''); // Remove HTML tags
+      const acct = status.account?.acct || 'unknown';
+      console.log(`[${i + 1}] @${acct}: ${content}`);
     });
   } catch (error) {
     console.error('Failed to fetch timeline:', error);
