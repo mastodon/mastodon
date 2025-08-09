@@ -1,4 +1,4 @@
--# locals: (status:, show_edited_at: true)
+-# locals: (status:)
 
 .status__card><
   - if status.reblog?
@@ -16,11 +16,11 @@
     - if status.application
       = status.application.name
       ·
-    = link_to admin_account_status_path(status.account.id, status), class: 'detailed-status__datetime' do
+    = conditional_link_to can?(:show, status), admin_account_status_path(status.account.id, status), class: 'detailed-status__datetime' do
       %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
-    - if status.edited? && show_edited_at
+    - if status.edited?
       ·
-      = link_to admin_account_status_path(status.account.id, status), class: 'detailed-status__datetime' do
+      = conditional_link_to can?(:show, status), admin_account_status_path(status.account.id, status), class: 'detailed-status__datetime' do
         = t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'relative-formatted'))
     - if status.discarded?
       ·
@@ -33,6 +33,7 @@
       ·
       = material_symbol('visibility_off')
       = t('stream_entries.sensitive_content')
-    ·
-    = link_to ActivityPub::TagManager.instance.url_for(status.proper), class: 'detailed-status__link', target: 'blank', rel: 'noopener' do
-      = t('admin.statuses.view_publicly')
+    - unless status.direct_visibility?
+      ·
+      = link_to ActivityPub::TagManager.instance.url_for(status.proper), class: 'detailed-status__link', target: 'blank', rel: 'noopener' do
+        = t('admin.statuses.view_publicly')

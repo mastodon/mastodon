@@ -2588,7 +2588,7 @@ a.account__display-name {
 .status__relative-time,
 .detailed-status__datetime,
 .detailed-status__link {
-  &:hover {
+  &:is(a):hover {
     text-decoration: underline;
   }
 }
