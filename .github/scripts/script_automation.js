@@ -1,5 +1,6 @@
 /* eslint-env node */
 import fetch from 'node-fetch';
+import sanitizeHtml from 'sanitize-html';
 
 const INSTANCE_URL = 'https://mastodon.social'; // Or your Mastodon instance
 const API_ENDPOINT = `${INSTANCE_URL}/api/v1/timelines/home`;
@@ -28,7 +29,7 @@ async function readTimeline() {
     const data = await response.json();
     // Print the latest 5 posts (strip HTML)
     data.slice(0, 5).forEach((status, i) => {
-      const content = status.content.replace(/<[^>]+>/g, '');
+      const content = sanitizeHtml(status.content, { allowedTags: [], allowedAttributes: {} });
       const acct = status.account?.acct || 'unknown';
       console.warn(`[${i + 1}] @${acct}: ${content}`);
     });
