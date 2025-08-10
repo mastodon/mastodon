@@ -1,7 +1,6 @@
 // .github/scripts/script_automation.js
-
-const fs = require("fs");
-const fetch = require("node-fetch");
+import fs from "fs";
+import fetch from "node-fetch";
 
 // Example main function
 async function main() {
@@ -23,7 +22,7 @@ async function main() {
 
     const timeline = await response.json();
     fs.writeFileSync("timeline.json", JSON.stringify(timeline, null, 2));
-    console.log("Timeline saved to timeline.json");
+    console.warn("Timeline saved to timeline.json"); // Use warn or error if console.log is not allowed
   } catch (error) {
     console.error("Error:", error);
     process.exit(1);
