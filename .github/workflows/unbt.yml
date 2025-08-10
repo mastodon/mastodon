@@ -4,35 +4,43 @@ on:
   workflow_dispatch:
 
 jobs:
-  setup-and-install: &setup-and-install
-    - uses: actions/checkout@v4
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '>=20 <25'
-    - name: Enable Corepack
-      run: corepack enable
-    - name: Prepare Yarn
-      run: corepack prepare yarn@4.9.2 --activate
-    - name: Install dependencies
-      run: yarn install
-
   read-timeline:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      <<: *setup-and-install
-    - name: Add node-fetch
-      run: yarn add node-fetch
-    - name: Read Mastodon Timeline
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '>=20 <25'
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Prepare Yarn
+        run: corepack prepare yarn@4.9.2 --activate
+      - name: Install dependencies
+        run: yarn install
+      # Uncomment the following step only if node-fetch is NOT in your package.json dependencies
+      # - name: Add node-fetch
+      #   run: yarn add node-fetch
+      - name: Read Mastodon Timeline
         env:
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
-      run: node .github/scripts/script_automation.js
+        run: node .github/scripts/script_automation.js
 
   build:
     runs-on: ubuntu-latest
     steps:
-      <<: *setup-and-install
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '>=20 <25'
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Prepare Yarn
+        run: corepack prepare yarn@4.9.2 --activate
+      - name: Install dependencies
+        run: yarn install
       - name: Format Code
         run: yarn format:write
       - name: Build Project
