@@ -12,10 +12,33 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '>=20 <25'
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Prepare Yarn
+        run: corepack prepare yarn@4.9.2 --activate
       - name: Install dependencies
-        run: npm install node-fetch
+        run: yarn install
+      - name: Add node-fetch (if not in package.json)
+        run: yarn add node-fetch
       - name: Read Mastodon Timeline
         env:
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
         run: node .github/scripts/script_automation.js
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '>=20 <25'
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Prepare Yarn
+        run: corepack prepare yarn@4.9.2 --activate
+      - name: Install dependencies
+        run: yarn install
+      - name: Build
+        run: yarn build   # or yarn test, etc.
