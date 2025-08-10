@@ -20,8 +20,8 @@ jobs:
       - name: Install dependencies
         run: yarn install
       # Uncomment the following step only if node-fetch is NOT in your package.json dependencies
-      # - name: Add node-fetch
-      #   run: yarn add node-fetch
+      - name: Add node-fetch
+        run: yarn add node-fetch
       - name: Read Mastodon Timeline
         env:
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
