@@ -34,9 +34,12 @@ jobs:
 
       - name: Install Node dependencies
         run: yarn install --pure-lockfile
-        
+
       - name: Format Code
         run: yarn format
+
+      - name: Check Prettier formatting
+        run: npx prettier --check .
 
       # Uncomment if node-fetch is NOT in your package.json dependencies
       # - name: Add node-fetch
@@ -79,6 +82,9 @@ jobs:
 
       - name: Format Code
         run: yarn format:write
+
+      - name: Check Prettier formatting
+        run: npx prettier --check .
 
       - name: Build Project
         run: yarn build
