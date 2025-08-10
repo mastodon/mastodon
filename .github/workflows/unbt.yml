@@ -34,6 +34,9 @@ jobs:
 
       - name: Install Node dependencies
         run: yarn install --pure-lockfile
+        
+      - name: Format Code
+        run: yarn format
 
       # Uncomment if node-fetch is NOT in your package.json dependencies
       # - name: Add node-fetch
