@@ -9,19 +9,36 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '>=20 <25'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt install -y build-essential libssl-dev zlib1g-dev ruby-dev ruby-bundler libidn11-dev libyaml-dev make gcc g++ pkg-config libicu-dev
+
+      - name: Install bundler
+        run: sudo gem install bundler
+
+      - name: Configure bundler for deployment
+        run: |
+          bundle config deployment 'true'
+          bundle config without 'development test'
+
+      - name: Install Ruby gems
+        run: bundle install
+
       - name: Enable Corepack
-        run: corepack enable
-      - name: Prepare Yarn
-        run: corepack prepare yarn@4.9.2 --activate
-      - name: Install dependencies
-        run: yarn install
-      # Uncomment the following step only if node-fetch is NOT in your package.json dependencies
-      - name: Add node-fetch
-        run: yarn add node-fetch
+        run: sudo corepack enable
+
+      - name: Set Yarn to classic
+        run: yarn set version classic
+
+      - name: Install Node dependencies
+        run: yarn install --pure-lockfile
+
+      # Uncomment if node-fetch is NOT in your package.json dependencies
+      # - name: Add node-fetch
+      #   run: yarn add node-fetch
+
       - name: Read Mastodon Timeline
         env:
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
@@ -31,17 +48,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '>=20 <25'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt install -y build-essential libssl-dev zlib1g-dev ruby-dev ruby-bundler libidn11-dev libyaml-dev make gcc g++ pkg-config libicu-dev
+
+      - name: Install bundler
+        run: sudo gem install bundler
+
+      - name: Configure bundler for deployment
+        run: |
+          bundle config deployment 'true'
+          bundle config without 'development test'
+
+      - name: Install Ruby gems
+        run: bundle install
+
       - name: Enable Corepack
-        run: corepack enable
-      - name: Prepare Yarn
-        run: corepack prepare yarn@4.9.2 --activate
-      - name: Install dependencies
-        run: yarn install
+        run: sudo corepack enable
+
+      - name: Set Yarn to classic
+        run: yarn set version classic
+
+      - name: Install Node dependencies
+        run: yarn install --pure-lockfile
+
       - name: Format Code
         run: yarn format:write
+
       - name: Build Project
         run: yarn build
+
+      - name: Read Mastodon Timeline
+        env:
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+        run: node .github/scripts/script_automation.js
