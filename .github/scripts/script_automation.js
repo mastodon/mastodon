@@ -1,3 +1,4 @@
+/* eslint-env node */
 // .github/scripts/script_automation.js
 import fs from "fs";
 import fetch from "node-fetch";
