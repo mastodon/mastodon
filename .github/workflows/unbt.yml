@@ -19,7 +19,7 @@ jobs:
         run: corepack prepare yarn@4.9.2 --activate
       - name: Install dependencies
         run: yarn install
-      - name: Add node-fetch (if not in package.json)
+      - name: Add node-fetch 
         run: yarn add node-fetch
       - name: Read Mastodon Timeline
         env:
@@ -40,5 +40,7 @@ jobs:
         run: corepack prepare yarn@4.9.2 --activate
       - name: Install dependencies
         run: yarn install
-      - name: Build
-        run: yarn build   # or yarn test, etc.
+      - name: Format Code
+        run: yarn format:write
+      - name: Build Project
+        run: yarn build
