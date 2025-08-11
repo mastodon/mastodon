@@ -223,7 +223,7 @@ gem 'connection_pool', require: false
 gem 'xorcist', '~> 1.1'
 
 gem 'net-http', '~> 0.6.0'
-gem 'rubyzip', '~> 2.3'
+gem 'rubyzip', '~> 3.0'
 
 gem 'hcaptcha', '~> 7.1'
 
