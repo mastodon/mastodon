@@ -300,8 +300,8 @@ GEM
     highline (3.1.2)
       reline
     hiredis (0.6.3)
-    hiredis-client (0.25.1)
-      redis-client (= 0.25.1)
+    hiredis-client (0.25.2)
+      redis-client (= 0.25.2)
     hkdf (0.3.0)
     htmlentities (4.3.4)
     http (5.3.1)
@@ -315,7 +315,7 @@ GEM
     http_accept_language (2.1.1)
     httpclient (2.9.0)
       mutex_m
-    httplog (1.7.2)
+    httplog (1.7.3)
       rack (>= 2.0)
       rainbow (>= 2.0.0)
     i18n (1.14.7)
@@ -717,7 +717,7 @@ GEM
       reline
     redcarpet (3.6.1)
     redis (4.8.1)
-    redis-client (0.25.1)
+    redis-client (0.25.2)
       connection_pool
     redlock (1.3.2)
       redis (>= 3.0.0, < 6.0)
@@ -811,7 +811,7 @@ GEM
     ruby-vips (2.2.4)
       ffi (~> 1.12)
       logger
-    rubyzip (2.4.1)
+    rubyzip (3.0.1)
     rufus-scheduler (3.9.2)
       fugit (~> 1.1, >= 1.11.1)
     safety_net_attestation (0.4.0)
@@ -1075,7 +1075,7 @@ DEPENDENCIES
   ruby-prof
   ruby-progressbar (~> 1.13)
   ruby-vips (~> 2.2)
-  rubyzip (~> 2.3)
+  rubyzip (~> 3.0)
   sanitize (~> 7.0)
   scenic (~> 1.7)
   shoulda-matchers

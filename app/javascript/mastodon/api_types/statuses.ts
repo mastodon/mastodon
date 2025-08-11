@@ -4,6 +4,7 @@ import type { ApiAccountJSON } from './accounts';
 import type { ApiCustomEmojiJSON } from './custom_emoji';
 import type { ApiMediaAttachmentJSON } from './media_attachments';
 import type { ApiPollJSON } from './polls';
+import type { ApiQuoteJSON } from './quotes';
 
 // See app/modals/status.rb
 export type StatusVisibility =
@@ -118,6 +119,7 @@ export interface ApiStatusJSON {
 
   card?: ApiPreviewCardJSON;
   poll?: ApiPollJSON;
+  quote?: ApiQuoteJSON;
 }
 
 export interface ApiContextJSON {
