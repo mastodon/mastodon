@@ -1,6 +1,12 @@
 ---
 az:
   doorkeeper:
+    authorized_applications:
+      index:
+        authorized_at: "%{date} tarixində səlahiyyət verilib"
+        description_html: Bunlar, API istifadə edərək hesabınıza erişəbilən tətbiqlərdir. Əgər burada tanımadığınız tətbiqlər və ya yanlış davranan bir tətbiq varsa, erişimini ləğv edə bilərsiniz.
+        last_used_at: Ən son %{date} istifadə edilib
+        title: Səlahiyyətli tətbiqləriniz
     errors:
       messages:
         invalid_token:
@@ -14,13 +20,23 @@ az:
         write: Yalnız yazma erişimi
       title:
         all: Mastodon hesabınıza tam erişim
+        filters: Filtrlər
+        follow: İzləmələr, səsi kəsmələr və əngəlləmələr
+        follows: İzlənilənlər
     scopes:
       admin:read: serverdəki bütün veriləri oxuma
+      admin:read:domain_blocks: əngəllənən bütün domenlərin həssas məlumatlarını oxuma
+      admin:read:email_domain_blocks: əngəllənən bütün e-poçt domenlərinin həssas məlumatlarını oxuma
       admin:write: serverdəki bütün veriləri dəyişdirmə
       admin:write:accounts: hesablarda moderasiya əməliyyatlarını icra et
       admin:write:canonical_email_blocks:
       admin:write:domain_allows: domen icazələri üzərində moderasiya əməliyyatlarını icra et
+      admin:write:domain_blocks: əngəllənən domenlər üzərində moderasiya fəaliyyətlərini icra et
+      admin:write:email_domain_blocks: əngəllənən e-poçt domenləri üzərində moderasiya fəaliyyətlərini icra et
       admin:write:ip_blocks: IP əngəlləmələri üzrə moderasiya əməliyyatlarını icra et
       admin:write:reports: hesabatlarda moderasiya əməliyyatlarını icra et
       read: hesabınızın bütün verilərini oxuma
+      read:filters: filtrlərinizə baxın
+      read:follows: izlədiklərinizə baxın
       write: hesabınızın bütün verilərini dəyişdirmə
+      write:filters: filtrlər yarat

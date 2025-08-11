@@ -12,7 +12,7 @@ be:
       many: Падпісчыкаў
       one: Падпісчык
       other: Падпісчыкі
-    following: Падпісаны
+    following: Падпіскі
     instance_actor_flash: Гэты ўліковы запіс - лічбавы аватар, неабходны для рэпрэзентацыі самога сервера, а не якой-небудзь асобы. Ён выкарыстоўваецца для федэралізацыі і не можа быць замарожаны.
     last_active: апошняя актыўнасць
     link_verified_on: Права ўласнасці на гэтую спасылку праверана %{date}
@@ -25,12 +25,12 @@ be:
       one: Допіс
       other: Допісы
     posts_tab_heading: Допісы
-    self_follow_error: Нельга падпісацца на свой профіль
+    self_follow_error: Нельга падпісацца на свой уліковы запіс
   admin:
     account_actions:
       action: Выканаць дзеянне
       already_silenced: Гэты ўліковы запіс ужо абмежаваны.
-      already_suspended: Гэты ўліковы запіс ужо прыпынены.
+      already_suspended: Гэты ўліковы запіс ужо прыпыніў працу.
       title: Мадэраваць %{acct}
     account_moderation_notes:
       create: Пакінуць нататку
@@ -91,9 +91,9 @@ be:
         remote: Адлеглы
         title: Месцазнаходжанне
       login_status: Стан уваходу
-      media_attachments: Медыя далучэнні
+      media_attachments: Медыя ўлажэнні
       memorialize: Даданае да памяці
-      memorialized: Запомненае
+      memorialized: Увекавечаны
       memorialized_msg: Уліковы запіс %{username} ператвораны ў мемарыяльны
       moderation:
         active: Актыўны
@@ -445,7 +445,7 @@ be:
         create: Стварыць блакіроўку
         hint: Блакіроўка дамена не будзе перашкаджаць стварэнню запісаў уліковых запісаў у базе даных, але будзе заднім лікам і аўтаматычна прымяняць да гэтых уліковых запісаў пэўныя метады мадэрацыі.
         severity:
-          desc_html: "<strong>Абмежаванне</strong> зробіць допісы людзей з гэтага дамену нябачнымі для тых, хто на іх не падпісаны. <strong>Выключэнне</strong> выдаліць усё змесціва, медыя і даныя профіляў дамену з вашага серверу. <strong>«Нічога»</strong> проста адхіліць медыя файлы."
+          desc_html: "<strong>Абмежаванне</strong> зробіць допісы людзей з гэтага дамену нябачнымі для тых, хто на іх не падпісаны. <strong>Выключэнне</strong> выдаліць усё змесціва, медыя і даныя ўліковых запісаў дамену з вашага серверу. <strong>«Нічога»</strong> проста адхіліць медыя файлы."
           noop: Пуста
           silence: Абмежаваць
           suspend: Прыпыніць
@@ -530,7 +530,7 @@ be:
         select_capabilities: Выбраць здольнасці
         sign_in: Увайсці
         status: Допіс
-        title: Дапаможныя серверы Fediverse
+        title: Дапаможныя серверы федэральнага сусвету
       title: FASP
     follow_recommendations:
       description_html: "<strong>Рэкамендацыі падпісак, дапамогаюць новым карыстальнікам хутка знайсці цікавы кантэнт</strong>. Калі карыстальнік недастаткова ўзаемадзейнічаў з іншымі, каб сфарміраваць персанальныя рэкамендацыі прытрымлівацца, замест гэтага рэкамендуюцца гэтыя ўліковыя запісы. Яны штодзённа пераразлічваюцца з сумесі ўліковых запісаў з самымі апошнімі ўзаемадзеяннямі і найбольшай колькасцю мясцовых падпісчыкаў для дадзенай мовы."
@@ -569,7 +569,7 @@ be:
         description_html: Вы можаце вызначыць палітыку кантэнту, якая будзе прымяняцца да ўсіх уліковых запісаў гэтага дамена і любога з яго субдаменаў.
         limited_federation_mode_description_html: Вы можаце выбраць ці дазволіць уваходзіць у федэрацыю з гэтым даменам.
         policies:
-          reject_media: Адхіліць мультымедыя
+          reject_media: Адхіліць медыя
           reject_reports: Адхіліць справаздачы
           silence: Ліміт
           suspend: Прыпыніць
@@ -582,7 +582,7 @@ be:
         instance_followers_measure: нашых падпісчыкаў там
         instance_follows_measure: іх падпісчыкаў тут
         instance_languages_dimension: Папулярныя мовы
-        instance_media_attachments_measure: захаваныя медыя-далучэнні
+        instance_media_attachments_measure: захаваныя медыя ўлажэнні
         instance_reports_measure: справаздач пра іх
         instance_statuses_measure: захаваных паведамленняў
       delivery:
@@ -622,7 +622,7 @@ be:
       total_followed_by_them: Іхнія падпіскі
       total_followed_by_us: Нашыя падпіскі
       total_reported: Скаргі на іх
-      total_storage: Медыя далучэнні
+      total_storage: Медыя ўлажэнні
       totals_time_period_hint_html: Паказаныя агульныя значэнні ніжэй уключаюць даныя за ўвесь час.
       unknown_instance: На дадзены момант няма запісаў аб гэтым дамене на гэтым серверы.
     invites:
@@ -653,7 +653,7 @@ be:
     relays:
       add_new: Дадаць новы рэтранслятар
       delete: Выдаліць
-      description_html: "<strong>Федэрацыйны рэтранслятар</strong> - гэта прамежкавы сервер, які абменьваецца вялікімі аб’ёмамі публічных паведамленняў паміж серверамі, якія падпісваюцца і робяць публікацыі на ім. <strong>Гэта можа дапамагчы малым і сярэднім серверам выяўляць змесціва з fediverse</strong>, бо ў іншым выпадку лакальным карыстальнікам трэба было б уручную сачыць за іншымі людзьмі на аддаленых серверах."
+      description_html: "<strong>Федэрацыйны рэтранслятар</strong> - гэта прамежкавы сервер, які абменьваецца вялікімі аб’ёмамі публічных паведамленняў паміж серверамі, якія падпісваюцца і робяць публікацыі на ім. <strong>Гэта можа дапамагчы малым і сярэднім серверам выяўляць змесціва з федэральнага сусвету</strong>, бо ў іншым выпадку лакальным карыстальнікам трэба было б уручную сачыць за іншымі людзьмі на аддаленых серверах."
       disable: Адключыць
       disabled: Адключана
       enable: Уключыць
@@ -1086,9 +1086,9 @@ be:
         allow: Дазволіць допіс
         allow_account: Дазволіць аўтара
         confirm_allow: Вы ўпэўненыя, што хочаце дазволіць абраныя допісы?
-        confirm_allow_account: Вы ўпэўненыя, што хочаце дазволіць абраныя профілі?
+        confirm_allow_account: Вы ўпэўненыя, што хочаце дазволіць абраныя ўліковыя запісы?
         confirm_disallow: Вы ўпэўненыя, што хочаце забараніць абраныя допісы?
-        confirm_disallow_account: Вы ўпэўненыя, што хочаце забараніць абраныя профілі?
+        confirm_disallow_account: Вы ўпэўненыя, што хочаце забараніць абраныя ўліковыя запісы?
         description_html: Гэта допісы, пра якія ведае ваш сервер, што на дадзены момант часта абагульваюцца і падабаюцца людзям. Гэта можа дапамагчы вашым новым і пастаянным карыстальнікам знайсці больш людзей, на якіх можна падпісацца. Ніякія допісы не будуць паказвацца публічна, пакуль вы не зацвердзіце аўтара, а аўтар не дазволіць прапанаваць свой уліковы запіс іншым. Вы таксама можаце дазволіць або адхіліць асобныя допісы.
         disallow: Забараніць допіс
         disallow_account: Забараніць аўтара
@@ -1313,7 +1313,7 @@ be:
       title: Уваход у %{domain}
     sign_up:
       manual_review: Рэгістрацыі на %{domain} праходзяць ручную праверку нашымі мадэратарамі. Каб дапамагчы нам апрацаваць вашу рэгістрацыю, напішыце крыху пра сябе і чаму вы хочаце мець уліковы запіс на %{domain}.
-      preamble: З профілем на серверы Mastodon Вы зможаце падпісацца на любога чалавека ў fediverse, незалежна ад таго, на якім серверы знаходзіцца іх профіль.
+      preamble: З уліковым запісам на гэтым серверы Mastodon Вы зможаце падпісацца на любога чалавека ў федэральным сусвеце, незалежна ад таго, на якім серверы знаходзіцца яго ўліковы запіс.
       title: Наладзьма вас на %{domain}.
     status:
       account_status: Стан уліковага запісу
@@ -1561,56 +1561,56 @@ be:
         one: Вы збіраецеся <strong>замяніць свае закладкі</strong> <strong>%{count} допісам</strong> з <strong>%{filename}</strong>.
         other: Вы збіраецеся <strong>замяніць свае закладкі</strong> <strong>%{count} допісамі</strong> з <strong>%{filename}</strong>.
       domain_blocking_html:
-        few: Вы збіраецеся <strong>замяніць свой спіс заблакіраваных сервераў</strong> <strong>%{count} серверамі</strong> з <strong>%{filename}</strong>.
-        many: Вы збіраецеся <strong>замяніць свой спіс заблакіраваных сервераў</strong> <strong>%{count} серверамі</strong> з <strong>%{filename}</strong>.
-        one: Вы збіраецеся <strong>замяніць свой спіс заблакіраваных сервераў</strong> <strong>%{count} серверам</strong> з <strong>%{filename}</strong>.
-        other: Вы збіраецеся <strong>замяніць свой спіс заблакіраваных сервераў</strong> <strong>%{count} серверамі</strong> з <strong>%{filename}</strong>.
+        few: Вы збіраецеся <strong>замяніць свой спіс заблакіраваных даменаў</strong> <strong>%{count} даменамі</strong> з <strong>%{filename}</strong>.
+        many: Вы збіраецеся <strong>замяніць свой спіс заблакіраваных даменаў</strong> <strong>%{count} даменамі</strong> з <strong>%{filename}</strong>.
+        one: Вы збіраецеся <strong>замяніць свой спіс заблакіраваных даменаў</strong> <strong>%{count} даменам</strong> з <strong>%{filename}</strong>.
+        other: Вы збіраецеся <strong>замяніць свой спіс заблакіраваных даменаў</strong> <strong>%{count} дамены</strong> з <strong>%{filename}</strong>.
       following_html:
-        few: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} профілі</strong> з <strong>%{filename}</strong> і <strong>адпішацеся ад усіх астатніх</strong>.
-        many: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} профіляў</strong> з <strong>%{filename}</strong> і <strong>адпішацеся ад усіх астатніх</strong>.
-        one: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} профіль</strong> з <strong>%{filename}</strong> і <strong>адпішацеся ад усіх астатніх</strong>.
-        other: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} профіляў</strong> з <strong>%{filename}</strong> і <strong>адпішацеся ад усіх астатніх</strong>.
+        few: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} уліковыя запісы</strong> з <strong>%{filename}</strong> і <strong>адпішацеся ад усіх астатніх</strong>.
+        many: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} уліковых запісаў</strong> з <strong>%{filename}</strong> і <strong>адпішацеся ад усіх астатніх</strong>.
+        one: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} уліковы запіс</strong> з <strong>%{filename}</strong> і <strong>адпішацеся ад усіх астатніх</strong>.
+        other: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} уліковыя запісы</strong> з <strong>%{filename}</strong> і <strong>адпішацеся ад усіх астатніх</strong>.
       lists_html:
-        few: Вы збіраецеся <strong>замяніць свае спісы</strong> змесцівам з <strong>%{filename}</strong>. <strong>%{count} профілі</strong> будуць дададзеныя ў новыя спісы.
-        many: Вы збіраецеся <strong>замяніць свае спісы</strong> змесцівам з <strong>%{filename}</strong>. <strong>%{count} профіляў</strong> будуць дададзеныя ў новыя спісы.
-        one: Вы збіраецеся <strong>замяніць свае спісы</strong> змесцівам з <strong>%{filename}</strong>. <strong>%{count} профіль</strong> будзе дададзены ў новыя спісы.
-        other: Вы збіраецеся <strong>замяніць свае спісы</strong> змесцівам з <strong>%{filename}</strong>. <strong>%{count} профіляў</strong> будуць дададзеныя ў новыя спісы.
+        few: Вы збіраецеся <strong>замяніць свае спісы</strong> змесцівам з <strong>%{filename}</strong>. <strong>%{count} уліковыя запісы</strong> будуць дададзеныя ў новыя спісы.
+        many: Вы збіраецеся <strong>замяніць свае спісы</strong> змесцівам з <strong>%{filename}</strong>. <strong>%{count} уліковых запісаў</strong> будуць дададзеныя ў новыя спісы.
+        one: Вы збіраецеся <strong>замяніць свае спісы</strong> змесцівам з <strong>%{filename}</strong>. <strong>%{count} уліковы запіс</strong> будзе дададзены ў новыя спісы.
+        other: Вы збіраецеся <strong>замяніць свае спісы</strong> змесцівам з <strong>%{filename}</strong>. <strong>%{count} уліковыя запісы</strong> будуць дададзеныя ў новыя спісы.
       muting_html:
-        few: Вы збіраецеся <strong>замяніць свой спіс профіляў, якія Вы ігнаруеце,</strong> <strong>%{count} профілямі</strong> з <strong>%{filename}</strong>.
-        many: Вы збіраецеся <strong>замяніць свой спіс профіляў, якія Вы ігнаруеце,</strong> <strong>%{count} профілямі</strong> з <strong>%{filename}</strong>.
-        one: Вы збіраецеся <strong>замяніць свой спіс профіляў, якія Вы ігнаруеце,</strong> <strong>%{count} профілем</strong> з <strong>%{filename}</strong>.
-        other: Вы збіраецеся <strong>замяніць свой спіс профіляў, якія Вы ігнаруеце,</strong> <strong>%{count} профілямі</strong> з <strong>%{filename}</strong>.
+        few: Вы збіраецеся <strong>замяніць свой спіс уліковых запісаў, якія Вы ігнаруеце,</strong> <strong>%{count} уліковымі запісамі</strong> з <strong>%{filename}</strong>.
+        many: Вы збіраецеся <strong>замяніць свой спіс уліковых запісаў, якія Вы ігнаруеце,</strong> <strong>%{count} уліковымі запісамі</strong> з <strong>%{filename}</strong>.
+        one: Вы збіраецеся <strong>замяніць свой спіс уліковых запісаў, якія Вы ігнаруеце,</strong> <strong>%{count} уліковым запісам</strong> з <strong>%{filename}</strong>.
+        other: Вы збіраецеся <strong>замяніць свой спіс уліковых запісаў, якія Вы ігнаруеце,</strong> <strong>%{count} уліковыя запісы</strong> з <strong>%{filename}</strong>.
     preambles:
       blocking_html:
-        few: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} профілі</strong> з <strong>%{filename}</strong>.
-        many: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} профіляў</strong> з <strong>%{filename}</strong>.
-        one: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} профіль</strong> з <strong>%{filename}</strong>.
-        other: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} профіляў</strong> з <strong>%{filename}</strong>.
+        few: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} уліковыя запісы</strong> з <strong>%{filename}</strong>.
+        many: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} уліковых запісаў</strong> з <strong>%{filename}</strong>.
+        one: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} уліковы запіс</strong> з <strong>%{filename}</strong>.
+        other: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} уліковыя запісы</strong> з <strong>%{filename}</strong>.
       bookmarks_html:
         few: Вы збіраецеся дадаць <strong>%{count} допісы</strong> з <strong>%{filename}</strong> у Вашыя <strong>закладкі</strong>.
         many: Вы збіраецеся дадаць <strong>%{count} допісаў</strong> з <strong>%{filename}</strong> у Вашыя <strong>закладкі</strong>.
         one: Вы збіраецеся дадаць <strong>%{count} допіс</strong> з <strong>%{filename}</strong> у Вашыя <strong>закладкі</strong>.
         other: Вы збіраецеся дадаць <strong>%{count} допісаў</strong> з <strong>%{filename}</strong> у Вашыя <strong>закладкі</strong>.
       domain_blocking_html:
-        few: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} серверы</strong> з <strong>%{filename}</strong>.
-        many: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} сервераў</strong> з <strong>%{filename}</strong>.
-        one: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} сервер</strong> з <strong>%{filename}</strong>.
-        other: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} сервераў</strong> з <strong>%{filename}</strong>.
+        few: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} дамены</strong> з <strong>%{filename}</strong>.
+        many: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} даменаў</strong> з <strong>%{filename}</strong>.
+        one: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} дамен</strong> з <strong>%{filename}</strong>.
+        other: Вы збіраецеся <strong>заблакіраваць</strong> <strong>%{count} дамены</strong> з <strong>%{filename}</strong>.
       following_html:
-        few: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} профілі</strong> з <strong>%{filename}</strong>.
-        many: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} профіляў</strong> з <strong>%{filename}</strong>.
-        one: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} профіль</strong> з <strong>%{filename}</strong>.
-        other: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} профіляў</strong> з <strong>%{filename}</strong>.
+        few: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} уліковыя запісы</strong> з <strong>%{filename}</strong>.
+        many: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} уліковых запісаў</strong> з <strong>%{filename}</strong>.
+        one: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} уліковы запіс</strong> з <strong>%{filename}</strong>.
+        other: Вы збіраецеся <strong>падпісацца</strong> на <strong>%{count} уліковыя запісы</strong> з <strong>%{filename}</strong>.
       lists_html:
-        few: Вы збіраецеся дадаць <strong>%{count} профілі</strong> з <strong>%{filename}</strong> у Вашыя <strong>спісы</strong>. Калі спісаў няма, то будуць створаны новыя.
-        many: Вы збіраецеся дадаць <strong>%{count} профіляў</strong> з <strong>%{filename}</strong> у Вашыя <strong>спісы</strong>. Калі спісаў няма, то будуць створаны новыя.
-        one: Вы збіраецеся дадаць <strong>%{count} профіль</strong> з <strong>%{filename}</strong> у Вашыя <strong>спісы</strong>. Калі спісаў няма, то будуць створаны новыя.
-        other: Вы збіраецеся дадаць <strong>%{count} профіляў</strong> з <strong>%{filename}</strong> у Вашыя <strong>спісы</strong>. Калі спісаў няма, то будуць створаны новыя.
+        few: Вы збіраецеся дадаць <strong>%{count} уліковыя запісы</strong> з <strong>%{filename}</strong> у Вашыя <strong>спісы</strong>. Калі спісаў няма, то будуць створаны новыя.
+        many: Вы збіраецеся дадаць <strong>%{count} уліковых запісаў</strong> з <strong>%{filename}</strong> у Вашыя <strong>спісы</strong>. Калі спісаў няма, то будуць створаны новыя.
+        one: Вы збіраецеся дадаць <strong>%{count} уліковы запіс</strong> з <strong>%{filename}</strong> у Вашыя <strong>спісы</strong>. Калі спісаў няма, то будуць створаны новыя.
+        other: Вы збіраецеся дадаць <strong>%{count} уліковыя запісы</strong> з <strong>%{filename}</strong> у Вашыя <strong>спісы</strong>. Калі спісаў няма, то будуць створаны новыя.
       muting_html:
-        few: Вы збіраецеся пачаць <strong>ігнараваць</strong> <strong>%{count} профілі</strong> з <strong>%{filename}</strong>.
-        many: Вы збіраецеся пачаць <strong>ігнараваць</strong> <strong>%{count} профіляў</strong> з <strong>%{filename}</strong>.
-        one: Вы збіраецеся пачаць <strong>ігнараваць</strong> <strong>%{count} профіль</strong> з <strong>%{filename}</strong>.
-        other: Вы збіраецеся пачаць <strong>ігнараваць</strong> <strong>%{count} профіляў</strong> з <strong>%{filename}</strong>.
+        few: Вы збіраецеся пачаць <strong>ігнараваць</strong> <strong>%{count} уліковыя запісы</strong> з <strong>%{filename}</strong>.
+        many: Вы збіраецеся пачаць <strong>ігнараваць</strong> <strong>%{count} уліковых запісаў</strong> з <strong>%{filename}</strong>.
+        one: Вы збіраецеся пачаць <strong>ігнараваць</strong> <strong>%{count} уліковы запіс</strong> з <strong>%{filename}</strong>.
+        other: Вы збіраецеся пачаць <strong>ігнараваць</strong> <strong>%{count} уліковыя запісы</strong> з <strong>%{filename}</strong>.
     preface: Вы можаце імпартаваць даныя, экспартаваныя вамі з іншага сервера, напрыклад, спіс людзей, на якіх вы падпісаны або якіх блакуеце.
     recent_imports: Нядаўнія імпарты
     states:
@@ -1698,7 +1698,7 @@ be:
     validations:
       images_and_video: Немагчыма далучыць відэа да допісу, які ўжо змяшчае выявы
       not_found: Файл %{ids} не знойдзены або ўжо далучаны да іншага допісу
-      not_ready: Няможна далучыць файлы, апрацоўка якіх яшчэ не скончылася. Паспрабуйце яшчэ раз праз хвілінку!
+      not_ready: Немагчыма далучыць файлы, апрацоўка якіх яшчэ не скончылася. Паспрабуйце яшчэ раз праз хвілінку!
       too_many: Немагчыма далучыць больш за 4 файлы
   migrations:
     acct: Перамешчана ў
@@ -1746,7 +1746,7 @@ be:
       sign_up:
         subject: "%{name} зарэгістраваўся"
     favourite:
-      body: "%{name} упадабаў ваш пост:"
+      body: "%{name} упадабаў(-ла) Ваш допіс:"
       subject: "%{name} упадабаў ваш допіс"
       title: Новае ўпадабанае
     follow:
@@ -1770,7 +1770,7 @@ be:
       subject: Карыстальнік %{name} працытаваў Ваш допіс
       title: Цытаваць
     reblog:
-      body: "%{name} пашырыў ваш пост:"
+      body: "%{name} пашырыў(-ла) Ваш допіс:"
       subject: "%{name} пашырыў ваш допіс"
       title: Новае пашырэнне
     status:
@@ -2017,9 +2017,9 @@ be:
     interaction_exceptions: Выключэнні, заснаваныя на ўзаемадзеянні
     interaction_exceptions_explanation: Звярніце ўвагу, што няма гарантыі выдалення пастоў, калі колькасць іх упадабанняў ці пашырэннняў упадзе ніжэй за ліміт, хаця некалі гэтая колькасць перавышала яго.
     keep_direct: Захаваць асабістыя паведамленні
-    keep_direct_hint: Не выдаляць асабістыя паведамленні
-    keep_media: Захоўваць допісы з далучаным медыя
-    keep_media_hint: Не выдаляць вашыя допісы, якія ўтрымліваюць медыя
+    keep_direct_hint: Не выдаляе асабістыя паведамленні
+    keep_media: Захоўваць допісы з медыя ўлажэннямі
+    keep_media_hint: Не выдаляць вашыя допісы, якія ўтрымліваюць медыя ўлажэнні
     keep_pinned: Захаваць замацаваныя допісы
     keep_pinned_hint: Не выдаляць вашыя замацаваныя допісы
     keep_polls: Працягнуць апытанне
@@ -2151,7 +2151,7 @@ be:
         none: Папярэджанне для %{acct}
         sensitive: З гэтага моманту вашыя допісы на %{acct} будуць пазначаныя як далікатныя
         silence: Ваш уліковы запіс %{acct} быў абмежаваны
-        suspend: Ваш уліковы запіс %{acct} быў выключаны
+        suspend: Ваш уліковы запіс %{acct} быў прыпынены
       title:
         delete_statuses: Выдаленыя допісы
         disable: Уліковы запіс замарожаны
