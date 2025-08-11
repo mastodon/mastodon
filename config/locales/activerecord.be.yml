@@ -3,7 +3,7 @@ be:
   activerecord:
     attributes:
       poll:
-        expires_at: Дэдлайн
+        expires_at: Скончыцца
         options: Выбар
       user:
         agreement: Пагадненне аб абслугоўванні
@@ -19,7 +19,7 @@ be:
         domain:
           invalid: не з’яўляецца сапраўдным даменным імем
       messages:
-        invalid_domain_on_line: "%{value} не пасуе для карэктнай назвы сервера"
+        invalid_domain_on_line: "%{value} не пасуе для карэктнай назвы дамена"
       models:
         account:
           attributes:
@@ -44,7 +44,7 @@ be:
           attributes:
             account_id:
               taken: ужо ў спісе
-          must_be_following: мусіць быць карыстальнікам у вашых падпісках
+          must_be_following: мусіць быць карыстальнікам у Вашых падпісках
         status:
           attributes:
             reblog:
@@ -61,7 +61,7 @@ be:
               blocked: выкарыстоўвае забароненую крыніцу электроннай пошты
               unreachable: не існуе
             role_id:
-              elevated: не можа быць вышэй за вашу бягучую ролю
+              elevated: не можа быць вышэй за Вашу бягучую ролю
         user_role:
           attributes:
             permissions_as_keys:
@@ -69,7 +69,7 @@ be:
               elevated: не можа ўключыць дазволы, якімі не валодае ваша бягучая роля
               own_role: не можа быць зменены з вашай бягучай роляй
             position:
-              elevated: не можа быць вышэй за вашу бягучую ролю
+              elevated: не можа быць вышэй за Вашу бягучую ролю
               own_role: не можа быць зменены з вашай бягучай роляй
         webhook:
           attributes:

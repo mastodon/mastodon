@@ -187,6 +187,7 @@ ko:
         create_relay: 릴레이 생성
         create_unavailable_domain: 사용 불가능한 도메인 생성
         create_user_role: 역할 생성
+        create_username_block: 새 사용자명 규칙 만들기
         demote_user: 사용자 강등
         destroy_announcement: 공지사항 삭제
         destroy_canonical_email_block: 이메일 차단 삭제
@@ -200,6 +201,7 @@ ko:
         destroy_status: 게시물 삭제
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
         destroy_user_role: 역할 삭제
+        destroy_username_block: 사용자명 규칙 삭제
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
         disable_relay: 릴레이 비활성화
@@ -234,6 +236,7 @@ ko:
         update_report: 신고 업데이트
         update_status: 게시물 수정
         update_user_role: 역할 수정
+        update_username_block: 사용자명 규칙 업데이트
       actions:
         approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 승인했습니다"
         approve_user_html: "%{name} 님이 %{target} 님의 가입을 승인했습니다"
@@ -252,6 +255,7 @@ ko:
         create_relay_html: "%{name} 님이 릴레이 %{target}를 생성했습니다"
         create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지했습니다"
         create_user_role_html: "%{name} 님이 %{target} 역할을 생성했습니다"
+        create_username_block_html: "%{name} 님이 %{target}를 포함하는 사용자명에 대한 규칙을 생성했습니다"
         demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
         destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단 해제했습니다"
@@ -265,6 +269,7 @@ ko:
         destroy_status_html: "%{name} 님이 %{target} 님의 게시물을 삭제했습니다"
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
         destroy_user_role_html: "%{name} 님이 %{target} 역할을 삭제했습니다"
+        destroy_username_block_html: "%{name} 님이 %{target}를 포함하는 사용자명에 대한 규칙을 삭제했습니다"
         disable_2fa_user_html: "%{name} 님이 사용자 %{target} 님의 2단계 인증을 비활성화 했습니다"
         disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화했습니다"
         disable_relay_html: "%{name} 님이 릴레이 %{target}를 비활성화했습니다"
@@ -299,6 +304,7 @@ ko:
         update_report_html: "%{name} 님이 신고 %{target}를 업데이트 했습니다"
         update_status_html: "%{name} 님이 %{target}의 게시물을 업데이트했습니다"
         update_user_role_html: "%{name} 님이 %{target} 역할을 수정했습니다"
+        update_username_block_html: "%{name} 님이 %{target}를 포함하는 사용자명에 대한 규칙을 수정했습니다"
       deleted_account: 계정을 삭제했습니다
       empty: 로그를 찾을 수 없습니다
       filter_by_action: 동작 별 필터
@@ -1071,10 +1077,23 @@ ko:
       trending: 유행 중
     username_blocks:
       add_new: 새로 추가
+      block_registrations: 가입 차단
+      comparison:
+        contains: 포함
+        equals: 일치
+      contains_html: "%{string} 포함"
+      created_msg: 사용자명 규칙을 생성했습니다
+      delete: 삭제
+      edit:
+        title: 사용자명 규칙 편집
+      matches_exactly_html: "%{string}과 일치"
       new:
         create: 규칙 만들기
         title: 새 유저네임 규칙 만들기
+      no_username_block_selected: 아무 것도 선택 되지 않아 어떤 사용자명 규칙도 변경 되지 않았습니다
       not_permitted: 허용하지 않음
+      title: 사용자명 규칙
+      updated_msg: 사용자명 규칙을 변경했습니다
     warning_presets:
       add_new: 새로 추가
       delete: 삭제
@@ -1631,6 +1650,10 @@ ko:
       title: 새 답글
     poll:
       subject: "%{name}의 설문이 종료됨"
+    quote:
+      body: '당신의 게시물을 %{name} 님이 인용했습니다:'
+      subject: "%{name} 님이 내 게시물을 인용했습니다"
+      title: 새 인용
     reblog:
       body: '당신의 게시물을 %{name} 님이 부스트 했습니다:'
       subject: "%{name} 님이 내 게시물을 부스트 했습니다"
@@ -1837,6 +1860,7 @@ ko:
     edited_at_html: "%{date}에 편집됨"
     errors:
       in_reply_not_found: 답장하려는 게시물이 존재하지 않습니다.
+      quoted_status_not_found: 인용하려는 게시물이 존재하지 않습니다.
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
       direct: 멘션된 사용자들에게만 보이는 게시물은 고정될 수 없습니다
@@ -1844,6 +1868,8 @@ ko:
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
     quote_policies:
+      followers: 내 팔로워만
+      nobody: 없음
       public: 모두
     title: '%{name}: "%{quote}"'
     visibilities:

@@ -690,6 +690,36 @@ nan:
       remote_user_placeholder: tuì %{instance} 來ê遠距離用者
       reopen: 重頭phah開檢舉
       report: '檢舉 #%{id}'
+      reported_account: 受檢舉ê口座
+      reported_by: 檢舉人
+      reported_with_application: 用應用程式檢舉
+      resolved: 解決ah
+      resolved_msg: 檢舉成功解決ah！
+      skip_to_actions: 跳kàu行動
+      status: 狀態
+      statuses: 受檢舉ê內容
+      statuses_description_html: 冒犯ê內容ē引用tī kap受檢舉口座ê聯絡
+      summary:
+        action_preambles:
+          delete_html: Lí teh-beh <strong>thâi掉</strong> <strong>@%{acct}</strong> ê tsi̍t-kuá PO文。Tse ē：
+          mark_as_sensitive_html: Lí teh-beh <strong>kā</strong> <strong>@%{acct}</strong> ê tsi̍t-kuá PO文<strong>標做敏感</strong>。Tse ē：
+          silence_html: Lí teh-beh <strong>限制</strong> <strong>@%{acct}</strong> ê口座。Tse ē：
+          suspend_html: Lí teh-beh <strong>停止</strong> <strong>@%{acct}</strong> ê口座權限。Tse ē：
+        actions:
+          delete_html: Thâi掉冒犯ê PO文
+          mark_as_sensitive_html: Kā冒犯êPO文ê媒體標做敏感
+          silence_html: Kā in ê個人資料kap內容標做kan-ta有跟tuè ê，á是手動tshiau伊ê個人檔案ê，通看見，來嚴嚴限制 <strong>@%{acct}</strong> ê傳播範圍
+          suspend_html: Kā <strong>@%{acct}</strong> 停止權限，koh kā in ê 個人資料kap內容標做bē當用，kap bē當hām in互動
+        close_report: 'Kā 檢舉報告 #%{id} 標做解決ah'
+        close_reports_html: Kā <strong>ta̍k ê</strong>tuì <strong>@%{acct}</strong> ê檢舉標做解決ah
+        delete_data_html: Tuì tann起30kang以後，thâi掉 <strong>@%{acct}</strong> ê個人資料kap內容，除非佇tsit ê期限進前，取消停止in ê權限
+        preview_preamble_html: "<strong>@%{acct}</strong> ē收著警告，包含下kha ê內容："
+        record_strike_html: 記錄tuì <strong>@%{acct}</strong>ê警告，來幫tsān lí提升佇tsit ê口座ê未來違規
+        send_email_html: Kā警告電子phue寄hōo <strong>@%{acct}</strong>
+        warning_placeholder: 通選ê，管理行動ê補充理由
+      target_origin: 受檢舉ê口座ê來源
+      title: 檢舉
+      unassign: 取消分配
     roles:
       privileges:
         manage_announcements: 管理公告

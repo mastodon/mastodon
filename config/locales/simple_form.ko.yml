@@ -56,6 +56,7 @@ ko:
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
         setting_aggregate_reblogs: 최근에 부스트 됐던 게시물은 새로 부스트 되어도 보여주지 않기 (새로 받은 부스트에만 적용됩니다)
         setting_always_send_emails: 기본적으로 마스토돈을 활동적으로 사용하고 있을 때에는 이메일 알림이 보내지지 않습니다
+        setting_default_quote_policy: 이 설정은 다음 마스토돈 버전부터 효과가 적용되지만 미리 준비할 수 있도록 설정을 제공합니다.
         setting_default_sensitive: 민감한 미디어는 기본적으로 가려져 있으며 클릭해서 볼 수 있습니다
         setting_display_media_default: 민감함으로 표시된 미디어 가리기
         setting_display_media_hide_all: 모든 미디어를 가리기
@@ -158,6 +159,9 @@ ko:
         name: 역할이 배지로 표시될 경우, 그 역할에 대한 공개적인 이름입니다
         permissions_as_keys: 이 역할을 가진 사용자는 다음에 접근할 수 있게 됩니다...
         position: 특정 상황에서 충돌이 발생할 경우 더 높은 역할이 충돌을 해결합니다. 특정 작업은 우선순위가 낮은 역할에 대해서만 수행될 수 있습니다
+      username_block:
+        allow_with_approval: 바로 가입을 막는 대신, 일치하는 가입에 승인을 요구합니다
+        username: 대소문자와 관계 없고 "4"를 "a"로, "3"을 "e"로 사용하는 등의 보편적으로 사용되는 비슷한 문자까지 매치됩니다
       webhook:
         events: 전송할 이벤트를 선택하세요
         template: 원하는 JSON 페이로드를 변수와 함께 작성하거나, 그대로 두어 기본 JSON을 사용할 수 있습니다.
@@ -323,6 +327,7 @@ ko:
         follow_request: 누군가 나를 팔로우 하길 요청할 때
         mention: 누군가 나를 언급했을 때
         pending_account: 새 계정이 심사가 필요할 때
+        quote: 누군가 나를 인용했을 때
         reblog: 누군가 내 게시물을 부스트 했을 때
         report: 새 신고가 접수되었을 때
         software_updates:
@@ -369,6 +374,10 @@ ko:
         name: 이름
         permissions_as_keys: 권한
         position: 우선순위
+      username_block:
+        allow_with_approval: 승인을 통한 가입 허용
+        comparison: 비교 방식
+        username: 일치할 단어
       webhook:
         events: 활성화된 이벤트
         template: 페이로드 템플릿
