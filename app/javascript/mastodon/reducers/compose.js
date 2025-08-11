@@ -332,7 +332,10 @@ export const composeReducer = (state = initialState, action) => {
   } else if (quoteComposeByStatus.match(action)) {
     const status = action.payload;
     if (status.getIn(['quote_approval', 'current_user']) === 'automatic') {
-      return state.set('quoted_status_id', status.get('id'));
+      return state
+        .set('quoted_status_id', status.get('id'))
+        .set('spoiler', status.get('sensitive'))
+        .set('spoiler_text', status.get('spoiler_text'));
     }
   } else if (quoteComposeCancel.match(action)) {
     return state.set('quoted_status_id', null);
