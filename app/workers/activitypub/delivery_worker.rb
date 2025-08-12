@@ -5,8 +5,8 @@ class ActivityPub::DeliveryWorker
   include RoutingHelper
   include JsonLdHelper
 
+  STOPLIGHT_COOL_OFF_TIME = 60
   STOPLIGHT_FAILURE_THRESHOLD = 10
-  STOPLIGHT_COOLDOWN = 60
 
   sidekiq_options queue: 'push', retry: 16, dead: false
 
@@ -75,9 +75,11 @@ class ActivityPub::DeliveryWorker
   end
 
   def stoplight_wrapper
-    Stoplight(@inbox_url)
-      .with_threshold(STOPLIGHT_FAILURE_THRESHOLD)
-      .with_cool_off_time(STOPLIGHT_COOLDOWN)
+    Stoplight(
+      @inbox_url,
+      cool_off_time: STOPLIGHT_COOL_OFF_TIME,
+      threshold: STOPLIGHT_FAILURE_THRESHOLD
+    )
   end
 
   def failure_tracker
