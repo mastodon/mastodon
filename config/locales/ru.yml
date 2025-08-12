@@ -196,6 +196,7 @@ ru:
         create_relay: Создание ретранслятора
         create_unavailable_domain: Добавление домена в список недоступных
         create_user_role: Создание ролей
+        create_username_block: Создать правило имени пользователя
         demote_user: Разжалование пользователей
         destroy_announcement: Удаление объявлений
         destroy_canonical_email_block: Удаление блокировок e-mail
@@ -209,6 +210,7 @@ ru:
         destroy_status: Удаление постов
         destroy_unavailable_domain: Исключение доменов из списка недоступных
         destroy_user_role: Удаление ролей
+        destroy_username_block: Удалить правило имени пользователя
         disable_2fa_user: Отключение 2FA
         disable_custom_emoji: Отключение эмодзи
         disable_relay: Отключение ретранслятора
@@ -243,6 +245,7 @@ ru:
         update_report: Изменение жалоб
         update_status: Изменение постов
         update_user_role: Изменение ролей
+        update_username_block: Обновить правило имени пользователя
       actions:
         approve_appeal_html: "%{name} одобрил(а) обжалование действий модерации от %{target}"
         approve_user_html: "%{name} утвердил(а) регистрацию %{target}"
@@ -261,6 +264,7 @@ ru:
         create_relay_html: "%{name} создал(а) ретранслятор %{target}"
         create_unavailable_domain_html: "%{name} приостановил доставку на узел %{target}"
         create_user_role_html: "%{name} создал(а) роль %{target}"
+        create_username_block_html: "%{name} создал(а) правило для имён пользователей, содержащих %{target}"
         demote_user_html: "%{name} разжаловал(а) пользователя %{target}"
         destroy_announcement_html: "%{name} удалил(а) объявление %{target}"
         destroy_canonical_email_block_html: "%{name} снял(а) блокировку e-mail с хэшем %{target}"
@@ -274,6 +278,7 @@ ru:
         destroy_status_html: "%{name} удалил(а) пост пользователя %{target}"
         destroy_unavailable_domain_html: "%{name} возобновил доставку на узел %{target}"
         destroy_user_role_html: "%{name} удалил(а) роль %{target}"
+        destroy_username_block_html: "%{name} удалил(а) правило для имён пользователей, содержащих %{target}"
         disable_2fa_user_html: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
         disable_custom_emoji_html: "%{name} отключил(а) эмодзи %{target}"
         disable_relay_html: "%{name} отключил(а) ретранслятор %{target}"
@@ -308,6 +313,7 @@ ru:
         update_report_html: "%{name} изменил(а) жалобу %{target}"
         update_status_html: "%{name} изменил(а) пост пользователя %{target}"
         update_user_role_html: "%{name} изменил(а) роль %{target}"
+        update_username_block_html: "%{name} обновил(а) правило для имён пользователей, содержащих %{target}"
       deleted_account: удалённая учётная запись
       empty: Журнал пуст.
       filter_by_action: Фильтр по действию
@@ -499,15 +505,24 @@ ru:
     fasp:
       debug:
         callbacks:
+          created_at: Создано в
           delete: Удалить
           ip: IP-адрес
+          request_body: Тело запроса
       providers:
+        active: Активен
         base_url: Основной URL
         delete: Удалить
+        edit: Редактировать поставщика
+        finish_registration: Завершить регистрацию
+        name: Имя
+        providers: Поставщики
+        registration_requested: Требуется регистрация
         registrations:
           confirm: Подтвердить
           reject: Отклонить
         save: Сохранить
+        select_capabilities: Выберите возможности
         sign_in:
         status: Пост
       title: FASP
@@ -585,6 +600,9 @@ ru:
         all: Все
         limited: Ограниченные
         title: Модерация
+      moderation_notes:
+        create: Добавить заметку модератора
+        title: Заметки модератора
       private_comment: Приватный комментарий
       public_comment: Публичный комментарий
       purge: Удалить данные
@@ -799,11 +817,16 @@ ru:
       title: Роли
     rules:
       add_new: Добавить правило
+      add_translation: Добавить перевод
       delete: Удалить
       description_html: Хотя большинство утверждает, что прочитали и согласны с условиями обслуживания, обычно люди не читают их до тех пор, пока не возникнет проблема. <strong>Упростите просмотр правил вашего сервера с первого взгляда, предоставив их в виде простого маркированного списка.</strong> Старайтесь, чтобы отдельные правила были краткими и простыми, но старайтесь не разбивать их на множество отдельных элементов.
       edit: Редактировать правило
       empty: Правила сервера еще не определены.
+      move_down: Переместить вниз
+      move_up: Переместить вверх
       title: Правила сервера
+      translation: Перевод
+      translations: Переводы
     settings:
       about:
         manage_rules: Управление правилами на сервере
@@ -829,6 +852,7 @@ ru:
       discovery:
         follow_recommendations: Рекомендации подписок
         preamble: Наблюдение интересного контента играет важную роль при открытии новых пользователей, которые могут не знать ни одного Mastodon. Контролируйте как работают различные функции обнаружения на вашем сервере.
+        privacy: Конфиденциальность
         profile_directory: Каталог профилей
         public_timelines: Публичные ленты
         publish_statistics: Опубликовать стаитстику
@@ -1087,6 +1111,23 @@ ru:
           other: За последнюю неделю использовал %{count} человек
       title: Рекомендации и тренды
       trending: Популярное
+    username_blocks:
+      add_new: Добавить новое
+      block_registrations: Блокировать регистрации
+      comparison:
+        contains: Содержит
+        equals: Равен
+      contains_html: Содержит %{string}
+      created_msg: Успешно создано правило имени пользователя
+      delete: Удалить
+      edit:
+        title: Редактировать правило имени пользователя
+      matches_exactly_html: Равен %{string}
+      new:
+        create: Создать правило
+        title: Создать новое правило имени пользователя
+      not_permitted: Не разрешено
+      title: Правила имени пользователя
     warning_presets:
       add_new: Добавить
       delete: Удалить
@@ -1705,6 +1746,10 @@ ru:
       title: Новое упоминание
     poll:
       subject: Опрос %{name} завершился
+    quote:
+      body: 'Ваш пост был процитирован %{name}:'
+      subject: "%{name} процитировал(а) ваш пост"
+      title: Новая цитата
     reblog:
       body: "%{name} продвинул(а) ваш пост:"
       subject: "%{name} продвинул(а) ваш пост"
@@ -1987,6 +2032,10 @@ ru:
     does_not_match_previous_name: не совпадает с предыдущим именем
   terms_of_service:
     title: Пользовательское соглашение
+  terms_of_service_interstitial:
+    past_preamble_html: Мы изменили наше пользовательское соглашение с момента вашего последнего посещения. Мы рекомендуем вам ознакомиться с обновленным соглашением.
+    review_link: Посмотреть пользовательское соглашение
+    title: Изменяется пользовательское соглашение %{domain}
   themes:
     contrast: Mastodon (высококонтрастная)
     default: Mastodon (тёмная)
