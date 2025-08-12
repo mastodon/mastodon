@@ -17,6 +17,11 @@ module DomainNormalizable
         SQL
       )
     end
+
+    def domain_variants(domain)
+      segments = domain.to_s.split('.')
+      segments.map.with_index { |_, i| segments[i..].join('.') }
+    end
   end
 
   private

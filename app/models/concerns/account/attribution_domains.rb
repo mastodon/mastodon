@@ -12,8 +12,7 @@ module Account::AttributionDomains
   end
 
   def can_be_attributed_from?(domain)
-    segments = domain.split('.')
-    variants = segments.map.with_index { |_, i| segments[i..].join('.') }.to_set
-    self[:attribution_domains].to_set.intersect?(variants)
+    variants = self.class.domain_variants(domain)
+    self[:attribution_domains].to_set.intersect?(variants.to_set)
   end
 end
