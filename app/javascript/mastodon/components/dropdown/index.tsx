@@ -1,6 +1,7 @@
-import { useCallback, useId, useRef, useState } from 'react';
+import { useCallback, useId, useMemo, useRef, useState } from 'react';
 import type { FC } from 'react';
 
+import { FormattedMessage } from 'react-intl';
 import type { MessageDescriptor } from 'react-intl';
 
 import classNames from 'classnames';
@@ -15,7 +16,7 @@ interface DropdownProps {
   disabled?: boolean;
   items: SelectItem[];
   onChange: (value: string) => void;
-  current: SelectItem;
+  current: string;
   emptyText?: MessageDescriptor;
   classPrefix: string;
 }
@@ -33,11 +34,17 @@ export const Dropdown: FC<DropdownProps> = ({
 
   const [open, setOpen] = useState(false);
   const handleToggle = useCallback(() => {
-    setOpen((prevOpen) => !prevOpen);
-  }, []);
+    if (!disabled) {
+      setOpen((prevOpen) => !prevOpen);
+    }
+  }, [disabled]);
   const handleClose = useCallback(() => {
     setOpen(false);
   }, []);
+  const currentText = useMemo(
+    () => items.find((i) => i.value === current)?.text,
+    [current, items],
+  );
   return (
     <>
       <button
@@ -49,10 +56,16 @@ export const Dropdown: FC<DropdownProps> = ({
         disabled={disabled}
         className={classNames('dropdown-button', `${classPrefix}__button`, {
           active: open,
+          disabled,
         })}
         ref={buttonRef}
       >
-        {current.text}
+        {currentText ?? (
+          <FormattedMessage
+            id='dropdown.empty'
+            defaultMessage='Select an option'
+          />
+        )}
       </button>
 
       <Overlay
@@ -78,7 +91,7 @@ export const Dropdown: FC<DropdownProps> = ({
             >
               <DropdownSelector
                 items={items}
-                value={current.value}
+                value={current}
                 onClose={handleClose}
                 onChange={onChange}
                 classNamePrefix={classPrefix}
