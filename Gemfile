@@ -146,7 +146,7 @@ group :test do
   gem 'climate_control'
 
   # Validate schemas in specs
-  gem 'json-schema', '~> 5.0'
+  gem 'json-schema', '~> 6.0'
 
   # Test harness fo rack components
   gem 'rack-test', '~> 2.1'
