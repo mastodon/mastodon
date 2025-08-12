@@ -606,10 +606,8 @@ body > [data-popper-placement] {
     border-radius: 4px;
     border: 1px solid var(--background-border-color);
     transition: border-color 300ms linear;
-    min-height: 0;
     position: relative;
     background: var(--input-background-color);
-    overflow: hidden;
 
     &.active {
       transition: none;
@@ -672,10 +670,6 @@ body > [data-popper-placement] {
       flex: 1 1 auto;
       border-bottom: 1px solid var(--background-border-color);
     }
-  }
-
-  .autosuggest-textarea {
-    overflow-y: auto;
   }
 
   .autosuggest-textarea__textarea,
@@ -3524,11 +3518,10 @@ a.account__display-name {
   display: flex;
   flex-direction: column;
   height: calc(100% - 10px);
-  overflow-y: hidden;
+  overflow-y: auto;
 
   .compose-form {
     flex: 1 1 auto;
-    min-height: 0;
   }
 }
 
