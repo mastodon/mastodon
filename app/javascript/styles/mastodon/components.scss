@@ -5402,7 +5402,8 @@ a.status-card {
 }
 
 .privacy-dropdown__dropdown,
-.language-dropdown__dropdown {
+.language-dropdown__dropdown,
+.visibility-dropdown__dropdown {
   box-shadow: var(--dropdown-shadow);
   background: var(--dropdown-background-color);
   backdrop-filter: $backdrop-blur-filter;
@@ -5574,6 +5575,12 @@ a.status-card {
         }
       }
     }
+  }
+}
+
+.visibility-dropdown {
+  &__overlay[data-popper-placement] {
+    z-index: 9999;
   }
 }
 
@@ -6374,6 +6381,15 @@ a.status-card {
     line-height: 20px;
     letter-spacing: 0.25px;
     overflow-y: auto;
+
+    &__description {
+      margin: 24px 24px 0;
+      color: $darker-text-color;
+
+      a {
+        color: $highlight-text-color;
+      }
+    }
 
     &__form {
       display: flex;

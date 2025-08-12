@@ -3,6 +3,8 @@ import { createAction } from '@reduxjs/toolkit';
 import { apiGetContext } from 'mastodon/api/statuses';
 import { createDataLoadingThunk } from 'mastodon/store/typed_functions';
 
+import type { ApiQuotePolicy } from '../api_types/quotes';
+
 import { importFetchedStatuses } from './importer';
 
 export const fetchContext = createDataLoadingThunk(
@@ -23,3 +25,8 @@ export const fetchContext = createDataLoadingThunk(
 export const completeContextRefresh = createAction<{ statusId: string }>(
   'status/context/complete',
 );
+
+export const setStatusQuotePolicy = createAction<{
+  policy: ApiQuotePolicy;
+  statusId: string;
+}>('status/setQuotePolicy');

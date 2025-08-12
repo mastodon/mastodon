@@ -24,7 +24,7 @@ export interface SelectItem {
 
 interface Props {
   value: string;
-  classNamePrefix: string;
+  classNamePrefix?: string;
   style?: React.CSSProperties;
   items: SelectItem[];
   onChange: (value: string) => void;

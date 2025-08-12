@@ -21,3 +21,7 @@ interface ApiQuoteAcceptedJSON {
 }
 
 export type ApiQuoteJSON = ApiQuoteAcceptedJSON | ApiQuoteEmptyJSON;
+
+export function isQuotePolicy(policy: string): policy is ApiQuotePolicy {
+  return ['public', 'followers', 'nobody'].includes(policy);
+}
