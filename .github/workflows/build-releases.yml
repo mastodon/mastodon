@@ -14,8 +14,7 @@ jobs:
     with:
       file_to_build: Dockerfile
       push_to_images: |
-        tootsuite/mastodon
-        ghcr.io/mastodon/mastodon
+        ghcr.io/${{ github.repository_owner }}/mastodon
       # Do not use cache when building releases, so apt update is always ran and the release always contain the latest packages
       cache: false
       # Only tag with latest when ran against the latest stable branch
@@ -32,8 +31,7 @@ jobs:
     with:
       file_to_build: streaming/Dockerfile
       push_to_images: |
-        tootsuite/mastodon-streaming
-        ghcr.io/mastodon/mastodon-streaming
+        ghcr.io/${{ github.repository_owner }}/mastodon-streaming
       # Do not use cache when building releases, so apt update is always ran and the release always contain the latest packages
       cache: false
       # Only tag with latest when ran against the latest stable branch
