@@ -159,10 +159,10 @@ RUN \
   libexpat1-dev \
   libgirepository1.0-dev \
   libheif-dev \
+  libhwy-dev \
   libimagequant-dev \
   libjpeg62-turbo-dev \
   liblcms2-dev \
-  liborc-dev \
   libspng-dev \
   libtiff-dev \
   libwebp-dev \
@@ -335,10 +335,10 @@ RUN \
   libcgif0 \
   libexif12 \
   libheif1 \
+  libhwy1t64 \
   libimagequant0 \
   libjpeg62-turbo \
   liblcms2-2 \
-  liborc-0.4-0t64 \
   libspng0 \
   libtiff6 \
   libwebp7 \
