@@ -365,7 +365,7 @@ GEM
     json-ld-preloaded (3.3.2)
       json-ld (~> 3.3)
       rdf (~> 3.3)
-    json-schema (5.2.1)
+    json-schema (6.0.0)
       addressable (~> 2.8)
       bigdecimal (~> 3.1)
     jsonapi-renderer (0.2.2)
@@ -719,9 +719,7 @@ GEM
     redis (4.8.1)
     redis-client (0.25.2)
       connection_pool
-    redlock (1.3.2)
-      redis (>= 3.0.0, < 6.0)
-    regexp_parser (2.11.0)
+    regexp_parser (2.11.1)
     reline (0.6.2)
       io-console (~> 0.5)
     request_store (1.7.0)
@@ -751,7 +749,7 @@ GEM
     rspec-mocks (3.13.5)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-rails (8.0.1)
+    rspec-rails (8.0.2)
       actionpack (>= 7.2)
       activesupport (>= 7.2)
       railties (>= 7.2)
@@ -789,7 +787,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
-    rubocop-rails (2.32.0)
+    rubocop-rails (2.33.1)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
@@ -855,8 +853,8 @@ GEM
     stackprof (0.2.27)
     starry (0.2.0)
       base64
-    stoplight (4.1.1)
-      redlock (~> 1.0)
+    stoplight (5.3.1)
+      zeitwerk
     stringio (3.1.7)
     strong_migrations (2.5.0)
       activerecord (>= 7.1)
@@ -1005,7 +1003,7 @@ DEPENDENCIES
   jd-paperclip-azure (~> 3.0)
   json-ld
   json-ld-preloaded (~> 3.2)
-  json-schema (~> 5.0)
+  json-schema (~> 6.0)
   kaminari (~> 1.2)
   kt-paperclip (~> 7.2)
   letter_opener (~> 1.8)
@@ -1088,7 +1086,7 @@ DEPENDENCIES
   simplecov (~> 0.22)
   simplecov-lcov (~> 0.8)
   stackprof
-  stoplight (~> 4.1)
+  stoplight
   strong_migrations
   test-prof
   thor (~> 1.2)
