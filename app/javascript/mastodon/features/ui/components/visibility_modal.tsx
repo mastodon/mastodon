@@ -161,7 +161,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
           <div className='dialog-modal__content__description'>
             <FormattedMessage
               id='visibility_modal.instructions'
-              defaultMessage='Control who can interact with this post. Global settings can be found under <link>Preferences > Other.</link>'
+              defaultMessage='Control who can interact with this post. Global settings can be found under <link>Preferences > Other</link>.'
               values={{
                 link: (chunks) => (
                   <a href='/settings/preferences/other'>{chunks}</a>
