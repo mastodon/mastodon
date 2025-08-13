@@ -20,7 +20,7 @@ module DomainNormalizable
 
     def domain_variants(domain)
       segments = domain.to_s.split('.')
-      segments.map.with_index { |_, i| segments[i..].join('.') }
+      Array.new(segments.size) { |i| segments[i..].join('.') }
     end
   end
 
