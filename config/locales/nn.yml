@@ -190,6 +190,7 @@ nn:
         create_relay: Opprett eit relé
         create_unavailable_domain: Opprett utilgjengeleg domene
         create_user_role: Opprett rolle
+        create_username_block: Lag regel for brukarnamn
         demote_user: Degrader brukar
         destroy_announcement: Slett lysinga
         destroy_canonical_email_block: Fjern e-postblokkering
@@ -203,6 +204,7 @@ nn:
         destroy_status: Slett status
         destroy_unavailable_domain: Slett utilgjengeleg domene
         destroy_user_role: Øydelegg rolle
+        destroy_username_block: Slett regel for brukarnamn
         disable_2fa_user: Skruv av 2FA
         disable_custom_emoji: Skruv av tilpassa emoji
         disable_relay: Skru av reléet
@@ -237,6 +239,7 @@ nn:
         update_report: Oppdater rapport
         update_status: Oppdater tut
         update_user_role: Oppdater rolla
+        update_username_block: Oppdater regel for brukarnamn
       actions:
         approve_appeal_html: "%{name} godkjende klagen frå %{target} på modereringa"
         approve_user_html: "%{name} godkjende registreringa til %{target}"
@@ -255,6 +258,7 @@ nn:
         create_relay_html: "%{name} laga reléet %{target}"
         create_unavailable_domain_html: "%{name} stogga levering til domenet %{target}"
         create_user_role_html: "%{name} oppretta rolla %{target}"
+        create_username_block_html: "%{name} laga ein regel for brukarnamn som inneheld %{target}"
         demote_user_html: "%{name} degraderte brukaren %{target}"
         destroy_announcement_html: "%{name} sletta kunngjeringa %{target}"
         destroy_canonical_email_block_html: "%{name} avblokkerte e-post med hash %{target}"
@@ -268,6 +272,7 @@ nn:
         destroy_status_html: "%{name} fjerna innlegget frå %{target}"
         destroy_unavailable_domain_html: "%{name} tok opp att levering til domenet %{target}"
         destroy_user_role_html: "%{name} sletta rolla %{target}"
+        destroy_username_block_html: "%{name} fjerna regelen for brukarnamn som inneheld %{target}"
         disable_2fa_user_html: "%{name} tok vekk krav om tofaktorautentisering for brukaren %{target}"
         disable_custom_emoji_html: "%{name} deaktiverte emojien %{target}"
         disable_relay_html: "%{name} skrudde av reléet %{target}"
@@ -302,6 +307,7 @@ nn:
         update_report_html: "%{name} oppdaterte rapporten %{target}"
         update_status_html: "%{name} oppdaterte innlegg av %{target}"
         update_user_role_html: "%{name} endret %{target} -rolle"
+        update_username_block_html: "%{name} oppdaterte regelen for brukarnamn som inneheld %{target}"
       deleted_account: sletta konto
       empty: Ingen loggar funne.
       filter_by_action: Sorter etter handling
@@ -1085,6 +1091,25 @@ nn:
           other: Brukt av %{count} personer i løpet av den seneste uken
       title: Anbefalingar og trendar
       trending: Trender
+    username_blocks:
+      add_new: Lag ny
+      block_registrations: Blokker registreringar
+      comparison:
+        contains: Inneheld
+        equals: Er lik
+      contains_html: Inneheld %{string}
+      created_msg: Laga regelen for brukarnamn
+      delete: Slett
+      edit:
+        title: Rediger regelen for brukarnamn
+      matches_exactly_html: Er lik %{string}
+      new:
+        create: Lag regel
+        title: Lag ein ny regel for brukarnamn
+      no_username_block_selected: Ingen brukarnamnreglar vart endra fordi du ikkje valde nokon
+      not_permitted: Ikkje tillate
+      title: Reglar for brukarnamn
+      updated_msg: Oppdaterte regelen for brukarnamn
     warning_presets:
       add_new: Legg til ny
       delete: Slett
@@ -1349,6 +1374,10 @@ nn:
     basic_information: Grunnleggande informasjon
     hint_html: "<strong>Tilpass kva folk ser på den offentlege profilen din og ved sida av innlegga dine.</strong> Andre vil i større grad fylgja og samhandla med deg når du har eit profilbilete og har fyllt ut profilen din."
     other: Anna
+  emoji_styles:
+    auto: Auto
+    native: Innebygd
+    twemoji: Twemoji
   errors:
     '400': Søknaden du sende var ugyldig eller sett opp feil.
     '403': Du har ikkje løyve til å sjå denne sida.
@@ -1658,6 +1687,10 @@ nn:
       title: Ny omtale
     poll:
       subject: Meiningsmålinga frå %{name} er avslutta
+    quote:
+      body: 'Innlegget ditt vart sitert av %{name}:'
+      subject: "%{name} siterte innlegget ditt"
+      title: Nytt sitat
     reblog:
       body: 'Statusen din vart framheva av %{name}:'
       subject: "%{name} framheva statusen din"
@@ -1868,6 +1901,7 @@ nn:
     edited_at_html: Redigert %{date}
     errors:
       in_reply_not_found: Det ser ut til at tutet du freistar å svara ikkje finst.
+      quoted_status_not_found: Innlegget du prøver å sitera ser ikkje ut til å finnast.
     over_character_limit: øvregrensa for teikn, %{max}, er nådd
     pin_errors:
       direct: Innlegg som bare er synlige for nevnte brukere kan ikke festes
@@ -1875,6 +1909,8 @@ nn:
       ownership: Du kan ikkje festa andre sine tut
       reblog: Ei framheving kan ikkje festast
     quote_policies:
+      followers: Berre dei som fylgjer deg
+      nobody: Ingen
       public: Alle
     title: "%{name}: «%{quote}»"
     visibilities:

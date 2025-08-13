@@ -56,10 +56,12 @@ nn:
         scopes: API-ane som programmet vil få tilgjenge til. Ettersom du vel eit toppnivåomfang tarv du ikkje velja einskilde API-ar.
         setting_aggregate_reblogs: Ikkje vis nye framhevingar for tut som nyleg har vorte heva fram (Påverkar berre nylege framhevingar)
         setting_always_send_emails: Vanlegvis vil ikkje e-postvarsel bli sendt når du brukar Mastodon aktivt
+        setting_default_quote_policy: Denne innstillinga har berre verknad for innlegg som er laga med den neste utgåva av Mastodon, men du kan velja kva du vil ha i førebuingane.
         setting_default_sensitive: Sensitive media vert gøymde som standard, og du syner dei ved å klikka på dei
         setting_display_media_default: Gøym media som er merka som sensitive
         setting_display_media_hide_all: Alltid skjul alt media
         setting_display_media_show_all: Vis alltid media
+        setting_emoji_style: Korleis du skal visa smilefjes. «Auto» prøver å visa innebygde smilefjes, men bruker Twemoji som reserveløysing for eldre nettlesarar.
         setting_system_scrollbars_ui: Gjeld berre skrivebordsnettlesarar som er bygde på Safari og Chrome
         setting_use_blurhash: Overgangar er basert på fargane til skjulte grafikkelement, men gjer detaljar utydelege
         setting_use_pending_items: Gøym tidslineoppdateringar bak eit klikk, i staden for å rulla ned automatisk
@@ -148,6 +150,9 @@ nn:
         min_age: Skal ikkje vere under minstealder som krevst av lover i jurisdiksjonen din.
       user:
         chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
+        date_of_birth:
+          one: Me må sikra oss at du er minst %{count} for å bruka %{domain}. Me lagrar ikkje dette.
+          other: Me må sikra oss at du er minst %{count} for å bruka %{domain}. Me lagrar ikkje dette.
         role: Rolla kontrollerer kva løyve brukaren har.
       user_role:
         color: Fargen som skal nyttast for denne rolla i heile brukargrensesnittet, som RGB i hex-format
@@ -155,6 +160,10 @@ nn:
         name: Offentleg namn på rolla, dersom rolla skal visast som eit emblem
         permissions_as_keys: Brukarar med denne rolla vil ha tilgang til...
         position: Høgare rolle avgjer konfliktløysing i visse situasjonar. Visse handlingar kan berre utførast på roller med lågare prioritet
+      username_block:
+        allow_with_approval: I staden for å hindra registreringar i det heile, må du godkjenna registreringar som passar
+        comparison: Ver merksam på Scunthorpe-problemet når du blokkerer delvise treff
+        username: Vil passa uansett store og små bokstavar og vanlege homoglyfar som «4» for «a» eller «3» for «e»
       webhook:
         events: Vel hendingar å senda
         template: Skriv di eiga JSON nyttelast ved å bruka variabel interpolering. La stå tom for standard JSON.
@@ -237,6 +246,7 @@ nn:
         setting_display_media_default: Standard
         setting_display_media_hide_all: Gøym alle
         setting_display_media_show_all: Vis alle
+        setting_emoji_style: Stil for smilefjes
         setting_expand_spoilers: Vid alltid ut tut som er merka med innhaldsåtvaringar
         setting_hide_network: Gøym nettverket ditt
         setting_missing_alt_text_modal: Vis stadfestingsdialog før du legg ut media utan alt-tekst
@@ -319,6 +329,7 @@ nn:
         follow_request: Send e-post når nokon spør om å fylgja deg
         mention: Send e-post når nokon nemner deg
         pending_account: Send e-post når ein ny konto treng gjennomgang
+        quote: Nokon siterte deg
         reblog: Send e-post når nokon framhevar statusen din
         report: Ny rapport er sendt
         software_updates:
@@ -365,6 +376,10 @@ nn:
         name: Namn
         permissions_as_keys: Løyve
         position: Prioritet
+      username_block:
+        allow_with_approval: Tillat registreringar med godkjenning
+        comparison: Samanlikningsmetode
+        username: Ord som skal passa
       webhook:
         events: Aktiverte hendingar
         template: Nyttelastmal
