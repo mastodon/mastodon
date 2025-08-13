@@ -1,5 +1,5 @@
 import { useCallback, useId, useMemo, useRef, useState } from 'react';
-import type { FC } from 'react';
+import type { ComponentPropsWithoutRef, FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 import type { MessageDescriptor } from 'react-intl';
@@ -21,13 +21,16 @@ interface DropdownProps {
   classPrefix: string;
 }
 
-export const Dropdown: FC<DropdownProps> = ({
+export const Dropdown: FC<
+  DropdownProps & Omit<ComponentPropsWithoutRef<'button'>, keyof DropdownProps>
+> = ({
   title,
   disabled,
   items,
   current,
   onChange,
   classPrefix,
+  ...buttonProps
 }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const accessibilityId = useId();
@@ -49,12 +52,13 @@ export const Dropdown: FC<DropdownProps> = ({
     <>
       <button
         type='button'
+        {...buttonProps}
         title={title}
         aria-expanded={open}
         aria-controls={accessibilityId}
         onClick={handleToggle}
         disabled={disabled}
-        className={classNames('dropdown-button', `${classPrefix}__button`, {
+        className={classNames(`${classPrefix}__button`, {
           active: open,
           disabled,
         })}

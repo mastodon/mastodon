@@ -5582,6 +5582,18 @@ a.status-card {
   &__overlay[data-popper-placement] {
     z-index: 9999;
   }
+
+  &__button {
+    color: $primary-text-color;
+    background: var(--input-background-color);
+    border: 1px solid var(--background-border-color);
+    padding: 8px 12px;
+    width: 100%;
+    text-align: left;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 40px;
+  }
 }
 
 .search {
@@ -5873,6 +5885,17 @@ a.status-card {
 
   @media screen and (width <= $mobile-breakpoint) {
     margin-top: auto;
+  }
+}
+
+.modal-root label {
+  cursor: pointer;
+  display: block;
+
+  > span {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
   }
 }
 

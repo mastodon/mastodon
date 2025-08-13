@@ -1,13 +1,17 @@
-import { forwardRef, useCallback, useMemo } from 'react';
+import { forwardRef, useCallback, useId, useMemo } from 'react';
 import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import { changeComposeVisibility } from '@/mastodon/actions/compose';
 import { setStatusQuotePolicy } from '@/mastodon/actions/statuses_typed';
+import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import { isQuotePolicy } from '@/mastodon/api_types/quotes';
+import type { StatusVisibility } from '@/mastodon/api_types/statuses';
 import { Dropdown } from '@/mastodon/components/dropdown';
 import type { SelectItem } from '@/mastodon/components/dropdown_selector';
 import { IconButton } from '@/mastodon/components/icon_button';
+import { messages as privacyMessages } from '@/mastodon/features/compose/components/privacy_dropdown';
 import {
   createAppSelector,
   useAppDispatch,
@@ -60,6 +64,12 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ onClose, statusId }, ref) => {
     const intl = useIntl();
+    const currentVisibility = useAppSelector(
+      (state) =>
+        state.statuses.getIn([statusId, 'visibility'], 'public') as
+          | StatusVisibility
+          | undefined,
+    );
     const currentPolicy = useAppSelector((state) =>
       selectStatusPolicy(state, statusId),
     );
@@ -68,7 +78,32 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
         state.statuses.getIn([statusId, 'isSavingQuotePolicy']) === true,
     );
 
-    const quoteItems = useMemo<SelectItem[]>(
+    const visibilityItems = useMemo<SelectItem<StatusVisibility>[]>(
+      () => [
+        {
+          value: 'public',
+          text: intl.formatMessage(privacyMessages.public_short),
+          meta: intl.formatMessage(privacyMessages.public_long),
+        },
+        {
+          value: 'unlisted',
+          text: intl.formatMessage(privacyMessages.unlisted_short),
+          meta: intl.formatMessage(privacyMessages.unlisted_long),
+        },
+        {
+          value: 'private',
+          text: intl.formatMessage(privacyMessages.private_short),
+          meta: intl.formatMessage(privacyMessages.private_long),
+        },
+        {
+          value: 'direct',
+          text: intl.formatMessage(privacyMessages.direct_short),
+          meta: intl.formatMessage(privacyMessages.direct_long),
+        },
+      ],
+      [intl],
+    );
+    const quoteItems = useMemo<SelectItem<ApiQuotePolicy>[]>(
       () => [
         { value: 'public', text: intl.formatMessage(messages.quotePublic) },
         {
@@ -81,7 +116,17 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
     );
 
     const dispatch = useAppDispatch();
-    const handleChange = useCallback(
+    const handleVisibilityChange = useCallback(
+      (value: string) => {
+        // Published statuses cannot change visibility.
+        if (statusId) {
+          return;
+        }
+        dispatch(changeComposeVisibility(value));
+      },
+      [dispatch, statusId],
+    );
+    const handleQuoteChange = useCallback(
       (value: string) => {
         if (isQuotePolicy(value)) {
           void dispatch(setStatusQuotePolicy({ policy: value, statusId }));
@@ -90,8 +135,11 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
       [dispatch, statusId],
     );
 
+    const privacyDropdownId = useId();
+    const quoteDropdownId = useId();
+
     return (
-      <div className='modal-root__modal dialog-modal'>
+      <div className='modal-root__modal dialog-modal visibility-modal'>
         <div className='dialog-modal__header'>
           <IconButton
             className='dialog-modal__header__close'
@@ -123,14 +171,39 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             />
           </div>
           <div className='dialog-modal__content__form'>
-            <Dropdown
-              items={quoteItems}
-              onChange={handleChange}
-              classPrefix='visibility-dropdown'
-              current={currentPolicy ?? 'public'}
-              title={intl.formatMessage(messages.buttonTitle)}
-              disabled={isSaving}
-            />
+            <label htmlFor={privacyDropdownId}>
+              <FormattedMessage
+                id='visibility_modal.privacy_label'
+                defaultMessage='Privacy'
+              />
+
+              <Dropdown
+                items={visibilityItems}
+                classPrefix='visibility-dropdown'
+                current={currentVisibility ?? 'public'}
+                onChange={handleVisibilityChange}
+                title={intl.formatMessage(privacyMessages.change_privacy)}
+                disabled={isSaving || !statusId}
+                id={privacyDropdownId}
+              />
+            </label>
+
+            <label htmlFor={quoteDropdownId}>
+              <FormattedMessage
+                id='visibility_modal.quote_label'
+                defaultMessage='Quote Approval'
+              />
+
+              <Dropdown
+                items={quoteItems}
+                onChange={handleQuoteChange}
+                classPrefix='visibility-dropdown'
+                current={currentPolicy ?? 'public'}
+                title={intl.formatMessage(messages.buttonTitle)}
+                disabled={isSaving}
+                id={quoteDropdownId}
+              />
+            </label>
           </div>
         </div>
       </div>

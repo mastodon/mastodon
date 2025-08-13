@@ -13,8 +13,8 @@ const listenerOptions = supportsPassiveEvents
   ? { passive: true, capture: true }
   : true;
 
-export interface SelectItem {
-  value: string;
+export interface SelectItem<Value extends string = string> {
+  value: Value;
   icon?: string;
   iconComponent?: IconProp;
   text: string;
