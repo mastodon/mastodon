@@ -22,7 +22,7 @@ module DomainNormalizable
   private
 
   def normalize_domain
-    self.domain = TagManager.instance.normalize_domain(domain&.strip)
+    self.domain = TagManager.instance.normalize_domain(domain)
   rescue Addressable::URI::InvalidURIError
     errors.add(:domain, :invalid)
   end

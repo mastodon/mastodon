@@ -75,7 +75,7 @@ class ReportService < BaseService
   end
 
   def forward_to_domains
-    @forward_to_domains ||= (@options[:forward_to_domains] || [@target_account.domain]).filter_map { |domain| TagManager.instance.normalize_domain(domain&.strip) }.uniq
+    @forward_to_domains ||= (@options[:forward_to_domains] || [@target_account.domain]).filter_map { |domain| TagManager.instance.normalize_domain(domain) }.uniq
   end
 
   def reported_status_ids
