@@ -29,11 +29,11 @@ const messages = defineMessages({
   },
   quoteFollowers: {
     id: 'visibility_modal.quote_followers',
-    defaultMessage: 'Followers and mentions',
+    defaultMessage: 'Followers only',
   },
   quoteNobody: {
     id: 'visibility_modal.quote_nobody',
-    defaultMessage: 'Mentions only',
+    defaultMessage: 'Nobody',
   },
 });
 
