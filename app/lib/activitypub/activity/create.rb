@@ -179,7 +179,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return if @tags.empty? || !status.distributable?
 
     @account.featured_tags.where(tag_id: @tags.pluck(:id)).find_each do |featured_tag|
-      featured_tag.increment(status.created_at)
+      featured_tag.increment_count(status.created_at)
     end
   end
 

@@ -42,11 +42,11 @@ class FeaturedTag < ApplicationRecord
     attributes['name'] || tag.display_name
   end
 
-  def increment(timestamp)
+  def increment_count(timestamp)
     update(statuses_count: statuses_count + 1, last_status_at: timestamp)
   end
 
-  def decrement(deleted_status)
+  def decrement_count(deleted_status)
     if statuses_count <= 1
       update(statuses_count: 0, last_status_at: nil)
     elsif last_status_at.present? && last_status_at > deleted_status.created_at

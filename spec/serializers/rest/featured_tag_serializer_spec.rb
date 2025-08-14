@@ -13,9 +13,7 @@ RSpec.describe REST::FeaturedTagSerializer do
   let(:featured_tag) { Fabricate :featured_tag }
 
   context 'when last_status_at is populated' do
-    before do
-      featured_tag.increment(DateTime.new(2024, 11, 28, 16, 20, 0))
-    end
+    before { featured_tag.update last_status_at: DateTime.new(2024, 11, 28, 16, 20, 0) }
 
     it 'is serialized as yyyy-mm-dd' do
       expect(subject['last_status_at']).to eq('2024-11-28')
