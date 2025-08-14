@@ -14,11 +14,7 @@
       .detailed-status__meta
         %time.formatted{ datetime: status_edit.created_at.iso8601, title: l(status_edit.created_at) }= l(status_edit.created_at)
 
-        - unless status_edit.reblog?
-          ·
-          = material_symbol(visibility_icon(status_edit))
-          = t("statuses.visibilities.#{status_edit.visibility}")
-        - if status_edit.proper.sensitive?
+        - if status_edit.sensitive?
           ·
           = material_symbol('visibility_off')
           = t('stream_entries.sensitive_content')
