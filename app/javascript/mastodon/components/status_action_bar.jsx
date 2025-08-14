@@ -298,7 +298,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
       if (writtenByMe || withDismiss) {
         menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
-        if (writtenByMe && isFeatureEnabled('outgoing_quotes')) {
+        if (writtenByMe && isFeatureEnabled('outgoing_quotes') && !['private', 'direct'].includes(status.get('visibility'))) {
           menu.push({ text: intl.formatMessage(messages.quotePolicyChange), action: this.handleQuotePolicyChange });
         }
         menu.push(null);

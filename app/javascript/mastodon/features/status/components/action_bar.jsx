@@ -247,7 +247,7 @@ class ActionBar extends PureComponent {
         }
 
         menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
-        if (isFeatureEnabled('outgoing_quotes')) {
+        if (isFeatureEnabled('outgoing_quotes') && !['private', 'direct'].includes(status.get('visibility'))) {
           menu.push({ text: intl.formatMessage(messages.quotePolicyChange), action: this.handleQuotePolicyChange });
         }
         menu.push(null);
