@@ -213,7 +213,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
                 <p className='visibility-dropdown__helper'>
                   <FormattedMessage
                     id='visibility_modal.helper.privacy_editing'
-                    defaultMessage='Published posts cannot change their visibility.'
+                    defaultMessage="Visibility can't be changed after a post is published."
                   />
                 </p>
               )}
