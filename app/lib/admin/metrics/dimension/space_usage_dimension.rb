@@ -27,14 +27,12 @@ class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension
   end
 
   def redis_size
-    value = redis_info['used_memory']
-
     {
       key: 'redis',
-      human_key: 'Redis',
-      value: value.to_s,
+      human_key: store_name,
+      value: store_size.to_s,
       unit: 'bytes',
-      human_value: number_to_human_size(value),
+      human_value: number_to_human_size(store_size),
     }
   end
 
