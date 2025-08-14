@@ -32,6 +32,7 @@ RSpec.describe Mastodon::CLI::Accounts do
 
   describe '#create' do
     let(:action) { :create }
+    let(:username) { 'tootctl_username' }
 
     shared_examples 'a new user with given email address and username' do
       it 'creates user and accounts from options and displays success message' do
@@ -48,17 +49,23 @@ RSpec.describe Mastodon::CLI::Accounts do
       end
 
       def account_from_options
-        Account.find_local('tootctl_username')
+        Account.find_local(username)
       end
     end
 
     context 'when required USERNAME and --email are provided' do
-      let(:arguments) { ['tootctl_username'] }
+      let(:arguments) { [username] }
 
       context 'with USERNAME and --email only' do
         let(:options) { { email: 'tootctl@example.com' } }
 
         it_behaves_like 'a new user with given email address and username'
+
+        context 'with a reserved username' do
+          let(:username) { 'security' }
+
+          it_behaves_like 'a new user with given email address and username'
+        end
 
         context 'with invalid --email value' do
           let(:options) { { email: 'invalid' } }

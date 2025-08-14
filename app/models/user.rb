@@ -105,7 +105,7 @@ class User < ApplicationRecord
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
   # Honeypot/anti-spam fields
-  attr_accessor :registration_form_time, :website, :confirm_password
+  attr_accessor :registration_form_time, :website, :confirm_password, :bypass_registration_checks
 
   validates_with RegistrationFormTimeValidator, on: :create
   validates :website, absence: true, on: :create
