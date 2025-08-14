@@ -71,8 +71,16 @@ class Antispam
   end
 
   def report_if_needed!(account)
-    return if Report.unresolved.exists?(account: Account.representative, target_account: account)
+    return if system_reports.unresolved.exists?(target_account: account)
 
-    Report.create!(account: Account.representative, target_account: account, category: :spam, comment: 'Account automatically reported for posting a banned URL')
+    system_reports.create!(
+      category: :spam,
+      comment: 'Account automatically reported for posting a banned URL',
+      target_account: account
+    )
+  end
+
+  def system_reports
+    Account.representative.reports
   end
 end
