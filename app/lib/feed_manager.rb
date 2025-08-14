@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'singleton'
-
 class FeedManager
   include Singleton
   include Redisable
