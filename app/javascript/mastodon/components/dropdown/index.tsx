@@ -30,6 +30,7 @@ export const Dropdown: FC<
   current,
   onChange,
   classPrefix,
+  className,
   ...buttonProps
 }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -58,10 +59,14 @@ export const Dropdown: FC<
         aria-controls={accessibilityId}
         onClick={handleToggle}
         disabled={disabled}
-        className={classNames(`${classPrefix}__button`, {
-          active: open,
-          disabled,
-        })}
+        className={classNames(
+          `${classPrefix}__button`,
+          {
+            active: open,
+            disabled,
+          },
+          className,
+        )}
         ref={buttonRef}
       >
         {currentText ?? (
