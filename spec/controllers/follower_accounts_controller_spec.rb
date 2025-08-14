@@ -57,6 +57,17 @@ RSpec.describe FollowerAccountsController do
             )
         end
 
+        context 'when account hides their network' do
+          before { alice.update(hide_collections: true) }
+
+          it 'returns forbidden response' do
+            expect(response)
+              .to have_http_status(403)
+            expect(response.parsed_body)
+              .to include(error: /forbidden/i)
+          end
+        end
+
         context 'when account is permanently suspended' do
           before do
             alice.suspend!
