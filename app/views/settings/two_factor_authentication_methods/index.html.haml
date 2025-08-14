@@ -1,10 +1,10 @@
 - content_for :page_title do
   = t('settings.two_factor_authentication')
 
-- content_for :heading_actions do
-  = link_to t('two_factor_authentication.disable'), disable_settings_two_factor_authentication_methods_path, class: 'button button--destructive', method: :post
-
 - if current_user.two_factor_enabled?
+  - content_for :heading_actions do
+    = link_to t('two_factor_authentication.disable'), disable_settings_two_factor_authentication_methods_path, class: 'button button--destructive', method: :post
+
   %p.hint
     %span.positive-hint
       = material_symbol 'check'
