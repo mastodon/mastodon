@@ -40,7 +40,10 @@ interface AppThunkConfig {
   fulfilledMeta: AppMeta;
   rejectedMeta: AppMeta;
 }
-type AppThunkApi = Pick<GetThunkAPI<AppThunkConfig>, 'getState' | 'dispatch'>;
+export type AppThunkApi = Pick<
+  GetThunkAPI<AppThunkConfig>,
+  'getState' | 'dispatch'
+>;
 
 interface AppThunkOptions<Arg> {
   useLoadingBar?: boolean;
