@@ -90,5 +90,31 @@ RSpec.describe 'Interaction policies', feature: :outgoing_quotes do
           .to_not have_enqueued_sidekiq_job
       end
     end
+
+    context 'when trying to change the interaction policy of a private post' do
+      let(:status) { Fabricate(:status, account: user.account, visibility: :private) }
+      let(:params) { { quote_approval_policy: 'public' } }
+
+      it 'keeps the interaction policy, returns the status, and does not schedule distribution jobs' do
+        expect { subject }
+          .to_not(change { status.reload.quote_approval_policy }.from(0))
+
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body).to include(
+          'quote_approval' => match(
+            'automatic' => [],
+            'manual' => [],
+            'current_user' => 'automatic'
+          )
+        )
+
+        expect(DistributionWorker)
+          .to_not have_enqueued_sidekiq_job
+        expect(ActivityPub::StatusUpdateDistributionWorker)
+          .to_not have_enqueued_sidekiq_job
+      end
+    end
   end
 end

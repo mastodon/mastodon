@@ -10,6 +10,10 @@ module Status::InteractionPolicyConcern
     followed: (1 << 3),
   }.freeze
 
+  included do
+    before_validation :downgrade_quote_policy, if: -> { local? && !distributable? }
+  end
+
   def quote_policy_as_keys(kind)
     case kind
     when :automatic
@@ -51,5 +55,9 @@ module Status::InteractionPolicyConcern
     return :unknown if (automatic_policy | manual_policy).anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:unknown])
 
     :denied
+  end
+
+  def downgrade_quote_policy
+    self.quote_approval_policy = 0
   end
 end
