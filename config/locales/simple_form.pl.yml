@@ -150,6 +150,11 @@ pl:
         min_age: Nie powinien być niższy niż minimalny wiek wymagany przez prawo twojego państwa.
       user:
         chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą wyświetlane na publicznych osiach czasu
+        date_of_birth:
+          few: Musimy upewnić się, że jesteś co najmniej %{count} aby użyć %{domain}. Nie będziemy tego przechowywać.
+          many: Musimy upewnić się, że jesteś co najmniej %{count} aby użyć %{domain}. Nie będziemy tego przechowywać.
+          one: Musimy upewnić się, że jesteś co najmniej %{count} aby użyć %{domain}. Nie będziemy tego przechowywać.
+          other: Musimy upewnić się, że jesteś co najmniej %{count} aby użyć %{domain}. Nie będziemy tego przechowywać.
         role: Rola kontroluje uprawnienia użytkownika.
       user_role:
         color: Kolor używany dla roli w całym interfejsie użytkownika, wyrażony jako RGB w formacie szesnastkowym
