@@ -905,6 +905,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_05_075010) do
     t.datetime "published_at"
     t.string "image_description", default: "", null: false
     t.bigint "author_account_id"
+    t.string "image_remote_url"
     t.index ["author_account_id"], name: "index_preview_cards_on_author_account_id", where: "(author_account_id IS NOT NULL)"
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
