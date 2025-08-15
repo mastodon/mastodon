@@ -37,7 +37,7 @@ class CustomEmojiFilter
     when 'by_domain'
       CustomEmoji.where(domain: value)
     when 'shortcode'
-      CustomEmoji.search(value.strip)
+      CustomEmoji.search(value)
     else
       raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end

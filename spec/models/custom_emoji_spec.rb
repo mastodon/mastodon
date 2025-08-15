@@ -17,6 +17,13 @@ RSpec.describe CustomEmoji, :attachment_processing do
       end
     end
 
+    context 'when search term is not normalized' do
+      let(:shortcode) { 'blobpats' }
+      let(:search_term) { '  blobpats  ' }
+
+      it { is_expected.to include(custom_emoji) }
+    end
+
     context 'when shortcode is partial' do
       let(:shortcode) { 'blobpats' }
       let(:search_term) { 'blob' }
@@ -83,6 +90,8 @@ RSpec.describe CustomEmoji, :attachment_processing do
       it { is_expected.to normalize(:domain).from('  www.mastodon.host   ').to('www.mastodon.host') }
       it { is_expected.to normalize(:domain).from('wWw.MaStOdOn.CoM').to('www.mastodon.com') }
       it { is_expected.to normalize(:domain).from(nil).to(nil) }
+
+      it { is_expected.to normalize(:shortcode).from('  test   ').to('test') }
     end
   end
 
