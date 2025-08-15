@@ -34,8 +34,11 @@ class Admin::Instances::ModerationNotesController < Admin::BaseController
   end
 
   def set_instance
-    domain = params[:instance_id]&.strip
-    @instance = Instance.find_or_initialize_by(domain: TagManager.instance.normalize_domain(domain))
+    @instance = Instance.find_or_initialize_by(domain: normalized_domain)
+  end
+
+  def normalized_domain
+    TagManager.instance.normalize_domain(params[:instance_id])
   end
 
   def set_instance_note
