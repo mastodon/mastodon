@@ -91,7 +91,7 @@ development environment configured with the software needed for this project.
 ## Next steps
 
 - Once you have successfully set up a development environment, it will be available on http://localhost:3000
-- Log in as the default admin user with the username `admin@mastodon.local` and the password `mastodonadmin`.
+- Log in as the default admin user with the username `admin@mastodon.local` or `admin@localhost` (depending on your setup) and the password `mastodonadmin`.
 - Check out the [Mastodon docs] for tips on working with emails in development (you'll need this when creating new user accounts) as well as a list of useful commands for testing and updating your dev instance.
 - You can optionally populate your database with sample data by running `bin/rails dev:populate_sample_data`. This will create a `@showcase_account` account with various types of contents.
 
