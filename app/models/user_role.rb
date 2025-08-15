@@ -103,7 +103,7 @@ class UserRole < ApplicationRecord
 
   scope :assignable, -> { where.not(id: EVERYONE_ROLE_ID).order(position: :asc) }
 
-  has_many :users, inverse_of: :role, foreign_key: 'role_id', dependent: :nullify
+  has_many :users, inverse_of: :role, foreign_key: :role_id, dependent: :nullify
 
   def self.nobody
     @nobody ||= UserRole.new(permissions: Flags::NONE, position: NOBODY_POSITION)

@@ -19,7 +19,7 @@ class Appeal < ApplicationRecord
   TEXT_LENGTH_LIMIT = 2_000
 
   belongs_to :account
-  belongs_to :strike, class_name: 'AccountWarning', foreign_key: 'account_warning_id', inverse_of: :appeal
+  belongs_to :strike, class_name: 'AccountWarning', foreign_key: :account_warning_id, inverse_of: :appeal
 
   with_options class_name: 'Account', optional: true do
     belongs_to :approved_by_account
