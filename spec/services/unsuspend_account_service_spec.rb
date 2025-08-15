@@ -49,18 +49,15 @@ RSpec.describe UnsuspendAccountService do
       it 'merges back into feeds of local followers and sends update', :inline_jobs do
         subject
 
-        expect_feeds_merged
-        expect_updates_sent
-      end
+        expect(FeedManager.instance)
+          .to have_received(:merge_into_home).with(account, local_follower)
+        expect(FeedManager.instance)
+          .to have_received(:merge_into_list).with(account, list)
 
-      def expect_feeds_merged
-        expect(FeedManager.instance).to have_received(:merge_into_home).with(account, local_follower)
-        expect(FeedManager.instance).to have_received(:merge_into_list).with(account, list)
-      end
-
-      def expect_updates_sent
-        expect(a_request(:post, remote_follower.inbox_url).with { |req| match_update_actor_request(req, account) }).to have_been_made.once
-        expect(a_request(:post, remote_reporter.inbox_url).with { |req| match_update_actor_request(req, account) }).to have_been_made.once
+        expect(a_request(:post, remote_follower.inbox_url).with { |req| match_update_actor_request(req, account) })
+          .to have_been_made.once
+        expect(a_request(:post, remote_reporter.inbox_url).with { |req| match_update_actor_request(req, account) })
+          .to have_been_made.once
       end
     end
   end
