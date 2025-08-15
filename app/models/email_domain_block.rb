@@ -64,13 +64,7 @@ class EmailDomainBlock < ApplicationRecord
     end
 
     def domains_with_variants
-      @uris.flat_map do |uri|
-        next if uri.nil?
-
-        segments = uri.normalized_host.split('.')
-
-        segments.map.with_index { |_, i| segments[i..].join('.') }
-      end
+      @uris.compact.flat_map { |uri| EmailDomainBlock.domain_variants(uri.normalized_host) }.uniq
     end
 
     def extract_uris(domain_or_domains)
