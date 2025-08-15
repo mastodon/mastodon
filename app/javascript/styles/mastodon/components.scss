@@ -602,15 +602,12 @@ body > [data-popper-placement] {
   &__highlightable {
     display: flex;
     flex-direction: column;
-    gap: 16px;
     flex: 0 1 auto;
     border-radius: 4px;
     border: 1px solid var(--background-border-color);
     transition: border-color 300ms linear;
-    min-height: 0;
     position: relative;
     background: var(--input-background-color);
-    overflow-y: auto;
 
     &.active {
       transition: none;
@@ -705,6 +702,8 @@ body > [data-popper-placement] {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin: 8px;
+    flex-wrap: wrap;
 
     & > div {
       overflow: hidden;
@@ -715,6 +714,7 @@ body > [data-popper-placement] {
   &__uploads {
     padding: 0 12px;
     aspect-ratio: 3/2;
+    flex-shrink: 0;
   }
 
   .media-gallery {
@@ -813,7 +813,6 @@ body > [data-popper-placement] {
     flex-direction: column;
     gap: 12px;
     padding: 12px;
-    padding-top: 0;
   }
 
   &__submit {
@@ -874,6 +873,7 @@ body > [data-popper-placement] {
   }
 
   &__poll {
+    margin-top: 8px;
     display: flex;
     flex-direction: column;
     align-self: stretch;
@@ -3518,11 +3518,10 @@ a.account__display-name {
   display: flex;
   flex-direction: column;
   height: calc(100% - 10px);
-  overflow-y: hidden;
+  overflow-y: auto;
 
   .compose-form {
     flex: 1 1 auto;
-    min-height: 0;
   }
 }
 
@@ -5403,7 +5402,8 @@ a.status-card {
 }
 
 .privacy-dropdown__dropdown,
-.language-dropdown__dropdown {
+.language-dropdown__dropdown,
+.visibility-dropdown__dropdown {
   box-shadow: var(--dropdown-shadow);
   background: var(--dropdown-background-color);
   backdrop-filter: $backdrop-blur-filter;
@@ -5432,7 +5432,8 @@ a.status-card {
   z-index: 9999;
 }
 
-.privacy-dropdown__option {
+.privacy-dropdown__option,
+.visibility-dropdown__option {
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.25px;
@@ -5575,6 +5576,39 @@ a.status-card {
         }
       }
     }
+  }
+}
+
+.visibility-dropdown {
+  &__overlay[data-popper-placement] {
+    z-index: 9999;
+  }
+
+  &__label.disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  &__button {
+    color: $primary-text-color;
+    background: var(--dropdown-background-color);
+    border: 1px solid var(--dropdown-border-color);
+    padding: 8px 12px;
+    width: 100%;
+    text-align: left;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 40px;
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  &__helper {
+    margin-top: 4px;
+    font-size: 0.8em;
+    color: $dark-text-color;
   }
 }
 
@@ -5867,6 +5901,17 @@ a.status-card {
 
   @media screen and (width <= $mobile-breakpoint) {
     margin-top: auto;
+  }
+}
+
+.modal-root label {
+  cursor: pointer;
+  display: block;
+
+  > span {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
   }
 }
 
@@ -6375,6 +6420,15 @@ a.status-card {
     line-height: 20px;
     letter-spacing: 0.25px;
     overflow-y: auto;
+
+    &__description {
+      margin: 24px 24px 0;
+      color: $darker-text-color;
+
+      a {
+        color: inherit;
+      }
+    }
 
     &__form {
       display: flex;

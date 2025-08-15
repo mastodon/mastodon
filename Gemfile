@@ -82,7 +82,7 @@ gem 'rqrcode', '~> 3.0'
 gem 'ruby-progressbar', '~> 1.13'
 gem 'sanitize', '~> 7.0'
 gem 'scenic', '~> 1.7'
-gem 'sidekiq', '< 8'
+gem 'sidekiq', '< 9'
 gem 'sidekiq-bulk', '~> 0.2.0'
 gem 'sidekiq-scheduler', '~> 6.0'
 gem 'sidekiq-unique-jobs', '> 8'
@@ -109,10 +109,10 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-active_job', '~> 0.8.0', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.22.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.22.0', require: false
-  gem 'opentelemetry-instrumentation-excon', '~> 0.23.0', require: false
-  gem 'opentelemetry-instrumentation-faraday', '~> 0.27.0', require: false
+  gem 'opentelemetry-instrumentation-excon', '~> 0.24.0', require: false
+  gem 'opentelemetry-instrumentation-faraday', '~> 0.28.0', require: false
   gem 'opentelemetry-instrumentation-http', '~> 0.25.0', require: false
-  gem 'opentelemetry-instrumentation-http_client', '~> 0.23.0', require: false
+  gem 'opentelemetry-instrumentation-http_client', '~> 0.24.0', require: false
   gem 'opentelemetry-instrumentation-net_http', '~> 0.23.0', require: false
   gem 'opentelemetry-instrumentation-pg', '~> 0.30.0', require: false
   gem 'opentelemetry-instrumentation-rack', '~> 0.26.0', require: false
