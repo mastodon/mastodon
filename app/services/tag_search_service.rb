@@ -39,7 +39,7 @@ class TagSearchService < BaseService
   def ensure_exact_match(results)
     return results unless @offset.nil? || @offset.zero?
 
-    normalized_query = Tag.normalize(@query)
+    normalized_query = Tag.normalize_value_for(:name, @query)
     exact_match = results.find { |tag| tag.name.downcase == normalized_query }
     exact_match ||= Tag.find_normalized(normalized_query)
     unless exact_match.nil?
