@@ -23,11 +23,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     super(&:build_invite_request)
   end
 
-  def edit # rubocop:disable Lint/UselessMethodDefinition
+  def edit
     super
   end
 
-  def create # rubocop:disable Lint/UselessMethodDefinition
+  def create
     super
   end
 

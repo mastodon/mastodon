@@ -38,11 +38,7 @@ export const EmojiHTML = <Element extends ElementType>(
   if (isModernEmojiEnabled()) {
     return <ModernEmojiHTML {...props} />;
   }
-  const Wrapper = props.as ?? 'div';
-  return (
-    <Wrapper
-      {...props}
-      dangerouslySetInnerHTML={{ __html: props.htmlString }}
-    />
-  );
+  const { as: asElement, htmlString, extraEmojis, ...rest } = props;
+  const Wrapper = asElement ?? 'div';
+  return <Wrapper {...rest} dangerouslySetInnerHTML={{ __html: htmlString }} />;
 };
