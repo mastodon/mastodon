@@ -16,7 +16,7 @@
 
 .status-card__actions button,
 .status-card__actions a {
-  color: rgba($white, 0.8);
+  color: color.change($white, $alpha: 0.8);
 
   &:hover,
   &:active,
@@ -298,14 +298,14 @@
 .simple_form {
   .warning {
     box-shadow: none;
-    background: rgba($error-red, 0.5);
+    background: color.change($error-red, $alpha: 0.5);
     text-shadow: none;
   }
 
   .recommended {
     border-color: $ui-highlight-color;
     color: $ui-highlight-color;
-    background-color: rgba($ui-highlight-color, 0.1);
+    background-color: color.change($ui-highlight-color, $alpha: 0.1);
   }
 
   input[type='text'],
@@ -327,7 +327,7 @@
 
 .compose-form .compose-form__warning {
   border-color: $ui-highlight-color;
-  background-color: rgba($ui-highlight-color, 0.1);
+  background-color: color.change($ui-highlight-color, $alpha: 0.1);
 
   &,
   a {
@@ -375,10 +375,10 @@
 }
 
 .status__wrapper-direct {
-  background-color: rgba($ui-highlight-color, 0.1);
+  background-color: color.change($ui-highlight-color, $alpha: 0.1);
 
   &:focus {
-    background-color: rgba($ui-highlight-color, 0.15);
+    background-color: color.change($ui-highlight-color, $alpha: 0.15);
   }
 }
 
@@ -433,8 +433,8 @@
 }
 
 .inline-follow-suggestions {
-  background-color: rgba($ui-highlight-color, 0.1);
-  border-bottom-color: rgba($ui-highlight-color, 0.3);
+  background-color: color.change($ui-highlight-color, $alpha: 0.1);
+  border-bottom-color: color.change($ui-highlight-color, $alpha: 0.3);
 }
 
 .inline-follow-suggestions__body__scrollable__card {
@@ -508,7 +508,7 @@ a.sparkline {
 
 @supports not selector(::-webkit-scrollbar) {
   html {
-    scrollbar-color: rgba($action-button-color, 0.25)
+    scrollbar-color: color.change($action-button-color, $alpha: 0.25)
       var(--background-border-color);
   }
 }

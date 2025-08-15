@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'variables' as *;
 @use 'functions' as *;
 
@@ -16,7 +17,7 @@
       padding: 15px;
       text-decoration: none;
       color: inherit;
-      box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+      box-shadow: 0 0 15px color.change($base-shadow-color, $alpha: 0.2);
     }
 
     & > a {

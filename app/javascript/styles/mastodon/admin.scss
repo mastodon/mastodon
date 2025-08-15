@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'sass:math';
 @use 'functions' as *;
 @use 'variables' as *;
@@ -1255,7 +1256,7 @@ a.name-tag,
     }
 
     path:first-child {
-      fill: rgba($highlight-text-color, 0.25) !important;
+      fill: color.change($highlight-text-color, $alpha: 0.25) !important;
       fill-opacity: 1 !important;
     }
 
