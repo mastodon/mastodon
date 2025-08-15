@@ -23,6 +23,7 @@
         - if current_user.otp_enabled?
           %td
             = table_link_to 'edit', t('two_factor_authentication.edit'), settings_otp_authentication_path, method: :get
+            = table_link_to 'delete', t('otp_authentication.delete'), settings_otp_authentication_path, method: :delete, data: { confirm: t('otp_authentication.delete_confirmation') }
         - else
           %td
             = table_link_to 'add', t('two_factor_authentication.add'), settings_otp_authentication_path, method: :get
