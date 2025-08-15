@@ -3820,7 +3820,10 @@ a.account__display-name {
   border-radius: 10px;
   padding: 0;
   user-select: none;
-  -webkit-tap-highlight-color: color.change($base-overlay-background, $alpha: 0);
+  -webkit-tap-highlight-color: color.change(
+    $base-overlay-background,
+    $alpha: 0
+  );
   -webkit-tap-highlight-color: transparent;
 }
 
