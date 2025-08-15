@@ -100,3 +100,17 @@ az:
       already_signed_out: Uğurla hesabdan çıxış edildi.
       signed_in: Uğurla hesaba daxil olundu.
       signed_out: Uğurla hesabdan çıxış edildi.
+    unlocks:
+      send_instructions: Bir neçə dəqiqə ərzində e-poçt ünvanınızın kilidini necə açmaqla bağlı təlimatlar olan bir e-poçt alacaqsınız. Bu e-poçtu almamısınızsa, lütfən spam qovluğunuzu yoxlayın.
+      send_paranoid_instructions: Əgər hesabınız mövcuddursa, bir neçə dəqiqə ərzində e-poçt ünvanınızın kilidini necə açmaqla bağlı təlimatlar olan bir e-poçt alacaqsınız. Bu e-poçtu almamısınızsa, lütfən spam qovluğunuzu yoxlayın.
+      unlocked: Hesabınızın kilidi uğurla açıldı. Davam etmək üçün lütfən giriş edin.
+  errors:
+    messages:
+      already_confirmed: artıq təsdiqlənib, lütfən hesabınıza daxil olmağa çalışın
+      confirmation_period_expired: "%{period} ərzində təsdiqlənməsi lazımdır, lütfən yenisini tələb edin"
+      expired: müddəti bitib, lütfən yenisini tələb edin
+      not_found: tapılmadı
+      not_locked: kilidlənməyib
+      not_saved:
+        one: '1 xəta, bu %{resource} resursunu saxlamağı qadağan etdi:'
+        other: "%{count} xəta, bu %{resource} resursunu saxlamağı qadağan etdi:"
