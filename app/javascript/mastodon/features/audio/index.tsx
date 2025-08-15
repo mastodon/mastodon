@@ -13,6 +13,7 @@ import PlayArrowIcon from '@/material-icons/400-24px/play_arrow-fill.svg?react';
 import Replay5Icon from '@/material-icons/400-24px/replay_5-fill.svg?react';
 import VolumeOffIcon from '@/material-icons/400-24px/volume_off-fill.svg?react';
 import VolumeUpIcon from '@/material-icons/400-24px/volume_up-fill.svg?react';
+import { AltTextBadge } from 'mastodon/components/alt_text_badge';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon } from 'mastodon/components/icon';
 import { SpoilerButton } from 'mastodon/components/spoiler_button';
@@ -810,6 +811,12 @@ export const Audio: React.FC<{
           <div className='video-player__buttons right'>
             {!editable && (
               <>
+                {alt && (
+                  <div className='video-player__alt'>
+                    <AltTextBadge description={alt} />
+                  </div>
+                )}
+
                 <button
                   type='button'
                   className='player-button'
