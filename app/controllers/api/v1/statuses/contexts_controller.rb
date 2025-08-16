@@ -36,11 +36,14 @@ class Api::V1::Statuses::ContextsController < Api::BaseController
       add_async_refresh_header(async_refresh)
     elsif current_account.present? && @status.should_fetch_replies?
       add_async_refresh_header(AsyncRefresh.create(refresh_key))
+      queue_fetch_replies_worker_batch
+    end
+  end
 
-      WorkerBatch.new.within do |batch|
-        batch.connect(refresh_key, threshold: 1.0)
-        ActivityPub::FetchAllRepliesWorker.perform_async(@status.id, { 'batch_id' => batch.id })
-      end
+  def queue_fetch_replies_worker_batch
+    WorkerBatch.new.within do |batch|
+      batch.connect(refresh_key, threshold: 1.0)
+      ActivityPub::FetchAllRepliesWorker.perform_async(@status.id, { 'batch_id' => batch.id })
     end
   end
 
