@@ -2,7 +2,6 @@
 
 class Api::V1::StatusesController < Api::BaseController
   include Authorization
-  include AsyncRefreshesConcern
   include Api::InteractionPoliciesConcern
 
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :update, :destroy]
