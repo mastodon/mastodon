@@ -24,10 +24,14 @@ class Api::V1::Statuses::ContextsController < Api::BaseController
 
     process_async_refresh!
 
-    render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
+    render json: @context, serializer: REST::ContextSerializer, relationships:
   end
 
   private
+
+  def relationships
+    StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
+  end
 
   def process_async_refresh!
     async_refresh = AsyncRefresh.new(refresh_key)
