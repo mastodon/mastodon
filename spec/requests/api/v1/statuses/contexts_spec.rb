@@ -24,6 +24,8 @@ RSpec.describe 'API V1 Statuses Contexts' do
             .to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
+          expect(response.parsed_body)
+            .to include(ancestors: be_an(Array)).and include(descendants: be_an(Array))
         end
       end
 
@@ -39,6 +41,8 @@ RSpec.describe 'API V1 Statuses Contexts' do
             .to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
+          expect(response.parsed_body)
+            .to include(ancestors: be_an(Array)).and include(descendants: be_an(Array))
         end
       end
     end
@@ -56,6 +60,8 @@ RSpec.describe 'API V1 Statuses Contexts' do
             .to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
+          expect(response.parsed_body)
+            .to include(ancestors: be_an(Array)).and include(descendants: be_an(Array))
         end
       end
 
@@ -71,6 +77,8 @@ RSpec.describe 'API V1 Statuses Contexts' do
             .to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
+          expect(response.parsed_body)
+            .to include(ancestors: be_an(Array)).and include(descendants: be_an(Array))
         end
       end
     end
