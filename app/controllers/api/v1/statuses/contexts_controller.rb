@@ -20,16 +20,6 @@ class Api::V1::Statuses::ContextsController < Api::BaseController
   def show
     cache_if_unauthenticated!
 
-    ancestors_limit         = CONTEXT_LIMIT
-    descendants_limit       = CONTEXT_LIMIT
-    descendants_depth_limit = nil
-
-    if current_account.nil?
-      ancestors_limit         = ANCESTORS_LIMIT
-      descendants_limit       = DESCENDANTS_LIMIT
-      descendants_depth_limit = DESCENDANTS_DEPTH_LIMIT
-    end
-
     ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(ancestors_limit, current_account)
     descendants_results = @status.descendants(descendants_limit, current_account, descendants_depth_limit)
     loaded_ancestors    = preload_collection(ancestors_results, Status)
@@ -56,6 +46,18 @@ class Api::V1::Statuses::ContextsController < Api::BaseController
   end
 
   private
+
+  def ancestors_limit
+    current_account.present? ? CONTEXT_LIMIT : ANCESTORS_LIMIT
+  end
+
+  def descendants_limit
+    current_account.present? ? CONTEXT_LIMIT : DESCENDANTS_LIMIT
+  end
+
+  def descendants_depth_limit
+    current_account.present? ? nil : DESCENDANTS_DEPTH_LIMIT
+  end
 
   def set_status
     @status = Status.find(params[:status_id])
