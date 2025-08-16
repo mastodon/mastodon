@@ -67,6 +67,7 @@ class Tag < ApplicationRecord
                             .group(:id).order(Arel.star.count.desc)
                         }
   scope :matches_name, ->(term) { where(arel_table[:name].lower.matches(arel_table.lower("#{sanitize_sql_like(normalize_value_for(:name, term))}%"), nil, true)) } # Search with case-sensitive to use B-tree index
+  scope :by_name_length, -> { order(Arel.sql('LENGTH(name)').asc, name: :asc) }
 
   normalizes :name, with: ->(value) { HashtagNormalizer.new.normalize(value) }
   normalizes :display_name, with: ->(value) { value.gsub(HASHTAG_INVALID_CHARS_RE, '') }
@@ -133,16 +134,19 @@ class Tag < ApplicationRecord
     end
 
     def search_for(term, limit = 5, offset = 0, options = {})
-      stripped_term = term.to_s.strip
       options.reverse_merge!({ exclude_unlistable: true, exclude_unreviewed: false })
 
-      query = Tag.matches_name(stripped_term)
-      query = query.merge(Tag.listable) if options[:exclude_unlistable]
-      query = query.merge(matching_name(stripped_term).or(reviewed)) if options[:exclude_unreviewed]
-
-      query.order(Arel.sql('LENGTH(name)').asc, name: :asc)
+      search_query(term, options)
         .limit(limit)
         .offset(offset)
+        .by_name_length
+    end
+
+    def search_query(term, options)
+      matches_name(term.to_s).tap do |query|
+        query.merge!(listable) if options[:exclude_unlistable]
+        query.merge!(reviewed) if options[:exclude_unreviewed]
+      end
     end
 
     def find_normalized(name)
