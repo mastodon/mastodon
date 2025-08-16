@@ -20,8 +20,6 @@ class Api::V1::Statuses::ContextsController < Api::BaseController
   def show
     cache_if_unauthenticated!
 
-    ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(ancestors_limit, current_account)
-    descendants_results = @status.descendants(descendants_limit, current_account, descendants_depth_limit)
     loaded_ancestors    = preload_collection(ancestors_results, Status)
     loaded_descendants  = preload_collection(descendants_results, Status)
 
@@ -46,6 +44,14 @@ class Api::V1::Statuses::ContextsController < Api::BaseController
   end
 
   private
+
+  def ancestors_results
+    @status.in_reply_to_id.nil? ? [] : @status.ancestors(ancestors_limit, current_account)
+  end
+
+  def descendants_results
+    @status.descendants(descendants_limit, current_account, descendants_depth_limit)
+  end
 
   def ancestors_limit
     current_account.present? ? CONTEXT_LIMIT : ANCESTORS_LIMIT
