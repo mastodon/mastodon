@@ -57,6 +57,11 @@ RSpec.describe Tag do
     end
   end
 
+  describe 'Normalizations' do
+    it { is_expected.to normalize(:display_name).from('#HelloWorld').to('HelloWorld') }
+    it { is_expected.to normalize(:display_name).from('Hello❤️World').to('HelloWorld') }
+  end
+
   describe 'HASHTAG_RE' do
     subject { described_class::HASHTAG_RE }
 
