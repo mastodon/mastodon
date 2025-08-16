@@ -106,28 +106,6 @@ module Admin
       redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.redownloaded_msg', username: @account.acct)
     end
 
-    def remove_avatar
-      authorize @account, :remove_avatar?
-
-      @account.avatar = nil
-      @account.save!
-
-      log_action :remove_avatar, @account.user
-
-      redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.removed_avatar_msg', username: @account.acct)
-    end
-
-    def remove_header
-      authorize @account, :remove_header?
-
-      @account.header = nil
-      @account.save!
-
-      log_action :remove_header, @account.user
-
-      redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.removed_header_msg', username: @account.acct)
-    end
-
     def unblock_email
       authorize @account, :unblock_email?
 

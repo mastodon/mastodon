@@ -1,12 +1,12 @@
 - if account.avatar?
   %tr
     %th= t('admin.accounts.avatar')
-    %td= table_link_to 'delete', t('admin.accounts.remove_avatar'), remove_avatar_admin_account_path(account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_avatar, account)
+    %td= table_link_to 'delete', t('admin.accounts.remove_avatar'), admin_account_avatar_path(account.id), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_avatar, account)
     %td
 - if account.header?
   %tr
     %th= t('admin.accounts.header')
-    %td= table_link_to 'delete', t('admin.accounts.remove_header'), remove_header_admin_account_path(account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_header, account)
+    %td= table_link_to 'delete', t('admin.accounts.remove_header'), admin_account_header_path(account.id), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_header, account)
     %td
 %tr
   %th= t('admin.accounts.role')

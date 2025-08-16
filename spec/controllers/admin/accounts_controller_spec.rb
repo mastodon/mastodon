@@ -280,29 +280,6 @@ RSpec.describe Admin::AccountsController do
     end
   end
 
-  describe 'POST #remove_avatar' do
-    subject { post :remove_avatar, params: { id: account.id } }
-
-    let(:current_user) { Fabricate(:user, role: role) }
-    let(:account) { Fabricate(:account) }
-
-    context 'when user is admin' do
-      let(:role) { UserRole.find_by(name: 'Admin') }
-
-      it 'succeeds in removing avatar' do
-        expect(subject).to redirect_to admin_account_path(account.id)
-      end
-    end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to remove avatar' do
-        expect(subject).to have_http_status 403
-      end
-    end
-  end
-
   describe 'POST #unblock_email' do
     subject { post :unblock_email, params: { id: account.id } }
 
