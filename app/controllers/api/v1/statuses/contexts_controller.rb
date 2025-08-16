@@ -22,12 +22,19 @@ class Api::V1::Statuses::ContextsController < Api::BaseController
 
     @context = Context.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
 
-    refresh_key = "context:#{@status.id}:refresh"
+    process_async_refresh!
+
+    render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
+  end
+
+  private
+
+  def process_async_refresh!
     async_refresh = AsyncRefresh.new(refresh_key)
 
     if async_refresh.running?
       add_async_refresh_header(async_refresh)
-    elsif !current_account.nil? && @status.should_fetch_replies?
+    elsif current_account.present? && @status.should_fetch_replies?
       add_async_refresh_header(AsyncRefresh.create(refresh_key))
 
       WorkerBatch.new.within do |batch|
@@ -35,11 +42,11 @@ class Api::V1::Statuses::ContextsController < Api::BaseController
         ActivityPub::FetchAllRepliesWorker.perform_async(@status.id, { 'batch_id' => batch.id })
       end
     end
-
-    render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
   end
 
-  private
+  def refresh_key
+    "context:#{@status.id}:refresh"
+  end
 
   def statuses
     [@status] + @context.ancestors + @context.descendants
