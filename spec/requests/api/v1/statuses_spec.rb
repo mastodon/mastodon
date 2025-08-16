@@ -119,23 +119,6 @@ RSpec.describe '/api/v1/statuses' do
       end
     end
 
-    describe 'GET /api/v1/statuses/:id/context' do
-      let(:scopes) { 'read:statuses' }
-      let(:status) { Fabricate(:status, account: user.account) }
-
-      before do
-        Fabricate(:status, account: user.account, thread: status)
-      end
-
-      it 'returns http success' do
-        get "/api/v1/statuses/#{status.id}/context", headers: headers
-
-        expect(response).to have_http_status(200)
-        expect(response.content_type)
-          .to start_with('application/json')
-      end
-    end
-
     describe 'POST /api/v1/statuses' do
       subject do
         post '/api/v1/statuses', headers: headers, params: params
@@ -467,20 +450,6 @@ RSpec.describe '/api/v1/statuses' do
       describe 'GET /api/v1/statuses/:id' do
         it 'returns http success' do
           get "/api/v1/statuses/#{status.id}"
-
-          expect(response).to have_http_status(200)
-          expect(response.content_type)
-            .to start_with('application/json')
-        end
-      end
-
-      describe 'GET /api/v1/statuses/:id/context' do
-        before do
-          Fabricate(:status, thread: status)
-        end
-
-        it 'returns http success' do
-          get "/api/v1/statuses/#{status.id}/context"
 
           expect(response).to have_http_status(200)
           expect(response.content_type)
