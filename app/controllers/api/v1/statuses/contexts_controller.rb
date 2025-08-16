@@ -13,9 +13,9 @@ class Api::V1::Statuses::ContextsController < Api::BaseController
   CONTEXT_LIMIT = 4_096
 
   # Avoid expensive computation and limit results for logged-out users
-  ANCESTORS_LIMIT         = 40
-  DESCENDANTS_LIMIT       = 60
+  ANCESTORS_LIMIT = 40
   DESCENDANTS_DEPTH_LIMIT = 20
+  DESCENDANTS_LIMIT = 60
 
   def show
     cache_if_unauthenticated!
