@@ -280,6 +280,23 @@ RSpec.describe Tag do
       expect(results).to eq [tag]
     end
 
+    it 'finds tag records from padded term queries' do
+      tag = Fabricate(:tag, name: 'MATCH')
+      _miss_tag = Fabricate(:tag, name: 'miss')
+
+      results = described_class.search_for('  match  ')
+
+      expect(results)
+        .to contain_exactly(tag)
+    end
+
+    it 'handles nil query' do
+      results = described_class.search_for(nil)
+
+      expect(results)
+        .to be_empty
+    end
+
     it 'finds the exact matching tag as the first item' do
       similar_tag = Fabricate(:tag, name: 'matchlater', reviewed_at: Time.now.utc)
       tag = Fabricate(:tag, name: 'match', reviewed_at: Time.now.utc)
@@ -305,6 +322,17 @@ RSpec.describe Tag do
       results = described_class.search_for('match', 5, 0, exclude_unlistable: false)
 
       expect(results).to eq [tag, unlisted_tag]
+    end
+
+    it 'excludes non reviewed tags via option' do
+      tag = Fabricate(:tag, name: 'match', reviewed_at: 5.days.ago)
+      unreviewed_tag = Fabricate(:tag, name: 'matchreviewed', reviewed_at: nil)
+
+      results = described_class.search_for('match', 5, 0, exclude_unreviewed: true)
+
+      expect(results)
+        .to include(tag)
+        .and not_include(unreviewed_tag)
     end
   end
 end

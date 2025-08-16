@@ -67,6 +67,8 @@ class Tag < ApplicationRecord
                         }
   scope :matches_name, ->(term) { where(arel_table[:name].lower.matches(arel_table.lower("#{sanitize_sql_like(Tag.normalize(term))}%"), nil, true)) } # Search with case-sensitive to use B-tree index
 
+  scope :by_name_length, -> { order(Arel.sql('LENGTH(name)').asc, name: :asc) }
+
   update_index('tags', :self)
 
   def to_param
@@ -122,16 +124,19 @@ class Tag < ApplicationRecord
     end
 
     def search_for(term, limit = 5, offset = 0, options = {})
-      stripped_term = term.strip
       options.reverse_merge!({ exclude_unlistable: true, exclude_unreviewed: false })
 
-      query = Tag.matches_name(stripped_term)
-      query = query.merge(Tag.listable) if options[:exclude_unlistable]
-      query = query.merge(matching_name(stripped_term).or(reviewed)) if options[:exclude_unreviewed]
+      search_query(term.to_s.strip, options)
+        .limit(limit)
+        .offset(offset)
+        .by_name_length
+    end
 
-      query.order(Arel.sql('LENGTH(name)').asc, name: :asc)
-           .limit(limit)
-           .offset(offset)
+    def search_query(term, options)
+      matches_name(term).tap do |query|
+        query.merge!(listable) if options[:exclude_unlistable]
+        query.merge!(reviewed) if options[:exclude_unreviewed]
+      end
     end
 
     def find_normalized(name)
