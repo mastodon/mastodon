@@ -21,7 +21,6 @@ class Api::V1::Statuses::ContextsController < Api::BaseController
     cache_if_unauthenticated!
 
     @context = Context.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
-    statuses = [@status] + @context.ancestors + @context.descendants
 
     refresh_key = "context:#{@status.id}:refresh"
     async_refresh = AsyncRefresh.new(refresh_key)
@@ -41,6 +40,10 @@ class Api::V1::Statuses::ContextsController < Api::BaseController
   end
 
   private
+
+  def statuses
+    [@status] + @context.ancestors + @context.descendants
+  end
 
   def loaded_ancestors
     preload_collection(ancestors_results, Status)
