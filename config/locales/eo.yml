@@ -5,7 +5,7 @@ eo:
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
     hosted_on: "%{domain} estas nodo de Mastodon"
-    title: Pri
+    title: Prio
   accounts:
     followers:
       one: Sekvanto
@@ -41,7 +41,7 @@ eo:
       by_domain: Domajno
       change_email:
         changed_msg: Retpoŝta adreso sukcese ŝanĝita!
-        current_email: Nuna retadreso
+        current_email: Aktuala retadreso
         label: Ŝanĝi retadreson
         new_email: Nova retadreso
         submit: Ŝanĝi retadreson
@@ -102,7 +102,7 @@ eo:
       moderation_notes: Notoj de moderigado
       most_recent_activity: Lastaj afiŝoj
       most_recent_ip: Lasta IP
-      no_account_selected: Neniu konto estis ŝanĝita ĉar neniu estis selektita
+      no_account_selected: Neniu konto estis ŝanĝita kial neniu estis selektita
       no_limits_imposed: Neniu limito trudita
       no_role_assigned: Sen rolo
       not_subscribed: Ne abonita
@@ -141,14 +141,14 @@ eo:
       security_measures:
         only_password: Nur pasvorto
         password_and_2fa: Pasvorto kaj 2FA
-      sensitive: Tikla
-      sensitized: markita tikla
+      sensitive: Devigite tikla
+      sensitized: Markita kiel tikla
       shared_inbox_url: URL de kunhavigita leterkesto
       show:
         created_reports: Faritaj raportoj
         targeted_reports: Raporitaj de aliaj
       silence: Limigi
-      silenced: Silentigita
+      silenced: Limigita
       statuses: Afiŝoj
       strikes: Antaǔaj admonoj
       subscribe: Aboni
@@ -204,7 +204,7 @@ eo:
         destroy_unavailable_domain: Forigi Nehaveblan Domajnon
         destroy_user_role: Detrui Rolon
         disable_2fa_user: Malebligi 2FA
-        disable_custom_emoji: Malebligi proprajn emoĝiojn
+        disable_custom_emoji: Malŝalti Proprajn Bildosignojn
         disable_relay: Malebligi Relajson
         disable_sign_in_token_auth_user: Malebligi aŭtentigon per retpoŝta ĵetono por la uzanto
         disable_user: Neebligi la uzanton
@@ -220,14 +220,14 @@ eo:
         remove_avatar_user: Forigi la profilbildon
         reopen_report: Remalfermi signalon
         resend_user: Resendi konfirman retmesaĝon
-        reset_password_user: Restarigi pasvorton
+        reset_password_user: Restarigi Pasvorton
         resolve_report: Solvitaj reporto
         sensitive_account: Marki tikla la aŭdovidaĵojn de via konto
-        silence_account: Silentigi konton
-        suspend_account: Suspendi la konton
+        silence_account: Limigi Konton
+        suspend_account: Suspendi Konton
         unassigned_report: Malatribui Raporton
         unblock_email_account: Malbloki retpoŝtadreson
-        unsensitive_account: Malmarku la amaskomunikilojn en via konto kiel sentemaj
+        unsensitive_account: Malmarki Konton kiel Sentime Tikla
         unsilence_account: Malsilentigi konton
         unsuspend_account: Malsuspendi la konton
         update_announcement: Ĝisdatigi anoncon
@@ -235,19 +235,19 @@ eo:
         update_domain_block: Ĝigdatigi domajnan blokadon
         update_ip_block: Krei IP-regulon
         update_report: Ĝisdatigo de Raporto
-        update_status: Ĝisdatigi afiŝon
+        update_status: Ĝisdatigi Afiŝon
         update_user_role: Ĝisdatigi rolon
       actions:
-        approve_appeal_html: "%{name} aprobis apelacion kontraŭ moderiga decido de %{target}"
-        approve_user_html: "%{name} aprobis registriĝon de %{target}"
+        approve_appeal_html: "%{name} aprobis apelacion kontraŭ reguliga decido de %{target}"
+        approve_user_html: "%{name} aprobis la registriĝon de %{target}"
         assigned_to_self_report_html: "%{name} asignis signalon %{target} al si mem"
-        change_email_user_html: "%{name} ŝanĝis retadreson de uzanto %{target}"
+        change_email_user_html: "%{name} ŝanĝis la retadreson de uzanto %{target}"
         change_role_user_html: "%{name} ŝanĝis rolon de %{target}"
         confirm_user_html: "%{name} konfirmis retadreson de uzanto %{target}"
         create_account_warning_html: "%{name} sendis averton al %{target}"
         create_announcement_html: "%{name} kreis novan anoncon %{target}"
         create_canonical_email_block_html: "%{name} blokis retpoŝtadreson per krado %{target}"
-        create_custom_emoji_html: "%{name} alŝutis novan emoĝion %{target}"
+        create_custom_emoji_html: "%{name} alŝutis novan bildosignon %{target}"
         create_domain_allow_html: "%{name} aldonis domajnon %{target} al la blanka listo"
         create_domain_block_html: "%{name} blokis domajnon %{target}"
         create_email_domain_block_html: "%{name} blokis retpoŝtan domajnon %{target}"
@@ -258,7 +258,7 @@ eo:
         demote_user_html: "%{name} degradis uzanton %{target}"
         destroy_announcement_html: "%{name} forigis anoncon %{target}"
         destroy_canonical_email_block_html: "%{name} malblokis retpoŝtadreson per krado %{target}"
-        destroy_custom_emoji_html: "%{name} forigis emoĝion %{target}"
+        destroy_custom_emoji_html: "%{name} forigis la bildosignon %{target}"
         destroy_domain_allow_html: "%{name} forigis domajnon %{target} el la blanka listo"
         destroy_domain_block_html: "%{name} malblokis domajnon %{target}"
         destroy_email_domain_block_html: "%{name} malblokis retpoŝtan domajnon %{target}"
@@ -269,11 +269,11 @@ eo:
         destroy_unavailable_domain_html: "%{name} restartigis sendon al domajno %{target}"
         destroy_user_role_html: "%{name} forigis rolon de %{target}"
         disable_2fa_user_html: "%{name} malebligis dufaktoran aŭtentigon por uzanto %{target}"
-        disable_custom_emoji_html: "%{name} malebligis la emoĝion %{target}"
+        disable_custom_emoji_html: "%{name} malebligis la bildosignon %{target}"
         disable_relay_html: "%{name} malebligis la relajson %{target}"
         disable_sign_in_token_auth_user_html: "%{name} malebligis la aŭtentigon de retpoŝta ĵetono por %{target}"
         disable_user_html: "%{name} malebligis ensaluton por uzanto %{target}"
-        enable_custom_emoji_html: "%{name} ebligis la emoĝion %{target}"
+        enable_custom_emoji_html: "%{name} ebligis la bildosignon %{target}"
         enable_relay_html: "%{name} ebligis la relajson %{target}"
         enable_sign_in_token_auth_user_html: "%{name} ebligis la aŭtentigon de retpoŝta ĵetono por %{target}"
         enable_user_html: "%{name} ebligis ensaluton por uzanto %{target}"
@@ -296,7 +296,7 @@ eo:
         unsilence_account_html: "%{name} malfaris limon al konto de %{target}"
         unsuspend_account_html: "%{name} malsuspendis la konton de %{target}"
         update_announcement_html: "%{name} ĝisdatigis la anoncon %{target}"
-        update_custom_emoji_html: "%{name} ĝisdatigis la emoĝion %{target}"
+        update_custom_emoji_html: "%{name} ĝisdatigis la bildosignon %{target}"
         update_domain_block_html: "%{name} ĝisdatigis domajnblokon por %{target}"
         update_ip_block_html: "%{name} ŝanĝis regulon por IP %{target}"
         update_report_html: "%{name} ĝisdatigis la raporton %{target}"
@@ -309,17 +309,22 @@ eo:
       title: Ĵurnalo de revizo
       unavailable_instance: "(domajna nomo nedisponebla)"
     announcements:
-      destroyed_msg: Anonco sukcese forigita!
+      back: Reen al anoncoj
+      destroyed_msg: La anonco sukcese forigita!
       edit:
         title: Redakti anoncon
-      empty: Neniu anonco trovita.
+      empty: Neniu anonco troviĝas.
       live: Publikigita
       new:
         create: Krei anoncon
         title: Nova anonco
+      preview:
+        disclaimer: Pro uzantoj ne povas elekti ne ricevi ilin, retpoŝtaj sciigoj devus esti uzata nur por gravaj anoncoj kiel memaj breĉoj de datumo aŭ sciigoj pri la fermado de la servilo.
+        explanation_html: 'La retpoŝto estos sendita al <strong>%{display_count} uzantoj</strong>. La jena teksto estos inkluzivita en la retmesaĝon:'
+        title: Antaŭrigardu sciigan anoncon
       publish: Publikigi
       published_msg: Anonco sukcese publikigita!
-      scheduled_for: Planigita je %{time}
+      scheduled_for: Planigota je %{time}
       scheduled_msg: Anonco planigita por publikigo!
       title: Anoncoj
       unpublish: Malpublikigi
@@ -341,7 +346,7 @@ eo:
       disabled_msg: Emoĝio sukcese malebligita
       emoji: Emoĝio
       enable: Ebligi
-      enabled: Ebligita
+      enabled: Ŝaltita
       enabled_msg: Emoĝio sukcese ebligita
       image_hint: PNG aŭ GIF malpli granda ol %{size}
       list: Listo
@@ -363,7 +368,7 @@ eo:
     dashboard:
       active_users: aktivaj uzantoj
       interactions: interago
-      media_storage: Konservo de plurmedioj
+      media_storage: Konservo de aŭdovidaĵoj
       new_users: novaj uzantoj
       opened_reports: raportoj malfermitaj
       pending_appeals_html:
@@ -475,6 +480,36 @@ eo:
       new:
         title: Importi domajnblokojn
       no_file: Neniu dosiero elektita
+    fasp:
+      debug:
+        callbacks:
+          created_at: Kreita je
+          delete: Forigi
+          ip: IP-adreso
+          request_body: Enhavo de la peto
+          title: Revokoj de ĝustigado
+      providers:
+        active: Aktivaj
+        base_url: Funda URL
+        callback: Revoko
+        delete: Forigi
+        edit: Donanto de ŝanĝo
+        finish_registration: Fini registradon
+        name: Nomo
+        providers: Donantoj
+        public_key_fingerprint: Publikoŝloŝila fingrospuro
+        registration_requested: Registrado postulita
+        registrations:
+          confirm: Konfirmi
+          description: Vi ricevis registradon de FASP. Malakcepti ĝin se vi ne komencis ĉi tiun. Se vi ja, zorge kompari nomon kaj ŝloŝilafingrospuron antaŭ ol konfirmas la registradon.
+          reject: Malakcepti
+          title: Konfirmi registradon de FASP
+        save: Konservi
+        select_capabilities: Elekti mandatojn
+        sign_in: Ensaluti
+        status: Stato
+        title: Fediversaj helpaj servicaj donantoj
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Sekvorekomendoj helpi novajn uzantojn rapide trovi interesa enhavo</strong>. Ili rekalkulitas ĉiutage lau interagoj kaj sekvantokvantoj."
       language: Por la lingvo
@@ -508,7 +543,7 @@ eo:
         description_html: Vi povas difini enhavopolitikojn al la ĉiuj kontoj.
         limited_federation_mode_description_html: Vi povas elekti, ĉu permesi federacion kun tiu domajno.
         policies:
-          reject_media: Malakcepti plurmediojn
+          reject_media: Malakcepti la vidaŭdaĵojn
           reject_reports: Malakcepti raportojn
           silence: Kaŝu
           suspend: Suspendi
@@ -551,7 +586,7 @@ eo:
       total_blocked_by_us: Blokitaj de ni
       total_followed_by_them: Sekvataj de ili
       total_followed_by_us: Sekvataj de ni
-      total_reported: Signaloj pri ili
+      total_reported: Raportoj pri ili
       total_storage: Aŭdovidaj kunsendaĵoj
       totals_time_period_hint_html: Sumo montritas malsupre inkluzivas datumo ekde komenco.
       unknown_instance: Nuntempe ne ekzistas registro pri ĉi tiu domajno sur ĉi tiu servilo.
@@ -632,7 +667,7 @@ eo:
       comment_description_html: 'Por doni pli da informo, %{name} skribis:'
       confirm: Konfirmi
       confirm_action: Konfirmi moderigadagon kontra @%{acct}
-      created_at: Signalita
+      created_at: Raportita
       delete_and_resolve: Forigi afiŝojn
       forwarded: Plusendita
       forwarded_replies_explanation: Ĉi tiu raporto estas de malproksima uzanto kaj estas pri malproksima enhavo. Ĝi plusendis al vi ĉar la raportita enhavo estas rediraĵo je unu el viaj uzantoj.
@@ -653,9 +688,9 @@ eo:
       quick_actions_description_html: 'Agu au movu malsupre por vidi raportitajn enhavojn:'
       remote_user_placeholder: la ekstera uzanto de %{instance}
       reopen: Remalfermi signalon
-      report: 'Signalo #%{id}'
-      reported_account: Signalita konto
-      reported_by: Signalita de
+      report: 'Raporto #%{id}'
+      reported_account: Raportita konto
+      reported_by: Raportita de
       reported_with_application: Raportita per aplikaĵo
       resolved: Solvitaj
       resolved_msg: Signalo sukcese solvita!
@@ -682,7 +717,7 @@ eo:
         send_email_html: Sendu <strong>@%{acct}</strong> retpoŝto de averto
         warning_placeholder: Nedeviga aldona kialo por la moderigadago.
       target_origin: Origino de raportita konto
-      title: Signaloj
+      title: Raportoj
       unassign: Malasigni
       unknown_action_msg: 'Nekonata ago: %{action}'
       unresolved: Nesolvitaj
@@ -764,7 +799,7 @@ eo:
         title: Pri
       appearance:
         preamble: Personecigi retinterfaco de Mastodon.
-        title: Apero
+        title: Aspekto
       branding:
         preamble: Via markeco de servilo malsamigas ĝin de aliaj servilojn en la reto. Do, la informo devus esti simpla kaj mallonga.
         title: Markeco
@@ -783,7 +818,6 @@ eo:
         preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
         profile_directory: Profilujo
         public_timelines: Publikaj templinioj
-        publish_discovered_servers: Publikigi la malkovritajn servilojn
         publish_statistics: Publikigi statistikojn
         title: Eltrovado
         trends: Tendencoj
@@ -868,6 +902,8 @@ eo:
     system_checks:
       database_schema_check:
         message_html: Estas pritraktataj datumbazaj migradoj. Bonvolu ekzekuti ilin por certigi, ke la apliko kondutas kiel atendite
+      elasticsearch_analysis_index_mismatch:
+        message_html: Agordoj de la indeksa analizilo estas malmodernaj. Bonvolu plenumi <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch peniko estas malsana (ruĝa statuso), trajtoj de serĉo malhaveblas
       elasticsearch_health_yellow:
@@ -936,13 +972,23 @@ eo:
       generate: Uzi ŝablonon
       generates:
         action: Generi
+        chance_to_review_html: "<strong>La generataj kondiĉoj de uzado ne aŭtomate publikiĝos.</strong> Estos oportuni por vi kontroli la rezultojn. Bonvole entajpu la necesajn detalojn por daŭrigi."
+        explanation_html: La modelo por la kondiĉoj de la servo disponeblas sole por informi. Ĝi nepre ne estas leĝa konsilo pri iu ajn temo. Bonvole konsultu vian propran leĝan konsilanton pri via situacio kaj iuj leĝaj neklarecoj.
         title: Agordo de kondiĉoj de uzado
+      going_live_on_html: Efektiviĝos %{date}
+      history: Historio
+      live: Antaŭmontro
       no_history: Ankoraŭ ne estas registritaj ŝanĝoj de la kondiĉoj de la servo.
       no_terms_of_service_html: Vi nuntempe ne havas iujn ajn kondiĉojn de la servo agordita. La kondiĉoj de la servo celas doni klarecon kaj protekti vin kontraŭ eblaj respondecoj en disputoj kun viaj uzantoj.
+      notified_on_html: Uzantojn sciigis je %{date}
+      notify_users: Informu uzantojn
       preview:
+        explanation_html: 'La retmesaĝo estos alsendata al <strong>%{display_count} uzantoj</strong>, kiuj kreis konton antaŭ %{date}. La sekvonta teksto inkluziviĝos en la retmesaĝo:'
+        send_preview: Sendu antaŭrigardon al %{email}
         send_to_all:
           one: Sendi %{display_count} retpoŝton
           other: Sendi %{display_count} retpoŝtojn
+        title: Antaŭmontri sciigon pri la kondiĉoj de la servo
       publish: Publikigi
       published_on_html: Publikigita je %{date}
       save_draft: Konservi malneton
@@ -1090,7 +1136,7 @@ eo:
     add_new: Krei alinomon
     created_msg: Kreis novan alinomon sukcese. Vi povas inici la transloki el la malnovan konton nun.
     deleted_msg: Forigis la alinomon sukcese. Transloki el tiu konto al ĉi tiu ne plu eblos.
-    empty: Vi havas neniun kaŝnomon.
+    empty: Vi havas neniun alinomon.
     hint_html: Se vi volas translokiĝi de alia konto al ĉi tie, kreu alinomon. Ĝi estas <strong>sekura kaj inversebla</strong>. <strong>Ĝi komencitas de malnova konto</strong>.
     remove: Malligili alinomon
   appearance:
@@ -1119,7 +1165,7 @@ eo:
     regenerate_token: Regeneri aliran ĵetonon
     token_regenerated: Alira ĵetono sukcese regeneria
     warning: Estu tre atenta kun ĉi tiu datumo. Neniam diskonigu ĝin al iu ajn!
-    your_token: Via alira ĵetono
+    your_token: Via alirilo
   auth:
     apply_for_account: Peti konton
     captcha_confirmation:
@@ -1147,7 +1193,7 @@ eo:
     forgot_password: Pasvorto forgesita?
     invalid_reset_password_token: La ĵetono por restarigi la pasvorton estas nevalida aŭ eksvalida. Bonvolu peti novon.
     link_to_otp: Enigu 2-faktorkodo de via telefono au regajnkodo
-    link_to_webauth: Uzi vian sekurecan ŝlosilon
+    link_to_webauth: Uzi vian aparaton de sekuriga ŝlosilo
     log_in_with: Ensaluti per
     login: Ensaluti
     logout: Adiaŭi
@@ -1190,7 +1236,7 @@ eo:
       preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povos sekvi ajnan alian personon ĉe la fediverso, sendepende de kie ilia konto estas gastigita.
       title: Ni pretigu vin ĉe %{domain}.
     status:
-      account_status: Statuso de la konto
+      account_status: Stato de la konto
       confirming: Atendante ke retpoŝta konfirmo estos kompletigita.
       functional: Via konto estas tute funkcia.
       pending: Via apliko estas superrigardata de niaj teamo. Ĉi tiu povas bezoni iom da tempo. Vi ricevos retpoŝton, se via apliko estas konsentita.
@@ -1199,6 +1245,8 @@ eo:
       view_strikes: Vidi antauaj admonoj kontra via konto
     too_fast: Formularo sendita tro rapide, klopodu denove.
     use_security_key: Uzi sekurecan ŝlosilon
+    user_agreement_html: Mi legis kaj konsentas pri la <a href="%{terms_of_service_path}" target="_blank">servokondiĉoj</a> kaj <a href="%{privacy_policy_path}" target="_blank">privateca politiko</a>
+    user_privacy_agreement_html: Mi legis kaj konsentis pri <a href="%{privacy_policy_path}" target="_blank">privatpolitiko</a>
   author_attribution:
     example_title: Ekzempla teksto
     hint_html: Ĉu vi skribas novaĵojn aŭ blogartikolojn ekster Mastodon? Kontrolu kiel vi estas kreditita kiam ili estas kunhavataj ĉe Mastodon.
@@ -1302,8 +1350,8 @@ eo:
       Por uzi la retan aplikaĵon de Mastodon, bonvolu ebligi JavaScript. Alimaniere, provu unu el la
       <a href="%{apps_path}">operaciumaj aplikaĵoj</a> por Mastodon por via platformo.
   existing_username_validator:
-    not_found: Ne povas trovi lokaj uzanto kun tiu uzantnomo
-    not_found_multiple: Ne povas trovi %{usernames}
+    not_found: ne povas trovi lokaj uzanto kun tiu uzantnomo
+    not_found_multiple: ne povas trovi %{usernames}
   exports:
     archive_takeout:
       date: Dato
@@ -1528,7 +1576,7 @@ eo:
     validations:
       images_and_video: Aldoni videon al mesaĝo, kiu jam havas bildojn ne eblas
       not_found: Dosiero %{ids} ne trovis aŭ jam alteniĝis al alia afiŝo
-      not_ready: Ne povas aldoni dosieron kiu ne finas procezitis.
+      not_ready: Ne povas aldoni dosieron kiu ne finis procezitis.
       too_many: Aldoni pli ol 4 dosierojn ne eblas
   migrations:
     acct: Movigita al
@@ -1680,12 +1728,12 @@ eo:
     most_recent: Plej lasta
     moved: Moviĝita
     mutual: Reciproka
-    primary: Primara
+    primary: Ĉefa
     relationship: Rilato
     remove_selected_domains: Forigi ĉiujn sekvantojn el la selektitaj domajnoj
     remove_selected_followers: Forigi selektitajn sekvantojn
     remove_selected_follows: Ne plu sekvi elektitajn uzantojn
-    status: Statuso de la konto
+    status: Stato de la konto
   remote_follow:
     missing_resource: La bezonata URL de plusendado por via konto ne estis trovita
   reports:
@@ -1740,14 +1788,14 @@ eo:
       ios: iOS
       kai_os: KaiOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       unknown_platform: Nekonata platformo
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: Malvalidigi
     revoke_success: Seanco sukcese malvalidigita
-    title: Seancoj
+    title: Salutaĵoj
     view_authentication_history: Vidi autentighistorion de via konto
   settings:
     account: Konto
@@ -1765,8 +1813,8 @@ eo:
     import_and_export: Importi kaj eksporti
     migrate: Konta migrado
     notifications: Retpoŝtaj sciigoj
-    preferences: Preferoj
-    profile: Profilo
+    preferences: Agordoj
+    profile: Publika profilo
     relationships: Sekvatoj kaj sekvantoj
     severed_relationships: Finitaj rilatoj
     statuses_cleanup: Automata mesaĝforigo
@@ -1811,6 +1859,8 @@ eo:
       limit: Vi jam atingis la maksimuman nombron de alpinglitaj mesaĝoj
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
+    quote_policies:
+      public: Ĉiuj
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Rekta
@@ -1895,6 +1945,10 @@ eo:
     recovery_instructions_html: Se vi perdas aliron al via telefono, vi povas uzi unu el la subaj realiraj kodoj por rehavi aliron al via konto. <strong>Konservu realirajn kodojn sekure</strong>. Ekzemple, vi povas printi ilin kaj konservi ilin kun aliaj gravaj dokumentoj.
     webauthn: Sekurecaj ŝlosiloj
   user_mailer:
+    announcement_published:
+      description: 'La administrantoj de %{domain} faras anoncon:'
+      subject: Serva anonco
+      title: "%{domain} serva anonco"
     appeal_approved:
       action: Konto-agordoj
       explanation: La apelacio de la admono kontra via konto je %{strike_date} pri sendodato %{appeal_date} aprobitas.
@@ -1925,6 +1979,10 @@ eo:
       subject: Via konto estas alirita de nova IP-adreso
       title: Nova saluto
     terms_of_service_changed:
+      agreement: Se vi daŭrige uzos %{domain}, vi aŭtomate interkonsentos pri ĉi tiuj kondiĉoj. Se vi malkonsentas pri la novaj kondiĉoj, vi ĉiutempe rajtas nuligi la interkonsenton kun %{domain} per forigi vian konton.
+      changelog: 'Facile dirite, la ŝanĝoj estas la jenaj:'
+      description: 'Vi ricevas ĉi tiun retmesaĝon ĉar ni faras iujn ŝanĝojn al niaj servokondiĉoj ĉe %{domain}. Ĉi tiuj ĝisdatigoj efektiviĝos %{date}. Ni instigas vin revizii la ĝisdatigitajn terminojn plene ĉi tie:'
+      description_html: Vi ricevas ĉi tiun retmesaĝon ĉar ni faras iujn ŝanĝojn al niaj servokondiĉoj ĉe %{domain}. Ĉi tiuj ĝisdatigoj efektiviĝos <strong>%{date}</strong> Ni instigas vin revizii la <a href="%{path}" target="_blank">ĝisdatigitajn terminojn plene ĉi tie</a>.
       sign_off: La teamo de %{domain}
       subject: Ĝisdatigoj al niaj kondiĉoj de servo
       subtitle: La kondiĉoj de la servo de %{domain} ŝanĝiĝas
@@ -1995,7 +2053,6 @@ eo:
       post_action: Redakti
       post_step: Salutu la mondon per teksto, fotoj, filmetoj aŭ balotenketoj.
       post_title: Faru vian unuan afiŝon
-      share_action: Kundividi
       share_step: Sciigu viajn amikojn kiel trovi vin sur Mastodon.
       share_title: Kunhavigu vian Mastodon-profilon
       sign_in_action: Ensaluti

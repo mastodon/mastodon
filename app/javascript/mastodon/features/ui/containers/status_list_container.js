@@ -17,19 +17,22 @@ const makeGetStatusIds = (pending = false) => createSelector([
     if (id === null || id === 'inline-follow-suggestions') return true;
 
     const statusForId = statuses.get(id);
-    let showStatus    = true;
 
     if (statusForId.get('account') === me) return true;
 
-    if (columnSettings.getIn(['shows', 'reblog']) === false) {
-      showStatus = showStatus && statusForId.get('reblog') === null;
+    if (columnSettings.getIn(['shows', 'reblog']) === false && statusForId.get('reblog') !== null) {
+      return false;
     }
 
-    if (columnSettings.getIn(['shows', 'reply']) === false) {
-      showStatus = showStatus && (statusForId.get('in_reply_to_id') === null || statusForId.get('in_reply_to_account_id') === me);
+    if (columnSettings.getIn(['shows', 'reply']) === false && statusForId.get('in_reply_to_id') !== null && statusForId.get('in_reply_to_account_id') !== me) {
+      return false;
     }
 
-    return showStatus;
+    if (columnSettings.getIn(['shows', 'quote']) === false && statusForId.get('quote') !== null) {
+      return false;
+    }
+
+    return true;
   });
 });
 

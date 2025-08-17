@@ -118,9 +118,9 @@ class ModalRoot extends PureComponent {
   }
 
   _ensureHistoryBuffer () {
-    const { pathname, state } = this.history.location;
+    const { pathname, search, hash, state } = this.history.location;
     if (!state || state.mastodonModalKey !== this._modalHistoryKey) {
-      this.history.push(pathname, { ...state, mastodonModalKey: this._modalHistoryKey });
+      this.history.push({ pathname, search, hash }, { ...state, mastodonModalKey: this._modalHistoryKey });
     }
   }
 

@@ -1,0 +1,19 @@
+%tr
+  %td= provider.name
+  %td= provider.base_url
+  %td
+    - if provider.confirmed?
+      = t('admin.fasp.providers.active')
+    - else
+      = t('admin.fasp.providers.registration_requested')
+  %td
+    - if provider.confirmed?
+      = table_link_to 'edit', t('admin.fasp.providers.edit'), edit_admin_fasp_provider_path(provider)
+    - else
+      = table_link_to 'check', t('admin.fasp.providers.finish_registration'), new_admin_fasp_provider_registration_path(provider)
+    - if provider.sign_in_url.present?
+      = table_link_to 'open_in_new', t('admin.fasp.providers.sign_in'), provider.sign_in_url, target: '_blank'
+    - if provider.capability_enabled?('callback')
+      = table_link_to 'repeat', t('admin.fasp.providers.callback'), admin_fasp_provider_debug_calls_path(provider), data: { method: :post }
+
+    = table_link_to 'close', t('admin.fasp.providers.delete'), admin_fasp_provider_path(provider), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

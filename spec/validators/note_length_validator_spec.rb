@@ -30,6 +30,22 @@ RSpec.describe NoteLengthValidator do
       expect(account.errors).to have_received(:add)
     end
 
+    it 'counts multi byte emoji as single character' do
+      text = '✨' * 500
+      account = instance_double(Account, note: text, errors: activemodel_errors)
+
+      subject.validate_each(account, 'note', text)
+      expect(account.errors).to_not have_received(:add)
+    end
+
+    it 'counts ZWJ sequence emoji as single character' do
+      text = '🏳️‍⚧️' * 500
+      account = instance_double(Account, note: text, errors: activemodel_errors)
+
+      subject.validate_each(account, 'note', text)
+      expect(account.errors).to_not have_received(:add)
+    end
+
     private
 
     def starting_string

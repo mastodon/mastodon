@@ -193,4 +193,57 @@ RSpec.describe 'Media' do
       end
     end
   end
+
+  describe 'DELETE /api/v1/media/:id' do
+    subject do
+      delete "/api/v1/media/#{media.id}", headers: headers
+    end
+
+    context 'when media is not attached to a status' do
+      let(:media) { Fabricate(:media_attachment, account: user.account, status: nil) }
+
+      it 'returns http empty response' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+
+        expect(MediaAttachment.where(id: media.id)).to_not exist
+      end
+    end
+
+    context 'when media is attached to a status' do
+      let(:media) { Fabricate(:media_attachment, account: user.account, status: Fabricate.build(:status)) }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body).to match(
+          a_hash_including(
+            error: 'Media attachment is currently used by a status'
+          )
+        )
+
+        expect(MediaAttachment.where(id: media.id)).to exist
+      end
+    end
+
+    context 'when the media belongs to somebody else' do
+      let(:media) { Fabricate(:media_attachment, status: nil) }
+
+      it 'returns http not found' do
+        subject
+
+        expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
+
+        expect(MediaAttachment.where(id: media.id)).to exist
+      end
+    end
+  end
 end

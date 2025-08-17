@@ -4,7 +4,6 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 
-import { useSearchParam } from '@/hooks/useSearchParam';
 import FindInPageIcon from '@/material-icons/400-24px/find_in_page.svg?react';
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import SearchIcon from '@/material-icons/400-24px/search.svg?react';
@@ -18,8 +17,9 @@ import { ColumnHeader } from 'mastodon/components/column_header';
 import { CompatibilityHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';
-import Status from 'mastodon/containers/status_container';
+import { StatusQuoteManager } from 'mastodon/components/status_quoted';
 import { Search } from 'mastodon/features/compose/components/search';
+import { useSearchParam } from 'mastodon/hooks/useSearchParam';
 import type { Hashtag as HashtagType } from 'mastodon/models/tags';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
@@ -53,8 +53,7 @@ const renderHashtags = (hashtags: HashtagType[]) =>
 
 const renderStatuses = (statusIds: string[]) =>
   hidePeek<string>(statusIds).map((id) => (
-    // @ts-expect-error inferred props are wrong
-    <Status key={id} id={id} />
+    <StatusQuoteManager key={id} id={id} />
   ));
 
 type SearchType = 'all' | ApiSearchType;
@@ -190,8 +189,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
                   onClickMore={handleSelectStatuses}
                 >
                   {results.statuses.slice(0, INITIAL_DISPLAY).map((id) => (
-                    // @ts-expect-error inferred props are wrong
-                    <Status key={id} id={id} />
+                    <StatusQuoteManager key={id} id={id} />
                   ))}
                 </SearchSection>
               )}

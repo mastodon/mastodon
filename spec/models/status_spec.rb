@@ -9,6 +9,8 @@ RSpec.describe Status do
   let(:bob)   { Fabricate(:account, username: 'bob') }
   let(:other) { Fabricate(:status, account: bob, text: 'Skulls for the skull god! The enemy\'s gates are sideways!') }
 
+  it_behaves_like 'Status::Visibility'
+
   describe '#local?' do
     it 'returns true when no remote URI is set' do
       expect(subject.local?).to be true
@@ -81,36 +83,6 @@ RSpec.describe Status do
     it 'is comment when the status replies to another' do
       subject.thread = other
       expect(subject.object_type).to be :comment
-    end
-  end
-
-  describe '#hidden?' do
-    context 'when private_visibility?' do
-      it 'returns true' do
-        subject.visibility = :private
-        expect(subject.hidden?).to be true
-      end
-    end
-
-    context 'when direct_visibility?' do
-      it 'returns true' do
-        subject.visibility = :direct
-        expect(subject.hidden?).to be true
-      end
-    end
-
-    context 'when public_visibility?' do
-      it 'returns false' do
-        subject.visibility = :public
-        expect(subject.hidden?).to be false
-      end
-    end
-
-    context 'when unlisted_visibility?' do
-      it 'returns false' do
-        subject.visibility = :unlisted
-        expect(subject.hidden?).to be false
-      end
     end
   end
 
@@ -216,6 +188,19 @@ RSpec.describe Status do
       expect(subject.favourites_count).to eq 1
       favourite.destroy
       expect(subject.favourites_count).to eq 0
+    end
+  end
+
+  describe '.not_replying_to_account' do
+    let(:account) { Fabricate :account }
+    let!(:status_from_account) { Fabricate :status, account: account }
+    let!(:reply_to_account_status) { Fabricate :status, thread: status_from_account }
+    let!(:reply_to_other) { Fabricate :status, thread: Fabricate(:status) }
+
+    it 'returns records not in reply to provided account' do
+      expect(described_class.not_replying_to_account(account))
+        .to not_include(reply_to_account_status)
+        .and include(reply_to_other)
     end
   end
 
@@ -377,6 +362,39 @@ RSpec.describe Status do
     it 'contains true value' do
       Fabricate(:status, account: account, reblog: status)
       expect(subject[status.id]).to be true
+    end
+  end
+
+  describe '.only_reblogs' do
+    let!(:status) { Fabricate :status }
+    let!(:reblog) { Fabricate :status, reblog: Fabricate(:status) }
+
+    it 'returns the expected statuses' do
+      expect(described_class.only_reblogs)
+        .to include(reblog)
+        .and not_include(status)
+    end
+  end
+
+  describe '.only_polls' do
+    let!(:poll_status) { Fabricate :status, poll: Fabricate(:poll) }
+    let!(:no_poll_status) { Fabricate :status }
+
+    it 'returns the expected statuses' do
+      expect(described_class.only_polls)
+        .to include(poll_status)
+        .and not_include(no_poll_status)
+    end
+  end
+
+  describe '.without_polls' do
+    let!(:poll_status) { Fabricate :status, poll: Fabricate(:poll) }
+    let!(:no_poll_status) { Fabricate :status }
+
+    it 'returns the expected statuses' do
+      expect(described_class.without_polls)
+        .to not_include(poll_status)
+        .and include(no_poll_status)
     end
   end
 

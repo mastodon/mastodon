@@ -17,7 +17,7 @@ export const ColumnSettings: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const onChange = useCallback(
-    (key: string, checked: boolean) => {
+    (key: string[], checked: boolean) => {
       dispatch(changeSetting(['home', ...key], checked));
     },
     [dispatch],
@@ -36,6 +36,19 @@ export const ColumnSettings: React.FC = () => {
               <FormattedMessage
                 id='home.column_settings.show_reblogs'
                 defaultMessage='Show boosts'
+              />
+            }
+          />
+
+          <SettingToggle
+            prefix='home_timeline'
+            settings={settings}
+            settingPath={['shows', 'quote']}
+            onChange={onChange}
+            label={
+              <FormattedMessage
+                id='home.column_settings.show_quotes'
+                defaultMessage='Show quotes'
               />
             }
           />

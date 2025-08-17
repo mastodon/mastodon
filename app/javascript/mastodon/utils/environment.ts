@@ -1,7 +1,34 @@
+import initialState from '../initial_state';
+
 export function isDevelopment() {
-  return process.env.NODE_ENV === 'development';
+  if (typeof process !== 'undefined')
+    return process.env.NODE_ENV === 'development';
+  else return import.meta.env.DEV;
 }
 
 export function isProduction() {
-  return process.env.NODE_ENV === 'production';
+  if (typeof process !== 'undefined')
+    return process.env.NODE_ENV === 'production';
+  else return import.meta.env.PROD;
+}
+
+export type Features =
+  | 'modern_emojis'
+  | 'outgoing_quotes'
+  | 'fasp'
+  | 'http_message_signatures';
+
+export function isFeatureEnabled(feature: Features) {
+  return initialState?.features.includes(feature) ?? false;
+}
+
+export function isModernEmojiEnabled() {
+  try {
+    return (
+      isFeatureEnabled('modern_emojis') &&
+      localStorage.getItem('experiments')?.split(',').includes('modern_emojis')
+    );
+  } catch {
+    return false;
+  }
 }

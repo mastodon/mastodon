@@ -3,7 +3,7 @@ nl:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Eén per regel. Beschermt tegen ongeldige attributies.
+        attribution_domains: Eén per regel. Beschermt tegen ongeldige attributies.
         discoverable: Jouw openbare berichten kunnen worden uitgelicht op verschillende plekken binnen Mastodon en jouw account kan worden aanbevolen aan andere gebruikers.
         display_name: Jouw volledige naam of een leuke bijnaam.
         fields: Jouw website, persoonlijke voornaamwoorden, leeftijd, alles wat je maar kwijt wilt.
@@ -56,10 +56,12 @@ nl:
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
         setting_aggregate_reblogs: Geen nieuwe boosts tonen voor berichten die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
         setting_always_send_emails: Normaliter worden er geen e-mailmeldingen verstuurd wanneer je actief Mastodon gebruikt
+        setting_default_quote_policy: Deze instelling is alleen van kracht voor berichten die gemaakt zijn met de volgende Mastodon-versie, maar je kunt je voorkeur nu alvast instellen.
         setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
         setting_display_media_show_all: Media altijd tonen
+        setting_emoji_style: Waarmee moeten emojis worden weergegeven. ‘Auto’ probeert de systeemeigen emojis te gebruiken, maar valt terug op Twemoji voor oudere webbrowsers.
         setting_system_scrollbars_ui: Alleen van toepassing op desktopbrowsers gebaseerd op Safari en Chrome
         setting_use_blurhash: Wazige kleurovergangen zijn gebaseerd op de kleuren van de verborgen media, waarmee elk detail verdwijnt
         setting_use_pending_items: De tijdlijn wordt bijgewerkt door op het aantal nieuwe items te klikken, in plaats van dat deze automatisch wordt bijgewerkt
@@ -75,6 +77,7 @@ nl:
       filters:
         action: Kies welke acties uitgevoerd moeten wanneer een bericht overeenkomt met het filter
         actions:
+          blur: Media verbergen achter een waarschuwing, zonder de tekst zelf te verbergen
           hide: Verberg de gefilterde inhoud volledig, alsof het niet bestaat
           warn: Verberg de gefilterde inhoud achter een waarschuwing, met de titel van het filter als waarschuwingstekst
       form_admin_settings:
@@ -88,6 +91,7 @@ nl:
         favicon: WEBP, PNG, GIF of JPG. Vervangt de standaard Mastodon favicon met een aangepast pictogram.
         mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
         media_cache_retention_period: Mediabestanden van berichten van externe gebruikers worden op jouw server in de cache opgeslagen. Indien ingesteld op een positieve waarde, worden media verwijderd na het opgegeven aantal dagen. Als de mediagegevens worden opgevraagd nadat ze zijn verwijderd, worden ze opnieuw gedownload wanneer de originele inhoud nog steeds beschikbaar is. Vanwege beperkingen op hoe vaak linkvoorbeelden sites van derden raadplegen, wordt aanbevolen om deze waarde in te stellen op ten minste 14 dagen. Anders worden linkvoorbeelden niet op aanvraag bijgewerkt.
+        min_age: Gebruikers krijgen tijdens hun inschrijving de vraag om hun geboortedatum te bevestigen
         peers_api_enabled: Een lijst met domeinnamen die deze server heeft aangetroffen in de fediverse. Er zijn hier geen gegevens inbegrepen over de vraag of je verbonden bent met een bepaalde server, alleen dat je server er van weet. Dit wordt gebruikt door diensten die statistieken over de federatie in algemene zin verzamelen.
         profile_directory: De gebruikersgids bevat een lijst van alle gebruikers die ervoor gekozen hebben om ontdekt te kunnen worden.
         require_invite_text: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
@@ -132,17 +136,23 @@ nl:
         name: Je kunt elk woord met een hoofdletter beginnen, om zo bijvoorbeeld de tekst leesbaarder te maken
       terms_of_service:
         changelog: Kan worden opgemaakt met Markdown.
+        effective_date: Een redelijke periode kan variëren van 10 tot 30 dagen vanaf de datum waarop je jouw gebruikers op de hoogte stelt.
         text: Kan worden opgemaakt met Markdown.
       terms_of_service_generator:
         admin_email: Juridische mededelingen zijn o. a. counter-notices, gerechterlijke bevelen, takedown-requests en handhavingsverzoeken.
-        arbitration_address: Kan hetzelfde zijn als bovenstaand vestigingsadres of "N/A" bij gebruik van e-mail
-        arbitration_website: Kan een webformulier zijn, of "N/A" als e-mail wordt gebruikt
+        arbitration_address: Kan hetzelfde zijn als bovenstaand vestigingsadres of "N/A" bij gebruik van e-mail.
+        arbitration_website: Kan een webformulier zijn, of "N/A" wanneer e-mail wordt gebruikt.
+        choice_of_law: Stad, regio, grondgebied of staat waar de interne materiële wetten van toepassing zijn op alle aanspraken.
         dmca_address: 'Gebruik voor beheerders in de VS: het adres dat is geregistreerd in de DMCA Designated Agent Directory. Op verzoek is er een postbuslijst beschikbaar. Gebruik het DMCA Designated Agent Post Office Box Waiver Request om het Copyright Office te e-mailen en te beschrijven dat je een vanaf huis opererende inhoudsmoderator bent, die wraak of vergelding vreest voor je moderator-acties en daarom een postbus moet gebruiken om jouw huisadres uit het publieke domein te houden.'
-        dmca_email: Kan hetzelfde e-mailadres zijn dat gebruikt wordt voor "E-mailadres voor juridische berichten" hierboven
+        dmca_email: Kan hetzelfde e-mailadres zijn dat gebruikt wordt voor "E-mailadres voor juridische berichten" hierboven.
         domain: Een unieke identificatie van de online dienst die je levert.
         jurisdiction: Vermeld het land waar de persoon woont die de rekeningen betaalt. Is het een bedrijf of iets dergelijks, vermeld dan het land waar het ingeschreven staat en de stad, de regio, het grondgebied of de staat, voor zover van toepassing.
+        min_age: Mag niet lager zijn dan de minimale vereiste leeftijd volgens de wetten van jouw jurisdictie.
       user:
         chosen_languages: Alleen berichten in de aangevinkte talen worden op de openbare tijdlijnen getoond
+        date_of_birth:
+          one: We moeten er zeker van zijn dat je tenminste %{count} bent om %{domain} te mogen gebruiken. Deze informatie wordt niet door ons opgeslagen.
+          other: We moeten er zeker van zijn dat je tenminste %{count} bent om %{domain} te mogen gebruiken. Deze informatie wordt niet door ons opgeslagen.
         role: De rol bepaalt welke rechten de gebruiker heeft.
       user_role:
         color: Kleur die gebruikt wordt voor de rol in de UI, als RGB in hexadecimale formaat
@@ -150,13 +160,17 @@ nl:
         name: Openbare naam van de rol, wanneer de rol als badge op profielpagina's wordt getoond
         permissions_as_keys: Gebruikers met deze rol hebben toegang tot...
         position: Een hogere rol beslist in bepaalde situaties over het oplossen van conflicten. Bepaalde acties kunnen alleen worden uitgevoerd op rollen met een lagere prioriteit
+      username_block:
+        allow_with_approval: In plaats van dat het registreren helemaal wordt voorkomen, zullen overeenkomstige registraties jouw goedkeuring vereisen
+        comparison: Houd rekening met het Scunthorpe-probleem wanneer je gedeeltelijke overeenkomsten blokkeert
+        username: Wordt gezien als overeenkomst ongeacht de lettergrootte en gangbare lettervervangingen zoals "4" voor "a" of "3" voor "e"
       webhook:
         events: Selecteer de te verzenden gebeurtenissen
         template: Maak een eigen JSON payload aan met variabele interpolatie. Laat leeg voor standaard JSON.
         url: Waar gebeurtenissen naartoe worden verzonden
     labels:
       account:
-        attribution_domains_as_text: Websites die jou credit mogen geven
+        attribution_domains: Websites die jou credit mogen geven
         discoverable: Jouw account en berichten laten uitlichten door Mastodon
         fields:
           name: Label
@@ -223,6 +237,7 @@ nl:
         setting_boost_modal: Vraag voor het boosten van een bericht een bevestiging
         setting_default_language: Taal van jouw berichten
         setting_default_privacy: Zichtbaarheid van nieuwe berichten
+        setting_default_quote_policy: Wie kan citeren
         setting_default_sensitive: Media altijd als gevoelig markeren
         setting_delete_modal: Vraag voor het verwijderen van een bericht een bevestiging
         setting_disable_hover_cards: Hover-kaarten met profielvoorbeelden uitschakelen
@@ -231,8 +246,10 @@ nl:
         setting_display_media_default: Standaard
         setting_display_media_hide_all: Alles verbergen
         setting_display_media_show_all: Alles tonen
+        setting_emoji_style: Emoji-stijl
         setting_expand_spoilers: Berichten met inhoudswaarschuwingen altijd uitklappen
         setting_hide_network: Jouw volgers en wie je volgt verbergen
+        setting_missing_alt_text_modal: Bevestigingsvenster tonen voor het plaatsen van media zonder alt-tekst
         setting_reduce_motion: Beweging in animaties verminderen
         setting_system_font_ui: Standaardlettertype van het systeem gebruiken
         setting_system_scrollbars_ui: Standaard scrollbalk van het systeem gebruiken
@@ -254,6 +271,7 @@ nl:
         name: Hashtag
       filters:
         actions:
+          blur: Media met een waarschuwing verbergen
           hide: Volledig verbergen
           warn: Met een waarschuwing verbergen
       form_admin_settings:
@@ -267,6 +285,7 @@ nl:
         favicon: Favicon
         mascot: Aangepaste mascotte (legacy)
         media_cache_retention_period: Bewaartermijn mediacache
+        min_age: Vereiste minimumleeftijd
         peers_api_enabled: Lijst van bekende servers via de API publiceren
         profile_directory: Gebruikersgids inschakelen
         registrations_mode: Wie kan zich registreren
@@ -281,7 +300,7 @@ nl:
         site_title: Servernaam
         status_page_url: URL van statuspagina
         theme: Standaardthema
-        thumbnail: Serverthumbnail
+        thumbnail: Server-miniatuur
         timeline_preview: Toegang tot de openbare tijdlijnen zonder in te loggen toestaan
         trendable_by_default: Trends goedkeuren zonder voorafgaande beoordeling
         trends: Trends inschakelen
@@ -310,6 +329,7 @@ nl:
         follow_request: Wanneer iemand jou wil volgen
         mention: Je bent door iemand vermeld
         pending_account: Wanneer een nieuw account moet worden beoordeeld
+        quote: Iemand heeft jou geciteerd
         reblog: Wanneer iemand jouw bericht heeft geboost
         report: Nieuwe rapportage is ingediend
         software_updates:
@@ -332,16 +352,22 @@ nl:
         usable: Berichten toestaan deze hashtag lokaal te gebruiken
       terms_of_service:
         changelog: Wat is veranderd?
+        effective_date: Ingangsdatum
         text: Gebruiksvoorwaarden
       terms_of_service_generator:
         admin_email: E-mailadres voor juridische meldingen
         arbitration_address: Vestigingsadres voor arbitrage-mededelingen
         arbitration_website: Website voor het indienen van arbitrage-mededelingen
+        choice_of_law: Keuze van rechtsgebied
         dmca_address: Vestigingsadres voor DMCA/auteursrecht-mededelingen
         dmca_email: E-mailadres voor DMCA/auteursrecht-mededelingen
         domain: Domein
         jurisdiction: Jurisdictie
+        min_age: Minimumleeftijd
       user:
+        date_of_birth_1i: Dag
+        date_of_birth_2i: Maand
+        date_of_birth_3i: Jaar
         role: Rol
         time_zone: Tijdzone
       user_role:
@@ -350,6 +376,10 @@ nl:
         name: Naam
         permissions_as_keys: Rechten
         position: Prioriteit
+      username_block:
+        allow_with_approval: Registraties met goedkeuring toestaan
+        comparison: Methode van vergelijking
+        username: Overeen te komen woord
       webhook:
         events: Ingeschakelde gebeurtenissen
         template: Sjabloon Payload

@@ -3,9 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin::Settings::Registrations' do
+  let(:admin_user) { Fabricate(:admin_user) }
+
+  before { sign_in(admin_user) }
+
   it 'Saves changes to registrations settings' do
-    sign_in admin_user
     visit admin_settings_registrations_path
+    expect(page)
+      .to have_title(I18n.t('admin.settings.registrations.title'))
 
     select open_mode_option,
            from: registrations_mode_field

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ReportNotePolicy do
   subject { described_class }
 
-  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+  let(:admin)   { Fabricate(:admin_user).account }
   let(:john)    { Fabricate(:account) }
 
   permissions :create? do

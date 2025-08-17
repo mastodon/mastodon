@@ -1,6 +1,3 @@
-import type { RecordOf } from 'immutable';
-import { Record, List } from 'immutable';
-
 import escapeTextContentForBrowser from 'escape-html';
 
 import type { ApiPollJSON, ApiPollOptionJSON } from 'mastodon/api_types/polls';
@@ -9,19 +6,12 @@ import emojify from 'mastodon/features/emoji/emoji';
 import { CustomEmojiFactory, makeEmojiMap } from './custom_emoji';
 import type { CustomEmoji, EmojiMap } from './custom_emoji';
 
-interface PollOptionTranslationShape {
+interface PollOptionTranslation {
   title: string;
   titleHtml: string;
 }
 
-export type PollOptionTranslation = RecordOf<PollOptionTranslationShape>;
-
-export const PollOptionTranslationFactory = Record<PollOptionTranslationShape>({
-  title: '',
-  titleHtml: '',
-});
-
-interface PollOptionShape extends Required<ApiPollOptionJSON> {
+export interface PollOption extends ApiPollOptionJSON {
   voted: boolean;
   titleHtml: string;
   translation: PollOptionTranslation | null;
@@ -31,45 +21,30 @@ export function createPollOptionTranslationFromServerJSON(
   translation: { title: string },
   emojiMap: EmojiMap,
 ) {
-  return PollOptionTranslationFactory({
+  return {
     ...translation,
     titleHtml: emojify(
       escapeTextContentForBrowser(translation.title),
       emojiMap,
     ),
-  });
+  } as PollOptionTranslation;
 }
 
-export type PollOption = RecordOf<PollOptionShape>;
-
-export const PollOptionFactory = Record<PollOptionShape>({
-  title: '',
-  votes_count: 0,
-  voted: false,
-  titleHtml: '',
-  translation: null,
-});
-
-interface PollShape
+export interface Poll
   extends Omit<ApiPollJSON, 'emojis' | 'options' | 'own_votes'> {
-  emojis: List<CustomEmoji>;
-  options: List<PollOption>;
-  own_votes?: List<number>;
+  emojis: CustomEmoji[];
+  options: PollOption[];
+  own_votes?: number[];
 }
-export type Poll = RecordOf<PollShape>;
 
-export const PollFactory = Record<PollShape>({
-  id: '',
-  expires_at: '',
+const pollDefaultValues = {
   expired: false,
   multiple: false,
   voters_count: 0,
   votes_count: 0,
   voted: false,
-  emojis: List<CustomEmoji>(),
-  options: List<PollOption>(),
-  own_votes: List(),
-});
+  own_votes: [],
+};
 
 export function createPollFromServerJSON(
   serverJSON: ApiPollJSON,
@@ -77,33 +52,31 @@ export function createPollFromServerJSON(
 ) {
   const emojiMap = makeEmojiMap(serverJSON.emojis);
 
-  return PollFactory({
+  return {
+    ...pollDefaultValues,
     ...serverJSON,
-    emojis: List(serverJSON.emojis.map((emoji) => CustomEmojiFactory(emoji))),
-    own_votes: serverJSON.own_votes ? List(serverJSON.own_votes) : undefined,
-    options: List(
-      serverJSON.options.map((optionJSON, index) => {
-        const option = PollOptionFactory({
-          ...optionJSON,
-          voted: serverJSON.own_votes?.includes(index) || false,
-          titleHtml: emojify(
-            escapeTextContentForBrowser(optionJSON.title),
-            emojiMap,
-          ),
-        });
+    emojis: serverJSON.emojis.map((emoji) => CustomEmojiFactory(emoji)),
+    options: serverJSON.options.map((optionJSON, index) => {
+      const option = {
+        ...optionJSON,
+        voted: serverJSON.own_votes?.includes(index) || false,
+        titleHtml: emojify(
+          escapeTextContentForBrowser(optionJSON.title),
+          emojiMap,
+        ),
+      } as PollOption;
 
-        const prevOption = previousPoll?.options.get(index);
-        if (prevOption?.translation && prevOption.title === option.title) {
-          const { translation } = prevOption;
+      const prevOption = previousPoll?.options[index];
+      if (prevOption?.translation && prevOption.title === option.title) {
+        const { translation } = prevOption;
 
-          option.set(
-            'translation',
-            createPollOptionTranslationFromServerJSON(translation, emojiMap),
-          );
-        }
+        option.translation = createPollOptionTranslationFromServerJSON(
+          translation,
+          emojiMap,
+        );
+      }
 
-        return option;
-      }),
-    ),
-  });
+      return option;
+    }),
+  } as Poll;
 }

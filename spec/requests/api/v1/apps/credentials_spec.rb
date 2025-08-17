@@ -29,7 +29,7 @@ RSpec.describe 'Credentials' do
             redirect_uris: token.application.redirect_uris,
             # Deprecated properties as of 4.3:
             redirect_uri: token.application.redirect_uri.split.first,
-            vapid_key: Rails.configuration.x.vapid_public_key
+            vapid_key: Rails.configuration.x.vapid.public_key
           )
         )
       end
@@ -69,7 +69,7 @@ RSpec.describe 'Credentials' do
             redirect_uris: token.application.redirect_uris,
             # Deprecated properties as of 4.3:
             redirect_uri: token.application.redirect_uri.split.first,
-            vapid_key: Rails.configuration.x.vapid_public_key
+            vapid_key: Rails.configuration.x.vapid.public_key
           )
         )
       end

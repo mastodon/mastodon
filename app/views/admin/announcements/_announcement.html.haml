@@ -10,6 +10,8 @@
         = l(announcement.created_at)
 
     %div
+      - if can?(:distribute, announcement)
+        = table_link_to 'mail', t('admin.terms_of_service.notify_users'), admin_announcement_preview_path(announcement)
       - if can?(:update, announcement)
         - if announcement.published?
           = table_link_to 'toggle_off', t('admin.announcements.unpublish'), unpublish_admin_announcement_path(announcement), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }

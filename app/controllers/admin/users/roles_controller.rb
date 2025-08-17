@@ -28,7 +28,8 @@ module Admin
     end
 
     def resource_params
-      params.require(:user).permit(:role_id)
+      params
+        .expect(user: [:role_id])
     end
   end
 end

@@ -52,7 +52,8 @@ module Admin
     end
 
     def warning_preset_params
-      params.require(:account_warning_preset).permit(:title, :text)
+      params
+        .expect(account_warning_preset: [:title, :text])
     end
   end
 end

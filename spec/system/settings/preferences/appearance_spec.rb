@@ -17,10 +17,13 @@ RSpec.describe 'Settings preferences appearance page' do
     check confirm_reblog_field
     uncheck confirm_delete_field
 
+    check advanced_layout_field
+
     expect { save_changes }
       .to change { user.reload.settings.theme }.to('contrast')
       .and change { user.reload.settings['web.reblog_modal'] }.to(true)
-      .and(change { user.reload.settings['web.delete_modal'] }.to(false))
+      .and change { user.reload.settings['web.delete_modal'] }.to(false)
+      .and(change { user.reload.settings['web.advanced_layout'] }.to(true))
     expect(page)
       .to have_title(I18n.t('settings.appearance'))
   end
@@ -30,14 +33,18 @@ RSpec.describe 'Settings preferences appearance page' do
   end
 
   def confirm_delete_field
-    I18n.t('simple_form.labels.defaults.setting_delete_modal')
+    form_label('defaults.setting_delete_modal')
   end
 
   def confirm_reblog_field
-    I18n.t('simple_form.labels.defaults.setting_boost_modal')
+    form_label('defaults.setting_boost_modal')
   end
 
   def theme_selection_field
-    I18n.t('simple_form.labels.defaults.setting_theme')
+    form_label('defaults.setting_theme')
+  end
+
+  def advanced_layout_field
+    form_label('defaults.setting_advanced_layout')
   end
 end

@@ -190,6 +190,7 @@ it:
         create_relay: Crea Relay
         create_unavailable_domain: Crea Dominio Non Disponibile
         create_user_role: Crea Ruolo
+        create_username_block: Crea regola del nome utente
         demote_user: Retrocedi Utente
         destroy_announcement: Elimina Annuncio
         destroy_canonical_email_block: Elimina il blocco dell'e-mail
@@ -203,6 +204,7 @@ it:
         destroy_status: Elimina Toot
         destroy_unavailable_domain: Elimina Dominio Non Disponibile
         destroy_user_role: Distruggi Ruolo
+        destroy_username_block: Cancella regola del nome utente
         disable_2fa_user: Disabilita A2F
         disable_custom_emoji: Disabilita Emoji Personalizzata
         disable_relay: Disabilita Relay
@@ -237,6 +239,7 @@ it:
         update_report: Aggiorna segnalazione
         update_status: Aggiorna Toot
         update_user_role: Aggiorna Ruolo
+        update_username_block: Aggiorna regola del nome utente
       actions:
         approve_appeal_html: "%{name} ha approvato il ricorso sulla decisione di moderazione da %{target}"
         approve_user_html: "%{name} ha approvato l'iscrizione da %{target}"
@@ -255,6 +258,7 @@ it:
         create_relay_html: "%{name} ha creato un relay %{target}"
         create_unavailable_domain_html: "%{name} ha interrotto la consegna al dominio %{target}"
         create_user_role_html: "%{name} ha creato il ruolo %{target}"
+        create_username_block_html: "%{name} ha aggiunto la regola per i nomi utente contenenti %{target}"
         demote_user_html: "%{name} ha retrocesso l'utente %{target}"
         destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
         destroy_canonical_email_block_html: "%{name} ha sbloccato l'e-mail con l'hash %{target}"
@@ -268,6 +272,7 @@ it:
         destroy_status_html: "%{name} ha rimosso il toot di %{target}"
         destroy_unavailable_domain_html: "%{name} ha ripreso la consegna al dominio %{target}"
         destroy_user_role_html: "%{name} ha eliminato il ruolo %{target}"
+        destroy_username_block_html: "%{name} ha rimosso la regola per i nomi utente contenenti %{target}"
         disable_2fa_user_html: "%{name} ha disabilitato l'autenticazione a due fattori per l'utente %{target}"
         disable_custom_emoji_html: "%{name} ha disabilitato emoji %{target}"
         disable_relay_html: "%{name} ha disabilitato il relay %{target}"
@@ -302,6 +307,7 @@ it:
         update_report_html: "%{name} ha aggiornato la segnalazione %{target}"
         update_status_html: "%{name} ha aggiornato lo status di %{target}"
         update_user_role_html: "%{name} ha modificato il ruolo %{target}"
+        update_username_block_html: "%{name} ha aggiornato la regola per i nomi utente contenenti %{target}"
       deleted_account: account eliminato
       empty: Nessun log trovato.
       filter_by_action: Filtra per azione
@@ -309,6 +315,7 @@ it:
       title: Registro di controllo
       unavailable_instance: "(nome di dominio non disponibile)"
     announcements:
+      back: Torna agli annunci
       destroyed_msg: Annuncio eliminato!
       edit:
         title: Modifica annuncio
@@ -317,6 +324,10 @@ it:
       new:
         create: Crea annuncio
         title: Nuovo annuncio
+      preview:
+        disclaimer: Poiché gli utenti non possono disattivarle, le notifiche e-mail dovrebbero essere limitate ad annunci importanti, come notifiche di violazione dei dati personali o di chiusura del server.
+        explanation_html: 'L''e-mail verrà inviata a <strong>%{display_count} utenti</strong>. Il seguente testo sarà incluso nell''e-mail:'
+        title: Anteprima della notifica dell'annuncio
       publish: Pubblica
       published_msg: Annuncio pubblicato!
       scheduled_for: Programmato per %{time}
@@ -475,6 +486,36 @@ it:
       new:
         title: Importare i blocchi di dominio
       no_file: Nessun file selezionato
+    fasp:
+      debug:
+        callbacks:
+          created_at: Creato il
+          delete: Cancella
+          ip: Indirizzo IP
+          request_body: Request body
+          title: Debug Callbacks
+      providers:
+        active: Attivo
+        base_url: Url di base
+        callback: Callback
+        delete: Cancella
+        edit: Modifica Provider
+        finish_registration: Registrazione terminata
+        name: Nome
+        providers: Providers
+        public_key_fingerprint: Chiave pubblica fingerprint
+        registration_requested: Registrazione richiesta
+        registrations:
+          confirm: Conferma
+          description: Hai ricevuto una registrazione da un FASP. Rifiutala se non l'hai avviata tu. Se l'hai avviata tu, confronta attentamente nome e impronta della chiave prima di confermare la registrazione.
+          reject: Rifiuta
+          title: Conferma registrazione FASP
+        save: Salva
+        select_capabilities: Seleziona Capacità
+        sign_in: Connettiti
+        status: Stato
+        title: Fornitori di Servizi Ausiliari per il Fediverso
+      title: FASP
     follow_recommendations:
       description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di seguaci locali per una data lingua."
       language: Per lingua
@@ -543,6 +584,13 @@ it:
         all: Tutto
         limited: Limitato
         title: Moderazione
+      moderation_notes:
+        create: Aggiungi Nota di Moderazione
+        created_msg: Nota di moderazione dell'istanza creata con successo!
+        description_html: Visualizza e lascia note per altri moderatori e per il futuro te
+        destroyed_msg: Nota di moderazione dell'istanza eliminata con successo!
+        placeholder: Informazioni su questa istanza, azioni compiute, o qualsiasi cosa possa aiutarti a moderare questa istanza in futuro.
+        title: Note di Moderazione
       private_comment: Commento privato
       public_comment: Commento pubblico
       purge: Ripulisci
@@ -751,17 +799,26 @@ it:
       title: Ruoli
     rules:
       add_new: Aggiungi regola
+      add_translation: Aggiungi traduzione
       delete: Cancella
       description_html: Mentre la maggior parte degli utenti sostiene di aver letto e accettato i termini di servizio, di solito non li leggono fino a quando sorge un problema. <strong>Rendi più facile vedere le regole del server, fornendole in un semplice elenco</strong>. Cerca di mantenere le singole regole brevi e semplici, ma cerca anche di non dividerle in molti elementi separati.
       edit: Modifica regola
       empty: Non sono ancora state definite regole del server.
+      move_down: Sposta giu
+      move_up: Muovi su
       title: Regole del server
+      translation: Traduzione
+      translations: Traduzioni
+      translations_explanation: Puoi opzionalmente aggiungere delle traduzioni per le regole. Il valore predefinito verrà mostrato se non è disponibile nessuna versione tradotta. Assicurarsi sempre che qualsiasi traduzione fornita sia sincronizzata con il valore predefinito.
     settings:
       about:
         manage_rules: Gestisci le regole del server
         preamble: Fornire informazioni approfondite su come, il server, venga gestito, moderato e finanziato.
         rules_hint: C'è un'area dedicata per le regole che i tuoi utenti dovrebbero rispettare.
         title: Info
+      allow_referrer_origin:
+        desc: Quando i tuoi utenti cliccano su link a siti esterni, il loro browser potrebbe inviare l'indirizzo del tuo server Mastodon come referente. Disattiva questa opzione se ciò identificherebbe in modo univoco i tuoi utenti, ad esempio se si tratta di un server Mastodon personale.
+        title: Consenti ai siti esterni di vedere il tuo server Mastodon come fonte di traffico
       appearance:
         preamble: Personalizza l'interfaccia web di Mastodon.
         title: Aspetto
@@ -781,9 +838,9 @@ it:
       discovery:
         follow_recommendations: Segui le raccomandazioni
         preamble: La comparsa di contenuti interessanti è determinante per l'arrivo di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla in che modo varie funzionalità di scoperta funzionano sul tuo server.
+        privacy: Privacy
         profile_directory: Directory del profilo
         public_timelines: Timeline pubbliche
-        publish_discovered_servers: Pubblica i server scoperti
         publish_statistics: Pubblica le statistiche
         title: Scopri
         trends: Tendenze
@@ -868,6 +925,8 @@ it:
     system_checks:
       database_schema_check:
         message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
+      elasticsearch_analysis_index_mismatch:
+        message_html: Le impostazioni dell'analizzatore di indice Elasticsearch sono obsolete. Si prega di eseguire <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Il cluster Elasticsearch non è integro (stato rosso), le funzionalità di ricerca non sono disponibili
       elasticsearch_health_yellow:
@@ -939,6 +998,7 @@ it:
         chance_to_review_html: "<strong>I termini di servizio generati non verranno pubblicati automaticamente.</strong> Avrai la possibilità di esaminare i risultati. Si prega di inserire i dettagli necessari per procedere."
         explanation_html: Il modello di termini di servizio fornito è solo a scopo informativo e non deve essere interpretato come consulenza legale su alcun argomento. Si prega di consultare il proprio consulente legale, in merito alla propria situazione e alle specifiche questioni legali che si hanno.
         title: Impostazione dei Termini di Servizio
+      going_live_on_html: In vigore il %{date}
       history: Cronologia
       live: In uso
       no_history: Non sono ancora state registrate modifiche ai termini di servizio.
@@ -1031,6 +1091,25 @@ it:
           other: Usato da %{count} persone nell'ultima settimana
       title: Raccomandazioni & Tendenze
       trending: Di tendenza
+    username_blocks:
+      add_new: Aggiungi una nuova
+      block_registrations: Blocco delle registrazioni
+      comparison:
+        contains: Contiene
+        equals: Uguale a
+      contains_html: Contiene %{string}
+      created_msg: Regola del nome utente creata con successo
+      delete: Elimina
+      edit:
+        title: Modifica regola del nome utente
+      matches_exactly_html: Uguale a %{string}
+      new:
+        create: Crea regola
+        title: Crea una nuova regola del nome utente
+      no_username_block_selected: Non sono state modificate le regole del nome utente in quanto non sono state selezionate
+      not_permitted: Non consentito
+      title: Regole del nome utente
+      updated_msg: Regola del nome utente aggiornata con successo
     warning_presets:
       add_new: Aggiungi nuovo
       delete: Cancella
@@ -1182,7 +1261,7 @@ it:
       back: Indietro
       invited_by: 'Puoi unirti a %{domain} grazie all''invito che hai ricevuto da:'
       preamble: Questi sono impostati e applicati dai moderatori di %{domain}.
-      preamble_invited: Prima di procedere, si prega di considera le regole di base stabilite dai moderatori di %{domain}.
+      preamble_invited: Prima di procedere, si prega di considerare le regole di base stabilite dai moderatori di %{domain}.
       title: Alcune regole di base.
       title_invited: Sei stato/a invitato/a.
     security: Credenziali
@@ -1211,6 +1290,7 @@ it:
     too_fast: Modulo inviato troppo velocemente, riprova.
     use_security_key: Usa la chiave di sicurezza
     user_agreement_html: Ho letto e accetto i <a href="%{terms_of_service_path}" target="_blank">termini di servizio</a> e l'<a href="%{privacy_policy_path}" target="_blank">informativa sulla privacy</a>
+    user_privacy_agreement_html: Ho letto e accetto l'<a href="%{privacy_policy_path}" target="_blank">informativa sulla privacy</a>
   author_attribution:
     example_title: Testo di esempio
     hint_html: Stai scrivendo notizie o articoli di blog al di fuori di Mastodon? Controlla come vieni accreditato quando vengono condivisi su Mastodon.
@@ -1296,6 +1376,10 @@ it:
     basic_information: Informazioni di base
     hint_html: "<strong>Personalizza ciò che le persone vedono sul tuo profilo pubblico e accanto ai tuoi post.</strong> È più probabile che altre persone ti seguano e interagiscano con te quando hai un profilo compilato e un'immagine del profilo."
     other: Altro
+  emoji_styles:
+    auto: Automatico
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': La richiesta che hai inviato non è valida o non è corretta.
     '403': Non sei autorizzato a visualizzare questa pagina.
@@ -1605,6 +1689,10 @@ it:
       title: Nuova menzione
     poll:
       subject: Un sondaggio da %{name} è terminato
+    quote:
+      body: 'Il tuo post è stato citato da %{name}:'
+      subject: "%{name} ha citato il tuo post"
+      title: Nuova citazione
     reblog:
       body: 'Il tuo status è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
@@ -1815,12 +1903,17 @@ it:
     edited_at_html: Modificato il %{date}
     errors:
       in_reply_not_found: Il post a cui stai tentando di rispondere non sembra esistere.
+      quoted_status_not_found: Il post che stai cercando di citare non sembra esistere.
     over_character_limit: Limite caratteri superato di %{max}
     pin_errors:
       direct: I messaggi visibili solo agli utenti citati non possono essere fissati in cima
       limit: Hai già fissato in cima il massimo numero di post
       ownership: Non puoi fissare in cima un post di qualcun altro
       reblog: Un toot condiviso non può essere fissato in cima
+    quote_policies:
+      followers: Solo i tuoi seguaci
+      nobody: Nessuno
+      public: Tutti
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Diretto
@@ -1874,6 +1967,11 @@ it:
     does_not_match_previous_name: non corrisponde al nome precedente
   terms_of_service:
     title: Termini di Servizio
+  terms_of_service_interstitial:
+    future_preamble_html: Stiamo apportando alcune modifiche ai nostri termini di servizio, che entreranno in vigore in data <strong>%{date}</strong>. Ti invitiamo a consultare i termini aggiornati.
+    past_preamble_html: Abbiamo modificato i nostri termini di servizio dalla tua ultima visita. Ti invitiamo a consultare i termini aggiornati.
+    review_link: Rivedi i termini di servizio
+    title: I termini di servizio di %{domain} stanno cambiando
   themes:
     contrast: Mastodon (contrasto elevato)
     default: Mastodon (scuro)
@@ -1905,6 +2003,10 @@ it:
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
     webauthn: Chiavi di sicurezza
   user_mailer:
+    announcement_published:
+      description: 'Gli amministratori di %{domain} stanno facendo un annuncio:'
+      subject: Annuncio di servizio
+      title: Annuncio di servizio da %{domain}
     appeal_approved:
       action: Impostazioni account
       explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato approvato. Il tuo account ha riottenuto la buona reputazione.
@@ -1937,8 +2039,8 @@ it:
     terms_of_service_changed:
       agreement: Continuando a usare %{domain}, accetti questi termini. Se non sei d'accordo con i termini aggiornati, puoi terminare il tuo accordo con %{domain} in qualsiasi momento eliminando il tuo account.
       changelog: 'Ecco, in sintesi, cosa significa per te questo aggiornamento:'
-      description: 'Stai ricevendo questa e-mail perché stiamo apportando alcune modifiche ai nostri termini di servizio su %{domain}. Ti invitiamo a leggere i termini aggiornati per intero qui:'
-      description_html: Stai ricevendo questa e-mail perché stiamo apportando alcune modifiche ai nostri termini di servizio su %{domain}. Ti invitiamo a leggere i <a href="%{path}" target="_blank">termini aggiornati per intero qui</a>.
+      description: 'Stai ricevendo questa e-mail perché stiamo apportando alcune modifiche ai nostri termini di servizio su %{domain}. Questi aggiornamenti entreranno in vigore il %{date}. Ti invitiamo a leggere i termini aggiornati per intero qui:'
+      description_html: Stai ricevendo questa e-mail perché stiamo apportando alcune modifiche ai nostri termini di servizio su %{domain}. Questi aggiornamenti entreranno in vigore il <strong>%{date}</strong>. Ti invitiamo a leggere i <a href="%{path}" target="_blank">termini aggiornati per intero qui</a>.
       sign_off: Il team di %{domain}
       subject: Aggiornamenti ai nostri termini di servizio
       subtitle: I termini di servizio di %{domain} stanno cambiando
@@ -2009,7 +2111,6 @@ it:
       post_action: Scrivi
       post_step: Salutate il mondo con testo, foto, video o sondaggi.
       post_title: Scrivi il tuo primo post
-      share_action: Condividi
       share_step: Fai sapere ai tuoi amici come trovarti su Mastodon.
       share_title: Condividi il tuo profilo Mastodon
       sign_in_action: Accedi

@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   rescue_from Mastodon::NotPermittedError, with: :forbidden
   rescue_from ActionController::RoutingError, ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActionController::UnknownFormat, with: :not_acceptable
-  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
+  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_content
   rescue_from Mastodon::RateLimitExceededError, with: :too_many_requests
 
   rescue_from(*Mastodon::HTTP_CONNECTION_ERRORS, with: :internal_server_error)
@@ -72,10 +72,24 @@ class ApplicationController < ActionController::Base
   def require_functional!
     return if current_user.functional?
 
-    if current_user.confirmed?
-      redirect_to edit_user_registration_path
-    else
-      redirect_to auth_setup_path
+    respond_to do |format|
+      format.any do
+        if current_user.confirmed?
+          redirect_to edit_user_registration_path
+        else
+          redirect_to auth_setup_path
+        end
+      end
+
+      format.json do
+        if !current_user.confirmed?
+          render json: { error: 'Your login is missing a confirmed e-mail address' }, status: 403
+        elsif !current_user.approved?
+          render json: { error: 'Your login is currently pending approval' }, status: 403
+        elsif !current_user.functional?
+          render json: { error: 'Your login is currently disabled' }, status: 403
+        end
+      end
     end
   end
 
@@ -84,7 +98,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(_resource_or_scope)
-    if ENV['OMNIAUTH_ONLY'] == 'true' && ENV['OIDC_ENABLED'] == 'true'
+    if ENV['OMNIAUTH_ONLY'] == 'true' && Rails.configuration.x.omniauth.oidc_enabled?
       '/auth/auth/openid_connect/logout'
     else
       new_user_session_path
@@ -109,7 +123,7 @@ class ApplicationController < ActionController::Base
     respond_with_error(410)
   end
 
-  def unprocessable_entity
+  def unprocessable_content
     respond_with_error(422)
   end
 

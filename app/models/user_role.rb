@@ -42,6 +42,7 @@ class UserRole < ApplicationRecord
   NOBODY_POSITION = -1
 
   POSITION_LIMIT = (2**31) - 1
+  CSS_COLORS = /\A#?(?:[A-F0-9]{3}){1,2}\z/i # CSS-style hex colors
 
   module Flags
     NONE = 0
@@ -90,7 +91,7 @@ class UserRole < ApplicationRecord
   attr_writer :current_account
 
   validates :name, presence: true, unless: :everyone?
-  validates :color, format: { with: /\A#?(?:[A-F0-9]{3}){1,2}\z/i }, unless: -> { color.blank? }
+  validates :color, format: { with: CSS_COLORS }, if: :color?
   validates :position, numericality: { in: (-POSITION_LIMIT..POSITION_LIMIT) }
 
   validate :validate_permissions_elevation
@@ -101,9 +102,6 @@ class UserRole < ApplicationRecord
   before_validation :set_position
 
   scope :assignable, -> { where.not(id: EVERYONE_ROLE_ID).order(position: :asc) }
-  scope :highlighted, -> { where(highlighted: true) }
-  scope :with_color, -> { where.not(color: [nil, '']) }
-  scope :providing_styles, -> { highlighted.with_color }
 
   has_many :users, inverse_of: :role, foreign_key: 'role_id', dependent: :nullify
 

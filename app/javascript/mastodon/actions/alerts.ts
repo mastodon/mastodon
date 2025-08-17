@@ -1,14 +1,11 @@
 import { defineMessages } from 'react-intl';
-import type { MessageDescriptor } from 'react-intl';
+
+import { createAction } from '@reduxjs/toolkit';
 
 import { AxiosError } from 'axios';
 import type { AxiosResponse } from 'axios';
 
-interface Alert {
-  title: string | MessageDescriptor;
-  message: string | MessageDescriptor;
-  values?: Record<string, string | number | Date>;
-}
+import type { Alert } from 'mastodon/models/alert';
 
 interface ApiErrorResponse {
   error?: string;
@@ -30,24 +27,13 @@ const messages = defineMessages({
   },
 });
 
-export const ALERT_SHOW = 'ALERT_SHOW';
-export const ALERT_DISMISS = 'ALERT_DISMISS';
-export const ALERT_CLEAR = 'ALERT_CLEAR';
-export const ALERT_NOOP = 'ALERT_NOOP';
+export const dismissAlert = createAction<{ key: number }>('alerts/dismiss');
 
-export const dismissAlert = (alert: Alert) => ({
-  type: ALERT_DISMISS,
-  alert,
-});
+export const clearAlerts = createAction('alerts/clear');
 
-export const clearAlert = () => ({
-  type: ALERT_CLEAR,
-});
+export const showAlert = createAction<Omit<Alert, 'key'>>('alerts/show');
 
-export const showAlert = (alert: Alert) => ({
-  type: ALERT_SHOW,
-  alert,
-});
+const ignoreAlert = createAction('alerts/ignore');
 
 export const showAlertForError = (error: unknown, skipNotFound = false) => {
   if (error instanceof AxiosError && error.response) {
@@ -56,7 +42,7 @@ export const showAlertForError = (error: unknown, skipNotFound = false) => {
 
     // Skip these errors as they are reflected in the UI
     if (skipNotFound && (status === 404 || status === 410)) {
-      return { type: ALERT_NOOP };
+      return ignoreAlert();
     }
 
     // Rate limit errors
@@ -76,9 +62,9 @@ export const showAlertForError = (error: unknown, skipNotFound = false) => {
     });
   }
 
-  // An aborted request, e.g. due to reloading the browser window, it not really error
+  // An aborted request, e.g. due to reloading the browser window, is not really an error
   if (error instanceof AxiosError && error.code === AxiosError.ECONNABORTED) {
-    return { type: ALERT_NOOP };
+    return ignoreAlert();
   }
 
   console.error(error);

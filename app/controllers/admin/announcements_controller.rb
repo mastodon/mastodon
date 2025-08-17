@@ -84,6 +84,7 @@ class Admin::AnnouncementsController < Admin::BaseController
   end
 
   def resource_params
-    params.require(:announcement).permit(:text, :scheduled_at, :starts_at, :ends_at, :all_day)
+    params
+      .expect(announcement: [:text, :scheduled_at, :starts_at, :ends_at, :all_day])
   end
 end

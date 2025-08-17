@@ -1,0 +1,27 @@
+%tr.nested-fields
+  %td
+    .fields-row
+      .fields-row__column.fields-group
+        = f.input :language,
+                  collection: ui_languages,
+                  include_blank: false,
+                  label_method: ->(locale) { "#{native_locale_name(locale)} (#{standard_locale_name(locale)})" }
+
+      .fields-row__column.fields-group
+        = f.hidden_field :id if f.object&.persisted? # Required so Rails doesn't put the field outside of the <tr/>
+        = link_to_remove_association(f, class: 'table-action-link') do
+          = safe_join([material_symbol('close'), t('filters.index.delete')])
+
+    .fields-group
+      = f.input :text,
+                label: I18n.t('simple_form.labels.rule.text'),
+                hint: I18n.t('simple_form.hints.rule.text'),
+                input_html: { lang: f.object&.language },
+                wrapper: :with_block_label
+
+    .fields-group
+      = f.input :hint,
+                label: I18n.t('simple_form.labels.rule.hint'),
+                hint: I18n.t('simple_form.hints.rule.hint'),
+                input_html: { lang: f.object&.language },
+                wrapper: :with_block_label

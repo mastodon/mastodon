@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe AppealService, :inline_jobs do
   describe '#call' do
-    let!(:admin) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let!(:admin) { Fabricate(:admin_user) }
 
     context 'with an existing strike' do
       let(:strike) { Fabricate(:account_warning) }

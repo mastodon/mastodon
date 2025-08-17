@@ -42,7 +42,7 @@ class CustomEmoji < ApplicationRecord
 
   has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce +profile "!icc,*" +set date:modify +set date:create +set date:timestamp', file_geometry_parser: FastGeometryParser } }, validate_media_type: false, processors: [:lazy_thumbnail]
 
-  normalizes :domain, with: ->(domain) { domain.downcase }
+  normalizes :domain, with: ->(domain) { domain.downcase.strip }
 
   validates_attachment :image, content_type: { content_type: IMAGE_MIME_TYPES }, presence: true, size: { less_than: LIMIT }
   validates :shortcode, uniqueness: { scope: :domain }, format: { with: SHORTCODE_ONLY_RE }, length: { minimum: MINIMUM_SHORTCODE_SIZE }

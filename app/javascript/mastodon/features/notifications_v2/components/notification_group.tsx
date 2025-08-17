@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
 
-import { HotKeys } from 'react-hotkeys';
-
 import { navigateToProfile } from 'mastodon/actions/accounts';
 import { mentionComposeById } from 'mastodon/actions/compose';
+import { Hotkeys } from 'mastodon/components/hotkeys';
 import type { NotificationGroup as NotificationGroupModel } from 'mastodon/models/notification_group';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
@@ -16,6 +15,7 @@ import { NotificationFollowRequest } from './notification_follow_request';
 import { NotificationMention } from './notification_mention';
 import { NotificationModerationWarning } from './notification_moderation_warning';
 import { NotificationPoll } from './notification_poll';
+import { NotificationQuote } from './notification_quote';
 import { NotificationReblog } from './notification_reblog';
 import { NotificationSeveredRelationships } from './notification_severed_relationships';
 import { NotificationStatus } from './notification_status';
@@ -92,6 +92,11 @@ export const NotificationGroup: React.FC<{
         <NotificationMention unread={unread} notification={notificationGroup} />
       );
       break;
+    case 'quote':
+      content = (
+        <NotificationQuote unread={unread} notification={notificationGroup} />
+      );
+      break;
     case 'follow':
       content = (
         <NotificationFollow unread={unread} notification={notificationGroup} />
@@ -156,5 +161,5 @@ export const NotificationGroup: React.FC<{
       return null;
   }
 
-  return <HotKeys handlers={handlers}>{content}</HotKeys>;
+  return <Hotkeys handlers={handlers}>{content}</Hotkeys>;
 };

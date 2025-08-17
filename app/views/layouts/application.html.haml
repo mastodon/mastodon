@@ -2,7 +2,7 @@
 %html{ lang: I18n.locale }
   %head
     %meta{ charset: 'utf-8' }/
-    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }/
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' }/
 
     - if cdn_host?
       %link{ rel: 'dns-prefetch', href: cdn_host }/
@@ -26,15 +26,18 @@
     %title= html_title
 
     = theme_style_tags current_theme
+    = vite_client_tag
+    = vite_react_refresh_tag
+    = vite_polyfills_tag
     -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
-    = stylesheet_pack_tag 'inert', media: 'all', crossorigin: 'anonymous', id: 'inert-style'
+    = vite_stylesheet_tag 'styles/entrypoints/inert.scss', media: 'all', id: 'inert-style'
+    = vite_typescript_tag 'common.ts', crossorigin: 'anonymous'
 
-    = javascript_pack_tag 'common', crossorigin: 'anonymous'
-    = preload_pack_asset "locale/#{I18n.locale}-json.js"
+    = vite_preload_file_tag "mastodon/locales/#{I18n.locale}.json"
     = csrf_meta_tags unless skip_csrf_meta_tags?
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 
-    = stylesheet_link_tag custom_css_path, skip_pipeline: true, host: root_url, media: 'all'
+    = custom_stylesheet
 
     = yield :header_tags
 

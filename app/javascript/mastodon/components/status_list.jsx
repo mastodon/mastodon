@@ -9,7 +9,7 @@ import { TIMELINE_GAP, TIMELINE_SUGGESTIONS } from 'mastodon/actions/timelines';
 import { RegenerationIndicator } from 'mastodon/components/regeneration_indicator';
 import { InlineFollowSuggestions } from 'mastodon/features/home_timeline/components/inline_follow_suggestions';
 
-import StatusContainer from '../containers/status_container';
+import { StatusQuoteManager } from '../components/status_quoted';
 
 import { LoadGap } from './load_gap';
 import ScrollableList from './scrollable_list';
@@ -40,6 +40,14 @@ export default class StatusList extends ImmutablePureComponent {
     trackScroll: true,
   };
 
+  componentDidMount() {
+    this.columnHeaderHeight = this.node?.node
+      ? parseFloat(
+          getComputedStyle(this.node.node).getPropertyValue('--column-header-height')
+        ) || 0
+      : 0;
+  }
+
   getFeaturedStatusCount = () => {
     return this.props.featuredStatusIds ? this.props.featuredStatusIds.size : 0;
   };
@@ -53,33 +61,67 @@ export default class StatusList extends ImmutablePureComponent {
   };
 
   handleMoveUp = (id, featured) => {
-    const elementIndex = this.getCurrentStatusIndex(id, featured) - 1;
-    this._selectChild(elementIndex, true);
+    const index = this.getCurrentStatusIndex(id, featured);
+    this._selectChild(id, index, -1);
+  };
+  
+  handleMoveDown = (id, featured) => {
+    const index = this.getCurrentStatusIndex(id, featured);
+    this._selectChild(id, index, 1);
   };
 
-  handleMoveDown = (id, featured) => {
-    const elementIndex = this.getCurrentStatusIndex(id, featured) + 1;
-    this._selectChild(elementIndex, false);
-  };
+  _selectChild = (id, index, direction) => {
+    const listContainer = this.node?.node;
+    let listItem = listContainer?.querySelector(
+      // :nth-child uses 1-based indexing
+      `.item-list > :nth-child(${index + 1 + direction})`
+    );
+    
+    if (!listItem) {
+      return;
+    }
+
+    // If selected container element is empty, we skip it
+    if (listItem.matches(':empty')) {
+      this._selectChild(id, index + direction, direction);
+      return;
+    }
+
+    // Check if the list item is a post
+    let targetElement = listItem.querySelector('.focusable');
+
+    // Otherwise, check if the item contains follow suggestions or
+    // is a 'load more' button.
+    if (
+      !targetElement && (
+        listItem.querySelector('.inline-follow-suggestions') ||
+        listItem.matches('.load-more')
+      )
+    ) {
+      targetElement = listItem;
+    }
+
+    if (targetElement) {
+      const elementRect = targetElement.getBoundingClientRect();
+
+      const isFullyVisible =
+        elementRect.top >= this.columnHeaderHeight &&
+        elementRect.bottom <= window.innerHeight;
+
+      if (!isFullyVisible) {
+        targetElement.scrollIntoView({
+          block: direction === 1 ? 'start' : 'center',
+        });
+      }
+
+      targetElement.focus();
+    }
+  }
 
   handleLoadOlder = debounce(() => {
     const { statusIds, lastId, onLoadMore } = this.props;
     onLoadMore(lastId || (statusIds.size > 0 ? statusIds.last() : undefined));
   }, 300, { leading: true });
-
-  _selectChild (index, align_top) {
-    const container = this.node.node;
-    const element = container.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
-
-    if (element) {
-      if (align_top && container.scrollTop > element.offsetTop) {
-        element.scrollIntoView(true);
-      } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
-        element.scrollIntoView(false);
-      }
-      element.focus();
-    }
-  }
 
   setRef = c => {
     this.node = c;
@@ -113,7 +155,7 @@ export default class StatusList extends ImmutablePureComponent {
           );
         default:
           return (
-            <StatusContainer
+            <StatusQuoteManager
               key={statusId}
               id={statusId}
               onMoveUp={this.handleMoveUp}
@@ -130,7 +172,7 @@ export default class StatusList extends ImmutablePureComponent {
 
     if (scrollableContent && featuredStatusIds) {
       scrollableContent = featuredStatusIds.map(statusId => (
-        <StatusContainer
+        <StatusQuoteManager
           key={`f-${statusId}`}
           id={statusId}
           featured

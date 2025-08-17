@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Admin Webhooks' do
   describe 'Managing webhooks' do
-    before { sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    before { sign_in Fabricate(:admin_user) }
 
     describe 'Viewing webhooks' do
       let!(:webhook) { Fabricate :webhook }
@@ -77,11 +77,24 @@ RSpec.describe 'Admin Webhooks' do
         # Valid update
         fill_in 'webhook_url', with: 'https://host.example/new/value/123'
         expect { submit_form }
-          .to_not change(webhook.reload, :url)
+          .to(change { webhook.reload.url })
       end
 
       def submit_form
-        click_on I18n.t('generic.save_changes')
+        click_on(submit_button)
+      end
+    end
+
+    describe 'Rotate a webhook secret' do
+      let!(:webhook) { Fabricate :webhook, events: [Webhook::EVENTS.first] }
+
+      it 'rotates secret and returns to page' do
+        visit admin_webhook_path(webhook)
+
+        expect { click_on I18n.t('admin.webhooks.rotate_secret') }
+          .to(change { webhook.reload.secret })
+        expect(page)
+          .to have_title(I18n.t('admin.webhooks.title'))
       end
     end
 

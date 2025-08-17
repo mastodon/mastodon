@@ -4,8 +4,12 @@ module Notification::Groups
   extend ActiveSupport::Concern
 
   # `set_group_key!` needs to be updated if this list changes
-  GROUPABLE_NOTIFICATION_TYPES = %i(favourite reblog follow).freeze
+  GROUPABLE_NOTIFICATION_TYPES = %i(favourite reblog follow admin.sign_up).freeze
   MAXIMUM_GROUP_SPAN_HOURS = 12
+
+  included do
+    scope :by_group_key, ->(group_key) { group_key&.start_with?('ungrouped-') ? where(id: group_key.delete_prefix('ungrouped-')) : where(group_key: group_key) }
+  end
 
   def set_group_key!
     return if filtered? || GROUPABLE_NOTIFICATION_TYPES.exclude?(type)
@@ -13,7 +17,7 @@ module Notification::Groups
     type_prefix = case type
                   when :favourite, :reblog
                     [type, target_status&.id].join('-')
-                  when :follow
+                  when :follow, :'admin.sign_up'
                     type
                   else
                     raise NotImplementedError

@@ -2,9 +2,9 @@
 
 ===
 
-<%= t('user_mailer.terms_of_service_changed.description', domain: site_hostname) %>
+<%= t('user_mailer.terms_of_service_changed.description', domain: site_hostname, date: l(@terms_of_service.effective_date || Time.zone.today)) %>
 
-=> <%= terms_of_service_url %>
+=> <%= terms_of_service_version_url(date: @terms_of_service.effective_date) %>
 
 <%= t('user_mailer.terms_of_service_changed.changelog') %>
 

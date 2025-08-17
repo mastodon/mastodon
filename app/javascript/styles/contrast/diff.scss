@@ -1,3 +1,5 @@
+@use '../mastodon/variables' as *;
+
 .status__content a,
 .reply-indicator__content a,
 .edit-indicator__content a,
@@ -33,10 +35,6 @@
 .reply-indicator__content a,
 .edit-indicator__content a {
   color: $highlight-text-color;
-}
-
-.nothing-here {
-  color: $darker-text-color;
 }
 
 .report-dialog-modal__textarea::placeholder {

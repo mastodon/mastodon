@@ -190,6 +190,7 @@ is:
         create_relay: Búa til endurvarpa
         create_unavailable_domain: Útbúa lén sem ekki er tiltækt
         create_user_role: Útbúa hlutverk
+        create_username_block: Búa til notandanafnsreglu
         demote_user: Lækka notanda í tign
         destroy_announcement: Eyða tilkynningu
         destroy_canonical_email_block: Eyða útilokunarblokk tölvupósts
@@ -203,6 +204,7 @@ is:
         destroy_status: Eyða færslu
         destroy_unavailable_domain: Eyða léni sem ekki er tiltækt
         destroy_user_role: Eyða hlutverki
+        destroy_username_block: Eyða notandanafnsreglu
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
         disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
         disable_relay: Gera endurvarpa óvirkan
@@ -237,6 +239,7 @@ is:
         update_report: Uppfæra kæru
         update_status: Uppfæra færslu
         update_user_role: Uppfæra hlutverk
+        update_username_block: Uppfæra notandanafnsreglu
       actions:
         approve_appeal_html: "%{name} samþykkti áfrýjun á ákvörðun umsjónarmanns frá %{target}"
         approve_user_html: "%{name} samþykkti nýskráningu frá %{target}"
@@ -255,6 +258,7 @@ is:
         create_relay_html: "%{name} bjó til endurvarpa %{target}"
         create_unavailable_domain_html: "%{name} stöðvaði afhendingu til lénsins %{target}"
         create_user_role_html: "%{name} útbjó %{target} hlutverk"
+        create_username_block_html: "%{name} bætti við reglu varðandi notendanöfn sem innihalda %{target}"
         demote_user_html: "%{name} lækkaði notandann %{target} í tign"
         destroy_announcement_html: "%{name} eyddi tilkynninguni %{target}"
         destroy_canonical_email_block_html: "%{name} tók af útilokun á tölvupósti með tætigildið %{target}"
@@ -268,6 +272,7 @@ is:
         destroy_status_html: "%{name} fjarlægði færslu frá %{target}"
         destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
         destroy_user_role_html: "%{name} eyddi hlutverki %{target}"
+        destroy_username_block_html: "%{name} fjarlægði reglu varðandi notendanöfn sem innihalda %{target}"
         disable_2fa_user_html: "%{name} gerði kröfu um tveggja-þátta innskráningu óvirka fyrir notandann %{target}"
         disable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} óvirkt"
         disable_relay_html: "%{name} gerði endurvarpann %{target} óvirkan"
@@ -302,6 +307,7 @@ is:
         update_report_html: "%{name} uppfærði kæru %{target}"
         update_status_html: "%{name} uppfærði færslu frá %{target}"
         update_user_role_html: "%{name} breytti hlutverki %{target}"
+        update_username_block_html: "%{name} uppfærði reglu varðandi notendanöfn sem innihalda %{target}"
       deleted_account: eyddur notandaaðgangur
       empty: Engar atvikaskrár fundust.
       filter_by_action: Sía eftir aðgerð
@@ -309,6 +315,7 @@ is:
       title: Atvikaskrá
       unavailable_instance: "(heiti léns ekki tiltækt)"
     announcements:
+      back: Til baka í auglýsingar
       destroyed_msg: Það tókst að eyða auglýsingunni!
       edit:
         title: Breyta auglýsingu
@@ -317,6 +324,10 @@ is:
       new:
         create: Búa til auglýsingu
         title: Ný auglýsing
+      preview:
+        disclaimer: Þar sem notendur geta ekki afþakkað þær ætti aðeins að nota tilkynningar í tölvupósti fyrir mikilvægar upplýsingar á borð við persónuleg gagnabrot eða lokanir á netþjónum.
+        explanation_html: 'Tölvupósturinn verður sendur til <strong>%{display_count} notenda</strong>. Eftirfarandi texti verður í meginmáli póstsins:'
+        title: Forskoða tilkynninguna
       publish: Birta
       published_msg: Það tókst að birta auglýsinguna!
       scheduled_for: Áætlað %{time}
@@ -475,6 +486,36 @@ is:
       new:
         title: Flytja inn útilokanir léna
       no_file: Engin skrá valin
+    fasp:
+      debug:
+        callbacks:
+          created_at: Búið til
+          delete: Eyða
+          ip: IP-vistfang
+          request_body: Biðja um meginmál
+          title: Villuleita bakrakningar (callbacks)
+      providers:
+        active: Virkt
+        base_url: Grunnslóð
+        callback: Bakrakning (callback)
+        delete: Eyða
+        edit: Breyta þjónustuaðila
+        finish_registration: Ljúka skráningu
+        name: Nafn
+        providers: Þjónustuaðilar
+        public_key_fingerprint: Fingrafar dreifilykils
+        registration_requested: Beðið um skráningu
+        registrations:
+          confirm: Staðfesta
+          description: Þú fékkst skráningu frá FASP-þjónustuaðila. Hafnaðu þessu ef þú baðst ekki um þetta. Ef þú baðst um þetta, skaltu bera vandlega saman nöfn og fingraför lykla áður en þú staðfestir skráninguna.
+          reject: Hafna
+          title: Staðfesta FASP-skráningu
+        save: Vista
+        select_capabilities: Veldu eiginleika
+        sign_in: Skrá inn
+        status: Staða
+        title: Fediverse Auxiliary Service Providers þjónustuaðilar
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Að fylgja meðmælum hjálpar nýjum notendum að finna áhugavert efni á einfaldan máta</strong>. Þegar notandi hefur ekki átt í nægilegum samskiptum við aðra til að vera farinn að móta sér skoðanir á hverju hann vill fylgjast með, er mælt með að fylgjast með þessum aðgöngum. Þeir eru endurreiknaðir daglega út frá blöndu þeirra aðganga sem eru með hvað mestri þáttöku í umræðum og mesta fylgjendafjölda út frá hverju tungumáli."
       language: Fyrir tungumálið
@@ -543,6 +584,13 @@ is:
         all: Allt
         limited: Takmarkað
         title: Umsjón
+      moderation_notes:
+        create: Bæta við minnispunkti umsjónarmanns
+        created_msg: Tókst að útbúa minnispunkt umsjónarmanns!
+        description_html: Skoðaðu og skrifaðu minnispunkta til annarra stjórnenda og sjálfs þín
+        destroyed_msg: Tókst að eyða minnispunkti umsjónarmanns!
+        placeholder: Upplýsingar um þetta kerfistilvik, aðgerðir sem hafa verið framkvæmdar eða hvað það sem gæti hjálpað við umsjón með þessu tilviki í framtíðinni.
+        title: Minnispunktar umsjónarmanna
       private_comment: Einkaathugasemd
       public_comment: Opinber athugasemd
       purge: Henda
@@ -751,17 +799,26 @@ is:
       title: Hlutverk
     rules:
       add_new: Skrá reglu
+      add_translation: Bæta við þýðingu
       delete: Eyða
       description_html: Þó að flestir segist hafa lesið og samþykkt þjónustuskilmála, er fólk samt gjarnt á að lesa slíkar upplýsingar ekki til enda fyrr en upp koma einhver vandamál. <strong>Gerðu fólki auðvelt að sjá mikilvægustu reglurnar með því að setja þær fram í flötum punktalista.</strong> Reyndu að hafa hverja reglu stutta og skýra, en ekki vera heldur að skipta þeim upp í mörg aðskilin atriði.
       edit: Breyta reglu
       empty: Engar reglur fyrir netþjón hafa ennþá verið skilgreindar.
+      move_down: Færa niður
+      move_up: Færa upp
       title: Reglur netþjónsins
+      translation: Þýðing
+      translations: Þýðingar
+      translations_explanation: Þú getur valið að bæta við þýðingum fyrir reglurnar. Sjálfgefna gildið verður birt ef engin þýðing er fyrir hendi. Gakktu úr skugga um að uppgefnar þýðingar sé alltaf í samræmi við sjálfgefna gildið.
     settings:
       about:
         manage_rules: Sýsla með reglur netþjónsins
         preamble: Gefðu nánari upplýsingar um hvernig þessi netþjónn er rekinn, hvernig umsjón fer fram með efni á honum eða hann fjármagnaður.
         rules_hint: Það er sérstakt svæði með þeim reglum sem ætlast er til að notendur þínir fari eftir.
         title: Um hugbúnaðinn
+      allow_referrer_origin:
+        desc: Þegar notendurnir þínir smella á tengla á utanaðkomandi vefsvæði, gæti vafrinn þeirra sent vistfang Mastodon-þjónsins þíns sem tilvísanda (referrer). Gerðu þetta óvirkt ef slíkt myndi berskjalda notendurna, t.d. ef þetta er einkanetþjónn í Mastodon-sambandi.
+        title: Leyfa utanaðkomandi vefsvæðum að líta á Mastodon-þjóninn þinn sem efnisveitu
       appearance:
         preamble: Sérsníddu vefviðmót Mastodon.
         title: Útlit
@@ -783,9 +840,9 @@ is:
       discovery:
         follow_recommendations: Meðmæli um að fylgjast með
         preamble: Að láta áhugavert efni koma skýrt fram er sérstaklega mikilvægt til að nálgast nýja notendur sem ekki þekkja neinn sem er á Mastodon. Stýrðu því hvernig hinir ýmsu eiginleikar við uppgötvun efnis virka á netþjóninum þínum.
+        privacy: Persónuvernd
         profile_directory: Notendamappa
         public_timelines: Opinberar tímalínur
-        publish_discovered_servers: Birta uppgötvaða netþjóna
         publish_statistics: Birta tölfræði
         title: Uppgötvun
         trends: Vinsælt
@@ -870,6 +927,8 @@ is:
     system_checks:
       database_schema_check:
         message_html: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum. Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
+      elasticsearch_analysis_index_mismatch:
+        message_html: Stillingar á Elasticsearch efnisskráningargreingu eru úreltar. Þú skalt endilega keyra <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch-klasinn er ekki í góðu standi (rauð staða), leitareiginleikar eru ekki tiltækir
       elasticsearch_health_yellow:
@@ -941,6 +1000,7 @@ is:
         chance_to_review_html: "<strong>Sjálfvirkt útbúnu þjónustuskilmálarnir verða ekki birtir sjálfkrafa.</strong> Þú munt geta yfirfarið textann. Fylltu inn nauðsynlegar upplýsingar til að halda áfram to proceed."
         explanation_html: Sniðmátið fyrir þjónustuskilmála sem hér fylgir er einungis hugsat til upplýsingar og ætti ekki að taska sem lögfræðilegt álit varðandi hin ýmsu efni. Þú skalt endilega ráðfæra þig við löglærða í þínu umdæmi varðandi þau atriði sem eiga við um stöðu þína auk annarra spurninga um lögfræðileg mál sem þú gætir haft.
         title: Uppsetning þjónustuskilmála
+      going_live_on_html: Í beinni, þann %{date}
       history: Ferill
       live: Í beinni
       no_history: Það eru engar breytingar ennþá á þjónustuskilmálunum.
@@ -1033,6 +1093,25 @@ is:
           other: Notað af %{count} aðilum síðustu vikuna
       title: Meðmæli og vinsælt
       trending: Vinsælt
+    username_blocks:
+      add_new: Bæta við nýju
+      block_registrations: Loka á nýskráningar
+      comparison:
+        contains: Inniheldur
+        equals: Er jafnt og
+      contains_html: Inniheldur %{string}
+      created_msg: Tókst að útbúa notandanafnsreglu
+      delete: Eyða
+      edit:
+        title: Breyta notandanafnsreglu
+      matches_exactly_html: Er jafnt og %{string}
+      new:
+        create: Búa til reglu
+        title: Búa til nýja notandanafnsreglu
+      no_username_block_selected: Engum notandanafnsreglum var breytt þar sem engar voru valdar
+      not_permitted: Ekki leyft
+      title: Notendanafnareglur
+      updated_msg: Tókst að uppfæra notandanafnsreglu
     warning_presets:
       add_new: Bæta við nýju
       delete: Eyða
@@ -1213,6 +1292,7 @@ is:
     too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
     use_security_key: Nota öryggislykil
     user_agreement_html: Ég hef lesið og samþykkt <a href="%{terms_of_service_path}" target="_blank">þjónustuskilmálana</a> og <a href="%{privacy_policy_path}" target="_blank">stefnuna um persónuvernd</a>
+    user_privacy_agreement_html: Ég hef lesið og samþykkt <a href="%{privacy_policy_path}" target="_blank">persónuverndarstefnuna</a>
   author_attribution:
     example_title: Sýnitexti
     hint_html: Ertu að skrifa fréttir eða bloggfærslur utan Mastodon? Stýrðu því hvernig vitnað er í þig þegar þeim er deilt á Mastodon.
@@ -1298,6 +1378,10 @@ is:
     basic_information: Grunnupplýsingar
     hint_html: "<strong>Sérsníddu hvað fólk sér á opinbera notandasniðinu þínu og næst færslunum þínum.</strong> Annað fólk er líklegra til að fylgjast með þér og eiga í samskiptum við þig ef þú fyllir út notandasniðið og setur auðkennismynd."
     other: Annað
+  emoji_styles:
+    auto: Sjálfvirkt
+    native: Innbyggt
+    twemoji: Twemoji
   errors:
     '400': Beiðnin sem þú sendir er ógild eða rangt uppsett.
     '403': Þú hefur ekki heimildir til að skoða þessari síðu.
@@ -1607,6 +1691,10 @@ is:
       title: Ný tilvísun
     poll:
       subject: Könnun frá %{name} er lokið
+    quote:
+      body: "%{name} vitnaði í færsluna þína:"
+      subject: "%{name} vitnaði í færsluna þína"
+      title: Ný tilvitnun
     reblog:
       body: "%{name} endurbirti færsluna þína:"
       subject: "%{name} endurbirti færsluna þína"
@@ -1817,12 +1905,17 @@ is:
     edited_at_html: Breytt %{date}
     errors:
       in_reply_not_found: Færslan sem þú ert að reyna að svara að er líklega ekki til.
+      quoted_status_not_found: Færslan sem þú ert að reyna að vitna í virðist ekki vera til.
     over_character_limit: hámarksfjölda stafa (%{max}) náð
     pin_errors:
       direct: Ekki er hægt að festa færslur sem einungis eru sýnilegar þeim notendum sem minnst er á
       limit: Þú hefur þegar fest leyfilegan hámarksfjölda færslna
       ownership: Færslur frá einhverjum öðrum er ekki hægt að festa
       reblog: Ekki er hægt að festa endurbirtingu
+    quote_policies:
+      followers: Einungis þeir sem fylgjast með þér
+      nobody: Enginn
+      public: Allir
     title: "%{name}: „%{quote}‟"
     visibilities:
       direct: Beint
@@ -1876,6 +1969,11 @@ is:
     does_not_match_previous_name: samsvarar ekki fyrra nafni
   terms_of_service:
     title: Þjónustuskilmálar
+  terms_of_service_interstitial:
+    future_preamble_html: Við erum að gera nokkrar breytingar á þjónustuskilmálum okkar, og taka þær gildi <strong>%{date}</strong>. Við hvetjum þig til að yfirfara uppfærðu skilmálana í heild hér.
+    past_preamble_html: Við höfum breytt þjónustuskilmálum okkar síðan þú leist við síðast. Við hvetjum þig til að yfirfara uppfærðu skilmálana.
+    review_link: Yfirfara þjónustuskilmála
+    title: Þjónustuskilmálar eru að breytast á %{domain}
   themes:
     contrast: Mastodon (mikil birtuskil)
     default: Mastodon (dökkt)
@@ -1907,6 +2005,10 @@ is:
     recovery_instructions_html: Ef þú tapar símanum þínum geturðu notað einn af endurheimtukóðunum hér fyrir neðan til að fá aftur samband við notandaaðganginn þinn. <strong>Geymdu endurheimtukóðana á öruggum stað</strong>. Sem dæmi gætirðu prentað þá út og geymt með öðrum mikilvægum skjölum.
     webauthn: Öryggislyklar
   user_mailer:
+    announcement_published:
+      description: 'Stjórnendur %{domain} eru að senda frá sér yfirlýsingu:'
+      subject: Auglýsing vegna þjónustu
+      title: Auglýsing vegna þjónustu %{domain}
     appeal_approved:
       action: Stillingar notandaaðgangs
       explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið samþykkt. Notandaaðgangurinn þinn er aftur í góðu lagi.
@@ -1939,8 +2041,8 @@ is:
     terms_of_service_changed:
       agreement: Með því að halda áfram að nota %{domain}, ert þú þar með að samþykkja þessa skilmála. Ef þú ert ósammála þessum uppfærðu skilmálum, geturðu hvenær sem er sagt upp samþykki þínu gagnvart %{domain} með því að eyða notandaaðgangi þínum.
       changelog: 'Í stuttu máli er það þetta sem þessi uppfærsla þýðir fyrir þig:'
-      description: 'Þú færð þennan tölvupóst vegna þess að við erum að gera nokkrar breytingar á þjónustuskilmálum okkar á %{domain}. Við hvetjum þig til að yfirfara uppfærðu skilmálana í heild hér:'
-      description_html: Þú færð þennan tölvupóst vegna þess að við erum að gera nokkrar breytingar á þjónustuskilmálum okkar á %{domain}. Við hvetjum þig til að yfirfara <a href="%{path}" target="_blank">uppfærðu skilmálana í heild hér:</a>.
+      description: 'Þú ert að fá þennan tölvupóst vegna þess að við erum að gera breytingar á þjónustuskilmálum á %{domain}. Þessar breytingar taka gildi þann %{date}. Við hvetjum þig til að kynna þér þessar breytingar hér:'
+      description_html: Þú ert að fá þennan tölvupóst vegna þess að við erum að gera breytingar á þjónustuskilmálum á %{domain}. Þessar breytingar taka gildi þann <strong>%{date}</strong>. Við hvetjum þig til að kynna þér <a href="%{path}" target="_blank">þessar breytingar hér</a>.
       sign_off: "%{domain}-teymið"
       subject: Breytingar á þjónustuskilmálum okkar
       subtitle: Þjónustuskilmálar eru að breytast á %{domain}
@@ -2011,7 +2113,6 @@ is:
       post_action: Skrifa
       post_step: Heilsaðu heiminum með texta, ljósmyndum, myndskeiðum eða könnunum.
       post_title: Gerðu fyrstu færsluna þína
-      share_action: Deila
       share_step: Láttu vini þína vita hvernig þeir geta fundið þig á Mastodon.
       share_title: Deildu notandasniðinu þínu
       sign_in_action: Skrá inn

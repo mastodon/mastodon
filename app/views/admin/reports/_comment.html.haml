@@ -18,7 +18,7 @@
           = link_to report.account.username, admin_account_path(report.account_id)
         - else
           = link_to report.account.domain, admin_instance_path(report.account.domain)
-      %time.relative-formatted{ datetime: report.created_at.iso8601 }
+      %time.relative-formatted{ datetime: report.created_at.iso8601, title: report.created_at }
         = l report.created_at.to_date
     .report-notes__item__content
       = simple_format(h(report.comment))

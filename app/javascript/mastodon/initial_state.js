@@ -1,6 +1,5 @@
 // @ts-check
 
-
 /**
  * @typedef {[code: string, name: string, localName: string]} InitialStateLanguage
  */
@@ -14,6 +13,7 @@
  * @property {string} admin
  * @property {boolean=} boost_modal
  * @property {boolean=} delete_modal
+ * @property {boolean=} missing_alt_text_modal
  * @property {boolean=} disable_swiping
  * @property {boolean=} disable_hover_cards
  * @property {string=} disabled_account_id
@@ -45,6 +45,7 @@
  * @property {string} sso_redirect
  * @property {string} status_page_url
  * @property {boolean} terms_of_service_enabled
+ * @property {string?} emoji_style
  */
 
 /**
@@ -63,6 +64,7 @@
  * @property {boolean=} critical_updates_pending
  * @property {InitialStateMeta} meta
  * @property {Role?} role
+ * @property {string[]} features
  */
 
 const element = document.getElementById('initial-state');
@@ -88,11 +90,13 @@ export const activityApiEnabled = getMeta('activity_api_enabled');
 export const autoPlayGif = getMeta('auto_play_gif');
 export const boostModal = getMeta('boost_modal');
 export const deleteModal = getMeta('delete_modal');
+export const missingAltTextModal = getMeta('missing_alt_text_modal');
 export const disableSwiping = getMeta('disable_swiping');
 export const disableHoverCards = getMeta('disable_hover_cards');
 export const disabledAccountId = getMeta('disabled_account_id');
 export const displayMedia = getMeta('display_media');
 export const domain = getMeta('domain');
+export const emojiStyle = getMeta('emoji_style') || 'auto';
 export const expandSpoilers = getMeta('expand_spoilers');
 export const forceSingleColumn = !getMeta('advanced_layout');
 export const limitedFederationMode = getMeta('limited_federation_mode');
@@ -115,11 +119,22 @@ export const trendsAsLanding = getMeta('trends_as_landing_page');
 export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
-export const languages = initialState?.languages;
 export const criticalUpdatesPending = initialState?.critical_updates_pending;
 export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
 export const termsOfServiceEnabled = getMeta('terms_of_service_enabled');
+
+const displayNames = Intl.DisplayNames && new Intl.DisplayNames(getMeta('locale'), {
+  type: 'language',
+  fallback: 'none',
+  languageDisplay: 'standard',
+});
+
+export const languages = initialState?.languages?.map(lang => {
+  // zh-YUE is not a valid CLDR unicode_language_id
+  return [lang[0], displayNames?.of(lang[0].replace('zh-YUE', 'yue')) || lang[1], lang[2]];
+});
+
 /**
  * @returns {string | undefined}
  */

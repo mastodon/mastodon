@@ -10,21 +10,19 @@ import { createSelector } from '@reduxjs/toolkit';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { useDispatch, useSelector } from 'react-redux';
 
-
-import { HotKeys } from 'react-hotkeys';
-
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { replyCompose } from 'mastodon/actions/compose';
 import { markConversationRead, deleteConversation } from 'mastodon/actions/conversations';
 import { openModal } from 'mastodon/actions/modal';
 import { muteStatus, unmuteStatus, toggleStatusSpoilers } from 'mastodon/actions/statuses';
+import { Hotkeys } from 'mastodon/components/hotkeys';
 import AttachmentList from 'mastodon/components/attachment_list';
 import AvatarComposite from 'mastodon/components/avatar_composite';
 import { IconButton } from 'mastodon/components/icon_button';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import StatusContent from 'mastodon/components/status_content';
-import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
+import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { autoPlayGif } from 'mastodon/initial_state';
 import { makeGetStatus } from 'mastodon/selectors';
 
@@ -169,7 +167,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
   };
 
   return (
-    <HotKeys handlers={handlers}>
+    <Hotkeys handlers={handlers}>
       <div className={classNames('conversation focusable muted', { unread })} tabIndex={0}>
         <div className='conversation__avatar' onClick={handleClick} role='presentation'>
           <AvatarComposite accounts={accounts} size={48} />
@@ -205,7 +203,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
             <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' iconComponent={ReplyIcon} onClick={handleReply} />
 
             <div className='status__action-bar-dropdown'>
-              <DropdownMenuContainer
+              <Dropdown
                 scrollKey={scrollKey}
                 status={lastStatus}
                 items={menu}
@@ -219,7 +217,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
           </div>
         </div>
       </div>
-    </HotKeys>
+    </Hotkeys>
   );
 };
 

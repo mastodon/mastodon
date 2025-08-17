@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-class Form::EmailDomainBlockBatch
-  include ActiveModel::Model
-  include Authorization
-  include AccountableConcern
-
-  attr_accessor :email_domain_block_ids, :action, :current_account
+class Form::EmailDomainBlockBatch < Form::BaseBatch
+  attr_accessor :email_domain_block_ids
 
   def save
     case action

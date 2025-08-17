@@ -18,10 +18,6 @@
 !/log/.keep
 /tmp
 /coverage
-/public/system
-/public/assets
-/public/packs
-/public/packs-test
 .env
 .env.production
 .env.development
@@ -60,9 +56,11 @@ docker-compose.override.yml
 /public/packs
 /public/packs-test
 /public/system
+/public/vite*
 
 # Ignore emoji map file
 /app/javascript/mastodon/features/emoji/emoji_map.json
+/app/javascript/mastodon/features/emoji/emoji_data.json
 
 # Ignore locale files
 /app/javascript/mastodon/locales/*.json
@@ -83,3 +81,6 @@ AUTHORS.md
 
 # Process a few selected JS files
 !lint-staged.config.js
+
+# Ignore config YAML files that include ERB/ruby code prettier does not understand
+/config/email.yml

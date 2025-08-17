@@ -7,6 +7,7 @@
   - [mailers, 2]
   - [pull]
   - [scheduler]
+  - [fasp]
 
 :scheduler:
   :listened_queues_only: true
@@ -66,4 +67,8 @@
     auto_close_registrations_scheduler:
       interval: 1 hour
       class: Scheduler::AutoCloseRegistrationsScheduler
+      queue: scheduler
+    fasp_follow_recommendation_cleanup_scheduler:
+      interval: 1 day
+      class: Scheduler::Fasp::FollowRecommendationCleanupScheduler
       queue: scheduler

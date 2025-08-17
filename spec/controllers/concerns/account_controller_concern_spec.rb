@@ -13,6 +13,7 @@ RSpec.describe AccountControllerConcern do
 
   before do
     routes.draw { get 'success' => 'anonymous#success' }
+    request.host = Rails.configuration.x.local_domain
   end
 
   context 'when account is unconfirmed' do
@@ -56,8 +57,8 @@ RSpec.describe AccountControllerConcern do
 
       expect(response)
         .to have_http_status(200)
-        .and have_http_link_header('http://test.host/.well-known/webfinger?resource=acct%3Ausername%40cb6e6126.ngrok.io').for(rel: 'lrdd', type: 'application/jrd+json')
-        .and have_http_link_header('https://cb6e6126.ngrok.io/users/username').for(rel: 'alternate', type: 'application/activity+json')
+        .and have_http_link_header(webfinger_url(resource: account.to_webfinger_s)).for(rel: 'lrdd', type: 'application/jrd+json')
+        .and have_http_link_header(account_url(account, protocol: :https)).for(rel: 'alternate', type: 'application/activity+json')
       expect(response.body)
         .to include(account.username)
     end

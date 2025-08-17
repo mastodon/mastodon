@@ -9,12 +9,13 @@ import { Redirect, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
-import { HotKeys } from 'react-hotkeys';
 
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
-import { initializeNotifications } from 'mastodon/actions/notifications_migration';
+import { fetchNotifications } from 'mastodon/actions/notification_groups';
 import { INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
+import { AlertsController } from 'mastodon/components/alerts_controller';
+import { Hotkeys } from 'mastodon/components/hotkeys';
 import { HoverCardController } from 'mastodon/components/hover_card_controller';
 import { PictureInPicture } from 'mastodon/features/picture_in_picture';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
@@ -28,12 +29,12 @@ import { expandHomeTimeline } from '../../actions/timelines';
 import initialState, { me, owner, singleUserMode, trendsEnabled, trendsAsLanding, disableHoverCards } from '../../initial_state';
 
 import BundleColumnError from './components/bundle_column_error';
-import Header from './components/header';
-import UploadArea from './components/upload_area';
+import { NavigationBar } from './components/navigation_bar';
+import { UploadArea } from './components/upload_area';
+import { HashtagMenuController } from './components/hashtag_menu_controller';
 import ColumnsAreaContainer from './containers/columns_area_container';
 import LoadingBarContainer from './containers/loading_bar_container';
 import ModalContainer from './containers/modal_container';
-import NotificationsContainer from './containers/notifications_container';
 import {
   Compose,
   Status,
@@ -73,6 +74,7 @@ import {
   About,
   PrivacyPolicy,
   TermsOfService,
+  AccountFeatured,
 } from './util/async-components';
 import { ColumnsContextProvider } from './util/columns_context';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
@@ -92,41 +94,9 @@ const mapStateToProps = state => ({
   hasMediaAttachments: state.getIn(['compose', 'media_attachments']).size > 0,
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < state.getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']),
   firstLaunch: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
+  newAccount: !state.getIn(['accounts', me, 'note']) && !state.getIn(['accounts', me, 'bot']) && state.getIn(['accounts', me, 'following_count'], 0) === 0 && state.getIn(['accounts', me, 'statuses_count'], 0) === 0,
   username: state.getIn(['accounts', me, 'username']),
 });
-
-const keyMap = {
-  help: '?',
-  new: 'n',
-  search: ['s', '/'],
-  forceNew: 'option+n',
-  toggleComposeSpoilers: 'option+x',
-  focusColumn: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  reply: 'r',
-  favourite: 'f',
-  boost: 'b',
-  mention: 'm',
-  open: ['enter', 'o'],
-  openProfile: 'p',
-  moveDown: ['down', 'j'],
-  moveUp: ['up', 'k'],
-  back: 'backspace',
-  goToHome: 'g h',
-  goToNotifications: 'g n',
-  goToLocal: 'g l',
-  goToFederated: 'g t',
-  goToDirect: 'g d',
-  goToStart: 'g s',
-  goToFavourites: 'g f',
-  goToPinned: 'g p',
-  goToProfile: 'g u',
-  goToBlocked: 'g b',
-  goToMuted: 'g m',
-  goToRequests: 'g r',
-  toggleHidden: 'x',
-  toggleSensitive: 'h',
-  openMedia: 'e',
-};
 
 class SwitchingColumnsArea extends PureComponent {
   static propTypes = {
@@ -134,16 +104,12 @@ class SwitchingColumnsArea extends PureComponent {
     children: PropTypes.node,
     location: PropTypes.object,
     singleColumn: PropTypes.bool,
+    forceOnboarding: PropTypes.bool,
   };
 
   UNSAFE_componentWillMount () {
-    if (this.props.singleColumn) {
-      document.body.classList.toggle('layout-single-column', true);
-      document.body.classList.toggle('layout-multiple-columns', false);
-    } else {
-      document.body.classList.toggle('layout-single-column', false);
-      document.body.classList.toggle('layout-multiple-columns', true);
-    }
+    document.body.classList.toggle('layout-single-column', this.props.singleColumn);
+    document.body.classList.toggle('layout-multiple-columns', !this.props.singleColumn);
   }
 
   componentDidUpdate (prevProps) {
@@ -164,14 +130,16 @@ class SwitchingColumnsArea extends PureComponent {
   };
 
   render () {
-    const { children, singleColumn } = this.props;
+    const { children, singleColumn, forceOnboarding } = this.props;
     const { signedIn } = this.props.identity;
     const pathName = this.props.location.pathname;
 
     let redirect;
 
     if (signedIn) {
-      if (singleColumn) {
+      if (forceOnboarding) {
+        redirect = <Redirect from='/' to='/start' exact />;
+      } else if (singleColumn) {
         redirect = <Redirect from='/' to='/home' exact />;
       } else {
         redirect = <Redirect from='/' to='/deck/getting-started' exact />;
@@ -193,14 +161,14 @@ class SwitchingColumnsArea extends PureComponent {
             {singleColumn ? <Redirect from='/deck' to='/home' exact /> : null}
             {singleColumn && pathName.startsWith('/deck/') ? <Redirect from={pathName} to={{...this.props.location, pathname: pathName.slice(5)}} /> : null}
             {/* Redirect old bookmarks (without /deck) with home-like routes to the advanced interface */}
-            {!singleColumn && pathName === '/getting-started' ? <Redirect from='/getting-started' to='/deck/getting-started' exact /> : null}
             {!singleColumn && pathName === '/home' ? <Redirect from='/home' to='/deck/getting-started' exact /> : null}
+            {pathName === '/getting-started' ? <Redirect from='/getting-started' to={singleColumn ? '/home' : '/deck/getting-started'} exact /> : null}
 
             <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
             <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
             <WrappedRoute path='/about' component={About} content={children} />
             <WrappedRoute path='/privacy-policy' component={PrivacyPolicy} content={children} />
-            <WrappedRoute path='/terms-of-service' component={TermsOfService} content={children} />
+            <WrappedRoute path='/terms-of-service/:date?' component={TermsOfService} content={children} />
 
             <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
             <Redirect from='/timelines/public' to='/public' exact />
@@ -231,6 +199,7 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
 
             <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
+            <WrappedRoute path={['/@:acct/featured', '/accounts/:id/featured']} component={AccountFeatured} content={children} />
             <WrappedRoute path='/@:acct/tagged/:tagged?' exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
             <WrappedRoute path={['/accounts/:id/followers', '/users/:acct/followers', '/@:acct/followers']} component={Followers} content={children} />
@@ -275,6 +244,7 @@ class UI extends PureComponent {
     intl: PropTypes.object.isRequired,
     layout: PropTypes.string.isRequired,
     firstLaunch: PropTypes.bool,
+    newAccount: PropTypes.bool,
     username: PropTypes.string,
     ...WithRouterPropTypes,
   };
@@ -396,6 +366,10 @@ class UI extends PureComponent {
     }
   };
 
+  handleDonate = () => {
+    location.href = 'https://joinmastodon.org/sponsors#donate'
+  }
+
   componentDidMount () {
     const { signedIn } = this.props.identity;
 
@@ -417,15 +391,11 @@ class UI extends PureComponent {
     if (signedIn) {
       this.props.dispatch(fetchMarkers());
       this.props.dispatch(expandHomeTimeline());
-      this.props.dispatch(initializeNotifications());
+      this.props.dispatch(fetchNotifications());
       this.props.dispatch(fetchServerTranslationLanguages());
 
       setTimeout(() => this.props.dispatch(fetchServer()), 3000);
     }
-
-    this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
-      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
-    };
   }
 
   componentWillUnmount () {
@@ -505,10 +475,6 @@ class UI extends PureComponent {
     }
   };
 
-  setHotkeysRef = c => {
-    this.hotkeys = c;
-  };
-
   handleHotkeyToggleHelp = () => {
     if (this.props.location.pathname === '/keyboard-shortcuts') {
       this.props.history.goBack();
@@ -567,7 +533,7 @@ class UI extends PureComponent {
 
   render () {
     const { draggingOver } = this.state;
-    const { children, isComposing, location, layout } = this.props;
+    const { children, isComposing, location, layout, firstLaunch, newAccount } = this.props;
 
     const handlers = {
       help: this.handleHotkeyToggleHelp,
@@ -589,25 +555,26 @@ class UI extends PureComponent {
       goToBlocked: this.handleHotkeyGoToBlocked,
       goToMuted: this.handleHotkeyGoToMuted,
       goToRequests: this.handleHotkeyGoToRequests,
+      cheat: this.handleDonate,
     };
 
     return (
-      <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
+      <Hotkeys global handlers={handlers}>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef}>
-          <Header />
-
-          <SwitchingColumnsArea identity={this.props.identity} location={location} singleColumn={layout === 'mobile' || layout === 'single-column'}>
+          <SwitchingColumnsArea identity={this.props.identity} location={location} singleColumn={layout === 'mobile' || layout === 'single-column'} forceOnboarding={firstLaunch && newAccount}>
             {children}
           </SwitchingColumnsArea>
 
+          <NavigationBar />
           {layout !== 'mobile' && <PictureInPicture />}
-          <NotificationsContainer />
+          <AlertsController />
           {!disableHoverCards && <HoverCardController />}
+          <HashtagMenuController />
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
         </div>
-      </HotKeys>
+      </Hotkeys>
     );
   }
 

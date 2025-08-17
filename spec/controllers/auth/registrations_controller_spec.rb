@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Auth::RegistrationsController do
   render_views
 
-  shared_examples 'checks for enabled registrations' do |path|
+  shared_examples 'registration mode based responses' do |path|
     context 'when in single user mode and open for registration' do
       before do
         Setting.registrations_mode = 'open'
@@ -156,7 +156,7 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    include_examples 'checks for enabled registrations', :new
+    it_behaves_like 'registration mode based responses', :new
   end
 
   describe 'POST #create' do
@@ -342,7 +342,43 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    include_examples 'checks for enabled registrations', :create
+    context 'when age verification is enabled' do
+      subject { post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', agreement: 'true' }.merge(date_of_birth) } }
+
+      before do
+        Setting.min_age = 16
+      end
+
+      let(:date_of_birth) { {} }
+
+      context 'when date of birth is below age limit' do
+        let(:date_of_birth) { 13.years.ago.then { |date| { 'date_of_birth(1i)': date.day.to_s, 'date_of_birth(2i)': date.month.to_s, 'date_of_birth(3i)': date.year.to_s } } }
+
+        it 'does not create user' do
+          subject
+          user = User.find_by(email: 'test@example.com')
+          expect(user).to be_nil
+        end
+      end
+
+      context 'when date of birth is above age limit' do
+        let(:date_of_birth) { 17.years.ago.then { |date| { 'date_of_birth(1i)': date.day.to_s, 'date_of_birth(2i)': date.month.to_s, 'date_of_birth(3i)': date.year.to_s } } }
+
+        it 'redirects to setup and creates user' do
+          subject
+
+          expect(response).to redirect_to auth_setup_path
+
+          expect(User.find_by(email: 'test@example.com'))
+            .to be_present
+            .and have_attributes(
+              age_verified_at: not_eq(nil)
+            )
+        end
+      end
+    end
+
+    it_behaves_like 'registration mode based responses', :create
   end
 
   describe 'DELETE #destroy' do

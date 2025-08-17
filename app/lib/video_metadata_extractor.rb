@@ -12,7 +12,7 @@ class VideoMetadataExtractor
   rescue Terrapin::ExitStatusError, Oj::ParseError
     @invalid = true
   rescue Terrapin::CommandNotFoundError
-    raise Paperclip::Errors::CommandNotFoundError, 'Could not run the `ffprobe` command. Please install ffmpeg.'
+    raise Paperclip::Errors::CommandNotFoundError, 'Could not run the `ffprobe` command. Please install ffmpeg.' # rubocop:disable I18n/RailsI18n/DecorateString -- This error is not user-facing
   end
 
   def valid?

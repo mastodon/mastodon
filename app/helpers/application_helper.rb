@@ -66,7 +66,7 @@ module ApplicationHelper
 
   def provider_sign_in_link(provider)
     label = Devise.omniauth_configs[provider]&.strategy&.display_name.presence || I18n.t("auth.providers.#{provider}", default: provider.to_s.chomp('_oauth2').capitalize)
-    link_to label, omniauth_authorize_path(:user, provider), class: "button button-#{provider}", method: :post
+    link_to label, omniauth_authorize_path(:user, provider), class: "btn button-#{provider}", method: :post
   end
 
   def locale_direction
@@ -236,6 +236,14 @@ module ApplicationHelper
   def recent_tag_usage(tag)
     people = tag.history.aggregate(2.days.ago.to_date..Time.zone.today).accounts
     I18n.t 'user_mailer.welcome.hashtags_recent_count', people: number_with_delimiter(people), count: people
+  end
+
+  def app_store_url_ios
+    'https://apps.apple.com/app/mastodon-for-iphone-and-ipad/id1571998974'
+  end
+
+  def app_store_url_android
+    'https://play.google.com/store/apps/details?id=org.joinmastodon.android'
   end
 
   private

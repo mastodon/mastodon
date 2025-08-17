@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserMailer < Devise::Mailer
+  include BulkMailSettingsConcern
+
   layout 'mailer'
 
   helper :accounts
@@ -11,6 +13,8 @@ class UserMailer < Devise::Mailer
   helper :statuses
 
   before_action :set_instance
+
+  after_action :use_bulk_mail_delivery_settings, only: [:announcement_published, :terms_of_service_changed]
 
   default to: -> { @resource.email }
 
@@ -213,6 +217,15 @@ class UserMailer < Devise::Mailer
     @resource = user
     @terms_of_service = terms_of_service
     @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, escape_html: true, no_images: true)
+
+    I18n.with_locale(locale) do
+      mail subject: default_i18n_subject
+    end
+  end
+
+  def announcement_published(user, announcement)
+    @resource = user
+    @announcement = announcement
 
     I18n.with_locale(locale) do
       mail subject: default_i18n_subject

@@ -1,4 +1,6 @@
 @use 'sass:math';
+@use 'functions' as *;
+@use 'variables' as *;
 
 $no-columns-breakpoint: 890px;
 $sidebar-width: 300px;
@@ -7,8 +9,11 @@ $content-width: 840px;
 .admin-wrapper {
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
 
   .icon {
     width: 16px;
@@ -112,15 +117,14 @@ $content-width: 840px;
 
       a {
         font-size: 14px;
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 6px;
         padding: 15px;
         color: $darker-text-color;
         text-decoration: none;
         transition: all 200ms linear;
         transition-property: color, background-color;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
 
         &:hover {
           color: $primary-text-color;
@@ -584,16 +588,6 @@ body,
 .account-status {
   display: flex;
   margin-bottom: 10px;
-
-  .activity-stream {
-    flex: 2 0 0;
-    margin-inline-end: 20px;
-    max-width: calc(100% - 60px);
-
-    .entry {
-      border-radius: 4px;
-    }
-  }
 }
 
 .report-status__actions,
@@ -1103,7 +1097,7 @@ a.name-tag,
     display: flex;
     justify-content: space-between;
     margin-bottom: 0;
-    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   &__permissions {
@@ -1123,6 +1117,15 @@ a.name-tag,
     .permissions-list__item__icon {
       color: $dark-text-color;
     }
+  }
+}
+
+.rule-actions {
+  display: flex;
+  flex-direction: column;
+
+  a.table-action-link {
+    padding-inline-start: 0;
   }
 }
 
@@ -1428,8 +1431,8 @@ a.sparkline {
     inset-inline-start: 10px;
     border-radius: 4px;
     background:
-      url('../images/warning-stripes.svg') repeat-y left,
-      url('../images/warning-stripes.svg') repeat-y right,
+      url('@/images/warning-stripes.svg') repeat-y left,
+      url('@/images/warning-stripes.svg') repeat-y right,
       var(--background-color);
   }
 
@@ -1626,6 +1629,17 @@ a.sparkline {
           &:active {
             text-decoration: underline;
           }
+        }
+      }
+
+      a.timestamp {
+        color: $darker-text-color;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: underline;
         }
       }
 
@@ -1989,6 +2003,11 @@ a.sparkline {
           line-height: 20px;
           font-weight: 600;
           margin-bottom: 16px;
+
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
         }
       }
     }

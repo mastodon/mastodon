@@ -20,10 +20,11 @@ de:
           invalid: ist kein gültiger Domain-Name
       messages:
         invalid_domain_on_line: "%{value} ist kein gültiger Domain-Name"
-        too_many_lines: übersteigt das Limit von %{limit} Zeilen
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: enthält Werte, bei denen Beschriftungen fehlen
             username:
               invalid: nur Buchstaben, Ziffern und Unterstriche
               reserved: ist bereits vergeben
@@ -48,8 +49,14 @@ de:
           attributes:
             reblog:
               taken: des Beitrags existiert bereits
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: Datum muss später als %{date} sein
         user:
           attributes:
+            date_of_birth:
+              below_limit: liegt unterhalb der Altersgrenze
             email:
               blocked: verwendet einen unerlaubten E-Mail-Anbieter
               unreachable: scheint nicht zu existieren

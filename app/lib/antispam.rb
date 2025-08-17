@@ -33,9 +33,7 @@ class Antispam
   end
 
   def local_preflight_check!(status)
-    return unless spammy_texts.any? { |spammy_text| status.text.include?(spammy_text) }
-    return unless suspicious_reply_or_mention?(status)
-    return unless status.account.created_at >= ACCOUNT_AGE_EXEMPTION.ago
+    return unless considered_spam?(status)
 
     report_if_needed!(status.account)
 
@@ -44,8 +42,24 @@ class Antispam
 
   private
 
+  def considered_spam?(status)
+    (all_time_suspicious?(status) || recent_suspicious?(status)) && suspicious_reply_or_mention?(status)
+  end
+
+  def all_time_suspicious?(status)
+    all_time_spammy_texts.any? { |spammy_text| status.text.include?(spammy_text) }
+  end
+
+  def recent_suspicious?(status)
+    status.account.created_at >= ACCOUNT_AGE_EXEMPTION.ago && spammy_texts.any? { |spammy_text| status.text.include?(spammy_text) }
+  end
+
   def spammy_texts
     redis.smembers('antispam:spammy_texts')
+  end
+
+  def all_time_spammy_texts
+    redis.smembers('antispam:all_time_spammy_texts')
   end
 
   def suspicious_reply_or_mention?(status)
@@ -57,8 +71,16 @@ class Antispam
   end
 
   def report_if_needed!(account)
-    return if Report.unresolved.exists?(account: Account.representative, target_account: account)
+    return if system_reports.unresolved.exists?(target_account: account)
 
-    Report.create!(account: Account.representative, target_account: account, category: :spam, comment: 'Account automatically reported for posting a banned URL')
+    system_reports.create!(
+      category: :spam,
+      comment: 'Account automatically reported for posting a banned URL',
+      target_account: account
+    )
+  end
+
+  def system_reports
+    Account.representative.reports
   end
 end

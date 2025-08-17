@@ -2,10 +2,13 @@
 // If there are no polyfills, then this is just Promise.resolve() which means
 // it will execute in the same tick of the event loop (i.e. near-instant).
 
+// eslint-disable-next-line import/extensions -- This file is virtual so it thinks it has an extension
+import 'vite/modulepreload-polyfill';
+
 import { loadIntlPolyfills } from './intl';
 
 function importExtraPolyfills() {
-  return import(/* webpackChunkName: "extra_polyfills" */ './extra_polyfills');
+  return import('./extra_polyfills');
 }
 
 export function loadPolyfills() {
@@ -17,5 +20,16 @@ export function loadPolyfills() {
     loadIntlPolyfills(),
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- those properties might not exist in old browsers, even if they are always here in types
     needsExtraPolyfills && importExtraPolyfills(),
+    loadEmojiPolyfills(),
   ]);
 }
+
+// In the case of no /v support, rely on the emojibase data.
+async function loadEmojiPolyfills() {
+  if (!('unicodeSets' in RegExp.prototype)) {
+    emojiRegexPolyfill = (await import('emojibase-regex/emoji')).default;
+  }
+}
+
+// Null unless polyfill is needed.
+export let emojiRegexPolyfill: RegExp | null = null;

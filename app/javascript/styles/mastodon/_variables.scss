@@ -1,0 +1,115 @@
+@use 'sass:color';
+@use 'functions' as *;
+
+// Commonly used web colors
+$black: #000; // Black
+$white: #fff; // White
+$red-600: #b7253d !default; // Deep Carmine
+$red-500: #df405a !default; // Cerise
+$blurple-600: #563acc; // Iris
+$blurple-500: #6364ff; // Brand purple
+$blurple-400: #7477fd; // Medium slate blue
+$blurple-300: #858afa; // Faded Blue
+$grey-600: hsl(240deg, 8%, 33%); // Trout
+$grey-100: hsl(240deg, 51%, 90%); // Topaz
+
+$success-green: #79bd9a !default; // Padua
+$error-red: $red-500 !default; // Cerise
+$warning-red: #ff5050 !default; // Sunset Orange
+$gold-star: #ca8f04 !default; // Dark Goldenrod
+
+$red-bookmark: $warning-red;
+
+// Values from the classic Mastodon UI
+$classic-base-color: hsl(240deg, 16%, 19%);
+$classic-primary-color: hsl(240deg, 29%, 70%);
+$classic-secondary-color: hsl(255deg, 25%, 88%);
+$classic-highlight-color: $blurple-500;
+
+// Variables for defaults in UI
+$base-shadow-color: $black !default;
+$base-overlay-background: $black !default;
+$base-border-color: $white !default;
+$simple-background-color: $white !default;
+$valid-value-color: $success-green !default;
+$error-value-color: $error-red !default;
+
+// Tell UI to use selected colors
+$ui-base-color: $classic-base-color !default; // Darkest
+$ui-base-lighter-color: lighten(
+  $ui-base-color,
+  26%
+) !default; // Lighter darkest
+$ui-primary-color: $classic-primary-color !default; // Lighter
+$ui-secondary-color: $classic-secondary-color !default; // Lightest
+$ui-highlight-color: $classic-highlight-color !default;
+$ui-button-color: $white !default;
+$ui-button-background-color: $blurple-500 !default;
+$ui-button-focus-background-color: $blurple-600 !default;
+$ui-button-focus-outline-color: $blurple-400 !default;
+$ui-button-focus-outline: solid 2px $ui-button-focus-outline-color !default;
+
+$ui-button-disabled-color: color.adjust(
+  $ui-button-background-color,
+  $alpha: -0.3
+) !default;
+
+$ui-button-secondary-color: $blurple-500 !default;
+$ui-button-secondary-border-color: $blurple-500 !default;
+$ui-button-secondary-focus-border-color: $blurple-300 !default;
+$ui-button-secondary-focus-color: $blurple-300 !default;
+
+$ui-button-tertiary-color: $blurple-300 !default;
+$ui-button-tertiary-border-color: $blurple-300 !default;
+$ui-button-tertiary-focus-background-color: $blurple-600 !default;
+$ui-button-tertiary-focus-color: $white !default;
+
+$ui-button-destructive-background-color: $red-500 !default;
+$ui-button-destructive-focus-background-color: $red-600 !default;
+
+$ui-button-icon-focus-outline: $ui-button-focus-outline !default;
+$ui-button-icon-hover-background-color: rgba(140, 141, 255, 40%) !default;
+
+// Variables for texts
+$primary-text-color: $white !default;
+$darker-text-color: $ui-primary-color !default;
+$dark-text-color: $ui-base-lighter-color !default;
+$secondary-text-color: $ui-secondary-color !default;
+$highlight-text-color: lighten($ui-highlight-color, 8%) !default;
+$action-button-color: $ui-base-lighter-color !default;
+$action-button-focus-color: lighten($ui-base-lighter-color, 4%) !default;
+$passive-text-color: $gold-star !default;
+$active-passive-text-color: $success-green !default;
+
+// For texts on inverted backgrounds
+$inverted-text-color: $ui-base-color !default;
+$lighter-text-color: $ui-base-lighter-color !default;
+$light-text-color: $ui-primary-color !default;
+
+// Keep this filter a SCSS variable rather than
+// a CSS Custom Property due to this Safari bug:
+// https://github.com/mdn/browser-compat-data/issues/25914#issuecomment-2676190245
+$backdrop-blur-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+
+// Language codes that uses CJK fonts
+$cjk-langs: ja, ko, zh-CN, zh-HK, zh-TW;
+
+// Variables for components
+$media-modal-media-max-width: 100%;
+
+// put margins on top and bottom of image to avoid the screen covered by image.
+$media-modal-media-max-height: 80%;
+
+$no-gap-breakpoint: 1175px;
+$mobile-menu-breakpoint: 760px;
+$mobile-breakpoint: 630px;
+$no-columns-breakpoint: 600px;
+
+$font-sans-serif: 'mastodon-font-sans-serif' !default;
+$font-display: 'mastodon-font-display' !default;
+$font-monospace: 'mastodon-font-monospace' !default;
+
+$emojis-requiring-inversion: 'back' 'copyright' 'curly_loop' 'currency_exchange'
+  'end' 'heavy_check_mark' 'heavy_division_sign' 'heavy_dollar_sign'
+  'heavy_minus_sign' 'heavy_multiplication_x' 'heavy_plus_sign' 'on'
+  'registered' 'soon' 'spider' 'telephone_receiver' 'tm' 'top' 'wavy_dash' !default;

@@ -16,6 +16,7 @@ RSpec.describe 'API V1 Push Subscriptions' do
       subscription: {
         endpoint: endpoint,
         keys: keys,
+        standard: standard,
       },
     }.with_indifferent_access
   end
@@ -36,6 +37,7 @@ RSpec.describe 'API V1 Push Subscriptions' do
       },
     }.with_indifferent_access
   end
+  let(:standard) { '1' }
   let(:scopes) { 'push' }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
@@ -66,11 +68,23 @@ RSpec.describe 'API V1 Push Subscriptions' do
           user_id: eq(user.id),
           access_token_id: eq(token.id)
         )
+        .and be_standard
 
       expect(response.parsed_body.with_indifferent_access)
         .to include(
           { endpoint: create_payload[:subscription][:endpoint], alerts: {}, policy: 'all' }
         )
+    end
+
+    context 'when standard is provided as false value' do
+      let(:standard) { '0' }
+
+      it 'saves push subscription with standard as false' do
+        subject
+
+        expect(endpoint_push_subscription)
+          .to_not be_standard
+      end
     end
 
     it 'replaces old subscription on repeat calls' do
@@ -107,6 +121,13 @@ RSpec.describe 'API V1 Push Subscriptions' do
 
       it_behaves_like 'validation error'
     end
+
+    it 'gracefully handles invalid nested params' do
+      post api_v1_push_subscription_path, params: { subscription: 'invalid' }, headers: headers
+
+      expect(response)
+        .to have_http_status(400)
+    end
   end
 
   describe 'PUT /api/v1/push/subscription' do
@@ -133,22 +154,42 @@ RSpec.describe 'API V1 Push Subscriptions' do
           policy: alerts_payload[:data][:policy]
         )
     end
+
+    it 'gracefully handles invalid nested params' do
+      put api_v1_push_subscription_path(endpoint_push_subscription), params: { data: 'invalid' }, headers: headers
+
+      expect(response)
+        .to have_http_status(400)
+    end
   end
 
   describe 'GET /api/v1/push/subscription' do
     subject { get '/api/v1/push/subscription', headers: headers }
 
-    before { create_subscription_with_token }
+    context 'with a subscription' do
+      before { create_subscription_with_token }
 
-    it 'shows subscription details' do
-      subject
+      it 'shows subscription details' do
+        subject
 
-      expect(response)
-        .to have_http_status(200)
-      expect(response.content_type)
-        .to start_with('application/json')
-      expect(response.parsed_body)
-        .to include(endpoint: endpoint)
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to include(endpoint: endpoint)
+      end
+    end
+
+    context 'without a subscription' do
+      it 'returns not found' do
+        subject
+
+        expect(response)
+          .to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
+      end
     end
   end
 
@@ -179,7 +220,8 @@ RSpec.describe 'API V1 Push Subscriptions' do
     Fabricate(
       :web_push_subscription,
       endpoint: create_payload[:subscription][:endpoint],
-      access_token_id: token.id
+      access_token: token,
+      user: user
     )
   end
 end

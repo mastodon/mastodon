@@ -16,7 +16,7 @@ class Trends::Links < Trends::Base
   class Query < Trends::Query
     def to_arel
       scope = PreviewCard.joins(:trend).reorder(score: :desc)
-      scope = scope.reorder(language_order_clause.desc, score: :desc) if preferred_languages.present?
+      scope = scope.reorder(language_order_clause, score: :desc) if preferred_languages.present?
       scope = scope.merge(PreviewCardTrend.allowed) if @allowed
       scope = scope.offset(@offset) if @offset.present?
       scope = scope.limit(@limit) if @limit.present?
@@ -25,15 +25,16 @@ class Trends::Links < Trends::Base
 
     private
 
-    def language_order_clause
-      Arel::Nodes::Case.new.when(PreviewCardTrend.arel_table[:language].in(preferred_languages)).then(1).else(0)
+    def trend_class
+      PreviewCardTrend
     end
   end
 
   def register(status, at_time = Time.now.utc)
     original_status = status.proper
 
-    return unless (original_status.public_visibility? && status.public_visibility?) &&
+    return unless original_status.public_visibility? &&
+                  status.public_visibility? &&
                   !(original_status.account.silenced? || status.account.silenced?) &&
                   !(original_status.spoiler_text? || original_status.sensitive?)
 

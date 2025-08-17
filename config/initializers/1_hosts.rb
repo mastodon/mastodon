@@ -21,7 +21,7 @@ Rails.application.configure do
 
   config.x.streaming_api_base_url = ENV.fetch('STREAMING_API_BASE_URL') do
     if Rails.env.production?
-      "ws#{https ? 's' : ''}://#{web_host}"
+      "ws#{'s' if https}://#{web_host}"
     else
       "ws://#{host.split(':').first}:4000"
     end

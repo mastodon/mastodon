@@ -71,7 +71,7 @@ kab:
         active: Yermed
         all: Akk
         pending: Yettraǧu
-        suspended: Yeḥbes
+        suspended: Yettwaḥbes
         title: Aseɣyed
       moderation_notes: Tamawin n useɣyed
       most_recent_activity: Armud aneggaru
@@ -109,7 +109,7 @@ kab:
       silenced: Yettwasgugem
       statuses: Tisuffaɣ
       subscribe: Jerred
-      suspended: Yeḥbes
+      suspended: Yettwaḥbes
       title: Imiḍanen
       unconfirmed_email: Imayl ur yettwasentem ara
       undo_silenced: Kkes asgugem
@@ -268,6 +268,20 @@ kab:
       no_file: Ula d yiwen ufaylu ma yettwafran
     export_domain_blocks:
       no_file: Ulac afaylu yettwafernen
+    fasp:
+      debug:
+        callbacks:
+          delete: Kkes
+          ip: Tansa IP
+      providers:
+        delete: Kkes
+        name: Isem
+        providers: Asaǧǧaw
+        registrations:
+          confirm: Sentem
+        save: Sekles
+        sign_in: Qqen
+      title: FASP
     follow_recommendations:
       language: I tutlayt
       status: Addad
@@ -370,6 +384,9 @@ kab:
       updated_at: Yettwaleqqem
       view_profile: Wali amaɣnu
     roles:
+      assigned_users:
+        one: "%{count} n useqdac"
+        other: "%{count} n iseqdacen"
       categories:
         administration: Tadbelt
         invites: Iɛeṛṛuḍen
@@ -378,19 +395,26 @@ kab:
       everyone: Tisirag timezwura
       privileges:
         administrator: Anedbal
+        manage_settings: Asefrek n iɣewwaṛen
+        view_dashboard: Timẓriwt n tfelwit
     rules:
       add_new: Rnu alugen
+      add_translation: Ad yernu tasuqilt
       delete: Kkes
       edit: Ẓreg alugen
       empty: Mazal ur ttwasbadun ara yilugan n uqeddac.
       title: Ilugan n uqeddac
+      translation: Tasuqilt
+      translations: Tisuqilin
     settings:
       about:
         title: Ɣef
       appearance:
         title: Udem
       discovery:
+        privacy: Tabaḍnit
         profile_directory: Akaram n imaɣnuten
+        title: Asnirem
         trends: Ayen mucaɛen
       domain_blocks:
         all: I medden akk
@@ -413,16 +437,21 @@ kab:
       account: Ameskar
       application: Asnas
       back_to_account: Tuɣalin ɣer usebter n umiḍan
+      contents: Agbur
       deleted: Yettwakkes
       favourites: Imenyafen
       language: Tutlayt
       media:
         title: Amidya
       open: Ldi tasuffeɣt
-      trending: Ayen mucaɛen
+      trending: Inezzaɣ
       visibility: Abani
       with_media: S umidya
     system_checks:
+      elasticsearch_preset:
+        action: Wali tasemlit
+      elasticsearch_preset_single_node:
+        action: Wali tasemlit
       rules_check:
         action: Sefrek ilugan n uqeddac
       software_version_critical_check:
@@ -430,30 +459,57 @@ kab:
       software_version_patch_check:
         action: Wali ileqqman yellan
     tags:
+      name: Isem
+      newest: Amaynut
+      oldest: Aqbur
       search: Anadi
       title: Ihacṭagen
+    terms_of_service:
+      changelog: Amaynut
+      draft: Arewway
+      history: Amazray
+      live: Srid
+      publish: Asuffeɣ
+      save_draft: Sekles arewway
+      title: Tiwtilin n useqdec
     title: Tadbelt
     trends:
       allow: Sireg
+      links:
+        title: Iseɣwan inezzaɣ
       statuses:
-        title: Tisuffaɣ mucaɛen
+        title: Tisuffaɣ tinezzaɣ
       tags:
         dashboard:
           tag_languages_dimension: Tutlayin ifazen
-      trending: Ayen mucaɛen
+        title: Ihacṭagen inezzaɣ
+        trending_rank: 'Anezzuɣ #%{rank}'
+      trending: Inezzaɣ
+    username_blocks:
+      add_new: Rnu amaynut
+      comparison:
+        contains: Igber
+      new:
+        create: Rnu alugen
+        title: Rnu alugen n useqdac amaynut
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
     webhooks:
       delete: Kkes
       enable: Rmed
+      enabled: D urmid
   admin_mailer:
     new_report:
       body: "%{reporter} yettwazen ɣef %{target}"
       subject: Aneqqis amaynut i %{instance} (#%{id})
     new_trends:
+      new_trending_links:
+        title: Iseɣwan inezzaɣ
       new_trending_statuses:
-        title: Tisuffaɣ mucaɛen
+        title: Tisuffaɣ tinezzaɣ
+      new_trending_tags:
+        title: Ihacṭagen inezzaɣ
   appearance:
     advanced_web_interface: Agrudem n web leqqayen
     discovery: Asnirem
@@ -485,7 +541,7 @@ kab:
     delete_account: Kkes amiḍan
     description:
       prefix_invited_by_user: "@%{name} inced-ik·ikem ad ternuḍ ɣer uqeddac-a n Mastodon!"
-      prefix_sign_up: Zeddi di Maṣṭudun assa!
+      prefix_sign_up: Zeddi di Maṣṭudun ass-a!
       suffix: S umiḍan, tzemreḍ ad tḍefreḍ imdanen, ad d-tessufɣeḍ tisuffaɣ d wembadal n yiznan akked yiseqdacen n yal aqeddac Mastodon d wayen-nniḍen!
     didnt_get_confirmation: Ur d-teṭṭifeḍ ara aseɣwen n usentem ?
     dont_have_your_security_key: Ulac ɣur-k·m tasarut-ik·im n tɣellist?
@@ -511,6 +567,7 @@ kab:
       accept: Qbel
       back: Tuɣalin
       invited_by: 'Tzemreḍ ad tkecmeḍ ɣer %{domain} s tanemmirt i tinnubga i d-teṭṭfeḍ sɣur :'
+      preamble: Tiyi ttwasemmant-d yerna ttwaḍemnent sɣur imḍebbren n %{domain}.
       preamble_invited: Uqbel ad tkemmleḍ, ttxil-k·m ẓer ilugan i d-sbedden yimkariyen n %{domain}.
       title: Kra n yilugan igejdanen.
       title_invited: Tettwaɛerḍeḍ.
@@ -522,6 +579,7 @@ kab:
       preamble_html: Kcem ar <strong>%{domain}</strong> s inekcam-inek n tuqqna. Ma yella yezga-d umiḍan-ik deg uqeddac-nniḍen, ur tezmireḍ ara ad tkecmeḍ sya.
       title: Akeččum ɣer %{domain}
     sign_up:
+      preamble: S umiḍan yellan deg uqeddac-a n Mastodon, ad tizimreḍ ad t-ḍefreḍ yal yiwen nniḍen i yellan deg fediverse, akken yebɣu yili wanda i yella umiḍan-nsen.
       title: Iyya ad d-nessewjed tiɣawsiwin i %{domain}.
     status:
       account_status: Addad n umiḍan
@@ -573,6 +631,9 @@ kab:
     basic_information: Talɣut tamatut
     hint_html: "<strong>Mudd udem i wayen ttwalin medden deg umaɣnu-inek azayez ɣer yidis n yiznan-ik.</strong> Imdanen niḍen zemren ad k-ḍefren yernu ad gen assaɣ yid-k mi ara tesɛuḍ amaɣnu yeccuṛen ed tugna n umaɣnu."
     other: Ayen nniḍen
+  emoji_styles:
+    auto: Awurman
+    twemoji: Twemoji
   errors:
     '404': Asebter i tettnadiḍ ulac-it da.
     '500':
@@ -593,7 +654,7 @@ kab:
   filters:
     contexts:
       account: Imeɣna
-      notifications: Alɣuten
+      notifications: Ilɣa
       thread: Idiwenniyen
     edit:
       add_keyword: Rnu awal tasarut
@@ -685,6 +746,8 @@ kab:
       action: Err
       body: 'Yuder-ik·ikem-id %{name} deg:'
       subject: Yuder-ik·ikem-id %{name}
+    quote:
+      title: Tabdert tamaynut
     reblog:
       subject: "%{name} yesselha addad-ik·im"
       title: Azuzer amaynut
@@ -697,6 +760,7 @@ kab:
         units:
           billion: AṬ
           million: A
+          thousand: GM
           trillion: Am
   otp_authentication:
     enable: Rmed
@@ -742,6 +806,7 @@ kab:
       electron: Electron
       firefox: Firefox
       generic: Iminig arusin
+      huawei_browser: Iminig n Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Iminig Nokia S40 Ovi
@@ -750,11 +815,12 @@ kab:
       phantom_js: PhantomJS
       qq: Iminig QQ
       safari: Safari
+      uc_browser: UC Browser
       unknown_browser: Iminig arussin
       weibo: Weibo
     current_session: Tiɣimit tamirant
     date: Azemz
-    description: "%{browser} s %{platform}"
+    description: "%{browser} ɣef %{platform}"
     explanation: Ha-t-en yiminigen web ikecmen akka tura ɣer umiḍan-ik·im Mastodon.
     ip: IP
     platforms:
@@ -781,10 +847,11 @@ kab:
     delete: Tukksa n umiḍan
     development: Taneflit
     edit_profile: Ẓreg amaɣnu
+    export: Sifeḍ
     import: Kter
     import_and_export: Taktert d usifeḍ
     migrate: Tunigin n umiḍan
-    notifications: Alɣuten s imayl
+    notifications: Ilɣa s imayl
     preferences: Imenyafen
     profile: Ameɣnu
     relationships: Imeḍfaṛen akked wid i teṭṭafaṛeḍ
@@ -803,6 +870,10 @@ kab:
         one: "%{count} n tbidyutt"
         other: "%{count} n tbidyutin"
     edited_at_html: Tettwaẓreg ass n %{date}
+    quote_policies:
+      followers: Ala wid i k·m-yeṭṭafaṛen
+      nobody: Ula yiwen
+      public: Yal yiwen
     title: '%{name} : "%{quote}"'
     visibilities:
       direct: Usrid
@@ -824,6 +895,8 @@ kab:
       '7889238': 3 n wayyuren
   stream_entries:
     sensitive_content: Agbur amḥulfu
+  terms_of_service:
+    title: Tiwtilin n useqdec
   themes:
     contrast: Maṣṭudun (agnil awriran)
     default: Maṣṭudun (Aberkan)
@@ -846,9 +919,14 @@ kab:
   user_mailer:
     appeal_approved:
       action: Iɣewwaṛen n umiḍan
+    suspicious_sign_in:
+      change_password: snifel awal-ik·im n uɛeddi
+    terms_of_service_changed:
+      sign_off: Agraw n %{domain}
     warning:
       categories:
         spam: Aspam
+      reason: 'Taɣẓint:'
       title:
         disable: Amiḍan i igersen
         none: Ɣur-wat
@@ -863,15 +941,15 @@ kab:
       edit_profile_title: Sagen amaɣnu-inek·inem
       feature_action: Issin ugar
       follow_action: Ḍfeṛ
+      follow_title: Sagen isuddam n yisallen n wejgu-k·m agejdan
       follows_subtitle: Ḍfer imiḍanen yettwassnen mliḥ
       follows_title: Anwa ara ḍefṛeḍ
       follows_view_more: Ssken-d ugar n medden ay tzemred ad tḍefred
-      hashtags_subtitle: Wali ayen ileḥḥun seg sin wussan-a iεeddan
-      hashtags_title: Ihacṭagen mucaɛen
-      hashtags_view_more: Sken-d ugar n yihacṭagen mucaɛen
+      hashtags_subtitle: Snirem ayen yellan d anezzuɣ deg 2 n wussan-a iεeddan
+      hashtags_title: Ihacṭagen inezzaɣ
+      hashtags_view_more: Sken-d ugar n yihacṭagen inezzaɣ
       post_step: Ini-as azul i umaḍal s uḍris, s tiwlafin, s tividyutin neɣ s tefranin.
       post_title: Aru tasuffeɣt-inek·inem tamezwarut
-      share_action: Bḍu
       share_step: Init-asen i yimeddukal-nwen amek ara ken-id-afen deg Mastodon.
       share_title: Bḍu amaɣnu-inek·inem n Mastodon
       sign_in_action: Qqen

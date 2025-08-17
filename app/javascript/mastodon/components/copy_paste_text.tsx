@@ -5,8 +5,8 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import ContentCopyIcon from '@/material-icons/400-24px/content_copy.svg?react';
-import { useTimeout } from 'mastodon/../hooks/useTimeout';
 import { Icon } from 'mastodon/components/icon';
+import { useTimeout } from 'mastodon/hooks/useTimeout';
 
 export const CopyPasteText: React.FC<{ value: string }> = ({ value }) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin::DomainAllows' do
-  let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:user) { Fabricate(:admin_user) }
   let(:domain) { 'host.example' }
 
   before do
@@ -13,12 +13,12 @@ RSpec.describe 'Admin::DomainAllows' do
   end
 
   around do |example|
-    original = Rails.configuration.x.limited_federation_mode
-    Rails.configuration.x.limited_federation_mode = true
+    original = Rails.configuration.x.mastodon.limited_federation_mode
+    Rails.configuration.x.mastodon.limited_federation_mode = true
 
     example.run
 
-    Rails.configuration.x.limited_federation_mode = original
+    Rails.configuration.x.mastodon.limited_federation_mode = original
   end
 
   describe 'Managing domain allows' do

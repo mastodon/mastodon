@@ -2,7 +2,11 @@ import { useState, useCallback, useMemo } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import type { List } from 'immutable';
+import type {
+  List,
+  Map as ImmutableMap,
+  List as ImmutableList,
+} from 'immutable';
 
 import type {
   DragStartEvent,
@@ -63,18 +67,20 @@ export const UploadForm: React.FC = () => {
   const intl = useIntl();
   const mediaIds = useAppSelector(
     (state) =>
-      state.compose // eslint-disable-line @typescript-eslint/no-unsafe-call
-        .get('media_attachments') // eslint-disable-line @typescript-eslint/no-unsafe-member-access
-        .map((item: MediaAttachment) => item.get('id')) as List<string>, // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+      (
+        (state.compose as ImmutableMap<string, unknown>).get(
+          'media_attachments',
+        ) as ImmutableList<MediaAttachment>
+      ).map((item: MediaAttachment) => item.get('id')) as List<string>,
   );
   const active = useAppSelector(
-    (state) => state.compose.get('is_uploading') as boolean, // eslint-disable-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    (state) => state.compose.get('is_uploading') as boolean,
   );
   const progress = useAppSelector(
-    (state) => state.compose.get('progress') as number, // eslint-disable-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    (state) => state.compose.get('progress') as number,
   );
   const isProcessing = useAppSelector(
-    (state) => state.compose.get('is_processing') as boolean, // eslint-disable-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    (state) => state.compose.get('is_processing') as boolean,
   );
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const sensors = useSensors(
@@ -109,6 +115,10 @@ export const UploadForm: React.FC = () => {
     },
     [dispatch, setActiveId],
   );
+
+  const handleDragCancel = useCallback(() => {
+    setActiveId(null);
+  }, [setActiveId]);
 
   const accessibility: {
     screenReaderInstructions: ScreenReaderInstructions;
@@ -152,32 +162,46 @@ export const UploadForm: React.FC = () => {
         <div
           className={`compose-form__uploads media-gallery media-gallery--layout-${mediaIds.size}`}
         >
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-            accessibility={accessibility}
-          >
-            <SortableContext
-              items={mediaIds.toArray()}
-              strategy={rectSortingStrategy}
+          {mediaIds.size === 1 ? (
+            <Upload
+              id={mediaIds.first()}
+              dragging={false}
+              draggable={false}
+              tall
+              wide
+            />
+          ) : (
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragStart={handleDragStart}
+              onDragEnd={handleDragEnd}
+              onDragCancel={handleDragCancel}
+              onDragAbort={handleDragCancel}
+              accessibility={accessibility}
             >
-              {mediaIds.map((id, idx) => (
-                <Upload
-                  key={id}
-                  id={id}
-                  dragging={id === activeId}
-                  tall={mediaIds.size < 3 || (mediaIds.size === 3 && idx === 0)}
-                  wide={mediaIds.size === 1}
-                />
-              ))}
-            </SortableContext>
+              <SortableContext
+                items={mediaIds.toArray()}
+                strategy={rectSortingStrategy}
+              >
+                {mediaIds.map((id, idx) => (
+                  <Upload
+                    key={id}
+                    id={id}
+                    dragging={id === activeId}
+                    tall={
+                      mediaIds.size < 3 || (mediaIds.size === 3 && idx === 0)
+                    }
+                    wide={mediaIds.size === 1}
+                  />
+                ))}
+              </SortableContext>
 
-            <DragOverlay>
-              {activeId ? <Upload id={activeId as string} overlay /> : null}
-            </DragOverlay>
-          </DndContext>
+              <DragOverlay>
+                {activeId ? <Upload id={activeId as string} overlay /> : null}
+              </DragOverlay>
+            </DndContext>
+          )}
         </div>
       )}
     </>

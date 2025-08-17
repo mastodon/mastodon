@@ -9,7 +9,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { connect } from 'react-redux';
 
-import BookmarkIcon from '@/material-icons/400-24px/bookmark-fill.svg';
+import BookmarkIcon from '@/material-icons/400-24px/bookmark-fill.svg?react';
 import BookmarkBorderIcon from '@/material-icons/400-24px/bookmark.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
@@ -25,10 +25,11 @@ import { identityContextPropShape, withIdentity } from 'mastodon/identity_contex
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
-import DropdownMenuContainer from '../containers/dropdown_menu_container';
+import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { me } from '../initial_state';
 
 import { IconButton } from './icon_button';
+import { isFeatureEnabled } from '../utils/environment';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -47,6 +48,7 @@ const messages = defineMessages({
   cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
+  removeFavourite: { id: 'status.remove_favourite', defaultMessage: 'Remove from favorites' },
   bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
   removeBookmark: { id: 'status.remove_bookmark', defaultMessage: 'Remove bookmark' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
@@ -66,21 +68,30 @@ const messages = defineMessages({
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   filter: { id: 'status.filter', defaultMessage: 'Filter this post' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
+  revokeQuote: { id: 'status.revoke_quote', defaultMessage: 'Remove my post from @{name}’s post' },
+  quotePolicyChange: { id: 'status.quote_policy_change', defaultMessage: 'Change who can quote' },
 });
 
-const mapStateToProps = (state, { status }) => ({
-  relationship: state.getIn(['relationships', status.getIn(['account', 'id'])]),
-});
+const mapStateToProps = (state, { status }) => {
+  const quotedStatusId = status.getIn(['quote', 'quoted_status']);
+  return ({
+    relationship: state.getIn(['relationships', status.getIn(['account', 'id'])]),
+    quotedAccountId: quotedStatusId ? state.getIn(['statuses', quotedStatusId, 'account']) : null,
+  });
+};
 
 class StatusActionBar extends ImmutablePureComponent {
   static propTypes = {
     identity: identityContextPropShape,
     status: ImmutablePropTypes.map.isRequired,
     relationship: ImmutablePropTypes.record,
+    quotedAccountId: ImmutablePropTypes.string,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
     onDelete: PropTypes.func,
+    onRevokeQuote: PropTypes.func,
+    onQuotePolicyChange: PropTypes.func,
     onDirect: PropTypes.func,
     onMention: PropTypes.func,
     onMute: PropTypes.func,
@@ -109,6 +120,7 @@ class StatusActionBar extends ImmutablePureComponent {
   updateOnProps = [
     'status',
     'relationship',
+    'quotedAccountId',
     'withDismiss',
   ];
 
@@ -189,6 +201,14 @@ class StatusActionBar extends ImmutablePureComponent {
     }
   };
 
+  handleRevokeQuoteClick = () => {
+    this.props.onRevokeQuote(this.props.status);
+  };
+
+  handleQuotePolicyChange = () => {
+    this.props.onQuotePolicyChange(this.props.status);
+  };
+
   handleBlockClick = () => {
     const { status, relationship, onBlock, onUnblock } = this.props;
     const account = status.get('account');
@@ -240,7 +260,7 @@ class StatusActionBar extends ImmutablePureComponent {
   };
 
   render () {
-    const { status, relationship, intl, withDismiss, withCounters, scrollKey } = this.props;
+    const { status, relationship, quotedAccountId, intl, withDismiss, withCounters, scrollKey } = this.props;
     const { signedIn, permissions } = this.props.identity;
 
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
@@ -271,16 +291,16 @@ class StatusActionBar extends ImmutablePureComponent {
     if (signedIn) {
       menu.push(null);
 
-      menu.push({ text: intl.formatMessage(status.get('bookmarked') ? messages.removeBookmark : messages.bookmark), action: this.handleBookmarkClick });
-
       if (writtenByMe && pinnableStatus) {
         menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+        menu.push(null);
       }
-
-      menu.push(null);
 
       if (writtenByMe || withDismiss) {
         menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
+        if (writtenByMe && isFeatureEnabled('outgoing_quotes') && !['private', 'direct'].includes(status.get('visibility'))) {
+          menu.push({ text: intl.formatMessage(messages.quotePolicyChange), action: this.handleQuotePolicyChange });
+        }
         menu.push(null);
       }
 
@@ -292,6 +312,10 @@ class StatusActionBar extends ImmutablePureComponent {
         menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.handleMentionClick });
         menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.handleDirectClick });
         menu.push(null);
+
+        if (quotedAccountId === me) {
+          menu.push({ text: intl.formatMessage(messages.revokeQuote, { name: account.get('username') }), action: this.handleRevokeQuoteClick, dangerous: true });
+        }
 
         if (relationship && relationship.get('muting')) {
           menu.push({ text: intl.formatMessage(messages.unmute, { name: account.get('username') }), action: this.handleMuteClick });
@@ -371,6 +395,9 @@ class StatusActionBar extends ImmutablePureComponent {
       reblogIconComponent = RepeatDisabledIcon;
     }
 
+
+    const bookmarkTitle = intl.formatMessage(status.get('bookmarked') ? messages.removeBookmark : messages.bookmark);
+    const favouriteTitle = intl.formatMessage(status.get('favourited') ? messages.removeFavourite : messages.favourite);
     const isReply = status.get('in_reply_to_account_id') === status.getIn(['account', 'id']);
 
     return (
@@ -382,13 +409,13 @@ class StatusActionBar extends ImmutablePureComponent {
           <IconButton className={classNames('status__action-bar__button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' iconComponent={reblogIconComponent} onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
         </div>
         <div className='status__action-bar__button-wrapper'>
-          <IconButton className='status__action-bar__button star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' iconComponent={status.get('favourited') ? StarIcon : StarBorderIcon} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
+          <IconButton className='status__action-bar__button star-icon' animate active={status.get('favourited')} title={favouriteTitle} icon='star' iconComponent={status.get('favourited') ? StarIcon : StarBorderIcon} onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
         </div>
         <div className='status__action-bar__button-wrapper'>
-          <IconButton className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' iconComponent={status.get('bookmarked') ? BookmarkIcon : BookmarkBorderIcon} onClick={this.handleBookmarkClick} />
+          <IconButton className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={bookmarkTitle} icon='bookmark' iconComponent={status.get('bookmarked') ? BookmarkIcon : BookmarkBorderIcon} onClick={this.handleBookmarkClick} />
         </div>
         <div className='status__action-bar__button-wrapper'>
-          <DropdownMenuContainer
+          <Dropdown
             scrollKey={scrollKey}
             status={status}
             items={menu}

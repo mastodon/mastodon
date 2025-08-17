@@ -10,9 +10,9 @@ end
 
 Devise.setup do |config|
   # CAS strategy
-  if ENV['CAS_ENABLED'] == 'true'
+  if Rails.configuration.x.omniauth.cas_enabled?
     cas_options = {}
-    cas_options[:display_name] = ENV['CAS_DISPLAY_NAME']
+    cas_options[:display_name] = ENV.fetch('CAS_DISPLAY_NAME', nil)
     cas_options[:url] = ENV['CAS_URL'] if ENV['CAS_URL']
     cas_options[:host] = ENV['CAS_HOST'] if ENV['CAS_HOST']
     cas_options[:port] = ENV['CAS_PORT'] if ENV['CAS_PORT']
@@ -39,9 +39,9 @@ Devise.setup do |config|
   end
 
   # SAML strategy
-  if ENV['SAML_ENABLED'] == 'true'
+  if Rails.configuration.x.omniauth.saml_enabled?
     saml_options = {}
-    saml_options[:display_name] = ENV['SAML_DISPLAY_NAME']
+    saml_options[:display_name] = ENV.fetch('SAML_DISPLAY_NAME', nil)
     saml_options[:assertion_consumer_service_url] = ENV['SAML_ACS_URL'] if ENV['SAML_ACS_URL']
     saml_options[:issuer] = ENV['SAML_ISSUER'] if ENV['SAML_ISSUER']
     saml_options[:idp_sso_target_url] = ENV['SAML_IDP_SSO_TARGET_URL'] if ENV['SAML_IDP_SSO_TARGET_URL']
@@ -71,9 +71,9 @@ Devise.setup do |config|
   end
 
   # OpenID Connect Strategy
-  if ENV['OIDC_ENABLED'] == 'true'
+  if Rails.configuration.x.omniauth.oidc_enabled?
     oidc_options = {}
-    oidc_options[:display_name] = ENV['OIDC_DISPLAY_NAME'] # OPTIONAL
+    oidc_options[:display_name] = ENV.fetch('OIDC_DISPLAY_NAME', nil) # OPTIONAL
     oidc_options[:issuer] = ENV['OIDC_ISSUER'] if ENV['OIDC_ISSUER'] # NEED
     oidc_options[:discovery] = ENV['OIDC_DISCOVERY'] == 'true' if ENV['OIDC_DISCOVERY'] # OPTIONAL (default: false)
     oidc_options[:client_auth_method] = ENV['OIDC_CLIENT_AUTH_METHOD'] if ENV['OIDC_CLIENT_AUTH_METHOD'] # OPTIONAL (default: basic)

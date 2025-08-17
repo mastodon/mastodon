@@ -20,10 +20,11 @@ et:
           invalid: pole kehtiv domeeninimi
       messages:
         invalid_domain_on_line: "%{value} ei ole kehtiv domeeninimi"
-        too_many_lines: on üle limiidi %{limit} rida
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: sisaldab väärtusi, kus väljade nimed on puudu
             username:
               invalid: ainult tähtmärgid, numbrid ja alakriipsud
               reserved: on reserveeritud
@@ -39,12 +40,23 @@ et:
           attributes:
             data:
               malformed: on vigasel kujul
+        list_account:
+          attributes:
+            account_id:
+              taken: on juba loetelus
+          must_be_following: peab olema jälgitav konto
         status:
           attributes:
             reblog:
               taken: postitusel on juba
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: on liiga vara, peab olema hiljem, kui %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: on allpool vanuse alampiiri
             email:
               blocked: kasutab mitte lubatud e-posti teenusepakkujat
               unreachable: ei paista eksisteerivat

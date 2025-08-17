@@ -13,7 +13,6 @@ import { Avatar } from 'mastodon/components/avatar';
 import { ContentWarning } from 'mastodon/components/content_warning';
 import { DisplayName } from 'mastodon/components/display_name';
 import { Icon } from 'mastodon/components/icon';
-import type { Status } from 'mastodon/models/status';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { EmbeddedStatusContent } from './embedded_status_content';
@@ -27,9 +26,7 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
   const clickCoordinatesRef = useRef<[number, number] | null>();
   const dispatch = useAppDispatch();
 
-  const status = useAppSelector(
-    (state) => state.statuses.get(statusId) as Status | undefined,
-  );
+  const status = useAppSelector((state) => state.statuses.get(statusId));
 
   const account = useAppSelector((state) =>
     state.accounts.get(status?.get('account') as string),

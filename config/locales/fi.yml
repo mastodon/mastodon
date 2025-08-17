@@ -10,7 +10,7 @@ fi:
     followers:
       one: seuraaja
       other: seuraajaa
-    following: seurattu(a)
+    following: Seurattavat
     instance_actor_flash: Tämä tili on virtuaalinen toimija, jota käytetään edustamaan itse palvelinta eikä yksittäistä käyttäjää. Sitä käytetään federointitarkoituksiin, eikä sitä tule jäädyttää.
     last_active: viimeksi aktiivinen
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
@@ -19,7 +19,7 @@ fi:
       following: Sinun täytyy seurata käyttäjää, jota haluat tukea
     posts:
       one: Julkaisu
-      other: viestiä
+      other: Julkaisua
     posts_tab_heading: Julkaisut
     self_follow_error: Oman tilisi seuraaminen ei ole sallittua
   admin:
@@ -74,7 +74,7 @@ fi:
       enabled: Käytössä
       enabled_msg: Käyttäjän %{username} tilin jäädytys kumottiin onnistuneesti
       followers: Seuraajat
-      follows: Seuratut
+      follows: Seurattavat
       header: Otsakekuva
       inbox_url: Postilaatikon osoite
       invite_request_text: Syitä liittymiseen
@@ -190,6 +190,7 @@ fi:
         create_relay: Luo välittäjä
         create_unavailable_domain: Luo ei-saatavilla oleva verkkotunnus
         create_user_role: Luo rooli
+        create_username_block: Luo käyttäjänimisääntö
         demote_user: Alenna käyttäjä
         destroy_announcement: Poista tiedote
         destroy_canonical_email_block: Poista sähköpostiosoitteen esto
@@ -203,6 +204,7 @@ fi:
         destroy_status: Poista julkaisu
         destroy_unavailable_domain: Poista ei-saatavilla oleva verkkotunnus
         destroy_user_role: Hävitä rooli
+        destroy_username_block: Poista käyttäjänimisääntö
         disable_2fa_user: Poista kaksivaiheinen todennus käytöstä
         disable_custom_emoji: Poista mukautettu emoji käytöstä
         disable_relay: Poista välittäjä käytöstä
@@ -237,6 +239,7 @@ fi:
         update_report: Päivitä raportti
         update_status: Päivitä julkaisu
         update_user_role: Päivitä rooli
+        update_username_block: Päivitä käyttäjänimisääntö
       actions:
         approve_appeal_html: "%{name} hyväksyi käyttäjän %{target} valituksen moderointipäätöksestä"
         approve_user_html: "%{name} hyväksyi käyttäjän %{target} rekisteröitymisen"
@@ -255,6 +258,7 @@ fi:
         create_relay_html: "%{name} loi välittäjän %{target}"
         create_unavailable_domain_html: "%{name} pysäytti toimituksen verkkotunnukseen %{target}"
         create_user_role_html: "%{name} loi roolin %{target}"
+        create_username_block_html: "%{name} lisäsi säännön käyttäjänimille, joihin sisältyy %{target}"
         demote_user_html: "%{name} alensi käyttäjän %{target}"
         destroy_announcement_html: "%{name} poisti tiedotteen %{target}"
         destroy_canonical_email_block_html: "%{name} kumosi eston tiivistettä %{target} vastaavalta sähköpostiosoitteelta"
@@ -268,6 +272,7 @@ fi:
         destroy_status_html: "%{name} poisti käyttäjän %{target} julkaisun"
         destroy_unavailable_domain_html: "%{name} jatkoi toimitusta verkkotunnukseen %{target}"
         destroy_user_role_html: "%{name} poisti roolin %{target}"
+        destroy_username_block_html: "%{name} poisti säännön käyttäjänimiltä, joihin sisältyy %{target}"
         disable_2fa_user_html: "%{name} poisti käyttäjältä %{target} vaatimuksen kaksivaiheiseen todentamiseen"
         disable_custom_emoji_html: "%{name} poisti emojin %{target} käytöstä"
         disable_relay_html: "%{name} poisti välittäjän %{target} käytöstä"
@@ -302,6 +307,7 @@ fi:
         update_report_html: "%{name} päivitti raportin %{target}"
         update_status_html: "%{name} päivitti käyttäjän %{target} julkaisun"
         update_user_role_html: "%{name} muutti roolia %{target}"
+        update_username_block_html: "%{name} päivitti säännön käyttäjänimille, joihin sisältyy %{target}"
       deleted_account: poisti tilin
       empty: Lokeja ei löytynyt.
       filter_by_action: Suodata toimen mukaan
@@ -309,6 +315,7 @@ fi:
       title: Tarkastusloki
       unavailable_instance: "(verkkotunnus ei saatavilla)"
     announcements:
+      back: Takaisin tiedotteisiin
       destroyed_msg: Tiedotteen poisto onnistui!
       edit:
         title: Muokkaa tiedotetta
@@ -317,6 +324,10 @@ fi:
       new:
         create: Luo tiedote
         title: Uusi tiedote
+      preview:
+        disclaimer: Koska käyttäjät eivät voi kieltäytyä niistä, sähköposti-ilmoitukset tulee rajata tärkeisiin tiedotteisiin, kuten ilmoituksiin henkilötietojen tietoturvaloukkauksista tai palvelimen sulkeutumisesta.
+        explanation_html: "<strong>%{display_count} käyttäjälle</strong> lähetetään sähköpostia. Sähköpostiviestiin sisällytetään seuraava teksti:"
+        title: Esikatsele tiedoteilmoitus
       publish: Julkaise
       published_msg: Tiedotteen julkaisu onnistui!
       scheduled_for: Ajoitettu %{time}
@@ -453,7 +464,7 @@ fi:
       domain: Verkkotunnus
       new:
         create: Lisää verkkotunnus
-        resolve: Selvitä verkkotunnus
+        resolve: Resolvoi verkkotunnus
         title: Estä uusi sähköpostiverkkotunnus
       no_email_domain_block_selected: Sähköpostiverkkotunnusten estoja ei muutettu, koska yhtäkään ei ollut valittuna
       not_permitted: Ei sallittu
@@ -475,6 +486,36 @@ fi:
       new:
         title: Tuo verkkotunnusten estoja
       no_file: Yhtäkään tiedostoa ei ole valittu
+    fasp:
+      debug:
+        callbacks:
+          created_at: Luotu
+          delete: Poista
+          ip: IP-osoite
+          request_body: Pyynnön sisältö
+          title: Aloita takaisinkutsujen vianetsintä
+      providers:
+        active: Käytössä
+        base_url: Perus-URL
+        callback: Takaisinkutsu
+        delete: Poista
+        edit: Muokkaa palveluntarjoajaa
+        finish_registration: Viimeistele rekisteröinti
+        name: Nimi
+        providers: Palveluntarjoajat
+        public_key_fingerprint: Julkisen avaimen sormenjälki
+        registration_requested: Rekisteröintiä pyydetty
+        registrations:
+          confirm: Vahvista
+          description: Sait rekisteröinnin FASP:lta. Hylkää se, jos et aloittanut sitä. Jos aloitat tämän, vertaile huolellisesti nimeä ja sormenjälkeä ennen rekisteröinnin vahvistamista.
+          reject: Hylkää
+          title: Vahvista FASP-rekisteröinti
+        save: Tallenna
+        select_capabilities: Valitse kyvykkyydet
+        sign_in: Kirjaudu sisään
+        status: Tila
+        title: Fediversumin Tukitoimintojen Tarjoajat
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Seurantasuositukset auttavat uusia käyttäjiä löytämään nopeasti kiinnostavaa sisältöä</strong>. Kun käyttäjä ei ole ollut tarpeeksi vuorovaikutuksessa muiden kanssa, jotta hänelle olisi muodostunut henkilökohtaisia seuraamissuosituksia, suositellaan niiden sijaan näitä tilejä. Ne lasketaan päivittäin uudelleen yhdistelmästä tilejä, jotka ovat viime aikoina olleet aktiivisimmin sitoutuneita ja joilla on suurimmat paikalliset seuraajamäärät tietyllä kielellä."
       language: Kielelle
@@ -543,6 +584,13 @@ fi:
         all: Kaikki
         limited: Rajoitettu
         title: Moderointi
+      moderation_notes:
+        create: Lisää moderointimuistiinpano
+        created_msg: Instanssin moderointimuistiinpanon luonti onnistui!
+        description_html: Tarkastele ja jätä muistiinpanoja muille moderaattoreille ja itsellesi tulevaisuuteen
+        destroyed_msg: Instanssin moderointimuistiinpano poistettu!
+        placeholder: Tietoa tästä instanssista, tehdyistä toimista tai muusta sellaisesta, joka auttaa moderoimaan tätä instanssia tulevaisuudessa.
+        title: Moderointimuistiinpanot
       private_comment: Yksityinen kommentti
       public_comment: Julkinen kommentti
       purge: Tyhjennä
@@ -751,17 +799,26 @@ fi:
       title: Roolit
     rules:
       add_new: Lisää sääntö
+      add_translation: Lisää käännös
       delete: Poista
       description_html: Vaikka useimmat väittävät, että ovat lukeneet ja hyväksyneet käyttöehdot, niin yleensä ihmiset eivät lue niitä läpi ennen kuin ilmenee ongelma. <strong>Helpota palvelimen sääntöjen näkemistä yhdellä silmäyksellä tarjoamalla ne tiiviissä luettelossa.</strong> Yritä pitää säännöt lyhyinä ja yksinkertaisina, mutta yritä olla jakamatta niitä useisiin erillisiin kohtiin.
       edit: Muokkaa sääntöä
       empty: Palvelimen sääntöjä ei ole vielä määritelty.
+      move_down: Siirrä alaspäin
+      move_up: Siirrä ylöspäin
       title: Palvelimen säännöt
+      translation: Käännös
+      translations: Käännökset
+      translations_explanation: Voit halutessasi lisätä säännöille käännöksiä. Jos käännettyä versiota ei ole saatavilla, näytetään oletusarvo. Varmista aina, että tarjoamasi käännös on linjassa oletusarvon kanssa.
     settings:
       about:
         manage_rules: Hallitse palvelimen sääntöjä
         preamble: Kerro syventävästi siitä, kuinka palvelinta käytetään, moderoidaan ja rahoitetaan.
         rules_hint: On olemassa erityinen alue sääntöjä, joita käyttäjien odotetaan noudattavan.
         title: Tietoja
+      allow_referrer_origin:
+        desc: Kun käyttäjät napsauttavat ulkoisille sivustoille johtavia linkkejä, heidän selaimensa saattaa lähettää Mastodon-palvelimesi osoitteen viittauksena. Poista tämä käytöstä, jos se yksilöi käyttäjäsi, esimerkiksi jos tämä on henkilökohtainen Mastodon-palvelin.
+        title: Salli ulkoisten sivustojen nähdä Mastodon-palvelin liikenteen lähteenä
       appearance:
         preamble: Mukauta Mastodonin selainkäyttöliittymää.
         title: Ulkoasu
@@ -781,9 +838,9 @@ fi:
       discovery:
         follow_recommendations: Seurantasuositukset
         preamble: Mielenkiintoisen sisällön esille tuominen auttaa saamaan uusia käyttäjiä, jotka eivät ehkä tunne ketään Mastodonista. Määrittele, kuinka erilaiset löytämisominaisuudet toimivat palvelimellasi.
+        privacy: Yksityisyys
         profile_directory: Profiilihakemisto
         public_timelines: Julkiset aikajanat
-        publish_discovered_servers: Julkaise löydetyt palvelimet
         publish_statistics: Julkaise tilastot
         title: Löytäminen
         trends: Trendit
@@ -868,6 +925,8 @@ fi:
     system_checks:
       database_schema_check:
         message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch-indeksin analysaattoriasetukset ovat vanhentuneet. Suorita <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch-klusteri on vikatilassa (punainen tila), joten hakuominaisuudet eivät ole käytettävissä
       elasticsearch_health_yellow:
@@ -939,9 +998,10 @@ fi:
         chance_to_review_html: "<strong>Luotuja käyttöehtoja ei julkaista automaattisesti.</strong> Sinulla on mahdollisuus tarkistaa lopputulos. Jatka täyttämällä tarvittavat tiedot."
         explanation_html: Tarjottu käyttöehtomalli on tarkoitettu vain tiedoksi, eikä sitä pidä tulkita oikeudellisena neuvontana missään yhteydessä. Käänny oman oikeusavustajasi puoleen tilanteessasi ja erityisissä oikeudellisissa kysymyksissäsi.
         title: Käyttöehtojen määritys
+      going_live_on_html: Voimassa %{date} alkaen
       history: Historia
       live: Julki
-      no_history: Käyttöehtoihin ei ole vielä tehty muutoksia.
+      no_history: Käyttöehtoja ei ole vielä muutettu.
       no_terms_of_service_html: Sinulla ei ole tällä hetkellä määritettyjä käyttöehtoja. Käyttöehtojen tarkoituksena on antaa selvyyttä ja suojata sinua mahdollisilta vastuilta riitatilanteissa käyttäjiesi kanssa.
       notified_on_html: Ilmoitettu käyttäjille %{date}
       notify_users: Ilmoita käyttäjille
@@ -1031,6 +1091,25 @@ fi:
           other: Käyttänyt %{count} käyttäjää viimeisen viikon aikana
       title: Suositukset ja trendit
       trending: Trendaus
+    username_blocks:
+      add_new: Lisää uusi
+      block_registrations: Estä rekisteröitymiset
+      comparison:
+        contains: Sisältää
+        equals: Vastaa
+      contains_html: Sisältää merkkijonon %{string}
+      created_msg: Käyttäjänimisääntö luotiin onnistuneesti
+      delete: Poista
+      edit:
+        title: Muokkaa käyttäjänimisääntöä
+      matches_exactly_html: Vastaa merkkijonoa %{string}
+      new:
+        create: Luo sääntö
+        title: Luo uusi käyttäjänimisääntö
+      no_username_block_selected: Käyttäjänimisääntöjä ei muutettu, koska yhtään ei ollut valittuna
+      not_permitted: Ei sallittu
+      title: Käyttäjänimisäännöt
+      updated_msg: Käyttäjänimisääntö päivitettiin onnistuneesti
     warning_presets:
       add_new: Lisää uusi
       delete: Poista
@@ -1209,6 +1288,7 @@ fi:
     too_fast: Lomake lähetettiin liian nopeasti, yritä uudelleen.
     use_security_key: Käytä suojausavainta
     user_agreement_html: Olen lukenut ja hyväksyn <a href="%{terms_of_service_path}" target="_blank">käyttöehdot</a> ja <a href="%{privacy_policy_path}" target="_blank">tietosuojakäytännön</a>
+    user_privacy_agreement_html: Olen lukenut ja hyväksyn <a href="%{privacy_policy_path}" target="_blank">tietosuojakäytännön</a>
   author_attribution:
     example_title: Esimerkkiteksti
     hint_html: Kirjoitatko uutisia tai blogitekstejä Mastodonin ulkopuolella? Määrää, kuinka tulet tunnustetuksi, kun niitä jaetaan Mastodonissa.
@@ -1216,7 +1296,7 @@ fi:
     more_from_html: Lisää tekijältä %{name}
     s_blog: Käyttäjän %{name} blogi
     then_instructions: Lisää sitten julkaisun verkkotunnus seuraavaan tekstikenttään.
-    title: Tekijän tunnustus
+    title: Tekijän nimeäminen
   challenge:
     confirm: Jatka
     hint_html: "<strong>Vihje:</strong> Emme pyydä sinulta salasanaa uudelleen seuraavan tunnin aikana."
@@ -1294,6 +1374,10 @@ fi:
     basic_information: Perustiedot
     hint_html: "<strong>Mukauta, mitä ihmiset näkevät julkisessa profiilissasi ja julkaisujesi vieressä.</strong> Sinua seurataan takaisin ja kanssasi ollaan vuorovaikutuksessa todennäköisemmin, kun sinulla on täytetty profiili ja profiilikuva."
     other: Muut
+  emoji_styles:
+    auto: Automaattinen
+    native: Natiivi
+    twemoji: Twemoji
   errors:
     '400': Lähettämäsi pyyntö oli virheellinen tai muotoiltu virheellisesti.
     '403': Sinulla ei ole oikeutta nähdä tätä sivua.
@@ -1465,18 +1549,18 @@ fi:
       blocking: Tuodaan estettyjä tilejä
       bookmarks: Tuodaan kirjanmerkkejä
       domain_blocking: Tuodaan estettyjä verkkotunnuksia
-      following: Tuodaan seurattuja tilejä
+      following: Tuodaan seurattavia tilejä
       lists: Tuodaan listoja
       muting: Tuodaan mykistettyjä tilejä
     type: Tuontityyppi
     type_groups:
-      constructive: Seuratut ja kirjanmerkit
+      constructive: Seurattavat ja kirjanmerkit
       destructive: Estot ja mykistykset
     types:
       blocking: Estoluettelo
       bookmarks: Kirjanmerkit
       domain_blocking: Verkkotunnusten estoluettelo
-      following: Seurattujen luettelo
+      following: Seurattavien luettelo
       lists: Listat
       muting: Mykistysluettelo
     upload: Lähetä
@@ -1603,6 +1687,10 @@ fi:
       title: Uusi maininta
     poll:
       subject: Äänestys käyttäjältä %{name} on päättynyt
+    quote:
+      body: "%{name} lainasi julkaisuasi:"
+      subject: "%{name} lainasi julkaisuasi"
+      title: Uusi lainaus
     reblog:
       body: "%{name} tehosti julkaisuasi:"
       subject: "%{name} tehosti julkaisuasi"
@@ -1682,7 +1770,7 @@ fi:
     follow_failure: Joitain valittuja tilejä ei voitu seurata.
     follow_selected_followers: Seuraa valittuja seuraajia
     followers: Seuraajat
-    following: Seuratut
+    following: Seurattavat
     invited: Kutsutut
     last_active: Viimeksi aktiivinen
     most_recent: Tuorein
@@ -1775,7 +1863,7 @@ fi:
     notifications: Sähköposti-ilmoitukset
     preferences: Asetukset
     profile: Julkinen profiili
-    relationships: Seuratut ja seuraajat
+    relationships: Seurattavat ja seuraajat
     severed_relationships: Katkenneet suhteet
     statuses_cleanup: Julkaisujen automaattipoisto
     strikes: Moderointivaroitukset
@@ -1788,8 +1876,8 @@ fi:
       domain_block: Palvelimen jäädytys (%{target_name})
       user_domain_block: Estit käyttäjän %{target_name}
     lost_followers: Menetetyt seuraajat
-    lost_follows: Menetetyt seuratut
-    preamble: Voit menettää seurattusi ja seuraajasi, kun estät verkkotunnuksen tai kun moderaattorisi päättävät jäädyttää etäpalvelimen. Kun näin tapahtuu, voit ladata luetteloita katkenneista seurantasuhteista, jotta voit tarkastella niitä ja mahdollisesti viedä ne toiselle palvelimelle.
+    lost_follows: Menetetyt seurattavat
+    preamble: Voit menettää seurattavasi ja seuraajasi, kun estät verkkotunnuksen tai kun moderaattorisi päättävät jäädyttää etäpalvelimen. Kun näin tapahtuu, voit ladata luetteloita katkenneista seurantasuhteista, jotta voit tarkastella niitä ja mahdollisesti viedä ne toiselle palvelimelle.
     purged: Palvelimesi ylläpitäjät ovat tyhjentäneet tämän palvelimen tiedot.
     type: Tapahtuma
   statuses:
@@ -1813,12 +1901,17 @@ fi:
     edited_at_html: Muokattu %{date}
     errors:
       in_reply_not_found: Julkaisua, johon yrität vastata, ei näytä olevan olemassa.
+      quoted_status_not_found: Julkaisua, jota yrität lainata, ei näytä olevan olemassa.
     over_character_limit: merkkimäärän rajoitus %{max} ylitetty
     pin_errors:
       direct: Vain mainituille käyttäjille näkyviä julkaisuja ei voi kiinnittää
       limit: Olet jo kiinnittänyt enimmäismäärän julkaisuja
       ownership: Muiden julkaisuja ei voi kiinnittää
       reblog: Tehostusta ei voi kiinnittää
+    quote_policies:
+      followers: Vain seuraajasi
+      nobody: Ei kukaan
+      public: Kaikki
     title: "%{name}: ”%{quote}”"
     visibilities:
       direct: Suoraan
@@ -1872,6 +1965,11 @@ fi:
     does_not_match_previous_name: ei vastaa edellistä nimeä
   terms_of_service:
     title: Käyttöehdot
+  terms_of_service_interstitial:
+    future_preamble_html: Teemme käyttöehtoihimme muutoksia, jotka tulevat voimaan <strong>%{date}</strong>. Kehotamme sinua käymään päivitetyt ehdot läpi.
+    past_preamble_html: Olemme muuttaneet käyttöehtojamme viimeisen käyntisi jälkeen. Kehotamme sinua käymään päivitetyt ehdot läpi.
+    review_link: Käy käyttöehdot läpi
+    title: Palvelimen %{domain} käyttöehdot muuttuvat
   themes:
     contrast: Mastodon (suuri kontrasti)
     default: Mastodon (tumma)
@@ -1903,6 +2001,10 @@ fi:
     recovery_instructions_html: Jos menetät puhelimesi, voit kirjautua tilillesi jollakin alla olevista palautuskoodeista. <strong>Pidä palautuskoodit hyvässä tallessa</strong>. Voit esimerkiksi tulostaa ne ja säilyttää muiden tärkeiden papereiden joukossa.
     webauthn: Suojausavaimet
   user_mailer:
+    announcement_published:
+      description: 'Palvelimen %{domain} ylläpito tiedottaa:'
+      subject: Palvelutiedote
+      title: Palvelimen %{domain} palvelutiedote
     appeal_approved:
       action: Tilin asetukset
       explanation: "%{appeal_date} lähettämäsi valitus tiliisi kohdistuvasta varoituksesta %{strike_date} on hyväksytty. Tilisi on jälleen hyvässä kunnossa."
@@ -1935,8 +2037,8 @@ fi:
     terms_of_service_changed:
       agreement: Jatkamalla palvelun %{domain} käyttöä hyväksyt nämä ehdot. Jos et hyväksy päivitettyjä ehtoja, voit milloin tahansa päättää sopimuksesi palvelun %{domain} kanssa poistamalla tilisi.
       changelog: 'Lyhyesti, mitä tämä päivitys tarkoittaa sinulle:'
-      description: 'Sait tämän sähköpostiviestin, koska teemme muutoksia palvelun %{domain} käyttöehtoihin. Kehotamme sinua tutustumaan päivitettyihin ehtoihin kokonaisuudessaan täällä:'
-      description_html: Sait tämän sähköpostiviestin, koska teemme muutoksia palvelun %{domain} käyttöehtoihin. Kehotamme sinua tutustumaan <a href="%{path}" target="_blank">päivitettyihin ehtoihin kokonaisuudessaan täällä</a>.
+      description: 'Sait tämän sähköpostiviestin, koska muutamme palvelun %{domain} käyttöehtoja. Muutokset tulevat voimaan %{date}. Kehotamme tutustumaan päivitettyihin ehtoihin kokonaisuudessaan täällä:'
+      description_html: Sait tämän sähköpostiviestin, koska muutamme palvelun %{domain} käyttöehtoja. Muutokset tulevat voimaan <strong>%{date}</strong>. Kehotamme tutustumaan <a href="%{path}" target="_blank">päivitettyihin ehtoihin kokonaisuudessaan täällä</a>.
       sign_off: Palvelimen %{domain} tiimi
       subject: Käyttöehtojemme päivitykset
       subtitle: Palvelimen %{domain} käyttöehdot muuttuvat
@@ -2007,7 +2109,6 @@ fi:
       post_action: Kirjoita
       post_step: Tervehdi maailmaa sanoin, kuvin, videoin ja äänestyksin.
       post_title: Tee ensimmäinen julkaisusi
-      share_action: Jaa
       share_step: Kerro ystävillesi, kuinka sinut voi löytää Mastodonista.
       share_title: Jaa Mastodon-profiilisi
       sign_in_action: Kirjaudu sisään

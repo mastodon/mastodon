@@ -17,7 +17,7 @@ RSpec.describe REST::ScheduledStatusSerializer do
       expect(subject.deep_symbolize_keys)
         .to include(
           scheduled_at: be_a(String).and(match_api_datetime_format),
-          params: not_include(:application_id)
+          params: include(:application_id)
         )
     end
   end

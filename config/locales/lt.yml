@@ -1,10 +1,10 @@
 ---
 lt:
   about:
-    about_mastodon_html: 'Ateities socialinis tinklas: jokių reklamų, jokių įmonių sekimo, etiškas dizainas ir decentralizacija! Turėk savo duomenis su Mastodon.'
+    about_mastodon_html: 'Ateities socialinis tinklas: jokių reklamų ir įmonių sekimo, etiškas dizainas bei decentralizacija! Turėkite savo duomenis su „Mastodon“.'
     contact_missing: Nenustatyta
     contact_unavailable: Nėra
-    hosted_on: Mastodon talpinamas %{domain}
+    hosted_on: "„Mastodon“ talpinamas domene %{domain}"
     title: Apie
   accounts:
     followers:
@@ -188,6 +188,7 @@ lt:
         create_relay: Kurti perdavimą
         create_unavailable_domain: Kurti nepasiekiamą domeną
         create_user_role: Kurti vaidmenį
+        create_username_block: Kurti naudotojo vardo taisyklę
         demote_user: Pažeminti naudotoją
         destroy_announcement: Ištrinti skelbimą
         destroy_custom_emoji: Ištrinti pasirinktinį jaustuką
@@ -199,6 +200,7 @@ lt:
         destroy_status: Ištrinti įrašą
         destroy_unavailable_domain: Ištrinti nepasiekiamą domeną
         destroy_user_role: Sunaikinti vaidmenį
+        destroy_username_block: Ištrinti naudotojo vardo taisyklę
         disable_2fa_user: Išjungti 2FA
         disable_custom_emoji: Išjungti pasirinktinį jaustuką
         disable_relay: Išjungti perdavimą
@@ -231,6 +233,7 @@ lt:
         update_report: Atnaujinti ataskaitą
         update_status: Atnaujinti įrašą
         update_user_role: Atnaujinti vaidmenį
+        update_username_block: Atnaujinti naudotojo vardo taisyklę
       actions:
         approve_appeal_html: "%{name} patvirtino prižiūjimo veiksmo apeliaciją iš %{target}"
         approve_user_html: "%{name} patvirtino registraciją iš %{target}"
@@ -245,6 +248,7 @@ lt:
         create_relay_html: "%{name} sukūrė perdavimą %{target}"
         create_unavailable_domain_html: "%{name} sustabdė tiekimą į domeną %{target}"
         create_user_role_html: "%{name} sukūrė %{target} vaidmenį"
+        create_username_block_html: "%{name} pridėjo taisyklę naudotojo vardams, turintiems %{target}"
         demote_user_html: "%{name} pažemino naudotoją %{target}"
         destroy_announcement_html: "%{name} ištrynė skelbimą %{target}"
         destroy_custom_emoji_html: "%{name} ištrynė jaustuką %{target}"
@@ -256,6 +260,7 @@ lt:
         destroy_status_html: "%{name} pašalino įrašą %{target}"
         destroy_unavailable_domain_html: "%{name} pratęsė tiekimą į domeną %{target}"
         destroy_user_role_html: "%{name} ištrynė %{target} vaidmenį"
+        destroy_username_block_html: "%{name} pašalino taisyklę naudotojo vardams, turintiems %{target}"
         disable_2fa_user_html: "%{name} išjungė dviejų veiksnių reikalavimą naudotojui %{target}"
         disable_custom_emoji_html: "%{name} išjungė jaustuką %{target}"
         disable_relay_html: "%{name} išjungė perdavimą %{target}"
@@ -287,6 +292,7 @@ lt:
         update_report_html: "%{name} atnaujino ataskaitą %{target}"
         update_status_html: "%{name} atnaujino įrašą %{target}"
         update_user_role_html: "%{name} pakeitė %{target} vaidmenį"
+        update_username_block_html: "%{name} atnaujino taisyklę naudotojo vardams, turintiems %{target}"
       deleted_account: ištrinta paskyra
       empty: Žurnalų nerasta.
       filter_by_action: Filtruoti pagal veiksmą
@@ -294,6 +300,7 @@ lt:
       title: Audito žurnalas
       unavailable_instance: "(domeno pavadinimas neprieinamas)"
     announcements:
+      back: Atgal į skelbimus
       destroyed_msg: Skelbimas sėkmingai ištrintas.
       edit:
         title: Redaguoti skelbimą
@@ -302,6 +309,10 @@ lt:
       new:
         create: Sukurti skelbimą
         title: Naujas skelbimas
+      preview:
+        disclaimer: Kadangi naudotojai negali jų atsisakyti, el. pašto pranešimai turėtų būti siunčiami tik svarbiems pranešimams, pavyzdžiui, asmeninių duomenų pažeidimo ar serverio uždarymo pranešimams.
+        explanation_html: 'El. laiškas bus išsiųstas <strong>%{display_count} naudotojams</strong>. Į el. laišką bus įtrauktas toliau nurodytas tekstas:'
+        title: Peržiūrėti skelbimo pranešimą
       publish: Skelbti
       published_msg: Skelbimas sėkmingai paskelbtas.
       scheduled_for: Suplanuota %{time}
@@ -353,7 +364,7 @@ lt:
       opened_reports: atidaryti ataskaitos
       pending_appeals_html:
         few: "<strong>%{count}</strong> laukiantys apeliacijos"
-        many: "<strong>%{count}</strong> laukiama apeliacija"
+        many: "<strong>%{count}</strong> laukiamos apeliacijos"
         one: "<strong>%{count}</strong> laukiama apeliacija"
         other: "<strong>%{count}</strong> laukiančių apeliacijų"
       pending_reports_html:
@@ -456,8 +467,8 @@ lt:
       availability:
         title: Prieinamumas
         warning: Paskutinis bandymas prisijungti prie šio serverio buvo nesėkmingas
-      back_to_all: Visi
-      back_to_limited: Apribotas
+      back_to_all: Viskas
+      back_to_limited: Apribota
       back_to_warning: Įspėjimas
       by_domain: Domenas
       content_policies:
@@ -615,6 +626,8 @@ lt:
     system_checks:
       database_schema_check:
         message_html: Laukiama duomenų bazės perkėlimo. Paleisk juos, kad įsitikintum, jog programa veikia taip, kaip tikimasi.
+      elasticsearch_analysis_index_mismatch:
+        message_html: "„Elasticsearch“ indekso analizatoriaus nustatymai pasenę. Vykdykite <code>tootctl search deploy --only-mapping --only=%{value}</code>."
       elasticsearch_health_yellow:
         message_html: Elasticsearch klasteris yra nesveikas (geltona būsena), galbūt norėsi išsiaiškinti priežastį
       elasticsearch_preset:
@@ -739,6 +752,22 @@ lt:
         trending_rank: 'Tendencinga #%{rank}'
       title: Rekomendacijos ir tendencijos
       trending: Tendencinga
+    username_blocks:
+      add_new: Pridėti naują
+      block_registrations: Blokuoti registracijas
+      comparison:
+        contains: Yra
+        equals: Lygus
+      contains_html: Yra %{string}
+      created_msg: Sėkmingai sukurta naudotojo vardo taisyklė.
+      delete: Ištrinti
+      edit:
+        title: Redaguoti naudotojo vardo taisyklę
+      matches_exactly_html: Lygus %{string}
+      new:
+        create: Kurti taisyklę
+        title: Kurti naują naudotojo vardo taisyklę
+      no_username_block_selected: Jokios naudotojo vardo taisyklės nebuvo pakeistos, nes nė viena buvo pasirinkta.
     warning_presets:
       add_new: Pridėti naują
       delete: Ištrinti
@@ -864,6 +893,7 @@ lt:
       self_destruct: Kadangi %{domain} uždaromas, turėsi tik ribotą prieigą prie savo paskyros.
       view_strikes: Peržiūrėti ankstesnius savo paskyros pažeidimus
     user_agreement_html: Perskaičiau ir sutinku su <a href="%{terms_of_service_path}" target="_blank">paslaugų sąlygomis</a> ir <a href="%{privacy_policy_path}" target="_blank">privatumo politika</a>
+    user_privacy_agreement_html: Perskaičiau ir sutinku su <a href="%{privacy_policy_path}" target="_blank">privatumo politika</a>
   author_attribution:
     example_title: Teksto pavyzdys
     hint_html: Ar rašote naujienas ar tinklaraščio straipsnius už „Mastodon“ ribų? Valdykite, kaip būsite nurodomi, kai jais bus bendrinama platformoje „Mastodon“.
@@ -904,6 +934,10 @@ lt:
       your_appeal_rejected: Tavo apeliacija buvo atmesta
   edit_profile:
     hint_html: "<strong>Tinkink tai, ką žmonės mato tavo viešame profilyje ir šalia įrašų.</strong> Kiti žmonės labiau linkę sekti atgal ir bendrauti su tavimi, jei tavo profilis yra užpildytas ir turi profilio nuotrauką."
+  emoji_styles:
+    auto: Automatinis
+    native: Vietiniai
+    twemoji: Tvejaustukai
   errors:
     '403': Jūs neturie prieigos matyti šiam puslapiui.
     '404': Puslapis nerastas.
@@ -1175,6 +1209,8 @@ lt:
         other: "%{count} vaizdų"
     boosted_from_html: Pakelta iš %{acct_link}
     content_warning: 'Turinio įspėjimas: %{warning}'
+    errors:
+      quoted_status_not_found: Įrašas, kurį bandote cituoti, atrodo, neegzistuoja.
     over_character_limit: pasiektas %{max} simbolių limitas
     pin_errors:
       limit: Jūs jau prisegėte maksimalų toot'ų skaičų
@@ -1218,6 +1254,10 @@ lt:
     recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti, ir laikyti kartu su kitais svarbiais dokumentais.
     webauthn: Saugumo raktai
   user_mailer:
+    announcement_published:
+      description: "%{domain} administratoriai daro skelbimą:"
+      subject: Paslaugos skelbimas
+      title: "%{domain} paslaugos skelbimas"
     appeal_approved:
       action: Paskyros nustatymai
       subtitle: Tavo paskyros būklė vėl yra gera.
@@ -1239,8 +1279,6 @@ lt:
     terms_of_service_changed:
       agreement: Tęsiant naudojimąsi %{domain}, jūs sutinkate su šiomis sąlygomis. Jei nesutinkate su atnaujintomis sąlygomis, bet kuriuo metu galite nutraukti sutartį su %{domain} ištrindami savo paskyrą.
       changelog: Trumpai apie tai, ką šis naujinimas reiškia jums
-      description: 'Šį el. laišką gaunate, nes mes keičiame savo paslaugų sąlygas serveryje %{domain}. Kviečiame susipažinti su visomis atnaujintomis sąlygomis čia:'
-      description_html: Šį el. laišką gaunate, nes mes keičiame savo paslaugų sąlygas serveryje %{domain}. Kviečiame susipažinti su <a href="%{path}" target="_blank">visomis atnaujintomis sąlygomis čia</a>.
       sign_off: "%{domain} komanda"
       subject: Paslaugų sąlygų atnaujinimai
       subtitle: Keičiasi %{domain} paslaugų sąlygos
@@ -1290,7 +1328,6 @@ lt:
       post_action: Sukurti
       post_step: Sakyk labas pasauliui tekstu, nuotraukomis, vaizdo įrašais arba apklausomis.
       post_title: Sukūrk savo pirmąjį įrašą
-      share_action: Bendrinti
       share_step: Leisk draugams sužinoti, kaip tave rasti Mastodon.
       share_title: Bendrink savo Mastodon profilį
       sign_in_action: Prisijungti

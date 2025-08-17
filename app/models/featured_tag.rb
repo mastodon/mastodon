@@ -18,17 +18,19 @@ class FeaturedTag < ApplicationRecord
   belongs_to :account, inverse_of: :featured_tags
   belongs_to :tag, inverse_of: :featured_tags, optional: true # Set after validation
 
-  validates :name, presence: true, format: { with: Tag::HASHTAG_NAME_RE }, on: :create
+  validates :name, presence: true, on: :create, if: -> { tag_id.nil? }
+  validates :name, format: { with: Tag::HASHTAG_NAME_RE }, on: :create, allow_blank: true
+  validates :tag_id, uniqueness: { scope: :account_id }
 
-  validate :validate_tag_uniqueness, on: :create
   validate :validate_featured_tags_limit, on: :create
 
   normalizes :name, with: ->(name) { name.strip.delete_prefix('#') }
 
-  before_create :set_tag
-  before_create :reset_data
-
   scope :by_name, ->(name) { joins(:tag).where(tag: { name: HashtagNormalizer.new.normalize(name) }) }
+
+  before_validation :set_tag
+
+  before_create :reset_data
 
   LIMIT = 10
 
@@ -59,7 +61,11 @@ class FeaturedTag < ApplicationRecord
   private
 
   def set_tag
-    self.tag = Tag.find_or_create_by_names(name)&.first
+    if tag.nil?
+      self.tag = Tag.find_or_create_by_names(name)&.first
+    elsif tag&.new_record?
+      tag.save
+    end
   end
 
   def reset_data
@@ -71,14 +77,6 @@ class FeaturedTag < ApplicationRecord
     return unless account.local?
 
     errors.add(:base, I18n.t('featured_tags.errors.limit')) if account.featured_tags.count >= LIMIT
-  end
-
-  def validate_tag_uniqueness
-    errors.add(:name, :taken) if tag_already_featured_for_account?
-  end
-
-  def tag_already_featured_for_account?
-    FeaturedTag.by_name(name).exists?(account_id: account_id)
   end
 
   def visible_tagged_account_statuses

@@ -309,6 +309,7 @@ fr:
       title: Journal d’audit
       unavailable_instance: "(nom de domaine indisponible)"
     announcements:
+      back: Retour aux annonces
       destroyed_msg: Annonce supprimée avec succès !
       edit:
         title: Modifier l’annonce
@@ -317,6 +318,10 @@ fr:
       new:
         create: Créer une annonce
         title: Nouvelle annonce
+      preview:
+        disclaimer: Étant donné que les utilisateurs ne peuvent pas s'en retirer, les notifications par courriel devraient être limitées à des annonces importantes telles que des violations de données personnelles ou des notifications de fermeture de serveur.
+        explanation_html: 'L''e-mail sera envoyé à <strong>%{display_count} utilisateurs</strong>. Le texte suivant sera inclus :'
+        title: Aperçu de la notification d'annonce
       publish: Publier
       published_msg: Annonce publiée avec succès !
       scheduled_for: Planifiée pour %{time}
@@ -478,6 +483,25 @@ fr:
       new:
         title: Importer des blocages de domaine
       no_file: Aucun fichier sélectionné
+    fasp:
+      debug:
+        callbacks:
+          created_at: Créé à
+          delete: Supprimer
+          ip: Adresse IP
+      providers:
+        name: Nom
+        providers: Fournisseur
+        registrations:
+          confirm: Confirmer
+          description: Vous avez reçu une souscription d'un FSAF. Rejetez-la si vous ne l'avez pas initiée. Si c'est bien votre intention, comparez le nom et l'empreinte de la clé avant de confirmer la souscription.
+          reject: Rejeter
+          title: Confirmer la souscription au FSAF
+        save: Enregistrer
+        select_capabilities: Sélectionnez les Capacités
+        sign_in: Se connecter
+        status: État
+        title: Fournisseurs de Services Auxiliaire du Fedivers
     follow_recommendations:
       description_html: "<strong>Les recommandations d'abonnement aident les nouvelles personnes à trouver rapidement du contenu intéressant</strong>. Si un·e utilisateur·rice n'a pas assez interagi avec les autres pour avoir des recommandations personnalisées, ces comptes sont alors recommandés. La sélection est mise à jour quotidiennement depuis un mélange de comptes ayant le plus d'interactions récentes et le plus grand nombre d'abonné·e·s locaux pour une langue donnée."
       language: Pour la langue
@@ -546,6 +570,8 @@ fr:
         all: Tout
         limited: Limité
         title: Modération
+      moderation_notes:
+        title: Notes de modération
       private_comment: Commentaire privé
       public_comment: Commentaire public
       purge: Purge
@@ -754,11 +780,14 @@ fr:
       title: Rôles
     rules:
       add_new: Ajouter une règle
+      add_translation: Ajouter une traduction
       delete: Supprimer
       description_html: Bien que la plupart des gens prétende avoir lu les conditions d'utilisation avant de les accepter, généralement les utilisateur·rice·s ne les lisent vraiment que lorsque un problème apparaît. <strong>Pour faciliter la visualisation des règles de votre serveur en un seul coup d’œil, présentez-les sous la forme d'une liste à puces !</strong> Essayez de garder chacune des règles simple et concise, mais faites attention à ne pas non plus les diviser en de trop nombreux éléments distincts.
       edit: Modifier la règle
       empty: Aucune règle de serveur n'a été définie pour l'instant.
       title: Règles du serveur
+      translation: Traduction
+      translations: Traductions
     settings:
       about:
         manage_rules: Gérer les règles du serveur
@@ -786,7 +815,6 @@ fr:
         preamble: Il est essentiel de donner de la visibilité à des contenus intéressants pour attirer des utilisateur⋅rice⋅s néophytes qui ne connaissent peut-être personne sur Mastodon. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
         profile_directory: Annuaire des profils
         public_timelines: Fils publics
-        publish_discovered_servers: Publier les serveurs découverts
         publish_statistics: Publier les statistiques
         title: Découverte
         trends: Tendances
@@ -942,6 +970,7 @@ fr:
         chance_to_review_html: "<strong>Les conditions d'utilisation générées ne seront pas publiées automatiquement.</strong> Vous aurez la possibilité de vérifier les résultats. Veuillez remplir les informations nécessaires pour continuer."
         explanation_html: Le modèle de conditions d'utilisation fourni l'est uniquement à titre informatif et ne doit pas être interprété comme un conseil juridique sur quelque sujet que ce soit. Veuillez consulter votre propre conseiller juridique sur votre situation et les questions juridiques spécifiques que vous vous posez.
         title: Configuration des Conditions d'Utilisation
+      going_live_on_html: En direct, à compter du %{date}
       history: Historique
       live: En cours d'utilisation
       no_history: Il n'y a pas encore de modifications enregistrées des conditions d'utilisation.
@@ -1212,6 +1241,7 @@ fr:
     too_fast: Formulaire envoyé trop rapidement, veuillez réessayer.
     use_security_key: Utiliser la clé de sécurité
     user_agreement_html: J'ai lu et j'accepte les <a href="%{terms_of_service_path}" target="_blank">conditions d'utilisation</a> et la <a href="%{privacy_policy_path}" target="_blank">politique de confidentialité</a>
+    user_privacy_agreement_html: J’ai lu et j’accepte la <a href="%{privacy_policy_path}" target="_blank">politique de confidentialité</a>
   author_attribution:
     example_title: Exemple de texte
     hint_html: Vous écrivez des nouvelles ou des articles de blog en dehors de Mastodon ? Contrôlez la façon dont vous êtes crédité lorsqu'ils sont partagés sur Mastodon.
@@ -1822,6 +1852,10 @@ fr:
       limit: Vous avez déjà épinglé le nombre maximum de messages
       ownership: Vous ne pouvez pas épingler un message ne vous appartenant pas
       reblog: Un partage ne peut pas être épinglé
+    quote_policies:
+      followers: Vos abonné·es seulement
+      nobody: Personne
+      public: Tout le monde
     title: "%{name} : « %{quote} »"
     visibilities:
       direct: Direct
@@ -1875,6 +1909,8 @@ fr:
     does_not_match_previous_name: ne correspond pas au nom précédent
   terms_of_service:
     title: Conditions d'utilisation
+  terms_of_service_interstitial:
+    title: Les conditions d'utilisation de %{domain} ont changées
   themes:
     contrast: Mastodon (Contraste élevé)
     default: Mastodon (Sombre)
@@ -1906,6 +1942,10 @@ fr:
     recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour retrouver l’accès à votre compte. <strong>Conservez les codes de récupération en sécurité</strong>. Par exemple, en les imprimant et en les stockant avec vos autres documents importants.
     webauthn: Clés de sécurité
   user_mailer:
+    announcement_published:
+      description: 'Les administrateurs de %{domain} font une annonce :'
+      subject: Annonce de service
+      title: Annonce de service de %{domain}
     appeal_approved:
       action: Paramètres du compte
       explanation: L'appel de la sanction contre votre compte mise en place le %{strike_date} que vous avez soumis le %{appeal_date} a été approuvé. Votre compte est de nouveau en règle.
@@ -1938,8 +1978,8 @@ fr:
     terms_of_service_changed:
       agreement: En continuant d'utiliser %{domain}, vous acceptez ces conditions. Si vous n'êtes pas d'accord avec les conditions mises à jour, vous pouvez résilier votre accord avec %{domain} à tout moment en supprimant votre compte.
       changelog: 'En un coup d''œil, voici ce que cette mise à jour signifie pour vous :'
-      description: 'Vous recevez cet e-mail car nous apportons des modifications à nos conditions d''utilisation sur %{domain}. Nous vous encourageons à consulter l''intégralité des conditions mises à jour ici :'
-      description_html: Vous recevez cet e-mail car nous apportons des modifications à nos conditions d'utilisation sur %{domain}. Nous vous encourageons à consulter l'intégralité des <a href="%{path}" target="_blank">conditions mises à jour ici</a>.
+      description: 'Vous recevez cet e-mail parce que nous apportons des modifications à nos conditions de service à %{domain}. Ces modifications entreront en vigueur le %{date}. Nous vous encourageons à consulter l''intégralité des conditions mises à jour ici :'
+      description_html: Vous recevez cet e-mail parce que nous apportons des modifications à nos conditions de service à %{domain}. Ces mises à jour entreront en vigueur le <strong>%{date}</strong>. Nous vous encourageons à consulter l'intégralité des <a href="%{path}" target="_blank">conditions mises à jour ici</a>.
       sign_off: L'équipe %{domain}
       subject: Mises à jour de nos conditions d'utilisation
       subtitle: Les conditions d'utilisation de `%{domain}` changent
@@ -2010,7 +2050,6 @@ fr:
       post_action: Rédiger
       post_step: Dites bonjour au monde avec du texte, des photos, des vidéos ou des sondages.
       post_title: Rédiger votre premier message
-      share_action: Partager
       share_step: Faites savoir à vos ami·e·s comment vous trouver sur Mastodon.
       share_title: Partager votre profil Mastodon
       sign_in_action: Se connecter

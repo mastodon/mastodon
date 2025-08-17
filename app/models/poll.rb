@@ -23,6 +23,8 @@
 class Poll < ApplicationRecord
   include Expireable
 
+  MAKE_FETCH_HAPPEN = 1.minute
+
   belongs_to :account
   belongs_to :status
 
@@ -37,7 +39,8 @@ class Poll < ApplicationRecord
 
   validates :options, presence: true
   validates :expires_at, presence: true, if: :local?
-  validates_with PollValidator, on: :create, if: :local?
+  validates_with PollOptionsValidator, if: :local?
+  validates_with PollExpirationValidator, if: -> { local? && expires_at_changed? }
 
   before_validation :prepare_options, if: :local?
   before_validation :prepare_votes_count
@@ -61,11 +64,7 @@ class Poll < ApplicationRecord
     votes.where(account: account).pluck(:choice)
   end
 
-  delegate :local?, to: :account
-
-  def remote?
-    !local?
-  end
+  delegate :local?, :remote?, to: :account
 
   def emojis
     @emojis ||= CustomEmoji.from_text(options.join(' '), account.domain)
@@ -116,7 +115,7 @@ class Poll < ApplicationRecord
   end
 
   def time_passed_since_last_fetch?
-    last_fetched_at.nil? || last_fetched_at < 1.minute.ago
+    last_fetched_at.nil? || last_fetched_at < MAKE_FETCH_HAPPEN.ago
   end
 
   def show_totals_now?

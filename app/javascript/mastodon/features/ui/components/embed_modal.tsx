@@ -101,6 +101,7 @@ const EmbedModal: React.FC<{
           />
 
           <iframe
+            // eslint-disable-next-line @typescript-eslint/no-deprecated
             frameBorder='0'
             ref={iframeRef}
             sandbox='allow-scripts allow-same-origin'

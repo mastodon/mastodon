@@ -3,7 +3,7 @@ lv:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Viens katrā līnijā. Aizsargā no nepatiesa attiecinājuma.
+        attribution_domains: Viens katrā līnijā. Aizsargā no nepatiesa attiecinājuma.
         discoverable: Tavas publiskās ziņas un profils var tikt piedāvāti vai ieteikti dažādās Mastodon vietās, un tavs profils var tikt ieteikts citiem lietotājiem.
         display_name: Tavs pilnais vārds vai tavs joku vārds.
         fields: Tava mājas lapa, vietniekvārdi, vecums, viss, ko vēlies.
@@ -25,8 +25,8 @@ lv:
         type_html: Izvēlies, ko darīt ar <strong>%{acct}</strong>
         types:
           disable: Neļauj lietotājam izmantot savu kontu, bet neizdzēs vai neslēp tā saturu.
-          none: Izmanto šo, lai nosūtītu lietotājam brīdinājumu, neradot nekādas citas darbības.
-          sensitive: Piespiest visus šī lietotāja multivides pielikumus atzīmēt kā sensitīvus.
+          none: Šis ir izmantojams, lai nosūtītu lietotājam brīdinājumu bez jebkādu citu darbību izraisīšanas.
+          sensitive: Visus šī lietotāja informācijas nesēju pielikumus uzspiesti atzīmēt kā jūtīgus.
           silence: Neļaut lietotājam veikt ierakstus ar publisku redzamību, paslēpt viņa ierakstus un paziņojumus no cilvēkiem, kas tam neseko. Tiek aizvērti visi ziņojumi par šo kontu.
           suspend: Novērs jebkādu mijiedarbību no šī konta vai uz to un dzēs tā saturu. Atgriežams 30 dienu laikā. Tiek aizvērti visi šī konta pārskati.
         warning_preset_id: Neobligāts. Tu joprojām vari pievienot pielāgotu tekstu sākotnējās iestatīšanas beigās
@@ -39,27 +39,28 @@ lv:
       appeal:
         text: Brīdinājumu var pārsūdzēt tikai vienu reizi
       defaults:
-        autofollow: Cilvēki, kuri reģistrējas, izmantojot uzaicinājumu, automātiski sekos tev
+        autofollow: Cilvēki, kuri reģistrēsies ar uzaicinājumu, automātiski sekos Tev
         avatar: WEBP, PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions}px
         bot: Paziņo citiem, ka kontā galvenokārt tiek veiktas automatizētas darbības un tas var netikt uzraudzīts
         context: Viens vai vairāki konteksti, kur jāpiemēro filtrs
         current_password: Drošības nolūkos, lūdzu, ievadi pašreizējā konta paroli
         current_username: Lai apstiprinātu, lūdzu, ievadi pašreizējā konta paroli
-        digest: Tiek nosūtīts tikai pēc ilgstošas bezdarbības un tikai tad, ja savas prombūtnes laikā esi saņēmis jebkādas personīgas ziņas
-        email: Tev tiks nosūtīts apstiprinājuma e-pasts
+        digest: Tiek nosūtīts tikai pēc ilgstošas bezdarbības un tikai tad, ja savas prombūtnes laikā saņēmi jebkādas personīgas ziņas
+        email: Tev tiks nosūtīts apstiprinājuma e-pasta ziņojums
         header: WEBP, PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions}px
-        inbox_url: Nokopē URL no tā releja sākumlapas, kuru vēlies izmantot
+        inbox_url: Releja, kuru vēlies izmantot, sākumlapas URL jāievieto starpliktuvē
         irreversible: Filtrētās ziņas neatgriezeniski pazudīs, pat ja filtrs vēlāk tiks noņemts
         locale: Lietotāja saskarnes, e-pasta ziņojumu un push paziņojumu valoda
         password: Izmanto vismaz 8 rakstzīmes
         phrase: Tiks saskaņots neatkarīgi no ziņas teksta reģistra vai satura brīdinājuma
-        scopes: Kuriem API lietojumprogrammai būs atļauta piekļuve. Ja izvēlies augstākā līmeņa tvērumu, tev nav jāatlasa atsevišķi vienumi.
+        scopes: Kuriem API lietotnei būs ļauts piekļūt. Ja atlasa augstākā līmeņa tvērumu, nav nepieciešamas atlasīt atsevišķus.
         setting_aggregate_reblogs: Nerādīt jaunus izcēlumus ziņām, kas nesen tika palielinātas (ietekmē tikai nesen saņemtos palielinājumus)
         setting_always_send_emails: Parasti e-pasta paziņojumi netiek sūtīti, kad aktīvi izmantojat Mastodon
-        setting_default_sensitive: Sensitīva multivide pēc noklusējuma ir paslēpti, un tos var atklāt, noklikšķinot
-        setting_display_media_default: Paslēpt multividi, kas atzīmēta kā sensitīva
+        setting_default_sensitive: Pēc noklusējuma jūtīgi informācijas nesēji ir paslēpti, un tos var atklāt ar klikšķi
+        setting_display_media_default: Paslēpt informācijas nesējus, kas atzīmēti kā jūtīgi
         setting_display_media_hide_all: Vienmēr slēpt multividi
         setting_display_media_show_all: Vienmēr rādīt multividi
+        setting_system_scrollbars_ui: Attiecas tikai uz darbvirsmas pārlūkiem, kuru pamatā ir Safari vai Chrome
         setting_use_blurhash: Pāreju pamatā ir paslēpto uzskatāmo līdzekļu krāsas, bet saturs tiek padarīts neskaidrs
         setting_use_pending_items: Paslēpt laika skalas atjauninājumus aiz klikšķa, nevis ar automātisku plūsmas ritināšanu
         username: Tu vari lietot burtus, ciparus un zemsvītras
@@ -74,19 +75,21 @@ lv:
       filters:
         action: Izvēlies, kuru darbību veikt, ja ziņa atbilst filtram
         actions:
+          blur: Paslēpt informācijas nesējus aiz brīdinājuma, nepaslēpjot tekstu
           hide: Paslēp filtrēto saturu pilnībā, izturoties tā, it kā tas neeksistētu
           warn: Paslēp filtrēto saturu aiz brīdinājuma, kurā minēts filtra nosaukums
       form_admin_settings:
         activity_api_enabled: Vietēji publicēto ziņu, aktīvo lietotāju un jauno reģistrāciju skaits nedēļas kopās
         app_icon: WEBP, PNG, GIF vai JPG. Mobilajās ierīcēs aizstāj noklusējuma lietotnes ikonu ar pielāgotu.
         backups_retention_period: Lietotājiem ir iespēja izveidot savu ierakstu arhīvu lejupielādēšanai vēlāk. Kad iestatīta pozitīva vērtība, šie arhīvi tiks automātiski izdzēsti no krātuves pēc norādītā dienu skaita.
-        bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju ieteikumu augšdaļā.
+        bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju sekošanas ieteikumu augšdaļā.
         closed_registrations_message: Tiek rādīts, kad reģistrēšanās ir slēgta
         content_cache_retention_period: Visi ieraksti no citiem serveriem (tajā skaitā pastiprinājumi un atbildes) tiks izdzēsti pēc norādītā dienu skaita, neņemot vērā vietēja lietotāja mijiedarbību ar šādiem ierakstiem. Tas ietver ierakstus, kurus vietējs lietotājs ir atzīmējis kā grāmatzīmi vai pievienojis izlasē. Tiks zaudēti arī privāti pieminējumi starp lietotājiem no dažādiem serveriem, un tos nebūs iespējams atgūt. Šī iestatījuma izmantošana ir paredzēta īpašam nolūkam paredzētiem serveriem un neatbilst tam, ko sagaida vairums lietotāju, kad pielietots vispārējas izmantošanas serveros.
         custom_css: Vari lietot pielāgotus stilus Mastodon tīmekļa versijā.
         favicon: WEBP, PNG, GIF vai JPG. Aizstāj noklusējuma Mastodon favikonu ar pielāgotu.
         mascot: Ignorē ilustrāciju uzlabotajā tīmekļa saskarnē.
         media_cache_retention_period: Informācijas nesēju datnes no ierakstiem, kurus ir veikuši attālie lietotāji, tiek kešoti šajā serverī. Kad ir iestatīta apstiprinoša vērtība, informācijas nesēji tiks izdzēsti pēc norādītā dienu skaita. Ja informācijas nesēju dati tiks pieprasīti pēc tam, kad tie tika izdzēsti, tie tiks atkārtoti lejupielādēti, ja avota saturs joprojām būs pieejams. Saišu priekšskatījuma karšu vaicājumu biežuma ierobežojumu dēļ ir ieteicams iestatīt šo vērtību vismaz 14 dienas vai saišu priekšskatījuma kartes netiks atjauninātas pēc pieprasījuma pirms tā laika.
+        min_age: Lietotājiem tiks lūgts apstiprināt viņu dzimšanas datumu reģistrācijas laikā
         peers_api_enabled: Domēna vārdu saraksts, ar kuriem šis serveris ir saskāries fediversā. Šeit nav iekļauti dati par to, vai tu veic federāciju ar noteiktu serveri, tikai tavs serveris par to zina. To izmanto dienesti, kas apkopo statistiku par federāciju vispārīgā nozīmē.
         profile_directory: Profilu direktorijā ir uzskaitīti visi lietotāji, kuri ir izvēlējušies būt atklājami.
         require_invite_text: Ja nepieciešama pašrocīga apstiprināšana, lai pierakstītos, teksta “Kāpēc vēlies pievienoties?” ievade jāpadara par nepieciešamu, nevis izvēles
@@ -119,16 +122,24 @@ lv:
           sign_up_requires_approval: Jaunām reģistrācijām būs nepieciešams tavs apstiprinājums
         severity: Izvēlies, kas notiks ar pieprasījumiem no šīs IP adreses
       rule:
-        hint: Izvēles. Sniedz vairāk informācijas par nosacījumu
-        text: Apraksti nosacījumus vai prasības šī servera lietotājiem. Centies, lai tas būtu īss un vienkāršs
+        hint: Izvēles. Sniedz vairāk informācijas par noteikumu
+        text: Jāapraksta nosacījums vai prasība šī servera lietotājiem. Jāmēģina to veidot īsu un vienkāršu
       sessions:
-        otp: 'Ievadi divfaktoru kodu, ko ģenerējusi tava tālruņa lietotne, vai izmanto kādu no atkopšanas kodiem:'
+        otp: 'Jāievada tālruņa lietotnes izveidots divpakāpju kods vai jāizmanto viens no saviem atkopes kodiem:'
         webauthn: Ja tā ir USB atslēga, noteikti ievieto to un, ja nepieciešams, pieskaries tai.
       settings:
         indexable: Tava profila lapa var tikt parādīta Google, Bing un citu meklēšanas dzinēju rezultātos.
         show_application: Tu vienmēr varēsi redzēt, kura lietotne publicēja tavu ziņu.
       tag:
         name: Tu vari mainīt tikai burtu lielumu, piemēram, lai tie būtu vieglāk lasāmi
+      terms_of_service:
+        changelog: Var veidot ar Markdown pierakstu.
+        effective_date: Saprātīgs laika logs var būt no 10 līdz 30 dienām no dienas, kad lietotāji tiek apziņoti.
+        text: Var veidot ar Markdown pierakstu.
+      terms_of_service_generator:
+        arbitration_address: Var būt tāda pati kā augstāk esošā fiziskā adrese vai "N/A", ja tiek izmantota e-pasta adrese.
+        arbitration_website: Var būt tīmekļa veidlapa vai "N/A", ja tiek izmantots e-pasts.
+        domain: Sniegtā tiešsaistas pakalpojuma neatkārtojama identifikācija.
       user:
         chosen_languages: Ja ieķeksēts, publiskos laika grafikos tiks parādītas tikai ziņas noteiktajās valodās
         role: Loma nosaka, kādas lietotājam ir atļaujas.
@@ -144,7 +155,7 @@ lv:
         url: Kur notikumi tiks nosūtīti
     labels:
       account:
-        attribution_domains_as_text: Tīmekļvietnes, kurām ir tiesības uzskaitīt Tevi
+        attribution_domains: Tīmekļvietnes, kurām ir tiesības uzskaitīt Tevi
         discoverable: Funkcijas profils un ziņas atklāšanas algoritmos
         fields:
           name: Marķējums
@@ -167,7 +178,7 @@ lv:
         types:
           disable: Iesaldēt
           none: Nosūtīt brīdinājumu
-          sensitive: Sensitīvs
+          sensitive: Jūtīgs
           silence: Ierobežot
           suspend: Apturēt
         warning_preset_id: Lietot iepriekš iestatītus brīdinājumus
@@ -201,7 +212,7 @@ lv:
         max_uses: Maksimālais lietojumu skaits
         new_password: Jauna parole
         note: Par sevi
-        otp_attempt: Divfaktoru kods
+        otp_attempt: Divpakāpju kods
         password: Parole
         phrase: Atslēgvārds vai frāze
         setting_advanced_layout: Iespējot paplašināto tīmekļa saskarni
@@ -211,7 +222,8 @@ lv:
         setting_boost_modal: Rādīt apstiprinājuma dialogu pirms izcelšanas
         setting_default_language: Publicēšanas valoda
         setting_default_privacy: Publicēšanas privātums
-        setting_default_sensitive: Atļaut atzīmēt multividi kā sensitīvu
+        setting_default_quote_policy: Kas var citēt
+        setting_default_sensitive: Vienmēr atzīmēt informācijas nesējus kā jūtīgus
         setting_delete_modal: Parādīt apstiprinājuma dialogu pirms ziņas dzēšanas
         setting_disable_hover_cards: Atspējot profila priekšskatījumu pēc kursora novietošanas
         setting_disable_swiping: Atspējot vilkšanas kustības
@@ -221,8 +233,10 @@ lv:
         setting_display_media_show_all: Parādīt visu
         setting_expand_spoilers: Vienmēr izvērst ziņas, kas apzīmētas ar brīdinājumiem par saturu
         setting_hide_network: Slēpt savu sociālo grafu
+        setting_missing_alt_text_modal: Rādīt apstiprināšanas lodziņu pirms informācijas nesēju bez aprakstošā teksta iesūtīšanas
         setting_reduce_motion: Ierobežot kustību animācijās
         setting_system_font_ui: Lietot sistēmas noklusējuma fontu
+        setting_system_scrollbars_ui: Lietot sistēmas noklusējuma ritjoslu
         setting_theme: Vietnes motīvs
         setting_trends: Parādīt šodienas tendences
         setting_unfollow_modal: Parādīt apstiprinājuma dialogu pirms pārtraukt kādam sekot
@@ -241,6 +255,7 @@ lv:
         name: Tēmturis
       filters:
         actions:
+          blur: Paslēpt informācijas nesējus ar brīdinājumu
           hide: Paslēpt pilnībā
           warn: Paslēpt ar brīdinājumu
       form_admin_settings:
@@ -254,6 +269,7 @@ lv:
         favicon: Favikona
         mascot: Pielāgots talismans (mantots)
         media_cache_retention_period: Multivides kešatmiņas saglabāšanas periods
+        min_age: Nepieciešamais minimālais vecums
         peers_api_enabled: Publicēt API atklāto serveru sarakstu
         profile_directory: Iespējot profila direktoriju
         registrations_mode: Kurš drīkst pieteikties
@@ -293,8 +309,8 @@ lv:
         appeal: Kāds pārsūdz moderatora lēmumu
         digest: Sūtīt kopsavilkumu e-pastus
         favourite: Kāds izcēla tavu ziņu
-        follow: Kāds uzsāka tev sekot
-        follow_request: Kāds vēlas tev sekot
+        follow: Kāds uzsāka Tev sekot
+        follow_request: Kāds vēlas Tev sekot
         mention: Kāds pieminēja tevi
         pending_account: Jāpārskata jaunu kontu
         reblog: Kāds izcēla tavu ierakstu
@@ -317,7 +333,20 @@ lv:
         name: Tēmturis
         trendable: Atļaut šim tēmturim parādīties zem tendencēm
         usable: Ļaut ierakstos vietēji izmantot šo tēmturi
+      terms_of_service:
+        changelog: Kas ir mainījies?
+        effective_date: Spēkā stāšanās datums
+        text: Pakalpojuma izmantošanas nosacījumi
+      terms_of_service_generator:
+        admin_email: E-pasta adrese juridiskiem paziņojumiem
+        choice_of_law: Likuma izvēle
+        dmca_email: E-pasta adrese DMCA/autortiesību pārstāvju sūdzību iesniegšanai
+        domain: Domēna vārds
+        min_age: Mazākais pieļaujamais vecums
       user:
+        date_of_birth_1i: Diena
+        date_of_birth_2i: Mēnesis
+        date_of_birth_3i: Gads
         role: Loma
         time_zone: Laika josla
       user_role:

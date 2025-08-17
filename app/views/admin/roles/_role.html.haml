@@ -1,7 +1,7 @@
 .announcements-list__item
   - if can?(:update, role)
     = link_to edit_admin_role_path(role), class: 'announcements-list__item__title' do
-      %span.user-role{ class: "user-role-#{role.id}" }
+      %span.user-role
         = material_symbol 'group'
 
         - if role.everyone?
@@ -10,7 +10,7 @@
           = role.name
   - else
     %span.announcements-list__item__title
-      %span.user-role{ class: "user-role-#{role.id}" }
+      %span.user-role
         = material_symbol 'group'
 
         - if role.everyone?

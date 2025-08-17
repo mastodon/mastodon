@@ -24,6 +24,6 @@ module Admin::ExportControllerConcern
   end
 
   def import_params
-    params.require(:admin_import).permit(:data)
+    params.expect(admin_import: [:data])
   end
 end

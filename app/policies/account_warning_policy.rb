@@ -6,7 +6,7 @@ class AccountWarningPolicy < ApplicationPolicy
   end
 
   def appeal?
-    target? && record.created_at >= Appeal::MAX_STRIKE_AGE.ago
+    target? && record.appeal_eligible?
   end
 
   private

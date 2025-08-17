@@ -196,6 +196,7 @@ he:
         create_relay: יצירת ממסר
         create_unavailable_domain: יצירת דומיין בלתי זמין
         create_user_role: יצירת תפקיד
+        create_username_block: יצירת חוק שמות משתמש
         demote_user: הורדת משתמש בדרגה
         destroy_announcement: מחיקת הכרזה
         destroy_canonical_email_block: מחיקת חסימת דואל
@@ -209,6 +210,7 @@ he:
         destroy_status: מחיקת הודעה
         destroy_unavailable_domain: מחיקת דומיין בלתי זמין
         destroy_user_role: מחיקת תפקיד
+        destroy_username_block: מחיקת חוק שמות משתמש
         disable_2fa_user: השעיית זיהוי דו-גורמי
         disable_custom_emoji: השעיית אמוג'י מיוחד
         disable_relay: השבתת ממסר
@@ -232,7 +234,7 @@ he:
         silence_account: הגבלת חשבון
         suspend_account: השעיית חשבון
         unassigned_report: ביטול הקצאת דו"ח
-        unblock_email_account: ביטול חסימת כתובת דוא"ל
+        unblock_email_account: הסרת חסימת כתובת דוא"ל
         unsensitive_account: ביטול Force-Sensitive לחשבון
         unsilence_account: ביטול השתקת חשבון
         unsuspend_account: ביטול השעיית חשבון
@@ -243,6 +245,7 @@ he:
         update_report: עדכון דו"ח עבירה
         update_status: סטטוס עדכון
         update_user_role: עדכון תפקיד
+        update_username_block: עדכון חוק שמות משתמש
       actions:
         approve_appeal_html: "%{name} אישר/ה ערעור על החלטת מנהלי הקהילה מ-%{target}"
         approve_user_html: "%{name} אישר/ה הרשמה מ-%{target}"
@@ -261,19 +264,21 @@ he:
         create_relay_html: "%{name} יצרו את הממסר %{target}"
         create_unavailable_domain_html: "%{name} הפסיק/ה משלוח לדומיין %{target}"
         create_user_role_html: "%{name} יצר את התפקיד של %{target}"
+        create_username_block_html: "%{name} הוסיפו חוק לשמות משתמש המכילים %{target}"
         demote_user_html: "%{name} הוריד/ה בדרגה את המשתמש %{target}"
         destroy_announcement_html: "%{name} מחק/ה את ההכרזה %{target}"
-        destroy_canonical_email_block_html: "%{name} הסיר/ה חסימה מדואל %{target}"
+        destroy_canonical_email_block_html: "%{name} הסירו חסימה מדואל %{target}"
         destroy_custom_emoji_html: "%{name} מחק אמוג'י של %{target}"
         destroy_domain_allow_html: "%{name} לא התיר/ה פדרציה עם הדומיין %{target}"
-        destroy_domain_block_html: "%{name} הסיר/ה חסימה מהדומיין %{target}"
-        destroy_email_domain_block_html: '%{name} הסיר/ה חסימה מדומיין הדוא"ל %{target}'
+        destroy_domain_block_html: החסימה על מתחם %{target} הוסרה ע"י %{name}
+        destroy_email_domain_block_html: הוסרה חסימת מתחם דוא"ל %{target} בידי %{name}
         destroy_instance_html: "%{name} טיהר/ה את הדומיין %{target}"
         destroy_ip_block_html: "%{name} מחק/ה את הכלל עבור IP %{target}"
         destroy_relay_html: "%{name} מחקו את הממסר %{target}"
         destroy_status_html: ההודעה של %{target} הוסרה ע"י %{name}
         destroy_unavailable_domain_html: "%{name} התחיל/ה מחדש משלוח לדומיין %{target}"
         destroy_user_role_html: "%{name} ביטל את התפקיד של %{target}"
+        destroy_username_block_html: "%{name} הסירו חוק לשמות משתמש המכילים %{target}"
         disable_2fa_user_html: "%{name} ביטל/ה את הדרישה לאימות דו-גורמי למשתמש %{target}"
         disable_custom_emoji_html: "%{name} השבית/ה את האמוג'י %{target}"
         disable_relay_html: "%{name} השביתו את הממסר %{target}"
@@ -308,6 +313,7 @@ he:
         update_report_html: '%{name} עדכן/ה דו"ח %{target}'
         update_status_html: "%{name} עדכן/ה הודעה של %{target}"
         update_user_role_html: "%{name} שינה את התפקיד של %{target}"
+        update_username_block_html: "%{name} עידכנו חוק לשמות משתמש המכילים %{target}"
       deleted_account: חשבון מחוק
       empty: לא נמצאו יומנים.
       filter_by_action: סינון לפי פעולה
@@ -315,6 +321,7 @@ he:
       title: ביקורת יומן
       unavailable_instance: "(שם מתחם לא זמין)"
     announcements:
+      back: חזרה להודעות
       destroyed_msg: הכרזה נמחקה בהצלחה!
       edit:
         title: עריכת הכרזה
@@ -323,6 +330,10 @@ he:
       new:
         create: יצירת הכרזה
         title: הכרזה חדשה
+      preview:
+        disclaimer: כיוון שהמשתמשים לא יכולים לבטל אותם, הודעות דוא"ל צריכות להיות מוגבלות בשימוש להודעות חשובות כגון הודעות על גניבת מידע אישי או הודעות על סגירת השרת.
+        explanation_html: 'הדואל ישלח אל <strong>%{display_count} משתמשיםות</strong>. להלן המלל שישלח בדואל:'
+        title: צפיה מקדימה בהודעה
       publish: פרסום
       published_msg: ההכרזה פורסמה בהצלחה!
       scheduled_for: מתוזמן ל-%{time}
@@ -491,6 +502,36 @@ he:
       new:
         title: יבוא רשימת שרתים חסומים
       no_file: לא נבחר קובץ
+    fasp:
+      debug:
+        callbacks:
+          created_at: תאריך יצירה
+          delete: מחיקה
+          ip: כתובת IP
+          request_body: גוף הבקשה
+          title: ניפוי תקלות בקריאות חוזרות
+      providers:
+        active: פעילים
+        base_url: קישור בסיס
+        callback: קריאה חוזרת
+        delete: מחיקה
+        edit: עריכת ספק
+        finish_registration: סיום הרשמה
+        name: שם
+        providers: ספקים
+        public_key_fingerprint: טביעת האצבע של המפתח הציבורי
+        registration_requested: נדרשת הרשמה
+        registrations:
+          confirm: אישור
+          description: קיבלת הרשמה דרך FASP. יש לדחות אותה אם לא ביקשת את ההרשמה הזו מיוזמתך. אם זו בקשה מיוזמתך, יש להשוות בהקפדה אם השם וטביעת האצבע של המפתח הציבורי תואמים לפני אישור הרישום.
+          reject: דחיה
+          title: אישור הרשמת FASP
+        save: שמירה
+        select_capabilities: בחירת יכולות
+        sign_in: כניסה
+        status: מצב
+        title: ספקי משנה לפדיוורס
+      title: פרוטוקול FASP
     follow_recommendations:
       description_html: "<strong>עקבו אחר ההמלצות על מנת לעזור למשתמשים חדשים למצוא תוכן מעניין</strong>. במידה ומשתמש לא תקשר מספיק עם משתמשים אחרים כדי ליצור המלצות מעקב, חשבונות אלה יומלצו במקום. הם מחושבים מחדש על בסיסי יומיומי מתערובת של החשבונות הפעילים ביותר עם החשבונות הנעקבים ביותר עבור שפה נתונה."
       language: עבור שפה
@@ -565,6 +606,13 @@ he:
         all: הכל
         limited: מוגבלים
         title: ניהול דיון
+      moderation_notes:
+        create: הוספת הערות מנחה דיונים
+        created_msg: הודעת מנחה לגבי שרת נוצרה בהצלחה!
+        description_html: צפייה והשארת הערות עבור מנחים אחרים או לעצמך לעתיד
+        destroyed_msg: הודעת מנחה לגבי שרת נמחקה בהצלחה!
+        placeholder: מידע לגבי שרת זה, פעולות שננקטו, או כל מידע אחר שיסייע לך להחליט כיצד למתן הודעות משרת זה בעתיד.
+        title: הודעות מנחה דיונים
       private_comment: הערה פרטית
       public_comment: תגובה פומבית
       purge: טיהור
@@ -779,17 +827,26 @@ he:
       title: תפקידים
     rules:
       add_new: הוספת כלל
+      add_translation: הוספת תרגום
       delete: מחיקה
       description_html: בעוד הרוב טוען שקרא והסכים לתנאי השימוש, אנשים לא נוטים לקרוא אותם עד הסוף עד שמתעוררת בעיה. <strong>כדי שיקל לראות את כללי השרת במבט, יש לספקם כרשימת נקודות.</strong> כדאי לשמור על הכללים קצרים ופשוטים, אבל מאידך גם לא לפצל אותם ליותר מדי נקודות נפרדות.
       edit: עריכת כלל
       empty: שום כללי שרת לא הוגדרו עדיין.
+      move_down: הזזה למטה
+      move_up: הזזה למעלה
       title: כללי שרת
+      translation: תרגום
+      translations: תרגומים
+      translations_explanation: באפשרותך להוסיף גרסאות מתורגמות לשפות נוספות של תנאי השימוש. ברירת המחדף תופיע אם גרסאות מתורגמות אינן בנמצא. עליך לוודא כי הגרסאות המתורגמות מעודכנות יחד עם שפת ברירת המחדל.
     settings:
       about:
         manage_rules: ניהול כללי שרת
         preamble: תיאור מעמיק על דרכי ניהול השרת, ניהול הדיונים, ומקורות המימון שלו.
         rules_hint: קיים מקום ייעודי לחוקים שעל המשתמשים שלך לדבוק בהם.
         title: אודות
+      allow_referrer_origin:
+        desc: כאשר משתמשיך לוחצים על קישור לאתר חיצוני, הדפדפן ישלח את כתובת אתר המסטודון בתור האתר המפנה. ניתן לבטל את האפשרות אם עולה בך חשש שמתמשיך יזוהו בצורה זו, למשל אם מדובר בשרת מסטודון פרטי.
+        title: אפשר לאתרים חיצוניים לראות את שרת המסטודון שלך בתור האתר המפנה
       appearance:
         preamble: התאמה מיוחדת של מנשק המשתמש של מסטודון.
         title: מראה
@@ -809,9 +866,9 @@ he:
       discovery:
         follow_recommendations: המלצות מעקב
         preamble: הצפה של תוכן מעניין בקבלת פני משתמשות חדשות שאולי אינן מכירות עדיין א.נשים במסטודון. ניתן לשלוט איך אפשרויות גילוי שונות עובדות על השרת שלך.
+        privacy: פרטיות
         profile_directory: ספריית פרופילים
         public_timelines: פידים פומביים
-        publish_discovered_servers: פרסום שרתים שנתגלו
         publish_statistics: פרסום הסטטיסטיקות בפומבי
         title: תגליות
         trends: נושאים חמים
@@ -896,6 +953,8 @@ he:
     system_checks:
       database_schema_check:
         message_html: נדרשות הגירות מבני נתונים. אנא הריצו אותן כדי להבטיח שהיישום מתנהג כצפוי
+      elasticsearch_analysis_index_mismatch:
+        message_html: מאפייני בוחן האינדקס של Elasticsearch אינם עדכניים. יש להריץ <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: אשכול שירותי חיפוש Elasticsearch אינו זמין כעת (מצב אדום), אפשרויות חיפוש אינן זמינות כרגע
       elasticsearch_health_yellow:
@@ -967,6 +1026,7 @@ he:
         chance_to_review_html: "<strong>תנאי השירות שחוללו עצמונית לא יפורסמו אוטומטית.</strong> תהיה לך הזדמנות לעבור על התוצאה. יש למלא את הפרטים הבאים כדי להמשיך."
         explanation_html: תבנית תנאי השירות סופקה לצרכי יידוע בלבד, ואין לראות בהם עצה חוקית על אף נושא. אנא התייעצו בעצמבם עם פרקליט לגבי מצבכם הייחודי ושאלות ספציפיות שעלולות להיות לכם.
         title: הקמת מסמך תנאי השירות
+      going_live_on_html: בתוקף מתאריך %{date}
       history: גרסאות העבר
       live: הגרסא החיה
       no_history: עוד לא נרשמו שינויים בתנאי השירות.
@@ -1067,6 +1127,25 @@ he:
           two: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
       title: המלצות ונושאים חמים
       trending: נושאים חמים
+    username_blocks:
+      add_new: הוספת חדש
+      block_registrations: חסימת הרשמות
+      comparison:
+        contains: מכיל
+        equals: שווה
+      contains_html: מכיל %{string}
+      created_msg: חוק שמות משתמשים נוצר בהצלחה
+      delete: מחיקה
+      edit:
+        title: עריכת חוק שמות משתמש
+      matches_exactly_html: מתאים ל־%{string}
+      new:
+        create: יצירת כלל
+        title: יצירת חוק חדש לשמות משתמש
+      no_username_block_selected: לא בוצעו שינויים בחוקי בחירת שמות שכן לא נבחרו כאלו
+      not_permitted: שמות אסורים
+      title: חוקי שמות
+      updated_msg: חוק שמות משתמשים עודכן בהצלחה
     warning_presets:
       add_new: הוספת חדש
       delete: למחוק
@@ -1247,6 +1326,7 @@ he:
     too_fast: הטופס הוגש מהר מדי, נסה/י שוב.
     use_security_key: שימוש במפתח אבטחה
     user_agreement_html: קראתי וזו הסכמתי למסמך <a href="%{terms_of_service_path}" target="_blank">תנאי השירות</a> ו<a href="%{privacy_policy_path}" target="_blank">מדיניות הפרטיות</a>
+    user_privacy_agreement_html: קראתי והסכמתי ל<a href="%{privacy_policy_path}" target="_blank">מדיניות הפרטיות</a>
   author_attribution:
     example_title: טקסט לדוגמה
     hint_html: האם יש לך בלוג או טור חדשות שמתפרסם מחוץ למסטודון? ניתן לשלוט איך יוצג הקרדיט שלך כשמשתפים את הלינק במסטודון.
@@ -1332,6 +1412,10 @@ he:
     basic_information: מידע בסיסי
     hint_html: "<strong>התאמה אישית של מה שיראו אחרים בפרופיל הציבורי שלך וליד הודעותיך.</strong> אחרים עשויים יותר להחזיר עוקב וליצור אתך שיחה אם הפרופיל והתמונה יהיו מלאים."
     other: אחר
+  emoji_styles:
+    auto: אוטומטי
+    native: מקומי
+    twemoji: Twemoji
   errors:
     '400': הבקשה שהגשת לא תקינה.
     '403': חסרות לך הרשאות לצפיה בעמוד זה.
@@ -1681,6 +1765,10 @@ he:
       title: אזכור חדש
     poll:
       subject: סקר מאת %{name} הסתיים
+    quote:
+      body: 'הודעתך צוטטה על ידי %{name}:'
+      subject: "%{name} ציטט.ה את הודעתך"
+      title: ציטוט חדש
     reblog:
       body: 'הודעתך הודהדה על ידי %{name}:'
       subject: הודעתך הודהדה על ידי%{name}
@@ -1898,13 +1986,18 @@ he:
       two: 'מכיל את התגיות האסורות: %{tags}'
     edited_at_html: נערך ב-%{date}
     errors:
-      in_reply_not_found: נראה שההודעה שאת/ה מנסה להגיב לה לא קיימת.
+      in_reply_not_found: נראה שההודעה שנסית להגיב לה לא קיימת.
+      quoted_status_not_found: נראה שההודעה שנסית לצטט לא קיימת.
     over_character_limit: חריגה מגבול התווים של %{max}
     pin_errors:
       direct: לא ניתן לקבע הודעות שנראותן מוגבלת למכותבים בלבד
       limit: הגעת למספר המירבי של ההודעות המוצמדות
       ownership: הודעות של אחרים לא יכולות להיות מוצמדות
       reblog: אין אפשרות להצמיד הדהודים
+    quote_policies:
+      followers: לעוקביך בלבד
+      nobody: אף אחד
+      public: כולם
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: ישיר
@@ -1958,6 +2051,11 @@ he:
     does_not_match_previous_name: לא תואם את השם האחרון
   terms_of_service:
     title: תנאי השירות
+  terms_of_service_interstitial:
+    future_preamble_html: אנו מבצעים שינויים בתנאי השירות, שיכנסו לתוקף בתאריך <strong>%{date}</strong>. אנו מבקשים ממך לעבור על העידכונים.
+    past_preamble_html: שינינו את תנאי השירות שלנו מאז ביקורך האחרון. אנו ממליצים לך לעבור על העידכונים.
+    review_link: קריאת תנאי השירות
+    title: תנאי השירות של %{domain} משתנים
   themes:
     contrast: מסטודון (ניגודיות גבוהה)
     default: מסטודון (כהה)
@@ -1989,6 +2087,10 @@ he:
     recovery_instructions_html: במידה והגישה למכשירך תאבד, ניתן לייצר קודי אחזור למטה על מנת לאחזר גישה לחשבונך בכל עת. <strong>נא לשמור על קודי הגישה במקום בטוח</strong>. לדוגמא על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית לניהול סיסמאות וסודות.
     webauthn: מפתחות אבטחה
   user_mailer:
+    announcement_published:
+      description: 'צוות ההנהלה של %{domain} מפרסם הודעה:'
+      subject: הודעת שירות
+      title: הודעת שירות מאת %{domain}
     appeal_approved:
       action: הגדרות חשבון
       explanation: הערעור על העברה שנרשמה כנגד חשבונך ב-%{strike_date} שהגשת ב-%{appeal_date} התקבל. חשבונך חזר להיות נקי מכל רבב.
@@ -2021,8 +2123,8 @@ he:
     terms_of_service_changed:
       agreement: עם המשך השימוש בשרת %{domain} אתן מסכימות לתנאים הללו. אם אינכם מסכימים עם עדכוני תנאי השירות, אתן יכולות להפסיק את ההסכם עם %{domain} בכל עת על ידי מחיקת החשבון.
       changelog: 'בקצרה, הנה משמעות העדכון עבורך:'
-      description: 'קיבלת הודעת דואל זו כיוון שאנו מבצעים שינויים במסמך תנאי השירות של %{domain}. אנו מעודדים אותך לעבור על השינויים במסמך המלא כאן:'
-      description_html: 'קיבלת הודעת דואל זו כיוון שאנו מבצעים שינויים במסמך תנאי השירות של %{domain}. אנו מעודדים אותך לעבור על <a href="%{path}" target="_blank">השינויים במסמך המלא כאן</a>:'
+      description: 'קיבלת הודעת דואל זו כיוון שאנו מבצעים שינויים במסמך תנאי השירות של %{domain}. השינויים יכנסו לתוקף בתאריך %{date}. אנו מעודדים אותך לעבור על השינויים במסמך המלא כאן:'
+      description_html: קיבלת הודעת דואל זו כיוון שאנו מבצעים שינויים במסמך תנאי השירות של %{domain}. השינויים יכנסו לתוקף בתאריך <strong>%{date}</strong>. אנו מעודדים אותך לעבור על <a href="%{path}" target="_blank">השינויים במסמך המלא כאן</a>.
       sign_off: צוות %{domain}
       subject: עדכונים לתנאי השירות שלנו
       subtitle: מסמך תנאי השירות של %{domain} עוברים שינויים
@@ -2095,7 +2197,6 @@ he:
       post_action: חיבור הודעה
       post_step: ברכו לשלום את העולם עם מלל, תמונות, חוזי או משאלים.
       post_title: כתבו את הפוסט הראשון שלכםן
-      share_action: שיתוף
       share_step: ספרו לחברים איך למצוא אתכם במסטודון.
       share_title: שיתוף פרופיל מסטודון
       sign_in_action: התחברות

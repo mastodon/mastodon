@@ -158,6 +158,52 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
+      context 'with a quote policy', feature: :outgoing_quotes do
+        let(:quoted_status) { Fabricate(:status, account: user.account) }
+        let(:params) do
+          {
+            status: 'Hello world, this is a self-quote',
+            quote_approval_policy: 'followers',
+          }
+        end
+
+        it 'returns post with appropriate quote policy, as well as rate limit headers', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:quote_approval]).to include({
+            automatic: ['followers'],
+            manual: [],
+            current_user: 'automatic',
+          })
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
+        end
+      end
+
+      context 'with a self-quote post', feature: :outgoing_quotes do
+        let(:quoted_status) { Fabricate(:status, account: user.account) }
+        let(:params) do
+          {
+            status: 'Hello world, this is a self-quote',
+            quoted_status_id: quoted_status.id,
+          }
+        end
+
+        it 'returns a quote post, as well as rate limit headers', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:quote]).to be_present
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
+        end
+      end
+
       context 'with a safeguard' do
         let!(:alice) { Fabricate(:account, username: 'alice') }
         let!(:bob)   { Fabricate(:account, username: 'bob') }
@@ -257,21 +303,39 @@ RSpec.describe '/api/v1/statuses' do
 
       it_behaves_like 'forbidden for wrong scope', 'read read:statuses'
 
-      it 'removes the status', :aggregate_failures do
+      it 'discards the status and schedules removal as a redraft', :aggregate_failures do
         subject
 
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
         expect(Status.find_by(id: status.id)).to be_nil
+        expect(RemovalWorker).to have_enqueued_sidekiq_job(status.id, { 'redraft' => true })
+      end
+
+      context 'when called with truthy delete_media' do
+        subject do
+          delete "/api/v1/statuses/#{status.id}?delete_media=true", headers: headers
+        end
+
+        it 'discards the status and schedules removal without the redraft flag', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(Status.find_by(id: status.id)).to be_nil
+          expect(RemovalWorker).to have_enqueued_sidekiq_job(status.id, { 'redraft' => false })
+        end
       end
     end
 
     describe 'PUT /api/v1/statuses/:id' do
       subject do
-        put "/api/v1/statuses/#{status.id}", headers: headers, params: { status: 'I am updated' }
+        put "/api/v1/statuses/#{status.id}", headers: headers, params: params
       end
 
+      let(:params) { { status: 'I am updated' } }
       let(:scopes) { 'write:statuses' }
       let(:status) { Fabricate(:status, account: user.account) }
 
@@ -284,6 +348,19 @@ RSpec.describe '/api/v1/statuses' do
         expect(response.content_type)
           .to start_with('application/json')
         expect(status.reload.text).to eq 'I am updated'
+      end
+
+      context 'when updating only the quote policy' do
+        let(:params) { { status: status.text, quote_approval_policy: 'public' } }
+
+        it 'updates the status', :aggregate_failures, feature: :outgoing_quotes do
+          expect { subject }
+            .to change { status.reload.quote_approval_policy }.to(Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16)
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
       end
     end
   end

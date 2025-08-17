@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import { useCallback, useState, useRef } from 'react';
+import { useCallback, useState, useRef, useId } from 'react';
 
 import classNames from 'classnames';
 
@@ -16,6 +16,8 @@ interface DropdownProps {
   options: SelectItem[];
   disabled?: boolean;
   onChange: (value: string) => void;
+  'aria-labelledby': string;
+  'aria-describedby'?: string;
   placement?: Placement;
 }
 
@@ -24,50 +26,32 @@ const Dropdown: React.FC<DropdownProps> = ({
   options,
   disabled,
   onChange,
+  'aria-labelledby': ariaLabelledBy,
+  'aria-describedby': ariaDescribedBy,
   placement: initialPlacement = 'bottom-end',
 }) => {
-  const activeElementRef = useRef<Element | null>(null);
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setOpen] = useState<boolean>(false);
   const [placement, setPlacement] = useState<Placement>(initialPlacement);
-
-  const handleToggle = useCallback(() => {
-    if (
-      isOpen &&
-      activeElementRef.current &&
-      activeElementRef.current instanceof HTMLElement
-    ) {
-      activeElementRef.current.focus({ preventScroll: true });
-    }
-
-    setOpen(!isOpen);
-  }, [isOpen, setOpen]);
-
-  const handleMouseDown = useCallback(() => {
-    if (!isOpen) activeElementRef.current = document.activeElement;
-  }, [isOpen]);
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      switch (e.key) {
-        case ' ':
-        case 'Enter':
-          if (!isOpen) activeElementRef.current = document.activeElement;
-          break;
-      }
-    },
-    [isOpen],
-  );
+  const uniqueId = useId();
+  const menuId = `${uniqueId}-menu`;
+  const buttonLabelId = `${uniqueId}-button`;
 
   const handleClose = useCallback(() => {
-    if (
-      isOpen &&
-      activeElementRef.current &&
-      activeElementRef.current instanceof HTMLElement
-    )
-      activeElementRef.current.focus({ preventScroll: true });
+    if (isOpen && buttonRef.current) {
+      buttonRef.current.focus({ preventScroll: true });
+    }
     setOpen(false);
   }, [isOpen]);
+
+  const handleToggle = useCallback(() => {
+    if (isOpen) {
+      handleClose();
+    } else {
+      setOpen(true);
+    }
+  }, [isOpen, handleClose]);
 
   const handleOverlayEnter = useCallback(
     (state: Partial<PopperState>) => {
@@ -82,13 +66,18 @@ const Dropdown: React.FC<DropdownProps> = ({
     <div ref={containerRef}>
       <button
         type='button'
+        ref={buttonRef}
         onClick={handleToggle}
-        onMouseDown={handleMouseDown}
-        onKeyDown={handleKeyDown}
         disabled={disabled}
+        aria-expanded={isOpen}
+        aria-controls={menuId}
+        aria-labelledby={`${ariaLabelledBy} ${buttonLabelId}`}
+        aria-describedby={ariaDescribedBy}
         className={classNames('dropdown-button', { active: isOpen })}
       >
-        <span className='dropdown-button__label'>{valueOption?.text}</span>
+        <span id={buttonLabelId} className='dropdown-button__label'>
+          {valueOption?.text}
+        </span>
         <Icon id='down' icon={ArrowDropDownIcon} />
       </button>
 
@@ -101,7 +90,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         popperConfig={{ strategy: 'fixed', onFirstUpdate: handleOverlayEnter }}
       >
         {({ props, placement }) => (
-          <div {...props}>
+          <div {...props} id={menuId}>
             <div
               className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}
             >
@@ -123,6 +112,8 @@ const Dropdown: React.FC<DropdownProps> = ({
 interface Props {
   value: string;
   options: SelectItem[];
+  label: string | React.ReactElement;
+  hint: string | React.ReactElement;
   disabled?: boolean;
   onChange: (value: string) => void;
 }
@@ -130,13 +121,26 @@ interface Props {
 export const SelectWithLabel: React.FC<PropsWithChildren<Props>> = ({
   value,
   options,
+  label,
+  hint,
   disabled,
-  children,
   onChange,
 }) => {
+  const uniqueId = useId();
+  const labelId = `${uniqueId}-label`;
+  const descId = `${uniqueId}-desc`;
+
   return (
+    // This label is only used for its click-forwarding behaviour,
+    // accessible names are assigned manually
+    // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label className='app-form__toggle'>
-      <div className='app-form__toggle__label'>{children}</div>
+      <div className='app-form__toggle__label'>
+        <strong id={labelId}>{label}</strong>
+        <span className='hint' id={descId}>
+          {hint}
+        </span>
+      </div>
 
       <div className='app-form__toggle__toggle'>
         <div>
@@ -144,6 +148,8 @@ export const SelectWithLabel: React.FC<PropsWithChildren<Props>> = ({
             value={value}
             onChange={onChange}
             disabled={disabled}
+            aria-labelledby={labelId}
+            aria-describedby={descId}
             options={options}
           />
         </div>

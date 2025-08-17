@@ -21,7 +21,7 @@ class Settings::DeletesController < Settings::BaseController
   private
 
   def resource_params
-    params.require(:form_delete_confirmation).permit(:password, :username)
+    params.expect(form_delete_confirmation: [:password, :username])
   end
 
   def require_not_suspended!

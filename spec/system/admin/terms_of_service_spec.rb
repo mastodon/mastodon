@@ -6,7 +6,7 @@ RSpec.describe 'Admin Terms of services' do
   describe 'Viewing terms of services index page' do
     let!(:terms) { Fabricate :terms_of_service, text: 'Test terms' }
 
-    before { sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    before { sign_in Fabricate(:admin_user) }
 
     it 'allows tags listing and editing' do
       visit admin_terms_of_service_index_path

@@ -2,17 +2,16 @@ import { useMemo } from 'react';
 
 import classNames from 'classnames';
 
-import { HotKeys } from 'react-hotkeys';
-
 import { replyComposeById } from 'mastodon/actions/compose';
 import { toggleReblog, toggleFavourite } from 'mastodon/actions/interactions';
 import {
   navigateToStatus,
   toggleStatusSpoilers,
 } from 'mastodon/actions/statuses';
+import { Hotkeys } from 'mastodon/components/hotkeys';
 import type { IconProp } from 'mastodon/components/icon';
 import { Icon } from 'mastodon/components/icon';
-import Status from 'mastodon/containers/status_container';
+import { StatusQuoteManager } from 'mastodon/components/status_quoted';
 import { getStatusHidden } from 'mastodon/selectors/filters';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
@@ -83,7 +82,7 @@ export const NotificationWithStatus: React.FC<{
   if (!statusId || isFiltered) return null;
 
   return (
-    <HotKeys handlers={handlers}>
+    <Hotkeys handlers={handlers}>
       <div
         role='button'
         className={classNames(
@@ -102,8 +101,7 @@ export const NotificationWithStatus: React.FC<{
           {label}
         </div>
 
-        <Status
-          // @ts-expect-error -- <Status> is not yet typed
+        <StatusQuoteManager
           id={statusId}
           contextType='notifications'
           withDismiss
@@ -112,6 +110,6 @@ export const NotificationWithStatus: React.FC<{
           unfocusable
         />
       </div>
-    </HotKeys>
+    </Hotkeys>
   );
 };

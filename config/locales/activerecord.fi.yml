@@ -20,10 +20,11 @@ fi:
           invalid: ei ole kelvollinen verkkotunnus
       messages:
         invalid_domain_on_line: "%{value} ei ole kelvollinen verkkotunnus"
-        too_many_lines: ylittää %{limit} rivin rajan
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: sisältää arvoja, joista puuttuu nimike
             username:
               invalid: saa sisältää vain kirjaimia, numeroita ja alaviivoja
               reserved: on varattu
@@ -43,13 +44,19 @@ fi:
           attributes:
             account_id:
               taken: on jo listassa
-          must_be_following: on oltava seurattu tili
+          must_be_following: on oltava seurattava tili
         status:
           attributes:
             reblog:
               taken: tästä julkaisusta on jo tehty
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: on liian pian, täytyy olla myöhemmin kuin %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: alittaa alaikärajan
             email:
               blocked: käyttää kiellettyä sähköpostipalveluntarjoajaa
               unreachable: ei näytä olevan olemassa

@@ -13,7 +13,7 @@ RSpec.describe 'Reports' do
       post '/api/v1/reports', headers: headers, params: params
     end
 
-    let!(:admin)         { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let!(:admin)         { Fabricate(:admin_user) }
     let(:status)         { Fabricate(:status) }
     let(:target_account) { status.account }
     let(:category)       { 'other' }

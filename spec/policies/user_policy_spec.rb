@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe UserPolicy do
   subject { described_class }
 
-  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+  let(:admin)   { Fabricate(:admin_user).account }
   let(:john)    { Fabricate(:account) }
 
   permissions :reset_password?, :change_email? do

@@ -74,7 +74,8 @@ module Admin
     end
 
     def resource_params
-      params.require(:webhook).permit(:url, :template, events: [])
+      params
+        .expect(webhook: [:url, :template, events: []])
     end
   end
 end

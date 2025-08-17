@@ -31,7 +31,8 @@ class Admin::Trends::LinksController < Admin::BaseController
   end
 
   def trends_preview_card_batch_params
-    params.require(:trends_preview_card_batch).permit(:action, preview_card_ids: [])
+    params
+      .expect(trends_preview_card_batch: [:action, preview_card_ids: []])
   end
 
   def action_from_button

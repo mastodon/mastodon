@@ -52,17 +52,14 @@ Rails.application.configure do
     },
   }
 
-  # Log to STDOUT by default
-  config.logger = ActiveSupport::Logger.new($stdout)
-                                       .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
-                                       .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
+  # Use default logging formatter so that PID and timestamp are not suppressed.
+  config.log_formatter = Logger::Formatter.new
 
-  # Prepend all log lines with the following tags.
+  # Log to STDOUT with the current request id as a default log tag.
   config.log_tags = [:request_id]
+  config.logger = ActiveSupport::TaggedLogging.logger($stdout, formatter: config.log_formatter)
 
-  # "info" includes generic and useful information about system operation, but avoids logging too much
-  # information to avoid inadvertent exposure of personally identifiable information (PII). If you
-  # want to log everything, set the level to "debug".
+  # Change to "debug" to log everything (including potentially personally-identifiable information!)
   config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info')
 
   # Use a different cache store in production.
@@ -90,9 +87,6 @@ Rails.application.configure do
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
 
-  # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
-
   # Better log formatting
   config.lograge.enabled = true
 
@@ -105,7 +99,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # E-mails
-  outgoing_email_address = ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost')
+  outgoing_email_address = config.x.email.from_address
   outgoing_email_domain  = Mail::Address.new(outgoing_email_address).domain
 
   config.action_mailer.default_options = {
@@ -113,40 +107,12 @@ Rails.application.configure do
     message_id: -> { "<#{Mail.random_tag}@#{outgoing_email_domain}>" },
   }
 
-  config.action_mailer.default_options[:reply_to]    = ENV['SMTP_REPLY_TO'] if ENV['SMTP_REPLY_TO'].present?
-  config.action_mailer.default_options[:return_path] = ENV['SMTP_RETURN_PATH'] if ENV['SMTP_RETURN_PATH'].present?
+  config.action_mailer.default_options[:reply_to]    = config.x.email.reply_to if config.x.email.reply_to.present?
+  config.action_mailer.default_options[:return_path] = config.x.email.return_path if config.x.email.return_path.present?
 
-  enable_starttls = nil
-  enable_starttls_auto = nil
+  config.action_mailer.smtp_settings = Mastodon::EmailConfigurationHelper.convert_smtp_settings(config.x.email.smtp_settings)
 
-  case ENV['SMTP_ENABLE_STARTTLS']
-  when 'always'
-    enable_starttls = true
-  when 'never'
-    enable_starttls = false
-  when 'auto'
-    enable_starttls_auto = true
-  else
-    enable_starttls_auto = ENV['SMTP_ENABLE_STARTTLS_AUTO'] != 'false'
-  end
-
-  config.action_mailer.smtp_settings = {
-    port: ENV['SMTP_PORT'],
-    address: ENV['SMTP_SERVER'],
-    user_name: ENV['SMTP_LOGIN'].presence,
-    password: ENV['SMTP_PASSWORD'].presence,
-    domain: ENV['SMTP_DOMAIN'] || ENV['LOCAL_DOMAIN'],
-    authentication: ENV['SMTP_AUTH_METHOD'] == 'none' ? nil : ENV['SMTP_AUTH_METHOD'] || :plain,
-    ca_file: ENV['SMTP_CA_FILE'].presence || '/etc/ssl/certs/ca-certificates.crt',
-    openssl_verify_mode: ENV['SMTP_OPENSSL_VERIFY_MODE'],
-    enable_starttls: enable_starttls,
-    enable_starttls_auto: enable_starttls_auto,
-    tls: ENV['SMTP_TLS'].presence && ENV['SMTP_TLS'] == 'true',
-    ssl: ENV['SMTP_SSL'].presence && ENV['SMTP_SSL'] == 'true',
-    read_timeout: 20,
-  }
-
-  config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
+  config.action_mailer.delivery_method = config.x.email.delivery_method.to_sym
 
   config.action_dispatch.default_headers = {
     'Server' => 'Mastodon',
@@ -155,13 +121,6 @@ Rails.application.configure do
     'X-XSS-Protection' => '0',
     'Referrer-Policy' => 'same-origin',
   }
-
-  # TODO: Remove once devise-two-factor data migration complete
-  config.x.otp_secret = if ENV['SECRET_KEY_BASE_DUMMY']
-                          SecureRandom.hex(64)
-                        else
-                          ENV.fetch('OTP_SECRET')
-                        end
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [

@@ -1,20 +1,19 @@
-import { Record as ImmutableRecord } from 'immutable';
+import { Record as ImmutableRecord, mergeDeep } from 'immutable';
 
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import { combineReducers } from 'redux-immutable';
 
 import { accountsReducer } from './accounts';
-import accounts_map from './accounts_map';
-import alerts from './alerts';
+import { accountsFamiliarFollowersReducer } from './accounts_familiar_followers';
+import { accountsMapReducer } from './accounts_map';
+import { alertsReducer } from './alerts';
 import announcements from './announcements';
-import compose from './compose';
-import contexts from './contexts';
+import { composeReducer } from './compose';
+import { contextsReducer } from './contexts';
 import conversations from './conversations';
 import custom_emojis from './custom_emojis';
-import domain_lists from './domain_lists';
 import { dropdownMenuReducer } from './dropdown_menu';
 import filters from './filters';
-import followed_tags from './followed_tags';
 import height_cache from './height_cache';
 import history from './history';
 import { listsReducer } from './lists';
@@ -22,6 +21,7 @@ import { markersReducer } from './markers';
 import media_attachments from './media_attachments';
 import meta from './meta';
 import { modalReducer } from './modal';
+import { navigationReducer } from './navigation';
 import { notificationGroupsReducer } from './notification_groups';
 import { notificationPolicyReducer } from './notification_policy';
 import { notificationRequestsReducer } from './notification_requests';
@@ -36,6 +36,7 @@ import settings from './settings';
 import status_lists from './status_lists';
 import statuses from './statuses';
 import { suggestionsReducer } from './suggestions';
+import { followedTagsReducer } from './tags';
 import timelines from './timelines';
 import trends from './trends';
 import user_lists from './user_lists';
@@ -45,21 +46,21 @@ const reducers = {
   dropdownMenu: dropdownMenuReducer,
   timelines,
   meta,
-  alerts,
+  alerts: alertsReducer,
   loadingBar: loadingBarReducer,
   modal: modalReducer,
   user_lists,
-  domain_lists,
   status_lists,
   accounts: accountsReducer,
-  accounts_map,
+  accounts_map: accountsMapReducer,
+  accounts_familiar_followers: accountsFamiliarFollowersReducer,
   statuses,
   relationships: relationshipsReducer,
   settings,
   push_notifications,
   server,
-  contexts,
-  compose,
+  contexts: contextsReducer,
+  compose: composeReducer,
   search: searchReducer,
   media_attachments,
   notifications,
@@ -67,6 +68,7 @@ const reducers = {
   height_cache,
   custom_emojis,
   lists: listsReducer,
+  followedTags: followedTagsReducer,
   filters,
   conversations,
   suggestions: suggestionsReducer,
@@ -75,9 +77,9 @@ const reducers = {
   markers: markersReducer,
   picture_in_picture: pictureInPictureReducer,
   history,
-  followed_tags,
   notificationPolicy: notificationPolicyReducer,
   notificationRequests: notificationRequestsReducer,
+  navigation: navigationReducer,
 };
 
 // We want the root state to be an ImmutableRecord, which is an object with a defined list of keys,
@@ -96,6 +98,15 @@ const initialRootState = Object.fromEntries(
 
 const RootStateRecord = ImmutableRecord(initialRootState, 'RootState');
 
-const rootReducer = combineReducers(reducers, RootStateRecord);
+export const rootReducer = combineReducers(reducers, RootStateRecord);
 
-export { rootReducer };
+export function reducerWithInitialState(
+  stateOverrides: Record<string, unknown> = {},
+) {
+  const initialStateRecord = mergeDeep(initialRootState, stateOverrides);
+  const PatchedRootStateRecord = ImmutableRecord(
+    initialStateRecord,
+    'RootState',
+  );
+  return combineReducers(reducers, PatchedRootStateRecord);
+}

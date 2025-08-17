@@ -2,6 +2,8 @@ import { useCallback, useEffect } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { useIdentity } from '@/mastodon/identity_context';
 import { fetchRelationships, followAccount } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
@@ -14,13 +16,13 @@ const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   followBack: { id: 'account.follow_back', defaultMessage: 'Follow back' },
-  mutual: { id: 'account.mutual', defaultMessage: 'Mutual' },
-  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
+  editProfile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
 });
 
 export const FollowButton: React.FC<{
   accountId?: string;
-}> = ({ accountId }) => {
+  compact?: boolean;
+}> = ({ accountId, compact }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const { signedIn } = useIdentity();
@@ -52,7 +54,7 @@ export const FollowButton: React.FC<{
       );
     }
 
-    if (!relationship) return;
+    if (!relationship || !accountId) return;
 
     if (accountId === me) {
       return;
@@ -70,11 +72,9 @@ export const FollowButton: React.FC<{
   if (!signedIn) {
     label = intl.formatMessage(messages.follow);
   } else if (accountId === me) {
-    label = intl.formatMessage(messages.edit_profile);
+    label = intl.formatMessage(messages.editProfile);
   } else if (!relationship) {
     label = <LoadingIndicator />;
-  } else if (relationship.following && relationship.followed_by) {
-    label = intl.formatMessage(messages.mutual);
   } else if (relationship.following || relationship.requested) {
     label = intl.formatMessage(messages.unfollow);
   } else if (relationship.followed_by) {
@@ -89,7 +89,9 @@ export const FollowButton: React.FC<{
         href='/settings/profile'
         target='_blank'
         rel='noopener'
-        className='button button-secondary'
+        className={classNames('button button-secondary', {
+          'button--compact': compact,
+        })}
       >
         {label}
       </a>
@@ -106,6 +108,7 @@ export const FollowButton: React.FC<{
           (account?.suspended || !!account?.moved))
       }
       secondary={following}
+      compact={compact}
       className={following ? 'button--destructive' : undefined}
     >
       {label}

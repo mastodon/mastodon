@@ -15,7 +15,8 @@ class Trends::Tags < Trends::Base
 
   class Query < Trends::Query
     def to_arel
-      scope = Tag.joins(:trend).reorder(language_order_clause.desc, score: :desc)
+      scope = Tag.joins(:trend).reorder(score: :desc)
+      scope = scope.reorder(language_order_clause, score: :desc) if preferred_languages.present?
       scope = scope.merge(TagTrend.allowed) if @allowed
       scope = scope.offset(@offset) if @offset.present?
       scope = scope.limit(@limit) if @limit.present?
@@ -24,8 +25,8 @@ class Trends::Tags < Trends::Base
 
     private
 
-    def language_order_clause
-      Arel::Nodes::Case.new.when(TagTrend.arel_table[:language].in(preferred_languages)).then(1).else(0)
+    def trend_class
+      TagTrend
     end
   end
 

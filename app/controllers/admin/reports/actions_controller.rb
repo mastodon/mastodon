@@ -13,27 +13,9 @@ class Admin::Reports::ActionsController < Admin::BaseController
 
     case action_from_button
     when 'delete', 'mark_as_sensitive'
-      status_batch_action = Admin::StatusBatchAction.new(
-        type: action_from_button,
-        status_ids: @report.status_ids,
-        current_account: current_account,
-        report_id: @report.id,
-        send_email_notification: !@report.spam?,
-        text: params[:text]
-      )
-
-      status_batch_action.save!
+      Admin::StatusBatchAction.new(status_batch_action_params).save!
     when 'silence', 'suspend'
-      account_action = Admin::AccountAction.new(
-        type: action_from_button,
-        report_id: @report.id,
-        target_account: @report.target_account,
-        current_account: current_account,
-        send_email_notification: !@report.spam?,
-        text: params[:text]
-      )
-
-      account_action.save!
+      Admin::AccountAction.new(account_action_params).save!
     else
       return redirect_to admin_report_path(@report), alert: I18n.t('admin.reports.unknown_action_msg', action: action_from_button)
     end
@@ -42,6 +24,26 @@ class Admin::Reports::ActionsController < Admin::BaseController
   end
 
   private
+
+  def status_batch_action_params
+    shared_params
+      .merge(status_ids: @report.status_ids)
+  end
+
+  def account_action_params
+    shared_params
+      .merge(target_account: @report.target_account)
+  end
+
+  def shared_params
+    {
+      current_account: current_account,
+      report_id: @report.id,
+      send_email_notification: !@report.spam?,
+      text: params[:text],
+      type: action_from_button,
+    }
+  end
 
   def set_report
     @report = Report.find(params[:report_id])
