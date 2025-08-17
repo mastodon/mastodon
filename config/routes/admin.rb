@@ -3,12 +3,14 @@
 namespace :admin do
   get '/dashboard', to: 'dashboard#index'
 
-  resources :domain_allows, only: [:new, :create, :destroy]
-  resources :domain_blocks, only: [:new, :create, :destroy, :update, :edit] do
+  concern :batch do
     collection do
       post :batch
     end
   end
+
+  resources :domain_allows, only: [:new, :create, :destroy]
+  resources :domain_blocks, only: [:new, :create, :destroy, :update, :edit], concerns: :batch
 
   resources :export_domain_allows, only: [:new] do
     collection do
@@ -24,11 +26,7 @@ namespace :admin do
     end
   end
 
-  resources :email_domain_blocks, only: [:index, :new, :create] do
-    collection do
-      post :batch
-    end
-  end
+  resources :email_domain_blocks, only: [:index, :new, :create], concerns: :batch
 
   resources :action_logs, only: [:index]
   resources :warning_presets, except: [:new, :show]
@@ -130,7 +128,7 @@ namespace :admin do
 
   resources :report_notes, only: [:create, :destroy]
 
-  resources :accounts, only: [:index, :show, :destroy] do
+  resources :accounts, only: [:index, :show, :destroy], concerns: :batch do
     member do
       post :enable
       post :unsensitive
@@ -145,19 +143,11 @@ namespace :admin do
       post :unblock_email
     end
 
-    collection do
-      post :batch
-    end
-
     resource :change_email, only: [:show, :update]
     resource :reset, only: [:create]
     resource :action, only: [:new, :create], controller: 'account_actions'
 
-    resources :statuses, only: [:index, :show] do
-      collection do
-        post :batch
-      end
-    end
+    resources :statuses, only: [:index, :show], concerns: :batch
 
     resources :relationships, only: [:index]
 
@@ -175,17 +165,9 @@ namespace :admin do
     end
   end
 
-  resources :custom_emojis, only: [:index, :new, :create] do
-    collection do
-      post :batch
-    end
-  end
+  resources :custom_emojis, only: [:index, :new, :create], concerns: :batch
 
-  resources :ip_blocks, only: [:index, :new, :create] do
-    collection do
-      post :batch
-    end
-  end
+  resources :ip_blocks, only: [:index, :new, :create], concerns: :batch
 
   resources :roles, except: [:show]
   resources :account_moderation_notes, only: [:create, :destroy]
@@ -193,30 +175,14 @@ namespace :admin do
   resources :tags, only: [:index, :show, :update]
 
   namespace :trends do
-    resources :links, only: [:index] do
-      collection do
-        post :batch
-      end
-    end
-
-    resources :tags, only: [:index] do
-      collection do
-        post :batch
-      end
-    end
-
-    resources :statuses, only: [:index] do
-      collection do
-        post :batch
-      end
+    with_options only: [:index], concerns: :batch do
+      resources :links
+      resources :tags
+      resources :statuses
     end
 
     namespace :links do
-      resources :preview_card_providers, only: [:index], path: :publishers do
-        collection do
-          post :batch
-        end
-      end
+      resources :preview_card_providers, only: [:index], path: :publishers, concerns: :batch
     end
   end
 
@@ -231,9 +197,5 @@ namespace :admin do
 
   resources :software_updates, only: [:index]
 
-  resources :username_blocks, except: [:show, :destroy] do
-    collection do
-      post :batch
-    end
-  end
+  resources :username_blocks, except: [:show, :destroy], concerns: :batch
 end
