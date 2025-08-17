@@ -11,13 +11,17 @@ RSpec.describe Admin::Accounts::AvatarsController do
     subject { delete :destroy, params: { account_id: account.id } }
 
     let(:current_user) { Fabricate(:user, role: role) }
-    let(:account) { Fabricate(:account) }
+    let(:account) { Fabricate(:account, avatar: fixture_file_upload('avatar.gif', 'image/gif')) }
 
     context 'when user is admin' do
       let(:role) { UserRole.find_by(name: 'Admin') }
 
       it 'succeeds in removing avatar' do
-        expect(subject).to redirect_to admin_account_path(account.id)
+        expect { subject }
+          .to change { account.reload.avatar_file_name }.to(be_blank)
+          .and change(Admin::ActionLog, :count).by(1)
+        expect(response)
+          .to redirect_to admin_account_path(account.id)
       end
     end
 
@@ -25,7 +29,10 @@ RSpec.describe Admin::Accounts::AvatarsController do
       let(:role) { UserRole.everyone }
 
       it 'fails to remove avatar' do
-        expect(subject).to have_http_status 403
+        subject
+
+        expect(response)
+          .to have_http_status 403
       end
     end
   end
