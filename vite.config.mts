@@ -18,7 +18,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
-
+import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
 import { MastodonThemes } from './config/vite/plugin-mastodon-themes';
@@ -120,6 +120,18 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     },
     plugins: [
       tsconfigPaths({ projects: [path.resolve(__dirname, 'tsconfig.json')] }),
+      tanstackRouter({
+        target: 'react',
+        autoCodeSplitting: true,
+        routesDirectory: path.resolve(
+          __dirname,
+          'app/javascript/mastodon/routes',
+        ),
+        generatedRouteTree: path.resolve(
+          __dirname,
+          'app/javascript/mastodon/routeTree.gen.ts',
+        ),
+      }),
       react({
         babel: {
           plugins: ['formatjs', 'transform-react-remove-prop-types'],

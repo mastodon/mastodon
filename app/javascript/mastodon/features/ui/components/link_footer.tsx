@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
-import { Link } from 'react-router-dom';
+// import { a } from 'react-router-dom';
 
 import {
   domain,
@@ -17,12 +17,12 @@ export const LinkFooter: React.FC<{
   multiColumn: boolean;
 }> = ({ multiColumn }) => {
   return (
-    <div className='link-footer'>
+    <div className='a-footer'>
       <p>
         <strong>{domain}</strong>:{' '}
-        <Link to='/about' target={multiColumn ? '_blank' : undefined}>
+        <a href='/about' target={multiColumn ? '_blank' : undefined}>
           <FormattedMessage id='footer.about' defaultMessage='About' />
-        </Link>
+        </a>
         {statusPageUrl && (
           <>
             <DividingCircle />
@@ -34,17 +34,17 @@ export const LinkFooter: React.FC<{
         {canProfileDirectory && (
           <>
             <DividingCircle />
-            <Link to='/directory'>
+            <a href='/directory'>
               <FormattedMessage
                 id='footer.directory'
                 defaultMessage='Profiles directory'
               />
-            </Link>
+            </a>
           </>
         )}
         <DividingCircle />
-        <Link
-          to='/privacy-policy'
+        <a
+          href='/privacy-policy'
           target={multiColumn ? '_blank' : undefined}
           rel='privacy-policy'
         >
@@ -52,12 +52,12 @@ export const LinkFooter: React.FC<{
             id='footer.privacy_policy'
             defaultMessage='Privacy policy'
           />
-        </Link>
+        </a>
         {termsOfServiceEnabled && (
           <>
             <DividingCircle />
-            <Link
-              to='/terms-of-service'
+            <a
+              href='/terms-of-service'
               target={multiColumn ? '_blank' : undefined}
               rel='terms-of-service'
             >
@@ -65,7 +65,7 @@ export const LinkFooter: React.FC<{
                 id='footer.terms_of_service'
                 defaultMessage='Terms of service'
               />
-            </Link>
+            </a>
           </>
         )}
       </p>
@@ -80,12 +80,12 @@ export const LinkFooter: React.FC<{
           <FormattedMessage id='footer.get_app' defaultMessage='Get the app' />
         </a>
         <DividingCircle />
-        <Link to='/keyboard-shortcuts'>
+        <a href='/keyboard-shortcuts'>
           <FormattedMessage
             id='footer.keyboard_shortcuts'
             defaultMessage='Keyboard shortcuts'
           />
-        </Link>
+        </a>
         <DividingCircle />
         <a href={source_url} rel='noopener' target='_blank'>
           <FormattedMessage

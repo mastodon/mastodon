@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Children, cloneElement, PureComponent } from 'react';
 
 import classNames from 'classnames';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 import { List as ImmutableList } from 'immutable';
 import { connect } from 'react-redux';
@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import { throttle } from 'lodash';
 
-import ScrollContainer from 'mastodon/containers/scroll_container';
+// import ScrollContainer from 'mastodon/containers/scroll_container';
 
 import IntersectionObserverArticleContainer from '../containers/intersection_observer_article_container';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
@@ -37,14 +37,14 @@ const mapStateToProps = (state, { scrollKey }) => {
 
 // This component only exists to be able to call useLocation()
 const IOArticleContainerWrapper = ({id, index, listLength, intersectionObserverWrapper, trackScroll, scrollKey, children}) => {
-  const location = useLocation();
+  // const location = useLocation();
 
   return (<IntersectionObserverArticleContainer
     id={id}
     index={index}
     listLength={listLength}
     intersectionObserverWrapper={intersectionObserverWrapper}
-    saveHeightKey={trackScroll ? `${location.key}:${scrollKey}` : null}
+    // saveHeightKey={trackScroll ? `${location.key}:${scrollKey}` : null}
   >
     {children}
   </IntersectionObserverArticleContainer>);
@@ -399,9 +399,9 @@ class ScrollableList extends PureComponent {
 
     if (trackScroll) {
       return (
-        <ScrollContainer scrollKey={scrollKey}>
-          {scrollableArea}
-        </ScrollContainer>
+        // <ScrollContainer scrollKey={scrollKey}>
+          scrollableArea
+        // </ScrollContainer>
       );
     } else {
       return scrollableArea;

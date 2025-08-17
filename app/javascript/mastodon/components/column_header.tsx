@@ -16,7 +16,7 @@ import { Icon } from 'mastodon/components/icon';
 import { ButtonInTabsBar } from 'mastodon/features/ui/util/columns_context';
 import { useIdentity } from 'mastodon/identity_context';
 
-import { useAppHistory } from './router';
+// import { useAppHistory } from './router';
 
 export const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
@@ -35,20 +35,20 @@ export const messages = defineMessages({
 const BackButton: React.FC<{
   onlyIcon: boolean;
 }> = ({ onlyIcon }) => {
-  const history = useAppHistory();
+  // const history = useAppHistory();
   const intl = useIntl();
 
-  const handleBackClick = useCallback(() => {
-    if (history.location.state?.fromMastodon) {
-      history.goBack();
-    } else {
-      history.push('/');
-    }
-  }, [history]);
+  // const handleBackClick = useCallback(() => {
+  //   if (history.location.state?.fromMastodon) {
+  //     history.goBack();
+  //   } else {
+  //     history.push('/');
+  //   }
+  // }, [history]);
 
   return (
     <button
-      onClick={handleBackClick}
+      // onClick={handleBackClick}
       className={classNames('column-header__back-button', {
         compact: onlyIcon,
       })}
@@ -103,7 +103,7 @@ export const ColumnHeader: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
   const { signedIn } = useIdentity();
-  const history = useAppHistory();
+  // const history = useAppHistory();
   const [collapsed, setCollapsed] = useState(true);
   const [animating, setAnimating] = useState(false);
 
@@ -132,13 +132,13 @@ export const ColumnHeader: React.FC<Props> = ({
     setAnimating(false);
   }, [setAnimating]);
 
-  const handlePin = useCallback(() => {
-    if (!pinned) {
-      history.replace('/');
-    }
+  // const handlePin = useCallback(() => {
+  //   if (!pinned) {
+  //     history.replace('/');
+  //   }
 
-    onPin?.();
-  }, [history, pinned, onPin]);
+  //   onPin?.();
+  // }, [history, pinned, onPin]);
 
   const wrapperClassName = classNames('column-header__wrapper', {
     active,
@@ -171,7 +171,7 @@ export const ColumnHeader: React.FC<Props> = ({
     pinButton = (
       <button
         className='text-btn column-header__setting-btn'
-        onClick={handlePin}
+        // onClick={handlePin}
       >
         <Icon id='times' icon={CloseIcon} />{' '}
         <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' />
@@ -202,7 +202,7 @@ export const ColumnHeader: React.FC<Props> = ({
     pinButton = (
       <button
         className='text-btn column-header__setting-btn'
-        onClick={handlePin}
+        // onClick={handlePin}
       >
         <Icon id='plus' icon={AddIcon} />{' '}
         <FormattedMessage id='column_header.pin' defaultMessage='Pin' />
@@ -210,12 +210,12 @@ export const ColumnHeader: React.FC<Props> = ({
     );
   }
 
-  if (
-    !pinned &&
-    ((multiColumn && history.location.state?.fromMastodon) || showBackButton)
-  ) {
-    backButton = <BackButton onlyIcon={!!title} />;
-  }
+  // if (
+  //   !pinned &&
+  //   ((multiColumn && history.location.state?.fromMastodon) || showBackButton)
+  // ) {
+  //   backButton = <BackButton onlyIcon={!!title} />;
+  // }
 
   const collapsedContent = [extraContent];
 
@@ -260,13 +260,13 @@ export const ColumnHeader: React.FC<Props> = ({
             {backButton}
 
             <button onClick={handleTitleClick} className='column-header__title'>
-              {!backButton && (
+              {/* {!backButton && (
                 <Icon
                   id={icon}
                   icon={iconComponent}
                   className='column-header__icon'
                 />
-              )}
+              )} */}
               {title}
             </button>
           </>

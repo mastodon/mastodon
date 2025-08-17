@@ -4,7 +4,7 @@ import { PureComponent } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
 import classnames from 'classnames';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -301,4 +301,4 @@ class StatusContent extends PureComponent {
 
 }
 
-export default withRouter(withIdentity(connect(mapStateToProps)(injectIntl(StatusContent))));
+export default withIdentity(connect(mapStateToProps)(injectIntl(StatusContent)));

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 
 import classNames from 'classnames';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -431,4 +431,4 @@ class StatusActionBar extends ImmutablePureComponent {
 
 }
 
-export default withRouter(withIdentity(connect(mapStateToProps)(injectIntl(StatusActionBar))));
+export default withIdentity(connect(mapStateToProps)(injectIntl(StatusActionBar)));

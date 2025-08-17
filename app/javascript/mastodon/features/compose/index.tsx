@@ -3,7 +3,7 @@ import { useEffect, useCallback } from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import type { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
@@ -84,96 +84,96 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     });
   }, []);
 
-  if (multiColumn) {
-    return (
-      <div
-        className='drawer'
-        role='region'
-        aria-label={intl.formatMessage(navbarMessages.publish)}
-      >
-        <nav className='drawer__header'>
-          <Link
-            to='/getting-started'
-            className='drawer__tab'
-            title={intl.formatMessage(navbarMessages.menu)}
-            aria-label={intl.formatMessage(navbarMessages.menu)}
-            onClick={scrollNavbarIntoView}
-          >
-            <Icon id='bars' icon={MenuIcon} />
-          </Link>
-          {!columns.some((column) => column.get('id') === 'HOME') && (
-            <Link
-              to='/home'
-              className='drawer__tab'
-              title={intl.formatMessage(navbarMessages.home)}
-              aria-label={intl.formatMessage(navbarMessages.home)}
-            >
-              <Icon id='home' icon={HomeIcon} />
-            </Link>
-          )}
-          {!columns.some((column) => column.get('id') === 'NOTIFICATIONS') && (
-            <Link
-              to='/notifications'
-              className='drawer__tab'
-              title={intl.formatMessage(navbarMessages.notifications)}
-              aria-label={intl.formatMessage(navbarMessages.notifications)}
-            >
-              <Icon id='bell' icon={NotificationsIcon} />
-            </Link>
-          )}
-          {!columns.some((column) => column.get('id') === 'COMMUNITY') && (
-            <Link
-              to='/public/local'
-              className='drawer__tab'
-              title={intl.formatMessage(messages.live_feed_local)}
-              aria-label={intl.formatMessage(messages.live_feed_local)}
-            >
-              <Icon id='users' icon={PeopleIcon} />
-            </Link>
-          )}
-          {!columns.some((column) => column.get('id') === 'PUBLIC') && (
-            <Link
-              to='/public'
-              className='drawer__tab'
-              title={intl.formatMessage(messages.live_feed_public)}
-              aria-label={intl.formatMessage(messages.live_feed_public)}
-            >
-              <Icon id='globe' icon={PublicIcon} />
-            </Link>
-          )}
-          <a
-            href='/settings/preferences'
-            className='drawer__tab'
-            title={intl.formatMessage(messages.preferences)}
-            aria-label={intl.formatMessage(messages.preferences)}
-          >
-            <Icon id='cog' icon={SettingsIcon} />
-          </a>
-          <a
-            href='/auth/sign_out'
-            className='drawer__tab'
-            title={intl.formatMessage(messages.logout)}
-            aria-label={intl.formatMessage(messages.logout)}
-            onClick={handleLogoutClick}
-          >
-            <Icon id='sign-out' icon={LogoutIcon} />
-          </a>
-        </nav>
+  // if (multiColumn) {
+  //   return (
+  //     <div
+  //       className='drawer'
+  //       role='region'
+  //       aria-label={intl.formatMessage(navbarMessages.publish)}
+  //     >
+  //       <nav className='drawer__header'>
+  //         <Link
+  //           to='/getting-started'
+  //           className='drawer__tab'
+  //           title={intl.formatMessage(navbarMessages.menu)}
+  //           aria-label={intl.formatMessage(navbarMessages.menu)}
+  //           onClick={scrollNavbarIntoView}
+  //         >
+  //           <Icon id='bars' icon={MenuIcon} />
+  //         </Link>
+  //         {!columns.some((column) => column.get('id') === 'HOME') && (
+  //           <Link
+  //             to='/home'
+  //             className='drawer__tab'
+  //             title={intl.formatMessage(navbarMessages.home)}
+  //             aria-label={intl.formatMessage(navbarMessages.home)}
+  //           >
+  //             <Icon id='home' icon={HomeIcon} />
+  //           </Link>
+  //         )}
+  //         {!columns.some((column) => column.get('id') === 'NOTIFICATIONS') && (
+  //           <Link
+  //             to='/notifications'
+  //             className='drawer__tab'
+  //             title={intl.formatMessage(navbarMessages.notifications)}
+  //             aria-label={intl.formatMessage(navbarMessages.notifications)}
+  //           >
+  //             <Icon id='bell' icon={NotificationsIcon} />
+  //           </Link>
+  //         )}
+  //         {!columns.some((column) => column.get('id') === 'COMMUNITY') && (
+  //           <Link
+  //             to='/public/local'
+  //             className='drawer__tab'
+  //             title={intl.formatMessage(messages.live_feed_local)}
+  //             aria-label={intl.formatMessage(messages.live_feed_local)}
+  //           >
+  //             <Icon id='users' icon={PeopleIcon} />
+  //           </Link>
+  //         )}
+  //         {!columns.some((column) => column.get('id') === 'PUBLIC') && (
+  //           <Link
+  //             to='/public'
+  //             className='drawer__tab'
+  //             title={intl.formatMessage(messages.live_feed_public)}
+  //             aria-label={intl.formatMessage(messages.live_feed_public)}
+  //           >
+  //             <Icon id='globe' icon={PublicIcon} />
+  //           </Link>
+  //         )}
+  //         <a
+  //           href='/settings/preferences'
+  //           className='drawer__tab'
+  //           title={intl.formatMessage(messages.preferences)}
+  //           aria-label={intl.formatMessage(messages.preferences)}
+  //         >
+  //           <Icon id='cog' icon={SettingsIcon} />
+  //         </a>
+  //         <a
+  //           href='/auth/sign_out'
+  //           className='drawer__tab'
+  //           title={intl.formatMessage(messages.logout)}
+  //           aria-label={intl.formatMessage(messages.logout)}
+  //           onClick={handleLogoutClick}
+  //         >
+  //           <Icon id='sign-out' icon={LogoutIcon} />
+  //         </a>
+  //       </nav>
 
-        <Search singleColumn={false} />
+  //       <Search singleColumn={false} />
 
-        <div className='drawer__pager'>
-          <div className='drawer__inner'>
-            <ComposeFormContainer />
+  //       <div className='drawer__pager'>
+  //         <div className='drawer__inner'>
+  //           <ComposeFormContainer />
 
-            <div className='drawer__inner__mastodon'>
-              <img alt='' draggable='false' src={mascot ?? elephantUIPlane} />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  //           <div className='drawer__inner__mastodon'>
+  //             <img alt='' draggable='false' src={mascot ?? elephantUIPlane} />
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <Column

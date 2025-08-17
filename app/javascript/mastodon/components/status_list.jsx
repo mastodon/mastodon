@@ -64,7 +64,7 @@ export default class StatusList extends ImmutablePureComponent {
     const index = this.getCurrentStatusIndex(id, featured);
     this._selectChild(id, index, -1);
   };
-  
+
   handleMoveDown = (id, featured) => {
     const index = this.getCurrentStatusIndex(id, featured);
     this._selectChild(id, index, 1);
@@ -76,7 +76,7 @@ export default class StatusList extends ImmutablePureComponent {
       // :nth-child uses 1-based indexing
       `.item-list > :nth-child(${index + 1 + direction})`
     );
-    
+
     if (!listItem) {
       return;
     }
@@ -187,6 +187,7 @@ export default class StatusList extends ImmutablePureComponent {
 
     return (
       <ScrollableList {...other} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
+
         {scrollableContent}
       </ScrollableList>
     );

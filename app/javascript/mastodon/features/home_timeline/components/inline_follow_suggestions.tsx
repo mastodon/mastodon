@@ -2,7 +2,7 @@ import { useEffect, useCallback, useRef, useState } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
@@ -145,15 +145,15 @@ const Card: React.FC<{
       />
 
       <div className='inline-follow-suggestions__body__scrollable__card__avatar'>
-        <Link to={`/@${account?.acct}`} data-hover-card-account={account?.id}>
+        <a href={`/@${account?.acct}`} data-hover-card-account={account?.id}>
           <Avatar account={account} size={72} />
-        </Link>
+        </a>
       </div>
 
       <div className='inline-follow-suggestions__body__scrollable__card__text-stack'>
-        <Link to={`/@${account?.acct}`} data-hover-card-account={account?.id}>
+        <a href={`/@${account?.acct}`} data-hover-card-account={account?.id}>
           <DisplayName account={account} />
-        </Link>
+        </a>
         {firstVerifiedField ? (
           <VerifiedBadge link={firstVerifiedField.value} />
         ) : (
@@ -273,12 +273,12 @@ export const InlineFollowSuggestions: React.FC<{
               defaultMessage="Don't show again"
             />
           </button>
-          <Link to='/explore/suggestions' className='link-button'>
+          <a href='/explore/suggestions' className='link-button'>
             <FormattedMessage
               id='follow_suggestions.view_all'
               defaultMessage='View all'
             />
-          </Link>
+          </a>
         </div>
       </div>
 

@@ -25,16 +25,16 @@ class Tags extends PureComponent {
     hashtags: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     dispatch: PropTypes.func.isRequired,
-    ...WithRouterPropTypes,
+    // ...WithRouterPropTypes,
   };
 
   componentDidMount () {
     const { dispatch, history, hashtags } = this.props;
 
-    // If we're navigating back to the screen, do not trigger a reload
-    if (history.action === 'POP' && hashtags.size > 0) {
-      return;
-    }
+    // // If we're navigating back to the screen, do not trigger a reload
+    // if (history.action === 'POP' && hashtags.size > 0) {
+    //   return;
+    // }
 
     dispatch(fetchTrendingHashtags());
   }
@@ -63,4 +63,4 @@ class Tags extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(withRouter(Tags));
+export default connect(mapStateToProps)(Tags);

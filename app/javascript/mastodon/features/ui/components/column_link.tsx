@@ -1,5 +1,8 @@
 import classNames from 'classnames';
-import { useRouteMatch, NavLink } from 'react-router-dom';
+// import { useRouteMatch, NavLink } from 'react-router-dom';
+
+import type { LinkProps } from '@tanstack/react-router';
+import { Link } from '@tanstack/react-router';
 
 import { Icon } from 'mastodon/components/icon';
 import type { IconProp } from 'mastodon/components/icon';
@@ -18,6 +21,7 @@ export const ColumnLink: React.FC<{
   transparent?: boolean;
   className?: string;
   id?: string;
+  tanstackTo?: LinkProps['to'];
 }> = ({
   icon,
   activeIcon,
@@ -29,9 +33,10 @@ export const ColumnLink: React.FC<{
   method,
   badge,
   transparent,
+  tanstackTo,
   ...other
 }) => {
-  const match = useRouteMatch(to ?? '');
+  // const match = useRouteMatch(to ?? '');
   const className = classNames('column-link', {
     'column-link--transparent': transparent,
   });
@@ -59,9 +64,28 @@ export const ColumnLink: React.FC<{
     ) : (
       iconElement
     ));
-  const active = !!match;
+  const active = false; // !!match;
 
-  if (href) {
+  if (tanstackTo) {
+    return (
+      <Link
+        to={tanstackTo}
+        className={className}
+        data-method={method}
+        {...other}
+      >
+        {({ isActive }) => {
+          return (
+            <>
+              {isActive ? activeIconElement : iconElement}
+              <span>{text}</span>
+              {badgeElement}
+            </>
+          );
+        }}
+      </Link>
+    );
+  } else if (href) {
     return (
       <a href={href} className={className} data-method={method} {...other}>
         {active ? activeIconElement : iconElement}
@@ -71,11 +95,11 @@ export const ColumnLink: React.FC<{
     );
   } else if (to) {
     return (
-      <NavLink to={to} className={className} {...other}>
+      <a href={to} className={className} {...other}>
         {active ? activeIconElement : iconElement}
         <span>{text}</span>
         {badgeElement}
-      </NavLink>
+      </a>
     );
   } else {
     return null;

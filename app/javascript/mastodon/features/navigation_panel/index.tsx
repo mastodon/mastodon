@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link, useLocation } from 'react-router-dom';
+// import { Link, useLocation } from 'react-router-dom';
 
 import type { Map as ImmutableMap } from 'immutable';
 
@@ -98,6 +98,7 @@ const NotificationsLink = () => {
       key='notifications'
       transparent
       to='/notifications'
+      tanstackTo='/notifications'
       icon={
         <IconWithBadge
           id='bell'
@@ -190,7 +191,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
 }) => {
   const intl = useIntl();
   const { signedIn, disabledAccountId } = useIdentity();
-  const location = useLocation();
+  // const location = useLocation();
   const showSearch = useBreakpoint('full') && !multiColumn;
 
   let banner: React.ReactNode;
@@ -212,9 +213,9 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
   return (
     <div className='navigation-panel'>
       <div className='navigation-panel__logo'>
-        <Link to='/' className='column-link column-link--logo'>
+        <a href='/' className='column-link column-link--logo'>
           <WordmarkLogo />
-        </Link>
+        </a>
       </div>
 
       {showSearch && <Search singleColumn />}
@@ -239,6 +240,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
             <ColumnLink
               transparent
               to='/home'
+              tanstackTo='/home'
               icon='home'
               iconComponent={HomeIcon}
               activeIconComponent={HomeActiveIcon}
@@ -251,6 +253,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
           <ColumnLink
             transparent
             to='/explore'
+            tanstackTo='/explore'
             icon='explore'
             iconComponent={TrendingUpIcon}
             text={intl.formatMessage(messages.explore)}
@@ -348,12 +351,12 @@ export const CollapsibleNavigationPanel: React.FC = () => {
   const open = useAppSelector((state) => state.navigation.open);
   const dispatch = useAppDispatch();
   const openable = useBreakpoint('openable');
-  const location = useLocation();
+  // const location = useLocation();
   const overlayRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    dispatch(closeNavigation());
-  }, [dispatch, location]);
+  // useEffect(() => {
+  //   dispatch(closeNavigation());
+  // }, [dispatch, location]);
 
   useEffect(() => {
     const handleDocumentClick = (e: MouseEvent) => {

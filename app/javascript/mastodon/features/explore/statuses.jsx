@@ -30,17 +30,16 @@ class Statuses extends PureComponent {
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
     multiColumn: PropTypes.bool,
-    dispatch: PropTypes.func.isRequired,
-    ...WithRouterPropTypes,
+    dispatch: PropTypes.func.isRequired
   };
 
   componentDidMount () {
-    const { dispatch, statusIds, history } = this.props;
+    const { dispatch, statusIds,  } = this.props;
 
     // If we're navigating back to the screen, do not trigger a reload
-    if (history.action === 'POP' && statusIds.size > 0) {
-      return;
-    }
+    // if (history.action === 'POP' && statusIds.size > 0) {
+    //   return;
+    // }
 
     dispatch(fetchTrendingStatuses());
   }
@@ -74,4 +73,4 @@ class Statuses extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(withRouter(Statuses));
+export default connect(mapStateToProps)(Statuses);

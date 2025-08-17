@@ -3,7 +3,7 @@ import { useCallback, useMemo } from 'react';
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import {
@@ -293,10 +293,10 @@ export const Account: React.FC<AccountProps> = ({
         })}
       >
         <div className='account__info-wrapper'>
-          <Link
+          <a
             className='account__display-name'
             title={account?.acct}
-            to={`/@${account?.acct}`}
+            href={`/@${account?.acct}`}
             data-hover-card-account={id}
           >
             <div className='account__avatar-wrapper'>
@@ -326,7 +326,7 @@ export const Account: React.FC<AccountProps> = ({
                 </div>
               )}
             </div>
-          </Link>
+          </a>
 
           {account &&
             withBio &&
