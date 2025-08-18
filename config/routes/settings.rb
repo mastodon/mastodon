@@ -54,9 +54,7 @@ namespace :settings do
   end
 
   resources :applications, except: [:edit] do
-    member do
-      post :regenerate
-    end
+    resource :token, module: :applications, only: :destroy
   end
 
   resource :delete, only: [:show, :destroy]

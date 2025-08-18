@@ -20,7 +20,7 @@
           %code= current_user.token_for_app(@application).token
       %tr
         %th
-        %td= table_link_to 'refresh', t('applications.regenerate_token'), regenerate_settings_application_path(@application), method: :post
+        %td= table_link_to 'refresh', t('applications.regenerate_token'), settings_application_token_path(@application), method: :delete
 
 %hr/
 

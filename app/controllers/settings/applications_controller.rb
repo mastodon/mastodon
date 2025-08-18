@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Settings::ApplicationsController < Settings::BaseController
-  before_action :set_application, only: [:show, :update, :destroy, :regenerate]
+  before_action :set_application, only: [:show, :update, :destroy]
 
   def index
     @applications = current_user.applications.order(id: :desc).page(params[:page])
@@ -43,13 +43,6 @@ class Settings::ApplicationsController < Settings::BaseController
   def destroy
     @application.destroy
     redirect_to settings_applications_path, notice: I18n.t('applications.destroyed')
-  end
-
-  def regenerate
-    @access_token = current_user.token_for_app(@application)
-    @access_token.destroy
-
-    redirect_to settings_application_path(@application), notice: I18n.t('applications.token_regenerated')
   end
 
   private
