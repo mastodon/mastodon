@@ -1,9 +1,18 @@
-export function uuid(a?: string): string {
-  return a
-    ? (
-        (a as unknown as number) ^
-        ((Math.random() * 16) >> ((a as unknown as number) / 4))
-      ).toString(16)
-    : // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-      ('' + 1e7 + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid);
+export function uuid(): string {
+  // Create an array of 16 bytes
+  const bytes = new Uint8Array(16);
+  window.crypto.getRandomValues(bytes);
+
+  // Per RFC4122, set bits for version and `clock_seq_hi_and_reserved`
+  bytes[6] = (bytes[6] & 0x0f) | 0x40; // Version 4
+  bytes[8] = (bytes[8] & 0x3f) | 0x80; // Variant 10
+
+  // Convert bytes to UUID string
+  return (
+    bytes.slice(0, 4).map(b => b.toString(16).padStart(2, '0')).join('') + '-' +
+    bytes.slice(4, 6).map(b => b.toString(16).padStart(2, '0')).join('') + '-' +
+    bytes.slice(6, 8).map(b => b.toString(16).padStart(2, '0')).join('') + '-' +
+    bytes.slice(8, 10).map(b => b.toString(16).padStart(2, '0')).join('') + '-' +
+    bytes.slice(10, 16).map(b => b.toString(16).padStart(2, '0')).join('')
+  );
 }
