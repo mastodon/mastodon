@@ -8,7 +8,8 @@ class Api::Fasp::BaseController < ApplicationController
 
   attr_reader :current_provider
 
-  skip_forgery_protection
+  # Only disable CSRF for JSON requests (API clients using header-based auth)
+  protect_from_forgery with: :null_session, if: -> { request.format.json? }
 
   before_action :check_fasp_enabled
   before_action :require_authentication
