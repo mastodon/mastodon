@@ -2,9 +2,11 @@
 
 class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :check_self_destruct!
-  skip_before_action :verify_authenticity_token
 
-  def self.provides_callback_for(provider)
+  # Dynamically generate provider callback actions and only skip CSRF for those
+  Devise.omniauth_configs.each_key do |provider|
+    skip_before_action :verify_authenticity_token, only: [provider]
+
     define_method provider do
       @provider = provider
       @user = User.find_for_omniauth(request.env['omniauth.auth'], current_user)
@@ -21,10 +23,6 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:alert] = I18n.t('devise.failure.omniauth_user_creation_failure') if is_navigational_format?
       redirect_to new_user_session_url
     end
-  end
-
-  Devise.omniauth_configs.each_key do |provider|
-    provides_callback_for provider
   end
 
   def after_sign_in_path_for(resource)
