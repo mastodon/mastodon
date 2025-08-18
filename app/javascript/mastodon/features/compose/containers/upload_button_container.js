@@ -12,8 +12,10 @@ const mapStateToProps = state => {
   const allowMixMedia = state.getIn(['server', 'server', 'configuration', 'media_attachments', 'allow_mix_media'], false);
   const isOverLimit = attachmentsSize > state.getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments'])-1;
   const hasVideoOrAudio = state.getIn(['compose', 'media_attachments']).some(m => ['video', 'audio'].includes(m.get('type')));
+  const hasQuote = !!state.compose.get('quoted_status_id');
+
   return {
-    disabled: isPoll || isUploading || isOverLimit || (!allowMixMedia && hasVideoOrAudio),
+    disabled: isPoll || isUploading || isOverLimit || (!allowMixMedia && hasVideoOrAudio) || hasQuote,
     resetFileKey: state.getIn(['compose', 'resetFileKey']),
   };
 };
