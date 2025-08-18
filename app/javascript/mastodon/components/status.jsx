@@ -10,6 +10,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
+import CancelFillIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import { Hotkeys } from 'mastodon/components/hotkeys';
 import { ContentWarning } from 'mastodon/components/content_warning';
 import { FilterWarning } from 'mastodon/components/filter_warning';
@@ -34,6 +35,8 @@ import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
 import { StatusThreadLabel } from './status_thread_label';
 import { VisibilityIcon } from './visibility_icon';
+import { IconButton } from './icon_button';
+
 const domParser = new DOMParser();
 
 export const textForScreenReader = (intl, status, rebloggedByText = false) => {
@@ -75,6 +78,7 @@ const messages = defineMessages({
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Specific people' },
   edited: { id: 'status.edited', defaultMessage: 'Edited {date}' },
+  quote_cancel: { id: 'status.quote.cancel', defaultMessage: 'Cancel quote' },
 });
 
 class Status extends ImmutablePureComponent {
@@ -126,6 +130,7 @@ class Status extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
+    contextType: PropTypes.string,
     ...WithOptionalRouterPropTypes,
   };
 
@@ -359,6 +364,10 @@ class Status extends ImmutablePureComponent {
     this.setState(state => ({ ...state, showDespiteFilter: !state.showDespiteFilter }));
   };
 
+  handleQuoteCancel = () => {
+    this.props.onQuoteCancel?.();
+  }
+
   _properStatus () {
     const { status } = this.props;
 
@@ -573,6 +582,16 @@ class Status extends ImmutablePureComponent {
 
                 <DisplayName account={status.get('account')} />
               </Link>
+
+              {this.props.contextType === 'compose' && isQuotedPost &&  (
+                <IconButton
+                  onClick={this.handleQuoteCancel}
+                  className='status__quote-cancel'
+                  title={intl.formatMessage(messages.quote_cancel)}
+                  icon="cancel-fill"
+                  iconComponent={CancelFillIcon}
+                />
+              )}
             </div>
 
             {matchedFilters && <FilterWarning title={matchedFilters.join(', ')} expanded={this.state.showDespiteFilter} onClick={this.handleFilterToggle} />}

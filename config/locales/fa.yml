@@ -258,6 +258,7 @@ fa:
         create_relay_html: "%{name} یک رله %{target} ایجاد کرد"
         create_unavailable_domain_html: "%{name} تحویل محتوا به دامنه %{target} را متوقف کرد"
         create_user_role_html: "%{name} نقش %{target} را ایجاد کرد"
+        create_username_block_html: "‫‏%{name} قانونی برای نام‌های کاربری دارای %{target} افزود"
         demote_user_html: "%{name} کاربر %{target} را تنزل داد"
         destroy_announcement_html: "%{name} اعلامیهٔ %{target} را حذف کرد"
         destroy_canonical_email_block_html: "%{name} رایانامه با درهم‌ریزی %{target} را نامسدود کرد"
@@ -271,6 +272,7 @@ fa:
         destroy_status_html: "%{name} وضعیت %{target} را برداشت"
         destroy_unavailable_domain_html: "%{name} تحویل محتوا به دامنه %{target} را از سر گرفت"
         destroy_user_role_html: "%{name} نقش %{target} را حذف کرد"
+        destroy_username_block_html: "‫‏%{name} قانون نام‌های کاربری دارای %{target} را برداشت"
         disable_2fa_user_html: "%{name} ضرورت ورود دو مرحله‌ای را برای کاربر %{target} غیر فعال کرد"
         disable_custom_emoji_html: "%{name} شکلک %{target} را غیرفعال کرد"
         disable_relay_html: "%{name} رله %{target} را غیرفعال کرد"
@@ -305,6 +307,7 @@ fa:
         update_report_html: "%{name} گزارش %{target} را به‌روز کرد"
         update_status_html: "%{name} نوشتهٔ %{target} را به‌روز کرد"
         update_user_role_html: "%{name} نقش %{target} را تغییر داد"
+        update_username_block_html: "‫‏%{name} قانونی برای نام‌های کاربری دارای %{target} را به‌روز کرد"
       deleted_account: حساب حذف شد
       empty: هیچ گزارشی پیدا نشد.
       filter_by_action: پالایش بر اساس کنش
@@ -1089,7 +1092,24 @@ fa:
       title: توصیه ها و روندها
       trending: پرطرفدار
     username_blocks:
+      add_new: افزودن جدید
+      block_registrations: انسداد ثبت‌نام‌ها
+      comparison:
+        contains: دارای
+        equals: برابر
+      contains_html: دارای %{string}
+      created_msg: قانون نام کاربری با موفّقیت ایجاد شد
       delete: حذف
+      edit:
+        title: ویرایش قانون نام‌کاربری
+      matches_exactly_html: برابر %{string}
+      new:
+        create: ایجاد قانون
+        title: ایجاد قانون نام‌کاربری جدید
+      no_username_block_selected: هیچ قاعدهٔ نام کاربری‌ای تغییری نکرد زیرا هیچ‌کدام گزیده نشده بودند
+      not_permitted: مجاز نیست
+      title: قانون نام کاربری
+      updated_msg: قانون نام کاربری با موفّقیت به‌روز شد
     warning_presets:
       add_new: افزودن تازه
       delete: زدودن

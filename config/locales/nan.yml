@@ -25,7 +25,7 @@ nan:
       action: 執行動作
       already_silenced: Tsit ê口座有受著限制。
       already_suspended: Tsit ê口座ê權限已經hōo lâng停止。
-      title: Kā %{acct} 做審核ê動作
+      title: Kā %{acct} 做管理ê動作
     account_moderation_notes:
       create: 留記錄
       created_msg: 管理記錄成功建立！
@@ -238,7 +238,7 @@ nan:
         update_user_role: 更新角色
         update_username_block: 更新使用者號名規則
       actions:
-        approve_appeal_html: "%{name} 允准 %{target} 所寫ê tuì審核決定ê投訴"
+        approve_appeal_html: "%{name} 允准 %{target} 所寫ê tuì管理決定ê投訴"
         approve_user_html: "%{name} 允准 %{target} ê 註冊"
         assigned_to_self_report_html: "%{name} kā報告 %{target} 分配hōo家tī"
         change_email_user_html: "%{name} 改變 %{target} ê電子phue地址"
@@ -282,7 +282,7 @@ nan:
         memorialize_account_html: "%{name} kā %{target} 設做故人口座"
         promote_user_html: "%{name} kā 用者 %{target} 升級"
         publish_terms_of_service_html: "%{name} 公佈服務規則ê更新"
-        reject_appeal_html: "%{name} 拒絕 %{target} 所寫ê tuì審核決定ê投訴"
+        reject_appeal_html: "%{name} 拒絕 %{target} 所寫ê tuì管理決定ê投訴"
         reject_user_html: "%{name} 拒絕 %{target} ê 註冊"
         remove_avatar_user_html: "%{name} thâi掉 %{target} ê標頭"
         reopen_report_html: "%{name} 重開 %{target} ê檢舉"
@@ -667,7 +667,7 @@ nan:
         none: 無
       comment_description_html: 為著提供其他資訊，%{name} 寫：
       confirm: 確認
-      confirm_action: 確認kā %{acct} 審核ê動作
+      confirm_action: 確認kā %{acct} 管理ê動作
       created_at: 檢舉tī
       delete_and_resolve: Thâi掉PO文
       forwarded: 轉送ah
@@ -720,9 +720,48 @@ nan:
       target_origin: 受檢舉ê口座ê來源
       title: 檢舉
       unassign: 取消分配
+      unknown_action_msg: M̄知影ê動作：%{action}
+      unresolved: 無解決
+      updated_at: 更新
+      view_profile: 看個人資料
     roles:
+      add_new: 加添角色
+      assigned_users:
+        other: "%{count} ê用者"
+      categories:
+        administration: 管理員
+        devops: DevOps
+        invites: 邀請
+        moderation: 管理
+        special: 特別
+      delete: Thâi掉
+      description_html: 用<strong>用者角色</strong>，lí通自訂lí ê用者ē當接近使用Mastodon ê siánn物功能kap區域。
+      edit: 編「%{name}」ê角色
+      everyone: 預設ê權限
+      everyone_full_description_html: Tse是ē影響<strong>所有用者</strong>ê<strong>基本角色</strong>，就算是無分配tio̍h角色ê mā kâng款。所有其他ê角色繼承伊ê權限。
+      permissions_count:
+        other: "%{count} ê權限"
       privileges:
+        administrator: 管理員
+        administrator_description: 有tsit ê權限ê用者ē忽略所有ê權限。
+        delete_user_data: Thâi掉用者ê資料
+        delete_user_data_description: 允准用者liâm-mi thâi掉其他用者ê資料
+        invite_users: 邀請用者
+        invite_users_description: 允准用者邀請新lâng來tsit ê服侍器
         manage_announcements: 管理公告
+        manage_announcements_description: 允准用者管理佇tsit ê服侍器ê公告
+        manage_appeals: 管理投訴
+        manage_appeals_description: 允准用者審查tuì管理動作ê投訴
+        manage_blocks: 管理封鎖
+        manage_blocks_description: 允准用者封鎖電子phue ê 提供者kap IP地址
+        manage_custom_emojis: 管理自訂ê Emoji
+        manage_custom_emojis_description: 允准用者管理佇tsit ê服侍器ê自訂Emoji
+        manage_federation: 管理聯邦
+        manage_federation_description: 允准用者封鎖á是允准kap其他域名相連，mā控制寄送ê能力
+        manage_invites: 管理邀請
+        manage_invites_description: 允准用者瀏覽kap停止使用邀請連結
+        manage_reports: 管理檢舉
+        manage_reports_description: 允准用者審查檢舉kap執行對in ê管理ê動作。
     statuses:
       language: 語言
     trends:
