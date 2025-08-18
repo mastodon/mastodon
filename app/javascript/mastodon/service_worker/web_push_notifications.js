@@ -1,6 +1,5 @@
 import { IntlMessageFormat } from 'intl-messageformat';
-
-import { unescape } from 'lodash';
+import { decode } from 'html-entities'; // modern package for entity decoding
 // see config/vite/plugins/sw-locales
 // it needs to be updated when new locale keys are used in this file
 import locales from "virtual:mastodon-sw-locales";
@@ -10,7 +9,7 @@ const GROUP_TAG = 'tag';
 
 const notify = options =>
   self.registration.getNotifications().then(notifications => {
-    if (notifications.length >= MAX_NOTIFICATIONS) { // Reached the maximum number of notifications, proceed with grouping
+    if (notifications.length >= MAX_NOTIFICATIONS) {
       const group = {
         title: formatMessage('notifications.group', options.data.preferred_locale, { count: notifications.length + 1 }),
         body: notifications.sort((n1, n2) => n1.timestamp < n2.timestamp).map(notification => notification.title).join('\n'),
@@ -25,15 +24,12 @@ const notify = options =>
       };
 
       notifications.forEach(notification => notification.close());
-
       return self.registration.showNotification(group.title, group);
-    } else if (notifications.length === 1 && notifications[0].tag === GROUP_TAG) { // Already grouped, proceed with appending the notification to the group
+    } else if (notifications.length === 1 && notifications[0].tag === GROUP_TAG) {
       const group = cloneNotification(notifications[0]);
-
       group.title = formatMessage('notifications.group', options.data.preferred_locale, { count: group.data.count + 1 });
       group.body  = `${options.title}\n${group.body}`;
       group.data  = { ...group.data, count: group.data.count + 1 };
-
       return self.registration.showNotification(group.title, group);
     }
 
@@ -48,7 +44,6 @@ const fetchFromApi = (path, method, accessToken) => {
       'Authorization': `Bearer ${accessToken}`,
       'Content-Type': 'application/json',
     },
-
     method: method,
     credentials: 'include',
   }).then(res => {
@@ -63,25 +58,35 @@ const fetchFromApi = (path, method, accessToken) => {
 const cloneNotification = notification => {
   const clone = {};
   let k;
-
-  // Object.assign() does not work with notifications
   for(k in notification) {
     clone[k] = notification[k];
   }
-
   return clone;
 };
 
 const formatMessage = (messageId, locale, values = {}) =>
   (new IntlMessageFormat(locales[locale][messageId], locale)).format(values);
 
-const htmlToPlainText = html =>
-  unescape(html.replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n').replace(/<[^>]*>/g, ''));
+// Recommended HTML to plain text sanitizer
+const htmlToPlainText = html => {
+  // Remove comments safely and repeatedly
+  let previous;
+  do {
+    previous = html;
+    html = html.replace(/<!--[\s\S]*?-->/g, '');
+  } while (html !== previous);
+
+  // Replace breaks and paragraphs
+  html = html.replace(/<br\s*\/?>/gi, '\n').replace(/<\/p>\s*<p>/gi, '\n\n');
+  // Remove all tags
+  html = html.replace(/<[^>]*>/g, '');
+  // Decode HTML entities
+  return decode(html);
+};
 
 export const handlePush = (event) => {
   const { access_token, notification_id, preferred_locale, title, body, icon } = event.data.json();
 
-  // Placeholder until more information can be loaded
   event.waitUntil(
     fetchFromApi(`/api/v1/notifications/${notification_id}`, 'get', access_token).then(notification => {
       const options = {};
@@ -101,7 +106,7 @@ export const handlePush = (event) => {
         options.data.url = `/@${notification.account.acct}`;
       }
 
-      if (notification.status && notification.status.spoiler_text || notification.status.sensitive) {
+      if (notification.status && (notification.status.spoiler_text || notification.status.sensitive)) {
         options.data.hiddenBody  = htmlToPlainText(notification.status.content);
         options.data.hiddenImage = notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url;
 
@@ -151,7 +156,6 @@ const actionFavourite = preferred_locale => ({
 const findBestClient = clients => {
   const focusedClient = clients.find(client => client.focused);
   const visibleClient = clients.find(client => client.visibilityState === 'visible');
-
   return focusedClient || visibleClient || clients[0];
 };
 
@@ -167,20 +171,16 @@ const expandNotification = notification => {
 
 const removeActionFromNotification = (notification, action) => {
   const newNotification = cloneNotification(notification);
-
   newNotification.actions = newNotification.actions.filter(item => item.action !== action);
-
   return self.registration.showNotification(newNotification.title, newNotification);
 };
 
 const openUrl = url =>
   self.clients.matchAll({ type: 'window' }).then(clientList => {
-    if (clientList.length !== 0 && 'navigate' in clientList[0]) { // Chrome 42-48 does not support navigate
+    if (clientList.length !== 0 && 'navigate' in clientList[0]) {
       const client = findBestClient(clientList);
-
       return client.navigate(url).then(client => client.focus());
     }
-
     return self.clients.openWindow(url);
   });
 
