@@ -39,19 +39,37 @@ module WebAppControllerConcern
       end
 
       format.json do
-        redirect_to(permalink_redirector.redirect_uri, allow_other_host: true)
+        safe_uri = safe_redirect_uri(permalink_redirector.redirect_uri)
+        if safe_uri
+          redirect_to(safe_uri, allow_other_host: false)
+        else
+          head :bad_request
+        end
       end
     end
   end
 
   protected
 
+  # Only allow redirects to URLs on the same host or from a predefined whitelist
+  def safe_redirect_uri(uri)
+    allowed_hosts = [request.host]
+    begin
+      parsed_uri = URI.parse(uri)
+      if allowed_hosts.include?(parsed_uri.host)
+        uri
+      else
+        nil
+      end
+    rescue URI::InvalidURIError
+      nil
+    end
+  end
+
   def redirect_to_tos_interstitial!
     return unless current_user&.require_tos_interstitial?
 
     @terms_of_service = TermsOfService.published.first
-
-    # Handle case where terms of service have been removed from the database
     if @terms_of_service.nil?
       current_user.update(require_tos_interstitial: false)
       return
