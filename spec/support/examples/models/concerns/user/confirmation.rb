@@ -86,6 +86,42 @@ RSpec.shared_examples 'User::Confirmation' do
         end
       end
 
+      context 'when the user requires explicit approval because of signup IP address' do
+        let(:user) { Fabricate(:user, confirmed_at: nil, unconfirmed_email: new_email, approved: false, sign_up_ip: '192.0.2.5') }
+
+        before do
+          Setting.registrations_mode = 'open'
+          Fabricate(:ip_block, ip: '192.0.2.5', severity: :sign_up_requires_approval)
+        end
+
+        it 'sets email to new_email and marks user as confirmed, but not as approved and does not trigger `account.approved` web hook' do
+          expect { subject }
+            .to change { user.reload.email }.to(new_email)
+            .and change { user.reload.confirmed_at }.from(nil)
+            .and not_change { user.reload.approved }.from(false)
+          expect(TriggerWebhookWorker)
+            .to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
+        end
+      end
+
+      context 'when the user requires explicit approval because of username' do
+        let(:user) { Fabricate(:user, confirmed_at: nil, unconfirmed_email: new_email, approved: false, account_attributes: { username: 'VeryStrangeUsername' }) }
+
+        before do
+          Setting.registrations_mode = 'open'
+          Fabricate(:username_block, username: 'StrangeUser', exact: false, allow_with_approval: true)
+        end
+
+        it 'sets email to new_email and marks user as confirmed, but not as approved and does not trigger `account.approved` web hook' do
+          expect { subject }
+            .to change { user.reload.email }.to(new_email)
+            .and change { user.reload.confirmed_at }.from(nil)
+            .and not_change { user.reload.approved }.from(false)
+          expect(TriggerWebhookWorker)
+            .to_not have_received(:perform_async).with('account.approved', 'Account', user.account_id)
+        end
+      end
+
       context 'when registrations mode is approved' do
         before { Setting.registrations_mode = 'approved' }
 
