@@ -512,6 +512,8 @@ export const composeReducer = (state = initialState, action) => {
       map.set('sensitive', action.status.get('sensitive'));
       map.set('language', action.status.get('language'));
       map.set('id', null);
+      // Mastodon-authored posts can be expected to have at most one automatic approval policy
+      map.set('quote_policy', action.status.getIn(['quote_approval', 'automatic', 0]) || 'nobody');
 
       if (action.status.get('spoiler_text').length > 0) {
         map.set('spoiler', true);
@@ -541,6 +543,8 @@ export const composeReducer = (state = initialState, action) => {
       map.set('idempotencyKey', uuid());
       map.set('sensitive', action.status.get('sensitive'));
       map.set('language', action.status.get('language'));
+      // Mastodon-authored posts can be expected to have at most one automatic approval policy
+      map.set('quote_policy', action.status.getIn(['quote_approval', 'automatic', 0]) || 'nobody');
 
       if (action.spoiler_text.length > 0) {
         map.set('spoiler', true);
