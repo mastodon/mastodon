@@ -331,7 +331,12 @@ export const composeReducer = (state = initialState, action) => {
     return state.set('is_changing_upload', false);
   } else if (quoteComposeByStatus.match(action)) {
     const status = action.payload;
-    if (status.getIn(['quote_approval', 'current_user']) === 'automatic') {
+    if (
+      status.getIn(['quote_approval', 'current_user']) === 'automatic' &&
+      state.get('media_attachments').size === 0 &&
+      !state.get('is_uploading') &&
+      !state.get('poll')
+    ) {
       return state
         .set('quoted_status_id', status.get('id'))
         .set('spoiler', status.get('sensitive'))
