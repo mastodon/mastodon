@@ -11,7 +11,9 @@ class UserEmailValidator < ActiveModel::Validator
   private
 
   def blocked_email_provider?(email, ip)
-    disallowed_through_email_domain_block?(email, ip) || disallowed_through_configuration?(email) || not_allowed_through_configuration?(email)
+    disallowed_through_email_domain_block?(email, ip) ||
+      disallowed_through_configuration?(email) ||
+      not_allowed_through_configuration?(email)
   end
 
   def blocked_canonical_email?(email)
@@ -25,7 +27,8 @@ class UserEmailValidator < ActiveModel::Validator
   def not_allowed_through_configuration?(email)
     return false if Rails.configuration.x.email_domains_allowlist.blank?
 
-    domains = Rails.configuration.x.email_domains_allowlist.gsub('.', '\.')
+    # Split allowlist, escape each domain, join for regex alternation
+    domains = Rails.configuration.x.email_domains_allowlist.split(',').map { |d| Regexp.escape(d.strip) }.join('|')
     regexp  = Regexp.new("@(.+\\.)?(#{domains})$", true)
 
     email !~ regexp
@@ -34,7 +37,8 @@ class UserEmailValidator < ActiveModel::Validator
   def disallowed_through_configuration?(email)
     return false if Rails.configuration.x.email_domains_denylist.blank?
 
-    domains = Rails.configuration.x.email_domains_denylist.gsub('.', '\.')
+    # Split denylist, escape each domain, join for regex alternation
+    domains = Rails.configuration.x.email_domains_denylist.split(',').map { |d| Regexp.escape(d.strip) }.join('|')
     regexp  = Regexp.new("@(.+\\.)?(#{domains})", true)
 
     regexp.match?(email)
