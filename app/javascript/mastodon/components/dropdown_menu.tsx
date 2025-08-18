@@ -41,13 +41,16 @@ import { IconButton } from './icon_button';
 
 let id = 0;
 
-type RenderItemFn<Item = MenuItem> = (
+export interface RenderItemFnHandlers {
+  onClick: (e: React.MouseEvent) => void;
+  onKeyUp: (e: React.KeyboardEvent) => void;
+  onRef?: (c: HTMLAnchorElement | HTMLButtonElement | null) => void;
+}
+
+export type RenderItemFn<Item = MenuItem> = (
   item: Item,
   index: number,
-  handlers: {
-    onClick: (e: React.MouseEvent) => void;
-    onKeyUp: (e: React.KeyboardEvent) => void;
-  },
+  handlers: RenderItemFnHandlers,
 ) => React.ReactNode;
 
 type ItemClickFn<Item = MenuItem> = (item: Item, index: number) => void;
@@ -280,6 +283,7 @@ export const DropdownMenu = <Item = MenuItem,>({
             renderItemMethod(option, i, {
               onClick: handleItemClick,
               onKeyUp: handleItemKeyUp,
+              onRef: i === 0 ? handleFocusedItemRef : undefined,
             }),
           )}
         </ul>
