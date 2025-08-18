@@ -2,13 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::Accounts::AvatarsController do
-  render_views
-
+RSpec.describe 'Admin Accounts Avatars' do
   before { sign_in current_user }
 
   describe 'DELETE #destroy' do
-    subject { delete :destroy, params: { account_id: account.id } }
+    subject { delete "/admin/accounts/#{account.id}/avatar" }
 
     let(:current_user) { Fabricate(:user, role: role) }
     let(:account) { Fabricate(:account, avatar: fixture_file_upload('avatar.gif', 'image/gif')) }

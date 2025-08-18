@@ -2,13 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::Accounts::HeadersController do
-  render_views
-
+RSpec.describe 'Admin Accounts Headers' do
   before { sign_in current_user }
 
   describe 'DELETE #destroy' do
-    subject { delete :destroy, params: { account_id: account.id } }
+    subject { delete "/admin/accounts/#{account.id}/header" }
 
     let(:current_user) { Fabricate(:user, role: role) }
     let(:account) { Fabricate(:account, header: fixture_file_upload('attachment.jpg', 'image/jpeg')) }
