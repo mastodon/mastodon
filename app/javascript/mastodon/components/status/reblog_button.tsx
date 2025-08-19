@@ -50,7 +50,15 @@ const messages = defineMessages({
   },
 });
 
-export const StatusReblogButton: FC<{ status: Status }> = ({ status }) => {
+interface ReblogButtonProps {
+  status: Status;
+  counters?: boolean;
+}
+
+export const StatusReblogButton: FC<ReblogButtonProps> = ({
+  status,
+  counters,
+}) => {
   const intl = useIntl();
 
   const dispatch = useAppDispatch();
@@ -107,13 +115,17 @@ export const StatusReblogButton: FC<{ status: Status }> = ({ status }) => {
 
   return (
     <Dropdown
-      icon='retweet'
-      iconComponent={status.get('reblogged') ? RepeatActiveIcon : RepeatIcon}
-      title={intl.formatMessage(messages.reblog)}
       items={items}
       renderItem={renderMenuItem}
       onOpen={handleDropdownOpen}
-    />
+    >
+      <IconButton
+        title={intl.formatMessage(messages.reblog)}
+        icon='retweet'
+        iconComponent={status.get('reblogged') ? RepeatActiveIcon : RepeatIcon}
+        counter={counters ? (status.get('reblogs_count') as number) : undefined}
+      />
+    </Dropdown>
   );
 };
 
@@ -168,14 +180,17 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
 // Legacy helpers
 
 // Switch between the legacy and new reblog button based on feature flag.
-export const ReblogButton: FC<{ status: Status }> = ({ status }) => {
+export const ReblogButton: FC<ReblogButtonProps> = (props) => {
   if (isFeatureEnabled('outgoing_quotes')) {
-    return <StatusReblogButton status={status} />;
+    return <StatusReblogButton {...props} />;
   }
-  return <LegacyReblogButton status={status} />;
+  return <LegacyReblogButton {...props} />;
 };
 
-export const LegacyReblogButton: FC<{ status: Status }> = ({ status }) => {
+export const LegacyReblogButton: FC<ReblogButtonProps> = ({
+  status,
+  counters,
+}) => {
   const intl = useIntl();
   const { title, meta, iconComponent, disabled } = useMemo(
     () => reblogIconText(status),
@@ -211,6 +226,7 @@ export const LegacyReblogButton: FC<{ status: Status }> = ({ status }) => {
       icon='retweet'
       iconComponent={iconComponent}
       onClick={!disabled ? handleClick : undefined}
+      counter={counters ? (status.get('reblogs_count') as number) : undefined}
     />
   );
 };

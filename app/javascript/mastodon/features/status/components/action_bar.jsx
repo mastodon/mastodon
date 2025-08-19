@@ -3,23 +3,16 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import classNames from 'classnames';
-
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import BookmarkIcon from '@/material-icons/400-24px/bookmark-fill.svg?react';
 import BookmarkBorderIcon from '@/material-icons/400-24px/bookmark.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
-import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import ReplyAllIcon from '@/material-icons/400-24px/reply_all.svg?react';
 import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import StarBorderIcon from '@/material-icons/400-24px/star.svg?react';
-import RepeatActiveIcon from '@/svg-icons/repeat_active.svg?react';
-import RepeatDisabledIcon from '@/svg-icons/repeat_disabled.svg?react';
-import RepeatPrivateIcon from '@/svg-icons/repeat_private.svg?react';
-import RepeatPrivateActiveIcon from '@/svg-icons/repeat_private_active.svg?react';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_FEDERATION } from 'mastodon/permissions';
 
@@ -27,7 +20,7 @@ import { IconButton } from '../../../components/icon_button';
 import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { me } from '../../../initial_state';
 import { isFeatureEnabled } from '@/mastodon/utils/environment';
-import { ReblogButton, StatusReblogButton } from '@/mastodon/components/status/reblog_button';
+import { ReblogButton } from '@/mastodon/components/status/reblog_button';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -36,10 +29,6 @@ const messages = defineMessages({
   direct: { id: 'status.direct', defaultMessage: 'Privately mention @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
-  reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
-  reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost with original visibility' },
-  cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
-  cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
   removeFavourite: { id: 'status.remove_favourite', defaultMessage: 'Remove from favorites' },
   bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
