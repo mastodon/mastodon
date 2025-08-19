@@ -11,8 +11,9 @@ class Api::Fasp::BaseController < ApplicationController
   before_action :check_fasp_enabled
   before_action :require_authentication
 
-  # Disable CSRF *only* after successful authentication for trusted API clients.
+  # CSRF protection is enforced for all requests. If you need to disable it for trusted API clients,
   skip_before_action :verify_authenticity_token, if: :trusted_api_client?
+  # ensure that authentication is robust and cannot be bypassed before re-enabling the line below.
 
   after_action :sign_response
 
