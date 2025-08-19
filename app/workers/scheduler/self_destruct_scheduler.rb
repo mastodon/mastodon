@@ -21,8 +21,9 @@ class Scheduler::SelfDestructScheduler
 
   def sidekiq_overwhelmed?
     redis_mem_info = Sidekiq.default_configuration.redis_info
+    maxmemory = [redis_mem_info['maxmemory'].to_f, redis_mem_info['total_system_memory'].to_f].filter(&:positive?).min
 
-    Sidekiq::Stats.new.enqueued > MAX_ENQUEUED || redis_mem_info['used_memory'].to_f > redis_mem_info['total_system_memory'].to_f * MAX_REDIS_MEM_USAGE
+    Sidekiq::Stats.new.enqueued > MAX_ENQUEUED || redis_mem_info['used_memory'].to_f > maxmemory * MAX_REDIS_MEM_USAGE
   end
 
   def delete_accounts!
