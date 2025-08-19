@@ -60,7 +60,7 @@ type AppThunk<Arg = void, Returned = void> = (
 
 type AppThunkCreator<Arg = void, Returned = void, ExtraArg = unknown> = (
   arg: Arg,
-  api: AppThunkApi & { skipDispatch: () => void },
+  api: AppThunkApi,
   extra?: ExtraArg,
 ) => Returned;
 
@@ -102,20 +102,11 @@ export function createAppThunk<Arg = void, Returned = void, ExtraArg = unknown>(
   const extra = isDispatcher ? maybeExtra : (maybeCreatorOrExtra as ExtraArg);
   let action: null | AppThunkActionCreator<Arg, Returned> = null;
 
-  let skipDispatch = false;
-  const toggleSkipDispatch = () => {
-    skipDispatch = !skipDispatch;
-  };
-
   // Creates a thunk that dispatches the action with the result of the creator.
   const actionCreator: AppThunk<Arg, Returned> = (arg) => {
     return (dispatch, getState) => {
-      const result = creator(
-        arg,
-        { dispatch, getState, skipDispatch: toggleSkipDispatch },
-        extra,
-      );
-      if (action && !skipDispatch) {
+      const result = creator(arg, { dispatch, getState }, extra);
+      if (action) {
         // Dispatches the action with the result.
         const actionObj = action(result, arg);
         dispatch(actionObj);
@@ -138,7 +129,7 @@ export function createAppThunk<Arg = void, Returned = void, ExtraArg = unknown>(
     },
   }));
 
-  return Object.assign(action, actionCreator);
+  return Object.assign(actionCreator, action);
 }
 
 const createBaseAsyncThunk = rtkCreateAsyncThunk.withTypes<AppThunkConfig>();

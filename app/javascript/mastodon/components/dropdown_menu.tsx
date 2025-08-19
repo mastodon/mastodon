@@ -42,15 +42,15 @@ import { IconButton } from './icon_button';
 let id = 0;
 
 export interface RenderItemFnHandlers {
-  onClick: (e: React.MouseEvent) => void;
-  onKeyUp: (e: React.KeyboardEvent) => void;
-  onRef?: (c: HTMLAnchorElement | HTMLButtonElement | null) => void;
+  onClick: React.MouseEventHandler;
+  onKeyUp: React.KeyboardEventHandler;
 }
 
 export type RenderItemFn<Item = MenuItem> = (
   item: Item,
   index: number,
   handlers: RenderItemFnHandlers,
+  focusRefCallback?: (c: HTMLAnchorElement | HTMLButtonElement | null) => void,
 ) => React.ReactNode;
 
 type ItemClickFn<Item = MenuItem> = (item: Item, index: number) => void;
@@ -280,11 +280,15 @@ export const DropdownMenu = <Item = MenuItem,>({
           })}
         >
           {items.map((option, i) =>
-            renderItemMethod(option, i, {
-              onClick: handleItemClick,
-              onKeyUp: handleItemKeyUp,
-              onRef: i === 0 ? handleFocusedItemRef : undefined,
-            }),
+            renderItemMethod(
+              option,
+              i,
+              {
+                onClick: handleItemClick,
+                onKeyUp: handleItemKeyUp,
+              },
+              i === 0 ? handleFocusedItemRef : undefined,
+            ),
           )}
         </ul>
       )}
@@ -311,7 +315,9 @@ interface DropdownProps<Item = MenuItem> {
   forceDropdown?: boolean;
   renderItem?: RenderItemFn<Item>;
   renderHeader?: RenderHeaderFn<Item>;
-  onOpen?: () => void;
+  onOpen?: // Must use a union type for the full function as a union with void is not allowed.
+  | ((event: React.MouseEvent | React.KeyboardEvent) => void)
+    | ((event: React.MouseEvent | React.KeyboardEvent) => boolean);
   onItemClick?: ItemClickFn<Item>;
 }
 
@@ -393,7 +399,10 @@ export const Dropdown = <Item = MenuItem,>({
       if (open) {
         handleClose();
       } else {
-        onOpen?.();
+        const allow = onOpen?.(e);
+        if (allow === false) {
+          return;
+        }
 
         if (prefetchAccountId) {
           dispatch(fetchRelationships([prefetchAccountId]));

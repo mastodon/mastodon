@@ -1,5 +1,11 @@
 import { useCallback, useMemo } from 'react';
-import type { FC, MouseEventHandler, SVGProps } from 'react';
+import type {
+  FC,
+  KeyboardEvent,
+  MouseEvent,
+  MouseEventHandler,
+  SVGProps,
+} from 'react';
 
 import type { MessageDescriptor } from 'react-intl';
 import { defineMessages, useIntl } from 'react-intl';
@@ -11,7 +17,11 @@ import { toggleReblog } from '@/mastodon/actions/interactions';
 import { openModal } from '@/mastodon/actions/modal';
 import type { ActionMenuItem } from '@/mastodon/models/dropdown_menu';
 import type { Status, StatusVisibility } from '@/mastodon/models/status';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import {
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '@/mastodon/store';
 import { isFeatureEnabled } from '@/mastodon/utils/environment';
 import FormatQuote from '@/material-icons/400-24px/format_quote.svg?react';
 import FormatQuoteOff from '@/material-icons/400-24px/format_quote_off.svg?react';
@@ -27,6 +37,10 @@ import { Icon } from '../icon';
 import { IconButton } from '../icon_button';
 
 const messages = defineMessages({
+  all_disabled: {
+    id: 'status.all_disabled',
+    defaultMessage: 'Boosts and quotes are disabled',
+  },
   quote: { id: 'status.quote', defaultMessage: 'Quote' },
   quote_cannot: {
     id: 'status.cannot_quote',
@@ -62,7 +76,16 @@ export const StatusReblogButton: FC<ReblogButtonProps> = ({
 }) => {
   const intl = useIntl();
 
-  const isLoggedIn = useAppSelector((state) => !!state.meta.get('me'));
+  const statusState = useAppSelector((state) =>
+    selectStatusState(state, status),
+  );
+  const { isLoggedIn, isReblogged, isReblogAllowed, isQuoteAllowed } =
+    statusState;
+  const { iconComponent } = useMemo(
+    () => reblogIconText(statusState),
+    [statusState],
+  );
+  const disabled = !isQuoteAllowed && !isReblogAllowed;
 
   const dispatch = useAppDispatch();
   const statusId = status.get('id') as string;
@@ -88,29 +111,37 @@ export const StatusReblogButton: FC<ReblogButtonProps> = ({
     [dispatch, isLoggedIn, statusId],
   );
 
-  const handleDropdownOpen = useCallback(() => {
-    if (!isLoggedIn) {
-      dispatch(
-        openModal({
-          modalType: 'INTERACTION',
-          modalProps: {
-            type: 'reblog',
-            accountId: status.getIn(['account', 'id']),
-            url: status.get('uri'),
-          },
-        }),
-      );
-    }
-  }, [dispatch, isLoggedIn, status]);
+  const handleDropdownOpen = useCallback(
+    (event: MouseEvent | KeyboardEvent) => {
+      if (!isLoggedIn) {
+        dispatch(
+          openModal({
+            modalType: 'INTERACTION',
+            modalProps: {
+              type: 'reblog',
+              accountId: status.getIn(['account', 'id']),
+              url: status.get('uri'),
+            },
+          }),
+        );
+      } else if (event.shiftKey) {
+        dispatch(toggleReblog(status.get('id'), true));
+        return false;
+      }
+      return true;
+    },
+    [dispatch, isLoggedIn, status],
+  );
 
   const renderMenuItem: RenderItemFn<ActionMenuItem> = useCallback(
-    (item, index, handlers) => (
+    (item, index, handlers, focusRefCallback) => (
       <ReblogMenuItem
         status={status}
         index={index}
         item={item}
         handlers={handlers}
         key={`${item.text}-${index}`}
+        focusRefCallback={focusRefCallback}
       />
     ),
     [status],
@@ -121,13 +152,16 @@ export const StatusReblogButton: FC<ReblogButtonProps> = ({
       items={items}
       renderItem={renderMenuItem}
       onOpen={handleDropdownOpen}
+      disabled={disabled}
     >
       <IconButton
-        title={intl.formatMessage(messages.reblog)}
+        title={intl.formatMessage(
+          !disabled ? messages.reblog : messages.all_disabled,
+        )}
         icon='retweet'
-        iconComponent={status.get('reblogged') ? RepeatActiveIcon : RepeatIcon}
+        iconComponent={iconComponent}
         counter={counters ? (status.get('reblogs_count') as number) : undefined}
-        active={!!status.get('reblogged')}
+        active={isReblogged}
       />
     </Dropdown>
   );
@@ -138,22 +172,26 @@ interface ReblogMenuItemProps {
   item: ActionMenuItem;
   index: number;
   handlers: RenderItemFnHandlers;
+  focusRefCallback?: (c: HTMLAnchorElement | HTMLButtonElement | null) => void;
 }
 
 const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
   status,
   index,
   item: { text },
-  handlers: { onRef, ...handlers },
+  handlers,
+  focusRefCallback,
 }) => {
   const intl = useIntl();
-  const userId = useAppSelector(
-    (state) => state.meta.get('me') as string | undefined,
+  const statusState = useAppSelector((state) =>
+    selectStatusState(state, status),
   );
   const { title, meta, iconComponent, disabled } = useMemo(
     () =>
-      text === 'quote' ? quoteIconText(status) : reblogIconText(status, userId),
-    [status, text, userId],
+      text === 'quote'
+        ? quoteIconText(statusState)
+        : reblogIconText(statusState),
+    [statusState, text],
   );
   const active = useMemo(
     () => text === 'reblog' && !!status.get('reblogged'),
@@ -171,7 +209,7 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
       <button
         {...handlers}
         title={intl.formatMessage(title)}
-        ref={onRef}
+        ref={focusRefCallback}
         disabled={disabled}
         data-index={index}
       >
@@ -207,20 +245,19 @@ export const LegacyReblogButton: FC<ReblogButtonProps> = ({
   counters,
 }) => {
   const intl = useIntl();
-  const userId = useAppSelector(
-    (state) => state.meta.get('me') as string | undefined,
+  const statusState = useAppSelector((state) =>
+    selectStatusState(state, status),
   );
-  const isLoggedIn = !!userId;
 
   const { title, meta, iconComponent, disabled } = useMemo(
-    () => reblogIconText(status, userId),
-    [status, userId],
+    () => reblogIconText(statusState),
+    [statusState],
   );
 
   const dispatch = useAppDispatch();
   const handleClick: MouseEventHandler = useCallback(
     (event) => {
-      if (isLoggedIn) {
+      if (statusState.isLoggedIn) {
         dispatch(toggleReblog(status.get('id') as string, event.shiftKey));
       } else {
         dispatch(
@@ -235,7 +272,7 @@ export const LegacyReblogButton: FC<ReblogButtonProps> = ({
         );
       }
     },
-    [dispatch, isLoggedIn, status],
+    [dispatch, status, statusState.isLoggedIn],
   );
 
   return (
@@ -252,6 +289,35 @@ export const LegacyReblogButton: FC<ReblogButtonProps> = ({
 };
 
 // Helpers for copy and state for status.
+const selectStatusState = createAppSelector(
+  [
+    (state) => state.meta.get('me') as string | undefined,
+    (_, status: Status) => status,
+  ],
+  (userId, status) => {
+    const isPublic = ['public', 'unlisted'].includes(
+      status.get('visibility') as StatusVisibility,
+    );
+    const isMineAndPrivate =
+      userId === status.getIn(['account', 'id']) &&
+      status.get('visibility') === 'private';
+    return {
+      isLoggedIn: !!userId,
+      isPublic,
+      isMine: userId === status.getIn(['account', 'id']),
+      isPrivateReblog:
+        userId === status.getIn(['account', 'id']) &&
+        status.get('visibility') === 'private',
+      isReblogged: !!status.get('reblogged'),
+      isReblogAllowed: isPublic || isMineAndPrivate,
+      isQuoteAllowed:
+        status.getIn(['quote_approval', 'current_user']) === 'automatic' &&
+        (isPublic || isMineAndPrivate),
+    };
+  },
+);
+type StatusState = ReturnType<typeof selectStatusState>;
+
 interface IconText {
   title: MessageDescriptor;
   meta?: MessageDescriptor;
@@ -259,18 +325,15 @@ interface IconText {
   disabled?: boolean;
 }
 
-function reblogIconText(status: Status, userId?: string): IconText {
-  const publicStatus = ['public', 'unlisted'].includes(
-    status.get('visibility') as StatusVisibility,
-  );
-  const reblogPrivate =
-    status.getIn(['account', 'id']) === userId &&
-    status.get('visibility') === 'private';
-
-  if (status.get('reblogged')) {
+function reblogIconText({
+  isPublic,
+  isPrivateReblog,
+  isReblogged,
+}: StatusState): IconText {
+  if (isReblogged) {
     return {
       title: messages.reblog_cancel,
-      iconComponent: publicStatus ? RepeatActiveIcon : RepeatPrivateActiveIcon,
+      iconComponent: isPublic ? RepeatActiveIcon : RepeatPrivateActiveIcon,
     };
   }
   const iconText: IconText = {
@@ -278,10 +341,10 @@ function reblogIconText(status: Status, userId?: string): IconText {
     iconComponent: RepeatIcon,
   };
 
-  if (reblogPrivate) {
+  if (isPrivateReblog) {
     iconText.meta = messages.reblog_private;
     iconText.iconComponent = RepeatPrivateIcon;
-  } else if (!publicStatus) {
+  } else if (!isPublic) {
     iconText.meta = messages.reblog_cannot;
     iconText.iconComponent = RepeatDisabledIcon;
     iconText.disabled = true;
@@ -289,20 +352,18 @@ function reblogIconText(status: Status, userId?: string): IconText {
   return iconText;
 }
 
-function quoteIconText(status: Status): IconText {
-  const publicStatus = ['public', 'unlisted'].includes(
-    status.get('visibility') as StatusVisibility,
-  );
-  const quoteAllowed =
-    status.getIn(['quote_approval', 'current_user']) === 'automatic';
-
+function quoteIconText({
+  isMine,
+  isQuoteAllowed,
+  isPublic,
+}: StatusState): IconText {
   const iconText: IconText = {
     title: messages.quote,
     iconComponent: FormatQuote,
   };
 
-  if (!quoteAllowed || !publicStatus) {
-    iconText.meta = !quoteAllowed
+  if (!isQuoteAllowed || (!isPublic && !isMine)) {
+    iconText.meta = !isQuoteAllowed
       ? messages.quote_cannot
       : messages.quote_private;
     iconText.iconComponent = FormatQuoteOff;
