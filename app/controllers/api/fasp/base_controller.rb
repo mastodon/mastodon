@@ -8,14 +8,25 @@ class Api::Fasp::BaseController < ApplicationController
 
   attr_reader :current_provider
 
-  # Only disable CSRF for JSON requests (API clients using header-based auth)
-  protect_from_forgery with: :null_session, if: -> { request.format.json? }
-
   before_action :check_fasp_enabled
   before_action :require_authentication
+
+  # Disable CSRF *only* after successful authentication for trusted API clients.
+  skip_before_action :verify_authenticity_token, if: :trusted_api_client?
+
   after_action :sign_response
 
   private
+
+  def trusted_api_client?
+    request.format.json? && authenticated_api_client?
+  end
+
+  def authenticated_api_client?
+    # Add logic here to verify the request is actually from an authenticated API client.
+    # For example: check for a valid token, or that require_authentication succeeded.
+    current_provider.present?
+  end
 
   def require_authentication
     validate_content_digest!
@@ -36,7 +47,6 @@ class Api::Fasp::BaseController < ApplicationController
     raise Error, 'content-digest missing' if content_digest_header.blank?
 
     digest_received = content_digest_header.match(DIGEST_PATTERN)[1]
-
     digest_computed = OpenSSL::Digest.base64digest('sha256', request.body&.string || '')
 
     raise Error, 'content-digest does not match' if digest_received != digest_computed
