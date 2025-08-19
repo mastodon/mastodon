@@ -60,7 +60,7 @@ Rails.application.configure do
   config.logger = ActiveSupport::TaggedLogging.logger($stdout, formatter: config.log_formatter)
 
   # Change to "debug" to log everything (including potentially personally-identifiable information!)
-  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info')
+  config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info')&.to_sym
 
   # Use a different cache store in production.
   config.cache_store = :redis_cache_store, REDIS_CONFIGURATION.cache
