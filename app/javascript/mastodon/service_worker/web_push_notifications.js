@@ -13,8 +13,12 @@ const htmlToPlainText = html => {
   html = html.replace(/<br\s*\/?>/gi, '\n').replace(/<\/p>\s*<p>/gi, '\n\n');
 
   // Remove all remaining HTML tags
-  html = html.replace(/<[^>]*>/g, '');
-
+   do {
+     previous = html;
+     html = html.replace(/<[^>]*>/g, '');
+   }
+     while (html !== previous);
+  
   // Decode HTML entities
   html = decode(html);
 
