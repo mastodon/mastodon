@@ -137,6 +137,8 @@ class User < ApplicationRecord
   attribute :external, :boolean, default: false
   attribute :bypass_registration_checks, :boolean, default: false
 
+  class_attribute :skip_mx_check, default: Rails.env.local?
+
   def self.those_who_can(*any_of_privileges)
     matching_role_ids = UserRole.that_can(*any_of_privileges).map(&:id)
 
@@ -145,10 +147,6 @@ class User < ApplicationRecord
     else
       where(role_id: matching_role_ids)
     end
-  end
-
-  def self.skip_mx_check?
-    Rails.env.local?
   end
 
   def date_of_birth=(hash_or_string)

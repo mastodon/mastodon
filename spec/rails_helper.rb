@@ -139,6 +139,12 @@ RSpec.configure do |config|
     example.run
   end
 
+  config.around(:each, :enable_mx_checks) do |example|
+    User.skip_mx_check = false
+    example.run
+    User.skip_mx_check = true
+  end
+
   config.around(:each, type: :search) do |example|
     Chewy.settings[:enabled] = true
     example.run
