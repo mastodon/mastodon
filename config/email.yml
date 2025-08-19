@@ -1,8 +1,11 @@
 # Note that these settings only apply in `production` even when other
 # keys are added here.
+shared:
+  perform_mx_checks: false
 production:
   delivery_method: <%= ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp') %>
   from_address: <%= ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost')&.to_json %>
+  perform_mx_checks: true
   reply_to: <%= ENV.fetch('SMTP_REPLY_TO', nil)&.to_json %>
   return_path: <%= ENV.fetch('SMTP_RETURN_PATH', nil)&.to_json %>
   smtp_settings:
