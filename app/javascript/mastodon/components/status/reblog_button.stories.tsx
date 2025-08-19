@@ -8,6 +8,7 @@ import { LegacyReblogButton, StatusReblogButton } from './reblog_button';
 interface StoryProps {
   visibility: StatusVisibility;
   quoteAllowed: boolean;
+  alreadyBoosted: boolean;
   reblogCount: number;
 }
 
@@ -16,6 +17,7 @@ const meta = {
   args: {
     visibility: 'public',
     quoteAllowed: true,
+    alreadyBoosted: false,
     reblogCount: 0,
   },
   argTypes: {
@@ -31,6 +33,9 @@ const meta = {
     quoteAllowed: {
       name: 'Quotes allowed',
     },
+    alreadyBoosted: {
+      name: 'Already boosted',
+    },
   },
   render: (args) => (
     <StatusReblogButton
@@ -42,10 +47,16 @@ const meta = {
 
 export default meta;
 
-function argsToStatus({ reblogCount, visibility, quoteAllowed }: StoryProps) {
+function argsToStatus({
+  reblogCount,
+  visibility,
+  quoteAllowed,
+  alreadyBoosted,
+}: StoryProps) {
   return statusFactoryState({
     reblogs_count: reblogCount,
     visibility,
+    reblogged: alreadyBoosted,
     quote_approval: {
       automatic: [],
       manual: [],
