@@ -176,7 +176,7 @@ export const DropdownMenu = <Item = MenuItem,>({
         onItemClick(item, i);
       } else if (isActionItem(item)) {
         e.preventDefault();
-        item.action();
+        item.action(e);
       }
     },
     [onClose, onItemClick, items],
@@ -380,7 +380,7 @@ export const Dropdown = <Item = MenuItem,>({
         onItemClick(item, i);
       } else if (isActionItem(item)) {
         e.preventDefault();
-        item.action();
+        item.action(e);
       }
     },
     [handleClose, onItemClick, items],
