@@ -7,7 +7,7 @@ class BulkImportWorker
 
   def perform(import_id)
     import = BulkImport.find(import_id)
-    import.update!(state: :in_progress)
+    import.state_in_progress!
     BulkImportService.new.call(import)
   end
 end

@@ -20,9 +20,9 @@ class BulkImportService < BaseService
       import_lists!
     end
 
-    @import.update!(state: :finished, finished_at: Time.now.utc) if @import.processed_items == @import.total_items
+    @import.state_finished! if @import.processed_items == @import.total_items
   rescue
-    @import.update!(state: :finished, finished_at: Time.now.utc)
+    @import.state_finished!
 
     raise
   end
