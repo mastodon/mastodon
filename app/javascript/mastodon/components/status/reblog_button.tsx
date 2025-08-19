@@ -7,10 +7,9 @@ import { defineMessages, useIntl } from 'react-intl';
 import { quoteComposeById } from '@/mastodon/actions/compose_typed';
 import { toggleReblog } from '@/mastodon/actions/interactions';
 import { openModal } from '@/mastodon/actions/modal';
-import { me } from '@/mastodon/initial_state';
 import type { ActionMenuItem } from '@/mastodon/models/dropdown_menu';
 import type { Status, StatusVisibility } from '@/mastodon/models/status';
-import { useAppDispatch } from '@/mastodon/store';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { isFeatureEnabled } from '@/mastodon/utils/environment';
 import FormatQuote from '@/material-icons/400-24px/format_quote.svg?react';
 import FormatQuoteOff from '@/material-icons/400-24px/format_quote_off.svg?react';
@@ -61,6 +60,8 @@ export const StatusReblogButton: FC<ReblogButtonProps> = ({
 }) => {
   const intl = useIntl();
 
+  const isLoggedIn = useAppSelector((state) => !!state.meta.get('me'));
+
   const dispatch = useAppDispatch();
   const statusId = status.get('id') as string;
   const items: ActionMenuItem[] = useMemo(
@@ -68,7 +69,7 @@ export const StatusReblogButton: FC<ReblogButtonProps> = ({
       {
         text: 'reblog',
         action: (event) => {
-          if (me) {
+          if (isLoggedIn) {
             dispatch(toggleReblog(statusId, event.shiftKey));
           }
         },
@@ -76,17 +77,17 @@ export const StatusReblogButton: FC<ReblogButtonProps> = ({
       {
         text: 'quote',
         action: () => {
-          if (me) {
+          if (isLoggedIn) {
             dispatch(quoteComposeById(statusId));
           }
         },
       },
     ],
-    [dispatch, statusId],
+    [dispatch, isLoggedIn, statusId],
   );
 
   const handleDropdownOpen = useCallback(() => {
-    if (!me) {
+    if (!isLoggedIn) {
       dispatch(
         openModal({
           modalType: 'INTERACTION',
@@ -98,7 +99,7 @@ export const StatusReblogButton: FC<ReblogButtonProps> = ({
         }),
       );
     }
-  }, [dispatch, status]);
+  }, [dispatch, isLoggedIn, status]);
 
   const renderMenuItem: RenderItemFn<ActionMenuItem> = useCallback(
     (item, index, handlers) => (
@@ -143,9 +144,13 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
   handlers: { onRef, ...handlers },
 }) => {
   const intl = useIntl();
+  const userId = useAppSelector(
+    (state) => state.meta.get('me') as string | undefined,
+  );
   const { title, meta, iconComponent, disabled } = useMemo(
-    () => (text === 'quote' ? quoteIconText(status) : reblogIconText(status)),
-    [status, text],
+    () =>
+      text === 'quote' ? quoteIconText(status) : reblogIconText(status, userId),
+    [status, text, userId],
   );
 
   return (
@@ -192,15 +197,20 @@ export const LegacyReblogButton: FC<ReblogButtonProps> = ({
   counters,
 }) => {
   const intl = useIntl();
+  const userId = useAppSelector(
+    (state) => state.meta.get('me') as string | undefined,
+  );
+  const isLoggedIn = !!userId;
+
   const { title, meta, iconComponent, disabled } = useMemo(
-    () => reblogIconText(status),
-    [status],
+    () => reblogIconText(status, userId),
+    [status, userId],
   );
 
   const dispatch = useAppDispatch();
   const handleClick: MouseEventHandler = useCallback(
     (event) => {
-      if (me) {
+      if (isLoggedIn) {
         dispatch(toggleReblog(status.get('id') as string, event.shiftKey));
       } else {
         dispatch(
@@ -215,7 +225,7 @@ export const LegacyReblogButton: FC<ReblogButtonProps> = ({
         );
       }
     },
-    [dispatch, status],
+    [dispatch, isLoggedIn, status],
   );
 
   return (
@@ -239,13 +249,14 @@ interface IconText {
   disabled?: boolean;
 }
 
-function reblogIconText(status: Status): IconText {
+function reblogIconText(status: Status, userId?: string): IconText {
   const publicStatus = ['public', 'unlisted'].includes(
     status.get('visibility') as StatusVisibility,
   );
   const reblogPrivate =
-    status.getIn(['account', 'id']) === me &&
+    status.getIn(['account', 'id']) === userId &&
     status.get('visibility') === 'private';
+
   if (status.get('reblogged')) {
     return {
       title: messages.reblog_cancel,
