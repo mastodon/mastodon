@@ -138,6 +138,12 @@ RSpec.configure do |config|
     example.run
   end
 
+  config.around(:each, :enable_mx_checks) do |example|
+    Rails.configuration.x.email.perform_mx_checks = true
+    example.run
+    Rails.configuration.x.email.perform_mx_checks = false
+  end
+
   config.before :each, type: :cli do
     stub_reset_connection_pools
   end
