@@ -4,6 +4,8 @@ import type { FC, MouseEventHandler, SVGProps } from 'react';
 import type { MessageDescriptor } from 'react-intl';
 import { defineMessages, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { quoteComposeById } from '@/mastodon/actions/compose_typed';
 import { toggleReblog } from '@/mastodon/actions/interactions';
 import { openModal } from '@/mastodon/actions/modal';
@@ -125,6 +127,7 @@ export const StatusReblogButton: FC<ReblogButtonProps> = ({
         icon='retweet'
         iconComponent={status.get('reblogged') ? RepeatActiveIcon : RepeatIcon}
         counter={counters ? (status.get('reblogs_count') as number) : undefined}
+        active={!!status.get('reblogged')}
       />
     </Dropdown>
   );
@@ -152,10 +155,17 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
       text === 'quote' ? quoteIconText(status) : reblogIconText(status, userId),
     [status, text, userId],
   );
+  const active = useMemo(
+    () => text === 'reblog' && !!status.get('reblogged'),
+    [status, text],
+  );
 
   return (
     <li
-      className='dropdown-menu__item reblog-button__item'
+      className={classNames('dropdown-menu__item reblog-button__item', {
+        disabled,
+        active,
+      })}
       key={`${text}-${index}`}
     >
       <button

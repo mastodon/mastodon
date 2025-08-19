@@ -2878,7 +2878,7 @@ a.account__display-name {
 
 .reblog-button {
   &__item {
-    width: 200px;
+    width: 280px;
 
     button {
       display: flex;
@@ -2890,6 +2890,10 @@ a.account__display-name {
     div {
       display: flex;
       flex-direction: column;
+    }
+
+    &.active:not(.disabled) {
+      color: $highlight-text-color;
     }
   }
 
