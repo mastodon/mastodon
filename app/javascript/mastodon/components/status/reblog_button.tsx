@@ -1,6 +1,7 @@
 import { useCallback, useMemo } from 'react';
-import type { FC, MouseEventHandler } from 'react';
+import type { FC, MouseEventHandler, SVGProps } from 'react';
 
+import type { MessageDescriptor } from 'react-intl';
 import { defineMessages, useIntl } from 'react-intl';
 
 import { quoteComposeById } from '@/mastodon/actions/compose_typed';
@@ -11,6 +12,8 @@ import type { ActionMenuItem } from '@/mastodon/models/dropdown_menu';
 import type { Status, StatusVisibility } from '@/mastodon/models/status';
 import { useAppDispatch } from '@/mastodon/store';
 import { isFeatureEnabled } from '@/mastodon/utils/environment';
+import FormatQuote from '@/material-icons/400-24px/format_quote.svg?react';
+import FormatQuoteOff from '@/material-icons/400-24px/format_quote_off.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import RepeatActiveIcon from '@/svg-icons/repeat_active.svg?react';
 import RepeatDisabledIcon from '@/svg-icons/repeat_disabled.svg?react';
@@ -33,13 +36,13 @@ const messages = defineMessages({
     defaultMessage: 'Private posts cannot be quoted',
   },
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
+  reblog_cancel: {
+    id: 'status.cancel_reblog_private',
+    defaultMessage: 'Unboost',
+  },
   reblog_private: {
     id: 'status.reblog_private',
     defaultMessage: 'Boost with original visibility',
-  },
-  reblog_private_cancel: {
-    id: 'status.cancel_reblog_private',
-    defaultMessage: 'Unboost',
   },
   reblog_cannot: {
     id: 'status.cannot_reblog',
@@ -105,7 +108,7 @@ export const StatusReblogButton: FC<{ status: Status }> = ({ status }) => {
   return (
     <Dropdown
       icon='retweet'
-      iconComponent={RepeatIcon}
+      iconComponent={status.get('reblogged') ? RepeatActiveIcon : RepeatIcon}
       title={intl.formatMessage(messages.reblog)}
       items={items}
       renderItem={renderMenuItem}
@@ -128,13 +131,16 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
   handlers: { onRef, ...handlers },
 }) => {
   const intl = useIntl();
-  const { title, iconComponent, disabled } = useMemo(
+  const { title, meta, iconComponent, disabled } = useMemo(
     () => (text === 'quote' ? quoteIconText(status) : reblogIconText(status)),
     [status, text],
   );
 
   return (
-    <li className='dropdown-menu__item' key={`${text}-${index}`}>
+    <li
+      className='dropdown-menu__item reblog-button__item'
+      key={`${text}-${index}`}
+    >
       <button
         {...handlers}
         title={intl.formatMessage(title)}
@@ -142,8 +148,18 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
         disabled={disabled}
         data-index={index}
       >
-        <Icon id='retweet' icon={iconComponent} />
-        <div>{intl.formatMessage(title)}</div>
+        <Icon
+          id={text === 'quote' ? 'quote' : 'retweet'}
+          icon={iconComponent}
+        />
+        <div>
+          {intl.formatMessage(title)}
+          {meta && (
+            <span className='reblog-button__meta'>
+              {intl.formatMessage(meta)}
+            </span>
+          )}
+        </div>
       </button>
     </li>
   );
@@ -161,7 +177,7 @@ export const ReblogButton: FC<{ status: Status }> = ({ status }) => {
 
 export const LegacyReblogButton: FC<{ status: Status }> = ({ status }) => {
   const intl = useIntl();
-  const { title, iconComponent, disabled } = useMemo(
+  const { title, meta, iconComponent, disabled } = useMemo(
     () => reblogIconText(status),
     [status],
   );
@@ -191,7 +207,7 @@ export const LegacyReblogButton: FC<{ status: Status }> = ({ status }) => {
     <IconButton
       disabled={disabled}
       active={!!status.get('reblogged')}
-      title={intl.formatMessage(title)}
+      title={intl.formatMessage(meta ?? title)}
       icon='retweet'
       iconComponent={iconComponent}
       onClick={!disabled ? handleClick : undefined}
@@ -200,7 +216,14 @@ export const LegacyReblogButton: FC<{ status: Status }> = ({ status }) => {
 };
 
 // Helpers for copy and state for status.
-function reblogIconText(status: Status) {
+interface IconText {
+  title: MessageDescriptor;
+  meta?: MessageDescriptor;
+  iconComponent: FC<SVGProps<SVGSVGElement>>;
+  disabled?: boolean;
+}
+
+function reblogIconText(status: Status): IconText {
   const publicStatus = ['public', 'unlisted'].includes(
     status.get('visibility') as StatusVisibility,
   );
@@ -209,48 +232,44 @@ function reblogIconText(status: Status) {
     status.get('visibility') === 'private';
   if (status.get('reblogged')) {
     return {
-      title: messages.reblog_private_cancel,
+      title: messages.reblog_cancel,
       iconComponent: publicStatus ? RepeatActiveIcon : RepeatPrivateActiveIcon,
     };
-  } else if (publicStatus) {
-    return {
-      title: messages.reblog,
-      iconComponent: RepeatIcon,
-    };
-  } else if (reblogPrivate) {
-    return {
-      title: messages.reblog_private,
-      iconComponent: RepeatPrivateIcon,
-    };
   }
-  return {
-    title: messages.reblog_cannot,
-    iconComponent: RepeatDisabledIcon,
-    disabled: true,
+  const iconText: IconText = {
+    title: messages.reblog,
+    iconComponent: RepeatIcon,
   };
+
+  if (reblogPrivate) {
+    iconText.meta = messages.reblog_private;
+    iconText.iconComponent = RepeatPrivateIcon;
+  } else if (!publicStatus) {
+    iconText.meta = messages.reblog_cannot;
+    iconText.iconComponent = RepeatDisabledIcon;
+    iconText.disabled = true;
+  }
+  return iconText;
 }
 
-function quoteIconText(status: Status) {
+function quoteIconText(status: Status): IconText {
   const publicStatus = ['public', 'unlisted'].includes(
     status.get('visibility') as StatusVisibility,
   );
   const quoteAllowed =
     status.getIn(['quote_approval', 'current_user']) === 'automatic';
-  if (!quoteAllowed) {
-    return {
-      title: messages.quote_cannot,
-      iconComponent: RepeatDisabledIcon,
-      disabled: true,
-    };
-  } else if (!publicStatus) {
-    return {
-      title: messages.quote_private,
-      iconComponent: RepeatPrivateIcon,
-      disabled: true,
-    };
-  }
-  return {
+
+  const iconText: IconText = {
     title: messages.quote,
-    iconComponent: RepeatIcon,
+    iconComponent: FormatQuote,
   };
+
+  if (!quoteAllowed || !publicStatus) {
+    iconText.meta = !quoteAllowed
+      ? messages.quote_cannot
+      : messages.quote_private;
+    iconText.iconComponent = FormatQuoteOff;
+    iconText.disabled = true;
+  }
+  return iconText;
 }

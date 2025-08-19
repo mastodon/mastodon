@@ -1730,12 +1730,6 @@ body > [data-popper-placement] {
   margin-top: 16px;
 }
 
-.status__action-bar__reblog-dropdown .dropdown-menu__item > button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 .detailed-status__action-bar-dropdown {
   flex: 1 1 auto;
   display: flex;
@@ -2869,9 +2863,38 @@ a.account__display-name {
     &:focus,
     &:hover,
     &:active {
-      background: var(--dropdown-border-color);
-      outline: 0;
+      &:not(:disabled) {
+        background: var(--dropdown-border-color);
+        outline: 0;
+      }
     }
+  }
+
+  button:disabled {
+    color: $dark-text-color;
+    cursor: default;
+  }
+}
+
+.reblog-button {
+  &__item {
+    width: 200px;
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: inherit;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__meta {
+    font-weight: 400;
   }
 }
 
