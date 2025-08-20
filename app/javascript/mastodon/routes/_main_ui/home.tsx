@@ -6,6 +6,6 @@ const RouteComponent = () => {
   return <HomeTimeline />;
 };
 
-export const Route = createFileRoute('/home')({
+export const Route = createFileRoute('/_main_ui/home')({
   component: RouteComponent,
 });

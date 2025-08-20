@@ -9,76 +9,83 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as NotificationsRouteImport } from './routes/notifications'
-import { Route as HomeRouteImport } from './routes/home'
-import { Route as ExploreRouteRouteImport } from './routes/explore/route'
-import { Route as ExploreIndexRouteImport } from './routes/explore/index'
-import { Route as ExploreTagsRouteImport } from './routes/explore/tags'
-import { Route as ExploreSuggestionsRouteImport } from './routes/explore/suggestions'
-import { Route as ExploreLinksRouteImport } from './routes/explore/links'
+import { Route as Main_uiRouteRouteImport } from './routes/_main_ui/route'
+import { Route as Main_uiNotificationsRouteImport } from './routes/_main_ui/notifications'
+import { Route as Main_uiHomeRouteImport } from './routes/_main_ui/home'
+import { Route as Main_uiExploreRouteRouteImport } from './routes/_main_ui/explore/route'
+import { Route as Main_uiExploreIndexRouteImport } from './routes/_main_ui/explore/index'
+import { Route as Main_uiExploreTagsRouteImport } from './routes/_main_ui/explore/tags'
+import { Route as Main_uiExploreSuggestionsRouteImport } from './routes/_main_ui/explore/suggestions'
+import { Route as Main_uiExploreLinksRouteImport } from './routes/_main_ui/explore/links'
 
-const NotificationsRoute = NotificationsRouteImport.update({
+const Main_uiRouteRoute = Main_uiRouteRouteImport.update({
+  id: '/_main_ui',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Main_uiNotificationsRoute = Main_uiNotificationsRouteImport.update({
   id: '/notifications',
   path: '/notifications',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => Main_uiRouteRoute,
 } as any)
-const HomeRoute = HomeRouteImport.update({
+const Main_uiHomeRoute = Main_uiHomeRouteImport.update({
   id: '/home',
   path: '/home',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => Main_uiRouteRoute,
 } as any)
-const ExploreRouteRoute = ExploreRouteRouteImport.update({
+const Main_uiExploreRouteRoute = Main_uiExploreRouteRouteImport.update({
   id: '/explore',
   path: '/explore',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => Main_uiRouteRoute,
 } as any)
-const ExploreIndexRoute = ExploreIndexRouteImport.update({
+const Main_uiExploreIndexRoute = Main_uiExploreIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => ExploreRouteRoute,
+  getParentRoute: () => Main_uiExploreRouteRoute,
 } as any)
-const ExploreTagsRoute = ExploreTagsRouteImport.update({
+const Main_uiExploreTagsRoute = Main_uiExploreTagsRouteImport.update({
   id: '/tags',
   path: '/tags',
-  getParentRoute: () => ExploreRouteRoute,
+  getParentRoute: () => Main_uiExploreRouteRoute,
 } as any)
-const ExploreSuggestionsRoute = ExploreSuggestionsRouteImport.update({
-  id: '/suggestions',
-  path: '/suggestions',
-  getParentRoute: () => ExploreRouteRoute,
-} as any)
-const ExploreLinksRoute = ExploreLinksRouteImport.update({
+const Main_uiExploreSuggestionsRoute =
+  Main_uiExploreSuggestionsRouteImport.update({
+    id: '/suggestions',
+    path: '/suggestions',
+    getParentRoute: () => Main_uiExploreRouteRoute,
+  } as any)
+const Main_uiExploreLinksRoute = Main_uiExploreLinksRouteImport.update({
   id: '/links',
   path: '/links',
-  getParentRoute: () => ExploreRouteRoute,
+  getParentRoute: () => Main_uiExploreRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/explore': typeof ExploreRouteRouteWithChildren
-  '/home': typeof HomeRoute
-  '/notifications': typeof NotificationsRoute
-  '/explore/links': typeof ExploreLinksRoute
-  '/explore/suggestions': typeof ExploreSuggestionsRoute
-  '/explore/tags': typeof ExploreTagsRoute
-  '/explore/': typeof ExploreIndexRoute
+  '/explore': typeof Main_uiExploreRouteRouteWithChildren
+  '/home': typeof Main_uiHomeRoute
+  '/notifications': typeof Main_uiNotificationsRoute
+  '/explore/links': typeof Main_uiExploreLinksRoute
+  '/explore/suggestions': typeof Main_uiExploreSuggestionsRoute
+  '/explore/tags': typeof Main_uiExploreTagsRoute
+  '/explore/': typeof Main_uiExploreIndexRoute
 }
 export interface FileRoutesByTo {
-  '/home': typeof HomeRoute
-  '/notifications': typeof NotificationsRoute
-  '/explore/links': typeof ExploreLinksRoute
-  '/explore/suggestions': typeof ExploreSuggestionsRoute
-  '/explore/tags': typeof ExploreTagsRoute
-  '/explore': typeof ExploreIndexRoute
+  '/home': typeof Main_uiHomeRoute
+  '/notifications': typeof Main_uiNotificationsRoute
+  '/explore/links': typeof Main_uiExploreLinksRoute
+  '/explore/suggestions': typeof Main_uiExploreSuggestionsRoute
+  '/explore/tags': typeof Main_uiExploreTagsRoute
+  '/explore': typeof Main_uiExploreIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/explore': typeof ExploreRouteRouteWithChildren
-  '/home': typeof HomeRoute
-  '/notifications': typeof NotificationsRoute
-  '/explore/links': typeof ExploreLinksRoute
-  '/explore/suggestions': typeof ExploreSuggestionsRoute
-  '/explore/tags': typeof ExploreTagsRoute
-  '/explore/': typeof ExploreIndexRoute
+  '/_main_ui': typeof Main_uiRouteRouteWithChildren
+  '/_main_ui/explore': typeof Main_uiExploreRouteRouteWithChildren
+  '/_main_ui/home': typeof Main_uiHomeRoute
+  '/_main_ui/notifications': typeof Main_uiNotificationsRoute
+  '/_main_ui/explore/links': typeof Main_uiExploreLinksRoute
+  '/_main_ui/explore/suggestions': typeof Main_uiExploreSuggestionsRoute
+  '/_main_ui/explore/tags': typeof Main_uiExploreTagsRoute
+  '/_main_ui/explore/': typeof Main_uiExploreIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,97 +107,116 @@ export interface FileRouteTypes {
     | '/explore'
   id:
     | '__root__'
-    | '/explore'
-    | '/home'
-    | '/notifications'
-    | '/explore/links'
-    | '/explore/suggestions'
-    | '/explore/tags'
-    | '/explore/'
+    | '/_main_ui'
+    | '/_main_ui/explore'
+    | '/_main_ui/home'
+    | '/_main_ui/notifications'
+    | '/_main_ui/explore/links'
+    | '/_main_ui/explore/suggestions'
+    | '/_main_ui/explore/tags'
+    | '/_main_ui/explore/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  ExploreRouteRoute: typeof ExploreRouteRouteWithChildren
-  HomeRoute: typeof HomeRoute
-  NotificationsRoute: typeof NotificationsRoute
+  Main_uiRouteRoute: typeof Main_uiRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/notifications': {
-      id: '/notifications'
+    '/_main_ui': {
+      id: '/_main_ui'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof Main_uiRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_main_ui/notifications': {
+      id: '/_main_ui/notifications'
       path: '/notifications'
       fullPath: '/notifications'
-      preLoaderRoute: typeof NotificationsRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof Main_uiNotificationsRouteImport
+      parentRoute: typeof Main_uiRouteRoute
     }
-    '/home': {
-      id: '/home'
+    '/_main_ui/home': {
+      id: '/_main_ui/home'
       path: '/home'
       fullPath: '/home'
-      preLoaderRoute: typeof HomeRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof Main_uiHomeRouteImport
+      parentRoute: typeof Main_uiRouteRoute
     }
-    '/explore': {
-      id: '/explore'
+    '/_main_ui/explore': {
+      id: '/_main_ui/explore'
       path: '/explore'
       fullPath: '/explore'
-      preLoaderRoute: typeof ExploreRouteRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof Main_uiExploreRouteRouteImport
+      parentRoute: typeof Main_uiRouteRoute
     }
-    '/explore/': {
-      id: '/explore/'
+    '/_main_ui/explore/': {
+      id: '/_main_ui/explore/'
       path: '/'
       fullPath: '/explore/'
-      preLoaderRoute: typeof ExploreIndexRouteImport
-      parentRoute: typeof ExploreRouteRoute
+      preLoaderRoute: typeof Main_uiExploreIndexRouteImport
+      parentRoute: typeof Main_uiExploreRouteRoute
     }
-    '/explore/tags': {
-      id: '/explore/tags'
+    '/_main_ui/explore/tags': {
+      id: '/_main_ui/explore/tags'
       path: '/tags'
       fullPath: '/explore/tags'
-      preLoaderRoute: typeof ExploreTagsRouteImport
-      parentRoute: typeof ExploreRouteRoute
+      preLoaderRoute: typeof Main_uiExploreTagsRouteImport
+      parentRoute: typeof Main_uiExploreRouteRoute
     }
-    '/explore/suggestions': {
-      id: '/explore/suggestions'
+    '/_main_ui/explore/suggestions': {
+      id: '/_main_ui/explore/suggestions'
       path: '/suggestions'
       fullPath: '/explore/suggestions'
-      preLoaderRoute: typeof ExploreSuggestionsRouteImport
-      parentRoute: typeof ExploreRouteRoute
+      preLoaderRoute: typeof Main_uiExploreSuggestionsRouteImport
+      parentRoute: typeof Main_uiExploreRouteRoute
     }
-    '/explore/links': {
-      id: '/explore/links'
+    '/_main_ui/explore/links': {
+      id: '/_main_ui/explore/links'
       path: '/links'
       fullPath: '/explore/links'
-      preLoaderRoute: typeof ExploreLinksRouteImport
-      parentRoute: typeof ExploreRouteRoute
+      preLoaderRoute: typeof Main_uiExploreLinksRouteImport
+      parentRoute: typeof Main_uiExploreRouteRoute
     }
   }
 }
 
-interface ExploreRouteRouteChildren {
-  ExploreLinksRoute: typeof ExploreLinksRoute
-  ExploreSuggestionsRoute: typeof ExploreSuggestionsRoute
-  ExploreTagsRoute: typeof ExploreTagsRoute
-  ExploreIndexRoute: typeof ExploreIndexRoute
+interface Main_uiExploreRouteRouteChildren {
+  Main_uiExploreLinksRoute: typeof Main_uiExploreLinksRoute
+  Main_uiExploreSuggestionsRoute: typeof Main_uiExploreSuggestionsRoute
+  Main_uiExploreTagsRoute: typeof Main_uiExploreTagsRoute
+  Main_uiExploreIndexRoute: typeof Main_uiExploreIndexRoute
 }
 
-const ExploreRouteRouteChildren: ExploreRouteRouteChildren = {
-  ExploreLinksRoute: ExploreLinksRoute,
-  ExploreSuggestionsRoute: ExploreSuggestionsRoute,
-  ExploreTagsRoute: ExploreTagsRoute,
-  ExploreIndexRoute: ExploreIndexRoute,
+const Main_uiExploreRouteRouteChildren: Main_uiExploreRouteRouteChildren = {
+  Main_uiExploreLinksRoute: Main_uiExploreLinksRoute,
+  Main_uiExploreSuggestionsRoute: Main_uiExploreSuggestionsRoute,
+  Main_uiExploreTagsRoute: Main_uiExploreTagsRoute,
+  Main_uiExploreIndexRoute: Main_uiExploreIndexRoute,
 }
 
-const ExploreRouteRouteWithChildren = ExploreRouteRoute._addFileChildren(
-  ExploreRouteRouteChildren,
+const Main_uiExploreRouteRouteWithChildren =
+  Main_uiExploreRouteRoute._addFileChildren(Main_uiExploreRouteRouteChildren)
+
+interface Main_uiRouteRouteChildren {
+  Main_uiExploreRouteRoute: typeof Main_uiExploreRouteRouteWithChildren
+  Main_uiHomeRoute: typeof Main_uiHomeRoute
+  Main_uiNotificationsRoute: typeof Main_uiNotificationsRoute
+}
+
+const Main_uiRouteRouteChildren: Main_uiRouteRouteChildren = {
+  Main_uiExploreRouteRoute: Main_uiExploreRouteRouteWithChildren,
+  Main_uiHomeRoute: Main_uiHomeRoute,
+  Main_uiNotificationsRoute: Main_uiNotificationsRoute,
+}
+
+const Main_uiRouteRouteWithChildren = Main_uiRouteRoute._addFileChildren(
+  Main_uiRouteRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {
-  ExploreRouteRoute: ExploreRouteRouteWithChildren,
-  HomeRoute: HomeRoute,
-  NotificationsRoute: NotificationsRoute,
+  Main_uiRouteRoute: Main_uiRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

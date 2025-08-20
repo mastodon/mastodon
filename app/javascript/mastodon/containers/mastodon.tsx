@@ -25,18 +25,6 @@ import { IntlProvider } from 'mastodon/locales';
 import { store } from 'mastodon/store';
 import { isProduction } from 'mastodon/utils/environment';
 
-// Import the generated route tree
-
-// Create a new router instance
-const router = createRouter({ routeTree });
-
-// Register the router instance for type safety
-declare module '@tanstack/react-router' {
-  interface Register {
-    router: typeof router;
-  }
-}
-
 const title = isProduction() ? siteTitle : `${siteTitle} (Dev)`;
 
 const hydrateAction = hydrateStore(initialState);
@@ -44,6 +32,19 @@ const hydrateAction = hydrateStore(initialState);
 store.dispatch(hydrateAction);
 if (initialState?.meta.me) {
   store.dispatch(fetchCustomEmojis());
+}
+
+// Create a new router instance
+const router = createRouter({
+  routeTree,
+  context: { store },
+});
+
+// Register the router instance for type safety
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router;
+  }
 }
 
 // eslint-disable-next-line import/no-default-export
@@ -83,7 +84,10 @@ export default class Mastodon extends PureComponent {
                 </ScrollContext>
 
               </Router> */}
-              <RouterProvider router={router} />
+              <RouterProvider
+                router={router}
+                context={{ identity: this.identity }}
+              />
               <BodyScrollLock />
               <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
             </ErrorBoundary>

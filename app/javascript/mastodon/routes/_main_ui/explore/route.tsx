@@ -6,14 +6,14 @@ import { Helmet } from 'react-helmet';
 
 import { createFileRoute, Link, Outlet } from '@tanstack/react-router';
 
+import { Column } from '@/mastodon/components/column';
+import type { ColumnRef } from '@/mastodon/components/column';
+import { ColumnHeader } from '@/mastodon/components/column_header';
+import { SymbolLogo } from '@/mastodon/components/logo';
+import { Search } from '@/mastodon/features/compose/components/search';
+import { useBreakpoint } from '@/mastodon/features/ui/hooks/useBreakpoint';
+import { useIdentity } from '@/mastodon/identity_context';
 import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
-import { Column } from 'mastodon/components/column';
-import type { ColumnRef } from 'mastodon/components/column';
-import { ColumnHeader } from 'mastodon/components/column_header';
-import { SymbolLogo } from 'mastodon/components/logo';
-import { Search } from 'mastodon/features/compose/components/search';
-import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
-import { useIdentity } from 'mastodon/identity_context';
 
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Trending' },
@@ -93,6 +93,6 @@ const Explore: React.FC<{ multiColumn?: boolean }> = ({ multiColumn }) => {
   );
 };
 
-export const Route = createFileRoute('/explore')({
+export const Route = createFileRoute('/_main_ui/explore')({
   component: Explore,
 });

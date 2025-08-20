@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 
-import { useLocation } from 'react-router-dom';
-
 import Overlay from 'react-overlays/Overlay';
 import type {
   OffsetValue,
@@ -27,7 +25,7 @@ export const HoverCardController: React.FC = () => {
   const [setLeaveTimeout, cancelLeaveTimeout] = useTimeout();
   const [setEnterTimeout, cancelEnterTimeout, delayEnterTimeout] = useTimeout();
   const [setScrollTimeout] = useTimeout();
-  const location = useLocation();
+  // const location = useLocation();
 
   const handleClose = useCallback(() => {
     cancelEnterTimeout();
@@ -36,9 +34,9 @@ export const HoverCardController: React.FC = () => {
     setAnchor(null);
   }, [cancelEnterTimeout, cancelLeaveTimeout, setOpen, setAnchor]);
 
-  useEffect(() => {
-    handleClose();
-  }, [handleClose, location]);
+  // useEffect(() => {
+  //   handleClose();
+  // }, [handleClose, location]);
 
   useEffect(() => {
     let isScrolling = false;

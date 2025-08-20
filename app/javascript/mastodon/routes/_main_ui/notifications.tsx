@@ -6,6 +6,6 @@ const RouteComponent = () => {
   return <Notifications />;
 };
 
-export const Route = createFileRoute('/notifications')({
+export const Route = createFileRoute('/_main_ui/notifications')({
   component: RouteComponent,
 });

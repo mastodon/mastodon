@@ -2,8 +2,6 @@ import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
-import { useLocation } from 'react-router-dom';
-
 import Overlay from 'react-overlays/Overlay';
 import type {
   OffsetValue,
@@ -48,15 +46,15 @@ export const HashtagMenuController: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [{ accountId, hashtag }, setTargetParams] = useState<TargetParams>({});
   const targetRef = useRef<HTMLAnchorElement | null>(null);
-  const location = useLocation();
+  // const location = useLocation();
   const account = useAppSelector((state) =>
     accountId ? state.accounts.get(accountId) : undefined,
   );
 
-  useEffect(() => {
-    setOpen(false);
-    targetRef.current = null;
-  }, [setOpen, location]);
+  // useEffect(() => {
+  //   setOpen(false);
+  //   targetRef.current = null;
+  // }, [setOpen, location]);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {

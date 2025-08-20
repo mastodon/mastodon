@@ -1,21 +1,21 @@
-import { Outlet, createRootRoute } from '@tanstack/react-router';
+import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
-import ColumnsAreaContainer from '@/mastodon/features/ui/containers/columns_area_container';
+import type { IdentityContextType } from '../identity_context';
+import type { store } from '../store';
 
 const RootComponent = () => {
   return (
     <>
-      <div className='ui'>
-        <ColumnsAreaContainer singleColumn>
-          <Outlet />
-        </ColumnsAreaContainer>
-      </div>
       <TanStackRouterDevtools />
+      <Outlet />
     </>
   );
 };
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  store: typeof store;
+  identity: IdentityContextType;
+}>()({
   component: RootComponent,
 });
