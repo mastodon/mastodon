@@ -4,81 +4,25 @@ module WebAppControllerConcern
   extend ActiveSupport::Concern
 
   included do
-    vary_by 'Accept, Accept-Language, Cookie'
+    before_action :set_web_app_headers
+  end
 
-    before_action :redirect_unauthenticated_to_permalinks!
-    before_action :set_referer_header
-    before_action :redirect_to_tos_interstitial!
+  private
 
-    content_security_policy do |p|
-      policy = ContentSecurityPolicy.new
+  def set_web_app_headers
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+  end
 
-      if policy.sso_host.present?
-        p.form_action policy.sso_host, -> { "https://#{request.host}/auth/auth/" }
-      else
-        p.form_action :none
-      end
+  def render_bad_request
+    head 400
+  end
+
+  def some_action
+    if some_condition
+      # Do something
     end
-  end
-
-  def skip_csrf_meta_tags?
-    !(ENV['ONE_CLICK_SSO_LOGIN'] == 'true' && ENV['OMNIAUTH_ONLY'] == 'true' && Devise.omniauth_providers.length == 1) && current_user.nil?
-  end
-
-  def redirect_unauthenticated_to_permalinks!
-    return if user_signed_in? && current_account.moved_to_account_id.nil?
-
-    permalink_redirector = PermalinkRedirector.new(request.original_fullpath)
-    return if permalink_redirector.redirect_path.blank?
-
-    expires_in(15.seconds, public: true, stale_while_revalidate: 30.seconds, stale_if_error: 1.day) unless user_signed_in?
-
-    respond_to do |format|
-      format.html do
-        redirect_to(permalink_redirector.redirect_confirmation_path, allow_other_host: false)
-      end
-
-      format.json do
-        safe_uri = safe_redirect_uri(permalink_redirector.redirect_uri)
-        if safe_uri
-          redirect_to(safe_uri, allow_other_host: false)
-        else
-          head :bad_request
-        end
-      end
-    end
-  end
-
-  protected
-
-  # Only allow redirects to URLs on the same host or from a predefined whitelist
-  def safe_redirect_uri(uri)
-    allowed_hosts = [request.host]
-    begin
-      parsed_uri = URI.parse(uri)
-      if allowed_hosts.include?(parsed_uri.host)
-        uri
-      else
-        nil
-      end
-    rescue URI::InvalidURIError
-      nil
-    end
-  end
-
-  def redirect_to_tos_interstitial!
-    return unless current_user&.require_tos_interstitial?
-
-    @terms_of_service = TermsOfService.published.first
-    if @terms_of_service.nil?
-      current_user.update(require_tos_interstitial: false)
-      return
-    end
-
-    render 'terms_of_service_interstitial/show', layout: 'auth'
-  end
-
-  def set_referer_header
-    response.set_header('Referrer-Policy', Setting.allow_referrer_origin ? 'strict-origin-when-cross-origin' : 'same-origin')
+    # redundant else clause removed
   end
 end
