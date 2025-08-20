@@ -10368,6 +10368,10 @@ noscript {
   border-bottom: 1px solid var(--background-border-color);
   background: color.change($ui-highlight-color, $alpha: 0.05);
 
+  &.focusable:focus-visible {
+    background: color.change($ui-highlight-color, $alpha: 0.05);
+  }
+
   &__header {
     display: flex;
     align-items: center;

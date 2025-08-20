@@ -87,17 +87,11 @@ export default class StatusList extends ImmutablePureComponent {
       return;
     }
 
-    // Check if the list item is a post
+    // Check if the list item is a post or a 'follow suggestions' widget
     let targetElement = listItem.querySelector('.focusable');
 
-    // Otherwise, check if the item contains follow suggestions or
-    // is a 'load more' button.
-    if (
-      !targetElement && (
-        listItem.querySelector('.inline-follow-suggestions') ||
-        listItem.matches('.load-more')
-      )
-    ) {
+    // Otherwise, check if the item is a 'load more' button.
+    if (!targetElement && listItem.matches('.load-more')) {
       targetElement = listItem;
     }
 
@@ -142,6 +136,8 @@ export default class StatusList extends ImmutablePureComponent {
           return (
             <InlineFollowSuggestions
               key='inline-follow-suggestions'
+              onMoveUp={this.handleMoveUp}
+              onMoveDown={this.handleMoveDown}
             />
           );
         case TIMELINE_GAP:
