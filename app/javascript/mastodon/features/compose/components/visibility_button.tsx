@@ -32,10 +32,6 @@ const messages = defineMessages({
 });
 
 interface PrivacyDropdownProps {
-  value?: StatusVisibility;
-  onChange: (visibility: StatusVisibility) => void;
-  noDirect?: boolean;
-  container?: () => HTMLElement | null;
   disabled?: boolean;
 }
 
@@ -52,60 +48,47 @@ const visibilityOptions = {
     iconComponent: PublicIcon,
     value: 'public',
     text: privacyMessages.public_short,
-    meta: privacyMessages.public_long,
   },
   unlisted: {
     icon: 'unlock',
     iconComponent: QuietTimeIcon,
     value: 'unlisted',
     text: privacyMessages.unlisted_short,
-    meta: privacyMessages.unlisted_long,
-    extra: privacyMessages.unlisted_extra,
   },
   private: {
     icon: 'lock',
     iconComponent: LockIcon,
     value: 'private',
     text: privacyMessages.private_short,
-    meta: privacyMessages.private_long,
   },
   direct: {
     icon: 'at',
     iconComponent: AlternateEmailIcon,
     value: 'direct',
     text: privacyMessages.direct_short,
-    meta: privacyMessages.direct_long,
   },
 };
 
-const PrivacyModalButton: FC<PrivacyDropdownProps> = ({
-  value,
-  disabled = false,
-}) => {
+const PrivacyModalButton: FC<PrivacyDropdownProps> = ({ disabled = false }) => {
   const intl = useIntl();
 
-  const currentVisibility = useAppSelector(
-    (state) =>
-      (state.compose.get('privacy') as StatusVisibility | undefined) ??
-      value ??
-      (state.compose.get('default_privacy') as StatusVisibility),
-  );
-  const currentQuotePolicy = useAppSelector(
-    (state) => state.compose.get('quote_policy') as ApiQuotePolicy,
-  );
+  const { visibility, quotePolicy } = useAppSelector((state) => ({
+    visibility: state.compose.get('privacy') as StatusVisibility,
+    quotePolicy: state.compose.get('quote_policy') as ApiQuotePolicy,
+  }));
 
-  const currentIcon = useMemo(() => {
-    const option = visibilityOptions[currentVisibility];
+  const { icon, iconComponent } = useMemo(() => {
+    const option = visibilityOptions[visibility];
     return { icon: option.icon, iconComponent: option.iconComponent };
-  }, [currentVisibility]);
-  const currentText = useMemo(() => {
+  }, [visibility]);
+  const text = useMemo(() => {
     const visibilityText = intl.formatMessage(
-      visibilityOptions[currentVisibility].text,
+      visibilityOptions[visibility].text,
     );
-    if (currentVisibility === 'private' || currentVisibility === 'direct') {
+    if (visibility === 'private' || visibility === 'direct') {
       return visibilityText;
     }
-    if (currentQuotePolicy !== 'public') {
+    if (quotePolicy !== 'public') {
       return intl.formatMessage(messages.limited_quote, {
         visibility: visibilityText,
       });
@@ -113,7 +96,7 @@ const PrivacyModalButton: FC<PrivacyDropdownProps> = ({
     return intl.formatMessage(messages.anyone_quote, {
       visibility: visibilityText,
     });
-  }, [currentQuotePolicy, currentVisibility, intl]);
+  }, [quotePolicy, visibility, intl]);
 
   const dispatch = useAppDispatch();
   const handleOpen = useCallback(() => {
@@ -138,8 +121,8 @@ const PrivacyModalButton: FC<PrivacyDropdownProps> = ({
       disabled={disabled}
       className={classNames('dropdown-button')}
     >
-      <Icon id={currentIcon.icon} icon={currentIcon.iconComponent} />
-      <span className='dropdown-button__label'>{currentText}</span>
+      <Icon id={icon} icon={iconComponent} />
+      <span className='dropdown-button__label'>{text}</span>
     </button>
   );
 };
