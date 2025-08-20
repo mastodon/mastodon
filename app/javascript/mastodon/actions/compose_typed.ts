@@ -12,7 +12,7 @@ import {
 import type { ApiQuotePolicy } from '../api_types/quotes';
 import type { Status } from '../models/status';
 
-import { ensureComposeIsVisible } from './compose';
+import { focusCompose } from './compose';
 
 type SimulatedMediaAttachmentJSON = ApiMediaAttachmentJSON & {
   unattached?: boolean;
@@ -80,8 +80,8 @@ export const changeUploadCompose = createDataLoadingThunk(
 
 export const quoteComposeByStatus = createAppThunk(
   'compose/quoteComposeStatus',
-  (status: Status, { getState }) => {
-    ensureComposeIsVisible(getState);
+  (status: Status, { dispatch }) => {
+    dispatch(focusCompose());
     return status;
   },
 );
