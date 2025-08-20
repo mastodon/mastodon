@@ -1482,18 +1482,19 @@ body > [data-popper-placement] {
 
     border-bottom: 0;
 
-    .status__content,
-    .status__action-bar,
-    .media-gallery,
-    .video-player,
-    .audio-player,
-    .attachment-list,
-    .picture-in-picture-placeholder,
-    .more-from-author,
-    .status-card,
-    .hashtag-bar,
-    .content-warning,
-    .filter-warning {
+    & > .status__content,
+    & > .status__action-bar,
+    & > .media-gallery,
+    & > .video-player,
+    & > .audio-player,
+    & > .attachment-list,
+    & > .picture-in-picture-placeholder,
+    & > .more-from-author,
+    & > .status-card,
+    & > .hashtag-bar,
+    & > .content-warning,
+    & > .filter-warning,
+    & > .status__quote {
       margin-inline-start: var(--thread-margin);
       width: calc(100% - var(--thread-margin));
     }
