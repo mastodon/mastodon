@@ -56,10 +56,12 @@ ia:
         scopes: Le APIs al quales le application habera accesso. Si tu selige un ambito de nivello superior, non es necessari seliger ambitos individual.
         setting_aggregate_reblogs: Non monstrar nove impulsos pro messages que ha essite recentemente impulsate (affecta solmente le impulsos novemente recipite)
         setting_always_send_emails: Normalmente, le notificationes de e-mail non es inviate quando tu activemente usa Mastodon
+        setting_default_quote_policy: Iste parametro solo habera effecto pro messages create con le proxime version de Mastodon, ma tu pote seliger tu preferentia anticipatemente.
         setting_default_sensitive: Le medios sensibile es celate de ordinario e pote esser revelate con un clic
         setting_display_media_default: Celar le medios marcate como sensibile
         setting_display_media_hide_all: Sempre celar contento multimedial
         setting_display_media_show_all: Sempre monstrar contento multimedial
+        setting_emoji_style: Como monstrar emojis. “Automatic” tentara usar emojis native, ma recurre al Twemojis pro navigatores ancian.
         setting_system_scrollbars_ui: Se applica solmente al navigatores de scriptorio basate sur Safari e Chrome
         setting_use_blurhash: Le imagines degradate se basa sur le colores del visuales celate, ma illos offusca tote le detalios
         setting_use_pending_items: Requirer un clic pro monstrar nove messages in vice de rolar automaticamente le fluxo
@@ -134,16 +136,23 @@ ia:
         name: Tu pote solmente cambiar le litteras inter majusculas e minusculas, per exemplo, pro render lo plus legibile
       terms_of_service:
         changelog: Pote esser structurate con le syntaxe Markdown.
+        effective_date: Un periodo rationabile pote variar inter 10 e 30 dies post le data al qual tu notifica tu usatores.
         text: Pote esser structurate con le syntaxe Markdown.
       terms_of_service_generator:
         admin_email: Le avisos juridic include le contra-avisos, ordinantias judiciari, demandas de retiro e demandas de application del lege.
+        arbitration_address: Pote esser le mesme que le adresse physic supra, o “N/A” si se usa e-mail.
+        arbitration_website: Pote esser un formulario web, o “N/A” si se usa e-mail.
         choice_of_law: Citate, region, territorio o stato cuje leges substantive interne governa omne disputa juridic.
         dmca_address: Pro operatores in le SUA, usa le adresse registrate in le Directorio de Agentes Designate pro le DMCA (DMCA Designated Agent Directory). Un adresse de cassa postal es disponibile per requesta directe; usa le Requesta de Exemption de Cassa Postal pro Agentes Designate del DMCA (DMCA Designated Agent Post Office Box Waiver Request) pro inviar un message electronic al Officio del Derecto de Autor (Copyright Office) e describer que tu es un moderator de contento que travalia de casa e qui time vengiantias o represalias pro tu actiones, necessitante le uso un cassa postal pro remover tu adresse personal del vista public.
+        dmca_email: Pote esser le mesme adresse de e-mail usate pro “Adresse de e-mail pro avisos juridic” supra.
         domain: Identification unic del servicio in linea que tu forni.
         jurisdiction: Indica le pais ubi vive le persona qui paga le facturas. Si se tracta de un interprisa o altere organisation, indica le pais ubi illo es incorporate, e le citate, region, territorio o stato del maniera appropriate pro le pais.
         min_age: Non deberea esser infra le etate minime requirite per le leges de tu jurisdiction.
       user:
         chosen_languages: Si marcate, solmente le messages in le linguas seligite apparera in chronologias public
+        date_of_birth:
+          one: Nos debe assecurar que tu ha al minus %{count} anno pro usar %{domain}. Nos non va immagazinar isto.
+          other: Nos debe assecurar que tu ha al minus %{count} annos pro usar %{domain}. Nos non va immagazinar isto.
         role: Le rolo controla qual permissos le usator ha.
       user_role:
         color: Color a esser usate pro le rolo in omne parte del UI, como RGB in formato hexadecimal
@@ -151,6 +160,10 @@ ia:
         name: Nomine public del rolo, si rolo es definite a esser monstrate como insignia
         permissions_as_keys: Usatores con iste rolo habera accesso a...
         position: Rolo superior decide resolution de conflicto in certe situationes. Certe actiones pote solo esser exequite sur rolos con un prioritate inferior
+      username_block:
+        allow_with_approval: In loco de impedir totalmente le inscription, le inscriptiones correspondente requirera tu approbation
+        comparison: Tene in conto le “problema Scunthorpe” si tu bloca correspondentias partial
+        username: Correspondera independentemente de majusculas e minusculas e de homoglyphos commun como "4" pro "a" or "3" pro "e"
       webhook:
         events: Selige le eventos a inviar
         template: Compone tu proprie carga utile JSON per interpolation de variabile. Lassar blanc pro JSON predefinite.
@@ -233,6 +246,7 @@ ia:
         setting_display_media_default: Predefinite
         setting_display_media_hide_all: Celar toto
         setting_display_media_show_all: Monstrar toto
+        setting_emoji_style: Stilo de emojis
         setting_expand_spoilers: Sempre expander messages marcate con avisos de contento
         setting_hide_network: Cela tu rete social
         setting_missing_alt_text_modal: Monstrar un dialogo de confirmation ante de publicar multimedia sin texto alternative
@@ -271,6 +285,7 @@ ia:
         favicon: Favicon
         mascot: Personalisar le mascotte (hereditage)
         media_cache_retention_period: Periodo de retention del cache multimedial
+        min_age: Etate minime requirite
         peers_api_enabled: Publicar le lista de servitores discoperite in le API
         profile_directory: Activar directorio de profilos
         registrations_mode: Qui pote inscriber se
@@ -314,6 +329,7 @@ ia:
         follow_request: Alcuno ha demandate de sequer te
         mention: Alcuno te ha mentionate
         pending_account: Nove conto besonia de revision
+        quote: Alcuno te ha citate
         reblog: Alcuno ha impulsate tu message
         report: Un nove reporto es inviate
         software_updates:
@@ -360,6 +376,10 @@ ia:
         name: Nomine
         permissions_as_keys: Permissiones
         position: Prioritate
+      username_block:
+        allow_with_approval: Permitter registrationes con approbation
+        comparison: Methodo de comparation
+        username: Parola a comparar
       webhook:
         events: Eventos activate
         template: Modello de carga utile
