@@ -458,18 +458,16 @@ class User < ApplicationRecord
   end
 
   def sign_up_email_requires_approval?
-    return false if email.blank?
+    return false if email_domain.blank?
 
-    _, domain = email.split('@', 2)
-    return false if domain.blank?
+    EmailDomainBlock.requires_approval?(approval_domains, attempt_ip: sign_up_ip)
+  end
 
-    records = []
-
-    # Doing this conditionally is not very satisfying, but this is consistent
-    # with the MX records validations we do and keeps the specs tractable.
-    records = DomainResource.new(domain).mx unless self.class.skip_mx_check?
-
-    EmailDomainBlock.requires_approval?(records + [domain], attempt_ip: sign_up_ip)
+  def approval_domains
+    [email_domain].tap do |records|
+      # MX lookup is enabled only in production by default
+      records << DomainResource.new(email_domain).mx unless self.class.skip_mx_check?
+    end.flatten
   end
 
   def sign_up_username_requires_approval?
