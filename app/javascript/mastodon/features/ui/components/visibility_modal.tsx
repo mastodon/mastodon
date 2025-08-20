@@ -1,4 +1,11 @@
-import { forwardRef, useCallback, useId, useMemo } from 'react';
+import {
+  forwardRef,
+  useCallback,
+  useId,
+  useImperativeHandle,
+  useMemo,
+  useState,
+} from 'react';
 import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
@@ -6,9 +13,11 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import classNames from 'classnames';
 
 import { changeComposeVisibility } from '@/mastodon/actions/compose';
+import { setComposeQuotePolicy } from '@/mastodon/actions/compose_typed';
 import { setStatusQuotePolicy } from '@/mastodon/actions/statuses_typed';
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import { isQuotePolicy } from '@/mastodon/api_types/quotes';
+import { isStatusVisibility } from '@/mastodon/api_types/statuses';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
 import { Dropdown } from '@/mastodon/components/dropdown';
 import type { SelectItem } from '@/mastodon/components/dropdown_selector';
@@ -44,12 +53,19 @@ const messages = defineMessages({
 });
 
 interface VisibilityModalProps extends BaseConfirmationModalProps {
-  statusId: string;
+  statusId?: string;
 }
 
 const selectStatusPolicy = createAppSelector(
-  [(state) => state.statuses, (_state, statusId: string) => statusId],
-  (statuses, statusId) => {
+  [
+    (state) => state.statuses,
+    (_state, statusId?: string) => statusId,
+    (state) => state.compose.get('default_quote_policy') as ApiQuotePolicy,
+  ],
+  (statuses, statusId, defaultQuotePolicy) => {
+    if (!statusId) {
+      return defaultQuotePolicy;
+    }
     const status = statuses.get(statusId);
     if (!status) {
       return 'public';
@@ -77,7 +93,6 @@ const selectStatusPolicy = createAppSelector(
 );
 
 export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ onClose, statusId }, ref) => {
     const intl = useIntl();
     const currentVisibility = useAppSelector(
@@ -89,8 +104,14 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
     const currentQuotePolicy = useAppSelector((state) =>
       selectStatusPolicy(state, statusId),
     );
+
+    const [visibility, setVisibility] = useState(currentVisibility);
+    const [quotePolicy, setQuotePolicy] = useState(currentQuotePolicy);
+
+    const disableVisibility = !!statusId;
     const disableQuotePolicy =
-      currentVisibility === 'private' || currentVisibility === 'direct';
+      visibility === 'private' || visibility === 'direct';
+
     const isSaving = useAppSelector(
       (state) =>
         state.statuses.getIn([statusId, 'isSavingQuotePolicy']) === true,
@@ -134,23 +155,45 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
     );
 
     const dispatch = useAppDispatch();
-    const handleVisibilityChange = useCallback(
-      (value: string) => {
-        // Published statuses cannot change visibility.
-        if (statusId) {
-          return;
-        }
-        dispatch(changeComposeVisibility(value));
-      },
-      [dispatch, statusId],
-    );
-    const handleQuotePolicyChange = useCallback(
-      (value: string) => {
-        if (isQuotePolicy(value) && !disableQuotePolicy) {
-          void dispatch(setStatusQuotePolicy({ policy: value, statusId }));
-        }
-      },
-      [disableQuotePolicy, dispatch, statusId],
+    const handleVisibilityChange = useCallback((value: string) => {
+      if (isStatusVisibility(value)) {
+        setVisibility(value);
+      }
+    }, []);
+    const handleQuotePolicyChange = useCallback((value: string) => {
+      if (isQuotePolicy(value)) {
+        setQuotePolicy(value);
+      }
+    }, []);
+
+    // Save on close
+    useImperativeHandle(
+      ref,
+      () => ({
+        getCloseConfirmationMessage() {
+          if (!disableVisibility) {
+            dispatch(changeComposeVisibility(visibility));
+          }
+          if (!disableQuotePolicy) {
+            if (statusId) {
+              void dispatch(
+                setStatusQuotePolicy({ policy: quotePolicy, statusId }),
+              );
+            } else {
+              dispatch(setComposeQuotePolicy(quotePolicy));
+            }
+          }
+          return null;
+        },
+      }),
+      [
+        disableQuotePolicy,
+        disableVisibility,
+        dispatch,
+        quotePolicy,
+        statusId,
+        visibility,
+      ],
     );
 
     const privacyDropdownId = useId();
@@ -192,7 +235,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             <label
               htmlFor={privacyDropdownId}
               className={classNames('visibility-dropdown__label', {
-                disabled: isSaving || !!statusId,
+                disabled: disableVisibility || isSaving,
               })}
             >
               <FormattedMessage
@@ -203,10 +246,10 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
               <Dropdown
                 items={visibilityItems}
                 classPrefix='visibility-dropdown'
-                current={currentVisibility}
+                current={visibility}
                 onChange={handleVisibilityChange}
                 title={intl.formatMessage(privacyMessages.change_privacy)}
-                disabled={isSaving || !!statusId}
+                disabled={disableVisibility || isSaving}
                 id={privacyDropdownId}
               />
               {!!statusId && (
@@ -234,15 +277,12 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
                 items={quoteItems}
                 onChange={handleQuotePolicyChange}
                 classPrefix='visibility-dropdown'
-                current={currentQuotePolicy}
+                current={quotePolicy}
                 title={intl.formatMessage(messages.buttonTitle)}
                 disabled={disableQuotePolicy || isSaving}
                 id={quoteDropdownId}
               />
-              <QuotePolicyHelper
-                policy={currentQuotePolicy}
-                visibility={currentVisibility}
-              />
+              <QuotePolicyHelper policy={quotePolicy} visibility={visibility} />
             </label>
           </div>
         </div>

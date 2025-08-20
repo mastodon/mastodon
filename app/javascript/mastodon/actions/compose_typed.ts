@@ -97,6 +97,6 @@ export const quoteComposeById = createAppThunk(
 
 export const quoteComposeCancel = createAction('compose/quoteComposeCancel');
 
-export const setQuotePolicy = createAction<ApiQuotePolicy>(
+export const setComposeQuotePolicy = createAction<ApiQuotePolicy>(
   'compose/setQuotePolicy',
 );

@@ -1,15 +1,29 @@
-import { createSelector } from '@reduxjs/toolkit';
 import type { OrderedSet as ImmutableOrderedSet } from 'immutable';
 
-import type { RootState } from 'mastodon/store';
+import { createAppSelector } from 'mastodon/store';
 
-export const getStatusList = createSelector(
+import type { Status, StatusVisibility } from '../models/status';
+
+export const getStatusList = createAppSelector(
   [
-    (
-      state: RootState,
-      type: 'favourites' | 'bookmarks' | 'pins' | 'trending',
-    ) =>
+    (state, type: 'favourites' | 'bookmarks' | 'pins' | 'trending') =>
       state.status_lists.getIn([type, 'items']) as ImmutableOrderedSet<string>,
   ],
   (items) => items.toList(),
+);
+
+export const canQuoteStatus = createAppSelector(
+  [
+    (state) => state.meta.get('me') as string | undefined,
+    (_, status: Status) => status,
+  ],
+  (userId, status) => {
+    const visibility = status.get('visibility') as StatusVisibility;
+    return (
+      status.getIn(['quote_approval', 'current_user']) === 'automatic' &&
+      (['public', 'unlisted'].includes(visibility) ||
+        (visibility === 'private' &&
+          status.getIn(['account', 'id']) === userId))
+    );
+  },
 );

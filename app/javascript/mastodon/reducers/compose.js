@@ -4,7 +4,7 @@ import {
   changeUploadCompose,
   quoteComposeByStatus,
   quoteComposeCancel,
-  setQuotePolicy,
+  setComposeQuotePolicy,
 } from 'mastodon/actions/compose_typed';
 import { timelineDelete } from 'mastodon/actions/timelines_typed';
 
@@ -344,7 +344,7 @@ export const composeReducer = (state = initialState, action) => {
     }
   } else if (quoteComposeCancel.match(action)) {
     return state.set('quoted_status_id', null);
-  } else if (setQuotePolicy.match(action)) {
+  } else if (setComposeQuotePolicy.match(action)) {
     return state.set('quote_policy', action.payload);
   }
 
