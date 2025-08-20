@@ -12,7 +12,11 @@ export function isProduction() {
   else return import.meta.env.PROD;
 }
 
-export type Features = 'modern_emojis';
+export type Features =
+  | 'modern_emojis'
+  | 'outgoing_quotes'
+  | 'fasp'
+  | 'http_message_signatures';
 
 export function isFeatureEnabled(feature: Features) {
   return initialState?.features.includes(feature) ?? false;

@@ -311,7 +311,7 @@
   &:active,
   &:focus-visible {
     color: lighten($action-button-color, 7%);
-    background-color: rgba($action-button-color, 0.15);
+    background-color: color.change($action-button-color, $alpha: 0.15);
   }
 
   &:focus-visible {
@@ -331,7 +331,7 @@
     &:active,
     &:focus-visible {
       color: darken($lighter-text-color, 7%);
-      background-color: rgba($lighter-text-color, 0.15);
+      background-color: color.change($lighter-text-color, $alpha: 0.15);
     }
 
     &:focus-visible {
@@ -361,14 +361,14 @@
 
   &.overlayed {
     box-sizing: content-box;
-    background: rgba($black, 0.65);
+    background: color.change($black, $alpha: 0.65);
     backdrop-filter: $backdrop-blur-filter;
-    color: rgba($white, 0.7);
+    color: color.change($white, $alpha: 0.7);
     border-radius: 4px;
     padding: 2px;
 
     &:hover {
-      background: rgba($black, 0.9);
+      background: color.change($black, $alpha: 0.9);
     }
   }
 
@@ -391,7 +391,7 @@
     border-color: $valid-value-color;
     color: $valid-value-color;
     transition: none;
-    background-color: rgba($valid-value-color, 0.15);
+    background-color: color.change($valid-value-color, $alpha: 0.15);
   }
 }
 
@@ -411,7 +411,7 @@
   &:active,
   &:focus {
     color: darken($lighter-text-color, 7%);
-    background-color: rgba($lighter-text-color, 0.15);
+    background-color: color.change($lighter-text-color, $alpha: 0.15);
   }
 
   &:focus-visible {
@@ -602,15 +602,12 @@ body > [data-popper-placement] {
   &__highlightable {
     display: flex;
     flex-direction: column;
-    gap: 16px;
     flex: 0 1 auto;
     border-radius: 4px;
     border: 1px solid var(--background-border-color);
     transition: border-color 300ms linear;
-    min-height: 0;
     position: relative;
     background: var(--input-background-color);
-    overflow-y: auto;
 
     &.active {
       transition: none;
@@ -621,7 +618,7 @@ body > [data-popper-placement] {
   &__warning {
     color: $inverted-text-color;
     background: $ui-primary-color;
-    box-shadow: 0 2px 6px rgba($base-shadow-color, 0.3);
+    box-shadow: 0 2px 6px color.change($base-shadow-color, $alpha: 0.3);
     padding: 8px 10px;
     border-radius: 4px;
     font-size: 13px;
@@ -659,19 +656,12 @@ body > [data-popper-placement] {
       background: url('@/images/warning-stripes.svg') repeat-y;
       width: 5px;
       flex: 0 0 auto;
-
-      &:first-child {
-        border-start-start-radius: 4px;
-      }
-
-      &:last-child {
-        border-start-end-radius: 4px;
-      }
     }
 
     .autosuggest-input {
       flex: 1 1 auto;
-      border-bottom: 1px solid var(--background-border-color);
+      border: 1px solid var(--background-border-color);
+      border-width: 1px 0;
     }
   }
 
@@ -697,7 +687,7 @@ body > [data-popper-placement] {
 
   .spoiler-input__input {
     padding: 12px 12px - 5px;
-    background: rgba($ui-highlight-color, 0.05);
+    background: color.change($ui-highlight-color, $alpha: 0.05);
     color: $highlight-text-color;
   }
 
@@ -705,6 +695,8 @@ body > [data-popper-placement] {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin: 8px;
+    flex-wrap: wrap;
 
     & > div {
       overflow: hidden;
@@ -715,6 +707,7 @@ body > [data-popper-placement] {
   &__uploads {
     padding: 0 12px;
     aspect-ratio: 3/2;
+    flex-shrink: 0;
   }
 
   .media-gallery {
@@ -813,7 +806,6 @@ body > [data-popper-placement] {
     flex-direction: column;
     gap: 12px;
     padding: 12px;
-    padding-top: 0;
   }
 
   &__submit {
@@ -874,6 +866,7 @@ body > [data-popper-placement] {
   }
 
   &__poll {
+    margin-top: 8px;
     display: flex;
     flex-direction: column;
     align-self: stretch;
@@ -944,6 +937,24 @@ body > [data-popper-placement] {
         text-overflow: ellipsis;
         overflow: hidden;
       }
+    }
+  }
+
+  .status__quote {
+    margin: 0 8px;
+    max-height: 220px;
+    overflow: hidden;
+
+    // Override .status__content .status__content__text.status__content__text--visible
+    .status__content__text.status__content__text {
+      display: -webkit-box;
+    }
+
+    .status__content__text {
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
   }
 }
@@ -1428,7 +1439,7 @@ body > [data-popper-placement] {
 .focusable {
   &:focus-visible {
     outline: 0;
-    background: rgba($ui-highlight-color, 0.05);
+    background: color.change($ui-highlight-color, $alpha: 0.05);
     box-shadow: inset 0 0 0 2px $ui-button-focus-outline-color;
   }
 }
@@ -1583,6 +1594,7 @@ body > [data-popper-placement] {
   align-items: center;
   gap: 10px;
   overflow: hidden;
+  flex-grow: 1;
 
   .display-name {
     bdi {
@@ -1597,6 +1609,11 @@ body > [data-popper-placement] {
       text-overflow: ellipsis;
     }
   }
+}
+
+.status__quote-cancel {
+  align-self: self-start;
+  order: 5;
 }
 
 .status__info {
@@ -1683,10 +1700,10 @@ body > [data-popper-placement] {
 .notification-ungrouped--direct,
 .notification-group--direct,
 .notification-group--annual-report {
-  background: rgba($ui-highlight-color, 0.05);
+  background: color.change($ui-highlight-color, $alpha: 0.05);
 
   &:focus {
-    background: rgba($ui-highlight-color, 0.1);
+    background: color.change($ui-highlight-color, $alpha: 0.1);
   }
 }
 
@@ -2016,7 +2033,7 @@ body > [data-popper-placement] {
 
   &__domain-pill {
     display: inline-flex;
-    background: rgba($highlight-text-color, 0.2);
+    background: color.change($highlight-text-color, $alpha: 0.2);
     border-radius: 4px;
     border: 0;
     color: $highlight-text-color;
@@ -2077,7 +2094,7 @@ body > [data-popper-placement] {
 
       &__handle {
         border: 2px dashed $highlight-text-color;
-        background: rgba($highlight-text-color, 0.1);
+        background: color.change($highlight-text-color, $alpha: 0.1);
         padding: 12px 8px;
         color: $highlight-text-color;
         border-radius: 4px;
@@ -3283,7 +3300,7 @@ a.account__display-name {
 
 .columns-area__panels__pane--overlay {
   pointer-events: auto;
-  background: rgba($base-overlay-background, 0.5);
+  background: color.change($base-overlay-background, $alpha: 0.5);
   z-index: 3;
 
   .columns-area__panels__pane__inner {
@@ -3518,11 +3535,10 @@ a.account__display-name {
   display: flex;
   flex-direction: column;
   height: calc(100% - 10px);
-  overflow-y: hidden;
+  overflow-y: auto;
 
   .compose-form {
     flex: 1 1 auto;
-    min-height: 0;
   }
 }
 
@@ -3821,7 +3837,10 @@ a.account__display-name {
   border-radius: 10px;
   padding: 0;
   user-select: none;
-  -webkit-tap-highlight-color: rgba($base-overlay-background, 0);
+  -webkit-tap-highlight-color: color.change(
+    $base-overlay-background,
+    $alpha: 0
+  );
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -4070,7 +4089,7 @@ a.account__display-name {
     cursor: pointer;
 
     & > div {
-      background: rgba($base-shadow-color, 0.6);
+      background: color.change($base-shadow-color, $alpha: 0.6);
       border-radius: 8px;
       padding: 12px 9px;
       backdrop-filter: $backdrop-blur-filter;
@@ -4400,7 +4419,7 @@ a.status-card {
   z-index: 1;
 
   &.active {
-    box-shadow: 0 1px 0 rgba($highlight-text-color, 0.3);
+    box-shadow: 0 1px 0 color.change($highlight-text-color, $alpha: 0.3);
 
     &::before {
       display: block;
@@ -4416,8 +4435,8 @@ a.status-card {
       z-index: 1;
       background: radial-gradient(
         ellipse,
-        rgba($ui-highlight-color, 0.23) 0%,
-        rgba($ui-highlight-color, 0) 60%
+        color.change($ui-highlight-color, $alpha: 0.23) 0%,
+        color.change($ui-highlight-color, $alpha: 0) 60%
       );
     }
   }
@@ -4511,7 +4530,7 @@ a.status-card {
   &.active {
     .column-header__icon {
       color: $highlight-text-color;
-      text-shadow: 0 0 10px rgba($highlight-text-color, 0.4);
+      text-shadow: 0 0 10px color.change($highlight-text-color, $alpha: 0.4);
     }
   }
 
@@ -4856,7 +4875,7 @@ a.status-card {
     font-size: 14px;
 
     &__label {
-      background-color: rgba($black, 0.45);
+      background-color: color.change($black, $alpha: 0.45);
       backdrop-filter: $backdrop-blur-filter;
       border-radius: 8px;
       padding: 12px 16px;
@@ -4876,7 +4895,7 @@ a.status-card {
     &:hover,
     &:focus {
       .spoiler-button__overlay__label {
-        background-color: rgba($black, 0.9);
+        background-color: color.change($black, $alpha: 0.9);
       }
     }
   }
@@ -5267,7 +5286,7 @@ a.status-card {
 
 .upload-area {
   align-items: center;
-  background: rgba($base-overlay-background, 0.8);
+  background: color.change($base-overlay-background, $alpha: 0.8);
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -5302,7 +5321,7 @@ a.status-card {
   z-index: -1;
   border-radius: 4px;
   background: $ui-base-color;
-  box-shadow: 0 0 5px rgba($base-shadow-color, 0.2);
+  box-shadow: 0 0 5px color.change($base-shadow-color, $alpha: 0.2);
 }
 
 .upload-area__content {
@@ -5403,7 +5422,8 @@ a.status-card {
 }
 
 .privacy-dropdown__dropdown,
-.language-dropdown__dropdown {
+.language-dropdown__dropdown,
+.visibility-dropdown__dropdown {
   box-shadow: var(--dropdown-shadow);
   background: var(--dropdown-background-color);
   backdrop-filter: $backdrop-blur-filter;
@@ -5432,7 +5452,8 @@ a.status-card {
   z-index: 9999;
 }
 
-.privacy-dropdown__option {
+.privacy-dropdown__option,
+.visibility-dropdown__option {
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.25px;
@@ -5575,6 +5596,39 @@ a.status-card {
         }
       }
     }
+  }
+}
+
+.visibility-dropdown {
+  &__overlay[data-popper-placement] {
+    z-index: 9999;
+  }
+
+  &__label.disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  &__button {
+    color: $primary-text-color;
+    background: var(--dropdown-background-color);
+    border: 1px solid var(--dropdown-border-color);
+    padding: 8px 12px;
+    width: 100%;
+    text-align: left;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 40px;
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  &__helper {
+    margin-top: 4px;
+    font-size: 0.8em;
+    color: $dark-text-color;
   }
 }
 
@@ -5870,6 +5924,17 @@ a.status-card {
   }
 }
 
+.modal-root label {
+  cursor: pointer;
+  display: block;
+
+  > span {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+}
+
 .video-modal .video-player {
   max-height: 80vh;
   max-width: 100vw;
@@ -5894,7 +5959,7 @@ a.status-card {
     align-items: center;
 
     .icon-button {
-      color: rgba($white, 0.7);
+      color: color.change($white, $alpha: 0.7);
       padding: 8px;
 
       .icon {
@@ -5907,11 +5972,11 @@ a.status-card {
       &:focus,
       &:active {
         color: $white;
-        background-color: rgba($white, 0.15);
+        background-color: color.change($white, $alpha: 0.15);
       }
 
       &:focus {
-        background-color: rgba($white, 0.3);
+        background-color: color.change($white, $alpha: 0.3);
       }
     }
   }
@@ -5952,7 +6017,7 @@ a.status-card {
   background: transparent;
   box-sizing: border-box;
   border: 0;
-  color: rgba($white, 0.7);
+  color: color.change($white, $alpha: 0.7);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -6006,11 +6071,11 @@ a.status-card {
       &:focus,
       &:active {
         color: $white;
-        background-color: rgba($white, 0.15);
+        background-color: color.change($white, $alpha: 0.15);
       }
 
       &:focus {
-        background-color: rgba($white, 0.3);
+        background-color: color.change($white, $alpha: 0.3);
       }
 
       &.active {
@@ -6019,11 +6084,11 @@ a.status-card {
         &:hover,
         &:focus,
         &:active {
-          background: rgba($highlight-text-color, 0.15);
+          background: color.change($highlight-text-color, $alpha: 0.15);
         }
 
         &:focus {
-          background: rgba($highlight-text-color, 0.3);
+          background: color.change($highlight-text-color, $alpha: 0.3);
         }
       }
 
@@ -6033,11 +6098,11 @@ a.status-card {
         &:hover,
         &:focus,
         &:active {
-          background: rgba($gold-star, 0.15);
+          background: color.change($gold-star, $alpha: 0.15);
         }
 
         &:focus {
-          background: rgba($gold-star, 0.3);
+          background: color.change($gold-star, $alpha: 0.3);
         }
       }
 
@@ -6375,6 +6440,15 @@ a.status-card {
     line-height: 20px;
     letter-spacing: 0.25px;
     overflow-y: auto;
+
+    &__description {
+      margin: 24px 24px 0;
+      color: $darker-text-color;
+
+      a {
+        color: inherit;
+      }
+    }
 
     &__form {
       display: flex;
@@ -6900,7 +6974,7 @@ a.status-card {
     display: block;
     color: $white;
     border: 0;
-    background: rgba($black, 0.65);
+    background: color.change($black, $alpha: 0.65);
     backdrop-filter: $backdrop-blur-filter;
     padding: 3px 12px;
     border-radius: 99px;
@@ -6925,7 +6999,7 @@ a.status-card {
   text-align: center;
   color: $white;
   border: 0;
-  background: rgba($black, 0.65);
+  background: color.change($black, $alpha: 0.65);
   backdrop-filter: $backdrop-blur-filter;
   padding: 3px 8px;
   border-radius: 4px;
@@ -6947,7 +7021,7 @@ a.status-card {
 }
 
 .media-gallery__alt__popover {
-  background: rgba($black, 0.65);
+  background: color.change($black, $alpha: 0.65);
   backdrop-filter: $backdrop-blur-filter;
   border-radius: 4px;
   box-shadow: var(--dropdown-shadow);
@@ -6969,7 +7043,7 @@ a.status-card {
   p {
     font-size: 15px;
     line-height: 20px;
-    color: rgba($white, 0.85);
+    color: color.change($white, $alpha: 0.85);
     white-space: pre-line;
   }
 }
@@ -7413,8 +7487,8 @@ a.status-card {
     box-sizing: border-box;
     background: linear-gradient(
       0deg,
-      rgba($base-shadow-color, 0.85) 0,
-      rgba($base-shadow-color, 0.45) 60%,
+      color.change($base-shadow-color, $alpha: 0.85) 0,
+      color.change($base-shadow-color, $alpha: 0.45) 60%,
       transparent
     );
     padding: 0 15px;
@@ -7510,7 +7584,7 @@ a.status-card {
       flex: 0 0 auto;
       background: transparent;
       border: 0;
-      color: rgba($white, 0.75);
+      color: color.change($white, $alpha: 0.75);
       font-weight: 500;
 
       &:active,
@@ -7574,7 +7648,7 @@ a.status-card {
     &::before {
       content: '';
       width: 50px;
-      background: rgba($white, 0.35);
+      background: color.change($white, $alpha: 0.35);
       border-radius: 4px;
       display: block;
       position: absolute;
@@ -7606,7 +7680,7 @@ a.status-card {
       margin-inline-start: -6px;
       transform: translate(0, -50%);
       background: $white;
-      box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
+      box-shadow: 1px 2px 6px color.change($base-shadow-color, $alpha: 0.2);
       opacity: 0;
 
       .no-reduce-motion & {
@@ -7644,7 +7718,7 @@ a.status-card {
     &::before {
       content: '';
       width: 100%;
-      background: rgba($white, 0.35);
+      background: color.change($white, $alpha: 0.35);
       border-radius: 4px;
       display: block;
       position: absolute;
@@ -7663,7 +7737,7 @@ a.status-card {
     }
 
     &__buffer {
-      background: rgba($white, 0.2);
+      background: color.change($white, $alpha: 0.2);
     }
 
     &__handle {
@@ -7676,7 +7750,7 @@ a.status-card {
       top: 10px;
       margin-inline-start: -6px;
       background: $white;
-      box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
+      box-shadow: 1px 2px 6px color.change($base-shadow-color, $alpha: 0.2);
 
       .no-reduce-motion & {
         transition: opacity 0.1s ease;
@@ -7700,7 +7774,7 @@ a.status-card {
     top: 50%;
     inset-inline-start: 50%;
     transform: translate(-50%, -50%);
-    background: rgba($base-shadow-color, 0.45);
+    background: color.change($base-shadow-color, $alpha: 0.45);
     backdrop-filter: $backdrop-blur-filter;
     color: $white;
     border-radius: 8px;
@@ -8035,7 +8109,7 @@ noscript {
   inset-inline-start: 0;
   width: 100%;
   height: 100%;
-  background: rgba($base-overlay-background, 0.5);
+  background: color.change($base-overlay-background, $alpha: 0.5);
 }
 
 .focal-point {
@@ -8057,7 +8131,7 @@ noscript {
     transform: translate(-50%, -50%);
     border: 2px solid #fff;
     border-radius: 50%;
-    box-shadow: 0 0 0 9999em rgba($base-shadow-color, 0.35);
+    box-shadow: 0 0 0 9999em color.change($base-shadow-color, $alpha: 0.35);
     pointer-events: none;
   }
 }
@@ -8299,7 +8373,7 @@ noscript {
       }
 
       .verified {
-        border: 1px solid rgba($valid-value-color, 0.5);
+        border: 1px solid color.change($valid-value-color, $alpha: 0.5);
         margin-top: -1px;
         margin-inline: -1px;
 
@@ -8519,7 +8593,7 @@ noscript {
       width: 50px;
 
       path:first-child {
-        fill: rgba($highlight-text-color, 0.25) !important;
+        fill: color.change($highlight-text-color, $alpha: 0.25) !important;
         fill-opacity: 1 !important;
       }
 
@@ -8544,7 +8618,7 @@ noscript {
 
       .trends__item__sparkline {
         path:first-child {
-          fill: rgba($gold-star, 0.25) !important;
+          fill: color.change($gold-star, $alpha: 0.25) !important;
         }
 
         path:last-child {
@@ -9709,7 +9783,7 @@ noscript {
   margin-bottom: 5px;
   border-radius: 8px;
   border: 1px solid $highlight-text-color;
-  background: rgba($highlight-text-color, 0.15);
+  background: color.change($highlight-text-color, $alpha: 0.15);
   overflow: hidden;
   flex-shrink: 0;
 
@@ -9764,7 +9838,7 @@ noscript {
     }
 
     .button-tertiary {
-      background: rgba($ui-base-color, 0.15);
+      background: color.change($ui-base-color, $alpha: 0.15);
       backdrop-filter: blur(8px);
     }
   }
@@ -9781,7 +9855,7 @@ noscript {
 
 .warning-banner {
   border: 1px solid $warning-red;
-  background: rgba($warning-red, 0.15);
+  background: color.change($warning-red, $alpha: 0.15);
 
   &__message {
     h1 {
@@ -10116,13 +10190,13 @@ noscript {
   padding: 15px;
   margin: 0;
   color: $white;
-  background: rgba($black, 0.85);
+  background: color.change($black, $alpha: 0.85);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(lighten($classic-base-color, 4%), 0.85);
   border-radius: 8px;
   box-shadow:
-    0 10px 15px -3px rgba($base-shadow-color, 0.25),
-    0 4px 6px -4px rgba($base-shadow-color, 0.25);
+    0 10px 15px -3px color.change($base-shadow-color, $alpha: 0.25),
+    0 4px 6px -4px color.change($base-shadow-color, $alpha: 0.25);
   cursor: default;
   font-size: 15px;
   line-height: 21px;
@@ -10160,7 +10234,7 @@ noscript {
   &:hover,
   &:focus,
   &:active {
-    background: rgba($ui-base-color, 0.85);
+    background: color.change($ui-base-color, $alpha: 0.85);
   }
 }
 
@@ -10258,7 +10332,7 @@ noscript {
   padding: 16px 0;
   padding-bottom: 0;
   border-bottom: 1px solid var(--background-border-color);
-  background: rgba($ui-highlight-color, 0.05);
+  background: color.change($ui-highlight-color, $alpha: 0.05);
 
   &__header {
     display: flex;

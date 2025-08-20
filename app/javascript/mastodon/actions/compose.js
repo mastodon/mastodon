@@ -183,7 +183,7 @@ export function directCompose(account) {
   };
 }
 
-export function submitCompose() {
+export function submitCompose(successCallback) {
   return function (dispatch, getState) {
     const status   = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
@@ -228,6 +228,8 @@ export function submitCompose() {
         visibility: getState().getIn(['compose', 'privacy']),
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
+        quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
+        quote_approval_policy: getState().getIn(['compose', 'quote_policy']),
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -239,6 +241,9 @@ export function submitCompose() {
 
       dispatch(insertIntoTagHistory(response.data.tags, status));
       dispatch(submitComposeSuccess({ ...response.data }));
+      if (typeof successCallback === 'function') {
+        successCallback(response.data);
+      }
 
       // To make the app more responsive, immediately push the status
       // into the columns

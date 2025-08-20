@@ -29,6 +29,7 @@ import {
   STATUS_FETCH_REQUEST,
   STATUS_FETCH_FAIL,
 } from '../actions/statuses';
+import { setStatusQuotePolicy } from '../actions/statuses_typed';
 
 const importStatus = (state, status) => state.set(status.id, fromJS(status));
 
@@ -70,6 +71,22 @@ const initialState = ImmutableMap();
 
 /** @type {import('@reduxjs/toolkit').Reducer<typeof initialState>} */
 export default function statuses(state = initialState, action) {
+  if (setStatusQuotePolicy.pending.match(action)) {
+    const status = state.get(action.meta.arg.statusId);
+    if (status) {
+      return state.setIn([action.meta.arg.statusId, 'isSavingQuotePolicy'], true);
+    }
+  } else if (setStatusQuotePolicy.fulfilled.match(action)) {
+    const status = state.get(action.payload.id);
+    if (status) {
+      return state
+        .setIn([action.payload.id, 'quote_approval'], action.payload.quote_approval)
+        .deleteIn([action.payload.id, 'isSavingQuotePolicy']);
+    }
+  } else if (setStatusQuotePolicy.rejected.match(action)) {
+    return state.deleteIn([action.meta.arg.statusId, 'isSavingQuotePolicy']);
+  }
+
   switch(action.type) {
   case STATUS_FETCH_REQUEST:
     return state.setIn([action.id, 'isLoading'], true);

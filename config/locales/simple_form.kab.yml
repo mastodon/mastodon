@@ -27,6 +27,8 @@ kab:
         username: Tzemreḍ ad tesqedceḍ isekkilen, uṭṭunen akked yijerriden n wadda
       featured_tag:
         name: 'Ha-t-an kra seg ihacṭagen i tesseqdaceḍ ussan-a ineggura maḍi :'
+      form_admin_settings:
+        min_age: Ad ttwasutren yiseqdacen ad sentemen azemz-nsen n tlalit deg ujerred
       form_challenge:
         current_password: Tkecmeḍ ɣer temnaḍt taɣellsant
       imports:
@@ -37,15 +39,19 @@ kab:
         comment: D afrayan. Cfu ɣef wayɣer i terniḍ alugen-a.
         severities:
           no_access: Sewḥel anekcu ɣer akk tiɣbula
+      user:
+        date_of_birth:
+          one: Ilaq ad neḍmen belli tesɛiḍ ma ulac %{count} akken ad tesqedceḍ %{domain}. Ur neḥrez ara aya.
+          other: Ilaq ad neḍmen belli tesɛiḍ ma ulac %{count} akken ad tesqedceḍ %{domain}. Ur neḥrez ara aya.
     labels:
       account:
         fields:
           name: Tabzimt
           value: Agbur
       account_alias:
-        acct: Tansa n umiḍan aqbur
+        acct: Asulay n umiḍan aqbur
       account_migration:
-        acct: Tansa n umiḍan amaynut
+        acct: Asulay n umiḍan amaynut
       account_warning_preset:
         title: Azwel
       admin_account_action:
@@ -90,12 +96,14 @@ kab:
         setting_always_send_emails: Dima ttazen-d ilɣa s yimayl
         setting_default_language: Tutlayt n usuffeɣ
         setting_default_privacy: Tabaḍnit n usuffeɣ
+        setting_default_quote_policy: Anwa i izemren ad d-yebder
         setting_display_media: Askanay n imidyaten
         setting_display_media_default: Akk-a kan
         setting_display_media_hide_all: Ffer-iten akk
         setting_display_media_show_all: Sken-iten-id akk
         setting_hide_network: Ffer azetta-k·m inmetti
         setting_theme: Asental n wesmel
+        setting_trends: Sken-d inezzaɣ n wass-a
         setting_use_pending_items: Askar aleɣwayan
         sign_in_token_attempt: Tangalt n tɣellist
         title: Azwel
@@ -116,6 +124,7 @@ kab:
         status_page_url: URL n uusebter n waddaden
         theme: Asentel amezwer
         thumbnail: Tanfult n uqeddac
+        trends: Rmed inezzaɣ
       interactions:
         must_be_follower: Ssewḥel ilɣa sɣur wid akk d tid ur yellin ara d imeḍfaren-ik·im
         must_be_following: Ssewḥel ilɣa sɣur wid akked tid ur tettḍafareḍ ara

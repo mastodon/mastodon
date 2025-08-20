@@ -82,13 +82,13 @@ gem 'rqrcode', '~> 3.0'
 gem 'ruby-progressbar', '~> 1.13'
 gem 'sanitize', '~> 7.0'
 gem 'scenic', '~> 1.7'
-gem 'sidekiq', '< 8'
+gem 'sidekiq', '< 9'
 gem 'sidekiq-bulk', '~> 0.2.0'
 gem 'sidekiq-scheduler', '~> 6.0'
 gem 'sidekiq-unique-jobs', '> 8'
 gem 'simple_form', '~> 5.2'
 gem 'simple-navigation', '~> 4.4'
-gem 'stoplight', '~> 4.1'
+gem 'stoplight'
 gem 'strong_migrations'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
@@ -102,17 +102,17 @@ gem 'rdf-normalize', '~> 0.5'
 
 gem 'prometheus_exporter', '~> 2.2', require: false
 
-gem 'opentelemetry-api', '~> 1.5.0'
+gem 'opentelemetry-api', '~> 1.6.0'
 
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.30.0', require: false
   gem 'opentelemetry-instrumentation-active_job', '~> 0.8.0', require: false
   gem 'opentelemetry-instrumentation-active_model_serializers', '~> 0.22.0', require: false
   gem 'opentelemetry-instrumentation-concurrent_ruby', '~> 0.22.0', require: false
-  gem 'opentelemetry-instrumentation-excon', '~> 0.23.0', require: false
-  gem 'opentelemetry-instrumentation-faraday', '~> 0.27.0', require: false
+  gem 'opentelemetry-instrumentation-excon', '~> 0.24.0', require: false
+  gem 'opentelemetry-instrumentation-faraday', '~> 0.28.0', require: false
   gem 'opentelemetry-instrumentation-http', '~> 0.25.0', require: false
-  gem 'opentelemetry-instrumentation-http_client', '~> 0.23.0', require: false
+  gem 'opentelemetry-instrumentation-http_client', '~> 0.24.0', require: false
   gem 'opentelemetry-instrumentation-net_http', '~> 0.23.0', require: false
   gem 'opentelemetry-instrumentation-pg', '~> 0.30.0', require: false
   gem 'opentelemetry-instrumentation-rack', '~> 0.26.0', require: false
@@ -146,7 +146,7 @@ group :test do
   gem 'climate_control'
 
   # Validate schemas in specs
-  gem 'json-schema', '~> 5.0'
+  gem 'json-schema', '~> 6.0'
 
   # Test harness fo rack components
   gem 'rack-test', '~> 2.1'
@@ -223,7 +223,7 @@ gem 'connection_pool', require: false
 gem 'xorcist', '~> 1.1'
 
 gem 'net-http', '~> 0.6.0'
-gem 'rubyzip', '~> 2.3'
+gem 'rubyzip', '~> 3.0'
 
 gem 'hcaptcha', '~> 7.1'
 
