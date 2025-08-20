@@ -1,10 +1,12 @@
+import type { KeyboardEvent, MouseEvent, TouchEvent } from 'react';
+
 interface BaseMenuItem {
   text: string;
   dangerous?: boolean;
 }
 
 export interface ActionMenuItem extends BaseMenuItem {
-  action: () => void;
+  action: (event: MouseEvent | KeyboardEvent | TouchEvent) => void;
 }
 
 export interface LinkMenuItem extends BaseMenuItem {

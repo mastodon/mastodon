@@ -2856,9 +2856,42 @@ a.account__display-name {
     &:focus,
     &:hover,
     &:active {
-      background: var(--dropdown-border-color);
-      outline: 0;
+      &:not(:disabled) {
+        background: var(--dropdown-border-color);
+        outline: 0;
+      }
     }
+  }
+
+  button:disabled {
+    color: $dark-text-color;
+    cursor: default;
+  }
+}
+
+.reblog-button {
+  &__item {
+    width: 280px;
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: inherit;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &.active:not(.disabled) {
+      color: $highlight-text-color;
+    }
+  }
+
+  &__meta {
+    font-weight: 400;
   }
 }
 
