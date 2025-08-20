@@ -41,6 +41,7 @@ import {
   translateStatus,
   undoStatusTranslation,
 } from '../actions/statuses';
+import { setStatusQuotePolicy } from '../actions/statuses_typed';
 import Status from '../components/status';
 import { deleteModal } from '../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
@@ -116,7 +117,13 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
   },
 
   onQuotePolicyChange(status) {
-    dispatch(openModal({ modalType: 'COMPOSE_PRIVACY', modalProps: { statusId: status.get('id') } }));
+    const statusId = status.get('id');
+    const handleChange = (_, quotePolicy) => {
+      dispatch(
+        setStatusQuotePolicy({ policy: quotePolicy, statusId }),
+      );
+    }
+    dispatch(openModal({ modalType: 'COMPOSE_PRIVACY', modalProps: { statusId, onChange: handleChange } }));
   },
 
   onEdit (status) {

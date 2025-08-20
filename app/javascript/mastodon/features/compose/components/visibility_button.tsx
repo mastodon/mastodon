@@ -5,6 +5,8 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { changeComposeVisibility } from '@/mastodon/actions/compose';
+import { setComposeQuotePolicy } from '@/mastodon/actions/compose_typed';
 import { openModal } from '@/mastodon/actions/modal';
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
@@ -16,6 +18,7 @@ import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import QuietTimeIcon from '@/material-icons/400-24px/quiet_time.svg?react';
 
+import type { VisibilityModalCallback } from '../../ui/components/visibility_modal';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 
 import { messages as privacyMessages } from './privacy_dropdown';
@@ -99,9 +102,27 @@ const PrivacyModalButton: FC<PrivacyDropdownProps> = ({ disabled = false }) => {
   }, [quotePolicy, visibility, intl]);
 
   const dispatch = useAppDispatch();
+
+  const handleChange: VisibilityModalCallback = useCallback(
+    (newVisibility, newQuotePolicy) => {
+      if (newVisibility !== visibility) {
+        dispatch(changeComposeVisibility(newVisibility));
+      }
+      if (newQuotePolicy !== quotePolicy) {
+        dispatch(setComposeQuotePolicy(newQuotePolicy));
+      }
+    },
+    [dispatch, quotePolicy, visibility],
+  );
+
   const handleOpen = useCallback(() => {
-    dispatch(openModal({ modalType: 'COMPOSE_PRIVACY', modalProps: {} }));
-  }, [dispatch]);
+    dispatch(
+      openModal({
+        modalType: 'COMPOSE_PRIVACY',
+        modalProps: { onChange: handleChange },
+      }),
+    );
+  }, [dispatch, handleChange]);
   const handleKeyDown: KeyboardEventHandler = useCallback(
     (event) => {
       if (event.key === 'Enter' || event.key === ' ') {

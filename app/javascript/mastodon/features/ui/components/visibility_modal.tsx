@@ -12,9 +12,6 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import { changeComposeVisibility } from '@/mastodon/actions/compose';
-import { setComposeQuotePolicy } from '@/mastodon/actions/compose_typed';
-import { setStatusQuotePolicy } from '@/mastodon/actions/statuses_typed';
 import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import { isQuotePolicy } from '@/mastodon/api_types/quotes';
 import { isStatusVisibility } from '@/mastodon/api_types/statuses';
@@ -23,11 +20,7 @@ import { Dropdown } from '@/mastodon/components/dropdown';
 import type { SelectItem } from '@/mastodon/components/dropdown_selector';
 import { IconButton } from '@/mastodon/components/icon_button';
 import { messages as privacyMessages } from '@/mastodon/features/compose/components/privacy_dropdown';
-import {
-  createAppSelector,
-  useAppDispatch,
-  useAppSelector,
-} from '@/mastodon/store';
+import { createAppSelector, useAppSelector } from '@/mastodon/store';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
 import type { BaseConfirmationModalProps } from './confirmation_modals/confirmation_modal';
@@ -52,8 +45,14 @@ const messages = defineMessages({
   },
 });
 
+export type VisibilityModalCallback = (
+  visibility: StatusVisibility,
+  quotePolicy: ApiQuotePolicy,
+) => void;
+
 interface VisibilityModalProps extends BaseConfirmationModalProps {
   statusId?: string;
+  onChange: VisibilityModalCallback;
 }
 
 const selectStatusPolicy = createAppSelector(
@@ -93,7 +92,7 @@ const selectStatusPolicy = createAppSelector(
 );
 
 export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
-  ({ onClose, statusId }, ref) => {
+  ({ onClose, onChange, statusId }, ref) => {
     const intl = useIntl();
     const currentVisibility = useAppSelector((state) =>
       statusId
@@ -146,7 +145,6 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
       [intl],
     );
 
-    const dispatch = useAppDispatch();
     const handleVisibilityChange = useCallback((value: string) => {
       if (isStatusVisibility(value)) {
         setVisibility(value);
@@ -163,29 +161,11 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
       ref,
       () => ({
         getCloseConfirmationMessage() {
-          if (!disableVisibility) {
-            dispatch(changeComposeVisibility(visibility));
-          }
-          if (!disableQuotePolicy) {
-            if (statusId) {
-              void dispatch(
-                setStatusQuotePolicy({ policy: quotePolicy, statusId }),
-              );
-            } else {
-              dispatch(setComposeQuotePolicy(quotePolicy));
-            }
-          }
+          onChange(visibility, quotePolicy);
           return null;
         },
       }),
-      [
-        disableQuotePolicy,
-        disableVisibility,
-        dispatch,
-        quotePolicy,
-        statusId,
-        visibility,
-      ],
+      [onChange, quotePolicy, visibility],
     );
 
     const privacyDropdownId = useId();
