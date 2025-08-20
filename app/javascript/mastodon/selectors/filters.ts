@@ -15,7 +15,7 @@ export const getFilters = createSelector(
     (_, { contextType }: { contextType: string }) => contextType,
   ],
   (filters, contextType) => {
-    if (!contextType) {
+    if (!contextType || contextType === 'compose') {
       return null;
     }
 

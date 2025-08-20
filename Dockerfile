@@ -17,11 +17,11 @@ ARG RUBY_VERSION="3.4.5"
 # # Node.js version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 # renovate: datasource=node-version depName=node
 ARG NODE_MAJOR_VERSION="22"
-# Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
-ARG DEBIAN_VERSION="bookworm"
-# Node.js image to use for base image based on combined variables (ex: 20-bookworm-slim)
+# Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="trixie"]
+ARG DEBIAN_VERSION="trixie"
+# Node.js image to use for base image based on combined variables (ex: 20-trixie-slim)
 FROM ${BASE_REGISTRY}/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim AS node
-# Ruby image to use for base image based on combined variables (ex: 3.4.x-slim-bookworm)
+# Ruby image to use for base image based on combined variables (ex: 3.4.x-slim-trixie)
 FROM ${BASE_REGISTRY}/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} AS ruby
 
 # Resulting version string is vX.X.X-MASTODON_VERSION_PRERELEASE+MASTODON_VERSION_METADATA
@@ -96,9 +96,6 @@ RUN \
 # Set /opt/mastodon as working directory
 WORKDIR /opt/mastodon
 
-# Add backport repository for some specific packages where we need the latest version
-RUN echo 'deb http://deb.debian.org/debian bookworm-backports main' >> /etc/apt/sources.list
-
 # hadolint ignore=DL3008,DL3005
 RUN \
   # Mount Apt cache and lib directories from Docker buildx caches
@@ -161,11 +158,11 @@ RUN \
   libexif-dev \
   libexpat1-dev \
   libgirepository1.0-dev \
-  libheif-dev/bookworm-backports \
+  libheif-dev \
+  libhwy-dev \
   libimagequant-dev \
   libjpeg62-turbo-dev \
   liblcms2-dev \
-  liborc-dev \
   libspng-dev \
   libtiff-dev \
   libwebp-dev \
@@ -209,7 +206,7 @@ FROM build AS ffmpeg
 
 # ffmpeg version to compile, change with [--build-arg FFMPEG_VERSION="7.0.x"]
 # renovate: datasource=repology depName=ffmpeg packageName=openpkg_current/ffmpeg
-ARG FFMPEG_VERSION=7.1
+ARG FFMPEG_VERSION=7.1.1
 # ffmpeg download URL, change with [--build-arg FFMPEG_URL="https://ffmpeg.org/releases"]
 ARG FFMPEG_URL=https://ffmpeg.org/releases
 
@@ -327,28 +324,28 @@ RUN \
   # Apt update install non-dev versions of necessary components
   apt-get install -y --no-install-recommends \
   libexpat1 \
-  libglib2.0-0 \
-  libicu72 \
+  libglib2.0-0t64 \
+  libicu76 \
   libidn12 \
   libpq5 \
-  libreadline8 \
-  libssl3 \
+  libreadline8t64 \
+  libssl3t64 \
   libyaml-0-2 \
   # libvips components
   libcgif0 \
   libexif12 \
-  libheif1/bookworm-backports \
+  libheif1 \
+  libhwy1t64 \
   libimagequant0 \
   libjpeg62-turbo \
   liblcms2-2 \
-  liborc-0.4-0 \
   libspng0 \
   libtiff6 \
   libwebp7 \
   libwebpdemux2 \
   libwebpmux3 \
   # ffmpeg components
-  libdav1d6 \
+  libdav1d7 \
   libmp3lame0 \
   libopencore-amrnb0 \
   libopencore-amrwb0 \
@@ -358,9 +355,9 @@ RUN \
   libvorbis0a \
   libvorbisenc2 \
   libvorbisfile3 \
-  libvpx7 \
+  libvpx9 \
   libx264-164 \
-  libx265-199 \
+  libx265-215 \
   ;
 
 # Copy Mastodon sources into final layer

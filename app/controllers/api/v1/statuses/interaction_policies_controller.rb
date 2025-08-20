@@ -28,6 +28,6 @@ class Api::V1::Statuses::InteractionPoliciesController < Api::V1::Statuses::Base
 
   def broadcast_updates!
     DistributionWorker.perform_async(@status.id, { 'update' => true })
-    ActivityPub::StatusUpdateDistributionWorker.perform_async(@status.id)
+    ActivityPub::StatusUpdateDistributionWorker.perform_async(@status.id, { 'updated_at' => Time.now.utc.iso8601 })
   end
 end

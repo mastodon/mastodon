@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'variables' as *;
 @use 'functions' as *;
 
@@ -733,20 +734,20 @@ code {
   text-align: center;
 
   &.notice {
-    border: 1px solid rgba($valid-value-color, 0.5);
-    background: rgba($valid-value-color, 0.25);
+    border: 1px solid color.change($valid-value-color, $alpha: 0.5);
+    background: color.change($valid-value-color, $alpha: 0.25);
     color: $valid-value-color;
   }
 
   &.warning {
-    border: 1px solid rgba($gold-star, 0.5);
-    background: rgba($gold-star, 0.25);
+    border: 1px solid color.change($gold-star, $alpha: 0.5);
+    background: color.change($gold-star, $alpha: 0.25);
     color: $gold-star;
   }
 
   &.alert {
-    border: 1px solid rgba($error-value-color, 0.5);
-    background: rgba($error-value-color, 0.1);
+    border: 1px solid color.change($error-value-color, $alpha: 0.5);
+    background: color.change($error-value-color, $alpha: 0.1);
     color: $error-value-color;
   }
 
@@ -965,7 +966,7 @@ code {
   background: $simple-background-color;
   padding: 4px;
   margin: 0 10px 20px 0;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  box-shadow: 0 0 15px color.change($base-shadow-color, $alpha: 0.2);
   display: inline-block;
 
   svg {
@@ -988,10 +989,10 @@ code {
 .simple_form {
   .warning {
     box-sizing: border-box;
-    background: rgba($error-value-color, 0.5);
+    background: color.change($error-value-color, $alpha: 0.5);
     color: $primary-text-color;
-    text-shadow: 1px 1px 0 rgba($base-shadow-color, 0.3);
-    box-shadow: 0 2px 6px rgba($base-shadow-color, 0.4);
+    text-shadow: 1px 1px 0 color.change($base-shadow-color, $alpha: 0.3);
+    box-shadow: 0 2px 6px color.change($base-shadow-color, $alpha: 0.4);
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 15px;
@@ -1350,7 +1351,7 @@ code {
       width: 100%;
       height: 100%;
       position: absolute;
-      background: rgba($error-value-color, 0.25);
+      background: color.change($error-value-color, $alpha: 0.25);
       z-index: 2;
       border-radius: 8px;
     }

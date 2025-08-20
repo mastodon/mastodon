@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_05_075010) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_19_100545) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -926,11 +926,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_05_075010) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "legacy", default: false, null: false
-    t.index ["account_id", "quoted_account_id"], name: "index_quotes_on_account_id_and_quoted_account_id"
+    t.index ["account_id", "quoted_account_id", "id"], name: "index_quotes_on_account_id_and_quoted_account_id_and_id"
     t.index ["activity_uri"], name: "index_quotes_on_activity_uri", unique: true, where: "(activity_uri IS NOT NULL)"
     t.index ["approval_uri"], name: "index_quotes_on_approval_uri", where: "(approval_uri IS NOT NULL)"
     t.index ["quoted_account_id"], name: "index_quotes_on_quoted_account_id"
-    t.index ["quoted_status_id"], name: "index_quotes_on_quoted_status_id"
+    t.index ["quoted_status_id", "id"], name: "index_quotes_on_quoted_status_id_and_id"
     t.index ["status_id"], name: "index_quotes_on_status_id", unique: true
   end
 

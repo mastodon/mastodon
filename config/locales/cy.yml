@@ -202,6 +202,7 @@ cy:
         create_relay: Creu Cyfnewidiad
         create_unavailable_domain: Creu Parth Ddim ar Gael
         create_user_role: Creu Rôl
+        create_username_block: Creu Rheol Enw Defnyddiwr
         demote_user: Diraddio Defnyddiwr
         destroy_announcement: Dileu Cyhoeddiad
         destroy_canonical_email_block: Dileu Rhwystr E-bost
@@ -215,6 +216,7 @@ cy:
         destroy_status: Dileu Postiad
         destroy_unavailable_domain: Dileu Parth Ddim ar Gael
         destroy_user_role: Dileu Rôl
+        destroy_username_block: Dileu Rheol Enw Defnyddiwr
         disable_2fa_user: Diffodd 2FA
         disable_custom_emoji: Analluogi Emoji Addasedig
         disable_relay: Analluogi Cyfnewidiad
@@ -249,6 +251,7 @@ cy:
         update_report: Diweddaru Adroddiad
         update_status: Diweddaru Postiad
         update_user_role: Diweddaru Rôl
+        update_username_block: Diweddaru Rheol Enw Defnyddiwr
       actions:
         approve_appeal_html: Mae %{name} wedi cymeradwyo penderfyniad cymedroli gan %{target}
         approve_user_html: Mae %{name} wedi cymeradwyo cofrestru gan %{target}
@@ -267,6 +270,7 @@ cy:
         create_relay_html: Creodd %{name} gyfnewidiad %{target}
         create_unavailable_domain_html: Mae %{name} wedi stopio danfon i barth %{target}
         create_user_role_html: Mae %{name} wedi creu rôl %{target}
+        create_username_block_html: Mae %{name} wedi ychwanegu rheol ar gyfer enwau defnyddwyr sy'n cynnwys %{target}
         demote_user_html: Mae %{name} wedi israddio defnyddiwr %{target}
         destroy_announcement_html: Mae %{name} wedi dileu cyhoeddiad %{target}
         destroy_canonical_email_block_html: Mae %{name} wedi dad-rwystro parth e-bost %{target}
@@ -280,6 +284,7 @@ cy:
         destroy_status_html: Mae %{name} wedi tynnu postiad gan %{target}
         destroy_unavailable_domain_html: Mae %{name} wedi ailddechrau anfon i barth %{target}
         destroy_user_role_html: Mae %{name} wedi dileu rôl %{target}
+        destroy_username_block_html: Mae %{name} wedi dileu rheol ar gyfer enwau defnyddwyr sy'n cynnwys %{target}
         disable_2fa_user_html: Mae %{name} wedi analluogi gofyniad dau ffactor ar gyfer defnyddiwr %{target}
         disable_custom_emoji_html: Mae %{name} wedi analluogi emoji %{target}
         disable_relay_html: Analluogodd %{name} y cyfnewidiad %{target}
@@ -314,6 +319,7 @@ cy:
         update_report_html: Mae %{name} wedi diweddaru adroddiad %{target}
         update_status_html: Mae %{name} wedi diweddaru postiad gan %{target}
         update_user_role_html: Mae %{name} wedi newid rôl %{target}
+        update_username_block_html: Mae %{name} wedi diweddaru rheol ar gyfer enwau defnyddwyr sy'n cynnwys %{target}
       deleted_account: cyfrif wedi'i ddileu
       empty: Dim logiau ar gael.
       filter_by_action: Hidlo yn ôl gweithred
@@ -1157,6 +1163,25 @@ cy:
           zero: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
       title: Argymhellion a Threndiau
       trending: Trendio
+    username_blocks:
+      add_new: Ychwanegu newydd
+      block_registrations: Rhwystro cofrestriadau
+      comparison:
+        contains: Yn cynnwys
+        equals: Yn hafal i
+      contains_html: Yn cynnwys %{string}
+      created_msg: Rheol enw defnyddiwr wedi'i chreu'n llwyddiannus
+      delete: Dileu
+      edit:
+        title: Golygu rheol enw defnyddiwr
+      matches_exactly_html: Yn hafal i %{string}
+      new:
+        create: Creu rheol
+        title: Creu rheol enw defnyddiwr newydd
+      no_username_block_selected: Heb newid unrhyw reolau enw defnyddiwr gan nad oes un ohonyn nhw wedi'u dewis
+      not_permitted: Dim caniatâd
+      title: Rheolau enw defnyddiwr
+      updated_msg: Rheol enw defnyddiwr wedi'i diweddaru'n llwyddiannus
     warning_presets:
       add_new: Ychwanegu newydd
       delete: Dileu
@@ -1817,6 +1842,10 @@ cy:
       title: Crywbylliad newydd
     poll:
       subject: Mae arolwg gan %{name} wedi dod i ben
+    quote:
+      body: 'Mae %{name} wedi dyfynnu eich postiad :'
+      subject: Mae %{name} wedi dyfynnu eich postiad
+      title: Dyfyniad newydd
     reblog:
       body: 'Cafodd eich postiad ei hybu gan %{name}:'
       subject: Rhoddodd %{name} hwb i'ch postiad
@@ -1901,7 +1930,7 @@ cy:
     last_active: Yn weithgar ddiwethaf
     most_recent: Y diweddaraf
     moved: Wedi symud
-    mutual: Cydfudd
+    mutual: Yn Gyffredin
     primary: Cynradd
     relationship: Perthynas
     remove_selected_domains: Tynnu'r holl ddilynwyr o'r parthau a ddewiswyd
@@ -2051,6 +2080,8 @@ cy:
       ownership: Nid oes modd pinio postiad rhywun arall
       reblog: Nid oes modd pinio hwb
     quote_policies:
+      followers: Dim ond eich dilynwyr
+      nobody: Neb
       public: Pawb
     title: '%{name}: "%{quote}"'
     visibilities:

@@ -331,8 +331,16 @@ export const composeReducer = (state = initialState, action) => {
     return state.set('is_changing_upload', false);
   } else if (quoteComposeByStatus.match(action)) {
     const status = action.payload;
-    if (status.getIn(['quote_approval', 'current_user']) === 'automatic') {
-      return state.set('quoted_status_id', status.get('id'));
+    if (
+      status.getIn(['quote_approval', 'current_user']) === 'automatic' &&
+      state.get('media_attachments').size === 0 &&
+      !state.get('is_uploading') &&
+      !state.get('poll')
+    ) {
+      return state
+        .set('quoted_status_id', status.get('id'))
+        .set('spoiler', status.get('sensitive'))
+        .set('spoiler_text', status.get('spoiler_text'));
     }
   } else if (quoteComposeCancel.match(action)) {
     return state.set('quoted_status_id', null);
@@ -512,6 +520,8 @@ export const composeReducer = (state = initialState, action) => {
       map.set('sensitive', action.status.get('sensitive'));
       map.set('language', action.status.get('language'));
       map.set('id', null);
+      // Mastodon-authored posts can be expected to have at most one automatic approval policy
+      map.set('quote_policy', action.status.getIn(['quote_approval', 'automatic', 0]) || 'nobody');
 
       if (action.status.get('spoiler_text').length > 0) {
         map.set('spoiler', true);
@@ -541,6 +551,8 @@ export const composeReducer = (state = initialState, action) => {
       map.set('idempotencyKey', uuid());
       map.set('sensitive', action.status.get('sensitive'));
       map.set('language', action.status.get('language'));
+      // Mastodon-authored posts can be expected to have at most one automatic approval policy
+      map.set('quote_policy', action.status.getIn(['quote_approval', 'automatic', 0]) || 'nobody');
 
       if (action.spoiler_text.length > 0) {
         map.set('spoiler', true);
