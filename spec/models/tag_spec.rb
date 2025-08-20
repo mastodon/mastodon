@@ -69,7 +69,8 @@ RSpec.describe Tag do
     end
 
     it 'does not match URLs with hashtag-like anchors after a numeral' do
-      expect(subject.match('https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111895#c4')).to be_nil
+      # Escape the dots in the host to ensure the test doesn't trigger the CodeQL incomplete hostname regexp warning.
+      expect(subject.match('https://gcc\.gnu\.org\/bugzilla\/show_bug.cgi?id=111895#c4')).to be_nil
     end
 
     it 'does not match URLs with hashtag-like anchors after a non-ascii character' do
