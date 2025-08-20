@@ -123,22 +123,18 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
         {
           value: 'public',
           text: intl.formatMessage(privacyMessages.public_short),
-          meta: intl.formatMessage(privacyMessages.public_long),
         },
         {
           value: 'unlisted',
           text: intl.formatMessage(privacyMessages.unlisted_short),
-          meta: intl.formatMessage(privacyMessages.unlisted_long),
         },
         {
           value: 'private',
           text: intl.formatMessage(privacyMessages.private_short),
-          meta: intl.formatMessage(privacyMessages.private_long),
         },
         {
           value: 'direct',
           text: intl.formatMessage(privacyMessages.direct_short),
-          meta: intl.formatMessage(privacyMessages.direct_long),
         },
       ],
       [intl],
