@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import { Button } from 'mastodon/components/button';
 import { Icon } from 'mastodon/components/icon';
-import PrivacyDropdown from 'mastodon/features/compose/components/privacy_dropdown';
+import { PrivacyDropdown } from 'mastodon/features/compose/components/privacy_dropdown';
 import { EmbeddedStatus } from 'mastodon/features/notifications_v2/components/embedded_status';
 import type { Status, StatusVisibility } from 'mastodon/models/status';
 import { useAppSelector } from 'mastodon/store';
@@ -52,7 +52,10 @@ export const BoostModal: React.FC<{
   }, [onClose]);
 
   const findContainer = useCallback(
-    () => document.getElementsByClassName('modal-root__container')[0],
+    () =>
+      (document.getElementsByClassName('modal-root__container')[0] as
+        | HTMLElement
+        | undefined) ?? null,
     [],
   );
 

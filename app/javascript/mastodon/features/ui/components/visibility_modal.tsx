@@ -60,11 +60,11 @@ const selectStatusPolicy = createAppSelector(
   [
     (state) => state.statuses,
     (_state, statusId?: string) => statusId,
-    (state) => state.compose.get('default_quote_policy') as ApiQuotePolicy,
+    (state) => state.compose.get('quote_policy') as ApiQuotePolicy,
   ],
-  (statuses, statusId, defaultQuotePolicy) => {
+  (statuses, statusId, composeQuotePolicy) => {
     if (!statusId) {
-      return defaultQuotePolicy;
+      return composeQuotePolicy;
     }
     const status = statuses.get(statusId);
     if (!status) {
@@ -95,11 +95,12 @@ const selectStatusPolicy = createAppSelector(
 export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
   ({ onClose, statusId }, ref) => {
     const intl = useIntl();
-    const currentVisibility = useAppSelector(
-      (state) =>
-        (state.statuses.getIn([statusId, 'visibility'], 'public') as
-          | StatusVisibility
-          | undefined) ?? 'public',
+    const currentVisibility = useAppSelector((state) =>
+      statusId
+        ? ((state.statuses.getIn([statusId, 'visibility'], 'public') as
+            | StatusVisibility
+            | undefined) ?? 'public')
+        : (state.compose.get('privacy') as StatusVisibility),
     );
     const currentQuotePolicy = useAppSelector((state) =>
       selectStatusPolicy(state, statusId),
