@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-class Fasp::AnnounceTrendWorker
-  include Sidekiq::Worker
-
-  sidekiq_options queue: 'fasp', retry: 5
+class Fasp::AnnounceTrendWorker < Fasp::BaseWorker
+  sidekiq_options retry: 5
 
   def perform(status_id, trend_source)
     status = ::Status.includes(:account).find(status_id)
     return unless status.account.indexable?
 
     Fasp::Subscription.includes(:fasp_provider).category_content.trends.each do |subscription|
-      announce(subscription, status.uri) if trending?(subscription, status, trend_source)
+      with_provider(subscription.fasp_provider) do
+        announce(subscription, status.uri) if trending?(subscription, status, trend_source)
+      end
     end
   rescue ActiveRecord::RecordNotFound
     # status might not exist anymore, in which case there is nothing to do

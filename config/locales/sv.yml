@@ -190,6 +190,7 @@ sv:
         create_relay: Skapa ombud
         create_unavailable_domain: Skapa otillgänglig domän
         create_user_role: Skapa roll
+        create_username_block: Skapa användarnamnsregel
         demote_user: Degradera användare
         destroy_announcement: Radera notis
         destroy_canonical_email_block: Ta bort e-post block
@@ -203,6 +204,7 @@ sv:
         destroy_status: Radera inlägg
         destroy_unavailable_domain: Ta bort otillgänglig domän
         destroy_user_role: Förstör roll
+        destroy_username_block: Ta bort användarnamnsregel
         disable_2fa_user: Inaktivera 2FA
         disable_custom_emoji: Inaktivera egna emojis
         disable_relay: Inaktivera ombud
@@ -237,6 +239,7 @@ sv:
         update_report: Uppdatera rapport
         update_status: Uppdatera inlägg
         update_user_role: Uppdatera roll
+        update_username_block: Uppdatera användarnamnsregel
       actions:
         approve_appeal_html: "%{name} godkände överklagande av modereringsbeslut från %{target}"
         approve_user_html: "%{name} godkände registrering från %{target}"
@@ -1085,6 +1088,17 @@ sv:
           other: Använd av %{count} personer under den senaste veckan
       title: Rekommendationer & Trender
       trending: Trendande
+    username_blocks:
+      add_new: Lägg till ny
+      comparison:
+        contains: Innehåller
+      delete: Ta bort
+      edit:
+        title: Redigera användarnamnsregel
+      new:
+        create: Skapa regel
+        title: Skapa ny användarnamnsregel
+      not_permitted: Ej tillåtet
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
@@ -1880,6 +1894,8 @@ sv:
       ownership: Någon annans inlägg kan inte fästas
       reblog: En boost kan inte fästas
     quote_policies:
+      followers: Endast dina följare
+      nobody: Ingen
       public: Alla
     title: '%{name}: "%{quote}"'
     visibilities:

@@ -3,15 +3,14 @@
 class ActivityPub::DeleteQuoteAuthorizationSerializer < ActivityPub::Serializer
   attributes :id, :type, :actor, :to
 
-  # TODO: change the `object` to a `QuoteAuthorization` object instead of just the URI?
-  attribute :virtual_object, key: :object
+  has_one :virtual_object, key: :object, serializer: ActivityPub::QuoteAuthorizationSerializer
 
   def id
     [ActivityPub::TagManager.instance.approval_uri_for(object, check_approval: false), '#delete'].join
   end
 
   def virtual_object
-    ActivityPub::TagManager.instance.approval_uri_for(object, check_approval: false)
+    object
   end
 
   def type

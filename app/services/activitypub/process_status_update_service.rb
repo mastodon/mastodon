@@ -74,7 +74,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def update_interaction_policies!
-    @status.quote_approval_policy = @status_parser.quote_policy
+    @status.update(quote_approval_policy: @status_parser.quote_policy)
   end
 
   def update_media_attachments!

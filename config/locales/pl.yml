@@ -599,6 +599,7 @@ pl:
         limited: Ograniczone
         title: Moderacja
       moderation_notes:
+        create: Dodaj notatkę moderacyjną
         title: Notatki moderacyjne
       private_comment: Prywatny komentarz
       public_comment: Publiczny komentarz
@@ -1109,6 +1110,7 @@ pl:
       trending: Popularne
     username_blocks:
       add_new: Dodaj nową
+      block_registrations: Zablokuj rejestracje
       comparison:
         contains: Zawiera
         equals: Równa się
@@ -1742,6 +1744,9 @@ pl:
       title: Nowe wspomnienie o Tobie
     poll:
       subject: Ankieta %{name} zakończyła się
+    quote:
+      subject: "%{name} cytował twój post"
+      title: Nowy cytat
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: Twój wpis został podbity przez %{name}
@@ -2024,6 +2029,9 @@ pl:
     does_not_match_previous_name: nie pasuje do poprzedniej nazwy
   terms_of_service:
     title: Regulamin
+  terms_of_service_interstitial:
+    review_link: Przeglądnij Warunki Korzystania
+    title: Warunki korzystania z %{domain} zmieniają się
   themes:
     contrast: Mastodon (Wysoki kontrast)
     default: Mastodon (Ciemny)
@@ -2055,6 +2063,9 @@ pl:
     recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymi dokumentami.
     webauthn: Klucze bezpieczeństwa
   user_mailer:
+    announcement_published:
+      subject: Ogłoszenie serwisu
+      title: Ogłoszenie serwisu %{domain}
     appeal_approved:
       action: Ustawienia Konta
       explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało zatwierdzone. Twoje konto jest ponownie w dobrej kondycji.

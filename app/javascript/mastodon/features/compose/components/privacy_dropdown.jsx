@@ -14,7 +14,7 @@ import QuietTimeIcon from '@/material-icons/400-24px/quiet_time.svg?react';
 import { DropdownSelector } from 'mastodon/components/dropdown_selector';
 import { Icon }  from 'mastodon/components/icon';
 
-const messages = defineMessages({
+export const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   public_long: { id: 'privacy.public.long', defaultMessage: 'Anyone on and off Mastodon' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Quiet public' },
