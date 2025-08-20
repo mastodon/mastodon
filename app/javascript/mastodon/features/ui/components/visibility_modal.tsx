@@ -113,11 +113,6 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
     const disableQuotePolicy =
       visibility === 'private' || visibility === 'direct';
 
-    const isSaving = useAppSelector(
-      (state) =>
-        state.statuses.getIn([statusId, 'isSavingQuotePolicy']) === true,
-    );
-
     const visibilityItems = useMemo<SelectItem<StatusVisibility>[]>(
       () => [
         {
@@ -232,7 +227,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             <label
               htmlFor={privacyDropdownId}
               className={classNames('visibility-dropdown__label', {
-                disabled: disableVisibility || isSaving,
+                disabled: disableVisibility,
               })}
             >
               <FormattedMessage
@@ -246,7 +241,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
                 current={visibility}
                 onChange={handleVisibilityChange}
                 title={intl.formatMessage(privacyMessages.change_privacy)}
-                disabled={disableVisibility || isSaving}
+                disabled={disableVisibility}
                 id={privacyDropdownId}
               />
               {!!statusId && (
@@ -262,7 +257,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             <label
               htmlFor={quoteDropdownId}
               className={classNames('visibility-dropdown__label', {
-                disabled: disableQuotePolicy || isSaving,
+                disabled: disableQuotePolicy,
               })}
             >
               <FormattedMessage
@@ -276,7 +271,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
                 classPrefix='visibility-dropdown'
                 current={quotePolicy}
                 title={intl.formatMessage(messages.buttonTitle)}
-                disabled={disableQuotePolicy || isSaving}
+                disabled={disableQuotePolicy}
                 id={quoteDropdownId}
               />
               <QuotePolicyHelper policy={quotePolicy} visibility={visibility} />
