@@ -1,11 +1,4 @@
-import {
-  useEffect,
-  useCallback,
-  useRef,
-  useState,
-  useId,
-  useMemo,
-} from 'react';
+import { useEffect, useCallback, useRef, useState, useId } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
@@ -24,7 +17,6 @@ import type { ApiSuggestionSourceJSON } from 'mastodon/api_types/suggestions';
 import { Avatar } from 'mastodon/components/avatar';
 import { DisplayName } from 'mastodon/components/display_name';
 import { FollowButton } from 'mastodon/components/follow_button';
-import { Hotkeys } from 'mastodon/components/hotkeys';
 import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 import { VerifiedBadge } from 'mastodon/components/verified_badge';
@@ -174,16 +166,8 @@ const Card: React.FC<{
 
 const DISMISSIBLE_ID = 'home/follow-suggestions';
 
-interface Props {
-  hidden?: boolean;
-  onMoveUp: (id: string) => void;
-  onMoveDown: (id: string) => void;
-}
-
-export const InlineFollowSuggestions: React.FC<Props> = ({
+export const InlineFollowSuggestions: React.FC<{ hidden?: boolean }> = ({
   hidden,
-  onMoveUp,
-  onMoveDown,
 }) => {
   const intl = useIntl();
   const uniqueId = useId();
@@ -263,18 +247,6 @@ export const InlineFollowSuggestions: React.FC<Props> = ({
     dispatch(changeSetting(['dismissed_banners', DISMISSIBLE_ID], true));
   }, [dispatch]);
 
-  const hotkeyHandlers = useMemo(
-    () => ({
-      moveUp: () => {
-        onMoveUp('inline-follow-suggestions');
-      },
-      moveDown: () => {
-        onMoveDown('inline-follow-suggestions');
-      },
-    }),
-    [onMoveDown, onMoveUp],
-  );
-
   if (dismissed || (!isLoading && suggestions.length === 0)) {
     return null;
   }
@@ -284,77 +256,75 @@ export const InlineFollowSuggestions: React.FC<Props> = ({
   }
 
   return (
-    <Hotkeys handlers={hotkeyHandlers}>
-      <div
-        role='group'
-        aria-labelledby={uniqueId}
-        className='inline-follow-suggestions focusable'
-        tabIndex={-1}
-      >
-        <div className='inline-follow-suggestions__header'>
-          <h3 id={uniqueId}>
+    <div
+      role='group'
+      aria-labelledby={uniqueId}
+      className='inline-follow-suggestions focusable'
+      tabIndex={-1}
+    >
+      <div className='inline-follow-suggestions__header'>
+        <h3 id={uniqueId}>
+          <FormattedMessage
+            id='follow_suggestions.who_to_follow'
+            defaultMessage='Who to follow'
+          />
+        </h3>
+
+        <div className='inline-follow-suggestions__header__actions'>
+          <button className='link-button' onClick={handleDismiss}>
             <FormattedMessage
-              id='follow_suggestions.who_to_follow'
-              defaultMessage='Who to follow'
+              id='follow_suggestions.dismiss'
+              defaultMessage="Don't show again"
             />
-          </h3>
-
-          <div className='inline-follow-suggestions__header__actions'>
-            <button className='link-button' onClick={handleDismiss}>
-              <FormattedMessage
-                id='follow_suggestions.dismiss'
-                defaultMessage="Don't show again"
-              />
-            </button>
-            <Link to='/explore/suggestions' className='link-button'>
-              <FormattedMessage
-                id='follow_suggestions.view_all'
-                defaultMessage='View all'
-              />
-            </Link>
-          </div>
-        </div>
-
-        <div className='inline-follow-suggestions__body'>
-          <div
-            className='inline-follow-suggestions__body__scrollable'
-            ref={bodyRef}
-            onScroll={handleScroll}
-          >
-            {suggestions.map((suggestion) => (
-              <Card
-                key={suggestion.account_id}
-                id={suggestion.account_id}
-                sources={suggestion.sources}
-              />
-            ))}
-          </div>
-
-          {canScrollLeft && (
-            <button
-              className='inline-follow-suggestions__body__scroll-button left'
-              onClick={handleLeftNav}
-              aria-label={intl.formatMessage(messages.previous)}
-            >
-              <div className='inline-follow-suggestions__body__scroll-button__icon'>
-                <Icon id='' icon={ChevronLeftIcon} />
-              </div>
-            </button>
-          )}
-
-          {canScrollRight && (
-            <button
-              className='inline-follow-suggestions__body__scroll-button right'
-              onClick={handleRightNav}
-              aria-label={intl.formatMessage(messages.next)}
-            >
-              <div className='inline-follow-suggestions__body__scroll-button__icon'>
-                <Icon id='' icon={ChevronRightIcon} />
-              </div>
-            </button>
-          )}
+          </button>
+          <Link to='/explore/suggestions' className='link-button'>
+            <FormattedMessage
+              id='follow_suggestions.view_all'
+              defaultMessage='View all'
+            />
+          </Link>
         </div>
       </div>
-    </Hotkeys>
+
+      <div className='inline-follow-suggestions__body'>
+        <div
+          className='inline-follow-suggestions__body__scrollable'
+          ref={bodyRef}
+          onScroll={handleScroll}
+        >
+          {suggestions.map((suggestion) => (
+            <Card
+              key={suggestion.account_id}
+              id={suggestion.account_id}
+              sources={suggestion.sources}
+            />
+          ))}
+        </div>
+
+        {canScrollLeft && (
+          <button
+            className='inline-follow-suggestions__body__scroll-button left'
+            onClick={handleLeftNav}
+            aria-label={intl.formatMessage(messages.previous)}
+          >
+            <div className='inline-follow-suggestions__body__scroll-button__icon'>
+              <Icon id='' icon={ChevronLeftIcon} />
+            </div>
+          </button>
+        )}
+
+        {canScrollRight && (
+          <button
+            className='inline-follow-suggestions__body__scroll-button right'
+            onClick={handleRightNav}
+            aria-label={intl.formatMessage(messages.next)}
+          >
+            <div className='inline-follow-suggestions__body__scroll-button__icon'>
+              <Icon id='' icon={ChevronRightIcon} />
+            </div>
+          </button>
+        )}
+      </div>
+    </div>
   );
 };

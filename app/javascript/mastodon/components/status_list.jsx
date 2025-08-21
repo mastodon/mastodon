@@ -15,25 +15,6 @@ import { LoadGap } from './load_gap';
 import ScrollableList from './scrollable_list';
 
 
-function getFocusedItemIndex() {
-  const itemList = document.querySelector(".item-list");
-  const focusedElement = document.activeElement;
-
-  if (!focusedElement || !itemList) return -1;
-
-  let focusedItem = null;
-  if (focusedElement.parentElement === itemList) {
-    focusedItem = focusedElement;
-  } else {
-    focusedItem = focusedElement.closest(".item-list > *");
-  }
-
-  if (!focusedItem) return -1;
-
-  const items = Array.from(itemList.children);
-  return items.indexOf(focusedItem);    
-}
-
 export default class StatusList extends ImmutablePureComponent {
 
   static propTypes = {
@@ -60,74 +41,6 @@ export default class StatusList extends ImmutablePureComponent {
     trackScroll: true,
   };
 
-  componentDidMount() {
-    this.columnHeaderHeight = this.node?.node
-      ? parseFloat(
-          getComputedStyle(this.node.node).getPropertyValue('--column-header-height')
-        ) || 0
-      : 0;
-  }
-
-  getFeaturedStatusCount = () => {
-    return this.props.featuredStatusIds ? this.props.featuredStatusIds.size : 0;
-  };
-
-  handleMoveUp = () => {
-    const index = getFocusedItemIndex();
-    if (index > -1) {
-      this._selectChild(index, -1);
-    }
-  };
-  
-  handleMoveDown = () => {
-    const index = getFocusedItemIndex();
-    if (index > -1) {
-      this._selectChild(index, 1);
-    }
-  };
-
-  _selectChild = (index, direction) => {
-    const listContainer = this.node?.node;
-    let listItem = listContainer?.querySelector(
-      // :nth-child uses 1-based indexing
-      `.item-list > :nth-child(${index + 1 + direction})`
-    );
-    
-    if (!listItem) {
-      return;
-    }
-
-    // If selected container element is empty, we skip it
-    if (listItem.matches(':empty')) {
-      this._selectChild(index + direction, direction);
-      return;
-    }
-
-    // Check if the list item is a post or a 'follow suggestions' widget
-    let targetElement = listItem.querySelector('.focusable');
-
-    // Otherwise, check if the item is a 'load more' button.
-    if (!targetElement && listItem.matches('.load-more')) {
-      targetElement = listItem;
-    }
-
-    if (targetElement) {
-      const elementRect = targetElement.getBoundingClientRect();
-
-      const isFullyVisible =
-        elementRect.top >= this.columnHeaderHeight &&
-        elementRect.bottom <= window.innerHeight;
-
-      if (!isFullyVisible) {
-        targetElement.scrollIntoView({
-          block: direction === 1 ? 'start' : 'center',
-        });
-      }
-
-      targetElement.focus();
-    }
-  }
-
   handleLoadOlder = debounce(() => {
     const { statusIds, lastId, onLoadMore } = this.props;
     onLoadMore(lastId || (statusIds.size > 0 ? statusIds.last() : undefined));
@@ -152,8 +65,6 @@ export default class StatusList extends ImmutablePureComponent {
           return (
             <InlineFollowSuggestions
               key='inline-follow-suggestions'
-              onMoveUp={this.handleMoveUp}
-              onMoveDown={this.handleMoveDown}
             />
           );
         case TIMELINE_GAP:
@@ -170,8 +81,6 @@ export default class StatusList extends ImmutablePureComponent {
             <StatusQuoteManager
               key={statusId}
               id={statusId}
-              onMoveUp={this.handleMoveUp}
-              onMoveDown={this.handleMoveDown}
               contextType={timelineId}
               scrollKey={this.props.scrollKey}
               showThread
@@ -188,8 +97,6 @@ export default class StatusList extends ImmutablePureComponent {
           key={`f-${statusId}`}
           id={statusId}
           featured
-          onMoveUp={this.handleMoveUp}
-          onMoveDown={this.handleMoveDown}
           contextType={timelineId}
           showThread
           withCounters={this.props.withCounters}

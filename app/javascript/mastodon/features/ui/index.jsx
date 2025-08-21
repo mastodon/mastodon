@@ -77,7 +77,7 @@ import {
   AccountFeatured,
 } from './util/async-components';
 import { ColumnsContextProvider } from './util/columns_context';
-import { focusColumn } from './util/focusColumn';
+import { focusColumn, getFocusedItemIndex, focusItemSibling } from './util/focusUtils';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
@@ -450,14 +450,28 @@ class UI extends PureComponent {
     focusColumn({index: e.key * 1});
   };
 
-  handleMoveUpOrDown = () => {
-    // The actual item focusing code is handled in a nested component,
-    // this just focuses the main column when you press the moveUp/moveDown hotkeys
-    // while focus is outside of a column.
-    focusColumn({
-      index: 1,
-      focusItem: 'first-visible',
-    });
+  handleMoveUp = () => {
+    const currentItemIndex = getFocusedItemIndex();
+    if (currentItemIndex === -1) {
+      focusColumn({
+        index: 1,
+        focusItem: 'first-visible',
+      });
+    } else {
+      focusItemSibling(currentItemIndex, -1);
+    }
+  };
+
+  handleMoveDown = () => {
+    const currentItemIndex = getFocusedItemIndex();
+    if (currentItemIndex === -1) {
+      focusColumn({
+        index: 1,
+        focusItem: 'first-visible',
+      });
+    } else {
+      focusItemSibling(currentItemIndex, 1);
+    }
   };
 
   handleHotkeyBack = e => {
@@ -539,8 +553,8 @@ class UI extends PureComponent {
       forceNew: this.handleHotkeyForceNew,
       toggleComposeSpoilers: this.handleHotkeyToggleComposeSpoilers,
       focusColumn: this.handleHotkeyFocusColumn,
-      moveDown: this.handleMoveUpOrDown,
-      moveUp: this.handleMoveUpOrDown,
+      moveDown: this.handleMoveDown,
+      moveUp: this.handleMoveUp,
       back: this.handleHotkeyBack,
       goToHome: this.handleHotkeyGoToHome,
       goToNotifications: this.handleHotkeyGoToNotifications,
