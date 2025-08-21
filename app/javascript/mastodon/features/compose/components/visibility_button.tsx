@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import type { KeyboardEventHandler, FC } from 'react';
+import type { FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -132,22 +132,12 @@ const PrivacyModalButton: FC<PrivacyDropdownProps> = ({ disabled = false }) => {
       }),
     );
   }, [dispatch, handleChange]);
-  const handleKeyDown: KeyboardEventHandler = useCallback(
-    (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        handleOpen();
-        event.preventDefault();
-      }
-    },
-    [handleOpen],
-  );
 
   return (
     <button
       type='button'
       title={intl.formatMessage(privacyMessages.change_privacy)}
       onClick={handleOpen}
-      onKeyDown={handleKeyDown}
       disabled={disabled}
       className={classNames('dropdown-button')}
     >
