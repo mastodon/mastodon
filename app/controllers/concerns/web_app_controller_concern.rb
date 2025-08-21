@@ -42,9 +42,11 @@ module WebAppControllerConcern
 
       format.json do
         redirect_uri = permalink_redirector.redirect_uri
+        # Fix for CodeQL: only redirect to URIs that are relative or match the current host.
         if safe_redirect_uri?(redirect_uri)
           redirect_to(redirect_uri, allow_other_host: true)
         else
+          # Do not redirect to untrusted URIs!
           head 400
         end
       end
