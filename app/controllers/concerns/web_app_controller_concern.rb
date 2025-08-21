@@ -23,6 +23,6 @@ module WebAppControllerConcern
     if some_condition
       # Do something
     end
-    # redundant else clause removed
+    # Redundant else clause removed
   end
 end
