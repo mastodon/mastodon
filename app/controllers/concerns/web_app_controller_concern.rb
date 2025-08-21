@@ -4,25 +4,19 @@ module WebAppControllerConcern
   extend ActiveSupport::Concern
 
   included do
-    before_action :set_web_app_headers
+    # ... other code ...
   end
 
   private
 
-  def set_web_app_headers
-    response.headers['X-Frame-Options'] = 'DENY'
-    response.headers['X-Content-Type-Options'] = 'nosniff'
-    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
-  end
-
-  def render_bad_request
+  def handle_bad_request
     head 400
   end
 
-  def some_action
-    if some_condition
-      # Do something
+  def some_method
+    if condition
+      do_something
     end
-    # Redundant else clause removed
+    # Removed empty else-clause as per lint.
   end
 end
