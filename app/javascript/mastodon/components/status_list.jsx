@@ -14,6 +14,26 @@ import { StatusQuoteManager } from '../components/status_quoted';
 import { LoadGap } from './load_gap';
 import ScrollableList from './scrollable_list';
 
+
+function getFocusedItemIndex() {
+  const itemList = document.querySelector(".item-list");
+  const focusedElement = document.activeElement;
+
+  if (!focusedElement || !itemList) return -1;
+
+  let focusedItem = null;
+  if (focusedElement.parentElement === itemList) {
+    focusedItem = focusedElement;
+  } else {
+    focusedItem = focusedElement.closest(".item-list > *");
+  }
+
+  if (!focusedItem) return -1;
+
+  const items = Array.from(itemList.children);
+  return items.indexOf(focusedItem);    
+}
+
 export default class StatusList extends ImmutablePureComponent {
 
   static propTypes = {
@@ -52,25 +72,21 @@ export default class StatusList extends ImmutablePureComponent {
     return this.props.featuredStatusIds ? this.props.featuredStatusIds.size : 0;
   };
 
-  getCurrentStatusIndex = (id, featured) => {
-    if (featured) {
-      return this.props.featuredStatusIds.indexOf(id);
-    } else {
-      return this.props.statusIds.indexOf(id) + this.getFeaturedStatusCount();
+  handleMoveUp = () => {
+    const index = getFocusedItemIndex();
+    if (index > -1) {
+      this._selectChild(index, -1);
+    }
+  };
+  
+  handleMoveDown = () => {
+    const index = getFocusedItemIndex();
+    if (index > -1) {
+      this._selectChild(index, 1);
     }
   };
 
-  handleMoveUp = (id, featured) => {
-    const index = this.getCurrentStatusIndex(id, featured);
-    this._selectChild(id, index, -1);
-  };
-  
-  handleMoveDown = (id, featured) => {
-    const index = this.getCurrentStatusIndex(id, featured);
-    this._selectChild(id, index, 1);
-  };
-
-  _selectChild = (id, index, direction) => {
+  _selectChild = (index, direction) => {
     const listContainer = this.node?.node;
     let listItem = listContainer?.querySelector(
       // :nth-child uses 1-based indexing
@@ -83,7 +99,7 @@ export default class StatusList extends ImmutablePureComponent {
 
     // If selected container element is empty, we skip it
     if (listItem.matches(':empty')) {
-      this._selectChild(id, index + direction, direction);
+      this._selectChild(index + direction, direction);
       return;
     }
 
@@ -187,5 +203,4 @@ export default class StatusList extends ImmutablePureComponent {
       </ScrollableList>
     );
   }
-
 }
