@@ -258,6 +258,7 @@ sv:
         create_relay_html: "%{name} skapade ombudet %{target}"
         create_unavailable_domain_html: "%{name} stoppade leverans till domänen %{target}"
         create_user_role_html: "%{name} skapade rollen %{target}"
+        create_username_block_html: "%{name} lade till regel för användarnamn som innehåller %{target}"
         demote_user_html: "%{name} nedgraderade användare %{target}"
         destroy_announcement_html: "%{name} raderade kungörelsen %{target}"
         destroy_canonical_email_block_html: "%{name} avblockerade e-post med hash%{target}"
@@ -271,6 +272,7 @@ sv:
         destroy_status_html: "%{name} tog bort inlägget av %{target}"
         destroy_unavailable_domain_html: "%{name} återupptog leverans till domänen %{target}"
         destroy_user_role_html: "%{name} raderade rollen %{target}"
+        destroy_username_block_html: "%{name} borttagna regler för användarnamn som innehåller %{target}"
         disable_2fa_user_html: "%{name} inaktiverade tvåfaktorsautentiseringskrav för användaren %{target}"
         disable_custom_emoji_html: "%{name} inaktiverade emoji %{target}"
         disable_relay_html: "%{name} inaktiverade ombudet %{target}"
@@ -305,6 +307,7 @@ sv:
         update_report_html: "%{name} uppdaterade rapporten %{target}"
         update_status_html: "%{name} uppdaterade inlägget av %{target}"
         update_user_role_html: "%{name} ändrade rollen %{target}"
+        update_username_block_html: "%{name} uppdaterade regel för användarnamn som innehåller %{target}"
       deleted_account: raderat konto
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
@@ -1090,15 +1093,23 @@ sv:
       trending: Trendande
     username_blocks:
       add_new: Lägg till ny
+      block_registrations: Registrerade blockeringar
       comparison:
         contains: Innehåller
+        equals: Lika
+      contains_html: Innehåller %{string}
+      created_msg: Användarnamnsregel har skapats
       delete: Ta bort
       edit:
         title: Redigera användarnamnsregel
+      matches_exactly_html: Lika med %{string}
       new:
         create: Skapa regel
         title: Skapa ny användarnamnsregel
+      no_username_block_selected: Inga användarnamn regler ändrades eftersom ingen valdes
       not_permitted: Ej tillåtet
+      title: Regler för användarnamn
+      updated_msg: Uppdaterade användarnamnsregel
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
@@ -1676,6 +1687,10 @@ sv:
       title: Ny omnämning
     poll:
       subject: En undersökning av %{name} har avslutats
+    quote:
+      body: 'Ditt inlägg citerades av %{name}:'
+      subject: "%{name} citerade ditt inlägg"
+      title: Nytt citat
     reblog:
       body: 'Ditt inlägg boostades av %{name}:'
       subject: "%{name} boostade ditt inlägg"
