@@ -41,13 +41,16 @@ import { IconButton } from './icon_button';
 
 let id = 0;
 
-type RenderItemFn<Item = MenuItem> = (
+export interface RenderItemFnHandlers {
+  onClick: React.MouseEventHandler;
+  onKeyUp: React.KeyboardEventHandler;
+}
+
+export type RenderItemFn<Item = MenuItem> = (
   item: Item,
   index: number,
-  handlers: {
-    onClick: (e: React.MouseEvent) => void;
-    onKeyUp: (e: React.KeyboardEvent) => void;
-  },
+  handlers: RenderItemFnHandlers,
+  focusRefCallback?: (c: HTMLAnchorElement | HTMLButtonElement | null) => void,
 ) => React.ReactNode;
 
 type ItemClickFn<Item = MenuItem> = (item: Item, index: number) => void;
@@ -173,7 +176,7 @@ export const DropdownMenu = <Item = MenuItem,>({
         onItemClick(item, i);
       } else if (isActionItem(item)) {
         e.preventDefault();
-        item.action();
+        item.action(e);
       }
     },
     [onClose, onItemClick, items],
@@ -277,10 +280,15 @@ export const DropdownMenu = <Item = MenuItem,>({
           })}
         >
           {items.map((option, i) =>
-            renderItemMethod(option, i, {
-              onClick: handleItemClick,
-              onKeyUp: handleItemKeyUp,
-            }),
+            renderItemMethod(
+              option,
+              i,
+              {
+                onClick: handleItemClick,
+                onKeyUp: handleItemKeyUp,
+              },
+              i === 0 ? handleFocusedItemRef : undefined,
+            ),
           )}
         </ul>
       )}
@@ -307,7 +315,9 @@ interface DropdownProps<Item = MenuItem> {
   forceDropdown?: boolean;
   renderItem?: RenderItemFn<Item>;
   renderHeader?: RenderHeaderFn<Item>;
-  onOpen?: () => void;
+  onOpen?: // Must use a union type for the full function as a union with void is not allowed.
+  | ((event: React.MouseEvent | React.KeyboardEvent) => void)
+    | ((event: React.MouseEvent | React.KeyboardEvent) => boolean);
   onItemClick?: ItemClickFn<Item>;
 }
 
@@ -376,7 +386,7 @@ export const Dropdown = <Item = MenuItem,>({
         onItemClick(item, i);
       } else if (isActionItem(item)) {
         e.preventDefault();
-        item.action();
+        item.action(e);
       }
     },
     [handleClose, onItemClick, items],
@@ -389,7 +399,10 @@ export const Dropdown = <Item = MenuItem,>({
       if (open) {
         handleClose();
       } else {
-        onOpen?.();
+        const allow = onOpen?.(e);
+        if (allow === false) {
+          return;
+        }
 
         if (prefetchAccountId) {
           dispatch(fetchRelationships([prefetchAccountId]));

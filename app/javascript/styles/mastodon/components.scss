@@ -656,19 +656,12 @@ body > [data-popper-placement] {
       background: url('@/images/warning-stripes.svg') repeat-y;
       width: 5px;
       flex: 0 0 auto;
-
-      &:first-child {
-        border-start-start-radius: 4px;
-      }
-
-      &:last-child {
-        border-start-end-radius: 4px;
-      }
     }
 
     .autosuggest-input {
       flex: 1 1 auto;
-      border-bottom: 1px solid var(--background-border-color);
+      border: 1px solid var(--background-border-color);
+      border-width: 1px 0;
     }
   }
 
@@ -1489,18 +1482,19 @@ body > [data-popper-placement] {
 
     border-bottom: 0;
 
-    .status__content,
-    .status__action-bar,
-    .media-gallery,
-    .video-player,
-    .audio-player,
-    .attachment-list,
-    .picture-in-picture-placeholder,
-    .more-from-author,
-    .status-card,
-    .hashtag-bar,
-    .content-warning,
-    .filter-warning {
+    & > .status__content,
+    & > .status__action-bar,
+    & > .media-gallery,
+    & > .video-player,
+    & > .audio-player,
+    & > .attachment-list,
+    & > .picture-in-picture-placeholder,
+    & > .more-from-author,
+    & > .status-card,
+    & > .hashtag-bar,
+    & > .content-warning,
+    & > .filter-warning,
+    & > .status__quote {
       margin-inline-start: var(--thread-margin);
       width: calc(100% - var(--thread-margin));
     }
@@ -2390,6 +2384,7 @@ a .account__avatar {
 .detailed-status__display-name,
 .detailed-status__datetime,
 .detailed-status__application,
+.detailed-status__link,
 .account__display-name {
   text-decoration: none;
 }
@@ -2422,7 +2417,8 @@ a.account__display-name {
 }
 
 .detailed-status__application,
-.detailed-status__datetime {
+.detailed-status__datetime,
+.detailed-status__link {
   color: inherit;
 }
 
@@ -2608,8 +2604,9 @@ a.account__display-name {
 }
 
 .status__relative-time,
-.detailed-status__datetime {
-  &:hover {
+.detailed-status__datetime,
+.detailed-status__link {
+  &:is(a):hover {
     text-decoration: underline;
   }
 }
@@ -2863,9 +2860,42 @@ a.account__display-name {
     &:focus,
     &:hover,
     &:active {
-      background: var(--dropdown-border-color);
-      outline: 0;
+      &:not(:disabled) {
+        background: var(--dropdown-border-color);
+        outline: 0;
+      }
     }
+  }
+
+  button:disabled {
+    color: $dark-text-color;
+    cursor: default;
+  }
+}
+
+.reblog-button {
+  &__item {
+    width: 280px;
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: inherit;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &.active:not(.disabled) {
+      color: $highlight-text-color;
+    }
+  }
+
+  &__meta {
+    font-weight: 400;
   }
 }
 
@@ -5485,7 +5515,10 @@ a.status-card {
 
     .privacy-dropdown__option__content,
     .privacy-dropdown__option__content strong,
-    .privacy-dropdown__option__additional {
+    .privacy-dropdown__option__additional,
+    .visibility-dropdown__option__content,
+    .visibility-dropdown__option__content strong,
+    .visibility-dropdown__option__additional {
       color: $primary-text-color;
     }
   }
@@ -5499,13 +5532,15 @@ a.status-card {
   }
 }
 
-.privacy-dropdown__option__icon {
+.privacy-dropdown__option__icon,
+.visibility-dropdown__option__icon {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.privacy-dropdown__option__content {
+.privacy-dropdown__option__content,
+.visibility-dropdown__option__content {
   flex: 1 1 auto;
   color: $darker-text-color;
 

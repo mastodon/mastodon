@@ -63,12 +63,21 @@ type GetStatusSelector = (
   props: { id?: string | null; contextType?: string },
 ) => Status | null;
 
-export const QuotedStatus: React.FC<{
+interface QuotedStatusProps {
   quote: QuoteMap;
   contextType?: string;
   variant?: 'full' | 'link';
   nestingLevel?: number;
-}> = ({ quote, contextType, nestingLevel = 1, variant = 'full' }) => {
+  onQuoteCancel?: () => void; // Used for composer.
+}
+
+export const QuotedStatus: React.FC<QuotedStatusProps> = ({
+  quote,
+  contextType,
+  nestingLevel = 1,
+  variant = 'full',
+  onQuoteCancel,
+}) => {
   const dispatch = useAppDispatch();
   const quotedStatusId = quote.get('quoted_status');
   const quoteState = quote.get('state');
@@ -160,6 +169,7 @@ export const QuotedStatus: React.FC<{
         id={quotedStatusId}
         contextType={contextType}
         avatarSize={32}
+        onQuoteCancel={onQuoteCancel}
       >
         {canRenderChildQuote && (
           <QuotedStatus

@@ -56,6 +56,7 @@ sv:
         scopes: 'Vilka API: er applikationen kommer tillåtas åtkomst till. Om du väljer en omfattning på högstanivån behöver du inte välja individuella sådana.'
         setting_aggregate_reblogs: Visa inte nya boostar för inlägg som nyligen blivit boostade (påverkar endast nymottagna boostar)
         setting_always_send_emails: E-postnotiser kommer vanligtvis inte skickas när du aktivt använder Mastodon
+        setting_default_quote_policy: Denna inställning kommer bara att träda i kraft för inlägg som skapats med nästa Mastodon-version, men du kan förbereda dina önskemål.
         setting_default_sensitive: Känslig media döljs som standard och kan visas med ett klick
         setting_display_media_default: Dölj media markerad som känslig
         setting_display_media_hide_all: Dölj alltid all media
@@ -149,6 +150,9 @@ sv:
         min_age: Bör inte vara lägre än den minimiålder som krävs enligt lagarna i din jurisdiktion.
       user:
         chosen_languages: Vid aktivering visas bara inlägg på dina valda språk i offentliga tidslinjer
+        date_of_birth:
+          one: Vi måste se till att du är minst %{count} för att använda %{domain}. Vi sparar inte denna information.
+          other: Vi måste se till att du är minst %{count} för att använda %{domain}. Vi lagrar inte denna information.
         role: Rollen styr vilka behörigheter användaren har.
       user_role:
         color: Färgen som ska användas för rollen i användargränssnittet, som RGB i hex-format
@@ -156,6 +160,10 @@ sv:
         name: Offentligt namn på rollen, om rollen är inställd på att visas som ett emblem
         permissions_as_keys: Användare med denna roll kommer ha tillgång till...
         position: Högre roll avgör konfliktlösning i vissa situationer. Vissa åtgärder kan endast utföras på roller med lägre prioritet
+      username_block:
+        allow_with_approval: I stället för att förhindra direkt registrering kräver matchning av registreringar ditt godkännande
+        comparison: Var uppmärksam på Scunthorpe Problem vid blockering av partiella matcher
+        username: Matchas oavsett versaler och gemena bokstäver som ”4” för ”a” eller ’3’ för ”e”
       webhook:
         events: Välj händelser att skicka
         template: Skriv din egen JSON-nyttolast med variabel interpolation. Lämna tomt för förvald JSON.
@@ -321,6 +329,7 @@ sv:
         follow_request: Någon begärt att följa dig
         mention: Någon nämnt dig
         pending_account: Ett nytt konto behöver granskas
+        quote: Någon citerade dig
         reblog: Någon boostade ditt inlägg
         report: En ny rapport har skickats
         software_updates:
@@ -369,6 +378,7 @@ sv:
         position: Prioritet
       username_block:
         allow_with_approval: Tillåt registreringar med godkännande
+        comparison: Jämförelsesätt
         username: Ord att matcha
       webhook:
         events: Aktiverade händelser
