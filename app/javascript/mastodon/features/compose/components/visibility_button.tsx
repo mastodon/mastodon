@@ -32,6 +32,10 @@ const messages = defineMessages({
     id: 'privacy.quote.limited',
     defaultMessage: '{visibility}, quotes limited',
   },
+  disabled_quote: {
+    id: 'privacy.quote.disabled',
+    defaultMessage: '{visibility}, quotes disabled',
+  },
 });
 
 interface PrivacyDropdownProps {
@@ -90,6 +94,11 @@ const PrivacyModalButton: FC<PrivacyDropdownProps> = ({ disabled = false }) => {
     );
     if (visibility === 'private' || visibility === 'direct') {
       return visibilityText;
+    }
+    if (quotePolicy === 'nobody') {
+      return intl.formatMessage(messages.disabled_quote, {
+        visibility: visibilityText,
+      });
     }
     if (quotePolicy !== 'public') {
       return intl.formatMessage(messages.limited_quote, {
