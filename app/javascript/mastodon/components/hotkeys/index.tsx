@@ -271,15 +271,9 @@ export const Hotkeys: React.FC<{
    * Allow the rendered `div` to be focused
    */
   focusable?: boolean;
-  children:
-    | React.ReactNode
-    | ((ref: React.RefObject<HTMLDivElement>) => React.ReactNode);
+  children: React.ReactNode;
 }> = ({ handlers, global, focusable = true, children }) => {
   const ref = useHotkeys<HTMLDivElement>(handlers);
-
-  if (typeof children === 'function') {
-    return children(ref);
-  }
 
   return (
     <div ref={global ? undefined : ref} tabIndex={focusable ? -1 : undefined}>
