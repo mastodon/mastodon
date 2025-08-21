@@ -1,9 +1,13 @@
+import { Map as ImmutableMap } from 'immutable';
+
 import type { ApiRelationshipJSON } from '@/mastodon/api_types/relationships';
+import type { ApiStatusJSON } from '@/mastodon/api_types/statuses';
 import type {
   CustomEmojiData,
   UnicodeEmojiData,
 } from '@/mastodon/features/emoji/types';
 import { createAccountFromServerJSON } from '@/mastodon/models/account';
+import type { Status } from '@/mastodon/models/status';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 
 type FactoryOptions<T> = {
@@ -50,6 +54,36 @@ export const accountFactory: FactoryFunction<ApiAccountJSON> = ({
 export const accountFactoryState = (
   options: FactoryOptions<ApiAccountJSON> = {},
 ) => createAccountFromServerJSON(accountFactory(options));
+
+export const statusFactory: FactoryFunction<ApiStatusJSON> = ({
+  id,
+  ...data
+} = {}) => ({
+  id: id ?? '1',
+  created_at: '2023-01-01T00:00:00.000Z',
+  sensitive: false,
+  visibility: 'public',
+  language: 'en',
+  uri: 'https://example.com/status/1',
+  url: 'https://example.com/status/1',
+  replies_count: 0,
+  reblogs_count: 0,
+  favorites_count: 0,
+  account: accountFactory(),
+  media_attachments: [],
+  mentions: [],
+  tags: [],
+  emojis: [],
+  content: '<p>This is a test status.</p>',
+  ...data,
+});
+
+export const statusFactoryState = (
+  options: FactoryOptions<ApiStatusJSON> = {},
+) =>
+  ImmutableMap<string, unknown>(
+    statusFactory(options) as unknown as Record<string, unknown>,
+  ) as unknown as Status;
 
 export const relationshipsFactory: FactoryFunction<ApiRelationshipJSON> = ({
   id,

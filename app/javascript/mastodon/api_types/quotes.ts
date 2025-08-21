@@ -2,6 +2,7 @@ import type { ApiStatusJSON } from './statuses';
 
 export type ApiQuoteState = 'accepted' | 'pending' | 'revoked' | 'unauthorized';
 export type ApiQuotePolicy = 'public' | 'followers' | 'nobody' | 'unknown';
+export type ApiUserQuotePolicy = 'automatic' | 'manual' | 'denied' | 'unknown';
 
 interface ApiQuoteEmptyJSON {
   state: Exclude<ApiQuoteState, 'accepted'>;
@@ -25,7 +26,7 @@ export type ApiQuoteJSON = ApiQuoteAcceptedJSON | ApiQuoteEmptyJSON;
 export interface ApiQuotePolicyJSON {
   automatic: ApiQuotePolicy[];
   manual: ApiQuotePolicy[];
-  current_user: ApiQuotePolicy;
+  current_user: ApiUserQuotePolicy;
 }
 
 export function isQuotePolicy(policy: string): policy is ApiQuotePolicy {
