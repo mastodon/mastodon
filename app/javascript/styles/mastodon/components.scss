@@ -5511,7 +5511,10 @@ a.status-card {
 
     .privacy-dropdown__option__content,
     .privacy-dropdown__option__content strong,
-    .privacy-dropdown__option__additional {
+    .privacy-dropdown__option__additional,
+    .visibility-dropdown__option__content,
+    .visibility-dropdown__option__content strong,
+    .visibility-dropdown__option__additional {
       color: $primary-text-color;
     }
   }
@@ -5525,13 +5528,15 @@ a.status-card {
   }
 }
 
-.privacy-dropdown__option__icon {
+.privacy-dropdown__option__icon,
+.visibility-dropdown__option__icon {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.privacy-dropdown__option__content {
+.privacy-dropdown__option__content,
+.visibility-dropdown__option__content {
   flex: 1 1 auto;
   color: $darker-text-color;
 
