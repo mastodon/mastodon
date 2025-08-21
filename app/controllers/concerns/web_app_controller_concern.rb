@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'uri'
 module WebAppControllerConcern
   extend ActiveSupport::Concern
 
@@ -39,12 +39,28 @@ module WebAppControllerConcern
       end
 
       format.json do
-        redirect_to(permalink_redirector.redirect_uri, allow_other_host: true)
+        redirect_uri = permalink_redirector.redirect_uri
+        if safe_redirect_uri?(redirect_uri)
+          redirect_to(redirect_uri, allow_other_host: true)
+        else
+          redirect_to(root_path, allow_other_host: false)
+        end
       end
     end
   end
 
   protected
+
+  # Only allow relative URLs or URLs on the current host
+  def safe_redirect_uri?(uri)
+    begin
+      parsed = URI.parse(uri)
+      # Allow relative URLs (no host), or URLs on the current host
+      !parsed.host || parsed.host == request.host
+    rescue URI::InvalidURIError
+      false
+    end
+  end
 
   def redirect_to_tos_interstitial!
     return unless current_user&.require_tos_interstitial?
