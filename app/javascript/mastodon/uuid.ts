@@ -11,27 +11,27 @@ export function uuid(): string {
   return (
     bytes
       .slice(0, 4)
-      .map(b => b.toString(16).padStart(2, '0'))
+      .map((b) => b.toString(16).padStart(2, '0'))
       .join('') +
     '-' +
     bytes
       .slice(4, 6)
-      .map(b => b.toString(16).padStart(2, '0'))
+      .map((b) => b.toString(16).padStart(2, '0'))
       .join('') +
     '-' +
     bytes
       .slice(6, 8)
-      .map(b => b.toString(16).padStart(2, '0'))
+      .map((b) => b.toString(16).padStart(2, '0'))
       .join('') +
     '-' +
     bytes
       .slice(8, 10)
-      .map(b => b.toString(16).padStart(2, '0'))
+      .map((b) => b.toString(16).padStart(2, '0'))
       .join('') +
     '-' +
     bytes
       .slice(10, 16)
-      .map(b => b.toString(16).padStart(2, '0'))
+      .map((b) => b.toString(16).padStart(2, '0'))
       .join('')
   );
 }
