@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'uri'
+
 module WebAppControllerConcern
   extend ActiveSupport::Concern
 
@@ -43,7 +44,7 @@ module WebAppControllerConcern
         if safe_redirect_uri?(redirect_uri)
           redirect_to(redirect_uri, allow_other_host: true)
         else
-          redirect_to(root_path, allow_other_host: false)
+          head 400
         end
       end
     end
