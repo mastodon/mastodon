@@ -27,7 +27,9 @@ export function focusColumn({ index = 1, focusItem = 'first' }: Options = {}) {
 
   if (focusItem === 'first-visible') {
     const focusableItems = Array.from(
-      container.querySelectorAll<HTMLElement>('.focusable'),
+      container.querySelectorAll<HTMLElement>(
+        '.focusable:not(.status__quote .focusable)',
+      ),
     );
 
     const viewportHeight =
