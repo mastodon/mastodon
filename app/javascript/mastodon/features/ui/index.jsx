@@ -450,6 +450,10 @@ class UI extends PureComponent {
     focusColumn({index: e.key * 1});
   };
 
+  handleHotkeyLoadMore = () => {
+    document.querySelector('.load-more')?.focus();
+  };
+
   handleMoveUp = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
@@ -553,6 +557,7 @@ class UI extends PureComponent {
       forceNew: this.handleHotkeyForceNew,
       toggleComposeSpoilers: this.handleHotkeyToggleComposeSpoilers,
       focusColumn: this.handleHotkeyFocusColumn,
+      focusLoadMore: this.handleHotkeyLoadMore,
       moveDown: this.handleMoveDown,
       moveUp: this.handleMoveUp,
       back: this.handleHotkeyBack,
