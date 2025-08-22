@@ -3,6 +3,19 @@
 @use 'functions' as *;
 @use 'mixins' as *;
 
+div[aria-label$="shillest.net"] img[alt^=":stamp"] {
+  height: auto !important;
+  width: auto !important;
+  max-height: 110px !important;
+  max-width: 110px !important;
+  object-fit: contain !important;
+  vertical-align: bottom !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .app-body {
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
