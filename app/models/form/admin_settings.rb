@@ -154,6 +154,10 @@ class Form::AdminSettings
     end
   end
 
+  def persisted?
+    true
+  end
+
   private
 
   def cache_digest_value(key)
