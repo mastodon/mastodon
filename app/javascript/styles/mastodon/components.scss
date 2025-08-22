@@ -4373,6 +4373,11 @@ a.status-card {
     background: var(--on-surface-color);
   }
 
+  &:focus-visible {
+    outline: 2px solid $ui-button-focus-outline-color;
+    outline-offset: -2px;
+  }
+
   .icon {
     width: 22px;
     height: 22px;
