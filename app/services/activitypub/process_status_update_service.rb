@@ -307,7 +307,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
           @quote_changed = true
         else
           quote = @status.quote
-          quote.update(approval_uri: approval_uri, state: :pending, legacy: @status_parser.legacy_quote?) if quote.approval_uri != @status_parser.quote_approval_uri
+          quote.update(approval_uri: approval_uri, state: :pending, legacy: @status_parser.legacy_quote?) if quote.approval_uri != approval_uri
         end
       else
         quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
