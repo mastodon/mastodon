@@ -1438,9 +1438,9 @@ body > [data-popper-placement] {
 
 .focusable {
   &:focus-visible {
-    outline: 0;
+    outline: 2px solid $ui-button-focus-outline-color;
+    outline-offset: -2px;
     background: color.change($ui-highlight-color, $alpha: 0.05);
-    box-shadow: inset 0 0 0 2px $ui-button-focus-outline-color;
   }
 }
 
