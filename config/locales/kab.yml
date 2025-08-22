@@ -395,6 +395,7 @@ kab:
       everyone: Tisirag timezwura
       privileges:
         administrator: Anedbal
+        manage_federation: Sefrek Tafidiralit
         manage_settings: Asefrek n iɣewwaṛen
         view_dashboard: Timẓriwt n tfelwit
     rules:
@@ -444,6 +445,7 @@ kab:
       media:
         title: Amidya
       open: Ldi tasuffeɣt
+      status_title: Tasuffeɣt sɣur @%{name}
       trending: Inezzaɣ
       visibility: Abani
       with_media: S umidya
@@ -454,6 +456,8 @@ kab:
         action: Wali tasemlit
       rules_check:
         action: Sefrek ilugan n uqeddac
+      software_version_check:
+        message_html: Yella lqem n Mastodon.
       software_version_critical_check:
         action: Wali ileqqman yellan
       software_version_patch_check:
@@ -466,7 +470,10 @@ kab:
       title: Ihacṭagen
     terms_of_service:
       changelog: Amaynut
+      create: Sqedcet ayla-nwen
       draft: Arewway
+      generates:
+        action: Sirew
       history: Amazray
       live: Srid
       publish: Asuffeɣ
@@ -476,6 +483,7 @@ kab:
     trends:
       allow: Sireg
       links:
+        allow: Sireg aseɣwen
         title: Iseɣwan inezzaɣ
       statuses:
         title: Tisuffaɣ tinezzaɣ
@@ -489,6 +497,7 @@ kab:
       add_new: Rnu amaynut
       comparison:
         contains: Igber
+      delete: Kkes
       new:
         create: Rnu alugen
         title: Rnu alugen n useqdac amaynut
@@ -645,6 +654,7 @@ kab:
       date: Azemz
       download: Sider-d aḥraz-ik·im
       size: Teɣzi
+    blocks: Tregleḍ
     bookmarks: Ticraḍ
     csv: CSV
     lists: Tibdarin
@@ -858,6 +868,8 @@ kab:
     statuses_cleanup: Tukksa tawurmant n tsuffaɣ
     two_factor_authentication: Asesteb s snat n tarrayin
     webauthn_authentication: Tisura n teɣlist
+  severed_relationships:
+    download: Azdam (%{count})
   statuses:
     attached:
       audio:
@@ -876,7 +888,6 @@ kab:
       public: Yal yiwen
     title: '%{name} : "%{quote}"'
     visibilities:
-      direct: Usrid
       private: Imeḍfaṛen kan
       private_long: Ssken i ymeḍfaṛen kan
       public: Azayez
@@ -960,6 +971,9 @@ kab:
   verification:
     here_is_how: Ha-t-a amek
     verification: Asenqed
+    website_verification: Asenqed n usmel web
   webauthn_credentials:
     add: Rnu tasarut n teɣlist tamaynut
+    create:
+      success: Tasarut-ik·im n tɣellist tettwarna akken iwata.
     delete: Kkes
