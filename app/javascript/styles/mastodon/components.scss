@@ -5504,6 +5504,21 @@ a.status-card {
   border-radius: 4px;
   color: var(--dropdown-text-color);
 
+  // Make sure adjacent hover/active states don't have a meeting radius.
+  &:hover + &:is(:focus, .active),
+  &:is(:focus, .active) + &:hover,
+  &:is(:focus, .active) + &:is(:focus, .active) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  &:hover:has(+ :focus, .active),
+  &:is(:focus, .active):has(+ :hover),
+  &:is(:focus, .active):has(+ :is(:focus, .active)) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
   &:hover,
   &:active {
     background: var(--dropdown-border-color);
