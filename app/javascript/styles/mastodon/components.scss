@@ -10448,8 +10448,10 @@ noscript {
     }
 
     &__scrollable {
+      box-sizing: border-box;
       display: flex;
       flex-wrap: nowrap;
+      min-height: 228px;
       gap: 16px;
       padding: 16px;
       scroll-snap-type: x mandatory;
