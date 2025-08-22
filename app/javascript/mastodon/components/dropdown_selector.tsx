@@ -99,12 +99,12 @@ export const DropdownSelector: React.FC<Props> = ({
         case 'Tab':
           if (e.shiftKey) {
             element =
-              nodeRef.current?.children[index + 1] ??
-              nodeRef.current?.firstElementChild;
-          } else {
-            element =
               nodeRef.current?.children[index - 1] ??
               nodeRef.current?.lastElementChild;
+          } else {
+            element =
+              nodeRef.current?.children[index + 1] ??
+              nodeRef.current?.firstElementChild;
           }
           break;
         case 'Home':
