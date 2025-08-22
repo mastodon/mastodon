@@ -133,3 +133,9 @@ export interface ApiStatusSourceJSON {
   text: string;
   spoiler_text: string;
 }
+
+export function isStatusVisibility(
+  visibility: string,
+): visibility is StatusVisibility {
+  return ['public', 'unlisted', 'private', 'direct'].includes(visibility);
+}
