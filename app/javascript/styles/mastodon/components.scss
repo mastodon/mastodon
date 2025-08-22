@@ -5491,6 +5491,8 @@ a.status-card {
 
 .privacy-dropdown__option,
 .visibility-dropdown__option {
+  --dropdown-text-color: $primary-text-color;
+
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.25px;
@@ -5500,7 +5502,7 @@ a.status-card {
   align-items: center;
   gap: 12px;
   border-radius: 4px;
-  color: $primary-text-color;
+  color: var(--dropdown-text-color);
 
   &:hover,
   &:active {
@@ -5510,7 +5512,7 @@ a.status-card {
   &:focus,
   &.active {
     background: $ui-highlight-color;
-    color: $primary-text-color;
+    color: var(--dropdown-text-color);
     outline: 0;
 
     .privacy-dropdown__option__content,
@@ -5519,7 +5521,7 @@ a.status-card {
     .visibility-dropdown__option__content,
     .visibility-dropdown__option__content strong,
     .visibility-dropdown__option__additional {
-      color: $primary-text-color;
+      color: var(--dropdown-text-color);
     }
   }
 
