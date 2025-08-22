@@ -31,7 +31,7 @@ const mapStateToProps = state => ({
   missingAltText: state.getIn(['compose', 'media_attachments']).some(media => ['image', 'gifv'].includes(media.get('type')) && (media.get('description') ?? '').length === 0),
   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
   lang: state.getIn(['compose', 'language']),
-  maxChars: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_characters'], 500),
+  maxChars: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_characters'], 50000),
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
