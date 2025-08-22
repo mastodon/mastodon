@@ -435,6 +435,10 @@
 .inline-follow-suggestions {
   background-color: color.change($ui-highlight-color, $alpha: 0.1);
   border-bottom-color: color.change($ui-highlight-color, $alpha: 0.3);
+
+  &.focusable:focus-visible {
+    background: color.change($ui-highlight-color, $alpha: 0.1);
+  }
 }
 
 .inline-follow-suggestions__body__scrollable__card {

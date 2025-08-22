@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef, useState } from 'react';
+import { useEffect, useCallback, useRef, useState, useId } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
@@ -171,6 +171,7 @@ export const InlineFollowSuggestions: React.FC<{ hidden?: boolean }> = ({
   hidden,
 }) => {
   const intl = useIntl();
+  const uniqueId = useId();
   const dispatch = useAppDispatch();
   const suggestions = useAppSelector((state) => state.suggestions.items);
   const isLoading = useAppSelector((state) => state.suggestions.isLoading);
@@ -256,9 +257,14 @@ export const InlineFollowSuggestions: React.FC<{ hidden?: boolean }> = ({
   }
 
   return (
-    <div className='inline-follow-suggestions'>
+    <div
+      role='group'
+      aria-labelledby={uniqueId}
+      className='inline-follow-suggestions focusable'
+      tabIndex={-1}
+    >
       <div className='inline-follow-suggestions__header'>
-        <h3>
+        <h3 id={uniqueId}>
           <FormattedMessage
             id='follow_suggestions.who_to_follow'
             defaultMessage='Who to follow'
