@@ -2,10 +2,12 @@ import type { ComponentProps } from 'react';
 
 import { FormattedDate } from 'react-intl';
 
+import { timeZone } from 'mastodon/initial_state';
+
 export const FormattedDateWrapper = (
   props: ComponentProps<typeof FormattedDate> & { className?: string },
 ) => (
-  <FormattedDate {...props}>
+  <FormattedDate {...props} timeZone={timeZone}>
     {(date) => (
       <time dateTime={tryIsoString(props.value)} className={props.className}>
         {date}

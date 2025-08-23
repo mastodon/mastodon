@@ -50,7 +50,12 @@ import { DomainPill } from 'mastodon/features/account/components/domain_pill';
 import FollowRequestNoteContainer from 'mastodon/features/account/containers/follow_request_note_container';
 import { useLinks } from 'mastodon/hooks/useLinks';
 import { useIdentity } from 'mastodon/identity_context';
-import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
+import {
+  autoPlayGif,
+  me,
+  domain as localDomain,
+  timeZone,
+} from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import {
@@ -191,6 +196,7 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
   year: 'numeric',
   hour: '2-digit',
   minute: '2-digit',
+  timeZone,
 };
 
 export const AccountHeader: React.FC<{
