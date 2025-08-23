@@ -149,7 +149,15 @@ export default class Card extends PureComponent {
 
         <strong className='status-card__title' title={card.get('title')} lang={language}>{card.get('title')}</strong>
 
-        {!showAuthor && (card.get('author_name').length > 0 ? <span className='status-card__author'><FormattedMessage id='link_preview.author' defaultMessage='By {name}' values={{ name: <strong>{card.get('author_name')}</strong> }} /></span> : <span className='status-card__description' lang={language}>{card.get('description')}</span>)}
+        {!showAuthor && card.get('author_name').length > 0 ? (
+          <span className='status-card__author'>
+            <FormattedMessage id='link_preview.author' defaultMessage='By {name}' values={{ name: <strong>{card.get('author_name')}</strong> }} />
+          </span>
+        ) : (
+          <span className='status-card__description' lang={language}>
+            {card.get('description')}
+          </span>
+        )}
       </div>
     );
 
