@@ -7,7 +7,7 @@ RSpec.describe 'Relationships' do
     before { sign_in Fabricate(:user) }
 
     it 'gracefully handles invalid nested params' do
-      put relationships_path(form_account_batch: 'invalid')
+      put relationships_path(form_relationship_batch: 'invalid')
 
       expect(response)
         .to redirect_to(relationships_path)

@@ -7,7 +7,7 @@ RSpec.describe 'Admin Follow Recommendations' do
     before { sign_in Fabricate(:admin_user) }
 
     it 'gracefully handles invalid nested params' do
-      put admin_follow_recommendations_path(form_account_batch: 'invalid')
+      put admin_follow_recommendations_path(form_follow_recommendation_batch: 'invalid')
 
       expect(response)
         .to redirect_to(admin_follow_recommendations_path)

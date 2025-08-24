@@ -7,14 +7,14 @@ module Admin
     def show
       authorize :follow_recommendation, :show?
 
-      @form     = Form::AccountBatch.new
+      @form = Form::FollowRecommendationBatch.new
       @accounts = filtered_follow_recommendations.page(params[:page])
     end
 
     def update
       authorize :follow_recommendation, :show?
 
-      @form = Form::AccountBatch.new(form_account_batch_params.merge(current_account: current_account, action: action_from_button))
+      @form = Form::FollowRecommendationBatch.new(form_follow_recommendation_batch_params.merge(current_account: current_account, action: action_from_button))
       @form.save
     rescue ActionController::ParameterMissing
       # Do nothing
@@ -36,9 +36,9 @@ module Admin
       @follow_recommendation_filter ||= FollowRecommendationFilter.new(filter_params)
     end
 
-    def form_account_batch_params
+    def form_follow_recommendation_batch_params
       params
-        .expect(form_account_batch: [:action, account_ids: []])
+        .expect(form_follow_recommendation_batch: [:action, account_ids: []])
     end
 
     def filter_params

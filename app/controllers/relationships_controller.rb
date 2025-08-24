@@ -10,11 +10,11 @@ class RelationshipsController < ApplicationController
   helper_method :following_relationship?, :followed_by_relationship?, :mutual_relationship?
 
   def show
-    @form = Form::AccountBatch.new
+    @form = Form::RelationshipBatch.new
   end
 
   def update
-    @form = Form::AccountBatch.new(form_account_batch_params.merge(current_account: current_account, action: action_from_button))
+    @form = Form::RelationshipBatch.new(form_relationship_batch_params.merge(current_account: current_account, action: action_from_button))
     @form.save
   rescue ActionController::ParameterMissing
     # Do nothing
@@ -34,8 +34,8 @@ class RelationshipsController < ApplicationController
     @relationships = AccountRelationshipsPresenter.new(@accounts, current_user.account_id)
   end
 
-  def form_account_batch_params
-    params.expect(form_account_batch: [:action, account_ids: []])
+  def form_relationship_batch_params
+    params.expect(form_relationship_batch: [:action, account_ids: []])
   end
 
   def following_relationship?
