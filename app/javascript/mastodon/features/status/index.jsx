@@ -255,12 +255,10 @@ class Status extends ImmutablePureComponent {
     const { dispatch, history, intl } = this.props;
 
     const handleDeleteSuccess = () => {
-      // Show success notification
       dispatch(showAlert({
         message: intl.formatMessage(messages.deleteSuccess),
       }));
-      
-      // Redirect to home timeline after deletion
+
       history.push('/');
     };
 
