@@ -40,14 +40,22 @@ export const ConfirmDeleteStatusModal: React.FC<
   {
     statusId: string;
     withRedraft: boolean;
+    onDeleteSuccess?: () => void;
   } & BaseConfirmationModalProps
-> = ({ statusId, withRedraft, onClose }) => {
+> = ({ statusId, withRedraft, onClose, onDeleteSuccess }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
   const onConfirm = useCallback(() => {
-    dispatch(deleteStatus(statusId, withRedraft));
-  }, [dispatch, statusId, withRedraft]);
+    dispatch(deleteStatus(statusId, withRedraft))
+      .then(() => {
+        onDeleteSuccess?.();
+        onClose();
+      })
+      .catch(() => {
+        // Error handling can be added here if needed
+      });
+  }, [dispatch, statusId, withRedraft, onDeleteSuccess, onClose]);
 
   return (
     <ConfirmationModal
