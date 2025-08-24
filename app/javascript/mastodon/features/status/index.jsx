@@ -45,6 +45,7 @@ import {
 import { openModal } from '../../actions/modal';
 import { initMuteModal } from '../../actions/mutes';
 import { initReport } from '../../actions/reports';
+import { showAlert } from '../../actions/alerts';
 import {
   fetchStatus,
   muteStatus,
@@ -75,6 +76,7 @@ const messages = defineMessages({
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
   statusTitleWithAttachments: { id: 'status.title.with_attachments', defaultMessage: '{user} posted {attachmentCount, plural, one {an attachment} other {# attachments}}' },
   detailedStatus: { id: 'status.detailed_status', defaultMessage: 'Detailed conversation view' },
+  deleteSuccess: { id: 'status.delete.success', defaultMessage: 'Post deleted successfully' },
 });
 
 const makeMapStateToProps = () => {
@@ -250,12 +252,29 @@ class Status extends ImmutablePureComponent {
   };
 
   handleDeleteClick = (status, withRedraft = false) => {
-    const { dispatch } = this.props;
+    const { dispatch, history, intl } = this.props;
+
+    const handleDeleteSuccess = () => {
+      // Show success notification
+      dispatch(showAlert({
+        message: intl.formatMessage(messages.deleteSuccess),
+      }));
+      
+      // Redirect to home timeline after deletion
+      history.push('/');
+    };
 
     if (!deleteModal) {
-      dispatch(deleteStatus(status.get('id'), withRedraft));
+      dispatch(deleteStatus(status.get('id'), withRedraft)).then(handleDeleteSuccess);
     } else {
-      dispatch(openModal({ modalType: 'CONFIRM_DELETE_STATUS', modalProps: { statusId: status.get('id'), withRedraft } }));
+      dispatch(openModal({ 
+        modalType: 'CONFIRM_DELETE_STATUS', 
+        modalProps: { 
+          statusId: status.get('id'), 
+          withRedraft,
+          onDeleteSuccess: handleDeleteSuccess
+        } 
+      }));
     }
   };
 
