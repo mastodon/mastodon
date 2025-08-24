@@ -53,7 +53,7 @@ export const ConfirmDeleteStatusModal: React.FC<
         onClose();
       })
       .catch(() => {
-        // Error handling can be added here if needed
+        // Ignore errors - modal will close regardless
       });
   }, [dispatch, statusId, withRedraft, onDeleteSuccess, onClose]);
 
