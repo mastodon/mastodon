@@ -305,7 +305,7 @@ module Mastodon::CLI
       query = query.where(domain: domains) unless domains.empty?
 
       processed, culled = parallelize_with_progress(query.partitioned) do |account|
-        next if account.updated_at >= skip_threshold || (account.last_webfingered_at.present? && account.last_webfingered_at >= skip_threshold) || skip_domains.include?(account.domain)
+        next if account.updated_at >= skip_threshold || (account.last_webfingered_at? && account.last_webfingered_at >= skip_threshold) || skip_domains.include?(account.domain)
 
         code = 0
 
