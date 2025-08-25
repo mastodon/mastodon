@@ -25,6 +25,19 @@ RSpec.describe '/api/v1/statuses' do
           hash_including(id: other_status.id.to_s)
         )
       end
+
+      context 'with too many IDs' do
+        before { stub_const 'Api::BaseController::DEFAULT_STATUSES_LIMIT', 2 }
+
+        it 'returns error response' do
+          get '/api/v1/statuses', headers: headers, params: { id: [123, 456, 789] }
+
+          expect(response)
+            .to have_http_status(422)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
+      end
     end
 
     describe 'GET /api/v1/statuses/:id' do
@@ -116,23 +129,6 @@ RSpec.describe '/api/v1/statuses' do
             keyword_matches: ['banned'],
           })
         end
-      end
-    end
-
-    describe 'GET /api/v1/statuses/:id/context' do
-      let(:scopes) { 'read:statuses' }
-      let(:status) { Fabricate(:status, account: user.account) }
-
-      before do
-        Fabricate(:status, account: user.account, thread: status)
-      end
-
-      it 'returns http success' do
-        get "/api/v1/statuses/#{status.id}/context", headers: headers
-
-        expect(response).to have_http_status(200)
-        expect(response.content_type)
-          .to start_with('application/json')
       end
     end
 
@@ -400,20 +396,6 @@ RSpec.describe '/api/v1/statuses' do
       describe 'GET /api/v1/statuses/:id' do
         it 'returns http success' do
           get "/api/v1/statuses/#{status.id}"
-
-          expect(response).to have_http_status(200)
-          expect(response.content_type)
-            .to start_with('application/json')
-        end
-      end
-
-      describe 'GET /api/v1/statuses/:id/context' do
-        before do
-          Fabricate(:status, thread: status)
-        end
-
-        it 'returns http success' do
-          get "/api/v1/statuses/#{status.id}/context"
 
           expect(response).to have_http_status(200)
           expect(response.content_type)
