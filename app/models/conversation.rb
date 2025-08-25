@@ -15,7 +15,13 @@ class Conversation < ApplicationRecord
 
   has_many :statuses, dependent: nil
 
+  scope :local, -> { where(uri: nil) }
+
   def local?
     uri.nil?
+  end
+
+  def object_type
+    :conversation
   end
 end
