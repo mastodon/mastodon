@@ -39,7 +39,7 @@ const messages = defineMessages({
   },
   quoteNobody: {
     id: 'visibility_modal.quote_nobody',
-    defaultMessage: 'No one',
+    defaultMessage: 'Just me',
   },
 });
 
