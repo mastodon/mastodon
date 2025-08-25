@@ -8,6 +8,7 @@ class Auth::SetupController < ApplicationController
   before_action :set_user
 
   skip_before_action :require_functional!
+  skip_before_action :check_mfa_requirement
 
   def show; end
 
