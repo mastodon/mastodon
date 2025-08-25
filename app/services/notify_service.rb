@@ -8,6 +8,7 @@ class NotifyService < BaseService
     admin.report
     admin.sign_up
     update
+    quoted_update
     poll
     status
     moderation_warning
