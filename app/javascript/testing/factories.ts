@@ -68,6 +68,7 @@ export const statusFactory: FactoryFunction<ApiStatusJSON> = ({
   url: 'https://example.com/status/1',
   replies_count: 0,
   reblogs_count: 0,
+  quotes_count: 0,
   favorites_count: 0,
   account: accountFactory(),
   media_attachments: [],
