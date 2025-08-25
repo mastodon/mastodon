@@ -216,7 +216,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             >
               <FormattedMessage
                 id='visibility_modal.privacy_label'
-                defaultMessage='Privacy'
+                defaultMessage='Change who can see'
               />
 
               <Dropdown
