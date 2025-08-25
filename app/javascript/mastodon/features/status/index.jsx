@@ -45,18 +45,17 @@ import {
 import { openModal } from '../../actions/modal';
 import { initMuteModal } from '../../actions/mutes';
 import { initReport } from '../../actions/reports';
-import { showAlert } from '../../actions/alerts';
 import {
   fetchStatus,
   muteStatus,
   unmuteStatus,
-  deleteStatus,
   editStatus,
   hideStatus,
   revealStatus,
   translateStatus,
   undoStatusTranslation,
 } from '../../actions/statuses';
+import { deleteStatus } from '../../actions/delete';
 import { setStatusQuotePolicy } from '../../actions/statuses_typed';
 import ColumnHeader from '../../components/column_header';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
@@ -76,7 +75,6 @@ const messages = defineMessages({
   hideAll: { id: 'status.show_less_all', defaultMessage: 'Show less for all' },
   statusTitleWithAttachments: { id: 'status.title.with_attachments', defaultMessage: '{user} posted {attachmentCount, plural, one {an attachment} other {# attachments}}' },
   detailedStatus: { id: 'status.detailed_status', defaultMessage: 'Detailed conversation view' },
-  deleteSuccess: { id: 'status.delete.success', defaultMessage: 'Post deleted successfully' },
 });
 
 const makeMapStateToProps = () => {
@@ -252,18 +250,14 @@ class Status extends ImmutablePureComponent {
   };
 
   handleDeleteClick = (status, withRedraft = false) => {
-    const { dispatch, history, intl } = this.props;
+    const { dispatch, history } = this.props;
 
     const handleDeleteSuccess = () => {
-      dispatch(showAlert({
-        message: intl.formatMessage(messages.deleteSuccess),
-      }));
-
       history.push('/');
     };
 
     if (!deleteModal) {
-      dispatch(deleteStatus(status.get('id'), withRedraft)).then(handleDeleteSuccess);
+      dispatch(deleteStatus(status.get('id'), withRedraft, handleDeleteSuccess));
     } else {
       dispatch(openModal({ 
         modalType: 'CONFIRM_DELETE_STATUS', 
