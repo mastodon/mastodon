@@ -57,8 +57,6 @@ class Notification extends ImmutablePureComponent {
   static propTypes = {
     notification: ImmutablePropTypes.map.isRequired,
     hidden: PropTypes.bool,
-    onMoveUp: PropTypes.func.isRequired,
-    onMoveDown: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
     onFavourite: PropTypes.func.isRequired,
     onReblog: PropTypes.func.isRequired,
@@ -71,16 +69,6 @@ class Notification extends ImmutablePureComponent {
     cachedMediaWidth: PropTypes.number,
     unread: PropTypes.bool,
     ...WithRouterPropTypes,
-  };
-
-  handleMoveUp = () => {
-    const { notification, onMoveUp } = this.props;
-    onMoveUp(notification.get('id'));
-  };
-
-  handleMoveDown = () => {
-    const { notification, onMoveDown } = this.props;
-    onMoveDown(notification.get('id'));
   };
 
   handleOpen = () => {
@@ -128,8 +116,6 @@ class Notification extends ImmutablePureComponent {
       mention: this.handleMention,
       open: this.handleOpen,
       openProfile: this.handleOpenProfile,
-      moveUp: this.handleMoveUp,
-      moveDown: this.handleMoveDown,
       toggleHidden: this.handleHotkeyToggleHidden,
     };
   }
@@ -180,8 +166,6 @@ class Notification extends ImmutablePureComponent {
         id={notification.get('status')}
         withDismiss
         hidden={this.props.hidden}
-        onMoveDown={this.handleMoveDown}
-        onMoveUp={this.handleMoveUp}
         contextType='notifications'
         getScrollPosition={this.props.getScrollPosition}
         updateScrollBottom={this.props.updateScrollBottom}

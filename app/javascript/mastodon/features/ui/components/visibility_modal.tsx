@@ -1,11 +1,4 @@
-import {
-  forwardRef,
-  useCallback,
-  useId,
-  useImperativeHandle,
-  useMemo,
-  useState,
-} from 'react';
+import { forwardRef, useCallback, useId, useMemo, useState } from 'react';
 import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
@@ -16,6 +9,7 @@ import type { ApiQuotePolicy } from '@/mastodon/api_types/quotes';
 import { isQuotePolicy } from '@/mastodon/api_types/quotes';
 import { isStatusVisibility } from '@/mastodon/api_types/statuses';
 import type { StatusVisibility } from '@/mastodon/api_types/statuses';
+import { Button } from '@/mastodon/components/button';
 import { Dropdown } from '@/mastodon/components/dropdown';
 import type { SelectItem } from '@/mastodon/components/dropdown_selector';
 import { IconButton } from '@/mastodon/components/icon_button';
@@ -96,7 +90,8 @@ const selectStatusPolicy = createAppSelector(
 );
 
 export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
-  ({ onClose, onChange, statusId }, ref) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ({ onClose, onChange, statusId }, _ref) => {
     const intl = useIntl();
     const currentVisibility = useAppSelector((state) =>
       statusId
@@ -172,18 +167,10 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
         setQuotePolicy(value);
       }
     }, []);
-
-    // Save on close
-    useImperativeHandle(
-      ref,
-      () => ({
-        getCloseConfirmationMessage() {
-          onChange(visibility, quotePolicy);
-          return null;
-        },
-      }),
-      [onChange, quotePolicy, visibility],
-    );
+    const handleSave = useCallback(() => {
+      onChange(visibility, quotePolicy);
+      onClose();
+    }, [onChange, onClose, visibility, quotePolicy]);
 
     const privacyDropdownId = useId();
     const quoteDropdownId = useId();
@@ -273,6 +260,20 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
               />
               <QuotePolicyHelper policy={quotePolicy} visibility={visibility} />
             </label>
+          </div>
+          <div className='dialog-modal__content__actions'>
+            <Button onClick={onClose} secondary>
+              <FormattedMessage
+                id='confirmation_modal.cancel'
+                defaultMessage='Cancel'
+              />
+            </Button>
+            <Button onClick={handleSave}>
+              <FormattedMessage
+                id='visibility_modal.save'
+                defaultMessage='Save'
+              />
+            </Button>
           </div>
         </div>
       </div>

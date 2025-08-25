@@ -396,15 +396,6 @@ class Status extends ImmutablePureComponent {
     this.props.dispatch(unblockDomain(domain));
   };
 
-
-  handleHotkeyMoveUp = () => {
-    this.handleMoveUp(this.props.status.get('id'));
-  };
-
-  handleHotkeyMoveDown = () => {
-    this.handleMoveDown(this.props.status.get('id'));
-  };
-
   handleHotkeyReply = e => {
     e.preventDefault();
     this.handleReplyClick(this.props.status);
@@ -439,54 +430,6 @@ class Status extends ImmutablePureComponent {
     this.handleTranslate(this.props.status);
   };
 
-  handleMoveUp = id => {
-    const { status, ancestorsIds, descendantsIds } = this.props;
-
-    if (id === status.get('id')) {
-      this._selectChild(ancestorsIds.length - 1, true);
-    } else {
-      let index = ancestorsIds.indexOf(id);
-
-      if (index === -1) {
-        index = descendantsIds.indexOf(id);
-        this._selectChild(ancestorsIds.length + index, true);
-      } else {
-        this._selectChild(index - 1, true);
-      }
-    }
-  };
-
-  handleMoveDown = id => {
-    const { status, ancestorsIds, descendantsIds } = this.props;
-
-    if (id === status.get('id')) {
-      this._selectChild(ancestorsIds.length + 1, false);
-    } else {
-      let index = ancestorsIds.indexOf(id);
-
-      if (index === -1) {
-        index = descendantsIds.indexOf(id);
-        this._selectChild(ancestorsIds.length + index + 2, false);
-      } else {
-        this._selectChild(index + 1, false);
-      }
-    }
-  };
-
-  _selectChild (index, align_top) {
-    const container = this.node;
-    const element = container.querySelectorAll('.focusable')[index];
-
-    if (element) {
-      if (align_top && container.scrollTop > element.offsetTop) {
-        element.scrollIntoView(true);
-      } else if (!align_top && container.scrollTop + container.clientHeight < element.offsetTop + element.offsetHeight) {
-        element.scrollIntoView(false);
-      }
-      element.focus();
-    }
-  }
-
   renderChildren (list, ancestors) {
     const { params: { statusId } } = this.props;
 
@@ -494,8 +437,6 @@ class Status extends ImmutablePureComponent {
       <StatusQuoteManager
         key={id}
         id={id}
-        onMoveUp={this.handleMoveUp}
-        onMoveDown={this.handleMoveDown}
         contextType='thread'
         previousId={i > 0 ? list[i - 1] : undefined}
         nextId={list[i + 1] || (ancestors && statusId)}
@@ -602,8 +543,6 @@ class Status extends ImmutablePureComponent {
     }
 
     const handlers = {
-      moveUp: this.handleHotkeyMoveUp,
-      moveDown: this.handleHotkeyMoveDown,
       reply: this.handleHotkeyReply,
       favourite: this.handleHotkeyFavourite,
       boost: this.handleHotkeyBoost,
@@ -626,7 +565,7 @@ class Status extends ImmutablePureComponent {
         />
 
         <ScrollContainer scrollKey='thread' shouldUpdateScroll={this.shouldUpdateScroll}>
-          <div className={classNames('scrollable', { fullscreen })} ref={this.setContainerRef}>
+          <div className={classNames('scrollable item-list', { fullscreen })} ref={this.setContainerRef}>
             {ancestors}
 
             <Hotkeys handlers={handlers}>
