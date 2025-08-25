@@ -3,7 +3,7 @@
     = f.check_box :ip_block_ids, { multiple: true, include_hidden: false }, ip_block.id
   .batch-table__row__content.pending-account
     .pending-account__header
-      %samp= link_to "#{ip_block.ip}/#{ip_block.ip.prefix}", admin_accounts_path(ip: "#{ip_block.ip}/#{ip_block.ip.prefix}")
+      %samp= link_to ip_block.to_cidr, admin_accounts_path(ip: ip_block.to_cidr)
       - if ip_block.comment.present?
         ·
         = ip_block.comment
