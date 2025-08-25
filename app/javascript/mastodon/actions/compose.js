@@ -221,6 +221,7 @@ export function submitCompose(successCallback) {
       });
     }
 
+    const visibility = getState().getIn(['compose', 'privacy']);
     api().request({
       url: statusId === null ? '/api/v1/statuses' : `/api/v1/statuses/${statusId}`,
       method: statusId === null ? 'post' : 'put',
@@ -231,11 +232,11 @@ export function submitCompose(successCallback) {
         media_attributes,
         sensitive: getState().getIn(['compose', 'sensitive']),
         spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
-        visibility: getState().getIn(['compose', 'privacy']),
+        visibility: visibility,
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
         quoted_status_id: getState().getIn(['compose', 'quoted_status_id']),
-        quote_approval_policy: getState().getIn(['compose', 'quote_policy']),
+        quote_approval_policy: visibility === 'private' || visibility === 'direct' ? 'nobody' : getState().getIn(['compose', 'quote_policy']),
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
