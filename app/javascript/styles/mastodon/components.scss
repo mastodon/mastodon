@@ -5668,9 +5668,20 @@ a.status-card {
     z-index: 9999;
   }
 
-  &__label.disabled {
-    cursor: default;
-    opacity: 0.5;
+  &__label {
+    cursor: pointer;
+    display: block;
+
+    > span {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    &.disabled {
+      cursor: default;
+      opacity: 0.5;
+    }
   }
 
   &__button {
@@ -5985,17 +5996,6 @@ a.status-card {
 
   @media screen and (width <= $mobile-breakpoint) {
     margin-top: auto;
-  }
-}
-
-.modal-root label {
-  cursor: pointer;
-  display: block;
-
-  > span {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 8px;
   }
 }
 
