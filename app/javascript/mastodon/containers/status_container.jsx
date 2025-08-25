@@ -1,6 +1,10 @@
-import { injectIntl } from 'react-intl';
+import { injectIntl, defineMessages } from 'react-intl';
 
 import { connect } from 'react-redux';
+
+const messages = defineMessages({
+  deleteSuccess: { id: 'status.delete.success', defaultMessage: 'Post deleted.' },
+});
 
 import {
   unmuteAccount,
@@ -41,6 +45,7 @@ import {
   translateStatus,
   undoStatusTranslation,
 } from '../actions/statuses';
+import { showAlert } from '../actions/alerts';
 import { setStatusQuotePolicy } from '../actions/statuses_typed';
 import Status from '../components/status';
 import { deleteModal } from '../initial_state';
@@ -59,7 +64,7 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const mapDispatchToProps = (dispatch, { contextType }) => ({
+const mapDispatchToProps = (dispatch, { contextType, intl }) => ({
 
   onReply (status) {
     dispatch((_, getState) => {
@@ -105,10 +110,23 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
   },
 
   onDelete (status, withRedraft = false) {
+    const handleDeleteSuccess = () => {
+      dispatch(showAlert({
+        message: intl.formatMessage(messages.deleteSuccess),
+      }));
+    };
+
     if (!deleteModal) {
-      dispatch(deleteStatus(status.get('id'), withRedraft));
+      dispatch(deleteStatus(status.get('id'), withRedraft)).then(handleDeleteSuccess);
     } else {
-      dispatch(openModal({ modalType: 'CONFIRM_DELETE_STATUS', modalProps: { statusId: status.get('id'), withRedraft } }));
+      dispatch(openModal({ 
+        modalType: 'CONFIRM_DELETE_STATUS', 
+        modalProps: { 
+          statusId: status.get('id'), 
+          withRedraft,
+          onDeleteSuccess: handleDeleteSuccess
+        } 
+      }));
     }
   },
 
