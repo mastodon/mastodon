@@ -39,7 +39,7 @@ const messages = defineMessages({
   },
   quoteNobody: {
     id: 'visibility_modal.quote_nobody',
-    defaultMessage: 'No one',
+    defaultMessage: 'Just me',
   },
 });
 
@@ -302,7 +302,7 @@ const QuotePolicyHelper: FC<{
       <p className='visibility-dropdown__helper'>
         <FormattedMessage
           id='visibility_modal.helper.private_quoting'
-          defaultMessage="Follower-only posts can't be quoted."
+          defaultMessage="Follower-only posts authored on Mastodon can't be quoted by others."
         />
       </p>
     );
@@ -313,7 +313,7 @@ const QuotePolicyHelper: FC<{
       <p className='visibility-dropdown__helper'>
         <FormattedMessage
           id='visibility_modal.helper.direct_quoting'
-          defaultMessage="Private mentions can't be quoted."
+          defaultMessage="Private mentions authored on Mastodon can't be quoted by others."
         />
       </p>
     );
