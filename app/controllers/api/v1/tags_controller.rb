@@ -4,6 +4,7 @@ class Api::V1::TagsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :follow, :write, :'write:follows' }, only: [:follow, :unfollow]
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:feature, :unfeature]
   before_action :require_user!, except: :show
+  before_action :verify_tag_format
   before_action :set_or_create_tag
 
   override_rate_limit_headers :follow, family: :follows
@@ -36,9 +37,11 @@ class Api::V1::TagsController < Api::BaseController
 
   private
 
-  def set_or_create_tag
-    return not_found unless Tag::HASHTAG_NAME_RE.match?(params[:id])
+  def verify_tag_format
+    not_found unless Tag::HASHTAG_NAME_RE.match?(params[:id])
+  end
 
+  def set_or_create_tag
     @tag = Tag.find_normalized(params[:id]) || Tag.new(name: Tag.normalize(params[:id]), display_name: params[:id])
   end
 end
