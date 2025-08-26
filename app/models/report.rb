@@ -79,6 +79,10 @@ class Report < ApplicationRecord
     Status.with_discarded.where(id: status_ids)
   end
 
+  def deleted_status_ids
+    status_ids.difference(statuses.pluck(:id))
+  end
+
   def media_attachments_count
     statuses_to_query = []
     count = 0
