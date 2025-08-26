@@ -90,8 +90,15 @@ export default function statuses(state = initialState, action) {
   switch(action.type) {
   case STATUS_FETCH_REQUEST:
     return state.setIn([action.id, 'isLoading'], true);
-  case STATUS_FETCH_FAIL:
-    return state.delete(action.id);
+  case STATUS_FETCH_FAIL: {
+    if (action.parentQuotePostId && action.error.status === 404) {
+      return state
+        .delete(action.id)
+        .setIn([action.parentQuotePostId, 'quote', 'state'], 'deleted')
+    } else {
+      return state.delete(action.id);
+    }
+  }
   case STATUS_IMPORT:
     return importStatus(state, action.status);
   case STATUSES_IMPORT:
