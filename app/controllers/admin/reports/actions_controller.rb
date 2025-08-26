@@ -6,6 +6,7 @@ class Admin::Reports::ActionsController < Admin::BaseController
   def preview
     authorize @report, :show?
     @moderation_action = action_from_button
+    @statuses = @report.statuses.includes(:application, :media_attachments)
   end
 
   def create

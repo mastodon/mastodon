@@ -13,6 +13,17 @@ RSpec.describe Report do
     end
   end
 
+  describe '#deleted_status_ids' do
+    let!(:status) { Fabricate :status }
+    let(:report) { Fabricate.build :report, status_ids: [deleted, status.id] }
+    let(:deleted) { 123_123_123 }
+
+    it 'returns ids of stored statuses which no longer exist' do
+      expect(report.deleted_status_ids)
+        .to contain_exactly(deleted)
+    end
+  end
+
   describe 'media_attachments_count' do
     it 'returns count of media attachments in statuses' do
       status1 = Fabricate(:status, ordered_media_attachment_ids: [1, 2])
