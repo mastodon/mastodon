@@ -39,4 +39,28 @@ RSpec.describe BulkImport do
       end
     end
   end
+
+  describe '#failure_count' do
+    subject { described_class.new(processed_items: 100, imported_items: 90).failure_count }
+
+    it { is_expected.to eq(10) }
+  end
+
+  describe '#processing_complete?' do
+    subject { Fabricate.build :bulk_import, processed_items:, total_items: }
+
+    context 'when processed and total are the same' do
+      let(:processed_items) { 100 }
+      let(:total_items) { 100 }
+
+      it { is_expected.to be_processing_complete }
+    end
+
+    context 'when processed and total are not the same' do
+      let(:processed_items) { 100 }
+      let(:total_items) { 200 }
+
+      it { is_expected.to_not be_processing_complete }
+    end
+  end
 end
