@@ -399,7 +399,10 @@ export const DetailedStatus: React.FC<{
             {hashtagBar}
 
             {status.get('quote') && (
-              <QuotedStatus quote={status.get('quote')} />
+              <QuotedStatus
+                quote={status.get('quote')}
+                parentQuotePostId={status.get('id')}
+              />
             )}
           </>
         )}
