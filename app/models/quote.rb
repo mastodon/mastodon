@@ -90,13 +90,13 @@ class Quote < ApplicationRecord
   end
 
   def increment_counter_caches!
-    return unless acceptable?
+    return unless accepted?
 
     quoted_status&.increment_count!(:quotes_count)
   end
 
   def decrement_counter_caches!
-    return unless acceptable?
+    return unless accepted?
 
     quoted_status&.decrement_count!(:quotes_count)
   end
@@ -104,7 +104,7 @@ class Quote < ApplicationRecord
   def update_counter_caches!
     return if legacy? || !state_previously_changed?
 
-    if acceptable?
+    if accepted?
       quoted_status&.increment_count!(:quotes_count)
     else
       # TODO: are there cases where this would not be correct?
