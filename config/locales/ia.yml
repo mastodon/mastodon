@@ -367,7 +367,7 @@ ia:
       title: Emojis personalisate
       uncategorized: Sin categoria
       unlist: Non listar
-      unlisted: Non listate
+      unlisted: Public, non listate
       update_failed_msg: Non poteva actualisar le emoji
       updated_msg: Emoji actualisate con successo!
       upload: Incargar
@@ -902,7 +902,7 @@ ia:
       open: Aperir message
       original_status: Message original
       reblogs: Republicationes
-      replied_to_html: Respondite a %{acct_link}
+      replied_to_html: Responsa a %{acct_link}
       status_changed: Message cambiate
       status_title: Message de @%{name}
       title: Messages del conto – @%{name}
@@ -1909,17 +1909,18 @@ ia:
       ownership: Le message de alcuno altere non pote esser appunctate
       reblog: Un impulso non pote esser affixate
     quote_policies:
-      followers: Solmente tu sequitores
-      nobody: Necuno
+      followers: Solmente sequitores
+      nobody: Solo io
       public: Omnes
     title: "%{name}: “%{quote}”"
     visibilities:
+      direct: Mention private
       private: Solmente sequitores
       private_long: Solmente monstrar a sequitores
       public: Public
-      public_long: Omnes pote vider
+      public_long: Quicunque, sur Mastodon o non
       unlisted: Non listate
-      unlisted_long: Omnes pote vider, ma non es listate in le chronologias public
+      unlisted_long: Celate in resultatos de recerca, tendentias e chronologias public de Mastodon
   statuses_cleanup:
     enabled: Deler automaticamente le messages ancian
     enabled_hint: Dele automaticamente tu messages un vice que illos attinge un limine de etate specificate, salvo que illes concorda un del exceptiones infra

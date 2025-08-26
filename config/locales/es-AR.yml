@@ -367,7 +367,7 @@ es-AR:
       title: Emojis personalizados
       uncategorized: Sin categoría
       unlist: No listar
-      unlisted: No listado
+      unlisted: Público pero silencioso
       update_failed_msg: No se pudo actualizar ese emoji
       updated_msg: "¡Emoji actualizado exitosamente!"
       upload: Subir
@@ -1909,18 +1909,18 @@ es-AR:
       ownership: No se puede fijar el mensaje de otra cuenta
       reblog: No se puede fijar una adhesión
     quote_policies:
-      followers: Solo tus seguidores
-      nobody: Nadie
-      public: Todos
+      followers: Solo seguidores
+      nobody: Solo yo
+      public: Cualquier cuenta
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Mención privada
       private: Sólo a seguidores
       private_long: Sólo mostrar a seguidores
       public: Público
-      public_long: Todos pueden ver
+      public_long: Todo el mundo, dentro y fuera de Mastodon
       unlisted: No listado
-      unlisted_long: Todos pueden ver, pero no está listado en las líneas temporales públicas
+      unlisted_long: Oculto de los resultados de búsqueda, tendencias y líneas temporales públicas de Mastodon
   statuses_cleanup:
     enabled: Eliminar automáticamente mensajes antiguos
     enabled_hint: Elimina automáticamente tus mensajes una vez que alcancen un umbral de edad especificado, a menos que coincidan con una de las excepciones a continuación
