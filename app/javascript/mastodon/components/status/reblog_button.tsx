@@ -160,7 +160,12 @@ export const StatusReblogButton: FC<ReblogButtonProps> = ({
         )}
         icon='retweet'
         iconComponent={iconComponent}
-        counter={counters ? (status.get('reblogs_count') as number) : undefined}
+        counter={
+          counters
+            ? (status.get('reblogs_count') as number) +
+              (status.get('quotes_count') as number)
+            : undefined
+        }
         active={isReblogged}
       />
     </Dropdown>
@@ -283,7 +288,12 @@ export const LegacyReblogButton: FC<ReblogButtonProps> = ({
       icon='retweet'
       iconComponent={iconComponent}
       onClick={!disabled ? handleClick : undefined}
-      counter={counters ? (status.get('reblogs_count') as number) : undefined}
+      counter={
+        counters
+          ? (status.get('reblogs_count') as number) +
+            (status.get('quotes_count') as number)
+          : undefined
+      }
     />
   );
 };
