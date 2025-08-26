@@ -1,5 +1,4 @@
 - target_acct = @report.target_account.acct
-- warning_action = { 'delete' => 'delete_statuses', 'mark_as_sensitive' => 'mark_statuses_as_sensitive' }.fetch(@moderation_action, @moderation_action)
 
 - content_for :page_title do
   = t('admin.reports.confirm_action', acct: target_acct)
@@ -26,8 +25,8 @@
     %p.hint= t('admin.reports.summary.preview_preamble_html', acct: target_acct)
 
     .strike-card
-      - unless warning_action == 'none'
-        %p= t "user_mailer.warning.explanation.#{warning_action}", instance: Rails.configuration.x.local_domain
+      - unless @moderation_action == 'none'
+        %p= t "user_mailer.warning.explanation.#{explanation_key(@moderation_action)}", instance: Rails.configuration.x.local_domain
 
       .fields-group
         = form.text_area :text,
