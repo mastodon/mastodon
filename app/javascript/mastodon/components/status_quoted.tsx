@@ -84,12 +84,13 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
   const status = useAppSelector((state) =>
     quotedStatusId ? state.statuses.get(quotedStatusId) : undefined,
   );
+  const isQuoteLoaded = !!status && !status.get('isLoading');
 
   useEffect(() => {
-    if (!status && quotedStatusId) {
+    if (!isQuoteLoaded && quotedStatusId) {
       dispatch(fetchStatus(quotedStatusId));
     }
-  }, [status, quotedStatusId, dispatch]);
+  }, [isQuoteLoaded, quotedStatusId, dispatch]);
 
   // In order to find out whether the quoted post should be completely hidden
   // due to a matching filter, we run it through the selector used by `status_container`.
