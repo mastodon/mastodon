@@ -18,7 +18,7 @@
     = opengraph 'og:locale', @status.language
   = opengraph 'profile:username', acct(@account)[1..]
 
-  = render 'og_description', activity: @status
+  = render 'og_description', description: status_description(@status)
   = render 'og_image', status: @status, account: @account
 
 = render 'shared/web_app'
