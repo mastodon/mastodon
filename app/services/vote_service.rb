@@ -45,7 +45,7 @@ class VoteService < BaseService
   def distribute_poll!
     return if @poll.hide_totals?
 
-    ActivityPub::DistributePollUpdateWorker.perform_in(3.minutes, @poll.status.id)
+    ActivityPub::DistributePollUpdateWorker.distribute(@poll.status)
   end
 
   def queue_final_poll_check!

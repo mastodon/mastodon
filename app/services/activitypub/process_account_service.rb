@@ -9,6 +9,9 @@ class ActivityPub::ProcessAccountService < BaseService
   SUBDOMAINS_RATELIMIT = 10
   DISCOVERIES_PER_REQUEST = 400
 
+  PROCESSING_DELAY = (30.seconds)..(10.minutes)
+  VERIFY_DELAY = 10.minutes
+
   VALID_URI_SCHEMES = %w(http https).freeze
 
   # Should be called with confirmed valid JSON
@@ -143,13 +146,13 @@ class ActivityPub::ProcessAccountService < BaseService
       @account.avatar_remote_url = image_url('icon') || '' unless skip_download?
       @account.avatar = nil if @account.avatar_remote_url.blank?
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-      RedownloadAvatarWorker.perform_in(rand(30..600).seconds, @account.id)
+      RedownloadAvatarWorker.perform_in(rand(PROCESSING_DELAY), @account.id)
     end
     begin
       @account.header_remote_url = image_url('image') || '' unless skip_download?
       @account.header = nil if @account.header_remote_url.blank?
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-      RedownloadHeaderWorker.perform_in(rand(30..600).seconds, @account.id)
+      RedownloadHeaderWorker.perform_in(rand(PROCESSING_DELAY), @account.id)
     end
     @account.statuses_count    = outbox_total_items    if outbox_total_items.present?
     @account.following_count   = following_total_items if following_total_items.present?
@@ -195,7 +198,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def check_links!
-    VerifyAccountLinksWorker.perform_in(rand(10.minutes.to_i), @account.id)
+    VerifyAccountLinksWorker.perform_in(rand(VERIFY_DELAY), @account.id)
   end
 
   def process_duplicate_accounts!

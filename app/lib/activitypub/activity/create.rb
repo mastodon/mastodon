@@ -3,6 +3,9 @@
 class ActivityPub::Activity::Create < ActivityPub::Activity
   include FormattingHelper
 
+  DISTRIBUTE_DELAY = 1.minute
+  PROCESSING_DELAY = (30.seconds)..(10.minutes)
+
   def perform
     @account.schedule_refresh_if_stale!
 
@@ -72,7 +75,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def distribute
     # Spread out crawling randomly to avoid DDoSing the link
-    LinkCrawlWorker.perform_in(rand(1..59).seconds, @status.id)
+    LinkCrawlWorker.perform_in(rand(DISTRIBUTE_DELAY), @status.id)
 
     # Distribute into home and list feeds and notify mentioned accounts
     ::DistributionWorker.perform_async(@status.id, { 'silenced_account_ids' => @silenced_account_ids }) if @options[:override_timestamps] || @status.within_realtime_window?
@@ -296,7 +299,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         media_attachment.download_thumbnail!
         media_attachment.save
       rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-        RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
+        RedownloadMediaWorker.perform_in(rand(PROCESSING_DELAY), media_attachment.id)
       rescue Seahorse::Client::NetworkingError => e
         Rails.logger.warn "Error storing media attachment: #{e}"
         RedownloadMediaWorker.perform_async(media_attachment.id)
@@ -341,7 +344,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
 
     increment_voters_count! unless already_voted
-    ActivityPub::DistributePollUpdateWorker.perform_in(3.minutes, replied_to_status.id) unless replied_to_status.preloadable_poll.hide_totals?
+    ActivityPub::DistributePollUpdateWorker.distribute(replied_to_status) unless replied_to_status.preloadable_poll.hide_totals?
   end
 
   def resolve_thread(status)
@@ -352,7 +355,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def resolve_unresolved_mentions(status)
     @unresolved_mentions.uniq.each do |uri|
-      MentionResolveWorker.perform_in(rand(30...600).seconds, status.id, uri, { 'request_id' => @options[:request_id] })
+      MentionResolveWorker.perform_in(rand(PROCESSING_DELAY), status.id, uri, { 'request_id' => @options[:request_id] })
     end
   end
 
@@ -375,7 +378,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     embedded_quote = safe_prefetched_embed(@account, @status_parser.quoted_object, @json['context'])
     ActivityPub::VerifyQuoteService.new.call(@quote, fetchable_quoted_uri: @quote_uri, prefetched_quoted_object: embedded_quote, request_id: @options[:request_id], depth: @options[:depth])
   rescue Mastodon::RecursionLimitExceededError, Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-    ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(30..600).seconds, @quote.id, @quote_uri, { 'request_id' => @options[:request_id] })
+    ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(PROCESSING_DELAY), @quote.id, @quote_uri, { 'request_id' => @options[:request_id] })
   end
 
   def conversation_from_uri(uri)

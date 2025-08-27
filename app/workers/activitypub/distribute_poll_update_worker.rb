@@ -4,6 +4,8 @@ class ActivityPub::DistributePollUpdateWorker
   include Sidekiq::Worker
   include Payloadable
 
+  PROCESSING_DELAY = 3.minutes
+
   sidekiq_options queue: 'push', lock: :until_executed, retry: 0
 
   def perform(status_id)
@@ -19,6 +21,10 @@ class ActivityPub::DistributePollUpdateWorker
     relay! if relayable?
   rescue ActiveRecord::RecordNotFound
     true
+  end
+
+  def self.distribute(status)
+    perform_in(PROCESSING_DELAY, status.id)
   end
 
   private
