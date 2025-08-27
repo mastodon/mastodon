@@ -13,6 +13,9 @@ export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
 export const STATUS_FETCH_SUCCESS = 'STATUS_FETCH_SUCCESS';
 export const STATUS_FETCH_FAIL    = 'STATUS_FETCH_FAIL';
 
+export const STATUS_DELETE_REQUEST = 'STATUS_DELETE_REQUEST';
+export const STATUS_DELETE_SUCCESS = 'STATUS_DELETE_SUCCESS';
+export const STATUS_DELETE_FAIL    = 'STATUS_DELETE_FAIL';
 
 export const STATUS_MUTE_REQUEST = 'STATUS_MUTE_REQUEST';
 export const STATUS_MUTE_SUCCESS = 'STATUS_MUTE_SUCCESS';
@@ -141,7 +144,52 @@ export const fetchStatusSourceFail = error => ({
   error,
 });
 
+export function deleteStatus(id, withRedraft = false) {
+  return (dispatch, getState) => {
+    let status = getState().getIn(['statuses', id]);
 
+    if (status.get('poll')) {
+      status = status.set('poll', getState().getIn(['polls', status.get('poll')]));
+    }
+
+    dispatch(deleteStatusRequest(id));
+
+    api().delete(`/api/v1/statuses/${id}`, { params: { delete_media: !withRedraft } }).then(response => {
+      dispatch(deleteStatusSuccess(id));
+      dispatch(deleteFromTimelines(id));
+      dispatch(importFetchedAccount(response.data.account));
+
+      if (withRedraft) {
+        dispatch(redraft(status, response.data.text));
+        ensureComposeIsVisible(getState);
+      }
+    }).catch(error => {
+      dispatch(deleteStatusFail(id, error));
+    });
+  };
+}
+
+export function deleteStatusRequest(id) {
+  return {
+    type: STATUS_DELETE_REQUEST,
+    id: id,
+  };
+}
+
+export function deleteStatusSuccess(id) {
+  return {
+    type: STATUS_DELETE_SUCCESS,
+    id: id,
+  };
+}
+
+export function deleteStatusFail(id, error) {
+  return {
+    type: STATUS_DELETE_FAIL,
+    id: id,
+    error: error,
+  };
+}
 
 export const updateStatus = status => dispatch =>
   dispatch(importFetchedStatus(status));

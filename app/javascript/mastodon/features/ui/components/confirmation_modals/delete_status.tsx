@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import { deleteStatus } from 'mastodon/actions/delete';
+import { deleteStatus } from 'mastodon/actions/statuses';
 import { useAppDispatch } from 'mastodon/store';
 
 import type { BaseConfirmationModalProps } from './confirmation_modal';
@@ -47,12 +47,9 @@ export const ConfirmDeleteStatusModal: React.FC<
   const dispatch = useAppDispatch();
 
   const onConfirm = useCallback(() => {
-    void dispatch(
-      deleteStatus(statusId, withRedraft, () => {
-        onDeleteSuccess?.();
-        onClose();
-      }),
-    );
+    dispatch(deleteStatus(statusId, withRedraft));
+    onDeleteSuccess?.();
+    onClose();
   }, [dispatch, statusId, withRedraft, onDeleteSuccess, onClose]);
 
   return (

@@ -49,13 +49,13 @@ import {
   fetchStatus,
   muteStatus,
   unmuteStatus,
+  deleteStatus,
   editStatus,
   hideStatus,
   revealStatus,
   translateStatus,
   undoStatusTranslation,
 } from '../../actions/statuses';
-import { deleteStatus } from '../../actions/delete';
 import { setStatusQuotePolicy } from '../../actions/statuses_typed';
 import ColumnHeader from '../../components/column_header';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
@@ -257,7 +257,10 @@ class Status extends ImmutablePureComponent {
     };
 
     if (!deleteModal) {
-      dispatch(deleteStatus(status.get('id'), withRedraft, handleDeleteSuccess));
+      dispatch(deleteStatus(status.get('id'), withRedraft));
+      if (!withRedraft) {
+        handleDeleteSuccess();
+      }
     } else {
       dispatch(openModal({ 
         modalType: 'CONFIRM_DELETE_STATUS', 

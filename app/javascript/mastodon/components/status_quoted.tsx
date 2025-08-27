@@ -221,7 +221,6 @@ export const StatusQuoteManager = (props: StatusQuoteManagerProps) => {
 
   if (quote) {
     return (
-      // @ts-expect-error Redux connected component has complex props
       <StatusContainer {...props}>
         <QuotedStatus
           quote={quote}
@@ -232,8 +231,5 @@ export const StatusQuoteManager = (props: StatusQuoteManagerProps) => {
     );
   }
 
-  return (
-    // @ts-expect-error Redux connected component has complex props
-    <StatusContainer {...props} />
-  );
+  return <StatusContainer {...props} />;
 };

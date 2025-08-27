@@ -35,13 +35,13 @@ import { initReport } from '../actions/reports';
 import {
   muteStatus,
   unmuteStatus,
+  deleteStatus,
   toggleStatusSpoilers,
   toggleStatusCollapse,
   editStatus,
   translateStatus,
   undoStatusTranslation,
 } from '../actions/statuses';
-import { deleteStatus } from '../actions/delete';
 import { setStatusQuotePolicy } from '../actions/statuses_typed';
 import Status from '../components/status';
 import { deleteModal } from '../initial_state';
@@ -60,7 +60,7 @@ const makeMapStateToProps = () => {
   return mapStateToProps;
 };
 
-const mapDispatchToProps = (dispatch, { contextType, intl }) => ({
+const mapDispatchToProps = (dispatch, { contextType }) => ({
 
   onReply (status) {
     dispatch((_, getState) => {
@@ -109,12 +109,12 @@ const mapDispatchToProps = (dispatch, { contextType, intl }) => ({
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), withRedraft));
     } else {
-      dispatch(openModal({ 
-        modalType: 'CONFIRM_DELETE_STATUS', 
-        modalProps: { 
-          statusId: status.get('id'), 
+      dispatch(openModal({
+        modalType: 'CONFIRM_DELETE_STATUS',
+        modalProps: {
+          statusId: status.get('id'),
           withRedraft
-        } 
+        }
       }));
     }
   },
