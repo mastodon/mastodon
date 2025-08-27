@@ -135,7 +135,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     @accept_token = session[:accept_token] = SecureRandom.hex
     @invite_code  = invite_code
 
-    set_locale { render :rules }
+    set_locale do
+      @rule_translations = @rules.map { |rule| rule.translation_for(I18n.locale) }
+      render :rules
+    end
   end
 
   def is_flashing_format? # rubocop:disable Naming/PredicatePrefix
