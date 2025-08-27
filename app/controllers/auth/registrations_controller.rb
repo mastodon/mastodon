@@ -133,9 +133,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     return if @rules.empty? || validated_accept_token?
 
     @accept_token = session[:accept_token] = SecureRandom.hex
-    @invite_code  = invite_code
-
+    @invite_code = invite_code
     @rule_translations = @rules.map { |rule| rule.translation_for(I18n.locale) }
+
     render :rules
   end
 
