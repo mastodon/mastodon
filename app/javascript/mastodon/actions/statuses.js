@@ -1,7 +1,10 @@
+import { defineMessages } from 'react-intl';
+
 import { browserHistory } from 'mastodon/components/router';
 
 import api from '../api';
 
+import { showAlert } from './alerts';
 import { ensureComposeIsVisible, setComposeToStatus } from './compose';
 import { importFetchedStatus, importFetchedAccount } from './importer';
 import { fetchContext } from './statuses_typed';
@@ -39,6 +42,10 @@ export const STATUS_TRANSLATE_REQUEST = 'STATUS_TRANSLATE_REQUEST';
 export const STATUS_TRANSLATE_SUCCESS = 'STATUS_TRANSLATE_SUCCESS';
 export const STATUS_TRANSLATE_FAIL    = 'STATUS_TRANSLATE_FAIL';
 export const STATUS_TRANSLATE_UNDO    = 'STATUS_TRANSLATE_UNDO';
+
+const messages = defineMessages({
+  deleteSuccess: { id: 'status.delete.success', defaultMessage: 'Post deleted' },
+});
 
 export function fetchStatusRequest(id, skipLoading) {
   return {
@@ -162,6 +169,8 @@ export function deleteStatus(id, withRedraft = false) {
       if (withRedraft) {
         dispatch(redraft(status, response.data.text));
         ensureComposeIsVisible(getState);
+      } else {
+        dispatch(showAlert({ message: messages.deleteSuccess }));
       }
 
       return response;
