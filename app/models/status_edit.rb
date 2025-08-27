@@ -54,8 +54,6 @@ class StatusEdit < ApplicationRecord
     return @poll = nil if poll_options.blank?
 
     @poll = Poll.new({
-      # not the correct ID, but it works with the redux cache
-      id: id,
       options: poll_options,
       account_id: account_id,
       status_id: status_id,
@@ -67,7 +65,10 @@ class StatusEdit < ApplicationRecord
   def emojis
     return @emojis if defined?(@emojis)
 
-    @emojis = CustomEmoji.from_text([spoiler_text, text].join(' '), status.account.domain)
+    fields  = [spoiler_text, text]
+    fields += preloadable_poll.options unless preloadable_poll.nil?
+
+    @emojis = CustomEmoji.from_text(fields.join(' '), status.account.domain)
   end
 
   def ordered_media_attachments
