@@ -92,10 +92,6 @@ class StatusEdit < ApplicationRecord
     ordered_media_attachments.any?
   end
 
-  def with_preview_card?
-    false
-  end
-
   def reblog?
     false
   end
