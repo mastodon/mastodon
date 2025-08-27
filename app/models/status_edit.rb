@@ -45,6 +45,10 @@ class StatusEdit < ApplicationRecord
   delegate :local?, :application, :edited?, :edited_at,
            :discarded?, :reply?, :visibility, :language, to: :status
 
+  def with_media?
+    ordered_media_attachments.any?
+  end
+
   def with_poll?
     poll_options.present?
   end
@@ -86,10 +90,6 @@ class StatusEdit < ApplicationRecord
 
   def proper
     self
-  end
-
-  def with_media?
-    ordered_media_attachments.any?
   end
 
   def reblog?
