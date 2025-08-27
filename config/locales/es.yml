@@ -367,7 +367,7 @@ es:
       title: Emojis personalizados
       uncategorized: Sin clasificar
       unlist: No listado
-      unlisted: Sin listar
+      unlisted: Ocultos
       update_failed_msg: No se pudo actualizar ese emoji
       updated_msg: "¡Emoji actualizado con éxito!"
       upload: Subir
@@ -1909,8 +1909,8 @@ es:
       ownership: La publicación de otra persona no puede fijarse
       reblog: Una publicación impulsada no puede fijarse
     quote_policies:
-      followers: Solo tus seguidores
-      nobody: Nadie
+      followers: Solo seguidores
+      nobody: Solo yo
       public: Cualquiera
     title: "%{name}: «%{quote}»"
     visibilities:
@@ -1918,9 +1918,9 @@ es:
       private: Solo seguidores
       private_long: Solo mostrar a tus seguidores
       public: Pública
-      public_long: Todos pueden ver
+      public_long: Cualquiera dentro y fuera de Mastodon
       unlisted: Pública, pero no mostrar en la historia federada
-      unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
+      unlisted_long: Ocultado de los resultados de búsqueda de Mastodon, tendencias y cronologías públicas
   statuses_cleanup:
     enabled: Borrar automáticamente publicaciones antiguas
     enabled_hint: Elimina automáticamente tus publicaciones una vez que alcancen un umbral de tiempo especificado, a menos que coincidan con alguna de las excepciones detalladas debajo

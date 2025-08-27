@@ -367,7 +367,7 @@ en:
       title: Custom emojis
       uncategorized: Uncategorized
       unlist: Unlist
-      unlisted: Unlisted
+      unlisted: Quiet public
       update_failed_msg: Could not update that emoji
       updated_msg: Emoji successfully updated!
       upload: Upload
@@ -1910,18 +1910,18 @@ en:
       ownership: Someone else's post cannot be pinned
       reblog: A boost cannot be pinned
     quote_policies:
-      followers: Only your followers
-      nobody: Nobody
-      public: Everyone
+      followers: Followers only
+      nobody: Just me
+      public: Anyone
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Private mention
       private: Followers-only
       private_long: Only show to followers
       public: Public
-      public_long: Everyone can see
+      public_long: Anyone on and off Mastodon
       unlisted: Unlisted
-      unlisted_long: Everyone can see, but not listed on public timelines
+      unlisted_long: Hidden from Mastodon search results, trending, and public timelines
   statuses_cleanup:
     enabled: Automatically delete old posts
     enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below

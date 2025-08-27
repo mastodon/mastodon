@@ -30,9 +30,20 @@ import { importFetchedAccounts, importFetchedStatuses } from './importer';
 import { NOTIFICATIONS_FILTER_SET } from './notifications';
 import { saveSettings } from './settings';
 
+function notificationTypeForFilter(type: NotificationType) {
+  if (type === 'quoted_update') return 'update';
+  else return type;
+}
+
+function notificationTypeForQuickFilter(type: NotificationType) {
+  if (type === 'quoted_update') return 'update';
+  else if (type === 'quote') return 'mention';
+  else return type;
+}
+
 function excludeAllTypesExcept(filter: string) {
   return allNotificationTypes.filter(
-    (item) => item !== filter && !(item === 'quote' && filter === 'mention'),
+    (item) => notificationTypeForQuickFilter(item) !== filter,
   );
 }
 
@@ -157,16 +168,17 @@ export const processNewNotificationForGroups = createAppAsyncThunk(
 
     const showInColumn =
       activeFilter === 'all'
-        ? notificationShows[notification.type] !== false
-        : activeFilter === notification.type ||
-          (activeFilter === 'mention' && notification.type === 'quote');
+        ? notificationShows[notificationTypeForFilter(notification.type)] !==
+          false
+        : activeFilter === notificationTypeForQuickFilter(notification.type);
 
     if (!showInColumn) return;
 
     if (
       (notification.type === 'mention' ||
+        notification.type === 'quote' ||
         notification.type === 'update' ||
-        notification.type === 'quote') &&
+        notification.type === 'quoted_update') &&
       notification.status?.filtered
     ) {
       const filters = notification.status.filtered.filter((result) =>

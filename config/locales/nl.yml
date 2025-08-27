@@ -367,7 +367,7 @@ nl:
       title: Lokale emoji’s
       uncategorized: Niet gecategoriseerd
       unlist: Niet in lijst
-      unlisted: Niet weergegeven
+      unlisted: Minder openbaar
       update_failed_msg: Deze emoji kon niet worden bijgewerkt
       updated_msg: Bijwerken van emoji is geslaagd!
       upload: Uploaden
@@ -589,7 +589,7 @@ nl:
         created_msg: Aanmaken van servermoderatie-opmerking geslaagd!
         description_html: Opmerkingen bekijken, en voor jezelf en andere moderatoren achterlaten
         destroyed_msg: Verwijderen van servermoderatie-opmerking geslaagd!
-        placeholder: Informatie over deze server, genomen acties of iets anders die jou kunnen helpen om deze server in de toekomst te modereren.
+        placeholder: Informatie over deze server, ondernomen acties of iets anders dat jou kan helpen om deze server in de toekomst te modereren.
         title: Moderatie-opmerkingen
       private_comment: Privé-opmerking
       public_comment: Openbare opmerking
@@ -1909,17 +1909,18 @@ nl:
       ownership: Een bericht van iemand anders kan niet worden vastgemaakt
       reblog: Een boost kan niet worden vastgezet
     quote_policies:
-      followers: Alleen jouw volgers
-      nobody: Niemand
+      followers: Alleen volgers
+      nobody: Alleen ik
       public: Iedereen
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Privébericht
       private: Alleen volgers
       private_long: Alleen aan jouw volgers tonen
       public: Openbaar
-      public_long: Aan iedereen tonen, ook op openbare tijdlijnen
+      public_long: Iedereen op en buiten Mastodon
       unlisted: Minder openbaar
-      unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
+      unlisted_long: Niet zichtbaar in de zoekresultaten van Mastodon, onder trends, hashtags en op openbare tijdlijnen
   statuses_cleanup:
     enabled: Automatisch oude berichten verwijderen
     enabled_hint: Verwijder uw berichten automatisch zodra ze een bepaalde leeftijdsgrens bereiken, tenzij ze overeenkomen met een van de onderstaande uitzonderingen

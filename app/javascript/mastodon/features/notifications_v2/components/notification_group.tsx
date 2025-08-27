@@ -16,6 +16,7 @@ import { NotificationMention } from './notification_mention';
 import { NotificationModerationWarning } from './notification_moderation_warning';
 import { NotificationPoll } from './notification_poll';
 import { NotificationQuote } from './notification_quote';
+import { NotificationQuotedUpdate } from './notification_quoted_update';
 import { NotificationReblog } from './notification_reblog';
 import { NotificationSeveredRelationships } from './notification_severed_relationships';
 import { NotificationStatus } from './notification_status';
@@ -113,6 +114,14 @@ export const NotificationGroup: React.FC<{
     case 'update':
       content = (
         <NotificationUpdate unread={unread} notification={notificationGroup} />
+      );
+      break;
+    case 'quoted_update':
+      content = (
+        <NotificationQuotedUpdate
+          unread={unread}
+          notification={notificationGroup}
+        />
       );
       break;
     case 'admin.sign_up':

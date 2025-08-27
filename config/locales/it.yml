@@ -367,7 +367,7 @@ it:
       title: Emoji personalizzate
       uncategorized: Nessuna categoria
       unlist: Escludi dall'elenco
-      unlisted: Non elencato
+      unlisted: Pubblico silenzioso
       update_failed_msg: Impossibile aggiornare questa emojii
       updated_msg: Emoji aggiornata con successo!
       upload: Carica
@@ -1911,17 +1911,18 @@ it:
       ownership: Non puoi fissare in cima un post di qualcun altro
       reblog: Un toot condiviso non può essere fissato in cima
     quote_policies:
-      followers: Solo i tuoi seguaci
-      nobody: Nessuno
-      public: Tutti
+      followers: Solo i seguaci
+      nobody: Solo io
+      public: Chiunque
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Menzione privata
       private: Mostra solo ai tuoi seguaci
       private_long: Mostra solo ai seguaci
       public: Pubblico
-      public_long: Tutti lo possono vedere
+      public_long: Chiunque dentro e fuori Mastodon
       unlisted: Pubblico, ma non visibile sulla timeline pubblica
-      unlisted_long: Tutti lo possono vedere, ma non compare nelle timeline pubbliche
+      unlisted_long: Nascosto dai risultati di ricerca di Mastodon, dalle tendenze e dalle timeline pubbliche
   statuses_cleanup:
     enabled: Cancella automaticamente i vecchi post
     enabled_hint: Cancella automaticamente i tuoi post quando diventano più vecchi di una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto

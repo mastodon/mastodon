@@ -364,7 +364,6 @@ ko:
       title: 커스텀 에모지
       uncategorized: 분류되지 않음
       unlist: 목록에서 제거
-      unlisted: 목록에 없음
       update_failed_msg: 에모지를 업데이트 할 수 없습니다
       updated_msg: 성공적으로 에모지를 업데이트했습니다!
       upload: 업로드
@@ -1867,18 +1866,13 @@ ko:
       limit: 이미 너무 많은 게시물을 고정했습니다
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
-    quote_policies:
-      followers: 내 팔로워만
-      nobody: 없음
-      public: 모두
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: 개인 멘션
       private: 비공개
       private_long: 팔로워에게만 공개됩니다
       public: 공개
-      public_long: 누구나 볼 수 있으며, 공개 타임라인에 표시됩니다
       unlisted: 미등재
-      unlisted_long: 누구나 볼 수 있지만, 공개 타임라인에는 표시되지 않습니다
   statuses_cleanup:
     enabled: 오래된 게시물 자동 삭제
     enabled_hint: 아래의 예외 목록에 해당하지 않는다면, 명시된 기한 이후 당신의 게시물을 자동으로 삭제합니다

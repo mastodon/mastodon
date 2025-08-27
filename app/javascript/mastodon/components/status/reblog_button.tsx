@@ -46,6 +46,14 @@ const messages = defineMessages({
     id: 'status.cannot_quote',
     defaultMessage: 'Author has disabled quoting on this post',
   },
+  quote_followers_only: {
+    id: 'status.quote_followers_only',
+    defaultMessage: 'Only followers can quote this post',
+  },
+  quote_manual_review: {
+    id: 'status.quote_manual_review',
+    defaultMessage: 'Author will manually review',
+  },
   quote_private: {
     id: 'status.quote_private',
     defaultMessage: 'Private posts cannot be quoted',
@@ -63,6 +71,10 @@ const messages = defineMessages({
     id: 'status.cannot_reblog',
     defaultMessage: 'This post cannot be boosted',
   },
+  request_quote: {
+    id: 'status.request_quote',
+    defaultMessage: 'Request to quote',
+  },
 });
 
 interface ReblogButtonProps {
@@ -79,13 +91,21 @@ export const StatusReblogButton: FC<ReblogButtonProps> = ({
   const statusState = useAppSelector((state) =>
     selectStatusState(state, status),
   );
-  const { isLoggedIn, isReblogged, isReblogAllowed, isQuoteAllowed } =
-    statusState;
+  const {
+    isLoggedIn,
+    isReblogged,
+    isReblogAllowed,
+    isQuoteAutomaticallyAccepted,
+    isQuoteManuallyAccepted,
+  } = statusState;
   const { iconComponent } = useMemo(
     () => reblogIconText(statusState),
     [statusState],
   );
-  const disabled = !isQuoteAllowed && !isReblogAllowed;
+  const disabled =
+    !isQuoteAutomaticallyAccepted &&
+    !isQuoteManuallyAccepted &&
+    !isReblogAllowed;
 
   const dispatch = useAppDispatch();
   const statusId = status.get('id') as string;
@@ -160,7 +180,12 @@ export const StatusReblogButton: FC<ReblogButtonProps> = ({
         )}
         icon='retweet'
         iconComponent={iconComponent}
-        counter={counters ? (status.get('reblogs_count') as number) : undefined}
+        counter={
+          counters
+            ? (status.get('reblogs_count') as number) +
+              (status.get('quotes_count') as number)
+            : undefined
+        }
         active={isReblogged}
       />
     </Dropdown>
@@ -283,7 +308,12 @@ export const LegacyReblogButton: FC<ReblogButtonProps> = ({
       icon='retweet'
       iconComponent={iconComponent}
       onClick={!disabled ? handleClick : undefined}
-      counter={counters ? (status.get('reblogs_count') as number) : undefined}
+      counter={
+        counters
+          ? (status.get('reblogs_count') as number) +
+            (status.get('quotes_count') as number)
+          : undefined
+      }
     />
   );
 };
@@ -310,9 +340,15 @@ const selectStatusState = createAppSelector(
         status.get('visibility') === 'private',
       isReblogged: !!status.get('reblogged'),
       isReblogAllowed: isPublic || isMineAndPrivate,
-      isQuoteAllowed:
+      isQuoteAutomaticallyAccepted:
         status.getIn(['quote_approval', 'current_user']) === 'automatic' &&
         (isPublic || isMineAndPrivate),
+      isQuoteManuallyAccepted:
+        status.getIn(['quote_approval', 'current_user']) === 'manual' &&
+        (isPublic || isMineAndPrivate),
+      isQuoteFollowersOnly:
+        status.getIn(['quote_approval', 'automatic', 0]) === 'followers' ||
+        status.getIn(['quote_approval', 'manual', 0]) === 'followers',
     };
   },
 );
@@ -354,7 +390,9 @@ function reblogIconText({
 
 function quoteIconText({
   isMine,
-  isQuoteAllowed,
+  isQuoteAutomaticallyAccepted,
+  isQuoteManuallyAccepted,
+  isQuoteFollowersOnly,
   isPublic,
 }: StatusState): IconText {
   const iconText: IconText = {
@@ -362,12 +400,22 @@ function quoteIconText({
     iconComponent: FormatQuote,
   };
 
-  if (!isQuoteAllowed || (!isPublic && !isMine)) {
-    iconText.meta = !isQuoteAllowed
-      ? messages.quote_cannot
-      : messages.quote_private;
-    iconText.iconComponent = FormatQuoteOff;
+  if (!isPublic && !isMine) {
     iconText.disabled = true;
+    iconText.iconComponent = FormatQuoteOff;
+    iconText.meta = messages.quote_private;
+  } else if (isQuoteAutomaticallyAccepted) {
+    iconText.title = messages.quote;
+  } else if (isQuoteManuallyAccepted) {
+    iconText.title = messages.request_quote;
+    iconText.meta = messages.quote_manual_review;
+  } else {
+    iconText.disabled = true;
+    iconText.iconComponent = FormatQuoteOff;
+    iconText.meta = isQuoteFollowersOnly
+      ? messages.quote_followers_only
+      : messages.quote_cannot;
   }
+
   return iconText;
 }

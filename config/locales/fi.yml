@@ -367,7 +367,7 @@ fi:
       title: Mukautetut emojit
       uncategorized: Luokittelematon
       unlist: Poista listasta
-      unlisted: Ei listassa
+      unlisted: Vaivihkaisesti julkinen
       update_failed_msg: Emojin päivitys epäonnistui
       updated_msg: Emojin päivitys onnistui!
       upload: Lähetä
@@ -1909,17 +1909,18 @@ fi:
       ownership: Muiden julkaisuja ei voi kiinnittää
       reblog: Tehostusta ei voi kiinnittää
     quote_policies:
-      followers: Vain seuraajasi
-      nobody: Ei kukaan
-      public: Kaikki
+      followers: Vain seuraajat
+      nobody: Vain minä
+      public: Kuka tahansa
     title: "%{name}: ”%{quote}”"
     visibilities:
+      direct: Yksityismaininta
       private: Vain seuraajat
       private_long: Näytä vain seuraajille
       public: Julkinen
-      public_long: Kaikki voivat nähdä
+      public_long: Kuka tahansa Mastodonissa ja sen ulkopuolella
       unlisted: Listaamaton
-      unlisted_long: Kaikki voivat nähdä, mutta ei näytetä julkisilla aikajanoilla
+      unlisted_long: Piilotettu Mastodonin hakutuloksista, trendeistä ja julkisilta aikajanoilta
   statuses_cleanup:
     enabled: Poista vanhat julkaisut automaattisesti
     enabled_hint: Poistaa julkaisusi automaattisesti, kun ne saavuttavat valitun ikäkynnyksen, ellei jokin alla olevista poikkeuksista tule kyseeseen

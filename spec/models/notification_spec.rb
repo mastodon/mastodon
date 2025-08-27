@@ -69,6 +69,17 @@ RSpec.describe Notification do
       end
     end
 
+    context 'when the notification is a quoted post update notification' do
+      it 'sets the notification from_account correctly' do
+        status = Fabricate(:status)
+        quote = Fabricate(:quote, quoted_status: status)
+
+        notification = Fabricate.build(:notification, activity_type: 'Status', type: 'quoted_update', activity: quote.status)
+
+        expect(notification.from_account).to eq(status.account)
+      end
+    end
+
     context 'when activity_type is a Follow' do
       it 'sets the notification from_account correctly' do
         follow = Fabricate(:follow)

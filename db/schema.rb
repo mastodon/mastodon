@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_19_100545) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_20_084312) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -1103,6 +1103,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_19_100545) do
     t.datetime "updated_at", precision: nil, null: false
     t.bigint "untrusted_favourites_count"
     t.bigint "untrusted_reblogs_count"
+    t.bigint "quotes_count", default: 0, null: false
     t.index ["status_id"], name: "index_status_stats_on_status_id", unique: true
   end
 

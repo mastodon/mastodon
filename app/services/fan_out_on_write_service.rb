@@ -99,6 +99,12 @@ class FanOutOnWriteService < BaseService
         [account.id, @status.id, 'Status', 'update']
       end
     end
+
+    @status.quotes.accepted.find_in_batches do |quotes|
+      LocalNotificationWorker.push_bulk(quotes) do |quote|
+        [quote.account_id, quote.status_id, 'Status', 'quoted_update']
+      end
+    end
   end
 
   def deliver_to_all_followers!
