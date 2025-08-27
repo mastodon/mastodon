@@ -6,13 +6,15 @@ class ActivityPub::SynchronizeFollowersService < BaseService
 
   MAX_COLLECTION_PAGES = 10
 
-  def call(account, partial_collection_url)
+  def call(account, partial_collection_url, expected_digest = nil)
     @account = account
     @expected_followers_ids = []
+    @digest = [expected_digest].pack('H*') if expected_digest.present?
 
     return unless process_collection!(partial_collection_url)
 
-    remove_unexpected_local_followers!
+    # Only remove followers if the digests match, as it is a destructive operation
+    remove_unexpected_local_followers! if expected_digest.blank? || @digest == "\x00" * 32
   end
 
   private
@@ -20,6 +22,8 @@ class ActivityPub::SynchronizeFollowersService < BaseService
   def process_page!(items)
     page_expected_followers = extract_local_followers(items)
     @expected_followers_ids.concat(page_expected_followers.pluck(:id))
+
+    items.each { |uri| Xorcist.xor!(@digest, Digest::SHA256.digest(uri)) } if @digest.present?
 
     handle_unexpected_outgoing_follows!(page_expected_followers)
   end
