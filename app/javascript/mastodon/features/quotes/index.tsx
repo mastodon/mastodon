@@ -31,7 +31,7 @@ export const Quotes: React.FC<{
 
   const statusId = params?.statusId;
 
-  const correctStatusId = useAppSelector(
+  const isCorrectStatusId: boolean = useAppSelector(
     (state) => state.status_lists.getIn(['quotes', 'statusId']) === statusId,
   );
   const statusIds = useAppSelector((state) =>
@@ -51,15 +51,15 @@ export const Quotes: React.FC<{
   }, [dispatch, statusId]);
 
   const handleLoadMore = useCallback(() => {
-    if (statusId && correctStatusId && nextUrl)
+    if (statusId && isCorrectStatusId && nextUrl)
       void dispatch(fetchQuotes({ statusId, next: nextUrl }));
-  }, [dispatch, statusId, correctStatusId, nextUrl]);
+  }, [dispatch, statusId, isCorrectStatusId, nextUrl]);
 
   const handleRefresh = useCallback(() => {
     if (statusId) void dispatch(fetchQuotes({ statusId }));
   }, [dispatch, statusId]);
 
-  if (!statusIds || !correctStatusId) {
+  if (!statusIds || !isCorrectStatusId) {
     return (
       <Column>
         <LoadingIndicator />
