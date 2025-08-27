@@ -1,15 +1,16 @@
 import { apiRequestPost } from 'mastodon/api';
-import type { Status, StatusVisibility } from 'mastodon/models/status';
+import type { ApiStatusJSON } from 'mastodon/api_types/statuses';
+import type { StatusVisibility } from 'mastodon/models/status';
 
 export const apiReblog = (statusId: string, visibility: StatusVisibility) =>
-  apiRequestPost<{ reblog: Status }>(`v1/statuses/${statusId}/reblog`, {
+  apiRequestPost<{ reblog: ApiStatusJSON }>(`v1/statuses/${statusId}/reblog`, {
     visibility,
   });
 
 export const apiUnreblog = (statusId: string) =>
-  apiRequestPost<Status>(`v1/statuses/${statusId}/unreblog`);
+  apiRequestPost<ApiStatusJSON>(`v1/statuses/${statusId}/unreblog`);
 
 export const apiRevokeQuote = (quotedStatusId: string, statusId: string) =>
-  apiRequestPost<Status>(
+  apiRequestPost<ApiStatusJSON>(
     `v1/statuses/${quotedStatusId}/quotes/${statusId}/revoke`,
   );
