@@ -154,7 +154,7 @@ export function deleteStatus(id, withRedraft = false) {
 
     dispatch(deleteStatusRequest(id));
 
-    api().delete(`/api/v1/statuses/${id}`, { params: { delete_media: !withRedraft } }).then(response => {
+    return api().delete(`/api/v1/statuses/${id}`, { params: { delete_media: !withRedraft } }).then(response => {
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
       dispatch(importFetchedAccount(response.data.account));
@@ -163,8 +163,11 @@ export function deleteStatus(id, withRedraft = false) {
         dispatch(redraft(status, response.data.text));
         ensureComposeIsVisible(getState);
       }
+
+      return response;
     }).catch(error => {
       dispatch(deleteStatusFail(id, error));
+      throw error;
     });
   };
 }

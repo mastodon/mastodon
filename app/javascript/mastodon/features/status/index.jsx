@@ -257,10 +257,15 @@ class Status extends ImmutablePureComponent {
     };
 
     if (!deleteModal) {
-      dispatch(deleteStatus(status.get('id'), withRedraft));
-      if (!withRedraft) {
-        handleDeleteSuccess();
-      }
+      dispatch(deleteStatus(status.get('id'), withRedraft))
+        .then(() => {
+          if (!withRedraft) {
+            handleDeleteSuccess();
+          }
+        })
+        .catch(() => {
+          // Error handling - could show error message
+        });
     } else {
       dispatch(openModal({ 
         modalType: 'CONFIRM_DELETE_STATUS', 
