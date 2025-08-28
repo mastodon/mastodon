@@ -10,7 +10,7 @@
 
   %hr.spacer/
 
-  - if @report.target_account.local?
+  - if @report.target_account_local?
     %p.hint= t('admin.reports.summary.preview_preamble_html', acct: @report.target_account_acct)
 
     .strike-card
