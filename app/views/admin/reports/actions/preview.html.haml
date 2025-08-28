@@ -1,29 +1,17 @@
-- target_acct = @report.target_account.acct
 - warning_action = { 'delete' => 'delete_statuses', 'mark_as_sensitive' => 'mark_statuses_as_sensitive' }.fetch(@moderation_action, @moderation_action)
 
 - content_for :page_title do
-  = t('admin.reports.confirm_action', acct: target_acct)
+  = t('admin.reports.confirm_action', acct: @report.target_account_acct)
 
 = form_with url: admin_report_actions_path(@report), class: :simple_form do |form|
   = form.hidden_field :moderation_action, value: @moderation_action
 
-  %p.hint= t("admin.reports.summary.action_preambles.#{@moderation_action}_html", acct: target_acct)
-  %ul.hint
-    %li.warning-hint= t("admin.reports.summary.actions.#{@moderation_action}_html", acct: target_acct)
-    - if @moderation_action == 'suspend'
-      %li.warning-hint= t('admin.reports.summary.delete_data_html', acct: target_acct)
-    - if %w(silence suspend).include?(@moderation_action)
-      %li.warning-hint= t('admin.reports.summary.close_reports_html', acct: target_acct)
-    - else
-      %li= t('admin.reports.summary.close_report', id: @report.id)
-    %li= t('admin.reports.summary.record_strike_html', acct: target_acct)
-    - if @report.target_account.local? && !@report.spam?
-      %li= t('admin.reports.summary.send_email_html', acct: target_acct)
+  = render 'hints', acct: @report.target_account_acct, action: @moderation_action, report: @report
 
   %hr.spacer/
 
   - if @report.target_account.local?
-    %p.hint= t('admin.reports.summary.preview_preamble_html', acct: target_acct)
+    %p.hint= t('admin.reports.summary.preview_preamble_html', acct: @report.target_account_acct)
 
     .strike-card
       - unless warning_action == 'none'
