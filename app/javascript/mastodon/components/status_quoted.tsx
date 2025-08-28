@@ -32,9 +32,7 @@ const QuoteWrapper: React.FC<{
   );
 };
 
-const NestedQuoteLink: React.FC<{
-  status: Status;
-}> = ({ status }) => {
+const NestedQuoteLink: React.FC<{ status: Status }> = ({ status }) => {
   const accountId = status.get('account') as string;
   const account = useAppSelector((state) =>
     accountId ? state.accounts.get(accountId) : undefined,
@@ -63,24 +61,47 @@ type GetStatusSelector = (
   props: { id?: string | null; contextType?: string },
 ) => Status | null;
 
-export const QuotedStatus: React.FC<{
+interface QuotedStatusProps {
   quote: QuoteMap;
   contextType?: string;
+  parentQuotePostId?: string | null;
   variant?: 'full' | 'link';
   nestingLevel?: number;
-}> = ({ quote, contextType, nestingLevel = 1, variant = 'full' }) => {
+  onQuoteCancel?: () => void; // Used for composer.
+}
+
+export const QuotedStatus: React.FC<QuotedStatusProps> = ({
+  quote,
+  contextType,
+  parentQuotePostId,
+  nestingLevel = 1,
+  variant = 'full',
+  onQuoteCancel,
+}) => {
   const dispatch = useAppDispatch();
+  const quoteState = useAppSelector((state) =>
+    parentQuotePostId
+      ? state.statuses.getIn([parentQuotePostId, 'quote', 'state'])
+      : quote.get('state'),
+  );
+
   const quotedStatusId = quote.get('quoted_status');
-  const quoteState = quote.get('state');
   const status = useAppSelector((state) =>
     quotedStatusId ? state.statuses.get(quotedStatusId) : undefined,
   );
 
+  const shouldLoadQuote = !status?.get('isLoading') && quoteState !== 'deleted';
+
   useEffect(() => {
-    if (!status && quotedStatusId) {
-      dispatch(fetchStatus(quotedStatusId));
+    if (shouldLoadQuote && quotedStatusId) {
+      dispatch(
+        fetchStatus(quotedStatusId, {
+          parentQuotePostId,
+          alsoFetchContext: false,
+        }),
+      );
     }
-  }, [status, quotedStatusId, dispatch]);
+  }, [shouldLoadQuote, quotedStatusId, parentQuotePostId, dispatch]);
 
   // In order to find out whether the quoted post should be completely hidden
   // due to a matching filter, we run it through the selector used by `status_container`.
@@ -160,10 +181,12 @@ export const QuotedStatus: React.FC<{
         id={quotedStatusId}
         contextType={contextType}
         avatarSize={32}
+        onQuoteCancel={onQuoteCancel}
       >
         {canRenderChildQuote && (
           <QuotedStatus
             quote={childQuote}
+            parentQuotePostId={quotedStatusId}
             contextType={contextType}
             variant={
               nestingLevel === MAX_QUOTE_POSTS_NESTING_LEVEL ? 'link' : 'full'
@@ -199,7 +222,11 @@ export const StatusQuoteManager = (props: StatusQuoteManagerProps) => {
   if (quote) {
     return (
       <StatusContainer {...props}>
-        <QuotedStatus quote={quote} contextType={props.contextType} />
+        <QuotedStatus
+          quote={quote}
+          parentQuotePostId={status?.get('id') as string}
+          contextType={props.contextType}
+        />
       </StatusContainer>
     );
   }

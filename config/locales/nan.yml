@@ -364,7 +364,6 @@ nan:
       title: 自訂emoji
       uncategorized: Iáu無分類
       unlist: Tuì列單the̍h掉
-      unlisted: The̍h掉ah
       update_failed_msg: Bē當更新hit ê emoji
       updated_msg: Emoji成功更新ah！
       upload: 傳上去
@@ -386,7 +385,7 @@ nan:
       software: 軟體
       sources: 註冊ê源頭
       space: 空間ê使用
-      title: Le-jí-páng (dashboard)
+      title: La-jí-báng (dashboard)
       top_languages: 上tsia̍p出現ê語言
       top_servers: 上tsia̍p活動ê服侍器
       website: 網站
@@ -762,6 +761,44 @@ nan:
         manage_invites_description: 允准用者瀏覽kap停止使用邀請連結
         manage_reports: 管理檢舉
         manage_reports_description: 允准用者審查檢舉kap執行對in ê管理ê動作。
+        manage_roles: 管理角色
+        manage_roles_description: 允准用者管理kap分配比in khah kē ê角色
+        manage_rules: 管理規則
+        manage_rules_description: 允准用者改服侍器ê規則
+        manage_settings: 管理設定
+        manage_settings_description: 允准用者改站ê設定
+        manage_taxonomies: 管理分類
+        manage_taxonomies_description: 允准用者審核趨勢內容，kap更新hashtag ê設定
+        manage_user_access: 管理用者ê接近使用
+        manage_user_access_description: 允准用者停止其他用者ê兩階段驗證，改in ê電子phue地址，kap重頭設定in ê密碼
+        manage_users: 管理用者
+        manage_users_description: 允准用者看其他ê用者ê詳細，kap執行tuì in ê管理行動
+        manage_webhooks: 管理 Webhooks
+        manage_webhooks_description: 允許用者kā管理ê事件設定 webhooks
+        view_audit_log: 看審核ê日誌
+        view_audit_log_description: 允准用者看tsit ê服侍器ê管理行動ê歷史
+        view_dashboard: 看La-jí-báng (Dashboard)
+        view_dashboard_description: 允准用者接近使用tsit ê la-jí-báng kap tsē-tsē指標
+        view_devops: DevOps
+        view_devops_description: 允准用者接近使用Sidekiq kap pgHero ê la-jí-báng
+      title: 角色
+    rules:
+      add_new: 加添規則
+      add_translation: 加添翻譯
+      delete: Thâi掉
+      description_html: 雖bóng大部份ê lóng講有讀kap同意使用規則，m̄-koh攏無讀了，直到發生問題ê時。<strong>提供in列單ē當hōo tsi̍t kái看服侍器ê規則khah快。</strong>請試kā個別ê規則寫kah短koh簡單，m̄-kú m̄通kā in拆做tsē-tsē分開ê項目。
+      edit: 編輯規則
+      empty: Iáu bē定義服侍器ê規則。
+      move_down: Suá khah落來
+      move_up: Suá khah起去
+      title: 服侍器規則
+      translation: 翻譯
+      translations: 翻譯
+      translations_explanation: Lí ē當（但是無必要）加添tsiah-ê規則ê翻譯。若無翻譯版，預設ê值ē顯示。請一直確認任何提供ê翻譯kap預設ê同步。
+    settings:
+      about:
+        manage_rules: 管理服侍器ê規則
+        preamble: 提供關係服侍器án-nuá運作kap管理，以及資金源頭ê詳細資訊。
     statuses:
       language: 語言
     trends:

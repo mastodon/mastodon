@@ -110,11 +110,10 @@ class Status extends ImmutablePureComponent {
     onToggleCollapsed: PropTypes.func,
     onTranslate: PropTypes.func,
     onInteractionModal: PropTypes.func,
+    onQuoteCancel: PropTypes.func,
     muted: PropTypes.bool,
     hidden: PropTypes.bool,
     unread: PropTypes.bool,
-    onMoveUp: PropTypes.func,
-    onMoveDown: PropTypes.func,
     showThread: PropTypes.bool,
     isQuotedPost: PropTypes.bool,
     getScrollPosition: PropTypes.func,
@@ -327,14 +326,6 @@ class Status extends ImmutablePureComponent {
     history.push(`/@${status.getIn(['account', 'acct'])}`);
   };
 
-  handleHotkeyMoveUp = e => {
-    this.props.onMoveUp?.(this.props.status.get('id'), this.node.getAttribute('data-featured'));
-  };
-
-  handleHotkeyMoveDown = e => {
-    this.props.onMoveDown?.(this.props.status.get('id'), this.node.getAttribute('data-featured'));
-  };
-
   handleHotkeyToggleHidden = () => {
     const { onToggleHidden } = this.props;
     const status = this._properStatus();
@@ -398,8 +389,6 @@ class Status extends ImmutablePureComponent {
       mention: this.handleHotkeyMention,
       open: this.handleHotkeyOpen,
       openProfile: this.handleHotkeyOpenProfile,
-      moveUp: this.handleHotkeyMoveUp,
-      moveDown: this.handleHotkeyMoveDown,
       toggleHidden: this.handleHotkeyToggleHidden,
       toggleSensitive: this.handleHotkeyToggleSensitive,
       openMedia: this.handleHotkeyOpenMedia,
@@ -583,7 +572,7 @@ class Status extends ImmutablePureComponent {
                 <DisplayName account={status.get('account')} />
               </Link>
 
-              {this.props.contextType === 'compose' && isQuotedPost &&  (
+              {isQuotedPost && !!this.props.onQuoteCancel &&  (
                 <IconButton
                   onClick={this.handleQuoteCancel}
                   className='status__quote-cancel'
