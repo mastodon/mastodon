@@ -49,6 +49,7 @@ class Report < ApplicationRecord
 
   # A report is considered local if the reporter is local
   delegate :local?, to: :account
+  delegate :acct, :local?, to: :target_account, prefix: true
 
   validates :comment, length: { maximum: COMMENT_SIZE_LIMIT }, if: :local?
   validates :rule_ids, absence: true, if: -> { (category_changed? || rule_ids_changed?) && !violation? }
