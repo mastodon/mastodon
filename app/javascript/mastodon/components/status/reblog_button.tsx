@@ -59,6 +59,10 @@ const messages = defineMessages({
     defaultMessage: 'Private posts cannot be quoted',
   },
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
+  reblog_or_quote: {
+    id: 'status.reblog_or_quote',
+    defaultMessage: 'Boost or quote',
+  },
   reblog_cancel: {
     id: 'status.cancel_reblog_private',
     defaultMessage: 'Unboost',
@@ -176,7 +180,7 @@ export const StatusReblogButton: FC<ReblogButtonProps> = ({
     >
       <IconButton
         title={intl.formatMessage(
-          !disabled ? messages.reblog : messages.all_disabled,
+          !disabled ? messages.reblog_or_quote : messages.all_disabled,
         )}
         icon='retweet'
         iconComponent={iconComponent}
