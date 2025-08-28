@@ -3,12 +3,16 @@
 class ActivityPub::ContextSerializer < ActivityPub::Serializer
   include RoutingHelper
 
-  attributes :id, :type, :first
+  attributes :id, :type, :first, :attributed_to
 
   has_one :first, serializer: ActivityPub::CollectionSerializer
 
   def id
     ActivityPub::TagManager.instance.uri_for(object)
+  end
+
+  def attributed_to
+    ActivityPub::TagManager.instance.uri_for(object.parent_account)
   end
 
   def type

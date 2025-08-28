@@ -6,10 +6,10 @@
 #
 #  id                :bigint(8)        not null, primary key
 #  uri               :string
-#  parent_status_id  :bigint(8)
-#  parent_account_id :bigint(8)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  parent_account_id :bigint(8)
+#  parent_status_id  :bigint(8)
 #
 
 class Conversation < ApplicationRecord
