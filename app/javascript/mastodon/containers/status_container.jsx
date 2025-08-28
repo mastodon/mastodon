@@ -1,7 +1,6 @@
-import { injectIntl, defineMessages } from 'react-intl';
+import { injectIntl } from 'react-intl';
 
 import { connect } from 'react-redux';
-
 
 import {
   unmuteAccount,
