@@ -1,0 +1,14 @@
+-# locals(acct:, action:, report:)
+
+%p.hint= t("admin.reports.summary.action_preambles.#{action}_html", acct:)
+%ul.hint
+  %li.warning-hint= t("admin.reports.summary.actions.#{action}_html", acct:)
+  - if action == 'suspend'
+    %li.warning-hint= t('admin.reports.summary.delete_data_html', acct:)
+  - if %w(silence suspend).include?(action)
+    %li.warning-hint= t('admin.reports.summary.close_reports_html', acct:)
+  - else
+    %li= t('admin.reports.summary.close_report', id: report.id)
+  %li= t('admin.reports.summary.record_strike_html', acct:)
+  - if report.target_account_local? && !report.spam?
+    %li= t('admin.reports.summary.send_email_html', acct:)
