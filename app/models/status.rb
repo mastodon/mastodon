@@ -444,7 +444,8 @@ class Status < ApplicationRecord
       self.in_reply_to_account_id = carried_over_reply_to_account_id
       self.conversation_id        = thread.conversation_id if conversation_id.nil?
     elsif conversation_id.nil?
-      build_owned_conversation
+      conversation = build_owned_conversation
+      self.conversation = conversation
     end
   end
 
