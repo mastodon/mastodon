@@ -1969,6 +1969,61 @@ a.sparkline {
       display: list-item;
     }
   }
+
+  .preview-card {
+    position: relative;
+    max-width: 566px;
+
+    .status-card__image {
+      &--video {
+        aspect-ratio: 16 / 9;
+      }
+
+      &--large {
+        aspect-ratio: 1.91 / 1;
+      }
+
+      aspect-ratio: 1;
+    }
+
+    .spoiler-button__overlay__label {
+      outline: 1px solid var(--media-outline-color);
+    }
+
+    .hide-button {
+      // Toggled to appear when the preview-card is unblurred:
+      display: none;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: $white;
+      border: 0;
+      outline: 1px solid var(--media-outline-color);
+      background-color: color.change($black, $alpha: 0.45);
+      backdrop-filter: $backdrop-blur-filter;
+      padding: 3px 12px;
+      border-radius: 99px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+
+      &:hover,
+      &:focus {
+        background-color: color.change($black, $alpha: 0.9);
+      }
+    }
+
+    &.preview-card--image-visible {
+      .hide-button {
+        display: block;
+      }
+
+      .spoiler-button__overlay,
+      .status-card__image-preview {
+        display: none;
+      }
+    }
+  }
 }
 
 .admin {

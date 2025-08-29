@@ -390,6 +390,19 @@ ready(() => {
         }
       }
     });
+
+  document
+    .querySelectorAll<HTMLDivElement>('.preview-card')
+    .forEach((previewCard) => {
+      const spoilerButton = previewCard.querySelector('.spoiler-button');
+      if (!spoilerButton) {
+        return;
+      }
+
+      spoilerButton.addEventListener('click', () => {
+        previewCard.classList.toggle('preview-card--image-visible');
+      });
+    });
 }).catch((reason: unknown) => {
   throw reason;
 });
