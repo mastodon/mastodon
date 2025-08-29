@@ -5,17 +5,18 @@
 # Table name: status_edits
 #
 #  id                           :bigint(8)        not null, primary key
-#  status_id                    :bigint(8)        not null
-#  account_id                   :bigint(8)
-#  text                         :text             default(""), not null
-#  spoiler_text                 :text             default(""), not null
-#  created_at                   :datetime         not null
-#  updated_at                   :datetime         not null
-#  ordered_media_attachment_ids :bigint(8)        is an Array
 #  media_descriptions           :text             is an Array
+#  ordered_media_attachment_ids :bigint(8)        is an Array
+#  poll_multiple_choice         :boolean          default(FALSE), not null
 #  poll_options                 :string           is an Array
 #  sensitive                    :boolean
+#  spoiler_text                 :text             default(""), not null
+#  text                         :text             default(""), not null
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null
+#  account_id                   :bigint(8)
 #  quote_id                     :bigint(8)
+#  status_id                    :bigint(8)        not null
 #
 
 class StatusEdit < ApplicationRecord
@@ -43,16 +44,37 @@ class StatusEdit < ApplicationRecord
   scope :ordered, -> { order(id: :asc) }
 
   delegate :local?, :application, :edited?, :edited_at,
-           :discarded?, :visibility, :language, to: :status
+           :discarded?, :reply?, :visibility, :language, to: :status
 
   def with_media?
     ordered_media_attachments.any?
   end
 
+  def with_poll?
+    poll_options.present?
+  end
+
+  def poll
+    return @poll if defined?(@poll)
+    return @poll = nil if poll_options.blank?
+
+    @poll = Poll.new({
+      multiple: poll_multiple_choice,
+      options: poll_options,
+      account_id: account_id,
+      status_id: status_id,
+    })
+  end
+
+  alias preloadable_poll poll
+
   def emojis
     return @emojis if defined?(@emojis)
 
-    @emojis = CustomEmoji.from_text([spoiler_text, text].join(' '), status.account.domain)
+    fields  = [spoiler_text, text]
+    fields += preloadable_poll.options unless preloadable_poll.nil?
+
+    @emojis = CustomEmoji.from_text(fields.join(' '), status.account.domain)
   end
 
   def ordered_media_attachments

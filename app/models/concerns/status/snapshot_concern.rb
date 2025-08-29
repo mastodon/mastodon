@@ -22,6 +22,7 @@ module Status::SnapshotConcern
       sensitive: sensitive,
       ordered_media_attachment_ids: ordered_media_attachment_ids&.dup || media_attachments.pluck(:id),
       media_descriptions: ordered_media_attachments.map(&:description),
+      poll_multiple_choice: preloadable_poll&.multiple,
       poll_options: preloadable_poll&.options&.dup,
       account_id: account_id || self.account_id,
       created_at: at_time || edited_at,
