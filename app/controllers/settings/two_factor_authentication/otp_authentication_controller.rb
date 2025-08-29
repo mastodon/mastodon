@@ -6,6 +6,7 @@ module Settings
       include ChallengableConcern
 
       skip_before_action :require_functional!
+      skip_before_action :check_mfa_requirement
 
       before_action :verify_otp_not_enabled, only: [:show]
       before_action :require_challenge!, only: [:create]
