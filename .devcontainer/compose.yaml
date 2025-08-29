@@ -55,6 +55,24 @@ services:
     networks:
       - internal_network
 
+  valkey:
+    image: valkey/valkey:8-alpine
+    restart: unless-stopped
+    volumes:
+      - valkey-data:/data
+    networks:
+      - internal_network
+
+  dragonfly:
+    image: docker.dragonflydb.io/dragonflydb/dragonfly
+    restart: unless-stopped
+    volumes:
+      - dragonfly-data:/data
+    networks:
+      - internal_network
+    ulimits:
+      memlock: -1
+
   es:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
     restart: unless-stopped
@@ -84,6 +102,8 @@ services:
 volumes:
   postgres-data:
   redis-data:
+  valkey-data:
+  dragonfly-data:
   es-data:
   lt-data:
 
