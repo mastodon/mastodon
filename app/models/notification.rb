@@ -100,7 +100,7 @@ class Notification < ApplicationRecord
   belongs_to :from_account, class_name: 'Account', optional: true
   belongs_to :activity, polymorphic: true, optional: true
 
-  with_options foreign_key: 'activity_id', optional: true do
+  with_options foreign_key: :activity_id, optional: true do
     belongs_to :mention, inverse_of: :notification
     belongs_to :status, inverse_of: :notification
     belongs_to :follow, inverse_of: :notification
