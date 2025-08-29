@@ -4,7 +4,7 @@ module Status::InteractionPolicyConcern
   extend ActiveSupport::Concern
 
   QUOTE_APPROVAL_POLICY_FLAGS = {
-    unknown: (1 << 0),
+    unsupported_policy: (1 << 0),
     public: (1 << 1),
     followers: (1 << 2),
     followed: (1 << 3),
@@ -52,7 +52,7 @@ module Status::InteractionPolicyConcern
       return :manual if following_author
     end
 
-    return :unknown if (automatic_policy | manual_policy).anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:unknown])
+    return :unknown if (automatic_policy | manual_policy).anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:unsupported_policy])
 
     :denied
   end

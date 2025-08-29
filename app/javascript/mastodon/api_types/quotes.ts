@@ -1,7 +1,11 @@
 import type { ApiStatusJSON } from './statuses';
 
 export type ApiQuoteState = 'accepted' | 'pending' | 'revoked' | 'unauthorized';
-export type ApiQuotePolicy = 'public' | 'followers' | 'nobody' | 'unknown';
+export type ApiQuotePolicy =
+  | 'public'
+  | 'followers'
+  | 'nobody'
+  | 'unsupported_policy';
 export type ApiUserQuotePolicy = 'automatic' | 'manual' | 'denied' | 'unknown';
 
 interface ApiQuoteEmptyJSON {
