@@ -20,9 +20,10 @@ import StatusList from '../../components/status_list';
 import Column from '../ui/components/column';
 import { RemoteHint } from 'mastodon/components/remote_hint';
 
-import { AccountHeader } from './components/account_header';
-import { LimitedAccountHint } from './components/limited_account_hint';
+import { AccountHeader } from 'mastodon/features/account_timeline/components/account_header';
+import { LimitedAccountHint } from 'mastodon/features/account_timeline/components/limited_account_hint';
 import { FeaturedCarousel } from '@/mastodon/components/featured_carousel';
+
 
 const emptyList = ImmutableList();
 
@@ -56,7 +57,7 @@ const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = fa
   };
 };
 
-class AccountTimeline extends ImmutablePureComponent {
+class PinnedTimeline extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.shape({
@@ -173,12 +174,13 @@ class AccountTimeline extends ImmutablePureComponent {
           prepend={
             <>
               <AccountHeader accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={tagged} />
+              <FeaturedCarousel accountId={this.props.accountId} tagged={tagged} />
             </>
         }
           alwaysPrepend
           append={<RemoteHint accountId={accountId} />}
           scrollKey='account_timeline'
-          statusIds={forceEmptyState ? emptyList : statusIds}
+          statusIds={emptyList}
           isLoading={isLoading}
           hasMore={!forceEmptyState && hasMore}
           onLoadMore={this.handleLoadMore}
@@ -193,4 +195,4 @@ class AccountTimeline extends ImmutablePureComponent {
 
 }
 
-export default connect(mapStateToProps)(AccountTimeline);
+export default connect(mapStateToProps)(PinnedTimeline);

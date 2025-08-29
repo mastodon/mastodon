@@ -58,6 +58,10 @@ export function PinnedStatuses () {
   return import('../../pinned_statuses');
 }
 
+export function PinnedTimeline () {
+  return import('../../pinned_timeline');
+}
+
 export function AccountTimeline () {
   return import('../../account_timeline');
 }
