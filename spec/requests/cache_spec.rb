@@ -169,7 +169,7 @@ RSpec.describe 'Caching behavior' do
 
   let(:alice) { Account.find_by(username: 'alice') }
   let(:user) { User.find_by(email: 'user@host.example') }
-  let(:token) { Doorkeeper::AccessToken.find_by(resource_owner_id: user.id) }
+  let(:token) { OAuth::AccessToken.find_by(resource_owner_id: user.id) }
 
   before_all do
     alice = Fabricate(:account, username: 'alice')
