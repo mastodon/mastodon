@@ -187,6 +187,7 @@ zh-CN:
         create_relay: 创建中继站
         create_unavailable_domain: 创建不可用域名
         create_user_role: 创建角色
+        create_username_block: 新建用户名规则
         demote_user: 取消管理员
         destroy_announcement: 删除公告
         destroy_canonical_email_block: 解除邮箱封禁
@@ -200,6 +201,7 @@ zh-CN:
         destroy_status: 删除嘟文
         destroy_unavailable_domain: 删除不可用域名
         destroy_user_role: 删除角色
+        destroy_username_block: 删除用户名规则
         disable_2fa_user: 停用双因素认证
         disable_custom_emoji: 禁用自定义表情符号
         disable_relay: 禁用中继站
@@ -234,6 +236,7 @@ zh-CN:
         update_report: 更新举报
         update_status: 更新嘟文
         update_user_role: 更新角色
+        update_username_block: 更新用户名规则
       actions:
         approve_appeal_html: "%{name} 批准了 %{target} 对审核结果的申诉"
         approve_user_html: "%{name} 批准了用户 %{target} 的注册"
@@ -252,6 +255,7 @@ zh-CN:
         create_relay_html: "%{name} 添加了中继站 %{target}"
         create_unavailable_domain_html: "%{name} 停止了向域名 %{target} 的投递"
         create_user_role_html: "%{name} 创建了角色 %{target}"
+        create_username_block_html: "%{name} 新增了有关包含 %{target} 的用户名的规则"
         demote_user_html: "%{name} 撤销了用户 %{target} 的管理权限"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 解封了 hash 为 %{target} 的邮箱地址"
@@ -265,6 +269,7 @@ zh-CN:
         destroy_status_html: "%{name} 删除了 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 恢复了向域名 %{target} 的投递"
         destroy_user_role_html: "%{name} 删除了角色 %{target}"
+        destroy_username_block_html: "%{name} 移除了有关包含 %{target} 的用户名的规则"
         disable_2fa_user_html: "%{name} 停用了用户 %{target} 的双因素认证"
         disable_custom_emoji_html: "%{name} 停用了自定义表情 %{target}"
         disable_relay_html: "%{name} 停用了中继站 %{target}"
@@ -299,6 +304,7 @@ zh-CN:
         update_report_html: "%{name} 更新了举报 %{target}"
         update_status_html: "%{name} 刷新了 %{target} 的嘟文"
         update_user_role_html: "%{name} 更改了角色 %{target}"
+        update_username_block_html: "%{name} 更新了有关包含 %{target} 的用户名的规则"
       deleted_account: 账号已注销
       empty: 没有找到日志
       filter_by_action: 根据操作筛选
@@ -358,6 +364,7 @@ zh-CN:
       title: 自定义表情
       uncategorized: 未分类
       unlist: 隐藏
+      unlisted: 悄悄公开
       update_failed_msg: 表情更新失败
       updated_msg: 表情更新成功！
       upload: 上传新表情
@@ -492,12 +499,14 @@ zh-CN:
         registration_requested: 已申请注册
         registrations:
           confirm: 确认
+          description: 你收到了来自FASP的注册。若你没有发起这个请求，请拒绝。若你发起了这个请求，请仔细比对名称和密钥指纹后再确认注册。
           reject: 拒绝
           title: 确认FASP注册
         save: 保存
         select_capabilities: 选择能力
         sign_in: 登录
         status: 状态
+        title: 联邦宇宙辅助服务提供商（Fediverse Auxiliary Service Providers）
       title: FASP
     follow_recommendations:
       description_html: "<strong>“关注推荐”可帮助新用户快速找到有趣的内容</strong>。 当用户与他人的互动不足以形成个性化的建议时，就会推荐关注这些账号。推荐会每日更新，基于选定语言的近期最高互动数和最多本站关注者数综合评估得出。"
@@ -565,7 +574,11 @@ zh-CN:
         limited: 受限的
         title: 审核
       moderation_notes:
+        create: 新建管理员备注
+        created_msg: 实例管理员备注创建成功！
         description_html: 查看备注或向其他管理员留言
+        destroyed_msg: 实例管理员备注删除成功！
+        placeholder: 有关此实例的信息、已采取的行动，或任何能帮助您将来管理此实例的事项。
         title: 审核注意事项
       private_comment: 私密评论
       public_comment: 公开评论
@@ -782,6 +795,7 @@ zh-CN:
       title: 实例规则
       translation: 翻译
       translations: 翻译
+      translations_explanation: 你可以选择性地为规则添加翻译。没有翻译版本则将显示默认值。 请确保任何提供的翻译都与默认值内容同步。
     settings:
       about:
         manage_rules: 管理服务器规则
@@ -897,6 +911,8 @@ zh-CN:
     system_checks:
       database_schema_check:
         message_html: 有待处理的数据库迁移。请运行它们以确保应用程序正常运行。
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch索引分析器设置已过期。请运行<code>tootctl search deploy --only=%{value}</code>。
       elasticsearch_health_red:
         message_html: Elasticsearch 集群状态不健康（红色），搜索功能不可用
       elasticsearch_health_yellow:
@@ -1057,6 +1073,25 @@ zh-CN:
           other: 过去一周内被 %{count} 个人使用过
       title: 推荐与热门
       trending: 当前热门
+    username_blocks:
+      add_new: 新建
+      block_registrations: 禁止注册
+      comparison:
+        contains: 包含
+        equals: 等于
+      contains_html: 包含%{string}
+      created_msg: 成功创建用户名规则
+      delete: 删除
+      edit:
+        title: 编辑用户名规则
+      matches_exactly_html: 等于%{string}
+      new:
+        create: 新建规则
+        title: 新建用户名规则
+      no_username_block_selected: 因为没有选择任何用户名规则，没有任何更改发生
+      not_permitted: 不允许
+      title: 用户名规则
+      updated_msg: 成功更新用户名规则
     warning_presets:
       add_new: 添加新条目
       delete: 删除
@@ -1613,6 +1648,10 @@ zh-CN:
       title: 新的提及
     poll:
       subject: "%{name} 创建的一个投票已经结束"
+    quote:
+      body: 你的嘟文被 %{name} 引用了：
+      subject: "%{name} 引用了你的嘟文"
+      title: 新引用
     reblog:
       body: 你的嘟文被 %{name} 转嘟了：
       subject: "%{name} 转嘟了你的嘟文"
@@ -1819,18 +1858,26 @@ zh-CN:
     edited_at_html: 编辑于 %{date}
     errors:
       in_reply_not_found: 你回复的嘟文似乎不存在
+      quoted_status_not_found: 您尝试引用的嘟文似乎不存在。
     over_character_limit: 超过了 %{max} 字的限制
     pin_errors:
       direct: 仅对被提及的用户可见的帖子不能被置顶
       limit: 你置顶的嘟文数量已达上限
       ownership: 不能置顶别人的嘟文
       reblog: 不能置顶转嘟
+    quote_policies:
+      followers: 仅关注者
+      nobody: 仅限自己
+      public: 任何人
     title: "%{name}：“%{quote}”"
     visibilities:
+      direct: 私信提及
       private: 仅关注者
       private_long: 只有关注你的用户能看到
       public: 公开
+      public_long: 所有人（无论是否注册了 Mastodon）
       unlisted: 悄悄公开
+      unlisted_long: 不显示在Mastodon的搜索结果、热门趋势、公共时间线上
   statuses_cleanup:
     enabled: 自动删除旧嘟文
     enabled_hint: 自动删除你发布的超过指定期限的嘟文，除非满足下列条件之一
