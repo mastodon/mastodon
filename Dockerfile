@@ -16,7 +16,7 @@ ARG BASE_REGISTRY="docker.io"
 ARG RUBY_VERSION="3.4.5"
 # # Node.js version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
 # renovate: datasource=node-version depName=node
-ARG NODE_MAJOR_VERSION="22"
+ARG NODE_MAJOR_VERSION="24"
 # Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="trixie"]
 ARG DEBIAN_VERSION="trixie"
 # Node.js image to use for base image based on combined variables (ex: 20-trixie-slim)
