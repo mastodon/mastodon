@@ -3,6 +3,7 @@ import { defineMessages, useIntl } from 'react-intl';
 import type { Map as ImmutableMap } from 'immutable';
 
 import { Hashtag } from 'mastodon/components/hashtag';
+import { timeZone } from 'mastodon/initial_state';
 
 export type TagMap = ImmutableMap<
   'id' | 'name' | 'url' | 'statuses_count' | 'last_status_at' | 'accountId',
@@ -43,6 +44,7 @@ export const FeaturedTag: React.FC<FeaturedTagProps> = ({ tag, account }) => {
                 month: 'short',
                 day: '2-digit',
                 year: 'numeric',
+                timeZone,
               }),
             })
           : intl.formatMessage(messages.empty)
