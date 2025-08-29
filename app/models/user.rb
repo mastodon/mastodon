@@ -412,7 +412,7 @@ class User < ApplicationRecord
 
   def set_approved
     self.approved = begin
-      if sign_up_from_ip_requires_approval? || sign_up_email_requires_approval? || sign_up_username_requires_approval?
+      if requires_approval?
         false
       else
         open_registrations? || valid_invitation? || external?
@@ -426,7 +426,11 @@ class User < ApplicationRecord
 
   def grant_approval_on_confirmation?
     # Re-check approval on confirmation if the server has switched to open registrations
-    open_registrations? && !sign_up_from_ip_requires_approval? && !sign_up_email_requires_approval?
+    open_registrations? && !requires_approval?
+  end
+
+  def requires_approval?
+    sign_up_from_ip_requires_approval? || sign_up_email_requires_approval? || sign_up_username_requires_approval?
   end
 
   def wrap_email_confirmation

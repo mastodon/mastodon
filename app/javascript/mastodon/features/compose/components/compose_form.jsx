@@ -15,10 +15,8 @@ import { missingAltTextModal } from 'mastodon/initial_state';
 import AutosuggestInput from 'mastodon/components/autosuggest_input';
 import AutosuggestTextarea from 'mastodon/components/autosuggest_textarea';
 import { Button } from 'mastodon/components/button';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import PollButtonContainer from '../containers/poll_button_container';
-import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { countableText } from '../util/counter';
@@ -31,6 +29,8 @@ import { PollForm } from "./poll_form";
 import { ReplyIndicator } from './reply_indicator';
 import { UploadForm } from './upload_form';
 import { Warning } from './warning';
+import { ComposeQuotedStatus } from './quoted_post';
+import { VisibilityButton } from './visibility_button';
 
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
@@ -258,6 +258,11 @@ class ComposeForm extends ImmutablePureComponent {
         <div className={classNames('compose-form__highlightable', { active: highlighted })} ref={this.setRef}>
           <EditIndicator />
 
+          <div className='compose-form__dropdowns'>
+            <VisibilityButton disabled={this.props.isEditing} />
+            <LanguageDropdown />
+          </div>
+
           {this.props.spoiler && (
             <div className='spoiler-input'>
               <div className='spoiler-input__border' />
@@ -284,11 +289,6 @@ class ComposeForm extends ImmutablePureComponent {
             </div>
           )}
 
-          <div className='compose-form__dropdowns'>
-            <PrivacyDropdownContainer disabled={this.props.isEditing} />
-            <LanguageDropdown />
-          </div>
-
           <AutosuggestTextarea
             ref={this.textareaRef}
             placeholder={intl.formatMessage(messages.placeholder)}
@@ -304,10 +304,12 @@ class ComposeForm extends ImmutablePureComponent {
             onPaste={onPaste}
             autoFocus={autoFocus}
             lang={this.props.lang}
+            className='compose-form__input'
           />
 
           <UploadForm />
           <PollForm />
+          <ComposeQuotedStatus />
 
           <div className='compose-form__footer'>
             <div className='compose-form__actions'>

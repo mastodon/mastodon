@@ -49,6 +49,10 @@ ia:
           attributes:
             reblog:
               taken: del message jam existe
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: es troppo tosto, debe esser plus tarde que %{date}
         user:
           attributes:
             date_of_birth:

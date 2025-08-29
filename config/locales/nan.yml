@@ -25,7 +25,7 @@ nan:
       action: 執行動作
       already_silenced: Tsit ê口座有受著限制。
       already_suspended: Tsit ê口座ê權限已經hōo lâng停止。
-      title: Kā %{acct} 做審核ê動作
+      title: Kā %{acct} 做管理ê動作
     account_moderation_notes:
       create: 留記錄
       created_msg: 管理記錄成功建立！
@@ -238,7 +238,7 @@ nan:
         update_user_role: 更新角色
         update_username_block: 更新使用者號名規則
       actions:
-        approve_appeal_html: "%{name} 允准 %{target} 所寫ê tuì審核決定ê投訴"
+        approve_appeal_html: "%{name} 允准 %{target} 所寫ê tuì管理決定ê投訴"
         approve_user_html: "%{name} 允准 %{target} ê 註冊"
         assigned_to_self_report_html: "%{name} kā報告 %{target} 分配hōo家tī"
         change_email_user_html: "%{name} 改變 %{target} ê電子phue地址"
@@ -282,7 +282,7 @@ nan:
         memorialize_account_html: "%{name} kā %{target} 設做故人口座"
         promote_user_html: "%{name} kā 用者 %{target} 升級"
         publish_terms_of_service_html: "%{name} 公佈服務規則ê更新"
-        reject_appeal_html: "%{name} 拒絕 %{target} 所寫ê tuì審核決定ê投訴"
+        reject_appeal_html: "%{name} 拒絕 %{target} 所寫ê tuì管理決定ê投訴"
         reject_user_html: "%{name} 拒絕 %{target} ê 註冊"
         remove_avatar_user_html: "%{name} thâi掉 %{target} ê標頭"
         reopen_report_html: "%{name} 重開 %{target} ê檢舉"
@@ -364,7 +364,6 @@ nan:
       title: 自訂emoji
       uncategorized: Iáu無分類
       unlist: Tuì列單the̍h掉
-      unlisted: The̍h掉ah
       update_failed_msg: Bē當更新hit ê emoji
       updated_msg: Emoji成功更新ah！
       upload: 傳上去
@@ -386,7 +385,7 @@ nan:
       software: 軟體
       sources: 註冊ê源頭
       space: 空間ê使用
-      title: Le-jí-páng (dashboard)
+      title: La-jí-báng (dashboard)
       top_languages: 上tsia̍p出現ê語言
       top_servers: 上tsia̍p活動ê服侍器
       website: 網站
@@ -667,7 +666,7 @@ nan:
         none: 無
       comment_description_html: 為著提供其他資訊，%{name} 寫：
       confirm: 確認
-      confirm_action: 確認kā %{acct} 審核ê動作
+      confirm_action: 確認kā %{acct} 管理ê動作
       created_at: 檢舉tī
       delete_and_resolve: Thâi掉PO文
       forwarded: 轉送ah
@@ -720,9 +719,86 @@ nan:
       target_origin: 受檢舉ê口座ê來源
       title: 檢舉
       unassign: 取消分配
+      unknown_action_msg: M̄知影ê動作：%{action}
+      unresolved: 無解決
+      updated_at: 更新
+      view_profile: 看個人資料
     roles:
+      add_new: 加添角色
+      assigned_users:
+        other: "%{count} ê用者"
+      categories:
+        administration: 管理員
+        devops: DevOps
+        invites: 邀請
+        moderation: 管理
+        special: 特別
+      delete: Thâi掉
+      description_html: 用<strong>用者角色</strong>，lí通自訂lí ê用者ē當接近使用Mastodon ê siánn物功能kap區域。
+      edit: 編「%{name}」ê角色
+      everyone: 預設ê權限
+      everyone_full_description_html: Tse是ē影響<strong>所有用者</strong>ê<strong>基本角色</strong>，就算是無分配tio̍h角色ê mā kâng款。所有其他ê角色繼承伊ê權限。
+      permissions_count:
+        other: "%{count} ê權限"
       privileges:
+        administrator: 管理員
+        administrator_description: 有tsit ê權限ê用者ē忽略所有ê權限。
+        delete_user_data: Thâi掉用者ê資料
+        delete_user_data_description: 允准用者liâm-mi thâi掉其他用者ê資料
+        invite_users: 邀請用者
+        invite_users_description: 允准用者邀請新lâng來tsit ê服侍器
         manage_announcements: 管理公告
+        manage_announcements_description: 允准用者管理佇tsit ê服侍器ê公告
+        manage_appeals: 管理投訴
+        manage_appeals_description: 允准用者審查tuì管理動作ê投訴
+        manage_blocks: 管理封鎖
+        manage_blocks_description: 允准用者封鎖電子phue ê 提供者kap IP地址
+        manage_custom_emojis: 管理自訂ê Emoji
+        manage_custom_emojis_description: 允准用者管理佇tsit ê服侍器ê自訂Emoji
+        manage_federation: 管理聯邦
+        manage_federation_description: 允准用者封鎖á是允准kap其他域名相連，mā控制寄送ê能力
+        manage_invites: 管理邀請
+        manage_invites_description: 允准用者瀏覽kap停止使用邀請連結
+        manage_reports: 管理檢舉
+        manage_reports_description: 允准用者審查檢舉kap執行對in ê管理ê動作。
+        manage_roles: 管理角色
+        manage_roles_description: 允准用者管理kap分配比in khah kē ê角色
+        manage_rules: 管理規則
+        manage_rules_description: 允准用者改服侍器ê規則
+        manage_settings: 管理設定
+        manage_settings_description: 允准用者改站ê設定
+        manage_taxonomies: 管理分類
+        manage_taxonomies_description: 允准用者審核趨勢內容，kap更新hashtag ê設定
+        manage_user_access: 管理用者ê接近使用
+        manage_user_access_description: 允准用者停止其他用者ê兩階段驗證，改in ê電子phue地址，kap重頭設定in ê密碼
+        manage_users: 管理用者
+        manage_users_description: 允准用者看其他ê用者ê詳細，kap執行tuì in ê管理行動
+        manage_webhooks: 管理 Webhooks
+        manage_webhooks_description: 允許用者kā管理ê事件設定 webhooks
+        view_audit_log: 看審核ê日誌
+        view_audit_log_description: 允准用者看tsit ê服侍器ê管理行動ê歷史
+        view_dashboard: 看La-jí-báng (Dashboard)
+        view_dashboard_description: 允准用者接近使用tsit ê la-jí-báng kap tsē-tsē指標
+        view_devops: DevOps
+        view_devops_description: 允准用者接近使用Sidekiq kap pgHero ê la-jí-báng
+      title: 角色
+    rules:
+      add_new: 加添規則
+      add_translation: 加添翻譯
+      delete: Thâi掉
+      description_html: 雖bóng大部份ê lóng講有讀kap同意使用規則，m̄-koh攏無讀了，直到發生問題ê時。<strong>提供in列單ē當hōo tsi̍t kái看服侍器ê規則khah快。</strong>請試kā個別ê規則寫kah短koh簡單，m̄-kú m̄通kā in拆做tsē-tsē分開ê項目。
+      edit: 編輯規則
+      empty: Iáu bē定義服侍器ê規則。
+      move_down: Suá khah落來
+      move_up: Suá khah起去
+      title: 服侍器規則
+      translation: 翻譯
+      translations: 翻譯
+      translations_explanation: Lí ē當（但是無必要）加添tsiah-ê規則ê翻譯。若無翻譯版，預設ê值ē顯示。請一直確認任何提供ê翻譯kap預設ê同步。
+    settings:
+      about:
+        manage_rules: 管理服侍器ê規則
+        preamble: 提供關係服侍器án-nuá運作kap管理，以及資金源頭ê詳細資訊。
     statuses:
       language: 語言
     trends:

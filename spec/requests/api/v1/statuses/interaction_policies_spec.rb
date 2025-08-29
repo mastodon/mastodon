@@ -62,7 +62,7 @@ RSpec.describe 'Interaction policies', feature: :outgoing_quotes do
         expect(DistributionWorker)
           .to have_enqueued_sidekiq_job(status.id, { 'update' => true })
         expect(ActivityPub::StatusUpdateDistributionWorker)
-          .to have_enqueued_sidekiq_job(status.id)
+          .to have_enqueued_sidekiq_job(status.id, { 'updated_at' => anything })
       end
     end
 

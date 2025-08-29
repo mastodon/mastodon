@@ -364,7 +364,7 @@ zh-TW:
       title: 自訂 emoji 表情符號
       uncategorized: 未分類
       unlist: 不公開
-      unlisted: 已隱藏
+      unlisted: 不於公開時間軸顯示
       update_failed_msg: 無法更新該 emoji 表情符號
       updated_msg: 已更新 emoji 表情符號！
       upload: 上傳新的表情符號
@@ -1868,18 +1868,18 @@ zh-TW:
       ownership: 不能釘選他人的嘟文
       reblog: 不能釘選轉嘟
     quote_policies:
-      followers: 僅限您之跟隨者
-      nobody: 禁止任何人
-      public: 任何人
+      followers: 僅限跟隨者
+      nobody: 僅有我
+      public: 所有人
     title: "%{name}：「%{quote}」"
     visibilities:
       direct: 私訊
       private: 僅限跟隨者
       private_long: 只有跟隨您的人能看到
       public: 公開
-      public_long: 所有人都能看到
+      public_long: 所有人 (無論在 Mastodon 上與否)
       unlisted: 不於公開時間軸顯示
-      unlisted_long: 所有人都能看到，但不會出現在公開時間軸上
+      unlisted_long: 不顯示於 Mastodon 之搜尋結果、熱門趨勢、及公開時間軸上
   statuses_cleanup:
     enabled: 自動刪除舊嘟文
     enabled_hint: 一旦達到指定的保存期限，就會自動刪除您的嘟文，除非該嘟文符合下列例外

@@ -160,6 +160,10 @@ fa:
         name: نام عمومی نقش، اگر قرار است نقش به عنوان یک نشان نمایش داده شود
         permissions_as_keys: کاربرانی که این نقش را دارند به...
         position: نقش بالاتر در موقعیت‌های خاص حل تعارض را تعیین می‌کند. برخی اقدامات را فقط می توان روی نقش هایی با اولویت کمتر انجام داد
+      username_block:
+        allow_with_approval: به جای جلوگیری از ثبت‌نام، ثبت‌نام‌های مطابق نیازمند تأییدتان خواهند بود
+        comparison: لطفاً هنگام مسدود کردن تطابق‌های جزیی به مشکل اسکان‌ثورپ توجّه داشته باشید
+        username: تطبیق بدون توجه به بزرگی و کوچکی یا استفاده از نویسه‌های مشابه مثل 4 به جای a یا 3 به جای e
       webhook:
         events: گزینش رویدادها برای فرستادن
         template: بار JSON خود را با استفاده از درون یابی متغیر بنویسید. JSON پیش فرض را خالی بگذارید.
@@ -232,7 +236,6 @@ fa:
         setting_auto_play_gif: پخش خودکار تصویرهای متحرک
         setting_boost_modal: نمایش پیغام تأیید پیش از تقویت کردن
         setting_default_language: زبان نوشته‌های شما
-        setting_default_privacy: حریم خصوصی نوشته‌ها
         setting_default_quote_policy: افراد مجاز به نقل
         setting_default_sensitive: همیشه تصاویر را به عنوان حساس علامت بزن
         setting_delete_modal: نمایش پیغام تأیید پیش از پاک کردن یک نوشته
@@ -372,6 +375,10 @@ fa:
         name: نام
         permissions_as_keys: اجازه‌ها
         position: اولویت
+      username_block:
+        allow_with_approval: اجازهٔ ثبت‌نام با تأیید
+        comparison: روش مقایسه
+        username: واژه برای تطبیق
       webhook:
         events: رویدادهای به کار افتاده
         template: قالب بار

@@ -88,7 +88,7 @@ gem 'sidekiq-scheduler', '~> 6.0'
 gem 'sidekiq-unique-jobs', '> 8'
 gem 'simple_form', '~> 5.2'
 gem 'simple-navigation', '~> 4.4'
-gem 'stoplight'
+gem 'stoplight', github: 'ClearlyClaire/stoplight', ref: 'f13e0c0d5e6d34af8d3cfc888871caa84237db42'
 gem 'strong_migrations'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
@@ -102,7 +102,7 @@ gem 'rdf-normalize', '~> 0.5'
 
 gem 'prometheus_exporter', '~> 2.2', require: false
 
-gem 'opentelemetry-api', '~> 1.5.0'
+gem 'opentelemetry-api', '~> 1.6.0'
 
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.30.0', require: false

@@ -57,7 +57,7 @@
       - if @statuses.empty?
         = nothing_here 'nothing-here--under-tabs'
       - else
-        = render partial: 'admin/reports/status', collection: @statuses, locals: { f: f }
+        = render partial: 'admin/shared/status_batch_row', collection: @statuses, as: :status, locals: { f: f }
 
 - if @report.unresolved?
   %hr.spacer/

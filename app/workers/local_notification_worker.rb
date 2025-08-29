@@ -17,6 +17,8 @@ class LocalNotificationWorker
     # should replace the previous ones.
     if type == 'update'
       Notification.where(account: receiver, activity: activity, type: 'update').in_batches.delete_all
+    elsif type == 'quoted_update'
+      Notification.where(account: receiver, activity: activity, type: 'quoted_update').in_batches.delete_all
     elsif Notification.where(account: receiver, activity: activity, type: type).any?
       return
     end
