@@ -1,0 +1,11 @@
+%tr{ id: dom_id(software_update) }
+  %td= software_update.version
+  %td= t("admin.software_updates.types.#{software_update.type}")
+  %td{ class: class_names(critical: software_update.urgent?) }
+    - if software_update.urgent?
+      = t('admin.software_updates.critical_update')
+  %td.release-notes
+    - if software_update.release_notes?
+      = table_link_to 'link',
+                      t('admin.software_updates.release_notes'),
+                      software_update.release_notes
