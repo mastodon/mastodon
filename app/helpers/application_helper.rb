@@ -112,7 +112,7 @@ module ApplicationHelper
     end
   end
 
-  def material_symbol(icon, attributes = {})
+  def material_symbol(icon, attributes = {}, whitespace: true)
     safe_join(
       [
         inline_svg_tag(
@@ -121,7 +121,7 @@ module ApplicationHelper
           role: :img,
           data: attributes[:data]
         ),
-        ' ',
+        whitespace ? ' ' : '',
       ]
     )
   end
