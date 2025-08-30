@@ -205,6 +205,10 @@ a.table-action-link {
     &__actions {
       text-align: end;
       padding-inline-end: 16px - 5px;
+
+      .table-action-link {
+        padding: 0;
+      }
     }
   }
 
