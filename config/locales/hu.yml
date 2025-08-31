@@ -367,6 +367,7 @@ hu:
       title: Egyéni emodzsik
       uncategorized: Nem kategorizált
       unlist: Elrejtés a listáról
+      unlisted: Csendes nyilvános
       update_failed_msg: Nem sikerült frissíteni az emodzsit
       updated_msg: Emodzsi sikeresen frissítve!
       upload: Feltöltés
@@ -1907,13 +1908,19 @@ hu:
       limit: Elérted a kitűzhető bejegyzések maximális számát
       ownership: Nem tűzheted ki valaki más bejegyzését
       reblog: Megtolt bejegyzést nem tudsz kitűzni
+    quote_policies:
+      followers: Csak követőknek
+      nobody: Csak én
+      public: Bárki
     title: "%{name}: „%{quote}”"
     visibilities:
       direct: Privát említés
       private: Csak követőknek
       private_long: Csak a követőidnek jelenik meg
       public: Nyilvános
+      public_long: Bárki a Mastodonon és azon kívül
       unlisted: Listázatlan
+      unlisted_long: Elrejtve a Mastodon keresési találataiban, a felkapottak között és a nyilvános idővonalakon
   statuses_cleanup:
     enabled: Régi bejegyzések automatikus törlése
     enabled_hint: Automatikusan törli a bejegyzéseidet, ahogy azok elérik a megadott korhatárt, kivéve azokat, melyek illeszkednek valamely alábbi kivételre

@@ -367,6 +367,7 @@ tr:
       title: Özel emojiler
       uncategorized: Kategorilenmemiş
       unlist: Liste dışı
+      unlisted: Sessizce herkese açık
       update_failed_msg: Bu emoji güncellenemedi
       updated_msg: Emoji başarıyla güncellendi!
       upload: Yükle
@@ -1907,12 +1908,19 @@ tr:
       limit: Halihazırda maksimum sayıda gönderi sabitlediniz
       ownership: Başkasının gönderisi sabitlenemez
       reblog: Bir gönderi sabitlenemez
+    quote_policies:
+      followers: Sadece takipçiler
+      nobody: Sadece ben
+      public: Herkes
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Özel değini
       private: Sadece takipçiler
       private_long: Sadece takipçilerime gönder
       public: Herkese açık
+      public_long: Mastodon'da olan olmayan herkes
       unlisted: Listelenmemiş
+      unlisted_long: Mastodon arama sonuçlarında, öne çıkanlarda ve herkese açık zaman çizelgesinde gizli
   statuses_cleanup:
     enabled: Eski gönderileri otomatik olarak sil
     enabled_hint: Belirli bir zaman eşiğine ulaşan eski gönderilerinizi, aşağıdaki istisnalara uymadıkları sürece otomatik olarak siler

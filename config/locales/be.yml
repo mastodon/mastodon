@@ -373,6 +373,7 @@ be:
       title: Адвольныя эмодзі
       uncategorized: Без катэгорыі
       unlist: Прыбраць
+      unlisted: Ціхі публічны
       update_failed_msg: Немагчыма абнавіць гэта эмодзі
       updated_msg: Смайлік паспяхова абноўлены!
       upload: Запампаваць
@@ -1993,13 +1994,19 @@ be:
       limit: Вы ўжо замацавалі максімальную колькасць допісаў
       ownership: Немагчыма замацаваць чужы допіс
       reblog: Немагчыма замацаваць пашырэнне
+    quote_policies:
+      followers: Толькі падпісчыкі
+      nobody: Толькі я
+      public: Усе
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Прыватнае згадванне
       private: Для падпісчыкаў
       private_long: Паказваць толькі падпісчыкам
       public: Публічны
+      public_long: Усе ў Mastodon і па-за ім
       unlisted: Не ў спісе
+      unlisted_long: Схавана ў выніках пошуку Mastodon, трэндах і публічных стужках
   statuses_cleanup:
     enabled: Аўтаматычна выдаляць старыя допісы
     enabled_hint: Аўтаматычна выдаляць вашыя допісы, калі яны дасягаюць вызначанага тэрміну, акрамя наступных выпадкаў
