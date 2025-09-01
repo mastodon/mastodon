@@ -198,10 +198,10 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
           <div className='dialog-modal__content__description'>
             <FormattedMessage
               id='visibility_modal.instructions'
-              defaultMessage='Control who can interact with this post. Global settings can be found under <link>Preferences > Other</link>.'
+              defaultMessage='Control who can interact with this post. You can also apply settings to all future posts by navigating to <link>Preferences > Posting defaults</link>.'
               values={{
                 link: (chunks) => (
-                  <a href='/settings/preferences/other'>{chunks}</a>
+                  <a href='/settings/preferences/posting_defaults'>{chunks}</a>
                 ),
               }}
               tagName='p'
@@ -216,7 +216,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             >
               <FormattedMessage
                 id='visibility_modal.privacy_label'
-                defaultMessage='Privacy'
+                defaultMessage='Visibility'
               />
 
               <Dropdown
@@ -246,7 +246,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             >
               <FormattedMessage
                 id='visibility_modal.quote_label'
-                defaultMessage='Change who can quote'
+                defaultMessage='Who can quote'
               />
 
               <Dropdown
