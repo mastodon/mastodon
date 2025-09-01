@@ -3,6 +3,7 @@
 @use 'sass:color';
 @use '../mastodon/functions' as *;
 @use '../mastodon/variables' as *;
+@use '../mastodon/theme_utils' as *;
 
 .simple_form .button.button-tertiary {
   color: $highlight-text-color;
@@ -28,7 +29,7 @@
 // Change default background colors of columns
 .interaction-modal {
   background: $white;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
 }
 
 .rules-list li::before {
@@ -37,10 +38,6 @@
 
 .directory__card__img {
   background: lighten($ui-base-color, 12%);
-}
-
-.account__header {
-  background: $white;
 }
 
 .column-header__button.active {
@@ -71,25 +68,17 @@
   &:hover,
   &:focus,
   &:active {
-    color: $primary-text-color;
+    color: var(--text-primary-color);
   }
 }
 
 .getting-started .navigation-bar {
-  border-top: 1px solid var(--background-border-color);
-  border-bottom: 1px solid var(--background-border-color);
+  border-top: 1px solid var(--clr-border-primary);
+  border-bottom: 1px solid var(--clr-border-primary);
 
   @media screen and (max-width: $no-gap-breakpoint) {
     border-top: 0;
   }
-}
-
-.search__input,
-.search__popout,
-.setting-text,
-.report-dialog-modal__textarea,
-.audio-player {
-  border: 1px solid var(--background-border-color);
 }
 
 .report-dialog-modal .dialog-option .poll__input {
@@ -133,7 +122,7 @@
 
 .dialog-modal__content__preview {
   background: #fff;
-  border-bottom: 1px solid var(--modal-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
 }
 
 .reactions-bar__item:hover,
@@ -179,10 +168,6 @@
   color: $white;
 }
 
-.flash-message.warning {
-  color: lighten($gold-star, 16%);
-}
-
 .boost-modal__action-bar,
 .confirmation-modal__action-bar,
 .mute-modal__action-bar,
@@ -207,7 +192,7 @@
 
 .embed-modal .embed-modal__container .embed-modal__html {
   background: $white;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
 
   &:focus {
     border-color: lighten($ui-base-color, 12%);
@@ -231,7 +216,7 @@
 // Change the default color used for the text in an empty column or on the error column
 .empty-column-indicator,
 .error-column {
-  color: $primary-text-color;
+  color: var(--text-primary-color);
   background: $white;
 }
 
@@ -246,7 +231,7 @@
 .directory__tag > a,
 .directory__tag > div {
   background: $white;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
 }
 
 .picture-in-picture-placeholder {
@@ -275,22 +260,22 @@
   .account-grid-card {
     .controls {
       .icon-button {
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
       }
     }
 
     .name {
       a {
-        color: $primary-text-color;
+        color: var(--text-primary-color);
       }
     }
 
     .username {
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
     }
 
     .account__header__content {
-      color: $primary-text-color;
+      color: var(--text-primary-color);
     }
   }
 }
@@ -379,25 +364,6 @@
 
   &:focus {
     background-color: color.change($ui-highlight-color, $alpha: 0.15);
-  }
-}
-
-.compose-form__actions .icon-button.active,
-.dropdown-button.active,
-.language-dropdown__dropdown__results__item:focus,
-.language-dropdown__dropdown__results__item.active,
-.language-dropdown__dropdown__results__item:focus
-  .language-dropdown__dropdown__results__item__common-name,
-.language-dropdown__dropdown__results__item.active
-  .language-dropdown__dropdown__results__item__common-name {
-  color: $white;
-}
-
-.privacy-dropdown__option,
-.visibility-dropdown__option {
-  &:focus,
-  &.active {
-    --dropdown-text-color: #{$white};
   }
 }
 
@@ -515,7 +481,7 @@ a.sparkline {
 @supports not selector(::-webkit-scrollbar) {
   html {
     scrollbar-color: color.change($action-button-color, $alpha: 0.25)
-      var(--background-border-color);
+      var(--clr-border-primary);
   }
 }
 

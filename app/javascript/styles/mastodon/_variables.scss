@@ -31,8 +31,6 @@ $base-shadow-color: $black !default;
 $base-overlay-background: $black !default;
 $base-border-color: $white !default;
 $simple-background-color: $white !default;
-$valid-value-color: $success-green !default;
-$error-value-color: $error-red !default;
 
 // Tell UI to use selected colors
 $ui-base-color: $classic-base-color !default; // Darkest
@@ -64,17 +62,8 @@ $ui-button-tertiary-border-color: $blurple-300 !default;
 $ui-button-tertiary-focus-background-color: $blurple-600 !default;
 $ui-button-tertiary-focus-color: $white !default;
 
-$ui-button-destructive-background-color: $red-500 !default;
-$ui-button-destructive-focus-background-color: $red-600 !default;
-
-$ui-button-icon-focus-outline: $ui-button-focus-outline !default;
-$ui-button-icon-hover-background-color: rgba(140, 141, 255, 40%) !default;
-
 // Variables for texts
-$primary-text-color: $white !default;
-$darker-text-color: $ui-primary-color !default;
 $dark-text-color: $ui-base-lighter-color !default;
-$secondary-text-color: $ui-secondary-color !default;
 $highlight-text-color: lighten($ui-highlight-color, 8%) !default;
 $action-button-color: $ui-base-lighter-color !default;
 $action-button-focus-color: lighten($ui-base-lighter-color, 4%) !default;

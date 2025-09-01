@@ -28,7 +28,7 @@ $fluid-breakpoint: $maximum-width + 20px;
 
   li {
     position: relative;
-    border-bottom: 1px solid var(--background-border-color);
+    border-bottom: 1px solid var(--clr-border-primary);
     padding: 1em 1.75em;
     padding-inline-start: 3em;
     font-weight: 500;
@@ -85,13 +85,13 @@ $fluid-breakpoint: $maximum-width + 20px;
   }
 
   &__text {
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
   }
 
   &__hint {
     font-size: 14px;
     font-weight: 400;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
   }
 }
 
@@ -104,21 +104,21 @@ $fluid-breakpoint: $maximum-width + 20px;
   > label {
     font-size: 14px;
     font-weight: 600;
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
   }
 
   > select {
     appearance: none;
     box-sizing: border-box;
     font-size: 14px;
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
     display: block;
     width: 100%;
     outline: 0;
     font-family: inherit;
     resize: vertical;
     background: $ui-base-color;
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--clr-border-primary);
     border-radius: 4px;
     padding-inline-start: 10px;
     padding-inline-end: 30px;

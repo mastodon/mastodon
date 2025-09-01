@@ -1,5 +1,6 @@
 @use 'sass:color';
 @use 'variables' as *;
+@use 'theme_utils' as *;
 
 @mixin search-input {
   outline: 0;
@@ -7,17 +8,17 @@
   width: 100%;
   box-shadow: none;
   font-family: inherit;
-  background: var(--input-background-color);
-  color: $darker-text-color;
+  background: var(--clr-bg-secondary);
+  color: var(--clr-text-primary);
   border-radius: 4px;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-on-bg-secondary);
   font-size: 17px;
   line-height: normal;
   margin: 0;
 }
 
 @mixin search-popout {
-  background: $simple-background-color;
+  background: var(--clr-bg-elevated);
   border-radius: 4px;
   padding: 10px 14px;
   padding-bottom: 14px;
