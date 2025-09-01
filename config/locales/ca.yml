@@ -361,6 +361,7 @@ ca:
       title: Emojis personalitzats
       uncategorized: Sense categoria
       unlist: No llistat
+      unlisted: Públic silenciós
       update_failed_msg: No s'ha pogut actualitzar aquest emoji
       updated_msg: Emoji s'ha actualitzat correctament!
       upload: Carrega
@@ -1880,13 +1881,19 @@ ca:
       limit: Ja has fixat el màxim nombre de tuts
       ownership: No es pot fixar el tut d'algú altre
       reblog: No es pot fixar un impuls
+    quote_policies:
+      followers: Només seguidors
+      nobody: Només jo
+      public: Qualsevol
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Menció privada
       private: Només seguidors
       private_long: Mostra només als seguidors
       public: Públic
+      public_long: Tothom dins o fora Mastodon
       unlisted: No llistat
+      unlisted_long: Amagat dels resultats de cerca de Mastodon, de les tendències i de les línies temporals
   statuses_cleanup:
     enabled: Esborra automàticament tuts antics
     enabled_hint: Suprimeix automàticament els teus tuts quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents
