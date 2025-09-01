@@ -10,20 +10,6 @@ import ScrollableList from 'mastodon/components/scrollable_list';
 
 import { Conversation } from './conversation';
 
-const focusChild = (node, index, alignTop) => {
-  const element = node.querySelector(`article:nth-of-type(${index + 1}) .focusable`);
-
-  if (element) {
-    if (alignTop && node.scrollTop > element.offsetTop) {
-      element.scrollIntoView(true);
-    } else if (!alignTop && node.scrollTop + node.clientHeight < element.offsetTop + element.offsetHeight) {
-      element.scrollIntoView(false);
-    }
-
-    element.focus();
-  }
-};
-
 export const ConversationsList = ({ scrollKey, ...other }) => {
   const listRef = useRef();
   const conversations = useSelector(state => state.getIn(['conversations', 'items']));
@@ -31,16 +17,6 @@ export const ConversationsList = ({ scrollKey, ...other }) => {
   const hasMore = useSelector(state => state.getIn(['conversations', 'hasMore'], false));
   const dispatch = useDispatch();
   const lastStatusId = conversations.last()?.get('last_status');
-
-  const handleMoveUp = useCallback(id => {
-    const elementIndex = conversations.findIndex(x => x.get('id') === id) - 1;
-    focusChild(listRef.current.node, elementIndex, true);
-  }, [listRef, conversations]);
-
-  const handleMoveDown = useCallback(id => {
-    const elementIndex = conversations.findIndex(x => x.get('id') === id) + 1;
-    focusChild(listRef.current.node, elementIndex, false);
-  }, [listRef, conversations]);
 
   const debouncedLoadMore = useMemo(() => debounce(id => {
     dispatch(expandConversations({ maxId: id }));
@@ -58,8 +34,6 @@ export const ConversationsList = ({ scrollKey, ...other }) => {
         <Conversation
           key={item.get('id')}
           conversation={item}
-          onMoveUp={handleMoveUp}
-          onMoveDown={handleMoveDown}
           scrollKey={scrollKey}
         />
       ))}

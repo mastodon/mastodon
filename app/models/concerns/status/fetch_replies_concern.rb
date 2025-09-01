@@ -33,7 +33,7 @@ module Status::FetchRepliesConcern
 
   def should_fetch_replies?
     # we aren't brand new, and we haven't fetched replies since the debounce window
-    !local? && created_at <= FETCH_REPLIES_INITIAL_WAIT_MINUTES.ago && (
+    !local? && distributable? && created_at <= FETCH_REPLIES_INITIAL_WAIT_MINUTES.ago && (
       fetched_replies_at.nil? || fetched_replies_at <= FETCH_REPLIES_COOLDOWN_MINUTES.ago
     )
   end

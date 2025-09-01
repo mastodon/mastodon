@@ -36,8 +36,11 @@ export type NotificationGroupFavourite =
 export type NotificationGroupReblog = BaseNotificationWithStatus<'reblog'>;
 export type NotificationGroupStatus = BaseNotificationWithStatus<'status'>;
 export type NotificationGroupMention = BaseNotificationWithStatus<'mention'>;
+export type NotificationGroupQuote = BaseNotificationWithStatus<'quote'>;
 export type NotificationGroupPoll = BaseNotificationWithStatus<'poll'>;
 export type NotificationGroupUpdate = BaseNotificationWithStatus<'update'>;
+export type NotificationGroupQuotedUpdate =
+  BaseNotificationWithStatus<'quoted_update'>;
 export type NotificationGroupFollow = BaseNotification<'follow'>;
 export type NotificationGroupFollowRequest = BaseNotification<'follow_request'>;
 export type NotificationGroupAdminSignUp = BaseNotification<'admin.sign_up'>;
@@ -87,8 +90,10 @@ export type NotificationGroup =
   | NotificationGroupReblog
   | NotificationGroupStatus
   | NotificationGroupMention
+  | NotificationGroupQuote
   | NotificationGroupPoll
   | NotificationGroupUpdate
+  | NotificationGroupQuotedUpdate
   | NotificationGroupFollow
   | NotificationGroupFollowRequest
   | NotificationGroupModerationWarning
@@ -137,8 +142,10 @@ export function createNotificationGroupFromJSON(
     case 'reblog':
     case 'status':
     case 'mention':
+    case 'quote':
     case 'poll':
-    case 'update': {
+    case 'update':
+    case 'quoted_update': {
       const { status_id: statusId, ...groupWithoutStatus } = group;
       return {
         statusId: statusId ?? undefined,
@@ -209,8 +216,10 @@ export function createNotificationGroupFromNotificationJSON(
     case 'reblog':
     case 'status':
     case 'mention':
+    case 'quote':
     case 'poll':
     case 'update':
+    case 'quoted_update':
       return {
         ...group,
         type: notification.type,

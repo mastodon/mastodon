@@ -143,6 +143,17 @@ class ColumnSettings extends PureComponent {
           </div>
         </section>
 
+        <section role='group' aria-labelledby='notifications-quote'>
+          <h3 id='notifications-quote'><FormattedMessage id='notifications.column_settings.quote' defaultMessage='Quotes:' /></h3>
+
+          <div className='column-settings__row'>
+            <SettingToggle disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'quote']} onChange={onChange} label={alertStr} />
+            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'quote']} onChange={this.onPushChange} label={pushStr} />}
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['shows', 'quote']} onChange={onChange} label={showStr} />
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['sounds', 'quote']} onChange={onChange} label={soundStr} />
+          </div>
+        </section>
+
         <section role='group' aria-labelledby='notifications-poll'>
           <h3 id='notifications-poll'><FormattedMessage id='notifications.column_settings.poll' defaultMessage='Poll results:' /></h3>
 

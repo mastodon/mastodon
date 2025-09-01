@@ -51,6 +51,27 @@ RSpec.describe NotificationMailer do
     it_behaves_like 'delivery without status'
   end
 
+  describe 'quote' do
+    let(:quote) { Fabricate(:quote, state: :accepted, status: foreign_status, quoted_status: own_status) }
+    let(:notification) { Notification.create!(account: receiver.account, activity: quote) }
+    let(:mail) { prepared_mailer_for(own_status.account).quote }
+
+    it_behaves_like 'localized subject', 'notification_mailer.quote.subject', name: 'bob'
+
+    it 'renders the email' do
+      expect(mail)
+        .to be_present
+        .and(have_subject('bob quoted your post'))
+        .and(have_body_text('Your post was quoted by bob'))
+        .and(have_body_text('The body of the foreign status'))
+        .and have_thread_headers
+        .and have_standard_headers('quote').for(receiver)
+    end
+
+    it_behaves_like 'delivery to non functional user'
+    it_behaves_like 'delivery without status'
+  end
+
   describe 'follow' do
     let(:follow) { sender.follow!(receiver.account) }
     let(:notification) { Notification.create!(account: receiver.account, activity: follow) }

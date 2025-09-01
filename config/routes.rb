@@ -115,6 +115,7 @@ Rails.application.routes.draw do
       resource :inbox, only: [:create]
       resources :collections, only: [:show]
       resource :followers_synchronization, only: [:show]
+      resources :quote_authorizations, only: [:show]
     end
   end
 

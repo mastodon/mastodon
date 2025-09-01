@@ -47,6 +47,9 @@ class RemoveStatusService < BaseService
         remove_media
       end
 
+      # Revoke the quote while we get a chance… maybe this should be a `before_destroy` hook?
+      RevokeQuoteService.new.call(@status.quote) if @status.quote&.quoted_account&.local? && @status.quote&.accepted?
+
       @status.destroy! if permanently?
     end
   end

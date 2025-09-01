@@ -112,7 +112,7 @@ RSpec.describe Scheduler::AccountsStatusesCleanupScheduler do
 
         expect { subject.perform }
           .to change(Status, :count).by(-subject.compute_budget) # Cleanable statuses
-          .and (not_change { account_bob.statuses.count }) # No cleanup policy for account
+          .and not_change { account_bob.statuses.count } # No cleanup policy for account
           .and(not_change { account_dave.statuses.count }) # Disabled cleanup policy
       end
 

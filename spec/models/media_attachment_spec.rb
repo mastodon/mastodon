@@ -313,6 +313,12 @@ RSpec.describe MediaAttachment, :attachment_processing do
     end
   end
 
+  describe '.combined_media_file_size' do
+    subject { described_class.combined_media_file_size }
+
+    it { is_expected.to be_an(Arel::Nodes::Grouping) }
+  end
+
   private
 
   def media_metadata

@@ -3,14 +3,18 @@
 class DeliveryFailureTracker
   include Redisable
 
-  FAILURE_DAYS_THRESHOLD = 7
+  FAILURE_THRESHOLDS = {
+    days: 7,
+    minutes: 5,
+  }.freeze
 
-  def initialize(url_or_host)
+  def initialize(url_or_host, resolution: :days)
     @host = url_or_host.start_with?('https://', 'http://') ? Addressable::URI.parse(url_or_host).normalized_host : url_or_host
+    @resolution = resolution
   end
 
   def track_failure!
-    redis.sadd(exhausted_deliveries_key, today)
+    redis.sadd(exhausted_deliveries_key, failure_time)
     UnavailableDomain.create(domain: @host) if reached_failure_threshold?
   end
 
@@ -24,6 +28,12 @@ class DeliveryFailureTracker
   end
 
   def days
+    raise TypeError, 'resolution is not in days' unless @resolution == :days
+
+    failures
+  end
+
+  def failures
     redis.scard(exhausted_deliveries_key) || 0
   end
 
@@ -32,7 +42,7 @@ class DeliveryFailureTracker
   end
 
   def exhausted_deliveries_days
-    @exhausted_deliveries_days ||= redis.smembers(exhausted_deliveries_key).sort.map { |date| Date.new(date.slice(0, 4).to_i, date.slice(4, 2).to_i, date.slice(6, 2).to_i) }
+    @exhausted_deliveries_days ||= redis.smembers(exhausted_deliveries_key).sort.map { |date| Date.new(date.slice(0, 4).to_i, date.slice(4, 2).to_i, date.slice(6, 2).to_i) }.uniq
   end
 
   alias reset! track_success!
@@ -89,11 +99,16 @@ class DeliveryFailureTracker
     "exhausted_deliveries:#{@host}"
   end
 
-  def today
-    Time.now.utc.strftime('%Y%m%d')
+  def failure_time
+    case @resolution
+    when :days
+      Time.now.utc.strftime('%Y%m%d')
+    when :minutes
+      Time.now.utc.strftime('%Y%m%d%H%M')
+    end
   end
 
   def reached_failure_threshold?
-    days >= FAILURE_DAYS_THRESHOLD
+    failures >= FAILURE_THRESHOLDS[@resolution]
   end
 end

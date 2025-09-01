@@ -7,7 +7,7 @@ module BulkMailingConcern
     job_class = ActionMailer::MailDeliveryJob
 
     Sidekiq::Client.push_bulk({
-      'class' => ActiveJob::QueueAdapters::SidekiqAdapter::JobWrapper,
+      'class' => Sidekiq::ActiveJob::Wrapper,
       'wrapped' => job_class,
       'queue' => mailer_class.deliver_later_queue_name,
       'args' => args_array.map do |args|

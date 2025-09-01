@@ -30,7 +30,7 @@
     = vite_react_refresh_tag
     = vite_polyfills_tag
     -# Needed for the wicg-inert polyfill. It needs to be on it's own <style> tag, with this `id`
-    = vite_stylesheet_tag 'styles/entrypoints/inert.scss', media: 'all', id: 'inert-style'
+    = vite_stylesheet_tag 'styles/entrypoints/inert.scss', media: 'all', id: 'inert-style', crossorigin: 'anonymous'
     = vite_typescript_tag 'common.ts', crossorigin: 'anonymous'
 
     = vite_preload_file_tag "mastodon/locales/#{I18n.locale}.json"

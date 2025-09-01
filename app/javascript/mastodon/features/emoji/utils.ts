@@ -1,13 +1,56 @@
-import EMOJI_REGEX from 'emojibase-regex/emoji-loose';
+import debug from 'debug';
 
-export function stringHasUnicodeEmoji(text: string): boolean {
-  return EMOJI_REGEX.test(text);
+import { emojiRegexPolyfill } from '@/mastodon/polyfills';
+
+export function emojiLogger(segment: string) {
+  return debug(`emojis:${segment}`);
 }
 
-// From https://github.com/talkjs/country-flag-emoji-polyfill/blob/master/src/index.ts#L49-L50
-const EMOJIS_FLAGS_REGEX =
-  /[\u{1F1E6}-\u{1F1FF}|\u{E0062}-\u{E0063}|\u{E0065}|\u{E0067}|\u{E006C}|\u{E006E}|\u{E0073}-\u{E0074}|\u{E0077}|\u{E007F}]+/u;
-
-export function stringHasUnicodeFlags(text: string): boolean {
-  return EMOJIS_FLAGS_REGEX.test(text);
+export function stringHasUnicodeEmoji(input: string): boolean {
+  return new RegExp(EMOJI_REGEX, supportedFlags()).test(input);
 }
+
+export function stringHasUnicodeFlags(input: string): boolean {
+  if (supportsRegExpSets()) {
+    return new RegExp(
+      '\\p{RGI_Emoji_Flag_Sequence}|\\p{RGI_Emoji_Tag_Sequence}',
+      'v',
+    ).test(input);
+  }
+  return new RegExp(
+    // First range is regional indicator symbols,
+    // Second is a black flag + 0-9|a-z tag chars + cancel tag.
+    // See: https://en.wikipedia.org/wiki/Regional_indicator_symbol
+    '(?:\uD83C[\uDDE6-\uDDFF]){2}|\uD83C\uDFF4(?:\uDB40[\uDC30-\uDC7A])+\uDB40\uDC7F',
+  ).test(input);
+}
+
+// Constant as this is supported by all browsers.
+const CUSTOM_EMOJI_REGEX = /:([a-z0-9_]+):/i;
+export function stringHasCustomEmoji(input: string) {
+  return CUSTOM_EMOJI_REGEX.test(input);
+}
+
+export function stringHasAnyEmoji(input: string) {
+  return stringHasUnicodeEmoji(input) || stringHasCustomEmoji(input);
+}
+
+export function anyEmojiRegex() {
+  return new RegExp(
+    `${EMOJI_REGEX}|${CUSTOM_EMOJI_REGEX.source}`,
+    supportedFlags('gi'),
+  );
+}
+
+function supportsRegExpSets() {
+  return 'unicodeSets' in RegExp.prototype;
+}
+
+function supportedFlags(flags = '') {
+  if (supportsRegExpSets()) {
+    return `${flags}v`;
+  }
+  return flags;
+}
+
+const EMOJI_REGEX = emojiRegexPolyfill?.source ?? '\\p{RGI_Emoji}';

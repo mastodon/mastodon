@@ -102,6 +102,16 @@ module ApplicationHelper
     policy(record).public_send(:"#{action}?")
   end
 
+  def conditional_link_to(condition, name, options = {}, html_options = {}, &block)
+    if condition && !current_page?(block_given? ? name : options)
+      link_to(name, options, html_options, &block)
+    elsif block_given?
+      content_tag(:span, options, html_options, &block)
+    else
+      content_tag(:span, name, html_options)
+    end
+  end
+
   def material_symbol(icon, attributes = {})
     safe_join(
       [
@@ -231,6 +241,10 @@ module ApplicationHelper
 
   def copyable_input(options = {})
     tag.input(type: :text, maxlength: 999, spellcheck: false, readonly: true, **options)
+  end
+
+  def recent_tag_users(tag)
+    tag.statuses.public_visibility.joins(:account).merge(Account.without_suspended.without_silenced).includes(:account).limit(3).map(&:account)
   end
 
   def recent_tag_usage(tag)

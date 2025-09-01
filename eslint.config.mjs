@@ -407,6 +407,12 @@ export default tseslint.config([
     },
   },
   {
+    files: ['**/*.test.*'],
+    rules: {
+      'no-global-assign': 'off',
+    },
+  },
+  {
     files: ['**/*.stories.ts', '**/*.stories.tsx', '.storybook/*'],
     rules: {
       'import/no-default-export': 'off',

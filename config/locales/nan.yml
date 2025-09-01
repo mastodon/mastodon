@@ -25,7 +25,7 @@ nan:
       action: 執行動作
       already_silenced: Tsit ê口座有受著限制。
       already_suspended: Tsit ê口座ê權限已經hōo lâng停止。
-      title: Kā %{acct} 做審核ê動作
+      title: Kā %{acct} 做管理ê動作
     account_moderation_notes:
       create: 留記錄
       created_msg: 管理記錄成功建立！
@@ -187,6 +187,7 @@ nan:
         create_relay: 建立中繼
         create_unavailable_domain: 建立bē當用ê域名
         create_user_role: 建立角色
+        create_username_block: 新造使用者號名規則
         demote_user: Kā用者降級
         destroy_announcement: Thâi掉公告
         destroy_canonical_email_block: Thâi掉電子phue ê封鎖
@@ -200,6 +201,7 @@ nan:
         destroy_status: Thâi掉PO文
         destroy_unavailable_domain: Thâi掉bē當用ê域名
         destroy_user_role: Thâi掉角色
+        destroy_username_block: 共使用者號名規則刣掉
         disable_2fa_user: 停止用雙因素認證
         disable_custom_emoji: 停止用自訂ê Emoji
         disable_relay: 停止用中繼
@@ -234,8 +236,9 @@ nan:
         update_report: 更新檢舉
         update_status: 更新PO文
         update_user_role: 更新角色
+        update_username_block: 更新使用者號名規則
       actions:
-        approve_appeal_html: "%{name} 允准 %{target} 所寫ê tuì審核決定ê投訴"
+        approve_appeal_html: "%{name} 允准 %{target} 所寫ê tuì管理決定ê投訴"
         approve_user_html: "%{name} 允准 %{target} ê 註冊"
         assigned_to_self_report_html: "%{name} kā報告 %{target} 分配hōo家tī"
         change_email_user_html: "%{name} 改變 %{target} ê電子phue地址"
@@ -252,6 +255,7 @@ nan:
         create_relay_html: "%{name} 建立中繼 %{target}"
         create_unavailable_domain_html: "%{name} 停止送kàu域名 %{target}"
         create_user_role_html: "%{name} 建立 %{target} 角色"
+        create_username_block_html: "%{name} 加添用者ê名包含 %{target} ê規則ah"
         demote_user_html: "%{name} kā用者 %{target} 降級"
         destroy_announcement_html: "%{name} kā公告 %{target} thâi掉ah"
         destroy_canonical_email_block_html: "%{name} kā hash是 %{target} ê電子phue取消封鎖ah"
@@ -265,6 +269,7 @@ nan:
         destroy_status_html: "%{name} kā %{target} ê PO文thâi掉"
         destroy_unavailable_domain_html: "%{name} 恢復送kàu域名 %{target}"
         destroy_user_role_html: "%{name} thâi掉 %{target} 角色"
+        destroy_username_block_html: "%{name} thâi掉用者ê名包含 %{target} ê規則ah"
         disable_2fa_user_html: "%{name} 停止使用者 %{target} 用雙因素驗證"
         disable_custom_emoji_html: "%{name} kā 新ê emoji %{target} 停止使用ah"
         disable_relay_html: "%{name} 停止使用中繼 %{target}"
@@ -277,7 +282,7 @@ nan:
         memorialize_account_html: "%{name} kā %{target} 設做故人口座"
         promote_user_html: "%{name} kā 用者 %{target} 升級"
         publish_terms_of_service_html: "%{name} 公佈服務規則ê更新"
-        reject_appeal_html: "%{name} 拒絕 %{target} 所寫ê tuì審核決定ê投訴"
+        reject_appeal_html: "%{name} 拒絕 %{target} 所寫ê tuì管理決定ê投訴"
         reject_user_html: "%{name} 拒絕 %{target} ê 註冊"
         remove_avatar_user_html: "%{name} thâi掉 %{target} ê標頭"
         reopen_report_html: "%{name} 重開 %{target} ê檢舉"
@@ -299,6 +304,7 @@ nan:
         update_report_html: "%{name} 更新 %{target} ê檢舉"
         update_status_html: "%{name} kā %{target} ê PO文更新"
         update_user_role_html: "%{name} 更改 %{target} 角色"
+        update_username_block_html: "%{name} 更新用者ê名包含 %{target} ê規則ah"
       deleted_account: thâi掉ê口座
       empty: Tshuē無log。
       filter_by_action: 照動作過濾
@@ -358,7 +364,7 @@ nan:
       title: 自訂emoji
       uncategorized: Iáu無分類
       unlist: Tuì列單the̍h掉
-      unlisted: The̍h掉ah
+      unlisted: 恬靜公開
       update_failed_msg: Bē當更新hit ê emoji
       updated_msg: Emoji成功更新ah！
       upload: 傳上去
@@ -380,7 +386,7 @@ nan:
       software: 軟體
       sources: 註冊ê源頭
       space: 空間ê使用
-      title: Le-jí-páng (dashboard)
+      title: La-jí-báng (dashboard)
       top_languages: 上tsia̍p出現ê語言
       top_servers: 上tsia̍p活動ê服侍器
       website: 網站
@@ -636,6 +642,187 @@ nan:
           other: "%{count} 篇筆記"
       action_log: 審查日誌
       action_taken_by: 操作由
+      actions:
+        delete_description_html: 受檢舉ê PO文ē thâi掉，而且ē用tsi̍t ue̍h橫tsuā記錄，幫tsān lí提升kâng tsi̍t ê用戶未來ê違規。
+        mark_as_sensitive_description_html: 受檢舉ê PO文內ê媒體ē標做敏感，而且ē用tsi̍t ue̍h橫tsuā記錄，幫tsān lí提升kâng tsi̍t ê用戶未來ê違規。
+        other_description_html: 看其他控制tsit ê口座ê所行，kap自訂聯絡受檢舉ê口座ê選項。
+        resolve_description_html: Buē用行動控制受檢舉ê口座，mā無用橫tsuā記錄，而且tsit ê報告ē關掉。
+        silence_description_html: 本口座kan-ta ē hōo早前跟tuè ê á是手動tshiau ê看見，大大限制看見ê範圍。設定隨時ē當回復。請關所有tuì tsit ê口座ê檢舉。
+        suspend_description_html: Tsit ê口座kap伊ê內容ē bē當用，落尾ē thâi掉，mā bē當hām伊互動。30 kang以內通回復。請關所有tuì tsit ê口座ê檢舉。
+      actions_description_html: 決定行siánn物行動來解決tsit ê檢舉。Nā lí tuì受檢舉ê口座採用處罰，電子phue通知ē送予in，除非選擇 <strong>Pùn-sò phue</strong> 類別。
+      actions_description_remote_html: 決定行siánn物行動來解決tsit ê檢舉。Tse kan-ta ē影響 <strong>lí ê</strong> 服侍器hām tsit ê遠距離服侍器聯絡kap處理伊ê內容ê方法。
+      actions_no_posts: Tsit份檢舉無beh thâi掉ê相關PO文
+      add_to_report: 加添其他ê內容kàu檢舉
+      already_suspended_badges:
+        local: 已經佇tsit ê服侍器停止權限ah
+        remote: 已經佇in ê服侍器停止權限ah
+      are_you_sure: Lí kám確定？
+      assign_to_self: 分配hōo家kī
+      assigned: 分配管理者
+      by_target_domain: 受檢舉ê口座ê網域
+      cancel: 取消
+      category: 類別
+      category_description_html: Tsit ê 受檢舉ê口座kap/á是內容，ē佇kap tsit ê口座ê聯絡內底引用。
+      comment:
+        none: 無
+      comment_description_html: 為著提供其他資訊，%{name} 寫：
+      confirm: 確認
+      confirm_action: 確認kā %{acct} 管理ê動作
+      created_at: 檢舉tī
+      delete_and_resolve: Thâi掉PO文
+      forwarded: 轉送ah
+      forwarded_replies_explanation: 本報告是tuì別站ê用者送ê，關係別站ê內容。本報告轉hōo lí，因為受檢舉ê內容是回應lí ê服侍器ê用者。
+      forwarded_to: 有轉送kàu %{domain}
+      mark_as_resolved: 標做「解決ah」
+      mark_as_sensitive: 標做敏感
+      mark_as_unresolved: 標做「無解決」
+      no_one_assigned: 無lâng
+      notes:
+        create: 加添筆記
+        create_and_resolve: 標「處理ah」，留筆記
+        create_and_unresolve: 留筆記，koh重開
+        delete: Thâi掉
+        placeholder: 描述有行siánn物行動，á是其他關聯ê更新……
+        title: 筆記
+      notes_description_html: 檢視á是留筆記hōo別ê管理者kap未來ê家己
+      processed_msg: '檢舉 #%{id} 處理成功ah'
+      quick_actions_description_html: 緊行行動，á是giú kàu下kha，看檢舉ê內容：
+      remote_user_placeholder: tuì %{instance} 來ê遠距離用者
+      reopen: 重頭phah開檢舉
+      report: '檢舉 #%{id}'
+      reported_account: 受檢舉ê口座
+      reported_by: 檢舉人
+      reported_with_application: 用應用程式檢舉
+      resolved: 解決ah
+      resolved_msg: 檢舉成功解決ah！
+      skip_to_actions: 跳kàu行動
+      status: 狀態
+      statuses: 受檢舉ê內容
+      statuses_description_html: 冒犯ê內容ē引用tī kap受檢舉口座ê聯絡
+      summary:
+        action_preambles:
+          delete_html: Lí teh-beh <strong>thâi掉</strong> <strong>@%{acct}</strong> ê tsi̍t-kuá PO文。Tse ē：
+          mark_as_sensitive_html: Lí teh-beh <strong>kā</strong> <strong>@%{acct}</strong> ê tsi̍t-kuá PO文<strong>標做敏感</strong>。Tse ē：
+          silence_html: Lí teh-beh <strong>限制</strong> <strong>@%{acct}</strong> ê口座。Tse ē：
+          suspend_html: Lí teh-beh <strong>停止</strong> <strong>@%{acct}</strong> ê口座權限。Tse ē：
+        actions:
+          delete_html: Thâi掉冒犯ê PO文
+          mark_as_sensitive_html: Kā冒犯êPO文ê媒體標做敏感
+          silence_html: Kā in ê個人資料kap內容標做kan-ta有跟tuè ê，á是手動tshiau伊ê個人檔案ê，通看見，來嚴嚴限制 <strong>@%{acct}</strong> ê傳播範圍
+          suspend_html: Kā <strong>@%{acct}</strong> 停止權限，koh kā in ê 個人資料kap內容標做bē當用，kap bē當hām in互動
+        close_report: 'Kā 檢舉報告 #%{id} 標做解決ah'
+        close_reports_html: Kā <strong>ta̍k ê</strong>tuì <strong>@%{acct}</strong> ê檢舉標做解決ah
+        delete_data_html: Tuì tann起30kang以後，thâi掉 <strong>@%{acct}</strong> ê個人資料kap內容，除非佇tsit ê期限進前，取消停止in ê權限
+        preview_preamble_html: "<strong>@%{acct}</strong> ē收著警告，包含下kha ê內容："
+        record_strike_html: 記錄tuì <strong>@%{acct}</strong>ê警告，來幫tsān lí提升佇tsit ê口座ê未來違規
+        send_email_html: Kā警告電子phue寄hōo <strong>@%{acct}</strong>
+        warning_placeholder: 通選ê，管理行動ê補充理由
+      target_origin: 受檢舉ê口座ê來源
+      title: 檢舉
+      unassign: 取消分配
+      unknown_action_msg: M̄知影ê動作：%{action}
+      unresolved: 無解決
+      updated_at: 更新
+      view_profile: 看個人資料
+    roles:
+      add_new: 加添角色
+      assigned_users:
+        other: "%{count} ê用者"
+      categories:
+        administration: 管理員
+        devops: DevOps
+        invites: 邀請
+        moderation: 管理
+        special: 特別
+      delete: Thâi掉
+      description_html: 用<strong>用者角色</strong>，lí通自訂lí ê用者ē當接近使用Mastodon ê siánn物功能kap區域。
+      edit: 編「%{name}」ê角色
+      everyone: 預設ê權限
+      everyone_full_description_html: Tse是ē影響<strong>所有用者</strong>ê<strong>基本角色</strong>，就算是無分配tio̍h角色ê mā kâng款。所有其他ê角色繼承伊ê權限。
+      permissions_count:
+        other: "%{count} ê權限"
+      privileges:
+        administrator: 管理員
+        administrator_description: 有tsit ê權限ê用者ē忽略所有ê權限。
+        delete_user_data: Thâi掉用者ê資料
+        delete_user_data_description: 允准用者liâm-mi thâi掉其他用者ê資料
+        invite_users: 邀請用者
+        invite_users_description: 允准用者邀請新lâng來tsit ê服侍器
+        manage_announcements: 管理公告
+        manage_announcements_description: 允准用者管理佇tsit ê服侍器ê公告
+        manage_appeals: 管理投訴
+        manage_appeals_description: 允准用者審查tuì管理動作ê投訴
+        manage_blocks: 管理封鎖
+        manage_blocks_description: 允准用者封鎖電子phue ê 提供者kap IP地址
+        manage_custom_emojis: 管理自訂ê Emoji
+        manage_custom_emojis_description: 允准用者管理佇tsit ê服侍器ê自訂Emoji
+        manage_federation: 管理聯邦
+        manage_federation_description: 允准用者封鎖á是允准kap其他域名相連，mā控制寄送ê能力
+        manage_invites: 管理邀請
+        manage_invites_description: 允准用者瀏覽kap停止使用邀請連結
+        manage_reports: 管理檢舉
+        manage_reports_description: 允准用者審查檢舉kap執行對in ê管理ê動作。
+        manage_roles: 管理角色
+        manage_roles_description: 允准用者管理kap分配比in khah kē ê角色
+        manage_rules: 管理規則
+        manage_rules_description: 允准用者改服侍器ê規則
+        manage_settings: 管理設定
+        manage_settings_description: 允准用者改站ê設定
+        manage_taxonomies: 管理分類
+        manage_taxonomies_description: 允准用者審核趨勢內容，kap更新hashtag ê設定
+        manage_user_access: 管理用者ê接近使用
+        manage_user_access_description: 允准用者停止其他用者ê兩階段驗證，改in ê電子phue地址，kap重頭設定in ê密碼
+        manage_users: 管理用者
+        manage_users_description: 允准用者看其他ê用者ê詳細，kap執行tuì in ê管理行動
+        manage_webhooks: 管理 Webhooks
+        manage_webhooks_description: 允許用者kā管理ê事件設定 webhooks
+        view_audit_log: 看審核ê日誌
+        view_audit_log_description: 允准用者看tsit ê服侍器ê管理行動ê歷史
+        view_dashboard: 看La-jí-báng (Dashboard)
+        view_dashboard_description: 允准用者接近使用tsit ê la-jí-báng kap tsē-tsē指標
+        view_devops: DevOps
+        view_devops_description: 允准用者接近使用Sidekiq kap pgHero ê la-jí-báng
+      title: 角色
+    rules:
+      add_new: 加添規則
+      add_translation: 加添翻譯
+      delete: Thâi掉
+      description_html: 雖bóng大部份ê lóng講有讀kap同意使用規則，m̄-koh攏無讀了，直到發生問題ê時。<strong>提供in列單ē當hōo tsi̍t kái看服侍器ê規則khah快。</strong>請試kā個別ê規則寫kah短koh簡單，m̄-kú m̄通kā in拆做tsē-tsē分開ê項目。
+      edit: 編輯規則
+      empty: Iáu bē定義服侍器ê規則。
+      move_down: Suá khah落來
+      move_up: Suá khah起去
+      title: 服侍器規則
+      translation: 翻譯
+      translations: 翻譯
+      translations_explanation: Lí ē當（但是無必要）加添tsiah-ê規則ê翻譯。若無翻譯版，預設ê值ē顯示。請一直確認任何提供ê翻譯kap預設ê同步。
+    settings:
+      about:
+        manage_rules: 管理服侍器ê規則
+        preamble: 提供關係服侍器án-nuá運作kap管理，以及資金源頭ê詳細資訊。
+        rules_hint: Tse是關係lí ê用者應該遵守ê規則ê專區。
+        title: 關係本站
+      allow_referrer_origin:
+        desc: Nā是lí ê用者點連結kàu外部網站，in ê瀏覽器可能ē kā lí ê Mastodon服侍器ê地址當做流量ê來源送出。如果tse ē唯一區別lí ê用者，比如tse是個人ê Mastodon服侍器，請kā停止使用。
+        title: 允准外部網站kā lí ê Mastodon服侍器當做流量ê來源
+      appearance:
+        preamble: 自訂Mastodon網頁ê界面。
+        title: 外觀
+      branding:
+        preamble: Lí ê服侍器品牌hōo伊kap別ê服侍器區別。Tsit ê資訊可能展示佇無kâng ê環境，比如Mastodon ê網頁界面、原底ê app、佇別站ê sing看連結ê所在kap佇通信app內底等。因為tsit ê緣故，上好kā資訊保持kah清楚、短koh簡要。
+        title: 品牌
+      captcha_enabled:
+        desc_html: Tsit ê功能需要tuì hCaptcha來ê外部kha本，可能有安全kap隱私ê顧慮。另外，<strong>tse ē明顯降kē tsi̍t寡lâng（特別是障礙者）註冊ê容易程度</strong>。因為tsiah ê緣故，請考慮別ê替代方案，比如審核制á是邀請制ê註冊。
+        title: 要求新ê用者解決CAPTCHA問題，來確認in ê口座
+      content_retention:
+        danger_zone: 危險ê所在
+        preamble: 控制使用者產生ê內容tiông佇Mastodon ê方法。
+        title: 內容保存期間
+      default_noindex:
+        desc_html: 影響逐ê iáu buē改變tsit ê設定ê用者
+        title: 預設kā用者tuì tshiau-tshuē ia̋n-jín ê索引排除
+      discovery:
+        follow_recommendations: 跟tuè建議
     statuses:
       language: 語言
     trends:

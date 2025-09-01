@@ -564,6 +564,80 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
+  context 'when an approved quote of a local post gets updated through an explicit update' do
+    let(:quoted_account) { Fabricate(:account) }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, state: :accepted) }
+    let(:approval_uri) { ActivityPub::TagManager.instance.approval_uri_for(quote) }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+        quoteAuthorization: approval_uri,
+      }
+    end
+
+    it 'updates the quote post without changing the quote status' do
+      expect { subject.call(status, json, json) }
+        .to not_change(quote, :approval_uri)
+        .and not_change(quote, :state).from('accepted')
+        .and change(status, :text).from('Hello world').to('Hello universe')
+    end
+  end
+
+  context 'when an unapproved quote of a local post gets updated through an explicit update and claims approval' do
+    let(:quoted_account) { Fabricate(:account) }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: 0) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, state: :rejected) }
+    let(:approval_uri) { ActivityPub::TagManager.instance.approval_uri_for(quote) }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+        quoteAuthorization: approval_uri,
+      }
+    end
+
+    it 'updates the quote post without changing the quote status' do
+      expect { subject.call(status, json, json) }
+        .to not_change(quote, :approval_uri)
+        .and not_change(quote, :state).from('rejected')
+        .and change(status, :text).from('Hello world').to('Hello universe')
+    end
+  end
+
   context 'when the status has an existing verified quote and removes an approval link through an explicit update' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:quoted_status) { Fabricate(:status, account: quoted_account) }

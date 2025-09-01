@@ -43,12 +43,36 @@ class StatusEdit < ApplicationRecord
   scope :ordered, -> { order(id: :asc) }
 
   delegate :local?, :application, :edited?, :edited_at,
-           :discarded?, :visibility, :language, to: :status
+           :discarded?, :reply?, :visibility, :language, to: :status
+
+  def with_media?
+    ordered_media_attachments.any?
+  end
+
+  def with_poll?
+    poll_options.present?
+  end
+
+  def poll
+    return @poll if defined?(@poll)
+    return @poll = nil if poll_options.blank?
+
+    @poll = Poll.new({
+      options: poll_options,
+      account_id: account_id,
+      status_id: status_id,
+    })
+  end
+
+  alias preloadable_poll poll
 
   def emojis
     return @emojis if defined?(@emojis)
 
-    @emojis = CustomEmoji.from_text([spoiler_text, text].join(' '), status.account.domain)
+    fields  = [spoiler_text, text]
+    fields += preloadable_poll.options unless preloadable_poll.nil?
+
+    @emojis = CustomEmoji.from_text(fields.join(' '), status.account.domain)
   end
 
   def ordered_media_attachments

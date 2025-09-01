@@ -49,8 +49,14 @@ pl:
           attributes:
             reblog:
               taken: status już istnieje
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: jest zbyt wcześnie, musi być później niż %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: jest poniżej granicy wiekowej
             email:
               blocked: używa niedozwolonego dostawcy poczty elektronicznej
               unreachable: wydaje się nie istnieć

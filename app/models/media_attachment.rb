@@ -298,6 +298,10 @@ class MediaAttachment < ApplicationRecord
       IMAGE_FILE_EXTENSIONS + VIDEO_FILE_EXTENSIONS + AUDIO_FILE_EXTENSIONS
     end
 
+    def combined_media_file_size
+      arel_table.coalesce(arel_table[:file_file_size], 0) + arel_table.coalesce(arel_table[:thumbnail_file_size], 0)
+    end
+
     private
 
     def file_styles(attachment)

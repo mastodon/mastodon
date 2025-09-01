@@ -23,7 +23,7 @@ RSpec.describe 'Share page', :js, :streaming do
     fill_in_form
 
     expect(page)
-      .to have_css('.notification-bar-message', text: frontend_translations('compose.published.body'))
+      .to have_current_path(%r{/@bob/[0-9]+})
   end
 
   def fill_in_form

@@ -5,15 +5,19 @@ require 'rails_helper'
 RSpec.describe Fasp::AnnounceAccountLifecycleEventWorker do
   include ProviderRequestHelper
 
+  subject { described_class.new.perform(account_uri, 'new') }
+
   let(:account_uri) { 'https://masto.example.com/accounts/1' }
   let(:subscription) do
     Fabricate(:fasp_subscription, category: 'account')
   end
   let(:provider) { subscription.fasp_provider }
+  let(:path) { '/data_sharing/v0/announcements' }
+
   let!(:stubbed_request) do
     stub_provider_request(provider,
                           method: :post,
-                          path: '/data_sharing/v0/announcements',
+                          path:,
                           response_body: {
                             source: {
                               subscription: {
@@ -27,8 +31,16 @@ RSpec.describe Fasp::AnnounceAccountLifecycleEventWorker do
   end
 
   it 'sends the account uri to subscribed providers' do
-    described_class.new.perform(account_uri, 'new')
+    subject
 
     expect(stubbed_request).to have_been_made
+  end
+
+  describe 'provider delivery failure handling' do
+    let(:base_stubbed_request) do
+      stub_request(:post, provider.url(path))
+    end
+
+    it_behaves_like('worker handling fasp delivery failures')
   end
 end

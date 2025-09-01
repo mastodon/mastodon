@@ -115,8 +115,10 @@ class MoveWorker
 
   def carry_mutes_over!
     @source_account.muted_by_relationships.where(account: Account.local).find_each do |mute|
-      MuteService.new.call(mute.account, @target_account, notifications: mute.hide_notifications) unless skip_mute_move?(mute)
-      add_account_note_if_needed!(mute.account, 'move_handler.carry_mutes_over_text')
+      unless skip_mute_move?(mute)
+        MuteService.new.call(mute.account, @target_account, notifications: mute.hide_notifications)
+        add_account_note_if_needed!(mute.account, 'move_handler.carry_mutes_over_text')
+      end
     rescue => e
       @deferred_error = e
     end

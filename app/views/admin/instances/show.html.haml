@@ -78,7 +78,7 @@
   %h3= t('admin.instances.availability.title')
 
   %p
-    = t('admin.instances.availability.description_html', count: DeliveryFailureTracker::FAILURE_DAYS_THRESHOLD)
+    = t('admin.instances.availability.description_html', count: DeliveryFailureTracker::FAILURE_THRESHOLDS[:days])
 
   .availability-indicator
     %ul.availability-indicator__graphic

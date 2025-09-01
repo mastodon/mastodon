@@ -126,7 +126,7 @@ class Rack::Attack
   end
 
   throttle('throttle_email_confirmations/email', limit: 5, period: 30.minutes) do |req|
-    if req.post? && req.path_matches?('/auth/password')
+    if req.post? && req.path_matches?('/auth/confirmation')
       req.params.dig('user', 'email').presence
     elsif req.post? && req.path == '/api/v1/emails/confirmations'
       req.authenticated_user_id

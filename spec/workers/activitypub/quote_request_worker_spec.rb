@@ -23,7 +23,9 @@ RSpec.describe ActivityPub::QuoteRequestWorker do
         type: 'QuoteRequest',
         actor: ActivityPub::TagManager.instance.uri_for(quote.account),
         object: ActivityPub::TagManager.instance.uri_for(quoted_status),
-        instrument: anything # TODO: inline post in request?
+        instrument: a_hash_including(
+          id: ActivityPub::TagManager.instance.uri_for(status)
+        )
       )
     end
   end

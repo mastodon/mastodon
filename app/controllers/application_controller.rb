@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   rescue_from Mastodon::NotPermittedError, with: :forbidden
   rescue_from ActionController::RoutingError, ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActionController::UnknownFormat, with: :not_acceptable
-  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
+  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_content
   rescue_from Mastodon::RateLimitExceededError, with: :too_many_requests
 
   rescue_from(*Mastodon::HTTP_CONNECTION_ERRORS, with: :internal_server_error)
@@ -123,7 +123,7 @@ class ApplicationController < ActionController::Base
     respond_with_error(410)
   end
 
-  def unprocessable_entity
+  def unprocessable_content
     respond_with_error(422)
   end
 

@@ -361,7 +361,7 @@ ca:
       title: Emojis personalitzats
       uncategorized: Sense categoria
       unlist: No llistat
-      unlisted: Sense classificar
+      unlisted: Públic silenciós
       update_failed_msg: No s'ha pogut actualitzar aquest emoji
       updated_msg: Emoji s'ha actualitzat correctament!
       upload: Carrega
@@ -1660,6 +1660,10 @@ ca:
       title: Nova menció
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
+    quote:
+      body: 'La vostra publicació ha estat citada per %{name}:'
+      subject: "%{name} ha citat la vostra publicació"
+      title: Nova citació
     reblog:
       body: "%{name} ha impulsat el teu estat:"
       subject: "%{name} ha impulsat el teu estat"
@@ -1709,7 +1713,7 @@ ca:
       too_few_options: ha de tenir més d'una opció
       too_many_options: no pot contenir més de %{max} opcions
   preferences:
-    other: Altre
+    other: Altres
     posting_defaults: Valors per defecte de publicació
     public_timelines: Línies de temps públiques
   privacy:
@@ -1878,18 +1882,18 @@ ca:
       ownership: No es pot fixar el tut d'algú altre
       reblog: No es pot fixar un impuls
     quote_policies:
-      followers: Seguidors i usuaris mencionats
-      nobody: Només usuaris mencionats
-      public: Tothom
+      followers: Només seguidors
+      nobody: Només jo
+      public: Qualsevol
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Directe
+      direct: Menció privada
       private: Només seguidors
       private_long: Mostra només als seguidors
       public: Públic
-      public_long: Tothom pot veure-ho
+      public_long: Tothom dins o fora Mastodon
       unlisted: No llistat
-      unlisted_long: Tothom ho pot veure, però no es mostra en les línies de temps públiques
+      unlisted_long: Amagat dels resultats de cerca de Mastodon, de les tendències i de les línies temporals
   statuses_cleanup:
     enabled: Esborra automàticament tuts antics
     enabled_hint: Suprimeix automàticament els teus tuts quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents

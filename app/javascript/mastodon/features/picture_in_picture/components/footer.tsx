@@ -233,7 +233,10 @@ export const Footer: React.FC<{
         icon='retweet'
         iconComponent={reblogIconComponent}
         onClick={handleReblogClick}
-        counter={status.get('reblogs_count') as number}
+        counter={
+          (status.get('reblogs_count') as number) +
+          (status.get('quotes_count') as number)
+        }
       />
 
       <IconButton

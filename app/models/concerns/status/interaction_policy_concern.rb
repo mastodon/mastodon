@@ -4,11 +4,15 @@ module Status::InteractionPolicyConcern
   extend ActiveSupport::Concern
 
   QUOTE_APPROVAL_POLICY_FLAGS = {
-    unknown: (1 << 0),
+    unsupported_policy: (1 << 0),
     public: (1 << 1),
     followers: (1 << 2),
     followed: (1 << 3),
   }.freeze
+
+  included do
+    before_validation :downgrade_quote_policy, if: -> { local? && !distributable? }
+  end
 
   def quote_policy_as_keys(kind)
     case kind
@@ -33,15 +37,7 @@ module Status::InteractionPolicyConcern
     automatic_policy = quote_approval_policy >> 16
     manual_policy = quote_approval_policy & 0xFFFF
 
-    # Checking for public policy first because it's less expensive than looking at mentions
     return :automatic if automatic_policy.anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:public])
-
-    # Mentioned users are always allowed to quote
-    if active_mentions.loaded?
-      return :automatic if active_mentions.any? { |mention| mention.account_id == other_account.id }
-    elsif active_mentions.exists?(account: other_account)
-      return :automatic
-    end
 
     if automatic_policy.anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:followers])
       following_author = preloaded_relations[:following] ? preloaded_relations[:following][account_id] : other_account.following?(account) if following_author.nil?
@@ -56,8 +52,12 @@ module Status::InteractionPolicyConcern
       return :manual if following_author
     end
 
-    return :unknown if (automatic_policy | manual_policy).anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:unknown])
+    return :unknown if (automatic_policy | manual_policy).anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:unsupported_policy])
 
     :denied
+  end
+
+  def downgrade_quote_policy
+    self.quote_approval_policy = 0
   end
 end
