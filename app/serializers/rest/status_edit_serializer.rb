@@ -12,14 +12,10 @@ class REST::StatusEditSerializer < ActiveModel::Serializer
 
   has_one :quote, serializer: REST::QuoteSerializer, if: -> { object.quote_id.present? }
 
-  attribute :poll, if: -> { object.poll_options.present? }
+  has_one :poll, serializer: REST::PollSerializer, if: -> { object.with_poll? }
 
   def content
     status_content_format(object)
-  end
-
-  def poll
-    { options: object.poll_options.map { |title| { title: title } } }
   end
 
   def quote

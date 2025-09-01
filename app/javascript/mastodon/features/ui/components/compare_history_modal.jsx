@@ -3,6 +3,8 @@ import { PureComponent } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
@@ -86,13 +88,17 @@ class CompareHistoryModal extends PureComponent {
                 <ul>
                   {currentVersion.getIn(['poll', 'options']).map(option => (
                     <li key={option.get('title')}>
-                      <span className='poll__input disabled' />
+                      <label className="poll__option disabled">
+                        <span className={classNames('poll__input', {
+                          checkbox: currentVersion.getIn(['poll', 'multiple']),
+                        })} />
 
-                      <span
-                        className='poll__option__text translate'
-                        dangerouslySetInnerHTML={{ __html: emojify(escapeTextContentForBrowser(option.get('title')), emojiMap) }}
-                        lang={language}
-                      />
+                        <span
+                          className='poll__option__text translate'
+                          dangerouslySetInnerHTML={{ __html: emojify(escapeTextContentForBrowser(option.get('title')), emojiMap) }}
+                          lang={language}
+                        />
+                      </label>
                     </li>
                   ))}
                 </ul>
