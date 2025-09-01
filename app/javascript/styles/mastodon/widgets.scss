@@ -1,6 +1,7 @@
 @use 'sass:color';
 @use 'variables' as *;
 @use 'functions' as *;
+@use 'theme_utils' as *;
 
 .directory {
   &__tag {
@@ -12,7 +13,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border: 1px solid var(--background-border-color);
+      border: 1px solid var(--clr-border-primary);
       border-radius: 4px;
       padding: 15px;
       text-decoration: none;
@@ -42,13 +43,13 @@
       flex: 1 1 auto;
       font-size: 18px;
       font-weight: 700;
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
 
       .fa {
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
       }
 
       small {
@@ -56,7 +57,7 @@
         font-weight: 400;
         font-size: 15px;
         margin-top: 8px;
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
       }
     }
 
@@ -65,7 +66,7 @@
       .fa,
       small,
       .trends__item__current {
-        color: $primary-text-color;
+        color: var(--clr-text-primary);
       }
     }
 
@@ -100,7 +101,7 @@
   thead th {
     text-align: center;
     text-transform: uppercase;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     font-weight: 700;
     padding: 10px;
 
@@ -124,11 +125,11 @@
     text-align: center;
     font-size: 15px;
     font-weight: 500;
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
 
     small {
       display: block;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
       font-weight: 400;
       font-size: 14px;
     }
@@ -137,7 +138,7 @@
   tbody td.accounts-table__extra {
     width: 120px;
     text-align: end;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     padding-inline-end: 16px;
 
     a {

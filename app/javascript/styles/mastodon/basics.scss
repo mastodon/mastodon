@@ -1,5 +1,6 @@
 @use 'variables' as *;
 @use 'functions' as *;
+@use 'theme_utils' as *;
 
 html.has-modal {
   &,
@@ -17,11 +18,11 @@ html.has-modal {
 
 body {
   font-family: $font-sans-serif, sans-serif;
-  background: var(--background-color);
+  background: var(--clr-bg-ambient);
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
-  color: $primary-text-color;
+  color: var(--clr-text-primary);
   text-rendering: optimizelegibility;
 
   // Disable kerning for Japanese text to preserve monospaced alignment for readability
@@ -225,7 +226,7 @@ button {
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
 
     &:hover,
     &:focus,
@@ -235,11 +236,11 @@ button {
   }
 
   &__footer {
-    color: $dark-text-color;
+    color: var(--clr-text-secondary);
     font-size: 13px;
 
     a {
-      color: $dark-text-color;
+      color: var(--clr-text-secondary);
     }
   }
 
@@ -247,7 +248,7 @@ button {
     display: inline;
     border: 0;
     background: transparent;
-    color: $dark-text-color;
+    color: var(--clr-text-secondary);
     font: inherit;
     padding: 0;
     margin: 0;
@@ -264,7 +265,7 @@ button {
     }
 
     &.copied {
-      color: $valid-value-color;
+      color: var(--mas-status-success-color);
       transition: none;
     }
   }
