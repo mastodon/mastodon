@@ -143,6 +143,7 @@ export const StatusBoostButton: FC<ReblogButtonProps> = ({
         )}
         icon='retweet'
         iconComponent={boostIcon}
+        className='status__action-bar__button'
         counter={
           counters
             ? (status.get('reblogs_count') as number) +
@@ -241,6 +242,7 @@ export const LegacyReblogButton: FC<ReblogButtonProps> = ({
       title={intl.formatMessage(meta ?? title)}
       icon='retweet'
       iconComponent={iconComponent}
+      className='status__action-bar__button'
       onClick={!disabled ? handleClick : undefined}
       counter={
         counters

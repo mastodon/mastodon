@@ -14,9 +14,7 @@ $ui-secondary-color: $classic-secondary-color !default;
 $ui-highlight-color: $classic-highlight-color !default;
 
 @use '../mastodon/variables' with (
-  $darker-text-color: lighten($ui-primary-color, 20%),
   $dark-text-color: lighten($ui-primary-color, 12%),
-  $secondary-text-color: lighten($ui-secondary-color, 6%),
   $highlight-text-color: lighten($ui-highlight-color, 10%),
   $action-button-color: lighten($ui-base-color, 50%),
   $inverted-text-color: $black,

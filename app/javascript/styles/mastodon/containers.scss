@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'theme_utils' as *;
 
 .container-alt {
   width: 700px;
@@ -27,7 +28,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
       text-decoration: none;
       outline: 0;
       padding: 12px 16px;
@@ -65,7 +66,7 @@
   padding: 20px 0;
   margin-top: 40px;
   margin-bottom: 10px;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
 
   @media screen and (width <= 440px) {
     width: 100%;
@@ -89,7 +90,7 @@
 
   .name {
     flex: 1 1 auto;
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
 
     .username {
       display: block;
@@ -97,7 +98,7 @@
       line-height: 24px;
       text-overflow: ellipsis;
       overflow: hidden;
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
     }
   }
 

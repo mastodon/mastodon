@@ -79,11 +79,11 @@
       box-sizing: border-box;
       width: 100%;
       font-size: 14px;
-      color: $secondary-text-color;
+      color: var(--clr-text-primary);
       outline: 0;
       font-family: inherit;
       background: $ui-base-color;
-      border: 1px solid $darker-text-color;
+      border: 1px solid var(--clr-text-secondary);
       border-radius: 4px;
       padding: 8px 12px;
 
@@ -112,7 +112,7 @@
   &__input {
     display: block;
     position: relative;
-    border: 1px solid $ui-primary-color;
+    border: 1px solid var(--clr-bg-primary);
     box-sizing: border-box;
     width: 17px;
     height: 17px;
@@ -126,13 +126,13 @@
     &:active,
     &:focus,
     &:hover {
-      border-color: lighten($valid-value-color, 15%);
+      border-color: var(--clr-text-success);
       border-width: 4px;
     }
 
     &.active {
-      background-color: $valid-value-color;
-      border-color: $valid-value-color;
+      background-color: var(--clr-bg-success-strong);
+      border-color: var(--clr-text-success);
     }
 
     &::-moz-focus-inner {
