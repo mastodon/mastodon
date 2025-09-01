@@ -1935,7 +1935,6 @@ a.sparkline {
 .status__card {
   padding: 15px;
   border-radius: 4px;
-  background: $ui-base-color;
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
@@ -1944,6 +1943,16 @@ a.sparkline {
   color: $primary-text-color;
   box-sizing: border-box;
   min-height: 100%;
+
+  .status__quote & {
+    border: none;
+
+    .status__avatar,
+    .status__avatar .account__avatar {
+      width: 32px;
+      height: 32px;
+    }
+  }
 
   .status__prepend {
     padding: 0 0 15px;
@@ -1956,6 +1965,14 @@ a.sparkline {
 
     summary {
       display: list-item;
+    }
+  }
+
+  .detailed-status__meta {
+    .detailed-status__application,
+    .detailed-status__datetime,
+    .detailed-status__link {
+      color: inherit;
     }
   }
 }
