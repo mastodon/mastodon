@@ -1,7 +1,4 @@
-@use 'sass:color';
-@use 'functions' as *;
-@use 'variables' as *;
-@use 'theme_utils' as *;
+@use 'theme_utils' as utils;
 
 :root {
   --clr-black: #000;
@@ -52,7 +49,7 @@
   --clr-text-on-warning-strong: var(--clr-white);
   --clr-text-success: var(--clr-green-400);
   --clr-text-on-success-strong: var(--clr-white);
-  --clr-text-disabled: var(--clr-grey-400);
+  --clr-text-disabled: var(--clr-grey-600);
   --clr-text-on-disabled: var(--clr-grey-400);
 
   /* BACKGROUND TOKENS */
@@ -60,33 +57,33 @@
   --clr-bg-primary: var(--clr-grey-950);
   --clr-bg-secondary-base: var(--clr-indigo-200);
   --clr-bg-secondary-strength: 12%;
-  --clr-bg-secondary: #{css-alpha(
+  --clr-bg-secondary: #{utils.css-alpha(
       var(--clr-bg-secondary-base),
       var(--clr-bg-secondary-strength)
     )};
-  --clr-bg-secondary-solid: #{color-mix(
-      in srgb,
-      var(--clr-bg-primary),
-      var(--clr-bg-secondary-base) var(--clr-bg-secondary-strength)
-    )};
+  --clr-bg-secondary-solid: color-mix(
+    in srgb,
+    var(--clr-bg-primary),
+    var(--clr-bg-secondary-base) var(--clr-bg-secondary-strength)
+  );
 
   /* Secondary with doubled mix amount */
-  --clr-bg-tertiary: #{color-mix(
-      in oklab,
-      var(--clr-bg-primary),
-      var(--clr-bg-secondary-base) calc(2 * var(--clr-bg-secondary-strength))
-    )};
+  --clr-bg-tertiary: color-mix(
+    in oklab,
+    var(--clr-bg-primary),
+    var(--clr-bg-secondary-base) calc(2 * var(--clr-bg-secondary-strength))
+  );
   --clr-bg-ambient: var(--clr-bg-primary);
   --clr-bg-elevated: var(--clr-grey-800);
   --clr-bg-inverted: var(--clr-grey-950);
   --clr-bg-disabled: var(--clr-grey-700);
   --clr-bg-accent-subtle-base: var(--clr-indigo-400);
   --clr-bg-accent-subtle-strength: 10%;
-  --clr-bg-accent-subtle: #{css-alpha(
+  --clr-bg-accent-subtle: #{utils.css-alpha(
       var(--clr-bg-accent-subtle-base),
       var(--clr-bg-accent-subtle-strength)
     )};
-  --clr-bg-accent-subtle-highlighted: #{css-alpha(
+  --clr-bg-accent-subtle-highlighted: #{utils.css-alpha(
       var(--clr-bg-accent-subtle-base),
       calc(var(--clr-bg-accent-subtle-strength) * 1.5)
     )};
@@ -98,7 +95,7 @@
   );
   --clr-bg-error-subtle-base: #f41b3b;
   --clr-bg-error-subtle-strength: 12%;
-  --clr-bg-error-subtle: #{css-alpha(
+  --clr-bg-error-subtle: #{utils.css-alpha(
       var(--clr-bg-error-subtle-base),
       var(--clr-bg-error-subtle-strength)
     )};
@@ -110,7 +107,7 @@
   );
   --clr-bg-warning-subtle-base: #ffca1b;
   --clr-bg-warning-subtle-strength: 10%;
-  --clr-bg-warning-subtle: #{css-alpha(
+  --clr-bg-warning-subtle: #{utils.css-alpha(
       var(--clr-bg-warning-subtle-base),
       var(--clr-bg-warning-subtle-strength)
     )};
@@ -122,7 +119,7 @@
   );
   --clr-bg-success-subtle-base: #17e865;
   --clr-bg-success-subtle-strength: 15%;
-  --clr-bg-success-subtle: #{css-alpha(
+  --clr-bg-success-subtle: #{utils.css-alpha(
       var(--clr-bg-success-subtle-base),
       var(--clr-bg-success-subtle-strength)
     )};
@@ -137,20 +134,29 @@
 
   --clr-border-primary-base: var(--clr-indigo-200);
   --clr-border-primary-strength: 18%;
-  --clr-border-primary: #{css-alpha(
+  --clr-border-primary: #{utils.css-alpha(
       var(--clr-border-primary-base),
       var(--clr-border-primary-strength)
     )};
   --clr-border-strong: var(--clr-grey-200);
   --clr-border-media: rgb(252 248 255 / 15%);
-  --clr-border-on-bg-secondary: #{css-alpha(
+  --clr-border-on-bg-secondary: #{utils.css-alpha(
       var(--clr-border-primary-base),
       calc(var(--clr-border-primary-strength) / 1.5)
     )};
   --clr-border-on-bg-accent-subtle: var(--clr-border-primary);
-  --clr-border-on-bg-error-subtle: #{css-alpha(var(--clr-text-error), 50%)};
-  --clr-border-on-bg-warning-subtle: #{css-alpha(var(--clr-text-warning), 50%)};
-  --clr-border-on-bg-success-subtle: #{css-alpha(var(--clr-text-success), 50%)};
+  --clr-border-on-bg-error-subtle: #{utils.css-alpha(
+      var(--clr-text-error),
+      50%
+    )};
+  --clr-border-on-bg-warning-subtle: #{utils.css-alpha(
+      var(--clr-text-warning),
+      50%
+    )};
+  --clr-border-on-bg-success-subtle: #{utils.css-alpha(
+      var(--clr-text-success),
+      50%
+    )};
 
   /* LEGACY TOKENS */
 
