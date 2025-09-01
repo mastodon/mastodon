@@ -334,7 +334,8 @@ export const composeReducer = (state = initialState, action) => {
     return state
       .set('quoted_status_id', status.get('id'))
       .set('spoiler', status.get('sensitive'))
-      .set('spoiler_text', status.get('spoiler_text'));
+      .set('spoiler_text', status.get('spoiler_text'))
+      .update('privacy', (visibility) => ['public', 'unlisted'].includes(visibility) && status.get('visibility') === 'private' ? 'private' : visibility);
   } else if (quoteComposeCancel.match(action)) {
     return state.set('quoted_status_id', null);
   } else if (setComposeQuotePolicy.match(action)) {
