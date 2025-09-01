@@ -44,4 +44,8 @@ class Rule < ApplicationRecord
     @cached_translations ||= {}
     @cached_translations[locale] ||= translations.for_locale(locale).by_language_length.first || translations.build(language: locale, text: text, hint: hint)
   end
+
+  def untranslated_languages
+    RuleTranslation.excluding(translations).languages
+  end
 end

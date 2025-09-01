@@ -3,6 +3,7 @@
 module Admin
   class RulesController < BaseController
     before_action :set_rule, except: [:index, :new, :create]
+    before_action :build_missing_translations, only: :edit
 
     def index
       authorize :rule, :index?
@@ -17,9 +18,6 @@ module Admin
 
     def edit
       authorize @rule, :update?
-
-      missing_languages = RuleTranslation.languages - @rule.translations.pluck(:language)
-      missing_languages.each { |lang| @rule.translations.build(language: lang) }
     end
 
     def create
@@ -77,6 +75,10 @@ module Admin
     def resource_params
       params
         .expect(rule: [:text, :hint, :priority, translations_attributes: [[:id, :language, :text, :hint, :_destroy]]])
+    end
+
+    def build_missing_translations
+      @rule.untranslated_languages.each { |language| @rule.translations.build(language:) }
     end
   end
 end
