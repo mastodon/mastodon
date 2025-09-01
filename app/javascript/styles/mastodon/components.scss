@@ -17,7 +17,7 @@
 }
 
 .inline-alert {
-  color: $valid-value-color;
+  color: var(--clr-text-success);
   font-weight: 400;
 
   .no-reduce-motion & {
@@ -29,7 +29,7 @@
   display: block;
   font-size: 15px;
   line-height: 20px;
-  color: $highlight-text-color;
+  color: var(--clr-text-accent);
   border: 0;
   background: transparent;
   padding: 0;
@@ -37,7 +37,7 @@
   text-decoration: none;
 
   &--destructive {
-    color: $error-value-color;
+    color: var(--clr-text-error);
   }
 
   &:hover,
@@ -46,12 +46,12 @@
   }
 
   &:disabled {
-    color: $ui-primary-color;
+    color: var(--clr-text-primary);
     cursor: default;
   }
 
   &:focus-visible {
-    outline: $ui-button-icon-focus-outline;
+    outline: var(--outline-focus-default);
   }
 }
 
@@ -74,7 +74,7 @@
   }
 
   &:focus-visible {
-    outline: $ui-button-icon-focus-outline;
+    outline: var(--outline-focus-default);
   }
 
   .icon {
@@ -84,11 +84,11 @@
 }
 
 .button {
-  background-color: $ui-button-background-color;
+  background-color: var(--clr-bg-accent-strong);
   border: 10px none;
   border-radius: 4px;
   box-sizing: border-box;
-  color: $ui-button-color;
+  color: var(--clr-text-on-accent-strong);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -111,11 +111,12 @@
   &:active,
   &:focus,
   &:hover {
-    background-color: $ui-button-focus-background-color;
+    background-color: var(--clr-bg-accent-strong-highlighted);
   }
 
   &:focus-visible {
-    outline: $ui-button-icon-focus-outline;
+    outline: 2px solid var(--clr-bg-accent-strong);
+    outline-offset: 2px;
   }
 
   &--compact {
@@ -127,13 +128,17 @@
   }
 
   &--dangerous {
-    background-color: var(--error-background-color);
-    color: var(--on-error-color);
+    background-color: var(--clr-bg-error-strong);
+    color: var(--clr-text-on-error-strong);
 
     &:active,
     &:focus,
     &:hover {
-      background-color: var(--error-active-background-color);
+      background-color: color-mix(
+        in oklab,
+        var(--clr-bg-error-strong),
+        black var(--clr-bg-error-subtle-strength)
+      );
       transition: none;
     }
   }
@@ -142,14 +147,16 @@
     &:active,
     &:focus,
     &:hover {
-      background-color: $ui-button-destructive-focus-background-color;
+      color: var(--clr-text-on-error-strong);
+      background-color: var(--clr-bg-error-strong);
       transition: none;
     }
   }
 
   &:disabled,
   &.disabled {
-    background-color: $ui-button-disabled-color;
+    color: var(--clr-text-on-disabled);
+    background-color: var(--clr-bg-disabled);
     cursor: not-allowed;
   }
 
@@ -158,21 +165,22 @@
   }
 
   &.copied {
-    background: $valid-value-color;
+    color: var(--clr-text-on-success-strong);
+    background-color: var(--clr-bg-success-strong);
     transition: none;
   }
 
   &.button-secondary {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
     background: transparent;
     padding: 6px 17px;
-    border: 1px solid $highlight-text-color;
+    border: 1px solid var(--clr-text-accent);
 
     &:active,
     &:focus,
     &:hover {
-      border-color: lighten($highlight-text-color, 4%);
-      color: lighten($highlight-text-color, 4%);
+      border-color: var(--clr-text-accent);
+      color: var(--clr-text-accent);
       background-color: transparent;
       text-decoration: none;
     }
@@ -181,22 +189,21 @@
       &:active,
       &:focus,
       &:hover {
-        border-color: $ui-button-destructive-focus-background-color;
-        color: $ui-button-destructive-focus-background-color;
+        border-color: var(--clr-text-error);
+        color: var(--clr-text-error);
       }
     }
 
     &:disabled,
     &.disabled {
-      opacity: 0.7;
-      border-color: $ui-button-disabled-color;
-      color: $ui-button-disabled-color;
+      border-color: var(--clr-text-disabled);
+      color: var(--clr-text-disabled);
 
       &:active,
       &:focus,
       &:hover {
-        border-color: $ui-button-disabled-color;
-        color: $ui-button-disabled-color;
+        border-color: var(--clr-text-disabled);
+        color: var(--clr-text-disabled);
       }
     }
   }
@@ -256,26 +263,26 @@
     }
 
     &.button--confirmation {
-      color: $valid-value-color;
-      border-color: $valid-value-color;
+      color: var(--clr-text-success);
+      border-color: var(--clr-text-success);
 
       &:active,
       &:focus,
       &:hover {
-        background: $valid-value-color;
-        color: $primary-text-color;
+        background: var(--clr-bg-primary);
+        color: var(--clr-text-primary);
       }
     }
 
     &.button--destructive {
-      color: $error-value-color;
-      border-color: $error-value-color;
+      color: var(--clr-text-error);
+      border-color: var(--clr-text-error);
 
       &:active,
       &:focus,
       &:hover {
-        background: $error-value-color;
-        color: $primary-text-color;
+        background: var(--clr-bg-success-strong);
+        color: var(--clr-text-on-success-strong);
       }
     }
   }
@@ -323,12 +330,17 @@
 }
 
 .icon-button {
+  --default-icon-color: var(--clr-text-secondary);
+  --default-bg-color: transparent;
+  --hover-icon-color: var(--clr-text-primary);
+  --hover-bg-color: var(--clr-bg-secondary);
+
   display: inline-flex;
-  color: $action-button-color;
+  color: var(--default-icon-color);
   border: 0;
   padding: 0;
   border-radius: 4px;
-  background: transparent;
+  background: var(--default-bg-color);
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -345,66 +357,41 @@
   &:hover,
   &:active,
   &:focus-visible {
-    color: lighten($action-button-color, 7%);
-    background-color: color.change($action-button-color, $alpha: 0.15);
+    color: var(--hover-icon-color);
+    background-color: var(--hover-bg-color);
   }
 
   &:focus-visible {
-    outline: $ui-button-icon-focus-outline;
+    outline: var(--clr-text-accent);
   }
 
   &.disabled {
-    color: darken($action-button-color, 13%);
-    background-color: transparent;
+    color: var(--clr-text-disabled);
+    background-color: var(--default-bg-color);
     cursor: default;
   }
 
   &.inverted {
-    color: $lighter-text-color;
-
-    &:hover,
-    &:active,
-    &:focus-visible {
-      color: darken($lighter-text-color, 7%);
-      background-color: color.change($lighter-text-color, $alpha: 0.15);
-    }
-
-    &:focus-visible {
-      outline: $ui-button-icon-focus-outline;
-    }
-
-    &.disabled {
-      color: lighten($lighter-text-color, 7%);
-      background-color: transparent;
-    }
+    --default-icon-color: var(--clr-text-primary);
+    --hover-icon-color: var(--clr-text-secondary);
   }
 
   &.active {
-    color: $highlight-text-color;
-
-    &:hover,
-    &:active,
-    &:focus-visible {
-      color: $highlight-text-color;
-      background-color: transparent;
-    }
-
-    &.disabled {
-      color: lighten($highlight-text-color, 13%);
-    }
+    --default-icon-color: var(--clr-text-accent);
+    --hover-icon-color: var(--clr-text-accent);
+    --hover-bg-color: transparent;
   }
 
   &.overlayed {
+    --default-icon-color: color.change($white, $alpha: 0.7);
+    --default-bg-color: color.change($black, $alpha: 0.65);
+    --hover-icon-color: var(--clr-text-accent);
+    --hover-bg-color: color.change($black, $alpha: 0.9);
+
     box-sizing: content-box;
-    background: color.change($black, $alpha: 0.65);
     backdrop-filter: $backdrop-blur-filter;
-    color: color.change($white, $alpha: 0.7);
     border-radius: 4px;
     padding: 2px;
-
-    &:hover {
-      background: color.change($black, $alpha: 0.9);
-    }
   }
 
   &--with-counter {
@@ -423,10 +410,10 @@
   }
 
   &.copied {
-    border-color: $valid-value-color;
-    color: $valid-value-color;
+    color: var(--clr-text-success);
     transition: none;
-    background-color: color.change($valid-value-color, $alpha: 0.15);
+    background-color: var(--clr-bg-success-subtle);
+    border-color: var(--clr-border-on-bg-accent-subtle);
   }
 }
 
@@ -450,7 +437,7 @@
   }
 
   &:focus-visible {
-    outline: $ui-button-icon-focus-outline;
+    outline: var(--outline-focus-default);
   }
 
   &.disabled {
@@ -514,10 +501,10 @@
 
   &__suggestions {
     box-shadow: var(--dropdown-shadow);
-    background: var(--input-background-color);
-    border: 1px solid var(--background-border-color);
+    background: var(--clr-bg-elevated);
+    border: 1px solid var(--clr-border-primary);
     border-radius: 0 0 4px 4px;
-    color: var(--on-input-color);
+    color: var(--clr-text-primary);
     font-size: 14px;
     padding: 0;
 
@@ -530,7 +517,7 @@
       font-size: 14px;
       line-height: 20px;
       letter-spacing: 0.25px;
-      color: var(--on-input-color);
+      color: var(--clr-text-primary);
 
       &:last-child {
         border-radius: 0 0 4px 4px;
@@ -539,7 +526,7 @@
       &:hover,
       &:focus,
       &:active {
-        background: var(--dropdown-border-color);
+        background: var(--clr-bg-secondary);
 
         .autosuggest-account .display-name__account {
           color: inherit;
@@ -639,14 +626,14 @@
     flex-direction: column;
     flex: 0 1 auto;
     border-radius: 4px;
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--clr-border-on-bg-secondary);
     transition: border-color 300ms linear;
     position: relative;
-    background: var(--input-background-color);
+    background: var(--clr-bg-secondary);
 
     &.active {
       transition: none;
-      border-color: $ui-highlight-color;
+      border-color: var(--clr-text-accent);
     }
   }
 
@@ -695,7 +682,7 @@
 
     .autosuggest-input {
       flex: 1 1 auto;
-      border: 1px solid var(--background-border-color);
+      border: 1px solid var(--clr-border-primary);
       border-width: 1px 0;
     }
   }
@@ -706,8 +693,10 @@
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    color: $secondary-text-color;
-    background: var(--input-background-color);
+    color: var(--clr-text-primary);
+
+    // background: var(--clr-bg-secondary);
+    background: transparent;
     font-family: inherit;
     font-size: 14px;
     padding: 12px;
@@ -907,22 +896,21 @@
 
     .icon-button {
       box-sizing: content-box;
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
 
       &:hover,
       &:focus,
       &:active {
-        color: $highlight-text-color;
+        color: var(--clr-text-accent);
       }
 
       &.disabled {
-        color: $highlight-text-color;
-        opacity: 0.5;
+        color: var(--clr-text-disabled);
       }
 
       &.active {
-        background: $ui-highlight-color;
-        color: $primary-text-color;
+        background: var(--clr-bg-accent-strong);
+        color: var(--clr-text-on-accent-strong);
       }
     }
   }
@@ -946,7 +934,7 @@
     .poll__input {
       width: 17px;
       height: 17px;
-      border-color: $darker-text-color;
+      border-color: var(--clr-text-secondary);
     }
 
     &__footer {
@@ -977,7 +965,7 @@
         font-weight: 500;
         line-height: 16px;
         letter-spacing: 0.5px;
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -993,8 +981,8 @@
         font-weight: 500;
         line-height: 20px;
         letter-spacing: 0.1px;
-        color: $highlight-text-color;
-        background-color: var(--input-background-color);
+        color: var(--clr-text-accent);
+        background-color: var(--clr-bg-secondary-solid);
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -1005,7 +993,6 @@
   .status__quote {
     margin: 0 8px;
     max-height: 220px;
-    overflow: hidden;
 
     // Override .status__content .status__content__text.status__content__text--visible
     .status__content__text.status__content__text {
@@ -1025,10 +1012,10 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  color: var(--clr-text-accent);
   background: transparent;
-  color: $highlight-text-color;
+  border: 1px solid var(--clr-text-accent);
   border-radius: 6px;
-  border: 1px solid $highlight-text-color;
   padding: 4px 8px;
   font-size: 13px;
   line-height: normal;
@@ -1039,9 +1026,8 @@
 
   &[disabled] {
     cursor: default;
-    color: $highlight-text-color;
-    border-color: $highlight-text-color;
-    opacity: 0.5;
+    color: var(--clr-text-disabled);
+    border-color: var(--clr-text-disabled);
   }
 
   .icon {
@@ -1058,18 +1044,19 @@
   }
 
   &.active {
-    background: $ui-highlight-color;
-    border-color: $ui-highlight-color;
-    color: $primary-text-color;
+    color: var(--clr-text-on-accent-strong);
+    border-color: var(--clr-bg-accent-strong);
+    background: var(--clr-bg-accent-strong);
   }
 
   &.warning {
-    border-color: var(--goldenrod-2);
-    color: var(--goldenrod-2);
+    color: var(--clr-text-warning);
+    border-color: var(--clr-text-warning);
 
     &.active {
-      background-color: var(--goldenrod-2);
-      color: var(--indigo-1);
+      color: var(--clr-text-on-warning-strong);
+      border-color: var(--clr-bg-warning-strong);
+      background-color: var(--clr-bg-warning-strong);
     }
   }
 }
@@ -1080,7 +1067,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: normal;
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
   flex: 1 0 auto;
   text-align: end;
 
@@ -1101,7 +1088,7 @@
   p {
     font-size: 15px;
     line-height: 22px;
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
     margin-bottom: 20px;
 
     strong {
@@ -1109,7 +1096,7 @@
     }
 
     a {
-      color: $secondary-text-color;
+      color: var(--clr-text-primary);
       text-decoration: none;
       unicode-bidi: isolate;
 
@@ -1156,7 +1143,7 @@
   font-size: 15px;
   line-height: 22px;
   padding-top: 2px;
-  color: $primary-text-color;
+  color: var(--clr-text-primary);
 
   &:focus {
     outline: 0;
@@ -1187,7 +1174,12 @@
   }
 
   a {
-    color: $secondary-text-color;
+    color: var(--clr-text-secondary);
+    color: color-mix(
+      in oklab,
+      var(--clr-text-primary),
+      var(--clr-text-secondary)
+    );
     text-decoration: none;
     unicode-bidi: isolate;
 
@@ -1280,12 +1272,12 @@
     padding: 0;
     max-height: 4 * 20px;
     overflow: hidden;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
   }
 
   &__attachments {
     margin-top: 4px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     font-size: 12px;
     line-height: 16px;
     display: flex;
@@ -1314,7 +1306,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     font-size: 12px;
     line-height: 16px;
     overflow: hidden;
@@ -1347,7 +1339,7 @@
   }
 
   &__content {
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.25px;
@@ -1365,7 +1357,7 @@
   }
 
   &__attachments {
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     font-size: 12px;
     line-height: 16px;
     opacity: 0.75;
@@ -1409,7 +1401,7 @@
   }
 
   a {
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
     text-decoration: none;
 
     &:hover {
@@ -1488,7 +1480,7 @@
   box-sizing: border-box;
   width: 100%;
   clear: both;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
 
   &__button {
     display: inline;
@@ -1517,7 +1509,7 @@
 .status {
   padding: 16px;
   min-height: 54px;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
   cursor: auto;
   opacity: 1;
   animation: fade 150ms linear;
@@ -1588,7 +1580,7 @@
   }
 
   &--first-in-thread {
-    border-top: 1px solid var(--background-border-color);
+    border-top: 1px solid var(--clr-border-primary);
   }
 
   &__line {
@@ -1643,7 +1635,7 @@
   height: 40px;
   order: 2;
   flex: 0 0 auto;
-  color: $dark-text-color;
+  color: var(--clr-text-secondary);
 }
 
 .notification__relative_time {
@@ -1664,7 +1656,11 @@
 }
 
 .status__display-name {
-  color: $dark-text-color;
+  color: var(--clr-text-secondary);
+}
+
+.status__action-bar__button:not(.active) {
+  color: var(--clr-text-secondary);
 }
 
 .status__info .status__display-name {
@@ -1751,7 +1747,7 @@
   font-size: 15px;
   line-height: 22px;
   font-weight: 500;
-  color: $dark-text-color;
+  color: var(--clr-text-secondary);
 
   &__icon {
     display: flex;
@@ -1777,22 +1773,22 @@
   }
 }
 
-.status__wrapper-direct,
-.notification-ungrouped--direct,
-.notification-group--direct,
-.notification-group--annual-report {
-  background: color.change($ui-highlight-color, $alpha: 0.05);
+// .status__wrapper-direct,
+// .notification-ungrouped--direct,
+// .notification-group--direct,
+// .notification-group--annual-report {
+//   background: color.change($ui-highlight-color, $alpha: 0.05);
 
-  &:focus {
-    background: color.change($ui-highlight-color, $alpha: 0.1);
-  }
-}
+//   &:focus {
+//     background: color.change($ui-highlight-color, $alpha: 0.1);
+//   }
+// }
 
 .status__wrapper-direct,
 .notification-ungrouped--direct {
   .status__prepend,
   .notification-ungrouped__header {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
   }
 }
 
@@ -1814,7 +1810,7 @@
 
 .detailed-status {
   padding: 16px;
-  border-top: 1px solid var(--background-border-color);
+  border-top: 1px solid var(--clr-border-primary);
 
   .status__content {
     font-size: 19px;
@@ -1881,7 +1877,7 @@
   line-height: 18px;
 
   &__line {
-    border-bottom: 1px solid var(--background-border-color);
+    border-bottom: 1px solid var(--clr-border-primary);
     padding: 8px 0;
     display: flex;
     align-items: center;
@@ -1903,14 +1899,14 @@
   }
 
   .animated-number {
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
     font-weight: 500;
   }
 }
 
 .detailed-status__action-bar {
-  border-top: 1px solid var(--background-border-color);
-  border-bottom: 1px solid var(--background-border-color);
+  border-top: 1px solid var(--clr-border-primary);
+  border-bottom: 1px solid var(--clr-border-primary);
   display: flex;
   flex-direction: row;
   padding: 10px 0;
@@ -1953,11 +1949,12 @@
   --quote-margin: var(--status-gutter-width);
 
   position: relative;
+  overflow: hidden;
   margin-block-start: 16px;
   margin-inline-start: calc(var(--quote-margin) + var(--thread-margin, 0px));
   border-radius: 12px;
-  color: var(--nested-card-text);
-  border: 1px solid var(--surface-border-color);
+  color: var(--clr-text-primary);
+  border: 1px solid var(--clr-border-primary);
 }
 
 .status__quote--error {
@@ -1991,8 +1988,8 @@
   font-weight: 400;
   line-height: 20px;
   letter-spacing: 0.25px;
-  color: $darker-text-color;
-  background: var(--surface-variant-background-color);
+  color: var(--clr-text-secondary);
+  background: var(--clr-bg-accent-subtle);
   border-radius: 8px;
   cursor: default;
 }
@@ -2056,14 +2053,14 @@
 
 .domain {
   padding: 16px;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
   display: flex;
   align-items: center;
   gap: 8px;
 
   &__domain-name {
     flex: 1 1 auto;
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
     font-size: 15px;
     line-height: 21px;
     font-weight: 500;
@@ -2072,14 +2069,14 @@
 
 .account {
   padding: 16px;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
 
   .account__display-name {
     flex: 1 1 auto;
     display: flex;
     align-items: center;
     gap: 10px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     overflow: hidden;
     text-decoration: none;
     font-size: 14px;
@@ -2090,6 +2087,7 @@
 
     .display-name strong {
       display: inline;
+      color: var(--clr-text-primary);
     }
   }
 
@@ -2129,9 +2127,9 @@
     }
 
     &__popout {
-      background: var(--dropdown-background-color);
+      background: var(--clr-bg-elevated);
       backdrop-filter: $backdrop-blur-filter;
-      border: 1px solid var(--dropdown-border-color);
+      border: 1px solid var(--clr-border-primary);
       box-shadow: var(--dropdown-shadow);
       max-width: 320px;
       padding: 16px;
@@ -2141,7 +2139,7 @@
       gap: 24px;
       font-size: 14px;
       line-height: 20px;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
 
       .link-button {
         display: inline;
@@ -2169,7 +2167,7 @@
         h3 {
           font-size: 17px;
           line-height: 22px;
-          color: $primary-text-color;
+          color: var(--clr-text-primary);
         }
       }
 
@@ -2220,7 +2218,7 @@
           font-size: 14px;
           line-height: 20px;
           font-weight: 500;
-          color: $primary-text-color;
+          color: var(--clr-text-primary);
         }
       }
     }
@@ -2236,7 +2234,7 @@
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     margin-top: 10px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
 
     &--missing {
       color: $dark-text-color;
@@ -2303,7 +2301,7 @@
   display: block;
   position: relative;
   border-radius: var(--avatar-border-radius);
-  background: var(--surface-background-color);
+  background: var(--clr-bg-tertiary);
   flex-shrink: 0;
 
   img {
@@ -2315,7 +2313,7 @@
   }
 
   &--loading {
-    background-color: var(--surface-background-color);
+    background-color: var(--clr-bg-tertiary);
   }
 
   &--inline {
@@ -2346,7 +2344,7 @@
       top: 50%;
       inset-inline-start: 50%;
       transform: translate(-50%, -50%);
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
       text-shadow: 1px 1px 2px $base-shadow-color;
       font-weight: 700;
       font-size: 15px;
@@ -2370,7 +2368,7 @@
     color: $white;
     border-width: 1px;
     border-style: solid;
-    border-color: var(--background-color);
+    border-color: var(--clr-bg-primary);
     font-size: 11px;
     font-weight: 500;
     text-align: center;
@@ -2408,7 +2406,7 @@ a .account__avatar {
   }
 
   .account__avatar {
-    box-shadow: 0 0 0 2px var(--background-color);
+    box-shadow: 0 0 0 2px var(--clr-bg-primary);
   }
 }
 
@@ -2433,7 +2431,7 @@ a .account__avatar {
 .account__relationship,
 .explore-suggestions-card {
   .icon-button {
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--clr-border-primary);
     border-radius: 4px;
     box-sizing: content-box;
     padding: 5px;
@@ -2473,7 +2471,7 @@ a .account__avatar {
 .status__display-name,
 .account__display-name {
   .display-name strong {
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
   }
 }
 
@@ -2504,7 +2502,7 @@ a.account__display-name {
 }
 
 .detailed-status__display-name {
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -2521,7 +2519,7 @@ a.account__display-name {
   }
 
   strong {
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
   }
 }
 
@@ -2543,7 +2541,7 @@ a.account__display-name {
 
 .notification__report {
   padding: 16px;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
   display: flex;
   gap: 10px;
 
@@ -2556,7 +2554,7 @@ a.account__display-name {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     gap: 10px;
     font-size: 15px;
     line-height: 22px;
@@ -2579,7 +2577,7 @@ a.account__display-name {
 }
 
 .notification-group--link {
-  color: $secondary-text-color;
+  color: var(--clr-text-primary);
   text-decoration: none;
 
   .notification-group__main {
@@ -2608,7 +2606,7 @@ a.account__display-name {
   padding: 16px;
   padding-bottom: 0;
   cursor: default;
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
   font-size: 15px;
   line-height: 22px;
   font-weight: 500;
@@ -2638,7 +2636,7 @@ a.account__display-name {
 }
 
 .icon-button.bookmark-icon.active {
-  color: $red-bookmark;
+  color: var(--mas-accent-bookmark);
 }
 
 .no-reduce-motion .icon-button.star-icon {
@@ -2708,7 +2706,7 @@ a.account__display-name {
     max-height: $media-modal-media-max-height;
     width: auto;
     height: auto;
-    outline: 1px solid var(--media-outline-color);
+    outline: 1px solid var(--clr-border-media);
     outline-offset: -1px;
     border-radius: 8px;
     touch-action: none;
@@ -2738,7 +2736,7 @@ a.account__display-name {
     max-height: $media-modal-media-max-height;
     position: absolute;
     z-index: 1;
-    outline: 1px solid var(--media-outline-color);
+    outline: 1px solid var(--clr-border-media);
     outline-offset: -1px;
     border-radius: 8px;
     overflow: hidden;
@@ -2789,7 +2787,7 @@ a.account__display-name {
 
   .icon-button {
     padding: 8px;
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
   }
 
   .icon-button .icon {
@@ -2826,15 +2824,15 @@ a.account__display-name {
 }
 
 .dropdown-menu__separator {
-  border-bottom: 1px solid var(--dropdown-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
   margin: 5px 0;
   height: 0;
 }
 
 .dropdown-menu {
-  background: var(--dropdown-background-color);
+  background: var(--clr-bg-elevated);
   backdrop-filter: $backdrop-blur-filter;
-  border: 1px solid var(--dropdown-border-color);
+  border: 1px solid var(--clr-border-primary);
   padding: 4px;
   border-radius: 4px;
   box-shadow: var(--dropdown-shadow);
@@ -2868,13 +2866,13 @@ a.account__display-name {
 
   &__container {
     &__header {
-      border-bottom: 1px solid var(--dropdown-border-color);
+      border-bottom: 1px solid var(--clr-border-primary);
       padding: 10px 14px;
       padding-bottom: 14px;
       margin-bottom: 4px;
       font-size: 13px;
       line-height: 18px;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
     }
 
     &__list {
@@ -2918,7 +2916,7 @@ a.account__display-name {
   display: block;
 
   &--dangerous {
-    color: $error-value-color;
+    color: var(--clr-text-error);
   }
 
   &--highlighted {
@@ -2956,7 +2954,7 @@ a.account__display-name {
     &:hover,
     &:active {
       &:not(:disabled, [aria-disabled='true']) {
-        background: var(--dropdown-border-color);
+        background: var(--clr-bg-secondary);
         outline: 0;
       }
     }
@@ -2964,12 +2962,12 @@ a.account__display-name {
 
   button:disabled,
   button[aria-disabled='true'] {
-    color: $dark-text-color;
+    color: var(--clr-text-disabled);
     cursor: default;
 
     &:focus {
-      color: rgb(from $dark-text-color r g b / 70%);
-      background: var(--dropdown-border-color);
+      color: rgb(from var(--clr-text-disabled) r g b / 70%);
+      background: var(--clr-bg-disabled);
       outline: 0;
     }
   }
@@ -3049,6 +3047,8 @@ a.account__display-name {
       flex-direction: column;
       contain: inline-size layout paint style;
       container: column / inline-size;
+      color: var(--clr-text-primary);
+      background-color: var(--clr-bg-primary);
 
       @media screen and (min-width: $no-gap-breakpoint) {
         max-width: 600px;
@@ -3067,9 +3067,9 @@ a.account__display-name {
   width: 100%;
   gap: 8px;
   padding-bottom: env(safe-area-inset-bottom);
-  background: var(--background-color);
+  background: var(--clr-bg-primary);
   backdrop-filter: $backdrop-blur-filter;
-  border-top: 1px solid var(--background-border-color);
+  border-top: 1px solid var(--clr-border-primary);
   box-sizing: border-box;
 
   .layout-multiple-columns & {
@@ -3112,7 +3112,7 @@ a.account__display-name {
     color: inherit;
 
     &.active {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
     }
 
     &:focus {
@@ -3120,22 +3120,22 @@ a.account__display-name {
     }
 
     &:focus-visible {
-      border-top-color: $ui-button-focus-outline-color;
+      border-top-color: var(--clr-text-accent);
       border-radius: 0;
     }
   }
 }
 
 .tabs-bar__wrapper {
-  background: var(--background-color);
+  background: var(--clr-bg-primary);
   backdrop-filter: $backdrop-blur-filter;
   position: sticky;
   top: 0;
   z-index: 2;
-  padding-top: 0;
+  border-top: 0;
 
   @media screen and (min-width: $no-gap-breakpoint) {
-    padding-top: 10px;
+    border-top: 10px solid var(--clr-bg-ambient);
   }
 }
 
@@ -3163,13 +3163,13 @@ a.account__display-name {
   flex-direction: column;
 
   > .scrollable {
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--clr-border-primary);
     border-top: 0;
     border-radius: 0 0 4px 4px;
 
     &.about,
     &.privacy-policy {
-      border-top: 1px solid var(--background-border-color);
+      border-top: 1px solid var(--clr-border-primary);
       border-radius: 4px;
 
       @media screen and (max-width: $no-gap-breakpoint) {
@@ -3239,7 +3239,7 @@ a.account__display-name {
   display: flex;
   flex: 1 1 auto;
   padding: 13px 3px 11px;
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
   text-decoration: none;
   text-align: center;
   font-size: 16px;
@@ -3372,7 +3372,7 @@ a.account__display-name {
 
     .navigation-panel {
       margin: 0;
-      border-inline-start: 1px solid var(--background-border-color);
+      border-inline-start: 1px solid var(--clr-border-primary);
       height: 100dvh;
     }
 
@@ -3422,7 +3422,7 @@ a.account__display-name {
 
   .columns-area__panels__pane--navigational .columns-area__panels__pane__inner {
     pointer-events: auto;
-    background: var(--background-color);
+    background: var(--clr-bg-primary);
     position: fixed;
     width: 284px + 70px;
     inset-inline-end: -70px;
@@ -3472,7 +3472,7 @@ a.account__display-name {
   gap: 8px;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
 
   &:last-child {
     border-bottom: 0;
@@ -3522,14 +3522,14 @@ a.account__display-name {
     .display-name {
       font-size: 15px;
       line-height: 20px;
-      color: $secondary-text-color;
+      color: var(--clr-text-primary);
 
       strong {
         font-weight: 700;
       }
 
       &__account {
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
         display: block;
       }
     }
@@ -3568,13 +3568,13 @@ a.account__display-name {
     inset-inline-start: 9px;
     top: -13px;
     background: $ui-highlight-color;
-    border: 2px solid var(--background-color);
+    border: 2px solid var(--clr-bg-primary);
     padding: 1px 6px;
     border-radius: 6px;
     font-size: 10px;
     font-weight: 500;
     line-height: 14px;
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
   }
 
   &__issue-badge {
@@ -3590,7 +3590,7 @@ a.account__display-name {
 }
 
 .column-link--transparent .icon-with-badge__badge {
-  border-color: var(--background-color);
+  border-color: var(--clr-bg-primary);
 }
 
 .column-title {
@@ -3608,7 +3608,7 @@ a.account__display-name {
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
   }
 
   @media screen and (width >= 600px) {
@@ -3619,9 +3619,9 @@ a.account__display-name {
 .copy-paste-text {
   background: lighten($ui-base-color, 4%);
   border-radius: 8px;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   padding: 16px;
-  color: $primary-text-color;
+  color: var(--clr-text-primary);
   font-size: 15px;
   line-height: 22px;
   display: flex;
@@ -3638,7 +3638,7 @@ a.account__display-name {
   }
 
   &.copied {
-    border-color: $valid-value-color;
+    border-color: var(--clr-text-success);
     transition: none;
   }
 
@@ -3665,7 +3665,7 @@ a.account__display-name {
   margin-top: -20px;
 
   .app-form__avatar-input {
-    border: 2px solid var(--background-color);
+    border: 2px solid var(--clr-bg-primary);
     position: absolute;
     inset-inline-start: -2px;
     bottom: -40px;
@@ -3718,7 +3718,7 @@ a.account__display-name {
       &__sep {
         width: 0;
         height: 24px;
-        border-left: 1px solid var(--background-border-color);
+        border-left: 1px solid var(--clr-border-primary);
       }
 
       .column-link {
@@ -3818,7 +3818,7 @@ a.account__display-name {
     flex: 0 0 auto;
     border: 0;
     background: transparent;
-    border-top: 1px solid var(--background-border-color);
+    border-top: 1px solid var(--clr-border-primary);
     margin: 10px 0;
   }
 
@@ -3835,14 +3835,14 @@ a.account__display-name {
   overflow: hidden;
   display: flex;
   border-radius: 4px;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
 }
 
 .drawer__inner {
   position: absolute;
   top: 0;
   inset-inline-start: 0;
-  background: var(--background-color);
+  background: var(--clr-bg-primary);
   box-sizing: border-box;
   padding: 0;
   display: flex;
@@ -3855,7 +3855,7 @@ a.account__display-name {
 }
 
 .drawer__inner__mastodon {
-  background: var(--background-color)
+  background: var(--clr-bg-primary)
     url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color(darken($ui-base-color, 4%))}"/></svg>')
     no-repeat bottom / 100% auto;
   flex: 1;
@@ -3880,7 +3880,7 @@ a.account__display-name {
 .drawer__header {
   flex: 0 0 auto;
   font-size: 16px;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
@@ -3890,7 +3890,7 @@ a.account__display-name {
   a:hover,
   a:focus,
   a:active {
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
   }
 }
 
@@ -3936,7 +3936,7 @@ a.account__display-name {
   box-sizing: border-box;
   width: 100%;
   background: transparent;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   border-radius: 4px 4px 0 0;
   color: $highlight-text-color;
   cursor: pointer;
@@ -4091,7 +4091,11 @@ a.account__display-name {
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
-  color: $secondary-text-color;
+  color: color-mix(
+    in oklab,
+    var(--clr-text-primary),
+    var(--clr-text-secondary)
+  );
   background: transparent;
   border: 0;
   border-left: 4px solid transparent;
@@ -4100,11 +4104,11 @@ a.account__display-name {
   &:hover,
   &:focus,
   &:active {
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
   }
 
   &.active {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
   }
 
   &:focus {
@@ -4112,7 +4116,7 @@ a.account__display-name {
   }
 
   &:focus-visible {
-    border-color: $ui-button-focus-outline-color;
+    border-color: var(--clr-text-accent);
     border-radius: 0;
   }
 
@@ -4134,14 +4138,14 @@ a.account__display-name {
   font-size: 12px;
   line-height: 19px;
   font-weight: 500;
-  background: $ui-base-color;
+  background: var(--clr-bg-primary);
   padding: 4px 8px;
   margin: -6px 10px;
 }
 
 .column-subheading {
-  background: var(--surface-background-color);
-  color: $darker-text-color;
+  background: var(--clr-bg-secondary);
+  color: var(--clr-text-secondary);
   padding: 8px 20px;
   font-size: 12px;
   font-weight: 500;
@@ -4160,7 +4164,7 @@ a.account__display-name {
 .getting-started {
   color: $dark-text-color;
   overflow: auto;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   border-top: 0;
 
   &__trends {
@@ -4170,14 +4174,14 @@ a.account__display-name {
     margin-top: 10px;
 
     h4 {
-      border-bottom: 1px solid var(--background-border-color);
+      border-bottom: 1px solid var(--clr-border-primary);
       padding: 10px;
       font-size: 12px;
       text-transform: uppercase;
       font-weight: 500;
 
       a {
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
         text-decoration: none;
       }
     }
@@ -4187,7 +4191,7 @@ a.account__display-name {
       padding: 10px;
 
       &__current {
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
       }
     }
   }
@@ -4219,11 +4223,11 @@ a.account__display-name {
   align-items: center;
   position: relative;
   font-size: 14px;
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
   margin-top: 14px;
   text-decoration: none;
   overflow: hidden;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   border-radius: 8px;
   contain: inline-size layout paint style;
 
@@ -4256,7 +4260,7 @@ a.account__display-name {
     button,
     a {
       display: inline;
-      color: $secondary-text-color;
+      color: var(--clr-text-primary);
       background: transparent;
       border: 0;
       padding: 0 8px;
@@ -4267,7 +4271,7 @@ a.account__display-name {
       &:hover,
       &:active,
       &:focus {
-        color: $primary-text-color;
+        color: var(--clr-text-primary);
       }
     }
 
@@ -4335,7 +4339,7 @@ a.status-card {
   font-weight: 700;
   font-size: 19px;
   line-height: 24px;
-  color: $primary-text-color;
+  color: var(--clr-text-primary);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -4370,7 +4374,7 @@ a.status-card {
   display: block;
   margin-top: 8px;
   font-size: 14px;
-  color: $primary-text-color;
+  color: var(--clr-text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -4476,7 +4480,7 @@ a.status-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $dark-text-color;
+  color: var(--clr-text-primary);
   background-color: transparent;
   border: 0;
   font-size: inherit;
@@ -4492,11 +4496,11 @@ a.status-card {
 
   &:is(button) {
     &:hover {
-      background: var(--on-surface-color);
+      background: var(--clr-bg-secondary);
     }
 
     &:focus-visible {
-      outline: 2px solid $ui-button-focus-outline-color;
+      outline: 2px solid var(--clr-text-accent);
       outline-offset: -2px;
     }
   }
@@ -4508,12 +4512,12 @@ a.status-card {
 }
 
 .load-gap {
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
 }
 
 .timeline-hint {
   text-align: center;
-  color: $dark-text-color;
+  color: var(--clr-text-secondary);
   padding: 16px;
   box-sizing: border-box;
   width: 100%;
@@ -4537,13 +4541,13 @@ a.status-card {
   }
 
   &--with-descendants {
-    border-top: 1px solid var(--background-border-color);
+    border-top: 1px solid var(--clr-border-primary);
   }
 }
 
 .regeneration-indicator {
-  color: $darker-text-color;
-  border: 1px solid var(--background-border-color);
+  color: var(--clr-text-secondary);
+  border: 1px solid var(--clr-border-primary);
   border-top: 0;
   cursor: default;
   display: flex;
@@ -4569,7 +4573,7 @@ a.status-card {
       font-weight: 500;
       display: block;
       margin-bottom: 10px;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
     }
 
     span {
@@ -4615,7 +4619,7 @@ a.status-card {
 .column-header__select-row {
   border-width: 0 1px 1px;
   border-style: solid;
-  border-color: var(--background-border-color);
+  border-color: var(--clr-border-primary);
   padding: 15px;
   display: flex;
   align-items: center;
@@ -4644,7 +4648,7 @@ a.status-card {
 .column-header {
   display: flex;
   font-size: 16px;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   border-radius: 4px 4px 0 0;
   flex: 0 0 auto;
   cursor: pointer;
@@ -4670,7 +4674,7 @@ a.status-card {
     flex: 1;
 
     &:focus-visible {
-      outline: $ui-button-icon-focus-outline;
+      outline: var(--outline-focus-default);
     }
 
     .logo {
@@ -4688,7 +4692,7 @@ a.status-card {
 
     &.compact {
       flex: 0 0 auto;
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
     }
   }
 
@@ -4735,7 +4739,7 @@ a.status-card {
   justify-content: center;
   align-items: center;
   border: 0;
-  color: $darker-text-color;
+  color: var(--clr-text-primary);
   background: transparent;
   cursor: pointer;
   font-size: 16px;
@@ -4746,18 +4750,18 @@ a.status-card {
   }
 
   &:hover {
-    color: lighten($darker-text-color, 4%);
+    color: var(--clr-text-secondary);
   }
 
   &:focus-visible {
-    outline: $ui-button-focus-outline;
+    outline: var(--clr-text-accent);
   }
 
   &.active {
-    color: $primary-text-color;
+    color: var(--clr-text-accent);
 
     &:hover {
-      color: $primary-text-color;
+      color: var(--clr-text-accent);
     }
   }
 
@@ -4775,16 +4779,16 @@ a.status-card {
   max-height: 70vh;
   overflow: hidden;
   overflow-y: auto;
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
   transition:
     max-height 150ms ease-in-out,
     opacity 300ms linear;
   opacity: 1;
   z-index: 1;
   position: relative;
-  border-left: 1px solid var(--background-border-color);
-  border-right: 1px solid var(--background-border-color);
-  border-bottom: 1px solid var(--background-border-color);
+  border-left: 1px solid var(--clr-border-primary);
+  border-right: 1px solid var(--clr-border-primary);
+  border-bottom: 1px solid var(--clr-border-primary);
 
   @media screen and (max-width: $no-gap-breakpoint) {
     border-left: 0;
@@ -4805,7 +4809,7 @@ a.status-card {
     height: 0;
     background: transparent;
     border: 0;
-    border-top: 1px solid var(--background-border-color);
+    border-top: 1px solid var(--clr-border-primary);
     margin: 10px 0;
   }
 }
@@ -4817,7 +4821,7 @@ a.status-card {
 .column-header__setting-btn {
   &:hover,
   &:focus {
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     text-decoration: underline;
   }
 }
@@ -4997,7 +5001,7 @@ a.status-card {
 .video-error-cover {
   align-items: center;
   background: $base-overlay-background;
-  color: $primary-text-color;
+  color: var(--clr-text-primary);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -5071,8 +5075,8 @@ a.status-card {
 }
 
 .account--panel {
-  border-top: 1px solid var(--background-border-color);
-  border-bottom: 1px solid var(--background-border-color);
+  border-top: 1px solid var(--clr-border-primary);
+  border-bottom: 1px solid var(--clr-border-primary);
   display: flex;
   flex-direction: row;
   padding: 10px 0;
@@ -5090,7 +5094,7 @@ a.status-card {
 
   &__section {
     // FIXME: Legacy
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     cursor: default;
     display: block;
     font-weight: 500;
@@ -5102,7 +5106,7 @@ a.status-card {
 
   section {
     padding: 16px;
-    border-bottom: 1px solid var(--background-border-color);
+    border-bottom: 1px solid var(--clr-border-primary);
 
     &:last-child {
       border-bottom: 0;
@@ -5114,7 +5118,7 @@ a.status-card {
     line-height: 24px;
     letter-spacing: 0.5px;
     font-weight: 500;
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
     margin-bottom: 16px;
   }
 
@@ -5143,7 +5147,11 @@ a.status-card {
       @include search-input;
 
       &::placeholder {
-        color: lighten($darker-text-color, 4%);
+        color: color-mix(
+          in oklab,
+          var(--clr-text-primary),
+          var(--clr-text-secondary)
+        );
       }
 
       &::-moz-focus-inner {
@@ -5157,7 +5165,7 @@ a.status-card {
       }
 
       &:focus {
-        background: lighten($ui-base-color, 4%);
+        background: var(--clr-bg-secondary);
       }
 
       @media screen and (width <= 600px) {
@@ -5185,7 +5193,11 @@ a.status-card {
         &:active,
         &:focus {
           background: lighten($ui-base-color, 12%);
-          color: lighten($darker-text-color, 4%);
+          color: color-mix(
+            in oklab,
+            var(--clr-text-primary),
+            var(--clr-text-secondary)
+          );
         }
       }
     }
@@ -5193,7 +5205,7 @@ a.status-card {
     &__multi-value__label,
     &__input,
     &__input-container {
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
     }
 
     &__clear-indicator,
@@ -5250,12 +5262,12 @@ a.status-card {
 }
 
 .setting-toggle__label {
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
 }
 
 .limited-account-hint {
   p {
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
     font-size: 15px;
     font-weight: 500;
     margin-bottom: 20px;
@@ -5307,7 +5319,7 @@ a.status-card {
 
 .error-column {
   padding: 20px;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   border-radius: 4px;
   display: flex;
   flex: 1 1 auto;
@@ -5324,7 +5336,7 @@ a.status-card {
 
   &__message {
     text-align: center;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     font-size: 15px;
     line-height: 22px;
 
@@ -5333,7 +5345,7 @@ a.status-card {
       line-height: 33px;
       font-weight: 700;
       margin-bottom: 15px;
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
     }
 
     p {
@@ -5386,9 +5398,9 @@ a.status-card {
   position: relative;
   margin-top: 5px;
   z-index: 2;
-  background: var(--dropdown-background-color);
+  background: var(--clr-bg-elevated);
   backdrop-filter: $backdrop-blur-filter;
-  border: 1px solid var(--dropdown-border-color);
+  border: 1px solid var(--clr-border-primary);
   box-shadow: var(--dropdown-shadow);
   border-radius: 5px;
 
@@ -5413,8 +5425,8 @@ a.status-card {
   z-index: 4;
   top: -5px;
   inset-inline-start: -9px;
-  background: var(--dropdown-background-color);
-  border: 1px solid var(--dropdown-border-color);
+  background: var(--clr-bg-elevated);
+  border: 1px solid var(--clr-border-primary);
   border-radius: 4px;
   box-shadow: var(--dropdown-shadow);
   overflow: hidden;
@@ -5429,7 +5441,7 @@ a.status-card {
     &:hover,
     &:focus,
     &:active {
-      background: var(--dropdown-border-color);
+      background: var(--clr-border-primary);
     }
   }
 
@@ -5490,7 +5502,7 @@ a.status-card {
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: $secondary-text-color;
+  color: var(--clr-text-primary);
   font-size: 18px;
   font-weight: 500;
   border: 2px dashed $ui-base-lighter-color;
@@ -5498,7 +5510,7 @@ a.status-card {
 }
 
 .upload-progress {
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
   overflow: hidden;
   display: flex;
   gap: 8px;
@@ -5527,7 +5539,7 @@ a.status-card {
   width: 100%;
   height: 6px;
   border-radius: 6px;
-  background: var(--background-color);
+  background: var(--clr-bg-primary);
   position: relative;
   margin-top: 5px;
 }
@@ -5571,7 +5583,7 @@ a.status-card {
 
   &:focus-visible {
     img {
-      outline: $ui-button-icon-focus-outline;
+      outline: var(--outline-focus-default);
     }
   }
 }
@@ -5585,9 +5597,9 @@ a.status-card {
 .language-dropdown__dropdown,
 .visibility-dropdown__dropdown {
   box-shadow: var(--dropdown-shadow);
-  background: var(--dropdown-background-color);
+  background: var(--clr-bg-elevated);
   backdrop-filter: $backdrop-blur-filter;
-  border: 1px solid var(--dropdown-border-color);
+  border: 1px solid var(--clr-border-primary);
   padding: 4px;
   border-radius: 4px;
   overflow: hidden;
@@ -5613,8 +5625,6 @@ a.status-card {
 
 .privacy-dropdown__option,
 .visibility-dropdown__option {
-  --dropdown-text-color: $primary-text-color;
-
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.25px;
@@ -5624,7 +5634,7 @@ a.status-card {
   align-items: center;
   gap: 12px;
   border-radius: 4px;
-  color: var(--dropdown-text-color);
+  color: var(--clr-text-primary);
 
   // Make sure adjacent hover/active states don't have a meeting radius.
   &:hover + &:is(:focus, .active),
@@ -5643,13 +5653,13 @@ a.status-card {
 
   &:hover,
   &:active {
-    background: var(--dropdown-border-color);
+    background: var(--clr-bg-secondary);
   }
 
   &:focus,
   &.active {
-    background: $ui-highlight-color;
-    color: var(--dropdown-text-color);
+    background: var(--clr-bg-accent-strong);
+    color: var(--clr-text-on-accent-strong);
     outline: 0;
 
     .privacy-dropdown__option__content,
@@ -5658,7 +5668,7 @@ a.status-card {
     .visibility-dropdown__option__content,
     .visibility-dropdown__option__content strong,
     .visibility-dropdown__option__additional {
-      color: var(--dropdown-text-color);
+      color: var(--clr-text-on-accent-strong);
     }
   }
 
@@ -5666,7 +5676,7 @@ a.status-card {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     cursor: help;
   }
 }
@@ -5681,10 +5691,10 @@ a.status-card {
 .privacy-dropdown__option__content,
 .visibility-dropdown__option__content {
   flex: 1 1 auto;
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
 
   strong {
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
     font-weight: 500;
     display: block;
 
@@ -5703,13 +5713,13 @@ a.status-card {
 
     .emoji-mart-search {
       padding: 10px;
-      background: var(--dropdown-background-color);
+      background: var(--clr-bg-elevated);
 
       input {
         padding: 8px 12px;
-        background: $ui-base-color;
-        border: 1px solid var(--background-border-color);
-        color: $darker-text-color;
+        background: var(--clr-bg-primary);
+        border: 1px solid var(--clr-border-primary);
+        color: var(--clr-text-secondary);
 
         @media screen and (width <= 600px) {
           font-size: 16px;
@@ -5722,7 +5732,7 @@ a.status-card {
     .emoji-mart-search-icon {
       inset-inline-end: 15px;
       opacity: 1;
-      color: $darker-text-color;
+      color: var(--clr-text-primary);
 
       .icon {
         width: 18px;
@@ -5730,13 +5740,13 @@ a.status-card {
       }
 
       &:disabled {
-        opacity: 0.38;
+        color: var(--clr-text-secondary);
       }
     }
 
     .emoji-mart-scroll {
       padding: 0 10px 10px;
-      background: var(--dropdown-background-color);
+      background: var(--clr-bg-elevated);
     }
 
     &__results {
@@ -5745,7 +5755,7 @@ a.status-card {
         align-items: center;
         gap: 0.5em;
         cursor: pointer;
-        color: $primary-text-color;
+        color: var(--clr-text-primary);
         font-size: 14px;
         line-height: 20px;
         letter-spacing: 0.25px;
@@ -5757,23 +5767,23 @@ a.status-card {
         text-overflow: ellipsis;
 
         &__common-name {
-          color: $darker-text-color;
+          color: var(--clr-text-secondary);
           font-weight: 400;
         }
 
         &:active,
         &:hover {
-          background: var(--dropdown-border-color);
+          background: var(--clr-bg-secondary);
         }
 
         &:focus,
         &.active {
-          background: $ui-highlight-color;
-          color: $primary-text-color;
+          background: var(--clr-bg-accent-strong);
+          color: var(--clr-text-on-accent-strong);
           outline: 0;
 
           .language-dropdown__dropdown__results__item__common-name {
-            color: $primary-text-color;
+            color: var(--clr-text-on-accent-strong);
           }
         }
       }
@@ -5828,9 +5838,9 @@ a.status-card {
   &__button {
     display: flex;
     align-items: center;
-    color: $primary-text-color;
-    background: var(--input-background-color);
-    border: 1px solid var(--background-border-color);
+    color: var(--clr-text-primary);
+    background: var(--clr-bg-secondary-solid);
+    border: 1px solid var(--clr-border-primary);
     padding: 8px 12px;
     width: 100%;
     text-align: left;
@@ -5853,7 +5863,7 @@ a.status-card {
   &__helper {
     margin-top: 4px;
     font-size: 0.8em;
-    color: $dark-text-color;
+    color: var(--clr-text-secondary);
   }
 }
 
@@ -5872,8 +5882,8 @@ a.status-card {
     inset-inline-start: 0;
     margin-top: -2px;
     width: 100%;
-    background: var(--input-background-color);
-    border: 1px solid var(--background-border-color);
+    background: var(--clr-bg-elevated);
+    border: 1px solid var(--clr-border-primary);
     border-radius: 0 0 4px 4px;
     box-shadow: var(--dropdown-shadow);
     z-index: 99;
@@ -5882,7 +5892,7 @@ a.status-card {
 
     h4 {
       text-transform: uppercase;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
       font-weight: 500;
       padding: 0 10px;
       margin-bottom: 10px;
@@ -5890,7 +5900,7 @@ a.status-card {
 
     .icon-button {
       padding: 0;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
     }
 
     .icon {
@@ -5906,7 +5916,7 @@ a.status-card {
       }
 
       &__message {
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
         padding: 0 10px;
       }
 
@@ -5917,7 +5927,7 @@ a.status-card {
         border: 0;
         font: inherit;
         background: transparent;
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
         padding: 10px;
         cursor: pointer;
         border-radius: 4px;
@@ -5940,17 +5950,17 @@ a.status-card {
         &:active,
         &.selected {
           background: $ui-highlight-color;
-          color: $primary-text-color;
+          color: var(--clr-text-primary);
 
           .icon-button {
-            color: $primary-text-color;
+            color: var(--clr-text-primary);
           }
         }
 
         mark {
           background: transparent;
           font-weight: 700;
-          color: $primary-text-color;
+          color: var(--clr-text-primary);
         }
 
         span {
@@ -6013,7 +6023,7 @@ a.status-card {
   grid-area: 1 / 1;
   transition: all 100ms linear;
   transition-property: transform, opacity;
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
 }
 
 .search__icon.icon-search {
@@ -6053,19 +6063,19 @@ a.status-card {
 }
 
 .search-results__section {
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
 
   &:last-child {
     border-bottom: 0;
   }
 
   &__header {
-    border-bottom: 1px solid var(--background-border-color);
-    background: var(--surface-background-color);
+    border-bottom: 1px solid var(--clr-border-primary);
+    background: var(--clr-bg-tertiary);
     padding: 15px;
     font-weight: 500;
     font-size: 14px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     display: flex;
     justify-content: space-between;
 
@@ -6098,7 +6108,7 @@ a.status-card {
 
 .search-results__info {
   padding: 20px;
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
   text-align: center;
 }
 
@@ -6373,9 +6383,9 @@ a.status-card {
   width: 588px;
   min-height: 478px;
   flex-direction: column;
-  background: var(--modal-background-color);
+  background: var(--clr-bg-primary);
   backdrop-filter: $backdrop-blur-filter;
-  border: 1px solid var(--modal-border-color);
+  border: 1px solid var(--clr-border-primary);
   border-radius: 16px;
 
   &__error {
@@ -6417,9 +6427,9 @@ a.status-card {
     gap: 8px;
     padding: 24px;
     flex-direction: column;
-    background: var(--modal-background-color);
+    background: var(--clr-bg-primary);
     backdrop-filter: $backdrop-blur-filter;
-    border: 1px solid var(--modal-border-color);
+    border: 1px solid var(--clr-border-primary);
   }
 
   &__top {
@@ -6445,7 +6455,7 @@ a.status-card {
     align-items: center;
     font-size: 14px;
     line-height: 20px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
 
     &__icon {
       border-radius: 64px;
@@ -6467,19 +6477,19 @@ a.status-card {
     h1 {
       font-size: 22px;
       line-height: 28px;
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
     }
   }
 
   &__confirmation {
     font-size: 14px;
     line-height: 20px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
 
     h1 {
       font-size: 16px;
       line-height: 24px;
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
       font-weight: 500;
 
       &:not(:only-child) {
@@ -6489,12 +6499,12 @@ a.status-card {
 
     strong {
       font-weight: 700;
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
     }
   }
 
   &__status {
-    border: 1px solid var(--modal-border-color);
+    border: 1px solid var(--clr-border-primary);
     border-radius: 8px;
     padding: 8px;
     cursor: pointer;
@@ -6554,7 +6564,7 @@ a.status-card {
     }
 
     &--deemphasized {
-      color: $secondary-text-color;
+      color: var(--clr-text-primary);
     }
 
     &__icon {
@@ -6606,7 +6616,7 @@ a.status-card {
     }
 
     &.active {
-      background: var(--modal-background-variant-color);
+      background: var(--clr-bg-secondary);
       padding-top: 24px;
 
       .safety-action-modal__bottom__collapsible {
@@ -6638,14 +6648,14 @@ a.status-card {
   width: 588px;
   max-height: 80vh;
   flex-direction: column;
-  background: var(--modal-background-color);
+  background: var(--clr-bg-elevated);
   backdrop-filter: $backdrop-blur-filter;
-  border: 1px solid var(--modal-border-color);
+  border: 1px solid var(--clr-border-primary);
   border-radius: 16px;
 
   &__header {
     box-sizing: border-box;
-    border-bottom: 1px solid var(--modal-border-color);
+    border-bottom: 1px solid var(--clr-border-primary);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -6669,7 +6679,7 @@ a.status-card {
 
     &__description {
       margin: 24px 24px 0;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
 
       a {
         color: inherit;
@@ -6698,7 +6708,7 @@ a.status-card {
 
       img,
       .gifv video {
-        outline: 1px solid var(--media-outline-color);
+        outline: 1px solid var(--clr-border-media);
         outline-offset: -1px;
         border-radius: 8px;
       }
@@ -6722,9 +6732,9 @@ a.status-card {
   }
 
   &__popout {
-    background: var(--dropdown-background-color);
+    background: var(--clr-bg-elevated);
     backdrop-filter: $backdrop-blur-filter;
-    border: 1px solid var(--dropdown-border-color);
+    border: 1px solid var(--clr-border-primary);
     box-shadow: var(--dropdown-shadow);
     max-width: 320px;
     padding: 16px;
@@ -6732,7 +6742,7 @@ a.status-card {
     z-index: 9999 !important;
     font-size: 14px;
     line-height: 20px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
   }
 
   .copy-paste-text {
@@ -6747,7 +6757,7 @@ a.status-card {
 
   kbd {
     padding: 3px 5px;
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--clr-border-primary);
     border-radius: 4px;
   }
 }
@@ -6756,10 +6766,10 @@ a.status-card {
 .report-modal,
 .actions-modal,
 .compare-history-modal {
-  background: var(--background-color);
-  color: $primary-text-color;
+  background: var(--clr-bg-primary);
+  color: var(--clr-text-primary);
   border-radius: 4px;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   overflow: hidden;
   max-width: 90vw;
   width: 480px;
@@ -6809,17 +6819,17 @@ a.status-card {
 .report-modal {
   width: 90vw;
   max-width: 700px;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
 }
 
 .report-dialog-modal {
   max-width: 90vw;
   width: 480px;
   height: 80vh;
-  background: var(--background-color);
-  color: $primary-text-color;
+  background: var(--clr-bg-primary);
+  color: var(--clr-text-primary);
   border-radius: 4px;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   overflow: hidden;
   position: relative;
   flex-direction: column;
@@ -6827,7 +6837,7 @@ a.status-card {
 
   &__container {
     box-sizing: border-box;
-    border-top: 1px solid var(--background-border-color);
+    border-top: 1px solid var(--clr-border-primary);
     padding: 20px;
     flex-grow: 1;
     display: flex;
@@ -6857,7 +6867,7 @@ a.status-card {
   &__lead {
     font-size: 17px;
     line-height: 22px;
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
     margin-bottom: 30px;
 
     a {
@@ -6892,7 +6902,7 @@ a.status-card {
 
   .status__content,
   .status__content p {
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
   }
 
   .dialog-option {
@@ -6901,7 +6911,7 @@ a.status-card {
   }
 
   .dialog-option .poll__input {
-    border-color: $darker-text-color;
+    border-color: var(--clr-text-secondary);
     color: $ui-secondary-color;
     display: inline-flex;
     align-items: center;
@@ -6915,20 +6925,20 @@ a.status-card {
     &:active,
     &:focus,
     &:hover {
-      border-color: $valid-value-color;
+      border-color: var(--clr-text-success);
       border-width: 4px;
     }
 
     &.active {
-      border-color: $valid-value-color;
-      background: $valid-value-color;
+      border-color: var(--clr-text-success);
+      background: var(--clr-text-success);
     }
   }
 
   .poll__option.dialog-option {
     padding: 15px 0;
     flex: 0 0 auto;
-    border-bottom: 1px solid var(--background-border-color);
+    border-bottom: 1px solid var(--clr-border-primary);
 
     &:last-child {
       border-bottom: 0;
@@ -6936,13 +6946,13 @@ a.status-card {
 
     & > .poll__option__text {
       font-size: 13px;
-      color: $secondary-text-color;
+      color: var(--clr-text-primary);
 
       strong {
         font-size: 17px;
         font-weight: 500;
         line-height: 22px;
-        color: $primary-text-color;
+        color: var(--clr-text-primary);
         display: block;
         margin-bottom: 4px;
 
@@ -6961,7 +6971,7 @@ a.status-card {
     display: block;
     box-sizing: border-box;
     width: 100%;
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
     background: $ui-base-color;
     padding: 10px;
     font-family: inherit;
@@ -6969,7 +6979,7 @@ a.status-card {
     line-height: 22px;
     resize: vertical;
     border: 0;
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--clr-border-primary);
     outline: 0;
     border-radius: 4px;
     margin: 20px 0;
@@ -6994,16 +7004,16 @@ a.status-card {
   }
 
   .button.button-secondary {
-    border-color: $ui-button-destructive-background-color;
-    color: $ui-button-destructive-background-color;
+    border-color: var(--clr-text-error);
+    color: var(--clr-text-error);
     flex: 0 0 auto;
 
     &:hover,
     &:focus,
     &:active {
-      background: $ui-button-destructive-background-color;
-      border-color: $ui-button-destructive-background-color;
-      color: $white;
+      color: var(--clr-text-on-error-strong);
+      background: var(--clr-bg-error-strong);
+      border-color: var(--clr-bg-error-strong);
     }
   }
 
@@ -7024,7 +7034,7 @@ a.status-card {
 
 .report-modal__container {
   display: flex;
-  border-top: 1px solid var(--background-border-color);
+  border-top: 1px solid var(--clr-border-primary);
 
   @media screen and (width <= 480px) {
     flex-wrap: wrap;
@@ -7082,9 +7092,9 @@ a.status-card {
 
 .actions-modal {
   border-radius: 8px 8px 0 0;
-  background: var(--dropdown-background-color);
+  background: var(--clr-bg-elevated);
   backdrop-filter: $backdrop-blur-filter;
-  border-color: var(--dropdown-border-color);
+  border-color: var(--clr-border-primary);
   box-shadow: var(--dropdown-shadow);
   max-height: 80vh;
   max-width: 80vw;
@@ -7111,7 +7121,7 @@ a.status-card {
     &:hover,
     &:active,
     &:focus {
-      background: var(--dropdown-border-color);
+      background: var(--clr-border-primary);
     }
   }
 }
@@ -7147,7 +7157,7 @@ a.status-card {
 
 .compare-history-modal {
   .report-modal__target {
-    border-bottom: 1px solid var(--background-border-color);
+    border-bottom: 1px solid var(--clr-border-primary);
   }
 
   &__container {
@@ -7157,7 +7167,7 @@ a.status-card {
   }
 
   .status__content {
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
     font-size: 19px;
     line-height: 24px;
 
@@ -7302,7 +7312,7 @@ a.status-card {
 .attachment-list {
   display: flex;
   font-size: 14px;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   border-radius: 4px;
   margin-top: 16px;
   overflow: hidden;
@@ -7312,7 +7322,7 @@ a.status-card {
     color: $dark-text-color;
     padding: 8px 18px;
     cursor: default;
-    border-inline-end: 1px solid var(--background-border-color);
+    border-inline-end: 1px solid var(--clr-border-primary);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7443,7 +7453,7 @@ a.status-card {
   position: relative;
   border-radius: 8px;
   overflow: hidden;
-  outline: 1px solid var(--media-outline-color);
+  outline: 1px solid var(--clr-border-media);
   outline-offset: -1px;
   z-index: 1;
 
@@ -7493,7 +7503,7 @@ a.status-card {
   cursor: pointer;
   display: block;
   text-decoration: none;
-  color: $secondary-text-color;
+  color: var(--clr-text-primary);
   position: relative;
   z-index: -1;
 
@@ -7562,9 +7572,9 @@ a.status-card {
   width: 100%;
   aspect-ratio: 16 / 9;
   color: var(--player-foreground-color);
-  background: var(--player-background-color, var(--background-color));
+  background: var(--player-background-color, var(--clr-bg-primary));
   border-radius: 8px;
-  outline: 1px solid var(--media-outline-color);
+  outline: 1px solid var(--clr-border-media);
   outline-offset: -1px;
 
   &__controls {
@@ -7704,7 +7714,7 @@ a.status-card {
   color: $white;
   display: flex;
   align-items: center;
-  outline: 1px solid var(--media-outline-color);
+  outline: 1px solid var(--clr-border-media);
   outline-offset: -1px;
   z-index: 2;
 
@@ -7780,7 +7790,7 @@ a.status-card {
     z-index: 4;
     border: 0;
     background: $base-overlay-background;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     transition: none;
     pointer-events: none;
 
@@ -7791,7 +7801,11 @@ a.status-card {
       &:hover,
       &:active,
       &:focus {
-        color: lighten($darker-text-color, 7%);
+        color: color-mix(
+          in oklab,
+          var(--clr-text-primary),
+          var(--clr-text-secondary)
+        );
       }
     }
 
@@ -8074,7 +8088,7 @@ a.status-card {
 
 .scrollable .account-card__title__avatar {
   img {
-    border: 2px solid var(--background-color);
+    border: 2px solid var(--clr-bg-primary);
   }
 
   .account__avatar {
@@ -8089,7 +8103,7 @@ a.status-card {
 }
 
 .scrollable .account-card__bio::after {
-  background: linear-gradient(to left, var(--background-color), transparent);
+  background: linear-gradient(to left, var(--clr-bg-primary), transparent);
 }
 
 .account-gallery__container {
@@ -8109,7 +8123,7 @@ a.status-card {
 
 .notification__filter-bar,
 .account__section-headline {
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   border-top: 0;
   cursor: default;
   display: flex;
@@ -8130,7 +8144,7 @@ a.status-card {
   a {
     display: block;
     flex: 1 1 auto;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     padding: 15px 0;
     font-size: 14px;
     font-weight: 500;
@@ -8141,7 +8155,7 @@ a.status-card {
     white-space: nowrap;
 
     &.active {
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
 
       &::before {
         display: block;
@@ -8153,7 +8167,7 @@ a.status-card {
         width: 40px;
         height: 3px;
         border-radius: 4px 4px 0 0;
-        background: $highlight-text-color;
+        background: var(--clr-text-accent);
       }
     }
   }
@@ -8165,7 +8179,7 @@ a.status-card {
 }
 
 .filter-form {
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
 
   &__column {
     display: flex;
@@ -8195,7 +8209,7 @@ a.status-card {
   text-overflow: ellipsis;
   cursor: pointer;
   gap: 10px;
-  color: $secondary-text-color;
+  color: var(--clr-text-primary);
 
   input[type='radio'],
   input[type='checkbox'] {
@@ -8207,7 +8221,7 @@ a.status-card {
     align-items: center;
     justify-content: center;
     position: relative;
-    border: 2px solid $secondary-text-color;
+    border: 2px solid var(--clr-text-primary);
     box-sizing: border-box;
     width: 20px;
     height: 20px;
@@ -8261,7 +8275,7 @@ noscript {
   div {
     font-size: 14px;
     margin: 30px auto;
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
     max-width: 400px;
 
     a {
@@ -8293,13 +8307,13 @@ noscript {
 .follow-request-banner,
 .account-memorial-banner {
   padding: 20px;
-  background: var(--surface-background-color);
+  background: var(--clr-bg-tertiary);
   display: flex;
   align-items: center;
   flex-direction: column;
 
   &__message {
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     padding: 8px 0;
     padding-top: 0;
     padding-bottom: 4px;
@@ -8336,7 +8350,7 @@ noscript {
   justify-content: flex-start;
   gap: 15px;
   align-items: center;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   border-top: 0;
 
   label {
@@ -8388,7 +8402,7 @@ noscript {
 }
 
 .account__header__content {
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
   font-size: 14px;
   font-weight: 400;
   overflow: hidden;
@@ -8440,8 +8454,8 @@ noscript {
     overflow: hidden;
     height: 145px;
     position: relative;
-    background: darken($ui-base-color, 4%);
-    border-bottom: 1px solid var(--background-border-color);
+    background: var(--clr-bg-tertiary);
+    border-bottom: 1px solid var(--clr-border-primary);
 
     img {
       object-fit: cover;
@@ -8455,15 +8469,15 @@ noscript {
   &__bar {
     position: relative;
     padding: 0 20px;
-    border-bottom: 1px solid var(--background-border-color);
+    border-bottom: 1px solid var(--clr-border-primary);
 
     .avatar {
       display: block;
       flex: 0 0 auto;
 
       .account__avatar {
-        background: var(--background-color);
-        border: 1px solid var(--background-border-color);
+        background: var(--clr-bg-primary);
+        border: 1px solid var(--clr-border-primary);
         border-radius: var(--avatar-border-radius);
       }
     }
@@ -8501,7 +8515,7 @@ noscript {
       h1 {
         font-size: 17px;
         line-height: 22px;
-        color: $primary-text-color;
+        color: var(--clr-text-primary);
         font-weight: 600;
         overflow: hidden;
         white-space: nowrap;
@@ -8513,7 +8527,7 @@ noscript {
           gap: 4px;
           font-size: 14px;
           line-height: 20px;
-          color: $darker-text-color;
+          color: var(--clr-text-secondary);
           font-weight: 400;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -8584,7 +8598,7 @@ noscript {
     }
 
     .icon-button {
-      border: 1px solid var(--background-border-color);
+      border: 1px solid var(--clr-border-primary);
       border-radius: 4px;
       box-sizing: content-box;
       padding: 5px;
@@ -8595,26 +8609,26 @@ noscript {
       }
 
       &.copied {
-        border-color: $valid-value-color;
+        border-color: var(--clr-text-success);
       }
     }
   }
 
   &__bio {
     .account__header__content {
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
     }
 
     .account__header__fields {
       margin: 0;
       margin-top: 16px;
       border-radius: 4px;
-      border: 1px solid var(--background-border-color);
+      border: 1px solid var(--clr-border-primary);
 
       dl {
         display: block;
         padding: 11px 16px;
-        border-bottom-color: var(--background-border-color);
+        border-bottom-color: var(--clr-border-primary);
       }
 
       dd,
@@ -8633,7 +8647,7 @@ noscript {
       }
 
       dd {
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
       }
 
       a {
@@ -8646,7 +8660,7 @@ noscript {
       }
 
       .verified {
-        border: 1px solid color.change($valid-value-color, $alpha: 0.5);
+        border: 1px solid var(--clr-text-success);
         margin-top: -1px;
         margin-inline: -1px;
 
@@ -8663,7 +8677,7 @@ noscript {
 
         dt,
         dd {
-          color: $valid-value-color;
+          color: var(--clr-text-success);
         }
 
         dd {
@@ -8677,7 +8691,7 @@ noscript {
         }
 
         a {
-          color: $valid-value-color;
+          color: var(--clr-text-success);
         }
       }
     }
@@ -8688,28 +8702,28 @@ noscript {
 
     &__links {
       font-size: 14px;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
       margin: 0 -10px;
       padding-top: 16px;
       padding-bottom: 10px;
 
       a {
         display: inline-block;
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
         text-decoration: none;
         padding: 5px 10px;
         font-weight: 500;
 
         strong {
           font-weight: 700;
-          color: $primary-text-color;
+          color: var(--clr-text-primary);
         }
       }
     }
   }
 
   &__account-note {
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
     font-size: 14px;
     font-weight: 400;
     margin-bottom: 10px;
@@ -8732,7 +8746,7 @@ noscript {
       display: block;
       font-size: 12px;
       font-weight: 500;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
       text-transform: uppercase;
       margin-bottom: 5px;
     }
@@ -8741,7 +8755,7 @@ noscript {
       display: block;
       box-sizing: border-box;
       width: calc(100% + 20px);
-      color: $secondary-text-color;
+      color: var(--clr-text-primary);
       background: transparent;
       padding: 10px;
       margin: 0 -10px;
@@ -8768,12 +8782,12 @@ noscript {
     align-items: center;
     gap: 10px;
     margin-block: 16px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
 
     a:any-link {
       font-weight: 500;
       text-decoration: none;
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
     }
   }
 }
@@ -8791,7 +8805,7 @@ noscript {
 .verified-badge {
   display: inline-flex;
   align-items: center;
-  color: $valid-value-color;
+  color: var(--clr-text-success);
   gap: 4px;
   overflow: hidden;
   white-space: nowrap;
@@ -8818,7 +8832,7 @@ noscript {
     display: flex;
     align-items: center;
     padding: 16px;
-    border-bottom: 1px solid var(--background-border-color);
+    border-bottom: 1px solid var(--clr-border-primary);
     gap: 8px;
 
     &__name {
@@ -8833,7 +8847,7 @@ noscript {
       }
 
       a {
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
@@ -8857,7 +8871,7 @@ noscript {
       font-size: 24px;
       font-weight: 500;
       text-align: end;
-      color: $secondary-text-color;
+      color: var(--clr-text-primary);
       text-decoration: none;
     }
 
@@ -8932,7 +8946,7 @@ noscript {
 
 .conversation {
   display: flex;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
   padding: 5px;
   padding-bottom: 0;
 
@@ -8973,12 +8987,12 @@ noscript {
 
     &__relative-time {
       font-size: 15px;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
       padding-inline-start: 15px;
     }
 
     &__names {
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
       font-size: 15px;
       white-space: nowrap;
       overflow: hidden;
@@ -8988,7 +9002,7 @@ noscript {
       flex-grow: 1;
 
       a {
-        color: $primary-text-color;
+        color: var(--clr-text-primary);
         text-decoration: none;
 
         &:hover,
@@ -9076,7 +9090,7 @@ noscript {
 
   &__pagination {
     padding: 15px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     position: absolute;
     bottom: 3px;
     inset-inline-end: 0;
@@ -9105,7 +9119,7 @@ noscript {
   &__item {
     flex-shrink: 0;
     background: lighten($ui-base-color, 12%);
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     border: 0;
     border-radius: 3px;
     margin: 2px;
@@ -9149,7 +9163,11 @@ noscript {
       background: lighten($ui-base-color, 16%);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
-      color: lighten($darker-text-color, 4%);
+      color: color-mix(
+        in oklab,
+        var(--clr-text-primary),
+        var(--clr-text-secondary)
+      );
     }
 
     &.active {
@@ -9174,7 +9192,7 @@ noscript {
   }
 
   .emoji-button {
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     margin: 0;
     font-size: 16px;
     width: auto;
@@ -9191,7 +9209,11 @@ noscript {
     &:active,
     &:focus {
       opacity: 1;
-      color: lighten($darker-text-color, 4%);
+      color: color-mix(
+        in oklab,
+        var(--clr-text-primary),
+        var(--clr-text-secondary)
+      );
       transition: all 200ms ease-out;
       transition-property: background-color, color;
     }
@@ -9208,6 +9230,7 @@ noscript {
 .status__wrapper,
 .conversation {
   position: relative;
+  background-color: var(--clr-bg-primary);
 
   // When scrolling these elements into view, take into account
   // the column header height
@@ -9221,7 +9244,7 @@ noscript {
       inset-inline-start: 0;
       width: 100%;
       height: 100%;
-      border-inline-start: 4px solid $highlight-text-color;
+      border-inline-start: 4px solid var(--clr-text-accent);
       pointer-events: none;
     }
   }
@@ -9236,9 +9259,9 @@ noscript {
 
   &__footer {
     border-radius: 0 0 4px 4px;
-    background: var(--modal-background-variant-color);
+    background: var(--clr-bg-secondary);
     backdrop-filter: $backdrop-blur-filter;
-    border: 1px solid var(--modal-border-color);
+    border: 1px solid var(--clr-border-primary);
     border-top: 0;
     padding: 12px;
     display: flex;
@@ -9247,9 +9270,9 @@ noscript {
 
   &__header {
     border-radius: 4px 4px 0 0;
-    background: var(--modal-background-variant-color);
+    background: var(--clr-bg-secondary);
     backdrop-filter: $backdrop-blur-filter;
-    border: 1px solid var(--modal-border-color);
+    border: 1px solid var(--clr-border-primary);
     border-bottom: 0;
     padding: 12px;
     display: flex;
@@ -9270,7 +9293,7 @@ noscript {
     }
 
     .display-name {
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
       text-decoration: none;
 
       strong,
@@ -9281,7 +9304,7 @@ noscript {
       }
 
       span {
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
       }
     }
   }
@@ -9295,7 +9318,7 @@ noscript {
 .picture-in-picture-placeholder {
   border-radius: 8px;
   box-sizing: border-box;
-  border: 1px dashed var(--background-border-color);
+  border: 1px dashed var(--clr-border-primary);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9317,7 +9340,7 @@ noscript {
   &:hover,
   &:active,
   &:focus {
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
   }
 
   &:focus-visible {
@@ -9328,7 +9351,7 @@ noscript {
 
 .notifications-permission-banner {
   padding: 30px;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9349,7 +9372,7 @@ noscript {
   }
 
   p {
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     margin-bottom: 15px;
     text-align: center;
 
@@ -9364,7 +9387,7 @@ noscript {
 .explore__search-header {
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   border-top: 0;
   border-bottom: 0;
   padding: 16px;
@@ -9376,13 +9399,12 @@ noscript {
   }
 
   .search__input {
-    border: 1px solid var(--background-border-color);
     padding-block: 12px;
     padding-inline-end: 30px;
   }
 
   .search__popout {
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--clr-border-primary);
   }
 
   .search__icon {
@@ -9406,7 +9428,7 @@ noscript {
   flex-direction: column;
 
   @media screen and (min-width: $no-gap-breakpoint) {
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--clr-border-primary);
     border-top: 0;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
@@ -9416,9 +9438,9 @@ noscript {
 .story {
   display: flex;
   align-items: center;
-  color: $primary-text-color;
+  color: var(--clr-text-primary);
   padding: 16px;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
   gap: 16px;
 
   &:last-child {
@@ -9429,7 +9451,7 @@ noscript {
     flex: 1 1 auto;
 
     &__publisher {
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
       margin-bottom: 8px;
       font-size: 14px;
       line-height: 20px;
@@ -9442,7 +9464,7 @@ noscript {
       font-weight: 500;
       margin-bottom: 8px;
       text-decoration: none;
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
 
       &:hover,
       &:active,
@@ -9454,14 +9476,14 @@ noscript {
     &__shared {
       display: flex;
       align-items: baseline;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
       gap: 8px;
       justify-content: space-between;
       font-size: 14px;
       line-height: 20px;
 
       &__pill {
-        background: var(--surface-variant-background-color);
+        background: var(--clr-bg-tertiary);
         border-radius: 4px;
         color: inherit;
         text-decoration: none;
@@ -9476,7 +9498,7 @@ noscript {
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        color: $primary-text-color;
+        color: var(--clr-text-primary);
         font-weight: 500;
         text-decoration: none;
 
@@ -9553,7 +9575,7 @@ noscript {
   &__introduction {
     font-size: 15px;
     line-height: 22px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     margin-bottom: 20px;
 
     strong {
@@ -9587,7 +9609,7 @@ noscript {
   &__description {
     font-size: 15px;
     line-height: 22px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     margin-bottom: 20px;
   }
 
@@ -9605,19 +9627,19 @@ noscript {
 
   &__number {
     font-weight: 600;
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
     font-size: 14px;
   }
 
   &__number-label {
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     font-weight: 500;
     font-size: 14px;
   }
 
   h4 {
     text-transform: uppercase;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     margin-bottom: 10px;
     font-weight: 600;
   }
@@ -9648,9 +9670,9 @@ noscript {
   position: relative;
   display: block;
   border-radius: 16px;
-  background: var(--modal-background-color);
+  background: var(--clr-bg-primary);
   backdrop-filter: $backdrop-blur-filter;
-  border: 1px solid var(--modal-border-color);
+  border: 1px solid var(--clr-border-primary);
   padding: 24px;
   box-sizing: border-box;
 
@@ -9674,10 +9696,10 @@ noscript {
     text-align: center;
     font-size: 17px;
     line-height: 22px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
 
     strong {
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
       font-weight: 700;
     }
   }
@@ -9702,9 +9724,9 @@ noscript {
     &__input {
       @include search-input;
 
-      border: 1px solid var(--background-border-color);
+      border: 1px solid var(--clr-border-primary);
       padding: 4px 6px;
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
       font-size: 16px;
       line-height: 18px;
       display: flex;
@@ -9720,7 +9742,11 @@ noscript {
         min-width: 0;
 
         &::placeholder {
-          color: lighten($darker-text-color, 4%);
+          color: color-mix(
+            in oklab,
+            var(--clr-text-primary),
+            var(--clr-text-secondary)
+          );
         }
 
         &:focus {
@@ -9737,7 +9763,7 @@ noscript {
       margin-top: -1px;
       padding-top: 5px;
       padding-bottom: 5px;
-      border: 1px solid var(--background-border-color);
+      border: 1px solid var(--clr-border-primary);
     }
 
     &.invalid &__input {
@@ -9766,7 +9792,7 @@ noscript {
       }
 
       p {
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
         margin-bottom: 20px;
         font-size: 15px;
       }
@@ -9807,7 +9833,7 @@ noscript {
     font-family: inherit;
     background: darken($ui-base-color, 8%);
     border: 1px solid $highlight-text-color;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     border-radius: 4px;
     padding: 6px 9px;
     line-height: 22px;
@@ -9829,12 +9855,12 @@ noscript {
 
   &.copied {
     input {
-      border: 1px solid $valid-value-color;
+      border: 1px solid var(--clr-text-success);
       transition: none;
     }
 
     .button {
-      background: $valid-value-color;
+      background: var(--clr-bg-success-strong);
       transition: none;
     }
   }
@@ -9853,7 +9879,7 @@ noscript {
 }
 
 .prose {
-  color: $secondary-text-color;
+  color: var(--clr-text-primary);
   font-size: 15px;
   line-height: 22px;
 
@@ -9937,7 +9963,7 @@ noscript {
   ul > li::before {
     content: '';
     position: absolute;
-    background-color: $darker-text-color;
+    background-color: var(--clr-text-secondary);
     border-radius: 50%;
     width: 0.375em;
     height: 0.375em;
@@ -9988,7 +10014,7 @@ noscript {
   h6,
   strong,
   b {
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
     font-weight: 700;
   }
 
@@ -10076,7 +10102,7 @@ noscript {
     font-size: 15px;
     line-height: 22px;
     font-weight: 500;
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
 
     p {
       margin-bottom: 15px;
@@ -10136,7 +10162,7 @@ noscript {
     }
 
     a {
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
     }
   }
 }
@@ -10184,7 +10210,7 @@ noscript {
   }
 
   p {
-    color: $dark-text-color;
+    color: var(--clr-text-secondary);
     margin-bottom: 20px;
 
     .version {
@@ -10196,7 +10222,7 @@ noscript {
     }
 
     a {
-      color: $dark-text-color;
+      color: var(--clr-text-secondary);
       text-decoration: underline;
 
       &:hover,
@@ -10210,7 +10236,7 @@ noscript {
 
 .about {
   padding: 20px;
-  border-top: 1px solid var(--background-border-color);
+  border-top: 1px solid var(--clr-border-primary);
 
   @media screen and (min-width: $no-gap-breakpoint) {
     border-radius: 4px;
@@ -10252,12 +10278,12 @@ noscript {
       font-size: 16px;
       line-height: 24px;
       font-weight: 400;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
     }
   }
 
   &__meta {
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--clr-border-primary);
     border-radius: 4px;
     display: flex;
     margin-bottom: 30px;
@@ -10273,7 +10299,7 @@ noscript {
       width: 0;
       border: 0;
       border-style: solid;
-      border-color: var(--background-border-color);
+      border-color: var(--clr-border-primary);
       border-left-width: 1px;
       min-height: calc(100% - 60px);
       flex: 0 0 auto;
@@ -10282,7 +10308,7 @@ noscript {
     h4 {
       font-size: 15px;
       text-transform: uppercase;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
       font-weight: 500;
       margin-bottom: 20px;
     }
@@ -10333,7 +10359,7 @@ noscript {
   }
 
   &__mail {
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
     text-decoration: none;
     font-weight: 500;
 
@@ -10381,7 +10407,7 @@ noscript {
       line-height: 22px;
       padding: 20px;
       border-radius: 4px;
-      border: 1px solid var(--background-border-color);
+      border: 1px solid var(--clr-border-primary);
       color: $highlight-text-color;
       cursor: pointer;
       width: 100%;
@@ -10393,7 +10419,7 @@ noscript {
     }
 
     &__body {
-      border: 1px solid var(--background-border-color);
+      border: 1px solid var(--clr-border-primary);
       border-top: 0;
       padding: 20px;
       font-size: 15px;
@@ -10403,14 +10429,14 @@ noscript {
 
   &__domain-blocks {
     margin-top: 30px;
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--clr-border-primary);
     border-radius: 4px;
 
     &__domain {
-      border-bottom: 1px solid var(--background-border-color);
+      border-bottom: 1px solid var(--clr-border-primary);
       padding: 10px;
       font-size: 15px;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
 
       &:nth-child(2n) {
         background: darken($ui-base-color, 4%);
@@ -10429,7 +10455,7 @@ noscript {
       }
 
       h6 {
-        color: $secondary-text-color;
+        color: var(--clr-text-primary);
         font-size: inherit;
         white-space: nowrap;
         overflow: hidden;
@@ -10550,11 +10576,11 @@ noscript {
 }
 
 .hashtag-header {
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
   padding: 15px;
   font-size: 17px;
   line-height: 22px;
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
 
   strong {
     font-weight: 700;
@@ -10568,7 +10594,7 @@ noscript {
     gap: 15px;
 
     h1 {
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -10589,7 +10615,7 @@ noscript {
       }
 
       .icon-button {
-        border: 1px solid var(--background-border-color);
+        border: 1px solid var(--clr-border-primary);
         border-radius: 4px;
         box-sizing: content-box;
         padding: 5px;
@@ -10610,21 +10636,25 @@ noscript {
   font-size: 12px;
   line-height: 16px;
   gap: 6px;
-  color: $darker-text-color;
+  color: color-mix(
+    in oklab,
+    var(--clr-text-primary),
+    var(--clr-text-secondary)
+  );
 
   a {
     display: inline-flex;
     color: inherit;
     text-decoration: none;
     padding: 4px 12px;
-    background: var(--surface-variant-background-color);
+    background: var(--clr-bg-accent-subtle);
     border-radius: 4px;
     font-weight: 500;
 
     &:hover,
     &:focus,
     &:active {
-      background: var(--surface-variant-active-background-color);
+      background: var(--clr-bg-accent-subtle-highlighted);
     }
   }
 
@@ -10642,11 +10672,11 @@ noscript {
   gap: 12px;
   padding: 16px 0;
   padding-bottom: 0;
-  border-bottom: 1px solid var(--background-border-color);
-  background: color.change($ui-highlight-color, $alpha: 0.05);
+  border-bottom: 1px solid var(--clr-border-primary);
+  background: var(--clr-bg-accent-subtle);
 
   &.focusable:focus-visible {
-    background: color.change($ui-highlight-color, $alpha: 0.05);
+    background: var(--clr-bg-accent-subtle);
   }
 
   &__header {
@@ -10683,7 +10713,7 @@ noscript {
       border: none;
       cursor: pointer;
       top: 0;
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
       opacity: 0.5;
 
       &.left {
@@ -10696,7 +10726,8 @@ noscript {
 
       &__icon {
         border-radius: 50%;
-        background: $ui-highlight-color;
+        color: var(--clr-text-on-accent-strong);
+        background: var(--clr-bg-accent-strong);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -10734,8 +10765,8 @@ noscript {
       scrollbar-width: none;
 
       &__card {
-        background: var(--background-color);
-        border: 1px solid var(--background-border-color);
+        background: var(--clr-bg-primary);
+        border: 1px solid var(--clr-border-primary);
         border-radius: 4px;
         display: flex;
         flex-direction: column;
@@ -10772,7 +10803,7 @@ noscript {
         .account__avatar {
           flex-shrink: 0;
           align-self: flex-end;
-          border: 1px solid var(--background-border-color);
+          border: 1px solid var(--clr-border-primary);
           background-color: $ui-base-color;
         }
 
@@ -10821,12 +10852,12 @@ noscript {
           &__html {
             font-size: 15px;
             font-weight: 500;
-            color: $secondary-text-color;
+            color: var(--clr-text-primary);
           }
 
           &__account {
             font-size: 14px;
-            color: $darker-text-color;
+            color: var(--clr-text-secondary);
           }
         }
 
@@ -10847,16 +10878,16 @@ noscript {
 .filtered-notifications-banner {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
   padding: 16px 24px;
   gap: 8px;
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
   text-decoration: none;
 
   &:hover,
   &:active,
   &:focus {
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
   }
 
   .notification-group__icon {
@@ -10890,7 +10921,7 @@ noscript {
   padding: $padding;
   gap: 8px;
   position: relative;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
 
   &__checkbox {
     position: absolute;
@@ -10922,7 +10953,7 @@ noscript {
 
   &__name {
     flex: 1 1 auto;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     font-size: 14px;
     line-height: 20px;
     overflow: hidden;
@@ -10935,7 +10966,7 @@ noscript {
       font-size: 16px;
       letter-spacing: 0.5px;
       line-height: 24px;
-      color: $secondary-text-color;
+      color: var(--clr-text-primary);
 
       bdi {
         overflow: hidden;
@@ -10959,7 +10990,7 @@ noscript {
 
     .icon-button {
       border-radius: 4px;
-      border: 1px solid var(--background-border-color);
+      border: 1px solid var(--clr-border-primary);
       padding: 5px;
     }
   }
@@ -10972,7 +11003,7 @@ noscript {
     cursor: pointer;
 
     &:hover {
-      background: var(--on-surface-color);
+      background: var(--clr-bg-secondary);
     }
 
     .notification-request__checkbox {
@@ -10993,9 +11024,9 @@ noscript {
 .more-from-author {
   box-sizing: border-box;
   font-size: 14px;
-  color: $darker-text-color;
-  background: var(--surface-background-color);
-  border: 1px solid var(--background-border-color);
+  color: var(--clr-text-secondary);
+  background: var(--clr-bg-tertiary);
+  border: 1px solid var(--clr-border-primary);
   border-top: 0;
   border-radius: 0 0 8px 8px;
   padding: 15px;
@@ -11007,7 +11038,7 @@ noscript {
   .logo {
     width: 16px;
     height: 16px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
   }
 
   & > span {
@@ -11021,7 +11052,7 @@ noscript {
     align-items: center;
     gap: 4px;
     font-weight: 500;
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
     text-decoration: none;
     min-width: 0;
 
@@ -11038,7 +11069,7 @@ noscript {
   align-items: flex-start;
   gap: 8px;
   padding: 16px 24px;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
 
   &__icon {
     width: 40px;
@@ -11064,7 +11095,7 @@ noscript {
   }
 
   &--reblog &__icon {
-    color: $valid-value-color;
+    color: var(--clr-text-success);
   }
 
   &--relationships-severance-event &__icon,
@@ -11083,7 +11114,7 @@ noscript {
     gap: 8px;
 
     .icon-button {
-      border: 1px solid var(--background-border-color);
+      border: 1px solid var(--clr-border-primary);
       border-radius: 50%;
       padding: 1px;
     }
@@ -11113,7 +11144,7 @@ noscript {
         gap: 2px 8px;
         font-size: 15px;
         line-height: 22px;
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
 
         a {
           color: inherit;
@@ -11122,7 +11153,7 @@ noscript {
 
         bdi {
           font-weight: 700;
-          color: $primary-text-color;
+          color: var(--clr-text-primary);
         }
 
         time {
@@ -11139,7 +11170,7 @@ noscript {
     }
 
     &__status {
-      border: 1px solid var(--background-border-color);
+      border: 1px solid var(--clr-border-primary);
       border-radius: 8px;
       padding: 8px;
     }
@@ -11172,7 +11203,7 @@ noscript {
       line-height: 22px;
 
       bdi {
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
       }
 
       .account__avatar {
@@ -11184,7 +11215,7 @@ noscript {
       display: -webkit-box;
       font-size: 15px;
       line-height: 22px;
-      color: $darker-text-color;
+      color: var(--clr-text-secondary);
       -webkit-line-clamp: 4;
       line-clamp: 4;
       -webkit-box-orient: vertical;
@@ -11220,7 +11251,7 @@ noscript {
 
 .notification-ungrouped {
   padding: 16px 24px;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
 
   &__header {
     display: flex;
@@ -11322,9 +11353,9 @@ noscript {
 
 .hover-card {
   box-shadow: var(--dropdown-shadow);
-  background: var(--modal-background-color);
+  background: var(--clr-bg-primary);
   backdrop-filter: $backdrop-blur-filter;
-  border: 1px solid var(--modal-border-color);
+  border: 1px solid var(--clr-border-primary);
   border-radius: 8px;
   padding: 16px;
   width: 270px;
@@ -11355,7 +11386,7 @@ noscript {
   &__numbers {
     font-size: 15px;
     line-height: 22px;
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
 
     strong {
       font-weight: 700;
@@ -11369,7 +11400,7 @@ noscript {
   }
 
   &__bio {
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
     font-size: 14px;
     line-height: 20px;
     display: -webkit-box;
@@ -11405,7 +11436,7 @@ noscript {
 
     dd {
       white-space: pre-line;
-      color: $secondary-text-color;
+      color: var(--clr-text-primary);
       overflow: hidden;
       line-clamp: 3; // Not yet supported in browers
       display: -webkit-box; // The next 3 properties are needed
@@ -11425,7 +11456,7 @@ noscript {
 
     bdi {
       font-weight: 500;
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
     }
 
     &__account {
@@ -11435,7 +11466,7 @@ noscript {
   }
 
   .account-fields {
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
     font-size: 14px;
     line-height: 20px;
 
@@ -11482,7 +11513,7 @@ noscript {
           gap: 4px;
           overflow: hidden;
           white-space: nowrap;
-          color: $valid-value-color;
+          color: var(--clr-text-success);
 
           & > span {
             overflow: hidden;
@@ -11506,9 +11537,13 @@ noscript {
 .content-warning {
   display: block;
   box-sizing: border-box;
-  background: var(--nested-card-background);
-  color: var(--nested-card-text);
-  border: var(--nested-card-border);
+  color: color-mix(
+    in oklab,
+    var(--clr-text-primary),
+    var(--clr-text-secondary)
+  );
+  background: var(--clr-bg-accent-subtle);
+  border: 1px solid var(--clr-border-on-bg-accent-subtle);
   border-radius: 8px;
   padding: 8px (5px + 8px);
   position: relative;
@@ -11528,7 +11563,7 @@ noscript {
   }
 
   &--filter {
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
 
     p {
       font-weight: normal;
@@ -11536,7 +11571,7 @@ noscript {
 
     .filter-name {
       font-weight: 500;
-      color: $secondary-text-color;
+      color: var(--clr-text-primary);
     }
   }
 }
@@ -11546,7 +11581,7 @@ noscript {
   align-items: center;
   gap: 16px;
   padding-inline-end: 13px;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
 
   &__title {
     display: flex;
@@ -11556,13 +11591,13 @@ noscript {
     flex: 1 1 auto;
     font-size: 16px;
     line-height: 24px;
-    color: $secondary-text-color;
+    color: var(--clr-text-secondary);
     text-decoration: none;
 
     &:is(a):hover,
     &:is(a):focus,
     &:is(a):active {
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
     }
 
     input {
@@ -11577,7 +11612,7 @@ noscript {
       color: inherit;
 
       &::placeholder {
-        color: var(--input-placeholder-color);
+        color: var(--clr-text-secondary);
         opacity: 1;
       }
 
@@ -11592,16 +11627,16 @@ noscript {
   display: flex;
   gap: 12px;
   align-items: center;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--clr-border-primary);
   border-top: 0;
   border-bottom: 0;
   padding: 16px;
   padding-bottom: 8px;
 
   input {
-    background: var(--input-background-color);
-    border: 1px solid var(--background-border-color);
-    color: var(--on-input-color);
+    background: var(--clr-bg-secondary);
+    border: 1px solid var(--clr-border-primary);
+    color: var(--clr-text-primary);
     padding: 12px;
     font-size: 16px;
     line-height: normal;
@@ -11610,7 +11645,7 @@ noscript {
     flex: 1 1 auto;
 
     &::placeholder {
-      color: var(--input-placeholder-color);
+      color: var(--clr-text-secondary);
       opacity: 1;
     }
 
@@ -11631,7 +11666,7 @@ noscript {
 .featured-carousel {
   overflow: hidden;
   flex-shrink: 0;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--clr-border-primary);
   touch-action: pan-y;
 
   &__slides {
@@ -11653,7 +11688,7 @@ noscript {
 
   &__header {
     padding: 8px 16px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     inset-inline-end: 0;
     display: flex;
     align-items: center;

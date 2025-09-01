@@ -1,0 +1,7 @@
+@function css-alpha($base-color, $amount) {
+  @return #{rgb(from $base-color r g b / $amount)};
+}
+
+@function css-mix($base-color, $mix-color, $amount) {
+  @return #{color-mix(in oklab, $base-color, $mix-color $amount)};
+}
