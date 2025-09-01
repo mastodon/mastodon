@@ -1,23 +1,155 @@
-@use 'sass:color';
-@use '../mastodon/variables' as *;
-@use 'variables' as *;
-@use '../mastodon/functions' as *;
+@use '../mastodon/theme_utils' as *;
 
-body {
-  --dropdown-border-color: hsl(240deg, 25%, 88%);
-  --dropdown-background-color: #fff;
-  --modal-border-color: hsl(240deg, 25%, 88%);
-  --modal-background-color: var(--background-color);
-  --background-border-color: hsl(240deg, 25%, 88%);
-  --background-color: #fff;
-  --background-color-tint: rgba(255, 255, 255, 80%);
-  --background-filter: blur(10px);
-  --surface-variant-background-color: #f1ebfb;
-  --surface-border-color: #cac4d0;
-  --on-surface-color: #{color.adjust($ui-base-color, $alpha: -0.65)};
-  --rich-text-container-color: rgba(255, 216, 231, 100%);
-  --rich-text-text-color: rgba(114, 47, 83, 100%);
-  --rich-text-decorations-color: rgba(255, 175, 212, 100%);
-  --input-placeholder-color: #{color.adjust($dark-text-color, $alpha: -0.5)};
-  --input-background-color: #{darken($ui-base-color, 10%)};
+:root {
+  --clr-black: #000;
+  --clr-grey-950: #181821;
+  --clr-grey-700: #444664;
+  --clr-grey-600: #545778;
+  --clr-grey-500: #696d91;
+  --clr-grey-400: #8b8dac;
+  --clr-grey-300: #b4b6cb;
+  --clr-grey-200: #d8d9e3;
+  --clr-grey-100: #f0f0f5;
+  --clr-grey-50: #f0f1ff;
+  --clr-white: #fff;
+  --clr-indigo-600: #6147e6;
+  --clr-indigo-200: #c8cdfe;
+  --clr-indigo-100: #e0e3ff;
+  --clr-indigo-50: #f0f1ff;
+  --clr-light-pink: #ededff;
+  --clr-red: #df405a;
+  --clr-red-100: #ffe4e6;
+  --clr-red-600: #ec003f;
+  --clr-yellow-50: #fffbeb;
+  --clr-yellow-600: #e17100;
+  --clr-green: #79bd9a;
+  --clr-green-100: #dcfce7;
+  --clr-green-600: #00a63e;
+
+  /* TEXT TOKENS */
+
+  --clr-text-primary: var(--clr-grey-950);
+  --clr-text-secondary: var(--clr-grey-600);
+  --clr-text-on-inverted: var(--clr-white);
+  --clr-text-accent: var(--clr-indigo-600);
+  --clr-text-accent-subtle: color-mix(
+    in oklab,
+    var(--clr-text-primary),
+    var(--clr-text-accent)
+  );
+  --clr-text-on-accent-strong: var(--clr-white);
+  --clr-text-error: var(--clr-red-600);
+  --clr-text-on-error-strong: var(--clr-white);
+  --clr-text-warning: var(--clr-yellow-600);
+  --clr-text-on-warning-strong: var(--clr-white);
+  --clr-text-success: var(--clr-green-600);
+  --clr-text-on-success-strong: var(--clr-white);
+  --clr-text-disabled: var(--clr-grey-300);
+  --clr-text-on-disabled: var(--clr-grey-200);
+
+  /* BACKGROUND TOKENS */
+
+  --clr-bg-primary: var(--clr-white);
+  --clr-bg-secondary-base: var(--clr-grey-600);
+  --clr-bg-secondary-strength: 5%;
+  --clr-bg-secondary: #{color-mix(
+      in oklab,
+      var(--clr-bg-primary),
+      var(--clr-bg-secondary-base) var(--clr-bg-secondary-strength)
+    )};
+  --clr-bg-secondary-solid: #{color-mix(
+      in srgb,
+      var(--clr-bg-primary),
+      var(--clr-bg-secondary-base) var(--clr-bg-secondary-strength)
+    )};
+  --clr-bg-tertiary: #{color-mix(
+      in oklab,
+      var(--clr-bg-primary),
+      var(--clr-bg-secondary-base) calc(2 * var(--clr-bg-secondary-strength))
+    )};
+  --clr-bg-elevated: var(--clr-bg-primary);
+  --clr-bg-inverted: var(--clr-grey-950);
+  --clr-bg-disabled: var(--clr-grey-400);
+  --clr-bg-accent-subtle-base: var(--clr-indigo-600);
+  --clr-bg-accent-subtle-strength: 12%;
+  --clr-bg-accent-subtle: #{css-alpha(
+      var(--clr-bg-accent-subtle-base),
+      var(--clr-bg-accent-subtle-strength)
+    )};
+  --clr-bg-accent-subtle-highlighted: #{css-alpha(
+      var(--clr-bg-accent-subtle-base),
+      calc(var(--clr-bg-accent-subtle-strength) * 1.5)
+    )};
+  --clr-bg-accent-strong: var(--clr-indigo-600);
+  --clr-bg-accent-strong-highlighted: color-mix(
+    in oklab,
+    var(--clr-bg-accent-strong),
+    black var(--clr-bg-accent-subtle-strength)
+  );
+  --clr-bg-error-subtle-base: #f41b3b;
+  --clr-bg-error-subtle-strength: 12%;
+  --clr-bg-error-subtle: #{css-alpha(
+      var(--clr-bg-error-subtle-base),
+      var(--clr-bg-error-subtle-strength)
+    )};
+  --clr-bg-error-strong: var(--clr-red-600);
+  --clr-bg-error-strong-highlighted: color-mix(
+    in oklab,
+    var(--clr-bg-error-strong),
+    black var(--clr-bg-error-subtle-strength)
+  );
+  --clr-bg-warning-subtle-base: #ffca1b;
+  --clr-bg-warning-subtle-strength: 10%;
+  --clr-bg-warning-subtle: #{css-alpha(
+      var(--clr-bg-warning-subtle-base),
+      var(--clr-bg-warning-subtle-strength)
+    )};
+  --clr-bg-warning-strong: var(--clr-yellow-600);
+  --clr-bg-warning-strong-highlighted: color-mix(
+    in oklab,
+    var(--clr-bg-warning-strong),
+    black var(--clr-bg-warning-subtle-strength)
+  );
+  --clr-bg-success-subtle-base: #17e865;
+  --clr-bg-success-subtle-strength: 15%;
+  --clr-bg-success-subtle: #{css-alpha(
+      var(--clr-bg-success-subtle-base),
+      var(--clr-bg-success-subtle-strength)
+    )};
+  --clr-bg-success-strong: var(--clr-green-600);
+  --clr-bg-success-strong-highlighted: color-mix(
+    in oklab,
+    var(--clr-bg-success-strong),
+    black var(--clr-bg-success-subtle-strength)
+  );
+
+  /* BORDER TOKENS */
+
+  --clr-border-primary-base: #000856;
+  --clr-border-primary-strength: 15%;
+  --clr-border-primary: color-mix(
+    in oklab,
+    var(--clr-bg-primary),
+    var(--clr-border-primary-base) var(--clr-border-primary-strength)
+  );
+  --clr-border-strong: var(--clr-grey-950);
+  --clr-border-media: rgb(252 248 255 / 15%);
+  --clr-border-on-bg-secondary: var(--clr-grey-200);
+  --clr-border-on-bg-accent-subtle: var(--clr-indigo-200);
+  --clr-border-on-bg-error-subtle: #{css-alpha(var(--clr-text-error), 50%)};
+  --clr-border-on-bg-warning-subtle: #{css-alpha(var(--clr-text-warning), 50%)};
+  --clr-border-on-bg-success-subtle: #{css-alpha(var(--clr-text-success), 50%)};
+
+  /* LEGACY TOKENS */
+
+  --rich-text-container-color: rgb(255 216 231 / 100%);
+  --rich-text-text-color: rgb(114 47 83 / 100%);
+  --rich-text-decorations-color: rgb(255 175 212 / 100%);
+
+  /* MISCELLANEOUS */
+
+  --avatar-border-radius: 8px;
+  --dropdown-shadow:
+    0 20px 25px -5px rgb(0 0 0 / 25%), 0 8px 10px -6px rgb(0 0 0 / 25%);
+  --overlay-icon-shadow: drop-shadow(0 0 8px rgb(0 0 0 / 35%));
 }

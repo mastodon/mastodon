@@ -23,7 +23,7 @@
     height: 130px;
     position: relative;
     background: $ui-base-color;
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--clr-border-primary);
     border-bottom: none;
 
     img {
@@ -45,8 +45,8 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background: var(--background-color);
-    border: 1px solid var(--background-border-color);
+    background: var(--clr-bg-primary);
+    border: 1px solid var(--clr-border-primary);
     border-top: none;
 
     .avatar {
@@ -76,7 +76,7 @@
 
       strong {
         font-size: 15px;
-        color: $primary-text-color;
+        color: var(--clr-text-primary);
         font-weight: 500;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -85,7 +85,7 @@
       span {
         display: block;
         font-size: 14px;
-        color: $darker-text-color;
+        color: var(--clr-text-secondary);
         font-weight: 400;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -106,7 +106,7 @@
   .page,
   .gap {
     font-size: 14px;
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
     font-weight: 500;
     display: inline-block;
     padding: 6px 10px;
@@ -128,7 +128,7 @@
   .older,
   .newer {
     text-transform: uppercase;
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
   }
 
   .older {
@@ -163,7 +163,7 @@
 .nothing-here {
   background: $ui-base-color;
   box-shadow: 0 0 15px color.change($base-shadow-color, $alpha: 0.2);
-  color: $darker-text-color;
+  color: var(--clr-text-secondary);
   font-size: 14px;
   font-weight: 500;
   text-align: center;
@@ -196,7 +196,7 @@
   font-size: 12px;
   line-height: 12px;
   font-weight: 500;
-  color: $ui-secondary-color;
+  color: var(--clr-text-primary);
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -206,8 +206,16 @@
 .simple_form .overridden,
 .simple_form .recommended,
 .simple_form .not_recommended {
-  background-color: color.change($ui-secondary-color, $alpha: 0.1);
-  border: 1px solid color.change($ui-secondary-color, $alpha: 0.5);
+  background-color: var(--clr-bg-secondary);
+  border: 1px solid var(--clr-border-primary);
+}
+
+.information-badge {
+  &.superapp {
+    color: var(--clr-text-success);
+    background-color: var(--clr-bg-success-subtle);
+    border-color: var(--clr-border-on-bg-success-subtle);
+  }
 }
 
 .account-role {
@@ -235,14 +243,6 @@
     font-weight: 400;
     opacity: 0.75;
     letter-spacing: 0;
-  }
-}
-
-.information-badge {
-  &.superapp {
-    color: $success-green;
-    background-color: color.change($success-green, $alpha: 0.1);
-    border-color: color.change($success-green, $alpha: 0.5);
   }
 }
 
@@ -282,13 +282,13 @@
     font-weight: 500;
     width: 120px;
     flex: 0 0 auto;
-    color: $secondary-text-color;
+    color: var(--clr-text-primary);
     background: rgba(darken($ui-base-color, 8%), 0.5);
   }
 
   dd {
     flex: 1 1 auto;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
   }
 
   a {
@@ -303,16 +303,16 @@
   }
 
   .verified {
-    border: 1px solid color.change($valid-value-color, $alpha: 0.5);
-    background: color.change($valid-value-color, $alpha: 0.25);
+    border: 1px solid var(--clr-border-on-bg-success-subtle);
+    background: var(--clr-bg-success-subtle);
 
     a {
-      color: $valid-value-color;
+      color: var(--clr-text-success);
       font-weight: 500;
     }
 
     &__mark {
-      color: $valid-value-color;
+      color: var(--clr-text-success);
     }
   }
 
@@ -327,7 +327,7 @@
 
 .pending-account {
   &__header {
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
 
     a {
       color: $ui-secondary-color;
@@ -341,7 +341,7 @@
     }
 
     strong {
-      color: $primary-text-color;
+      color: var(--clr-text-primary);
       font-weight: 700;
     }
 

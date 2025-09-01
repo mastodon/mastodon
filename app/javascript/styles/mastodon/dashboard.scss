@@ -16,9 +16,9 @@
     & > div,
     & > a {
       padding: 20px;
-      background: var(--background-color);
+      background: var(--clr-bg-primary);
       border-radius: 4px;
-      border: 1px solid var(--background-border-color);
+      border: 1px solid var(--clr-border-primary);
       box-sizing: border-box;
       height: 100%;
     }
@@ -41,7 +41,7 @@
     text-align: center;
     font-weight: 500;
     font-size: 24px;
-    color: $primary-text-color;
+    color: var(--clr-text-primary);
     margin-bottom: 20px;
     line-height: 30px;
   }
@@ -52,7 +52,7 @@
 
   &__label {
     font-size: 14px;
-    color: $darker-text-color;
+    color: var(--clr-text-secondary);
     text-align: center;
     font-weight: 500;
   }
@@ -85,8 +85,8 @@
     display: flex;
     align-items: baseline;
     border-radius: 4px;
-    background: $ui-button-background-color;
-    color: $primary-text-color;
+    background: var(--clr-bg-accent-strong);
+    color: var(--clr-text-on-accent-strong);
     transition: all 100ms ease-in;
     font-size: 14px;
     padding: 8px 16px;
@@ -96,18 +96,18 @@
     &:active,
     &:focus,
     &:hover {
-      background-color: $ui-button-focus-background-color;
+      background-color: var(--clr-bg-accent-strong-highlighted);
       transition: all 200ms ease-out;
     }
 
     &.positive {
-      background: lighten($ui-base-color, 4%);
-      color: $valid-value-color;
+      background: var(--clr-bg-success-subtle);
+      color: var(--clr-text-success);
     }
 
     &.negative {
-      background: lighten($ui-base-color, 4%);
-      color: $error-value-color;
+      background: var(--clr-bg-error-subtle);
+      color: var(--clr-text-error);
     }
 
     span {
