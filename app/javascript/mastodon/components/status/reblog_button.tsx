@@ -23,8 +23,8 @@ import {
   useAppSelector,
 } from '@/mastodon/store';
 import { isFeatureEnabled } from '@/mastodon/utils/environment';
-import FormatQuote from '@/material-icons/400-24px/format_quote.svg?react';
-import FormatQuoteOff from '@/material-icons/400-24px/format_quote_off.svg?react';
+import FormatQuote from '@/material-icons/400-24px/format_quote-fill.svg?react';
+import FormatQuoteOff from '@/material-icons/400-24px/format_quote_off-fill.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import RepeatActiveIcon from '@/svg-icons/repeat_active.svg?react';
 import RepeatDisabledIcon from '@/svg-icons/repeat_disabled.svg?react';
