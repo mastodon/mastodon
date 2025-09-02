@@ -86,16 +86,22 @@ RSpec.describe Web::PushNotificationWorker do
     end
     # rubocop:enable RSpec/SubjectStub
 
-    it 'Removes invalid Web::PushSubscriptions that will never complete' do
-      # Fabricator always runs validation, here we deliberately want to bypass
-      # the validation, simulating an invalid Web::PushSubscription that was
-      # created before PRs #30542, #30540 added validation.
-      invalid_subscription.save(validate: false)
+    context 'with invalid record that will fail' do
+      before do
+        # Fabricator always runs validation, here we deliberately want to bypass
+        # the validation, simulating an invalid Web::PushSubscription that was
+        # created before PRs #30542, #30540 added validation.
+        invalid_subscription.save(validate: false)
+      end
 
-      subject.perform(invalid_subscription.id, notification.id)
+      it 'removes the record and does not process the request' do
+        subject.perform(invalid_subscription.id, notification.id)
 
-      expect { invalid_subscription.reload }
-        .to raise_error ActiveRecord::RecordNotFound
+        expect { invalid_subscription.reload }
+          .to raise_error ActiveRecord::RecordNotFound
+
+        assert_not_requested(:post, endpoint)
+      end
     end
 
     def legacy_web_push_endpoint_request
