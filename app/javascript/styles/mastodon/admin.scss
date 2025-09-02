@@ -152,7 +152,7 @@ $content-width: 840px;
       }
 
       .simple-navigation-active-leaf a {
-        color: $highlight-text-color;
+        color: var(--clr-text-accent);
         border-bottom: 0;
       }
     }
@@ -556,7 +556,7 @@ kbd {
       }
 
       &.selected {
-        color: $highlight-text-color;
+        color: var(--clr-text-accent);
         border-bottom: 2px solid $ui-highlight-color;
       }
     }
@@ -640,7 +640,7 @@ kbd {
   font-size: 14px;
 
   a {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
     text-decoration: none;
 
     &:hover {
@@ -992,7 +992,7 @@ a.name-tag,
     border: 1px solid var(--clr-border-primary);
 
     a {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
     }
 
     dl:first-child .verified {
@@ -1055,7 +1055,7 @@ a.name-tag,
       margin-bottom: 10px;
 
       &:hover {
-        color: $highlight-text-color;
+        color: var(--clr-text-accent);
       }
 
       .account-role {
@@ -1689,7 +1689,7 @@ a.sparkline {
       }
 
       a {
-        color: $highlight-text-color;
+        color: var(--clr-text-accent);
         text-decoration: none;
 
         &:hover {
@@ -1785,7 +1785,7 @@ a.sparkline {
   border-radius: 4px;
 
   a {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
     text-decoration: none;
 
     &:hover {
@@ -1912,9 +1912,9 @@ a.sparkline {
       align-items: center;
       width: calc(1.375rem + 1px);
       height: calc(1.375rem + 1px);
-      background: $ui-base-color;
-      border: 1px solid $highlight-text-color;
-      color: $highlight-text-color;
+      background: var(--clr-bg-primary);
+      border: 1px solid var(--clr-text-accent);
+      color: var(--clr-text-accent);
       border-radius: 8px;
     }
 
@@ -1922,7 +1922,7 @@ a.sparkline {
       position: absolute;
       content: '';
       width: 1px;
-      background: $highlight-text-color;
+      background: var(--clr-text-accent);
       bottom: 0;
       top: calc(1.875rem + 1px);
       inset-inline-start: 0.6875rem;
