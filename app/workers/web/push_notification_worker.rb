@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'debug'
 class Web::PushNotificationWorker
   include Sidekiq::Worker
   include RoutingHelper
@@ -14,6 +15,15 @@ class Web::PushNotificationWorker
     @notification = Notification.find(notification_id)
 
     return if @notification.updated_at < TTL.ago
+
+    # Clean up old Web::PushSubscriptions that were added before validation of
+    # the endpoint and keys: #30542, #30540
+    unless @subscription.valid?
+      Rails.logger.error { "Web::PushSubscription is invalid, removing: #{subscription_id}" }
+      @subscription.destroy
+
+      return
+    end
 
     # Polymorphically associated activity could have been deleted
     # in the meantime, so we have to double-check before proceeding

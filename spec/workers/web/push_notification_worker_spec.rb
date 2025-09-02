@@ -36,6 +36,9 @@ RSpec.describe Web::PushNotificationWorker do
   let(:std_input) { 'When I grow up, I want to be a watermelon' }
   let(:std_ciphertext) { 'DGv6ra1nlYgDCS1FRnbzlwAAEABBBP4z9KsN6nGRTbVYI_c7VJSPQTBtkgcy27mlmlMoZIIgDll6e3vCYLocInmYWAmS6TlzAC8wEqKK6PBru3jl7A_yl95bQpu6cVPTpK4Mqgkf1CXztLVBSt2Ks3oZwbuwXPXLWyouBWLVWGNWQexSgSxsj_Qulcy4a-fN' }
 
+  # Invalid subscription:
+  let(:invalid_subscription) { Fabricate.build(:web_push_subscription, user_id: user.id, key_p256dh: 'invalid', key_auth: 'invalid', endpoint: endpoint, standard: true, data: { alerts: { notification.type => true } }) }
+
   describe 'perform' do
     around do |example|
       original_private = Rails.configuration.x.vapid.private_key
@@ -82,6 +85,18 @@ RSpec.describe Web::PushNotificationWorker do
         .to have_been_made
     end
     # rubocop:enable RSpec/SubjectStub
+
+    it 'Removes invalid Web::PushSubscriptions that will never complete' do
+      # Fabricator always runs validation, here we deliberately want to bypass
+      # the validation, simulating an invalid Web::PushSubscription that was
+      # created before PRs #30542, #30540 added validation.
+      invalid_subscription.save(validate: false)
+
+      subject.perform(invalid_subscription.id, notification.id)
+
+      expect { invalid_subscription.reload }
+        .to raise_error ActiveRecord::RecordNotFound
+    end
 
     def legacy_web_push_endpoint_request
       a_request(
