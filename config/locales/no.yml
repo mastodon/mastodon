@@ -1612,7 +1612,8 @@
         one: "%{count} video"
         other: "%{count} videoer"
     boosted_from_html: Boostet fra %{acct_link}
-    content_warning: 'Innholdsvarsel: %{warning}'
+    content_warning:
+      warning: 'Innholdsvarsel: %{warning}'
     default_language: Samme språk som brukergrensesnittet
     disallowed_hashtags:
       one: 'inneholdt en ikke tillatt hashtag: %{tags}'

@@ -1954,7 +1954,8 @@ pl:
         one: "%{count} film"
         other: "%{count} filmów"
     boosted_from_html: Podbito przez %{acct_link}
-    content_warning: 'Ostrzeżenie o zawartości: %{warning}'
+    content_warning:
+      warning: 'Ostrzeżenie o zawartości: %{warning}'
     default_language: Taki sam jak język interfejsu użytkownika
     disallowed_hashtags:
       few: 'zawiera niedozwolone hashtagi: %{tags}'

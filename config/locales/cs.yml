@@ -1977,7 +1977,8 @@ cs:
         one: "%{count} video"
         other: "%{count} videí"
     boosted_from_html: Boostnuto z %{acct_link}
-    content_warning: 'Varování o obsahu: %{warning}'
+    content_warning:
+      warning: 'Varování o obsahu: %{warning}'
     default_language: Stejný jako jazyk rozhraní
     disallowed_hashtags:
       few: 'obsahoval zakázané hashtagy: %{tags}'

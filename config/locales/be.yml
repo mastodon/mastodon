@@ -1977,7 +1977,8 @@ be:
         one: "%{count} відэафайл"
         other: "%{count} відэафайла"
     boosted_from_html: Пашырыў уліковы запіс %{acct_link}
-    content_warning: 'Папярэджанне аб змесціве: %{warning}'
+    content_warning:
+      warning: 'Папярэджанне аб змесціве: %{warning}'
     default_language: Такая, што і мова інтэрфэйсу
     disallowed_hashtags:
       few: 'змяшчае недазволеныя хэштэгі: %{tags}'

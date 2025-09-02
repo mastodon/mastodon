@@ -1896,7 +1896,8 @@ fi:
         one: "%{count} video"
         other: "%{count} videota"
     boosted_from_html: Tehosti lähteestä %{acct_link}
-    content_warning: 'Sisältövaroitus: %{warning}'
+    content_warning:
+      warning: 'Sisältövaroitus: %{warning}'
     default_language: Sama kuin käyttöliittymän kieli
     disallowed_hashtags:
       one: 'sisälsi kielletyn aihetunnisteen: %{tags}'

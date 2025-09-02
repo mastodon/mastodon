@@ -1260,7 +1260,8 @@ sk:
         one: "%{count} obrázok"
         other: "%{count} obrázky"
     boosted_from_html: Vyzdvihnuté od %{acct_link}
-    content_warning: 'Varovanie o obsahu: %{warning}'
+    content_warning:
+      warning: 'Varovanie o obsahu: %{warning}'
     default_language: Rovnaký ako jazyk rozhrania
     disallowed_hashtags:
       few: 'obsah nepovolených haštagov: %{tags}'

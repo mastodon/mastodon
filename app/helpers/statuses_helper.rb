@@ -37,7 +37,7 @@ module StatusesHelper
   def status_text_summary(status)
     return if status.spoiler_text.blank?
 
-    I18n.t('statuses.content_warning', warning: status.spoiler_text)
+    I18n.t('statuses.content_warning.warning', warning: status.spoiler_text)
   end
 
   def poll_summary(status)

@@ -1896,7 +1896,8 @@ fo:
         one: "%{count} sjónfíla"
         other: "%{count} sjónfílur"
     boosted_from_html: Stimbrað frá %{acct_link}
-    content_warning: 'Innihaldsávaring: %{warning}'
+    content_warning:
+      warning: 'Innihaldsávaring: %{warning}'
     default_language: Sama sum markamótsmál
     disallowed_hashtags:
       one: 'innihelt eitt vrakað frámerki: %{tags}'
