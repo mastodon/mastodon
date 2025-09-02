@@ -51,10 +51,10 @@
 }
 
 .emoji-mart-anchor-selected {
-  color: $highlight-text-color;
+  color: var(--clr-text-accent);
 
   &:hover {
-    color: lighten($highlight-text-color, 4%);
+    color: var(--clr-text-accent-subtle);
   }
 
   .emoji-mart-anchor-bar {
@@ -68,7 +68,7 @@
   inset-inline-start: 0;
   width: 100%;
   height: 4px;
-  background-color: $highlight-text-color;
+  background-color: var(--clr-text-accent);
 }
 
 .emoji-mart-anchors {
