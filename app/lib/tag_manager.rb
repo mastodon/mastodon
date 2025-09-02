@@ -18,7 +18,7 @@ class TagManager
     return if domain.nil?
 
     uri = Addressable::URI.new
-    uri.host = domain.delete_suffix('/')
+    uri.host = domain.strip.delete_suffix('/')
     uri.normalized_host
   end
 
