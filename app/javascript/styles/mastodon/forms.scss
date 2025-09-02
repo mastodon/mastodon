@@ -57,11 +57,13 @@ code {
   color: var(--clr-text-primary);
 
   &.success {
-    background: $success-green;
+    color: var(--clr-text-on-success-strong);
+    background: var(--clr-bg-success-strong);
   }
 
   &.failure {
-    background: $error-red;
+    color: var(--clr-text-on-error-strong);
+    background: var(--clr-bg-error-strong);
   }
 }
 
@@ -1064,7 +1066,7 @@ code {
 }
 
 .scope-danger {
-  color: $warning-red;
+  color: var(--clr-text-error);
 }
 
 .form_admin_settings_site_short_description,
