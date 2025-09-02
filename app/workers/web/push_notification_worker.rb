@@ -19,7 +19,7 @@ class Web::PushNotificationWorker
     # the endpoint and keys: #30542, #30540
     unless @subscription.valid?
       Rails.logger.error { "Web::PushSubscription is invalid, removing: #{subscription_id}" }
-      @subscription.destroy
+      @subscription.destroy!
 
       return
     end

@@ -95,7 +95,8 @@ RSpec.describe Web::PushNotificationWorker do
       end
 
       it 'removes the record and does not process the request' do
-        subject.perform(invalid_subscription.id, notification.id)
+        expect { subject.perform(invalid_subscription.id, notification.id) }
+          .to_not raise_error
 
         expect { invalid_subscription.reload }
           .to raise_error ActiveRecord::RecordNotFound
