@@ -37,18 +37,20 @@ const getHostname = url => {
 
 const domParser = new DOMParser();
 
-const addAutoPlay = html => {
+const handleIframeUrl = (html, url, providerName) => {
   const document = domParser.parseFromString(html, 'text/html').documentElement;
   const iframe = document.querySelector('iframe');
+  const startTime = new URL(url).searchParams.get('t')
 
   if (iframe) {
-    if (iframe.src.indexOf('?') !== -1) {
-      iframe.src += '&';
-    } else {
-      iframe.src += '?';
-    }
+    const iframeUrl = new URL(iframe.src)
 
-    iframe.src += 'autoplay=1&auto_play=1';
+    iframeUrl.searchParams.set('autoplay', 1)
+    iframeUrl.searchParams.set('auto_play', 1)
+
+    if (startTime && providerName === "YouTube") iframeUrl.searchParams.set('start', startTime)
+
+    iframe.src = iframeUrl.href
 
     // DOM parser creates html/body elements around original HTML fragment,
     // so we need to get innerHTML out of the body and not the entire document
@@ -114,7 +116,7 @@ export default class Card extends PureComponent {
 
   renderVideo () {
     const { card } = this.props;
-    const content = { __html: addAutoPlay(card.get('html')) };
+    const content = { __html: handleIframeUrl(card.get('html'), card.get('url'), card.get('provider_name')) };
 
     return (
       <div
