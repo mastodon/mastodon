@@ -222,8 +222,8 @@
   display: inline-flex;
   padding: 4px;
   padding-inline-end: 8px;
-  border: 1px solid $highlight-text-color;
-  color: $highlight-text-color;
+  border: 1px solid var(--clr-text-accent);
+  color: var(--clr-text-accent);
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.5px;
@@ -283,7 +283,7 @@
     width: 120px;
     flex: 0 0 auto;
     color: var(--clr-text-primary);
-    background: rgba(darken($ui-base-color, 8%), 0.5);
+    background: var(--clr-bg-secondary);
   }
 
   dd {
@@ -292,7 +292,7 @@
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
     text-decoration: none;
 
     &:hover,

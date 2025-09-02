@@ -6,7 +6,7 @@
 @use '../mastodon/theme_utils' as *;
 
 .simple_form .button.button-tertiary {
-  color: $highlight-text-color;
+  color: var(--clr-text-accent);
 
   &:hover,
   &:focus,
@@ -316,7 +316,7 @@
 .status__content,
 .reply-indicator__content {
   a {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
   }
 }
 

@@ -145,7 +145,7 @@ code {
       }
 
       label a {
-        color: $highlight-text-color;
+        color: var(--clr-text-accent);
         text-decoration: underline;
 
         &:hover,
@@ -195,7 +195,7 @@ code {
     }
 
     a {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
     }
   }
 
@@ -209,7 +209,7 @@ code {
     color: var(--clr-text-secondary);
 
     a {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
     }
 
     code {
@@ -882,7 +882,7 @@ code {
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
     text-transform: uppercase;
     text-decoration: none;
     font-weight: 700;
@@ -890,7 +890,7 @@ code {
     &:hover,
     &:focus,
     &:active {
-      color: lighten($highlight-text-color, 8%);
+      color: var(--clr-text-accent-subtle);
     }
   }
 }
@@ -1232,7 +1232,7 @@ code {
     flex: 1 1 auto;
 
     &.completed {
-      background: $highlight-text-color;
+      background: var(--clr-text-accent);
     }
   }
 
@@ -1280,14 +1280,14 @@ code {
   }
 
   .active .circle {
-    border-color: $highlight-text-color;
+    border-color: var(--clr-text-accent);
 
     &::before {
       content: '';
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: $highlight-text-color;
+      background: var(--clr-text-accent);
       position: absolute;
       left: 50%;
       top: 50%;
@@ -1296,8 +1296,8 @@ code {
   }
 
   .completed .circle {
-    border-color: $highlight-text-color;
-    background: $highlight-text-color;
+    border-color: var(--clr-text-accent);
+    background: var(--clr-text-accent);
   }
 }
 
