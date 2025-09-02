@@ -145,7 +145,7 @@ $content-width: 840px;
       }
 
       .warning a {
-        color: $gold-star;
+        color: var(--clr-text-warning);
         font-weight: 700;
       }
 
@@ -749,13 +749,13 @@ body,
   }
 
   &__timestamp {
-    color: $dark-text-color;
+    color: var(--clr-text-secondary);
   }
 
   &:hover,
   &:focus,
   &:active {
-    background: $ui-base-color;
+    background: var(--clr-bg-primary);
   }
 }
 
@@ -767,7 +767,7 @@ a.inline-name-tag,
   color: var(--clr-text-primary);
 
   &:hover {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
   }
 
   .username {
@@ -777,7 +777,7 @@ a.inline-name-tag,
   &.suspended {
     .username {
       text-decoration: line-through;
-      color: lighten($error-red, 12%);
+      color: var(--clr-text-error);
     }
 
     .avatar {
@@ -810,18 +810,18 @@ a.name-tag,
 
 .speech-bubble {
   margin-bottom: 20px;
-  border-inline-start: 4px solid $ui-highlight-color;
+  border-inline-start: 4px solid var(--clr-text-accent);
 
   &.positive {
-    border-left-color: $success-green;
+    border-color: var(--clr-text-success);
   }
 
   &.negative {
-    border-left-color: lighten($error-red, 12%);
+    border-color: var(--clr-text-error);
   }
 
   &.warning {
-    border-left-color: $gold-star;
+    border-color: var(--clr-text-warning);
   }
 
   &__bubble {
@@ -1112,11 +1112,11 @@ a.name-tag,
 
   &.expired {
     .expiration {
-      color: lighten($error-red, 12%);
+      color: var(--clr-text-error);
     }
 
     .permissions-list__item__icon {
-      color: $dark-text-color;
+      color: var(--clr-text-secondary);
     }
   }
 }
@@ -1259,12 +1259,12 @@ a.name-tag,
     }
 
     path:first-child {
-      fill: var(--clr-bg-accent-subtle) !important;
+      fill: var(--clr-graph-primary-fill) !important;
       fill-opacity: 1 !important;
     }
 
     path:last-child {
-      stroke: var(--clr-text-accent) !important;
+      stroke: var(--clr-graph-primary-stroke) !important;
       fill: none !important;
     }
   }
