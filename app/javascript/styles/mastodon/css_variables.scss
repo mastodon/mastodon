@@ -51,12 +51,14 @@
   --clr-text-on-success-strong: var(--clr-white);
   --clr-text-disabled: var(--clr-grey-600);
   --clr-text-on-disabled: var(--clr-grey-400);
+  --clr-text-bookmark-highlight: var(--clr-text-error);
+  --clr-text-favourite-highlight: var(--clr-text-warning);
 
   /* BACKGROUND TOKENS */
 
   --clr-bg-primary: var(--clr-grey-950);
   --clr-bg-secondary-base: var(--clr-indigo-200);
-  --clr-bg-secondary-strength: 12%;
+  --clr-bg-secondary-strength: 10%;
   --clr-bg-secondary: #{utils.css-alpha(
       var(--clr-bg-secondary-base),
       var(--clr-bg-secondary-strength)
@@ -157,6 +159,15 @@
       var(--clr-text-success),
       50%
     )};
+
+  /* GRAPHS/CHARTS TOKENS */
+
+  --clr-graph-primary-stroke: var(--clr-text-accent);
+  --clr-graph-primary-fill: var(--clr-bg-accent-subtle);
+  --clr-graph-warning-stroke: var(--clr-text-warning);
+  --clr-graph-warning-fill: var(--clr-bg-warning-subtle);
+  --clr-graph-disabled-stroke: var(--clr-text-disabled);
+  --clr-graph-disabled-fill: var(--clr-bg-disabled);
 
   /* LEGACY TOKENS */
 

@@ -1045,7 +1045,7 @@
   text-align: end;
 
   &.character-counter--over {
-    color: $error-red;
+    color: var(--clr-text-error);
   }
 }
 
@@ -2588,13 +2588,13 @@ a.account__display-name {
   gap: 10px;
 
   .icon {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
     width: 18px;
     height: 18px;
   }
 
   .icon-star {
-    color: $gold-star;
+    color: var(--clr-text-favourite-highlight);
   }
 
   > span {
@@ -2605,11 +2605,11 @@ a.account__display-name {
 }
 
 .icon-button.star-icon.active {
-  color: $gold-star;
+  color: var(--clr-text-favourite-highlight);
 }
 
 .icon-button.bookmark-icon.active {
-  color: var(--mas-accent-bookmark);
+  color: var(--clr-text-bookmark-highlight);
 }
 
 .no-reduce-motion .icon-button.star-icon {
@@ -3535,14 +3535,14 @@ a.account__display-name {
     position: absolute;
     inset-inline-start: 9px;
     top: -13px;
-    background: $ui-highlight-color;
+    color: var(--clr-text-on-accent-strong);
+    background: var(--clr-bg-accent-strong);
     border: 2px solid var(--clr-bg-primary);
     padding: 1px 6px;
     border-radius: 6px;
     font-size: 10px;
     font-weight: 500;
     line-height: 14px;
-    color: var(--clr-text-primary);
   }
 
   &__issue-badge {
@@ -3550,7 +3550,7 @@ a.account__display-name {
     inset-inline-start: 11px;
     bottom: 1px;
     display: block;
-    background: $error-red;
+    background: var(--clr-text-error);
     border-radius: 50%;
     width: 0.625rem;
     height: 0.625rem;
@@ -4824,10 +4824,9 @@ a.status-card {
 }
 
 .column-header__issue-btn {
-  color: $warning-red;
+  color: var(--clr-text-error);
 
   &:hover {
-    color: $error-red;
     text-decoration: underline;
   }
 }
@@ -6219,54 +6218,34 @@ a.status-card {
     padding: 16px;
 
     .icon-button {
-      color: $white;
+      --default-icon-color: white;
+      --default-bg-color: transparent;
+      --hover-icon-color: white;
+      --hover-bg-color: rgb(255 255 255 / 12%);
 
       .icon {
         filter: var(--overlay-icon-shadow);
       }
 
-      &:hover,
-      &:focus,
-      &:active {
-        color: $white;
-        background-color: color.change($white, $alpha: 0.15);
-      }
-
-      &:focus {
-        background-color: color.change($white, $alpha: 0.3);
-      }
-
       &.active {
-        color: $highlight-text-color;
-
-        &:hover,
-        &:focus,
-        &:active {
-          background: color.change($highlight-text-color, $alpha: 0.15);
-        }
-
-        &:focus {
-          background: color.change($highlight-text-color, $alpha: 0.3);
-        }
+        --default-icon-color: var(--clr-text-accent);
+        --hover-icon-color: var(--clr-text-accent);
+        --hover-bg-color: var(--clr-bg-accent-subtle-highlighted);
       }
 
       &.star-icon.active {
-        color: $gold-star;
-
-        &:hover,
-        &:focus,
-        &:active {
-          background: color.change($gold-star, $alpha: 0.15);
-        }
-
-        &:focus {
-          background: color.change($gold-star, $alpha: 0.3);
-        }
+        --default-icon-color: var(--clr-text-favourite-highlight);
+        --hover-icon-color: var(--clr-text-favourite-highlight);
+        --hover-bg-color: rgb(
+          from var(--clr-text-favourite-highlight) r g b /
+            var(--clr-bg-accent-subtle-strength)
+        );
       }
 
       &.disabled {
-        color: $white;
-        background-color: transparent;
+        --default-icon-color: white;
+        --default-bg-color: transparent;
+
         cursor: default;
         opacity: 0.4;
       }
@@ -8805,60 +8784,60 @@ noscript {
       width: 50px;
 
       path:first-child {
-        fill: color.change($highlight-text-color, $alpha: 0.25) !important;
+        fill: var(--clr-graph-primary-fill) !important;
         fill-opacity: 1 !important;
       }
 
       path:last-child {
-        stroke: lighten($highlight-text-color, 6%) !important;
+        stroke: var(--clr-graph-primary-stroke) !important;
         fill: none !important;
       }
     }
 
     &--requires-review {
       .trends__item__name {
-        color: $gold-star;
+        color: var(--clr-text-warning);
 
         a {
-          color: $gold-star;
+          color: var(--clr-text-warning);
         }
       }
 
       .trends__item__current {
-        color: $gold-star;
+        color: var(--clr-text-warning);
       }
 
       .trends__item__sparkline {
         path:first-child {
-          fill: color.change($gold-star, $alpha: 0.25) !important;
+          fill: var(--clr-graph-warning-fill) !important;
         }
 
         path:last-child {
-          stroke: lighten($gold-star, 6%) !important;
+          stroke: var(--clr-graph-warning-stroke) !important;
         }
       }
     }
 
     &--disabled {
       .trends__item__name {
-        color: lighten($ui-base-color, 12%);
+        color: var(--clr-text-disabled);
 
         a {
-          color: lighten($ui-base-color, 12%);
+          color: var(--clr-text-disabled);
         }
       }
 
       .trends__item__current {
-        color: lighten($ui-base-color, 12%);
+        color: var(--clr-text-disabled);
       }
 
       .trends__item__sparkline {
         path:first-child {
-          fill: rgba(lighten($ui-base-color, 12%), 0.25) !important;
+          fill: var(--clr-graph-disabled-fill) !important;
         }
 
         path:last-child {
-          stroke: lighten(lighten($ui-base-color, 12%), 6%) !important;
+          stroke: var(--clr-graph-disabled-stroke) !important;
         }
       }
     }
@@ -8876,7 +8855,7 @@ noscript {
   padding-bottom: 0;
 
   &:focus {
-    background: lighten($ui-base-color, 2%);
+    background: var(--clr-bg-secondary);
     outline: 0;
   }
 
@@ -8890,7 +8869,7 @@ noscript {
 
   &__unread {
     display: inline-block;
-    background: $highlight-text-color;
+    background: var(--clr-text-accent);
     border-radius: 50%;
     width: 0.625rem;
     height: 0.625rem;
@@ -8955,7 +8934,7 @@ noscript {
   }
 
   &__root {
-    background: lighten($ui-base-color, 8%);
+    background: var(--clr-bg-accent-subtle);
     font-size: 13px;
     display: flex;
     align-items: flex-end;
@@ -9003,7 +8982,7 @@ noscript {
     top: 19px;
     inset-inline-end: 19px;
     display: block;
-    background: $highlight-text-color;
+    background: var(--clr-text-accent);
     border-radius: 50%;
     width: 0.625rem;
     height: 0.625rem;
@@ -9688,7 +9667,7 @@ noscript {
     }
 
     &.invalid &__input {
-      border-color: $error-red;
+      border-color: var(--clr-text-error);
     }
 
     &.expanded .search__popout {
@@ -9741,49 +9720,6 @@ noscript {
   .link-button {
     font-size: inherit;
     display: inline;
-  }
-}
-
-.copypaste {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  input {
-    display: block;
-    font-family: inherit;
-    background: darken($ui-base-color, 8%);
-    border: 1px solid $highlight-text-color;
-    color: var(--clr-text-secondary);
-    border-radius: 4px;
-    padding: 6px 9px;
-    line-height: 22px;
-    font-size: 14px;
-    transition: border-color 300ms linear;
-    flex: 1 1 auto;
-    overflow: hidden;
-
-    &:focus {
-      outline: 0;
-      background: darken($ui-base-color, 4%);
-    }
-  }
-
-  .button {
-    flex: 0 0 auto;
-    transition: background 300ms linear;
-  }
-
-  &.copied {
-    input {
-      border: 1px solid var(--clr-text-success);
-      transition: none;
-    }
-
-    .button {
-      background: var(--clr-bg-success-strong);
-      transition: none;
-    }
   }
 }
 
@@ -10074,12 +10010,12 @@ noscript {
 }
 
 .warning-banner {
-  border: 1px solid $warning-red;
-  background: color.change($warning-red, $alpha: 0.15);
+  border: 1px solid var(--clr-border-on-bg-error-subtle);
+  background: var(--clr-bg-error-subtle);
 
   &__message {
     h1 {
-      color: $warning-red;
+      color: var(--clr-text-error);
     }
 
     a {
@@ -11008,11 +10944,11 @@ noscript {
 
   &--follow &__icon,
   &--follow-request &__icon {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
   }
 
   &--favourite &__icon {
-    color: $gold-star;
+    color: var(--clr-text-favourite-highlight);
   }
 
   &--reblog &__icon {
@@ -11026,7 +10962,7 @@ noscript {
   }
 
   &--moderation-warning &__icon {
-    color: $red-bookmark;
+    color: var(--clr-text-bookmark-highlight);
   }
 
   &--follow-request &__actions {

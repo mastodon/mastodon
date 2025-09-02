@@ -247,9 +247,9 @@
 }
 
 .simple_form .not_recommended {
-  color: lighten($error-red, 12%);
-  background-color: rgba(lighten($error-red, 12%), 0.1);
-  border-color: rgba(lighten($error-red, 12%), 0.5);
+  color: var(--clr-text-error);
+  background-color: var(--clr-bg-error-subtle);
+  border-color: var(--clr-border-on-bg-error-subtle);
 }
 
 .account__header__fields {
@@ -382,7 +382,7 @@
 }
 
 .batch-table__row--attention {
-  color: $gold-star;
+  color: var(--clr-text-warning);
 }
 
 .batch-table__row--attention .pending-account__header,
@@ -391,7 +391,7 @@
   &,
   a,
   strong {
-    color: $gold-star;
+    color: var(--clr-text-warning);
   }
 }
 
@@ -399,6 +399,6 @@
   tbody td.accounts-table__extra,
   &__count,
   &__count small {
-    color: $gold-star;
+    color: var(--clr-text-warning);
   }
 }
