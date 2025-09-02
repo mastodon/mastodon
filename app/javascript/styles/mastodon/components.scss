@@ -447,12 +447,12 @@
   }
 
   &.active {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
 
     &:hover,
     &:active,
     &:focus {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
       background-color: transparent;
     }
   }
@@ -711,8 +711,8 @@
 
   .spoiler-input__input {
     padding: 12px 12px - 5px;
-    background: color.change($ui-highlight-color, $alpha: 0.05);
-    color: $highlight-text-color;
+    background: var(--clr-bg-accent-subtle);
+    color: var(--clr-text-accent);
   }
 
   &__dropdowns {
@@ -1172,7 +1172,7 @@
   }
 
   a.unhandled-link {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
   }
 
   .status__content__text {
@@ -1325,7 +1325,7 @@
     overflow: hidden;
 
     a {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
     }
   }
 
@@ -1392,7 +1392,7 @@
     }
 
     &.unhandled-link {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
     }
   }
 }
@@ -1407,7 +1407,7 @@
   align-items: center;
   font-size: 15px;
   line-height: 22px;
-  color: $highlight-text-color;
+  color: var(--clr-text-accent);
   border: 0;
   background: transparent;
   padding: 0;
@@ -1911,7 +1911,7 @@
   }
 
   .status__prepend {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
   }
 }
 
@@ -2085,10 +2085,10 @@
 
   &__domain-pill {
     display: inline-flex;
-    background: color.change($highlight-text-color, $alpha: 0.2);
+    background: var(--clr-bg-accent-subtle);
     border-radius: 4px;
     border: 0;
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
@@ -2145,10 +2145,10 @@
       }
 
       &__handle {
-        border: 2px dashed $highlight-text-color;
-        background: color.change($highlight-text-color, $alpha: 0.1);
+        border: 2px dashed var(--clr-border-on-accent-subtle);
+        background: var(--clr-bg-accent-subtle);
         padding: 12px 8px;
-        color: $highlight-text-color;
+        color: var(--clr-text-accent);
         border-radius: 4px;
 
         &__label {
@@ -2184,7 +2184,7 @@
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          color: $highlight-text-color;
+          color: var(--clr-text-accent);
         }
 
         h6 {
@@ -3585,7 +3585,7 @@ a.account__display-name {
 }
 
 .copy-paste-text {
-  background: lighten($ui-base-color, 4%);
+  background: var(--clr-bg-secondary);
   border-radius: 8px;
   border: 1px solid var(--clr-border-primary);
   padding: 16px;
@@ -3602,7 +3602,7 @@ a.account__display-name {
   &.focused {
     transition: none;
     outline: 0;
-    border-color: $highlight-text-color;
+    border-color: var(--clr-text-accent);
   }
 
   &.copied {
@@ -3906,7 +3906,7 @@ a.account__display-name {
   background: transparent;
   border: 1px solid var(--clr-border-primary);
   border-radius: 4px 4px 0 0;
-  color: $highlight-text-color;
+  color: var(--clr-text-accent);
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
@@ -3932,7 +3932,7 @@ a.account__display-name {
   background: transparent;
   border: 0;
   font-family: inherit;
-  color: $highlight-text-color;
+  color: var(--clr-text-accent);
   cursor: pointer;
   white-space: nowrap;
   font-size: 16px;
@@ -4261,7 +4261,7 @@ a.status-card {
     .status-card__host,
     .status-card__author,
     .status-card__description {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
     }
   }
 }
@@ -4277,7 +4277,7 @@ a.status-card {
     .status-card__host,
     .status-card__author,
     .status-card__description {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
     }
   }
 }
@@ -4491,14 +4491,14 @@ a.status-card {
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
     text-decoration: none;
 
     &:hover,
     &:focus,
     &:active {
       text-decoration: underline;
-      color: lighten($highlight-text-color, 4%);
+      color: var(--clr-text-accent-subtle);
     }
   }
 
@@ -4550,7 +4550,7 @@ a.status-card {
   z-index: 1;
 
   &.active {
-    box-shadow: 0 1px 0 color.change($highlight-text-color, $alpha: 0.3);
+    box-shadow: 0 1px 0 var(--clr-bg-accent-subtle);
 
     &::before {
       display: block;
@@ -4597,12 +4597,12 @@ a.status-card {
 
   &__mode-button {
     margin-left: auto;
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
     font-weight: bold;
     font-size: 14px;
 
     &:hover {
-      color: lighten($highlight-text-color, 6%);
+      color: var(--clr-text-accent-subtle);
     }
   }
 }
@@ -4650,7 +4650,7 @@ a.status-card {
 
   .column-header__back-button {
     flex: 1;
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
 
     &.compact {
       flex: 0 0 auto;
@@ -4660,8 +4660,8 @@ a.status-card {
 
   &.active {
     .column-header__icon {
-      color: $highlight-text-color;
-      text-shadow: 0 0 10px color.change($highlight-text-color, $alpha: 0.4);
+      color: var(--clr-text-accent);
+      text-shadow: 0 0 10px var(--clr-bg-accent-subtle);
     }
   }
 
@@ -6019,7 +6019,7 @@ a.status-card {
     }
 
     button {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
       padding: 0;
       border: 0;
       background: 0;
@@ -6279,7 +6279,7 @@ a.status-card {
 
   &:focus {
     outline: 0;
-    background-color: $highlight-text-color;
+    background-color: var(--clr-text-accent);
   }
 }
 
@@ -6776,7 +6776,7 @@ a.status-card {
 
     a {
       text-decoration: none;
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
       font-weight: 500;
 
       &:hover {
@@ -6801,7 +6801,7 @@ a.status-card {
   }
 
   .status__content a {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
   }
 
   .status__content,
@@ -6966,7 +6966,7 @@ a.status-card {
   overflow-x: hidden;
 
   .status__content a {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
   }
 
   .status__content,
@@ -7082,7 +7082,7 @@ a.status-card {
     }
 
     a {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
     }
 
     hr {
@@ -7102,7 +7102,7 @@ a.status-card {
 }
 
 .loading-bar {
-  background-color: $highlight-text-color;
+  background-color: var(--clr-bg-accent-strong);
   height: 3px;
   position: fixed;
   top: 0;
@@ -8183,7 +8183,7 @@ noscript {
     max-width: 400px;
 
     a {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
       text-decoration: underline;
 
       &:hover {
@@ -9018,7 +9018,7 @@ noscript {
 
   &__item {
     flex-shrink: 0;
-    background: lighten($ui-base-color, 12%);
+    background: var(--clr-bg-tertiary);
     color: var(--clr-text-secondary);
     border: 0;
     border-radius: 3px;
@@ -9060,7 +9060,7 @@ noscript {
     &:hover,
     &:focus,
     &:active {
-      background: lighten($ui-base-color, 16%);
+      background: var(--clr-bg-accent-subtle);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
       color: color-mix(
@@ -9073,12 +9073,8 @@ noscript {
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
-      background-color: color.mix(
-        lighten($ui-base-color, 12%),
-        $ui-highlight-color,
-        80%
-      );
-      color: lighten($highlight-text-color, 8%);
+      background-color: var(--clr-bg-accent-subtle);
+      color: var(--clr-text-accent);
     }
   }
 
@@ -9369,7 +9365,7 @@ noscript {
       &:hover,
       &:active,
       &:focus {
-        color: $highlight-text-color;
+        color: var(--clr-text-accent);
       }
     }
 
@@ -9405,7 +9401,7 @@ noscript {
         &:hover,
         &:active,
         &:focus {
-          color: $highlight-text-color;
+          color: var(--clr-text-accent);
         }
       }
     }
@@ -9881,7 +9877,7 @@ noscript {
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
     text-decoration: underline;
 
     &:focus,
@@ -9938,8 +9934,8 @@ noscript {
   margin: 10px;
   margin-bottom: 5px;
   border-radius: 8px;
-  border: 1px solid $highlight-text-color;
-  background: color.change($highlight-text-color, $alpha: 0.15);
+  border: 1px solid var(--clr-border-on-bg-accent-subtle);
+  background: var(--clr-bg-accent-subtle);
   overflow: hidden;
   flex-shrink: 0;
 
@@ -9970,7 +9966,7 @@ noscript {
     }
 
     h1 {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
       font-size: 22px;
       line-height: 33px;
       font-weight: 700;
@@ -10004,7 +10000,7 @@ noscript {
     padding: 15px 10px;
 
     .icon-button {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
     }
   }
 }
@@ -10265,7 +10261,7 @@ noscript {
       padding: 20px;
       border-radius: 4px;
       border: 1px solid var(--clr-border-primary);
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
       cursor: pointer;
       width: 100%;
       background: none;
@@ -10916,7 +10912,7 @@ noscript {
     &:hover,
     &:focus,
     &:active {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
     }
   }
 }
@@ -11198,7 +11194,7 @@ noscript {
     inset-inline-start: 0;
     width: 100%;
     height: 100%;
-    border-inline-start: 4px solid $highlight-text-color;
+    border-inline-start: 4px solid var(--clr-text-accent);
     pointer-events: none;
   }
 }
