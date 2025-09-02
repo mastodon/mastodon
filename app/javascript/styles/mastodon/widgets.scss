@@ -25,12 +25,12 @@
       &:hover,
       &:active,
       &:focus {
-        background: $ui-base-color;
+        background: var(--clr-bg-primary);
       }
     }
 
     &.active > a {
-      background: $ui-highlight-color;
+      background: var(--clr-bg-accent-strong);
       cursor: default;
     }
 
@@ -76,7 +76,7 @@
     }
 
     &.active .avatar-stack .account__avatar {
-      border-color: $ui-highlight-color;
+      border-color: var(--clr-text-accent);
     }
 
     .trends__item__current {
@@ -113,7 +113,7 @@
   tbody td {
     padding: 15px 0;
     vertical-align: middle;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--clr-border-primary);
   }
 
   tbody tr:last-child td {
@@ -148,7 +148,7 @@
       &:focus,
       &:hover,
       &:active {
-        color: $highlight-text-color;
+        color: var(--clr-text-accent);
       }
     }
   }
@@ -165,15 +165,15 @@
 
   .icon {
     &.active {
-      color: $highlight-text-color;
+      color: var(--clr-text-accent);
     }
 
     &.passive {
-      color: $passive-text-color;
+      color: var(--clr-text-warning);
     }
 
     &.active.passive {
-      color: $active-passive-text-color;
+      color: var(--clr-text-success);
     }
   }
 

@@ -283,14 +283,7 @@
 .simple_form {
   .warning {
     box-shadow: none;
-    background: color.change($error-red, $alpha: 0.5);
     text-shadow: none;
-  }
-
-  .recommended {
-    border-color: $ui-highlight-color;
-    color: $ui-highlight-color;
-    background-color: color.change($ui-highlight-color, $alpha: 0.1);
   }
 
   input[type='text'],
