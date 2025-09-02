@@ -16,11 +16,6 @@ $classic-secondary-color: hsl(255deg, 25%, 88%);
 $classic-highlight-color: $blurple-500;
 
 @use '../mastodon/variables' with (
-  $success-green: color.adjust(
-      hsl(138deg, 32%, 35%),
-      $lightness: 8%,
-      $space: hsl
-    ),
   $base-overlay-background: $white,
 
   $ui-base-color: $classic-secondary-color,
