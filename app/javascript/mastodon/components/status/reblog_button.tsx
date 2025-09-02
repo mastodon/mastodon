@@ -44,7 +44,7 @@ const messages = defineMessages({
   quote: { id: 'status.quote', defaultMessage: 'Quote' },
   quote_cannot: {
     id: 'status.cannot_quote',
-    defaultMessage: 'Author has disabled quoting on this post',
+    defaultMessage: 'Quotes are disabled on this post',
   },
   quote_followers_only: {
     id: 'status.quote_followers_only',
