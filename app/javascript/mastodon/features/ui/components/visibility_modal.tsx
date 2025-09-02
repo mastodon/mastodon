@@ -89,6 +89,24 @@ const selectStatusPolicy = createAppSelector(
   },
 );
 
+const selectDisablePublicVisibilities = createAppSelector(
+  [
+    (state) => state.statuses,
+    (_state, statusId?: string) => !!statusId,
+    (state) => state.compose.get('quoted_status_id') as string | null,
+  ],
+  (statuses, isEditing, statusId) => {
+    if (isEditing || !statusId) return false;
+
+    const status = statuses.get(statusId);
+    if (!status) {
+      return false;
+    }
+
+    return status.get('visibility') === 'private';
+  },
+);
+
 export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ onClose, onChange, statusId }, _ref) => {
@@ -110,24 +128,12 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
     const disableVisibility = !!statusId;
     const disableQuotePolicy =
       visibility === 'private' || visibility === 'direct';
+    const disablePublicVisibilities: boolean = useAppSelector(
+      selectDisablePublicVisibilities,
+    );
 
-    const visibilityItems = useMemo<SelectItem<StatusVisibility>[]>(
-      () => [
-        {
-          value: 'public',
-          text: intl.formatMessage(privacyMessages.public_short),
-          meta: intl.formatMessage(privacyMessages.public_long),
-          icon: 'globe',
-          iconComponent: PublicIcon,
-        },
-        {
-          value: 'unlisted',
-          text: intl.formatMessage(privacyMessages.unlisted_short),
-          meta: intl.formatMessage(privacyMessages.unlisted_long),
-          extra: intl.formatMessage(privacyMessages.unlisted_extra),
-          icon: 'unlock',
-          iconComponent: QuietTimeIcon,
-        },
+    const visibilityItems = useMemo<SelectItem<StatusVisibility>[]>(() => {
+      const items: SelectItem<StatusVisibility>[] = [
         {
           value: 'private',
           text: intl.formatMessage(privacyMessages.private_short),
@@ -142,9 +148,30 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
           icon: 'at',
           iconComponent: AlternateEmailIcon,
         },
-      ],
-      [intl],
-    );
+      ];
+
+      if (!disablePublicVisibilities) {
+        items.unshift(
+          {
+            value: 'public',
+            text: intl.formatMessage(privacyMessages.public_short),
+            meta: intl.formatMessage(privacyMessages.public_long),
+            icon: 'globe',
+            iconComponent: PublicIcon,
+          },
+          {
+            value: 'unlisted',
+            text: intl.formatMessage(privacyMessages.unlisted_short),
+            meta: intl.formatMessage(privacyMessages.unlisted_long),
+            extra: intl.formatMessage(privacyMessages.unlisted_extra),
+            icon: 'unlock',
+            iconComponent: QuietTimeIcon,
+          },
+        );
+      }
+
+      return items;
+    }, [intl, disablePublicVisibilities]);
     const quoteItems = useMemo<SelectItem<ApiQuotePolicy>[]>(
       () => [
         { value: 'public', text: intl.formatMessage(messages.quotePublic) },
@@ -198,10 +225,10 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
           <div className='dialog-modal__content__description'>
             <FormattedMessage
               id='visibility_modal.instructions'
-              defaultMessage='Control who can interact with this post. Global settings can be found under <link>Preferences > Other</link>.'
+              defaultMessage='Control who can interact with this post. You can also apply settings to all future posts by navigating to <link>Preferences > Posting defaults</link>.'
               values={{
                 link: (chunks) => (
-                  <a href='/settings/preferences/other'>{chunks}</a>
+                  <a href='/settings/preferences/posting_defaults'>{chunks}</a>
                 ),
               }}
               tagName='p'
@@ -216,7 +243,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             >
               <FormattedMessage
                 id='visibility_modal.privacy_label'
-                defaultMessage='Privacy'
+                defaultMessage='Visibility'
               />
 
               <Dropdown
@@ -236,6 +263,14 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
                   />
                 </p>
               )}
+              {!statusId && disablePublicVisibilities && (
+                <p className='visibility-dropdown__helper'>
+                  <FormattedMessage
+                    id='visibility_modal.helper.privacy_private_self_quote'
+                    defaultMessage='Self-quotes of private posts cannot be made public.'
+                  />
+                </p>
+              )}
             </label>
 
             <label
@@ -246,7 +281,7 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             >
               <FormattedMessage
                 id='visibility_modal.quote_label'
-                defaultMessage='Change who can quote'
+                defaultMessage='Who can quote'
               />
 
               <Dropdown
