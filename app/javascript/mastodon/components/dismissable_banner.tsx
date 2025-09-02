@@ -23,31 +23,40 @@ interface Props {
   id: string;
 }
 
-export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
-  id,
-  children,
-}) => {
+export function useDismissableBannerState(id: string) {
   const dismissed = useAppSelector((state) =>
     state.settings.getIn(['dismissed_banners', id], false),
   );
+
+  const [isVisible, setIsVisible] = useState(
+    !bannerSettings.get(id) && !dismissed,
+  );
+
   const dispatch = useAppDispatch();
 
-  const [visible, setVisible] = useState(!bannerSettings.get(id) && !dismissed);
-  const intl = useIntl();
-
-  const handleDismiss = useCallback(() => {
-    setVisible(false);
+  const dismiss = useCallback(() => {
+    setIsVisible(false);
     bannerSettings.set(id, true);
     dispatch(changeSetting(['dismissed_banners', id], true));
   }, [id, dispatch]);
 
   useEffect(() => {
-    if (!visible && !dismissed) {
-      dispatch(changeSetting(['dismissed_banners', id], true));
+    if (!isVisible && !dismissed) {
+      // dispatch(changeSetting(['dismissed_banners', id], true));
     }
-  }, [id, dispatch, visible, dismissed]);
+  }, [id, dispatch, isVisible, dismissed]);
 
-  if (!visible) {
+  return { isVisible, dismiss };
+}
+
+export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
+  id,
+  children,
+}) => {
+  const intl = useIntl();
+  const { isVisible, dismiss } = useDismissableBannerState(id);
+
+  if (!isVisible) {
     return null;
   }
 
@@ -58,7 +67,7 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
           icon='times'
           iconComponent={CloseIcon}
           title={intl.formatMessage(messages.dismiss)}
-          onClick={handleDismiss}
+          onClick={dismiss}
         />
       </div>
 
