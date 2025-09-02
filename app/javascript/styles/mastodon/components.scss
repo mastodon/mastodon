@@ -1439,11 +1439,11 @@
   line-height: 22px;
   display: flex;
   justify-content: space-between;
-  color: $dark-text-color;
+  color: var(--clr-text-tertiary);
 }
 
 .status__wrapper--filtered {
-  color: $dark-text-color;
+  color: var(--clr-text-tertiary);
   border: 0;
   font-size: inherit;
   text-align: center;
@@ -1612,7 +1612,7 @@
 }
 
 .notification__relative_time {
-  color: $dark-text-color;
+  color: var(--clr-text-tertiary);
   float: right;
   font-size: 14px;
   padding-bottom: 1px;
@@ -1683,7 +1683,7 @@
   padding: 0 10px;
 
   .detailed-status__display-name {
-    color: $dark-text-color;
+    color: var(--clr-text-tertiary);
 
     span {
       display: inline;
@@ -1818,7 +1818,7 @@
   .logo {
     width: 40px;
     height: 40px;
-    color: $dark-text-color;
+    color: var(--clr-text-tertiary);
   }
 }
 
@@ -1845,7 +1845,7 @@
 
 .detailed-status__meta {
   margin-top: 24px;
-  color: $dark-text-color;
+  color: var(--clr-text-tertiary);
   font-size: 14px;
   line-height: 18px;
 
@@ -2210,7 +2210,7 @@
     color: var(--clr-text-secondary);
 
     &--missing {
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
     }
 
     p {
@@ -2500,11 +2500,11 @@ a.account__display-name {
   .status__content,
   .status__content p,
   .status__content a {
-    color: $dark-text-color;
+    color: var(--clr-text-tertiary);
   }
 
   .status__display-name strong {
-    color: $dark-text-color;
+    color: var(--clr-text-tertiary);
   }
 
   .status__avatar {
@@ -3449,7 +3449,7 @@ a.account__display-name {
   &__source {
     font-size: 13px;
     line-height: 16px;
-    color: $dark-text-color;
+    color: var(--clr-text-tertiary);
 
     @container (width >= 400px) {
       padding-inline-start: 60px;
@@ -4130,7 +4130,7 @@ a.account__display-name {
 }
 
 .getting-started {
-  color: $dark-text-color;
+  color: var(--clr-text-tertiary);
   overflow: auto;
   border: 1px solid var(--clr-border-primary);
   border-top: 0;
@@ -4728,7 +4728,7 @@ a.status-card {
   }
 
   &:disabled {
-    color: $dark-text-color;
+    color: var(--clr-text-disabled);
     cursor: default;
   }
 }
@@ -4832,7 +4832,7 @@ a.status-card {
 }
 
 .loading-indicator {
-  color: $dark-text-color;
+  color: var(--clr-text-secondary);
   font-size: 12px;
   font-weight: 400;
   text-transform: uppercase;
@@ -5135,7 +5135,7 @@ a.status-card {
     }
 
     &__placeholder {
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
       padding-inline-start: 2px;
       font-size: 12px;
     }
@@ -5173,12 +5173,12 @@ a.status-card {
     &__dropdown-indicator {
       cursor: pointer;
       transition: none;
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
 
       &:hover,
       &:active,
       &:focus {
-        color: lighten($dark-text-color, 4%);
+        color: var(--clr-text-secondary);
       }
     }
 
@@ -5236,7 +5236,7 @@ a.status-card {
 }
 
 .empty-column-indicator {
-  color: $dark-text-color;
+  color: var(--clr-text-tertiary);
   text-align: center;
   padding: 20px;
   font-size: 14px;
@@ -5253,7 +5253,7 @@ a.status-card {
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
     text-decoration: none;
 
     &:hover {
@@ -5796,7 +5796,7 @@ a.status-card {
   &__helper {
     margin-top: 4px;
     font-size: 0.8em;
-    color: var(--clr-text-secondary);
+    color: var(--clr-text-tertiary);
   }
 }
 
@@ -6418,7 +6418,7 @@ a.status-card {
       align-items: center;
       gap: 4px;
       margin-bottom: 8px;
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
 
       bdi {
         color: inherit;
@@ -6429,7 +6429,7 @@ a.status-card {
       display: -webkit-box;
       font-size: 15px;
       line-height: 22px;
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
       line-clamp: 4;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
@@ -6446,7 +6446,7 @@ a.status-card {
       margin-top: 0;
       font-size: 15px;
       line-height: 22px;
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
     }
   }
 
@@ -6538,7 +6538,7 @@ a.status-card {
     &__hint {
       font-size: 14px;
       line-height: 20px;
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
     }
 
     .link-button {
@@ -7223,7 +7223,7 @@ a.status-card {
 
   &__icon {
     flex: 0 0 auto;
-    color: $dark-text-color;
+    color: var(--clr-text-tertiary);
     padding: 8px 18px;
     cursor: default;
     border-inline-end: 1px solid var(--clr-border-primary);
@@ -7249,7 +7249,7 @@ a.status-card {
 
     a {
       text-decoration: none;
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
       font-weight: 500;
 
       &:hover {
@@ -7267,7 +7267,7 @@ a.status-card {
     }
 
     .icon {
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
       vertical-align: middle;
     }
   }
@@ -8547,7 +8547,7 @@ noscript {
         width: auto;
         background: transparent;
         text-transform: uppercase;
-        color: $dark-text-color;
+        color: var(--clr-text-tertiary);
       }
 
       dd {
@@ -8671,7 +8671,7 @@ noscript {
       border-radius: 4px;
 
       &::placeholder {
-        color: $dark-text-color;
+        color: var(--clr-text-tertiary);
         opacity: 1;
       }
 
@@ -8741,7 +8741,7 @@ noscript {
 
     &__name {
       flex: 1 1 auto;
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -9228,7 +9228,7 @@ noscript {
   line-height: 21px;
   font-weight: 500;
   cursor: pointer;
-  color: $dark-text-color;
+  color: var(--clr-text-tertiary);
   aspect-ratio: 16 / 9;
 
   .icon {
@@ -9310,7 +9310,7 @@ noscript {
   .search__icon {
     top: 12px;
     inset-inline-end: 12px;
-    color: $dark-text-color;
+    color: var(--clr-text-tertiary);
   }
 }
 
@@ -10100,7 +10100,7 @@ noscript {
   }
 
   &__footer {
-    color: $dark-text-color;
+    color: var(--clr-text-tertiary);
     text-align: center;
     font-size: 15px;
     line-height: 22px;
@@ -10347,10 +10347,10 @@ noscript {
   width: auto;
   padding: 15px;
   margin: 0;
-  color: $white;
-  background: color.change($black, $alpha: 0.85);
+  color: var(--clr-text-on-inverted);
+  background: var(--clr-bg-inverted);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(lighten($classic-base-color, 4%), 0.85);
+  border: 1px solid var(--clr-border-on-bg-inverted);
   border-radius: 8px;
   box-shadow:
     0 10px 15px -3px color.change($base-shadow-color, $alpha: 0.25),
@@ -10394,7 +10394,7 @@ noscript {
   background: transparent;
   text-transform: uppercase;
   cursor: pointer;
-  color: $blurple-300;
+  color: var(--clr-text-accent);
   font-weight: 700;
   border-radius: 4px;
   padding: 0 4px;
@@ -10402,7 +10402,7 @@ noscript {
   &:hover,
   &:focus,
   &:active {
-    background: color.change($white, $alpha: 0.15);
+    background: var(--clr-bg-accent-subtle);
   }
 }
 
@@ -10678,7 +10678,7 @@ noscript {
           &__source {
             display: inline-flex;
             align-items: center;
-            color: $dark-text-color;
+            color: var(--clr-text-tertiary);
             gap: 4px;
             overflow: hidden;
             white-space: nowrap;
@@ -10934,7 +10934,7 @@ noscript {
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
-    color: $dark-text-color;
+    color: var(--clr-text-tertiary);
 
     .icon {
       width: 28px;
@@ -10958,7 +10958,7 @@ noscript {
   &--relationships-severance-event &__icon,
   &--admin-report &__icon,
   &--admin-sign-up &__icon {
-    color: $dark-text-color;
+    color: var(--clr-text-tertiary);
   }
 
   &--moderation-warning &__icon {
@@ -11014,7 +11014,7 @@ noscript {
         }
 
         time {
-          color: $dark-text-color;
+          color: var(--clr-text-tertiary);
         }
 
         @container (width < 350px) {
@@ -11033,7 +11033,7 @@ noscript {
     }
 
     &__additional-content {
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
       margin-top: -8px; // to offset the parent's `gap` property
       font-size: 15px;
       line-height: 22px;
@@ -11055,7 +11055,7 @@ noscript {
       display: flex;
       align-items: center;
       gap: 4px;
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
       font-size: 15px;
       line-height: 22px;
 
@@ -11093,7 +11093,7 @@ noscript {
       margin-top: 0;
       font-size: 15px;
       line-height: 22px;
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
     }
   }
 }
@@ -11114,7 +11114,7 @@ noscript {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: $dark-text-color;
+    color: var(--clr-text-tertiary);
     font-size: 15px;
     line-height: 22px;
     font-weight: 500;
@@ -11285,7 +11285,7 @@ noscript {
 
   &__note {
     &-label {
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
       font-size: 12px;
       font-weight: 500;
       text-transform: uppercase;
@@ -11318,7 +11318,7 @@ noscript {
 
     &__account {
       display: block;
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
     }
   }
 
@@ -11345,7 +11345,7 @@ noscript {
 
       dt {
         flex: 0 1 auto;
-        color: $dark-text-color;
+        color: var(--clr-text-tertiary);
         min-width: 0;
         overflow: hidden;
         white-space: nowrap;
