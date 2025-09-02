@@ -6,7 +6,6 @@ $ui-secondary-color: hsl(255deg, 25%, 88%) !default;
 $ui-highlight-color: hsl(240deg, 100%, 69%) !default;
 
 @use '../mastodon/variables' with (
-  $highlight-text-color: lighten($ui-highlight-color, 10%),
   $action-button-color: lighten($ui-base-color, 50%),
   $inverted-text-color: #000,
   $lighter-text-color: darken($ui-base-color, 6%),
