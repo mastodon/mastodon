@@ -698,7 +698,7 @@ body,
   }
 
   &__timestamp {
-    color: $dark-text-color;
+    color: var(--clr-text-tertiary);
   }
 
   a,
@@ -844,7 +844,7 @@ a.name-tag,
   }
 
   time {
-    color: $dark-text-color;
+    color: var(--clr-text-tertiary);
   }
 }
 
@@ -1067,7 +1067,7 @@ a.name-tag,
 
     &__meta {
       padding: 0 15px;
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
 
       a {
         color: inherit;
@@ -1714,7 +1714,7 @@ a.sparkline {
     &__description {
       padding: 15px;
       font-size: 14px;
-      color: $dark-text-color;
+      color: var(--clr-text-tertiary);
     }
   }
 
@@ -2028,7 +2028,7 @@ a.sparkline {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: $dark-text-color;
+    background: var(--clr-text-tertiary);
   }
 
   &.success {

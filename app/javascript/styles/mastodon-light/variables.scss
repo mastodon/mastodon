@@ -11,26 +11,20 @@ $blurple-500: #6364ff; // Brand purple
 $grey-600: hsl(240deg, 8%, 33%); // Trout
 $grey-100: hsl(240deg, 51%, 90%); // Topaz
 
-$classic-base-color: hsl(240deg, 16%, 19%);
-$classic-secondary-color: hsl(255deg, 25%, 88%);
-$classic-highlight-color: $blurple-500;
-
 @use '../mastodon/variables' with (
   $base-overlay-background: $white,
 
-  $ui-base-color: $classic-secondary-color,
+  $ui-base-color: hsl(255deg, 25%, 88%),
   $ui-base-lighter-color: hsl(250deg, 24%, 75%),
-  $ui-secondary-color: $classic-base-color,
-
+  $ui-secondary-color: hsl(240deg, 16%, 19%),
   $ui-button-secondary-color: $grey-600,
   $ui-button-secondary-border-color: $grey-600,
   $ui-button-secondary-focus-color: $white,
   $ui-button-tertiary-color: $blurple-500,
   $ui-button-tertiary-border-color: $blurple-500,
 
-  $lighter-text-color: $classic-base-color,
-  $highlight-text-color: $classic-highlight-color,
-  $dark-text-color: hsl(240deg, 16%, 32%),
+  $lighter-text-color: hsl(240deg, 16%, 19%),
+  $highlight-text-color: $blurple-500,
   $light-text-color: hsl(240deg, 16%, 32%),
   $inverted-text-color: $black,
 
