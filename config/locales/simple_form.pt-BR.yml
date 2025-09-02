@@ -56,10 +56,12 @@ pt-BR:
         scopes: Quais APIs o aplicativo vai ter permissão de acessar. Se você selecionar uma autorização de alto nível, você não precisa selecionar individualmente os outros.
         setting_aggregate_reblogs: Não mostrar novos impulsos para publicações que já foram impulsionadas recentemente (afeta somente os impulsos mais recentes)
         setting_always_send_emails: Normalmente, as notificações por e-mail não serão enviadas enquanto você estiver usando ativamente o Mastodon
+        setting_default_quote_policy: Esta configuração só terá efeito para posts criados com a próxima versão do Mastodon, mas você pode selecionar sua preferência na preparação.
         setting_default_sensitive: Mídia sensível está oculta por padrão e pode ser revelada com um clique
         setting_display_media_default: Sempre ocultar mídia sensível
         setting_display_media_hide_all: Sempre ocultar todas as mídias
         setting_display_media_show_all: Sempre mostrar mídia sensível
+        setting_emoji_style: Como exibir emojis. "Automáticos" tentará usar emojis nativos, mas voltará para o Twemoji para navegadores legados.
         setting_system_scrollbars_ui: Se aplica apenas para navegadores de computador baseado no Safari e Chrome
         setting_use_blurhash: O blur é baseado nas cores da imagem oculta, ofusca a maioria dos detalhes
         setting_use_pending_items: Ocultar atualizações da linha do tempo atrás de um clique ao invés de rolar automaticamente
@@ -148,6 +150,9 @@ pt-BR:
         min_age: Não deve ter menos que a idade mínima exigida pelas suas leis locais.
       user:
         chosen_languages: Apenas as publicações dos idiomas selecionados serão exibidas nas linhas públicas
+        date_of_birth:
+          one: Precisamos ter certeza de que você tem, no mínimo, %{count} anos para usar o %{domain} Não armazenaremos essa informação.
+          other: Temos que ter certeza de que você é pelo menos %{count} para usar o %{domain} Não vamos armazenar isso.
         role: A função controla quais permissões o usuário tem.
       user_role:
         color: Cor a ser usada para o cargo em toda a interface do usuário, como RGB no formato hexadecimal
@@ -155,6 +160,10 @@ pt-BR:
         name: Nome público do cargo, se ele for definido para ser exibido como um distintivo
         permissions_as_keys: Usuários com esse cargo terão acesso a...
         position: Um cargo superior decide a resolução de conflitos em certas situações. Certas ações só podem ser executadas com cargos de menor prioridade
+      username_block:
+        allow_with_approval: Em vez de impedir a inscrição completa, a correspondência de cadastros exigirá sua aprovação
+        comparison: Por favor, esteja atento ao problema de Scunthorpe ao bloquear correspondências parciais
+        username: Serão correspondidos independentemente de casar e homólogos comuns como "4" para "a" ou "3" para "e"
       webhook:
         events: Selecione eventos para enviar
         template: Elabore seu próprio conteúdo JSON usando interpolação de variáveis. Deixe em branco para utilizar o JSON padrão.
@@ -227,6 +236,7 @@ pt-BR:
         setting_auto_play_gif: Reproduzir GIFs automaticamente
         setting_boost_modal: Solicitar confirmação antes de dar boost
         setting_default_language: Idioma dos toots
+        setting_default_privacy: Visibilidade da publicação
         setting_default_quote_policy: Quem pode citar
         setting_default_sensitive: Sempre marcar mídia como sensível
         setting_delete_modal: Solicitar confirmação antes de excluir toot
@@ -236,6 +246,7 @@ pt-BR:
         setting_display_media_default: Padrão
         setting_display_media_hide_all: Ocultar tudo
         setting_display_media_show_all: Mostrar tudo
+        setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Sempre expandir toots com Aviso de Conteúdo
         setting_hide_network: Ocultar suas relações
         setting_missing_alt_text_modal: Mostrar caixa de diálogo de confirmação antes de postar mídia sem texto alternativo.
@@ -318,6 +329,7 @@ pt-BR:
         follow_request: Enviar e-mail quando alguém quiser te seguir
         mention: Enviar e-mail quando alguém te mencionar
         pending_account: Enviar e-mail quando uma nova conta precisa ser revisada
+        quote: Alguém citou você
         reblog: Enviar e-mail quando alguém der boost nos teus toots
         report: Nova denúncia foi enviada
         software_updates:
@@ -364,6 +376,10 @@ pt-BR:
         name: Nome
         permissions_as_keys: Permissões
         position: Prioridade
+      username_block:
+        allow_with_approval: Permitir inscrições com aprovação
+        comparison: Método de comparação
+        username: Palavra para corresponder
       webhook:
         events: Eventos habilitados
         template: Conteúdo JSON

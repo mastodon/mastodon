@@ -187,7 +187,7 @@ de:
         create_domain_block: Domain sperren
         create_email_domain_block: E-Mail-Domain-Sperre erstellen
         create_ip_block: IP-Regel erstellen
-        create_relay: Relay erstellen
+        create_relay: Relais erstellen
         create_unavailable_domain: Nicht verfügbare Domain erstellen
         create_user_role: Rolle erstellen
         create_username_block: Regel für Profilnamen erstellen
@@ -200,18 +200,18 @@ de:
         destroy_email_domain_block: E-Mail-Domain-Sperre entfernen
         destroy_instance: Domain-Daten entfernen
         destroy_ip_block: IP-Regel löschen
-        destroy_relay: Relay löschen
+        destroy_relay: Relais löschen
         destroy_status: Beitrag entfernen
         destroy_unavailable_domain: Nicht-verfügbare Domain entfernen
         destroy_user_role: Rolle entfernen
         destroy_username_block: Regel für Profilnamen löschen
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Eigenes Emoji deaktivieren
-        disable_relay: Relay deaktivieren
+        disable_relay: Relais deaktivieren
         disable_sign_in_token_auth_user: E-Mail-Token-Authentisierung für dieses Konto deaktivieren
         disable_user: Benutzer*in deaktivieren
         enable_custom_emoji: Eigenes Emoji aktivieren
-        enable_relay: Relay aktivieren
+        enable_relay: Relais aktivieren
         enable_sign_in_token_auth_user: E-Mail-Token-Authentisierung für dieses Konto aktivieren
         enable_user: Benutzer*in aktivieren
         memorialize_account: Gedenkkonto
@@ -268,18 +268,18 @@ de:
         destroy_email_domain_block_html: "%{name} entsperrte die E-Mail-Domain %{target}"
         destroy_instance_html: "%{name} entfernte die Daten der Domain %{target} von diesem Server"
         destroy_ip_block_html: "%{name} entfernte eine IP-Regel für %{target}"
-        destroy_relay_html: "%{name} löschte das Relay %{target}"
+        destroy_relay_html: "%{name} löschte das Relais %{target}"
         destroy_status_html: "%{name} entfernte einen Beitrag von %{target}"
         destroy_unavailable_domain_html: "%{name} nahm die Zustellung an die Domain %{target} wieder auf"
         destroy_user_role_html: "%{name} löschte die Rolle %{target}"
         destroy_username_block_html: "%{name} entfernte eine Regel für Profilnamen mit %{target}"
         disable_2fa_user_html: "%{name} deaktivierte die Zwei-Faktor-Authentisierung für %{target}"
         disable_custom_emoji_html: "%{name} deaktivierte das Emoji %{target}"
-        disable_relay_html: "%{name} deaktivierte das Relay %{target}"
+        disable_relay_html: "%{name} deaktivierte das Relais %{target}"
         disable_sign_in_token_auth_user_html: "%{name} deaktivierte die E-Mail-Token-Authentisierung für %{target}"
         disable_user_html: "%{name} deaktivierte den Zugang für %{target}"
         enable_custom_emoji_html: "%{name} aktivierte das Emoji %{target}"
-        enable_relay_html: "%{name} aktivierte das Relay %{target}"
+        enable_relay_html: "%{name} aktivierte das Relais %{target}"
         enable_sign_in_token_auth_user_html: "%{name} aktivierte die E-Mail-Token-Authentisierung für %{target}"
         enable_user_html: "%{name} aktivierte den Zugang für %{target}"
         memorialize_account_html: "%{name} wandelte das Konto von %{target} in eine Gedenkseite um"
@@ -629,21 +629,21 @@ de:
     relationships:
       title: Beziehungen von %{acct}
     relays:
-      add_new: Neues Relay hinzufügen
+      add_new: Neues Relais hinzufügen
       delete: Entfernen
-      description_html: Ein <strong>Föderierungsrelay</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern, die das Relay abonnieren und zu ihm veröffentlichen, austauscht.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf externen Servern durch lokale Nutzer*innen erfordern würde.
+      description_html: Ein <strong>Föderierungsrelay</strong> ist ein vermittelnder Server, der eine große Anzahl öffentlicher Beiträge zwischen Servern, die das Relais abonnieren und zu ihm veröffentlichen, austauscht.<strong> Es kann kleinen und mittleren Servern dabei helfen, Inhalte des Fediverse zu entdecken</strong>, was andernfalls das manuelle Folgen anderer Leute auf externen Servern durch lokale Nutzer*innen erfordern würde.
       disable: Ausschalten
       disabled: Ausgeschaltet
       enable: Einschalten
-      enable_hint: Sobald aktiviert, wird dein Server alle öffentlichen Beiträge dieses Relays abonnieren und alle öffentlichen Beiträge dieses Servers an dieses senden.
+      enable_hint: Sobald aktiviert, wird dein Server alle öffentlichen Beiträge dieses Relais abonnieren und alle öffentlichen Beiträge dieses Servers an dieses senden.
       enabled: Eingeschaltet
       inbox_url: Relay-URL
       pending: Warte auf Zustimmung des Relays
       save_and_enable: Speichern und aktivieren
-      setup: Neues Relay verbinden
-      signatures_not_enabled: Die Relays funktionieren nicht korrekt, wenn der abgesicherte Modus aktiviert oder die Föderation eingeschränkt ist
+      setup: Neues Relais verbinden
+      signatures_not_enabled: Die Relais funktionieren nicht korrekt, wenn der abgesicherte Modus aktiviert oder die Föderation eingeschränkt ist
       status: Status
-      title: Relays
+      title: Relais
     report_notes:
       created_msg: Notiz zur Meldung erfolgreich erstellt!
       destroyed_msg: Notiz zur Meldung erfolgreich entfernt!
@@ -1290,7 +1290,7 @@ de:
     user_agreement_html: Ich stimme den <a href="%{terms_of_service_path}" target="_blank">Nutzungsbedingungen</a> sowie der <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> zu
     user_privacy_agreement_html: Ich stimme der <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> zu
   author_attribution:
-    example_title: Beispieltext
+    example_title: Beispieltitel
     hint_html: Schreibst du außerhalb von Mastodon journalistische Artikel oder andere Texte, beispielsweise in einem Blog? Lege hier fest, wann auf dein Profil verwiesen werden soll, wenn Links zu deinen Werken auf Mastodon geteilt werden.
     instructions: 'Der nachfolgende Code muss im HTML-Header deines zu verlinkenden Textes stehen:'
     more_from_html: Mehr von %{name}
@@ -1739,6 +1739,9 @@ de:
       self_vote: Du kannst an deinen eigenen Umfragen nicht selbst teilnehmen
       too_few_options: muss mehr als ein Auswahlfeld enthalten
       too_many_options: darf nicht mehr als %{max} Auswahlfelder enthalten
+    vote: Abstimmen
+  posting_defaults:
+    explanation: Diese Einstellungen werden standardmäßig für neue Beiträge verwendet. Du kannst sie auch beim Verfassen eines Beitrags individuell anpassen.
   preferences:
     other: Erweitert
     posting_defaults: Standardeinstellungen für Beiträge
