@@ -35,6 +35,7 @@
 
   --clr-text-primary: var(--clr-grey-50);
   --clr-text-secondary: var(--clr-grey-400);
+  --clr-text-tertiary: var(--clr-grey-500);
   --clr-text-on-inverted: var(--clr-grey-950);
   --clr-text-accent: var(--clr-indigo-400);
   --clr-text-accent-subtle: color-mix(
@@ -77,7 +78,7 @@
   );
   --clr-bg-ambient: var(--clr-bg-primary);
   --clr-bg-elevated: var(--clr-grey-800);
-  --clr-bg-inverted: var(--clr-grey-950);
+  --clr-bg-inverted: var(--clr-grey-50);
   --clr-bg-disabled: var(--clr-grey-700);
   --clr-bg-accent-subtle-base: var(--clr-indigo-400);
   --clr-bg-accent-subtle-strength: 10%;
@@ -159,6 +160,7 @@
       var(--clr-text-success),
       50%
     )};
+  --clr-border-on-bg-inverted: var(--clr-border-primary);
 
   /* GRAPHS/CHARTS TOKENS */
 
