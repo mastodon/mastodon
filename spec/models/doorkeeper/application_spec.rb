@@ -18,6 +18,30 @@ RSpec.describe Doorkeeper::Application do
     it { is_expected.to validate_length_of(:website).is_at_most(described_class::APP_WEBSITE_LIMIT) }
   end
 
+  describe '#scopes_array' do
+    subject { application.scopes_array }
+
+    let(:application) { Fabricate.build :application, scopes: }
+
+    context 'when scopes is blank' do
+      let(:scopes) { '' }
+
+      it { is_expected.to be_an(Array).and(be_empty) }
+    end
+
+    context 'when scopes is single value' do
+      let(:scopes) { 'value' }
+
+      it { is_expected.to eq(%w(value)) }
+    end
+
+    context 'when scopes have multiple values' do
+      let(:scopes) { 'value other third' }
+
+      it { is_expected.to eq(%w(value other third)) }
+    end
+  end
+
   describe '#redirect_uris' do
     subject { Fabricate.build(:application, redirect_uri:).redirect_uris }
 
