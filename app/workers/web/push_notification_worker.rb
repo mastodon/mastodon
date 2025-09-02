@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'debug'
 class Web::PushNotificationWorker
   include Sidekiq::Worker
   include RoutingHelper
