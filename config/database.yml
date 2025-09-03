@@ -10,14 +10,14 @@ default: &default
 development:
   primary:
     <<: *default
-    database: <%= ENV['DB_NAME'] || 'mastodon_development' %>
+    database: <%= ENV.fetch('DB_NAME', 'mastodon_development') %>
     username: <%= ENV.fetch('DB_USER', 'postgres') %>
     password: <%= ENV.fetch('DB_PASS', 'postgres').to_json %>
     host: <%= ENV['DB_HOST'] %>
     port: <%= ENV['DB_PORT'] %>
   replica:
     <<: *default
-    database: <%= ENV['DB_NAME'] || 'mastodon_development' %>
+    database: <%= ENV.fetch('DB_NAME', 'mastodon_development') %>
     username: <%= ENV.fetch('DB_USER', 'postgres') %>
     password: <%= ENV.fetch('DB_PASS', 'postgres').to_json %>
     host: <%= ENV['DB_HOST'] %>
@@ -30,14 +30,14 @@ development:
 test:
   primary:
     <<: *default
-    database: <%= ENV['DB_NAME'] || 'mastodon' %>_test<%= ENV['TEST_ENV_NUMBER'] %>
+    database: <%= ENV.fetch('DB_NAME', 'mastodon') %>_test<%= ENV['TEST_ENV_NUMBER'] %>
     username: <%= ENV.fetch('DB_USER', 'postgres') %>
     password: <%= ENV.fetch('DB_PASS', 'postgres').to_json %>
     host: <%= ENV['DB_HOST'] %>
     port: <%= ENV['DB_PORT'] %>
   replica:
     <<: *default
-    database: <%= ENV['DB_NAME'] || 'mastodon' %>_test<%= ENV['TEST_ENV_NUMBER'] %>
+    database: <%= ENV.fetch('DB_NAME', 'mastodon') %>_test<%= ENV['TEST_ENV_NUMBER'] %>
     username: <%= ENV.fetch('DB_USER', 'postgres') %>
     password: <%= ENV.fetch('DB_PASS', 'postgres').to_json %>
     host: <%= ENV['DB_HOST'] %>
