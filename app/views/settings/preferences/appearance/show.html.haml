@@ -43,7 +43,8 @@
 
   - unless I18n.locale == :en
     .flash-message.translation-prompt
-      #{t 'appearance.localization.body'} #{content_tag(:a, t('appearance.localization.guide_link_text'), href: t('appearance.localization.guide_link'), target: '_blank', rel: 'noopener')}
+      = t 'appearance.localization.body'
+      = link_to t('appearance.localization.guide_link_text'), t('appearance.localization.guide_link'), target: '_blank', rel: 'noopener'
 
   = f.simple_fields_for :settings, current_user.settings do |ff|
     %h4= t 'appearance.animations_and_accessibility'
