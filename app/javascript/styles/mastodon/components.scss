@@ -201,6 +201,41 @@
     }
   }
 
+  &.button--plain {
+    color: $highlight-text-color;
+    background: transparent;
+    padding: 6px;
+
+    // The button has no outline, so we use negative margin to
+    // visually align its label with its surroundings while maintaining
+    // a generous click target
+    margin-inline: -6px;
+    border: 1px solid transparent;
+
+    &:active,
+    &:focus,
+    &:hover {
+      border-color: transparent;
+      color: lighten($highlight-text-color, 4%);
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 0.7;
+      border-color: transparent;
+      color: $ui-button-disabled-color;
+
+      &:active,
+      &:focus,
+      &:hover {
+        border-color: transparent;
+        color: $ui-button-disabled-color;
+      }
+    }
+  }
+
   &.button-tertiary {
     background: transparent;
     padding: 6px 17px;
