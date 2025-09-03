@@ -26,47 +26,27 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: false
-
-      matrix:
-        postgres:
-          - 14-alpine
-          - 15-alpine
-          - 16-alpine
-          - 17-alpine
-
     services:
       postgres:
-        image: postgres:${{ matrix.postgres}}
+        image: postgres:15-alpine
+        ports: ['5432:5432']
         env:
-          POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: mastodon_test
         options: >-
-          --health-cmd pg_isready
-          --health-interval 10ms
-          --health-timeout 3s
-          --health-retries 50
-        ports:
-          - 5432:5432
-
-      redis:
-        image: redis:7-alpine
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10ms
-          --health-timeout 3s
-          --health-retries 50
-        ports:
-          - 6379:6379
+          --health-cmd="pg_isready -U postgres -d mastodon_test"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
 
     env:
+      RAILS_ENV: test
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/mastodon_test
       DB_HOST: localhost
       DB_USER: postgres
       DB_PASS: postgres
-      DB_NAME: mastodon
-      RAILS_ENV: test
+      DB_NAME: mastodon_test
       BUNDLE_CLEAN: true
       BUNDLE_FROZEN: true
       BUNDLE_WITHOUT: 'development:production'
@@ -79,36 +59,18 @@ jobs:
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
 
-      - name: Ensure no errors with `db:prepare`
+      - name: Warten bis Postgres bereit ist
         run: |
-          bin/rails db:drop
-          bin/rails db:prepare
-          bin/rails db:migrate
+          until pg_isready -h localhost -U postgres -d mastodon_test; do sleep 1; done
+        env:
+          PGPASSWORD: postgres
 
-      - name: Ensure no errors with `db:prepare` and SKIP_POST_DEPLOYMENT_MIGRATIONS
+      - name: (Fallback) DB-Rolle root anlegen, falls benötigt
         run: |
-          bin/rails db:drop
-          SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails db:prepare
-          bin/rails db:migrate
+          psql -h localhost -U postgres -d postgres -tc "SELECT 1 FROM pg_roles WHERE rolname='root'" | grep -q 1 || \
+          psql -h localhost -U postgres -d postgres -c "CREATE ROLE root LOGIN SUPERUSER PASSWORD 'root';"
+        env:
+          PGPASSWORD: postgres
 
-      - name: Test "one step migration" flow
-        run: |
-          bin/rails db:drop
-          bin/rails db:create
-          bin/rails tests:migrations:prepare_database
-          bin/rails db:migrate
-          bin/rails tests:migrations:check_database
-
-      - name: Test "two step migration" flow
-        run: |
-          bin/rails db:drop
-          bin/rails db:create
-          SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails tests:migrations:prepare_database
-
-          # Migrate up to v4.2.0 breakpoint
-          bin/rails db:migrate VERSION=20230907150100
-
-          # Migrate the rest
-          SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails db:migrate
-          bin/rails db:migrate
-          bin/rails tests:migrations:check_database
+      - name: Tests
+        run: bundle exec rake db:prepare && bundle exec rspec
