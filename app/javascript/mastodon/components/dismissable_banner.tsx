@@ -34,12 +34,12 @@ function useIsActiveOnboardingHint({
   useEffect(() => {
     if (canBeDisplayed) {
       dispatch(setActiveOnboardingHint(hintId));
+    } else {
+      dispatch(clearActiveOnboardingHint(hintId));
     }
 
     return () => {
-      if (isActiveHint && !canBeDisplayed) {
-        dispatch(clearActiveOnboardingHint());
-      }
+      dispatch(clearActiveOnboardingHint(hintId));
     };
   }, [canBeDisplayed, dispatch, hintId, isActiveHint]);
 

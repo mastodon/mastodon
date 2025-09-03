@@ -26,67 +26,65 @@ export const RemoveQuoteHint: React.FC<{
     id: DISMISSABLE_BANNER_ID,
   });
 
-  if (!isVisible || !canShowHint) {
-    return <div className={className}>{children(dismiss)}</div>;
-  }
-
   return (
     <div className={className} ref={anchorRef}>
       {children(dismiss)}
-      <Overlay
-        show
-        flip
-        offset={[12, 10]}
-        placement='bottom-end'
-        target={anchorRef.current}
-        container={anchorRef.current}
-      >
-        {({ props, placement }) => (
-          <div
-            {...props}
-            className={classNames(
-              'info-tooltip info-tooltip--solid dropdown-animation',
-              placement,
-            )}
-          >
-            <h4>
-              <FormattedMessage
-                id='remove_quote_hint.title'
-                defaultMessage='Want to remove your quoted post?'
-              />
-            </h4>
-            <FormattedMessage
-              id='remove_quote_hint.message'
-              defaultMessage='You can do so from the {icon} options menu.'
-              values={{
-                icon: (
-                  <Icon
-                    id='ellipsis-h'
-                    icon={MoreHorizIcon}
-                    aria-label={intl.formatMessage({
-                      id: 'status.more',
-                      defaultMessage: 'More',
-                    })}
-                    style={{ verticalAlign: 'middle' }}
-                  />
-                ),
-              }}
-            >
-              {(text) => <p>{text}</p>}
-            </FormattedMessage>
-            <FormattedMessage
-              id='remove_quote_hint.button_label'
-              defaultMessage='Got it'
-            >
-              {(text) => (
-                <Button plain compact onClick={dismiss}>
-                  {text}
-                </Button>
+      {isVisible && canShowHint && (
+        <Overlay
+          show
+          flip
+          offset={[12, 10]}
+          placement='bottom-end'
+          target={anchorRef.current}
+          container={anchorRef.current}
+        >
+          {({ props, placement }) => (
+            <div
+              {...props}
+              className={classNames(
+                'info-tooltip info-tooltip--solid dropdown-animation',
+                placement,
               )}
-            </FormattedMessage>
-          </div>
-        )}
-      </Overlay>
+            >
+              <h4>
+                <FormattedMessage
+                  id='remove_quote_hint.title'
+                  defaultMessage='Want to remove your quoted post?'
+                />
+              </h4>
+              <FormattedMessage
+                id='remove_quote_hint.message'
+                defaultMessage='You can do so from the {icon} options menu.'
+                values={{
+                  icon: (
+                    <Icon
+                      id='ellipsis-h'
+                      icon={MoreHorizIcon}
+                      aria-label={intl.formatMessage({
+                        id: 'status.more',
+                        defaultMessage: 'More',
+                      })}
+                      style={{ verticalAlign: 'middle' }}
+                    />
+                  ),
+                }}
+              >
+                {(text) => <p>{text}</p>}
+              </FormattedMessage>
+              <FormattedMessage
+                id='remove_quote_hint.button_label'
+                defaultMessage='Got it'
+              >
+                {(text) => (
+                  <Button plain compact onClick={dismiss}>
+                    {text}
+                  </Button>
+                )}
+              </FormattedMessage>
+            </div>
+          )}
+        </Overlay>
+      )}
     </div>
   );
 };

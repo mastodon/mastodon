@@ -21,7 +21,9 @@ export const onboardingHintsReducer = createReducer(initialState, (builder) => {
     .addCase(setActiveOnboardingHint, (state, action) => {
       state.activeOnboardingHintId ??= action.payload;
     })
-    .addCase(clearActiveOnboardingHint, (state) => {
-      state.activeOnboardingHintId = null;
+    .addCase(clearActiveOnboardingHint, (state, action) => {
+      if (state.activeOnboardingHintId === action.payload) {
+        state.activeOnboardingHintId = null;
+      }
     });
 });
