@@ -79,7 +79,7 @@ export const RemoveQuoteHint: React.FC<{
               defaultMessage='Got it'
             >
               {(text) => (
-                <Button compact onClick={dismiss}>
+                <Button plain compact onClick={dismiss}>
                   {text}
                 </Button>
               )}
