@@ -16,7 +16,7 @@ RSpec.describe ReactComponentHelper do
     context 'with a block passed in' do
       let(:result) do
         helper.react_component('name', { one: :two }) do
-          helper.content_tag(:nav, 'ok')
+          helper.tag.nav('ok')
         end
       end
 
