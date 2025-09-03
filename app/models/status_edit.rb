@@ -45,6 +45,10 @@ class StatusEdit < ApplicationRecord
   delegate :local?, :application, :edited?, :edited_at,
            :discarded?, :reply?, :visibility, :language, to: :status
 
+  def with_preview_card?
+    false
+  end
+
   def with_media?
     ordered_media_attachments.any?
   end

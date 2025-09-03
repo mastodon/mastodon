@@ -57,6 +57,19 @@ module StatusesHelper
     components.compact_blank.join("\n\n")
   end
 
+  def preview_card_aspect_ratio_classname(preview_card)
+    interactive = preview_card.type == 'video'
+    large_image = (preview_card.image.present? && preview_card.width > preview_card.height) || interactive
+
+    if large_image && interactive
+      'status-card__image--video'
+    elsif large_image
+      'status-card__image--large'
+    else
+      'status-card__image--normal'
+    end
+  end
+
   def visibility_icon(status)
     VISIBLITY_ICONS[status.visibility.to_sym]
   end

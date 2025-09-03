@@ -13,6 +13,9 @@
     %button.button.button-secondary{ disabled: true }
       = t('polls.vote')
 
+- if status.with_preview_card?
+  = render partial: 'admin/shared/preview_card', locals: { preview_card: status.preview_card }
+
 - if status.with_media?
   - if status.ordered_media_attachments.first.video?
     = render_video_component(status, visible: false)
