@@ -9,6 +9,8 @@ hsb:
   accounts:
     followers:
       one: Follower
+      two: Follower
+      few: Follower
       other: Follower
     following: Folge ich
     instance_actor_flash: Dieses Konto ist ein virtueller Akteur, der den Server selbst repräsentiert, und kein persönliches Profil. Es wird für Föderationszwecke verwendet und sollte daher nicht gesperrt werden.
@@ -19,6 +21,8 @@ hsb:
       following: Du musst dieser Person folgen, um sie empfehlen zu können
     posts:
       one: Beitrag
+      two: Beiträge
+      few: Beiträge
       other: Beiträge
     posts_tab_heading: Beiträge
     self_follow_error: Es ist nicht erlaubt, deinem eigenen Konto zu folgen
@@ -111,6 +115,8 @@ hsb:
       previous_strikes: Vorherige Maßnahmen
       previous_strikes_description_html:
         one: Gegen dieses Konto wurde <strong>eine</strong> Maßnahme verhängt.
+        two: Gegen dieses Konto wurden <strong>%{count}</strong> Maßnahmen verhängt.
+        few: Gegen dieses Konto wurden <strong>%{count}</strong> Maßnahmen verhängt.
         other: Gegen dieses Konto wurden <strong>%{count}</strong> Maßnahmen verhängt.
       promote: Berechtigungen erweitern
       protocol: Protokoll
@@ -379,15 +385,23 @@ hsb:
       opened_reports: eingereichte Meldungen
       pending_appeals_html:
         one: "<strong>%{count}</strong> ausstehender Einspruch"
+        two: "<strong>%{count}</strong> ausstehende Einsprüche"
+        few: "<strong>%{count}</strong> ausstehende Einsprüche"
         other: "<strong>%{count}</strong> ausstehende Einsprüche"
       pending_reports_html:
         one: "<strong>%{count}</strong> offene Meldung"
+        two: "<strong>%{count}</strong> offene Meldungen"
+        few: "<strong>%{count}</strong> offene Meldungen"
         other: "<strong>%{count}</strong> offene Meldungen"
       pending_tags_html:
         one: "<strong>%{count}</strong> ungeprüfter Hashtag"
+        two: "<strong>%{count}</strong> ungeprüfte Hashtags"
+        few: "<strong>%{count}</strong> ungeprüfte Hashtags"
         other: "<strong>%{count}</strong> ungeprüfte Hashtags"
       pending_users_html:
         one: "<strong>%{count}</strong> unerledigte*r Benutzer*in"
+        two: "<strong>%{count}</strong> unerledigte Benutzer*innen"
+        few: "<strong>%{count}</strong> unerledigte Benutzer*innen"
         other: "<strong>%{count}</strong> unerledigte Benutzer*innen"
       resolved_reports: geklärte Meldungen
       software: Programme
@@ -455,6 +469,8 @@ hsb:
       allow_registrations_with_approval: Registrierungen mit Genehmigung zulassen
       attempts_over_week:
         one: "%{count} Registrierungsversuch in der vergangenen Woche"
+        two: "%{count} Registrierungsversuche in der vergangenen Woche"
+        few: "%{count} Registrierungsversuche in der vergangenen Woche"
         other: "%{count} Registrierungsversuche in der vergangenen Woche"
       created_msg: E-Mail-Domain erfolgreich gesperrt
       delete: Entfernen
@@ -531,10 +547,14 @@ hsb:
       availability:
         description_html:
           one: Wenn die Zustellung an die Domain <strong>%{count} Tag</strong> lang erfolglos bleibt, werden keine weiteren Zustellversuche unternommen, bis eine Zustellung <em>von</em> der Domain empfangen wird.
+          two: Wenn die Zustellung an die Domain an <strong>%{count} unterschiedlichen Tagen</strong> erfolglos bleibt, werden keine weiteren Zustellversuche unternommen, bis eine Zustellung <em>von</em> der Domain empfangen wird.
+          few: Wenn die Zustellung an die Domain an <strong>%{count} unterschiedlichen Tagen</strong> erfolglos bleibt, werden keine weiteren Zustellversuche unternommen, bis eine Zustellung <em>von</em> der Domain empfangen wird.
           other: Wenn die Zustellung an die Domain an <strong>%{count} unterschiedlichen Tagen</strong> erfolglos bleibt, werden keine weiteren Zustellversuche unternommen, bis eine Zustellung <em>von</em> der Domain empfangen wird.
         failure_threshold_reached: Grenzwert von Fehlschlägen am %{date} überschritten.
         failures_recorded:
           one: Fehlgeschlagener Versuch an %{count} Tag.
+          two: Fehlgeschlagene Versuche an %{count} unterschiedlichen Tagen.
+          few: Fehlgeschlagene Versuche an %{count} unterschiedlichen Tagen.
           other: Fehlgeschlagene Versuche an %{count} unterschiedlichen Tagen.
         no_failures_recorded: Keine Fehler bei der Aufzeichnung.
         title: Verfügbarkeit
@@ -579,6 +599,8 @@ hsb:
       empty: Keine Domains gefunden.
       known_accounts:
         one: "%{count} bekanntes Konto"
+        two: "%{count} bekannte Konten"
+        few: "%{count} bekannte Konten"
         other: "%{count} bekannte Konten"
       moderation:
         all: Alle
@@ -651,6 +673,8 @@ hsb:
       account:
         notes:
           one: "%{count} Notiz"
+          two: "%{count} Notizen"
+          few: "%{count} Notizen"
           other: "%{count} Notizen"
       action_log: Audit-Log
       action_taken_by: Maßnahme ergriffen von
@@ -740,6 +764,8 @@ hsb:
       add_new: Rolle hinzufügen
       assigned_users:
         one: "%{count} Konto"
+        two: "%{count} Konten"
+        few: "%{count} Konten"
         other: "%{count} Konten"
       categories:
         administration: Administration
@@ -754,6 +780,8 @@ hsb:
       everyone_full_description_html: Das ist die <strong>Basis-Rolle</strong>, die für <strong>alle Benutzer*innen</strong> gilt – auch für diejenigen ohne zugewiesene Rolle. Alle anderen Rollen erben Berechtigungen davon.
       permissions_count:
         one: "%{count} Berechtigung"
+        two: "%{count} Berechtigungen"
+        few: "%{count} Berechtigungen"
         other: "%{count} Berechtigungen"
       privileges:
         administrator: Administrator*in
@@ -1010,6 +1038,8 @@ hsb:
         send_preview: Vorschau an %{email} senden
         send_to_all:
           one: "%{display_count} E-Mail senden"
+          two: "%{display_count} E-Mails senden"
+          few: "%{display_count} E-Mails senden"
           other: "%{display_count} E-Mails senden"
         title: Vorschau zu den neuen Nutzungsbedingungen
       publish: Veröffentlichen
@@ -1038,6 +1068,8 @@ hsb:
           no_publisher_selected: Keine Herausgeber*innen wurden geändert, da keine ausgewählt wurden
         shared_by_over_week:
           one: In den vergangenen 7 Tagen von einem Profil geteilt
+          two: In den vergangenen 7 Tagen von %{count} Profilen geteilt
+          few: In den vergangenen 7 Tagen von %{count} Profilen geteilt
           other: In den vergangenen 7 Tagen von %{count} Profilen geteilt
         title: Angesagte Links
         usage_comparison: Heute %{today}-mal und gestern %{yesterday}-mal geteilt
@@ -1064,6 +1096,8 @@ hsb:
         not_discoverable: Autor*in hat sich dafür entschieden, nicht entdeckt zu werden
         shared_by:
           one: Einmal geteilt oder favorisiert
+          two: "%{friendly_count}-mal geteilt oder favorisiert"
+          few: "%{friendly_count}-mal geteilt oder favorisiert"
           other: "%{friendly_count}-mal geteilt oder favorisiert"
         title: Angesagte Beiträge
       tags:
@@ -1088,6 +1122,8 @@ hsb:
         usage_comparison: Heute %{today}-mal und gestern %{yesterday}-mal verwendet
         used_by_over_week:
           one: In den vergangenen 7 Tagen von einem Profil verwendet
+          two: In den vergangenen 7 Tagen von %{count} Profilen verwendet
+          few: In den vergangenen 7 Tagen von %{count} Profilen verwendet
           other: In den vergangenen 7 Tagen von %{count} Profilen verwendet
       title: Empfehlungen & Trends
       trending: Angesagt
@@ -1128,6 +1164,8 @@ hsb:
       enabled: Aktiv
       enabled_events:
         one: 1 aktiviertes Ereignis
+        two: "%{count} aktivierte Ereignisse"
+        few: "%{count} aktivierte Ereignisse"
         other: "%{count} aktivierte Ereignisse"
       events: Ereignisse
       new: Neuer Webhook
@@ -1440,12 +1478,18 @@ hsb:
       expires_on: Läuft am %{date} ab
       keywords:
         one: "%{count} Schlagwort"
+        two: "%{count} Schlagwörter"
+        few: "%{count} Schlagwörter"
         other: "%{count} Schlagwörter"
       statuses:
         one: "%{count} Beitrag"
+        two: "%{count} Beiträge"
+        few: "%{count} Beiträge"
         other: "%{count} Beiträge"
       statuses_long:
         one: "%{count} individueller Beitrag ausgeblendet"
+        two: "%{count} individuelle Beiträge ausgeblendet"
+        few: "%{count} individuelle Beiträge ausgeblendet"
         other: "%{count} individuelle Beiträge ausgeblendet"
       title: Filter
     new:
@@ -1462,9 +1506,13 @@ hsb:
     all: Alle
     all_items_on_page_selected_html:
       one: "<strong>%{count}</strong> Element auf dieser Seite ausgewählt."
+      two: Alle <strong>%{count}</strong> Elemente auf dieser Seite ausgewählt.
+      few: Alle <strong>%{count}</strong> Elemente auf dieser Seite ausgewählt.
       other: Alle <strong>%{count}</strong> Elemente auf dieser Seite ausgewählt.
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> Element, das den Suchkriterien entspricht, ist ausgewählt."
+      two: Alle <strong>%{count}</strong> Elemente, die den Suchkriterien entsprechen, sind ausgewählt.
+      few: Alle <strong>%{count}</strong> Elemente, die den Suchkriterien entsprechen, sind ausgewählt.
       other: Alle <strong>%{count}</strong> Elemente, die den Suchkriterien entsprechen, sind ausgewählt.
     cancel: Abbrechen
     changes_saved_msg: Änderungen erfolgreich gespeichert!
@@ -1477,10 +1525,14 @@ hsb:
     save_changes: Änderungen speichern
     select_all_matching_items:
       one: Wähle %{count} Element, das deinen Suchkriterien entspricht.
+      two: Wähle alle %{count} Elemente, die deinen Suchkriterien entsprechen.
+      few: Wähle alle %{count} Elemente, die deinen Suchkriterien entsprechen.
       other: Wähle alle %{count} Elemente, die deinen Suchkriterien entsprechen.
     today: heute
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
+      two: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
+      few: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
       other: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
   imports:
     errors:
@@ -1500,40 +1552,64 @@ hsb:
     overwrite_preambles:
       blocking_html:
         one: Du bist dabei, <strong>deine Liste blockierter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konto</strong> zu ersetzen.
+        two: Du bist dabei, <strong>deine Liste blockierter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konten</strong> zu ersetzen.
+        few: Du bist dabei, <strong>deine Liste blockierter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konten</strong> zu ersetzen.
         other: Du bist dabei, <strong>deine Liste blockierter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konten</strong> zu ersetzen.
       bookmarks_html:
         one: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beitrag</strong> zu ersetzen.
+        two: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beiträge</strong> zu ersetzen.
+        few: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beiträge</strong> zu ersetzen.
         other: Du bist dabei, <strong>deine Lesezeichen</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Beiträge</strong> zu ersetzen.
       domain_blocking_html:
         one: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domain</strong> zu ersetzen.
+        two: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domains</strong> zu ersetzen.
+        few: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domains</strong> zu ersetzen.
         other: Du bist dabei, <strong>deine Liste blockierter Domains</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Domains</strong> zu ersetzen.
       following_html:
         one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong> und <strong>allen anderen zu entfolgen</strong>.
+        two: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong> und <strong>allen anderen zu entfolgen</strong>.
+        few: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong> und <strong>allen anderen zu entfolgen</strong>.
         other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong> und <strong>allen anderen zu entfolgen</strong>.
       lists_html:
         one: Du bist dabei, <strong>deine Listen</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Konto</strong> wird zu neuen Listen hinzugefügt.
+        two: Du bist dabei, <strong>deine Listen</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Konten</strong> wird zu neuen Listen hinzugefügt.
+        few: Du bist dabei, <strong>deine Listen</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Konten</strong> wird zu neuen Listen hinzugefügt.
         other: Du bist dabei, <strong>deine Listen</strong> mit dem Inhalt aus <strong>%{filename}</strong> zu <strong>ersetzen</strong>. Bis zu <strong>%{count} Konten</strong> wird zu neuen Listen hinzugefügt.
       muting_html:
         one: Du bist dabei, <strong>deine Liste mit einem stummgeschalteten Konto</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konto</strong> zu ersetzen.
+        two: Du bist dabei, <strong>deine Liste stummgeschalteter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konten</strong> zu ersetzen.
+        few: Du bist dabei, <strong>deine Liste stummgeschalteter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konten</strong> zu ersetzen.
         other: Du bist dabei, <strong>deine Liste stummgeschalteter Konten</strong> aus <strong>%{filename}</strong> durch bis zu <strong>%{count} Konten</strong> zu ersetzen.
     preambles:
       blocking_html:
         one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+        two: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+        few: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
         other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
       bookmarks_html:
         one: Du bist dabei, bis zu <strong>%{count} Beitrag</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
+        two: Du bist dabei, bis zu <strong>%{count} Beiträge</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
+        few: Du bist dabei, bis zu <strong>%{count} Beiträge</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
         other: Du bist dabei, bis zu <strong>%{count} Beiträge</strong> aus <strong>%{filename}</strong> zu deinen <strong>Lesezeichen hinzuzufügen</strong>.
       domain_blocking_html:
         one: Du bist dabei, bis zu <strong>%{count} Domain</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+        two: Du bist dabei, bis zu <strong>%{count} Domains</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
+        few: Du bist dabei, bis zu <strong>%{count} Domains</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
         other: Du bist dabei, bis zu <strong>%{count} Domains</strong> aus <strong>%{filename}</strong> zu <strong>blockieren</strong>.
       following_html:
         one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
+        two: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
+        few: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
         other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu <strong>folgen</strong>.
       lists_html:
         one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Listen gibt, zu denen etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
+        two: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Listen gibt, zu denen etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
+        few: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Listen gibt, zu denen etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
         other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename}</strong> zu deinen <strong>Listen hinzuzufügen</strong>. Wenn es keine Listen gibt, zu denen etwas hinzugefügt werden kann, dann werden neue Listen erstellt.
       muting_html:
         one: Du bist dabei, bis zu <strong>%{count} Konto</strong> aus <strong>%{filename} stummzuschalten</strong>.
+        two: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename} stummzuschalten</strong>.
+        few: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename} stummzuschalten</strong>.
         other: Du bist dabei, bis zu <strong>%{count} Konten</strong> aus <strong>%{filename} stummzuschalten</strong>.
     preface: Daten, die du von einem Mastodon-Server exportiert hast, kannst du hierher importieren. Das betrifft beispielsweise die Listen von Profilen, denen du folgst oder die du blockiert hast.
     recent_imports: Zuletzt importiert
@@ -1580,6 +1656,8 @@ hsb:
     invited_by: 'Du wurdest eingeladen von:'
     max_uses:
       one: Eine Verwendung
+      two: "%{count} Verwendungen"
+      few: "%{count} Verwendungen"
       other: "%{count} Verwendungen"
     max_uses_prompt: Unbegrenzt
     prompt: Erstelle Einladungen und teile die dazugehörigen Links, um anderen einen Zugang zu diesem Server zu gewähren
@@ -1887,19 +1965,27 @@ hsb:
     attached:
       audio:
         one: "%{count} Audiodatei"
+        two: "%{count} Audiodateien"
+        few: "%{count} Audiodateien"
         other: "%{count} Audiodateien"
       description: 'Angehängt: %{attached}'
       image:
         one: "%{count} Bild"
+        two: "%{count} Bilder"
+        few: "%{count} Bilder"
         other: "%{count} Bilder"
       video:
         one: "%{count} Video"
+        two: "%{count} Videos"
+        few: "%{count} Videos"
         other: "%{count} Videos"
     boosted_from_html: Geteilt von %{acct_link}
     content_warning: 'Inhaltswarnung: %{warning}'
     default_language: Wie die Sprache des Webinterface
     disallowed_hashtags:
       one: 'enthält einen nicht-erlaubten Hashtag: %{tags}'
+      two: 'enthält nicht-erlaubte Hashtags: %{tags}'
+      few: 'enthält nicht-erlaubte Hashtags: %{tags}'
       other: 'enthält nicht-erlaubte Hashtags: %{tags}'
     edited_at_html: 'Bearbeitet: %{date}'
     errors:
@@ -2105,6 +2191,8 @@ hsb:
       follows_view_more: Weitere Profile zum Folgen entdecken
       hashtags_recent_count:
         one: "%{people} Profil in den vergangenen 2 Tagen"
+        two: "%{people} Profile in den vergangenen 2 Tagen"
+        few: "%{people} Profile in den vergangenen 2 Tagen"
         other: "%{people} Profile in den vergangenen 2 Tagen"
       hashtags_subtitle: Entdecke, was in den vergangenen 2 Tagen angesagt war
       hashtags_title: Angesagte Hashtags
