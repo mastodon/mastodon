@@ -380,8 +380,8 @@ class StatusActionBar extends ImmutablePureComponent {
         <div className='status__action-bar__button-wrapper'>
           <IconButton className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={bookmarkTitle} icon='bookmark' iconComponent={status.get('bookmarked') ? BookmarkIcon : BookmarkBorderIcon} onClick={this.handleBookmarkClick} />
         </div>
-        <div className='status__action-bar__button-wrapper'>
-          <RemoveQuoteHint canShowHint={shouldShowQuoteRemovalHint}>
+        <RemoveQuoteHint className='status__action-bar__button-wrapper' canShowHint={shouldShowQuoteRemovalHint}>
+          {(dismissQuoteHint) => (
             <Dropdown
               scrollKey={scrollKey}
               status={status}
@@ -390,9 +390,13 @@ class StatusActionBar extends ImmutablePureComponent {
               iconComponent={MoreHorizIcon}
               direction='right'
               title={intl.formatMessage(messages.more)}
+              onOpen={() => {
+                dismissQuoteHint();
+                return true;
+              }}
             />
-          </RemoveQuoteHint>
-        </div>
+          )}
+        </RemoveQuoteHint>
       </div>
     );
   }

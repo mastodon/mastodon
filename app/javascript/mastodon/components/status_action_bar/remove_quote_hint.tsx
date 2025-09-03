@@ -17,7 +17,7 @@ const DISMISSABLE_BANNER_ID = 'notifications/remove_quote_hint';
 export const RemoveQuoteHint: React.FC<{
   canShowHint: boolean;
   className?: string;
-  children: React.ReactNode;
+  children: (dismiss: () => void) => React.ReactNode;
 }> = ({ canShowHint, className, children }) => {
   const anchorRef = useRef<HTMLDivElement>(null);
   const intl = useIntl();
@@ -27,12 +27,12 @@ export const RemoveQuoteHint: React.FC<{
   });
 
   if (!isVisible || !canShowHint) {
-    return children;
+    return <div className={className}>{children(dismiss)}</div>;
   }
 
   return (
     <div className={className} ref={anchorRef}>
-      {children}
+      {children(dismiss)}
       <Overlay
         show
         flip
