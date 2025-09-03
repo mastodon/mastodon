@@ -44,6 +44,7 @@ class TextFormatter
     end
 
     html = simple_format(html, {}, sanitize: false).delete("\n") if multiline?
+    html = add_quote_fallback(html) if options[:quoted_status].present?
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -171,5 +172,16 @@ class TextFormatter
 
   def preloaded_accounts?
     preloaded_accounts.present?
+  end
+
+  def add_quote_fallback(html)
+    return html if options[:quoted_status].nil?
+
+    url = ActivityPub::TagManager.instance.url_for(options[:quoted_status]) || ActivityPub::TagManager.instance.uri_for(options[:quoted_status])
+    return html if url.blank? || html.include?(url)
+
+    <<~HTML.squish
+      <p class="quote-inline">RE: #{TextFormatter.shortened_link(url)}</p>#{html}
+    HTML
   end
 end
