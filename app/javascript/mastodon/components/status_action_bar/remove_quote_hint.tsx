@@ -22,9 +22,9 @@ export const RemoveQuoteHint: React.FC<{
   const anchorRef = useRef<HTMLDivElement>(null);
   const intl = useIntl();
 
-  const { isVisible, dismiss } = useDismissableBannerState(
-    DISMISSABLE_BANNER_ID,
-  );
+  const { isVisible, dismiss } = useDismissableBannerState({
+    id: DISMISSABLE_BANNER_ID,
+  });
 
   if (!isVisible || !canShowHint) {
     return children;
@@ -32,7 +32,7 @@ export const RemoveQuoteHint: React.FC<{
 
   return (
     <div className={className} ref={anchorRef}>
-        {children}
+      {children}
       <Overlay
         show
         flip

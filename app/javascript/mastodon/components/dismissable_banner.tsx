@@ -1,10 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call,
-                  @typescript-eslint/no-unsafe-return,
-                  @typescript-eslint/no-unsafe-assignment,
-                  @typescript-eslint/no-unsafe-member-access
-                  -- the settings store is not yet typed */
 import type { PropsWithChildren } from 'react';
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState, useEffect, useId } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -13,18 +8,62 @@ import { changeSetting } from 'mastodon/actions/settings';
 import { bannerSettings } from 'mastodon/settings';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
+import {
+  clearActiveOnboardingHint,
+  setActiveOnboardingHint,
+} from '../actions/onboarding_hints';
+
 import { IconButton } from './icon_button';
+
+function useIsActiveOnboardingHint({
+  id,
+  canBeDisplayed,
+}: {
+  id: string;
+  canBeDisplayed: boolean;
+}) {
+  const dispatch = useAppDispatch();
+  const activeOnboardingHintId = useAppSelector(
+    (state) => state.onboardingHints.activeOnboardingHintId,
+  );
+  const uniqueId = useId();
+  const hintId = `${id}-${uniqueId}`;
+
+  const isActiveHint = activeOnboardingHintId === hintId;
+
+  useEffect(() => {
+    if (canBeDisplayed) {
+      dispatch(setActiveOnboardingHint(hintId));
+    }
+
+    return () => {
+      if (isActiveHint && !canBeDisplayed) {
+        dispatch(clearActiveOnboardingHint());
+      }
+    };
+  }, [canBeDisplayed, dispatch, hintId, isActiveHint]);
+
+  return isActiveHint;
+}
 
 const messages = defineMessages({
   dismiss: { id: 'dismissable_banner.dismiss', defaultMessage: 'Dismiss' },
 });
 
-interface Props {
+export function useDismissableBannerState({
+  id,
+  allowMultiple = false,
+}: {
   id: string;
-}
-
-export function useDismissableBannerState(id: string) {
-  const dismissed = useAppSelector((state) =>
+  /**
+   * Set this to true to allow this banner to be displayed at the same time
+   * as other banners or UI hints using this hook.
+   */
+  allowMultiple?: boolean;
+}) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const dismissed: boolean = useAppSelector((state) =>
+    /* eslint-disable-next-line */
     state.settings.getIn(['dismissed_banners', id], false),
   );
 
@@ -42,11 +81,23 @@ export function useDismissableBannerState(id: string) {
 
   useEffect(() => {
     if (!isVisible && !dismissed) {
-      // dispatch(changeSetting(['dismissed_banners', id], true));
+      dispatch(changeSetting(['dismissed_banners', id], true));
     }
   }, [id, dispatch, isVisible, dismissed]);
 
-  return { isVisible, dismiss };
+  const isActiveOnboardingHint = useIsActiveOnboardingHint({
+    id,
+    canBeDisplayed: isVisible,
+  });
+
+  return {
+    isVisible: allowMultiple ? isVisible : isVisible && isActiveOnboardingHint,
+    dismiss,
+  };
+}
+
+interface Props {
+  id: string;
 }
 
 export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
@@ -54,7 +105,10 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
   children,
 }) => {
   const intl = useIntl();
-  const { isVisible, dismiss } = useDismissableBannerState(id);
+  const { isVisible, dismiss } = useDismissableBannerState({
+    id,
+    allowMultiple: true,
+  });
 
   if (!isVisible) {
     return null;
