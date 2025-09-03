@@ -80,6 +80,7 @@ export function useDismissableBannerState({
   }, [id, dispatch]);
 
   useEffect(() => {
+    // Store legacy localStorage setting on server
     if (!isVisible && !dismissed) {
       dispatch(changeSetting(['dismissed_banners', id], true));
     }
