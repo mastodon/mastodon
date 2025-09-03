@@ -18,7 +18,7 @@ class Web::PushNotificationWorker
     # Clean up old Web::PushSubscriptions that were added before validation of
     # the endpoint and keys: #30542, #30540
     unless @subscription.valid?
-      Rails.logger.error { "Web::PushSubscription is invalid, removing: #{subscription_id}" }
+      Rails.logger.debug { "Web::PushSubscription is invalid, removing: #{subscription_id}" }
       @subscription.destroy!
 
       return
