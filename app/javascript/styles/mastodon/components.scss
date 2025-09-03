@@ -7165,38 +7165,6 @@ a.status-card {
   }
 }
 
-.info-tooltip-target {
-  position: relative;
-
-  &--highlighted::after {
-    content: '';
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-    aspect-ratio: 1;
-    border-radius: 100rem;
-    outline: 2px solid currentColor;
-    transform-origin: center center;
-
-    .no-reduce-motion & {
-      animation: pulse 2.5s ease-in-out infinite both;
-    }
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
-
-  50% {
-    transform: scale(1.25);
-    opacity: 0.6;
-  }
-}
-
 .attachment-list {
   display: flex;
   font-size: 14px;

@@ -32,9 +32,7 @@ export const RemoveQuoteHint: React.FC<{
 
   return (
     <div className={className} ref={anchorRef}>
-      <div className='info-tooltip-target info-tooltip-target--highlighted'>
         {children}
-      </div>
       <Overlay
         show
         flip
