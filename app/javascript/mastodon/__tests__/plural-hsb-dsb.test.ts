@@ -1,9 +1,9 @@
 // app/javascript/mastodon/__tests__/plural-hsb-dsb.test.ts
-import '../../mastodon/i18n-plurals';
+import '../i18n-plurals';
 
 describe('Intl.PluralRules for Sorbian (hsb/dsb)', () => {
   test('hsb categories', () => {
-    const pr = new (Intl as any).PluralRules('hsb');
+    const pr = new Intl.PluralRules('hsb');
     expect(pr.select(1)).toBe('one');
     expect(pr.select(2)).toBe('two');
     expect(pr.select(3)).toBe('few');
@@ -13,7 +13,7 @@ describe('Intl.PluralRules for Sorbian (hsb/dsb)', () => {
   });
 
   test('dsb categories', () => {
-    const pr = new (Intl as any).PluralRules('dsb');
+    const pr = new Intl.PluralRules('dsb');
     expect(pr.select(1)).toBe('one');
     expect(pr.select(2)).toBe('two');
     expect(pr.select(3)).toBe('few');

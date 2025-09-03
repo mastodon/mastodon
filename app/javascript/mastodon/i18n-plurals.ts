@@ -18,14 +18,15 @@ function pluDSB(n: number, ord?: boolean): Cat {
 }
 
 // The polyfill exposes an internal hook for custom data.
-declare global {
-  interface Intl {
-    PluralRules: any;
-  }
-}
+type PolyfillPluralRules = typeof Intl.PluralRules & {
+  __addLocaleData?: (data: {
+    locale: string;
+    categories: Cat[];
+    fn: (n: number, ord?: boolean) => Cat;
+  }) => void;
+};
 
-// Some bundlers/types may not have __addLocaleData typed; cast to any
-const add = (Intl as any)?.PluralRules?.__addLocaleData;
+const add = (Intl.PluralRules as PolyfillPluralRules).__addLocaleData;
 if (typeof add === 'function') {
   add({
     locale: 'hsb',
