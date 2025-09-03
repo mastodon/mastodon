@@ -7141,9 +7141,16 @@ a.status-card {
   overflow-y: auto;
 
   &--solid {
-    color: $primary-text-color;
-    background-color: var(--dropdown-background-color);
-    border: 1px solid var(--dropdown-border-color);
+    color: var(--nested-card-text);
+    background:
+      /* This is a bit of a silly hack for layering two background colours
+       * since --nested-card-background is too transparent for a tooltip */
+      linear-gradient(
+        var(--nested-card-background),
+        var(--nested-card-background)
+      ),
+      linear-gradient(var(--background-color), var(--background-color));
+    border: var(--nested-card-border);
   }
 
   h4 {
