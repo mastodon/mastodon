@@ -40,13 +40,6 @@ export const FeaturedCarousel: React.FC<{
     return null;
   }
 
-  const Pinned = (
-    <div className='status__prepend'>
-      <div className='status__prepend-icon-wrapper'><Icon id='thumb-tack' className='status__prepend-icon' fixedWidth /></div>
-        <FormattedMessage id='status.pinned' defaultMessage='Pinned post' />
-     </div>
-  );
-
   return (
     <div>
       {pinnedStatuses.map((statusId) => (

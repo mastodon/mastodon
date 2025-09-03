@@ -54,8 +54,8 @@ export function KeyboardShortcuts () {
   return import('../../keyboard_shortcuts');
 }
 
-export function PinnedStatuses () {
-  return import('../../pinned_statuses');
+export function PinnedTimeline () {
+  return import('../../pinned_timeline');
 }
 
 export function PinnedTimeline () {
