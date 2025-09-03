@@ -1,0 +1,6 @@
+*** config/application.rb
+*** Add the following lines (or merge with your existing i18n settings)
+# Enable Sorbian locales (Upper & Lower)
+config.i18n.available_locales = (config.i18n.available_locales || []) | [:hsb, :dsb]
+# Optional fallbacks (requires i18n/backend/fallbacks)
+# config.i18n.fallbacks = [:de, :en]
