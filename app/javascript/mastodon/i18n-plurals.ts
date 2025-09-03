@@ -27,6 +27,14 @@ declare global {
 // Some bundlers/types may not have __addLocaleData typed; cast to any
 const add = (Intl as any)?.PluralRules?.__addLocaleData;
 if (typeof add === 'function') {
-  add({ locale: 'hsb', categories: ['one', 'two', 'few', 'other'], fn: pluHSB });
-  add({ locale: 'dsb', categories: ['one', 'two', 'few', 'other'], fn: pluDSB });
+  add({
+    locale: 'hsb',
+    categories: ['one', 'two', 'few', 'other'],
+    fn: pluHSB,
+  });
+  add({
+    locale: 'dsb',
+    categories: ['one', 'two', 'few', 'other'],
+    fn: pluDSB,
+  });
 }
