@@ -101,7 +101,7 @@ RSpec.describe Web::PushNotificationWorker do
         expect { invalid_subscription.reload }
           .to raise_error ActiveRecord::RecordNotFound
 
-        assert_not_requested(:post, endpoint)
+        expect(a_request(:post, endpoint)).to_not have_been_made
       end
     end
 
