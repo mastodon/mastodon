@@ -190,6 +190,7 @@ eo:
         create_relay: Krei Relajson
         create_unavailable_domain: Krei Nehaveblan Domajnon
         create_user_role: Krei Rolon
+        create_username_block: Krei uzantnoman regulon
         demote_user: Malpromocii Uzanton
         destroy_announcement: Forigi Anoncon
         destroy_canonical_email_block: Forigi retpoŝtan blokon
@@ -203,6 +204,7 @@ eo:
         destroy_status: Forigi Afiŝon
         destroy_unavailable_domain: Forigi Nehaveblan Domajnon
         destroy_user_role: Detrui Rolon
+        destroy_username_block: Forigi uzantnoman regulon
         disable_2fa_user: Malebligi 2FA
         disable_custom_emoji: Malŝalti Proprajn Bildosignojn
         disable_relay: Malebligi Relajson
@@ -237,6 +239,7 @@ eo:
         update_report: Ĝisdatigo de Raporto
         update_status: Ĝisdatigi Afiŝon
         update_user_role: Ĝisdatigi rolon
+        update_username_block: Ĝisdatigi uzantnoman regulon
       actions:
         approve_appeal_html: "%{name} aprobis apelacion kontraŭ reguliga decido de %{target}"
         approve_user_html: "%{name} aprobis la registriĝon de %{target}"
@@ -361,6 +364,7 @@ eo:
       title: Propraj emoĝioj
       uncategorized: Nekategoriigita
       unlist: Nelistigi
+      unlisted: Diskrete publika
       update_failed_msg: Ĝisdatigi tiun emoĝion ne eblis
       updated_msg: Emoĝio sukcese ĝisdatigita!
       upload: Alŝuti
@@ -785,17 +789,24 @@ eo:
       title: Roloj
     rules:
       add_new: Aldoni regulon
+      add_translation: Aldoni tradukon
       delete: Forigi
       description_html: Kvankam plej da personoj pretendas legi kaj asenti servkondiĉoj, personoj kutime ne komplete legi. <strong>Uzu mallonga kaj simpla listo.</strong>.
       edit: Redakti la regulon
       empty: Neniuj servilregulojn definitas ĝis nun.
+      move_down: Movi malsupren
+      move_up: Movi supren
       title: Reguloj de la servilo
+      translation: Traduko
+      translations: Tradukoj
     settings:
       about:
         manage_rules: Administri servilregulojn
         preamble: Donu specifan informon pri kiel la servilo operaciitas, administras kaj financitas.
         rules_hint: Havas apartan areon por regulojn kiujn via uzantoj devus sekvi.
         title: Pri
+      allow_referrer_origin:
+        title: Permesi al eksteraj retejoj vidi vian Mastodon-servilon kiel trafikfonton
       appearance:
         preamble: Personecigi retinterfaco de Mastodon.
         title: Aspekto
@@ -815,6 +826,7 @@ eo:
       discovery:
         follow_recommendations: Sekvorekomendoj
         preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
+        privacy: Privateco
         profile_directory: Profilujo
         public_timelines: Publikaj templinioj
         publish_statistics: Publikigi statistikojn
@@ -1067,6 +1079,17 @@ eo:
           other: Uzita de %{count} personoj ekde lasta semajno
       title: Rekomendoj kaj Tendencoj
       trending: Popularaĵoj
+    username_blocks:
+      add_new: Aldoni novan
+      delete: Forigi
+      edit:
+        title: Redakti uzantnoman regulon
+      new:
+        create: Krei regulon
+        title: Krei novan uzantnoman regulon
+      not_permitted: Ne permesita
+      title: Uzantnomaj reguloj
+      updated_msg: Sukcese ĝisdatigita uzantnoma regulo
     warning_presets:
       add_new: Aldoni novan
       delete: Forigi
@@ -1331,6 +1354,8 @@ eo:
     basic_information: Baza informo
     hint_html: "<strong>Personigi, kion homoj vidi en via publika profilo kaj apud viaj afiŝoj. </strong> Aliaj homoj estas pli probable resekvi vin kaj interagi kun vi se vi havus finigitan profilon kaj profilan foton."
     other: Alia
+  emoji_styles:
+    auto: Aŭtomata
   errors:
     '400': La peto kiun vi sendis estas nevalida au malformas.
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
@@ -1642,6 +1667,10 @@ eo:
       title: Nova mencio
     poll:
       subject: Enketo de %{name} finitas
+    quote:
+      body: 'Via afiŝo estis citita de %{name}:'
+      subject: "%{name} citis vian afiŝon"
+      title: Nova citaĵo
     reblog:
       body: 'Via mesaĝo estis diskonigita de %{name}:'
       subject: "%{name} diskonigis vian afiŝon"
@@ -1690,6 +1719,7 @@ eo:
       self_vote: Vi ne povas voĉdoni en viaj propraj balotenketoj
       too_few_options: devas enhavi pli da unu propono
       too_many_options: ne povas enhavi pli da %{max} proponoj
+    vote: Voĉdoni
   preferences:
     other: Aliaj aferoj
     posting_defaults: Afiŝaj defaŭltoj
@@ -1852,14 +1882,20 @@ eo:
     edited_at_html: Redaktis je %{date}
     errors:
       in_reply_not_found: Mesaĝo kiun vi provas respondi ŝajnas ne ekzisti.
+      quoted_status_not_found: La afiŝo, kiun vi provas citi, ŝajne ne ekzistas.
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
       direct: Mesaĝoj kiu videbla nun al la uzantoj ne povas alpinglitis
       limit: Vi jam atingis la maksimuman nombron de alpinglitaj mesaĝoj
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
+    quote_policies:
+      followers: Nur sekvantoj
+      nobody: Nur mi
+      public: Iu ajn
     title: "%{name}: “%{quote}”"
     visibilities:
+      direct: Privada mencio
       private: Montri nur al sekvantoj
       private_long: Montri nur al sekvantoj
       public: Publika
