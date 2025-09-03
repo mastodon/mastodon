@@ -11,6 +11,8 @@ on:
 env:
   BUNDLE_CLEAN: true
   BUNDLE_FROZEN: true
+  DB_USER: postgres
+  DB_PASS: postgres
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
