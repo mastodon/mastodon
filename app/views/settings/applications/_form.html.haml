@@ -21,11 +21,11 @@
     = form.label t('activerecord.attributes.doorkeeper/application.scopes'), required: true
     %span.hint= t('simple_form.hints.defaults.scopes')
 
-  - Doorkeeper.configuration.scopes.group_by { |s| s.split(':').first }.each_value do |value|
+  - application_scope_groups.each do |group|
     = form.input :scopes,
                  as: :check_boxes,
                  collection_wrapper_tag: 'ul',
-                 collection: value.sort,
+                 collection: group.sort,
                  hint: false,
                  include_blank: false,
                  item_wrapper_tag: 'li',
