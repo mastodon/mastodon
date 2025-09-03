@@ -23,6 +23,8 @@ class Relay < ApplicationRecord
 
   before_destroy :ensure_disabled
 
+  after_save :reset_delivery_tracker, if: [:state_previously_changed?, :reset_failure_state?]
+
   alias enabled? accepted?
 
   def to_log_human_identifier
@@ -34,7 +36,6 @@ class Relay < ApplicationRecord
     payload     = Oj.dump(follow_activity(activity_id))
 
     update!(state: :pending, follow_activity_id: activity_id)
-    DeliveryFailureTracker.reset!(inbox_url)
     ActivityPub::DeliveryWorker.perform_async(payload, some_local_account.id, inbox_url)
   end
 
@@ -43,11 +44,18 @@ class Relay < ApplicationRecord
     payload     = Oj.dump(unfollow_activity(activity_id))
 
     update!(state: :idle, follow_activity_id: nil)
-    DeliveryFailureTracker.reset!(inbox_url)
     ActivityPub::DeliveryWorker.perform_async(payload, some_local_account.id, inbox_url)
   end
 
   private
+
+  def reset_delivery_tracker
+    DeliveryFailureTracker.reset!(inbox_url)
+  end
+
+  def reset_failure_state?
+    idle? || pending?
+  end
 
   def follow_activity(activity_id)
     {
