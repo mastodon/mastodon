@@ -10,7 +10,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import FlagIcon from '@/material-icons/400-24px/flag-fill.svg?react';
-import FormatQuoteIcon from '@/material-icons/400-24px/format_quote.svg?react';
+import FormatQuoteIcon from '@/material-icons/400-24px/format_quote-fill.svg?react';
 import HomeIcon from '@/material-icons/400-24px/home-fill.svg?react';
 import InsertChartIcon from '@/material-icons/400-24px/insert_chart.svg?react';
 import PersonIcon from '@/material-icons/400-24px/person-fill.svg?react';

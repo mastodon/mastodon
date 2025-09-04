@@ -201,6 +201,41 @@
     }
   }
 
+  &.button--plain {
+    color: $highlight-text-color;
+    background: transparent;
+    padding: 6px;
+
+    // The button has no outline, so we use negative margin to
+    // visually align its label with its surroundings while maintaining
+    // a generous click target
+    margin-inline: -6px;
+    border: 1px solid transparent;
+
+    &:active,
+    &:focus,
+    &:hover {
+      border-color: transparent;
+      color: lighten($highlight-text-color, 4%);
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 0.7;
+      border-color: transparent;
+      color: $ui-button-disabled-color;
+
+      &:active,
+      &:focus,
+      &:hover {
+        border-color: transparent;
+        color: $ui-button-disabled-color;
+      }
+    }
+  }
+
   &.button-tertiary {
     background: transparent;
     padding: 6px 17px;
@@ -436,8 +471,8 @@
   }
 }
 
-body > [data-popper-placement] {
-  z-index: 3;
+[data-popper-placement] {
+  z-index: 9999;
 }
 
 .invisible {
@@ -2875,7 +2910,7 @@ a.account__display-name {
 
 .reblog-button {
   &__item {
-    width: 280px;
+    max-width: 360px;
 
     button {
       display: flex;
@@ -7092,7 +7127,8 @@ a.status-card {
   cursor: default;
 }
 
-.media-gallery__alt__popover {
+.info-tooltip {
+  color: $white;
   background: color.change($black, $alpha: 0.65);
   backdrop-filter: $backdrop-blur-filter;
   border-radius: 4px;
@@ -7104,19 +7140,35 @@ a.status-card {
   max-height: 30em;
   overflow-y: auto;
 
+  &--solid {
+    color: var(--nested-card-text);
+    background:
+      /* This is a bit of a silly hack for layering two background colours
+       * since --nested-card-background is too transparent for a tooltip */
+      linear-gradient(
+        var(--nested-card-background),
+        var(--nested-card-background)
+      ),
+      linear-gradient(var(--background-color), var(--background-color));
+    border: var(--nested-card-border);
+  }
+
   h4 {
     font-size: 15px;
     line-height: 20px;
     font-weight: 500;
-    color: $white;
     margin-bottom: 8px;
   }
 
   p {
     font-size: 15px;
     line-height: 20px;
-    color: color.change($white, $alpha: 0.85);
+    opacity: 0.85;
     white-space: pre-line;
+  }
+
+  .button {
+    margin-block-start: 8px;
   }
 }
 

@@ -8,6 +8,7 @@ import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 
 import { toSupportedLocale } from './locale';
 import { determineEmojiMode } from './mode';
+import { emojifyElement, emojifyText } from './render';
 import type {
   CustomEmojiMapArg,
   EmojiAppState,
@@ -15,7 +16,17 @@ import type {
 } from './types';
 import { stringHasAnyEmoji } from './utils';
 
-export function useEmojify(text: string, extraEmojis?: CustomEmojiMapArg) {
+interface UseEmojifyOptions {
+  text: string;
+  extraEmojis?: CustomEmojiMapArg;
+  deep?: boolean;
+}
+
+export function useEmojify({
+  text,
+  extraEmojis,
+  deep = true,
+}: UseEmojifyOptions) {
   const [emojifiedText, setEmojifiedText] = useState<string | null>(null);
 
   const appState = useEmojiAppState();
@@ -36,17 +47,23 @@ export function useEmojify(text: string, extraEmojis?: CustomEmojiMapArg) {
 
   const emojify = useCallback(
     async (input: string) => {
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = input;
-      const { emojifyElement } = await import('./render');
-      const result = await emojifyElement(wrapper, appState, extra);
+      let result: string | null = null;
+      if (deep) {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = input;
+        if (await emojifyElement(wrapper, appState, extra)) {
+          result = wrapper.innerHTML;
+        }
+      } else {
+        result = await emojifyText(text, appState, extra);
+      }
       if (result) {
-        setEmojifiedText(result.innerHTML);
+        setEmojifiedText(result);
       } else {
         setEmojifiedText(input);
       }
     },
-    [appState, extra],
+    [appState, deep, extra, text],
   );
   useLayoutEffect(() => {
     if (isModernEmojiEnabled() && !!text.trim() && stringHasAnyEmoji(text)) {

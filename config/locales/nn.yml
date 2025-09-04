@@ -367,6 +367,7 @@ nn:
       title: Eigne kjensleteikn
       uncategorized: Ukategorisert
       unlist: Uoppfør
+      unlisted: Stille offentleg
       update_failed_msg: Klarte ikkje å oppdatera emojien
       updated_msg: Kjensleteiknet er oppdatert!
       upload: Last opp
@@ -1907,12 +1908,19 @@ nn:
       limit: Du har allereie festa så mange tut som det går an å festa
       ownership: Du kan ikkje festa andre sine tut
       reblog: Ei framheving kan ikkje festast
+    quote_policies:
+      followers: Berre fylgjarar
+      nobody: Berre eg
+      public: Allle
     title: "%{name}: «%{quote}»"
     visibilities:
+      direct: Privat omtale
       private: Berre fylgjarar
       private_long: Vis berre til fylgjarar
       public: Offentleg
+      public_long: Alle på og utanfor Mastodon
       unlisted: Ikkje oppført
+      unlisted_long: Gøymt frå søkjeresultat, populært og offentleg på Mastodon
   statuses_cleanup:
     enabled: Slett gamle innlegg automatisk
     enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor

@@ -96,6 +96,7 @@ class Status extends ImmutablePureComponent {
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
+    onQuote: PropTypes.func,
     onDelete: PropTypes.func,
     onDirect: PropTypes.func,
     onMention: PropTypes.func,
@@ -276,6 +277,10 @@ class Status extends ImmutablePureComponent {
     this.props.onReblog(this._properStatus(), e);
   };
 
+  handleHotkeyQuote = () => {
+    this.props.onQuote(this._properStatus());
+  };
+
   handleHotkeyMention = e => {
     e.preventDefault();
     this.props.onMention(this._properStatus().get('account'));
@@ -386,6 +391,7 @@ class Status extends ImmutablePureComponent {
       reply: this.handleHotkeyReply,
       favourite: this.handleHotkeyFavourite,
       boost: this.handleHotkeyBoost,
+      quote: this.handleHotkeyQuote,
       mention: this.handleHotkeyMention,
       open: this.handleHotkeyOpen,
       openProfile: this.handleHotkeyOpenProfile,

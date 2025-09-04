@@ -190,6 +190,7 @@ pt-BR:
         create_relay: Criar Retransmissão
         create_unavailable_domain: Criar domínio indisponível
         create_user_role: Criar cargo
+        create_username_block: Criar regra de usuário
         demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
         destroy_canonical_email_block: Deletar bloqueio de Email
@@ -203,6 +204,7 @@ pt-BR:
         destroy_status: Excluir publicação
         destroy_unavailable_domain: Excluir domínio indisponível
         destroy_user_role: Destruir cargo
+        destroy_username_block: Excluir regra de usuário
         disable_2fa_user: Desativar autenticação de dois fatores
         disable_custom_emoji: Desativar emoji personalizado
         disable_relay: Desativar Retransmissão
@@ -237,6 +239,7 @@ pt-BR:
         update_report: Atualizar Relatório
         update_status: Editar Status
         update_user_role: Atualizar cargo
+        update_username_block: Atualizar regra de usuário
       actions:
         approve_appeal_html: "%{name} aprovou a revisão da decisão da moderação em %{target}"
         approve_user_html: "%{name} aprovado inscrição de %{target}"
@@ -255,6 +258,7 @@ pt-BR:
         create_relay_html: "%{name} criou uma retransmissão %{target}"
         create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
         create_user_role_html: "%{name} criou o cargo %{target}"
+        create_username_block_html: Regra %{name} adicionada para nomes de usuário contendo %{target}
         demote_user_html: "%{name} rebaixou o usuário %{target}"
         destroy_announcement_html: "%{name} excluiu o anúncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o endereço e-mail com o hash %{target}"
@@ -268,6 +272,7 @@ pt-BR:
         destroy_status_html: "%{name} removeu a publicação de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
         destroy_user_role_html: "%{name} excluiu o cargo %{target}"
+        destroy_username_block_html: Regra %{name} removida por usuário contendo %{target}
         disable_2fa_user_html: "%{name} desativou a exigência da autenticação de dois fatores para o usuário %{target}"
         disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
         disable_relay_html: "%{name} desativou uma retransmissão %{target}"
@@ -302,6 +307,7 @@ pt-BR:
         update_report_html: "%{name} atualizou o relatório %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
         update_user_role_html: "%{name} alterou o cargo %{target}"
+        update_username_block_html: Regra %{name} atualizada para nomes de usuários contendo %{target}
       deleted_account: conta excluída
       empty: Nenhum registro encontrado.
       filter_by_action: Filtrar por ação
@@ -361,6 +367,7 @@ pt-BR:
       title: Emojis personalizados
       uncategorized: Não categorizado
       unlist: Não listar
+      unlisted: Público silencioso
       update_failed_msg: Não foi possível atualizar esse emoji
       updated_msg: Emoji atualizado!
       upload: Enviar
@@ -578,6 +585,11 @@ pt-BR:
         limited: Limitados
         title: Moderação
       moderation_notes:
+        create: Adicionar Nota de Moderação
+        created_msg: Nota de moderação da instância criada com sucesso!
+        description_html: Visualize e deixe anotações para outros moderadores e seu próprio futuro
+        destroyed_msg: Nota de moderação da instância excluída com sucesso!
+        placeholder: Informações sobre esta instância, ações tomadas, ou qualquer outra coisa que ajudará você a moderar esta instância no futuro.
         title: Notas de Moderação
       private_comment: Comentário privado
       public_comment: Comentário público
@@ -1079,6 +1091,25 @@ pt-BR:
           other: Usado por %{count} pessoas na última semana
       title: Recomendações e tendências
       trending: Em alta
+    username_blocks:
+      add_new: Adicionar novo
+      block_registrations: Bloquear inscrições
+      comparison:
+        contains: Conteúdo
+        equals: Igual
+      contains_html: Contém %{string}
+      created_msg: Regra de nome de usuário criada com sucesso
+      delete: Excluir
+      edit:
+        title: Editar nome de usuário
+      matches_exactly_html: "%{string} É igual"
+      new:
+        create: Criar regra
+        title: Criar regra de usuário
+      no_username_block_selected: Nenhuma regra de usuário foi trocada nenhuma foi selecionada
+      not_permitted: Não permitido
+      title: Regras de usuário
+      updated_msg: Regra de usuário atualizada com sucesso
     warning_presets:
       add_new: Adicionar novo
       delete: Excluir
@@ -1343,6 +1374,10 @@ pt-BR:
     basic_information: Informações básicas
     hint_html: "<strong>Personalize o que as pessoas veem no seu perfil público e ao lado de suas publicações.</strong> É mais provável que outras pessoas o sigam de volta e interajam com você quando você tiver um perfil preenchido e uma foto de perfil."
     other: Outro
+  emoji_styles:
+    auto: Automático
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': A solicitação enviada é inválida ou incorreta.
     '403': Você não tem permissão para ver esta página.
@@ -1652,6 +1687,10 @@ pt-BR:
       title: Nova menção
     poll:
       subject: Uma enquete por %{name} terminou
+    quote:
+      body: 'Sua publicação foi Citada por %{name}:'
+      subject: "%{name} citou sua publicação"
+      title: Nova citação
     reblog:
       body: "%{name} impulsionou a sua publicação:"
       subject: "%{name} impulsionou a sua publicação"
@@ -1700,6 +1739,9 @@ pt-BR:
       self_vote: Você não pode votar nas suas próprias enquetes
       too_few_options: deve ter mais que um item
       too_many_options: não pode ter mais que %{max} itens
+    vote: Votar
+  posting_defaults:
+    explanation: Estas configurações serão usadas como padrão quando você criar publicações, mas você pode editá-las por postagem no compositor.
   preferences:
     other: Outro
     posting_defaults: Padrões de publicação
@@ -1862,18 +1904,26 @@ pt-BR:
     edited_at_html: Editado em %{date}
     errors:
       in_reply_not_found: A publicação que você quer responder parece não existir.
+      quoted_status_not_found: A publicação que você quer responder parece não existir.
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
       direct: Publicações visíveis apenas para usuários mencionados não podem ser fixadas
       limit: Você alcançou o número limite de publicações fixadas
       ownership: As publicações dos outros não podem ser fixadas
       reblog: Um impulso não pode ser fixado
+    quote_policies:
+      followers: Apenas seguidores
+      nobody: Apenas eu
+      public: Qualquer um
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Citação privada
       private: Apenas seguidores
       private_long: Exibir apenas para seguidores
       public: Público
+      public_long: Qualquer um dentro ou fora do Mástodon
       unlisted: Não listado
+      unlisted_long: Oculto aos resultados de pesquisa em Mástodon
   statuses_cleanup:
     enabled: Excluir publicações antigas automaticamente
     enabled_hint: Exclui suas publicações automaticamente assim que elas alcançam sua validade, a não ser que se enquadrem em alguma das exceções abaixo

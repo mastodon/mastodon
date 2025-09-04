@@ -56,10 +56,12 @@ zh-CN:
         scopes: 哪些 API 被允许使用。如果你勾选了更高一级的范围，就不用单独选中子项目了。
         setting_aggregate_reblogs: 不显示最近已经被转嘟过的嘟文(只会影响新收到的转嘟)
         setting_always_send_emails: 一般情况下，如果你活跃使用 Mastodon，我们不会向你发送电子邮件通知
+        setting_default_quote_policy: 此设置将仅对下个Mastodon版本创建的帖子生效，但您可以在准备中选择您的偏好。
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
         setting_display_media_default: 隐藏被标记为敏感内容的媒体
         setting_display_media_hide_all: 始终隐藏媒体
         setting_display_media_show_all: 始终显示媒体
+        setting_emoji_style: 如何显示Emoji表情符号。选择“自动”将尝试使用原生Emoji，但在旧浏览器中会备选使用Twemoji。
         setting_system_scrollbars_ui: 仅对基于 Safari 或 Chromium 内核的桌面端浏览器有效
         setting_use_blurhash: 渐变是基于模糊后的隐藏内容生成的
         setting_use_pending_items: 点击查看时间线更新，而非自动滚动更新动态。
@@ -157,6 +159,10 @@ zh-CN:
         name: 角色的公开名称，将在外显为徽章时使用
         permissions_as_keys: 具有此角色的用户将有权访问...
         position: 用于在特定情况下处理决策冲突。一些特定操作只能对优先级更低的角色执行
+      username_block:
+        allow_with_approval: 不直接禁止注册，而是使匹配的新注册需要你的批准
+        comparison: 屏蔽部分匹配时请注意潜在的Scunthrope问题（正常单词内部包含被屏蔽的部分）
+        username: 匹配将不限大小写及常见同形异义字符，如“4”和“A”及“3”和“E”等
       webhook:
         events: 选择要发送的事件
         template: 使用变量插值来构建自己的JSON负载。如果要使用默认的JSON，请留空。
@@ -229,6 +235,7 @@ zh-CN:
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 在转嘟前询问我
         setting_default_language: 发布语言
+        setting_default_privacy: 嘟文可见性
         setting_default_quote_policy: 谁可以引用
         setting_default_sensitive: 始终标记媒体为敏感内容
         setting_delete_modal: 在删除嘟文前询问我
@@ -321,6 +328,7 @@ zh-CN:
         follow_request: 有人向我发送了关注请求
         mention: 有人提到了我
         pending_account: 有账号需要审核
+        quote: 有人引用了我的嘟文
         reblog: 有人转嘟了我的嘟文
         report: 有人提交了新举报
         software_updates:
@@ -367,6 +375,10 @@ zh-CN:
         name: 名称
         permissions_as_keys: 权限
         position: 优先级
+      username_block:
+        allow_with_approval: 注册时需要批准
+        comparison: 比较方法
+        username: 字词匹配
       webhook:
         events: 已启用事件
         template: Payload 模板

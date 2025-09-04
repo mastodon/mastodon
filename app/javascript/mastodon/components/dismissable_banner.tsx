@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call,
-                  @typescript-eslint/no-unsafe-return,
-                  @typescript-eslint/no-unsafe-assignment,
-                  @typescript-eslint/no-unsafe-member-access
-                  -- the settings store is not yet typed */
 import type { PropsWithChildren } from 'react';
 import { useCallback, useState, useEffect } from 'react';
 
@@ -23,31 +18,48 @@ interface Props {
   id: string;
 }
 
-export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
-  id,
-  children,
-}) => {
-  const dismissed = useAppSelector((state) =>
+export function useDismissableBannerState({ id }: Props) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const dismissed: boolean = useAppSelector((state) =>
+    /* eslint-disable-next-line */
     state.settings.getIn(['dismissed_banners', id], false),
   );
+
+  const [isVisible, setIsVisible] = useState(
+    !bannerSettings.get(id) && !dismissed,
+  );
+
   const dispatch = useAppDispatch();
 
-  const [visible, setVisible] = useState(!bannerSettings.get(id) && !dismissed);
-  const intl = useIntl();
-
-  const handleDismiss = useCallback(() => {
-    setVisible(false);
+  const dismiss = useCallback(() => {
+    setIsVisible(false);
     bannerSettings.set(id, true);
     dispatch(changeSetting(['dismissed_banners', id], true));
   }, [id, dispatch]);
 
   useEffect(() => {
-    if (!visible && !dismissed) {
+    // Store legacy localStorage setting on server
+    if (!isVisible && !dismissed) {
       dispatch(changeSetting(['dismissed_banners', id], true));
     }
-  }, [id, dispatch, visible, dismissed]);
+  }, [id, dispatch, isVisible, dismissed]);
 
-  if (!visible) {
+  return {
+    isVisible,
+    dismiss,
+  };
+}
+
+export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
+  id,
+  children,
+}) => {
+  const intl = useIntl();
+  const { isVisible, dismiss } = useDismissableBannerState({
+    id,
+  });
+
+  if (!isVisible) {
     return null;
   }
 
@@ -58,7 +70,7 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
           icon='times'
           iconComponent={CloseIcon}
           title={intl.formatMessage(messages.dismiss)}
-          onClick={handleDismiss}
+          onClick={dismiss}
         />
       </div>
 

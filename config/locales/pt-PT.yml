@@ -367,6 +367,7 @@ pt-PT:
       title: Emojis personalizados
       uncategorized: Não categorizados
       unlist: Não listar
+      unlisted: Não listado
       update_failed_msg: Não foi possível atualizar esse emoji
       updated_msg: Emoji atualizado com sucesso!
       upload: Enviar
@@ -1907,13 +1908,19 @@ pt-PT:
       limit: Já fixaste a quantidade máxima de publicações
       ownership: Não podem ser fixadas publicações de outras pessoas
       reblog: Não é possível fixar um impulso
+    quote_policies:
+      followers: Apenas para seguidores
+      nobody: Apenas eu
+      public: Todos
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Menção privada
       private: Só para seguidores
       private_long: Mostrar só aos seguidores
       public: Público
+      public_long: Qualquer pessoa dentro e fora do Mastodon
       unlisted: Não listado
+      unlisted_long: Oculto dos resultados de pesquisa, tendências e linhas do tempo públicas do Mastodon
   statuses_cleanup:
     enabled: Eliminar publicações antigas automaticamente
     enabled_hint: Elimina automaticamente as tuas publicações assim que atingirem um certo limite de tempo, a não ser que correspondam a uma das seguintes exceções
