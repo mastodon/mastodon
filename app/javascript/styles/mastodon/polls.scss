@@ -14,12 +14,12 @@
   &__chart {
     border-radius: 4px;
     display: block;
-    background: darken($ui-primary-color, 5%);
+    background: rgb(from var(--clr-text-accent) r g b / 60%);
     height: 5px;
     min-width: 1%;
 
     &.leading {
-      background: $ui-highlight-color;
+      background: var(--clr-text-accent);
     }
   }
 
@@ -39,12 +39,12 @@
     // duplication
     &::-moz-progress-bar {
       border-radius: 4px;
-      background: darken($ui-primary-color, 5%);
+      background: rgb(from var(--clr-text-accent) r g b / 60%);
     }
 
     &::-webkit-progress-value {
       border-radius: 4px;
-      background: darken($ui-primary-color, 5%);
+      background: rgb(from var(--clr-text-accent) r g b / 60%);
     }
   }
 
@@ -82,13 +82,13 @@
       color: var(--clr-text-primary);
       outline: 0;
       font-family: inherit;
-      background: $ui-base-color;
+      background: var(--clr-bg-primary);
       border: 1px solid var(--clr-text-secondary);
       border-radius: 4px;
       padding: 8px 12px;
 
       &:focus {
-        border-color: $ui-highlight-color;
+        border-color: var(--clr-text-accent);
       }
 
       @media screen and (width <= 600px) {
@@ -166,7 +166,7 @@
     &:active,
     &:focus,
     &:hover {
-      border-color: $ui-primary-color;
+      border-color: var(--clr-text-primary);
       border-width: 1px;
     }
   }
@@ -225,10 +225,10 @@
   color: var(--clr-text-tertiary);
 
   &__chart {
-    background: rgba(darken($ui-primary-color, 14%), 0.7);
+    background: rgb(from var(--clr-text-accent) r g b / 40%);
 
     &.leading {
-      background: color.change($ui-highlight-color, $alpha: 0.5);
+      background: rgb(from var(--clr-text-accent) r g b / 60%);
     }
   }
 }
