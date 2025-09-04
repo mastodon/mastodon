@@ -441,7 +441,7 @@ class Account < ApplicationRecord
   end
 
   before_validation :prepare_contents, if: :local?
-  before_create :generate_keys
+  after_create :generate_keys
   before_destroy :clean_feed_manager
 
   def ensure_keys!
@@ -469,7 +469,7 @@ class Account < ApplicationRecord
       account_secret.update!(private_key: keypair.to_pem)
     end
 
-    self.public_key = keypair.public_key.to_pem
+    update!(public_key: keypair.public_key.to_pem)
   end
 
   def normalize_domain
