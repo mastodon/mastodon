@@ -129,6 +129,19 @@ RSpec.describe '/api/v1/accounts' do
             .to start_with('application/json')
         end
       end
+
+      context 'when date of birth is over age limit in ISO-8601 format' do
+        let(:date_of_birth) { 17.years.ago.to_date.iso8601 }
+
+        it 'creates a user', :aggregate_failures do
+          subject
+
+          expect(response)
+            .to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
+      end
     end
 
     context 'when given truthy agreement' do
