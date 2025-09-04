@@ -640,7 +640,7 @@
   &__warning {
     color: $inverted-text-color;
     background: $ui-primary-color;
-    box-shadow: 0 2px 6px color.change($base-shadow-color, $alpha: 0.3);
+    box-shadow: 0 2px 6px var(--clr-shadow-primary);
     padding: 8px 10px;
     border-radius: 4px;
     font-size: 13px;
@@ -2318,7 +2318,7 @@
       inset-inline-start: 50%;
       transform: translate(-50%, -50%);
       color: var(--clr-text-primary);
-      text-shadow: 1px 1px 2px $base-shadow-color;
+      text-shadow: 1px 1px 2px var(--clr-shadow-primary-base);
       font-weight: 700;
       font-size: 15px;
     }
@@ -4211,7 +4211,7 @@ a.account__display-name {
     cursor: pointer;
 
     & > div {
-      background: color.change($base-shadow-color, $alpha: 0.6);
+      background: rgb(from var(--clr-shadow-primary-base) r g b / 60%);
       border-radius: 8px;
       padding: 12px 9px;
       backdrop-filter: $backdrop-blur-filter;
@@ -5450,7 +5450,7 @@ a.status-card {
   z-index: -1;
   border-radius: 4px;
   background: $ui-base-color;
-  box-shadow: 0 0 5px color.change($base-shadow-color, $alpha: 0.2);
+  box-shadow: 0 0 5px var(--clr-shadow-primary);
 }
 
 .upload-area__content {
@@ -7607,11 +7607,11 @@ a.status-card {
 .video-player {
   overflow: hidden;
   position: relative;
-  background: $base-shadow-color;
+  color: var(--clr-text-on-media);
+  background: var(--clr-bg-media);
   max-width: 100%;
   border-radius: 8px;
   box-sizing: border-box;
-  color: $white;
   display: flex;
   align-items: center;
   outline: 1px solid var(--clr-border-media);
@@ -7648,8 +7648,8 @@ a.status-card {
     box-sizing: border-box;
     background: linear-gradient(
       0deg,
-      color.change($base-shadow-color, $alpha: 0.85) 0,
-      color.change($base-shadow-color, $alpha: 0.45) 60%,
+      rgb(from var(--clr-bg-media) r g b / 85%) 0,
+      rgb(from var(--clr-bg-media) r g b / 45%) 60%,
       transparent
     );
     padding: 0 15px;
@@ -7689,7 +7689,7 @@ a.status-card {
     height: 100%;
     z-index: 4;
     border: 0;
-    background: var(--clr-bg-overlay);
+    background: var(--clr-bg-primary);
     color: var(--clr-text-secondary);
     transition: none;
     pointer-events: none;
@@ -7845,7 +7845,7 @@ a.status-card {
       margin-inline-start: -6px;
       transform: translate(0, -50%);
       background: $white;
-      box-shadow: 1px 2px 6px color.change($base-shadow-color, $alpha: 0.2);
+      box-shadow: 1px 2px 6px var(--clr-shadow-primary);
       opacity: 0;
 
       .no-reduce-motion & {
@@ -7915,7 +7915,7 @@ a.status-card {
       top: 10px;
       margin-inline-start: -6px;
       background: $white;
-      box-shadow: 1px 2px 6px color.change($base-shadow-color, $alpha: 0.2);
+      box-shadow: 1px 2px 6px var(--clr-shadow-primary);
 
       .no-reduce-motion & {
         transition: opacity 0.1s ease;
@@ -7939,7 +7939,7 @@ a.status-card {
     top: 50%;
     inset-inline-start: 50%;
     transform: translate(-50%, -50%);
-    background: color.change($base-shadow-color, $alpha: 0.45);
+    background: rgb(from var(--clr-bg-media) r g b / 45%);
     backdrop-filter: $backdrop-blur-filter;
     color: $white;
     border-radius: 8px;
@@ -8296,7 +8296,7 @@ noscript {
     transform: translate(-50%, -50%);
     border: 2px solid #fff;
     border-radius: 50%;
-    box-shadow: 0 0 0 9999em color.change($base-shadow-color, $alpha: 0.35);
+    box-shadow: 0 0 0 9999em var(--clr-shadow-primary);
     pointer-events: none;
   }
 }
@@ -10345,8 +10345,8 @@ noscript {
   border: 1px solid var(--clr-border-on-bg-inverted);
   border-radius: 8px;
   box-shadow:
-    0 10px 15px -3px color.change($base-shadow-color, $alpha: 0.25),
-    0 4px 6px -4px color.change($base-shadow-color, $alpha: 0.25);
+    0 10px 15px -3px var(--clr-shadow-primary),
+    0 4px 6px -4px var(--clr-shadow-primary);
   cursor: default;
   font-size: 15px;
   line-height: 21px;
