@@ -3337,7 +3337,7 @@ a.account__display-name {
 
 .columns-area__panels__pane--overlay {
   pointer-events: auto;
-  background: color.change($base-overlay-background, $alpha: 0.5);
+  background: rgb(from var(--clr-bg-overlay) r g b / 50%);
   z-index: 3;
 
   .columns-area__panels__pane__inner {
@@ -3874,10 +3874,6 @@ a.account__display-name {
   border-radius: 10px;
   padding: 0;
   user-select: none;
-  -webkit-tap-highlight-color: color.change(
-    $base-overlay-background,
-    $alpha: 0
-  );
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -4314,7 +4310,7 @@ a.status-card {
   top: 0;
   inset-inline-start: 0;
   z-index: 0;
-  background: $base-overlay-background;
+  background: var(--clr-bg-primary);
 
   &--hidden {
     display: none;
@@ -4876,7 +4872,7 @@ a.status-card {
 
 .video-error-cover {
   align-items: center;
-  background: $base-overlay-background;
+  background: var(--clr-bg-primary);
   color: var(--clr-text-primary);
   cursor: pointer;
   display: flex;
@@ -5339,7 +5335,7 @@ a.status-card {
 
 .upload-area {
   align-items: center;
-  background: color.change($base-overlay-background, $alpha: 0.8);
+  background: rgb(from var(--clr-bg-overlay) r g b / 80%);
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -5973,7 +5969,7 @@ a.status-card {
   inset-inline-end: 0;
   bottom: 0;
   opacity: 0.9;
-  background: $base-overlay-background;
+  background: var(--clr-bg-overlay);
   transition: background 0.5s;
 }
 
@@ -7326,7 +7322,7 @@ a.status-card {
   top: 0;
   inset-inline-start: 0;
   z-index: -2;
-  background: $base-overlay-background;
+  background: var(--clr-bg-overlay);
 
   &--hidden {
     display: none;
@@ -7589,7 +7585,7 @@ a.status-card {
     height: 100%;
     z-index: 4;
     border: 0;
-    background: $base-overlay-background;
+    background: var(--clr-bg-overlay);
     color: var(--clr-text-secondary);
     transition: none;
     pointer-events: none;
@@ -8174,7 +8170,7 @@ noscript {
   inset-inline-start: 0;
   width: 100%;
   height: 100%;
-  background: color.change($base-overlay-background, $alpha: 0.5);
+  background: rgb(from var(--clr-bg-overlay) r g b / 50%);
 }
 
 .focal-point {
