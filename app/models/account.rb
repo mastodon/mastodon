@@ -500,4 +500,13 @@ class Account < ApplicationRecord
   def trigger_update_webhooks
     TriggerWebhookWorker.perform_async('account.updated', 'Account', id) if local?
   end
+
+  # Temporary errors while private_key is still a field in the accounts table
+  def private_key=
+    raise 'private_key= is deprecated. Use account.account_secret.private_key= '
+  end
+
+  def private_key
+    raise 'private_key is deprecated. Use account.account_secret.private_key'
+  end
 end
