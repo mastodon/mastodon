@@ -581,6 +581,8 @@ eo:
         all: Ĉiuj
         limited: Limigita
         title: Moderigado
+      moderation_notes:
+        title: Notoj de moderigado
       private_comment: Privata komento
       public_comment: Publika komento
       purge: Purigu
@@ -1081,12 +1083,18 @@ eo:
       trending: Popularaĵoj
     username_blocks:
       add_new: Aldoni novan
+      comparison:
+        contains: Enhavas
+        equals: Egalas
+      contains_html: Enhavas %{string}
       delete: Forigi
       edit:
         title: Redakti uzantnoman regulon
+      matches_exactly_html: Egalas %{string}
       new:
         create: Krei regulon
         title: Krei novan uzantnoman regulon
+      no_username_block_selected: Neniuj uzantnomaj reguloj estis ŝanĝitaj ĉar neniuj estis elektitaj
       not_permitted: Ne permesita
       title: Uzantnomaj reguloj
       updated_msg: Sukcese ĝisdatigita uzantnoma regulo
@@ -1356,6 +1364,8 @@ eo:
     other: Alia
   emoji_styles:
     auto: Aŭtomata
+    native: Denaska
+    twemoji: Twemoji
   errors:
     '400': La peto kiun vi sendis estas nevalida au malformas.
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
@@ -1720,6 +1730,8 @@ eo:
       too_few_options: devas enhavi pli da unu propono
       too_many_options: ne povas enhavi pli da %{max} proponoj
     vote: Voĉdoni
+  posting_defaults:
+    explanation: Ĉi tiuj agordoj estos uzataj kiel defaŭltaj kiam vi kreas novajn afiŝojn, sed vi povas redakti ilin per afiŝo en la redaktilo.
   preferences:
     other: Aliaj aferoj
     posting_defaults: Afiŝaj defaŭltoj
@@ -1944,6 +1956,9 @@ eo:
     does_not_match_previous_name: ne kongruas kun la antaŭa nomo
   terms_of_service:
     title: Kondiĉoj de uzado
+  terms_of_service_interstitial:
+    past_preamble_html: Ni ŝanĝis niajn servkondiĉojn ekde via lasta vizito. Ni instigas vin revizii la ĝisdatigitajn kondiĉojn.
+    title: La servkondiĉoj de %{domain} ŝanĝiĝas
   themes:
     contrast: Mastodon (Forta kontrasto)
     default: Mastodon (Malhela)
