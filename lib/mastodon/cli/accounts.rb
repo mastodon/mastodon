@@ -614,9 +614,10 @@ module Mastodon::CLI
     def rotate_keys_for_account(account, delay = 0)
       fail_with_message 'No such account' if account.nil?
 
-      old_key = account.private_key
+      old_key = account.account_secret.private_key
       new_key = OpenSSL::PKey::RSA.new(2048)
-      account.update(private_key: new_key.to_pem, public_key: new_key.public_key.to_pem)
+      account.account_secret.update!(private_key: new_key.to_pem)
+      account.update!(public_key: new_key.public_key.to_pem)
       ActivityPub::UpdateDistributionWorker.perform_in(delay, account.id, { 'sign_with' => old_key })
     end
   end
