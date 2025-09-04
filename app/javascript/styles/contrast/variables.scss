@@ -1,9 +1,6 @@
 @use '../mastodon/functions' as *;
 
 $ui-base-color: hsl(240deg, 16%, 19%) !default;
-$ui-primary-color: hsl(240deg, 29%, 70%) !default;
-$ui-secondary-color: hsl(255deg, 25%, 88%) !default;
-$ui-highlight-color: hsl(240deg, 100%, 69%) !default;
 
 @use '../mastodon/variables' with (
   $action-button-color: lighten($ui-base-color, 50%),

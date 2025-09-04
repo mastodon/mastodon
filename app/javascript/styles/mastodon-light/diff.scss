@@ -200,19 +200,6 @@
   }
 }
 
-.react-toggle-track {
-  background: $ui-primary-color;
-}
-
-.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background: lighten($ui-primary-color, 10%);
-}
-
-.react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled)
-  .react-toggle-track {
-  background: lighten($ui-highlight-color, 10%);
-}
-
 // Change the default color used for the text in an empty column or on the error column
 .empty-column-indicator,
 .error-column {
@@ -293,11 +280,11 @@
   input[type='url'],
   input[type='datetime-local'],
   textarea {
-    background: darken($ui-base-color, 10%);
+    background: var(--clr-bg-secondary);
   }
 
   select {
-    background: darken($ui-base-color, 10%)
+    background: var(--clr-bg-secondary)
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>")
       no-repeat right 8px center / auto 14px;
   }
