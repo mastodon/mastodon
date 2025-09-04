@@ -1739,6 +1739,9 @@ fo:
       self_vote: Tú kanst ikki atkvøða í tínum egnum atkvøðugreiðslum
       too_few_options: má hava meiri enn ein valmøguleika
       too_many_options: kann ikki innihalda fleiri enn %{max} valmøguleikar
+    vote: Atkvøð
+  posting_defaults:
+    explanation: Hesar stillingar verða brúktar sum sjálvval tá stovnar nýggjar postar, men tú kanst rætta tær fyri hvønn post í rættiøkinum.
   preferences:
     other: Annað
     posting_defaults: Postingarstillingar
@@ -1914,6 +1917,7 @@ fo:
       public: Ein og hvør
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Privat umrøða
       private: Einans fylgjarar
       private_long: Vís einans fyri fylgjarum
       public: Alment
@@ -1964,6 +1968,11 @@ fo:
     does_not_match_previous_name: samsvarar ikki við undanfarna navnið
   terms_of_service:
     title: Tænastutreytir
+  terms_of_service_interstitial:
+    future_preamble_html: Vit gera broytingar í tænastutreytunum, sum fáa virknað frá <strong>%{date}</strong>. Vit eggja tær til at eftirkanna dagførdu treytirnar.
+    past_preamble_html: Vit hava broytt tænastutreytirnar síðani tú seinast vitjaði. Vit eggja tær til at eftirkanna dagførdu treytirnar.
+    review_link: Eftirkanna tænastutreytir
+    title: Tænastutreytirnar á %{domain} verða broyttar
   themes:
     contrast: Mastodon (høgur kontrastur)
     default: Mastodon (myrkt)

@@ -305,6 +305,14 @@ RSpec.describe PostStatusService do
       .to enqueue_sidekiq_job(ActivityPub::QuoteRequestWorker)
   end
 
+  it 'correctly downgrades visibility for private self-quotes' do
+    account = Fabricate(:account)
+    quoted_status = Fabricate(:status, account: account, visibility: :private)
+
+    status = subject.call(account, text: 'test', quoted_status: quoted_status)
+    expect(status).to be_private_visibility
+  end
+
   it 'returns existing status when used twice with idempotency key' do
     account = Fabricate(:account)
     status1 = subject.call(account, text: 'test', idempotency: 'meepmeep')

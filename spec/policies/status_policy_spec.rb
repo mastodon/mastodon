@@ -88,10 +88,10 @@ RSpec.describe StatusPolicy, type: :model do
 
   context 'with the permission of quote?' do
     permissions :quote? do
-      it 'grants access when direct and account is viewer' do
+      it 'does not grant access when direct and account is viewer' do
         status.visibility = :direct
 
-        expect(subject).to permit(status.account, status)
+        expect(subject).to_not permit(status.account, status)
       end
 
       it 'does not grant access access when direct and viewer is mentioned but not explicitly allowed' do

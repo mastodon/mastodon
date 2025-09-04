@@ -367,7 +367,7 @@ da:
       title: Tilpassede emojier
       uncategorized: Ukategoriseret
       unlist: Fjern fra liste
-      unlisted: Tavsgør offentligt
+      unlisted: Offentlig (stille)
       update_failed_msg: Kunne ikke opdatere denne emoji
       updated_msg: Emoji er opdateret!
       upload: Upload
@@ -418,7 +418,7 @@ da:
         remove_all_data: Dette vil fjerne alt indhold, medier og profildata for dette domænes konti fra din server.
         stop_communication: Din server vil stoppe kommunikationen med disse servere.
         title: Bekræft blokering af domænet %{domain}
-        undo_relationships: Dette vil fortryde ethvert følgeforhold mellem konti for disse servere og din.
+        undo_relationships: Dette vil ophæve ethvert følgeforhold mellem konti på disse servere og dine.
       created_msg: Domæneblokering under behandling
       destroyed_msg: Domæneblokering er blevet fjernet
       domain: Domæne
@@ -1739,6 +1739,9 @@ da:
       self_vote: Du kan ikke stemme i dine egne afstemninger
       too_few_options: skal have flere end ét valg
       too_many_options: må maks. indeholde %{max} valg
+    vote: Stem
+  posting_defaults:
+    explanation: Disse indstillinger vil blive brugt som standard, når du opretter nye indlæg, men du kan redigere dem for hvert enkelt indlæg i redigeringsværktøjet.
   preferences:
     other: Andet
     posting_defaults: Standarder for indlæg
@@ -1910,7 +1913,7 @@ da:
       reblog: En fremhævelse kan ikke fastgøres
     quote_policies:
       followers: Kun følgere
-      nobody: Kun en selv
+      nobody: Kun mig
       public: Alle
     title: '%{name}: "%{quote}"'
     visibilities:
