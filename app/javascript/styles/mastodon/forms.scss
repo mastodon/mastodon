@@ -965,7 +965,7 @@ code {
   background: $simple-background-color;
   padding: 4px;
   margin: 0 10px 20px 0;
-  box-shadow: 0 0 15px color.change($base-shadow-color, $alpha: 0.2);
+  box-shadow: 0 0 15px var(--clr-shadow-primary);
   display: inline-block;
 
   svg {
@@ -990,8 +990,8 @@ code {
     box-sizing: border-box;
     background: var(--clr-bg-error-subtle);
     color: var(--clr-text-primary);
-    text-shadow: 1px 1px 0 color.change($base-shadow-color, $alpha: 0.3);
-    box-shadow: 0 2px 6px color.change($base-shadow-color, $alpha: 0.4);
+    text-shadow: 1px 1px 0 var(--clr-shadow-primary);
+    box-shadow: 0 2px 6px var(--clr-shadow-primary);
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 15px;
