@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import { useCallback, useState, useEffect, useId } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -8,59 +8,17 @@ import { changeSetting } from 'mastodon/actions/settings';
 import { bannerSettings } from 'mastodon/settings';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import {
-  clearActiveOnboardingHint,
-  setActiveOnboardingHint,
-} from '../actions/onboarding_hints';
-
 import { IconButton } from './icon_button';
-
-function useIsActiveOnboardingHint({
-  id,
-  canBeDisplayed,
-}: {
-  id: string;
-  canBeDisplayed: boolean;
-}) {
-  const dispatch = useAppDispatch();
-  const activeOnboardingHintId = useAppSelector(
-    (state) => state.onboardingHints.activeOnboardingHintId,
-  );
-  const uniqueId = useId();
-  const hintId = `${id}-${uniqueId}`;
-
-  const isActiveHint = activeOnboardingHintId === hintId;
-
-  useEffect(() => {
-    if (canBeDisplayed) {
-      dispatch(setActiveOnboardingHint(hintId));
-    } else {
-      dispatch(clearActiveOnboardingHint(hintId));
-    }
-
-    return () => {
-      dispatch(clearActiveOnboardingHint(hintId));
-    };
-  }, [canBeDisplayed, dispatch, hintId, isActiveHint]);
-
-  return isActiveHint;
-}
 
 const messages = defineMessages({
   dismiss: { id: 'dismissable_banner.dismiss', defaultMessage: 'Dismiss' },
 });
 
-export function useDismissableBannerState({
-  id,
-  allowMultiple = false,
-}: {
+interface Props {
   id: string;
-  /**
-   * Set this to true to allow this banner to be displayed at the same time
-   * as other banners or UI hints using this hook.
-   */
-  allowMultiple?: boolean;
-}) {
+}
+
+export function useDismissableBannerState({ id }: Props) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const dismissed: boolean = useAppSelector((state) =>
     /* eslint-disable-next-line */
@@ -86,19 +44,10 @@ export function useDismissableBannerState({
     }
   }, [id, dispatch, isVisible, dismissed]);
 
-  const isActiveOnboardingHint = useIsActiveOnboardingHint({
-    id,
-    canBeDisplayed: isVisible,
-  });
-
   return {
-    isVisible: allowMultiple ? isVisible : isVisible && isActiveOnboardingHint,
+    isVisible,
     dismiss,
   };
-}
-
-interface Props {
-  id: string;
 }
 
 export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
@@ -108,7 +57,6 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
   const intl = useIntl();
   const { isVisible, dismiss } = useDismissableBannerState({
     id,
-    allowMultiple: true,
   });
 
   if (!isVisible) {

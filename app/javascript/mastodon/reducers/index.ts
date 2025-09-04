@@ -26,7 +26,6 @@ import { notificationGroupsReducer } from './notification_groups';
 import { notificationPolicyReducer } from './notification_policy';
 import { notificationRequestsReducer } from './notification_requests';
 import notifications from './notifications';
-import { onboardingHintsReducer } from './onboarding_hints';
 import { pictureInPictureReducer } from './picture_in_picture';
 import { pollsReducer } from './polls';
 import push_notifications from './push_notifications';
@@ -81,7 +80,6 @@ const reducers = {
   notificationPolicy: notificationPolicyReducer,
   notificationRequests: notificationRequestsReducer,
   navigation: navigationReducer,
-  onboardingHints: onboardingHintsReducer,
 };
 
 // We want the root state to be an ImmutableRecord, which is an object with a defined list of keys,
