@@ -32,7 +32,7 @@ class StreamingClient
       @dead = false
 
       @events_queue = Thread::Queue.new
-      @messages = Thread::Queue.new
+      @messages = []
       @last_error = nil
     end
 
@@ -68,8 +68,8 @@ class StreamingClient
       end
 
       @driver.on(:message) do |event|
-        @events_queue.enq({ event: :message, payload: event })
-        @messages << event
+        @events_queue.enq({ event: :message, payload: event.data })
+        @messages << event.data
       end
 
       @driver.on(:error) do |event|
@@ -85,6 +85,14 @@ class StreamingClient
 
       @thread = Thread.new do
         @driver.parse(@tcp.read(1)) until @dead || @tcp.closed?
+      rescue Errno::ECONNRESET
+        # Create a synthetic close event:
+        close_event = WebSocket::Driver::CloseEvent.new(
+          WebSocket::Driver::Hybi::ERRORS[:unexpected_condition],
+          'Connection reset'
+        )
+
+        finalize(close_event)
       end
 
       @driver
@@ -109,6 +117,8 @@ class StreamingClient
 
     def write(data)
       @tcp.write(data)
+    rescue Errno::EPIPE => e
+      logger&.debug("EPIPE: #{e}")
     end
 
     def finalize(event)
@@ -137,7 +147,7 @@ class StreamingClient
     @logger.debug!
   end
 
-  def authenticate(access_token, authentication_method)
+  def authenticate(access_token, authentication_method = StreamingClient::AUTHENTICATION::SUBPROTOCOL)
     raise 'access_token passed to StreamingClient was not a string' unless access_token.is_a?(String)
     raise 'invalid authentication method' unless AUTHENTICATION.supported?(authentication_method)
 
@@ -156,8 +166,20 @@ class StreamingClient
     @connection.wait_for_event(:opened)
   end
 
+  def subscribe(channel, **params)
+    send(Oj.dump({ type: 'subscribe', stream: channel }.merge(params)))
+  end
+
   def wait_for(event = nil)
     @connection.wait_for_event(event)
+  end
+
+  def wait_for_message
+    message = @connection.wait_for_event(:message)
+    event = Oj.load(message)
+    event['payload'] = Oj.load(event['payload']) if event['payload']
+
+    event.deep_symbolize_keys
   end
 
   def status_code
@@ -166,6 +188,10 @@ class StreamingClient
 
   def state
     @connection.driver.state
+  end
+
+  def messages
+    @connection.messages
   end
 
   def open?
