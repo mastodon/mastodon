@@ -571,7 +571,7 @@
     display: block;
     line-height: 16px;
     font-size: 12px;
-    color: $ui-primary-color;
+    color: var(--clr-text-secondary);
   }
 }
 
@@ -638,16 +638,15 @@
   }
 
   &__warning {
-    color: $inverted-text-color;
-    background: $ui-primary-color;
-    box-shadow: 0 2px 6px var(--clr-shadow-primary);
+    color: var(--clr-text-primary);
+    background: var(--clr-bg-warning-subtle);
+    border: 1px solid var(--clr-border-on-bg-warning-subtle);
     padding: 8px 10px;
     border-radius: 4px;
     font-size: 13px;
     font-weight: 400;
 
     strong {
-      color: $inverted-text-color;
       font-weight: 500;
 
       @each $lang in $cjk-langs {
@@ -658,7 +657,7 @@
     }
 
     a {
-      color: $lighter-text-color;
+      color: var(--clr-text-accent);
       font-weight: 500;
       text-decoration: underline;
 
@@ -694,8 +693,6 @@
     width: 100%;
     margin: 0;
     color: var(--clr-text-primary);
-
-    // background: var(--clr-bg-secondary);
     background: transparent;
     font-family: inherit;
     font-size: 14px;
@@ -3961,6 +3958,16 @@ a.account__display-name {
   -webkit-tap-highlight-color: transparent;
 }
 
+.react-toggle--focus,
+.react-toggle:focus-within {
+  outline: var(--outline-focus-default);
+  outline-offset: 2px;
+
+  .react-toggle-track {
+    border-color: transparent;
+  }
+}
+
 .react-toggle-screenreader-only,
 .sr-only {
   border: 0;
@@ -3984,15 +3991,25 @@ a.account__display-name {
   height: 20px;
   padding: 0;
   border-radius: 10px;
-  background-color: $ui-primary-color;
-}
+  background-color: rgb(from var(--clr-bg-accent-subtle) r g b / 50%);
+  border: 1px solid rgb(from var(--clr-text-accent) r g b / 50%);
+  box-sizing: border-box;
 
-.react-toggle--focus {
-  outline: $ui-button-focus-outline;
-}
+  .react-toggle:hover:not(.react-toggle--disabled) & {
+    background-color: rgb(
+      from var(--clr-bg-accent-subtle) r g b /
+        calc(50% + var(--clr-bg-accent-subtle-strength))
+    );
+  }
 
-.react-toggle--checked .react-toggle-track {
-  background-color: $ui-highlight-color;
+  .react-toggle--checked & {
+    background-color: var(--clr-bg-accent-strong);
+    border-color: var(--clr-bg-accent-strong);
+  }
+
+  .react-toggle--checked:not(.react-toggle--disabled):hover & {
+    background-color: var(--clr-bg-accent-strong-highlighted);
+  }
 }
 
 .react-toggle-track-check,
@@ -4007,24 +4024,15 @@ a.account__display-name {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: $ui-button-color;
+  background-color: var(--clr-text-on-accent-strong);
   box-sizing: border-box;
   transition: all 0.25s ease;
   transition-property: border-color, left;
-}
 
-.react-toggle--checked .react-toggle-thumb {
-  inset-inline-start: 32px - 16px - 2px;
-  border-color: $ui-highlight-color;
-}
-
-.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background: darken($ui-primary-color, 5%);
-}
-
-.react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled)
-  .react-toggle-track {
-  background: lighten($ui-highlight-color, 5%);
+  .react-toggle--checked & {
+    inset-inline-start: 32px - 16px - 2px;
+    border-color: var(--clr-bg-accent-strong);
+  }
 }
 
 .follow_requests-unlocked_explanation,

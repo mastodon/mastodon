@@ -114,9 +114,9 @@
   }
 
   .current {
-    background: $simple-background-color;
+    color: var(--clr-bg-inverted);
+    background: var(--clr-text-on-inverted);
     border-radius: 100px;
-    color: $inverted-text-color;
     cursor: default;
     margin: 0 10px;
   }
