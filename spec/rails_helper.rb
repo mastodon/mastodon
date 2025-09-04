@@ -85,6 +85,7 @@ RSpec.configure do |config|
 
   # By default, skip specs that need the streaming server
   config.filter_run_excluding :streaming
+  config.filter_run_excluding :streaming_client
 
   config.fixture_paths = [
     Rails.root.join('spec', 'fixtures'),
@@ -102,6 +103,11 @@ RSpec.configure do |config|
   # Set `search` metadata true for all specs in spec/search/
   config.define_derived_metadata(file_path: Regexp.new('spec/search/*')) do |metadata|
     metadata[:search] = true
+  end
+
+  # Set `streaming_client` metadata true for all specs in spec/streaming/
+  config.define_derived_metadata(file_path: Regexp.new('spec/streaming/*')) do |metadata|
+    metadata[:streaming_client] = true
   end
 
   config.include Devise::Test::ControllerHelpers, type: :controller

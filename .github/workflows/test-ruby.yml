@@ -347,7 +347,7 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: yarn run playwright install-deps chromium
 
-      - run: bin/rspec spec/system --tag streaming --tag js
+      - run: bin/rspec spec/system --tag streaming --tag js --tag streaming_client
 
       - name: Archive logs
         uses: actions/upload-artifact@v4
