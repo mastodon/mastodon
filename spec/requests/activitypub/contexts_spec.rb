@@ -21,6 +21,9 @@ RSpec.describe 'ActivityPub Contexts' do
       expect(response.media_type)
         .to eq 'application/activity+json'
 
+      expect(response.parsed_body[:type])
+        .to eq 'Collection'
+
       expect(response.parsed_body[:first][:items])
         .to be_an(Array)
         .and have_attributes(size: 1)

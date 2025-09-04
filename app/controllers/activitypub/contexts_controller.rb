@@ -5,13 +5,13 @@ class ActivityPub::ContextsController < ActivityPub::BaseController
 
   before_action :require_account_signature!, if: :authorized_fetch_mode?
   before_action :set_conversation
-  before_action :set_items, only: :items
+  before_action :set_items
 
   DESCENDANTS_LIMIT = 60
 
   def show
     expires_in 3.minutes, public: public_fetch_mode?
-    render_with_cache json: @conversation, serializer: ActivityPub::ContextSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
+    render_with_cache json: context_presenter, serializer: ActivityPub::ContextSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
   end
 
   def items
@@ -31,6 +31,20 @@ class ActivityPub::ContextsController < ActivityPub::BaseController
 
   def set_items
     @items = @conversation.statuses.distributable_visibility.paginate_by_min_id(DESCENDANTS_LIMIT, params[:min_id])
+  end
+
+  def context_presenter
+    first_page = ActivityPub::CollectionPresenter.new(
+      id: context_items_url(@conversation, page_params),
+      type: :unordered,
+      part_of: context_items_url(@conversation),
+      next: next_page,
+      items: @items.map { |status| status.local? ? ActivityPub::TagManager.instance.uri_for(status) : status.uri }
+    )
+
+    ActivityPub::ContextPresenter.from_conversation(@conversation).tap do |presenter|
+      presenter.first = first_page
+    end
   end
 
   def items_collection_presenter
