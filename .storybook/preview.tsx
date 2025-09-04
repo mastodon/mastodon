@@ -19,6 +19,7 @@ import { mockHandlers, unhandledRequestHandler } from '@/testing/api';
 // If you want to run the dark theme during development,
 // you can change the below to `/application.scss`
 import '../app/javascript/styles/mastodon-light.scss';
+import './styles.css';
 
 const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
   query: { as: 'json' },
