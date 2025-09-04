@@ -121,7 +121,9 @@ Rails.application.routes.draw do
 
   resource :inbox, only: [:create], module: :activitypub
   resources :contexts, only: [:show], module: :activitypub do
-    resources :items, only: [:index], module: :activitypub
+    member do
+      get :items
+    end
   end
 
   constraints(encoded_path: /%40.*/) do

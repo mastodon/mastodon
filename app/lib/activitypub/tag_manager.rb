@@ -81,7 +81,7 @@ class ActivityPub::TagManager
   def context_uri_for(target, page_params = nil)
     raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
-    context_items_url(target.conversation, page_params)
+    items_context_url(target.conversation, page_params)
   end
 
   def replies_uri_for(target, page_params = nil)

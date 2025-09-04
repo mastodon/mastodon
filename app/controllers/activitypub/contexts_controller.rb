@@ -35,9 +35,9 @@ class ActivityPub::ContextsController < ActivityPub::BaseController
 
   def context_presenter
     first_page = ActivityPub::CollectionPresenter.new(
-      id: context_items_url(@conversation, page_params),
+      id: items_context_url(@conversation, page_params),
       type: :unordered,
-      part_of: context_items_url(@conversation),
+      part_of: items_context_url(@conversation),
       next: next_page,
       items: @items.map { |status| status.local? ? ActivityPub::TagManager.instance.uri_for(status) : status.uri }
     )
@@ -49,17 +49,17 @@ class ActivityPub::ContextsController < ActivityPub::BaseController
 
   def items_collection_presenter
     page = ActivityPub::CollectionPresenter.new(
-      id: context_items_url(@conversation, page_params),
+      id: items_context_url(@conversation, page_params),
       type: :unordered,
-      part_of: context_items_url(@conversation),
+      part_of: items_context_url(@conversation),
       next: next_page,
-      items: @items.map { |status| status.local? ? status : status.uri }
+      items: @items.map { |status| status.local? ? ActivityPub::TagManager.instance.uri_for(status) : status.uri }
     )
 
     return page if page_requested?
 
     ActivityPub::CollectionPresenter.new(
-      id: context_items_url(@conversation),
+      id: items_context_url(@conversation),
       type: :unordered,
       first: page
     )
@@ -72,7 +72,7 @@ class ActivityPub::ContextsController < ActivityPub::BaseController
   def next_page
     return nil if @items.size < DESCENDANTS_LIMIT
 
-    context_items_url(@conversation, page: true, min_id: @items.last.id)
+    items_context_url(@conversation, page: true, min_id: @items.last.id)
   end
 
   def page_params
