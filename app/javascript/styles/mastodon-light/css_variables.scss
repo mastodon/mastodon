@@ -46,6 +46,9 @@
   --clr-text-on-success-strong: var(--clr-white);
   --clr-text-disabled: var(--clr-grey-300);
   --clr-text-on-disabled: var(--clr-grey-200);
+  --clr-text-bookmark-highlight: var(--clr-text-error);
+  --clr-text-favourite-highlight: var(--clr-text-warning);
+  --clr-text-on-media: var(--clr-white);
 
   /* BACKGROUND TOKENS */
 
@@ -67,8 +70,11 @@
       var(--clr-bg-primary),
       var(--clr-bg-secondary-base) calc(2 * var(--clr-bg-secondary-strength))
     )};
+  --clr-bg-ambient: var(--clr-bg-primary);
   --clr-bg-elevated: var(--clr-bg-primary);
   --clr-bg-inverted: var(--clr-grey-950);
+  --clr-bg-media: var(--clr-black);
+  --clr-bg-overlay: var(--clr-bg-primary);
   --clr-bg-disabled: var(--clr-grey-400);
   --clr-bg-accent-subtle-base: var(--clr-indigo-600);
   --clr-bg-accent-subtle-strength: 12%;
