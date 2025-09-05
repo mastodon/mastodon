@@ -9,16 +9,24 @@ class FillDefaultQuotePolicySetting < ActiveRecord::Migration[8.0]
   def up
     User.where.not(settings: nil).find_each do |user|
       settings = Oj.load(user.attributes_before_type_cast['settings'])
+      next if settings.nil?
 
-      # We set default quote policy based on privacy so skip users where `default_privacy` isn't set
-      next if settings.nil? || settings['default_privacy'].nil?
+      should_update_settings = false
 
-      # Only override existing `default_quote_policy` if it's a forbidden value
-      if settings['default_privacy'] == 'private' && settings['default_quote_policy'] != 'nobody'
-        user.update_column('settings', Oj.dump(settings.merge('default_quote_policy' => 'nobody')))
-      elsif settings['default_quote_policy'].nil? && settings['default_privacy'] == 'unlisted'
-        user.update_column('settings', Oj.dump(settings.merge('default_quote_policy' => 'followers')))
+      if settings['notification_emails.quote'].blank? && settings['notification_emails.reblog'] == false && settings['notification_emails.mention'] == false
+        settings['notification_emails.quote'] = false
+        should_update_settings = true
       end
+
+      if settings['default_privacy'] == 'private' && settings['default_quote_policy'] != 'nobody'
+        settings['default_quote_policy'] = 'nobody'
+        should_update_settings = true
+      elsif settings['default_quote_policy'].nil? && settings['default_privacy'] == 'unlisted'
+        settings['default_quote_policy'] = 'followers'
+        should_update_settings = true
+      end
+
+      user.update_column('settings', Oj.dump(settings)) if should_update_settings
     end
   end
 end
