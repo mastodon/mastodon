@@ -45,11 +45,6 @@ $ui-button-tertiary-focus-color: $white !default;
 $action-button-color: $ui-base-lighter-color !default;
 $action-button-focus-color: lighten($ui-base-lighter-color, 4%) !default;
 
-// For texts on inverted backgrounds
-$inverted-text-color: $ui-base-color !default;
-$lighter-text-color: $ui-base-lighter-color !default;
-$light-text-color: hsl(240deg, 29%, 70%) !default;
-
 // Keep this filter a SCSS variable rather than
 // a CSS Custom Property due to this Safari bug:
 // https://github.com/mdn/browser-compat-data/issues/25914#issuecomment-2676190245

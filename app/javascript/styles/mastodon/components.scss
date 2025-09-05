@@ -417,48 +417,7 @@
   }
 }
 
-.text-icon-button {
-  color: $lighter-text-color;
-  border: 0;
-  border-radius: 4px;
-  background: transparent;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 11px;
-  padding: 0 3px;
-  line-height: 27px;
-  white-space: nowrap;
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: darken($lighter-text-color, 7%);
-    background-color: color.change($lighter-text-color, $alpha: 0.15);
-  }
-
-  &:focus-visible {
-    outline: var(--outline-focus-default);
-  }
-
-  &.disabled {
-    color: lighten($lighter-text-color, 20%);
-    background-color: transparent;
-    cursor: default;
-  }
-
-  &.active {
-    color: var(--clr-text-accent);
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: var(--clr-text-accent);
-      background-color: transparent;
-    }
-  }
-}
-
-[data-popper-placement] {
+body > [data-popper-placement] {
   z-index: 9999;
 }
 
@@ -4002,8 +3961,8 @@ a.account__display-name {
 
 .follow_requests-unlocked_explanation,
 .switch-to-advanced {
-  color: $light-text-color;
-  background-color: $ui-base-color;
+  color: var(--clr-text-secondary);
+  background-color: var(--clr-bg-secondary);
   padding: 15px;
   border-radius: 4px;
   margin-top: 4px;
@@ -4012,7 +3971,7 @@ a.account__display-name {
   line-height: 18px;
 
   a {
-    color: $ui-button-tertiary-color;
+    color: var(--clr-text-accent);
     font-weight: bold;
   }
 }
@@ -5111,7 +5070,7 @@ a.status-card {
     }
 
     &__multi-value {
-      background: lighten($ui-base-color, 8%);
+      background: var(--clr-bg-secondary);
 
       &__remove {
         cursor: pointer;
@@ -5119,7 +5078,7 @@ a.status-card {
         &:hover,
         &:active,
         &:focus {
-          background: lighten($ui-base-color, 12%);
+          background: var(--clr-bg-accent-subtle);
           color: color-mix(
             in oklab,
             var(--clr-text-primary),
@@ -5149,14 +5108,14 @@ a.status-card {
     }
 
     &__indicator-separator {
-      background-color: lighten($ui-base-color, 8%);
+      background-color: var(--clr-border-primary);
     }
 
     &__menu {
       @include search-popout;
 
       padding: 0;
-      background: $ui-secondary-color;
+      background: var(--clr-bg-elevated);
     }
 
     &__menu-list {
@@ -5164,13 +5123,14 @@ a.status-card {
     }
 
     &__option {
-      color: $inverted-text-color;
+      color: var(--clr-text-primary);
       border-radius: 4px;
       font-size: 14px;
 
       &--is-focused,
       &--is-selected {
-        background: darken($ui-secondary-color, 10%);
+        color: var(--clr-text-on-accent-strong);
+        background: var(--clr-bg-accent-strong);
       }
     }
   }
@@ -6657,29 +6617,6 @@ a.status-card {
   }
 }
 
-.boost-modal__action-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: $ui-secondary-color;
-  padding: 15px;
-
-  & > div {
-    flex: 1 1 auto;
-    text-align: end;
-    color: $lighter-text-color;
-    padding-inline-end: 10px;
-  }
-
-  .icon {
-    vertical-align: middle;
-  }
-
-  .button {
-    flex: 0 0 auto;
-  }
-}
-
 .report-modal {
   width: 90vw;
   max-width: 700px;
@@ -6893,55 +6830,6 @@ a.status-card {
 
   .emoji-mart-search-icon {
     inset-inline-end: 10px + 5px;
-  }
-}
-
-.report-modal__container {
-  display: flex;
-  border-top: 1px solid var(--clr-border-primary);
-
-  @media screen and (width <= 480px) {
-    flex-wrap: wrap;
-    overflow-y: auto;
-  }
-}
-
-.report-modal__statuses,
-.report-modal__comment {
-  box-sizing: border-box;
-  width: 50%;
-  min-width: 50%;
-
-  @media screen and (width <= 480px) {
-    width: 100%;
-  }
-}
-
-.report-modal__statuses,
-.focal-point-modal__content {
-  flex: 1 1 auto;
-  min-height: 20vh;
-  max-height: 80vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-
-  .status__content a {
-    color: var(--clr-text-accent);
-  }
-
-  .status__content,
-  .status__content p {
-    color: $inverted-text-color;
-  }
-
-  @media screen and (width <= 480px) {
-    max-height: 10vh;
-  }
-}
-
-.focal-point-modal__content {
-  @media screen and (width <= 480px) {
-    max-height: 40vh;
   }
 }
 
@@ -8701,7 +8589,7 @@ noscript {
 
     &__name {
       flex: 1 1 auto;
-      color: var(--clr-text-tertiary);
+      color: var(--clr-text-secondary);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -8711,7 +8599,7 @@ noscript {
       }
 
       a {
-        color: var(--clr-text-secondary);
+        color: var(--clr-text-primary);
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;

@@ -1,7 +1,3 @@
-@use 'sass:color';
-@use 'variables' as *;
-@use 'theme_utils' as *;
-
 @mixin search-input {
   outline: 0;
   box-sizing: border-box;
@@ -23,12 +19,12 @@
   padding: 10px 14px;
   padding-bottom: 14px;
   margin-top: 10px;
-  color: $light-text-color;
+  color: var(--clr-text-secondary);
   box-shadow: 2px 4px 15px var(--clr-shadow-primary);
 
   h4 {
     text-transform: uppercase;
-    color: $light-text-color;
+    color: var(--clr-text-secondary);
     font-size: 13px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -44,6 +40,6 @@
 
   em {
     font-weight: 500;
-    color: $inverted-text-color;
+    color: var(--clr-text-primary);
   }
 }
