@@ -32,7 +32,7 @@ class Admin::TagFilter
     when :status
       status_scope(value)
     when :name
-      Tag.search_for(value.to_s.strip, params[:limit], params[:offset], exclude_unlistable: false)
+      Tag.search_for(value, params[:limit], params[:offset], exclude_unlistable: false)
     when :order
       order_scope(value)
     else
