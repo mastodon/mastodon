@@ -55,6 +55,11 @@
   --clr-text-bookmark-highlight: var(--clr-text-error);
   --clr-text-favourite-highlight: var(--clr-text-warning);
   --clr-text-on-media: var(--clr-white);
+  --clr-text-status-links: color-mix(
+    in oklab,
+    var(--clr-text-primary),
+    var(--clr-text-secondary)
+  );
 
   /* BACKGROUND TOKENS */
 

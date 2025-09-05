@@ -333,7 +333,7 @@
   --default-icon-color: var(--clr-text-secondary);
   --default-bg-color: transparent;
   --hover-icon-color: var(--clr-text-primary);
-  --hover-bg-color: var(--clr-bg-secondary);
+  --hover-bg-color: var(--clr-bg-accent);
 
   display: inline-flex;
   color: var(--default-icon-color);
@@ -362,7 +362,7 @@
   }
 
   &:focus-visible {
-    outline: var(--clr-text-accent);
+    outline: 2px solid var(--clr-text-accent);
   }
 
   &.disabled {
@@ -383,10 +383,10 @@
   }
 
   &.overlayed {
-    --default-icon-color: color.change($white, $alpha: 0.7);
-    --default-bg-color: color.change($black, $alpha: 0.65);
+    --default-icon-color: rgb(from var(--clr-text-on-media) r g b / 70%);
+    --default-bg-color: rgb(from var(--clr-bg-media) r g b / 65%);
     --hover-icon-color: var(--clr-text-accent);
-    --hover-bg-color: color.change($black, $alpha: 0.9);
+    --hover-bg-color: rgb(from var(--clr-bg-media) r g b / 90%);
 
     box-sizing: content-box;
     backdrop-filter: $backdrop-blur-filter;
@@ -534,8 +534,8 @@
       }
 
       &.selected {
-        background: $ui-highlight-color;
-        color: $ui-button-color;
+        color: var(--clr-text-on-accent-strong);
+        background: var(--clr-bg-accent-strong);
 
         .autosuggest-account .display-name__account {
           color: inherit;
@@ -816,8 +816,8 @@
       padding: 8px;
 
       .icon-button.active {
-        color: #ffbe2e;
-        background: rgba(0, 0, 0, 75%);
+        color: var(--clr-text-on-warning-strong);
+        background: var(--clr-bg-warning-strong);
       }
     }
   }
@@ -1144,12 +1144,7 @@
   }
 
   a {
-    color: var(--clr-text-secondary);
-    color: color-mix(
-      in oklab,
-      var(--clr-text-primary),
-      var(--clr-text-secondary)
-    );
+    color: var(--clr-text-status-links);
     text-decoration: none;
     unicode-bidi: isolate;
 
@@ -1446,7 +1441,7 @@
 
   &__button {
     display: inline;
-    color: lighten($ui-highlight-color, 8%);
+    color: var(--clr-text-accent);
     border: 0;
     background: transparent;
     padding: 0;
@@ -1462,9 +1457,9 @@
 
 .focusable {
   &:focus-visible {
-    outline: 2px solid $ui-button-focus-outline-color;
+    outline: 2px solid var(--clr-text-accent);
     outline-offset: -2px;
-    background: color.change($ui-highlight-color, $alpha: 0.05);
+    background: var(--clr-bg-accent-subtle);
   }
 }
 
@@ -1725,17 +1720,6 @@
   }
 }
 
-// .status__wrapper-direct,
-// .notification-ungrouped--direct,
-// .notification-group--direct,
-// .notification-group--annual-report {
-//   background: color.change($ui-highlight-color, $alpha: 0.05);
-
-//   &:focus {
-//     background: color.change($ui-highlight-color, $alpha: 0.1);
-//   }
-// }
-
 .status__wrapper-direct,
 .notification-ungrouped--direct {
   .status__prepend,
@@ -1867,26 +1851,7 @@
 .detailed-status__wrapper-direct {
   .detailed-status,
   .detailed-status__action-bar {
-    background: color.mix($ui-base-color, $ui-highlight-color, 95%);
-  }
-
-  &:focus-visible {
-    .detailed-status,
-    .detailed-status__action-bar {
-      background: color.mix(
-        lighten($ui-base-color, 4%),
-        $ui-highlight-color,
-        95%
-      );
-    }
-  }
-
-  .detailed-status__action-bar {
-    border-top-color: color.mix(
-      lighten($ui-base-color, 8%),
-      $ui-highlight-color,
-      95%
-    );
+    background: var(--clr-bg-accent-subtle);
   }
 
   .status__prepend {
@@ -2074,8 +2039,8 @@
     padding: 4px 8px;
 
     &.active {
-      color: $white;
-      background: $ui-highlight-color;
+      color: var(--clr-text-on-accent-strong);
+      background: var(--clr-bg-accent-strong);
     }
 
     &__popout {
@@ -2107,8 +2072,8 @@
         &__icon {
           width: 40px;
           height: 40px;
-          background: $ui-highlight-color;
-          color: $white;
+          color: var(--clr-text-on-accent-strong);
+          background: var(--clr-bg-accent-strong);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -4518,8 +4483,8 @@ a.status-card {
       z-index: 1;
       background: radial-gradient(
         ellipse,
-        color.change($ui-highlight-color, $alpha: 0.23) 0%,
-        color.change($ui-highlight-color, $alpha: 0) 60%
+        rgb(from var(--clr-bg-accent-subtle-base) r g b / 23%) 0%,
+        transparent 60%
       );
     }
   }
@@ -5438,7 +5403,7 @@ a.status-card {
   .icon {
     width: 24px;
     height: 24px;
-    color: $ui-highlight-color;
+    color: var(--clr-text-accent);
   }
 
   span {
@@ -5467,7 +5432,7 @@ a.status-card {
   inset-inline-start: 0;
   top: 0;
   height: 6px;
-  background: $ui-highlight-color;
+  background: var(--clr-text-accent);
   border-radius: 6px;
 }
 
@@ -5839,11 +5804,11 @@ a.status-card {
         &:focus,
         &:active,
         &.selected {
-          background: $ui-highlight-color;
-          color: var(--clr-text-primary);
+          color: var(--clr-text-on-accent-strong);
+          background: var(--clr-bg-accent-strong);
 
           .icon-button {
-            color: var(--clr-text-primary);
+            color: inherit;
           }
         }
 
@@ -6320,8 +6285,8 @@ a.status-card {
 
     &__icon {
       border-radius: 64px;
-      background: $ui-highlight-color;
-      color: $white;
+      color: var(--clr-text-on-accent-strong);
+      background: var(--clr-bg-accent-strong);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -6830,7 +6795,7 @@ a.status-card {
     box-sizing: border-box;
     width: 100%;
     color: var(--clr-text-primary);
-    background: $ui-base-color;
+    background: var(--clr-bg-secondary);
     padding: 10px;
     font-family: inherit;
     font-size: 17px;
@@ -6979,7 +6944,7 @@ a.status-card {
     &:hover,
     &:active,
     &:focus {
-      background: var(--clr-border-primary);
+      background: var(--clr-bg-accent-subtle);
     }
   }
 }
@@ -8088,7 +8053,7 @@ a.status-card {
 
     &.checked,
     &.indeterminate {
-      border-color: $ui-highlight-color;
+      border-color: var(--clr-text-accent);
     }
 
     .icon {
@@ -8104,7 +8069,7 @@ a.status-card {
   border-radius: 50%;
   width: calc(100% - 4px);
   height: calc(100% - 4px);
-  background: $ui-highlight-color;
+  background: var(--clr-text-accent);
 }
 
 .check-box {
@@ -8115,8 +8080,8 @@ a.status-card {
 
     &.checked,
     &.indeterminate {
-      background: $ui-highlight-color;
-      color: $white;
+      background: var(--clr-bg-accent-strong);
+      color: var(--clr-text-on-accent-strong);
     }
   }
 }
@@ -8487,7 +8452,7 @@ noscript {
       }
 
       a {
-        color: lighten($ui-highlight-color, 8%);
+        color: var(--clr-text-accent);
       }
 
       .icon {
@@ -8942,10 +8907,15 @@ noscript {
 
   &__item {
     flex-shrink: 0;
-    background: var(--clr-bg-tertiary);
-    color: var(--clr-text-secondary);
-    border: 0;
+    background: var(--clr-bg-accent-subtle);
+    color: color-mix(
+      in oklab,
+      var(--clr-text-primary),
+      var(--clr-text-secondary)
+    );
+    border: 1px solid var(--clr-border-on-bg-accent-subtle);
     border-radius: 3px;
+    box-sizing: border-box;
     margin: 2px;
     cursor: pointer;
     user-select: none;
@@ -8984,21 +8954,18 @@ noscript {
     &:hover,
     &:focus,
     &:active {
-      background: var(--clr-bg-accent-subtle);
+      color: var(--clr-text-primary);
+      background: var(--clr-bg-accent-subtle-highlighted);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
-      color: color-mix(
-        in oklab,
-        var(--clr-text-primary),
-        var(--clr-text-secondary)
-      );
     }
 
     &.active {
+      color: var(--clr-text-accent);
+      background-color: var(--clr-bg-accent-subtle);
+      border-color: var(--clr-text-accent);
       transition: all 100ms ease-in;
       transition-property: background-color, color;
-      background-color: var(--clr-bg-accent-subtle);
-      color: var(--clr-text-accent);
     }
   }
 
@@ -10495,10 +10462,6 @@ noscript {
       &:focus,
       &:active {
         opacity: 1;
-
-        .inline-follow-suggestions__body__scroll-button__icon {
-          background: lighten($ui-highlight-color, 4%);
-        }
       }
     }
 
