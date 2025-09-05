@@ -24,7 +24,7 @@ import { me } from '../../initial_state';
 
 import { IconButton } from '../icon_button';
 import { isFeatureEnabled } from '../../utils/environment';
-import { BoostButton } from '../status/reblog_button';
+import { BoostButton } from '../status/boost_button';
 import { RemoveQuoteHint } from './remove_quote_hint';
 
 const messages = defineMessages({

@@ -23,7 +23,7 @@ import {
   messages,
   quoteItemState,
   selectStatusState,
-} from './reblog_button_utils';
+} from './boost_button_utils';
 
 const renderMenuItem: RenderItemFn<ActionMenuItem> = (
   item,

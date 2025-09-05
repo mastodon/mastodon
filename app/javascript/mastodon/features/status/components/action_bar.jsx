@@ -20,7 +20,7 @@ import { IconButton } from '../../../components/icon_button';
 import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { me } from '../../../initial_state';
 import { isFeatureEnabled } from '@/mastodon/utils/environment';
-import { BoostButton } from '@/mastodon/components/status/reblog_button';
+import { BoostButton } from '@/mastodon/components/status/boost_button';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
