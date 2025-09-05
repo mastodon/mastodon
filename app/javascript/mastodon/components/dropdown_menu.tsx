@@ -36,6 +36,7 @@ import {
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
+import { Icon } from './icon';
 import type { IconProp } from './icon';
 import { IconButton } from './icon_button';
 
@@ -67,6 +68,27 @@ interface DropdownMenuProps<Item = MenuItem> {
   renderHeader?: RenderHeaderFn<Item>;
   onItemClick?: ItemClickFn<Item>;
 }
+
+export const DropdownMenuItemContent: React.FC<{ item: MenuItem }> = ({
+  item,
+}) => {
+  if (item === null) {
+    return null;
+  }
+
+  const { text, description, icon } = item;
+  return (
+    <>
+      {icon && <Icon icon={icon} id={`${text}-icon`} />}
+      <span className='dropdown-menu__item-content'>
+        {text}
+        {Boolean(description) && (
+          <span className='dropdown-menu__item-subtitle'>{description}</span>
+        )}
+      </span>
+    </>
+  );
+};
 
 export const DropdownMenu = <Item = MenuItem,>({
   items,
@@ -200,7 +222,7 @@ export const DropdownMenu = <Item = MenuItem,>({
       return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
     }
 
-    const { text, dangerous } = option;
+    const { text, highlighted, disabled, dangerous } = option;
 
     let element: React.ReactElement;
 
@@ -211,8 +233,9 @@ export const DropdownMenu = <Item = MenuItem,>({
           onClick={handleItemClick}
           onKeyUp={handleItemKeyUp}
           data-index={i}
+          disabled={disabled}
         >
-          {text}
+          <DropdownMenuItemContent item={option} />
         </button>
       );
     } else if (isExternalLinkItem(option)) {
@@ -227,7 +250,7 @@ export const DropdownMenu = <Item = MenuItem,>({
           onKeyUp={handleItemKeyUp}
           data-index={i}
         >
-          {text}
+          <DropdownMenuItemContent item={option} />
         </a>
       );
     } else {
@@ -239,7 +262,7 @@ export const DropdownMenu = <Item = MenuItem,>({
           onKeyUp={handleItemKeyUp}
           data-index={i}
         >
-          {text}
+          <DropdownMenuItemContent item={option} />
         </Link>
       );
     }
@@ -247,6 +270,7 @@ export const DropdownMenu = <Item = MenuItem,>({
     return (
       <li
         className={classNames('dropdown-menu__item', {
+          'dropdown-menu__item--highlighted': highlighted,
           'dropdown-menu__item--dangerous': dangerous,
         })}
         key={`${text}-${i}`}
