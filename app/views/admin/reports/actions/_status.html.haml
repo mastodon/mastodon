@@ -1,0 +1,13 @@
+.strike-card__statuses-list__item
+  .one-liner
+    .emojify= one_line_preview(status)
+    - status.ordered_media_attachments.each do |media|
+      %abbr{ title: media.description }
+        = material_symbol 'link'
+        = media.file_file_name
+  .strike-card__statuses-list__item__meta
+    = link_to ActivityPub::TagManager.instance.url_for(status), target: '_blank', rel: 'noopener' do
+      %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
+    - if status.application.present?
+      ·
+      = status.application.name
