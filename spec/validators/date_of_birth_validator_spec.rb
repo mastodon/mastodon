@@ -2,50 +2,24 @@
 
 require 'rails_helper'
 
-RSpec.describe DateOfBirthValidator do
-  let(:record_class) do
-    Class.new do
-      include ActiveModel::Validations
+RSpec.describe DateOfBirthValidator, type: :model do
+  subject { Fabricate.build :user }
 
-      attr_accessor :date_of_birth
+  before { Setting.min_age = 16 }
 
-      validates :date_of_birth, date_of_birth: true
-    end
+  context 'with an invalid date' do
+    it { is_expected.to_not allow_values('76.830.10').for(:date_of_birth).with_message(:invalid) }
   end
 
-  let(:record) { record_class.new }
+  context 'with a date below age limit' do
+    let(:too_young) { 13.years.ago.strftime('%d.%m.%Y') }
 
-  before do
-    Setting.min_age = 16
+    it { is_expected.to_not allow_values(too_young).for(:date_of_birth).with_message(:below_limit) }
   end
 
-  describe '#validate_each' do
-    context 'with an invalid date' do
-      it 'adds errors' do
-        record.date_of_birth = '76.830.10'
+  context 'with a date above age limit' do
+    let(:exact_age) { 16.years.ago.strftime('%d.%m.%Y') }
 
-        expect(record).to_not be_valid
-        expect(record.errors.first.attribute).to eq(:date_of_birth)
-        expect(record.errors.first.type).to eq(:invalid)
-      end
-    end
-
-    context 'with a date below age limit' do
-      it 'adds errors' do
-        record.date_of_birth = 13.years.ago.strftime('%d.%m.%Y')
-
-        expect(record).to_not be_valid
-        expect(record.errors.first.attribute).to eq(:date_of_birth)
-        expect(record.errors.first.type).to eq(:below_limit)
-      end
-    end
-
-    context 'with a date above age limit' do
-      it 'does not add errors' do
-        record.date_of_birth = 16.years.ago.strftime('%d.%m.%Y')
-
-        expect(record).to be_valid
-      end
-    end
+    it { is_expected.to allow_values(exact_age).for(:date_of_birth) }
   end
 end
