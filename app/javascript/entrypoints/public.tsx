@@ -145,6 +145,10 @@ function loaded() {
       );
     });
 
+  updateDefaultQuotePrivacyFromPrivacy(
+    document.querySelector('#user_settings_attributes_default_privacy'),
+  );
+
   const reactComponents = document.querySelectorAll('[data-component]');
 
   if (reactComponents.length > 0) {
@@ -361,6 +365,34 @@ Rails.delegate(
       .forEach((input) => {
         setInputDisabled(input, !target.checked);
       });
+  },
+);
+
+const updateDefaultQuotePrivacyFromPrivacy = (
+  privacySelect: EventTarget | null,
+) => {
+  if (!(privacySelect instanceof HTMLSelectElement) || !privacySelect.form)
+    return;
+
+  const select = privacySelect.form.querySelector<HTMLSelectElement>(
+    'select#user_settings_attributes_default_quote_policy',
+  );
+  if (!select) return;
+
+  if (privacySelect.value === 'private') {
+    select.value = 'nobody';
+    setInputDisabled(select, true);
+  } else {
+    setInputDisabled(select, false);
+  }
+};
+
+Rails.delegate(
+  document,
+  '#user_settings_attributes_default_privacy',
+  'change',
+  ({ target }) => {
+    updateDefaultQuotePrivacyFromPrivacy(target);
   },
 );
 
