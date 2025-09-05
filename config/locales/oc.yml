@@ -832,7 +832,8 @@ oc:
         one: "%{count} vidèo"
         other: "%{count} vidèos"
     boosted_from_html: Partejat de %{acct_link}
-    content_warning: 'Avertiment de contengut : %{warning}'
+    content_warning:
+      warning: 'Avertiment de contengut : %{warning}'
     default_language: Parièr que la lenga d’interfàcia
     disallowed_hashtags:
       one: 'conten una etiqueta desactivada : %{tags}'

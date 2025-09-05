@@ -422,7 +422,8 @@ ka:
         one: "%{count} ვიდეო"
         other: "%{count} ვიდეოები"
     boosted_from_html: გაიზარდა %{acct_link}-იდან
-    content_warning: 'გაფრთხილება კონტენტზე: %{warning}'
+    content_warning:
+      warning: 'გაფრთხილება კონტენტზე: %{warning}'
     disallowed_hashtags:
       one: 'მოიცავდა აკრძალულ ჰეშტეგს: %{tags}'
       other: 'მოიცავს აკრძალულ ჰეშტეგს: %{tags}'

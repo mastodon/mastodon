@@ -1893,7 +1893,8 @@ sl:
         other: "%{count} video posnetkov"
         two: "%{count} video posnetka"
     boosted_from_html: Izpostavljeno z računa %{acct_link}
-    content_warning: 'Opozorilo o vsebini: %{warning}'
+    content_warning:
+      warning: 'Opozorilo o vsebini: %{warning}'
     default_language: Enak kot jezik vmesnika
     disallowed_hashtags:
       few: 'vsebuje nedovoljene ključnike: %{tags}'

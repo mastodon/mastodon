@@ -1207,7 +1207,8 @@ lt:
         one: "%{count} vaizdas"
         other: "%{count} vaizdų"
     boosted_from_html: Pakelta iš %{acct_link}
-    content_warning: 'Turinio įspėjimas: %{warning}'
+    content_warning:
+      warning: 'Turinio įspėjimas: %{warning}'
     errors:
       quoted_status_not_found: Įrašas, kurį bandote cituoti, atrodo, neegzistuoja.
     over_character_limit: pasiektas %{max} simbolių limitas

@@ -1637,7 +1637,8 @@ sr-Latn:
         one: "%{count} video zapis"
         other: "%{count} video zapisa"
     boosted_from_html: Podržano od %{acct_link}
-    content_warning: 'Upozorenje na sadržaj: %{warning}'
+    content_warning:
+      warning: 'Upozorenje na sadržaj: %{warning}'
     default_language: Isto kao jezik okruženja
     disallowed_hashtags:
       few: 'sadrži zabranjene heš oznake: %{tags}'

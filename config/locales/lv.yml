@@ -1888,7 +1888,8 @@ lv:
         other: "%{count} video"
         zero: "%{count} video"
     boosted_from_html: Izcēla %{acct_link}
-    content_warning: 'Satura brīdinājums: %{warning}'
+    content_warning:
+      warning: 'Satura brīdinājums: %{warning}'
     default_language: Tāda, kā saskarnes valoda
     disallowed_hashtags:
       one: 'saturēja neatļautu tēmturi: %{tags}'

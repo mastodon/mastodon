@@ -1726,7 +1726,8 @@ io:
         one: "%{count} video"
         other: "%{count} videi"
     boosted_from_html: Repetis de %{acct_link}
-    content_warning: 'Kontenajaverto: %{warning}'
+    content_warning:
+      warning: 'Kontenajaverto: %{warning}'
     default_language: Sama quale intervizajlinguo
     disallowed_hashtags:
       one: 'kontenas nepermisita hashtago: %{tags}'

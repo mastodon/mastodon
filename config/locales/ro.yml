@@ -672,7 +672,8 @@ ro:
         one: "%{count} imagine"
         other: "%{count} de imagini"
     boosted_from_html: Impuls de la %{acct_link}
-    content_warning: 'Avertisment privind conținutul: %{warning}'
+    content_warning:
+      warning: 'Avertisment privind conținutul: %{warning}'
     disallowed_hashtags:
       few: 'conținea aceste hashtag-uri nepermise: %{tags}'
       one: 'conținea un hashtag nepermis: %{tags}'

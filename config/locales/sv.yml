@@ -1893,7 +1893,8 @@ sv:
         one: "%{count} video"
         other: "%{count} videor"
     boosted_from_html: Boostad från %{acct_link}
-    content_warning: 'Innehållsvarning: %{warning}'
+    content_warning:
+      warning: 'Innehållsvarning: %{warning}'
     default_language: Samma som användargränssnittet
     disallowed_hashtags:
       one: 'innehöll en otillåten hashtag: %{tags}'

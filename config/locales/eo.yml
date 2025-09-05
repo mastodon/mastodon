@@ -1886,7 +1886,8 @@ eo:
         one: "%{count} video"
         other: "%{count} videoj"
     boosted_from_html: Diskonigita de %{acct_link}
-    content_warning: 'Averto pri enhavo: %{warning}'
+    content_warning:
+      warning: 'Averto pri enhavo: %{warning}'
     default_language: Sama lingvo kiel tiu de la interfaco
     disallowed_hashtags:
       one: 'enhavas malpermesitan kradvorton: %{tags}'

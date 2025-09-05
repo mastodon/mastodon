@@ -1726,7 +1726,8 @@ eu:
         one: bideo %{count}
         other: "%{count} bideo"
     boosted_from_html: "%{acct_link}(e)tik bultzatua"
-    content_warning: 'Edukiaren abisua: %{warning}'
+    content_warning:
+      warning: 'Edukiaren abisua: %{warning}'
     default_language: Interfazearen hizkuntzaren berdina
     disallowed_hashtags:
       one: 'debekatutako traola bat zuen: %{tags}'

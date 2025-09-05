@@ -1605,7 +1605,8 @@ ie:
         one: "%{count} video"
         other: "%{count} videos"
     boosted_from_html: Boostat de %{acct_link}
-    content_warning: 'Avise de contenete: %{warning}'
+    content_warning:
+      warning: 'Avise de contenete: %{warning}'
     default_language: Sam quam li lingue del interfacie
     disallowed_hashtags:
       one: 'contenet un ínpermisset hashtag: %{tags}'
