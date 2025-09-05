@@ -58,7 +58,7 @@ table {
 
 @supports not selector(::-webkit-scrollbar) {
   html {
-    scrollbar-color: $action-button-color var(--clr-border-primary);
+    scrollbar-color: var(--clr-text-secondary) var(--clr-bg-secondary);
   }
 }
 

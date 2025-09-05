@@ -1,6 +1,3 @@
-@use '../mastodon/variables' as *;
-@use '../mastodon/theme_utils' as *;
-
 .status__content a,
 .reply-indicator__content a,
 .edit-indicator__content a,
@@ -30,16 +27,6 @@
       }
     }
   }
-}
-
-.status__content a,
-.reply-indicator__content a,
-.edit-indicator__content a {
-  color: var(--text-accent-color);
-}
-
-.report-dialog-modal__textarea::placeholder {
-  color: $inverted-text-color;
 }
 
 .link-button:disabled {
