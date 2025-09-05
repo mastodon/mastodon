@@ -152,10 +152,12 @@ class FanOutOnWriteService < BaseService
     redis.publish('timeline:public', anonymous_payload)
     redis.publish(@status.local? ? 'timeline:public:local' : 'timeline:public:remote', anonymous_payload)
 
-    if @status.with_media?
-      redis.publish('timeline:public:media', anonymous_payload)
-      redis.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', anonymous_payload)
-    end
+    broadcast_to_public_media_streams! if @status.with_media?
+  end
+
+  def broadcast_to_public_media_streams!
+    redis.publish('timeline:public:media', anonymous_payload)
+    redis.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', anonymous_payload)
   end
 
   def deliver_to_conversation!
