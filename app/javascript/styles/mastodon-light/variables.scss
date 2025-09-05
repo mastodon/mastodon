@@ -5,11 +5,9 @@
   $lighten-multiplier: -1
 );
 
-$black: #000; // Black
 $white: #fff; // White
 $blurple-500: #6364ff; // Brand purple
 $grey-600: hsl(240deg, 8%, 33%); // Trout
-$grey-100: hsl(240deg, 51%, 90%); // Topaz
 
 @use '../mastodon/variables' with (
   $ui-base-color: hsl(255deg, 25%, 88%),
@@ -20,10 +18,6 @@ $grey-100: hsl(240deg, 51%, 90%); // Topaz
   $ui-button-secondary-focus-color: $white,
   $ui-button-tertiary-color: $blurple-500,
   $ui-button-tertiary-border-color: $blurple-500,
-
-  $lighter-text-color: hsl(240deg, 16%, 19%),
-  $light-text-color: hsl(240deg, 16%, 32%),
-  $inverted-text-color: $black,
 
   $action-button-color: hsl(240deg, 16%, 45%),
   $emojis-requiring-inversion: 'chains'
