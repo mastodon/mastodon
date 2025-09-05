@@ -238,13 +238,13 @@ $content-width: 840px;
           &:hover,
           &:focus,
           &:active {
-            background: lighten($ui-base-color, 4%);
+            background: var(--clr-bg-secondary);
           }
 
           &.selected {
             font-weight: 700;
-            color: var(--clr-text-primary);
-            background: $ui-highlight-color;
+            color: var(--clr-text-on-accent-strong);
+            background: var(--clr-bg-accent-strong);
           }
         }
       }
@@ -427,7 +427,7 @@ $content-width: 840px;
       }
 
       ul .simple-navigation-active-leaf a {
-        border-bottom-color: $ui-highlight-color;
+        border-bottom-color: var(--clr-text-accent);
       }
     }
   }
@@ -538,16 +538,16 @@ body,
       text-transform: uppercase;
       font-size: 12px;
       font-weight: 500;
-      border-bottom: 2px solid $ui-base-color;
+      border-bottom: 2px solid var(--clr-bg-secondary);
 
       &:hover {
         color: var(--clr-text-primary);
-        border-bottom: 2px solid lighten($ui-base-color, 5%);
+        border-bottom: 2px solid var(--clr-bg-tertiary);
       }
 
       &.selected {
         color: var(--clr-text-accent);
-        border-bottom: 2px solid $ui-highlight-color;
+        border-bottom: 2px solid var(--clr-text-accent);
       }
     }
   }
@@ -1742,7 +1742,7 @@ a.sparkline {
   float: right;
 
   a {
-    color: $ui-highlight-color;
+    color: var(--clr-text-accent);
     text-decoration: none;
 
     &:hover,
