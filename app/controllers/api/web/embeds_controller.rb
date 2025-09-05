@@ -4,10 +4,9 @@ class Api::Web::EmbedsController < Api::Web::BaseController
   include Authorization
 
   before_action :set_status
+  before_action :verify_embed_allowed
 
   def show
-    return not_found if @status.hidden?
-
     if @status.local?
       render json: @status, serializer: OEmbedSerializer
     else
@@ -25,6 +24,12 @@ class Api::Web::EmbedsController < Api::Web::BaseController
 
       render json: oembed
     end
+  end
+
+  private
+
+  def verify_embed_allowed
+    not_found if @status.hidden?
   end
 
   def set_status
