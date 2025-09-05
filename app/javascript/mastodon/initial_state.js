@@ -46,6 +46,7 @@
  * @property {string} status_page_url
  * @property {boolean} terms_of_service_enabled
  * @property {string?} emoji_style
+ * @property {string=} time_zone
  */
 
 /**
@@ -123,6 +124,7 @@ export const criticalUpdatesPending = initialState?.critical_updates_pending;
 export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
 export const termsOfServiceEnabled = getMeta('terms_of_service_enabled');
+export const timeZone = getMeta('time_zone');
 
 const displayNames = Intl.DisplayNames && new Intl.DisplayNames(getMeta('locale'), {
   type: 'language',
