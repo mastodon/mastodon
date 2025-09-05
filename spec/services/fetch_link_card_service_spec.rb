@@ -7,8 +7,16 @@ RSpec.describe FetchLinkCardService do
 
   let(:html) { '<!doctype html><title>Hello world</title>' }
   let(:oembed_cache) { nil }
+  let(:preview_card) { nil }
 
   before do
+    if preview_card
+      allow(preview_card).to receive(:download_image!).with(anything).and_call_original
+
+      allow(PreviewCard).to receive(:find_by).with(any_args).and_return(nil)
+      allow(PreviewCard).to receive(:find_by).with(url: preview_card.url).and_return(preview_card)
+    end
+
     stub_request(:get, 'http://example.com/html').to_return(headers: { 'Content-Type' => 'text/html' }, body: html)
     stub_request(:get, 'http://example.com/not-found').to_return(status: 404, headers: { 'Content-Type' => 'text/html' }, body: html)
     stub_request(:get, 'http://example.com/text').to_return(status: 404, headers: { 'Content-Type' => 'text/plain' }, body: 'Hello')
@@ -33,6 +41,8 @@ RSpec.describe FetchLinkCardService do
     stub_request(:get, 'http://example.com/page_without_title').to_return(request_fixture('page_without_title.txt'))
     stub_request(:get, 'http://example.com/long_canonical_url').to_return(request_fixture('long_canonical_url.txt'))
     stub_request(:get, 'http://example.com/alternative_utf8_spelling_in_header').to_return(request_fixture('alternative_utf8_spelling_in_header.txt'))
+
+    stub_request(:get, 'http://example.com/image.jpeg').to_return(request_fixture('attachment1.txt'))
 
     Rails.cache.write('oembed_endpoint:example.com', oembed_cache) if oembed_cache
 
@@ -89,6 +99,7 @@ RSpec.describe FetchLinkCardService do
 
       it 'creates preview card' do
         expect(status.preview_card).to_not be_nil
+        expect(status.preview_card.original_url).to eq 'http://example.com/redirect'
         expect(status.preview_card.url).to eq 'http://example.com/html'
         expect(status.preview_card.title).to eq 'Hello world'
       end
@@ -235,6 +246,18 @@ RSpec.describe FetchLinkCardService do
       end
     end
 
+    context 'with URL of a page with an og:image tag' do
+      let(:status) { Fabricate(:status, text: 'http://example.com/html') }
+      let(:html) { '<!doctype html><title>Hello world</title><meta property="og:image" content="http://example.com/image.jpeg">' }
+
+      it 'creates preview card with image' do
+        expect(status.preview_card.image_remote_url).to eq 'http://example.com/image.jpeg'
+        expect(status.preview_card.image).to_not be_nil
+        expect(status.preview_card.width).to eq 1136
+        expect(status.preview_card.height).to eq 852
+      end
+    end
+
     context 'with a URL of a page with oEmbed support' do
       let(:html) { '<!doctype html><title>Hello world</title><link rel="alternate" type="application/json+oembed" href="http://example.com/oembed?url=http://example.com/html">' }
       let(:status) { Fabricate(:status, text: 'http://example.com/html') }
@@ -319,6 +342,77 @@ RSpec.describe FetchLinkCardService do
 
     it 'ignores URLs to hashtags' do
       expect(a_request(:get, 'https://quitter.se/tag/wannacry')).to_not have_been_made
+    end
+  end
+
+  context 'when preview card already exists' do
+    let(:updated_at) { 1.hour.ago.beginning_of_minute }
+    let(:image_url) { 'http://example.com/image.jpeg' }
+    let(:preview_card) { Fabricate(:preview_card, url: 'http://example.com/html', title: 'Old news', updated_at: updated_at, image_remote_url: image_url, image: image_url && attachment_fixture('attachment.jpg')) }
+    let(:status) { Fabricate(:status, text: 'http://example.com/html') }
+    let(:html) { '<!doctype html><title>Hello world</title><meta property="og:image" content="http://example.com/image.jpeg">' }
+
+    context 'when card is recently updated' do
+      it 'leaves existing card unchanged' do
+        expect(status.preview_card).to eq preview_card
+        expect(status.preview_card.updated_at).to eq updated_at
+        expect(status.preview_card.url).to eq 'http://example.com/html'
+        expect(status.preview_card.title).to eq 'Old news'
+        expect(status.preview_card.image).to_not be_nil
+        expect(status.preview_card).to_not have_received(:download_image!)
+      end
+    end
+
+    context 'when card is stale' do
+      let(:updated_at) { 3.weeks.ago }
+
+      it 'updates existing card' do
+        expect(status.preview_card).to eq preview_card
+        expect(status.preview_card.updated_at).to_not eq updated_at
+        expect(status.preview_card.url).to eq 'http://example.com/html'
+        expect(status.preview_card.title).to eq 'Hello world'
+        expect(preview_card).to_not have_received(:download_image!)
+      end
+
+      context 'when page has different image' do
+        let(:image_url) { 'http://example.com/old.jpeg' }
+
+        it 'updates existing card' do
+          expect(status.preview_card).to eq preview_card
+          expect(status.preview_card.url).to eq 'http://example.com/html'
+          expect(status.preview_card.title).to eq 'Hello world'
+          expect(status.preview_card).to have_received(:download_image!)
+          expect(status.preview_card.image_remote_url).to eq 'http://example.com/image.jpeg'
+          expect(status.preview_card.width).to eq 1136
+          expect(status.preview_card.height).to eq 852
+        end
+      end
+    end
+
+    context 'when card has no image' do
+      let(:image_url) { nil }
+
+      it 'updates existing card' do
+        expect(status.preview_card).to eq preview_card
+        expect(status.preview_card.url).to eq 'http://example.com/html'
+        expect(status.preview_card.title).to eq 'Hello world'
+        expect(status.preview_card).to have_received(:download_image!)
+        expect(status.preview_card.image_remote_url).to eq 'http://example.com/image.jpeg'
+        expect(status.preview_card.width).to eq 1136
+        expect(status.preview_card.height).to eq 852
+      end
+    end
+
+    context 'with a redirect URL' do
+      let(:status) { Fabricate(:status, text: 'http://example.com/redirect') }
+
+      it 'updates existing card' do
+        expect(status.preview_card).to eq preview_card
+        expect(status.preview_card.original_url).to eq 'http://example.com/redirect'
+        expect(status.preview_card.url).to eq 'http://example.com/html'
+        expect(status.preview_card.title).to eq 'Hello world'
+        expect(preview_card).to_not have_received(:download_image!)
+      end
     end
   end
 end
