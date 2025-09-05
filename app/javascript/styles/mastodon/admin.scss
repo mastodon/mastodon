@@ -240,13 +240,13 @@ $content-width: 840px;
           &:hover,
           &:focus,
           &:active {
-            background: lighten($ui-base-color, 4%);
+            background: var(--clr-bg-secondary);
           }
 
           &.selected {
             font-weight: 700;
-            color: var(--clr-text-primary);
-            background: $ui-highlight-color;
+            color: var(--clr-text-on-accent-strong);
+            background: var(--clr-bg-accent-strong);
           }
         }
       }
@@ -429,7 +429,7 @@ $content-width: 840px;
       }
 
       ul .simple-navigation-active-leaf a {
-        border-bottom-color: $ui-highlight-color;
+        border-bottom-color: var(--clr-text-accent);
       }
     }
   }
@@ -490,7 +490,8 @@ body,
 
 kbd {
   font-family: Courier, monospace;
-  background-color: color.change($ui-secondary-color, $alpha: 0.1);
+  color: var(--clr-text-primary);
+  background-color: var(--clr-bg-accent-subtle);
   padding: 4px;
   padding-bottom: 2px;
   border-radius: 5px;
@@ -548,16 +549,16 @@ kbd {
       text-transform: uppercase;
       font-size: 12px;
       font-weight: 500;
-      border-bottom: 2px solid $ui-base-color;
+      border-bottom: 2px solid var(--clr-bg-secondary);
 
       &:hover {
         color: var(--clr-text-primary);
-        border-bottom: 2px solid lighten($ui-base-color, 5%);
+        border-bottom: 2px solid var(--clr-bg-tertiary);
       }
 
       &.selected {
         color: var(--clr-text-accent);
-        border-bottom: 2px solid $ui-highlight-color;
+        border-bottom: 2px solid var(--clr-text-accent);
       }
     }
   }
@@ -1761,7 +1762,7 @@ a.sparkline {
   float: right;
 
   a {
-    color: $ui-highlight-color;
+    color: var(--clr-text-accent);
     text-decoration: none;
 
     &:hover,
@@ -2012,7 +2013,7 @@ a.sparkline {
         display: block;
         font-size: 15px;
         line-height: 20px;
-        color: $highlight-text-color;
+        color: var(--clr-text-accent);
         cursor: pointer;
         border: 0;
         background: transparent;
