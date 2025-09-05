@@ -159,6 +159,9 @@ group :test do
 
   # Stub web requests for specs
   gem 'webmock', '~> 3.18'
+
+  # Websocket driver for testing integration between rails/sidekiq and streaming
+  gem 'websocket-driver', '~> 0.8', require: false
 end
 
 group :development do

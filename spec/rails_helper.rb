@@ -30,7 +30,8 @@ end
 
 # This needs to be defined before Rails is initialized
 STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
-ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
+STREAMING_HOST = ENV.fetch('TEST_STREAMING_HOST', 'localhost')
+ENV['STREAMING_API_BASE_URL'] = "http://#{STREAMING_HOST}:#{STREAMING_PORT}"
 
 require_relative '../config/environment'
 
@@ -84,6 +85,7 @@ RSpec.configure do |config|
 
   # By default, skip specs that need the streaming server
   config.filter_run_excluding :streaming
+  config.filter_run_excluding :streaming_client
 
   config.fixture_paths = [
     Rails.root.join('spec', 'fixtures'),
@@ -101,6 +103,11 @@ RSpec.configure do |config|
   # Set `search` metadata true for all specs in spec/search/
   config.define_derived_metadata(file_path: Regexp.new('spec/search/*')) do |metadata|
     metadata[:search] = true
+  end
+
+  # Set `streaming_client` metadata true for all specs in spec/streaming/
+  config.define_derived_metadata(file_path: Regexp.new('spec/streaming/*')) do |metadata|
+    metadata[:streaming_client] = true
   end
 
   config.include Devise::Test::ControllerHelpers, type: :controller
