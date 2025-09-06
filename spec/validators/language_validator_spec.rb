@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe LanguageValidator, type: :model do
+RSpec.describe LanguageValidator do
   subject { record_class.new }
 
   let(:record_class) do
