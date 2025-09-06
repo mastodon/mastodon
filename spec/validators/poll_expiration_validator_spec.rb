@@ -3,20 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PollExpirationValidator, type: :model do
-  subject { record_class.new }
-
-  let(:record_class) do
-    Class.new do
-      include ActiveModel::Validations
-      include ActiveModel::Attributes
-
-      def self.name = 'Record'
-
-      attribute :expires_at, :datetime
-
-      validates_with PollExpirationValidator
-    end
-  end
+  subject { Fabricate.build :poll }
 
   context 'when poll expires in far future' do
     it { is_expected.to_not allow_value(6.months.from_now).for(:expires_at).with_message(I18n.t('polls.errors.duration_too_long')) }
