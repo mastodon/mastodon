@@ -51,7 +51,7 @@ namespace :tests do
         exit(1)
       end
 
-      if Account.find(Account::INSTANCE_ACTOR_ID).private_key.blank?
+      if Account.find(Account::INSTANCE_ACTOR_ID).account_secret.private_key.blank?
         puts 'Instance actor does not have a private key'
         exit(1)
       end
@@ -236,10 +236,16 @@ namespace :tests do
           (4, 'User', 1, 'trends', E'--- false\n', now(), now());
 
         INSERT INTO "accounts"
-          (id, username, domain, private_key, public_key, created_at, updated_at)
+          (id, username, domain, public_key, created_at, updated_at)
         VALUES
-          (10, 'kmruser', NULL, #{user_private_key}, #{user_public_key}, now(), now()),
-          (11, 'qcuser', NULL, #{user_private_key}, #{user_public_key}, now(), now());
+          (10, 'kmruser', NULL, #{user_public_key}, now(), now()),
+          (11, 'qcuser', NULL, #{user_public_key}, now(), now());
+
+        INSERT INTO "account_secrets"
+          (account_id, private_key, created_at, updated_at)
+        VALUES
+          (10, #{user_private_key}, now(), now()),
+          (11, #{user_private_key}, now(), now());
 
         INSERT INTO "users"
           (id, account_id, email, created_at, updated_at, admin, locale, chosen_languages)
@@ -302,37 +308,49 @@ namespace :tests do
         -- accounts
 
         INSERT INTO "accounts"
-          (id, username, domain, private_key, public_key, created_at, updated_at)
+          (id, username, domain, public_key, created_at, updated_at)
         VALUES
-          (1, 'admin', NULL, #{admin_private_key}, #{admin_public_key}, now(), now()),
-          (2, 'user',  NULL, #{user_private_key},  #{user_public_key},  now(), now());
+          (1, 'admin', NULL, #{admin_public_key}, now(), now()),
+          (2, 'user',  NULL, #{user_public_key},  now(), now());
+
+        INSERT INTO "account_secrets"
+          (account_id, private_key, created_at, updated_at)
+        VALUES
+          (1, #{admin_private_key}, now(), now()),
+          (2, #{user_private_key}, now(), now());
 
         INSERT INTO "accounts"
-          (id, username, domain, private_key, public_key, created_at, updated_at, remote_url, salmon_url)
+          (id, username, domain, public_key, created_at, updated_at, remote_url, salmon_url)
         VALUES
-          (3, 'remote', 'remote.com', NULL, #{remote_public_key}, now(), now(),
+          (3, 'remote', 'remote.com', #{remote_public_key}, now(), now(),
            'https://remote.com/@remote', 'https://remote.com/salmon/1'),
-          (4, 'Remote', 'remote.com', NULL, #{remote_public_key}, now(), now(),
+          (4, 'Remote', 'remote.com', #{remote_public_key}, now(), now(),
            'https://remote.com/@Remote', 'https://remote.com/salmon/1'),
-          (5, 'REMOTE', 'Remote.com', NULL, #{remote_public_key2}, now() - interval '1 year', now() - interval '1 year',
+          (5, 'REMOTE', 'Remote.com', #{remote_public_key2}, now() - interval '1 year', now() - interval '1 year',
            'https://remote.com/stale/@REMOTE', 'https://remote.com/stale/salmon/1');
 
         INSERT INTO "accounts"
-          (id, username, domain, private_key, public_key, created_at, updated_at, protocol, inbox_url, outbox_url, followers_url)
+          (id, username, domain, public_key, created_at, updated_at, protocol, inbox_url, outbox_url, followers_url)
         VALUES
-          (6, 'bob', 'ActivityPub.com', NULL, #{remote_public_key_ap}, now(), now(),
+          (6, 'bob', 'ActivityPub.com', #{remote_public_key_ap}, now(), now(),
            1, 'https://activitypub.com/users/bob/inbox', 'https://activitypub.com/users/bob/outbox', 'https://activitypub.com/users/bob/followers');
 
         INSERT INTO "accounts"
-          (id, username, domain, private_key, public_key, created_at, updated_at)
+          (id, username, domain, public_key, created_at, updated_at)
         VALUES
-          (7, 'user', #{local_domain}, #{user_private_key}, #{user_public_key}, now(), now()),
-          (8, 'pt_user', NULL, #{user_private_key}, #{user_public_key}, now(), now());
+          (7, 'user', #{local_domain}, #{user_public_key}, now(), now()),
+          (8, 'pt_user', NULL, #{user_public_key}, now(), now());
+
+        INSERT INTO "account_secrets"
+          (account_id, private_key, created_at, updated_at)
+        VALUES
+          (7, #{user_private_key}, now(), now()),
+          (8, #{user_private_key}, now(), now());
 
         INSERT INTO "accounts"
-          (id, username, domain, private_key, public_key, created_at, updated_at, protocol, inbox_url, outbox_url, followers_url, suspended)
+          (id, username, domain, public_key, created_at, updated_at, protocol, inbox_url, outbox_url, followers_url, suspended)
         VALUES
-          (9, 'evil', 'activitypub.com', NULL, #{remote_public_key_ap}, now(), now(),
+          (9, 'evil', 'activitypub.com', #{remote_public_key_ap}, now(), now(),
            1, 'https://activitypub.com/users/evil/inbox', 'https://activitypub.com/users/evil/outbox',
            'https://activitypub.com/users/evil/followers', true);
 

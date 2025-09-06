@@ -942,14 +942,14 @@ RSpec.describe Mastodon::CLI::Accounts do
       let(:arguments) { [account.username] }
 
       it 'correctly rotates keys for the specified account' do
-        old_private_key = account.private_key
+        old_private_key = account.account_secret.private_key
         old_public_key = account.public_key
 
         expect { subject }
           .to output_results('OK')
         account.reload
 
-        expect(account.private_key).to_not eq(old_private_key)
+        expect(account.account_secret.private_key).to_not eq(old_private_key)
         expect(account.public_key).to_not eq(old_public_key)
       end
 
@@ -977,14 +977,14 @@ RSpec.describe Mastodon::CLI::Accounts do
       let(:options) { { all: true } }
 
       it 'correctly rotates keys for all local accounts' do
-        old_private_keys = accounts.map(&:private_key)
+        old_private_keys = accounts.map { |account| account.account_secret.private_key }
         old_public_keys = accounts.map(&:public_key)
 
         expect { subject }
           .to output_results('rotated')
         accounts.each(&:reload)
 
-        expect(accounts.map(&:private_key)).to_not eq(old_private_keys)
+        expect(accounts.map { |account| account.account_secret.private_key }).to_not eq(old_private_keys)
         expect(accounts.map(&:public_key)).to_not eq(old_public_keys)
       end
 

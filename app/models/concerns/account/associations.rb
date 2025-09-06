@@ -38,6 +38,7 @@ module Account::Associations
         has_one :notification_policy
         has_one :statuses_cleanup_policy, class_name: 'AccountStatusesCleanupPolicy'
         has_one :user
+        has_one :account_secret
       end
 
       # Association where account is targeted by record
