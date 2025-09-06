@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DateOfBirthValidator, type: :model do
+RSpec.describe DateOfBirthValidator do
   subject { Fabricate.build :user }
 
   before { Setting.min_age = 16 }

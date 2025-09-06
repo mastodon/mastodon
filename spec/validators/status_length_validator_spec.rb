@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StatusLengthValidator, type: :model do
+RSpec.describe StatusLengthValidator do
   subject { Fabricate.build :status }
 
   before { stub_const 'StatusLengthValidator::MAX_CHARS', 100 }

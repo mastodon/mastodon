@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UnreservedUsernameValidator, type: :model do
+RSpec.describe UnreservedUsernameValidator do
   subject { record_class.new }
 
   let(:record_class) do

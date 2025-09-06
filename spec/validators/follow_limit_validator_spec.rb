@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FollowLimitValidator, type: :model do
+RSpec.describe FollowLimitValidator do
   subject { Fabricate.build(:follow) }
 
   context 'with a nil account' do
