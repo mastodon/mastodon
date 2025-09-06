@@ -63,6 +63,7 @@ br:
         all: Pep tra
         local: Lec'hel
         remote: A-bell
+        title: Lec'hiadur
       media_attachments: Restroù media stag
       moderation:
         active: Oberiant
@@ -180,6 +181,7 @@ br:
         name: Anv
         registrations:
           confirm: Kadarnaat
+        save: Enrollañ
         status: Statud
     follow_recommendations:
       status: Statud
@@ -260,6 +262,7 @@ br:
       title: Disklêriadennoù
       unresolved: Andiskoulmet
       updated_at: Nevesaet
+      view_profile: Gwelet ar profil
     roles:
       categories:
         devops: DevOps
@@ -287,6 +290,7 @@ br:
         danger_zone: Takad dañjer
       discovery:
         privacy: Buhez prevez
+        profile_directory: Kavlec'h ar profiloù
         title: Dizoloadur
         trends: Luskadoù
       domain_blocks:
@@ -310,6 +314,10 @@ br:
     strikes:
       actions:
         delete_statuses: Dilamet eo bet toudoù %{target} gant %{name}
+    tags:
+      title: Gerioù-klik
+    terms_of_service:
+      save_draft: Enrollañ ar brouilhed
     trends:
       allow: Aotren
       approved: Aprouet
@@ -324,7 +332,7 @@ br:
         dashboard:
           tag_uses_measure: implijoù hollek
         not_usable: N'haller ket en implijout
-        title: Hashtagoù diouzh ar c'hiz
+        title: Gerioù-klik diouzh ar c'hiz
     warning_presets:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
@@ -342,7 +350,7 @@ br:
         none: ur c'hemenn diwall
     new_trends:
       new_trending_tags:
-        title: Hashtagoù diouzh ar c'hiz
+        title: Gerioù-klik diouzh ar c'hiz
   appearance:
     discovery: Dizoloadur
     localization:
@@ -350,6 +358,7 @@ br:
       guide_link: https://crowdin.com/project/mastodon
   application_mailer:
     view: 'Sellet :'
+    view_profile: Gwelet ar profil
     view_status: Gwelet ar c'hannad
   auth:
     delete_account: Dilemel ar gont
@@ -396,6 +405,8 @@ br:
       created_at: Deiziad
       title_actions:
         none: Diwall
+  edit_profile:
+    other: All
   emoji_styles:
     auto: Emgefreek
     twemoji: Twemoji
@@ -422,6 +433,8 @@ br:
         other: "%{count} a gannadoù"
         two: "%{count} gannad"
       title: Siloù
+    new:
+      save: Enrollañ ar sil nevez
     statuses:
       index:
         title: Toudoù silet
@@ -547,7 +560,7 @@ br:
     back: Distreiñ da vMastodon
     development: Diorren
     edit_profile: Kemmañ ar profil
-    featured_tags: Hashtagoù pennañ
+    featured_tags: Gerioù-klik pennañ
     import: Enporzhiañ
     import_and_export: Enporzhiañ hag ezporzhiañ
     preferences: Gwellvezioù
@@ -609,6 +622,9 @@ br:
       edit_profile_title: Personelaat ho profil
       feature_action: Gouzout hiroc'h
       follow_action: Heuliañ
+      hashtags_title: Gerioù-klik diouzh ar c'hiz
+      hashtags_view_more: Gwelet muioc'h a c'herioù-klik diouzh ar c'hiz
+      share_title: Rannit ho kont Mastodon
       sign_in_action: Kevreañ
       subject: Donemat e Mastodon
       title: Degemer mat e bourzh, %{name}!

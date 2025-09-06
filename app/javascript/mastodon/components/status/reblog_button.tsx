@@ -69,7 +69,7 @@ const messages = defineMessages({
   },
   reblog_private: {
     id: 'status.reblog_private',
-    defaultMessage: 'Boost with original visibility',
+    defaultMessage: 'Share again with your followers',
   },
   reblog_cannot: {
     id: 'status.cannot_reblog',
