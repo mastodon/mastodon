@@ -3,19 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PollOptionsValidator, type: :model do
-  subject { record_class.new }
-
-  let(:record_class) do
-    Class.new do
-      include ActiveModel::Validations
-
-      def self.name = 'Record'
-
-      attr_accessor :options
-
-      validates_with PollOptionsValidator
-    end
-  end
+  subject { Fabricate.build :poll }
 
   context 'when poll has unique valid options' do
     it { is_expected.to allow_values(%w(One Two)).for(:options) }
