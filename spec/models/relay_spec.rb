@@ -33,7 +33,7 @@ RSpec.describe Relay do
 
   describe 'Callbacks' do
     describe 'Ensure disabled on destroy' do
-      before { stub_delivery_worker }
+      before { stub_services }
 
       context 'when relay is enabled' do
         let(:relay) { Fabricate :relay, state: :accepted }
@@ -71,7 +71,7 @@ RSpec.describe Relay do
   describe '#disable' do
     let(:relay) { Fabricate :relay, state: :accepted, follow_activity_id: 'https://host.example/123' }
 
-    before { stub_delivery_worker }
+    before { stub_services }
 
     it 'changes state to idle and removes the activity id' do
       expect { relay.disable! }
@@ -79,13 +79,15 @@ RSpec.describe Relay do
         .and change { relay.reload.follow_activity_id }.to(be_nil)
       expect(ActivityPub::DeliveryWorker)
         .to have_received(:perform_async).with(match('Undo'), Account.representative.id, relay.inbox_url)
+      expect(DeliveryFailureTracker)
+        .to have_received(:reset!).with(relay.inbox_url)
     end
   end
 
   describe '#enable' do
     let(:relay) { Fabricate :relay, state: :idle, follow_activity_id: '' }
 
-    before { stub_delivery_worker }
+    before { stub_services }
 
     it 'changes state to pending and populates the activity id' do
       expect { relay.enable! }
@@ -93,10 +95,13 @@ RSpec.describe Relay do
         .and change { relay.reload.follow_activity_id }.to(be_present)
       expect(ActivityPub::DeliveryWorker)
         .to have_received(:perform_async).with(match('Follow'), Account.representative.id, relay.inbox_url)
+      expect(DeliveryFailureTracker)
+        .to have_received(:reset!).with(relay.inbox_url)
     end
   end
 
-  def stub_delivery_worker
+  def stub_services
     allow(ActivityPub::DeliveryWorker).to receive(:perform_async)
+    allow(DeliveryFailureTracker).to receive(:reset!)
   end
 end

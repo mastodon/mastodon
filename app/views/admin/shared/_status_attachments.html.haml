@@ -1,7 +1,7 @@
 - if status.with_poll?
   .poll
     %ul
-      - status.preloadable_poll.options.each_with_index do |option, _index|
+      - status.preloadable_poll.options.each do |option|
         %li
           %label.poll__option.disabled<>
             - if status.preloadable_poll.multiple?
