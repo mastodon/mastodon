@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ReactionValidator, type: :model do
+RSpec.describe ReactionValidator do
   subject { Fabricate.build :announcement_reaction }
 
   context 'when not valid unicode emoji' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DomainValidator, type: :model do
+RSpec.describe DomainValidator do
   subject { record_class.new }
 
   context 'with no options' do

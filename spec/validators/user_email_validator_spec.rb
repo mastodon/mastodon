@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UserEmailValidator, type: :model do
+RSpec.describe UserEmailValidator do
   subject { Fabricate.build :user, confirmed_at: nil }
 
   context 'when email provider is blocked' do

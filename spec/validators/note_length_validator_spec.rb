@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe NoteLengthValidator, type: :model do
+RSpec.describe NoteLengthValidator do
   subject { record_class.new }
 
   let(:record_class) do

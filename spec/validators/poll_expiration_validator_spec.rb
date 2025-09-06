@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PollExpirationValidator, type: :model do
+RSpec.describe PollExpirationValidator do
   subject { Fabricate.build :poll }
 
   context 'when poll expires in far future' do

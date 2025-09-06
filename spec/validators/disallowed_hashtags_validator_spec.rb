@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DisallowedHashtagsValidator, type: :model do
+RSpec.describe DisallowedHashtagsValidator do
   subject { Fabricate.build :status }
 
   let(:tag_string) { 'ok #a #b #c then' }

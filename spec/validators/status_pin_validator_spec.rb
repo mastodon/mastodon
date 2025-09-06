@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StatusPinValidator, type: :model do
+RSpec.describe StatusPinValidator do
   subject { Fabricate.build :status_pin }
 
   context 'when status is a reblog' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ExistingUsernameValidator, type: :model do
+RSpec.describe ExistingUsernameValidator do
   subject { record_class.new }
 
   let(:record_class) do

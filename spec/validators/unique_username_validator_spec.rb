@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UniqueUsernameValidator, type: :model do
+RSpec.describe UniqueUsernameValidator do
   subject { Fabricate.build :account, username: 'abcdef', domain: }
 
   context 'when local account' do
