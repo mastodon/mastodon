@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PollOptionsValidator, type: :model do
+RSpec.describe PollOptionsValidator do
   subject { Fabricate.build :poll }
 
   context 'when poll has unique valid options' do
