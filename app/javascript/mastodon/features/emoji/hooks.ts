@@ -46,17 +46,21 @@ export function useEmojify({
 
   const emojify = useCallback(
     (input: string) => {
+      if (!deep) {
+        return emojifyText(input, appState, extra);
+      }
       const wrapper = document.createElement('div');
       wrapper.innerHTML = input;
       return emojifyElement(wrapper, appState, extra);
     },
-    [appState, deep, extra, text],
+    [appState, deep, extra],
   );
   useLayoutEffect(() => {
     if (isModernEmojiEnabled() && !!text.trim()) {
       const result = emojify(text);
-      if (result) {
-        setEmojifiedText(result.innerHTML);
+      const newText = result instanceof HTMLElement ? result.innerHTML : result;
+      if (newText) {
+        setEmojifiedText(newText);
         return;
       }
     }
