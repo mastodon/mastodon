@@ -2874,10 +2874,26 @@ a.account__display-name {
     color: $error-value-color;
   }
 
+  &--highlighted {
+    color: $highlight-text-color;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-subtitle {
+    font-weight: 400;
+  }
+
   a,
   button {
     font: inherit;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: inherit;
     width: 100%;
     padding: 10px 14px;
     border: 0;
@@ -2886,9 +2902,6 @@ a.account__display-name {
     box-sizing: border-box;
     text-decoration: none;
     color: inherit;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     text-align: inherit;
     border-radius: 4px;
 
@@ -2908,30 +2921,8 @@ a.account__display-name {
   }
 }
 
-.reblog-button {
-  &__item {
-    max-width: 360px;
-
-    button {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: inherit;
-    }
-
-    div {
-      display: flex;
-      flex-direction: column;
-    }
-
-    &.active:not(.disabled) {
-      color: $highlight-text-color;
-    }
-  }
-
-  &__meta {
-    font-weight: 400;
-  }
+.reblog-menu-item {
+  max-width: 360px;
 }
 
 .inline-account {
