@@ -209,7 +209,7 @@
   }
 
   &.button--plain {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
     background: transparent;
     padding: 6px;
 
@@ -223,7 +223,7 @@
     &:focus,
     &:hover {
       border-color: transparent;
-      color: lighten($highlight-text-color, 4%);
+      color: var(--clr-text-accent-subtle);
       background-color: transparent;
       text-decoration: none;
     }
@@ -232,13 +232,13 @@
     &.disabled {
       opacity: 0.7;
       border-color: transparent;
-      color: $ui-button-disabled-color;
+      color: var(--clr-text-disabled);
 
       &:active,
       &:focus,
       &:hover {
         border-color: transparent;
-        color: $ui-button-disabled-color;
+        color: var(--clr-text-disabled);
       }
     }
   }
@@ -2794,7 +2794,7 @@ a.account__display-name {
   }
 
   &--highlighted {
-    color: $highlight-text-color;
+    color: var(--clr-text-accent);
   }
 
   &-content {
