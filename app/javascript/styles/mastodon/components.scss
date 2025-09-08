@@ -5500,7 +5500,6 @@ a.status-card {
   border-radius: 4px;
   overflow: hidden;
   z-index: 2;
-  width: 300px;
 
   &.top {
     transform-origin: 50% 100%;
@@ -5607,6 +5606,7 @@ a.status-card {
 
 .language-dropdown {
   &__dropdown {
+    width: 300px;
     padding: 0;
 
     .emoji-mart-search {
