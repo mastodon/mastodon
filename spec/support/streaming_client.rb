@@ -182,7 +182,7 @@ class StreamingClient
     event.deep_symbolize_keys
   end
 
-  delegate :status_code, :state, to: '@connection.driver'
+  delegate :status, :state, to: :'@connection.driver'
   delegate :messages, to: :@connection
 
   def open?

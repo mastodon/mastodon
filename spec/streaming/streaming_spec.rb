@@ -17,16 +17,11 @@ RSpec.describe 'Streaming', :inline_jobs do
     streaming_client.close
   end
 
-  it 'receives an 101 upgrade to websocket' do
-    streaming_client.connect
-    expect(streaming_client.status_code).to eq(101)
-  end
-
   context 'when authenticating via subprotocol' do
     it 'is able to connect' do
       streaming_client.connect
 
-      expect(streaming_client.status_code).to eq(101)
+      expect(streaming_client.status).to eq(101)
       expect(streaming_client.open?).to be(true)
     end
   end
@@ -37,7 +32,7 @@ RSpec.describe 'Streaming', :inline_jobs do
     it 'is able to connect successfully' do
       streaming_client.connect
 
-      expect(streaming_client.status_code).to eq(101)
+      expect(streaming_client.status).to eq(101)
       expect(streaming_client.open?).to be(true)
     end
   end
@@ -48,7 +43,7 @@ RSpec.describe 'Streaming', :inline_jobs do
     it 'is able to connect successfully' do
       streaming_client.connect
 
-      expect(streaming_client.status_code).to eq(101)
+      expect(streaming_client.status).to eq(101)
       expect(streaming_client.open?).to be(true)
     end
   end
@@ -61,7 +56,7 @@ RSpec.describe 'Streaming', :inline_jobs do
     it 'receives an 401 unauthorized error' do
       streaming_client.connect
 
-      expect(streaming_client.status_code).to eq(401)
+      expect(streaming_client.status).to eq(401)
       expect(streaming_client.open?).to be(false)
     end
   end
@@ -70,7 +65,7 @@ RSpec.describe 'Streaming', :inline_jobs do
     it 'disconnects the client' do
       streaming_client.connect
 
-      expect(streaming_client.status_code).to eq(101)
+      expect(streaming_client.status).to eq(101)
       expect(streaming_client.open?).to be(true)
 
       token.revoke
