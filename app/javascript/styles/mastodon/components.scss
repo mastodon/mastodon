@@ -5711,6 +5711,8 @@ a.status-card {
   }
 
   &__button {
+    display: flex;
+    align-items: center;
     color: $primary-text-color;
     background: var(--dropdown-background-color);
     border: 1px solid var(--dropdown-border-color);
@@ -5724,6 +5726,13 @@ a.status-card {
     &:disabled {
       cursor: default;
     }
+  }
+
+  &__icon {
+    margin-inline: auto -4px;
+    width: 18px;
+    height: 18px;
+    opacity: 0.5;
   }
 
   &__helper {
