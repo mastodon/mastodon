@@ -163,7 +163,6 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             value: 'unlisted',
             text: intl.formatMessage(privacyMessages.unlisted_short),
             meta: intl.formatMessage(privacyMessages.unlisted_long),
-            extra: intl.formatMessage(privacyMessages.unlisted_extra),
             icon: 'unlock',
             iconComponent: QuietTimeIcon,
           },

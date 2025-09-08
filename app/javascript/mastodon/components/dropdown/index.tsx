@@ -11,6 +11,8 @@ import Overlay from 'react-overlays/Overlay';
 import type { SelectItem } from '../dropdown_selector';
 import { DropdownSelector } from '../dropdown_selector';
 
+import { matchWidth } from './utils';
+
 interface DropdownProps {
   title: string;
   disabled?: boolean;
@@ -86,6 +88,7 @@ export const Dropdown: FC<
         target={buttonRef.current}
         popperConfig={{
           strategy: 'fixed',
+          modifiers: [matchWidth],
         }}
       >
         {({ props, placement }) => (
