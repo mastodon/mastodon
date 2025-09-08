@@ -7,26 +7,28 @@ RSpec.describe StatusLengthValidator do
 
   before { stub_const 'StatusLengthValidator::MAX_CHARS', 100 }
 
+  let(:over_limit_text) { 'a' * described_class::MAX_CHARS * 2 }
+
   context 'when status is remote' do
     before { subject.update! account: Fabricate(:account, domain: 'host.example') }
 
-    it { is_expected.to allow_value('a' * 200).for(:text) }
-    it { is_expected.to allow_value('a' * 200).for(:spoiler_text).against(:text) }
+    it { is_expected.to allow_value(over_limit_text).for(:text) }
+    it { is_expected.to allow_value(over_limit_text).for(:spoiler_text).against(:text) }
   end
 
   context 'when status is a local reblog' do
     before { subject.update! reblog: Fabricate(:status) }
 
-    it { is_expected.to allow_value('a' * 200).for(:text) }
-    it { is_expected.to allow_value('a' * 200).for(:spoiler_text).against(:text) }
+    it { is_expected.to allow_value(over_limit_text).for(:text) }
+    it { is_expected.to allow_value(over_limit_text).for(:spoiler_text).against(:text) }
   end
 
   context 'when text is over character limit' do
-    it { is_expected.to_not allow_value('a' * 200).for(:text).with_message(too_long_message) }
+    it { is_expected.to_not allow_value(over_limit_text).for(:text).with_message(too_long_message) }
   end
 
   context 'when content warning text is over character limit' do
-    it { is_expected.to_not allow_value('a' * 200).for(:spoiler_text).against(:text).with_message(too_long_message) }
+    it { is_expected.to_not allow_value(over_limit_text).for(:spoiler_text).against(:text).with_message(too_long_message) }
   end
 
   context 'when text and content warning combine to exceed limit' do
@@ -66,8 +68,8 @@ RSpec.describe StatusLengthValidator do
   end
 
   context 'with special character strings' do
-    let(:multibyte_emoji) { '✨' * 100 }
-    let(:zwj_sequence) { '🏳️‍⚧️' * 100 }
+    let(:multibyte_emoji) { '✨' * described_class::MAX_CHARS }
+    let(:zwj_sequence) { '🏳️‍⚧️' * described_class::MAX_CHARS }
 
     it { is_expected.to allow_values(multibyte_emoji, zwj_sequence).for(:text) }
   end
