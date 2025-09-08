@@ -9,7 +9,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
              :atom_uri, :in_reply_to_atom_uri,
-             :conversation, :context
+             :conversation
 
   attribute :content
   attribute :content_map, if: :language?
@@ -161,12 +161,6 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     else
       OStatus::TagManager.instance.unique_tag(object.conversation.created_at, object.conversation.id, 'Conversation')
     end
-  end
-
-  def context
-    return if object.conversation.nil?
-
-    ActivityPub::TagManager.instance.uri_for(object.conversation)
   end
 
   def local?

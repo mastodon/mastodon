@@ -70,8 +70,6 @@ class Status < ApplicationRecord
     belongs_to :reblog, foreign_key: 'reblog_of_id', inverse_of: :reblogs
   end
 
-  has_one :owned_conversation, class_name: 'Conversation', foreign_key: 'parent_status_id', inverse_of: :parent_status, dependent: nil
-
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :bookmarks, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
@@ -444,8 +442,7 @@ class Status < ApplicationRecord
       self.in_reply_to_account_id = carried_over_reply_to_account_id
       self.conversation_id        = thread.conversation_id if conversation_id.nil?
     elsif conversation_id.nil?
-      conversation = build_owned_conversation
-      self.conversation = conversation
+      self.conversation = Conversation.new
     end
   end
 
