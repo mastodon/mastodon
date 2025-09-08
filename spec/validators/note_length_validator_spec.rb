@@ -18,7 +18,9 @@ RSpec.describe NoteLengthValidator do
   end
 
   context 'when note is too long' do
-    it { is_expected.to_not allow_value('a' * 200).for(:note).with_message(too_long_message) }
+    let(:too_long) { 'a' * 200 }
+
+    it { is_expected.to_not allow_value(too_long).for(:note).with_message(too_long_message) }
   end
 
   context 'when note has space separated linkable URLs' do
