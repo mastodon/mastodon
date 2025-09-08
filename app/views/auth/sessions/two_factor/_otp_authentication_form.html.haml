@@ -16,7 +16,7 @@
     = f.button :button, t('auth.login'), type: :submit
 
   - if Setting.site_contact_email.present?
-    %p.hint.subtle-hint= t('users.otp_lost_help_html', email: mail_to(Setting.site_contact_email, nil))
+    %p.hint.subtle-hint= t('users.otp_lost_help_html', email: mail_to(Setting.site_contact_email))
 
   - if webauthn_enabled?
     .form-footer

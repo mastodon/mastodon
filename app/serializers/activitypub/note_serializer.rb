@@ -9,7 +9,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
              :atom_uri, :in_reply_to_atom_uri,
-             :conversation
+             :conversation, :context
 
   attribute :content
   attribute :content_map, if: :language?
@@ -163,6 +163,12 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     end
   end
 
+  def context
+    return if object.conversation.nil?
+
+    ActivityPub::TagManager.instance.uri_for(object.conversation)
+  end
+
   def local?
     object.account.local?
   end
@@ -231,6 +237,15 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     {
       canQuote: {
         automaticApproval: approved_uris,
+      },
+      canReply: {
+        always: 'https://www.w3.org/ns/activitystreams#Public',
+      },
+      canLike: {
+        always: 'https://www.w3.org/ns/activitystreams#Public',
+      },
+      canAnnounce: {
+        always: 'https://www.w3.org/ns/activitystreams#Public',
       },
     }
   end

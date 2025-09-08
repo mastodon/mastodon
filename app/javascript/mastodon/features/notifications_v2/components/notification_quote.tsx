@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl';
 
-import FormatQuoteIcon from '@/material-icons/400-24px/format_quote.svg?react';
+import FormatQuoteIcon from '@/material-icons/400-24px/format_quote-fill.svg?react';
 import type { NotificationGroupQuote } from 'mastodon/models/notification_group';
 
 import type { LabelRenderer } from './notification_group_with_status';

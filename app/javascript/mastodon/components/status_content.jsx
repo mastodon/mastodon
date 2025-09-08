@@ -138,16 +138,6 @@ class StatusContent extends PureComponent {
 
       onCollapsedToggle(collapsed);
     }
-
-    // Remove quote fallback link from the DOM so it doesn't
-    // mess with paragraph margins
-    if (!!status.get('quote')) {
-      const inlineQuote = node.querySelector('.quote-inline');
-
-      if (inlineQuote) {
-        inlineQuote.remove();
-      }
-    }
   }
 
   handleMouseEnter = ({ currentTarget }) => {

@@ -117,6 +117,7 @@ const initialState = ImmutableMap({
     'explore/links': false,
     'explore/statuses': false,
     'explore/tags': false,
+    'notifications/remove_quote_hint': false,
   }),
 });
 

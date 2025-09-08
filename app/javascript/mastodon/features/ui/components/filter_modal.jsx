@@ -38,7 +38,7 @@ class FilterModal extends ImmutablePureComponent {
 
   handleSuccess = () => {
     const { dispatch, statusId } = this.props;
-    dispatch(fetchStatus(statusId, true));
+    dispatch(fetchStatus(statusId, {forceFetch: true}));
     this.setState({ isSubmitting: false, isSubmitted: true, step: 'submitted' });
   };
 

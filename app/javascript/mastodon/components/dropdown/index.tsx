@@ -8,8 +8,13 @@ import classNames from 'classnames';
 
 import Overlay from 'react-overlays/Overlay';
 
+import UnfoldMoreIcon from '@/material-icons/400-24px/unfold_more.svg?react';
+
 import type { SelectItem } from '../dropdown_selector';
 import { DropdownSelector } from '../dropdown_selector';
+import { Icon } from '../icon';
+
+import { matchWidth } from './utils';
 
 interface DropdownProps {
   title: string;
@@ -75,17 +80,23 @@ export const Dropdown: FC<
             defaultMessage='Select an option'
           />
         )}
+        <Icon
+          id='unfold-icon'
+          icon={UnfoldMoreIcon}
+          className={`${classPrefix}__icon`}
+        />
       </button>
 
       <Overlay
         show={open}
-        offset={[0, 4]}
+        offset={[0, 0]}
         placement='bottom-start'
         onHide={handleClose}
         flip
         target={buttonRef.current}
         popperConfig={{
           strategy: 'fixed',
+          modifiers: [matchWidth],
         }}
       >
         {({ props, placement }) => (

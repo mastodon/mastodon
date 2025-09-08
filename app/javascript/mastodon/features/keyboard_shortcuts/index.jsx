@@ -9,6 +9,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
+import { isFeatureEnabled } from 'mastodon/utils/environment';
 
 const messages = defineMessages({
   heading: { id: 'keyboard_shortcuts.heading', defaultMessage: 'Keyboard Shortcuts' },
@@ -62,6 +63,12 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><kbd>b</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.boost' defaultMessage='to boost' /></td>
               </tr>
+              {isFeatureEnabled('outgoing_quotes') && (
+                <tr>
+                  <td><kbd>q</kbd></td>
+                  <td><FormattedMessage id='keyboard_shortcuts.quote' defaultMessage='Quote post' /></td>
+                </tr>
+              )}
               <tr>
                 <td><kbd>enter</kbd>, <kbd>o</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.enter' defaultMessage='to open status' /></td>

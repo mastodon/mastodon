@@ -152,8 +152,8 @@ class ActivityPub::Parser::StatusParser
     # Remove the special-meaning actor URI
     allowed_actors.delete(@options[:actor_uri])
 
-    # Any unrecognized actor is marked as unknown
-    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:unknown] unless allowed_actors.empty?
+    # Any unrecognized actor is marked as unsupported
+    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:unsupported_policy] unless allowed_actors.empty?
 
     flags
   end

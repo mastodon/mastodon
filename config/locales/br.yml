@@ -26,6 +26,7 @@ br:
     account_moderation_notes:
       create: Leuskel un notenn
     accounts:
+      add_email_domain_block: Stankañ an domani postel
       approve: Aprouiñ
       are_you_sure: Ha sur oc'h?
       avatar: Avatar
@@ -51,6 +52,7 @@ br:
       domain: Domani
       edit: Kemmañ
       email: Postel
+      email_status: Statud ar postel
       enable: Gweredekaat
       enabled: Gweredekaet
       followers: Heulier·ezed·ien
@@ -63,6 +65,7 @@ br:
         all: Pep tra
         local: Lec'hel
         remote: A-bell
+        title: Lec'hiadur
       media_attachments: Restroù media stag
       moderation:
         active: Oberiant
@@ -94,25 +97,47 @@ br:
       suspend: Astalañ
       suspended: Astalet
       title: Kontoù
+      unblock_email: Distankañ ar chomlec'h postel
+      unblocked_email_msg: Distanket eo bet chomlec'h postel %{username} gant berzh
       undo_silenced: Dizober ar bevennañ
       unsubscribe: Digoumanantiñ
-      username: Anv
+      username: Anv implijer
       warn: Diwall
       web: Web
     action_logs:
       action_types:
-        approve_user: Aprouiñ an implijer
-        change_role_user: Kemmañ perzh an implijer
-        confirm_user: Aprouiñ an implijer
+        approve_user: Aprouiñ an implijer·ez
+        change_email_user: Cheñch postel an implijer·ez
+        change_role_user: Kemmañ perzh an implijer·ez
+        confirm_user: Aprouiñ an implijer·ez
+        create_custom_emoji: Krouiñ ur fromlun personelaet
         create_ip_block: Krouiñ ur reolenn IP
         create_user_role: Krouiñ ur perzh
+        destroy_custom_emoji: Dilemel ar fromlun personelaet
         destroy_ip_block: Dilemel ar reolenn IP
         destroy_status: Dilemel ar c'hannad
+        destroy_user_role: Dilemel ar perzh
+        disable_custom_emoji: Diweredekaat ar fromlun personelaet
+        enable_custom_emoji: Gweredekaat ar fromlun personelaet
         reset_password_user: Adderaouekaat ar ger-tremen
+        unblock_email_account: Distankañ ar chomlec'h postel
+        update_custom_emoji: Hizivaat ar fromlun personelaet
         update_status: Hizivaat ar c'hannad
       actions:
+        change_email_user_html: Cheñchet eo bet chomlec'h postel an implijer·ez %{target} gant %{name}
+        confirm_user_html: Cheñchet eo bet chomlec'h postel an implijer·ez %{target} gant %{name}
+        create_custom_emoji_html: Pellgaset eo bet ar fromlun nevez %{target} gant %{name}
+        create_email_domain_block_html: Stanket eo bet an domani postel %{target} gant %{name}
+        destroy_custom_emoji_html: Dilamet eo bet ar fromlun %{target} gant %{name}
+        destroy_email_domain_block_html: Distanket eo bet an domani postel %{target} gant %{name}
         destroy_status_html: Dilamet eo bet toud %{target} gant %{name}
+        disable_custom_emoji_html: Diweredekaet eo bet ar fromlun %{target} gant %{name}
+        enable_custom_emoji_html: Gweredekaet eo bet ar fromlun %{target} gant %{name}
+        resend_user_html: Adkaset eo bet ar postel kadarnaat evit %{target} gant %{name}
+        unblock_email_account_html: Distanket eo bet chomlec'h postel %{target} gant %{name}
+        update_custom_emoji_html: Hizivaet eo bet ar fromlun %{target} gant %{name}
         update_status_html: Hizivaet eo bet toud %{target} gant %{name}
+      filter_by_user: Silañ dre implijer·ez
       title: Renabl aodit
     announcements:
       live: War-eeun
@@ -120,6 +145,7 @@ br:
         create: Sevel ur gemenn
         title: Kemenn nevez
       publish: Embann
+      scheduled_for: Rakluniet da %{time}
       title: Kemennoù
       unpublish: Diembann
     custom_emojis:
@@ -131,13 +157,20 @@ br:
       emoji: Fromlun
       enable: Gweredekaat
       enabled: Gweredekaet
+      image_hint: PNG pe GIF betek %{size}
       list: Listenn
       listed: Listennet
+      new:
+        title: Ouzhpennañ ur fromlun personelaet nevez
       overwrite: Flastrañ
       shortcode: Berradenn
+      title: Fromlunioù personelaet
       unlist: Dilistennañ
+      update_failed_msg: N'haller ket hizivaat ar fromlun-mañ
+      updated_msg: Fromlun hizivaet gant berzh!
       upload: Ezkargañ
     dashboard:
+      active_users: implijerien·ezed oberiant
       new_users: implijerien·ezed nevez
       software: Meziant
       title: Taolenn labour
@@ -152,22 +185,28 @@ br:
       confirm_suspension:
         cancel: Nullañ
       domain: Domani
+      export: Ezporzhiañ
+      import: Enporzhiañ
       new:
         create: Sevel ur stanker
         severity:
           noop: Hini ebet
           suspend: Astalañ
+      private_comment: Evezhiadenn brevez
       public_comment: Evezhiadenn foran
     email_domain_blocks:
-      add_new: Ouzhpenniñ unan nevez
+      add_new: Ouzhpennañ unan nevez
       delete: Dilemel
       dns:
         types:
           mx: Enrolladenn MX
       domain: Domani
       new:
-        create: Ouzhpenniñ un domani
+        create: Ouzhpennañ un domani
+      title: Domanioù postel stanket
     export_domain_allows:
+      no_file: Restr ebet diuzet
+    export_domain_blocks:
       no_file: Restr ebet diuzet
     fasp:
       debug:
@@ -180,8 +219,10 @@ br:
         name: Anv
         registrations:
           confirm: Kadarnaat
+        save: Enrollañ
         status: Statud
     follow_recommendations:
+      language: Evit ar yezh
       status: Statud
       suppressed: Dilamet
     instances:
@@ -204,6 +245,8 @@ br:
         all: Pep tra
         limited: Bevennet
         title: Habaskadur
+      private_comment: Evezhiadenn brevez
+      public_comment: Evezhiadenn foran
       purge: Spurjañ
       title: Kevread
       total_blocked_by_us: Stanket ganeomp
@@ -211,6 +254,7 @@ br:
       total_followed_by_us: Heuliet ganeomp
       total_storage: Restroù media stag
     invites:
+      deactivate_all: Diweredekaat pep tra
       filter:
         all: Pep tra
         available: Hegerzh
@@ -222,6 +266,7 @@ br:
       delete: Dilemel
       expires_in:
         '1209600': 2 sizhunvezh
+        '15778476': 6 mizvezh
         '2629746': 1 mizvezh
         '31556952': 1 bloavezh
         '86400': 1 devezh
@@ -260,14 +305,33 @@ br:
       title: Disklêriadennoù
       unresolved: Andiskoulmet
       updated_at: Nevesaet
+      view_profile: Gwelet ar profil
     roles:
+      add_new: Ouzhpennañ ur perzh
+      assigned_users:
+        few: "%{count} implijer·ez"
+        many: "%{count} implijer·ez"
+        one: "%{count} implijer·ez"
+        other: "%{count} implijer·ez"
+        two: "%{count} implijer·ez"
       categories:
+        administration: Merañ
         devops: DevOps
         invites: Pedadennoù
         moderation: Habaskadur
         special: Ispisial
       delete: Dilemel
       privileges:
+        administrator: Merour
+        invite_users: Pediñ implijerien·ezed
+        invite_users_description: Aotren an implijerien·ezed da bediñ tud all d'ar servijer
+        manage_custom_emojis: Merañ ar fromlunioù personelaet
+        manage_invites: Merañ ar pedadennoù
+        manage_roles: Merañ ar perzhioù
+        manage_rules: Merañ ar reolennoù
+        manage_settings: Merañ an arventennoù
+        manage_settings_description: Aotren an implijerien·ezed da cheñch arventennoù al lec'hienn
+        manage_users: Merañ an implijerien·ezed
         view_devops: DevOps
       title: Rolloù
     rules:
@@ -287,11 +351,15 @@ br:
         danger_zone: Takad dañjer
       discovery:
         privacy: Buhez prevez
+        profile_directory: Kavlec'h ar profiloù
+        publish_statistics: Embann ar stadegoù
         title: Dizoloadur
         trends: Luskadoù
       domain_blocks:
         all: D'an holl dud
         disabled: Da zen ebet
+    software_updates:
+      documentation_link: Gouzout hiroc'h
     statuses:
       account: Aozer·ez
       batch:
@@ -310,6 +378,28 @@ br:
     strikes:
       actions:
         delete_statuses: Dilamet eo bet toudoù %{target} gant %{name}
+    system_checks:
+      elasticsearch_preset:
+        action: Gwelet an teuliadur
+      elasticsearch_preset_single_node:
+        action: Gwelet an teuliadur
+      rules_check:
+        action: Merañ reolennoù ar servijer
+      software_version_check:
+        action: Gwelet an hizivadennoù hegerz
+        message_html: Un hizivadenn eus Mastodon a zo hegerz.
+      software_version_critical_check:
+        action: Gwelet an hizivadennoù hegerz
+      software_version_patch_check:
+        action: Gwelet an hizivadennoù hegerz
+    tags:
+      title: Gerioù-klik
+    terms_of_service:
+      preview:
+        send_preview: Kas ur rakwel da %{email}
+      publish: Embann
+      published_on_html: Embannet d'an %{date}
+      save_draft: Enrollañ ar brouilhed
     trends:
       allow: Aotren
       approved: Aprouet
@@ -324,9 +414,12 @@ br:
         dashboard:
           tag_uses_measure: implijoù hollek
         not_usable: N'haller ket en implijout
-        title: Hashtagoù diouzh ar c'hiz
+        title: Gerioù-klik diouzh ar c'hiz
+    username_blocks:
+      add_new: Ouzhpennañ unan nevez
+      delete: Dilemel
     warning_presets:
-      add_new: Ouzhpenniñ unan nevez
+      add_new: Ouzhpennañ unan nevez
       delete: Dilemel
     webhooks:
       delete: Dilemel
@@ -342,7 +435,7 @@ br:
         none: ur c'hemenn diwall
     new_trends:
       new_trending_tags:
-        title: Hashtagoù diouzh ar c'hiz
+        title: Gerioù-klik diouzh ar c'hiz
   appearance:
     discovery: Dizoloadur
     localization:
@@ -350,6 +443,7 @@ br:
       guide_link: https://crowdin.com/project/mastodon
   application_mailer:
     view: 'Sellet :'
+    view_profile: Gwelet ar profil
     view_status: Gwelet ar c'hannad
   auth:
     delete_account: Dilemel ar gont
@@ -364,6 +458,8 @@ br:
       saml: SAML
     register: Lakaat ho anv
     reset_password: Adderaouekaat ar ger-tremen
+    rules:
+      title_invited: Pedet oc'h bet.
     security: Diogelroez
     status:
       account_status: Statud ar gont
@@ -396,6 +492,8 @@ br:
       created_at: Deiziad
       title_actions:
         none: Diwall
+  edit_profile:
+    other: All
   emoji_styles:
     auto: Emgefreek
     twemoji: Twemoji
@@ -408,7 +506,7 @@ br:
     csv: CSV
     lists: Listennoù
   featured_tags:
-    add_new: Ouzhpenniñ unan nevez
+    add_new: Ouzhpennañ unan nevez
   filters:
     contexts:
       account: Profiloù
@@ -422,6 +520,8 @@ br:
         other: "%{count} a gannadoù"
         two: "%{count} gannad"
       title: Siloù
+    new:
+      save: Enrollañ ar sil nevez
     statuses:
       index:
         title: Toudoù silet
@@ -438,8 +538,18 @@ br:
     modes:
       merge: Teuziñ
       overwrite: Flastrañ
+    states:
+      finished: Echu
+      scheduled: Rakluniet
+    status: Statud
+    titles:
+      blocking: Enporzhiañ kontoù stanket
+      bookmarks: Enporzhiañ sinedoù
+      domain_blocking: Enporzhiañ domanioù stanket
+      lists: Enporzhiañ listennoù
     types:
       bookmarks: Sinedoù
+      lists: Listennoù
     upload: Ezkargañ
   invites:
     delete: Diweredekaat
@@ -452,9 +562,20 @@ br:
       '604800': 1 sizhun
       '86400': 1 deiz
     expires_in_prompt: Birviken
+    invited_by: 'Pedet oc''h bet gant:'
+    max_uses:
+      few: "%{count} implij"
+      many: "%{count} implij"
+      one: 1 implij
+      other: "%{count} implij"
+      two: "%{count} implij"
     table:
       uses: Implijoù
     title: Pediñ tud
+  login_activities:
+    authentication_methods:
+      password: ger-tremen
+      webauthn: alc’hwezioù surentez
   media_attachments:
     validations:
       images_and_video: N'haller stagañ ur video ouzh un embannadur a zo fotoioù gantañ dija
@@ -493,12 +614,18 @@ br:
     next: Da-heul
     older: Koshoc'h
     prev: A-raok
+    truncate: "&hellip;"
   polls:
     errors:
       self_vote: N'hallit ket votiñ en ho sontadegoù deoc'h-c'hwi
   preferences:
     other: All
     posting_defaults: Arventennoù embann dre ziouer
+  privacy:
+    privacy: Prevezded
+    search: Klask
+  privacy_policy:
+    title: Reolennoù prevezded
   redirects:
     prompt: M'ho peus fiziañs el liamm-mañ, klikit warnañ evit kenderc'hel.
     title: O kuitaat %{instance} emaoc'h.
@@ -510,6 +637,7 @@ br:
     moved: Dilojet
     mutual: Kenetre
     primary: Kentañ
+    status: Statud ar gont
   sessions:
     browser: Merdeer
     browsers:
@@ -520,6 +648,7 @@ br:
       electron: Electron
       firefox: Firefox
       generic: Merdeer dianav
+      huawei_browser: Merdeer Huawei
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Merdeer Nokia S40 Ovi
@@ -529,6 +658,7 @@ br:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
+      unknown_browser: Merdeer dianav
       weibo: Weibo
     date: Deiziad
     description: "%{browser} war %{platform}"
@@ -547,11 +677,20 @@ br:
     back: Distreiñ da vMastodon
     development: Diorren
     edit_profile: Kemmañ ar profil
-    featured_tags: Hashtagoù pennañ
+    export: Ezporzhiañ
+    featured_tags: Gerioù-klik en a-raok
     import: Enporzhiañ
     import_and_export: Enporzhiañ hag ezporzhiañ
+    notifications: Kemennoù dre bostel
     preferences: Gwellvezioù
     profile: Profil
+    relationships: Heulierien·ezed ha tud heuliet
+  severed_relationships:
+    event_type:
+      user_domain_block: Stanket ho peus %{target_name}
+    lost_followers: Heulierien·ezed kollet
+    lost_follows: Tud heuliet kollet
+    type: Darvoud
   statuses:
     attached:
       image:
@@ -564,17 +703,29 @@ br:
       quoted_status_not_found: War a seblant, n'eus ket eus an embannadenn emaoc'h o klask menegiñ.
     pin_errors:
       ownership: N'hallit ket spilhennañ embannadurioù ar re all
+      reblog: N'haller ket spilhennañ ur skignadenn
+    quote_policies:
+      followers: Heulierien·ezed hepken
+      public: Pep hini
+    title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Meneg prevez
+      private: Heulierien·ezed hepken
       public: Publik
   statuses_cleanup:
     keep_direct: Mirout ar c'hannadoù eeun
     keep_media: Derc'hel an embannadurioù gant restroù stag
     min_age:
       '1209600': 2 sizhunvezh
+      '15778476': 6 mizvezh
       '2629746': 1 mizvezh
       '31556952': 1 bloavezh
+      '5259492': 2 mizvezh
       '604800': 1 sizhunvezh
       '63113904': 2 vloavezh
+      '7889238': 3 mizvezh
+  terms_of_service:
+    title: Divizoù implijout
   themes:
     default: Mastodon (Teñval)
     mastodon-light: Mastodon (Sklaer)
@@ -588,17 +739,25 @@ br:
     add: Ouzhpennañ
     disable: Diweredekaat
     edit: Kemmañ
+    webauthn: Alc’hwezioù surentez
   user_mailer:
     appeal_approved:
       action: Arventennoù ar gont
     backup_ready:
       extra: Prest eo da vezañ pellgarget!
+    suspicious_sign_in:
+      change_password: kemmañ ho ker-tremen
+    terms_of_service_changed:
+      sign_off: Skipailh %{domain}
+      subject: Kemmoù en hon divizoù implijout
+      subtitle: Cheñchet o deus divizoù implijout %{domain}
     warning:
       categories:
         spam: Spam
-      reason: 'Abeg :'
-      statuses: 'Toudoù meneget :'
+      reason: 'Abeg:'
+      statuses: 'Toudoù meneget:'
       title:
+        delete_statuses: Toudoù dilamet
         none: Diwall
     welcome:
       apps_android_action: Tapit anezhañ war Google Play
@@ -609,6 +768,13 @@ br:
       edit_profile_title: Personelaat ho profil
       feature_action: Gouzout hiroc'h
       follow_action: Heuliañ
+      follow_title: Personelait ho kwazh pennañ
+      follows_subtitle: Heuilhit kontoù brudet-mat
+      follows_title: Piv heuliañ
+      hashtags_title: Gerioù-klik diouzh ar c'hiz
+      hashtags_view_more: Gwelet muioc'h a c'herioù-klik diouzh ar c'hiz
+      post_title: Grit hoc'h embannadur kentañ
+      share_title: Rannit ho kont Mastodon
       sign_in_action: Kevreañ
       subject: Donemat e Mastodon
       title: Degemer mat e bourzh, %{name}!
@@ -616,6 +782,7 @@ br:
     follow_limit_reached: N'hallit ket heulian muioc'h eget %{limit} a zen
     signed_in_as: 'Aet-tre evel:'
   verification:
+    here_is_how: Setu penaos
     verification: Amprouadur
   webauthn_credentials:
     add: Ouzphennañ un alc'hwez surentez nevez
