@@ -11,6 +11,8 @@
 #
 
 class Conversation < ApplicationRecord
+  self.ignored_columns += %w(parent_status_id parent_account_id)
+
   validates :uri, uniqueness: true, if: :uri?
 
   has_many :statuses, dependent: nil
