@@ -6,14 +6,20 @@ RSpec.describe PollExpirationValidator do
   subject { Fabricate.build :poll }
 
   context 'when poll expires in far future' do
-    it { is_expected.to_not allow_value(6.months.from_now).for(:expires_at).with_message(I18n.t('polls.errors.duration_too_long')) }
+    let(:far_future) { 6.months.from_now }
+
+    it { is_expected.to_not allow_value(far_future).for(:expires_at).with_message(I18n.t('polls.errors.duration_too_long')) }
   end
 
   context 'when poll expires in far past' do
-    it { is_expected.to_not allow_value(6.days.ago).for(:expires_at).with_message(I18n.t('polls.errors.duration_too_short')) }
+    let(:past_date) { 6.days.ago }
+
+    it { is_expected.to_not allow_value(past_date).for(:expires_at).with_message(I18n.t('polls.errors.duration_too_short')) }
   end
 
   context 'when poll expires in medium future' do
-    it { is_expected.to allow_value(10.minutes.from_now).for(:expires_at) }
+    let(:allowed_future) { 10.minutes.from_now }
+
+    it { is_expected.to allow_value(allowed_future).for(:expires_at) }
   end
 end
