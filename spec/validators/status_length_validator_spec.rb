@@ -62,7 +62,7 @@ RSpec.describe StatusLengthValidator do
   end
 
   context 'when remote usernames are attached to long domains' do
-    let(:text) { "@alice@#{'b' * 300}.com" }
+    let(:text) { "@alice@#{'b' * Extractor::MAX_DOMAIN_LENGTH * 2}.com" }
 
     it { is_expected.to_not allow_value(text).for(:text).with_message(too_long_message) }
   end
