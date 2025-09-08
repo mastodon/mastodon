@@ -23,7 +23,7 @@ RSpec.describe ReactionValidator do
     before { stub_const 'ReactionValidator::LIMIT', 2 }
 
     context 'when limit has been reached' do
-      before { %w(🐘 ❤️).each { |name| Fabricate :announcement_reaction, name: name, announcement: } }
+      before { %w(🐘 ❤️).each { |name| Fabricate :announcement_reaction, name:, announcement: } }
 
       context 'with emoji already used' do
         it { is_expected.to allow_value('❤️').for(:name) }
