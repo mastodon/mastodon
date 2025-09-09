@@ -1,4 +1,3 @@
-import type { ReactNode } from 'react';
 import React from 'react';
 
 // NB: This function can still return unsafe HTML
@@ -13,14 +12,17 @@ export const unescapeHTML = (html: string) => {
 
 interface QueueItem {
   node: Node;
-  parent: ReactNode[];
+  parent: React.ReactNode[];
   depth: number;
 }
 
 interface Options {
   maxDepth?: number;
-  onText?: (text: string) => ReactNode;
-  onElement?: (element: HTMLElement, children: ReactNode[]) => ReactNode;
+  onText?: (text: string) => React.ReactNode;
+  onElement?: (
+    element: HTMLElement,
+    children: React.ReactNode[],
+  ) => React.ReactNode;
   onAttribute?: (
     name: string,
     value: string,
@@ -70,7 +72,7 @@ export function htmlStringToComponents(
   const wrapper = document.createElement('template');
   wrapper.innerHTML = htmlString;
 
-  const rootChildren: ReactNode[] = [];
+  const rootChildren: React.ReactNode[] = [];
   const queue: QueueItem[] = [
     { node: wrapper.content, parent: rootChildren, depth: 0 },
   ];
@@ -130,8 +132,8 @@ export function htmlStringToComponents(
         }
 
         // Create the element and add it to the parent.
-        const children: ReactNode[] = [];
-        let element: ReactNode = undefined;
+        const children: React.ReactNode[] = [];
+        let element: React.ReactNode = undefined;
 
         // If onElement is provided, use it to create the element.
         if (onElement) {
