@@ -24,6 +24,10 @@ class Conversation < ApplicationRecord
 
   before_validation :set_parent_account, on: :create
 
+  def to_param
+    "#{parent_account_id}-#{parent_status_id}" unless parent_account_id.nil? || parent_status_id.nil?
+  end
+
   def local?
     uri.nil?
   end

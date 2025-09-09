@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe 'ActivityPub Contexts' do
-  let(:conversation) { Fabricate(:conversation) }
+  let(:conversation) { Fabricate(:status).owned_conversation }
 
   describe 'GET #show' do
-    subject { get context_path(id: conversation.id), headers: nil }
+    subject { get context_path(conversation), headers: nil }
 
     let!(:status) { Fabricate(:status, conversation: conversation) }
     let!(:unrelated_status) { Fabricate(:status) }
@@ -26,7 +26,7 @@ RSpec.describe 'ActivityPub Contexts' do
 
       expect(response.parsed_body[:first][:items])
         .to be_an(Array)
-        .and have_attributes(size: 1)
+        .and have_attributes(size: 2)
         .and include(ActivityPub::TagManager.instance.uri_for(status))
         .and not_include(ActivityPub::TagManager.instance.uri_for(unrelated_status))
     end
@@ -46,7 +46,7 @@ RSpec.describe 'ActivityPub Contexts' do
 
       context 'with many statuses' do
         before do
-          (ActivityPub::ContextsController::DESCENDANTS_LIMIT + 1).times do
+          ActivityPub::ContextsController::DESCENDANTS_LIMIT.times do
             Fabricate(:status, conversation: conversation)
           end
         end
@@ -61,11 +61,11 @@ RSpec.describe 'ActivityPub Contexts' do
   end
 
   describe 'GET #items' do
-    subject { get items_context_path(id: conversation.id, page: 0, min_id: nil), headers: nil }
+    subject { get items_context_path(conversation, page: 0, min_id: nil), headers: nil }
 
     context 'with few statuses' do
       before do
-        Fabricate.times(3, :status, conversation: conversation)
+        Fabricate.times(2, :status, conversation: conversation)
       end
 
       it 'returns http success and correct media type and correct items' do
@@ -90,7 +90,7 @@ RSpec.describe 'ActivityPub Contexts' do
 
     context 'with many statuses' do
       before do
-        Fabricate.times(ActivityPub::ContextsController::DESCENDANTS_LIMIT + 1, :status, conversation: conversation)
+        Fabricate.times(ActivityPub::ContextsController::DESCENDANTS_LIMIT, :status, conversation: conversation)
       end
 
       it 'includes a next page link' do
@@ -102,11 +102,11 @@ RSpec.describe 'ActivityPub Contexts' do
 
     context 'with page requested' do
       before do
-        Fabricate.times(ActivityPub::ContextsController::DESCENDANTS_LIMIT + 1, :status, conversation: conversation)
+        Fabricate.times(ActivityPub::ContextsController::DESCENDANTS_LIMIT, :status, conversation: conversation)
       end
 
       it 'returns the correct items' do
-        get items_context_path(id: conversation.id, page: 0, min_id: nil), headers: nil
+        get items_context_path(conversation, page: 0, min_id: nil), headers: nil
         next_page = response.parsed_body['first']['next']
         get next_page, headers: nil
 
