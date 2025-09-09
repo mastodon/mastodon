@@ -21,7 +21,11 @@ interface Options {
   maxDepth?: number;
   onText?: (text: string) => ReactNode;
   onElement?: (element: HTMLElement, children: ReactNode[]) => ReactNode;
-  onAttribute?: (name: string, value: string) => [string, unknown] | null;
+  onAttribute?: (
+    name: string,
+    value: string,
+    tagName: string,
+  ) => [string, unknown] | null;
   allowedTags?: Set<string>;
 }
 const DEFAULT_ALLOWED_TAGS: ReadonlySet<string> = new Set([
@@ -143,7 +147,11 @@ export function htmlStringToComponents(
           const props: Record<string, unknown> = {};
           for (const attr of node.attributes) {
             if (onAttribute) {
-              const result = onAttribute(attr.name, attr.value);
+              const result = onAttribute(
+                attr.name,
+                attr.value,
+                node.tagName.toLowerCase(),
+              );
               if (result) {
                 const [name, value] = result;
                 props[name] = value;

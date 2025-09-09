@@ -84,9 +84,13 @@ describe('html', () => {
       );
       html.htmlStringToComponents(input, { onAttribute });
       expect(onAttribute).toHaveBeenCalledTimes(3);
-      expect(onAttribute).toHaveBeenCalledWith('href', 'https://example.com');
-      expect(onAttribute).toHaveBeenCalledWith('target', '_blank');
-      expect(onAttribute).toHaveBeenCalledWith('rel', 'nofollow');
+      expect(onAttribute).toHaveBeenCalledWith(
+        'href',
+        'https://example.com',
+        'a',
+      );
+      expect(onAttribute).toHaveBeenCalledWith('target', '_blank', 'a');
+      expect(onAttribute).toHaveBeenCalledWith('rel', 'nofollow', 'a');
     });
 
     it('respects allowedTags option', () => {
