@@ -100,5 +100,14 @@ describe('html', () => {
       });
       expect(output).toMatchSnapshot();
     });
+
+    it('ensure performance is acceptable with large input', () => {
+      const input = '<p>' + '<span>lorem</span>'.repeat(1_000) + '</p>';
+      const start = performance.now();
+      html.htmlStringToComponents(input);
+      const duration = performance.now() - start;
+      // Arbitrary threshold of 50ms for this test; adjust as needed.
+      expect(duration).toBeLessThan(50);
+    });
   });
 });
