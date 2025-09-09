@@ -90,6 +90,7 @@ RSpec.describe 'ActivityPub Contexts' do
 
     context 'with many statuses' do
       before do
+        stub_const 'ActivityPub::ContextsController::DESCENDANTS_LIMIT', 2
         Fabricate.times(ActivityPub::ContextsController::DESCENDANTS_LIMIT, :status, conversation: conversation)
       end
 
@@ -102,6 +103,7 @@ RSpec.describe 'ActivityPub Contexts' do
 
     context 'with page requested' do
       before do
+        stub_const 'ActivityPub::ContextsController::DESCENDANTS_LIMIT', 2
         Fabricate.times(ActivityPub::ContextsController::DESCENDANTS_LIMIT, :status, conversation: conversation)
       end
 
