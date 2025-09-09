@@ -31,6 +31,30 @@ RSpec.describe 'ActivityPub Contexts' do
         .and not_include(ActivityPub::TagManager.instance.uri_for(unrelated_status))
     end
 
+    context 'when the initial account is deleted' do
+      before { conversation.parent_account.delete }
+
+      it 'returns http success and correct media type and correct items' do
+        subject
+
+        expect(response)
+          .to have_http_status(200)
+          .and have_cacheable_headers
+
+        expect(response.media_type)
+          .to eq 'application/activity+json'
+
+        expect(response.parsed_body[:type])
+          .to eq 'Collection'
+
+        expect(response.parsed_body[:first][:items])
+          .to be_an(Array)
+          .and have_attributes(size: 1)
+          .and include(ActivityPub::TagManager.instance.uri_for(status))
+          .and not_include(ActivityPub::TagManager.instance.uri_for(unrelated_status))
+      end
+    end
+
     context 'with pagination' do
       context 'with few statuses' do
         before do
