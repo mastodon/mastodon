@@ -26,7 +26,7 @@ export function useEmojify({
   extraEmojis,
   deep = true,
 }: UseEmojifyOptions) {
-  const [emojifiedText, setEmojifiedText] = useState<string | null>(null);
+  const [emojifiedText, setEmojifiedText] = useState(text);
 
   const appState = useEmojiAppState();
   const extra: ExtraCustomEmojiMap = useMemo(() => {
@@ -55,6 +55,7 @@ export function useEmojify({
     },
     [appState, deep, extra],
   );
+
   useLayoutEffect(() => {
     if (isModernEmojiEnabled() && !!text.trim()) {
       const result = emojify(text);
