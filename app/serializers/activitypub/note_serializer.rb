@@ -2,6 +2,7 @@
 
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
   include FormattingHelper
+  include JsonLdHelper
 
   context_extensions :atom_uri, :conversation, :sensitive, :voters_count, :quotes, :interaction_policies
 
@@ -167,7 +168,8 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   def context
     return if object.conversation.nil?
 
-    ActivityPub::TagManager.instance.uri_for(object.conversation)
+    uri = ActivityPub::TagManager.instance.uri_for(object.conversation)
+    uri unless unsupported_uri_scheme?(uri)
   end
 
   def local?
