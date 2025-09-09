@@ -159,7 +159,8 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     if object.conversation.uri?
       object.conversation.uri
     else
-      OStatus::TagManager.instance.unique_tag(object.conversation.created_at, object.conversation.id, 'Conversation')
+      # This means `parent_status_id` and `parent_account_id` must *not* get backfilled
+      ActivityPub::TagManager.instance.uri_for(object.conversation) || OStatus::TagManager.instance.unique_tag(object.conversation.created_at, object.conversation.id, 'Conversation')
     end
   end
 
