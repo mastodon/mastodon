@@ -117,8 +117,10 @@ export const quoteComposeByStatus = createAppThunk(
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const wasQuietPostHintModalDismissed: boolean =
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      state.settings.getIn(['dismissed_banners', 'quote/quiet_post_hint']) ??
-      false;
+      state.settings.getIn(
+        ['dismissed_banners', 'quote/quiet_post_hint'],
+        false,
+      );
 
     if (composeState.get('poll')) {
       dispatch(showAlert({ message: messages.quoteErrorPoll }));
