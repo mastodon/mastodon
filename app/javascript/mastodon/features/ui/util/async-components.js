@@ -58,10 +58,6 @@ export function PinnedTimeline () {
   return import('../../pinned_timeline');
 }
 
-export function PinnedTimeline () {
-  return import('../../pinned_timeline');
-}
-
 export function AccountTimeline () {
   return import('../../account_timeline');
 }

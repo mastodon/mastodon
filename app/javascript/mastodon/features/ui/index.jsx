@@ -66,7 +66,6 @@ import {
   DomainBlocks,
   Mutes,
   PinnedTimeline,
-  PinnedTimeline,
   Directory,
   OnboardingProfile,
   OnboardingFollows,
