@@ -22,7 +22,7 @@ import { RemoteHint } from 'mastodon/components/remote_hint';
 
 import { AccountHeader } from 'mastodon/features/account_timeline/components/account_header';
 import { LimitedAccountHint } from 'mastodon/features/account_timeline/components/limited_account_hint';
-import { FeaturedCarousel } from '@/mastodon/components/featured_carousel';
+import { PinnedStatus } from '@/mastodon/components/pinned_status';
 
 
 const emptyList = ImmutableList();
@@ -174,7 +174,7 @@ class PinnedTimeline extends ImmutablePureComponent {
           prepend={
             <>
               <AccountHeader accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={tagged} />
-              <FeaturedCarousel accountId={this.props.accountId} tagged={tagged} />
+              <PinnedStatus accountId={this.props.accountId} tagged={tagged} />
             </>
         }
           alwaysPrepend
