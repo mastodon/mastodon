@@ -106,8 +106,9 @@ describe('html', () => {
       const start = performance.now();
       html.htmlStringToComponents(input);
       const duration = performance.now() - start;
-      // Arbitrary threshold of 50ms for this test; adjust as needed.
-      expect(duration).toBeLessThan(50);
+      // Arbitrary threshold of 200ms for this test.
+      // Normally it's much less (<50ms), but the GH Action environment can be slow.
+      expect(duration).toBeLessThan(200);
     });
   });
 });
