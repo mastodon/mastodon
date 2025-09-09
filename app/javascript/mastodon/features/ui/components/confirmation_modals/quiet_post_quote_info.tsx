@@ -30,6 +30,14 @@ const messages = defineMessages({
   },
 });
 
+/**
+ * [1] Since we only want this modal to have two buttons – "Don't ask again" and
+ * "Got it" – , we have to use the `onClose` handler to handle the "Don't ask again"
+ * functionality. Because of this, we need to set `closeWhenConfirm` to false and
+ * close the modal manually.
+ * This prevents the modal from being dismissed permanently when just confirming.
+ */
+
 export const QuietPostQuoteInfoModal: React.FC<{ status: Status }> = ({
   status,
 }) => {
@@ -38,6 +46,7 @@ export const QuietPostQuoteInfoModal: React.FC<{ status: Status }> = ({
 
   const confirm = useCallback(() => {
     dispatch(quoteCompose(status));
+    // [1]
     dispatch(
       closeModal({ modalType: 'CONFIRM_QUIET_QUOTE', ignoreFocus: true }),
     );
@@ -48,6 +57,7 @@ export const QuietPostQuoteInfoModal: React.FC<{ status: Status }> = ({
     dispatch(
       changeSetting(['dismissed_banners', 'quote/quiet_post_hint'], true),
     );
+    // [1]
     dispatch(
       closeModal({ modalType: 'CONFIRM_QUIET_QUOTE', ignoreFocus: true }),
     );
@@ -55,7 +65,7 @@ export const QuietPostQuoteInfoModal: React.FC<{ status: Status }> = ({
 
   return (
     <ConfirmationModal
-      closeWhenConfirm={false}
+      closeWhenConfirm={false} // [1]
       title={intl.formatMessage(messages.title)}
       message={intl.formatMessage(messages.message)}
       confirm={intl.formatMessage(messages.got_it)}
