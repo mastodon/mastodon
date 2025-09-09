@@ -34,9 +34,7 @@ RSpec.describe 'ActivityPub Contexts' do
     context 'with pagination' do
       context 'with few statuses' do
         before do
-          3.times do
-            Fabricate(:status, conversation: conversation)
-          end
+          Fabricate.times(3, :status, conversation: conversation)
         end
 
         it 'does not include a next page link' do
@@ -67,9 +65,7 @@ RSpec.describe 'ActivityPub Contexts' do
 
     context 'with few statuses' do
       before do
-        3.times do
-          Fabricate(:status, conversation: conversation)
-        end
+        Fabricate.times(3, :status, conversation: conversation)
       end
 
       it 'returns http success and correct media type and correct items' do
@@ -94,9 +90,7 @@ RSpec.describe 'ActivityPub Contexts' do
 
     context 'with many statuses' do
       before do
-        (ActivityPub::ContextsController::DESCENDANTS_LIMIT + 1).times do
-          Fabricate(:status, conversation: conversation)
-        end
+        Fabricate.times(ActivityPub::ContextsController::DESCENDANTS_LIMIT + 1, :status, conversation: conversation)
       end
 
       it 'includes a next page link' do
@@ -108,9 +102,7 @@ RSpec.describe 'ActivityPub Contexts' do
 
     context 'with page requested' do
       before do
-        (ActivityPub::ContextsController::DESCENDANTS_LIMIT + 1).times do |_i|
-          Fabricate(:status, conversation: conversation)
-        end
+        Fabricate.times(ActivityPub::ContextsController::DESCENDANTS_LIMIT + 1, :status, conversation: conversation)
       end
 
       it 'returns the correct items' do
