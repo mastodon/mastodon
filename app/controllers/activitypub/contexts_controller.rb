@@ -26,7 +26,8 @@ class ActivityPub::ContextsController < ActivityPub::BaseController
   end
 
   def set_conversation
-    @conversation = Conversation.local.find(params[:id])
+    account_id, status_id = params[:id].split('-')
+    @conversation = Conversation.local.find_by(parent_account_id: account_id, parent_status_id: status_id)
   end
 
   def set_items

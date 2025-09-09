@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_02_221600) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_09_100506) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -361,6 +361,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_02_221600) do
     t.datetime "updated_at", precision: nil, null: false
     t.bigint "parent_status_id"
     t.bigint "parent_account_id"
+    t.index ["parent_status_id"], name: "index_conversations_on_parent_status_id", unique: true, where: "(parent_status_id IS NOT NULL)"
     t.index ["uri"], name: "index_conversations_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
   end
 
