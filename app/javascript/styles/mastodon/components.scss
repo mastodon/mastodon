@@ -5694,20 +5694,15 @@ a.status-card {
     z-index: 9999;
   }
 
+  &.disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
   &__label {
-    cursor: pointer;
     display: block;
-
-    > span {
-      display: block;
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    &.disabled {
-      cursor: default;
-      opacity: 0.5;
-    }
+    font-weight: 500;
+    margin-bottom: 8px;
   }
 
   &__button {
