@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Account::FaspConcern, feature: :fasp do
   describe '#create' do
     let(:discoverable_attributes) do
-      Fabricate.attributes_for(:account).except('user_id')
+      Fabricate.attributes_for(:account).except('user_id', 'account_secret_id')
     end
     let(:undiscoverable_attributes) do
       discoverable_attributes.merge('discoverable' => false)

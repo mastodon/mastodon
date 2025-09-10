@@ -55,7 +55,8 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
         # Unset key
         old_key = sender.public_key
-        sender.update!(private_key: '', public_key: '')
+        sender.account_secret&.destroy
+        sender.update!(public_key: '')
 
         allow(ActivityPub::FetchRemoteKeyService).to receive(:new).and_return(service_stub)
 

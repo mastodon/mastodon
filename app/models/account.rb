@@ -271,7 +271,7 @@ class Account < ApplicationRecord
   end
 
   def keypair
-    @keypair ||= OpenSSL::PKey::RSA.new(account_secret.private_key || public_key)
+    @keypair ||= OpenSSL::PKey::RSA.new(account_secret&.private_key || public_key)
   end
 
   def tags_as_strings=(tag_names)
