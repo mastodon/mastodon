@@ -41,7 +41,7 @@ class ActivityPub::TagManager
     when :person
       target.instance_actor? ? instance_actor_url : account_url(target)
     when :conversation
-      context_url(target)
+      context_url(target) unless target.parent_account_id.nil? || target.parent_status_id.nil?
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
 

@@ -7,7 +7,7 @@ class ActivityPub::ContextPresenter < ActiveModelSerializers::Model
     def from_conversation(conversation)
       new.tap do |presenter|
         presenter.id = ActivityPub::TagManager.instance.uri_for(conversation)
-        presenter.attributed_to = ActivityPub::TagManager.instance.uri_for(conversation.parent_account)
+        presenter.attributed_to = ActivityPub::TagManager.instance.uri_for(conversation.parent_account) if conversation.parent_account.present?
       end
     end
   end

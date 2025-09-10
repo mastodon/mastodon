@@ -163,7 +163,6 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             value: 'unlisted',
             text: intl.formatMessage(privacyMessages.unlisted_short),
             meta: intl.formatMessage(privacyMessages.unlisted_long),
-            extra: intl.formatMessage(privacyMessages.unlisted_extra),
             icon: 'unlock',
             iconComponent: QuietTimeIcon,
           },
@@ -199,8 +198,11 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
       onClose();
     }, [onChange, onClose, visibility, quotePolicy]);
 
-    const privacyDropdownId = useId();
-    const quoteDropdownId = useId();
+    const uniqueId = useId();
+    const visibilityLabelId = `${uniqueId}-visibility-label`;
+    const visibilityDescriptionId = `${uniqueId}-visibility-desc`;
+    const quoteLabelId = `${uniqueId}-quote-label`;
+    const quoteDescriptionId = `${uniqueId}-quote-desc`;
 
     return (
       <div className='modal-root__modal dialog-modal visibility-modal'>
@@ -235,28 +237,36 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
             />
           </div>
           <div className='dialog-modal__content__form'>
-            <label
-              htmlFor={privacyDropdownId}
-              className={classNames('visibility-dropdown__label', {
+            <div
+              className={classNames('visibility-dropdown', {
                 disabled: disableVisibility,
               })}
             >
-              <FormattedMessage
-                id='visibility_modal.privacy_label'
-                defaultMessage='Visibility'
-              />
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label
+                className='visibility-dropdown__label'
+                id={visibilityLabelId}
+              >
+                <FormattedMessage
+                  id='visibility_modal.privacy_label'
+                  defaultMessage='Visibility'
+                />
+              </label>
 
               <Dropdown
                 items={visibilityItems}
-                classPrefix='visibility-dropdown'
                 current={visibility}
                 onChange={handleVisibilityChange}
-                title={intl.formatMessage(privacyMessages.change_privacy)}
+                labelId={visibilityLabelId}
+                descriptionId={visibilityDescriptionId}
+                classPrefix='visibility-dropdown'
                 disabled={disableVisibility}
-                id={privacyDropdownId}
               />
               {!!statusId && (
-                <p className='visibility-dropdown__helper'>
+                <p
+                  className='visibility-dropdown__helper'
+                  id='visibilityDescriptionId'
+                >
                   <FormattedMessage
                     id='visibility_modal.helper.privacy_editing'
                     defaultMessage="Visibility can't be changed after a post is published."
@@ -264,37 +274,47 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
                 </p>
               )}
               {!statusId && disablePublicVisibilities && (
-                <p className='visibility-dropdown__helper'>
+                <p
+                  className='visibility-dropdown__helper'
+                  id='visibilityDescriptionId'
+                >
                   <FormattedMessage
                     id='visibility_modal.helper.privacy_private_self_quote'
                     defaultMessage='Self-quotes of private posts cannot be made public.'
                   />
                 </p>
               )}
-            </label>
+            </div>
 
-            <label
-              htmlFor={quoteDropdownId}
-              className={classNames('visibility-dropdown__label', {
+            <div
+              className={classNames('visibility-dropdown', {
                 disabled: disableQuotePolicy,
               })}
             >
-              <FormattedMessage
-                id='visibility_modal.quote_label'
-                defaultMessage='Who can quote'
-              />
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label className='visibility-dropdown__label' id={quoteLabelId}>
+                <FormattedMessage
+                  id='visibility_modal.quote_label'
+                  defaultMessage='Who can quote'
+                />
+              </label>
 
               <Dropdown
                 items={quoteItems}
-                onChange={handleQuotePolicyChange}
-                classPrefix='visibility-dropdown'
                 current={disableQuotePolicy ? 'nobody' : quotePolicy}
-                title={intl.formatMessage(messages.buttonTitle)}
+                onChange={handleQuotePolicyChange}
+                labelId={quoteLabelId}
+                descriptionId={quoteDescriptionId}
+                classPrefix='visibility-dropdown'
                 disabled={disableQuotePolicy}
-                id={quoteDropdownId}
               />
-              <QuotePolicyHelper policy={quotePolicy} visibility={visibility} />
-            </label>
+              <QuotePolicyHelper
+                policy={quotePolicy}
+                visibility={visibility}
+                className='visibility-dropdown__helper'
+                id={quoteDescriptionId}
+              />
+            </div>
           </div>
           <div className='dialog-modal__content__actions'>
             <Button onClick={onClose} secondary>
@@ -317,42 +337,44 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
 );
 VisibilityModal.displayName = 'VisibilityModal';
 
-const QuotePolicyHelper: FC<{
-  policy: ApiQuotePolicy;
-  visibility: StatusVisibility;
-}> = ({ policy, visibility }) => {
+const QuotePolicyHelper: FC<
+  {
+    policy: ApiQuotePolicy;
+    visibility: StatusVisibility;
+  } & React.ComponentPropsWithoutRef<'p'>
+> = ({ policy, visibility, ...otherProps }) => {
+  let hintText: React.ReactElement | undefined;
+
   if (visibility === 'unlisted' && policy !== 'nobody') {
-    return (
-      <p className='visibility-dropdown__helper'>
-        <FormattedMessage
-          id='visibility_modal.helper.unlisted_quoting'
-          defaultMessage='When people quote you, their post will also be hidden from trending timelines.'
-        />
-      </p>
+    hintText = (
+      <FormattedMessage
+        id='visibility_modal.helper.unlisted_quoting'
+        defaultMessage='When people quote you, their post will also be hidden from trending timelines.'
+      />
     );
   }
 
   if (visibility === 'private') {
-    return (
-      <p className='visibility-dropdown__helper'>
-        <FormattedMessage
-          id='visibility_modal.helper.private_quoting'
-          defaultMessage="Follower-only posts authored on Mastodon can't be quoted by others."
-        />
-      </p>
+    hintText = (
+      <FormattedMessage
+        id='visibility_modal.helper.private_quoting'
+        defaultMessage="Follower-only posts authored on Mastodon can't be quoted by others."
+      />
     );
   }
 
   if (visibility === 'direct') {
-    return (
-      <p className='visibility-dropdown__helper'>
-        <FormattedMessage
-          id='visibility_modal.helper.direct_quoting'
-          defaultMessage="Private mentions authored on Mastodon can't be quoted by others."
-        />
-      </p>
+    hintText = (
+      <FormattedMessage
+        id='visibility_modal.helper.direct_quoting'
+        defaultMessage="Private mentions authored on Mastodon can't be quoted by others."
+      />
     );
   }
 
-  return null;
+  if (!hintText) {
+    return null;
+  }
+
+  return <p {...otherProps}>{hintText}</p>;
 };

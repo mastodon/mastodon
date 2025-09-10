@@ -16,6 +16,7 @@ import type { Status } from '../models/status';
 
 import { showAlert } from './alerts';
 import { focusCompose } from './compose';
+import { openModal } from './modal';
 
 const messages = defineMessages({
   quoteErrorUpload: {
@@ -110,8 +111,16 @@ export const quoteCompose = createAppThunk(
 
 export const quoteComposeByStatus = createAppThunk(
   (status: Status, { dispatch, getState }) => {
-    const composeState = getState().compose;
+    const state = getState();
+    const composeState = state.compose;
     const mediaAttachments = composeState.get('media_attachments');
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const wasQuietPostHintModalDismissed: boolean =
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      state.settings.getIn(
+        ['dismissed_banners', 'quote/quiet_post_hint'],
+        false,
+      );
 
     if (composeState.get('poll')) {
       dispatch(showAlert({ message: messages.quoteErrorPoll }));
@@ -131,6 +140,16 @@ export const quoteComposeByStatus = createAppThunk(
       status.getIn(['quote_approval', 'current_user']) !== 'manual'
     ) {
       dispatch(showAlert({ message: messages.quoteErrorUnauthorized }));
+    } else if (
+      status.get('visibility') === 'unlisted' &&
+      !wasQuietPostHintModalDismissed
+    ) {
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_QUIET_QUOTE',
+          modalProps: { status },
+        }),
+      );
     } else {
       dispatch(quoteCompose(status));
     }
