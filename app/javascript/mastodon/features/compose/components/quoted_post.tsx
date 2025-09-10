@@ -32,6 +32,7 @@ export const ComposeQuotedStatus: FC = () => {
   return (
     <QuotedStatus
       quote={quote}
+      contextType='composer'
       onQuoteCancel={!isEditing ? handleQuoteCancel : undefined}
     />
   );
