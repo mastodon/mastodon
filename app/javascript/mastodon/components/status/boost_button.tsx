@@ -180,7 +180,7 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
       <button
         {...handlers}
         ref={focusRefCallback}
-        disabled={disabled}
+        aria-disabled={disabled}
         data-index={index}
       >
         <DropdownMenuItemContent item={item} />
