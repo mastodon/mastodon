@@ -11,7 +11,9 @@ export const ComposeQuotedStatus: FC = () => {
   const quotedStatusId = useAppSelector(
     (state) => state.compose.get('quoted_status_id') as string | null,
   );
+
   const isEditing = useAppSelector((state) => !!state.compose.get('id'));
+
   const quote = useMemo(
     () =>
       quotedStatusId
@@ -22,13 +24,16 @@ export const ComposeQuotedStatus: FC = () => {
         : null,
     [quotedStatusId],
   );
+
   const dispatch = useAppDispatch();
   const handleQuoteCancel = useCallback(() => {
     dispatch(quoteComposeCancel());
   }, [dispatch]);
+
   if (!quote) {
     return null;
   }
+
   return (
     <QuotedStatus
       quote={quote}
