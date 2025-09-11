@@ -19,7 +19,7 @@
                  selected: current_user.setting_default_privacy,
                  hint: false,
                  include_blank: false,
-                 label_method: ->(visibility) { safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') },
+                 label_method: ->(visibility) { visibility == 'private' ? I18n.t('statuses.visibilities.private') : safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') },
                  label: I18n.t('simple_form.labels.defaults.setting_default_privacy'),
                  required: false,
                  wrapper: :with_label
