@@ -21,7 +21,7 @@ interface DropdownProps {
   items: SelectItem[];
   onChange: (value: string) => void;
   current: string;
-  labelId: string;
+  labelId?: string;
   descriptionId?: string;
   emptyText?: MessageDescriptor;
   classPrefix: string;
@@ -79,7 +79,7 @@ export const Dropdown: FC<
         type='button'
         {...buttonProps}
         id={buttonId}
-        aria-labelledby={`${labelId} ${buttonId}`}
+        aria-labelledby={classNames(labelId, buttonId)}
         aria-describedby={descriptionId}
         aria-expanded={open}
         aria-controls={listboxId}

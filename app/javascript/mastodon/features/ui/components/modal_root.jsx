@@ -19,6 +19,7 @@ import {
   ClosedRegistrationsModal,
   IgnoreNotificationsModal,
   AnnualReportModal,
+  DonateModal,
 } from 'mastodon/features/ui/util/async-components';
 
 import BundleContainer from '../containers/bundle_container';
@@ -80,6 +81,7 @@ export const MODAL_COMPONENTS = {
   'IGNORE_NOTIFICATIONS': IgnoreNotificationsModal,
   'ANNUAL_REPORT': AnnualReportModal,
   'COMPOSE_PRIVACY': () => Promise.resolve({ default: VisibilityModal }),
+  'DONATE': DonateModal,
 };
 
 export default class ModalRoot extends PureComponent {
