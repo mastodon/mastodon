@@ -230,7 +230,7 @@ export function AnnualReportModal () {
   return import('../components/annual_report_modal');
 }
 
-export const DonateModal = () => import('../components/donate_modal');
+export const DonateModal = () => import('../../donate/donate_modal');
 
 export function ListEdit () {
   return import('../../lists/new');
