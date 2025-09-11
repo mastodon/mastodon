@@ -21,8 +21,10 @@ const MAX_QUOTE_POSTS_NESTING_LEVEL = 1;
 
 const QuoteWrapper: React.FC<{
   isError?: boolean;
+  contextType?: string;
+  onQuoteCancel?: () => void;
   children: React.ReactElement;
-}> = ({ isError, children }) => {
+}> = ({ isError, contextType, onQuoteCancel, children }) => {
   return (
     <div
       className={classNames('status__quote', {
@@ -30,6 +32,11 @@ const QuoteWrapper: React.FC<{
       })}
     >
       {children}
+      {contextType === 'composer' && (
+        <Button compact plain onClick={onQuoteCancel}>
+          <FormattedMessage id='status.remove_quote' defaultMessage='Remove' />
+        </Button>
+      )}
     </div>
   );
 };
@@ -146,49 +153,47 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
         />
 
         <LearnMoreLink>
-          <h6>
-            <FormattedMessage
-              id='status.quote_error.pending_approval_popout.title'
-              defaultMessage='Pending quote? Remain calm'
-            />
-          </h6>
           <p>
             <FormattedMessage
               id='status.quote_error.pending_approval_popout.body'
-              defaultMessage='Quotes shared across the Fediverse may take time to display, as different servers have different protocols.'
+              defaultMessage="On Mastodon, you can control whether someone can quote you. This post is pending while we're getting the original author's approval."
             />
           </p>
         </LearnMoreLink>
       </>
+    );
+  } else if (quoteState === 'revoked') {
+    quoteError = (
+      <FormattedMessage
+        id='status.quote_error.revoked'
+        defaultMessage='Post removed by author'
+      />
     );
   } else if (
     !status ||
     !quotedStatusId ||
     quoteState === 'deleted' ||
     quoteState === 'rejected' ||
-    quoteState === 'revoked' ||
     quoteState === 'unauthorized'
   ) {
     quoteError = (
-      <>
-        <FormattedMessage
-          id='status.quote_error.not_available'
-          defaultMessage='Post unavailable'
-        />
-        {contextType === 'composer' && (
-          <Button compact plain onClick={onQuoteCancel}>
-            <FormattedMessage
-              id='status.remove_quote'
-              defaultMessage='Remove'
-            />
-          </Button>
-        )}
-      </>
+      <FormattedMessage
+        id='status.quote_error.not_available'
+        defaultMessage='Post unavailable'
+      />
     );
   }
 
   if (quoteError) {
-    return <QuoteWrapper isError>{quoteError}</QuoteWrapper>;
+    return (
+      <QuoteWrapper
+        isError
+        contextType={contextType}
+        onQuoteCancel={onQuoteCancel}
+      >
+        {quoteError}
+      </QuoteWrapper>
+    );
   }
 
   if (variant === 'link' && status) {
