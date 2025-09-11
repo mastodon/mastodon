@@ -1,7 +1,7 @@
 import type { FC, SyntheticEvent } from 'react';
 import { forwardRef, useCallback, useMemo, useState } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -24,6 +24,9 @@ interface DonateModalProps {
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
+  one_time: { id: 'donate.frequency.one_time', defaultMessage: 'Just once' },
+  monthly: { id: 'donate.frequency.monthly', defaultMessage: 'Monthly' },
+  yearly: { id: 'donate.frequency.yearly', defaultMessage: 'Yearly' },
 });
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- React throws a warning if not set.
@@ -36,9 +39,8 @@ const DonateModal: FC<DonateModalProps> = forwardRef(({ onClose }, ref) => {
     <div className='modal-root__modal dialog-modal donate_modal'>
       <div className='dialog-modal__content'>
         <header className='row'>
-          <span className='dialog-modal__header__title'>
-            By supporting Mastodon, you help sustain a global network that
-            values people over profit. Will you join us today?
+          <span className='dialog-modal__header__title title'>
+            {donationData?.donation_message}
           </span>
           <IconButton
             className='dialog-modal__header__close'
@@ -66,6 +68,8 @@ const DonateModal: FC<DonateModalProps> = forwardRef(({ onClose }, ref) => {
 DonateModal.displayName = 'DonateModal';
 
 const DonateForm: FC<{ data: DonateServerResponse }> = ({ data }) => {
+  const intl = useIntl();
+
   const [frequency, setFrequency] = useState<DonationFrequency>('one_time');
   const handleFrequencyToggle = useCallback((value: DonationFrequency) => {
     return () => {
@@ -84,20 +88,22 @@ const DonateForm: FC<{ data: DonateServerResponse }> = ({ data }) => {
   );
 
   const [amount, setAmount] = useState(
-    () => data.amounts[frequency][data.default_currency]?.[0] ?? 'EUR',
+    () => data.amounts[frequency][data.default_currency]?.[0] ?? 1000,
   );
   const handleAmountChange = useCallback((event: SyntheticEvent) => {
-    if (
-      event.target instanceof HTMLButtonElement ||
-      event.target instanceof HTMLInputElement
-    ) {
-      setAmount(Number.parseInt(event.target.value));
+    let newAmount = 1;
+    if (event.target instanceof HTMLButtonElement) {
+      newAmount = Number.parseInt(event.target.value);
+    } else if (event.target instanceof HTMLInputElement) {
+      newAmount = event.target.valueAsNumber * 100;
     }
+    setAmount(newAmount);
   }, []);
   const amountOptions: SelectItem[] = useMemo(() => {
     const formatter = new Intl.NumberFormat('en', {
       style: 'currency',
       currency,
+      maximumFractionDigits: 0,
     });
     return Object.values(data.amounts[frequency][currency] ?? {}).map(
       (value) => ({
@@ -110,18 +116,14 @@ const DonateForm: FC<{ data: DonateServerResponse }> = ({ data }) => {
   return (
     <>
       <div className='row'>
-        <ToggleButton
-          active={frequency === 'one_time'}
-          onClick={handleFrequencyToggle('one_time')}
-        >
-          One Time
-        </ToggleButton>
-        <ToggleButton
-          active={frequency === 'monthly'}
-          onClick={handleFrequencyToggle('monthly')}
-        >
-          Monthly
-        </ToggleButton>
+        {(Object.keys(data.amounts) as DonationFrequency[]).map((freq) => (
+          <ToggleButton
+            key={freq}
+            active={frequency === freq}
+            onClick={handleFrequencyToggle(freq)}
+            text={intl.formatMessage(messages[freq])}
+          />
+        ))}
       </div>
 
       <div className='row row--select'>
@@ -134,8 +136,8 @@ const DonateForm: FC<{ data: DonateServerResponse }> = ({ data }) => {
         <input
           type='number'
           min='1'
-          step='1'
-          value={amount}
+          step='0.01'
+          value={(amount / 100).toFixed(2)}
           onChange={handleAmountChange}
         />
       </div>
@@ -153,12 +155,18 @@ const DonateForm: FC<{ data: DonateServerResponse }> = ({ data }) => {
       </div>
 
       <Button className='submit' block type='submit'>
-        Continue to payment
+        <FormattedMessage
+          id='donate.continue'
+          defaultMessage='Continue to payment'
+        />
         <ExternalLinkIcon />
       </Button>
 
       <p className='footer'>
-        You will be redirected to joinmastodon.org for secure payment
+        <FormattedMessage
+          id='donate.redirect_notice'
+          defaultMessage='You will be redirected to joinmastodon.org for secure payment'
+        />
       </p>
     </>
   );

@@ -34,7 +34,7 @@ export function useDonateApi() {
     if (!seed) {
       return;
     }
-    fetchCampaign({ locale: LOCALE, seed, source: 'web' })
+    fetchCampaign({ locale: LOCALE, seed })
       .then((res) => {
         setResponse(res);
       })
@@ -71,7 +71,8 @@ async function fetchCampaign(
       url.searchParams.append(key, value.toString());
     }
   }
-  url.searchParams.append('platform', 'web');
+  url.searchParams.append('platform', 'android');
+  url.searchParams.append('source', 'menu');
 
   const response = await fetch(url);
   if (!response.ok) {
@@ -83,6 +84,5 @@ async function fetchCampaign(
 interface DonateServerRequest {
   locale: string;
   seed: number;
-  source: string;
   return_url?: string;
 }

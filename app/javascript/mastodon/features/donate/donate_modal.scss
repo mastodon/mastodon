@@ -48,6 +48,10 @@
     }
   }
 
+  .title {
+    flex-grow: 1;
+  }
+
   .button.toggle:not(.active) {
     background-color: inherit;
     border: 2px solid var(--button-color);
