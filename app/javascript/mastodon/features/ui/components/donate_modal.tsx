@@ -11,6 +11,7 @@ import { Dropdown } from '@/mastodon/components/dropdown';
 import type { SelectItem } from '@/mastodon/components/dropdown_selector';
 import { IconButton } from '@/mastodon/components/icon_button';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
+import ExternalLinkIcon from '@/material-icons/400-24px/open_in_new.svg?react';
 
 import type { BaseConfirmationModalProps } from './confirmation_modals/confirmation_modal';
 
@@ -78,20 +79,20 @@ const DonateModal: FC<DonateModalProps> = forwardRef(({ onClose }, ref) => {
 
   return (
     <div className='modal-root__modal dialog-modal donate_modal'>
-      <div className='dialog-modal__header'>
-        <IconButton
-          className='dialog-modal__header__close'
-          title={intl.formatMessage(messages.close)}
-          icon='times'
-          iconComponent={CloseIcon}
-          onClick={onClose}
-        />
-        <span className='dialog-modal__header__title'>
-          By supporting Mastodon, you help sustain a global network that values
-          people over profit. Will you join us today?
-        </span>
-      </div>
       <div className='dialog-modal__content'>
+        <header className='row'>
+          <span className='dialog-modal__header__title'>
+            By supporting Mastodon, you help sustain a global network that
+            values people over profit. Will you join us today?
+          </span>
+          <IconButton
+            className='dialog-modal__header__close'
+            title={intl.formatMessage(messages.close)}
+            icon='times'
+            iconComponent={CloseIcon}
+            onClick={onClose}
+          />
+        </header>
         <div className='dialog-modal__content__form'>
           <div className='row'>
             <ToggleButton
@@ -138,7 +139,12 @@ const DonateModal: FC<DonateModalProps> = forwardRef(({ onClose }, ref) => {
 
           <Button className='submit' block>
             Continue to payment
+            <ExternalLinkIcon />
           </Button>
+
+          <p className='footer'>
+            You will be redirected to joinmastodon.org for secure payment
+          </p>
         </div>
       </div>
     </div>
