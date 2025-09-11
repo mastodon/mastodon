@@ -87,7 +87,7 @@ class Web::PushNotificationWorker
   end
 
   def web_push_request
-    @web_push_request || WebPushRequest.new(@subscription)
+    @web_push_request ||= WebPushRequest.new(@subscription)
   end
 
   def push_notification_json
