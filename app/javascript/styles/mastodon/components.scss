@@ -333,7 +333,7 @@
   --default-icon-color: var(--clr-text-secondary);
   --default-bg-color: transparent;
   --hover-icon-color: var(--clr-text-primary);
-  --hover-bg-color: var(--clr-bg-accent);
+  --hover-bg-color: var(--clr-bg-tertiary);
 
   display: inline-flex;
   color: var(--default-icon-color);
@@ -2847,7 +2847,7 @@ a.account__display-name {
     &:hover,
     &:active {
       &:not(:disabled, [aria-disabled='true']) {
-        background: var(--clr-bg-secondary);
+        background: var(--clr-bg-tertiary);
         outline: 0;
       }
     }
@@ -5540,7 +5540,7 @@ a.status-card {
 
   &:hover,
   &:active {
-    background: var(--clr-bg-secondary);
+    background: var(--clr-bg-tertiary);
   }
 
   &:focus,
