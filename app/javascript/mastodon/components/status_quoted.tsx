@@ -101,7 +101,6 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
   );
 
   const shouldFetchQuote =
-    !status?.toJS() &&
     !status?.get('isLoading') &&
     quoteState !== 'deleted' &&
     loadingState === 'not-found';
