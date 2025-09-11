@@ -1,5 +1,5 @@
 import type { FC, SyntheticEvent } from 'react';
-import { forwardRef, useCallback, useState } from 'react';
+import { forwardRef, useCallback, useMemo, useState } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -10,72 +10,27 @@ import { Button } from '@/mastodon/components/button';
 import { Dropdown } from '@/mastodon/components/dropdown';
 import type { SelectItem } from '@/mastodon/components/dropdown_selector';
 import { IconButton } from '@/mastodon/components/icon_button';
+import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import ExternalLinkIcon from '@/material-icons/400-24px/open_in_new.svg?react';
 
 import './donate_modal.scss';
+import type { DonateServerResponse, DonationFrequency } from './api';
+import { useDonateApi } from './api';
 
 interface DonateModalProps {
   onClose: () => void;
 }
 
-type Frequency = 'one_time' | 'monthly';
-
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
 });
-
-const currencyOptions = [
-  {
-    value: 'usd',
-    text: 'USD',
-  },
-  {
-    value: 'eur',
-    text: 'EUR',
-  },
-] as const satisfies SelectItem[];
-type Currency = (typeof currencyOptions)[number]['value'];
-function isCurrency(value: string): value is Currency {
-  return currencyOptions.some((option) => option.value === value);
-}
-
-const amountOptions = [
-  { value: '2000', text: '€20' },
-  { value: '1000', text: '€10' },
-  { value: '500', text: '€5' },
-  { value: '300', text: '€3' },
-] as const satisfies SelectItem[];
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- React throws a warning if not set.
 const DonateModal: FC<DonateModalProps> = forwardRef(({ onClose }, ref) => {
   const intl = useIntl();
 
-  const [frequency, setFrequency] = useState<Frequency>('one_time');
-  const handleFrequencyToggle = useCallback((value: Frequency) => {
-    return () => {
-      setFrequency(value);
-    };
-  }, []);
-
-  const [currency, setCurrency] = useState<Currency>('usd');
-  const handleCurrencyChange = useCallback((value: string) => {
-    if (isCurrency(value)) {
-      setCurrency(value);
-    }
-  }, []);
-
-  const [amount, setAmount] = useState(() =>
-    Number.parseInt(amountOptions[0].value),
-  );
-  const handleAmountChange = useCallback((event: SyntheticEvent) => {
-    if (
-      event.target instanceof HTMLButtonElement ||
-      event.target instanceof HTMLInputElement
-    ) {
-      setAmount(Number.parseInt(event.target.value));
-    }
-  }, []);
+  const donationData = useDonateApi();
 
   return (
     <div className='modal-root__modal dialog-modal donate_modal'>
@@ -93,64 +48,121 @@ const DonateModal: FC<DonateModalProps> = forwardRef(({ onClose }, ref) => {
             onClick={onClose}
           />
         </header>
-        <div className='dialog-modal__content__form'>
-          <div className='row'>
-            <ToggleButton
-              active={frequency === 'one_time'}
-              onClick={handleFrequencyToggle('one_time')}
-            >
-              One Time
-            </ToggleButton>
-            <ToggleButton
-              active={frequency === 'monthly'}
-              onClick={handleFrequencyToggle('monthly')}
-            >
-              Monthly
-            </ToggleButton>
-          </div>
-
-          <div className='row row--select'>
-            <Dropdown
-              items={currencyOptions}
-              current={currency}
-              classPrefix='donate_modal'
-              onChange={handleCurrencyChange}
-            />
-            <input
-              type='number'
-              min='1'
-              step='1'
-              value={amount}
-              onChange={handleAmountChange}
-            />
-          </div>
-
-          <div className='row'>
-            {amountOptions.map((option) => (
-              <ToggleButton
-                key={option.value}
-                onClick={handleAmountChange}
-                active={amount === Number.parseInt(option.value)}
-                value={option.value}
-                text={option.text}
-              />
-            ))}
-          </div>
-
-          <Button className='submit' block>
-            Continue to payment
-            <ExternalLinkIcon />
-          </Button>
-
-          <p className='footer'>
-            You will be redirected to joinmastodon.org for secure payment
-          </p>
-        </div>
+        <form
+          className={classNames('dialog-modal__content__form', {
+            loading: !donationData,
+          })}
+        >
+          {!donationData ? (
+            <LoadingIndicator />
+          ) : (
+            <DonateForm data={donationData} />
+          )}
+        </form>
       </div>
     </div>
   );
 });
 DonateModal.displayName = 'DonateModal';
+
+const DonateForm: FC<{ data: DonateServerResponse }> = ({ data }) => {
+  const [frequency, setFrequency] = useState<DonationFrequency>('one_time');
+  const handleFrequencyToggle = useCallback((value: DonationFrequency) => {
+    return () => {
+      setFrequency(value);
+    };
+  }, []);
+
+  const [currency, setCurrency] = useState<string>(data.default_currency);
+  const currencyOptions: SelectItem[] = useMemo(
+    () =>
+      Object.keys(data.amounts.one_time).map((code) => ({
+        value: code,
+        text: code,
+      })),
+    [data.amounts],
+  );
+
+  const [amount, setAmount] = useState(
+    () => data.amounts[frequency][data.default_currency]?.[0] ?? 'EUR',
+  );
+  const handleAmountChange = useCallback((event: SyntheticEvent) => {
+    if (
+      event.target instanceof HTMLButtonElement ||
+      event.target instanceof HTMLInputElement
+    ) {
+      setAmount(Number.parseInt(event.target.value));
+    }
+  }, []);
+  const amountOptions: SelectItem[] = useMemo(() => {
+    const formatter = new Intl.NumberFormat('en', {
+      style: 'currency',
+      currency,
+    });
+    return Object.values(data.amounts[frequency][currency] ?? {}).map(
+      (value) => ({
+        value: value.toString(),
+        text: formatter.format(value / 100),
+      }),
+    );
+  }, [currency, data.amounts, frequency]);
+
+  return (
+    <>
+      <div className='row'>
+        <ToggleButton
+          active={frequency === 'one_time'}
+          onClick={handleFrequencyToggle('one_time')}
+        >
+          One Time
+        </ToggleButton>
+        <ToggleButton
+          active={frequency === 'monthly'}
+          onClick={handleFrequencyToggle('monthly')}
+        >
+          Monthly
+        </ToggleButton>
+      </div>
+
+      <div className='row row--select'>
+        <Dropdown
+          items={currencyOptions}
+          current={currency}
+          classPrefix='donate_modal'
+          onChange={setCurrency}
+        />
+        <input
+          type='number'
+          min='1'
+          step='1'
+          value={amount}
+          onChange={handleAmountChange}
+        />
+      </div>
+
+      <div className='row'>
+        {amountOptions.map((option) => (
+          <ToggleButton
+            key={option.value}
+            onClick={handleAmountChange}
+            active={amount === Number.parseInt(option.value)}
+            value={option.value}
+            text={option.text}
+          />
+        ))}
+      </div>
+
+      <Button className='submit' block type='submit'>
+        Continue to payment
+        <ExternalLinkIcon />
+      </Button>
+
+      <p className='footer'>
+        You will be redirected to joinmastodon.org for secure payment
+      </p>
+    </>
+  );
+};
 
 const ToggleButton: FC<ButtonProps & { active: boolean }> = ({
   active,

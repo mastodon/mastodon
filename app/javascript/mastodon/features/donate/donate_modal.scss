@@ -3,14 +3,19 @@
     gap: 1rem;
   }
 
-  .row {
-    display: flex;
-    gap: 1rem;
-  }
-
   header {
     padding: 24px 24px 0;
     align-items: start;
+  }
+
+  form {
+    min-height: 200px;
+    position: relative;
+  }
+
+  .row {
+    display: flex;
+    gap: 1rem;
   }
 
   .row--select {
