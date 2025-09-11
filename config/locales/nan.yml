@@ -364,7 +364,7 @@ nan:
       title: 自訂emoji
       uncategorized: Iáu無分類
       unlist: Tuì列單the̍h掉
-      unlisted: 恬靜公開
+      unlisted: The̍h掉ah
       update_failed_msg: Bē當更新hit ê emoji
       updated_msg: Emoji成功更新ah！
       upload: 傳上去
@@ -823,8 +823,68 @@ nan:
         title: 預設kā用者tuì tshiau-tshuē ia̋n-jín ê索引排除
       discovery:
         follow_recommendations: 跟tuè建議
+        preamble: Kā心適ê內容浮現出來，ē當幫tsān tī Mastodon頂siáng lóng可能m̄知ê新手。控制tsē-tsē發現lí ê服侍器ê特色作品ê功能án-nuá運作。
+        privacy: 隱私權
+        profile_directory: 個人資料ê目錄
+        public_timelines: 公共ê時間線
+        publish_statistics: 發布統計
+        title: 發現
+        trends: 趨勢
+      domain_blocks:
+        all: Kàu ta̍k ê lâng
+        disabled: 無kàu tó tsi̍t ê
+        users: Kàu ta̍k位登入ê用者
+      registrations:
+        moderation_recommandation: 佇開放hōo ta̍k ê lâng註冊進前，請確認lí有夠額koh主動反應ê管理團隊！
+        preamble: 控制ē當佇lí ê服侍器註冊ê人。
+        title: 註冊
+      registrations_mode:
+        modes:
+          approved: 註冊tio̍h愛核准
+          none: 無lâng通註冊
+          open: Ta̍k ê lâng lóng ē當註冊
+        warning_hint: Guán建議用「註冊tio̍h愛核准」，除非lí tuì lí ê管理團隊ē當不管時處理pùn-sò訊息kap惡意註冊有信心。
+      security:
+        authorized_fetch: 要求tuì聯邦ê服侍器ê認證
+        authorized_fetch_hint: 要求tuì聯邦ê服侍器ê驗證ē當koh khah嚴格執行用者級kap服侍器級ê封鎖。M̄-kú ē致kàu性能處罰ê損失，減少lí ê回應ê擴散程度，mā有可能引入kap tsi̍t-kuá聯邦服務ê相容性問題。另外，tse bē當防止別lâng專工掠lí ê公開PO文kap口座。
+        authorized_fetch_overridden_hint: 因為hōo環境變數khàm掉，lí tsit-má bē當改tsit ê設定。
+        federation_authentication: 聯邦驗證ê執行
+      title: 服侍器ê設定
+    site_uploads:
+      delete: Thâi掉傳上去ê檔案
+      destroyed_msg: 成功thâi掉傳上去kàu本站ê內容ah！
+    software_updates:
+      critical_update: 重要—請緊升級
+      description: 建議kā lí ê Mastodon安裝維持上新ê狀態，the̍h著上新ê修正kap功能。另外，隨時更新Mastodon有時陣真重要，ē當避免安全問題。因為tsiah-ê原因，Mastodon每30分鐘檢查更新，mā ē根據lí ê電子phue通知ê偏愛設定kā lí通知。
+      documentation_link: 看詳細
+      release_notes: 版本ê資訊
+      title: Ē當the̍h ê更新
+      type: 類型
+      types:
+        major: 大ê版本更新
+        minor: 細ê版本更新
+        patch: 碎布(patch)公開—修正錯誤kap容易作用ê改變
+      version: 版本
     statuses:
+      account: 作者
+      application: 應用程式
+      back_to_account: Tńg去口座ê頁
+      back_to_report: Tńg去檢舉ê頁
+      batch:
+        add_to_report: '加kàu檢舉 #%{id}'
+        remove_from_report: Tuì檢舉suá掉
+        report: 檢舉
+      contents: 內容
+      deleted: Thâi掉ah
+      favourites: 收藏
+      history: 版本ê歷史
+      in_reply_to: 回應
       language: 語言
+      media:
+        title: 媒體
+      metadata: Meta資料
+      no_history: Tsit篇PO文iáu無hōo lâng編輯
+      no_status_selected: 因為無揀任何PO文，所以lóng無改變
     trends:
       tags:
         dashboard:

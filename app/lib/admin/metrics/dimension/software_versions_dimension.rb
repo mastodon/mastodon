@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dimension::BaseDimension
-  include Redisable
+  include Admin::Metrics::Dimension::StoreHelper
 
   def key
     'software_versions'
@@ -45,13 +45,11 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   end
 
   def redis_version
-    value = redis_info['redis_version']
-
     {
       key: 'redis',
-      human_key: 'Redis',
-      value: value,
-      human_value: value,
+      human_key: store_name,
+      value: store_version,
+      human_value: store_version,
     }
   end
 
@@ -116,9 +114,5 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
     }
   rescue Terrapin::CommandNotFoundError, Terrapin::ExitStatusError, Oj::ParseError
     nil
-  end
-
-  def redis_info
-    @redis_info ||= redis.info
   end
 end
