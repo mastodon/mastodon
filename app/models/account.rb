@@ -271,7 +271,7 @@ class Account < ApplicationRecord
   end
 
   def keypair
-    @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
+    @keypair ||= OpenSSL::PKey::RSA.new(account_secret&.private_key || public_key)
   end
 
   def tags_as_strings=(tag_names)
@@ -441,11 +441,11 @@ class Account < ApplicationRecord
   end
 
   before_validation :prepare_contents, if: :local?
-  before_create :generate_keys
+  after_create :generate_keys
   before_destroy :clean_feed_manager
 
   def ensure_keys!
-    return unless local? && private_key.blank? && public_key.blank?
+    return unless local? && (account_secret.nil? || account_secret.private_key.blank?) && public_key.blank?
 
     generate_keys
     save!
@@ -459,11 +459,17 @@ class Account < ApplicationRecord
   end
 
   def generate_keys
-    return unless local? && private_key.blank? && public_key.blank?
+    return unless local? && (account_secret.nil? || account_secret.private_key.blank?) && public_key.blank?
 
     keypair = OpenSSL::PKey::RSA.new(2048)
-    self.private_key = keypair.to_pem
-    self.public_key  = keypair.public_key.to_pem
+
+    if account_secret.nil?
+      create_account_secret!(private_key: keypair.to_pem)
+    else
+      account_secret.update!(private_key: keypair.to_pem)
+    end
+
+    update!(public_key: keypair.public_key.to_pem)
   end
 
   def normalize_domain
@@ -499,5 +505,14 @@ class Account < ApplicationRecord
   # NOTE: the `account.created` webhook is triggered by the `User` model, not `Account`.
   def trigger_update_webhooks
     TriggerWebhookWorker.perform_async('account.updated', 'Account', id) if local?
+  end
+
+  # Temporary errors while private_key is still a field in the accounts table
+  def private_key=
+    raise 'private_key= is deprecated. Use account.account_secret.private_key= '
+  end
+
+  def private_key
+    raise 'private_key is deprecated. Use account.account_secret.private_key'
   end
 end
