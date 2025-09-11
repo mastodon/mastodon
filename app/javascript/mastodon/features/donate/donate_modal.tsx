@@ -13,11 +13,11 @@ import { IconButton } from '@/mastodon/components/icon_button';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import ExternalLinkIcon from '@/material-icons/400-24px/open_in_new.svg?react';
 
-import type { BaseConfirmationModalProps } from './confirmation_modals/confirmation_modal';
+import './donate_modal.scss';
 
-import './donate_model.scss';
-
-type DonateModalProps = BaseConfirmationModalProps;
+interface DonateModalProps {
+  onClose: () => void;
+}
 
 type Frequency = 'one_time' | 'monthly';
 
