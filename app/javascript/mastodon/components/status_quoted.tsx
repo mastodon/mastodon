@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -65,8 +65,6 @@ type GetStatusSelector = (
   loadingState: 'not-found' | 'loading' | 'filtered' | 'complete';
 };
 
-const getStatusSelector = makeGetStatusWithExtraInfo() as GetStatusSelector;
-
 type QuoteMap = ImmutableMap<'state' | 'quoted_status', string | null>;
 
 interface QuotedStatusProps {
@@ -94,6 +92,10 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
   );
 
   const quotedStatusId = quote.get('quoted_status');
+  const getStatusSelector = useMemo(
+    () => makeGetStatusWithExtraInfo() as GetStatusSelector,
+    [],
+  );
   const { status, loadingState } = useAppSelector((state) =>
     getStatusSelector(state, { id: quotedStatusId, contextType }),
   );
