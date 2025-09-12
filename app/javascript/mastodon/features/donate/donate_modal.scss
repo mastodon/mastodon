@@ -76,11 +76,18 @@
 
   .submit {
     padding: 0.6rem 1rem;
+
+    > svg {
+      height: 1em;
+    }
   }
 
   button > svg {
     fill: currentColor;
-    height: 1em;
+  }
+
+  .muted {
+    color: var(--input-placeholder-color);
   }
 
   .footer {
@@ -91,15 +98,15 @@
 
   .success {
     .illustration {
+      width: 100%;
       max-width: 350px;
       margin: 0 auto 1rem;
     }
 
     h2 {
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 1.4rem;
+      line-height: 1;
       font-weight: 500;
-      letter-spacing: 0.15px;
     }
   }
 }
