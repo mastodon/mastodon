@@ -10,6 +10,8 @@ module Paperclip
     BINS = 10
 
     def make
+      return @file unless options.key?(:extract_colors)
+
       background_palette, foreground_palette = Rails.configuration.x.use_vips ? palettes_from_libvips : palettes_from_imagemagick
 
       background_color   = background_palette.first || foreground_palette.first
@@ -66,7 +68,8 @@ module Paperclip
         },
       }
 
-      attachment.instance.file.instance_write(:meta, (attachment.instance.file.instance_read(:meta) || {}).merge(meta))
+      meta_attribute_name = options[:extract_colors][:meta_attribute_name] || "#{attachment.name}_meta"
+      attachment.instance.public_send("#{meta_attribute_name}=", (attachment.instance.public_send(meta_attribute_name) || {}).merge(meta))
 
       @file
     rescue Vips::Error => e
