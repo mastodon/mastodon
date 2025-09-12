@@ -7,14 +7,6 @@ class StreamingClient
     SUBPROTOCOL = 1
     AUTHORIZATION_HEADER = 2
     QUERY_PARAMETER = 3
-
-    def self.supported?(method)
-      [
-        AUTHENTICATION::SUBPROTOCOL,
-        AUTHENTICATION::QUERY_PARAMETER,
-        AUTHENTICATION::AUTHORIZATION_HEADER,
-      ].include?(method)
-    end
   end
 
   class Connection
@@ -148,8 +140,7 @@ class StreamingClient
   end
 
   def authenticate(access_token, authentication_method = StreamingClient::AUTHENTICATION::SUBPROTOCOL)
-    raise 'access_token passed to StreamingClient was not a string' unless access_token.is_a?(String)
-    raise 'invalid authentication method' unless AUTHENTICATION.supported?(authentication_method)
+    raise 'Invalid access_token passed to StreamingClient, expected a string' unless access_token.is_a?(String)
 
     case authentication_method
     when AUTHENTICATION::QUERY_PARAMETER
@@ -158,6 +149,8 @@ class StreamingClient
       @connection.protocols = access_token
     when AUTHENTICATION::AUTHORIZATION_HEADER
       @connection.set_header('Authorization', "Bearer #{access_token}")
+    else
+      raise 'Invalid authentication method'
     end
   end
 
