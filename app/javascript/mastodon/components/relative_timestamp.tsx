@@ -3,6 +3,8 @@ import { Component } from 'react';
 import type { MessageDescriptor, PrimitiveType, IntlShape } from 'react-intl';
 import { injectIntl, defineMessages } from 'react-intl';
 
+import { timeZone } from 'mastodon/initial_state';
+
 const messages = defineMessages({
   today: { id: 'relative_time.today', defaultMessage: 'today' },
   just_now: { id: 'relative_time.just_now', defaultMessage: 'now' },
@@ -58,11 +60,13 @@ const dateFormatOptions = {
   day: '2-digit',
   hour: '2-digit',
   minute: '2-digit',
+  timeZone,
 } as const;
 
 const shortDateFormatOptions = {
   month: 'short',
   day: 'numeric',
+  timeZone,
 } as const;
 
 const SECOND = 1000;
