@@ -68,11 +68,8 @@ class DomainBlock < ApplicationRecord
     def rule_for(domain)
       return if domain.blank?
 
-      uri      = Addressable::URI.new.tap { |u| u.host = domain.strip.delete('/') }
-      segments = uri.normalized_host.split('.')
-      variants = segments.map.with_index { |_, i| segments[i..].join('.') }
-
-      where(domain: variants).by_domain_length.first
+      uri = Addressable::URI.new.tap { |u| u.host = domain.strip.delete('/') }
+      where(domain: domain_variants(uri.normalized_host)).by_domain_length.first
     rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
       nil
     end
