@@ -10,7 +10,8 @@ RSpec.describe 'The /.well-known/host-meta request' do
       expect(response)
         .to have_http_status(200)
         .and have_attributes(
-          media_type: 'application/xrd+xml'
+          media_type: 'application/xrd+xml',
+          headers: not_include('content-security-policy')
         )
 
       expect(xrd_link_template_value)
@@ -32,7 +33,8 @@ RSpec.describe 'The /.well-known/host-meta request' do
       expect(response)
         .to have_http_status(200)
         .and have_attributes(
-          media_type: 'application/json'
+          media_type: 'application/json',
+          headers: not_include('content-security-policy')
         )
       expect(response.parsed_body)
         .to include(expected_json_template)
@@ -46,7 +48,8 @@ RSpec.describe 'The /.well-known/host-meta request' do
       expect(response)
         .to have_http_status(200)
         .and have_attributes(
-          media_type: 'application/json'
+          media_type: 'application/json',
+          headers: not_include('content-security-policy')
         )
       expect(response.parsed_body)
         .to include(expected_json_template)
