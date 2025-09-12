@@ -106,7 +106,7 @@ class Status < ApplicationRecord
   has_one :quote, inverse_of: :status, dependent: :destroy
 
   validates :uri, uniqueness: true, presence: true, unless: :local?
-  validates :text, presence: true, unless: -> { with_media? || reblog? }
+  validates :text, presence: true, unless: -> { with_media? || reblog? || with_quote? }
   validates_with StatusLengthValidator
   validates_with DisallowedHashtagsValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
@@ -254,6 +254,10 @@ class Status < ApplicationRecord
 
   def with_media?
     ordered_media_attachments.any?
+  end
+
+  def with_quote?
+    quote.present?
   end
 
   def with_preview_card?
