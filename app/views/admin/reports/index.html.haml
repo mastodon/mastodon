@@ -51,7 +51,7 @@
           .report-card__summary__item__reported-by
             - if report.account.instance_actor?
               = site_hostname
-            - elsif report.account.local?
+            - elsif report.local?
               = admin_account_link_to report.account
             - else
               = report.account.domain
