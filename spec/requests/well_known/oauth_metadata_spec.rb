@@ -9,7 +9,8 @@ RSpec.describe 'The /.well-known/oauth-authorization-server request' do
     expect(response)
       .to have_http_status(200)
       .and have_attributes(
-        media_type: 'application/json'
+        media_type: 'application/json',
+        headers: not_include('content-security-policy')
       )
 
     grant_types_supported = Doorkeeper.configuration.grant_flows.dup

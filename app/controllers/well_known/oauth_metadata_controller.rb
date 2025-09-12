@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WellKnown
-  class OAuthMetadataController < ActionController::Base # rubocop:disable Rails/ApplicationController
+  class OAuthMetadataController < PrimitiveController
     include CacheConcern
 
     # Prevent `active_model_serializer`'s `ActionController::Serialization` from calling `current_user`

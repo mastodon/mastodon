@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WellKnown
-  class HostMetaController < ActionController::Base # rubocop:disable Rails/ApplicationController
+  class HostMetaController < PrimitiveController
     include RoutingHelper
 
     def show

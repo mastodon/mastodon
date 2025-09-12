@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ManifestsController < ActionController::Base # rubocop:disable Rails/ApplicationController
+class ManifestsController < PrimitiveController
   # Prevent `active_model_serializer`'s `ActionController::Serialization` from calling `current_user`
   # and thus re-issuing session cookies
   serialization_scope nil

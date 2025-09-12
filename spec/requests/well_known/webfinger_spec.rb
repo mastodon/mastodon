@@ -24,6 +24,8 @@ RSpec.describe 'The /.well-known/webfinger endpoint' do
 
       expect(response.media_type).to eq 'application/jrd+json'
 
+      expect(response.headers).to not_include('content-security-policy')
+
       expect(response.parsed_body)
         .to include(
           subject: eq(alice.to_webfinger_s),

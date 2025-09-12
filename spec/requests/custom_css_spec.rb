@@ -14,7 +14,8 @@ RSpec.describe 'Custom CSS' do
           .to have_http_status(200)
           .and have_cacheable_headers
           .and have_attributes(
-            content_type: match('text/css')
+            content_type: match('text/css'),
+            headers: not_include('content-security-policy')
           )
         expect(response.body.presence)
           .to be_nil
@@ -33,7 +34,8 @@ RSpec.describe 'Custom CSS' do
           .to have_http_status(200)
           .and have_cacheable_headers
           .and have_attributes(
-            content_type: match('text/css')
+            content_type: match('text/css'),
+            headers: not_include('content-security-policy')
           )
         expect(response.body.strip)
           .to eq(expected_css)
