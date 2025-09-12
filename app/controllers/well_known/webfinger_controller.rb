@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WellKnown
-  class WebfingerController < ActionController::Base # rubocop:disable Rails/ApplicationController
+  class WebfingerController < PrimitiveController
     include RoutingHelper
 
     before_action :set_account
