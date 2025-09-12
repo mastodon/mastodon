@@ -31,6 +31,11 @@
       display: flex;
       align-items: center;
       padding: 0.5rem;
+
+      &:hover,
+      &:focus {
+        background-color: var(--button-hover-color);
+      }
     }
 
     input {
@@ -52,12 +57,17 @@
     flex-grow: 1;
   }
 
-  .button.toggle:not(.active) {
-    background-color: inherit;
-    border: 2px solid var(--button-color);
-    color: var(--button-color);
+  .toggle {
+    border: 2px solid transparent;
 
-    &:hover {
+    &:not(.active) {
+      background-color: inherit;
+      border-color: var(--button-color);
+      color: var(--button-color);
+    }
+
+    &:hover,
+    &:focus {
       border-color: var(--button-hover-color);
       background-color: var(--button-hover-color);
       color: white;
@@ -66,16 +76,30 @@
 
   .submit {
     padding: 0.6rem 1rem;
+  }
 
-    svg {
-      fill: currentColor;
-      height: 1em;
-    }
+  button > svg {
+    fill: currentColor;
+    height: 1em;
   }
 
   .footer {
     text-align: center;
     color: var(--input-placeholder-color);
     font-size: 0.9em;
+  }
+
+  .success {
+    .illustration {
+      max-width: 350px;
+      margin: 0 auto 1rem;
+    }
+
+    h2 {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 500;
+      letter-spacing: 0.15px;
+    }
   }
 }
