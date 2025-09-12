@@ -7,13 +7,10 @@ RSpec.describe AnnualReport::Percentiles do
     subject { described_class.new(account, year) }
 
     let(:year) { Time.zone.now.year }
+    let(:account) { Fabricate :account }
 
-    context 'with an inactive account' do
-      let(:account) { Fabricate :account }
-
+    context 'with no status data' do
       it 'builds a report for an account' do
-        described_class.prepare(year)
-
         expect(subject.generate)
           .to include(
             percentiles: include(
@@ -23,17 +20,16 @@ RSpec.describe AnnualReport::Percentiles do
       end
     end
 
-    context 'with an active account' do
-      let(:account) { Fabricate :account }
-
+    context 'with status count data' do
       before do
-        Fabricate.times 2, :status # Others as `account`
+        # Simulate scenario where other accounts have each made one status
+        Fabricate.times 2, :annual_report_statuses_per_account_count, statuses_count: 1
+
         Fabricate.times 2, :status, account: account
+        Fabricate :annual_report_statuses_per_account_count, account_id: account.id, statuses_count: 2
       end
 
       it 'builds a report for an account' do
-        described_class.prepare(year)
-
         expect(subject.generate)
           .to include(
             percentiles: include(
