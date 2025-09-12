@@ -3,6 +3,13 @@
 module Admin
   class DomainBlocksController < BaseController
     before_action :set_domain_block, only: [:destroy, :edit, :update]
+    before_action :authorize_domain_block_create, only: [:batch, :new, :create]
+    with_options only: :create do
+      before_action :populate_domain_block_from_params
+      before_action :prevent_downgrade, if: :attempting_downgrade?
+      before_action :perform_transparent_upgrade, if: :existing_domain_block_matches_domain?
+      before_action :verify_confirmation_needed
+    end
 
     PERMITTED_PARAMS = %i(
       domain
@@ -17,7 +24,6 @@ module Admin
     PERMITTED_UPDATE_PARAMS = PERMITTED_PARAMS.without(:domain).freeze
 
     def batch
-      authorize :domain_block, :create?
       @form = Form::DomainBlockBatch.new(form_domain_block_batch_params.merge(current_account: current_account, action: action_from_button))
       @form.save
     rescue ActionController::ParameterMissing
@@ -31,7 +37,6 @@ module Admin
     end
 
     def new
-      authorize :domain_block, :create?
       @domain_block = DomainBlock.new(domain: params[:_domain])
     end
 
@@ -40,28 +45,6 @@ module Admin
     end
 
     def create
-      authorize :domain_block, :create?
-
-      @domain_block = DomainBlock.new(resource_params)
-      existing_domain_block = resource_params[:domain].present? ? DomainBlock.rule_for(resource_params[:domain]) : nil
-
-      # Disallow accidentally downgrading a domain block
-      if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
-        @domain_block.validate
-        flash.now[:alert] = I18n.t('admin.domain_blocks.existing_domain_block_html', name: existing_domain_block.domain, unblock_url: admin_domain_block_path(existing_domain_block)).html_safe
-        @domain_block.errors.delete(:domain)
-        return render :new
-      end
-
-      # Allow transparently upgrading a domain block
-      if existing_domain_block.present? && existing_domain_block.domain == TagManager.instance.normalize_domain(@domain_block.domain.strip)
-        @domain_block = existing_domain_block
-        @domain_block.assign_attributes(resource_params)
-      end
-
-      # Require explicit confirmation when suspending
-      return render :confirm_suspension if requires_confirmation?
-
       if @domain_block.save
         DomainBlockWorker.perform_async(@domain_block.id)
         log_action :create, @domain_block
@@ -97,8 +80,56 @@ module Admin
 
     private
 
+    def authorize_domain_block_create
+      authorize :domain_block, :create?
+    end
+
+    def populate_domain_block_from_params
+      @domain_block = DomainBlock.new(resource_params)
+    end
+
+    def prevent_downgrade
+      @domain_block.validate
+      flash.now.alert = unblock_first_alert
+      @domain_block.errors.delete(:domain)
+      render :new
+    end
+
+    def attempting_downgrade?
+      # Existing domain block exists and the new value is less strict than the existing
+      existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
+    end
+
+    def perform_transparent_upgrade
+      @domain_block = existing_domain_block
+      @domain_block.assign_attributes(resource_params)
+    end
+
+    def existing_domain_block_matches_domain?
+      # Existing domain block exists and the domain is exact match for the value from incoming params
+      existing_domain_block.present? &&
+        existing_domain_block.domain == TagManager.instance.normalize_domain(@domain_block.domain.strip)
+    end
+
+    def verify_confirmation_needed
+      # Require explicit confirmation when suspending
+      render :confirm_suspension if requires_confirmation?
+    end
+
+    def existing_domain_block
+      @existing_domain_block ||= DomainBlock.rule_for(resource_params[:domain]) if resource_params[:domain].present?
+    end
+
     def set_domain_block
       @domain_block = DomainBlock.find(params[:id])
+    end
+
+    def unblock_first_alert
+      I18n.t(
+        'admin.domain_blocks.existing_domain_block_html',
+        name: existing_domain_block.domain,
+        unblock_url: admin_domain_block_path(existing_domain_block)
+      ).html_safe
     end
 
     def update_params
