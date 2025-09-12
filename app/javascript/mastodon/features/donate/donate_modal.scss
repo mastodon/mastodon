@@ -1,3 +1,5 @@
+@use '../../../styles/mastodon/variables' as vars;
+
 .donate_modal {
   .dialog-modal__header {
     gap: 1rem;
@@ -50,6 +52,45 @@
       @media (prefers-color-scheme: dark) {
         color-scheme: dark;
       }
+    }
+  }
+
+  &__dropdown {
+    // TODO: Move these to CSS variables
+    --dropdown-text-color: #{vars.$primary-text-color};
+    --dropdown-active-color: #{vars.$ui-highlight-color};
+
+    box-shadow: var(--dropdown-shadow);
+    background: var(--dropdown-background-color);
+    backdrop-filter: #{vars.$backdrop-blur-filter};
+    border: 1px solid var(--dropdown-border-color);
+    padding: 4px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  &__option {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 4px;
+    color: var(--dropdown-text-color);
+
+    &:hover,
+    &:active {
+      background: var(--dropdown-border-color);
+    }
+
+    &:focus,
+    &.active {
+      background: var(--dropdown-active-color);
+      color: var(--dropdown-text-color);
+      outline: 0;
     }
   }
 
