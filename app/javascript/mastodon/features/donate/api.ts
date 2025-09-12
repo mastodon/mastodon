@@ -58,6 +58,12 @@ export interface DonateServerResponse {
   default_currency: string;
 }
 
+export interface DonateCheckoutArgs {
+  frequency: DonationFrequency;
+  amount: number;
+  currency: string;
+}
+
 type DonateAmount = Record<string, number[]>;
 
 async function fetchCampaign(

@@ -1,22 +1,20 @@
-import type { FC, SyntheticEvent } from 'react';
-import { forwardRef, useCallback, useMemo, useState } from 'react';
+import type { FC } from 'react';
+import { forwardRef, useCallback, useEffect, useState } from 'react';
 
-import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import type { ButtonProps } from '@/mastodon/components/button';
-import { Button } from '@/mastodon/components/button';
-import { Dropdown } from '@/mastodon/components/dropdown';
-import type { SelectItem } from '@/mastodon/components/dropdown_selector';
 import { IconButton } from '@/mastodon/components/icon_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import ExternalLinkIcon from '@/material-icons/400-24px/open_in_new.svg?react';
+
+import type { DonateCheckoutArgs } from './api';
+import { useDonateApi } from './api';
+import { DonateForm } from './form';
+import { DonateSuccess } from './success';
 
 import './donate_modal.scss';
-import type { DonateServerResponse, DonationFrequency } from './api';
-import { useDonateApi } from './api';
 
 interface DonateModalProps {
   onClose: () => void;
@@ -24,23 +22,59 @@ interface DonateModalProps {
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
-  one_time: { id: 'donate.frequency.one_time', defaultMessage: 'Just once' },
-  monthly: { id: 'donate.frequency.monthly', defaultMessage: 'Monthly' },
-  yearly: { id: 'donate.frequency.yearly', defaultMessage: 'Yearly' },
 });
+
+// TODO: Use environment variable
+const CHECKOUT_URL = 'http://localhost:3001/donate/checkout';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- React throws a warning if not set.
 const DonateModal: FC<DonateModalProps> = forwardRef(({ onClose }, ref) => {
   const intl = useIntl();
 
-  const donationData = useDonateApi();
+  const donationData = useDonateApi() ?? undefined;
+
+  const [donateUrl, setDonateUrl] = useState<null | string>(null);
+  const handleCheckout = useCallback(
+    ({ frequency, amount, currency }: DonateCheckoutArgs) => {
+      const params = new URLSearchParams({
+        frequency,
+        amount: amount.toString(),
+        currency,
+        source: window.location.origin,
+      });
+      setState('checkout');
+
+      const url = `${CHECKOUT_URL}?${params.toString()}`;
+      setDonateUrl(url);
+      try {
+        window.open(url);
+      } catch (err) {
+        console.warn('Error opening checkout window:', err);
+      }
+    },
+    [],
+  );
+
+  // Check response from opened page
+  const [state, setState] = useState<'start' | 'checkout' | 'success'>('start');
+  useEffect(() => {
+    const handler = (event: MessageEvent) => {
+      if (event.data === 'payment_success' && state === 'checkout') {
+        setState('success');
+      }
+    };
+    window.addEventListener('message', handler);
+    return () => {
+      window.removeEventListener('message', handler);
+    };
+  }, [state]);
 
   return (
     <div className='modal-root__modal dialog-modal donate_modal'>
       <div className='dialog-modal__content'>
         <header className='row'>
           <span className='dialog-modal__header__title title'>
-            {donationData?.donation_message}
+            {state === 'start' && donationData?.donation_message}
           </span>
           <IconButton
             className='dialog-modal__header__close'
@@ -50,140 +84,44 @@ const DonateModal: FC<DonateModalProps> = forwardRef(({ onClose }, ref) => {
             onClick={onClose}
           />
         </header>
-        <form
+        <div
           className={classNames('dialog-modal__content__form', {
-            loading: !donationData,
+            initial: state === 'start',
+            checkout: state === 'checkout',
+            success: state === 'success',
           })}
         >
-          {!donationData ? (
-            <LoadingIndicator />
-          ) : (
-            <DonateForm data={donationData} />
+          {state === 'start' &&
+            (donationData ? (
+              <DonateForm data={donationData} onSubmit={handleCheckout} />
+            ) : (
+              <LoadingIndicator />
+            ))}
+          {state === 'checkout' && (
+            <p>
+              Your session is opened in another tab.
+              {donateUrl && (
+                <>
+                  {' '}
+                  If you don&apos;t see it,
+                  {/* eslint-disable-next-line react/jsx-no-target-blank -- We want access to the opener in order to detect success. */}
+                  <a href={donateUrl} target='_blank'>
+                    click here
+                  </a>
+                  .
+                </>
+              )}
+            </p>
           )}
-        </form>
+          {state === 'success' && donationData && (
+            <DonateSuccess data={donationData} onClose={onClose} />
+          )}
+        </div>
       </div>
     </div>
   );
 });
 DonateModal.displayName = 'DonateModal';
-
-const DonateForm: FC<{ data: DonateServerResponse }> = ({ data }) => {
-  const intl = useIntl();
-
-  const [frequency, setFrequency] = useState<DonationFrequency>('one_time');
-  const handleFrequencyToggle = useCallback((value: DonationFrequency) => {
-    return () => {
-      setFrequency(value);
-    };
-  }, []);
-
-  const [currency, setCurrency] = useState<string>(data.default_currency);
-  const currencyOptions: SelectItem[] = useMemo(
-    () =>
-      Object.keys(data.amounts.one_time).map((code) => ({
-        value: code,
-        text: code,
-      })),
-    [data.amounts],
-  );
-
-  const [amount, setAmount] = useState(
-    () => data.amounts[frequency][data.default_currency]?.[0] ?? 1000,
-  );
-  const handleAmountChange = useCallback((event: SyntheticEvent) => {
-    let newAmount = 1;
-    if (event.target instanceof HTMLButtonElement) {
-      newAmount = Number.parseInt(event.target.value);
-    } else if (event.target instanceof HTMLInputElement) {
-      newAmount = event.target.valueAsNumber * 100;
-    }
-    setAmount(newAmount);
-  }, []);
-  const amountOptions: SelectItem[] = useMemo(() => {
-    const formatter = new Intl.NumberFormat('en', {
-      style: 'currency',
-      currency,
-      maximumFractionDigits: 0,
-    });
-    return Object.values(data.amounts[frequency][currency] ?? {}).map(
-      (value) => ({
-        value: value.toString(),
-        text: formatter.format(value / 100),
-      }),
-    );
-  }, [currency, data.amounts, frequency]);
-
-  return (
-    <>
-      <div className='row'>
-        {(Object.keys(data.amounts) as DonationFrequency[]).map((freq) => (
-          <ToggleButton
-            key={freq}
-            active={frequency === freq}
-            onClick={handleFrequencyToggle(freq)}
-            text={intl.formatMessage(messages[freq])}
-          />
-        ))}
-      </div>
-
-      <div className='row row--select'>
-        <Dropdown
-          items={currencyOptions}
-          current={currency}
-          classPrefix='donate_modal'
-          onChange={setCurrency}
-        />
-        <input
-          type='number'
-          min='1'
-          step='0.01'
-          value={(amount / 100).toFixed(2)}
-          onChange={handleAmountChange}
-        />
-      </div>
-
-      <div className='row'>
-        {amountOptions.map((option) => (
-          <ToggleButton
-            key={option.value}
-            onClick={handleAmountChange}
-            active={amount === Number.parseInt(option.value)}
-            value={option.value}
-            text={option.text}
-          />
-        ))}
-      </div>
-
-      <Button className='submit' block type='submit'>
-        <FormattedMessage
-          id='donate.continue'
-          defaultMessage='Continue to payment'
-        />
-        <ExternalLinkIcon />
-      </Button>
-
-      <p className='footer'>
-        <FormattedMessage
-          id='donate.redirect_notice'
-          defaultMessage='You will be redirected to joinmastodon.org for secure payment'
-        />
-      </p>
-    </>
-  );
-};
-
-const ToggleButton: FC<ButtonProps & { active: boolean }> = ({
-  active,
-  ...props
-}) => {
-  return (
-    <Button
-      block
-      {...props}
-      className={classNames('toggle', props.className, { active })}
-    />
-  );
-};
 
 // eslint-disable-next-line import/no-default-export -- modal_root expects a default export.
 export default DonateModal;
