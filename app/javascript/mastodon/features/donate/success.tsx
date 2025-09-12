@@ -4,29 +4,23 @@ import type { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import donateIllustration from '@/images/donation_successful.png';
-import { focusCompose, resetCompose } from '@/mastodon/actions/compose';
+import { composeDonateShare } from '@/mastodon/actions/donate';
 import { Button } from '@/mastodon/components/button';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 
-import type { DonateServerResponse } from './api';
-
 interface DonateSuccessProps {
-  data: DonateServerResponse;
   onClose: () => void;
 }
 
-export const DonateSuccess: FC<DonateSuccessProps> = ({ data, onClose }) => {
+export const DonateSuccess: FC<DonateSuccessProps> = ({ onClose }) => {
   const hasComposerContent = useAppSelector(
     (state) => !!state.compose.get('text'),
   );
   const dispatch = useAppDispatch();
   const handleShare = useCallback(() => {
-    const shareText = data.donation_success_post;
-    dispatch(resetCompose());
-    dispatch(focusCompose(shareText));
-    onClose();
-  }, [data.donation_success_post, dispatch, onClose]);
+    dispatch(composeDonateShare());
+  }, [dispatch]);
 
   return (
     <>
@@ -41,11 +35,12 @@ export const DonateSuccess: FC<DonateSuccessProps> = ({ data, onClose }) => {
         defaultMessage='Thanks for your donation!'
         tagName='h2'
       />
-      <FormattedMessage
-        id='donate.success.subtitle'
-        defaultMessage='You should receive an email confirming your donation soon.'
-        tagName='p'
-      />
+      <p className='muted'>
+        <FormattedMessage
+          id='donate.success.subtitle'
+          defaultMessage='You should receive an email confirming your donation soon.'
+        />
+      </p>
 
       <Button block onClick={handleShare}>
         <ShareIcon />

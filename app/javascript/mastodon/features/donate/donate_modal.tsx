@@ -5,12 +5,12 @@ import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
+import type { DonationFrequency } from '@/mastodon/api_types/donate';
 import { IconButton } from '@/mastodon/components/icon_button';
-import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { useAppSelector } from '@/mastodon/store';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
-import type { DonateCheckoutArgs } from './api';
-import { useDonateApi } from './api';
+import { DonateCheckoutHint } from './checkout';
 import { DonateForm } from './form';
 import { DonateSuccess } from './success';
 
@@ -18,6 +18,12 @@ import './donate_modal.scss';
 
 interface DonateModalProps {
   onClose: () => void;
+}
+
+export interface DonateCheckoutArgs {
+  frequency: DonationFrequency;
+  amount: number;
+  currency: string;
 }
 
 const messages = defineMessages({
@@ -31,9 +37,9 @@ const CHECKOUT_URL = 'http://localhost:3001/donate/checkout';
 const DonateModal: FC<DonateModalProps> = forwardRef(({ onClose }, ref) => {
   const intl = useIntl();
 
-  const donationData = useDonateApi() ?? undefined;
+  const donationData = useAppSelector((state) => state.donate.apiResponse);
 
-  const [donateUrl, setDonateUrl] = useState<null | string>(null);
+  const [donateUrl, setDonateUrl] = useState<string | undefined>();
   const handleCheckout = useCallback(
     ({ frequency, amount, currency }: DonateCheckoutArgs) => {
       const params = new URLSearchParams({
@@ -85,37 +91,15 @@ const DonateModal: FC<DonateModalProps> = forwardRef(({ onClose }, ref) => {
           />
         </header>
         <div
-          className={classNames('dialog-modal__content__form', {
+          className={classNames('dialog-modal__content__form', 'body', {
             initial: state === 'start',
             checkout: state === 'checkout',
             success: state === 'success',
           })}
         >
-          {state === 'start' &&
-            (donationData ? (
-              <DonateForm data={donationData} onSubmit={handleCheckout} />
-            ) : (
-              <LoadingIndicator />
-            ))}
-          {state === 'checkout' && (
-            <p>
-              Your session is opened in another tab.
-              {donateUrl && (
-                <>
-                  {' '}
-                  If you don&apos;t see it,
-                  {/* eslint-disable-next-line react/jsx-no-target-blank -- We want access to the opener in order to detect success. */}
-                  <a href={donateUrl} target='_blank'>
-                    click here
-                  </a>
-                  .
-                </>
-              )}
-            </p>
-          )}
-          {state === 'success' && donationData && (
-            <DonateSuccess data={donationData} onClose={onClose} />
-          )}
+          {state === 'start' && <DonateForm onSubmit={handleCheckout} />}
+          {state === 'checkout' && <DonateCheckoutHint donateUrl={donateUrl} />}
+          {state === 'success' && <DonateSuccess onClose={onClose} />}
         </div>
       </div>
     </div>
