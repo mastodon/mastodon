@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CustomCssController < ActionController::Base # rubocop:disable Rails/ApplicationController
+class CustomCssController < PrimitiveController
   def show
     expires_in 1.month, public: true
     render content_type: 'text/css'
