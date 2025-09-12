@@ -61,6 +61,11 @@ const DonateModal: FC<DonateModalProps> = forwardRef(({ onClose }, ref) => {
     [],
   );
 
+  const handleCheckoutBack = useCallback(() => {
+    setState('start');
+    setDonateUrl(undefined);
+  }, []);
+
   // Check response from opened page
   const [state, setState] = useState<'start' | 'checkout' | 'success'>('start');
   useEffect(() => {
@@ -98,7 +103,12 @@ const DonateModal: FC<DonateModalProps> = forwardRef(({ onClose }, ref) => {
           })}
         >
           {state === 'start' && <DonateForm onSubmit={handleCheckout} />}
-          {state === 'checkout' && <DonateCheckoutHint donateUrl={donateUrl} />}
+          {state === 'checkout' && (
+            <DonateCheckoutHint
+              donateUrl={donateUrl}
+              onBack={handleCheckoutBack}
+            />
+          )}
           {state === 'success' && <DonateSuccess onClose={onClose} />}
         </div>
       </div>

@@ -1,11 +1,14 @@
-import type { FC, SyntheticEvent } from 'react';
+import type { FC, FocusEventHandler, SyntheticEvent } from 'react';
 import { useCallback, useMemo, useState } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import type { DonationFrequency } from '@/mastodon/api_types/donate';
+import type {
+  DonateServerResponse,
+  DonationFrequency,
+} from '@/mastodon/api_types/donate';
 import type { ButtonProps } from '@/mastodon/components/button';
 import { Button } from '@/mastodon/components/button';
 import { Dropdown } from '@/mastodon/components/dropdown';
@@ -26,64 +29,83 @@ interface DonateFormProps {
   onSubmit: (args: DonateCheckoutArgs) => void;
 }
 
-export const DonateForm: FC<Required<DonateFormProps>> = ({ onSubmit }) => {
+const DefaultAmount = 1000; // 10.00
+
+export const DonateForm: FC<DonateFormProps> = (props) => {
+  const donateData = useAppSelector((state) => state.donate.apiResponse);
+  if (!donateData) {
+    return <LoadingIndicator />;
+  }
+  return <DonateFormInner {...props} data={donateData} />;
+};
+
+export const DonateFormInner: FC<
+  DonateFormProps & { data: DonateServerResponse }
+> = ({ onSubmit, data: donateData }) => {
   const intl = useIntl();
 
-  const donateData = useAppSelector((state) => state.donate.apiResponse);
-
   const [frequency, setFrequency] = useState<DonationFrequency>('one_time');
+  // Nested function to allow passing parameters in onClick.
   const handleFrequencyToggle = useCallback((value: DonationFrequency) => {
     return () => {
       setFrequency(value);
     };
   }, []);
 
-  const [currency, setCurrency] = useState<string>(
-    donateData?.default_currency ?? 'EUR',
-  );
+  const [currency, setCurrency] = useState(donateData.default_currency);
   const currencyOptions: SelectItem[] = useMemo(
     () =>
-      Object.keys(donateData?.amounts.one_time ?? []).map((code) => ({
+      Object.keys(donateData.amounts.one_time).map((code) => ({
         value: code,
         text: code,
       })),
-    [donateData?.amounts],
+    [donateData.amounts],
   );
 
+  // Amounts handling
   const [amount, setAmount] = useState(
     () =>
-      donateData?.amounts[frequency][donateData.default_currency]?.[0] ?? 1000,
+      donateData.amounts[frequency][donateData.default_currency]?.[0] ??
+      DefaultAmount,
   );
   const handleAmountChange = useCallback((event: SyntheticEvent) => {
+    // Coerce the value into a valid amount depending on the source of the event.
     let newAmount = 1;
     if (event.target instanceof HTMLButtonElement) {
       newAmount = Number.parseInt(event.target.value);
     } else if (event.target instanceof HTMLInputElement) {
       newAmount = event.target.valueAsNumber * 100;
     }
+    // If invalid, just use the default.
+    if (Number.isNaN(newAmount) || newAmount < 1) {
+      newAmount = DefaultAmount;
+    }
     setAmount(newAmount);
   }, []);
+  // The input field is uncontrolled to not interfere with user input, but set the value to the state on blue.
+  const handleAmountBlur: FocusEventHandler<HTMLInputElement> = useCallback(
+    (event) => {
+      event.target.value = (amount / 100).toFixed(2);
+    },
+    [amount],
+  );
   const amountOptions: SelectItem[] = useMemo(() => {
     const formatter = new Intl.NumberFormat('en', {
       style: 'currency',
       currency,
       maximumFractionDigits: 0,
     });
-    return Object.values(donateData?.amounts[frequency][currency] ?? {}).map(
+    return Object.values(donateData.amounts[frequency][currency] ?? {}).map(
       (value) => ({
         value: value.toString(),
         text: formatter.format(value / 100),
       }),
     );
-  }, [currency, donateData?.amounts, frequency]);
+  }, [currency, donateData.amounts, frequency]);
 
   const handleSubmit = useCallback(() => {
     onSubmit({ frequency, amount, currency });
   }, [amount, currency, frequency, onSubmit]);
-
-  if (!donateData) {
-    return <LoadingIndicator />;
-  }
 
   return (
     <>
@@ -111,8 +133,8 @@ export const DonateForm: FC<Required<DonateFormProps>> = ({ onSubmit }) => {
           type='number'
           min='1'
           step='0.01'
-          value={(amount / 100).toFixed(2)}
           onChange={handleAmountChange}
+          onBlur={handleAmountBlur}
         />
       </div>
 
