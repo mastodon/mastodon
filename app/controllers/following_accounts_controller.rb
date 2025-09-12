@@ -7,6 +7,7 @@ class FollowingAccountsController < ApplicationController
   vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
 
   before_action :require_account_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
+  before_action :protect_hidden_collections, if: -> { request.format.json? }
 
   skip_around_action :set_locale, if: -> { request.format == :json }
   skip_before_action :require_functional!, unless: :limited_federation_mode?
@@ -18,11 +19,6 @@ class FollowingAccountsController < ApplicationController
       end
 
       format.json do
-        if page_requested? && @account.hide_collections?
-          forbidden
-          next
-        end
-
         expires_in(page_requested? ? 0 : 3.minutes, public: public_fetch_mode?)
 
         render json: collection_presenter,
@@ -42,6 +38,10 @@ class FollowingAccountsController < ApplicationController
     scope = Follow.where(account: @account)
     scope = scope.where.not(target_account_id: current_account.excluded_from_timeline_account_ids) if user_signed_in?
     @follows = scope.recent.page(params[:page]).per(FOLLOW_PER_PAGE).preload(:target_account)
+  end
+
+  def protect_hidden_collections
+    raise Mastodon::NotPermittedError if page_requested? && @account.hide_collections?
   end
 
   def page_requested?
