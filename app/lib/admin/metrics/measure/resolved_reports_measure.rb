@@ -27,7 +27,7 @@ class Admin::Metrics::Measure::ResolvedReportsMeasure < Admin::Metrics::Measure:
         WITH resolved_reports AS (
           SELECT reports.id
           FROM reports
-          WHERE date_trunc('day', reports.action_taken_at)::date = axis.period
+          WHERE #{matching_day(Report, :action_taken_at)}
         )
         SELECT count(*) FROM resolved_reports
       ) AS value
