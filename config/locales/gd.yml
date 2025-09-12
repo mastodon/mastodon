@@ -1944,7 +1944,8 @@ gd:
         other: "%{count} video"
         two: "%{count} video"
     boosted_from_html: Brosnachadh o %{acct_link}
-    content_warning: 'Rabhadh susbainte: %{warning}'
+    content_warning:
+      warning: 'Rabhadh susbainte: %{warning}'
     default_language: Co-ionnan ri cànan na h-eadar-aghaidh
     disallowed_hashtags:
       few: "– bha na tagaichean hais toirmisgte seo ann: %{tags}"
