@@ -349,9 +349,9 @@ RSpec.describe Auth::SessionsController do
         end
       end
 
-      context 'with WebAuthn and OTP enabled as second factor' do
+      context 'with WebAuthn enabled as second factor' do
         let!(:user) do
-          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret)
+          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh')
         end
 
         let!(:webauthn_credential) do
