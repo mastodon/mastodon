@@ -16,6 +16,10 @@ class ActivityPub::UpdateDistributionWorker < ActivityPub::RawDistributionWorker
     true
   end
 
+  def self.distribute(account)
+    perform_in(DEBOUNCE_DELAY, account.id)
+  end
+
   protected
 
   def inboxes
