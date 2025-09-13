@@ -56,11 +56,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     process_audience
 
     ApplicationRecord.transaction do
-      @status = Status.create!(@params)
+      @status = Status.create!(@params.merge(quote: @quote))
       attach_tags(@status)
       attach_mentions(@status)
       attach_counts(@status)
-      attach_quote(@status)
     end
 
     resolve_thread(@status)
@@ -200,13 +199,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       status_stat.untrusted_favourites_count = likes unless likes.nil?
       status_stat.save if status_stat.changed?
     end
-  end
-
-  def attach_quote(status)
-    return if @quote.nil?
-
-    @quote.status = status
-    @quote.save
   end
 
   def process_tags
