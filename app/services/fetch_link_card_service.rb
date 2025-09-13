@@ -102,7 +102,7 @@ class FetchLinkCardService < BaseService
 
   def skip_link?(anchor)
     # Avoid links for hashtags and mentions (microformats)
-    anchor['rel']&.include?('tag') || anchor['class']&.match?(/u-url|h-card/) || mention_link?(anchor)
+    anchor['rel']&.include?('tag') || anchor['rel']&.include?('nopreview') || anchor['class']&.match?(/u-url|h-card/) || mention_link?(anchor)
   end
 
   def attempt_oembed
