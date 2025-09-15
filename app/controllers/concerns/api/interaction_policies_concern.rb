@@ -4,8 +4,7 @@ module Api::InteractionPoliciesConcern
   extend ActiveSupport::Concern
 
   def quote_approval_policy
-    # TODO: handle `nil` separately
-    return nil unless Mastodon::Feature.outgoing_quotes_enabled? && status_params[:quote_approval_policy].present?
+    return nil unless Mastodon::Feature.outgoing_quotes_enabled?
 
     case status_params[:quote_approval_policy]
     when 'public'
@@ -14,6 +13,8 @@ module Api::InteractionPoliciesConcern
       Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16
     when 'nobody'
       0
+    when nil
+      current_user.setting_default_quote_policy
     else
       # TODO: raise more useful message
       raise ActiveRecord::RecordInvalid
