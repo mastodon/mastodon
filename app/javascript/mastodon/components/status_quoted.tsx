@@ -2,8 +2,6 @@ import { useEffect, useMemo, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
-
 import type { Map as ImmutableMap } from 'immutable';
 
 import { LearnMoreLink } from 'mastodon/components/learn_more_link';
@@ -13,36 +11,20 @@ import type { RootState } from 'mastodon/store';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { fetchStatus } from '../actions/statuses';
+import type { Account } from '../models/account';
 import { makeGetStatusWithExtraInfo } from '../selectors';
 
 import { Button } from './button';
 
 const MAX_QUOTE_POSTS_NESTING_LEVEL = 1;
 
-const QuoteWrapper: React.FC<{
-  isError?: boolean;
-  contextType?: string;
-  onQuoteCancel?: () => void;
-  children: React.ReactElement;
-}> = ({ isError, contextType, onQuoteCancel, children }) => {
-  return (
-    <div
-      className={classNames('status__quote', {
-        'status__quote--error': isError,
-      })}
-    >
-      {children}
-      {contextType === 'composer' && (
-        <Button compact plain onClick={onQuoteCancel}>
-          <FormattedMessage id='status.remove_quote' defaultMessage='Remove' />
-        </Button>
-      )}
-    </div>
-  );
-};
-
 const NestedQuoteLink: React.FC<{ status: Status }> = ({ status }) => {
-  const accountId = status.get('account') as string;
+  const accountObjectOrId = status.get('account') as string | Account;
+  const accountId =
+    typeof accountObjectOrId === 'string'
+      ? accountObjectOrId
+      : accountObjectOrId.id;
+
   const account = useAppSelector((state) =>
     accountId ? state.accounts.get(accountId) : undefined,
   );
@@ -185,14 +167,20 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
   }
 
   if (quoteError) {
+    const hasRemoveButton = contextType === 'composer' && !!onQuoteCancel;
+
     return (
-      <QuoteWrapper
-        isError
-        contextType={contextType}
-        onQuoteCancel={onQuoteCancel}
-      >
+      <div className='status__quote status__quote--error'>
         {quoteError}
-      </QuoteWrapper>
+        {hasRemoveButton && (
+          <Button compact plain onClick={onQuoteCancel}>
+            <FormattedMessage
+              id='status.remove_quote'
+              defaultMessage='Remove'
+            />
+          </Button>
+        )}
+      </div>
     );
   }
 
@@ -205,7 +193,7 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
     childQuote && nestingLevel <= MAX_QUOTE_POSTS_NESTING_LEVEL;
 
   return (
-    <QuoteWrapper>
+    <div className='status__quote'>
       {/* @ts-expect-error Status is not yet typed */}
       <StatusContainer
         isQuotedPost
@@ -226,7 +214,7 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
           />
         )}
       </StatusContainer>
-    </QuoteWrapper>
+    </div>
   );
 };
 
