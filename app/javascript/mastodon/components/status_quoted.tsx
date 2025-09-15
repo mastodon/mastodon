@@ -11,6 +11,7 @@ import type { RootState } from 'mastodon/store';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { fetchStatus } from '../actions/statuses';
+import type { Account } from '../models/account';
 import { makeGetStatusWithExtraInfo } from '../selectors';
 
 import { Button } from './button';
@@ -18,7 +19,12 @@ import { Button } from './button';
 const MAX_QUOTE_POSTS_NESTING_LEVEL = 1;
 
 const NestedQuoteLink: React.FC<{ status: Status }> = ({ status }) => {
-  const accountId = status.get('account') as string;
+  const accountObjectOrId = status.get('account') as string | Account;
+  const accountId =
+    typeof accountObjectOrId === 'string'
+      ? accountObjectOrId
+      : accountObjectOrId.id;
+
   const account = useAppSelector((state) =>
     accountId ? state.accounts.get(accountId) : undefined,
   );
