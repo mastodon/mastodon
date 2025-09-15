@@ -11,7 +11,6 @@ import { openModal } from '@/mastodon/actions/modal';
 import type { ActionMenuItem } from '@/mastodon/models/dropdown_menu';
 import type { Status } from '@/mastodon/models/status';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import { isFeatureEnabled } from '@/mastodon/utils/environment';
 import type { SomeRequired } from '@/mastodon/utils/types';
 
 import type { RenderItemFn, RenderItemFnHandlers } from '../dropdown_menu';
@@ -195,10 +194,7 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
 
 // Switch between the legacy and new reblog button based on feature flag.
 export const BoostButton: FC<ReblogButtonProps> = (props) => {
-  if (isFeatureEnabled('outgoing_quotes')) {
-    return <StatusBoostButton {...props} />;
-  }
-  return <LegacyReblogButton {...props} />;
+  return <StatusBoostButton {...props} />;
 };
 
 export const LegacyReblogButton: FC<ReblogButtonProps> = ({

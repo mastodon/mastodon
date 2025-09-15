@@ -4,8 +4,6 @@ module Api::InteractionPoliciesConcern
   extend ActiveSupport::Concern
 
   def quote_approval_policy
-    return nil unless Mastodon::Feature.outgoing_quotes_enabled?
-
     case status_params[:quote_approval_policy].presence || current_user.setting_default_quote_policy
     when 'public'
       Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16
