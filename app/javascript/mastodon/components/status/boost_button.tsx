@@ -77,7 +77,6 @@ export const StatusBoostButton: FC<ReblogButtonProps> = ({
       openModal({
         modalType: 'INTERACTION',
         modalProps: {
-          type: 'reblog',
           accountId: status.getIn(['account', 'id']),
           url: status.get('uri'),
         },
@@ -241,7 +240,6 @@ export const LegacyReblogButton: FC<ReblogButtonProps> = ({
           openModal({
             modalType: 'INTERACTION',
             modalProps: {
-              type: 'reblog',
               accountId: status.getIn(['account', 'id']),
               url: status.get('uri'),
             },

@@ -92,7 +92,6 @@ export const Footer: React.FC<{
         openModal({
           modalType: 'INTERACTION',
           modalProps: {
-            type: 'reply',
             accountId: status.getIn(['account', 'id']),
             url: status.get('uri'),
           },
@@ -113,7 +112,6 @@ export const Footer: React.FC<{
         openModal({
           modalType: 'INTERACTION',
           modalProps: {
-            type: 'favourite',
             accountId: status.getIn(['account', 'id']),
             url: status.get('uri'),
           },
@@ -135,7 +133,6 @@ export const Footer: React.FC<{
           openModal({
             modalType: 'INTERACTION',
             modalProps: {
-              type: 'reblog',
               accountId: status.getIn(['account', 'id']),
               url: status.get('uri'),
             },
