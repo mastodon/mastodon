@@ -17,17 +17,6 @@ RSpec.describe Admin::ExportDomainAllowsController do
     end
   end
 
-  describe 'GET #export' do
-    it 'renders instances' do
-      Fabricate(:domain_allow, domain: 'good.domain')
-      Fabricate(:domain_allow, domain: 'better.domain')
-
-      get :export, params: { format: :csv }
-      expect(response).to have_http_status(200)
-      expect(response.body).to eq(domain_allows_csv_file)
-    end
-  end
-
   describe 'POST #import' do
     it 'allows imported domains' do
       post :import, params: { admin_import: { data: fixture_file_upload('domain_allows.csv') } }
@@ -49,11 +38,5 @@ RSpec.describe Admin::ExportDomainAllowsController do
       expect(response).to redirect_to(admin_instances_path)
       expect(flash[:error]).to eq(I18n.t('admin.export_domain_allows.no_file'))
     end
-  end
-
-  private
-
-  def domain_allows_csv_file
-    File.read(File.join(file_fixture_path, 'domain_allows.csv'))
   end
 end

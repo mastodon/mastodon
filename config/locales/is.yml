@@ -1743,6 +1743,9 @@ is:
       self_vote: Þú getur ekki greitt atkvæði í þínum eigin könnunum
       too_few_options: verður að vera með fleiri en eitt atriði
       too_many_options: getur ekki innihaldið meira en %{max} atriði
+    vote: Greiða atkvæði
+  posting_defaults:
+    explanation: Þessar stillingar verða notaðar sjálfgefið þegar útbúnar eru nýjar færslur, en hægt er að breyta þeim í ritlinum fyrir hverja og eina færslu.
   preferences:
     other: Annað
     posting_defaults: Sjálfgefin gildi við gerð færslna
@@ -1913,18 +1916,17 @@ is:
       ownership: Færslur frá einhverjum öðrum er ekki hægt að festa
       reblog: Ekki er hægt að festa endurbirtingu
     quote_policies:
-      followers: Einungis þeir sem fylgjast með þér
-      nobody: Enginn
-      public: Allir
+      followers: Einungis fylgjendur
+      nobody: Bara ég
+      public: Hver sem er
     title: "%{name}: „%{quote}‟"
     visibilities:
       direct: Einkaspjall
       private: Einungis fylgjendur
-      private_long: Aðeins birt fylgjendum
       public: Opinber
-      public_long: Allir geta séð
-      unlisted: Óskráð
-      unlisted_long: Allir geta skoðað, en er ekki talið upp á opinberum tímalínum
+      public_long: Hver sem er, á og utan Mastodon
+      unlisted: Hljóðlátt opinbert
+      unlisted_long: Falið frá leitarniðurstöðum Mastodon, vinsældalistum og opinberum tímalínum
   statuses_cleanup:
     enabled: Sjálfkrafa eyða eldri færslum
     enabled_hint: Eyðir sjálfkrafa færslum þínum um leið og þær ná tilteknum aldursmörkum, nema ef þær samsvara einni af undantekningunum hér fyrir neðan

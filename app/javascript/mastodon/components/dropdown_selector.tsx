@@ -39,23 +39,9 @@ export const DropdownSelector: React.FC<Props> = ({
   onClose,
   onChange,
 }) => {
-  const nodeRef = useRef<HTMLUListElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
   const focusedItemRef = useRef<HTMLLIElement>(null);
   const [currentValue, setCurrentValue] = useState(value);
-
-  const handleDocumentClick = useCallback(
-    (e: MouseEvent | TouchEvent) => {
-      if (
-        nodeRef.current &&
-        e.target instanceof Node &&
-        !nodeRef.current.contains(e.target)
-      ) {
-        onClose();
-        e.stopPropagation();
-      }
-    },
-    [nodeRef, onClose],
-  );
 
   const handleClick = useCallback(
     (
@@ -88,30 +74,30 @@ export const DropdownSelector: React.FC<Props> = ({
           break;
         case 'ArrowDown':
           element =
-            nodeRef.current?.children[index + 1] ??
-            nodeRef.current?.firstElementChild;
+            listRef.current?.children[index + 1] ??
+            listRef.current?.firstElementChild;
           break;
         case 'ArrowUp':
           element =
-            nodeRef.current?.children[index - 1] ??
-            nodeRef.current?.lastElementChild;
+            listRef.current?.children[index - 1] ??
+            listRef.current?.lastElementChild;
           break;
         case 'Tab':
           if (e.shiftKey) {
             element =
-              nodeRef.current?.children[index - 1] ??
-              nodeRef.current?.lastElementChild;
+              listRef.current?.children[index - 1] ??
+              listRef.current?.lastElementChild;
           } else {
             element =
-              nodeRef.current?.children[index + 1] ??
-              nodeRef.current?.firstElementChild;
+              listRef.current?.children[index + 1] ??
+              listRef.current?.firstElementChild;
           }
           break;
         case 'Home':
-          element = nodeRef.current?.firstElementChild;
+          element = listRef.current?.firstElementChild;
           break;
         case 'End':
-          element = nodeRef.current?.lastElementChild;
+          element = listRef.current?.lastElementChild;
           break;
       }
 
@@ -123,12 +109,24 @@ export const DropdownSelector: React.FC<Props> = ({
         e.stopPropagation();
       }
     },
-    [nodeRef, items, onClose, handleClick, setCurrentValue],
+    [items, onClose, handleClick, setCurrentValue],
   );
 
   useEffect(() => {
+    const handleDocumentClick = (e: MouseEvent | TouchEvent) => {
+      if (
+        listRef.current &&
+        e.target instanceof Node &&
+        !listRef.current.contains(e.target)
+      ) {
+        onClose();
+        e.stopPropagation();
+      }
+    };
+
     document.addEventListener('click', handleDocumentClick, { capture: true });
     document.addEventListener('touchend', handleDocumentClick, listenerOptions);
+
     focusedItemRef.current?.focus({ preventScroll: true });
 
     return () => {
@@ -141,10 +139,10 @@ export const DropdownSelector: React.FC<Props> = ({
         listenerOptions,
       );
     };
-  }, [handleDocumentClick]);
+  }, [onClose]);
 
   return (
-    <ul style={style} role='listbox' ref={nodeRef}>
+    <ul style={style} role='listbox' ref={listRef}>
       {items.map((item) => (
         <li
           role='option'

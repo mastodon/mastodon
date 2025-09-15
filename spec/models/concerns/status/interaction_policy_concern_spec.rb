@@ -7,7 +7,7 @@ RSpec.describe Status::InteractionPolicyConcern do
 
   describe '#quote_policy_as_keys' do
     it 'returns the expected values' do
-      expect(status.quote_policy_as_keys(:automatic)).to eq ['unknown', 'followers']
+      expect(status.quote_policy_as_keys(:automatic)).to eq ['unsupported_policy', 'followers']
       expect(status.quote_policy_as_keys(:manual)).to eq ['public']
     end
   end

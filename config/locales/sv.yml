@@ -1739,6 +1739,7 @@ sv:
       self_vote: Du kan inte rösta i dina egna omröstningar
       too_few_options: måste ha mer än ett objekt
       too_many_options: kan inte innehålla mer än %{max} objekt
+    vote: Rösta
   preferences:
     other: Annat
     posting_defaults: Standardinställningar för inlägg
@@ -1908,18 +1909,9 @@ sv:
       limit: Du har redan fäst det maximala antalet inlägg
       ownership: Någon annans inlägg kan inte fästas
       reblog: En boost kan inte fästas
-    quote_policies:
-      followers: Endast dina följare
-      nobody: Ingen
-      public: Alla
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: Endast följare
-      private_long: Visa endast till följare
       public: Offentlig
-      public_long: Alla kan se
-      unlisted: Olistade
-      unlisted_long: Alla kan se, men listas inte på offentliga tidslinjer
   statuses_cleanup:
     enabled: Ta automatiskt bort gamla inlägg
     enabled_hint: Raderar dina inlägg automatiskt när de når en specifik ålder, såvida de inte matchar något av undantagen nedan

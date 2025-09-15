@@ -1856,6 +1856,9 @@ ga:
       self_vote: Ní féidir leat vótáil i do phobalbhreith féin
       too_few_options: caithfidh níos mó ná mír amháin a bheith ann
       too_many_options: ní féidir níos mó ná %{max} mír a bheith ann
+    vote: Vótaigh
+  posting_defaults:
+    explanation: Úsáidfear na socruithe seo mar réamhshocruithe nuair a chruthaíonn tú poist nua, ach is féidir leat iad a chur in eagar in aghaidh an phoist laistigh den chumadóir.
   preferences:
     other: Eile
     posting_defaults: Réamhshocruithe á bpostáil
@@ -2038,17 +2041,17 @@ ga:
       ownership: Ní féidir postáil duine éigin eile a phionnáil
       reblog: Ní féidir treisiú a phinnáil
     quote_policies:
-      followers: Do leanúna amháin
-      nobody: Aon duine
-      public: Gach duine
+      followers: Leantóirí amháin
+      nobody: Mise amháin
+      public: Aon duine
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Lua príobháideach
       private: Leantóirí amháin
-      private_long: Taispeáin do leantóirí amháin
       public: Poiblí
-      public_long: Is féidir le gach duine a fheiceáil
-      unlisted: Neamhliostaithe
-      unlisted_long: Is féidir le gach duine a fheiceáil, ach nach bhfuil liostaithe ar amlínte poiblí
+      public_long: Aon duine ar Mastodon agus lasmuigh de
+      unlisted: Pobal ciúin
+      unlisted_long: I bhfolach ó thorthaí cuardaigh Mastodon, treochtaí, agus amlínte poiblí
   statuses_cleanup:
     enabled: Scrios seanphostálacha go huathoibríoch
     enabled_hint: Scriostar do phostálacha go huathoibríoch nuair a shroicheann siad tairseach aoise sonraithe, ach amháin má thagann siad le ceann de na heisceachtaí thíos

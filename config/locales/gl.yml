@@ -1739,6 +1739,9 @@ gl:
       self_vote: Non podes votar nas túas enquisas
       too_few_options: debe ter máis de unha opción
       too_many_options: non pode haber máis de %{max} opcións
+    vote: Votar
+  posting_defaults:
+    explanation: Estes axustes vanse usar como valores por defecto para as novas publicacións, pero podes axustalas de xeito individual na caixa de edición.
   preferences:
     other: Outro
     posting_defaults: Valores por defecto
@@ -1910,17 +1913,16 @@ gl:
       reblog: Non se poden fixar as mensaxes promovidas
     quote_policies:
       followers: Só para seguidoras
-      nobody: Ninguén
+      nobody: Só para min
       public: Calquera
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Mención privada
-      private: Só seguidoras
-      private_long: Mostrar só as seguidoras
+      private: Só para seguidoras
       public: Público
-      public_long: Visible para calquera
-      unlisted: Fóra das listas
-      unlisted_long: Visible para calquera, pero non en cronoloxías públicas
+      public_long: Para calquera dentro e fóra de Mastodon
+      unlisted: Pública limitada
+      unlisted_long: Non aparece nos resultados de buscas en Mastodon, nas tendencias e cronoloxías públicas
   statuses_cleanup:
     enabled: Borrar automáticamente publicacións antigas
     enabled_hint: Borra automáticamente as túas publicacións unha vez acadan certa lonxevidade, a menos que cumpran algunha destas excepcións

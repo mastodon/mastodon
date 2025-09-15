@@ -1739,6 +1739,9 @@ fo:
       self_vote: Tú kanst ikki atkvøða í tínum egnum atkvøðugreiðslum
       too_few_options: má hava meiri enn ein valmøguleika
       too_many_options: kann ikki innihalda fleiri enn %{max} valmøguleikar
+    vote: Atkvøð
+  posting_defaults:
+    explanation: Hesar stillingar verða brúktar sum sjálvval tá stovnar nýggjar postar, men tú kanst rætta tær fyri hvønn post í rættiøkinum.
   preferences:
     other: Annað
     posting_defaults: Postingarstillingar
@@ -1909,17 +1912,17 @@ fo:
       ownership: Postar hjá øðrum kunnu ikki festast
       reblog: Ein stimbran kann ikki festast
     quote_policies:
-      followers: Einans tey, ið fylgja tær
-      nobody: Eingin
-      public: Øll
+      followers: Einans fylgjarar
+      nobody: Bara eg
+      public: Ein og hvør
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Privat umrøða
       private: Einans fylgjarar
-      private_long: Vís einans fyri fylgjarum
       public: Alment
-      public_long: Øll kunnu síggja
-      unlisted: Ólistað
-      unlisted_long: Øll kunnu síggja, men ikki listað á almennum tíðarlinjum
+      public_long: Øll í og uttanfyri Mastodon
+      unlisted: Stillur almenningur
+      unlisted_long: Fjalt frá leitiúrslitum, rákum og almennum tíðarlinjum í Mastodon
   statuses_cleanup:
     enabled: Strika gamlar postar sjálvvirkandi
     enabled_hint: Strikar postar tínar sjálvvirkandi, tá teir verða eldri enn eitt vist, uttan so at teir samsvara við eitt av undantøkunum niðanfyri
@@ -1964,6 +1967,11 @@ fo:
     does_not_match_previous_name: samsvarar ikki við undanfarna navnið
   terms_of_service:
     title: Tænastutreytir
+  terms_of_service_interstitial:
+    future_preamble_html: Vit gera broytingar í tænastutreytunum, sum fáa virknað frá <strong>%{date}</strong>. Vit eggja tær til at eftirkanna dagførdu treytirnar.
+    past_preamble_html: Vit hava broytt tænastutreytirnar síðani tú seinast vitjaði. Vit eggja tær til at eftirkanna dagførdu treytirnar.
+    review_link: Eftirkanna tænastutreytir
+    title: Tænastutreytirnar á %{domain} verða broyttar
   themes:
     contrast: Mastodon (høgur kontrastur)
     default: Mastodon (myrkt)
