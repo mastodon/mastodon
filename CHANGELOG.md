@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.25] - 2025-09-16
+
+### Fixed
+
+- Fix processing of remote edited statuses with new media and no text (#35970 by @unfokus)
+
 ## [4.2.24] - 2025-08-05
 
 ### Security
