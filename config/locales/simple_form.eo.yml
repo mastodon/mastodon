@@ -56,6 +56,7 @@ eo:
         scopes: Kiujn API-ojn la aplikaĵo permesiĝos atingi. Se vi elektas supran amplekson, vi ne bezonas elekti la individuajn.
         setting_aggregate_reblogs: Ne montri novajn plusendojn de mesaĝoj lastatempe plusenditaj (nur efikas al nove ricevitaj plusendoj)
         setting_always_send_emails: Normale, la sciigoj per retpoŝto ne estos senditaj kiam vi uzas Mastodon aktive
+        setting_default_quote_policy: Ĉi tiu agordo nur validos por afiŝoj kreitaj per la sekva versio de Mastodon, sed vi povas elekti vian preferon prepare.
         setting_default_sensitive: La tiklaj vidaŭdaĵoj estas implicite kaŝitaj kaj povas esti malkaŝitaj per alklako
         setting_display_media_default: Kaŝi plurmediojn markitajn kiel tiklaj
         setting_display_media_hide_all: Ĉiam kaŝi la vidaŭdaĵojn
@@ -148,6 +149,9 @@ eo:
         min_age: Ne devus esti malsupre la minimuma aĝo postulita de la leĝoj de via jurisdikcio.
       user:
         chosen_languages: Kun tio markita nur mesaĝoj en elektitaj lingvoj aperos en publikaj tempolinioj
+        date_of_birth:
+          one: Ni devas certigi, ke vi estas almenaŭ %{count}-jaraĝa por uzi %{domain}. Ni ne konservos ĉi tion.
+          other: Ni devas certigi, ke vi estas almenaŭ %{count}-jaraĝaj por uzi %{domain}. Ni ne konservos ĉi tion.
         role: La rolo kontrolas kiujn permesojn la uzanto havas.
       user_role:
         color: Koloro uzita por la rolo sur la UI, kun RGB-formato
@@ -228,6 +232,7 @@ eo:
         setting_boost_modal: Montri konfirman fenestron antaŭ ol diskonigi mesaĝon
         setting_default_language: Publikada lingvo
         setting_default_privacy: Privateco de afiŝado
+        setting_default_quote_policy: Kiu povas citi
         setting_default_sensitive: Ĉiam marki la vidaŭdaĵojn kiel tiklaj
         setting_delete_modal: Montri konfirman fenestron antaŭ ol forigi mesaĝon
         setting_disable_hover_cards: Malebligi profilan antaŭmontron kiam oni musumas

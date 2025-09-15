@@ -1706,6 +1706,7 @@ hu:
       self_vote: Nem szavazhatsz a saját szavazásodon
       too_few_options: több, mint egy opciónak kell lennie
       too_many_options: nem lehet több, mint %{max} opció
+    vote: Szavazás
   preferences:
     other: Egyéb
     posting_defaults: Bejegyzések alapértelmezései
@@ -1875,12 +1876,12 @@ hu:
       ownership: Nem tűzheted ki valaki más bejegyzését
       reblog: Megtolt bejegyzést nem tudsz kitűzni
     quote_policies:
-      followers: Csak a követőid
-      nobody: Senki
-      public: Mindenki
+      followers: Csak követőknek
+      nobody: Csak én
+      public: Bárki
     title: "%{name}: „%{quote}”"
     visibilities:
-      direct: Közvetlen
+      direct: Privát említés
       private: Csak követőknek
       private_long: Csak a követőidnek jelenik meg
       public: Nyilvános

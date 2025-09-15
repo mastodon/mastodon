@@ -1862,6 +1862,7 @@ ar:
       self_vote: لا يمكنك التصويت في استطلاعاتك الخاصة
       too_few_options: يجب أن يحتوي على أكثر من عنصر واحد
       too_many_options: لا يمكنه أن يحتوي أكثر مِن %{max} عناصر
+    vote: صَوّت
   preferences:
     other: إعدادات أخرى
     posting_defaults: التفضيلات الافتراضية للنشر
@@ -2047,10 +2048,12 @@ ar:
       ownership: لا يمكن تثبيت منشور نشره شخص آخر
       reblog: لا يمكن تثبيت إعادة نشر
     quote_policies:
-      public: الجميع
+      followers: للمتابِعين فقط
+      nobody: لي فقط
+      public: أيا كان
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: مباشرة
+      direct: إشارة خاصة
       private: لمتابِعيك فقط
       private_long: اعرضه لمتابعيك فقط
       public: للعامة

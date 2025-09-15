@@ -593,6 +593,7 @@ pl:
         limited: Ograniczone
         title: Moderacja
       moderation_notes:
+        create: Dodaj notatkę moderacyjną
         title: Notatki moderacyjne
       private_comment: Prywatny komentarz
       public_comment: Publiczny komentarz
@@ -1764,6 +1765,7 @@ pl:
       self_vote: Nie możesz głosować we własnych ankietach
       too_few_options: musi zawierać przynajmniej dwie opcje
       too_many_options: nie może zawierać więcej niż %{max} opcji
+    vote: Głosuj
   preferences:
     other: Pozostałe
     posting_defaults: Domyślne ustawienia wpisów
@@ -1942,11 +1944,10 @@ pl:
       reblog: Nie możesz przypiąć podbicia wpisu
     quote_policies:
       followers: Tylko obserwujący
-      nobody: Nikt
-      public: Wszyscy
+      nobody: Tylko ja
+      public: Każdy
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Bezpośredni
       private: Tylko dla obserwujących
       private_long: Widoczne tylko dla osób, które Cię obserwują
       public: Publiczne
@@ -1997,6 +1998,9 @@ pl:
     does_not_match_previous_name: nie pasuje do poprzedniej nazwy
   terms_of_service:
     title: Regulamin
+  terms_of_service_interstitial:
+    review_link: Przeglądnij Warunki Korzystania
+    title: Warunki korzystania z %{domain} zmieniają się
   themes:
     contrast: Mastodon (Wysoki kontrast)
     default: Mastodon (Ciemny)
@@ -2028,6 +2032,9 @@ pl:
     recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymi dokumentami.
     webauthn: Klucze bezpieczeństwa
   user_mailer:
+    announcement_published:
+      subject: Ogłoszenie serwisu
+      title: Ogłoszenie serwisu %{domain}
     appeal_approved:
       action: Ustawienia Konta
       explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało zatwierdzone. Twoje konto jest ponownie w dobrej kondycji.

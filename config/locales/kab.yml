@@ -395,6 +395,7 @@ kab:
       everyone: Tisirag timezwura
       privileges:
         administrator: Anedbal
+        manage_federation: Sefrek Tafidiralit
         manage_settings: Asefrek n iɣewwaṛen
         view_dashboard: Timẓriwt n tfelwit
     rules:
@@ -444,6 +445,7 @@ kab:
       media:
         title: Amidya
       open: Ldi tasuffeɣt
+      status_title: Tasuffeɣt sɣur @%{name}
       trending: Inezzaɣ
       visibility: Abani
       with_media: S umidya
@@ -454,6 +456,8 @@ kab:
         action: Wali tasemlit
       rules_check:
         action: Sefrek ilugan n uqeddac
+      software_version_check:
+        message_html: Yella lqem n Mastodon.
       software_version_critical_check:
         action: Wali ileqqman yellan
       software_version_patch_check:
@@ -466,7 +470,10 @@ kab:
       title: Ihacṭagen
     terms_of_service:
       changelog: Amaynut
+      create: Sqedcet ayla-nwen
       draft: Arewway
+      generates:
+        action: Sirew
       history: Amazray
       live: Srid
       publish: Asuffeɣ
@@ -476,6 +483,7 @@ kab:
     trends:
       allow: Sireg
       links:
+        allow: Sireg aseɣwen
         title: Iseɣwan inezzaɣ
       statuses:
         title: Tisuffaɣ tinezzaɣ
@@ -491,6 +499,7 @@ kab:
     webhooks:
       delete: Kkes
       enable: Rmed
+      enabled: D urmid
   admin_mailer:
     new_report:
       body: "%{reporter} yettwazen ɣef %{target}"
@@ -559,6 +568,7 @@ kab:
       accept: Qbel
       back: Tuɣalin
       invited_by: 'Tzemreḍ ad tkecmeḍ ɣer %{domain} s tanemmirt i tinnubga i d-teṭṭfeḍ sɣur :'
+      preamble: Tiyi ttwasemmant-d yerna ttwaḍemnent sɣur imḍebbren n %{domain}.
       preamble_invited: Uqbel ad tkemmleḍ, ttxil-k·m ẓer ilugan i d-sbedden yimkariyen n %{domain}.
       title: Kra n yilugan igejdanen.
       title_invited: Tettwaɛerḍeḍ.
@@ -570,6 +580,7 @@ kab:
       preamble_html: Kcem ar <strong>%{domain}</strong> s inekcam-inek n tuqqna. Ma yella yezga-d umiḍan-ik deg uqeddac-nniḍen, ur tezmireḍ ara ad tkecmeḍ sya.
       title: Akeččum ɣer %{domain}
     sign_up:
+      preamble: S umiḍan yellan deg uqeddac-a n Mastodon, ad tizimreḍ ad t-ḍefreḍ yal yiwen nniḍen i yellan deg fediverse, akken yebɣu yili wanda i yella umiḍan-nsen.
       title: Iyya ad d-nessewjed tiɣawsiwin i %{domain}.
     status:
       account_status: Addad n umiḍan
@@ -632,6 +643,7 @@ kab:
       date: Azemz
       download: Sider-d aḥraz-ik·im
       size: Teɣzi
+    blocks: Tregleḍ
     bookmarks: Ticraḍ
     csv: CSV
     lists: Tibdarin
@@ -843,6 +855,8 @@ kab:
     statuses_cleanup: Tukksa tawurmant n tsuffaɣ
     two_factor_authentication: Asesteb s snat n tarrayin
     webauthn_authentication: Tisura n teɣlist
+  severed_relationships:
+    download: Azdam (%{count})
   statuses:
     attached:
       audio:
@@ -855,11 +869,8 @@ kab:
         one: "%{count} n tbidyutt"
         other: "%{count} n tbidyutin"
     edited_at_html: Tettwaẓreg ass n %{date}
-    quote_policies:
-      public: Yal yiwen
     title: '%{name} : "%{quote}"'
     visibilities:
-      direct: Usrid
       private: Imeḍfaṛen kan
       private_long: Ssken i ymeḍfaṛen kan
       public: Azayez
@@ -902,6 +913,8 @@ kab:
   user_mailer:
     appeal_approved:
       action: Iɣewwaṛen n umiḍan
+    suspicious_sign_in:
+      change_password: snifel awal-ik·im n uɛeddi
     terms_of_service_changed:
       sign_off: Agraw n %{domain}
     warning:
@@ -941,6 +954,9 @@ kab:
   verification:
     here_is_how: Ha-t-a amek
     verification: Asenqed
+    website_verification: Asenqed n usmel web
   webauthn_credentials:
     add: Rnu tasarut n teɣlist tamaynut
+    create:
+      success: Tasarut-ik·im n tɣellist tettwarna akken iwata.
     delete: Kkes
