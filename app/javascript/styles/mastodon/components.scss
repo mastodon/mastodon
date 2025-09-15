@@ -3,7 +3,7 @@
 @use 'functions' as *;
 @use 'mixins' as *;
 
-div[aria-label$="shillest.net"] img[alt^=":stamp"] {
+div[aria-label$='shillest.net'] img[alt^=':stamp'] {
   height: auto !important;
   width: auto !important;
   max-height: 110px !important;
@@ -1608,7 +1608,6 @@ body > [data-popper-placement] {
   align-items: center;
   gap: 10px;
   overflow: hidden;
-  flex-grow: 1;
 
   .display-name {
     bdi {
@@ -11425,7 +11424,7 @@ noscript {
   }
 
   &__header {
-    padding: 12px 6px 0px 16px;
+    padding: 12px 6px 0 16px;
     color: $darker-text-color;
     inset-inline-end: 0;
     display: flex;
