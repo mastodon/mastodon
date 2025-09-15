@@ -74,9 +74,9 @@ export default class MediaAttachments extends ImmutablePureComponent {
               width={width}
               height={height}
               poster={audio.get('preview_url') || status.getIn(['account', 'avatar_static'])}
-              backgroundColor={audio.getIn(['meta', 'colors', 'background'])}
-              foregroundColor={audio.getIn(['meta', 'colors', 'foreground'])}
-              accentColor={audio.getIn(['meta', 'colors', 'accent'])}
+              backgroundColor={audio.getIn(['meta', 'colors', 'background']) ?? status.getIn(['account', 'avatar_meta', 'colors', 'background'])}
+              foregroundColor={audio.getIn(['meta', 'colors', 'foreground']) ?? status.getIn(['account', 'avatar_meta', 'colors', 'foreground'])}
+              accentColor={audio.getIn(['meta', 'colors', 'accent']) ?? status.getIn(['account', 'avatar_meta', 'colors', 'accent'])}
               duration={audio.getIn(['meta', 'original', 'duration'], 0)}
             />
           )}

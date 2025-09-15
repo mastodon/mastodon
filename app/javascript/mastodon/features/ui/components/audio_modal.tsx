@@ -18,8 +18,8 @@ const AudioModal: React.FC<{
 }> = ({ media, statusId, options, onClose, onChangeBackgroundColor }) => {
   const status = useAppSelector((state) => state.statuses.get(statusId));
   const accountId = status?.get('account') as string | undefined;
-  const accountStaticAvatar = useAppSelector((state) =>
-    accountId ? state.accounts.get(accountId)?.avatar_static : undefined,
+  const account = useAppSelector((state) =>
+    accountId ? state.accounts.get(accountId) : undefined,
   );
 
   useEffect(() => {
@@ -47,16 +47,24 @@ const AudioModal: React.FC<{
           alt={description}
           lang={language}
           poster={
-            (media.get('preview_url') as string | null) ?? accountStaticAvatar
+            (media.get('preview_url') as string | null) ??
+            account?.avatar_static
           }
           duration={media.getIn(['meta', 'original', 'duration'], 0) as number}
           backgroundColor={
-            media.getIn(['meta', 'colors', 'background']) as string
+            (media.getIn(['meta', 'colors', 'background']) as
+              | string
+              | undefined) ?? account?.avatar_meta.colors?.background
           }
           foregroundColor={
-            media.getIn(['meta', 'colors', 'foreground']) as string
+            (media.getIn(['meta', 'colors', 'foreground']) as
+              | string
+              | undefined) ?? account?.avatar_meta.colors?.foreground
           }
-          accentColor={media.getIn(['meta', 'colors', 'accent']) as string}
+          accentColor={
+            (media.getIn(['meta', 'colors', 'accent']) as string | undefined) ??
+            account?.avatar_meta.colors?.accent
+          }
           startPlaying={options.autoPlay}
         />
       </div>
