@@ -129,6 +129,7 @@ export function boostItemState({
 }
 
 export function quoteItemState({
+  isLoggedIn,
   isMine,
   isQuoteAutomaticallyAccepted,
   isQuoteManuallyAccepted,
@@ -149,7 +150,8 @@ export function quoteItemState({
   } else if (isQuoteManuallyAccepted) {
     iconText.title = messages.request_quote;
     iconText.meta = messages.quote_manual_review;
-  } else {
+    // We don't show the disabled state when logged out
+  } else if (isLoggedIn) {
     iconText.disabled = true;
     iconText.iconComponent = FormatQuoteOff;
     iconText.meta = isQuoteFollowersOnly
