@@ -1739,6 +1739,9 @@ pt-PT:
       self_vote: Não podes votar numa sondagem criada por ti
       too_few_options: tem de ter mais do que um item
       too_many_options: não pode conter mais do que %{max} itens
+    vote: Votar
+  posting_defaults:
+    explanation: Essas configurações serão utilizadas como padrão quando criar novas publicações, mas poderá alterá-las individualmente no editor.
   preferences:
     other: Outro
     posting_defaults: Padrões de publicação
@@ -1915,8 +1918,10 @@ pt-PT:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Menção privada
+      private: Apenas seguidores
       public: Público
       public_long: Qualquer pessoa dentro e fora do Mastodon
+      unlisted: Não listado
       unlisted_long: Oculto dos resultados de pesquisa, tendências e linhas do tempo públicas do Mastodon
   statuses_cleanup:
     enabled: Eliminar publicações antigas automaticamente

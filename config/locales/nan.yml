@@ -885,6 +885,67 @@ nan:
       metadata: Meta資料
       no_history: Tsit篇PO文iáu無hōo lâng編輯
       no_status_selected: 因為無揀任何PO文，所以lóng無改變
+      open: 公開PO文
+      original_status: 原底ê PO文
+      reblogs: 轉送
+      replied_to_html: 回應 %{acct_link}
+      status_changed: PO文有改ah
+      status_title: 由 @%{name} 所PO
+      title: Tsit ê口座ê PO文 - @%{name}
+      trending: 趨勢
+      view_publicly: 公開看
+      visibility: 通看ê程度
+      with_media: 有媒體
+    strikes:
+      actions:
+        delete_statuses: "%{name} kā %{target} ê PO文thâi掉ah"
+        disable: "%{name} kā %{target} ê口座冷凍ah"
+        mark_statuses_as_sensitive: "%{name} kā %{target} êPO文標做敏感ê內容"
+        none: "%{name} 送警告hōo %{target} ah"
+        sensitive: "%{name} kā %{target} ê口座標做敏感"
+        silence: "%{name} 限制 %{target} ê口座"
+        suspend: "%{name} kā %{target} ê口座停止權限ah"
+      appeal_approved: 投訴ah
+      appeal_pending: 投訴teh等審核
+      appeal_rejected: 投訴hōo lâng拒絕
+    system_checks:
+      database_schema_check:
+        message_html: 有leh等待處理ê資料庫遷suá。請執行tsiah-ê，來保證應用程式照期望pháng
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch ê索引分析器過期ah。請執行 <code>tootctl search deploy --only-mapping --only=%{value}</code>
+      elasticsearch_health_red:
+        message_html: Elasticsearch ê cluster無健康（紅色ê狀態），bē當用tshiau-tshuē功能
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch ê cluster無健康（黃色ê狀態），lí可能想beh調查原因。
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch索引對應過期ah。請執行 <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: 看文件
+        message_html: Lí ê Elasticsearch ê cluster有超過tsi̍t ê節點，m̄-kú Mastodon iáu無設定用in。
+      elasticsearch_preset_single_node:
+        action: 看文件
+        message_html: Lí ê Elasticsearch 叢集kan-ta有tsi̍t ê節點，<code>ES_PRESET</code> 應該設定做 <code>single_node_cluster</code>。
+      elasticsearch_reset_chewy:
+        message_html: Lí ê Elasticsearch系統索引因為設定改變，過期ah。請執行 <code>tootctl search deploy --reset-chewy</code> 來更新。
+      elasticsearch_running_check:
+        message_html: Bē當連接 Elasticsearch。請確認kám有teh pháng，á是停用全文tshiau-tshuē
+      elasticsearch_version_check:
+        message_html: Bē當相容ê Elasticsearch版本：%{value}
+        version_comparison: Elasticsearch %{running_version} 版teh pháng，m̄-kú 愛 %{required_version} 版。
+      rules_check:
+        action: 管理服侍器ê規則
+        message_html: Lí iáu bē定義任何服侍器ê規則。
+      sidekiq_process_check:
+        message_html: 排列 %{value} 無leh pháng Sidekiq ê程序。請檢視lí ê Sidekiq 設定
+      software_version_check:
+        action: 看ē當the̍h ê更新
+        message_html: 有Mastodon ê更新ē當載落去。
+      software_version_critical_check:
+        action: 看ē當the̍h ê更新
+        message_html: 有重大ê Mastodon更新ē當載落去，請趕緊更新。
+      software_version_patch_check:
+        action: 看ē當the̍h ê更新
+        message_html: 有修正錯誤ê Mastodon ê更新，ē當載落去。
     trends:
       tags:
         dashboard:
