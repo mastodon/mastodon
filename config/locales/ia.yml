@@ -1739,6 +1739,9 @@ ia:
       self_vote: Tu non pote votar in tu proprie sondages
       too_few_options: debe haber plus de un elemento
       too_many_options: non pote continer plus de %{max} elementos
+    vote: Votar
+  posting_defaults:
+    explanation: Iste parametros essera usate como predefinite quando tu crea nove messages, ma tu pote modificar los pro cata message in le compositor.
   preferences:
     other: Alteres
     posting_defaults: Parametros de publication predefinite
@@ -1915,8 +1918,10 @@ ia:
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Mention private
+      private: Solmente sequitores
       public: Public
       public_long: Quicunque, sur Mastodon o non
+      unlisted: Public ma quiete
       unlisted_long: Celate in resultatos de recerca, tendentias e chronologias public de Mastodon
   statuses_cleanup:
     enabled: Deler automaticamente le messages ancian
