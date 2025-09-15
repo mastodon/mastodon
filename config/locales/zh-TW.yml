@@ -1669,6 +1669,7 @@ zh-TW:
       self_vote: 您無法於您的嘟文投票
       too_few_options: 必須包含至少一個項目
       too_many_options: 不能包含多於 %{max} 個項目
+    vote: 投票
   preferences:
     other: 其他
     posting_defaults: 嘟文預設值
@@ -1834,9 +1835,9 @@ zh-TW:
       ownership: 不能釘選他人的嘟文
       reblog: 不能釘選轉嘟
     quote_policies:
-      followers: 僅限您之跟隨者
-      nobody: 禁止任何人
-      public: 任何人
+      followers: 僅限跟隨者
+      nobody: 僅有我
+      public: 所有人
     title: "%{name}：「%{quote}」"
     visibilities:
       direct: 私訊

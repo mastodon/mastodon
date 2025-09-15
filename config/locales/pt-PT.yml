@@ -1706,6 +1706,7 @@ pt-PT:
       self_vote: Não podes votar numa sondagem criada por ti
       too_few_options: tem de ter mais do que um item
       too_many_options: não pode conter mais do que %{max} itens
+    vote: Votar
   preferences:
     other: Outro
     posting_defaults: Padrões de publicação
@@ -1875,10 +1876,12 @@ pt-PT:
       ownership: Não podem ser fixadas publicações de outras pessoas
       reblog: Não é possível fixar um impulso
     quote_policies:
+      followers: Apenas para seguidores
+      nobody: Apenas eu
       public: Todos
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Direto
+      direct: Menção privada
       private: Só para seguidores
       private_long: Mostrar só aos seguidores
       public: Público

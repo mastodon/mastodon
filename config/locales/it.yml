@@ -1708,6 +1708,7 @@ it:
       self_vote: Non puoi votare nei tuoi sondaggi
       too_few_options: deve avere più di un elemento
       too_many_options: non può contenere più di %{max} elementi
+    vote: Vota
   preferences:
     other: Altro
     posting_defaults: Predefinite di pubblicazione
@@ -1877,12 +1878,12 @@ it:
       ownership: Non puoi fissare in cima un post di qualcun altro
       reblog: Un toot condiviso non può essere fissato in cima
     quote_policies:
-      followers: Solo i tuoi seguaci
-      nobody: Nessuno
-      public: Tutti
+      followers: Solo i seguaci
+      nobody: Solo io
+      public: Chiunque
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Diretto
+      direct: Menzione privata
       private: Mostra solo ai tuoi seguaci
       private_long: Mostra solo ai seguaci
       public: Pubblico

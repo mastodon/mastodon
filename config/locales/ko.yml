@@ -1669,6 +1669,7 @@ ko:
       self_vote: 자신이 만든 설문에는 투표할 수 없음
       too_few_options: 둘 이상의 항목이 있어야 함
       too_many_options: 항목은 %{max}개를 넘을 수 없습니다
+    vote: 투표
   preferences:
     other: 기타
     posting_defaults: 게시물 기본설정
@@ -1834,10 +1835,12 @@ ko:
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
     quote_policies:
-      public: 모두
+      followers: 팔로워만
+      nobody: 나만
+      public: 누구나
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: 다이렉트
+      direct: 개인 멘션
       private: 비공개
       private_long: 팔로워에게만 공개됩니다
       public: 공개

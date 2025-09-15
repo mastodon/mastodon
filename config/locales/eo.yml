@@ -578,6 +578,8 @@ eo:
         all: Ĉiuj
         limited: Limigita
         title: Moderigado
+      moderation_notes:
+        title: Notoj de moderigado
       private_comment: Privata komento
       public_comment: Publika komento
       purge: Purigu
@@ -786,17 +788,24 @@ eo:
       title: Roloj
     rules:
       add_new: Aldoni regulon
+      add_translation: Aldoni tradukon
       delete: Forigi
       description_html: Kvankam plej da personoj pretendas legi kaj asenti servkondiĉoj, personoj kutime ne komplete legi. <strong>Uzu mallonga kaj simpla listo.</strong>.
       edit: Redakti la regulon
       empty: Neniuj servilregulojn definitas ĝis nun.
+      move_down: Movi malsupren
+      move_up: Movi supren
       title: Reguloj de la servilo
+      translation: Traduko
+      translations: Tradukoj
     settings:
       about:
         manage_rules: Administri servilregulojn
         preamble: Donu specifan informon pri kiel la servilo operaciitas, administras kaj financitas.
         rules_hint: Havas apartan areon por regulojn kiujn via uzantoj devus sekvi.
         title: Pri
+      allow_referrer_origin:
+        title: Permesi al eksteraj retejoj vidi vian Mastodon-servilon kiel trafikfonton
       appearance:
         preamble: Personecigi retinterfaco de Mastodon.
         title: Aspekto
@@ -816,6 +825,7 @@ eo:
       discovery:
         follow_recommendations: Sekvorekomendoj
         preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
+        privacy: Privateco
         profile_directory: Profilujo
         public_timelines: Publikaj templinioj
         publish_statistics: Publikigi statistikojn
@@ -1691,6 +1701,7 @@ eo:
       self_vote: Vi ne povas voĉdoni en viaj propraj balotenketoj
       too_few_options: devas enhavi pli da unu propono
       too_many_options: ne povas enhavi pli da %{max} proponoj
+    vote: Voĉdoni
   preferences:
     other: Aliaj aferoj
     posting_defaults: Afiŝaj defaŭltoj
@@ -1860,10 +1871,12 @@ eo:
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
     quote_policies:
-      public: Ĉiuj
+      followers: Nur sekvantoj
+      nobody: Nur mi
+      public: Iu ajn
     title: "%{name}: “%{quote}”"
     visibilities:
-      direct: Rekta
+      direct: Privada mencio
       private: Montri nur al sekvantoj
       private_long: Montri nur al sekvantoj
       public: Publika
@@ -1914,6 +1927,9 @@ eo:
     does_not_match_previous_name: ne kongruas kun la antaŭa nomo
   terms_of_service:
     title: Kondiĉoj de uzado
+  terms_of_service_interstitial:
+    past_preamble_html: Ni ŝanĝis niajn servkondiĉojn ekde via lasta vizito. Ni instigas vin revizii la ĝisdatigitajn kondiĉojn.
+    title: La servkondiĉoj de %{domain} ŝanĝiĝas
   themes:
     contrast: Mastodon (Forta kontrasto)
     default: Mastodon (Malhela)
@@ -2090,4 +2106,4 @@ eo:
     not_enabled: Vi ankoraŭ ne ŝaltis WebAuth
     not_supported: Ĉi tiu legilo ne povas uzi sekurecŝlosilojn
     otp_required: Por uzi sekurecŝlosilojn, ebligu 2-faktoran autentigon unue.
-    registered_on: Registrigita je %{date}
+    registered_on: Registrita je %{date}

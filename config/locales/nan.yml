@@ -25,7 +25,7 @@ nan:
       action: 執行動作
       already_silenced: Tsit ê口座有受著限制。
       already_suspended: Tsit ê口座ê權限已經hōo lâng停止。
-      title: Kā %{acct} 做審核ê動作
+      title: Kā %{acct} 做管理ê動作
     account_moderation_notes:
       create: 留記錄
       created_msg: 管理記錄成功建立！
@@ -235,7 +235,7 @@ nan:
         update_status: 更新PO文
         update_user_role: 更新角色
       actions:
-        approve_appeal_html: "%{name} 允准 %{target} 所寫ê tuì審核決定ê投訴"
+        approve_appeal_html: "%{name} 允准 %{target} 所寫ê tuì管理決定ê投訴"
         approve_user_html: "%{name} 允准 %{target} ê 註冊"
         assigned_to_self_report_html: "%{name} kā報告 %{target} 分配hōo家tī"
         change_email_user_html: "%{name} 改變 %{target} ê電子phue地址"
@@ -277,7 +277,7 @@ nan:
         memorialize_account_html: "%{name} kā %{target} 設做故人口座"
         promote_user_html: "%{name} kā 用者 %{target} 升級"
         publish_terms_of_service_html: "%{name} 公佈服務規則ê更新"
-        reject_appeal_html: "%{name} 拒絕 %{target} 所寫ê tuì審核決定ê投訴"
+        reject_appeal_html: "%{name} 拒絕 %{target} 所寫ê tuì管理決定ê投訴"
         reject_user_html: "%{name} 拒絕 %{target} ê 註冊"
         remove_avatar_user_html: "%{name} thâi掉 %{target} ê標頭"
         reopen_report_html: "%{name} 重開 %{target} ê檢舉"
@@ -380,7 +380,7 @@ nan:
       software: 軟體
       sources: 註冊ê源頭
       space: 空間ê使用
-      title: Le-jí-páng (dashboard)
+      title: La-jí-báng (dashboard)
       top_languages: 上tsia̍p出現ê語言
       top_servers: 上tsia̍p活動ê服侍器
       website: 網站
@@ -661,7 +661,7 @@ nan:
         none: 無
       comment_description_html: 為著提供其他資訊，%{name} 寫：
       confirm: 確認
-      confirm_action: 確認kā %{acct} 審核ê動作
+      confirm_action: 確認kā %{acct} 管理ê動作
       created_at: 檢舉tī
       delete_and_resolve: Thâi掉PO文
       forwarded: 轉送ah
@@ -684,11 +684,262 @@ nan:
       remote_user_placeholder: tuì %{instance} 來ê遠距離用者
       reopen: 重頭phah開檢舉
       report: '檢舉 #%{id}'
+      reported_account: 受檢舉ê口座
+      reported_by: 檢舉人
+      reported_with_application: 用應用程式檢舉
+      resolved: 解決ah
+      resolved_msg: 檢舉成功解決ah！
+      skip_to_actions: 跳kàu行動
+      status: 狀態
+      statuses: 受檢舉ê內容
+      statuses_description_html: 冒犯ê內容ē引用tī kap受檢舉口座ê聯絡
+      summary:
+        action_preambles:
+          delete_html: Lí teh-beh <strong>thâi掉</strong> <strong>@%{acct}</strong> ê tsi̍t-kuá PO文。Tse ē：
+          mark_as_sensitive_html: Lí teh-beh <strong>kā</strong> <strong>@%{acct}</strong> ê tsi̍t-kuá PO文<strong>標做敏感</strong>。Tse ē：
+          silence_html: Lí teh-beh <strong>限制</strong> <strong>@%{acct}</strong> ê口座。Tse ē：
+          suspend_html: Lí teh-beh <strong>停止</strong> <strong>@%{acct}</strong> ê口座權限。Tse ē：
+        actions:
+          delete_html: Thâi掉冒犯ê PO文
+          mark_as_sensitive_html: Kā冒犯êPO文ê媒體標做敏感
+          silence_html: Kā in ê個人資料kap內容標做kan-ta有跟tuè ê，á是手動tshiau伊ê個人檔案ê，通看見，來嚴嚴限制 <strong>@%{acct}</strong> ê傳播範圍
+          suspend_html: Kā <strong>@%{acct}</strong> 停止權限，koh kā in ê 個人資料kap內容標做bē當用，kap bē當hām in互動
+        close_report: 'Kā 檢舉報告 #%{id} 標做解決ah'
+        close_reports_html: Kā <strong>ta̍k ê</strong>tuì <strong>@%{acct}</strong> ê檢舉標做解決ah
+        delete_data_html: Tuì tann起30kang以後，thâi掉 <strong>@%{acct}</strong> ê個人資料kap內容，除非佇tsit ê期限進前，取消停止in ê權限
+        preview_preamble_html: "<strong>@%{acct}</strong> ē收著警告，包含下kha ê內容："
+        record_strike_html: 記錄tuì <strong>@%{acct}</strong>ê警告，來幫tsān lí提升佇tsit ê口座ê未來違規
+        send_email_html: Kā警告電子phue寄hōo <strong>@%{acct}</strong>
+        warning_placeholder: 通選ê，管理行動ê補充理由
+      target_origin: 受檢舉ê口座ê來源
+      title: 檢舉
+      unassign: 取消分配
+      unknown_action_msg: M̄知影ê動作：%{action}
+      unresolved: 無解決
+      updated_at: 更新
+      view_profile: 看個人資料
     roles:
+      add_new: 加添角色
+      assigned_users:
+        other: "%{count} ê用者"
+      categories:
+        administration: 管理員
+        devops: DevOps
+        invites: 邀請
+        moderation: 管理
+        special: 特別
+      delete: Thâi掉
+      description_html: 用<strong>用者角色</strong>，lí通自訂lí ê用者ē當接近使用Mastodon ê siánn物功能kap區域。
+      edit: 編「%{name}」ê角色
+      everyone: 預設ê權限
+      everyone_full_description_html: Tse是ē影響<strong>所有用者</strong>ê<strong>基本角色</strong>，就算是無分配tio̍h角色ê mā kâng款。所有其他ê角色繼承伊ê權限。
+      permissions_count:
+        other: "%{count} ê權限"
       privileges:
+        administrator: 管理員
+        administrator_description: 有tsit ê權限ê用者ē忽略所有ê權限。
+        delete_user_data: Thâi掉用者ê資料
+        delete_user_data_description: 允准用者liâm-mi thâi掉其他用者ê資料
+        invite_users: 邀請用者
+        invite_users_description: 允准用者邀請新lâng來tsit ê服侍器
         manage_announcements: 管理公告
+        manage_announcements_description: 允准用者管理佇tsit ê服侍器ê公告
+        manage_appeals: 管理投訴
+        manage_appeals_description: 允准用者審查tuì管理動作ê投訴
+        manage_blocks: 管理封鎖
+        manage_blocks_description: 允准用者封鎖電子phue ê 提供者kap IP地址
+        manage_custom_emojis: 管理自訂ê Emoji
+        manage_custom_emojis_description: 允准用者管理佇tsit ê服侍器ê自訂Emoji
+        manage_federation: 管理聯邦
+        manage_federation_description: 允准用者封鎖á是允准kap其他域名相連，mā控制寄送ê能力
+        manage_invites: 管理邀請
+        manage_invites_description: 允准用者瀏覽kap停止使用邀請連結
+        manage_reports: 管理檢舉
+        manage_reports_description: 允准用者審查檢舉kap執行對in ê管理ê動作。
+        manage_roles: 管理角色
+        manage_roles_description: 允准用者管理kap分配比in khah kē ê角色
+        manage_rules: 管理規則
+        manage_rules_description: 允准用者改服侍器ê規則
+        manage_settings: 管理設定
+        manage_settings_description: 允准用者改站ê設定
+        manage_taxonomies: 管理分類
+        manage_taxonomies_description: 允准用者審核趨勢內容，kap更新hashtag ê設定
+        manage_user_access: 管理用者ê接近使用
+        manage_user_access_description: 允准用者停止其他用者ê兩階段驗證，改in ê電子phue地址，kap重頭設定in ê密碼
+        manage_users: 管理用者
+        manage_users_description: 允准用者看其他ê用者ê詳細，kap執行tuì in ê管理行動
+        manage_webhooks: 管理 Webhooks
+        manage_webhooks_description: 允許用者kā管理ê事件設定 webhooks
+        view_audit_log: 看審核ê日誌
+        view_audit_log_description: 允准用者看tsit ê服侍器ê管理行動ê歷史
+        view_dashboard: 看La-jí-báng (Dashboard)
+        view_dashboard_description: 允准用者接近使用tsit ê la-jí-báng kap tsē-tsē指標
+        view_devops: DevOps
+        view_devops_description: 允准用者接近使用Sidekiq kap pgHero ê la-jí-báng
+      title: 角色
+    rules:
+      add_new: 加添規則
+      add_translation: 加添翻譯
+      delete: Thâi掉
+      description_html: 雖bóng大部份ê lóng講有讀kap同意使用規則，m̄-koh攏無讀了，直到發生問題ê時。<strong>提供in列單ē當hōo tsi̍t kái看服侍器ê規則khah快。</strong>請試kā個別ê規則寫kah短koh簡單，m̄-kú m̄通kā in拆做tsē-tsē分開ê項目。
+      edit: 編輯規則
+      empty: Iáu bē定義服侍器ê規則。
+      move_down: Suá khah落來
+      move_up: Suá khah起去
+      title: 服侍器規則
+      translation: 翻譯
+      translations: 翻譯
+      translations_explanation: Lí ē當（但是無必要）加添tsiah-ê規則ê翻譯。若無翻譯版，預設ê值ē顯示。請一直確認任何提供ê翻譯kap預設ê同步。
+    settings:
+      about:
+        manage_rules: 管理服侍器ê規則
+        preamble: 提供關係服侍器án-nuá運作kap管理，以及資金源頭ê詳細資訊。
+        rules_hint: Tse是關係lí ê用者應該遵守ê規則ê專區。
+        title: 關係本站
+      allow_referrer_origin:
+        desc: Nā是lí ê用者點連結kàu外部網站，in ê瀏覽器可能ē kā lí ê Mastodon服侍器ê地址當做流量ê來源送出。如果tse ē唯一區別lí ê用者，比如tse是個人ê Mastodon服侍器，請kā停止使用。
+        title: 允准外部網站kā lí ê Mastodon服侍器當做流量ê來源
+      appearance:
+        preamble: 自訂Mastodon網頁ê界面。
+        title: 外觀
+      branding:
+        preamble: Lí ê服侍器品牌hōo伊kap別ê服侍器區別。Tsit ê資訊可能展示佇無kâng ê環境，比如Mastodon ê網頁界面、原底ê app、佇別站ê sing看連結ê所在kap佇通信app內底等。因為tsit ê緣故，上好kā資訊保持kah清楚、短koh簡要。
+        title: 品牌
+      captcha_enabled:
+        desc_html: Tsit ê功能需要tuì hCaptcha來ê外部kha本，可能有安全kap隱私ê顧慮。另外，<strong>tse ē明顯降kē tsi̍t寡lâng（特別是障礙者）註冊ê容易程度</strong>。因為tsiah ê緣故，請考慮別ê替代方案，比如審核制á是邀請制ê註冊。
+        title: 要求新ê用者解決CAPTCHA問題，來確認in ê口座
+      content_retention:
+        danger_zone: 危險ê所在
+        preamble: 控制使用者產生ê內容tiông佇Mastodon ê方法。
+        title: 內容保存期間
+      default_noindex:
+        desc_html: 影響逐ê iáu buē改變tsit ê設定ê用者
+        title: 預設kā用者tuì tshiau-tshuē ia̋n-jín ê索引排除
+      discovery:
+        follow_recommendations: 跟tuè建議
+        preamble: Kā心適ê內容浮現出來，ē當幫tsān tī Mastodon頂siáng lóng可能m̄知ê新手。控制tsē-tsē發現lí ê服侍器ê特色作品ê功能án-nuá運作。
+        privacy: 隱私權
+        profile_directory: 個人資料ê目錄
+        public_timelines: 公共ê時間線
+        publish_statistics: 發布統計
+        title: 發現
+        trends: 趨勢
+      domain_blocks:
+        all: Kàu ta̍k ê lâng
+        disabled: 無kàu tó tsi̍t ê
+        users: Kàu ta̍k位登入ê用者
+      registrations:
+        moderation_recommandation: 佇開放hōo ta̍k ê lâng註冊進前，請確認lí有夠額koh主動反應ê管理團隊！
+        preamble: 控制ē當佇lí ê服侍器註冊ê人。
+        title: 註冊
+      registrations_mode:
+        modes:
+          approved: 註冊tio̍h愛核准
+          none: 無lâng通註冊
+          open: Ta̍k ê lâng lóng ē當註冊
+        warning_hint: Guán建議用「註冊tio̍h愛核准」，除非lí tuì lí ê管理團隊ē當不管時處理pùn-sò訊息kap惡意註冊有信心。
+      security:
+        authorized_fetch: 要求tuì聯邦ê服侍器ê認證
+        authorized_fetch_hint: 要求tuì聯邦ê服侍器ê驗證ē當koh khah嚴格執行用者級kap服侍器級ê封鎖。M̄-kú ē致kàu性能處罰ê損失，減少lí ê回應ê擴散程度，mā有可能引入kap tsi̍t-kuá聯邦服務ê相容性問題。另外，tse bē當防止別lâng專工掠lí ê公開PO文kap口座。
+        authorized_fetch_overridden_hint: 因為hōo環境變數khàm掉，lí tsit-má bē當改tsit ê設定。
+        federation_authentication: 聯邦驗證ê執行
+      title: 服侍器ê設定
+    site_uploads:
+      delete: Thâi掉傳上去ê檔案
+      destroyed_msg: 成功thâi掉傳上去kàu本站ê內容ah！
+    software_updates:
+      critical_update: 重要—請緊升級
+      description: 建議kā lí ê Mastodon安裝維持上新ê狀態，the̍h著上新ê修正kap功能。另外，隨時更新Mastodon有時陣真重要，ē當避免安全問題。因為tsiah-ê原因，Mastodon每30分鐘檢查更新，mā ē根據lí ê電子phue通知ê偏愛設定kā lí通知。
+      documentation_link: 看詳細
+      release_notes: 版本ê資訊
+      title: Ē當the̍h ê更新
+      type: 類型
+      types:
+        major: 大ê版本更新
+        minor: 細ê版本更新
+        patch: 碎布(patch)公開—修正錯誤kap容易作用ê改變
+      version: 版本
     statuses:
+      account: 作者
+      application: 應用程式
+      back_to_account: Tńg去口座ê頁
+      back_to_report: Tńg去檢舉ê頁
+      batch:
+        add_to_report: '加kàu檢舉 #%{id}'
+        remove_from_report: Tuì檢舉suá掉
+        report: 檢舉
+      contents: 內容
+      deleted: Thâi掉ah
+      favourites: 收藏
+      history: 版本ê歷史
+      in_reply_to: 回應
       language: 語言
+      media:
+        title: 媒體
+      metadata: Meta資料
+      no_history: Tsit篇PO文iáu無hōo lâng編輯
+      no_status_selected: 因為無揀任何PO文，所以lóng無改變
+      open: 公開PO文
+      original_status: 原底ê PO文
+      reblogs: 轉送
+      replied_to_html: 回應 %{acct_link}
+      status_changed: PO文有改ah
+      status_title: 由 @%{name} 所PO
+      title: Tsit ê口座ê PO文 - @%{name}
+      trending: 趨勢
+      view_publicly: 公開看
+      visibility: 通看ê程度
+      with_media: 有媒體
+    strikes:
+      actions:
+        delete_statuses: "%{name} kā %{target} ê PO文thâi掉ah"
+        disable: "%{name} kā %{target} ê口座冷凍ah"
+        mark_statuses_as_sensitive: "%{name} kā %{target} êPO文標做敏感ê內容"
+        none: "%{name} 送警告hōo %{target} ah"
+        sensitive: "%{name} kā %{target} ê口座標做敏感"
+        silence: "%{name} 限制 %{target} ê口座"
+        suspend: "%{name} kā %{target} ê口座停止權限ah"
+      appeal_approved: 投訴ah
+      appeal_pending: 投訴teh等審核
+      appeal_rejected: 投訴hōo lâng拒絕
+    system_checks:
+      database_schema_check:
+        message_html: 有leh等待處理ê資料庫遷suá。請執行tsiah-ê，來保證應用程式照期望pháng
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch ê索引分析器過期ah。請執行 <code>tootctl search deploy --only-mapping --only=%{value}</code>
+      elasticsearch_health_red:
+        message_html: Elasticsearch ê cluster無健康（紅色ê狀態），bē當用tshiau-tshuē功能
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch ê cluster無健康（黃色ê狀態），lí可能想beh調查原因。
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch索引對應過期ah。請執行 <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: 看文件
+        message_html: Lí ê Elasticsearch ê cluster有超過tsi̍t ê節點，m̄-kú Mastodon iáu無設定用in。
+      elasticsearch_preset_single_node:
+        action: 看文件
+        message_html: Lí ê Elasticsearch 叢集kan-ta有tsi̍t ê節點，<code>ES_PRESET</code> 應該設定做 <code>single_node_cluster</code>。
+      elasticsearch_reset_chewy:
+        message_html: Lí ê Elasticsearch系統索引因為設定改變，過期ah。請執行 <code>tootctl search deploy --reset-chewy</code> 來更新。
+      elasticsearch_running_check:
+        message_html: Bē當連接 Elasticsearch。請確認kám有teh pháng，á是停用全文tshiau-tshuē
+      elasticsearch_version_check:
+        message_html: Bē當相容ê Elasticsearch版本：%{value}
+        version_comparison: Elasticsearch %{running_version} 版teh pháng，m̄-kú 愛 %{required_version} 版。
+      rules_check:
+        action: 管理服侍器ê規則
+        message_html: Lí iáu bē定義任何服侍器ê規則。
+      sidekiq_process_check:
+        message_html: 排列 %{value} 無leh pháng Sidekiq ê程序。請檢視lí ê Sidekiq 設定
+      software_version_check:
+        action: 看ē當the̍h ê更新
+        message_html: 有Mastodon ê更新ē當載落去。
+      software_version_critical_check:
+        action: 看ē當the̍h ê更新
+        message_html: 有重大ê Mastodon更新ē當載落去，請趕緊更新。
+      software_version_patch_check:
+        action: 看ē當the̍h ê更新
+        message_html: 有修正錯誤ê Mastodon ê更新，ē當載落去。
     trends:
       tags:
         dashboard:
