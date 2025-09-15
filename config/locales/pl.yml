@@ -1795,6 +1795,7 @@ pl:
       self_vote: Nie możesz głosować we własnych ankietach
       too_few_options: musi zawierać przynajmniej dwie opcje
       too_many_options: nie może zawierać więcej niż %{max} opcji
+    vote: Głosuj
   preferences:
     other: Pozostałe
     posting_defaults: Domyślne ustawienia wpisów
@@ -1974,16 +1975,11 @@ pl:
       reblog: Nie możesz przypiąć podbicia wpisu
     quote_policies:
       followers: Tylko obserwujący
-      nobody: Nikt
-      public: Wszyscy
+      nobody: Tylko ja
+      public: Każdy
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: Tylko dla obserwujących
-      private_long: Widoczne tylko dla osób, które Cię obserwują
       public: Publiczne
-      public_long: Widoczne dla wszystkich użytkowników
-      unlisted: Niewypisane
-      unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
   statuses_cleanup:
     enabled: Automatycznie usuwaj stare wiadomości
     enabled_hint: Automatycznie usuwa Twoje posty, gdy osiągną określony próg wiekowy, chyba że spełniają jeden z poniższych wyjątków

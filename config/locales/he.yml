@@ -936,7 +936,7 @@ he:
       title: פרסומי החשבון - @%{name}
       trending: נושאים חמים
       view_publicly: צפיה בפומבי
-      visibility: נראות
+      visibility: חשיפה
       with_media: עם מדיה
     strikes:
       actions:
@@ -1817,9 +1817,12 @@ he:
       self_vote: אין אפשרות להצביע במשאל שפרסמת בעצמך
       too_few_options: חייב להכיל יותר מפריט אחד
       too_many_options: לא יכול להכיל יותר מ-%{max} פריטים
+    vote: הצבעה
+  posting_defaults:
+    explanation: העדפות אלו ישמשו כברירות המחדל כשתצרו הודעה חדשה, ברם תוכלו לבחור אחרת בכל חיבור הודעה בעתיד.
   preferences:
     other: שונות
-    posting_defaults: ברירות מחדל להודעות
+    posting_defaults: ברירות מחדל בפרסום
     public_timelines: פידים פומביים
   privacy:
     hint_html: "<strong>ניתן להתאים את הצורה שבה תירצו שיראו את פרופיל המשתמש וההודעות שלכם.</strong> מגוון אפשרויות במסטודון יכולות לעזור לכם להיחשף לקהל רחב יותר כאשר תפעילו אותן. הקדישו רגע לבדוק את ההגדרות הללו כדי לוודא שהן מתאימות לכם."
@@ -1995,17 +1998,17 @@ he:
       ownership: הודעות של אחרים לא יכולות להיות מוצמדות
       reblog: אין אפשרות להצמיד הדהודים
     quote_policies:
-      followers: לעוקביך בלבד
-      nobody: אף אחד
+      followers: לעוקבים בלבד
+      nobody: רק אני
       public: כולם
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: אזכור פרטי
       private: לעוקבים בלבד
-      private_long: להצגה לעוקבים בלבד
       public: פומבי
-      public_long: כולם יוכלו לקרוא
-      unlisted: מוסתר
-      unlisted_long: פומבי, אבל לא להצגה בפיד הציבורי
+      public_long: כל הגולשים, מחוברים למסטודון או לא
+      unlisted: ציבורי שקט
+      unlisted_long: מוסתרת מתוצאות חיפוש במסטודון, נושאים חמים וציר הזמן הציבורי
   statuses_cleanup:
     enabled: מחק הודעות ישנות אוטומטית
     enabled_hint: מוחק אוטומטית את הודעותיך לכשהגיעו לסף גיל שנקבע מראש, אלא אם הן תואמות את אחת ההחרגות למטה

@@ -33,6 +33,9 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
 
     json = Oj.dump(serialize_payload(status.quote, ActivityPub::AcceptQuoteRequestSerializer))
     ActivityPub::DeliveryWorker.perform_async(json, quoted_status.account_id, @account.inbox_url)
+
+    # Ensure the user is notified
+    LocalNotificationWorker.perform_async(quoted_status.account_id, status.quote.id, 'Quote', 'quote')
   end
 
   def import_instrument(quoted_status)

@@ -105,6 +105,7 @@ const hotkeyMatcherMap = {
   reply: just('r'),
   favourite: just('f'),
   boost: just('b'),
+  quote: just('q'),
   mention: just('m'),
   open: any('enter', 'o'),
   openProfile: just('p'),

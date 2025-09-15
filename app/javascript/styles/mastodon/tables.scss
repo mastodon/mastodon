@@ -195,7 +195,7 @@ a.table-action-link {
   &__toolbar {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 200;
     border: 1px solid var(--background-border-color);
     background: var(--background-color);
     border-radius: 4px 4px 0 0;
@@ -205,6 +205,10 @@ a.table-action-link {
     &__actions {
       text-align: end;
       padding-inline-end: 16px - 5px;
+
+      .table-action-link {
+        padding: 0;
+      }
     }
   }
 

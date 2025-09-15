@@ -12,16 +12,21 @@ type EmojiHTMLProps<Element extends ElementType = 'div'> = Omit<
   htmlString: string;
   extraEmojis?: CustomEmojiMapArg;
   as?: Element;
+  shallow?: boolean;
 };
 
-export const ModernEmojiHTML = <Element extends ElementType>({
+export const ModernEmojiHTML = ({
   extraEmojis,
   htmlString,
-  as: asElement, // Rename for syntax highlighting
+  as: Wrapper = 'div', // Rename for syntax highlighting
+  shallow,
   ...props
-}: EmojiHTMLProps<Element>) => {
-  const Wrapper = asElement ?? 'div';
-  const emojifiedHtml = useEmojify(htmlString, extraEmojis);
+}: EmojiHTMLProps<ElementType>) => {
+  const emojifiedHtml = useEmojify({
+    text: htmlString,
+    extraEmojis,
+    deep: !shallow,
+  });
 
   if (emojifiedHtml === null) {
     return null;

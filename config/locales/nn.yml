@@ -1909,17 +1909,15 @@ nn:
       ownership: Du kan ikkje festa andre sine tut
       reblog: Ei framheving kan ikkje festast
     quote_policies:
-      followers: Berre dei som fylgjer deg
-      nobody: Ingen
-      public: Alle
+      followers: Berre fylgjarar
+      nobody: Berre eg
+      public: Allle
     title: "%{name}: «%{quote}»"
     visibilities:
-      private: Berre fylgjarar
-      private_long: Vis berre til fylgjarar
+      direct: Privat omtale
       public: Offentleg
-      public_long: Alle kan sjå
-      unlisted: Ikkje oppført
-      unlisted_long: Alle kan sjå, men ikkje oppført på offentlege tidsliner
+      public_long: Alle på og utanfor Mastodon
+      unlisted_long: Gøymt frå søkjeresultat, populært og offentleg på Mastodon
   statuses_cleanup:
     enabled: Slett gamle innlegg automatisk
     enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor

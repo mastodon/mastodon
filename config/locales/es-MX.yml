@@ -1739,6 +1739,9 @@ es-MX:
       self_vote: No puedes votar en tus propias encuestas
       too_few_options: debe tener más de un elemento
       too_many_options: no puede contener más de %{max} elementos
+    vote: Votar
+  posting_defaults:
+    explanation: Esta configuración se utilizará como predeterminada cuando crees nuevas publicaciones, pero puedes editarla para cada publicación dentro del editor.
   preferences:
     other: Otros
     posting_defaults: Configuración por defecto de publicaciones
@@ -1909,18 +1912,17 @@ es-MX:
       ownership: La publicación de alguien más no puede fijarse
       reblog: No se puede fijar una publicación impulsada
     quote_policies:
-      followers: Solo tus seguidores
-      nobody: Nadie
+      followers: Solo seguidores
+      nobody: Solo yo
       public: Cualquiera
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Mención privada
-      private: Sólo mostrar a seguidores
-      private_long: Solo mostrar a tus seguidores
+      private: Solo seguidores
       public: Público
-      public_long: Todos pueden ver
-      unlisted: Público, pero no mostrar en la historia federada
-      unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
+      public_long: Cualquiera que esté dentro y fuera de Mastodon
+      unlisted: Pública, pero silenciosa
+      unlisted_long: Ocultado de los resultados de búsqueda, tendencias y cronologías públicas de Mastodon
   statuses_cleanup:
     enabled: Borrar automáticamente publicaciones antiguas
     enabled_hint: Elimina automáticamente tus publicaciones una vez que alcancen un umbral de tiempo especificado, a menos que coincidan con alguna de las excepciones detalladas debajo

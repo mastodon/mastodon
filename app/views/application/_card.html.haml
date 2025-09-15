@@ -1,8 +1,7 @@
-- account_url = local_assigns[:admin] ? admin_account_path(account.id) : ActivityPub::TagManager.instance.url_for(account)
-- compact ||= false
+-# locals: (account:, compact: false)
 
 .card.h-card
-  = link_to account_url, target: '_blank', rel: 'noopener' do
+  = link_to ActivityPub::TagManager.instance.url_for(account), target: '_blank', rel: 'noopener' do
     - unless compact
       .card__img
         = image_tag account.header.url, alt: ''

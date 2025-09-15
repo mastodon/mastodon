@@ -1909,17 +1909,15 @@ tr:
       ownership: Başkasının gönderisi sabitlenemez
       reblog: Bir gönderi sabitlenemez
     quote_policies:
-      followers: Yalnızca takipçileriniz
-      nobody: Hiç kimse
+      followers: Sadece takipçiler
+      nobody: Sadece ben
       public: Herkes
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: Sadece takipçiler
-      private_long: Sadece takipçilerime gönder
+      direct: Özel değini
       public: Herkese açık
-      public_long: Herkese açık zaman tüneline gönder
-      unlisted: Listelenmemiş
-      unlisted_long: Herkes görebilir fakat herkese açık zaman tünellerinde listelenmez
+      public_long: Mastodon'da olan olmayan herkes
+      unlisted_long: Mastodon arama sonuçlarında, öne çıkanlarda ve herkese açık zaman çizelgesinde gizli
   statuses_cleanup:
     enabled: Eski gönderileri otomatik olarak sil
     enabled_hint: Belirli bir zaman eşiğine ulaşan eski gönderilerinizi, aşağıdaki istisnalara uymadıkları sürece otomatik olarak siler
