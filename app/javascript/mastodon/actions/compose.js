@@ -726,7 +726,7 @@ function insertIntoTagHistory(recognizedTags, text) {
     // complicated because of new normalization rules, it's no longer just
     // a case sensitivity issue
     const names = recognizedTags.map(tag => {
-      const matches = text.match(new RegExp(`[#|＃]${tag.name}`, 'i'));
+      const matches = text.match(new RegExp(`[#＃]${tag.name}`, 'i'));
 
       if (matches && matches.length > 0) {
         return matches[0].slice(1);
