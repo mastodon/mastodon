@@ -87,7 +87,10 @@ export const DisplayName: FC<Props & ComponentPropsWithoutRef<'span'>> = ({
 };
 
 export const LinkedDisplayName: FC<
-  Props & { asProps?: ComponentPropsWithoutRef<'span'> } & Partial<LinkProps>
+  Props & {
+    asProps?: ComponentPropsWithoutRef<'span'>;
+    linkClassName?: string;
+  } & Partial<LinkProps>
 > = ({
   account,
   asProps = {},
@@ -95,6 +98,8 @@ export const LinkedDisplayName: FC<
   localDomain,
   simple,
   noDomain,
+  children,
+  linkClassName,
   ...linkProps
 }) => {
   const displayProps = {
@@ -113,9 +118,12 @@ export const LinkedDisplayName: FC<
     <Link
       to={`/@${account.acct}`}
       title={`@${account.acct}`}
+      data-id={account.id}
       data-hover-card-account={account.id}
+      className={linkClassName}
       {...linkProps}
     >
+      {children}
       <DisplayName {...displayProps} />
     </Link>
   );
