@@ -16,7 +16,7 @@ interface QueueItem {
   depth: number;
 }
 
-interface Options {
+export interface HTMLToStringOptions {
   maxDepth?: number;
   onText?: (text: string) => React.ReactNode;
   onElement?: (
@@ -67,7 +67,7 @@ const DEFAULT_ALLOWED_TAGS: ReadonlySet<string> = new Set([
 
 export function htmlStringToComponents(
   htmlString: string,
-  options: Options = {},
+  options: HTMLToStringOptions = {},
 ) {
   const wrapper = document.createElement('template');
   wrapper.innerHTML = htmlString;
