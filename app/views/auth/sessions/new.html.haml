@@ -41,4 +41,5 @@
       - resource_class.omniauth_providers.each do |provider|
         = provider_sign_in_link(provider)
 
-.form-footer= render 'auth/shared/links'
+- unless within_authorization_flow?
+  .form-footer= render 'auth/shared/links'
