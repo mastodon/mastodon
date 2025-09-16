@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file.
 - Fix WebUI handling of deleted quoted posts (#35909 and #35918 by @ClearlyClaire and @diondiondion)
 - Fix “Edit” and “Delete & Redraft” on a poll not inserting empty option (#35892 by @ClearlyClaire)
 - Fix loading of some compatibility CSS on some configurations (#35876 by @shleeable)
-- Fix HttpLog not being enabled with `RAILS_LOGÈ_LEVEL=debug` (#35833 by @mjankowski)
+- Fix HttpLog not being enabled with `RAILS_LOG_LEVEL=debug` (#35833 by @mjankowski)
 - Fix self-destruct scheduler behavior on some Redis setups (#35823 by @ClearlyClaire)
 - Fix `tootctl admin create` not bypassing reserved username checks (#35779 by @ClearlyClaire)
 - Fix interaction policy changes in implicit updates not being saved (#35751 by @ClearlyClaire)
