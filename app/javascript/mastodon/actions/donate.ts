@@ -1,10 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 
 import { apiGetDonateData } from '../api/donate';
-import {
-  createAppThunk,
-  createDataLoadingThunk,
-} from '../store/typed_functions';
+import { createAppAsyncThunk, createAppThunk } from '../store/typed_functions';
 
 import { focusCompose, resetCompose } from './compose';
 import { closeModal, openModal } from './modal';
@@ -31,16 +28,15 @@ export const initializeDonate = createAppThunk(
   },
 );
 
-export const fetchDonateData = createDataLoadingThunk(
+export const fetchDonateData = createAppAsyncThunk(
   'donate/fetch',
-  (_args: unknown, { getState }) => {
+  (_args, { getState }) => {
     const state = getState();
     return apiGetDonateData({
       locale: state.meta.get('locale', 'en') as string,
       seed: state.donate.seed ?? 1, // If we somehow don't have the seed, just set it to 1.
     });
   },
-  (data) => data, // This is needed for TypeScript to infer the correct overload.
 );
 
 export const showDonateModal = createAppThunk(
