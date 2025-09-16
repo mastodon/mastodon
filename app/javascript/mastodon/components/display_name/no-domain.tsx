@@ -16,22 +16,22 @@ export const DisplayNameWithoutDomain: FC<
   return (
     <span {...props} className={classNames('display-name', className)}>
       <bdi>
-        <strong className='display-name__html'>
-          {account ? (
-            <EmojiHTML
-              className='display-name__html'
-              htmlString={
-                isModernEmojiEnabled()
-                  ? account.get('display_name')
-                  : account.get('display_name_html')
-              }
-              shallow
-              as='strong'
-            />
-          ) : (
+        {account ? (
+          <EmojiHTML
+            className='display-name__html'
+            htmlString={
+              isModernEmojiEnabled()
+                ? account.get('display_name')
+                : account.get('display_name_html')
+            }
+            shallow
+            as='strong'
+          />
+        ) : (
+          <strong className='display-name__html'>
             <Skeleton width='10ch' />
-          )}
-        </strong>
+          </strong>
+        )}
       </bdi>
       {children}
     </span>
