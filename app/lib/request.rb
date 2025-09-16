@@ -76,10 +76,10 @@ class Request
     # Skip normalization for The Guardian's signed image URLs
     parsed_url = Addressable::URI.parse(url)
     @url = if parsed_url.host&.downcase == 'i.guim.co.uk'
-        parsed_url
-      else
-        parsed_url.normalize
-      end
+             parsed_url
+           else
+             parsed_url.normalize
+           end
 
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
