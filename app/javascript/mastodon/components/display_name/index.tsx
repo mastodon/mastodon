@@ -12,7 +12,7 @@ import { DisplayNameSimple } from './simple';
 export interface DisplayNameProps {
   account?: Account;
   localDomain?: string;
-  variant?: 'default' | 'simple' | 'noDomain' | 'oneLine';
+  variant?: 'default' | 'simple' | 'noDomain';
 }
 
 export const DisplayName: FC<
@@ -23,7 +23,7 @@ export const DisplayName: FC<
   } else if (variant === 'noDomain') {
     return <DisplayNameWithoutDomain {...props} />;
   }
-  return <DisplayNameDefault oneLine={variant === 'oneLine'} {...props} />;
+  return <DisplayNameDefault {...props} />;
 };
 
 export const LinkedDisplayName: FC<
