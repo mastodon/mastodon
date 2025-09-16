@@ -97,11 +97,7 @@ export const StatusBoostButton: FC<ReblogButtonProps> = ({
         highlighted: wasBoosted,
         disabled: boostItem.disabled,
         action: (event) => {
-          if (isLoggedIn) {
-            dispatch(toggleReblog(statusId, event.shiftKey));
-          } else {
-            showLoginPrompt();
-          }
+          dispatch(toggleReblog(statusId, event.shiftKey));
         },
       },
       {
@@ -112,33 +108,22 @@ export const StatusBoostButton: FC<ReblogButtonProps> = ({
         icon: quoteItem.iconComponent,
         disabled: quoteItem.disabled,
         action: () => {
-          if (isLoggedIn) {
-            dispatch(quoteComposeById(statusId));
-          } else {
-            showLoginPrompt();
-          }
+          dispatch(quoteComposeById(statusId));
         },
       },
     ] satisfies [ActionMenuItemWithIcon, ActionMenuItemWithIcon];
-  }, [
-    dispatch,
-    intl,
-    isLoggedIn,
-    showLoginPrompt,
-    statusId,
-    statusState,
-    wasBoosted,
-  ]);
+  }, [dispatch, intl, statusId, statusState, wasBoosted]);
 
   const boostIcon = items[0].icon;
 
   const handleDropdownOpen = useCallback(
     (event: MouseEvent | KeyboardEvent) => {
+      if (!isLoggedIn) {
+        showLoginPrompt();
+        return false;
+      }
+
       if (event.shiftKey) {
-        if (!isLoggedIn) {
-          showLoginPrompt();
-          return false;
-        }
         dispatch(toggleReblog(status.get('id'), true));
         return false;
       }
