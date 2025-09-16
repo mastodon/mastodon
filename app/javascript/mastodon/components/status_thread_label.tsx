@@ -29,7 +29,11 @@ export const StatusThreadLabel: React.FC<{
         id='status.replied_to'
         defaultMessage='Replied to {name}'
         values={{
-          name: <LinkedDisplayName account={inReplyToAccount} simple />,
+          name: (
+            <LinkedDisplayName
+              displayProps={{ account: inReplyToAccount, variant: 'simple' }}
+            />
+          ),
         }}
       />
     );

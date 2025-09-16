@@ -410,7 +410,13 @@ class Status extends ImmutablePureComponent {
 
     if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {
       const name = (
-        <LinkedDisplayName account={status.get('account')} className='status__display-name muted' simple />
+        <LinkedDisplayName
+          displayProps={{
+            account: status.get('account'),
+            variant: 'simple'
+          }}
+          className='status__display-name muted'
+        />
       )
 
       prepend = (
@@ -572,7 +578,7 @@ class Status extends ImmutablePureComponent {
                 <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
               </Link>
 
-              <LinkedDisplayName account={status.get('account')} linkClassName='status__display-name'>
+              <LinkedDisplayName displayProps={{account: status.get('account')}} className='status__display-name'>
                 <div className='status__avatar'>
                   {statusAvatar}
                 </div>

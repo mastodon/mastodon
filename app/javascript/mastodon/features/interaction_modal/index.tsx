@@ -411,7 +411,7 @@ const InteractionModal: React.FC<{
         '/auth/sign_up') as string,
   );
   const account = useAppSelector((state) => state.accounts.get(accountId));
-  const name = <DisplayName account={account} simple />;
+  const name = <DisplayName account={account} variant='simple' />;
 
   const handleSignupClick = useCallback(() => {
     dispatch(

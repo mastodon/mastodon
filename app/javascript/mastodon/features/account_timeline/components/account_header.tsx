@@ -863,7 +863,7 @@ export const AccountHeader: React.FC<{
 
           <div className='account__header__tabs__name'>
             <h1>
-              <DisplayName account={account} simple />
+              <DisplayName account={account} variant='simple' />
               <small>
                 <span>
                   @{username}

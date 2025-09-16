@@ -43,7 +43,11 @@ export const NotificationWithStatus: React.FC<{
     state.accounts.get(accountIds.at(0) ?? ''),
   );
   const label = useMemo(
-    () => labelRenderer(<LinkedDisplayName account={account} simple />, count),
+    () =>
+      labelRenderer(
+        <LinkedDisplayName displayProps={{ account, variant: 'simple' }} />,
+        count,
+      ),
     [labelRenderer, account, count],
   );
 

@@ -18,9 +18,6 @@ const meta = {
     username: 'mastodon@mastodon.social',
     name: 'Test User 🧪',
     loading: false,
-    simple: false,
-    noDomain: false,
-    oneLine: true,
     localDomain: 'mastodon.social',
   },
   tags: [],
@@ -51,13 +48,13 @@ export const Loading: Story = {
 
 export const NoDomain: Story = {
   args: {
-    noDomain: true,
+    variant: 'noDomain',
   },
 };
 
 export const Simple: Story = {
   args: {
-    simple: true,
+    variant: 'simple',
   },
 };
 
@@ -77,6 +74,6 @@ export const Linked: Story = {
           acct: username,
         })
       : undefined;
-    return <LinkedDisplayName {...args} account={account} />;
+    return <LinkedDisplayName {...args} displayProps={{ account }} />;
   },
 };

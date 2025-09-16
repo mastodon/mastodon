@@ -97,7 +97,7 @@ export const NotificationRequest = ({ id, accountId, notificationsCount, checked
 
         <div className='notification-request__name'>
           <div className='notification-request__name__display-name'>
-            <DisplayName account={account} simple />
+            <DisplayName account={account} variant='simple' />
           </div>
 
           <span>@{account?.get('acct')}</span>

@@ -20,7 +20,7 @@ export default class FollowRequestNote extends ImmutablePureComponent {
     return (
       <div className='follow-request-banner'>
         <div className='follow-request-banner__message'>
-          <FormattedMessage id='account.requested_follow' defaultMessage='{name} has requested to follow you' values={{ name: <DisplayName account={account} simple /> }} />
+          <FormattedMessage id='account.requested_follow' defaultMessage='{name} has requested to follow you' values={{ name: <DisplayName account={account} variant='simple' /> }} />
         </div>
 
         <div className='follow-request-banner__action'>

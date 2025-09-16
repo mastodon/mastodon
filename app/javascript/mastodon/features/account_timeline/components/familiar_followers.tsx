@@ -11,8 +11,16 @@ const FamiliarFollowersReadout: React.FC<{ familiarFollowers: Account[] }> = ({
   familiarFollowers,
 }) => {
   const messageData = {
-    name1: <LinkedDisplayName account={familiarFollowers.at(0)} simple />,
-    name2: <LinkedDisplayName account={familiarFollowers.at(1)} simple />,
+    name1: (
+      <LinkedDisplayName
+        displayProps={{ account: familiarFollowers.at(0), variant: 'simple' }}
+      />
+    ),
+    name2: (
+      <LinkedDisplayName
+        displayProps={{ account: familiarFollowers.at(1), variant: 'simple' }}
+      />
+    ),
     othersCount: familiarFollowers.length - 2,
   };
 

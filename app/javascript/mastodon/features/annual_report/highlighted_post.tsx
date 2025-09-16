@@ -80,7 +80,7 @@ export const HighlightedPost: React.FC<{
           id='annual_report.summary.highlighted_post.possessive'
           defaultMessage="{name}'s"
           values={{
-            name: <DisplayName account={account} simple />,
+            name: <DisplayName account={account} variant='simple' />,
           }}
         />
       </strong>

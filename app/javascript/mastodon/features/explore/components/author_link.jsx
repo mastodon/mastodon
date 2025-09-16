@@ -12,7 +12,7 @@ export const AuthorLink = ({ accountId }) => {
   }
 
   return (
-    <LinkedDisplayName account={account} linkClassName='story__details__shared__author-link'>
+    <LinkedDisplayName displayProps={{account}} className='story__details__shared__author-link'>
       <Avatar account={account} size={16} />
     </LinkedDisplayName>
   );

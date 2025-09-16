@@ -44,8 +44,8 @@ export const NotificationAdminReport: React.FC<{
   if (!account || !targetAccount) return null;
 
   const values = {
-    name: <DisplayName account={account} simple />,
-    target: <DisplayName account={targetAccount} simple />,
+    name: <DisplayName account={account} variant='simple' />,
+    target: <DisplayName account={targetAccount} variant='simple' />,
     category: intl.formatMessage(messages[report.category]),
     count: report.status_ids.length,
   };

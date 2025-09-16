@@ -68,7 +68,7 @@ export const NotificationGroupWithStatus: React.FC<{
   const label = useMemo(
     () =>
       labelRenderer(
-        <LinkedDisplayName account={account} simple />,
+        <LinkedDisplayName displayProps={{ account, variant: 'simple' }} />,
         count,
         labelSeeMoreHref,
       ),
