@@ -71,20 +71,19 @@ class Request
   def initialize(verb, url, **options)
     raise ArgumentError if url.blank?
 
-    @verb           = verb
-    @url            = Addressable::URI.parse(url)
-    @normal_url     = Addressable::URI.new(
-      scheme: @url.scheme,
-      userinfo: @url.userinfo,
-      host: @url.normalized_host,
-      port: @url.port,
-      path: @url.normalized_path,
-      query: @url.query, # Don't normalize query strings. Breaks og:images on The Guardian etc.
-      fragment: @url.fragment
-    )
-    @http_client    = options.delete(:http_client)
-    @allow_local    = options.delete(:allow_local)
-    @options        = {
+    @verb        = verb
+
+    # Skip normalization for The Guardian's signed image URLs
+    parsed_url = Addressable::URI.parse(url)
+    if parsed_url.host&.downcase == 'i.guim.co.uk'
+      @url = parsed_url
+    else
+      @url = parsed_url.normalize
+    end
+
+    @http_client = options.delete(:http_client)
+    @allow_local = options.delete(:allow_local)
+    @options     = {
       follow: {
         max_hops: 3,
         on_redirect: ->(response, request) { re_sign_on_redirect(response, request) },
@@ -122,9 +121,9 @@ class Request
 
   def perform
     begin
-      response = http_client.request(@verb, @normal_url.to_s, @options.merge(headers: headers))
+      response = http_client.request(@verb, @url.to_s, @options.merge(headers: headers))
     rescue => e
-      raise e.class, "#{e.message} on #{@normal_url}", e.backtrace[0]
+      raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
     end
 
     begin
