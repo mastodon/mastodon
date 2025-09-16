@@ -51,7 +51,7 @@ export const Alert: React.FC<{
       {!!onDismiss && (
         <IconButton
           title={intl.formatMessage({
-            id: 'alerts.dismiss',
+            id: 'dismissable_banner.dismiss',
             defaultMessage: 'Dismiss',
           })}
           icon='times'
