@@ -1739,6 +1739,9 @@ nn:
       self_vote: Du kan ikkje stemme i di eiga avstemming
       too_few_options: må ha meir enn eitt element
       too_many_options: kan ikkje ha meir enn %{max} element
+    vote: Røyst
+  posting_defaults:
+    explanation: Desse innstillingane vil bli brukte som standardval når du skriv nye innlegg, men du kan redigera dei for kvart innlegg når du skriv.
   preferences:
     other: Anna
     posting_defaults: Innleggsstandarder
@@ -1915,8 +1918,10 @@ nn:
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Privat omtale
+      private: Berre fylgjarar
       public: Offentleg
       public_long: Alle på og utanfor Mastodon
+      unlisted: Stille offentleg
       unlisted_long: Gøymt frå søkjeresultat, populært og offentleg på Mastodon
   statuses_cleanup:
     enabled: Slett gamle innlegg automatisk
