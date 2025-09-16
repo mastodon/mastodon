@@ -16,6 +16,7 @@ interface Props {
   localDomain?: string;
   simple?: boolean;
   noDomain?: boolean;
+  oneLine?: boolean;
 }
 
 export const DisplayName: FC<Props & ComponentPropsWithoutRef<'span'>> = ({
@@ -23,6 +24,7 @@ export const DisplayName: FC<Props & ComponentPropsWithoutRef<'span'>> = ({
   localDomain,
   simple = false,
   noDomain = false,
+  oneLine = false,
   className,
   ...props
 }) => {
@@ -79,9 +81,8 @@ export const DisplayName: FC<Props & ComponentPropsWithoutRef<'span'>> = ({
           as='strong'
         />
       </bdi>
-      {username && (
-        <span className='display-name__account'>&nbsp;{username}</span>
-      )}
+      {username && oneLine && ' '}
+      {username && <span className='display-name__account'>{username}</span>}
     </span>
   );
 };
@@ -98,6 +99,7 @@ export const LinkedDisplayName: FC<
   localDomain,
   simple,
   noDomain,
+  oneLine,
   children,
   linkClassName,
   ...linkProps
@@ -108,6 +110,7 @@ export const LinkedDisplayName: FC<
     localDomain,
     simple,
     noDomain,
+    oneLine,
     ...asProps,
   };
   if (!account) {

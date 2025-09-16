@@ -308,7 +308,7 @@ export const Account: React.FC<AccountProps> = ({
             </div>
 
             <div className='account__contents'>
-              <DisplayName account={account} />
+              <DisplayName account={account} oneLine />
 
               {!minimal && (
                 <div className='account__details'>

@@ -20,6 +20,7 @@ const meta = {
     loading: false,
     simple: false,
     noDomain: false,
+    oneLine: true,
     localDomain: 'mastodon.social',
   },
   tags: [],
