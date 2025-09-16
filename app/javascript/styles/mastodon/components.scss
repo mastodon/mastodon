@@ -10302,9 +10302,10 @@ noscript {
 }
 
 .notification-bar {
+  --alert-edge-spacing: 1rem;
+
+  display: flex;
   flex: 0 0 auto;
-  position: relative;
-  inset-inline-start: -100%;
   width: auto;
   padding: 15px;
   margin: 0;
@@ -10320,13 +10321,23 @@ noscript {
   font-size: 15px;
   line-height: 21px;
 
+  &.from-start {
+    translate: calc(
+      -1 * (100% + var(--alert-edge-spacing)) * var(--text-x-direction)
+    );
+  }
+
+  &.from-below {
+    translate: 0 calc(100% + var(--alert-edge-spacing));
+  }
+
   &.notification-bar-active {
-    inset-inline-start: 1rem;
+    translate: none;
   }
 
   .no-reduce-motion & {
     transition: 0.5s cubic-bezier(0.89, 0.01, 0.5, 1.1);
-    transform: translateZ(0);
+    will-change: translate;
   }
 }
 
@@ -10354,6 +10365,18 @@ noscript {
   &:focus,
   &:active {
     background: color.change($ui-base-color, $alpha: 0.85);
+  }
+}
+
+.notification-bar-dismiss-button {
+  margin-top: -2px;
+  margin-inline-start: 15px;
+  color: rgb(from currentColor r g b / 70%);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: currentColor;
   }
 }
 
