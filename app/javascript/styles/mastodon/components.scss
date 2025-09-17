@@ -10294,7 +10294,7 @@ noscript {
 .notification-list {
   position: fixed;
   bottom: 2rem;
-  inset-inline-start: 0;
+  inset-inline-start: 1rem;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -10305,6 +10305,7 @@ noscript {
   --alert-edge-spacing: 1rem;
 
   display: flex;
+  gap: 5px;
   flex: 0 0 auto;
   width: auto;
   padding: 15px;
@@ -10331,7 +10332,7 @@ noscript {
     translate: 0 calc(100% + var(--alert-edge-spacing));
   }
 
-  &.notification-bar-active {
+  &.notification-bar--active {
     translate: none;
   }
 
@@ -10342,11 +10343,6 @@ noscript {
 }
 
 .notification-bar-title {
-  margin-inline-end: 5px;
-}
-
-.notification-bar-title,
-.notification-bar-action {
   font-weight: 700;
 }
 
@@ -10355,9 +10351,10 @@ noscript {
   border: 0;
   background: transparent;
   text-transform: uppercase;
-  margin-inline-start: 10px;
+  margin-inline-start: 5px;
   cursor: pointer;
   color: $blurple-300;
+  font-weight: 700;
   border-radius: 4px;
   padding: 0 4px;
 
@@ -10370,7 +10367,7 @@ noscript {
 
 .notification-bar-dismiss-button {
   margin-top: -2px;
-  margin-inline-start: 15px;
+  margin-inline-start: auto;
   color: rgb(from currentColor r g b / 70%);
 
   &:hover,

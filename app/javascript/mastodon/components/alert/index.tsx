@@ -33,7 +33,7 @@ export const Alert: React.FC<{
   return (
     <div
       className={classNames('notification-bar', {
-        'notification-bar-active': isActive,
+        'notification-bar--active': isActive,
         'from-start': animateFrom === 'start',
         'from-below': animateFrom === 'below',
       })}

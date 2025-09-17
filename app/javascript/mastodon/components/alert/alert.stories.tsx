@@ -84,8 +84,26 @@ export const WithTitle: Story = {
 
 export const WithDismissButton: Story = {
   args: {
-    ...WithAction.args,
+    message: 'More replies found',
+    action: 'Show',
     onDismiss: fn(),
   },
   render: Simple.render,
+};
+
+export const InSizedContainer: Story = {
+  args: WithDismissButton.args,
+  render: (args) => (
+    <div
+      style={{
+        overflow: 'clip',
+        padding: '1rem',
+        width: '380px',
+        maxWidth: '100%',
+        boxSizing: 'border-box',
+      }}
+    >
+      <Alert {...args} />
+    </div>
+  ),
 };
