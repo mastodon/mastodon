@@ -14,7 +14,7 @@ module Api::InteractionPoliciesConcern
     when 'nobody'
       0
     when nil
-      current_user.setting_default_quote_policy
+      Status::QUOTE_APPROVAL_POLICY_FLAGS[current_user.setting_default_quote_policy&.to_sym] << 16
     else
       # TODO: raise more useful message
       raise ActiveRecord::RecordInvalid

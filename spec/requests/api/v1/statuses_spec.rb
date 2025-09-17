@@ -158,6 +158,28 @@ RSpec.describe '/api/v1/statuses' do
         end
       end
 
+      context 'without a quote policy', feature: :outgoing_quotes do
+        let(:user) do
+          Fabricate(:user, settings: { default_quote_policy: 'followers' })
+        end
+
+        it 'returns post with user default quote policy, as well as rate limit headers', :aggregate_failures do
+          subject
+          expect(user.setting_default_quote_policy).to eq 'followers'
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:quote_approval]).to include({
+            automatic: ['followers'],
+            manual: [],
+            current_user: 'automatic',
+          })
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
+        end
+      end
+
       context 'with a quote policy', feature: :outgoing_quotes do
         let(:quoted_status) { Fabricate(:status, account: user.account) }
         let(:params) do
