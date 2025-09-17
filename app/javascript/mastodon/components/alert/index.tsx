@@ -38,7 +38,9 @@ export const Alert: React.FC<{
         'from-below': animateFrom === 'below',
       })}
     >
-      {!!title && <span className='notification-bar-title'>{title}</span>}
+      {Boolean(title) && (
+        <span className='notification-bar-title'>{title}</span>
+      )}
 
       <span className='notification-bar-message'>{message}</span>
 
@@ -48,7 +50,7 @@ export const Alert: React.FC<{
         </button>
       )}
 
-      {!!onDismiss && (
+      {onDismiss && (
         <IconButton
           title={intl.formatMessage({
             id: 'dismissable_banner.dismiss',
