@@ -1739,6 +1739,9 @@ tr:
       self_vote: Kendi anketlerinizde oy kullanamazsınız
       too_few_options: birden fazla öğeye sahip olmalı
       too_many_options: "%{max} öğeden fazla öğe içeremez"
+    vote: Oyla
+  posting_defaults:
+    explanation: Bu ayarlar, yeni gönderiler oluştururken varsayılan olarak kullanılacaktır, ancak bunları oluşturucu içinde her gönderi için ayrı ayrı düzenleyebilirsiniz.
   preferences:
     other: Diğer
     posting_defaults: Gönderi varsayılanları
@@ -1915,8 +1918,10 @@ tr:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Özel değini
+      private: Sadece takipçiler
       public: Herkese açık
       public_long: Mastodon'da olan olmayan herkes
+      unlisted: Sessizce herkese açık
       unlisted_long: Mastodon arama sonuçlarında, öne çıkanlarda ve herkese açık zaman çizelgesinde gizli
   statuses_cleanup:
     enabled: Eski gönderileri otomatik olarak sil
