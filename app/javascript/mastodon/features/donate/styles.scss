@@ -158,3 +158,63 @@
     }
   }
 }
+
+.donate_banner {
+  background-color: #1b001f;
+  font-size: 15px;
+  line-height: 1.6;
+  border: none;
+
+  h2 {
+    font-weight: 600;
+  }
+
+  p {
+    color: rgb(255, 255, 255, 80%);
+  }
+
+  > button {
+    margin-top: 1rem;
+  }
+
+  img {
+    position: absolute;
+    top: -1rem;
+    width: 400px;
+    right: -200px;
+
+    @media screen and (width <= 600px) {
+      right: -250px;
+    }
+  }
+
+  @media screen and (width <= 350px) {
+    padding-right: 50px;
+
+    img {
+      right: -350px;
+    }
+  }
+
+  .dismissable-banner__action {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 10;
+    padding: 0;
+    float: none;
+
+    > button {
+      background-color: #fff;
+      border-radius: 50%;
+      padding: 0.3rem;
+      color: hsla(247deg, 12%, 31%, 100%);
+      transition: background-color 0.2s;
+
+      &:hover,
+      &:focus {
+        background-color: #ddd;
+      }
+    }
+  }
+}

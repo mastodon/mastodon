@@ -14,7 +14,7 @@ import { DonateCheckoutHint } from './checkout';
 import { DonateForm } from './form';
 import { DonateSuccess } from './success';
 
-import './donate_modal.scss';
+import './styles.scss';
 
 interface DonateModalProps {
   onClose: () => void;

@@ -3,6 +3,8 @@ import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { changeSetting } from 'mastodon/actions/settings';
 import { bannerSettings } from 'mastodon/settings';
@@ -16,6 +18,7 @@ const messages = defineMessages({
 
 interface Props {
   id: string;
+  className?: string;
 }
 
 export function useDismissableBannerState({ id }: Props) {
@@ -53,6 +56,7 @@ export function useDismissableBannerState({ id }: Props) {
 export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
   id,
   children,
+  className,
 }) => {
   const intl = useIntl();
   const { wasDismissed, dismiss } = useDismissableBannerState({
@@ -64,7 +68,7 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
   }
 
   return (
-    <div className='dismissable-banner'>
+    <div className={classNames('dismissable-banner', className)}>
       <div className='dismissable-banner__action'>
         <IconButton
           icon='times'
