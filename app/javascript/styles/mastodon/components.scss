@@ -10305,7 +10305,7 @@ noscript {
   --alert-edge-spacing: 1rem;
 
   display: flex;
-  gap: 5px;
+  gap: 10px;
   flex: 0 0 auto;
   width: auto;
   padding: 15px;
@@ -10342,16 +10342,20 @@ noscript {
   }
 }
 
-.notification-bar-title {
+.notification-bar__content {
+  margin-inline-end: auto;
+}
+
+.notification-bar__title {
+  margin-inline-end: 5px;
   font-weight: 700;
 }
 
-.notification-bar-action {
+.notification-bar__action {
   display: inline-block;
   border: 0;
   background: transparent;
   text-transform: uppercase;
-  margin-inline-start: 5px;
   cursor: pointer;
   color: $blurple-300;
   font-weight: 700;
@@ -10365,9 +10369,8 @@ noscript {
   }
 }
 
-.notification-bar-dismiss-button {
+.notification-bar__dismiss-button {
   margin-top: -2px;
-  margin-inline-start: auto;
   color: rgb(from currentColor r g b / 85%);
 
   &:hover,

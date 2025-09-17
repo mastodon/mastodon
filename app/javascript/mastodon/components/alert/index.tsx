@@ -38,14 +38,15 @@ export const Alert: React.FC<{
         'from-below': animateFrom === 'below',
       })}
     >
-      {Boolean(title) && (
-        <span className='notification-bar-title'>{title}</span>
-      )}
-
-      <span className='notification-bar-message'>{message}</span>
+      <span className='notification-bar__content'>
+        {Boolean(title) && (
+          <span className='notification-bar__title'>{title}</span>
+        )}
+        {message}
+      </span>
 
       {hasAction && (
-        <button className='notification-bar-action' onClick={onActionClick}>
+        <button className='notification-bar__action' onClick={onActionClick}>
           {action}
         </button>
       )}
@@ -58,7 +59,7 @@ export const Alert: React.FC<{
           })}
           icon='times'
           iconComponent={CloseIcon}
-          className='notification-bar-dismiss-button'
+          className='notification-bar__dismiss-button'
           onClick={onDismiss}
         />
       )}
