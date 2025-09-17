@@ -71,19 +71,12 @@ class Request
   def initialize(verb, url, **options)
     raise ArgumentError if url.blank?
 
-    @verb        = verb
-
-    # Skip normalization for The Guardian's signed image URLs
-    parsed_url = Addressable::URI.parse(url)
-    @url = if parsed_url.host&.downcase == 'i.guim.co.uk'
-             parsed_url
-           else
-             parsed_url.normalize
-           end
-
-    @http_client = options.delete(:http_client)
-    @allow_local = options.delete(:allow_local)
-    @options     = {
+    @verb             = verb
+    @url              = Addressable::URI.parse(url).normalize
+    @url.query_values = @url.query_values.to_a # restore the URL encoding stripped by normalize
+    @http_client      = options.delete(:http_client)
+    @allow_local      = options.delete(:allow_local)
+    @options          = {
       follow: {
         max_hops: 3,
         on_redirect: ->(response, request) { re_sign_on_redirect(response, request) },
