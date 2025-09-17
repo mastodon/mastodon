@@ -8,7 +8,7 @@ const meta = {
   component: Alert,
   args: {
     isActive: true,
-    animateFrom: 'start',
+    animateFrom: 'side',
     title: '',
     message: '',
     action: '',
@@ -23,8 +23,9 @@ const meta = {
     animateFrom: {
       control: 'radio',
       type: 'string',
-      options: ['start', 'below'],
-      description: 'Direction that the alert animates in from when activated',
+      options: ['side', 'below'],
+      description:
+        'Direction that the alert animates in from when activated. `side` is dependent on reading direction, defaulting to left in ltr languages.',
     },
     title: {
       control: 'text',

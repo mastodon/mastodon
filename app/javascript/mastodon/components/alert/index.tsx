@@ -11,7 +11,7 @@ import { IconButton } from '../icon_button';
  */
 export const Alert: React.FC<{
   isActive?: boolean;
-  animateFrom?: 'start' | 'below';
+  animateFrom?: 'side' | 'below';
   title?: string;
   message: string;
   action?: string;
@@ -19,7 +19,7 @@ export const Alert: React.FC<{
   onDismiss?: () => void;
 }> = ({
   isActive,
-  animateFrom = 'start',
+  animateFrom = 'side',
   title,
   message,
   action,
@@ -34,7 +34,7 @@ export const Alert: React.FC<{
     <div
       className={classNames('notification-bar', {
         'notification-bar--active': isActive,
-        'from-start': animateFrom === 'start',
+        'from-side': animateFrom === 'side',
         'from-below': animateFrom === 'below',
       })}
     >
