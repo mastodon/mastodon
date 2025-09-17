@@ -2,8 +2,9 @@ import { FormattedMessage } from 'react-intl';
 
 import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { Icon } from 'mastodon/components/icon';
-import { DisplayedName } from 'mastodon/features/notifications_v2/components/displayed_name';
 import { useAppSelector } from 'mastodon/store';
+
+import { LinkedDisplayName } from './display_name';
 
 export const StatusThreadLabel: React.FC<{
   accountId: string;
@@ -27,7 +28,13 @@ export const StatusThreadLabel: React.FC<{
       <FormattedMessage
         id='status.replied_to'
         defaultMessage='Replied to {name}'
-        values={{ name: <DisplayedName accountIds={[inReplyToAccountId]} /> }}
+        values={{
+          name: (
+            <LinkedDisplayName
+              displayProps={{ account: inReplyToAccount, variant: 'simple' }}
+            />
+          ),
+        }}
       />
     );
   } else {
