@@ -10294,7 +10294,7 @@ noscript {
 .notification-list {
   position: fixed;
   bottom: 2rem;
-  inset-inline-start: 0;
+  inset-inline-start: 1rem;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -10302,9 +10302,11 @@ noscript {
 }
 
 .notification-bar {
+  --alert-edge-spacing: 1rem;
+
+  display: flex;
+  gap: 10px;
   flex: 0 0 auto;
-  position: relative;
-  inset-inline-start: -100%;
   width: auto;
   padding: 15px;
   margin: 0;
@@ -10320,33 +10322,43 @@ noscript {
   font-size: 15px;
   line-height: 21px;
 
-  &.notification-bar-active {
-    inset-inline-start: 1rem;
+  &.from-side {
+    translate: calc(
+      -1 * (100% + var(--alert-edge-spacing)) * var(--text-x-direction)
+    );
+  }
+
+  &.from-below {
+    translate: 0 calc(100% + var(--alert-edge-spacing));
+  }
+
+  &.notification-bar--active {
+    translate: none;
   }
 
   .no-reduce-motion & {
     transition: 0.5s cubic-bezier(0.89, 0.01, 0.5, 1.1);
-    transform: translateZ(0);
+    will-change: translate;
   }
 }
 
-.notification-bar-title {
-  margin-inline-end: 5px;
+.notification-bar__content {
+  margin-inline-end: auto;
 }
 
-.notification-bar-title,
-.notification-bar-action {
+.notification-bar__title {
+  margin-inline-end: 5px;
   font-weight: 700;
 }
 
-.notification-bar-action {
+.notification-bar__action {
   display: inline-block;
   border: 0;
   background: transparent;
   text-transform: uppercase;
-  margin-inline-start: 10px;
   cursor: pointer;
   color: $blurple-300;
+  font-weight: 700;
   border-radius: 4px;
   padding: 0 4px;
 
@@ -10354,6 +10366,17 @@ noscript {
   &:focus,
   &:active {
     background: color.change($ui-base-color, $alpha: 0.85);
+  }
+}
+
+.notification-bar__dismiss-button {
+  margin-top: -2px;
+  color: rgb(from currentColor r g b / 85%);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: currentColor;
   }
 }
 
