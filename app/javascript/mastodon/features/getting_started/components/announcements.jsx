@@ -186,6 +186,10 @@ class Reaction extends ImmutablePureComponent {
     hovered: false,
   };
 
+  handleMouseEnter = () => this.setState({ hovered: true });
+
+  handleMouseLeave = () => this.setState({ hovered: false });
+
   handleClick = () => {
     const { reaction, announcementId, addReaction, removeReaction } = this.props;
 
@@ -211,6 +215,9 @@ class Reaction extends ImmutablePureComponent {
         onClick={this.handleClick}
         title={`:${shortCode}:`}
         style={this.props.style}
+        // This does not use animate-parent as this component is directly rendered by React.
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
       >
         <span className='reactions-bar__item__emoji'>
           <Emoji hovered={this.state.hovered} emoji={reaction.get('name')} emojiMap={this.props.emojiMap} />

@@ -1,5 +1,7 @@
 import type { ComponentPropsWithoutRef, ElementType } from 'react';
 
+import classNames from 'classnames';
+
 import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 
 import { useEmojify } from './hooks';
@@ -37,7 +39,7 @@ export const ModernEmojiHTML = ({
   return (
     <Wrapper
       {...props}
-      className={`${className} animate-parent`}
+      className={classNames(className, 'animate-parent')}
       dangerouslySetInnerHTML={{ __html: emojifiedHtml }}
     />
   );
@@ -49,7 +51,13 @@ export const EmojiHTML = <Element extends ElementType>(
   if (isModernEmojiEnabled()) {
     return <ModernEmojiHTML {...props} />;
   }
-  const { as: asElement, htmlString, extraEmojis, ...rest } = props;
+  const { as: asElement, htmlString, extraEmojis, className, ...rest } = props;
   const Wrapper = asElement ?? 'div';
-  return <Wrapper {...rest} dangerouslySetInnerHTML={{ __html: htmlString }} />;
+  return (
+    <Wrapper
+      {...rest}
+      dangerouslySetInnerHTML={{ __html: htmlString }}
+      className={classNames(className, 'animate-parent')}
+    />
+  );
 };
