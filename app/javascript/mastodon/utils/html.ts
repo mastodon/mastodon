@@ -16,20 +16,24 @@ interface QueueItem {
   depth: number;
 }
 
-export interface HTMLToStringOptions {
+export interface HTMLToStringOptions<Arg extends Record<string, unknown>> {
   maxDepth?: number;
-  onText?: (text: string) => React.ReactNode;
+  onText?: (text: string, extra: Arg) => React.ReactNode;
   onElement?: (
     element: HTMLElement,
     children: React.ReactNode[],
+    extra: Arg,
   ) => React.ReactNode;
   onAttribute?: (
     name: string,
     value: string,
     tagName: string,
+    extra: Arg,
   ) => [string, unknown] | null;
   allowedTags?: Set<string>;
+  extraArgs?: Arg;
 }
+
 const DEFAULT_ALLOWED_TAGS: ReadonlySet<string> = new Set([
   'a',
   'abbr',
@@ -51,6 +55,7 @@ const DEFAULT_ALLOWED_TAGS: ReadonlySet<string> = new Set([
   'h6',
   'hr',
   'i',
+  'img',
   'li',
   'ol',
   'p',
@@ -64,10 +69,13 @@ const DEFAULT_ALLOWED_TAGS: ReadonlySet<string> = new Set([
   'u',
   'ul',
 ]);
+const ELEMENTS_WITHOUT_CHILDREN = new Set(['br', 'hr', 'img']);
 
-export function htmlStringToComponents(
+let uniqueIdCounter = 0;
+
+export function htmlStringToComponents<Arg extends Record<string, unknown>>(
   htmlString: string,
-  options: HTMLToStringOptions = {},
+  options: HTMLToStringOptions<Arg> = {},
 ) {
   const wrapper = document.createElement('template');
   wrapper.innerHTML = htmlString;
@@ -83,6 +91,7 @@ export function htmlStringToComponents(
     onAttribute,
     onElement,
     onText,
+    extraArgs = {} as Arg,
   } = options;
 
   while (queue.length > 0) {
@@ -109,9 +118,9 @@ export function htmlStringToComponents(
       // Text can be added directly if it has any non-whitespace content.
       case Node.TEXT_NODE: {
         const text = node.textContent;
-        if (text && text.trim() !== '') {
+        if (text) {
           if (onText) {
-            parent.push(onText(text));
+            parent.push(onText(text, extraArgs));
           } else {
             parent.push(text);
           }
@@ -137,7 +146,7 @@ export function htmlStringToComponents(
 
         // If onElement is provided, use it to create the element.
         if (onElement) {
-          const component = onElement(node, children);
+          const component = onElement(node, children, extraArgs);
           // Check for undefined to allow returning null.
           if (component !== undefined) {
             element = component;
@@ -148,24 +157,37 @@ export function htmlStringToComponents(
         if (element === undefined) {
           const props: Record<string, unknown> = {};
           for (const attr of node.attributes) {
+            let name = attr.name.toLowerCase();
+            if (name === 'class') {
+              name = 'className';
+            }
             if (onAttribute) {
               const result = onAttribute(
-                attr.name,
+                name,
                 attr.value,
                 node.tagName.toLowerCase(),
+                extraArgs,
               );
               if (result) {
-                const [name, value] = result;
-                props[name] = value;
+                const [cbName, value] = result;
+                props[cbName] = value;
               }
             } else {
-              props[attr.name] = attr.value;
+              let value: string | boolean | number = attr.value;
+              if (value === 'true') {
+                value = true;
+              } else if (value === 'false') {
+                value = false;
+              }
+              props[name] = value;
             }
+            props.key = uniqueIdCounter++; // Get the current key and then increment it.
           }
+          const tagName = node.tagName.toLowerCase();
           element = React.createElement(
-            node.tagName.toLowerCase(),
+            tagName,
             props,
-            children,
+            !ELEMENTS_WITHOUT_CHILDREN.has(tagName) ? children : undefined,
           );
         }
 
