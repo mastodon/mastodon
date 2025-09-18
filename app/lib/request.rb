@@ -72,7 +72,7 @@ class Request
     raise ArgumentError if url.blank?
 
     @verb        = verb
-    @url         = normalize_and_restore_original_comma_encoding(url)
+    @url         = normalize_preserving_url_encodings(url)
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
     @options     = {
@@ -148,14 +148,16 @@ class Request
 
   private
 
-  def normalize_and_restore_original_comma_encoding(url)
+  SAFE_PRESERVED_CHARS = ','.freeze
+
+  def normalize_preserving_url_encodings(url, preserve_chars = SAFE_PRESERVED_CHARS)
     original_uri = Addressable::URI.parse(url)
 
     if original_uri.query
       normalized_query = Addressable::URI.normalize_component(
         original_uri.query,
         Addressable::URI::CharacterClasses::RESERVED_AND_UNRESERVED,
-        ',' # Leave commas encoded if they were originally encoded
+        preserve_chars
       )
 
       normalized_uri = original_uri.normalize
