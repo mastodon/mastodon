@@ -14,8 +14,8 @@ import { Icon }  from 'mastodon/components/icon';
 import { Poll } from 'mastodon/components/poll';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';
-import { EmojiHTML } from '../features/emoji/emoji_html';
 import { isModernEmojiEnabled } from '../utils/environment';
+import { HTMLBlock } from './html_contents/html_block';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -258,12 +258,12 @@ class StatusContent extends PureComponent {
       return (
         <>
           <div className={classNames} ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-            <EmojiHTML
+            <span
               className='status__content__text status__content__text--visible translate'
               lang={language}
-              htmlString={content}
-              extraEmojis={status.get('emojis')}
-            />
+            >
+              <HTMLBlock contents={content} extraEmojis={status.get('emojis')} />
+            </span>
 
             {poll}
             {translateButton}
@@ -275,12 +275,12 @@ class StatusContent extends PureComponent {
     } else {
       return (
         <div className={classNames} ref={this.setRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-          <EmojiHTML
+          <span
             className='status__content__text status__content__text--visible translate'
             lang={language}
-            htmlString={content}
-            extraEmojis={status.get('emojis')}
-          />
+          >
+            <HTMLBlock contents={content} extraEmojis={status.get('emojis')} />
+          </span>
 
           {poll}
           {translateButton}

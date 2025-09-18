@@ -2,9 +2,7 @@ import type { ComponentPropsWithoutRef, FC } from 'react';
 
 import classNames from 'classnames';
 
-import { EmojiHTML } from '@/mastodon/features/emoji/emoji_html';
-import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
-
+import { HTMLBlock } from '../html_contents/html_block';
 import { Skeleton } from '../skeleton';
 
 import type { DisplayNameProps } from './index';
@@ -17,16 +15,12 @@ export const DisplayNameWithoutDomain: FC<
     <span {...props} className={classNames('display-name', className)}>
       <bdi>
         {account ? (
-          <EmojiHTML
-            className='display-name__html'
-            htmlString={
-              isModernEmojiEnabled()
-                ? account.get('display_name')
-                : account.get('display_name_html')
-            }
-            shallow
-            as='strong'
-          />
+          <strong className='display-name__html'>
+            <HTMLBlock
+              contents={account.get('display_name')}
+              extraEmojis={account.get('emojis')}
+            />
+          </strong>
         ) : (
           <strong className='display-name__html'>
             <Skeleton width='10ch' />

@@ -34,7 +34,7 @@ export interface HTMLToStringOptions<Arg extends Record<string, unknown>> {
   extraArgs?: Arg;
 }
 
-const DEFAULT_ALLOWED_TAGS: ReadonlySet<string> = new Set([
+const DEFAULT_ALLOWED_TAGS = new Set([
   'a',
   'abbr',
   'b',
@@ -156,6 +156,7 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
         // If the element wasn't created, use the default conversion.
         if (element === undefined) {
           const props: Record<string, unknown> = {};
+          props.key = uniqueIdCounter++; // Get the current key and then increment it.
           for (const attr of node.attributes) {
             let name = attr.name.toLowerCase();
             if (name === 'class') {
@@ -181,7 +182,6 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
               }
               props[name] = value;
             }
-            props.key = uniqueIdCounter++; // Get the current key and then increment it.
           }
           const tagName = node.tagName.toLowerCase();
           element = React.createElement(
