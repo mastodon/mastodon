@@ -1,3 +1,9 @@
+import { isList } from 'immutable';
+
+import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
+import { makeEmojiMap } from '@/mastodon/models/custom_emoji';
+import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
+
 import {
   VARIATION_SELECTOR_CODE,
   KEYCAP_CODE,
@@ -7,7 +13,11 @@ import {
   EMOJIS_WITH_DARK_BORDER,
   EMOJIS_WITH_LIGHT_BORDER,
 } from './constants';
-import type { TwemojiBorderInfo } from './types';
+import type {
+  CustomEmojiMapArg,
+  ExtraCustomEmojiMap,
+  TwemojiBorderInfo,
+} from './types';
 
 // Misc codes that have special handling
 const SKIER_CODE = 0x26f7;
@@ -148,6 +158,27 @@ export function twemojiToUnicodeInfo(
   }
 
   return hexNumbersToString(mappedCodes);
+}
+
+export function cleanExtraEmojis(
+  extraEmojis?: CustomEmojiMapArg,
+): ExtraCustomEmojiMap {
+  if (!extraEmojis) {
+    return {};
+  }
+  if (isList(extraEmojis)) {
+    if (isModernEmojiEnabled()) {
+      return (
+        extraEmojis.toJS() as ApiCustomEmojiJSON[]
+      ).reduce<ExtraCustomEmojiMap>(
+        (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
+        {},
+      );
+    } else {
+      return makeEmojiMap(extraEmojis);
+    }
+  }
+  return extraEmojis;
 }
 
 function hexStringToNumbers(hexString: string): number[] {
