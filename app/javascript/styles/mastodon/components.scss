@@ -1413,13 +1413,14 @@
 .status__content__translate-button {
   display: flex;
   align-items: center;
+  width: min-content;
   font-size: 15px;
   line-height: 22px;
   color: $highlight-text-color;
   border: 0;
   background: transparent;
   padding: 0;
-  padding-top: 16px;
+  margin-top: 16px;
   text-decoration: none;
 
   &:hover,
