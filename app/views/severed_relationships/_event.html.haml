@@ -2,8 +2,7 @@
 
 %tr
   %td
-    %time.formatted{ datetime: event.created_at.iso8601, title: l(event.created_at) }
-      = l(event.created_at)
+    = formatted_time event.created_at
   %td= t("severed_relationships.event_type.#{event.type}", target_name: event.target_name)
   - if event.purged?
     %td{ rowspan: 2 }= t('severed_relationships.purged')

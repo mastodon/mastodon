@@ -22,6 +22,10 @@ module ApplicationHelper
     number_to_human(number, **options)
   end
 
+  def formatted_time(datetime)
+    tag.time(class: :formatted, datetime: datetime.iso8601, title: l(datetime)) { l(datetime) }
+  end
+
   def open_registrations?
     Setting.registrations_mode == 'open'
   end

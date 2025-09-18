@@ -3,7 +3,7 @@
     .report-header__details__item__header
       %strong= t('admin.reports.created_at')
     .report-header__details__item__content
-      %time.formatted{ datetime: report.created_at.iso8601 }
+      = formatted_time report.created_at
   .report-header__details__item
     .report-header__details__item__header
       %strong= t('admin.reports.reported_by')

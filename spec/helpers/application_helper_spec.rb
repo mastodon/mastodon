@@ -42,6 +42,17 @@ RSpec.describe ApplicationHelper do
     end
   end
 
+  describe '#formatted_time' do
+    let(:datetime) { DateTime.new(2025, 1, 2, 3, 4, 5) }
+
+    it 'renders a time tag with expected attributes' do
+      expect(helper.formatted_time(datetime))
+        .to match(<<~HTML.squish)
+          <time class="formatted" datetime="2025-01-02T03:04:05+00:00" title="Jan 02, 2025, 03:04">Jan 02, 2025, 03:04</time>
+        HTML
+    end
+  end
+
   describe 'locale_direction' do
     it 'adds rtl body class if locale is Arabic' do
       I18n.with_locale(:ar) do

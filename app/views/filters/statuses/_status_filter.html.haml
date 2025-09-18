@@ -24,7 +24,7 @@
         .username= status.account.acct
       ·
       = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime', rel: 'noopener' do
-        %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
+        = formatted_time status.created_at
       - if status.edited?
         ·
         = t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'formatted'))

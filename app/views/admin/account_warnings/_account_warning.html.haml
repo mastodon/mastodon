@@ -10,8 +10,7 @@
             name: content_tag(:span, account_warning.account ? account_warning.account.username : I18n.t('admin.action_logs.deleted_account'), class: 'username'),
             target: content_tag(:span, account_warning.target_account.pretty_acct, class: 'target')).html_safe
       .log-entry__timestamp
-        %time.formatted{ datetime: account_warning.created_at.iso8601 }
-          = l(account_warning.created_at)
+        = formatted_time(account_warning.created_at)
 
         - if account_warning.report_id.present?
           ·

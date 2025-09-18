@@ -60,14 +60,14 @@
 %tr
   %th= t('admin.accounts.joined')
   %td
-    %time.formatted{ datetime: account.created_at.iso8601, title: l(account.created_at) }= l account.created_at
+    = formatted_time account.created_at
   %td
   = render partial: 'admin/accounts/user_ip', collection: account.user.ips.by_latest_used
 %tr
   %th= t('admin.accounts.most_recent_activity')
   %td
     - if account.user_current_sign_in_at
-      %time.formatted{ datetime: account.user_current_sign_in_at.iso8601, title: l(account.user_current_sign_in_at) }= l account.user_current_sign_in_at
+      = formatted_time account.user_current_sign_in_at
   %td
 - if account.user&.invited?
   %tr
