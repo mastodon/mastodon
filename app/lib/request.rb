@@ -65,6 +65,7 @@ class Request
   # and 5s timeout on the TLS handshake, meaning the worst case should take
   # about 15s in total
   TIMEOUT = { connect_timeout: 5, read_timeout: 10, write_timeout: 10, read_deadline: 30 }.freeze
+  SAFE_PRESERVED_CHARS = ','
 
   include RoutingHelper
 
@@ -72,7 +73,7 @@ class Request
     raise ArgumentError if url.blank?
 
     @verb        = verb
-    @url         = normalize_preserving_url_encodings(url)
+    @url         = normalize_preserving_url_encodings(url, SAFE_PRESERVED_CHARS)
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
     @options     = {
@@ -147,8 +148,6 @@ class Request
   end
 
   private
-
-  SAFE_PRESERVED_CHARS = ','.freeze
 
   def normalize_preserving_url_encodings(url, preserve_chars = SAFE_PRESERVED_CHARS)
     original_uri = Addressable::URI.parse(url)
