@@ -56,9 +56,6 @@ export const Conversation = ({ conversation, scrollKey }) => {
   const lastStatus = useSelector(state => getStatus(state, { id: lastStatusId }));
   const accounts = useSelector(state => getAccounts(state, accountIds));
 
-  const handleMouseEnter = useCallback(handleAnimateEnter, []);
-  const handleMouseLeave = useCallback(handleAnimateLeave, []);
-
   const handleClick = useCallback(() => {
     if (unread) {
       dispatch(markConversationRead(id));

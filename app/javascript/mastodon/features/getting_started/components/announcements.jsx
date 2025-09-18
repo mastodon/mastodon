@@ -186,10 +186,6 @@ class Reaction extends ImmutablePureComponent {
     hovered: false,
   };
 
-  handleMouseEnter = () => this.setState({ hovered: true });
-
-  handleMouseLeave = () => this.setState({ hovered: false });
-
   handleClick = () => {
     const { reaction, announcementId, addReaction, removeReaction } = this.props;
 
@@ -199,6 +195,10 @@ class Reaction extends ImmutablePureComponent {
       addReaction(announcementId, reaction.get('name'));
     }
   };
+
+  handleMouseEnter = () => this.setState({ hovered: true });
+
+  handleMouseLeave = () => this.setState({ hovered: false });
 
   render () {
     const { reaction } = this.props;
