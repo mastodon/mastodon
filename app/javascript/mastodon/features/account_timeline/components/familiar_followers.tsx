@@ -1,33 +1,26 @@
 import { FormattedMessage } from 'react-intl';
 
-import { Link } from 'react-router-dom';
-
 import { Avatar } from '@/mastodon/components/avatar';
 import { AvatarGroup } from '@/mastodon/components/avatar_group';
+import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import type { Account } from '@/mastodon/models/account';
 
 import { useFetchFamiliarFollowers } from '../hooks/familiar_followers';
-
-const AccountLink: React.FC<{ account?: Account }> = ({ account }) => {
-  if (!account) {
-    return null;
-  }
-
-  return (
-    <Link
-      to={`/@${account.acct}`}
-      data-hover-card-account={account.id}
-      dangerouslySetInnerHTML={{ __html: account.display_name_html }}
-    />
-  );
-};
 
 const FamiliarFollowersReadout: React.FC<{ familiarFollowers: Account[] }> = ({
   familiarFollowers,
 }) => {
   const messageData = {
-    name1: <AccountLink account={familiarFollowers.at(0)} />,
-    name2: <AccountLink account={familiarFollowers.at(1)} />,
+    name1: (
+      <LinkedDisplayName
+        displayProps={{ account: familiarFollowers.at(0), variant: 'simple' }}
+      />
+    ),
+    name2: (
+      <LinkedDisplayName
+        displayProps={{ account: familiarFollowers.at(1), variant: 'simple' }}
+      />
+    ),
     othersCount: familiarFollowers.length - 2,
   };
 
