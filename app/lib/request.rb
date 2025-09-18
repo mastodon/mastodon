@@ -72,15 +72,7 @@ class Request
     raise ArgumentError if url.blank?
 
     @verb        = verb
-
-    # Skip normalization for The Guardian's signed image URLs
-    parsed_url = Addressable::URI.parse(url)
-    @url = if parsed_url.host&.downcase == 'i.guim.co.uk'
-             parsed_url
-           else
-             parsed_url.normalize
-           end
-
+    @url         = normalize_and_restore_original_comma_encoding(url)
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
     @options     = {
@@ -155,6 +147,24 @@ class Request
   end
 
   private
+
+  def normalize_and_restore_original_comma_encoding(url)
+    original_uri = Addressable::URI.parse(url)
+
+    if original_uri.query
+      normalized_query = Addressable::URI.normalize_component(
+        original_uri.query,
+        Addressable::URI::CharacterClasses::RESERVED_AND_UNRESERVED,
+        ','  # Leave commas encoded if they were originally encoded
+      )
+
+      normalized_uri = original_uri.normalize
+      normalized_uri.query = normalized_query
+      normalized_uri
+    else
+      original_uri.normalize
+    end
+  end
 
   def set_common_headers!
     @headers['User-Agent']      = Mastodon::Version.user_agent
