@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -6,13 +6,16 @@ import type { Map as ImmutableMap } from 'immutable';
 
 import { LearnMoreLink } from 'mastodon/components/learn_more_link';
 import StatusContainer from 'mastodon/containers/status_container';
+import { domain } from 'mastodon/initial_state';
+import type { Account } from 'mastodon/models/account';
 import type { Status } from 'mastodon/models/status';
 import type { RootState } from 'mastodon/store';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
+import { revealAccount } from '../actions/accounts_typed';
 import { fetchStatus } from '../actions/statuses';
-import type { Account } from '../models/account';
 import { makeGetStatusWithExtraInfo } from '../selectors';
+import { getAccountHidden } from '../selectors/accounts';
 
 import { Button } from './button';
 
@@ -56,6 +59,29 @@ type GetStatusSelector = (
 
 type QuoteMap = ImmutableMap<'state' | 'quoted_status', string | null>;
 
+const LimitedAccountHint: React.FC<{ accountId: string }> = ({ accountId }) => {
+  const dispatch = useAppDispatch();
+  const reveal = useCallback(() => {
+    dispatch(revealAccount({ id: accountId }));
+  }, [dispatch, accountId]);
+
+  return (
+    <>
+      <FormattedMessage
+        id='status.quote_error.limited_account_hint.title'
+        defaultMessage='This account has been hidden by the moderators of {domain}.'
+        values={{ domain }}
+      />
+      <button onClick={reveal} className='link-button'>
+        <FormattedMessage
+          id='status.quote_error.limited_account_hint.action'
+          defaultMessage='Show anyway'
+        />
+      </button>
+    </>
+  );
+};
+
 interface QuotedStatusProps {
   quote: QuoteMap;
   contextType?: string;
@@ -87,6 +113,13 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
   );
   const { status, loadingState } = useAppSelector((state) =>
     getStatusSelector(state, { id: quotedStatusId, contextType }),
+  );
+
+  const accountId: string | null = status?.get('account')
+    ? (status.get('account') as Account).id
+    : null;
+  const hiddenAccount = useAppSelector(
+    (state) => accountId && getAccountHidden(state, accountId),
   );
 
   const shouldFetchQuote =
@@ -164,6 +197,8 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
         defaultMessage='Post unavailable'
       />
     );
+  } else if (hiddenAccount && accountId) {
+    quoteError = <LimitedAccountHint accountId={accountId} />;
   }
 
   if (quoteError) {
