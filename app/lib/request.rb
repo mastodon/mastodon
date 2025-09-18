@@ -155,7 +155,7 @@ class Request
       normalized_query = Addressable::URI.normalize_component(
         original_uri.query,
         Addressable::URI::CharacterClasses::RESERVED_AND_UNRESERVED,
-        ','  # Leave commas encoded if they were originally encoded
+        ',' # Leave commas encoded if they were originally encoded
       )
 
       normalized_uri = original_uri.normalize
