@@ -2960,7 +2960,6 @@ a.account__display-name {
   flex: 1 1 auto;
   flex-direction: row;
   justify-content: flex-start;
-  overflow-x: auto;
   position: relative;
 
   &.unscrollable {
@@ -3136,6 +3135,29 @@ a.account__display-name {
   }
 }
 
+.column__alert {
+  position: sticky;
+  bottom: 1rem;
+  z-index: 10;
+  box-sizing: border-box;
+  display: grid;
+  width: 100%;
+  max-width: 360px;
+  padding-inline: 10px;
+  margin-top: 1rem;
+  margin-inline: auto;
+
+  @media (max-width: #{$mobile-menu-breakpoint - 1}) {
+    bottom: 4rem;
+  }
+
+  & > * {
+    // Make all nested alerts occupy the same space
+    // rather than stack
+    grid-area: 1 / 1;
+  }
+}
+
 .ui {
   --mobile-bottom-nav-height: 55px;
   --last-content-item-border-width: 2px;
@@ -3176,7 +3198,6 @@ a.account__display-name {
 .column,
 .drawer {
   flex: 1 1 100%;
-  overflow: hidden;
 }
 
 @media screen and (width > $mobile-breakpoint) {
@@ -10385,6 +10406,21 @@ noscript {
   &:focus,
   &:active {
     color: currentColor;
+  }
+}
+
+.notification-bar__loading-indicator {
+  --spinner-size: 22px;
+
+  position: relative;
+  height: var(--spinner-size);
+  width: var(--spinner-size);
+  margin-inline-start: 2px;
+
+  svg {
+    color: $white;
+    height: var(--spinner-size);
+    width: var(--spinner-size);
   }
 }
 
