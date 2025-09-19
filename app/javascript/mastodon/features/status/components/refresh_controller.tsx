@@ -66,11 +66,10 @@ export const RefreshController: React.FC<{
   const refresh = useAppSelector(
     (state) => state.contexts.refreshing[statusId],
   );
-  const autoRefresh = useAppSelector(
-    (state) =>
-      !state.contexts.replies[statusId] ||
-      state.contexts.replies[statusId].length === 0,
+  const currentReplyCount = useAppSelector(
+    (state) => state.contexts.replies[statusId]?.length ?? 0,
   );
+  const autoRefresh = !currentReplyCount;
   const dispatch = useAppDispatch();
   const intl = useIntl();
 
@@ -92,23 +91,20 @@ export const RefreshController: React.FC<{
           if (result.async_refresh.status === 'finished') {
             dispatch(completeContextRefresh({ statusId }));
 
-            if (result.async_refresh.result_count > 0) {
+            if (result.async_refresh.result_count > currentReplyCount) {
               if (autoRefresh) {
                 void dispatch(fetchContext({ statusId })).then(() => {
                   setLoadingState('idle');
                 });
-                return '';
+              } else {
+                setLoadingState('more-available');
               }
-
-              setLoadingState('more-available');
-              return '';
+            } else {
+              setLoadingState('idle');
             }
-            setLoadingState('idle');
           } else {
             scheduleRefresh(refresh);
           }
-
-          return '';
         });
       }, refresh.retry * 1000);
     };
@@ -121,7 +117,7 @@ export const RefreshController: React.FC<{
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [dispatch, statusId, refresh, autoRefresh]);
+  }, [dispatch, statusId, currentReplyCount, refresh, autoRefresh]);
 
   useEffect(() => {
     // Hide success message after a short delay
