@@ -21,8 +21,6 @@ class Follow < ApplicationRecord
   include RateLimitable
   include FollowLimitable
 
-  rate_limit by: :account, family: :follows
-
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'
 
@@ -33,27 +31,17 @@ class Follow < ApplicationRecord
 
   scope :recent, -> { reorder(id: :desc) }
 
-  def local?
-    false # Force uri_for to use uri attribute
-  end
+  after_create :increment_cache_counters
+  after_destroy :remove_endorsements
+  after_destroy :decrement_cache_counters
+  after_commit :invalidate_hash_cache
 
   def revoke_request!
     FollowRequest.create!(account: account, target_account: target_account, show_reblogs: show_reblogs, notify: notify, languages: languages, uri: uri)
     destroy!
   end
 
-  before_validation :set_uri, only: :create
-  after_create :increment_cache_counters
-  after_destroy :remove_endorsements
-  after_destroy :decrement_cache_counters
-  after_commit :invalidate_follow_recommendations_cache
-  after_commit :invalidate_hash_cache
-
   private
-
-  def set_uri
-    self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil?
-  end
 
   def remove_endorsements
     AccountPin.where(target_account_id: target_account_id, account_id: account_id).delete_all
@@ -73,9 +61,5 @@ class Follow < ApplicationRecord
     return if account.local? && target_account.local?
 
     Rails.cache.delete("followers_hash:#{target_account_id}:#{account.synchronization_uri_prefix}")
-  end
-
-  def invalidate_follow_recommendations_cache
-    Rails.cache.delete("follow_recommendations/#{account_id}")
   end
 end
