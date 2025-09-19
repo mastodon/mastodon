@@ -14,6 +14,10 @@ module FollowLimitable
     after_commit :invalidate_follow_recommendations_cache
   end
 
+  def local?
+    false # Force uri_for to use uri attribute
+  end
+
   private
 
   def set_uri
