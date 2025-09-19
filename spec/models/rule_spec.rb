@@ -47,4 +47,28 @@ RSpec.describe Rule do
       expect(rule.translation_for(:'fr-CA')).to have_attributes(text: translation.text, hint: translation.hint)
     end
   end
+
+  describe '#untranslated_languages' do
+    subject { rule.untranslated_languages }
+
+    let(:rule) { Fabricate :rule }
+
+    context 'when there are no translations' do
+      it { is_expected.to be_an(Array).and(be_empty) }
+    end
+
+    context 'when there are translations' do
+      let(:linked_to_rule_translation) { Fabricate :rule_translation, language: 'es', rule: }
+      let!(:missing_translation) { Fabricate :rule_translation, language: 'fr' }
+      let!(:discarded_rule_translation) { Fabricate :rule_translation, language: 'gb', rule: discarded_rule }
+      let(:discarded_rule) { Fabricate :rule, deleted_at: 5.days.ago }
+
+      it 'returns language strings of missing translations' do
+        expect(subject)
+          .to include(missing_translation.language)
+          .and not_include(linked_to_rule_translation.language)
+          .and not_include(discarded_rule_translation.language)
+      end
+    end
+  end
 end
