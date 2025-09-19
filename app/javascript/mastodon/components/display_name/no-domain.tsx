@@ -14,7 +14,10 @@ export const DisplayNameWithoutDomain: FC<
     ComponentPropsWithoutRef<'span'>
 > = ({ account, className, children, ...props }) => {
   return (
-    <span {...props} className={classNames('display-name', className)}>
+    <span
+      {...props}
+      className={classNames('display-name animate-parent', className)}
+    >
       <bdi>
         {account ? (
           <EmojiHTML

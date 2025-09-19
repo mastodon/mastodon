@@ -76,32 +76,6 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
     [clickCoordinatesRef, statusId, account, history],
   );
 
-  const handleMouseEnter = useCallback<React.MouseEventHandler<HTMLDivElement>>(
-    ({ currentTarget }) => {
-      const emojis =
-        currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
-
-      for (const emoji of emojis) {
-        const newSrc = emoji.getAttribute('data-original');
-        if (newSrc) emoji.src = newSrc;
-      }
-    },
-    [],
-  );
-
-  const handleMouseLeave = useCallback<React.MouseEventHandler<HTMLDivElement>>(
-    ({ currentTarget }) => {
-      const emojis =
-        currentTarget.querySelectorAll<HTMLImageElement>('.custom-emoji');
-
-      for (const emoji of emojis) {
-        const newSrc = emoji.getAttribute('data-static');
-        if (newSrc) emoji.src = newSrc;
-      }
-    },
-    [],
-  );
-
   const handleContentWarningClick = useCallback(() => {
     dispatch(toggleStatusSpoilers(statusId));
   }, [dispatch, statusId]);
@@ -123,13 +97,11 @@ export const EmbeddedStatus: React.FC<{ statusId: string }> = ({
 
   return (
     <div
-      className='notification-group__embedded-status'
+      className='notification-group__embedded-status animate-parent'
       role='button'
       tabIndex={-1}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
       <div className='notification-group__embedded-status__account'>
         <Avatar account={account} size={16} />

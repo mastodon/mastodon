@@ -111,42 +111,14 @@ class ContentWithRouter extends ImmutablePureComponent {
     }
   };
 
-  handleMouseEnter = ({ currentTarget }) => {
-    if (autoPlayGif) {
-      return;
-    }
-
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
-
-    for (var i = 0; i < emojis.length; i++) {
-      let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-original');
-    }
-  };
-
-  handleMouseLeave = ({ currentTarget }) => {
-    if (autoPlayGif) {
-      return;
-    }
-
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
-
-    for (var i = 0; i < emojis.length; i++) {
-      let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-static');
-    }
-  };
-
   render () {
     const { announcement } = this.props;
 
     return (
       <div
-        className='announcements__item__content translate'
+        className='announcements__item__content translate animate-parent'
         ref={this.setRef}
         dangerouslySetInnerHTML={{ __html: announcement.get('contentHtml') }}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
       />
     );
   }
@@ -238,9 +210,21 @@ class Reaction extends ImmutablePureComponent {
     }
 
     return (
-      <animated.button className={classNames('reactions-bar__item', { active: reaction.get('me') })} onClick={this.handleClick} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} title={`:${shortCode}:`} style={this.props.style}>
-        <span className='reactions-bar__item__emoji'><Emoji hovered={this.state.hovered} emoji={reaction.get('name')} emojiMap={this.props.emojiMap} /></span>
-        <span className='reactions-bar__item__count'><AnimatedNumber value={reaction.get('count')} /></span>
+      <animated.button
+        className={classNames('reactions-bar__item', { active: reaction.get('me') })}
+        onClick={this.handleClick}
+        title={`:${shortCode}:`}
+        style={this.props.style}
+        // This does not use animate-parent as this component is directly rendered by React.
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      >
+        <span className='reactions-bar__item__emoji'>
+          <Emoji hovered={this.state.hovered} emoji={reaction.get('name')} emojiMap={this.props.emojiMap} />
+        </span>
+        <span className='reactions-bar__item__count'>
+          <AnimatedNumber value={reaction.get('count')} />
+        </span>
       </animated.button>
     );
   }
