@@ -44,7 +44,6 @@ class Follow < ApplicationRecord
   after_create :increment_cache_counters
   after_destroy :remove_endorsements
   after_destroy :decrement_cache_counters
-  after_commit :invalidate_follow_recommendations_cache
   after_commit :invalidate_hash_cache
 
   private
@@ -71,9 +70,5 @@ class Follow < ApplicationRecord
     return if account.local? && target_account.local?
 
     Rails.cache.delete("followers_hash:#{target_account_id}:#{account.synchronization_uri_prefix}")
-  end
-
-  def invalidate_follow_recommendations_cache
-    Rails.cache.delete("follow_recommendations/#{account_id}")
   end
 end
