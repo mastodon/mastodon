@@ -1,5 +1,6 @@
 ---
 shared:
+  disable_followers_synchronization: <%= ENV.fetch('DISABLE_FOLLOWERS_SYNCHRONIZATION', nil) == 'true' %>
   experimental_features: <%= ENV.fetch('EXPERIMENTAL_FEATURES', nil) %>
   limited_federation_mode: <%= (ENV.fetch('LIMITED_FEDERATION_MODE', nil) || ENV.fetch('WHITELIST_MODE', nil)) == 'true' %>
   self_destruct_value: <%= ENV.fetch('SELF_DESTRUCT', nil)&.to_json %>
