@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -11,13 +11,16 @@ import ArticleIcon from '@/material-icons/400-24px/article.svg?react';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import { Icon } from 'mastodon/components/icon';
 import StatusContainer from 'mastodon/containers/status_container';
+import { domain } from 'mastodon/initial_state';
 import type { Status } from 'mastodon/models/status';
 import type { RootState } from 'mastodon/store';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import QuoteIcon from '../../images/quote.svg?react';
+import { revealAccount } from '../actions/accounts_typed';
 import { fetchStatus } from '../actions/statuses';
 import { makeGetStatus } from '../selectors';
+import { getAccountHidden } from '../selectors/accounts';
 
 const MAX_QUOTE_POSTS_NESTING_LEVEL = 1;
 
@@ -73,6 +76,29 @@ type GetStatusSelector = (
   props: { id?: string | null; contextType?: string },
 ) => Status | null;
 
+const LimitedAccountHint: React.FC<{ accountId: string }> = ({ accountId }) => {
+  const dispatch = useAppDispatch();
+  const reveal = useCallback(() => {
+    dispatch(revealAccount({ id: accountId }));
+  }, [dispatch, accountId]);
+
+  return (
+    <>
+      <FormattedMessage
+        id='status.quote_error.limited_account_hint.title'
+        defaultMessage='This account has been hidden by the moderators of {domain}.'
+        values={{ domain }}
+      />
+      <button onClick={reveal} className='link-button'>
+        <FormattedMessage
+          id='status.quote_error.limited_account_hint.action'
+          defaultMessage='Show anyway'
+        />
+      </button>
+    </>
+  );
+};
+
 export const QuotedStatus: React.FC<{
   quote: QuoteMap;
   contextType?: string;
@@ -99,6 +125,14 @@ export const QuotedStatus: React.FC<{
   );
 
   const shouldLoadQuote = !status?.get('isLoading') && quoteState !== 'deleted';
+
+  const accountId: string | null = status?.get('account', null) as
+    | string
+    | null;
+
+  const hiddenAccount = useAppSelector(
+    (state) => accountId && getAccountHidden(state, accountId),
+  );
 
   useEffect(() => {
     if (shouldLoadQuote && quotedStatusId) {
@@ -164,6 +198,8 @@ export const QuotedStatus: React.FC<{
         defaultMessage='This post cannot be displayed.'
       />
     );
+  } else if (hiddenAccount && accountId) {
+    quoteError = <LimitedAccountHint accountId={accountId} />;
   }
 
   if (quoteError) {

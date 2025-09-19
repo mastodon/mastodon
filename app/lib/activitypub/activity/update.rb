@@ -28,6 +28,9 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
 
     @status = Status.find_by(uri: object_uri, account_id: @account.id)
 
+    # We may be getting `Create` and `Update` out of order
+    @status ||= ActivityPub::Activity::Create.new(@json, @account, **@options).perform
+
     return if @status.nil?
 
     ActivityPub::ProcessStatusUpdateService.new.call(@status, @json, @object, request_id: @options[:request_id])
