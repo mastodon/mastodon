@@ -156,6 +156,11 @@ RSpec.describe Report do
     end
   end
 
+  describe 'Delegations' do
+    it { is_expected.to delegate_method(:acct).to(:target_account).with_prefix }
+    it { is_expected.to delegate_method(:local?).to(:target_account).with_prefix }
+  end
+
   describe 'Validations' do
     let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
 
