@@ -48,10 +48,18 @@ class AccountStatusesFilter
   def filtered_scope
     scope = account.statuses.left_outer_joins(:mentions)
 
-    scope.merge!(scope.where(visibility: follower? ? %i(public unlisted private) : %i(public unlisted)).or(scope.where(mentions: { account_id: current_account.id })).group(Status.arel_table[:id]))
+    scope.merge!(visibility_scope(scope).or(scope.where(mentions: { account_id: current_account.id })).group(Status.arel_table[:id]))
     scope.merge!(filtered_reblogs_scope) if reblogs_may_occur?
 
     scope
+  end
+
+  def visibility_scope(scope)
+    if follower?
+      scope.list_eligible_visibility
+    else
+      scope.distributable_visibility
+    end
   end
 
   def filtered_reblogs_scope
