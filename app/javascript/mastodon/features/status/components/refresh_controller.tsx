@@ -187,7 +187,6 @@ export const RefreshController: React.FC<{
         withEntryDelay
         isActive={loadingState === 'success' && !wasDismissed}
         message={intl.formatMessage(messages.success)}
-        onDismiss={dismissPrompt}
         animateFrom='below'
       />
     </div>
