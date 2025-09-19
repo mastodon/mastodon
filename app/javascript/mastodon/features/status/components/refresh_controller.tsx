@@ -101,6 +101,7 @@ export const RefreshController: React.FC<{
               }
 
               setLoadingState('more-available');
+              return '';
             }
             setLoadingState('idle');
           } else {
