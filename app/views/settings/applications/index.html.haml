@@ -15,13 +15,6 @@
           %th= t('doorkeeper.applications.index.scopes')
           %th
       %tbody
-        - @applications.each do |application|
-          %tr
-            %td= link_to application.name, settings_application_path(application)
-            %th
-              - application.scopes.to_s.split.each do |scope|
-                = tag.samp(scope, class: 'information-badge', title: t("doorkeeper.scopes.#{scope}"))
-            %td
-              = table_link_to 'close', t('doorkeeper.applications.index.delete'), settings_application_path(application), method: :delete, data: { confirm: t('doorkeeper.applications.confirmations.destroy') }
+        = render partial: 'application', collection: @applications
 
 = paginate @applications
