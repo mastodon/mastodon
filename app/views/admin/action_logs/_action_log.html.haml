@@ -8,4 +8,4 @@
             name: content_tag(:span, action_log.account.username, class: 'username'),
             target: content_tag(:span, log_target(action_log), class: 'target')
       .log-entry__timestamp
-        %time.formatted{ datetime: action_log.created_at.iso8601 }
+        = formatted_time(action_log.created_at)

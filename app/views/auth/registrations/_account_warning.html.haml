@@ -9,7 +9,7 @@
             action: t(account_warning.action, scope: 'disputes.strikes.title_actions'),
             date: l(account_warning.created_at.to_date)
       .strike-entry__timestamp
-        %time.formatted{ datetime: account_warning.created_at.iso8601 }= l(account_warning.created_at)
+        = formatted_time account_warning.created_at
 
         - if account_warning.overruled?
           ·
