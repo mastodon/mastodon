@@ -18,7 +18,11 @@ export const messages = defineMessages({
     id: 'status.all_disabled',
     defaultMessage: 'Boosts and quotes are disabled',
   },
-  quote: { id: 'status.quote', defaultMessage: 'Quote' },
+  quote: {
+    id: 'status.quote',
+    defaultMessage: 'Quote',
+    description: 'Quote as a verb (e.g. Quote this post)',
+  },
   quote_cannot: {
     id: 'status.cannot_quote',
     defaultMessage: 'You are not allowed to quote this post',
