@@ -232,7 +232,7 @@ nn:
         unsensitive_account: Angr tving ømtolig konto
         unsilence_account: Angre avgrensing av konto
         unsuspend_account: Opphev utestenginga av kontoen
-        update_announcement: Oppdater kunngjøringen
+        update_announcement: Oppdater kunngjeringa
         update_custom_emoji: Oppdater tilpassa emoji
         update_domain_block: Oppdater domene-sperring
         update_ip_block: Oppdater IP-regel
@@ -316,26 +316,26 @@ nn:
       unavailable_instance: "(domenenamn er utilgjengeleg)"
     announcements:
       back: Tilbake til kunngjeringane
-      destroyed_msg: Kunngjøringen er slettet!
+      destroyed_msg: Kunngjeringa er sletta
       edit:
-        title: Rediger kunngjøring
-      empty: Ingen kunngjøringer funnet.
+        title: Rediger kunngjeringa
+      empty: Fann ingen kunngjeringar.
       live: Direkte
       new:
-        create: Lag kunngjøring
-        title: Ny kunngjøring
+        create: Skriv ei kunngjering
+        title: Ny kunngjering
       preview:
         disclaimer: Av di folk ikkje kan velja bort epostvarsel, bør du avgrensa dei til viktige kunngjeringar som datainnbrot eller varsel om at tenaren skal stengja.
         explanation_html: 'Denne eposten blir send til <strong>%{display_count} folk</strong>. Denne teksten vil stå i eposten:'
         title: Førehandsvis kunngjeringa
       publish: Publiser
-      published_msg: Kunngjøring publisert!
+      published_msg: Kunngjeringa er offentleggjord!
       scheduled_for: Planlagt for %{time}
-      scheduled_msg: Kunngjøring planlagt for publisering!
-      title: Kunngjøringer
+      scheduled_msg: Du har planlagt kunngjeringa.
+      title: Kunngjeringar
       unpublish: Avpubliser
-      unpublished_msg: Kunngjøring upublisert!
-      updated_msg: Kunngjøringen er oppdatert!
+      unpublished_msg: Du avpubliserte kunngjeringa.
+      updated_msg: Du oppdaterte kunngjeringa.
     critical_update_pending: Kritisk oppdatering ventar
     custom_emojis:
       assign_category: Vel kategori
@@ -631,7 +631,7 @@ nn:
     relays:
       add_new: Legg til ny overgang
       delete: Slett
-      description_html: En <strong>federert overgang</strong> er en mellomleddsserver som utveksler store mengder av offentlige tuter mellom servere som abonnerer og publiserer til den. <strong>Det kan hjelpe små og mellomstore servere til å oppdage innhold fra strømiverset</strong>, noe som ellers ville ha krevd at lokale brukere manuelt fulgte andre personer på fjerne servere.
+      description_html: Eit <strong>føderert rele</strong> er ein tenar som er mellomledd og handterer store mengder offentlege innlegg mellom tenarar som abonnerer på og sender innlegg til han. <strong>Det kan hjelpa små og mellomstore tenarar å oppdaga innhald frå allheimen</strong>, noko som elles ville krevja at lokale brukarar manuelt fylgde andre folk på andre tenarar.
       disable: Slå av
       disabled: Slege av
       enable: Slå på
@@ -788,8 +788,8 @@ nn:
         manage_user_access_description: Let brukarar deaktivere 2-trinnsautentisering, endre e-postadressa og tilbakestille passordet til andre brukarar
         manage_users: Handtere brukarar
         manage_users_description: Let brukarar sjå detaljar om andre brukarar og utføre moderasjonshandlingar mot dei
-        manage_webhooks: Handtere webhooks
-        manage_webhooks_description: Let brukarar setje opp webhooks for administrative hendingar
+        manage_webhooks: Handter vevkoplingar
+        manage_webhooks_description: Lèt brukarar setja opp vevkoplingar for administrative hendingar
         view_audit_log: Sjå revisjonslogg
         view_audit_log_description: Let brukarar sjå historikk over administrative handlingar på tenaren
         view_dashboard: Vis dashbord
@@ -806,7 +806,7 @@ nn:
       empty: Ingen serverregler har blitt definert ennå.
       move_down: Flytt ned
       move_up: Flytt opp
-      title: Server regler
+      title: Tenarreglar
       translation: Omsetjing
       translations: Omsetjingar
       translations_explanation: Du kan leggja til omsetjingar av retningslinene for denne tenaren. Standardverdien vil syna dersom det ikkje finst noka omsetjing. Ver god å passa på at alle omsetjingar er i samsvar med standardverdien.
@@ -869,7 +869,7 @@ nn:
       destroyed_msg: Vellukka sletting av sideopplasting!
     software_updates:
       critical_update: Kritisk – gjer vel og oppdater snart
-      description: Det er anbefalt å halda Mastodon-installasjonen oppdatert for å dra nytte av nye feilrettingar og funksjonar. Dessutan er det av og til kritisk å oppdatera Mastodon til rett tid for å ungå sikkerheitsproblem. På grunn av dette vil Mastodon sjå etter oppdateringar kvart 30. minutt og halda deg orientert etter innstillingane du har sett for e-postvarsling.
+      description: Me rår til å halda Mastodon-installasjonen oppdatert for å dra nytte av nye feilrettingar og funksjonar. Dessutan er det av og til kritisk å oppdatera Mastodon til rett tid for å ungå sikkerheitsproblem. På grunn av dette vil Mastodon sjå etter oppdateringar kvart 30. minutt og halda deg orientert etter innstillingane du har sett for e-postvarsling.
       documentation_link: Lær meir
       release_notes: Oppdateringsnotat
       title: Tilgjengelege oppdateringar
@@ -947,8 +947,8 @@ nn:
         message_html: 'Inkompatibel Elasticsearch-versjon: %{value}'
         version_comparison: Elasticsearch %{running_version} kjører mens %{required_version} er påkrevd
       rules_check:
-        action: Behandle serverregler
-        message_html: Du har ikke definert noen serverregler.
+        action: Handter tenarreglar
+        message_html: Du har ikkje laga reglar for denne tenaren.
       sidekiq_process_check:
         message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
       software_version_check:
@@ -1089,7 +1089,7 @@ nn:
         used_by_over_week:
           one: Brukt av én person i løpet av den seneste uken
           other: Brukt av %{count} personer i løpet av den seneste uken
-      title: Anbefalingar og trendar
+      title: Tilrådingar og trendar
       trending: Trender
     username_blocks:
       add_new: Lag ny
@@ -1119,23 +1119,23 @@ nn:
     webhooks:
       add_new: Legg til endepunkt
       delete: Slett
-      description_html: En <strong>webhook</strong> gjør det mulig for Mastodon å sende <strong>varsler i sanntid</strong> om utvalgte hendelser til din egen applikasjon, sånn at applikasjonen din kan <strong>reagere automatisk</strong>.
-      disable: Deaktiver
-      disabled: Deaktivert
+      description_html: Ei <strong>vevkopling</strong> gjer det mogleg for Mastodon å senda <strong>varsel i sanntid</strong> om utvalde hendingar til ditt eige program, slik at programmet ditt kan <strong>reagera automatisk</strong>.
+      disable: Skru av
+      disabled: Skrudd av
       edit: Rediger endepunkt
-      empty: Du har ingen webhook-endepunkter konfigurert ennå.
-      enable: Aktiver
+      empty: Du har ikkje laga nokon vevkoplingsendepunkt enno.
+      enable: Skru på
       enabled: Aktiv
       enabled_events:
         one: 1 aktivert hendelse
-        other: "%{count} aktiverte hendelser"
-      events: Hendelser
-      new: Ny webhook
-      rotate_secret: Roter hemmelighet
-      secret: Hemmelighet for signering
+        other: "%{count} aktiverte hendingar"
+      events: Hendingar
+      new: Ny vevkopling
+      rotate_secret: Roter løyndomen
+      secret: Signeringsrløyndom
       status: Status
-      title: Webhooker
-      webhook: Webhook
+      title: Vevkoplingar
+      webhook: Vevkopling
   admin_mailer:
     auto_close_registrations:
       body: På grunn av mangel på nyleg moderatoraktivitet, er registreringar på %{instance} automatisk bytt til å krevje manuell gjennomgang, for å hindre at %{instance} vert brukt som ein plattform for potensielle dårlege aktørar. Du kan byte tilbake for å opne registreringar når som helst.
@@ -1260,7 +1260,7 @@ nn:
       invited_by: 'Du kan bli med i %{domain} takka vere invitasjonen du har fått frå:'
       preamble: Disse angis og håndheves av %{domain}-moderatorene.
       preamble_invited: Før du held fram, ver snill og sjå gjennom reglane bestemt av moderatorane av %{domain}.
-      title: Noen grunnregler.
+      title: Nokre grunnreglar.
       title_invited: Du har blitt invitert.
     security: Tryggleik
     set_new_password: Lag nytt passord
@@ -1554,7 +1554,7 @@ nn:
       muting: Importerer dempa brukarkontoar
     type: Type import
     type_groups:
-      constructive: Fylgjer og bokmerke
+      constructive: Fylgje og bokmerke
       destructive: Blokkeringar og dempingar
     types:
       blocking: Blokkeringsliste
@@ -1789,7 +1789,7 @@ nn:
     missing_resource: Kunne ikke finne URLen for din konto
   reports:
     errors:
-      invalid_rules: refererer ikke til gyldige regler
+      invalid_rules: viser ikkje til gyldige reglar
   rss:
     content_warning: 'Innhaldsvarsel:'
     descriptions:
@@ -1866,7 +1866,7 @@ nn:
     notifications: Epostvarsel
     preferences: Innstillingar
     profile: Profil
-    relationships: Fylgjar og fylgjarar
+    relationships: Fylgje og fylgjarar
     severed_relationships: Brotne forhold
     statuses_cleanup: Automatisert sletting av innlegg
     strikes: Modereringsadvarsler

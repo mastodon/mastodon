@@ -582,6 +582,10 @@ eo:
         limited: Limigita
         title: Moderigado
       moderation_notes:
+        create: Aldoni moderigan noton
+        created_msg: Noto pri moderigo de instanco sukcese kreita!
+        description_html: Vidu kaj lasu notojn por aliaj moderigantoj kaj via estonta memo
+        destroyed_msg: Noto pri moderigo de instanco sukcese forigita!
         title: Notoj de moderigado
       private_comment: Privata komento
       public_comment: Publika komento
@@ -1087,6 +1091,7 @@ eo:
         contains: Enhavas
         equals: Egalas
       contains_html: Enhavas %{string}
+      created_msg: Sukcese kreita uzantnomo-regulo
       delete: Forigi
       edit:
         title: Redakti uzantnoman regulon
@@ -1908,7 +1913,11 @@ eo:
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Privada mencio
+      private: Nur sekvantoj
       public: Publika
+      public_long: Ĉiujn ajn ĉe kaj ekster Mastodon
+      unlisted: Diskrete publika
+      unlisted_long: Kaŝita de serĉrezultoj, tendencoj kaj publikaj templinioj de Mastodon
   statuses_cleanup:
     enabled: Aŭtomate forigi malnovajn postojn
     enabled_hint: Automate forigi viajn mesaĝojn kiam ili atingas la aĝlimon kaj havas escepton

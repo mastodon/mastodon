@@ -274,7 +274,10 @@ kab:
           delete: Kkes
           ip: Tansa IP
       providers:
+        active: D urmid
         delete: Kkes
+        edit: Ẓreg asaǧǧaw
+        finish_registration: Fakk ajerred
         name: Isem
         providers: Asaǧǧaw
         registrations:
@@ -384,6 +387,7 @@ kab:
       updated_at: Yettwaleqqem
       view_profile: Wali amaɣnu
     roles:
+      add_new: Rnu tawuri
       assigned_users:
         one: "%{count} n useqdac"
         other: "%{count} n iseqdacen"
@@ -441,6 +445,7 @@ kab:
       contents: Agbur
       deleted: Yettwakkes
       favourites: Imenyafen
+      in_reply_to: Tiririt i
       language: Tutlayt
       media:
         title: Amidya
@@ -882,9 +887,17 @@ kab:
         one: "%{count} n tbidyutt"
         other: "%{count} n tbidyutin"
     edited_at_html: Tettwaẓreg ass n %{date}
+    quote_policies:
+      followers: Imeḍfaṛen kan
+      nobody: Nekki kan
+      public: Yal yiwen
     title: '%{name} : "%{quote}"'
     visibilities:
+      direct: Abdar uslig
+      private: Imeḍfaṛen kan
       public: Azayez
+      public_long: Kra n win yellan deg Masṭudun neɣ berra-s
+      unlisted: Azayez asusam
   statuses_cleanup:
     enabled: Tukksa n tsuffaɣ tiqburin s wudem awurman
     min_age:
@@ -951,6 +964,7 @@ kab:
       hashtags_subtitle: Snirem ayen yellan d anezzuɣ deg 2 n wussan-a iεeddan
       hashtags_title: Ihacṭagen inezzaɣ
       hashtags_view_more: Sken-d ugar n yihacṭagen inezzaɣ
+      post_action: Aru
       post_step: Ini-as azul i umaḍal s uḍris, s tiwlafin, s tividyutin neɣ s tefranin.
       post_title: Aru tasuffeɣt-inek·inem tamezwarut
       share_step: Init-asen i yimeddukal-nwen amek ara ken-id-afen deg Mastodon.
