@@ -80,6 +80,7 @@ export const RefreshController: React.FC<{
   const [wasDismissed, setWasDismissed] = useState(false);
   const dismissPrompt = useCallback(() => {
     setWasDismissed(true);
+    setLoadingState('idle');
   }, []);
 
   useEffect(() => {
@@ -109,7 +110,7 @@ export const RefreshController: React.FC<{
       }, refresh.retry * 1000);
     };
 
-    if (refresh) {
+    if (refresh && !wasDismissed) {
       scheduleRefresh(refresh);
       setLoadingState('loading-initial');
     }
@@ -117,7 +118,14 @@ export const RefreshController: React.FC<{
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [dispatch, statusId, currentReplyCount, refresh, autoRefresh]);
+  }, [
+    dispatch,
+    statusId,
+    currentReplyCount,
+    refresh,
+    autoRefresh,
+    wasDismissed,
+  ]);
 
   useEffect(() => {
     // Hide success message after a short delay
@@ -157,7 +165,7 @@ export const RefreshController: React.FC<{
   return (
     <div className='column__alert' role='status' aria-live='polite'>
       <AnimatedAlert
-        isActive={loadingState === 'more-available' && !wasDismissed}
+        isActive={loadingState === 'more-available'}
         message={intl.formatMessage(messages.moreFound)}
         action={intl.formatMessage(messages.show)}
         onActionClick={handleClick}
@@ -167,13 +175,13 @@ export const RefreshController: React.FC<{
       <AnimatedAlert
         isLoading
         withEntryDelay
-        isActive={loadingState === 'loading-more' && !wasDismissed}
+        isActive={loadingState === 'loading-more'}
         message={intl.formatMessage(messages.loadingMore)}
         animateFrom='below'
       />
       <AnimatedAlert
         withEntryDelay
-        isActive={loadingState === 'error' && !wasDismissed}
+        isActive={loadingState === 'error'}
         message={intl.formatMessage(messages.error)}
         action={intl.formatMessage(messages.retry)}
         onActionClick={handleClick}
@@ -182,7 +190,7 @@ export const RefreshController: React.FC<{
       />
       <AnimatedAlert
         withEntryDelay
-        isActive={loadingState === 'success' && !wasDismissed}
+        isActive={loadingState === 'success'}
         message={intl.formatMessage(messages.success)}
         animateFrom='below'
       />
