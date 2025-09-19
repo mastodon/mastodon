@@ -21,6 +21,8 @@ class ActivityPub::QuoteAuthorizationsController < ActivityPub::BaseController
 
   def set_quote_authorization
     @quote = Quote.accepted.where(quoted_account: @account).find(params[:id])
+    return not_found unless @quote.status.present? && @quote.quoted_status.present?
+
     authorize @quote.status, :show?
   rescue Mastodon::NotPermittedError
     not_found
