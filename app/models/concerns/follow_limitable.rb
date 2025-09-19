@@ -9,7 +9,7 @@ module FollowLimitable
     attribute :bypass_follow_limit, :boolean, default: false
     validates_with FollowLimitValidator, on: :create, unless: :bypass_follow_limit
 
-    before_validation :set_uri, only: :create
+    before_validation :set_uri, only: :create, unless: :uri?
 
     after_commit :invalidate_follow_recommendations_cache
   end
@@ -21,7 +21,7 @@ module FollowLimitable
   private
 
   def set_uri
-    self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil?
+    self.uri = ActivityPub::TagManager.instance.generate_uri_for(self)
   end
 
   def invalidate_follow_recommendations_cache
