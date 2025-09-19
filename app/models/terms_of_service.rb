@@ -23,12 +23,16 @@ class TermsOfService < ApplicationRecord
   validates :changelog, :effective_date, presence: true, if: -> { published? }
   validates :effective_date, uniqueness: true
 
-  validate :effective_date_cannot_be_in_the_past
+  validate :effective_date_cannot_be_in_the_past, if: :effective_date?
 
   NOTIFICATION_ACTIVITY_CUTOFF = 1.year.freeze
 
   def self.current
     live.first || upcoming.first # For the case when none of the published terms have become effective yet
+  end
+
+  def usable_effective_date
+    effective_date || Time.zone.today
   end
 
   def published?
@@ -66,10 +70,14 @@ class TermsOfService < ApplicationRecord
   private
 
   def effective_date_cannot_be_in_the_past
-    return if effective_date.blank?
+    errors.add(:effective_date, :too_soon, date: minimum_allowed_effective_date) if effective_date_too_early?
+  end
 
-    min_date = TermsOfService.live.pick(:effective_date) || Time.zone.today
+  def effective_date_too_early?
+    effective_date < minimum_allowed_effective_date
+  end
 
-    errors.add(:effective_date, :too_soon, date: min_date) if effective_date < min_date
+  def minimum_allowed_effective_date
+    self.class.live.pick(:effective_date) || Time.zone.today
   end
 end
