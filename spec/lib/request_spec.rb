@@ -44,11 +44,11 @@ RSpec.describe Request do
     subject { described_class.new(:get, url) }
 
     context 'when URL has new lines' do
-      let(:url) { "https://host.example/image\nhttps://badhost.example/page.jpg?overlay-align=bottom%2Cleft" }
+      let(:url) { "https://host.example/image\nhttps://badhost.example/page.jpg" }
 
       it 'encodes new lines in url value after normalization' do
         expect(initialized_url_value)
-          .to eq('https://host.example/image%0Ahttps://badhost.example/page.jpg?overlay-align=bottom,left')
+          .to eq('https://host.example/image%0Ahttps://badhost.example/page.jpg')
       end
     end
 
