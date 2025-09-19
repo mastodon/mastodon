@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/ClearlyClaire/stoplight.git
-  revision: f13e0c0d5e6d34af8d3cfc888871caa84237db42
-  ref: f13e0c0d5e6d34af8d3cfc888871caa84237db42
-  specs:
-    stoplight (5.3.1)
-      zeitwerk
-
-GIT
   remote: https://github.com/mastodon/webpush.git
   revision: 9631ac63045cfabddacc69fc06e919b4c13eb913
   ref: 9631ac63045cfabddacc69fc06e919b4c13eb913
@@ -861,6 +853,8 @@ GEM
     stackprof (0.2.27)
     starry (0.2.0)
       base64
+    stoplight (5.3.5)
+      zeitwerk
     stringio (3.1.7)
     strong_migrations (2.5.0)
       activerecord (>= 7.1)
@@ -1092,7 +1086,7 @@ DEPENDENCIES
   simplecov (~> 0.22)
   simplecov-lcov (~> 0.8)
   stackprof
-  stoplight!
+  stoplight
   strong_migrations
   test-prof
   thor (~> 1.2)
