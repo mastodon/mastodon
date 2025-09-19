@@ -102,7 +102,7 @@ gem 'rdf-normalize', '~> 0.5'
 
 gem 'prometheus_exporter', '~> 2.2', require: false
 
-gem 'opentelemetry-api', '~> 1.6.0'
+gem 'opentelemetry-api', '~> 1.7.0'
 
 group :opentelemetry do
   gem 'opentelemetry-exporter-otlp', '~> 0.30.0', require: false
@@ -113,10 +113,10 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-faraday', '~> 0.28.0', require: false
   gem 'opentelemetry-instrumentation-http', '~> 0.25.0', require: false
   gem 'opentelemetry-instrumentation-http_client', '~> 0.24.0', require: false
-  gem 'opentelemetry-instrumentation-net_http', '~> 0.23.0', require: false
+  gem 'opentelemetry-instrumentation-net_http', '~> 0.24.0', require: false
   gem 'opentelemetry-instrumentation-pg', '~> 0.30.0', require: false
-  gem 'opentelemetry-instrumentation-rack', '~> 0.26.0', require: false
-  gem 'opentelemetry-instrumentation-rails', '~> 0.36.0', require: false
+  gem 'opentelemetry-instrumentation-rack', '~> 0.27.0', require: false
+  gem 'opentelemetry-instrumentation-rails', '~> 0.37.0', require: false
   gem 'opentelemetry-instrumentation-redis', '~> 0.26.0', require: false
   gem 'opentelemetry-instrumentation-sidekiq', '~> 0.26.0', require: false
   gem 'opentelemetry-sdk', '~> 1.4', require: false
