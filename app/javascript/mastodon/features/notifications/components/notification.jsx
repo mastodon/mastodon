@@ -22,7 +22,7 @@ import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { Icon }  from 'mastodon/components/icon';
 import { Hotkeys } from 'mastodon/components/hotkeys';
 import { StatusQuoteManager } from 'mastodon/components/status_quoted';
-import { me } from 'mastodon/initial_state';
+import { me, timeZone } from 'mastodon/initial_state';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 
 import FollowRequestContainer from '../containers/follow_request_container';
@@ -50,7 +50,7 @@ const messages = defineMessages({
 const notificationForScreenReader = (intl, message, timestamp) => {
   const output = [message];
 
-  output.push(intl.formatDate(timestamp, { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' }));
+  output.push(intl.formatDate(timestamp, { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric', timeZone }));
 
   return output.join(', ');
 };
