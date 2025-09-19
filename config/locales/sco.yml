@@ -1379,7 +1379,8 @@ sco:
         one: "%{count} video"
         other: "%{count} videos"
     boosted_from_html: Heezed fae %{acct_link}
-    content_warning: 'Content warnin: %{warning}'
+    content_warning:
+      warning: 'Content warnin: %{warning}'
     default_language: Same as interface leid
     disallowed_hashtags:
       one: 'containt a disallooed hashtag: %{tags}'

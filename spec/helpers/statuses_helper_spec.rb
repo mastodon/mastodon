@@ -18,7 +18,7 @@ RSpec.describe StatusesHelper do
 
       it 'returns the content warning' do
         result = helper.status_text_summary(status)
-        expect(result).to eq(I18n.t('statuses.content_warning', warning: 'SPOILERS!!!'))
+        expect(result).to eq(I18n.t('statuses.content_warning.warning', warning: 'SPOILERS!!!'))
       end
     end
   end

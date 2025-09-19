@@ -1896,7 +1896,8 @@ et:
         one: "%{count} video"
         other: "%{count} videot"
     boosted_from_html: "%{acct_link} jagamine"
-    content_warning: 'Sisu hoiatus: %{warning}'
+    content_warning:
+      warning: 'Sisu hoiatus: %{warning}'
     default_language: Kasutajaliidese keelega sama
     disallowed_hashtags:
       one: 'sisaldab ebasobivat silti: %{tags}'

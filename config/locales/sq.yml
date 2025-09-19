@@ -1850,7 +1850,8 @@ sq:
         one: "%{count} video"
         other: "%{count} video"
     boosted_from_html: Përforcuar nga %{acct_link}
-    content_warning: 'Sinjalizim lënde: %{warning}'
+    content_warning:
+      warning: 'Sinjalizim lënde: %{warning}'
     default_language: Njësoj me gjuhën e ndërfaqes
     disallowed_hashtags:
       one: 'përmbante një hashtag të palejuar: %{tags}'
