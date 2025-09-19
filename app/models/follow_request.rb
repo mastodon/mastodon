@@ -48,12 +48,4 @@ class FollowRequest < ApplicationRecord
   def local?
     false # Force uri_for to use uri attribute
   end
-
-  before_validation :set_uri, only: :create
-
-  private
-
-  def set_uri
-    self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil?
-  end
 end
