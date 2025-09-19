@@ -6,6 +6,10 @@ RSpec.describe Account do
   it_behaves_like 'Account::Search'
   it_behaves_like 'Reviewable'
 
+  describe 'Associations' do
+    it { is_expected.to have_many(:action_logs).class_name('Admin::ActionLog') }
+  end
+
   context 'with an account record' do
     subject { Fabricate(:account) }
 
