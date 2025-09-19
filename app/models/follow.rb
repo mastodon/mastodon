@@ -31,15 +31,15 @@ class Follow < ApplicationRecord
 
   scope :recent, -> { reorder(id: :desc) }
 
-  def revoke_request!
-    FollowRequest.create!(account: account, target_account: target_account, show_reblogs: show_reblogs, notify: notify, languages: languages, uri: uri)
-    destroy!
-  end
-
   after_create :increment_cache_counters
   after_destroy :remove_endorsements
   after_destroy :decrement_cache_counters
   after_commit :invalidate_hash_cache
+
+  def revoke_request!
+    FollowRequest.create!(account: account, target_account: target_account, show_reblogs: show_reblogs, notify: notify, languages: languages, uri: uri)
+    destroy!
+  end
 
   private
 
