@@ -30,12 +30,15 @@ class WebfingerSerializer < ActiveModel::Serializer
   private
 
   def show_avatar?
-    media_present = object.avatar.present? && object.avatar.content_type.present?
+    media_present? && config_allows_public_access?
+  end
 
-    # Show avatar only if an instance shows profiles to logged out users
-    allowed_by_config = ENV['DISALLOW_UNAUTHENTICATED_API_ACCESS'] != 'true' && !Rails.configuration.x.mastodon.limited_federation_mode
+  def media_present?
+    object.avatar.present? && object.avatar.content_type.present?
+  end
 
-    media_present && allowed_by_config
+  def config_allows_public_access?
+    !Rails.configuration.x.mastodon.disallow_unauthenticated_api_access && !Rails.configuration.x.mastodon.limited_federation_mode
   end
 
   def profile_page_href
