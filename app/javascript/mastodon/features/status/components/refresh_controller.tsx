@@ -130,10 +130,15 @@ export const RefreshController: React.FC<{
   useEffect(() => {
     // Hide success message after a short delay
     if (loadingState === 'success') {
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setLoadingState('idle');
       }, 3000);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
+    return () => '';
   }, [loadingState]);
 
   const handleClick = useCallback(() => {
