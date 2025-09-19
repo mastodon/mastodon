@@ -13,11 +13,12 @@ module Account::FinderConcern
     end
 
     def representative
-      actor = Account.find(Account::INSTANCE_ACTOR_ID).tap(&:ensure_keys!)
-      actor.update!(username: 'mastodon.internal') if actor.username.include?(':')
-      actor
+      Account.find(Account::INSTANCE_ACTOR_ID).tap do |actor|
+        actor.ensure_keys!
+        actor.update!(username: Account::INSTANCE_ACTOR_USERNAME) if actor.username.include?(':')
+      end
     rescue ActiveRecord::RecordNotFound
-      Account.create!(id: Account::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true, username: 'mastodon.internal')
+      Account.create!(id: Account::INSTANCE_ACTOR_ID, actor_type: 'Application', locked: true, username: Account::INSTANCE_ACTOR_USERNAME)
     end
 
     def find_local(username)
