@@ -31,10 +31,6 @@ class Follow < ApplicationRecord
 
   scope :recent, -> { reorder(id: :desc) }
 
-  def local?
-    false # Force uri_for to use uri attribute
-  end
-
   def revoke_request!
     FollowRequest.create!(account: account, target_account: target_account, show_reblogs: show_reblogs, notify: notify, languages: languages, uri: uri)
     destroy!

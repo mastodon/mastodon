@@ -44,8 +44,4 @@ class FollowRequest < ApplicationRecord
   end
 
   alias reject! destroy!
-
-  def local?
-    false # Force uri_for to use uri attribute
-  end
 end
