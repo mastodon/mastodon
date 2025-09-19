@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe FollowRequest do
+  it_behaves_like 'FollowLimitable'
+
   describe '#authorize!' do
     let!(:follow_request) { Fabricate(:follow_request, account: account, target_account: target_account) }
     let(:account)         { Fabricate(:account) }
