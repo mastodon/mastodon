@@ -7,5 +7,7 @@ module FollowLimitable
     validates_with FollowLimitValidator, on: :create, unless: :bypass_follow_limit
 
     attribute :bypass_follow_limit, :boolean, default: false
+
+    rate_limit by: :account, family: :follows
   end
 end
