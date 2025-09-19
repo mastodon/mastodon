@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Interaction policies', feature: :outgoing_quotes do
+RSpec.describe 'Interaction policies' do
   let(:user)    { Fabricate(:user) }
   let(:scopes)  { 'write:statuses' }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }

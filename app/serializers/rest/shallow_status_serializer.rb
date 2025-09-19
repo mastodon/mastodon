@@ -6,5 +6,5 @@ class REST::ShallowStatusSerializer < REST::StatusSerializer
   # It looks like redefining one `has_one` requires redefining all inherited ones
   has_one :preview_card, key: :card, serializer: REST::PreviewCardSerializer
   has_one :preloadable_poll, key: :poll, serializer: REST::PollSerializer
-  has_one :quote_approval, if: -> { Mastodon::Feature.outgoing_quotes_enabled? }
+  has_one :quote_approval
 end

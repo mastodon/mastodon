@@ -9,7 +9,7 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
     quoted_status = status_from_uri(object_uri)
     return if quoted_status.nil? || !quoted_status.account.local? || !quoted_status.distributable?
 
-    if Mastodon::Feature.outgoing_quotes_enabled? && StatusPolicy.new(@account, quoted_status).quote?
+    if StatusPolicy.new(@account, quoted_status).quote?
       accept_quote_request!(quoted_status)
     else
       reject_quote_request!(quoted_status)

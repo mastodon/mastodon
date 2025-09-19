@@ -58,7 +58,7 @@ RSpec.describe ActivityPub::NoteSerializer do
     end
   end
 
-  context 'with a quote policy', feature: :outgoing_quotes do
+  context 'with a quote policy' do
     let(:parent) { Fabricate(:status, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16) }
 
     it 'has the expected shape' do
