@@ -90,6 +90,7 @@ class Status < ApplicationRecord
   has_many :local_favorited, -> { merge(Account.local) }, through: :favourites, source: :account
   has_many :local_reblogged, -> { merge(Account.local) }, through: :reblogs, source: :account
   has_many :local_bookmarked, -> { merge(Account.local) }, through: :bookmarks, source: :account
+  has_many :local_replied, -> { merge(Account.local) }, through: :replies, source: :account
 
   has_and_belongs_to_many :tags # rubocop:disable Rails/HasAndBelongsToMany
 
@@ -137,6 +138,12 @@ class Status < ApplicationRecord
     where('NOT EXISTS (SELECT * FROM statuses_tags forbidden WHERE forbidden.status_id = statuses.id AND forbidden.tag_id IN (?))', tag_ids)
   }
   scope :without_empty_attachments, -> { where(ordered_media_attachment_ids: nil).or(where.not(ordered_media_attachment_ids: [])) }
+  scope :with_local_interaction, lambda {
+    Status.where(id: Status.joins(:local_favorited).select(:id))
+          .or(Status.where(id: Status.joins(:local_bookmarked).select(:id)))
+          .or(Status.where(id: Status.joins(:local_replied).select(:id)))
+          .or(Status.where(id: Status.joins(:local_reblogged).select(:id)))
+  }
 
   after_create_commit :trigger_create_webhooks
   after_update_commit :trigger_update_webhooks
