@@ -6,6 +6,7 @@
     ':labels(dependencies)',
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
     ':prHourlyLimit2', // Rate limit PR creation to a maximum of two per hour.
+    ':enableVulnerabilityAlertsWithLabel(security)',
   ],
   rebaseWhen: 'conflicted',
   minimumReleaseAge: '3', // Wait 3 days after the package has been published before upgrading it
