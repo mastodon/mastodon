@@ -90,7 +90,7 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     aes_key_wrap (1.1.0)
     android_key_attestation (0.3.0)
-    annotaterb (4.18.0)
+    annotaterb (4.19.0)
       activerecord (>= 6.0.0)
       activesupport (>= 6.0.0)
     ast (2.4.3)
@@ -438,7 +438,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0729)
+    mime-types-data (3.2025.0916)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     minitest (5.25.5)
@@ -450,7 +450,9 @@ GEM
     net-imap (0.5.9)
       date
       net-protocol
-    net-ldap (0.19.0)
+    net-ldap (0.20.0)
+      base64
+      ostruct
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.2)
@@ -458,7 +460,7 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.18.9)
+    nokogiri (1.18.10)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     oj (3.16.11)
@@ -497,7 +499,7 @@ GEM
     openssl (3.3.0)
     openssl-signature_algorithm (1.3.0)
       openssl (> 2.0)
-    opentelemetry-api (1.6.0)
+    opentelemetry-api (1.7.0)
     opentelemetry-common (0.22.0)
       opentelemetry-api (~> 1.0)
     opentelemetry-exporter-otlp (0.30.0)
@@ -515,7 +517,7 @@ GEM
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-active_support (~> 0.7)
       opentelemetry-instrumentation-base (~> 0.23.0)
-    opentelemetry-instrumentation-action_pack (0.12.3)
+    opentelemetry-instrumentation-action_pack (0.13.0)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.23.0)
       opentelemetry-instrumentation-rack (~> 0.21)
@@ -559,7 +561,7 @@ GEM
     opentelemetry-instrumentation-http_client (0.24.0)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.23.0)
-    opentelemetry-instrumentation-net_http (0.23.1)
+    opentelemetry-instrumentation-net_http (0.24.0)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.23.0)
     opentelemetry-instrumentation-pg (0.30.1)
@@ -567,13 +569,13 @@ GEM
       opentelemetry-helpers-sql
       opentelemetry-helpers-sql-obfuscation
       opentelemetry-instrumentation-base (~> 0.23.0)
-    opentelemetry-instrumentation-rack (0.26.0)
+    opentelemetry-instrumentation-rack (0.27.1)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-base (~> 0.23.0)
-    opentelemetry-instrumentation-rails (0.36.0)
+    opentelemetry-instrumentation-rails (0.37.0)
       opentelemetry-api (~> 1.0)
       opentelemetry-instrumentation-action_mailer (~> 0.4.0)
-      opentelemetry-instrumentation-action_pack (~> 0.12.0)
+      opentelemetry-instrumentation-action_pack (~> 0.13.0)
       opentelemetry-instrumentation-action_view (~> 0.9.0)
       opentelemetry-instrumentation-active_job (~> 0.8.0)
       opentelemetry-instrumentation-active_record (~> 0.9.0)
@@ -589,12 +591,12 @@ GEM
       opentelemetry-instrumentation-base (~> 0.23.0)
     opentelemetry-registry (0.4.0)
       opentelemetry-api (~> 1.1)
-    opentelemetry-sdk (1.8.1)
+    opentelemetry-sdk (1.9.0)
       opentelemetry-api (~> 1.1)
       opentelemetry-common (~> 0.20)
       opentelemetry-registry (~> 0.2)
       opentelemetry-semantic_conventions
-    opentelemetry-semantic_conventions (1.11.0)
+    opentelemetry-semantic_conventions (1.36.0)
       opentelemetry-api (~> 1.0)
     orm_adapter (0.5.0)
     ostruct (0.6.3)
@@ -610,7 +612,7 @@ GEM
     pg (1.6.2)
     pghero (3.7.0)
       activerecord (>= 7.1)
-    playwright-ruby-client (1.54.1)
+    playwright-ruby-client (1.55.0)
       concurrent-ruby (>= 1.1.6)
       mime-types (>= 3.0)
     pp (0.6.2)
@@ -848,12 +850,12 @@ GEM
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.13.2)
-    simplecov-lcov (0.8.0)
+    simplecov-lcov (0.9.0)
     simplecov_json_formatter (0.1.4)
     stackprof (0.2.27)
     starry (0.2.0)
       base64
-    stoplight (5.3.5)
+    stoplight (5.3.8)
       zeitwerk
     stringio (3.1.7)
     strong_migrations (2.5.0)
@@ -1025,7 +1027,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection (~> 1.0)
   omniauth-saml (~> 2.0)
   omniauth_openid_connect (~> 0.8.0)
-  opentelemetry-api (~> 1.6.0)
+  opentelemetry-api (~> 1.7.0)
   opentelemetry-exporter-otlp (~> 0.30.0)
   opentelemetry-instrumentation-active_job (~> 0.8.0)
   opentelemetry-instrumentation-active_model_serializers (~> 0.22.0)
@@ -1034,10 +1036,10 @@ DEPENDENCIES
   opentelemetry-instrumentation-faraday (~> 0.28.0)
   opentelemetry-instrumentation-http (~> 0.25.0)
   opentelemetry-instrumentation-http_client (~> 0.24.0)
-  opentelemetry-instrumentation-net_http (~> 0.23.0)
+  opentelemetry-instrumentation-net_http (~> 0.24.0)
   opentelemetry-instrumentation-pg (~> 0.30.0)
-  opentelemetry-instrumentation-rack (~> 0.26.0)
-  opentelemetry-instrumentation-rails (~> 0.36.0)
+  opentelemetry-instrumentation-rack (~> 0.27.0)
+  opentelemetry-instrumentation-rails (~> 0.37.0)
   opentelemetry-instrumentation-redis (~> 0.26.0)
   opentelemetry-instrumentation-sidekiq (~> 0.26.0)
   opentelemetry-sdk (~> 1.4)
@@ -1045,6 +1047,7 @@ DEPENDENCIES
   parslet
   pg (~> 1.5)
   pghero
+  playwright-ruby-client (= 1.55.0)
   premailer-rails
   prometheus_exporter (~> 2.2)
   propshaft
