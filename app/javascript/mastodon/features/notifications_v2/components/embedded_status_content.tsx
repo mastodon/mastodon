@@ -64,7 +64,7 @@ export const EmbeddedStatusContent: React.FC<{
           link.setAttribute('title', `@${mention.get('acct')}`);
           link.setAttribute('href', `/@${mention.get('acct')}`);
         } else if (
-          link.textContent?.[0] === '#' ||
+          link.textContent.startsWith('#') ||
           link.previousSibling?.textContent?.endsWith('#')
         ) {
           link.addEventListener(
