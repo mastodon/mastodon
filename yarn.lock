@@ -11329,42 +11329,46 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-swipeable-views-core@npm:^0.14.0":
-  version: 0.14.0
-  resolution: "react-swipeable-views-core@npm:0.14.0"
+"react-swipeable-views-core@npm:^0.14.1":
+  version: 0.14.1
+  resolution: "react-swipeable-views-core@npm:0.14.1"
   dependencies:
     "@babel/runtime": "npm:7.0.0"
     warning: "npm:^4.0.1"
-  checksum: 10c0/ca015701587ca9cf5329088809ad5897b0344c1cd377f8f0d21277128c95019dd67aefa64d19b40bc1c171a375c003dbe3343111d9ce12b7327d72e9e98dce7e
+  peerDependencies:
+    react: ^15.3.0 || ^16.0.0 || ^17.0.0
+  checksum: 10c0/4da08493dad34f8498b66c596c1f40cd9a62e4968e71d00c79a26bf45e25ba3a3323e690641121cc8e7fd9c695e7da37fe781fa3f69e7d2b60fff3bfe4621426
   languageName: node
   linkType: hard
 
-"react-swipeable-views-utils@npm:^0.14.0":
-  version: 0.14.0
-  resolution: "react-swipeable-views-utils@npm:0.14.0"
+"react-swipeable-views-utils@npm:^0.14.1":
+  version: 0.14.1
+  resolution: "react-swipeable-views-utils@npm:0.14.1"
   dependencies:
     "@babel/runtime": "npm:7.0.0"
     keycode: "npm:^2.1.7"
     prop-types: "npm:^15.6.0"
     react-event-listener: "npm:^0.6.0"
-    react-swipeable-views-core: "npm:^0.14.0"
+    react-swipeable-views-core: "npm:^0.14.1"
     shallow-equal: "npm:^1.2.1"
-  checksum: 10c0/acc1b1d7f0bc81485e44aa2a465adc13cd89865add87bf32b88dc0986f1556c8b227b79763a7c0b197bf6eeacc333451c7b8ab5c40517809d1a913f7b9742588
+  peerDependencies:
+    react: ^15.3.0 || ^16.0.0 || ^17.0.0
+  checksum: 10c0/f9a9930e7df9dab9cd0f5344c7cf0423cc8aff4728436eb7dc13588186fbd1a557c8250b6329ec09242f3f6d2700d33e1155ab191ce8de48aa860fad6fb1814b
   languageName: node
   linkType: hard
 
 "react-swipeable-views@npm:^0.14.0":
-  version: 0.14.0
-  resolution: "react-swipeable-views@npm:0.14.0"
+  version: 0.14.1
+  resolution: "react-swipeable-views@npm:0.14.1"
   dependencies:
     "@babel/runtime": "npm:7.0.0"
     prop-types: "npm:^15.5.4"
-    react-swipeable-views-core: "npm:^0.14.0"
-    react-swipeable-views-utils: "npm:^0.14.0"
+    react-swipeable-views-core: "npm:^0.14.1"
+    react-swipeable-views-utils: "npm:^0.14.1"
     warning: "npm:^4.0.1"
   peerDependencies:
     react: ^15.3.0 || ^16.0.0 || ^17.0.0
-  checksum: 10c0/032e7a1ff49e6e57eb755e133968eb207a4acc67c68ed8d0b09b4fe0826b290344454da5d420f17d8f4c049d900f3c12594ba5b97a79f20ef3b30bc62e866aa1
+  checksum: 10c0/7ee6d19cc33172e0846835eafd4b24ece0f26aed5cc9bbe80d3ec7c8d22f327443df8b2d50ddb4b837e1d6fbb40744abc41f62cdcab8e941e0663a952d627a15
   languageName: node
   linkType: hard
 
