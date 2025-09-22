@@ -6,6 +6,7 @@
     ':labels(dependencies)',
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
     ':prHourlyLimit2', // Rate limit PR creation to a maximum of two per hour.
+    ':enableVulnerabilityAlertsWithLabel(security)',
   ],
   rebaseWhen: 'conflicted',
   minimumReleaseAge: '3', // Wait 3 days after the package has been published before upgrading it
@@ -17,6 +18,11 @@
   postUpdateOptions: ['yarnDedupeHighest'],
   // The types are now included in recent versions,we ignore them here until we upgrade and remove the dependency
   ignoreDeps: ['@types/emoji-mart'],
+  postUpgradeTasks: {
+    // If JS deps are changed, then copy the MSW worker file, as it needs to be in sync with the version of MSW installed)
+    commands: ['yarn', 'yarn msw:updateWorker'],
+    fileFilters: ['yarn.lock'],
+  },
   packageRules: [
     {
       // Require Dependency Dashboard Approval for major version bumps of these node packages
@@ -94,6 +100,19 @@
       groupName: 'eslint (non-major)',
     },
     {
+      // Group all Storybook-related packages in the same PR
+      matchManagers: ['npm'],
+      matchPackageNames: [
+        'chromatic',
+        'storybook',
+        '@storybook/*',
+        'msw',
+        'msw-storybook-addon',
+      ],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'storybook (non-major)',
+    },
+    {
       // Group actions/*-artifact in the same PR
       matchManagers: ['github-actions'],
       matchPackageNames: [
@@ -140,6 +159,12 @@
       matchPackageNames: ['opentelemetry-*'],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'opentelemetry-ruby (non-major)',
+    },
+    {
+      // Group Playwright Ruby & JS deps in the same PR, as they need to be in sync
+      matchManagers: ['bundler', 'npm'],
+      matchPackageNames: ['playwright-ruby-client', 'playwright'],
+      groupName: 'Playwright',
     },
     // Add labels depending on package manager
     { matchManagers: ['npm', 'nvm'], addLabels: ['javascript'] },
