@@ -56,7 +56,8 @@ et:
         scopes: Milliseid API-sid see rakendus tohib kasutada. Kui valid kõrgeima taseme, ei pea üksikuid eraldi valima.
         setting_aggregate_reblogs: Ära kuva uusi postituste jagamisi, mis on hiljuti jagatud (kehtib vaid uutele jagamistele)
         setting_always_send_emails: Mastodoni aktiivsel kasutamisel sulle tavaliselt meilile teavitusi ei saadeta
-        setting_default_quote_policy: See seadistus jõustub vaid postituste puhul, mille tegemiseks on kasutatud Mastodoni serveri järgmist versiooni. Soovi korral võid oma eelistuse juba praegu määratleda.
+        setting_default_quote_policy_private: Ainult jälgijatele mõeldud Mastodoni postitusi ei saa teiste poolt tsiteerida.
+        setting_default_quote_policy_unlisted: Kui teised kasutajad sind tsiteerivad, siis nende postitused peidetakse ajajoonelt, mis näitavad populaarsust koguvaid postitusi.
         setting_default_sensitive: Tundlik meedia on vaikimisi peidetud ning seda saab avada sellele klikkides
         setting_display_media_default: Peida tundlikuks märgitud meedia
         setting_display_media_hide_all: Alati peida kõik meedia
@@ -139,10 +140,20 @@ et:
         effective_date: Mõsitlik ajavahemik on 10 kuni 30 päeva kasutajate teavitamisest.
         text: Sisu struktureerimiseks võid kasutada Markdown-keelt.
       terms_of_service_generator:
+        admin_email: Juriidiliste teadete hulka kuuluvad näiteks vastuväited, kohtumäärused, eemaldamisnõuded ja õiguskaitseasutuste päringud.
+        arbitration_address: See võib olla sama, kui ülaltoodud tänavaaadress või „N/A“, kui kasutusel on suhtlus e-kirja teel.
+        arbitration_website: See võib olla veebivorm või „N/A“, kui kasutusel on suhtlus e-kirja teel.
+        choice_of_law: Linn, piirkond, territoorium või riik, mille sisemised materiaalõigusnormid reguleerivad kõiki nõudeid.
         dmca_address: USA operaatorite puhul kasuta DMCA määratud esindajate kataloogis registreeritud aadressi. Postkastide loetelu on saadaval otsese taotluse korral. Kasuta DMCA määratud esindaja postkastist loobumise taotlust, et saata e-kiri autoriõiguse ametile ja kirjeldada, et oled kodus asuv sisu moderaator, kes kardab kättemaksu või kättemaksu oma tegevuse eest ja vajab postkasti, et eemaldada oma kodune aadress avalikust nähtavusest.
+        dmca_email: Võib olla sama e-posti aadress, kui ülaltoodud „E-posti aadress juriidiliste teadete jaoks“.
+        domain: Sinu poolt pakutava võrguteenuse unikaalne tunnus.
         jurisdiction: Nimeta riik, kus elab see, kes arveid maksab. Kui tegemist on äriühingu või muu üksusega, märgi riik, kus see on asutatud, ning vajaduse korral linn, piirkond, territoorium või osariik.
+        min_age: Vanus ei tohiks olla väiksem, kui sinu õigusruumis nõutav alampiir.
       user:
         chosen_languages: Keelte valimisel näidatakse avalikel ajajoontel ainult neis keeltes postitusi
+        date_of_birth:
+          one: "%{domain} saidi teenuste kasutamiseks pead olema vähemalt %{count} aastat vana. Me ei salvesta neid andmeid."
+          other: "%{domain} saidi teenuste kasutamiseks pead olema vähemalt %{count} aastat vana. Me ei salvesta neid andmeid."
         role: Rollid määravad, millised õigused kasutajal on.
       user_role:
         color: Rolli tähistamise värvus üle kasutajaliidese, RGB 16nd-formaadis
@@ -153,6 +164,7 @@ et:
       username_block:
         allow_with_approval: Kohese liitumise asemel peavad vastavusekohased liitumised saama eeleeva heakskiidu
         comparison: Kui lubad blokeerimise osalise vastavuse alusel, siis palun arvesta Scunthorpe'i probleemi tekkimise võimalusega
+        username: Vastavust kontrollitakse sõltumata tähesuurusele või levinumate sarnaste tähtemärkide olemasolule, näiteks „4“ → „a“ või „3“ → „e“
       webhook:
         events: Saadetavate sündmuste valik
         template: Koosta oma JSON manus kasutades muutujateasendust. Jäta tühaks tavalise JSONi jaoks.
@@ -345,6 +357,11 @@ et:
         text: Kasutustingimused
       terms_of_service_generator:
         admin_email: E-posti aadress juriidiliste teadete jaoks
+        arbitration_address: Tänava-aadress kohtuteadete saatmiseks
+        arbitration_website: Veebisait kohtuteadete saatmiseks
+        choice_of_law: Kasutatav õigusruum
+        dmca_address: Tänava-aadress DCMA või autoriõigustega seotud teadete jaoks
+        dmca_email: E-posti aadress DCMA või autoriõigustega seotud teadete jaoks
         domain: Domeen
         jurisdiction: Jurisdiktsioon
         min_age: Vanuse alampiir

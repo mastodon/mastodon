@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.4] - 2025-09-16
+
+### Security
+
+- Update dependencies
+
+### Fixed
+
+- Fix missing memoization in `Web::PushNotificationWorker` (#36085 by @ClearlyClaire)
+- Fix unresponsive areas around GIFV modals in some cases (#36059 by @ClearlyClaire)
+- Fix missing `beforeUnload` confirmation when a poll is being authored (#36030 by @ClearlyClaire)
+- Fix processing of remote edited statuses with new media and no text (#35970 by @unfokus)
+- Fix polls not being displayed in moderation interface (#35644 and #35933 by @ThisIsMissEm)
+- Fix WebUI handling of deleted quoted posts (#35909 and #35918 by @ClearlyClaire and @diondiondion)
+- Fix “Edit” and “Delete & Redraft” on a poll not inserting empty option (#35892 by @ClearlyClaire)
+- Fix loading of some compatibility CSS on some configurations (#35876 by @shleeable)
+- Fix HttpLog not being enabled with `RAILS_LOG_LEVEL=debug` (#35833 by @mjankowski)
+- Fix self-destruct scheduler behavior on some Redis setups (#35823 by @ClearlyClaire)
+- Fix `tootctl admin create` not bypassing reserved username checks (#35779 by @ClearlyClaire)
+- Fix interaction policy changes in implicit updates not being saved (#35751 by @ClearlyClaire)
+- Fix quote revocation not being streamed (#35710 by @ClearlyClaire)
+- Fix export of large user archives by enabling Zip64 (#35850 by @ClearlyClaire)
+
+### Changed
+
+- Change labels for quote policy settings (#35893 by @ClearlyClaire)
+- Change standalone “Share” page to redirect to web interface after posting (#35763 by @ChaosExAnima)
+
 ## [4.4.3] - 2025-08-05
 
 ### Security

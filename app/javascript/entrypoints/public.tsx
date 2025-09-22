@@ -351,6 +351,31 @@ const setInputDisabled = (
   }
 };
 
+const setInputHint = (
+  input: HTMLInputElement | HTMLSelectElement,
+  hintPrefix: string,
+) => {
+  const fieldWrapper = input.closest<HTMLElement>('.fields-group > .input');
+  if (!fieldWrapper) return;
+
+  const hint = fieldWrapper.dataset[`${hintPrefix}Hint`];
+  const hintElement =
+    fieldWrapper.querySelector<HTMLSpanElement>(':scope > .hint');
+
+  if (hint) {
+    if (hintElement) {
+      hintElement.textContent = hint;
+    } else {
+      const newHintElement = document.createElement('span');
+      newHintElement.className = 'hint';
+      newHintElement.textContent = hint;
+      fieldWrapper.appendChild(newHintElement);
+    }
+  } else {
+    hintElement?.remove();
+  }
+};
+
 Rails.delegate(
   document,
   '#account_statuses_cleanup_policy_enabled',
@@ -378,6 +403,8 @@ const updateDefaultQuotePrivacyFromPrivacy = (
     'select#user_settings_attributes_default_quote_policy',
   );
   if (!select) return;
+
+  setInputHint(select, privacySelect.value);
 
   if (privacySelect.value === 'private') {
     select.value = 'nobody';

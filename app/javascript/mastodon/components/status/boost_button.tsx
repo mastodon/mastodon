@@ -72,6 +72,18 @@ export const StatusBoostButton: FC<ReblogButtonProps> = ({
   const statusId = status.get('id') as string;
   const wasBoosted = !!status.get('reblogged');
 
+  const showLoginPrompt = useCallback(() => {
+    dispatch(
+      openModal({
+        modalType: 'INTERACTION',
+        modalProps: {
+          accountId: status.getIn(['account', 'id']),
+          url: status.get('uri'),
+        },
+      }),
+    );
+  }, [dispatch, status]);
+
   const items = useMemo(() => {
     const boostItem = boostItemState(statusState);
     const quoteItem = quoteItemState(statusState);
@@ -85,9 +97,7 @@ export const StatusBoostButton: FC<ReblogButtonProps> = ({
         highlighted: wasBoosted,
         disabled: boostItem.disabled,
         action: (event) => {
-          if (isLoggedIn) {
-            dispatch(toggleReblog(statusId, event.shiftKey));
-          }
+          dispatch(toggleReblog(statusId, event.shiftKey));
         },
       },
       {
@@ -98,36 +108,28 @@ export const StatusBoostButton: FC<ReblogButtonProps> = ({
         icon: quoteItem.iconComponent,
         disabled: quoteItem.disabled,
         action: () => {
-          if (isLoggedIn) {
-            dispatch(quoteComposeById(statusId));
-          }
+          dispatch(quoteComposeById(statusId));
         },
       },
     ] satisfies [ActionMenuItemWithIcon, ActionMenuItemWithIcon];
-  }, [dispatch, intl, isLoggedIn, statusId, statusState, wasBoosted]);
+  }, [dispatch, intl, statusId, statusState, wasBoosted]);
 
   const boostIcon = items[0].icon;
 
   const handleDropdownOpen = useCallback(
     (event: MouseEvent | KeyboardEvent) => {
       if (!isLoggedIn) {
-        dispatch(
-          openModal({
-            modalType: 'INTERACTION',
-            modalProps: {
-              type: 'reblog',
-              accountId: status.getIn(['account', 'id']),
-              url: status.get('uri'),
-            },
-          }),
-        );
-      } else if (event.shiftKey) {
+        showLoginPrompt();
+        return false;
+      }
+
+      if (event.shiftKey) {
         dispatch(toggleReblog(status.get('id'), true));
         return false;
       }
       return true;
     },
-    [dispatch, isLoggedIn, status],
+    [dispatch, isLoggedIn, showLoginPrompt, status],
   );
 
   return (
@@ -223,7 +225,6 @@ export const LegacyReblogButton: FC<ReblogButtonProps> = ({
           openModal({
             modalType: 'INTERACTION',
             modalProps: {
-              type: 'reblog',
               accountId: status.getIn(['account', 'id']),
               url: status.get('uri'),
             },

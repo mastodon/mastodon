@@ -10,7 +10,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     @activity_json             = activity_json
     @json                      = object_json
-    @status_parser             = ActivityPub::Parser::StatusParser.new(@json, followers_collection: status.account.followers_url, actor_uri: ActivityPub::TagManager.instance.uri_for(status.account))
+    @status_parser             = ActivityPub::Parser::StatusParser.new(@json, followers_collection: status.account.followers_url, following_collection: status.account.following_url, actor_uri: ActivityPub::TagManager.instance.uri_for(status.account))
     @uri                       = @status_parser.uri
     @status                    = status
     @account                   = status.account
@@ -25,6 +25,9 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     if @status_parser.edited_at.present? && (@status.edited_at.nil? || @status_parser.edited_at > @status.edited_at)
       handle_explicit_update!
+    elsif @status.edited_at.present? && (@status_parser.edited_at.nil? || @status_parser.edited_at < @status.edited_at)
+      # This is an older update, reject it
+      return @status
     else
       handle_implicit_update!
     end
