@@ -23,21 +23,20 @@ export const ExitAnimationWrapper: React.FC<{
    */
   withEntryDelay?: boolean;
   /**
-   * Render prop that provides the nested component with an `isVisible` flag
-   * which is based on `isActive`, but delayed, to allow for an exit animation
+   * Render prop that provides the nested component with the `delayedIsActive` flag
    */
-  children: (isVisible: boolean) => React.ReactNode;
+  children: (delayedIsActive: boolean) => React.ReactNode;
 }> = ({ isActive = false, delayMs = 500, withEntryDelay, children }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [delayedIsActive, setDelayedIsActive] = useState(false);
 
   useEffect(() => {
     if (isActive && !withEntryDelay) {
-      setIsVisible(true);
+      setDelayedIsActive(true);
 
       return () => '';
     } else {
       const timeout = setTimeout(() => {
-        setIsVisible(isActive);
+        setDelayedIsActive(isActive);
       }, delayMs);
 
       return () => {
@@ -46,9 +45,9 @@ export const ExitAnimationWrapper: React.FC<{
     }
   }, [isActive, delayMs, withEntryDelay]);
 
-  if (!isActive && !isVisible) {
+  if (!isActive && !delayedIsActive) {
     return null;
   }
 
-  return children(isActive && isVisible);
+  return children(isActive && delayedIsActive);
 };

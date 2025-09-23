@@ -17,7 +17,7 @@ const AnimatedAlert: React.FC<
   React.ComponentPropsWithoutRef<typeof Alert> & { withEntryDelay?: boolean }
 > = ({ isActive = false, withEntryDelay, ...props }) => (
   <ExitAnimationWrapper withEntryDelay isActive={isActive}>
-    {(isVisible) => <Alert isActive={isVisible} {...props} />}
+    {(delayedIsActive) => <Alert isActive={delayedIsActive} {...props} />}
   </ExitAnimationWrapper>
 );
 
