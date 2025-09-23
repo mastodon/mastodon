@@ -53,8 +53,8 @@ RSpec.describe 'Filters' do
       click_on filter_title
 
       fill_in filter_title_field, with: new_title
-      fill_in 'custom_filter_keywords_attributes_0_keyword', with: 'New value'
-      fill_in 'custom_filter_keywords_attributes_1_keyword', with: 'Wilderness'
+      custom_filter_keywords_fields.first.fill_in with: 'New value'
+      custom_filter_keywords_fields.last.fill_in with: 'Wilderness'
 
       expect { click_on submit_button }
         .to change { keyword_one.reload.keyword }.to(/New value/)
@@ -105,6 +105,10 @@ RSpec.describe 'Filters' do
       fill_in with: 'Keyword'
     end
     click_on I18n.t('filters.new.save')
+  end
+
+  def custom_filter_keywords_fields
+    page.all('.keywords-table .custom_filter_keywords_keyword')
   end
 
   def filter_title_field

@@ -46,7 +46,6 @@ export const FollowButton: React.FC<{
         openModal({
           modalType: 'INTERACTION',
           modalProps: {
-            type: 'follow',
             accountId: accountId,
             url: account?.url,
           },

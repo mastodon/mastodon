@@ -26,6 +26,7 @@ RSpec.describe REST::StatusSerializer do
       status.status_stat.tap do |status_stat|
         status_stat.reblogs_count = 10
         status_stat.favourites_count = 20
+        status_stat.quotes_count = 15
         status_stat.save
       end
     end
@@ -34,6 +35,7 @@ RSpec.describe REST::StatusSerializer do
       it 'shows the trusted counts' do
         expect(subject['reblogs_count']).to eq(10)
         expect(subject['favourites_count']).to eq(20)
+        expect(subject['quotes_count']).to eq(15)
       end
     end
 

@@ -2,6 +2,7 @@
 
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
   include FormattingHelper
+  include JsonLdHelper
 
   context_extensions :atom_uri, :conversation, :sensitive, :voters_count, :quotes, :interaction_policies
 
@@ -9,7 +10,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
              :in_reply_to, :published, :url,
              :attributed_to, :to, :cc, :sensitive,
              :atom_uri, :in_reply_to_atom_uri,
-             :conversation
+             :conversation, :context
 
   attribute :content
   attribute :content_map, if: :language?
@@ -159,8 +160,16 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     if object.conversation.uri?
       object.conversation.uri
     else
-      OStatus::TagManager.instance.unique_tag(object.conversation.created_at, object.conversation.id, 'Conversation')
+      # This means `parent_status_id` and `parent_account_id` must *not* get backfilled
+      ActivityPub::TagManager.instance.uri_for(object.conversation) || OStatus::TagManager.instance.unique_tag(object.conversation.created_at, object.conversation.id, 'Conversation')
     end
+  end
+
+  def context
+    return if object.conversation.nil?
+
+    uri = ActivityPub::TagManager.instance.uri_for(object.conversation)
+    uri unless unsupported_uri_scheme?(uri)
   end
 
   def local?
@@ -225,7 +234,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     policy = object.quote_approval_policy >> 16
     approved_uris << ActivityPub::TagManager::COLLECTIONS[:public] if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:public])
     approved_uris << ActivityPub::TagManager.instance.followers_uri_for(object.account) if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers])
-    approved_uris << ActivityPub::TagManager.instance.following_uri_for(object.account) if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:followed])
+    approved_uris << ActivityPub::TagManager.instance.following_uri_for(object.account) if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:following])
     approved_uris << ActivityPub::TagManager.instance.uri_for(object.account) if approved_uris.empty?
 
     {

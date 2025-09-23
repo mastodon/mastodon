@@ -3,6 +3,7 @@ import type { JSX } from 'react';
 
 import classNames from 'classnames';
 
+import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { replyComposeById } from 'mastodon/actions/compose';
 import { navigateToStatus } from 'mastodon/actions/statuses';
 import { Avatar } from 'mastodon/components/avatar';
@@ -14,7 +15,6 @@ import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import { NOTIFICATIONS_GROUP_MAX_AVATARS } from 'mastodon/models/notification_group';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import { DisplayedName } from './displayed_name';
 import { EmbeddedStatus } from './embedded_status';
 
 const AVATAR_SIZE = 28;
@@ -61,15 +61,18 @@ export const NotificationGroupWithStatus: React.FC<{
   additionalContent,
 }) => {
   const dispatch = useAppDispatch();
+  const account = useAppSelector((state) =>
+    state.accounts.get(accountIds.at(0) ?? ''),
+  );
 
   const label = useMemo(
     () =>
       labelRenderer(
-        <DisplayedName accountIds={accountIds} />,
+        <LinkedDisplayName displayProps={{ account, variant: 'simple' }} />,
         count,
         labelSeeMoreHref,
       ),
-    [labelRenderer, accountIds, count, labelSeeMoreHref],
+    [labelRenderer, account, count, labelSeeMoreHref],
   );
 
   const isPrivateMention = useAppSelector(

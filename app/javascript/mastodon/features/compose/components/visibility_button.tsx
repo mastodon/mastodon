@@ -79,10 +79,12 @@ const visibilityOptions = {
 const PrivacyModalButton: FC<PrivacyDropdownProps> = ({ disabled = false }) => {
   const intl = useIntl();
 
-  const { visibility, quotePolicy } = useAppSelector((state) => ({
-    visibility: state.compose.get('privacy') as StatusVisibility,
-    quotePolicy: state.compose.get('quote_policy') as ApiQuotePolicy,
-  }));
+  const quotePolicy = useAppSelector(
+    (state) => state.compose.get('quote_policy') as ApiQuotePolicy,
+  );
+  const visibility = useAppSelector(
+    (state) => state.compose.get('privacy') as StatusVisibility,
+  );
 
   const { icon, iconComponent } = useMemo(() => {
     const option = visibilityOptions[visibility];
