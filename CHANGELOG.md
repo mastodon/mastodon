@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.26] - 2025-09-23
+
+### Security
+
+- Update dependencies
+
+### Fixed
+
+- Fix processing of out-of-order `Update` as implicit updates (#36190 by @ClearlyClaire)
+- Fix getting `Create` and `Update` out of order (#36176 by @ClearlyClaire)
+
 ## [4.2.25] - 2025-09-16
 
 ### Fixed
