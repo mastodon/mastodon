@@ -8,7 +8,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
              :sensitive, :spoiler_text, :visibility, :language,
              :uri, :url, :replies_count, :reblogs_count,
-             :favourites_count, :edited_at
+             :favourites_count, :quotes_count, :edited_at
 
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
@@ -99,6 +99,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
     object.untrusted_favourites_count || relationships&.attributes_map&.dig(object.id, :favourites_count) || object.favourites_count
   end
 
+  def quotes_count
+    relationships&.attributes_map&.dig(object.id, :quotes_count) || object.quotes_count
+  end
+
   def favourited
     if relationships
       relationships.favourites_map[object.id] || false
@@ -151,7 +155,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     current_user? &&
       current_user.account_id == object.account_id &&
       !object.reblog? &&
-      %w(public unlisted private).include?(object.visibility)
+      StatusRelationshipsPresenter::PINNABLE_VISIBILITIES.include?(object.visibility)
   end
 
   def source_requested?

@@ -23,6 +23,7 @@ RSpec.describe ActivityPub::NoteSerializer do
         'zh-TW' => a_kind_of(String),
       }),
       'replies' => replies_collection_values,
+      'context' => ActivityPub::TagManager.instance.uri_for(parent.conversation),
     })
   end
 

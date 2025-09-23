@@ -2,12 +2,17 @@
 br:
   simple_form:
     hints:
+      account:
+        note: 'Gallout a rit @menegiñ tud all pe #gerioù-klik.'
       defaults:
         avatar: WEBP, PNG, GIF pe JPG. Bihanoc'h eget %{size}. A vo izelaet betek %{dimensions}px
+        email: Kaset e vo deoc'h ur postel kadarnaat
         header: WEBP, PNG, GIF pe JPG. Bihanoc'h eget %{size}. A vo izelaet betek %{dimensions}px
         password: Implijit 8 lizherennoù d'an neubeutañ
         setting_default_sensitive: Ar mediaoù kizidik a zo kuzhet dre ziouer ha gallout a reont bezañ diguzhet dre ur c'hlik
         setting_display_media_default: Kuzhat mediaoù aroueziet evel kizidik
+      form_admin_settings:
+        theme: Neuz a vez gwelet gant an implijerien·ezed nevez pe digevreet.
       form_challenge:
         current_password: Emaoc'h o tont-tre ul lec'h diogel
     labels:
@@ -15,6 +20,11 @@ br:
         fields:
           name: Label
           value: Endalc'h
+        show_collections: Diskwel an dud heuliet hag an heulierien·ezed war ar profil
+      account_alias:
+        acct: Anaouder ar gont gozh
+      account_migration:
+        acct: Anaouder ar gont nevez
       account_warning_preset:
         title: Titl
       admin_account_action:
@@ -27,6 +37,7 @@ br:
       announcement:
         all_day: Darvoud a-hed an devezh
         ends_at: Diwezh an darvoud
+        scheduled_at: Rakluniañ an embann
         starts_at: Deroù an darvoud
         text: Kemenn
       defaults:
@@ -46,17 +57,32 @@ br:
         note: Kinnig
         password: Ger-tremen
         phrase: Ger-alc'hwez pe frazenn
+        setting_default_language: Yezh an embann
+        setting_default_quote_policy: Piv a c'hall menegiñ
         setting_display_media_default: Dre ziouer
         setting_display_media_hide_all: Kuzhat pep tra
         setting_display_media_show_all: Diskouez pep tra
         setting_emoji_style: Stil an emojioù
+        setting_system_font_ui: Implijout nodrezh dre ziouer ar reizhiad
+        setting_system_scrollbars_ui: Implijout barrenn dibunañ dre ziouer ar reizhiad
         setting_theme: Neuz al lec'hienn
         setting_use_pending_items: Mod gorrek
         title: Titl
+        type: Rizh an enporzhiañ
         username: Anv
+        username_or_email: Anv implijer pe postel
         whole_word: Ger a-bezh
       featured_tag:
-        name: Hashtag
+        name: Ger-klik
+      form_admin_settings:
+        app_icon: Arlun an arload
+        custom_css: CSS personelaet
+        favicon: Favicon
+        profile_directory: Gweredekaat roll ar profiloù
+        site_short_description: Deskrivadur ar servijer
+        site_terms: Reolennoù prevezded
+        site_title: Anv ar servijer
+        theme: Neuz dre ziouer
       invite:
         comment: Evezhiadenn
       invite_request:
@@ -66,21 +92,40 @@ br:
         ip: IP
         severity: Reolenn
       notification_emails:
+        favourite: Gant unan bennak eo bet ouzhpennet hoc'h embannadur d'h·e re vuiañ-karet
         follow: Heuliañ a ra {name} ac'hanoc'h
+        quote: Meneget oc'h bet gant unan bennak
+        reblog: Gant unan bennak eo bet skignet hoc'h embannadur
+        software_updates:
+          label: Un handelv nevez eus Mastodon a zo deuet er-maez
       rule:
         hint: Titouroù ouzhpenn
         text: Reolenn
       tag:
-        name: Hashtag
-        trendable: Aotren an hashtag-mañ da zont war wel dindan tuadurioù
+        name: Ger-klik
+        trendable: Aotren ar ger-klik-mañ da zont war wel dindan tuadurioù
+        usable: Aotren an embannadurioù da implijout ar ger-klik-mañ ent-lec'hel
+      terms_of_service_generator:
+        domain: Domani
+        jurisdiction: Barnadurezh
       user:
+        date_of_birth_1i: Devezh
+        date_of_birth_2i: Mizvezh
+        date_of_birth_3i: Bloavezh
         role: Roll
         time_zone: Gwerzhid eur
       user_role:
         name: Anv
+        permissions_as_keys: Aotreoù
+      webhook:
+        events: Darvoudoù gweredekaet
     'no': Ket
+    not_recommended: Ket erbedet
     recommended: Erbedet
     required:
       mark: "*"
       text: rekis
+    title:
+      sessions:
+        webauthn: Implijout unan eus hoc'h alc'hwezioù surentez da gevreañ
     'yes': Ya

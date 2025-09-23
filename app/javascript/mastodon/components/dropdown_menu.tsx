@@ -36,6 +36,7 @@ import {
 import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
+import { Icon } from './icon';
 import type { IconProp } from './icon';
 import { IconButton } from './icon_button';
 
@@ -67,6 +68,27 @@ interface DropdownMenuProps<Item = MenuItem> {
   renderHeader?: RenderHeaderFn<Item>;
   onItemClick?: ItemClickFn<Item>;
 }
+
+export const DropdownMenuItemContent: React.FC<{ item: MenuItem }> = ({
+  item,
+}) => {
+  if (item === null) {
+    return null;
+  }
+
+  const { text, description, icon } = item;
+  return (
+    <>
+      {icon && <Icon icon={icon} id={`${text}-icon`} />}
+      <span className='dropdown-menu__item-content'>
+        {text}
+        {Boolean(description) && (
+          <span className='dropdown-menu__item-subtitle'>{description}</span>
+        )}
+      </span>
+    </>
+  );
+};
 
 export const DropdownMenu = <Item = MenuItem,>({
   items,
@@ -164,12 +186,15 @@ export const DropdownMenu = <Item = MenuItem,>({
     (e: React.MouseEvent | React.KeyboardEvent) => {
       const i = Number(e.currentTarget.getAttribute('data-index'));
       const item = items?.[i];
+      const isItemDisabled = Boolean(
+        item && typeof item === 'object' && 'disabled' in item && item.disabled,
+      );
 
-      onClose();
-
-      if (!item) {
+      if (!item || isItemDisabled) {
         return;
       }
+
+      onClose();
 
       if (typeof onItemClick === 'function') {
         e.preventDefault();
@@ -200,7 +225,7 @@ export const DropdownMenu = <Item = MenuItem,>({
       return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
     }
 
-    const { text, dangerous } = option;
+    const { text, highlighted, disabled, dangerous } = option;
 
     let element: React.ReactElement;
 
@@ -211,8 +236,9 @@ export const DropdownMenu = <Item = MenuItem,>({
           onClick={handleItemClick}
           onKeyUp={handleItemKeyUp}
           data-index={i}
+          aria-disabled={disabled}
         >
-          {text}
+          <DropdownMenuItemContent item={option} />
         </button>
       );
     } else if (isExternalLinkItem(option)) {
@@ -227,7 +253,7 @@ export const DropdownMenu = <Item = MenuItem,>({
           onKeyUp={handleItemKeyUp}
           data-index={i}
         >
-          {text}
+          <DropdownMenuItemContent item={option} />
         </a>
       );
     } else {
@@ -239,7 +265,7 @@ export const DropdownMenu = <Item = MenuItem,>({
           onKeyUp={handleItemKeyUp}
           data-index={i}
         >
-          {text}
+          <DropdownMenuItemContent item={option} />
         </Link>
       );
     }
@@ -247,6 +273,7 @@ export const DropdownMenu = <Item = MenuItem,>({
     return (
       <li
         className={classNames('dropdown-menu__item', {
+          'dropdown-menu__item--highlighted': highlighted,
           'dropdown-menu__item--dangerous': dangerous,
         })}
         key={`${text}-${i}`}
@@ -296,7 +323,7 @@ export const DropdownMenu = <Item = MenuItem,>({
   );
 };
 
-interface DropdownProps<Item = MenuItem> {
+interface DropdownProps<Item extends object | null = MenuItem> {
   children?: React.ReactElement;
   icon?: string;
   iconComponent?: IconProp;
@@ -306,6 +333,7 @@ interface DropdownProps<Item = MenuItem> {
   disabled?: boolean;
   scrollable?: boolean;
   placement?: Placement;
+  offset?: OffsetValue;
   /**
    * Prevent the `ScrollableList` with this scrollKey
    * from being scrolled while the dropdown is open
@@ -321,10 +349,9 @@ interface DropdownProps<Item = MenuItem> {
   onItemClick?: ItemClickFn<Item>;
 }
 
-const offset = [5, 5] as OffsetValue;
 const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
 
-export const Dropdown = <Item = MenuItem,>({
+export const Dropdown = <Item extends object | null = MenuItem>({
   children,
   icon,
   iconComponent,
@@ -334,6 +361,7 @@ export const Dropdown = <Item = MenuItem,>({
   disabled,
   scrollable,
   placement = 'bottom',
+  offset = [5, 5],
   status,
   forceDropdown = false,
   renderItem,

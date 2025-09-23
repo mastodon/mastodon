@@ -22,6 +22,6 @@ class RuleTranslation < ApplicationRecord
   scope :by_language_length, -> { order(Arel.sql('LENGTH(LANGUAGE)').desc) }
 
   def self.languages
-    RuleTranslation.joins(:rule).merge(Rule.kept).select(:language).distinct.pluck(:language).sort
+    joins(:rule).merge(Rule.kept).distinct.pluck(:language).sort
   end
 end

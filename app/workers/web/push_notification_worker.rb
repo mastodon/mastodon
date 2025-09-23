@@ -15,6 +15,15 @@ class Web::PushNotificationWorker
 
     return if @notification.updated_at < TTL.ago
 
+    # Clean up old Web::PushSubscriptions that were added before validation of
+    # the endpoint and keys: #30542, #30540
+    unless @subscription.valid?
+      Rails.logger.debug { "Web::PushSubscription is invalid, removing: #{subscription_id}" }
+      @subscription.destroy!
+
+      return
+    end
+
     # Polymorphically associated activity could have been deleted
     # in the meantime, so we have to double-check before proceeding
     return unless @notification.activity.present? && @subscription.pushable?(@notification)
@@ -87,7 +96,7 @@ class Web::PushNotificationWorker
   end
 
   def web_push_request
-    @web_push_request || WebPushRequest.new(@subscription)
+    @web_push_request ||= WebPushRequest.new(@subscription)
   end
 
   def push_notification_json

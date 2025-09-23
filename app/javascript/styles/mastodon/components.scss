@@ -201,6 +201,41 @@
     }
   }
 
+  &.button--plain {
+    color: $highlight-text-color;
+    background: transparent;
+    padding: 6px;
+
+    // The button has no outline, so we use negative margin to
+    // visually align its label with its surroundings while maintaining
+    // a generous click target
+    margin-inline: -6px;
+    border: 1px solid transparent;
+
+    &:active,
+    &:focus,
+    &:hover {
+      border-color: transparent;
+      color: lighten($highlight-text-color, 4%);
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 0.7;
+      border-color: transparent;
+      color: $ui-button-disabled-color;
+
+      &:active,
+      &:focus,
+      &:hover {
+        border-color: transparent;
+        color: $ui-button-disabled-color;
+      }
+    }
+  }
+
   &.button-tertiary {
     background: transparent;
     padding: 6px 17px;
@@ -436,8 +471,8 @@
   }
 }
 
-body > [data-popper-placement] {
-  z-index: 3;
+[data-popper-placement] {
+  z-index: 9999;
 }
 
 .invisible {
@@ -1384,8 +1419,16 @@ body > [data-popper-placement] {
   border: 0;
   background: transparent;
   padding: 0;
-  padding-top: 16px;
+  margin-top: 16px;
   text-decoration: none;
+  text-wrap: nowrap;
+
+  .status--is-quote & {
+    // Needed to prevent buttons from stretching across whole
+    // status width in Safari due to line-clamp
+    width: min-content;
+    white-space: nowrap;
+  }
 
   &:hover,
   &:active {
@@ -1438,9 +1481,9 @@ body > [data-popper-placement] {
 
 .focusable {
   &:focus-visible {
-    outline: 0;
+    outline: 2px solid $ui-button-focus-outline-color;
+    outline-offset: -2px;
     background: color.change($ui-highlight-color, $alpha: 0.05);
-    box-shadow: inset 0 0 0 2px $ui-button-focus-outline-color;
   }
 }
 
@@ -1595,7 +1638,7 @@ body > [data-popper-placement] {
   align-items: center;
   gap: 10px;
   overflow: hidden;
-  flex-grow: 1;
+  margin-inline-end: auto;
 
   .display-name {
     bdi {
@@ -2839,10 +2882,26 @@ a.account__display-name {
     color: $error-value-color;
   }
 
+  &--highlighted {
+    color: $highlight-text-color;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-subtitle {
+    font-weight: 400;
+  }
+
   a,
   button {
     font: inherit;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: inherit;
     width: 100%;
     padding: 10px 14px;
     border: 0;
@@ -2851,52 +2910,34 @@ a.account__display-name {
     box-sizing: border-box;
     text-decoration: none;
     color: inherit;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     text-align: inherit;
     border-radius: 4px;
 
     &:focus,
     &:hover,
     &:active {
-      &:not(:disabled) {
+      &:not(:disabled, [aria-disabled='true']) {
         background: var(--dropdown-border-color);
         outline: 0;
       }
     }
   }
 
-  button:disabled {
+  button:disabled,
+  button[aria-disabled='true'] {
     color: $dark-text-color;
     cursor: default;
+
+    &:focus {
+      color: rgb(from $dark-text-color r g b / 70%);
+      background: var(--dropdown-border-color);
+      outline: 0;
+    }
   }
 }
 
-.reblog-button {
-  &__item {
-    width: 280px;
-
-    button {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: inherit;
-    }
-
-    div {
-      display: flex;
-      flex-direction: column;
-    }
-
-    &.active:not(.disabled) {
-      color: $highlight-text-color;
-    }
-  }
-
-  &__meta {
-    font-weight: 400;
-  }
+.reblog-menu-item {
+  max-width: 360px;
 }
 
 .inline-account {
@@ -4373,6 +4414,11 @@ a.status-card {
     background: var(--on-surface-color);
   }
 
+  &:focus-visible {
+    outline: 2px solid $ui-button-focus-outline-color;
+    outline-offset: -2px;
+  }
+
   .icon {
     width: 22px;
     height: 22px;
@@ -5469,7 +5515,6 @@ a.status-card {
   border-radius: 4px;
   overflow: hidden;
   z-index: 2;
-  width: 300px;
 
   &.top {
     transform-origin: 50% 100%;
@@ -5491,6 +5536,8 @@ a.status-card {
 
 .privacy-dropdown__option,
 .visibility-dropdown__option {
+  --dropdown-text-color: $primary-text-color;
+
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.25px;
@@ -5500,7 +5547,22 @@ a.status-card {
   align-items: center;
   gap: 12px;
   border-radius: 4px;
-  color: $primary-text-color;
+  color: var(--dropdown-text-color);
+
+  // Make sure adjacent hover/active states don't have a meeting radius.
+  &:hover + &:is(:focus, .active),
+  &:is(:focus, .active) + &:hover,
+  &:is(:focus, .active) + &:is(:focus, .active) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  &:hover:has(+ :focus, .active),
+  &:is(:focus, .active):has(+ :hover),
+  &:is(:focus, .active):has(+ :is(:focus, .active)) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 
   &:hover,
   &:active {
@@ -5510,7 +5572,7 @@ a.status-card {
   &:focus,
   &.active {
     background: $ui-highlight-color;
-    color: $primary-text-color;
+    color: var(--dropdown-text-color);
     outline: 0;
 
     .privacy-dropdown__option__content,
@@ -5519,7 +5581,7 @@ a.status-card {
     .visibility-dropdown__option__content,
     .visibility-dropdown__option__content strong,
     .visibility-dropdown__option__additional {
-      color: $primary-text-color;
+      color: var(--dropdown-text-color);
     }
   }
 
@@ -5559,6 +5621,7 @@ a.status-card {
 
 .language-dropdown {
   &__dropdown {
+    width: 300px;
     padding: 0;
 
     .emoji-mart-search {
@@ -5646,15 +5709,23 @@ a.status-card {
     z-index: 9999;
   }
 
-  &__label.disabled {
+  &.disabled {
+    opacity: 0.6;
     cursor: default;
-    opacity: 0.5;
+  }
+
+  &__label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
   }
 
   &__button {
+    display: flex;
+    align-items: center;
     color: $primary-text-color;
-    background: var(--dropdown-background-color);
-    border: 1px solid var(--dropdown-border-color);
+    background: var(--input-background-color);
+    border: 1px solid var(--background-border-color);
     padding: 8px 12px;
     width: 100%;
     text-align: left;
@@ -5665,6 +5736,13 @@ a.status-card {
     &:disabled {
       cursor: default;
     }
+  }
+
+  &__icon {
+    margin-inline: auto -4px;
+    width: 18px;
+    height: 18px;
+    opacity: 0.5;
   }
 
   &__helper {
@@ -5963,17 +6041,6 @@ a.status-card {
 
   @media screen and (width <= $mobile-breakpoint) {
     margin-top: auto;
-  }
-}
-
-.modal-root label {
-  cursor: pointer;
-  display: block;
-
-  > span {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 8px;
   }
 }
 
@@ -6527,6 +6594,14 @@ a.status-card {
         max-height: 45vh;
       }
     }
+
+    &__actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: flex-end;
+      padding: 0 24px 24px;
+    }
   }
 
   &__popout {
@@ -7062,7 +7137,8 @@ a.status-card {
   cursor: default;
 }
 
-.media-gallery__alt__popover {
+.info-tooltip {
+  color: $white;
   background: color.change($black, $alpha: 0.65);
   backdrop-filter: $backdrop-blur-filter;
   border-radius: 4px;
@@ -7074,19 +7150,35 @@ a.status-card {
   max-height: 30em;
   overflow-y: auto;
 
+  &--solid {
+    color: var(--nested-card-text);
+    background:
+      /* This is a bit of a silly hack for layering two background colours
+       * since --nested-card-background is too transparent for a tooltip */
+      linear-gradient(
+        var(--nested-card-background),
+        var(--nested-card-background)
+      ),
+      linear-gradient(var(--background-color), var(--background-color));
+    border: var(--nested-card-border);
+  }
+
   h4 {
     font-size: 15px;
     line-height: 20px;
     font-weight: 500;
-    color: $white;
     margin-bottom: 8px;
   }
 
   p {
     font-size: 15px;
     line-height: 20px;
-    color: color.change($white, $alpha: 0.85);
+    opacity: 0.85;
     white-space: pre-line;
+  }
+
+  .button {
+    margin-block-start: 8px;
   }
 }
 
@@ -9449,13 +9541,6 @@ noscript {
     font-size: 14px;
   }
 
-  &__icon {
-    color: $highlight-text-color;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   &__lead {
     margin-bottom: 20px;
 
@@ -10217,7 +10302,7 @@ noscript {
 .notification-list {
   position: fixed;
   bottom: 2rem;
-  inset-inline-start: 0;
+  inset-inline-start: 1rem;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -10225,9 +10310,11 @@ noscript {
 }
 
 .notification-bar {
+  --alert-edge-spacing: 1rem;
+
+  display: flex;
+  gap: 10px;
   flex: 0 0 auto;
-  position: relative;
-  inset-inline-start: -100%;
   width: auto;
   padding: 15px;
   margin: 0;
@@ -10243,33 +10330,43 @@ noscript {
   font-size: 15px;
   line-height: 21px;
 
-  &.notification-bar-active {
-    inset-inline-start: 1rem;
+  &.from-side {
+    translate: calc(
+      -1 * (100% + var(--alert-edge-spacing)) * var(--text-x-direction)
+    );
+  }
+
+  &.from-below {
+    translate: 0 calc(100% + var(--alert-edge-spacing));
+  }
+
+  &.notification-bar--active {
+    translate: none;
   }
 
   .no-reduce-motion & {
     transition: 0.5s cubic-bezier(0.89, 0.01, 0.5, 1.1);
-    transform: translateZ(0);
+    will-change: translate;
   }
 }
 
-.notification-bar-title {
-  margin-inline-end: 5px;
+.notification-bar__content {
+  margin-inline-end: auto;
 }
 
-.notification-bar-title,
-.notification-bar-action {
+.notification-bar__title {
+  margin-inline-end: 5px;
   font-weight: 700;
 }
 
-.notification-bar-action {
+.notification-bar__action {
   display: inline-block;
   border: 0;
   background: transparent;
   text-transform: uppercase;
-  margin-inline-start: 10px;
   cursor: pointer;
   color: $blurple-300;
+  font-weight: 700;
   border-radius: 4px;
   padding: 0 4px;
 
@@ -10277,6 +10374,17 @@ noscript {
   &:focus,
   &:active {
     background: color.change($ui-base-color, $alpha: 0.85);
+  }
+}
+
+.notification-bar__dismiss-button {
+  margin-top: -2px;
+  color: rgb(from currentColor r g b / 85%);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: currentColor;
   }
 }
 
@@ -10376,6 +10484,10 @@ noscript {
   border-bottom: 1px solid var(--background-border-color);
   background: color.change($ui-highlight-color, $alpha: 0.05);
 
+  &.focusable:focus-visible {
+    background: color.change($ui-highlight-color, $alpha: 0.05);
+  }
+
   &__header {
     display: flex;
     align-items: center;
@@ -10448,8 +10560,10 @@ noscript {
     }
 
     &__scrollable {
+      box-sizing: border-box;
       display: flex;
       flex-wrap: nowrap;
+      min-height: 228px;
       gap: 16px;
       padding: 16px;
       scroll-snap-type: x mandatory;

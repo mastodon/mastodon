@@ -243,6 +243,10 @@ module ApplicationHelper
     tag.input(type: :text, maxlength: 999, spellcheck: false, readonly: true, **options)
   end
 
+  def recent_tag_users(tag)
+    tag.statuses.public_visibility.joins(:account).merge(Account.without_suspended.without_silenced).includes(:account).limit(3).map(&:account)
+  end
+
   def recent_tag_usage(tag)
     people = tag.history.aggregate(2.days.ago.to_date..Time.zone.today).accounts
     I18n.t 'user_mailer.welcome.hashtags_recent_count', people: number_with_delimiter(people), count: people
@@ -254,6 +258,10 @@ module ApplicationHelper
 
   def app_store_url_android
     'https://play.google.com/store/apps/details?id=org.joinmastodon.android'
+  end
+
+  def within_authorization_flow?
+    session[:user_return_to].present? && Rails.application.routes.recognize_path(session[:user_return_to])[:controller] == 'oauth/authorizations'
   end
 
   private

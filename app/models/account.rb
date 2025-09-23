@@ -31,6 +31,7 @@
 #  outbox_url                    :string           default(""), not null
 #  shared_inbox_url              :string           default(""), not null
 #  followers_url                 :string           default(""), not null
+#  following_url                 :string           default(""), not null
 #  protocol                      :integer          default("ostatus"), not null
 #  memorial                      :boolean          default(FALSE), not null
 #  moved_to_account_id           :bigint(8)
@@ -123,6 +124,7 @@ class Account < ApplicationRecord
   validates_with EmptyProfileFieldNamesValidator, if: -> { local? && will_save_change_to_fields? }
   with_options on: :create, if: :local? do
     validates :followers_url, absence: true
+    validates :following_url, absence: true
     validates :inbox_url, absence: true
     validates :shared_inbox_url, absence: true
     validates :uri, absence: true

@@ -8,6 +8,7 @@ const meta = {
   component: Button,
   args: {
     secondary: false,
+    plain: false,
     compact: false,
     dangerous: false,
     disabled: false,
@@ -57,6 +58,14 @@ export const Secondary: Story = {
   play: buttonTest,
 };
 
+export const Plain: Story = {
+  args: {
+    plain: true,
+    children: 'Plain button',
+  },
+  play: buttonTest,
+};
+
 export const Compact: Story = {
   args: {
     compact: true,
@@ -96,6 +105,14 @@ export const PrimaryDisabled: Story = {
 export const SecondaryDisabled: Story = {
   args: {
     ...Secondary.args,
+    disabled: true,
+  },
+  play: disabledButtonTest,
+};
+
+export const PlainDisabled: Story = {
+  args: {
+    ...Plain.args,
     disabled: true,
   },
   play: disabledButtonTest,

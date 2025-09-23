@@ -1,7 +1,7 @@
 {
   "name": "@mastodon/mastodon",
   "license": "AGPL-3.0-or-later",
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.9.4",
   "engines": {
     "node": ">=20"
   },
@@ -31,7 +31,8 @@
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic -d storybook-static"
+    "chromatic": "npx chromatic -d storybook-static",
+    "msw:updateWorker": "msw init"
   },
   "repository": {
     "type": "git",
