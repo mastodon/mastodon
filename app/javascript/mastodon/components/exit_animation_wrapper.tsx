@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * A helper component for managing the rendering of components that
@@ -29,22 +29,21 @@ export const ExitAnimationWrapper: React.FC<{
   children: (isVisible: boolean) => React.ReactNode;
 }> = ({ isActive = false, delayMs = 500, withEntryDelay, children }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (isActive && !withEntryDelay) {
       setIsVisible(true);
+
+      return () => '';
     } else {
-      timeoutRef.current = setTimeout(() => {
+      const timeout = setTimeout(() => {
         setIsVisible(isActive);
       }, delayMs);
-    }
 
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
   }, [isActive, delayMs, withEntryDelay]);
 
   if (!isActive && !isVisible) {
