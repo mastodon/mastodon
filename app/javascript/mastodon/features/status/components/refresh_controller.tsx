@@ -92,7 +92,7 @@ export const RefreshController: React.FC<{
           if (result.async_refresh.status === 'finished') {
             dispatch(completeContextRefresh({ statusId }));
 
-            if (result.async_refresh.result_count > currentReplyCount) {
+            if (result.async_refresh.result_count > 0) {
               if (autoRefresh) {
                 void dispatch(fetchContext({ statusId })).then(() => {
                   setLoadingState('idle');
@@ -118,14 +118,7 @@ export const RefreshController: React.FC<{
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [
-    dispatch,
-    statusId,
-    currentReplyCount,
-    refresh,
-    autoRefresh,
-    wasDismissed,
-  ]);
+  }, [dispatch, statusId, refresh, autoRefresh, wasDismissed]);
 
   useEffect(() => {
     // Hide success message after a short delay
