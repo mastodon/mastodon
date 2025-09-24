@@ -1597,6 +1597,15 @@
       }
     }
   }
+
+  .no-reduce-motion &--highlighted-entry::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgb(from $ui-highlight-color r g b / 20%);
+    opacity: 0;
+    animation: fade 0.7s reverse both 0.3s;
+  }
 }
 
 .status__relative-time {
