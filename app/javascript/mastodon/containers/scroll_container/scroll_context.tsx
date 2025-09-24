@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import { useLocation, useHistory } from 'react-router-dom';
 
@@ -47,13 +47,19 @@ export const ScrollContext: React.FC<ScrollContextProps> = ({
   const location = useLocation<MastodonLocationState>();
   const history = useHistory<MastodonLocationState>();
 
+  const currentLocationRef = useRef(location);
+  useEffect(() => {
+    currentLocationRef.current = location;
+  }, [location]);
+
   const [scrollBehavior] = useState(
     (): ScrollBehaviorInstance =>
       new ScrollBehavior({
         // eslint-disable-next-line @typescript-eslint/unbound-method
         addNavigationListener: history.listen,
         stateStorage: new SessionStorage(),
-        getCurrentLocation: () => location as unknown as LocationBase,
+        getCurrentLocation: () =>
+          currentLocationRef.current as unknown as LocationBase,
         shouldUpdateScroll: (
           prevLocationContext: LocationContext | null,
           locationContext: LocationContext,
@@ -69,10 +75,9 @@ export const ScrollContext: React.FC<ScrollContextProps> = ({
 
   // Handle scroll update when location changes
   const prevLocation = usePrevious(location) ?? null;
-  useLayoutEffect(() => {
+  useEffect(() => {
     scrollBehavior.updateScroll(prevLocation, location);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location, scrollBehavior]);
+  }, [location, prevLocation, scrollBehavior]);
 
   useEffect(() => {
     return () => {
