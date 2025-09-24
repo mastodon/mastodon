@@ -46,17 +46,18 @@ export type AnyEmojiData = CustomEmojiData | UnicodeEmojiData;
 export type EmojiStateMissing = typeof EMOJI_STATE_MISSING;
 export interface EmojiStateUnicode {
   type: typeof EMOJI_TYPE_UNICODE;
-  data: UnicodeEmojiData;
+  code: string;
+  data?: UnicodeEmojiData;
 }
 export interface EmojiStateCustom {
   type: typeof EMOJI_TYPE_CUSTOM;
-  data: CustomEmojiRenderFields;
+  code: string;
+  data?: CustomEmojiRenderFields;
 }
-export type EmojiState =
-  | EmojiStateMissing
-  | EmojiStateUnicode
-  | EmojiStateCustom;
-export type EmojiLoadedState = EmojiStateUnicode | EmojiStateCustom;
+export type EmojiState = EmojiStateUnicode | EmojiStateCustom;
+export type EmojiLoadedState =
+  | Required<EmojiStateUnicode>
+  | Required<EmojiStateCustom>;
 
 export type EmojiStateMap = LimitedCache<string, EmojiState>;
 
