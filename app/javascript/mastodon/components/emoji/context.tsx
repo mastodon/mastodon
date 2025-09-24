@@ -5,11 +5,7 @@ import type {
 } from 'react';
 import { createContext, useCallback, useState } from 'react';
 
-import type { List as ImmutableList } from 'immutable';
-
-import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 import { autoPlayGif } from '@/mastodon/initial_state';
-import { useAppSelector } from '@/mastodon/store';
 import type { ExtraCustomEmojiMap } from 'mastodon/features/emoji/types';
 
 // Animation context
@@ -53,22 +49,6 @@ export const CustomEmojiProvider = ({
   children,
   emoji,
 }: PropsWithChildren<{ emoji: ExtraCustomEmojiMap }>) => {
-  return (
-    <CustomEmojiContext.Provider value={emoji}>
-      {children}
-    </CustomEmojiContext.Provider>
-  );
-};
-
-export const RootCustomEmojiProvider = ({ children }: PropsWithChildren) => {
-  const emoji = useAppSelector((state) =>
-    (state.custom_emojis as ImmutableList<ApiCustomEmojiJSON>)
-      .toJS()
-      .reduce<ExtraCustomEmojiMap>(
-        (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
-        {},
-      ),
-  );
   return (
     <CustomEmojiContext.Provider value={emoji}>
       {children}

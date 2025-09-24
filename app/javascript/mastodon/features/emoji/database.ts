@@ -197,9 +197,16 @@ function toLoadedLocale(localeString: string) {
     log(`Locale ${locale} is different from provided ${localeString}`);
   }
   if (!loadedLocales.has(locale)) {
-    throw new Error(`Locale ${locale} is not loaded in emoji database`);
+    throw new LocaleNotLoadedError(locale);
   }
   return locale;
+}
+
+export class LocaleNotLoadedError extends Error {
+  constructor(locale: Locale) {
+    super(`Locale ${locale} is not loaded in emoji database`);
+    this.name = 'LocaleNotLoadedError';
+  }
 }
 
 async function hasLocale(locale: Locale, db: Database): Promise<boolean> {

@@ -5,7 +5,7 @@ import { flattenEmojiData } from 'emojibase';
 import unicodeRawEmojis from 'emojibase-data/en/data.json';
 
 import {
-  twemojiHasBorder,
+  unicodeHexToUrl,
   twemojiToUnicodeInfo,
   unicodeToTwemojiHex,
   CODES_WITH_DARK_BORDER,
@@ -70,7 +70,7 @@ describe('twemojiHasBorder', () => {
         ] as const;
       }),
   )('twemojiHasBorder for %s', ([hexCode, isLight, isDark], { expect }) => {
-    const result = twemojiHasBorder(hexCode);
+    const result = unicodeHexToUrl(hexCode, isDark);
     expect(result).toHaveProperty('hexCode', hexCode);
     expect(result).toHaveProperty('hasLightBorder', isLight);
     expect(result).toHaveProperty('hasDarkBorder', isDark);
