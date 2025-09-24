@@ -136,7 +136,7 @@ export const Conversation = ({ conversation, scrollKey }) => {
               {unread && <span className='conversation__unread' />} <RelativeTimestamp timestamp={lastStatus.get('created_at')} />
             </div>
 
-            <div className='conversation__content__names animate-parent' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <div className='conversation__content__names animate-parent'>
               <FormattedMessage id='conversation.with' defaultMessage='With {names}' values={{ names: <span>{names}</span> }} />
             </div>
           </div>
