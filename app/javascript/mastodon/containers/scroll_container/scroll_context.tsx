@@ -5,18 +5,18 @@ import { useLocation, useHistory } from 'react-router-dom';
 import type { LocationBase } from 'scroll-behavior';
 import ScrollBehavior from 'scroll-behavior';
 
-import type { MastodonLocationState } from 'mastodon/components/router';
+import type {
+  LocationState,
+  MastodonLocation,
+} from 'mastodon/components/router';
 import { usePrevious } from 'mastodon/hooks/usePrevious';
 
 import { defaultShouldUpdateScroll } from './default_should_update_scroll';
-import type {
-  ShouldUpdateScrollFn,
-  LocationContext,
-} from './default_should_update_scroll';
+import type { ShouldUpdateScrollFn } from './default_should_update_scroll';
 import { SessionStorage } from './state_storage';
 
 type ScrollBehaviorInstance = InstanceType<
-  typeof ScrollBehavior<LocationBase, LocationContext>
+  typeof ScrollBehavior<LocationBase, MastodonLocation>
 >;
 
 export interface ScrollBehaviorContextType {
@@ -24,8 +24,8 @@ export interface ScrollBehaviorContextType {
     key: string,
     element: HTMLElement,
     shouldUpdateScroll: (
-      prevLocationContext: LocationContext | null,
-      locationContext: LocationContext,
+      prevLocationContext: MastodonLocation | null,
+      locationContext: MastodonLocation,
     ) => boolean,
   ) => void;
   unregisterElement: (key: string) => void;
@@ -48,8 +48,8 @@ export const ScrollContext: React.FC<ScrollContextProps> = ({
   children,
   shouldUpdateScroll = defaultShouldUpdateScroll,
 }) => {
-  const location = useLocation<MastodonLocationState>();
-  const history = useHistory<MastodonLocationState>();
+  const location = useLocation<LocationState>();
+  const history = useHistory<LocationState>();
 
   const currentLocationRef = useRef(location);
   useEffect(() => {
@@ -65,8 +65,8 @@ export const ScrollContext: React.FC<ScrollContextProps> = ({
         getCurrentLocation: () =>
           currentLocationRef.current as unknown as LocationBase,
         shouldUpdateScroll: (
-          prevLocationContext: LocationContext | null,
-          locationContext: LocationContext,
+          prevLocationContext: MastodonLocation | null,
+          locationContext: MastodonLocation,
         ) =>
           // Hack to allow accessing scrollBehavior._stateStorage
           shouldUpdateScroll.call(

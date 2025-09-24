@@ -1,14 +1,8 @@
-import type { useLocation } from 'react-router';
-
-import type { MastodonLocationState } from 'mastodon/components/router';
-
-export type LocationContext = ReturnType<
-  typeof useLocation<MastodonLocationState | undefined>
->;
+import type { MastodonLocation } from 'mastodon/components/router';
 
 export type ShouldUpdateScrollFn = (
-  prevLocationContext: LocationContext | null,
-  locationContext: LocationContext,
+  prevLocationContext: MastodonLocation | null,
+  locationContext: MastodonLocation,
 ) => boolean;
 
 export const defaultShouldUpdateScroll: ShouldUpdateScrollFn = (
