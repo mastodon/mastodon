@@ -24,6 +24,5 @@ export const defaultShouldUpdateScroll: ShouldUpdateScrollFn = (
     location.state.mastodonModalKey !== prevLocation?.state?.mastodonModalKey
   );
 
-  console.log({ shouldUpdateScroll, prevLocation, location });
   return shouldUpdateScroll;
 };
