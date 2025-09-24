@@ -6,6 +6,10 @@ interface LocationBaseWithKey extends LocationBase {
   key?: string;
 }
 
+/**
+ * This module is part of our port of https://github.com/ytase/react-router-scroll/
+ */
+
 export class SessionStorage {
   read(
     location: LocationBaseWithKey,

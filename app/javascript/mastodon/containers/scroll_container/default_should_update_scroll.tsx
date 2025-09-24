@@ -11,9 +11,6 @@ export type ShouldUpdateScrollFn = (
   locationContext: LocationContext,
 ) => boolean;
 
-// ScrollContainer is used to automatically scroll to the top when pushing a
-// new history state and remembering the scroll position when going back.
-// There are a few things we need to do differently, though.
 export const defaultShouldUpdateScroll: ShouldUpdateScrollFn = (
   prevLocation,
   location,

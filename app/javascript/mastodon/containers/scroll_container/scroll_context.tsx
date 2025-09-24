@@ -40,6 +40,10 @@ interface ScrollContextProps {
   children: React.ReactElement;
 }
 
+/**
+ * This component is a port of the unmaintained https://github.com/ytase/react-router-scroll/
+ */
+
 export const ScrollContext: React.FC<ScrollContextProps> = ({
   children,
   shouldUpdateScroll = defaultShouldUpdateScroll,

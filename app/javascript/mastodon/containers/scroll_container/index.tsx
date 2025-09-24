@@ -10,6 +10,13 @@ interface ScrollContainerProps {
   children: React.ReactElement;
 }
 
+/**
+ * `ScrollContainer` is used to automatically scroll to the top of the page
+ * when pushing a new history state, and remembering the scroll position
+ * when going back.
+ * This component is a port of the unmaintained https://github.com/ytase/react-router-scroll/
+ */
+
 export const ScrollContainer: React.FC<ScrollContainerProps> = ({
   children,
   scrollKey,
@@ -19,34 +26,24 @@ export const ScrollContainer: React.FC<ScrollContainerProps> = ({
 
   const containerRef = useRef<HTMLElement>();
 
-  // Register element when component mounts
   useEffect(() => {
-    // Ensure scroll behavior context and container ref exist
     if (!scrollBehaviorContext || !containerRef.current) {
       return;
     }
 
-    // Handle scroll update logic
-    const handleShouldUpdateScroll: ShouldUpdateScrollFn = (
-      prevLocation,
-      location,
-    ) => {
-      // Hack to allow accessing scrollBehavior._stateStorage
-      return shouldUpdateScroll.call(
-        scrollBehaviorContext.scrollBehavior,
-        prevLocation,
-        location,
-      );
-    };
-
-    // Register the element with scroll behavior
     scrollBehaviorContext.registerElement(
       scrollKey,
       containerRef.current,
-      handleShouldUpdateScroll,
+      (prevLocation, location) => {
+        // Hack to allow accessing scrollBehavior._stateStorage
+        return shouldUpdateScroll.call(
+          scrollBehaviorContext.scrollBehavior,
+          prevLocation,
+          location,
+        );
+      },
     );
 
-    // Cleanup function to unregister element
     return () => {
       scrollBehaviorContext.unregisterElement(scrollKey);
     };
