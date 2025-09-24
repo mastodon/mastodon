@@ -1,6 +1,12 @@
 @use 'variables' as *;
 @use 'functions' as *;
 
+html {
+  &:lang(ja) {
+    text-spacing-trim: space-all;
+  }
+}
+
 html.has-modal {
   &,
   body {
