@@ -13,7 +13,7 @@ import { createBrowserHistory } from 'history';
 import { layoutFromWindow } from 'mastodon/is_mobile';
 import { isDevelopment } from 'mastodon/utils/environment';
 
-interface MastodonLocationState {
+export interface MastodonLocationState {
   fromMastodon?: boolean;
   mastodonModalKey?: string;
 }

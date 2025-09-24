@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import { throttle } from 'lodash';
 
-import ScrollContainer from 'mastodon/containers/scroll_container';
+import { ScrollContainer } from 'mastodon/containers/scroll_container';
 
 import IntersectionObserverArticleContainer from '../containers/intersection_observer_article_container';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
