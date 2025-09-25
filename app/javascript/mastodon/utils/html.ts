@@ -1,5 +1,8 @@
 import React from 'react';
 
+import type { AllowedTagsType } from './html-tags';
+import { AllowedTags, GlobalAttributes } from './html-tags';
+
 // NB: This function can still return unsafe HTML
 export const unescapeHTML = (html: string) => {
   const wrapper = document.createElement('div');
@@ -30,46 +33,9 @@ export interface HTMLToStringOptions<Arg extends Record<string, unknown>> {
     tagName: string,
     extra: Arg,
   ) => [string, unknown] | null;
-  allowedTags?: Set<string>;
+  allowedTags?: AllowedTagsType;
   extraArgs?: Arg;
 }
-
-const DEFAULT_ALLOWED_TAGS: ReadonlySet<string> = new Set([
-  'a',
-  'abbr',
-  'b',
-  'blockquote',
-  'br',
-  'cite',
-  'code',
-  'del',
-  'dfn',
-  'dl',
-  'dt',
-  'em',
-  'h1',
-  'h2',
-  'h3',
-  'h4',
-  'h5',
-  'h6',
-  'hr',
-  'i',
-  'img',
-  'li',
-  'ol',
-  'p',
-  'pre',
-  'small',
-  'span',
-  'strong',
-  'sub',
-  'sup',
-  'time',
-  'u',
-  'ul',
-]);
-const ELEMENTS_WITHOUT_CHILDREN = new Set(['br', 'hr', 'img']);
 
 let uniqueIdCounter = 0;
 
@@ -87,7 +53,7 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
 
   const {
     maxDepth = 10,
-    allowedTags = DEFAULT_ALLOWED_TAGS,
+    allowedTags = AllowedTags,
     onAttribute,
     onElement,
     onText,
@@ -136,7 +102,9 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
         }
 
         // If the tag is not allowed, skip it and its children.
-        if (!allowedTags.has(node.tagName.toLowerCase())) {
+        const tagName = node.tagName.toLowerCase();
+        const tagInfo = allowedTags[tagName as keyof typeof allowedTags];
+        if (!tagInfo) {
           continue;
         }
 
@@ -147,6 +115,7 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
         // If onElement is provided, use it to create the element.
         if (onElement) {
           const component = onElement(node, children, extraArgs);
+
           // Check for undefined to allow returning null.
           if (component !== undefined) {
             element = component;
@@ -159,9 +128,8 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
           props.key = `html-${uniqueIdCounter++}`; // Get the current key and then increment it.
           for (const attr of node.attributes) {
             let name = attr.name.toLowerCase();
-            if (name === 'class') {
-              name = 'className';
-            }
+
+            // Custom attribute handler.
             if (onAttribute) {
               const result = onAttribute(
                 name,
@@ -174,20 +142,39 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
                 props[cbName] = value;
               }
             } else {
+              // Check global attributes first, then tag-specific ones.
+              const globalAttr = GlobalAttributes[name];
+              const tagAttr = tagInfo.attributes?.[name];
+
+              // Exit if neither global nor tag-specific attribute is allowed.
+              if (!globalAttr && !tagAttr) {
+                continue;
+              }
+
+              // Rename if needed.
+              if (typeof tagAttr === 'string') {
+                name = tagAttr;
+              } else if (typeof globalAttr === 'string') {
+                name = globalAttr;
+              }
+
               let value: string | boolean | number = attr.value;
+
+              // Handle boolean attributes.
               if (value === 'true') {
                 value = true;
               } else if (value === 'false') {
                 value = false;
               }
+
               props[name] = value;
             }
           }
-          const tagName = node.tagName.toLowerCase();
+
           element = React.createElement(
             tagName,
             props,
-            !ELEMENTS_WITHOUT_CHILDREN.has(tagName) ? children : undefined,
+            tagInfo.children !== false ? children : undefined,
           );
         }
 
