@@ -1413,7 +1413,6 @@
 .status__content__translate-button {
   display: flex;
   align-items: center;
-  width: min-content;
   font-size: 15px;
   line-height: 22px;
   color: $highlight-text-color;
@@ -1422,6 +1421,14 @@
   padding: 0;
   margin-top: 16px;
   text-decoration: none;
+  text-wrap: nowrap;
+
+  .status--is-quote & {
+    // Needed to prevent buttons from stretching across whole
+    // status width in Safari due to line-clamp
+    width: min-content;
+    white-space: nowrap;
+  }
 
   &:hover,
   &:active {
@@ -1589,6 +1596,16 @@
         display: none;
       }
     }
+  }
+
+  .no-reduce-motion &--highlighted-entry::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgb(from $ui-highlight-color r g b / 20%);
+    opacity: 0;
+    animation: fade 0.7s reverse both 0.3s;
+    pointer-events: none;
   }
 }
 
@@ -2953,7 +2970,6 @@ a.account__display-name {
   flex: 1 1 auto;
   flex-direction: row;
   justify-content: flex-start;
-  overflow-x: auto;
   position: relative;
 
   &.unscrollable {
@@ -3129,6 +3145,29 @@ a.account__display-name {
   }
 }
 
+.column__alert {
+  position: sticky;
+  bottom: 1rem;
+  z-index: 10;
+  box-sizing: border-box;
+  display: grid;
+  width: 100%;
+  max-width: 360px;
+  padding-inline: 10px;
+  margin-top: 1rem;
+  margin-inline: auto;
+
+  @media (max-width: #{$mobile-menu-breakpoint - 1}) {
+    bottom: 4rem;
+  }
+
+  & > * {
+    // Make all nested alerts occupy the same space
+    // rather than stack
+    grid-area: 1 / 1;
+  }
+}
+
 .ui {
   --mobile-bottom-nav-height: 55px;
   --last-content-item-border-width: 2px;
@@ -3169,7 +3208,6 @@ a.account__display-name {
 .column,
 .drawer {
   flex: 1 1 100%;
-  overflow: hidden;
 }
 
 @media screen and (width > $mobile-breakpoint) {
@@ -10378,6 +10416,21 @@ noscript {
   &:focus,
   &:active {
     color: currentColor;
+  }
+}
+
+.notification-bar__loading-indicator {
+  --spinner-size: 22px;
+
+  position: relative;
+  height: var(--spinner-size);
+  width: var(--spinner-size);
+  margin-inline-start: 2px;
+
+  svg {
+    color: $white;
+    height: var(--spinner-size);
+    width: var(--spinner-size);
   }
 }
 

@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import type { FC, KeyboardEvent, MouseEvent, MouseEventHandler } from 'react';
+import type { FC, KeyboardEvent, MouseEvent } from 'react';
 
 import { useIntl } from 'react-intl';
 
@@ -11,7 +11,6 @@ import { openModal } from '@/mastodon/actions/modal';
 import type { ActionMenuItem } from '@/mastodon/models/dropdown_menu';
 import type { Status } from '@/mastodon/models/status';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import { isFeatureEnabled } from '@/mastodon/utils/environment';
 import type { SomeRequired } from '@/mastodon/utils/types';
 
 import type { RenderItemFn, RenderItemFnHandlers } from '../dropdown_menu';
@@ -47,10 +46,7 @@ interface ReblogButtonProps {
 
 type ActionMenuItemWithIcon = SomeRequired<ActionMenuItem, 'icon'>;
 
-export const StatusBoostButton: FC<ReblogButtonProps> = ({
-  status,
-  counters,
-}) => {
+export const BoostButton: FC<ReblogButtonProps> = ({ status, counters }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const statusState = useAppSelector((state) =>
@@ -134,6 +130,8 @@ export const StatusBoostButton: FC<ReblogButtonProps> = ({
 
   return (
     <Dropdown
+      placement='bottom-start'
+      offset={[-19, 5]} // This aligns button icon with menu icons
       items={items}
       renderItem={renderMenuItem}
       onOpen={handleDropdownOpen}
@@ -188,67 +186,5 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
         <DropdownMenuItemContent item={item} />
       </button>
     </li>
-  );
-};
-
-// Legacy helpers
-
-// Switch between the legacy and new reblog button based on feature flag.
-export const BoostButton: FC<ReblogButtonProps> = (props) => {
-  if (isFeatureEnabled('outgoing_quotes')) {
-    return <StatusBoostButton {...props} />;
-  }
-  return <LegacyReblogButton {...props} />;
-};
-
-export const LegacyReblogButton: FC<ReblogButtonProps> = ({
-  status,
-  counters,
-}) => {
-  const intl = useIntl();
-  const statusState = useAppSelector((state) =>
-    selectStatusState(state, status),
-  );
-
-  const { title, meta, iconComponent, disabled } = useMemo(
-    () => boostItemState(statusState),
-    [statusState],
-  );
-
-  const dispatch = useAppDispatch();
-  const handleClick: MouseEventHandler = useCallback(
-    (event) => {
-      if (statusState.isLoggedIn) {
-        dispatch(toggleReblog(status.get('id') as string, event.shiftKey));
-      } else {
-        dispatch(
-          openModal({
-            modalType: 'INTERACTION',
-            modalProps: {
-              accountId: status.getIn(['account', 'id']),
-              url: status.get('uri'),
-            },
-          }),
-        );
-      }
-    },
-    [dispatch, status, statusState.isLoggedIn],
-  );
-
-  return (
-    <IconButton
-      disabled={disabled}
-      active={!!status.get('reblogged')}
-      title={intl.formatMessage(meta ?? title)}
-      icon='retweet'
-      iconComponent={iconComponent}
-      onClick={!disabled ? handleClick : undefined}
-      counter={
-        counters
-          ? (status.get('reblogs_count') as number) +
-            (status.get('quotes_count') as number)
-          : undefined
-      }
-    />
   );
 };

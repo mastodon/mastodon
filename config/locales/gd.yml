@@ -196,6 +196,7 @@ gd:
         create_relay: Cruthaich ath-sheachadan
         create_unavailable_domain: Cruthaich àrainn nach eil ri fhaighinn
         create_user_role: Cruthaich dreuchd
+        create_username_block: Cruthaich riaghailt ainm-cleachdaiche
         demote_user: Ìslich an cleachdaiche
         destroy_announcement: Sguab às am brath-fios
         destroy_canonical_email_block: Sguab às bacadh a’ phuist-d
@@ -209,6 +210,7 @@ gd:
         destroy_status: Sguab às am post
         destroy_unavailable_domain: Sguab às àrainn nach eil ri fhaighinn
         destroy_user_role: Mill an dreuchd
+        destroy_username_block: Sguab às riaghailt ainm-cleachdaiche
         disable_2fa_user: Cuir an dearbhadh dà-cheumnach à comas
         disable_custom_emoji: Cuir an t-Emoji gnàthaichte à comas
         disable_relay: Cuir an t-ath-sheachadan à comas
@@ -243,6 +245,7 @@ gd:
         update_report: Ùraich an gearan
         update_status: Ùraich am post
         update_user_role: Ùraich an dreuchd
+        update_username_block: Ùraich riaghailt ainm-cleachdaiche
       actions:
         approve_appeal_html: Dh’aontaich %{name} ri ath-thagradh air co-dhùnadh na maorsainneachd o %{target}
         approve_user_html: Dh’aontaich %{name} ri clàradh o %{target}
@@ -261,6 +264,7 @@ gd:
         create_relay_html: Chruthaich %{name} an t-ath-sheachadan %{target}
         create_unavailable_domain_html: Sguir %{name} ris an lìbhrigeadh dhan àrainn %{target}
         create_user_role_html: Chruthaich %{name} an dreuchd %{target}
+        create_username_block_html: Chuir %{name} riaghailt ris airson ainmean-cleachdaidh sa bheil %{target}
         demote_user_html: Dh’ìslich %{name} an cleachdaiche %{target}
         destroy_announcement_html: Sguab %{name} às am brath-fios %{target}
         destroy_canonical_email_block_html: Dhì-bhac %{name} am post-d air a bheil an hais %{target}
@@ -274,6 +278,7 @@ gd:
         destroy_status_html: Thug %{name} post aig %{target} air falbh
         destroy_unavailable_domain_html: Lean %{name} air adhart leis an lìbhrigeadh dhan àrainn %{target}
         destroy_user_role_html: Sguab %{name} às an dreuchd %{target}
+        destroy_username_block_html: Thug %{name} an riaghailt airson ainmean-cleachdaidh sa bheil %{target} air falbh
         disable_2fa_user_html: Chuir %{name} riatanas an dearbhaidh dà-cheumnaich à comas dhan chleachdaiche %{target}
         disable_custom_emoji_html: Chuir %{name} an Emoji %{target} à comas
         disable_relay_html: Chuir %{name} an t-ath-sheachadan %{target} à comas
@@ -308,6 +313,7 @@ gd:
         update_report_html: Dh’ùraich %{name} an gearan %{target}
         update_status_html: Dh’ùraich %{name} post le %{target}
         update_user_role_html: Dh’atharraich %{name} an dreuchd %{target}
+        update_username_block_html: Dh’ùraich %{name} an riaghailt airson ainmean-cleachdaidh sa bheil %{target}
       deleted_account: chaidh an cunntas a sguabadh às
       empty: Cha deach loga a lorg.
       filter_by_action: Criathraich a-rèir gnìomha
@@ -1121,6 +1127,25 @@ gd:
           two: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
       title: Molaidhean ⁊ treandaichean
       trending: A’ treandadh
+    username_blocks:
+      add_new: Cuir tè ùr ris
+      block_registrations: Bac clàradh
+      comparison:
+        contains: Anns a bheil
+        equals: Co-ionnan ri
+      contains_html: Anns a bheil %{string}
+      created_msg: Chaidh riaghailt ainm-cleachdaiche a chruthachadh
+      delete: Sguab às
+      edit:
+        title: Deasaich riaghailt ainm-cleachdaiche
+      matches_exactly_html: Co-ionnan ri %{string}
+      new:
+        create: Cruthaich riaghailt
+        title: Cruthaich riaghailt ainm-cleachdaiche ùr
+      no_username_block_selected: Cha deach riaghailt ainm-cleachdaiche sam bith atharrachadh o nach deach gin dhiubh a thaghadh
+      not_permitted: Chan eil seo ceadaichte
+      title: Riaghailtean ainm-chleachdaiche
+      updated_msg: Chaidh riaghailt ainm-cleachdaiche ùrachadh
     warning_presets:
       add_new: Cuir fear ùr ris
       delete: Sguab às
@@ -1387,6 +1412,10 @@ gd:
     basic_information: Fiosrachadh bunasach
     hint_html: "<strong>Gnàthaich na chithear air a’ phròifil phoblach agad is ri taobh nam postaichean agad.</strong> Bidh càch nas buailtiche do leantainn agus conaltradh leat nuair a bhios tu air a’ phròifil agad a lìonadh agus dealbh rithe."
     other: Eile
+  emoji_styles:
+    auto: Fèin-obrachail
+    native: Tùsail
+    twemoji: Twemoji
   errors:
     '400': Cha robh an t-iarrtas a chuir thu a-null dligheach no bha droch-chruth air.
     '403': Chan eil cead agad gus an duilleag seo a shealltainn.
@@ -1736,6 +1765,10 @@ gd:
       title: Iomradh ùr
     poll:
       subject: Thàinig cunntas-bheachd le %{name} gu crìoch
+    quote:
+      body: 'Chaidh post a luaidh le %{name}:'
+      subject: Luaidh %{name} am post agad
+      title: Luaidh ùr
     reblog:
       body: 'Chaidh am post agad a bhrosnachadh le %{name}:'
       subject: Bhrosnaich %{name} am post agad
@@ -1784,6 +1817,9 @@ gd:
       self_vote: Chan urrainn dhut bhòtadh sna chunntasan-bheachd agad fhèin
       too_few_options: "– feumaidh iomadh nì a bhith aige"
       too_many_options: "– chan fhaod còrr is %{max} nì a bhith ’na bhroinn"
+    vote: Bhòt
+  posting_defaults:
+    explanation: Thèid na roghainnean seo a chleachdadh nam bun-roghainnean nuair a chruthaicheas tu post ùr ach ’s urrainn dhut an deasachadh fhathast do gach post fa leth fhad ’s a bhios tu ri sgrìobhadh.
   preferences:
     other: Eile
     posting_defaults: Bun-roghainnean a’ phostaidh
@@ -1954,15 +1990,25 @@ gd:
     edited_at_html: Air a dheasachadh %{date}
     errors:
       in_reply_not_found: Tha coltas nach eil am post dhan a tha thu airson freagairt ann.
+      quoted_status_not_found: Tha coltas nach eil am post dhan a tha thu airson luaidh ann.
     over_character_limit: chaidh thu thar crìoch charactaran de %{max}
     pin_errors:
       direct: Chan urrainn dhut post a phrìneachadh nach fhaic ach na cleachdaichean le iomradh orra
       limit: Tha an àireamh as motha de phostaichean prìnichte agad a tha ceadaichte
       ownership: Chan urrainn dhut post càich a phrìneachadh
       reblog: Chan urrainn dhut brosnachadh a phrìneachadh
+    quote_policies:
+      followers: Luchd-leantainn a-mhàin
+      nobody: Mi fhìn a-mhàin
+      public: Duine sam bith
     title: "%{name}: “%{quote}”"
     visibilities:
+      direct: Iomradh prìobhaideach
+      private: Luchd-leantainn a-mhàin
       public: Poblach
+      public_long: Duine sam bith taobh a-staigh no a-muigh Mhastodon
+      unlisted: Poblach ach sàmhach
+      unlisted_long: Falaichte o na toraidhean-luirg, na treandaichean ’s na loichnichean-ama poblach
   statuses_cleanup:
     enabled: Sguab às seann-phostaichean gu fèin-obrachail
     enabled_hint: Sguabaidh seo às na seann-phostaichean agad gu fèin-obrachail nuair a ruigeas iad stairsneach aoise sònraichte ach ma fhreagras iad ri gin dhe na h-eisgeachdan gu h-ìosal
