@@ -16,7 +16,7 @@ import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?reac
 import { Hotkeys }  from 'mastodon/components/hotkeys';
 import { Icon }  from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
-import ScrollContainer from 'mastodon/containers/scroll_container';
+import { ScrollContainer } from 'mastodon/containers/scroll_container';
 import BundleColumnError from 'mastodon/features/ui/components/bundle_column_error';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
@@ -526,9 +526,9 @@ class Status extends ImmutablePureComponent {
     this.setState({ fullscreen: isFullscreen() });
   };
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
+  shouldUpdateScroll = (prevLocation, location) => {
     // Do not change scroll when opening a modal
-    if (location.state?.mastodonModalKey !== prevRouterProps?.location?.state?.mastodonModalKey) {
+    if (location.state?.mastodonModalKey !== prevLocation?.state?.mastodonModalKey) {
       return false;
     }
 

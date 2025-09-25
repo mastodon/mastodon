@@ -2836,7 +2836,6 @@ __metadata:
     react-redux-loading-bar: "npm:^5.0.8"
     react-router: "npm:^5.3.4"
     react-router-dom: "npm:^5.3.4"
-    react-router-scroll-4: "npm:^1.0.0-beta.1"
     react-select: "npm:^5.7.3"
     react-sparklines: "npm:^1.7.0"
     react-swipeable-views: "npm:^0.14.0"
@@ -2849,6 +2848,7 @@ __metadata:
     rollup-plugin-gzip: "npm:^4.1.1"
     rollup-plugin-visualizer: "npm:^6.0.3"
     sass: "npm:^1.62.1"
+    scroll-behavior: "npm:^0.11.0"
     stacktrace-js: "npm:^2.0.2"
     storybook: "npm:^9.1.1"
     stringz: "npm:^2.1.0"
@@ -6478,16 +6478,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dom-helpers@npm:^3.4.0":
-  version: 3.4.0
-  resolution: "dom-helpers@npm:3.4.0"
-  dependencies:
-    "@babel/runtime": "npm:^7.1.2"
-  checksum: 10c0/1d2d3e4eadac2c4f4c8c7470a737ab32b7ec28237c4d094ea967ec3184168fd12452196fcc424a5d7860b6176117301aeaecba39467bf1a6e8492a8e5c9639d1
-  languageName: node
-  linkType: hard
-
-"dom-helpers@npm:^5.0.1, dom-helpers@npm:^5.2.0":
+"dom-helpers@npm:^5.0.1, dom-helpers@npm:^5.1.4, dom-helpers@npm:^5.2.0":
   version: 5.2.1
   resolution: "dom-helpers@npm:5.2.1"
   dependencies:
@@ -10036,6 +10027,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"page-lifecycle@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "page-lifecycle@npm:0.1.2"
+  checksum: 10c0/509dbbc2ad2000dffcf591f66ab13d80fb1dba9337d85c76269173f7a5c3959b5a876e3bfb1e4494f6b932c1dc02a0b5824ebd452ab1a7204d4abdf498cb27c5
+  languageName: node
+  linkType: hard
+
 "parent-module@npm:^1.0.0":
   version: 1.0.1
   resolution: "parent-module@npm:1.0.1"
@@ -11277,21 +11275,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-scroll-4@npm:^1.0.0-beta.1":
-  version: 1.0.0-beta.2
-  resolution: "react-router-scroll-4@npm:1.0.0-beta.2"
-  dependencies:
-    scroll-behavior: "npm:^0.9.1"
-    warning: "npm:^3.0.0"
-  peerDependencies:
-    prop-types: ^15.6.0
-    react: ^15.0.0 || ^16.0.0
-    react-dom: ^15.0.0 || ^16.0.0
-    react-router-dom: ^4.0
-  checksum: 10c0/ad195b7359fd3146530cf299ec437f0a619c577b2cacfb2c76a156d3cd9d5d3e97af56e17c300c37ca8c485041e93124fe63f0c86db6aea468caf838281e62cb
-  languageName: node
-  linkType: hard
-
 "react-router@npm:5.3.4, react-router@npm:^5.3.4":
   version: 5.3.4
   resolution: "react-router@npm:5.3.4"
@@ -12051,13 +12034,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scroll-behavior@npm:^0.9.1":
-  version: 0.9.12
-  resolution: "scroll-behavior@npm:0.9.12"
+"scroll-behavior@npm:^0.11.0":
+  version: 0.11.0
+  resolution: "scroll-behavior@npm:0.11.0"
   dependencies:
-    dom-helpers: "npm:^3.4.0"
+    dom-helpers: "npm:^5.1.4"
     invariant: "npm:^2.2.4"
-  checksum: 10c0/4f438c48b93a1dcc2ab51a18670fac6f5ce41885291d8aa13251b4a187be9d0c6dd518ee974eb52ac9bbe227b9811c2615ecca73192a1a190b78dfdadb9c2cf2
+    page-lifecycle: "npm:^0.1.2"
+  checksum: 10c0/c54010c9fdd9fc360fd7887ecf64f16972f9557ac679723709612cd54fc4778c7433ab46a9637933179ef31471f78e2591fb35351dc0e15537fecf1c8c89d32c
   languageName: node
   linkType: hard
 
@@ -14010,15 +13994,6 @@ __metadata:
   dependencies:
     xml-name-validator: "npm:^5.0.0"
   checksum: 10c0/8712774c1aeb62dec22928bf1cdfd11426c2c9383a1a63f2bcae18db87ca574165a0fbe96b312b73652149167ac6c7f4cf5409f2eb101d9c805efe0e4bae798b
-  languageName: node
-  linkType: hard
-
-"warning@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "warning@npm:3.0.0"
-  dependencies:
-    loose-envify: "npm:^1.0.0"
-  checksum: 10c0/6a2a56ab3139d3927193d926a027e74e1449fa47cc692feea95f8a81a4bb5b7f10c312def94cce03f3b58cb26ba3247858e75d17d596451d2c483a62e8204705
   languageName: node
   linkType: hard
 
