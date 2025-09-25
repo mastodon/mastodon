@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect } from 'storybook/test';
 
-import { HTMLBlock } from './html_block';
+import { HTMLBlock } from './index';
 
 const meta = {
   title: 'Components/HTMLBlock',
