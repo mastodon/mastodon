@@ -26,9 +26,11 @@ exports[`html > htmlStringToComponents > handles nested elements 1`] = `
 exports[`html > htmlStringToComponents > ignores empty text nodes 1`] = `
 [
   <p>
+       
     <span>
       lorem     ipsum
     </span>
+       
   </p>,
 ]
 `;
@@ -37,6 +39,7 @@ exports[`html > htmlStringToComponents > respects allowedTags option 1`] = `
 [
   <p>
     lorem 
+     
     <em>
       dolor
     </em>
