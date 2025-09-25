@@ -197,7 +197,7 @@ export function submitCompose(successCallback) {
     const hasQuote = !!getState().getIn(['compose', 'quoted_status_id']);
     const spoiler_text = getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '';
 
-    if (!((status && status.length) || media.size !== 0 || (hasQuote && (spoiler_text && spoiler_text.length)))) {
+    if (!(status?.length || media.size !== 0 || (hasQuote && spoiler_text?.length))) {
       return;
     }
 
