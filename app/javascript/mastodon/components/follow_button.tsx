@@ -94,14 +94,14 @@ export const FollowButton: React.FC<{
 
     if (accountId === me) {
       return;
+    } else if (relationship.muting) {
+      dispatch(unmuteAccount(accountId));
     } else if (account && (relationship.following || relationship.requested)) {
       dispatch(
         openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
       );
     } else if (relationship.blocking) {
       dispatch(unblockAccount(accountId));
-    } else if (relationship.muting) {
-      dispatch(unmuteAccount(accountId));
     } else {
       dispatch(followAccount(accountId));
     }
@@ -124,12 +124,12 @@ export const FollowButton: React.FC<{
     label = intl.formatMessage(messages.editProfile);
   } else if (!relationship) {
     label = <LoadingIndicator />;
+  } else if (relationship.muting) {
+    label = intl.formatMessage(messages.unmute);
   } else if (relationship.following) {
     label = intl.formatMessage(messages.unfollow);
   } else if (relationship.blocking) {
     label = intl.formatMessage(messages.unblock);
-  } else if (relationship.muting) {
-    label = intl.formatMessage(messages.unmute);
   } else if (relationship.requested) {
     label = intl.formatMessage(messages.followRequestCancel);
   } else if (relationship.followed_by && !account?.locked) {
