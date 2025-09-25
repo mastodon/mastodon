@@ -52,6 +52,15 @@ RSpec.describe Request do
       end
     end
 
+    context 'when URL has encoded params and non-encoded params in query' do
+      let(:url) { 'https://host.example/media.jpg?precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft' }
+
+      it 'preserves query param encoding in url value after normalization' do
+        expect(initialized_url_value)
+          .to eq(url)
+      end
+    end
+
     context 'when URL has non sorted query params' do
       let(:url) { 'https://host.example/page?zeta=123&alpha=456' }
 
