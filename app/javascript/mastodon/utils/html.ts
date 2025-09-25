@@ -156,6 +156,7 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
         // If the element wasn't created, use the default conversion.
         if (element === undefined) {
           const props: Record<string, unknown> = {};
+          props.key = `html-${uniqueIdCounter++}`; // Get the current key and then increment it.
           for (const attr of node.attributes) {
             let name = attr.name.toLowerCase();
             if (name === 'class') {
@@ -181,7 +182,6 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
               }
               props[name] = value;
             }
-            props.key = uniqueIdCounter++; // Get the current key and then increment it.
           }
           const tagName = node.tagName.toLowerCase();
           element = React.createElement(
