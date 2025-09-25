@@ -47,7 +47,7 @@ export const CustomEmojiContext = createContext<ExtraCustomEmojiMap>({});
 
 export const CustomEmojiProvider = ({
   children,
-  emoji,
+  emoji = {},
 }: PropsWithChildren<{ emoji: ExtraCustomEmojiMap }>) => {
   return (
     <CustomEmojiContext.Provider value={emoji}>
