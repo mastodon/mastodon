@@ -7,7 +7,7 @@ RSpec.describe ActivityPub::TagManager do
 
   subject { described_class.instance }
 
-  let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http'}://#{Rails.configuration.x.web_domain}" }
+  let(:host_prefix) { "#{Rails.configuration.x.use_https ? 'https' : 'http'}://#{Rails.configuration.x.web_domain}" }
 
   describe '#public_collection?' do
     it 'returns true for the special public collection and common shorthands' do
@@ -22,18 +22,123 @@ RSpec.describe ActivityPub::TagManager do
   end
 
   describe '#url_for' do
-    it 'returns a string starting with web domain' do
-      account = Fabricate(:account)
-      expect(subject.url_for(account)).to be_a(String)
-        .and start_with(domain)
+    context 'with a local account' do
+      let(:account) { Fabricate(:account) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.url_for(account))
+          .to eq("#{host_prefix}/@#{account.username}")
+      end
+    end
+
+    context 'with a remote account' do
+      let(:account) { Fabricate(:account, domain: 'example.com', url: 'https://example.com/profiles/dskjfsdf') }
+
+      it 'returns the expected URL' do
+        expect(subject.url_for(account)).to eq account.url
+      end
+    end
+
+    context 'with a local status' do
+      let(:status) { Fabricate(:status) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.url_for(status))
+          .to eq("#{host_prefix}/@#{status.account.username}/#{status.id}")
+      end
+    end
+
+    context 'with a remote status' do
+      let(:account) { Fabricate(:account, domain: 'example.com', url: 'https://example.com/profiles/dskjfsdf') }
+      let(:status) { Fabricate(:status, account: account, url: 'https://example.com/posts/1234') }
+
+      it 'returns the expected URL' do
+        expect(subject.url_for(status)).to eq status.url
+      end
     end
   end
 
   describe '#uri_for' do
-    it 'returns a string starting with web domain' do
-      account = Fabricate(:account)
-      expect(subject.uri_for(account)).to be_a(String)
-        .and start_with(domain)
+    context 'with the instance actor' do
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.uri_for(Account.representative))
+          .to eq("#{host_prefix}/actor")
+      end
+    end
+
+    context 'with a local account' do
+      let(:account) { Fabricate(:account) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.uri_for(account))
+          .to eq("#{host_prefix}/users/#{account.username}")
+      end
+    end
+
+    context 'with a remote account' do
+      let(:account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/profiles/dskjfsdf') }
+
+      it 'returns the expected URL' do
+        expect(subject.uri_for(account)).to eq account.uri
+      end
+    end
+
+    context 'with a local status' do
+      let(:status) { Fabricate(:status) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.uri_for(status))
+          .to eq("#{host_prefix}/users/#{status.account.username}/statuses/#{status.id}")
+      end
+    end
+
+    context 'with a remote status' do
+      let(:account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/profiles/dskjfsdf') }
+      let(:status) { Fabricate(:status, account: account, uri: 'https://example.com/posts/1234') }
+
+      it 'returns the expected URL' do
+        expect(subject.uri_for(status)).to eq status.uri
+      end
+    end
+
+    context 'with a local conversation' do
+      let(:status) { Fabricate(:status) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.uri_for(status.conversation))
+          .to eq("#{host_prefix}/contexts/#{status.account.id}-#{status.id}")
+      end
+    end
+
+    context 'with a remote conversation' do
+      let(:account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/profiles/dskjfsdf') }
+      let(:status) { Fabricate(:status, account: account, uri: 'https://example.com/posts/1234') }
+
+      before do
+        status.conversation.update!(uri: 'https://example.com/conversations/1234')
+      end
+
+      it 'returns the expected URL' do
+        expect(subject.uri_for(status.conversation)).to eq status.conversation.uri
+      end
+    end
+  end
+
+  describe '#key_uri_for' do
+    context 'with the instance actor' do
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.key_uri_for(Account.representative))
+          .to eq("#{host_prefix}/actor#main-key")
+      end
+    end
+
+    context 'with a local account' do
+      let(:account) { Fabricate(:account) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.key_uri_for(account))
+          .to eq("#{host_prefix}/users/#{account.username}#main-key")
+      end
     end
   end
 
@@ -49,7 +154,137 @@ RSpec.describe ActivityPub::TagManager do
       it 'returns a string starting with web domain' do
         status = Fabricate(:status)
         expect(subject.uri_for(status)).to be_a(String)
-          .and start_with(domain)
+          .and start_with(host_prefix)
+      end
+    end
+  end
+
+  describe '#approval_uri_for' do
+    context 'with a valid local approval' do
+      let(:quote) { Fabricate(:quote, state: :accepted) }
+
+      it 'returns a string with the web domain and expected path' do
+        expect(subject.approval_uri_for(quote))
+          .to eq("#{host_prefix}/users/#{quote.quoted_account.username}/quote_authorizations/#{quote.id}")
+      end
+    end
+
+    context 'with an unapproved local quote' do
+      let(:quote) { Fabricate(:quote, state: :rejected) }
+
+      it 'returns nil' do
+        expect(subject.approval_uri_for(quote))
+          .to be_nil
+      end
+    end
+
+    context 'with a valid remote approval' do
+      let(:quoted_account) { Fabricate(:account, domain: 'example.com') }
+      let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+      let(:quote) { Fabricate(:quote, state: :accepted, quoted_status: quoted_status, approval_uri: 'https://example.com/approvals/1') }
+
+      it 'returns the expected URI' do
+        expect(subject.approval_uri_for(quote)).to eq quote.approval_uri
+      end
+    end
+
+    context 'with an unapproved local quote but check_approval override' do
+      let(:quote) { Fabricate(:quote, state: :rejected) }
+
+      it 'returns a string with the web domain and expected path' do
+        expect(subject.approval_uri_for(quote, check_approval: false))
+          .to eq("#{host_prefix}/users/#{quote.quoted_account.username}/quote_authorizations/#{quote.id}")
+      end
+    end
+  end
+
+  describe '#replies_uri_for' do
+    context 'with a local status' do
+      let(:status) { Fabricate(:status) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.replies_uri_for(status))
+          .to eq("#{host_prefix}/users/#{status.account.username}/statuses/#{status.id}/replies")
+      end
+    end
+  end
+
+  describe '#likes_uri_for' do
+    context 'with a local status' do
+      let(:status) { Fabricate(:status) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.likes_uri_for(status))
+          .to eq("#{host_prefix}/users/#{status.account.username}/statuses/#{status.id}/likes")
+      end
+    end
+  end
+
+  describe '#shares_uri_for' do
+    context 'with a local status' do
+      let(:status) { Fabricate(:status) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.shares_uri_for(status))
+          .to eq("#{host_prefix}/users/#{status.account.username}/statuses/#{status.id}/shares")
+      end
+    end
+  end
+
+  describe '#following_uri_for' do
+    context 'with a local account' do
+      let(:account) { Fabricate(:account) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.following_uri_for(account))
+          .to eq("#{host_prefix}/users/#{account.username}/following")
+      end
+    end
+  end
+
+  describe '#followers_uri_for' do
+    context 'with a local account' do
+      let(:account) { Fabricate(:account) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.followers_uri_for(account))
+          .to eq("#{host_prefix}/users/#{account.username}/followers")
+      end
+    end
+  end
+
+  describe '#inbox_uri_for' do
+    context 'with the instance actor' do
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.inbox_uri_for(Account.representative))
+          .to eq("#{host_prefix}/actor/inbox")
+      end
+    end
+
+    context 'with a local account' do
+      let(:account) { Fabricate(:account) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.inbox_uri_for(account))
+          .to eq("#{host_prefix}/users/#{account.username}/inbox")
+      end
+    end
+  end
+
+  describe '#outbox_uri_for' do
+    context 'with the instance actor' do
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.outbox_uri_for(Account.representative))
+          .to eq("#{host_prefix}/actor/outbox")
+      end
+    end
+
+    context 'with a local account' do
+      let(:account) { Fabricate(:account) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.outbox_uri_for(account))
+          .to eq("#{host_prefix}/users/#{account.username}/outbox")
       end
     end
   end
