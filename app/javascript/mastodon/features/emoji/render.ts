@@ -318,7 +318,7 @@ export function tokenizeText(text: string): TokenizedText {
       // Custom emoji
       tokens.push({
         type: EMOJI_TYPE_CUSTOM,
-        code: code.slice(1, -1), // Remove the colons
+        code,
       } satisfies CustomEmojiToken);
     } else {
       // Unicode emoji
