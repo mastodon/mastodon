@@ -424,7 +424,7 @@ async function loadMissingEmojiIntoCache(
   }
 }
 
-function shouldRenderImage(token: EmojiToken, mode: EmojiMode): boolean {
+export function shouldRenderImage(token: EmojiState, mode: EmojiMode): boolean {
   if (token.type === EMOJI_TYPE_UNICODE) {
     // If the mode is native or native with flags for non-flag emoji
     // we can just append the text node directly.

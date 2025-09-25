@@ -7,6 +7,7 @@ import { unicodeHexToUrl } from '@/mastodon/features/emoji/normalize';
 import {
   isStateLoaded,
   loadEmojiDataToState,
+  shouldRenderImage,
   stringToEmojiState,
 } from '@/mastodon/features/emoji/render';
 
@@ -44,6 +45,10 @@ export const Emoji: FC<EmojiProps> = ({
   // If the code is invalid or we otherwise know it's not valid, show the fallback.
   if (!state) {
     return fallback;
+  }
+
+  if (!shouldRenderImage(state, appState.mode)) {
+    return code;
   }
 
   if (!isStateLoaded(state)) {
