@@ -602,7 +602,7 @@ class Status extends ImmutablePureComponent {
           )}
         />
 
-        <ScrollContainer scrollKey='thread' shouldUpdateScroll={this.shouldUpdateScroll}>
+        <ScrollContainer scrollKey='thread' shouldUpdateScroll={this.shouldUpdateScroll} childRef={this.setContainerRef}>
           <div className={classNames('scrollable item-list', { fullscreen })} ref={this.setContainerRef}>
             {ancestors}
 
