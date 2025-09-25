@@ -5,7 +5,6 @@ import { cleanExtraEmojis } from '@/mastodon/features/emoji/normalize';
 import type { CustomEmojiMapArg } from '@/mastodon/features/emoji/types';
 import { createLimitedCache } from '@/mastodon/utils/cache';
 
-import emojify from '../../features/emoji/emoji';
 import { htmlStringToComponents } from '../../utils/html';
 
 // Use a module-level cache to avoid re-rendering the same HTML multiple times.
@@ -29,6 +28,7 @@ export const HTMLBlock: FC<HTMLBlockProps> = ({
     if (cache.has(key)) {
       return cache.get(key);
     }
+
     const rendered = htmlStringToComponents(raw, {
       onText,
       extraArgs: { customEmojis },
@@ -43,11 +43,8 @@ export const HTMLBlock: FC<HTMLBlockProps> = ({
 
 function onText(
   text: string,
-  { customEmojis }: { customEmojis: CustomEmojiMapArg },
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- Doesn't do anything, just showing how typing would work.
+  { customEmojis }: { customEmojis: CustomEmojiMapArg | null },
 ) {
-  const result = emojify(text, customEmojis);
-  const components = htmlStringToComponents(result);
-
-  // TODO: Wire up new emoji rendering when it's sync.
-  return components;
+  return text;
 }
