@@ -1,8 +1,6 @@
 import { isList } from 'immutable';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
-import { makeEmojiMap } from '@/mastodon/models/custom_emoji';
-import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 
 import {
   VARIATION_SELECTOR_CODE,
@@ -160,25 +158,19 @@ export function twemojiToUnicodeInfo(
   return hexNumbersToString(mappedCodes);
 }
 
-export function cleanExtraEmojis(
-  extraEmojis?: CustomEmojiMapArg,
-): ExtraCustomEmojiMap {
+export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg) {
   if (!extraEmojis) {
-    return {};
+    return null;
   }
-  if (isList(extraEmojis)) {
-    if (isModernEmojiEnabled()) {
-      return (
-        extraEmojis.toJS() as ApiCustomEmojiJSON[]
-      ).reduce<ExtraCustomEmojiMap>(
-        (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
-        {},
-      );
-    } else {
-      return makeEmojiMap(extraEmojis);
-    }
+  if (!isList(extraEmojis)) {
+    return extraEmojis;
   }
-  return extraEmojis;
+  return (
+    extraEmojis.toJS() as ApiCustomEmojiJSON[]
+  ).reduce<ExtraCustomEmojiMap>(
+    (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
+    {},
+  );
 }
 
 function hexStringToNumbers(hexString: string): number[] {

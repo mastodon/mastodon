@@ -32,11 +32,11 @@ export function useEmojify({
       if (deep) {
         const wrapper = document.createElement('div');
         wrapper.innerHTML = input;
-        if (await emojifyElement(wrapper, appState, extra)) {
+        if (await emojifyElement(wrapper, appState, extra ?? {})) {
           result = wrapper.innerHTML;
         }
       } else {
-        result = await emojifyText(text, appState, extra);
+        result = await emojifyText(text, appState, extra ?? {});
       }
       if (result) {
         setEmojifiedText(result);
