@@ -67,12 +67,7 @@ export function getFocusedItemIndex() {
     return -1;
   }
 
-  let focusedItem: HTMLElement | null = null;
-  if (focusedElement.parentElement === itemList) {
-    focusedItem = focusedElement as HTMLElement;
-  } else {
-    focusedItem = focusedElement.closest('.item-list > *');
-  }
+  const focusedItem = focusedElement.closest('.item-list > *');
 
   if (!focusedItem) return -1;
 
