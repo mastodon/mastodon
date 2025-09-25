@@ -66,6 +66,7 @@ export const Emoji: FC<EmojiProps> = ({
         alt={shortcode}
         title={shortcode}
         className='emojione custom-emoji'
+        loading='lazy'
       />
     );
   }
@@ -78,6 +79,7 @@ export const Emoji: FC<EmojiProps> = ({
       alt={state.data.unicode}
       title={state.data.label}
       className='emojione'
+      loading='lazy'
     />
   );
 };
