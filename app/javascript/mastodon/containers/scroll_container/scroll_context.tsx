@@ -41,6 +41,14 @@ interface ScrollContextProps {
 }
 
 /**
+ * A top-level wrapper that provides the app with an instance of the
+ * ScrollBehavior object. scroll-behavior is a library for managing the
+ * scroll position of a single-page app in the same way the browser would
+ * normally do for a multi-page app. This means it'll scroll back to top
+ * when navigating to a new page, and will restore the scroll position
+ * when navigating e.g. using `history.back`.
+ * The library keeps a record of scroll positions in session storage.
+ *
  * This component is a port of the unmaintained https://github.com/ytase/react-router-scroll/
  */
 
@@ -51,16 +59,24 @@ export const ScrollContext: React.FC<ScrollContextProps> = ({
   const location = useLocation<LocationState>();
   const history = useHistory<LocationState>();
 
+  /**
+   * Keep the current location in a mutable ref so that ScrollBehavior's
+   * `getCurrentLocation` can access it without having to recreate the
+   * whole ScrollBehavior object
+   */
   const currentLocationRef = useRef(location);
   useEffect(() => {
     currentLocationRef.current = location;
   }, [location]);
 
+  /**
+   * Initialise ScrollBehavior object once – using state rather
+   * than a ref to simplify the types and ensure it's defined immediately.
+   */
   const [scrollBehavior] = useState(
     (): ScrollBehaviorInstance =>
       new ScrollBehavior({
-        // eslint-disable-next-line @typescript-eslint/unbound-method
-        addNavigationListener: history.listen,
+        addNavigationListener: history.listen.bind(history),
         stateStorage: new SessionStorage(),
         getCurrentLocation: () =>
           currentLocationRef.current as unknown as LocationBase,
@@ -77,18 +93,28 @@ export const ScrollContext: React.FC<ScrollContextProps> = ({
       }),
   );
 
-  // Handle scroll update when location changes
+  /**
+   * Handle scroll update when location changes
+   */
   const prevLocation = usePrevious(location) ?? null;
   useEffect(() => {
     scrollBehavior.updateScroll(prevLocation, location);
   }, [location, prevLocation, scrollBehavior]);
 
+  /**
+   * Stop Scrollbehavior on unmount
+   */
   useEffect(() => {
     return () => {
       scrollBehavior.stop();
     };
   }, [scrollBehavior]);
 
+  /**
+   * Provide the app with a way to register separately scrollable
+   * elements to also be tracked by ScrollBehavior. (By default
+   * ScrollBehavior only handles scrolling on the main document body.)
+   */
   const contextValue = useMemo<ScrollBehaviorContextType>(
     () => ({
       registerElement: (key, element, shouldUpdateScroll) => {

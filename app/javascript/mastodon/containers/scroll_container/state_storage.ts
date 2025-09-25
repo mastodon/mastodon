@@ -8,6 +8,10 @@ interface LocationBaseWithKey extends LocationBase {
 
 /**
  * This module is part of our port of https://github.com/ytase/react-router-scroll/
+ * and handles storing scroll positions in SessionStorage.
+ * Stored positions (`[x, y]`) are keyed by the location key and an optional
+ * `scrollKey` that's used for to track separately scrollable elements other
+ * than the document body.
  */
 
 export class SessionStorage {

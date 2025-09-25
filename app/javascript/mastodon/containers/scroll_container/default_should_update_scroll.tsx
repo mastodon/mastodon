@@ -5,6 +5,12 @@ export type ShouldUpdateScrollFn = (
   locationContext: MastodonLocation,
 ) => boolean;
 
+/**
+ * ScrollBehavior will automatically scroll to the top on navigations
+ * or restore saved scroll positions, but on some location changes we
+ * need to prevent this.
+ */
+
 export const defaultShouldUpdateScroll: ShouldUpdateScrollFn = (
   prevLocation,
   location,
