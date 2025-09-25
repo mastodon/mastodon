@@ -399,7 +399,7 @@ class ScrollableList extends PureComponent {
 
     if (trackScroll) {
       return (
-        <ScrollContainer scrollKey={scrollKey}>
+        <ScrollContainer scrollKey={scrollKey} childRef={this.setRef}>
           {scrollableArea}
         </ScrollContainer>
       );

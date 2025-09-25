@@ -1,4 +1,9 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from 'react';
 
 import { defaultShouldUpdateScroll } from './default_should_update_scroll';
 import type { ShouldUpdateScrollFn } from './default_should_update_scroll';
@@ -11,6 +16,7 @@ interface ScrollContainerProps {
    */
   scrollKey: string;
   shouldUpdateScroll?: ShouldUpdateScrollFn;
+  childRef?: React.ForwardedRef<HTMLElement | undefined>;
   children: React.ReactElement;
 }
 
@@ -23,11 +29,19 @@ interface ScrollContainerProps {
 export const ScrollContainer: React.FC<ScrollContainerProps> = ({
   children,
   scrollKey,
+  childRef,
   shouldUpdateScroll = defaultShouldUpdateScroll,
 }) => {
   const scrollBehaviorContext = useContext(ScrollBehaviorContext);
 
   const containerRef = useRef<HTMLElement>();
+
+  /**
+   * If a childRef is passed, sync it with the containerRef. This
+   * is necessary because in this component's return statement,
+   * we're overwriting the immediate child component's ref prop.
+   */
+  useImperativeHandle(childRef, () => containerRef.current, []);
 
   /**
    * Register/unregister scrollable element with ScrollBehavior
