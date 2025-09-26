@@ -29,6 +29,15 @@ RSpec.describe ActivityPub::TagManager do
         expect(subject.url_for(account))
           .to eq("#{host_prefix}/@#{account.username}")
       end
+
+      context 'when using a numeric ID based scheme' do
+        let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+
+        it 'returns a string starting with web domain and with the expected path' do
+          expect(subject.url_for(account))
+            .to eq("#{host_prefix}/@#{account.username}")
+        end
+      end
     end
 
     context 'with a remote account' do
@@ -45,6 +54,16 @@ RSpec.describe ActivityPub::TagManager do
       it 'returns a string starting with web domain and with the expected path' do
         expect(subject.url_for(status))
           .to eq("#{host_prefix}/@#{status.account.username}/#{status.id}")
+      end
+
+      context 'when using a numeric ID based scheme' do
+        let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+        let(:status) { Fabricate(:status, account: account) }
+
+        it 'returns a string starting with web domain and with the expected path' do
+          expect(subject.url_for(status))
+            .to eq("#{host_prefix}/@#{status.account.username}/#{status.id}")
+        end
       end
     end
 
@@ -73,6 +92,15 @@ RSpec.describe ActivityPub::TagManager do
         expect(subject.uri_for(account))
           .to eq("#{host_prefix}/users/#{account.username}")
       end
+
+      context 'when using a numeric ID based scheme' do
+        let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+
+        it 'returns a string starting with web domain and with the expected path' do
+          expect(subject.uri_for(account))
+            .to eq("#{host_prefix}/ap/users/#{account.id}")
+        end
+      end
     end
 
     context 'with a remote account' do
@@ -89,6 +117,16 @@ RSpec.describe ActivityPub::TagManager do
       it 'returns a string starting with web domain and with the expected path' do
         expect(subject.uri_for(status))
           .to eq("#{host_prefix}/users/#{status.account.username}/statuses/#{status.id}")
+      end
+
+      context 'when using a numeric ID based scheme' do
+        let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+        let(:status) { Fabricate(:status, account: account) }
+
+        it 'returns a string starting with web domain and with the expected path' do
+          expect(subject.uri_for(status))
+            .to eq("#{host_prefix}/ap/users/#{status.account.id}/statuses/#{status.id}")
+        end
       end
     end
 
@@ -107,6 +145,16 @@ RSpec.describe ActivityPub::TagManager do
       it 'returns a string starting with web domain and with the expected path' do
         expect(subject.uri_for(status.conversation))
           .to eq("#{host_prefix}/contexts/#{status.account.id}-#{status.id}")
+      end
+
+      context 'when using a numeric ID based scheme' do
+        let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+        let(:status) { Fabricate(:status, account: account) }
+
+        it 'returns a string starting with web domain and with the expected path' do
+          expect(subject.uri_for(status.conversation))
+            .to eq("#{host_prefix}/contexts/#{status.account.id}-#{status.id}")
+        end
       end
     end
 
@@ -139,6 +187,15 @@ RSpec.describe ActivityPub::TagManager do
         expect(subject.key_uri_for(account))
           .to eq("#{host_prefix}/users/#{account.username}#main-key")
       end
+
+      context 'when using a numeric ID based scheme' do
+        let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+
+        it 'returns a string starting with web domain and with the expected path' do
+          expect(subject.key_uri_for(account))
+            .to eq("#{host_prefix}/ap/users/#{account.id}#main-key")
+        end
+      end
     end
   end
 
@@ -167,6 +224,17 @@ RSpec.describe ActivityPub::TagManager do
         expect(subject.approval_uri_for(quote))
           .to eq("#{host_prefix}/users/#{quote.quoted_account.username}/quote_authorizations/#{quote.id}")
       end
+
+      context 'when using a numeric ID based scheme' do
+        let(:quoted_account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+        let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+        let(:quote) { Fabricate(:quote, state: :accepted, quoted_status: quoted_status) }
+
+        it 'returns a string with the web domain and expected path' do
+          expect(subject.approval_uri_for(quote))
+            .to eq("#{host_prefix}/ap/users/#{quote.quoted_account_id}/quote_authorizations/#{quote.id}")
+        end
+      end
     end
 
     context 'with an unapproved local quote' do
@@ -175,6 +243,17 @@ RSpec.describe ActivityPub::TagManager do
       it 'returns nil' do
         expect(subject.approval_uri_for(quote))
           .to be_nil
+      end
+
+      context 'when using a numeric ID based scheme' do
+        let(:quoted_account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+        let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+        let(:quote) { Fabricate(:quote, state: :rejected, quoted_status: quoted_status) }
+
+        it 'returns nil' do
+          expect(subject.approval_uri_for(quote))
+            .to be_nil
+        end
       end
     end
 
@@ -195,6 +274,17 @@ RSpec.describe ActivityPub::TagManager do
         expect(subject.approval_uri_for(quote, check_approval: false))
           .to eq("#{host_prefix}/users/#{quote.quoted_account.username}/quote_authorizations/#{quote.id}")
       end
+
+      context 'when using a numeric ID based scheme' do
+        let(:quoted_account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+        let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+        let(:quote) { Fabricate(:quote, state: :rejected, quoted_status: quoted_status) }
+
+        it 'returns a string with the web domain and expected path' do
+          expect(subject.approval_uri_for(quote, check_approval: false))
+            .to eq("#{host_prefix}/ap/users/#{quote.quoted_account_id}/quote_authorizations/#{quote.id}")
+        end
+      end
     end
   end
 
@@ -205,6 +295,16 @@ RSpec.describe ActivityPub::TagManager do
       it 'returns a string starting with web domain and with the expected path' do
         expect(subject.replies_uri_for(status))
           .to eq("#{host_prefix}/users/#{status.account.username}/statuses/#{status.id}/replies")
+      end
+
+      context 'when using a numeric ID based scheme' do
+        let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+        let(:status) { Fabricate(:status, account: account) }
+
+        it 'returns a string starting with web domain and with the expected path' do
+          expect(subject.replies_uri_for(status))
+            .to eq("#{host_prefix}/ap/users/#{status.account.id}/statuses/#{status.id}/replies")
+        end
       end
     end
   end
@@ -217,6 +317,16 @@ RSpec.describe ActivityPub::TagManager do
         expect(subject.likes_uri_for(status))
           .to eq("#{host_prefix}/users/#{status.account.username}/statuses/#{status.id}/likes")
       end
+
+      context 'when using a numeric ID based scheme' do
+        let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+        let(:status) { Fabricate(:status, account: account) }
+
+        it 'returns a string starting with web domain and with the expected path' do
+          expect(subject.likes_uri_for(status))
+            .to eq("#{host_prefix}/ap/users/#{status.account.id}/statuses/#{status.id}/likes")
+        end
+      end
     end
   end
 
@@ -227,6 +337,16 @@ RSpec.describe ActivityPub::TagManager do
       it 'returns a string starting with web domain and with the expected path' do
         expect(subject.shares_uri_for(status))
           .to eq("#{host_prefix}/users/#{status.account.username}/statuses/#{status.id}/shares")
+      end
+
+      context 'when using a numeric ID based scheme' do
+        let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+        let(:status) { Fabricate(:status, account: account) }
+
+        it 'returns a string starting with web domain and with the expected path' do
+          expect(subject.shares_uri_for(status))
+            .to eq("#{host_prefix}/ap/users/#{status.account.id}/statuses/#{status.id}/shares")
+        end
       end
     end
   end
@@ -239,6 +359,15 @@ RSpec.describe ActivityPub::TagManager do
         expect(subject.following_uri_for(account))
           .to eq("#{host_prefix}/users/#{account.username}/following")
       end
+
+      context 'when using a numeric ID based scheme' do
+        let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+
+        it 'returns a string starting with web domain and with the expected path' do
+          expect(subject.following_uri_for(account))
+            .to eq("#{host_prefix}/ap/users/#{account.id}/following")
+        end
+      end
     end
   end
 
@@ -249,6 +378,15 @@ RSpec.describe ActivityPub::TagManager do
       it 'returns a string starting with web domain and with the expected path' do
         expect(subject.followers_uri_for(account))
           .to eq("#{host_prefix}/users/#{account.username}/followers")
+      end
+
+      context 'when using a numeric ID based scheme' do
+        let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+
+        it 'returns a string starting with web domain and with the expected path' do
+          expect(subject.followers_uri_for(account))
+            .to eq("#{host_prefix}/ap/users/#{account.id}/followers")
+        end
       end
     end
   end
@@ -268,6 +406,15 @@ RSpec.describe ActivityPub::TagManager do
         expect(subject.inbox_uri_for(account))
           .to eq("#{host_prefix}/users/#{account.username}/inbox")
       end
+
+      context 'when using a numeric ID based scheme' do
+        let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+
+        it 'returns a string starting with web domain and with the expected path' do
+          expect(subject.inbox_uri_for(account))
+            .to eq("#{host_prefix}/ap/users/#{account.id}/inbox")
+        end
+      end
     end
   end
 
@@ -286,6 +433,15 @@ RSpec.describe ActivityPub::TagManager do
         expect(subject.outbox_uri_for(account))
           .to eq("#{host_prefix}/users/#{account.username}/outbox")
       end
+
+      context 'when using a numeric ID based scheme' do
+        let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+
+        it 'returns a string starting with web domain and with the expected path' do
+          expect(subject.outbox_uri_for(account))
+            .to eq("#{host_prefix}/ap/users/#{account.id}/outbox")
+        end
+      end
     end
   end
 
@@ -300,16 +456,28 @@ RSpec.describe ActivityPub::TagManager do
       expect(subject.to(status)).to eq [account_followers_url(status.account)]
     end
 
+    it 'returns followers collection for unlisted status when using a numeric ID based scheme' do
+      status = Fabricate(:status, visibility: :unlisted, account: Fabricate(:account, id_scheme: :numeric_ap_id))
+      expect(subject.to(status)).to eq [ap_account_followers_url(status.account_id)]
+    end
+
     it 'returns followers collection for private status' do
       status = Fabricate(:status, visibility: :private)
       expect(subject.to(status)).to eq [account_followers_url(status.account)]
     end
 
+    it 'returns followers collection for private status when using a numeric ID based scheme' do
+      status = Fabricate(:status, visibility: :private, account: Fabricate(:account, id_scheme: :numeric_ap_id))
+      expect(subject.to(status)).to eq [ap_account_followers_url(status.account_id)]
+    end
+
     it 'returns URIs of mentions for direct status' do
       status    = Fabricate(:status, visibility: :direct)
       mentioned = Fabricate(:account)
+      mentioned_numeric = Fabricate(:account, id_scheme: :numeric_ap_id)
       status.mentions.create(account: mentioned)
-      expect(subject.to(status)).to eq [subject.uri_for(mentioned)]
+      status.mentions.create(account: mentioned_numeric)
+      expect(subject.to(status)).to eq [subject.uri_for(mentioned), subject.uri_for(mentioned_numeric)]
     end
 
     it "returns URIs of mentioned group's followers for direct statuses to groups" do
@@ -350,6 +518,11 @@ RSpec.describe ActivityPub::TagManager do
       expect(subject.cc(status)).to eq [account_followers_url(status.account)]
     end
 
+    it 'returns followers collection for public status when using a numeric ID based scheme' do
+      status = Fabricate(:status, visibility: :public, account: Fabricate(:account, id_scheme: :numeric_ap_id))
+      expect(subject.cc(status)).to eq [ap_account_followers_url(status.account_id)]
+    end
+
     it 'returns public collection for unlisted status' do
       status = Fabricate(:status, visibility: :unlisted)
       expect(subject.cc(status)).to eq ['https://www.w3.org/ns/activitystreams#Public']
@@ -368,8 +541,10 @@ RSpec.describe ActivityPub::TagManager do
     it 'returns URIs of mentions for non-direct status' do
       status    = Fabricate(:status, visibility: :public)
       mentioned = Fabricate(:account)
+      mentioned_numeric = Fabricate(:account, id_scheme: :numeric_ap_id)
       status.mentions.create(account: mentioned)
-      expect(subject.cc(status)).to include(subject.uri_for(mentioned))
+      status.mentions.create(account: mentioned_numeric)
+      expect(subject.cc(status)).to include(subject.uri_for(mentioned), subject.uri_for(mentioned_numeric))
     end
 
     context 'with followers and requested followers' do
