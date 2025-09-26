@@ -27,6 +27,8 @@ class BulkImport < ApplicationRecord
   belongs_to :account
   has_many :rows, class_name: 'BulkImportRow', inverse_of: :bulk_import, dependent: :delete_all
 
+  after_save :finalize_import, if: [:state_previously_changed?, :state_finished?]
+
   enum :type, {
     following: 0,
     blocking: 1,
@@ -55,6 +57,10 @@ class BulkImport < ApplicationRecord
 
     # Since the incrementation has been done atomically, concurrent access to `bulk_import` is now bening
     bulk_import = BulkImport.find(bulk_import_id)
-    bulk_import.update!(state: :finished, finished_at: Time.now.utc) if bulk_import.processed_items == bulk_import.total_items
+    bulk_import.state_finished! if bulk_import.processed_items == bulk_import.total_items
+  end
+
+  def finalize_import
+    touch :finished_at
   end
 end
