@@ -51,7 +51,14 @@ export const EmojiHTML = <Element extends ElementType>(
   if (isModernEmojiEnabled()) {
     return <ModernEmojiHTML {...props} />;
   }
-  const { as: asElement, htmlString, extraEmojis, className, ...rest } = props;
+  const {
+    as: asElement,
+    htmlString,
+    extraEmojis,
+    className,
+    shallow: _,
+    ...rest
+  } = props;
   const Wrapper = asElement ?? 'div';
   return (
     <Wrapper
