@@ -30,7 +30,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Default: Story = {
   async play({ canvas }) {
     const link = canvas.queryByRole('link');
     await expect(link).toBeInTheDocument();

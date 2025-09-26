@@ -1,7 +1,5 @@
 import { isList } from 'immutable';
 
-import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
-
 import {
   VARIATION_SELECTOR_CODE,
   KEYCAP_CODE,
@@ -165,12 +163,12 @@ export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg) {
   if (!isList(extraEmojis)) {
     return extraEmojis;
   }
-  return (
-    extraEmojis.toJS() as ApiCustomEmojiJSON[]
-  ).reduce<ExtraCustomEmojiMap>(
-    (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
-    {},
-  );
+  return extraEmojis
+    .toJSON()
+    .reduce<ExtraCustomEmojiMap>(
+      (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
+      {},
+    );
 }
 
 function hexStringToNumbers(hexString: string): number[] {

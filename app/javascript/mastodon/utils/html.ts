@@ -1,7 +1,6 @@
 import React from 'react';
 
-import type { AllowedTagsType } from './html-tags';
-import { AllowedTags, GlobalAttributes } from './html-tags';
+import htmlConfig from '../../config/html-tags.json';
 
 // NB: This function can still return unsafe HTML
 export const unescapeHTML = (html: string) => {
@@ -12,6 +11,20 @@ export const unescapeHTML = (html: string) => {
     .replace(/<[^>]*>/g, '');
   return wrapper.textContent;
 };
+
+interface AllowedTag {
+  /* True means allow, false disallows global attributes, string renames the attribute name for React. */
+  attributes?: Record<string, boolean | string>;
+  /* If false, the tag cannot have children. Undefined or true means allowed. */
+  children?: boolean;
+}
+
+type AllowedTagsType = {
+  [Tag in keyof React.ReactHTML]?: AllowedTag;
+};
+
+const GlobalAttributes: Record<string, boolean | string> = htmlConfig.global;
+const AllowedTags: AllowedTagsType = htmlConfig.tags;
 
 interface QueueItem {
   node: Node;
