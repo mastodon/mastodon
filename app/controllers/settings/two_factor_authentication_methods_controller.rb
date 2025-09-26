@@ -6,6 +6,7 @@ module Settings
 
     skip_before_action :check_self_destruct!
     skip_before_action :require_functional!
+    skip_before_action :check_mfa_requirement
 
     before_action :require_challenge!, only: :disable
     before_action :require_otp_enabled

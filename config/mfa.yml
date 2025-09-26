@@ -1,0 +1,15 @@
+# Multi-Factor Authentication configuration
+default: &default
+  force_enabled: false
+
+development:
+  <<: *default
+  force_enabled: <%= ENV.fetch('REQUIRE_MULTI_FACTOR_AUTH', 'false') == 'true' %>
+
+test:
+  <<: *default
+  force_enabled: false
+
+production:
+  <<: *default
+  force_enabled: <%= ENV.fetch('REQUIRE_MULTI_FACTOR_AUTH', 'false') == 'true' %>
