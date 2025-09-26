@@ -6,8 +6,7 @@
       .log-entry__title
         = strike_action_label(appeal)
       .log-entry__timestamp
-        %time.formatted{ datetime: appeal.strike.created_at.iso8601 }
-          = l(appeal.strike.created_at)
+        = formatted_time appeal.strike.created_at
 
         - if appeal.strike.report_id.present?
           ·

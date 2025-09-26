@@ -56,8 +56,7 @@
             %td
               #{import.imported_items} / #{import.total_items}
             %td
-              %time.formatted{ datetime: import.created_at.iso8601, title: l(import.created_at) }
-                = l(import.created_at)
+              = formatted_time import.created_at
 
             %td
               - num_failed = import.processed_items - import.imported_items

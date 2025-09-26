@@ -14,8 +14,7 @@
       - if invite.expires_at.nil?
         ∞
       - else
-        %time.formatted{ datetime: invite.expires_at.iso8601, title: l(invite.expires_at) }
-          = l invite.expires_at
+        = formatted_time invite.expires_at
   - else
     %td{ colspan: 2 }
       = t('invites.expired')

@@ -28,7 +28,7 @@
       .report-header__details__item__header
         %strong= t('disputes.strikes.created_at')
       .report-header__details__item__content
-        %time.formatted{ datetime: @strike.created_at.iso8601, title: l(@strike.created_at) }= l(@strike.created_at)
+        = formatted_time @strike.created_at
     .report-header__details__item
       .report-header__details__item__header
         %strong= t('disputes.strikes.recipient')
@@ -53,7 +53,7 @@
         .report-header__details__item__header
           %strong= t('disputes.strikes.appeal_submitted_at')
         .report-header__details__item__content
-          %time.formatted{ datetime: @appeal.created_at.iso8601, title: l(@appeal.created_at) }= l(@appeal.created_at)
+          = formatted_time @appeal.created_at
 %hr.spacer/
 
 - if @appeal.persisted?

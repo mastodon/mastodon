@@ -6,13 +6,13 @@
       - else
         = t('admin.statuses.status_changed')
       ·
-      %time.formatted{ datetime: status_edit.created_at.iso8601, title: l(status_edit.created_at) }= l(status_edit.created_at)
+      = formatted_time status_edit.created_at
 
     .status
       = render partial: 'admin/shared/status_content', locals: { status: status_edit }
 
       .detailed-status__meta
-        %time.formatted{ datetime: status_edit.created_at.iso8601, title: l(status_edit.created_at) }= l(status_edit.created_at)
+        = formatted_time status_edit.created_at
 
         - if status_edit.sensitive?
           ·
