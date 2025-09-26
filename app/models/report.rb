@@ -116,7 +116,7 @@ class Report < ApplicationRecord
   end
 
   def action_taken?
-    action_taken_at.present?
+    action_taken_at?
   end
 
   alias action_taken action_taken?
