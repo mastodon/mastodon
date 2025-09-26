@@ -27,6 +27,10 @@ module ApplicationExtension
     redirect_uri.lines.first.strip
   end
 
+  def scopes_array
+    scopes.to_s.split
+  end
+
   def redirect_uris
     # Doorkeeper stores the redirect_uri value as a newline delimeted list in
     # the database:
