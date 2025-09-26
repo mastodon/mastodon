@@ -1896,7 +1896,8 @@ nn:
         one: "%{count} video"
         other: "%{count} videoar"
     boosted_from_html: Framheva av %{acct_link}
-    content_warning: 'Innhaldsåtvaring: %{warning}'
+    content_warning:
+      warning: 'Innhaldsåtvaring: %{warning}'
     default_language: Samme språk som brukergrensesnittet
     disallowed_hashtags:
       one: 'inneheldt ein emneknagg som ikkje var tillaten: %{tags}'

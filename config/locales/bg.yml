@@ -1877,7 +1877,8 @@ bg:
         one: "%{count} видео"
         other: "%{count} видеозаписа"
     boosted_from_html: Раздуто от %{acct_link}
-    content_warning: 'Предупреждение за съдържание: %{warning}'
+    content_warning:
+      warning: 'Предупреждение за съдържание: %{warning}'
     default_language: Същият като езика на интерфейса
     disallowed_hashtags:
       one: 'съдържа непозволен хаштаг: %{tags}'

@@ -1741,7 +1741,8 @@ lad:
         one: "%{count} video"
         other: "%{count} videos"
     boosted_from_html: Repartajado dizde %{acct_link}
-    content_warning: 'Avertensya de kontenido: %{warning}'
+    content_warning:
+      warning: 'Avertensya de kontenido: %{warning}'
     default_language: La mezma ke la lingua de la enterfaz
     disallowed_hashtags:
       one: 'kontenia una etiketa no permetida: %{tags}'

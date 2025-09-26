@@ -1897,7 +1897,10 @@ en:
         one: "%{count} video"
         other: "%{count} videos"
     boosted_from_html: Boosted from %{acct_link}
-    content_warning: 'Content warning: %{warning}'
+    content_warning:
+      hide: Hide post
+      show: Show more
+      warning: 'Content warning: %{warning}'
     default_language: Same as interface language
     disallowed_hashtags:
       one: 'contained a disallowed hashtag: %{tags}'

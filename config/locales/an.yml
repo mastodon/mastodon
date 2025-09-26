@@ -1394,7 +1394,8 @@ an:
         one: "%{count} video"
         other: "%{count} videos"
     boosted_from_html: Empentau dende %{acct_link}
-    content_warning: 'Alerta de conteniu: %{warning}'
+    content_warning:
+      warning: 'Alerta de conteniu: %{warning}'
     default_language: Igual que l'idioma d'a interficie
     disallowed_hashtags:
       one: 'conteneba un hashtag no permitiu: %{tags}'
