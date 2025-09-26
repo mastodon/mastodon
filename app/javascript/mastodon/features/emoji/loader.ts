@@ -1,8 +1,6 @@
 import { flattenEmojiData } from 'emojibase';
 import type { CompactEmoji, FlatCompactEmoji } from 'emojibase';
 
-import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
-
 import {
   putEmojiData,
   putCustomEmojiData,
@@ -10,7 +8,7 @@ import {
   putLatestEtag,
 } from './database';
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
-import type { LocaleOrCustom } from './types';
+import type { CustomEmojiData, LocaleOrCustom } from './types';
 import { emojiLogger } from './utils';
 
 const log = emojiLogger('loader');
@@ -27,7 +25,7 @@ export async function importEmojiData(localeString: string) {
 }
 
 export async function importCustomEmojiData() {
-  const emojis = await fetchAndCheckEtag<ApiCustomEmojiJSON[]>('custom');
+  const emojis = await fetchAndCheckEtag<CustomEmojiData[]>('custom');
   if (!emojis) {
     return;
   }

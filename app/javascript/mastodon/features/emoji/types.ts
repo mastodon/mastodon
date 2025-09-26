@@ -10,7 +10,6 @@ import type {
   EMOJI_MODE_NATIVE,
   EMOJI_MODE_NATIVE_WITH_FLAGS,
   EMOJI_MODE_TWEMOJI,
-  EMOJI_STATE_MISSING,
   EMOJI_TYPE_CUSTOM,
   EMOJI_TYPE_UNICODE,
 } from './constants';
@@ -29,21 +28,15 @@ export interface EmojiAppState {
   darkTheme: boolean;
 }
 
-export interface UnicodeEmojiToken {
-  type: typeof EMOJI_TYPE_UNICODE;
-  code: string;
-}
-export interface CustomEmojiToken {
-  type: typeof EMOJI_TYPE_CUSTOM;
-  code: string;
-}
-export type EmojiToken = UnicodeEmojiToken | CustomEmojiToken;
-
 export type CustomEmojiData = ApiCustomEmojiJSON;
 export type UnicodeEmojiData = FlatCompactEmoji;
 export type AnyEmojiData = CustomEmojiData | UnicodeEmojiData;
 
-export type EmojiStateMissing = typeof EMOJI_STATE_MISSING;
+type CustomEmojiRenderFields = Pick<
+  CustomEmojiData,
+  'shortcode' | 'static_url' | 'url'
+>;
+
 export interface EmojiStateUnicode {
   type: typeof EMOJI_TYPE_UNICODE;
   code: string;
@@ -64,11 +57,11 @@ export type EmojiStateMap = LimitedCache<string, EmojiState>;
 export type CustomEmojiMapArg =
   | ExtraCustomEmojiMap
   | ImmutableList<CustomEmoji>;
-export type CustomEmojiRenderFields = Pick<
-  CustomEmojiData,
-  'shortcode' | 'static_url' | 'url'
+
+export type ExtraCustomEmojiMap = Record<
+  string,
+  Pick<CustomEmojiData, 'shortcode' | 'static_url' | 'url'>
 >;
-export type ExtraCustomEmojiMap = Record<string, CustomEmojiRenderFields>;
 
 export interface TwemojiBorderInfo {
   hexCode: string;
