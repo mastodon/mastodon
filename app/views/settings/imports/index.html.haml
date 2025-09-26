@@ -60,9 +60,6 @@
                 = l(import.created_at)
 
             %td
-              - num_failed = import.processed_items - import.imported_items
-              - if num_failed.positive?
-                - if import.state_finished?
-                  = link_to num_failed, failures_settings_import_path(import, format: 'csv')
-                - else
-                  = num_failed
+              - if import.failure_count.positive?
+                = link_to_if import.state_finished?, import.failure_count, failures_settings_import_path(import, format: :csv) do
+                  = import.failure_count
