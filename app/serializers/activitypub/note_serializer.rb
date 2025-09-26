@@ -249,7 +249,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
     include RoutingHelper
 
-    attributes :type, :media_type, :url, :name, :blurhash
+    attributes :type, :media_type, :url, :summary, :blurhash
     attribute :focal_point, if: :focal_point?
     attribute :width, if: :width?
     attribute :height, if: :height?
@@ -260,7 +260,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
       'Document'
     end
 
-    def name
+    def summary
       object.description
     end
 
