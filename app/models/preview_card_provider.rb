@@ -36,7 +36,6 @@ class PreviewCardProvider < ApplicationRecord
   scope :not_trendable, -> { where(trendable: false) }
 
   def self.matching_domain(domain)
-    segments = domain.split('.')
-    where(domain: segments.map.with_index { |_, i| segments[i..].join('.') }).by_domain_length.first
+    where(domain: domain_variants(domain)).by_domain_length.first
   end
 end
