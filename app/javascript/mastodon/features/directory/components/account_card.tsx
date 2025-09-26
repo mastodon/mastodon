@@ -1,133 +1,22 @@
-import { useCallback } from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { FormattedMessage, defineMessages, useIntl } from 'react-intl';
-
-import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import {
-  followAccount,
-  unblockAccount,
-  unmuteAccount,
-} from 'mastodon/actions/accounts';
-import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
-import { Button } from 'mastodon/components/button';
 import { DisplayName } from 'mastodon/components/display_name';
+import { FollowButton } from 'mastodon/components/follow_button';
 import { ShortNumber } from 'mastodon/components/short_number';
-import { autoPlayGif, me } from 'mastodon/initial_state';
+import { autoPlayGif } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 import { makeGetAccount } from 'mastodon/selectors';
-import { useAppDispatch, useAppSelector } from 'mastodon/store';
-
-const messages = defineMessages({
-  unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  cancel_follow_request: {
-    id: 'account.cancel_follow_request',
-    defaultMessage: 'Withdraw follow request',
-  },
-  requested: {
-    id: 'account.requested',
-    defaultMessage: 'Awaiting approval. Click to cancel follow request',
-  },
-  unblock: { id: 'account.unblock_short', defaultMessage: 'Unblock' },
-  unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },
-  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
-});
+import { useAppSelector } from 'mastodon/store';
 
 const getAccount = makeGetAccount();
 
 export const AccountCard: React.FC<{ accountId: string }> = ({ accountId }) => {
-  const intl = useIntl();
   const account = useAppSelector((s) => getAccount(s, accountId));
-  const dispatch = useAppDispatch();
-
-  const handleFollow = useCallback(() => {
-    if (!account) return;
-
-    if (
-      account.getIn(['relationship', 'following']) ||
-      account.getIn(['relationship', 'requested'])
-    ) {
-      dispatch(
-        openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
-      );
-    } else {
-      dispatch(followAccount(account.get('id')));
-    }
-  }, [account, dispatch]);
-
-  const handleBlock = useCallback(() => {
-    if (account?.relationship?.blocking) {
-      dispatch(unblockAccount(account.get('id')));
-    }
-  }, [account, dispatch]);
-
-  const handleMute = useCallback(() => {
-    if (account?.relationship?.muting) {
-      dispatch(unmuteAccount(account.get('id')));
-    }
-  }, [account, dispatch]);
-
-  const handleEditProfile = useCallback(() => {
-    window.open('/settings/profile', '_blank');
-  }, []);
 
   if (!account) return null;
-
-  let actionBtn;
-
-  if (me !== account.get('id')) {
-    if (!account.get('relationship')) {
-      // Wait until the relationship is loaded
-      actionBtn = '';
-    } else if (account.getIn(['relationship', 'requested'])) {
-      actionBtn = (
-        <Button
-          text={intl.formatMessage(messages.cancel_follow_request)}
-          title={intl.formatMessage(messages.requested)}
-          onClick={handleFollow}
-        />
-      );
-    } else if (account.getIn(['relationship', 'muting'])) {
-      actionBtn = (
-        <Button
-          text={intl.formatMessage(messages.unmute)}
-          onClick={handleMute}
-        />
-      );
-    } else if (!account.getIn(['relationship', 'blocking'])) {
-      actionBtn = (
-        <Button
-          disabled={account.relationship?.blocked_by}
-          className={classNames({
-            'button--destructive': account.getIn(['relationship', 'following']),
-          })}
-          text={intl.formatMessage(
-            account.getIn(['relationship', 'following'])
-              ? messages.unfollow
-              : messages.follow,
-          )}
-          onClick={handleFollow}
-        />
-      );
-    } else if (account.getIn(['relationship', 'blocking'])) {
-      actionBtn = (
-        <Button
-          text={intl.formatMessage(messages.unblock)}
-          onClick={handleBlock}
-        />
-      );
-    }
-  } else {
-    actionBtn = (
-      <Button
-        text={intl.formatMessage(messages.edit_profile)}
-        onClick={handleEditProfile}
-      />
-    );
-  }
 
   return (
     <div className='account-card'>
@@ -186,7 +75,9 @@ export const AccountCard: React.FC<{ accountId: string }> = ({ accountId }) => {
           </div>
         </div>
 
-        <div className='account-card__actions__button'>{actionBtn}</div>
+        <div className='account-card__actions__button'>
+          <FollowButton accountId={account.get('id')} />
+        </div>
       </div>
     </div>
   );

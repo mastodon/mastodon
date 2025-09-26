@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 
 const breakpoints = {
+  narrow: 479, // Device width under which horizontal space is constrained
   openable: 759, // Device width at which the sidebar becomes an openable hamburger menu
   full: 1174, // Device width at which all 3 columns can be displayed
 };
 
-type Breakpoint = 'openable' | 'full';
+type Breakpoint = keyof typeof breakpoints;
 
 export const useBreakpoint = (breakpoint: Breakpoint) => {
   const [isMatching, setIsMatching] = useState(false);
