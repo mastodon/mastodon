@@ -1,4 +1,4 @@
-import initialState from '@/mastodon/initial_state';
+import { initialState } from '@/mastodon/initial_state';
 
 interface FocusColumnOptions {
   index?: number;

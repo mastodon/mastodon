@@ -1,4 +1,4 @@
-import initialState from '@/mastodon/initial_state';
+import { initialState } from '@/mastodon/initial_state';
 import { loadWorker } from '@/mastodon/utils/workers';
 
 import { toSupportedLocale } from './locale';
