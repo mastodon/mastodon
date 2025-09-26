@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { debounce } from 'lodash';
 
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
+import { initializeDonate } from '@/mastodon/actions/donate';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
 import { fetchNotifications } from 'mastodon/actions/notification_groups';
 import { INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
@@ -400,6 +401,7 @@ class UI extends PureComponent {
       this.props.dispatch(expandHomeTimeline());
       this.props.dispatch(fetchNotifications());
       this.props.dispatch(fetchServerTranslationLanguages());
+      this.props.dispatch(initializeDonate());
 
       setTimeout(() => this.props.dispatch(fetchServer()), 3000);
     }
