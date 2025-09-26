@@ -6,7 +6,7 @@ module ReactComponentHelper
     if block.nil?
       div_tag_with_data(data)
     else
-      content_tag(:div, data: data, &block)
+      tag.div(data: data, &block)
     end
   end
 
@@ -22,7 +22,7 @@ module ReactComponentHelper
   private
 
   def div_tag_with_data(data)
-    content_tag(:div, nil, data: data)
+    tag.div(data: data)
   end
 
   def serialized_attachment(attachment)
