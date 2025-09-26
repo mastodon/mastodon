@@ -68,7 +68,12 @@ body {
 
     &.layout-single-column {
       height: auto;
-      min-height: 100vh;
+      @supports (min-height: 100dvh) {
+        min-height: 100dvh;
+      }
+      @supports not (min-height: 100dvh) {
+        min-height: 100vh;
+      }
       overflow-y: scroll;
     }
 
@@ -185,7 +190,12 @@ button {
   }
 
   & > noscript {
-    height: 100vh;
+    @supports (min-height: 100dvh) {
+      min-height: 100dvh;
+    }
+    @supports not (min-height: 100dvh) {
+      min-height: 100vh;
+    }
   }
 }
 
