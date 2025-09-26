@@ -11,7 +11,8 @@ RSpec.describe 'Manifest' do
         .to have_http_status(200)
         .and have_cacheable_headers
         .and have_attributes(
-          content_type: match('application/json')
+          content_type: match('application/json'),
+          headers: not_include('content-security-policy')
         )
       expect(response.parsed_body)
         .to include(

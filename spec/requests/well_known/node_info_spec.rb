@@ -10,7 +10,8 @@ RSpec.describe 'The well-known node-info endpoints' do
       expect(response)
         .to have_http_status(200)
         .and have_attributes(
-          media_type: 'application/json'
+          media_type: 'application/json',
+          headers: not_include('content-security-policy')
         )
 
       expect(response.parsed_body).to include(
@@ -33,7 +34,8 @@ RSpec.describe 'The well-known node-info endpoints' do
       expect(response)
         .to have_http_status(200)
         .and have_attributes(
-          media_type: 'application/json'
+          media_type: 'application/json',
+          headers: not_include('content-security-policy')
         )
 
       expect(non_matching_hash)
