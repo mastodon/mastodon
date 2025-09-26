@@ -18,16 +18,15 @@ import {
 import { importEmojiData } from './loader';
 import { emojiToUnicodeHex, unicodeHexToUrl } from './normalize';
 import type {
-  CustomEmojiToken,
   EmojiAppState,
   EmojiLoadedState,
   EmojiMode,
   EmojiState,
+  EmojiStateCustom,
   EmojiStateMap,
-  EmojiToken,
+  EmojiStateUnicode,
   ExtraCustomEmojiMap,
   LocaleOrCustom,
-  UnicodeEmojiToken,
 } from './types';
 import {
   anyEmojiRegex,
@@ -298,11 +297,11 @@ async function textToElementArray(
   return renderedFragments;
 }
 
-type TokenizedText = (string | EmojiToken)[];
+type TokenizedText = (string | EmojiState)[];
 
 export function tokenizeText(text: string): TokenizedText {
   if (!text.trim()) {
-    return [];
+    return [text];
   }
 
   const tokens = [];
@@ -319,13 +318,13 @@ export function tokenizeText(text: string): TokenizedText {
       tokens.push({
         type: EMOJI_TYPE_CUSTOM,
         code,
-      } satisfies CustomEmojiToken);
+      } satisfies EmojiStateCustom);
     } else {
       // Unicode emoji
       tokens.push({
         type: EMOJI_TYPE_UNICODE,
         code: code,
-      } satisfies UnicodeEmojiToken);
+      } satisfies EmojiStateUnicode);
     }
     lastIndex = match.index + code.length;
   }
