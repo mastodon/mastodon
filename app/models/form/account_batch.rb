@@ -9,58 +9,16 @@ class Form::AccountBatch < Form::BaseBatch
 
   def save
     case action
-    when 'follow'
-      follow!
-    when 'unfollow'
-      unfollow!
-    when 'remove_from_followers'
-      remove_from_followers!
-    when 'remove_domains_from_followers'
-      remove_domains_from_followers!
     when 'approve'
       approve!
     when 'reject'
       reject!
-    when 'suppress_follow_recommendation'
-      suppress_follow_recommendation!
-    when 'unsuppress_follow_recommendation'
-      unsuppress_follow_recommendation!
     when 'suspend'
       suspend!
     end
   end
 
   private
-
-  def follow!
-    error = nil
-
-    accounts.each do |target_account|
-      FollowService.new.call(current_account, target_account)
-    rescue Mastodon::NotPermittedError, ActiveRecord::RecordNotFound => e
-      error ||= e
-    end
-
-    raise error if error.present?
-  end
-
-  def unfollow!
-    accounts.each do |target_account|
-      UnfollowService.new.call(current_account, target_account)
-    end
-  end
-
-  def remove_from_followers!
-    RemoveFromFollowersService.new.call(current_account, account_ids)
-  end
-
-  def remove_domains_from_followers!
-    RemoveDomainsFromFollowersService.new.call(current_account, account_domains)
-  end
-
-  def account_domains
-    accounts.group(:domain).pluck(:domain).compact
-  end
 
   def accounts
     if select_all_matching?
@@ -90,20 +48,6 @@ class Form::AccountBatch < Form::BaseBatch
         suspend_account(account)
       end
     end
-  end
-
-  def suppress_follow_recommendation!
-    authorize(:follow_recommendation, :suppress?)
-
-    accounts.find_each do |account|
-      FollowRecommendationSuppression.create(account: account)
-    end
-  end
-
-  def unsuppress_follow_recommendation!
-    authorize(:follow_recommendation, :unsuppress?)
-
-    FollowRecommendationSuppression.where(account_id: account_ids).destroy_all
   end
 
   def reject_account(account)
