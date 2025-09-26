@@ -114,18 +114,18 @@ RSpec.describe FeaturedTag do
     end
   end
 
-  describe '#increment' do
+  describe '#increment_count' do
     it 'increases the count and updates the last_status_at timestamp' do
       featured_tag = Fabricate :featured_tag
       timestamp = 5.days.ago
 
-      expect { featured_tag.increment(timestamp) }
+      expect { featured_tag.increment_count(timestamp) }
         .to change(featured_tag, :statuses_count).from(0).to(1)
         .and change(featured_tag, :last_status_at).from(nil).to(be_within(0.1).of(timestamp))
     end
   end
 
-  describe '#decrement' do
+  describe '#decrement_count' do
     let(:tag) { Fabricate(:tag, name: 'test') }
     let(:account) { Fabricate(:account) }
     let(:featured_tag) { Fabricate(:featured_tag, name: 'test', account: account) }
@@ -138,7 +138,7 @@ RSpec.describe FeaturedTag do
       end
 
       it 'decreases the count and updates the last_status_at timestamp' do
-        expect { featured_tag.decrement(status) }
+        expect { featured_tag.decrement_count(status) }
           .to change(featured_tag, :statuses_count).from(1).to(0)
           .and change(featured_tag, :last_status_at).to(nil)
       end
@@ -154,7 +154,7 @@ RSpec.describe FeaturedTag do
       end
 
       it 'decreases the count and updates the last_status_at timestamp' do
-        expect { featured_tag.decrement(previous_status) }
+        expect { featured_tag.decrement_count(previous_status) }
           .to change(featured_tag, :statuses_count).from(2).to(1)
           .and not_change(featured_tag, :last_status_at)
       end
@@ -170,7 +170,7 @@ RSpec.describe FeaturedTag do
       end
 
       it 'decreases the count and updates the last_status_at timestamp' do
-        expect { featured_tag.decrement(status) }
+        expect { featured_tag.decrement_count(status) }
           .to change(featured_tag, :statuses_count).from(2).to(1)
           .and change(featured_tag, :last_status_at)
       end
