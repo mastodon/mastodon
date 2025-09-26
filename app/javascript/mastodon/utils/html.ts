@@ -23,8 +23,8 @@ type AllowedTagsType = {
   [Tag in keyof React.ReactHTML]?: AllowedTag;
 };
 
-const GlobalAttributes: Record<string, boolean | string> = htmlConfig.global;
-const AllowedTags: AllowedTagsType = htmlConfig.tags;
+const globalAttributes: Record<string, boolean | string> = htmlConfig.global;
+const defaultAllowedTags: AllowedTagsType = htmlConfig.tags;
 
 interface QueueItem {
   node: Node;
@@ -66,7 +66,7 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
 
   const {
     maxDepth = 10,
-    allowedTags = AllowedTags,
+    allowedTags = defaultAllowedTags,
     onAttribute,
     onElement,
     onText,
@@ -156,7 +156,7 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
               }
             } else {
               // Check global attributes first, then tag-specific ones.
-              const globalAttr = GlobalAttributes[name];
+              const globalAttr = globalAttributes[name];
               const tagAttr = tagInfo.attributes?.[name];
 
               // Exit if neither global nor tag-specific attribute is allowed.
