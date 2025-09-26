@@ -21,11 +21,19 @@ RSpec.describe Auth::SessionsController do
     let(:user) { Fabricate(:user) }
 
     context 'with a regular user' do
+      before do
+        flash[:notice] = I18n.t('generic.all')
+        session[:challenge_passed_at] = 2.days.ago
+      end
+
       it 'redirects to home after sign out' do
         sign_in(user, scope: :user)
-        delete :destroy
 
-        expect(response).to redirect_to(new_user_session_path)
+        expect { delete :destroy }
+          .to change { flash[:notice] }.to(be_blank)
+          .and change { session[:challenge_passed_at] }.to(be_blank)
+        expect(response)
+          .to redirect_to(new_user_session_path)
       end
 
       it 'does not delete redirect location with continue=true' do
