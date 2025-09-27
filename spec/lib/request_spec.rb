@@ -218,4 +218,24 @@ RSpec.describe Request do
       expect(subject.perform { |response| response.body_with_limit.encoding }).to eq Encoding::UTF_8
     end
   end
+
+  describe 'percent-encoded query preservation' do
+    let(:raw_url) { 'https://example.com/image.png?overlay-align=bottom%2Cleft&x=1' }
+
+    before do
+      stub_request(:get, raw_url).to_return(status: 200, body: 'ok', headers: { 'Content-Type' => 'text/plain' })
+    end
+
+    it 'does not unescape %2C to comma in query when performing request' do
+      Request.new(:get, raw_url).perform do |res|
+        expect(res.code).to eq 200
+      end
+      expect(a_request(:get, raw_url)).to have_been_made
+    end
+
+    it 'keeps original query after initialization' do
+      req = Request.new(:get, raw_url)
+      expect(req.instance_variable_get(:@url).query).to eq 'overlay-align=bottom%2Cleft&x=1'
+    end
+  end
 end

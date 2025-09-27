@@ -71,8 +71,19 @@ class Request
   def initialize(verb, url, **options)
     raise ArgumentError if url.blank?
 
-    @verb        = verb
-    @url         = Addressable::URI.parse(url).normalize
+  @verb        = verb
+  # Preserve the original query string's percent-encoding (e.g. %2C) because
+  # some CDNs (e.g. The Guardian) compute request signatures / hashes over
+  # the exact raw URL. Addressable::URI#normalize will unescape certain
+  # percent-encoded reserved characters in the query component, which breaks
+  # those signatures and results in 401 responses when fetching assets such
+  # as OpenGraph images. To avoid this, we normalize first to keep host/path
+  # canonicalization benefits, then restore the original raw query string.
+  original_uri  = Addressable::URI.parse(url)
+  original_query = original_uri.query
+  normalized_uri = original_uri.normalize
+  normalized_uri.query = original_query unless original_query.nil?
+  @url = normalized_uri
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
     @options     = {
