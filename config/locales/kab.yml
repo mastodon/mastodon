@@ -33,6 +33,11 @@ kab:
         new_email: Imayl amaynut
         submit: Beddel imayl
         title: Beddel imayl-ik s %{username}
+      change_role:
+        edit_roles: Sefrek timlilin n usqdac
+        label: Snifel tamlilt
+        no_role: War tamlilt
+        title: Snifel tamlilt n %{username}
       confirm: Sentem
       confirmed: Yettwasentem
       confirming: Asentem
@@ -95,6 +100,7 @@ kab:
       reset: Wennez
       reset_password: Beddel awal uffir
       resubscribe: Ales ajerred
+      role: Tamlilt
       search: Nadi
       search_same_ip: Imseqdacen-nniḍen s tansa IP am tinn-ik
       security: Taɣellist
@@ -121,6 +127,7 @@ kab:
       whitelisted: Deg tebdert tamellalt
     action_logs:
       action_types:
+        change_role_user: Snifel tamlilt n useqdac
         confirm_user: Sentem aseqdac
         create_announcement: Rnu-d ulɣu
         create_custom_emoji: Rnu imujit udmawan
@@ -128,6 +135,7 @@ kab:
         create_domain_block: Rnu-d asewḥel n taɣult
         create_ip_block: Rnu alugen n IP
         create_unavailable_domain: Rnu-d taɣult ur nelli ara
+        create_user_role: Snulfu-d tamlilt
         destroy_announcement: Kkes ulɣu
         destroy_custom_emoji: Kkes imujit udmawan
         destroy_domain_allow: Kkes taɣult yettusirgen
@@ -135,6 +143,7 @@ kab:
         destroy_ip_block: Kkes alugen n IP
         destroy_status: Kkes tasufeɣt
         destroy_unavailable_domain: Kkes taɣult ur nelli ara
+        destroy_user_role: Senger tamlilt
         disable_2fa_user: Gdel 2FA
         disable_custom_emoji: Sens imujit udmawan
         disable_user: Sens aseqdac
@@ -150,6 +159,7 @@ kab:
         update_custom_emoji: Leqqem imuji udmawan
         update_domain_block: Leqqem iḥder n taɣult
         update_status: Leqqem tasufeɣt
+        update_user_role: Leqqem tamlilt
       actions:
         assigned_to_self_report_html: "%{name} imudd aneqqis %{target} i yiman-nsen"
         create_account_warning_html: "%{name} yuzen alɣu i %{target}"
@@ -400,7 +410,10 @@ kab:
       privileges:
         administrator: Anedbal
         manage_federation: Sefrek Tafidiralit
+        manage_roles: Sefrek ilugan
+        manage_rules: Sefrek ilugan
         manage_settings: Asefrek n iɣewwaṛen
+        manage_users: Sefrek iqeddacen
         view_dashboard: Timẓriwt n tfelwit
     rules:
       add_new: Rnu alugen
@@ -566,10 +579,10 @@ kab:
     migrate_account: Gujj ɣer umiḍan nniḍen
     or_log_in_with: Neɣ eqqen s
     progress:
-      confirm: Sentem imayl
-      details: Isalli-inek
+      confirm: Asentem n imayl
+      details: Isalli-inek·inem
       review: Tamuɣli-nneɣ
-      rules: Qbel ilugan
+      rules: Abal n ilugan
     providers:
       cas: CAS
       saml: SAML
@@ -599,6 +612,8 @@ kab:
       account_status: Addad n umiḍan
       functional: Amiḍan-inek·inem yetteddu s lekmal-is.
     use_security_key: Seqdec tasarut n teɣlist
+    user_agreement_html: Ɣriɣ yerna qebleɣ <a href="<a href="%{terms_of_service_path}" target="_blank">" target="_blank">tiwtilin ne useqdec</a> akked <a href="%{privacy_policy_path}" target="_blank">tsertit n tbaḍnit</a>
+    user_privacy_agreement_html: Ɣriɣ yerna qebleɣ <a href="%{privacy_policy_path}" target="_blank">tasertit n tbaḍnit</a>
   author_attribution:
     example_title: Amedya n weḍris
     more_from_html: Ugar s ɣur %{name}
@@ -887,6 +902,8 @@ kab:
         one: "%{count} n tbidyutt"
         other: "%{count} n tbidyutin"
     edited_at_html: Tettwaẓreg ass n %{date}
+    pin_errors:
+      reblog: Azuzer ur yezmir ara ad yili d unṭiḍ
     quote_policies:
       followers: Imeḍfaṛen kan
       nobody: Nekki kan
@@ -900,6 +917,7 @@ kab:
       unlisted: Azayez asusam
   statuses_cleanup:
     enabled: Tukksa n tsuffaɣ tiqburin s wudem awurman
+    keep_pinned: Eǧǧ tisuffaɣ tunṭiḍin
     min_age:
       '1209600': 2 n yimalasen
       '15778476': 6 n wayyuren
