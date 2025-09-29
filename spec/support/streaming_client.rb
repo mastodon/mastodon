@@ -88,19 +88,13 @@ class StreamingClient
       @driver
     end
 
-    def wait_for_event(expected_event = nil, timeout: 10)
+    def wait_for_event(expected_event, timeout: 10)
       Timeout.timeout(timeout) do
         loop do
-          if expected_event.nil?
-            unless (event = dequeue_event(timeout)).nil?
-              return event[:payload]
-            end
-          else
-            event = dequeue_event(timeout)
+          event = dequeue_event
 
-            return nil if event.nil? && @events_queue.closed?
-            return event[:payload] unless event.nil? || event[:event] != expected_event
-          end
+          return nil if event.nil? && @events_queue.closed?
+          return event[:payload] unless event.nil? || event[:event] != expected_event
         end
       end
     end
@@ -118,8 +112,8 @@ class StreamingClient
       @thread.kill
     end
 
-    def dequeue_event(timeout)
-      event = @events_queue.pop(timeout:)
+    def dequeue_event
+      event = @events_queue.pop
       logger&.debug(event) unless event.nil?
       event
     end
