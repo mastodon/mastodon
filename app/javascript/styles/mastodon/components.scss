@@ -6402,7 +6402,10 @@ a.status-card {
       line-height: 24px;
       color: $primary-text-color;
       font-weight: 500;
-      margin-bottom: 8px;
+
+      &:not(:only-child) {
+        margin-bottom: 8px;
+      }
     }
 
     strong {

@@ -11,7 +11,7 @@ export interface BaseConfirmationModalProps {
 export const ConfirmationModal: React.FC<
   {
     title: React.ReactNode;
-    message: React.ReactNode;
+    message?: React.ReactNode;
     confirm: React.ReactNode;
     cancel?: React.ReactNode;
     secondary?: React.ReactNode;
@@ -48,7 +48,7 @@ export const ConfirmationModal: React.FC<
       <div className='safety-action-modal__top'>
         <div className='safety-action-modal__confirmation'>
           <h1>{title}</h1>
-          <p>{message}</p>
+          {message && <p>{message}</p>}
         </div>
       </div>
 
