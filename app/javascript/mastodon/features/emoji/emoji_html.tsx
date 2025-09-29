@@ -23,7 +23,7 @@ type EmojiHTMLProps<Element extends ElementType = 'div'> = Omit<
   className?: string;
 };
 
-function onText(text: string) {
+export function onText(text: string) {
   return tokenizeText(text).map((token, index) => {
     if (typeof token === 'string') {
       return token;
@@ -53,9 +53,6 @@ export const ModernEmojiHTML = ({
       {contents}
     </Wrapper>
   );
-  if (!extraEmojis) {
-    return components;
-  }
   return (
     <CustomEmojiProvider emoji={extraEmojis}>{components}</CustomEmojiProvider>
   );

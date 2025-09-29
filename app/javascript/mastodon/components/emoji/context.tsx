@@ -13,7 +13,7 @@ export const AnimateEmojiContext = createContext(autoPlayGif ?? false);
 
 // Polymorphic provider component
 type AnimateEmojiProviderProps<Element extends ElementType = 'div'> =
-  ComponentPropsWithoutRef<Element> & { as: Element } & PropsWithChildren;
+  ComponentPropsWithoutRef<Element> & { as?: Element } & PropsWithChildren;
 
 export const AnimateEmojiProvider = ({
   children,
@@ -48,9 +48,9 @@ export const CustomEmojiContext = createContext<ExtraCustomEmojiMap>({});
 export const CustomEmojiProvider = ({
   children,
   emoji = {},
-}: PropsWithChildren<{ emoji: ExtraCustomEmojiMap }>) => {
+}: PropsWithChildren<{ emoji?: ExtraCustomEmojiMap | null }>) => {
   return (
-    <CustomEmojiContext.Provider value={emoji}>
+    <CustomEmojiContext.Provider value={emoji ?? {}}>
       {children}
     </CustomEmojiContext.Provider>
   );

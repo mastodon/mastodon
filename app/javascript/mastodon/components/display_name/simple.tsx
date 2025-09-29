@@ -1,7 +1,9 @@
 import type { ComponentPropsWithoutRef, FC } from 'react';
 
-import { EmojiHTML } from '@/mastodon/features/emoji/emoji_html';
+import { ModernEmojiText } from '@/mastodon/features/emoji/emoji_text';
 import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
+
+import { AnimateEmojiProvider } from '../emoji/context';
 
 import type { DisplayNameProps } from './index';
 
@@ -17,7 +19,12 @@ export const DisplayNameSimple: FC<
     : account.get('display_name_html');
   return (
     <bdi>
-      <EmojiHTML {...props} htmlString={accountName} shallow as='span' />
+      <AnimateEmojiProvider as='span' {...props}>
+        <ModernEmojiText
+          text={accountName}
+          extraEmojis={account.get('emojis')}
+        />
+      </AnimateEmojiProvider>
     </bdi>
   );
 };
