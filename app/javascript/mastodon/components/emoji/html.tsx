@@ -42,12 +42,9 @@ export const ModernEmojiHTML = ({
   );
 };
 
-export const EmojiHTML = <Element extends ElementType>(
+export const LegacyEmojiHTML = <Element extends ElementType>(
   props: EmojiHTMLProps<Element>,
 ) => {
-  if (isModernEmojiEnabled()) {
-    return <ModernEmojiHTML {...props} />;
-  }
   const { as: asElement, htmlString, extraEmojis, className, ...rest } = props;
   const Wrapper = asElement ?? 'div';
   return (
@@ -58,3 +55,7 @@ export const EmojiHTML = <Element extends ElementType>(
     />
   );
 };
+
+export const EmojiHTML = isModernEmojiEnabled()
+  ? ModernEmojiHTML
+  : LegacyEmojiHTML;

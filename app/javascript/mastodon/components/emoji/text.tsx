@@ -20,5 +20,8 @@ export const ModernEmojiText: FC<EmojiTextProps> = ({ text, extraEmojis }) => {
   );
 };
 
-export const EmojiText: FC<EmojiTextProps> = ({ text }) =>
-  isModernEmojiEnabled() ? <ModernEmojiText text={text} /> : text;
+const LegacyEmojiText: FC<EmojiTextProps> = ({ text }) => text;
+
+export const EmojiText = isModernEmojiEnabled()
+  ? ModernEmojiText
+  : LegacyEmojiText;
