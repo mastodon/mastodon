@@ -3,7 +3,15 @@ import type {
   ElementType,
   PropsWithChildren,
 } from 'react';
-import { createContext, useCallback, useMemo, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
+
+import classNames from 'classnames';
 
 import { cleanExtraEmojis } from '@/mastodon/features/emoji/normalize';
 import { autoPlayGif } from '@/mastodon/initial_state';
@@ -13,15 +21,19 @@ import type {
 } from 'mastodon/features/emoji/types';
 
 // Animation context
-export const AnimateEmojiContext = createContext(autoPlayGif ?? false);
+export const AnimateEmojiContext = createContext<boolean | null>(null);
 
 // Polymorphic provider component
 type AnimateEmojiProviderProps<Element extends ElementType = 'div'> =
-  ComponentPropsWithoutRef<Element> & { as?: Element } & PropsWithChildren;
+  ComponentPropsWithoutRef<Element> & {
+    as?: Element;
+    className?: string;
+  } & PropsWithChildren;
 
 export const AnimateEmojiProvider = ({
   children,
   as: Wrapper = 'div',
+  className,
   ...props
 }: AnimateEmojiProviderProps<ElementType>) => {
   const [animate, setAnimate] = useState(autoPlayGif ?? false);
@@ -37,8 +49,23 @@ export const AnimateEmojiProvider = ({
     }
   }, []);
 
+  // If there's a parent context or GIFs autoplay, we don't need handlers.
+  const parentContext = useContext(AnimateEmojiContext);
+  if (parentContext !== null || autoPlayGif === true) {
+    return (
+      <Wrapper {...props} className={classNames(className, 'animate-parent')}>
+        {children}
+      </Wrapper>
+    );
+  }
+
   return (
-    <Wrapper {...props} onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+    <Wrapper
+      {...props}
+      className={classNames(className, 'animate-parent')}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
       <AnimateEmojiContext.Provider value={animate}>
         {children}
       </AnimateEmojiContext.Provider>
