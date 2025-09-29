@@ -13,8 +13,6 @@ class StreamingClient
     attr_reader :url, :messages, :last_error
     attr_accessor :logger, :protocols
 
-    @logger = nil
-
     def initialize(url)
       @uri = URI.parse(url)
       @query_params = @uri.query.present? ? URI.decode_www_form(@uri.query).to_h : {}
