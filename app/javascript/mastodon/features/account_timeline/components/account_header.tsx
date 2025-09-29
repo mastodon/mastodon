@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
 import { AccountBio } from '@/mastodon/components/account_bio';
+import { DisplayName } from '@/mastodon/components/display_name';
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
@@ -378,36 +379,6 @@ export const AccountHeader: React.FC<{
     });
   }, [account]);
 
-  const handleMouseEnter = useCallback(
-    ({ currentTarget }: React.MouseEvent) => {
-      if (autoPlayGif) {
-        return;
-      }
-
-      currentTarget
-        .querySelectorAll<HTMLImageElement>('.custom-emoji')
-        .forEach((emoji) => {
-          emoji.src = emoji.getAttribute('data-original') ?? '';
-        });
-    },
-    [],
-  );
-
-  const handleMouseLeave = useCallback(
-    ({ currentTarget }: React.MouseEvent) => {
-      if (autoPlayGif) {
-        return;
-      }
-
-      currentTarget
-        .querySelectorAll<HTMLImageElement>('.custom-emoji')
-        .forEach((emoji) => {
-          emoji.src = emoji.getAttribute('data-static') ?? '';
-        });
-    },
-    [],
-  );
-
   const suspended = account?.suspended;
   const isRemote = account?.acct !== account?.username;
   const remoteDomain = isRemote ? account?.acct.split('@')[1] : null;
@@ -774,7 +745,6 @@ export const AccountHeader: React.FC<{
     );
   }
 
-  const displayNameHtml = { __html: account.display_name_html };
   const fields = account.fields;
   const isLocal = !account.acct.includes('@');
   const username = account.acct.split('@')[0];
@@ -808,11 +778,9 @@ export const AccountHeader: React.FC<{
       )}
 
       <div
-        className={classNames('account__header', {
+        className={classNames('account__header animate-parent', {
           inactive: !!account.moved,
         })}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         {!(suspended || hidden || account.moved) &&
           relationship?.requested_by && (
@@ -863,7 +831,7 @@ export const AccountHeader: React.FC<{
 
           <div className='account__header__tabs__name'>
             <h1>
-              <span dangerouslySetInnerHTML={displayNameHtml} />
+              <DisplayName account={account} variant='simple' />
               <small>
                 <span>
                   @{username}

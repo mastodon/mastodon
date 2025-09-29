@@ -367,7 +367,7 @@ is:
       title: Sérsniðin tjáningartákn
       uncategorized: Óflokkað
       unlist: Afskrá
-      unlisted: Hljóðlátt opinbert
+      unlisted: Óskráð
       update_failed_msg: Gat ekki uppfært þetta tjáningartákn
       updated_msg: Tókst að uppfæra tjáningartákn!
       upload: Senda inn
@@ -1743,6 +1743,9 @@ is:
       self_vote: Þú getur ekki greitt atkvæði í þínum eigin könnunum
       too_few_options: verður að vera með fleiri en eitt atriði
       too_many_options: getur ekki innihaldið meira en %{max} atriði
+    vote: Greiða atkvæði
+  posting_defaults:
+    explanation: Þessar stillingar verða notaðar sjálfgefið þegar útbúnar eru nýjar færslur, en hægt er að breyta þeim í ritlinum fyrir hverja og eina færslu.
   preferences:
     other: Annað
     posting_defaults: Sjálfgefin gildi við gerð færslna
@@ -1920,10 +1923,9 @@ is:
     visibilities:
       direct: Einkaspjall
       private: Einungis fylgjendur
-      private_long: Aðeins birt fylgjendum
       public: Opinber
       public_long: Hver sem er, á og utan Mastodon
-      unlisted: Óskráð
+      unlisted: Hljóðlátt opinbert
       unlisted_long: Falið frá leitarniðurstöðum Mastodon, vinsældalistum og opinberum tímalínum
   statuses_cleanup:
     enabled: Sjálfkrafa eyða eldri færslum

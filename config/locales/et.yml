@@ -367,7 +367,7 @@ et:
       title: Emotikonid
       uncategorized: Kategoriseerimata
       unlist: Loetlemata
-      unlisted: Vaikselt avalik
+      unlisted: Ajajooneväline
       update_failed_msg: Ei saanud seda emotikoni uuendada
       updated_msg: Emotikoni uuendamine õnnestus!
       upload: Lae üles
@@ -1739,6 +1739,9 @@ et:
       self_vote: Sa ei saa enda hääletustel hääletada
       too_few_options: peab olema rohkem kui üks vastus
       too_many_options: ei saa sisaldada rohkem kui %{max} vastust
+    vote: Hääleta
+  posting_defaults:
+    explanation: Järgnevad seadistused on uute küsitluste loomisel kasutusel vaikimisi valikutena, kuid neid saad küsitluse koostamisel ka muuta.
   preferences:
     other: Muu
     posting_defaults: Postitamise vaikesätted
@@ -1915,11 +1918,10 @@ et:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privaatne mainimine
-      private: Ainult jälgijatele
-      private_long: Näevad ainult jälgijad
+      private: Ainult jälgijad
       public: Avalik
       public_long: Nii kasutajad kui mittekasutajad
-      unlisted: Ajajooneväline
+      unlisted: Vaikselt avalik
       unlisted_long: Peidetud Mastodoni otsingutulemustest, pupulaarsust koguva sisu voost ja avalikult ajajoonelt
   statuses_cleanup:
     enabled: Vanade postituste automaatne kustutamine

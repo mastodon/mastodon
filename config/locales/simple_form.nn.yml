@@ -56,7 +56,8 @@ nn:
         scopes: API-ane som programmet vil få tilgjenge til. Ettersom du vel eit toppnivåomfang tarv du ikkje velja einskilde API-ar.
         setting_aggregate_reblogs: Ikkje vis nye framhevingar for tut som nyleg har vorte heva fram (Påverkar berre nylege framhevingar)
         setting_always_send_emails: Vanlegvis vil ikkje e-postvarsel bli sendt når du brukar Mastodon aktivt
-        setting_default_quote_policy: Denne innstillinga har berre verknad for innlegg som er laga med den neste utgåva av Mastodon, men du kan velja kva du vil ha i førebuingane.
+        setting_default_quote_policy_private: Innlegg som er skrivne på Mastodon og berre for fylgjarar kan ikkje siterast av andre.
+        setting_default_quote_policy_unlisted: Når folk siterer deg, vil innlegget deira ikkje syna på populære tidsliner.
         setting_default_sensitive: Sensitive media vert gøymde som standard, og du syner dei ved å klikka på dei
         setting_display_media_default: Gøym media som er merka som sensitive
         setting_display_media_hide_all: Alltid skjul alt media
@@ -241,7 +242,7 @@ nn:
         setting_default_sensitive: Merk alltid media som nærtakande
         setting_delete_modal: Vis stadfesting før du slettar eit tut
         setting_disable_hover_cards: Skru av profilvising når peikaren er over
-        setting_disable_swiping: Skru av sveipebevegelser
+        setting_disable_swiping: Skru av sveiperørsler
         setting_display_media: Medievisning
         setting_display_media_default: Standard
         setting_display_media_hide_all: Gøym alle
@@ -336,12 +337,12 @@ nn:
           all: Varsle om alle oppdateringar
           critical: Varsle kun om kristiske oppdateringar
           label: Ein ny versjon av Mastodon er tilgjengeleg
-          none: Aldri varsle om oppdateringar (ikkje anbefalt)
+          none: Aldri varsle om oppdateringar (ikkje tilrådd)
           patch: Varsle om feilrettingsoppdateringar
         trending_tag: Ny trend krev gjennomgang
       rule:
         hint: Meir informasjon
-        text: Regler
+        text: Regel
       settings:
         indexable: Ta med profilsida i søkjemotorar
         show_application: Vis kva app du brukte når du skreiv innlegg
@@ -385,7 +386,7 @@ nn:
         template: Nyttelastmal
         url: Endepunkts-URL
     'no': Nei
-    not_recommended: Ikkje anbefalt
+    not_recommended: Ikkje tilrådd
     overridden: Overstyrt
     recommended: Tilrådt
     required:

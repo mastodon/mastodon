@@ -367,7 +367,7 @@ fo:
       title: Sergjørd kenslutekn
       uncategorized: Ikki flokkað
       unlist: Tak av listanum
-      unlisted: Stillur almenningur
+      unlisted: Ikki listað
       update_failed_msg: Fekk ikki dagført hatta kensluteknið
       updated_msg: Kenslutekn dagført!
       upload: Legg upp
@@ -1739,6 +1739,9 @@ fo:
       self_vote: Tú kanst ikki atkvøða í tínum egnum atkvøðugreiðslum
       too_few_options: má hava meiri enn ein valmøguleika
       too_many_options: kann ikki innihalda fleiri enn %{max} valmøguleikar
+    vote: Atkvøð
+  posting_defaults:
+    explanation: Hesar stillingar verða brúktar sum sjálvval tá stovnar nýggjar postar, men tú kanst rætta tær fyri hvønn post í rættiøkinum.
   preferences:
     other: Annað
     posting_defaults: Postingarstillingar
@@ -1916,10 +1919,9 @@ fo:
     visibilities:
       direct: Privat umrøða
       private: Einans fylgjarar
-      private_long: Vís einans fyri fylgjarum
       public: Alment
       public_long: Øll í og uttanfyri Mastodon
-      unlisted: Ólistað
+      unlisted: Stillur almenningur
       unlisted_long: Fjalt frá leitiúrslitum, rákum og almennum tíðarlinjum í Mastodon
   statuses_cleanup:
     enabled: Strika gamlar postar sjálvvirkandi

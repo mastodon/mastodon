@@ -47,8 +47,6 @@ import Status from '../components/status';
 import { deleteModal } from '../initial_state';
 import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
 
-import { isFeatureEnabled } from 'mastodon/utils/environment';
-
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
   const getPictureInPicture = makeGetPictureInPicture();
@@ -81,9 +79,7 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
   },
   
   onQuote (status) {
-    if (isFeatureEnabled('outgoing_quotes')) {
-      dispatch(quoteComposeById(status.get('id')));
-    }
+    dispatch(quoteComposeById(status.get('id')));
   },
 
   onFavourite (status) {
@@ -235,11 +231,10 @@ const mapDispatchToProps = (dispatch, { contextType }) => ({
     dispatch(deployPictureInPicture({statusId: status.get('id'), accountId: status.getIn(['account', 'id']), playerType: type, props: mediaProps}));
   },
 
-  onInteractionModal (type, status) {
+  onInteractionModal (status) {
     dispatch(openModal({
       modalType: 'INTERACTION',
       modalProps: {
-        type,
         accountId: status.getIn(['account', 'id']),
         url: status.get('uri'),
       },

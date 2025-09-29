@@ -213,7 +213,7 @@ nan:
         enable_user: 啟用口座
         memorialize_account: 設做故人ê口座
         promote_user: Kā用者升級
-        publish_terms_of_service: 公佈服務ê使用規則
+        publish_terms_of_service: 公佈服務規定
         reject_appeal: 拒絕申訴
         reject_user: 拒絕用者
         remove_avatar_user: Thâi掉標頭
@@ -281,7 +281,7 @@ nan:
         enable_user_html: "%{name} kā 用者 %{target} 設做允准登入"
         memorialize_account_html: "%{name} kā %{target} 設做故人口座"
         promote_user_html: "%{name} kā 用者 %{target} 升級"
-        publish_terms_of_service_html: "%{name} 公佈服務規則ê更新"
+        publish_terms_of_service_html: "%{name} 公佈服務規定ê更新"
         reject_appeal_html: "%{name} 拒絕 %{target} 所寫ê tuì管理決定ê投訴"
         reject_user_html: "%{name} 拒絕 %{target} ê 註冊"
         remove_avatar_user_html: "%{name} thâi掉 %{target} ê標頭"
@@ -364,7 +364,7 @@ nan:
       title: 自訂emoji
       uncategorized: Iáu無分類
       unlist: Tuì列單the̍h掉
-      unlisted: 恬靜公開
+      unlisted: The̍h掉ah
       update_failed_msg: Bē當更新hit ê emoji
       updated_msg: Emoji成功更新ah！
       upload: 傳上去
@@ -787,7 +787,7 @@ nan:
       add_new: 加添規則
       add_translation: 加添翻譯
       delete: Thâi掉
-      description_html: 雖bóng大部份ê lóng講有讀kap同意使用規則，m̄-koh攏無讀了，直到發生問題ê時。<strong>提供in列單ē當hōo tsi̍t kái看服侍器ê規則khah快。</strong>請試kā個別ê規則寫kah短koh簡單，m̄-kú m̄通kā in拆做tsē-tsē分開ê項目。
+      description_html: 雖bóng大部份ê lóng講有讀kap同意服務規定，m̄-koh攏無讀了，直到發生問題ê時。<strong>提供in列單ē當hōo tsi̍t kái看服侍器ê規則khah快。</strong>請試kā個別ê規則寫kah短koh簡單，m̄-kú m̄通kā in拆做tsē-tsē分開ê項目。
       edit: 編輯規則
       empty: Iáu bē定義服侍器ê規則。
       move_down: Suá khah落來
@@ -823,9 +823,185 @@ nan:
         title: 預設kā用者tuì tshiau-tshuē ia̋n-jín ê索引排除
       discovery:
         follow_recommendations: 跟tuè建議
+        preamble: Kā心適ê內容浮現出來，ē當幫tsān tī Mastodon頂siáng lóng可能m̄知ê新手。控制tsē-tsē發現lí ê服侍器ê特色作品ê功能án-nuá運作。
+        privacy: 隱私權
+        profile_directory: 個人資料ê目錄
+        public_timelines: 公共ê時間線
+        publish_statistics: 發布統計
+        title: 發現
+        trends: 趨勢
+      domain_blocks:
+        all: Kàu ta̍k ê lâng
+        disabled: 無kàu tó tsi̍t ê
+        users: Kàu ta̍k位登入ê用者
+      registrations:
+        moderation_recommandation: 佇開放hōo ta̍k ê lâng註冊進前，請確認lí有夠額koh主動反應ê管理團隊！
+        preamble: 控制ē當佇lí ê服侍器註冊ê人。
+        title: 註冊
+      registrations_mode:
+        modes:
+          approved: 註冊tio̍h愛核准
+          none: 無lâng通註冊
+          open: Ta̍k ê lâng lóng ē當註冊
+        warning_hint: Guán建議用「註冊tio̍h愛核准」，除非lí tuì lí ê管理團隊ē當不管時處理pùn-sò訊息kap惡意註冊有信心。
+      security:
+        authorized_fetch: 要求tuì聯邦ê服侍器ê認證
+        authorized_fetch_hint: 要求tuì聯邦ê服侍器ê驗證ē當koh khah嚴格執行用者級kap服侍器級ê封鎖。M̄-kú ē致kàu性能處罰ê損失，減少lí ê回應ê擴散程度，mā有可能引入kap tsi̍t-kuá聯邦服務ê相容性問題。另外，tse bē當防止別lâng專工掠lí ê公開PO文kap口座。
+        authorized_fetch_overridden_hint: 因為hōo環境變數khàm掉，lí tsit-má bē當改tsit ê設定。
+        federation_authentication: 聯邦驗證ê執行
+      title: 服侍器ê設定
+    site_uploads:
+      delete: Thâi掉傳上去ê檔案
+      destroyed_msg: 成功thâi掉傳上去kàu本站ê內容ah！
+    software_updates:
+      critical_update: 重要—請緊升級
+      description: 建議kā lí ê Mastodon安裝維持上新ê狀態，the̍h著上新ê修正kap功能。另外，隨時更新Mastodon有時陣真重要，ē當避免安全問題。因為tsiah-ê原因，Mastodon每30分鐘檢查更新，mā ē根據lí ê電子phue通知ê偏愛設定kā lí通知。
+      documentation_link: 看詳細
+      release_notes: 版本ê資訊
+      title: Ē當the̍h ê更新
+      type: 類型
+      types:
+        major: 大ê版本更新
+        minor: 細ê版本更新
+        patch: 碎布(patch)公開—修正錯誤kap容易作用ê改變
+      version: 版本
     statuses:
+      account: 作者
+      application: 應用程式
+      back_to_account: Tńg去口座ê頁
+      back_to_report: Tńg去檢舉ê頁
+      batch:
+        add_to_report: '加kàu檢舉 #%{id}'
+        remove_from_report: Tuì檢舉suá掉
+        report: 檢舉
+      contents: 內容
+      deleted: Thâi掉ah
+      favourites: 收藏
+      history: 版本ê歷史
+      in_reply_to: 回應
       language: 語言
+      media:
+        title: 媒體
+      metadata: Meta資料
+      no_history: Tsit篇PO文iáu無hōo lâng編輯
+      no_status_selected: 因為無揀任何PO文，所以lóng無改變
+      open: 公開PO文
+      original_status: 原底ê PO文
+      reblogs: 轉送
+      replied_to_html: 回應 %{acct_link}
+      status_changed: PO文有改ah
+      status_title: 由 @%{name} 所PO
+      title: Tsit ê口座ê PO文 - @%{name}
+      trending: 趨勢
+      view_publicly: 公開看
+      visibility: 通看ê程度
+      with_media: 有媒體
+    strikes:
+      actions:
+        delete_statuses: "%{name} kā %{target} ê PO文thâi掉ah"
+        disable: "%{name} kā %{target} ê口座冷凍ah"
+        mark_statuses_as_sensitive: "%{name} kā %{target} êPO文標做敏感ê內容"
+        none: "%{name} 送警告hōo %{target} ah"
+        sensitive: "%{name} kā %{target} ê口座標做敏感"
+        silence: "%{name} 限制 %{target} ê口座"
+        suspend: "%{name} kā %{target} ê口座停止權限ah"
+      appeal_approved: 投訴ah
+      appeal_pending: 投訴teh等審核
+      appeal_rejected: 投訴hōo lâng拒絕
+    system_checks:
+      database_schema_check:
+        message_html: 有leh等待處理ê資料庫遷suá。請執行tsiah-ê，來保證應用程式照期望pháng
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch ê索引分析器過期ah。請執行 <code>tootctl search deploy --only-mapping --only=%{value}</code>
+      elasticsearch_health_red:
+        message_html: Elasticsearch ê cluster無健康（紅色ê狀態），bē當用tshiau-tshuē功能
+      elasticsearch_health_yellow:
+        message_html: Elasticsearch ê cluster無健康（黃色ê狀態），lí可能想beh調查原因。
+      elasticsearch_index_mismatch:
+        message_html: Elasticsearch索引對應過期ah。請執行 <code>tootctl search deploy --only=%{value}</code>
+      elasticsearch_preset:
+        action: 看文件
+        message_html: Lí ê Elasticsearch ê cluster有超過tsi̍t ê節點，m̄-kú Mastodon iáu無設定用in。
+      elasticsearch_preset_single_node:
+        action: 看文件
+        message_html: Lí ê Elasticsearch 叢集kan-ta有tsi̍t ê節點，<code>ES_PRESET</code> 應該設定做 <code>single_node_cluster</code>。
+      elasticsearch_reset_chewy:
+        message_html: Lí ê Elasticsearch系統索引因為設定改變，過期ah。請執行 <code>tootctl search deploy --reset-chewy</code> 來更新。
+      elasticsearch_running_check:
+        message_html: Bē當連接 Elasticsearch。請確認kám有teh pháng，á是停用全文tshiau-tshuē
+      elasticsearch_version_check:
+        message_html: Bē當相容ê Elasticsearch版本：%{value}
+        version_comparison: Elasticsearch %{running_version} 版teh pháng，m̄-kú 愛 %{required_version} 版。
+      rules_check:
+        action: 管理服侍器ê規則
+        message_html: Lí iáu bē定義任何服侍器ê規則。
+      sidekiq_process_check:
+        message_html: 排列 %{value} 無leh pháng Sidekiq ê程序。請檢視lí ê Sidekiq 設定
+      software_version_check:
+        action: 看ē當the̍h ê更新
+        message_html: 有Mastodon ê更新ē當載落去。
+      software_version_critical_check:
+        action: 看ē當the̍h ê更新
+        message_html: 有重大ê Mastodon更新ē當載落去，請趕緊更新。
+      software_version_patch_check:
+        action: 看ē當the̍h ê更新
+        message_html: 有修正錯誤ê Mastodon ê更新，ē當載落去。
+      upload_check_privacy_error:
+        action: 檢查tse，the̍h著其他資訊
+        message_html: "<strong>Lí ê網頁服侍器設定錯誤。Lí ê服侍器ê隱私權有風險。</strong>"
+      upload_check_privacy_error_object_storage:
+        action: 檢查tse，the̍h著其他資訊
+        message_html: "<strong>Lí ê物件儲存空間設定錯誤。Lí ê服侍器ê隱私權有風險。</strong>"
+    tags:
+      moderation:
+        not_trendable: Bē當做趨勢
+        not_usable: Bē當用
+        pending_review: Teh等審核
+        review_requested: 審核請求ah
+        reviewed: 審核ah
+        title: 狀態
+        trendable: 通列做趨勢
+        unreviewed: Iáu bē審核
+        usable: 通用
+      name: 名
+      newest: 上新ê
+      oldest: 上舊ê
+      open: 公開看
+      reset: 重頭設
+      review: 審核狀態
+      search: Tshiau-tshuē
+      title: Hashtag
+      updated_msg: Hashtag設定更新成功ah
+    terms_of_service:
+      back: 轉去服務規定
+      changelog: Siánn物有改
+      create: 用lí家tī ê
+      current: 目前ê
+      draft: 草稿
+      generate: 用枋模
+      generates:
+        action: 生成
+        chance_to_review_html: "<strong>所生成ê服務規定bē自動發布。</strong>Lí ē有機會來看結果。請添必要ê詳細來繼續。"
+        explanation_html: 提供ê服務規定kan-ta做參考用，bē當成做任何法律建議。請照lí ê情形kap有ê特別ê法律問題諮詢lí ê法律顧問。
+        title: 設定服務規定
+      going_live_on_html: 目前規定，tuì %{date} 施行
+      history: 歷史
+      live: 目前ê
+      no_history: Iáu無半項服務規定ê改變記錄。
+      no_terms_of_service_html: Lí目前iáu無設定任何服務規定。服務規定是beh提供明確性，兼保護lí佇kap用者ê爭議中毋免承受可能ê責任。
+      notified_on_html: 佇 %{date} 通知ê用者
+      notify_users: 通知用者
     trends:
+      preview_card_providers:
+        title: 發布者
+      rejected: 拒絕ê
+      statuses:
+        allow: 允准PO文
+        allow_account: 允准作者
+        confirm_allow: Lí kám確定beh允准所揀ê狀態？
+        confirm_allow_account: Lí kám確定beh允准所揀ê口座？
+        confirm_disallow: Lí kám確定無愛允准所揀ê狀態？
+        confirm_disallow_account: Lí kám確定無愛允准所揀ê口座？
       tags:
         dashboard:
           tag_languages_dimension: Tsia̍p用ê語言

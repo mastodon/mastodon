@@ -1,5 +1,7 @@
 import type { ComponentPropsWithoutRef, ElementType } from 'react';
 
+import classNames from 'classnames';
+
 import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 
 import { useEmojify } from './hooks';
@@ -7,28 +9,39 @@ import type { CustomEmojiMapArg } from './types';
 
 type EmojiHTMLProps<Element extends ElementType = 'div'> = Omit<
   ComponentPropsWithoutRef<Element>,
-  'dangerouslySetInnerHTML'
+  'dangerouslySetInnerHTML' | 'className'
 > & {
   htmlString: string;
   extraEmojis?: CustomEmojiMapArg;
   as?: Element;
+  shallow?: boolean;
+  className?: string;
 };
 
-export const ModernEmojiHTML = <Element extends ElementType>({
+export const ModernEmojiHTML = ({
   extraEmojis,
   htmlString,
-  as: asElement, // Rename for syntax highlighting
+  as: Wrapper = 'div', // Rename for syntax highlighting
+  shallow,
+  className = '',
   ...props
-}: EmojiHTMLProps<Element>) => {
-  const Wrapper = asElement ?? 'div';
-  const emojifiedHtml = useEmojify(htmlString, extraEmojis);
+}: EmojiHTMLProps<ElementType>) => {
+  const emojifiedHtml = useEmojify({
+    text: htmlString,
+    extraEmojis,
+    deep: !shallow,
+  });
 
   if (emojifiedHtml === null) {
     return null;
   }
 
   return (
-    <Wrapper {...props} dangerouslySetInnerHTML={{ __html: emojifiedHtml }} />
+    <Wrapper
+      {...props}
+      className={classNames(className, 'animate-parent')}
+      dangerouslySetInnerHTML={{ __html: emojifiedHtml }}
+    />
   );
 };
 
@@ -38,7 +51,20 @@ export const EmojiHTML = <Element extends ElementType>(
   if (isModernEmojiEnabled()) {
     return <ModernEmojiHTML {...props} />;
   }
-  const { as: asElement, htmlString, extraEmojis, ...rest } = props;
+  const {
+    as: asElement,
+    htmlString,
+    extraEmojis,
+    className,
+    shallow: _,
+    ...rest
+  } = props;
   const Wrapper = asElement ?? 'div';
-  return <Wrapper {...rest} dangerouslySetInnerHTML={{ __html: htmlString }} />;
+  return (
+    <Wrapper
+      {...rest}
+      dangerouslySetInnerHTML={{ __html: htmlString }}
+      className={classNames(className, 'animate-parent')}
+    />
+  );
 };

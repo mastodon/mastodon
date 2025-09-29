@@ -373,7 +373,7 @@ be:
       title: Адвольныя эмодзі
       uncategorized: Без катэгорыі
       unlist: Прыбраць
-      unlisted: Ціхі публічны
+      unlisted: Не ў стужках
       update_failed_msg: Немагчыма абнавіць гэта эмодзі
       updated_msg: Смайлік паспяхова абноўлены!
       upload: Запампаваць
@@ -1747,7 +1747,7 @@ be:
         subject: "%{name} зарэгістраваўся"
     favourite:
       body: "%{name} упадабаў(-ла) Ваш допіс:"
-      subject: "%{name} упадабаў ваш допіс"
+      subject: "%{name} упадабаў(-ла) Ваш допіс"
       title: Новае ўпадабанае
     follow:
       body: "%{name} цяпер падпісаны на вас!"
@@ -1817,6 +1817,9 @@ be:
       self_vote: Вы не можаце галасаваць ва ўласных апытаннях
       too_few_options: павінна быць болей за адзін варыянт
       too_many_options: колькасць варыянтаў не можа перавышаць %{max}
+    vote: Прагаласаваць
+  posting_defaults:
+    explanation: Гэтыя налады будуць ужывацца па змаўчанні, калі Вы будзеце ствараць новыя допісы, але Вы зможаце змяняць іх для кожнага допісу ў акне для напісання.
   preferences:
     other: Іншае
     posting_defaults: Публікаваць па змаўчанні
@@ -2001,11 +2004,10 @@ be:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Прыватнае згадванне
-      private: Для падпісчыкаў
-      private_long: Паказваць толькі падпісчыкам
+      private: Толькі для падпісчыкаў
       public: Публічны
       public_long: Усе ў Mastodon і па-за ім
-      unlisted: Не ў спісе
+      unlisted: Ціхі публічны
       unlisted_long: Схавана ў выніках пошуку Mastodon, трэндах і публічных стужках
   statuses_cleanup:
     enabled: Аўтаматычна выдаляць старыя допісы

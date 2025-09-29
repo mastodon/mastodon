@@ -4,6 +4,7 @@ export type ApiQuoteState = 'accepted' | 'pending' | 'revoked' | 'unauthorized';
 export type ApiQuotePolicy =
   | 'public'
   | 'followers'
+  | 'following'
   | 'nobody'
   | 'unsupported_policy';
 export type ApiUserQuotePolicy = 'automatic' | 'manual' | 'denied' | 'unknown';

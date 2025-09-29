@@ -367,7 +367,7 @@ es-AR:
       title: Emojis personalizados
       uncategorized: Sin categoría
       unlist: No listar
-      unlisted: Público pero silencioso
+      unlisted: No listado
       update_failed_msg: No se pudo actualizar ese emoji
       updated_msg: "¡Emoji actualizado exitosamente!"
       upload: Subir
@@ -1739,6 +1739,9 @@ es-AR:
       self_vote: No podés votar en tus propias encuestas
       too_few_options: debe tener más de un elemento
       too_many_options: no puede contener más de %{max} elementos
+    vote: Votar
+  posting_defaults:
+    explanation: Esta configuración se usará como predeterminada cuando crees nuevos mensajes, pero podés modificarla en cada mensaje dentro de la sección de redacción.
   preferences:
     other: Otras opciones
     posting_defaults: Configuración predeterminada de mensajes
@@ -1915,11 +1918,10 @@ es-AR:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Mención privada
-      private: Sólo a seguidores
-      private_long: Sólo mostrar a seguidores
+      private: Solo seguidores
       public: Público
       public_long: Todo el mundo, dentro y fuera de Mastodon
-      unlisted: No listado
+      unlisted: Público pero silencioso
       unlisted_long: Oculto de los resultados de búsqueda, tendencias y líneas temporales públicas de Mastodon
   statuses_cleanup:
     enabled: Eliminar automáticamente mensajes antiguos

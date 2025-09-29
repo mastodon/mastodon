@@ -367,7 +367,7 @@ gl:
       title: Emoticonas personalizadas
       uncategorized: Sen categoría
       unlist: Non listar
-      unlisted: Público limitado
+      unlisted: Fóra das listas
       update_failed_msg: Non foi posíbel actualizar a emoticona
       updated_msg: Actualizouse a emoticona de xeito correcto!
       upload: Subir
@@ -1739,6 +1739,9 @@ gl:
       self_vote: Non podes votar nas túas enquisas
       too_few_options: debe ter máis de unha opción
       too_many_options: non pode haber máis de %{max} opcións
+    vote: Votar
+  posting_defaults:
+    explanation: Estes axustes vanse usar como valores por defecto para as novas publicacións, pero podes axustalas de xeito individual na caixa de edición.
   preferences:
     other: Outro
     posting_defaults: Valores por defecto
@@ -1915,11 +1918,10 @@ gl:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Mención privada
-      private: Só seguidoras
-      private_long: Mostrar só as seguidoras
+      private: Só para seguidoras
       public: Público
       public_long: Para calquera dentro e fóra de Mastodon
-      unlisted: Fóra das listas
+      unlisted: Pública limitada
       unlisted_long: Non aparece nos resultados de buscas en Mastodon, nas tendencias e cronoloxías públicas
   statuses_cleanup:
     enabled: Borrar automáticamente publicacións antigas

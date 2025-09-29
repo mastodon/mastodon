@@ -367,7 +367,7 @@ hu:
       title: Egyéni emodzsik
       uncategorized: Nem kategorizált
       unlist: Elrejtés a listáról
-      unlisted: Csendes nyilvános
+      unlisted: Nem listázott
       update_failed_msg: Nem sikerült frissíteni az emodzsit
       updated_msg: Emodzsi sikeresen frissítve!
       upload: Feltöltés
@@ -1739,6 +1739,9 @@ hu:
       self_vote: Nem szavazhatsz a saját szavazásodon
       too_few_options: több, mint egy opciónak kell lennie
       too_many_options: nem lehet több, mint %{max} opció
+    vote: Szavazás
+  posting_defaults:
+    explanation: Ezek a beállítások lesznek alapértelmezésként használva, amikor új bejegyzéseket hoz létre, de a szerkesztő segítségével bejegyzésenként szerkeszthetők.
   preferences:
     other: Egyéb
     posting_defaults: Bejegyzések alapértelmezései
@@ -1916,10 +1919,9 @@ hu:
     visibilities:
       direct: Privát említés
       private: Csak követőknek
-      private_long: Csak a követőidnek jelenik meg
       public: Nyilvános
       public_long: Bárki a Mastodonon és azon kívül
-      unlisted: Listázatlan
+      unlisted: Csendes nyilvános
       unlisted_long: Elrejtve a Mastodon keresési találataiban, a felkapottak között és a nyilvános idővonalakon
   statuses_cleanup:
     enabled: Régi bejegyzések automatikus törlése

@@ -372,6 +372,7 @@ pl:
       title: Niestandardowe emoji
       uncategorized: Bez kategorii
       unlist: Usuń z listy
+      unlisted: Niewidoczne
       update_failed_msg: Nie udało się zaktualizować emoji
       updated_msg: Pomyślnie zaktualizowano emoji!
       upload: Dodaj
@@ -1794,6 +1795,7 @@ pl:
       self_vote: Nie możesz głosować we własnych ankietach
       too_few_options: musi zawierać przynajmniej dwie opcje
       too_many_options: nie może zawierać więcej niż %{max} opcji
+    vote: Głosuj
   preferences:
     other: Pozostałe
     posting_defaults: Domyślne ustawienia wpisów
@@ -1971,12 +1973,13 @@ pl:
       limit: Przekroczyłeś maksymalną liczbę przypiętych wpisów
       ownership: Nie możesz przypiąć cudzego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
+    quote_policies:
+      followers: Tylko obserwujący
+      nobody: Tylko ja
+      public: Każdy
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: Tylko dla obserwujących
-      private_long: Widoczne tylko dla osób, które Cię obserwują
       public: Publiczne
-      unlisted: Niewypisane
   statuses_cleanup:
     enabled: Automatycznie usuwaj stare wiadomości
     enabled_hint: Automatycznie usuwa Twoje posty, gdy osiągną określony próg wiekowy, chyba że spełniają jeden z poniższych wyjątków

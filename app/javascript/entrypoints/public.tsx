@@ -145,6 +145,10 @@ function loaded() {
       );
     });
 
+  updateDefaultQuotePrivacyFromPrivacy(
+    document.querySelector('#user_settings_attributes_default_privacy'),
+  );
+
   const reactComponents = document.querySelectorAll('[data-component]');
 
   if (reactComponents.length > 0) {
@@ -347,6 +351,31 @@ const setInputDisabled = (
   }
 };
 
+const setInputHint = (
+  input: HTMLInputElement | HTMLSelectElement,
+  hintPrefix: string,
+) => {
+  const fieldWrapper = input.closest<HTMLElement>('.fields-group > .input');
+  if (!fieldWrapper) return;
+
+  const hint = fieldWrapper.dataset[`${hintPrefix}Hint`];
+  const hintElement =
+    fieldWrapper.querySelector<HTMLSpanElement>(':scope > .hint');
+
+  if (hint) {
+    if (hintElement) {
+      hintElement.textContent = hint;
+    } else {
+      const newHintElement = document.createElement('span');
+      newHintElement.className = 'hint';
+      newHintElement.textContent = hint;
+      fieldWrapper.appendChild(newHintElement);
+    }
+  } else {
+    hintElement?.remove();
+  }
+};
+
 Rails.delegate(
   document,
   '#account_statuses_cleanup_policy_enabled',
@@ -361,6 +390,36 @@ Rails.delegate(
       .forEach((input) => {
         setInputDisabled(input, !target.checked);
       });
+  },
+);
+
+const updateDefaultQuotePrivacyFromPrivacy = (
+  privacySelect: EventTarget | null,
+) => {
+  if (!(privacySelect instanceof HTMLSelectElement) || !privacySelect.form)
+    return;
+
+  const select = privacySelect.form.querySelector<HTMLSelectElement>(
+    'select#user_settings_attributes_default_quote_policy',
+  );
+  if (!select) return;
+
+  setInputHint(select, privacySelect.value);
+
+  if (privacySelect.value === 'private') {
+    select.value = 'nobody';
+    setInputDisabled(select, true);
+  } else {
+    setInputDisabled(select, false);
+  }
+};
+
+Rails.delegate(
+  document,
+  '#user_settings_attributes_default_privacy',
+  'change',
+  ({ target }) => {
+    updateDefaultQuotePrivacyFromPrivacy(target);
   },
 );
 

@@ -114,7 +114,7 @@ el:
         other: Αυτός ο λογαριασμός έχει <strong>%{count}</strong> παραπτώματα.
       promote: Προαγωγή
       protocol: Πρωτόκολλο
-      public: Δημόσιο
+      public: Δημόσιος
       push_subscription_expires: Η εγγραφή PuSH λήγει
       redownload: Ανανέωση άβαταρ
       redownloaded_msg: Επιτυχής ανανέωση προφίλ του/της %{username} από την πηγή
@@ -242,7 +242,7 @@ el:
         update_username_block: Ενημέρωση Κανόνα Ονόματος Χρήστη
       actions:
         approve_appeal_html: Ο/Η %{name} ενέκρινε την ένσταση της απόφασης των συντονιστών από %{target}
-        approve_user_html: ο/η %{name} ενέκρινε την εγγραφή του %{target}
+        approve_user_html: Ο/Η %{name} ενέκρινε την εγγραφή του χρήστη %{target}
         assigned_to_self_report_html: Ο/Η %{name} ανάθεσε την αναφορά %{target} στον εαυτό του/της
         change_email_user_html: Ο χρήστης %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}
         change_role_user_html: Ο/Η %{name} άλλαξε ρόλο του/της %{target}
@@ -286,8 +286,8 @@ el:
         promote_user_html: Ο/Η %{name} προβίβασε το χρήστη %{target}
         publish_terms_of_service_html: Ο χρήστης %{name} δημοσίευσε ενημερώσεις για τους όρους της υπηρεσίας
         reject_appeal_html: Ο/Η %{name} απέρριψε την ένσταση της απόφασης των συντονιστών από %{target}
-        reject_user_html: ο/η %{name} απέρριψε την εγγραφή από %{target}
-        remove_avatar_user_html: ο/η %{name} αφαίρεσε το άβαταρ του/της %{target}
+        reject_user_html: Ο/Η %{name} απέρριψε την εγγραφή του χρήστη %{target}
+        remove_avatar_user_html: Ο/Η %{name} αφαίρεσε το άβαταρ του/της %{target}
         reopen_report_html: Ο/Η %{name} ξανάνοιξε την αναφορά %{target}
         resend_user_html: Ο χρήστης %{name} έστειλε ξανά email επιβεβαίωσης για τον χρήστη %{target}
         reset_password_user_html: Ο/Η %{name} επανέφερε το συνθηματικό του χρήστη %{target}
@@ -367,6 +367,7 @@ el:
       title: Προσαρμοσμένα emoji
       uncategorized: Χωρίς κατηγορία
       unlist: Αφαίρεση από λίστα
+      unlisted: Μη καταχωρημένα
       update_failed_msg: Αδυναμία ενημέρωσης του emoji
       updated_msg: Επιτυχής ενημέρωση του emoji!
       upload: Μεταμόρφωση
@@ -917,7 +918,7 @@ el:
         none: Ο/Η %{name} έστειλε προειδοποίηση προς τον/την %{target}
         sensitive: Ο/Η %{name} επισήμανε τα πολυμέσα του λογαριασμού %{target} ως ευαίσθητα
         silence: Ο/Η %{name} περιόρισε τον λογαριασμό %{target}
-        suspend: ο/η %{name} ανέστειλε τον λογαριασμό %{target}
+        suspend: Ο/Η %{name} ανέστειλε τον λογαριασμό %{target}
       appeal_approved: Έγινε έφεση
       appeal_pending: Έφεση σε εκκρεμότητα
       appeal_rejected: Η έφεση απορρίφθηκε
@@ -1051,7 +1052,7 @@ el:
       rejected: Απορρίφθηκε
       statuses:
         allow: Να επιτρέπεται η ανάρτηση
-        allow_account: Να επιτρέπεται ο συγγραφέας
+        allow_account: Να επιτρέπεται ο συντάκτης
         confirm_allow: Σίγουρα θες να επιτρέψεις τις επιλεγμένες καταστάσεις;
         confirm_allow_account: Σίγουρα θες να επιτρέψεις τους επιλεγμένους λογαριασμούς;
         confirm_disallow: Σίγουρα θες να απορρίψεις τις επιλεγμένες καταστάσεις;
@@ -1182,7 +1183,7 @@ el:
     remove: Αποσύνδεση ψευδώνυμου
   appearance:
     advanced_web_interface: Προηγμένη διεπαφή ιστού
-    advanced_web_interface_hint: 'Αν θέλεις να χρησιμοποιήσεις ολόκληρο το πλάτος της οθόνης σου, η προηγμένη λειτουργία χρήσης σου επιτρέπει να ορίσεις πολλαπλές στήλες ώστε να βλέπεις ταυτόχρονα όση πληροφορία θέλεις: Την αρχική ροή, τις ειδοποιήσεις, την ροή συναλλαγών και όσες λίστες και ετικέτες θέλεις.'
+    advanced_web_interface_hint: 'Αν θέλεις να χρησιμοποιήσεις ολόκληρο το πλάτος της οθόνης σου, η προηγμένη λειτουργία χρήσης σου επιτρέπει να ορίσεις πολλαπλές στήλες ώστε να βλέπεις ταυτόχρονα όση πληροφορία θέλεις: Την αρχική ροή, τις ειδοποιήσεις, τις ομοσπονδιακές ροές και όσες λίστες και ετικέτες θέλεις.'
     animations_and_accessibility: Εφέ κινήσεων και προσβασιμότητα
     confirmation_dialogs: Ερωτήσεις επιβεβαίωσης
     discovery: Ανακάλυψη
@@ -1295,7 +1296,7 @@ el:
     more_from_html: Περισσότερα από %{name}
     s_blog: Ιστολόγιο του/της %{name}
     then_instructions: Στη συνέχεια, πρόσθεσε το όνομα τομέα της δημοσίευσης στο παρακάτω πεδίο.
-    title: Αναφορά συγγραφέα
+    title: Αναφορά συντάκτη
   challenge:
     confirm: Συνέχεια
     hint_html: "<strong>Συμβουλή:</strong> Δεν θα σου ζητήσουμε τον κωδικό ασφαλείας σου ξανά για την επόμενη ώρα."
@@ -1738,6 +1739,9 @@ el:
       self_vote: Δεν μπορείς να ψηφίσεις στις δικές σου δημοσκοπήσεις
       too_few_options: πρέπει να έχει περισσότερες από μια επιλογές
       too_many_options: δεν μπορεί να έχει περισσότερες από %{max} επιλογές
+    vote: Ψήφισε
+  posting_defaults:
+    explanation: Αυτές οι ρυθμίσεις θα χρησιμοποιηθούν ως προεπιλογές όταν δημιουργείτε νέες αναρτήσεις, αλλά μπορείτε να τις επεξεργαστείτε ανά ανάρτηση εντός του συνθέτη.
   preferences:
     other: Άλλες
     posting_defaults: Προεπιλογές ανάρτησης
@@ -1907,13 +1911,18 @@ el:
       limit: Έχεις ήδη καρφιτσώσει το μέγιστο αριθμό επιτρεπτών αναρτήσεων
       ownership: Δεν μπορείς να καρφιτσώσεις ανάρτηση κάποιου άλλου
       reblog: Οι ενισχύσεις δεν καρφιτσώνονται
+    quote_policies:
+      followers: Μόνο ακόλουθοι
+      nobody: Μόνο εγώ
+      public: Όλοι
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Ιδιωτική επισήμανση
       private: Μόνο ακόλουθοι
-      private_long: Εμφάνιση μόνο σε ακόλουθους
-      public: Δημόσιο
-      unlisted: Μη καταχωρημένο
+      public: Δημόσια
+      public_long: Όλοι εντός και εκτός του Mastodon
+      unlisted: Ήσυχα δημόσια
+      unlisted_long: Κρυμμένη από τα αποτελέσματα αναζήτησης Mastodon, τις τάσεις και τις δημόσιες ροές
   statuses_cleanup:
     enabled: Αυτόματη διαγραφή παλιών αναρτήσεων
     enabled_hint: Διαγράφει αυτόματα τις αναρτήσεις σου μόλις φτάσουν σε ένα καθορισμένο όριο ηλικίας, εκτός αν ταιριάζουν με μία από τις παρακάτω εξαιρέσεις

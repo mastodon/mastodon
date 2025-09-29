@@ -56,10 +56,13 @@ eo:
         scopes: Kiujn API-ojn la aplikaĵo permesiĝos atingi. Se vi elektas supran amplekson, vi ne bezonas elekti la individuajn.
         setting_aggregate_reblogs: Ne montri novajn plusendojn de mesaĝoj lastatempe plusenditaj (nur efikas al nove ricevitaj plusendoj)
         setting_always_send_emails: Normale, la sciigoj per retpoŝto ne estos senditaj kiam vi uzas Mastodon aktive
+        setting_default_quote_policy_private: Afiŝoj nur por sekvantoj verkitaj ĉe Mastodon ne povas esti cititaj de aliaj.
+        setting_default_quote_policy_unlisted: Kiam homoj citas vin, ilia afiŝo ankaŭ estos kaŝita de tendencaj templinioj.
         setting_default_sensitive: La tiklaj vidaŭdaĵoj estas implicite kaŝitaj kaj povas esti malkaŝitaj per alklako
         setting_display_media_default: Kaŝi plurmediojn markitajn kiel tiklaj
         setting_display_media_hide_all: Ĉiam kaŝi la vidaŭdaĵojn
         setting_display_media_show_all: Ĉiam montri la vidaŭdaĵojn
+        setting_emoji_style: Kiel montri emoĝiojn. "Aŭtomata" provos uzi denaskajn emoĝiojn, sed uzas Twemoji por malnovaj retumiloj.
         setting_system_scrollbars_ui: Aplikas nur por surtablaj retumiloj baziĝas de Safari kaj Chrome
         setting_use_blurhash: Transirojn estas bazita sur la koloroj de la kaŝitaj aŭdovidaĵoj sed ne montri iun ajn detalon
         setting_use_pending_items: Kaŝi tempoliniajn ĝisdatigojn malantaŭ klako anstataŭ aŭtomate rulumi la fluon
@@ -148,6 +151,9 @@ eo:
         min_age: Ne devus esti malsupre la minimuma aĝo postulita de la leĝoj de via jurisdikcio.
       user:
         chosen_languages: Kun tio markita nur mesaĝoj en elektitaj lingvoj aperos en publikaj tempolinioj
+        date_of_birth:
+          one: Ni devas certigi, ke vi estas almenaŭ %{count}-jaraĝa por uzi %{domain}. Ni ne konservos ĉi tion.
+          other: Ni devas certigi, ke vi estas almenaŭ %{count}-jaraĝaj por uzi %{domain}. Ni ne konservos ĉi tion.
         role: La rolo kontrolas kiujn permesojn la uzanto havas.
       user_role:
         color: Koloro uzita por la rolo sur la UI, kun RGB-formato
@@ -227,6 +233,8 @@ eo:
         setting_auto_play_gif: Aŭtomate ekigi GIF-ojn
         setting_boost_modal: Montri konfirman fenestron antaŭ ol diskonigi mesaĝon
         setting_default_language: Publikada lingvo
+        setting_default_privacy: Afiŝa videblo
+        setting_default_quote_policy: Kiu povas citi
         setting_default_sensitive: Ĉiam marki la vidaŭdaĵojn kiel tiklaj
         setting_delete_modal: Montri konfirman fenestron antaŭ ol forigi mesaĝon
         setting_disable_hover_cards: Malebligi profilan antaŭmontron kiam oni musumas
@@ -235,6 +243,7 @@ eo:
         setting_display_media_default: Implicita
         setting_display_media_hide_all: Kaŝi ĉiujn
         setting_display_media_show_all: Montri ĉiujn
+        setting_emoji_style: Emoĝio-stilo
         setting_expand_spoilers: Ĉiam malfoldas mesaĝojn markitajn per averto pri enhavo
         setting_hide_network: Kaŝi viajn sekvantojn kaj sekvatojn
         setting_missing_alt_text_modal: Montru konfirman dialogon antaŭ afiŝado de aŭdvidaĵoj sen altteksto
@@ -317,6 +326,7 @@ eo:
         follow_request: Sendi retmesaĝon kiam iu petas sekvi vin
         mention: Sendi retmesaĝon kiam iu mencias vin
         pending_account: Sendi retmesaĝon kiam nova konto bezonas kontrolon
+        quote: Iu citis vin
         reblog: Sendi retmesaĝon kiam iu diskonigas vian mesaĝon
         report: Nova raporto estas proponita
         software_updates:
@@ -363,6 +373,8 @@ eo:
         name: Nomo
         permissions_as_keys: Permesoj
         position: Prioritato
+      username_block:
+        allow_with_approval: Permesi aliĝojn kun aprobo
       webhook:
         events: Ŝaltitaj eventoj
         template: Utilŝarĝa ŝablono

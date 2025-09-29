@@ -33,7 +33,7 @@ const messages = defineMessages({
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
   reblog_private: {
     id: 'status.reblog_private',
-    defaultMessage: 'Boost with original visibility',
+    defaultMessage: 'Share again with your followers',
   },
   cancel_reblog_private: {
     id: 'status.cancel_reblog_private',
@@ -92,7 +92,6 @@ export const Footer: React.FC<{
         openModal({
           modalType: 'INTERACTION',
           modalProps: {
-            type: 'reply',
             accountId: status.getIn(['account', 'id']),
             url: status.get('uri'),
           },
@@ -113,7 +112,6 @@ export const Footer: React.FC<{
         openModal({
           modalType: 'INTERACTION',
           modalProps: {
-            type: 'favourite',
             accountId: status.getIn(['account', 'id']),
             url: status.get('uri'),
           },
@@ -135,7 +133,6 @@ export const Footer: React.FC<{
           openModal({
             modalType: 'INTERACTION',
             modalProps: {
-              type: 'reblog',
               accountId: status.getIn(['account', 'id']),
               url: status.get('uri'),
             },

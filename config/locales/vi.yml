@@ -364,7 +364,7 @@ vi:
       title: Emoji
       uncategorized: Chưa phân loại
       unlist: Bỏ danh sách
-      unlisted: Hạn chế
+      unlisted: Chưa cho phép
       update_failed_msg: Không thể cập nhật Emoji này
       updated_msg: Cập nhật thành công Emoji!
       upload: Tải lên
@@ -1700,6 +1700,9 @@ vi:
       self_vote: Bạn không thể tự vốt cho tút của mình
       too_few_options: phải có nhiều hơn một mục
       too_many_options: tối đa %{max} lựa chọn
+    vote: Vốt
+  posting_defaults:
+    explanation: Các thiết lập này sẽ được sử dụng làm mặc định khi bạn tạo tút mới, nhưng bạn có thể chỉnh sửa cho từng tút khi soạn thảo.
   preferences:
     other: Khác
     posting_defaults: Mặc định cho tút
@@ -1872,8 +1875,7 @@ vi:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Nhắn riêng
-      private: Riêng tư
-      private_long: Chỉ người theo dõi mới được xem
+      private: Chỉ người theo dõi
       public: Công khai
       public_long: Bất kỳ ai trong và ngoài Mastodon
       unlisted: Hạn chế

@@ -260,6 +260,10 @@ module ApplicationHelper
     'https://play.google.com/store/apps/details?id=org.joinmastodon.android'
   end
 
+  def within_authorization_flow?
+    session[:user_return_to].present? && Rails.application.routes.recognize_path(session[:user_return_to])[:controller] == 'oauth/authorizations'
+  end
+
   private
 
   def storage_host_var

@@ -364,7 +364,7 @@ ko:
       title: 커스텀 에모지
       uncategorized: 분류되지 않음
       unlist: 목록에서 제거
-      unlisted: 조용한 공개
+      unlisted: 목록에 없음
       update_failed_msg: 에모지를 업데이트 할 수 없습니다
       updated_msg: 성공적으로 에모지를 업데이트했습니다!
       upload: 업로드
@@ -1702,6 +1702,7 @@ ko:
       self_vote: 자신이 만든 설문에는 투표할 수 없음
       too_few_options: 둘 이상의 항목이 있어야 함
       too_many_options: 항목은 %{max}개를 넘을 수 없습니다
+    vote: 투표
   preferences:
     other: 기타
     posting_defaults: 게시물 기본설정
@@ -1874,11 +1875,9 @@ ko:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: 개인 멘션
-      private: 비공개
-      private_long: 팔로워에게만 공개됩니다
       public: 공개
       public_long: 마스토돈 내외 모두
-      unlisted: 미등재
+      unlisted: 조용한 공개
       unlisted_long: 마스토돈 검색결과, 유행, 공개 타임라인에서 숨기기
   statuses_cleanup:
     enabled: 오래된 게시물 자동 삭제

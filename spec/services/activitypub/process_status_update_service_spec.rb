@@ -343,6 +343,42 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       end
     end
 
+    context 'when originally without media attachments and text is removed' do
+      before do
+        stub_request(:get, 'https://example.com/foo.png').to_return(body: attachment_fixture('emojo.png'))
+      end
+
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Note',
+          content: '',
+          updated: '2021-09-08T22:39:25Z',
+          attachment: [
+            { type: 'Image', mediaType: 'image/png', url: 'https://example.com/foo.png' },
+          ],
+        }
+      end
+
+      it 'updates media attachments, fetches attachment, records media and text removal in edit' do
+        subject.call(status, json, json)
+
+        expect(status.reload.ordered_media_attachments.first)
+          .to be_present
+          .and(have_attributes(remote_url: 'https://example.com/foo.png'))
+
+        expect(a_request(:get, 'https://example.com/foo.png'))
+          .to have_been_made
+
+        expect(status.edits.reload.last.ordered_media_attachment_ids)
+          .to_not be_empty
+
+        expect(status.edits.reload.last.text)
+          .to_not be_present
+      end
+    end
+
     context 'when originally with media attachments' do
       let(:media_attachments) { [Fabricate(:media_attachment, remote_url: 'https://example.com/foo.png'), Fabricate(:media_attachment, remote_url: 'https://example.com/unused.png')] }
 
@@ -561,6 +597,42 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       expect { subject.call(status, json, json) }
         .to change(quote, :approval_uri).to(approval_uri)
         .and change(quote, :state).to('accepted')
+    end
+  end
+
+  context 'when an approved quote of a local post gets updated through an explicit update, removing text' do
+    let(:quoted_account) { Fabricate(:account) }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, state: :accepted) }
+    let(:approval_uri) { ActivityPub::TagManager.instance.approval_uri_for(quote) }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+        quoteAuthorization: approval_uri,
+      }
+    end
+
+    it 'updates the quote post without changing the quote status' do
+      expect { subject.call(status, json, json) }
+        .to not_change(quote, :approval_uri)
+        .and not_change(quote, :state).from('accepted')
+        .and change(status, :text).from('Hello world').to('')
     end
   end
 
