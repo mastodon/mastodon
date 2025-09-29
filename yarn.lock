@@ -3329,10 +3329,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rolldown/pluginutils@npm:1.0.0-beta.35":
-  version: 1.0.0-beta.35
-  resolution: "@rolldown/pluginutils@npm:1.0.0-beta.35"
-  checksum: 10c0/feb6ab8f77ef2bde675099409c3ccd6a168f35a3c3e88482df3ca42494260fd42befe36e8e90ce358847a12aaab94cd8fe7069cf1e905edf91eb411d933906d9
+"@rolldown/pluginutils@npm:1.0.0-beta.38":
+  version: 1.0.0-beta.38
+  resolution: "@rolldown/pluginutils@npm:1.0.0-beta.38"
+  checksum: 10c0/8353ec2528349f79e27d1a3193806725b85830da334e935cbb606d88c1177c58ea6519c578e4e93e5f677f5b22aecb8738894dbed14603e14b6bffe3facf1002
   languageName: node
   linkType: hard
 
@@ -4817,18 +4817,18 @@ __metadata:
   linkType: hard
 
 "@vitejs/plugin-react@npm:^5.0.0":
-  version: 5.0.3
-  resolution: "@vitejs/plugin-react@npm:5.0.3"
+  version: 5.0.4
+  resolution: "@vitejs/plugin-react@npm:5.0.4"
   dependencies:
     "@babel/core": "npm:^7.28.4"
     "@babel/plugin-transform-react-jsx-self": "npm:^7.27.1"
     "@babel/plugin-transform-react-jsx-source": "npm:^7.27.1"
-    "@rolldown/pluginutils": "npm:1.0.0-beta.35"
+    "@rolldown/pluginutils": "npm:1.0.0-beta.38"
     "@types/babel__core": "npm:^7.20.5"
     react-refresh: "npm:^0.17.0"
   peerDependencies:
     vite: ^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
-  checksum: 10c0/3fc071455630a0584c170c544d20fc3edaccfb60a1e03ea14ca76f049f2657eb645aba9c216db016b8d70e4f894285a78fcd92ef63a2fcfa7864da378ac52761
+  checksum: 10c0/bb9360a4b4c0abf064d22211756b999faf23889ac150de490590ca7bd029b0ef7f4cd8ba3a32b86682a62d46fb7bebd75b3fa9835c57c78123f4a646de2e0136
   languageName: node
   linkType: hard
 
@@ -7433,13 +7433,6 @@ __metadata:
   version: 2.0.6
   resolution: "fast-levenshtein@npm:2.0.6"
   checksum: 10c0/111972b37338bcb88f7d9e2c5907862c280ebf4234433b95bc611e518d192ccb2d38119c4ac86e26b668d75f7f3894f4ff5c4982899afced7ca78633b08287c4
-  languageName: node
-  linkType: hard
-
-"fast-redact@npm:^3.1.1":
-  version: 3.3.0
-  resolution: "fast-redact@npm:3.3.0"
-  checksum: 10c0/d81562510681e9ba6404ee5d3838ff5257a44d2f80937f5024c099049ff805437d0fae0124458a7e87535cc9dcf4de305bb075cab8f08d6c720bbc3447861b4e
   languageName: node
   linkType: hard
 
@@ -10346,11 +10339,10 @@ __metadata:
   linkType: hard
 
 "pino@npm:^9.0.0":
-  version: 9.11.0
-  resolution: "pino@npm:9.11.0"
+  version: 9.12.0
+  resolution: "pino@npm:9.12.0"
   dependencies:
     atomic-sleep: "npm:^1.0.0"
-    fast-redact: "npm:^3.1.1"
     on-exit-leak-free: "npm:^2.1.0"
     pino-abstract-transport: "npm:^2.0.0"
     pino-std-serializers: "npm:^7.0.0"
@@ -10358,11 +10350,12 @@ __metadata:
     quick-format-unescaped: "npm:^4.0.3"
     real-require: "npm:^0.2.0"
     safe-stable-stringify: "npm:^2.3.1"
+    slow-redact: "npm:^0.3.0"
     sonic-boom: "npm:^4.0.1"
     thread-stream: "npm:^3.0.0"
   bin:
     pino: bin.js
-  checksum: 10c0/ba908f95b61fa2c2d6c432e1f39a4394cc0dbf356c4f8837bd9c07538d749699b78204a5557e6050870f2988c25c3f0b6a88693d4bd185ebeef57d75a3b25e38
+  checksum: 10c0/5cfe093e972a8471a90f7f380c01379eed3fd937038acb97d1de9180f097c044855ca89a2e70baa699aec3e8dcaec037d03e2c90dde235102a3e17b40f54cc1f
   languageName: node
   linkType: hard
 
@@ -12284,6 +12277,13 @@ __metadata:
     ansi-styles: "npm:^6.2.1"
     is-fullwidth-code-point: "npm:^5.0.0"
   checksum: 10c0/631c971d4abf56cf880f034d43fcc44ff883624867bf11ecbd538c47343911d734a4656d7bc02362b40b89d765652a7f935595441e519b59e2ad3f4d5d6fe7ca
+  languageName: node
+  linkType: hard
+
+"slow-redact@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "slow-redact@npm:0.3.0"
+  checksum: 10c0/bb2f77830f64fb01079849e0c6433c15e782b88cccb82d4b0d62ce216307cf514ea3f92e9b2c6ae1b1d613ac7743305d5f0324e94c9dc8e41908939456248f9a
   languageName: node
   linkType: hard
 
