@@ -16,9 +16,9 @@ export const DisplayNameWithoutDomain: FC<
 > = ({ account, className, children, ...props }) => {
   return (
     <AnimateEmojiProvider
-      as='span'
       {...props}
-      className={classNames('display-name animate-parent', className)}
+      as='span'
+      className={classNames('display-name', className)}
     >
       <bdi>
         {account ? (

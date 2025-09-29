@@ -5,6 +5,7 @@ import { useLinks } from 'mastodon/hooks/useLinks';
 import { useAppSelector } from '../store';
 import { isModernEmojiEnabled } from '../utils/environment';
 
+import { AnimateEmojiProvider } from './emoji/context';
 import { EmojiHTML } from './emoji/html';
 
 interface AccountBioProps {
@@ -45,13 +46,13 @@ export const AccountBio: React.FC<AccountBioProps> = ({
   }
 
   return (
-    <div
+    <AnimateEmojiProvider
       className={`${className} translate`}
       onClickCapture={handleClick}
       ref={handleNodeChange}
     >
       <EmojiHTML htmlString={note} extraEmojis={extraEmojis} />
-    </div>
+    </AnimateEmojiProvider>
   );
 };
 
