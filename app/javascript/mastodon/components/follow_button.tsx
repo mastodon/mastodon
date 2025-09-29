@@ -96,9 +96,16 @@ export const FollowButton: React.FC<{
       return;
     } else if (relationship.muting) {
       dispatch(unmuteAccount(accountId));
-    } else if (account && (relationship.following || relationship.requested)) {
+    } else if (account && relationship.following) {
       dispatch(
         openModal({ modalType: 'CONFIRM_UNFOLLOW', modalProps: { account } }),
+      );
+    } else if (account && relationship.requested) {
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_WITHDRAW_REQUEST',
+          modalProps: { account },
+        }),
       );
     } else if (relationship.blocking) {
       dispatch(unblockAccount(accountId));

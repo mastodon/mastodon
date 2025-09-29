@@ -5,6 +5,7 @@ export {
   ConfirmReplyModal,
   ConfirmEditStatusModal,
 } from './discard_draft_confirmation';
+export { ConfirmWithdrawRequestModal } from './withdraw_follow_request';
 export { ConfirmUnfollowModal } from './unfollow';
 export { ConfirmClearNotificationsModal } from './clear_notifications';
 export { ConfirmLogOutModal } from './log_out';
