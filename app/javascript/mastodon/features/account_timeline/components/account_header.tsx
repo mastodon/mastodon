@@ -33,7 +33,6 @@ import { initMuteModal } from 'mastodon/actions/mutes';
 import { initReport } from 'mastodon/actions/reports';
 import { Avatar } from 'mastodon/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'mastodon/components/badge';
-import { Button } from 'mastodon/components/button';
 import { CopyIconButton } from 'mastodon/components/copy_icon_button';
 import {
   FollowersCounter,
@@ -718,21 +717,10 @@ export const AccountHeader: React.FC<{
     );
   }
 
-  if (relationship?.blocking) {
-    actionBtn = (
-      <Button
-        text={intl.formatMessage(messages.unblock, {
-          name: account.username,
-        })}
-        onClick={handleBlock}
-      />
-    );
-  } else {
-    actionBtn = <FollowButton accountId={accountId} />;
-  }
+  const isMovedAndUnfollowedAccount = account.moved && !relationship?.following;
 
-  if (account.moved && !relationship?.following) {
-    actionBtn = '';
+  if (!isMovedAndUnfollowedAccount) {
+    actionBtn = <FollowButton accountId={accountId} />;
   }
 
   if (account.locked) {

@@ -8,7 +8,6 @@ import { useIdentity } from '@/mastodon/identity_context';
 import {
   fetchRelationships,
   followAccount,
-  unblockAccount,
   unmuteAccount,
 } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
@@ -108,7 +107,12 @@ export const FollowButton: React.FC<{
         }),
       );
     } else if (relationship.blocking) {
-      dispatch(unblockAccount(accountId));
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_UNBLOCK',
+          modalProps: { account },
+        }),
+      );
     } else {
       dispatch(followAccount(accountId));
     }
@@ -165,7 +169,6 @@ export const FollowButton: React.FC<{
       onClick={handleClick}
       disabled={
         relationship?.blocked_by ||
-        relationship?.blocking ||
         (!(relationship?.following || relationship?.requested) &&
           (account?.suspended || !!account?.moved))
       }
