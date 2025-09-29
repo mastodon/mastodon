@@ -7,7 +7,7 @@ import type { CustomEmojiMapArg } from '@/mastodon/features/emoji/types';
 import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 import { htmlStringToComponents } from '@/mastodon/utils/html';
 
-import { CustomEmojiProvider } from './context';
+import { AnimateEmojiProvider, CustomEmojiProvider } from './context';
 import { textToEmojis } from './index';
 
 type EmojiHTMLProps<Element extends ElementType = 'div'> = Omit<
@@ -23,7 +23,7 @@ type EmojiHTMLProps<Element extends ElementType = 'div'> = Omit<
 export const ModernEmojiHTML = ({
   extraEmojis,
   htmlString,
-  as: Wrapper = 'div', // Rename for syntax highlighting
+  as: asProp = 'div', // Rename for syntax highlighting
   shallow,
   className = '',
   ...props
@@ -35,9 +35,9 @@ export const ModernEmojiHTML = ({
 
   return (
     <CustomEmojiProvider emojis={extraEmojis}>
-      <Wrapper {...props} className={className}>
+      <AnimateEmojiProvider {...props} as={asProp} className={className}>
         {contents}
-      </Wrapper>
+      </AnimateEmojiProvider>
     </CustomEmojiProvider>
   );
 };
