@@ -9,6 +9,7 @@ import {
   loadEmojiDataToState,
   shouldRenderImage,
   stringToEmojiState,
+  tokenizeText,
 } from '@/mastodon/features/emoji/render';
 
 import { AnimateEmojiContext, CustomEmojiContext } from './context';
@@ -83,3 +84,16 @@ export const Emoji: FC<EmojiProps> = ({
     />
   );
 };
+
+/**
+ * Takes a text string and converts it to an array of React nodes.
+ * @param text The text to be tokenized and converted.
+ */
+export function textToEmojis(text: string) {
+  return tokenizeText(text).map((token, index) => {
+    if (typeof token === 'string') {
+      return token;
+    }
+    return <Emoji code={token.code} key={`emoji-${token.code}-${index}`} />;
+  });
+}

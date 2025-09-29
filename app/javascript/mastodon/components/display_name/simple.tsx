@@ -1,9 +1,9 @@
 import type { ComponentPropsWithoutRef, FC } from 'react';
 
-import { ModernEmojiText } from '@/mastodon/features/emoji/emoji_text';
 import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 
 import { AnimateEmojiProvider } from '../emoji/context';
+import { ModernEmojiText } from '../emoji/text';
 
 import type { DisplayNameProps } from './index';
 

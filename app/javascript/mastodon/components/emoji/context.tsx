@@ -3,10 +3,14 @@ import type {
   ElementType,
   PropsWithChildren,
 } from 'react';
-import { createContext, useCallback, useState } from 'react';
+import { createContext, useCallback, useMemo, useState } from 'react';
 
+import { cleanExtraEmojis } from '@/mastodon/features/emoji/normalize';
 import { autoPlayGif } from '@/mastodon/initial_state';
-import type { ExtraCustomEmojiMap } from 'mastodon/features/emoji/types';
+import type {
+  CustomEmojiMapArg,
+  ExtraCustomEmojiMap,
+} from 'mastodon/features/emoji/types';
 
 // Animation context
 export const AnimateEmojiContext = createContext(autoPlayGif ?? false);
@@ -47,10 +51,11 @@ export const CustomEmojiContext = createContext<ExtraCustomEmojiMap>({});
 
 export const CustomEmojiProvider = ({
   children,
-  emoji = {},
-}: PropsWithChildren<{ emoji?: ExtraCustomEmojiMap | null }>) => {
+  emojis: rawEmojis,
+}: PropsWithChildren<{ emojis?: CustomEmojiMapArg }>) => {
+  const emojis = useMemo(() => cleanExtraEmojis(rawEmojis) ?? {}, [rawEmojis]);
   return (
-    <CustomEmojiContext.Provider value={emoji ?? {}}>
+    <CustomEmojiContext.Provider value={emojis}>
       {children}
     </CustomEmojiContext.Provider>
   );

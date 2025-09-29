@@ -2,9 +2,10 @@ import { useCallback } from 'react';
 
 import { useLinks } from 'mastodon/hooks/useLinks';
 
-import { EmojiHTML } from '../features/emoji/emoji_html';
 import { useAppSelector } from '../store';
 import { isModernEmojiEnabled } from '../utils/environment';
+
+import { EmojiHTML } from './emoji/html';
 
 interface AccountBioProps {
   className: string;

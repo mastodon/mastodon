@@ -3,14 +3,12 @@ import type { ComponentPropsWithoutRef, ElementType } from 'react';
 
 import classNames from 'classnames';
 
-import { Emoji } from '@/mastodon/components/emoji';
-import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
+import type { CustomEmojiMapArg } from '@/mastodon/features/emoji/types';
 import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 import { htmlStringToComponents } from '@/mastodon/utils/html';
 
-import { cleanExtraEmojis } from './normalize';
-import { tokenizeText } from './render';
-import type { CustomEmojiMapArg } from './types';
+import { CustomEmojiProvider } from './context';
+import { textToEmojis } from './index';
 
 type EmojiHTMLProps<Element extends ElementType = 'div'> = Omit<
   ComponentPropsWithoutRef<Element>,
@@ -19,21 +17,11 @@ type EmojiHTMLProps<Element extends ElementType = 'div'> = Omit<
   htmlString: string;
   extraEmojis?: CustomEmojiMapArg;
   as?: Element;
-  shallow?: boolean;
   className?: string;
 };
 
-export function onText(text: string) {
-  return tokenizeText(text).map((token, index) => {
-    if (typeof token === 'string') {
-      return token;
-    }
-    return <Emoji code={token.code} key={`emoji-${token.code}-${index}`} />;
-  });
-}
-
 export const ModernEmojiHTML = ({
-  extraEmojis: rawExtraEmojis,
+  extraEmojis,
   htmlString,
   as: Wrapper = 'div', // Rename for syntax highlighting
   shallow,
@@ -41,20 +29,16 @@ export const ModernEmojiHTML = ({
   ...props
 }: EmojiHTMLProps<ElementType>) => {
   const contents = useMemo(
-    () => htmlStringToComponents(htmlString, { onText }),
+    () => htmlStringToComponents(htmlString, { onText: textToEmojis }),
     [htmlString],
   );
-  const extraEmojis = useMemo(
-    () => cleanExtraEmojis(rawExtraEmojis),
-    [rawExtraEmojis],
-  );
-  const components = (
-    <Wrapper {...props} className={className}>
-      {contents}
-    </Wrapper>
-  );
+
   return (
-    <CustomEmojiProvider emoji={extraEmojis}>{components}</CustomEmojiProvider>
+    <CustomEmojiProvider emojis={extraEmojis}>
+      <Wrapper {...props} className={className}>
+        {contents}
+      </Wrapper>
+    </CustomEmojiProvider>
   );
 };
 
@@ -64,14 +48,7 @@ export const EmojiHTML = <Element extends ElementType>(
   if (isModernEmojiEnabled()) {
     return <ModernEmojiHTML {...props} />;
   }
-  const {
-    as: asElement,
-    htmlString,
-    extraEmojis,
-    className,
-    shallow,
-    ...rest
-  } = props;
+  const { as: asElement, htmlString, extraEmojis, className, ...rest } = props;
   const Wrapper = asElement ?? 'div';
   return (
     <Wrapper
