@@ -84,14 +84,14 @@ end
 
 RSpec.configure do |config|
   config.before :suite do
-    if streaming_examples_present? || streaming_spec?
+    if streaming_examples_present?
       # Start the node streaming server
       streaming_server_manager.start(port: STREAMING_PORT)
     end
   end
 
   config.after :suite do
-    if streaming_examples_present? || streaming_spec?
+    if streaming_examples_present?
       # Stop the node streaming server
       streaming_server_manager.stop
     end
@@ -128,11 +128,5 @@ RSpec.configure do |config|
 
   def streaming_examples_present?
     RSpec.world.filtered_examples.values.flatten.any? { |example| example.metadata[:streaming] == true }
-  end
-
-  def streaming_spec?
-    RSpec.world.filtered_examples.values.flatten.any? do |example|
-      example.metadata[:type] == :streaming
-    end
   end
 end

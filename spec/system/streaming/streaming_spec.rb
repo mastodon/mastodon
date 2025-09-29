@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-RSpec.describe 'Streaming', :inline_jobs do
+RSpec.describe 'Streaming', :inline_jobs, :streaming do
   let(:authentication_method) { StreamingClient::AUTHENTICATION::SUBPROTOCOL }
   let(:user) { Fabricate(:user) }
   let(:scopes) { '' }

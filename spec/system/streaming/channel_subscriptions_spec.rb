@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'debug'
 
-RSpec.describe 'Channel Subscriptions', :inline_jobs do # rubocop:disable RSpec/DescribeClass
+RSpec.describe 'Channel Subscriptions', :inline_jobs, :streaming do
   let(:application) { Fabricate(:application, confidential: false) }
   let(:scopes) { nil }
   let(:access_token) { Fabricate(:accessible_access_token, resource_owner_id: user_account.user.id, application: application, scopes: scopes) }
