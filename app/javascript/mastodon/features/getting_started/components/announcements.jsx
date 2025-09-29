@@ -24,7 +24,6 @@ import { unicodeMapping } from 'mastodon/features/emoji/emoji_unicode_mapping_li
 import { autoPlayGif, reduceMotion, disableSwiping, mascot } from 'mastodon/initial_state';
 import { assetHost } from 'mastodon/utils/config';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
-import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -116,8 +115,8 @@ class ContentWithRouter extends ImmutablePureComponent {
     const { announcement } = this.props;
 
     return (
-      <AnimateEmojiProvider
-        className='announcements__item__content translate'
+      <div
+        className='announcements__item__content translate animate-parent'
         ref={this.setRef}
         dangerouslySetInnerHTML={{ __html: announcement.get('contentHtml') }}
       />
