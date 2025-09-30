@@ -818,10 +818,10 @@ export const AccountHeader: React.FC<{
             </a>
 
             <div className='account__header__buttons account__header__buttons--desktop'>
+              {!hidden && actionBtn}
               {!hidden && bellBtn}
               {!hidden && shareBtn}
               {menu}
-              {!hidden && actionBtn}
             </div>
           </div>
 
