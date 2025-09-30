@@ -60,7 +60,7 @@ RSpec.describe 'Interaction policies' do
         )
 
         expect(DistributionWorker)
-          .to have_enqueued_sidekiq_job(status.id, { 'update' => true })
+          .to have_enqueued_sidekiq_job(status.id, { 'update' => true, 'skip_notifications' => true })
         expect(ActivityPub::StatusUpdateDistributionWorker)
           .to have_enqueued_sidekiq_job(status.id, { 'updated_at' => anything })
       end
