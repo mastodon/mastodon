@@ -1,6 +1,5 @@
 import { autoPlayGif } from '@/mastodon/initial_state';
 import { createLimitedCache } from '@/mastodon/utils/cache';
-import { assetHost } from '@/mastodon/utils/config';
 import * as perf from '@/mastodon/utils/performance';
 
 import {
@@ -8,37 +7,129 @@ import {
   EMOJI_MODE_NATIVE_WITH_FLAGS,
   EMOJI_TYPE_UNICODE,
   EMOJI_TYPE_CUSTOM,
-  EMOJI_STATE_MISSING,
 } from './constants';
 import {
+  loadCustomEmojiByShortcode,
+  loadEmojiByHexcode,
+  LocaleNotLoadedError,
   searchCustomEmojisByShortcodes,
   searchEmojisByHexcodes,
 } from './database';
-import {
-  emojiToUnicodeHex,
-  twemojiHasBorder,
-  unicodeToTwemojiHex,
-} from './normalize';
+import { importEmojiData } from './loader';
+import { emojiToUnicodeHex, unicodeHexToUrl } from './normalize';
 import type {
-  CustomEmojiToken,
   EmojiAppState,
   EmojiLoadedState,
   EmojiMode,
   EmojiState,
+  EmojiStateCustom,
   EmojiStateMap,
-  EmojiToken,
+  EmojiStateUnicode,
   ExtraCustomEmojiMap,
   LocaleOrCustom,
-  UnicodeEmojiToken,
 } from './types';
 import {
   anyEmojiRegex,
   emojiLogger,
+  isCustomEmoji,
+  isUnicodeEmoji,
   stringHasAnyEmoji,
   stringHasUnicodeFlags,
 } from './utils';
 
 const log = emojiLogger('render');
+
+/**
+ * Parses emoji string to extract emoji state.
+ * @param code Hex code or custom shortcode.
+ * @param customEmoji Extra custom emojis.
+ */
+export function stringToEmojiState(
+  code: string,
+  customEmoji: ExtraCustomEmojiMap = {},
+): EmojiState | null {
+  if (isUnicodeEmoji(code)) {
+    return {
+      type: EMOJI_TYPE_UNICODE,
+      code: emojiToUnicodeHex(code),
+    };
+  }
+
+  if (isCustomEmoji(code)) {
+    const shortCode = code.slice(1, -1);
+    return {
+      type: EMOJI_TYPE_CUSTOM,
+      code: shortCode,
+      data: customEmoji[shortCode],
+    };
+  }
+
+  return null;
+}
+
+/**
+ * Loads emoji data into the given state if not already loaded.
+ * @param state Emoji state to load data for.
+ * @param locale Locale to load data for. Only for Unicode emoji.
+ * @param retry Internal. Whether this is a retry after loading the locale.
+ */
+export async function loadEmojiDataToState(
+  state: EmojiState,
+  locale: string,
+  retry = false,
+): Promise<EmojiLoadedState | null> {
+  if (isStateLoaded(state)) {
+    return state;
+  }
+
+  // First, try to load the data from IndexedDB.
+  try {
+    // This is duplicative, but that's because TS can't distinguish the state type easily.
+    if (state.type === EMOJI_TYPE_UNICODE) {
+      const data = await loadEmojiByHexcode(state.code, locale);
+      if (data) {
+        return {
+          ...state,
+          data,
+        };
+      }
+    } else {
+      const data = await loadCustomEmojiByShortcode(state.code);
+      if (data) {
+        return {
+          ...state,
+          data,
+        };
+      }
+    }
+    // If not found, assume it's not an emoji and return null.
+    log(
+      'Could not find emoji %s of type %s for locale %s',
+      state.code,
+      state.type,
+      locale,
+    );
+    return null;
+  } catch (err: unknown) {
+    // If the locale is not loaded, load it and retry once.
+    if (!retry && err instanceof LocaleNotLoadedError) {
+      log(
+        'Error loading emoji %s for locale %s, loading locale and retrying.',
+        state.code,
+        locale,
+      );
+      await importEmojiData(locale); // Use this from the loader file as it can be awaited.
+      return loadEmojiDataToState(state, locale, true);
+    }
+
+    console.warn('Error loading emoji data, not retrying:', state, locale, err);
+    return null;
+  }
+}
+
+export function isStateLoaded(state: EmojiState): state is EmojiLoadedState {
+  return !!state.data;
+}
 
 /**
  * Emojifies an element. This modifies the element in place, replacing text nodes with emojified versions.
@@ -177,7 +268,11 @@ async function textToElementArray(
       if (token.type === EMOJI_TYPE_CUSTOM) {
         const extraEmojiData = extraEmojis[token.code];
         if (extraEmojiData) {
-          state = { type: EMOJI_TYPE_CUSTOM, data: extraEmojiData };
+          state = {
+            type: EMOJI_TYPE_CUSTOM,
+            data: extraEmojiData,
+            code: token.code,
+          };
         } else {
           state = emojiForLocale(token.code, EMOJI_TYPE_CUSTOM);
         }
@@ -189,7 +284,7 @@ async function textToElementArray(
       }
 
       // If the state is valid, create an image element. Otherwise, just append as text.
-      if (state && typeof state !== 'string') {
+      if (state && typeof state !== 'string' && isStateLoaded(state)) {
         const image = stateToImage(state, appState);
         renderedFragments.push(image);
         continue;
@@ -202,11 +297,11 @@ async function textToElementArray(
   return renderedFragments;
 }
 
-type TokenizedText = (string | EmojiToken)[];
+type TokenizedText = (string | EmojiState)[];
 
 export function tokenizeText(text: string): TokenizedText {
   if (!text.trim()) {
-    return [];
+    return [text];
   }
 
   const tokens = [];
@@ -222,14 +317,14 @@ export function tokenizeText(text: string): TokenizedText {
       // Custom emoji
       tokens.push({
         type: EMOJI_TYPE_CUSTOM,
-        code: code.slice(1, -1), // Remove the colons
-      } satisfies CustomEmojiToken);
+        code,
+      } satisfies EmojiStateCustom);
     } else {
       // Unicode emoji
       tokens.push({
         type: EMOJI_TYPE_UNICODE,
         code: code,
-      } satisfies UnicodeEmojiToken);
+      } satisfies EmojiStateUnicode);
     }
     lastIndex = match.index + code.length;
   }
@@ -304,13 +399,11 @@ async function loadMissingEmojiIntoCache(
     const emojis = await searchEmojisByHexcodes(missingEmojis, currentLocale);
     const cache = cacheForLocale(currentLocale);
     for (const emoji of emojis) {
-      cache.set(emoji.hexcode, { type: EMOJI_TYPE_UNICODE, data: emoji });
-    }
-    const notFoundEmojis = missingEmojis.filter((code) =>
-      emojis.every((emoji) => emoji.hexcode !== code),
-    );
-    for (const code of notFoundEmojis) {
-      cache.set(code, EMOJI_STATE_MISSING); // Mark as missing if not found, as it's probably not a valid emoji.
+      cache.set(emoji.hexcode, {
+        type: EMOJI_TYPE_UNICODE,
+        data: emoji,
+        code: emoji.hexcode,
+      });
     }
     localeCacheMap.set(currentLocale, cache);
   }
@@ -320,19 +413,17 @@ async function loadMissingEmojiIntoCache(
     const emojis = await searchCustomEmojisByShortcodes(missingEmojis);
     const cache = cacheForLocale(EMOJI_TYPE_CUSTOM);
     for (const emoji of emojis) {
-      cache.set(emoji.shortcode, { type: EMOJI_TYPE_CUSTOM, data: emoji });
-    }
-    const notFoundEmojis = missingEmojis.filter((code) =>
-      emojis.every((emoji) => emoji.shortcode !== code),
-    );
-    for (const code of notFoundEmojis) {
-      cache.set(code, EMOJI_STATE_MISSING); // Mark as missing if not found, as it's probably not a valid emoji.
+      cache.set(emoji.shortcode, {
+        type: EMOJI_TYPE_CUSTOM,
+        data: emoji,
+        code: emoji.shortcode,
+      });
     }
     localeCacheMap.set(EMOJI_TYPE_CUSTOM, cache);
   }
 }
 
-function shouldRenderImage(token: EmojiToken, mode: EmojiMode): boolean {
+export function shouldRenderImage(token: EmojiState, mode: EmojiMode): boolean {
   if (token.type === EMOJI_TYPE_UNICODE) {
     // If the mode is native or native with flags for non-flag emoji
     // we can just append the text node directly.
@@ -354,18 +445,9 @@ function stateToImage(state: EmojiLoadedState, appState: EmojiAppState) {
   image.classList.add('emojione');
 
   if (state.type === EMOJI_TYPE_UNICODE) {
-    const emojiInfo = twemojiHasBorder(unicodeToTwemojiHex(state.data.hexcode));
-    let fileName = emojiInfo.hexCode;
-    if (
-      (appState.darkTheme && emojiInfo.hasDarkBorder) ||
-      (!appState.darkTheme && emojiInfo.hasLightBorder)
-    ) {
-      fileName = `${emojiInfo.hexCode}_border`;
-    }
-
     image.alt = state.data.unicode;
     image.title = state.data.label;
-    image.src = `${assetHost}/emoji/${fileName}.svg`;
+    image.src = unicodeHexToUrl(state.data.hexcode, appState.darkTheme);
   } else {
     // Custom emoji
     const shortCode = `:${state.data.shortcode}:`;
