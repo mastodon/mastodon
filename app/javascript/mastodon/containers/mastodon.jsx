@@ -13,7 +13,7 @@ import ErrorBoundary from 'mastodon/components/error_boundary';
 import { Router } from 'mastodon/components/router';
 import UI from 'mastodon/features/ui';
 import { IdentityContext, createIdentityContext } from 'mastodon/identity_context';
-import initialState, { title as siteTitle } from 'mastodon/initial_state';
+import { initialState, title as siteTitle } from 'mastodon/initial_state';
 import { IntlProvider } from 'mastodon/locales';
 import { store } from 'mastodon/store';
 import { isProduction } from 'mastodon/utils/environment';
