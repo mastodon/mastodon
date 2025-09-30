@@ -88,6 +88,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @status_parser = ActivityPub::Parser::StatusParser.new(
       @json,
       followers_collection: @account.followers_url,
+      following_collection: @account.following_url,
       actor_uri: ActivityPub::TagManager.instance.uri_for(@account),
       object: @object
     )

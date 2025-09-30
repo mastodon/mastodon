@@ -204,6 +204,7 @@ lad:
         destroy_user_role: Efasa rolo
         disable_2fa_user: Inkapasita autentifikasyon en dos pasos
         disable_custom_emoji: Inkapasita emoji personalizados
+        disable_relay: Dezaktiva relevo
         disable_sign_in_token_auth_user: Inkapasita la autentifikasyon por token de posta elektronika para el utilizador
         disable_user: Inkapasita utilizador
         enable_custom_emoji: Kapasita emoji personalizados
@@ -484,6 +485,7 @@ lad:
         save: Guadra
         sign_in: Konektate
         status: Estado
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Las rekomendasyones de kuentos ayudan a los muevos utilizadores a topar presto kontenido enteresante</strong>. Kuando un utilizador no tiene enteraktuado kon otros lo sufisiente komo para djenerar rekomendasyones personalizadas de kuentos a las ke segir, en sus lugar se le rekomiendan estes kuentos. Se rekalkulan diariamente a partir de una mikstura de kuentos kon el mayor numero de enteraksyones rezientes i kon el mayor numero de suivantes lokales kon una lingua determinada."
       language: Para la lingua
@@ -794,6 +796,7 @@ lad:
       discovery:
         follow_recommendations: Rekomendasyones de kuentos
         preamble: Ekspone kontenido enteresante a la superfisie es fundamental para inkorporar muevos utilizadores ke pueden no koneser a dinguno Mastodon. Kontrola komo fonksionan varias opsiones de diskuvrimiento en tu sirvidor.
+        privacy: Privasita
         profile_directory: Katalogo de profiles
         public_timelines: Linyas de tiempo publikas
         publish_statistics: Publika estatistikas
@@ -1006,6 +1009,11 @@ lad:
           other: Uzada por %{count} personas durante la ultima semana
       title: Rekomendasyones i trendes
       trending: En trend
+    username_blocks:
+      add_new: Adjusta muevo
+      delete: Efasa
+      new:
+        create: Kriya regla
     warning_presets:
       add_new: Adjusta muevo
       delete: Efasa
@@ -1584,6 +1592,7 @@ lad:
       self_vote: No puedes votar en tus propias anketas
       too_few_options: deve tener mas de un elemento
       too_many_options: no puede kontener mas de %{max} elementos
+    vote: Vota
   preferences:
     other: Otros
     posting_defaults: Konfigurasyon predeterminada de publikasyones
@@ -1746,9 +1755,15 @@ lad:
       limit: Ya tienes fiksado el numero maksimo de publikasyones
       ownership: La publikasyon de otra persona no puede fiksarse
       reblog: No se puede fixar una repartajasyon
+    quote_policies:
+      nobody: Solo yo
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Enmentadura privada
+      private: Solo suivantes
       public: Publiko
+      public_long: Todos en i afuera de Mastodon
+      unlisted: Publiko i silensyozo
   statuses_cleanup:
     enabled: Otomatikamente efasa publikasyones viejas
     enabled_hint: Supreme otomatikamente tus publikasyones kuando alkansen un limito de tiempo espesifikado, a manko ke koensiden kon alguna de las eksepsiones detalyadas debasho

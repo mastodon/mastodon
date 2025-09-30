@@ -36,7 +36,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   attribute :quote, key: :quote_uri, if: :quote?
   attribute :quote_authorization, if: :quote_authorization?
 
-  attribute :interaction_policy, if: -> { Mastodon::Feature.outgoing_quotes_enabled? }
+  attribute :interaction_policy
 
   def id
     ActivityPub::TagManager.instance.uri_for(object)
@@ -234,21 +234,12 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     policy = object.quote_approval_policy >> 16
     approved_uris << ActivityPub::TagManager::COLLECTIONS[:public] if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:public])
     approved_uris << ActivityPub::TagManager.instance.followers_uri_for(object.account) if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers])
-    approved_uris << ActivityPub::TagManager.instance.following_uri_for(object.account) if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:followed])
+    approved_uris << ActivityPub::TagManager.instance.following_uri_for(object.account) if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:following])
     approved_uris << ActivityPub::TagManager.instance.uri_for(object.account) if approved_uris.empty?
 
     {
       canQuote: {
         automaticApproval: approved_uris,
-      },
-      canReply: {
-        always: 'https://www.w3.org/ns/activitystreams#Public',
-      },
-      canLike: {
-        always: 'https://www.w3.org/ns/activitystreams#Public',
-      },
-      canAnnounce: {
-        always: 'https://www.w3.org/ns/activitystreams#Public',
       },
     }
   end

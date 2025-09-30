@@ -18,10 +18,14 @@ export const messages = defineMessages({
     id: 'status.all_disabled',
     defaultMessage: 'Boosts and quotes are disabled',
   },
-  quote: { id: 'status.quote', defaultMessage: 'Quote' },
+  quote: {
+    id: 'status.quote',
+    defaultMessage: 'Quote',
+    description: 'Quote as a verb (e.g. Quote this post)',
+  },
   quote_cannot: {
     id: 'status.cannot_quote',
-    defaultMessage: 'Quotes are disabled on this post',
+    defaultMessage: 'You are not allowed to quote this post',
   },
   quote_followers_only: {
     id: 'status.quote_followers_only',
@@ -129,6 +133,7 @@ export function boostItemState({
 }
 
 export function quoteItemState({
+  isLoggedIn,
   isMine,
   isQuoteAutomaticallyAccepted,
   isQuoteManuallyAccepted,
@@ -149,7 +154,8 @@ export function quoteItemState({
   } else if (isQuoteManuallyAccepted) {
     iconText.title = messages.request_quote;
     iconText.meta = messages.quote_manual_review;
-  } else {
+    // We don't show the disabled state when logged out
+  } else if (isLoggedIn) {
     iconText.disabled = true;
     iconText.iconComponent = FormatQuoteOff;
     iconText.meta = isQuoteFollowersOnly

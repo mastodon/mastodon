@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState, useId } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -14,6 +14,13 @@ import { Icon } from '../icon';
 
 const DISMISSABLE_BANNER_ID = 'notifications/remove_quote_hint';
 
+/**
+ * We don't want to show this hint in the UI more than once,
+ * so the first time it renders, we store a unique component ID
+ * here to prevent any other hints from being displayed after it.
+ */
+let firstHintId: string | null = null;
+
 export const RemoveQuoteHint: React.FC<{
   canShowHint: boolean;
   className?: string;
@@ -22,14 +29,36 @@ export const RemoveQuoteHint: React.FC<{
   const anchorRef = useRef<HTMLDivElement>(null);
   const intl = useIntl();
 
-  const { isVisible, dismiss } = useDismissableBannerState({
+  const { wasDismissed, dismiss } = useDismissableBannerState({
     id: DISMISSABLE_BANNER_ID,
   });
+
+  const shouldShowHint = !wasDismissed && canShowHint;
+
+  const uniqueId = useId();
+  const [isOnlyHint, setIsOnlyHint] = useState(false);
+  useEffect(() => {
+    if (!shouldShowHint) {
+      return () => null;
+    }
+
+    if (!firstHintId) {
+      firstHintId = uniqueId;
+      setIsOnlyHint(true);
+    }
+
+    return () => {
+      if (firstHintId === uniqueId) {
+        firstHintId = null;
+        setIsOnlyHint(false);
+      }
+    };
+  }, [shouldShowHint, uniqueId]);
 
   return (
     <div className={className} ref={anchorRef}>
       {children(dismiss)}
-      {isVisible && canShowHint && (
+      {shouldShowHint && isOnlyHint && (
         <Overlay
           show
           flip

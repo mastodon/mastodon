@@ -1,19 +1,13 @@
 import { useCallback, useLayoutEffect, useMemo, useState } from 'react';
 
-import { isList } from 'immutable';
-
-import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 import { useAppSelector } from '@/mastodon/store';
 import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 
 import { toSupportedLocale } from './locale';
 import { determineEmojiMode } from './mode';
+import { cleanExtraEmojis } from './normalize';
 import { emojifyElement, emojifyText } from './render';
-import type {
-  CustomEmojiMapArg,
-  EmojiAppState,
-  ExtraCustomEmojiMap,
-} from './types';
+import type { CustomEmojiMapArg, EmojiAppState } from './types';
 import { stringHasAnyEmoji } from './utils';
 
 interface UseEmojifyOptions {
@@ -30,20 +24,7 @@ export function useEmojify({
   const [emojifiedText, setEmojifiedText] = useState<string | null>(null);
 
   const appState = useEmojiAppState();
-  const extra: ExtraCustomEmojiMap = useMemo(() => {
-    if (!extraEmojis) {
-      return {};
-    }
-    if (isList(extraEmojis)) {
-      return (
-        extraEmojis.toJS() as ApiCustomEmojiJSON[]
-      ).reduce<ExtraCustomEmojiMap>(
-        (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
-        {},
-      );
-    }
-    return extraEmojis;
-  }, [extraEmojis]);
+  const extra = useMemo(() => cleanExtraEmojis(extraEmojis), [extraEmojis]);
 
   const emojify = useCallback(
     async (input: string) => {
@@ -51,11 +32,11 @@ export function useEmojify({
       if (deep) {
         const wrapper = document.createElement('div');
         wrapper.innerHTML = input;
-        if (await emojifyElement(wrapper, appState, extra)) {
+        if (await emojifyElement(wrapper, appState, extra ?? {})) {
           result = wrapper.innerHTML;
         }
       } else {
-        result = await emojifyText(text, appState, extra);
+        result = await emojifyText(text, appState, extra ?? {});
       }
       if (result) {
         setEmojifiedText(result);

@@ -12,7 +12,7 @@ const isMentionClick = (element: HTMLAnchorElement) =>
   !element.classList.contains('hashtag');
 
 const isHashtagClick = (element: HTMLAnchorElement) =>
-  element.textContent?.[0] === '#' ||
+  element.textContent.startsWith('#') ||
   element.previousSibling?.textContent?.endsWith('#');
 
 export const useLinks = (skipHashtags?: boolean) => {

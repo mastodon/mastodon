@@ -170,7 +170,7 @@ ja:
       whitelisted: 連合許可済み
     action_logs:
       action_types:
-        approve_appeal: 抗議を承認
+        approve_appeal: 異議申立を承認
         approve_user: ユーザーの承認
         assigned_to_self_report: 通報の担当者に設定
         change_email_user: ユーザーのメールアドレスの変更
@@ -187,6 +187,7 @@ ja:
         create_relay: リレーの追加
         create_unavailable_domain: 配送できないドメインを作成
         create_user_role: ロールを作成
+        create_username_block: ユーザー名ルールを作成
         demote_user: ユーザーを降格
         destroy_announcement: お知らせを削除
         destroy_canonical_email_block: メールアドレスブロックの削除
@@ -200,6 +201,7 @@ ja:
         destroy_status: 投稿を削除
         destroy_unavailable_domain: 配送できないドメインを削除
         destroy_user_role: ロールを削除
+        destroy_username_block: ユーザー名ルールを削除
         disable_2fa_user: 二要素認証を無効化
         disable_custom_emoji: カスタム絵文字を無効化
         disable_relay: リレーの無効化
@@ -212,7 +214,7 @@ ja:
         memorialize_account: 追悼アカウント化
         promote_user: ユーザーを昇格
         publish_terms_of_service: サービス利用規約を公開
-        reject_appeal: 抗議を却下
+        reject_appeal: 異議申立を却下
         reject_user: ユーザーを拒否
         remove_avatar_user: アイコンを削除
         reopen_report: 未解決に戻す
@@ -234,8 +236,9 @@ ja:
         update_report: 通報の更新
         update_status: 投稿を更新
         update_user_role: ロールを更新
+        update_username_block: ユーザー名ルールを更新
       actions:
-        approve_appeal_html: "%{name}さんが%{target}さんからの抗議を承認しました"
+        approve_appeal_html: "%{name}さんが%{target}さんからの異議申立を承認しました"
         approve_user_html: "%{name}さんが%{target}さんからの登録を承認しました"
         assigned_to_self_report_html: "%{name}さんが通報 %{target}を自身の担当に割り当てました"
         change_email_user_html: "%{name} さんが %{target} さんのメールアドレスを変更しました"
@@ -277,7 +280,7 @@ ja:
         memorialize_account_html: "%{name}さんが%{target}さんを追悼アカウントページに登録しました"
         promote_user_html: "%{name}さんが%{target}さんを昇格しました"
         publish_terms_of_service_html: "%{name} がサービス利用規約の更新を公開しました"
-        reject_appeal_html: "%{name}さんが%{target}からの抗議を却下しました"
+        reject_appeal_html: "%{name}さんが%{target}からの異議申立を却下しました"
         reject_user_html: "%{name}さんが%{target}さんからの登録を拒否しました"
         remove_avatar_user_html: "%{name}さんが%{target}さんのアイコンを削除しました"
         reopen_report_html: "%{name}さんが通報 %{target}を未解決に戻しました"
@@ -369,7 +372,7 @@ ja:
       new_users: 新規ユーザー
       opened_reports: 新規通報
       pending_appeals_html:
-        other: 保留中の抗議 <strong>%{count}</strong>件
+        other: "<strong>%{count}</strong>件の保留中の異議申立"
       pending_reports_html:
         other: 保留中の通報 <strong>%{count}</strong>件
       pending_tags_html:
@@ -386,8 +389,8 @@ ja:
       website: ウェブサイト
     disputes:
       appeals:
-        empty: 抗議はありません。
-        title: 抗議
+        empty: 異議申立はありません。
+        title: 異議申立
     domain_allows:
       add_new: 連合を許可
       created_msg: 連合を許可しました
@@ -567,6 +570,9 @@ ja:
         all: すべて
         limited: 制限あり
         title: モデレーション
+      moderation_notes:
+        create: モデレーションノートを追加
+        title: モデレーションメモ
       private_comment: コメント (非公開)
       public_comment: コメント (公開)
       purge: パージ
@@ -737,8 +743,8 @@ ja:
         invite_users_description: ユーザーが新しい人を招待できるようにします
         manage_announcements: お知らせの管理
         manage_announcements_description: ユーザーがアナウンスを管理できるようにします
-        manage_appeals: 抗議の管理
-        manage_appeals_description: ユーザーはモデレーションアクションに対する抗議を確認できます
+        manage_appeals: 異議申立の管理
+        manage_appeals_description: ユーザーはモデレーションアクションに対する異議申立を確認できます
         manage_blocks: ブロックの管理
         manage_blocks_description: メールプロバイダとIPアドレスのブロックを許可
         manage_custom_emojis: カスタム絵文字を管理
@@ -892,9 +898,9 @@ ja:
         sensitive: "%{name}さんが%{target}さんのアカウントを閲覧注意としてマークしました"
         silence: "%{name}さんが%{target}さんを制限しました"
         suspend: "%{name}さんが%{target}さんのアカウントを停止しました"
-      appeal_approved: 抗議済み
-      appeal_pending: 保留中の抗議
-      appeal_rejected: 却下済みの抗議
+      appeal_approved: 異議申立済み
+      appeal_pending: 保留中の異議申立
+      appeal_rejected: 却下済みの異議申立
     system_checks:
       database_schema_check:
         message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
@@ -1060,6 +1066,20 @@ ja:
           other: 週間%{count}人に使用されました
       title: おすすめとトレンド
       trending: トレンド
+    username_blocks:
+      add_new: ルールを作成
+      block_registrations: 登録拒否
+      comparison:
+        contains: 含む
+        equals: 一致
+      contains_html: "%{string}を含む"
+      delete: 削除
+      edit:
+        title: ユーザー名ルールの編集
+      matches_exactly_html: "%{string}に一致"
+      new:
+        create: ルールを作成
+      title: ユーザー名ルール
     warning_presets:
       add_new: 追加
       delete: 削除
@@ -1292,19 +1312,19 @@ ja:
   disputes:
     strikes:
       action_taken: 取られた措置
-      appeal: 抗議
+      appeal: 異議申立
       appeal_approved: このストライクは申し立てが承認され、有効ではありません。
       appeal_rejected: 申し立ては拒否されました
-      appeal_submitted_at: 抗議が送信されました
+      appeal_submitted_at: 異議申立の送信日時
       appealed_msg: 申し立てが送信されました。承認されると通知されます。
       appeals:
-        submit: 抗議を送信
-      approve_appeal: 抗議を承認
+        submit: 異議申立を送信
+      approve_appeal: 異議申立を承認
       associated_report: 関連する通報
       created_at: 日時
       description_html: これらは、%{instance}のスタッフがあなたのアカウントに対して行った措置や、あなたに送られた警告です。
       recipient: 送信元
-      reject_appeal: 抗議を却下
+      reject_appeal: 異議申立を却下
       status: '投稿 #%{id}'
       status_removed: 既に削除されています
       title: "%{date}に%{action}"
@@ -1323,6 +1343,10 @@ ja:
     basic_information: 基本情報
     hint_html: "<strong>アカウントのトップページや投稿の隣に表示される公開情報です。</strong>プロフィールとアイコンを設定することで、ほかのユーザーは親しみやすく、またフォローしやすくなります。"
     other: その他
+  emoji_styles:
+    auto: オート
+    native: ネイティブ
+    twemoji: Twemoji
   errors:
     '400': 送信されたリクエストは無効であるか、または不正なフォーマットです。
     '403': このページを表示する権限がありません。
@@ -1660,6 +1684,7 @@ ja:
       self_vote: 自分のアンケートには解答できません
       too_few_options: は複数必要です
       too_many_options: は%{max}個までです
+    vote: 投票
   preferences:
     other: その他
     posting_defaults: デフォルトの投稿設定
@@ -1824,8 +1849,13 @@ ja:
       limit: 固定できる投稿数の上限に達しました
       ownership: 他人の投稿を固定することはできません
       reblog: ブーストを固定することはできません
+    quote_policies:
+      followers: フォロワーのみ
+      nobody: 自分のみ
+      public: 誰でも
     title: '%{name}: "%{quote}"'
     visibilities:
+      private: フォロワーのみ
       public: 公開
   statuses_cleanup:
     enabled: 古い投稿を自動的に削除する
@@ -1866,7 +1896,7 @@ ja:
     sensitive_content: 閲覧注意
   strikes:
     errors:
-      too_late: このストライクに抗議するには遅すぎます
+      too_late: 異議申立をするには遅すぎます
   tags:
     does_not_match_previous_name: 以前の名前と一致しません
   terms_of_service:
@@ -1921,7 +1951,7 @@ ja:
       explanation: "%{strike_date}のストライクに対して、あなたが%{appeal_date}に行った申し立ては却下されました。"
       subject: "%{date}の申し立てが拒否されました"
       subtitle: 申し立ては拒否されました。
-      title: 却下された抗議
+      title: 却下された異議申立
     backup_ready:
       explanation: Mastodonアカウントの完全バックアップをリクエストしました。
       extra: ダウンロードの準備ができました！
@@ -1950,7 +1980,7 @@ ja:
       subtitle: "%{domain} の利用規約が変更されています"
       title: 重要な更新
     warning:
-      appeal: 抗議を送信
+      appeal: 異議申立を送信
       appeal_description: これが間違いだと思われる場合は、%{instance}のスタッフに申し立てすることができます。
       categories:
         spam: スパム
