@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
 
+import classNames from 'classnames';
+
 import { useLinks } from 'mastodon/hooks/useLinks';
 
 import { useAppSelector } from '../store';
@@ -47,7 +49,7 @@ export const AccountBio: React.FC<AccountBioProps> = ({
 
   return (
     <AnimateEmojiProvider
-      className={`${className} translate`}
+      className={classNames(className, 'translate')}
       onClickCapture={handleClick}
       ref={handleNodeChange}
     >
