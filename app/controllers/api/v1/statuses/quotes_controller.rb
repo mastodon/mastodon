@@ -4,13 +4,13 @@ class Api::V1::Statuses::QuotesController < Api::V1::Statuses::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: :index
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only: :revoke
 
-  before_action :check_owner!
+  before_action :set_statuses, only: :index
+
   before_action :set_quote, only: :revoke
   after_action :insert_pagination_headers, only: :index
 
   def index
     cache_if_unauthenticated!
-    @statuses = load_statuses
     render json: @statuses, each_serializer: REST::StatusSerializer
   end
 
@@ -24,18 +24,26 @@ class Api::V1::Statuses::QuotesController < Api::V1::Statuses::BaseController
 
   private
 
-  def check_owner!
-    authorize @status, :list_quotes?
-  end
-
   def set_quote
     @quote = @status.quotes.find_by!(status_id: params[:id])
   end
 
-  def load_statuses
+  def set_statuses
     scope = default_statuses
     scope = scope.not_excluded_by_account(current_account) unless current_account.nil?
-    scope.merge(paginated_quotes).to_a
+    @statuses = scope.merge(paginated_quotes).to_a
+
+    # Store next page info before filtering
+    @records_continue = @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
+    @pagination_since_id = @statuses.first.quote.id unless @statuses.empty?
+    @pagination_max_id = @statuses.last.quote.id if @records_continue
+
+    if current_account&.id != @status.account_id
+      domains = @statuses.filter_map(&:account_domain).uniq
+      account_ids = @statuses.map(&:account_id).uniq
+      relations = current_account&.relations_map(account_ids, domains) || {}
+      @statuses.reject! { |status| StatusFilter.new(status, current_account, relations).filtered? }
+    end
   end
 
   def default_statuses
@@ -58,15 +66,9 @@ class Api::V1::Statuses::QuotesController < Api::V1::Statuses::BaseController
     api_v1_status_quotes_url pagination_params(since_id: pagination_since_id) unless @statuses.empty?
   end
 
-  def pagination_max_id
-    @statuses.last.quote.id
-  end
-
-  def pagination_since_id
-    @statuses.first.quote.id
-  end
+  attr_reader :pagination_max_id, :pagination_since_id
 
   def records_continue?
-    @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
+    @records_continue
   end
 end

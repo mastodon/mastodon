@@ -17,7 +17,7 @@ RSpec.describe 'API V1 Statuses Quotes' do
     let!(:accepted_quote) { Fabricate(:quote, quoted_status: status, state: :accepted) }
     let!(:rejected_quote) { Fabricate(:quote, quoted_status: status, state: :rejected) }
     let!(:pending_quote) { Fabricate(:quote, quoted_status: status, state: :pending) }
-    let!(:another_accepted_quote) { Fabricate(:quote, quoted_status: status, state: :accepted) }
+    let!(:accepted_private_quote) { Fabricate(:quote, status: Fabricate(:status, visibility: :private), quoted_status: status, state: :accepted) }
 
     context 'with an OAuth token' do
       let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
@@ -30,7 +30,7 @@ RSpec.describe 'API V1 Statuses Quotes' do
         expect(response)
           .to have_http_status(200)
           .and include_pagination_headers(
-            prev: api_v1_status_quotes_url(limit: 2, since_id: another_accepted_quote.id),
+            prev: api_v1_status_quotes_url(limit: 2, since_id: accepted_private_quote.id),
             next: api_v1_status_quotes_url(limit: 2, max_id: accepted_quote.id)
           )
         expect(response.content_type)
@@ -39,7 +39,7 @@ RSpec.describe 'API V1 Statuses Quotes' do
         expect(response.parsed_body)
           .to contain_exactly(
             include(id: accepted_quote.status.id.to_s),
-            include(id: another_accepted_quote.status.id.to_s)
+            include(id: accepted_private_quote.status.id.to_s)
           )
 
         expect(response.parsed_body)
@@ -52,12 +52,29 @@ RSpec.describe 'API V1 Statuses Quotes' do
       context 'with a different user than the post owner' do
         let(:status) { Fabricate(:status) }
 
-        it 'returns http forbidden' do
+        it 'returns http success and statuses but not private ones' do
           subject
 
-          expect(response).to have_http_status(403)
+          expect(response)
+            .to have_http_status(200)
+            .and include_pagination_headers(
+              prev: api_v1_status_quotes_url(limit: 2, since_id: accepted_private_quote.id),
+              next: api_v1_status_quotes_url(limit: 2, max_id: accepted_quote.id)
+            )
           expect(response.content_type)
             .to start_with('application/json')
+
+          expect(response.parsed_body)
+            .to contain_exactly(
+              include(id: accepted_quote.status.id.to_s)
+            )
+
+          expect(response.parsed_body)
+            .to_not include(
+              include(id: rejected_quote.status.id.to_s),
+              include(id: pending_quote.status.id.to_s),
+              include(id: accepted_private_quote.id.to_s)
+            )
         end
       end
     end
