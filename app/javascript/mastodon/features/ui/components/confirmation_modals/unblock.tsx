@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { unfollowAccount } from 'mastodon/actions/accounts';
+import { unblockAccount } from 'mastodon/actions/accounts';
 import type { Account } from 'mastodon/models/account';
 import { useAppDispatch } from 'mastodon/store';
 
@@ -10,13 +10,13 @@ import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
 
 const messages = defineMessages({
-  unfollowConfirm: {
-    id: 'confirmations.unfollow.confirm',
-    defaultMessage: 'Unfollow',
+  unblockConfirm: {
+    id: 'confirmations.unblock.confirm',
+    defaultMessage: 'Unblock',
   },
 });
 
-export const ConfirmUnfollowModal: React.FC<
+export const ConfirmUnblockModal: React.FC<
   {
     account: Account;
   } & BaseConfirmationModalProps
@@ -25,19 +25,19 @@ export const ConfirmUnfollowModal: React.FC<
   const dispatch = useAppDispatch();
 
   const onConfirm = useCallback(() => {
-    dispatch(unfollowAccount(account.id));
+    dispatch(unblockAccount(account.id));
   }, [dispatch, account.id]);
 
   return (
     <ConfirmationModal
       title={
         <FormattedMessage
-          id='confirmations.unfollow.title'
-          defaultMessage='Unfollow {name}?'
+          id='confirmations.unblock.title'
+          defaultMessage='Unblock {name}?'
           values={{ name: `@${account.acct}` }}
         />
       }
-      confirm={intl.formatMessage(messages.unfollowConfirm)}
+      confirm={intl.formatMessage(messages.unblockConfirm)}
       onConfirm={onConfirm}
       onClose={onClose}
     />

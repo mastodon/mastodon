@@ -10,13 +10,13 @@ import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
 
 const messages = defineMessages({
-  unfollowConfirm: {
-    id: 'confirmations.unfollow.confirm',
-    defaultMessage: 'Unfollow',
+  withdrawConfirm: {
+    id: 'confirmations.withdraw_request.confirm',
+    defaultMessage: 'Withdraw request',
   },
 });
 
-export const ConfirmUnfollowModal: React.FC<
+export const ConfirmWithdrawRequestModal: React.FC<
   {
     account: Account;
   } & BaseConfirmationModalProps
@@ -32,12 +32,12 @@ export const ConfirmUnfollowModal: React.FC<
     <ConfirmationModal
       title={
         <FormattedMessage
-          id='confirmations.unfollow.title'
-          defaultMessage='Unfollow {name}?'
+          id='confirmations.withdraw_request.title'
+          defaultMessage='Withdraw request to follow {name}?'
           values={{ name: `@${account.acct}` }}
         />
       }
-      confirm={intl.formatMessage(messages.unfollowConfirm)}
+      confirm={intl.formatMessage(messages.withdrawConfirm)}
       onConfirm={onConfirm}
       onClose={onClose}
     />
