@@ -1,8 +1,4 @@
-import type {
-  ComponentPropsWithoutRef,
-  ElementType,
-  PropsWithChildren,
-} from 'react';
+import type { MouseEventHandler, PropsWithChildren } from 'react';
 import {
   createContext,
   useCallback,
@@ -15,6 +11,7 @@ import classNames from 'classnames';
 
 import { cleanExtraEmojis } from '@/mastodon/features/emoji/normalize';
 import { autoPlayGif } from '@/mastodon/initial_state';
+import { polymorphicForwardRef } from '@/types/polymorphic';
 import type {
   CustomEmojiMapArg,
   ExtraCustomEmojiMap,
@@ -24,54 +21,76 @@ import type {
 export const AnimateEmojiContext = createContext<boolean | null>(null);
 
 // Polymorphic provider component
-type AnimateEmojiProviderProps<Element extends ElementType = 'div'> =
-  ComponentPropsWithoutRef<Element> & {
-    as?: Element;
-    className?: string;
-  } & PropsWithChildren;
+type AnimateEmojiProviderProps = Required<PropsWithChildren> & {
+  className?: string;
+};
 
-export const AnimateEmojiProvider = ({
-  children,
-  as: Wrapper = 'div',
-  className,
-  ...props
-}: AnimateEmojiProviderProps<ElementType>) => {
-  const [animate, setAnimate] = useState(autoPlayGif ?? false);
+export const AnimateEmojiProvider = polymorphicForwardRef<
+  'div',
+  AnimateEmojiProviderProps
+>(
+  (
+    {
+      children,
+      as: Wrapper = 'div',
+      className,
+      onMouseEnter,
+      onMouseLeave,
+      ...props
+    },
+    ref,
+  ) => {
+    const [animate, setAnimate] = useState(autoPlayGif ?? false);
 
-  const handleEnter = useCallback(() => {
-    if (!autoPlayGif) {
-      setAnimate(true);
+    const handleEnter: MouseEventHandler<HTMLDivElement> = useCallback(
+      (event) => {
+        onMouseEnter?.(event);
+        if (!autoPlayGif) {
+          setAnimate(true);
+        }
+      },
+      [onMouseEnter],
+    );
+    const handleLeave: MouseEventHandler<HTMLDivElement> = useCallback(
+      (event) => {
+        onMouseLeave?.(event);
+        if (!autoPlayGif) {
+          setAnimate(false);
+        }
+      },
+      [onMouseLeave],
+    );
+
+    // If there's a parent context or GIFs autoplay, we don't need handlers.
+    const parentContext = useContext(AnimateEmojiContext);
+    if (parentContext !== null || autoPlayGif === true) {
+      return (
+        <Wrapper
+          {...props}
+          className={classNames(className, 'animate-parent')}
+          ref={ref}
+        >
+          {children}
+        </Wrapper>
+      );
     }
-  }, []);
-  const handleLeave = useCallback(() => {
-    if (!autoPlayGif) {
-      setAnimate(false);
-    }
-  }, []);
 
-  // If there's a parent context or GIFs autoplay, we don't need handlers.
-  const parentContext = useContext(AnimateEmojiContext);
-  if (parentContext !== null || autoPlayGif === true) {
     return (
-      <Wrapper {...props} className={classNames(className, 'animate-parent')}>
-        {children}
+      <Wrapper
+        {...props}
+        className={classNames(className, 'animate-parent')}
+        onMouseEnter={handleEnter}
+        onMouseLeave={handleLeave}
+        ref={ref}
+      >
+        <AnimateEmojiContext.Provider value={animate}>
+          {children}
+        </AnimateEmojiContext.Provider>
       </Wrapper>
     );
-  }
-
-  return (
-    <Wrapper
-      {...props}
-      className={classNames(className, 'animate-parent')}
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
-    >
-      <AnimateEmojiContext.Provider value={animate}>
-        {children}
-      </AnimateEmojiContext.Provider>
-    </Wrapper>
-  );
-};
+  },
+);
+AnimateEmojiProvider.displayName = 'AnimateEmojiProvider';
 
 // Handle custom emoji
 export const CustomEmojiContext = createContext<ExtraCustomEmojiMap>({});
