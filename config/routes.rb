@@ -123,14 +123,14 @@ Rails.application.routes.draw do
 
   scope path: 'ap', as: 'ap' do
     resources :accounts, path: 'users', only: [:show], param: :id, concerns: :account_resources do
-      resources :statuses, module: :activitypub, only: [:show] do
+      resources :statuses, only: [:show] do
         member do
           get :activity
         end
 
-        resources :replies, only: [:index]
-        resources :likes, only: [:index]
-        resources :shares, only: [:index]
+        resources :replies, only: [:index], module: :activitypub
+        resources :likes, only: [:index], module: :activitypub
+        resources :shares, only: [:index], module: :activitypub
       end
     end
   end
