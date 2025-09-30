@@ -58,7 +58,8 @@ export const FollowButton: React.FC<{
   accountId?: string;
   compact?: boolean;
   labelLength?: 'auto' | 'short' | 'long';
-}> = ({ accountId, compact, labelLength = 'auto' }) => {
+  className?: string;
+}> = ({ accountId, compact, labelLength = 'auto', className }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const { signedIn } = useIdentity();
@@ -155,7 +156,7 @@ export const FollowButton: React.FC<{
         href='/settings/profile'
         target='_blank'
         rel='noopener'
-        className={classNames('button button-secondary', {
+        className={classNames(className, 'button button-secondary', {
           'button--compact': compact,
         })}
       >
@@ -174,7 +175,7 @@ export const FollowButton: React.FC<{
       }
       secondary={following}
       compact={compact}
-      className={following ? 'button--destructive' : undefined}
+      className={classNames(className, { 'button--destructive': following })}
     >
       {label}
     </Button>
