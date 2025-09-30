@@ -2983,12 +2983,8 @@ a.account__display-name {
     gap: 16px;
     width: 100%;
     height: 100%;
-    @supports (min-height: 100dvh) {
-      min-height: 100dvh;
-    }
-    @supports not (min-height: 100dvh) {
-      min-height: 100vh;
-    }
+    min-height: 100vh;
+    min-height: 100dvh;
     padding-bottom: env(safe-area-inset-bottom);
 
     &__pane {
@@ -3320,12 +3316,8 @@ a.account__display-name {
   }
 
   .columns-area__panels {
-    @supports (min-height: 100dvh) {
-      min-height: 100dvh;
-    }
-    @supports not (min-height: 100dvh) {
-      min-height: 100vh;
-    }
+    min-height: 100vh;
+    min-height: 100dvh;
     gap: 0;
   }
 

@@ -68,12 +68,8 @@ body {
 
     &.layout-single-column {
       height: auto;
-      @supports (min-height: 100dvh) {
-        min-height: 100dvh;
-      }
-      @supports not (min-height: 100dvh) {
-        min-height: 100vh;
-      }
+      min-height: 100vh;
+      min-height: 100dvh;
       overflow-y: scroll;
     }
 
@@ -190,24 +186,16 @@ button {
   }
 
   & > noscript {
-    @supports (min-height: 100dvh) {
-      min-height: 100dvh;
-    }
-    @supports not (min-height: 100dvh) {
-      min-height: 100vh;
-    }
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 }
 
 .layout-single-column .app-holder {
   &,
   & > div {
-    @supports (min-height: 100dvh) {
-      min-height: 100dvh;
-    }
-    @supports not (min-height: 100dvh) {
-      min-height: 100vh;
-    }
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 }
 
