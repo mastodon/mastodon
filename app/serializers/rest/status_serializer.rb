@@ -34,7 +34,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   has_one :quote, key: :quote, serializer: REST::QuoteSerializer
   has_one :preview_card, key: :card, serializer: REST::PreviewCardSerializer
   has_one :preloadable_poll, key: :poll, serializer: REST::PollSerializer
-  has_one :quote_approval, if: -> { Mastodon::Feature.outgoing_quotes_enabled? }
+  has_one :quote_approval
 
   def quote
     object.quote if object.quote&.acceptable?
@@ -155,7 +155,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     current_user? &&
       current_user.account_id == object.account_id &&
       !object.reblog? &&
-      %w(public unlisted private).include?(object.visibility)
+      StatusRelationshipsPresenter::PINNABLE_VISIBILITIES.include?(object.visibility)
   end
 
   def source_requested?

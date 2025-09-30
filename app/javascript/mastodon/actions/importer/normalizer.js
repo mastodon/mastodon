@@ -81,7 +81,7 @@ export function normalizeStatus(status, normalOldStatus) {
   } else {
     // If the status has a CW but no contents, treat the CW as if it were the
     // status' contents, to avoid having a CW toggle with seemingly no effect.
-    if (normalStatus.spoiler_text && !normalStatus.content) {
+    if (normalStatus.spoiler_text && !normalStatus.content && !normalStatus.quote) {
       normalStatus.content = normalStatus.spoiler_text;
       normalStatus.spoiler_text = '';
     }

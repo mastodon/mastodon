@@ -5,7 +5,6 @@ import path from 'node:path';
 import js from '@eslint/js';
 import { globalIgnores } from 'eslint/config';
 import formatjs from 'eslint-plugin-formatjs';
-// @ts-expect-error -- No typings
 import importPlugin from 'eslint-plugin-import';
 import jsdoc from 'eslint-plugin-jsdoc';
 import jsxA11Y from 'eslint-plugin-jsx-a11y';

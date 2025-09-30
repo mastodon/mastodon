@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import type React from 'react';
 
+import type { useLocation } from 'react-router';
 import { Router as OriginalRouter, useHistory } from 'react-router';
 
 import type {
@@ -18,7 +19,9 @@ interface MastodonLocationState {
   mastodonModalKey?: string;
 }
 
-type LocationState = MastodonLocationState | null | undefined;
+export type LocationState = MastodonLocationState | null | undefined;
+
+export type MastodonLocation = ReturnType<typeof useLocation<LocationState>>;
 
 type HistoryPath = Path | LocationDescriptor<LocationState>;
 

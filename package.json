@@ -1,7 +1,7 @@
 {
   "name": "@mastodon/mastodon",
   "license": "AGPL-3.0-or-later",
-  "packageManager": "yarn@4.9.4",
+  "packageManager": "yarn@4.10.3",
   "engines": {
     "node": ">=20"
   },
@@ -31,7 +31,8 @@
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic -d storybook-static"
+    "chromatic": "npx chromatic -d storybook-static",
+    "msw:updateWorker": "msw init"
   },
   "repository": {
     "type": "git",
@@ -98,7 +99,6 @@
     "react-redux-loading-bar": "^5.0.8",
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
-    "react-router-scroll-4": "^1.0.0-beta.1",
     "react-select": "^5.7.3",
     "react-sparklines": "^1.7.0",
     "react-swipeable-views": "^0.14.0",
@@ -110,6 +110,7 @@
     "rollup-plugin-gzip": "^4.1.1",
     "rollup-plugin-visualizer": "^6.0.3",
     "sass": "^1.62.1",
+    "scroll-behavior": "^0.11.0",
     "stacktrace-js": "^2.0.2",
     "stringz": "^2.1.0",
     "substring-trie": "^1.0.2",
@@ -189,7 +190,7 @@
     "stylelint": "^16.19.1",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-standard-scss": "^15.0.1",
-    "typescript": "~5.7.3",
+    "typescript": "~5.9.0",
     "typescript-eslint": "^8.29.1",
     "vitest": "^3.2.4"
   },
