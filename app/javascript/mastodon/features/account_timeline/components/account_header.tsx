@@ -382,7 +382,7 @@ export const AccountHeader: React.FC<{
   const isRemote = account?.acct !== account?.username;
   const remoteDomain = isRemote ? account?.acct.split('@')[1] : null;
 
-  const menu = useMemo(() => {
+  const menuItems = useMemo(() => {
     const arr: MenuItem[] = [];
 
     if (!account) {
@@ -604,6 +604,15 @@ export const AccountHeader: React.FC<{
     handleUnblockDomain,
   ]);
 
+  const menu = accountId !== me && (
+    <Dropdown
+      disabled={menuItems.length === 0}
+      items={menuItems}
+      icon='ellipsis-v'
+      iconComponent={MoreHorizIcon}
+    />
+  );
+
   if (!account) {
     return null;
   }
@@ -720,7 +729,13 @@ export const AccountHeader: React.FC<{
   const isMovedAndUnfollowedAccount = account.moved && !relationship?.following;
 
   if (!isMovedAndUnfollowedAccount) {
-    actionBtn = <FollowButton accountId={accountId} />;
+    actionBtn = (
+      <FollowButton
+        accountId={accountId}
+        className='account__header__follow-button'
+        labelLength='long'
+      />
+    );
   }
 
   if (account.locked) {
@@ -802,17 +817,10 @@ export const AccountHeader: React.FC<{
               />
             </a>
 
-            <div className='account__header__tabs__buttons'>
+            <div className='account__header__buttons account__header__buttons--desktop'>
               {!hidden && bellBtn}
               {!hidden && shareBtn}
-              {accountId !== me && (
-                <Dropdown
-                  disabled={menu.length === 0}
-                  items={menu}
-                  icon='ellipsis-v'
-                  iconComponent={MoreHorizIcon}
-                />
-              )}
+              {menu}
               {!hidden && actionBtn}
             </div>
           </div>
@@ -842,6 +850,12 @@ export const AccountHeader: React.FC<{
           {account.id !== me && signedIn && !(suspended || hidden) && (
             <FamiliarFollowers accountId={accountId} />
           )}
+
+          <div className='account__header__buttons account__header__buttons--mobile'>
+            {!hidden && actionBtn}
+            {!hidden && bellBtn}
+            {menu}
+          </div>
 
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
