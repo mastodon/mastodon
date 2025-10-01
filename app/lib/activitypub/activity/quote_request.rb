@@ -36,6 +36,9 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
 
     # Ensure the user is notified
     LocalNotificationWorker.perform_async(quoted_status.account_id, status.quote.id, 'Quote', 'quote')
+
+    # Ensure local followers get to see the post updated with approval
+    DistributionWorker.perform_async(status.id, { 'update' => true, 'skip_notifications' => true })
   end
 
   def import_instrument(quoted_status)
