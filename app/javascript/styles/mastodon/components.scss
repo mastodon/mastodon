@@ -2277,6 +2277,7 @@
   position: relative;
   border-radius: var(--avatar-border-radius);
   background: var(--surface-background-color);
+  flex-shrink: 0;
 
   img {
     width: 100%;
@@ -10937,7 +10938,7 @@ noscript {
     font-weight: 500;
     color: $primary-text-color;
     text-decoration: none;
-    overflow: auto;
+    min-width: 0;
 
     &:hover,
     &:focus,
