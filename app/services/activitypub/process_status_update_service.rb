@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::ProcessStatusUpdateService < BaseService
+  include FormattingHelper
   include JsonLdHelper
   include Redisable
   include Lockable
@@ -20,7 +21,6 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @request_id                = request_id
     @quote                     = nil
 
-    # Only native types can be updated at the moment
     return @status if !expected_type? || already_updated_more_recently?
 
     if @status_parser.edited_at.present? && (@status.edited_at.nil? || @status_parser.edited_at > @status.edited_at)
@@ -168,8 +168,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def update_immediate_attributes!
-    @status.text         = @status_parser.text || ''
-    @status.spoiler_text = @status_parser.spoiler_text || ''
+    @status.text         = converted_object_type? ? converted_text : (@status_parser.text || '')
+    @status.spoiler_text = converted_object_type? ? '' : (@status_parser.spoiler_text || '')
     @status.sensitive    = @account.sensitized? || @status_parser.sensitive || false
     @status.language     = @status_parser.language
 
@@ -349,7 +349,23 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def expected_type?
-    equals_or_includes_any?(@json['type'], %w(Note Question))
+    equals_or_includes_any?(@json['type'], ActivityPub::Activity::SUPPORTED_TYPES) || equals_or_includes_any?(@json['type'], ActivityPub::Activity::CONVERTED_TYPES)
+  end
+
+  def converted_object_type?
+    equals_or_includes_any?(@json['type'], ActivityPub::Activity::CONVERTED_TYPES)
+  end
+
+  def converted_text
+    [formatted_title, @status_parser.spoiler_text.presence, formatted_url].compact.join("\n\n")
+  end
+
+  def formatted_title
+    "<h2>#{@status_parser.title}</h2>" if @status_parser.title.present?
+  end
+
+  def formatted_url
+    linkify(@status_parser.url || @status_parser.uri)
   end
 
   def record_previous_edit!
