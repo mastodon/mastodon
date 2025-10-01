@@ -65,7 +65,7 @@ class Request
   # and 5s timeout on the TLS handshake, meaning the worst case should take
   # about 15s in total
   TIMEOUT = { connect_timeout: 5, read_timeout: 10, write_timeout: 10, read_deadline: 30 }.freeze
-  SAFE_PRESERVED_CHARS = ','
+  SAFE_PRESERVED_CHARS = '+,'
 
   include RoutingHelper
 
@@ -149,22 +149,30 @@ class Request
 
   private
 
-  def normalize_preserving_url_encodings(url, preserve_chars = SAFE_PRESERVED_CHARS)
+  def normalize_preserving_url_encodings(url, preserved_chars = SAFE_PRESERVED_CHARS, *flags)
     original_uri = Addressable::URI.parse(url)
+    normalized_uri = original_uri.normalize
 
     if original_uri.query
-      normalized_query = Addressable::URI.normalize_component(
-        original_uri.query,
-        Addressable::URI::CharacterClasses::RESERVED_AND_UNRESERVED,
-        preserve_chars
-      )
+      modified_query_class = Addressable::URI::CharacterClasses::QUERY.dup
+      modified_query_class.sub!("\\&", "").sub!("\\;", "")
 
-      normalized_uri = original_uri.normalize
-      normalized_uri.query = normalized_query
-      normalized_uri
-    else
-      original_uri.normalize
+      pairs = original_uri.query.split("&", -1)
+      pairs.delete_if(&:empty?).uniq! if flags.include?(:compacted)
+      pairs.sort! if flags.include?(:sorted)
+
+      normalized_query = pairs.map do |pair|
+        Addressable::URI.normalize_component(
+          pair,
+          modified_query_class,
+          preserved_chars
+        )
+      end.join("&")
+
+      normalized_uri.query = normalized_query == "" ? nil : normalized_query
     end
+
+    normalized_uri
   end
 
   def set_common_headers!
