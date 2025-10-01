@@ -3,10 +3,11 @@ import { Record as ImmutableRecord, mergeDeep } from 'immutable';
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import { combineReducers } from 'redux-immutable';
 
+import { reducer as alertsReducer } from '../actions/alerts';
+
 import { accountsReducer } from './accounts';
 import { accountsFamiliarFollowersReducer } from './accounts_familiar_followers';
 import { accountsMapReducer } from './accounts_map';
-import { alertsReducer } from './alerts';
 import announcements from './announcements';
 import { composeReducer } from './compose';
 import { contextsReducer } from './contexts';
