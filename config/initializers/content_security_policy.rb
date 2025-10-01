@@ -65,7 +65,7 @@ Rails.application.reloader.to_prepare do
     request.content_security_policy_nonce_generator = nil
   end
 
-  if Rails.env.development?
+  if Rails.env.development? && ENV['DISABLE_LETTER_OPENER'].nil?
     LetterOpenerWeb::LettersController.content_security_policy do |p|
       p.child_src       :self
       p.connect_src     :none
