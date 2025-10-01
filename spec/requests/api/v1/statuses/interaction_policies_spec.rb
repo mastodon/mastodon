@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Interaction policies', feature: :outgoing_quotes do
+RSpec.describe 'Interaction policies' do
   let(:user)    { Fabricate(:user) }
   let(:scopes)  { 'write:statuses' }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
@@ -60,7 +60,7 @@ RSpec.describe 'Interaction policies', feature: :outgoing_quotes do
         )
 
         expect(DistributionWorker)
-          .to have_enqueued_sidekiq_job(status.id, { 'update' => true })
+          .to have_enqueued_sidekiq_job(status.id, { 'update' => true, 'skip_notifications' => true })
         expect(ActivityPub::StatusUpdateDistributionWorker)
           .to have_enqueued_sidekiq_job(status.id, { 'updated_at' => anything })
       end

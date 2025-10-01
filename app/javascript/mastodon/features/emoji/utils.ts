@@ -10,6 +10,13 @@ export function stringHasUnicodeEmoji(input: string): boolean {
   return new RegExp(EMOJI_REGEX, supportedFlags()).test(input);
 }
 
+export function isUnicodeEmoji(input: string): boolean {
+  return (
+    input.length > 0 &&
+    new RegExp(`^(${EMOJI_REGEX})+$`, supportedFlags()).test(input)
+  );
+}
+
 export function stringHasUnicodeFlags(input: string): boolean {
   if (supportsRegExpSets()) {
     return new RegExp(
@@ -27,6 +34,11 @@ export function stringHasUnicodeFlags(input: string): boolean {
 
 // Constant as this is supported by all browsers.
 const CUSTOM_EMOJI_REGEX = /:([a-z0-9_]+):/i;
+
+export function isCustomEmoji(input: string): boolean {
+  return new RegExp(`^${CUSTOM_EMOJI_REGEX.source}$`, 'i').test(input);
+}
+
 export function stringHasCustomEmoji(input: string) {
   return CUSTOM_EMOJI_REGEX.test(input);
 }

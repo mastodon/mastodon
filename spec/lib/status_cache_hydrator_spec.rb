@@ -28,7 +28,7 @@ RSpec.describe StatusCacheHydrator do
         end
       end
 
-      context 'when handling a status with a quote policy', feature: :outgoing_quotes do
+      context 'when handling a status with a quote policy' do
         let(:status) { Fabricate(:status, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16) }
 
         before do
