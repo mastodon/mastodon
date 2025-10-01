@@ -213,7 +213,7 @@ nan:
         enable_user: 啟用口座
         memorialize_account: 設做故人ê口座
         promote_user: Kā用者升級
-        publish_terms_of_service: 公佈服務ê使用規則
+        publish_terms_of_service: 公佈服務規定
         reject_appeal: 拒絕申訴
         reject_user: 拒絕用者
         remove_avatar_user: Thâi掉標頭
@@ -281,7 +281,7 @@ nan:
         enable_user_html: "%{name} kā 用者 %{target} 設做允准登入"
         memorialize_account_html: "%{name} kā %{target} 設做故人口座"
         promote_user_html: "%{name} kā 用者 %{target} 升級"
-        publish_terms_of_service_html: "%{name} 公佈服務規則ê更新"
+        publish_terms_of_service_html: "%{name} 公佈服務規定ê更新"
         reject_appeal_html: "%{name} 拒絕 %{target} 所寫ê tuì管理決定ê投訴"
         reject_user_html: "%{name} 拒絕 %{target} ê 註冊"
         remove_avatar_user_html: "%{name} thâi掉 %{target} ê標頭"
@@ -787,7 +787,7 @@ nan:
       add_new: 加添規則
       add_translation: 加添翻譯
       delete: Thâi掉
-      description_html: 雖bóng大部份ê lóng講有讀kap同意使用規則，m̄-koh攏無讀了，直到發生問題ê時。<strong>提供in列單ē當hōo tsi̍t kái看服侍器ê規則khah快。</strong>請試kā個別ê規則寫kah短koh簡單，m̄-kú m̄通kā in拆做tsē-tsē分開ê項目。
+      description_html: 雖bóng大部份ê lóng講有讀kap同意服務規定，m̄-koh攏無讀了，直到發生問題ê時。<strong>提供in列單ē當hōo tsi̍t kái看服侍器ê規則khah快。</strong>請試kā個別ê規則寫kah短koh簡單，m̄-kú m̄通kā in拆做tsē-tsē分開ê項目。
       edit: 編輯規則
       empty: Iáu bē定義服侍器ê規則。
       move_down: Suá khah落來
@@ -972,7 +972,36 @@ nan:
       search: Tshiau-tshuē
       title: Hashtag
       updated_msg: Hashtag設定更新成功ah
+    terms_of_service:
+      back: 轉去服務規定
+      changelog: Siánn物有改
+      create: 用lí家tī ê
+      current: 目前ê
+      draft: 草稿
+      generate: 用枋模
+      generates:
+        action: 生成
+        chance_to_review_html: "<strong>所生成ê服務規定bē自動發布。</strong>Lí ē有機會來看結果。請添必要ê詳細來繼續。"
+        explanation_html: 提供ê服務規定kan-ta做參考用，bē當成做任何法律建議。請照lí ê情形kap有ê特別ê法律問題諮詢lí ê法律顧問。
+        title: 設定服務規定
+      going_live_on_html: 目前規定，tuì %{date} 施行
+      history: 歷史
+      live: 目前ê
+      no_history: Iáu無半項服務規定ê改變記錄。
+      no_terms_of_service_html: Lí目前iáu無設定任何服務規定。服務規定是beh提供明確性，兼保護lí佇kap用者ê爭議中毋免承受可能ê責任。
+      notified_on_html: 佇 %{date} 通知ê用者
+      notify_users: 通知用者
     trends:
+      preview_card_providers:
+        title: 發布者
+      rejected: 拒絕ê
+      statuses:
+        allow: 允准PO文
+        allow_account: 允准作者
+        confirm_allow: Lí kám確定beh允准所揀ê狀態？
+        confirm_allow_account: Lí kám確定beh允准所揀ê口座？
+        confirm_disallow: Lí kám確定無愛允准所揀ê狀態？
+        confirm_disallow_account: Lí kám確定無愛允准所揀ê口座？
       tags:
         dashboard:
           tag_languages_dimension: Tsia̍p用ê語言

@@ -13,9 +13,11 @@ import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react'
 import { Icon }  from 'mastodon/components/icon';
 import { Poll } from 'mastodon/components/poll';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';
-import { EmojiHTML } from '../features/emoji/emoji_html';
+import { languages as preloadedLanguages } from 'mastodon/initial_state';
+
 import { isModernEmojiEnabled } from '../utils/environment';
+
+import { EmojiHTML } from './emoji/html';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 

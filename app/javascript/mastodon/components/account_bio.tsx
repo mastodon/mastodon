@@ -1,10 +1,14 @@
 import { useCallback } from 'react';
 
+import classNames from 'classnames';
+
 import { useLinks } from 'mastodon/hooks/useLinks';
 
-import { EmojiHTML } from '../features/emoji/emoji_html';
 import { useAppSelector } from '../store';
 import { isModernEmojiEnabled } from '../utils/environment';
+
+import { AnimateEmojiProvider } from './emoji/context';
+import { EmojiHTML } from './emoji/html';
 
 interface AccountBioProps {
   className: string;
@@ -44,13 +48,13 @@ export const AccountBio: React.FC<AccountBioProps> = ({
   }
 
   return (
-    <div
-      className={`${className} translate`}
+    <AnimateEmojiProvider
+      className={classNames(className, 'translate')}
       onClickCapture={handleClick}
       ref={handleNodeChange}
     >
       <EmojiHTML htmlString={note} extraEmojis={extraEmojis} />
-    </div>
+    </AnimateEmojiProvider>
   );
 };
 

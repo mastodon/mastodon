@@ -48,7 +48,7 @@ describe('html', () => {
       const input = '<p>lorem ipsum</p>';
       const onText = vi.fn((text: string) => text);
       html.htmlStringToComponents(input, { onText });
-      expect(onText).toHaveBeenCalledExactlyOnceWith('lorem ipsum');
+      expect(onText).toHaveBeenCalledExactlyOnceWith('lorem ipsum', {});
     });
 
     it('calls onElement callback', () => {
@@ -61,6 +61,7 @@ describe('html', () => {
       expect(onElement).toHaveBeenCalledExactlyOnceWith(
         expect.objectContaining({ tagName: 'P' }),
         expect.arrayContaining(['lorem ipsum']),
+        {},
       );
     });
 
@@ -71,6 +72,7 @@ describe('html', () => {
       expect(onElement).toHaveBeenCalledExactlyOnceWith(
         expect.objectContaining({ tagName: 'P' }),
         expect.arrayContaining(['lorem ipsum']),
+        {},
       );
       expect(output).toMatchSnapshot();
     });
@@ -88,15 +90,16 @@ describe('html', () => {
         'href',
         'https://example.com',
         'a',
+        {},
       );
-      expect(onAttribute).toHaveBeenCalledWith('target', '_blank', 'a');
-      expect(onAttribute).toHaveBeenCalledWith('rel', 'nofollow', 'a');
+      expect(onAttribute).toHaveBeenCalledWith('target', '_blank', 'a', {});
+      expect(onAttribute).toHaveBeenCalledWith('rel', 'nofollow', 'a', {});
     });
 
     it('respects allowedTags option', () => {
       const input = '<p>lorem <strong>ipsum</strong> <em>dolor</em></p>';
       const output = html.htmlStringToComponents(input, {
-        allowedTags: new Set(['p', 'em']),
+        allowedTags: { p: {}, em: {} },
       });
       expect(output).toMatchSnapshot();
     });

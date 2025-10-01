@@ -1,4 +1,4 @@
-import initialState from '../initial_state';
+import { initialState } from '../initial_state';
 
 export function isDevelopment() {
   if (typeof process !== 'undefined')

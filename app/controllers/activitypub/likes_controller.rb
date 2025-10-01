@@ -28,7 +28,7 @@ class ActivityPub::LikesController < ActivityPub::BaseController
 
   def likes_collection_presenter
     ActivityPub::CollectionPresenter.new(
-      id: account_status_likes_url(@account, @status),
+      id: ActivityPub::TagManager.instance.likes_uri_for(@status),
       type: :unordered,
       size: @status.favourites_count
     )

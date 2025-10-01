@@ -2972,8 +2972,12 @@ a.account__display-name {
   justify-content: flex-start;
   position: relative;
 
-  &.unscrollable {
-    overflow-x: hidden;
+  .layout-multiple-columns & {
+    overflow-x: auto;
+
+    &.unscrollable {
+      overflow-x: hidden;
+    }
   }
 
   &__panels {
@@ -6398,7 +6402,10 @@ a.status-card {
       line-height: 24px;
       color: $primary-text-color;
       font-weight: 500;
-      margin-bottom: 8px;
+
+      &:not(:only-child) {
+        margin-bottom: 8px;
+      }
     }
 
     strong {
@@ -8403,47 +8410,6 @@ noscript {
     overflow: hidden;
     margin-inline-start: -2px; // aligns the pfp with content below
 
-    &__buttons {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-top: 55px;
-      overflow: hidden;
-
-      .button {
-        flex-shrink: 1;
-        white-space: nowrap;
-        min-width: 80px;
-      }
-
-      .icon-button {
-        border: 1px solid var(--background-border-color);
-        border-radius: 4px;
-        box-sizing: content-box;
-        padding: 5px;
-
-        .icon {
-          width: 24px;
-          height: 24px;
-        }
-
-        &.copied {
-          border-color: $valid-value-color;
-        }
-      }
-
-      .optional {
-        @container account-header (max-width: 372px) {
-          display: none;
-        }
-
-        // Fallback for older browsers with no container queries support
-        @media screen and (max-width: (372px + 55px)) {
-          display: none;
-        }
-      }
-    }
-
     &__name {
       margin-top: 16px;
       margin-bottom: 16px;
@@ -8489,6 +8455,69 @@ noscript {
 
     .spacer {
       flex: 1 1 auto;
+    }
+  }
+
+  &__follow-button {
+    flex-grow: 1;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    $button-breakpoint: 420px;
+    $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
+
+    &--desktop {
+      margin-top: 55px;
+
+      @container (width < #{$button-breakpoint}) {
+        display: none;
+      }
+
+      @supports (not (container-type: inline-size)) {
+        @media (max-width: #{$button-fallback-breakpoint}) {
+          display: none;
+        }
+      }
+    }
+
+    &--mobile {
+      margin-block: 16px;
+
+      @container (width >= #{$button-breakpoint}) {
+        display: none;
+      }
+
+      @supports (not (container-type: inline-size)) {
+        @media (min-width: (#{$button-fallback-breakpoint} + 1px)) {
+          display: none;
+        }
+      }
+    }
+
+    .button {
+      flex-shrink: 1;
+      white-space: nowrap;
+      min-width: 80px;
+    }
+
+    .icon-button {
+      border: 1px solid var(--background-border-color);
+      border-radius: 4px;
+      box-sizing: content-box;
+      padding: 5px;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      &.copied {
+        border-color: $valid-value-color;
+      }
     }
   }
 

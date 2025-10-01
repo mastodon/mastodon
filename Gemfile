@@ -9,7 +9,7 @@ gem 'rails', '~> 8.0'
 gem 'thor', '~> 1.2'
 
 gem 'dotenv'
-gem 'haml-rails', '~>2.0'
+gem 'haml-rails', '~>3.0'
 gem 'pg', '~> 1.5'
 gem 'pghero'
 
@@ -160,6 +160,9 @@ group :test do
 
   # Stub web requests for specs
   gem 'webmock', '~> 3.18'
+
+  # Websocket driver for testing integration between rails/sidekiq and streaming
+  gem 'websocket-driver', '~> 0.8', require: false
 end
 
 group :development do
