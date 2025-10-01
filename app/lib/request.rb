@@ -155,7 +155,7 @@ class Request
 
     if original_uri.query
       modified_query_class = Addressable::URI::CharacterClasses::QUERY.dup
-      modified_query_class.sub!("\\&", "").sub!("\\;", "")
+      modified_query_class.sub!('\\&', '').sub!('\\;', '')
 
       pairs = original_uri.query.split("&", -1)
       pairs.delete_if(&:empty?).uniq! if flags.include?(:compacted)
@@ -167,9 +167,9 @@ class Request
           modified_query_class,
           preserved_chars
         )
-      end.join("&")
+      end.join('&')
 
-      normalized_uri.query = normalized_query == "" ? nil : normalized_query
+      normalized_uri.query = normalized_query == '' ? nil : normalized_query
     end
 
     normalized_uri
