@@ -220,6 +220,12 @@ RSpec.describe 'ActivityPub Replies' do
       it_behaves_like 'allowed access'
     end
 
+    context 'with no signature and requesting the numeric AP path' do
+      subject { get ap_account_status_replies_path(account_id: status.account_id, status_id: status.id, only_other_accounts: only_other_accounts) }
+
+      it_behaves_like 'allowed access'
+    end
+
     context 'with signature' do
       subject { get account_status_replies_path(account_username: status.account.username, status_id: status.id, only_other_accounts: only_other_accounts), headers: nil, sign_with: remote_querier }
 

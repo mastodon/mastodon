@@ -1,3 +1,7 @@
+import { isList } from 'immutable';
+
+import { assetHost } from '@/mastodon/utils/config';
+
 import {
   VARIATION_SELECTOR_CODE,
   KEYCAP_CODE,
@@ -7,7 +11,7 @@ import {
   EMOJIS_WITH_DARK_BORDER,
   EMOJIS_WITH_LIGHT_BORDER,
 } from './constants';
-import type { TwemojiBorderInfo } from './types';
+import type { CustomEmojiMapArg, ExtraCustomEmojiMap } from './types';
 
 // Misc codes that have special handling
 const SKIER_CODE = 0x26f7;
@@ -61,21 +65,17 @@ export const CODES_WITH_DARK_BORDER =
 export const CODES_WITH_LIGHT_BORDER =
   EMOJIS_WITH_LIGHT_BORDER.map(emojiToUnicodeHex);
 
-export function twemojiHasBorder(twemojiHex: string): TwemojiBorderInfo {
-  const normalizedHex = twemojiHex.toUpperCase();
-  let hasLightBorder = false;
-  let hasDarkBorder = false;
-  if (CODES_WITH_LIGHT_BORDER.includes(normalizedHex)) {
-    hasLightBorder = true;
+export function unicodeHexToUrl(unicodeHex: string, darkMode: boolean): string {
+  const normalizedHex = unicodeToTwemojiHex(unicodeHex);
+  let url = `${assetHost}/emoji/${normalizedHex}`;
+  if (darkMode && CODES_WITH_LIGHT_BORDER.includes(normalizedHex)) {
+    url += '_border';
   }
   if (CODES_WITH_DARK_BORDER.includes(normalizedHex)) {
-    hasDarkBorder = true;
+    url += '_border';
   }
-  return {
-    hexCode: twemojiHex,
-    hasLightBorder,
-    hasDarkBorder,
-  };
+  url += '.svg';
+  return url;
 }
 
 interface TwemojiSpecificEmoji {
@@ -148,6 +148,21 @@ export function twemojiToUnicodeInfo(
   }
 
   return hexNumbersToString(mappedCodes);
+}
+
+export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg) {
+  if (!extraEmojis) {
+    return null;
+  }
+  if (!isList(extraEmojis)) {
+    return extraEmojis;
+  }
+  return extraEmojis
+    .toJSON()
+    .reduce<ExtraCustomEmojiMap>(
+      (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
+      {},
+    );
 }
 
 function hexStringToNumbers(hexString: string): number[] {

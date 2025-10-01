@@ -23,8 +23,6 @@ export const EMOJI_MODE_TWEMOJI = 'twemoji';
 export const EMOJI_TYPE_UNICODE = 'unicode';
 export const EMOJI_TYPE_CUSTOM = 'custom';
 
-export const EMOJI_STATE_MISSING = 'missing';
-
 export const EMOJIS_WITH_DARK_BORDER = [
   '🎱', // 1F3B1
   '🐜', // 1F41C

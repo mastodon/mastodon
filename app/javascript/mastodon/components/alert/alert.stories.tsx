@@ -8,6 +8,7 @@ const meta = {
   component: Alert,
   args: {
     isActive: true,
+    isLoading: false,
     animateFrom: 'side',
     title: '',
     message: '',
@@ -19,6 +20,12 @@ const meta = {
       control: 'boolean',
       type: 'boolean',
       description: 'Animate to the active (displayed) state of the alert',
+    },
+    isLoading: {
+      control: 'boolean',
+      type: 'boolean',
+      description:
+        'Display a loading indicator in the alert, replacing the dismiss button if present',
     },
     animateFrom: {
       control: 'radio',
@@ -107,4 +114,12 @@ export const InSizedContainer: Story = {
       <Alert {...args} />
     </div>
   ),
+};
+
+export const WithLoadingIndicator: Story = {
+  args: {
+    ...WithDismissButton.args,
+    isLoading: true,
+  },
+  render: InSizedContainer.render,
 };

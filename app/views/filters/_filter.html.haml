@@ -32,10 +32,10 @@
             .permissions-list__item__text__type
               = t('filters.index.statuses_long', count: filter.statuses.size)
 
-  .announcements-list__item__action-bar
-    .announcements-list__item__meta
+  .filters-list__item__action-bar
+    .filters-list__item__meta
       = t('filters.index.contexts', contexts: filter.context.map { |context| I18n.t("filters.contexts.#{context}") }.join(', '))
 
-    %div
+    .filters-list__item__actions
       = table_link_to 'edit', t('filters.edit.title'), edit_filter_path(filter)
       = table_link_to 'close', t('filters.index.delete'), filter_path(filter), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

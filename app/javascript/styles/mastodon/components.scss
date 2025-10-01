@@ -1597,6 +1597,16 @@
       }
     }
   }
+
+  .no-reduce-motion &--highlighted-entry::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgb(from $ui-highlight-color r g b / 20%);
+    opacity: 0;
+    animation: fade 0.7s reverse both 0.3s;
+    pointer-events: none;
+  }
 }
 
 .status__relative-time {
@@ -2267,6 +2277,7 @@
   position: relative;
   border-radius: var(--avatar-border-radius);
   background: var(--surface-background-color);
+  flex-shrink: 0;
 
   img {
     width: 100%;
@@ -2960,11 +2971,14 @@ a.account__display-name {
   flex: 1 1 auto;
   flex-direction: row;
   justify-content: flex-start;
-  overflow-x: auto;
   position: relative;
 
-  &.unscrollable {
-    overflow-x: hidden;
+  .layout-multiple-columns & {
+    overflow-x: auto;
+
+    &.unscrollable {
+      overflow-x: hidden;
+    }
   }
 
   &__panels {
@@ -2975,6 +2989,7 @@ a.account__display-name {
     width: 100%;
     height: 100%;
     min-height: 100vh;
+    min-height: 100dvh;
     padding-bottom: env(safe-area-inset-bottom);
 
     &__pane {
@@ -3136,6 +3151,29 @@ a.account__display-name {
   }
 }
 
+.column__alert {
+  position: sticky;
+  bottom: 1rem;
+  z-index: 10;
+  box-sizing: border-box;
+  display: grid;
+  width: 100%;
+  max-width: 360px;
+  padding-inline: 10px;
+  margin-top: 1rem;
+  margin-inline: auto;
+
+  @media (max-width: #{$mobile-menu-breakpoint - 1}) {
+    bottom: 4rem;
+  }
+
+  & > * {
+    // Make all nested alerts occupy the same space
+    // rather than stack
+    grid-area: 1 / 1;
+  }
+}
+
 .ui {
   --mobile-bottom-nav-height: 55px;
   --last-content-item-border-width: 2px;
@@ -3176,7 +3214,6 @@ a.account__display-name {
 .column,
 .drawer {
   flex: 1 1 100%;
-  overflow: hidden;
 }
 
 @media screen and (width > $mobile-breakpoint) {
@@ -3285,6 +3322,7 @@ a.account__display-name {
 
   .columns-area__panels {
     min-height: 100vh;
+    min-height: 100dvh;
     gap: 0;
   }
 
@@ -6367,7 +6405,10 @@ a.status-card {
       line-height: 24px;
       color: $primary-text-color;
       font-weight: 500;
-      margin-bottom: 8px;
+
+      &:not(:only-child) {
+        margin-bottom: 8px;
+      }
     }
 
     strong {
@@ -8372,47 +8413,6 @@ noscript {
     overflow: hidden;
     margin-inline-start: -2px; // aligns the pfp with content below
 
-    &__buttons {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-top: 55px;
-      overflow: hidden;
-
-      .button {
-        flex-shrink: 1;
-        white-space: nowrap;
-        min-width: 80px;
-      }
-
-      .icon-button {
-        border: 1px solid var(--background-border-color);
-        border-radius: 4px;
-        box-sizing: content-box;
-        padding: 5px;
-
-        .icon {
-          width: 24px;
-          height: 24px;
-        }
-
-        &.copied {
-          border-color: $valid-value-color;
-        }
-      }
-
-      .optional {
-        @container account-header (max-width: 372px) {
-          display: none;
-        }
-
-        // Fallback for older browsers with no container queries support
-        @media screen and (max-width: (372px + 55px)) {
-          display: none;
-        }
-      }
-    }
-
     &__name {
       margin-top: 16px;
       margin-bottom: 16px;
@@ -8458,6 +8458,69 @@ noscript {
 
     .spacer {
       flex: 1 1 auto;
+    }
+  }
+
+  &__follow-button {
+    flex-grow: 1;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    $button-breakpoint: 420px;
+    $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
+
+    &--desktop {
+      margin-top: 55px;
+
+      @container (width < #{$button-breakpoint}) {
+        display: none;
+      }
+
+      @supports (not (container-type: inline-size)) {
+        @media (max-width: #{$button-fallback-breakpoint}) {
+          display: none;
+        }
+      }
+    }
+
+    &--mobile {
+      margin-block: 16px;
+
+      @container (width >= #{$button-breakpoint}) {
+        display: none;
+      }
+
+      @supports (not (container-type: inline-size)) {
+        @media (min-width: (#{$button-fallback-breakpoint} + 1px)) {
+          display: none;
+        }
+      }
+    }
+
+    .button {
+      flex-shrink: 1;
+      white-space: nowrap;
+      min-width: 80px;
+    }
+
+    .icon-button {
+      border: 1px solid var(--background-border-color);
+      border-radius: 4px;
+      box-sizing: content-box;
+      padding: 5px;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      &.copied {
+        border-color: $valid-value-color;
+      }
     }
   }
 
@@ -10388,6 +10451,21 @@ noscript {
   }
 }
 
+.notification-bar__loading-indicator {
+  --spinner-size: 22px;
+
+  position: relative;
+  height: var(--spinner-size);
+  width: var(--spinner-size);
+  margin-inline-start: 2px;
+
+  svg {
+    color: $white;
+    height: var(--spinner-size);
+    width: var(--spinner-size);
+  }
+}
+
 .hashtag-header {
   border-bottom: 1px solid var(--background-border-color);
   padding: 15px;
@@ -10862,6 +10940,7 @@ noscript {
     font-weight: 500;
     color: $primary-text-color;
     text-decoration: none;
+    min-width: 0;
 
     &:hover,
     &:focus,
