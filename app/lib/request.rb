@@ -157,7 +157,7 @@ class Request
       modified_query_class = Addressable::URI::CharacterClasses::QUERY.dup
       modified_query_class.sub!('\\&', '').sub!('\\;', '')
 
-      pairs = original_uri.query.split("&", -1)
+      pairs = original_uri.query.split('&', -1)
       pairs.delete_if(&:empty?).uniq! if flags.include?(:compacted)
       pairs.sort! if flags.include?(:sorted)
 
