@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ActivityPub::ProcessStatusUpdateService < BaseService
-  include FormattingHelper
   include JsonLdHelper
   include Redisable
   include Lockable
@@ -168,8 +167,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def update_immediate_attributes!
-    @status.text         = converted_object_type? ? converted_text : (@status_parser.text || '')
-    @status.spoiler_text = converted_object_type? ? '' : (@status_parser.spoiler_text || '')
+    @status.text         = @status_parser.processed_text
+    @status.spoiler_text = @status_parser.processed_spoiler_text
     @status.sensitive    = @account.sensitized? || @status_parser.sensitive || false
     @status.language     = @status_parser.language
 
@@ -350,22 +349,6 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
   def expected_type?
     equals_or_includes_any?(@json['type'], ActivityPub::Activity::SUPPORTED_TYPES) || equals_or_includes_any?(@json['type'], ActivityPub::Activity::CONVERTED_TYPES)
-  end
-
-  def converted_object_type?
-    equals_or_includes_any?(@json['type'], ActivityPub::Activity::CONVERTED_TYPES)
-  end
-
-  def converted_text
-    [formatted_title, @status_parser.spoiler_text.presence, formatted_url].compact.join("\n\n")
-  end
-
-  def formatted_title
-    "<h2>#{@status_parser.title}</h2>" if @status_parser.title.present?
-  end
-
-  def formatted_url
-    linkify(@status_parser.url || @status_parser.uri)
   end
 
   def record_previous_edit!
