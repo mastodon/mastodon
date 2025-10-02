@@ -1,9 +1,8 @@
-import { useId } from 'react';
 import type { ComponentProps, FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
-interface HandledLinkProps {
+export interface HandledLinkProps {
   href: string;
   text: string;
   hashtagAccountId?: string;
@@ -15,9 +14,9 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   text,
   hashtagAccountId,
   mentionAccountId,
+  key,
   ...props
 }) => {
-  const id = useId();
   // Handle hashtags
   if (text.startsWith('#')) {
     const hashtag = text.slice(1).trim();
@@ -28,7 +27,7 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         to={`/tags/${hashtag}`}
         rel='tag'
         data-menu-hashtag={hashtagAccountId}
-        key={id}
+        key={key}
       >
         #<span>{hashtag}</span>
       </Link>
@@ -39,20 +38,29 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
     return (
       <Link
         {...props}
+        className='mention'
         to={`/@${mention}`}
         title={`@${mention}`}
         data-hover-card-account={mentionAccountId}
-        key={id}
+        key={key}
       >
         @<span>{mention}</span>
       </Link>
     );
   }
+
+  // Non-absolute paths treated as internal links.
   if (href.startsWith('/')) {
-    return text;
+    return (
+      <Link {...props} className='unhandled-link' to={href} key={key}>
+        {text}
+      </Link>
+    );
   }
+
   try {
     const url = new URL(href);
+    const [first, ...rest] = url.pathname.split('/').slice(1); // Start at 1 to skip the leading slash.
     return (
       <a
         {...props}
@@ -62,15 +70,11 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         target='_blank'
         rel='noreferrer noopener'
         translate='no'
-        key={id}
+        key={key}
       >
-        <span className='invisible'>{url.protocol}</span>
-        <span className='ellipsis'>
-          {url.hostname + url.pathname.split('/').slice(0, 1).join('/')}
-        </span>
-        <span className='invisible'>
-          {url.pathname.split('/').slice(1).join('/') + url.search + url.hash}
-        </span>
+        <span className='invisible'>{url.protocol + '//'}</span>
+        <span className='ellipsis'>{`${url.hostname}/${first ?? ''}`}</span>
+        <span className='invisible'>{'/' + rest.join('/')}</span>
       </a>
     );
   } catch {
