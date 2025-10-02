@@ -14,7 +14,6 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   text,
   hashtagAccountId,
   mentionAccountId,
-  key,
   ...props
 }) => {
   // Handle hashtags
@@ -27,7 +26,6 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         to={`/tags/${hashtag}`}
         rel='tag'
         data-menu-hashtag={hashtagAccountId}
-        key={key}
       >
         #<span>{hashtag}</span>
       </Link>
@@ -42,7 +40,6 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         to={`/@${mention}`}
         title={`@${mention}`}
         data-hover-card-account={mentionAccountId}
-        key={key}
       >
         @<span>{mention}</span>
       </Link>
@@ -52,7 +49,7 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   // Non-absolute paths treated as internal links.
   if (href.startsWith('/')) {
     return (
-      <Link {...props} className='unhandled-link' to={href} key={key}>
+      <Link {...props} className='unhandled-link' to={href}>
         {text}
       </Link>
     );
@@ -70,7 +67,6 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         target='_blank'
         rel='noreferrer noopener'
         translate='no'
-        key={key}
       >
         <span className='invisible'>{url.protocol + '//'}</span>
         <span className='ellipsis'>{`${url.hostname}/${first ?? ''}`}</span>
