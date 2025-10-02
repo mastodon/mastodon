@@ -190,6 +190,7 @@ ca:
         create_relay: Crea un repetidor
         create_unavailable_domain: Crea un domini no disponible
         create_user_role: Crea Rol
+        create_username_block: Crear regla de nom d'usuari
         demote_user: Degrada l'usuari
         destroy_announcement: Esborra l'anunci
         destroy_canonical_email_block: Elimina el blocatge del correu electrònic
@@ -203,6 +204,7 @@ ca:
         destroy_status: Elimina la publicació
         destroy_unavailable_domain: Esborra domini no disponible
         destroy_user_role: Destrueix Rol
+        destroy_username_block: Eliminar regla de nom d'usuari
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
         disable_relay: Desactiva el repetidor
@@ -237,6 +239,7 @@ ca:
         update_report: Actualitza l'informe
         update_status: Actualitza l'estat
         update_user_role: Actualitza Rol
+        update_username_block: Actualitzar regla de nom d'usuari
       actions:
         approve_appeal_html: "%{name} ha aprovat l'apel·lació a la decisió de moderació de %{target}"
         approve_user_html: "%{name} ha aprovat el registre de %{target}"
@@ -1083,6 +1086,24 @@ ca:
           other: Emprat per %{count} persones en la darrera setmana
       title: Recomanacions i tendències
       trending: Tendència
+    username_blocks:
+      add_new: Afegeix-ne una de nova
+      comparison:
+        contains: Conté
+        equals: És igual a
+      contains_html: Conté %{string}
+      created_msg: Creada una regla de nom d'usuari
+      delete: Elimina
+      edit:
+        title: Editar regla de nom d'usuari
+      matches_exactly_html: És igual a %{string}
+      new:
+        create: Crea una regla
+        title: Crear nova regla de nom d'usuari
+      no_username_block_selected: No s'ha canviat cap regla de nom d'usuari perquè no se n'havia seleccionat cap
+      not_permitted: No permés
+      title: Regles de nom d'usuari
+      updated_msg: Actualitzada una regla de nom d'usuari
     warning_presets:
       add_new: Afegir-ne un de nou
       delete: Elimina
@@ -1712,6 +1733,7 @@ ca:
       self_vote: No pots votar en les teves propies enquestes
       too_few_options: ha de tenir més d'una opció
       too_many_options: no pot contenir més de %{max} opcions
+    vote: Voteu
   preferences:
     other: Altres
     posting_defaults: Valors per defecte de publicació
@@ -1888,6 +1910,7 @@ ca:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Menció privada
+      private: Només seguidors
       public: Públic
       public_long: Tothom dins o fora Mastodon
       unlisted_long: Amagat dels resultats de cerca de Mastodon, de les tendències i de les línies temporals
