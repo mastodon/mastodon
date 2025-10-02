@@ -112,7 +112,7 @@ class StatusContent extends PureComponent {
       onCollapsedToggle(collapsed);
     }
 
-    // Exit if modern emoji is enabled, as it handles links using .
+    // Exit if modern emoji is enabled, as it handles links using the HandledLink component.
     if (isModernEmojiEnabled()) {
       return;
     }
