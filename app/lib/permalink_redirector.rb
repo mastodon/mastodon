@@ -26,7 +26,7 @@ class PermalinkRedirector
   end
 
   def redirect_path
-    return ActivityPub::TagManager.instance.url_for(object) if object.present?
+    return ActivityPub::TagManager.instance.url_for(object) || ActivityPub::TagManager.instance.uri_for(object) if object.present?
 
     @path.delete_prefix('/deck') if @path.start_with?('/deck')
   end
