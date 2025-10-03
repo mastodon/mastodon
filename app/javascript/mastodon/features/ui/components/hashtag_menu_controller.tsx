@@ -41,12 +41,14 @@ const isHashtagLink = (
 interface TargetParams {
   hashtag?: string;
   accountId?: string;
+  hashtagUrl?: URL;
 }
 
 export const HashtagMenuController: React.FC = () => {
   const intl = useIntl();
   const [open, setOpen] = useState(false);
-  const [{ accountId, hashtag }, setTargetParams] = useState<TargetParams>({});
+  const [{ accountId, hashtag, hashtagUrl }, setTargetParams] =
+    useState<TargetParams>({});
   const targetRef = useRef<HTMLAnchorElement | null>(null);
   const location = useLocation();
   const account = useAppSelector((state) =>
@@ -77,11 +79,21 @@ export const HashtagMenuController: React.FC = () => {
         return;
       }
 
+      const hashtagUrl: URL = new URL('/filters', document.location.href);
+      hashtagUrl.searchParams.set(
+        'custom_filter[keywords_attributes][0][keyword]',
+        target.text,
+      );
+      hashtagUrl.searchParams.set(
+        'custom_filter[keywords_attributes][0][whole_word]',
+        '1',
+      );
+
       e.preventDefault();
       e.stopPropagation();
       targetRef.current = target;
       setOpen(true);
-      setTargetParams({ hashtag, accountId });
+      setTargetParams({ hashtag, accountId, hashtagUrl });
     };
 
     document.addEventListener('click', handleClick, { capture: true });
@@ -116,11 +128,11 @@ export const HashtagMenuController: React.FC = () => {
         text: intl.formatMessage(messages.muteHashtag, {
           hashtag,
         }),
-        href: '/filters',
+        href: hashtagUrl?.toString(),
         dangerous: true,
       },
     ],
-    [intl, hashtag, account],
+    [intl, hashtag, account, hashtagUrl],
   );
 
   if (!open) {
