@@ -19,7 +19,7 @@ export function loadPolyfills() {
   return Promise.all([
     loadIntlPolyfills(),
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- those properties might not exist in old browsers, even if they are always here in types
-    needsExtraPolyfills && importExtraPolyfills(),
+    needsExtraPolyfills ? importExtraPolyfills() : Promise.resolve(),
     loadEmojiPolyfills(),
   ]);
 }
