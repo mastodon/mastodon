@@ -5,6 +5,8 @@ import { useIntl, defineMessages } from 'react-intl';
 import {
   fetchContext,
   completeContextRefresh,
+  showPendingReplies,
+  clearPendingReplies,
 } from 'mastodon/actions/statuses';
 import type { AsyncRefreshHeader } from 'mastodon/api';
 import { apiGetAsyncRefresh } from 'mastodon/api/async_refreshes';
@@ -34,10 +36,6 @@ const messages = defineMessages({
     id: 'status.context.loading',
     defaultMessage: 'Loading',
   },
-  loadingMore: {
-    id: 'status.context.loading_more',
-    defaultMessage: 'Loading more replies',
-  },
   success: {
     id: 'status.context.loading_success',
     defaultMessage: 'All replies loaded',
@@ -52,36 +50,33 @@ const messages = defineMessages({
   },
 });
 
-type LoadingState =
-  | 'idle'
-  | 'more-available'
-  | 'loading-initial'
-  | 'loading-more'
-  | 'success'
-  | 'error';
+type LoadingState = 'idle' | 'more-available' | 'loading' | 'success' | 'error';
 
 export const RefreshController: React.FC<{
   statusId: string;
 }> = ({ statusId }) => {
-  const refresh = useAppSelector(
-    (state) => state.contexts.refreshing[statusId],
-  );
-  const currentReplyCount = useAppSelector(
-    (state) => state.contexts.replies[statusId]?.length ?? 0,
-  );
-  const autoRefresh = !currentReplyCount;
   const dispatch = useAppDispatch();
   const intl = useIntl();
 
-  const [loadingState, setLoadingState] = useState<LoadingState>(
-    refresh && autoRefresh ? 'loading-initial' : 'idle',
+  const refreshHeader = useAppSelector(
+    (state) => state.contexts.refreshing[statusId],
   );
+  const hasPendingReplies = useAppSelector(
+    (state) => !!state.contexts.pendingReplies[statusId]?.length,
+  );
+  const [partialLoadingState, setLoadingState] = useState<LoadingState>(
+    refreshHeader ? 'loading' : 'idle',
+  );
+  const loadingState = hasPendingReplies
+    ? 'more-available'
+    : partialLoadingState;
 
   const [wasDismissed, setWasDismissed] = useState(false);
   const dismissPrompt = useCallback(() => {
     setWasDismissed(true);
     setLoadingState('idle');
-  }, []);
+    dispatch(clearPendingReplies({ statusId }));
+  }, [dispatch, statusId]);
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
@@ -89,36 +84,51 @@ export const RefreshController: React.FC<{
     const scheduleRefresh = (refresh: AsyncRefreshHeader) => {
       timeoutId = setTimeout(() => {
         void apiGetAsyncRefresh(refresh.id).then((result) => {
-          if (result.async_refresh.status === 'finished') {
-            dispatch(completeContextRefresh({ statusId }));
-
-            if (result.async_refresh.result_count > 0) {
-              if (autoRefresh) {
-                void dispatch(fetchContext({ statusId })).then(() => {
-                  setLoadingState('idle');
-                });
-              } else {
-                setLoadingState('more-available');
-              }
-            } else {
-              setLoadingState('idle');
-            }
-          } else {
+          // If the refresh status is not finished,
+          // schedule another refresh and exit
+          if (result.async_refresh.status !== 'finished') {
             scheduleRefresh(refresh);
+            return;
           }
+
+          // Refresh status is finished. The action below will clear `refreshHeader`
+          dispatch(completeContextRefresh({ statusId }));
+
+          // Exit if there's nothing to fetch
+          if (result.async_refresh.result_count === 0) {
+            setLoadingState('idle');
+            return;
+          }
+
+          // A positive result count means there _might_ be new replies,
+          // so we fetch the context in the background to check if there
+          // are any new replies.
+          // If so, they will populate `contexts.pendingReplies[statusId]`
+          void dispatch(fetchContext({ statusId, prefetchOnly: true }))
+            .then(() => {
+              // Reset loading state to `idle` – but if the fetch
+              // has resulted in new pending replies, the `hasPendingReplies`
+              // flag will switch the loading state to 'more-available'
+              setLoadingState('idle');
+            })
+            .catch(() => {
+              // Show an error if the fetch failed
+              setLoadingState('error');
+            });
         });
       }, refresh.retry * 1000);
     };
 
-    if (refresh && !wasDismissed) {
-      scheduleRefresh(refresh);
-      setLoadingState('loading-initial');
+    // Initialise a refresh
+    if (refreshHeader && !wasDismissed) {
+      scheduleRefresh(refreshHeader);
+      setLoadingState('loading');
     }
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [dispatch, statusId, refresh, autoRefresh, wasDismissed]);
+  }, [dispatch, statusId, refreshHeader, wasDismissed]);
 
   useEffect(() => {
     // Hide success message after a short delay
@@ -134,20 +144,19 @@ export const RefreshController: React.FC<{
     return () => '';
   }, [loadingState]);
 
-  const handleClick = useCallback(() => {
-    setLoadingState('loading-more');
-
-    dispatch(fetchContext({ statusId }))
-      .then(() => {
-        setLoadingState('success');
-        return '';
-      })
-      .catch(() => {
-        setLoadingState('error');
-      });
+  useEffect(() => {
+    // Clear pending replies on unmount
+    return () => {
+      dispatch(clearPendingReplies({ statusId }));
+    };
   }, [dispatch, statusId]);
 
-  if (loadingState === 'loading-initial') {
+  const handleClick = useCallback(() => {
+    dispatch(showPendingReplies({ statusId }));
+    setLoadingState('success');
+  }, [dispatch, statusId]);
+
+  if (loadingState === 'loading') {
     return (
       <div
         className='load-more load-gap'
@@ -168,13 +177,6 @@ export const RefreshController: React.FC<{
         action={intl.formatMessage(messages.show)}
         onActionClick={handleClick}
         onDismiss={dismissPrompt}
-        animateFrom='below'
-      />
-      <AnimatedAlert
-        isLoading
-        withEntryDelay
-        isActive={loadingState === 'loading-more'}
-        message={intl.formatMessage(messages.loadingMore)}
         animateFrom='below'
       />
       <AnimatedAlert
