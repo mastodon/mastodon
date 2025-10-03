@@ -1888,7 +1888,8 @@ ca:
         one: "%{count} vídeo"
         other: "%{count} vídeos"
     boosted_from_html: Impulsat des de %{acct_link}
-    content_warning: 'Avís de contingut: %{warning}'
+    content_warning:
+      warning: 'Avís de contingut: %{warning}'
     default_language: El mateix que a la llengua de la interfície
     disallowed_hashtags:
       one: 'conté una etiqueta no permesa: %{tags}'

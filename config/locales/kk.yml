@@ -639,7 +639,8 @@ kk:
         one: "%{count} видео"
         other: "%{count} видео"
     boosted_from_html: Бөлісілді %{acct_link}
-    content_warning: 'Контент ескертуі: %{warning}'
+    content_warning:
+      warning: 'Контент ескертуі: %{warning}'
     disallowed_hashtags:
       one: 'рұқсат етілмеген хэштег: %{tags}'
       other: 'рұқсат етілмеген хэштегтер: %{tags}'

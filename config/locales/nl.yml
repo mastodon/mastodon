@@ -1896,7 +1896,8 @@ nl:
         one: "%{count} video"
         other: "%{count} video's"
     boosted_from_html: Geboost van %{acct_link}
-    content_warning: 'Inhoudswaarschuwing: %{warning}'
+    content_warning:
+      warning: 'Inhoudswaarschuwing: %{warning}'
     default_language: Hetzelfde als de taal van de gebruikersomgeving
     disallowed_hashtags:
       one: 'bevatte een niet toegestane hashtag: %{tags}'

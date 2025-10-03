@@ -1668,7 +1668,8 @@ sr:
         one: "%{count} видео запис"
         other: "%{count} видео записа"
     boosted_from_html: Подржано од %{acct_link}
-    content_warning: 'Упозорење на садржај: %{warning}'
+    content_warning:
+      warning: 'Упозорење на садржај: %{warning}'
     default_language: Исто као језик окружења
     disallowed_hashtags:
       few: 'садржи забрањене хеш ознаке: %{tags}'

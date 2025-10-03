@@ -1838,7 +1838,8 @@ fr:
         one: "%{count} vidéo"
         other: "%{count} vidéos"
     boosted_from_html: Partagé depuis %{acct_link}
-    content_warning: 'Avertissement de contenu : %{warning}'
+    content_warning:
+      warning: 'Avertissement de contenu : %{warning}'
     default_language: Même langue que celle de l’interface
     disallowed_hashtags:
       one: 'contient un hashtag désactivé : %{tags}'

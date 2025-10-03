@@ -1896,7 +1896,8 @@ da:
         one: "%{count} video"
         other: "%{count} videoer"
     boosted_from_html: Fremhævet fra %{acct_link}
-    content_warning: 'Indholdsadvarsel: %{warning}'
+    content_warning:
+      warning: 'Indholdsadvarsel: %{warning}'
     default_language: Samme som UI-sproget
     disallowed_hashtags:
       one: 'indeholdte et ikke tilladt hashtag: %{tags}'

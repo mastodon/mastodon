@@ -1896,7 +1896,8 @@ ia:
         one: "%{count} video"
         other: "%{count} videos"
     boosted_from_html: Impulsate desde %{acct_link}
-    content_warning: 'Advertimento de contento: %{warning}'
+    content_warning:
+      warning: 'Advertimento de contento: %{warning}'
     default_language: Mesme como lingua de interfacie
     disallowed_hashtags:
       one: 'contineva un hashtag non autorisate: %{tags}'
