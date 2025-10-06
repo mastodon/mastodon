@@ -111,12 +111,13 @@ class InitialStateSerializer < ActiveModel::Serializer
       sso_redirect: sso_redirect,
       status_page_url: Setting.status_page_url,
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
-      timeline_preview: Setting.timeline_preview,
       title: instance_presenter.title,
       trends_as_landing_page: Setting.trends_as_landing_page,
       trends_enabled: Setting.trends,
       version: instance_presenter.version,
       terms_of_service_enabled: TermsOfService.current.present?,
+      local_live_feed_access: Setting.local_live_feed_access,
+      remote_live_feed_access: Setting.remote_live_feed_access,
     }
   end
 
