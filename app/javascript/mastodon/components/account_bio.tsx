@@ -6,9 +6,10 @@ import { useLinks } from 'mastodon/hooks/useLinks';
 
 import { useAppSelector } from '../store';
 import { isModernEmojiEnabled } from '../utils/environment';
+import type { OnElementHandler } from '../utils/html';
 
-import { AnimateEmojiProvider } from './emoji/context';
 import { EmojiHTML } from './emoji/html';
+import { HandledLink } from './status/handled_link';
 
 interface AccountBioProps {
   className: string;
@@ -24,13 +25,37 @@ export const AccountBio: React.FC<AccountBioProps> = ({
   const handleClick = useLinks(showDropdown);
   const handleNodeChange = useCallback(
     (node: HTMLDivElement | null) => {
-      if (!showDropdown || !node || node.childNodes.length === 0) {
+      if (
+        !showDropdown ||
+        !node ||
+        node.childNodes.length === 0 ||
+        isModernEmojiEnabled()
+      ) {
         return;
       }
       addDropdownToHashtags(node, accountId);
     },
     [showDropdown, accountId],
   );
+
+  const handleLink = useCallback<OnElementHandler>(
+    (element, { key, ...props }) => {
+      if (element instanceof HTMLAnchorElement) {
+        return (
+          <HandledLink
+            {...props}
+            key={key as string} // React requires keys to not be part of spread props.
+            href={element.href}
+            text={element.innerText}
+            hashtagAccountId={accountId}
+          />
+        );
+      }
+      return undefined;
+    },
+    [accountId],
+  );
+
   const note = useAppSelector((state) => {
     const account = state.accounts.get(accountId);
     if (!account) {
@@ -48,13 +73,14 @@ export const AccountBio: React.FC<AccountBioProps> = ({
   }
 
   return (
-    <AnimateEmojiProvider
+    <EmojiHTML
+      htmlString={note}
+      extraEmojis={extraEmojis}
       className={classNames(className, 'translate')}
-      onClickCapture={handleClick}
+      onClickCapture={isModernEmojiEnabled() ? undefined : handleClick}
       ref={handleNodeChange}
-    >
-      <EmojiHTML htmlString={note} extraEmojis={extraEmojis} />
-    </AnimateEmojiProvider>
+      onElement={handleLink}
+    />
   );
 };
 
