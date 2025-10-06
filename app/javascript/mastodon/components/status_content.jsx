@@ -207,7 +207,7 @@ class StatusContent extends PureComponent {
     this.node = c;
   };
 
-  handleElement = (element, {key, ...props}) => {
+  handleElement = (element, { key, ...props }) => {
     if (element instanceof HTMLAnchorElement) {
       const mention = this.props.status.get('mentions').find(item => element.href === item.get('url'));
       return (
@@ -220,6 +220,8 @@ class StatusContent extends PureComponent {
           key={key}
         />
       );
+    } else if (element instanceof HTMLParagraphElement && element.classList.contains('quote-inline')) {
+      return null;
     }
     return undefined;
   }
