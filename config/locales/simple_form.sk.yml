@@ -2,12 +2,21 @@
 sk:
   simple_form:
     hints:
+      account:
+        attribution_domains: Jeden na riadok. Chráni vás pred falošným pripisovaním autorstva.
+        discoverable: Vaše verejné príspevky a profil môžu byť zobrazované a odporúčané v rôznych častiach Mastodonu a váš profil môže byť navrhovaný ostatným.
+        display_name: Vaše meno a priezvisko alebo prezývka.
+        fields: Váš web, zámená, vek, čokoľvek, čo chcete o sebe uviesť.
+        indexable: Vaše verejné príspevky sa môžu zobrazovať vo výsledkoch vyhľadávania na Mastodone. Ľudia, ktorí s nimi interagovali, ich môžu nájsť vždy.
+        note: 'Môžete @označiť iných ľudí alebo #hashtagy.'
+        show_collections: Ľudia si budú môcť prezrieť, ktoré účty sledujete a ktoré účty sledujú vás. Ľudia, ktorých sledujete, o tom budú vždy vedieť.
+        unlocked: Ľudia vás budú môcť sledovať bez vášho schválenia. Zrušenie vám dá možnosť kontrolovať žiadosti o sledovanie a rozhodovať sa o prijímaní alebo zamietaní nových sledujúcich.
       account_alias:
         acct: Urči prezyvku@domenu účtu, s ktorého sa chceš presunúť
       account_migration:
         acct: Urči prezyvku@domenu účtu, na ktorý sa chceš presunúť
       account_warning_preset:
-        text: Môžeš používať rovnakú syntaxiu ako v rámci príspevkov, čiže URL, haštagy, a spomenutia
+        text: Môžete používať syntax príspevk, ako sú adresy URL, hashtagy a označenia
       admin_account_action:
         include_statuses: Užívateľ uvidí, ktoré príspevky majú za následok moderačný zásah, alebo upozornenie
         send_email_notification: Užívateľ dostane vysvetlenie ohľadom toho, čo sa stalo s ich účtom
@@ -17,29 +26,37 @@ sk:
       defaults:
         autofollow: Ľudia ktorí sa zaregistrujú prostredníctvom pozvánky, ťa budú inheď nasledovať
         avatar: WEBP, PNG, GIF, alebo JPG. Najviac %{size}. Bude zmenšený na %{dimensions}px
-        bot: Tento účet vykonáva hlavne automatizované akcie, a je pravdepodobne nespravovaný
+        bot: Tento účet vykonáva hlavne automatizované akcie a je pravdepodobne nespravovaný
         context: Jedno, alebo viac kritérií, v ktorých má byť filtrovanie uplatnené
         current_password: Z bezpečtnostných dôvodov prosím zadaj heslo súčasného účtu
         current_username: Pre potvrdenie prosím zadaj prezývku súčasného účtu
         digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdržal/a nejaké osobné správy kým si bol/a preč
-        email: Bude ti odoslaný potvrdzujúci email
+        email: Odošleme vám potvrdzujúci e-mail
         header: WEBP, PNG, GIF, alebo JPG. Najviac %{size}. Bude zmenšený na %{dimensions}px
         inbox_url: Skopíruj adresu z hlavnej stránky mostíka, ktorý chceš používať
-        irreversible: Vytriedené príspevky zmiznú nenávratne, aj keď triedenie neskôr zrušíš
-        locale: Jazyk užívateľského rozhrania, emailových, a nástenkových oboznámení
-        password: Zadaj aspoň osem znakov
+        irreversible: Filtrované príspevky nenávratne zmiznú, aj keď filter neskôr zrušíte
+        locale: Jazyk používateľského rozhrania, e-mailových a push upozornení
+        password: Heslo musí obsahovať aspoň 8 znakov
         phrase: Zhoda sa nájde nezávisle od toho, či je text napísaný, veľkými, alebo malými písmenami, či už v tele, alebo v hlavičke
         scopes: Ktoré API budú povolené aplikácii pre prístup. Ak vyberieš vrcholný stupeň, nemusíš už potom vyberať po jednom.
-        setting_aggregate_reblogs: Nezobrazuj nové vyzdvihnutia pre príspevky, ktoré už boli len nedávno povýšené (týka sa iba nanovo získaných povýšení)
-        setting_default_sensitive: Chúlostivé médiá sú štandardne ukryté, a môžu byť zobrazené kliknutím
-        setting_display_media_default: Ukry médiá označené ako chúlostivé
-        setting_display_media_hide_all: Vždy ukry všetky médiá
-        setting_display_media_show_all: Vždy zobrazuj médiá
-        setting_use_blurhash: Prechody sú založené na farbách skrytých vizuálov, ale zahaľujú akékoľvek podrobnosti
-        setting_use_pending_items: Skry aktualizovanie časovej osi tak, aby bola načitávaná iba po kliknutí, namiesto samostatného posúvania
+        setting_aggregate_reblogs: Nezobrazovať nové zdieľania pre nedávno zdieľané príspevky (týka sa iba nových zdieľaní)
+        setting_always_send_emails: Pri bežnom používaní Mastodonu nebudete dostávať e-mailové upozornenia
+        setting_default_sensitive: Citlivé médiá sú predvolene ukryté a môžu byť zobrazené kliknutím
+        setting_display_media_default: Skrývať médiá označené ako citlivé
+        setting_display_media_hide_all: Vždy skrývať médiá
+        setting_display_media_show_all: Vždy zobrazovať médiá
+        setting_system_scrollbars_ui: Platí len pre počítačové prehliadače využívajúce technológiu Chrome alebo Safari
+        setting_use_blurhash: Prechody sú založené na farbách skrytých vizuálov, ale skrývajú akékoľvek podrobnosti
+        setting_use_pending_items: Časová os bude aktualizovaná až po kliknutí, feed sa nebúde posúvať automaticky
         whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
       domain_allow:
         domain: Táto doména bude schopná získavať dáta z tohto servera, a prichádzajúce dáta ním budú spracovávané a uložené
+      featured_tag:
+        name: 'Nedávno ste použili napríklad tieto hashtagy:'
+      form_admin_settings:
+        site_contact_email: Spôsob, ako vás môžu ľudia kontaktovať pre právne účely alebo podporu.
+        site_contact_username: Ako vás môžu ľudia na Mastodone nájsť.
+        thumbnail: 'Obrázok v pomere približne 2 : 1, ktorý sa zobrazí pri informáciách o serveri.'
       form_challenge:
         current_password: Vstupuješ do zabezpečenej časti
       imports:
@@ -51,16 +68,23 @@ sk:
           sign_up_block: Nové registrácie nebudú možné
       sessions:
         otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
+      settings:
+        indexable: Váš profil sa môže zobraziť vo výsledkoch vyhľadávania cez Google, Bing a ďalšie.
+        show_application: Tebe sa táto informácia zobrazí vždy.
       tag:
         name: Zmeniť môžeš iba veľkosť písmen, napríklad aby boli ľahšie čítateľné
       user:
-        chosen_languages: Keď je zaškrtnuté, vo verejnej osi budú zobrazené iba príspevky vo vybraných jazykoch
+        chosen_languages: Po zaškrtnutí budú na verejných časových osiach zobrazované iba príspevky vo vybraných jazykoch
     labels:
       account:
+        attribution_domains: Weby, ktoré vám môžu pripisovať autorstvo
+        discoverable: Zobrazovať profil a príspevky v objavovacích algoritmoch
         fields:
-          name: Označenie
-          value: Obsah
-        unlocked: Automaticky prijímaj nových nasledovateľov
+          name: Definícia
+          value: Hodnota
+        indexable: Zobrazovať verejné príspevky vo vyhľadávaní
+        show_collections: Zobrazovať v profile sledované a sledujúce účty
+        unlocked: Automaticky schvaľovať nové sledovania
       account_alias:
         acct: Adresa starého účtu
       account_migration:
@@ -77,7 +101,7 @@ sk:
           disable: Deaktivuj
           none: Neurob nič
           silence: Utíš
-          suspend: Vylúč a nenávratne vymaž dáta na účte
+          suspend: Vylúčiť
         warning_preset_id: Použi varovnú predlohu
       announcement:
         all_day: Celodenná udalosť
@@ -86,19 +110,19 @@ sk:
         text: Oboznámenie
       defaults:
         autofollow: Pozvi k následovaniu tvojho profilu
-        avatar: Maskot
+        avatar: Profilová fotka
         bot: Toto je automatizovaný bot účet
-        chosen_languages: Filtruj jazyky
-        confirm_new_password: Znovu tvoje nové heslo, pre potvrdenie
+        chosen_languages: Filtrovanie jazykov
+        confirm_new_password: Overenie nového hesla
         confirm_password: Over heslo
-        context: Triedenie kontextov
+        context: Kontexty filtra
         current_password: Súčasné heslo
         data: Dáta
         display_name: Zobrazované meno
-        email: Emailová adresa
+        email: E-mailová adresa
         expires_in: Expiruj po
         fields: Metadáta profilu
-        header: Obrázok v hlavičke
+        header: Obrázok v záhlaví
         inbox_url: URL adresa prechodnej schránky
         irreversible: Zahoď, namiesto ukrytia
         locale: Jazyk rozhrania
@@ -108,25 +132,31 @@ sk:
         otp_attempt: Dvoj-faktorový overovací kód
         password: Heslo
         phrase: Kľúčové slovo, alebo fráza
-        setting_advanced_layout: Zapni pokročilé užívateľské rozhranie
-        setting_aggregate_reblogs: Zoskupuj vyzdvihnutia v časovej osi
-        setting_auto_play_gif: Automaticky prehrávaj animované GIFy
-        setting_boost_modal: Zobrazuj potvrdzovacie okno pred povýšením
-        setting_default_language: Píšeš v jazyku
-        setting_default_sensitive: Označ všetky mediálne súbory ako chúlostivé
-        setting_delete_modal: Zobrazuj potvrdzovacie okno pred vymazaním toot-u
+        setting_advanced_layout: Zapnúť pokročilé používateľské rozhranie
+        setting_aggregate_reblogs: Zoskupovať zdieľania na časových osiach
+        setting_always_send_emails: Vždy posielať e-mailové upozornenia
+        setting_auto_play_gif: Automaticky prehrávať animácie GIF
+        setting_boost_modal: Zobrazovať potvrdzovacie okno pred zdieľaním
+        setting_default_language: Jazyk príspevkov
+        setting_default_quote_policy: Kto vás môže citovať
+        setting_default_sensitive: Vždy označovať médiá ako citlivé
+        setting_delete_modal: Zobrazovať potvrdzovacie okno pred vymazaním príspevku
+        setting_disable_hover_cards: Vypnúť náhľady profilov pri ukázaní kurzorom
+        setting_disable_swiping: Vypnúť gestá posúvaním
         setting_display_media: Zobrazovanie médií
         setting_display_media_default: Štandard
         setting_display_media_hide_all: Ukry všetky
         setting_display_media_show_all: Ukáž všetky
-        setting_expand_spoilers: Stále rozbaľ príspevky označené varovaním o chúlostivom obsahu
+        setting_expand_spoilers: Stále rozbaľovať príspevky označené varovaním o obsahu
         setting_hide_network: Ukry svoju sieť kontaktov
-        setting_reduce_motion: Mierni pohyb pri animáciách
-        setting_system_font_ui: Použi základné systémové písmo
+        setting_missing_alt_text_modal: Zobrazovať potvrdzovacie okno pred uverejnením média bez opisu
+        setting_reduce_motion: Stlmiť animácie
+        setting_system_font_ui: Používať predvolené písmo systému
+        setting_system_scrollbars_ui: Používať predvolený posuvník systému
         setting_theme: Vzhľad webu
-        setting_trends: Ukáž dnešné trendy
+        setting_trends: Zobrazovať dnešné trendy
         setting_unfollow_modal: Vyžaduj potvrdenie pred tým, než niekoho prestaneš sledovať
-        setting_use_blurhash: Ukáž farebné prechody pre skryté médiá
+        setting_use_blurhash: Zobrazovať farebné prechody skrytých médií
         setting_use_pending_items: Pomalý režim
         severity: Závažnosť
         sign_in_token_attempt: Bezpečnostný kód
@@ -135,10 +165,11 @@ sk:
         username_or_email: Prezývka, alebo email
         whole_word: Celé slovo
       featured_tag:
-        name: Haštag
+        name: Hashtag
       form_admin_settings:
         peers_api_enabled: Zverejni zoznam objavených serverov v API
         status_page_url: URL adresa stránky stavu
+        thumbnail: Náhľad servera
       interactions:
         must_be_follower: Blokuj oboznámenia od užívateľov, ktorí ma nenasledujú
         must_be_following: Blokuj oboznámenia od ľudí, ktorých nesledujem
@@ -153,17 +184,32 @@ sk:
           sign_up_requires_approval: Obmedz registrácie
         severity: Pravidlo
       notification_emails:
+        appeal: Niekto sa odvoláva voči moderátorskému rozhodnutiu
         digest: Zasielať súhrnné emaily
-        favourite: Zaslať email, ak si niekto obľúbi tvoj príspevok
-        follow: Niekto ťa začal nasledovať
-        follow_request: Zaslať email, ak ti niekto pošle žiadosť o sledovanie
-        mention: Zaslať email, ak ťa niekto spomenie vo svojom príspevku
-        pending_account: Zaslať email, ak treba prehodnotiť nový účet
-        reblog: Zaslať email, ak niekto re-tootne tvoj príspevok
+        favourite: Niekto ohviezdičkuje váš príspevok
+        follow: Niekto vás začal sledovať
+        follow_request: Niekto vám posiela žiadosť o sledovanie
+        mention: Niekto vás označí
+        pending_account: Je potrebná kontrola nového účtu
+        quote: Niekto vás cituje
+        reblog: Niekto zdieľa váš príspevok
+        report: Niekto niečo nahlásil
+        software_updates:
+          all: Upozorňovať na všetky novinky
+          critical: Upozorňovať iba na kritické novinky
+          label: Je dostupná nová verzia Mastodonu
+          none: Nikdy neupozorňovať na novinky (neodporúčané)
+          patch: Upozorňovať na novinky s riešením chýb
+        trending_tag: Je potrebné skontrolovať nový trend
+      settings:
+        indexable: Zobrazovať profil v internetových vyhľadávačoch
+        show_application: Zobrazovať apku, z ktorej sú uverejňované príspevky
       tag:
-        listable: Povoľ zobrazovanie tohto haštagu v návrhoch vyhľadávaní
-        name: Haštag
-        trendable: Povoľ zobrazovanie tohto haštagu medzi trendujúcimi
+        listable: Povoliť zobrazovanie tohto hashtagu v návrhoch vyhľadávaní
+        name: Hashtag
+        trendable: Povoliť zobrazovanie tohto hashtagu medzi trendujúcimi
+      user:
+        time_zone: Časové pásmo
     'no': Nie
     recommended: Odporúčané
     required:
