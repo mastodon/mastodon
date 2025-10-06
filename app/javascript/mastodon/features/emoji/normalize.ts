@@ -154,6 +154,12 @@ export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg) {
   if (!extraEmojis) {
     return null;
   }
+  if (Array.isArray(extraEmojis)) {
+    return extraEmojis.reduce<ExtraCustomEmojiMap>(
+      (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
+      {},
+    );
+  }
   if (!isList(extraEmojis)) {
     return extraEmojis;
   }
