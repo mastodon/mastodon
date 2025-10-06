@@ -991,8 +991,44 @@ nan:
       no_terms_of_service_html: Lí目前iáu無設定任何服務規定。服務規定是beh提供明確性，兼保護lí佇kap用者ê爭議中毋免承受可能ê責任。
       notified_on_html: 佇 %{date} 通知ê用者
       notify_users: 通知用者
+      preview:
+        send_preview: Kā tāi先看ê內容寄kàu %{email}
+        send_to_all:
+          other: 寄出 %{display_count} 張電子phue
+        title: 先kā服務規定ê通知看māi
+      publish: 公開
+      published_on_html: 公開tī %{date}
+      save_draft: 儲存草稿
+      title: 服務規定
+    title: 管理
     trends:
+      allow: 允准
+      approved: 允准ah
+      confirm_allow: Lí kám確定beh允准所揀ê標簽？
+      confirm_disallow: Lí kám確定無愛允准所揀ê標簽？
+      disallow: 無愛允准
+      links:
+        allow: 允准連結
+        allow_provider: 允准提供者
+        confirm_allow: Lí kám確定beh允准所揀ê連結？
+        confirm_allow_provider: Lí kám確定beh允准所揀ê提供者？
+        confirm_disallow: Lí kám確定無愛允准所揀ê連結？
+        confirm_disallow_provider: Lí kám確定無愛允准所揀ê提供者？
+        disallow: 無愛允准連結
+        disallow_provider: 無愛允准提供者
+        no_link_selected: 因為無揀任何連結，所以lóng無改變
+        publishers:
+          no_publisher_selected: 因為無揀任何提供者，所以lóng無改變
+        shared_by_over_week:
+          other: 頂禮拜hōo %{count} 位用者分享
+        title: 趨勢ê連結
+        usage_comparison: Tī kin-á日hōo %{today} ê lâng分享，比較tsa-hng有 %{yesterday} ê
+      not_allowed_to_trend: 無允准刊tī趨勢
+      only_allowed: Kan-ta允准
+      pending_review: Teh等審核
       preview_card_providers:
+        allowed: Tsit ê提供者ê連結通刊tī趨勢
+        rejected: Tsit ê提供者ê連結bē刊tī趨勢
         title: 發布者
       rejected: 拒絕ê
       statuses:
@@ -1002,8 +1038,17 @@ nan:
         confirm_allow_account: Lí kám確定beh允准所揀ê口座？
         confirm_disallow: Lí kám確定無愛允准所揀ê狀態？
         confirm_disallow_account: Lí kám確定無愛允准所揀ê口座？
+        disallow: 無允准PO文
+        disallow_account: 無允准作者
+        no_status_selected: 因為無揀任何趨勢PO文，所以lóng無改變
+        not_discoverable: 作者iáu bē揀通hōo lâng發現
+        shared_by:
+          other: Hōo lâng分享á是收藏 %{friendly_count} kái
+        title: 趨勢ê PO文
       tags:
+        current_score: 目前ê分數：%{score}
         dashboard:
+          tag_accounts_measure: 無重複用
           tag_languages_dimension: Tsia̍p用ê語言
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
