@@ -8,7 +8,11 @@ import { NavLink } from 'react-router-dom';
 
 import { AccountBio } from '@/mastodon/components/account_bio';
 import { DisplayName } from '@/mastodon/components/display_name';
-import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
+import {
+  AnimateEmojiProvider,
+  CustomEmojiProvider,
+} from '@/mastodon/components/emoji/context';
+import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
@@ -898,37 +902,43 @@ export const AccountHeader: React.FC<{
                         verified: pair.verified_at,
                       })}
                     >
-                      <dt
-                        dangerouslySetInnerHTML={{
-                          __html: pair.name_emojified,
-                        }}
-                        title={pair.name}
-                        className='translate'
-                      />
-
-                      <dd className='translate' title={pair.value_plain ?? ''}>
-                        {pair.verified_at && (
-                          <span
-                            title={intl.formatMessage(messages.linkVerifiedOn, {
-                              date: intl.formatDate(
-                                pair.verified_at,
-                                dateFormatOptions,
-                              ),
-                            })}
-                          >
-                            <Icon
-                              id='check'
-                              icon={CheckIcon}
-                              className='verified__mark'
-                            />
-                          </span>
-                        )}{' '}
-                        <span
-                          dangerouslySetInnerHTML={{
-                            __html: pair.value_emojified,
-                          }}
+                      <CustomEmojiProvider emojis={account.emojis}>
+                        <EmojiHTML
+                          as='dt'
+                          htmlString={pair.name_emojified}
+                          title={pair.name}
+                          className='translate'
                         />
-                      </dd>
+
+                        <dd
+                          className='translate'
+                          title={pair.value_plain ?? ''}
+                        >
+                          {pair.verified_at && (
+                            <span
+                              title={intl.formatMessage(
+                                messages.linkVerifiedOn,
+                                {
+                                  date: intl.formatDate(
+                                    pair.verified_at,
+                                    dateFormatOptions,
+                                  ),
+                                },
+                              )}
+                            >
+                              <Icon
+                                id='check'
+                                icon={CheckIcon}
+                                className='verified__mark'
+                              />
+                            </span>
+                          )}{' '}
+                          <EmojiHTML
+                            as='span'
+                            htmlString={pair.value_emojified}
+                          />
+                        </dd>
+                      </CustomEmojiProvider>
                     </dl>
                   ))}
                 </div>
