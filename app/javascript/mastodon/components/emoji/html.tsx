@@ -4,7 +4,10 @@ import classNames from 'classnames';
 
 import type { CustomEmojiMapArg } from '@/mastodon/features/emoji/types';
 import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
-import type { OnElementHandler } from '@/mastodon/utils/html';
+import type {
+  OnAttributeHandler,
+  OnElementHandler,
+} from '@/mastodon/utils/html';
 import { htmlStringToComponents } from '@/mastodon/utils/html';
 import { polymorphicForwardRef } from '@/types/polymorphic';
 
@@ -16,6 +19,7 @@ interface EmojiHTMLProps {
   extraEmojis?: CustomEmojiMapArg;
   className?: string;
   onElement?: OnElementHandler;
+  onAttribute?: OnAttributeHandler;
 }
 
 export const ModernEmojiHTML = polymorphicForwardRef<'div', EmojiHTMLProps>(
@@ -26,14 +30,19 @@ export const ModernEmojiHTML = polymorphicForwardRef<'div', EmojiHTMLProps>(
       as: asProp = 'div', // Rename for syntax highlighting
       className = '',
       onElement,
+      onAttribute,
       ...props
     },
     ref,
   ) => {
     const contents = useMemo(
       () =>
-        htmlStringToComponents(htmlString, { onText: textToEmojis, onElement }),
-      [htmlString, onElement],
+        htmlStringToComponents(htmlString, {
+          onText: textToEmojis,
+          onElement,
+          onAttribute,
+        }),
+      [htmlString, onAttribute, onElement],
     );
 
     return (
@@ -60,6 +69,7 @@ export const LegacyEmojiHTML = polymorphicForwardRef<'div', EmojiHTMLProps>(
       extraEmojis,
       className,
       onElement,
+      onAttribute,
       ...rest
     } = props;
     const Wrapper = asElement ?? 'div';
