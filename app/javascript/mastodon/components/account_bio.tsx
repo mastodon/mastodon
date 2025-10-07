@@ -62,7 +62,7 @@ export const AccountBio: React.FC<AccountBioProps> = ({
       htmlString={note}
       extraEmojis={extraEmojis}
       className={classNames(className, 'translate')}
-      onClickCapture={isModernEmojiEnabled() ? undefined : handleClick}
+      onClickCapture={handleClick}
       ref={handleNodeChange}
       {...htmlHandlers}
     />
