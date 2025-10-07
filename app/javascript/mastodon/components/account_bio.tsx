@@ -6,10 +6,9 @@ import { useLinks } from 'mastodon/hooks/useLinks';
 
 import { useAppSelector } from '../store';
 import { isModernEmojiEnabled } from '../utils/environment';
-import type { OnElementHandler } from '../utils/html';
 
 import { EmojiHTML } from './emoji/html';
-import { HandledLink } from './status/handled_link';
+import { useElementHandledLink } from './status/handled_link';
 
 interface AccountBioProps {
   className: string;
@@ -38,23 +37,9 @@ export const AccountBio: React.FC<AccountBioProps> = ({
     [showDropdown, accountId],
   );
 
-  const handleLink = useCallback<OnElementHandler>(
-    (element, { key, ...props }) => {
-      if (element instanceof HTMLAnchorElement) {
-        return (
-          <HandledLink
-            {...props}
-            key={key as string} // React requires keys to not be part of spread props.
-            href={element.href}
-            text={element.innerText}
-            hashtagAccountId={accountId}
-          />
-        );
-      }
-      return undefined;
-    },
-    [accountId],
-  );
+  const htmlHandlers = useElementHandledLink({
+    hashtagAccountId: showDropdown ? accountId : undefined,
+  });
 
   const note = useAppSelector((state) => {
     const account = state.accounts.get(accountId);
@@ -79,7 +64,7 @@ export const AccountBio: React.FC<AccountBioProps> = ({
       className={classNames(className, 'translate')}
       onClickCapture={isModernEmojiEnabled() ? undefined : handleClick}
       ref={handleNodeChange}
-      onElement={handleLink}
+      {...htmlHandlers}
     />
   );
 };
