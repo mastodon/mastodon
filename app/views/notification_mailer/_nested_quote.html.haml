@@ -1,11 +1,11 @@
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
-    %td.email-status-header-img
+    %td.email-quote-header-img
       = image_tag full_asset_url(status.account.avatar.url), alt: '', width: 48, height: 48
-    %td.email-status-header-text
-      %h2.email-status-header-name
+    %td.email-quote-header-text
+      %h2.email-quote-header-name
         = display_name(status.account)
-      %p.email-status-header-handle
+      %p.email-quote-header-handle
         @#{status.account.pretty_acct}
 
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
@@ -26,11 +26,5 @@
                 = link_to full_asset_url(a.file.url(:original)), full_asset_url(a.file.url(:original))
               - else
                 = link_to a.remote_url, a.remote_url
-
-      - if status.local? && status.quote
-        %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
-          %tr
-            %td.email-inner-nested-card-td
-              = render 'nested_quote', status: status.quote.quoted_status, time_zone: time_zone
       %p.email-status-footer
         = link_to l(status.created_at.in_time_zone(time_zone.presence), format: :with_time_zone), web_url("@#{status.account.pretty_acct}/#{status.id}")
