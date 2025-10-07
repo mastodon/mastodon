@@ -835,6 +835,10 @@ sq:
         all: Për këdo
         disabled: Për askënd
         users: Për përdorues vendorë që kanë bërë hyrjen
+      feed_access:
+        modes:
+          authenticated: Vetëm përdorues të mirëfilltësuar
+          public: Kushdo
       registrations:
         moderation_recommandation: Ju lutemi, sigurohuni si keni një ekip adekuat dhe reagues moderimi, përpara se të hapni regjistrimet për këdo!
         preamble: Kontrolloni cilët mund të krijojnë llogari në shërbyesin tuaj.
@@ -1075,6 +1079,17 @@ sq:
           other: Përdorur nga %{count} vetë gjatë javës së kaluar
       title: Rekomandime & Prirje
       trending: Në modë
+    username_blocks:
+      add_new: Shtoni të ri
+      block_registrations: Blloko regjistrimet
+      comparison:
+        contains: Përmban
+        equals: Është baras me
+      contains_html: Përmban %{string}
+      created_msg: U krijua me sukses rregull emrash përdoruesish
+      delete: Fshije
+      edit:
+        title: Përpunoni rregull emrash përdoruesi
     warning_presets:
       add_new: Shtoni të ri
       delete: Fshije
@@ -1648,6 +1663,10 @@ sq:
       title: Përmendje e re
     poll:
       subject: Përfundoi një pyetësor nga %{name}
+    quote:
+      body: 'Postimi juaj u citua nga %{name}:'
+      subject: "%{name} citoi postimin tuaj"
+      title: Citim i ri
     reblog:
       body: 'Gjendja juaj u përforcua nga %{name}:'
       subject: "%{name} përforcoi gjendjen tuaj"
@@ -1696,6 +1715,9 @@ sq:
       self_vote: S’mund të votoni në pyetësorët tuaj
       too_few_options: duhet të ketë më tepër se një element
       too_many_options: s’mund të përmbajë më tepër se %{max} elementë
+    vote: Votoni
+  posting_defaults:
+    explanation: Këto rregullime do të përdoren si parazgjedhje, kur krijoni postime të reja, por mund t’i përpunoni për postim, brenda hartuesit.
   preferences:
     other: Tjetër
     posting_defaults: Parazgjedhje postimesh
@@ -1864,9 +1886,17 @@ sq:
       limit: Keni fiksuar tashmë numrin maksimum të mesazheve
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       reblog: S’mund të fiksohet një përforcim
+    quote_policies:
+      followers: Vetëm ndjekës
+      nobody: Thjesht unë
+      public: Cilido
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Përmendje private
+      private: Vetëm ndjekës
       public: Publike
+      public_long: Cilido që hyn e del në Mastodon
+      unlisted_long: Fshehur nga përfundime kërkimi në Mastodon, rrjedha kohore gjërash në modë dhe publike
   statuses_cleanup:
     enabled: Fshi automatikisht postime të vjetra
     enabled_hint: Fshin automatikisht postimet tuaja, pasi mbërrijnë një prag të caktuar moshe, hiq rastin kur ka përputhje me një nga përjashtimet më poshtë
