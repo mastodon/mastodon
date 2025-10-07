@@ -2,8 +2,6 @@ import type { ComponentPropsWithoutRef, FC } from 'react';
 
 import classNames from 'classnames';
 
-import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
-
 import { AnimateEmojiProvider } from '../emoji/context';
 import { EmojiHTML } from '../emoji/html';
 import { Skeleton } from '../skeleton';
@@ -24,11 +22,7 @@ export const DisplayNameWithoutDomain: FC<
         {account ? (
           <EmojiHTML
             className='display-name__html'
-            htmlString={
-              isModernEmojiEnabled()
-                ? account.get('display_name')
-                : account.get('display_name_html')
-            }
+            htmlString={account.get('display_name_html')}
             as='strong'
             extraEmojis={account.get('emojis')}
           />

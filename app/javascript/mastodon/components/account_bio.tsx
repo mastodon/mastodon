@@ -61,7 +61,7 @@ export const AccountBio: React.FC<AccountBioProps> = ({
     if (!account) {
       return '';
     }
-    return isModernEmojiEnabled() ? account.note : account.note_emojified;
+    return account.note_emojified;
   });
   const extraEmojis = useAppSelector((state) => {
     const account = state.accounts.get(accountId);

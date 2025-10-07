@@ -28,9 +28,6 @@ const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
  * @returns {string}
  */
 export function getStatusContent(status) {
-  if (isModernEmojiEnabled()) {
-    return status.getIn(['translation', 'content']) || status.get('content');
-  }
   return status.getIn(['translation', 'contentHtml']) || status.get('contentHtml');
 }
 
