@@ -848,6 +848,10 @@ da:
         all: Til alle
         disabled: Til ingen
         users: Til indloggede lokale brugere
+      feed_access:
+        modes:
+          authenticated: Kun godkendte brugere
+          public: Alle
       registrations:
         moderation_recommandation: Sørg for, at der er et tilstrækkeligt og reaktivt moderationsteam, før registrering åbnes for alle!
         preamble: Styr, hvem der kan oprette en konto på serveren.
@@ -1281,7 +1285,7 @@ da:
       account_status: Kontostatus
       confirming: Afventer færdiggørelse af e-mailbekræftelse.
       functional: Din konto er fuldt funktionel.
-      pending: Ansøgningen afventer gennemgang af vores personale. Dette kan tage noget tid. Man bør modtage en e-mail, såfremt ansøgningen godkendes.
+      pending: Ansøgningen afventer gennemgang af vores personale. Dette kan tage noget tid. Du modtager en e-mail, hvis din ansøgning bliver godkendt.
       redirecting_to: Din konto er inaktiv, da den pt. er omdirigerer til %{acct}.
       self_destruct: Da %{domain} er under nedlukning, vil kontoadgangen være begrænset.
       view_strikes: Se tidligere anmeldelser af din konto

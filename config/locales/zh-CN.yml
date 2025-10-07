@@ -834,6 +834,10 @@ zh-CN:
         all: 对所有人
         disabled: 不对任何人
         users: 对已登录的本站用户
+      feed_access:
+        modes:
+          authenticated: 仅已登录用户
+          public: 所有人
       registrations:
         moderation_recommandation: 在向所有人开放注册之前，请确保你拥有一个人手足够且反应迅速的管理团队！
         preamble: 控制谁可以在你的服务器上创建账号。
@@ -1877,7 +1881,7 @@ zh-CN:
       direct: 私下提及
       private: 仅关注者
       public: 公开
-      public_long: 所有人（无论是否注册了 Mastodon）
+      public_long: 任何人（无论是否注册了 Mastodon）
       unlisted: 悄悄公开
       unlisted_long: 不显示在Mastodon的搜索结果、热门趋势、公共时间线上
   statuses_cleanup:
