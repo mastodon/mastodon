@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_02_140103) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_07_100813) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -571,7 +571,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_02_140103) do
     t.boolean "notify", default: false, null: false
     t.string "languages", array: true
     t.index ["account_id", "target_account_id"], name: "index_follows_on_account_id_and_target_account_id", unique: true
-    t.index ["target_account_id"], name: "index_follows_on_target_account_id"
+    t.index ["target_account_id", "account_id"], name: "index_follows_on_target_account_id_and_account_id"
   end
 
   create_table "generated_annual_reports", force: :cascade do |t|
