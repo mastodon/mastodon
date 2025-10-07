@@ -3153,18 +3153,23 @@ a.account__display-name {
 
 .column__alert {
   position: sticky;
-  bottom: 1rem;
+  bottom: 0;
   z-index: 10;
   box-sizing: border-box;
   display: grid;
   width: 100%;
   max-width: 360px;
-  padding-inline: 10px;
-  margin-top: 1rem;
-  margin-inline: auto;
+  padding: 1rem;
+  margin: auto auto 0;
+  overflow: clip;
+
+  &:empty {
+    padding: 0;
+  }
 
   @media (max-width: #{$mobile-menu-breakpoint - 1}) {
-    bottom: 4rem;
+    // Compensate for mobile menubar
+    bottom: var(--mobile-bottom-nav-height);
   }
 
   & > * {
