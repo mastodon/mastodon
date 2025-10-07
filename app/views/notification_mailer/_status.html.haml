@@ -11,21 +11,12 @@
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-status-content
-      .auto-dir
-        - if status.spoiler_text?
-          %p.email-status-spoiler
-            = status.spoiler_text
+      = render 'status_content', status: status
 
-        .email-status-prose
-          = status_content_format(status)
-
-        - if status.ordered_media_attachments.size.positive?
-          %p.email-status-media
-            - status.ordered_media_attachments.each do |a|
-              - if status.local?
-                = link_to full_asset_url(a.file.url(:original)), full_asset_url(a.file.url(:original))
-              - else
-                = link_to a.remote_url, a.remote_url
-
+      - if status.local? && status.quote
+        %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+          %tr
+            %td.email-inner-nested-card-td
+              = render 'nested_quote', status: status.quote.quoted_status, time_zone: time_zone
       %p.email-status-footer
         = link_to l(status.created_at.in_time_zone(time_zone.presence), format: :with_time_zone), web_url("@#{status.account.pretty_acct}/#{status.id}")
