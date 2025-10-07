@@ -217,7 +217,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def process_quote
     @quote_uri = @status_parser.quote_uri
-    return if @quote_uri.blank?
+    return unless @status_parser.quote?
 
     approval_uri = @status_parser.quote_approval_uri
     approval_uri = nil if unsupported_uri_scheme?(approval_uri)
