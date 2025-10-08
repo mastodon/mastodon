@@ -142,7 +142,7 @@ class ActivityPub::Parser::StatusParser
   def quote_subpolicy(subpolicy)
     flags = 0
 
-    allowed_actors = as_array(subpolicy)
+    allowed_actors = as_array(subpolicy).dup
     allowed_actors.uniq!
 
     flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] if allowed_actors.delete('as:Public') || allowed_actors.delete('Public') || allowed_actors.delete('https://www.w3.org/ns/activitystreams#Public')
