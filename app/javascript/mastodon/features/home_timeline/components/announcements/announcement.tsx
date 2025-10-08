@@ -22,8 +22,9 @@ export const Announcement: FC<AnnouncementProps> = ({
   announcement,
   selected,
 }) => {
-  const [unread, setUnread] = useState(announcement.read);
+  const [unread, setUnread] = useState(!announcement.read);
   useEffect(() => {
+    // Only update `unread` marker once the announcement is out of view
     if (!selected && unread !== !announcement.read) {
       setUnread(!announcement.read);
     }
