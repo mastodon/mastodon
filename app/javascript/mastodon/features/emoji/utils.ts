@@ -6,10 +6,6 @@ export function emojiLogger(segment: string) {
   return debug(`emojis:${segment}`);
 }
 
-export function stringHasUnicodeEmoji(input: string): boolean {
-  return new RegExp(EMOJI_REGEX, supportedFlags()).test(input);
-}
-
 export function isUnicodeEmoji(input: string): boolean {
   return (
     input.length > 0 &&
@@ -34,17 +30,11 @@ export function stringHasUnicodeFlags(input: string): boolean {
 
 // Constant as this is supported by all browsers.
 const CUSTOM_EMOJI_REGEX = /:([a-z0-9_]+):/i;
+// Use the polyfill regex or the Unicode property escapes if supported.
+const EMOJI_REGEX = emojiRegexPolyfill?.source ?? '\\p{RGI_Emoji}';
 
 export function isCustomEmoji(input: string): boolean {
   return new RegExp(`^${CUSTOM_EMOJI_REGEX.source}$`, 'i').test(input);
-}
-
-export function stringHasCustomEmoji(input: string) {
-  return CUSTOM_EMOJI_REGEX.test(input);
-}
-
-export function stringHasAnyEmoji(input: string) {
-  return stringHasUnicodeEmoji(input) || stringHasCustomEmoji(input);
 }
 
 export function anyEmojiRegex() {
@@ -64,5 +54,3 @@ function supportedFlags(flags = '') {
   }
   return flags;
 }
-
-const EMOJI_REGEX = emojiRegexPolyfill?.source ?? '\\p{RGI_Emoji}';

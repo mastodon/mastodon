@@ -1,6 +1,7 @@
 // Credit to Nolan Lawson for the original implementation.
 // See: https://github.com/nolanlawson/emoji-picker-element/blob/master/src/picker/utils/testColorEmojiSupported.js
 
+import { useAppSelector } from '@/mastodon/store';
 import { isDevelopment } from '@/mastodon/utils/environment';
 
 import {
@@ -8,7 +9,24 @@ import {
   EMOJI_MODE_NATIVE_WITH_FLAGS,
   EMOJI_MODE_TWEMOJI,
 } from './constants';
-import type { EmojiMode } from './types';
+import { toSupportedLocale } from './locale';
+import type { EmojiAppState, EmojiMode } from './types';
+
+export function useEmojiAppState(): EmojiAppState {
+  const locale = useAppSelector((state) =>
+    toSupportedLocale(state.meta.get('locale') as string),
+  );
+  const mode = useAppSelector((state) =>
+    determineEmojiMode(state.meta.get('emoji_style') as string),
+  );
+
+  return {
+    currentLocale: locale,
+    locales: [locale],
+    mode,
+    darkTheme: document.body.classList.contains('theme-default'),
+  };
+}
 
 type Feature = Uint8ClampedArray;
 
