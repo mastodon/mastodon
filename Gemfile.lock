@@ -900,7 +900,8 @@ GEM
       semantic_range (>= 2.3.0)
     webrick (1.8.2)
     websocket (1.2.11)
-    websocket-driver (0.7.6)
+    websocket-driver (0.8.0)
+      base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     wisper (2.0.1)
@@ -1059,6 +1060,7 @@ DEPENDENCIES
   webmock (~> 3.18)
   webpacker (~> 5.4)
   webpush!
+  websocket-driver (~> 0.8)
   xorcist (~> 1.1)
 
 RUBY VERSION
