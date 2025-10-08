@@ -160,15 +160,15 @@ export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg) {
       {},
     );
   }
-  if (!isList(extraEmojis)) {
-    return extraEmojis;
+  if (isList(extraEmojis)) {
+    return extraEmojis
+      .toJS()
+      .reduce<ExtraCustomEmojiMap>(
+        (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
+        {},
+      );
   }
-  return extraEmojis
-    .toJSON()
-    .reduce<ExtraCustomEmojiMap>(
-      (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
-      {},
-    );
+  return extraEmojis;
 }
 
 function hexStringToNumbers(hexString: string): number[] {

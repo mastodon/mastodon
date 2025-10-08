@@ -4,6 +4,7 @@ import type { FC } from 'react';
 import { FormattedDate, FormattedMessage } from 'react-intl';
 
 import type { ApiAnnouncementJSON } from '@/mastodon/api_types/announcements';
+import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 
 import { ReactionsBar } from './reactions';
@@ -29,7 +30,7 @@ export const Announcement: FC<AnnouncementProps> = ({
   }, [announcement.read, selected, unread]);
 
   return (
-    <div className='announcements__item'>
+    <AnimateEmojiProvider className='announcements__item'>
       <strong className='announcements__item__range'>
         <FormattedMessage
           id='announcement.announcement'
@@ -44,13 +45,13 @@ export const Announcement: FC<AnnouncementProps> = ({
       <EmojiHTML
         className='announcements__item__content translate'
         htmlString={announcement.contentHtml}
-        // extraEmojis={announcement.emojis}
+        extraEmojis={announcement.emojis}
       />
 
       <ReactionsBar reactions={announcement.reactions} id={announcement.id} />
 
       {unread && <span className='announcements__item__unread' />}
-    </div>
+    </AnimateEmojiProvider>
   );
 };
 
