@@ -3,6 +3,7 @@ import type { ComponentProps, FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import type { ApiMentionJSON } from '@/mastodon/api_types/statuses';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
 export interface HandledLinkProps {
@@ -84,13 +85,18 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
 export const useElementHandledLink = ({
   hashtagAccountId,
   mentionAccountId,
+  mentions = [],
 }: {
   hashtagAccountId?: string;
   mentionAccountId?: string;
+  mentions?: ApiMentionJSON[];
 } = {}) => {
   const onElement = useCallback<OnElementHandler>(
     (element, { key, ...props }) => {
       if (element instanceof HTMLAnchorElement) {
+        const mention = mentions.find(
+          (mention) => element.href === mention.url,
+        );
         return (
           <HandledLink
             {...props}
@@ -98,13 +104,13 @@ export const useElementHandledLink = ({
             href={element.href}
             text={element.innerText}
             hashtagAccountId={hashtagAccountId}
-            mentionAccountId={mentionAccountId}
+            mentionAccountId={mention?.id ?? mentionAccountId}
           />
         );
       }
       return undefined;
     },
-    [hashtagAccountId, mentionAccountId],
+    [hashtagAccountId, mentionAccountId, mentions],
   );
   return { onElement };
 };
