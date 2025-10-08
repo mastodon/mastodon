@@ -38,7 +38,7 @@ const messages = defineMessages({
   },
   success: {
     id: 'status.context.loading_success',
-    defaultMessage: 'All replies loaded',
+    defaultMessage: 'New replies loaded',
   },
   error: {
     id: 'status.context.loading_error',
