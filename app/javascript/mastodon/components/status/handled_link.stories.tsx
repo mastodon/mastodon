@@ -1,19 +1,28 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { HashtagMenuController } from '@/mastodon/features/ui/components/hashtag_menu_controller';
-import { accountFactoryState } from '@/testing/factories';
 
 import { HoverCardController } from '../hover_card_controller';
 
 import type { HandledLinkProps } from './handled_link';
 import { HandledLink } from './handled_link';
 
+type HandledLinkStoryProps = Pick<HandledLinkProps, 'href' | 'text'> & {
+  mentionAccount: 'local' | 'remote' | 'none';
+};
+
 const meta = {
   title: 'Components/Status/HandledLink',
-  render(args) {
+  render({ mentionAccount, ...args }) {
+    let mention: HandledLinkProps['mention'] | undefined;
+    if (mentionAccount === 'local') {
+      mention = { id: '1', acct: 'testuser' };
+    } else if (mentionAccount === 'remote') {
+      mention = { id: '2', acct: 'remoteuser@mastodon.social' };
+    }
     return (
       <>
-        <HandledLink {...args} mentionAccountId='1' hashtagAccountId='1' />
+        <HandledLink {...args} mention={mention} hashtagAccountId='1' />
         <HashtagMenuController />
         <HoverCardController />
       </>
@@ -22,15 +31,16 @@ const meta = {
   args: {
     href: 'https://example.com/path/subpath?query=1#hash',
     text: 'https://example.com',
+    mentionAccount: 'none',
   },
-  parameters: {
-    state: {
-      accounts: {
-        '1': accountFactoryState(),
-      },
+  argTypes: {
+    mentionAccount: {
+      control: { type: 'select' },
+      options: ['local', 'remote', 'none'],
+      defaultValue: 'none',
     },
   },
-} satisfies Meta<Pick<HandledLinkProps, 'href' | 'text'>>;
+} satisfies Meta<HandledLinkStoryProps>;
 
 export default meta;
 
@@ -47,6 +57,7 @@ export const Hashtag: Story = {
 export const Mention: Story = {
   args: {
     text: '@user',
+    mentionAccount: 'local',
   },
 };
 
