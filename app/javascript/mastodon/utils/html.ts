@@ -41,18 +41,22 @@ export type OnElementHandler<
   extra: Arg,
 ) => React.ReactNode;
 
+export type OnAttributeHandler<
+  Arg extends Record<string, unknown> = Record<string, unknown>,
+> = (
+  name: string,
+  value: string,
+  tagName: string,
+  extra: Arg,
+) => [string, unknown] | undefined | null;
+
 export interface HTMLToStringOptions<
   Arg extends Record<string, unknown> = Record<string, unknown>,
 > {
   maxDepth?: number;
   onText?: (text: string, extra: Arg) => React.ReactNode;
   onElement?: OnElementHandler<Arg>;
-  onAttribute?: (
-    name: string,
-    value: string,
-    tagName: string,
-    extra: Arg,
-  ) => [string, unknown] | null;
+  onAttribute?: OnAttributeHandler<Arg>;
   allowedTags?: AllowedTagsType;
   extraArgs?: Arg;
 }
@@ -140,44 +144,44 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
 
           // Custom attribute handler.
           if (onAttribute) {
-            const result = onAttribute(
-              name,
-              attr.value,
-              node.tagName.toLowerCase(),
-              extraArgs,
-            );
+            const result = onAttribute(name, attr.value, tagName, extraArgs);
+            // Rewrite this attribute.
             if (result) {
               const [cbName, value] = result;
               props[cbName] = value;
-            }
-          } else {
-            // Check global attributes first, then tag-specific ones.
-            const globalAttr = globalAttributes[name];
-            const tagAttr = tagInfo.attributes?.[name];
-
-            // Exit if neither global nor tag-specific attribute is allowed.
-            if (!globalAttr && !tagAttr) {
+              continue;
+            } else if (result === null) {
+              // Explicitly remove this attribute.
               continue;
             }
-
-            // Rename if needed.
-            if (typeof tagAttr === 'string') {
-              name = tagAttr;
-            } else if (typeof globalAttr === 'string') {
-              name = globalAttr;
-            }
-
-            let value: string | boolean | number = attr.value;
-
-            // Handle boolean attributes.
-            if (value === 'true') {
-              value = true;
-            } else if (value === 'false') {
-              value = false;
-            }
-
-            props[name] = value;
           }
+
+          // Check global attributes first, then tag-specific ones.
+          const globalAttr = globalAttributes[name];
+          const tagAttr = tagInfo.attributes?.[name];
+
+          // Exit if neither global nor tag-specific attribute is allowed.
+          if (!globalAttr && !tagAttr) {
+            continue;
+          }
+
+          // Rename if needed.
+          if (typeof tagAttr === 'string') {
+            name = tagAttr;
+          } else if (typeof globalAttr === 'string') {
+            name = globalAttr;
+          }
+
+          let value: string | boolean | number = attr.value;
+
+          // Handle boolean attributes.
+          if (value === 'true') {
+            value = true;
+          } else if (value === 'false') {
+            value = false;
+          }
+
+          props[name] = value;
         }
 
         // If onElement is provided, use it to create the element.

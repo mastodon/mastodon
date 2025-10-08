@@ -1,6 +1,9 @@
+import { useCallback } from 'react';
 import type { ComponentProps, FC } from 'react';
 
 import { Link } from 'react-router-dom';
+
+import type { OnElementHandler } from '@/mastodon/utils/html';
 
 export interface HandledLinkProps {
   href: string;
@@ -76,4 +79,32 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   } catch {
     return text;
   }
+};
+
+export const useElementHandledLink = ({
+  hashtagAccountId,
+  mentionAccountId,
+}: {
+  hashtagAccountId?: string;
+  mentionAccountId?: string;
+} = {}) => {
+  const onElement = useCallback<OnElementHandler>(
+    (element, { key, ...props }) => {
+      if (element instanceof HTMLAnchorElement) {
+        return (
+          <HandledLink
+            {...props}
+            key={key as string} // React requires keys to not be part of spread props.
+            href={element.href}
+            text={element.innerText}
+            hashtagAccountId={hashtagAccountId}
+            mentionAccountId={mentionAccountId}
+          />
+        );
+      }
+      return undefined;
+    },
+    [hashtagAccountId, mentionAccountId],
+  );
+  return { onElement };
 };
