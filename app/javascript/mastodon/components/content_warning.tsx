@@ -29,6 +29,7 @@ export const ContentWarning: React.FC<{
       variant={BannerVariant.Warning}
     >
       <EmojiHTML
+        as='span'
         htmlString={text}
         extraEmojis={status.get('emoji') as List<CustomEmoji>}
       />
