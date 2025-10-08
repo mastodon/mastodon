@@ -7,22 +7,48 @@ const meta = {
   title: 'Components/HTMLBlock',
   component: HTMLBlock,
   args: {
-    contents:
-      '<p>Hello, world!</p>\n<p><a href="#">A link</a></p>\n<p>This should be filtered out: <button>Bye!</button></p>',
+    htmlString: `<p>Hello, world!</p>
+<p><a href="#">A link</a></p>
+<p>This should be filtered out: <button>Bye!</button></p>
+<p>This also has emoji: 🖤</p>`,
+  },
+  argTypes: {
+    extraEmojis: {
+      table: {
+        disable: true,
+      },
+    },
+    onElement: {
+      table: {
+        disable: true,
+      },
+    },
+    onAttribute: {
+      table: {
+        disable: true,
+      },
+    },
   },
   render(args) {
     return (
       // Just for visual clarity in Storybook.
-      <div
+      <HTMLBlock
+        {...args}
         style={{
           border: '1px solid black',
           padding: '1rem',
           minWidth: '300px',
         }}
-      >
-        <HTMLBlock {...args} />
-      </div>
+      />
     );
+  },
+  // Force Twemoji to demonstrate emoji rendering.
+  parameters: {
+    state: {
+      meta: {
+        emoji_style: 'twemoji',
+      },
+    },
   },
 } satisfies Meta<typeof HTMLBlock>;
 
