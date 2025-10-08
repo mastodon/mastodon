@@ -96,7 +96,7 @@ GEM
     ast (2.4.3)
     attr_required (1.0.2)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1135.0)
+    aws-partitions (1.1168.0)
     aws-sdk-core (3.215.1)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -207,7 +207,7 @@ GEM
       railties (>= 5)
     dotenv (3.1.8)
     drb (2.2.3)
-    dry-cli (1.2.0)
+    dry-cli (1.3.0)
     elasticsearch (7.17.11)
       elasticsearch-api (= 7.17.11)
       elasticsearch-transport (= 7.17.11)
@@ -226,18 +226,18 @@ GEM
       activemodel
     erb (5.0.2)
     erubi (1.13.1)
-    et-orbi (1.2.11)
+    et-orbi (1.4.0)
       tzinfo
-    excon (1.2.8)
+    excon (1.3.0)
       logger
     fabrication (3.0.0)
     faker (3.5.2)
       i18n (>= 1.8.11, < 2)
-    faraday (2.13.4)
+    faraday (2.14.0)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
-    faraday-follow_redirects (0.3.0)
+    faraday-follow_redirects (0.4.0)
       faraday (>= 1, < 3)
     faraday-httpclient (2.0.2)
       httpclient (>= 2.2)
@@ -266,18 +266,19 @@ GEM
     fog-openstack (1.1.5)
       fog-core (~> 2.1)
       fog-json (>= 1.0)
-    formatador (1.1.1)
+    formatador (1.2.1)
+      reline
     forwardable (1.3.3)
-    fugit (1.11.1)
-      et-orbi (~> 1, >= 1.2.11)
+    fugit (1.12.0)
+      et-orbi (~> 1.4)
       raabro (~> 1.4)
-    globalid (1.2.1)
+    globalid (1.3.0)
       activesupport (>= 6.1)
-    google-protobuf (4.31.1)
+    google-protobuf (4.32.1)
       bigdecimal
       rake (>= 13)
-    googleapis-common-protos-types (1.20.0)
-      google-protobuf (>= 3.18, < 5.a)
+    googleapis-common-protos-types (1.21.0)
+      google-protobuf (~> 4.26)
     haml (6.3.0)
       temple (>= 0.8.2)
       thor
@@ -293,7 +294,7 @@ GEM
       rainbow
       rubocop (>= 1.0)
       sysexits (~> 1.1)
-    hashdiff (1.2.0)
+    hashdiff (1.2.1)
     hashie (5.0.0)
     hcaptcha (7.1.0)
       json
@@ -309,7 +310,7 @@ GEM
       http-cookie (~> 1.0)
       http-form_data (~> 2.2)
       llhttp-ffi (~> 0.5.0)
-    http-cookie (1.0.8)
+    http-cookie (1.1.0)
       domain_name (~> 0.5)
     http-form_data (2.3.0)
     http_accept_language (2.1.1)
@@ -347,7 +348,7 @@ GEM
     jmespath (1.6.2)
     json (2.15.0)
     json-canonicalization (1.0.0)
-    json-jwt (1.16.7)
+    json-jwt (1.17.0)
       activesupport (>= 4.2)
       aes_key_wrap
       base64
@@ -438,7 +439,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0916)
+    mime-types-data (3.2025.0924)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     minitest (5.25.5)
@@ -447,7 +448,7 @@ GEM
     mutex_m (0.3.0)
     net-http (0.6.0)
       uri
-    net-imap (0.5.10)
+    net-imap (0.5.12)
       date
       net-protocol
     net-ldap (0.20.0)
@@ -497,7 +498,7 @@ GEM
       tzinfo
       validate_url
       webfinger (~> 2.0)
-    openssl (3.3.0)
+    openssl (3.3.1)
     openssl-signature_algorithm (1.3.0)
       openssl (> 2.0)
     opentelemetry-api (1.7.0)
@@ -510,8 +511,8 @@ GEM
       opentelemetry-common (~> 0.20)
       opentelemetry-sdk (~> 1.2)
       opentelemetry-semantic_conventions
-    opentelemetry-helpers-sql (0.1.1)
-      opentelemetry-api (~> 1.0)
+    opentelemetry-helpers-sql (0.2.0)
+      opentelemetry-api (~> 1.7)
     opentelemetry-helpers-sql-obfuscation (0.3.0)
       opentelemetry-common (~> 0.21)
     opentelemetry-instrumentation-action_mailer (0.4.0)
@@ -616,7 +617,7 @@ GEM
     playwright-ruby-client (1.55.0)
       concurrent-ruby (>= 1.1.6)
       mime-types (>= 3.0)
-    pp (0.6.2)
+    pp (0.6.3)
       prettyprint
     premailer (1.27.0)
       addressable
@@ -714,9 +715,10 @@ GEM
       readline (~> 0.0)
     rdf-normalize (0.7.0)
       rdf (~> 3.3)
-    rdoc (6.14.2)
+    rdoc (6.15.0)
       erb
       psych (>= 4.0.0)
+      tsort
     readline (0.0.4)
       reline
     redcarpet (3.6.1)
@@ -733,7 +735,7 @@ GEM
       railties (>= 5.2)
     rexml (3.4.4)
     rotp (6.3.0)
-    rouge (4.6.0)
+    rouge (4.6.1)
     rpam2 (4.0.2)
     rqrcode (3.1.0)
       chunky_png (~> 1.0)
@@ -766,7 +768,7 @@ GEM
       rspec-expectations (~> 3.0)
       rspec-mocks (~> 3.0)
       sidekiq (>= 5, < 9)
-    rspec-support (3.13.4)
+    rspec-support (3.13.6)
     rubocop (1.81.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -1110,4 +1112,4 @@ RUBY VERSION
    ruby 3.4.1p0
 
 BUNDLED WITH
-   2.7.1
+   2.7.2
