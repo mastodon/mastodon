@@ -48,7 +48,10 @@ export const EmbeddedStatusContent: React.FC<{
   );
   const htmlHandlers = useElementHandledLink({
     hashtagAccountId: status.get('account') as string | undefined,
-    mentions,
+    hrefToMentionAccountId(href) {
+      const mention = mentions.find((item) => item.url === href);
+      return mention?.id;
+    },
   });
 
   const handleContentRef = useCallback(
