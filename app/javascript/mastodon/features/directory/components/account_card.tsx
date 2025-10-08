@@ -2,6 +2,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { Avatar } from 'mastodon/components/avatar';
 import { DisplayName } from 'mastodon/components/display_name';
 import { FollowButton } from 'mastodon/components/follow_button';
@@ -39,9 +40,10 @@ export const AccountCard: React.FC<{ accountId: string }> = ({ accountId }) => {
       </Link>
 
       {account.get('note').length > 0 && (
-        <div
-          className='account-card__bio translate animate-parent'
-          dangerouslySetInnerHTML={{ __html: account.get('note_emojified') }}
+        <EmojiHTML
+          className='account-card__bio translate'
+          htmlString={account.get('note_emojified')}
+          extraEmojis={account.get('emojis')}
         />
       )}
 

@@ -83,14 +83,15 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
 
 export const useElementHandledLink = ({
   hashtagAccountId,
-  mentionAccountId,
+  hrefToMentionAccountId,
 }: {
   hashtagAccountId?: string;
-  mentionAccountId?: string;
+  hrefToMentionAccountId?: (href: string) => string | undefined;
 } = {}) => {
   const onElement = useCallback<OnElementHandler>(
     (element, { key, ...props }) => {
       if (element instanceof HTMLAnchorElement) {
+        const mentionId = hrefToMentionAccountId?.(element.href);
         return (
           <HandledLink
             {...props}
@@ -98,13 +99,13 @@ export const useElementHandledLink = ({
             href={element.href}
             text={element.innerText}
             hashtagAccountId={hashtagAccountId}
-            mentionAccountId={mentionAccountId}
+            mentionAccountId={mentionId}
           />
         );
       }
       return undefined;
     },
-    [hashtagAccountId, mentionAccountId],
+    [hashtagAccountId, hrefToMentionAccountId],
   );
   return { onElement };
 };
