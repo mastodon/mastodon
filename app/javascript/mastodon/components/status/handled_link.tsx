@@ -1,22 +1,25 @@
 import { useCallback } from 'react';
 import type { ComponentProps, FC } from 'react';
 
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import type { ApiMentionJSON } from '@/mastodon/api_types/statuses';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
 export interface HandledLinkProps {
   href: string;
   text: string;
   hashtagAccountId?: string;
-  mentionAccountId?: string;
+  mention?: Pick<ApiMentionJSON, 'id' | 'acct'>;
 }
 
 export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   href,
   text,
   hashtagAccountId,
-  mentionAccountId,
+  mention,
+  className,
   ...props
 }) => {
   // Handle hashtags
@@ -24,8 +27,7 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
     const hashtag = text.slice(1).trim();
     return (
       <Link
-        {...props}
-        className='mention hashtag'
+        className={classNames('mention hashtag', className)}
         to={`/tags/${hashtag}`}
         rel='tag'
         data-menu-hashtag={hashtagAccountId}
@@ -33,18 +35,16 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         #<span>{hashtag}</span>
       </Link>
     );
-  } else if (text.startsWith('@')) {
+  } else if (text.startsWith('@') && mention) {
     // Handle mentions
-    const mention = text.slice(1).trim();
     return (
       <Link
-        {...props}
-        className='mention'
-        to={`/@${mention}`}
-        title={`@${mention}`}
-        data-hover-card-account={mentionAccountId}
+        className={classNames('mention', className)}
+        to={`/@${mention.acct}`}
+        title={`@${mention.acct}`}
+        data-hover-card-account={mention.id}
       >
-        @<span>{mention}</span>
+        @<span>{text.slice(1).trim()}</span>
       </Link>
     );
   }
@@ -52,7 +52,7 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   // Non-absolute paths treated as internal links.
   if (href.startsWith('/')) {
     return (
-      <Link {...props} className='unhandled-link' to={href}>
+      <Link className={classNames('unhandled-link', className)} to={href}>
         {text}
       </Link>
     );
@@ -66,7 +66,7 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         {...props}
         href={href}
         title={href}
-        className='unhandled-link'
+        className={classNames('unhandled-link', className)}
         target='_blank'
         rel='noreferrer noopener'
         translate='no'
@@ -83,15 +83,15 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
 
 export const useElementHandledLink = ({
   hashtagAccountId,
-  hrefToMentionAccountId,
+  hrefToMention,
 }: {
   hashtagAccountId?: string;
-  hrefToMentionAccountId?: (href: string) => string | undefined;
+  hrefToMention?: (href: string) => ApiMentionJSON | undefined;
 } = {}) => {
   const onElement = useCallback<OnElementHandler>(
     (element, { key, ...props }) => {
       if (element instanceof HTMLAnchorElement) {
-        const mentionId = hrefToMentionAccountId?.(element.href);
+        const mention = hrefToMention?.(element.href);
         return (
           <HandledLink
             {...props}
@@ -99,13 +99,13 @@ export const useElementHandledLink = ({
             href={element.href}
             text={element.innerText}
             hashtagAccountId={hashtagAccountId}
-            mentionAccountId={mentionId}
+            mention={mention}
           />
         );
       }
       return undefined;
     },
-    [hashtagAccountId, hrefToMentionAccountId],
+    [hashtagAccountId, hrefToMention],
   );
   return { onElement };
 };
