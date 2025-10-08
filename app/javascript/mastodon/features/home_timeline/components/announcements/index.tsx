@@ -9,8 +9,10 @@ import ReactSwipeableViews from 'react-swipeable-views';
 
 import elephantUIPlane from '@/images/elephant_ui_plane.svg';
 import { IconButton } from '@/mastodon/components/icon_button';
+import LegacyAnnouncements from '@/mastodon/features/getting_started/containers/announcements_container';
 import { mascot, reduceMotion } from '@/mastodon/initial_state';
 import { useAppSelector } from '@/mastodon/store';
+import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 
@@ -23,14 +25,14 @@ const messages = defineMessages({
   next: { id: 'lightbox.next', defaultMessage: 'Next' },
 });
 
-export const Announcements: FC = () => {
+export const ModernAnnouncements: FC = () => {
   const intl = useIntl();
 
   const announcements = useAppSelector(
     (state) =>
-      (state.announcements as Map<string, List<IAnnouncement>>)
+      ((state.announcements as Map<string, List<Map<string, unknown>>>)
         .get('items')
-        ?.toArray() ?? [],
+        ?.toJS() as IAnnouncement[] | undefined) ?? [],
   );
 
   const [index, setIndex] = useState(0);
@@ -105,3 +107,7 @@ export const Announcements: FC = () => {
     </div>
   );
 };
+
+export const Announcements = isModernEmojiEnabled()
+  ? ModernAnnouncements
+  : LegacyAnnouncements;

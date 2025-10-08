@@ -6,6 +6,8 @@ import { FormattedDate, FormattedMessage } from 'react-intl';
 import type { ApiAnnouncementJSON } from '@/mastodon/api_types/announcements';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 
+import { ReactionsBar } from './reactions';
+
 export interface IAnnouncement extends ApiAnnouncementJSON {
   contentHtml: string;
 }
@@ -42,13 +44,10 @@ export const Announcement: FC<AnnouncementProps> = ({
       <EmojiHTML
         className='announcements__item__content translate'
         htmlString={announcement.contentHtml}
-        extraEmojis={announcement.emojis}
+        // extraEmojis={announcement.emojis}
       />
 
-      <ReactionsBar
-        reactions={announcement.reactions}
-        announcementId={announcement.id}
-      />
+      <ReactionsBar reactions={announcement.reactions} id={announcement.id} />
 
       {unread && <span className='announcements__item__unread' />}
     </div>
