@@ -12,6 +12,7 @@ import { composeReducer } from './compose';
 import { contextsReducer } from './contexts';
 import conversations from './conversations';
 import custom_emojis from './custom_emojis';
+import { donateReducer } from './donate';
 import { dropdownMenuReducer } from './dropdown_menu';
 import filters from './filters';
 import height_cache from './height_cache';
@@ -43,6 +44,7 @@ import user_lists from './user_lists';
 
 const reducers = {
   announcements,
+  donate: donateReducer,
   dropdownMenu: dropdownMenuReducer,
   timelines,
   meta,

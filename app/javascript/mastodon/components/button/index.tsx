@@ -24,13 +24,13 @@ interface PropsWithText extends BaseProps {
   children?: undefined;
 }
 
-type Props = PropsWithText | PropsChildren;
+export type ButtonProps = PropsWithText | PropsChildren;
 
 /**
  * Primary UI component for user interaction that doesn't result in navigation.
  */
 
-export const Button: React.FC<Props> = ({
+export const Button: React.FC<ButtonProps> = ({
   type = 'button',
   onClick,
   disabled,

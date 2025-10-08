@@ -9,7 +9,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import { fetchTrendingHashtags } from 'mastodon/actions/trends';
-import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
