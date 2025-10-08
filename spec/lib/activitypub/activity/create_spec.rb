@@ -956,7 +956,7 @@ RSpec.describe ActivityPub::Activity::Create do
           expect(status).to_not be_nil
           expect(status.quote).to_not be_nil
           expect(status.quote).to have_attributes(
-            state: 'pending',
+            state: 'deleted',
             approval_uri: nil
           )
         end

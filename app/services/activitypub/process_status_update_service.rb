@@ -308,7 +308,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
           # Revoke the quote while we get a chance… maybe this should be a `before_destroy` hook?
           RevokeQuoteService.new.call(@status.quote) if @status.quote.quoted_account&.local? && @status.quote.accepted?
           @status.quote.destroy
-          quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
+          quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?, state: @status_parser.deleted_quote? ? :deleted : :pending)
           @quote_changed = true
         else
           quote = @status.quote
