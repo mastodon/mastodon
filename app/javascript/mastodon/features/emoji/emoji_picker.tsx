@@ -7,7 +7,7 @@ import { assetHost } from 'mastodon/utils/config';
 
 import { EMOJI_MODE_NATIVE } from './constants';
 import EmojiData from './emoji_data.json';
-import { useEmojiAppState } from './hooks';
+import { useEmojiAppState } from './mode';
 
 const backgroundImageFnDefault = () => `${assetHost}/emoji/sheet_15_1.png`;
 

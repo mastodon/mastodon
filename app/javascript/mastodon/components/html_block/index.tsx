@@ -13,12 +13,12 @@ export const HTMLBlock = polymorphicForwardRef<
 >(
   ({
     onElement: onParentElement,
-    hrefToMentionAccountId,
+    hrefToMention,
     hashtagAccountId,
     ...props
   }) => {
     const { onElement: onLinkElement } = useElementHandledLink({
-      hrefToMentionAccountId,
+      hrefToMention,
       hashtagAccountId,
     });
     const onElement: OnElementHandler = useCallback(
