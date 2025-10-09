@@ -190,6 +190,7 @@ sq:
         create_relay: Krijoni Rele
         create_unavailable_domain: Krijo Përkatësi të Papërdorshme
         create_user_role: Krijoni Rol
+        create_username_block: Krijoni Rregull Emrash Përdoruesish
         demote_user: Zhgradoje Përdoruesin
         destroy_announcement: Fshije Lajmërimin
         destroy_canonical_email_block: Fshini Bllokim Email-esh
@@ -203,6 +204,7 @@ sq:
         destroy_status: Fshi Gjendje
         destroy_unavailable_domain: Fshi Përkatësi të Papërdorshme
         destroy_user_role: Asgjësoje Rolin
+        destroy_username_block: Fshini Rregull Emrash Përdoruesish
         disable_2fa_user: Çaktivizo 2FA-në
         disable_custom_emoji: Çaktivizo Emotikon Vetjak
         disable_relay: Çaktivizoje Relenë
@@ -237,6 +239,7 @@ sq:
         update_report: Përditësoni Raportimin
         update_status: Përditëso Gjendjen
         update_user_role: Përditësoni Rol
+        update_username_block: Përditësoni Rregull Emrash Përdoruesish
       actions:
         approve_appeal_html: "%{name} miratoi apelim vendimi moderimi nga %{target}"
         approve_user_html: "%{name} miratoi regjistrim nga %{target}"
@@ -255,6 +258,7 @@ sq:
         create_relay_html: "%{name} krijoi një rele %{target}"
         create_unavailable_domain_html: "%{name} ndali dërgimin drejt përkatësisë %{target}"
         create_user_role_html: "%{name} krijoi rolin %{target}"
+        create_username_block_html: "%{name} shtoi rregull për emra përdoruesish që përmbajnë %{target}"
         demote_user_html: "%{name} zhgradoi përdoruesin %{target}"
         destroy_announcement_html: "%{name} fshiu lajmërimin për %{target}"
         destroy_canonical_email_block_html: "%{name} zhbllokoi email me hashin %{target}"
@@ -268,6 +272,7 @@ sq:
         destroy_status_html: "%{name} hoqi gjendje nga %{target}"
         destroy_unavailable_domain_html: "%{name} rinisi dërgimin drejt përkatësisë %{target}"
         destroy_user_role_html: "%{name} fshiu rolin %{target}"
+        destroy_username_block_html: "%{name} hoqi rregull për emra përdoruesish që përmbajnë %{target}"
         disable_2fa_user_html: "%{name} çaktivizoi domosdoshmërinë për dyfaktorësh për përdoruesin %{target}"
         disable_custom_emoji_html: "%{name} çaktivizoi emoxhin %{target}"
         disable_relay_html: "%{name} çaktivizoi relenë %{target}"
@@ -302,6 +307,7 @@ sq:
         update_report_html: "%{name} përditësoi raportimin %{target}"
         update_status_html: "%{name} përditësoi gjendjen me %{target}"
         update_user_role_html: "%{name} ndryshoi rolin për %{target}"
+        update_username_block_html: "%{name} përditësoi rregull për emra përdoruesish që përmbajnë %{target}"
       deleted_account: fshiu llogarinë
       empty: S’u gjetën regjistra.
       filter_by_action: Filtroji sipas veprimit
@@ -505,6 +511,7 @@ sq:
         select_capabilities: Përzgjidhni Aftësi
         sign_in: Hyni
         status: Gjendje
+        title: Shërbyes Shërbimesh Ndihmëse Fediversi
       title: FASP
     follow_recommendations:
       description_html: "<strong>Rekomandimet për ndjekje ndihmojnë përdoruesit e rinj të gjejnë shpejt lëndë me interes</strong>. Kur një përdorues nuk ka ndërvepruar mjaftueshëm me të tjerët, që të formohen rekomandime të personalizuara ndjekjeje, rekomandohen këto llogari. Ato përzgjidhen çdo ditë, prej një përzierje llogarish me shkallën më të lartë të angazhimit dhe numrin më të lartë të ndjekësve vendorë për një gjuhë të dhënë."
@@ -1090,6 +1097,14 @@ sq:
       delete: Fshije
       edit:
         title: Përpunoni rregull emrash përdoruesi
+      matches_exactly_html: Baras me %{string}
+      new:
+        create: Krijoni rregull
+        title: Krijoni rregull të ri emrash përdoruesish
+      no_username_block_selected: S’u ndryshua ndonjë rregull emrash përdoruesishm ngaqë s’u përzgjodh ndonjë
+      not_permitted: Jo i lejuar
+      title: Rregulla emrash përdoruesish
+      updated_msg: Rregulli i emrave të përdoruesve u përditësua me sukses
     warning_presets:
       add_new: Shtoni të ri
       delete: Fshije
@@ -1880,6 +1895,7 @@ sq:
     edited_at_html: Përpunuar më %{date}
     errors:
       in_reply_not_found: Gjendja të cilës po provoni t’i përgjigjeni s’duket se ekziston.
+      quoted_status_not_found: Postimi që po rrekeni të citoni nuk duket se ekziston.
     over_character_limit: u tejkalua kufi shenjash prej %{max}
     pin_errors:
       direct: Postimet që janë të dukshme vetëm për përdoruesit e përmendur s’mund të fiksohen
