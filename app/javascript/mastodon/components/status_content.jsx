@@ -204,7 +204,7 @@ class StatusContent extends PureComponent {
     this.node = c;
   };
 
-  handleElement = (element, { key, ...props }) => {
+  handleElement = (element, { key, ...props }, children) => {
     if (element instanceof HTMLAnchorElement) {
       const mention = this.props.status.get('mentions').find(item => element.href === item.get('url'));
       return (
@@ -215,7 +215,9 @@ class StatusContent extends PureComponent {
           hashtagAccountId={this.props.status.getIn(['account', 'id'])}
           mention={mention?.toJSON()}
           key={key}
-        />
+        >
+          {children}
+        </HandledLink>
       );
     } else if (element instanceof HTMLParagraphElement && element.classList.contains('quote-inline')) {
       return null;
