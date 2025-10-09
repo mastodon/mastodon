@@ -696,7 +696,7 @@ body,
   }
 
   &__title {
-    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   &__timestamp {
@@ -747,7 +747,7 @@ body,
   }
 
   &__title {
-    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   &__timestamp {
@@ -1397,7 +1397,7 @@ a.sparkline {
 
 .report-header {
   display: grid;
-  grid-gap: 15px;
+  gap: 15px;
   grid-template-columns: minmax(0, 1fr) 300px;
 
   &__details {
@@ -1507,7 +1507,7 @@ a.sparkline {
     margin: 8px 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     max-height: 21px * 2;
     position: relative;
     font-size: 15px;
@@ -1664,7 +1664,7 @@ a.sparkline {
     &__content {
       font-size: 15px;
       line-height: 20px;
-      word-wrap: break-word;
+      overflow-wrap: break-word;
       font-weight: 400;
       color: $primary-text-color;
 
@@ -1766,7 +1766,7 @@ a.sparkline {
   padding: 15px;
   font-size: 15px;
   line-height: 20px;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   font-weight: 400;
   color: $primary-text-color;
   box-sizing: border-box;
@@ -1948,7 +1948,7 @@ a.sparkline {
   border-radius: 4px;
   font-size: 15px;
   line-height: 20px;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   font-weight: 400;
   border: 1px solid lighten($ui-base-color, 4%);
   color: $primary-text-color;
