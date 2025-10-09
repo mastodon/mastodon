@@ -1,11 +1,6 @@
-import { useCallback } from 'react';
-
 import classNames from 'classnames';
 
-import { useLinks } from 'mastodon/hooks/useLinks';
-
 import { useAppSelector } from '../store';
-import { isModernEmojiEnabled } from '../utils/environment';
 
 import { EmojiHTML } from './emoji/html';
 import { useElementHandledLink } from './status/handled_link';
@@ -21,22 +16,6 @@ export const AccountBio: React.FC<AccountBioProps> = ({
   accountId,
   showDropdown = false,
 }) => {
-  const handleClick = useLinks(showDropdown);
-  const handleNodeChange = useCallback(
-    (node: HTMLDivElement | null) => {
-      if (
-        !showDropdown ||
-        !node ||
-        node.childNodes.length === 0 ||
-        isModernEmojiEnabled()
-      ) {
-        return;
-      }
-      addDropdownToHashtags(node, accountId);
-    },
-    [showDropdown, accountId],
-  );
-
   const htmlHandlers = useElementHandledLink({
     hashtagAccountId: showDropdown ? accountId : undefined,
   });
@@ -62,30 +41,7 @@ export const AccountBio: React.FC<AccountBioProps> = ({
       htmlString={note}
       extraEmojis={extraEmojis}
       className={classNames(className, 'translate')}
-      onClickCapture={handleClick}
-      ref={handleNodeChange}
       {...htmlHandlers}
     />
   );
 };
-
-function addDropdownToHashtags(node: HTMLElement | null, accountId: string) {
-  if (!node) {
-    return;
-  }
-  for (const childNode of node.childNodes) {
-    if (!(childNode instanceof HTMLElement)) {
-      continue;
-    }
-    if (
-      childNode instanceof HTMLAnchorElement &&
-      (childNode.classList.contains('hashtag') ||
-        childNode.innerText.startsWith('#')) &&
-      !childNode.dataset.menuHashtag
-    ) {
-      childNode.dataset.menuHashtag = accountId;
-    } else if (childNode.childNodes.length > 0) {
-      addDropdownToHashtags(childNode, accountId);
-    }
-  }
-}

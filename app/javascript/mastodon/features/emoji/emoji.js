@@ -1,6 +1,5 @@
 import Trie from 'substring-trie';
 
-import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 import { assetHost } from 'mastodon/utils/config';
 
 import { autoPlayGif } from '../../initial_state';
@@ -157,7 +156,7 @@ const emojifyNode = (node, customEmojis) => {
  * @returns {string}
  */
 const emojify = (str, customEmojis = {}, force = false) => {
-  if (isModernEmojiEnabled() && !force) {
+  if (!force) {
     return str;
   }
   const wrapper = document.createElement('div');

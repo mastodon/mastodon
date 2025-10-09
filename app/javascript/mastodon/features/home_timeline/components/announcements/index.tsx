@@ -10,10 +10,8 @@ import ReactSwipeableViews from 'react-swipeable-views';
 import elephantUIPlane from '@/images/elephant_ui_plane.svg';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
 import { IconButton } from '@/mastodon/components/icon_button';
-import LegacyAnnouncements from '@/mastodon/features/getting_started/containers/announcements_container';
 import { mascot, reduceMotion } from '@/mastodon/initial_state';
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
-import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 
@@ -32,7 +30,7 @@ const announcementSelector = createAppSelector(
     (announcements.get('items')?.toJS() as IAnnouncement[] | undefined) ?? [],
 );
 
-export const ModernAnnouncements: FC = () => {
+export const Announcements: FC = () => {
   const intl = useIntl();
 
   const announcements = useAppSelector(announcementSelector);
@@ -112,7 +110,3 @@ export const ModernAnnouncements: FC = () => {
     </div>
   );
 };
-
-export const Announcements = isModernEmojiEnabled()
-  ? ModernAnnouncements
-  : LegacyAnnouncements;
