@@ -1008,7 +1008,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     it 'updates the URI and unverifies the quote' do
       expect { subject.call(status, json, json) }
         .to change { status.quote.quoted_status }.from(quoted_status).to(nil)
-        .and change { status.quote.state }.from('accepted')
+        .and change { status.quote.state }.from('accepted').to('deleted')
 
       expect { quote.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end

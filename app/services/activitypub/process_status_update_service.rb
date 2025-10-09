@@ -305,10 +305,12 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       approval_uri = nil if unsupported_uri_scheme?(approval_uri)
 
       if @status.quote.present?
+        state = @status_parser.deleted_quote? ? :deleted : :pending
+
         # If the quoted post has changed, discard the old object and create a new one
         if @status.quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(@status.quote.quoted_status) != quote_uri
           @status.quote.destroy
-          quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
+          quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?, state: state)
           @quote_changed = true
         else
           quote = @status.quote
