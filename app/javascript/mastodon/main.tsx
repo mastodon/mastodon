@@ -9,11 +9,8 @@ import { me, reduceMotion } from 'mastodon/initial_state';
 import ready from 'mastodon/ready';
 import { store } from 'mastodon/store';
 
-import {
-  isProduction,
-  isDevelopment,
-  isModernEmojiEnabled,
-} from './utils/environment';
+import { initializeEmoji } from './features/emoji';
+import { isProduction, isDevelopment } from './utils/environment';
 
 function main() {
   perf.start('main()');
@@ -33,10 +30,7 @@ function main() {
       });
     }
 
-    if (isModernEmojiEnabled()) {
-      const { initializeEmoji } = await import('@/mastodon/features/emoji');
-      initializeEmoji();
-    }
+    initializeEmoji();
 
     const root = createRoot(mountNode);
     root.render(<Mastodon {...props} />);
