@@ -26,7 +26,7 @@ class Web::PushSubscription < ApplicationRecord
   validates :key_p256dh, presence: true
   validates :key_auth, presence: true
 
-  validates_with WebPushKeyValidator
+  validate :verify_encryption_keys
 
   delegate :locale, to: :user
 
@@ -68,5 +68,13 @@ class Web::PushSubscription < ApplicationRecord
 
   def truthy?(val)
     ActiveModel::Type::Boolean.new.cast(val)
+  end
+
+  def verify_encryption_keys
+    begin
+      Webpush::Encryption.encrypt('validation_test', key_p256dh, key_auth)
+    rescue ArgumentError, OpenSSL::PKey::EC::Point::Error
+      errors.add(:base, :invalid_key)
+    end
   end
 end
