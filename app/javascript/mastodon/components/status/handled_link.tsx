@@ -38,7 +38,7 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         {children}
       </Link>
     );
-  } else if ((text.startsWith('@') || prevText?.endsWith('#')) && mention) {
+  } else if ((text.startsWith('@') || prevText?.endsWith('@')) && mention) {
     // Handle mentions
     return (
       <Link
