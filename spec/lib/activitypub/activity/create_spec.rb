@@ -938,6 +938,30 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+      context 'with an unverifiable quote of a dead post' do
+        let(:quoted_status) { Fabricate(:status) }
+
+        let(:object_json) do
+          build_object(
+            type: 'Note',
+            content: 'woah what she said is amazing',
+            quote: { type: 'Tombstone' }
+          )
+        end
+
+        it 'creates a status with an unverified quote' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+          expect(status.quote).to_not be_nil
+          expect(status.quote).to have_attributes(
+            state: 'deleted',
+            approval_uri: nil
+          )
+        end
+      end
+
       context 'with an unverifiable unknown post' do
         let(:unknown_post_uri) { 'https://unavailable.example.com/unavailable-post' }
 
