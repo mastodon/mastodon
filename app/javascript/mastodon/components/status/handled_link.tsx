@@ -10,6 +10,7 @@ import type { OnElementHandler } from '@/mastodon/utils/html';
 export interface HandledLinkProps {
   href: string;
   text: string;
+  prevText?: string;
   hashtagAccountId?: string;
   mention?: Pick<ApiMentionJSON, 'id' | 'acct'>;
 }
@@ -17,13 +18,15 @@ export interface HandledLinkProps {
 export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   href,
   text,
+  prevText,
   hashtagAccountId,
   mention,
   className,
+  children,
   ...props
 }) => {
   // Handle hashtags
-  if (text.startsWith('#')) {
+  if (text.startsWith('#') || prevText?.endsWith('#')) {
     const hashtag = text.slice(1).trim();
     return (
       <Link
@@ -32,10 +35,10 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         rel='tag'
         data-menu-hashtag={hashtagAccountId}
       >
-        #<span>{hashtag}</span>
+        {children}
       </Link>
     );
-  } else if (text.startsWith('@') && mention) {
+  } else if ((text.startsWith('@') || prevText?.endsWith('@')) && mention) {
     // Handle mentions
     return (
       <Link
@@ -44,41 +47,33 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         title={`@${mention.acct}`}
         data-hover-card-account={mention.id}
       >
-        @<span>{text.slice(1).trim()}</span>
+        {children}
       </Link>
     );
   }
 
-  // Non-absolute paths treated as internal links.
+  // Non-absolute paths treated as internal links. This shouldn't happen, but just in case.
   if (href.startsWith('/')) {
     return (
       <Link className={classNames('unhandled-link', className)} to={href}>
-        {text}
+        {children}
       </Link>
     );
   }
 
-  try {
-    const url = new URL(href);
-    const [first, ...rest] = url.pathname.split('/').slice(1); // Start at 1 to skip the leading slash.
-    return (
-      <a
-        {...props}
-        href={href}
-        title={href}
-        className={classNames('unhandled-link', className)}
-        target='_blank'
-        rel='noreferrer noopener'
-        translate='no'
-      >
-        <span className='invisible'>{url.protocol + '//'}</span>
-        <span className='ellipsis'>{`${url.hostname}/${first ?? ''}`}</span>
-        <span className='invisible'>{'/' + rest.join('/')}</span>
-      </a>
-    );
-  } catch {
-    return text;
-  }
+  return (
+    <a
+      {...props}
+      href={href}
+      title={href}
+      className={classNames('unhandled-link', className)}
+      target='_blank'
+      rel='noreferrer noopener'
+      translate='no'
+    >
+      {children}
+    </a>
+  );
 };
 
 export const useElementHandledLink = ({
@@ -89,7 +84,7 @@ export const useElementHandledLink = ({
   hrefToMention?: (href: string) => ApiMentionJSON | undefined;
 } = {}) => {
   const onElement = useCallback<OnElementHandler>(
-    (element, { key, ...props }) => {
+    (element, { key, ...props }, children) => {
       if (element instanceof HTMLAnchorElement) {
         const mention = hrefToMention?.(element.href);
         return (
@@ -98,9 +93,12 @@ export const useElementHandledLink = ({
             key={key as string} // React requires keys to not be part of spread props.
             href={element.href}
             text={element.innerText}
+            prevText={element.previousSibling?.textContent ?? undefined}
             hashtagAccountId={hashtagAccountId}
             mention={mention}
-          />
+          >
+            {children}
+          </HandledLink>
         );
       }
       return undefined;
