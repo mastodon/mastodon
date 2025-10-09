@@ -72,8 +72,13 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
         translate='no'
       >
         <span className='invisible'>{url.protocol + '//'}</span>
-        <span className='ellipsis'>{`${url.hostname}/${first ?? ''}`}</span>
-        <span className='invisible'>{'/' + rest.join('/')}</span>
+        <span className={classNames({ ellipsis: rest.length })}>
+          {url.hostname}
+          {first ? `/${first}` : ''}
+        </span>
+        {rest.length > 0 && (
+          <span className='invisible'>{`/${rest.join('/')}`}</span>
+        )}
       </a>
     );
   } catch {

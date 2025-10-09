@@ -48,6 +48,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
+export const Simple: Story = {
+  args: {
+    href: 'https://example.com/test',
+  },
+};
+
 export const Hashtag: Story = {
   args: {
     text: '#example',
