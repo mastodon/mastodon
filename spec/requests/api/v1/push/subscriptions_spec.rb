@@ -42,15 +42,17 @@ RSpec.describe 'API V1 Push Subscriptions' do
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
-  shared_examples 'validation error' do
-    it 'returns a validation error' do
-      subject
+  shared_examples 'push key validation error' do
+    it 'returns a validation error about push key' do
+      expect { subject }
+        .to not_change(endpoint_push_subscriptions, :count)
 
-      expect(response).to have_http_status(422)
-      expect(response.content_type)
-        .to start_with('application/json')
-      expect(endpoint_push_subscriptions.count).to eq(0)
-      expect(endpoint_push_subscription).to be_nil
+      expect(response)
+        .to have_http_status(422)
+      expect(response.media_type)
+        .to eq('application/json')
+      expect(response.parsed_body)
+        .to include(error: /Push key is invalid/)
     end
   end
 
@@ -97,7 +99,17 @@ RSpec.describe 'API V1 Push Subscriptions' do
     context 'with invalid endpoint URL' do
       let(:endpoint) { 'app://example.foo' }
 
-      it_behaves_like 'validation error'
+      it 'returns a validation error about endpoint URL' do
+        expect { subject }
+          .to not_change(endpoint_push_subscriptions, :count)
+
+        expect(response)
+          .to have_http_status(422)
+        expect(response.media_type)
+          .to eq('application/json')
+        expect(response.parsed_body)
+          .to include(error: /Endpoint is invalid/)
+      end
     end
 
     context 'with invalid p256dh key' do
@@ -108,7 +120,7 @@ RSpec.describe 'API V1 Push Subscriptions' do
         }
       end
 
-      it_behaves_like 'validation error'
+      it_behaves_like 'push key validation error'
     end
 
     context 'with invalid base64 p256dh key' do
@@ -119,7 +131,7 @@ RSpec.describe 'API V1 Push Subscriptions' do
         }
       end
 
-      it_behaves_like 'validation error'
+      it_behaves_like 'push key validation error'
     end
 
     it 'gracefully handles invalid nested params' do
