@@ -4,7 +4,7 @@ import type { OnElementHandler } from '@/mastodon/utils/html';
 import { polymorphicForwardRef } from '@/types/polymorphic';
 
 import type { EmojiHTMLProps } from '../emoji/html';
-import { ModernEmojiHTML } from '../emoji/html';
+import { EmojiHTML } from '../emoji/html';
 import { useElementHandledLink } from '../status/handled_link';
 
 export const HTMLBlock = polymorphicForwardRef<
@@ -25,6 +25,6 @@ export const HTMLBlock = polymorphicForwardRef<
       (...args) => onParentElement?.(...args) ?? onLinkElement(...args),
       [onLinkElement, onParentElement],
     );
-    return <ModernEmojiHTML {...props} onElement={onElement} />;
+    return <EmojiHTML {...props} onElement={onElement} />;
   },
 );
