@@ -12,7 +12,7 @@
               %span= t('link_preview.potentially_sensitive_content.action')
       %canvas.status-card__image-preview{ 'data-blurhash': preview_card.blurhash, width: 32, height: 32 }
       = image_tag preview_card.image.url, alt: '', class: 'status-card__image-image'
-    = link_to preview_card.url, target: '_blank', rel: 'noopener' do
+    = link_to preview_card.url, target: '_blank', rel: 'noopener', data: { confirm: t('link_preview.potentially_sensitive_content.confirm_visit') } do
       .status-card__content{ dir: 'auto' }
         %span.status-card__host
           %span{ lang: preview_card.language }
