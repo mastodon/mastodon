@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.14] - 2025-10-13
+
+### Security
+
+- Update dependencies `rack` and `uri`
+- Fix streaming server connection not being closed on user suspension (by @ThisIsMissEm, [GHSA-r2fh-jr9c-9pxh](https://github.com/mastodon/mastodon/security/advisories/GHSA-r2fh-jr9c-9pxh))
+- Fix password change through admin CLI not invalidating existing sessions and access tokens (by @ThisIsMissEm, [GHSA-f3q3-rmf7-9655](https://github.com/mastodon/mastodon/security/advisories/GHSA-f3q3-rmf7-9655))
+- Fix streaming server allowing access to public timelines even without the `read` or `read:statuses` OAuth scopes (by @ThisIsMissEm, [GHSA-7gwh-mw97-qjgp](https://github.com/mastodon/mastodon/security/advisories/GHSA-7gwh-mw97-qjgp))
+
+### Fixed
+
+- Fix redirect to external object when URL is missing or malformed (#36347 by @ClearlyClaire)
+
 ## [4.3.13] - 2025-09-23
 
 ### Security
