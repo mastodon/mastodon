@@ -1,4 +1,4 @@
-import { useCallback, useId, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import type {
   ComponentPropsWithoutRef,
   ComponentType,
@@ -32,15 +32,19 @@ export interface CarouselProps<SlideProps>
   items: SlideProps[];
   slideComponent: CarouselSlideComponent<SlideProps>;
   slideClassName?: string;
-  pageComponent?: ComponentType<CarouselPaginationProps>;
+  paginationComponent?: ComponentType<CarouselPaginationProps>;
+  paginationProps?: Partial<CarouselPaginationProps>;
   emptyFallback?: ReactNode;
   classNamePrefix?: string;
   onChangeSlide?: (index: number) => void;
 }
 
-export const Carousel = <SlideProps extends CarouselSlideProps>({
+export const Carousel = <
+  SlideProps extends CarouselSlideProps = CarouselSlideProps,
+>({
   items,
-  pageComponent: Pagination = CarouselPagination,
+  paginationComponent: Pagination = CarouselPagination,
+  paginationProps = {},
   slideComponent: Slide,
   children,
   emptyFallback = null,
@@ -50,8 +54,6 @@ export const Carousel = <SlideProps extends CarouselSlideProps>({
   onChangeSlide,
   ...wrapperProps
 }: CarouselProps<SlideProps>) => {
-  const accessibilityId = useId();
-
   // Handle slide change
   const [slideIndex, setSlideIndex] = useState(0);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -121,7 +123,6 @@ export const Carousel = <SlideProps extends CarouselSlideProps>({
     <div
       {...bind()}
       aria-roledescription='carousel'
-      aria-labelledby={`${accessibilityId}-title`}
       role='region'
       className={classNames(classNamePrefix, className)}
       {...wrapperProps}
@@ -134,6 +135,7 @@ export const Carousel = <SlideProps extends CarouselSlideProps>({
           onNext={handleNext}
           onPrev={handlePrev}
           className={`${classNamePrefix}__pagination`}
+          {...paginationProps}
         />
       </div>
 
@@ -151,6 +153,8 @@ export const Carousel = <SlideProps extends CarouselSlideProps>({
             className={classNames(`${classNamePrefix}__slide`, slideClassName, {
               active: index === slideIndex,
             })}
+            // @ts-expect-error inert in not in this version of React
+            inert={index !== slideIndex ? 'true' : undefined}
           >
             <Slide
               {...props}
@@ -167,12 +171,14 @@ export const Carousel = <SlideProps extends CarouselSlideProps>({
 
 type CarouselSlideWrapperProps = Required<
   PropsWithChildren<{ observer: ResizeObserver; className: string }>
->;
+> &
+  ComponentPropsWithoutRef<'div'>;
 
 const CarouselSlideWrapper: FC<CarouselSlideWrapperProps> = ({
   observer,
   children,
   className,
+  ...props
 }) => {
   const handleRef = useCallback(
     (instance: HTMLDivElement | null) => {
@@ -183,7 +189,13 @@ const CarouselSlideWrapper: FC<CarouselSlideWrapperProps> = ({
     [observer],
   );
   return (
-    <div ref={handleRef} className={className} aria-roledescription='slide'>
+    <div
+      {...props}
+      ref={handleRef}
+      className={className}
+      role='group'
+      aria-roledescription='slide'
+    >
       {children}
     </div>
   );
