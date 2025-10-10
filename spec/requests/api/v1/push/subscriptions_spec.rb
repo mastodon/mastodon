@@ -52,7 +52,7 @@ RSpec.describe 'API V1 Push Subscriptions' do
       expect(response.media_type)
         .to eq('application/json')
       expect(response.parsed_body)
-        .to include(error: /Push key is invalid/)
+        .to include(error: /Web Push encryption key is invalid/)
     end
   end
 

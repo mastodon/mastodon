@@ -14,6 +14,8 @@ en:
         username: Username
       user/invite_request:
         text: Reason
+      web/push_subscription:
+        key_p256dh: Web Push encryption key
     errors:
       attributes:
         domain:
@@ -71,8 +73,6 @@ en:
             position:
               elevated: cannot be higher than your current role
               own_role: cannot be changed with your current role
-        web/push_subscription:
-          invalid_key: Push key is invalid
         webhook:
           attributes:
             events:

@@ -74,7 +74,7 @@ class Web::PushSubscription < ApplicationRecord
     begin
       Webpush::Encryption.encrypt('validation_test', key_p256dh, key_auth)
     rescue ArgumentError, OpenSSL::PKey::EC::Point::Error
-      errors.add(:base, :invalid_key)
+      errors.add(:key_p256dh, :invalid)
     end
   end
 end
