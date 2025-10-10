@@ -32,7 +32,7 @@ export interface CarouselProps<SlideProps>
   items: SlideProps[];
   slideComponent: CarouselSlideComponent<SlideProps>;
   slideClassName?: string;
-  paginationComponent?: ComponentType<CarouselPaginationProps>;
+  paginationComponent?: ComponentType<CarouselPaginationProps> | null;
   paginationProps?: Partial<CarouselPaginationProps>;
   emptyFallback?: ReactNode;
   classNamePrefix?: string;
@@ -129,14 +129,16 @@ export const Carousel = <
     >
       <div className={`${classNamePrefix}__header`}>
         {children}
-        <Pagination
-          current={slideIndex}
-          max={items.length}
-          onNext={handleNext}
-          onPrev={handlePrev}
-          className={`${classNamePrefix}__pagination`}
-          {...paginationProps}
-        />
+        {Pagination && (
+          <Pagination
+            current={slideIndex}
+            max={items.length}
+            onNext={handleNext}
+            onPrev={handlePrev}
+            className={`${classNamePrefix}__pagination`}
+            {...paginationProps}
+          />
+        )}
       </div>
 
       <animated.div
