@@ -551,6 +551,7 @@ lt:
         danger_zone: Pavojinga zona
       discovery:
         public_timelines: Viešieji laiko skalės
+        publish_discovered_servers: Publikuoti aptiktus serverius
         trends: Tendencijos
       domain_blocks:
         all: Visiems
@@ -804,14 +805,14 @@ lt:
     security: Apsauga
     set_new_password: Nustatyti naują slaptažodį
     setup:
-      email_settings_hint_html: Spustelėkite mūsų atsiųstą nuorodą, kad patvirtintumėte %{email}. Mes lauksime čia.
+      email_settings_hint_html: Spustelėkite nuorodą, kurią atsiuntėme, kad patvirtintumėte %{email}. Lauksime čia.
       link_not_received: Negavai nuorodos?
       title: Patikrinti pašto dėžutę
     sign_in:
       preamble_html: Prisijunk su savo <strong>%{domain}</strong> kredencialais. Jei tavo yra kitame serveryje, čia prisijungti negalėsi.
       title: Prisijungti prie %{domain}
     sign_up:
-      preamble: Su paskyra šiame „Mastodon“ serveryje galėsite sekti bet kurį kitą tinkle esantį asmenį, nepriklausomai nuo to, kur yra jų paskyra.
+      preamble: Su paskyra šiame „Mastodon“ serveryje galėsite sekti bet kurį kitą tinkle esantį žmogų, nepriklausomai nuo to, kur yra jų paskyra.
     status:
       account_status: Paskyros būsena
       redirecting_to: Tavo paskyra yra neaktyvi, nes šiuo metu ji nukreipiama į %{acct}.
@@ -928,7 +929,7 @@ lt:
       bookmarks_html: Ketinate <strong>pakeisti savo žymes</strong> iki <strong>%{total_items} įrašų</strong> iš <strong>%{filename}</strong>.
       domain_blocking_html: Ketinate <strong>pakeisti savo domeno blokavimo sąrašą</strong> iki <strong>%{total_items} domenų</strong> iš <strong>%{filename}</strong>.
       following_html: Ketinate <strong>sekti</strong> iki <strong>%{total_items} paskyrų</strong> iš <strong>%{filename}</strong> ir <strong>nustoti sekti kitus</strong>.
-      lists_html: Ketinate <strong>pakeisti savo sąrašus</strong> su turiniu iš <strong>%{filename}</strong>. Į naujus sąrašus bus įtraukta iki <strong>%{total_items} paskyrų</strong>.
+      lists_html: Ketinate <strong>pakeisti savo sąrašus</strong> su turiniais iš <strong>%{filename}</strong>. Į naujus sąrašus bus įtraukta iki <strong>%{total_items} paskyrų</strong>.
       muting_html: Ketinate <strong>pakeisti savo nutildytų paskyrų sąrašą</strong> iki <strong>%{total_items} paskyrų</strong> iš <strong>%{filename}</strong>.
     preambles:
       blocking_html: Ketinate <strong>blokuoti</strong> iki <strong>%{total_items} paskyrų</strong> iš <strong>%{filename}</strong>.
@@ -1148,12 +1149,13 @@ lt:
       ownership: Kitų vartotojų toot'ai negali būti prisegti
       reblog: Pakeltos žinutės negali būti prisegtos
     visibilities:
+      direct: Tiesiogiai
       private: Tik sekėjams
       private_long: rodyti tik sekėjams
       public: Vieša
       public_long: visi gali matyti
       unlisted: Neįtrauktas į sąrašą
-      unlisted_long: matyti gali visi, bet nėra išvardyti į viešąsias laiko skales
+      unlisted_long: matyti gali visi, bet nėra įtraukti į viešąsias laiko skales
   statuses_cleanup:
     enabled_hint: Automatiškai ištrina įrašus, kai jie pasiekia nustatytą amžiaus ribą, nebent jie atitinka vieną iš toliau nurodytų išimčių
     interaction_exceptions_explanation: Atkreipk dėmesį, kad negarantuojama, jog įrašai nebus ištrinti, jei jų mėgstamumo ar pasidalinimo riba bus žemesnė, nors vieną kartą ji jau buvo viršyta.
