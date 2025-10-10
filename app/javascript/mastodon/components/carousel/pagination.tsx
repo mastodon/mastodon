@@ -18,12 +18,8 @@ export interface CarouselPaginationProps {
 }
 
 export const defaultMessages = defineMessages({
-  previous: { id: 'carousel.previous', defaultMessage: 'Previous' },
-  next: { id: 'carousel.next', defaultMessage: 'Next' },
-  slide: {
-    id: 'carousel.slide',
-    defaultMessage: '{index} of {total}',
-  },
+  previous: { id: 'lightbox.previous', defaultMessage: 'Previous' },
+  next: { id: 'lightbox.next', defaultMessage: 'Next' },
   current: {
     id: 'carousel.current',
     defaultMessage: '<sr>Slide</sr> {current, number} / {max, number}',
