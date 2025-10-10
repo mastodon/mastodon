@@ -1946,7 +1946,6 @@ a.sparkline {
 .status__card {
   padding: 15px;
   border-radius: 4px;
-  background: $ui-base-color;
   font-size: 15px;
   line-height: 20px;
   word-wrap: break-word;
@@ -1965,8 +1964,50 @@ a.sparkline {
   .status__content {
     padding-top: 0;
 
-    summary {
-      display: list-item;
+    > details {
+      summary {
+        display: block;
+        box-sizing: border-box;
+        background: var(--nested-card-background);
+        color: var(--nested-card-text);
+        border: var(--nested-card-border);
+        border-radius: 8px;
+        padding: 8px 13px;
+        position: relative;
+        font-size: 15px;
+        line-height: 22px;
+        cursor: pointer;
+
+        &::after {
+          content: attr(data-show, 'Show more');
+          margin-top: 8px;
+          display: block;
+          font-size: 15px;
+          line-height: 20px;
+          color: $highlight-text-color;
+          cursor: pointer;
+          border: 0;
+          background: transparent;
+          padding: 0;
+          text-decoration: none;
+          font-weight: 500;
+        }
+
+        &:hover,
+        &:focus-visible {
+          &::after {
+            text-decoration: underline !important;
+          }
+        }
+      }
+
+      &[open] summary {
+        margin-bottom: 16px;
+
+        &::after {
+          content: attr(data-hide, 'Hide post');
+        }
+      }
     }
   }
 
