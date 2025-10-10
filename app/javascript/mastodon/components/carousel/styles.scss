@@ -1,0 +1,29 @@
+.carousel {
+  gap: 16px;
+  overflow: hidden;
+  touch-action: pan-y;
+
+  &__header {
+    padding: 8px 16px;
+  }
+
+  &__pagination {
+    inset-inline-end: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__slides {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: start;
+  }
+
+  &__slide {
+    flex: 0 0 auto;
+    flex-basis: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+}
