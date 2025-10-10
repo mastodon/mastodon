@@ -505,6 +505,7 @@ sq:
         select_capabilities: Përzgjidhni Aftësi
         sign_in: Hyni
         status: Gjendje
+        title: Shërbyes Shërbimesh Ndihmëse Fediversi
       title: FASP
     follow_recommendations:
       description_html: "<strong>Rekomandimet për ndjekje ndihmojnë përdoruesit e rinj të gjejnë shpejt lëndë me interes</strong>. Kur një përdorues nuk ka ndërvepruar mjaftueshëm me të tjerët, që të formohen rekomandime të personalizuara ndjekjeje, rekomandohen këto llogari. Ato përzgjidhen çdo ditë, prej një përzierje llogarish me shkallën më të lartë të angazhimit dhe numrin më të lartë të ndjekësve vendorë për një gjuhë të dhënë."
@@ -1696,6 +1697,7 @@ sq:
       self_vote: S’mund të votoni në pyetësorët tuaj
       too_few_options: duhet të ketë më tepër se një element
       too_many_options: s’mund të përmbajë më tepër se %{max} elementë
+    vote: Votoni
   preferences:
     other: Tjetër
     posting_defaults: Parazgjedhje postimesh
@@ -1864,8 +1866,13 @@ sq:
       limit: Keni fiksuar tashmë numrin maksimum të mesazheve
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       reblog: S’mund të fiksohet një përforcim
+    quote_policies:
+      followers: Vetëm ndjekës
+      nobody: Thjesht unë
+      public: Cilido
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Përmendje private
       private: Vetëm ndjekësve
       private_long: Shfaqua vetëm ndjekësve
       public: Publike
