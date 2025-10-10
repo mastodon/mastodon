@@ -1,11 +1,11 @@
 ---
 et:
   about:
-    about_mastodon_html: 'Tuleviku sotsiaalvõrgustik: Reklaamivaba, korporatiivse järelvalveta, eetiline kujundus ning detsentraliseeritus! Oma enda andmeid Mastodonis!'
+    about_mastodon_html: 'Tuleviku sotsiaalvõrgustik: Reklaamivaba, korporatiivse järelvalveta, eetiline kujundus ning detsentraliseeritus! Mastodonis omad sa enda andmeid ka päriselt!'
     contact_missing: Määramata
     contact_unavailable: Pole saadaval
-    hosted_on: Mastodon majutatud %{domain}-is
-    title: Teave
+    hosted_on: Mastodoni teenus serveris %{domain}
+    title: Veebirakenduse teave
   accounts:
     followers:
       one: Jälgija
@@ -40,7 +40,7 @@ et:
       avatar: Profiilipilt
       by_domain: Domeen
       change_email:
-        changed_msg: E-postiaadress vahetatud!
+        changed_msg: E-posti aadress vahetatud!
         current_email: Praegune e-postiaadress
         label: Muuda e-posti aadressi
         new_email: Uus е-posti aadress
@@ -157,8 +157,8 @@ et:
       suspension_irreversible: Selle konto andmed on taastamatult kustutatud. Konto taastamisel on see taas kasutatav, aga eelmisi andmeid pole võimalik taastada.
       suspension_reversible_hint_html: Konto on lukustatud ja andmed kustutatakse täielikult %{date}. Seni on võimalik kontot täielikult taastada. Soovi korral on võimalik allpool kõik konto andmed kustutada koheselt.
       title: Kontod
-      unblock_email: Luba e-postiaadress
-      unblocked_email_msg: Kasutaja %{username} e-postiaadress lubatud
+      unblock_email: Lõpeta e-posti aadressi blokeerimine
+      unblocked_email_msg: Kasutaja %{username} e-posti aadressi blokeerimine on lõpetatud
       unconfirmed_email: Kinnitamata e-post
       undo_sensitized: Eemalda tundliku sisu märge
       undo_silenced: Võta vaigistus tagasi
@@ -221,7 +221,7 @@ et:
         silence_account: Vaigistas konto
         suspend_account: Konto kustutamine
         unassigned_report: Määras teavituse maha
-        unblock_email_account: Luba e-postiaadress
+        unblock_email_account: Lõpeta e-posti aadressi blokeerimine
         unsensitive_account: Pole tundliku sisuga konto
         unsilence_account: Konto vaigistus eemaldati
         unsuspend_account: Konto taastamine
@@ -236,9 +236,9 @@ et:
         approve_appeal_html: "%{name} kiitis heaks modereerimise otsuse vaidlustuse %{target} poolt"
         approve_user_html: "%{name} kiitis heaks registreerimise %{target} poolt"
         assigned_to_self_report_html: "%{name} määras raporti %{target} endale"
-        change_email_user_html: "%{name} muutis kasutaja %{target} e-postiaadressi"
+        change_email_user_html: "%{name} muutis kasutaja %{target} e-posti aadressi"
         change_role_user_html: "%{name} muutis %{target} rolli"
-        confirm_user_html: "%{name} kinnitas kasutaja %{target} e-postiaadressi"
+        confirm_user_html: "%{name} kinnitas kasutaja %{target} e-posti aadressi"
         create_account_warning_html: "%{name} saatis %{target} hoiatuse"
         create_announcement_html: "%{name} lõi uue teate %{target}"
         create_canonical_email_block_html: "%{name} blokeeris e-posti räsiga %{target}"
@@ -281,7 +281,7 @@ et:
         silence_account_html: "%{name} piiras %{target} konto"
         suspend_account_html: "%{name} kustutas %{target} konto"
         unassigned_report_html: "%{name} tühistas raporti %{target} määrangu"
-        unblock_email_account_html: "%{name} lubas %{target} e-postiaadressi"
+        unblock_email_account_html: "%{name} lõpetas kasutaja %{target} e-posti aadressi blokeerimise"
         unsensitive_account_html: "%{name} eemaldas %{target} meedia tundliku sisu märke"
         unsilence_account_html: "%{name} eemaldas %{target} konto piirangu"
         unsuspend_account_html: "%{name} taastas %{target} konto"
@@ -1142,7 +1142,7 @@ et:
     security: Turvalisus
     set_new_password: Uue salasõna määramine
     setup:
-      email_below_hint_html: Kontrolli rämpsposti kausta või taotle uut. Saad oma e-posti aadressi parandada, kui see on vale.
+      email_below_hint_html: Kontrolli rämpsposti kausta või palu uue kirja saatmist. Kui sinu e-posti aadress on vale, siis saad seda parandada.
       email_settings_hint_html: Klõpsa linki, mis saadeti sulle, et kinnitada %{email}. Seni me ootame.
       link_not_received: Kas ei saanud linki?
       new_confirmation_instructions_sent: Saad mõne minuti pärast uue kinnituslingiga e-kirja!
@@ -1208,7 +1208,7 @@ et:
       before: 'Veendu, et saad aru, mida toob plaanitav muudatus kaasa:'
       caches: Teiste serverite poolt talletatud sisu võib jääda kättesaadavaks
       data_removal: Sinu postitused ning kontoandmed kustutatakse jäädavalt
-      email_change_html: Saad <a href="%{path}">muuta oma e-postiaadressi</a> ilma oma kontot kustutamata
+      email_change_html: Saad <a href="%{path}">muuta oma e-posti aadressi</a> ilma oma kontot kustutamata
       email_contact_html: Kui see ikkagi ei saabu, võid abi saamiseks kirjutada <a href="mailto:%{email}">%{email}</a>
       email_reconfirmation_html: Kui sa ei saa kinnituskirja, saad <a href="%{path}">taotleda seda uuesti</a>
       irreversible: Kustutatud kontot ei saa taastada ega uuesti aktiveerida
@@ -1270,7 +1270,7 @@ et:
   exports:
     archive_takeout:
       date: Kuupäev
-      download: Lae alla oma arhiiv
+      download: Laadi alla oma arhiiv
       hint_html: "<strong>Postitustest ja üleslaetud meediast</strong> on võimalik saada koopia. Eksporditud andmed on ActivityPub-formaadis, loetav vastava tarkvara poolt. Koopia saamine on võimalik iga 7 päeva järel."
       in_progress: Loome arhiivi...
       request: Taotle oma arhiivi
@@ -1947,7 +1947,7 @@ et:
     extra_instructions_html: <strong>Soovitus:</strong> Sinu kodulehel olev link võib olla nähtamatu. Oluline osa on <code>rel="me"</code>, mis väldib kasutaja loodud sisuga lehtedel libaisikustamist. Sa saad isegi kasutada lehe HEADER osas silti <code>link</code> sildi <code>a</code> asemel, kuid HTML peab olema kättesaadav ilma JavaScripti käivitamata.
     here_is_how: Siin on, kuidas
     hint_html: "<strong>Oma isiku tuvastamine on Mastodonis kõigi jaoks.</strong> Toetub avatud veebistandarditele, nüüd ja igavesti tasuta. Kõik, mida vajad, on isiklik veebileht, mille järgi inimesed sind tunnevad. Kui lingid oma profiililt sellele veebilehele, kontrollime me, et see veebileht lingib tagasi sinu profiilile ning näitame profiilil visuaalset tähist."
-    instructions_html: Kopeeri ja kleebi allpool olev kood oma lehe HTML lähtekoodi. Seejärel lisa oma kodulehe aadress profiili "Muuda profiili" taabi ühte lisavälja ning salvesta muudatused.
+    instructions_html: Kopeeri ja kleebi allpool olev kood oma lehe HTML lähtekoodi. Seejärel lisa oma kodulehe aadress profiili "Muuda profiili" vahekaardi ühte lisavälja ning salvesta muudatused.
     verification: Kinnitamine
     verified_links: Sinu kontrollitud lingid
     website_verification: Veebilehe kontrollimine
