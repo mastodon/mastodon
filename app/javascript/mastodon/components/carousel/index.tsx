@@ -27,13 +27,15 @@ type CarouselSlideComponent<SlideProps> = ComponentType<
   SlideProps & CarouselSlideProps
 >;
 
-interface CarouselProps<SlideProps> extends ComponentPropsWithoutRef<'div'> {
+export interface CarouselProps<SlideProps>
+  extends ComponentPropsWithoutRef<'div'> {
   items: SlideProps[];
   slideComponent: CarouselSlideComponent<SlideProps>;
   slideClassName?: string;
   pageComponent?: ComponentType<CarouselPaginationProps>;
   emptyFallback?: ReactNode;
   classNamePrefix?: string;
+  onChangeSlide?: (index: number) => void;
 }
 
 export const Carousel = <SlideProps extends CarouselSlideProps>({
@@ -45,6 +47,7 @@ export const Carousel = <SlideProps extends CarouselSlideProps>({
   className,
   slideClassName,
   classNamePrefix = 'carousel',
+  onChangeSlide,
   ...wrapperProps
 }: CarouselProps<SlideProps>) => {
   const accessibilityId = useId();
@@ -66,10 +69,11 @@ export const Carousel = <SlideProps extends CarouselSlideProps>({
         if (slide) {
           setCurrentSlideHeight(slide.scrollHeight);
         }
+        onChangeSlide?.(newIndex);
         return newIndex;
       });
     },
-    [items.length],
+    [items.length, onChangeSlide],
   );
 
   // Handle slide heights
@@ -96,9 +100,12 @@ export const Carousel = <SlideProps extends CarouselSlideProps>({
   }, [currentSlideHeight, handleSlideChange]);
 
   // Handle swiping animations
-  const bind = useDrag(({ swipe: [swipeX] }) => {
-    handleSlideChange(swipeX * -1); // Invert swipe as swiping left loads the next slide.
-  });
+  const bind = useDrag(
+    ({ swipe: [swipeX] }) => {
+      handleSlideChange(swipeX * -1); // Invert swipe as swiping left loads the next slide.
+    },
+    { pointer: { capture: false } },
+  );
   const handlePrev = useCallback(() => {
     handleSlideChange(-1);
   }, [handleSlideChange]);
