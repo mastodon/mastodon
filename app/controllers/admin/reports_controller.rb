@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'debug'
 module Admin
   class ReportsController < BaseController
     before_action :set_report, except: [:index]
@@ -10,19 +11,12 @@ module Admin
       # We previously only supported searching by target account domain for
       # reports, we now have more search options, but it's important that we
       # don't break any saved queries people may have:
-      return redirect_to_new_filter if outdated_filter?
-
-      # If there isn't a status filter parameter, redirect to include the status parameter as unresolved,
-      # this ensures the "status" option menu always shows a highlighted option.
-      if filter_params.exclude? :status
-        if params.slice(*ReportFilter::DIRECT_KEYS).present?
-          return redirect_to admin_reports_path(filter_params.merge({ status: 'all' }))
-        else
-          return redirect_to admin_reports_path(filter_params.merge({ status: 'unresolved' }))
-        end
-      end
+      return redirect_to_new_filter if reports_filter.outdated?
 
       @reports = filtered_reports.page(params[:page])
+    rescue Mastodon::InvalidParameterError => e
+      flash.now[:error] = e.message
+      @reports = []
     end
 
     def show
@@ -65,27 +59,20 @@ module Admin
 
     private
 
+    def reports_filter
+      @reports_filter ||= ReportFilter.new(filter_params)
+    end
+
     def filtered_reports
-      ReportFilter.new(filter_params).results.order(id: :desc).includes(:account, :target_account)
+      reports_filter.results.order(id: :desc).includes(:account, :target_account)
     end
 
     def filter_params
-      params.slice(*ReportFilter::KEYS).permit(*ReportFilter::KEYS)
-    end
-
-    def outdated_filter?
-      params.include?(:by_target_domain) || params.include?(:resolved)
+      params.slice(*ReportFilter::ALL_KEYS).permit(*ReportFilter::ALL_KEYS)
     end
 
     def redirect_to_new_filter
-      by_target_domain = params.delete(:by_target_domain)
-      resolved = params.delete(:resolved)
-
-      redirect_to admin_reports_path filter_params.merge({
-        search_type: 'target',
-        search_term: by_target_domain,
-        status: resolved == '1' ? 'resolved' : 'unresolved',
-      })
+      redirect_to admin_reports_path(reports_filter.updated_filter)
     end
 
     def set_report

@@ -14,12 +14,12 @@ class Api::V1::Admin::ReportsController < Api::BaseController
   after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
-  PAGINATION_PARAMS = (%i(limit) + ReportFilter::KEYS).freeze
+  PAGINATION_PARAMS = (%i(limit) + ReportFilter::ALL_KEYS).freeze
 
   def index
     authorize :report, :index?
 
-    return redirect_to api_v1_admin_reports_path filter_params.merge(status: 'resolved') if params[:resolved].present?
+    return redirect_to api_v1_admin_reports_path(reports_filter.updated_filter) if reports_filter.outdated?
 
     render json: @reports, each_serializer: REST::Admin::ReportSerializer
   end
@@ -74,8 +74,12 @@ class Api::V1::Admin::ReportsController < Api::BaseController
     @report = Report.find(params[:id])
   end
 
+  def reports_filter
+    @reports_filter ||= ReportFilter.new(filter_params)
+  end
+
   def filtered_reports
-    ReportFilter.new(filter_params).results
+    reports_filter.results
   end
 
   def report_params
@@ -83,7 +87,7 @@ class Api::V1::Admin::ReportsController < Api::BaseController
   end
 
   def filter_params
-    params.slice(*ReportFilter::KEYS).permit(*ReportFilter::KEYS)
+    params.slice(*ReportFilter::ALL_KEYS).permit(*ReportFilter::ALL_KEYS)
   end
 
   def next_path

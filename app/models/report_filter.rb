@@ -1,23 +1,34 @@
 # frozen_string_literal: true
 
+require 'debug'
 class ReportFilter
   KEYS = %i(
     status
     search_type
     search_term
-    account_id
-    target_account_id
     target_origin
   ).freeze
 
-  DIRECT_KEYS = %i(
+  OUTDATED_KEYS = %i(
+    resolved
+    by_target_domain
     account_id
     target_account_id
   ).freeze
 
+  ALL_KEYS = KEYS + OUTDATED_KEYS
+
+  SEARCH_TYPES = %w(
+    source
+    target
+  ).freeze
+
+  TARGET_ORIGINS = %w(
+    local
+    remote
+  ).freeze
+
   FILTER_PARAMS = %i(
-    account_id
-    target_account_id
     target_origin
   ).freeze
 
@@ -25,6 +36,53 @@ class ReportFilter
 
   def initialize(params)
     @params = params
+  end
+
+  def outdated?
+    # We always need a status parameter:
+    return true if @params.exclude? :status
+
+    OUTDATED_KEYS.any? { |key, _value| @params.include? key }
+  end
+
+  def updated_filter
+    updated_params = @params.to_hash
+
+    resolved = updated_params.delete('resolved')
+    status_filter = if resolved.present?
+                      resolved == '1' ? 'resolved' : 'unresolved'
+                    else
+                      'all'
+                    end
+
+    # Old parameters:
+    by_target_domain = updated_params.delete('by_target_domain')
+    account_id = updated_params.delete('account_id')
+    target_account_id = updated_params.delete('target_account_id')
+
+    updated_params['status'] = status_filter
+
+    if by_target_domain
+      return updated_params.merge({
+        search_type: 'target',
+        search_term: by_target_domain,
+      })
+    end
+
+    account = if account_id
+                Account.find(account_id)
+              elsif target_account_id
+                Account.find(target_account_id)
+              end
+
+    if account
+      return updated_params.merge({
+        search_type: target_account_id.present? ? 'target' : 'source',
+        search_term: "@#{account.acct}",
+      })
+    end
+
+    updated_params
   end
 
   def results
@@ -49,12 +107,10 @@ class ReportFilter
 
   def relevant_params
     params.tap do |args|
-      args.delete(:target_origin) if origin_is_remote_and_domain_present?
+      args.delete(:status)
+      args.delete(:search_type)
+      args.delete(:search_term)
     end
-  end
-
-  def origin_is_remote_and_domain_present?
-    params[:target_origin] == 'remote' && params[:by_target_domain].present?
   end
 
   def initial_scope
@@ -69,35 +125,54 @@ class ReportFilter
     end
   end
 
-  def account_search_filter
-    if params[:search_term].includes? '@'
+  def account_filter
+    if params[:search_term].starts_with? '@'
       username, domain = params[:search_term].delete_prefix('@').split('@', 2)
 
+      # If the domain part is the local domain, we remove the domain part:
+      domain = nil if TagManager.instance.local_domain?(domain)
+
+      # It doesn't make sense to search for `@username@domain` since we don't
+      # have the reporter's full handle for remote reports, we only know the
+      # origin domain.
+      raise Mastodon::InvalidParameterError, 'You cannot search for reports from a specific remote user' if search_type == :source && domain.present?
+
+      # Ensure we have a valid username:
       raise Mastodon::InvalidParameterError, "Invalid username for search: #{username}" unless Account::USERNAME_ONLY_RE.match?(username)
-      raise Mastodon::InvalidParameterError, "Invalid domain for search: #{domain}" if domain && !domain.includes?('.')
 
       Account.where(username: username, domain: domain)
     else
       domain = params[:search_term]
 
-      raise Mastodon::InvalidParameterError, "Invalid domain for search: #{domain}" unless domain.includes?('.')
+      # If the domain part is the local domain, we need to use nil for the domain search:
+      domain = nil if TagManager.instance.local_domain?(domain)
+
+      # FIXME: We should probably find a way to reuse DomainValidator here:
+      raise Mastodon::InvalidParameterError, "Invalid domain for search: #{domain}" if domain.present? && !domain.include?('.')
 
       Account.where(domain: domain)
     end
   end
 
-  def search_scope
-    case params[:search_type].to_sym
-    when :target
-      Report.where(target_account: account_search_filter)
-    when :source
-      Report.where(account: account_search_filter)
+  def search_type
+    if SEARCH_TYPES.include? params[:search_type]
+      params[:search_type].to_sym
     else
-      raise Mastodon::InvalidParameterError, "Unknown search type: #{params[:search_type]}"
+      raise Mastodon::InvalidParameterError, "Invalid search type: #{params[:search_type]}"
+    end
+  end
+
+  def search_scope
+    case search_type
+    when :target
+      Report.where(target_account: account_filter)
+    when :source
+      Report.where(account: account_filter)
     end
   end
 
   def scope_for(key, value)
+    # NOTE: account_id and target_account_id could be rewritten to search filters:
     case key.to_sym
     when :account_id
       Report.where(account_id: value)
@@ -111,13 +186,13 @@ class ReportFilter
   end
 
   def target_origin_scope(value)
+    raise Mastodon::InvalidParameterError, "Unknown origin value: #{value}" unless TARGET_ORIGINS.include? value
+
     case value.to_sym
     when :local
       Report.where(target_account: Account.local)
     when :remote
       Report.where(target_account: Account.remote)
-    else
-      raise Mastodon::InvalidParameterError, "Unknown origin value: #{value}"
     end
   end
 
