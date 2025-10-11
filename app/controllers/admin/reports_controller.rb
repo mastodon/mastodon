@@ -8,9 +8,9 @@ module Admin
     def index
       authorize :report, :index?
 
-      # We previously only supported searching by target account domain for
-      # reports, we now have more search options, but it's important that we
-      # don't break any saved queries people may have:
+      # We previously only supported searching reports by target account domain,
+      # target account ID or account ID, we now have more search options, but
+      # it's important that we don't break any saved queries people may have:
       return redirect_to_new_filter if reports_filter.outdated?
 
       @reports = filtered_reports.page(params[:page])
