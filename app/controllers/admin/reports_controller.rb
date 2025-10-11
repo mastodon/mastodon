@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'debug'
 module Admin
   class ReportsController < BaseController
     before_action :set_report, except: [:index]
