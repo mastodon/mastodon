@@ -172,12 +172,7 @@ class ReportFilter
   end
 
   def scope_for(key, value)
-    # NOTE: account_id and target_account_id could be rewritten to search filters:
     case key.to_sym
-    when :account_id
-      Report.where(account_id: value)
-    when :target_account_id
-      Report.where(target_account_id: value)
     when :target_origin
       target_origin_scope(value)
     else
