@@ -12,15 +12,15 @@ class PermalinkRedirector
     @object ||= begin
       if at_username_status_request? || statuses_status_request?
         status = Status.find_by(id: second_segment)
-        status if status&.distributable? && !status&.local?
+        status if status&.distributable? && !status&.local? && !status&.account&.suspended?
       elsif at_username_request?
         username, domain = first_segment.delete_prefix('@').split('@')
         domain = nil if TagManager.instance.local_domain?(domain)
         account = Account.find_remote(username, domain)
-        account unless account&.local?
+        account if !account&.local? && !account&.suspended?
       elsif accounts_request? && record_integer_id_request?
         account = Account.find_by(id: second_segment)
-        account unless account&.local?
+        account if !account&.local? && !account&.suspended?
       end
     end
   end
