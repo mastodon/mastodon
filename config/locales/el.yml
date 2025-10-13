@@ -1591,6 +1591,13 @@ el:
       expires_at: Λήγει
       uses: Χρήσεις
     title: Προσκάλεσε κόσμο
+  link_preview:
+    author_html: Από %{name}
+    potentially_sensitive_content:
+      action: Κάνε κλικ για εμφάνιση
+      confirm_visit: Σίγουρα θες να ανοίξεις αυτόν τον σύνδεσμο;
+      hide_button: Απόκρυψη
+      label: Δυνητικά ευαίσθητο περιεχόμενο
   lists:
     errors:
       limit: Έχεις φτάσει το μέγιστο αριθμό λιστών
@@ -1901,6 +1908,9 @@ el:
         other: "%{count} βίντεο"
     boosted_from_html: Ενισχύθηκε από %{acct_link}
     content_warning: 'Προειδοποίηση περιεχομένου: %{warning}'
+    content_warnings:
+      hide: Απόκρυψη ανάρτησης
+      show: Εμφάνιση περισσότερων
     default_language: Ίδια με γλώσσα διεπαφής
     disallowed_hashtags:
       one: 'περιέχει μη επιτρεπτή ετικέτα: %{tags}'

@@ -1578,6 +1578,13 @@ sq:
       expires_at: Skadon më
       uses: Përdorime
     title: Ftoni njerëz
+  link_preview:
+    author_html: Nga %{name}
+    potentially_sensitive_content:
+      action: Klikoni për shfaqje
+      confirm_visit: Jeni i sigurt se doni të hapet kjo lidhje?
+      hide_button: Fshihe
+      label: Lëndë potencalisht me spec
   lists:
     errors:
       limit: Keni mbërritur në numrin maksimum të listave
@@ -1888,6 +1895,9 @@ sq:
         other: "%{count} video"
     boosted_from_html: Përforcuar nga %{acct_link}
     content_warning: 'Sinjalizim lënde: %{warning}'
+    content_warnings:
+      hide: Fshihe postimin
+      show: Shfaq më tepër
     default_language: Njësoj me gjuhën e ndërfaqes
     disallowed_hashtags:
       one: 'përmbante një hashtag të palejuar: %{tags}'

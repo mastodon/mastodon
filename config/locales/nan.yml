@@ -834,6 +834,10 @@ nan:
         all: Kàu ta̍k ê lâng
         disabled: 無kàu tó tsi̍t ê
         users: Kàu ta̍k位登入ê用者
+      feed_access:
+        modes:
+          authenticated: Kan-ta hōo登入ê用者
+          public: Ta̍k lâng
       registrations:
         moderation_recommandation: 佇開放hōo ta̍k ê lâng註冊進前，請確認lí有夠額koh主動反應ê管理團隊！
         preamble: 控制ē當佇lí ê服侍器註冊ê人。
@@ -992,6 +996,7 @@ nan:
       notified_on_html: 佇 %{date} 通知ê用者
       notify_users: 通知用者
       preview:
+        explanation_html: Tsit封email ē送hōo tī %{date} 進前註冊 ê <strong>%{display_count} ê用者</strong>。Email ē包括下跤ê文字：
         send_preview: Kā tāi先看ê內容寄kàu %{email}
         send_to_all:
           other: 寄出 %{display_count} 張電子phue
@@ -1014,6 +1019,7 @@ nan:
         confirm_allow_provider: Lí kám確定beh允准所揀ê提供者？
         confirm_disallow: Lí kám確定無愛允准所揀ê連結？
         confirm_disallow_provider: Lí kám確定無愛允准所揀ê提供者？
+        description_html: Tsia是連結，現tsú時lí ê服侍器hōo通見ê用者大量分享ê。tse通幫tsān lí ê用者tshuē著tsit-má世間有siánn tāi誌。直kàu lí允准公開者，連結bē公開展示。lí通允准á是拒絕單ê連結。
         disallow: 無愛允准連結
         disallow_provider: 無愛允准提供者
         no_link_selected: 因為無揀任何連結，所以lóng無改變
@@ -1028,6 +1034,7 @@ nan:
       pending_review: Teh等審核
       preview_card_providers:
         allowed: Tsit ê提供者ê連結通刊tī趨勢
+        description_html: Tsiah ê域名來自定定受lí ê服侍器分享ê連結。連結bē變做公開趨勢，除非連結ê域名受允准。Lí ê允准（á是拒絕）擴展kàu kiánn域名。
         rejected: Tsit ê提供者ê連結bē刊tī趨勢
         title: 發布者
       rejected: 拒絕ê
@@ -1038,6 +1045,7 @@ nan:
         confirm_allow_account: Lí kám確定beh允准所揀ê口座？
         confirm_disallow: Lí kám確定無愛允准所揀ê狀態？
         confirm_disallow_account: Lí kám確定無愛允准所揀ê口座？
+        description_html: Tsiah ê是lí ê服侍器所知ê，tsit-má teh受tsē-tsē分享kap收藏ê PO文。PO文bē公開顯示，除非lí允准作者，而且作者允准in ê口座hőng推薦hōo別lâng。Lí通允准á是拒絕個別PO文。
         disallow: 無允准PO文
         disallow_account: 無允准作者
         no_status_selected: 因為無揀任何趨勢PO文，所以lóng無改變
@@ -1050,6 +1058,42 @@ nan:
         dashboard:
           tag_accounts_measure: 無重複用
           tag_languages_dimension: Tsia̍p用ê語言
+          tag_servers_dimension: 人氣服侍器
+          tag_servers_measure: 無kâng ê服侍器
+          tag_uses_measure: Lóng總使用
+        description_html: Tsiah ê是hashtag，tsit-má佇lí ê服侍器看見ê tsē-tsē PO文中出現。Tse通tsān lí ê用者tshuē著ta̍k家上tsē討論ê內容。除非lí核准，hashtag bē公開顯示。
+        listable: 通受建議
+        no_tag_selected: 因為無揀任何標簽，所以lóng無改變
+        not_listable: Bē當受建議
+        not_trendable: Bē刊tī趨勢
+        not_usable: Bē當用
+        peaked_on_and_decaying: 佇 %{date} 日上烘，tsit-má teh退火
+        title: 趨勢ê hashtag
+        trendable: 通刊tī趨勢
+        trending_rank: '趨勢 #%{rank}'
+        usable: Ē當用
+        usage_comparison: Tī kin-á日hōo %{today} ê lâng用，比較tsa-hng有 %{yesterday} ê
+        used_by_over_week:
+          other: 頂禮拜hōo %{count} 位用者用
+      title: 推薦kap趨勢
+      trending: 趨勢
+    username_blocks:
+      add_new: 加新ê
+      block_registrations: 封鎖註冊
+      comparison:
+        contains: 包含
+        equals: 等於
+      contains_html: 包含 %{string}
+      created_msg: 成功加添用者名規則
+      delete: Thâi掉
+      edit:
+        title: 編輯使用者號名規則
+      matches_exactly_html: 等於 %{string}
+      new:
+        create: 建立規則
+        title: 創造使用者號名規則
+      no_username_block_selected: 因為無揀任何使用者號名規則，所以lóng無改變
+      not_permitted: 無允准
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:

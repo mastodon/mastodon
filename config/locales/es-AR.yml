@@ -1591,6 +1591,13 @@ es-AR:
       expires_at: Vence
       uses: Usos
     title: Invitar a gente
+  link_preview:
+    author_html: Por %{name}
+    potentially_sensitive_content:
+      action: Clic para mostrar
+      confirm_visit: "¿Está seguro de que querés abrir este enlace?"
+      hide_button: Ocultar
+      label: Contenido potencialmente sensible
   lists:
     errors:
       limit: Alcanzaste el número máximo de listas
@@ -1901,6 +1908,9 @@ es-AR:
         other: "%{count} videos"
     boosted_from_html: Adherido desde %{acct_link}
     content_warning: 'Advertencia de contenido: %{warning}'
+    content_warnings:
+      hide: Ocultar mensaje
+      show: Mostrar más
     default_language: Igual que el idioma de la interface
     disallowed_hashtags:
       one: 'contenía una etiqueta no permitida: %{tags}'

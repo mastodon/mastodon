@@ -1595,6 +1595,13 @@ is:
       expires_at: Rennur út
       uses: Afnot
     title: Bjóða fólki
+  link_preview:
+    author_html: Frá %{name}
+    potentially_sensitive_content:
+      action: Smelltu til að birta
+      confirm_visit: Ertu viss um að þú viljir opna þennan tengil?
+      hide_button: Fela
+      label: Mögulega viðkvæmt efni
   lists:
     errors:
       limit: Þú hefur náð hámarksfjölda lista
@@ -1905,6 +1912,9 @@ is:
         other: "%{count} myndskeið"
     boosted_from_html: Endurbirt frá %{acct_link}
     content_warning: 'Aðvörun vegna efnis (CW): %{warning}'
+    content_warnings:
+      hide: Fela færslu
+      show: Sýna meira
     default_language: Sama og tungumál viðmóts
     disallowed_hashtags:
       one: 'innihélt óleyfilegt myllumerki: %{tags}'

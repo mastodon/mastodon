@@ -1708,6 +1708,13 @@ ga:
       expires_at: In éag
       uses: Úsáidí
     title: Tabhair cuireadh do dhaoine
+  link_preview:
+    author_html: Le %{name}
+    potentially_sensitive_content:
+      action: Cliceáil chun a thaispeáint
+      confirm_visit: An bhfuil tú cinnte gur mian leat an nasc seo a oscailt?
+      hide_button: Folaigh
+      label: Ábhar a d'fhéadfadh a bheith íogair
   lists:
     errors:
       limit: Tá uaslíon na liostaí sroichte agat
@@ -2027,6 +2034,9 @@ ga:
         two: "%{count} físeáin"
     boosted_from_html: Molta ó %{acct_link}
     content_warning: 'Rabhadh ábhair: %{warning}'
+    content_warnings:
+      hide: Folaigh an post
+      show: Taispeáin níos mó
     default_language: Mar an gcéanna le teanga an chomhéadain
     disallowed_hashtags:
       few: 'bhí na Haischlib dícheadaithe: %{tags}'

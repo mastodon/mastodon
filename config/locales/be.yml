@@ -1669,6 +1669,13 @@ be:
       expires_at: Дзее да
       uses: Выкарыстанні
     title: Запрасіць людзей
+  link_preview:
+    author_html: Ад %{name}
+    potentially_sensitive_content:
+      action: Націсніце, каб паказаць
+      confirm_visit: Вы ўпэўненыя, што хочаце адкрыць гэту спасылку?
+      hide_button: Схаваць
+      label: Патэнцыйна далікатны кантэнт
   lists:
     errors:
       limit: Вы дасягнулі макс. колькасці спісаў
@@ -1985,6 +1992,9 @@ be:
         other: "%{count} відэафайла"
     boosted_from_html: Пашырыў уліковы запіс %{acct_link}
     content_warning: 'Папярэджанне аб змесціве: %{warning}'
+    content_warnings:
+      hide: Схаваць допіс
+      show: Паказаць усё роўна
     default_language: Такая, што і мова інтэрфэйсу
     disallowed_hashtags:
       few: 'змяшчае недазволеныя хэштэгі: %{tags}'
