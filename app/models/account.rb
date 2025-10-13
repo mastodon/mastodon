@@ -254,6 +254,10 @@ class Account < ApplicationRecord
       update!(suspended_at: date, suspension_origin: origin)
       create_canonical_email_block! if block_email
     end
+
+    # This terminates all connections for the given account with the streaming
+    # server:
+    redis.publish("timeline:system:#{id}", Oj.dump(event: :kill)) if local?
   end
 
   def unsuspend!
