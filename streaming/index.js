@@ -152,17 +152,6 @@ const redisConfigFromEnv = (env) => {
   };
 };
 
-const PUBLIC_CHANNELS = [
-  'public',
-  'public:media',
-  'public:local',
-  'public:local:media',
-  'public:remote',
-  'public:remote:media',
-  'hashtag',
-  'hashtag:local',
-];
-
 // Used for priming the counters/gauges for the various metrics that are
 // per-channel
 const CHANNEL_NAMES = [
@@ -171,7 +160,14 @@ const CHANNEL_NAMES = [
   'user:notification',
   'list',
   'direct',
-  ...PUBLIC_CHANNELS
+  'public',
+  'public:media',
+  'public:local',
+  'public:local:media',
+  'public:remote',
+  'public:remote:media',
+  'hashtag',
+  'hashtag:local'
 ];
 
 const startServer = async () => {
@@ -547,12 +543,6 @@ const startServer = async () => {
    */
   const checkScopes = (req, channelName) => new Promise((resolve, reject) => {
     log.silly(req.requestId, `Checking OAuth scopes for ${channelName}`);
-
-    // When accessing public channels, no scopes are needed
-    if (PUBLIC_CHANNELS.includes(channelName)) {
-      resolve();
-      return;
-    }
 
     // The `read` scope has the highest priority, if the token has it
     // then it can access all streams
