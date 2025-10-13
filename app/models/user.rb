@@ -197,6 +197,10 @@ class User < ApplicationRecord
 
   def disable!
     update!(disabled: true)
+
+    # This terminates all connections for the given account with the streaming
+    # server:
+    redis.publish("timeline:system:#{account.id}", Oj.dump(event: :kill))
   end
 
   def enable!
