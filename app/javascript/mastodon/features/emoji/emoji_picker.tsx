@@ -19,6 +19,7 @@ const Emoji = ({
   backgroundImageFn = backgroundImageFnDefault,
   ...props
 }: EmojiProps) => {
+  const { mode } = useEmojiAppState();
   return (
     <EmojiRaw
       data={EmojiData}
@@ -26,6 +27,7 @@ const Emoji = ({
       sheetSize={sheetSize}
       sheetColumns={sheetColumns}
       sheetRows={sheetRows}
+      native={mode === EMOJI_MODE_NATIVE && isModernEmojiEnabled()}
       backgroundImageFn={backgroundImageFn}
       {...props}
     />
