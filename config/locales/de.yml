@@ -1591,6 +1591,13 @@ de:
       expires_at: Läuft ab
       uses: Verwendungen
     title: Einladungen
+  link_preview:
+    author_html: Von %{name}
+    potentially_sensitive_content:
+      action: Zum Anzeigen anklicken
+      confirm_visit: Möchtest du diesen Link wirklich öffnen?
+      hide_button: Ausblenden
+      label: Inhaltswarnung
   lists:
     errors:
       limit: Du hast die maximale Anzahl an Listen erreicht
@@ -1901,6 +1908,9 @@ de:
         other: "%{count} Videos"
     boosted_from_html: Geteilt von %{acct_link}
     content_warning: 'Inhaltswarnung: %{warning}'
+    content_warnings:
+      hide: Beitrag ausblenden
+      show: Beitrag anzeigen
     default_language: Wie die Sprache des Webinterface
     disallowed_hashtags:
       one: 'enthält einen nicht-erlaubten Hashtag: %{tags}'

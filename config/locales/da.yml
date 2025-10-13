@@ -1591,6 +1591,13 @@ da:
       expires_at: Udløber
       uses: Benyttelser
     title: Invitér personer
+  link_preview:
+    author_html: Af %{name}
+    potentially_sensitive_content:
+      action: Klik for at vise
+      confirm_visit: Er du sikker på, at du vil åbne dette link?
+      hide_button: Skjul
+      label: Potentielt følsomt indhold
   lists:
     errors:
       limit: Maks. listeantal nået
@@ -1901,6 +1908,9 @@ da:
         other: "%{count} videoer"
     boosted_from_html: Fremhævet fra %{acct_link}
     content_warning: 'Indholdsadvarsel: %{warning}'
+    content_warnings:
+      hide: Skjul indlæg
+      show: Vis mere
     default_language: Samme som UI-sproget
     disallowed_hashtags:
       one: 'indeholdte et ikke tilladt hashtag: %{tags}'

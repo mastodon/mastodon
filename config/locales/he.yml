@@ -1669,6 +1669,13 @@ he:
       expires_at: פג תוקף ב-
       uses: שימושים
     title: הזמנת אנשים
+  link_preview:
+    author_html: מאת %{name}
+    potentially_sensitive_content:
+      action: לחץ להצגה
+      confirm_visit: האם להמשיך ליעד הקישור?
+      hide_button: להסתיר
+      label: תוכן שעלול להיות רגיש
   lists:
     errors:
       limit: הגעת למספר הרשימות המירבי
@@ -1985,6 +1992,9 @@ he:
         two: "%{count} סרטונים"
     boosted_from_html: הודהד מ-%{acct_link}
     content_warning: 'אזהרת תוכן: %{warning}'
+    content_warnings:
+      hide: להסתיר הודעה
+      show: הצג עוד
     default_language: זהה לשפת ממשק
     disallowed_hashtags:
       many: 'מכיל את התגיות האסורות: %{tags}'

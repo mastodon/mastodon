@@ -1552,6 +1552,13 @@ vi:
       expires_at: Hết hạn
       uses: Sử dụng
     title: Mời bạn bè
+  link_preview:
+    author_html: Bởi %{name}
+    potentially_sensitive_content:
+      action: Nhấn để xem
+      confirm_visit: Bạn có chắc muốn mở liên kết này?
+      hide_button: Ẩn
+      label: Có khả năng là nội dung nhạy cảm
   lists:
     errors:
       limit: Bạn đã đạt đến số lượng danh sách tối đa
@@ -1859,6 +1866,9 @@ vi:
         other: "%{count} video"
     boosted_from_html: Đã đăng lại từ %{acct_link}
     content_warning: 'Cảnh báo nội dung: %{warning}'
+    content_warnings:
+      hide: Ẩn tút
+      show: Mở rộng
     default_language: Giống giao diện
     disallowed_hashtags:
       other: 'chứa các hashtag bị cấm: %{tags}'

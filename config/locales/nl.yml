@@ -850,7 +850,7 @@ nl:
         users: Aan ingelogde lokale gebruikers
       feed_access:
         modes:
-          authenticated: Alleen geverifieerde gebruikers
+          authenticated: Alleen ingelogde gebruikers
           public: Iedereen
       registrations:
         moderation_recommandation: Zorg ervoor dat je een adequaat en responsief moderatieteam hebt voordat je registraties voor iedereen openstelt!
@@ -911,7 +911,7 @@ nl:
       status_title: Bericht van @%{name}
       title: Accountberichten - @%{name}
       trending: Trending
-      view_publicly: In het openbaar bekijken
+      view_publicly: Openbaar bericht bekijken
       visibility: Zichtbaarheid
       with_media: Met media
     strikes:
@@ -984,7 +984,7 @@ nl:
       name: Naam
       newest: Nieuwste
       oldest: Oudste
-      open: In het openbaar bekijken
+      open: Oorspronkelijk bericht bekijken
       reset: Opnieuw
       review: Status beoordelen
       search: Zoeken
@@ -1591,6 +1591,13 @@ nl:
       expires_at: Verloopt op
       uses: Aantal keer te gebruiken
     title: Mensen uitnodigen
+  link_preview:
+    author_html: Door %{name}
+    potentially_sensitive_content:
+      action: Klik om te tonen
+      confirm_visit: Ben je zeker dat je deze link wilt openen?
+      hide_button: Verberg
+      label: Mogelijk gevoelige inhoud
   lists:
     errors:
       limit: Je hebt het maximum aantal lijsten bereikt
@@ -1901,6 +1908,9 @@ nl:
         other: "%{count} video's"
     boosted_from_html: Geboost van %{acct_link}
     content_warning: 'Inhoudswaarschuwing: %{warning}'
+    content_warnings:
+      hide: Bericht verbergen
+      show: Meer tonen
     default_language: Hetzelfde als de taal van de gebruikersomgeving
     disallowed_hashtags:
       one: 'bevatte een niet toegestane hashtag: %{tags}'

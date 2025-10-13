@@ -1554,6 +1554,13 @@ zh-TW:
       expires_at: 失效時間
       uses: 已使用次數
     title: 邀請使用者
+  link_preview:
+    author_html: 來自 %{name}
+    potentially_sensitive_content:
+      action: 點擊以顯示
+      confirm_visit: 您確定要開啟此連結嗎？
+      hide_button: 隱藏
+      label: 可能為敏感內容
   lists:
     errors:
       limit: 您所建立之列表數量已達上限
@@ -1861,6 +1868,9 @@ zh-TW:
         other: "%{count} 段影片"
     boosted_from_html: 轉嘟自 %{acct_link}
     content_warning: 內容警告： %{warning}
+    content_warnings:
+      hide: 隱藏嘟文
+      show: 顯示更多
     default_language: 與介面語言相同
     disallowed_hashtags:
       other: 含有不得使用的標籤： %{tags}
