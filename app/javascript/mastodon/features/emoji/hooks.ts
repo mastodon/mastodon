@@ -1,6 +1,6 @@
 import { useCallback, useLayoutEffect, useMemo, useState } from 'react';
 
-import { useAppSelector } from '@/mastodon/store';
+import { createAppSelector, useAppSelector } from '@/mastodon/store';
 import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 
 import { toSupportedLocale } from './locale';
@@ -58,13 +58,16 @@ export function useEmojify({
   return emojifiedText;
 }
 
+const modeSelector = createAppSelector(
+  [(state) => state.meta.get('emoji_style') as string],
+  (emoji_style) => determineEmojiMode(emoji_style),
+);
+
 export function useEmojiAppState(): EmojiAppState {
   const locale = useAppSelector((state) =>
     toSupportedLocale(state.meta.get('locale') as string),
   );
-  const mode = useAppSelector((state) =>
-    determineEmojiMode(state.meta.get('emoji_style') as string),
-  );
+  const mode = useAppSelector(modeSelector);
 
   return {
     currentLocale: locale,
