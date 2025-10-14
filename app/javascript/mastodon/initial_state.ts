@@ -34,6 +34,8 @@ interface InitialStateMeta {
   streaming_api_base_url: string;
   local_live_feed_access: 'public' | 'authenticated';
   remote_live_feed_access: 'public' | 'authenticated';
+  local_topic_feed_access: 'public' | 'authenticated';
+  remote_topic_feed_access: 'public' | 'authenticated';
   title: string;
   show_trends: boolean;
   trends_as_landing_page: boolean;
@@ -113,6 +115,8 @@ export const singleUserMode = getMeta('single_user_mode');
 export const source_url = getMeta('source_url');
 export const localLiveFeedAccess = getMeta('local_live_feed_access');
 export const remoteLiveFeedAccess = getMeta('remote_live_feed_access');
+export const localTopicFeedAccess = getMeta('local_topic_feed_access');
+export const remoteTopicFeedAccess = getMeta('remote_topic_feed_access');
 export const title = getMeta('title');
 export const trendsAsLanding = getMeta('trends_as_landing_page');
 export const useBlurhash = getMeta('use_blurhash');
