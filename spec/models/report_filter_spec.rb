@@ -31,12 +31,12 @@ RSpec.describe ReportFilter do
     end
   end
 
-  context 'when given remote target_origin and also by_target_domain' do
+  context 'when given remote search_type and search_term of a domain' do
     let!(:matching_report) { Fabricate :report, target_account: Fabricate(:account, domain: 'match.example') }
     let!(:non_matching_report) { Fabricate :report, target_account: Fabricate(:account, domain: 'other.example') }
 
     it 'preserves the domain value' do
-      filter = described_class.new(by_target_domain: 'match.example', target_origin: 'remote')
+      filter = described_class.new(search_term: 'match.example', search_type: 'target')
 
       expect(filter.results)
         .to include(matching_report)
