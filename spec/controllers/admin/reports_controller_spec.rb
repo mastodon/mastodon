@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'debug'
 
-describe Admin::ReportsController do
+RSpec.describe Admin::ReportsController do
   render_views
 
   let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
@@ -27,10 +28,11 @@ describe Admin::ReportsController do
 
       get :index, params: { status: 'unresolved' }
 
-      reports = assigns(:reports).to_a
-      expect(reports.size).to eq 1
-      expect(reports[0]).to eq specified
       expect(response).to have_http_status(200)
+
+      expect(report_groups.size).to eq 1
+      expect(report_groups[0][:reports].size).to eq 1
+      expect(report_groups[0][:reports][0][:link]).to include specified.id.to_s
     end
 
     it 'returns http success with status filter of resolved' do
@@ -39,43 +41,61 @@ describe Admin::ReportsController do
 
       get :index, params: { status: 'resolved' }
 
-      reports = assigns(:reports).to_a
-      expect(reports.size).to eq 1
-      expect(reports[0]).to eq specified
-
       expect(response).to have_http_status(200)
+
+      expect(report_groups.size).to eq 1
+      expect(report_groups[0][:reports].size).to eq 1
+      expect(report_groups[0][:reports][0][:link]).to include specified.id.to_s
     end
 
     it 'returns http success with status filter of all' do
-      resolved = Fabricate(:report, action_taken_at: Time.now.utc)
-      unresolved = Fabricate(:report, action_taken_at: nil)
+      targeted_account = Fabricate(:account)
+      resolved = Fabricate(:report, target_account: targeted_account, action_taken_at: Time.now.utc)
+      unresolved = Fabricate(:report, target_account: targeted_account, action_taken_at: nil)
 
       get :index, params: { status: 'all' }
 
-      reports = assigns(:reports).to_a
-      expect(reports.size).to eq 2
-
-      # unresolved is the most recently created report, so it's first:
-      expect(reports[0]).to eq unresolved
-      expect(reports[1]).to eq resolved
-
       expect(response).to have_http_status(200)
+
+      expect(report_groups.size).to eq 1
+      expect(report_groups[0][:target_account_link]).to include targeted_account.id.to_s
+      expect(report_groups[0][:reports].size).to eq 2
+      expect(report_groups[0][:reports][0][:link]).to include unresolved.id.to_s
+      expect(report_groups[0][:reports][1][:link]).to include resolved.id.to_s
     end
 
-    it 'returns http success with target_account_id filter' do
+    it 'returns the correct results with a search filter about an account' do
       targeted_account = Fabricate(:account)
       not_targeted_account = Fabricate(:account)
 
       targeted = Fabricate(:report, action_taken_at: nil, target_account: targeted_account)
       Fabricate(:report, action_taken_at: nil, target_account: not_targeted_account)
 
-      get :index, params: { target_account_id: targeted_account.id }
-
-      reports = assigns(:reports).to_a
-      expect(reports.size).to eq 1
-      expect(reports[0]).to eq targeted
+      get :index, params: { search_type: 'target', search_term: "@#{targeted_account.acct}", status: 'all' }
 
       expect(response).to have_http_status(200)
+
+      expect(report_groups.size).to eq 1
+      expect(report_groups[0][:target_account_link]).to include targeted_account.id.to_s
+      expect(report_groups[0][:reports].size).to eq 1
+      expect(report_groups[0][:reports][0][:link]).to include targeted.id.to_s
+    end
+
+    def report_groups
+      response.parsed_body.css('.report-card').map do |card|
+        target_account_link = card.css('.report-card__profile a.account__display-name').attr('href').value
+        reports = card.css('.report-card__summary__item').map do |report|
+          {
+            reported_by: report.css('.report-card__summary__item__reported-by').first.text.strip,
+            link: report.css('.report-card__summary__item__content > a').attr('href').value,
+          }
+        end
+
+        {
+          target_account_link: target_account_link,
+          reports: reports,
+        }
+      end
     end
 
     describe 'outdated filters' do
@@ -85,14 +105,14 @@ describe Admin::ReportsController do
         get :index, params: { by_target_domain: 'social.example' }
 
         expect(response)
-          .to redirect_to admin_reports_path({ search_type: 'target', search_term: 'social.example', status: 'unresolved' })
+          .to redirect_to admin_reports_path({ search_type: 'target', search_term: 'social.example', status: 'all' })
       end
 
       it 'redirects if resolved is used' do
         get :index, params: { resolved: '1' }
 
         expect(response)
-          .to redirect_to admin_reports_path({ search_type: 'target', search_term: nil, status: 'resolved' })
+          .to redirect_to admin_reports_path({ status: 'resolved' })
       end
 
       it 'redirects if resolved and by_target_domain are used' do
@@ -104,6 +124,38 @@ describe Admin::ReportsController do
           status: 'resolved',
         })
       end
+
+      it 'redirects if resolved is false and by_target_domain is used' do
+        get :index, params: { resolved: '0', by_target_domain: 'social.example' }
+
+        expect(response).to redirect_to admin_reports_path({
+          search_type: 'target',
+          search_term: 'social.example',
+          status: 'unresolved',
+        })
+      end
+
+      it 'redirects if target_account_id filter is used' do
+        account = Fabricate(:account)
+        get :index, params: { target_account_id: account.id }
+
+        expect(response).to redirect_to admin_reports_path({
+          search_type: 'target',
+          search_term: "@#{account.acct}",
+          status: 'all',
+        })
+      end
+
+      it 'redirects if account_id filter is used' do
+        account = Fabricate(:account)
+        get :index, params: { account_id: account.id }
+
+        expect(response).to redirect_to admin_reports_path({
+          search_type: 'source',
+          search_term: "@#{account.acct}",
+          status: 'all',
+        })
+      end
     end
   end
 
@@ -113,8 +165,8 @@ describe Admin::ReportsController do
 
       get :show, params: { id: report }
 
-      expect(assigns(:report)).to eq report
       expect(response).to have_http_status(200)
+      expect(response.body).to include(report.target_account.acct)
     end
   end
 

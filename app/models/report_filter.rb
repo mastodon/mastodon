@@ -54,17 +54,22 @@ class ReportFilter
   def updated_filter
     updated_params = @params.to_hash
 
-    resolved = updated_params.delete('resolved')
-    status_filter = if resolved.present?
-                      resolved == '1' ? 'resolved' : 'unresolved'
-                    else
-                      'all'
-                    end
-
     # Old parameters:
     by_target_domain = updated_params.delete('by_target_domain')
     account_id = updated_params.delete('account_id')
     target_account_id = updated_params.delete('target_account_id')
+    resolved = updated_params.delete('resolved')
+    existing_status = updated_params.delete('status')
+
+    status_filter = if existing_status
+                      existing_status
+                    elsif resolved.present?
+                      resolved == '1' ? 'resolved' : 'unresolved'
+                    elsif by_target_domain || target_account_id || account_id
+                      'all'
+                    else
+                      'unresolved'
+                    end
 
     updated_params['status'] = status_filter
 
