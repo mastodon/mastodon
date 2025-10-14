@@ -904,6 +904,10 @@ cy:
         all: I bawb
         disabled: I neb
         users: I ddefnyddwyr lleol wedi'u mewngofnodi
+      feed_access:
+        modes:
+          authenticated: Defnyddwyr dilys yn unig
+          public: Pawb
       registrations:
         moderation_recommandation: Gwnewch yn siŵr bod gennych chi dîm cymedroli digonol ac adweithiol cyn i chi agor cofrestriadau i bawb!
         preamble: Rheoli pwy all greu cyfrif ar eich gweinydd.
@@ -1743,6 +1747,13 @@ cy:
       expires_at: Yn dod i ben ar
       uses: Defnyddiau
     title: Gwahodd pobl
+  link_preview:
+    author_html: Yn ôl %{name}
+    potentially_sensitive_content:
+      action: Cliciwch i ddangos
+      confirm_visit: Ydych chi'n siŵr eich bod chi eisiau agor y ddolen hon?
+      hide_button: Cuddio
+      label: Cynnwys a allai fod yn sensitif
   lists:
     errors:
       limit: Rydych chi wedi cyrraedd y nifer mwyaf o restrau
@@ -2065,6 +2076,9 @@ cy:
         zero: "%{count} fideo"
     boosted_from_html: Wedi'i hybu o %{acct_link}
     content_warning: 'Rhybudd cynnwys: %{warning}'
+    content_warnings:
+      hide: Cuddio'r postiad
+      show: Dangos rhagor
     default_language: Yr un fath a'r iaith rhyngwyneb
     disallowed_hashtags:
       few: 'yn cynnwys yr hashnod gwaharddedig: %{tags}'
