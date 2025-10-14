@@ -18,9 +18,6 @@ class Api::V1::Admin::ReportsController < Api::BaseController
 
   def index
     authorize :report, :index?
-
-    return redirect_to api_v1_admin_reports_path(reports_filter.updated_filter) if reports_filter.outdated?
-
     render json: @reports, each_serializer: REST::Admin::ReportSerializer
   end
 
@@ -74,12 +71,8 @@ class Api::V1::Admin::ReportsController < Api::BaseController
     @report = Report.find(params[:id])
   end
 
-  def reports_filter
-    @reports_filter ||= ReportFilter.new(filter_params)
-  end
-
   def filtered_reports
-    reports_filter.results
+    ReportFilter.new(filter_params).results
   end
 
   def report_params
@@ -87,7 +80,16 @@ class Api::V1::Admin::ReportsController < Api::BaseController
   end
 
   def filter_params
-    params.slice(*ReportFilter::ALL_KEYS).permit(*ReportFilter::ALL_KEYS)
+    filter_params = params.slice(*ReportFilter::API_KEYS).permit(*ReportFilter::API_KEYS)
+
+    resolved = filter_params.delete(:resolved)
+    if resolved.present?
+      filter_params[:status] = ActiveModel::Type::Boolean.new.cast(resolved) ? 'resolved' : 'unresolved'
+    elsif filter_params[:status].nil?
+      filter_params[:status] = 'unresolved'
+    end
+
+    filter_params
   end
 
   def next_path

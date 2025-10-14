@@ -73,11 +73,12 @@ RSpec.describe 'Reports' do
 
       context 'with outdated resolved param' do
         let(:params) { { resolved: true } }
+        let(:scope) { Report.resolved }
 
-        it 'redirects to the new filter path' do
+        it 'returns the resolved reports' do
           subject
 
-          expect(response).to redirect_to api_v1_admin_reports_url({ status: 'resolved' })
+          expect(response.parsed_body).to match_array(expected_response)
         end
       end
 
@@ -99,7 +100,7 @@ RSpec.describe 'Reports' do
         it 'returns only the resolved reports' do
           subject
 
-          expect(body_as_json).to match_array(expected_response)
+          expect(response.parsed_body).to match_array(expected_response)
         end
       end
 

@@ -6,16 +6,23 @@ class ReportFilter
     search_type
     search_term
     target_origin
+    account_id
+    target_account_id
   ).freeze
 
-  OUTDATED_KEYS = %i(
+  OUTDATED_ADMIN_KEYS = %i(
     resolved
     by_target_domain
     account_id
     target_account_id
   ).freeze
 
-  ALL_KEYS = KEYS + OUTDATED_KEYS
+  ALL_KEYS = KEYS + OUTDATED_ADMIN_KEYS
+  API_KEYS = KEYS + %i(
+    resolved
+    account_id
+    target_account_id
+  ).freeze
 
   SEARCH_TYPES = %w(
     source
@@ -41,7 +48,7 @@ class ReportFilter
     # We always need a status parameter:
     return true if @params.exclude? :status
 
-    OUTDATED_KEYS.any? { |key, _value| @params.include? key }
+    OUTDATED_ADMIN_KEYS.any? { |key, _value| @params.include? key }
   end
 
   def updated_filter
@@ -174,6 +181,10 @@ class ReportFilter
     case key.to_sym
     when :target_origin
       target_origin_scope(value)
+    when :target_account_id
+      Report.where(target_account_id: value)
+    when :account_id
+      Report.where(account_id: value)
     else
       raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
