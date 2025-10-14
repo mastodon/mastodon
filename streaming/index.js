@@ -1,4 +1,3 @@
-/* eslint-disable jsdoc/reject-any-type */
 // @ts-check
 
 import fs from 'node:fs';
@@ -13,18 +12,8 @@ import { JSDOM } from 'jsdom';
 import { WebSocketServer } from 'ws';
 
 import * as Database from './database.js';
-import {
-  AuthenticationError,
-  RequestError,
-  extractStatusAndMessage as extractErrorStatusAndMessage,
-} from './errors.js';
-import {
-  logger,
-  httpLogger,
-  initializeLogLevel,
-  attachWebsocketHttpLogger,
-  createWebsocketLogger,
-} from './logging.js';
+import { AuthenticationError, RequestError, extractStatusAndMessage as extractErrorStatusAndMessage } from './errors.js';
+import { logger, httpLogger, initializeLogLevel, attachWebsocketHttpLogger, createWebsocketLogger } from './logging.js';
 import { setupMetrics } from './metrics.js';
 import * as Redis from './redis.js';
 import { isTruthy, normalizeHashtag, firstParam } from './utils.js';
@@ -34,11 +23,13 @@ const environment = process.env.NODE_ENV || 'development';
 // Correctly detect and load .env or .env.production file based on environment:
 const dotenvFile = environment === 'production' ? '.env.production' : '.env';
 const dotenvFilePath = path.resolve(
-  url.fileURLToPath(new URL(path.join('..', dotenvFile), import.meta.url)),
+  url.fileURLToPath(
+    new URL(path.join('..', dotenvFile), import.meta.url)
+  )
 );
 
 dotenv.config({
-  path: dotenvFilePath,
+  path: dotenvFilePath
 });
 
 initializeLogLevel(process.env, environment);
@@ -75,15 +66,9 @@ const parseJSON = (json, req) => {
      */
     if (req) {
       if (req.accountId) {
-        req.log.error(
-          { err },
-          `Error parsing message from user ${req.accountId}`,
-        );
+        req.log.error({ err }, `Error parsing message from user ${req.accountId}`);
       } else {
-        req.log.error(
-          { err },
-          `Error parsing message from ${req.remoteAddress}`,
-        );
+        req.log.error({ err }, `Error parsing message from ${req.remoteAddress}`);
       }
     } else {
       logger.error({ err }, `Error parsing message from redis`);
@@ -141,7 +126,7 @@ const startServer = async () => {
    * @returns {string}
    */
   function redisUnnamespaced(channel) {
-    if (typeof redisConfig.namespace === 'string') {
+    if (typeof redisConfig.namespace === "string") {
       // Note: this removes the configured namespace and the colon that is used
       // to separate it:
       return channel.slice(redisConfig.namespace.length + 1);
@@ -151,18 +136,13 @@ const startServer = async () => {
   }
 
   // Set the X-Request-Id header on WebSockets:
-  wss.on('headers', function onHeaders(headers, req) {
+  wss.on("headers", function onHeaders(headers, req) {
     headers.push(`X-Request-Id: ${req.id}`);
   });
 
   const app = express();
 
-  app.set(
-    'trust proxy',
-    process.env.TRUSTED_PROXY_IP
-      ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/)
-      : 'loopback,uniquelocal',
-  );
+  app.set('trust proxy', process.env.TRUSTED_PROXY_IP ? process.env.TRUSTED_PROXY_IP.split(/(?:\s*,\s*|\s+)/) : 'loopback,uniquelocal');
 
   app.use(httpLogger);
   app.use(cors());
@@ -176,7 +156,7 @@ const startServer = async () => {
     // logger. This decorates the `request` object.
     attachWebsocketHttpLogger(request);
 
-    request.log.info('HTTP Upgrade Requested');
+    request.log.info("HTTP Upgrade Requested");
 
     /** @param {Error} err */
     const onSocketError = (err) => {
@@ -194,15 +174,15 @@ const startServer = async () => {
       // Unfortunately for using the on('upgrade') setup, we need to manually
       // write a HTTP Response to the Socket to close the connection upgrade
       // attempt, so the following code is to handle all of that.
-      const { statusCode, errorMessage } = extractErrorStatusAndMessage(err);
+      const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
 
       /** @type {Record<string, string | number | import('pino-http').ReqId>} */
       const headers = {
-        Connection: 'close',
+        'Connection': 'close',
         'Content-Type': 'text/plain',
         'Content-Length': 0,
         'X-Request-Id': request.id,
-        'X-Error-Message': errorMessage,
+        'X-Error-Message': errorMessage
       };
 
       // Ensure the socket is closed once we've finished writing to it:
@@ -211,25 +191,16 @@ const startServer = async () => {
       });
 
       // Write the HTTP response manually:
-      socket.end(
-        `HTTP/1.1 ${statusCode} ${http.STATUS_CODES[statusCode]}\r\n${Object.keys(
-          headers,
-        )
-          .map((key) => `${key}: ${headers[key]}`)
-          .join('\r\n')}\r\n\r\n`,
-      );
+      socket.end(`HTTP/1.1 ${statusCode} ${http.STATUS_CODES[statusCode]}\r\n${Object.keys(headers).map((key) => `${key}: ${headers[key]}`).join('\r\n')}\r\n\r\n`);
 
       // Finally, log the error:
-      request.log.error(
-        {
+      request.log.error({
           err,
           res: {
             statusCode,
-            headers,
-          },
-        },
-        errorMessage,
-      );
+          headers
+        }
+      }, errorMessage);
 
       return;
     }
@@ -238,9 +209,7 @@ const startServer = async () => {
     socket.removeListener('error', onSocketError);
 
     wss.handleUpgrade(request, socket, head, function done(ws) {
-      request.log.info(
-        'Authenticated request & upgraded to WebSocket connection',
-      );
+      request.log.info("Authenticated request & upgraded to WebSocket connection");
 
       const wsLogger = createWebsocketLogger(request, resolvedAccount);
 
@@ -262,10 +231,7 @@ const startServer = async () => {
   app.get('/favicon.ico', (_req, res) => res.status(404).end());
 
   app.get('/api/v1/streaming/health', (_req, res) => {
-    res.writeHead(200, {
-      'Content-Type': 'text/plain',
-      'Cache-Control': 'private, no-store',
-    });
+    res.writeHead(200, { 'Content-Type': 'text/plain', 'Cache-Control': 'private, no-store' });
     res.end('OK');
   });
 
@@ -275,18 +241,11 @@ const startServer = async () => {
    * @param {string[]} channels
    * @returns {function(): void}
    */
-  const subscriptionHeartbeat = (channels) => {
+  const subscriptionHeartbeat = channels => {
     const interval = 6 * 60;
 
     const tellSubscribed = () => {
-      channels.forEach((channel) =>
-        redisClient.set(
-          redisNamespaced(`subscribed:${channel}`),
-          '1',
-          'EX',
-          interval * 3,
-        ),
-      );
+      channels.forEach(channel => redisClient.set(redisNamespaced(`subscribed:${channel}`), '1', 'EX', interval * 3));
     };
 
     tellSubscribed();
@@ -315,9 +274,9 @@ const startServer = async () => {
     const json = parseJSON(message, null);
     if (!json) return;
 
-    callbacks.forEach((callback) => callback(json));
+    callbacks.forEach(callback => callback(json));
   };
-  redisSubscribeClient.on('message', onRedisMessage);
+  redisSubscribeClient.on("message", onRedisMessage);
 
   /**
    * @callback SubscriptionListener
@@ -360,22 +319,19 @@ const startServer = async () => {
       return;
     }
 
-    subs[channel] = subs[channel].filter((item) => item !== callback);
+    subs[channel] = subs[channel].filter(item => item !== callback);
 
     if (subs[channel].length === 0) {
       logger.debug(`Unsubscribe ${channel}`);
 
       // FIXME: https://github.com/redis/ioredis/issues/1910
-      redisSubscribeClient.unsubscribe(
-        redisNamespaced(channel),
-        (err, count) => {
+      redisSubscribeClient.unsubscribe(redisNamespaced(channel), (err, count) => {
           if (err) {
             logger.error(`Error unsubscribing to ${channel}`);
           } else if (typeof count === 'number') {
             metrics.redisSubscriptions.set(count);
           }
-        },
-      );
+      });
       delete subs[channel];
     }
   };
@@ -386,7 +342,7 @@ const startServer = async () => {
    * @returns {boolean}
    */
   const isInScope = (req, necessaryScopes) =>
-    req.scopes.some((scope) => necessaryScopes.includes(scope));
+    req.scopes.some(scope => necessaryScopes.includes(scope));
 
   /**
    * @param {string} token
@@ -417,21 +373,17 @@ const startServer = async () => {
    * @param {any} req
    * @returns {Promise<ResolvedAccount>}
    */
-  const accountFromRequest = (req) =>
-    new Promise((resolve, reject) => {
+  const accountFromRequest = (req) => new Promise((resolve, reject) => {
       const authorization = req.headers.authorization;
-      const location = url.parse(req.url, true);
-      const accessToken =
-        location.query.access_token || req.headers['sec-websocket-protocol'];
+    const location      = url.parse(req.url, true);
+    const accessToken   = location.query.access_token || req.headers['sec-websocket-protocol'];
 
       if (!authorization && !accessToken) {
         reject(new AuthenticationError('Missing access token'));
         return;
       }
 
-      const token = authorization
-        ? authorization.replace(/^Bearer /, '')
-        : accessToken;
+    const token = authorization ? authorization.replace(/^Bearer /, '') : accessToken;
 
       resolve(accountFromToken(token, req));
     });
@@ -440,7 +392,7 @@ const startServer = async () => {
    * @param {any} req
    * @returns {string|undefined}
    */
-  const channelNameFromPath = (req) => {
+  const channelNameFromPath = req => {
     const { path, query } = req;
     const onlyMedia = isTruthy(query.only_media);
 
@@ -474,8 +426,7 @@ const startServer = async () => {
    * @param {string|undefined} channelName
    * @returns {Promise.<void>}
    */
-  const checkScopes = (req, logger, channelName) =>
-    new Promise((resolve, reject) => {
+  const checkScopes = (req, logger, channelName) => new Promise((resolve, reject) => {
       logger.debug(`Checking OAuth scopes for ${channelName}`);
 
     // The `read` scope has the highest priority, if the token has it
@@ -494,21 +445,12 @@ const startServer = async () => {
         requiredScopes.push('read:statuses');
       }
 
-      if (
-        req.scopes &&
-        requiredScopes.some((requiredScope) =>
-          req.scopes.includes(requiredScope),
-        )
-      ) {
+    if (req.scopes && requiredScopes.some(requiredScope => req.scopes.includes(requiredScope))) {
         resolve();
         return;
       }
 
-      reject(
-        new AuthenticationError(
-          'Access token does not have the required scopes',
-        ),
-      );
+    reject(new AuthenticationError('Access token does not have the required scopes'));
     });
 
   /**
@@ -522,7 +464,7 @@ const startServer = async () => {
    * @returns {SubscriptionListener}
    */
   const createSystemMessageListener = (req, eventHandlers) => {
-    return (message) => {
+    return message => {
       if (!message?.event) {
         return;
       }
@@ -532,9 +474,7 @@ const startServer = async () => {
       req.log.debug(`System message for ${req.accountId}: ${event}`);
 
       if (event === 'kill') {
-        req.log.debug(
-          `Closing connection for ${req.accountId} due to expired access token`,
-        );
+        req.log.debug(`Closing connection for ${req.accountId} due to expired access token`);
         eventHandlers.onKill();
       } else if (event === 'filters_changed') {
         req.log.debug(`Invalidating filters cache for ${req.accountId}`);
@@ -561,17 +501,13 @@ const startServer = async () => {
       unsubscribe(accessTokenChannelId, listener);
       unsubscribe(systemChannelId, listener);
 
-      metrics.connectedChannels
-        .labels({ type: 'eventsource', channel: 'system' })
-        .dec(2);
+      metrics.connectedChannels.labels({ type: 'eventsource', channel: 'system' }).dec(2);
     });
 
     subscribe(accessTokenChannelId, listener);
     subscribe(systemChannelId, listener);
 
-    metrics.connectedChannels
-      .labels({ type: 'eventsource', channel: 'system' })
-      .inc(2);
+    metrics.connectedChannels.labels({ type: 'eventsource', channel: 'system' }).inc(2);
   };
 
   /**
@@ -594,15 +530,11 @@ const startServer = async () => {
       return;
     }
 
-    accountFromRequest(req)
-      .then(() => checkScopes(req, req.log, channelName))
-      .then(() => {
+    accountFromRequest(req).then(() => checkScopes(req, req.log, channelName)).then(() => {
         subscribeHttpToSystemChannel(req, res);
-      })
-      .then(() => {
+    }).then(() => {
         next();
-      })
-      .catch((err) => {
+    }).catch(err => {
         next(err);
       });
   };
@@ -621,7 +553,7 @@ const startServer = async () => {
       return;
     }
 
-    const { statusCode, errorMessage } = extractErrorStatusAndMessage(err);
+    const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
 
     res.writeHead(statusCode, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: errorMessage }));
@@ -633,8 +565,7 @@ const startServer = async () => {
    * @returns {string}
    */
   // @ts-ignore
-  const placeholders = (arr, shift = 0) =>
-    arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
+  const placeholders = (arr, shift = 0) => arr.map((_, i) => `$${i + 1 + shift}`).join(', ');
 
   /**
    * @param {string} listId
@@ -644,10 +575,7 @@ const startServer = async () => {
   const authorizeListAccess = async (listId, req) => {
     const { accountId } = req;
 
-    const result = await pgPool.query(
-      'SELECT id, account_id FROM lists WHERE id = $1 AND account_id = $2 LIMIT 1',
-      [listId, accountId],
-    );
+    const result = await pgPool.query('SELECT id, account_id FROM lists WHERE id = $1 AND account_id = $2 LIMIT 1', [listId, accountId]);
 
     if (result.rows.length === 0) {
       throw new AuthenticationError('List not found');
@@ -664,15 +592,7 @@ const startServer = async () => {
    * @param {boolean=} needsFiltering
    * @returns {SubscriptionListener | undefined}
    */
-  const streamFrom = (
-    channelIds,
-    req,
-    log,
-    output,
-    attachCloseHandler,
-    destinationType,
-    needsFiltering = false,
-  ) => {
+  const streamFrom = (channelIds, req, log, output, attachCloseHandler, destinationType, needsFiltering = false) => {
     log.info({ channelIds }, `Starting stream`);
 
     /**
@@ -681,15 +601,11 @@ const startServer = async () => {
      */
     const transmit = (event, payload) => {
       // TODO: Replace "string"-based delete payloads with object payloads:
-      const encodedPayload =
-        typeof payload === 'object' ? JSON.stringify(payload) : payload;
+      const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
 
       metrics.messagesSent.labels({ type: destinationType }).inc(1);
 
-      log.debug(
-        { event, payload },
-        `Transmitting ${event} to ${req.accountId}`,
-      );
+      log.debug({ event, payload }, `Transmitting ${event} to ${req.accountId}`);
 
       output(event, encodedPayload);
     };
@@ -699,7 +615,7 @@ const startServer = async () => {
     // events also include a queued_at value, but this is being removed shortly.
 
     /** @type {SubscriptionListener} */
-    const listener = (message) => {
+    const listener = message => {
       if (!message?.event || !message?.payload) {
         return;
       }
@@ -716,10 +632,7 @@ const startServer = async () => {
       //
       // The channels that need filtering are determined in the function
       // `channelNameToIds` defined below:
-      if (
-        !needsFiltering ||
-        (event !== 'update' && event !== 'status.update')
-      ) {
+      if (!needsFiltering || (event !== 'update' && event !== 'status.update')) {
         // @ts-expect-error
         transmit(event, payload);
         return;
@@ -729,15 +642,10 @@ const startServer = async () => {
       // filtering of statuses:
 
       // Filter based on language:
-      if (
-        Array.isArray(req.chosenLanguages) &&
+      // @ts-expect-error
+      if (Array.isArray(req.chosenLanguages) && req.chosenLanguages.indexOf(payload.language) === -1) {
         // @ts-expect-error
-        req.chosenLanguages.indexOf(payload.language) === -1
-      ) {
-        log.debug(
-          // @ts-expect-error
-          `Message ${payload.id} filtered by language (${payload.language})`,
-        );
+        log.debug(`Message ${payload.id} filtered by language (${payload.language})`);
         return;
       }
 
@@ -748,11 +656,8 @@ const startServer = async () => {
       }
 
       // Filter based on domain blocks, blocks, mutes, or custom filters:
-      // @ts-expect-error
-      const targetAccountIds = [payload.account.id].concat(
-        // @ts-expect-error
-        payload.mentions.map((item) => item.id),
-      );
+      // @ts-ignore
+      const targetAccountIds = [payload.account.id].concat(payload.mentions.map(item => item.id));
       // @ts-expect-error
       const accountDomain = payload.account.acct.split('@')[1];
 
@@ -765,8 +670,7 @@ const startServer = async () => {
 
         const queries = [
           // @ts-expect-error
-          client.query(
-            `SELECT 1
+          client.query(`SELECT 1
                         FROM blocks
                         WHERE (account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)}))
                            OR (account_id = $2 AND target_account_id = $1)
@@ -774,52 +678,34 @@ const startServer = async () => {
                         SELECT 1
                         FROM mutes
                         WHERE account_id = $1
-                          AND target_account_id IN (${placeholders(targetAccountIds, 2)})`,
-            // @ts-expect-error
-            [req.accountId, payload.account.id].concat(targetAccountIds),
-          ),
+                          AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, payload.account.id].concat(targetAccountIds)),
         ];
 
         if (accountDomain) {
-          queries.push(
-            // @ts-expect-error
-            client.query(
-              'SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2',
-              [req.accountId, accountDomain],
-            ),
-          );
+          // @ts-ignore
+          queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
         }
 
-        // @ts-ignore
+        // @ts-expect-error
         if (!payload.filtered && !req.cachedFilters) {
-          queries.push(
-            // @ts-expect-error
-            client.query(
-              'SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND (filter.expires_at IS NULL OR filter.expires_at > NOW())',
-              [req.accountId],
-            ),
-          );
+          // @ts-expect-error
+          queries.push(client.query('SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND (filter.expires_at IS NULL OR filter.expires_at > NOW())', [req.accountId]));
         }
 
-        Promise.all(queries)
-          .then((values) => {
+        Promise.all(queries).then(values => {
             releasePgConnection();
 
             // Handling blocks & mutes and domain blocks: If one of those applies,
             // then we don't transmit the payload of the event to the client
-            if (
-              // @ts-expect-error
-              values[0].rows.length > 0 ||
-              // @ts-expect-error
-              (accountDomain && values[1].rows.length > 0)
-            ) {
+            // @ts-expect-error
+          if (values[0].rows.length > 0 || (accountDomain && values[1].rows.length > 0)) {
               return;
             }
 
             // If the payload already contains the `filtered` property, it means
             // that filtering has been applied on the ruby on rails side, as
             // such, we don't need to construct or apply the filters in streaming:
-            if (Object.hasOwn(payload, 'filtered')) {
+          if (Object.hasOwn(payload, "filtered")) {
               transmit(event, payload);
               return;
             }
@@ -831,13 +717,10 @@ const startServer = async () => {
               // @ts-expect-error
               const filterRows = values[accountDomain ? 2 : 1].rows;
 
-              // @ts-ignore
+              // @ts-expect-error
               req.cachedFilters = filterRows.reduce((cache, filter) => {
                 if (cache[filter.id]) {
-                  cache[filter.id].keywords.push([
-                    filter.keyword,
-                    filter.whole_word,
-                  ]);
+                cache[filter.id].keywords.push([filter.keyword, filter.whole_word]);
                 } else {
                   cache[filter.id] = {
                     keywords: [[filter.keyword, filter.whole_word]],
@@ -866,12 +749,8 @@ const startServer = async () => {
               // constructing the regular expression
               // @ts-expect-error
               Object.keys(req.cachedFilters).forEach((key) => {
-                // @ts-expect-error
-                req.cachedFilters[key].regexp = new RegExp(
-                  // @ts-expect-error
-                  req.cachedFilters[key].keywords
-                    // @ts-expect-error
-                    .map(([keyword, whole_word]) => {
+              // @ts-expect-error
+              req.cachedFilters[key].regexp = new RegExp(req.cachedFilters[key].keywords.map(([keyword, whole_word]) => {
                       let expr = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
                       if (whole_word) {
@@ -885,10 +764,7 @@ const startServer = async () => {
                       }
 
                       return expr;
-                    })
-                    .join('|'),
-                  'i',
-                );
+              }).join('|'), 'i');
               });
             }
 
@@ -898,31 +774,15 @@ const startServer = async () => {
             if (req.cachedFilters) {
               const status = payload;
               // TODO: Calculate searchableContent in Ruby on Rails:
-              const searchableContent = [
-                status.spoiler_text || '',
-                status.content,
-              ]
-                .concat(
-                  status.poll && status.poll.options
-                    ? status.poll.options.map((option) => option.title)
-                    : [],
-                )
-                .concat(status.media_attachments.map((att) => att.description))
-                .join('\n\n')
-                .replace(/<br\s*\/?>/g, '\n')
-                .replace(/<\/p><p>/g, '\n\n');
-              const searchableTextContent =
-                JSDOM.fragment(searchableContent).textContent;
+              // @ts-expect-error
+            const searchableContent = ([status.spoiler_text || '', status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+            const searchableTextContent = JSDOM.fragment(searchableContent).textContent;
 
               const now = new Date();
-              // @ts-ignore
-              const filter_results = Object.values(req.cachedFilters).reduce(
-                (results, cachedFilter) => {
+            // @ts-expect-error
+            const filter_results = Object.values(req.cachedFilters).reduce((results, cachedFilter) => {
                   // Check the filter hasn't expired before applying:
-                  if (
-                    cachedFilter.expires_at !== null &&
-                    cachedFilter.expires_at < now
-                  ) {
+              if (cachedFilter.expires_at !== null && cachedFilter.expires_at < now) {
                     return results;
                   }
 
@@ -931,9 +791,7 @@ const startServer = async () => {
                     return results;
                   }
 
-                  const keyword_matches = searchableTextContent.match(
-                    cachedFilter.regexp,
-                  );
+              const keyword_matches = searchableTextContent.match(cachedFilter.regexp);
                   if (keyword_matches) {
                     // results is an Array of FilterResult; status_matches is always
                     // null as we only are only applying the keyword-based custom
@@ -942,14 +800,12 @@ const startServer = async () => {
                     results.push({
                       filter: cachedFilter.filter,
                       keyword_matches,
-                      status_matches: null,
+                  status_matches: null
                     });
                   }
 
                   return results;
-                },
-                [],
-              );
+            }, []);
 
               // Send the payload + the FilterResults as the `filtered` property
               // to the streaming connection. To reach this code, the `event` must
@@ -959,20 +815,19 @@ const startServer = async () => {
               // filtered: https://docs.joinmastodon.org/entities/Status/#filtered
               transmit(event, {
                 ...payload,
-                filtered: filter_results,
+              filtered: filter_results
               });
             } else {
               transmit(event, payload);
             }
-          })
-          .catch((err) => {
+        }).catch(err => {
             log.error(err);
             releasePgConnection();
           });
       });
     };
 
-    channelIds.forEach((id) => {
+    channelIds.forEach(id => {
       subscribe(id, listener);
     });
 
@@ -995,9 +850,7 @@ const startServer = async () => {
 
     // In theory we'll always have a channel name, but channelNameFromPath can return undefined:
     if (typeof channelName === 'string') {
-      metrics.connectedChannels
-        .labels({ type: 'eventsource', channel: channelName })
-        .inc();
+      metrics.connectedChannels.labels({ type: 'eventsource', channel: channelName }).inc();
     }
 
     res.setHeader('Content-Type', 'text/event-stream');
@@ -1016,9 +869,7 @@ const startServer = async () => {
       metrics.connectedClients.labels({ type: 'eventsource' }).dec();
       // In theory we'll always have a channel name, but channelNameFromPath can return undefined:
       if (typeof channelName === 'string') {
-        metrics.connectedChannels
-          .labels({ type: 'eventsource', channel: channelName })
-          .dec();
+        metrics.connectedChannels.labels({ type: 'eventsource', channel: channelName }).dec();
       }
 
       clearInterval(heartbeat);
@@ -1036,11 +887,9 @@ const startServer = async () => {
    * @returns {function(string[], SubscriptionListener): void}
    */
 
-  const streamHttpEnd =
-    (req, closeHandler = undefined) =>
-    (ids, listener) => {
+  const streamHttpEnd = (req, closeHandler = undefined) => (ids, listener) => {
       req.on('close', () => {
-        ids.forEach((id) => {
+      ids.forEach(id => {
           unsubscribe(id, listener);
         });
 
@@ -1066,7 +915,7 @@ const startServer = async () => {
 
     ws.send(message, (/** @type {Error|undefined} */ err) => {
       if (err) {
-        req.log.error({ err }, `Failed to send to websocket`);
+        req.log.error({err}, `Failed to send to websocket`);
       }
     });
   };
@@ -1074,7 +923,7 @@ const startServer = async () => {
   /**
    * @param {http.ServerResponse} res
    */
-  const httpNotFound = (res) => {
+  const httpNotFound = res => {
     res.writeHead(404, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: 'Not found' }));
   };
@@ -1097,24 +946,14 @@ const startServer = async () => {
       return;
     }
 
-    channelNameToIds(req, channelName, req.query)
-      .then(({ channelIds, options }) => {
+    channelNameToIds(req, channelName, req.query).then(({ channelIds, options }) => {
         const onSend = streamToHttp(req, res);
         const onEnd = streamHttpEnd(req, subscriptionHeartbeat(channelIds));
 
-        streamFrom(
-          channelIds,
-          // @ts-ignore
-          req,
-          req.log,
-          onSend,
-          onEnd,
-          'eventsource',
-          options.needsFiltering,
-        );
-      })
-      .catch((err) => {
-        const { statusCode, errorMessage } = extractErrorStatusAndMessage(err);
+      // @ts-expect-error
+      streamFrom(channelIds, req, req.log, onSend, onEnd, 'eventsource', options.needsFiltering);
+    }).catch(err => {
+      const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
 
         res.log.info({ err }, 'Eventsource subscription error');
 
@@ -1134,7 +973,7 @@ const startServer = async () => {
    * @param {any} req
    * @returns {string[]}
    */
-  const channelsForUserStream = (req) => {
+  const channelsForUserStream = req => {
     const arr = [`timeline:${req.accountId}`];
 
     if (isInScope(req, ['read', 'read:notifications'])) {
@@ -1150,8 +989,7 @@ const startServer = async () => {
    * @param {StreamParams} params
    * @returns {Promise.<{ channelIds: string[], options: { needsFiltering: boolean } }>}
    */
-  const channelNameToIds = (req, name, params) =>
-    new Promise((resolve, reject) => {
+  const channelNameToIds = (req, name, params) => new Promise((resolve, reject) => {
       switch (name) {
         case 'user':
           resolve({
@@ -1232,9 +1070,7 @@ const startServer = async () => {
             reject(new RequestError('Missing tag name parameter'));
           } else {
             resolve({
-              channelIds: [
-                `timeline:hashtag:${normalizeHashtag(params.tag)}:local`,
-              ],
+          channelIds: [`timeline:hashtag:${normalizeHashtag(params.tag)}:local`],
               options: { needsFiltering: true },
             });
           }
@@ -1246,17 +1082,13 @@ const startServer = async () => {
             return;
           }
 
-          authorizeListAccess(params.list, req)
-            .then(() => {
+      authorizeListAccess(params.list, req).then(() => {
               resolve({
                 channelIds: [`timeline:list:${params.list}`],
                 options: { needsFiltering: false },
               });
-            })
-            .catch(() => {
-              reject(
-                new AuthenticationError('Not authorized to stream this list'),
-              );
+      }).catch(() => {
+        reject(new AuthenticationError('Not authorized to stream this list'));
             });
 
           break;
@@ -1273,10 +1105,7 @@ const startServer = async () => {
   const streamNameFromChannelName = (channelName, params) => {
     if (channelName === 'list' && params.list) {
       return [channelName, params.list];
-    } else if (
-      ['hashtag', 'hashtag:local'].includes(channelName) &&
-      params.tag
-    ) {
+    } else if (['hashtag', 'hashtag:local'].includes(channelName) && params.tag) {
       return [channelName, params.tag];
     } else {
       return [channelName];
@@ -1297,37 +1126,20 @@ const startServer = async () => {
    * @param {StreamParams} params
    * @returns {void}
    */
-  const subscribeWebsocketToChannel = (
-    { websocket, request, logger, subscriptions },
-    channelName,
-    params,
-  ) => {
-    checkScopes(request, logger, channelName)
-      .then(() => channelNameToIds(request, channelName, params))
-      .then(({ channelIds, options }) => {
+  const subscribeWebsocketToChannel = ({ websocket, request, logger, subscriptions }, channelName, params) => {
+    checkScopes(request, logger, channelName).then(() => channelNameToIds(request, channelName, params)).then(({
+      channelIds,
+      options,
+    }) => {
         if (subscriptions[channelIds.join(';')]) {
           return;
         }
 
-        const onSend = streamToWs(
-          request,
-          websocket,
-          streamNameFromChannelName(channelName, params),
-        );
+      const onSend = streamToWs(request, websocket, streamNameFromChannelName(channelName, params));
         const stopHeartbeat = subscriptionHeartbeat(channelIds);
-        const listener = streamFrom(
-          channelIds,
-          request,
-          logger,
-          onSend,
-          undefined,
-          'websocket',
-          options.needsFiltering,
-        );
+      const listener = streamFrom(channelIds, request, logger, onSend, undefined, 'websocket', options.needsFiltering);
 
-        metrics.connectedChannels
-          .labels({ type: 'websocket', channel: channelName })
-          .inc();
+      metrics.connectedChannels.labels({ type: 'websocket', channel: channelName }).inc();
 
         subscriptions[channelIds.join(';')] = {
           channelName,
@@ -1335,20 +1147,17 @@ const startServer = async () => {
           listener,
           stopHeartbeat,
         };
-      })
-      .catch((err) => {
-        const { statusCode, errorMessage } = extractErrorStatusAndMessage(err);
+    }).catch(err => {
+      const {statusCode, errorMessage } = extractErrorStatusAndMessage(err);
 
         logger.error({ err }, 'Websocket subscription error');
 
         // If we have a socket that is alive and open still, send the error back to the client:
         if (websocket.isAlive && websocket.readyState === websocket.OPEN) {
-          websocket.send(
-            JSON.stringify({
+        websocket.send(JSON.stringify({
               error: errorMessage,
-              status: statusCode,
-            }),
-          );
+          status: statusCode
+        }));
         }
       });
   };
@@ -1357,10 +1166,7 @@ const startServer = async () => {
    * @param {WebSocketSession} session
    * @param {string[]} channelIds
    */
-  const removeSubscription = (
-    { request, logger, subscriptions },
-    channelIds,
-  ) => {
+  const removeSubscription = ({ request, logger, subscriptions }, channelIds) => {
     logger.info({ channelIds, accountId: request.accountId }, `Ending stream`);
 
     const subscription = subscriptions[channelIds.join(';')];
@@ -1369,13 +1175,11 @@ const startServer = async () => {
       return;
     }
 
-    channelIds.forEach((channelId) => {
+    channelIds.forEach(channelId => {
       unsubscribe(channelId, subscription.listener);
     });
 
-    metrics.connectedChannels
-      .labels({ type: 'websocket', channel: subscription.channelName })
-      .dec();
+    metrics.connectedChannels.labels({ type: 'websocket', channel: subscription.channelName }).dec();
     subscription.stopHeartbeat();
 
     delete subscriptions[channelIds.join(';')];
@@ -1390,19 +1194,15 @@ const startServer = async () => {
   const unsubscribeWebsocketFromChannel = (session, channelName, params) => {
     const { websocket, request, logger } = session;
 
-    channelNameToIds(request, channelName, params)
-      .then(({ channelIds }) => {
+    channelNameToIds(request, channelName, params).then(({ channelIds }) => {
         removeSubscription(session, channelIds);
-      })
-      .catch((err) => {
-        logger.error({ err }, 'Websocket unsubscribe error');
+    }).catch(err => {
+      logger.error({err}, 'Websocket unsubscribe error');
 
         // If we have a socket that is alive and open still, send the error back to the client:
         if (websocket.isAlive && websocket.readyState === websocket.OPEN) {
           // TODO: Use a better error response here
-          websocket.send(
-            JSON.stringify({ error: 'Error unsubscribing from channel' }),
-          );
+        websocket.send(JSON.stringify({ error: "Error unsubscribing from channel" }));
         }
       });
   };
@@ -1410,11 +1210,7 @@ const startServer = async () => {
   /**
    * @param {WebSocketSession} session
    */
-  const subscribeWebsocketToSystemChannel = ({
-    websocket,
-    request,
-    subscriptions,
-  }) => {
+  const subscribeWebsocketToSystemChannel = ({ websocket, request, subscriptions }) => {
     const accessTokenChannelId = `timeline:access_token:${request.accessTokenId}`;
     const systemChannelId = `timeline:system:${request.accountId}`;
 
@@ -1430,18 +1226,18 @@ const startServer = async () => {
     subscriptions[accessTokenChannelId] = {
       channelName: 'system',
       listener,
-      stopHeartbeat: () => {},
+      stopHeartbeat: () => {
+      },
     };
 
     subscriptions[systemChannelId] = {
       channelName: 'system',
       listener,
-      stopHeartbeat: () => {},
+      stopHeartbeat: () => {
+      },
     };
 
-    metrics.connectedChannels
-      .labels({ type: 'websocket', channel: 'system' })
-      .inc(2);
+    metrics.connectedChannels.labels({ type: 'websocket', channel: 'system' }).inc(2);
   };
 
   /**
@@ -1474,7 +1270,7 @@ const startServer = async () => {
     ws.on('close', function onWebsocketClose() {
       const subscriptions = Object.keys(session.subscriptions);
 
-      subscriptions.forEach((channelIds) => {
+      subscriptions.forEach(channelIds => {
         removeSubscription(session, channelIds.split(';'));
       });
 
@@ -1501,10 +1297,7 @@ const startServer = async () => {
     ws.on('message', (data, isBinary) => {
       if (isBinary) {
         log.warn('Received binary data, closing connection');
-        ws.close(
-          1003,
-          'The mastodon streaming server does not support binary messages',
-        );
+        ws.close(1003, 'The mastodon streaming server does not support binary messages');
         return;
       }
       const message = data.toString('utf8');
@@ -1516,19 +1309,11 @@ const startServer = async () => {
       const { type, stream, ...params } = json;
 
       if (type === 'subscribe') {
-        subscribeWebsocketToChannel(
-          session,
-          // @ts-expect-error
-          firstParam(stream),
-          params,
-        );
+        // @ts-expect-error
+        subscribeWebsocketToChannel(session, firstParam(stream), params);
       } else if (type === 'unsubscribe') {
-        unsubscribeWebsocketFromChannel(
-          session,
-          // @ts-expect-error
-          firstParam(stream),
-          params,
-        );
+        // @ts-expect-error
+        unsubscribeWebsocketFromChannel(session, firstParam(stream), params);
       } else {
         // Unknown action type
       }
@@ -1540,19 +1325,15 @@ const startServer = async () => {
     const location = req.url && url.parse(req.url, true);
 
     if (location && location.query.stream) {
-      subscribeWebsocketToChannel(
-        session,
-        // @ts-expect-error
-        firstParam(location.query.stream),
-        location.query,
-      );
+      // @ts-expect-error
+      subscribeWebsocketToChannel(session, firstParam(location.query.stream), location.query);
     }
   }
 
   wss.on('connection', onConnection);
 
   setInterval(() => {
-    wss.clients.forEach((ws) => {
+    wss.clients.forEach(ws => {
       // @ts-ignore
       if (ws.isAlive === false) {
         ws.terminate();
@@ -1565,7 +1346,7 @@ const startServer = async () => {
     });
   }, 30000);
 
-  attachServerWithConfig(server, (address) => {
+  attachServerWithConfig(server, address => {
     logger.info(`Streaming API now listening on ${address}`);
   });
 
