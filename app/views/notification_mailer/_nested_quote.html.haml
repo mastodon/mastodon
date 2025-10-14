@@ -11,7 +11,7 @@
 %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-status-content
-      = render 'status_content', status: status
+      = render 'notification_mailer/status_content', status: status
 
       %p.email-status-footer
         = link_to l(status.created_at.in_time_zone(time_zone.presence), format: :with_time_zone), web_url("@#{status.account.pretty_acct}/#{status.id}")

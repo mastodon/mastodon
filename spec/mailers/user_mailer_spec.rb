@@ -141,7 +141,9 @@ RSpec.describe UserMailer do
   end
 
   describe '#warning' do
-    let(:strike) { Fabricate(:account_warning, target_account: receiver.account, text: 'dont worry its just the testsuite', action: 'suspend') }
+    let(:status) { Fabricate(:status, account: receiver.account) }
+    let(:quote) { Fabricate(:quote, state: :accepted, status: status) }
+    let(:strike) { Fabricate(:account_warning, target_account: receiver.account, text: 'dont worry its just the testsuite', action: 'suspend', status_ids: [quote.status_id]) }
     let(:mail)   { described_class.warning(receiver, strike) }
 
     it 'renders warning notification' do
