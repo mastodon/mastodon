@@ -678,7 +678,9 @@ const startServer = async () => {
                         SELECT 1
                         FROM mutes
                         WHERE account_id = $1
-                          AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, payload.account.id].concat(targetAccountIds)),
+                          AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, payload.
+                          // @ts-expect-error
+                          account.id].concat(targetAccountIds)),
         ];
 
         if (accountDomain) {
