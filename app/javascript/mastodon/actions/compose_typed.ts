@@ -21,6 +21,10 @@ import { importFetchedStatuses } from './importer';
 import { openModal } from './modal';
 
 const messages = defineMessages({
+  quoteErrorEdit: {
+    id: 'quote_error.edit',
+    defaultMessage: 'Quotes cannot be added when editing a post.',
+  },
   quoteErrorUpload: {
     id: 'quote_error.upload',
     defaultMessage: 'Quoting is not allowed with media attachments.',
@@ -124,7 +128,9 @@ export const quoteComposeByStatus = createAppThunk(
         false,
       );
 
-    if (composeState.get('poll')) {
+    if (composeState.get('id')) {
+      dispatch(showAlert({ message: messages.quoteErrorEdit }));
+    } else if (composeState.get('poll')) {
       dispatch(showAlert({ message: messages.quoteErrorPoll }));
     } else if (
       composeState.get('is_uploading') ||
@@ -184,7 +190,8 @@ export const pasteLinkCompose = createDataLoadingThunk(
       composeState.get('quoted_status_id') ||
       composeState.get('is_submitting') ||
       composeState.get('poll') ||
-      composeState.get('is_uploading')
+      composeState.get('is_uploading') ||
+      composeState.get('id')
     )
       return;
 
