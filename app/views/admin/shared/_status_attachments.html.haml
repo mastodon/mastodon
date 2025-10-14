@@ -29,7 +29,7 @@
   - if status.quote.accepted? && status.quote.quoted_status.present?
     - if is_quote
       .status__quote-author-button
-        %span= t('admin.statuses.quoted_to_html', acct_link: acct(status.account))
+        %span= t('admin.statuses.quoted_to_html', acct: acct(status.account))
     - else
       .status__quote
         = render partial: 'admin/shared/status', object: status.quote.quoted_status, locals: { is_quote: true }
