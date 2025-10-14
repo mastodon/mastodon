@@ -35,7 +35,7 @@ RSpec.describe 'Domain Allows' do
           {
             id: domain_allow.id.to_s,
             domain: domain_allow.domain,
-            created_at: domain_allow.created_at.strftime('%Y-%m-%dT%H:%M:%S.%LZ'),
+            created_at: domain_allow.created_at.iso8601(3),
           }
         end
       end
