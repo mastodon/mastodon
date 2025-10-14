@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/reject-any-type */
 // @ts-check
 
 import fs from 'node:fs';
@@ -60,7 +61,7 @@ initializeLogLevel(process.env, environment);
  * connection, this is why it accepts a `req` argument.
  * @param {string} json
  * @param {any?} req
- * @returns {Object.<string, any>|null}
+ * @returns {Object.<string, unknown>|null}
  */
 const parseJSON = (json, req) => {
   try {
@@ -249,7 +250,7 @@ const startServer = async () => {
   });
 
   /**
-   * @type {Object.<string, Array.<function(Object<string, any>): void>>}
+   * @type {Object.<string, Array.<function(Object<string, unknown>): void>>}
    */
   const subs = {};
 
@@ -389,7 +390,7 @@ const startServer = async () => {
 
   /**
    * @param {string} token
-   * @param {any} req
+   * @param {Record<string, unknown>} req
    * @returns {Promise<ResolvedAccount>}
    */
   const accountFromToken = async (token, req) => {
@@ -661,7 +662,7 @@ const startServer = async () => {
    * @param {undefined | function(string[], SubscriptionListener): void} attachCloseHandler
    * @param {'websocket' | 'eventsource'} destinationType
    * @param {boolean=} needsFiltering
-   * @returns {SubscriptionListener}
+   * @returns {SubscriptionListener | undefined}
    */
   const streamFrom = (
     channelIds,
@@ -719,6 +720,7 @@ const startServer = async () => {
         !needsFiltering ||
         (event !== 'update' && event !== 'status.update')
       ) {
+        // @ts-expect-error
         transmit(event, payload);
         return;
       }
@@ -729,9 +731,11 @@ const startServer = async () => {
       // Filter based on language:
       if (
         Array.isArray(req.chosenLanguages) &&
+        // @ts-expect-error
         req.chosenLanguages.indexOf(payload.language) === -1
       ) {
         log.debug(
+          // @ts-expect-error
           `Message ${payload.id} filtered by language (${payload.language})`,
         );
         return;
@@ -744,10 +748,12 @@ const startServer = async () => {
       }
 
       // Filter based on domain blocks, blocks, mutes, or custom filters:
-      // @ts-ignore
+      // @ts-expect-error
       const targetAccountIds = [payload.account.id].concat(
+        // @ts-expect-error
         payload.mentions.map((item) => item.id),
       );
+      // @ts-expect-error
       const accountDomain = payload.account.acct.split('@')[1];
 
       // TODO: Move this logic out of the message handling loop
@@ -758,7 +764,7 @@ const startServer = async () => {
         }
 
         const queries = [
-          // @ts-ignore
+          // @ts-expect-error
           client.query(
             `SELECT 1
                         FROM blocks
@@ -769,13 +775,14 @@ const startServer = async () => {
                         FROM mutes
                         WHERE account_id = $1
                           AND target_account_id IN (${placeholders(targetAccountIds, 2)})`,
+            // @ts-expect-error
             [req.accountId, payload.account.id].concat(targetAccountIds),
           ),
         ];
 
         if (accountDomain) {
-          // @ts-ignore
           queries.push(
+            // @ts-expect-error
             client.query(
               'SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2',
               [req.accountId, accountDomain],
@@ -785,8 +792,8 @@ const startServer = async () => {
 
         // @ts-ignore
         if (!payload.filtered && !req.cachedFilters) {
-          // @ts-ignore
           queries.push(
+            // @ts-expect-error
             client.query(
               'SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND (filter.expires_at IS NULL OR filter.expires_at > NOW())',
               [req.accountId],
@@ -801,7 +808,9 @@ const startServer = async () => {
             // Handling blocks & mutes and domain blocks: If one of those applies,
             // then we don't transmit the payload of the event to the client
             if (
+              // @ts-expect-error
               values[0].rows.length > 0 ||
+              // @ts-expect-error
               (accountDomain && values[1].rows.length > 0)
             ) {
               return;
@@ -819,6 +828,7 @@ const startServer = async () => {
             // TODO: Move this logic out of the message handling lifecycle
             // @ts-ignore
             if (!req.cachedFilters) {
+              // @ts-expect-error
               const filterRows = values[accountDomain ? 2 : 1].rows;
 
               // @ts-ignore
@@ -854,11 +864,13 @@ const startServer = async () => {
               // needs to be done in a separate loop as the database returns one
               // filterRow per keyword, so we need all the keywords before
               // constructing the regular expression
-              // @ts-ignore
+              // @ts-expect-error
               Object.keys(req.cachedFilters).forEach((key) => {
-                // @ts-ignore
+                // @ts-expect-error
                 req.cachedFilters[key].regexp = new RegExp(
+                  // @ts-expect-error
                   req.cachedFilters[key].keywords
+                    // @ts-expect-error
                     .map(([keyword, whole_word]) => {
                       let expr = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -886,7 +898,6 @@ const startServer = async () => {
             if (req.cachedFilters) {
               const status = payload;
               // TODO: Calculate searchableContent in Ruby on Rails:
-              // @ts-ignore
               const searchableContent = [
                 status.spoiler_text || '',
                 status.content,
@@ -1091,9 +1102,9 @@ const startServer = async () => {
         const onSend = streamToHttp(req, res);
         const onEnd = streamHttpEnd(req, subscriptionHeartbeat(channelIds));
 
-        // @ts-ignore
         streamFrom(
           channelIds,
+          // @ts-ignore
           req,
           req.log,
           onSend,
@@ -1320,6 +1331,7 @@ const startServer = async () => {
 
         subscriptions[channelIds.join(';')] = {
           channelName,
+          // @ts-expect-error
           listener,
           stopHeartbeat,
         };
@@ -1504,9 +1516,19 @@ const startServer = async () => {
       const { type, stream, ...params } = json;
 
       if (type === 'subscribe') {
-        subscribeWebsocketToChannel(session, firstParam(stream), params);
+        subscribeWebsocketToChannel(
+          session,
+          // @ts-expect-error
+          firstParam(stream),
+          params,
+        );
       } else if (type === 'unsubscribe') {
-        unsubscribeWebsocketFromChannel(session, firstParam(stream), params);
+        unsubscribeWebsocketFromChannel(
+          session,
+          // @ts-expect-error
+          firstParam(stream),
+          params,
+        );
       } else {
         // Unknown action type
       }
@@ -1520,6 +1542,7 @@ const startServer = async () => {
     if (location && location.query.stream) {
       subscribeWebsocketToChannel(
         session,
+        // @ts-expect-error
         firstParam(location.query.stream),
         location.query,
       );
