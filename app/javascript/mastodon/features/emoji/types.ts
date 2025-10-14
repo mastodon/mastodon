@@ -4,7 +4,6 @@ import type { FlatCompactEmoji, Locale } from 'emojibase';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 import type { CustomEmoji } from '@/mastodon/models/custom_emoji';
-import type { LimitedCache } from '@/mastodon/utils/cache';
 
 import type {
   EMOJI_MODE_NATIVE,
@@ -48,11 +47,10 @@ export interface EmojiStateCustom {
   data?: CustomEmojiRenderFields;
 }
 export type EmojiState = EmojiStateUnicode | EmojiStateCustom;
+
 export type EmojiLoadedState =
   | Required<EmojiStateUnicode>
   | Required<EmojiStateCustom>;
-
-export type EmojiStateMap = LimitedCache<string, EmojiState>;
 
 export type CustomEmojiMapArg =
   | ExtraCustomEmojiMap
@@ -64,9 +62,3 @@ export type ExtraCustomEmojiMap = Record<
   string,
   Pick<CustomEmojiData, 'shortcode' | 'static_url' | 'url'>
 >;
-
-export interface TwemojiBorderInfo {
-  hexCode: string;
-  hasLightBorder: boolean;
-  hasDarkBorder: boolean;
-}

@@ -14,7 +14,7 @@ import { polymorphicForwardRef } from '@/types/polymorphic';
 import { AnimateEmojiProvider, CustomEmojiProvider } from './context';
 import { textToEmojis } from './index';
 
-interface EmojiHTMLProps {
+export interface EmojiHTMLProps {
   htmlString: string;
   extraEmojis?: CustomEmojiMapArg;
   className?: string;
