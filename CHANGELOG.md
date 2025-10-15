@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.7] - 2025-10-15
+
+### Fixed
+
+- Fix forwarder being called with `nil` status when quote post is soft-deleted (#36463 by @ClearlyClaire)
+- Fix moderation warning e-mails that include posts (#36462 by @ClearlyClaire)
+- Fix allow_referrer_origin typo (#36460 by @ShadowJonathan)
+
 ## [4.4.6] - 2025-10-13
 
 ### Security
