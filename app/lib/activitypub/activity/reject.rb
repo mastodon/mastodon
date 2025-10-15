@@ -5,10 +5,13 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
     return reject_follow_for_relay if relay_follow?
     return follow_request_from_object.reject! unless follow_request_from_object.nil?
     return UnfollowService.new.call(follow_from_object.account, @account) unless follow_from_object.nil?
+    return reject_quote!(quote_request_from_object) unless quote_request_from_object.nil?
 
     case @object['type']
     when 'Follow'
       reject_embedded_follow
+    when 'QuoteRequest'
+      reject_embedded_quote_request
     end
   end
 
@@ -27,6 +30,20 @@ class ActivityPub::Activity::Reject < ActivityPub::Activity
 
   def reject_follow_for_relay
     relay.update!(state: :rejected)
+  end
+
+  def reject_embedded_quote_request
+    quote = quote_from_request_json(@object)
+    return unless quote.present? && quote.status.local?
+
+    reject_quote!(quoting_status.quote)
+  end
+
+  def reject_quote!(quote)
+    return unless quote.quoted_account == @account && quote.status.local?
+
+    # TODO: broadcast an update?
+    quote.reject!
   end
 
   def relay

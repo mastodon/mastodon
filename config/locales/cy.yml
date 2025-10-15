@@ -202,6 +202,7 @@ cy:
         create_relay: Creu Cyfnewidiad
         create_unavailable_domain: Creu Parth Ddim ar Gael
         create_user_role: Creu Rôl
+        create_username_block: Creu Rheol Enw Defnyddiwr
         demote_user: Diraddio Defnyddiwr
         destroy_announcement: Dileu Cyhoeddiad
         destroy_canonical_email_block: Dileu Rhwystr E-bost
@@ -215,6 +216,7 @@ cy:
         destroy_status: Dileu Postiad
         destroy_unavailable_domain: Dileu Parth Ddim ar Gael
         destroy_user_role: Dileu Rôl
+        destroy_username_block: Dileu Rheol Enw Defnyddiwr
         disable_2fa_user: Diffodd 2FA
         disable_custom_emoji: Analluogi Emoji Addasedig
         disable_relay: Analluogi Cyfnewidiad
@@ -249,6 +251,7 @@ cy:
         update_report: Diweddaru Adroddiad
         update_status: Diweddaru Postiad
         update_user_role: Diweddaru Rôl
+        update_username_block: Diweddaru Rheol Enw Defnyddiwr
       actions:
         approve_appeal_html: Mae %{name} wedi cymeradwyo penderfyniad cymedroli gan %{target}
         approve_user_html: Mae %{name} wedi cymeradwyo cofrestru gan %{target}
@@ -267,6 +270,7 @@ cy:
         create_relay_html: Creodd %{name} gyfnewidiad %{target}
         create_unavailable_domain_html: Mae %{name} wedi stopio danfon i barth %{target}
         create_user_role_html: Mae %{name} wedi creu rôl %{target}
+        create_username_block_html: Mae %{name} wedi ychwanegu rheol ar gyfer enwau defnyddwyr sy'n cynnwys %{target}
         demote_user_html: Mae %{name} wedi israddio defnyddiwr %{target}
         destroy_announcement_html: Mae %{name} wedi dileu cyhoeddiad %{target}
         destroy_canonical_email_block_html: Mae %{name} wedi dad-rwystro parth e-bost %{target}
@@ -280,6 +284,7 @@ cy:
         destroy_status_html: Mae %{name} wedi tynnu postiad gan %{target}
         destroy_unavailable_domain_html: Mae %{name} wedi ailddechrau anfon i barth %{target}
         destroy_user_role_html: Mae %{name} wedi dileu rôl %{target}
+        destroy_username_block_html: Mae %{name} wedi dileu rheol ar gyfer enwau defnyddwyr sy'n cynnwys %{target}
         disable_2fa_user_html: Mae %{name} wedi analluogi gofyniad dau ffactor ar gyfer defnyddiwr %{target}
         disable_custom_emoji_html: Mae %{name} wedi analluogi emoji %{target}
         disable_relay_html: Analluogodd %{name} y cyfnewidiad %{target}
@@ -314,6 +319,7 @@ cy:
         update_report_html: Mae %{name} wedi diweddaru adroddiad %{target}
         update_status_html: Mae %{name} wedi diweddaru postiad gan %{target}
         update_user_role_html: Mae %{name} wedi newid rôl %{target}
+        update_username_block_html: Mae %{name} wedi diweddaru rheol ar gyfer enwau defnyddwyr sy'n cynnwys %{target}
       deleted_account: cyfrif wedi'i ddileu
       empty: Dim logiau ar gael.
       filter_by_action: Hidlo yn ôl gweithred
@@ -898,6 +904,10 @@ cy:
         all: I bawb
         disabled: I neb
         users: I ddefnyddwyr lleol wedi'u mewngofnodi
+      feed_access:
+        modes:
+          authenticated: Defnyddwyr dilys yn unig
+          public: Pawb
       registrations:
         moderation_recommandation: Gwnewch yn siŵr bod gennych chi dîm cymedroli digonol ac adweithiol cyn i chi agor cofrestriadau i bawb!
         preamble: Rheoli pwy all greu cyfrif ar eich gweinydd.
@@ -1157,6 +1167,25 @@ cy:
           zero: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
       title: Argymhellion a Threndiau
       trending: Trendio
+    username_blocks:
+      add_new: Ychwanegu newydd
+      block_registrations: Rhwystro cofrestriadau
+      comparison:
+        contains: Yn cynnwys
+        equals: Yn hafal i
+      contains_html: Yn cynnwys %{string}
+      created_msg: Rheol enw defnyddiwr wedi'i chreu'n llwyddiannus
+      delete: Dileu
+      edit:
+        title: Golygu rheol enw defnyddiwr
+      matches_exactly_html: Yn hafal i %{string}
+      new:
+        create: Creu rheol
+        title: Creu rheol enw defnyddiwr newydd
+      no_username_block_selected: Heb newid unrhyw reolau enw defnyddiwr gan nad oes un ohonyn nhw wedi'u dewis
+      not_permitted: Dim caniatâd
+      title: Rheolau enw defnyddiwr
+      updated_msg: Rheol enw defnyddiwr wedi'i diweddaru'n llwyddiannus
     warning_presets:
       add_new: Ychwanegu newydd
       delete: Dileu
@@ -1425,6 +1454,10 @@ cy:
     basic_information: Gwybodaeth Sylfaenol
     hint_html: "<strong>Addaswch yr hyn y mae pobl yn ei weld ar eich proffil cyhoeddus ac wrth ymyl eich postiadau.</strong> Mae pobl eraill yn fwy tebygol o'ch dilyn yn ôl a rhyngweithio â chi pan fydd gennych broffil wedi'i lenwi a llun proffil."
     other: Arall
+  emoji_styles:
+    auto: Awto
+    native: Cynhenid
+    twemoji: Twemoji
   errors:
     '400': Roedd y cais a gyflwynwyd gennych yn annilys neu wedi'i gamffurfio.
     '403': Nid oes gennych ganiatâd i weld y dudalen hon.
@@ -1590,7 +1623,7 @@ cy:
       domain_blocking_html:
         few: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
         many: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
-        one: Rydych ar fin <strong>disodli eich rhestr blociau parth</strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
+        one: Rydych ar fin <strong>amnewid eich rhestr blociau parth</strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
         other: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
         two: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong.
         zero: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
@@ -1714,6 +1747,13 @@ cy:
       expires_at: Yn dod i ben ar
       uses: Defnyddiau
     title: Gwahodd pobl
+  link_preview:
+    author_html: Yn ôl %{name}
+    potentially_sensitive_content:
+      action: Cliciwch i ddangos
+      confirm_visit: Ydych chi'n siŵr eich bod chi eisiau agor y ddolen hon?
+      hide_button: Cuddio
+      label: Cynnwys a allai fod yn sensitif
   lists:
     errors:
       limit: Rydych chi wedi cyrraedd y nifer mwyaf o restrau
@@ -1814,6 +1854,10 @@ cy:
       title: Crywbylliad newydd
     poll:
       subject: Mae arolwg gan %{name} wedi dod i ben
+    quote:
+      body: 'Mae %{name} wedi dyfynnu eich postiad :'
+      subject: Mae %{name} wedi dyfynnu eich postiad
+      title: Dyfyniad newydd
     reblog:
       body: 'Cafodd eich postiad ei hybu gan %{name}:'
       subject: Rhoddodd %{name} hwb i'ch postiad
@@ -1862,6 +1906,9 @@ cy:
       self_vote: Nid oes modd i chi bleidleisio yn eich polau eich hun
       too_few_options: rhaid cael mwy nag un eitem
       too_many_options: ni all gynnwys mwy na %{max} eitem
+    vote: Pleidleisio
+  posting_defaults:
+    explanation: Bydd y gosodiadau hyn yn cael eu defnyddio fel rhagosodiadau pan fyddwch chi'n creu postiadau newydd, ond gallwch chi eu golygu fesul postiad o fewn y cyfansoddwr.
   preferences:
     other: Arall
     posting_defaults: Rhagosodiadau postio
@@ -1898,7 +1945,7 @@ cy:
     last_active: Yn weithgar ddiwethaf
     most_recent: Y diweddaraf
     moved: Wedi symud
-    mutual: Cydfudd
+    mutual: Yn Gyffredin
     primary: Cynradd
     relationship: Perthynas
     remove_selected_domains: Tynnu'r holl ddilynwyr o'r parthau a ddewiswyd
@@ -2029,6 +2076,9 @@ cy:
         zero: "%{count} fideo"
     boosted_from_html: Wedi'i hybu o %{acct_link}
     content_warning: 'Rhybudd cynnwys: %{warning}'
+    content_warnings:
+      hide: Cuddio'r postiad
+      show: Dangos rhagor
     default_language: Yr un fath a'r iaith rhyngwyneb
     disallowed_hashtags:
       few: 'yn cynnwys yr hashnod gwaharddedig: %{tags}'
@@ -2040,6 +2090,7 @@ cy:
     edited_at_html: Wedi'i olygu %{date}
     errors:
       in_reply_not_found: Nid yw'n ymddangos bod y postiad rydych chi'n ceisio ei ateb yn bodoli.
+      quoted_status_not_found: Nid yw'n ymddangos bod y postiad rydych chi'n ceisio'i ddyfynnu yn bodoli.
     over_character_limit: wedi mynd y tu hwnt i'r terfyn nodau o %{max}
     pin_errors:
       direct: Nid oes modd pinio postiadau sy'n weladwy i ddefnyddwyr a grybwyllwyd yn unig
@@ -2047,18 +2098,17 @@ cy:
       ownership: Nid oes modd pinio postiad rhywun arall
       reblog: Nid oes modd pinio hwb
     quote_policies:
-      followers: Dilynwyr a defnyddwyr wedi'u crybwyll
-      nobody: Dim ond defnyddwyr wedi'u crybwyll
+      followers: Dilynwyr yn unig
+      nobody: Dim ond fi
       public: Pawb
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Uniongyrchol
-      private: Dilynwyr yn unig
-      private_long: Dangos i ddilynwyr yn unig
+      direct: Crybwylliad preifat
+      private: Dim ond dilynwyr
       public: Cyhoeddus
-      public_long: Gall pawb weld
-      unlisted: Heb ei restru
-      unlisted_long: Gall pawb weld, ond heb eu rhestru ar ffrydiau cyhoeddus
+      public_long: Unrhyw un ar ac oddi ar Mastodon
+      unlisted: Tawel cyhoeddus
+      unlisted_long: Wedi'i guddio o ganlyniadau chwilio Mastodon, trendio, a llinellau amser cyhoeddus
   statuses_cleanup:
     enabled: Dileu hen bostiadau'n awtomatig
     enabled_hint: Yn dileu eich postiadau yn awtomatig ar ôl iddyn nhw gyrraedd trothwy oed penodedig, oni bai eu bod yn cyfateb i un o'r eithriadau isod

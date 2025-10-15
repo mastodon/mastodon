@@ -35,6 +35,7 @@ class UserSettings
     setting :expand_content_warnings, default: false
     setting :display_media, default: 'default', in: %w(default show_all hide_all)
     setting :auto_play, default: false
+    setting :emoji_style, default: 'auto', in: %w(auto native twemoji)
   end
 
   namespace :notification_emails do
@@ -42,6 +43,7 @@ class UserSettings
     setting :reblog, default: false
     setting :favourite, default: false
     setting :mention, default: true
+    setting :quote, default: true
     setting :follow_request, default: true
     setting :report, default: true
     setting :pending_account, default: true

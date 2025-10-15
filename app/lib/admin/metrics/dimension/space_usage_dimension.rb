@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension::BaseDimension
-  include Redisable
   include ActionView::Helpers::NumberHelper
+  include Admin::Metrics::Dimension::StoreHelper
 
   def key
     'space_usage'
@@ -27,20 +27,18 @@ class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension
   end
 
   def redis_size
-    value = redis_info['used_memory']
-
     {
       key: 'redis',
-      human_key: 'Redis',
-      value: value.to_s,
+      human_key: store_name,
+      value: store_size.to_s,
       unit: 'bytes',
-      human_value: number_to_human_size(value),
+      human_value: number_to_human_size(store_size),
     }
   end
 
   def media_size
     value = [
-      MediaAttachment.sum(Arel.sql('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')),
+      MediaAttachment.sum(MediaAttachment.combined_media_file_size),
       CustomEmoji.sum(:image_file_size),
       PreviewCard.sum(:image_file_size),
       Account.sum(Arel.sql('COALESCE(avatar_file_size, 0) + COALESCE(header_file_size, 0)')),
@@ -55,10 +53,6 @@ class Admin::Metrics::Dimension::SpaceUsageDimension < Admin::Metrics::Dimension
       unit: 'bytes',
       human_value: number_to_human_size(value),
     }
-  end
-
-  def redis_info
-    @redis_info ||= redis.info
   end
 
   def search_size

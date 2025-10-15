@@ -53,6 +53,7 @@ const AutosuggestTextarea = forwardRef(({
   onFocus,
   autoFocus = true,
   lang,
+  className,
 }, textareaRef) => {
 
   const [suggestionsHidden, setSuggestionsHidden] = useState(true);
@@ -149,10 +150,7 @@ const AutosuggestTextarea = forwardRef(({
   }, [suggestions, onSuggestionSelected, textareaRef]);
 
   const handlePaste = useCallback((e) => {
-    if (e.clipboardData && e.clipboardData.files.length === 1) {
-      onPaste(e.clipboardData.files);
-      e.preventDefault();
-    }
+    onPaste(e);
   }, [onPaste]);
 
   // Show the suggestions again whenever they change and the textarea is focused
@@ -192,7 +190,7 @@ const AutosuggestTextarea = forwardRef(({
   };
 
   return (
-    <div className='autosuggest-textarea'>
+    <div className={classNames('autosuggest-textarea', className)}>
       <Textarea
         ref={textareaRef}
         className='autosuggest-textarea__textarea'

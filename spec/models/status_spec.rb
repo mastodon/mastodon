@@ -191,6 +191,19 @@ RSpec.describe Status do
     end
   end
 
+  describe '.not_replying_to_account' do
+    let(:account) { Fabricate :account }
+    let!(:status_from_account) { Fabricate :status, account: account }
+    let!(:reply_to_account_status) { Fabricate :status, thread: status_from_account }
+    let!(:reply_to_other) { Fabricate :status, thread: Fabricate(:status) }
+
+    it 'returns records not in reply to provided account' do
+      expect(described_class.not_replying_to_account(account))
+        .to not_include(reply_to_account_status)
+        .and include(reply_to_other)
+    end
+  end
+
   describe '#untrusted_favourites_count' do
     before do
       alice.update(domain: 'example.com')
@@ -360,6 +373,28 @@ RSpec.describe Status do
       expect(described_class.only_reblogs)
         .to include(reblog)
         .and not_include(status)
+    end
+  end
+
+  describe '.only_polls' do
+    let!(:poll_status) { Fabricate :status, poll: Fabricate(:poll) }
+    let!(:no_poll_status) { Fabricate :status }
+
+    it 'returns the expected statuses' do
+      expect(described_class.only_polls)
+        .to include(poll_status)
+        .and not_include(no_poll_status)
+    end
+  end
+
+  describe '.without_polls' do
+    let!(:poll_status) { Fabricate :status, poll: Fabricate(:poll) }
+    let!(:no_poll_status) { Fabricate :status }
+
+    it 'returns the expected statuses' do
+      expect(described_class.without_polls)
+        .to not_include(poll_status)
+        .and include(no_poll_status)
     end
   end
 

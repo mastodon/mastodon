@@ -49,8 +49,8 @@ class Tag < ApplicationRecord
 
   validates :name, presence: true, format: { with: HASHTAG_NAME_RE }
   validates :display_name, format: { with: HASHTAG_NAME_RE }
-  validate :validate_name_change, if: -> { !new_record? && name_changed? }
-  validate :validate_display_name_change, if: -> { !new_record? && display_name_changed? }
+  validate :validate_name_change, on: :update, if: :name_changed?
+  validate :validate_display_name_change, on: :update, if: :display_name_changed?
 
   scope :pending_review, -> { unreviewed.where.not(requested_review_at: nil) }
   scope :usable, -> { where(usable: [true, nil]) }
@@ -164,9 +164,10 @@ class Tag < ApplicationRecord
   end
 
   def validate_display_name_change
-    unless HashtagNormalizer.new.normalize(display_name).casecmp(name).zero?
-      errors.add(:display_name,
-                 I18n.t('tags.does_not_match_previous_name'))
-    end
+    errors.add(:display_name, I18n.t('tags.does_not_match_previous_name')) unless display_name_matches_name?
+  end
+
+  def display_name_matches_name?
+    HashtagNormalizer.new.normalize(display_name).casecmp(name).zero?
   end
 end

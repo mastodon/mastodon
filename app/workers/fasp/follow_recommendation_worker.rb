@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-class Fasp::FollowRecommendationWorker
-  include Sidekiq::Worker
-
-  sidekiq_options queue: 'fasp', retry: 0
+class Fasp::FollowRecommendationWorker < Fasp::BaseWorker
+  sidekiq_options retry: 0
 
   def perform(account_id)
     return unless Mastodon::Feature.fasp_enabled?
@@ -20,14 +18,16 @@ class Fasp::FollowRecommendationWorker
     fetch_service = ActivityPub::FetchRemoteActorService.new
 
     follow_recommendation_providers.each do |provider|
-      Fasp::Request.new(provider).get("/follow_recommendation/v0/accounts?#{params}").each do |uri|
-        next if Account.where(uri:).any?
+      with_provider(provider) do
+        Fasp::Request.new(provider).get("/follow_recommendation/v0/accounts?#{params}").each do |uri|
+          next if Account.where(uri:).any?
 
-        new_account = fetch_service.call(uri)
+          new_account = fetch_service.call(uri)
 
-        if new_account.present?
-          Fasp::FollowRecommendation.find_or_create_by(requesting_account: account, recommended_account: new_account)
-          async_refresh.increment_result_count(by: 1)
+          if new_account.present?
+            Fasp::FollowRecommendation.find_or_create_by(requesting_account: account, recommended_account: new_account)
+            async_refresh.increment_result_count(by: 1)
+          end
         end
       end
     end

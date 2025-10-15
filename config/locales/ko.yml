@@ -181,12 +181,13 @@ ko:
         create_canonical_email_block: 이메일 차단 생성
         create_custom_emoji: 커스텀 에모지 생성
         create_domain_allow: 도메인 허용 생성
-        create_domain_block: 도메인 차단 추가
+        create_domain_block: 도메인 차단 만들기
         create_email_domain_block: 이메일 도메인 차단 생성
         create_ip_block: IP 규칙 만들기
         create_relay: 릴레이 생성
         create_unavailable_domain: 사용 불가능한 도메인 생성
         create_user_role: 역할 생성
+        create_username_block: 새 사용자명 규칙 만들기
         demote_user: 사용자 강등
         destroy_announcement: 공지사항 삭제
         destroy_canonical_email_block: 이메일 차단 삭제
@@ -200,6 +201,7 @@ ko:
         destroy_status: 게시물 삭제
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
         destroy_user_role: 역할 삭제
+        destroy_username_block: 사용자명 규칙 삭제
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
         disable_relay: 릴레이 비활성화
@@ -234,6 +236,7 @@ ko:
         update_report: 신고 업데이트
         update_status: 게시물 수정
         update_user_role: 역할 수정
+        update_username_block: 사용자명 규칙 업데이트
       actions:
         approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 승인했습니다"
         approve_user_html: "%{name} 님이 %{target} 님의 가입을 승인했습니다"
@@ -252,6 +255,7 @@ ko:
         create_relay_html: "%{name} 님이 릴레이 %{target}를 생성했습니다"
         create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지했습니다"
         create_user_role_html: "%{name} 님이 %{target} 역할을 생성했습니다"
+        create_username_block_html: "%{name} 님이 %{target}를 포함하는 사용자명에 대한 규칙을 생성했습니다"
         demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
         destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단 해제했습니다"
@@ -265,6 +269,7 @@ ko:
         destroy_status_html: "%{name} 님이 %{target} 님의 게시물을 삭제했습니다"
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
         destroy_user_role_html: "%{name} 님이 %{target} 역할을 삭제했습니다"
+        destroy_username_block_html: "%{name} 님이 %{target}를 포함하는 사용자명에 대한 규칙을 삭제했습니다"
         disable_2fa_user_html: "%{name} 님이 사용자 %{target} 님의 2단계 인증을 비활성화 했습니다"
         disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화했습니다"
         disable_relay_html: "%{name} 님이 릴레이 %{target}를 비활성화했습니다"
@@ -299,6 +304,7 @@ ko:
         update_report_html: "%{name} 님이 신고 %{target}를 업데이트 했습니다"
         update_status_html: "%{name} 님이 %{target}의 게시물을 업데이트했습니다"
         update_user_role_html: "%{name} 님이 %{target} 역할을 수정했습니다"
+        update_username_block_html: "%{name} 님이 %{target}를 포함하는 사용자명에 대한 규칙을 수정했습니다"
       deleted_account: 계정을 삭제했습니다
       empty: 로그를 찾을 수 없습니다
       filter_by_action: 동작 별 필터
@@ -1069,6 +1075,25 @@ ko:
           other: 지난 주 동안 %{count} 명의 사람들이 사용했습니다
       title: 추천과 유행
       trending: 유행 중
+    username_blocks:
+      add_new: 새로 추가
+      block_registrations: 가입 차단
+      comparison:
+        contains: 포함
+        equals: 일치
+      contains_html: "%{string} 포함"
+      created_msg: 사용자명 규칙을 생성했습니다
+      delete: 삭제
+      edit:
+        title: 사용자명 규칙 편집
+      matches_exactly_html: "%{string}과 일치"
+      new:
+        create: 규칙 만들기
+        title: 새 유저네임 규칙 만들기
+      no_username_block_selected: 아무 것도 선택 되지 않아 어떤 사용자명 규칙도 변경 되지 않았습니다
+      not_permitted: 허용하지 않음
+      title: 사용자명 규칙
+      updated_msg: 사용자명 규칙을 변경했습니다
     warning_presets:
       add_new: 새로 추가
       delete: 삭제
@@ -1332,6 +1357,10 @@ ko:
     basic_information: 기본 정보
     hint_html: "<strong>사람들이 공개 프로필을 보고서 게시물을 볼 때를 위한 프로필을 꾸밉니다.</strong> 프로필과 프로필 사진을 채우면 다른 사람들이 나를 팔로우하고 나와 교류할 기회가 더 많아집니다."
     other: 기타
+  emoji_styles:
+    auto: 자동
+    native: 시스템 기본
+    twemoji: 트웨모지
   errors:
     '400': 제출한 요청이 올바르지 않습니다.
     '403': 이 페이지를 표시할 권한이 없습니다.
@@ -1621,6 +1650,10 @@ ko:
       title: 새 답글
     poll:
       subject: "%{name}의 설문이 종료됨"
+    quote:
+      body: '당신의 게시물을 %{name} 님이 인용했습니다:'
+      subject: "%{name} 님이 내 게시물을 인용했습니다"
+      title: 새 인용
     reblog:
       body: '당신의 게시물을 %{name} 님이 부스트 했습니다:'
       subject: "%{name} 님이 내 게시물을 부스트 했습니다"
@@ -1669,6 +1702,7 @@ ko:
       self_vote: 자신이 만든 설문에는 투표할 수 없음
       too_few_options: 둘 이상의 항목이 있어야 함
       too_many_options: 항목은 %{max}개를 넘을 수 없습니다
+    vote: 투표
   preferences:
     other: 기타
     posting_defaults: 게시물 기본설정
@@ -1827,6 +1861,7 @@ ko:
     edited_at_html: "%{date}에 편집됨"
     errors:
       in_reply_not_found: 답장하려는 게시물이 존재하지 않습니다.
+      quoted_status_not_found: 인용하려는 게시물이 존재하지 않습니다.
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
       direct: 멘션된 사용자들에게만 보이는 게시물은 고정될 수 없습니다
@@ -1834,18 +1869,16 @@ ko:
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
     quote_policies:
-      followers: 팔로워와 멘션된 사람들만
-      nobody: 멘션된 사람들만
-      public: 모두
+      followers: 팔로워만
+      nobody: 나만
+      public: 누구나
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: 다이렉트
-      private: 비공개
-      private_long: 팔로워에게만 공개됩니다
+      direct: 개인 멘션
       public: 공개
-      public_long: 누구나 볼 수 있으며, 공개 타임라인에 표시됩니다
-      unlisted: 미등재
-      unlisted_long: 누구나 볼 수 있지만, 공개 타임라인에는 표시되지 않습니다
+      public_long: 마스토돈 내외 모두
+      unlisted: 조용한 공개
+      unlisted_long: 마스토돈 검색결과, 유행, 공개 타임라인에서 숨기기
   statuses_cleanup:
     enabled: 오래된 게시물 자동 삭제
     enabled_hint: 아래의 예외 목록에 해당하지 않는다면, 명시된 기한 이후 당신의 게시물을 자동으로 삭제합니다

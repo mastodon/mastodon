@@ -19,6 +19,9 @@ Rails.application.configure do
   # Enable server timing.
   config.server_timing = true
 
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  config.asset_host = ENV['CDN_HOST'] if ENV['CDN_HOST'].present?
+
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?

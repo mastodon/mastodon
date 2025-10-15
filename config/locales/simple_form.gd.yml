@@ -56,11 +56,13 @@ gd:
         scopes: Na APIan a dh’fhaodas an aplacaid inntrigeadh. Ma thaghas tu sgòp air ìre as àirde, cha leig thu leas sgòpaichean fa leth a thaghadh.
         setting_aggregate_reblogs: Na seall brosnachaidhean ùra do phostaichean a chaidh a bhrosnachadh o chionn goirid (cha doir seo buaidh ach air brosnachaidhean ùra o seo a-mach)
         setting_always_send_emails: Mar as àbhaist, cha dèid brathan puist-d a chur nuair a a bhios tu ri Mastodon gu cunbhalach
-        setting_default_quote_policy: Faodaidh luchd-cleachdaidh le iomradh orra luaidh an-còmhnaidh. Cha bhi an roghainn seo ann sàs ach air postaichean a thèid a chruthachadh leis an ath-thionndadh de Mhastodon ach ’s urrainn dhut do roghainn a thaghadh airson ullachadh dha.
+        setting_default_quote_policy_private: Chan urrainn do chàch postaichean dhan luchd-leantainn a-mhàin a chaidh a sgrìobhadh le Mastodon a luaidh.
+        setting_default_quote_policy_unlisted: Nuair a luaidheas daoine thu, thèid am post aca-san fhalach o loidhnichean-ama nan treandaichean.
         setting_default_sensitive: Thèid meadhanan frionasach fhalach a ghnàth is gabhaidh an nochdadh le briogadh orra
         setting_display_media_default: Falaich meadhanan ris a bheil comharra gu bheil iad frionasach
         setting_display_media_hide_all: Falaich na meadhanan an-còmhnaidh
         setting_display_media_show_all: Seall na meadhanan an-còmhnaidh
+        setting_emoji_style: An dòigh air an dèid emojis a shealltainn. Feuchaidh “Fèin-obrachail” ris na h-emojis tùsail a chleachdadh ach thèid Twemoji a chleachdadh ’nan àite air seann-bhrabhsairean.
         setting_system_scrollbars_ui: Chan obraich seo ach air brabhsairean desktop stèidhichte air Safari ’s Chrome
         setting_use_blurhash: Tha caiseadan stèidhichte air dathan nan nithean lèirsinneach a chaidh fhalach ach chan fhaicear am mion-fhiosrachadh
         setting_use_pending_items: Falaich ùrachaidhean na loidhne-ama air cùlaibh briogaidh seach a bhith a’ sgroladh nam postaichean gu fèin-obrachail
@@ -103,7 +105,6 @@ gd:
         status_page_url: URL duilleige far am faicear staid an fhrithealaiche seo nuair a bhios e sìos
         theme: An t-ùrlar a chì na h-aoighean gun chlàradh a-staigh agus an luchd-cleachdaidh ùr.
         thumbnail: Dealbh mu 2:1 a thèid a shealltainn ri taobh fiosrachadh an fhrithealaiche agad.
-        timeline_preview: "’S urrainn dha na h-aoighean gun chlàradh a-staigh na postaichean poblach as ùire a tha ri fhaighinn air an fhrithealaiche a bhrabhsadh."
         trendable_by_default: Geàrr leum thar lèirmheas a làimh na susbainte a’ treandadh. Gabhaidh nithean fa leth a thoirt far nan treandaichean fhathast an uairsin.
         trends: Seallaidh na treandaichean na postaichean, tagaichean hais is naidheachdan a tha fèill mhòr orra air an fhrithealaiche agad.
         trends_as_landing_page: Seall susbaint a’ treandadh dhan fheadhainn nach do chlàraich a-steach is do dh’aoighean seach tuairisgeul an fhrithealaiche seo. Feumaidh treandaichean a bhith an comas airson sin.
@@ -150,10 +151,10 @@ gd:
       user:
         chosen_languages: Nuair a bhios cromag ris, cha nochd ach postaichean sna cànain a thagh thu air loidhnichean-ama poblach
         date_of_birth:
-          few: Feumaidh sinn dèanamh cinnteach gu bheil thu %{count} bliadhnaichean a dh’aois air a char as lugha mus cleachd thu Mastodon. Cha chlàraich sinn seo.
-          one: Feumaidh sinn dèanamh cinnteach gu bheil thu %{count} bhliadhna a dh’aois air a char as lugha mus cleachd thu Mastodon. Cha chlàraich sinn seo.
-          other: Feumaidh sinn dèanamh cinnteach gu bheil thu %{count} bliadhna a dh’aois air a char as lugha mus cleachd thu Mastodon. Cha chlàraich sinn seo.
-          two: Feumaidh sinn dèanamh cinnteach gu bheil thu %{count} bhliadhna a dh’aois air a char as lugha mus cleachd thu Mastodon. Cha chlàraich sinn seo.
+          few: Feumaidh sinn dèanamh cinnteach gu bheil thu %{count} bliadhnaichean a dh’aois air a char as lugha mus cleachd thu %{domain}. Cha chlàraich sinn seo.
+          one: Feumaidh sinn dèanamh cinnteach gu bheil thu %{count} bhliadhna a dh’aois air a char as lugha mus cleachd thu %{domain}. Cha chlàraich sinn seo.
+          other: Feumaidh sinn dèanamh cinnteach gu bheil thu %{count} bliadhna a dh’aois air a char as lugha mus cleachd thu %{domain}. Cha chlàraich sinn seo.
+          two: Feumaidh sinn dèanamh cinnteach gu bheil thu %{count} bhliadhna a dh’aois air a char as lugha mus cleachd thu %{domain}. Cha chlàraich sinn seo.
         role: Stiùiridh an dreuchd dè na ceadan a bhios aig cleachdaiche.
       user_role:
         color: An datha a bhios air an dreuchd air feadh na h-eadar-aghaidh, ’na RGB san fhòrmat sia-dheicheach
@@ -161,6 +162,9 @@ gd:
         name: Ainm poblach na dreuchd ma chaidh a suidheachadh gun nochd i na baidse
         permissions_as_keys: Gheibh na cleachdaichean aig a bheil an dreuchd seo inntrigeadh dha…
         position: Ma tha còmhstri ann, buannaichidh an dreuchd as àirde ann an cuid a shuidheachaidhean. Tha gnìomhan sònraichte ann nach urrainn ach dreuchdan le prìomhachas ìosail a ghabhail
+      username_block:
+        allow_with_approval: An àite bacadh clàraidh gu tur, bidh clàraidhean a mhaidsicheas feumach air d’ aonta
+        comparison: Thoir an aire air an Scunthorpe Problem nuair a bhacas tu maidsichean pàirteach
       webhook:
         events: Tagh na tachartasan a thèid a chur
         template: Cruthaich an JSON payload agad fhèin le eadar-phòlachadh chaochladairean. Fàg seo bàn airson JSON bunaiteach fhaighinn.
@@ -233,7 +237,7 @@ gd:
         setting_auto_play_gif: Cluich GIFs beòthaichte gu fèin-obrachail
         setting_boost_modal: Seall còmhradh dearbhaidh mus dèan thu brosnachadh
         setting_default_language: Cànan postaidh
-        setting_default_privacy: Prìobhaideachd postaidh
+        setting_default_privacy: Faicsinneachd nam post
         setting_default_quote_policy: Cò dh’fhaodas luaidh
         setting_default_sensitive: Cuir comharra ri meadhanan an-còmhnaidh gu bheil iad frionasach
         setting_delete_modal: Seall còmhradh dearbhaidh mus sguab thu às post
@@ -243,6 +247,7 @@ gd:
         setting_display_media_default: Bun-roghainn
         setting_display_media_hide_all: Falaich na h-uile
         setting_display_media_show_all: Seall na h-uile
+        setting_emoji_style: Stoidhle nan Emojis
         setting_expand_spoilers: Leudaich postaichean ris a bheil rabhadh susbainte an-còmhnaidh
         setting_hide_network: Falaich an graf sòisealta agad
         setting_missing_alt_text_modal: Faic còmhradh dearbhaidh mus postaich thu meadhan às aonais roghainn teacsa
@@ -297,7 +302,6 @@ gd:
         status_page_url: URL duilleag na staide
         theme: An t-ùrlar bunaiteach
         thumbnail: Dealbhag an fhrithealaiche
-        timeline_preview: Ceadaich inntrigeadh gun ùghdarrachadh air na loidhnichean-ama phoblach
         trendable_by_default: Ceadaich treandaichean gun lèirmheas ro làimh
         trends: Cuir na treandaichean an comas
         trends_as_landing_page: Cleachd na treandaichean ’nan duilleag-laighe
@@ -325,6 +329,7 @@ gd:
         follow_request: Dh’iarr cuideigin ’gad leantainn
         mention: Thug cuideigin iomradh ort
         pending_account: Tha cunntas ùr feumach air lèirmheas
+        quote: Luaidh cuideigin thu
         reblog: Bhrosnaich cuideigin am post agad
         report: Chaidh gearan ùr a chur a-null
         software_updates:
@@ -371,6 +376,10 @@ gd:
         name: Ainm
         permissions_as_keys: Ceadan
         position: Prìomhachas
+      username_block:
+        allow_with_approval: Ceadaich clàradh le aontachadh
+        comparison: Dòigh a’ choimheis
+        username: Am facal ri mhaidseadh
       webhook:
         events: Na tachartas an comas
         template: Teamplaid payload

@@ -60,6 +60,7 @@ eu:
         setting_display_media_default: Ezkutatu hunkigarri gisa markatutako multimedia
         setting_display_media_hide_all: Ezkutatu multimedia guztia beti
         setting_display_media_show_all: Erakutsi beti hunkigarri gisa markatutako multimedia
+        setting_emoji_style: Nola bistaratu emojiak. "Automatikoki" aukeran emoji natiboak erabiltzen saiatuko dira, baina Twemojira itzuliko dira arakatzaile zaharretarako.
         setting_system_scrollbars_ui: Safari eta Chrome-n oinarritutako mahaigaineko nabigatzaileei bakarrik aplikatzen zaie
         setting_use_blurhash: Gradienteak ezkutatutakoaren koloreetan oinarritzen dira, baina xehetasunak ezkutatzen dituzte
         setting_use_pending_items: Ezkutatu denbora-lerroko eguneraketak klik baten atzean jarioa automatikoki korritu ordez
@@ -75,6 +76,7 @@ eu:
       filters:
         action: Aukeratu ze ekintza burutu behar den bidalketa bat iragazkiarekin bat datorrenean
         actions:
+          blur: Ezkutatu edukia ohar baten atzean, testua bera ezkutatu gabe
           hide: Ezkutatu erabat iragazitako edukia, existituko ez balitz bezala
           warn: Ezkutatu iragazitako edukia iragazkiaren izenburua duen abisu batekin
       form_admin_settings:
@@ -88,6 +90,7 @@ eu:
         favicon: WEBP, PNG, GIF or JPG. Mastodon-en favicon-a gainidazten du ikono pertsonalizatu batekin.
         mascot: Web interfaze aurreratuko ilustrazioa gainidazten du.
         media_cache_retention_period: Multimedia-fitxategiak dituzten urruneko erabiltzaileen argitalpenak zure zerbitzarian gordetzen dira cachean. Balio positiboa ezartzean, multimedia zehazturiko egunen buruan ezabatuko da. Multimedia-datuak eskatzen badira ezabatu ostean, berriro deskargatuko dira, iturburuko edukia oraindik erabilgarri badago. Estekaren aurrebistako txartelek hirugarrenen guneei zenbatetan dei diezaieketen mugatzen dieten murrizketak direla eta, balio honi, gutxienez, 14 egunen balioa ezartzea gomendatzen da, bestela, esteken aurrebistako txartelak ez dira eguneratuko eskatu ahala denbora horren aurretik.
+        min_age: Erabiltzaileei jaiotze-data berresteko eskatuko zaie izen-ematean
         peers_api_enabled: Zerbitzari honek fedibertsoan ikusi dituen zerbitzarien domeinu-izenen zerrenda. Ez da daturik ematen zerbitzari jakin batekin federatzearen ala ez federatzearen inguruan, zerbitzariak haien berri duela soilik. Federazioari buruzko estatistika orokorrak biltzen dituzten zerbitzuek erabiltzen dute hau.
         profile_directory: Profilen direktorioan ikusgai egotea aukeratu duten erabiltzaile guztiak zerrendatzen dira.
         require_invite_text: Izen emateak eskuz onartu behar direnean, "Zergatik elkartu nahi duzu?" testu sarrera derrigorrezko bezala ezarri, ez hautazko
@@ -100,7 +103,6 @@ eu:
         status_page_url: Kanporatua dagoen jendeak zerbitzari honen egoera ikus dezaten gune baten URL
         theme: Saioa hasi gabeko erabiltzaileek eta berriek ikusiko duten gaia.
         thumbnail: Zerbitzariaren informazioaren ondoan erakusten den 2:1 inguruko irudia.
-        timeline_preview: Saioa hasi gabeko erabiltzaileek ezingo dituzte arakatu zerbitzariko bidalketa publiko berrienak.
         trendable_by_default: Saltatu joeretako edukiaren eskuzko berrikuspena. Ondoren elementuak banan-bana kendu daitezke joeretatik.
         trends: Joeretan zure zerbitzarian bogan dauden bidalketa, traola eta albisteak erakusten dira.
         trends_as_landing_page: Erakutsi pil-pilean dagoen edukia saioa hasita ez duten erabiltzaileei eta bisitariei, zerbitzari honen deskribapena erakutsi ordez. Joerak aktibatuak edukitzea beharrezkoa da.
@@ -132,9 +134,12 @@ eu:
         name: Letrak maiuskula/minuskulara aldatu ditzakezu besterik ez, adibidez irakurterrazago egiteko
       terms_of_service:
         changelog: Markdown-en sintaxiarekin egitura daiteke.
+        effective_date: Zentzuzko epe bat 10 eta 30 egun bitartekoa izan daiteke, erabiltzaileei jakinarazten diezun egunetik kontatzen hasita.
         text: Markdown-en sintaxiarekin egitura daiteke.
       terms_of_service_generator:
         admin_email: Legezko abisuak, kontraindikazioak, agindu judizialak, erretiratzeko eskaerak eta legea betetzeko eskaerak barne.
+        arbitration_address: Goiko helbide fisikoa edo "N/A" bera izan daiteke posta elektronikoa erabiliz gero.
+        arbitration_website: Web formularioa izan daiteke, edo "N/A" posta elektronikoa erabiliz gero.
       user:
         chosen_languages: Markatzean, hautatutako hizkuntzetan dauden tutak besterik ez dira erakutsiko.
       user_role:
@@ -215,7 +220,6 @@ eu:
         setting_auto_play_gif: Erreproduzitu GIF animatuak automatikoki
         setting_boost_modal: Erakutsi baieztapen elkarrizketa-koadroa bultzada eman aurretik
         setting_default_language: Argitalpenen hizkuntza
-        setting_default_privacy: Mezuen pribatutasuna
         setting_default_sensitive: Beti markatu edukiak hunkigarri gisa
         setting_delete_modal: Erakutsi baieztapen elkarrizketa-koadroa toot bat ezabatu aurretik
         setting_disable_swiping: Desgaitu hatza pasatzeko mugimenduak
@@ -223,7 +227,7 @@ eu:
         setting_display_media_default: Lehenetsia
         setting_display_media_hide_all: Ezkutatu guztia
         setting_display_media_show_all: Erakutsi guztia
-        setting_expand_spoilers: Hedatu beti edukia abisua (CW) duten  tootak
+        setting_expand_spoilers: Zabaldu beti edukiaren abisuak dituzten argitalpenak
         setting_hide_network: Ezkutatu zure sarea
         setting_reduce_motion: Murriztu animazioen mugimenduak
         setting_system_font_ui: Erabili sistemako tipografia lehenetsia
@@ -258,6 +262,7 @@ eu:
         favicon: Gune-ikurra
         mascot: Maskota pertsonalizatua (zaharkitua)
         media_cache_retention_period: Multimediaren cachea atxikitzeko epea
+        min_age: Gutxieneko adin-eskakizuna
         peers_api_enabled: Argitaratu aurkitutako zerbitzarien zerrenda APIan
         profile_directory: Gaitu profil-direktorioa
         registrations_mode: Nork eman dezake izena
@@ -273,7 +278,6 @@ eu:
         status_page_url: Egoera-orriaren URLa
         theme: Lehenetsitako gaia
         thumbnail: Zerbitzariaren koadro txikia
-        timeline_preview: Onartu autentifikatu gabeko sarbidea denbora lerro publikoetara
         trendable_by_default: Onartu joerak aurrez berrikusi gabe
         trends: Gaitu joerak
         trends_as_landing_page: Erabili joerak hasierako orri gisa
@@ -327,6 +331,9 @@ eu:
       terms_of_service_generator:
         domain: Domeinua
       user:
+        date_of_birth_1i: Eguna
+        date_of_birth_2i: Hilabetea
+        date_of_birth_3i: Urtea
         role: Rola
         time_zone: Ordu zona
       user_role:

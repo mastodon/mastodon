@@ -56,11 +56,13 @@ gl:
         scopes: A que APIs terá acceso a aplicación. Se escolles un ámbito de alto nivel, non precisas seleccionar elementos individuais.
         setting_aggregate_reblogs: Non mostrar novas promocións de publicacións que foron promovidas recentemente (só afecta a promocións recén recibidas)
         setting_always_send_emails: Como norma xeral non che enviamos correos electrónicos se usas activamente Mastodon
-        setting_default_quote_policy: As usuarias mencionadas sempre teñen permiso para citar. Este axuste só ten efecto para publicacións creadas coa próxima versión de Mastodon, pero xa podes ir preparando o axuste.
+        setting_default_quote_policy_private: As publicacións só para seguidoras creadas con Mastodon non poden ser citadas.
+        setting_default_quote_policy_unlisted: Cando alguén te cite, a súa publicación non aparecerá nas cronoloxías de popularidade.
         setting_default_sensitive: Medios sensibles marcados como ocultos por defecto e móstranse cun click
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Ocultar sempre os medios
         setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
+        setting_emoji_style: Forma de mostrar emojis. «Auto» intentará usar os emojis nativos, e se falla recurrirase a Twemoji en navegadores antigos.
         setting_system_scrollbars_ui: Aplícase só en navegadores de escritorio baseados en Safari e Chrome
         setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esvaecendo tódolos detalles
         setting_use_pending_items: Agochar actualizacións da cronoloxía tras un click no lugar de desprazar automáticamente os comentarios
@@ -103,7 +105,6 @@ gl:
         status_page_url: URL dunha páxina onde se pode ver o estado deste servidor cando non está a funcionar
         theme: Decorado que verán visitantes e novas usuarias.
         thumbnail: Imaxe con proporcións 2:1 mostrada xunto á información sobre o servidor.
-        timeline_preview: Visitantes e usuarias non conectadas poderán ver as publicacións públicas máis recentes do servidor.
         trendable_by_default: Omitir a revisión manual dos contidos populares. Poderás igualmente eliminar manualmente os elementos que vaian aparecendo.
         trends: As tendencias mostran publicacións, cancelos e novas historias que teñen popularidade no teu servidor.
         trends_as_landing_page: Mostrar contidos en voga para as persoas sen sesión iniciada e visitantes no lugar dunha descrición deste servidor. Require ter activado Popularidade.
@@ -150,8 +151,8 @@ gl:
       user:
         chosen_languages: Se ten marca, só as publicacións nos idiomas seleccionados serán mostrados en cronoloxías públicas
         date_of_birth:
-          one: Temos que confirmar que tes %{count} anos polo menos para usar Mastodon. Non gardamos este dato.
-          other: Temos que confirmar que tes %{count} anos polo menos para usar Mastodon. Non gardamos este dato.
+          one: Temos que confirmar que tes %{count} anos polo menos para usar %{domain}. Non gardamos este dato.
+          other: Temos que confirmar que tes %{count} anos polo menos para usar %{domain}. Non gardamos este dato.
         role: Os roles establecen os permisos que ten a usuaria.
       user_role:
         color: Cor que se usará para o rol a través da IU, como RGB en formato hex
@@ -159,6 +160,10 @@ gl:
         name: Nome público do rol, se o rol se mostra como unha insignia
         permissions_as_keys: As usuarias con este rol terán acceso a...
         position: O rol superior decide nos conflitos en certas situacións. Algunhas accións só poden aplicarse sobre roles cunha prioridade menor
+      username_block:
+        allow_with_approval: No lugar de evitar a cración directa de contas, as contas mediante regras van precisar a túa aprobación
+        comparison: Ten en conta o Sunthorpe Problem cando se bloquean coincidencias parciais
+        username: Vai crear unha coincidencia sen importar se son maiúsculas ou minúsculas e homoglifos como «4» por «a» ou «3» por «e».
       webhook:
         events: Escoller eventos a enviar
         template: Crea o teu propio JSON interpolando variables. Déixao en branco para usar o JSON predeterminado.
@@ -231,7 +236,7 @@ gl:
         setting_auto_play_gif: Reprodución automática de GIFs animados
         setting_boost_modal: Solicitar confirmación antes de promover
         setting_default_language: Idioma de publicación
-        setting_default_privacy: Privacidade da publicación
+        setting_default_privacy: Visibilidade da publicación
         setting_default_quote_policy: Quen pode citar
         setting_default_sensitive: Marcar sempre multimedia como sensible
         setting_delete_modal: Solicitar confirmación antes de eliminar unha publicación
@@ -241,6 +246,7 @@ gl:
         setting_display_media_default: Por defecto
         setting_display_media_hide_all: Ocultar todo
         setting_display_media_show_all: Mostrar todo
+        setting_emoji_style: Estilo dos emojis
         setting_expand_spoilers: Despregar sempre as publicacións marcadas con avisos de contido
         setting_hide_network: Non mostrar contactos
         setting_missing_alt_text_modal: Mostrar mensaxe de confirmación antes de publicar multimedia sen texto descritivo
@@ -277,12 +283,16 @@ gl:
         content_cache_retention_period: Período de retención de contido remoto
         custom_css: CSS personalizado
         favicon: Favicon
+        local_live_feed_access: Acceso a cronoloxías ao vivo que mostran publicacións locais
+        local_topic_feed_access: Acceso a cronoloxías de ligazóns e cancelos que mostran publicacións locais
         mascot: Mascota propia (herdado)
         media_cache_retention_period: Período de retención da caché multimedia
         min_age: Idade mínima requerida
         peers_api_enabled: Publicar na API unha lista dos servidores descubertos
         profile_directory: Activar o directorio de perfís
         registrations_mode: Quen se pode rexistrar
+        remote_live_feed_access: Acceso a cronoloxías ao vivo que mostran publicacións remotas
+        remote_topic_feed_access: Acceso a cronoloxías de ligazóns e cancelos que mostran publicacións remotas
         require_invite_text: Pedir unha razón para unirse
         show_domain_blocks: Amosar dominios bloqueados
         show_domain_blocks_rationale: Explicar porque están bloqueados os dominios
@@ -295,7 +305,6 @@ gl:
         status_page_url: URL da páxina do estado
         theme: Decorado predeterminado
         thumbnail: Icona do servidor
-        timeline_preview: Permitir acceso á cronoloxía pública sen autenticación
         trendable_by_default: Permitir tendencias sen aprobación previa
         trends: Activar tendencias
         trends_as_landing_page: Usar as tendencias como páxina de benvida
@@ -323,6 +332,7 @@ gl:
         follow_request: Enviar un correo cando alguén solicita seguirte
         mention: Enviar un correo cando alguén te menciona
         pending_account: Enviar un correo cando unha nova conta precisa revisión
+        quote: Citoute alguén
         reblog: Enviar un correo cando alguén promociona a tua mensaxe
         report: Enviouse unha nova denuncia
         software_updates:
@@ -369,6 +379,10 @@ gl:
         name: Nome
         permissions_as_keys: Permisos
         position: Prioridade
+      username_block:
+        allow_with_approval: Permitir crear contas con aprobación
+        comparison: Método de comparación
+        username: Palabra a comparar
       webhook:
         events: Eventos activados
         template: Modelo de carga

@@ -6,7 +6,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
   subject { described_class.new }
 
   let(:actor)          { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/account', inbox_url: 'http://example.com/inbox') }
-  let(:alice)          { Fabricate(:account, username: 'alice') }
+  let(:alice)          { Fabricate(:account, username: 'alice', id_scheme: :numeric_ap_id) }
   let(:bob)            { Fabricate(:account, username: 'bob') }
   let(:eve)            { Fabricate(:account, username: 'eve') }
   let(:mallory)        { Fabricate(:account, username: 'mallory') }
@@ -35,7 +35,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
 
   shared_examples 'synchronizes followers' do
     before do
-      subject.call(actor, collection_uri)
+      subject.call(actor, collection_uri, expected_digest)
     end
 
     it 'maintains following records and sends Undo Follow to actor' do
@@ -51,6 +51,8 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
   end
 
   describe '#call' do
+    let(:expected_digest) { nil }
+
     context 'when the endpoint is a Collection of actor URIs' do
       before do
         stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
@@ -195,6 +197,132 @@ RSpec.describe ActivityPub::SynchronizeFollowersService do
           .to be_empty
         expect(mallory)
           .to be_following(actor)
+      end
+    end
+
+    context 'when passing a matching expected_digest' do
+      let(:expected_digest) do
+        digest = "\x00" * 32
+
+        items.each do |uri|
+          Xorcist.xor!(digest, Digest::SHA256.digest(uri))
+        end
+
+        digest.unpack1('H*')
+      end
+
+      context 'when the endpoint is a Collection of actor URIs' do
+        before do
+          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        end
+
+        it_behaves_like 'synchronizes followers'
+      end
+
+      context 'when the endpoint is an OrderedCollection of actor URIs' do
+        let(:payload) do
+          {
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            type: 'OrderedCollection',
+            id: collection_uri,
+            orderedItems: items,
+          }.with_indifferent_access
+        end
+
+        before do
+          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        end
+
+        it_behaves_like 'synchronizes followers'
+      end
+
+      context 'when the endpoint is a single-page paginated Collection of actor URIs' do
+        let(:payload) do
+          {
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            type: 'Collection',
+            id: collection_uri,
+            first: {
+              type: 'CollectionPage',
+              partOf: collection_uri,
+              items: items,
+            },
+          }.with_indifferent_access
+        end
+
+        before do
+          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        end
+
+        it_behaves_like 'synchronizes followers'
+      end
+    end
+
+    context 'when passing a non-matching expected_digest' do
+      let(:expected_digest) { '123456789' }
+
+      context 'when the endpoint is a Collection of actor URIs' do
+        before do
+          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        end
+
+        it 'does not remove followers' do
+          follower_ids = actor.followers.reload.pluck(:id)
+
+          subject.call(actor, collection_uri, expected_digest)
+
+          expect(follower_ids - actor.followers.reload.pluck(:id)).to be_empty
+        end
+      end
+
+      context 'when the endpoint is an OrderedCollection of actor URIs' do
+        let(:payload) do
+          {
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            type: 'OrderedCollection',
+            id: collection_uri,
+            orderedItems: items,
+          }.with_indifferent_access
+        end
+
+        before do
+          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        end
+
+        it 'does not remove followers' do
+          follower_ids = actor.followers.reload.pluck(:id)
+
+          subject.call(actor, collection_uri, expected_digest)
+
+          expect(follower_ids - actor.followers.reload.pluck(:id)).to be_empty
+        end
+      end
+
+      context 'when the endpoint is a single-page paginated Collection of actor URIs' do
+        let(:payload) do
+          {
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            type: 'Collection',
+            id: collection_uri,
+            first: {
+              type: 'CollectionPage',
+              partOf: collection_uri,
+              items: items,
+            },
+          }.with_indifferent_access
+        end
+
+        before do
+          stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        end
+
+        it 'does not remove followers' do
+          follower_ids = actor.followers.reload.pluck(:id)
+
+          subject.call(actor, collection_uri, expected_digest)
+
+          expect(follower_ids - actor.followers.reload.pluck(:id)).to be_empty
+        end
       end
     end
   end

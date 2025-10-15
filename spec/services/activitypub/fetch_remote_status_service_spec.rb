@@ -316,6 +316,23 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
           expect(existing_status.edits).to_not be_empty
         end
       end
+
+      context 'with an implicit update to quoting policy' do
+        let(:object) do
+          note.merge({
+            'content' => existing_status.text,
+            'interactionPolicy' => {
+              'canQuote' => {
+                'automaticApproval' => ['https://www.w3.org/ns/activitystreams#Public'],
+              },
+            },
+          })
+        end
+
+        it 'updates status' do
+          expect(existing_status.reload.quote_approval_policy).to eq(Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16)
+        end
+      end
     end
   end
 

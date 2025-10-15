@@ -190,6 +190,7 @@ sv:
         create_relay: Skapa ombud
         create_unavailable_domain: Skapa otillgänglig domän
         create_user_role: Skapa roll
+        create_username_block: Skapa användarnamnsregel
         demote_user: Degradera användare
         destroy_announcement: Radera notis
         destroy_canonical_email_block: Ta bort e-post block
@@ -203,6 +204,7 @@ sv:
         destroy_status: Radera inlägg
         destroy_unavailable_domain: Ta bort otillgänglig domän
         destroy_user_role: Förstör roll
+        destroy_username_block: Ta bort användarnamnsregel
         disable_2fa_user: Inaktivera 2FA
         disable_custom_emoji: Inaktivera egna emojis
         disable_relay: Inaktivera ombud
@@ -237,6 +239,7 @@ sv:
         update_report: Uppdatera rapport
         update_status: Uppdatera inlägg
         update_user_role: Uppdatera roll
+        update_username_block: Uppdatera användarnamnsregel
       actions:
         approve_appeal_html: "%{name} godkände överklagande av modereringsbeslut från %{target}"
         approve_user_html: "%{name} godkände registrering från %{target}"
@@ -255,6 +258,7 @@ sv:
         create_relay_html: "%{name} skapade ombudet %{target}"
         create_unavailable_domain_html: "%{name} stoppade leverans till domänen %{target}"
         create_user_role_html: "%{name} skapade rollen %{target}"
+        create_username_block_html: "%{name} lade till regel för användarnamn som innehåller %{target}"
         demote_user_html: "%{name} nedgraderade användare %{target}"
         destroy_announcement_html: "%{name} raderade kungörelsen %{target}"
         destroy_canonical_email_block_html: "%{name} avblockerade e-post med hash%{target}"
@@ -268,6 +272,7 @@ sv:
         destroy_status_html: "%{name} tog bort inlägget av %{target}"
         destroy_unavailable_domain_html: "%{name} återupptog leverans till domänen %{target}"
         destroy_user_role_html: "%{name} raderade rollen %{target}"
+        destroy_username_block_html: "%{name} borttagna regler för användarnamn som innehåller %{target}"
         disable_2fa_user_html: "%{name} inaktiverade tvåfaktorsautentiseringskrav för användaren %{target}"
         disable_custom_emoji_html: "%{name} inaktiverade emoji %{target}"
         disable_relay_html: "%{name} inaktiverade ombudet %{target}"
@@ -302,6 +307,7 @@ sv:
         update_report_html: "%{name} uppdaterade rapporten %{target}"
         update_status_html: "%{name} uppdaterade inlägget av %{target}"
         update_user_role_html: "%{name} ändrade rollen %{target}"
+        update_username_block_html: "%{name} uppdaterade regel för användarnamn som innehåller %{target}"
       deleted_account: raderat konto
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
@@ -1085,6 +1091,25 @@ sv:
           other: Använd av %{count} personer under den senaste veckan
       title: Rekommendationer & Trender
       trending: Trendande
+    username_blocks:
+      add_new: Lägg till ny
+      block_registrations: Registrerade blockeringar
+      comparison:
+        contains: Innehåller
+        equals: Lika
+      contains_html: Innehåller %{string}
+      created_msg: Användarnamnsregel har skapats
+      delete: Ta bort
+      edit:
+        title: Redigera användarnamnsregel
+      matches_exactly_html: Lika med %{string}
+      new:
+        create: Skapa regel
+        title: Skapa ny användarnamnsregel
+      no_username_block_selected: Inga användarnamn regler ändrades eftersom ingen valdes
+      not_permitted: Ej tillåtet
+      title: Regler för användarnamn
+      updated_msg: Uppdaterade användarnamnsregel
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
@@ -1349,6 +1374,10 @@ sv:
     basic_information: Allmän information
     hint_html: "<strong>Anpassa vad folk ser på din offentliga profil och bredvid dina inlägg.</strong> Andra personer är mer benägna att följa dig och interagera med dig när du har en ifylld profil och en profilbild."
     other: Övrigt
+  emoji_styles:
+    auto: Automatiskt
+    native: Ursprunglig
+    twemoji: Twemoji
   errors:
     '400': Förfrågningen som du skickade in var ogiltig eller felaktigt utformad.
     '403': Du har inte behörighet att visa den här sidan.
@@ -1658,6 +1687,10 @@ sv:
       title: Ny omnämning
     poll:
       subject: En undersökning av %{name} har avslutats
+    quote:
+      body: 'Ditt inlägg citerades av %{name}:'
+      subject: "%{name} citerade ditt inlägg"
+      title: Nytt citat
     reblog:
       body: 'Ditt inlägg boostades av %{name}:'
       subject: "%{name} boostade ditt inlägg"
@@ -1706,6 +1739,7 @@ sv:
       self_vote: Du kan inte rösta i dina egna omröstningar
       too_few_options: måste ha mer än ett objekt
       too_many_options: kan inte innehålla mer än %{max} objekt
+    vote: Rösta
   preferences:
     other: Annat
     posting_defaults: Standardinställningar för inlägg
@@ -1868,25 +1902,16 @@ sv:
     edited_at_html: 'Ändrad: %{date}'
     errors:
       in_reply_not_found: Inlägget du försöker svara på verkar inte existera.
+      quoted_status_not_found: Inlägget du försöker svara på verkar inte existera.
     over_character_limit: teckengräns på %{max} har överskridits
     pin_errors:
       direct: Inlägg som endast är synliga för nämnda användare kan inte fästas
       limit: Du har redan fäst det maximala antalet inlägg
       ownership: Någon annans inlägg kan inte fästas
       reblog: En boost kan inte fästas
-    quote_policies:
-      followers: Följare och omnämnda användare
-      nobody: Endast nämnda användare
-      public: Alla
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Direkt
-      private: Endast följare
-      private_long: Visa endast till följare
       public: Offentlig
-      public_long: Alla kan se
-      unlisted: Olistade
-      unlisted_long: Alla kan se, men listas inte på offentliga tidslinjer
   statuses_cleanup:
     enabled: Ta automatiskt bort gamla inlägg
     enabled_hint: Raderar dina inlägg automatiskt när de når en specifik ålder, såvida de inte matchar något av undantagen nedan

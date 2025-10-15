@@ -1,9 +1,6 @@
 import { resolve } from 'node:path';
 
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-import react from '@vitejs/plugin-react';
-import svgr from 'vite-plugin-svgr';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import {
   configDefaults,
   defineConfig,
@@ -13,15 +10,13 @@ import {
 import { config as viteConfig } from './vite.config.mjs';
 
 const storybookTests: TestProjectInlineConfiguration = {
+  extends: true,
   plugins: [
     // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
     storybookTest({
       configDir: '.storybook',
       storybookScript: 'yarn run storybook',
     }),
-    react(),
-    svgr(),
-    tsconfigPaths(),
   ],
   test: {
     name: 'storybook',
@@ -54,6 +49,7 @@ const legacyTests: TestProjectInlineConfiguration = {
       'tmp/**',
     ],
     globals: true,
+    setupFiles: ['fake-indexeddb/auto'],
   },
 };
 

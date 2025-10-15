@@ -2,7 +2,129 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.4.0] - UNRELEASED
+## [4.4.6] - 2025-10-13
+
+### Security
+
+- Update dependencies `rack` and `uri`
+- Fix streaming server connection not being closed on user suspension (by @ThisIsMissEm, [GHSA-r2fh-jr9c-9pxh](https://github.com/mastodon/mastodon/security/advisories/GHSA-r2fh-jr9c-9pxh))
+- Fix password change through admin CLI not invalidating existing sessions and access tokens (by @ThisIsMissEm, [GHSA-f3q3-rmf7-9655](https://github.com/mastodon/mastodon/security/advisories/GHSA-f3q3-rmf7-9655))
+- Fix streaming server allowing access to public timelines even without the `read` or `read:statuses` OAuth scopes (by @ThisIsMissEm, [GHSA-7gwh-mw97-qjgp](https://github.com/mastodon/mastodon/security/advisories/GHSA-7gwh-mw97-qjgp))
+
+### Added
+
+- Add support for processing quotes of deleted posts signaled through a `Tombstone` (#36381 by @ClearlyClaire)
+
+### Fixed
+
+- Fix quote post state sometimes not being updated through streaming server (#36408 by @ClearlyClaire)
+- Fix inconsistent “pending tags” count on admin dashboard (#36404 by @mjankowski)
+- Fix JSON payload being potentially mutated when processing interaction policies (#36392 by @ClearlyClaire)
+- Fix quotes not being displayed in email notifications (#36379 by @diondiondion)
+- Fix redirect to external object when URL is missing or malformed (#36347 by @ClearlyClaire)
+- Fix quotes not being displayed in the featured carousel (#36335 by @diondiondion)
+
+## [4.4.5] - 2025-09-23
+
+### Security
+
+- Update dependencies
+
+### Added
+
+- Add support for `has:quote` in search (#36217 by @ClearlyClaire)
+
+### Changed
+
+- Change quoted posts from silenced accounts to use a click-through rather than being hidden (#36166 and #36167 by @ClearlyClaire)
+
+### Fixed
+
+- Fix processing of out-of-order `Update` as implicit updates (#36190 by @ClearlyClaire)
+- Fix getting `Create` and `Update` out of order (#36176 by @ClearlyClaire)
+- Fix quotes with Content Warnings but no text being shown without Content Warnings (#36150 by @ClearlyClaire)
+
+## [4.4.4] - 2025-09-16
+
+### Security
+
+- Update dependencies
+
+### Fixed
+
+- Fix missing memoization in `Web::PushNotificationWorker` (#36085 by @ClearlyClaire)
+- Fix unresponsive areas around GIFV modals in some cases (#36059 by @ClearlyClaire)
+- Fix missing `beforeUnload` confirmation when a poll is being authored (#36030 by @ClearlyClaire)
+- Fix processing of remote edited statuses with new media and no text (#35970 by @unfokus)
+- Fix polls not being displayed in moderation interface (#35644 and #35933 by @ThisIsMissEm)
+- Fix WebUI handling of deleted quoted posts (#35909 and #35918 by @ClearlyClaire and @diondiondion)
+- Fix “Edit” and “Delete & Redraft” on a poll not inserting empty option (#35892 by @ClearlyClaire)
+- Fix loading of some compatibility CSS on some configurations (#35876 by @shleeable)
+- Fix HttpLog not being enabled with `RAILS_LOG_LEVEL=debug` (#35833 by @mjankowski)
+- Fix self-destruct scheduler behavior on some Redis setups (#35823 by @ClearlyClaire)
+- Fix `tootctl admin create` not bypassing reserved username checks (#35779 by @ClearlyClaire)
+- Fix interaction policy changes in implicit updates not being saved (#35751 by @ClearlyClaire)
+- Fix quote revocation not being streamed (#35710 by @ClearlyClaire)
+- Fix export of large user archives by enabling Zip64 (#35850 by @ClearlyClaire)
+
+### Changed
+
+- Change labels for quote policy settings (#35893 by @ClearlyClaire)
+- Change standalone “Share” page to redirect to web interface after posting (#35763 by @ChaosExAnima)
+
+## [4.4.3] - 2025-08-05
+
+### Security
+
+- Update dependencies
+- Fix incorrect rate-limit handling [GHSA-84ch-6436-c7mg](https://github.com/mastodon/mastodon/security/advisories/GHSA-84ch-6436-c7mg)
+
+### Fixed
+
+- Fix race condition caused by ActiveRecord query cache in `Create` critical path (#35662 by @ClearlyClaire)
+- Fix race condition caused by quote post processing (#35657 by @ClearlyClaire)
+- Fix WebUI crashing for accounts with `null` URL (#35651 by @ClearlyClaire)
+- Fix friends-of-friends recommendations suggesting already-requested accounts (#35604 by @ClearlyClaire)
+- Fix synchronous recursive fetching of deeply-nested quoted posts (#35600 by @ClearlyClaire)
+- Fix “Expand this post” link including user `@undefined` (#35478 by @ClearlyClaire)
+
+### Changed
+
+- Change `StatusReachFinder` to consider quotes as well as reblogs (#35601 by @ClearlyClaire)
+- Add restrictions on which quote posts can trend (#35507 by @ClearlyClaire)
+- Change quote verification to not bypass authorization flow for mentions (#35528 by @ClearlyClaire)
+
+## [4.4.2] - 2025-07-23
+
+### Security
+
+- Update dependencies
+
+### Fixed
+
+- Fix menu not clickable in Firefox (#35390 and #35414 by @diondiondion)
+- Add `lang` attribute to current composer language in alt text modal (#35412 by @diondiondion)
+- Fix quote posts styling on notifications page (#35411 by @diondiondion)
+- Improve a11y of custom select menus in notifications settings (#35403 by @diondiondion)
+- Fix selected item in poll select menus is unreadable in Firefox (#35402 by @diondiondion)
+- Update age limit wording (#35387 by @diondiondion)
+- Fix support for quote verification in implicit status updates (#35384 by @ClearlyClaire)
+- Improve `Dropdown` component accessibility (#35373 by @diondiondion)
+- Fix processing some incoming quotes failing because of missing JSON-LD context (#35354 and #35380 by @ClearlyClaire)
+- Make bio hashtags open the local page instead of the remote instance (#35349 by @ChaosExAnima)
+- Fix styling of external log-in button (#35320 by @ClearlyClaire)
+
+## [4.4.1] - 2025-07-09
+
+### Fixed
+
+- Fix nearly every sub-directory being crawled as part of Vite build (#35323 by @ClearlyClaire)
+- Fix assets not building when Redis is unavailable (#35321 by @oneiros)
+- Fix replying from media modal or pop-in-player tagging user `@undefined` (#35317 by @ClearlyClaire)
+- Fix support for special characters in various environment variables (#35314 by @mjankowski and @ClearlyClaire)
+- Fix some database migrations failing for indexes manually removed by admins (#35309 by @mjankowski)
+
+## [4.4.0] - 2025-07-08
 
 ### Added
 
@@ -38,7 +160,7 @@ All notable changes to this project will be documented in this file.
   Server administrators can now chose to opt in to transmit referrer information when following an external link. Only the domain name is transmitted, not the referrer path.
 - Add double tap to zoom and swipe to dismiss to media modal in web UI (#34210 by @Gargron)
 - Add link from Web UI for Hashtags to the Moderation UI (#31448 by @ThisIsMissEm)
-- **Add terms of service** (#33055, #33233, #33230, #33703, #33699, #33994, #33993, #34105, #34122, #34200, #34527, #35053, #35115, #35126 and #35127 by @ClearlyClaire, @Gargron, @mjankowski, and @oneiros)\
+- **Add terms of service** (#33055, #33233, #33230, #33703, #33699, #33994, #33993, #34105, #34122, #34200, #34527, #35053, #35115, #35126, #35127 and #35233 by @ClearlyClaire, @Gargron, @mjankowski, and @oneiros)\
   Server administrators can now fill in Terms of Service and notify their users of upcoming changes.
 - Add optional bulk mailer settings (#35191 and #35203 by @oneiros)\
   This adds the optional environment variables `BULK_SMTP_PORT`, `BULK_SMTP_SERVER`, `BULK_SMTP_LOGIN` and so on analogous to `SMTP_PORT`, `SMTP_SERVER`, `SMTP_LOGIN` and related SMTP configuration environment variables.\
@@ -51,7 +173,7 @@ All notable changes to this project will be documented in this file.
 - Add ability to dismiss alt text badge by tapping it in web UI (#33737 by @Gargron)
 - Add loading indicator to timeline gap indicators in web UI (#33762 by @Gargron)
 - Add interaction modal when trying to interact with a poll while logged out (#32609 by @ThisIsMissEm)
-- **Add experimental FASP support** (#34031, #34415, #34765, #34965, #34964, #34033 and #35218 by @oneiros)\
+- **Add experimental FASP support** (#34031, #34415, #34765, #34965, #34964, #34033, #35218, #35262 and #35263 by @oneiros)\
   This is a first step towards supporting “Fediverse Auxiliary Service Providers” (https://github.com/mastodon/fediverse_auxiliary_service_provider_specifications). This is mostly interesting to developers who would like to implement their own FASP, but also includes the capability to share data with a discovery provider (see https://www.fediscovery.org).
 - Add ability for admins to send announcements to all users via email (#33928 and #34411 by @ClearlyClaire)\
   This is meant for critical announcements only, as this will potentially send a lot of emails and cannot be opted out of by users.
@@ -64,7 +186,7 @@ All notable changes to this project will be documented in this file.
 - Add dropdown menu with quick actions to lists of accounts in web UI (#34391, #34709, and #34767 by @Gargron, @diondiondion, and @mkljczk)
 - Add support for displaying “year in review” notification in web UI (#32710, #32765, #32709, #32807, #32914, #33148, and #33882 by @Gargron and @mjankowski)\
   Note that the notification is currently not generated automatically, and at the moment requires a manual undocumented administrator action.
-- Add experimental support for receiving HTTP Message Signatures (RFC9421) (#34814, #35033 and #35109 by @oneiros)\
+- Add experimental support for receiving HTTP Message Signatures (RFC9421) (#34814, #35033, #35109 and #35278 by @oneiros)\
   For now, this needs to be explicitly enabled through the `http_message_signatures` feature flag (`EXPERIMENTAL_FEATURES=http_message_signatures`). This currently only covers verifying such signatures (inbound HTTP requests), not issuing them (outbound HTTP requests).
 - Add experimental Async Refreshes API (#34918 by @oneiros)
 - Add experimental server-side feature to fetch remote replies (#32615, #34147, #34149, #34151, #34615, #34682, and #34702 by @ClearlyClaire and @sneakers-the-rat)\
@@ -218,6 +340,7 @@ All notable changes to this project will be documented in this file.
 - Fix admin dashboard crash on specific Elasticsearch connection errors (#34683 by @ClearlyClaire)
 - Fix OIDC account creation failing for long display names (#34639 by @defnull)
 - Fix use of the deprecated `/api/v1/instance` endpoint in the moderation interface (#34613 by @renchap)
+- Fix inaccessible “Clear search” button (#35152 and #35281 by @diondiondion)
 - Fix search operators sometimes getting lost (#35190 by @ClearlyClaire)
 - Fix directory scroll position reset (#34560 by @przucidlo)
 - Fix needlessly complex SVG paths for oEmbed and logo (#34538 by @edent)
@@ -232,7 +355,7 @@ All notable changes to this project will be documented in this file.
 - Fix extra space under left-indented vertical videos (#34313 by @ClearlyClaire)
 - Fix glitchy iOS media attachment drag interactions (#35057 by @diondiondion)
 - Fix zoomed images being blurry in Safari (#35052 by @diondiondion)
-- Fix redundant focus stop within status component in Web UI and make focus style more noticeable (#35037, #35051, #35096 and #35150 by @diondiondion)
+- Fix redundant focus stop within status component in Web UI and make focus style more noticeable (#35037, #35051, #35096, #35150 and #35251 by @diondiondion)
 - Fix digits in media player time readout not having a consistent width (#35038 by @diondiondion)
 - Fix wrong text color for “Open in advanced web interface” banner in high-contrast theme (#35032 by @diondiondion)
 - Fix hover card for limited accounts not hiding information as expected (#35024 by @diondiondion)
@@ -530,7 +653,6 @@ The following changelog entries focus on changes visible to users, administrator
   You can now separately filter or drop notifications from people you don't follow, people who don't follow you, accounts created within the past 30 days, as well as unsolicited private mentions, and accounts limited by the moderation.\
   Instead of being outright dropped, notifications that you chose to filter are put in a separate “Filtered notifications” box that you can review separately without it clogging your main notifications.\
   This adds the following REST API endpoints:
-
   - `GET /api/v2/notifications/policy`: https://docs.joinmastodon.org/methods/notifications/#get-policy
   - `PATCH /api/v2/notifications/policy`: https://docs.joinmastodon.org/methods/notifications/#update-the-filtering-policy-for-notifications
   - `GET /api/v1/notifications/requests`: https://docs.joinmastodon.org/methods/notifications/#get-requests
@@ -542,7 +664,6 @@ The following changelog entries focus on changes visible to users, administrator
   - `GET /api/v1/notifications/requests/merged`: https://docs.joinmastodon.org/methods/notifications/#requests-merged
 
   In addition, accepting one or more notification requests generates a new streaming event:
-
   - `notifications_merged`: an event of this type indicates accepted notification requests have finished merging, and the notifications list should be refreshed
 
 - **Add notifications of severed relationships** (#27511, #29665, #29668, #29670, #29700, #29714, #29712, and #29731 by @ClearlyClaire and @Gargron)\

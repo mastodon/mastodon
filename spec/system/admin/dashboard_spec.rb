@@ -9,6 +9,7 @@ RSpec.describe 'Admin Dashboard' do
     before do
       stub_system_checks
       Fabricate :software_update
+      Fabricate :tag, requested_review_at: 5.minutes.ago
       sign_in(user)
     end
 
@@ -18,6 +19,7 @@ RSpec.describe 'Admin Dashboard' do
       expect(page)
         .to have_title(I18n.t('admin.dashboard.title'))
         .and have_content(I18n.t('admin.system_checks.software_version_patch_check.message_html'))
+        .and have_content('0 pending hashtags')
     end
 
     private

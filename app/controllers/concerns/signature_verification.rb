@@ -9,6 +9,8 @@ module SignatureVerification
 
   EXPIRATION_WINDOW_LIMIT = 12.hours
   CLOCK_SKEW_MARGIN       = 1.hour
+  STOPLIGHT_COOL_OFF_TIME = 5.minutes.seconds
+  STOPLIGHT_THRESHOLD = 1
 
   def require_account_signature!
     render json: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
@@ -64,6 +66,9 @@ module SignatureVerification
     return (@signed_request_actor = actor) if signed_request.verified?(actor)
 
     fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri}"
+  rescue Mastodon::MalformedHeaderError => e
+    @signature_verification_failure_code = 400
+    fail_with! e.message
   rescue Mastodon::SignatureVerificationError => e
     fail_with! e.message
   rescue *Mastodon::HTTP_CONNECTION_ERRORS => e
@@ -104,10 +109,12 @@ module SignatureVerification
   end
 
   def stoplight_wrapper
-    Stoplight("source:#{request.remote_ip}")
-      .with_threshold(1)
-      .with_cool_off_time(5.minutes.seconds)
-      .with_error_handler { |error, handle| error.is_a?(HTTP::Error) || error.is_a?(OpenSSL::SSL::SSLError) ? handle.call(error) : raise(error) }
+    Stoplight(
+      "source:#{request.remote_ip}",
+      cool_off_time: STOPLIGHT_COOL_OFF_TIME,
+      threshold: STOPLIGHT_THRESHOLD,
+      tracked_errors: [HTTP::Error, OpenSSL::SSL::SSLError]
+    )
   end
 
   def actor_refresh_key!(actor)

@@ -196,6 +196,7 @@ cs:
         create_relay: Vytvořit relay
         create_unavailable_domain: Vytvořit nedostupnou doménu
         create_user_role: Vytvořit roli
+        create_username_block: Vytvořit pravidlo pro uživatelská jména
         demote_user: Snížit roli uživatele
         destroy_announcement: Odstranit oznámení
         destroy_canonical_email_block: Odblokovat email
@@ -209,6 +210,7 @@ cs:
         destroy_status: Odstranit Příspěvek
         destroy_unavailable_domain: Smazat nedostupnou doménu
         destroy_user_role: Zničit roli
+        destroy_username_block: Odstranit pravidlo pro uživatelská jména
         disable_2fa_user: Vypnout 2FA
         disable_custom_emoji: Zakázat vlastní emoji
         disable_relay: Deaktivovat relay
@@ -243,6 +245,7 @@ cs:
         update_report: Upravit hlášení
         update_status: Aktualizovat Příspěvek
         update_user_role: Aktualizovat roli
+        update_username_block: Aktualizovat pravidlo pro uživatelská jména
       actions:
         approve_appeal_html: Uživatel %{name} schválil odvolání proti rozhodnutí moderátora %{target}
         approve_user_html: "%{name} schválil registraci od %{target}"
@@ -261,6 +264,7 @@ cs:
         create_relay_html: "%{name} vytvořil*a relay %{target}"
         create_unavailable_domain_html: "%{name} zastavil doručování na doménu %{target}"
         create_user_role_html: "%{name} vytvořil %{target} roli"
+        create_username_block_html: "%{name} přidali pravidlo pro uživatelská jména obsahující %{target}"
         demote_user_html: Uživatel %{name} degradoval uživatele %{target}
         destroy_announcement_html: Uživatel %{name} odstranil oznámení %{target}
         destroy_canonical_email_block_html: "%{name} odblokoval*a e-mail s hashem %{target}"
@@ -274,6 +278,7 @@ cs:
         destroy_status_html: Uživatel %{name} odstranil příspěvek uživatele %{target}
         destroy_unavailable_domain_html: "%{name} obnovil doručování na doménu %{target}"
         destroy_user_role_html: "%{name} odstranil %{target} roli"
+        destroy_username_block_html: "%{name} odstranili pravidlo pro uživatelská jména obsahující %{target}"
         disable_2fa_user_html: Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}
         disable_custom_emoji_html: Uživatel %{name} zakázal emoji %{target}
         disable_relay_html: "%{name} deaktivoval*a relay %{target}"
@@ -308,6 +313,7 @@ cs:
         update_report_html: "%{name} aktualizoval hlášení %{target}"
         update_status_html: Uživatel %{name} aktualizoval příspěvek uživatele %{target}
         update_user_role_html: "%{name} změnil %{target} roli"
+        update_username_block_html: "%{name} aktualizovali pravidlo pro uživatelská jména obsahující %{target}"
       deleted_account: smazaný účet
       empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
@@ -870,6 +876,10 @@ cs:
         all: Všem
         disabled: Nikomu
         users: Přihlášeným místním uživatelům
+      feed_access:
+        modes:
+          authenticated: Pouze autentifikovaní uživatelé
+          public: Všichni
       registrations:
         moderation_recommandation: Před otevřením registrací všem se ujistěte, že máte vhodný a reaktivní moderační tým!
         preamble: Mějte pod kontrolou, kdo může vytvořit účet na vašem serveru.
@@ -1121,6 +1131,25 @@ cs:
           other: Použit %{count} lidmi za poslední týden
       title: Doporučení & Trendy
       trending: Populární
+    username_blocks:
+      add_new: Přidat
+      block_registrations: Blokovat registrace
+      comparison:
+        contains: Obsahuje
+        equals: Rovná se
+      contains_html: Obsahuje %{string}
+      created_msg: Vytvořeno pravidlo pro uživatelská jména
+      delete: Smazat
+      edit:
+        title: Upravit pravidlo pro uživatelská jména
+      matches_exactly_html: Rovná se %{string}
+      new:
+        create: Vytvořit pravidlo
+        title: Vytvořit nové pravidlo pro uživatelská jména
+      no_username_block_selected: Nebyla změněna žádná pravidla pro uživatelská jména, protože žádná nebyla vybrána
+      not_permitted: Není povoleno
+      title: Pravidla uživatelských jmen
+      updated_msg: Pravidlo pro jména uživatelů bylo úspěšně aktualizováno
     warning_presets:
       add_new: Přidat nové
       delete: Smazat
@@ -1387,6 +1416,10 @@ cs:
     basic_information: Základní informace
     hint_html: "<strong>Nastavte si, co lidé uvidí na vašem veřejném profilu a vedle vašich příspěvků.</strong> Ostatní lidé vás budou spíše sledovat a komunikovat s vámi, když budete mít vyplněný profil a profilový obrázek."
     other: Další
+  emoji_styles:
+    auto: Auto
+    native: Výchozí
+    twemoji: Twemoji
   errors:
     '400': Žádost, kterou jste odeslali, byla neplatná nebo poškozená.
     '403': Nejste oprávněni tuto stránku zobrazit.
@@ -1736,6 +1769,10 @@ cs:
       title: Nová zmínka
     poll:
       subject: Anketa od %{name} skončila
+    quote:
+      body: 'Váš příspěvek citoval účet %{name}:'
+      subject: "%{name} citovali váš příspěvek"
+      title: Nová citace
     reblog:
       body: 'Uživatel %{name} boostnul váš příspěvek:'
       subject: Uživatel %{name} boostnul váš příspěvek
@@ -1784,9 +1821,12 @@ cs:
       self_vote: Nemůžete hlasovat ve svých vlastních anketách
       too_few_options: musí mít více než jednu položku
       too_many_options: nesmí obsahovat více než %{max} položek
+    vote: Hlasovat
+  posting_defaults:
+    explanation: Tato nastavení budou použita jako výchozí při vytváření nových příspěvků, ale v editoru je můžete upravit pro každý příspěvek zvlášť.
   preferences:
     other: Ostatní
-    posting_defaults: Výchozí možnosti psaní
+    posting_defaults: Výchozí nastavení příspěvků
     public_timelines: Veřejné časové osy
   privacy:
     hint_html: "<strong>Nastavte si, jak chcete, aby šlo váš profil a vaše příspěvky nalézt.</strong> Řada funkcí v Mastodonu vám může po zapnutí pomoci získat širší publikum. Věnujte chvíli kontrole těchto nastavení, aby vyhovovala vašim potřebám."
@@ -1954,6 +1994,7 @@ cs:
     edited_at_html: Upraven %{date}
     errors:
       in_reply_not_found: Příspěvek, na který se pokoušíte odpovědět, neexistuje.
+      quoted_status_not_found: Zdá se, že příspěvek, který se pokoušíte citovat neexistuje.
     over_character_limit: byl překročen limit %{max} znaků
     pin_errors:
       direct: Příspěvky viditelné pouze zmíněným uživatelům nelze připnout
@@ -1961,18 +2002,17 @@ cs:
       ownership: Nelze připnout příspěvek někoho jiného
       reblog: Boosty nelze připnout
     quote_policies:
-      followers: Sledující a zmínění uživatelé
-      nobody: Pouze zmínění uživatelé
-      public: Všichni
+      followers: Pouze sledující
+      nobody: Jen já
+      public: Kdokoliv
     title: "%{name}: „%{quote}“"
     visibilities:
-      direct: Přímé
-      private: Pouze pro sledující
-      private_long: Zobrazit pouze sledujícím
+      direct: Soukromá zmínka
+      private: Pouze sledující
       public: Veřejné
-      public_long: Uvidí kdokoliv
-      unlisted: Neuvedené
-      unlisted_long: Uvidí kdokoliv, ale nebude zahrnut ve veřejných časových osách
+      public_long: Kdokoliv na Mastodonu i mimo něj
+      unlisted: Ztišené veřejné
+      unlisted_long: Skryté z výsledků vyhledávání na Mastodonu, trendů a veřejných časových os
   statuses_cleanup:
     enabled: Automaticky mazat staré příspěvky
     enabled_hint: Automaticky maže vaše příspěvky poté, co dosáhnou stanoveného stáří, nesplňují-li některou z výjimek níže

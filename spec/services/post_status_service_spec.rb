@@ -160,6 +160,12 @@ RSpec.describe PostStatusService do
     expect(status.language).to eq 'en'
   end
 
+  it 'creates a status with the quote approval policy set' do
+    status = create_status_with_options(quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16)
+
+    expect(status.quote_approval_policy).to eq(Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16)
+  end
+
   it 'processes mentions' do
     mention_service = instance_double(ProcessMentionsService)
     allow(mention_service).to receive(:call)
@@ -289,6 +295,38 @@ RSpec.describe PostStatusService do
       Mastodon::ValidationError,
       I18n.t('media_attachments.validations.images_and_video')
     )
+  end
+
+  it 'correctly requests a quote for remote posts' do
+    account = Fabricate(:account)
+    quoted_status = Fabricate(:status, account: Fabricate(:account, domain: 'example.com'))
+
+    expect { subject.call(account, text: 'test', quoted_status: quoted_status) }
+      .to enqueue_sidekiq_job(ActivityPub::QuoteRequestWorker)
+  end
+
+  it 'allows quotes with spoilers and no text' do
+    account = Fabricate(:account)
+    quoted_status = Fabricate(:status, account: Fabricate(:account, domain: 'example.com'))
+
+    expect { subject.call(account, spoiler_text: 'test', quoted_status: quoted_status) }
+      .to enqueue_sidekiq_job(ActivityPub::QuoteRequestWorker)
+  end
+
+  it 'correctly downgrades visibility for private self-quotes' do
+    account = Fabricate(:account)
+    quoted_status = Fabricate(:status, account: account, visibility: :private)
+
+    status = subject.call(account, text: 'test', quoted_status: quoted_status)
+    expect(status).to be_private_visibility
+  end
+
+  it 'correctly preserves visibility for private mentions self-quoting private posts' do
+    account = Fabricate(:account)
+    quoted_status = Fabricate(:status, account: account, visibility: :private)
+
+    status = subject.call(account, text: 'test', quoted_status: quoted_status, visibility: 'direct')
+    expect(status).to be_direct_visibility
   end
 
   it 'returns existing status when used twice with idempotency key' do

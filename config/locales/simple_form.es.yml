@@ -56,11 +56,13 @@ es:
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a los impulsos recibidos recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
-        setting_default_quote_policy: Los usuarios mencionados siempre pueden citar. Este ajuste solo afecta a las publicaciones creadas con la próxima versión de Mastodon, pero puedes seleccionar tus preferencias anticipadamente
+        setting_default_quote_policy_private: Las publicaciones solo para seguidores hechas en Mastodon no pueden ser citadas por otros usuarios.
+        setting_default_quote_policy_unlisted: Cuando las personas te citen, su publicación también se ocultará en las cronologías públicas.
         setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un click
         setting_display_media_default: Ocultar contenido multimedia marcado como sensible
         setting_display_media_hide_all: Siempre ocultar todo el contenido multimedia
         setting_display_media_show_all: Mostrar siempre contenido multimedia marcado como sensible
+        setting_emoji_style: Cómo se mostrarán los emojis. "Auto" intentará usar emojis nativos, cambiando a Twemoji en navegadores antiguos.
         setting_system_scrollbars_ui: Solo aplica para navegadores de escritorio basados en Safari y Chrome
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar nuevas publicaciones detrás de un clic en lugar de desplazar automáticamente el feed
@@ -103,7 +105,6 @@ es:
         status_page_url: URL de una página donde se pueda ver el estado de este servidor durante una incidencia
         theme: El tema que los visitantes no registrados y los nuevos usuarios ven.
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
-        timeline_preview: Los visitantes no registrados podrán navegar por los mensajes públicos más recientes disponibles en el servidor.
         trendable_by_default: Omitir la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
         trends: Las tendencias muestran qué publicaciones, etiquetas y noticias están ganando tracción en tu servidor.
         trends_as_landing_page: Mostrar contenido en tendencia para usuarios y visitantes en lugar de una descripción de este servidor. Requiere que las tendencias estén habilitadas.
@@ -150,8 +151,8 @@ es:
       user:
         chosen_languages: Cuando se marca, solo se mostrarán las publicaciones en los idiomas seleccionados en las líneas de tiempo públicas
         date_of_birth:
-          one: Tenemos que asegurarnos de que tienes al menos %{count} años para usar Mastodon. No guardaremos este dato.
-          other: Tenemos que asegurarnos de que tienes al menos %{count} años para usar Mastodon. No guardaremos este dato.
+          one: Tenemos que asegurarnos de que tienes al menos %{count} para usar %{domain}. No guardaremos esta información.
+          other: Tenemos que asegurarnos de que tienes al menos %{count} para usar %{domain}. No guardaremos esta información.
         role: El rol controla qué permisos tiene el usuario.
       user_role:
         color: Color que se utilizará para el rol a lo largo de la interfaz de usuario, como RGB en formato hexadecimal
@@ -159,6 +160,10 @@ es:
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a...
         position: Un rol superior decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con menor prioridad
+      username_block:
+        allow_with_approval: En lugar de impedir directamente el registro, los registros coincidentes requerirán tu aprobación
+        comparison: Por favor, ten en cuenta el problema de Scunthorpe al bloquear coincidencias parciales
+        username: Se emparejará independientemente de la mayúscula o minúscula y de homógrafos comunes como «4» por «a» o «3» por «e»
       webhook:
         events: Seleccionar eventos para enviar
         template: Crea tu propio JSON usando interpolación variable. Déjalo en blanco para el JSON predeterminado.
@@ -231,7 +236,7 @@ es:
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Mostrar diálogo de confirmación antes de impulsar una publicación
         setting_default_language: Idioma de publicación
-        setting_default_privacy: Privacidad de publicaciones
+        setting_default_privacy: Visibilidad de publicación
         setting_default_quote_policy: Quién puede citar
         setting_default_sensitive: Marcar siempre imágenes como sensibles
         setting_delete_modal: Mostrar diálogo de confirmación antes de borrar una publicación
@@ -241,6 +246,7 @@ es:
         setting_display_media_default: Por defecto
         setting_display_media_hide_all: Ocultar todo
         setting_display_media_show_all: Mostrar todo
+        setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Siempre expandir las publicaciones marcadas con advertencias de contenido
         setting_hide_network: Ocultar tu red
         setting_missing_alt_text_modal: Mostrar diálogo de confirmación antes de publicar medios sin texto alternativo
@@ -277,12 +283,16 @@ es:
         content_cache_retention_period: Período de retención de contenido remoto
         custom_css: CSS personalizado
         favicon: Favicon
+        local_live_feed_access: Acceso a las cronologías que destacan publicaciones locales
+        local_topic_feed_access: Acceso a las etiquetas y enlaces en tendencia que destacan publicaciones locales
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de caché multimedia
         min_age: Edad mínima requerida
         peers_api_enabled: Publicar lista de servidores descubiertos en la API
         profile_directory: Habilitar directorio de perfiles
         registrations_mode: Quién puede registrarse
+        remote_live_feed_access: Acceso a las cronologías que destacan publicaciones remotas
+        remote_topic_feed_access: Acceso a las etiquetas y enlaces en tendencia que destacan publicaciones remotas
         require_invite_text: Requerir una razón para unirse
         show_domain_blocks: Mostrar dominios bloqueados
         show_domain_blocks_rationale: Mostrar por qué se bloquearon los dominios
@@ -295,7 +305,6 @@ es:
         status_page_url: URL de página de estado
         theme: Tema por defecto
         thumbnail: Miniatura del servidor
-        timeline_preview: Permitir el acceso no autenticado a las líneas de tiempo públicas
         trendable_by_default: Permitir tendencias sin revisión previa
         trends: Habilitar tendencias
         trends_as_landing_page: Usar tendencias como la página de inicio
@@ -323,6 +332,7 @@ es:
         follow_request: Enviar correo electrónico cuando alguien solicita seguirte
         mention: Enviar correo electrónico cuando alguien te mencione
         pending_account: Enviar correo electrónico cuando una nueva cuenta necesita revisión
+        quote: Alguien te ha citado
         reblog: Enviar correo electrónico cuando alguien comparta su publicación
         report: Nuevo informe enviado
         software_updates:
@@ -369,6 +379,10 @@ es:
         name: Nombre
         permissions_as_keys: Permisos
         position: Prioridad
+      username_block:
+        allow_with_approval: Permitir registros con aprobación
+        comparison: Método de comparación
+        username: Palabra a coincidir
       webhook:
         events: Eventos habilitados
         template: Plantilla de carga

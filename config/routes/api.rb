@@ -18,6 +18,12 @@ namespace :api, format: false do
         resource :reblog, only: :create
         post :unreblog, to: 'reblogs#destroy'
 
+        resources :quotes, only: :index do
+          member do
+            post :revoke
+          end
+        end
+
         resource :favourite, only: :create
         post :unfavourite, to: 'favourites#destroy'
 
@@ -32,6 +38,8 @@ namespace :api, format: false do
 
         resource :history, only: :show
         resource :source, only: :show
+
+        resource :interaction_policy, only: :update
 
         post :translate, to: 'translations#create'
       end
@@ -361,10 +369,6 @@ namespace :api, format: false do
   namespace :web do
     resource :settings, only: [:update]
     resources :embeds, only: [:show]
-    resources :push_subscriptions, only: [:create, :destroy] do
-      member do
-        put :update
-      end
-    end
+    resources :push_subscriptions, only: [:create, :destroy, :update]
   end
 end

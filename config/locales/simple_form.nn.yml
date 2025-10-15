@@ -16,7 +16,7 @@ nn:
       account_migration:
         acct: Angi brukarnamn@domene til brukaren du ynskjer å flytta til
       account_warning_preset:
-        text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og omtaler
+        text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og omtalar
         title: Valfritt. Ikkje synleg for mottakar
       admin_account_action:
         include_statuses: Brukaren får sjå kva tut som førte til moderatorhandlinga eller -åtvaringa
@@ -56,11 +56,13 @@ nn:
         scopes: API-ane som programmet vil få tilgjenge til. Ettersom du vel eit toppnivåomfang tarv du ikkje velja einskilde API-ar.
         setting_aggregate_reblogs: Ikkje vis nye framhevingar for tut som nyleg har vorte heva fram (Påverkar berre nylege framhevingar)
         setting_always_send_emails: Vanlegvis vil ikkje e-postvarsel bli sendt når du brukar Mastodon aktivt
-        setting_default_quote_policy: Dei nemnde folka får alltid lov å sitera. Denne innstillinga har berre verknad for innlegg som er laga med den neste utgåva av Mastodon, men du kan velja kva du vil ha i førebuingane
+        setting_default_quote_policy_private: Innlegg som er skrivne på Mastodon og berre for fylgjarar kan ikkje siterast av andre.
+        setting_default_quote_policy_unlisted: Når folk siterer deg, vil innlegget deira ikkje syna på populære tidsliner.
         setting_default_sensitive: Sensitive media vert gøymde som standard, og du syner dei ved å klikka på dei
         setting_display_media_default: Gøym media som er merka som sensitive
         setting_display_media_hide_all: Alltid skjul alt media
         setting_display_media_show_all: Vis alltid media
+        setting_emoji_style: Korleis du skal visa smilefjes. «Auto» prøver å visa innebygde smilefjes, men bruker Twemoji som reserveløysing for eldre nettlesarar.
         setting_system_scrollbars_ui: Gjeld berre skrivebordsnettlesarar som er bygde på Safari og Chrome
         setting_use_blurhash: Overgangar er basert på fargane til skjulte grafikkelement, men gjer detaljar utydelege
         setting_use_pending_items: Gøym tidslineoppdateringar bak eit klikk, i staden for å rulla ned automatisk
@@ -85,7 +87,7 @@ nn:
         backups_retention_period: Brukarar har moglegheit til å generere arkiv av sine innlegg for å laste ned seinare. Når sett til ein positiv verdi, blir desse arkiva automatisk sletta frå lagringa etter eit gitt antal dagar.
         bootstrap_timeline_accounts: Desse kontoane vil bli festa øverst på fylgjaranbefalingane til nye brukarar.
         closed_registrations_message: Vist når det er stengt for registrering
-        content_cache_retention_period: Alle innlegg frå andre tenarar (inkludert framhevingar og svar) vil bli sletta etter talet på dagar du skriv inn, uansett om nokon har samhandla med desse innlegga. Dette inkluderer innlegg der ein lokal brukar har merka det som bokmerke eller som favoritt. Private omtaler mellom brukarar frå ulike nettstader vil gå tapt og vera umogleg å gjenskapa. Bruk av denne innstillinga er meint for spesielle nettstader og bryt med det mange forventar av ein vanleg nettstad.
+        content_cache_retention_period: Alle innlegg frå andre tenarar (inkludert framhevingar og svar) vil bli sletta etter talet på dagar du skriv inn, uansett om nokon har samhandla med desse innlegga. Dette inkluderer innlegg der ein lokal brukar har merka det som bokmerke eller som favoritt. Private omtalar mellom brukarar frå ulike nettstader vil gå tapt og vera umogleg å gjenskapa. Bruk av denne innstillinga er meint for spesielle nettstader og bryt med det mange forventar av ein vanleg nettstad.
         custom_css: Du kan bruka eigendefinerte stilar på nettversjonen av Mastodon.
         favicon: WEBP, PNG, GIF eller JPG. Overstyrer det standarde Mastodon-favikonet med eit eigendefinert ikon.
         mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
@@ -103,7 +105,6 @@ nn:
         status_page_url: Adressa til ei side der folk kan sjå statusen til denne tenaren ved feil og utkoplingar
         theme: Tema som er synleg for nye brukarar og besøkjande som ikkje er logga inn.
         thumbnail: Eit omlag 2:1 bilete vist saman med informasjon om tenaren.
-        timeline_preview: Besøkjande som ikkje er logga inn vil kunne bla gjennom dei siste offentlege innlegga på tenaren.
         trendable_by_default: Hopp over manuell gjennomgang av populært innhald. Enkeltståande innlegg kan fjernast frå trendar i etterkant.
         trends: Trendar viser kva for nokre innlegg, emneknaggar og nyheiter som er populære på tenaren.
         trends_as_landing_page: Vis populært innhald til utlogga brukarar og folk som kjem innom sida i staden for ei skildring av tenaren. Du må ha skrudd på trendar for å kunna bruka dette.
@@ -150,8 +151,8 @@ nn:
       user:
         chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
         date_of_birth:
-          one: Me må syta for at du er minst %{count} for å bruka Masodon. Me lagrar ikkje dette.
-          other: Me må syta for at du er minst %{count} for å bruka Masodon. Me lagrar ikkje dette.
+          one: Me må sikra oss at du er minst %{count} for å bruka %{domain}. Me lagrar ikkje dette.
+          other: Me må sikra oss at du er minst %{count} for å bruka %{domain}. Me lagrar ikkje dette.
         role: Rolla kontrollerer kva løyve brukaren har.
       user_role:
         color: Fargen som skal nyttast for denne rolla i heile brukargrensesnittet, som RGB i hex-format
@@ -159,6 +160,10 @@ nn:
         name: Offentleg namn på rolla, dersom rolla skal visast som eit emblem
         permissions_as_keys: Brukarar med denne rolla vil ha tilgang til...
         position: Høgare rolle avgjer konfliktløysing i visse situasjonar. Visse handlingar kan berre utførast på roller med lågare prioritet
+      username_block:
+        allow_with_approval: I staden for å hindra registreringar i det heile, må du godkjenna registreringar som passar
+        comparison: Ver merksam på Scunthorpe-problemet når du blokkerer delvise treff
+        username: Vil passa uansett store og små bokstavar og vanlege homoglyfar som «4» for «a» eller «3» for «e»
       webhook:
         events: Vel hendingar å senda
         template: Skriv di eiga JSON nyttelast ved å bruka variabel interpolering. La stå tom for standard JSON.
@@ -231,16 +236,17 @@ nn:
         setting_auto_play_gif: Spel av animerte GIF-ar automatisk
         setting_boost_modal: Vis stadfesting før framheving
         setting_default_language: Språk på innlegg
-        setting_default_privacy: Privatliv
+        setting_default_privacy: Innleggsvising
         setting_default_quote_policy: Kven kan sitera
         setting_default_sensitive: Merk alltid media som nærtakande
         setting_delete_modal: Vis stadfesting før du slettar eit tut
         setting_disable_hover_cards: Skru av profilvising når peikaren er over
-        setting_disable_swiping: Skru av sveipebevegelser
+        setting_disable_swiping: Skru av sveiperørsler
         setting_display_media: Medievisning
         setting_display_media_default: Standard
         setting_display_media_hide_all: Gøym alle
         setting_display_media_show_all: Vis alle
+        setting_emoji_style: Stil for smilefjes
         setting_expand_spoilers: Vid alltid ut tut som er merka med innhaldsåtvaringar
         setting_hide_network: Gøym nettverket ditt
         setting_missing_alt_text_modal: Vis stadfestingsdialog før du legg ut media utan alt-tekst
@@ -295,7 +301,6 @@ nn:
         status_page_url: Adresse til statussida
         theme: Standardtema
         thumbnail: Miniatyrbilete for tenaren
-        timeline_preview: Tillat uautentisert tilgang til offentleg tidsline
         trendable_by_default: Tillat trendar utan gjennomgang på førehand
         trends: Aktiver trendar
         trends_as_landing_page: Bruk trendar som startside
@@ -323,18 +328,19 @@ nn:
         follow_request: Send e-post når nokon spør om å fylgja deg
         mention: Send e-post når nokon nemner deg
         pending_account: Send e-post når ein ny konto treng gjennomgang
+        quote: Nokon siterte deg
         reblog: Send e-post når nokon framhevar statusen din
         report: Ny rapport er sendt
         software_updates:
           all: Varsle om alle oppdateringar
           critical: Varsle kun om kristiske oppdateringar
           label: Ein ny versjon av Mastodon er tilgjengeleg
-          none: Aldri varsle om oppdateringar (ikkje anbefalt)
+          none: Aldri varsle om oppdateringar (ikkje tilrådd)
           patch: Varsle om feilrettingsoppdateringar
         trending_tag: Ny trend krev gjennomgang
       rule:
         hint: Meir informasjon
-        text: Regler
+        text: Regel
       settings:
         indexable: Ta med profilsida i søkjemotorar
         show_application: Vis kva app du brukte når du skreiv innlegg
@@ -369,12 +375,16 @@ nn:
         name: Namn
         permissions_as_keys: Løyve
         position: Prioritet
+      username_block:
+        allow_with_approval: Tillat registreringar med godkjenning
+        comparison: Samanlikningsmetode
+        username: Ord som skal passa
       webhook:
         events: Aktiverte hendingar
         template: Nyttelastmal
         url: Endepunkts-URL
     'no': Nei
-    not_recommended: Ikkje anbefalt
+    not_recommended: Ikkje tilrådd
     overridden: Overstyrt
     recommended: Tilrådt
     required:

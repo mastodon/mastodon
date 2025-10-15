@@ -190,6 +190,7 @@ es:
         create_relay: Crear Relé
         create_unavailable_domain: Crear Dominio No Disponible
         create_user_role: Crear Rol
+        create_username_block: Crear regla de nombre de usuario
         demote_user: Degradar Usuario
         destroy_announcement: Eliminar Anuncio
         destroy_canonical_email_block: Eliminar Bloqueo de Correo Electrónico
@@ -203,6 +204,7 @@ es:
         destroy_status: Eliminar Publicación
         destroy_unavailable_domain: Eliminar Dominio No Disponible
         destroy_user_role: Destruir Rol
+        destroy_username_block: Eliminar regla de nombre de usuario
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar Emoji Personalizado
         disable_relay: Desactivar Relé
@@ -237,6 +239,7 @@ es:
         update_report: Actualizar informe
         update_status: Actualizar Publicación
         update_user_role: Actualizar Rol
+        update_username_block: Actualizar regla de nombre de usuario
       actions:
         approve_appeal_html: "%{name} aprobó la solicitud de moderación de %{target}"
         approve_user_html: "%{name} aprobó el registro de %{target}"
@@ -255,6 +258,7 @@ es:
         create_relay_html: "%{name} creó un relé %{target}"
         create_unavailable_domain_html: "%{name} detuvo las entregas al dominio %{target}"
         create_user_role_html: "%{name} creó el rol %{target}"
+        create_username_block_html: "%{name} agregó una regla para los nombres de usuario que contienen %{target}"
         demote_user_html: "%{name} degradó al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueó el correo electrónico con el hash %{target}"
@@ -268,6 +272,7 @@ es:
         destroy_status_html: "%{name} eliminó la publicación de %{target}"
         destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
         destroy_user_role_html: "%{name} eliminó el rol %{target}"
+        destroy_username_block_html: "%{name} eliminó una regla para los nombres de usuario que contienen %{target}"
         disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} desactivó el emoji %{target}"
         disable_relay_html: "%{name} desactivó el relé %{target}"
@@ -302,6 +307,7 @@ es:
         update_report_html: "%{name} actualizó el informe %{target}"
         update_status_html: "%{name} actualizó la publicación de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
+        update_username_block_html: "%{name} actualizó una regla para los nombres de usuario que contienen %{target}"
       deleted_account: cuenta eliminada
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
@@ -842,6 +848,10 @@ es:
         all: A todos
         disabled: A nadie
         users: Para los usuarios locales que han iniciado sesión
+      feed_access:
+        modes:
+          authenticated: Solo usuarios autenticados
+          public: Todos
       registrations:
         moderation_recommandation: Por favor, ¡asegúrate de tener un equipo de moderación adecuado y reactivo antes de abrir los registros a todo el mundo!
         preamble: Controla quién puede crear una cuenta en tu servidor.
@@ -1085,6 +1095,25 @@ es:
           other: Usada por %{count} personas durante la última semana
       title: Recomendaciones y Tendencias
       trending: En tendencia
+    username_blocks:
+      add_new: Añadir nueva
+      block_registrations: Bloquear registros
+      comparison:
+        contains: Contiene
+        equals: Es igual a
+      contains_html: Contiene %{string}
+      created_msg: Regla de nombre de usuario creada correctamente
+      delete: Eliminar
+      edit:
+        title: Editar regla de nombre de usuario
+      matches_exactly_html: Es igual a %{string}
+      new:
+        create: Crear regla
+        title: Crear nueva regla de nombre de usuario
+      no_username_block_selected: No se cambiaron las reglas de nombre de usuario, ya que no se seleccionó ninguno
+      not_permitted: No permitido
+      title: Reglas de nombre de usuario
+      updated_msg: Regla de nombre de usuario actualizada correctamente
     warning_presets:
       add_new: Añadir nuevo
       delete: Borrar
@@ -1349,6 +1378,10 @@ es:
     basic_information: Información básica
     hint_html: "<strong>Personaliza lo que la gente ve en tu perfil público junto a tus publicaciones.</strong> Es más probable que otras personas te sigan e interactúen contigo cuando completas tu perfil y foto."
     other: Otros
+  emoji_styles:
+    auto: Automático
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': La solicitud que has enviado no es valida o estaba malformada.
     '403': No tienes permiso para acceder a esta página.
@@ -1558,6 +1591,13 @@ es:
       expires_at: Expira
       uses: Usos
     title: Invitar a gente
+  link_preview:
+    author_html: Por %{name}
+    potentially_sensitive_content:
+      action: Pulsa para mostrar
+      confirm_visit: "¿Seguro que quieres abrir este enlace?"
+      hide_button: Ocultar
+      label: Contenido potencialmente sensible
   lists:
     errors:
       limit: Has alcanzado la cantidad máxima de listas
@@ -1658,6 +1698,10 @@ es:
       title: Nueva mención
     poll:
       subject: Una encuesta de %{name} ha terminado
+    quote:
+      body: 'Tu publicación ha sido citada por %{name}:'
+      subject: "%{name} citó tu publicación"
+      title: Nueva cita
     reblog:
       body: 'Tu publicación fue impulsada por %{name}:'
       subject: "%{name} impulsó tu publicación"
@@ -1706,6 +1750,9 @@ es:
       self_vote: No puedes votar en tus propias encuestas
       too_few_options: debe tener más de un elemento
       too_many_options: no puede contener más de %{max} elementos
+    vote: Votar
+  posting_defaults:
+    explanation: Esta configuración se usará como predeterminada cuando crees nuevas publicaciones, pero puedes modificarla al escribir una publicación.
   preferences:
     other: Otros
     posting_defaults: Configuración por defecto de publicaciones
@@ -1861,6 +1908,9 @@ es:
         other: "%{count} vídeos"
     boosted_from_html: Impulsado desde %{acct_link}
     content_warning: 'Alerta de contenido: %{warning}'
+    content_warnings:
+      hide: Ocultar publicación
+      show: Mostrar más
     default_language: Igual que el idioma de la interfaz
     disallowed_hashtags:
       one: 'contenía una etiqueta no permitida: %{tags}'
@@ -1868,6 +1918,7 @@ es:
     edited_at_html: Editado %{date}
     errors:
       in_reply_not_found: La publicación a la que intentas responder no existe.
+      quoted_status_not_found: La publicación que estás intentando citar no parece existir.
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
       direct: Las publicaciones que son visibles solo para los usuarios mencionados no pueden fijarse
@@ -1875,18 +1926,17 @@ es:
       ownership: La publicación de otra persona no puede fijarse
       reblog: Una publicación impulsada no puede fijarse
     quote_policies:
-      followers: Seguidores y usuarios mencionados
-      nobody: Solo usuarios mencionados
+      followers: Solo seguidores
+      nobody: Solo yo
       public: Cualquiera
     title: "%{name}: «%{quote}»"
     visibilities:
-      direct: Directa
+      direct: Mención privada
       private: Solo seguidores
-      private_long: Solo mostrar a tus seguidores
       public: Pública
-      public_long: Todos pueden ver
-      unlisted: Pública, pero no mostrar en la historia federada
-      unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
+      public_long: Cualquiera dentro y fuera de Mastodon
+      unlisted: Pública silenciosa
+      unlisted_long: Ocultado de los resultados de búsqueda de Mastodon, tendencias y cronologías públicas
   statuses_cleanup:
     enabled: Borrar automáticamente publicaciones antiguas
     enabled_hint: Elimina automáticamente tus publicaciones una vez que alcancen un umbral de tiempo especificado, a menos que coincidan con alguna de las excepciones detalladas debajo

@@ -60,7 +60,7 @@ vi:
       destroyed_msg: Dữ liệu %{username} sẽ được lên lịch xóa ngay bây giờ
       disable: Khóa
       disable_sign_in_token_auth: Tắt xác minh bằng email
-      disable_two_factor_authentication: Vô hiệu hóa xác minh 2 bước
+      disable_two_factor_authentication: Vô hiệu hóa xác thực 2 bước
       disabled: Tạm khóa
       display_name: Biệt danh
       domain: Máy chủ
@@ -187,6 +187,7 @@ vi:
         create_relay: Tạo relay
         create_unavailable_domain: Bỏ liên hợp
         create_user_role: Tạo vai trò
+        create_username_block: Tạo quy tắc tên người dùng
         demote_user: Hạ vai trò
         destroy_announcement: Xóa thông báo
         destroy_canonical_email_block: Bỏ chặn địa chỉ email biến thể
@@ -200,6 +201,7 @@ vi:
         destroy_status: Xóa tút
         destroy_unavailable_domain: Cho phép liên hợp
         destroy_user_role: Xóa vai trò
+        destroy_username_block: Xóa quy tắc tên người dùng
         disable_2fa_user: Vô hiệu hóa 2FA
         disable_custom_emoji: Vô hiệu hóa emoji
         disable_relay: Tắt relay
@@ -234,6 +236,7 @@ vi:
         update_report: Cập nhật báo cáo
         update_status: Cập nhật tút
         update_user_role: Cập nhật vai trò
+        update_username_block: Cập nhật quy tắc tên người dùng
       actions:
         approve_appeal_html: "%{name} đã chấp nhận khiếu nại từ %{target}"
         approve_user_html: "%{name} đã chấp nhận đăng ký từ %{target}"
@@ -252,6 +255,7 @@ vi:
         create_relay_html: "%{name} đã tạo relay %{target}"
         create_unavailable_domain_html: "%{name} đã bỏ liên hợp với máy chủ %{target}"
         create_user_role_html: "%{name} đã tạo vai trò %{target}"
+        create_username_block_html: "%{name} thêm quy tắc cho tên người dùng chứa %{target}"
         demote_user_html: "%{name} đã hạ vai trò của %{target}"
         destroy_announcement_html: "%{name} đã xóa thông báo %{target}"
         destroy_canonical_email_block_html: "%{name} đã bỏ chặn địa chỉ email biến thể %{target}"
@@ -265,7 +269,8 @@ vi:
         destroy_status_html: "%{name} đã xóa tút của %{target}"
         destroy_unavailable_domain_html: "%{name} tiếp tục liên hợp với máy chủ %{target}"
         destroy_user_role_html: "%{name} đã xóa vai trò %{target}"
-        disable_2fa_user_html: "%{name} đã vô hiệu hóa xác minh hai bước của %{target}"
+        destroy_username_block_html: "%{name} xóa quy tắc cho tên người dùng chứa %{target}"
+        disable_2fa_user_html: "%{name} đã vô hiệu hóa xác thực 2 bước của %{target}"
         disable_custom_emoji_html: "%{name} đã ẩn emoji %{target}"
         disable_relay_html: "%{name} đã tắt relay %{target}"
         disable_sign_in_token_auth_user_html: "%{name} đã tắt xác minh email của %{target}"
@@ -299,6 +304,7 @@ vi:
         update_report_html: "%{name} đã cập nhật báo cáo %{target}"
         update_status_html: "%{name} đã cập nhật tút của %{target}"
         update_user_role_html: "%{name} đã cập nhật vai trò %{target}"
+        update_username_block_html: "%{name} đã cập nhật quy tắc cho tên người dùng chứa %{target}"
       deleted_account: tài khoản đã xóa
       empty: Không tìm thấy bản ghi.
       filter_by_action: Theo hành động
@@ -765,7 +771,7 @@ vi:
         manage_taxonomies: Quản lý phân loại
         manage_taxonomies_description: Cho phép đánh giá nội dung xu hướng và cập nhật cài đặt hashtag
         manage_user_access: Quản lý người truy cập
-        manage_user_access_description: Cho phép người dùng tắt xác minh hai bước của người khác, đổi địa chỉ email và đặt lại mật khẩu của họ
+        manage_user_access_description: Cho phép người dùng tắt xác thực 2 bước của người khác, đổi địa chỉ email và đặt lại mật khẩu của họ
         manage_users: Quản lý người
         manage_users_description: Cho phép xem thông tin chi tiết của người khác và thực hiện các hành động kiểm duyệt
         manage_webhooks: Quản lý Webhook
@@ -828,6 +834,10 @@ vi:
         all: Tới mọi người
         disabled: Không ai
         users: Để đăng nhập người cục bộ
+      feed_access:
+        modes:
+          authenticated: Chỉ những người dùng đã xác minh
+          public: Mọi người
       registrations:
         moderation_recommandation: Vui lòng đảm bảo rằng bạn có một đội ngũ kiểm duyệt và phản ứng nhanh trước khi mở đăng ký cho mọi người!
         preamble: Kiểm soát những ai có thể tạo tài khoản trên máy chủ của bạn.
@@ -1067,6 +1077,25 @@ vi:
           other: "%{count} người dùng tuần rồi"
       title: Đề xuất & Xu hướng
       trending: Xu hướng
+    username_blocks:
+      add_new: Thêm mới
+      block_registrations: Cấm đăng ký
+      comparison:
+        contains: Có chứa
+        equals: Tương tự
+      contains_html: Có chứa %{string}
+      created_msg: Đã tạo quy tắc tên người dùng thành công
+      delete: Xóa
+      edit:
+        title: Sửa quy tắc tên người dùng
+      matches_exactly_html: Có chứa %{string}
+      new:
+        create: Tạo quy tắc
+        title: Tạo quy tắc tên người dùng mới
+      no_username_block_selected: Chưa chọn quy tắc tên người dùng nào
+      not_permitted: Cấm
+      title: Quy tắc tên người dùng
+      updated_msg: Đã cập nhật quy tắc tên người dùng thành công
     warning_presets:
       add_new: Thêm mới
       delete: Xóa bỏ
@@ -1330,6 +1359,10 @@ vi:
     basic_information: Thông tin cơ bản
     hint_html: Mọi người sẽ muốn theo dõi và tương tác với bạn hơn nếu bạn có ảnh đại diện và hồ sơ hoàn chỉnh.
     other: Khác
+  emoji_styles:
+    auto: Tự động
+    native: Nguyên bản
+    twemoji: Twemoji
   errors:
     '400': Yêu cầu bạn gửi không hợp lệ hoặc sai hình thức.
     '403': Bạn không có quyền xem trang này.
@@ -1519,16 +1552,23 @@ vi:
       expires_at: Hết hạn
       uses: Sử dụng
     title: Mời bạn bè
+  link_preview:
+    author_html: Bởi %{name}
+    potentially_sensitive_content:
+      action: Nhấn để xem
+      confirm_visit: Bạn có chắc muốn mở liên kết này?
+      hide_button: Ẩn
+      label: Có khả năng là nội dung nhạy cảm
   lists:
     errors:
       limit: Bạn đã đạt đến số lượng danh sách tối đa
   login_activities:
     authentication_methods:
-      otp: xác minh 2 bước
+      otp: xác thực 2 bước
       password: mật khẩu
       sign_in_token: mã an toàn email
       webauthn: khóa bảo mật
-    description_html: Nếu có lần đăng nhập đáng ngờ, hãy đổi ngay mật khẩu và bật xác minh 2 bước.
+    description_html: Nếu có lần đăng nhập đáng ngờ, hãy đổi ngay mật khẩu và bật xác thực 2 bước.
     empty: Không có lịch sử đăng nhập
     failed_sign_in_html: Đăng nhập thất bại bằng %{method} từ %{ip} (%{browser})
     successful_sign_in_html: Đăng nhập bằng %{method} từ %{ip} (%{browser})
@@ -1619,6 +1659,10 @@ vi:
       title: Lượt nhắc mới
     poll:
       subject: Vốt của %{name} đã kết thúc
+    quote:
+      body: 'Tút của bạn được trích dẫn bởi %{name}:'
+      subject: "%{name} vừa trích dẫn tút của bạn"
+      title: Trích dẫn mới
     reblog:
       body: Tút của bạn vừa được %{name} đăng lại
       subject: "%{name} vừa đăng lại tút của bạn"
@@ -1642,7 +1686,7 @@ vi:
           thousand: K
           trillion: T
   otp_authentication:
-    code_hint: Nhập mã được tạo bởi ứng dụng xác minh của bạn để xác nhận
+    code_hint: Nhập mã được tạo bởi ứng dụng xác thực của bạn để xác nhận
     description_html: Bạn sẽ đăng nhập bằng mã token được tạo ra bởi điện thoại của bạn.
     enable: Kích hoạt
     instructions_html: "<strong>Quét mã QR bằng Google Authenticator hoặc một ứng dụng TOTP tương tự trên điện thoại của bạn</strong>. Kể từ bây giờ, ứng dụng đó sẽ tạo những token để bạn đăng nhập."
@@ -1667,6 +1711,9 @@ vi:
       self_vote: Bạn không thể tự vốt cho tút của mình
       too_few_options: phải có nhiều hơn một mục
       too_many_options: tối đa %{max} lựa chọn
+    vote: Vốt
+  posting_defaults:
+    explanation: Các thiết lập này sẽ được sử dụng làm mặc định khi bạn tạo tút mới, nhưng bạn có thể chỉnh sửa cho từng tút khi soạn thảo.
   preferences:
     other: Khác
     posting_defaults: Mặc định cho tút
@@ -1795,7 +1842,7 @@ vi:
     severed_relationships: Quan hệ đứt gãy
     statuses_cleanup: Tự động xóa tút cũ
     strikes: Lần cảnh cáo
-    two_factor_authentication: Xác minh 2 bước
+    two_factor_authentication: Xác thực 2 bước
     webauthn_authentication: Khóa bảo mật
   severed_relationships:
     download: Tải xuống (%{count})
@@ -1819,12 +1866,16 @@ vi:
         other: "%{count} video"
     boosted_from_html: Đã đăng lại từ %{acct_link}
     content_warning: 'Cảnh báo nội dung: %{warning}'
+    content_warnings:
+      hide: Ẩn tút
+      show: Mở rộng
     default_language: Giống giao diện
     disallowed_hashtags:
       other: 'chứa các hashtag bị cấm: %{tags}'
     edited_at_html: Sửa %{date}
     errors:
       in_reply_not_found: Bạn đang trả lời một tút không còn tồn tại.
+      quoted_status_not_found: Bạn đang trích dẫn một tút không còn tồn tại.
     over_character_limit: vượt quá giới hạn %{max} ký tự
     pin_errors:
       direct: Không thể ghim những tút nhắn riêng
@@ -1832,18 +1883,17 @@ vi:
       ownership: Không thể ghim tút của người khác
       reblog: Không thể ghim tút đăng lại
     quote_policies:
-      followers: Người được nhắc đến và người theo dõi
-      nobody: Người được nhắc đến
-      public: Mọi người
+      followers: Chỉ người theo dõi
+      nobody: Chỉ tôi
+      public: Bất cứ ai
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Nhắn riêng
-      private: Riêng tư
-      private_long: Chỉ người theo dõi mới được xem
+      private: Chỉ người theo dõi
       public: Công khai
-      public_long: Ai cũng có thể thấy
+      public_long: Bất kỳ ai trong và ngoài Mastodon
       unlisted: Hạn chế
-      unlisted_long: Không hiện trên bảng tin máy chủ
+      unlisted_long: Ẩn khỏi kết quả tìm kiếm, xu hướng và dòng thời gian công khai của Mastodon
   statuses_cleanup:
     enabled: Tự động xóa những tút cũ
     enabled_hint: Trừ những ngoại lệ bên dưới
@@ -1911,14 +1961,14 @@ vi:
   two_factor_authentication:
     add: Thêm
     disable: Vô hiệu hóa
-    disabled_success: Đã vô hiệu hóa xác minh 2 bước
+    disabled_success: Đã vô hiệu hóa xác thực 2 bước
     edit: Sửa
-    enabled: Đã kích hoạt xác minh 2 bước
-    enabled_success: Xác minh 2 bước được kích hoạt thành công
+    enabled: Đã kích hoạt xác thực 2 bước
+    enabled_success: Xác thực 2 bước được kích hoạt thành công
     generate_recovery_codes: Tạo mã khôi phục
     lost_recovery_codes: Mã khôi phục cho phép bạn lấy lại quyền truy cập vào tài khoản của mình nếu bạn mất điện thoại. Nếu bạn bị mất mã khôi phục, bạn có thể tạo lại chúng ở đây. Mã khôi phục cũ của bạn sẽ bị vô hiệu.
-    methods: Phương pháp xác minh
-    otp: Ứng dụng xác minh
+    methods: Phương thức xác thực
+    otp: Ứng dụng xác thực
     recovery_codes: Mã khôi phục dự phòng
     recovery_codes_regenerated: Mã khôi phục được phục hồi thành công
     recovery_instructions_html: Nếu bạn bị mất điện thoại, hãy dùng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong>. Ví dụ, bạn có thể in chúng ra giấy.
@@ -1948,13 +1998,13 @@ vi:
       details: 'Chi tiết thông tin đăng nhập:'
       explanation: Ai đó đã cố đăng nhập vào tài khoản của bạn nhưng cung cấp yếu tố xác thực thứ hai không hợp lệ.
       further_actions_html: Nếu không phải bạn, hãy lập tức %{action} vì có thể có rủi ro.
-      subject: Xác minh hai bước thất bại
-      title: Xác minh hai bước thất bại
+      subject: Xác thực 2 bước thất bại
+      title: Xác thực 2 bước thất bại
     suspicious_sign_in:
       change_password: đổi mật khẩu của bạn
       details: 'Chi tiết thông tin đăng nhập:'
       explanation: Chúng tôi phát hiện tài khoản của bạn đăng nhập bất thường từ một địa chỉ IP mới.
-      further_actions_html: Nếu đây không phải là bạn, hãy %{action} lập tức và bật xác minh hai bước để giữ tài khoản được an toàn.
+      further_actions_html: Nếu đây không phải là bạn, hãy %{action} lập tức và bật xác thực 2 bước để giữ tài khoản được an toàn.
       subject: Đăng nhập tài khoản từ địa chỉ IP mới
       title: Lần đăng nhập mới
     terms_of_service_changed:
@@ -2039,7 +2089,7 @@ vi:
   users:
     follow_limit_reached: Bạn chỉ có thể theo dõi tối đa %{limit} người
     go_to_sso_account_settings: Thiết lập tài khoản nhà cung cấp danh tính
-    invalid_otp_token: Mã xác minh 2 bước không hợp lệ
+    invalid_otp_token: Mã xác thực 2 bước không hợp lệ
     otp_lost_help_html: Nếu bạn mất quyền truy cập vào cả hai, bạn có thể đăng nhập bằng %{email}
     rate_limited: Quá nhiều lần thử, vui lòng thử lại sau.
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
@@ -2067,5 +2117,5 @@ vi:
     nickname_hint: Nhập tên mới cho khóa bảo mật của bạn
     not_enabled: Bạn chưa kích hoạt WebAuthn
     not_supported: Trình duyệt của bạn không hỗ trợ khóa bảo mật
-    otp_required: Để dùng khóa bảo mật, trước tiên hãy kích hoạt xác minh 2 bước.
+    otp_required: Để dùng khóa bảo mật, trước tiên hãy kích hoạt xác thực 2 bước.
     registered_on: Đăng ký vào %{date}

@@ -48,7 +48,7 @@ de:
         digest: Wenn du eine längere Zeit inaktiv bist oder du während deiner Abwesenheit in einer privaten Nachricht erwähnt worden bist
         email: Du wirst eine E-Mail zur Verifizierung dieser E-Mail-Adresse erhalten
         header: WEBP, PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
-        inbox_url: Kopiere die URL von der Startseite des gewünschten Relays
+        inbox_url: Kopiere die URL von der Startseite des gewünschten Relais
         irreversible: Bereinigte Beiträge verschwinden unwiderruflich für dich, auch dann, wenn dieser Filter zu einem späteren wieder entfernt wird
         locale: Die Sprache der Bedienoberfläche, E-Mails und Push-Benachrichtigungen
         password: Verwende mindestens 8 Zeichen
@@ -56,11 +56,13 @@ de:
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
         setting_aggregate_reblogs: Beiträge, die erst kürzlich geteilt wurden, werden nicht noch einmal angezeigt (betrifft nur zukünftig geteilte Beiträge)
         setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail versendet, wenn du gerade auf Mastodon aktiv bist
-        setting_default_quote_policy: Erwähnte Profile dürfen immer zitieren. Diese Einstellung gilt nur für Beiträge, die mit der zukünftigen Mastodon-Version erstellt wurden. Als Vorbereitung darauf kannst du bereits jetzt die Einstellung vornehmen
+        setting_default_quote_policy_private: Beiträge, die nur für deine Follower bestimmt sind und auf Mastodon verfasst wurden, können nicht von anderen zitiert werden.
+        setting_default_quote_policy_unlisted: Sollten dich andere zitieren, werden ihre zitierten Beiträge ebenfalls nicht in den Trends und öffentlichen Timelines angezeigt.
         setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden – je nach Einstellung – erst nach einem zusätzlichen Klick angezeigt
         setting_display_media_default: Medien mit Inhaltswarnung ausblenden
         setting_display_media_hide_all: Medien immer ausblenden
         setting_display_media_show_all: Medien mit Inhaltswarnung immer anzeigen
+        setting_emoji_style: 'Wie Emojis dargestellt werden: „Automatisch“ verwendet native Emojis, für veraltete Browser wird jedoch Twemoji verwendet.'
         setting_system_scrollbars_ui: Betrifft nur Desktop-Browser, die auf Chrome oder Safari basieren
         setting_use_blurhash: Der Farbverlauf basiert auf den Farben der ausgeblendeten Medien, verschleiert aber jegliche Details
         setting_use_pending_items: Neue Beiträge hinter einem Klick verstecken, anstatt automatisch zu scrollen
@@ -103,7 +105,6 @@ de:
         status_page_url: Link zu einer Internetseite, auf der der Serverstatus während eines Ausfalls angezeigt wird
         theme: Das Design, das abgemeldete Besucher und neue Benutzer sehen.
         thumbnail: Ein Bild ungefähr im 2:1-Format, das neben den Server-Informationen angezeigt wird.
-        timeline_preview: Nicht angemeldete Personen können die neuesten öffentlichen Beiträge dieses Servers aufrufen.
         trendable_by_default: Manuelles Überprüfen angesagter Inhalte überspringen. Einzelne Elemente können später noch aus den Trends entfernt werden.
         trends: Trends zeigen, welche Beiträge, Hashtags und Nachrichten auf deinem Server immer beliebter werden.
         trends_as_landing_page: Dies zeigt nicht angemeldeten Personen Trendinhalte anstelle einer Beschreibung des Servers an. Erfordert, dass Trends aktiviert sind.
@@ -150,8 +151,8 @@ de:
       user:
         chosen_languages: Wenn du hier eine oder mehrere Sprachen auswählst, werden ausschließlich Beiträge in diesen Sprachen in deinen öffentlichen Timelines angezeigt
         date_of_birth:
-          one: Wir müssen sicherstellen, dass du mindestens %{count} Jahre alt bist, um Mastodon nutzen zu können. Wir werden diese Information nicht aufbewahren.
-          other: Wir müssen sicherstellen, dass du mindestens %{count} Jahre alt bist, um Mastodon nutzen zu können. Wir werden diese Information nicht aufbewahren.
+          one: Wir müssen sicherstellen, dass du mindestens %{count} Jahr alt bist, um %{domain} verwenden zu können. Wir werden diese Information nicht aufbewahren.
+          other: Wir müssen sicherstellen, dass du mindestens %{count} Jahre alt bist, um %{domain} verwenden zu können. Wir werden diese Information nicht aufbewahren.
         role: Die Rolle bestimmt, welche Berechtigungen das Konto hat.
       user_role:
         color: Farbe, die für diese Rolle in der gesamten Benutzerschnittstelle verwendet wird, als RGB im Hexadezimalsystem
@@ -159,6 +160,10 @@ de:
         name: Name der Rolle, der auch öffentlich als Badge angezeigt wird, sofern dies unten aktiviert ist
         permissions_as_keys: Benutzer*innen mit dieser Rolle haben Zugriff auf...
         position: Höhere Rollen entscheiden über Konfliktlösungen zu gewissen Situationen. Bestimmte Aktionen können nur mit geringfügigeren Rollen durchgeführt werden
+      username_block:
+        allow_with_approval: Anstatt Registrierungen komplett zu verhindern, benötigen übereinstimmende Treffer eine Genehmigung
+        comparison: Bitte beachte das Scunthorpe-Problem, wenn teilweise übereinstimmende Treffer gesperrt werden
+        username: Abgleich erfolgt unabhängig der Groß- und Kleinschreibung sowie gängiger Homoglyphen („4“ für „a“ oder „3“ für „e“)
       webhook:
         events: Zu sendende Ereignisse auswählen
         template: Erstelle deine eigenen JSON-Nutzdaten mit Hilfe von Variablen-Interpolation. Leer lassen für Standard-JSON.
@@ -216,7 +221,7 @@ de:
         fields: Zusatzfelder
         header: Titelbild
         honeypot: "%{label} (nicht ausfüllen)"
-        inbox_url: URL des Relay-Posteingangs
+        inbox_url: URL des Relais-Posteingangs
         irreversible: Endgültig, nicht nur temporär ausblenden
         locale: Sprache des Webinterface
         max_uses: Maximale Anzahl von Verwendungen
@@ -232,7 +237,7 @@ de:
         setting_boost_modal: Bestätigungsdialog beim Teilen eines Beitrags anzeigen
         setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
-        setting_default_quote_policy: Wer darf zitieren
+        setting_default_quote_policy: Wer zitieren darf
         setting_default_sensitive: Medien immer mit einer Inhaltswarnung versehen
         setting_delete_modal: Bestätigungsdialog beim Löschen eines Beitrags anzeigen
         setting_disable_hover_cards: Profilvorschau deaktivieren, wenn die Maus über das Profil bewegt wird
@@ -241,12 +246,13 @@ de:
         setting_display_media_default: Standard
         setting_display_media_hide_all: Alle Medien ausblenden
         setting_display_media_show_all: Alle Medien anzeigen
+        setting_emoji_style: Emoji-Stil
         setting_expand_spoilers: Beiträge mit Inhaltswarnung immer ausklappen
         setting_hide_network: Follower und „Folge ich“ nicht anzeigen
         setting_missing_alt_text_modal: Bestätigungsdialog anzeigen, bevor Medien ohne Bildbeschreibung veröffentlicht werden
         setting_reduce_motion: Bewegung in Animationen verringern
         setting_system_font_ui: Standardschriftart des Browsers verwenden
-        setting_system_scrollbars_ui: Bildlaufleiste des Systems verwenden
+        setting_system_scrollbars_ui: Bildlaufleiste des Betriebssystems verwenden
         setting_theme: Design
         setting_trends: Heutige Trends anzeigen
         setting_unfollow_modal: Bestätigungsdialog beim Entfolgen eines Profils anzeigen
@@ -277,12 +283,16 @@ de:
         content_cache_retention_period: Aufbewahrungsfrist für externe Inhalte
         custom_css: Eigenes CSS
         favicon: Favicon
+        local_live_feed_access: Zugriff auf Live-Feeds, die lokale Beiträge beinhalten
+        local_topic_feed_access: Zugriff auf Hashtags und Links, die lokale Beiträge beinhalten
         mascot: Benutzerdefiniertes Maskottchen (Legacy)
         media_cache_retention_period: Aufbewahrungsfrist für Medien im Cache
         min_age: Erforderliches Mindestalter
         peers_api_enabled: Die entdeckten Server im Fediverse über die API veröffentlichen
         profile_directory: Profilverzeichnis aktivieren
         registrations_mode: Wer darf ein neues Konto registrieren?
+        remote_live_feed_access: Zugriff auf Live-Feeds, die Beiträge externer Server beinhalten
+        remote_topic_feed_access: Zugriff auf Hashtags und Links, die Beiträge externer Server beinhalten
         require_invite_text: Begründung für Beitritt verlangen
         show_domain_blocks: Anzeigen, welche Domains gesperrt wurden
         show_domain_blocks_rationale: Anzeigen, weshalb Domains gesperrt wurden
@@ -295,7 +305,6 @@ de:
         status_page_url: Statusseite (URL)
         theme: Standard-Design
         thumbnail: Vorschaubild des Servers
-        timeline_preview: Nicht-authentisierten Zugriff auf öffentliche Timelines gestatten
         trendable_by_default: Trends ohne vorherige Überprüfung erlauben
         trends: Trends aktivieren
         trends_as_landing_page: Trends als Landingpage verwenden
@@ -323,6 +332,7 @@ de:
         follow_request: Jemand möchte mir folgen
         mention: Ich wurde erwähnt
         pending_account: Ein neues Konto muss überprüft werden
+        quote: Jemand zitierte dich
         reblog: Mein Beitrag wurde geteilt
         report: Eine neue Meldung wurde eingereicht
         software_updates:
@@ -369,6 +379,10 @@ de:
         name: Name
         permissions_as_keys: Berechtigungen
         position: Priorität
+      username_block:
+        allow_with_approval: Registrierungen mit Genehmigung zulassen
+        comparison: Vergleichsmethode
+        username: Übereinstimmendes Wort
       webhook:
         events: Aktivierte Ereignisse
         template: Nutzdaten-Vorlage

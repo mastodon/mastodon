@@ -56,11 +56,13 @@ pt-PT:
         scopes: Quais as API a que a aplicação terá permissão para aceder. Se selecionar um âmbito de nível superior, não precisa de selecionar âmbitos individuais.
         setting_aggregate_reblogs: Não mostrar os novos impulsos para publicações que tenham sido recentemente impulsionadas (apenas afeta os impulsos recentemente recebidos)
         setting_always_send_emails: Normalmente as notificações por e-mail não serão enviadas quando estiver a utilizar ativamente o Mastodon
-        setting_default_quote_policy: Os utilizadores mencionados têm sempre permissão para citar. Esta definição só terá efeito para publicações criadas com a próxima versão do Mastodon, mas pode selecionar a sua preferência em antecipação
+        setting_default_quote_policy_private: As publicações exclusivas para seguidores criadas no Mastodon não podem ser citadas por outras pessoas.
+        setting_default_quote_policy_unlisted: Quando as pessoas o citarem, as respetivas publicações também serão ocultadas dos destaques.
         setting_default_sensitive: Os multimédia sensíveis são ocultados por predefinição e podem ser revelados com um clique/toque
         setting_display_media_default: Esconder multimédia marcada como sensível
         setting_display_media_hide_all: Esconder sempre toda a multimédia
         setting_display_media_show_all: Mostrar sempre a multimédia
+        setting_emoji_style: Como apresentar emojis. "Auto" tenta usar emojis nativos, mas reverte para Twemoji em navegadores mais antigos.
         setting_system_scrollbars_ui: Aplica-se apenas a navegadores de desktop baseados no Safari e Chrome
         setting_use_blurhash: Os gradientes são baseados nas cores das imagens escondidas, mas ofuscam quaisquer pormenores
         setting_use_pending_items: Ocultar as atualizações da cronologia após um clique em vez de percorrer automaticamente a cronologia
@@ -103,7 +105,6 @@ pt-PT:
         status_page_url: URL de uma página onde as pessoas podem ver o estado deste servidor durante uma interrupção
         theme: Tema que os visitantes e os novos utilizadores veem.
         thumbnail: Uma imagem de cerca de 2:1, apresentada ao lado da informação do seu servidor.
-        timeline_preview: Os visitantes sem sessão iniciada poderão consultar as publicações públicas mais recentes disponíveis no servidor.
         trendable_by_default: Ignorar a revisão manual do conteúdo em destaque. Os itens individuais poderão ainda assim ser posteriormente removidos das tendências.
         trends: As tendências mostram quais as publicações, etiquetas e notícias que estão a ganhar destaque no seu servidor.
         trends_as_landing_page: Mostrar conteúdo em destaque a utilizadores sem sessão iniciada e visitantes, ao invés de uma descrição deste servidor. Requer que os destaques estejam ativados.
@@ -150,8 +151,8 @@ pt-PT:
       user:
         chosen_languages: Quando selecionado, só serão mostradas nas cronologias públicas as publicações nos idiomas escolhidos
         date_of_birth:
-          one: Temos de nos certificar que tem pelo menos %{count} para utilizar o Mastodon. Não vamos guardar esta informação.
-          other: Temos de nos certificar que tem pelo menos %{count} para utilizar o Mastodon. Não vamos guardar esta informação.
+          one: Temos de nos certificar que tem pelo menos %{count} para utilizar %{domain}. Não vamos guardar esta informação.
+          other: Temos de nos certificar que tem pelo menos %{count} para utilizar %{domain}. Não vamos guardar esta informação.
         role: A função controla as permissões que o utilizador tem.
       user_role:
         color: Cor a ser utilizada para a função em toda a interface de utilizador, como RGB no formato hexadecimal
@@ -159,6 +160,10 @@ pt-PT:
         name: Nome público da função, se esta estiver definida para ser apresentada com um emblema
         permissions_as_keys: Utilizadores com esta função terão acesso a...
         position: Funções mais altas decidem a resolução de conflitos em certas situações. Certas ações só podem ser executadas com certas funções com uma menor prioridade
+      username_block:
+        allow_with_approval: Em vez de impedir totalmente a inscrição, as inscrições correspondentes exigirão a sua aprovação
+        comparison: Tenha em atenção o Problema de Scunthorpe ao bloquear correspondências parciais
+        username: Terá correspondência independentemente das maiúsculas e minúsculas e de homógrafos comuns, como "4" para "a" ou "3" para "e"
       webhook:
         events: Selecione os eventos a enviar
         template: Componha o seu próprio conteúdo JSON utilizando a interpolação de variáveis. Deixar em branco para o JSON predefinido.
@@ -231,7 +236,7 @@ pt-PT:
         setting_auto_play_gif: Reproduzir GIF automaticamente
         setting_boost_modal: Mostrar caixa de diálogo de confirmação antes de impulsionar
         setting_default_language: Idioma de publicação
-        setting_default_privacy: Privacidade da publicação
+        setting_default_privacy: Visibilidade da publicação
         setting_default_quote_policy: Quem pode citar
         setting_default_sensitive: Marcar sempre os multimédia como sensíveis
         setting_delete_modal: Solicitar confirmação antes de eliminar uma publicação
@@ -241,6 +246,7 @@ pt-PT:
         setting_display_media_default: Pré-definição
         setting_display_media_hide_all: Esconder todos
         setting_display_media_show_all: Mostrar todos
+        setting_emoji_style: Estilo de emojis
         setting_expand_spoilers: Expandir sempre as publicações marcadas com avisos de conteúdo
         setting_hide_network: Esconder a tua rede
         setting_missing_alt_text_modal: Mostrar janela de confirmação antes de publicar multimédia sem texto alternativo
@@ -295,7 +301,6 @@ pt-PT:
         status_page_url: URL da página de estado
         theme: Tema predefinido
         thumbnail: Miniatura do servidor
-        timeline_preview: Permitir acesso não autenticado às cronologias públicas
         trendable_by_default: Permitir tendências sem revisão prévia
         trends: Ativar destaques
         trends_as_landing_page: Usar destaques como página de apresentação
@@ -323,6 +328,7 @@ pt-PT:
         follow_request: Alguém pediu para ser seu seguidor
         mention: Alguém o mencionou
         pending_account: Uma nova conta aguarda aprovação
+        quote: Alguém o citou
         reblog: Alguém impulsionou uma publicação sua
         report: Uma nova denúncia foi submetida
         software_updates:
@@ -369,6 +375,10 @@ pt-PT:
         name: Nome
         permissions_as_keys: Permissões
         position: Prioridade
+      username_block:
+        allow_with_approval: Permitir inscrições com aprovação
+        comparison: Método de comparação
+        username: Palavra a corresponder
       webhook:
         events: Eventos ativados
         template: Modelo de conteúdo

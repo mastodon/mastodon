@@ -621,6 +621,30 @@ RSpec.describe 'signature verification concern' do
           )
         end
       end
+
+      context 'with a malformed `Content-Digest` header' do
+        let(:digest_header) { 'SHA-256=:ZOyIygCyaOW6GjVnihtTFtIS9PNmskdyMlNKiuyjfzw=:' }
+        let(:signature_input) do
+          'sig1=("@method" "@target-uri" "content-digest");created=1703066400;keyid="https://remote.domain/users/bob#main-key"'
+        end
+        let(:signature_header) do
+          'sig1=:aXua24cIlBi8akNXg/Vc5pU8fNGXo0f4U2qQk42iWoIaCcH3G+z2edPMQTNM/aZmD0bULqvb/yi6ZXgRls1ereq3OqnvA4JBLKx15O/jLayS/FhR4d/2vaeXuBOYXM7EGXItKkFxEXn3J+FCQPb5wY31GlbljrESjsiZ6gtrSmwryBluQCwMJ59LACzocxbWo42Kv3cpSig2aCu9CYXKC4sCH3eSKjwPtjdlpmX1VkYX5ge+JaZMn7A218ZgZOc9xpPawESOuIF9axcKW5PDEhOwmswFd2G65c8H9kJY6zEnqbArP9lRQMmjuAb011NILClaaRZOOupz2HZUdm+91Q==:' # rubocop:disable Layout/LineLength
+        end
+
+        it 'returns `400` (Bad Request)', :aggregate_failures do
+          post '/activitypub/signature_required', params: 'Hello world', headers: {
+            'Host' => 'www.example.com',
+            'Content-Digest' => digest_header,
+            'Signature-Input' => signature_input,
+            'Signature' => signature_header,
+          }
+
+          expect(response).to have_http_status(400)
+          expect(response.parsed_body).to match(
+            error: 'Content-Digest could not be parsed. It does not contain a valid RFC8941 dictionary.'
+          )
+        end
+      end
     end
 
     context 'with an inaccessible key' do

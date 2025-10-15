@@ -326,6 +326,9 @@ ast:
         all: A tol mundu
         disabled: A naide
         users: A los perfiles llocales
+      feed_access:
+        modes:
+          public: Tol mundu
       registrations:
         preamble: Controla quién pue crear una cuenta nel sirvidor.
         title: Rexistros
@@ -810,12 +813,6 @@ ast:
       ownership: Nun se pue fixar la publicación d'otru perfil
       reblog: Nun se pue fixar una publicación compartida
     title: "%{name}: «%{quote}»"
-    visibilities:
-      direct: Mensaxe direutu
-      private: Namás siguidores
-      private_long: Namás los ven los perfiles siguidores
-      public_long: Tol mundu pue velos
-      unlisted_long: Tol mundu pue velos, mas nun apaecen nes llinies de tiempu públiques
   statuses_cleanup:
     exceptions: Esceiciones
     interaction_exceptions: Esceiciones basaes nes interaiciones

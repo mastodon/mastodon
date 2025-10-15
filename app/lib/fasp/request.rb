@@ -32,8 +32,12 @@ class Fasp::Request
                .send(verb, url, body:)
 
     validate!(response)
+    @provider.delivery_failure_tracker.track_success!
 
     response.parse if response.body.present?
+  rescue *::Mastodon::HTTP_CONNECTION_ERRORS
+    @provider.delivery_failure_tracker.track_failure!
+    raise
   end
 
   def request_headers(_verb, _url, body = '')
@@ -49,6 +53,8 @@ class Fasp::Request
   end
 
   def validate!(response)
+    raise Mastodon::UnexpectedResponseError, response if response.code >= 400
+
     content_digest_header = response.headers['content-digest']
     raise Mastodon::SignatureVerificationError, 'content-digest missing' if content_digest_header.blank?
     raise Mastodon::SignatureVerificationError, 'content-digest does not match' if content_digest_header != content_digest(response.body)
