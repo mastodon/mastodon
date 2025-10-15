@@ -38,7 +38,7 @@ const messages = defineMessages({
   },
   success: {
     id: 'status.context.loading_success',
-    defaultMessage: 'All replies loaded',
+    defaultMessage: 'New replies loaded',
   },
   error: {
     id: 'status.context.loading_error',
@@ -81,22 +81,38 @@ export const RefreshController: React.FC<{
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
 
-    const scheduleRefresh = (refresh: AsyncRefreshHeader) => {
+    const scheduleRefresh = (
+      refresh: AsyncRefreshHeader,
+      iteration: number,
+    ) => {
       timeoutId = setTimeout(() => {
         void apiGetAsyncRefresh(refresh.id).then((result) => {
-          // If the refresh status is not finished,
-          // schedule another refresh and exit
-          if (result.async_refresh.status !== 'finished') {
-            scheduleRefresh(refresh);
+          // At three scheduled refreshes, we consider the job
+          // long-running and attempt to fetch any new replies so far
+          const isLongRunning = iteration === 3;
+
+          const { status, result_count } = result.async_refresh;
+
+          // If the refresh status is not finished and not long-running,
+          // we just schedule another refresh and exit
+          if (status === 'running' && !isLongRunning) {
+            scheduleRefresh(refresh, iteration + 1);
             return;
           }
 
-          // Refresh status is finished. The action below will clear `refreshHeader`
-          dispatch(completeContextRefresh({ statusId }));
+          // If refresh status is finished, clear `refreshHeader`
+          // (we don't want to do this if it's just a long-running job)
+          if (status === 'finished') {
+            dispatch(completeContextRefresh({ statusId }));
+          }
 
           // Exit if there's nothing to fetch
-          if (result.async_refresh.result_count === 0) {
-            setLoadingState('idle');
+          if (result_count === 0) {
+            if (status === 'finished') {
+              setLoadingState('idle');
+            } else {
+              scheduleRefresh(refresh, iteration + 1);
+            }
             return;
           }
 
@@ -106,10 +122,15 @@ export const RefreshController: React.FC<{
           // If so, they will populate `contexts.pendingReplies[statusId]`
           void dispatch(fetchContext({ statusId, prefetchOnly: true }))
             .then(() => {
-              // Reset loading state to `idle` – but if the fetch
-              // has resulted in new pending replies, the `hasPendingReplies`
+              // Reset loading state to `idle`. If the fetch has
+              // resulted in new pending replies, the `hasPendingReplies`
               // flag will switch the loading state to 'more-available'
-              setLoadingState('idle');
+              if (status === 'finished') {
+                setLoadingState('idle');
+              } else {
+                // Keep background fetch going if `isLongRunning` is true
+                scheduleRefresh(refresh, iteration + 1);
+              }
             })
             .catch(() => {
               // Show an error if the fetch failed
@@ -121,7 +142,7 @@ export const RefreshController: React.FC<{
 
     // Initialise a refresh
     if (refreshHeader && !wasDismissed) {
-      scheduleRefresh(refreshHeader);
+      scheduleRefresh(refreshHeader, 1);
       setLoadingState('loading');
     }
 
@@ -135,7 +156,7 @@ export const RefreshController: React.FC<{
     if (loadingState === 'success') {
       const timeoutId = setTimeout(() => {
         setLoadingState('idle');
-      }, 3000);
+      }, 2500);
 
       return () => {
         clearTimeout(timeoutId);
