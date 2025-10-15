@@ -1591,6 +1591,13 @@ hu:
       expires_at: Lejárat
       uses: Használat
     title: Meghívások
+  link_preview:
+    author_html: 'Szerző: %{name}'
+    potentially_sensitive_content:
+      action: Kattints a megjelenítéshez
+      confirm_visit: Biztos, hogy megnyitod ezt a hivatkozást?
+      hide_button: Elrejtés
+      label: Lehet, hogy kényes tartalom
   lists:
     errors:
       limit: Elérted a listák maximális számát
@@ -1901,6 +1908,9 @@ hu:
         other: "%{count} videó"
     boosted_from_html: Megtolva innen %{acct_link}
     content_warning: 'Tartalmi figyelmeztetés: %{warning}'
+    content_warnings:
+      hide: Bejegyzés elrejtése
+      show: Több megjelenítése
     default_language: Felhasználói felület nyelvével azonos
     disallowed_hashtags:
       one: 'tiltott hashtaget tartalmaz: %{tags}'

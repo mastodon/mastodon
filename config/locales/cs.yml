@@ -1669,6 +1669,13 @@ cs:
       expires_at: Vyprší
       uses: Použití
     title: Pozvat lidi
+  link_preview:
+    author_html: Podle %{name}
+    potentially_sensitive_content:
+      action: Kliknutím zobrazíte
+      confirm_visit: Opravdu chcete otevřít tento odkaz?
+      hide_button: Skrýt
+      label: Potenciálně citlivý obsah
   lists:
     errors:
       limit: Dosáhl jste maximálního počtu seznamů
@@ -1985,6 +1992,9 @@ cs:
         other: "%{count} videí"
     boosted_from_html: Boostnuto z %{acct_link}
     content_warning: 'Varování o obsahu: %{warning}'
+    content_warnings:
+      hide: Skrýt příspěvek
+      show: Zobrazit více
     default_language: Stejný jako jazyk rozhraní
     disallowed_hashtags:
       few: 'obsahoval zakázané hashtagy: %{tags}'
