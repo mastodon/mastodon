@@ -1,9 +1,16 @@
-import { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import type {
   ComponentPropsWithoutRef,
   ComponentType,
   FC,
   PropsWithChildren,
+  ReactElement,
   ReactNode,
 } from 'react';
 
@@ -20,40 +27,40 @@ import './styles.scss';
 
 export interface CarouselSlideProps {
   id: string | number;
-  active?: boolean;
 }
 
-type CarouselSlideComponent<SlideProps> = ComponentType<
-  SlideProps & CarouselSlideProps
->;
+export type RenderSlideFn<
+  SlideProps extends CarouselSlideProps = CarouselSlideProps,
+> = (item: SlideProps, active: boolean, index: number) => ReactElement;
 
-export interface CarouselProps<SlideProps>
-  extends ComponentPropsWithoutRef<'div'> {
+export interface CarouselProps<
+  SlideProps extends CarouselSlideProps = CarouselSlideProps,
+> {
   items: SlideProps[];
-  slideComponent: CarouselSlideComponent<SlideProps>;
-  slideClassName?: string;
+  renderItem: RenderSlideFn<SlideProps>;
+  onChangeSlide?: (index: number) => void;
   paginationComponent?: ComponentType<CarouselPaginationProps> | null;
   paginationProps?: Partial<CarouselPaginationProps>;
   emptyFallback?: ReactNode;
   classNamePrefix?: string;
-  onChangeSlide?: (index: number) => void;
+  slideClassName?: string;
 }
 
 export const Carousel = <
   SlideProps extends CarouselSlideProps = CarouselSlideProps,
 >({
   items,
+  renderItem,
+  onChangeSlide,
   paginationComponent: Pagination = CarouselPagination,
   paginationProps = {},
-  slideComponent: Slide,
   children,
   emptyFallback = null,
   className,
-  slideClassName,
   classNamePrefix = 'carousel',
-  onChangeSlide,
+  slideClassName,
   ...wrapperProps
-}: CarouselProps<SlideProps>) => {
+}: CarouselProps<SlideProps> & ComponentPropsWithoutRef<'div'>) => {
   // Handle slide change
   const [slideIndex, setSlideIndex] = useState(0);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -115,7 +122,7 @@ export const Carousel = <
     handleSlideChange(1);
   }, [handleSlideChange]);
 
-  if (!items.length) {
+  if (items.length === 0) {
     return emptyFallback;
   }
 
@@ -129,7 +136,7 @@ export const Carousel = <
     >
       <div className={`${classNamePrefix}__header`}>
         {children}
-        {Pagination && (
+        {Pagination && items.length > 1 && (
           <Pagination
             current={slideIndex}
             max={items.length}
@@ -145,25 +152,17 @@ export const Carousel = <
         className={`${classNamePrefix}__slides`}
         ref={wrapperRef}
         style={wrapperStyles}
-        aria-atomic='false'
-        aria-live='polite'
       >
-        {items.map((props, index) => (
+        {items.map((itemsProps, index) => (
           <CarouselSlideWrapper
             observer={observerRef.current}
-            key={`slide-${props.id}`}
+            key={`slide-${itemsProps.id}`}
             className={classNames(`${classNamePrefix}__slide`, slideClassName, {
               active: index === slideIndex,
             })}
-            // @ts-expect-error inert in not in this version of React
-            inert={index !== slideIndex ? 'true' : undefined}
+            active={index === slideIndex}
           >
-            <Slide
-              {...props}
-              key={`slide-${props.id}`}
-              data-index={index}
-              active={index === slideIndex}
-            />
+            {renderItem(itemsProps, index === slideIndex, index)}
           </CarouselSlideWrapper>
         ))}
       </animated.div>
@@ -172,31 +171,45 @@ export const Carousel = <
 };
 
 type CarouselSlideWrapperProps = Required<
-  PropsWithChildren<{ observer: ResizeObserver; className: string }>
-> &
-  ComponentPropsWithoutRef<'div'>;
+  PropsWithChildren<{
+    observer: ResizeObserver;
+    className: string;
+    active: boolean;
+  }>
+>;
 
 const CarouselSlideWrapper: FC<CarouselSlideWrapperProps> = ({
   observer,
   children,
   className,
-  ...props
+  active,
 }) => {
+  const slideRef = useRef<HTMLDivElement>();
+
   const handleRef = useCallback(
     (instance: HTMLDivElement | null) => {
       if (instance) {
         observer.observe(instance);
+        slideRef.current = instance;
       }
     },
     [observer],
   );
+
+  useEffect(() => {
+    if (slideRef.current && active) {
+      slideRef.current.focus();
+    }
+  }, [active]);
+
   return (
     <div
-      {...props}
       ref={handleRef}
       className={className}
       role='group'
       aria-roledescription='slide'
+      // @ts-expect-error inert in not in this version of React
+      inert={active ? 'true' : undefined}
     >
       {children}
     </div>

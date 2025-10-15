@@ -1,8 +1,10 @@
+import { useCallback } from 'react';
 import type { FC } from 'react';
 
 import type { Map, List } from 'immutable';
 
 import elephantUIPlane from '@/images/elephant_ui_plane.svg';
+import type { RenderSlideFn } from '@/mastodon/components/carousel';
 import { Carousel } from '@/mastodon/components/carousel';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
 import { mascot } from '@/mastodon/initial_state';
@@ -23,6 +25,20 @@ export const Announcements: FC = () => {
   const announcements = useAppSelector(announcementSelector);
   const emojis = useAppSelector((state) => state.custom_emojis);
 
+  const renderSlide: RenderSlideFn<{
+    id: string;
+    announcement: IAnnouncement;
+  }> = useCallback(
+    (item, active) => (
+      <Announcement
+        announcement={item.announcement}
+        active={active}
+        key={item.id}
+      />
+    ),
+    [],
+  );
+
   if (announcements.length === 0) {
     return null;
   }
@@ -39,7 +55,7 @@ export const Announcements: FC = () => {
       <CustomEmojiProvider emojis={emojis}>
         <Carousel
           classNamePrefix='announcements'
-          slideComponent={Announcement}
+          renderItem={renderSlide}
           items={announcements}
         />
       </CustomEmojiProvider>
