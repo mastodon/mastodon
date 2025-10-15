@@ -208,12 +208,12 @@ FROM build AS ffmpeg
 # renovate: datasource=repology depName=ffmpeg packageName=openpkg_current/ffmpeg
 ARG FFMPEG_VERSION=8.0
 # ffmpeg download URL, change with [--build-arg FFMPEG_URL="https://ffmpeg.org/releases"]
-ARG FFMPEG_URL=https://ffmpeg.org/releases
+ARG FFMPEG_URL=https://github.com/FFmpeg/FFmpeg/archive/refs/tags
 
 WORKDIR /usr/local/ffmpeg/src
 # Download and extract ffmpeg source code
-ADD ${FFMPEG_URL}/ffmpeg-${FFMPEG_VERSION}.tar.xz /usr/local/ffmpeg/src/
-RUN tar xf ffmpeg-${FFMPEG_VERSION}.tar.xz;
+ADD ${FFMPEG_URL}/n${FFMPEG_VERSION}.tar.gz /usr/local/ffmpeg/src/
+RUN tar xf n${FFMPEG_VERSION}.tar.gz && mv FFmpeg-n${FFMPEG_VERSION} ffmpeg-${FFMPEG_VERSION};
 
 WORKDIR /usr/local/ffmpeg/src/ffmpeg-${FFMPEG_VERSION}
 
