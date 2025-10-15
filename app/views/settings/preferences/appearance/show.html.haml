@@ -47,15 +47,6 @@
       #{t 'appearance.localization.body'} #{content_tag(:a, t('appearance.localization.guide_link_text'), href: t('appearance.localization.guide_link'), target: '_blank', rel: 'noopener')}
 
   = f.simple_fields_for :settings, current_user.settings do |ff|
-    %h4= t 'appearance.advanced_web_interface'
-
-    %p.hint= t 'appearance.advanced_web_interface_hint'
-
-    .fields-group
-      = ff.input :'web.advanced_layout',
-                 hint: false,
-                 label: I18n.t('simple_form.labels.defaults.setting_advanced_layout'),
-                 wrapper: :with_label
     %h4= t 'appearance.animations_and_accessibility'
 
     .fields-group
@@ -105,6 +96,12 @@
       = ff.input :'web.expand_content_warnings', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_expand_spoilers')
 
     %h4= t 'appearance.advanced_settings'
+
+    .fields-group
+      = ff.input :'web.advanced_layout',
+                 hint: I18n.t('simple_form.hints.defaults.setting_advanced_layout'),
+                 label: I18n.t('simple_form.labels.defaults.setting_advanced_layout'),
+                 wrapper: :with_label
 
     .fields-group
       = ff.input :'web.delete_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_delete_modal')
