@@ -182,7 +182,7 @@ export const contextsReducer = createReducer(initialState, (builder) => {
           action.payload.context,
         );
 
-        if (action.payload.refresh) {
+        if (action.payload.refresh && !action.payload.prefetchOnly) {
           state.refreshing[action.meta.arg.statusId] = action.payload.refresh;
         }
       }
