@@ -2,14 +2,13 @@ import {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
 import type {
   ComponentPropsWithoutRef,
   ComponentType,
-  FC,
-  PropsWithChildren,
   ReactElement,
   ReactNode,
 } from 'react';
@@ -154,36 +153,39 @@ export const Carousel = <
         style={wrapperStyles}
       >
         {items.map((itemsProps, index) => (
-          <CarouselSlideWrapper
+          <CarouselSlideWrapper<SlideProps>
+            item={itemsProps}
+            renderItem={renderItem}
             observer={observerRef.current}
+            index={index}
             key={`slide-${itemsProps.id}`}
             className={classNames(`${classNamePrefix}__slide`, slideClassName, {
               active: index === slideIndex,
             })}
             active={index === slideIndex}
-          >
-            {renderItem(itemsProps, index === slideIndex, index)}
-          </CarouselSlideWrapper>
+          />
         ))}
       </animated.div>
     </div>
   );
 };
 
-type CarouselSlideWrapperProps = Required<
-  PropsWithChildren<{
-    observer: ResizeObserver;
-    className: string;
-    active: boolean;
-  }>
->;
+type CarouselSlideWrapperProps<SlideProps extends CarouselSlideProps> = {
+  observer: ResizeObserver;
+  className: string;
+  active: boolean;
+  item: SlideProps;
+  index: number;
+} & Pick<CarouselProps<SlideProps>, 'renderItem'>;
 
-const CarouselSlideWrapper: FC<CarouselSlideWrapperProps> = ({
+const CarouselSlideWrapper = <SlideProps extends CarouselSlideProps>({
   observer,
-  children,
   className,
   active,
-}) => {
+  renderItem,
+  item,
+  index,
+}: CarouselSlideWrapperProps<SlideProps>) => {
   const slideRef = useRef<HTMLDivElement>();
 
   const handleRef = useCallback(
@@ -202,6 +204,11 @@ const CarouselSlideWrapper: FC<CarouselSlideWrapperProps> = ({
     }
   }, [active]);
 
+  const slide = useMemo(
+    () => renderItem(item, active, index),
+    [renderItem, item, active, index],
+  );
+
   return (
     <div
       ref={handleRef}
@@ -211,7 +218,7 @@ const CarouselSlideWrapper: FC<CarouselSlideWrapperProps> = ({
       // @ts-expect-error inert in not in this version of React
       inert={active ? 'true' : undefined}
     >
-      {children}
+      {slide}
     </div>
   );
 };
