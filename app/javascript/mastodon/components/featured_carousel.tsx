@@ -1,4 +1,4 @@
-import { useEffect, useId } from 'react';
+import { useCallback, useEffect, useId } from 'react';
 
 import { defineMessages, FormattedMessage } from 'react-intl';
 
@@ -54,6 +54,13 @@ export const FeaturedCarousel: React.FC<{
     pinnedStatusesSelector(state, accountId, tagged),
   );
 
+  const renderSlide = useCallback(
+    ({ id }: { id: string }) => (
+      <StatusQuoteManager id={id} contextType='account' withCounters />
+    ),
+    [],
+  );
+
   if (!accountId || pinnedStatuses.length === 0) {
     return null;
   }
@@ -61,7 +68,7 @@ export const FeaturedCarousel: React.FC<{
   return (
     <Carousel
       items={pinnedStatuses}
-      slideComponent={FeaturedCarouselItem}
+      renderItem={renderSlide}
       aria-labelledby={`${accessibilityId}-title`}
       classNamePrefix='featured-carousel'
       paginationProps={{ messages }}
@@ -77,7 +84,3 @@ export const FeaturedCarousel: React.FC<{
     </Carousel>
   );
 };
-
-const FeaturedCarouselItem: React.FC<{ id: string }> = ({ id }) => (
-  <StatusQuoteManager id={id} contextType='account' withCounters />
-);

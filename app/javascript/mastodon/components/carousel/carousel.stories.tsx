@@ -3,7 +3,7 @@ import type { CSSProperties, FC } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn, userEvent, expect } from 'storybook/test';
 
-import type { CarouselProps, CarouselSlideProps } from './index';
+import type { CarouselProps } from './index';
 import { Carousel } from './index';
 
 interface TestSlideProps {
@@ -13,7 +13,7 @@ interface TestSlideProps {
   styles?: CSSProperties;
 }
 
-const TestSlide: FC<TestSlideProps & CarouselSlideProps> = ({
+const TestSlide: FC<TestSlideProps & { active: boolean }> = ({
   active,
   text,
   color,
@@ -59,14 +59,16 @@ const slides: TestSlideProps[] = [
 
 type StoryProps = Pick<
   CarouselProps<TestSlideProps>,
-  'items' | 'emptyFallback' | 'slideComponent' | 'onChangeSlide'
+  'items' | 'renderItem' | 'emptyFallback' | 'onChangeSlide'
 >;
 
 const meta = {
   title: 'Components/Carousel',
   args: {
     items: slides,
-    slideComponent: TestSlide,
+    renderItem(item, active) {
+      return <TestSlide {...item} active={active} key={item.id} />;
+    },
     onChangeSlide: fn(),
     emptyFallback: 'No slides available',
   },
@@ -74,16 +76,6 @@ const meta = {
     return <Carousel {...args} />;
   },
   argTypes: {
-    slideComponent: {
-      table: {
-        disable: true,
-      },
-    },
-    onChangeSlide: {
-      table: {
-        disable: true,
-      },
-    },
     emptyFallback: {
       type: 'string',
     },
