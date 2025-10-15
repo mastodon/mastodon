@@ -1122,7 +1122,7 @@
 .edit-indicator__content,
 .reply-indicator__content {
   position: relative;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1363,7 +1363,7 @@
 }
 
 .announcements__item__content {
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   overflow-y: auto;
 
   .emojione {
@@ -3968,7 +3968,7 @@ a.account__display-name {
 .react-toggle-screenreader-only,
 .sr-only {
   border: 0;
-  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   height: 1px;
   margin: -1px;
   overflow: hidden;
@@ -5177,10 +5177,8 @@ a.status-card {
     &__menu {
       @include search-popout;
 
-      & {
-        padding: 0;
-        background: $ui-secondary-color;
-      }
+      padding: 0;
+      background: $ui-secondary-color;
     }
 
     &__menu-list {
@@ -8322,7 +8320,7 @@ noscript {
   font-weight: 400;
   overflow: hidden;
   word-break: normal;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   p {
     margin-bottom: 20px;
@@ -8966,7 +8964,7 @@ noscript {
     position: relative;
     font-size: 15px;
     line-height: 20px;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     font-weight: 400;
     max-height: 50vh;
     overflow: hidden;
