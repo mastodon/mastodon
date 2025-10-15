@@ -36,6 +36,7 @@ All notable changes to this project will be documented in this file.
 - Change display of content warnings in Admin UI (#35935 by @ThisIsMissEm)
 - Change index on `follows` table to improve performance of some queries (#36374 by @ClearlyClaire)
 - Change links to accounts in settings and moderation views to link to local view unless account is suspended (#36340 by @diondiondion)
+- Change redirection for denied registration from web app to sign-in page with error message (#36384 by @ClearlyClaire)
 - Change `timeline_preview` setting into four more granular settings (#36338 and #36467 by @ClearlyClaire)
 - Change wording and design of interaction dialog to simplify it (#36124 by @diondiondion)
 - Change dropdown menus to allow disabled items to be focused (#36078 by @diondiondion)
@@ -51,6 +52,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+- Fix rendering of poll options in status history modal (#35633 by @ThisIsMissEm)
 - Fix “mute” button being displayed to unauthenticated visitors in hashtag dropdown (#36353 by @mkljczk)
 - Fix overflow handling of `.more-from-author` (#36310 by @edent)
 - Fix unfortunate action button wrapping in admin area (#36247 by @diondiondion)
