@@ -488,6 +488,14 @@ body,
   }
 }
 
+kbd {
+  font-family: Courier, monospace;
+  background-color: color.change($ui-secondary-color, $alpha: 0.1);
+  padding: 4px;
+  padding-bottom: 2px;
+  border-radius: 5px;
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;
