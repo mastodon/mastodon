@@ -54,8 +54,10 @@ en:
         password: Use at least 8 characters
         phrase: Will be matched regardless of casing in text or content warning of a post
         scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
+        setting_advanced_layout: Display Mastodon as a multi-column layout, allowing you to view the timeline, notifications, and a third column of your choosing. Not recommended for smaller screens.
         setting_aggregate_reblogs: Do not show new boosts for posts that have been recently boosted (only affects newly-received boosts)
         setting_always_send_emails: Normally e-mail notifications won't be sent when you are actively using Mastodon
+        setting_boost_modal: When enabled, boosting will first open a confirmation dialog in which you can change the visibility of your boost.
         setting_default_quote_policy_private: Followers-only posts authored on Mastodon can't be quoted by others.
         setting_default_quote_policy_unlisted: When people quote you, their post will also be hidden from trending timelines.
         setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
@@ -105,7 +107,6 @@ en:
         status_page_url: URL of a page where people can see the status of this server during an outage
         theme: Theme that logged out visitors and new users see.
         thumbnail: A roughly 2:1 image displayed alongside your server information.
-        timeline_preview: Logged out visitors will be able to browse the most recent public posts available on the server.
         trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
         trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
         trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
@@ -235,12 +236,12 @@ en:
         setting_aggregate_reblogs: Group boosts in timelines
         setting_always_send_emails: Always send e-mail notifications
         setting_auto_play_gif: Auto-play animated GIFs
-        setting_boost_modal: Show confirmation dialog before boosting
+        setting_boost_modal: Control boosting visibility
         setting_default_language: Posting language
         setting_default_privacy: Posting visibility
         setting_default_quote_policy: Who can quote
         setting_default_sensitive: Always mark media as sensitive
-        setting_delete_modal: Show confirmation dialog before deleting a post
+        setting_delete_modal: Warn me before deleting a post
         setting_disable_hover_cards: Disable profile preview on hover
         setting_disable_swiping: Disable swiping motions
         setting_display_media: Media display
@@ -250,7 +251,7 @@ en:
         setting_emoji_style: Emoji style
         setting_expand_spoilers: Always expand posts marked with content warnings
         setting_hide_network: Hide your social graph
-        setting_missing_alt_text_modal: Show confirmation dialog before posting media without alt text
+        setting_missing_alt_text_modal: Warn me before posting media without alt text
         setting_reduce_motion: Reduce motion in animations
         setting_system_font_ui: Use system's default font
         setting_system_scrollbars_ui: Use system's default scrollbar
@@ -284,12 +285,16 @@ en:
         content_cache_retention_period: Remote content retention period
         custom_css: Custom CSS
         favicon: Favicon
+        local_live_feed_access: Access to live feeds featuring local posts
+        local_topic_feed_access: Access to hashtag and link feeds featuring local posts
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period
         min_age: Minimum age requirement
         peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Enable profile directory
         registrations_mode: Who can sign-up
+        remote_live_feed_access: Access to live feeds featuring remote posts
+        remote_topic_feed_access: Access to hashtag and link feeds featuring remote posts
         require_invite_text: Require a reason to join
         show_domain_blocks: Show domain blocks
         show_domain_blocks_rationale: Show why domains were blocked
@@ -302,7 +307,6 @@ en:
         status_page_url: Status page URL
         theme: Default theme
         thumbnail: Server thumbnail
-        timeline_preview: Allow unauthenticated access to public timelines
         trendable_by_default: Allow trends without prior review
         trends: Enable trends
         trends_as_landing_page: Use trends as the landing page

@@ -848,6 +848,10 @@ de:
         all: Allen
         disabled: Niemandem
         users: Für angemeldete lokale Benutzer*innen
+      feed_access:
+        modes:
+          authenticated: Nur authentifizierte Nutzer*innen
+          public: Alle
       registrations:
         moderation_recommandation: Bitte vergewissere dich, dass du ein geeignetes und reaktionsschnelles Moderationsteam hast, bevor du die Registrierungen uneingeschränkt zulässt!
         preamble: Lege fest, wer auf deinem Server ein Konto erstellen darf.
@@ -1182,10 +1186,7 @@ de:
     hint_html: Wenn du von einem anderen Konto auf dieses umziehen möchtest, dann kannst du hier einen Alias erstellen, der erforderlich ist, um deine Follower vom alten Konto auf dieses zu migrieren. Diese Aktion ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Der Kontoumzug wird vom alten Konto aus eingeleitet</strong>.
     remove: Alle Aliasse aufheben
   appearance:
-    advanced_web_interface: Erweitertes Webinterface
-    advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, kannst du mit dem erweiterten Webinterface weitere Spalten hinzufügen und dadurch mehr Informationen auf einmal sehen, z. B. deine Startseite, die Benachrichtigungen, die föderierte Timeline sowie beliebig viele deiner Listen und Hashtags.
     animations_and_accessibility: Animationen und Barrierefreiheit
-    confirmation_dialogs: Bestätigungsdialoge
     discovery: Entdecken
     localization:
       body: Mastodon wird von Freiwilligen übersetzt.
@@ -1587,6 +1588,13 @@ de:
       expires_at: Läuft ab
       uses: Verwendungen
     title: Einladungen
+  link_preview:
+    author_html: Von %{name}
+    potentially_sensitive_content:
+      action: Zum Anzeigen anklicken
+      confirm_visit: Möchtest du diesen Link wirklich öffnen?
+      hide_button: Ausblenden
+      label: Inhaltswarnung
   lists:
     errors:
       limit: Du hast die maximale Anzahl an Listen erreicht
@@ -1897,6 +1905,9 @@ de:
         other: "%{count} Videos"
     boosted_from_html: Geteilt von %{acct_link}
     content_warning: 'Inhaltswarnung: %{warning}'
+    content_warnings:
+      hide: Beitrag ausblenden
+      show: Beitrag anzeigen
     default_language: Wie die Sprache des Webinterface
     disallowed_hashtags:
       one: 'enthält einen nicht-erlaubten Hashtag: %{tags}'

@@ -603,7 +603,7 @@ class Status extends ImmutablePureComponent {
         />
 
         <ScrollContainer scrollKey='thread' shouldUpdateScroll={this.shouldUpdateScroll} childRef={this.setContainerRef}>
-          <div className={classNames('scrollable item-list', { fullscreen })} ref={this.setContainerRef}>
+          <div className={classNames('item-list scrollable scrollable--flex', { fullscreen })} ref={this.setContainerRef}>
             {ancestors}
 
             <Hotkeys handlers={handlers}>

@@ -154,15 +154,21 @@ export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg) {
   if (!extraEmojis) {
     return null;
   }
-  if (!isList(extraEmojis)) {
-    return extraEmojis;
-  }
-  return extraEmojis
-    .toJSON()
-    .reduce<ExtraCustomEmojiMap>(
+  if (Array.isArray(extraEmojis)) {
+    return extraEmojis.reduce<ExtraCustomEmojiMap>(
       (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
       {},
     );
+  }
+  if (isList(extraEmojis)) {
+    return extraEmojis
+      .toJS()
+      .reduce<ExtraCustomEmojiMap>(
+        (acc, emoji) => ({ ...acc, [emoji.shortcode]: emoji }),
+        {},
+      );
+  }
+  return extraEmojis;
 }
 
 function hexStringToNumbers(hexString: string): number[] {

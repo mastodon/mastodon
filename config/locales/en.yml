@@ -848,6 +848,10 @@ en:
         all: To everyone
         disabled: To no one
         users: To logged-in local users
+      feed_access:
+        modes:
+          authenticated: Authenticated users only
+          public: Everyone
       registrations:
         moderation_recommandation: Please make sure you have an adequate and reactive moderation team before you open registrations to everyone!
         preamble: Control who can create an account on your server.
@@ -1182,10 +1186,9 @@ en:
     hint_html: If you want to move from another account to this one, here you can create an alias, which is required before you can proceed with moving followers from the old account to this one. This action by itself is <strong>harmless and reversible</strong>. <strong>The account migration is initiated from the old account</strong>.
     remove: Unlink alias
   appearance:
-    advanced_web_interface: Advanced web interface
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    advanced_settings: Advanced settings
     animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
+    boosting_preferences: Boosting preferences
     discovery: Discovery
     localization:
       body: Mastodon is translated by volunteers.
@@ -1587,6 +1590,13 @@ en:
       expires_at: Expires
       uses: Uses
     title: Invite people
+  link_preview:
+    author_html: By %{name}
+    potentially_sensitive_content:
+      action: Click to show
+      confirm_visit: Are you sure you wish to open this link?
+      hide_button: Hide
+      label: Potentially sensitive content
   lists:
     errors:
       limit: You have reached the maximum number of lists
@@ -1898,6 +1908,9 @@ en:
         other: "%{count} videos"
     boosted_from_html: Boosted from %{acct_link}
     content_warning: 'Content warning: %{warning}'
+    content_warnings:
+      hide: Hide post
+      show: Show more
     default_language: Same as interface language
     disallowed_hashtags:
       one: 'contained a disallowed hashtag: %{tags}'

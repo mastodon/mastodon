@@ -53,13 +53,19 @@ describe('html', () => {
 
     it('calls onElement callback', () => {
       const input = '<p>lorem ipsum</p>';
-      const onElement = vi.fn(
-        (element: HTMLElement, children: React.ReactNode[]) =>
-          React.createElement(element.tagName.toLowerCase(), {}, ...children),
+      const onElement = vi.fn<html.OnElementHandler>(
+        (element, props, children) =>
+          React.createElement(
+            element.tagName.toLowerCase(),
+            props,
+            ...children,
+          ),
       );
       html.htmlStringToComponents(input, { onElement });
       expect(onElement).toHaveBeenCalledExactlyOnceWith(
         expect.objectContaining({ tagName: 'P' }),
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        expect.objectContaining({ key: expect.any(String) }),
         expect.arrayContaining(['lorem ipsum']),
         {},
       );
@@ -71,6 +77,8 @@ describe('html', () => {
       const output = html.htmlStringToComponents(input, { onElement });
       expect(onElement).toHaveBeenCalledExactlyOnceWith(
         expect.objectContaining({ tagName: 'P' }),
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        expect.objectContaining({ key: expect.any(String) }),
         expect.arrayContaining(['lorem ipsum']),
         {},
       );

@@ -12,11 +12,11 @@ RSpec.describe Auth::RegistrationsController do
         allow(Rails.configuration.x).to receive(:single_user_mode).and_return(true)
       end
 
-      it 'redirects to root' do
+      it 'redirects to sign-in' do
         Fabricate(:account)
         get path
 
-        expect(response).to redirect_to '/'
+        expect(response).to redirect_to '/auth/sign_in'
         expect(Rails.configuration.x).to have_received(:single_user_mode)
       end
     end
@@ -27,10 +27,10 @@ RSpec.describe Auth::RegistrationsController do
         allow(Rails.configuration.x).to receive(:single_user_mode).and_return(false)
       end
 
-      it 'redirects to root' do
+      it 'redirects to sign-in' do
         get path
 
-        expect(response).to redirect_to '/'
+        expect(response).to redirect_to '/auth/sign_in'
         expect(Rails.configuration.x).to have_received(:single_user_mode)
       end
     end

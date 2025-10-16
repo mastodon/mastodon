@@ -2,6 +2,130 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.0] - UNRELEASED
+
+### Added
+
+- **Add support for allowing and authoring quotes** (#35355, #35578, #35614, #35618, #35624, #35626, #35652, #35629, #35665, #35653, #35670, #35677, #35690, #35697, #35689, #35699, #35700, #35701, #35709, #35714, #35713, #35715, #35725, #35749, #35769, #35780, #35762, #35804, #35808, #35805, #35819, #35824, #35828, #35822, #35835, #35865, #35860, #35832, #35891, #35894, #35895, #35820, #35917, #35924, #35925, #35914, #35930, #35941, #35939, #35948, #35955, #35967, #35990, #35991, #35975, #35971, #36002, #35986, #36031, #36034, #36038, #36054, #36052, #36055, #36065, #36068, #36083, #36087, #36080, #36091, #36090, #36118, #36119, #36128, #36094, #36129, #36138, #36132, #36151, #36158, #36171, #36194, #36220, #36169, #36130, #36249, #36153, #36299, #36291, #36301, #36315, #36317, #36364, #36383, #36381, #36459, #36464, and #36461 by @ChaosExAnima, @ClearlyClaire, @Lycolia, @diondiondion, and @tribela)\
+  This includes a revamp of the composer interface.\
+  See https://blog.joinmastodon.org/2025/09/introducing-quote-posts/ for a user-centric overview of the feature, and https://docs.joinmastodon.org/client/quotes/ for API documentation.
+- **Add support for fetching and refreshing replies to the web UI** (#35210, #35496, #35575, #35500, #35577, #35602, #35603, #35654, #36141, #36237, #36172, #36256, #36271, #36334, #36382, and #36239 by @ClearlyClaire, @Gargron, and @diondiondion)
+- **Add ability to block words in usernames** (#35407, #35655, and #35806 by @ClearlyClaire and @Gargron)
+- Add support for displaying link previews for Admin UI (#35958 by @ThisIsMissEm)
+- Add support for dynamic viewport height (#36272 by @e1berd)
+- Add support for numeric-based URIs for new local accounts (#32724, #36304, #36316, and #36365 by @ClearlyClaire)
+- Add Traditional Mongolian to posting languages (#36196 by @shimon1024)
+- Add example post with manual quote approval policy to `dev:populate_sample_data` (#36099 by @ClearlyClaire)
+- Add server-side support for handling posts with a quote policy allowing followers to quote (#36093 and #36127 by @ClearlyClaire)
+- Add schema.org markup to SEO-enabled posts (#36075 by @Gargron)
+- Add migration to fill unset default quote policy based on default post privacy (#36041 by @ClearlyClaire)
+- Add support for exposing conversation context for new public conversations according to FEP-7888 (#35959 and #36064 by @ClearlyClaire and @jesseplusplus)
+- Add digest re-check before removing followers in synchronization mechanism (#34273 by @ClearlyClaire)
+- Add “Posting defaults” setting page, moving existing settings from “Other” (#35896, #36033, #35966, #35969, and #36084 by @ClearlyClaire and @diondiondion)
+- Add support for displaying Valkey version on admin dashboard (#35785 by @ykzts)
+- Add delivery failure tracking and handling to FASP jobs (#35625, #35628, and #35723 by @oneiros)
+- Add example of quote post with a preview card to development sample data (#35616 by @ClearlyClaire)
+- Add second set of blocked text that applies to accounts regardless of account age for spam-blocking (#35563 by @ClearlyClaire)
+- Add experimental feature to select custom emoji rendering (#35229, #35282, #35253, #35424, #35473, #35483, #35505, #35568, #35605, #35659, #35664, #35739, #35985, #36051, #36071, #36137, #36165, #36248, #36262, #36275, #36293, #36341, #36342, #36366, #36377, #36378, #36385, #36393, #36397, #36403, #36413, #36410, #36454, and #36402 by @ChaosExAnima and @braddunbar)\
+  This also completely reworks the processing and rendering of emojis and server-rendered HTML in statuses and other places.
+
+### Changed
+
+- Change confirmation dialogs for follow button actions “unfollow”, “unblock”, and “withdraw request” (#36289 by @diondiondion)
+- Change “Follow” button labels (#36264 by @diondiondion)
+- Change display of content warnings in Admin UI (#35935 by @ThisIsMissEm)
+- Change index on `follows` table to improve performance of some queries (#36374 by @ClearlyClaire)
+- Change links to accounts in settings and moderation views to link to local view unless account is suspended (#36340 by @diondiondion)
+- Change redirection for denied registration from web app to sign-in page with error message (#36384 by @ClearlyClaire)
+- Change `timeline_preview` setting into four more granular settings (#36338 and #36467 by @ClearlyClaire)
+- Change wording and design of interaction dialog to simplify it (#36124 by @diondiondion)
+- Change dropdown menus to allow disabled items to be focused (#36078 by @diondiondion)
+- Change modal background colours in light mode (#36069 by @diondiondion)
+- Change “Posting defaults” settings page to enforce `nobody` quote policy for `private` default visibility (#36040 by @ClearlyClaire)
+- Change description of “Quiet public” (#36032 by @ClearlyClaire)
+- Change “Boost with original visibility” to “Share again with your followers” (#36035 by @ClearlyClaire)
+- Change handling of push subscriptions to automatically delete invalid ones on delivery (#35987 by @ThisIsMissEm)
+- Change design of quote posts in web UI (#35584 and #35834 by @ClearlyClaire and @Gargron)
+- Change auditable accounts to be sorted by username in admin action logs interface (#35272 by @breadtk)
+- Change order of translation restoration and service credit on post card (#33619 by @colindean)
+- Change position of ‘add more’ to be inside table toolbar on reports (#35963 by @ThisIsMissEm)
+
+### Fixed
+
+- Fix rendering of poll options in status history modal (#35633 by @ThisIsMissEm)
+- Fix “mute” button being displayed to unauthenticated visitors in hashtag dropdown (#36353 by @mkljczk)
+- Fix overflow handling of `.more-from-author` (#36310 by @edent)
+- Fix unfortunate action button wrapping in admin area (#36247 by @diondiondion)
+- Fix translate button width in Safari (#36164 and #36216 by @diondiondion)
+- Fix login page linking to other pages within OAuth authorization flow (#36115 by @Gargron)
+- Fix stale search results being displayed in Web UI while new query is in progress (#36053 by @ChaosExAnima)
+- Fix YouTube iframe not being able to start at a defined time (#26584 by @BrunoViveiros)
+- Fix banned text being able to be circumvented via unicode (#35978 by @Gargron)
+- Fix batch table toolbar displaying under status media (#35962 by @ThisIsMissEm)
+- Fix incorrect RSS feed MIME type in gzip_types directive (#35562 by @iioflow)
+- Fix 404 error after deleting status from detail view (#35800) (#35881 by @crafkaz)
+- Fix feeds keyboard navigation issues (#35853, #35864, and #36267 by @braddunbar and @diondiondion)
+- Fix layout shift caused by “Who to follow” widget (#35861 by @diondiondion)
+- Fix Vagrantfile (#35765 by @ClearlyClaire)
+- Fix reply indicator displaying wrong avatar in rare cases (#35756 by @ClearlyClaire)
+- Fix `Chewy::UndefinedUpdateStrategy` in `dev:populate_sample_data` task when Elasticsearch is enabled (#35615 by @ClearlyClaire)
+- Fix unnecessary account note addition for already-muted moved-to users (#35566 by @mjankowski)
+- Fix seeded admin user creation failing on specific configurations (#35565 by @oneiros)
+- Fix media modal images in Web UI having redundant `title` attribute (#35468 by @mayank99)
+- Fix inconsistent default privacy post setting when unset in settings (#35422 by @oneiros)
+- Fix glitchy status keyboard navigation (#35455 and #35504 by @diondiondion)
+- Fix post being submitted when pressing “Enter” in the CW field (#35445 by @diondiondion)
+
+## [4.4.7] - 2025-10-15
+
+### Fixed
+
+- Fix forwarder being called with `nil` status when quote post is soft-deleted (#36463 by @ClearlyClaire)
+- Fix moderation warning e-mails that include posts (#36462 by @ClearlyClaire)
+- Fix allow_referrer_origin typo (#36460 by @ShadowJonathan)
+
+## [4.4.6] - 2025-10-13
+
+### Security
+
+- Update dependencies `rack` and `uri`
+- Fix streaming server connection not being closed on user suspension (by @ThisIsMissEm, [GHSA-r2fh-jr9c-9pxh](https://github.com/mastodon/mastodon/security/advisories/GHSA-r2fh-jr9c-9pxh))
+- Fix password change through admin CLI not invalidating existing sessions and access tokens (by @ThisIsMissEm, [GHSA-f3q3-rmf7-9655](https://github.com/mastodon/mastodon/security/advisories/GHSA-f3q3-rmf7-9655))
+- Fix streaming server allowing access to public timelines even without the `read` or `read:statuses` OAuth scopes (by @ThisIsMissEm, [GHSA-7gwh-mw97-qjgp](https://github.com/mastodon/mastodon/security/advisories/GHSA-7gwh-mw97-qjgp))
+
+### Added
+
+- Add support for processing quotes of deleted posts signaled through a `Tombstone` (#36381 by @ClearlyClaire)
+
+### Fixed
+
+- Fix quote post state sometimes not being updated through streaming server (#36408 by @ClearlyClaire)
+- Fix inconsistent “pending tags” count on admin dashboard (#36404 by @mjankowski)
+- Fix JSON payload being potentially mutated when processing interaction policies (#36392 by @ClearlyClaire)
+- Fix quotes not being displayed in email notifications (#36379 by @diondiondion)
+- Fix redirect to external object when URL is missing or malformed (#36347 by @ClearlyClaire)
+- Fix quotes not being displayed in the featured carousel (#36335 by @diondiondion)
+
+## [4.4.5] - 2025-09-23
+
+### Security
+
+- Update dependencies
+
+### Added
+
+- Add support for `has:quote` in search (#36217 by @ClearlyClaire)
+
+### Changed
+
+- Change quoted posts from silenced accounts to use a click-through rather than being hidden (#36166 and #36167 by @ClearlyClaire)
+
+### Fixed
+
+- Fix processing of out-of-order `Update` as implicit updates (#36190 by @ClearlyClaire)
+- Fix getting `Create` and `Update` out of order (#36176 by @ClearlyClaire)
+- Fix quotes with Content Warnings but no text being shown without Content Warnings (#36150 by @ClearlyClaire)
+
 ## [4.4.4] - 2025-09-16
 
 ### Security

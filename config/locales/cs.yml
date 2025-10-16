@@ -876,6 +876,10 @@ cs:
         all: Všem
         disabled: Nikomu
         users: Přihlášeným místním uživatelům
+      feed_access:
+        modes:
+          authenticated: Pouze autentifikovaní uživatelé
+          public: Všichni
       registrations:
         moderation_recommandation: Před otevřením registrací všem se ujistěte, že máte vhodný a reaktivní moderační tým!
         preamble: Mějte pod kontrolou, kdo může vytvořit účet na vašem serveru.
@@ -1220,10 +1224,7 @@ cs:
     hint_html: Chcete-li se přesunout z jiného účtu na tento, můžete si zde vytvořit alias, který je vyžadován předtím, než můžete pokračovat přesunem sledujících ze starého účtu na tento. Tato akce sama o sobě je <strong>neškodná a vratná</strong>. <strong>Přesun účtu se zahajuje ze starého účtu</strong>.
     remove: Odpojit alias
   appearance:
-    advanced_web_interface: Pokročilé webové rozhraní
-    advanced_web_interface_hint: 'Chcete-li využít celé šířky vaší obrazovky, dovolí vám pokročilé webové rozhraní nastavit si mnoho různých sloupců, takže ve stejnou chvíli uvidíte tolik informací, kolik chcete: domovskou časovou osu, oznámení, federovanou časovou osu a libovolný počet seznamů a hashtagů.'
     animations_and_accessibility: Animace a přístupnost
-    confirmation_dialogs: Potvrzovací dialogy
     discovery: Objevování
     localization:
       body: Mastodon je překládán dobrovolníky.
@@ -1665,6 +1666,13 @@ cs:
       expires_at: Vyprší
       uses: Použití
     title: Pozvat lidi
+  link_preview:
+    author_html: Podle %{name}
+    potentially_sensitive_content:
+      action: Kliknutím zobrazíte
+      confirm_visit: Opravdu chcete otevřít tento odkaz?
+      hide_button: Skrýt
+      label: Potenciálně citlivý obsah
   lists:
     errors:
       limit: Dosáhl jste maximálního počtu seznamů
@@ -1981,6 +1989,9 @@ cs:
         other: "%{count} videí"
     boosted_from_html: Boostnuto z %{acct_link}
     content_warning: 'Varování o obsahu: %{warning}'
+    content_warnings:
+      hide: Skrýt příspěvek
+      show: Zobrazit více
     default_language: Stejný jako jazyk rozhraní
     disallowed_hashtags:
       few: 'obsahoval zakázané hashtagy: %{tags}'
