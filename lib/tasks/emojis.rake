@@ -48,6 +48,7 @@ def get_image(row, emoji_base, fallback, compressed)
   if path.exist?
     Vips::Image.new_from_file(path.to_s, dpi: 64)
   else
+    puts "Missing emoji: #{row['b'] || row['unified']}"
     fallback
   end
 end
@@ -59,7 +60,7 @@ end
 namespace :emojis do
   desc 'Generate a unicode to filename mapping'
   task :generate do
-    source = 'http://www.unicode.org/Public/emoji/15.1/emoji-test.txt'
+    source = 'http://www.unicode.org/Public/emoji/16.0/emoji-test.txt'
     codes  = []
     dest   = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_map.json')
 
@@ -120,7 +121,7 @@ namespace :emojis do
 
   desc 'Generate the JSON emoji data'
   task :generate_json do
-    data_source = 'https://raw.githubusercontent.com/iamcal/emoji-data/refs/tags/v15.1.2/emoji.json'
+    data_source = 'https://raw.githubusercontent.com/iamcal/emoji-data/refs/tags/v16.0.0/emoji.json'
     keyword_source = 'https://raw.githubusercontent.com/muan/emojilib/refs/tags/v3.0.12/dist/emoji-en-US.json'
     data_dest = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_data.json')
 
@@ -224,6 +225,6 @@ namespace :emojis do
     end
 
     joined = Vips::Image.arrayjoin(comp.flatten, across: size, hspacing: 34, halign: :centre, vspacing: 34, valign: :centre)
-    joined.write_to_file(emoji_base.join('sheet_15_1.png').to_s, palette: true, dither: 0, Q: 100)
+    joined.write_to_file(emoji_base.join('sheet_16_0.png').to_s, palette: true, dither: 0, Q: 100)
   end
 end
