@@ -63,7 +63,7 @@ export const AnimateEmojiProvider = polymorphicForwardRef<
 
     // If there's a parent context or GIFs autoplay, we don't need handlers.
     const parentContext = useContext(AnimateEmojiContext);
-    if (parentContext !== null || autoPlayGif === true) {
+    if (parentContext !== null) {
       return (
         <Wrapper
           {...props}
