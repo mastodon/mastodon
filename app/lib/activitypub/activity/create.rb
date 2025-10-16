@@ -56,11 +56,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     process_audience
 
     ApplicationRecord.transaction do
-      @status = Status.create!(@params)
+      @status = Status.create!(@params.merge(quote: @quote))
       attach_tags(@status)
       attach_mentions(@status)
       attach_counts(@status)
-      attach_quote(@status)
     end
 
     resolve_thread(@status)
@@ -89,6 +88,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @status_parser = ActivityPub::Parser::StatusParser.new(
       @json,
       followers_collection: @account.followers_url,
+      following_collection: @account.following_url,
       actor_uri: ActivityPub::TagManager.instance.uri_for(@account),
       object: @object
     )
@@ -202,13 +202,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
   end
 
-  def attach_quote(status)
-    return if @quote.nil?
-
-    @quote.status = status
-    @quote.save
-  end
-
   def process_tags
     return if @object['tag'].nil?
 
@@ -225,11 +218,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def process_quote
     @quote_uri = @status_parser.quote_uri
-    return if @quote_uri.blank?
+    return unless @status_parser.quote?
 
     approval_uri = @status_parser.quote_approval_uri
     approval_uri = nil if unsupported_uri_scheme?(approval_uri) || TagManager.instance.local_url?(approval_uri)
-    @quote = Quote.new(account: @account, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
+    @quote = Quote.new(account: @account, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?, state: @status_parser.deleted_quote? ? :deleted : :pending)
   end
 
   def process_hashtag(tag)

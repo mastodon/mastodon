@@ -113,6 +113,7 @@ module ApplicationHelper
   end
 
   def material_symbol(icon, attributes = {})
+    whitespace = attributes.delete(:whitespace) { true }
     safe_join(
       [
         inline_svg_tag(
@@ -121,7 +122,7 @@ module ApplicationHelper
           role: :img,
           data: attributes[:data]
         ),
-        ' ',
+        whitespace ? ' ' : '',
       ]
     )
   end
@@ -258,6 +259,10 @@ module ApplicationHelper
 
   def app_store_url_android
     'https://play.google.com/store/apps/details?id=org.joinmastodon.android'
+  end
+
+  def within_authorization_flow?
+    session[:user_return_to].present? && Rails.application.routes.recognize_path(session[:user_return_to])[:controller] == 'oauth/authorizations'
   end
 
   private

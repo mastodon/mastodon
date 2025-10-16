@@ -95,18 +95,7 @@ Rails.application.routes.draw do
 
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
-  resources :accounts, path: 'users', only: [:show], param: :username do
-    resources :statuses, only: [:show] do
-      member do
-        get :activity
-        get :embed
-      end
-
-      resources :replies, only: [:index], module: :activitypub
-      resources :likes, only: [:index], module: :activitypub
-      resources :shares, only: [:index], module: :activitypub
-    end
-
+  concern :account_resources do
     resources :followers, only: [:index], controller: :follower_accounts
     resources :following, only: [:index], controller: :following_accounts
 
@@ -119,8 +108,35 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :accounts, path: 'users', only: [:show], param: :username, concerns: :account_resources do
+    resources :statuses, only: [:show] do
+      member do
+        get :activity
+        get :embed
+      end
+
+      resources :replies, only: [:index], module: :activitypub
+      resources :likes, only: [:index], module: :activitypub
+      resources :shares, only: [:index], module: :activitypub
+    end
+  end
+
+  scope path: 'ap', as: 'ap' do
+    resources :accounts, path: 'users', only: [:show], param: :id, concerns: :account_resources do
+      resources :statuses, only: [:show] do
+        member do
+          get :activity
+        end
+
+        resources :replies, only: [:index], module: :activitypub
+        resources :likes, only: [:index], module: :activitypub
+        resources :shares, only: [:index], module: :activitypub
+      end
+    end
+  end
+
   resource :inbox, only: [:create], module: :activitypub
-  resources :contexts, only: [:show], module: :activitypub do
+  resources :contexts, only: [:show], module: :activitypub, constraints: { id: /[0-9]+-[0-9]+/ } do
     member do
       get :items
     end

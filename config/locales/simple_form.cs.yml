@@ -56,7 +56,8 @@ cs:
         scopes: Která API bude aplikace moct používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat jednotlivě.
         setting_aggregate_reblogs: Nezobrazovat nové boosty pro příspěvky, které byly nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
         setting_always_send_emails: Jinak nebudou e-mailové notifikace posílány, když Mastodon aktivně používáte
-        setting_default_quote_policy: Toto nastavení se projeví pouze u příspěvků vytvořených s další verzí Mastodon, ale svou předvolbu si můžete vybrat předem.
+        setting_default_quote_policy_private: Příspěvky pouze pro sledující, které jsou vytvořeny na Mastodonu, nemohou být citovány ostatními.
+        setting_default_quote_policy_unlisted: Když vás lidé citují, jejich příspěvek bude v časové ose populárních příspěvků také skryt.
         setting_default_sensitive: Citlivá média jsou ve výchozím stavu skryta a mohou být zobrazena kliknutím
         setting_display_media_default: Skrývat média označená jako citlivá
         setting_display_media_hide_all: Vždy skrývat média
@@ -104,7 +105,6 @@ cs:
         status_page_url: URL stránky, kde mohou lidé vidět stav tohoto serveru během výpadku
         theme: Vzhled stránky, který vidí noví a odhlášení uživatelé.
         thumbnail: Přibližně 2:1 obrázek zobrazený vedle informací o vašem serveru.
-        timeline_preview: Odhlášení uživatelé budou moci procházet nejnovější veřejné příspěvky na serveru.
         trendable_by_default: Přeskočit manuální kontrolu populárního obsahu. Jednotlivé položky mohou být odstraněny z trendů později.
         trends: Trendy zobrazují, které příspěvky, hashtagy a zprávy získávají na serveru pozornost.
         trends_as_landing_page: Zobrazit populární obsah odhlášeným uživatelům a návštěvníkům místo popisu tohoto serveru. Vyžaduje povolení trendů.
@@ -285,12 +285,16 @@ cs:
         content_cache_retention_period: Doba uchovávání vzdáleného obsahu
         custom_css: Vlastní CSS
         favicon: Favicon
+        local_live_feed_access: Přístup k live kanálům s lokálními příspěvky
+        local_topic_feed_access: Přístup ke kanálům s hashtagy a odkazy s lokálními příspěvky
         mascot: Vlastní maskot (zastaralé)
         media_cache_retention_period: Doba uchovávání mezipaměti médií
         min_age: Minimální věková hranice
         peers_api_enabled: Zveřejnit seznam nalezených serverů v API
         profile_directory: Povolit adresář profilů
         registrations_mode: Kdo se může přihlásit
+        remote_live_feed_access: Přístup k live kanálům s vzdálenými příspěvky
+        remote_topic_feed_access: Přístup ke kanálům s hashtagy a odkazy se vzdálenými příspěvky
         require_invite_text: Požadovat důvod pro připojení
         show_domain_blocks: Zobrazit blokace domén
         show_domain_blocks_rationale: Zobrazit proč byly blokovány domény
@@ -303,7 +307,6 @@ cs:
         status_page_url: URL stránky se stavem
         theme: Výchozí motiv
         thumbnail: Miniatura serveru
-        timeline_preview: Povolit neověřený přístup k veřejným časovým osám
         trendable_by_default: Povolit trendy bez předchozí revize
         trends: Povolit trendy
         trends_as_landing_page: Použít trendy jako vstupní stránku

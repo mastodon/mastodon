@@ -848,6 +848,10 @@ hu:
         all: Mindenkinek
         disabled: Senkinek
         users: Bejelentkezett helyi felhasználóknak
+      feed_access:
+        modes:
+          authenticated: Csak hitelesített felhasználók
+          public: Mindenki
       registrations:
         moderation_recommandation: Győződj meg arról, hogy megfelelő és gyors reagálású moderátor csapatod van, mielőtt mindenki számára megnyitod a regisztrációt!
         preamble: Szabályozd, hogy ki hozhat létre fiókot a kiszolgálón.
@@ -1182,10 +1186,7 @@ hu:
     hint_html: Ha másik fiókról kívánsz átlépni erre a fiókra, itt létrehozhatsz egy aliast, amelyre szükség van, mielőtt folytathatod a követők áthelyezését a régi fiókból erre. Ez az áthelyezés önmagában <strong>ártalmatlan és visszafordítható</strong> folyamat. <strong>A fiók áttelepítése a régi fiókból indul el. </strong>
     remove: Alias szétkapcsolása
   appearance:
-    advanced_web_interface: Speciális webes felület
-    advanced_web_interface_hint: 'Ha szeretnéd, a képernyő teljes szélességét kihasználhatod. A speciális webes felülettel különböző oszlopokat állíthatsz be, hogy egyszerre annyi információt láthass, amennyit csak akarsz: Kezdőoldal, értesítések, föderációs idővonal, bármennyi lista vagy hashtag.'
     animations_and_accessibility: Animáció és akadálymentesítés
-    confirmation_dialogs: Megerősítő párbeszédablakok
     discovery: Felfedezés
     localization:
       body: A Mastodont önkéntesek fordítják.
@@ -1587,6 +1588,13 @@ hu:
       expires_at: Lejárat
       uses: Használat
     title: Meghívások
+  link_preview:
+    author_html: 'Szerző: %{name}'
+    potentially_sensitive_content:
+      action: Kattints a megjelenítéshez
+      confirm_visit: Biztos, hogy megnyitod ezt a hivatkozást?
+      hide_button: Elrejtés
+      label: Lehet, hogy kényes tartalom
   lists:
     errors:
       limit: Elérted a listák maximális számát
@@ -1897,6 +1905,9 @@ hu:
         other: "%{count} videó"
     boosted_from_html: Megtolva innen %{acct_link}
     content_warning: 'Tartalmi figyelmeztetés: %{warning}'
+    content_warnings:
+      hide: Bejegyzés elrejtése
+      show: Több megjelenítése
     default_language: Felhasználói felület nyelvével azonos
     disallowed_hashtags:
       one: 'tiltott hashtaget tartalmaz: %{tags}'
@@ -1919,9 +1930,9 @@ hu:
     visibilities:
       direct: Privát említés
       private: Csak követőknek
-      private_long: Csak a követőidnek jelenik meg
       public: Nyilvános
       public_long: Bárki a Mastodonon és azon kívül
+      unlisted: Csendes nyilvános
       unlisted_long: Elrejtve a Mastodon keresési találataiban, a felkapottak között és a nyilvános idővonalakon
   statuses_cleanup:
     enabled: Régi bejegyzések automatikus törlése

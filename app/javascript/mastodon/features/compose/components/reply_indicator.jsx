@@ -35,9 +35,7 @@ export const ReplyIndicator = () => {
 
         <EmbeddedStatusContent
           className='reply-indicator__content translate'
-          content={status.get('contentHtml')}
-          language={status.get('language')}
-          mentions={status.get('mentions')}
+          status={status}
         />
 
         {(status.get('poll') || status.get('media_attachments').size > 0) && (

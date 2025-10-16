@@ -56,7 +56,8 @@ ga:
         scopes: Cé na APIanna a mbeidh cead ag an bhfeidhmchlár rochtain a fháil orthu. Má roghnaíonn tú raon feidhme barrleibhéil, ní gá duit cinn aonair a roghnú.
         setting_aggregate_reblogs: Ná taispeáin treisithe nua do phoist a treisíodh le déanaí (ní dhéanann difear ach do threisithe nuafhaighte)
         setting_always_send_emails: Go hiondúil ní sheolfar fógraí ríomhphoist agus tú ag úsáid Mastodon go gníomhach
-        setting_default_quote_policy: Ní bheidh an socrú seo i bhfeidhm ach amháin maidir le poist a cruthaíodh leis an gcéad leagan eile de Mastodon, ach is féidir leat do rogha féin a roghnú agus tú ag ullmhú.
+        setting_default_quote_policy_private: Ní féidir le daoine eile poist atá scríofa ar Mastodon agus atá dírithe ar leanúna amháin a lua.
+        setting_default_quote_policy_unlisted: Nuair a luann daoine thú, beidh a bpost i bhfolach ó amlínte treochta freisin.
         setting_default_sensitive: Tá meáin íogair i bhfolach de réir réamhshocraithe agus is féidir iad a nochtadh le cliceáil
         setting_display_media_default: Folaigh meáin atá marcáilte mar íogair
         setting_display_media_hide_all: Folaigh meáin i gcónaí
@@ -104,7 +105,6 @@ ga:
         status_page_url: URL leathanach inar féidir le daoine stádas an fhreastalaí seo a fheiceáil le linn briseadh amach
         theme: Téama a fheiceann cuairteoirí logáilte amach agus úsáideoirí nua.
         thumbnail: Íomhá thart ar 2:1 ar taispeáint taobh le faisnéis do fhreastalaí.
-        timeline_preview: Beidh cuairteoirí logáilte amach in ann na postálacha poiblí is déanaí atá ar fáil ar an bhfreastalaí a bhrabhsáil.
         trendable_by_default: Léim ar athbhreithniú láimhe ar ábhar treochta. Is féidir míreanna aonair a bhaint as treochtaí fós tar éis an fhíric.
         trends: Léiríonn treochtaí cé na postálacha, hashtags agus scéalta nuachta atá ag tarraingt ar do fhreastalaí.
         trends_as_landing_page: Taispeáin inneachar treochta d'úsáideoirí agus do chuairteoirí atá logáilte amach in ionad cur síos ar an bhfreastalaí seo. Éilíonn treochtaí a chumasú.
@@ -286,12 +286,16 @@ ga:
         content_cache_retention_period: Tréimhse choinneála inneachair cianda
         custom_css: CSS saincheaptha
         favicon: Favicon
+        local_live_feed_access: Rochtain ar bheatha bheo ina bhfuil poist áitiúla
+        local_topic_feed_access: Rochtain ar fhothaí hashtag agus nasc ina bhfuil poist áitiúla
         mascot: Mascóg saincheaptha (oidhreacht)
         media_cache_retention_period: Tréimhse choinneála taisce meán
         min_age: Riachtanas aoise íosta
         peers_api_enabled: Foilsigh liosta de na freastalaithe aimsithe san API
         profile_directory: Cumasaigh eolaire próifíle
         registrations_mode: Cé atá in ann clárú
+        remote_live_feed_access: Rochtain ar bheatha bheo ina bhfuil poist iargúlta
+        remote_topic_feed_access: Rochtain ar fhothaí hashtag agus nasc ina bhfuil poist iargúlta
         require_invite_text: A cheangal ar chúis a bheith páirteach
         show_domain_blocks: Taispeáin bloic fearainn
         show_domain_blocks_rationale: Taispeáin cén fáth ar cuireadh bac ar fhearann
@@ -304,7 +308,6 @@ ga:
         status_page_url: URL an leathanaigh stádais
         theme: Téama réamhshocraithe
         thumbnail: Mionsamhail freastalaí
-        timeline_preview: Ceadaigh rochtain neamhdheimhnithe ar amlínte poiblí
         trendable_by_default: Ceadaigh treochtaí gan athbhreithniú roimh ré
         trends: Cumasaigh treochtaí
         trends_as_landing_page: Úsáid treochtaí mar an leathanach tuirlingthe

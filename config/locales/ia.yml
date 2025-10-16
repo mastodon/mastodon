@@ -1182,10 +1182,7 @@ ia:
     hint_html: Si tu vole migrar de un altere conto a iste, tu pote crear un alias ci, que es necessari pro poter transferer le sequitores del conto ancian a iste. Iste action per se es <strong>innocue e reversibile</strong>. <strong>Le migration del conto es initiate desde le conto ancian</strong>.
     remove: Disligar alias
   appearance:
-    advanced_web_interface: Interfacie web avantiate
-    advanced_web_interface_hint: 'Si tu vole utilisar tote le largessa de tu schermo, le interfacie web avantiate te permitte configurar multe columnas differente pro vider al mesme tempore tante informationes como tu vole: pagina principal, notificationes, chronologia federate, un numero illimitate de listas e hashtags.'
     animations_and_accessibility: Animationes e accessibilitate
-    confirmation_dialogs: Dialogos de confirmation
     discovery: Discoperta
     localization:
       body: Mastodon es traducite per voluntarios.
@@ -1739,6 +1736,9 @@ ia:
       self_vote: Tu non pote votar in tu proprie sondages
       too_few_options: debe haber plus de un elemento
       too_many_options: non pote continer plus de %{max} elementos
+    vote: Votar
+  posting_defaults:
+    explanation: Iste parametros essera usate como predefinite quando tu crea nove messages, ma tu pote modificar los pro cata message in le compositor.
   preferences:
     other: Alteres
     posting_defaults: Parametros de publication predefinite
@@ -1916,9 +1916,9 @@ ia:
     visibilities:
       direct: Mention private
       private: Solmente sequitores
-      private_long: Solmente monstrar a sequitores
       public: Public
       public_long: Quicunque, sur Mastodon o non
+      unlisted: Public ma quiete
       unlisted_long: Celate in resultatos de recerca, tendentias e chronologias public de Mastodon
   statuses_cleanup:
     enabled: Deler automaticamente le messages ancian

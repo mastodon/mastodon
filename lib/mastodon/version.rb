@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def default_prerelease
-      'alpha.2'
+      'beta.1'
     end
 
     def prerelease
@@ -45,7 +45,7 @@ module Mastodon
 
     def api_versions
       {
-        mastodon: Mastodon::Feature.outgoing_quotes_enabled? ? 7 : 6,
+        mastodon: 7,
       }
     end
 

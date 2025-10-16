@@ -50,9 +50,13 @@ const preview: Preview = {
     locale: 'en',
   },
   decorators: [
-    (Story, { parameters, globals }) => {
+    (Story, { parameters, globals, args }) => {
+      // Get the locale from the global toolbar
+      // and merge it with any parameters or args state.
       const { locale } = globals as { locale: string };
       const { state = {} } = parameters;
+      const { state: argsState = {} } = args;
+
       const reducer = reducerWithInitialState(
         {
           meta: {
@@ -60,7 +64,9 @@ const preview: Preview = {
           },
         },
         state as Record<string, unknown>,
+        argsState as Record<string, unknown>,
       );
+
       const store = configureStore({
         reducer,
         middleware(getDefaultMiddleware) {

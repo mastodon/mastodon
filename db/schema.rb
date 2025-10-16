@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_02_221600) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_07_142305) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -198,6 +198,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_02_221600) do
     t.datetime "requested_review_at", precision: nil
     t.boolean "indexable", default: false, null: false
     t.string "attribution_domains", default: [], array: true
+    t.string "following_url", default: "", null: false
+    t.integer "id_scheme", default: 1
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), COALESCE(lower((domain)::text), ''::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["domain", "id"], name: "index_accounts_on_domain_and_id"
@@ -361,6 +363,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_02_221600) do
     t.datetime "updated_at", precision: nil, null: false
     t.bigint "parent_status_id"
     t.bigint "parent_account_id"
+    t.index ["parent_status_id"], name: "index_conversations_on_parent_status_id", unique: true, where: "(parent_status_id IS NOT NULL)"
     t.index ["uri"], name: "index_conversations_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
   end
 
@@ -568,7 +571,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_02_221600) do
     t.boolean "notify", default: false, null: false
     t.string "languages", array: true
     t.index ["account_id", "target_account_id"], name: "index_follows_on_account_id_and_target_account_id", unique: true
-    t.index ["target_account_id"], name: "index_follows_on_target_account_id"
+    t.index ["target_account_id", "account_id"], name: "index_follows_on_target_account_id_and_account_id"
   end
 
   create_table "generated_annual_reports", force: :cascade do |t|

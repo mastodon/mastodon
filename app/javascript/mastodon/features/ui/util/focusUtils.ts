@@ -1,4 +1,4 @@
-import initialState from '@/mastodon/initial_state';
+import { initialState } from '@/mastodon/initial_state';
 
 interface FocusColumnOptions {
   index?: number;
@@ -60,23 +60,13 @@ export function focusColumn({
  * Get the index of the currently focused item in one of our item lists
  */
 export function getFocusedItemIndex() {
-  const focusedElement = document.activeElement;
-  const itemList = focusedElement?.closest('.item-list');
-
-  if (!focusedElement || !itemList) {
-    return -1;
-  }
-
-  let focusedItem: HTMLElement | null = null;
-  if (focusedElement.parentElement === itemList) {
-    focusedItem = focusedElement as HTMLElement;
-  } else {
-    focusedItem = focusedElement.closest('.item-list > *');
-  }
-
+  const focusedItem = document.activeElement?.closest('.item-list > *');
   if (!focusedItem) return -1;
 
-  const items = Array.from(itemList.children);
+  const { parentElement } = focusedItem;
+  if (!parentElement) return -1;
+
+  const items = Array.from(parentElement.children);
   return items.indexOf(focusedItem);
 }
 

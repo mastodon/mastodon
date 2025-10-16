@@ -52,6 +52,10 @@ class StatusEdit < ApplicationRecord
     underlying_quote
   end
 
+  def with_preview_card?
+    false
+  end
+
   def with_media?
     ordered_media_attachments.any?
   end

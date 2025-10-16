@@ -71,6 +71,10 @@ class AccountsController < ApplicationController
     params[:username]
   end
 
+  def account_id_param
+    params[:id]
+  end
+
   def skip_temporary_suspension_response?
     request.format == :json
   end

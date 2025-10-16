@@ -1122,7 +1122,7 @@
 .edit-indicator__content,
 .reply-indicator__content {
   position: relative;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1363,7 +1363,7 @@
 }
 
 .announcements__item__content {
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   overflow-y: auto;
 
   .emojione {
@@ -1419,8 +1419,16 @@
   border: 0;
   background: transparent;
   padding: 0;
-  padding-top: 16px;
+  margin-top: 16px;
   text-decoration: none;
+  text-wrap: nowrap;
+
+  .status--is-quote & {
+    // Needed to prevent buttons from stretching across whole
+    // status width in Safari due to line-clamp
+    width: min-content;
+    white-space: nowrap;
+  }
 
   &:hover,
   &:active {
@@ -1520,7 +1528,7 @@
     & > .status__content,
     & > .status__action-bar,
     & > .media-gallery,
-    & > .video-player,
+    & > div > .video-player,
     & > .audio-player,
     & > .attachment-list,
     & > .picture-in-picture-placeholder,
@@ -1589,6 +1597,16 @@
       }
     }
   }
+
+  .no-reduce-motion &--highlighted-entry::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgb(from $ui-highlight-color r g b / 20%);
+    opacity: 0;
+    animation: fade 0.7s reverse both 0.3s;
+    pointer-events: none;
+  }
 }
 
 .status__relative-time {
@@ -1630,7 +1648,7 @@
   align-items: center;
   gap: 10px;
   overflow: hidden;
-  flex-grow: 1;
+  margin-inline-end: auto;
 
   .display-name {
     bdi {
@@ -2259,6 +2277,7 @@
   position: relative;
   border-radius: var(--avatar-border-radius);
   background: var(--surface-background-color);
+  flex-shrink: 0;
 
   img {
     width: 100%;
@@ -2908,16 +2927,23 @@ a.account__display-name {
     &:focus,
     &:hover,
     &:active {
-      &:not(:disabled) {
+      &:not(:disabled, [aria-disabled='true']) {
         background: var(--dropdown-border-color);
         outline: 0;
       }
     }
   }
 
-  button:disabled {
+  button:disabled,
+  button[aria-disabled='true'] {
     color: $dark-text-color;
     cursor: default;
+
+    &:focus {
+      color: rgb(from $dark-text-color r g b / 70%);
+      background: var(--dropdown-border-color);
+      outline: 0;
+    }
   }
 }
 
@@ -2945,11 +2971,14 @@ a.account__display-name {
   flex: 1 1 auto;
   flex-direction: row;
   justify-content: flex-start;
-  overflow-x: auto;
   position: relative;
 
-  &.unscrollable {
-    overflow-x: hidden;
+  .layout-multiple-columns & {
+    overflow-x: auto;
+
+    &.unscrollable {
+      overflow-x: hidden;
+    }
   }
 
   &__panels {
@@ -2960,6 +2989,7 @@ a.account__display-name {
     width: 100%;
     height: 100%;
     min-height: 100vh;
+    min-height: 100dvh;
     padding-bottom: env(safe-area-inset-bottom);
 
     &__pane {
@@ -3121,6 +3151,34 @@ a.account__display-name {
   }
 }
 
+.column__alert {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  box-sizing: border-box;
+  display: grid;
+  width: 100%;
+  max-width: 360px;
+  padding: 1rem;
+  margin: auto auto 0;
+  overflow: clip;
+
+  &:empty {
+    padding: 0;
+  }
+
+  @media (max-width: #{$mobile-menu-breakpoint - 1}) {
+    // Compensate for mobile menubar
+    bottom: var(--mobile-bottom-nav-height);
+  }
+
+  & > * {
+    // Make all nested alerts occupy the same space
+    // rather than stack
+    grid-area: 1 / 1;
+  }
+}
+
 .ui {
   --mobile-bottom-nav-height: 55px;
   --last-content-item-border-width: 2px;
@@ -3161,7 +3219,6 @@ a.account__display-name {
 .column,
 .drawer {
   flex: 1 1 100%;
-  overflow: hidden;
 }
 
 @media screen and (width > $mobile-breakpoint) {
@@ -3270,6 +3327,7 @@ a.account__display-name {
 
   .columns-area__panels {
     min-height: 100vh;
+    min-height: 100dvh;
     gap: 0;
   }
 
@@ -3910,7 +3968,7 @@ a.account__display-name {
 .react-toggle-screenreader-only,
 .sr-only {
   border: 0;
-  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   height: 1px;
   margin: -1px;
   overflow: hidden;
@@ -5119,10 +5177,8 @@ a.status-card {
     &__menu {
       @include search-popout;
 
-      & {
-        padding: 0;
-        background: $ui-secondary-color;
-      }
+      padding: 0;
+      background: $ui-secondary-color;
     }
 
     &__menu-list {
@@ -5694,28 +5750,23 @@ a.status-card {
     z-index: 9999;
   }
 
+  &.disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
   &__label {
-    cursor: pointer;
     display: block;
-
-    > span {
-      display: block;
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    &.disabled {
-      cursor: default;
-      opacity: 0.5;
-    }
+    font-weight: 500;
+    margin-bottom: 8px;
   }
 
   &__button {
     display: flex;
     align-items: center;
     color: $primary-text-color;
-    background: var(--dropdown-background-color);
-    border: 1px solid var(--dropdown-border-color);
+    background: var(--input-background-color);
+    border: 1px solid var(--background-border-color);
     padding: 8px 12px;
     width: 100%;
     text-align: left;
@@ -6357,7 +6408,10 @@ a.status-card {
       line-height: 24px;
       color: $primary-text-color;
       font-weight: 500;
-      margin-bottom: 8px;
+
+      &:not(:only-child) {
+        margin-bottom: 8px;
+      }
     }
 
     strong {
@@ -8266,7 +8320,7 @@ noscript {
   font-weight: 400;
   overflow: hidden;
   word-break: normal;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   p {
     margin-bottom: 20px;
@@ -8362,47 +8416,6 @@ noscript {
     overflow: hidden;
     margin-inline-start: -2px; // aligns the pfp with content below
 
-    &__buttons {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-top: 55px;
-      overflow: hidden;
-
-      .button {
-        flex-shrink: 1;
-        white-space: nowrap;
-        min-width: 80px;
-      }
-
-      .icon-button {
-        border: 1px solid var(--background-border-color);
-        border-radius: 4px;
-        box-sizing: content-box;
-        padding: 5px;
-
-        .icon {
-          width: 24px;
-          height: 24px;
-        }
-
-        &.copied {
-          border-color: $valid-value-color;
-        }
-      }
-
-      .optional {
-        @container account-header (max-width: 372px) {
-          display: none;
-        }
-
-        // Fallback for older browsers with no container queries support
-        @media screen and (max-width: (372px + 55px)) {
-          display: none;
-        }
-      }
-    }
-
     &__name {
       margin-top: 16px;
       margin-bottom: 16px;
@@ -8448,6 +8461,69 @@ noscript {
 
     .spacer {
       flex: 1 1 auto;
+    }
+  }
+
+  &__follow-button {
+    flex-grow: 1;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    $button-breakpoint: 420px;
+    $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
+
+    &--desktop {
+      margin-top: 55px;
+
+      @container (width < #{$button-breakpoint}) {
+        display: none;
+      }
+
+      @supports (not (container-type: inline-size)) {
+        @media (max-width: #{$button-fallback-breakpoint}) {
+          display: none;
+        }
+      }
+    }
+
+    &--mobile {
+      margin-block: 16px;
+
+      @container (width >= #{$button-breakpoint}) {
+        display: none;
+      }
+
+      @supports (not (container-type: inline-size)) {
+        @media (min-width: (#{$button-fallback-breakpoint} + 1px)) {
+          display: none;
+        }
+      }
+    }
+
+    .button {
+      flex-shrink: 1;
+      white-space: nowrap;
+      min-width: 80px;
+    }
+
+    .icon-button {
+      border: 1px solid var(--background-border-color);
+      border-radius: 4px;
+      box-sizing: content-box;
+      padding: 5px;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      &.copied {
+        border-color: $valid-value-color;
+      }
     }
   }
 
@@ -8888,7 +8964,7 @@ noscript {
     position: relative;
     font-size: 15px;
     line-height: 20px;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     font-weight: 400;
     max-height: 50vh;
     overflow: hidden;
@@ -9529,13 +9605,6 @@ noscript {
   p.hint {
     margin-bottom: 14px;
     font-size: 14px;
-  }
-
-  &__icon {
-    color: $highlight-text-color;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   &__lead {
@@ -10299,7 +10368,7 @@ noscript {
 .notification-list {
   position: fixed;
   bottom: 2rem;
-  inset-inline-start: 0;
+  inset-inline-start: 1rem;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -10307,9 +10376,11 @@ noscript {
 }
 
 .notification-bar {
+  --alert-edge-spacing: 1rem;
+
+  display: flex;
+  gap: 10px;
   flex: 0 0 auto;
-  position: relative;
-  inset-inline-start: -100%;
   width: auto;
   padding: 15px;
   margin: 0;
@@ -10325,40 +10396,76 @@ noscript {
   font-size: 15px;
   line-height: 21px;
 
-  &.notification-bar-active {
-    inset-inline-start: 1rem;
+  &.from-side {
+    translate: calc(
+      -1 * (100% + var(--alert-edge-spacing)) * var(--text-x-direction)
+    );
+  }
+
+  &.from-below {
+    translate: 0 calc(100% + var(--alert-edge-spacing));
+  }
+
+  &.notification-bar--active {
+    translate: none;
   }
 
   .no-reduce-motion & {
     transition: 0.5s cubic-bezier(0.89, 0.01, 0.5, 1.1);
-    transform: translateZ(0);
+    will-change: translate;
   }
 }
 
-.notification-bar-title {
-  margin-inline-end: 5px;
+.notification-bar__content {
+  margin-inline-end: auto;
 }
 
-.notification-bar-title,
-.notification-bar-action {
+.notification-bar__title {
+  margin-inline-end: 5px;
   font-weight: 700;
 }
 
-.notification-bar-action {
+.notification-bar__action {
   display: inline-block;
   border: 0;
   background: transparent;
   text-transform: uppercase;
-  margin-inline-start: 10px;
   cursor: pointer;
   color: $blurple-300;
+  font-weight: 700;
   border-radius: 4px;
   padding: 0 4px;
 
   &:hover,
   &:focus,
   &:active {
-    background: color.change($ui-base-color, $alpha: 0.85);
+    background: color.change($white, $alpha: 0.15);
+  }
+}
+
+.notification-bar__dismiss-button {
+  margin-top: -2px;
+  color: rgb(from currentColor r g b / 85%);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: currentColor;
+  }
+}
+
+.notification-bar__loading-indicator {
+  --spinner-size: 22px;
+
+  position: relative;
+  height: var(--spinner-size);
+  width: var(--spinner-size);
+  margin-inline-start: 2px;
+
+  svg {
+    color: $white;
+    height: var(--spinner-size);
+    width: var(--spinner-size);
   }
 }
 
@@ -10836,6 +10943,7 @@ noscript {
     font-weight: 500;
     color: $primary-text-color;
     text-decoration: none;
+    min-width: 0;
 
     &:hover,
     &:focus,

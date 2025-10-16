@@ -7,12 +7,14 @@ import { isFulfilled, isRejected } from '@reduxjs/toolkit';
 import { openURL } from 'mastodon/actions/search';
 import { useAppDispatch } from 'mastodon/store';
 
+import { isModernEmojiEnabled } from '../utils/environment';
+
 const isMentionClick = (element: HTMLAnchorElement) =>
   element.classList.contains('mention') &&
   !element.classList.contains('hashtag');
 
 const isHashtagClick = (element: HTMLAnchorElement) =>
-  element.textContent?.[0] === '#' ||
+  element.textContent.startsWith('#') ||
   element.previousSibling?.textContent?.endsWith('#');
 
 export const useLinks = (skipHashtags?: boolean) => {
@@ -53,6 +55,11 @@ export const useLinks = (skipHashtags?: boolean) => {
 
   const handleClick = useCallback(
     (e: React.MouseEvent) => {
+      // Exit early if modern emoji is enabled, as this is handled by HandledLink.
+      if (isModernEmojiEnabled()) {
+        return;
+      }
+
       const target = (e.target as HTMLElement).closest('a');
 
       if (!target || e.button !== 0 || e.ctrlKey || e.metaKey) {

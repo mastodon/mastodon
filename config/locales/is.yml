@@ -850,6 +850,10 @@ is:
         all: Til allra
         disabled: Til engra
         users: Til innskráðra staðværra notenda
+      feed_access:
+        modes:
+          authenticated: Einungis auðkenndir notendur
+          public: Allir
       registrations:
         moderation_recommandation: Tryggðu að þú hafir hæft og aðgengilegt umsjónarteymi til taks áður en þú opnar á skráningar fyrir alla!
         preamble: Stýrðu því hverjir geta útbúið notandaaðgang á netþjóninum þínum.
@@ -1184,10 +1188,7 @@ is:
     hint_html: Ef þú vilt flytjast af öðrum notandaaðgangi yfir á þennan, þá geturðu búið hér til samnefni, sem er nauðsynlegt áður en þú getur haldið áfram við að flytja fylgjendur af gamla notandaaðgangnum yfir á þennan aðgang. Þessi aðgerð er í sjálfu sér <strong>skaðlaus og afturkræf</strong>. <strong>Yfirfærsla notandaaðgangsins er síðan ræst á gamla notandaaðgangnum</strong>.
     remove: Aftengja samnefni
   appearance:
-    advanced_web_interface: Ítarlegt vefviðmót
-    advanced_web_interface_hint: 'Ef þú vilt geta notað alla skjábreiddina gefur ítarlegt vefviðmót þér færi á að stilla marga mismunandi dálka svo hægt sé að sjá eins miklar upplýsingar í einu eins og þér hentar: Heim, tilkynningar, sameiginleg tímalína, ótiltekinn fjöldi lista og myllumerkja.'
     animations_and_accessibility: Hreyfingar og algilt aðgengi
-    confirmation_dialogs: Staðfestingargluggar
     discovery: Uppgötvun
     localization:
       body: Mastodon er þýtt af sjálfboðaliðum.
@@ -1591,6 +1592,13 @@ is:
       expires_at: Rennur út
       uses: Afnot
     title: Bjóða fólki
+  link_preview:
+    author_html: Frá %{name}
+    potentially_sensitive_content:
+      action: Smelltu til að birta
+      confirm_visit: Ertu viss um að þú viljir opna þennan tengil?
+      hide_button: Fela
+      label: Mögulega viðkvæmt efni
   lists:
     errors:
       limit: Þú hefur náð hámarksfjölda lista
@@ -1901,6 +1909,9 @@ is:
         other: "%{count} myndskeið"
     boosted_from_html: Endurbirt frá %{acct_link}
     content_warning: 'Aðvörun vegna efnis (CW): %{warning}'
+    content_warnings:
+      hide: Fela færslu
+      show: Sýna meira
     default_language: Sama og tungumál viðmóts
     disallowed_hashtags:
       one: 'innihélt óleyfilegt myllumerki: %{tags}'
@@ -1923,7 +1934,6 @@ is:
     visibilities:
       direct: Einkaspjall
       private: Einungis fylgjendur
-      private_long: Aðeins birt fylgjendum
       public: Opinber
       public_long: Hver sem er, á og utan Mastodon
       unlisted: Hljóðlátt opinbert

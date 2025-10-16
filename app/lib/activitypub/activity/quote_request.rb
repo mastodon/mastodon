@@ -9,7 +9,7 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
     quoted_status = status_from_uri(object_uri)
     return if quoted_status.nil? || !quoted_status.account.local? || !quoted_status.distributable?
 
-    if Mastodon::Feature.outgoing_quotes_enabled? && StatusPolicy.new(@account, quoted_status).quote?
+    if StatusPolicy.new(@account, quoted_status).quote?
       accept_quote_request!(quoted_status)
     else
       reject_quote_request!(quoted_status)
@@ -33,6 +33,12 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
 
     json = Oj.dump(serialize_payload(status.quote, ActivityPub::AcceptQuoteRequestSerializer))
     ActivityPub::DeliveryWorker.perform_async(json, quoted_status.account_id, @account.inbox_url)
+
+    # Ensure the user is notified
+    LocalNotificationWorker.perform_async(quoted_status.account_id, status.quote.id, 'Quote', 'quote')
+
+    # Ensure local followers get to see the post updated with approval
+    DistributionWorker.perform_async(status.id, { 'update' => true, 'skip_notifications' => true })
   end
 
   def import_instrument(quoted_status)

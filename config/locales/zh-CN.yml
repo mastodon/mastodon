@@ -323,7 +323,7 @@ zh-CN:
         title: 新公告
       preview:
         disclaimer: 由于用户无法选择退出，电子邮件通知应仅限于重要公告，例如个人数据泄露或服务器关闭通知。
-        explanation_html: 此电子邮件将发送给 <strong>%{display_count} 用户</strong>。电子邮件将包含以下文本：
+        explanation_html: 此电子邮件将发送给 <strong>%{display_count} 名用户</strong>。电子邮件将包含以下文本：
         title: 预览公告通知
       publish: 发布
       published_msg: 公告已发布！
@@ -834,6 +834,10 @@ zh-CN:
         all: 对所有人
         disabled: 不对任何人
         users: 对已登录的本站用户
+      feed_access:
+        modes:
+          authenticated: 仅已登录用户
+          public: 所有人
       registrations:
         moderation_recommandation: 在向所有人开放注册之前，请确保你拥有一个人手足够且反应迅速的管理团队！
         preamble: 控制谁可以在你的服务器上创建账号。
@@ -1163,10 +1167,7 @@ zh-CN:
     hint_html: 如果你想从另一个账号迁移到这里，可以先在这里创建一个别名。要把旧账号的关注者迁移过来，这一步是必须的。设置别名的操作是<strong>无害且可撤销的</strong>。<strong>账号迁移的操作会从旧账号发起</strong>。
     remove: 取消关联别名
   appearance:
-    advanced_web_interface: 高级 Web 界面
-    advanced_web_interface_hint: 在高级网页界面支持自定义多栏显示，你可以利用整个屏幕的宽度，同时查看首页、通知、跨站时间线及任意数量的列表和话题。
     animations_and_accessibility: 动画与可访问性
-    confirmation_dialogs: 确认对话框
     discovery: 发现
     localization:
       body: Mastodon 由志愿者翻译。
@@ -1548,6 +1549,13 @@ zh-CN:
       expires_at: 失效时间
       uses: 已使用次数
     title: 邀请用户
+  link_preview:
+    author_html: 来自 %{name}
+    potentially_sensitive_content:
+      action: 点击查看
+      confirm_visit: 您确定要打开此链接吗？
+      hide_button: 隐藏
+      label: 可能为敏感内容
   lists:
     errors:
       limit: 你已达到列表数量的上限
@@ -1855,6 +1863,9 @@ zh-CN:
         other: "%{count} 段视频"
     boosted_from_html: 转嘟自 %{acct_link}
     content_warning: 内容警告：%{warning}
+    content_warnings:
+      hide: 隐藏嘟文
+      show: 显示更多
     default_language: 与界面显示语言相同
     disallowed_hashtags:
       other: 包含以下被禁止的话题：%{tags}
@@ -1874,11 +1885,10 @@ zh-CN:
       public: 任何人
     title: "%{name}：“%{quote}”"
     visibilities:
-      direct: 私信提及
+      direct: 私下提及
       private: 仅关注者
-      private_long: 只有关注你的用户能看到
       public: 公开
-      public_long: 所有人（无论是否注册了 Mastodon）
+      public_long: 任何人（无论是否注册了 Mastodon）
       unlisted: 悄悄公开
       unlisted_long: 不显示在Mastodon的搜索结果、热门趋势、公共时间线上
   statuses_cleanup:
@@ -1926,8 +1936,8 @@ zh-CN:
   terms_of_service:
     title: 服务条款
   terms_of_service_interstitial:
-    future_preamble_html: 我们正修改服务条款，将在<strong>%{date}</strong>生效。我们建议您查看更新后的条款。
-    past_preamble_html: 自你上次访问起，我们改变了我们的服务条款。我们鼓励你查看更新后的条款。
+    future_preamble_html: 我们将更改部分服务条款，这些更改将在<strong>%{date}</strong>生效。我们建议您查看更新后的条款。
+    past_preamble_html: 自你上次访问起，我们更改了一些服务条款。我们建议你查看更新后的条款。
     review_link: 查看服务条款
     title: "%{domain} 更新了服务条款"
   themes:

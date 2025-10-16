@@ -7,7 +7,7 @@ module Status::InteractionPolicyConcern
     unsupported_policy: (1 << 0),
     public: (1 << 1),
     followers: (1 << 2),
-    followed: (1 << 3),
+    following: (1 << 3),
   }.freeze
 
   included do
@@ -30,6 +30,7 @@ module Status::InteractionPolicyConcern
     return :denied if other_account.nil? || direct_visibility?
 
     following_author = nil
+    followed_by_author = nil
 
     # Post author is always allowed to quote themselves
     return :automatic if account_id == other_account.id
@@ -44,12 +45,22 @@ module Status::InteractionPolicyConcern
       return :automatic if following_author
     end
 
+    if automatic_policy.anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:following])
+      followed_by_author = account.following?(other_account) if followed_by_author.nil?
+      return :automatic if followed_by_author
+    end
+
     # We don't know we are allowed by the automatic policy, considering the manual one
     return :manual if manual_policy.anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:public])
 
     if manual_policy.anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:followers])
       following_author = preloaded_relations[:following] ? preloaded_relations[:following][account_id] : other_account.following?(account) if following_author.nil?
       return :manual if following_author
+    end
+
+    if manual_policy.anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:following])
+      followed_by_author = account.following?(other_account) if followed_by_author.nil?
+      return :manual if followed_by_author
     end
 
     return :unknown if (automatic_policy | manual_policy).anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:unsupported_policy])

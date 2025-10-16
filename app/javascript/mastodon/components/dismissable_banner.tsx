@@ -45,7 +45,7 @@ export function useDismissableBannerState({ id }: Props) {
   }, [id, dispatch, isVisible, dismissed]);
 
   return {
-    isVisible,
+    wasDismissed: !isVisible,
     dismiss,
   };
 }
@@ -55,11 +55,11 @@ export const DismissableBanner: React.FC<PropsWithChildren<Props>> = ({
   children,
 }) => {
   const intl = useIntl();
-  const { isVisible, dismiss } = useDismissableBannerState({
+  const { wasDismissed, dismiss } = useDismissableBannerState({
     id,
   });
 
-  if (!isVisible) {
+  if (wasDismissed) {
     return null;
   }
 

@@ -1,4 +1,4 @@
-import initialState from '@/mastodon/initial_state';
+import { initialState } from '@/mastodon/initial_state';
 import { loadWorker } from '@/mastodon/utils/workers';
 
 import { toSupportedLocale } from './locale';
@@ -9,6 +9,8 @@ const userLocale = toSupportedLocale(initialState?.meta.locale ?? 'en');
 let worker: Worker | null = null;
 
 const log = emojiLogger('index');
+
+const WORKER_TIMEOUT = 1_000; // 1 second
 
 export function initializeEmoji() {
   log('initializing emojis');
@@ -29,7 +31,7 @@ export function initializeEmoji() {
       log('worker is not ready after timeout');
       worker = null;
       void fallbackLoad();
-    }, 500);
+    }, WORKER_TIMEOUT);
     thisWorker.addEventListener('message', (event: MessageEvent<string>) => {
       const { data: message } = event;
       if (message === 'ready') {

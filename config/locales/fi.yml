@@ -848,6 +848,10 @@ fi:
         all: Kaikille
         disabled: Ei kenellekään
         users: Kirjautuneille paikallisille käyttäjille
+      feed_access:
+        modes:
+          authenticated: Vain todennetut käyttäjät
+          public: Kaikki
       registrations:
         moderation_recommandation: Varmista, että sinulla on riittävä ja toimintavalmis joukko moderaattoreita, ennen kuin avaat rekisteröitymisen kaikille!
         preamble: Määritä, kuka voi luoda tilin palvelimellesi.
@@ -1182,10 +1186,7 @@ fi:
     hint_html: Jos haluat muuttaa toisesta tilistä tähän tiliin, voit luoda tässä aliaksen, mitä vaaditaan ennen kuin voit edetä siirtämään seuraajasi vanhalta tililtä tälle tilille. Tänä toiminto on itsessään <strong>vaaraton ja kumottavissa</strong>. <strong>Tilin muuttaminen aloitetaan vanhalta tililtä</strong>.
     remove: Poista aliaksen linkitys
   appearance:
-    advanced_web_interface: Edistynyt selainkäyttöliittymä
-    advanced_web_interface_hint: 'Jos haluat hyödyntää näytön koko leveyttä, edistyneen selainkäyttöliittymän avulla voit määrittää useita erilaisia sarakkeita, niin näet kerralla niin paljon tietoa kuin haluat: kotisyöte, ilmoitukset, yleinen aikajana, mikä tahansa määrä listoja ja aihetunnisteita.'
     animations_and_accessibility: Animaatiot ja saavutettavuus
-    confirmation_dialogs: Vahvistusikkunat
     discovery: Löytäminen
     localization:
       body: Mastodonin ovat kääntäneet vapaaehtoiset.
@@ -1587,6 +1588,13 @@ fi:
       expires_at: Vanhenee
       uses: Käyttökertoja
     title: Kutsu käyttäjiä
+  link_preview:
+    author_html: Tehnyt %{name}
+    potentially_sensitive_content:
+      action: Näytä napsauttamalla
+      confirm_visit: Haluatko varmasti avata tämän linkin?
+      hide_button: Piilota
+      label: Mahdollisesti arkaluonteista sisältöä
   lists:
     errors:
       limit: Sinulla on enimmäismäärä listoja
@@ -1897,6 +1905,9 @@ fi:
         other: "%{count} videota"
     boosted_from_html: Tehosti lähteestä %{acct_link}
     content_warning: 'Sisältövaroitus: %{warning}'
+    content_warnings:
+      hide: Piilota julkaisu
+      show: Näytä lisää
     default_language: Sama kuin käyttöliittymän kieli
     disallowed_hashtags:
       one: 'sisälsi kielletyn aihetunnisteen: %{tags}'
@@ -1919,7 +1930,6 @@ fi:
     visibilities:
       direct: Yksityismaininta
       private: Vain seuraajat
-      private_long: Näytä vain seuraajille
       public: Julkinen
       public_long: Kuka tahansa Mastodonissa ja sen ulkopuolella
       unlisted: Vaivihkaa julkinen

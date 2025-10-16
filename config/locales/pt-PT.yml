@@ -848,6 +848,10 @@ pt-PT:
         all: Para toda a gente
         disabled: Para ninguém
         users: Para utilizadores locais que se encontrem autenticados
+      feed_access:
+        modes:
+          authenticated: Apesar utilizadores autenticados
+          public: Todos
       registrations:
         moderation_recommandation: Certifique-se de que dispõe de uma equipa de moderação adequada e reativa antes de abrir as inscrições a todos!
         preamble: Controle quem pode criar uma conta no seu servidor.
@@ -1182,10 +1186,7 @@ pt-PT:
     hint_html: Se quiseres mudar de outra conta para esta, podes criar aqui um pseudónimo, que é necessário antes de poderes prosseguir com a migração de seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada a partir da conta antiga</strong>.
     remove: Desvincular pseudónimo
   appearance:
-    advanced_web_interface: Interface web avançada
-    advanced_web_interface_hint: 'Se quiseres utilizar toda a largura do teu ecrã, a interface web avançada permite configurar várias colunas diferentes para veres tanta informação ao mesmo tempo quanto quiseres: página inicial, notificações, cronologia federada, qualquer número de listas e etiquetas.'
     animations_and_accessibility: Animações e acessibilidade
-    confirmation_dialogs: Caixas de confirmação
     discovery: Descobrir
     localization:
       body: O Mastodon é traduzido por voluntários.
@@ -1587,6 +1588,13 @@ pt-PT:
       expires_at: Expira
       uses: Utilizações
     title: Convidar pessoas
+  link_preview:
+    author_html: Por %{name}
+    potentially_sensitive_content:
+      action: Clicar para mostrar
+      confirm_visit: Tem a certeza que prentende abrir esta ligação?
+      hide_button: Esconder
+      label: Conteúdo potencialmente sensível
   lists:
     errors:
       limit: Atingiste o número máximo de listas permitido
@@ -1739,6 +1747,9 @@ pt-PT:
       self_vote: Não podes votar numa sondagem criada por ti
       too_few_options: tem de ter mais do que um item
       too_many_options: não pode conter mais do que %{max} itens
+    vote: Votar
+  posting_defaults:
+    explanation: Essas configurações serão utilizadas como padrão quando criar novas publicações, mas poderá alterá-las individualmente no editor.
   preferences:
     other: Outro
     posting_defaults: Padrões de publicação
@@ -1894,6 +1905,9 @@ pt-PT:
         other: "%{count} vídeos"
     boosted_from_html: Impulsionado por %{acct_link}
     content_warning: 'Aviso de conteúdo: %{warning}'
+    content_warnings:
+      hide: Esconder publicação
+      show: Mostrar mais
     default_language: Igual ao idioma da interface
     disallowed_hashtags:
       one: 'continha uma #etiqueta proibida: %{tags}'
@@ -1915,10 +1929,10 @@ pt-PT:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Menção privada
-      private: Só para seguidores
-      private_long: Mostrar só aos seguidores
+      private: Apenas seguidores
       public: Público
       public_long: Qualquer pessoa dentro e fora do Mastodon
+      unlisted: Não listado
       unlisted_long: Oculto dos resultados de pesquisa, tendências e linhas do tempo públicas do Mastodon
   statuses_cleanup:
     enabled: Eliminar publicações antigas automaticamente

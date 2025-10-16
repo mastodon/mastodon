@@ -56,7 +56,8 @@ nl:
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
         setting_aggregate_reblogs: Geen nieuwe boosts tonen voor berichten die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
         setting_always_send_emails: Normaliter worden er geen e-mailmeldingen verstuurd wanneer je actief Mastodon gebruikt
-        setting_default_quote_policy: Deze instelling is alleen van kracht voor berichten die gemaakt zijn met de volgende Mastodon-versie, maar je kunt je voorkeur nu alvast instellen.
+        setting_default_quote_policy_private: Berichten aan alleen volgers afkomstig van Mastodon kunnen niet door anderen worden geciteerd.
+        setting_default_quote_policy_unlisted: Wanneer mensen jou citeren, verschijnt hun bericht ook niet onder trends.
         setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
@@ -104,7 +105,6 @@ nl:
         status_page_url: URL van een pagina waar mensen de status van deze server kunnen zien tijdens een storing
         theme: Thema die (niet ingelogde) bezoekers en nieuwe gebruikers zien.
         thumbnail: Een afbeelding van ongeveer een verhouding van 2:1 die naast jouw serverinformatie wordt getoond.
-        timeline_preview: Bezoekers (die niet zijn ingelogd) kunnen de meest recente, op de server aanwezige openbare berichten bekijken.
         trendable_by_default: Handmatige beoordeling van trends overslaan. Individuele items kunnen later alsnog worden afgekeurd.
         trends: Trends laten zien welke berichten, hashtags en nieuwsberichten op jouw server aan populariteit winnen.
         trends_as_landing_page: Toon trending inhoud aan uitgelogde gebruikers en bezoekers in plaats van een beschrijving van deze server. Vereist dat trends zijn ingeschakeld.
@@ -235,7 +235,7 @@ nl:
         setting_always_send_emails: Altijd e-mailmeldingen verzenden
         setting_auto_play_gif: Geanimeerde GIF's automatisch afspelen
         setting_boost_modal: Vraag voor het boosten van een bericht een bevestiging
-        setting_default_language: Taal van jouw berichten
+        setting_default_language: Taal van berichten
         setting_default_privacy: Zichtbaarheid van nieuwe berichten
         setting_default_quote_policy: Wie mag jou citeren
         setting_default_sensitive: Media altijd als gevoelig markeren
@@ -283,12 +283,16 @@ nl:
         content_cache_retention_period: Bewaartermijn voor externe inhoud
         custom_css: Aangepaste CSS
         favicon: Favicon
+        local_live_feed_access: Toegang tot openbare lokale berichten
+        local_topic_feed_access: Toegang tot overzicht met lokale hashtags en links
         mascot: Aangepaste mascotte (legacy)
         media_cache_retention_period: Bewaartermijn mediacache
         min_age: Vereiste minimumleeftijd
         peers_api_enabled: Lijst van bekende servers via de API publiceren
         profile_directory: Gebruikersgids inschakelen
         registrations_mode: Wie kan zich registreren
+        remote_live_feed_access: Toegang tot openbare berichten van andere servers
+        remote_topic_feed_access: Toegang tot overzicht met hashtags en links van andere servers
         require_invite_text: Opgeven van een reden is verplicht
         show_domain_blocks: Domeinblokkades tonen
         show_domain_blocks_rationale: Redenen voor domeinblokkades tonen
@@ -301,7 +305,6 @@ nl:
         status_page_url: URL van statuspagina
         theme: Standaardthema
         thumbnail: Server-miniatuur
-        timeline_preview: Toegang tot de openbare tijdlijnen zonder in te loggen toestaan
         trendable_by_default: Trends goedkeuren zonder voorafgaande beoordeling
         trends: Trends inschakelen
         trends_as_landing_page: Laat trends op de startpagina zien

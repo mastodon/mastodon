@@ -848,6 +848,10 @@ fo:
         all: Til øll
         disabled: Til ongan
         users: Fyri lokalum brúkarum, sum eru ritaðir inn
+      feed_access:
+        modes:
+          authenticated: Einans váttaðir brúkarar
+          public: Øll
       registrations:
         moderation_recommandation: Vinarliga tryggja tær, at tú hevur eitt nøktandi og klárt umsjónartoymi, áðreen tú letur upp fyri skrásetingum frá øllum!
         preamble: Stýr, hvør kann stovna eina kontu á tínum ambætara.
@@ -1182,10 +1186,7 @@ fo:
     hint_html: Ynskir tú at flyta frá eini aðrari kontu til hesa, so kanst tú stovna eitt tøkuheiti her. Tað er kravt, áðrenn tú kanst fara í gongd við at flyta fylgjarar frá gomlu kontuni til hesa. Hendan atgerðin er í sær sjálvum <strong>meinaleys og kann angrast</strong>. <strong>Flytingin av kontuni verður sett í gongd frá gomlu kontuni</strong>.
     remove: Strika tilknýti til tøkuheiti
   appearance:
-    advanced_web_interface: Framkomið vevmarkamót
-    advanced_web_interface_hint: 'Ynskir tú at brúka alla skermbreiddina, so loyvir framkomna vevmarkamóti tær at uppseta fleiri ymiskar teigar, soleiðis at tú kanst síggja so nógvar upplýsingar, sum tú ynskir, samstundis: Heima, fráboðanir, sameind tíðarlinja og óavmarkað tal av listum og frámerkjum.'
     animations_and_accessibility: Teknimyndagerð og atkomuligheit
-    confirmation_dialogs: Váttanarskermmyndir
     discovery: Uppdaging
     localization:
       body: Mastodon er umsett av sjálvbodnum.
@@ -1587,6 +1588,13 @@ fo:
       expires_at: Rennir út
       uses: Brúk
     title: Bjóða fólki
+  link_preview:
+    author_html: Av %{name}
+    potentially_sensitive_content:
+      action: Klikka fyri at vísa
+      confirm_visit: Er tú vís/ur í, at tú vil lata hetta leinkið upp?
+      hide_button: Fjal
+      label: Tilfar, sum møguliga er viðkvæmt
   lists:
     errors:
       limit: Tú hevur rokkið mesta talið av listum
@@ -1919,9 +1927,9 @@ fo:
     visibilities:
       direct: Privat umrøða
       private: Einans fylgjarar
-      private_long: Vís einans fyri fylgjarum
       public: Alment
       public_long: Øll í og uttanfyri Mastodon
+      unlisted: Stillur almenningur
       unlisted_long: Fjalt frá leitiúrslitum, rákum og almennum tíðarlinjum í Mastodon
   statuses_cleanup:
     enabled: Strika gamlar postar sjálvvirkandi

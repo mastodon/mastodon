@@ -876,6 +876,10 @@ he:
         all: לכולם
         disabled: לאף אחד
         users: למשתמשים מקומיים מחוברים
+      feed_access:
+        modes:
+          authenticated: משתמשים מאומתים בלבד
+          public: כולם
       registrations:
         moderation_recommandation: יש לוודא שלאתר יש צוות מנחות ומנחי שיחה מספק ושירותי בטרם תבחרו לפתוח הרשמה לכולם!
         preamble: שליטה בהרשאות יצירת חשבון בשרת שלך.
@@ -1220,10 +1224,7 @@ he:
     hint_html: אם ברצונך לעבור מחשבון אחר לחשבון הזה, כאן ניתן ליצור שם נרדף, הנדרש לפני שאפשר יהיה להמשיך עם העברת עוקבים מהחשבון הישן לזה. הפעולה עצמה <strong>הפיכה ובלתי מזיקה</strong>. <strong>הגירת החשבון מופעלת מהחשבון הישן</strong>.
     remove: הסרת שם נרדף
   appearance:
-    advanced_web_interface: ממשק ווב מתקדם
-    advanced_web_interface_hint: 'אם ברצונך לעשות שימוש במלוא רוחב המסך, ממשק הווב המתקדם מאפשר לך להגדיר עמודות רבות ושונות כדי לראות בו זמנית כמה מידע שתרצה/י: פיד הבית, התראות, פרהסיה ומספר כלשהו של רשימות ותגיות.'
     animations_and_accessibility: הנפשות ונגישות
-    confirmation_dialogs: חלונות אישור
     discovery: תגליות
     localization:
       body: מסטודון מתורגם על ידי מתנדבים.
@@ -1665,6 +1666,13 @@ he:
       expires_at: פג תוקף ב-
       uses: שימושים
     title: הזמנת אנשים
+  link_preview:
+    author_html: מאת %{name}
+    potentially_sensitive_content:
+      action: לחץ להצגה
+      confirm_visit: האם להמשיך ליעד הקישור?
+      hide_button: להסתיר
+      label: תוכן שעלול להיות רגיש
   lists:
     errors:
       limit: הגעת למספר הרשימות המירבי
@@ -1981,6 +1989,9 @@ he:
         two: "%{count} סרטונים"
     boosted_from_html: הודהד מ-%{acct_link}
     content_warning: 'אזהרת תוכן: %{warning}'
+    content_warnings:
+      hide: להסתיר הודעה
+      show: הצג עוד
     default_language: זהה לשפת ממשק
     disallowed_hashtags:
       many: 'מכיל את התגיות האסורות: %{tags}'
@@ -2005,7 +2016,6 @@ he:
     visibilities:
       direct: אזכור פרטי
       private: לעוקבים בלבד
-      private_long: להצגה לעוקבים בלבד
       public: פומבי
       public_long: כל הגולשים, מחוברים למסטודון או לא
       unlisted: ציבורי שקט

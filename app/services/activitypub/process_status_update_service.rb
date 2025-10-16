@@ -10,7 +10,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     @activity_json             = activity_json
     @json                      = object_json
-    @status_parser             = ActivityPub::Parser::StatusParser.new(@json, followers_collection: status.account.followers_url, actor_uri: ActivityPub::TagManager.instance.uri_for(status.account))
+    @status_parser             = ActivityPub::Parser::StatusParser.new(@json, followers_collection: status.account.followers_url, following_collection: status.account.following_url, actor_uri: ActivityPub::TagManager.instance.uri_for(status.account))
     @uri                       = @status_parser.uri
     @status                    = status
     @account                   = status.account
@@ -25,6 +25,9 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     if @status_parser.edited_at.present? && (@status.edited_at.nil? || @status_parser.edited_at > @status.edited_at)
       handle_explicit_update!
+    elsif @status.edited_at.present? && (@status_parser.edited_at.nil? || @status_parser.edited_at < @status.edited_at)
+      # This is an older update, reject it
+      return @status
     else
       handle_implicit_update!
     end
@@ -71,6 +74,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       update_quote_approval!
       update_counts!
     end
+
+    broadcast_updates! if @status.quote&.state_previously_changed?
   end
 
   def update_interaction_policies!
@@ -295,7 +300,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   def update_quote!
     quote_uri = @status_parser.quote_uri
 
-    if quote_uri.present?
+    if @status_parser.quote?
       approval_uri = @status_parser.quote_approval_uri
       approval_uri = nil if unsupported_uri_scheme?(approval_uri) || TagManager.instance.local_url?(approval_uri)
 
@@ -305,7 +310,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
           # Revoke the quote while we get a chance… maybe this should be a `before_destroy` hook?
           RevokeQuoteService.new.call(@status.quote) if @status.quote.quoted_account&.local? && @status.quote.accepted?
           @status.quote.destroy
-          quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
+          quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?, state: @status_parser.deleted_quote? ? :deleted : :pending)
           @quote_changed = true
         else
           quote = @status.quote

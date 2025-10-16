@@ -186,12 +186,15 @@ export const DropdownMenu = <Item = MenuItem,>({
     (e: React.MouseEvent | React.KeyboardEvent) => {
       const i = Number(e.currentTarget.getAttribute('data-index'));
       const item = items?.[i];
+      const isItemDisabled = Boolean(
+        item && typeof item === 'object' && 'disabled' in item && item.disabled,
+      );
 
-      onClose();
-
-      if (!item) {
+      if (!item || isItemDisabled) {
         return;
       }
+
+      onClose();
 
       if (typeof onItemClick === 'function') {
         e.preventDefault();
@@ -233,7 +236,7 @@ export const DropdownMenu = <Item = MenuItem,>({
           onClick={handleItemClick}
           onKeyUp={handleItemKeyUp}
           data-index={i}
-          disabled={disabled}
+          aria-disabled={disabled}
         >
           <DropdownMenuItemContent item={option} />
         </button>
@@ -320,7 +323,7 @@ export const DropdownMenu = <Item = MenuItem,>({
   );
 };
 
-interface DropdownProps<Item = MenuItem> {
+interface DropdownProps<Item extends object | null = MenuItem> {
   children?: React.ReactElement;
   icon?: string;
   iconComponent?: IconProp;
@@ -330,6 +333,7 @@ interface DropdownProps<Item = MenuItem> {
   disabled?: boolean;
   scrollable?: boolean;
   placement?: Placement;
+  offset?: OffsetValue;
   /**
    * Prevent the `ScrollableList` with this scrollKey
    * from being scrolled while the dropdown is open
@@ -345,10 +349,9 @@ interface DropdownProps<Item = MenuItem> {
   onItemClick?: ItemClickFn<Item>;
 }
 
-const offset = [5, 5] as OffsetValue;
 const popperConfig = { strategy: 'fixed' } as UsePopperOptions;
 
-export const Dropdown = <Item = MenuItem,>({
+export const Dropdown = <Item extends object | null = MenuItem>({
   children,
   icon,
   iconComponent,
@@ -358,6 +361,7 @@ export const Dropdown = <Item = MenuItem,>({
   disabled,
   scrollable,
   placement = 'bottom',
+  offset = [5, 5],
   status,
   forceDropdown = false,
   renderItem,

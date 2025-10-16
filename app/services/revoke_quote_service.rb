@@ -21,6 +21,11 @@ class RevokeQuoteService < BaseService
   end
 
   def distribute_stamp_deletion!
+    # It is possible the quoted status has been soft-deleted.
+    # In this case, `signed_activity_json` would fail, but we can just ignore
+    # that, as we have already federated deletion.
+    return if @quote.quoted_status.nil?
+
     ActivityPub::DeliveryWorker.push_bulk(inboxes, limit: 1_000) do |inbox_url|
       [signed_activity_json, @account.id, inbox_url]
     end
@@ -34,6 +39,6 @@ class RevokeQuoteService < BaseService
   end
 
   def signed_activity_json
-    @signed_activity_json ||= Oj.dump(serialize_payload(@quote, ActivityPub::DeleteQuoteAuthorizationSerializer, signer: @account, always_sign: true))
+    @signed_activity_json ||= Oj.dump(serialize_payload(@quote, ActivityPub::DeleteQuoteAuthorizationSerializer, signer: @account, always_sign: true, force_approval_id: true))
   end
 end

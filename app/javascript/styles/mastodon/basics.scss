@@ -69,6 +69,7 @@ body {
     &.layout-single-column {
       height: auto;
       min-height: 100vh;
+      min-height: 100dvh;
       overflow-y: scroll;
     }
 
@@ -185,7 +186,8 @@ button {
   }
 
   & > noscript {
-    height: 100vh;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 }
 
@@ -193,6 +195,7 @@ button {
   &,
   & > div {
     min-height: 100vh;
+    min-height: 100dvh;
   }
 }
 
