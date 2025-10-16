@@ -755,8 +755,8 @@ code {
     display: none;
   }
 
-  &.hidden-on-mobile {
-    @media screen and (max-width: $mobile-menu-breakpoint) {
+  &.hidden-on-touch-devices {
+    @media screen and (pointer: coarse) {
       display: none;
     }
   }
