@@ -755,6 +755,12 @@ code {
     display: none;
   }
 
+  &.hidden-on-touch-devices {
+    @media screen and (pointer: coarse) {
+      display: none;
+    }
+  }
+
   a {
     display: inline-block;
     color: $darker-text-color;
