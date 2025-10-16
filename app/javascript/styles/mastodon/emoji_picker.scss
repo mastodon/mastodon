@@ -152,6 +152,9 @@
     z-index: 1;
     position: relative;
     text-align: center;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
   }
 
   &:hover::before {
