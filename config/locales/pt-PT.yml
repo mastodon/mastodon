@@ -848,6 +848,10 @@ pt-PT:
         all: Para toda a gente
         disabled: Para ninguém
         users: Para utilizadores locais que se encontrem autenticados
+      feed_access:
+        modes:
+          authenticated: Apesar utilizadores autenticados
+          public: Todos
       registrations:
         moderation_recommandation: Certifique-se de que dispõe de uma equipa de moderação adequada e reativa antes de abrir as inscrições a todos!
         preamble: Controle quem pode criar uma conta no seu servidor.
@@ -1584,6 +1588,13 @@ pt-PT:
       expires_at: Expira
       uses: Utilizações
     title: Convidar pessoas
+  link_preview:
+    author_html: Por %{name}
+    potentially_sensitive_content:
+      action: Clicar para mostrar
+      confirm_visit: Tem a certeza que prentende abrir esta ligação?
+      hide_button: Esconder
+      label: Conteúdo potencialmente sensível
   lists:
     errors:
       limit: Atingiste o número máximo de listas permitido
@@ -1894,6 +1905,9 @@ pt-PT:
         other: "%{count} vídeos"
     boosted_from_html: Impulsionado por %{acct_link}
     content_warning: 'Aviso de conteúdo: %{warning}'
+    content_warnings:
+      hide: Esconder publicação
+      show: Mostrar mais
     default_language: Igual ao idioma da interface
     disallowed_hashtags:
       one: 'continha uma #etiqueta proibida: %{tags}'

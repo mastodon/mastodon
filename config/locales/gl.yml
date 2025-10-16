@@ -1588,6 +1588,13 @@ gl:
       expires_at: Caduca
       uses: Usos
     title: Convidar a persoas
+  link_preview:
+    author_html: De %{name}
+    potentially_sensitive_content:
+      action: Preme para ver
+      confirm_visit: Tes certeza de querer abrir esta ligazón?
+      hide_button: Ocultar
+      label: Posible contido sensible
   lists:
     errors:
       limit: Xa acadaches o número máximo de listas
@@ -1898,6 +1905,9 @@ gl:
         other: "%{count} vídeos"
     boosted_from_html: Promovida desde %{acct_link}
     content_warning: 'Aviso sobre o contido: %{warning}'
+    content_warnings:
+      hide: Ocultar publicación
+      show: Ver máis
     default_language: Igual que o idioma da interface
     disallowed_hashtags:
       one: 'contiña un cancelo non permitido: %{tags}'
