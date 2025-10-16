@@ -755,6 +755,12 @@ code {
     display: none;
   }
 
+  &.hidden-on-mobile {
+    @media screen and (max-width: $mobile-menu-breakpoint) {
+      display: none;
+    }
+  }
+
   a {
     display: inline-block;
     color: $darker-text-color;
