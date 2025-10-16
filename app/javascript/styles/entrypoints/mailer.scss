@@ -88,6 +88,14 @@ table + p {
   padding: 24px;
 }
 
+.email-inner-nested-card-td {
+  border-radius: 12px;
+  padding: 18px;
+  overflow: hidden;
+  background-color: #fff;
+  border: 1px solid #dfdee3;
+}
+
 // Account
 .email-account-banner-table {
   background-color: #f3f2f5;
@@ -559,9 +567,26 @@ table + p {
   }
 }
 
+.email-quote-header-img {
+  width: 34px;
+
+  img {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+}
+
 .email-status-header-text {
   padding-left: 16px;
   padding-right: 16px;
+  vertical-align: middle;
+}
+
+.email-quote-header-text {
+  padding-left: 14px;
+  padding-right: 14px;
   vertical-align: middle;
 }
 
@@ -578,6 +603,19 @@ table + p {
   color: #746a89;
 }
 
+.email-quote-header-name {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #17063b;
+}
+
+.email-quote-header-handle {
+  font-size: 13px;
+  line-height: 18px;
+  color: #746a89;
+}
+
 .email-status-content {
   padding-top: 24px;
 }
@@ -589,6 +627,10 @@ table + p {
 }
 
 .email-status-prose {
+  .quote-inline {
+    display: none;
+  }
+
   p {
     font-size: 14px;
     line-height: 20px;

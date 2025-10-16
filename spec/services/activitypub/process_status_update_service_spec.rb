@@ -1053,6 +1053,44 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
     end
   end
 
+  context 'when the status swaps a verified quote with an ID-less Tombstone through an explicit update' do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account) }
+    let(:second_quoted_status) { Fabricate(:status, account: quoted_account) }
+    let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, approval_uri: approval_uri, state: :accepted) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: { type: 'Tombstone' },
+      }
+    end
+
+    it 'updates the URI and unverifies the quote' do
+      expect { subject.call(status, json, json) }
+        .to change { status.quote.quoted_status }.from(quoted_status).to(nil)
+        .and change { status.quote.state }.from('accepted').to('deleted')
+
+      expect { quote.reload }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
   context 'when the status swaps a verified quote with another verifiable quote through an explicit update' do
     let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
     let(:second_quoted_account) { Fabricate(:account, domain: 'second-quoted.example.com') }

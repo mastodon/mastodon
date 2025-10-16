@@ -105,7 +105,6 @@ fi:
         status_page_url: URL-osoite sivulle, josta tämän palvelimen tilan voi ongelmatilanteissa tarkistaa
         theme: Teema, jonka uloskirjautuneet vierailijat ja uudet käyttäjät näkevät.
         thumbnail: Noin 2:1 kuva näkyy palvelimen tietojen ohessa.
-        timeline_preview: Uloskirjautuneet vierailijat voivat selata uusimpia julkisia julkaisuja, jotka ovat saatavilla palvelimella.
         trendable_by_default: Ohita suositun sisällön manuaalinen tarkastus. Yksittäisiä kohteita voidaan edelleen poistaa jälkikäteen.
         trends: Trendit osoittavat, mitkä julkaisut, aihetunnisteet ja uutiset keräävät huomiota palvelimellasi.
         trends_as_landing_page: Näytä vierailijoille ja uloskirjautuneille käyttäjille suosittua sisältöä palvelimen kuvauksen sijaan. Edellyttää, että trendit on otettu käyttöön.
@@ -283,12 +282,16 @@ fi:
         content_cache_retention_period: Etäsisällön säilytysaika
         custom_css: Mukautettu CSS
         favicon: Sivustokuvake
+        local_live_feed_access: Pääsy paikallisia julkaisuja esitteleviin livesyötteisiin
+        local_topic_feed_access: Pääsy paikallisia julkaisuja esitteleviin aihetunniste- ja linkkisyötteisiin
         mascot: Mukautettu maskotti (vanhentunut)
         media_cache_retention_period: Mediasisällön välimuistin säilytysaika
         min_age: Vähimmäisikävaatimus
         peers_api_enabled: Julkaise löydettyjen palvelinten luettelo ohjelmointirajapinnassa
         profile_directory: Ota profiilihakemisto käyttöön
         registrations_mode: Kuka voi rekisteröityä
+        remote_live_feed_access: Pääsy etäjulkaisuja esitteleviin livesyötteisiin
+        remote_topic_feed_access: Pääsy etäjulkaisuja esitteleviin aihetunniste- ja linkkisyötteisiin
         require_invite_text: Vaadi liittymissyy
         show_domain_blocks: Näytä verkkotunnusten estot
         show_domain_blocks_rationale: Näytä, miksi verkkotunnukset on estetty
@@ -301,7 +304,6 @@ fi:
         status_page_url: Tilasivun URL-osoite
         theme: Oletusteema
         thumbnail: Palvelimen pienoiskuva
-        timeline_preview: Salli todentamaton pääsy julkisille aikajanoille
         trendable_by_default: Salli trendit ilman ennakkotarkastusta
         trends: Ota trendit käyttöön
         trends_as_landing_page: Käytä trendejä aloitussivuna

@@ -3,8 +3,8 @@
 class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
   include AsyncRefreshesConcern
 
-  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: [:show]
-  before_action :require_user!, only: [:show]
+  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }
+  before_action :require_user!
 
   PERMITTED_PARAMS = %i(local limit).freeze
 

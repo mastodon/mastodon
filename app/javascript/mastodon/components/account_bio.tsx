@@ -7,8 +7,8 @@ import { useLinks } from 'mastodon/hooks/useLinks';
 import { useAppSelector } from '../store';
 import { isModernEmojiEnabled } from '../utils/environment';
 
-import { AnimateEmojiProvider } from './emoji/context';
 import { EmojiHTML } from './emoji/html';
+import { useElementHandledLink } from './status/handled_link';
 
 interface AccountBioProps {
   className: string;
@@ -24,19 +24,29 @@ export const AccountBio: React.FC<AccountBioProps> = ({
   const handleClick = useLinks(showDropdown);
   const handleNodeChange = useCallback(
     (node: HTMLDivElement | null) => {
-      if (!showDropdown || !node || node.childNodes.length === 0) {
+      if (
+        !showDropdown ||
+        !node ||
+        node.childNodes.length === 0 ||
+        isModernEmojiEnabled()
+      ) {
         return;
       }
       addDropdownToHashtags(node, accountId);
     },
     [showDropdown, accountId],
   );
+
+  const htmlHandlers = useElementHandledLink({
+    hashtagAccountId: showDropdown ? accountId : undefined,
+  });
+
   const note = useAppSelector((state) => {
     const account = state.accounts.get(accountId);
     if (!account) {
       return '';
     }
-    return isModernEmojiEnabled() ? account.note : account.note_emojified;
+    return account.note_emojified;
   });
   const extraEmojis = useAppSelector((state) => {
     const account = state.accounts.get(accountId);
@@ -48,13 +58,14 @@ export const AccountBio: React.FC<AccountBioProps> = ({
   }
 
   return (
-    <AnimateEmojiProvider
+    <EmojiHTML
+      htmlString={note}
+      extraEmojis={extraEmojis}
       className={classNames(className, 'translate')}
       onClickCapture={handleClick}
       ref={handleNodeChange}
-    >
-      <EmojiHTML htmlString={note} extraEmojis={extraEmojis} />
-    </AnimateEmojiProvider>
+      {...htmlHandlers}
+    />
   );
 };
 

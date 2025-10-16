@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { useContext, useEffect, useState } from 'react';
 
 import { EMOJI_TYPE_CUSTOM } from '@/mastodon/features/emoji/constants';
-import { useEmojiAppState } from '@/mastodon/features/emoji/hooks';
+import { useEmojiAppState } from '@/mastodon/features/emoji/mode';
 import { unicodeHexToUrl } from '@/mastodon/features/emoji/normalize';
 import {
   isStateLoaded,

@@ -129,4 +129,20 @@ RSpec.describe RemoveStatusService, :inline_jobs do
       )
     )
   end
+
+  context 'when removed status is a quote of a local user', inline_jobs: false do
+    let(:original_status) { Fabricate(:status, account: alice) }
+    let(:status) { Fabricate(:status, account: jeff) }
+
+    before do
+      bill.follow!(jeff)
+      Fabricate(:quote, status: status, quoted_status: original_status, state: :accepted)
+      original_status.discard
+    end
+
+    it 'sends deletion without crashing' do
+      expect { subject.call(status.reload) }
+        .to enqueue_sidekiq_job(ActivityPub::DeliveryWorker).with(/Delete/, jeff.id, bill.inbox_url)
+    end
+  end
 end

@@ -105,7 +105,6 @@ zh-CN:
         status_page_url: 配置一个网址，当服务中断时，人们可以通过该网址查看服务器的状态。
         theme: 给未登录访客和新用户使用的主题。
         thumbnail: 与服务器信息一并展示的约 2:1 比例的图像。
-        timeline_preview: 未登录访客将能够浏览服务器上的最新公开嘟文。
         trendable_by_default: 跳过对热门内容的手工审核。个别项目仍可在之后从趋势中删除。
         trends: 热门页中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
         trends_as_landing_page: 向注销的用户和访问者显示热门内容，而不是对该服务器的描述，需要启用热门。
@@ -283,12 +282,16 @@ zh-CN:
         content_cache_retention_period: 外站内容保留期
         custom_css: 自定义 CSS
         favicon: Favicon
+        local_live_feed_access: 展示本站嘟文的实时动态访问权限
+        local_topic_feed_access: 展示本站嘟文的话题标签及实时动态访问权限
         mascot: 自定义吉祥物（旧）
         media_cache_retention_period: 媒体缓存保留期
         min_age: 最低年龄要求
         peers_api_enabled: 在API中公开的已知实例的服务器的列表
         profile_directory: 启用用户目录
         registrations_mode: 谁可以注册
+        remote_live_feed_access: 展示外站嘟文的实时动态访问权限
+        remote_topic_feed_access: 展示外站嘟文的话题标签及实时动态访问权限
         require_invite_text: 注册时需要提供理由
         show_domain_blocks: 显示站点屏蔽列表
         show_domain_blocks_rationale: 显示站点屏蔽原因
@@ -301,7 +304,6 @@ zh-CN:
         status_page_url: 状态页网址
         theme: 默认主题
         thumbnail: 本站缩略图
-        timeline_preview: 允许未登录用户访问公共时间线
         trendable_by_default: 允许在未审核的情况下将话题置为热门
         trends: 启用热门
         trends_as_landing_page: 使用热门页作为登陆页面

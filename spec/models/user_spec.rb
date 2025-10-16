@@ -382,12 +382,15 @@ RSpec.describe User do
 
     let(:current_sign_in_at) { Time.zone.now }
 
-    before do
-      user.disable!
-    end
-
     it 'disables user' do
+      allow(redis).to receive(:publish)
+
+      user.disable!
+
       expect(user).to have_attributes(disabled: true)
+
+      expect(redis)
+        .to have_received(:publish).with("timeline:system:#{user.account.id}", Oj.dump(event: :kill)).once
     end
   end
 

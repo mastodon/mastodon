@@ -56,6 +56,8 @@ sq:
         scopes: Cilat API do të lejohen të përdorin aplikacioni. Nëse përzgjidhni një shkallë të epërme, nuk ju duhet të përzgjidhni individualet një nga një.
         setting_aggregate_reblogs: Mos shfaq përforcime të reja për mesazhe që janë përforcuar tani së fundi (prek vetëm përforcime të marra rishtas)
         setting_always_send_emails: Normalisht s’do të dërgohen njoftime, kur përdorni aktivisht Mastodon-in
+        setting_default_quote_policy_private: Në Mastodon s’mund të citohen nga të tjerë postim Vetëm-për-ndjekësit.
+        setting_default_quote_policy_unlisted: Kur njerëzit ju citojnë, nga rrjedha kohore e gjërave në modë do të kalohen si të fshehura edhe postimet e tyre.
         setting_default_sensitive: Media rezervat fshihet, si parazgjedhje, dhe mund të shfaqet me një klikim
         setting_display_media_default: Fshih media me shenjën rezervat
         setting_display_media_hide_all: Fshih përherë mediat
@@ -102,7 +104,6 @@ sq:
         status_page_url: URL e faqe ku njerëzit mund të shohin gjendjen e këtij shërbyesi, gjatë një ndërprerje të funksionimit
         theme: Temë që shohin vizitorët që kanë bërë daljen dhe përdorues të rinj.
         thumbnail: Një figurë afërsisht 2:1 e shfaqur tok me hollësi mbi shërbyesin tuaj.
-        timeline_preview: Vizitorët që kanë bërë daljen do të jenë në gjendje të shfletojnë postimet më të freskëta publike të passhme në shërbyes.
         trendable_by_default: Anashkalo shqyrtim dorazi lënde në modë. Gjëra individuale prapë mund të hiqen nga lëndë në modë pas publikimi.
         trends: Gjërat në modë shfaqin cilat postime, hashtagë dhe histori të reja po tërheqin vëmendjen në shërbyesin tuaj.
         trends_as_landing_page: Shfaq lëndë në modë për përdorues jo të futur në llogari dhe për vizitorë, në vend se të një përshkrimi të këtij shërbyesi. Lyp që të jenë të aktivizuara gjërat në modë.
@@ -141,12 +142,16 @@ sq:
         arbitration_address: Mund të jetë e njëjtë me adresën Fizike më sipër, ose “N/A”, nëse përdoret email.
         arbitration_website: Mund të jetë një formular web, ose “N/A”, nëse përdoret email.
         choice_of_law: Qytet, rajon, territor ose shtet, ligjet e brendshme të të cilit do të administrojnë çfarëdo dhe tërë pretendimet.
+        dmca_address: Për operatorë në ShBA, përdorni adresën e regjistruar te DMCA Designated Agent Directory. Regjistrimi me A P.O. Box bëhet me kërkesë të drejtpërdrejtë, përdorni DMCA Designated Agent Post Office Box Waiver Request që t’i dërgoni email Copyright Office-it dhe t’i përshkruani se jeni një moderator shtëpiak lënde që ka frikë nga hakmarrje apo ndëshkim për veprimet tuaja dhe që ka nevojë të përdor një P.O. Box për heqjen e adresës së shtëpisë tuaj nga sytë e publikut.
         dmca_email: Mund të jetë i njëjti email i përdorur për “Adresë email për njoftime ligjore” më sipër.
         domain: Identifikues unik për shërbimin internetor që po ofroni.
         jurisdiction: Vendosni vendin ku jeton cilido që paguan faturat. Nëse është një shoqëri apo tjetër njësi, vendosni vendin ku është regjistruar, si dhe qytetin, rajonin, territorin apo shtetin përkatës.
         min_age: S’duhet të jetë nën moshën minimum të domosdoshme nga ligjet në juridiksionin tuaj.
       user:
         chosen_languages: Në iu vëntë shenjë, te rrjedha kohore publike do të shfaqen vetëm mesazhe në gjuhët e përzgjedhura
+        date_of_birth:
+          one: Na duhet të sigurohemi se jeni të paktën %{count} që të përdorni %{domain}. S’do ta depozitojmë këtë.
+          other: Na duhet të sigurohemi se jeni të paktën %{count} që të përdorni %{domain}. S’do ta depozitojmë këtë.
         role: Roli kontrollon cilat leje ka përdoruesi.
       user_role:
         color: Ngjyrë për t’u përdorur për rolin nëpër UI, si RGB në format gjashtëmbëdhjetësh
@@ -154,6 +159,10 @@ sq:
         name: Emër publik për rolin, nëse roli është ujdisur të shfaqet si një stemë
         permissions_as_keys: Përdoruesit me këtë rol do të mund të…
         position: Role më të lartë vendosin zgjidhje përplasje në disa raste. Disa veprime mund të kryhen vetëm mbi role të një shkalle më të ulët
+      username_block:
+        allow_with_approval: Në vend të pengimit aty për aty të regjistrimit, regjistrime me përkim do të duan miratimin tuaj
+        comparison: Ju lutemi, mbani parasysh Problemin Scunthorpe, kur bllokohen përkime të pjesshme
+        username: Do të merret si përkim, pavarësisht shkrimit me të mëdha apo të vogla dhe pavarësisht homoglifesh të tilla si "4" për "a", ose "3" për "e"
       webhook:
         events: Përzgjidhni akte për dërgim
         template: Hartoni ngarkesë tuajën JSON, duke përdorur ndërkëmbim ndryshoresh. Lëreni të zbrazët, për JSON-in parazgjedhje.
@@ -226,6 +235,7 @@ sq:
         setting_auto_play_gif: Vetëluaji GIF-et e animuar
         setting_boost_modal: Shfaq dialog ripohimi përpara përforcimi
         setting_default_language: Gjuhë postimi
+        setting_default_privacy: Dukshmëri postimi
         setting_default_quote_policy: Cilët mund të citojnë
         setting_default_sensitive: Mediave vëru përherë shenjë si rezervat
         setting_delete_modal: Shfaq dialog ripohimi përpara fshirjes së një mesazhi
@@ -235,6 +245,7 @@ sq:
         setting_display_media_default: Parazgjedhje
         setting_display_media_hide_all: Fshihi krejt
         setting_display_media_show_all: Shfaqi krejt
+        setting_emoji_style: Stil emoji-sh
         setting_expand_spoilers: Mesazhet me sinjalizime mbi lëndën, zgjeroji përherë
         setting_hide_network: Fshiheni rrjetin tuaj
         setting_missing_alt_text_modal: Shfaq dialog ripohimi, para postimi mediash pa tekst alternativ
@@ -271,12 +282,16 @@ sq:
         content_cache_retention_period: Periudhë mbajtjeje lënde të largët
         custom_css: CSS Vetjake
         favicon: Favikonë
+        local_live_feed_access: Hyrje te prurje të atypëratyshme që përmbajnë postime vendore
+        local_topic_feed_access: Hyrje te prurje hashtag-ësh dhe lidhjesh që përmbajnë postime vendore
         mascot: Simbol vetjak (e dikurshme)
         media_cache_retention_period: Periudhë mbajtjeje lënde media
         min_age: Domosdosmëri moshe minimum
         peers_api_enabled: Publiko te API listë shërbyesish të zbuluar
         profile_directory: Aktivizo drejtori profilesh
         registrations_mode: Kush mund të regjistrohet
+        remote_live_feed_access: Hyrje te prurje të atypëratyshme që përmbajnë postime nga larg
+        remote_topic_feed_access: Hyrje te prurje hashtag-ësh dhe lidhjesh që përmbajnë postime nga larg
         require_invite_text: Kërko një arsye për pjesëmarrje
         show_domain_blocks: Shfaq bllokime përkatësish
         show_domain_blocks_rationale: Shfaq pse janë bllokuar përkatësitë
@@ -289,7 +304,6 @@ sq:
         status_page_url: URL faqeje gjendjesh
         theme: Temë parazgjedhje
         thumbnail: Miniaturë shërbyesi
-        timeline_preview: Lejo hyrje pa mirëfilltësim te rrjedha kohore publike
         trendable_by_default: Lejoni gjëra në modë pa shqyrtim paraprak
         trends: Aktivizo gjëra në modë
         trends_as_landing_page: Përdor gjërat në modë si faqe hyrëse
@@ -317,6 +331,7 @@ sq:
         follow_request: Dikush kërkoi t’ju ndjekë
         mention: Dikush ju përmendi
         pending_account: Llogaria e re lyp shqyrtim
+        quote: Dikush ju citoi
         reblog: Dikush përforcoi gjendjen tuaj
         report: Parashtrohet raportim i ri
         software_updates:
@@ -363,6 +378,10 @@ sq:
         name: Emër
         permissions_as_keys: Leje
         position: Përparësi
+      username_block:
+        allow_with_approval: Lejo regjistrim me miratim
+        comparison: Metodë krahasimi
+        username: Fjalë për t’u vëzhguar
       webhook:
         events: Akte të aktivizuar
         template: Gjedhe ngarkese

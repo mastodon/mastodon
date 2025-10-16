@@ -7,9 +7,9 @@ import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
 import { AccountBio } from '@/mastodon/components/account_bio';
+import { AccountFields } from '@/mastodon/components/account_fields';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
-import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
@@ -184,14 +184,6 @@ const titleFromAccount = (account: Account) => {
     displayName.trim().length === 0 ? account.username : displayName;
 
   return `${prefix} (@${acct})`;
-};
-
-const dateFormatOptions: Intl.DateTimeFormatOptions = {
-  month: 'short',
-  day: 'numeric',
-  year: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit',
 };
 
 export const AccountHeader: React.FC<{
@@ -891,46 +883,7 @@ export const AccountHeader: React.FC<{
                     </dd>
                   </dl>
 
-                  {fields.map((pair, i) => (
-                    <dl
-                      key={i}
-                      className={classNames({
-                        verified: pair.verified_at,
-                      })}
-                    >
-                      <dt
-                        dangerouslySetInnerHTML={{
-                          __html: pair.name_emojified,
-                        }}
-                        title={pair.name}
-                        className='translate'
-                      />
-
-                      <dd className='translate' title={pair.value_plain ?? ''}>
-                        {pair.verified_at && (
-                          <span
-                            title={intl.formatMessage(messages.linkVerifiedOn, {
-                              date: intl.formatDate(
-                                pair.verified_at,
-                                dateFormatOptions,
-                              ),
-                            })}
-                          >
-                            <Icon
-                              id='check'
-                              icon={CheckIcon}
-                              className='verified__mark'
-                            />
-                          </span>
-                        )}{' '}
-                        <span
-                          dangerouslySetInnerHTML={{
-                            __html: pair.value_emojified,
-                          }}
-                        />
-                      </dd>
-                    </dl>
-                  ))}
+                  <AccountFields fields={fields} emojis={account.emojis} />
                 </div>
               </div>
 

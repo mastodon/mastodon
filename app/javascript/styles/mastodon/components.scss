@@ -1122,7 +1122,7 @@
 .edit-indicator__content,
 .reply-indicator__content {
   position: relative;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1363,7 +1363,7 @@
 }
 
 .announcements__item__content {
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   overflow-y: auto;
 
   .emojione {
@@ -1528,7 +1528,7 @@
     & > .status__content,
     & > .status__action-bar,
     & > .media-gallery,
-    & > .video-player,
+    & > div > .video-player,
     & > .audio-player,
     & > .attachment-list,
     & > .picture-in-picture-placeholder,
@@ -3153,18 +3153,23 @@ a.account__display-name {
 
 .column__alert {
   position: sticky;
-  bottom: 1rem;
+  bottom: 0;
   z-index: 10;
   box-sizing: border-box;
   display: grid;
   width: 100%;
   max-width: 360px;
-  padding-inline: 10px;
-  margin-top: 1rem;
-  margin-inline: auto;
+  padding: 1rem;
+  margin: auto auto 0;
+  overflow: clip;
+
+  &:empty {
+    padding: 0;
+  }
 
   @media (max-width: #{$mobile-menu-breakpoint - 1}) {
-    bottom: 4rem;
+    // Compensate for mobile menubar
+    bottom: var(--mobile-bottom-nav-height);
   }
 
   & > * {
@@ -3963,7 +3968,7 @@ a.account__display-name {
 .react-toggle-screenreader-only,
 .sr-only {
   border: 0;
-  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   height: 1px;
   margin: -1px;
   overflow: hidden;
@@ -5172,10 +5177,8 @@ a.status-card {
     &__menu {
       @include search-popout;
 
-      & {
-        padding: 0;
-        background: $ui-secondary-color;
-      }
+      padding: 0;
+      background: $ui-secondary-color;
     }
 
     &__menu-list {
@@ -8317,7 +8320,7 @@ noscript {
   font-weight: 400;
   overflow: hidden;
   word-break: normal;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   p {
     margin-bottom: 20px;
@@ -8961,7 +8964,7 @@ noscript {
     position: relative;
     font-size: 15px;
     line-height: 20px;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     font-weight: 400;
     max-height: 50vh;
     overflow: hidden;
@@ -10436,7 +10439,7 @@ noscript {
   &:hover,
   &:focus,
   &:active {
-    background: color.change($ui-base-color, $alpha: 0.85);
+    background: color.change($white, $alpha: 0.15);
   }
 }
 

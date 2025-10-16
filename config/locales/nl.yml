@@ -848,6 +848,10 @@ nl:
         all: Aan iedereen
         disabled: Aan niemand
         users: Aan ingelogde lokale gebruikers
+      feed_access:
+        modes:
+          authenticated: Alleen ingelogde gebruikers
+          public: Iedereen
       registrations:
         moderation_recommandation: Zorg ervoor dat je een adequaat en responsief moderatieteam hebt voordat je registraties voor iedereen openstelt!
         preamble: Toezicht houden op wie een account op deze server kan registreren.
@@ -907,7 +911,7 @@ nl:
       status_title: Bericht van @%{name}
       title: Accountberichten - @%{name}
       trending: Trending
-      view_publicly: In het openbaar bekijken
+      view_publicly: Openbaar bericht bekijken
       visibility: Zichtbaarheid
       with_media: Met media
     strikes:
@@ -980,7 +984,7 @@ nl:
       name: Naam
       newest: Nieuwste
       oldest: Oudste
-      open: In het openbaar bekijken
+      open: Oorspronkelijk bericht bekijken
       reset: Opnieuw
       review: Status beoordelen
       search: Zoeken
@@ -1182,10 +1186,7 @@ nl:
     hint_html: Wanneer je vanaf een ander account naar dit account wilt verhuizen, kun je hier een alias aanmaken. Dit is nodig voordat je verder kunt gaan met het verhuizen van volgers van het oude naar dit nieuwe account. Deze actie is op zich <strong>ongevaarlijk en omkeerbaar</strong>. <strong>De accountmigratie wordt gestart vanaf het oude account</strong>.
     remove: Alias ontkoppelen
   appearance:
-    advanced_web_interface: Geavanceerde webomgeving
-    advanced_web_interface_hint: 'Wanneer je van de hele schermbreedte gebruik wilt maken, stelt de geavanceerde webomgeving je in staat om meerdere verschillende kolommen te configureren. Hiermee kun je zoveel mogelijk informatie op hetzelfde moment bekijken, zoals: Start, meldingen, de globale tijdlijn, meerdere lijsten en hashtags.'
     animations_and_accessibility: Animaties en toegankelijkheid
-    confirmation_dialogs: Bevestigingen
     discovery: Ontdekken
     localization:
       body: Mastodon wordt door vrijwilligers vertaald.
@@ -1587,6 +1588,13 @@ nl:
       expires_at: Verloopt op
       uses: Aantal keer te gebruiken
     title: Mensen uitnodigen
+  link_preview:
+    author_html: Door %{name}
+    potentially_sensitive_content:
+      action: Klik om te tonen
+      confirm_visit: Ben je zeker dat je deze link wilt openen?
+      hide_button: Verberg
+      label: Mogelijk gevoelige inhoud
   lists:
     errors:
       limit: Je hebt het maximum aantal lijsten bereikt
@@ -1897,6 +1905,9 @@ nl:
         other: "%{count} video's"
     boosted_from_html: Geboost van %{acct_link}
     content_warning: 'Inhoudswaarschuwing: %{warning}'
+    content_warnings:
+      hide: Bericht verbergen
+      show: Meer tonen
     default_language: Hetzelfde als de taal van de gebruikersomgeving
     disallowed_hashtags:
       one: 'bevatte een niet toegestane hashtag: %{tags}'

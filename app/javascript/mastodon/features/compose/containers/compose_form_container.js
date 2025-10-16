@@ -10,9 +10,12 @@ import {
   insertEmojiCompose,
   uploadCompose,
 } from 'mastodon/actions/compose';
+import { pasteLinkCompose } from 'mastodon/actions/compose_typed';
 import { openModal } from 'mastodon/actions/modal';
 
 import ComposeForm from '../components/compose_form';
+
+const urlLikeRegex = /^https?:\/\/[^\s]+\/[^\s]+$/i;
 
 const mapStateToProps = state => ({
   text: state.getIn(['compose', 'text']),
@@ -71,8 +74,21 @@ const mapDispatchToProps = (dispatch, props) => ({
     dispatch(changeComposeSpoilerText(checked));
   },
 
-  onPaste (files) {
-    dispatch(uploadCompose(files));
+  onPaste (e) {
+    if (e.clipboardData && e.clipboardData.files.length === 1) {
+      dispatch(uploadCompose(e.clipboardData.files));
+      e.preventDefault();
+    } else if (e.clipboardData && e.clipboardData.files.length === 0) {
+      const data = e.clipboardData.getData('text/plain');
+      if (!data.match(urlLikeRegex)) return;
+
+      try {
+        const url = new URL(data);
+        dispatch(pasteLinkCompose({ url }));
+      } catch {
+        return;
+      }
+    }
   },
 
   onPickEmoji (position, data, needsSpace) {
