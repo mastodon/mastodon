@@ -891,6 +891,7 @@ vi:
       no_status_selected: Bạn chưa chọn bất kỳ tút nào
       open: Mở tút
       original_status: Tút gốc
+      quotes: Trích dẫn
       reblogs: Lượt đăng lại
       replied_to_html: Trả lời đến %{acct_link}
       status_changed: Tút đã sửa
@@ -898,6 +899,7 @@ vi:
       title: Tút từ tài khoản - @%{name}
       trending: Xu hướng
       view_publicly: Xem công khai
+      view_quoted_post: Xem những tút được trích dẫn
       visibility: Hiển thị
       with_media: Có media
     strikes:
@@ -1167,7 +1169,10 @@ vi:
     hint_html: Nếu bạn muốn chuyển từ máy chủ khác sang máy chủ này, bắt buộc bạn phải tạo tên người dùng mới thì mới có thể tiến hành chuyển được người theo dõi. Hành động này <strong>không ảnh hưởng gì và có thể đảo ngược</strong>. <strong>Việc di chuyển tài khoản được bắt đầu từ tài khoản cũ</strong>.
     remove: Bỏ liên kết bí danh
   appearance:
+    advanced_settings: Cài đặt nâng cao
     animations_and_accessibility: Hiệu ứng
+    boosting_preferences: Thiết lập đăng lại
+    boosting_preferences_info_html: "<strong>Mẹo:</strong> Bất kể cài đặt, <kbd>Shift</kbd> + <kbd>Click</kbd> trên biểu tượng %{icon} Đăng lại sẽ lập tức đăng lại."
     discovery: Khám phá
     localization:
       body: Mastodon được dịch bởi tình nguyện viên.
@@ -1879,10 +1884,15 @@ vi:
       limit: Bạn đã ghim quá số lượng tút cho phép
       ownership: Không thể ghim tút của người khác
       reblog: Không thể ghim tút đăng lại
+    quote_error:
+      not_available: Tút không khả dụng
+      pending_approval: Tút đang chờ duyệt
+      revoked: Tút gốc đã bị tác giả gỡ
     quote_policies:
       followers: Chỉ người theo dõi
       nobody: Chỉ tôi
       public: Bất cứ ai
+    quote_post_author: Trích dẫn từ tút của @%{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Nhắn riêng

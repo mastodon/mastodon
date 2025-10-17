@@ -905,6 +905,7 @@ hu:
       no_status_selected: Nem változtattunk meg egy bejegyzést sem, mert semmi sem volt kiválasztva
       open: Bejegyzés megnyitása
       original_status: Eredeti bejegyzés
+      quotes: Idézetek
       reblogs: Megosztások
       replied_to_html: 'Válasz neki: %{acct_link}'
       status_changed: A bejegyzés megváltozott
@@ -912,6 +913,7 @@ hu:
       title: Fiók bejegyzései – @%{name}
       trending: Felkapott
       view_publicly: Megtekintés nyilvánosan
+      view_quoted_post: Idézett bejegyzés megtekintése
       visibility: Láthatóság
       with_media: Médiával
     strikes:
@@ -1186,7 +1188,10 @@ hu:
     hint_html: Ha másik fiókról kívánsz átlépni erre a fiókra, itt létrehozhatsz egy aliast, amelyre szükség van, mielőtt folytathatod a követők áthelyezését a régi fiókból erre. Ez az áthelyezés önmagában <strong>ártalmatlan és visszafordítható</strong> folyamat. <strong>A fiók áttelepítése a régi fiókból indul el. </strong>
     remove: Alias szétkapcsolása
   appearance:
+    advanced_settings: Speciális beállítások
     animations_and_accessibility: Animáció és akadálymentesítés
+    boosting_preferences: Megtolási beállítások
+    boosting_preferences_info_html: "<strong>Tipp:</strong> A beállításoktól függetlenül, ha <kbd>Shift</kbd> + <kbd>katinttást</kbd> használsz a %{icon} Megtolás ikonon, akkor azonnal megteszi."
     discovery: Felfedezés
     localization:
       body: A Mastodont önkéntesek fordítják.
@@ -1922,10 +1927,15 @@ hu:
       limit: Elérted a kitűzhető bejegyzések maximális számát
       ownership: Nem tűzheted ki valaki más bejegyzését
       reblog: Megtolt bejegyzést nem tudsz kitűzni
+    quote_error:
+      not_available: A bejegyzés nem érhető el
+      pending_approval: A bejegyzés függőben van
+      revoked: A szerző eltávolította a bejegyzést
     quote_policies:
       followers: Csak követőknek
       nobody: Csak én
       public: Bárki
+    quote_post_author: Idézte %{acct} bejegyzését
     title: "%{name}: „%{quote}”"
     visibilities:
       direct: Privát említés

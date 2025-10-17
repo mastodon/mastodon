@@ -54,8 +54,10 @@ zh-CN:
         password: 至少需要8个字符
         phrase: 匹配将忽略嘟文或内容警告里的字母大小写
         scopes: 哪些 API 被允许使用。如果你勾选了更高一级的范围，就不用单独选中子项目了。
+        setting_advanced_layout: 将Mastodon的界面显示为多列布局，允许您同时查看时间线、通知及可自主选择的第三列。屏幕尺寸较小的情况下不推荐使用。
         setting_aggregate_reblogs: 不显示最近已经被转嘟过的嘟文(只会影响新收到的转嘟)
         setting_always_send_emails: 一般情况下，如果你活跃使用 Mastodon，我们不会向你发送电子邮件通知
+        setting_boost_modal: 如果启用，转嘟前会先打开确认对话框，以便更改转嘟的可见性。
         setting_default_quote_policy_private: Mastodon上发布的仅限关注者可见的嘟文无法被他人引用。
         setting_default_quote_policy_unlisted: 当其他人引用你时，他们的嘟文也会从热门时间线上隐藏。
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
@@ -233,12 +235,12 @@ zh-CN:
         setting_aggregate_reblogs: 在时间线中合并转嘟
         setting_always_send_emails: 总是发送电子邮件通知
         setting_auto_play_gif: 自动播放 GIF 动画
-        setting_boost_modal: 在转嘟前询问我
+        setting_boost_modal: 控制转嘟可见性
         setting_default_language: 发布语言
         setting_default_privacy: 嘟文可见性
         setting_default_quote_policy: 谁可以引用
         setting_default_sensitive: 始终标记媒体为敏感内容
-        setting_delete_modal: 在删除嘟文前询问我
+        setting_delete_modal: 删除嘟文前警告我
         setting_disable_hover_cards: 禁用悬停资料预览
         setting_disable_swiping: 禁用滑动动作
         setting_display_media: 媒体显示
@@ -248,7 +250,7 @@ zh-CN:
         setting_emoji_style: 表情符号样式
         setting_expand_spoilers: 一律展开具有内容警告的嘟文
         setting_hide_network: 隐藏你的社交网络
-        setting_missing_alt_text_modal: 发布媒体时若未为其设置替代文本，则显示确认对话框
+        setting_missing_alt_text_modal: 发送没有设置替代文本的媒体内容前警告我
         setting_reduce_motion: 降低过渡动画效果
         setting_system_font_ui: 使用系统默认字体
         setting_system_scrollbars_ui: 使用系统默认样式的滚动条

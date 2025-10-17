@@ -54,8 +54,10 @@ zh-TW:
         password: 使用至少 8 個字元
         phrase: 無論是嘟文的本文或是內容警告都會被過濾
         scopes: 允許使應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
+        setting_advanced_layout: 將 Mastodon 顯示為多欄位介面，使您能檢視時間軸、通知，以及您所選擇之第三欄位。不建議於較小的螢幕使用。
         setting_aggregate_reblogs: 不顯示最近已被轉嘟之嘟文的最新轉嘟（只影響最新收到的嘟文）
         setting_always_send_emails: 一般情況下若您活躍使用 Mastodon ，我們不會寄送電子郵件通知
+        setting_boost_modal: 當啟用時，轉嘟前將先開啟確認對話框，您能於其變更轉嘟之可見性。
         setting_default_quote_policy_private: Mastodon 上發佈之僅限跟隨者嘟文無法被其他使用者引用。
         setting_default_quote_policy_unlisted: 當其他人引用您時，他們的嘟文也會自熱門時間軸隱藏。
         setting_default_sensitive: 敏感內容媒體預設隱藏，且按一下即可重新顯示
@@ -233,12 +235,12 @@ zh-TW:
         setting_aggregate_reblogs: 於時間軸中不重複顯示轉嘟
         setting_always_send_emails: 總是發送電子郵件通知
         setting_auto_play_gif: 自動播放 GIF 動畫
-        setting_boost_modal: 轉嘟前先詢問我
+        setting_boost_modal: 控制轉嘟可見性
         setting_default_language: 嘟文語言
         setting_default_privacy: 嘟文可見性
         setting_default_quote_policy: 誰能引用此嘟文
         setting_default_sensitive: 總是將媒體標記為敏感內容
-        setting_delete_modal: 刪除嘟文前先詢問我
+        setting_delete_modal: 於刪除嘟文前警告我
         setting_disable_hover_cards: 停用於滑鼠懸停時預覽個人檔案
         setting_disable_swiping: 停用滑動手勢
         setting_display_media: 媒體顯示
@@ -248,7 +250,7 @@ zh-TW:
         setting_emoji_style: emoji 風格
         setting_expand_spoilers: 永遠展開標有內容警告的嘟文
         setting_hide_network: 隱藏您的社交網路
-        setting_missing_alt_text_modal: 發表未包含說明文字之多媒體嘟文前先詢問我
+        setting_missing_alt_text_modal: 於發出未含有 ALT 說明文字之嘟文前警告我
         setting_reduce_motion: 減少過渡動畫效果
         setting_system_font_ui: 使用系統預設字型
         setting_system_scrollbars_ui: 使用系統預設捲動軸

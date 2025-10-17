@@ -905,6 +905,7 @@ de:
       no_status_selected: Keine Beiträge wurden geändert, weil keine ausgewählt wurden
       open: Beitrag öffnen
       original_status: Ursprünglicher Beitrag
+      quotes: Zitate
       reblogs: Geteilte Beiträge
       replied_to_html: Antwortete %{acct_link}
       status_changed: Beitrag bearbeitet
@@ -912,6 +913,7 @@ de:
       title: Beiträge des Kontos – @%{name}
       trending: Trends
       view_publicly: Öffentlich anzeigen
+      view_quoted_post: Zitierten Beitrag anzeigen
       visibility: Sichtbarkeit
       with_media: Mit Medien
     strikes:
@@ -1186,7 +1188,9 @@ de:
     hint_html: Wenn du von einem anderen Konto auf dieses umziehen möchtest, dann kannst du hier einen Alias erstellen, der erforderlich ist, um deine Follower vom alten Konto auf dieses zu migrieren. Diese Aktion ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Der Kontoumzug wird vom alten Konto aus eingeleitet</strong>.
     remove: Alle Aliasse aufheben
   appearance:
+    advanced_settings: Erweiterte Einstellungen
     animations_and_accessibility: Animationen und Barrierefreiheit
+    boosting_preferences: Teilen-Einstellungen
     discovery: Entdecken
     localization:
       body: Mastodon wird von Freiwilligen übersetzt.
@@ -1922,10 +1926,15 @@ de:
       limit: Du hast bereits die maximale Anzahl an Beiträgen angeheftet
       ownership: Du kannst nur eigene Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
+    quote_error:
+      not_available: Beitrag nicht verfügbar
+      pending_approval: Veröffentlichung ausstehend
+      revoked: Beitrag durch Autor*in entfernt
     quote_policies:
       followers: Nur Follower
       nobody: Nur ich
       public: Alle
+    quote_post_author: Zitierte %{acct}
     title: "%{name}: „%{quote}“"
     visibilities:
       direct: Private Erwähnung

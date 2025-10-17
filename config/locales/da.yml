@@ -905,6 +905,7 @@ da:
       no_status_selected: Ingen indlæg ændret (ingen valgt)
       open: Åbn indlæg
       original_status: Oprindeligt indlæg
+      quotes: Citater
       reblogs: Genblogninger
       replied_to_html: Besvarede %{acct_link}
       status_changed: Indlæg ændret
@@ -912,6 +913,7 @@ da:
       title: Kontoindlæg - @%{name}
       trending: Trender
       view_publicly: Vis offentligt
+      view_quoted_post: Vis citeret indlæg
       visibility: Synlighed
       with_media: Med medier
     strikes:
@@ -1186,7 +1188,10 @@ da:
     hint_html: Ønsker du at flytte fra en anden konto til denne, kan du hér oprette det alias, der kræves, for at du kan fortsætte med at flytte følgere fra den gamle konto til denne. Denne handling er i sig selv <strong>harmløs og reversibel</strong>. <strong>Kontomigreringen påbegyndes fra den gamle konto</strong>.
     remove: Fjern aliaslinkning
   appearance:
+    advanced_settings: Avancerede indstillinger
     animations_and_accessibility: Animationer og tilgængelighed
+    boosting_preferences: Præferencer for fremhævelse
+    boosting_preferences_info_html: "<strong>Tip:</strong> Uanset indstillinger vil <kbd>Skift</kbd> + <kbd>Klik</kbd> på %{icon} fremhæv-ikonet straks fremhæve."
     discovery: Opdagelse
     localization:
       body: Mastodon oversættes af frivillige.
@@ -1922,10 +1927,15 @@ da:
       limit: Maksimalt antal indlæg allerede fastgjort
       ownership: Andres indlæg kan ikke fastgøres
       reblog: En fremhævelse kan ikke fastgøres
+    quote_error:
+      not_available: Indlæg utilgængeligt
+      pending_approval: Indlæg afventer
+      revoked: Indlæg fjernet af forfatter
     quote_policies:
       followers: Kun følgere
       nobody: Kun mig
       public: Alle
+    quote_post_author: Citerede et indlæg af %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privat omtale

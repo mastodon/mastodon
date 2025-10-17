@@ -905,13 +905,15 @@ fi:
       no_status_selected: Julkaisuja ei muutettu, koska yhtään ei ollut valittuna
       open: Avaa julkaisu
       original_status: Alkuperäinen julkaisu
+      quotes: Lainaukset
       reblogs: Edelleen jako
       replied_to_html: Vastaus käyttäjälle %{acct_link}
       status_changed: Julkaisua muutettu
       status_title: Julkaisu käyttäjältä @%{name}
-      title: Tilin julkaisut - @%{name}
+      title: Tilin julkaisut – @%{name}
       trending: Suosituttua
       view_publicly: Näytä julkisesti
+      view_quoted_post: Näytä lainattu julkaisu
       visibility: Näkyvyys
       with_media: Sisältää mediaa
     strikes:
@@ -1186,7 +1188,10 @@ fi:
     hint_html: Jos haluat muuttaa toisesta tilistä tähän tiliin, voit luoda tässä aliaksen, mitä vaaditaan ennen kuin voit edetä siirtämään seuraajasi vanhalta tililtä tälle tilille. Tänä toiminto on itsessään <strong>vaaraton ja kumottavissa</strong>. <strong>Tilin muuttaminen aloitetaan vanhalta tililtä</strong>.
     remove: Poista aliaksen linkitys
   appearance:
+    advanced_settings: Edistyneet asetukset
     animations_and_accessibility: Animaatiot ja saavutettavuus
+    boosting_preferences: Tehostusasetukset
+    boosting_preferences_info_html: "<strong>Vihje:</strong> Asetuksista riippumatta <kbd>Vaihto</kbd> + <kbd>napsautus</kbd> %{icon} Tehosta-kuvakkeeseen tehostaa välittömästi."
     discovery: Löytäminen
     localization:
       body: Mastodonin ovat kääntäneet vapaaehtoiset.
@@ -1922,10 +1927,15 @@ fi:
       limit: Olet jo kiinnittänyt enimmäismäärän julkaisuja
       ownership: Muiden julkaisuja ei voi kiinnittää
       reblog: Tehostusta ei voi kiinnittää
+    quote_error:
+      not_available: Julkaisu ei saatavilla
+      pending_approval: Julkaisu odottaa
+      revoked: Tekijä on poistanut julkaisun
     quote_policies:
       followers: Vain seuraajat
       nobody: Vain minä
       public: Kuka tahansa
+    quote_post_author: Lainasi käyttäjän %{acct} julkaisua
     title: "%{name}: ”%{quote}”"
     visibilities:
       direct: Yksityismaininta

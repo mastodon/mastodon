@@ -907,6 +907,7 @@ is:
       no_status_selected: Engum færslum var breytt þar sem engar voru valdar
       open: Opna færslu
       original_status: Upprunaleg færsla
+      quotes: Tilvitnanir
       reblogs: Endurbirtingar
       replied_to_html: Svaraði til %{acct_link}
       status_changed: Færslu breytt
@@ -914,6 +915,7 @@ is:
       title: Færslur notanda - @%{name}
       trending: Vinsælt
       view_publicly: Skoða opinberlega
+      view_quoted_post: Skoða færslu sem vitnað er í
       visibility: Sýnileiki
       with_media: Með myndefni
     strikes:
@@ -1188,7 +1190,10 @@ is:
     hint_html: Ef þú vilt flytjast af öðrum notandaaðgangi yfir á þennan, þá geturðu búið hér til samnefni, sem er nauðsynlegt áður en þú getur haldið áfram við að flytja fylgjendur af gamla notandaaðgangnum yfir á þennan aðgang. Þessi aðgerð er í sjálfu sér <strong>skaðlaus og afturkræf</strong>. <strong>Yfirfærsla notandaaðgangsins er síðan ræst á gamla notandaaðgangnum</strong>.
     remove: Aftengja samnefni
   appearance:
+    advanced_settings: Ítarlegar stillingar
     animations_and_accessibility: Hreyfingar og algilt aðgengi
+    boosting_preferences: Kjörstillingar fyrir endurbirtingar
+    boosting_preferences_info_html: "<strong>Ábending:</strong> Hverjar svo sem stillingarnar eru, þá mun <kbd>Shift</kbd> + <kbd>smella</kbd> á %{icon} endurbirtingartáknið alltaf endurbirta strax."
     discovery: Uppgötvun
     localization:
       body: Mastodon er þýtt af sjálfboðaliðum.
@@ -1926,10 +1931,15 @@ is:
       limit: Þú hefur þegar fest leyfilegan hámarksfjölda færslna
       ownership: Færslur frá einhverjum öðrum er ekki hægt að festa
       reblog: Ekki er hægt að festa endurbirtingu
+    quote_error:
+      not_available: Færsla ekki tiltæk
+      pending_approval: Færsla í bið
+      revoked: Færsla fjarlægð af höfundi
     quote_policies:
       followers: Einungis fylgjendur
       nobody: Bara ég
       public: Hver sem er
+    quote_post_author: Vitnaði í færslu frá %{acct}
     title: "%{name}: „%{quote}‟"
     visibilities:
       direct: Einkaspjall
