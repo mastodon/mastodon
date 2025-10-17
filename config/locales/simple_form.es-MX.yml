@@ -54,8 +54,10 @@ es-MX:
         password: Usa al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de una publicación
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
+        setting_advanced_layout: Mostrar Mastodon con vista de varias columnas, permitiéndote ver tu cronología, notificaciones y una tercera columna que tú elijas. No recomendado para pantallas pequeñas.
         setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a las publicaciones recibidas recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
+        setting_boost_modal: Si está activado, impulsar una publicación abrirá una ventana donde podrás cambiar la visibilidad de tu impulso.
         setting_default_quote_policy_private: Las publicaciones solo para seguidores hechas en Mastodon no pueden ser citadas por otros usuarios.
         setting_default_quote_policy_unlisted: Cuando las personas te citen, su publicación también se ocultará en las cronologías públicas.
         setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un clic
@@ -234,12 +236,12 @@ es-MX:
         setting_aggregate_reblogs: Agrupar impulsos en las líneas de tiempo
         setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
-        setting_boost_modal: Mostrar ventana de confirmación antes de impulsar
+        setting_boost_modal: Control de visibilidad de impulsos
         setting_default_language: Idioma de publicación
         setting_default_privacy: Visibilidad de publicación
         setting_default_quote_policy: Quién puede citar
         setting_default_sensitive: Marcar siempre imágenes como sensibles
-        setting_delete_modal: Mostrar diálogo de confirmación antes de borrar una publicación
+        setting_delete_modal: Avisarme antes de borrar una publicación
         setting_disable_hover_cards: Desactivar vista previa del perfil al pasar el cursor
         setting_disable_swiping: Deshabilitar movimientos de deslizamiento
         setting_display_media: Visualización multimedia
@@ -249,7 +251,7 @@ es-MX:
         setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Siempre expandir las publicaciones marcadas con advertencias de contenido
         setting_hide_network: Ocultar tu red
-        setting_missing_alt_text_modal: Mostrar cuadro de diálogo de confirmación antes de publicar contenido multimedia sin texto alternativo
+        setting_missing_alt_text_modal: Avisarme antes de publicar multimedia sin descripción de texto
         setting_reduce_motion: Reducir el movimiento de las animaciones
         setting_system_font_ui: Usar la fuente por defecto del sistema
         setting_system_scrollbars_ui: Usar la barra de desplazamiento por defecto del sistema

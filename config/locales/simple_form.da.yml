@@ -54,8 +54,10 @@ da:
         password: Brug mindst 8 tegn
         phrase: Matches uanset uanset brug af store/små bogstaver i teksten eller indholdsadvarsel for et indlæg
         scopes: De API'er, som applikationen vil kunne tilgå. Vælges en topniveaudstrækning, vil detailvalg være unødvendige.
+        setting_advanced_layout: Vis Mastodon som et layout med flere kolonner, så du kan se tidslinjen, notifikationer og en tredje kolonne efter eget valg. Anbefales ikke til mindre skærme.
         setting_aggregate_reblogs: Vis ikke nye fremhævelser for nyligt fremhævede indlæg (påvirker kun nyligt modtagne fremhævelser)
         setting_always_send_emails: Normalt sendes ingen e-mailnotifikationer under aktivt brug af Mastodon
+        setting_boost_modal: Når aktiveret, åbnes der ved fremhævelse først en bekræftelsesdialog, hvor du kan ændre synligheden af din fremhævelse.
         setting_default_quote_policy_private: Kun-følgere indlæg forfattet på Mastodon kan ikke citeres af andre.
         setting_default_quote_policy_unlisted: Når folk citerer dig, vil deres indlæg også blive skjult fra trendtidslinjer.
         setting_default_sensitive: Sensitive medier er som standard skjult og kan vises med et klik
@@ -234,12 +236,12 @@ da:
         setting_aggregate_reblogs: Gruppér fremhævelser på tidslinjer
         setting_always_send_emails: Send altid e-mailnotifikationer
         setting_auto_play_gif: Autoafspil animerede GIF'er
-        setting_boost_modal: Vis bekræftelsesdialog inden fremhævelse
+        setting_boost_modal: Kontrollér synlighed af fremhævelse
         setting_default_language: Sprog for indlæg
         setting_default_privacy: Indlægssynlighed
         setting_default_quote_policy: Hvem kan citere
         setting_default_sensitive: Markér altid medier som sensitive
-        setting_delete_modal: Vis bekræftelsesdialog før et indlæg slettes
+        setting_delete_modal: Advar mig før sletning af et indlæg
         setting_disable_hover_cards: Deaktivér profilforhåndsvisning ved svæv (hover)
         setting_disable_swiping: Deaktivér strygebevægelser
         setting_display_media: Medievisning
@@ -249,7 +251,7 @@ da:
         setting_emoji_style: Emoji-stil
         setting_expand_spoilers: Udvid altid indlæg markeret med indholdsadvarsler
         setting_hide_network: Skjul din sociale graf
-        setting_missing_alt_text_modal: Vis bekræftelsesdialog inden medier uden alt-tekst lægges op
+        setting_missing_alt_text_modal: Advar mig, før medier uden alternativ tekst lægges op
         setting_reduce_motion: Reducér animationsbevægelse
         setting_system_font_ui: Brug systemets standardskrifttype
         setting_system_scrollbars_ui: Brug standard systemrullebjælke

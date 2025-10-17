@@ -905,6 +905,7 @@ gl:
       no_status_selected: Non se cambiou ningunha publicación xa que ningunha foi seleccionada
       open: Abrir publicación
       original_status: Publicación orixinal
+      quotes: Citas
       reblogs: Promocións
       replied_to_html: Respondeu a %{acct_link}
       status_changed: Publicación editada
@@ -912,6 +913,7 @@ gl:
       title: Publicacións da conta - @%{name}
       trending: Popular
       view_publicly: Ver publicamente
+      view_quoted_post: Ver publicación citada
       visibility: Visibilidade
       with_media: con medios
     strikes:
@@ -1186,7 +1188,10 @@ gl:
     hint_html: Se queres mudarte desde outra conta a esta nova, aquí podes crear un alcume, que é requerido antes de poder proceder a mover os seguidores da conta antiga a esta nova. Esta acción por si mesma é <strong>inocua e reversible</strong>. <strong>A migración da conta iníciase desde a conta antiga</strong>.
     remove: Desligar alcume
   appearance:
+    advanced_settings: Axustes avanzados
     animations_and_accessibility: Animacións e accesibilidade
+    boosting_preferences: Preferencias das promocións
+    boosting_preferences_info_html: "<strong>Info:</strong> Independentemente dos axustes, <kbd>Maiús</kbd> + <kbd>Click</kbd> na icona %{icon} Promover promoverá inmediatamente."
     discovery: Descubrir
     localization:
       body: Mastodon tradúceno persoas voluntarias.
@@ -1922,10 +1927,15 @@ gl:
       limit: Xa fixaches o número máximo permitido de publicacións
       ownership: Non podes fixar a publicación doutra usuaria
       reblog: Non se poden fixar as mensaxes promovidas
+    quote_error:
+      not_available: Publicación non dispoñible
+      pending_approval: Publicación pendente
+      revoked: Publicación retirada pola autora
     quote_policies:
       followers: Só para seguidoras
       nobody: Só para min
       public: Calquera
+    quote_post_author: Citou unha publicación de %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Mención privada

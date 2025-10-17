@@ -905,6 +905,7 @@ es-AR:
       no_status_selected: No se cambió ningún mensaje, ya que ninguno fue seleccionado
       open: Abrir mensaje
       original_status: Mensaje original
+      quotes: Citas
       reblogs: Adhesiones
       replied_to_html: Respondido a %{acct_link}
       status_changed: Mensaje cambiado
@@ -912,6 +913,7 @@ es-AR:
       title: Mensajes de cuenta - @%{name}
       trending: En tendencia
       view_publicly: Ver públicamente
+      view_quoted_post: Ver mensaje citado
       visibility: Visibilidad
       with_media: Con medios
     strikes:
@@ -1186,7 +1188,10 @@ es-AR:
     hint_html: Si querés mudarte desde otra cuenta a esta, acá podés crear un alias, el cual es necesario antes de empezar a mudar seguidores de la cuenta vieja a ésta. Esta acción por sí misma es <strong>inofensiva y reversible</strong>. <strong>La migración de la cuenta se inicia desde la cuenta anterior</strong>.
     remove: Desvincular alias
   appearance:
+    advanced_settings: Configuración avanzada
     animations_and_accessibility: Animaciones y accesibilidad
+    boosting_preferences: Configuración de adhesiones
+    boosting_preferences_info_html: "<strong>Truco:</strong> Más allá de la configuración, si mantenés pulsada la tecla <kbd>Mayúscula</kbd> y hacés <kbd>clic</kbd> en el ícono para adherir %{icon}, vas a adherir inmediatamente."
     discovery: Descubrí
     localization:
       body: Mastodon es localizado por voluntarios.
@@ -1922,10 +1927,15 @@ es-AR:
       limit: Ya fijaste el número máximo de mensajes
       ownership: No se puede fijar el mensaje de otra cuenta
       reblog: No se puede fijar una adhesión
+    quote_error:
+      not_available: Mensaje no disponible
+      pending_approval: Mensaje pendiente
+      revoked: Mensaje eliminado por el autor
     quote_policies:
       followers: Solo seguidores
       nobody: Solo yo
       public: Cualquier cuenta
+    quote_post_author: Se citó un mensaje de %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Mención privada

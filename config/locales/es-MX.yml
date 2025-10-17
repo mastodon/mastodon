@@ -905,6 +905,7 @@ es-MX:
       no_status_selected: No se cambió ninguna publicación al no seleccionar ninguna
       open: Abrir publicación
       original_status: Publicación original
+      quotes: Citas
       reblogs: Impulsos
       replied_to_html: En respuesta a %{acct_link}
       status_changed: Publicación cambiada
@@ -912,6 +913,7 @@ es-MX:
       title: Publicaciones de la cuenta - @%{name}
       trending: En tendencia
       view_publicly: Ver públicamente
+      view_quoted_post: Ver publicación citada
       visibility: Visibilidad
       with_media: Con multimedia
     strikes:
@@ -1186,7 +1188,10 @@ es-MX:
     hint_html: Si deseas migrar de otra cuenta a esta, aquí puedes crear un alias, que es necesario para poder mover seguidores de la cuenta anterior a esta. Esta acción por sí misma es <strong>inofensiva y reversible</strong>. <strong>La migración de la cuenta se inicia desde la cuenta anterior</strong>.
     remove: Desvincular alias
   appearance:
+    advanced_settings: Ajustes avanzados
     animations_and_accessibility: Animaciones y accesibilidad
+    boosting_preferences: Preferencias de impulso
+    boosting_preferences_info_html: "<strong>Consejo:</strong> Sin importar los ajustes, pulsar <kbd>Mayus</kbd> al hacer <kbd>clic</kbd> en el icono de %{icon} Impulsar, dará impulso inmediatamente."
     discovery: Descubrir
     localization:
       body: Mastodon es traducido con la ayuda de voluntarios.
@@ -1922,10 +1927,15 @@ es-MX:
       limit: Ya has fijado el número máximo de publicaciones
       ownership: La publicación de alguien más no puede fijarse
       reblog: No se puede fijar una publicación impulsada
+    quote_error:
+      not_available: Publicación no disponible
+      pending_approval: Publicación pendiente
+      revoked: Publicación borrada por el autor
     quote_policies:
       followers: Solo seguidores
       nobody: Solo yo
       public: Cualquiera
+    quote_post_author: Citando una publicación de %{acct}
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Mención privada
