@@ -1,12 +1,14 @@
 import type { FC, MouseEventHandler } from 'react';
 
 import type { MessageDescriptor } from 'react-intl';
-import { defineMessages, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 
 import { IconButton } from '../icon_button';
+
+import type { MessageKeys } from './index';
 
 export interface CarouselPaginationProps {
   onNext: MouseEventHandler;
@@ -14,19 +16,8 @@ export interface CarouselPaginationProps {
   current: number;
   max: number;
   className?: string;
-  messages?: Record<MessageKeys, MessageDescriptor>;
+  messages: Record<MessageKeys, MessageDescriptor>;
 }
-
-export const defaultMessages = defineMessages({
-  previous: { id: 'lightbox.previous', defaultMessage: 'Previous' },
-  next: { id: 'lightbox.next', defaultMessage: 'Next' },
-  current: {
-    id: 'carousel.current',
-    defaultMessage: '<sr>Slide</sr> {current, number} / {max, number}',
-  },
-});
-
-type MessageKeys = keyof typeof defaultMessages;
 
 export const CarouselPagination: FC<CarouselPaginationProps> = ({
   onNext,
@@ -34,7 +25,7 @@ export const CarouselPagination: FC<CarouselPaginationProps> = ({
   current,
   max,
   className = '',
-  messages = defaultMessages,
+  messages,
 }) => {
   const intl = useIntl();
   return (

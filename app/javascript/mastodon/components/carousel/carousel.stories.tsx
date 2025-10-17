@@ -1,4 +1,4 @@
-import type { CSSProperties, FC } from 'react';
+import type { FC } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn, userEvent, expect } from 'storybook/test';
@@ -10,34 +10,22 @@ interface TestSlideProps {
   id: number;
   text: string;
   color: string;
-  styles?: CSSProperties;
 }
 
 const TestSlide: FC<TestSlideProps & { active: boolean }> = ({
   active,
   text,
   color,
-  styles = {},
-}) => {
-  return (
-    <div
-      style={{
-        ...styles,
-        backgroundColor: active ? color : 'black',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white',
-        fontSize: 24,
-        fontWeight: 'bold',
-        minHeight: 100,
-        transition: 'background-color 0.3s',
-      }}
-    >
-      {text}
-    </div>
-  );
-};
+}) => (
+  <div
+    className='test-slide'
+    style={{
+      backgroundColor: active ? color : undefined,
+    }}
+  >
+    {text}
+  </div>
+);
 
 const slides: TestSlideProps[] = [
   {
@@ -73,7 +61,24 @@ const meta = {
     emptyFallback: 'No slides available',
   },
   render(args) {
-    return <Carousel {...args} />;
+    return (
+      <>
+        <Carousel {...args} />
+        <style>
+          {`.test-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            min-height: 100px;
+            transition: background-color 0.3s;
+            background-color: black;
+          }`}
+        </style>
+      </>
+    );
   },
   argTypes: {
     emptyFallback: {
@@ -90,13 +95,18 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   async play({ args, canvas }) {
     const nextButton = await canvas.findByRole('button', { name: /next/i });
+    const slides = await canvas.findAllByRole('group');
+    await expect(slides).toHaveLength(slides.length);
+
     await userEvent.click(nextButton);
-    await expect(args.onChangeSlide).toHaveBeenCalledWith(1);
+    await expect(args.onChangeSlide).toHaveBeenCalledWith(1, slides[1]);
+
     await userEvent.click(nextButton);
-    await expect(args.onChangeSlide).toHaveBeenCalledWith(2);
+    await expect(args.onChangeSlide).toHaveBeenCalledWith(2, slides[2]);
+
     // Wrap around
     await userEvent.click(nextButton);
-    await expect(args.onChangeSlide).toHaveBeenCalledWith(0);
+    await expect(args.onChangeSlide).toHaveBeenCalledWith(0, slides[0]);
   },
 };
 

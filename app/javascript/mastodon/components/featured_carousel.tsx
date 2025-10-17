@@ -71,7 +71,7 @@ export const FeaturedCarousel: React.FC<{
       renderItem={renderSlide}
       aria-labelledby={`${accessibilityId}-title`}
       classNamePrefix='featured-carousel'
-      paginationProps={{ messages }}
+      messages={messages}
     >
       <h4 className='featured-carousel__title' id={`${accessibilityId}-title`}>
         <Icon id='thumb-tack' icon={PushPinIcon} />
