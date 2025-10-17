@@ -1,17 +1,13 @@
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useCallback, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type {
   ComponentPropsWithoutRef,
   ComponentType,
   ReactElement,
   ReactNode,
 } from 'react';
+
+import type { MessageDescriptor } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -23,6 +19,17 @@ import type { CarouselPaginationProps } from './pagination';
 import { CarouselPagination } from './pagination';
 
 import './styles.scss';
+
+const defaultMessages = defineMessages({
+  previous: { id: 'lightbox.previous', defaultMessage: 'Previous' },
+  next: { id: 'lightbox.next', defaultMessage: 'Next' },
+  current: {
+    id: 'carousel.current',
+    defaultMessage: '<sr>Slide</sr> {current, number} / {max, number}',
+  },
+});
+
+export type MessageKeys = keyof typeof defaultMessages;
 
 export interface CarouselSlideProps {
   id: string | number;
@@ -37,9 +44,10 @@ export interface CarouselProps<
 > {
   items: SlideProps[];
   renderItem: RenderSlideFn<SlideProps>;
-  onChangeSlide?: (index: number) => void;
+  onChangeSlide?: (index: number, ref: Element) => void;
   paginationComponent?: ComponentType<CarouselPaginationProps> | null;
   paginationProps?: Partial<CarouselPaginationProps>;
+  messages?: Record<MessageKeys, MessageDescriptor>;
   emptyFallback?: ReactNode;
   classNamePrefix?: string;
   slideClassName?: string;
@@ -53,6 +61,7 @@ export const Carousel = <
   onChangeSlide,
   paginationComponent: Pagination = CarouselPagination,
   paginationProps = {},
+  messages = defaultMessages,
   children,
   emptyFallback = null,
   className,
@@ -73,11 +82,13 @@ export const Carousel = <
         } else if (newIndex > max) {
           newIndex = 0;
         }
+
         const slide = wrapperRef.current?.children[newIndex];
         if (slide) {
           setCurrentSlideHeight(slide.scrollHeight);
+          onChangeSlide?.(newIndex, slide);
         }
-        onChangeSlide?.(newIndex);
+
         return newIndex;
       });
     },
@@ -142,6 +153,7 @@ export const Carousel = <
             onNext={handleNext}
             onPrev={handlePrev}
             className={`${classNamePrefix}__pagination`}
+            messages={messages}
             {...paginationProps}
           />
         )}
@@ -198,13 +210,7 @@ const CarouselSlideWrapper = <SlideProps extends CarouselSlideProps>({
     [observer],
   );
 
-  useEffect(() => {
-    if (slideRef.current && active) {
-      slideRef.current.focus();
-    }
-  }, [active]);
-
-  const slide = useMemo(
+  const children = useMemo(
     () => renderItem(item, active, index),
     [renderItem, item, active, index],
   );
@@ -215,10 +221,11 @@ const CarouselSlideWrapper = <SlideProps extends CarouselSlideProps>({
       className={className}
       role='group'
       aria-roledescription='slide'
-      // @ts-expect-error inert in not in this version of React
-      inert={active ? 'true' : undefined}
+      inert={active ? '' : undefined}
+      tabIndex={-1}
+      data-index={index}
     >
-      {slide}
+      {children}
     </div>
   );
 };
