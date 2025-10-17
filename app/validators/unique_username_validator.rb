@@ -7,7 +7,7 @@ class UniqueUsernameValidator < ActiveModel::Validator
     return if account.username.blank?
 
     scope = Account.with_username(account.username).with_domain(account.domain)
-    scope = scope.where.not(id: account.id) if account.persisted?
+    scope = scope.excluding(account) if account.persisted?
 
     account.errors.add(:username, :taken) if scope.exists?
   end
