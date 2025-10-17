@@ -25,15 +25,6 @@ import {
   selectStatusState,
 } from './boost_button_utils';
 
-// Switch between the standalone boost button or the
-// "Boost or quote" menu based on the quickBoosting preference
-export const BoostButton: FC<ReblogButtonProps> = (props) => {
-  if (quickBoosting) {
-    return <StandaloneBoostButton {...props} />;
-  }
-  return <BoostOrQuoteMenu {...props} />;
-};
-
 const StandaloneBoostButton: FC<ReblogButtonProps> = ({ status, counters }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
@@ -247,3 +238,9 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
     </li>
   );
 };
+
+// Switch between the standalone boost button or the
+// "Boost or quote" menu based on the quickBoosting preference
+export const BoostButton = quickBoosting
+  ? StandaloneBoostButton
+  : BoostOrQuoteMenu;
