@@ -3,49 +3,25 @@
 require 'rails_helper'
 
 RSpec.describe UserEmailValidator do
-  describe '#validate' do
-    subject { described_class.new.validate(user) }
+  subject { Fabricate.build :user, confirmed_at: nil }
 
-    let(:user)   { instance_double(User, email: 'info@mail.com', sign_up_ip: '1.2.3.4', errors: errors) }
-    let(:errors) { instance_double(ActiveModel::Errors, add: nil) }
+  let(:email_address) { 'info@host.example' }
 
-    before do
-      allow(user).to receive(:valid_invitation?).and_return(false)
-      allow(EmailDomainBlock).to receive(:block?) { blocked_email }
-    end
+  context 'when email provider is blocked' do
+    before { Fabricate :email_domain_block, domain: 'host.example' }
 
-    context 'when e-mail provider is blocked' do
-      let(:blocked_email) { true }
+    it { is_expected.to_not allow_value(email_address).for(:email).with_message(:blocked) }
+  end
 
-      it 'adds error' do
-        subject
+  context 'when email provider is not blocked' do
+    it { is_expected.to allow_value(email_address).for(:email) }
+  end
 
-        expect(errors).to have_received(:add).with(:email, :blocked).once
-      end
-    end
+  context 'when canonical email address is blocked' do
+    let(:other_user) { Fabricate(:user, email: 'i.n.f.o@host.example') }
 
-    context 'when e-mail provider is not blocked' do
-      let(:blocked_email) { false }
+    before { other_user.account.suspend! }
 
-      it 'does not add errors' do
-        subject
-
-        expect(errors).to_not have_received(:add)
-      end
-
-      context 'when canonical e-mail is blocked' do
-        let(:other_user) { Fabricate(:user, email: 'i.n.f.o@mail.com') }
-
-        before do
-          other_user.account.suspend!
-        end
-
-        it 'adds error' do
-          subject
-
-          expect(errors).to have_received(:add).with(:email, :taken).once
-        end
-      end
-    end
+    it { is_expected.to_not allow_value(email_address).for(:email).with_message(:taken) }
   end
 end
