@@ -149,18 +149,17 @@ RSpec.describe ActivityPub::Activity::Update do
 
       shared_examples 'updates counts' do
         it 'updates the reblog count' do
-          expect(status.untrusted_reblogs_count).to eq reblogs
+          expect { subject.perform }.to change { status.reload.untrusted_reblogs_count }.to(reblogs)
         end
 
         it 'updates the favourites count' do
-          expect(status.untrusted_favourites_count).to eq favourites
+          expect { subject.perform }.to change { status.reload.untrusted_favourites_count }.to(favourites)
         end
       end
 
       context 'with an implicit update' do
         before do
           status.update!(uri: ActivityPub::TagManager.instance.uri_for(status))
-          subject.perform
         end
 
         it_behaves_like 'updates counts'
@@ -173,10 +172,88 @@ RSpec.describe ActivityPub::Activity::Update do
 
         before do
           status.update!(uri: ActivityPub::TagManager.instance.uri_for(status))
-          subject.perform
         end
 
         it_behaves_like 'updates counts'
+      end
+    end
+
+    context 'with an Article object' do
+      let(:updated) { nil }
+      let(:favourites) { 50 }
+      let(:reblogs) { 100 }
+
+      let!(:status) do
+        Fabricate(
+          :status,
+          uri: 'https://example.com/statuses/article',
+          account: sender,
+          text: "<h2>Future of the Fediverse</h2>\n\n<p>Guest article by John Mastodon</p><p>The fediverse is great reading this you will find out why!</p>"
+        )
+      end
+
+      let(:json) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Update',
+          actor: sender.uri,
+          object: {
+            type: 'Article',
+            id: status.uri,
+            name: 'Future of the Fediverse',
+            summary: '<p>Guest article by Jane Mastodon</p><p>The fediverse is great reading this you will find out why!</p>',
+            content: 'Foo',
+            updated: updated,
+            likes: {
+              id: "#{status.uri}/likes",
+              type: 'Collection',
+              totalItems: favourites,
+            },
+            shares: {
+              id: "#{status.uri}/shares",
+              type: 'Collection',
+              totalItems: reblogs,
+            },
+          },
+        }.with_indifferent_access
+      end
+
+      shared_examples 'updates counts' do
+        it 'updates the reblog count' do
+          expect { subject.perform }.to change { status.reload.untrusted_reblogs_count }.to(reblogs)
+        end
+
+        it 'updates the favourites count' do
+          expect { subject.perform }.to change { status.reload.untrusted_favourites_count }.to(favourites)
+        end
+      end
+
+      context 'with an implicit update' do
+        before do
+          status.update!(uri: ActivityPub::TagManager.instance.uri_for(status))
+        end
+
+        it_behaves_like 'updates counts'
+      end
+
+      context 'with an explicit update' do
+        let(:favourites) { 150 }
+        let(:reblogs) { 200 }
+        let(:updated) { Time.now.utc.iso8601 }
+
+        before do
+          status.update!(uri: ActivityPub::TagManager.instance.uri_for(status))
+        end
+
+        it_behaves_like 'updates counts'
+
+        it 'changes the contents as expected' do
+          expect { subject.perform }
+            .to(change { status.reload.text })
+
+          expect(status.text).to start_with("<h2>Future of the Fediverse</h2>\n\n<p>Guest article by Jane Mastodon</p><p>The fediverse is great reading this you will find out why!</p>")
+        end
       end
     end
   end
