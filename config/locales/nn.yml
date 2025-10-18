@@ -848,6 +848,10 @@ nn:
         all: Til alle
         disabled: Til ingen
         users: Til lokale brukarar som er logga inn
+      feed_access:
+        modes:
+          authenticated: Berre godkjende brukarar
+          public: Alle
       registrations:
         moderation_recommandation: Pass på at du har mange og kjappe redaktørar og moderatorar på laget ditt før du opnar for allmenn registrering!
         preamble: Kontroller kven som kan oppretta konto på tenaren din.
@@ -901,6 +905,7 @@ nn:
       no_status_selected: Ingen statusar vart endra sidan ingen vart valde
       open: Opne innlegg
       original_status: Opprinnelig innlegg
+      quotes: Sitat
       reblogs: Framhevingar
       replied_to_html: Svarte %{acct_link}
       status_changed: Innlegg endret
@@ -908,6 +913,7 @@ nn:
       title: Kontoinnlegg - @%{name}
       trending: Populært
       view_publicly: Vis offentleg
+      view_quoted_post: Vis det siterte innlegget
       visibility: Synlighet
       with_media: Med media
     strikes:
@@ -1182,7 +1188,10 @@ nn:
     hint_html: Viss du vil flytta frå ein annan konto til denne, kan du laga eit alias her. Det treng du før du kan halda fram med å flytta fylgjarar frå den gamle kontoen til dnene. Denne handlinga er i seg sjølv <strong>harmlaus og kan angrast</strong>. <strong>Du har starta overføringa frå den gamle kontoen</strong>.
     remove: Fjern aliaslenking
   appearance:
+    advanced_settings: Avanserte innstillingar
     animations_and_accessibility: Animasjonar og tilgjengelegheit
+    boosting_preferences: Innstillingar for framheving
+    boosting_preferences_info_html: "<strong>Tips:</strong> Å trykkja <kbd>Shift</kbd> + <kbd>klikk</kbd> på %{icon} framhev-ikonet vil framheva innlegget uansett innstillingar."
     discovery: Oppdaging
     localization:
       body: Mastodon er omsett av friviljuge.
@@ -1584,6 +1593,13 @@ nn:
       expires_at: Vert ugyldig
       uses: Bruk
     title: By folk inn
+  link_preview:
+    author_html: Av %{name}
+    potentially_sensitive_content:
+      action: Klikk for å visa
+      confirm_visit: Er du sikker på at du vil opna denne lenka?
+      hide_button: Gøym
+      label: Mogleg sensitivt innhald
   lists:
     errors:
       limit: Du har nådd grensa for kor mange lister du kan ha
@@ -1894,6 +1910,9 @@ nn:
         other: "%{count} videoar"
     boosted_from_html: Framheva av %{acct_link}
     content_warning: 'Innhaldsåtvaring: %{warning}'
+    content_warnings:
+      hide: Gøym inlegget
+      show: Vis meir
     default_language: Samme språk som brukergrensesnittet
     disallowed_hashtags:
       one: 'inneheldt ein emneknagg som ikkje var tillaten: %{tags}'
@@ -1908,10 +1927,15 @@ nn:
       limit: Du har allereie festa så mange tut som det går an å festa
       ownership: Du kan ikkje festa andre sine tut
       reblog: Ei framheving kan ikkje festast
+    quote_error:
+      not_available: Innlegget er ikkje tilgjengeleg
+      pending_approval: Innlegget ventar
+      revoked: Innlegget er sletta av skribenten
     quote_policies:
       followers: Berre fylgjarar
       nobody: Berre eg
       public: Allle
+    quote_post_author: Siterte eit innlegg av %{acct}
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Privat omtale

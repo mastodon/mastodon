@@ -947,6 +947,7 @@ ga:
       no_status_selected: Níor athraíodh aon phostáil mar níor roghnaíodh ceann ar bith
       open: Oscail postáil
       original_status: Bunphostáil
+      quotes: Sleachta
       reblogs: Athbhlaganna
       replied_to_html: D'fhreagair %{acct_link}
       status_changed: Athraíodh postáil
@@ -954,6 +955,7 @@ ga:
       title: Postálacha cuntais - @%{name}
       trending: Ag treochtáil
       view_publicly: Féach go poiblí
+      view_quoted_post: Féach ar an bpost atá luaite
       visibility: Infheictheacht
       with_media: Le meáin
     strikes:
@@ -1243,7 +1245,12 @@ ga:
     hint_html: Más mian leat bogadh ó chuntas eile go dtí an ceann seo, anseo is féidir leat ailias a chruthú, a theastaíonn sular féidir leat leanúint ar aghaidh le leantóirí a bhogadh ón seanchuntas go dtí an ceann seo. Tá an gníomh seo ann féin <strong>neamhdhíobhálach agus inchúlaithe</strong>. <strong>Cuirtear tús leis an aistriú cuntais ón seanchuntas</strong>.
     remove: Dícheangail ailias
   appearance:
+    advanced_settings: Socruithe ardleibhéil
     animations_and_accessibility: Beochan agus inrochtaineacht
+    boosting_preferences: Roghanna á bhfeabhsú
+    boosting_preferences_info_html: |-
+      <strong>Leid:</strong> Beag beann ar shocruithe, <kbd>Shift</kbd> +
+      <kbd>Cliceáil</kbd> ar an deilbhín %{icon} Tabharfaidh an deilbhín borradh láithreach.
     discovery: Fionnachtain
     localization:
       body: Oibrithe deonacha a dhéanann aistriúchán Mastodon.
@@ -2051,10 +2058,15 @@ ga:
       limit: Tá uaslíon na bpostálacha pinn agat cheana féin
       ownership: Ní féidir postáil duine éigin eile a phionnáil
       reblog: Ní féidir treisiú a phinnáil
+    quote_error:
+      not_available: Níl an postáil ar fáil
+      pending_approval: Post ar feitheamh
+      revoked: Post bainte ag an údar
     quote_policies:
       followers: Leantóirí amháin
       nobody: Mise amháin
       public: Aon duine
+    quote_post_author: Luaigh mé post le %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Lua príobháideach
