@@ -905,6 +905,7 @@ nl:
       no_status_selected: Er werden geen berichten gewijzigd, omdat er geen enkele werd geselecteerd
       open: Bericht tonen
       original_status: Oorspronkelijk bericht
+      quotes: Citaten
       reblogs: Boosts
       replied_to_html: Reageerde op %{acct_link}
       status_changed: Bericht veranderd
@@ -912,6 +913,7 @@ nl:
       title: Accountberichten - @%{name}
       trending: Trending
       view_publicly: Openbaar bericht bekijken
+      view_quoted_post: Geciteerde berichten tonen
       visibility: Zichtbaarheid
       with_media: Met media
     strikes:
@@ -1186,7 +1188,10 @@ nl:
     hint_html: Wanneer je vanaf een ander account naar dit account wilt verhuizen, kun je hier een alias aanmaken. Dit is nodig voordat je verder kunt gaan met het verhuizen van volgers van het oude naar dit nieuwe account. Deze actie is op zich <strong>ongevaarlijk en omkeerbaar</strong>. <strong>De accountmigratie wordt gestart vanaf het oude account</strong>.
     remove: Alias ontkoppelen
   appearance:
+    advanced_settings: Geavanceerde instellingen
     animations_and_accessibility: Animaties en toegankelijkheid
+    boosting_preferences: Boosten
+    boosting_preferences_info_html: "<strong>Tip:</strong> Ongeacht je instellingen, kun je met <kbd>Shift</kbd> + <kbd>Klik</kbd> op het %{icon} boostpictogram onmiddelijk boosten."
     discovery: Ontdekken
     localization:
       body: Mastodon wordt door vrijwilligers vertaald.
@@ -1752,7 +1757,7 @@ nl:
     explanation: Deze instellingen worden als standaard gebruikt wanneer je nieuwe berichten aanmaakt, maar je kunt ze per bericht aanpassen.
   preferences:
     other: Overig
-    posting_defaults: Instellingen voor berichten
+    posting_defaults: Jouw nieuwe berichten
     public_timelines: Openbare tijdlijnen
   privacy:
     hint_html: "<strong>Hoe wil je dat jouw profiel en berichten kunnen worden gevonden?</strong> Een verscheidenheid aan functies in Mastodon kunnen je helpen om een groter publiek te bereiken als ze zijn ingeschakeld. Neem rustig de tijd om deze instellingen te bekijken, om er zo zeker van te zijn dat ze aan jouw wensen voldoen."
@@ -1922,10 +1927,15 @@ nl:
       limit: Je hebt het maximaal aantal bericht al vastgemaakt
       ownership: Een bericht van iemand anders kan niet worden vastgemaakt
       reblog: Een boost kan niet worden vastgezet
+    quote_error:
+      not_available: Bericht is niet beschikbaar
+      pending_approval: Bericht in afwachting van goedkeuring
+      revoked: Bericht verwijderd door auteur
     quote_policies:
       followers: Alleen volgers
       nobody: Alleen ik
       public: Iedereen
+    quote_post_author: Citeerde een bericht van %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privébericht

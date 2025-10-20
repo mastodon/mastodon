@@ -905,6 +905,7 @@ tr:
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
       open: Gönderiyi aç
       original_status: Özgün gönderi
+      quotes: Alıntılar
       reblogs: Yeniden Paylaşımlar
       replied_to_html: Yanıtladı %{acct_link}
       status_changed: Gönderi değişti
@@ -912,6 +913,7 @@ tr:
       title: Hesap gönderileri - @%{name}
       trending: Öne çıkanlar
       view_publicly: Herkese açık görüntüle
+      view_quoted_post: Alıntılanmış gönderiyi görüntüle
       visibility: Görünürlük
       with_media: Medya ile
     strikes:
@@ -1924,10 +1926,15 @@ tr:
       limit: Halihazırda maksimum sayıda gönderi sabitlediniz
       ownership: Başkasının gönderisi sabitlenemez
       reblog: Bir gönderi sabitlenemez
+    quote_error:
+      not_available: Gönderi kullanılamıyor
+      pending_approval: Gönderi beklemede
+      revoked: Gönderi yazarı tarafından kaldırıldı
     quote_policies:
       followers: Sadece takipçiler
       nobody: Sadece ben
       public: Herkes
+    quote_post_author: "@%{acct} adlı kullanıcının bir gönderisini alıntıladı"
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Özel değini
