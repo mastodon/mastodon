@@ -5,6 +5,8 @@ import classNames from 'classnames';
 
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 
+import './test.scss';
+
 interface BaseProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   block?: boolean;
