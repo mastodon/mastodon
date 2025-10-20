@@ -3578,6 +3578,7 @@ a.account__display-name {
   flex-direction: column;
   height: calc(100% - 10px);
   overflow-y: auto;
+  scrollbar-width: thin;
 
   .compose-form {
     flex: 1 1 auto;
@@ -3596,6 +3597,7 @@ a.account__display-name {
     flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;
+    scrollbar-width: thin;
   }
 
   &__list-panel {
@@ -3788,6 +3790,7 @@ a.account__display-name {
   overflow-x: hidden;
   flex: 1 1 auto;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 
   &.optionally-scrollable {
     overflow-y: auto;
