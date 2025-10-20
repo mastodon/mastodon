@@ -269,7 +269,7 @@ class StatusContent extends PureComponent {
               lang={language}
               htmlString={content}
               extraEmojis={status.get('emojis')}
-              onElement={this.handleElement.bind(this)}
+              onElement={this.handleElement}
             />
 
             {poll}
@@ -287,7 +287,7 @@ class StatusContent extends PureComponent {
             lang={language}
             htmlString={content}
             extraEmojis={status.get('emojis')}
-            onElement={this.handleElement.bind(this)}
+            onElement={this.handleElement}
           />
 
           {poll}
