@@ -57,6 +57,7 @@ it:
         setting_advanced_layout: Visualizza Mastodon con un layout multicolonna, permettendoti di visualizzare la cronologia, le notifiche e una terza colonna a tua scelta. Non consigliato per schermi di dimensioni più piccole.
         setting_aggregate_reblogs: Non mostrare nuove condivisioni per toot che sono stati condivisi di recente (ha effetto solo sulle nuove condivisioni)
         setting_always_send_emails: Normalmente le notifiche e-mail non vengono inviate quando si utilizza attivamente Mastodon
+        setting_boost_modal: Se abilitata, la funzione Boost aprirà prima una finestra di dialogo di conferma in cui potrai modificare la visibilità del tuo potenziamento.
         setting_default_quote_policy_private: I post scritti e riservati ai seguaci su Mastodon non possono essere citati da altri.
         setting_default_quote_policy_unlisted: Quando le persone ti citano, il loro post verrà nascosto anche dalle timeline di tendenza.
         setting_default_sensitive: Media con contenuti sensibili sono nascosti in modo predefinito e possono essere rivelati con un click
@@ -64,6 +65,7 @@ it:
         setting_display_media_hide_all: Nascondi sempre tutti i media
         setting_display_media_show_all: Mostra sempre i media segnati come sensibili
         setting_emoji_style: Come visualizzare gli emoji. "Automatico" proverà a usare gli emoji nativi, ma per i browser più vecchi ricorrerà a Twemoji.
+        setting_quick_boosting_html: Se abilitato, cliccando sull'icona Boost %{boost_icon}, il potenziamento verrà immediatamente attivato, anziché aprire il menu a discesa potenziamento/citazione. Sposta l'azione della citazione nel menu %{options_icon} (Opzioni).
         setting_system_scrollbars_ui: Si applica solo ai browser desktop basati su Safari e Chrome
         setting_use_blurhash: I gradienti sono basati sui colori delle immagini nascoste ma offuscano tutti i dettagli
         setting_use_pending_items: Fare clic per mostrare i nuovi messaggi invece di aggiornare la timeline automaticamente
@@ -235,10 +237,12 @@ it:
         setting_aggregate_reblogs: Raggruppa condivisioni in timeline
         setting_always_send_emails: Manda sempre notifiche via email
         setting_auto_play_gif: Riproduci automaticamente le GIF animate
+        setting_boost_modal: Controllo della visibilità del potenziamento
         setting_default_language: Lingua dei post
         setting_default_privacy: Visibilità dei post
         setting_default_quote_policy: Chi può citare
         setting_default_sensitive: Segna sempre i media come sensibili
+        setting_delete_modal: Avvisami prima di eliminare un post
         setting_disable_hover_cards: Disabilita l'anteprima del profilo al passaggio del mouse
         setting_disable_swiping: Disabilita i movimenti di scorrimento
         setting_display_media: Visualizzazione dei media
@@ -248,6 +252,8 @@ it:
         setting_emoji_style: Stile emoji
         setting_expand_spoilers: Espandi sempre post con content warning
         setting_hide_network: Nascondi la tua rete
+        setting_missing_alt_text_modal: Avvisami prima di pubblicare contenuti multimediali senza testo alternativo
+        setting_quick_boosting: Abilita il potenziamento rapido
         setting_reduce_motion: Riduci movimento nelle animazioni
         setting_system_font_ui: Usa il carattere predefinito del sistema
         setting_system_scrollbars_ui: Utilizza la barra di scorrimento predefinita del sistema
@@ -281,12 +287,16 @@ it:
         content_cache_retention_period: Periodo di ritenzione del contenuto remoto
         custom_css: Personalizza CSS
         favicon: Favicon
+        local_live_feed_access: Accesso ai feed dal vivo con post locali
+        local_topic_feed_access: Accesso a feed di hashtag e link con post locali
         mascot: Personalizza mascotte (legacy)
         media_cache_retention_period: Periodo di conservazione della cache multimediale
         min_age: Età minima richiesta
         peers_api_enabled: Pubblica l'elenco dei server scoperti nell'API
         profile_directory: Abilita directory del profilo
         registrations_mode: Chi può iscriversi
+        remote_live_feed_access: Accesso ai feed live con post remoti
+        remote_topic_feed_access: Accesso a feed di hashtag e link con post remoti
         require_invite_text: Richiedi un motivo per unirsi
         show_domain_blocks: Mostra i blocchi di dominio
         show_domain_blocks_rationale: Mostra perché i domini sono stati bloccati

@@ -182,7 +182,7 @@ is:
         create_account_warning: Útbúa aðvörun
         create_announcement: Búa til tilkynningu
         create_canonical_email_block: Búa til útilokunarblokk tölvupósts
-        create_custom_emoji: Búa til sérsniðið tjáningartákn
+        create_custom_emoji: Búa til sérsniðið lyndistákn
         create_domain_allow: Búa til lén leyft
         create_domain_block: Búa til útilokun léns
         create_email_domain_block: Búa til útilokun tölvupóstléns
@@ -194,7 +194,7 @@ is:
         demote_user: Lækka notanda í tign
         destroy_announcement: Eyða tilkynningu
         destroy_canonical_email_block: Eyða útilokunarblokk tölvupósts
-        destroy_custom_emoji: Eyða sérsniðnu tjáningartákni
+        destroy_custom_emoji: Eyða sérsniðnu lyndistákni
         destroy_domain_allow: Eyða léni leyft
         destroy_domain_block: Eyða útilokun léns
         destroy_email_domain_block: Eyða útilokun tölvupóstléns
@@ -206,11 +206,11 @@ is:
         destroy_user_role: Eyða hlutverki
         destroy_username_block: Eyða notandanafnsreglu
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
-        disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
+        disable_custom_emoji: Gera sérsniðið lyndistákn óvirkt
         disable_relay: Gera endurvarpa óvirkan
         disable_sign_in_token_auth_user: Gera óvirka auðkenningu með teikni í tölvupósti fyrir notandann
         disable_user: Gera notanda óvirkan
-        enable_custom_emoji: Virkja sérsniðið tjáningartákn
+        enable_custom_emoji: Virkja sérsniðið lyndistákn
         enable_relay: Virkja endurvarpa
         enable_sign_in_token_auth_user: Gera virka auðkenningu með teikni í tölvupósti fyrir notandann
         enable_user: Virkja notanda
@@ -233,7 +233,7 @@ is:
         unsilence_account: Hætta að hylja notandaaðgang
         unsuspend_account: Taka notandaaðgang úr frysti
         update_announcement: Uppfæra tilkynningu
-        update_custom_emoji: Uppfæra sérsniðið tjáningartákn
+        update_custom_emoji: Uppfæra sérsniðið lyndistákn
         update_domain_block: Uppfæra útilokun léns
         update_ip_block: Uppfæra reglu IP-vistfangs
         update_report: Uppfæra kæru
@@ -250,7 +250,7 @@ is:
         create_account_warning_html: "%{name} sendi aðvörun til %{target}"
         create_announcement_html: "%{name} útbjó nýja tilkynningu %{target}"
         create_canonical_email_block_html: "%{name} útilokaði tölvupóst með tætigildið %{target}"
-        create_custom_emoji_html: "%{name} sendi inn nýtt tjáningartákn %{target}"
+        create_custom_emoji_html: "%{name} sendi inn nýtt lyndistákn %{target}"
         create_domain_allow_html: "%{name} leyfði skýjasamband með léninu %{target}"
         create_domain_block_html: "%{name} útilokaði lénið %{target}"
         create_email_domain_block_html: "%{name} útilokaði póstlénið %{target}"
@@ -274,11 +274,11 @@ is:
         destroy_user_role_html: "%{name} eyddi hlutverki %{target}"
         destroy_username_block_html: "%{name} fjarlægði reglu varðandi notendanöfn sem innihalda %{target}"
         disable_2fa_user_html: "%{name} gerði kröfu um tveggja-þátta innskráningu óvirka fyrir notandann %{target}"
-        disable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} óvirkt"
+        disable_custom_emoji_html: "%{name} gerði lyndistáknið %{target} óvirkt"
         disable_relay_html: "%{name} gerði endurvarpann %{target} óvirkan"
         disable_sign_in_token_auth_user_html: "%{name} gerði óvirka auðkenningu með teikni í tölvupósti fyrir %{target}"
         disable_user_html: "%{name} gerði innskráningu óvirka fyrir notandann %{target}"
-        enable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} virkt"
+        enable_custom_emoji_html: "%{name} gerði lyndistáknið %{target} virkt"
         enable_relay_html: "%{name} virkjaði endurvarpann %{target}"
         enable_sign_in_token_auth_user_html: "%{name} gerði virka auðkenningu með teikni í tölvupósti fyrir %{target}"
         enable_user_html: "%{name} gerði innskráningu virka fyrir notandann %{target}"
@@ -301,7 +301,7 @@ is:
         unsilence_account_html: "%{name} hætti að hylja notandaaðganginn %{target}"
         unsuspend_account_html: "%{name} tók notandaaðganginn %{target} úr frysti"
         update_announcement_html: "%{name} uppfærði tilkynningu %{target}"
-        update_custom_emoji_html: "%{name} uppfærði tjáningartáknið %{target}"
+        update_custom_emoji_html: "%{name} uppfærði lyndistáknið %{target}"
         update_domain_block_html: "%{name} uppfærði útilokun lénsins %{target}"
         update_ip_block_html: "%{name} breytti reglu fyrir IP-vistfangið %{target}"
         update_report_html: "%{name} uppfærði kæru %{target}"
@@ -340,36 +340,36 @@ is:
     custom_emojis:
       assign_category: Úthluta flokki
       by_domain: Lén
-      copied_msg: Það tókst að búa til afrit af tjáningartákninu
+      copied_msg: Það tókst að búa til afrit af lyndistákninu
       copy: Afrita
-      copy_failed_msg: Ekki tókst að gera staðvært afrit af tjáningartákninu
+      copy_failed_msg: Ekki tókst að gera staðvært afrit af lyndistákninu
       create_new_category: Búa til nýjan flokk
-      created_msg: Tókst að búa til tjáningartákn!
+      created_msg: Tókst að búa til lyndistákn!
       delete: Eyða
-      destroyed_msg: Tókst að eyða tjáningartákni!
+      destroyed_msg: Tókst að eyða lyndistákni!
       disable: Gera óvirkt
       disabled: Óvirkt
-      disabled_msg: Tókst að gera þetta tjáningartákn óvirkt
-      emoji: Tjáningartákn
+      disabled_msg: Tókst að gera þetta lyndistákn óvirkt
+      emoji: Lyndistákn
       enable: Virkja
       enabled: Virkt
-      enabled_msg: Tókst að gera þetta tjáningartákn virkt
+      enabled_msg: Tókst að gera þetta lyndistákn virkt
       image_hint: PNG eða GIF allt að %{size}
       list: Listi
       listed: Skráð
       new:
-        title: Bæta við nýju sérsniðnu tjáningartákni
+        title: Bæta við nýju sérsniðnu lyndistákni
       no_emoji_selected: Engum táknum var breytt þar sem engin voru valin
       not_permitted: Þú hefur ekki réttindi til að framkvæma þessa aðgerð
       overwrite: Skrifa yfir
       shortcode: Stuttkóði
       shortcode_hint: Að minnsta kosti 2 stafir, einungis tölu- og bókstafir ásamt undirstrikum
-      title: Sérsniðin tjáningartákn
+      title: Sérsniðin lyndistákn
       uncategorized: Óflokkað
       unlist: Afskrá
       unlisted: Óskráð
-      update_failed_msg: Gat ekki uppfært þetta tjáningartákn
-      updated_msg: Tókst að uppfæra tjáningartákn!
+      update_failed_msg: Gat ekki uppfært þetta lyndistákn
+      updated_msg: Tókst að uppfæra lyndistákn!
       upload: Senda inn
     dashboard:
       active_users: virkir notendur
@@ -768,8 +768,8 @@ is:
         manage_appeals_description: Leyfir notendum að yfirfara áfrýjanir vegna aðgerða umsjónarfólks
         manage_blocks: Sýsla með útilokanir
         manage_blocks_description: Leyfir notendum að loka á tölvupóstþjónustur og IP-vistföng
-        manage_custom_emojis: Sýsla með sérsniðin tjáningartákn
-        manage_custom_emojis_description: Leyfir notendum að sýsla með sérsniðin tjáningartákn á netþjóninum
+        manage_custom_emojis: Sýsla með sérsniðin lyndistákn
+        manage_custom_emojis_description: Leyfir notendum að sýsla með sérsniðin lyndistákn á netþjóninum
         manage_federation: Sýsla með netþjónasambönd
         manage_federation_description: Leyfir notendum að loka á eða leyfa samþættingu við önnur lén (federation) og stýra afhendingu skilaboða
         manage_invites: Sýsla með boðsgesti
@@ -1777,7 +1777,7 @@ is:
   reactions:
     errors:
       limit_reached: Hámarki mismunandi viðbragða náð
-      unrecognized_emoji: er ekki þekkt tjáningartákn
+      unrecognized_emoji: er ekki þekkt lyndistákn
   redirects:
     prompt: Ef þú treystir þessum tengli, geturðu smellt á hann til að halda áfram.
     title: Þú ert að yfirgefa %{instance}.
@@ -2117,7 +2117,7 @@ is:
       feature_audience_title: Byggðu upp orðspor þitt og áheyrendafjölda
       feature_control: Þú veist best hvað þú vilt sjá í heimastreyminu þínu. Engin reiknirit eða auglýsingar að þvælast fyrir. Fylgstu af einum aðgangi með hverjum sem er á milli Mastodon-netþjóna og fáðu færslurnar þeirra í tímaröð, þannig geturðu útbúið þitt eigið lítið horn á internetinu þar sem hlutirnir eru að þínu skapi.
       feature_control_title: Hafðu stjórn á þinni eigin tímalínu
-      feature_creativity: Mastodon styður færslur með hljóði, myndum og myndskeiðum, lýsingum fyrir aukið aðgengi, kannanir, aðvörunum vegna efnis, hreyanlegum auðkennismyndum, sérsniðnum tjáningartáknum, utanskurði smámynda ásamt fleiru; til að hjálpa þér við að tjá þig á netinu. Hvort sem þú sért að gefa út listina þína, tónlist eða hlaðvarp, þá er Mastodon til staðar fyrir þig.
+      feature_creativity: Mastodon styður færslur með hljóði, myndum og myndskeiðum, lýsingum fyrir aukið aðgengi, kannanir, aðvörunum vegna efnis, hreyanlegum auðkennismyndum, sérsniðnum lyndistáknum, utanskurði smámynda ásamt fleiru; til að hjálpa þér við að tjá þig á netinu. Hvort sem þú sért að gefa út listina þína, tónlist eða hlaðvarp, þá er Mastodon til staðar fyrir þig.
       feature_creativity_title: Óviðjafnanleg sköpunargleði
       feature_moderation: Mastodon setur ákvarðanatökur aftur í þínar hendur. Hver netþjónn býr til sínar eigin reglur og venjur, sem gilda fyrir þann netþjón en eru ekki boðaðar með valdi að ofan og niður líkt og á samfélagsnetum stórfyrirtækja. Á þennan hátt svarar samfélagsmiðillinn þörfum mismunandi hópa. Taktu þátt á netþjóni með reglum sem þú samþykkir, eða hýstu þinn eigin.
       feature_moderation_title: Umsjón með efni eins og slík á að vera

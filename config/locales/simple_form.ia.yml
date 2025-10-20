@@ -54,8 +54,10 @@ ia:
         password: Usa al minus 8 characteres
         phrase: Se applicara independentemente de majusculas/minusculas in le texto o del aviso de contento de un message
         scopes: Le APIs al quales le application habera accesso. Si tu selige un ambito de nivello superior, non es necessari seliger ambitos individual.
+        setting_advanced_layout: Presenta Mastodon in un disposition multicolumnar con le chronologia, le notificationes e un tertie columna de tu preferentia. Non recommendate pro schermos minor.
         setting_aggregate_reblogs: Non monstrar nove impulsos pro messages que ha essite recentemente impulsate (affecta solmente le impulsos novemente recipite)
         setting_always_send_emails: Normalmente, le notificationes de e-mail non es inviate quando tu activemente usa Mastodon
+        setting_boost_modal: Si isto es activate, impulsar un message aperira primo un dialogo de confirmation in le qual tu pote cambiar le visibilitate de tu impulso.
         setting_default_quote_policy_private: Le messages limitate al sequitores scribite sur Mastodon non pote esser citate per alteres.
         setting_default_quote_policy_unlisted: Quando le gente te cita, lor message equalmente non apparera in le chronologias de tendentias.
         setting_default_sensitive: Le medios sensibile es celate de ordinario e pote esser revelate con un clic
@@ -63,6 +65,7 @@ ia:
         setting_display_media_hide_all: Sempre celar contento multimedial
         setting_display_media_show_all: Sempre monstrar contento multimedial
         setting_emoji_style: Como monstrar emojis. “Automatic” tentara usar emojis native, ma recurre al Twemojis pro navigatores ancian.
+        setting_quick_boosting_html: Si isto es activate, un clic sur le icone %{boost_icon} Impulsar impulsara immediatemente le message in loco de aperir le menu disrolante de impulsar/citar. Isto tamben colloca le action de citar in le menu %{options_icon} (Optiones).
         setting_system_scrollbars_ui: Se applica solmente al navigatores de scriptorio basate sur Safari e Chrome
         setting_use_blurhash: Le imagines degradate se basa sur le colores del visuales celate, ma illos offusca tote le detalios
         setting_use_pending_items: Requirer un clic pro monstrar nove messages in vice de rolar automaticamente le fluxo
@@ -234,10 +237,12 @@ ia:
         setting_aggregate_reblogs: Gruppar impulsos in chronologias
         setting_always_send_emails: Sempre inviar notificationes per e-mail
         setting_auto_play_gif: Auto-reproduce GIFs animate
+        setting_boost_modal: Controlar le visibilitate de impulsos
         setting_default_language: Lingua de publication
         setting_default_privacy: Visibilitate de publication
         setting_default_quote_policy: Qui pote citar
         setting_default_sensitive: Sempre marcar le medios cmo sensbile
+        setting_delete_modal: Advertir me ante de deler un message
         setting_disable_hover_cards: Disactivar le previsualisation de profilos al passar del mus
         setting_disable_swiping: Disactivar le movimentos per glissamento
         setting_display_media: Visualisation de medios
@@ -247,6 +252,8 @@ ia:
         setting_emoji_style: Stilo de emojis
         setting_expand_spoilers: Sempre expander messages marcate con avisos de contento
         setting_hide_network: Cela tu rete social
+        setting_missing_alt_text_modal: Advertir me ante de publicar multimedia sin texto alternative
+        setting_quick_boosting: Activar impulso rapide
         setting_reduce_motion: Reducer movimento in animationes
         setting_system_font_ui: Usar typo de litteras predefinite del systema
         setting_system_scrollbars_ui: Usar le barra de rolamento predefinite del systema
@@ -280,12 +287,16 @@ ia:
         content_cache_retention_period: Periodo de retention del contento remote
         custom_css: CSS personalisate
         favicon: Favicon
+        local_live_feed_access: Accesso a canales in vivo con messages local
+        local_topic_feed_access: Accesso a canales de hashtag e ligamines con messages local
         mascot: Personalisar le mascotte (hereditage)
         media_cache_retention_period: Periodo de retention del cache multimedial
         min_age: Etate minime requirite
         peers_api_enabled: Publicar le lista de servitores discoperite in le API
         profile_directory: Activar directorio de profilos
         registrations_mode: Qui pote inscriber se
+        remote_live_feed_access: Accesso a canales in vivo con messages remote
+        remote_topic_feed_access: Accesso a canales de hashtag e ligamines con messages remote
         require_invite_text: Requirer un ration pro junger se
         show_domain_blocks: Monstrar le blocadas de dominio
         show_domain_blocks_rationale: Monstrar proque le dominios ha essite blocate

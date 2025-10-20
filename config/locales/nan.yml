@@ -891,6 +891,7 @@ nan:
       no_status_selected: 因為無揀任何PO文，所以lóng無改變
       open: 公開PO文
       original_status: 原底ê PO文
+      quotes: 引用
       reblogs: 轉送
       replied_to_html: 回應 %{acct_link}
       status_changed: PO文有改ah
@@ -898,6 +899,7 @@ nan:
       title: Tsit ê口座ê PO文 - @%{name}
       trending: 趨勢
       view_publicly: 公開看
+      view_quoted_post: 看引用ê PO文
       visibility: 通看ê程度
       with_media: 有媒體
     strikes:
@@ -1094,6 +1096,64 @@ nan:
         title: 創造使用者號名規則
       no_username_block_selected: 因為無揀任何使用者號名規則，所以lóng無改變
       not_permitted: 無允准
+      title: 用者號名規則
+      updated_msg: 用者號名規則更新成功ah
+    warning_presets:
+      add_new: 加新ê
+      delete: Thâi掉
+      edit_preset: 編輯預設ê警告
+      empty: Lí iáu bē定義任何預設ê警告。
+      title: 預設ê警告
+    webhooks:
+      add_new: 加添端點
+      delete: Thâi掉
+      description_html: "<strong>Webhook</strong> hōo Mastodon 通kā關係所揀ê事件ê<strong>即時通知</strong>sak kàu lí 家己ê應用程式，就án-ne lí ê應用程式ē當<strong>自動啟動反應</strong>。"
+      disable: 停止使用
+      disabled: 停用ah
+      edit: 編輯端點
+      empty: Lí iáu bē設定任何webhook端點。
+      enable: 啟用
+      enabled: 有效ê
+      enabled_events:
+        other: "%{count} ê啟用ê端點"
+      events: 事件
+      new: 新ê Webhook
+      rotate_secret: 換秘密鎖匙
+      secret: 簽秘密鎖匙
+      status: 狀態
+      title: Webhooks
+      webhook: Webhook
+  admin_mailer:
+    auto_close_registrations:
+      body: 因為欠最近ê管理員活動，佇 %{instance} ê註冊已經自動切kàu需要手動審查，以免 %{instance} hōo 可能行ê pháinn 行為ê當做平臺。Lí不管時lóng通切轉去，開放註冊。
+      subject: "%{instance} ê註冊已經自動切kàu需要允准"
+    new_appeal:
+      actions:
+        delete_statuses: thâi掉in ê PO文
+        disable: 冷凍in ê口座
+        mark_statuses_as_sensitive: 標in ê PO文做敏感ê
+        none: 警告
+        sensitive: 標in ê 口座做敏感ê
+        silence: 限制in ê口座
+        suspend: 停止使用in ê口座
+      body: "%{target} teh tuì %{action_taken_by} tī %{date} 所做ê管理決定送申訴，hit ê決定是 %{type}。In有寫："
+      next_steps: Lí通允准申訴來取消管理決定，á是kā忽略。
+      subject: "%{username} teh tuì tī %{instance} 頂ê管理決定送申訴"
+    new_critical_software_updates:
+      body: Mastodon 推出新ê重大版本，請liōng早升級！
+      subject: "%{instance} 有通the̍h ê Mastodon ê重大更新！"
+    new_pending_account:
+      body: 下kha是新口座ê詳細。Lí通允准á是拒絕tsit ê申請。
+      subject: "%{instance} 頂有新ê口座 (%{username}) 愛審查"
+    new_report:
+      body: "%{reporter} 有檢舉用者 %{target}"
+      body_remote: Tuì %{domain} 來ê有檢舉 %{target}
+      subject: "%{instance} ê 新檢舉（#%{id}）"
+    new_software_updates:
+      body: Mastodon推出新ê版本ah，lí huân-sè想beh升級！
+      subject: "%{instance} 有通the̍h ê Mastodon ê新版本！"
+    new_trends:
+      body: 下kha ê項目愛審查，tsiah ē當公開顯示：
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:
