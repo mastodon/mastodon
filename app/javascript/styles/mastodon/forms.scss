@@ -729,7 +729,7 @@ code {
 
 .flash-message {
   color: var(--clr-text-accent);
-  background: var(--clr-bg-accent-subtle);
+  background: transparent;
   border: 1px solid var(--clr-text-accent);
   border-radius: 4px;
   padding: 15px 10px;
@@ -737,7 +737,7 @@ code {
   text-align: center;
 
   &.notice {
-    border: 1px solid var(--clr-border-on-bg-accent-subtle);
+    border: 1px solid var(--clr-border-on-bg-success-subtle);
     background: var(--clr-bg-success-subtle);
     color: var(--clr-text-success);
   }
