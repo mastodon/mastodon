@@ -645,6 +645,7 @@ class Status extends ImmutablePureComponent {
             <RefreshController
               isLocal={isLocal}
               statusId={status.get('id')}
+              statusCreatedAt={status.get('created_at')}
             />
           </div>
         </ScrollContainer>

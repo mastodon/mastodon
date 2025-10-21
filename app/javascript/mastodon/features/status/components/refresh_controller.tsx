@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
@@ -13,6 +13,8 @@ import { apiGetAsyncRefresh } from 'mastodon/api/async_refreshes';
 import { Alert } from 'mastodon/components/alert';
 import { ExitAnimationWrapper } from 'mastodon/components/exit_animation_wrapper';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+import { useInterval } from 'mastodon/hooks/useInterval';
+import { useIsDocumentVisible } from 'mastodon/hooks/useIsDocumentVisible';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 const AnimatedAlert: React.FC<
@@ -52,17 +54,39 @@ const messages = defineMessages({
 
 type LoadingState = 'idle' | 'more-available' | 'loading' | 'success' | 'error';
 
-interface RefreshControllerProps {
-  isLocal: boolean;
-  statusId: string;
-}
+/**
+ * Age of thread below which we consider it new & fetch
+ * replies more frequently
+ */
+const NEW_THREAD_AGE_THRESHOLD = 30 * 60_000;
+/**
+ * Interval at which we check for new replies for old threads
+ */
+const LONG_AUTO_FETCH_REPLIES_INTERVAL = 5 * 60_000;
+/**
+ * Interval at which we check for new replies for new threads
+ */
+const SHORT_AUTO_FETCH_REPLIES_INTERVAL = 60_000;
+/**
+ * Number of refresh_async checks at which an early fetch
+ * will be triggered if there are results
+ */
+const LONG_RUNNING_FETCH_THRESHOLD = 3;
 
-const FETCH_EARLY_THRESHOLD = 3;
+/**
+ * Returns whether the thread is new, based on NEW_THREAD_AGE_THRESHOLD
+ */
+function getIsThreadNew(statusCreatedAt: string) {
+  const now = new Date();
+  const newThreadThreshold = new Date(now.getTime() - NEW_THREAD_AGE_THRESHOLD);
+
+  return new Date(statusCreatedAt) > newThreadThreshold;
+}
 
 /**
  * This hook kicks off a background check for the async refresh job
- * and will load any newly found replies once the job has finished,
- * and when FETCH_EARLY_THRESHOLD was reached and replies were found
+ * and loads any newly found replies once the job has finished,
+ * and when LONG_RUNNING_FETCH_THRESHOLD was reached and replies were found
  */
 function useCheckForRemoteReplies({
   statusId,
@@ -86,11 +110,11 @@ function useCheckForRemoteReplies({
     ) => {
       timeoutId = setTimeout(() => {
         void apiGetAsyncRefresh(refresh.id).then((result) => {
+          const { status, result_count } = result.async_refresh;
+
           // At three scheduled refreshes, we consider the job
           // long-running and attempt to fetch any new replies so far
-          const isLongRunning = iteration === FETCH_EARLY_THRESHOLD;
-
-          const { status, result_count } = result.async_refresh;
+          const isLongRunning = iteration === LONG_RUNNING_FETCH_THRESHOLD;
 
           // If the refresh status is not finished and not long-running,
           // we just schedule another refresh and exit
@@ -151,10 +175,24 @@ function useCheckForRemoteReplies({
   }, [onChangeLoadingState, dispatch, statusId, refreshHeader, isEnabled]);
 }
 
-export const RefreshController: React.FC<RefreshControllerProps> = ({
-  isLocal,
-  statusId,
-}) => {
+/**
+ * This component fetches new replies to a post in the background
+ * and displays an alert giving the option to show them in the UI.
+ *
+ * The following three scenarios are handled:
+ *
+ * 1. As long as the tab is visible, replies are refetched periodically
+ *    (more frequently for new posts, less frequently for old ones)
+ * 2. Replies are refetched ahen the browser tab/window is refocused
+ *    after it was hidden or minimised
+ * 3. For remote posts, we check for and fetch remote replies using the
+ *    AsyncRefresh API.
+ */
+export const RefreshController: React.FC<{
+  statusId: string;
+  statusCreatedAt: string;
+  isLocal: boolean;
+}> = ({ statusId, statusCreatedAt, isLocal }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
 
@@ -178,12 +216,44 @@ export const RefreshController: React.FC<RefreshControllerProps> = ({
     dispatch(clearPendingReplies({ statusId }));
   }, [dispatch, statusId]);
 
+  const isDocumentVisible = useIsDocumentVisible({
+    onChange: (isVisible) => {
+      // Auto-fetch new replies when the page is refocused
+      if (isVisible && partialLoadingState !== 'loading' && !wasDismissed) {
+        void dispatch(fetchContext({ statusId, prefetchOnly: true }));
+      }
+    },
+  });
+
+  // Check for remote replies
   useCheckForRemoteReplies({
     statusId,
     refreshHeader,
-    isEnabled: !isLocal && !wasDismissed,
+    isEnabled: isDocumentVisible && !isLocal && !wasDismissed,
     onChangeLoadingState: setLoadingState,
   });
+
+  // Only auto-fetch new replies if there's no ongoing remote replies check
+  const shouldAutoFetchReplies =
+    isDocumentVisible && partialLoadingState !== 'loading' && !wasDismissed;
+
+  const autoFetchInterval = useMemo(
+    () =>
+      getIsThreadNew(statusCreatedAt)
+        ? SHORT_AUTO_FETCH_REPLIES_INTERVAL
+        : LONG_AUTO_FETCH_REPLIES_INTERVAL,
+    [statusCreatedAt],
+  );
+
+  useInterval(
+    () => {
+      void dispatch(fetchContext({ statusId, prefetchOnly: true }));
+    },
+    {
+      delay: autoFetchInterval,
+      isEnabled: shouldAutoFetchReplies,
+    },
+  );
 
   useEffect(() => {
     // Hide success message after a short delay
