@@ -219,7 +219,7 @@ class StatusContent extends PureComponent {
           {children}
         </HandledLink>
       );
-    } else if (element instanceof HTMLParagraphElement && element.classList.contains('quote-inline')) {
+    } else if (element.classList.contains('quote-inline')) {
       return null;
     }
     return undefined;
