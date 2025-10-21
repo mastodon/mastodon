@@ -176,17 +176,17 @@ function useCheckForRemoteReplies({
 }
 
 /**
- * This component fetches new replies to a post in the background
- * and displays an alert giving the option to show them in the UI.
+ * This component fetches new post replies in the background
+ * and gives users the option to show them.
  *
  * The following three scenarios are handled:
  *
- * 1. As long as the tab is visible, replies are refetched periodically
+ * 1. When the browser tab is visible, replies are refetched periodically
  *    (more frequently for new posts, less frequently for old ones)
- * 2. Replies are refetched ahen the browser tab/window is refocused
+ * 2. Replies are refetched when the browser tab is refocused
  *    after it was hidden or minimised
- * 3. For remote posts, we check for and fetch remote replies using the
- *    AsyncRefresh API.
+ * 3. For remote posts, remote replies that might not yet be known to the
+ *    server are imported & fetched using the AsyncRefresh API.
  */
 export const RefreshController: React.FC<{
   statusId: string;
