@@ -72,7 +72,7 @@ class ActivityPub::VerifyQuoteService < BaseService
 
     status ||= ActivityPub::FetchRemoteStatusService.new.call(uri, on_behalf_of: @quote.account.followers.local.first, prefetched_body:, request_id: @request_id, depth: @depth + 1)
 
-    @quote.update(quoted_status: status) if status.present?
+    @quote.update(quoted_status: status) if status.present? && !status.reblog?
   rescue Mastodon::RecursionLimitExceededError, Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS => e
     @fetching_error = e
   end
@@ -90,7 +90,7 @@ class ActivityPub::VerifyQuoteService < BaseService
 
     status = ActivityPub::FetchRemoteStatusService.new.call(object['id'], prefetched_body: object, on_behalf_of: @quote.account.followers.local.first, request_id: @request_id, depth: @depth)
 
-    if status.present?
+    if status.present? && !status.reblog?
       @quote.update(quoted_status: status)
       true
     else

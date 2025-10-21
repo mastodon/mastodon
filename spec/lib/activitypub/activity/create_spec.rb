@@ -1046,6 +1046,60 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+      context 'with a quote of a known reblog that is otherwise valid' do
+        let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+        let(:quoted_status) { Fabricate(:status, account: quoted_account, reblog: Fabricate(:status)) }
+        let(:approval_uri) { 'https://quoted.example.com/quote-approval' }
+
+        let(:object_json) do
+          build_object(
+            type: 'Note',
+            content: 'woah what she said is amazing',
+            quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+            quoteAuthorization: approval_uri
+          )
+        end
+
+        before do
+          stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+            '@context': [
+              'https://www.w3.org/ns/activitystreams',
+              {
+                QuoteAuthorization: 'https://w3id.org/fep/044f#QuoteAuthorization',
+                gts: 'https://gotosocial.org/ns#',
+                interactionPolicy: {
+                  '@id': 'gts:interactionPolicy',
+                  '@type': '@id',
+                },
+                interactingObject: {
+                  '@id': 'gts:interactingObject',
+                  '@type': '@id',
+                },
+                interactionTarget: {
+                  '@id': 'gts:interactionTarget',
+                  '@type': '@id',
+                },
+              },
+            ],
+            type: 'QuoteAuthorization',
+            id: approval_uri,
+            attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
+            interactingObject: object_json[:id],
+            interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
+          }))
+        end
+
+        it 'creates a status without the verified quote' do
+          expect { subject.perform }.to change(sender.statuses, :count).by(1)
+
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+          expect(status.quote).to_not be_nil
+          expect(status.quote.state).to_not eq 'accepted'
+          expect(status.quote.quoted_status).to be_nil
+        end
+      end
+
       context 'when a vote to a local poll' do
         let(:poll) { Fabricate(:poll, options: %w(Yellow Blue)) }
         let!(:local_status) { Fabricate(:status, poll: poll) }

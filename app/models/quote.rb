@@ -34,6 +34,7 @@ class Quote < ApplicationRecord
   before_validation :set_activity_uri, only: :create, if: -> { account.local? && quoted_account&.remote? }
   validates :activity_uri, presence: true, if: -> { account.local? && quoted_account&.remote? }
   validate :validate_visibility
+  validate :validate_original_quoted_status
 
   def accept!
     update!(state: :accepted)
@@ -68,6 +69,10 @@ class Quote < ApplicationRecord
     return if account_id == quoted_account_id || quoted_status.nil? || quoted_status.distributable?
 
     errors.add(:quoted_status_id, :visibility_mismatch)
+  end
+
+  def validate_original_quoted_status
+    errors.add(:quoted_status_id, :reblog_unallowed) if quoted_status&.reblog?
   end
 
   def set_activity_uri
