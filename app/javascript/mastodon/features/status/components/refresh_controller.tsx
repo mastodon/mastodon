@@ -52,31 +52,30 @@ const messages = defineMessages({
 
 type LoadingState = 'idle' | 'more-available' | 'loading' | 'success' | 'error';
 
-export const RefreshController: React.FC<{
+interface RefreshControllerProps {
+  isLocal: boolean;
   statusId: string;
-}> = ({ statusId }) => {
+}
+
+const FETCH_EARLY_THRESHOLD = 3;
+
+/**
+ * This hook kicks off a background check for the async refresh job
+ * and will load any newly found replies once the job has finished,
+ * and when FETCH_EARLY_THRESHOLD was reached and replies were found
+ */
+function useCheckForRemoteReplies({
+  statusId,
+  refreshHeader,
+  isEnabled,
+  onChangeLoadingState,
+}: {
+  statusId: string;
+  refreshHeader?: AsyncRefreshHeader;
+  isEnabled: boolean;
+  onChangeLoadingState: React.Dispatch<React.SetStateAction<LoadingState>>;
+}) {
   const dispatch = useAppDispatch();
-  const intl = useIntl();
-
-  const refreshHeader = useAppSelector(
-    (state) => state.contexts.refreshing[statusId],
-  );
-  const hasPendingReplies = useAppSelector(
-    (state) => !!state.contexts.pendingReplies[statusId]?.length,
-  );
-  const [partialLoadingState, setLoadingState] = useState<LoadingState>(
-    refreshHeader ? 'loading' : 'idle',
-  );
-  const loadingState = hasPendingReplies
-    ? 'more-available'
-    : partialLoadingState;
-
-  const [wasDismissed, setWasDismissed] = useState(false);
-  const dismissPrompt = useCallback(() => {
-    setWasDismissed(true);
-    setLoadingState('idle');
-    dispatch(clearPendingReplies({ statusId }));
-  }, [dispatch, statusId]);
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
@@ -89,7 +88,7 @@ export const RefreshController: React.FC<{
         void apiGetAsyncRefresh(refresh.id).then((result) => {
           // At three scheduled refreshes, we consider the job
           // long-running and attempt to fetch any new replies so far
-          const isLongRunning = iteration === 3;
+          const isLongRunning = iteration === FETCH_EARLY_THRESHOLD;
 
           const { status, result_count } = result.async_refresh;
 
@@ -109,7 +108,7 @@ export const RefreshController: React.FC<{
           // Exit if there's nothing to fetch
           if (result_count === 0) {
             if (status === 'finished') {
-              setLoadingState('idle');
+              onChangeLoadingState('idle');
             } else {
               scheduleRefresh(refresh, iteration + 1);
             }
@@ -126,7 +125,7 @@ export const RefreshController: React.FC<{
               // resulted in new pending replies, the `hasPendingReplies`
               // flag will switch the loading state to 'more-available'
               if (status === 'finished') {
-                setLoadingState('idle');
+                onChangeLoadingState('idle');
               } else {
                 // Keep background fetch going if `isLongRunning` is true
                 scheduleRefresh(refresh, iteration + 1);
@@ -134,22 +133,57 @@ export const RefreshController: React.FC<{
             })
             .catch(() => {
               // Show an error if the fetch failed
-              setLoadingState('error');
+              onChangeLoadingState('error');
             });
         });
       }, refresh.retry * 1000);
     };
 
     // Initialise a refresh
-    if (refreshHeader && !wasDismissed) {
+    if (refreshHeader && isEnabled) {
       scheduleRefresh(refreshHeader, 1);
-      setLoadingState('loading');
+      onChangeLoadingState('loading');
     }
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [dispatch, statusId, refreshHeader, wasDismissed]);
+  }, [onChangeLoadingState, dispatch, statusId, refreshHeader, isEnabled]);
+}
+
+export const RefreshController: React.FC<RefreshControllerProps> = ({
+  isLocal,
+  statusId,
+}) => {
+  const dispatch = useAppDispatch();
+  const intl = useIntl();
+
+  const refreshHeader = useAppSelector((state) =>
+    isLocal ? undefined : state.contexts.refreshing[statusId],
+  );
+  const hasPendingReplies = useAppSelector(
+    (state) => !!state.contexts.pendingReplies[statusId]?.length,
+  );
+  const [partialLoadingState, setLoadingState] = useState<LoadingState>(
+    refreshHeader ? 'loading' : 'idle',
+  );
+  const loadingState = hasPendingReplies
+    ? 'more-available'
+    : partialLoadingState;
+
+  const [wasDismissed, setWasDismissed] = useState(false);
+  const dismissPrompt = useCallback(() => {
+    setWasDismissed(true);
+    setLoadingState('idle');
+    dispatch(clearPendingReplies({ statusId }));
+  }, [dispatch, statusId]);
+
+  useCheckForRemoteReplies({
+    statusId,
+    refreshHeader,
+    isEnabled: !isLocal && !wasDismissed,
+    onChangeLoadingState: setLoadingState,
+  });
 
   useEffect(() => {
     // Hide success message after a short delay
@@ -172,7 +206,7 @@ export const RefreshController: React.FC<{
     };
   }, [dispatch, statusId]);
 
-  const handleClick = useCallback(() => {
+  const showPending = useCallback(() => {
     dispatch(showPendingReplies({ statusId }));
     setLoadingState('success');
   }, [dispatch, statusId]);
@@ -196,7 +230,7 @@ export const RefreshController: React.FC<{
         isActive={loadingState === 'more-available'}
         message={intl.formatMessage(messages.moreFound)}
         action={intl.formatMessage(messages.show)}
-        onActionClick={handleClick}
+        onActionClick={showPending}
         onDismiss={dismissPrompt}
         animateFrom='below'
       />
@@ -205,7 +239,7 @@ export const RefreshController: React.FC<{
         isActive={loadingState === 'error'}
         message={intl.formatMessage(messages.error)}
         action={intl.formatMessage(messages.retry)}
-        onActionClick={handleClick}
+        onActionClick={showPending}
         onDismiss={dismissPrompt}
         animateFrom='below'
       />

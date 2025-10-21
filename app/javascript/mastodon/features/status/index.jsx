@@ -571,14 +571,6 @@ class Status extends ImmutablePureComponent {
     const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
     const isIndexable = !status.getIn(['account', 'noindex']);
 
-    if (!isLocal) {
-      remoteHint = (
-        <RefreshController
-          statusId={status.get('id')}
-        />
-      );
-    }
-
     const handlers = {
       reply: this.handleHotkeyReply,
       favourite: this.handleHotkeyFavourite,
@@ -649,7 +641,11 @@ class Status extends ImmutablePureComponent {
             </Hotkeys>
 
             {descendants}
-            {remoteHint}
+            
+            <RefreshController
+              isLocal={isLocal}
+              statusId={status.get('id')}
+            />
           </div>
         </ScrollContainer>
 
