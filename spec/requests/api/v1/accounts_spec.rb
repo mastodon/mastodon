@@ -118,6 +118,11 @@ RSpec.describe '/api/v1/accounts' do
             .to have_http_status(422)
           expect(response.content_type)
             .to start_with('application/json')
+          expect(response.parsed_body)
+            .to include(
+              error: /Validation failed/,
+              details: include(date_of_birth: contain_exactly(include(error: 'ERR_BELOW_LIMIT', description: /below the age limit/)))
+            )
         end
       end
 
