@@ -15,27 +15,25 @@ export function useInterval(
     isEnabled?: boolean;
   },
 ) {
-  const savedCallback = useRef(callback);
-
-  // Remember the latest callback if it changes.
+  // Write callback to a ref so we can omit it from
+  // the interval effect's dependency array
+  const callbackRef = useRef(callback);
   useLayoutEffect(() => {
-    savedCallback.current = callback;
+    callbackRef.current = callback;
   }, [callback]);
 
   // Set up the interval.
   useEffect(() => {
-    // Don't schedule if no delay is specified.
-    // Note: 0 is a valid value for delay.
     if (!isEnabled) {
       return;
     }
 
-    const id = setInterval(() => {
-      savedCallback.current();
+    const intervalId = setInterval(() => {
+      callbackRef.current();
     }, delay);
 
     return () => {
-      clearInterval(id);
+      clearInterval(intervalId);
     };
   }, [delay, isEnabled]);
 }
