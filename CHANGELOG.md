@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.8] - 2025-10-21
+
+### Security
+
+- Fix quote control bypass ([GHSA-8h43-rcqj-wpc6](https://github.com/mastodon/mastodon/security/advisories/GHSA-8h43-rcqj-wpc6))
+
 ## [4.4.7] - 2025-10-15
 
 ### Fixed
