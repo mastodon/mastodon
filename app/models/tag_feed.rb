@@ -23,13 +23,15 @@ class TagFeed < PublicFeed
   # @param [Integer] min_id
   # @return [Array<Status>]
   def get(limit, max_id = nil, since_id = nil, min_id = nil)
+    return [] if (local_only? && !user_has_access_to_feed?(Setting.local_topic_feed_access)) || (remote_only? && !user_has_access_to_feed?(Setting.remote_topic_feed_access))
+
     scope = public_scope
 
     scope.merge!(tagged_with_any_scope)
     scope.merge!(tagged_with_all_scope)
     scope.merge!(tagged_with_none_scope)
-    scope.merge!(local_only_scope) if local_only?
-    scope.merge!(remote_only_scope) if remote_only?
+    scope.merge!(local_only_scope) if local_only? || !user_has_access_to_feed?(Setting.remote_topic_feed_access)
+    scope.merge!(remote_only_scope) if remote_only? || !user_has_access_to_feed?(Setting.local_topic_feed_access)
     scope.merge!(account_filters_scope) if account?
     scope.merge!(media_only_scope) if media_only?
 
