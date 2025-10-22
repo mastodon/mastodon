@@ -243,50 +243,6 @@
     }
   }
 
-  &.button-tertiary {
-    background: transparent;
-    padding: 6px 17px;
-    color: $ui-button-tertiary-color;
-    border: 1px solid $ui-button-tertiary-border-color;
-
-    &:active,
-    &:focus,
-    &:hover {
-      background-color: $ui-button-tertiary-focus-background-color;
-      color: $ui-button-tertiary-focus-color;
-      border: 0;
-      padding: 7px 18px;
-    }
-
-    &:disabled {
-      opacity: 0.5;
-    }
-
-    &.button--confirmation {
-      color: var(--clr-text-success);
-      border-color: var(--clr-text-success);
-
-      &:active,
-      &:focus,
-      &:hover {
-        background: var(--clr-bg-primary);
-        color: var(--clr-text-primary);
-      }
-    }
-
-    &.button--destructive {
-      color: var(--clr-text-error);
-      border-color: var(--clr-text-error);
-
-      &:active,
-      &:focus,
-      &:hover {
-        background: var(--clr-bg-success-strong);
-        color: var(--clr-text-on-success-strong);
-      }
-    }
-  }
-
   &.button--block {
     width: 100%;
   }
@@ -9840,11 +9796,6 @@ noscript {
         display: block;
         flex-grow: 1;
       }
-    }
-
-    .button-tertiary {
-      background: color.change($ui-base-color, $alpha: 0.15);
-      backdrop-filter: blur(8px);
     }
   }
 
