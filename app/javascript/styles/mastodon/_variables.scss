@@ -20,21 +20,6 @@ $ui-base-lighter-color: lighten(
   26%
 ) !default; // Lighter darkest
 $ui-secondary-color: hsl(255deg, 25%, 88%) !default; // Lightest
-$ui-button-color: $white !default;
-$ui-button-background-color: $blurple-500 !default;
-$ui-button-focus-background-color: $blurple-600 !default;
-$ui-button-focus-outline-color: $blurple-400 !default;
-$ui-button-focus-outline: solid 2px $ui-button-focus-outline-color !default;
-
-$ui-button-disabled-color: color.adjust(
-  $ui-button-background-color,
-  $alpha: -0.3
-) !default;
-
-$ui-button-secondary-color: $blurple-500 !default;
-$ui-button-secondary-border-color: $blurple-500 !default;
-$ui-button-secondary-focus-border-color: $blurple-300 !default;
-$ui-button-secondary-focus-color: $blurple-300 !default;
 
 // Keep this filter a SCSS variable rather than
 // a CSS Custom Property due to this Safari bug:
