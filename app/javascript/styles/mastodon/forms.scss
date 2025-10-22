@@ -930,7 +930,7 @@ code {
 
 .oauth-prompt {
   h3 {
-    color: $ui-secondary-color;
+    color: var(--clr-text-primary);
     font-size: 17px;
     line-height: 22px;
     font-weight: 500;
@@ -1152,8 +1152,8 @@ code {
 .permissions-list {
   &__item {
     padding: 15px;
-    color: $ui-secondary-color;
-    border-bottom: 1px solid lighten($ui-base-color, 4%);
+    color: var(--clr-text-primary);
+    border-bottom: 1px solid var(--clr-border-primary);
     display: flex;
     align-items: center;
 

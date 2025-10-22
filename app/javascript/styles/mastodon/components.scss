@@ -6671,8 +6671,7 @@ a.status-card {
   }
 
   .dialog-option .poll__input {
-    border-color: var(--clr-text-secondary);
-    color: $ui-secondary-color;
+    color: var(--clr-text-secondary);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -6690,8 +6689,9 @@ a.status-card {
     }
 
     &.active {
-      border-color: var(--clr-text-success);
-      background: var(--clr-text-success);
+      color: var(--clr-text-on-success-strong);
+      background: var(--clr-bg-success-strong);
+      border-color: var(--clr-bg-success-strong);
     }
   }
 
@@ -6895,7 +6895,7 @@ a.status-card {
     hr {
       height: 0.25rem;
       padding: 0;
-      background-color: $ui-secondary-color;
+      background-color: var(--clr-text-primary);
       border: 0;
       margin: 20px 0;
     }
