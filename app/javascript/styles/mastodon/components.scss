@@ -56,9 +56,9 @@
 }
 
 .help-button {
-  background: $ui-button-background-color;
+  color: var(--clr-text-on-accent-strong);
+  background: var(--clr-bg-accent-strong);
   border: 0;
-  color: $ui-button-color;
   border-radius: 20px;
   cursor: pointer;
   width: 24px;
@@ -70,7 +70,7 @@
   &:active,
   &:focus,
   &:hover {
-    background-color: $ui-button-focus-background-color;
+    background: var(--clr-bg-accent-strong-highlighted);
   }
 
   &:focus-visible {
@@ -2214,8 +2214,8 @@ body > [data-popper-placement] {
     border-radius: $height;
     min-width: $height - 2 * $h-padding; // to ensure that it is never narrower than a circle
     line-height: $height + 1px; // to visually center the numbers
-    background-color: $ui-button-background-color;
-    color: $white;
+    color: var(--clr-text-on-accent-strong);
+    background: var(--clr-bg-accent-strong);
     border-width: 1px;
     border-style: solid;
     border-color: var(--clr-bg-primary);
@@ -5870,7 +5870,7 @@ a.status-card {
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px $ui-button-focus-outline-color;
+    box-shadow: 0 0 0 2px var(--clr-text-accent);
   }
 
   &[aria-hidden='true'] {
@@ -9049,7 +9049,7 @@ noscript {
   }
 
   &:focus-visible {
-    outline: $ui-button-focus-outline;
+    outline: var(--clr-text-accent);
     border-color: transparent;
   }
 }
@@ -10560,8 +10560,8 @@ noscript {
   }
 
   &__badge {
-    background: $ui-button-background-color;
-    color: $white;
+    color: var(--clr-text-on-accent-strong);
+    background: var(--clr-bg-accent-strong);
     border-radius: 100px;
     padding: 2px 8px;
   }
@@ -10629,10 +10629,10 @@ noscript {
     }
 
     .filtered-notifications-banner__badge {
-      background: $ui-button-background-color;
+      color: var(--clr-text-on-accent-strong);
+      background: var(--clr-bg-accent-strong);
       border-radius: 4px;
       padding: 1px 6px;
-      color: $white;
     }
   }
 
