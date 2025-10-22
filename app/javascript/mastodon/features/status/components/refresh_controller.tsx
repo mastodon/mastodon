@@ -2,6 +2,8 @@ import { useEffect, useState, useCallback, useMemo } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
+import { useDebouncedCallback } from 'use-debounce';
+
 import {
   fetchContext,
   completeContextRefresh,
@@ -64,7 +66,8 @@ const NEW_THREAD_AGE_THRESHOLD = 30 * 60_000;
  */
 const LONG_AUTO_FETCH_REPLIES_INTERVAL = 5 * 60_000;
 /**
- * Interval at which we check for new replies for new threads
+ * Interval at which we check for new replies for new threads.
+ * Also used as a threshold to throttle repeated fetch calls
  */
 const SHORT_AUTO_FETCH_REPLIES_INTERVAL = 60_000;
 /**
@@ -216,11 +219,23 @@ export const RefreshController: React.FC<{
     dispatch(clearPendingReplies({ statusId }));
   }, [dispatch, statusId]);
 
+  // Prevent too-frequent context calls
+  const debouncedFetchContext = useDebouncedCallback(
+    () => {
+      void dispatch(fetchContext({ statusId, prefetchOnly: true }));
+    },
+    SHORT_AUTO_FETCH_REPLIES_INTERVAL,
+    {
+      leading: true,
+      trailing: false,
+    },
+  );
+
   const isDocumentVisible = useIsDocumentVisible({
     onChange: (isVisible) => {
       // Auto-fetch new replies when the page is refocused
       if (isVisible && partialLoadingState !== 'loading' && !wasDismissed) {
-        void dispatch(fetchContext({ statusId, prefetchOnly: true }));
+        debouncedFetchContext();
       }
     },
   });
@@ -245,15 +260,10 @@ export const RefreshController: React.FC<{
     [statusCreatedAt],
   );
 
-  useInterval(
-    () => {
-      void dispatch(fetchContext({ statusId, prefetchOnly: true }));
-    },
-    {
-      delay: autoFetchInterval,
-      isEnabled: shouldAutoFetchReplies,
-    },
-  );
+  useInterval(debouncedFetchContext, {
+    delay: autoFetchInterval,
+    isEnabled: shouldAutoFetchReplies,
+  });
 
   useEffect(() => {
     // Hide success message after a short delay
