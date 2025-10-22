@@ -1,6 +1,8 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
+
+import { useDebouncedCallback } from 'use-debounce';
 
 import {
   fetchContext,
@@ -13,6 +15,8 @@ import { apiGetAsyncRefresh } from 'mastodon/api/async_refreshes';
 import { Alert } from 'mastodon/components/alert';
 import { ExitAnimationWrapper } from 'mastodon/components/exit_animation_wrapper';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+import { useInterval } from 'mastodon/hooks/useInterval';
+import { useIsDocumentVisible } from 'mastodon/hooks/useIsDocumentVisible';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 const AnimatedAlert: React.FC<
@@ -52,14 +56,151 @@ const messages = defineMessages({
 
 type LoadingState = 'idle' | 'more-available' | 'loading' | 'success' | 'error';
 
+/**
+ * Age of thread below which we consider it new & fetch
+ * replies more frequently
+ */
+const NEW_THREAD_AGE_THRESHOLD = 30 * 60_000;
+/**
+ * Interval at which we check for new replies for old threads
+ */
+const LONG_AUTO_FETCH_REPLIES_INTERVAL = 5 * 60_000;
+/**
+ * Interval at which we check for new replies for new threads.
+ * Also used as a threshold to throttle repeated fetch calls
+ */
+const SHORT_AUTO_FETCH_REPLIES_INTERVAL = 60_000;
+/**
+ * Number of refresh_async checks at which an early fetch
+ * will be triggered if there are results
+ */
+const LONG_RUNNING_FETCH_THRESHOLD = 3;
+
+/**
+ * Returns whether the thread is new, based on NEW_THREAD_AGE_THRESHOLD
+ */
+function getIsThreadNew(statusCreatedAt: string) {
+  const now = new Date();
+  const newThreadThreshold = new Date(now.getTime() - NEW_THREAD_AGE_THRESHOLD);
+
+  return new Date(statusCreatedAt) > newThreadThreshold;
+}
+
+/**
+ * This hook kicks off a background check for the async refresh job
+ * and loads any newly found replies once the job has finished,
+ * and when LONG_RUNNING_FETCH_THRESHOLD was reached and replies were found
+ */
+function useCheckForRemoteReplies({
+  statusId,
+  refreshHeader,
+  isEnabled,
+  onChangeLoadingState,
+}: {
+  statusId: string;
+  refreshHeader?: AsyncRefreshHeader;
+  isEnabled: boolean;
+  onChangeLoadingState: React.Dispatch<React.SetStateAction<LoadingState>>;
+}) {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const scheduleRefresh = (
+      refresh: AsyncRefreshHeader,
+      iteration: number,
+    ) => {
+      timeoutId = setTimeout(() => {
+        void apiGetAsyncRefresh(refresh.id).then((result) => {
+          const { status, result_count } = result.async_refresh;
+
+          // At three scheduled refreshes, we consider the job
+          // long-running and attempt to fetch any new replies so far
+          const isLongRunning = iteration === LONG_RUNNING_FETCH_THRESHOLD;
+
+          // If the refresh status is not finished and not long-running,
+          // we just schedule another refresh and exit
+          if (status === 'running' && !isLongRunning) {
+            scheduleRefresh(refresh, iteration + 1);
+            return;
+          }
+
+          // If refresh status is finished, clear `refreshHeader`
+          // (we don't want to do this if it's just a long-running job)
+          if (status === 'finished') {
+            dispatch(completeContextRefresh({ statusId }));
+          }
+
+          // Exit if there's nothing to fetch
+          if (result_count === 0) {
+            if (status === 'finished') {
+              onChangeLoadingState('idle');
+            } else {
+              scheduleRefresh(refresh, iteration + 1);
+            }
+            return;
+          }
+
+          // A positive result count means there _might_ be new replies,
+          // so we fetch the context in the background to check if there
+          // are any new replies.
+          // If so, they will populate `contexts.pendingReplies[statusId]`
+          void dispatch(fetchContext({ statusId, prefetchOnly: true }))
+            .then(() => {
+              // Reset loading state to `idle`. If the fetch has
+              // resulted in new pending replies, the `hasPendingReplies`
+              // flag will switch the loading state to 'more-available'
+              if (status === 'finished') {
+                onChangeLoadingState('idle');
+              } else {
+                // Keep background fetch going if `isLongRunning` is true
+                scheduleRefresh(refresh, iteration + 1);
+              }
+            })
+            .catch(() => {
+              // Show an error if the fetch failed
+              onChangeLoadingState('error');
+            });
+        });
+      }, refresh.retry * 1000);
+    };
+
+    // Initialise a refresh
+    if (refreshHeader && isEnabled) {
+      scheduleRefresh(refreshHeader, 1);
+      onChangeLoadingState('loading');
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [onChangeLoadingState, dispatch, statusId, refreshHeader, isEnabled]);
+}
+
+/**
+ * This component fetches new post replies in the background
+ * and gives users the option to show them.
+ *
+ * The following three scenarios are handled:
+ *
+ * 1. When the browser tab is visible, replies are refetched periodically
+ *    (more frequently for new posts, less frequently for old ones)
+ * 2. Replies are refetched when the browser tab is refocused
+ *    after it was hidden or minimised
+ * 3. For remote posts, remote replies that might not yet be known to the
+ *    server are imported & fetched using the AsyncRefresh API.
+ */
 export const RefreshController: React.FC<{
   statusId: string;
-}> = ({ statusId }) => {
+  statusCreatedAt: string;
+  isLocal: boolean;
+}> = ({ statusId, statusCreatedAt, isLocal }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
 
-  const refreshHeader = useAppSelector(
-    (state) => state.contexts.refreshing[statusId],
+  const refreshHeader = useAppSelector((state) =>
+    isLocal ? undefined : state.contexts.refreshing[statusId],
   );
   const hasPendingReplies = useAppSelector(
     (state) => !!state.contexts.pendingReplies[statusId]?.length,
@@ -78,78 +219,52 @@ export const RefreshController: React.FC<{
     dispatch(clearPendingReplies({ statusId }));
   }, [dispatch, statusId]);
 
-  useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout>;
+  // Prevent too-frequent context calls
+  const debouncedFetchContext = useDebouncedCallback(
+    () => {
+      void dispatch(fetchContext({ statusId, prefetchOnly: true }));
+    },
+    // Ensure the debounce is a bit shorter than the auto-fetch interval
+    SHORT_AUTO_FETCH_REPLIES_INTERVAL - 500,
+    {
+      leading: true,
+      trailing: false,
+    },
+  );
 
-    const scheduleRefresh = (
-      refresh: AsyncRefreshHeader,
-      iteration: number,
-    ) => {
-      timeoutId = setTimeout(() => {
-        void apiGetAsyncRefresh(refresh.id).then((result) => {
-          // At three scheduled refreshes, we consider the job
-          // long-running and attempt to fetch any new replies so far
-          const isLongRunning = iteration === 3;
+  const isDocumentVisible = useIsDocumentVisible({
+    onChange: (isVisible) => {
+      // Auto-fetch new replies when the page is refocused
+      if (isVisible && partialLoadingState !== 'loading' && !wasDismissed) {
+        debouncedFetchContext();
+      }
+    },
+  });
 
-          const { status, result_count } = result.async_refresh;
+  // Check for remote replies
+  useCheckForRemoteReplies({
+    statusId,
+    refreshHeader,
+    isEnabled: isDocumentVisible && !isLocal && !wasDismissed,
+    onChangeLoadingState: setLoadingState,
+  });
 
-          // If the refresh status is not finished and not long-running,
-          // we just schedule another refresh and exit
-          if (status === 'running' && !isLongRunning) {
-            scheduleRefresh(refresh, iteration + 1);
-            return;
-          }
+  // Only auto-fetch new replies if there's no ongoing remote replies check
+  const shouldAutoFetchReplies =
+    isDocumentVisible && partialLoadingState !== 'loading' && !wasDismissed;
 
-          // If refresh status is finished, clear `refreshHeader`
-          // (we don't want to do this if it's just a long-running job)
-          if (status === 'finished') {
-            dispatch(completeContextRefresh({ statusId }));
-          }
+  const autoFetchInterval = useMemo(
+    () =>
+      getIsThreadNew(statusCreatedAt)
+        ? SHORT_AUTO_FETCH_REPLIES_INTERVAL
+        : LONG_AUTO_FETCH_REPLIES_INTERVAL,
+    [statusCreatedAt],
+  );
 
-          // Exit if there's nothing to fetch
-          if (result_count === 0) {
-            if (status === 'finished') {
-              setLoadingState('idle');
-            } else {
-              scheduleRefresh(refresh, iteration + 1);
-            }
-            return;
-          }
-
-          // A positive result count means there _might_ be new replies,
-          // so we fetch the context in the background to check if there
-          // are any new replies.
-          // If so, they will populate `contexts.pendingReplies[statusId]`
-          void dispatch(fetchContext({ statusId, prefetchOnly: true }))
-            .then(() => {
-              // Reset loading state to `idle`. If the fetch has
-              // resulted in new pending replies, the `hasPendingReplies`
-              // flag will switch the loading state to 'more-available'
-              if (status === 'finished') {
-                setLoadingState('idle');
-              } else {
-                // Keep background fetch going if `isLongRunning` is true
-                scheduleRefresh(refresh, iteration + 1);
-              }
-            })
-            .catch(() => {
-              // Show an error if the fetch failed
-              setLoadingState('error');
-            });
-        });
-      }, refresh.retry * 1000);
-    };
-
-    // Initialise a refresh
-    if (refreshHeader && !wasDismissed) {
-      scheduleRefresh(refreshHeader, 1);
-      setLoadingState('loading');
-    }
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [dispatch, statusId, refreshHeader, wasDismissed]);
+  useInterval(debouncedFetchContext, {
+    delay: autoFetchInterval,
+    isEnabled: shouldAutoFetchReplies,
+  });
 
   useEffect(() => {
     // Hide success message after a short delay
@@ -172,7 +287,7 @@ export const RefreshController: React.FC<{
     };
   }, [dispatch, statusId]);
 
-  const handleClick = useCallback(() => {
+  const showPending = useCallback(() => {
     dispatch(showPendingReplies({ statusId }));
     setLoadingState('success');
   }, [dispatch, statusId]);
@@ -196,7 +311,7 @@ export const RefreshController: React.FC<{
         isActive={loadingState === 'more-available'}
         message={intl.formatMessage(messages.moreFound)}
         action={intl.formatMessage(messages.show)}
-        onActionClick={handleClick}
+        onActionClick={showPending}
         onDismiss={dismissPrompt}
         animateFrom='below'
       />
@@ -205,7 +320,7 @@ export const RefreshController: React.FC<{
         isActive={loadingState === 'error'}
         message={intl.formatMessage(messages.error)}
         action={intl.formatMessage(messages.retry)}
-        onActionClick={handleClick}
+        onActionClick={showPending}
         onDismiss={dismissPrompt}
         animateFrom='below'
       />
