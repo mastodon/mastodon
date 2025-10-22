@@ -23,16 +23,15 @@ class TagFeed < PublicFeed
   # @param [Integer] min_id
   # @return [Array<Status>]
   def get(limit, max_id = nil, since_id = nil, min_id = nil)
-    return [] if (local_only? && !user_has_access_to_feed?(Setting.local_topic_feed_access)) || (remote_only? && !user_has_access_to_feed?(Setting.remote_topic_feed_access))
-    return [] unless user_has_access_to_feed?(Setting.local_topic_feed_access) || user_has_access_to_feed?(Setting.remote_topic_feed_access)
+    return [] if incompatible_feed_settings?
 
     scope = public_scope
 
     scope.merge!(tagged_with_any_scope)
     scope.merge!(tagged_with_all_scope)
     scope.merge!(tagged_with_none_scope)
-    scope.merge!(local_only_scope) if local_only? || !user_has_access_to_feed?(Setting.remote_topic_feed_access)
-    scope.merge!(remote_only_scope) if remote_only? || !user_has_access_to_feed?(Setting.local_topic_feed_access)
+    scope.merge!(local_only_scope) if local_only?
+    scope.merge!(remote_only_scope) if remote_only?
     scope.merge!(account_filters_scope) if account?
     scope.merge!(media_only_scope) if media_only?
 
@@ -40,6 +39,14 @@ class TagFeed < PublicFeed
   end
 
   private
+
+  def local_feed_setting
+    Setting.local_topic_feed_access
+  end
+
+  def remote_feed_setting
+    Setting.remote_topic_feed_access
+  end
 
   def tagged_with_any_scope
     Status.group(:id).tagged_with(tags_for(Array(@tag.name) | Array(options[:any])))
