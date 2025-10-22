@@ -224,7 +224,8 @@ export const RefreshController: React.FC<{
     () => {
       void dispatch(fetchContext({ statusId, prefetchOnly: true }));
     },
-    SHORT_AUTO_FETCH_REPLIES_INTERVAL,
+    // Ensure the debounce is a bit shorter than the auto-fetch interval
+    SHORT_AUTO_FETCH_REPLIES_INTERVAL - 500,
     {
       leading: true,
       trailing: false,
