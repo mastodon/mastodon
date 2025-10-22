@@ -54,8 +54,10 @@ pt-PT:
         password: Use pelo menos 8 caracteres
         phrase: Será correspondido independentemente da capitalização ou do aviso de conteúdo duma publicação
         scopes: Quais as API a que a aplicação terá permissão para aceder. Se selecionar um âmbito de nível superior, não precisa de selecionar âmbitos individuais.
-        setting_aggregate_reblogs: Não mostrar os novos impulsos para publicações que tenham sido recentemente impulsionadas (apenas afeta os impulsos recentemente recebidos)
+        setting_advanced_layout: Exibe o Mastodon num layout com várias colunas, permitindo-lhe visualizar a cronologia, as notificações e uma terceira coluna à sua escolha. Não recomendado para ecrãs mais pequenos.
+        setting_aggregate_reblogs: Não mostrar as novas partilhas para publicações que tenham sido partilhadas recentemente (apenas afeta as partilhas recebidas recentemente)
         setting_always_send_emails: Normalmente as notificações por e-mail não serão enviadas quando estiver a utilizar ativamente o Mastodon
+        setting_boost_modal: Quando ativado, ao partilhar abrirá primeiro uma caixa de diálogo de confirmação onde poderá alterar a visibilidade da sua partilha.
         setting_default_quote_policy_private: As publicações exclusivas para seguidores criadas no Mastodon não podem ser citadas por outras pessoas.
         setting_default_quote_policy_unlisted: Quando as pessoas o citarem, as respetivas publicações também serão ocultadas dos destaques.
         setting_default_sensitive: Os multimédia sensíveis são ocultados por predefinição e podem ser revelados com um clique/toque
@@ -63,6 +65,7 @@ pt-PT:
         setting_display_media_hide_all: Esconder sempre toda a multimédia
         setting_display_media_show_all: Mostrar sempre a multimédia
         setting_emoji_style: Como apresentar emojis. "Auto" tenta usar emojis nativos, mas reverte para Twemoji em navegadores mais antigos.
+        setting_quick_boosting_html: Quando ativado, clicar no ícone %{boost_icon} Partilhar irá de imediato partilhar ao invés de abrir o menu de Partilhar/Citar. Relocaliza a ação Citar para o menu %{options_icon} (Opções).
         setting_system_scrollbars_ui: Aplica-se apenas a navegadores de desktop baseados no Safari e Chrome
         setting_use_blurhash: Os gradientes são baseados nas cores das imagens escondidas, mas ofuscam quaisquer pormenores
         setting_use_pending_items: Ocultar as atualizações da cronologia após um clique em vez de percorrer automaticamente a cronologia
@@ -87,11 +90,11 @@ pt-PT:
         backups_retention_period: Os utilizadores têm a possibilidade de gerar arquivos das suas publicações para descarregar mais tarde. Quando definido para um valor positivo, estes arquivos serão automaticamente eliminados do seu armazenamento após o número de dias especificado.
         bootstrap_timeline_accounts: Estas contas serão destacadas no topo das recomendações aos novos utilizadores.
         closed_registrations_message: Apresentado quando as inscrições estiverem encerradas
-        content_cache_retention_period: Todas as mensagens de outros servidores (incluindo impulsos e respostas) serão eliminadas após o número de dias especificado, independentemente de qualquer interação do utilizador local com essas mensagens. Isto inclui mensagens em que um utilizador local as tenha marcado ou adicionado aos favoritos. As menções privadas entre utilizadores de instâncias diferentes também se perderão e serão impossíveis de restaurar. A utilização desta definição destina-se a instâncias para fins especiais e quebra muitas expectativas dos utilizadores quando implementada para utilização geral.
+        content_cache_retention_period: Todas as publicações de outros servidores (incluindo partilhas e respostas) serão eliminadas após o número de dias especificado, independentemente de qualquer interação do utilizador local com essas publicações. Isto inclui mensagens em que um utilizador local as tenha salvo ou adicionado aos favoritos. As menções privadas entre utilizadores de instâncias diferentes também se perderão e serão impossíveis de recuperar. A utilização desta definição destina-se a instâncias para fins especiais e quebra muitas expectativas dos utilizadores quando implementada para utilização geral.
         custom_css: Pode aplicar estilos personalizados na versão web do Mastodon.
         favicon: WEBP, PNG, GIF ou JPG. Substitui o ícone de favorito padrão do Mastodon por um ícone personalizado.
         mascot: Sobrepõe-se à ilustração na interface web avançada.
-        media_cache_retention_period: Os ficheiros multimédia de publicações feitas por utilizadores remotos são armazenados em cache no seu servidor. Quando definido para um valor positivo, os ficheiros multimédia serão eliminados após o número de dias especificado. Se os ficheiros multimédia forem solicitados depois de terem sido eliminados, serão transferidos novamente, se o conteúdo de origem ainda estiver disponível. Devido a restrições sobre a frequência com que os cartões de pré-visualização de links pesquisam sites de terceiros, recomenda-se que este valor seja definido para, pelo menos, 14 dias, ou os cartões de pré-visualização de links não serão atualizados a pedido antes desse período.
+        media_cache_retention_period: Os ficheiros multimédia de publicações feitas por utilizadores remotos são armazenados em cache no seu servidor. Quando definido para um valor positivo, os ficheiros multimédia serão eliminados após o número de dias especificado. Se os ficheiros multimédia forem solicitados depois de terem sido eliminados, serão transferidos novamente, se o conteúdo de origem ainda estiver disponível. Devido a restrições sobre a frequência com que os cartões de pré-visualização de hiperligação pesquisam sites de terceiros, recomenda-se que este valor seja definido para, pelo menos, 14 dias, ou os cartões de pré-visualização de hiperligação não serão atualizados a pedido antes desse período.
         min_age: Os utilizadores serão convidados a confirmar a sua data de nascimento durante o processo de inscrição
         peers_api_enabled: Uma lista de nomes de domínio que este servidor encontrou no fediverso. Nenhum dado é incluído aqui sobre se você federa com um determinado servidor, apenas que o seu servidor o conhece. Este serviço é utilizado por serviços que recolhem estatísticas na federação, em termos gerais.
         profile_directory: O diretório de perfis lista todos os utilizadores que optaram por ter a sua conta a ser sugerida a outros.
@@ -231,13 +234,15 @@ pt-PT:
         password: Palavra-passe
         phrase: Palavra-chave ou frase
         setting_advanced_layout: Ativar interface web avançada
-        setting_aggregate_reblogs: Agrupar impulsos em linhas de tempo
+        setting_aggregate_reblogs: Agrupar partilhas nas cronologias
         setting_always_send_emails: Enviar sempre notificações por e-mail
         setting_auto_play_gif: Reproduzir GIF automaticamente
+        setting_boost_modal: Controlar visibilidade da partilha
         setting_default_language: Idioma de publicação
         setting_default_privacy: Visibilidade da publicação
         setting_default_quote_policy: Quem pode citar
         setting_default_sensitive: Marcar sempre os multimédia como sensíveis
+        setting_delete_modal: Avisar-me antes de eliminar uma publicação
         setting_disable_hover_cards: Desativar visualização de perfil ao passar o cursor
         setting_disable_swiping: Desativar os movimentos de deslize
         setting_display_media: Visualização de multimédia
@@ -247,6 +252,8 @@ pt-PT:
         setting_emoji_style: Estilo de emojis
         setting_expand_spoilers: Expandir sempre as publicações marcadas com avisos de conteúdo
         setting_hide_network: Esconder a tua rede
+        setting_missing_alt_text_modal: Avisar-me antes de publicar media sem texto alternativo
+        setting_quick_boosting: Ativar partilha rápida
         setting_reduce_motion: Reduzir movimento em animações
         setting_system_font_ui: Usar o tipo de letra padrão do sistema
         setting_system_scrollbars_ui: Utilizar a barra de deslocação predefinida do sistema
@@ -280,12 +287,16 @@ pt-PT:
         content_cache_retention_period: Período de retenção de conteúdos remotos
         custom_css: CSS personalizado
         favicon: Ícone de favoritos
+        local_live_feed_access: Acesso a cronologias com publicações locais em destaque
+        local_topic_feed_access: Acesso a cronologias de etiquetas e hiperligações de publicações locais em destaque
         mascot: Mascote personalizada (legado)
         media_cache_retention_period: Período de retenção de ficheiros multimédia em cache
         min_age: Idade mínima requerida
         peers_api_enabled: Publicar lista de servidores descobertos na API
         profile_directory: Ativar o diretório de perfis
         registrations_mode: Quem se pode inscrever
+        remote_live_feed_access: Acesso a cronologias com publicações remotas em destaque
+        remote_topic_feed_access: Acesso a cronologias de etiquetas e hiperligações de publicações remotas em destaque
         require_invite_text: Requerer uma razão para entrar
         show_domain_blocks: Mostrar domínios bloqueados
         show_domain_blocks_rationale: Mostrar porque os domínios foram bloqueados
@@ -326,7 +337,7 @@ pt-PT:
         mention: Alguém o mencionou
         pending_account: Uma nova conta aguarda aprovação
         quote: Alguém o citou
-        reblog: Alguém impulsionou uma publicação sua
+        reblog: Alguém partilhou uma publicação sua
         report: Uma nova denúncia foi submetida
         software_updates:
           all: Notificar todas as atualizações

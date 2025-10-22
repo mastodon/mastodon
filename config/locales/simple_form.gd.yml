@@ -54,8 +54,10 @@ gd:
         password: Cleachd co-dhiù 8 caractaran
         phrase: Thèid a mhaidseadh gun aire air litrichean mòra ’s beaga no air rabhadh susbainte puist
         scopes: Na APIan a dh’fhaodas an aplacaid inntrigeadh. Ma thaghas tu sgòp air ìre as àirde, cha leig thu leas sgòpaichean fa leth a thaghadh.
+        setting_advanced_layout: Seall Mastodon ’na ioma-cholbh ach am faic thu an loidhne-ama, na brathan agus treas colbh a thaghas tu fhèin. Cha mholamaid seo air sgrìnichean beaga.
         setting_aggregate_reblogs: Na seall brosnachaidhean ùra do phostaichean a chaidh a bhrosnachadh o chionn goirid (cha doir seo buaidh ach air brosnachaidhean ùra o seo a-mach)
         setting_always_send_emails: Mar as àbhaist, cha dèid brathan puist-d a chur nuair a a bhios tu ri Mastodon gu cunbhalach
+        setting_boost_modal: Ma tha seo an comas, thèid còmhradh dearbhaidh a shealltainn far an urrainn dhut faicsinneachd a’ phuist agad atharrachadh nuair a bhios tu ri brosnachadh.
         setting_default_quote_policy_private: Chan urrainn do chàch postaichean dhan luchd-leantainn a-mhàin a chaidh a sgrìobhadh le Mastodon a luaidh.
         setting_default_quote_policy_unlisted: Nuair a luaidheas daoine thu, thèid am post aca-san fhalach o loidhnichean-ama nan treandaichean.
         setting_default_sensitive: Thèid meadhanan frionasach fhalach a ghnàth is gabhaidh an nochdadh le briogadh orra
@@ -63,6 +65,7 @@ gd:
         setting_display_media_hide_all: Falaich na meadhanan an-còmhnaidh
         setting_display_media_show_all: Seall na meadhanan an-còmhnaidh
         setting_emoji_style: An dòigh air an dèid emojis a shealltainn. Feuchaidh “Fèin-obrachail” ris na h-emojis tùsail a chleachdadh ach thèid Twemoji a chleachdadh ’nan àite air seann-bhrabhsairean.
+        setting_quick_boosting_html: Ma tha seo an comas, ma nì thu briogadh air ìomhaigheag %{boost_icon} a’ bhrosnachaidh, thèid a bhriosnachadh sa bhad seach a bhith a’ fosgladh clàr-taice teàrnach a’ bhrosnachaidh/luaidh. Thèid gnìomh an luaidh a ghluasad gu clàr-taice nan %{options_icon} (roghainnean).
         setting_system_scrollbars_ui: Chan obraich seo ach air brabhsairean desktop stèidhichte air Safari ’s Chrome
         setting_use_blurhash: Tha caiseadan stèidhichte air dathan nan nithean lèirsinneach a chaidh fhalach ach chan fhaicear am mion-fhiosrachadh
         setting_use_pending_items: Falaich ùrachaidhean na loidhne-ama air cùlaibh briogaidh seach a bhith a’ sgroladh nam postaichean gu fèin-obrachail
@@ -165,6 +168,7 @@ gd:
       username_block:
         allow_with_approval: An àite bacadh clàraidh gu tur, bidh clàraidhean a mhaidsicheas feumach air d’ aonta
         comparison: Thoir an aire air an Scunthorpe Problem nuair a bhacas tu maidsichean pàirteach
+        username: Bidh am maidseadh coma mu litrichean mòra ’s beaga agus co-ghlifichean cumanta a leithid “4” an àite “a” no “3” an àite “e”
       webhook:
         events: Tagh na tachartasan a thèid a chur
         template: Cruthaich an JSON payload agad fhèin le eadar-phòlachadh chaochladairean. Fàg seo bàn airson JSON bunaiteach fhaighinn.
@@ -235,10 +239,12 @@ gd:
         setting_aggregate_reblogs: Buidhnich na brosnachaidhean air an loidhne-ama
         setting_always_send_emails: Cuir brathan puist-d an-còmhnaidh
         setting_auto_play_gif: Cluich GIFs beòthaichte gu fèin-obrachail
+        setting_boost_modal: Smachd air faicsinneachd nam brosnachaidhean
         setting_default_language: Cànan postaidh
         setting_default_privacy: Faicsinneachd nam post
         setting_default_quote_policy: Cò dh’fhaodas luaidh
         setting_default_sensitive: Cuir comharra ri meadhanan an-còmhnaidh gu bheil iad frionasach
+        setting_delete_modal: Thoir rabhadh dhomh mus dèid post a sguabadh às
         setting_disable_hover_cards: Na ro-sheall pròifil nuair a dh’fhanas mi os a cionn
         setting_disable_swiping: Cuir gluasadan grad-shlaighdidh à comas
         setting_display_media: Sealltainn nam meadhanan
@@ -248,6 +254,8 @@ gd:
         setting_emoji_style: Stoidhle nan Emojis
         setting_expand_spoilers: Leudaich postaichean ris a bheil rabhadh susbainte an-còmhnaidh
         setting_hide_network: Falaich an graf sòisealta agad
+        setting_missing_alt_text_modal: Thoir rabhadh dhomh mus postaich mi meadhan às aonais roghainn teacsa
+        setting_quick_boosting: Cuir am brosnachadh luath an comas
         setting_reduce_motion: Ìslich an gluasad sna beòthachaidhean
         setting_system_font_ui: Cleachd cruth-clò bunaiteach an t-siostaim
         setting_system_scrollbars_ui: Seall bàr-sgrolaidh bunaiteach an t-siostaim
@@ -281,12 +289,16 @@ gd:
         content_cache_retention_period: Ùine glèidhidh aig susbaint chèin
         custom_css: CSS gnàthaichte
         favicon: Favicon
+        local_live_feed_access: Inntrigeadh dhan t-saoghal bheò sa bheil postaichean ionadail
+        local_topic_feed_access: Inntrigeadh dha loidhnichean-ama nan tagaichean hais is ceanglaichean sa bheil postaichean ionadail
         mascot: Suaichnean gnàthaichte (dìleabach)
         media_cache_retention_period: Ùine glèidhidh aig tasgadan nam meadhanan
         min_age: Riatanas aoise as lugha
         peers_api_enabled: Foillsich liosta nam frithealaichean a chaidh a rùrachadh san API
         profile_directory: Cuir eòlaire nam pròifil an comas
         registrations_mode: Cò dh’fhaodas clàradh
+        remote_live_feed_access: Inntrigeadh dhan t-saoghal bheò sa bheil postaichean cèine
+        remote_topic_feed_access: Inntrigeadh dha loidhnichean-ama nan tagaichean hais is ceanglaichean sa bheil postaichean cèine
         require_invite_text: Iarr adhbhar clàraidh
         show_domain_blocks: Seall bacaidhean àrainne
         show_domain_blocks_rationale: Seall carson a chaidh àrainnean a bacadh
