@@ -20,6 +20,7 @@ class PublicFeed
   # @return [Array<Status>]
   def get(limit, max_id = nil, since_id = nil, min_id = nil)
     return [] if (local_only? && !user_has_access_to_feed?(Setting.local_live_feed_access)) || (remote_only? && !user_has_access_to_feed?(Setting.remote_live_feed_access))
+    return [] unless user_has_access_to_feed?(Setting.local_live_feed_access) || user_has_access_to_feed?(Setting.remote_live_feed_access)
 
     scope = public_scope
 
