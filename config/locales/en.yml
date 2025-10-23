@@ -796,6 +796,8 @@ en:
         view_dashboard_description: Allows users to access the dashboard and various metrics
         view_devops: DevOps
         view_devops_description: Allows users to access Sidekiq and pgHero dashboards
+        view_feeds: View live and topic feeds
+        view_feeds_description: Allows users to access the live and topic feeds regardless of server settings
       title: Roles
     rules:
       add_new: Add rule
@@ -851,6 +853,7 @@ en:
       feed_access:
         modes:
           authenticated: Authenticated users only
+          disabled: Require specific user role
           public: Everyone
       registrations:
         moderation_recommandation: Please make sure you have an adequate and reactive moderation team before you open registrations to everyone!
