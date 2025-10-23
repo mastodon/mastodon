@@ -504,12 +504,14 @@ class Status extends ImmutablePureComponent {
   componentDidUpdate (prevProps) {
     const { status, ancestorsIds, descendantsIds } = this.props;
 
-    if (status && (ancestorsIds.length > prevProps.ancestorsIds.length || prevProps.status?.get('id') !== status.get('id'))) {
+    const isSameStatus = status && (prevProps.status?.get('id') === status.get('id'));
+
+    if (status && (ancestorsIds.length > prevProps.ancestorsIds.length || !isSameStatus)) {
       this._scrollStatusIntoView();
     }
 
     // Only highlight replies after the initial load
-    if (prevProps.descendantsIds.length) {
+    if (prevProps.descendantsIds.length && isSameStatus) {
       const newRepliesIds = difference(descendantsIds, prevProps.descendantsIds);
       
       if (newRepliesIds.length) {
