@@ -653,9 +653,7 @@ code {
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: var(--clr-bg-secondary)
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>")
-      no-repeat right 8px center / auto 14px;
+    background: var(--clr-bg-secondary);
     border: 1px solid var(--clr-border-primary);
     border-radius: 4px;
     padding-inline-start: 10px;
@@ -717,6 +715,29 @@ code {
 
   .status-card {
     contain: unset;
+  }
+}
+
+/* Double-chevron icon for custom select components */
+.select-wrapper,
+.select .label_input__wrapper {
+  width: 100%;
+
+  &::after {
+    --icon-size: 11px;
+
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    inset-inline-end: 9px;
+    width: var(--icon-size);
+    background-color: var(--clr-text-tertiary);
+    pointer-events: none;
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='black'/></svg>");
+    mask-position: right center;
+    mask-size: var(--icon-size);
+    mask-repeat: no-repeat;
   }
 }
 
