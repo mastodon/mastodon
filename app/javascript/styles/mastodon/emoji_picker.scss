@@ -18,7 +18,8 @@
 
 .emoji-mart-bar {
   &:first-child {
-    background: var(--clr-border-primary);
+    background: var(--clr-bg-tertiary);
+    border-bottom: 1px solid var(--clr-border-primary);
   }
 }
 
@@ -168,7 +169,7 @@
     inset-inline-start: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--clr-border-primary);
+    background-color: var(--clr-bg-accent-subtle);
     border-radius: 100%;
   }
 }
