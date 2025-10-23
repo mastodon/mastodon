@@ -30,7 +30,7 @@ class TagSearchService < BaseService
     definition = definition.filter(elastic_search_filter) if @options[:exclude_unreviewed]
 
     ensure_exact_match(definition.limit(@limit).offset(@offset).objects.compact)
-  rescue Faraday::ConnectionFailed, Parslet::ParseFailed
+  rescue Faraday::ConnectionFailed, Parslet::ParseFailed, Errno::ENETUNREACH
     nil
   end
 
