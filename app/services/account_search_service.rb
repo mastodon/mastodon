@@ -6,7 +6,7 @@ class AccountSearchService < BaseService
   MENTION_ONLY_RE = /\A#{Account::MENTION_RE}\z/i
 
   # Min. number of characters to look for non-exact matches
-  MIN_QUERY_LENGTH = 5
+  MIN_QUERY_LENGTH = 3
 
   class QueryBuilder
     def initialize(query, account, options = {})
