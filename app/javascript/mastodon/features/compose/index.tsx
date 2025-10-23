@@ -166,7 +166,7 @@ const Compose: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           <div className='drawer__inner'>
             <ComposeFormContainer />
 
-            <div className='drawer__inner__mastodon'>
+            <div className='drawer__inner__mastodon with-zig-zag-decoration'>
               <img alt='' draggable='false' src={mascot ?? elephantUIPlane} />
             </div>
           </div>
