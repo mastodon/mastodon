@@ -3,35 +3,23 @@
 require 'rails_helper'
 
 RSpec.describe PollExpirationValidator do
-  describe '#validate' do
-    before do
-      validator.validate(poll)
-    end
+  subject { Fabricate.build :poll }
 
-    let(:validator) { described_class.new }
-    let(:poll) { instance_double(Poll, options: options, expires_at: expires_at, errors: errors) }
-    let(:errors) { instance_double(ActiveModel::Errors, add: nil) }
-    let(:options) { %w(foo bar) }
-    let(:expires_at) { 1.day.from_now }
+  context 'when poll expires in far future' do
+    let(:far_future) { 6.months.from_now }
 
-    it 'has no errors' do
-      expect(errors).to_not have_received(:add)
-    end
+    it { is_expected.to_not allow_value(far_future).for(:expires_at).with_message(I18n.t('polls.errors.duration_too_long')) }
+  end
 
-    context 'when the poll expires in 5 min from now' do
-      let(:expires_at) { 5.minutes.from_now }
+  context 'when poll expires in far past' do
+    let(:past_date) { 6.days.ago }
 
-      it 'has no errors' do
-        expect(errors).to_not have_received(:add)
-      end
-    end
+    it { is_expected.to_not allow_value(past_date).for(:expires_at).with_message(I18n.t('polls.errors.duration_too_short')) }
+  end
 
-    context 'when the poll expires in the past' do
-      let(:expires_at) { 5.minutes.ago }
+  context 'when poll expires in medium future' do
+    let(:allowed_future) { 10.minutes.from_now }
 
-      it 'has errors' do
-        expect(errors).to have_received(:add)
-      end
-    end
+    it { is_expected.to allow_value(allowed_future).for(:expires_at) }
   end
 end
