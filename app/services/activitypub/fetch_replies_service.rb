@@ -8,9 +8,13 @@ class ActivityPub::FetchRepliesService < BaseService
 
   def call(reference_uri, collection_or_uri, max_pages: 1, allow_synchronous_requests: true, batch_id: nil, request_id: nil)
     @reference_uri = reference_uri
-    @allow_synchronous_requests = allow_synchronous_requests
+    return if !allow_synchronous_requests && !collection_or_uri.is_a?(Hash)
 
-    @items, n_pages = collection_items(collection_or_uri, max_pages: max_pages)
+    # if given a prefetched collection while forbidding synchronous requests,
+    # process it and return without fetching additional pages
+    max_pages = 1 if !allow_synchronous_requests && collection_or_uri.is_a?(Hash)
+
+    @items, n_pages = collection_items(collection_or_uri, max_pages: max_pages, max_items: MAX_REPLIES, reference_uri: @reference_uri)
     return if @items.nil?
 
     @items = filter_replies(@items)
@@ -25,45 +29,6 @@ class ActivityPub::FetchRepliesService < BaseService
   end
 
   private
-
-  def collection_items(collection_or_uri, max_pages: 1)
-    collection = fetch_collection(collection_or_uri)
-    return unless collection.is_a?(Hash)
-
-    collection = fetch_collection(collection['first']) if collection['first'].present?
-    return unless collection.is_a?(Hash)
-
-    items = []
-    n_pages = 1
-    while collection.is_a?(Hash)
-      items.concat(as_array(collection_page_items(collection)))
-
-      break if items.size >= MAX_REPLIES
-      break if n_pages >= max_pages
-
-      collection = collection['next'].present? ? fetch_collection(collection['next']) : nil
-      n_pages += 1
-    end
-
-    [items, n_pages]
-  end
-
-  def collection_page_items(collection)
-    case collection['type']
-    when 'Collection', 'CollectionPage'
-      collection['items']
-    when 'OrderedCollection', 'OrderedCollectionPage'
-      collection['orderedItems']
-    end
-  end
-
-  def fetch_collection(collection_or_uri)
-    return collection_or_uri if collection_or_uri.is_a?(Hash)
-    return unless @allow_synchronous_requests
-    return if non_matching_uri_hosts?(@reference_uri, collection_or_uri)
-
-    fetch_resource_without_id_validation(collection_or_uri, nil, raise_on_error: :temporary)
-  end
 
   def filter_replies(items)
     # Only fetch replies to the same server as the original status to avoid
