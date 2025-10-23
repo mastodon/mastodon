@@ -32,7 +32,7 @@ RSpec.describe Api::ErrorHandling do
       Mastodon::ValidationError => 422,
       OpenSSL::SSL::SSLError => 503,
       Seahorse::Client::NetworkingError => 503,
-      Stoplight::Error::RedLight => 503,
+      Stoplight::Error::RedLight.new(:name, cool_off_time: 1, retry_after: 1) => 503,
     }.each do |error, code|
       it "Handles error class of #{error}" do
         allow(FakeService)
