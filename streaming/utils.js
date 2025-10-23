@@ -13,11 +13,15 @@ const FALSE_VALUES = [
 ];
 
 /**
- * @param {any} value
+ * @typedef {typeof FALSE_VALUES[number]} FalseValue
+ */
+
+/**
+ * @param {unknown} value
  * @returns {boolean}
  */
 export function isTruthy(value) {
-  return value && !FALSE_VALUES.includes(value);
+  return !!value && !FALSE_VALUES.includes(/** @type {FalseValue} */ (value));
 }
 
 /**
