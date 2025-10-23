@@ -5223,8 +5223,7 @@ a.status-card {
   }
 }
 
-.empty-column-indicator,
-.follow_requests-unlocked_explanation {
+.empty-column-indicator {
   color: $dark-text-color;
   text-align: center;
   padding: 20px;
@@ -5263,10 +5262,37 @@ a.status-card {
 }
 
 .follow_requests-unlocked_explanation {
-  background: var(--surface-background-color);
-  border-bottom: 1px solid var(--background-border-color);
-  contain: initial;
-  flex-grow: 0;
+  margin: 10px;
+  color: $inverted-text-color;
+  background: $ui-primary-color;
+  box-shadow: 0 2px 6px color.change($base-shadow-color, $alpha: 0.3);
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 400;
+
+  strong {
+    color: $inverted-text-color;
+    font-weight: 500;
+
+    @each $lang in $cjk-langs {
+      &:lang(#{$lang}) {
+        font-weight: 700;
+      }
+    }
+  }
+
+  a {
+    color: $lighter-text-color;
+    font-weight: 500;
+    text-decoration: underline;
+
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: none;
+    }
+  }
 }
 
 .error-column {
