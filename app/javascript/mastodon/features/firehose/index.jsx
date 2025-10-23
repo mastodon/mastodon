@@ -153,7 +153,6 @@ const Firehose = ({ feedType, multiColumn }) => {
   );
 
   const canViewSelectedFeed = canViewFeed(signedIn, permissions, feedType === 'community' ? localLiveFeedAccess : remoteLiveFeedAccess);
-  console.log('debug', feedType === 'community' ? localLiveFeedAccess : remoteLiveFeedAccess, canViewSelectedFeed);
 
   const disabledTimelineMessage = (
     <FormattedMessage
