@@ -73,6 +73,46 @@ RSpec.describe Mastodon::CLI::Media do
           expect(media_attachment.reload.thumbnail).to be_blank
         end
       end
+
+      context 'with --keep-interacted' do
+        let(:options) { { keep_interacted: true } }
+
+        let!(:local_account) { Fabricate(:account, username: 'alice') }
+        let!(:remote_account) { Fabricate(:account, username: 'bob', domain: 'example.com') }
+
+        let!(:favourited_status) { Fabricate(:status, account: remote_account) }
+        let!(:favourited_media) { Fabricate(:media_attachment, created_at: 1.month.ago, remote_url: 'https://example.com/image.jpg', status: favourited_status) }
+
+        let!(:bookmarked_status) { Fabricate(:status, account: remote_account) }
+        let!(:bookmarked_media) { Fabricate(:media_attachment, created_at: 1.month.ago, remote_url: 'https://example.com/image.jpg', status: bookmarked_status) }
+
+        let!(:replied_to_status) { Fabricate(:status, account: remote_account) }
+        let!(:replied_to_media) { Fabricate(:media_attachment, created_at: 1.month.ago, remote_url: 'https://example.com/image.jpg', status: replied_to_status) }
+
+        let!(:reblogged_status) { Fabricate(:status, account: remote_account) }
+        let!(:reblogged_media) { Fabricate(:media_attachment, created_at: 1.month.ago, remote_url: 'https://example.com/image.jpg', status: reblogged_status) }
+
+        let!(:non_interacted_status) { Fabricate(:status, account: remote_account) }
+        let!(:non_interacted_media) { Fabricate(:media_attachment, created_at: 1.month.ago, remote_url: 'https://example.com/image.jpg', status: non_interacted_status) }
+
+        before do
+          Fabricate(:favourite, account: local_account, status: favourited_status)
+          Fabricate(:bookmark, account: local_account, status: bookmarked_status)
+          Fabricate(:status, account: local_account, in_reply_to_id: replied_to_status.id)
+          Fabricate(:status, account: local_account, reblog: reblogged_status)
+        end
+
+        it 'keeps media associated with statuses that have been favourited, bookmarked, replied to, or reblogged by a local account' do
+          expect { subject }
+            .to output_results('Removed 1')
+
+          expect(favourited_media.reload.file).to be_present
+          expect(bookmarked_media.reload.file).to be_present
+          expect(replied_to_media.reload.file).to be_present
+          expect(reblogged_media.reload.file).to be_present
+          expect(non_interacted_media.reload.file).to be_blank
+        end
+      end
     end
   end
 
