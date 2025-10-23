@@ -14,7 +14,7 @@
     &:active,
     &:focus {
       .card__bar {
-        background: $ui-base-color;
+        background: var(--clr-bg-accent-subtle);
       }
     }
   }
@@ -22,7 +22,7 @@
   &__img {
     height: 130px;
     position: relative;
-    background: $ui-base-color;
+    background: var(--clr-bg-secondary);
     border: 1px solid var(--clr-border-primary);
     border-bottom: none;
 
@@ -61,7 +61,7 @@
         display: block;
         margin: 0;
         border-radius: 4px;
-        background: darken($ui-base-color, 8%);
+        background: var(--clr-bg-secondary);
         object-fit: cover;
       }
     }
@@ -257,14 +257,14 @@
   padding: 0;
   margin: 15px -15px -15px;
   border: 0 none;
-  border-top: 1px solid lighten($ui-base-color, 12%);
-  border-bottom: 1px solid lighten($ui-base-color, 12%);
+  border-top: 1px solid var(--clr-border-primary);
+  border-bottom: 1px solid var(--clr-border-primary);
   font-size: 14px;
   line-height: 20px;
 
   dl {
     display: flex;
-    border-bottom: 1px solid lighten($ui-base-color, 12%);
+    border-bottom: 1px solid var(--clr-border-primary);
   }
 
   dt,
@@ -356,7 +356,7 @@
 }
 
 .batch-table__row--muted {
-  color: lighten($ui-base-color, 26%);
+  color: var(--clr-text-tertiary);
 }
 
 .batch-table__row--muted .pending-account__header,
@@ -365,7 +365,7 @@
   &,
   a,
   strong {
-    color: lighten($ui-base-color, 26%);
+    color: var(--clr-text-tertiary);
   }
 }
 
@@ -377,7 +377,7 @@
   tbody td.accounts-table__extra,
   &__count,
   &__count small {
-    color: lighten($ui-base-color, 26%);
+    color: var(--clr-text-tertiary);
   }
 }
 

@@ -21,11 +21,3 @@ $lighten-multiplier: 1 !default;
     $space: hsl
   );
 }
-
-@function hex-color($color) {
-  @if meta.type-of($color) == 'color' {
-    $color: string.slice(color.ie-hex-str($color), 4);
-  }
-
-  @return '%23' + string.unquote($color);
-}
