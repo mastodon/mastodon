@@ -18,6 +18,10 @@ class BulkImportService < BaseService
       import_bookmarks!
     when :lists
       import_lists!
+    when :filters
+      import_filters!
+    else
+      raise NotImplementedError, "Unknown import type: #{@import.type}"
     end
 
     @import.update!(state: :finished, finished_at: Time.now.utc) if @import.processed_items == @import.total_items
@@ -177,6 +181,16 @@ class BulkImportService < BaseService
     included_lists.each do |title|
       @account.owned_lists.find_or_create_by!(title: title)
     end
+
+    Import::RowWorker.push_bulk(rows) do |row|
+      [row.id]
+    end
+  end
+
+  def import_filters!
+    rows = @import.rows.to_a
+
+    @account.custom_filters.destroy_all if @import.overwrite?
 
     Import::RowWorker.push_bulk(rows) do |row|
       [row.id]
