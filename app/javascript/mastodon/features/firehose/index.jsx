@@ -13,7 +13,8 @@ import { changeSetting } from 'mastodon/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'mastodon/actions/streaming';
 import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
-import { localLiveFeedAccess, remoteLiveFeedAccess, me, domain } from 'mastodon/initial_state';
+import { localLiveFeedAccess, remoteLiveFeedAccess, domain } from 'mastodon/initial_state';
+import { canViewFeed } from 'mastodon/permissions';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import Column from '../../components/column';
@@ -52,7 +53,7 @@ const ColumnSettings = () => {
 const Firehose = ({ feedType, multiColumn }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
-  const { signedIn } = useIdentity();
+  const { signedIn, permissions } = useIdentity();
   const columnRef = useRef(null);
 
   const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
@@ -151,6 +152,15 @@ const Firehose = ({ feedType, multiColumn }) => {
     />
   );
 
+  const canViewSelectedFeed = canViewFeed(signedIn, permissions, feedType === 'community' ? localLiveFeedAccess : remoteLiveFeedAccess);
+
+  const disabledTimelineMessage = (
+    <FormattedMessage
+      id='empty_column.disabled_feed'
+      defaultMessage='This feed has been disabled by your server administrators.'
+    />
+  );
+
   return (
     <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
@@ -165,7 +175,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         <ColumnSettings />
       </ColumnHeader>
 
-      {(signedIn || (localLiveFeedAccess === 'public' && remoteLiveFeedAccess === 'public')) && (
+      {(canViewFeed(signedIn, permissions, localLiveFeedAccess) && canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) && (
         <div className='account__section-headline'>
           <NavLink exact to='/public/local'>
             <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
@@ -187,7 +197,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         onLoadMore={handleLoadMore}
         trackScroll
         scrollKey='firehose'
-        emptyMessage={emptyMessage}
+        emptyMessage={canViewSelectedFeed ? emptyMessage : disabledTimelineMessage}
         bindToDocument={!multiColumn}
       />
 
