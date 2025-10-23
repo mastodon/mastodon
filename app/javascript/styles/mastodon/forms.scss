@@ -944,9 +944,9 @@ code {
   }
 
   .permissions-list {
-    border: 1px solid $ui-base-color;
+    border: 1px solid var(--clr-border-primary);
     border-radius: 4px;
-    background: darken($ui-base-color, 4%);
+    background: var(--clr-bg-secondary);
     margin-bottom: 30px;
   }
 
@@ -1229,7 +1229,6 @@ code {
   align-items: center;
   padding-bottom: 30px;
   margin-bottom: 30px;
-  color: $white;
 
   li {
     flex: 0 0 auto;
@@ -1238,7 +1237,7 @@ code {
 
   .separator {
     height: 2px;
-    background: $ui-base-lighter-color;
+    background: var(--clr-border-primary);
     flex: 1 1 auto;
 
     &.completed {
@@ -1252,7 +1251,7 @@ code {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 2px solid $ui-base-lighter-color;
+    border: 2px solid var(--clr-border-primary);
     flex: 0 0 auto;
     display: flex;
     align-items: center;
