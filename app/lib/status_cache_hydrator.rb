@@ -61,6 +61,7 @@ class StatusCacheHydrator
       payload[:filtered]   = payload[:reblog][:filtered]
       payload[:favourited] = payload[:reblog][:favourited]
       payload[:reblogged]  = payload[:reblog][:reblogged]
+      payload[:quote_approval] = payload[:reblog][:quote_approval]
     end
   end
 
