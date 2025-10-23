@@ -215,7 +215,7 @@ code {
     code {
       border-radius: 3px;
       padding: 0.2em 0.4em;
-      background: darken($ui-base-color, 12%);
+      background: var(--clr-bg-secondary);
     }
 
     li {
@@ -821,7 +821,7 @@ code {
     border: 0;
     padding: 10px;
     font-family: $font-monospace, monospace;
-    background: $ui-base-color;
+    background: var(--clr-bg-secondary);
     color: var(--clr-text-primary);
     font-size: 14px;
     margin: 0;
@@ -837,7 +837,7 @@ code {
     }
 
     &:focus {
-      background: lighten($ui-base-color, 4%);
+      background: var(--clr-bg-accent-subtle);
     }
   }
 
@@ -1112,8 +1112,9 @@ code {
 }
 
 .input-copy {
-  background: darken($ui-base-color, 10%);
-  border: 1px solid darken($ui-base-color, 14%);
+  color: var(--clr-text-primary);
+  background: var(--clr-bg-secondary);
+  border: 1px solid var(--clr-border-primary);
   border-radius: 4px;
   display: flex;
   align-items: center;
