@@ -832,7 +832,7 @@ body > [data-popper-placement] {
       &__sep {
         width: 1px;
         height: 22px;
-        background: lighten($ui-base-color, 8%);
+        background: var(--clr-border-primary);
         flex: 0 0 auto;
       }
     }
@@ -1135,7 +1135,7 @@ body > [data-popper-placement] {
       inset-inline-start: 50%;
       top: 4px;
       transform: translateX(-50%);
-      background: lighten($ui-base-color, 8%);
+      background: var(--clr-border-primary);
       width: 2px;
       height: calc(100% + 32px - 8px); // Account for gap to next element
     }
@@ -1173,11 +1173,11 @@ body > [data-popper-placement] {
 
 .edit-indicator {
   border-radius: 4px 4px 0 0;
-  background: lighten($ui-base-color, 4%);
+  background: var(--clr-bg-tertiary);
   padding: 12px;
   overflow-y: auto;
   flex: 0 0 auto;
-  border-bottom: 0.5px solid lighten($ui-base-color, 8%);
+  border-bottom: 1px solid var(--clr-border-primary);
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -1464,8 +1464,10 @@ body > [data-popper-placement] {
   }
 
   &__line {
+    --thread-line-color: var(--clr-border-primary);
+
     height: 16px - 4px;
-    border-inline-start: 2px solid lighten($ui-base-color, 8%);
+    border-inline-start: 2px solid var(--thread-line-color);
     width: 0;
     position: absolute;
     top: 0;
@@ -1482,7 +1484,7 @@ body > [data-popper-placement] {
         top: 16px - 4px;
         height: 46px + 4px + 4px;
         width: 2px;
-        background: $ui-base-color;
+        background: var(--thread-line-color);
         inset-inline-start: -2px;
       }
     }
@@ -1536,10 +1538,6 @@ body > [data-popper-placement] {
 }
 
 .status__display-name {
-  color: var(--clr-text-secondary);
-}
-
-.status__action-bar__button:not(.active) {
   color: var(--clr-text-secondary);
 }
 
@@ -4249,7 +4247,7 @@ a.status-card {
   flex: 0 0 auto;
   width: 120px;
   aspect-ratio: 1;
-  background: lighten($ui-base-color, 8%);
+  background: var(--clr-bg-secondary);
   position: relative;
 
   & > .icon {
@@ -4750,18 +4748,18 @@ a.status-card {
 }
 
 .icon-button .loading-indicator .circular-progress {
-  color: lighten($ui-base-color, 26%);
+  color: var(--clr-text-tertiary);
   width: 12px;
   height: 12px;
   margin: 6px;
 }
 
 .load-more .loading-indicator .circular-progress {
-  color: lighten($ui-base-color, 26%);
+  color: var(--clr-text-tertiary);
 }
 
 .circular-progress {
-  color: lighten($ui-base-color, 26%);
+  color: var(--clr-text-tertiary);
   animation: 1.4s linear 0s infinite normal none running simple-rotate;
 
   circle {
@@ -4913,10 +4911,6 @@ a.status-card {
       }
     }
   }
-}
-
-.modal-container--preloader {
-  background: lighten($ui-base-color, 8%);
 }
 
 .account--panel {
@@ -6976,8 +6970,8 @@ a.status-card {
 }
 
 .info-tooltip {
-  color: $white;
-  background: color.change($black, $alpha: 0.65);
+  color: var(--clr-text-on-media);
+  background: var(--clr-bg-media);
   backdrop-filter: $backdrop-blur-filter;
   border-radius: 4px;
   box-shadow: var(--dropdown-shadow);
@@ -6987,18 +6981,12 @@ a.status-card {
   max-width: 22em;
   max-height: 30em;
   overflow-y: auto;
+  z-index: 10;
 
   &--solid {
-    color: var(--nested-card-text);
-    background:
-      /* This is a bit of a silly hack for layering two background colours
-       * since --nested-card-background is too transparent for a tooltip */
-      linear-gradient(
-        var(--nested-card-background),
-        var(--nested-card-background)
-      ),
-      linear-gradient(var(--background-color), var(--background-color));
-    border: var(--nested-card-border);
+    color: var(--clr-text-primary);
+    background: var(--clr-bg-elevated);
+    border: 1px solid var(--clr-border-primary);
   }
 
   h4 {
@@ -8483,7 +8471,7 @@ noscript {
       }
 
       &:focus {
-        background: $ui-base-color;
+        background: var(--clr-bg-accent-subtle);
       }
     }
   }
@@ -8935,7 +8923,6 @@ noscript {
 .status__wrapper,
 .conversation {
   position: relative;
-  background-color: var(--clr-bg-primary);
 
   // When scrolling these elements into view, take into account
   // the column header height
@@ -9307,7 +9294,7 @@ noscript {
     margin-bottom: 20px;
     aspect-ratio: 1.9;
     border: 0;
-    background: $ui-base-color;
+    background: var(--clr-bg-tertiary);
     object-fit: cover;
   }
 
@@ -9698,14 +9685,14 @@ noscript {
 
   code {
     font-size: 0.875em;
-    background: darken($ui-base-color, 8%);
+    background: var(--clr-bg-secondary);
     border-radius: 4px;
     padding: 0.2em 0.3em;
   }
 
   hr {
     border: 0;
-    border-top: 1px solid lighten($ui-base-color, 4%);
+    border-top: 1px solid var(--clr-border-primary);
     margin-top: 3em;
     margin-bottom: 3em;
   }
@@ -9914,7 +9901,7 @@ noscript {
       width: 100%;
       height: auto;
       aspect-ratio: 1.9;
-      background: lighten($ui-base-color, 4%);
+      background: var(--clr-bg-tertiary);
       border-radius: 8px;
       margin-bottom: 30px;
     }
@@ -10096,7 +10083,7 @@ noscript {
       color: var(--clr-text-secondary);
 
       &:nth-child(2n) {
-        background: darken($ui-base-color, 4%);
+        background: var(--clr-bg-secondary);
       }
 
       &:last-child {
@@ -10457,7 +10444,7 @@ noscript {
           flex-shrink: 0;
           align-self: flex-end;
           border: 1px solid var(--clr-border-primary);
-          background-color: $ui-base-color;
+          background-color: var(--clr-bg-tertiary);
         }
 
         &__text-stack {
@@ -11190,11 +11177,7 @@ noscript {
 .content-warning {
   display: block;
   box-sizing: border-box;
-  color: color-mix(
-    in oklab,
-    var(--clr-text-primary),
-    var(--clr-text-secondary)
-  );
+  color: var(--clr-text-primary);
   background: var(--clr-bg-accent-subtle);
   border: 1px solid var(--clr-border-on-bg-accent-subtle);
   border-radius: 8px;

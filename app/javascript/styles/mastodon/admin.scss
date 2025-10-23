@@ -47,7 +47,7 @@ $content-width: 840px;
     &__toggle {
       display: none;
       background: var(--clr-bg-primary);
-      border-bottom: 1px solid lighten($ui-base-color, 4%);
+      border-bottom: 1px solid var(--clr-border-primary);
       align-items: center;
 
       &__logo {
@@ -70,7 +70,7 @@ $content-width: 840px;
         border-radius: 4px;
 
         &:focus {
-          background: $ui-base-color;
+          background: var(--clr-bg-accent-subtle);
         }
 
         .material-close {
@@ -1946,8 +1946,8 @@ a.sparkline {
     }
 
     .status {
-      border: 1px solid lighten($ui-base-color, 4%);
-      background: $ui-base-color;
+      border: 1px solid var(--clr-border-primary);
+      background: var(--clr-bg-secondary);
       border-radius: 4px;
     }
   }
@@ -1960,7 +1960,7 @@ a.sparkline {
   line-height: 20px;
   overflow-wrap: break-word;
   font-weight: 400;
-  border: 1px solid lighten($ui-base-color, 4%);
+  border: 1px solid var(--clr-border-primary);
   color: var(--clr-text-primary);
   box-sizing: border-box;
   min-height: 100%;
@@ -1996,9 +1996,9 @@ a.sparkline {
     summary {
       display: block;
       box-sizing: border-box;
-      background: var(--nested-card-background);
-      color: var(--nested-card-text);
-      border: var(--nested-card-border);
+      color: var(--clr-text-primary);
+      background: var(--clr-bg-accent-subtle);
+      border: 1px solid var(--clr-border-on-bg-accent-subtle);
       border-radius: 8px;
       padding: 8px 13px;
       position: relative;
