@@ -3162,10 +3162,8 @@ a.account__display-name {
   padding: 1rem;
   margin: auto auto 0;
   overflow: clip;
-
-  &:empty {
-    padding: 0;
-  }
+  min-height: 86px;
+  pointer-events: none;
 
   @media (max-width: #{$mobile-menu-breakpoint - 1}) {
     // Compensate for mobile menubar
@@ -3173,6 +3171,8 @@ a.account__display-name {
   }
 
   & > * {
+    pointer-events: initial;
+
     // Make all nested alerts occupy the same space
     // rather than stack
     grid-area: 1 / 1;
