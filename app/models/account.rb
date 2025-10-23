@@ -52,7 +52,7 @@
 #  requested_review_at           :datetime
 #  indexable                     :boolean          default(FALSE), not null
 #  attribution_domains           :string           default([]), is an Array
-#  id_scheme                     :integer          default("username_ap_id")
+#  id_scheme                     :integer          default("numeric_ap_id")
 #
 
 class Account < ApplicationRecord

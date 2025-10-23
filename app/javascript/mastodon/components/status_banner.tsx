@@ -3,6 +3,8 @@ import { useCallback, useRef, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { AnimateEmojiProvider } from './emoji/context';
+
 export enum BannerVariant {
   Warning = 'warning',
   Filter = 'filter',
@@ -34,8 +36,7 @@ export const StatusBanner: React.FC<{
 
   return (
     // Element clicks are passed on to button
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-    <div
+    <AnimateEmojiProvider
       className={
         variant === BannerVariant.Warning
           ? 'content-warning'
@@ -69,6 +70,6 @@ export const StatusBanner: React.FC<{
           />
         )}
       </button>
-    </div>
+    </AnimateEmojiProvider>
   );
 };

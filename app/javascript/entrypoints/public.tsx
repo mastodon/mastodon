@@ -70,7 +70,7 @@ function loaded() {
   };
 
   document.querySelectorAll('.emojify').forEach((content) => {
-    content.innerHTML = emojify(content.innerHTML);
+    content.innerHTML = emojify(content.innerHTML, {}, true); // Force emojify as public doesn't load the new emoji system.
   });
 
   document

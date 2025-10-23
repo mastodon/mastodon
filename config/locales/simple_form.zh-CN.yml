@@ -54,8 +54,10 @@ zh-CN:
         password: 至少需要8个字符
         phrase: 匹配将忽略嘟文或内容警告里的字母大小写
         scopes: 哪些 API 被允许使用。如果你勾选了更高一级的范围，就不用单独选中子项目了。
+        setting_advanced_layout: 将Mastodon的界面显示为多列布局，允许您同时查看时间线、通知及可自主选择的第三列。屏幕尺寸较小的情况下不推荐使用。
         setting_aggregate_reblogs: 不显示最近已经被转嘟过的嘟文(只会影响新收到的转嘟)
         setting_always_send_emails: 一般情况下，如果你活跃使用 Mastodon，我们不会向你发送电子邮件通知
+        setting_boost_modal: 如果启用，转嘟前会先打开确认对话框，以便更改转嘟的可见性。
         setting_default_quote_policy_private: Mastodon上发布的仅限关注者可见的嘟文无法被他人引用。
         setting_default_quote_policy_unlisted: 当其他人引用你时，他们的嘟文也会从热门时间线上隐藏。
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
@@ -63,6 +65,7 @@ zh-CN:
         setting_display_media_hide_all: 始终隐藏媒体
         setting_display_media_show_all: 始终显示媒体
         setting_emoji_style: 如何显示Emoji表情符号。选择“自动”将尝试使用原生Emoji，但在旧浏览器中会备选使用Twemoji。
+        setting_quick_boosting_html: 如果启用，点击 %{boost_icon} 转嘟图标将立即转嘟，而非开启“转嘟/引用”的下拉式菜单。这会使引用嘟文操作的按钮移动到 %{options_icon} （选项）菜单中。
         setting_system_scrollbars_ui: 仅对基于 Safari 或 Chromium 内核的桌面端浏览器有效
         setting_use_blurhash: 渐变是基于模糊后的隐藏内容生成的
         setting_use_pending_items: 点击查看时间线更新，而非自动滚动更新动态。
@@ -105,7 +108,6 @@ zh-CN:
         status_page_url: 配置一个网址，当服务中断时，人们可以通过该网址查看服务器的状态。
         theme: 给未登录访客和新用户使用的主题。
         thumbnail: 与服务器信息一并展示的约 2:1 比例的图像。
-        timeline_preview: 未登录访客将能够浏览服务器上的最新公开嘟文。
         trendable_by_default: 跳过对热门内容的手工审核。个别项目仍可在之后从趋势中删除。
         trends: 热门页中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
         trends_as_landing_page: 向注销的用户和访问者显示热门内容，而不是对该服务器的描述，需要启用热门。
@@ -234,12 +236,12 @@ zh-CN:
         setting_aggregate_reblogs: 在时间线中合并转嘟
         setting_always_send_emails: 总是发送电子邮件通知
         setting_auto_play_gif: 自动播放 GIF 动画
-        setting_boost_modal: 在转嘟前询问我
+        setting_boost_modal: 控制转嘟可见性
         setting_default_language: 发布语言
         setting_default_privacy: 嘟文可见性
         setting_default_quote_policy: 谁可以引用
         setting_default_sensitive: 始终标记媒体为敏感内容
-        setting_delete_modal: 在删除嘟文前询问我
+        setting_delete_modal: 删除嘟文前警告我
         setting_disable_hover_cards: 禁用悬停资料预览
         setting_disable_swiping: 禁用滑动动作
         setting_display_media: 媒体显示
@@ -249,7 +251,8 @@ zh-CN:
         setting_emoji_style: 表情符号样式
         setting_expand_spoilers: 一律展开具有内容警告的嘟文
         setting_hide_network: 隐藏你的社交网络
-        setting_missing_alt_text_modal: 发布媒体时若未为其设置替代文本，则显示确认对话框
+        setting_missing_alt_text_modal: 发送没有设置替代文本的媒体内容前警告我
+        setting_quick_boosting: 启用快速转嘟
         setting_reduce_motion: 降低过渡动画效果
         setting_system_font_ui: 使用系统默认字体
         setting_system_scrollbars_ui: 使用系统默认样式的滚动条
@@ -283,12 +286,16 @@ zh-CN:
         content_cache_retention_period: 外站内容保留期
         custom_css: 自定义 CSS
         favicon: Favicon
+        local_live_feed_access: 展示本站嘟文的实时动态访问权限
+        local_topic_feed_access: 展示本站嘟文的话题标签及实时动态访问权限
         mascot: 自定义吉祥物（旧）
         media_cache_retention_period: 媒体缓存保留期
         min_age: 最低年龄要求
         peers_api_enabled: 在API中公开的已知实例的服务器的列表
         profile_directory: 启用用户目录
         registrations_mode: 谁可以注册
+        remote_live_feed_access: 展示外站嘟文的实时动态访问权限
+        remote_topic_feed_access: 展示外站嘟文的话题标签及实时动态访问权限
         require_invite_text: 注册时需要提供理由
         show_domain_blocks: 显示站点屏蔽列表
         show_domain_blocks_rationale: 显示站点屏蔽原因
@@ -301,7 +308,6 @@ zh-CN:
         status_page_url: 状态页网址
         theme: 默认主题
         thumbnail: 本站缩略图
-        timeline_preview: 允许未登录用户访问公共时间线
         trendable_by_default: 允许在未审核的情况下将话题置为热门
         trends: 启用热门
         trends_as_landing_page: 使用热门页作为登陆页面

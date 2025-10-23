@@ -817,7 +817,7 @@ pt-PT:
         rules_hint: Existe uma área dedicada às regras a que os teus utilizadores devem aderir.
         title: Sobre
       allow_referrer_origin:
-        desc: Quando os seus utilizadores clicam em links para sites externos, o navegador deles pode enviar o endereço do seu servidor Mastodon como referenciador. Desative esta opção se isso identificar inequivocamente os seus utilizadores, por exemplo, se este for um servidor Mastodon pessoal.
+        desc: Quando os seus utilizadores clicam em hiperligações para sites externos, o navegador destes pode enviar o endereço do seu servidor Mastodon como referenciador. Desative esta opção se isso identificar inequivocamente os seus utilizadores, por exemplo, se este for um servidor Mastodon pessoal.
         title: Permitir que sites externos vejam o seu servidor Mastodon como uma fonte de tráfego
       appearance:
         preamble: Personaliza a interface web do Mastodon.
@@ -848,6 +848,10 @@ pt-PT:
         all: Para toda a gente
         disabled: Para ninguém
         users: Para utilizadores locais que se encontrem autenticados
+      feed_access:
+        modes:
+          authenticated: Apesar utilizadores autenticados
+          public: Todos
       registrations:
         moderation_recommandation: Certifique-se de que dispõe de uma equipa de moderação adequada e reativa antes de abrir as inscrições a todos!
         preamble: Controle quem pode criar uma conta no seu servidor.
@@ -901,6 +905,7 @@ pt-PT:
       no_status_selected: Nenhum estado foi alterado porque nenhum foi selecionado
       open: Abrir publicação
       original_status: Publicação original
+      quotes: Citações
       reblogs: Impulsos
       replied_to_html: Respondeu a %{acct_link}
       status_changed: Publicação alterada
@@ -908,6 +913,7 @@ pt-PT:
       title: Publicações da conta - @%{name}
       trending: Em destaque
       view_publicly: Visualizar publicamente
+      view_quoted_post: Ver publicação citada
       visibility: Visibilidade
       with_media: Com multimédia
     strikes:
@@ -1182,10 +1188,10 @@ pt-PT:
     hint_html: Se quiseres mudar de outra conta para esta, podes criar aqui um pseudónimo, que é necessário antes de poderes prosseguir com a migração de seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada a partir da conta antiga</strong>.
     remove: Desvincular pseudónimo
   appearance:
-    advanced_web_interface: Interface web avançada
-    advanced_web_interface_hint: 'Se quiseres utilizar toda a largura do teu ecrã, a interface web avançada permite configurar várias colunas diferentes para veres tanta informação ao mesmo tempo quanto quiseres: página inicial, notificações, cronologia federada, qualquer número de listas e etiquetas.'
+    advanced_settings: Definições avançadas
     animations_and_accessibility: Animações e acessibilidade
-    confirmation_dialogs: Caixas de confirmação
+    boosting_preferences: Definições de partilha
+    boosting_preferences_info_html: "<strong>Dica:</strong> Independente das definições, <kbd>Shift</kbd> + <kbd>Clique</kbd> no ícone %{icon} de Partilhar vai partilhar de imediato."
     discovery: Descobrir
     localization:
       body: O Mastodon é traduzido por voluntários.
@@ -1220,7 +1226,7 @@ pt-PT:
       clicking_this_link: clicar nesta hiperligação
       login_link: iniciar sessão
       proceed_to_login_html: Podes agora prosseguir para %{login_link}.
-      redirect_to_app_html: Devias ter sido reencaminhado para a aplicação <strong>%{app_name}</strong>. Se isso não aconteceu, tenta %{clicking_this_link} ou regressa manualmente para a aplicação.
+      redirect_to_app_html: Devia ter sido reencaminhado para a aplicação <strong>%{app_name}</strong>. Se isso não aconteceu, tente %{clicking_this_link} ou regresse manualmente para a aplicação.
       registration_complete: O teu registo sem %{domain} está agora concluído!
       welcome_title: Bem-vindo(a), %{name}!
       wrong_email_hint: Se este endereço de correio eletrónico não estiver correto, podes alterá-lo nas definições de conta.
@@ -1405,7 +1411,7 @@ pt-PT:
       request: Pedir o teu arquivo
       size: Tamanho
     blocks: Bloqueaste
-    bookmarks: Marcadores
+    bookmarks: Itens Salvos
     csv: CSV
     domain_blocks: Bloqueios de domínio
     lists: Listas
@@ -1502,8 +1508,8 @@ pt-PT:
         one: Estás prestes a substituir a <strong>tua lista de bloqueios</strong> com até <strong>conta%{count}</strong> de <strong>%{filename}</strong>.
         other: Estás prestes a <strong>substituir a tua lista de bloqueios</strong> com até <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Estás prestes a <strong>substituir os teus marcadores</strong> com até <strong>%{count} publicações</strong> de <strong>%{filename}</strong>.
-        other: Estás prestes a <strong>substituir os teus marcadores</strong> com até <strong>%{count} publicação</strong> de <strong>%{filename}</strong>.
+        one: Está prestes a <strong>substituir os seus itens salvos</strong> com até <strong>%{count} publicação</strong> de <strong>%{filename}</strong>.
+        other: Está prestes a <strong>substituir os seus itens salvos</strong> com até <strong>%{count} publicações</strong> de <strong>%{filename}</strong>.
       domain_blocking_html:
         one: Estás prestes a <strong>substituir a tua lista de bloqueios de domínio</strong> com até <strong>%{count} domínio</strong> de <strong>%{filename}</strong>.
         other: Estás prestes a <strong>substituir a tua lista de bloqueios de domínio</strong> com até <strong>%{count} domínios</strong> de <strong>%{filename}</strong>.
@@ -1521,8 +1527,8 @@ pt-PT:
         one: Estás prestes a <strong>bloquear</strong> até <strong>%{count} conta</strong> de <strong>%{filename}</strong>.
         other: Estás prestes a <strong>bloquear</strong> até <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Estás prestes a adicionar até <strong>%{count} publicação</strong> de <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
-        other: Estás prestes a adicionar até <strong>%{count} publicações</strong> de <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
+        one: Está prestes a adicionar até <strong>%{count} publicação</strong> de <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
+        other: Está prestes a adicionar até <strong>%{count} publicações</strong> de <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
       domain_blocking_html:
         one: Estás prestes a <strong>bloquear</strong> até <strong>%{count} domínio</strong> de <strong>%{filename}</strong>.
         other: Estás prestes a <strong>bloquear</strong> até <strong>%{count} domínios</strong> de <strong>%{filename}</strong>.
@@ -1547,18 +1553,18 @@ pt-PT:
     time_started: Iniciado em
     titles:
       blocking: Importar contas bloqueadas
-      bookmarks: Importar marcadores
+      bookmarks: Importar Itens Salvos
       domain_blocking: Importar domínios bloqueados
       following: Importar contas seguidas
       lists: Importar listas
       muting: Importar contas ocultadas
     type: Tipo de importação
     type_groups:
-      constructive: Seguidores e marcadores
+      constructive: Seguidores e Itens Salvos
       destructive: Bloqueios e ocultados
     types:
       blocking: Lista de bloqueios
-      bookmarks: Marcadores
+      bookmarks: Itens Salvos
       domain_blocking: Lista de domínios bloqueados
       following: Lista de pessoas que estás a seguir
       lists: Listas
@@ -1587,6 +1593,13 @@ pt-PT:
       expires_at: Expira
       uses: Utilizações
     title: Convidar pessoas
+  link_preview:
+    author_html: Por %{name}
+    potentially_sensitive_content:
+      action: Clicar para mostrar
+      confirm_visit: Tem a certeza que prentende abrir esta hiperligação?
+      hide_button: Esconder
+      label: Conteúdo potencialmente sensível
   lists:
     errors:
       limit: Atingiste o número máximo de listas permitido
@@ -1612,7 +1625,7 @@ pt-PT:
           follow: e-mails de notificação de seguidor
           follow_request: e-mails de pedido de seguidor
           mention: e-mails de notificação de menção
-          reblog: e-mails de notificação de impulsos
+          reblog: e-mails de notificação de partilhas
       resubscribe_html: Se tiveres anulado a subscrição por engano, podes voltar a subscrevê-la nas <a href="%{settings_path}">definições de notificação por e-mail</a>.
       success_html: Não receberás novamente %{type} do Mastodon em %{domain} para o teu e-mail em %{email}.
       title: Cancelar subscrição
@@ -1692,8 +1705,8 @@ pt-PT:
       subject: "%{name} citou a sua publicação"
       title: Nova citação
     reblog:
-      body: 'A tua publicação foi impulsionada por %{name}:'
-      subject: "%{name} impulsionou a tua publicação"
+      body: 'A tua publicação foi partilhada por %{name}:'
+      subject: "%{name} partilhou a sua publicação"
       title: Novo impulso
     status:
       subject: "%{name} acabou de publicar"
@@ -1895,8 +1908,11 @@ pt-PT:
       video:
         one: "%{count} vídeo"
         other: "%{count} vídeos"
-    boosted_from_html: Impulsionado por %{acct_link}
+    boosted_from_html: Partilhado por %{acct_link}
     content_warning: 'Aviso de conteúdo: %{warning}'
+    content_warnings:
+      hide: Esconder publicação
+      show: Mostrar mais
     default_language: Igual ao idioma da interface
     disallowed_hashtags:
       one: 'continha uma #etiqueta proibida: %{tags}'
@@ -1910,11 +1926,16 @@ pt-PT:
       direct: As publicações que só são visíveis para os utilizadores mencionados não podem ser fixadas
       limit: Já fixaste a quantidade máxima de publicações
       ownership: Não podem ser fixadas publicações de outras pessoas
-      reblog: Não é possível fixar um impulso
+      reblog: Não é possível fixar uma partilha
+    quote_error:
+      not_available: Publicação indisponível
+      pending_approval: Publicação pendente
+      revoked: Publicação removida pelo autor
     quote_policies:
       followers: Apenas para seguidores
       nobody: Apenas eu
       public: Todos
+    quote_post_author: Citou uma publicação de %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Menção privada
@@ -1929,9 +1950,9 @@ pt-PT:
     exceptions: Exceções
     explanation: Como eliminar publicações é uma operação custosa, isto é feito lentamente ao longo do tempo, quando o servidor não está ocupado. Por esta razão, as tuas publicações podem ser eliminadas um pouco depois de atingirem o limite de idade definido.
     ignore_favs: Ignorar favoritos
-    ignore_reblogs: Ignorar os impulsos
+    ignore_reblogs: Ignorar partilhas
     interaction_exceptions: Exceções baseadas em interações
-    interaction_exceptions_explanation: Tem em atenção que não há garantia de que as mensagens sejam eliminadas se ficarem abaixo do limite de favoritos ou de impulsionamento depois de os terem ultrapassado.
+    interaction_exceptions_explanation: Observe que não há garantia que as publicações serão excluídas se ficarem abaixo do limite de favoritos ou partilhas depois de terem ultrapassado esses limites.
     keep_direct: Manter mensagens diretas
     keep_direct_hint: Não elimina nenhuma das tuas mensagens diretas
     keep_media: Manter publicações com anexos de multimédia
@@ -1940,8 +1961,8 @@ pt-PT:
     keep_pinned_hint: Não elimina nenhuma das tuas publicações afixadas
     keep_polls: Manter sondagens
     keep_polls_hint: Não elimina nenhuma das tuas sondagens
-    keep_self_bookmark: Manter as publicações que marquei
-    keep_self_bookmark_hint: Não elimina as tuas próprias publicações se as tiveres nos marcadores
+    keep_self_bookmark: Manter as publicações que salvou
+    keep_self_bookmark_hint: Não eliminar as suas próprias publicações se as tiver salvo
     keep_self_fav: Manter as publicações que adicionei aos favoritos
     keep_self_fav_hint: Não elimina as tuas próprias publicações se as tiveres adicionado aos favoritos
     min_age:
@@ -1956,8 +1977,8 @@ pt-PT:
     min_age_label: Limite de idade
     min_favs: Manter publicações adicionadas aos favoritos pelos menos
     min_favs_hint: Não elimina nenhuma das tuas publicações que tenham sido adicionadas aos favoritos este número de vezes. Deixa em branco para eliminar publicações, independentemente do número de vezes que tenham sido adicionadas aos favoritos
-    min_reblogs: Manter as publicações impulsionadas, pelo menos
-    min_reblogs_hint: Não elimina nenhuma das tuas mensagens que tenham sido impulsionada pelo menos este número de vezes. Deixa em branco para eliminar as mensagens independentemente do número de impulsionamentos
+    min_reblogs: Manter, pelo menos, as publicações partilhadas
+    min_reblogs_hint: Não elimina nenhuma das suas publicações que tenha sido partilhadas pelo menos este número de vezes. Deixe em branco para eliminar publicações independentemente do número de partilhas
   stream_entries:
     sensitive_content: Conteúdo sensível
   strikes:
@@ -2084,7 +2105,7 @@ pt-PT:
       checklist_subtitle: 'Vamos começar nesta nova fronteira social:'
       checklist_title: Passos de boas-vindas
       edit_profile_action: Personalizar
-      edit_profile_step: Aumenta as tuas interações com um perfil completo.
+      edit_profile_step: Aumente as suas interações ao ter um perfil mais completo.
       edit_profile_title: Personaliza o teu perfil
       explanation: Aqui estão algumas dicas para começar
       feature_action: Mais informações
@@ -2125,7 +2146,7 @@ pt-PT:
     seamless_external_login: A sessão foi iniciada através de um serviço externo, pelo que as definições de palavra-passe e e-mail não estão disponíveis.
     signed_in_as: 'Registado como:'
   verification:
-    extra_instructions_html: <strong>Dica:</strong> a hiperligação no teu site pode ser invisível. A parte importante é <code>rel="me"</code> que impede a falsificação de identidade em sítios na web com conteúdos gerados pelos utilizadores. Podes até utilizar uma etiqueta <code>link</code> no cabeçalho da página ao invés de <code>a</code>, mas o HTML deve ser acessível sem executar JavaScript.
+    extra_instructions_html: <strong>Dica:</strong> a hiperligação no seu site pode ser invisível. A parte importante é <code>rel="me"</code> que impede a falsificação de identidade em sítios na web com conteúdos gerados pelos utilizadores. Pode até utilizar uma etiqueta <code>link</code> no cabeçalho da página ao invés de <code>a</code>, mas o HTML deve ser acessível sem executar JavaScript.
     here_is_how: Eis o que fazer
     hint_html: "<strong>Verificar a sua identidade no Mastodon é para todos.</strong> Baseado em normas públicas da web, agora e para sempre gratuitas. Tudo o que precisas é de um site pessoal pelo qual as pessoas te reconheçam. Quando colocas no teu perfil uma hiperligação para esse site, vamos verificar que o site tem uma hiperligação de volta para o teu perfil e mostrar um indicador visual."
     instructions_html: Copia e cola o código abaixo no HTML do teu site. Em seguida, adiciona o endereço do teu site num dos campos extras no teu perfil, na aba "Editar perfil" e guarda as alterações.

@@ -848,6 +848,10 @@ tr:
         all: Herkes için
         disabled: Hiç kimseye
         users: Oturum açan yerel kullanıcılara
+      feed_access:
+        modes:
+          authenticated: Sadece yetkilendirilmiş kullanıcılar
+          public: Herkes
       registrations:
         moderation_recommandation: Lütfen kayıtları herkese açmadan önce yeterli ve duyarlı bir denetleyici ekibine sahip olduğunuzdan emin olun!
         preamble: Sunucunuzda kimin hesap oluşturabileceğini denetleyin.
@@ -901,6 +905,7 @@ tr:
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
       open: Gönderiyi aç
       original_status: Özgün gönderi
+      quotes: Alıntılar
       reblogs: Yeniden Paylaşımlar
       replied_to_html: Yanıtladı %{acct_link}
       status_changed: Gönderi değişti
@@ -908,6 +913,7 @@ tr:
       title: Hesap gönderileri - @%{name}
       trending: Öne çıkanlar
       view_publicly: Herkese açık görüntüle
+      view_quoted_post: Alıntılanmış gönderiyi görüntüle
       visibility: Görünürlük
       with_media: Medya ile
     strikes:
@@ -1182,10 +1188,10 @@ tr:
     hint_html: Başka bir hesaptan bu hesaba taşınmak istiyorsanız, takipçileri eski hesaptan bu hesaba taşımadan önce gerekli olan takma adı burada oluşturabilirsiniz. Bu eylem kendi başına <strong>zararsızdır ve geri döndürülebilir</strong>. <strong>Hesap taşıma işlemi eski hesaptan başlatılır</strong>.
     remove: Takma adların bağlantısını kaldır
   appearance:
-    advanced_web_interface: Gelişmiş web arayüzü
-    advanced_web_interface_hint: 'Tüm ekran genişliğinizden yararlanmak istiyorsanız, gelişmiş web arayüzü istediğiniz kadar bilgi görecek kadar çok sayıda farklı sütunu yapılandırmanıza olanak tanır: Anasayfa, bildirimler, birleşik zaman çizelgesi, istediğiniz sayıda liste ve etiket.'
+    advanced_settings: Gelişmiş ayarlar
     animations_and_accessibility: Animasyonlar ve erişilebilirlik
-    confirmation_dialogs: Onay iletişim kutuları
+    boosting_preferences: Öne çıkarma seçenekleri
+    boosting_preferences_info_html: "<strong>İpucu:</strong> Ayarlardan bağımsız olarak, %{icon} Öne Çıkar simgesine <kbd>Shift</kbd> + <kbd>Tıklama</kbd> uygulandığından öne çıkarma hemen gerçekleştirilir."
     discovery: Keşfet
     localization:
       body: Mastodon, gönüllüler tarafından çevrilmektedir.
@@ -1587,6 +1593,13 @@ tr:
       expires_at: Bitiş tarihi
       uses: Kullanım
     title: İnsanları davet et
+  link_preview:
+    author_html: 'Yazan: %{name}'
+    potentially_sensitive_content:
+      action: Göstermek için tıklayın
+      confirm_visit: Bu bağlantıyı açmak istediğinizden emin misiniz?
+      hide_button: Gizle
+      label: Potansiyel olarak hassas içerik
   lists:
     errors:
       limit: Azami liste sayısına ulaştınız
@@ -1897,6 +1910,9 @@ tr:
         other: "%{count} videolar"
     boosted_from_html: "%{acct_link} kişisinden yeniden paylaştı"
     content_warning: 'İçerik uyarısı: %{warning}'
+    content_warnings:
+      hide: Gönderiyi gizle
+      show: Daha fazlasını göster
     default_language: Arayüz diliyle aynı
     disallowed_hashtags:
       one: 'izin verilmeyen bir etiket içeriyordu: %{tags}'
@@ -1911,10 +1927,15 @@ tr:
       limit: Halihazırda maksimum sayıda gönderi sabitlediniz
       ownership: Başkasının gönderisi sabitlenemez
       reblog: Bir gönderi sabitlenemez
+    quote_error:
+      not_available: Gönderi kullanılamıyor
+      pending_approval: Gönderi beklemede
+      revoked: Gönderi yazarı tarafından kaldırıldı
     quote_policies:
       followers: Sadece takipçiler
       nobody: Sadece ben
       public: Herkes
+    quote_post_author: "@%{acct} adlı kullanıcının bir gönderisini alıntıladı"
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Özel değini

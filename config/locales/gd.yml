@@ -876,6 +876,10 @@ gd:
         all: Dhan a h-uile duine
         disabled: Na seall idir
         users: Dhan luchd-chleachdaidh a clàraich a-steach gu h-ionadail
+      feed_access:
+        modes:
+          authenticated: Cleachdaichean a chlàraich a-steach a-mhàin
+          public: A h-uile duine
       registrations:
         moderation_recommandation: Dèan cinnteach gu bheil sgioba maoir deiseil is deònach agad mus fhosgail thu an clàradh dhan a h-uile duine!
         preamble: Stiùirich cò dh’fhaodas cunntas a chruthachadh air an fhrithealaiche agad.
@@ -929,6 +933,7 @@ gd:
       no_status_selected: Cha deach post sam bith atharrachadh o nach deach gin dhiubh a thaghadh
       open: Fosgail am post
       original_status: Am post tùsail
+      quotes: Luaidhean
       reblogs: Brosnachaidhean
       replied_to_html: Freagairt do %{acct_link}
       status_changed: Post air atharrachadh
@@ -936,6 +941,7 @@ gd:
       title: Postaichean a’ chunntais – @%{name}
       trending: A’ treandadh
       view_publicly: Seall gu poblach
+      view_quoted_post: Seall am post ’ga luaidh
       visibility: Faicsinneachd
       with_media: Le meadhanan riutha
     strikes:
@@ -1220,10 +1226,10 @@ gd:
     hint_html: Nam bu mhiann leat imrich o chunntas eile dhan fhear seo, ’s urrainn dhut alias a chruthachadh an-seo agus feumaidh tu sin a dhèanamh mus urrainn dhut tòiseachadh air an luchd-leantainn agad imrich on seann-chunntas dhan fhear seo. Tha an gnìomh seo fhèin <strong>neo-chronail is chan eil e buan</strong>. <strong>Tòisichidh tu air imrich a’ chunntais on t-seann-chunntas</strong>.
     remove: Dì-cheangail an t-alias
   appearance:
-    advanced_web_interface: Eadar-aghaidh-lìn adhartach
-    advanced_web_interface_hint: 'Ma tha thu airson leud na sgrìn agad gu lèir a chleachdadh, leigidh an eadar-aghaidh-lìn adhartach leat mòran cholbhan eadar-dhealaichte a cho-rèiteachadh airson uiread de dh''fhiosrachadh ''s a thogras tu fhaicinn aig an aon àm: Dachaigh, brathan, loidhne-ama cho-naisgte, liostaichean is tagaichean hais a rèir do thoil.'
+    advanced_settings: Roghainnean adhartach
     animations_and_accessibility: Beòthachaidhean agus so-ruigsinneachd
-    confirmation_dialogs: Còmhraidhean dearbhaidh
+    boosting_preferences: Roghainnean brosnachaidh
+    boosting_preferences_info_html: "<strong>Gliocas:</strong> Ge b’ e dè na roghainnean, ma nì thu<kbd>Shift</kbd> + <kbd>Briogadh</kbd> air ìomhaigheag%{icon} a’ bhrosnachaidh, thèid a bhrosnachadh sa bhad."
     discovery: Rùrachadh
     localization:
       body: Tha Mastodon ’ga eadar-theangachadh le saor-thoilich.
@@ -1665,6 +1671,13 @@ gd:
       expires_at: Falbhaidh an ùine air
       uses: Cleachdadh
     title: Thoir cuireadh do dhaoine
+  link_preview:
+    author_html: Le %{name}
+    potentially_sensitive_content:
+      action: Dèan briogadh gus a shealltainn
+      confirm_visit: A bheil thu cinnteach gu bheil thu airson an ceangal seo fhosgladh?
+      hide_button: Falaich
+      label: Susbaint fhrionasach ma dh’fhaoidte
   lists:
     errors:
       limit: Ràinig thu na tha ceadaichte dhut de liostaichean
@@ -1981,6 +1994,9 @@ gd:
         two: "%{count} video"
     boosted_from_html: Brosnachadh o %{acct_link}
     content_warning: 'Rabhadh susbainte: %{warning}'
+    content_warnings:
+      hide: Falaich am post
+      show: Seall barrachd dheth
     default_language: Co-ionnan ri cànan na h-eadar-aghaidh
     disallowed_hashtags:
       few: "– bha na tagaichean hais toirmisgte seo ann: %{tags}"
@@ -1997,10 +2013,15 @@ gd:
       limit: Tha an àireamh as motha de phostaichean prìnichte agad a tha ceadaichte
       ownership: Chan urrainn dhut post càich a phrìneachadh
       reblog: Chan urrainn dhut brosnachadh a phrìneachadh
+    quote_error:
+      not_available: Chan eil am post ri fhaighinn
+      pending_approval: Cha deach dèiligeadh ris a’ phost fhathast
+      revoked: Chaidh am post a thoirt air falbh leis an ùghdar
     quote_policies:
       followers: Luchd-leantainn a-mhàin
       nobody: Mi fhìn a-mhàin
       public: Duine sam bith
+    quote_post_author: Luaidh air post le %{acct}
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Iomradh prìobhaideach

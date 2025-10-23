@@ -848,6 +848,10 @@ et:
         all: Kõigile
         disabled: Mitte kellelegi
         users: Sisseloginud kohalikele kasutajatele
+      feed_access:
+        modes:
+          authenticated: Vaid autenditud kasutajad
+          public: Kõik
       registrations:
         moderation_recommandation: Enne kõigi jaoks registreerimise avamist veendu, et oleks olemas adekvaatne ja reageerimisvalmis modereerijaskond!
         preamble: Kes saab serveril konto luua.
@@ -901,6 +905,7 @@ et:
       no_status_selected: Ühtegi postitust ei muudetud, sest ühtegi polnud valitud
       open: Ava postitus
       original_status: Algne postitus
+      quotes: Tsitaadid
       reblogs: Jagamised
       replied_to_html: Vastatud %{acct_link}
       status_changed: Muudetud postitus
@@ -908,6 +913,7 @@ et:
       title: Postitus kontolt - @%{name}
       trending: Populaarne
       view_publicly: Nähtav avalikult
+      view_quoted_post: Vaata tsiteeritud postitust
       visibility: Nähtavus
       with_media: Meediaga
     strikes:
@@ -1182,10 +1188,10 @@ et:
     hint_html: Kui soovid konto siia üle kolida, pead esmalt siin määrama kolitava konto aadressi. Seejärel on konto valmis võtma vastu jälgijaid vanalt kontolt. Kolitava konto aadressi määramine on iseenesest <strong>kahjutu ja tagasipööratav</strong>. <strong>Jälgijate tegelik kolimine käivitatakse vanalt kontolt</strong>.
     remove: Loobu suunamise vastuvõtmisest
   appearance:
-    advanced_web_interface: Kohandatud veebiliides
-    advanced_web_interface_hint: 'Kui soovid kasutada kogu ekraani laiust, saab kohandatud veebiliideses seadistada mitut veergu, nii et samal ajal oleks näha nii palju infot kui soovid: Kodu, teavitused, föderatsiooni ajajoon ning kuitahes palju nimekirju ja silte.'
+    advanced_settings: Täpsemad seadistused
     animations_and_accessibility: Animatsioonid ja ligipääs
-    confirmation_dialogs: Kinnitusdialoogid
+    boosting_preferences: Hooandmise eelistused
+    boosting_preferences_info_html: "<strong>Soovitus:</strong> Sõltumata seadistusest, <kbd>Shift</kbd> + <kbd>Klõps</kbd> %{icon} ikoonil käivitab hooandmise koheselt."
     discovery: Avastamine
     localization:
       body: Mastodoni tõlgivad vabatahtlikud.
@@ -1587,6 +1593,13 @@ et:
       expires_at: Aegub
       uses: Kasutust
     title: Kutsu inimesi
+  link_preview:
+    author_html: Autorilt %{name}
+    potentially_sensitive_content:
+      action: Vaatamiseks klõpsa
+      confirm_visit: Kas oled kindel, et soovid selle lingi avada?
+      hide_button: Peida
+      label: Võimalik delikaatne sisu
   lists:
     errors:
       limit: Oled jõudnud loetelude lubatud maksimumarvuni
@@ -1897,6 +1910,9 @@ et:
         other: "%{count} videot"
     boosted_from_html: "%{acct_link} jagamine"
     content_warning: 'Sisu hoiatus: %{warning}'
+    content_warnings:
+      hide: Peida postitus
+      show: Näita rohkem
     default_language: Kasutajaliidese keelega sama
     disallowed_hashtags:
       one: 'sisaldab ebasobivat silti: %{tags}'
@@ -1911,10 +1927,15 @@ et:
       limit: Kinnitatud on juba maksimaalne arv postitusi
       ownership: Kellegi teise postitust ei saa kinnitada
       reblog: Jagamist ei saa kinnitada
+    quote_error:
+      not_available: Postitus pole saadaval
+      pending_approval: Postitus on ootel
+      revoked: Autor on postituse eemaldanud
     quote_policies:
       followers: Ainult jälgijad
       nobody: Ainult mina
       public: Kõik
+    quote_post_author: Tsiteeris kasutaja %{acct} postitust
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privaatne mainimine

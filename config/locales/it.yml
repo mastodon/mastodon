@@ -848,6 +848,10 @@ it:
         all: A tutti
         disabled: A nessuno
         users: Agli utenti locali connessi
+      feed_access:
+        modes:
+          authenticated: Solo utenti autenticati
+          public: Tutti
       registrations:
         moderation_recommandation: Assicurati di avere un team di moderazione adeguato e reattivo prima di aprire le registrazioni a tutti!
         preamble: Controlla chi può creare un account sul tuo server.
@@ -901,6 +905,7 @@ it:
       no_status_selected: Nessun status è stato modificato perché nessuno era stato selezionato
       open: Apri il post
       original_status: Post originale
+      quotes: Citazioni
       reblogs: Condivisioni
       replied_to_html: Risposta a %{acct_link}
       status_changed: Post modificato
@@ -908,6 +913,7 @@ it:
       title: Post dell'account - @%{name}
       trending: Di tendenza
       view_publicly: Visualizza pubblicamente
+      view_quoted_post: Visualizza il post citato
       visibility: Visibilità
       with_media: con media
     strikes:
@@ -1182,12 +1188,10 @@ it:
     hint_html: Se vuoi trasferirti da un altro account a questo, qui puoi creare un alias, che è necessario prima di poter spostare i seguaci dal vecchio account a questo. Questa azione è <strong>innocua e reversibile</strong>. <strong>La migrazione dell'account è avviata dal vecchio account</strong>.
     remove: Scollega alias
   appearance:
-    advanced_web_interface: Interfaccia web avanzata
-    advanced_web_interface_hint: |-
-      Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:
-      Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
+    advanced_settings: Impostazioni avanzate
     animations_and_accessibility: Animazioni e accessibilità
-    confirmation_dialogs: Dialoghi di conferma
+    boosting_preferences: Preferenze di potenziamento
+    boosting_preferences_info_html: "<strong>Suggerimento:</strong> Indipendentemente dalle impostazioni, <kbd>Maiusc</kbd> + <kbd>Fare clic su</kbd> sull'icona Boost %{icon} aumenterà immediatamente."
     discovery: Scoperta
     localization:
       body: Mastodon è tradotto da volontari.
@@ -1589,6 +1593,13 @@ it:
       expires_at: Scade
       uses: Utilizzi
     title: Invita persone
+  link_preview:
+    author_html: Di %{name}
+    potentially_sensitive_content:
+      action: Clicca per mostrare
+      confirm_visit: Si è sicuri di voler aprire questo link?
+      hide_button: Nascondi
+      label: Contenuto potenzialmente sensibile
   lists:
     errors:
       limit: Hai raggiunto il numero massimo di liste
@@ -1899,6 +1910,9 @@ it:
         other: "%{count} video"
     boosted_from_html: Condiviso da %{acct_link}
     content_warning: 'Avviso di contenuto: %{warning}'
+    content_warnings:
+      hide: Nascondi il post
+      show: Mostra di più
     default_language: Come la lingua dell'interfaccia
     disallowed_hashtags:
       one: 'contiene un hashtag non permesso: %{tags}'
@@ -1913,10 +1927,15 @@ it:
       limit: Hai già fissato in cima il massimo numero di post
       ownership: Non puoi fissare in cima un post di qualcun altro
       reblog: Un toot condiviso non può essere fissato in cima
+    quote_error:
+      not_available: Post non disponibile
+      pending_approval: Post in attesa
+      revoked: Post rimosso dall'autore
     quote_policies:
       followers: Solo i seguaci
       nobody: Solo io
       public: Chiunque
+    quote_post_author: Citato un post di %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Menzione privata

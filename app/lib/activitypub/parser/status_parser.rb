@@ -118,6 +118,14 @@ class ActivityPub::Parser::StatusParser
     flags
   end
 
+  def quote?
+    %w(quote _misskey_quote quoteUrl quoteUri).any? { |key| @object[key].present? }
+  end
+
+  def deleted_quote?
+    @object['quote'].is_a?(Hash) && @object['quote']['type'] == 'Tombstone'
+  end
+
   def quote_uri
     %w(quote _misskey_quote quoteUrl quoteUri).filter_map do |key|
       value_or_id(as_array(@object[key]).first)
@@ -142,7 +150,7 @@ class ActivityPub::Parser::StatusParser
   def quote_subpolicy(subpolicy)
     flags = 0
 
-    allowed_actors = as_array(subpolicy)
+    allowed_actors = as_array(subpolicy).dup
     allowed_actors.uniq!
 
     flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] if allowed_actors.delete('as:Public') || allowed_actors.delete('Public') || allowed_actors.delete('https://www.w3.org/ns/activitystreams#Public')

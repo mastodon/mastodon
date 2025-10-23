@@ -4,6 +4,7 @@ import { createAction } from '@reduxjs/toolkit';
 import type { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 
 import { apiUpdateMedia } from 'mastodon/api/compose';
+import { apiGetSearch } from 'mastodon/api/search';
 import type { ApiMediaAttachmentJSON } from 'mastodon/api_types/media_attachments';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
 import {
@@ -16,9 +17,14 @@ import type { Status } from '../models/status';
 
 import { showAlert } from './alerts';
 import { focusCompose } from './compose';
+import { importFetchedStatuses } from './importer';
 import { openModal } from './modal';
 
 const messages = defineMessages({
+  quoteErrorEdit: {
+    id: 'quote_error.edit',
+    defaultMessage: 'Quotes cannot be added when editing a post.',
+  },
   quoteErrorUpload: {
     id: 'quote_error.upload',
     defaultMessage: 'Quoting is not allowed with media attachments.',
@@ -122,7 +128,9 @@ export const quoteComposeByStatus = createAppThunk(
         false,
       );
 
-    if (composeState.get('poll')) {
+    if (composeState.get('id')) {
+      dispatch(showAlert({ message: messages.quoteErrorEdit }));
+    } else if (composeState.get('poll')) {
       dispatch(showAlert({ message: messages.quoteErrorPoll }));
     } else if (
       composeState.get('is_uploading') ||
@@ -161,6 +169,42 @@ export const quoteComposeById = createAppThunk(
     const status = getState().statuses.get(statusId);
     if (status) {
       dispatch(quoteComposeByStatus(status));
+    }
+  },
+);
+
+export const pasteLinkCompose = createDataLoadingThunk(
+  'compose/pasteLink',
+  async ({ url }: { url: string }) => {
+    return await apiGetSearch({
+      q: url,
+      type: 'statuses',
+      resolve: true,
+      limit: 2,
+    });
+  },
+  (data, { dispatch, getState }) => {
+    const composeState = getState().compose;
+
+    if (
+      composeState.get('quoted_status_id') ||
+      composeState.get('is_submitting') ||
+      composeState.get('poll') ||
+      composeState.get('is_uploading') ||
+      composeState.get('id')
+    )
+      return;
+
+    dispatch(importFetchedStatuses(data.statuses));
+
+    if (
+      data.statuses.length === 1 &&
+      data.statuses[0] &&
+      ['automatic', 'manual'].includes(
+        data.statuses[0].quote_approval?.current_user ?? 'denied',
+      )
+    ) {
+      dispatch(quoteComposeById(data.statuses[0].id));
     }
   },
 );

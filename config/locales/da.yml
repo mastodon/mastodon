@@ -848,6 +848,10 @@ da:
         all: Til alle
         disabled: Til ingen
         users: Til indloggede lokale brugere
+      feed_access:
+        modes:
+          authenticated: Kun godkendte brugere
+          public: Alle
       registrations:
         moderation_recommandation: Sørg for, at der er et tilstrækkeligt og reaktivt moderationsteam, før registrering åbnes for alle!
         preamble: Styr, hvem der kan oprette en konto på serveren.
@@ -901,6 +905,7 @@ da:
       no_status_selected: Ingen indlæg ændret (ingen valgt)
       open: Åbn indlæg
       original_status: Oprindeligt indlæg
+      quotes: Citater
       reblogs: Genblogninger
       replied_to_html: Besvarede %{acct_link}
       status_changed: Indlæg ændret
@@ -908,6 +913,7 @@ da:
       title: Kontoindlæg - @%{name}
       trending: Trender
       view_publicly: Vis offentligt
+      view_quoted_post: Vis citeret indlæg
       visibility: Synlighed
       with_media: Med medier
     strikes:
@@ -1182,10 +1188,10 @@ da:
     hint_html: Ønsker du at flytte fra en anden konto til denne, kan du hér oprette det alias, der kræves, for at du kan fortsætte med at flytte følgere fra den gamle konto til denne. Denne handling er i sig selv <strong>harmløs og reversibel</strong>. <strong>Kontomigreringen påbegyndes fra den gamle konto</strong>.
     remove: Fjern aliaslinkning
   appearance:
-    advanced_web_interface: Avanceret webgrænseflade
-    advanced_web_interface_hint: 'Ønsker du udnytte hele skærmbredden, lader den avancerede webgrænseflade dig opsætte mange forskellige kolonner for at se så meget information på samme tid som ønsket: Hjem, notifikationer, federeret tidslinje, et hvilket som helst antal lister og hashtags.'
+    advanced_settings: Avancerede indstillinger
     animations_and_accessibility: Animationer og tilgængelighed
-    confirmation_dialogs: Bekræftelsesdialoger
+    boosting_preferences: Præferencer for fremhævelse
+    boosting_preferences_info_html: "<strong>Tip:</strong> Uanset indstillinger vil <kbd>Skift</kbd> + <kbd>Klik</kbd> på %{icon} fremhæv-ikonet straks fremhæve."
     discovery: Opdagelse
     localization:
       body: Mastodon oversættes af frivillige.
@@ -1281,7 +1287,7 @@ da:
       account_status: Kontostatus
       confirming: Afventer færdiggørelse af e-mailbekræftelse.
       functional: Din konto er fuldt funktionel.
-      pending: Ansøgningen afventer gennemgang af vores personale. Dette kan tage noget tid. Man bør modtage en e-mail, såfremt ansøgningen godkendes.
+      pending: Ansøgningen afventer gennemgang af vores personale. Dette kan tage noget tid. Du modtager en e-mail, hvis din ansøgning bliver godkendt.
       redirecting_to: Din konto er inaktiv, da den pt. er omdirigerer til %{acct}.
       self_destruct: Da %{domain} er under nedlukning, vil kontoadgangen være begrænset.
       view_strikes: Se tidligere anmeldelser af din konto
@@ -1587,6 +1593,13 @@ da:
       expires_at: Udløber
       uses: Benyttelser
     title: Invitér personer
+  link_preview:
+    author_html: Af %{name}
+    potentially_sensitive_content:
+      action: Klik for at vise
+      confirm_visit: Er du sikker på, at du vil åbne dette link?
+      hide_button: Skjul
+      label: Potentielt følsomt indhold
   lists:
     errors:
       limit: Maks. listeantal nået
@@ -1897,6 +1910,9 @@ da:
         other: "%{count} videoer"
     boosted_from_html: Fremhævet fra %{acct_link}
     content_warning: 'Indholdsadvarsel: %{warning}'
+    content_warnings:
+      hide: Skjul indlæg
+      show: Vis mere
     default_language: Samme som UI-sproget
     disallowed_hashtags:
       one: 'indeholdte et ikke tilladt hashtag: %{tags}'
@@ -1911,10 +1927,15 @@ da:
       limit: Maksimalt antal indlæg allerede fastgjort
       ownership: Andres indlæg kan ikke fastgøres
       reblog: En fremhævelse kan ikke fastgøres
+    quote_error:
+      not_available: Indlæg utilgængeligt
+      pending_approval: Indlæg afventer
+      revoked: Indlæg fjernet af forfatter
     quote_policies:
       followers: Kun følgere
       nobody: Kun mig
       public: Alle
+    quote_post_author: Citerede et indlæg af %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privat omtale

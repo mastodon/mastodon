@@ -150,10 +150,7 @@ const AutosuggestTextarea = forwardRef(({
   }, [suggestions, onSuggestionSelected, textareaRef]);
 
   const handlePaste = useCallback((e) => {
-    if (e.clipboardData && e.clipboardData.files.length === 1) {
-      onPaste(e.clipboardData.files);
-      e.preventDefault();
-    }
+    onPaste(e);
   }, [onPaste]);
 
   // Show the suggestions again whenever they change and the textarea is focused

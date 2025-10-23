@@ -479,6 +479,7 @@ lad:
         delete: Efasa
         finish_registration: Finaliza enrejistrasyon
         name: Nombre
+        registration_requested: Enrejistrasyon rekerida
         registrations:
           confirm: Konfirma
           reject: Refuza
@@ -806,6 +807,9 @@ lad:
         all: A todos
         disabled: A dinguno
         users: Para los utilizadores lokales ke entrado en su kuento
+      feed_access:
+        modes:
+          public: Todos
       registrations:
         moderation_recommandation: Por favor, asigurate ke tyenes una taifa de moderasyon adekuada i reaktiva antes de avrir los enrejistramyentos a todos!
         preamble: Kontrola ken puede kriyar un kuento en tu sirvidor.
@@ -860,6 +864,7 @@ lad:
       reblogs: Repartajasyones
       status_changed: Publikasyon trokada
       trending: Trendes
+      view_publicly: Ve puvlikamente
       visibility: Vizivilita
       with_media: Kon multimedia
     strikes:
@@ -942,6 +947,7 @@ lad:
         action: Djenera
       history: Istorya
       live: En bivo
+      notify_users: Aviza a los utilizadores
       publish: Publika
       title: Terminos de servisyo
     title: Administrasyon
@@ -1011,9 +1017,13 @@ lad:
       trending: En trend
     username_blocks:
       add_new: Adjusta muevo
+      block_registrations: Bloka enrejistrasyones
+      comparison:
+        contains: Kontyene
       delete: Efasa
       new:
         create: Kriya regla
+      not_permitted: Sin permiso
     warning_presets:
       add_new: Adjusta muevo
       delete: Efasa
@@ -1085,10 +1095,7 @@ lad:
     hint_html: Si keres migrar de otro kuento a este, aki puedes kriyar un alias, kale proseder antes de ampesar a mover suivantes del kuento anterior a este. Esta aksion por si mezma es <strong>inofensiva i reversivle</strong>. <strong>La migrasyon del kuento se inisya dizde el kuento viejo</strong>.
     remove: Dezata alias
   appearance:
-    advanced_web_interface: Enterfaz web avanzada
-    advanced_web_interface_hint: 'Si keres utilizar todo el ancho de ekran, la enterfaz web avanzada te permete konfigurar varias kolumnas desferentes para ver tanta enformasyon al mezmo tiempo komo keras: Linya prinsipala, avizos, linya de tiempo federada, kualkier numero de listas i etiketas.'
     animations_and_accessibility: Animasyones i aksesivilita
-    confirmation_dialogs: Dialogos de konfirmasyon
     discovery: Diskuvrimiento
     localization:
       body: Mastodon es trezladado por volontarios.
@@ -1445,6 +1452,12 @@ lad:
       expires_at: Kaduka
       uses: Uzos
     title: Envita a djente
+  link_preview:
+    author_html: Publikasyon de %{name}
+    potentially_sensitive_content:
+      action: Klika para amostrar
+      confirm_visit: Estas siguro ke keres avrir este atadijo?
+      hide_button: Eskonde
   lists:
     errors:
       limit: Tienes alkansado el karar maksimo de listas
@@ -1544,6 +1557,10 @@ lad:
       title: Mueva enmentadura
     poll:
       subject: Una anketa de %{name} eskapo
+    quote:
+      body: 'Tu publikasyon fue sitada por %{name}:'
+      subject: "%{name} sito tu publikasyon"
+      title: Mueva sita
     reblog:
       body: 'Tu publikasyon fue repartajada por %{name}:'
       subject: "%{name} repartajo tu publikasyon"
@@ -1649,6 +1666,7 @@ lad:
   scheduled_statuses:
     over_daily_limit: Tienes superado el limito de %{limit} publikasyones programadas para akel diya
     over_total_limit: Tienes superado el limito de %{limit} publikasyones programadas
+    too_soon: data tiene ke ser en el avenir
   self_destruct:
     lead_html: Malorozamente, <strong>%{domain}</strong> va serrar permanentemente. Si teniyas un kuento ayi, ya no podras utilizarlo, ama ainda puedes solisitar una kopya de tus datos.
     title: Este sirvidor esta serrando
@@ -1742,6 +1760,9 @@ lad:
         other: "%{count} videos"
     boosted_from_html: Repartajado dizde %{acct_link}
     content_warning: 'Avertensya de kontenido: %{warning}'
+    content_warnings:
+      hide: Eskonde puvlikasyon
+      show: Amostra mas
     default_language: La mezma ke la lingua de la enterfaz
     disallowed_hashtags:
       one: 'kontenia una etiketa no permetida: %{tags}'
@@ -1749,6 +1770,7 @@ lad:
     edited_at_html: Editado %{date}
     errors:
       in_reply_not_found: La publikasion a la ke aprovas arispondir no egziste.
+      quoted_status_not_found: La publikasion a la ke aprovas sitar no egziste.
     over_character_limit: limito de karakteres de %{max} superado
     pin_errors:
       direct: Las publikasyones ke son vizivles solo para los utilizadores enmentados no pueden fiksarse
@@ -1756,7 +1778,9 @@ lad:
       ownership: La publikasyon de otra persona no puede fiksarse
       reblog: No se puede fixar una repartajasyon
     quote_policies:
+      followers: Solo suivantes
       nobody: Solo yo
+      public: Todos
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Enmentadura privada
@@ -1838,6 +1862,8 @@ lad:
     recovery_instructions_html: Si piedres akseso a tu telefon, puedes uzar uno de los sigientes kodiches de rekuperasyon para obtener akseso a tu kuento. <strong>Mantenlos a salvo</strong>. Por enshemplo, puedes imprimirlos i guadrarlos kon otros dokumentos emportantes.
     webauthn: Yaves de sigurita
   user_mailer:
+    announcement_published:
+      subject: Pregon de servisyo
     appeal_approved:
       action: Preferensyas de kuento
       explanation: La apelasyon del amonestamiento kontra tu kuento del %{strike_date} ke mandates el %{appeal_date} fue achetada. Tu kuento se topa de muevo en dobro estado.

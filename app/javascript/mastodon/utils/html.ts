@@ -32,20 +32,31 @@ interface QueueItem {
   depth: number;
 }
 
-export interface HTMLToStringOptions<Arg extends Record<string, unknown>> {
+export type OnElementHandler<
+  Arg extends Record<string, unknown> = Record<string, unknown>,
+> = (
+  element: HTMLElement,
+  props: Record<string, unknown>,
+  children: React.ReactNode[],
+  extra: Arg,
+) => React.ReactNode;
+
+export type OnAttributeHandler<
+  Arg extends Record<string, unknown> = Record<string, unknown>,
+> = (
+  name: string,
+  value: string,
+  tagName: string,
+  extra: Arg,
+) => [string, unknown] | undefined | null;
+
+export interface HTMLToStringOptions<
+  Arg extends Record<string, unknown> = Record<string, unknown>,
+> {
   maxDepth?: number;
   onText?: (text: string, extra: Arg) => React.ReactNode;
-  onElement?: (
-    element: HTMLElement,
-    children: React.ReactNode[],
-    extra: Arg,
-  ) => React.ReactNode;
-  onAttribute?: (
-    name: string,
-    value: string,
-    tagName: string,
-    extra: Arg,
-  ) => [string, unknown] | null;
+  onElement?: OnElementHandler<Arg>;
+  onAttribute?: OnAttributeHandler<Arg>;
   allowedTags?: AllowedTagsType;
   extraArgs?: Arg;
 }
@@ -125,9 +136,57 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
         const children: React.ReactNode[] = [];
         let element: React.ReactNode = undefined;
 
+        // Generate props from attributes.
+        const key = `html-${uniqueIdCounter++}`; // Get the current key and then increment it.
+        const props: Record<string, unknown> = { key };
+        for (const attr of node.attributes) {
+          let name = attr.name.toLowerCase();
+
+          // Custom attribute handler.
+          if (onAttribute) {
+            const result = onAttribute(name, attr.value, tagName, extraArgs);
+            // Rewrite this attribute.
+            if (result) {
+              const [cbName, value] = result;
+              props[cbName] = value;
+              continue;
+            } else if (result === null) {
+              // Explicitly remove this attribute.
+              continue;
+            }
+          }
+
+          // Check global attributes first, then tag-specific ones.
+          const globalAttr = globalAttributes[name];
+          const tagAttr = tagInfo.attributes?.[name];
+
+          // Exit if neither global nor tag-specific attribute is allowed.
+          if (!globalAttr && !tagAttr) {
+            continue;
+          }
+
+          // Rename if needed.
+          if (typeof tagAttr === 'string') {
+            name = tagAttr;
+          } else if (typeof globalAttr === 'string') {
+            name = globalAttr;
+          }
+
+          let value: string | boolean | number = attr.value;
+
+          // Handle boolean attributes.
+          if (value === 'true') {
+            value = true;
+          } else if (value === 'false') {
+            value = false;
+          }
+
+          props[name] = value;
+        }
+
         // If onElement is provided, use it to create the element.
         if (onElement) {
-          const component = onElement(node, children, extraArgs);
+          const component = onElement(node, props, children, extraArgs);
 
           // Check for undefined to allow returning null.
           if (component !== undefined) {
@@ -137,53 +196,6 @@ export function htmlStringToComponents<Arg extends Record<string, unknown>>(
 
         // If the element wasn't created, use the default conversion.
         if (element === undefined) {
-          const props: Record<string, unknown> = {};
-          props.key = `html-${uniqueIdCounter++}`; // Get the current key and then increment it.
-          for (const attr of node.attributes) {
-            let name = attr.name.toLowerCase();
-
-            // Custom attribute handler.
-            if (onAttribute) {
-              const result = onAttribute(
-                name,
-                attr.value,
-                node.tagName.toLowerCase(),
-                extraArgs,
-              );
-              if (result) {
-                const [cbName, value] = result;
-                props[cbName] = value;
-              }
-            } else {
-              // Check global attributes first, then tag-specific ones.
-              const globalAttr = globalAttributes[name];
-              const tagAttr = tagInfo.attributes?.[name];
-
-              // Exit if neither global nor tag-specific attribute is allowed.
-              if (!globalAttr && !tagAttr) {
-                continue;
-              }
-
-              // Rename if needed.
-              if (typeof tagAttr === 'string') {
-                name = tagAttr;
-              } else if (typeof globalAttr === 'string') {
-                name = globalAttr;
-              }
-
-              let value: string | boolean | number = attr.value;
-
-              // Handle boolean attributes.
-              if (value === 'true') {
-                value = true;
-              } else if (value === 'false') {
-                value = false;
-              }
-
-              props[name] = value;
-            }
-          }
-
           element = React.createElement(
             tagName,
             props,

@@ -1,192 +1,14 @@
 import { customEmojiFactory, unicodeEmojiFactory } from '@/testing/factories';
 
-import {
-  EMOJI_MODE_NATIVE,
-  EMOJI_MODE_NATIVE_WITH_FLAGS,
-  EMOJI_MODE_TWEMOJI,
-} from './constants';
 import * as db from './database';
+import * as loader from './loader';
 import {
-  emojifyElement,
-  emojifyText,
-  testCacheClear,
+  loadEmojiDataToState,
+  stringToEmojiState,
   tokenizeText,
 } from './render';
-import type { EmojiAppState, ExtraCustomEmojiMap } from './types';
-
-function mockDatabase() {
-  return {
-    searchCustomEmojisByShortcodes: vi
-      .spyOn(db, 'searchCustomEmojisByShortcodes')
-      .mockResolvedValue([customEmojiFactory()]),
-    searchEmojisByHexcodes: vi
-      .spyOn(db, 'searchEmojisByHexcodes')
-      .mockResolvedValue([
-        unicodeEmojiFactory({
-          hexcode: '1F60A',
-          label: 'smiling face with smiling eyes',
-          unicode: '😊',
-        }),
-        unicodeEmojiFactory({
-          hexcode: '1F1EA-1F1FA',
-          label: 'flag-eu',
-          unicode: '🇪🇺',
-        }),
-      ]),
-  };
-}
-
-const expectedSmileImage =
-  '<img draggable="false" class="emojione" alt="😊" title="smiling face with smiling eyes" src="/emoji/1f60a.svg">';
-const expectedFlagImage =
-  '<img draggable="false" class="emojione" alt="🇪🇺" title="flag-eu" src="/emoji/1f1ea-1f1fa.svg">';
-const expectedCustomEmojiImage =
-  '<img draggable="false" class="emojione custom-emoji" alt=":custom:" title=":custom:" src="emoji/custom/static" data-original="emoji/custom" data-static="emoji/custom/static">';
-const expectedRemoteCustomEmojiImage =
-  '<img draggable="false" class="emojione custom-emoji" alt=":remote:" title=":remote:" src="remote.social/static" data-original="remote.social/custom" data-static="remote.social/static">';
-
-const mockExtraCustom: ExtraCustomEmojiMap = {
-  remote: {
-    shortcode: 'remote',
-    static_url: 'remote.social/static',
-    url: 'remote.social/custom',
-  },
-};
-
-function testAppState(state: Partial<EmojiAppState> = {}) {
-  return {
-    locales: ['en'],
-    mode: EMOJI_MODE_TWEMOJI,
-    currentLocale: 'en',
-    darkTheme: false,
-    ...state,
-  } satisfies EmojiAppState;
-}
-
-describe('emojifyElement', () => {
-  function testElement(text = '<p>Hello 😊🇪🇺!</p><p>:custom:</p>') {
-    const testElement = document.createElement('div');
-    testElement.innerHTML = text;
-    return testElement;
-  }
-
-  afterEach(() => {
-    testCacheClear();
-    vi.restoreAllMocks();
-  });
-
-  test('caches element rendering results', async () => {
-    const { searchCustomEmojisByShortcodes, searchEmojisByHexcodes } =
-      mockDatabase();
-    await emojifyElement(testElement(), testAppState());
-    await emojifyElement(testElement(), testAppState());
-    await emojifyElement(testElement(), testAppState());
-    expect(searchEmojisByHexcodes).toHaveBeenCalledExactlyOnceWith(
-      ['1F1EA-1F1FA', '1F60A'],
-      'en',
-    );
-    expect(searchCustomEmojisByShortcodes).toHaveBeenCalledExactlyOnceWith([
-      'custom',
-    ]);
-  });
-
-  test('emojifies custom emoji in native mode', async () => {
-    const { searchEmojisByHexcodes } = mockDatabase();
-    const actual = await emojifyElement(
-      testElement(),
-      testAppState({ mode: EMOJI_MODE_NATIVE }),
-    );
-    assert(actual);
-    expect(actual.innerHTML).toBe(
-      `<p>Hello 😊🇪🇺!</p><p>${expectedCustomEmojiImage}</p>`,
-    );
-    expect(searchEmojisByHexcodes).not.toHaveBeenCalled();
-  });
-
-  test('emojifies flag emoji in native-with-flags mode', async () => {
-    const { searchEmojisByHexcodes } = mockDatabase();
-    const actual = await emojifyElement(
-      testElement(),
-      testAppState({ mode: EMOJI_MODE_NATIVE_WITH_FLAGS }),
-    );
-    assert(actual);
-    expect(actual.innerHTML).toBe(
-      `<p>Hello 😊${expectedFlagImage}!</p><p>${expectedCustomEmojiImage}</p>`,
-    );
-    expect(searchEmojisByHexcodes).toHaveBeenCalledOnce();
-  });
-
-  test('emojifies everything in twemoji mode', async () => {
-    const { searchCustomEmojisByShortcodes, searchEmojisByHexcodes } =
-      mockDatabase();
-    const actual = await emojifyElement(testElement(), testAppState());
-    assert(actual);
-    expect(actual.innerHTML).toBe(
-      `<p>Hello ${expectedSmileImage}${expectedFlagImage}!</p><p>${expectedCustomEmojiImage}</p>`,
-    );
-    expect(searchEmojisByHexcodes).toHaveBeenCalledOnce();
-    expect(searchCustomEmojisByShortcodes).toHaveBeenCalledOnce();
-  });
-
-  test('emojifies with provided custom emoji', async () => {
-    const { searchCustomEmojisByShortcodes, searchEmojisByHexcodes } =
-      mockDatabase();
-    const actual = await emojifyElement(
-      testElement('<p>hi :remote:</p>'),
-      testAppState(),
-      mockExtraCustom,
-    );
-    assert(actual);
-    expect(actual.innerHTML).toBe(
-      `<p>hi ${expectedRemoteCustomEmojiImage}</p>`,
-    );
-    expect(searchEmojisByHexcodes).not.toHaveBeenCalled();
-    expect(searchCustomEmojisByShortcodes).not.toHaveBeenCalled();
-  });
-
-  test('returns null when no emoji are found', async () => {
-    mockDatabase();
-    const actual = await emojifyElement(
-      testElement('<p>here is just text :)</p>'),
-      testAppState(),
-    );
-    expect(actual).toBeNull();
-  });
-});
-
-describe('emojifyText', () => {
-  test('returns original input when no emoji are in string', async () => {
-    const actual = await emojifyText('nothing here', testAppState());
-    expect(actual).toBe('nothing here');
-  });
-
-  test('renders Unicode emojis to twemojis', async () => {
-    mockDatabase();
-    const actual = await emojifyText('Hello 😊🇪🇺!', testAppState());
-    expect(actual).toBe(`Hello ${expectedSmileImage}${expectedFlagImage}!`);
-  });
-
-  test('renders custom emojis', async () => {
-    mockDatabase();
-    const actual = await emojifyText('Hello :custom:!', testAppState());
-    expect(actual).toBe(`Hello ${expectedCustomEmojiImage}!`);
-  });
-
-  test('renders provided extra emojis', async () => {
-    const actual = await emojifyText(
-      'remote emoji :remote:',
-      testAppState(),
-      mockExtraCustom,
-    );
-    expect(actual).toBe(`remote emoji ${expectedRemoteCustomEmojiImage}`);
-  });
-});
 
 describe('tokenizeText', () => {
-  test('returns empty array for string with only whitespace', () => {
-    expect(tokenizeText('   \n')).toEqual([]);
-  });
-
   test('returns an array of text to be a single token', () => {
     expect(tokenizeText('Hello')).toEqual(['Hello']);
   });
@@ -212,7 +34,7 @@ describe('tokenizeText', () => {
       'Hello ',
       {
         type: 'custom',
-        code: 'smile',
+        code: ':smile:',
       },
       '!!',
     ]);
@@ -223,7 +45,7 @@ describe('tokenizeText', () => {
       'Hello ',
       {
         type: 'custom',
-        code: 'smile_123',
+        code: ':smile_123:',
       },
       '!!',
     ]);
@@ -239,7 +61,7 @@ describe('tokenizeText', () => {
       ' ',
       {
         type: 'custom',
-        code: 'smile',
+        code: ':smile:',
       },
       '!!',
     ]);
@@ -249,5 +71,108 @@ describe('tokenizeText', () => {
     expect(tokenizeText('Hello :smile-123:!!')).toEqual([
       'Hello :smile-123:!!',
     ]);
+  });
+});
+
+describe('stringToEmojiState', () => {
+  test('returns unicode emoji state for valid unicode emoji', () => {
+    expect(stringToEmojiState('😊')).toEqual({
+      type: 'unicode',
+      code: '1F60A',
+    });
+  });
+
+  test('returns custom emoji state for valid custom emoji', () => {
+    expect(stringToEmojiState(':smile:')).toEqual({
+      type: 'custom',
+      code: 'smile',
+      data: undefined,
+    });
+  });
+
+  test('returns custom emoji state with data when provided', () => {
+    const customEmoji = {
+      smile: customEmojiFactory({
+        shortcode: 'smile',
+        url: 'https://example.com/smile.png',
+        static_url: 'https://example.com/smile_static.png',
+      }),
+    };
+    expect(stringToEmojiState(':smile:', customEmoji)).toEqual({
+      type: 'custom',
+      code: 'smile',
+      data: customEmoji.smile,
+    });
+  });
+
+  test('returns null for invalid emoji strings', () => {
+    expect(stringToEmojiState('notanemoji')).toBeNull();
+    expect(stringToEmojiState(':invalid-emoji:')).toBeNull();
+  });
+});
+
+describe('loadEmojiDataToState', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  test('loads unicode data into state', async () => {
+    const dbCall = vi
+      .spyOn(db, 'loadEmojiByHexcode')
+      .mockResolvedValue(unicodeEmojiFactory());
+    const unicodeState = { type: 'unicode', code: '1F60A' } as const;
+    const result = await loadEmojiDataToState(unicodeState, 'en');
+    expect(dbCall).toHaveBeenCalledWith('1F60A', 'en');
+    expect(result).toEqual({
+      type: 'unicode',
+      code: '1F60A',
+      data: unicodeEmojiFactory(),
+    });
+  });
+
+  test('loads custom emoji data into state', async () => {
+    const dbCall = vi
+      .spyOn(db, 'loadCustomEmojiByShortcode')
+      .mockResolvedValueOnce(customEmojiFactory());
+    const customState = { type: 'custom', code: 'smile' } as const;
+    const result = await loadEmojiDataToState(customState, 'en');
+    expect(dbCall).toHaveBeenCalledWith('smile');
+    expect(result).toEqual({
+      type: 'custom',
+      code: 'smile',
+      data: customEmojiFactory(),
+    });
+  });
+
+  test('returns null if unicode emoji not found in database', async () => {
+    vi.spyOn(db, 'loadEmojiByHexcode').mockResolvedValueOnce(undefined);
+    const unicodeState = { type: 'unicode', code: '1F60A' } as const;
+    const result = await loadEmojiDataToState(unicodeState, 'en');
+    expect(result).toBeNull();
+  });
+
+  test('returns null if custom emoji not found in database', async () => {
+    vi.spyOn(db, 'loadCustomEmojiByShortcode').mockResolvedValueOnce(undefined);
+    const customState = { type: 'custom', code: 'smile' } as const;
+    const result = await loadEmojiDataToState(customState, 'en');
+    expect(result).toBeNull();
+  });
+
+  test('retries loading emoji data once if initial load fails', async () => {
+    const dbCall = vi
+      .spyOn(db, 'loadEmojiByHexcode')
+      .mockRejectedValue(new db.LocaleNotLoadedError('en'));
+    vi.spyOn(loader, 'importEmojiData').mockResolvedValueOnce();
+    const consoleCall = vi
+      .spyOn(console, 'warn')
+      .mockImplementationOnce(() => null);
+
+    const unicodeState = { type: 'unicode', code: '1F60A' } as const;
+    const result = await loadEmojiDataToState(unicodeState, 'en');
+
+    expect(dbCall).toHaveBeenCalledTimes(2);
+    expect(loader.importEmojiData).toHaveBeenCalledWith('en');
+    expect(consoleCall).toHaveBeenCalled();
+    expect(result).toBeNull();
   });
 });

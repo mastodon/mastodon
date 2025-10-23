@@ -836,6 +836,10 @@ zh-TW:
         all: 至任何人
         disabled: 至沒有人
         users: 套用至所有登入的本站使用者
+      feed_access:
+        modes:
+          authenticated: 僅限已登入之使用者
+          public: 任何人
       registrations:
         moderation_recommandation: 對所有人開放註冊之前，請確保您有人手充足且反應靈敏的管理員團隊！
         preamble: 控制誰能於您伺服器上建立帳號。
@@ -889,6 +893,7 @@ zh-TW:
       no_status_selected: 因未選取嘟文，所以什麼事都沒發生。
       open: 公開嘟文
       original_status: 原始嘟文
+      quotes: 引用嘟文
       reblogs: 轉嘟
       replied_to_html: 回覆給 %{acct_link}
       status_changed: 嘟文已編輯
@@ -896,6 +901,7 @@ zh-TW:
       title: 嘟文帳號 - @%{name}
       trending: 熱門
       view_publicly: 公開檢視
+      view_quoted_post: 檢視引用嘟文
       visibility: 可見性
       with_media: 含有媒體檔案
     strikes:
@@ -1165,10 +1171,10 @@ zh-TW:
     hint_html: 如果想由其他帳號轉移至此帳號，您能於此處新增別名，稍後系統將容許您將跟隨者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要於舊帳號啟動</strong>。
     remove: 取消連結別名
   appearance:
-    advanced_web_interface: 進階網頁介面
-    advanced_web_interface_hint: 進階網頁介面能使您設定許多不同的欄位來善用螢幕空間，依需要同時查看許多不同的資訊如：首頁、通知、聯邦宇宙時間軸、任意數量的列表與主題標籤。
+    advanced_settings: 進階設定
     animations_and_accessibility: 動畫與無障礙設定
-    confirmation_dialogs: 確認對話框
+    boosting_preferences: 轉嘟偏好設定
+    boosting_preferences_info_html: "<strong>小技巧：</strong> 無論設定為何， <kbd>Shift</kbd> + <kbd>Click</kbd> 於 %{icon} 轉嘟圖示將會立即轉嘟。"
     discovery: 探索
     localization:
       body: Mastodon 是由志願者所翻譯。
@@ -1550,6 +1556,13 @@ zh-TW:
       expires_at: 失效時間
       uses: 已使用次數
     title: 邀請使用者
+  link_preview:
+    author_html: 來自 %{name}
+    potentially_sensitive_content:
+      action: 點擊以顯示
+      confirm_visit: 您確定要開啟此連結嗎？
+      hide_button: 隱藏
+      label: 可能為敏感內容
   lists:
     errors:
       limit: 您所建立之列表數量已達上限
@@ -1857,6 +1870,9 @@ zh-TW:
         other: "%{count} 段影片"
     boosted_from_html: 轉嘟自 %{acct_link}
     content_warning: 內容警告： %{warning}
+    content_warnings:
+      hide: 隱藏嘟文
+      show: 顯示更多
     default_language: 與介面語言相同
     disallowed_hashtags:
       other: 含有不得使用的標籤： %{tags}
@@ -1870,10 +1886,15 @@ zh-TW:
       limit: 釘選嘟文的數量已達上限
       ownership: 不能釘選他人的嘟文
       reblog: 不能釘選轉嘟
+    quote_error:
+      not_available: 無法取得該嘟文
+      pending_approval: 嘟文正在等候審核中
+      revoked: 嘟文已被作者移除
     quote_policies:
       followers: 僅限跟隨者
       nobody: 僅有我
       public: 所有人
+    quote_post_author: 已引用 %{acct} 之嘟文
     title: "%{name}：「%{quote}」"
     visibilities:
       direct: 私訊
