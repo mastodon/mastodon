@@ -33,10 +33,10 @@ interface InitialStateMeta {
   single_user_mode: boolean;
   source_url: string;
   streaming_api_base_url: string;
-  local_live_feed_access: 'public' | 'authenticated' | 'disabled';
-  remote_live_feed_access: 'public' | 'authenticated' | 'disabled';
-  local_topic_feed_access: 'public' | 'authenticated' | 'disabled';
-  remote_topic_feed_access: 'public' | 'authenticated' | 'disabled';
+  local_live_feed_access: 'all' | 'users' | 'disabled';
+  remote_live_feed_access: 'all' | 'users' | 'disabled';
+  local_topic_feed_access: 'all' | 'users' | 'disabled';
+  remote_topic_feed_access: 'all' | 'users' | 'disabled';
   title: string;
   show_trends: boolean;
   trends_as_landing_page: boolean;

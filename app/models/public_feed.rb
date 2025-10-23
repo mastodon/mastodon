@@ -44,9 +44,9 @@ class PublicFeed
 
   def user_has_access_to_feed?(setting)
     case setting
-    when 'public'
+    when 'public', 'all'
       true
-    when 'authenticated'
+    when 'authenticated', 'users'
       @account&.user&.functional?
     when 'disabled'
       @account&.user&.can?(:view_feeds)

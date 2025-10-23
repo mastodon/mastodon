@@ -27,12 +27,12 @@ export function canManageReports(permissions: number) {
 export const canViewFeed = (
   signedIn: boolean,
   permissions: number,
-  setting: 'public' | 'authenticated' | 'disabled' | undefined,
+  setting: 'all' | 'users' | 'disabled' | undefined,
 ) => {
   switch (setting) {
-    case 'public':
+    case 'all':
       return true;
-    case 'authenticated':
+    case 'users':
       return signedIn;
     case 'disabled':
     default:

@@ -16,11 +16,11 @@ class Api::V1::Timelines::PublicController < Api::V1::Timelines::BaseController
 
   def require_auth?
     if truthy_param?(:local)
-      Setting.local_live_feed_access != 'public'
+      Setting.local_live_feed_access != 'all'
     elsif truthy_param?(:remote)
-      Setting.remote_live_feed_access != 'public'
+      Setting.remote_live_feed_access != 'all'
     else
-      Setting.local_live_feed_access != 'public' || Setting.remote_live_feed_access != 'public'
+      Setting.local_live_feed_access != 'all' || Setting.remote_live_feed_access != 'all'
     end
   end
 

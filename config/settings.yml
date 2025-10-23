@@ -12,10 +12,10 @@ defaults: &defaults
   registrations_mode: 'none'
   profile_directory: true
   closed_registrations_message: ''
-  local_live_feed_access: 'public'
-  remote_live_feed_access: 'public'
-  local_topic_feed_access: 'public'
-  remote_topic_feed_access: 'public'
+  local_live_feed_access: 'all'
+  remote_live_feed_access: 'all'
+  local_topic_feed_access: 'all'
+  remote_topic_feed_access: 'all'
   show_staff_badge: true
   preview_sensitive_media: false
   noindex: false
