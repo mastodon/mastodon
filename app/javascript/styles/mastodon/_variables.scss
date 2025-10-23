@@ -15,10 +15,6 @@ $grey-100: hsl(240deg, 51%, 90%); // Topaz
 
 // Tell UI to use selected colors
 $ui-base-color: hsl(240deg, 16%, 19%) !default; // Darkest
-$ui-base-lighter-color: lighten(
-  $ui-base-color,
-  26%
-) !default; // Lighter darkest
 
 // Keep this filter a SCSS variable rather than
 // a CSS Custom Property due to this Safari bug:

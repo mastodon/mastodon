@@ -5338,7 +5338,7 @@ a.status-card {
   inset-inline-start: 0;
   z-index: -1;
   border-radius: 4px;
-  background: $ui-base-color;
+  background: var(--clr-bg-elevated);
   box-shadow: 0 0 5px var(--clr-shadow-primary);
 }
 
@@ -5351,7 +5351,7 @@ a.status-card {
   color: var(--clr-text-primary);
   font-size: 18px;
   font-weight: 500;
-  border: 2px dashed $ui-base-lighter-color;
+  border: 2px dashed var(--clr-border-primary);
   border-radius: 4px;
 }
 
