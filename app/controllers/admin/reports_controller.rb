@@ -6,7 +6,16 @@ module Admin
 
     def index
       authorize :report, :index?
+
+      # We previously only supported searching reports by target account domain,
+      # target account ID or account ID, we now have more search options, but
+      # it's important that we don't break any saved queries people may have:
+      return redirect_to_new_filter if reports_filter.outdated?
+
       @reports = filtered_reports.page(params[:page])
+    rescue Mastodon::InvalidParameterError => e
+      flash.now[:error] = e.message
+      @reports = []
     end
 
     def show
@@ -49,12 +58,20 @@ module Admin
 
     private
 
+    def reports_filter
+      @reports_filter ||= ReportFilter.new(filter_params)
+    end
+
     def filtered_reports
-      ReportFilter.new(filter_params).results.order(id: :desc).includes(:account, :target_account)
+      reports_filter.results.order(id: :desc).includes(:account, :target_account)
     end
 
     def filter_params
-      params.slice(*ReportFilter::KEYS).permit(*ReportFilter::KEYS)
+      params.slice(*ReportFilter::ALL_KEYS).permit(*ReportFilter::ALL_KEYS)
+    end
+
+    def redirect_to_new_filter
+      redirect_to admin_reports_path(reports_filter.updated_filter)
     end
 
     def set_report
