@@ -113,7 +113,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       status_page_url: Setting.status_page_url,
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
       title: instance_presenter.title,
-      trends_as_landing_page: Setting.trends_as_landing_page,
+      landing_page: Setting.landing_page,
       trends_enabled: Setting.trends,
       version: instance_presenter.version,
       terms_of_service_enabled: TermsOfService.current.present?,
