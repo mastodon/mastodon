@@ -2054,7 +2054,7 @@ a.sparkline {
     }
 
     .spoiler-button__overlay__label {
-      outline: 1px solid var(--media-outline-color);
+      outline: 1px solid var(--clr-border-media);
     }
 
     .hide-button {
@@ -2065,8 +2065,8 @@ a.sparkline {
       right: 5px;
       color: $white;
       border: 0;
-      outline: 1px solid var(--media-outline-color);
-      background-color: color.change($black, $alpha: 0.45);
+      outline: 1px solid var(--clr-border-media);
+      background-color: rgb(from var(--clr-bg-media) r g b / 45%);
       backdrop-filter: $backdrop-blur-filter;
       padding: 3px 12px;
       border-radius: 99px;
@@ -2076,7 +2076,7 @@ a.sparkline {
 
       &:hover,
       &:focus {
-        background-color: color.change($black, $alpha: 0.9);
+        background-color: rgb(from var(--clr-bg-media) r g b / 90%);
       }
     }
 
