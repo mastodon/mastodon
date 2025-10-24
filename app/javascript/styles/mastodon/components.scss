@@ -4886,7 +4886,7 @@ a.status-card {
     font-size: 14px;
 
     &__label {
-      background-color: color.change($black, $alpha: 0.45);
+      background-color: rgb(from var(--clr-bg-media) r g b / 45%);
       backdrop-filter: $backdrop-blur-filter;
       border-radius: 8px;
       padding: 12px 16px;
@@ -4906,7 +4906,7 @@ a.status-card {
     &:hover,
     &:focus {
       .spoiler-button__overlay__label {
-        background-color: color.change($black, $alpha: 0.9);
+        background-color: rgb(from var(--clr-bg-media) r g b / 90%);
       }
     }
   }
@@ -6922,7 +6922,7 @@ a.status-card {
     display: block;
     color: $white;
     border: 0;
-    background: color.change($black, $alpha: 0.65);
+    background: rgb(from var(--clr-bg-media) r g b / 65%);
     backdrop-filter: $backdrop-blur-filter;
     padding: 3px 12px;
     border-radius: 99px;
@@ -6947,7 +6947,7 @@ a.status-card {
   text-align: center;
   color: $white;
   border: 0;
-  background: color.change($black, $alpha: 0.65);
+  background: rgb(from var(--clr-bg-media) r g b / 65%);
   backdrop-filter: $backdrop-blur-filter;
   padding: 3px 8px;
   border-radius: 4px;
@@ -6970,7 +6970,7 @@ a.status-card {
 
 .info-tooltip {
   color: var(--clr-text-on-media);
-  background: var(--clr-bg-media);
+  background: rgb(from var(--clr-bg-media) r g b / 65%);
   backdrop-filter: $backdrop-blur-filter;
   border-radius: 4px;
   box-shadow: var(--dropdown-shadow);
