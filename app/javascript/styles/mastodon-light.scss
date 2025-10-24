@@ -1,9 +1,8 @@
+@use 'mastodon-light/css_variables';
 @use 'mastodon/variables' with (
   $emojis-requiring-inversion: 'chains'
 );
-@use 'mastodon-light/css_variables';
 @use 'common';
-@use 'mastodon-light/diff';
 
 html {
   color-scheme: light;

@@ -1,3 +1,19 @@
+@use '../mastodon/_theme_utils' as utils;
+
+:root {
+  /* TEXT TOKENS */
+
+  --clr-text-primary: var(--clr-grey-50);
+  --clr-text-secondary: var(--clr-grey-300);
+  --clr-text-tertiary: var(--clr-grey-400);
+  --clr-text-accent: var(--clr-indigo-300);
+  --clr-text-status-links: var(--clr-text-accent);
+
+  /* BORDER TOKENS */
+
+  --clr-border-primary-strength: 18%;
+}
+
 .status__content a,
 .reply-indicator__content a,
 .edit-indicator__content a,

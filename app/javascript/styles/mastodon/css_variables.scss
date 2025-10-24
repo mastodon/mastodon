@@ -15,6 +15,7 @@
   --clr-white: #fff;
   --clr-indigo-600: #6147e6;
   --clr-indigo-400: #8886ff;
+  --clr-indigo-300: #a5abfd;
   --clr-indigo-200: #c8cdfe;
   --clr-indigo-100: #e0e3ff;
   --clr-indigo-50: #f0f1ff;
@@ -154,7 +155,6 @@
       var(--clr-border-primary-base),
       var(--clr-border-primary-strength)
     )};
-  --clr-border-strong: var(--clr-grey-200);
   --clr-border-media: rgb(252 248 255 / 15%);
   --clr-border-on-bg-secondary: #{utils.css-alpha(
       var(--clr-border-primary-base),
