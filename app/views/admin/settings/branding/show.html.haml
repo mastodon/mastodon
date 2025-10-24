@@ -68,5 +68,12 @@
           = material_symbol 'delete'
           = t('admin.site_uploads.delete')
 
+  .fields-row
+    = f.input :landing_page,
+              collection: f.object.class::LANDING_PAGE,
+              include_blank: false,
+              label_method: ->(page) { I18n.t("admin.settings.landing_page.values.#{page}") },
+              wrapper: :with_label
+
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

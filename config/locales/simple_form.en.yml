@@ -93,6 +93,7 @@ en:
         content_cache_retention_period: All posts from other servers (including boosts and replies) will be deleted after the specified number of days, without regard to any local user interaction with those posts. This includes posts where a local user has marked it as bookmarks or favorites. Private mentions between users from different instances will also be lost and impossible to restore. Use of this setting is intended for special purpose instances and breaks many user expectations when implemented for general purpose use.
         custom_css: You can apply custom styles on the web version of Mastodon.
         favicon: WEBP, PNG, GIF or JPG. Overrides the default Mastodon favicon with a custom icon.
+        landing_page: Selects what page new visitors see when they first arrive on your server. If you select "Trends", then trends needs to be enabled in the Discovery Settings. If you select "Local feed", then "Access to live feeds featuring local posts" needs to be set to "Everyone" in the Discovery Settings.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Media files from posts made by remote users are cached on your server. When set to a positive value, media will be deleted after the specified number of days. If the media data is requested after it is deleted, it will be re-downloaded, if the source content is still available. Due to restrictions on how often link preview cards poll third-party sites, it is recommended to set this value to at least 14 days, or link preview cards will not be updated on demand before that time.
         min_age: Users will be asked to confirm their date of birth during sign-up
@@ -110,7 +111,6 @@ en:
         thumbnail: A roughly 2:1 image displayed alongside your server information.
         trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
         trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
-        trends_as_landing_page: Show trending content to logged-out users and visitors instead of a description of this server. Requires trends to be enabled.
       form_challenge:
         current_password: You are entering a secure area
       imports:
@@ -287,6 +287,7 @@ en:
         content_cache_retention_period: Remote content retention period
         custom_css: Custom CSS
         favicon: Favicon
+        landing_page: Landing page for new visitors
         local_live_feed_access: Access to live feeds featuring local posts
         local_topic_feed_access: Access to hashtag and link feeds featuring local posts
         mascot: Custom mascot (legacy)
@@ -311,7 +312,6 @@ en:
         thumbnail: Server thumbnail
         trendable_by_default: Allow trends without prior review
         trends: Enable trends
-        trends_as_landing_page: Use trends as the landing page
       interactions:
         must_be_follower: Block notifications from non-followers
         must_be_following: Block notifications from people you don't follow
