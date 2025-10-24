@@ -33,7 +33,6 @@ $content-width: 840px;
     &__inner {
       display: flex;
       justify-content: flex-end;
-      background: var(--clr-bg-primary);
       height: 100%;
     }
   }
@@ -136,7 +135,6 @@ $content-width: 840px;
       }
 
       ul {
-        background: var(--clr-bg-primary);
         margin: 0;
 
         a {
@@ -314,11 +312,6 @@ $content-width: 840px;
     .fields-group h6 {
       color: var(--clr-text-primary);
       font-weight: 500;
-    }
-
-    .directory__tag > a,
-    .directory__tag > div {
-      box-shadow: none;
     }
 
     .directory__tag h4 {
