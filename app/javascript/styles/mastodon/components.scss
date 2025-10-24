@@ -696,8 +696,9 @@ body > [data-popper-placement] {
 
     .icon-button {
       flex: 0 0 auto;
-      color: $white;
-      background: rgba(0, 0, 0, 75%);
+      color: var(--clr-text-on-media);
+      background: rgb(from var(--clr-bg-media) r g b / 65%);
+      backdrop-filter: $backdrop-blur-filter;
       border-radius: 6px;
       font-size: 12px;
       line-height: 16px;
@@ -4881,12 +4882,12 @@ a.status-card {
     padding: 0;
     margin: 0;
     border: 0;
-    color: $white;
+    color: var(--clr-text-on-media);
     line-height: 20px;
     font-size: 14px;
 
     &__label {
-      background-color: rgb(from var(--clr-bg-media) r g b / 45%);
+      background-color: rgb(from var(--clr-bg-media) r g b / 65%);
       backdrop-filter: $backdrop-blur-filter;
       border-radius: 8px;
       padding: 12px 16px;
@@ -5437,7 +5438,6 @@ a.status-card {
 .visibility-dropdown__dropdown {
   box-shadow: var(--dropdown-shadow);
   background: var(--clr-bg-elevated);
-  backdrop-filter: $backdrop-blur-filter;
   border: 1px solid var(--clr-border-primary);
   padding: 4px;
   border-radius: 4px;
@@ -5994,24 +5994,19 @@ a.status-card {
     align-items: center;
 
     .icon-button {
-      color: color.change($white, $alpha: 0.7);
+      --default-icon-color: var(--clr-text-on-media);
+      --default-bg-color: transparent;
+      --hover-icon-color: var(--clr-text-on-media);
+      --hover-bg-color: rgb(
+        from var(--clr-text-on-media) r g b / var(--clr-bg-secondary-strength)
+      );
+
       padding: 8px;
 
       .icon {
         width: 24px;
         height: 24px;
         filter: var(--overlay-icon-shadow);
-      }
-
-      &:hover,
-      &:focus,
-      &:active {
-        color: $white;
-        background-color: color.change($white, $alpha: 0.15);
-      }
-
-      &:focus {
-        background-color: color.change($white, $alpha: 0.3);
       }
     }
   }
@@ -6052,23 +6047,30 @@ a.status-card {
   background: transparent;
   box-sizing: border-box;
   border: 0;
-  color: color.change($white, $alpha: 0.7);
+  color: var(--clr-text-on-media);
   cursor: pointer;
   display: flex;
   align-items: center;
   font-size: 24px;
   height: 20vmax;
   margin: auto 0;
-  padding: 30px 15px;
+  padding: 30px 5px;
   position: absolute;
   top: 0;
   bottom: 0;
   transform: scaleX(var(--text-x-direction));
 
-  &:hover,
-  &:focus,
-  &:active {
-    color: $white;
+  .icon {
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  &:hover .icon,
+  &:focus .icon,
+  &:active .icon {
+    background: rgb(
+      from var(--clr-text-on-media) r g b / var(--clr-bg-secondary-strength)
+    );
   }
 }
 
@@ -6139,9 +6141,8 @@ a.status-card {
 
 .media-modal__page-dot {
   flex: 0 0 auto;
-  background-color: $white;
+  background-color: rgb(from var(--clr-text-on-media) r g b / 40%);
   filter: var(--overlay-icon-shadow);
-  opacity: 0.4;
   height: 6px;
   width: 6px;
   border-radius: 50%;
@@ -6149,15 +6150,16 @@ a.status-card {
   padding: 0;
   border: 0;
   font-size: 0;
-  transition: opacity 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
 
   &.active {
-    opacity: 1;
+    background-color: var(--clr-text-on-media);
   }
 
   &:focus {
-    outline: 0;
-    background-color: var(--clr-text-accent);
+    opacity: 1;
+    outline: 2px solid var(--clr-text-on-media);
+    outline-offset: 2px;
   }
 }
 
@@ -6920,7 +6922,7 @@ a.status-card {
 
   &__pill {
     display: block;
-    color: $white;
+    color: var(--clr-text-on-media);
     border: 0;
     background: rgb(from var(--clr-bg-media) r g b / 65%);
     backdrop-filter: $backdrop-blur-filter;
@@ -6945,7 +6947,7 @@ a.status-card {
 .relationship-tag {
   display: block;
   text-align: center;
-  color: $white;
+  color: var(--clr-text-on-media);
   border: 0;
   background: rgb(from var(--clr-bg-media) r g b / 65%);
   backdrop-filter: $backdrop-blur-filter;
@@ -7187,8 +7189,8 @@ a.status-card {
     }
 
     .icon {
-      color: $white;
-      filter: var(--overlay-icon-shadow);
+      color: var(--clr-text-on-media);
+      filter: drop-shadow(0 0 6px var(--clr-bg-media));
     }
   }
 
@@ -7547,13 +7549,13 @@ a.status-card {
       flex: 0 0 auto;
       background: transparent;
       border: 0;
-      color: color.change($white, $alpha: 0.75);
+      color: rgb(from var(--clr-text-on-media) r g b / 75%);
       font-weight: 500;
 
       &:active,
       &:hover,
       &:focus {
-        color: $white;
+        color: var(--clr-text-on-media);
       }
     }
   }
@@ -7572,22 +7574,14 @@ a.status-card {
   &__time-sep,
   &__time-total,
   &__time-current {
+    color: var(--clr-text-on-media);
     font-size: 14px;
     font-weight: 500;
-  }
-
-  &__time-current {
-    color: $white;
   }
 
   &__time-sep {
     display: inline-block;
     margin: 0 6px;
-  }
-
-  &__time-sep,
-  &__time-total {
-    color: $white;
   }
 
   &__volume {
@@ -7611,7 +7605,7 @@ a.status-card {
     &::before {
       content: '';
       width: 50px;
-      background: color.change($white, $alpha: 0.35);
+      background: rgb(from var(--clr-text-on-media) r g b / 35%);
       border-radius: 4px;
       display: block;
       position: absolute;
@@ -7629,7 +7623,7 @@ a.status-card {
       inset-inline-start: 0;
       top: 50%;
       transform: translate(0, -50%);
-      background: $white;
+      background: var(--clr-text-on-media);
     }
 
     &__handle {
@@ -7642,7 +7636,7 @@ a.status-card {
       inset-inline-start: 0;
       margin-inline-start: -6px;
       transform: translate(0, -50%);
-      background: $white;
+      background: var(--clr-text-on-media);
       box-shadow: 1px 2px 6px var(--clr-shadow-primary);
       opacity: 0;
 
@@ -7663,7 +7657,7 @@ a.status-card {
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
-      color: $white;
+      color: var(--clr-text-on-media);
 
       &:hover,
       &:active,
@@ -7681,7 +7675,7 @@ a.status-card {
     &::before {
       content: '';
       width: 100%;
-      background: color.change($white, $alpha: 0.35);
+      background: rgb(from var(--clr-text-on-media) r g b / 35%);
       border-radius: 4px;
       display: block;
       position: absolute;
@@ -7696,11 +7690,11 @@ a.status-card {
       height: 4px;
       border-radius: 4px;
       top: 14px;
-      background: $white;
+      background: var(--clr-text-on-media);
     }
 
     &__buffer {
-      background: color.change($white, $alpha: 0.2);
+      background: rgb(from var(--clr-text-on-media) r g b / 20%);
     }
 
     &__handle {
@@ -7712,7 +7706,7 @@ a.status-card {
       height: 12px;
       top: 10px;
       margin-inline-start: -6px;
-      background: $white;
+      background: var(--clr-text-on-media);
       box-shadow: 1px 2px 6px var(--clr-shadow-primary);
 
       .no-reduce-motion & {
@@ -7739,7 +7733,7 @@ a.status-card {
     transform: translate(-50%, -50%);
     background: rgb(from var(--clr-bg-media) r g b / 45%);
     backdrop-filter: $backdrop-blur-filter;
-    color: $white;
+    color: var(--clr-text-on-media);
     border-radius: 8px;
     padding: 16px 24px;
     display: flex;
@@ -10212,7 +10206,7 @@ noscript {
   margin-inline-start: 2px;
 
   svg {
-    color: $white;
+    color: var(--clr-text-on-media);
     height: var(--spinner-size);
     width: var(--spinner-size);
   }
