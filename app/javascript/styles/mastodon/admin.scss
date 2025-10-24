@@ -2064,10 +2064,10 @@ a.sparkline {
       top: 5px;
       right: 5px;
       color: var(--clr-text-on-media);
-      border: 0;
-      outline: 1px solid var(--clr-border-media);
-      background-color: rgb(from var(--clr-bg-media) r g b / 45%);
+      background: var(--clr-bg-media);
       backdrop-filter: $backdrop-blur-filter;
+      outline: 1px solid var(--clr-border-media);
+      border: 0;
       padding: 3px 12px;
       border-radius: 99px;
       font-size: 14px;
@@ -2076,7 +2076,7 @@ a.sparkline {
 
       &:hover,
       &:focus {
-        background-color: rgb(from var(--clr-bg-media) r g b / 90%);
+        background-color: rgb(from var(--clr-bg-media-base) r g b / 90%);
       }
     }
 

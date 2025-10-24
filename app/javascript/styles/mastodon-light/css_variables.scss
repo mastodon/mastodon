@@ -75,7 +75,12 @@
   --clr-bg-ambient: var(--clr-bg-primary);
   --clr-bg-elevated: var(--clr-bg-primary);
   --clr-bg-inverted: var(--clr-grey-950);
-  --clr-bg-media: var(--clr-black);
+  --clr-bg-media-base: var(--clr-black);
+  --clr-bg-media-strength: 65%;
+  --clr-bg-media: #{utils.css-alpha(
+      var(--clr-bg-media-base),
+      var(--clr-bg-media-strength)
+    )};
   --clr-bg-overlay: var(--clr-bg-primary);
   --clr-bg-disabled: var(--clr-grey-400);
   --clr-bg-accent-subtle-base: var(--clr-indigo-600);

@@ -339,9 +339,9 @@
 
   &.overlayed {
     --default-icon-color: rgb(from var(--clr-text-on-media) r g b / 70%);
-    --default-bg-color: rgb(from var(--clr-bg-media) r g b / 65%);
+    --default-bg-color: var(--clr-bg-media);
     --hover-icon-color: var(--clr-text-accent);
-    --hover-bg-color: rgb(from var(--clr-bg-media) r g b / 90%);
+    --hover-bg-color: rgb(from var(--clr-bg-media-base) r g b / 90%);
 
     box-sizing: content-box;
     backdrop-filter: $backdrop-blur-filter;
@@ -697,7 +697,7 @@ body > [data-popper-placement] {
     .icon-button {
       flex: 0 0 auto;
       color: var(--clr-text-on-media);
-      background: rgb(from var(--clr-bg-media) r g b / 65%);
+      background: var(--clr-bg-media);
       backdrop-filter: $backdrop-blur-filter;
       border-radius: 6px;
       font-size: 12px;
@@ -4887,7 +4887,7 @@ a.status-card {
     font-size: 14px;
 
     &__label {
-      background-color: rgb(from var(--clr-bg-media) r g b / 65%);
+      background-color: var(--clr-bg-media);
       backdrop-filter: $backdrop-blur-filter;
       border-radius: 8px;
       padding: 12px 16px;
@@ -4907,7 +4907,7 @@ a.status-card {
     &:hover,
     &:focus {
       .spoiler-button__overlay__label {
-        background-color: rgb(from var(--clr-bg-media) r g b / 90%);
+        background-color: rgb(from var(--clr-bg-media-base) r g b / 90%);
       }
     }
   }
@@ -6923,9 +6923,9 @@ a.status-card {
   &__pill {
     display: block;
     color: var(--clr-text-on-media);
-    border: 0;
-    background: rgb(from var(--clr-bg-media) r g b / 65%);
+    background: var(--clr-bg-media);
     backdrop-filter: $backdrop-blur-filter;
+    border: 0;
     padding: 3px 12px;
     border-radius: 99px;
     font-size: 14px;
@@ -6948,9 +6948,9 @@ a.status-card {
   display: block;
   text-align: center;
   color: var(--clr-text-on-media);
-  border: 0;
-  background: rgb(from var(--clr-bg-media) r g b / 65%);
+  background: var(--clr-bg-media);
   backdrop-filter: $backdrop-blur-filter;
+  border: 0;
   padding: 3px 8px;
   border-radius: 4px;
   font-size: 12px;
@@ -6972,7 +6972,7 @@ a.status-card {
 
 .info-tooltip {
   color: var(--clr-text-on-media);
-  background: rgb(from var(--clr-bg-media) r g b / 65%);
+  background: var(--clr-bg-media);
   backdrop-filter: $backdrop-blur-filter;
   border-radius: 4px;
   box-shadow: var(--dropdown-shadow);
@@ -7190,7 +7190,7 @@ a.status-card {
 
     .icon {
       color: var(--clr-text-on-media);
-      filter: drop-shadow(0 0 6px var(--clr-bg-media));
+      filter: drop-shadow(0 0 6px var(--clr-bg-media-base));
     }
   }
 
@@ -7448,8 +7448,8 @@ a.status-card {
     box-sizing: border-box;
     background: linear-gradient(
       0deg,
-      rgb(from var(--clr-bg-media) r g b / 85%) 0,
-      rgb(from var(--clr-bg-media) r g b / 45%) 60%,
+      rgb(from var(--clr-bg-media-base) r g b / 85%) 0,
+      rgb(from var(--clr-bg-media-base) r g b / 45%) 60%,
       transparent
     );
     padding: 0 15px;
@@ -7731,9 +7731,9 @@ a.status-card {
     top: 50%;
     inset-inline-start: 50%;
     transform: translate(-50%, -50%);
-    background: rgb(from var(--clr-bg-media) r g b / 45%);
-    backdrop-filter: $backdrop-blur-filter;
     color: var(--clr-text-on-media);
+    background: var(--clr-bg-media);
+    backdrop-filter: $backdrop-blur-filter;
     border-radius: 8px;
     padding: 16px 24px;
     display: flex;
