@@ -15,7 +15,7 @@ code {
 
 .form-section {
   border-radius: 8px;
-  background: var(--clr-bg-tertiary);
+  background: var(--clr-bg-secondary);
   padding: 24px;
   margin-bottom: 24px;
 }
@@ -30,7 +30,11 @@ code {
   &::after {
     content: '';
     display: block;
-    background: linear-gradient(to bottom, var(--clr-bg-tertiary), transparent);
+    background: linear-gradient(
+      to bottom,
+      var(--clr-bg-secondary-solid),
+      transparent
+    );
     position: absolute;
     top: 0;
     inset-inline-start: 0;
@@ -1012,42 +1016,6 @@ code {
   samp {
     display: block;
     font-size: 14px;
-  }
-}
-
-.simple_form {
-  .warning {
-    box-sizing: border-box;
-    background: var(--clr-bg-error-subtle);
-    color: var(--clr-text-primary);
-    text-shadow: 1px 1px 0 var(--clr-shadow-primary);
-    box-shadow: 0 2px 6px var(--clr-shadow-primary);
-    border-radius: 4px;
-    padding: 10px;
-    margin-bottom: 15px;
-
-    a {
-      color: var(--clr-text-primary);
-      text-decoration: underline;
-
-      &:hover,
-      &:focus,
-      &:active {
-        text-decoration: none;
-      }
-    }
-
-    strong {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 5px;
-
-      @each $lang in $cjk-langs {
-        &:lang(#{$lang}) {
-          font-weight: 700;
-        }
-      }
-    }
   }
 }
 

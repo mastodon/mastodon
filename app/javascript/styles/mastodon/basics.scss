@@ -1,5 +1,4 @@
 @use 'variables' as *;
-@use 'theme_utils' as *;
 
 html.has-modal {
   &,
@@ -118,6 +117,7 @@ body {
 
   &.admin {
     padding: 0;
+    background: var(--clr-bg-primary);
   }
 
   &.error {
