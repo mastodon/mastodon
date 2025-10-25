@@ -796,6 +796,8 @@ it:
         view_dashboard_description: Consente agli utenti di accedere alla dashboard e alle varie metriche
         view_devops: DevOps
         view_devops_description: Consente agli utenti di accedere alle dashboard Sidekiq e pgHero
+        view_feeds: Visualizza feed in diretta e feed di argomenti
+        view_feeds_description: Consente agli utenti di accedere ai feed in diretta e ai feed di argomenti indipendentemente dalle impostazioni del server
       title: Ruoli
     rules:
       add_new: Aggiungi regola
@@ -837,6 +839,7 @@ it:
         title: Esclude gli utenti dall'indicizzazione dei motori di ricerca per impostazione predefinita
       discovery:
         follow_recommendations: Segui le raccomandazioni
+        preamble: La scoperta di contenuti interessanti è fondamentale per l'inserimento di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla l'andamento delle varie funzionalità di scoperta sul tuo server.
         privacy: Privacy
         profile_directory: Directory del profilo
         public_timelines: Timeline pubbliche
@@ -850,6 +853,7 @@ it:
       feed_access:
         modes:
           authenticated: Solo utenti autenticati
+          disabled: Richiedi un ruolo utente specifico
           public: Tutti
       registrations:
         moderation_recommandation: Assicurati di avere un team di moderazione adeguato e reattivo prima di aprire le registrazioni a tutti!

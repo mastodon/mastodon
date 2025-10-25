@@ -782,6 +782,8 @@ zh-TW:
         view_dashboard_description: 允許使用者存取儀表板與各種指標
         view_devops: DevOps
         view_devops_description: 允許使用者存取 Sidekiq 與 pgHero 儀表板
+        view_feeds: 檢視即時內容與主題
+        view_feeds_description: 允許使用者無論伺服器設定為何皆可存取即時內容與主題
       title: 角色
     rules:
       add_new: 新增規則
@@ -839,6 +841,7 @@ zh-TW:
       feed_access:
         modes:
           authenticated: 僅限已登入之使用者
+          disabled: 需要特定使用者權限
           public: 任何人
       registrations:
         moderation_recommandation: 對所有人開放註冊之前，請確保您有人手充足且反應靈敏的管理員團隊！

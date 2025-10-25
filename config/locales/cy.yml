@@ -852,6 +852,8 @@ cy:
         view_dashboard_description: Yn galluogi defnyddwyr i gael mynediad i'r bwrdd gwaith a metrigau amrywiol
         view_devops: DevOps
         view_devops_description: Yn caniatáu i ddefnyddwyr gael mynediad i fyrddau gwaith Sidekiq a pgHero
+        view_feeds: Gweld ffrydiau byw a phynciol
+        view_feeds_description: Yn caniatáu i ddefnyddwyr gael mynediad at y ffrydiau byw a phynciol beth bynnag yw gosodiadau'r gweinydd
       title: Rolau
     rules:
       add_new: Ychwanegu rheol
@@ -893,6 +895,7 @@ cy:
         title: Eithrio defnyddwyr o fynegai peiriannau chwilio, fel rhagosodiad
       discovery:
         follow_recommendations: Dilyn yr argymhellion
+        preamble: Mae amlygu cynnwys diddorol yn allweddol wrth ddenu defnyddwyr newydd sydd ddim o bosib yn adnabod neb ar Mastodon. Rheolwch sut mae gwahanol nodweddion darganfod yn gweithio ar eich gweinydd.
         privacy: Preifatrwydd
         profile_directory: Cyfeiriadur proffiliau
         public_timelines: Ffrydiau cyhoeddus
@@ -906,6 +909,7 @@ cy:
       feed_access:
         modes:
           authenticated: Defnyddwyr dilys yn unig
+          disabled: Gofyn am rôl defnyddiwr penodol
           public: Pawb
       registrations:
         moderation_recommandation: Gwnewch yn siŵr bod gennych chi dîm cymedroli digonol ac adweithiol cyn i chi agor cofrestriadau i bawb!
@@ -960,6 +964,7 @@ cy:
       no_status_selected: Heb newid postiad gan na ddewiswyd dim un
       open: Agor postiad
       original_status: Postiad gwreiddiol
+      quotes: Dyfyniadau
       reblogs: Ailflogiadau
       replied_to_html: Wedi ymateb i %{acct_link}
       status_changed: Postiad wedi'i newid
@@ -967,6 +972,7 @@ cy:
       title: Postiadau cyfrif - @%{name}
       trending: Yn trendio
       view_publicly: Gweld yn gyhoeddus
+      view_quoted_post: Gweld y postiad wedi'i ddyfynnu
       visibility: Gwelededd
       with_media: Gyda chyfryngau
     strikes:
@@ -1261,7 +1267,10 @@ cy:
     hint_html: Os ydych chi am symud o gyfrif arall i'r un hwn, gallwch greu enw arall yma, sy'n ofynnol cyn y gallwch symud ymlaen i symud dilynwyr o'r hen gyfrif i'r un hwn. Mae'r weithred hon ynddo'i hun yn <strong>ddiniwed ac yn wrthdroadwy</strong>. <strong>Mae'r mudo cyfrif yn cael ei wneud o'r hen gyfrif</strong>.
     remove: Dadgysylltu'r enw arall
   appearance:
+    advanced_settings: Gosodiadau uwch
     animations_and_accessibility: Animeiddiadau a hygyrchedd
+    boosting_preferences: Dewisiadau hybu
+    boosting_preferences_info_html: "<strong>Awgrym:</strong> Beth bynnag yw'r gosodiadau, bydd <kbd>Shift</kbd> + <kbd>Clici</kbd> ar yr eicon Hybu %{icon} yn hybu'n syth."
     discovery: Darganfod
     localization:
       body: Mae Mastodon yn cael ei gyfieithu gan wirfoddolwyr.
@@ -2093,10 +2102,15 @@ cy:
       limit: Rydych chi eisoes wedi pinio uchafswm nifer y postiadau
       ownership: Nid oes modd pinio postiad rhywun arall
       reblog: Nid oes modd pinio hwb
+    quote_error:
+      not_available: Dyw'r postiad ddim ar gael
+      pending_approval: Postiad ar ei ffordd
+      revoked: Postiad wedi'i ddileu gan yr awdur
     quote_policies:
       followers: Dilynwyr yn unig
       nobody: Dim ond fi
       public: Pawb
+    quote_post_author: Wedi dyfynnu postiad gan %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Crybwylliad preifat
