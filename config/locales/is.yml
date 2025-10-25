@@ -796,6 +796,8 @@ is:
         view_dashboard_description: Leyfir notendum að skoða stjórnborðið og sjá ýmsar mælingar
         view_devops: DevOps
         view_devops_description: Leyfir notendum að skoða Sidekiq og pgHero stjórnborð
+        view_feeds: Skoða bein streymi og efnistengd
+        view_feeds_description: Gefur notendum aðgang að beinum streymum og efnistengdum, burtséð frá stillingum netþjóns
       title: Hlutverk
     rules:
       add_new: Skrá reglu
@@ -853,6 +855,7 @@ is:
       feed_access:
         modes:
           authenticated: Einungis auðkenndir notendur
+          disabled: Krefjast sérstaks hlutverks notanda
           public: Allir
       registrations:
         moderation_recommandation: Tryggðu að þú hafir hæft og aðgengilegt umsjónarteymi til taks áður en þú opnar á skráningar fyrir alla!

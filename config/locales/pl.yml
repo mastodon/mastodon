@@ -331,6 +331,7 @@ pl:
         create: Utwórz ogłoszenie
         title: Nowe ogłoszenie
       preview:
+        disclaimer: Ponieważ użytkownicy nie mogą zrezygnować z otrzymywania powiadomień email, powinny one ograniczać się do ważnych ogłoszeń, takich jak powiadomienia o naruszeniu bezpieczeństwa danych osobowych lub zamknięciu serwera.
         explanation_html: 'Wiadomość e-mail zostanie wysłana do <strong>%{display_count} użytkowników</strong>. Otrzymają oni wiadomość o następującej treści:'
         title: Podgląd powiadomienia
       publish: Opublikuj
@@ -507,6 +508,7 @@ pl:
           created_at: 'Utworzono:'
           delete: Usuń
           ip: Adres IP
+          request_body: Treść zgłoszenia
       providers:
         active: Aktywne
         base_url: Podstawowy adres URL
@@ -515,10 +517,12 @@ pl:
         finish_registration: Zakończ rejestrację
         name: Nazwa
         providers: Dostawca
+        public_key_fingerprint: Odcisk klucza publicznego
         registration_requested: Wymagana rejestracja
         registrations:
           confirm: Zatwierdź
           reject: Odrzuć
+          title: Potwierdź rejestrację FASP
         save: Zapisz
         sign_in: Zaloguj się
         status: Status
@@ -600,6 +604,10 @@ pl:
         title: Moderacja
       moderation_notes:
         create: Dodaj notatkę moderacyjną
+        created_msg: Notatka dotycząca moderacji instancji została pomyślnie utworzona!
+        description_html: Wyświetlaj i zostawiaj notatki dla innych moderatorów oraz dla siebie samego w przyszłości
+        destroyed_msg: Notatka dotycząca moderacji instancji została pomyślnie usunięta!
+        placeholder: Informacje o tej instancji, podjętych działaniach lub wszelkie inne informacje, które pomogą ci moderować tę instancję w przyszłości.
         title: Notatki moderacyjne
       private_comment: Prywatny komentarz
       public_comment: Publiczny komentarz
@@ -812,6 +820,8 @@ pl:
         view_dashboard_description: Pozwala użytkownikom na dostęp do panelu i różnych metryk
         view_devops: DevOps
         view_devops_description: Pozwala użytkownikom na dostęp do paneli Sidekiq i pgHero
+        view_feeds: Wyświetlaj aktualności i kanały tematyczne
+        view_feeds_description: Umożliwia użytkownikom dostęp do aktualności i kanałów tematycznych niezależnie od ustawień serwera
       title: Role
     rules:
       add_new: Dodaj zasadę
@@ -825,6 +835,7 @@ pl:
       title: Regulamin serwera
       translation: Tłumaczenie
       translations: Tłumaczenia
+      translations_explanation: Możesz opcjonalnie dodać tłumaczenia reguł. Wyświetlany będzie tekst domyślny, jeśli nie ma dostępnej wersji przetłumaczonej. Zawsze upewnij się, że podane tłumaczenie jest zgodne z tekstem domyślnym.
     settings:
       about:
         manage_rules: Zarządzaj regułami serwera
@@ -1976,6 +1987,8 @@ pl:
     title: '%{name}: "%{quote}"'
     visibilities:
       public: Publiczne
+      unlisted: Niewidoczny
+      unlisted_long: Ukryte w wynikach wyszukiwania Mastodona, trendach i publicznych osiach czasu
   statuses_cleanup:
     enabled: Automatycznie usuwaj stare wiadomości
     enabled_hint: Automatycznie usuwa Twoje posty, gdy osiągną określony próg wiekowy, chyba że spełniają jeden z poniższych wyjątków
@@ -2021,6 +2034,8 @@ pl:
   terms_of_service:
     title: Regulamin
   terms_of_service_interstitial:
+    future_preamble_html: Wprowadzamy pewne zmiany w naszych warunkach świadczenia usług, które zaczną obowiązywać od <strong>%{date}</strong>. Zachęcamy do zapoznania się z aktualnymi warunkami.
+    past_preamble_html: Od czasu twojej ostatniej wizyty zmieniliśmy warunki korzystania z usługi. Zachęcamy do zapoznania się z aktualnymi warunkami.
     review_link: Przeglądnij Warunki Korzystania
     title: Warunki korzystania z %{domain} zmieniają się
   themes:
@@ -2055,6 +2070,7 @@ pl:
     webauthn: Klucze bezpieczeństwa
   user_mailer:
     announcement_published:
+      description: 'Administratorzy %{domain} publikują ogłoszenie:'
       subject: Ogłoszenie serwisu
       title: Ogłoszenie serwisu %{domain}
     appeal_approved:
@@ -2089,6 +2105,8 @@ pl:
     terms_of_service_changed:
       agreement: Kontynuując używanie %{domain}, zgadzasz się na te warunki. Jeśli nie zgadzasz się ze zaktualizowanymi warunkami, możesz wypowiedzieć umowę z %{domain} w dowolnym momencie, usuwając swoje konto.
       changelog: 'W skrócie oto co oznacza dla Ciebie ta aktualizacja:'
+      description: 'Otrzymujesz tę wiadomość email, ponieważ wprowadzamy pewne zmiany w naszych warunkach świadczenia usług w domenie %{domain}. Aktualizacje te zaczną obowiązywać od dnia %{date}. Zachęcamy do zapoznania się z pełną treścią zaktualizowanych warunków tutaj:'
+      description_html: Otrzymujesz tę wiadomość email, ponieważ wprowadzamy pewne zmiany w naszych warunkach świadczenia usług w domenie %{domain}. Aktualizacje te zaczną obowiązywać od dnia <strong>%{date}</strong>. Zachęcamy do zapoznania się z <a href="%{path}" target="_blank">pełną treścią zaktualizowanych warunków tutaj</a>.
       sign_off: Zespół %{domain}
       subject: Aktualizacja warunków korzystania z usług
       subtitle: Warunki korzystania z %{domain} zmieniają się

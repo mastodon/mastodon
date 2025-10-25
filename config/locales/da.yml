@@ -796,6 +796,8 @@ da:
         view_dashboard_description: Tillader brugere at tilgå Dashboard'et og forskellige målinger
         view_devops: DevOps
         view_devops_description: Tillader brugere at tilgå Sidekiq- og pgHero-dashboards
+        view_feeds: Se live- og emne-feeds
+        view_feeds_description: Giver brugerne adgang til live- og emne-feeds uanset serverindstillinger
       title: Roller
     rules:
       add_new: Tilføj regel
@@ -851,6 +853,7 @@ da:
       feed_access:
         modes:
           authenticated: Kun godkendte brugere
+          disabled: Kræv specifik brugerrolle
           public: Alle
       registrations:
         moderation_recommandation: Sørg for, at der er et tilstrækkeligt og reaktivt moderationsteam, før registrering åbnes for alle!

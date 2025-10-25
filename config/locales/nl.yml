@@ -796,6 +796,8 @@ nl:
         view_dashboard_description: Geeft gebruikers toegang tot het dashboard en verschillende statistieken
         view_devops: DevOps
         view_devops_description: Geeft gebruikers toegang tot de dashboards van Sidekiq en pgHero
+        view_feeds: Openbare en hashtagtijdlijnen bekijken
+        view_feeds_description: Hiermee kunnen gebruikers toegang krijgen tot de openbare en hashtagtijdlijnen, ongeacht de serverinstellingen
       title: Rollen
     rules:
       add_new: Regel toevoegen
@@ -837,6 +839,7 @@ nl:
         title: Gebruikers standaard niet door zoekmachines laten indexeren
       discovery:
         follow_recommendations: Aanbevolen accounts
+        preamble: Interessante inhoud uitlichten is van essentieel belang voor onboarding van nieuwe gebruikers, die mogelijk niemand op Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van inhoud en gebruikers op jouw server werken.
         privacy: Privacy
         profile_directory: Gebruikersgids
         public_timelines: Openbare tijdlijnen
@@ -850,6 +853,7 @@ nl:
       feed_access:
         modes:
           authenticated: Alleen ingelogde gebruikers
+          disabled: Specifieke gebruikersrol vereisen
           public: Iedereen
       registrations:
         moderation_recommandation: Zorg ervoor dat je een adequaat en responsief moderatieteam hebt voordat je registraties voor iedereen openstelt!
