@@ -238,7 +238,7 @@ class SignedRequest
 
   def initialize(request)
     @signature =
-      if Mastodon::Feature.http_message_signatures_enabled? && request.headers['signature-input'].present?
+      if request.headers['signature-input'].present?
         HttpMessageSignature.new(request)
       else
         HttpSignature.new(request)
