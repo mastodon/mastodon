@@ -4,7 +4,7 @@ import { loadWorker } from '@/mastodon/utils/workers';
 import { toSupportedLocale } from './locale';
 import { emojiLogger } from './utils';
 // eslint-disable-next-line import/default -- Loads worker as URL.
-import workerUrl from './worker?url';
+import workerUrl from './worker?url&no-inline';
 
 const userLocale = toSupportedLocale(initialState?.meta.locale ?? 'en');
 
