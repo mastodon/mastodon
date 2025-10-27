@@ -824,6 +824,8 @@ be:
         view_dashboard_description: Дазваляе праглядаць панэль кіравання і розныя метрыкі
         view_devops: DevOps
         view_devops_description: Дае доступ да панэляў кіравання Sidekiq і pgHero
+        view_feeds: Глядзець жывую і тэматычныя стужкі
+        view_feeds_description: Даць карыстальнікам доступ да жывой і тэматычных стужак, незалежна ад налад сервера
       title: Ролі
     rules:
       add_new: Дадаць правіла
@@ -879,6 +881,7 @@ be:
       feed_access:
         modes:
           authenticated: Толькі аўтэнтыфікаваныя карыстальнікі
+          disabled: Запатрабаваць адмысловую ролю карыстальніка
           public: Усе
       registrations:
         moderation_recommandation: Пераканайцеся, што ў вас ёсць адэкватная і аператыўная каманда мадэратараў, перш чым адчыняць рэгістрацыю для ўсіх жадаючых!

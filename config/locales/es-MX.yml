@@ -796,6 +796,8 @@ es-MX:
         view_dashboard_description: Permite a los usuarios acceder al panel de control y varias métricas
         view_devops: DevOps
         view_devops_description: Permite a los usuarios acceder a los paneles de control Sidekiq y pgHero
+        view_feeds: Visualización de cronologías y tendencias
+        view_feeds_description: Permitir a los usuarios acceder a las cronologías públicas y tendencias sin importar la configuración del servidor
       title: Roles
     rules:
       add_new: Añadir norma
@@ -851,6 +853,7 @@ es-MX:
       feed_access:
         modes:
           authenticated: Solo usuarios autenticados
+          disabled: Requerir un rol de usuario específico
           public: Todos
       registrations:
         moderation_recommandation: "¡Por favor, asegúrate de contar con un equipo de moderación adecuado y activo antes de abrir el registro al público!"

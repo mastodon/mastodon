@@ -796,6 +796,8 @@ hu:
         view_dashboard_description: Lehetővé teszi, hogy a felhasználó elérje az irányítópultot és vele számos metrikát
         view_devops: DevOps
         view_devops_description: Lehetővé teszi, hogy a felhasználó elérje a Sidekiq és pgHero irányítópultjait
+        view_feeds: Élő és témahírfolyamok megtekintése
+        view_feeds_description: A kiszolgálóbeállításoktól függetlenül engedélyezi az élő és témahírfolyamok elérését
       title: Szerepek
     rules:
       add_new: Szabály hozzáadása
@@ -837,6 +839,7 @@ hu:
         title: Alapértelmezetten ne indexeljék a keresők a felhasználókat
       discovery:
         follow_recommendations: Ajánlottak követése
+        preamble: Az érdekes tartalmak felszínre hozása fontos szerepet játszik az új felhasználók bevonásában, akik esetleg nem ismerik a Mastodont. Szabályozd, hogy a különböző felfedezési funkciók hogyan működjenek a kiszolgálón.
         privacy: Adatvédelem
         profile_directory: Profiladatbázis
         public_timelines: Nyilvános idővonalak
@@ -850,6 +853,7 @@ hu:
       feed_access:
         modes:
           authenticated: Csak hitelesített felhasználók
+          disabled: Konkrét felhasználói szerepkör megkövetelése
           public: Mindenki
       registrations:
         moderation_recommandation: Győződj meg arról, hogy megfelelő és gyors reagálású moderátor csapatod van, mielőtt mindenki számára megnyitod a regisztrációt!

@@ -796,6 +796,8 @@ gl:
         view_dashboard_description: Permite acceder ao taboleiro e varias métricas do servidor
         view_devops: DevOps
         view_devops_description: Permite acceder aos taboleiros Sidekiq e phHero
+        view_feeds: Ver as canles do directo e temas
+        view_feeds_description: Permite ás usuarias acceder ás canles de directo e temas independentemento dos axustes do servidor.
       title: Roles
     rules:
       add_new: Engadir regra
@@ -851,6 +853,7 @@ gl:
       feed_access:
         modes:
           authenticated: Só para usuarias con sesión iniciada
+          disabled: Requerir un rol da usuaria específico
           public: Para calquera
       registrations:
         moderation_recommandation: Por favor, pon interese en crear un equipo de moderación competente e reactivo antes de permitir que calquera poida crear unha conta!

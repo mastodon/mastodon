@@ -782,6 +782,8 @@ nan:
         view_dashboard_description: 允准用者接近使用tsit ê la-jí-báng kap tsē-tsē指標
         view_devops: DevOps
         view_devops_description: 允准用者接近使用Sidekiq kap pgHero ê la-jí-báng
+        view_feeds: 看即時內容kap主題ê feed
+        view_feeds_description: 允准用者接近使用即時kap主題feed，無論服侍器ê設定。
       title: 角色
     rules:
       add_new: 加添規則
@@ -823,6 +825,7 @@ nan:
         title: 預設kā用者tuì tshiau-tshuē ia̋n-jín ê索引排除
       discovery:
         follow_recommendations: 跟tuè建議
+        preamble: Kā心適ê內容浮現出來，ē當幫tsān tī Mastodon頂siáng lóng可能m̄知ê新手。控制tsē-tsē發現lí ê服侍器ê特色作品ê功能án-nuá運作。
         privacy: 隱私權
         profile_directory: 個人資料ê目錄
         public_timelines: 公共ê時間線
@@ -836,6 +839,7 @@ nan:
       feed_access:
         modes:
           authenticated: Kan-ta hōo登入ê用者
+          disabled: 愛特別ê用者角色
           public: Ta̍k lâng
       registrations:
         moderation_recommandation: 佇開放hōo ta̍k ê lâng註冊進前，請確認lí有夠額koh主動反應ê管理團隊！
@@ -1153,6 +1157,62 @@ nan:
       subject: "%{instance} 有通the̍h ê Mastodon ê新版本！"
     new_trends:
       body: 下kha ê項目愛審查，tsiah ē當公開顯示：
+      new_trending_links:
+        title: 趨勢ê連結
+      new_trending_statuses:
+        title: 趨勢ê PO文
+      new_trending_tags:
+        title: 趨勢ê hashtag
+      subject: "%{instance} 頂有新ê趨勢愛審查"
+  aliases:
+    add_new: 加添別名
+    created_msg: 別名成功加添ah。Lí ē當開始tuì舊ê口座轉。
+    deleted_msg: Thâi掉捌名成功。Bē當tuì hit ê口座轉kàu tsit ê ah。
+    empty: Lí bô半个別名。
+    hint_html: Nā lí beh tuì別ê口座轉kah tsit ê，lí通佇tsia加別名，tse是必要ê，了後lí ē當kā跟tuè lí ê tuì舊口座suá到tsit ê。Tsit ê動作是<strong>無害koh通還原</strong>。<strong>著tī舊口座suá口座</strong>。
+    remove: 取消連結別名
+  appearance:
+    advanced_settings: 進一步ê設定
+    animations_and_accessibility: 動畫kap無障礙設定
+    boosting_preferences: 轉送ê偏好設定
+    boosting_preferences_info_html: "<strong>撇步：</strong>無論án-nuá設定，<kbd>Shift</kbd> + <kbd>Click</kbd> 佇%{icon} 轉送標á ē liâm-mī轉送。"
+    discovery: 發現
+    localization:
+      body: Mastodon是由志工翻譯。
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Ta̍k家lóng ē當貢獻。
+    sensitive_content: 敏感ê內容
+  application_mailer:
+    notification_preferences: 改電子phue ê偏好
+    salutation: "%{name}、"
+    settings: 改電子phue ê偏好：%{link}
+    unsubscribe: 取消訂
+    view: 檢視：
+    view_profile: 看個人資料
+    view_status: 看PO文
+  applications:
+    created: 應用程式成功加添
+    destroyed: 應用程式成功thâi掉
+    logout: 登出
+    regenerate_token: 重頭產生接近使用ê token
+    token_regenerated: 接近使用ê token 成功重頭產生
+    warning: 注意！毋通kā分享hōo別lâng！
+    your_token: Lí ê接近使用token
+  auth:
+    apply_for_account: 申請口座
+    captcha_confirmation:
+      help_html: Nā lí完成CAPTCHA ê時陣有問題，lí通用 %{email} kap guán 聯絡，guán ē幫tsān lí。
+      hint_html: 上尾步ah！Guán愛確認lí是人類（以免pùn-sò訊息入侵！）解決下kha êCAPTCHA了後，ji̍h「繼續」。
+      title: 安全檢查
+    confirmations:
+      awaiting_review: Lí ê電子phue地址有確認ah！%{domain} ê人員leh審查lí ê註冊。Nā in允准lí ê口座，Lí ē收著電子phue！
+      awaiting_review_title: Lí ê註冊當leh審查
+      clicking_this_link: Ji̍h tsit ê連結
+      login_link: 登入
+      proceed_to_login_html: Lí tsit-má通繼續去 %{login_link}。
+      redirect_to_app_html: Lí應該受重轉kàu <strong>%{app_name}</strong>應用程式，若是iáu-buē，試 %{clicking_this_link} á是手動轉去tsit ê應用程式。
+      registration_complete: Lí佇 %{domain} ê註冊完成ah！
+      welcome_title: 歡迎 %{name}！
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:
