@@ -1652,6 +1652,17 @@ body > [data-popper-placement] {
 }
 
 .status__wrapper-direct,
+.notification-ungrouped--direct,
+.notification-group--direct,
+.notification-group--annual-report {
+  background: var(--clr-bg-accent-subtle);
+
+  &:focus {
+    background: var(--clr-bg-accent-subtle-highlighted);
+  }
+}
+
+.status__wrapper-direct,
 .notification-ungrouped--direct {
   .status__prepend,
   .notification-ungrouped__header {
