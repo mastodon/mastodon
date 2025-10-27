@@ -6098,10 +6098,13 @@ a.status-card {
     padding: 16px;
 
     .icon-button {
-      --default-icon-color: white;
+      --default-icon-color: var(--clr-text-on-media);
       --default-bg-color: transparent;
-      --hover-icon-color: white;
-      --hover-bg-color: rgb(255 255 255 / 12%);
+      --hover-icon-color: var(--clr-text-on-media);
+      --hover-bg-color: rgb(
+        from var(--clr-text-on-media) r g b /
+          var(--clr-bg-accent-subtle-strength)
+      );
 
       .icon {
         filter: var(--overlay-icon-shadow);
@@ -6123,7 +6126,7 @@ a.status-card {
       }
 
       &.disabled {
-        --default-icon-color: white;
+        --default-icon-color: var(--clr-text-on-media);
         --default-bg-color: transparent;
 
         cursor: default;
@@ -6484,7 +6487,7 @@ a.status-card {
       align-items: center;
       justify-content: center;
       padding: 24px;
-      background: #000;
+      background: var(--clr-bg-media-base);
 
       img {
         display: block;
@@ -7263,6 +7266,12 @@ a.status-card {
 }
 
 .audio-player {
+  /* These are only fallback values, the AudioPlayer component inserts
+   * the real colours dynamically as inline styles */
+  --player-foreground-color: var(--clr-text-on-media);
+  --player-background-color: var(--clr-bg-media-base);
+  --player-accent-color: var(--clr-text-accent);
+
   box-sizing: border-box;
   container: audio-player / inline-size;
   position: relative;
@@ -7272,7 +7281,7 @@ a.status-card {
   width: 100%;
   aspect-ratio: 16 / 9;
   color: var(--player-foreground-color);
-  background: var(--player-background-color, var(--clr-bg-primary));
+  background: var(--player-background-color);
   border-radius: 8px;
   outline: 1px solid var(--clr-border-media);
   outline-offset: -1px;
@@ -8086,7 +8095,7 @@ noscript {
     width: 100px;
     height: 100px;
     transform: translate(-50%, -50%);
-    border: 2px solid #fff;
+    border: 2px solid var(--clr-text-on-media);
     border-radius: 50%;
     box-shadow: 0 0 0 9999em var(--clr-shadow-primary);
     pointer-events: none;
