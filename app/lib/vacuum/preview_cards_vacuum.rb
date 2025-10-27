@@ -16,6 +16,8 @@ class Vacuum::PreviewCardsVacuum
   def vacuum_cached_images!
     preview_cards_past_retention_period.find_in_batches do |preview_card|
       AttachmentBatch.new(PreviewCard, preview_card).clear
+    rescue => e
+      Rails.logger.error("Skipping batch while removing cached preview cards due to error: #{e}")
     end
   end
 
