@@ -12,8 +12,7 @@ class MigrateTimelinePreviewSetting < ActiveRecord::Migration[8.0]
     Setting.upsert_all(
       %w(local_live_feed_access remote_live_feed_access local_topic_feed_access remote_topic_feed_access).map do |var|
         { var: var, value: value ? "--- public\n" : "--- authenticated\n" }
-      end,
-      unique_by: :var
+      end
     )
   end
 
