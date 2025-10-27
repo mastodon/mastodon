@@ -72,6 +72,17 @@ const mapStateToProps = state => ({
   languages: state.getIn(['server', 'translationLanguages', 'items']),
 });
 
+const compareUrls = (href1, href2) => {
+  try {
+    const url1 = new URL(href1);
+    const url2 = new URL(href2);
+
+    return url1.origin === url2.origin && url1.path === url2.path && url1.search === url2.search;
+  } catch {
+    return false;
+  }
+};
+
 class StatusContent extends PureComponent {
   static propTypes = {
     identity: identityContextPropShape,
@@ -127,7 +138,7 @@ class StatusContent extends PureComponent {
 
       link.classList.add('status-link');
 
-      mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
+      mention = this.props.status.get('mentions').find(item => compareUrls(link, item.get('url')));
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
@@ -206,7 +217,7 @@ class StatusContent extends PureComponent {
 
   handleElement = (element, { key, ...props }, children) => {
     if (element instanceof HTMLAnchorElement) {
-      const mention = this.props.status.get('mentions').find(item => element.href === item.get('url'));
+      const mention = this.props.status.get('mentions').find(item => compareUrls(element.href, item.get('url')));
       return (
         <HandledLink
           {...props}
