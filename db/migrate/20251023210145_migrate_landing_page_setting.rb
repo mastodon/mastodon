@@ -9,10 +9,10 @@ class MigrateLandingPageSetting < ActiveRecord::Migration[8.0]
 
     value = YAML.safe_load(setting.attributes['value'], permitted_classes: [ActiveSupport::HashWithIndifferentAccess, Symbol])
 
-    Setting.upsert(
+    Setting.upsert({
       var: 'landing_page',
-      value: value ? "--- trends\n" : "--- about\n"
-    )
+      value: value ? "--- trends\n" : "--- about\n",
+    })
   end
 
   def down; end
