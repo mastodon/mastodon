@@ -3,6 +3,8 @@ import { loadWorker } from '@/mastodon/utils/workers';
 
 import { toSupportedLocale } from './locale';
 import { emojiLogger } from './utils';
+// eslint-disable-next-line import/default -- Loads worker as URL.
+import workerUrl from './worker?url';
 
 const userLocale = toSupportedLocale(initialState?.meta.locale ?? 'en');
 
@@ -16,8 +18,7 @@ export function initializeEmoji() {
   log('initializing emojis');
   if (!worker && 'Worker' in window) {
     try {
-      // This is a JS file, as workers cannot yet be TS files in Vite.
-      worker = loadWorker(new URL('./worker', import.meta.url), {
+      worker = loadWorker(workerUrl, {
         type: 'module',
       });
     } catch (err) {
