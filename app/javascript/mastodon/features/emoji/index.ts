@@ -16,6 +16,7 @@ export function initializeEmoji() {
   log('initializing emojis');
   if (!worker && 'Worker' in window) {
     try {
+      // This is a JS file, as workers cannot yet be TS files in Vite.
       worker = loadWorker(new URL('./worker', import.meta.url), {
         type: 'module',
       });
