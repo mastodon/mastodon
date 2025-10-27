@@ -1,5 +1,6 @@
 @use 'sass:color';
 @use 'variables' as *;
+@use 'functions' as *;
 
 code {
   font-family: $font-monospace, monospace;
@@ -15,7 +16,7 @@ code {
 
 .form-section {
   border-radius: 8px;
-  background: var(--clr-bg-secondary);
+  background: var(--surface-background-color);
   padding: 24px;
   margin-bottom: 24px;
 }
@@ -32,7 +33,7 @@ code {
     display: block;
     background: linear-gradient(
       to bottom,
-      var(--clr-bg-secondary-solid),
+      var(--surface-background-color),
       transparent
     );
     position: absolute;
@@ -57,16 +58,14 @@ code {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  color: var(--clr-text-primary);
+  color: $primary-text-color;
 
   &.success {
-    color: var(--clr-text-on-success-strong);
-    background: var(--clr-bg-success-strong);
+    background: $success-green;
   }
 
   &.failure {
-    color: var(--clr-text-on-error-strong);
-    background: var(--clr-bg-error-strong);
+    background: $error-red;
   }
 }
 
@@ -127,7 +126,7 @@ code {
         font-family: inherit;
         font-size: 14px;
         padding-top: 5px;
-        color: var(--clr-text-primary);
+        color: $primary-text-color;
         display: block;
         width: auto;
       }
@@ -148,7 +147,7 @@ code {
       }
 
       label a {
-        color: var(--clr-text-accent);
+        color: $highlight-text-color;
         text-decoration: underline;
 
         &:hover,
@@ -190,7 +189,7 @@ code {
   .lead {
     font-size: 17px;
     line-height: 22px;
-    color: var(--clr-text-primary);
+    color: $secondary-text-color;
     margin-bottom: 30px;
 
     &.invited-by {
@@ -198,7 +197,7 @@ code {
     }
 
     a {
-      color: var(--clr-text-accent);
+      color: $highlight-text-color;
     }
   }
 
@@ -209,16 +208,16 @@ code {
   }
 
   .hint {
-    color: var(--clr-text-secondary);
+    color: $darker-text-color;
 
     a {
-      color: var(--clr-text-accent);
+      color: $highlight-text-color;
     }
 
     code {
       border-radius: 3px;
       padding: 0.2em 0.4em;
-      background: var(--clr-bg-secondary);
+      background: darken($ui-base-color, 12%);
     }
 
     li {
@@ -243,7 +242,7 @@ code {
 
   p.hint {
     margin-bottom: 15px;
-    color: var(--clr-text-secondary);
+    color: $darker-text-color;
 
     &.subtle-hint {
       text-align: center;
@@ -279,7 +278,7 @@ code {
       & > label {
         font-family: inherit;
         font-size: 14px;
-        color: var(--clr-text-primary);
+        color: $primary-text-color;
         font-weight: 500;
         min-width: 150px;
         flex: 0 0 auto;
@@ -301,7 +300,7 @@ code {
     .label_input > label {
       font-family: inherit;
       font-size: 14px;
-      color: var(--clr-text-primary);
+      color: $primary-text-color;
       display: block;
       margin-bottom: 8px;
       overflow-wrap: break-word;
@@ -323,7 +322,7 @@ code {
     & > label {
       font-family: inherit;
       font-size: 14px;
-      color: var(--clr-text-primary);
+      color: $primary-text-color;
       display: block;
       font-weight: 600;
       line-height: 20px;
@@ -382,7 +381,7 @@ code {
 
   .required abbr {
     text-decoration: none;
-    color: var(--clr-text-error);
+    color: lighten($error-value-color, 12%);
   }
 
   .fields-group {
@@ -475,7 +474,7 @@ code {
     margin-bottom: 5px;
     font-family: inherit;
     font-size: 14px;
-    color: var(--clr-text-primary);
+    color: $primary-text-color;
     display: block;
     width: auto;
   }
@@ -485,7 +484,7 @@ code {
       label {
         font-family: inherit;
         font-size: 14px;
-        color: var(--clr-text-primary);
+        color: $primary-text-color;
         display: inline-block;
         width: auto;
         position: relative;
@@ -506,7 +505,7 @@ code {
   .input.static .label_input__wrapper {
     font-size: 14px;
     padding: 10px;
-    border: 1px solid var(--clr-border-primary);
+    border: 1px solid $dark-text-color;
     border-radius: 4px;
   }
 
@@ -520,14 +519,14 @@ code {
     box-sizing: border-box;
     font-size: 14px;
     line-height: 20px;
-    color: var(--clr-text-primary);
+    color: $primary-text-color;
     display: block;
     width: 100%;
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: var(--clr-bg-secondary);
-    border: 1px solid var(--clr-border-primary);
+    background: $ui-base-color;
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
     padding: 10px 16px;
 
@@ -536,7 +535,7 @@ code {
     }
 
     &:required:valid {
-      border-color: var(--clr-text-success);
+      border-color: $valid-value-color;
     }
 
     @media screen and (width <= 600px) {
@@ -551,13 +550,13 @@ code {
   input[type='datetime-local'] {
     &:focus:invalid:not(:placeholder-shown),
     &:required:invalid:not(:placeholder-shown) {
-      border-color: var(--clr-text-error);
+      border-color: lighten($error-red, 12%);
     }
   }
 
   .input.field_with_errors {
     label {
-      color: var(--clr-text-error);
+      color: lighten($error-red, 12%);
     }
 
     input[type='text'],
@@ -567,13 +566,13 @@ code {
     input[type='datetime-local'],
     textarea,
     select {
-      border-color: var(--clr-text-error);
+      border-color: lighten($error-red, 12%);
     }
 
     .error {
       display: block;
       font-weight: 500;
-      color: var(--clr-text-error);
+      color: lighten($error-red, 12%);
       margin-top: 4px;
     }
   }
@@ -606,8 +605,8 @@ code {
     width: 100%;
     border: 0;
     border-radius: 4px;
-    background: var(--clr-bg-accent-strong);
-    color: var(--clr-text-on-accent-strong);
+    background: $ui-button-background-color;
+    color: $ui-button-color;
     font-size: 15px;
     line-height: 22px;
     height: auto;
@@ -626,22 +625,21 @@ code {
     &:active,
     &:focus,
     &:hover {
-      background: var(--clr-bg-accent-strong-highlighted);
+      background-color: $ui-button-focus-background-color;
     }
 
     &:disabled,
     &:disabled:hover {
-      color: var(--clr-text-on-disabled);
-      background: var(--clr-bg-disabled);
+      background-color: $ui-button-disabled-color;
     }
 
     &.negative {
-      background: var(--clr-bg-error-strong);
+      background: $ui-button-destructive-background-color;
 
       &:hover,
       &:active,
       &:focus {
-        background: var(--clr-bg-error-strong-highlighted);
+        background-color: $ui-button-destructive-focus-background-color;
       }
     }
   }
@@ -650,14 +648,16 @@ code {
     appearance: none;
     box-sizing: border-box;
     font-size: 14px;
-    color: var(--clr-text-primary);
+    color: $primary-text-color;
     display: block;
     width: 100%;
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: var(--clr-bg-secondary);
-    border: 1px solid var(--clr-border-primary);
+    background: $ui-base-color
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>")
+      no-repeat right 8px center / auto 14px;
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
     padding-inline-start: 10px;
     padding-inline-end: 30px;
@@ -695,7 +695,7 @@ code {
       top: 1px;
       padding: 10px;
       font-size: 14px;
-      color: var(--clr-text-tertiary);
+      color: $dark-text-color;
       font-family: inherit;
       pointer-events: none;
       cursor: default;
@@ -721,29 +721,6 @@ code {
   }
 }
 
-/* Double-chevron icon for custom select components */
-.select-wrapper,
-.select .label_input__wrapper {
-  width: 100%;
-
-  &::after {
-    --icon-size: 11px;
-
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    inset-inline-end: 9px;
-    width: var(--icon-size);
-    background-color: var(--clr-text-tertiary);
-    pointer-events: none;
-    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='black'/></svg>");
-    mask-position: right center;
-    mask-size: var(--icon-size);
-    mask-repeat: no-repeat;
-  }
-}
-
 .block-icon {
   display: block;
   margin: 0 auto;
@@ -752,30 +729,30 @@ code {
 }
 
 .flash-message {
-  color: var(--clr-text-accent);
-  background: transparent;
-  border: 1px solid var(--clr-text-accent);
+  background: var(--background-color);
+  color: $highlight-text-color;
+  border: 1px solid $highlight-text-color;
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
   text-align: center;
 
   &.notice {
-    border: 1px solid var(--clr-border-on-bg-success-subtle);
-    background: var(--clr-bg-success-subtle);
-    color: var(--clr-text-success);
+    border: 1px solid color.change($valid-value-color, $alpha: 0.5);
+    background: color.change($valid-value-color, $alpha: 0.25);
+    color: $valid-value-color;
   }
 
   &.warning {
-    border: 1px solid var(--clr-border-on-bg-warning-subtle);
-    background: var(--clr-bg-warning-subtle);
-    color: var(--clr-text-warning);
+    border: 1px solid color.change($gold-star, $alpha: 0.5);
+    background: color.change($gold-star, $alpha: 0.25);
+    color: $gold-star;
   }
 
   &.alert {
-    border: 1px solid var(--clr-border-on-bg-error-subtle);
-    background: var(--clr-bg-error-subtle);
-    color: var(--clr-text-error);
+    border: 1px solid color.change($error-value-color, $alpha: 0.5);
+    background: color.change($error-value-color, $alpha: 0.1);
+    color: $error-value-color;
   }
 
   &.hidden {
@@ -790,11 +767,11 @@ code {
 
   a {
     display: inline-block;
-    color: var(--clr-text-secondary);
+    color: $darker-text-color;
     text-decoration: none;
 
     &:hover {
-      color: var(--clr-text-primary);
+      color: $primary-text-color;
       text-decoration: underline;
     }
   }
@@ -824,8 +801,8 @@ code {
     border: 0;
     padding: 10px;
     font-family: $font-monospace, monospace;
-    background: var(--clr-bg-secondary);
-    color: var(--clr-text-primary);
+    background: $ui-base-color;
+    color: $primary-text-color;
     font-size: 14px;
     margin: 0;
 
@@ -840,7 +817,7 @@ code {
     }
 
     &:focus {
-      background: var(--clr-bg-accent-subtle);
+      background: lighten($ui-base-color, 4%);
     }
   }
 
@@ -896,7 +873,7 @@ code {
   text-align: center;
 
   a {
-    color: var(--clr-text-secondary);
+    color: $darker-text-color;
     text-decoration: none;
 
     &:hover {
@@ -916,7 +893,7 @@ code {
   }
 
   a {
-    color: var(--clr-text-accent);
+    color: $highlight-text-color;
     text-transform: uppercase;
     text-decoration: none;
     font-weight: 700;
@@ -924,7 +901,7 @@ code {
     &:hover,
     &:focus,
     &:active {
-      color: var(--clr-text-accent-subtle);
+      color: lighten($highlight-text-color, 8%);
     }
   }
 }
@@ -932,7 +909,7 @@ code {
 .oauth-prompt,
 .follow-prompt {
   margin-bottom: 30px;
-  color: var(--clr-text-secondary);
+  color: $darker-text-color;
 
   h2 {
     font-size: 16px;
@@ -941,7 +918,7 @@ code {
   }
 
   strong {
-    color: var(--clr-text-primary);
+    color: $secondary-text-color;
     font-weight: 500;
 
     @each $lang in $cjk-langs {
@@ -954,7 +931,7 @@ code {
 
 .oauth-prompt {
   h3 {
-    color: var(--clr-text-primary);
+    color: $ui-secondary-color;
     font-size: 17px;
     line-height: 22px;
     font-weight: 500;
@@ -968,9 +945,9 @@ code {
   }
 
   .permissions-list {
-    border: 1px solid var(--clr-border-primary);
+    border: 1px solid $ui-base-color;
     border-radius: 4px;
-    background: var(--clr-bg-secondary);
+    background: darken($ui-base-color, 4%);
     margin-bottom: 30px;
   }
 
@@ -996,10 +973,10 @@ code {
 
 .qr-code {
   flex: 0 0 auto;
-  background: white;
+  background: $simple-background-color;
   padding: 4px;
   margin: 0 10px 20px 0;
-  box-shadow: 0 0 15px var(--clr-shadow-primary);
+  box-shadow: 0 0 15px color.change($base-shadow-color, $alpha: 0.2);
   display: inline-block;
 
   svg {
@@ -1010,12 +987,48 @@ code {
 
 .qr-alternative {
   margin-bottom: 20px;
-  color: var(--clr-text-primary);
+  color: $secondary-text-color;
   flex: 150px;
 
   samp {
     display: block;
     font-size: 14px;
+  }
+}
+
+.simple_form {
+  .warning {
+    box-sizing: border-box;
+    background: color.change($error-value-color, $alpha: 0.5);
+    color: $primary-text-color;
+    text-shadow: 1px 1px 0 color.change($base-shadow-color, $alpha: 0.3);
+    box-shadow: 0 2px 6px color.change($base-shadow-color, $alpha: 0.4);
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+
+    a {
+      color: $primary-text-color;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+      }
+    }
+
+    strong {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 5px;
+
+      @each $lang in $cjk-langs {
+        &:lang(#{$lang}) {
+          font-weight: 700;
+        }
+      }
+    }
   }
 }
 
@@ -1038,7 +1051,7 @@ code {
 
 .post-follow-actions {
   text-align: center;
-  color: var(--clr-text-secondary);
+  color: $darker-text-color;
 
   div {
     margin-bottom: 4px;
@@ -1051,7 +1064,7 @@ code {
 
   h4 {
     font-size: 16px;
-    color: var(--clr-text-primary);
+    color: $primary-text-color;
     text-align: center;
     margin-bottom: 20px;
     border: 0;
@@ -1064,7 +1077,7 @@ code {
 }
 
 .scope-danger {
-  color: var(--clr-text-error);
+  color: $warning-red;
 }
 
 .form_admin_settings_site_short_description,
@@ -1079,9 +1092,8 @@ code {
 }
 
 .input-copy {
-  color: var(--clr-text-primary);
-  background: var(--clr-bg-secondary);
-  border: 1px solid var(--clr-border-primary);
+  background: darken($ui-base-color, 10%);
+  border: 1px solid darken($ui-base-color, 14%);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -1115,11 +1127,11 @@ code {
   }
 
   &.copied {
-    border-color: var(--clr-text-success);
+    border-color: $valid-value-color;
     transition: none;
 
     button {
-      background: var(--clr-bg-success-strong);
+      background: $valid-value-color;
       transition: none;
     }
   }
@@ -1141,8 +1153,8 @@ code {
 .permissions-list {
   &__item {
     padding: 15px;
-    color: var(--clr-text-primary);
-    border-bottom: 1px solid var(--clr-border-primary);
+    color: $ui-secondary-color;
+    border-bottom: 1px solid lighten($ui-base-color, 4%);
     display: flex;
     align-items: center;
 
@@ -1154,7 +1166,7 @@ code {
       }
 
       &__type {
-        color: var(--clr-text-secondary);
+        color: $darker-text-color;
         overflow-wrap: anywhere;
       }
     }
@@ -1163,7 +1175,7 @@ code {
       flex: 0 0 auto;
       font-size: 18px;
       width: 30px;
-      color: var(--clr-text-success);
+      color: $valid-value-color;
       display: flex;
       align-items: center;
     }
@@ -1218,6 +1230,7 @@ code {
   align-items: center;
   padding-bottom: 30px;
   margin-bottom: 30px;
+  color: $white;
 
   li {
     flex: 0 0 auto;
@@ -1226,11 +1239,11 @@ code {
 
   .separator {
     height: 2px;
-    background: var(--clr-border-primary);
+    background: $ui-base-lighter-color;
     flex: 1 1 auto;
 
     &.completed {
-      background: var(--clr-text-accent);
+      background: $highlight-text-color;
     }
   }
 
@@ -1240,7 +1253,7 @@ code {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 2px solid var(--clr-border-primary);
+    border: 2px solid $ui-base-lighter-color;
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -1255,7 +1268,7 @@ code {
     position: absolute;
     font-size: 14px;
     font-weight: 500;
-    color: var(--clr-text-primary);
+    color: $secondary-text-color;
     padding-top: 10px;
     text-align: center;
     width: 100px;
@@ -1278,14 +1291,14 @@ code {
   }
 
   .active .circle {
-    border-color: var(--clr-text-accent);
+    border-color: $highlight-text-color;
 
     &::before {
       content: '';
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: var(--clr-text-accent);
+      background: $highlight-text-color;
       position: absolute;
       left: 50%;
       top: 50%;
@@ -1294,8 +1307,8 @@ code {
   }
 
   .completed .circle {
-    border-color: var(--clr-text-accent);
-    background: var(--clr-text-accent);
+    border-color: $highlight-text-color;
+    background: $highlight-text-color;
   }
 }
 
@@ -1306,13 +1319,9 @@ code {
   &__header-input {
     display: block;
     border-radius: 8px;
-    background: var(--clr-bg-secondary);
+    background: var(--surface-variant-background-color);
     position: relative;
     cursor: pointer;
-
-    &:hover {
-      background-color: var(--clr-bg-accent-subtle);
-    }
 
     img {
       position: absolute;
@@ -1328,12 +1337,12 @@ code {
       inset-inline-start: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      color: var(--clr-text-secondary);
+      color: $darker-text-color;
       z-index: 3;
     }
 
     &.selected .icon {
-      color: var(--clr-text-primary);
+      color: $primary-text-color;
       transform: none;
       inset-inline-start: auto;
       inset-inline-end: 8px;
@@ -1342,7 +1351,7 @@ code {
     }
 
     &.invalid img {
-      outline: 1px solid var(--clr-text-error);
+      outline: 1px solid $error-value-color;
       outline-offset: -1px;
     }
 
@@ -1352,9 +1361,13 @@ code {
       width: 100%;
       height: 100%;
       position: absolute;
-      background: var(--clr-bg-error-subtle);
+      background: color.change($error-value-color, $alpha: 0.25);
       z-index: 2;
       border-radius: 8px;
+    }
+
+    &:hover {
+      background-color: var(--surface-variant-active-background-color);
     }
   }
 
@@ -1371,7 +1384,7 @@ code {
     display: flex;
     align-items: center;
     gap: 16px;
-    color: var(--clr-text-secondary);
+    color: $darker-text-color;
     font-size: 14px;
     line-height: 20px;
 
@@ -1388,14 +1401,14 @@ code {
       flex: 1 1 auto;
 
       strong {
-        color: var(--clr-text-primary);
+        color: $primary-text-color;
         font-weight: 600;
       }
 
       .hint {
         display: block;
         font-size: 14px;
-        color: var(--clr-text-secondary);
+        color: $darker-text-color;
       }
 
       .recommended {
@@ -1413,7 +1426,7 @@ code {
 
     &__toggle > div {
       display: flex;
-      border-inline-start: 1px solid var(--clr-border-primary);
+      border-inline-start: 1px solid var(--background-border-color);
       padding-inline-start: 16px;
     }
   }
@@ -1424,19 +1437,19 @@ code {
     padding: 8px 0;
     align-items: center;
     text-decoration: none;
-    color: var(--clr-text-primary);
+    color: $primary-text-color;
     margin-bottom: 16px;
 
     &__text {
       flex: 1 1 auto;
       font-size: 14px;
       line-height: 20px;
-      color: var(--clr-text-secondary);
+      color: $darker-text-color;
 
       strong {
         font-weight: 600;
         display: block;
-        color: var(--clr-text-primary);
+        color: $primary-text-color;
       }
 
       .icon {
