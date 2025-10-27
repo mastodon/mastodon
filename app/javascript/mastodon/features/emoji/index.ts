@@ -1,8 +1,9 @@
 import { initialState } from '@/mastodon/initial_state';
-import { loadWorker } from '@/mastodon/utils/workers';
 
 import { toSupportedLocale } from './locale';
 import { emojiLogger } from './utils';
+// eslint-disable-next-line import/default -- Importing via worker loader.
+import EmojiWorker from './worker?worker&inline';
 
 const userLocale = toSupportedLocale(initialState?.meta.locale ?? 'en');
 
@@ -16,9 +17,7 @@ export function initializeEmoji() {
   log('initializing emojis');
   if (!worker && 'Worker' in window) {
     try {
-      worker = loadWorker(new URL('./worker', import.meta.url), {
-        type: 'module',
-      });
+      worker = new EmojiWorker();
     } catch (err) {
       console.warn('Error creating web worker:', err);
     }
