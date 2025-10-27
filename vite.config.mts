@@ -73,7 +73,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       port: 3036,
     },
     build: {
-      target: 'modules',
       commonjsOptions: { transformMixedEsModules: true },
       chunkSizeWarningLimit: 1 * 1024 * 1024, // 1MB
       sourcemap: true,
