@@ -53,6 +53,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
   const { messages } = getLocale();
 
   return connectStream(channelName, params, (dispatch, getState) => {
+    // @ts-ignore
     const locale = getState().getIn(['meta', 'locale']);
 
     // @ts-expect-error
