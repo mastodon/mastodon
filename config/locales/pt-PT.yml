@@ -796,6 +796,8 @@ pt-PT:
         view_dashboard_description: Permite aos utilizadores acederem ao painel de controlo e a várias estatísticas
         view_devops: DevOps
         view_devops_description: Permite aos utilizadores aceder aos painéis de controlo do Sidekiq e pgHero
+        view_feeds: Ver cronologia em tempo real e de etiquetas
+        view_feeds_description: Permitir aos utilizadores aceder às cronologias em tempo real e de etiquetas independentemente das definições do servidor
       title: Funções
     rules:
       add_new: Adicionar regra
@@ -851,7 +853,13 @@ pt-PT:
       feed_access:
         modes:
           authenticated: Apesar utilizadores autenticados
+          disabled: Requerer função de utilizador especifica
           public: Todos
+      landing_page:
+        values:
+          about: Sobre
+          local_feed: Cronologia local
+          trends: Tendências
       registrations:
         moderation_recommandation: Certifique-se de que dispõe de uma equipa de moderação adequada e reativa antes de abrir as inscrições a todos!
         preamble: Controle quem pode criar uma conta no seu servidor.

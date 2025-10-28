@@ -93,6 +93,7 @@ vi:
         content_cache_retention_period: Tất cả tút từ các máy chủ khác (bao gồm cả đăng lại và trả lời) sẽ bị xóa sau số ngày được chỉ định mà không tính đến bất kỳ tương tác nào của người dùng cục bộ với các tút đó. Điều này bao gồm các tút mà người dùng cục bộ đã đánh dấu nó là dấu trang hoặc mục yêu thích. Những lượt nhắc riêng tư giữa những người dùng từ các máy chủ khác nhau cũng sẽ bị mất và không thể khôi phục. Việc sử dụng cài đặt này dành cho các trường hợp có mục đích đặc biệt và phá vỡ nhiều kỳ vọng của người dùng khi được triển khai cho mục đích sử dụng chung.
         custom_css: Bạn có thể tùy chỉnh phong cách trên bản web của Mastodon.
         favicon: WEBP, PNG, GIF hoặc JPG. Dùng favicon Maston tùy chỉnh.
+        landing_page: Chọn trang mà khách truy cập mới sẽ thấy khi họ lần đầu truy cập máy chủ của bạn. Nếu bạn chọn "Xu hướng", thì cần bật xu hướng trong Cài đặt Khám phá. Nếu bạn chọn "Bảng tin máy chủ", thì cần đặt "Truy cập vào nguồn cấp dữ liệu trực tiếp có bài đăng cục bộ" thành "Mọi người" trong Cài đặt Khám phá.
         mascot: Ghi đè hình minh họa trong giao diện web nâng cao.
         media_cache_retention_period: Các tệp phương tiện từ các tút do người dùng máy chủ khác thực hiện sẽ được lưu vào bộ đệm trên máy chủ của bạn. Khi được đặt thành giá trị dương, phương tiện sẽ bị xóa sau số ngày được chỉ định. Nếu dữ liệu phương tiện được yêu cầu sau khi bị xóa, dữ liệu đó sẽ được tải xuống lại nếu nội dung nguồn vẫn còn. Do những hạn chế về tần suất thẻ xem trước liên kết thăm dò ý kiến ​​các trang web của bên thứ ba, bạn nên đặt giá trị này thành ít nhất 14 ngày, nếu không thẻ xem trước liên kết sẽ không được cập nhật theo yêu cầu trước thời gian đó.
         min_age: Thành viên sẽ được yêu cầu xác nhận ngày sinh của họ trong quá trình đăng ký
@@ -285,6 +286,7 @@ vi:
         content_cache_retention_period: Khoảng thời gian lưu giữ nội dung máy chủ khác
         custom_css: Tùy chỉnh CSS
         favicon: Favicon
+        landing_page: Trang mở đầu dành cho khách ghé thăm
         local_live_feed_access: Truy cập bảng tin gồm những tút của máy chủ
         local_topic_feed_access: Truy cập hashtag và bảng tin liên kết gồm những tút của máy chủ
         mascot: Tùy chỉnh linh vật (kế thừa)

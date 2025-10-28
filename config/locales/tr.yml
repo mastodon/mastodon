@@ -796,6 +796,8 @@ tr:
         view_dashboard_description: Kullanıcıların ana panele ve çeşitli ölçütlere erişmesine izin verir
         view_devops: DevOps
         view_devops_description: Kullanıcıların Sidekiq ve pgHero panellerine erişmesine izin verir
+        view_feeds: Canlı ve konu akışlarını görüntüle
+        view_feeds_description: Kullanıcıların sunucu ayarlarından bağımsız olarak canlı ve konu akışlarına erişmelerini sağlar
       title: Roller
     rules:
       add_new: Kural ekle
@@ -851,7 +853,13 @@ tr:
       feed_access:
         modes:
           authenticated: Sadece yetkilendirilmiş kullanıcılar
+          disabled: Belirli kullanıcı rolü gerekir
           public: Herkes
+      landing_page:
+        values:
+          about: Hakkında
+          local_feed: Yerel akış
+          trends: Öne çıkanlar
       registrations:
         moderation_recommandation: Lütfen kayıtları herkese açmadan önce yeterli ve duyarlı bir denetleyici ekibine sahip olduğunuzdan emin olun!
         preamble: Sunucunuzda kimin hesap oluşturabileceğini denetleyin.

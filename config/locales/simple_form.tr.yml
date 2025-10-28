@@ -93,6 +93,7 @@ tr:
         content_cache_retention_period: Diğer sunuculardaki (öne çıkarma ve yanıtlar da dahil olmak üzere) tüm gönderiler belirlenen gün sonunda, yerel bir kullanıcının etkileşimine bakılmadan, silinecektir. Yerel bir kullanıcının yerimlerine veya favorilerine eklediği gönderiler de dahildir. Farklı sunuculardaki kullanıcılar arasındaki özel bahsetmeler de kaybolacak ve geri getirilmeleri mümkün olmayacaktır. Bu ayarın kullanımı özel amaçlı sunucular içindir ve genel amaçlı kullanımda etkinleştirildiğinde kullanıcı beklentilerini karşılamayabilir.
         custom_css: Mastodon'un web sürümüne özel biçimler uygulayabilirsiniz.
         favicon: WEBP, PNG, GIF veya JPG. Varsayılan Mastodon simgesini isteğe bağlı bir simgeyle değiştirir.
+        landing_page: Yeni ziyaretçilerin sunucunuza ilk geldiklerinde görecekleri sayfayı seçer. "Öne çıkanlar" seçeneğini seçerseniz, Keşif Ayarlarında öne çıkanların etkinleştirilmesi gerekir. "Yerel akış" seçeneğini seçerseniz, Keşif Ayarlarında "Yerel gönderileri içeren canlı akışlara erişim" seçeneğinin "Herkes" olarak ayarlanması gerekir.
         mascot: Gelişmiş web arayüzündeki illüstrasyonu geçersiz kılar.
         media_cache_retention_period: Uzak kullanıcıların gönderilerindeki ortam dosyaları sunucunuzda önbelleklenir. Pozitif bir değer verildiğinde, ortam dosyaları belirlenen gün sonunda silinecektir. Eğer ortam dosyaları silindikten sonra istenirse, kaynak içerik hala mevcutsa, tekrar indirilecektir. Bağlantı önizleme kartlarının üçüncü parti siteleri yoklamasına ilişkin kısıtlamalar nedeniyle, bu değeri en azından 14 gün olarak ayarlamanız önerilir, yoksa bağlantı önizleme kartları bu süreden önce isteğe bağlı olarak güncellenmeyecektir.
         min_age: Kullanıcılardan kayıt olurken doğum tarihlerini doğrulamaları istenecektir
@@ -286,6 +287,7 @@ tr:
         content_cache_retention_period: Uzak içerik saklama süresi
         custom_css: Özel CSS
         favicon: Yer imi simgesi
+        landing_page: Yeni ziyaretçiler için giriş sayfası
         local_live_feed_access: Yerel gönderileri ön plana çıkaran canlı akışlara erişim
         local_topic_feed_access: Yerel gönderileri ön plana çıkaran etiket ve bağlantı akışlarına erişim
         mascot: Özel maskot (eski)

@@ -93,6 +93,7 @@ da:
         content_cache_retention_period: Alle indlæg fra andre servere (herunder fremhævelser og besvarelser) slettes efter det angivne antal dage uden hensyn til lokal brugerinteraktion med disse indlæg. Dette omfatter indlæg, hvor en lokal bruger har markeret dem som bogmærker eller favoritter. Private omtaler mellem brugere fra forskellige instanser vil også være tabt og umulige at gendanne. Brugen af denne indstilling er beregnet til særlige formål instanser og bryder mange brugerforventninger ved implementering til almindelig brug.
         custom_css: Man kan anvende tilpassede stilarter på Mastodon-webversionen.
         favicon: WEBP, PNG, GIF eller JPG. Tilsidesætter standard Mastodon favikonet på mobilenheder med et tilpasset ikon.
+        landing_page: Vælger, hvilken side nye besøgende ser, når de først ankommer til din server. Hvis du vælger "Trender", skal trends være aktiveret i Opdagelse-indstillingerne. Hvis du vælger "Lokalt feed", skal "Adgang til live feeds med lokale indlæg" være indstillet til "Alle" i Opdagelse-indstillingerne.
         mascot: Tilsidesætter illustrationen i den avancerede webgrænseflade.
         media_cache_retention_period: Mediefiler fra indlæg oprettet af eksterne brugere er cachet på din server. Når sat til positiv værdi, slettes medier efter det angivne antal dage. Anmodes om mediedata efter de er slettet, gendownloades de, hvis kildeindholdet stadig er tilgængeligt. Grundet begrænsninger på, hvor ofte linkforhåndsvisningskort forespørger tredjeparts websteder, anbefales det at sætte denne værdi til mindst 14 dage, ellers opdateres linkforhåndsvisningskort ikke efter behov før det tidspunkt.
         min_age: Brugere anmodes om at bekræfte deres fødselsdato under tilmelding
@@ -286,6 +287,7 @@ da:
         content_cache_retention_period: Opbevaringsperiode for eksternt indhold
         custom_css: Tilpasset CSS
         favicon: Favikon
+        landing_page: Landingside for nye besøgende
         local_live_feed_access: Adgang til live feeds med lokale indlæg
         local_topic_feed_access: Adgang til hashtag- og link-feeds med lokale indlæg
         mascot: Tilpasset maskot (ældre funktion)

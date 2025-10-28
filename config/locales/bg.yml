@@ -835,6 +835,14 @@ bg:
         all: До всеки
         disabled: До никого
         users: До влезнали локални потребители
+      feed_access:
+        modes:
+          authenticated: Само удостоверени потребители
+          disabled: Изисква особена потребителска роля
+          public: Всеки
+      landing_page:
+        values:
+          trends: Пламенности
       registrations:
         moderation_recommandation: Уверете се, че имате адекватен и реактивен модераторски екип преди да отворите регистриранията за всеки!
         preamble: Управлява кой може да създава акаунт на сървъра ви.
@@ -888,6 +896,7 @@ bg:
       no_status_selected: Няма промяна, тъй като няма избрани публикации
       open: Отваряне на публикация
       original_status: Първообразна публикация
+      quotes: Цитати
       reblogs: Блогване пак
       replied_to_html: Отговорено до %{acct_link}
       status_changed: Публикацията променена
@@ -895,6 +904,7 @@ bg:
       title: Публикации на акаунт - @%{name}
       trending: Изгряващи
       view_publicly: Преглед като публично
+      view_quoted_post: Преглед на цитираната публикация
       visibility: Видимост
       with_media: С мултимедия
     strikes:
@@ -1165,7 +1175,10 @@ bg:
     hint_html: Ако желаете да се преместите от друг акаунт към този, тук можете да създадете псевдоним, което се изисква преди да можете да пристъпите към преместване на последователите си от стария акаунт към този. Това действие е <strong>безопасно и възстановимо</strong>. <strong>Миграцията към новия акаунт се инициира от стария акаунт</strong>.
     remove: Разкачвне на псевдонима
   appearance:
+    advanced_settings: Разширени настройки
     animations_and_accessibility: Анимация и достъпност
+    boosting_preferences: Настройки за подсилване
+    boosting_preferences_info_html: "<strong>Съвет:</strong> Без значение от настройките, <kbd>Shift</kbd> + <kbd>Щрак</kbd> върху иконата %{icon} Подсилване веднага ще подсили."
     discovery: Откриване
     localization:
       body: Mastodon е преведено от доброволци.
@@ -1567,6 +1580,13 @@ bg:
       expires_at: Изтича на
       uses: Използвания
     title: Поканете хора
+  link_preview:
+    author_html: От %{name}
+    potentially_sensitive_content:
+      action: Щракване за показване
+      confirm_visit: Наистина ли искате да отворите тази връзка?
+      hide_button: Скриване
+      label: Възможно деликатно съдържание
   lists:
     errors:
       limit: Достигнахте максималния брой списъци
@@ -1719,6 +1739,9 @@ bg:
       self_vote: Не може да гласувате в свои анкети
       too_few_options: трябва да има повече от един елемент
       too_many_options: не може да съдържа повече от %{max} елемента
+    vote: Гласувам
+  posting_defaults:
+    explanation: Тези настройки ще се употребяват като стандартни, когато създавате нови публикации, но може да ги редактирате за всяка публикация в редактора.
   preferences:
     other: Друго
     posting_defaults: По подразбиране за публикации
@@ -1874,6 +1897,9 @@ bg:
         other: "%{count} видеозаписа"
     boosted_from_html: Раздуто от %{acct_link}
     content_warning: 'Предупреждение за съдържание: %{warning}'
+    content_warnings:
+      hide: Скриване на публ.
+      show: Показване на още
     default_language: Същият като езика на интерфейса
     disallowed_hashtags:
       one: 'съдържа непозволен хаштаг: %{tags}'
@@ -1888,9 +1914,22 @@ bg:
       limit: Вече сте закачили максималния брой публикации
       ownership: Публикация на някого другиго не може да бъде закачена
       reblog: Раздуване не може да бъде закачано
+    quote_error:
+      not_available: Неналична публикация
+      pending_approval: Публикацията чака одобрение
+      revoked: Премахната публикация от автора
+    quote_policies:
+      followers: Само последователи
+      nobody: Само аз
+      public: Някой
+    quote_post_author: Цитирах публикация от %{acct}
     title: "%{name}: „%{quote}“"
     visibilities:
+      direct: Частно споменаване
+      private: Само последователи
       public: Публично
+      public_long: Всеки във и извън Mastodon
+      unlisted: Тиха публика
   statuses_cleanup:
     enabled: Автоматично изтриване на стари публикации
     enabled_hint: От само себе си трие публикациите ви, щом достигнат указания възрастов праг, освен ако не съвпаднат с някое от изключенията долу

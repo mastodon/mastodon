@@ -693,6 +693,7 @@ lad:
         delete_data_html: Efasa el profil i kontenido de <strong>@%{acct}</strong> en 30 dias si no sea desuspendido en akel tiempo
         preview_preamble_html: "<strong>@%{acct}</strong> resivira una avertensya komo esta:"
         record_strike_html: Enrejistra un amonestamiento kontra <strong>@%{acct}</strong> para ke te ayude eskalar las violasyones de reglas de este kuento en el avenir
+        send_email_html: Embia un mesaj de avertensia a la posta elektronika de <strong>@%{acct}</strong>
         warning_placeholder: Adisionalas, opsionalas razones la aksyon de moderasyon.
       target_origin: Orijin del kuento raportado
       title: Raportos
@@ -796,6 +797,7 @@ lad:
         title: Ekskluye utilizadores de la indeksasyon de los bushkadores komo preferensya predeterminada
       discovery:
         follow_recommendations: Rekomendasyones de kuentos
+        preamble: Ekspone kontenido enteresante a la superfisie es fundamental para inkorporar muevos utilizadores ke pueden no koneser a dinguno en Mastodon. Kontrola komo fonksionan varias opsiones de diskuvrimiento en tu sirvidor.
         privacy: Privasita
         profile_directory: Katalogo de profiles
         public_timelines: Linyas de tiempo publikas
@@ -809,6 +811,10 @@ lad:
       feed_access:
         modes:
           public: Todos
+      landing_page:
+        values:
+          about: Sovre esto
+          trends: Trendes
       registrations:
         moderation_recommandation: Por favor, asigurate ke tyenes una taifa de moderasyon adekuada i reaktiva antes de avrir los enrejistramyentos a todos!
         preamble: Kontrola ken puede kriyar un kuento en tu sirvidor.
@@ -846,6 +852,7 @@ lad:
       back_to_account: Retorna al kuento
       back_to_report: Retorna a la pajina del raporto
       batch:
+        add_to_report: 'Adjusta al raporto #%{id}'
         remove_from_report: Kita del raporto
         report: Raporto
       contents: Kontenidos
@@ -860,10 +867,12 @@ lad:
       no_status_selected: No se troko dinguna publikasyon al no eskojer dinguna
       open: Avre publikasyon
       original_status: Publikasyon orijinala
+      quotes: Sitas
       reblogs: Repartajasyones
       status_changed: Publikasyon trokada
       trending: Trendes
       view_publicly: Ve puvlikamente
+      view_quoted_post: Ve puvlikasyon sitada
       visibility: Vizivilita
       with_media: Kon multimedia
     strikes:
@@ -1094,7 +1103,9 @@ lad:
     hint_html: Si keres migrar de otro kuento a este, aki puedes kriyar un alias, kale proseder antes de ampesar a mover suivantes del kuento anterior a este. Esta aksion por si mezma es <strong>inofensiva i reversivle</strong>. <strong>La migrasyon del kuento se inisya dizde el kuento viejo</strong>.
     remove: Dezata alias
   appearance:
+    advanced_settings: Konfigurasyon avansada
     animations_and_accessibility: Animasyones i aksesivilita
+    boosting_preferences: Preferensias de repartajar
     discovery: Diskuvrimiento
     localization:
       body: Mastodon es trezladado por volontarios.
@@ -1199,6 +1210,7 @@ lad:
     example_title: Teksto de enshemplo
     more_from_html: Mas de %{name}
     s_blog: Blog de %{name}
+    title: Atribusyon del otor
   challenge:
     confirm: Kontinua
     hint_html: "<strong>Konsejo:</strong> No retornaremos a demandarte por el kod durante la sigiente ora."
@@ -1734,6 +1746,7 @@ lad:
     preferences: Preferensyas
     profile: Profil publiko
     relationships: Segidos i suivantes
+    severed_relationships: Relasyones kortadas
     statuses_cleanup: Efasasyon otomatika de publikasyones
     strikes: Amonestamientos de moderasyon
     two_factor_authentication: Autentifikasyon en dos pasos
@@ -1741,6 +1754,8 @@ lad:
   severed_relationships:
     download: Abasha (%{count})
     event_type:
+      account_suspension: Suspensyon de kuento (%{target_name})
+      domain_block: Suspensyon de sirvidor (%{target_name})
       user_domain_block: Blokates a %{target_name}
     lost_followers: Suivantes pedridos
     lost_follows: Segimyentos pedridos
@@ -1776,10 +1791,15 @@ lad:
       limit: Ya tienes fiksado el numero maksimo de publikasyones
       ownership: La publikasyon de otra persona no puede fiksarse
       reblog: No se puede fixar una repartajasyon
+    quote_error:
+      not_available: Puvlikasyon no desponivle
+      pending_approval: Puvlikasyon esta asperando
+      revoked: Puvlikasyon kitada por el otor
     quote_policies:
       followers: Solo suivantes
       nobody: Solo yo
       public: Todos
+    quote_post_author: Sito una puvlikasyon de %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Enmentadura privada
@@ -1893,6 +1913,8 @@ lad:
       subject: Tu kuento fue aksedido dizde un muevo adreso IP
       title: Una mueva koneksyon kon tu kuento
     terms_of_service_changed:
+      sign_off: La taifa de %{domain}
+      subject: Aktualizasyones de muestros terminos de sirvisyo
       title: Aktualizasyon emportante
     warning:
       appeal: Embia una apelasyon
