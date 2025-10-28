@@ -1032,6 +1032,22 @@ const startServer = async () => {
    * @returns {Promise.<{ channelIds: string[], options: { needsFiltering: boolean, filterLocal?: boolean, filterRemote?: boolean } }>}
    */
   const channelNameToIds = (req, name, params) => new Promise((resolve, reject) => {
+    /**
+     * @param {string} feedKind
+     * @param {string} channelId
+     * @param {{ needsFiltering: boolean }} options
+     */
+    const resolveFeed = (feedKind, channelId, options) => {
+      getFeedAccessSettings(feedKind, req).then(({ localAccess, remoteAccess }) => {
+        resolve({
+          channelIds: [channelId],
+          options: { ...options, filterLocal: !localAccess, filterRemote: !remoteAccess },
+        });
+      }).catch(() => {
+        reject(new Error('Error getting feed access settings'));
+      });
+    };
+
     switch (name) {
     case 'user':
       resolve({
@@ -1048,70 +1064,22 @@ const startServer = async () => {
 
       break;
     case 'public':
-      getFeedAccessSettings('public', req).then(({ localAccess, remoteAccess }) => {
-        resolve({
-          channelIds: ['timeline:public'],
-          options: { needsFiltering: true, filterLocal: !localAccess, filterRemote: !remoteAccess },
-        })
-      }).catch(() => {
-        reject(new Error('Error getting feed acces settings'));
-      });
-
+      resolveFeed('public', 'timeline:public', { needsFiltering: true });
       break;
     case 'public:local':
-      getFeedAccessSettings('public', req).then(({ localAccess, remoteAccess }) => {
-        resolve({
-          channelIds: ['timeline:public:local'],
-          options: { needsFiltering: true, filterLocal: !localAccess, filterRemote: !remoteAccess },
-        })
-      }).catch(() => {
-        reject(new Error('Error getting feed acces settings'));
-      });
-
+      resolveFeed('public', 'timeline:public:local', { needsFiltering: true });
       break;
     case 'public:remote':
-      getFeedAccessSettings('public', req).then(({ localAccess, remoteAccess }) => {
-        resolve({
-          channelIds: ['timeline:public:remote'],
-          options: { needsFiltering: true, filterLocal: !localAccess, filterRemote: !remoteAccess },
-        })
-      }).catch(() => {
-        reject(new Error('Error getting feed acces settings'));
-      });
-
+      resolveFeed('public', 'timeline:public:remote', { needsFiltering: true });
       break;
     case 'public:media':
-      getFeedAccessSettings('public', req).then(({ localAccess, remoteAccess }) => {
-        resolve({
-          channelIds: ['timeline:public:media'],
-          options: { needsFiltering: true, filterLocal: !localAccess, filterRemote: !remoteAccess },
-        })
-      }).catch(() => {
-        reject(new Error('Error getting feed acces settings'));
-      });
-
+      resolveFeed('public', 'timeline:public:media', { needsFiltering: true });
       break;
     case 'public:local:media':
-      getFeedAccessSettings('public', req).then(({ localAccess, remoteAccess }) => {
-        resolve({
-          channelIds: ['timeline:public:local:media'],
-          options: { needsFiltering: true, filterLocal: !localAccess, filterRemote: !remoteAccess },
-        })
-      }).catch(() => {
-        reject(new Error('Error getting feed acces settings'));
-      });
-
+      resolveFeed('public', 'timeline:public:local:media', { needsFiltering: true });
       break;
     case 'public:remote:media':
-      getFeedAccessSettings('public', req).then(({ localAccess, remoteAccess }) => {
-        resolve({
-          channelIds: ['timeline:public:remote:media'],
-          options: { needsFiltering: true, filterLocal: !localAccess, filterRemote: !remoteAccess },
-        })
-      }).catch(() => {
-        reject(new Error('Error getting feed acces settings'));
-      });
-
+      resolveFeed('public', 'timeline:public:remote:media', { needsFiltering: true });
       break;
     case 'direct':
       resolve({
@@ -1126,14 +1094,7 @@ const startServer = async () => {
         return;
       }
 
-      getFeedAccessSettings('hashtag', req).then(({ localAccess, remoteAccess }) => {
-        resolve({
-          channelIds: [`timeline:hashtag:${normalizeHashtag(params.tag)}`],
-          options: { needsFiltering: true, filterLocal: !localAccess, filterRemote: !remoteAccess },
-        })
-      }).catch(() => {
-        reject(new Error('Error getting feed acces settings'));
-      });
+      resolveFeed('hashtag', `timeline:hashtag:${normalizeHashtag(params.tag)}`, { needsFiltering: true });
 
       break;
     case 'hashtag:local':
@@ -1142,14 +1103,7 @@ const startServer = async () => {
         return;
       }
 
-      getFeedAccessSettings('hashtag', req).then(({ localAccess, remoteAccess }) => {
-        resolve({
-          channelIds: [`timeline:hashtag:${normalizeHashtag(params.tag)}:local`],
-          options: { needsFiltering: true, filterLocal: !localAccess, filterRemote: !remoteAccess },
-        })
-      }).catch(() => {
-        reject(new Error('Error getting feed acces settings'));
-      });
+      resolveFeed('hashtag', `timeline:hashtag:${normalizeHashtag(params.tag)}:local`, { needsFiltering: true });
 
       break;
     case 'list':
