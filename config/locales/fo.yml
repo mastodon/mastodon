@@ -796,6 +796,8 @@ fo:
         view_dashboard_description: Gevur brúkarum atgongd til kunningarbrettið og ymisk mát
         view_devops: DevOps
         view_devops_description: Gevur brúkarum atgongd til Sidekiq- og pgHero-kunningarbretti
+        view_feeds: Vís beinleiðis rásir og evnisrásir
+        view_feeds_description: Loyvir brúkarum atgongd til beinleiðis rásir og evnisrásir, óansæð ambætisstillingar
       title: Leiklutir
     rules:
       add_new: Ger nýggja reglu
@@ -851,7 +853,13 @@ fo:
       feed_access:
         modes:
           authenticated: Einans váttaðir brúkarar
+          disabled: Krev serstakan brúkaraleiklut
           public: Øll
+      landing_page:
+        values:
+          about: Um
+          local_feed: Lokal rás
+          trends: Rák
       registrations:
         moderation_recommandation: Vinarliga tryggja tær, at tú hevur eitt nøktandi og klárt umsjónartoymi, áðreen tú letur upp fyri skrásetingum frá øllum!
         preamble: Stýr, hvør kann stovna eina kontu á tínum ambætara.
@@ -905,6 +913,7 @@ fo:
       no_status_selected: Eingir postar vóru broyttir, tí eingir vóru valdir
       open: Lat post upp
       original_status: Upprunapostur
+      quotes: Sitatir
       reblogs: Endurbloggar
       replied_to_html: Svaraði %{acct_link}
       status_changed: Postur broyttur
@@ -912,6 +921,7 @@ fo:
       title: Kontupostar - @%{name}
       trending: Vælumtókt
       view_publicly: Vís fyri øllum
+      view_quoted_post: Vís siteraðan post
       visibility: Sýni
       with_media: Við miðli
     strikes:
@@ -1186,7 +1196,10 @@ fo:
     hint_html: Ynskir tú at flyta frá eini aðrari kontu til hesa, so kanst tú stovna eitt tøkuheiti her. Tað er kravt, áðrenn tú kanst fara í gongd við at flyta fylgjarar frá gomlu kontuni til hesa. Hendan atgerðin er í sær sjálvum <strong>meinaleys og kann angrast</strong>. <strong>Flytingin av kontuni verður sett í gongd frá gomlu kontuni</strong>.
     remove: Strika tilknýti til tøkuheiti
   appearance:
+    advanced_settings: Framkomnar stillingar
     animations_and_accessibility: Teknimyndagerð og atkomuligheit
+    boosting_preferences: Stimbranarynski
+    boosting_preferences_info_html: "<strong>Góð ráð:</strong> Óansæð stillingar, so verður beinan vegin stimbrað, um trýst verður á <kbd>Shift</kbd> + <kbd>klikk</kbd> á %{icon} stimbranar-ímyndina."
     discovery: Uppdaging
     localization:
       body: Mastodon er umsett av sjálvbodnum.
@@ -1905,6 +1918,9 @@ fo:
         other: "%{count} sjónfílur"
     boosted_from_html: Stimbrað frá %{acct_link}
     content_warning: 'Innihaldsávaring: %{warning}'
+    content_warnings:
+      hide: Fjal post
+      show: Vís meiri
     default_language: Sama sum markamótsmál
     disallowed_hashtags:
       one: 'innihelt eitt vrakað frámerki: %{tags}'
@@ -1919,10 +1935,15 @@ fo:
       limit: Tú hevur longu fest loyvda talið av postum
       ownership: Postar hjá øðrum kunnu ikki festast
       reblog: Ein stimbran kann ikki festast
+    quote_error:
+      not_available: Postur ikki tøkur
+      pending_approval: Postur bíðar
+      revoked: Posturin burturbeindur av høvundinum
     quote_policies:
       followers: Einans fylgjarar
       nobody: Bara eg
       public: Ein og hvør
+    quote_post_author: Siteraði ein post hjá %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privat umrøða

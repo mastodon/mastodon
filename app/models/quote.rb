@@ -39,6 +39,7 @@ class Quote < ApplicationRecord
   validates :activity_uri, presence: true, if: -> { account.local? && quoted_account&.remote? }
   validates :approval_uri, absence: true, if: -> { quoted_account&.local? }
   validate :validate_visibility
+  validate :validate_original_quoted_status
 
   after_create_commit :increment_counter_caches!
   after_destroy_commit :decrement_counter_caches!
@@ -83,6 +84,10 @@ class Quote < ApplicationRecord
     return if account_id == quoted_account_id || quoted_status.nil? || quoted_status.distributable?
 
     errors.add(:quoted_status_id, :visibility_mismatch)
+  end
+
+  def validate_original_quoted_status
+    errors.add(:quoted_status_id, :reblog_unallowed) if quoted_status&.reblog?
   end
 
   def set_activity_uri

@@ -76,6 +76,17 @@ const mapStateToProps = state => ({
   languages: supportsTranslator ? new Map() : state.getIn(['server', 'translationLanguages', 'items']),
 });
 
+const compareUrls = (href1, href2) => {
+  try {
+    const url1 = new URL(href1);
+    const url2 = new URL(href2);
+
+    return url1.origin === url2.origin && url1.path === url2.path && url1.search === url2.search;
+  } catch {
+    return false;
+  }
+};
+
 class StatusContent extends PureComponent {
   constructor(props) {
     super(props);
@@ -139,7 +150,7 @@ class StatusContent extends PureComponent {
 
       link.classList.add('status-link');
 
-      mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
+      mention = this.props.status.get('mentions').find(item => compareUrls(link, item.get('url')));
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
@@ -275,7 +286,7 @@ class StatusContent extends PureComponent {
 
   handleElement = (element, { key, ...props }, children) => {
     if (element instanceof HTMLAnchorElement) {
-      const mention = this.props.status.get('mentions').find(item => element.href === item.get('url'));
+      const mention = this.props.status.get('mentions').find(item => compareUrls(element.href, item.get('url')));
       return (
         <HandledLink
           {...props}
@@ -288,7 +299,7 @@ class StatusContent extends PureComponent {
           {children}
         </HandledLink>
       );
-    } else if (element instanceof HTMLParagraphElement && element.classList.contains('quote-inline')) {
+    } else if (element.classList.contains('quote-inline')) {
       return null;
     }
     return undefined;
@@ -335,7 +346,7 @@ class StatusContent extends PureComponent {
               lang={language}
               htmlString={content}
               extraEmojis={status.get('emojis')}
-              onElement={this.handleElement.bind(this)}
+              onElement={this.handleElement}
             />
 
             {poll}
@@ -353,7 +364,7 @@ class StatusContent extends PureComponent {
             lang={language}
             htmlString={content}
             extraEmojis={status.get('emojis')}
-            onElement={this.handleElement.bind(this)}
+            onElement={this.handleElement}
           />
 
           {poll}

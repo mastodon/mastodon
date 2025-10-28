@@ -153,6 +153,7 @@ class SignedRequest
         'signature-input' => @request.headers['signature-input'],
         'signature' => @request.headers['signature'],
       })
+      @message = Linzer::Message.new(@request.rack_request)
     end
 
     def key_id
@@ -174,7 +175,7 @@ class SignedRequest
     def verified?(actor)
       key = Linzer.new_rsa_v1_5_sha256_public_key(actor.public_key)
 
-      Linzer.verify!(@request.rack_request, key:)
+      Linzer.verify(key, @message, @signature)
     rescue Linzer::VerifyError
       false
     end
@@ -187,9 +188,9 @@ class SignedRequest
 
     def verify_body_digest!
       return unless signed_headers.include?('content-digest')
-      raise Mastodon::SignatureVerificationError, 'Content-Digest header missing' unless @request.headers.key?('content-digest')
+      raise Mastodon::SignatureVerificationError, 'Content-Digest header missing' if @message.header('content-digest').nil?
 
-      digests = Starry.parse_dictionary(@request.headers['content-digest'])
+      digests = Starry.parse_dictionary(@message.header('content-digest'))
       raise Mastodon::SignatureVerificationError, "Mastodon only supports SHA-256 in Content-Digest header. Offered algorithms: #{digests.keys.join(', ')}" unless digests.key?('sha-256')
 
       received_digest = Base64.strict_encode64(digests['sha-256'].value)
@@ -237,7 +238,7 @@ class SignedRequest
 
   def initialize(request)
     @signature =
-      if Mastodon::Feature.http_message_signatures_enabled? && request.headers['signature-input'].present?
+      if request.headers['signature-input'].present?
         HttpMessageSignature.new(request)
       else
         HttpSignature.new(request)

@@ -796,6 +796,8 @@ es:
         view_dashboard_description: Permite a los usuarios acceder al panel de control y varias métricas
         view_devops: DevOps
         view_devops_description: Permite a los usuarios acceder a los paneles de control Sidekiq y pgHero
+        view_feeds: Visualización de cronologías y tendencias
+        view_feeds_description: Permitir a los usuarios acceder a las cronologías públicas y tendencias sin importar la configuración del servidor
       title: Roles
     rules:
       add_new: Añadir norma
@@ -837,7 +839,7 @@ es:
         title: Excluir por defecto a los usuarios de la indexación del motor de búsqueda
       discovery:
         follow_recommendations: Recomendaciones de cuentas
-        preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controla cómo funcionan varias opciones de descubrimiento en tu servidor.
+        preamble: Exponer contenido interesante es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie en Mastodon. Controla cómo funcionan en tu servidor las diferentes opciones de descubrimiento.
         privacy: Privacidad
         profile_directory: Directorio de perfiles
         public_timelines: Lineas de tiempo públicas
@@ -851,7 +853,13 @@ es:
       feed_access:
         modes:
           authenticated: Solo usuarios autenticados
+          disabled: Requerir un rol de usuario específico
           public: Todos
+      landing_page:
+        values:
+          about: Acerca de
+          local_feed: Cronología local
+          trends: Tendencias
       registrations:
         moderation_recommandation: Por favor, ¡asegúrate de tener un equipo de moderación adecuado y reactivo antes de abrir los registros a todo el mundo!
         preamble: Controla quién puede crear una cuenta en tu servidor.
@@ -905,6 +913,7 @@ es:
       no_status_selected: No se cambió ninguna publicación al no seleccionar ninguna
       open: Abrir publicación
       original_status: Publicación original
+      quotes: Citas
       reblogs: Impulsos
       replied_to_html: Respondió a %{acct_link}
       status_changed: Publicación cambiada
@@ -912,6 +921,7 @@ es:
       title: Publicaciones de la cuenta - @%{name}
       trending: En tendencia
       view_publicly: Ver públicamente
+      view_quoted_post: Ver publicación citada
       visibility: Visibilidad
       with_media: Con multimedia
     strikes:
@@ -1186,7 +1196,10 @@ es:
     hint_html: Si quieres migrar de otra cuenta a esta, aquí puedes crear un alias, es necesario proceder antes de empezar a mover seguidores de la cuenta anterior a esta. Esta acción por sí misma es <strong>inofensiva y reversible</strong>. <strong>La migración de la cuenta se inicia desde la cuenta antigua</strong>.
     remove: Desvincular alias
   appearance:
+    advanced_settings: Ajustes avanzados
     animations_and_accessibility: Animaciones y accesibilidad
+    boosting_preferences: Preferencias de impulso
+    boosting_preferences_info_html: "<strong>Consejo:</strong> Sin importar los ajustes, pulsar <kbd>Mayus</kbd> al hacer <kbd>clic</kbd> en el icono de %{icon} Impulsar, dará impulso inmediatamente."
     discovery: Descubrir
     localization:
       body: Mastodon es traducido con la ayuda de voluntarios.
@@ -1922,10 +1935,15 @@ es:
       limit: Ya has fijado el número máximo de publicaciones
       ownership: La publicación de otra persona no puede fijarse
       reblog: Una publicación impulsada no puede fijarse
+    quote_error:
+      not_available: Publicación no disponible
+      pending_approval: Publicación pendiente
+      revoked: Publicación borrada por el autor
     quote_policies:
       followers: Solo seguidores
       nobody: Solo yo
       public: Cualquiera
+    quote_post_author: Citando una publicación de %{acct}
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Mención privada

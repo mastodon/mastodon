@@ -320,7 +320,7 @@ ia:
       edit:
         title: Modificar annuncio
       empty: Necun annuncios trovate.
-      live: In directo
+      live: In vivo
       new:
         create: Crear annuncio
         title: Nove annuncio
@@ -796,6 +796,8 @@ ia:
         view_dashboard_description: Permitte que usatores accede al tabuliero de instrumentos e a varie statisticas
         view_devops: DevOps
         view_devops_description: Permitte que usatores accede al tabulieros de instrumentos de Sidekiq e pgHero
+        view_feeds: Vider canales thematic e in vivo
+        view_feeds_description: Permitte que usatores acceder al canales thematic e in vivo independentemente del configuration del servitor
       title: Rolos
     rules:
       add_new: Adder regula
@@ -848,6 +850,16 @@ ia:
         all: A omnes
         disabled: A necuno
         users: A usators local in session
+      feed_access:
+        modes:
+          authenticated: Solmente usatores authenticate
+          disabled: Requirer un rolo de usator specific
+          public: Omnes
+      landing_page:
+        values:
+          about: A proposito
+          local_feed: Canal local
+          trends: Tendentias
       registrations:
         moderation_recommandation: Per favor assecura te de haber un equipa de moderation adequate e reactive ante de aperir le inscription a omnes!
         preamble: Controla qui pote crear un conto sur tu servitor.
@@ -901,6 +913,7 @@ ia:
       no_status_selected: Necun message ha essite cambiate perque necun ha essite seligite
       open: Aperir message
       original_status: Message original
+      quotes: Citationes
       reblogs: Republicationes
       replied_to_html: Responsa a %{acct_link}
       status_changed: Message cambiate
@@ -908,6 +921,7 @@ ia:
       title: Messages del conto – @%{name}
       trending: Tendentias
       view_publicly: Vider publicamente
+      view_quoted_post: Vider message citate
       visibility: Visibilitate
       with_media: Con multimedia
     strikes:
@@ -1182,7 +1196,10 @@ ia:
     hint_html: Si tu vole migrar de un altere conto a iste, tu pote crear un alias ci, que es necessari pro poter transferer le sequitores del conto ancian a iste. Iste action per se es <strong>innocue e reversibile</strong>. <strong>Le migration del conto es initiate desde le conto ancian</strong>.
     remove: Disligar alias
   appearance:
+    advanced_settings: Parametros avantiate
     animations_and_accessibility: Animationes e accessibilitate
+    boosting_preferences: Preferentias de impulso
+    boosting_preferences_info_html: "<strong>Consilio:</strong> Independentemente del parametros, <kbd>Shift</kbd> + <kbd>clic</kbd> sur le icone %{icon} “Impulsar” impulsara immediatemente."
     discovery: Discoperta
     localization:
       body: Mastodon es traducite per voluntarios.
@@ -1584,6 +1601,13 @@ ia:
       expires_at: Expira
       uses: Usos
     title: Invitar personas
+  link_preview:
+    author_html: Per %{name}
+    potentially_sensitive_content:
+      action: Clicca pro monstrar
+      confirm_visit: Es tu secur que tu vole aperir iste message?
+      hide_button: Celar
+      label: Contento potentialmente sensibile
   lists:
     errors:
       limit: Tu ha attingite le maxime numero de listas
@@ -1894,6 +1918,9 @@ ia:
         other: "%{count} videos"
     boosted_from_html: Impulsate desde %{acct_link}
     content_warning: 'Advertimento de contento: %{warning}'
+    content_warnings:
+      hide: Celar message
+      show: Monstrar plus
     default_language: Mesme como lingua de interfacie
     disallowed_hashtags:
       one: 'contineva un hashtag non autorisate: %{tags}'
@@ -1908,10 +1935,15 @@ ia:
       limit: Tu ha jam appunctate le maxime numero de messages
       ownership: Le message de alcuno altere non pote esser appunctate
       reblog: Un impulso non pote esser affixate
+    quote_error:
+      not_available: Message indisponibile
+      pending_approval: Message pendente
+      revoked: Message removite per le autor
     quote_policies:
       followers: Solmente sequitores
       nobody: Solo io
       public: Omnes
+    quote_post_author: Ha citate un message de %{acct}
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Mention private

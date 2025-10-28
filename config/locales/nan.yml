@@ -782,6 +782,8 @@ nan:
         view_dashboard_description: 允准用者接近使用tsit ê la-jí-báng kap tsē-tsē指標
         view_devops: DevOps
         view_devops_description: 允准用者接近使用Sidekiq kap pgHero ê la-jí-báng
+        view_feeds: 看即時內容kap主題ê feed
+        view_feeds_description: 允准用者接近使用即時kap主題feed，無論服侍器ê設定。
       title: 角色
     rules:
       add_new: 加添規則
@@ -837,6 +839,7 @@ nan:
       feed_access:
         modes:
           authenticated: Kan-ta hōo登入ê用者
+          disabled: 愛特別ê用者角色
           public: Ta̍k lâng
       registrations:
         moderation_recommandation: 佇開放hōo ta̍k ê lâng註冊進前，請確認lí有夠額koh主動反應ê管理團隊！
@@ -891,6 +894,7 @@ nan:
       no_status_selected: 因為無揀任何PO文，所以lóng無改變
       open: 公開PO文
       original_status: 原底ê PO文
+      quotes: 引用
       reblogs: 轉送
       replied_to_html: 回應 %{acct_link}
       status_changed: PO文有改ah
@@ -898,6 +902,7 @@ nan:
       title: Tsit ê口座ê PO文 - @%{name}
       trending: 趨勢
       view_publicly: 公開看
+      view_quoted_post: 看引用ê PO文
       visibility: 通看ê程度
       with_media: 有媒體
     strikes:
@@ -1094,6 +1099,120 @@ nan:
         title: 創造使用者號名規則
       no_username_block_selected: 因為無揀任何使用者號名規則，所以lóng無改變
       not_permitted: 無允准
+      title: 用者號名規則
+      updated_msg: 用者號名規則更新成功ah
+    warning_presets:
+      add_new: 加新ê
+      delete: Thâi掉
+      edit_preset: 編輯預設ê警告
+      empty: Lí iáu bē定義任何預設ê警告。
+      title: 預設ê警告
+    webhooks:
+      add_new: 加添端點
+      delete: Thâi掉
+      description_html: "<strong>Webhook</strong> hōo Mastodon 通kā關係所揀ê事件ê<strong>即時通知</strong>sak kàu lí 家己ê應用程式，就án-ne lí ê應用程式ē當<strong>自動啟動反應</strong>。"
+      disable: 停止使用
+      disabled: 停用ah
+      edit: 編輯端點
+      empty: Lí iáu bē設定任何webhook端點。
+      enable: 啟用
+      enabled: 有效ê
+      enabled_events:
+        other: "%{count} ê啟用ê端點"
+      events: 事件
+      new: 新ê Webhook
+      rotate_secret: 換秘密鎖匙
+      secret: 簽秘密鎖匙
+      status: 狀態
+      title: Webhooks
+      webhook: Webhook
+  admin_mailer:
+    auto_close_registrations:
+      body: 因為欠最近ê管理員活動，佇 %{instance} ê註冊已經自動切kàu需要手動審查，以免 %{instance} hōo 可能行ê pháinn 行為ê當做平臺。Lí不管時lóng通切轉去，開放註冊。
+      subject: "%{instance} ê註冊已經自動切kàu需要允准"
+    new_appeal:
+      actions:
+        delete_statuses: thâi掉in ê PO文
+        disable: 冷凍in ê口座
+        mark_statuses_as_sensitive: 標in ê PO文做敏感ê
+        none: 警告
+        sensitive: 標in ê 口座做敏感ê
+        silence: 限制in ê口座
+        suspend: 停止使用in ê口座
+      body: "%{target} teh tuì %{action_taken_by} tī %{date} 所做ê管理決定送申訴，hit ê決定是 %{type}。In有寫："
+      next_steps: Lí通允准申訴來取消管理決定，á是kā忽略。
+      subject: "%{username} teh tuì tī %{instance} 頂ê管理決定送申訴"
+    new_critical_software_updates:
+      body: Mastodon 推出新ê重大版本，請liōng早升級！
+      subject: "%{instance} 有通the̍h ê Mastodon ê重大更新！"
+    new_pending_account:
+      body: 下kha是新口座ê詳細。Lí通允准á是拒絕tsit ê申請。
+      subject: "%{instance} 頂有新ê口座 (%{username}) 愛審查"
+    new_report:
+      body: "%{reporter} 有檢舉用者 %{target}"
+      body_remote: Tuì %{domain} 來ê有檢舉 %{target}
+      subject: "%{instance} ê 新檢舉（#%{id}）"
+    new_software_updates:
+      body: Mastodon推出新ê版本ah，lí huân-sè想beh升級！
+      subject: "%{instance} 有通the̍h ê Mastodon ê新版本！"
+    new_trends:
+      body: 下kha ê項目愛審查，tsiah ē當公開顯示：
+      new_trending_links:
+        title: 趨勢ê連結
+      new_trending_statuses:
+        title: 趨勢ê PO文
+      new_trending_tags:
+        title: 趨勢ê hashtag
+      subject: "%{instance} 頂有新ê趨勢愛審查"
+  aliases:
+    add_new: 加添別名
+    created_msg: 別名成功加添ah。Lí ē當開始tuì舊ê口座轉。
+    deleted_msg: Thâi掉捌名成功。Bē當tuì hit ê口座轉kàu tsit ê ah。
+    empty: Lí bô半个別名。
+    hint_html: Nā lí beh tuì別ê口座轉kah tsit ê，lí通佇tsia加別名，tse是必要ê，了後lí ē當kā跟tuè lí ê tuì舊口座suá到tsit ê。Tsit ê動作是<strong>無害koh通還原</strong>。<strong>著tī舊口座suá口座</strong>。
+    remove: 取消連結別名
+  appearance:
+    advanced_settings: 進一步ê設定
+    animations_and_accessibility: 動畫kap無障礙設定
+    boosting_preferences: 轉送ê偏好設定
+    boosting_preferences_info_html: "<strong>撇步：</strong>無論án-nuá設定，<kbd>Shift</kbd> + <kbd>Click</kbd> 佇%{icon} 轉送標á ē liâm-mī轉送。"
+    discovery: 發現
+    localization:
+      body: Mastodon是由志工翻譯。
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Ta̍k家lóng ē當貢獻。
+    sensitive_content: 敏感ê內容
+  application_mailer:
+    notification_preferences: 改電子phue ê偏好
+    salutation: "%{name}、"
+    settings: 改電子phue ê偏好：%{link}
+    unsubscribe: 取消訂
+    view: 檢視：
+    view_profile: 看個人資料
+    view_status: 看PO文
+  applications:
+    created: 應用程式成功加添
+    destroyed: 應用程式成功thâi掉
+    logout: 登出
+    regenerate_token: 重頭產生接近使用ê token
+    token_regenerated: 接近使用ê token 成功重頭產生
+    warning: 注意！毋通kā分享hōo別lâng！
+    your_token: Lí ê接近使用token
+  auth:
+    apply_for_account: 申請口座
+    captcha_confirmation:
+      help_html: Nā lí完成CAPTCHA ê時陣有問題，lí通用 %{email} kap guán 聯絡，guán ē幫tsān lí。
+      hint_html: 上尾步ah！Guán愛確認lí是人類（以免pùn-sò訊息入侵！）解決下kha êCAPTCHA了後，ji̍h「繼續」。
+      title: 安全檢查
+    confirmations:
+      awaiting_review: Lí ê電子phue地址有確認ah！%{domain} ê人員leh審查lí ê註冊。Nā in允准lí ê口座，Lí ē收著電子phue！
+      awaiting_review_title: Lí ê註冊當leh審查
+      clicking_this_link: Ji̍h tsit ê連結
+      login_link: 登入
+      proceed_to_login_html: Lí tsit-má通繼續去 %{login_link}。
+      redirect_to_app_html: Lí應該受重轉kàu <strong>%{app_name}</strong>應用程式，若是iáu-buē，試 %{clicking_this_link} á是手動轉去tsit ê應用程式。
+      registration_complete: Lí佇 %{domain} ê註冊完成ah！
+      welcome_title: 歡迎 %{name}！
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:

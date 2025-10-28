@@ -838,6 +838,8 @@ ga:
         view_dashboard_description: Ligeann sé d’úsáideoirí rochtain a fháil ar an deais agus ar mhéadrachtaí éagsúla
         view_devops: DevOps
         view_devops_description: Ligeann sé d’úsáideoirí rochtain a fháil ar dheais Sidekiq agus pgHero
+        view_feeds: Féach ar fhothaí beo agus topaicí
+        view_feeds_description: Ceadaíonn sé d’úsáideoirí rochtain a fháil ar na fothaí beo agus topaicí beag beann ar shocruithe an fhreastalaí
       title: Róil
     rules:
       add_new: Cruthaigh riail
@@ -879,7 +881,7 @@ ga:
         title: Diúltaigh d'innéacsú inneall cuardaigh mar réamhshocrú d'úsáideoirí
       discovery:
         follow_recommendations: Lean na moltaí
-        preamble: Tá sé ríthábhachtach dromchla a chur ar ábhar suimiúil chun úsáideoirí nua a chur ar bord nach bhfuil aithne acu ar dhuine ar bith Mastodon. Rialú conas a oibríonn gnéithe fionnachtana éagsúla ar do fhreastalaí.
+        preamble: Tá sé ríthábhachtach ábhar suimiúil a chur chun cinn chun úsáideoirí nua a thabhairt isteach ar Mastodon, úsáideoirí nach mbeadh aithne acu ar aon duine. Rialú conas a oibríonn gnéithe éagsúla fionnachtana ar do fhreastalaí.
         privacy: Príobháideacht
         profile_directory: Eolaire próifíle
         public_timelines: Amlínte poiblí
@@ -893,7 +895,13 @@ ga:
       feed_access:
         modes:
           authenticated: Úsáideoirí fíordheimhnithe amháin
+          disabled: Éiligh ról úsáideora sonrach
           public: Gach duine
+      landing_page:
+        values:
+          about: Maidir
+          local_feed: Fotha áitiúil
+          trends: Treochtaí
       registrations:
         moderation_recommandation: Cinntigh le do thoil go bhfuil foireann mhodhnóireachta imoibríoch leordhóthanach agat sula n-osclaíonn tú clárúcháin do gach duine!
         preamble: Rialú cé atá in ann cuntas a chruthú ar do fhreastalaí.
@@ -947,6 +955,7 @@ ga:
       no_status_selected: Níor athraíodh aon phostáil mar níor roghnaíodh ceann ar bith
       open: Oscail postáil
       original_status: Bunphostáil
+      quotes: Sleachta
       reblogs: Athbhlaganna
       replied_to_html: D'fhreagair %{acct_link}
       status_changed: Athraíodh postáil
@@ -954,6 +963,7 @@ ga:
       title: Postálacha cuntais - @%{name}
       trending: Ag treochtáil
       view_publicly: Féach go poiblí
+      view_quoted_post: Féach ar an bpost atá luaite
       visibility: Infheictheacht
       with_media: Le meáin
     strikes:
@@ -1243,7 +1253,12 @@ ga:
     hint_html: Más mian leat bogadh ó chuntas eile go dtí an ceann seo, anseo is féidir leat ailias a chruthú, a theastaíonn sular féidir leat leanúint ar aghaidh le leantóirí a bhogadh ón seanchuntas go dtí an ceann seo. Tá an gníomh seo ann féin <strong>neamhdhíobhálach agus inchúlaithe</strong>. <strong>Cuirtear tús leis an aistriú cuntais ón seanchuntas</strong>.
     remove: Dícheangail ailias
   appearance:
+    advanced_settings: Socruithe ardleibhéil
     animations_and_accessibility: Beochan agus inrochtaineacht
+    boosting_preferences: Roghanna á bhfeabhsú
+    boosting_preferences_info_html: |-
+      <strong>Leid:</strong> Beag beann ar shocruithe, <kbd>Shift</kbd> +
+      <kbd>Cliceáil</kbd> ar an deilbhín %{icon} Tabharfaidh an deilbhín borradh láithreach.
     discovery: Fionnachtain
     localization:
       body: Oibrithe deonacha a dhéanann aistriúchán Mastodon.
@@ -2051,10 +2066,15 @@ ga:
       limit: Tá uaslíon na bpostálacha pinn agat cheana féin
       ownership: Ní féidir postáil duine éigin eile a phionnáil
       reblog: Ní féidir treisiú a phinnáil
+    quote_error:
+      not_available: Níl an postáil ar fáil
+      pending_approval: Post ar feitheamh
+      revoked: Post bainte ag an údar
     quote_policies:
       followers: Leantóirí amháin
       nobody: Mise amháin
       public: Aon duine
+    quote_post_author: Luaigh mé post le %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Lua príobháideach

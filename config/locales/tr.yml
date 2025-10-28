@@ -796,6 +796,8 @@ tr:
         view_dashboard_description: Kullanıcıların ana panele ve çeşitli ölçütlere erişmesine izin verir
         view_devops: DevOps
         view_devops_description: Kullanıcıların Sidekiq ve pgHero panellerine erişmesine izin verir
+        view_feeds: Canlı ve konu akışlarını görüntüle
+        view_feeds_description: Kullanıcıların sunucu ayarlarından bağımsız olarak canlı ve konu akışlarına erişmelerini sağlar
       title: Roller
     rules:
       add_new: Kural ekle
@@ -851,7 +853,13 @@ tr:
       feed_access:
         modes:
           authenticated: Sadece yetkilendirilmiş kullanıcılar
+          disabled: Belirli kullanıcı rolü gerekir
           public: Herkes
+      landing_page:
+        values:
+          about: Hakkında
+          local_feed: Yerel akış
+          trends: Öne çıkanlar
       registrations:
         moderation_recommandation: Lütfen kayıtları herkese açmadan önce yeterli ve duyarlı bir denetleyici ekibine sahip olduğunuzdan emin olun!
         preamble: Sunucunuzda kimin hesap oluşturabileceğini denetleyin.
@@ -905,6 +913,7 @@ tr:
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
       open: Gönderiyi aç
       original_status: Özgün gönderi
+      quotes: Alıntılar
       reblogs: Yeniden Paylaşımlar
       replied_to_html: Yanıtladı %{acct_link}
       status_changed: Gönderi değişti
@@ -912,6 +921,7 @@ tr:
       title: Hesap gönderileri - @%{name}
       trending: Öne çıkanlar
       view_publicly: Herkese açık görüntüle
+      view_quoted_post: Alıntılanmış gönderiyi görüntüle
       visibility: Görünürlük
       with_media: Medya ile
     strikes:
@@ -1186,7 +1196,10 @@ tr:
     hint_html: Başka bir hesaptan bu hesaba taşınmak istiyorsanız, takipçileri eski hesaptan bu hesaba taşımadan önce gerekli olan takma adı burada oluşturabilirsiniz. Bu eylem kendi başına <strong>zararsızdır ve geri döndürülebilir</strong>. <strong>Hesap taşıma işlemi eski hesaptan başlatılır</strong>.
     remove: Takma adların bağlantısını kaldır
   appearance:
+    advanced_settings: Gelişmiş ayarlar
     animations_and_accessibility: Animasyonlar ve erişilebilirlik
+    boosting_preferences: Öne çıkarma seçenekleri
+    boosting_preferences_info_html: "<strong>İpucu:</strong> Ayarlardan bağımsız olarak, %{icon} Öne Çıkar simgesine <kbd>Shift</kbd> + <kbd>Tıklama</kbd> uygulandığından öne çıkarma hemen gerçekleştirilir."
     discovery: Keşfet
     localization:
       body: Mastodon, gönüllüler tarafından çevrilmektedir.
@@ -1922,10 +1935,15 @@ tr:
       limit: Halihazırda maksimum sayıda gönderi sabitlediniz
       ownership: Başkasının gönderisi sabitlenemez
       reblog: Bir gönderi sabitlenemez
+    quote_error:
+      not_available: Gönderi kullanılamıyor
+      pending_approval: Gönderi beklemede
+      revoked: Gönderi yazarı tarafından kaldırıldı
     quote_policies:
       followers: Sadece takipçiler
       nobody: Sadece ben
       public: Herkes
+    quote_post_author: "@%{acct} adlı kullanıcının bir gönderisini alıntıladı"
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Özel değini

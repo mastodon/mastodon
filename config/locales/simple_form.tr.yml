@@ -54,8 +54,10 @@ tr:
         password: En az 8 karakter kullanın
         phrase: Metnin büyük/küçük harf durumundan veya gönderinin içerik uyarısından bağımsız olarak eşleştirilecek
         scopes: Uygulamanın erişmesine izin verilen API'ler. Üst seviye bir kapsam seçtiyseniz, bireysel kapsam seçmenize gerek yoktur.
+        setting_advanced_layout: Mastodon'u çok sütunlu bir düzen olarak görüntüleyin, böylece zaman akışını, bildirimleri ve seçtiğiniz üçüncü sütunu görüntüleyebilirsiniz. Küçük ekranlar için önerilmez.
         setting_aggregate_reblogs: Yakın zamanda teşvik edilmiş gönderiler için yeni teşvikleri göstermeyin (yalnızca yeni alınan teşvikleri etkiler)
         setting_always_send_emails: Normalde, Mastodon'u aktif olarak kullanırken e-posta bildirimleri gönderilmeyecektir
+        setting_boost_modal: Etkinleştirildiğinde öne çıkarmanızın görünürlüğünü değiştirebileceğiniz bir onay iletişim kutusu açar.
         setting_default_quote_policy_private: Mastodon'da sadece takipçilere yönelik gönderiler başkaları tarafından alıntılanamaz.
         setting_default_quote_policy_unlisted: İnsanlar sizden alıntı yaptığında, onların gönderileri de trend zaman tünellerinden gizlenecektir.
         setting_default_sensitive: Hassas medya varsayılan olarak gizlidir ve bir tıklama ile gösterilebilir
@@ -63,6 +65,7 @@ tr:
         setting_display_media_hide_all: Medyayı her zaman gizle
         setting_display_media_show_all: Medyayı her zaman göster
         setting_emoji_style: Emojiler nasıl görüntülensin. "Otomatik" seçeneği yerel emojileri kullanmaya çalışır, ancak eski tarayıcılar için Twemoji'yi kullanır.
+        setting_quick_boosting_html: Etkinleştirildiğinde, %{boost_icon} Öne Çıkar simgesine tıklandığında, öne çıkar/alıntı açılır menüsünü görüntüleme yerine hemen öne çıkarma işlemi gerçekleştirilir. Alıntı işlevi %{options_icon} (Seçenekler) menüsüne taşınır.
         setting_system_scrollbars_ui: Yalnızca Safari ve Chrome tabanlı masaüstü tarayıcılar için geçerlidir
         setting_use_blurhash: Gradyenler gizli görsellerin renklerine dayanır, ancak detayları gizler
         setting_use_pending_items: Akışı otomatik olarak kaydırmak yerine, zaman çizelgesi güncellemelerini tek bir tıklamayla gizleyin
@@ -90,6 +93,7 @@ tr:
         content_cache_retention_period: Diğer sunuculardaki (öne çıkarma ve yanıtlar da dahil olmak üzere) tüm gönderiler belirlenen gün sonunda, yerel bir kullanıcının etkileşimine bakılmadan, silinecektir. Yerel bir kullanıcının yerimlerine veya favorilerine eklediği gönderiler de dahildir. Farklı sunuculardaki kullanıcılar arasındaki özel bahsetmeler de kaybolacak ve geri getirilmeleri mümkün olmayacaktır. Bu ayarın kullanımı özel amaçlı sunucular içindir ve genel amaçlı kullanımda etkinleştirildiğinde kullanıcı beklentilerini karşılamayabilir.
         custom_css: Mastodon'un web sürümüne özel biçimler uygulayabilirsiniz.
         favicon: WEBP, PNG, GIF veya JPG. Varsayılan Mastodon simgesini isteğe bağlı bir simgeyle değiştirir.
+        landing_page: Yeni ziyaretçilerin sunucunuza ilk geldiklerinde görecekleri sayfayı seçer. "Öne çıkanlar" seçeneğini seçerseniz, Keşif Ayarlarında öne çıkanların etkinleştirilmesi gerekir. "Yerel akış" seçeneğini seçerseniz, Keşif Ayarlarında "Yerel gönderileri içeren canlı akışlara erişim" seçeneğinin "Herkes" olarak ayarlanması gerekir.
         mascot: Gelişmiş web arayüzündeki illüstrasyonu geçersiz kılar.
         media_cache_retention_period: Uzak kullanıcıların gönderilerindeki ortam dosyaları sunucunuzda önbelleklenir. Pozitif bir değer verildiğinde, ortam dosyaları belirlenen gün sonunda silinecektir. Eğer ortam dosyaları silindikten sonra istenirse, kaynak içerik hala mevcutsa, tekrar indirilecektir. Bağlantı önizleme kartlarının üçüncü parti siteleri yoklamasına ilişkin kısıtlamalar nedeniyle, bu değeri en azından 14 gün olarak ayarlamanız önerilir, yoksa bağlantı önizleme kartları bu süreden önce isteğe bağlı olarak güncellenmeyecektir.
         min_age: Kullanıcılardan kayıt olurken doğum tarihlerini doğrulamaları istenecektir
@@ -107,7 +111,6 @@ tr:
         thumbnail: Sunucu bilginizin yanında gösterilen yaklaşık 2:1'lik görüntü.
         trendable_by_default: Öne çıkan içeriğin elle incelenmesini atla. Tekil öğeler sonrada öne çıkanlardan kaldırılabilir.
         trends: Öne çıkanlar, sunucunuzda ilgi toplayan gönderileri, etiketleri ve haber yazılarını gösterir.
-        trends_as_landing_page: Giriş yapmış kullanıcılar ve ziyaretçilere sunucunun açıklması yerine öne çıkan içeriği göster. Öne çıkanların etkin olması gerekir.
       form_challenge:
         current_password: Güvenli bir bölgeye giriyorsunuz
       imports:
@@ -234,12 +237,12 @@ tr:
         setting_aggregate_reblogs: Zaman çizelgesindeki boostları grupla
         setting_always_send_emails: Her zaman e-posta bildirimleri gönder
         setting_auto_play_gif: Hareketli GIF'leri otomatik oynat
-        setting_boost_modal: Paylaşmadan önce onay iletişim kutusu göster
+        setting_boost_modal: Öne çıkarma görünürlüğünü denetleyin
         setting_default_language: Gönderi dili
         setting_default_privacy: Gönderi görünürlüğü
         setting_default_quote_policy: Kimler alıntılayabilir
         setting_default_sensitive: Medyayı her zaman hassas olarak işaretle
-        setting_delete_modal: Bir gönderiyi silmeden önce onay iletişim kutusu göster
+        setting_delete_modal: Bir gönderiyi silmeden beni uyar
         setting_disable_hover_cards: Üstüne geldiğinde profil önizlemesini devre dışı bırak
         setting_disable_swiping: Kaydırma hareketlerini devre dışı bırak
         setting_display_media: Medya görüntüleme
@@ -249,7 +252,8 @@ tr:
         setting_emoji_style: Emoji stili
         setting_expand_spoilers: İçerik uyarılarıyla işaretli gönderileri her zaman genişlet
         setting_hide_network: Sosyal grafiğini gizle
-        setting_missing_alt_text_modal: Alternatif metni olmayan medya göndermeden önce onay sorusu göster
+        setting_missing_alt_text_modal: Alternatif metni olmayan bir medya göndermeden önce beni uyar
+        setting_quick_boosting: Hızlı öne çıkarmayı etkinleştir
         setting_reduce_motion: Animasyonlarda hareketi azalt
         setting_system_font_ui: Sistemin varsayılan yazı tipini kullan
         setting_system_scrollbars_ui: Sistemin varsayılan kaydırma çubuğunu kullan
@@ -283,6 +287,7 @@ tr:
         content_cache_retention_period: Uzak içerik saklama süresi
         custom_css: Özel CSS
         favicon: Yer imi simgesi
+        landing_page: Yeni ziyaretçiler için giriş sayfası
         local_live_feed_access: Yerel gönderileri ön plana çıkaran canlı akışlara erişim
         local_topic_feed_access: Yerel gönderileri ön plana çıkaran etiket ve bağlantı akışlarına erişim
         mascot: Özel maskot (eski)
@@ -307,7 +312,6 @@ tr:
         thumbnail: Sunucu küçük resmi
         trendable_by_default: Ön incelemesiz öne çıkanlara izin ver
         trends: Öne çıkanları etkinleştir
-        trends_as_landing_page: Giriş sayfası olarak öne çıkanları kullan
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle
