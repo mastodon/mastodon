@@ -598,20 +598,20 @@ const startServer = async () => {
       return access;
     }
 
-    let local_access_var, remote_access_var;
+    let localAccessVar, remoteAccessVar;
 
     if (kind === 'hashtag') {
-      local_access_var = 'local_topic_feed_access';
-      remote_access_var = 'remote_topic_feed_access';
+      localAccessVar = 'local_topic_feed_access';
+      remoteAccessVar = 'remote_topic_feed_access';
     } else {
-      local_access_var = 'local_live_feed_access';
-      remote_access_var = 'remote_live_feed_access';
+      localAccessVar = 'local_live_feed_access';
+      remoteAccessVar = 'remote_live_feed_access';
     }
 
-    const result = await pgPool.query('SELECT var, value FROM settings WHERE var IN ($1, $2)', [local_access_var, remote_access_var]);
+    const result = await pgPool.query('SELECT var, value FROM settings WHERE var IN ($1, $2)', [localAccessVar, remoteAccessVar]);
 
     result.rows.forEach((row) => {
-      if (row.var === local_access_var) {
+      if (row.var === localAccessVar) {
         access.localAccess = row.value !== "--- disabled\n";
       } else {
         access.remoteAccess = row.value !== "--- disabled\n";
@@ -679,14 +679,14 @@ const startServer = async () => {
         return;
       }
 
+      // The rest of the logic from here on in this function is to handle
+      // filtering of statuses:
+
       const localPayload = payload.account.username === payload.account.acct;
       if (localPayload ? filterLocal : filterRemote) {
         log.debug(`Message ${payload.id} filtered by feed settings`);
         return;
       }
-
-      // The rest of the logic from here on in this function is to handle
-      // filtering of statuses:
 
       // Filter based on language:
       if (Array.isArray(req.chosenLanguages) && req.chosenLanguages.indexOf(payload.language) === -1) {
