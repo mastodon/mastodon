@@ -224,6 +224,10 @@ code {
       list-style: disc;
       margin-inline-start: 18px;
     }
+
+    .icon {
+      vertical-align: -3px;
+    }
   }
 
   ul.hint {
@@ -753,6 +757,12 @@ code {
 
   &.hidden {
     display: none;
+  }
+
+  &.hidden-on-touch-devices {
+    @media screen and (pointer: coarse) {
+      display: none;
+    }
   }
 
   a {

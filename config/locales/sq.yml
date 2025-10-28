@@ -831,7 +831,7 @@ sq:
         title: Lëri, si parazgjedhje, përdoruesit jashtë indeksimi nga motorë kërkimesh
       discovery:
         follow_recommendations: Rekomandime ndjekjeje
-        preamble: Shpërfaqja e lëndës interesante është me rëndësi kyçe për mirëseardhjen e përdoruesve të rinj që mund të mos njohin njeri në Mastodon. Kontrolloni se si funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi.
+        preamble: Shpërfaqja e lëndës interesante është me rëndësi për mirëseardhjen e përdoruesve të rinj, të cilët mund të mos njohin njeri në Mastodon. Kontrolloni se funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi lënde.
         privacy: Privatësi
         profile_directory: Drejtori profilesh
         public_timelines: Rrjedha kohore publike
@@ -845,7 +845,13 @@ sq:
       feed_access:
         modes:
           authenticated: Vetëm përdorues të mirëfilltësuar
+          disabled: Lyp doemos rol specifik përdoruesi
           public: Kushdo
+      landing_page:
+        values:
+          about: Mbi
+          local_feed: Prurje vendore
+          trends: Në modë
       registrations:
         moderation_recommandation: Ju lutemi, sigurohuni si keni një ekip adekuat dhe reagues moderimi, përpara se të hapni regjistrimet për këdo!
         preamble: Kontrolloni cilët mund të krijojnë llogari në shërbyesin tuaj.
@@ -899,6 +905,7 @@ sq:
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       open: Hape postimin
       original_status: Postim origjinal
+      quotes: Ctime
       reblogs: Riblogime
       replied_to_html: Iu përgjigj %{acct_link}
       status_changed: Postimi ndryshoi
@@ -906,6 +913,7 @@ sq:
       title: Postime llogarie - @%{name}
       trending: Në modë
       view_publicly: Shiheni publikisht
+      view_quoted_post: Shihni postimin e cituar
       visibility: Dukshmëri
       with_media: Me media
     strikes:
@@ -1177,7 +1185,10 @@ sq:
     hint_html: Nëse doni të kaloni nga një llogari tjetër në këtë këtu, këtu mund të krijoni një alias, i cili është i domosdoshëm përpara se të ecni më tej me kalimin e ndjekësve prej llogarisë së vjetër te kjo këtu. Ky veprim, në vetvete, është <strong>i padëmshëm dhe i prapakthyeshëm</strong>. <strong>Migrimi i llogarisë fillohet prej llogarisë së vjetër</strong>.
     remove: Hiqe aliasin
   appearance:
+    advanced_settings: Rregullime të mëtejshme
     animations_and_accessibility: Animacione dhe përdorim nga persona me aftësi të kufizuara
+    boosting_preferences: Parapëlqime përforcimesh
+    boosting_preferences_info_html: "<strong>Ndihmëz:</strong> Pavarësisht rregullimeve, <kbd>Shift</kbd> + <kbd>Klikim</kbd> mbi ikonën e Përforcimeve %{icon} do të bëjë menjëherë përforcim."
     discovery: Zbulim
     localization:
       body: Mastodon-i përkthehet nga vullnetarë.
@@ -1909,10 +1920,15 @@ sq:
       limit: Keni fiksuar tashmë numrin maksimum të mesazheve
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       reblog: S’mund të fiksohet një përforcim
+    quote_error:
+      not_available: Postim që s’mund të kihet
+      pending_approval: Postim pezull
+      revoked: Postim i hequr nga autori
     quote_policies:
       followers: Vetëm ndjekës
       nobody: Thjesht unë
       public: Cilido
+    quote_post_author: U citua një postim nga %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Përmendje private

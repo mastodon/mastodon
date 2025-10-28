@@ -782,6 +782,8 @@ vi:
         view_dashboard_description: Cho phép truy cập trang tổng quan và các chỉ số khác
         view_devops: Nhà phát triển
         view_devops_description: Cho phép truy cập trang tổng quan Sidekiq và pgHero
+        view_feeds: Xem nguồn cấp dữ liệu trực tiếp và theo chủ đề
+        view_feeds_description: Cho phép người dùng truy cập nguồn cấp dữ liệu trực tiếp và theo chủ đề bất kể cài đặt máy chủ
       title: Danh sách vai trò
     rules:
       add_new: Thêm nội quy
@@ -823,7 +825,7 @@ vi:
         title: Mặc định người dùng không xuất hiện trong công cụ tìm kiếm
       discovery:
         follow_recommendations: Gợi ý theo dõi
-        preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trong Mastodon. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
+        preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trên Mastodon. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
         privacy: Riêng tư
         profile_directory: Danh bạ
         public_timelines: Bảng tin
@@ -837,7 +839,13 @@ vi:
       feed_access:
         modes:
           authenticated: Chỉ những người dùng đã xác minh
+          disabled: Yêu cầu vai trò người dùng cụ thể
           public: Mọi người
+      landing_page:
+        values:
+          about: Giới thiệu
+          local_feed: Bảng tin máy chủ
+          trends: Xu hướng
       registrations:
         moderation_recommandation: Vui lòng đảm bảo rằng bạn có một đội ngũ kiểm duyệt và phản ứng nhanh trước khi mở đăng ký cho mọi người!
         preamble: Kiểm soát những ai có thể tạo tài khoản trên máy chủ của bạn.
@@ -891,6 +899,7 @@ vi:
       no_status_selected: Bạn chưa chọn bất kỳ tút nào
       open: Mở tút
       original_status: Tút gốc
+      quotes: Trích dẫn
       reblogs: Lượt đăng lại
       replied_to_html: Trả lời đến %{acct_link}
       status_changed: Tút đã sửa
@@ -898,6 +907,7 @@ vi:
       title: Tút từ tài khoản - @%{name}
       trending: Xu hướng
       view_publicly: Xem công khai
+      view_quoted_post: Xem những tút được trích dẫn
       visibility: Hiển thị
       with_media: Có media
     strikes:
@@ -1167,7 +1177,10 @@ vi:
     hint_html: Nếu bạn muốn chuyển từ máy chủ khác sang máy chủ này, bắt buộc bạn phải tạo tên người dùng mới thì mới có thể tiến hành chuyển được người theo dõi. Hành động này <strong>không ảnh hưởng gì và có thể đảo ngược</strong>. <strong>Việc di chuyển tài khoản được bắt đầu từ tài khoản cũ</strong>.
     remove: Bỏ liên kết bí danh
   appearance:
+    advanced_settings: Cài đặt nâng cao
     animations_and_accessibility: Hiệu ứng
+    boosting_preferences: Thiết lập đăng lại
+    boosting_preferences_info_html: "<strong>Mẹo:</strong> Bất kể cài đặt, <kbd>Shift</kbd> + <kbd>Click</kbd> trên biểu tượng %{icon} Đăng lại sẽ lập tức đăng lại."
     discovery: Khám phá
     localization:
       body: Mastodon được dịch bởi tình nguyện viên.
@@ -1879,10 +1892,15 @@ vi:
       limit: Bạn đã ghim quá số lượng tút cho phép
       ownership: Không thể ghim tút của người khác
       reblog: Không thể ghim tút đăng lại
+    quote_error:
+      not_available: Tút không khả dụng
+      pending_approval: Tút đang chờ duyệt
+      revoked: Tút gốc đã bị tác giả gỡ
     quote_policies:
       followers: Chỉ người theo dõi
       nobody: Chỉ tôi
       public: Bất cứ ai
+    quote_post_author: Trích dẫn từ tút của @%{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Nhắn riêng

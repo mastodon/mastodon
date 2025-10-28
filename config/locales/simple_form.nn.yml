@@ -54,8 +54,10 @@ nn:
         password: Nytt minst 8 teikn
         phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til en tut
         scopes: API-ane som programmet vil få tilgjenge til. Ettersom du vel eit toppnivåomfang tarv du ikkje velja einskilde API-ar.
+        setting_advanced_layout: Vis Mastodon i fleire spalter, slik at du kan sjå tidslina, varsel og ei tredje spalte du vel sjølv. Ikkje tilrådd for mindre skjermar.
         setting_aggregate_reblogs: Ikkje vis nye framhevingar for tut som nyleg har vorte heva fram (Påverkar berre nylege framhevingar)
         setting_always_send_emails: Vanlegvis vil ikkje e-postvarsel bli sendt når du brukar Mastodon aktivt
+        setting_boost_modal: Når du har skrudd på dette, vil framheving fyrst opna ei stadfestingsrute der du vel korleis du vil visa innlegget ditt.
         setting_default_quote_policy_private: Innlegg som er skrivne på Mastodon og berre for fylgjarar kan ikkje siterast av andre.
         setting_default_quote_policy_unlisted: Når folk siterer deg, vil innlegget deira ikkje syna på populære tidsliner.
         setting_default_sensitive: Sensitive media vert gøymde som standard, og du syner dei ved å klikka på dei
@@ -63,6 +65,7 @@ nn:
         setting_display_media_hide_all: Alltid skjul alt media
         setting_display_media_show_all: Vis alltid media
         setting_emoji_style: Korleis du skal visa smilefjes. «Auto» prøver å visa innebygde smilefjes, men bruker Twemoji som reserveløysing for eldre nettlesarar.
+        setting_quick_boosting_html: Når dette er skrudd på og du klikkar på %{boost_icon} framhev-ikonet, vil du framheva innlegget med ein gong i staden for å opna framhev/siter-menyen. Du finn siteringa i %{options_icon} (Val)-menyen.
         setting_system_scrollbars_ui: Gjeld berre skrivebordsnettlesarar som er bygde på Safari og Chrome
         setting_use_blurhash: Overgangar er basert på fargane til skjulte grafikkelement, men gjer detaljar utydelege
         setting_use_pending_items: Gøym tidslineoppdateringar bak eit klikk, i staden for å rulla ned automatisk
@@ -107,7 +110,6 @@ nn:
         thumbnail: Eit omlag 2:1 bilete vist saman med informasjon om tenaren.
         trendable_by_default: Hopp over manuell gjennomgang av populært innhald. Enkeltståande innlegg kan fjernast frå trendar i etterkant.
         trends: Trendar viser kva for nokre innlegg, emneknaggar og nyheiter som er populære på tenaren.
-        trends_as_landing_page: Vis populært innhald til utlogga brukarar og folk som kjem innom sida i staden for ei skildring av tenaren. Du må ha skrudd på trendar for å kunna bruka dette.
       form_challenge:
         current_password: Du går inn i eit trygt område
       imports:
@@ -234,12 +236,12 @@ nn:
         setting_aggregate_reblogs: Gruppeframhevingar på tidsliner
         setting_always_send_emails: Alltid send epostvarsel
         setting_auto_play_gif: Spel av animerte GIF-ar automatisk
-        setting_boost_modal: Vis stadfesting før framheving
+        setting_boost_modal: Kontroller korleis du framhevar innlegg
         setting_default_language: Språk på innlegg
         setting_default_privacy: Innleggsvising
         setting_default_quote_policy: Kven kan sitera
         setting_default_sensitive: Merk alltid media som nærtakande
-        setting_delete_modal: Vis stadfesting før du slettar eit tut
+        setting_delete_modal: Åtvar meg før eg slettar eit innlegg
         setting_disable_hover_cards: Skru av profilvising når peikaren er over
         setting_disable_swiping: Skru av sveiperørsler
         setting_display_media: Medievisning
@@ -249,7 +251,8 @@ nn:
         setting_emoji_style: Stil for smilefjes
         setting_expand_spoilers: Vid alltid ut tut som er merka med innhaldsåtvaringar
         setting_hide_network: Gøym nettverket ditt
-        setting_missing_alt_text_modal: Vis stadfestingsdialog før du legg ut media utan alt-tekst
+        setting_missing_alt_text_modal: Åtvar meg før eg legg ut media utan alternativ tekst
+        setting_quick_boosting: Skru på rask framheving
         setting_reduce_motion: Minsk rørsle i animasjonar
         setting_system_font_ui: Bruk standardskrifttypen på systemet
         setting_system_scrollbars_ui: Bruk standardrullefeltet til systemet
@@ -283,12 +286,16 @@ nn:
         content_cache_retention_period: Oppbevaringstid for eksternt innhald
         custom_css: Egendefinert CSS
         favicon: Favorittikon
+        local_live_feed_access: Tilgang til direktestraumar med lokale innlegg
+        local_topic_feed_access: Tilgang til merkelapp- og lenkestraumar med lokale innlegg
         mascot: Eigendefinert maskot (eldre funksjon)
         media_cache_retention_period: Oppbevaringsperiode for mediebuffer
         min_age: Minste aldersgrense
         peers_api_enabled: Legg ut ei liste over oppdaga tenarar i APIet
         profile_directory: Aktiver profilkatalog
         registrations_mode: Kven kan registrera seg
+        remote_live_feed_access: Tilgang til direktestraumar med eksterne innlegg
+        remote_topic_feed_access: Tilgang til merkelapp- og direktestraumar med eksterne innlegg
         require_invite_text: Krev ei grunngjeving for å få bli med
         show_domain_blocks: Vis domeneblokkeringar
         show_domain_blocks_rationale: Vis grunngjeving for domeneblokkeringar
@@ -303,7 +310,6 @@ nn:
         thumbnail: Miniatyrbilete for tenaren
         trendable_by_default: Tillat trendar utan gjennomgang på førehand
         trends: Aktiver trendar
-        trends_as_landing_page: Bruk trendar som startside
       interactions:
         must_be_follower: Blokker varsel frå folk som ikkje fylgjer deg
         must_be_following: Blokker varsel frå folk du ikkje fylgjer

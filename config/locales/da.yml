@@ -796,6 +796,8 @@ da:
         view_dashboard_description: Tillader brugere at tilgå Dashboard'et og forskellige målinger
         view_devops: DevOps
         view_devops_description: Tillader brugere at tilgå Sidekiq- og pgHero-dashboards
+        view_feeds: Se live- og emne-feeds
+        view_feeds_description: Giver brugerne adgang til live- og emne-feeds uanset serverindstillinger
       title: Roller
     rules:
       add_new: Tilføj regel
@@ -837,7 +839,7 @@ da:
         title: Fravælg som standard søgemaskineindeksering for brugere
       discovery:
         follow_recommendations: Følg-anbefalinger
-        preamble: At vise interessant indhold er vitalt ifm. at få nye brugere om bord, som måske ikke kender nogen på Mastodon. Styr, hvordan forskellige opdagelsesfunktioner fungerer på serveren.
+        preamble: At bringe interessant indhold frem er afgørende for at engagere nye brugere, der måske ikke kender nogen på Mastodon. Kontroller, hvordan forskellige funktioner til at finde indhold fungerer på din server.
         privacy: Fortrolighed
         profile_directory: Profiloversigt
         public_timelines: Offentlige tidslinjer
@@ -851,7 +853,13 @@ da:
       feed_access:
         modes:
           authenticated: Kun godkendte brugere
+          disabled: Kræv specifik brugerrolle
           public: Alle
+      landing_page:
+        values:
+          about: Om
+          local_feed: Lokalt feed
+          trends: Trends
       registrations:
         moderation_recommandation: Sørg for, at der er et tilstrækkeligt og reaktivt moderationsteam, før registrering åbnes for alle!
         preamble: Styr, hvem der kan oprette en konto på serveren.
@@ -905,6 +913,7 @@ da:
       no_status_selected: Ingen indlæg ændret (ingen valgt)
       open: Åbn indlæg
       original_status: Oprindeligt indlæg
+      quotes: Citater
       reblogs: Genblogninger
       replied_to_html: Besvarede %{acct_link}
       status_changed: Indlæg ændret
@@ -912,6 +921,7 @@ da:
       title: Kontoindlæg - @%{name}
       trending: Trender
       view_publicly: Vis offentligt
+      view_quoted_post: Vis citeret indlæg
       visibility: Synlighed
       with_media: Med medier
     strikes:
@@ -1186,7 +1196,10 @@ da:
     hint_html: Ønsker du at flytte fra en anden konto til denne, kan du hér oprette det alias, der kræves, for at du kan fortsætte med at flytte følgere fra den gamle konto til denne. Denne handling er i sig selv <strong>harmløs og reversibel</strong>. <strong>Kontomigreringen påbegyndes fra den gamle konto</strong>.
     remove: Fjern aliaslinkning
   appearance:
+    advanced_settings: Avancerede indstillinger
     animations_and_accessibility: Animationer og tilgængelighed
+    boosting_preferences: Præferencer for fremhævelse
+    boosting_preferences_info_html: "<strong>Tip:</strong> Uanset indstillinger vil <kbd>Skift</kbd> + <kbd>Klik</kbd> på %{icon} fremhæv-ikonet straks fremhæve."
     discovery: Opdagelse
     localization:
       body: Mastodon oversættes af frivillige.
@@ -1922,10 +1935,15 @@ da:
       limit: Maksimalt antal indlæg allerede fastgjort
       ownership: Andres indlæg kan ikke fastgøres
       reblog: En fremhævelse kan ikke fastgøres
+    quote_error:
+      not_available: Indlæg utilgængeligt
+      pending_approval: Indlæg afventer
+      revoked: Indlæg fjernet af forfatter
     quote_policies:
       followers: Kun følgere
       nobody: Kun mig
       public: Alle
+    quote_post_author: Citerede et indlæg af %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privat omtale

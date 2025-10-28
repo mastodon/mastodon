@@ -76,7 +76,7 @@ function testEmojiSupport(text: string) {
   return compareFeatures(feature1, feature2);
 }
 
-const EMOJI_VERSION_TEST_EMOJI = '🫨'; // shaking head, from v15
+const EMOJI_VERSION_TEST_EMOJI = '🫩'; // face with bags under eyes, from Unicode 16.0.
 const EMOJI_FLAG_TEST_EMOJI = '🇨🇭';
 
 export function determineEmojiMode(style: string): EmojiMode {

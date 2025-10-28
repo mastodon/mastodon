@@ -824,6 +824,8 @@ he:
         view_dashboard_description: אפשר למשתמשים לגשת ללוח המחוונים
         view_devops: DevOps
         view_devops_description: מאפשר למשתמשים לגשת ללוחות המחוונים של Sidekiq ושל pgHero
+        view_feeds: צפיה בפיד החי ונושאים
+        view_feeds_description: מאפשר למשמתמשיםות גישה לפיד החי ופיד נושאים בלי קשר להגדרות השרת
       title: תפקידים
     rules:
       add_new: הוספת כלל
@@ -879,7 +881,13 @@ he:
       feed_access:
         modes:
           authenticated: משתמשים מאומתים בלבד
+          disabled: נדרש תפקיד משתמש מסוים
           public: כולם
+      landing_page:
+        values:
+          about: אודות
+          local_feed: פיד מקומי
+          trends: נושאים חמים
       registrations:
         moderation_recommandation: יש לוודא שלאתר יש צוות מנחות ומנחי שיחה מספק ושירותי בטרם תבחרו לפתוח הרשמה לכולם!
         preamble: שליטה בהרשאות יצירת חשבון בשרת שלך.
@@ -933,6 +941,7 @@ he:
       no_status_selected: לא בוצעו שינויים בהודעות שכן לא נבחרו כאלו
       open: פתח הודעה
       original_status: הודעה מקורית
+      quotes: ציטוטים
       reblogs: שיתופים
       replied_to_html: בתגובה לחשבון %{acct_link}
       status_changed: הודעה שונתה
@@ -940,6 +949,7 @@ he:
       title: פרסומי החשבון - @%{name}
       trending: נושאים חמים
       view_publicly: צפיה בפומבי
+      view_quoted_post: צפיה בהודעה המצוטטת
       visibility: חשיפה
       with_media: עם מדיה
     strikes:
@@ -1224,7 +1234,10 @@ he:
     hint_html: אם ברצונך לעבור מחשבון אחר לחשבון הזה, כאן ניתן ליצור שם נרדף, הנדרש לפני שאפשר יהיה להמשיך עם העברת עוקבים מהחשבון הישן לזה. הפעולה עצמה <strong>הפיכה ובלתי מזיקה</strong>. <strong>הגירת החשבון מופעלת מהחשבון הישן</strong>.
     remove: הסרת שם נרדף
   appearance:
+    advanced_settings: הגדרות מתקדמות
     animations_and_accessibility: הנפשות ונגישות
+    boosting_preferences: העדפות הדהודים
+    boosting_preferences_info_html: "<strong>עצה:</strong> ללא קשר לבחירה, <kbd>שיפט</kbd> + <kbd>קליק</kbd> על %{icon} איקון ההדהוד ירשם כהדהוד מיידי."
     discovery: תגליות
     localization:
       body: מסטודון מתורגם על ידי מתנדבים.
@@ -2008,10 +2021,15 @@ he:
       limit: הגעת למספר המירבי של ההודעות המוצמדות
       ownership: הודעות של אחרים לא יכולות להיות מוצמדות
       reblog: אין אפשרות להצמיד הדהודים
+    quote_error:
+      not_available: ההודעה לא זמינה
+      pending_approval: ההודעה בהמתנה לאישור
+      revoked: ההודעה הוסרה על ידי המחבר.ת
     quote_policies:
       followers: לעוקבים בלבד
       nobody: רק אני
       public: כולם
+    quote_post_author: ההודעה היא ציטוט של %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: אזכור פרטי

@@ -825,7 +825,6 @@ ko:
         title: 사용자들이 기본적으로 검색엔진에 인덱싱되지 않도록 합니다
       discovery:
         follow_recommendations: 팔로우 추천
-        preamble: 흥미로운 콘텐츠를 노출하는 것은 마스토돈을 알지 못할 수도 있는 신규 사용자를 유입시키는 데 중요합니다. 이 서버에서 작동하는 다양한 발견하기 기능을 제어합니다.
         privacy: 개인정보
         profile_directory: 프로필 책자
         public_timelines: 공개 타임라인
@@ -889,6 +888,7 @@ ko:
       no_status_selected: 아무 것도 선택 되지 않아 어떤 게시물도 바뀌지 않았습니다
       open: 게시물 열기
       original_status: 원본 게시물
+      quotes: 인용
       reblogs: 리블로그
       replied_to_html: "%{acct_link} 님에게 답장"
       status_changed: 게시물 변경됨
@@ -1700,6 +1700,8 @@ ko:
       too_few_options: 둘 이상의 항목이 있어야 함
       too_many_options: 항목은 %{max}개를 넘을 수 없습니다
     vote: 투표
+  posting_defaults:
+    explanation: 이 설정은 새 게시물을 작성할 때 기본값으로 쓰이지만, 작성기 내에서 게시물별로 편집할 수 있습니다.
   preferences:
     other: 기타
     posting_defaults: 게시물 기본설정

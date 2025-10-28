@@ -84,6 +84,10 @@ RSpec.describe Tag do
       expect(subject.match('﻿this is #ａｅｓｔｈｅｔｉｃ').to_s).to eq '#ａｅｓｔｈｅｔｉｃ'
     end
 
+    it 'matches ＃ｆｏｏ' do
+      expect(subject.match('this is ＃ｆｏｏ').to_s).to eq '＃ｆｏｏ'
+    end
+
     it 'matches digits at the start' do
       expect(subject.match('hello #3d').to_s).to eq '#3d'
     end

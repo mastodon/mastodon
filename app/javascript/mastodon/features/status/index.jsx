@@ -504,12 +504,14 @@ class Status extends ImmutablePureComponent {
   componentDidUpdate (prevProps) {
     const { status, ancestorsIds, descendantsIds } = this.props;
 
-    if (status && (ancestorsIds.length > prevProps.ancestorsIds.length || prevProps.status?.get('id') !== status.get('id'))) {
+    const isSameStatus = status && (prevProps.status?.get('id') === status.get('id'));
+
+    if (status && (ancestorsIds.length > prevProps.ancestorsIds.length || !isSameStatus)) {
       this._scrollStatusIntoView();
     }
 
     // Only highlight replies after the initial load
-    if (prevProps.descendantsIds.length) {
+    if (prevProps.descendantsIds.length && isSameStatus) {
       const newRepliesIds = difference(descendantsIds, prevProps.descendantsIds);
       
       if (newRepliesIds.length) {
@@ -570,14 +572,6 @@ class Status extends ImmutablePureComponent {
 
     const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
     const isIndexable = !status.getIn(['account', 'noindex']);
-
-    if (!isLocal) {
-      remoteHint = (
-        <RefreshController
-          statusId={status.get('id')}
-        />
-      );
-    }
 
     const handlers = {
       reply: this.handleHotkeyReply,
@@ -649,7 +643,12 @@ class Status extends ImmutablePureComponent {
             </Hotkeys>
 
             {descendants}
-            {remoteHint}
+            
+            <RefreshController
+              isLocal={isLocal}
+              statusId={status.get('id')}
+              statusCreatedAt={status.get('created_at')}
+            />
           </div>
         </ScrollContainer>
 

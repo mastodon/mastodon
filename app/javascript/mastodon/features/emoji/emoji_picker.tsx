@@ -9,7 +9,7 @@ import { EMOJI_MODE_NATIVE } from './constants';
 import EmojiData from './emoji_data.json';
 import { useEmojiAppState } from './mode';
 
-const backgroundImageFnDefault = () => `${assetHost}/emoji/sheet_15_1.png`;
+const backgroundImageFnDefault = () => `${assetHost}/emoji/sheet_16_0.png`;
 
 const Emoji = ({
   set = 'twitter',

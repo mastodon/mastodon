@@ -796,6 +796,8 @@ en:
         view_dashboard_description: Allows users to access the dashboard and various metrics
         view_devops: DevOps
         view_devops_description: Allows users to access Sidekiq and pgHero dashboards
+        view_feeds: View live and topic feeds
+        view_feeds_description: Allows users to access the live and topic feeds regardless of server settings
       title: Roles
     rules:
       add_new: Add rule
@@ -837,7 +839,7 @@ en:
         title: Opt users out of search engine indexing by default
       discovery:
         follow_recommendations: Follow recommendations
-        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
+        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone on Mastodon. Control how various discovery features work on your server.
         privacy: Privacy
         profile_directory: Profile directory
         public_timelines: Public timelines
@@ -851,7 +853,13 @@ en:
       feed_access:
         modes:
           authenticated: Authenticated users only
+          disabled: Require specific user role
           public: Everyone
+      landing_page:
+        values:
+          about: About
+          local_feed: Local feed
+          trends: Trends
       registrations:
         moderation_recommandation: Please make sure you have an adequate and reactive moderation team before you open registrations to everyone!
         preamble: Control who can create an account on your server.
@@ -905,6 +913,7 @@ en:
       no_status_selected: No posts were changed as none were selected
       open: Open post
       original_status: Original post
+      quotes: Quotes
       reblogs: Reblogs
       replied_to_html: Replied to %{acct_link}
       status_changed: Post changed
@@ -912,6 +921,7 @@ en:
       title: Account posts - @%{name}
       trending: Trending
       view_publicly: View publicly
+      view_quoted_post: View quoted post
       visibility: Visibility
       with_media: With media
     strikes:
@@ -1189,6 +1199,7 @@ en:
     advanced_settings: Advanced settings
     animations_and_accessibility: Animations and accessibility
     boosting_preferences: Boosting preferences
+    boosting_preferences_info_html: "<strong>Tip:</strong> Regardless of settings, <kbd>Shift</kbd> + <kbd>Click</kbd> on the %{icon} Boost icon will immediately boost."
     discovery: Discovery
     localization:
       body: Mastodon is translated by volunteers.
@@ -1925,10 +1936,15 @@ en:
       limit: You have already pinned the maximum number of posts
       ownership: Someone else's post cannot be pinned
       reblog: A boost cannot be pinned
+    quote_error:
+      not_available: Post unavailable
+      pending_approval: Post pending
+      revoked: Post removed by author
     quote_policies:
       followers: Followers only
       nobody: Just me
       public: Anyone
+    quote_post_author: Quoted a post by %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Private mention

@@ -6,11 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- **Add support for allowing and authoring quotes** (#35355, #35578, #35614, #35618, #35624, #35626, #35652, #35629, #35665, #35653, #35670, #35677, #35690, #35697, #35689, #35699, #35700, #35701, #35709, #35714, #35713, #35715, #35725, #35749, #35769, #35780, #35762, #35804, #35808, #35805, #35819, #35824, #35828, #35822, #35835, #35865, #35860, #35832, #35891, #35894, #35895, #35820, #35917, #35924, #35925, #35914, #35930, #35941, #35939, #35948, #35955, #35967, #35990, #35991, #35975, #35971, #36002, #35986, #36031, #36034, #36038, #36054, #36052, #36055, #36065, #36068, #36083, #36087, #36080, #36091, #36090, #36118, #36119, #36128, #36094, #36129, #36138, #36132, #36151, #36158, #36171, #36194, #36220, #36169, #36130, #36249, #36153, #36299, #36291, #36301, #36315, #36317, #36364, #36383, #36381, #36459, #36464, and #36461 by @ChaosExAnima, @ClearlyClaire, @Lycolia, @diondiondion, and @tribela)\
+- **Add support for allowing and authoring quotes** (#35355, #35578, #35614, #35618, #35624, #35626, #35652, #35629, #35665, #35653, #35670, #35677, #35690, #35697, #35689, #35699, #35700, #35701, #35709, #35714, #35713, #35715, #35725, #35749, #35769, #35780, #35762, #35804, #35808, #35805, #35819, #35824, #35828, #35822, #35835, #35865, #35860, #35832, #35891, #35894, #35895, #35820, #35917, #35924, #35925, #35914, #35930, #35941, #35939, #35948, #35955, #35967, #35990, #35991, #35975, #35971, #36002, #35986, #36031, #36034, #36038, #36054, #36052, #36055, #36065, #36068, #36083, #36087, #36080, #36091, #36090, #36118, #36119, #36128, #36094, #36129, #36138, #36132, #36151, #36158, #36171, #36194, #36220, #36169, #36130, #36249, #36153, #36299, #36291, #36301, #36315, #36317, #36364, #36383, #36381, #36459, #36464, #36461, #36516 and #36528 by @ChaosExAnima, @ClearlyClaire, @Lycolia, @diondiondion, and @tribela)\
   This includes a revamp of the composer interface.\
   See https://blog.joinmastodon.org/2025/09/introducing-quote-posts/ for a user-centric overview of the feature, and https://docs.joinmastodon.org/client/quotes/ for API documentation.
-- **Add support for fetching and refreshing replies to the web UI** (#35210, #35496, #35575, #35500, #35577, #35602, #35603, #35654, #36141, #36237, #36172, #36256, #36271, #36334, #36382, and #36239 by @ClearlyClaire, @Gargron, and @diondiondion)
+- **Add support for fetching and refreshing replies to the web UI** (#35210, #35496, #35575, #35500, #35577, #35602, #35603, #35654, #36141, #36237, #36172, #36256, #36271, #36334, #36382, #36239, #36484 and #36481 by @ClearlyClaire, @Gargron, and @diondiondion)
 - **Add ability to block words in usernames** (#35407, #35655, and #35806 by @ClearlyClaire and @Gargron)
+- Add support for displaying of quote posts in Moderator UI (#35964 by @ThisIsMissEm)
 - Add support for displaying link previews for Admin UI (#35958 by @ThisIsMissEm)
 - Add support for dynamic viewport height (#36272 by @e1berd)
 - Add support for numeric-based URIs for new local accounts (#32724, #36304, #36316, and #36365 by @ClearlyClaire)
@@ -26,18 +27,20 @@ All notable changes to this project will be documented in this file.
 - Add delivery failure tracking and handling to FASP jobs (#35625, #35628, and #35723 by @oneiros)
 - Add example of quote post with a preview card to development sample data (#35616 by @ClearlyClaire)
 - Add second set of blocked text that applies to accounts regardless of account age for spam-blocking (#35563 by @ClearlyClaire)
-- Add experimental feature to select custom emoji rendering (#35229, #35282, #35253, #35424, #35473, #35483, #35505, #35568, #35605, #35659, #35664, #35739, #35985, #36051, #36071, #36137, #36165, #36248, #36262, #36275, #36293, #36341, #36342, #36366, #36377, #36378, #36385, #36393, #36397, #36403, #36413, #36410, #36454, and #36402 by @ChaosExAnima and @braddunbar)\
+- Added emoji from Twemoji v16 (#36501 and #36530 by @ChaosExAnima)
+- Add experimental feature to select custom emoji rendering (#35229, #35282, #35253, #35424, #35473, #35483, #35505, #35568, #35605, #35659, #35664, #35739, #35985, #36051, #36071, #36137, #36165, #36248, #36262, #36275, #36293, #36341, #36342, #36366, #36377, #36378, #36385, #36393, #36397, #36403, #36413, #36410, #36454, #36402, #36503, #36502 and #36532 by @ChaosExAnima and @braddunbar)\
   This also completely reworks the processing and rendering of emojis and server-rendered HTML in statuses and other places.
 
 ### Changed
 
 - Change confirmation dialogs for follow button actions “unfollow”, “unblock”, and “withdraw request” (#36289 by @diondiondion)
 - Change “Follow” button labels (#36264 by @diondiondion)
+- Change appearance settings to introduce new Advanced settings section (#36496 and #36506 by @diondiondion)
 - Change display of content warnings in Admin UI (#35935 by @ThisIsMissEm)
 - Change index on `follows` table to improve performance of some queries (#36374 by @ClearlyClaire)
 - Change links to accounts in settings and moderation views to link to local view unless account is suspended (#36340 by @diondiondion)
 - Change redirection for denied registration from web app to sign-in page with error message (#36384 by @ClearlyClaire)
-- Change `timeline_preview` setting into four more granular settings (#36338 and #36467 by @ClearlyClaire)
+- Change `timeline_preview` setting into four more granular settings (#36338, #36467 and #36497 by @ClearlyClaire)
 - Change wording and design of interaction dialog to simplify it (#36124 by @diondiondion)
 - Change dropdown menus to allow disabled items to be focused (#36078 by @diondiondion)
 - Change modal background colours in light mode (#36069 by @diondiondion)
@@ -49,9 +52,11 @@ All notable changes to this project will be documented in this file.
 - Change auditable accounts to be sorted by username in admin action logs interface (#35272 by @breadtk)
 - Change order of translation restoration and service credit on post card (#33619 by @colindean)
 - Change position of ‘add more’ to be inside table toolbar on reports (#35963 by @ThisIsMissEm)
+- Change docker-compose.yml sidekiq health check to work for both 4.4 and 4.5 (#36498 by @ClearlyClaire)
 
 ### Fixed
 
+- Fix relationship not being fetched to evaluate whether to show a quote post (#36517 by @ClearlyClaire)
 - Fix rendering of poll options in status history modal (#35633 by @ThisIsMissEm)
 - Fix “mute” button being displayed to unauthenticated visitors in hashtag dropdown (#36353 by @mkljczk)
 - Fix overflow handling of `.more-from-author` (#36310 by @edent)
@@ -75,6 +80,12 @@ All notable changes to this project will be documented in this file.
 - Fix inconsistent default privacy post setting when unset in settings (#35422 by @oneiros)
 - Fix glitchy status keyboard navigation (#35455 and #35504 by @diondiondion)
 - Fix post being submitted when pressing “Enter” in the CW field (#35445 by @diondiondion)
+
+## [4.4.8] - 2025-10-21
+
+### Security
+
+- Fix quote control bypass ([GHSA-8h43-rcqj-wpc6](https://github.com/mastodon/mastodon/security/advisories/GHSA-8h43-rcqj-wpc6))
 
 ## [4.4.7] - 2025-10-15
 

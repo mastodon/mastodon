@@ -7,6 +7,7 @@ vi:
       send_paranoid_instructions: Nếu địa chỉ email của bạn đã tồn tại trong cơ sở dữ liệu của chúng tôi, bạn sẽ nhận được một email hướng dẫn cách xác minh lại địa chỉ email. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
     failure:
       already_authenticated: Bạn đã đăng nhập rồi.
+      closed_registrations: Việc đăng ký của bạn đã bị chặn do chính sách mạng. Nếu bạn cho rằng đây là lỗi, vui lòng liên hệ %{email}.
       inactive: Tài khoản của bạn chưa được kich hoạt.
       invalid: "%{authentication_keys} hoặc mật khẩu không khớp."
       last_attempt: Nếu thử sai lần nữa, tài khoản của bạn sẽ bị khóa.

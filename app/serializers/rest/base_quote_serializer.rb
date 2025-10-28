@@ -14,7 +14,7 @@ class REST::BaseQuoteSerializer < ActiveModel::Serializer
   end
 
   def quoted_status
-    object.quoted_status if object.accepted? && object.quoted_status.present? && !status_filter.filtered_for_quote?
+    object.quoted_status if object.accepted? && object.quoted_status.present? && !object.quoted_status&.reblog? && !status_filter.filtered_for_quote?
   end
 
   private

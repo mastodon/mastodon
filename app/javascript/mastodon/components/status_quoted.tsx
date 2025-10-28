@@ -12,6 +12,7 @@ import type { Status } from 'mastodon/models/status';
 import type { RootState } from 'mastodon/store';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
+import { fetchRelationships } from '../actions/accounts';
 import { revealAccount } from '../actions/accounts_typed';
 import { fetchStatus } from '../actions/statuses';
 import { makeGetStatusWithExtraInfo } from '../selectors';
@@ -147,6 +148,10 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
       isFetchingQuoteRef.current = true;
     }
   }, [shouldFetchQuote, quotedStatusId, parentQuotePostId, dispatch]);
+
+  useEffect(() => {
+    if (accountId && hiddenAccount) dispatch(fetchRelationships([accountId]));
+  }, [accountId, hiddenAccount, dispatch]);
 
   const isFilteredAndHidden = loadingState === 'filtered';
 

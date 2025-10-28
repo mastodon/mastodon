@@ -24,7 +24,6 @@ class Form::AdminSettings
     thumbnail
     mascot
     trends
-    trends_as_landing_page
     trendable_by_default
     show_domain_blocks
     show_domain_blocks_rationale
@@ -44,6 +43,7 @@ class Form::AdminSettings
     remote_live_feed_access
     local_topic_feed_access
     remote_topic_feed_access
+    landing_page
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -61,7 +61,6 @@ class Form::AdminSettings
     preview_sensitive_media
     profile_directory
     trends
-    trends_as_landing_page
     trendable_by_default
     noindex
     require_invite_text
@@ -87,7 +86,8 @@ class Form::AdminSettings
   DESCRIPTION_LIMIT = 200
   DOMAIN_BLOCK_AUDIENCES = %w(disabled users all).freeze
   REGISTRATION_MODES = %w(open approved none).freeze
-  FEED_ACCESS_MODES = %w(public authenticated).freeze
+  FEED_ACCESS_MODES = %w(public authenticated disabled).freeze
+  LANDING_PAGE = %w(trends about local_feed).freeze
 
   attr_accessor(*KEYS)
 
@@ -106,6 +106,7 @@ class Form::AdminSettings
   validates :site_short_description, length: { maximum: DESCRIPTION_LIMIT }, if: -> { defined?(@site_short_description) }
   validates :status_page_url, url: true, allow_blank: true
   validate :validate_site_uploads
+  validates :landing_page, inclusion: { in: LANDING_PAGE }, if: -> { defined?(@landing_page) }
 
   KEYS.each do |key|
     define_method(key) do

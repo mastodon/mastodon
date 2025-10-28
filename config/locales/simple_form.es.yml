@@ -54,8 +54,10 @@ es:
         password: Utiliza al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de una publicación
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
+        setting_advanced_layout: Mostrar Mastodon con vista de varias columnas, permitiéndote ver tu cronología, notificaciones y una tercera columna que tú elijas. No recomendado para pantallas pequeñas.
         setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a los impulsos recibidos recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
+        setting_boost_modal: Si está activado, impulsar una publicación abrirá una ventana donde podrás cambiar la visibilidad de tu impulso.
         setting_default_quote_policy_private: Las publicaciones solo para seguidores hechas en Mastodon no pueden ser citadas por otros usuarios.
         setting_default_quote_policy_unlisted: Cuando las personas te citen, su publicación también se ocultará en las cronologías públicas.
         setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un click
@@ -63,6 +65,7 @@ es:
         setting_display_media_hide_all: Siempre ocultar todo el contenido multimedia
         setting_display_media_show_all: Mostrar siempre contenido multimedia marcado como sensible
         setting_emoji_style: Cómo se mostrarán los emojis. "Auto" intentará usar emojis nativos, cambiando a Twemoji en navegadores antiguos.
+        setting_quick_boosting_html: Cuando está activado, pulsar en el icono %{boost_icon} Impulsar impulsará inmediatamente en lugar de abrir el menú desplegable Impulsar/Citas. Mueve la acción de citar al menú %{options_icon} (Opciones).
         setting_system_scrollbars_ui: Solo aplica para navegadores de escritorio basados en Safari y Chrome
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar nuevas publicaciones detrás de un clic en lugar de desplazar automáticamente el feed
@@ -90,6 +93,7 @@ es:
         content_cache_retention_period: Todas las publicaciones de otros servidores (incluso impulsos y respuestas) se eliminarán después del número de días especificado, sin tener en cuenta la interacción del usuario local con esos mensajes. Esto incluye mensajes donde un usuario local los ha marcado como marcadores o favoritos. Las menciones privadas entre usuarios de diferentes instancias también se perderán sin posibilidad de recuperación. El uso de esta configuración está destinado a instancias de propósito especial, y rompe muchas expectativas de los usuarios cuando se implementa para un uso de propósito general.
         custom_css: Puedes aplicar estilos personalizados a la versión web de Mastodon.
         favicon: WEBP, PNG, GIF o JPG. Reemplaza el favicon predeterminado de Mastodon con un icono personalizado.
+        landing_page: Selecciona qué página ven los nuevos visitantes cuando llegan por primera vez a tu servidor. Si seleccionas "Tendencias", entonces las tendencias deben estar habilitadas en la Configuración de Descubrimiento. Si selecciona "Cronología local", entonces "Acceso a las cronologías que destacan publicaciones locales" debe configurarse a "Todos" en la Configuración de Descubrimiento.
         mascot: Reemplaza la ilustración en la interfaz web avanzada.
         media_cache_retention_period: Los archivos multimedia de las publicaciones creadas por usuarios remotos se almacenan en caché en tu servidor. Cuando se establece un valor positivo, estos archivos se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlaces realizan peticiones a sitios de terceros, se recomienda establecer este valor a al menos 14 días, o las tarjetas de previsualización de enlaces no se actualizarán bajo demanda antes de ese momento.
         min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento durante el registro
@@ -107,7 +111,6 @@ es:
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
         trendable_by_default: Omitir la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
         trends: Las tendencias muestran qué publicaciones, etiquetas y noticias están ganando tracción en tu servidor.
-        trends_as_landing_page: Mostrar contenido en tendencia para usuarios y visitantes en lugar de una descripción de este servidor. Requiere que las tendencias estén habilitadas.
       form_challenge:
         current_password: Estás entrando en un área segura
       imports:
@@ -234,12 +237,12 @@ es:
         setting_aggregate_reblogs: Agrupar impulsos en las líneas de tiempo
         setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
-        setting_boost_modal: Mostrar diálogo de confirmación antes de impulsar una publicación
+        setting_boost_modal: Control de visibilidad de impulsos
         setting_default_language: Idioma de publicación
         setting_default_privacy: Visibilidad de publicación
         setting_default_quote_policy: Quién puede citar
         setting_default_sensitive: Marcar siempre imágenes como sensibles
-        setting_delete_modal: Mostrar diálogo de confirmación antes de borrar una publicación
+        setting_delete_modal: Avisarme antes de borrar una publicación
         setting_disable_hover_cards: Desactivar vista previa del perfil al pasar el cursor
         setting_disable_swiping: Deshabilitar movimientos de deslizamiento
         setting_display_media: Visualización multimedia
@@ -249,7 +252,8 @@ es:
         setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Siempre expandir las publicaciones marcadas con advertencias de contenido
         setting_hide_network: Ocultar tu red
-        setting_missing_alt_text_modal: Mostrar diálogo de confirmación antes de publicar medios sin texto alternativo
+        setting_missing_alt_text_modal: Avisarme antes de publicar multimedia sin descripción de texto
+        setting_quick_boosting: Habilitar impulso rápido
         setting_reduce_motion: Reducir el movimiento de las animaciones
         setting_system_font_ui: Utilizar la tipografía por defecto del sistema
         setting_system_scrollbars_ui: Utilizar barra de desplazamiento predeterminada del sistema
@@ -283,6 +287,7 @@ es:
         content_cache_retention_period: Período de retención de contenido remoto
         custom_css: CSS personalizado
         favicon: Favicon
+        landing_page: Página de inicio para nuevos visitantes
         local_live_feed_access: Acceso a las cronologías que destacan publicaciones locales
         local_topic_feed_access: Acceso a las etiquetas y enlaces en tendencia que destacan publicaciones locales
         mascot: Mascota personalizada (legado)
@@ -307,7 +312,6 @@ es:
         thumbnail: Miniatura del servidor
         trendable_by_default: Permitir tendencias sin revisión previa
         trends: Habilitar tendencias
-        trends_as_landing_page: Usar tendencias como la página de inicio
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues

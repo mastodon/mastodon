@@ -824,6 +824,8 @@ cs:
         view_dashboard_description: Umožňuje uživatelům přístup k ovládacímu panelu a různým metrikám
         view_devops: DevOps
         view_devops_description: Umožňuje uživatelům přístup k ovládacím panelům Sidekiq a pgHero
+        view_feeds: Zobrazit živé a tematické kanály
+        view_feeds_description: Umožňuje uživatelům přístup k živým a tematickým kanálům bez ohledu na nastavení serveru
       title: Role
     rules:
       add_new: Přidat pravidlo
@@ -865,12 +867,12 @@ cs:
         title: Odhlásit uživatele ze standardního indexování vyhledávačů
       discovery:
         follow_recommendations: Doporučená sledování
-        preamble: Povrchový zajímavý obsah je užitečný pro zapojení nových uživatelů, kteří možná neznají žádného Mastodona. Mějte pod kontrolou, jak různé objevovací funkce fungují na vašem serveru.
+        preamble: Zobrazování zajímavého obsahu je užitečné pro zapojovní nových uživatelů, kteří nemusí na Mastodonu nikoho znát. Kontrolujte, jak fungují různé funkce objevování obsahu na vašem serveru.
         privacy: Soukromí
         profile_directory: Adresář profilů
         public_timelines: Veřejné časové osy
         publish_statistics: Zveřejnit statistiku
-        title: Objevujte
+        title: Objevování
         trends: Trendy
       domain_blocks:
         all: Všem
@@ -879,7 +881,13 @@ cs:
       feed_access:
         modes:
           authenticated: Pouze autentifikovaní uživatelé
+          disabled: Vyžadovat specifickou uživatelskou roli
           public: Všichni
+      landing_page:
+        values:
+          about: O službě
+          local_feed: Místní kanál
+          trends: Trendy
       registrations:
         moderation_recommandation: Před otevřením registrací všem se ujistěte, že máte vhodný a reaktivní moderační tým!
         preamble: Mějte pod kontrolou, kdo může vytvořit účet na vašem serveru.
@@ -933,6 +941,7 @@ cs:
       no_status_selected: Nebyly změněny žádné příspěvky, neboť žádné nebyly vybrány
       open: Otevřít příspěvek
       original_status: Původní příspěvek
+      quotes: Citace
       reblogs: Boosty
       replied_to_html: Odpověděl %{acct_link}
       status_changed: Příspěvek změněn
@@ -940,6 +949,7 @@ cs:
       title: Příspěvky na účtu - @%{name}
       trending: Populární
       view_publicly: Zobrazit veřejně
+      view_quoted_post: Zobrazit citovaný příspěvek
       visibility: Viditelnost
       with_media: S médii
     strikes:
@@ -1224,7 +1234,10 @@ cs:
     hint_html: Chcete-li se přesunout z jiného účtu na tento, můžete si zde vytvořit alias, který je vyžadován předtím, než můžete pokračovat přesunem sledujících ze starého účtu na tento. Tato akce sama o sobě je <strong>neškodná a vratná</strong>. <strong>Přesun účtu se zahajuje ze starého účtu</strong>.
     remove: Odpojit alias
   appearance:
+    advanced_settings: Pokročilá nastavení
     animations_and_accessibility: Animace a přístupnost
+    boosting_preferences: Předvolby boostování
+    boosting_preferences_info_html: "<strong>Tip:</strong> Bez ohledu na nastavení <kbd>Shift</kbd> + <kbd>Klik</kbd> na ikonu %{icon} Boost okamžitě boostne."
     discovery: Objevování
     localization:
       body: Mastodon je překládán dobrovolníky.
@@ -2008,10 +2021,15 @@ cs:
       limit: Už jste si připnuli maximální počet příspěvků
       ownership: Nelze připnout příspěvek někoho jiného
       reblog: Boosty nelze připnout
+    quote_error:
+      not_available: Příspěvek není dostupný
+      pending_approval: Příspěvek čeká na schválení
+      revoked: Příspěvek odstraněn autorem
     quote_policies:
       followers: Pouze sledující
       nobody: Jen já
       public: Kdokoliv
+    quote_post_author: Citovali příspěvek od %{acct}
     title: "%{name}: „%{quote}“"
     visibilities:
       direct: Soukromá zmínka
