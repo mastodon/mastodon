@@ -11,9 +11,10 @@ class ActivityPub::FetchAllRepliesWorker
 
   sidekiq_options queue: 'pull', retry: 3
 
-  # Global max replies to fetch per request (all replies, recursively)
-  MAX_REPLIES = (ENV['FETCH_REPLIES_MAX_GLOBAL'] || 1000).to_i
-  MAX_PAGES = (ENV['FETCH_REPLIES_MAX_PAGES'] || 500).to_i
+  # Max number of replies to fetch - total, recursively through a whole reply tree
+  MAX_REPLIES = 1000
+  # Max number of replies Collection pages to fetch - total
+  MAX_PAGES = 500
 
   def perform(root_status_id, options = {})
     @batch = WorkerBatch.new(options['batch_id'])
