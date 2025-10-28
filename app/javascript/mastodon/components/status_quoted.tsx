@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -130,6 +130,11 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
   const isLoaded = loadingState === 'complete';
 
   const isFetchingQuoteRef = useRef(false);
+  const [revealed, setRevealed] = useState(false);
+
+  const reveal = useCallback(() => {
+    setRevealed(true);
+  }, [setRevealed]);
 
   useEffect(() => {
     if (isLoaded) {
@@ -188,6 +193,51 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
         id='status.quote_error.revoked'
         defaultMessage='Post removed by author'
       />
+    );
+  } else if (quoteState === 'blocked_account' && !revealed) {
+    quoteError = (
+      <>
+        <FormattedMessage
+          id='status.quote_error.blocked_account_hint.title'
+          defaultMessage="This post is hidden because you've blocked its author."
+        />
+        <button onClick={reveal} className='link-button'>
+          <FormattedMessage
+            id='status.quote_error.limited_account_hint.action'
+            defaultMessage='Show anyway'
+          />
+        </button>
+      </>
+    );
+  } else if (quoteState === 'blocked_domain' && !revealed) {
+    quoteError = (
+      <>
+        <FormattedMessage
+          id='status.quote_error.blocked_domain_hint.title'
+          defaultMessage="This post is hidden because you've blocked its author's domain."
+        />
+        <button onClick={reveal} className='link-button'>
+          <FormattedMessage
+            id='status.quote_error.limited_account_hint.action'
+            defaultMessage='Show anyway'
+          />
+        </button>
+      </>
+    );
+  } else if (quoteState === 'muted_account' && !revealed) {
+    quoteError = (
+      <>
+        <FormattedMessage
+          id='status.quote_error.muted_account_hint.title'
+          defaultMessage="This post is hidden because you've muted its author."
+        />
+        <button onClick={reveal} className='link-button'>
+          <FormattedMessage
+            id='status.quote_error.limited_account_hint.action'
+            defaultMessage='Show anyway'
+          />
+        </button>
+      </>
     );
   } else if (
     !status ||

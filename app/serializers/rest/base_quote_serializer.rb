@@ -8,13 +8,12 @@ class REST::BaseQuoteSerializer < ActiveModel::Serializer
 
     # Extra states when a status is unavailable
     return 'deleted' if object.quoted_status.nil?
-    return 'unauthorized' if status_filter.filtered_for_quote?
 
-    object.state
+    status_filter.filter_state_for_quote || object.state
   end
 
   def quoted_status
-    object.quoted_status if object.accepted? && object.quoted_status.present? && !object.quoted_status&.reblog? && !status_filter.filtered_for_quote?
+    object.quoted_status if object.accepted? && object.quoted_status.present? && !object.quoted_status&.reblog? && status_filter.filter_state_for_quote != 'unauthorized'
   end
 
   private
