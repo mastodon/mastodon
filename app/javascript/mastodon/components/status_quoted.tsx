@@ -83,6 +83,62 @@ const LimitedAccountHint: React.FC<{ accountId: string }> = ({ accountId }) => {
   );
 };
 
+const FilteredQuote: React.FC<{
+  reveal: VoidFunction;
+  quotedAccountId: string;
+  quoteState: string;
+}> = ({ reveal, quotedAccountId, quoteState }) => {
+  const account = useAppSelector((state) =>
+    quotedAccountId ? state.accounts.get(quotedAccountId) : undefined,
+  );
+
+  const quoteAuthorName = account?.acct;
+  const domain = quoteAuthorName?.split('@')[1];
+
+  let message;
+
+  switch (quoteState) {
+    case 'blocked_account':
+      message = (
+        <FormattedMessage
+          id='status.quote_error.blocked_account_hint.title'
+          defaultMessage="This post is hidden because you've blocked @{name}."
+          values={{ name: quoteAuthorName }}
+        />
+      );
+      break;
+    case 'blocked_domain':
+      message = (
+        <FormattedMessage
+          id='status.quote_error.blocked_domain_hint.title'
+          defaultMessage="This post is hidden because you've blocked {domain}."
+          values={{ domain }}
+        />
+      );
+      break;
+    case 'muted_account':
+      message = (
+        <FormattedMessage
+          id='status.quote_error.muted_account_hint.title'
+          defaultMessage="This post is hidden because you've muted @{name}."
+          values={{ name: quoteAuthorName }}
+        />
+      );
+  }
+
+  return (
+    <>
+      {message}
+      <button onClick={reveal} className='link-button'>
+        <FormattedMessage
+          id='status.quote_error.limited_account_hint.action'
+          defaultMessage='Show anyway'
+        />
+      </button>
+    </>
+  );
+};
+
 interface QuotedStatusProps {
   quote: QuoteMap;
   contextType?: string;
@@ -194,50 +250,19 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
         defaultMessage='Post removed by author'
       />
     );
-  } else if (quoteState === 'blocked_account' && !revealed) {
+  } else if (
+    (quoteState === 'blocked_account' ||
+      quoteState === 'blocked_domain' ||
+      quoteState === 'muted_account') &&
+    !revealed &&
+    accountId
+  ) {
     quoteError = (
-      <>
-        <FormattedMessage
-          id='status.quote_error.blocked_account_hint.title'
-          defaultMessage="This post is hidden because you've blocked its author."
-        />
-        <button onClick={reveal} className='link-button'>
-          <FormattedMessage
-            id='status.quote_error.limited_account_hint.action'
-            defaultMessage='Show anyway'
-          />
-        </button>
-      </>
-    );
-  } else if (quoteState === 'blocked_domain' && !revealed) {
-    quoteError = (
-      <>
-        <FormattedMessage
-          id='status.quote_error.blocked_domain_hint.title'
-          defaultMessage="This post is hidden because you've blocked its author's domain."
-        />
-        <button onClick={reveal} className='link-button'>
-          <FormattedMessage
-            id='status.quote_error.limited_account_hint.action'
-            defaultMessage='Show anyway'
-          />
-        </button>
-      </>
-    );
-  } else if (quoteState === 'muted_account' && !revealed) {
-    quoteError = (
-      <>
-        <FormattedMessage
-          id='status.quote_error.muted_account_hint.title'
-          defaultMessage="This post is hidden because you've muted its author."
-        />
-        <button onClick={reveal} className='link-button'>
-          <FormattedMessage
-            id='status.quote_error.limited_account_hint.action'
-            defaultMessage='Show anyway'
-          />
-        </button>
-      </>
+      <FilteredQuote
+        quoteState={quoteState}
+        reveal={reveal}
+        quotedAccountId={accountId}
+      />
     );
   } else if (
     !status ||
