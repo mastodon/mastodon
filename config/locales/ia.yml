@@ -320,7 +320,7 @@ ia:
       edit:
         title: Modificar annuncio
       empty: Necun annuncios trovate.
-      live: In directo
+      live: In vivo
       new:
         create: Crear annuncio
         title: Nove annuncio
@@ -796,6 +796,8 @@ ia:
         view_dashboard_description: Permitte que usatores accede al tabuliero de instrumentos e a varie statisticas
         view_devops: DevOps
         view_devops_description: Permitte que usatores accede al tabulieros de instrumentos de Sidekiq e pgHero
+        view_feeds: Vider canales thematic e in vivo
+        view_feeds_description: Permitte que usatores acceder al canales thematic e in vivo independentemente del configuration del servitor
       title: Rolos
     rules:
       add_new: Adder regula
@@ -837,6 +839,7 @@ ia:
         title: Excluder le usatores del indexation del motores de recerca per predefinition
       discovery:
         follow_recommendations: Recommendationes de contos a sequer
+        preamble: Presentar contento interessante es essential pro attraher e retener nove usatores qui pote non cognoscer alcun persona sur Mastodon. Controla como varie optiones de discoperta functiona sur tu servitor.
         privacy: Confidentialitate
         profile_directory: Directorio de profilos
         public_timelines: Chronologias public
@@ -850,7 +853,13 @@ ia:
       feed_access:
         modes:
           authenticated: Solmente usatores authenticate
+          disabled: Requirer un rolo de usator specific
           public: Omnes
+      landing_page:
+        values:
+          about: A proposito
+          local_feed: Canal local
+          trends: Tendentias
       registrations:
         moderation_recommandation: Per favor assecura te de haber un equipa de moderation adequate e reactive ante de aperir le inscription a omnes!
         preamble: Controla qui pote crear un conto sur tu servitor.

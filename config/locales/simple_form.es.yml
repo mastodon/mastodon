@@ -93,6 +93,7 @@ es:
         content_cache_retention_period: Todas las publicaciones de otros servidores (incluso impulsos y respuestas) se eliminarán después del número de días especificado, sin tener en cuenta la interacción del usuario local con esos mensajes. Esto incluye mensajes donde un usuario local los ha marcado como marcadores o favoritos. Las menciones privadas entre usuarios de diferentes instancias también se perderán sin posibilidad de recuperación. El uso de esta configuración está destinado a instancias de propósito especial, y rompe muchas expectativas de los usuarios cuando se implementa para un uso de propósito general.
         custom_css: Puedes aplicar estilos personalizados a la versión web de Mastodon.
         favicon: WEBP, PNG, GIF o JPG. Reemplaza el favicon predeterminado de Mastodon con un icono personalizado.
+        landing_page: Selecciona qué página ven los nuevos visitantes cuando llegan por primera vez a tu servidor. Si seleccionas "Tendencias", entonces las tendencias deben estar habilitadas en la Configuración de Descubrimiento. Si selecciona "Cronología local", entonces "Acceso a las cronologías que destacan publicaciones locales" debe configurarse a "Todos" en la Configuración de Descubrimiento.
         mascot: Reemplaza la ilustración en la interfaz web avanzada.
         media_cache_retention_period: Los archivos multimedia de las publicaciones creadas por usuarios remotos se almacenan en caché en tu servidor. Cuando se establece un valor positivo, estos archivos se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlaces realizan peticiones a sitios de terceros, se recomienda establecer este valor a al menos 14 días, o las tarjetas de previsualización de enlaces no se actualizarán bajo demanda antes de ese momento.
         min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento durante el registro
@@ -286,6 +287,7 @@ es:
         content_cache_retention_period: Período de retención de contenido remoto
         custom_css: CSS personalizado
         favicon: Favicon
+        landing_page: Página de inicio para nuevos visitantes
         local_live_feed_access: Acceso a las cronologías que destacan publicaciones locales
         local_topic_feed_access: Acceso a las etiquetas y enlaces en tendencia que destacan publicaciones locales
         mascot: Mascota personalizada (legado)

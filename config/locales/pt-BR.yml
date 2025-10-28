@@ -847,6 +847,16 @@ pt-BR:
         all: Para todos
         disabled: Para ninguém
         users: Para usuários locais logados
+      feed_access:
+        modes:
+          authenticated: Apenas usuários autenticados
+          disabled: Exige função específica de usuário
+          public: Todos
+      landing_page:
+        values:
+          about: Sobre
+          local_feed: Feed local
+          trends: Em alta
       registrations:
         moderation_recommandation: Por favor, certifique-se de ter uma equipe de moderação adequada e reativa antes de abrir as inscrições para todos!
         preamble: Controle quem pode criar uma conta no seu servidor.
@@ -900,6 +910,7 @@ pt-BR:
       no_status_selected: Nenhuma publicação foi modificada porque nenhuma estava selecionada
       open: Publicação aberta
       original_status: Publicação original
+      quotes: Citações
       reblogs: Reblogs
       replied_to_html: Respondeu à %{acct_link}
       status_changed: Publicação alterada
@@ -907,6 +918,7 @@ pt-BR:
       title: Publicações da conta - @%{name}
       trending: Em alta
       view_publicly: Ver publicamente
+      view_quoted_post: Visualizar citação publicada
       visibility: Visibilidade
       with_media: Com mídia
     strikes:
@@ -1181,7 +1193,9 @@ pt-BR:
     hint_html: Se você quiser migrar de uma outra conta para esta, você pode criar um atalho aqui, o que é necessário antes que você possa migrar os seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada pela conta antiga</strong>.
     remove: Desvincular alias
   appearance:
+    advanced_settings: Configurações avançadas
     animations_and_accessibility: Animações e acessibilidade
+    boosting_preferences: Adicionar preferências
     discovery: Descobrir
     localization:
       body: Mastodon é traduzido por voluntários.
@@ -1583,6 +1597,13 @@ pt-BR:
       expires_at: Expira em
       uses: Usos
     title: Convidar pessoas
+  link_preview:
+    author_html: Por %{name}
+    potentially_sensitive_content:
+      action: Clique para mostrar
+      confirm_visit: Tem certeza que deseja abrir esse link?
+      hide_button: Ocultar
+      label: Conteúdo potencialmente sensível
   lists:
     errors:
       limit: Você atingiu o número máximo de listas
@@ -1893,6 +1914,9 @@ pt-BR:
         other: "%{count} vídeos"
     boosted_from_html: Impulso de %{acct_link}
     content_warning: 'Aviso de conteúdo: %{warning}'
+    content_warnings:
+      hide: Ocultar publicação
+      show: Exibir mais
     default_language: Igual ao idioma da interface
     disallowed_hashtags:
       one: 'continha hashtag não permitida: %{tags}'
@@ -1907,15 +1931,22 @@ pt-BR:
       limit: Você alcançou o número limite de publicações fixadas
       ownership: As publicações dos outros não podem ser fixadas
       reblog: Um impulso não pode ser fixado
+    quote_error:
+      not_available: Publicação indisponível
+      pending_approval: Publicação pendente
+      revoked: Publicação removida pelo autor
     quote_policies:
       followers: Apenas seguidores
       nobody: Apenas eu
       public: Qualquer um
+    quote_post_author: Publicação citada por %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Citação privada
+      private: Apenas seguidores
       public: Público
       public_long: Qualquer um dentro ou fora do Mástodon
+      unlisted: Publicação silenciada
       unlisted_long: Oculto aos resultados de pesquisa em Mástodon
   statuses_cleanup:
     enabled: Excluir publicações antigas automaticamente
