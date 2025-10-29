@@ -7,7 +7,7 @@ import type {
 } from 'react';
 
 import type { MessageDescriptor } from 'react-intl';
-import { defineMessages } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -26,6 +26,10 @@ const defaultMessages = defineMessages({
   current: {
     id: 'carousel.current',
     defaultMessage: '<sr>Slide</sr> {current, number} / {max, number}',
+  },
+  slide: {
+    id: 'carousel.slide',
+    defaultMessage: 'Slide {current, number} of {max, number}',
   },
 });
 
@@ -87,6 +91,9 @@ export const Carousel = <
         if (slide) {
           setCurrentSlideHeight(slide.scrollHeight);
           onChangeSlide?.(newIndex, slide);
+          if (slide instanceof HTMLElement) {
+            slide.focus({ preventScroll: true });
+          }
         }
 
         return newIndex;
@@ -132,6 +139,8 @@ export const Carousel = <
     handleSlideChange(1);
   }, [handleSlideChange]);
 
+  const intl = useIntl();
+
   if (items.length === 0) {
     return emptyFallback;
   }
@@ -175,6 +184,10 @@ export const Carousel = <
               active: index === slideIndex,
             })}
             active={index === slideIndex}
+            label={intl.formatMessage(messages.slide, {
+              current: index + 1,
+              max: items.length,
+            })}
           />
         ))}
       </animated.div>
@@ -188,6 +201,7 @@ type CarouselSlideWrapperProps<SlideProps extends CarouselSlideProps> = {
   active: boolean;
   item: SlideProps;
   index: number;
+  label: string;
 } & Pick<CarouselProps<SlideProps>, 'renderItem'>;
 
 const CarouselSlideWrapper = <SlideProps extends CarouselSlideProps>({
@@ -197,14 +211,12 @@ const CarouselSlideWrapper = <SlideProps extends CarouselSlideProps>({
   renderItem,
   item,
   index,
+  label,
 }: CarouselSlideWrapperProps<SlideProps>) => {
-  const slideRef = useRef<HTMLDivElement>();
-
   const handleRef = useCallback(
     (instance: HTMLDivElement | null) => {
       if (instance) {
         observer.observe(instance);
-        slideRef.current = instance;
       }
     },
     [observer],
@@ -221,7 +233,8 @@ const CarouselSlideWrapper = <SlideProps extends CarouselSlideProps>({
       className={className}
       role='group'
       aria-roledescription='slide'
-      inert={active ? '' : undefined}
+      aria-label={label}
+      inert={active ? undefined : ''}
       tabIndex={-1}
       data-index={index}
     >

@@ -35,6 +35,10 @@ const messages = defineMessages({
     id: 'featured_carousel.current',
     defaultMessage: '<sr>Post</sr> {current, number} / {max, number}',
   },
+  slide: {
+    id: 'featured_carousel.slide',
+    defaultMessage: 'Post {current, number} of {max, number}',
+  },
 });
 
 export const FeaturedCarousel: React.FC<{
