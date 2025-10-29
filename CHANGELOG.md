@@ -33,7 +33,7 @@ All notable changes to this project will be documented in this file.
 - Add example of quote post with a preview card to development sample data (#35616 by @ClearlyClaire)
 - Add second set of blocked text that applies to accounts regardless of account age for spam-blocking (#35563 by @ClearlyClaire)
 - Added emoji from Twemoji v16 (#36501 and #36530 by @ChaosExAnima)
-- Add feature to select custom emoji rendering (#35229, #35282, #35253, #35424, #35473, #35483, #35505, #35568, #35605, #35659, #35664, #35739, #35985, #36051, #36071, #36137, #36165, #36248, #36262, #36275, #36293, #36341, #36342, #36366, #36377, #36378, #36385, #36393, #36397, #36403, #36413, #36410, #36454, #36402, #36503, #36502, #36532, #36603 and #36409 by @ChaosExAnima and @braddunbar)\
+- Add feature to select custom emoji rendering (#35229, #35282, #35253, #35424, #35473, #35483, #35505, #35568, #35605, #35659, #35664, #35739, #35985, #36051, #36071, #36137, #36165, #36248, #36262, #36275, #36293, #36341, #36342, #36366, #36377, #36378, #36385, #36393, #36397, #36403, #36413, #36410, #36454, #36402, #36503, #36502, #36532, #36603, #36409 and #36638 by @ChaosExAnima, @ClearlyClaire and @braddunbar)\
   This also completely reworks the processing and rendering of emojis and server-rendered HTML in statuses and other places.
 
 ### Changed
