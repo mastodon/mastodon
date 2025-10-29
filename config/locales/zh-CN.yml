@@ -823,7 +823,7 @@ zh-CN:
         title: 默认不让用户被搜索引擎索引
       discovery:
         follow_recommendations: 关注推荐
-        preamble: 露出有趣的内容有助于新加入 Mastodon 的用户融入。可在这里控制多种发现功能如何在你的服务器上工作。
+        preamble: 展示有趣的内容有助于新加入 Mastodon 的用户融入。可在这里控制多种发现功能如何在你的服务器上工作。
         privacy: 隐私
         profile_directory: 个人资料目录
         public_timelines: 公共时间线
@@ -838,6 +838,11 @@ zh-CN:
         modes:
           authenticated: 仅已登录用户
           public: 所有人
+      landing_page:
+        values:
+          about: 关于
+          local_feed: 本站动态
+          trends: 热门
       registrations:
         moderation_recommandation: 在向所有人开放注册之前，请确保你拥有一个人手足够且反应迅速的管理团队！
         preamble: 控制谁可以在你的服务器上创建账号。
@@ -891,6 +896,7 @@ zh-CN:
       no_status_selected: 因为没有嘟文被选中，所以没有更改
       open: 展开嘟文
       original_status: 原始嘟文
+      quotes: 引用嘟文
       reblogs: 转发
       replied_to_html: 回复 %{acct_link}
       status_changed: 嘟文已编辑
@@ -898,6 +904,7 @@ zh-CN:
       title: 该账号的嘟文 - @%{name}
       trending: 当前热门
       view_publicly: 以公开身份查看
+      view_quoted_post: 查看引用的嘟文
       visibility: 可见性
       with_media: 含有媒体文件
     strikes:
@@ -1167,10 +1174,10 @@ zh-CN:
     hint_html: 如果你想从另一个账号迁移到这里，可以先在这里创建一个别名。要把旧账号的关注者迁移过来，这一步是必须的。设置别名的操作是<strong>无害且可撤销的</strong>。<strong>账号迁移的操作会从旧账号发起</strong>。
     remove: 取消关联别名
   appearance:
-    advanced_web_interface: 高级 Web 界面
-    advanced_web_interface_hint: 在高级网页界面支持自定义多栏显示，你可以利用整个屏幕的宽度，同时查看首页、通知、跨站时间线及任意数量的列表和话题。
+    advanced_settings: 高级设置
     animations_and_accessibility: 动画与可访问性
-    confirmation_dialogs: 确认对话框
+    boosting_preferences: 转嘟首选项
+    boosting_preferences_info_html: "<strong>提示：</strong>无论当前设置如何，对 %{icon} 转嘟图标按<kbd>Shift</kbd> + <kbd>鼠标单击</kbd>将会立即转嘟。"
     discovery: 发现
     localization:
       body: Mastodon 由志愿者翻译。
@@ -1882,10 +1889,15 @@ zh-CN:
       limit: 你置顶的嘟文数量已达上限
       ownership: 不能置顶别人的嘟文
       reblog: 不能置顶转嘟
+    quote_error:
+      not_available: 嘟文不可用
+      pending_approval: 嘟文待发布
+      revoked: 嘟文已被作者删除
     quote_policies:
       followers: 仅关注者
       nobody: 仅限自己
       public: 任何人
+    quote_post_author: 引用了 %{acct} 的嘟文
     title: "%{name}：“%{quote}”"
     visibilities:
       direct: 私下提及

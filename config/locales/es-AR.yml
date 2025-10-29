@@ -796,6 +796,8 @@ es-AR:
         view_dashboard_description: Permite a los usuarios acceder al panel de control y varias métricas
         view_devops: Operadores de desarrollo
         view_devops_description: Permite a los usuarios acceder a los paneles de Sidekiq y pgHero
+        view_feeds: Ver líneas temporales y por temas
+        view_feeds_description: Permite a los usuarios acceder a las líneas temporales en vivo y por temas, sin importar la configuración del servidor
       title: Roles
     rules:
       add_new: Agregar regla
@@ -851,7 +853,13 @@ es-AR:
       feed_access:
         modes:
           authenticated: Solo usuarios autenticados
+          disabled: Requerir un rol de específico de usuario
           public: Todos
+      landing_page:
+        values:
+          about: Información
+          local_feed: Línea temporal local
+          trends: Tendencias
       registrations:
         moderation_recommandation: Por favor, ¡asegurate de tener un equipo de moderación adecuado y reactivo antes de abrir los registros a todos!
         preamble: Controlá quién puede crear una cuenta en tu servidor.
@@ -905,6 +913,7 @@ es-AR:
       no_status_selected: No se cambió ningún mensaje, ya que ninguno fue seleccionado
       open: Abrir mensaje
       original_status: Mensaje original
+      quotes: Citas
       reblogs: Adhesiones
       replied_to_html: Respondido a %{acct_link}
       status_changed: Mensaje cambiado
@@ -912,6 +921,7 @@ es-AR:
       title: Mensajes de cuenta - @%{name}
       trending: En tendencia
       view_publicly: Ver públicamente
+      view_quoted_post: Ver mensaje citado
       visibility: Visibilidad
       with_media: Con medios
     strikes:
@@ -1186,10 +1196,10 @@ es-AR:
     hint_html: Si querés mudarte desde otra cuenta a esta, acá podés crear un alias, el cual es necesario antes de empezar a mudar seguidores de la cuenta vieja a ésta. Esta acción por sí misma es <strong>inofensiva y reversible</strong>. <strong>La migración de la cuenta se inicia desde la cuenta anterior</strong>.
     remove: Desvincular alias
   appearance:
-    advanced_web_interface: Interface web avanzada
-    advanced_web_interface_hint: 'Si querés hacer uso de todo el ancho de tu pantalla, la interface web avanzada te permite configurar varias columnas diferentes para ver tanta información al mismo tiempo como quieras: "Principal", "Notificaciones", "Línea temporal federada", y cualquier número de listas y etiquetas.'
+    advanced_settings: Configuración avanzada
     animations_and_accessibility: Animaciones y accesibilidad
-    confirmation_dialogs: Diálogos de confirmación
+    boosting_preferences: Configuración de adhesiones
+    boosting_preferences_info_html: "<strong>Truco:</strong> Más allá de la configuración, si mantenés pulsada la tecla <kbd>Mayúscula</kbd> y hacés <kbd>clic</kbd> en el ícono para adherir %{icon}, vas a adherir inmediatamente."
     discovery: Descubrí
     localization:
       body: Mastodon es localizado por voluntarios.
@@ -1925,10 +1935,15 @@ es-AR:
       limit: Ya fijaste el número máximo de mensajes
       ownership: No se puede fijar el mensaje de otra cuenta
       reblog: No se puede fijar una adhesión
+    quote_error:
+      not_available: Mensaje no disponible
+      pending_approval: Mensaje pendiente
+      revoked: Mensaje eliminado por el autor
     quote_policies:
       followers: Solo seguidores
       nobody: Solo yo
       public: Cualquier cuenta
+    quote_post_author: Se citó un mensaje de %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Mención privada

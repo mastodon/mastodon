@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::Parser::StatusParser
+  include FormattingHelper
   include JsonLdHelper
 
   NORMALIZED_LOCALE_NAMES = LanguagesHelper::SUPPORTED_LOCALES.keys.index_by(&:downcase).freeze
@@ -44,12 +45,28 @@ class ActivityPub::Parser::StatusParser
     end
   end
 
+  def processed_text
+    return text || '' unless converted_object_type?
+
+    [
+      title.presence && "<h2>#{title}</h2>",
+      spoiler_text.presence,
+      linkify(url || uri),
+    ].compact.join("\n\n")
+  end
+
   def spoiler_text
     if @object['summary'].present?
       @object['summary']
     elsif summary_language_map?
       @object['summaryMap'].values.first
     end
+  end
+
+  def processed_spoiler_text
+    return '' if converted_object_type?
+
+    spoiler_text || ''
   end
 
   def title
@@ -143,6 +160,10 @@ class ActivityPub::Parser::StatusParser
 
   def quote_approval_uri
     as_array(@object['quoteAuthorization']).first
+  end
+
+  def converted_object_type?
+    equals_or_includes_any?(@object['type'], ActivityPub::Activity::CONVERTED_TYPES)
   end
 
   private

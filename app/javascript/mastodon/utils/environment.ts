@@ -12,16 +12,8 @@ export function isProduction() {
   else return import.meta.env.PROD;
 }
 
-export type Features = 'modern_emojis' | 'fasp' | 'http_message_signatures';
+export type Features = 'fasp' | 'http_message_signatures';
 
 export function isFeatureEnabled(feature: Features) {
   return initialState?.features.includes(feature) ?? false;
-}
-
-export function isModernEmojiEnabled() {
-  try {
-    return isFeatureEnabled('modern_emojis');
-  } catch {
-    return false;
-  }
 }

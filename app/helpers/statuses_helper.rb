@@ -46,6 +46,14 @@ module StatusesHelper
     status.preloadable_poll.options.map { |o| "[ ] #{o}" }.join("\n")
   end
 
+  def status_classnames(status, is_quote)
+    if is_quote
+      'status--is-quote'
+    elsif status.quote.present?
+      'status--has-quote'
+    end
+  end
+
   def status_description(status)
     components = [[media_summary(status), status_text_summary(status)].compact_blank.join(' · ')]
 

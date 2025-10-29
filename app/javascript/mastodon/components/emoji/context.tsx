@@ -7,8 +7,6 @@ import {
   useState,
 } from 'react';
 
-import classNames from 'classnames';
-
 import { cleanExtraEmojis } from '@/mastodon/features/emoji/normalize';
 import { autoPlayGif } from '@/mastodon/initial_state';
 import { polymorphicForwardRef } from '@/types/polymorphic';
@@ -63,13 +61,9 @@ export const AnimateEmojiProvider = polymorphicForwardRef<
 
     // If there's a parent context or GIFs autoplay, we don't need handlers.
     const parentContext = useContext(AnimateEmojiContext);
-    if (parentContext !== null || autoPlayGif === true) {
+    if (parentContext !== null) {
       return (
-        <Wrapper
-          {...props}
-          className={classNames(className, 'animate-parent')}
-          ref={ref}
-        >
+        <Wrapper {...props} className={className} ref={ref}>
           {children}
         </Wrapper>
       );
@@ -78,7 +72,7 @@ export const AnimateEmojiProvider = polymorphicForwardRef<
     return (
       <Wrapper
         {...props}
-        className={classNames(className, 'animate-parent')}
+        className={className}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
         ref={ref}

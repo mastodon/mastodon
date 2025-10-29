@@ -837,7 +837,7 @@ de:
         title: Profile standardmäßig von der Suchmaschinen-Indizierung ausnehmen
       discovery:
         follow_recommendations: Follower-Empfehlungen
-        preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
+        preamble: Interessante Inhalte sichtbar zu machen, ist entscheidend, um neue Nutzer*innen, die möglicherweise noch niemanden auf Mastodon kennen, zu gewinnen. Überprüfe, wie die einzelnen Suchfunktionen auf deinem Server funktionieren.
         privacy: Datenschutz
         profile_directory: Profilverzeichnis
         public_timelines: Öffentliche Timeline
@@ -852,6 +852,9 @@ de:
         modes:
           authenticated: Nur authentifizierte Nutzer*innen
           public: Alle
+      landing_page:
+        values:
+          about: Über
       registrations:
         moderation_recommandation: Bitte vergewissere dich, dass du ein geeignetes und reaktionsschnelles Moderationsteam hast, bevor du die Registrierungen uneingeschränkt zulässt!
         preamble: Lege fest, wer auf deinem Server ein Konto erstellen darf.
@@ -905,6 +908,7 @@ de:
       no_status_selected: Keine Beiträge wurden geändert, weil keine ausgewählt wurden
       open: Beitrag öffnen
       original_status: Ursprünglicher Beitrag
+      quotes: Zitate
       reblogs: Geteilte Beiträge
       replied_to_html: Antwortete %{acct_link}
       status_changed: Beitrag bearbeitet
@@ -912,6 +916,7 @@ de:
       title: Beiträge des Kontos – @%{name}
       trending: Trends
       view_publicly: Öffentlich anzeigen
+      view_quoted_post: Zitierten Beitrag anzeigen
       visibility: Sichtbarkeit
       with_media: Mit Medien
     strikes:
@@ -963,7 +968,7 @@ de:
         message_html: Ein kritisches Mastodon-Update ist verfügbar – bitte aktualisiere so schnell wie möglich.
       software_version_patch_check:
         action: Verfügbare Updates ansehen
-        message_html: Ein Mastodon-Update für Fehlerkorrekturen ist verfügbar.
+        message_html: Ein Mastodon-Update mit Bugfixes ist verfügbar.
       upload_check_privacy_error:
         action: Für weitere Informationen hier klicken
         message_html: "<strong>Die Konfiguration deines Servers ist fehlerhaft. Die Privatsphäre deiner Benutzer*innen ist gefährdet.</strong>"
@@ -1186,10 +1191,9 @@ de:
     hint_html: Wenn du von einem anderen Konto auf dieses umziehen möchtest, dann kannst du hier einen Alias erstellen, der erforderlich ist, um deine Follower vom alten Konto auf dieses zu migrieren. Diese Aktion ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Der Kontoumzug wird vom alten Konto aus eingeleitet</strong>.
     remove: Alle Aliasse aufheben
   appearance:
-    advanced_web_interface: Erweitertes Webinterface
-    advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, kannst du mit dem erweiterten Webinterface weitere Spalten hinzufügen und dadurch mehr Informationen auf einmal sehen, z. B. deine Startseite, die Benachrichtigungen, die föderierte Timeline sowie beliebig viele deiner Listen und Hashtags.
+    advanced_settings: Erweiterte Einstellungen
     animations_and_accessibility: Animationen und Barrierefreiheit
-    confirmation_dialogs: Bestätigungsdialoge
+    boosting_preferences: Teilen-Einstellungen
     discovery: Entdecken
     localization:
       body: Mastodon wird von Freiwilligen übersetzt.
@@ -1925,10 +1929,15 @@ de:
       limit: Du hast bereits die maximale Anzahl an Beiträgen angeheftet
       ownership: Du kannst nur eigene Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
+    quote_error:
+      not_available: Beitrag nicht verfügbar
+      pending_approval: Veröffentlichung ausstehend
+      revoked: Beitrag durch Autor*in entfernt
     quote_policies:
       followers: Nur Follower
       nobody: Nur ich
       public: Alle
+    quote_post_author: Zitierte %{acct}
     title: "%{name}: „%{quote}“"
     visibilities:
       direct: Private Erwähnung
@@ -2061,7 +2070,7 @@ de:
       title: Wichtige Mitteilung
     warning:
       appeal: Einspruch erheben
-      appeal_description: Wenn du glaubst, dass es sich um einen Fehler handelt, kannst du einen Einspruch an die Administration von %{instance} senden.
+      appeal_description: Solltest du der Meinung sein, dass es sich bei der Sperre um einen Fehler handelt, kannst du Einspruch erheben, in dem du dich an das Team von %{instance} wendest.
       categories:
         spam: Spam
         violation: Inhalt verstößt gegen die folgenden Serverregeln
@@ -2071,7 +2080,7 @@ de:
         mark_statuses_as_sensitive: Ein oder mehrere deiner Beiträge wurden von den Moderator*innen von %{instance} mit einer Inhaltswarnung versehen. Das bedeutet, dass die Medien in den Beiträgen erst angeklickt werden müssen, bevor sie angezeigt werden. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
         sensitive: Von nun an werden alle deine hochgeladenen Mediendateien mit einer Inhaltswarnung versehen und hinter einer Warnung versteckt.
         silence: Du kannst dein Konto weiterhin verwenden, aber nur Personen, die dir bereits folgen, sehen deine Beiträge auf diesem Server. Ebenso kannst du aus verschiedenen Suchfunktionen ausgeschlossen werden. Andere können dir jedoch weiterhin manuell folgen.
-        suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um eine Sicherung deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
+        suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und weitere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um eine Sicherung deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten behalten, um zu verhindern, dass du die Kontosperre umgehst.
       reason: 'Begründung:'
       statuses: 'Betroffene Beiträge:'
       subject:

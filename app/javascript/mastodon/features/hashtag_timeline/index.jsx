@@ -142,7 +142,7 @@ class HashtagTimeline extends PureComponent {
     const { params, local } = this.props;
     const { id, tags } = prevProps.params;
 
-    if (id !== params.id || !isEqual(tags, params.tags) || !isEqual(local, params.local)) {
+    if (id !== params.id || !isEqual(tags, params.tags) || !isEqual(local, prevProps.local)) {
       this._unload();
       this._load();
     }

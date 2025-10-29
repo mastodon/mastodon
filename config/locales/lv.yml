@@ -160,7 +160,7 @@ lv:
       suspension_irreversible: Šī konta dati ir neatgriezeniski izdzēsti. Tu vari atcelt konta darbības apturēšanu, lai tas būtu izmantojams, taču tas neatjaunos iepriekšējos datus.
       suspension_reversible_hint_html: Konta darbība ir apturēta, un dati tiks pilnībā noņemti %{date}. Līdz tam kontu var atjaunot bez jebkādām nelabvēlīgām sekām. Ja vēlies nekavējoties noņemt visus konta datus, to vari izdarīt zemāk.
       title: Konti
-      unblock_email: Atbloķēt e-pasta adresi
+      unblock_email: Atcelt e-pasta adreses liegumu
       unblocked_email_msg: "%{username} e-pasta adreses liegšana sekmīgi atcelta"
       unconfirmed_email: Neapstiprināts e-pasts
       undo_sensitized: Atcelt uzspiestu atzīmēšanu kā jūtīgu
@@ -229,7 +229,7 @@ lv:
         silence_account: Ierobežot Kontu
         suspend_account: Apturēt Kontu
         unassigned_report: Atcelt Pārskata Piešķiršanu
-        unblock_email_account: Atbloķēt e-pasta adresi
+        unblock_email_account: Atcelt e-pasta adreses liegumu
         unsensitive_account: Atsaukt uzspiestu konta atzīmēšanu kā jūtīgu
         unsilence_account: Atcelt Konta Ierobežošanu
         unsuspend_account: Atcelt konta apturēšanu
@@ -252,7 +252,7 @@ lv:
         create_canonical_email_block_html: "%{name} liedza e-pasta adresi ar jaucējkodu %{target}"
         create_custom_emoji_html: "%{name} augšupielādēja jaunu emocijzīmi %{target}"
         create_domain_allow_html: "%{name} atļāva federāciju ar domēnu %{target}"
-        create_domain_block_html: "%{name} bloķēja domēnu %{target}"
+        create_domain_block_html: "%{name} liedza domēnu %{target}"
         create_email_domain_block_html: "%{name} liedza e-pasta domēnu %{target}"
         create_ip_block_html: "%{name} izveidoja nosacījumu priekš IP %{target}"
         create_unavailable_domain_html: "%{name} apturēja piegādi uz domēnu %{target}"
@@ -262,7 +262,7 @@ lv:
         destroy_canonical_email_block_html: "%{name} atcēla e-pasta adreses liegumu ar jaucējvērtību %{target}"
         destroy_custom_emoji_html: "%{name} izdzēsa emocijzīmi %{target}"
         destroy_domain_allow_html: "%{name} neatļāva federāciju ar domēnu %{target}"
-        destroy_domain_block_html: "%{name} atbloķēja domēnu %{target}"
+        destroy_domain_block_html: "%{name} atcēla domēna %{target} liegšanu"
         destroy_email_domain_block_html: "%{name} atcēla e-pasta domēna %{target} liegumu"
         destroy_instance_html: "%{name} attīrija domēnu %{target}"
         destroy_ip_block_html: "%{name} izdzēsa nosacījumu priekš IP %{target}"
@@ -288,7 +288,7 @@ lv:
         silence_account_html: "%{name} ierobežoja %{target} kontu"
         suspend_account_html: "%{name} apturēja %{target} kontu"
         unassigned_report_html: "%{name} nepiešķīra ziņojumu %{target}"
-        unblock_email_account_html: "%{name} atbloķēja %{target} e-pasta adresi"
+        unblock_email_account_html: "%{name} atcēla %{target} e-pasta adreses liegšanu"
         unsensitive_account_html: "%{name} atcēla %{target} informācijas nesēja atzīmēšanu kā jūtīgu"
         unsilence_account_html: "%{name} atcēla ierobežojumu %{target} kontam"
         unsuspend_account_html: "%{name} neapturēja %{target} kontu"
@@ -412,12 +412,12 @@ lv:
         preamble_html: Tu gatavojies apturēt domēna <strong>%{domain}</strong> un tā apakšdomēnu darbību.
         remove_all_data: Tādējādi no tava servera tiks noņemts viss šī domēna kontu saturs, multivide un profila dati.
         stop_communication: Tavs serveris pārtrauks sazināties ar šiem serveriem.
-        title: Apstiprināt domēna %{domain} bloķēšanu
+        title: Apstiprināt domēna %{domain} liegšanu
         undo_relationships: Tādējādi tiks atsauktas jebkuras sekošanas attiecības starp šo un tavu serveru kontiem.
-      created_msg: Domēna bloķēšana tagad tiek apstrādāta
-      destroyed_msg: Domēna bloķēšana ir atsaukta
+      created_msg: Domēna liegšana tagad tiek apstrādāta
+      destroyed_msg: Domēna liegšana tika atsaukta
       domain: Domēns
-      edit: Labot domēna aizturēšanu
+      edit: Labot domēna liegšanu
       existing_domain_block: Tu jau esi noteicis stingrākus ierobežojumus %{name}.
       existing_domain_block_html: Tu jau esi noteicis stingrākus ierobežojumus %{name}, vispirms tev <a href="%{unblock_url}">jāatbloķē</a>.
       export: Eksportēt
@@ -832,7 +832,6 @@ lv:
         title: Pēc noklusējuma lietotāji būs atteikušies no meklētājprogrammu indeksēšanas
       discovery:
         follow_recommendations: Sekotšanas rekomendācijas
-        preamble: Interesanta satura parādīšana palīdz piesaistīt jaunus lietotājus, kuri, iespējams, nepazīst nevienu Mastodon. Kontrolē, kā tavā serverī darbojas dažādi atklāšanas līdzekļi.
         privacy: Konfidencialitāte
         profile_directory: Profila direktorija
         public_timelines: Publiskās ziņu lentas
@@ -1163,10 +1162,7 @@ lv:
     hint_html: Ja vēlies pāriet no cita konta uz šo, šeit vari izveidot aizstājvārdu, kas ir nepieciešams, lai varētu turpināt sekotāju pārvietošanu no vecā konta uz šo. Šī darbība pati par sevi ir <strong>nekaitīga un atgriezeniska</strong>. <strong>Konta migrācija tiek sākta no vecā konta</strong>.
     remove: Atsaistīt aizstājvārdu
   appearance:
-    advanced_web_interface: Paplašinātā tīmekļa saskarne
-    advanced_web_interface_hint: 'Ja vēlies izmantot visu ekrāna platumu, paplašinātā tīmekļa saskarne ļauj konfigurēt daudzas dažādas kolonnas, lai vienlaikus redzētu tik daudz informācijas, cik vēlies: Sākums, paziņojumi, apvienotā ziņu lenta, neierobežots skaits sarakstu un tēmturu.'
     animations_and_accessibility: Animācijas un pieejamība
-    confirmation_dialogs: Apstiprināšanas dialogi
     discovery: Atklāšana
     localization:
       body: Mastodon ir tulkojuši brīvprātīgie.

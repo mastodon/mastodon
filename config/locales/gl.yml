@@ -796,6 +796,8 @@ gl:
         view_dashboard_description: Permite acceder ao taboleiro e varias métricas do servidor
         view_devops: DevOps
         view_devops_description: Permite acceder aos taboleiros Sidekiq e phHero
+        view_feeds: Ver as canles do directo e temas
+        view_feeds_description: Permite ás usuarias acceder ás canles de directo e temas independentemento dos axustes do servidor.
       title: Roles
     rules:
       add_new: Engadir regra
@@ -851,7 +853,13 @@ gl:
       feed_access:
         modes:
           authenticated: Só para usuarias con sesión iniciada
+          disabled: Requerir un rol da usuaria específico
           public: Para calquera
+      landing_page:
+        values:
+          about: Sobre
+          local_feed: Cronoloxía Local
+          trends: Tendencias
       registrations:
         moderation_recommandation: Por favor, pon interese en crear un equipo de moderación competente e reactivo antes de permitir que calquera poida crear unha conta!
         preamble: Xestiona quen pode crear unha conta no teu servidor.
@@ -905,6 +913,7 @@ gl:
       no_status_selected: Non se cambiou ningunha publicación xa que ningunha foi seleccionada
       open: Abrir publicación
       original_status: Publicación orixinal
+      quotes: Citas
       reblogs: Promocións
       replied_to_html: Respondeu a %{acct_link}
       status_changed: Publicación editada
@@ -912,6 +921,7 @@ gl:
       title: Publicacións da conta - @%{name}
       trending: Popular
       view_publicly: Ver publicamente
+      view_quoted_post: Ver publicación citada
       visibility: Visibilidade
       with_media: con medios
     strikes:
@@ -1186,10 +1196,10 @@ gl:
     hint_html: Se queres mudarte desde outra conta a esta nova, aquí podes crear un alcume, que é requerido antes de poder proceder a mover os seguidores da conta antiga a esta nova. Esta acción por si mesma é <strong>inocua e reversible</strong>. <strong>A migración da conta iníciase desde a conta antiga</strong>.
     remove: Desligar alcume
   appearance:
-    advanced_web_interface: Interface web avanzada
-    advanced_web_interface_hint: Se queres empregar todo o ancho da pantalla, a interface web avanzada permíteche configurar diferentes columnas para ver tanta información como queiras. Inicio, notificacións, cronoloxía federada, varias listaxes e cancelos.
+    advanced_settings: Axustes avanzados
     animations_and_accessibility: Animacións e accesibilidade
-    confirmation_dialogs: Diálogos de confirmación
+    boosting_preferences: Preferencias das promocións
+    boosting_preferences_info_html: "<strong>Info:</strong> Independentemente dos axustes, <kbd>Maiús</kbd> + <kbd>Click</kbd> na icona %{icon} Promover promoverá inmediatamente."
     discovery: Descubrir
     localization:
       body: Mastodon tradúceno persoas voluntarias.
@@ -1591,6 +1601,13 @@ gl:
       expires_at: Caduca
       uses: Usos
     title: Convidar a persoas
+  link_preview:
+    author_html: De %{name}
+    potentially_sensitive_content:
+      action: Preme para ver
+      confirm_visit: Tes certeza de querer abrir esta ligazón?
+      hide_button: Ocultar
+      label: Posible contido sensible
   lists:
     errors:
       limit: Xa acadaches o número máximo de listas
@@ -1901,6 +1918,9 @@ gl:
         other: "%{count} vídeos"
     boosted_from_html: Promovida desde %{acct_link}
     content_warning: 'Aviso sobre o contido: %{warning}'
+    content_warnings:
+      hide: Ocultar publicación
+      show: Ver máis
     default_language: Igual que o idioma da interface
     disallowed_hashtags:
       one: 'contiña un cancelo non permitido: %{tags}'
@@ -1915,10 +1935,15 @@ gl:
       limit: Xa fixaches o número máximo permitido de publicacións
       ownership: Non podes fixar a publicación doutra usuaria
       reblog: Non se poden fixar as mensaxes promovidas
+    quote_error:
+      not_available: Publicación non dispoñible
+      pending_approval: Publicación pendente
+      revoked: Publicación retirada pola autora
     quote_policies:
       followers: Só para seguidoras
       nobody: Só para min
       public: Calquera
+    quote_post_author: Citou unha publicación de %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Mención privada

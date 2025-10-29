@@ -300,9 +300,9 @@ $content-width: 840px;
       font-size: 13px;
       font-weight: 700;
       color: $darker-text-color;
-      padding-bottom: 8px;
+      padding-top: 24px;
       margin-bottom: 8px;
-      border-bottom: 1px solid var(--background-border-color);
+      border-top: 1px solid var(--background-border-color);
     }
 
     h6 {
@@ -486,6 +486,14 @@ body,
     color: $gold-star;
     font-weight: 500;
   }
+}
+
+kbd {
+  font-family: Courier, monospace;
+  background-color: color.change($ui-secondary-color, $alpha: 0.1);
+  padding: 4px;
+  padding-bottom: 2px;
+  border-radius: 5px;
 }
 
 .filters {
@@ -696,7 +704,7 @@ body,
   }
 
   &__title {
-    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   &__timestamp {
@@ -747,7 +755,7 @@ body,
   }
 
   &__title {
-    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   &__timestamp {
@@ -1397,7 +1405,7 @@ a.sparkline {
 
 .report-header {
   display: grid;
-  grid-gap: 15px;
+  gap: 15px;
   grid-template-columns: minmax(0, 1fr) 300px;
 
   &__details {
@@ -1507,7 +1515,7 @@ a.sparkline {
     margin: 8px 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     max-height: 21px * 2;
     position: relative;
     font-size: 15px;
@@ -1664,7 +1672,7 @@ a.sparkline {
     &__content {
       font-size: 15px;
       line-height: 20px;
-      word-wrap: break-word;
+      overflow-wrap: break-word;
       font-weight: 400;
       color: $primary-text-color;
 
@@ -1766,7 +1774,7 @@ a.sparkline {
   padding: 15px;
   font-size: 15px;
   line-height: 20px;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   font-weight: 400;
   color: $primary-text-color;
   box-sizing: border-box;
@@ -1948,12 +1956,33 @@ a.sparkline {
   border-radius: 4px;
   font-size: 15px;
   line-height: 20px;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   font-weight: 400;
   border: 1px solid lighten($ui-base-color, 4%);
   color: $primary-text-color;
   box-sizing: border-box;
   min-height: 100%;
+
+  &.status--has-quote {
+    .quote-inline {
+      display: none;
+    }
+  }
+
+  .status__quote & {
+    // Remove the border from the .status__card within .status__quote
+    border: none;
+
+    .display-name__account {
+      line-height: inherit;
+    }
+
+    .status__avatar,
+    .status__avatar .account__avatar {
+      width: 32px;
+      height: 32px;
+    }
+  }
 
   .status__prepend {
     padding: 0 0 15px;
@@ -1961,52 +1990,48 @@ a.sparkline {
     align-items: center;
   }
 
-  .status__content {
-    padding-top: 0;
+  > details {
+    summary {
+      display: block;
+      box-sizing: border-box;
+      background: var(--nested-card-background);
+      color: var(--nested-card-text);
+      border: var(--nested-card-border);
+      border-radius: 8px;
+      padding: 8px 13px;
+      position: relative;
+      font-size: 15px;
+      line-height: 22px;
+      cursor: pointer;
 
-    > details {
-      summary {
+      &::after {
+        content: attr(data-show, 'Show more');
+        margin-top: 8px;
         display: block;
-        box-sizing: border-box;
-        background: var(--nested-card-background);
-        color: var(--nested-card-text);
-        border: var(--nested-card-border);
-        border-radius: 8px;
-        padding: 8px 13px;
-        position: relative;
         font-size: 15px;
-        line-height: 22px;
+        line-height: 20px;
+        color: $highlight-text-color;
         cursor: pointer;
-
-        &::after {
-          content: attr(data-show, 'Show more');
-          margin-top: 8px;
-          display: block;
-          font-size: 15px;
-          line-height: 20px;
-          color: $highlight-text-color;
-          cursor: pointer;
-          border: 0;
-          background: transparent;
-          padding: 0;
-          text-decoration: none;
-          font-weight: 500;
-        }
-
-        &:hover,
-        &:focus-visible {
-          &::after {
-            text-decoration: underline !important;
-          }
-        }
+        border: 0;
+        background: transparent;
+        padding: 0;
+        text-decoration: none;
+        font-weight: 500;
       }
 
-      &[open] summary {
-        margin-bottom: 16px;
-
+      &:hover,
+      &:focus-visible {
         &::after {
-          content: attr(data-hide, 'Hide post');
+          text-decoration: underline !important;
         }
+      }
+    }
+
+    &[open] summary {
+      margin-bottom: 16px;
+
+      &::after {
+        content: attr(data-hide, 'Hide post');
       }
     }
   }
@@ -2063,6 +2088,14 @@ a.sparkline {
       .status-card__image-preview {
         display: none;
       }
+    }
+  }
+
+  .detailed-status__meta {
+    .detailed-status__application,
+    .detailed-status__datetime,
+    .detailed-status__link {
+      color: inherit;
     }
   }
 }

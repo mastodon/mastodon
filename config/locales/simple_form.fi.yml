@@ -54,8 +54,10 @@ fi:
         password: Käytä vähintään 8:aa merkkiä
         phrase: Täsmää riippumatta tekstin aakkoslajista tai julkaisun sisältövaroituksesta
         scopes: Mihin ohjelmointirajapintoihin sovelluksella on pääsy. Jos valitset ylätason käyttöoikeuden, sinun ei tarvitse valita yksittäisiä.
+        setting_advanced_layout: Näytä Mastodon usean sarakkeen asetteluna, jossa voit tarkastella aikajanaa, ilmoituksia ja valitsemaasi kolmatta saraketta. Ei suositella pienemmille näytöille.
         setting_aggregate_reblogs: Älä näytä uusia tehostuksia julkaisuille, joita on äskettäin tehostettu (koskee vain juuri vastaanotettuja tehostuksia)
         setting_always_send_emails: Yleensä sähköposti-ilmoituksia ei lähetetä, kun käytät Mastodonia aktiivisesti
+        setting_boost_modal: Kun käytössä, tehostaminen avaa ensin vahvistusikkunan, josta voit vaihtaa tehostuksesi näkyvyyttä.
         setting_default_quote_policy_private: Muut eivät voi lainata vain seuraajille tarkoitettuja, Mastodonissa kirjoitettuja julkaisuja.
         setting_default_quote_policy_unlisted: Kun ihmiset lainaavat sinua, heidän julkaisunsa piilotetaan suosittujen julkaisujen aikajanoilta.
         setting_default_sensitive: Arkaluonteinen media piilotetaan oletusarvoisesti, ja se voidaan näyttää yhdellä napsautuksella
@@ -63,6 +65,7 @@ fi:
         setting_display_media_hide_all: Piilota mediasisältö aina
         setting_display_media_show_all: Näytä mediasisältö aina
         setting_emoji_style: Miten emojit näkyvät. ”Automaattinen” pyrkii käyttämään natiiveja emojeita, mutta Twemoji-emojeita käytetään varavaihtoehtoina vanhoissa selaimissa.
+        setting_quick_boosting_html: Kun käytössä, %{boost_icon} Tehosta-kuvakkeen painaminen tehostaa välittömästi sen sijaan, että Tehosta/Lainaa-pudotusvalikko avautuisi. Siirtää lainaustoiminnon %{options_icon} (Valinnat) -valikkoon.
         setting_system_scrollbars_ui: Koskee vain Safari- ja Chrome-pohjaisia työpöytäselaimia
         setting_use_blurhash: Liukuvärit perustuvat piilotettujen kuvien väreihin mutta sumentavat yksityiskohdat
         setting_use_pending_items: Piilota aikajanan päivitykset napsautuksen taakse syötteen automaattisen vierityksen sijaan
@@ -90,6 +93,7 @@ fi:
         content_cache_retention_period: Kaikki muiden palvelinten julkaisut (mukaan lukien tehostukset ja vastaukset) poistuvat, kun määritetty määrä päiviä on kulunut, lukuun ottamatta paikallisen käyttäjän vuorovaikutusta näiden julkaisujen kanssa. Tämä sisältää julkaisut, jotka paikallinen käyttäjä on merkinnyt kirjanmerkiksi tai suosikiksi. Myös yksityismaininnat eri palvelinten käyttäjien välillä menetetään, eikä niitä voi palauttaa. Tämä asetus on tarkoitettu käytettäväksi erityistapauksissa ja rikkoo monia käyttäjien odotuksia, kun sitä sovelletaan yleiskäyttöön.
         custom_css: Voit käyttää mukautettuja tyylejä Mastodonin selainversiossa.
         favicon: WEBP, PNG, GIF tai JPG. Korvaa oletusarvoisen Mastodonin sivustokuvakkeen haluamallasi kuvakkeella.
+        landing_page: Valitsee mitä sivua uudet kävijät näkevät saapuessaan palvelimellesi. Jos valitset "Trendit", trendien tulee olla käytössä Löytöasetuksissa. Jos valitset "Paikallinen syöte", "Pääsy paikallisten julkaisujen live-syötteisiin" tulee asettaa "Kaikille" Löytöasetuksissa.
         mascot: Korvaa kuvituksen edistyneessä selainkäyttöliittymässä.
         media_cache_retention_period: Etäkäyttäjien tekemien julkaisujen mediatiedostot ovat välimuistissa palvelimellasi. Kun kentän arvo on positiivinen, media poistuu, kun määritetty määrä päiviä on kulunut. Jos mediaa pyydetään sen poistamisen jälkeen, se ladataan uudelleen, jos lähdesisältö on vielä saatavilla. Koska linkkien esikatselun kyselyitä kolmansien osapuolien sivustoille on rajoitettu, on suositeltavaa asettaa tämä arvo vähintään 14 päivään, tai linkkien kortteja ei päivitetä pyynnöstä ennen tätä ajankohtaa.
         min_age: Käyttäjiä pyydetään rekisteröitymisen aikana vahvistamaan syntymäpäivänsä
@@ -107,7 +111,6 @@ fi:
         thumbnail: Noin 2:1 kuva näkyy palvelimen tietojen ohessa.
         trendable_by_default: Ohita suositun sisällön manuaalinen tarkastus. Yksittäisiä kohteita voidaan edelleen poistaa jälkikäteen.
         trends: Trendit osoittavat, mitkä julkaisut, aihetunnisteet ja uutiset keräävät huomiota palvelimellasi.
-        trends_as_landing_page: Näytä vierailijoille ja uloskirjautuneille käyttäjille suosittua sisältöä palvelimen kuvauksen sijaan. Edellyttää, että trendit on otettu käyttöön.
       form_challenge:
         current_password: Olet menossa suojatulle alueelle
       imports:
@@ -142,6 +145,7 @@ fi:
         admin_email: Oikeudellisiin ilmoituksiin kuuluvat vastailmoitukset, oikeuden määräykset, poistopyynnöt ja lainvalvontaviranomaisten pyynnöt.
         arbitration_address: Voi olla sama kuin edellä mainittu Fyysinen osoite tai ”N/A”, jos käytät sähköpostia.
         arbitration_website: Voi olla verkkolomake tai ”N/A”, jos käytät sähköpostia.
+        choice_of_law: Kaupunki, alue, territoriumi tai valtio, jonka sisäiset substantiiviset lait säätelevät kaikkia vaateita.
         dmca_address: Yhdysvaltalaisten operaattoreiden on käytettävä DMCA Designated Agent Directory -luetteloon rekisteröityä osoitetta. Postilokeroluettelo on saatavissa suoralla pyynnöllä, joten käytä DMCA Designated Agent Post Office Box Waiver Request -lomaketta lähettääksesi sähköpostia tekijänoikeusvirastolle ja kuvaile, että olet kotona toimiva sisältömoderaattori, joka pelkää kostoa tai rangaistusta toimistaan ja tarvitsee postilokeroa pitääkseen kotiosoitteensa poissa julkisuudesta.
         dmca_email: Voi olla sama kuin edellä mainittu ”Sähköpostiosoite oikeudellisille ilmoituksille”.
         domain: Tarjoamasi verkkopalvelun yksilöllinen tunniste.
@@ -233,12 +237,12 @@ fi:
         setting_aggregate_reblogs: Ryhmitä tehostukset aikajanoilla
         setting_always_send_emails: Lähetä sähköposti-ilmoitukset aina
         setting_auto_play_gif: Toista GIF-animaatiot automaattisesti
-        setting_boost_modal: Kysy vahvistusta ennen tehostusta
+        setting_boost_modal: Hallitse tehostuksen näkyvyyttä
         setting_default_language: Julkaisun kieli
         setting_default_privacy: Julkaisun näkyvyys
         setting_default_quote_policy: Kuka voi lainata
         setting_default_sensitive: Merkitse media aina arkaluonteiseksi
-        setting_delete_modal: Kysy vahvistusta ennen julkaisun poistamista
+        setting_delete_modal: Varoita ennen kuin poistan julkaisun
         setting_disable_hover_cards: Poista käytöstä profiilin esikatselu osoitettaessa
         setting_disable_swiping: Poista pyyhkäisyeleet käytöstä
         setting_display_media: Median näkyminen
@@ -248,7 +252,8 @@ fi:
         setting_emoji_style: Emojityyli
         setting_expand_spoilers: Laajenna aina sisältövaroituksilla merkityt julkaisut
         setting_hide_network: Piilota verkostotietosi
-        setting_missing_alt_text_modal: Näytä vahvistusikkuna ennen kuin julkaistaan mediaa ilman vaihtoehtoista tekstiä
+        setting_missing_alt_text_modal: Varoita ennen kuin julkaisen mediaa ilman vaihtoehtoista tekstiä
+        setting_quick_boosting: Ota nopea tehostus käyttöön
         setting_reduce_motion: Vähennä animaatioiden liikettä
         setting_system_font_ui: Käytä järjestelmän oletusfonttia
         setting_system_scrollbars_ui: Käytä järjestelmän oletusarvoista vierityspalkkia
@@ -282,6 +287,7 @@ fi:
         content_cache_retention_period: Etäsisällön säilytysaika
         custom_css: Mukautettu CSS
         favicon: Sivustokuvake
+        landing_page: Uusien kävijöiden aloitussivu
         local_live_feed_access: Pääsy paikallisia julkaisuja esitteleviin livesyötteisiin
         local_topic_feed_access: Pääsy paikallisia julkaisuja esitteleviin aihetunniste- ja linkkisyötteisiin
         mascot: Mukautettu maskotti (vanhentunut)
@@ -306,7 +312,6 @@ fi:
         thumbnail: Palvelimen pienoiskuva
         trendable_by_default: Salli trendit ilman ennakkotarkastusta
         trends: Ota trendit käyttöön
-        trends_as_landing_page: Käytä trendejä aloitussivuna
       interactions:
         must_be_follower: Estä ilmoitukset käyttäjiltä, jotka eivät seuraa sinua
         must_be_following: Estä ilmoitukset käyttäjiltä, joita et seuraa
