@@ -93,6 +93,7 @@ gl:
         content_cache_retention_period: Todas as publicacións procedentes de outros servidores (incluído promocións e respostas) van ser eliminadas despois do número de días indicado, sen importar as interaccións das usuarias locais con esas publicacións. Esto inclúe publicacións que a usuaria local marcou como favoritas ou incluíu nos marcadores. As mencións privadas entre usuarias de diferentes instancias tamén se eliminarán e non se poderán restablecer. O uso desta ferramenta esta orientado a situacións especiais e estraga moitas das expectativas das usuarias ao implementala cun propósito de uso xeral.
         custom_css: Podes aplicar deseños personalizados na versión web de Mastodon.
         favicon: WEBP, PNG, GIF ou JPG. Sobrescribe a icona de favoritos de Mastodon por defecto cunha icona personalizada.
+        landing_page: Elixe a páxina que verán as persoas que se acheguen por primeira vez ao teu servidor. Se elixes «Tendencias» entón debes activar as tendencias nos Axustes de Descubrimento. Se elixes «Cronoloxía local», hai que configurar nos Axustes de Descubrimento a opción «Acceso das cronoloxías en directo ás publicacións locais» como «Calquera».
         mascot: Sobrescribe a ilustración na interface web avanzada.
         media_cache_retention_period: Os ficheiros multimedia de publicacións de usuarias remotas están almacenados no teu servidor. Ao establecer un valor positivo, o multimedia vaise eliminar despois do número de días establecido. Se o multimedia fose requerido após ser eliminado entón descargaríase outra vez, se aínda está dispoñible na orixe. Debido a restricións sobre a frecuencia en que o servizo de vista previa trae recursos de terceiras partes, é recomendable establecer este valor polo menos en 14 días, ou as tarxetas de vista previa non se actualizarán baixo demanda para casos anteriores a ese prazo.
         min_age: Váiselle pedir ás usuarias que confirmen a súa data de nacemento cando creen a conta
@@ -286,6 +287,7 @@ gl:
         content_cache_retention_period: Período de retención de contido remoto
         custom_css: CSS personalizado
         favicon: Favicon
+        landing_page: Páxina que se mostra ás visitas
         local_live_feed_access: Acceso a cronoloxías ao vivo que mostran publicacións locais
         local_topic_feed_access: Acceso a cronoloxías de ligazóns e cancelos que mostran publicacións locais
         mascot: Mascota propia (herdado)

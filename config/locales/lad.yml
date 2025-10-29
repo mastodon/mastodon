@@ -189,6 +189,7 @@ lad:
         create_relay: Kriya relevo
         create_unavailable_domain: Kriya domeno no desponivle
         create_user_role: Kriya rolo
+        create_username_block: Kriya regla de nombre de utilizador
         demote_user: Degrada utilizador
         destroy_announcement: Efasa pregon
         destroy_canonical_email_block: Efasa bloko de posta elektronika
@@ -202,6 +203,7 @@ lad:
         destroy_status: Efasa publikasyon
         destroy_unavailable_domain: Efasa domeno no desponivle
         destroy_user_role: Efasa rolo
+        destroy_username_block: Suprime regla de nombre de utilizador
         disable_2fa_user: Inkapasita autentifikasyon en dos pasos
         disable_custom_emoji: Inkapasita emoji personalizados
         disable_relay: Dezaktiva relevo
@@ -236,6 +238,7 @@ lad:
         update_report: Aktualiza raporto
         update_status: Aktualiza publikasyon
         update_user_role: Aktualiza rolo
+        update_username_block: Aktualiza regla de nombre de utilizador
       actions:
         approve_appeal_html: "%{name} acheto la solisitasyon de moderasyon de %{target}"
         approve_user_html: "%{name} acheto el enrejistramiento de %{target}"
@@ -476,9 +479,12 @@ lad:
           ip: Adreso IP
       providers:
         active: Aktivo
+        base_url: URL baza
         delete: Efasa
+        edit: Edita prokurador
         finish_registration: Finaliza enrejistrasyon
         name: Nombre
+        providers: Prokuradores
         registration_requested: Enrejistrasyon rekerida
         registrations:
           confirm: Konfirma
@@ -770,6 +776,8 @@ lad:
       description_html: Aunke la majorita afirma aver meldado i estar de akodro kon los terminos de servisyo, la djente normalmente no los melda asta dempues de ke surja algun problema. <strong>Az ke sea mas kolay ver las normas de tu sirvidor de un vistazo estipulándolas en una lista de puntos.</strong> Aprova ke kada norma sea corta i kolay, ama sin estar divididas en munchos puntos.
       edit: Edita regla
       empty: Dinguna regla del sirvidor tiene sido definida.
+      move_down: Mueve verso abasho
+      move_up: Mueve verso arriva
       title: Reglas del sirvidor
       translation: Traduksyon
       translations: Traduksyones
@@ -950,13 +958,17 @@ lad:
       updated_msg: Konfigurasyon de etiketas aktualizada kon sukseso
     terms_of_service:
       changelog: Ke troko
+      create: Uza los tuyos
       current: Aktual
+      generate: Uza modelo
       generates:
         action: Djenera
+        title: Konfigurasyon de terminos de servisyo
       history: Istorya
       live: En bivo
       notify_users: Aviza a los utilizadores
       publish: Publika
+      published_on_html: Puvlikado el %{date}
       title: Terminos de servisyo
     title: Administrasyon
     trends:
@@ -1028,10 +1040,19 @@ lad:
       block_registrations: Bloka enrejistrasyones
       comparison:
         contains: Kontyene
+        equals: Es egual a
+      contains_html: Kontyene %{string}
+      created_msg: Regla de nombre de utilizador kriyada kon reusho
       delete: Efasa
+      edit:
+        title: Edita regla de nombre de utilizador
+      matches_exactly_html: Es egual a %{string}
       new:
         create: Kriya regla
+        title: Kriya mueva regla de nombre de utilizador
       not_permitted: Sin permiso
+      title: Reglas de nombre de utilizador
+      updated_msg: Regla de nombre de utilizador aktualizada kon reusho
     warning_presets:
       add_new: Adjusta muevo
       delete: Efasa

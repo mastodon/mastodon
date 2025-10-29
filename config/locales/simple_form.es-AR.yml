@@ -93,7 +93,7 @@ es-AR:
         content_cache_retention_period: Todos los mensajes de otros servidores (incluyendo adhesiones y respuestas) se eliminarán después del número de días especificado, sin tener en cuenta la interacción del usuario local con esos mensajes. Esto incluye mensajes que un usuario local haya agregado a marcadores o los haya marcado como favoritos. Las menciones privadas entre usuarios de diferentes servidores también se perderán y también serán imposibles de restaurar. El uso de esta configuración está destinado a servidores de propósito especial y rompe muchas expectativas de los usuarios cuando se implementa para uso general.
         custom_css: Podés aplicar estilos personalizados a la versión web de Mastodon.
         favicon: WEBP, PNG, GIF o JPG. Reemplaza el favicón predeterminado de Mastodon con uno personalizado.
-        landing_page: Selecciona qué página ven los nuevos visitantes cuando llegan por primera vez a tu servidor. Si seleccionas "Tendencias", entonces las tendencias deben estar habilitadas en la Configuración de Descubrimiento. Si selecciona "Cronología local", entonces "Acceso a las cronologías que destacan publicaciones locales" debe configurarse a "Todos" en la Configuración de Descubrimiento.
+        landing_page: Selecciona qué página se carga para los nuevos visitantes cuando llegan por primera vez a tu servidor. Si seleccionás «Tendencias», entonces las tendencias tienen que estar habilitadas en la configuración de «Descubrimiento». Si seleccionás «Línea temporal local», entonces «Acceso a líneas temporales en vivo, destacando mensajes locales» tiene que estar establecida a «Todos» en la configuración de «Descubrimiento».
         mascot: Reemplaza la ilustración en la interface web avanzada.
         media_cache_retention_period: Los archivos de medios de mensajes publicados por usuarios remotos se almacenan en la memoria caché en tu servidor. Cuando se establece un valor positivo, los medios se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si es que el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlace consultan a sitios web de terceros, se recomienda establecer este valor a, al menos, 14 días, o las tarjetas de previsualización de enlaces no se actualizarán a pedido antes de ese momento.
         min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento durante el registro
@@ -287,7 +287,7 @@ es-AR:
         content_cache_retention_period: Período de retención de contenido remoto
         custom_css: CSS personalizado
         favicon: Favicón
-        landing_page: Página de inicio para nuevos visitantes
+        landing_page: Página de carga para nuevos visitantes
         local_live_feed_access: Acceso a líneas temporales en vivo, destacando mensajes locales
         local_topic_feed_access: Acceso a líneas temporales de etiquetas y enlaces, destacando mensajes locales
         mascot: Mascota personalizada (legado)
