@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -83,6 +83,62 @@ const LimitedAccountHint: React.FC<{ accountId: string }> = ({ accountId }) => {
   );
 };
 
+const FilteredQuote: React.FC<{
+  reveal: VoidFunction;
+  quotedAccountId: string;
+  quoteState: string;
+}> = ({ reveal, quotedAccountId, quoteState }) => {
+  const account = useAppSelector((state) =>
+    quotedAccountId ? state.accounts.get(quotedAccountId) : undefined,
+  );
+
+  const quoteAuthorName = account?.acct;
+  const domain = quoteAuthorName?.split('@')[1];
+
+  let message;
+
+  switch (quoteState) {
+    case 'blocked_account':
+      message = (
+        <FormattedMessage
+          id='status.quote_error.blocked_account_hint.title'
+          defaultMessage="This post is hidden because you've blocked @{name}."
+          values={{ name: quoteAuthorName }}
+        />
+      );
+      break;
+    case 'blocked_domain':
+      message = (
+        <FormattedMessage
+          id='status.quote_error.blocked_domain_hint.title'
+          defaultMessage="This post is hidden because you've blocked {domain}."
+          values={{ domain }}
+        />
+      );
+      break;
+    case 'muted_account':
+      message = (
+        <FormattedMessage
+          id='status.quote_error.muted_account_hint.title'
+          defaultMessage="This post is hidden because you've muted @{name}."
+          values={{ name: quoteAuthorName }}
+        />
+      );
+  }
+
+  return (
+    <>
+      {message}
+      <button onClick={reveal} className='link-button'>
+        <FormattedMessage
+          id='status.quote_error.limited_account_hint.action'
+          defaultMessage='Show anyway'
+        />
+      </button>
+    </>
+  );
+};
+
 interface QuotedStatusProps {
   quote: QuoteMap;
   contextType?: string;
@@ -130,6 +186,11 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
   const isLoaded = loadingState === 'complete';
 
   const isFetchingQuoteRef = useRef(false);
+  const [revealed, setRevealed] = useState(false);
+
+  const reveal = useCallback(() => {
+    setRevealed(true);
+  }, [setRevealed]);
 
   useEffect(() => {
     if (isLoaded) {
@@ -187,6 +248,20 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
       <FormattedMessage
         id='status.quote_error.revoked'
         defaultMessage='Post removed by author'
+      />
+    );
+  } else if (
+    (quoteState === 'blocked_account' ||
+      quoteState === 'blocked_domain' ||
+      quoteState === 'muted_account') &&
+    !revealed &&
+    accountId
+  ) {
+    quoteError = (
+      <FilteredQuote
+        quoteState={quoteState}
+        reveal={reveal}
+        quotedAccountId={accountId}
       />
     );
   } else if (
