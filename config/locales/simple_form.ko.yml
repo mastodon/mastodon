@@ -56,11 +56,15 @@ ko:
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
         setting_aggregate_reblogs: 최근에 부스트 됐던 게시물은 새로 부스트 되어도 보여주지 않기 (새로 받은 부스트에만 적용됩니다)
         setting_always_send_emails: 기본적으로 마스토돈을 활동적으로 사용하고 있을 때에는 이메일 알림이 보내지지 않습니다
+        setting_boost_modal: 활성화하면 부스트하기 전에 부스트의 공개설정을 바꿀 수 있는 확인창이 먼저 뜨게 됩니다.
+        setting_default_quote_policy_private: 마스토돈에서 작성된 팔로워 전용 게시물은 다른 사용자가 인용할 수 없습니다.
+        setting_default_quote_policy_unlisted: 사람들에게 인용된 경우, 인용한 게시물도 유행 타임라인에서 감추게 됩니다.
         setting_default_sensitive: 민감한 미디어는 기본적으로 가려져 있으며 클릭해서 볼 수 있습니다
         setting_display_media_default: 민감함으로 표시된 미디어 가리기
         setting_display_media_hide_all: 모든 미디어를 가리기
         setting_display_media_show_all: 모든 미디어를 보이기
         setting_emoji_style: 에모지 표현 방식. "자동"은 시스템 기본 에모지를 적용하고 그렇지 못하는 오래된 브라우저의 경우 트웨모지를 사용합니다.
+        setting_quick_boosting_html: 활성화하면 %{boost_icon}부스트 아이콘을 클릭했을 때 부스트/인용 드롭다운 메뉴가 뜨지 않고 바로 부스트하게 됩니다. 인용은 %{options_icon} (옵션) 메뉴 안으로 이동합니다.
         setting_system_scrollbars_ui: 사파리와 크롬 기반의 데스크탑 브라우저만 적용됩니다
         setting_use_blurhash: 그라디언트는 숨겨진 내용의 색상을 기반으로 하지만 상세 내용은 보이지 않게 합니다
         setting_use_pending_items: 타임라인의 새 게시물을 자동으로 보여 주는 대신, 클릭해서 나타내도록 합니다
@@ -229,10 +233,12 @@ ko:
         setting_aggregate_reblogs: 타임라인의 부스트를 그룹화
         setting_always_send_emails: 항상 이메일 알림 보내기
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
+        setting_boost_modal: 부스트 공개범위 제어
         setting_default_language: 게시물 언어
         setting_default_privacy: 게시물 공개 범위
         setting_default_quote_policy: 인용할 수 있는 사람
         setting_default_sensitive: 미디어를 언제나 민감한 콘텐츠로 설정
+        setting_delete_modal: 게시물을 삭제하기 전 경고하기
         setting_disable_hover_cards: 호버시 프로필 미리보기를 비활성화
         setting_disable_swiping: 스와이프 모션 비활성화
         setting_display_media: 미디어 표시
@@ -242,6 +248,8 @@ ko:
         setting_emoji_style: 에모지 스타일
         setting_expand_spoilers: 내용 경고로 표시된 게시물을 항상 펼치기
         setting_hide_network: 내 인맥 숨기기
+        setting_missing_alt_text_modal: 대체텍스트가 없는 미디어를 포함하여 게시하기 전 경고
+        setting_quick_boosting: 빠른 부스트 활성화
         setting_reduce_motion: 애니메이션 줄이기
         setting_system_font_ui: 시스템의 기본 글꼴을 사용
         setting_system_scrollbars_ui: 시스템 기본 스크롤바 사용
@@ -275,12 +283,17 @@ ko:
         content_cache_retention_period: 리모트 콘텐츠 보유 기간
         custom_css: 사용자 정의 CSS
         favicon: 파비콘
+        landing_page: 새 방문자를 위한 랜딩 페이지
+        local_live_feed_access: 로컬 게시물에 대한 실시간 피드 접근
+        local_topic_feed_access: 로컬 게시물에 대한 해시태그와 링크 피드 접근
         mascot: 사용자 정의 마스코트 (legacy)
         media_cache_retention_period: 미디어 캐시 유지 기한
         min_age: 최소 연령 제한
         peers_api_enabled: API에 발견 된 서버들의 목록 발행
         profile_directory: 프로필 책자 활성화
         registrations_mode: 누가 가입할 수 있는지
+        remote_live_feed_access: 리모트 게시물에 대한 실시간 피드 접근
+        remote_topic_feed_access: 리모트 게시물에 대한 해시태그와 링크 피드 접근
         require_invite_text: 가입 하는 이유를 필수로 입력하게 하기
         show_domain_blocks: 도메인 차단 보여주기
         show_domain_blocks_rationale: 왜 도메인이 차단되었는지 보여주기
