@@ -63,10 +63,10 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
             .map((dir) => dir.toLowerCase());
 
           // If the parent directory is in the cssAliasClasses list, use
-          // the first three letters of it as the prefix, otherwise use the full name.
+          // the first four letters of it as the prefix, otherwise use the full name.
           if (parentDirName) {
             if (cssAliasClasses.includes(parentDirName)) {
-              prefix = parentDirName.slice(0, 3);
+              prefix = parentDirName.slice(0, 4);
             } else {
               prefix = parentDirName;
             }
