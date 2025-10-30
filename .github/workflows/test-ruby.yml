@@ -11,6 +11,9 @@ on:
 env:
   BUNDLE_CLEAN: true
   BUNDLE_FROZEN: true
+  DB_USER: postgres
+  DB_PASS: postgres
+  DB_NAME: mastodon
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -85,6 +88,7 @@ jobs:
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
+          POSTGRES_DB: mastodon_test
         options: >-
           --health-cmd pg_isready
           --health-interval 10ms
@@ -186,6 +190,7 @@ jobs:
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
+          POSTGRES_DB: mastodon_test
         options: >-
           --health-cmd pg_isready
           --health-interval 10ms
@@ -273,6 +278,7 @@ jobs:
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
+          POSTGRES_DB: mastodon_test
         options: >-
           --health-cmd pg_isready
           --health-interval 10ms
@@ -376,6 +382,7 @@ jobs:
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
+          POSTGRES_DB: mastodon_test
         options: >-
           --health-cmd pg_isready
           --health-interval 10ms

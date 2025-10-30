@@ -387,11 +387,11 @@ RUN \
   bundle exec bootsnap precompile --gemfile app/ lib/;
 
 RUN \
-  # Pre-create and chown system volume to Mastodon user
+  # Ensure mastodon user exists and owns application files
+  if ! getent group mastodon >/dev/null; then groupadd -g "${GID}" mastodon; fi; \
+  if ! id -u mastodon >/dev/null 2>&1; then useradd -l -u "${UID}" -g "${GID}" -m -d /opt/mastodon mastodon; fi; \
   mkdir -p /opt/mastodon/public/system; \
-  chown mastodon:mastodon /opt/mastodon/public/system; \
-  # Set Mastodon user as owner of tmp folder
-  chown -R mastodon:mastodon /opt/mastodon/tmp;
+  chown -R mastodon:mastodon /opt/mastodon;
 
 # Set the running user for resulting container
 USER mastodon
