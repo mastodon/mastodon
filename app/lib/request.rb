@@ -150,7 +150,7 @@ class Request
   private
 
   # Using code from https://github.com/sporkmonger/addressable/blob/3450895887d0a1770660d8831d1b6fcfed9bd9d6/lib/addressable/uri.rb#L1609-L1635
-  # to preserve some URL Encodings
+  # to preserve some URL Encodings while normalizing
   def normalize_preserving_url_encodings(url, preserved_chars = SAFE_PRESERVED_CHARS, *flags)
     original_uri = Addressable::URI.parse(url)
     normalized_uri = original_uri.normalize
