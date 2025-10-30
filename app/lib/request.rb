@@ -154,9 +154,6 @@ class Request
     normalized_uri = original_uri.normalize
 
     if original_uri.query
-      modified_query_class = Addressable::URI::CharacterClasses::QUERY.dup
-      modified_query_class.sub!('\\&', '').sub!('\\;', '')
-
       pairs = original_uri.query.split('&', -1)
       pairs.delete_if(&:empty?).uniq! if flags.include?(:compacted)
       pairs.sort! if flags.include?(:sorted)
@@ -164,7 +161,7 @@ class Request
       normalized_query = pairs.map do |pair|
         Addressable::URI.normalize_component(
           pair,
-          modified_query_class,
+          Addressable::URI::NormalizeCharacterClasses::QUERY,
           preserved_chars
         )
       end.join('&')
