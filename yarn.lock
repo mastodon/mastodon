@@ -2846,6 +2846,7 @@ __metadata:
     "@vitejs/plugin-legacy": "npm:^7.2.1"
     "@vitejs/plugin-react": "npm:^5.0.0"
     "@vitest/browser": "npm:^4.0.5"
+    "@vitest/browser-playwright": "npm:^4.0.5"
     "@vitest/coverage-v8": "npm:^4.0.5"
     "@vitest/ui": "npm:^4.0.5"
     arrow-key-navigation: "npm:^1.2.0"
@@ -4948,7 +4949,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/browser@npm:^4.0.5":
+"@vitest/browser-playwright@npm:^4.0.5":
+  version: 4.0.5
+  resolution: "@vitest/browser-playwright@npm:4.0.5"
+  dependencies:
+    "@vitest/browser": "npm:4.0.5"
+    "@vitest/mocker": "npm:4.0.5"
+    tinyrainbow: "npm:^3.0.3"
+  peerDependencies:
+    playwright: "*"
+    vitest: 4.0.5
+  peerDependenciesMeta:
+    playwright:
+      optional: false
+  checksum: 10c0/401dd2eca6b24bc1b764f2c4ac3388203082844f81df2dd67aa1e595fb46316a9646346e01f5fb1a7973b2b89444356bd18abe1f7d475206603ed1a39e80cabd
+  languageName: node
+  linkType: hard
+
+"@vitest/browser@npm:4.0.5, @vitest/browser@npm:^4.0.5":
   version: 4.0.5
   resolution: "@vitest/browser@npm:4.0.5"
   dependencies:
