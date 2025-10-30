@@ -23,7 +23,8 @@
       "mastodon/*": ["app/javascript/mastodon/*"],
       "images/*": ["app/javascript/images/*"],
       "styles/*": ["app/javascript/styles/*"]
-    }
+    },
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": [
     "vite.config.mts",
