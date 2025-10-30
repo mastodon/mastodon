@@ -93,6 +93,7 @@ hu:
         content_cache_retention_period: Minden más kiszolgálóról származó bejegyzés (megtolásokkal és válaszokkal együtt) törölve lesz a megadott számú nap elteltével, függetlenül a helyi felhasználók ezekkel a bejegyzésekkel történő interakcióitól. Ebben azok a bejegyzések is benne vannak, melyeket a helyi felhasználó könyvjelzőzött vagy kedvencnek jelölt. A különböző kiszolgálók felhasználói közötti privát üzenetek is el fognak veszni visszaállíthatatlanul. Ennek a beállításnak a használata különleges felhasználási esetekre javasolt, mert számos felhasználói elvárás fog eltörni, ha általános céllal használják.
         custom_css: A Mastodon webes verziójában használhatsz egyéni stílusokat.
         favicon: WEBP, PNG, GIF vagy JPG. Az alapértelmezett Mastodon favicont felülírja egy egyéni ikonnal.
+        landing_page: Kiválasztja, hogy a webhely új látogatói mit látnak, amikor először érkeznek a kiszolgálóra. Ha a „Trendek” lehetőséget választod, akkor engedélyezni kell a trendeket a Felfedezési beállításokban. Ha a „Helyi hírfolyamot” választod, akkor a „Helyi bejegyzéseket tartalmazó helyi élő idővonalak elérése” lehetőséget „Mindenki” értékre kell állítani a Felfedezési beállításokban.
         mascot: Felülbírálja a speciális webes felületen található illusztrációt.
         media_cache_retention_period: A távoli felhasználók bejegyzéseinek médiatartalmait a kiszolgálód gyorsítótárazza. Ha pozitív értékre állítják, ezek a médiatartalmak a megadott számú nap után törölve lesznek. Ha a médiát újra lekérik, miután törlődött, újra le fogjuk tölteni, ha az eredeti még elérhető. A hivatkozások előnézeti kártyáinak harmadik fél weboldalai felé történő hivatkozásaira alkalmazott megkötései miatt javasolt, hogy ezt az értéket legalább 14 napra állítsuk, ellenkező esetben a hivatkozások előnézeti kártyái szükség esetén nem fognak tudni frissülni ezen idő előtt.
         min_age: A felhasználók a regisztráció során arra lesznek kérve, hogy erősítsek meg a születési dátumukat
@@ -286,6 +287,7 @@ hu:
         content_cache_retention_period: Távoli tartalmak megtartási időszaka
         custom_css: Egyéni CSS
         favicon: Könyvjelzőikon
+        landing_page: Kezdőoldal az új látogatóknak
         local_live_feed_access: Helyi bejegyzéseket bemutató élő hírfolyamok elérése
         local_topic_feed_access: Helyi bejegyzéseket bemutató hashtagek és hivatkozásfolyamok elérése
         mascot: Egyéni kabala (örökölt)
