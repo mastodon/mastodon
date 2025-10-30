@@ -54,7 +54,7 @@ module Extractor
   end
 
   def extract_hashtags_with_indices(text, _options = {})
-    return [] unless text&.index('#')
+    return [] unless text&.index(/[#＃]/)
 
     possible_entries = []
 

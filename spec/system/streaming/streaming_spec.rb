@@ -74,4 +74,52 @@ RSpec.describe 'Streaming', :inline_jobs, :streaming do
       expect(streaming_client.open?).to be(false)
     end
   end
+
+  context 'with a disabled user account' do
+    before do
+      user.disable!
+    end
+
+    it 'receives an 401 unauthorized error when trying to connect' do
+      streaming_client.connect
+
+      expect(streaming_client.status).to eq(401)
+      expect(streaming_client.open?).to be(false)
+    end
+  end
+
+  context 'when the user account is disabled whilst connected' do
+    it 'terminates the connection for the user' do
+      streaming_client.connect
+
+      user.disable!
+
+      expect(streaming_client.wait_for(:closed).code).to be(1000)
+      expect(streaming_client.open?).to be(false)
+    end
+  end
+
+  context 'with a suspended user account' do
+    before do
+      user.account.suspend!
+    end
+
+    it 'receives an 401 unauthorized error when trying to connect' do
+      streaming_client.connect
+
+      expect(streaming_client.status).to eq(401)
+      expect(streaming_client.open?).to be(false)
+    end
+  end
+
+  context 'when the user account is suspended whilst connected' do
+    it 'terminates the connection for the user' do
+      streaming_client.connect
+
+      user.account.suspend!
+
+      expect(streaming_client.wait_for(:closed).code).to be(1000)
+      expect(streaming_client.open?).to be(false)
+    end
+  end
 end

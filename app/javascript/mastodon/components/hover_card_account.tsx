@@ -105,7 +105,14 @@ export const HoverCardAccount = forwardRef<
                   accountId={account.id}
                   className='hover-card__bio'
                 />
-                <AccountFields fields={account.fields} limit={2} />
+
+                <div className='account-fields'>
+                  <AccountFields
+                    fields={account.fields.take(2)}
+                    emojis={account.emojis}
+                  />
+                </div>
+
                 {note && note.length > 0 && (
                   <dl className='hover-card__note'>
                     <dt className='hover-card__note-label'>

@@ -7,7 +7,7 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
     return if non_matching_uri_hosts?(@account.uri, @json['id'])
 
     quoted_status = status_from_uri(object_uri)
-    return if quoted_status.nil? || !quoted_status.account.local? || !quoted_status.distributable?
+    return if quoted_status.nil? || !quoted_status.account.local? || !quoted_status.distributable? || quoted_status.reblog?
 
     if StatusPolicy.new(@account, quoted_status).quote?
       accept_quote_request!(quoted_status)

@@ -189,6 +189,7 @@ lad:
         create_relay: Kriya relevo
         create_unavailable_domain: Kriya domeno no desponivle
         create_user_role: Kriya rolo
+        create_username_block: Kriya regla de nombre de utilizador
         demote_user: Degrada utilizador
         destroy_announcement: Efasa pregon
         destroy_canonical_email_block: Efasa bloko de posta elektronika
@@ -202,6 +203,7 @@ lad:
         destroy_status: Efasa publikasyon
         destroy_unavailable_domain: Efasa domeno no desponivle
         destroy_user_role: Efasa rolo
+        destroy_username_block: Suprime regla de nombre de utilizador
         disable_2fa_user: Inkapasita autentifikasyon en dos pasos
         disable_custom_emoji: Inkapasita emoji personalizados
         disable_relay: Dezaktiva relevo
@@ -236,6 +238,7 @@ lad:
         update_report: Aktualiza raporto
         update_status: Aktualiza publikasyon
         update_user_role: Aktualiza rolo
+        update_username_block: Aktualiza regla de nombre de utilizador
       actions:
         approve_appeal_html: "%{name} acheto la solisitasyon de moderasyon de %{target}"
         approve_user_html: "%{name} acheto el enrejistramiento de %{target}"
@@ -476,9 +479,13 @@ lad:
           ip: Adreso IP
       providers:
         active: Aktivo
+        base_url: URL baza
         delete: Efasa
+        edit: Edita prokurador
         finish_registration: Finaliza enrejistrasyon
         name: Nombre
+        providers: Prokuradores
+        registration_requested: Enrejistrasyon rekerida
         registrations:
           confirm: Konfirma
           reject: Refuza
@@ -692,6 +699,7 @@ lad:
         delete_data_html: Efasa el profil i kontenido de <strong>@%{acct}</strong> en 30 dias si no sea desuspendido en akel tiempo
         preview_preamble_html: "<strong>@%{acct}</strong> resivira una avertensya komo esta:"
         record_strike_html: Enrejistra un amonestamiento kontra <strong>@%{acct}</strong> para ke te ayude eskalar las violasyones de reglas de este kuento en el avenir
+        send_email_html: Embia un mesaj de avertensia a la posta elektronika de <strong>@%{acct}</strong>
         warning_placeholder: Adisionalas, opsionalas razones la aksyon de moderasyon.
       target_origin: Orijin del kuento raportado
       title: Raportos
@@ -768,6 +776,8 @@ lad:
       description_html: Aunke la majorita afirma aver meldado i estar de akodro kon los terminos de servisyo, la djente normalmente no los melda asta dempues de ke surja algun problema. <strong>Az ke sea mas kolay ver las normas de tu sirvidor de un vistazo estipulándolas en una lista de puntos.</strong> Aprova ke kada norma sea corta i kolay, ama sin estar divididas en munchos puntos.
       edit: Edita regla
       empty: Dinguna regla del sirvidor tiene sido definida.
+      move_down: Mueve verso abasho
+      move_up: Mueve verso arriva
       title: Reglas del sirvidor
       translation: Traduksyon
       translations: Traduksyones
@@ -795,7 +805,7 @@ lad:
         title: Ekskluye utilizadores de la indeksasyon de los bushkadores komo preferensya predeterminada
       discovery:
         follow_recommendations: Rekomendasyones de kuentos
-        preamble: Ekspone kontenido enteresante a la superfisie es fundamental para inkorporar muevos utilizadores ke pueden no koneser a dinguno Mastodon. Kontrola komo fonksionan varias opsiones de diskuvrimiento en tu sirvidor.
+        preamble: Ekspone kontenido enteresante a la superfisie es fundamental para inkorporar muevos utilizadores ke pueden no koneser a dinguno en Mastodon. Kontrola komo fonksionan varias opsiones de diskuvrimiento en tu sirvidor.
         privacy: Privasita
         profile_directory: Katalogo de profiles
         public_timelines: Linyas de tiempo publikas
@@ -806,6 +816,13 @@ lad:
         all: A todos
         disabled: A dinguno
         users: Para los utilizadores lokales ke entrado en su kuento
+      feed_access:
+        modes:
+          public: Todos
+      landing_page:
+        values:
+          about: Sovre esto
+          trends: Trendes
       registrations:
         moderation_recommandation: Por favor, asigurate ke tyenes una taifa de moderasyon adekuada i reaktiva antes de avrir los enrejistramyentos a todos!
         preamble: Kontrola ken puede kriyar un kuento en tu sirvidor.
@@ -843,6 +860,7 @@ lad:
       back_to_account: Retorna al kuento
       back_to_report: Retorna a la pajina del raporto
       batch:
+        add_to_report: 'Adjusta al raporto #%{id}'
         remove_from_report: Kita del raporto
         report: Raporto
       contents: Kontenidos
@@ -857,9 +875,12 @@ lad:
       no_status_selected: No se troko dinguna publikasyon al no eskojer dinguna
       open: Avre publikasyon
       original_status: Publikasyon orijinala
+      quotes: Sitas
       reblogs: Repartajasyones
       status_changed: Publikasyon trokada
       trending: Trendes
+      view_publicly: Ve puvlikamente
+      view_quoted_post: Ve puvlikasyon sitada
       visibility: Vizivilita
       with_media: Kon multimedia
     strikes:
@@ -937,12 +958,17 @@ lad:
       updated_msg: Konfigurasyon de etiketas aktualizada kon sukseso
     terms_of_service:
       changelog: Ke troko
+      create: Uza los tuyos
       current: Aktual
+      generate: Uza modelo
       generates:
         action: Djenera
+        title: Konfigurasyon de terminos de servisyo
       history: Istorya
       live: En bivo
+      notify_users: Aviza a los utilizadores
       publish: Publika
+      published_on_html: Puvlikado el %{date}
       title: Terminos de servisyo
     title: Administrasyon
     trends:
@@ -1011,9 +1037,22 @@ lad:
       trending: En trend
     username_blocks:
       add_new: Adjusta muevo
+      block_registrations: Bloka enrejistrasyones
+      comparison:
+        contains: Kontyene
+        equals: Es egual a
+      contains_html: Kontyene %{string}
+      created_msg: Regla de nombre de utilizador kriyada kon reusho
       delete: Efasa
+      edit:
+        title: Edita regla de nombre de utilizador
+      matches_exactly_html: Es egual a %{string}
       new:
         create: Kriya regla
+        title: Kriya mueva regla de nombre de utilizador
+      not_permitted: Sin permiso
+      title: Reglas de nombre de utilizador
+      updated_msg: Regla de nombre de utilizador aktualizada kon reusho
     warning_presets:
       add_new: Adjusta muevo
       delete: Efasa
@@ -1085,10 +1124,9 @@ lad:
     hint_html: Si keres migrar de otro kuento a este, aki puedes kriyar un alias, kale proseder antes de ampesar a mover suivantes del kuento anterior a este. Esta aksion por si mezma es <strong>inofensiva i reversivle</strong>. <strong>La migrasyon del kuento se inisya dizde el kuento viejo</strong>.
     remove: Dezata alias
   appearance:
-    advanced_web_interface: Enterfaz web avanzada
-    advanced_web_interface_hint: 'Si keres utilizar todo el ancho de ekran, la enterfaz web avanzada te permete konfigurar varias kolumnas desferentes para ver tanta enformasyon al mezmo tiempo komo keras: Linya prinsipala, avizos, linya de tiempo federada, kualkier numero de listas i etiketas.'
+    advanced_settings: Konfigurasyon avansada
     animations_and_accessibility: Animasyones i aksesivilita
-    confirmation_dialogs: Dialogos de konfirmasyon
+    boosting_preferences: Preferensias de repartajar
     discovery: Diskuvrimiento
     localization:
       body: Mastodon es trezladado por volontarios.
@@ -1193,6 +1231,7 @@ lad:
     example_title: Teksto de enshemplo
     more_from_html: Mas de %{name}
     s_blog: Blog de %{name}
+    title: Atribusyon del otor
   challenge:
     confirm: Kontinua
     hint_html: "<strong>Konsejo:</strong> No retornaremos a demandarte por el kod durante la sigiente ora."
@@ -1445,6 +1484,12 @@ lad:
       expires_at: Kaduka
       uses: Uzos
     title: Envita a djente
+  link_preview:
+    author_html: Publikasyon de %{name}
+    potentially_sensitive_content:
+      action: Klika para amostrar
+      confirm_visit: Estas siguro ke keres avrir este atadijo?
+      hide_button: Eskonde
   lists:
     errors:
       limit: Tienes alkansado el karar maksimo de listas
@@ -1544,6 +1589,10 @@ lad:
       title: Mueva enmentadura
     poll:
       subject: Una anketa de %{name} eskapo
+    quote:
+      body: 'Tu publikasyon fue sitada por %{name}:'
+      subject: "%{name} sito tu publikasyon"
+      title: Mueva sita
     reblog:
       body: 'Tu publikasyon fue repartajada por %{name}:'
       subject: "%{name} repartajo tu publikasyon"
@@ -1649,6 +1698,7 @@ lad:
   scheduled_statuses:
     over_daily_limit: Tienes superado el limito de %{limit} publikasyones programadas para akel diya
     over_total_limit: Tienes superado el limito de %{limit} publikasyones programadas
+    too_soon: data tiene ke ser en el avenir
   self_destruct:
     lead_html: Malorozamente, <strong>%{domain}</strong> va serrar permanentemente. Si teniyas un kuento ayi, ya no podras utilizarlo, ama ainda puedes solisitar una kopya de tus datos.
     title: Este sirvidor esta serrando
@@ -1717,6 +1767,7 @@ lad:
     preferences: Preferensyas
     profile: Profil publiko
     relationships: Segidos i suivantes
+    severed_relationships: Relasyones kortadas
     statuses_cleanup: Efasasyon otomatika de publikasyones
     strikes: Amonestamientos de moderasyon
     two_factor_authentication: Autentifikasyon en dos pasos
@@ -1724,6 +1775,8 @@ lad:
   severed_relationships:
     download: Abasha (%{count})
     event_type:
+      account_suspension: Suspensyon de kuento (%{target_name})
+      domain_block: Suspensyon de sirvidor (%{target_name})
       user_domain_block: Blokates a %{target_name}
     lost_followers: Suivantes pedridos
     lost_follows: Segimyentos pedridos
@@ -1742,6 +1795,9 @@ lad:
         other: "%{count} videos"
     boosted_from_html: Repartajado dizde %{acct_link}
     content_warning: 'Avertensya de kontenido: %{warning}'
+    content_warnings:
+      hide: Eskonde puvlikasyon
+      show: Amostra mas
     default_language: La mezma ke la lingua de la enterfaz
     disallowed_hashtags:
       one: 'kontenia una etiketa no permetida: %{tags}'
@@ -1749,14 +1805,22 @@ lad:
     edited_at_html: Editado %{date}
     errors:
       in_reply_not_found: La publikasion a la ke aprovas arispondir no egziste.
+      quoted_status_not_found: La publikasion a la ke aprovas sitar no egziste.
     over_character_limit: limito de karakteres de %{max} superado
     pin_errors:
       direct: Las publikasyones ke son vizivles solo para los utilizadores enmentados no pueden fiksarse
       limit: Ya tienes fiksado el numero maksimo de publikasyones
       ownership: La publikasyon de otra persona no puede fiksarse
       reblog: No se puede fixar una repartajasyon
+    quote_error:
+      not_available: Puvlikasyon no desponivle
+      pending_approval: Puvlikasyon esta asperando
+      revoked: Puvlikasyon kitada por el otor
     quote_policies:
+      followers: Solo suivantes
       nobody: Solo yo
+      public: Todos
+    quote_post_author: Sito una puvlikasyon de %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Enmentadura privada
@@ -1838,6 +1902,8 @@ lad:
     recovery_instructions_html: Si piedres akseso a tu telefon, puedes uzar uno de los sigientes kodiches de rekuperasyon para obtener akseso a tu kuento. <strong>Mantenlos a salvo</strong>. Por enshemplo, puedes imprimirlos i guadrarlos kon otros dokumentos emportantes.
     webauthn: Yaves de sigurita
   user_mailer:
+    announcement_published:
+      subject: Pregon de servisyo
     appeal_approved:
       action: Preferensyas de kuento
       explanation: La apelasyon del amonestamiento kontra tu kuento del %{strike_date} ke mandates el %{appeal_date} fue achetada. Tu kuento se topa de muevo en dobro estado.
@@ -1868,6 +1934,8 @@ lad:
       subject: Tu kuento fue aksedido dizde un muevo adreso IP
       title: Una mueva koneksyon kon tu kuento
     terms_of_service_changed:
+      sign_off: La taifa de %{domain}
+      subject: Aktualizasyones de muestros terminos de sirvisyo
       title: Aktualizasyon emportante
     warning:
       appeal: Embia una apelasyon
