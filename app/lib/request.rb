@@ -149,11 +149,16 @@ class Request
 
   private
 
+  # Using code from https://github.com/sporkmonger/addressable/blob/3450895887d0a1770660d8831d1b6fcfed9bd9d6/lib/addressable/uri.rb#L1609-L1635
+  # to preserve some URL Encodings
   def normalize_preserving_url_encodings(url, preserved_chars = SAFE_PRESERVED_CHARS, *flags)
     original_uri = Addressable::URI.parse(url)
     normalized_uri = original_uri.normalize
 
     if original_uri.query
+      modified_query_class = Addressable::URI::CharacterClasses::QUERY.dup
+      modified_query_class.sub!('\\&', '').sub!('\\;', '')
+
       pairs = original_uri.query.split('&', -1)
       pairs.delete_if(&:empty?).uniq! if flags.include?(:compacted)
       pairs.sort! if flags.include?(:sorted)
@@ -161,7 +166,7 @@ class Request
       normalized_query = pairs.map do |pair|
         Addressable::URI.normalize_component(
           pair,
-          Addressable::URI::NormalizeCharacterClasses::QUERY,
+          modified_query_class,
           preserved_chars
         )
       end.join('&')
