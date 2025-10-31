@@ -13,7 +13,7 @@ RSpec.describe 'Settings preferences appearance page' do
     expect(page)
       .to have_private_cache_control
 
-    select 'contrast', from: theme_selection_field
+    select 'Mastodon (High contrast)', from: theme_selection_field
     check confirm_reblog_field
     uncheck confirm_delete_field
 
