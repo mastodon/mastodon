@@ -6096,6 +6096,7 @@ a.status-card {
   width: 100%;
   height: 100%;
   position: relative;
+  touch-action: pan-y;
 
   &__buttons {
     position: absolute;
@@ -6131,11 +6132,17 @@ a.status-card {
 }
 
 .media-modal__closer {
+  display: flex;
   position: absolute;
   top: 0;
   inset-inline-start: 0;
   inset-inline-end: 0;
   bottom: 0;
+
+  > div {
+    flex-shrink: 0;
+    overflow: auto;
+  }
 }
 
 .media-modal__navigation {
