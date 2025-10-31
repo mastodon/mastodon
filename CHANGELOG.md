@@ -43,6 +43,7 @@ All notable changes to this project will be documented in this file.
 - Change appearance settings to introduce new Advanced settings section (#36496 and #36506 by @diondiondion)
 - Change display of blocked and muted quoted users (#36619 by @ClearlyClaire)\
   This adds `blocked_account`, `blocked_domain` and `muted_account` values to the `state` attribute of `Quote` and `ShallowQuote` REST API entities.
+- Change submitting an empty post to show an error rather than failing silently (#36650 by @diondiondion)
 - Change display of content warnings in Admin UI (#35935 by @ThisIsMissEm)
 - Change styling of column banners (#36531 by @ClearlyClaire)
 - Change recommended Node version to 24 (LTS) (#36539 by @renchap)
@@ -70,6 +71,7 @@ All notable changes to this project will be documented in this file.
 - Fix relationship not being fetched to evaluate whether to show a quote post (#36517 by @ClearlyClaire)
 - Fix rendering of poll options in status history modal (#35633 by @ThisIsMissEm)
 - Fix “mute” button being displayed to unauthenticated visitors in hashtag dropdown (#36353 by @mkljczk)
+- Fix initially selected language in Rules panel, hide selector when no alternative translations exist (#36672 by @diondiondion)
 - Fix URL comparison for mentions in case of empty path (#36613 and #36626 by @ClearlyClaire)
 - Fix hashtags not being picked up when full-width hash sign is used (#36103 and #36625 by @ClearlyClaire and @Gargron)
 - Fix layout of severed relationships when purged events are listed (#36593 by @mejofi)
