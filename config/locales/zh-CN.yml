@@ -782,6 +782,8 @@ zh-CN:
         view_dashboard_description: 允许用户访问信息面板和各种指标
         view_devops: 开发运维
         view_devops_description: 允许用户访问 Sidekiq 和 pgHero 控制面板
+        view_feeds: 查看实时动态和话题
+        view_feeds_description: 允许用户无视服务器设置访问实时动态和话题
       title: 角色
     rules:
       add_new: 添加规则
@@ -837,6 +839,7 @@ zh-CN:
       feed_access:
         modes:
           authenticated: 仅已登录用户
+          disabled: 需要特定的用户角色
           public: 所有人
       landing_page:
         values:
