@@ -187,6 +187,7 @@ th:
         create_relay: สร้างรีเลย์
         create_unavailable_domain: สร้างโดเมนที่ไม่พร้อมใช้งาน
         create_user_role: สร้างบทบาท
+        create_username_block: สร้างกฎชื่อผู้ใช้
         demote_user: ลดขั้นผู้ใช้
         destroy_announcement: ลบประกาศ
         destroy_canonical_email_block: ลบการปิดกั้นอีเมล
@@ -200,6 +201,7 @@ th:
         destroy_status: ลบโพสต์
         destroy_unavailable_domain: ลบโดเมนที่ไม่พร้อมใช้งาน
         destroy_user_role: ทำลายบทบาท
+        destroy_username_block: ลบกฎชื่อผู้ใช้
         disable_2fa_user: ปิดใช้งาน 2FA
         disable_custom_emoji: ปิดใช้งานอีโมจิที่กำหนดเอง
         disable_relay: ปิดใช้งานรีเลย์
@@ -234,6 +236,7 @@ th:
         update_report: อัปเดตรายงาน
         update_status: อัปเดตโพสต์
         update_user_role: อัปเดตบทบาท
+        update_username_block: อัปเดตกฎชื่อผู้ใช้
       actions:
         approve_appeal_html: "%{name} ได้อนุมัติการอุทธรณ์การตัดสินใจในการกลั่นกรองจาก %{target}"
         approve_user_html: "%{name} ได้อนุมัติการลงทะเบียนจาก %{target}"
@@ -481,6 +484,7 @@ th:
         save: บันทึก
         sign_in: ลงชื่อเข้า
         status: สถานะ
+      title: FASP
     follow_recommendations:
       description_html: "<strong>คำแนะนำการติดตามช่วยให้ผู้ใช้ใหม่ค้นหาเนื้อหาที่น่าสนใจได้อย่างรวดเร็ว</strong> เมื่อผู้ใช้ไม่ได้โต้ตอบกับผู้อื่นมากพอที่จะสร้างคำแนะนำการติดตามเฉพาะบุคคล จะแนะนำบัญชีเหล่านี้แทน จะคำนวณคำแนะนำใหม่เป็นประจำทุกวันจากบัญชีต่าง ๆ ที่มีการมีส่วนร่วมล่าสุดสูงสุดและจำนวนผู้ติดตามในเซิร์ฟเวอร์สูงสุดสำหรับภาษาที่กำหนด"
       language: สำหรับภาษา
@@ -792,6 +796,9 @@ th:
         all: ให้กับทุกคน
         disabled: ให้กับไม่มีใคร
         users: ให้กับผู้ใช้ในเซิร์ฟเวอร์ที่เข้าสู่ระบบ
+      landing_page:
+        values:
+          about: เกี่ยวกับ
       registrations:
         moderation_recommandation: โปรดตรวจสอบให้แน่ใจว่าคุณมีทีมการกลั่นกรองที่เพียงพอและมีปฏิกิริยาตอบสนองก่อนที่คุณจะเปิดการลงทะเบียนให้กับทุกคน!
         preamble: ควบคุมผู้ที่สามารถสร้างบัญชีในเซิร์ฟเวอร์ของคุณ
@@ -1019,6 +1026,14 @@ th:
           other: ใช้โดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
       title: คำแนะนำและแนวโน้ม
       trending: กำลังนิยม
+    username_blocks:
+      delete: ลบ
+      edit:
+        title: แก้ไขกฎชื่อผู้ใช้
+      new:
+        create: สร้างกฎ
+        title: สร้างกฎชื่อผู้ใช้ใหม่
+      title: กฎชื่อผู้ใช้
     warning_presets:
       add_new: เพิ่มใหม่
       delete: ลบ
@@ -1090,6 +1105,7 @@ th:
     hint_html: หากคุณต้องการย้ายจากบัญชีอื่นไปยังบัญชีนี้ ที่นี่คุณสามารถสร้างนามแฝง ซึ่งจำเป็นก่อนที่คุณจะสามารถดำเนินการต่อด้วยการย้ายผู้ติดตามจากบัญชีเก่าไปยังบัญชีนี้ การกระทำนี้โดยตัวการกระทำเอง <strong>ไม่เป็นอันตรายและย้อนกลับได้</strong> <strong>การโยกย้ายบัญชีเริ่มต้นจากบัญชีเก่า</strong>
     remove: เลิกเชื่อมโยงนามแฝง
   appearance:
+    advanced_settings: การตั้งค่าขั้นสูง
     animations_and_accessibility: ภาพเคลื่อนไหวและการช่วยการเข้าถึง
     discovery: การค้นพบ
     localization:
@@ -1465,6 +1481,11 @@ th:
       expires_at: หมดอายุเมื่อ
       uses: การใช้งาน
     title: เชิญผู้คน
+  link_preview:
+    author_html: โดย %{name}
+    potentially_sensitive_content:
+      action: คลิกเพื่อแสดง
+      hide_button: ซ่อน
   lists:
     errors:
       limit: คุณมีรายการถึงจำนวนสูงสุดแล้ว
@@ -1765,6 +1786,9 @@ th:
         other: "%{count} วิดีโอ"
     boosted_from_html: ดันจาก %{acct_link}
     content_warning: 'คำเตือนเนื้อหา: %{warning}'
+    content_warnings:
+      hide: ซ่อนโพสต์
+      show: แสดงเพิ่มเติม
     default_language: เหมือนกับภาษาส่วนติดต่อ
     disallowed_hashtags:
       other: 'มีแฮชแท็กที่ไม่อนุญาต: %{tags}'

@@ -824,6 +824,8 @@ gd:
         view_dashboard_description: Leigidh seo le cleachdaichean an deas-bhòrd agus meatrachdan inntrigeadh
         view_devops: DevOps
         view_devops_description: Leigidh seo le cleachdaichean na deas-bhùird aig Sidekiq is pgHero inntrigeadh
+        view_feeds: Seall loidhnichean-ama beòtha ’s nan cuspairean
+        view_feeds_description: Leigidh seo le cleachdaichean loidhnichean-ama beòtha ’s nan cuspairean inntrigeadh ge b’ e dè roghainnean an fhrithealaiche
       title: Dreuchdan
     rules:
       add_new: Cuir riaghailt ris
@@ -879,7 +881,13 @@ gd:
       feed_access:
         modes:
           authenticated: Cleachdaichean a chlàraich a-steach a-mhàin
+          disabled: Iarr dreuchd shònraichte a’ chleachdaiche
           public: A h-uile duine
+      landing_page:
+        values:
+          about: Mu dhèidhinn
+          local_feed: Loidhne-ama ionadail
+          trends: Treandaichean
       registrations:
         moderation_recommandation: Dèan cinnteach gu bheil sgioba maoir deiseil is deònach agad mus fhosgail thu an clàradh dhan a h-uile duine!
         preamble: Stiùirich cò dh’fhaodas cunntas a chruthachadh air an fhrithealaiche agad.
@@ -2028,7 +2036,7 @@ gd:
       private: Luchd-leantainn a-mhàin
       public: Poblach
       public_long: Neach sam bith taobh a-staigh no a-muigh Mhastodon
-      unlisted: Poblach ach sàmhach
+      unlisted: Sàmhach
       unlisted_long: Falaichte o na toraidhean-luirg, na treandaichean ’s na loichnichean-ama poblach
   statuses_cleanup:
     enabled: Sguab às seann-phostaichean gu fèin-obrachail
