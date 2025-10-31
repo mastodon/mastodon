@@ -10,7 +10,7 @@ class BulkImportRowService
     @type    = row.bulk_import.type.to_sym
 
     case @type
-    when :following, :blocking, :muting, :lists
+    when :following, :blocking, :muting, :lists, :account_notes
       target_acct     = @data['acct']
       target_domain   = domain(target_acct)
       @target_account = stoplight_wrapper(target_domain).run(stoplight_fallback) { ResolveAccountService.new.call(target_acct, { check_delivery_availability: true }) }
@@ -42,6 +42,10 @@ class BulkImportRowService
       FollowService.new.call(@account, @target_account) unless @account.id == @target_account.id
 
       list.accounts << @target_account
+    when :account_notes
+      @note = AccountNote.find_or_initialize_by(account: @account, target_account: @target_account)
+      @note.comment = @data['comment']
+      @note.save! if @note.changed?
     end
 
     true
