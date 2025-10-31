@@ -1,10 +1,16 @@
+import { defineMessages } from 'react-intl';
+
 import { browserHistory } from 'mastodon/components/router';
 
 import api from '../api';
 
+import { showAlert } from './alerts';
 import { ensureComposeIsVisible, setComposeToStatus } from './compose';
-import { importFetchedStatus, importFetchedStatuses, importFetchedAccount } from './importer';
+import { importFetchedStatus, importFetchedAccount } from './importer';
+import { fetchContext } from './statuses_typed';
 import { deleteFromTimelines } from './timelines';
+
+export * from './statuses_typed';
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
 export const STATUS_FETCH_SUCCESS = 'STATUS_FETCH_SUCCESS';
@@ -13,10 +19,6 @@ export const STATUS_FETCH_FAIL    = 'STATUS_FETCH_FAIL';
 export const STATUS_DELETE_REQUEST = 'STATUS_DELETE_REQUEST';
 export const STATUS_DELETE_SUCCESS = 'STATUS_DELETE_SUCCESS';
 export const STATUS_DELETE_FAIL    = 'STATUS_DELETE_FAIL';
-
-export const CONTEXT_FETCH_REQUEST = 'CONTEXT_FETCH_REQUEST';
-export const CONTEXT_FETCH_SUCCESS = 'CONTEXT_FETCH_SUCCESS';
-export const CONTEXT_FETCH_FAIL    = 'CONTEXT_FETCH_FAIL';
 
 export const STATUS_MUTE_REQUEST = 'STATUS_MUTE_REQUEST';
 export const STATUS_MUTE_SUCCESS = 'STATUS_MUTE_SUCCESS';
@@ -41,6 +43,10 @@ export const STATUS_TRANSLATE_SUCCESS = 'STATUS_TRANSLATE_SUCCESS';
 export const STATUS_TRANSLATE_FAIL    = 'STATUS_TRANSLATE_FAIL';
 export const STATUS_TRANSLATE_UNDO    = 'STATUS_TRANSLATE_UNDO';
 
+const messages = defineMessages({
+  deleteSuccess: { id: 'status.delete.success', defaultMessage: 'Post deleted' },
+});
+
 export function fetchStatusRequest(id, skipLoading) {
   return {
     type: STATUS_FETCH_REQUEST,
@@ -49,12 +55,23 @@ export function fetchStatusRequest(id, skipLoading) {
   };
 }
 
-export function fetchStatus(id, forceFetch = false, alsoFetchContext = true) {
+/**
+ * @param {string} id
+ * @param {Object} [options]
+ * @param {boolean} [options.forceFetch]
+ * @param {boolean} [options.alsoFetchContext]
+ * @param {string | null | undefined} [options.parentQuotePostId]
+ */
+export function fetchStatus(id, {
+  forceFetch = false,
+  alsoFetchContext = true,
+  parentQuotePostId,
+} = {}) {
   return (dispatch, getState) => {
     const skipLoading = !forceFetch && getState().getIn(['statuses', id], null) !== null;
 
     if (alsoFetchContext) {
-      dispatch(fetchContext(id));
+      dispatch(fetchContext({ statusId: id }));
     }
 
     if (skipLoading) {
@@ -67,7 +84,7 @@ export function fetchStatus(id, forceFetch = false, alsoFetchContext = true) {
       dispatch(importFetchedStatus(response.data));
       dispatch(fetchStatusSuccess(skipLoading));
     }).catch(error => {
-      dispatch(fetchStatusFail(id, error, skipLoading));
+      dispatch(fetchStatusFail(id, error, skipLoading, parentQuotePostId));
     });
   };
 }
@@ -79,21 +96,27 @@ export function fetchStatusSuccess(skipLoading) {
   };
 }
 
-export function fetchStatusFail(id, error, skipLoading) {
+export function fetchStatusFail(id, error, skipLoading, parentQuotePostId) {
   return {
     type: STATUS_FETCH_FAIL,
     id,
     error,
+    parentQuotePostId,
     skipLoading,
     skipAlert: true,
   };
 }
 
 export function redraft(status, raw_text) {
-  return {
-    type: REDRAFT,
-    status,
-    raw_text,
+  return (dispatch, getState) => {
+    const maxOptions = getState().server.getIn(['server', 'configuration', 'polls', 'max_options']);
+
+    dispatch({
+      type: REDRAFT,
+      status,
+      raw_text,
+      maxOptions,
+    });
   };
 }
 
@@ -138,7 +161,7 @@ export function deleteStatus(id, withRedraft = false) {
 
     dispatch(deleteStatusRequest(id));
 
-    api().delete(`/api/v1/statuses/${id}`, { params: { delete_media: !withRedraft } }).then(response => {
+    return api().delete(`/api/v1/statuses/${id}`, { params: { delete_media: !withRedraft } }).then(response => {
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
       dispatch(importFetchedAccount(response.data.account));
@@ -146,9 +169,14 @@ export function deleteStatus(id, withRedraft = false) {
       if (withRedraft) {
         dispatch(redraft(status, response.data.text));
         ensureComposeIsVisible(getState);
+      } else {
+        dispatch(showAlert({ message: messages.deleteSuccess }));
       }
+
+      return response;
     }).catch(error => {
       dispatch(deleteStatusFail(id, error));
+      throw error;
     });
   };
 }
@@ -177,50 +205,6 @@ export function deleteStatusFail(id, error) {
 
 export const updateStatus = status => dispatch =>
   dispatch(importFetchedStatus(status));
-
-export function fetchContext(id) {
-  return (dispatch) => {
-    dispatch(fetchContextRequest(id));
-
-    api().get(`/api/v1/statuses/${id}/context`).then(response => {
-      dispatch(importFetchedStatuses(response.data.ancestors.concat(response.data.descendants)));
-      dispatch(fetchContextSuccess(id, response.data.ancestors, response.data.descendants));
-
-    }).catch(error => {
-      if (error.response && error.response.status === 404) {
-        dispatch(deleteFromTimelines(id));
-      }
-
-      dispatch(fetchContextFail(id, error));
-    });
-  };
-}
-
-export function fetchContextRequest(id) {
-  return {
-    type: CONTEXT_FETCH_REQUEST,
-    id,
-  };
-}
-
-export function fetchContextSuccess(id, ancestors, descendants) {
-  return {
-    type: CONTEXT_FETCH_SUCCESS,
-    id,
-    ancestors,
-    descendants,
-    statuses: ancestors.concat(descendants),
-  };
-}
-
-export function fetchContextFail(id, error) {
-  return {
-    type: CONTEXT_FETCH_FAIL,
-    id,
-    error,
-    skipAlert: true,
-  };
-}
 
 export function muteStatus(id) {
   return (dispatch) => {

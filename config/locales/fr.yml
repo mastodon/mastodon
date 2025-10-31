@@ -319,6 +319,7 @@ fr:
         create: Créer une annonce
         title: Nouvelle annonce
       preview:
+        disclaimer: Étant donné que les utilisateurs ne peuvent pas s'en retirer, les notifications par courriel devraient être limitées à des annonces importantes telles que des violations de données personnelles ou des notifications de fermeture de serveur.
         explanation_html: 'L''e-mail sera envoyé à <strong>%{display_count} utilisateurs</strong>. Le texte suivant sera inclus :'
         title: Aperçu de la notification d'annonce
       publish: Publier
@@ -483,14 +484,24 @@ fr:
         title: Importer des blocages de domaine
       no_file: Aucun fichier sélectionné
     fasp:
+      debug:
+        callbacks:
+          created_at: Créé à
+          delete: Supprimer
+          ip: Adresse IP
       providers:
+        name: Nom
+        providers: Fournisseur
         registrations:
           confirm: Confirmer
+          description: Vous avez reçu une souscription d'un FSAF. Rejetez-la si vous ne l'avez pas initiée. Si c'est bien votre intention, comparez le nom et l'empreinte de la clé avant de confirmer la souscription.
           reject: Rejeter
+          title: Confirmer la souscription au FSAF
         save: Enregistrer
         select_capabilities: Sélectionnez les Capacités
         sign_in: Se connecter
         status: État
+        title: Fournisseurs de Services Auxiliaire du Fedivers
     follow_recommendations:
       description_html: "<strong>Les recommandations d'abonnement aident les nouvelles personnes à trouver rapidement du contenu intéressant</strong>. Si un·e utilisateur·rice n'a pas assez interagi avec les autres pour avoir des recommandations personnalisées, ces comptes sont alors recommandés. La sélection est mise à jour quotidiennement depuis un mélange de comptes ayant le plus d'interactions récentes et le plus grand nombre d'abonné·e·s locaux pour une langue donnée."
       language: Pour la langue
@@ -559,6 +570,8 @@ fr:
         all: Tout
         limited: Limité
         title: Modération
+      moderation_notes:
+        title: Notes de modération
       private_comment: Commentaire privé
       public_comment: Commentaire public
       purge: Purge
@@ -767,11 +780,14 @@ fr:
       title: Rôles
     rules:
       add_new: Ajouter une règle
+      add_translation: Ajouter une traduction
       delete: Supprimer
       description_html: Bien que la plupart des gens prétende avoir lu les conditions d'utilisation avant de les accepter, généralement les utilisateur·rice·s ne les lisent vraiment que lorsque un problème apparaît. <strong>Pour faciliter la visualisation des règles de votre serveur en un seul coup d’œil, présentez-les sous la forme d'une liste à puces !</strong> Essayez de garder chacune des règles simple et concise, mais faites attention à ne pas non plus les diviser en de trop nombreux éléments distincts.
       edit: Modifier la règle
       empty: Aucune règle de serveur n'a été définie pour l'instant.
       title: Règles du serveur
+      translation: Traduction
+      translations: Traductions
     settings:
       about:
         manage_rules: Gérer les règles du serveur
@@ -796,10 +812,8 @@ fr:
         title: Par défaut, ne pas indexer les comptes dans les moteurs de recherche
       discovery:
         follow_recommendations: Suivre les recommandations
-        preamble: Il est essentiel de donner de la visibilité à des contenus intéressants pour attirer des utilisateur⋅rice⋅s néophytes qui ne connaissent peut-être personne sur Mastodon. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
         profile_directory: Annuaire des profils
         public_timelines: Fils publics
-        publish_discovered_servers: Publier les serveurs découverts
         publish_statistics: Publier les statistiques
         title: Découverte
         trends: Tendances
@@ -1120,10 +1134,7 @@ fr:
     hint_html: Si vous voulez déménager d’un autre compte vers celui-ci, vous pouvez créer ici un alias, qui est nécessaire avant de pouvoir migrer les abonné·e·s de l’ancien compte vers celui-ci. Cette action en soi est <strong>inoffensive et réversible</strong>. <strong>La migration du compte est initiée à partir de l’ancien compte</strong>.
     remove: Détacher l'alias
   appearance:
-    advanced_web_interface: Interface web avancée
-    advanced_web_interface_hint: 'Si vous voulez utiliser toute la largeur de votre écran, l’interface web avancée vous permet de configurer plusieurs colonnes différentes pour voir autant d’informations que vous le souhaitez en même temps : Accueil, notifications, fil fédéré, un nombre illimité de listes et hashtags.'
     animations_and_accessibility: Animations et accessibilité
-    confirmation_dialogs: Dialogues de confirmation
     discovery: Découverte
     localization:
       body: Mastodon est traduit par des volontaires.
@@ -1839,13 +1850,7 @@ fr:
       reblog: Un partage ne peut pas être épinglé
     title: "%{name} : « %{quote} »"
     visibilities:
-      direct: Direct
-      private: Abonné⋅e⋅s uniquement
-      private_long: Afficher seulement à vos vos abonné·e·s
       public: Publique
-      public_long: Tout le monde peut voir vos messages
-      unlisted: Public sans être affiché sur le fil public
-      unlisted_long: Tout le monde peut voir vos messages mais ils ne seront pas listés sur les fils publics
   statuses_cleanup:
     enabled: Supprimer automatiquement vos anciens messages
     enabled_hint: Supprime automatiquement vos messages une fois qu'ils ont atteint un seuil d'ancienneté défini, à moins qu'ils ne correspondent à l'une des exceptions ci-dessous
@@ -1890,6 +1895,8 @@ fr:
     does_not_match_previous_name: ne correspond pas au nom précédent
   terms_of_service:
     title: Conditions d'utilisation
+  terms_of_service_interstitial:
+    title: Les conditions d'utilisation de %{domain} ont changées
   themes:
     contrast: Mastodon (Contraste élevé)
     default: Mastodon (Sombre)
@@ -2029,7 +2036,6 @@ fr:
       post_action: Rédiger
       post_step: Dites bonjour au monde avec du texte, des photos, des vidéos ou des sondages.
       post_title: Rédiger votre premier message
-      share_action: Partager
       share_step: Faites savoir à vos ami·e·s comment vous trouver sur Mastodon.
       share_title: Partager votre profil Mastodon
       sign_in_action: Se connecter

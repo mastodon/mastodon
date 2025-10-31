@@ -1,7 +1,6 @@
 import { createPollFromServerJSON } from 'mastodon/models/poll';
 
-import { importAccounts } from '../accounts_typed';
-
+import { importAccounts } from './accounts';
 import { normalizeStatus } from './normalizer';
 import { importPolls } from './polls';
 
@@ -68,6 +67,10 @@ export function importFetchedStatuses(statuses) {
 
       if (status.reblog?.id) {
         processStatus(status.reblog);
+      }
+
+      if (status.quote?.quoted_status) {
+        processStatus(status.quote.quoted_status);
       }
 
       if (status.poll?.id) {

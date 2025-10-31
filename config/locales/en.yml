@@ -190,6 +190,7 @@ en:
         create_relay: Create Relay
         create_unavailable_domain: Create Unavailable Domain
         create_user_role: Create Role
+        create_username_block: Create Username Rule
         demote_user: Demote User
         destroy_announcement: Delete Announcement
         destroy_canonical_email_block: Delete Email Block
@@ -203,6 +204,7 @@ en:
         destroy_status: Delete Post
         destroy_unavailable_domain: Delete Unavailable Domain
         destroy_user_role: Destroy Role
+        destroy_username_block: Delete Username Rule
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
         disable_relay: Disable Relay
@@ -237,6 +239,7 @@ en:
         update_report: Update Report
         update_status: Update Post
         update_user_role: Update Role
+        update_username_block: Update Username Rule
       actions:
         approve_appeal_html: "%{name} approved moderation decision appeal from %{target}"
         approve_user_html: "%{name} approved sign-up from %{target}"
@@ -255,6 +258,7 @@ en:
         create_relay_html: "%{name} created a relay %{target}"
         create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
         create_user_role_html: "%{name} created %{target} role"
+        create_username_block_html: "%{name} added rule for usernames containing %{target}"
         demote_user_html: "%{name} demoted user %{target}"
         destroy_announcement_html: "%{name} deleted announcement %{target}"
         destroy_canonical_email_block_html: "%{name} unblocked email with the hash %{target}"
@@ -268,6 +272,7 @@ en:
         destroy_status_html: "%{name} removed post by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
         destroy_user_role_html: "%{name} deleted %{target} role"
+        destroy_username_block_html: "%{name} removed rule for usernames containing %{target}"
         disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji_html: "%{name} disabled emoji %{target}"
         disable_relay_html: "%{name} disabled the relay %{target}"
@@ -302,6 +307,7 @@ en:
         update_report_html: "%{name} updated report %{target}"
         update_status_html: "%{name} updated post by %{target}"
         update_user_role_html: "%{name} changed %{target} role"
+        update_username_block_html: "%{name} updated rule for usernames containing %{target}"
       deleted_account: deleted account
       empty: No logs found.
       filter_by_action: Filter by action
@@ -578,6 +584,13 @@ en:
         all: All
         limited: Limited
         title: Moderation
+      moderation_notes:
+        create: Add Moderation Note
+        created_msg: Instance moderation note successfully created!
+        description_html: View and leave notes for other moderators and your future self
+        destroyed_msg: Instance moderation note successfully deleted!
+        placeholder: Information about this instance, actions taken, or anything else that will help you moderate this instance in the future.
+        title: Moderation Notes
       private_comment: Private comment
       public_comment: Public comment
       purge: Purge
@@ -783,20 +796,31 @@ en:
         view_dashboard_description: Allows users to access the dashboard and various metrics
         view_devops: DevOps
         view_devops_description: Allows users to access Sidekiq and pgHero dashboards
+        view_feeds: View live and topic feeds
+        view_feeds_description: Allows users to access the live and topic feeds regardless of server settings
       title: Roles
     rules:
       add_new: Add rule
+      add_translation: Add translation
       delete: Delete
       description_html: While most claim to have read and agree to the terms of service, usually people do not read through until after a problem arises. <strong>Make it easier to see your server's rules at a glance by providing them in a flat bullet point list.</strong> Try to keep individual rules short and simple, but try not to split them up into many separate items either.
       edit: Edit rule
       empty: No server rules have been defined yet.
+      move_down: Move down
+      move_up: Move up
       title: Server rules
+      translation: Translation
+      translations: Translations
+      translations_explanation: You can optionally add translations for the rules. The default value will be shown if no translated version is available. Please always ensure any provided translation is in sync with the default value.
     settings:
       about:
         manage_rules: Manage server rules
         preamble: Provide in-depth information about how the server is operated, moderated, funded.
         rules_hint: There is a dedicated area for rules that your users are expected to adhere to.
         title: About
+      allow_referrer_origin:
+        desc: When your users click links to external sites, their browser may send the address of your Mastodon server as the referrer. Disable this if this would uniquely identify your users, e.g. if this is a personal Mastodon server.
+        title: Allow external sites to see your Mastodon server as a traffic source
       appearance:
         preamble: Customize Mastodon's web interface.
         title: Appearance
@@ -815,10 +839,10 @@ en:
         title: Opt users out of search engine indexing by default
       discovery:
         follow_recommendations: Follow recommendations
-        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
+        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone on Mastodon. Control how various discovery features work on your server.
+        privacy: Privacy
         profile_directory: Profile directory
         public_timelines: Public timelines
-        publish_discovered_servers: Publish discovered servers
         publish_statistics: Publish statistics
         title: Discovery
         trends: Trends
@@ -826,6 +850,16 @@ en:
         all: To everyone
         disabled: To no one
         users: To logged-in local users
+      feed_access:
+        modes:
+          authenticated: Authenticated users only
+          disabled: Require specific user role
+          public: Everyone
+      landing_page:
+        values:
+          about: About
+          local_feed: Local feed
+          trends: Trends
       registrations:
         moderation_recommandation: Please make sure you have an adequate and reactive moderation team before you open registrations to everyone!
         preamble: Control who can create an account on your server.
@@ -879,6 +913,7 @@ en:
       no_status_selected: No posts were changed as none were selected
       open: Open post
       original_status: Original post
+      quotes: Quotes
       reblogs: Reblogs
       replied_to_html: Replied to %{acct_link}
       status_changed: Post changed
@@ -886,6 +921,7 @@ en:
       title: Account posts - @%{name}
       trending: Trending
       view_publicly: View publicly
+      view_quoted_post: View quoted post
       visibility: Visibility
       with_media: With media
     strikes:
@@ -903,6 +939,8 @@ en:
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch index analyzer settings are outdated. Please run <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch cluster is unhealthy (red status), search features are unavailable
       elasticsearch_health_yellow:
@@ -1067,6 +1105,25 @@ en:
           other: Used by %{count} people over the last week
       title: Recommendations & Trends
       trending: Trending
+    username_blocks:
+      add_new: Add new
+      block_registrations: Block registrations
+      comparison:
+        contains: Contains
+        equals: Equals
+      contains_html: Contains %{string}
+      created_msg: Successfully created username rule
+      delete: Delete
+      edit:
+        title: Edit username rule
+      matches_exactly_html: Equals %{string}
+      new:
+        create: Create rule
+        title: Create new username rule
+      no_username_block_selected: No username rules were changed as none were selected
+      not_permitted: Not permitted
+      title: Username rules
+      updated_msg: Successfully updated username rule
     warning_presets:
       add_new: Add new
       delete: Delete
@@ -1139,10 +1196,10 @@ en:
     hint_html: If you want to move from another account to this one, here you can create an alias, which is required before you can proceed with moving followers from the old account to this one. This action by itself is <strong>harmless and reversible</strong>. <strong>The account migration is initiated from the old account</strong>.
     remove: Unlink alias
   appearance:
-    advanced_web_interface: Advanced web interface
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    advanced_settings: Advanced settings
     animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
+    boosting_preferences: Boosting preferences
+    boosting_preferences_info_html: "<strong>Tip:</strong> Regardless of settings, <kbd>Shift</kbd> + <kbd>Click</kbd> on the %{icon} Boost icon will immediately boost."
     discovery: Discovery
     localization:
       body: Mastodon is translated by volunteers.
@@ -1331,6 +1388,10 @@ en:
     basic_information: Basic information
     hint_html: "<strong>Customize what people see on your public profile and next to your posts.</strong> Other people are more likely to follow you back and interact with you when you have a filled out profile and a profile picture."
     other: Other
+  emoji_styles:
+    auto: Auto
+    native: Native
+    twemoji: Twemoji
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -1540,6 +1601,13 @@ en:
       expires_at: Expires
       uses: Uses
     title: Invite people
+  link_preview:
+    author_html: By %{name}
+    potentially_sensitive_content:
+      action: Click to show
+      confirm_visit: Are you sure you wish to open this link?
+      hide_button: Hide
+      label: Potentially sensitive content
   lists:
     errors:
       limit: You have reached the maximum number of lists
@@ -1640,6 +1708,10 @@ en:
       title: New mention
     poll:
       subject: A poll by %{name} has ended
+    quote:
+      body: 'Your post was quoted by %{name}:'
+      subject: "%{name} quoted your post"
+      title: New quote
     reblog:
       body: 'Your post was boosted by %{name}:'
       subject: "%{name} boosted your post"
@@ -1689,6 +1761,9 @@ en:
       self_vote: You cannot vote in your own polls
       too_few_options: must have more than one item
       too_many_options: can't contain more than %{max} items
+    vote: Vote
+  posting_defaults:
+    explanation: These settings will be used as defaults when you create new posts, but you can edit them per post within the composer.
   preferences:
     other: Other
     posting_defaults: Posting defaults
@@ -1844,6 +1919,9 @@ en:
         other: "%{count} videos"
     boosted_from_html: Boosted from %{acct_link}
     content_warning: 'Content warning: %{warning}'
+    content_warnings:
+      hide: Hide post
+      show: Show more
     default_language: Same as interface language
     disallowed_hashtags:
       one: 'contained a disallowed hashtag: %{tags}'
@@ -1851,21 +1929,30 @@ en:
     edited_at_html: Edited %{date}
     errors:
       in_reply_not_found: The post you are trying to reply to does not appear to exist.
+      quoted_status_not_found: The post you are trying to quote does not appear to exist.
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
       direct: Posts that are only visible to mentioned users cannot be pinned
       limit: You have already pinned the maximum number of posts
       ownership: Someone else's post cannot be pinned
       reblog: A boost cannot be pinned
+    quote_error:
+      not_available: Post unavailable
+      pending_approval: Post pending
+      revoked: Post removed by author
+    quote_policies:
+      followers: Followers only
+      nobody: Just me
+      public: Anyone
+    quote_post_author: Quoted a post by %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Direct
-      private: Followers-only
-      private_long: Only show to followers
+      direct: Private mention
+      private: Followers only
       public: Public
-      public_long: Everyone can see
-      unlisted: Unlisted
-      unlisted_long: Everyone can see, but not listed on public timelines
+      public_long: Anyone on and off Mastodon
+      unlisted: Quiet public
+      unlisted_long: Hidden from Mastodon search results, trending, and public timelines
   statuses_cleanup:
     enabled: Automatically delete old posts
     enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below
@@ -1910,6 +1997,11 @@ en:
     does_not_match_previous_name: does not match the previous name
   terms_of_service:
     title: Terms of Service
+  terms_of_service_interstitial:
+    future_preamble_html: We're making some changes to our terms of service, which will be effective on <strong>%{date}</strong>. We encourage you to review the updated terms.
+    past_preamble_html: We have changed our terms of service since your last visit. We encourage you to review the updated terms.
+    review_link: Review terms of service
+    title: The terms of service of %{domain} are changing
   themes:
     contrast: Mastodon (High contrast)
     default: Mastodon (Dark)
@@ -2049,7 +2141,6 @@ en:
       post_action: Compose
       post_step: Say hello to the world with text, photos, videos, or polls.
       post_title: Make your first post
-      share_action: Share
       share_step: Let your friends know how to find you on Mastodon.
       share_title: Share your Mastodon profile
       sign_in_action: Sign in

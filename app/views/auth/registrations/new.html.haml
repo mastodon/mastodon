@@ -56,7 +56,7 @@
     .fields-group
       = f.input :date_of_birth,
                 as: :date_of_birth,
-                hint: t('simple_form.hints.user.date_of_birth', age: Setting.min_age.to_i),
+                hint: t('simple_form.hints.user.date_of_birth', count: Setting.min_age.to_i, domain: site_hostname),
                 required: true,
                 wrapper: :with_block_label
 

@@ -42,37 +42,22 @@ class Api::Fasp::BaseController < ApplicationController
   end
 
   def validate_signature!
-    signature_input = request.headers['signature-input']&.encode('UTF-8')
-    raise Error, 'signature-input is missing' if signature_input.blank?
+    raise Error, 'signature-input is missing' if request.headers['signature-input'].blank?
 
-    keyid = signature_input.match(KEYID_PATTERN)[1]
-    provider = Fasp::Provider.find(keyid)
-    linzer_request = Linzer.new_request(
-      request.method,
-      request.original_url,
-      {},
-      {
-        'content-digest' => request.headers['content-digest'],
-        'signature-input' => signature_input,
-        'signature' => request.headers['signature'],
-      }
-    )
-    message = Linzer::Message.new(linzer_request)
-    key = Linzer.new_ed25519_public_key(provider.provider_public_key_pem, keyid)
-    signature = Linzer::Signature.build(message.headers)
-    Linzer.verify(key, message, signature)
+    provider = nil
+
+    Linzer.verify!(request.rack_request, no_older_than: 5.minutes) do |keyid|
+      provider = Fasp::Provider.find(keyid)
+      Linzer.new_ed25519_public_key(provider.provider_public_key_pem, keyid)
+    end
+
     @current_provider = provider
   end
 
   def sign_response
     response.headers['content-digest'] = "sha-256=:#{OpenSSL::Digest.base64digest('sha256', response.body || '')}:"
-
-    linzer_response = Linzer.new_response(response.body, response.status, { 'content-digest' => response.headers['content-digest'] })
-    message = Linzer::Message.new(linzer_response)
     key = Linzer.new_ed25519_key(current_provider.server_private_key_pem)
-    signature = Linzer.sign(key, message, %w(@status content-digest))
-
-    response.headers.merge!(signature.to_h)
+    Linzer.sign!(response, key:, components: %w(@status content-digest))
   end
 
   def check_fasp_enabled

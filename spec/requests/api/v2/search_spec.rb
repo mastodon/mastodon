@@ -98,7 +98,7 @@ RSpec.describe 'Search API' do
       context 'when search raises syntax error' do
         before { allow(Search).to receive(:new).and_raise(Mastodon::SyntaxError) }
 
-        it 'returns http unprocessable_entity' do
+        it 'returns http unprocessable_content' do
           get '/api/v2/search', headers: headers, params: params
 
           expect(response).to have_http_status(422)
@@ -116,6 +116,15 @@ RSpec.describe 'Search API' do
           expect(response).to have_http_status(404)
           expect(response.content_type)
             .to start_with('application/json')
+        end
+      end
+
+      context 'when `account_search` FASP is enabled', feature: :fasp do
+        it 'enqueues a retrieval job and adds a header to inform the client' do
+          get '/api/v2/search', headers: headers, params: params
+
+          expect(Fasp::AccountSearchWorker).to have_enqueued_sidekiq_job
+          expect(response.headers['Mastodon-Async-Refresh']).to be_present
         end
       end
     end

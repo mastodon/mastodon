@@ -6,7 +6,10 @@ import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
-import CheckIcon from '@/material-icons/400-24px/check.svg?react';
+import { AccountBio } from '@/mastodon/components/account_bio';
+import { AccountFields } from '@/mastodon/components/account_fields';
+import { DisplayName } from '@/mastodon/components/display_name';
+import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
@@ -31,7 +34,6 @@ import { initMuteModal } from 'mastodon/actions/mutes';
 import { initReport } from 'mastodon/actions/reports';
 import { Avatar } from 'mastodon/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'mastodon/components/badge';
-import { Button } from 'mastodon/components/button';
 import { CopyIconButton } from 'mastodon/components/copy_icon_button';
 import {
   FollowersCounter,
@@ -44,10 +46,9 @@ import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 import { ShortNumber } from 'mastodon/components/short_number';
+import { AccountNote } from 'mastodon/features/account/components/account_note';
 import { DomainPill } from 'mastodon/features/account/components/domain_pill';
-import AccountNoteContainer from 'mastodon/features/account/containers/account_note_container';
 import FollowRequestNoteContainer from 'mastodon/features/account/containers/follow_request_note_container';
-import { useLinks } from 'mastodon/hooks/useLinks';
 import { useIdentity } from 'mastodon/identity_context';
 import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
@@ -59,6 +60,7 @@ import {
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
+import { FamiliarFollowers } from './familiar_followers';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
 
@@ -107,7 +109,6 @@ const messages = defineMessages({
     id: 'account.disable_notifications',
     defaultMessage: 'Stop notifying me when @{name} posts',
   },
-  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
   preferences: {
     id: 'navigation_bar.preferences',
     defaultMessage: 'Preferences',
@@ -184,14 +185,6 @@ const titleFromAccount = (account: Account) => {
   return `${prefix} (@${acct})`;
 };
 
-const dateFormatOptions: Intl.DateTimeFormatOptions = {
-  month: 'short',
-  day: 'numeric',
-  year: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit',
-};
-
 export const AccountHeader: React.FC<{
   accountId: string;
   hideTabs?: boolean;
@@ -204,7 +197,6 @@ export const AccountHeader: React.FC<{
     state.relationships.get(accountId),
   );
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
-  const handleLinkClick = useLinks();
 
   const handleBlock = useCallback(() => {
     if (!account) {
@@ -377,48 +369,18 @@ export const AccountHeader: React.FC<{
     });
   }, [account]);
 
-  const handleMouseEnter = useCallback(
-    ({ currentTarget }: React.MouseEvent) => {
-      if (autoPlayGif) {
-        return;
-      }
-
-      currentTarget
-        .querySelectorAll<HTMLImageElement>('.custom-emoji')
-        .forEach((emoji) => {
-          emoji.src = emoji.getAttribute('data-original') ?? '';
-        });
-    },
-    [],
-  );
-
-  const handleMouseLeave = useCallback(
-    ({ currentTarget }: React.MouseEvent) => {
-      if (autoPlayGif) {
-        return;
-      }
-
-      currentTarget
-        .querySelectorAll<HTMLImageElement>('.custom-emoji')
-        .forEach((emoji) => {
-          emoji.src = emoji.getAttribute('data-static') ?? '';
-        });
-    },
-    [],
-  );
-
   const suspended = account?.suspended;
   const isRemote = account?.acct !== account?.username;
   const remoteDomain = isRemote ? account?.acct.split('@')[1] : null;
 
-  const menu = useMemo(() => {
+  const menuItems = useMemo(() => {
     const arr: MenuItem[] = [];
 
     if (!account) {
       return arr;
     }
 
-    if (signedIn && account.id !== me && !account.suspended) {
+    if (signedIn && !account.suspended) {
       arr.push({
         text: intl.formatMessage(messages.mention, {
           name: account.username,
@@ -442,38 +404,7 @@ export const AccountHeader: React.FC<{
       arr.push(null);
     }
 
-    if (account.id === me) {
-      arr.push({
-        text: intl.formatMessage(messages.edit_profile),
-        href: '/settings/profile',
-      });
-      arr.push({
-        text: intl.formatMessage(messages.preferences),
-        href: '/settings/preferences',
-      });
-      arr.push({ text: intl.formatMessage(messages.pins), to: '/pinned' });
-      arr.push(null);
-      arr.push({
-        text: intl.formatMessage(messages.follow_requests),
-        to: '/follow_requests',
-      });
-      arr.push({
-        text: intl.formatMessage(messages.favourites),
-        to: '/favourites',
-      });
-      arr.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
-      arr.push({
-        text: intl.formatMessage(messages.followed_tags),
-        to: '/followed_tags',
-      });
-      arr.push(null);
-      arr.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
-      arr.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
-      arr.push({
-        text: intl.formatMessage(messages.domain_blocks),
-        to: '/domain_blocks',
-      });
-    } else if (signedIn) {
+    if (signedIn) {
       if (relationship?.following) {
         if (!relationship.muting) {
           if (relationship.showing_reblogs) {
@@ -612,8 +543,7 @@ export const AccountHeader: React.FC<{
     }
 
     if (
-      (account.id !== me &&
-        (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) ||
+      (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS ||
       (isRemote &&
         (permissions & PERMISSION_MANAGE_FEDERATION) ===
           PERMISSION_MANAGE_FEDERATION)
@@ -664,6 +594,15 @@ export const AccountHeader: React.FC<{
     handleReport,
     handleUnblockDomain,
   ]);
+
+  const menu = accountId !== me && (
+    <Dropdown
+      disabled={menuItems.length === 0}
+      items={menuItems}
+      icon='ellipsis-v'
+      iconComponent={MoreHorizIcon}
+    />
+  );
 
   if (!account) {
     return null;
@@ -778,21 +717,16 @@ export const AccountHeader: React.FC<{
     );
   }
 
-  if (relationship?.blocking) {
+  const isMovedAndUnfollowedAccount = account.moved && !relationship?.following;
+
+  if (!isMovedAndUnfollowedAccount) {
     actionBtn = (
-      <Button
-        text={intl.formatMessage(messages.unblock, {
-          name: account.username,
-        })}
-        onClick={handleBlock}
+      <FollowButton
+        accountId={accountId}
+        className='account__header__follow-button'
+        labelLength='long'
       />
     );
-  } else {
-    actionBtn = <FollowButton accountId={accountId} />;
-  }
-
-  if (account.moved && !relationship?.following) {
-    actionBtn = '';
   }
 
   if (account.locked) {
@@ -800,13 +734,11 @@ export const AccountHeader: React.FC<{
       <Icon
         id='lock'
         icon={LockIcon}
-        title={intl.formatMessage(messages.account_locked)}
+        aria-label={intl.formatMessage(messages.account_locked)}
       />
     );
   }
 
-  const content = { __html: account.note_emojified };
-  const displayNameHtml = { __html: account.display_name_html };
   const fields = account.fields;
   const isLocal = !account.acct.includes('@');
   const username = account.acct.split('@')[0];
@@ -839,12 +771,10 @@ export const AccountHeader: React.FC<{
         <MovedNote accountId={account.id} targetAccountId={account.moved} />
       )}
 
-      <div
+      <AnimateEmojiProvider
         className={classNames('account__header', {
           inactive: !!account.moved,
         })}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         {!(suspended || hidden || account.moved) &&
           relationship?.requested_by && (
@@ -874,26 +804,21 @@ export const AccountHeader: React.FC<{
             >
               <Avatar
                 account={suspended || hidden ? undefined : account}
-                size={90}
+                size={92}
               />
             </a>
 
-            <div className='account__header__tabs__buttons'>
+            <div className='account__header__buttons account__header__buttons--desktop'>
+              {!hidden && actionBtn}
               {!hidden && bellBtn}
               {!hidden && shareBtn}
-              <Dropdown
-                disabled={menu.length === 0}
-                items={menu}
-                icon='ellipsis-v'
-                iconComponent={MoreHorizIcon}
-              />
-              {!hidden && actionBtn}
+              {menu}
             </div>
           </div>
 
           <div className='account__header__tabs__name'>
             <h1>
-              <span dangerouslySetInnerHTML={displayNameHtml} />
+              <DisplayName account={account} variant='simple' />
               <small>
                 <span>
                   @{username}
@@ -913,22 +838,27 @@ export const AccountHeader: React.FC<{
             <div className='account__header__badges'>{badges}</div>
           )}
 
+          {account.id !== me && signedIn && !(suspended || hidden) && (
+            <FamiliarFollowers accountId={accountId} />
+          )}
+
+          <div className='account__header__buttons account__header__buttons--mobile'>
+            {!hidden && actionBtn}
+            {!hidden && bellBtn}
+            {menu}
+          </div>
+
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
-              <div
-                className='account__header__bio'
-                onClickCapture={handleLinkClick}
-              >
+              <div className='account__header__bio'>
                 {account.id !== me && signedIn && (
-                  <AccountNoteContainer accountId={accountId} />
+                  <AccountNote accountId={accountId} />
                 )}
 
-                {account.note.length > 0 && account.note !== '<p></p>' && (
-                  <div
-                    className='account__header__content translate'
-                    dangerouslySetInnerHTML={content}
-                  />
-                )}
+                <AccountBio
+                  accountId={accountId}
+                  className='account__header__content'
+                />
 
                 <div className='account__header__fields'>
                   <dl>
@@ -948,46 +878,7 @@ export const AccountHeader: React.FC<{
                     </dd>
                   </dl>
 
-                  {fields.map((pair, i) => (
-                    <dl
-                      key={i}
-                      className={classNames({
-                        verified: pair.verified_at,
-                      })}
-                    >
-                      <dt
-                        dangerouslySetInnerHTML={{
-                          __html: pair.name_emojified,
-                        }}
-                        title={pair.name}
-                        className='translate'
-                      />
-
-                      <dd className='translate' title={pair.value_plain ?? ''}>
-                        {pair.verified_at && (
-                          <span
-                            title={intl.formatMessage(messages.linkVerifiedOn, {
-                              date: intl.formatDate(
-                                pair.verified_at,
-                                dateFormatOptions,
-                              ),
-                            })}
-                          >
-                            <Icon
-                              id='check'
-                              icon={CheckIcon}
-                              className='verified__mark'
-                            />
-                          </span>
-                        )}{' '}
-                        <span
-                          dangerouslySetInnerHTML={{
-                            __html: pair.value_emojified,
-                          }}
-                        />
-                      </dd>
-                    </dl>
-                  ))}
+                  <AccountFields fields={fields} emojis={account.emojis} />
                 </div>
               </div>
 
@@ -1027,7 +918,7 @@ export const AccountHeader: React.FC<{
             </div>
           )}
         </div>
-      </div>
+      </AnimateEmojiProvider>
 
       {!(hideTabs || hidden) && (
         <div className='account__section-headline'>

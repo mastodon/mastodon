@@ -26,6 +26,8 @@ RSpec.describe 'Admin Rules' do
       it 'creates new record with valid attributes' do
         visit admin_rules_path
 
+        click_on I18n.t('admin.rules.add_new')
+
         # Invalid submission
         fill_in 'rule_text', with: ''
         expect { submit_form }
@@ -43,6 +45,29 @@ RSpec.describe 'Admin Rules' do
 
       def submit_form
         click_on I18n.t('admin.rules.add_new')
+      end
+    end
+
+    describe 'Moving down an existing rule' do
+      let!(:first_rule) { Fabricate(:rule, text: 'This is another rule') }
+      let!(:second_rule) { Fabricate(:rule, text: 'This is a rule') }
+
+      it 'moves the rule down' do
+        visit admin_rules_path
+
+        expect(page)
+          .to have_content(I18n.t('admin.rules.title'))
+
+        expect(Rule.ordered.pluck(:text)).to eq ['This is another rule', 'This is a rule']
+
+        click_on(I18n.t('admin.rules.move_down'))
+
+        expect(page)
+          .to have_content(I18n.t('admin.rules.title'))
+          .and have_content(first_rule.text)
+          .and have_content(second_rule.text)
+
+        expect(Rule.ordered.pluck(:text)).to eq ['This is a rule', 'This is another rule']
       end
     end
 

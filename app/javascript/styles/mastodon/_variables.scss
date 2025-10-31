@@ -2,8 +2,8 @@
 @use 'functions' as *;
 
 // Commonly used web colors
-$black: #000000; // Black
-$white: #ffffff; // White
+$black: #000; // Black
+$white: #fff; // White
 $red-600: #b7253d !default; // Deep Carmine
 $red-500: #df405a !default; // Cerise
 $blurple-600: #563acc; // Iris
@@ -86,6 +86,11 @@ $inverted-text-color: $ui-base-color !default;
 $lighter-text-color: $ui-base-lighter-color !default;
 $light-text-color: $ui-primary-color !default;
 
+// Keep this filter a SCSS variable rather than
+// a CSS Custom Property due to this Safari bug:
+// https://github.com/mdn/browser-compat-data/issues/25914#issuecomment-2676190245
+$backdrop-blur-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+
 // Language codes that uses CJK fonts
 $cjk-langs: ja, ko, zh-CN, zh-HK, zh-TW;
 
@@ -96,6 +101,7 @@ $media-modal-media-max-width: 100%;
 $media-modal-media-max-height: 80%;
 
 $no-gap-breakpoint: 1175px;
+$mobile-menu-breakpoint: 760px;
 $mobile-breakpoint: 630px;
 $no-columns-breakpoint: 600px;
 

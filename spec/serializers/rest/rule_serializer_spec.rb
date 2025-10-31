@@ -11,7 +11,8 @@ RSpec.describe REST::RuleSerializer do
     it 'returns expected values' do
       expect(subject)
         .to include(
-          'id' => be_a(String).and(eq('123'))
+          'id' => be_a(String).and(eq('123')),
+          'translations' => be_a(Hash)
         )
     end
   end

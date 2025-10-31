@@ -190,6 +190,7 @@ gl:
         create_relay: Crear Repetidor
         create_unavailable_domain: Crear dominio Non dispoñible
         create_user_role: Crear Rol
+        create_username_block: Crear regra para Identificadores
         demote_user: Degradar usuaria
         destroy_announcement: Eliminar anuncio
         destroy_canonical_email_block: Eliminar bloqueo do correo
@@ -203,6 +204,7 @@ gl:
         destroy_status: Eliminar publicación
         destroy_unavailable_domain: Eliminar dominio Non dispoñible
         destroy_user_role: Eliminar Rol
+        destroy_username_block: Eliminar regra para Identificadores
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar emoticona personalizada
         disable_relay: Desactivar Repetidor
@@ -214,7 +216,7 @@ gl:
         enable_user: Activar usuaria
         memorialize_account: Transformar en conta conmemorativa
         promote_user: Promover usuaria
-        publish_terms_of_service: Publicar os Termos do Servizo
+        publish_terms_of_service: Publicar as Condicións do Servizo
         reject_appeal: Rexeitar apelación
         reject_user: Rexeitar Usuaria
         remove_avatar_user: Eliminar avatar
@@ -237,6 +239,7 @@ gl:
         update_report: Actualización da denuncia
         update_status: Actualizar publicación
         update_user_role: Actualizar Rol
+        update_username_block: Actualizar regra para Identificadores
       actions:
         approve_appeal_html: "%{name} aprobou a apelación da decisión da moderación de %{target}"
         approve_user_html: "%{name} aprobou o rexistro de %{target}"
@@ -255,6 +258,7 @@ gl:
         create_relay_html: "%{name} creou un repetidor en %{target}"
         create_unavailable_domain_html: "%{name} deixou de interactuar co dominio %{target}"
         create_user_role_html: "%{name} creou o rol %{target}"
+        create_username_block_html: "%{name} engadiu unha regra para identificadores que contén %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
         destroy_announcement_html: "%{name} eliminou o anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o correo con suma de comprobación %{target}"
@@ -268,6 +272,7 @@ gl:
         destroy_status_html: "%{name} eliminou a publicación de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a interacción co dominio %{target}"
         destroy_user_role_html: "%{name} eliminou o rol %{target}"
+        destroy_username_block_html: "%{name} retirou unha regra para identificadores que contén %{target}"
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
         disable_relay_html: "%{name} desactivou o repetidor %{target}"
@@ -279,7 +284,7 @@ gl:
         enable_user_html: "%{name} activou as credenciais para a usuaria %{target}"
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
         promote_user_html: "%{name} promocionou a usuaria %{target}"
-        publish_terms_of_service_html: "%{name} actualizou os termos do servizo"
+        publish_terms_of_service_html: "%{name} actualizou as condicións do servizo"
         reject_appeal_html: "%{name} rexeitou a apelación da decisión da moderación de %{target}"
         reject_user_html: "%{name} rexeitou o rexistro de %{target}"
         remove_avatar_user_html: "%{name} eliminou o avatar de %{target}"
@@ -302,6 +307,7 @@ gl:
         update_report_html: "%{name} actualizou a denuncia %{target}"
         update_status_html: "%{name} actualizou a publicación de %{target}"
         update_user_role_html: "%{name} cambiou o rol %{target}"
+        update_username_block_html: "%{name} actualizou a regra para identificadores que contén %{target}"
       deleted_account: conta eliminada
       empty: Non se atoparon rexistros.
       filter_by_action: Filtrar por acción
@@ -578,6 +584,13 @@ gl:
         all: Todo
         limited: Limitado
         title: Moderación
+      moderation_notes:
+        create: Engadir nota de moderación
+        created_msg: Creouse correctamente a nota de moderación da instancia!
+        description_html: Ver e deixar notas de referencia para ti e outras moderadoras
+        destroyed_msg: Eliminouse correctamente a nota de moderación!
+        placeholder: Información sobre esta instancia, accións realizadas, ou calquera outra cousa que che axude no futuro a moderar esta instancia.
+        title: Notas de moderación
       private_comment: Comentario privado
       public_comment: Comentario público
       purge: Purgar
@@ -783,20 +796,31 @@ gl:
         view_dashboard_description: Permite acceder ao taboleiro e varias métricas do servidor
         view_devops: DevOps
         view_devops_description: Permite acceder aos taboleiros Sidekiq e phHero
+        view_feeds: Ver as canles do directo e temas
+        view_feeds_description: Permite ás usuarias acceder ás canles de directo e temas independentemento dos axustes do servidor.
       title: Roles
     rules:
       add_new: Engadir regra
+      add_translation: Engadir tradución
       delete: Eliminar
-      description_html: Aínda que a maioría di que leu e acepta os termos de servizo, normalmente non os lemos ata que xurde un problema. <strong>Facilita a visualización das regras do servidor mostrándoas nunha lista de puntos.</strong> Intenta manter as regras individuais curtas e simples, mais non dividilas en demasiados elementos separados.
+      description_html: Aínda que a maioría di que leu e acepta as condicións do servizo, normalmente non as lemos ata que xurde un problema. <strong>Facilita a visualización das regras do servidor mostrándoas nunha lista de puntos.</strong> Intenta manter as regras individuais curtas e simples, mais non dividilas en demasiados elementos separados.
       edit: Editar regra
       empty: Aínda non se definiron as regras do servidor.
+      move_down: Baixar
+      move_up: Subir
       title: Regras do servidor
+      translation: Tradución
+      translations: Traducións
+      translations_explanation: De xeito optativo podes engadir traducións das normas. Mostrarase o valor por defecto se non hai unha tradución dispoñible. Pon coidado en que a versión traducida estea ao día respecto da versión por defecto.
     settings:
       about:
         manage_rules: Xestionar regras do servidor
         preamble: Proporciona información detallada acerca do xeito en que se xestiona, modera e financia o servidor.
         rules_hint: Hai un espazo dedicado para as normas que é de agardar as usuarias acaten.
         title: Sobre
+      allow_referrer_origin:
+        desc: 'Cando as túas usuarias premen en ligazóns a sitios web externos o seu navegador pode enviar o enderezo do teu servidor Mastodon como «referrer». Destactiva esta opción se isto permitiría identificar de xeito único ás túas usuarias. Ex.: un servidor persoal de Mastodon.'
+        title: Permitir a sitios web externos ver o teu servidor Mastodon como orixe do tráfico
       appearance:
         preamble: Personalizar a interface web de Mastodon.
         title: Aparencia
@@ -816,9 +840,9 @@ gl:
       discovery:
         follow_recommendations: Recomendacións de seguimento
         preamble: Destacar contido interesante é importante para axudar a que as novas usuarias se sintan cómodas se non coñecen a ninguén en Mastodon. Xestiona os diferentes xeitos de promocionar contidos.
+        privacy: Privacidade
         profile_directory: Directorio de perfís
         public_timelines: Cronoloxías públicas
-        publish_discovered_servers: Publicar os servidores descubertos
         publish_statistics: Publicar estatísticas
         title: Descubrir
         trends: Tendencias
@@ -826,6 +850,16 @@ gl:
         all: Para todos
         disabled: Para ninguén
         users: Para usuarias locais conectadas
+      feed_access:
+        modes:
+          authenticated: Só para usuarias con sesión iniciada
+          disabled: Requerir un rol da usuaria específico
+          public: Para calquera
+      landing_page:
+        values:
+          about: Sobre
+          local_feed: Cronoloxía Local
+          trends: Tendencias
       registrations:
         moderation_recommandation: Por favor, pon interese en crear un equipo de moderación competente e reactivo antes de permitir que calquera poida crear unha conta!
         preamble: Xestiona quen pode crear unha conta no teu servidor.
@@ -879,6 +913,7 @@ gl:
       no_status_selected: Non se cambiou ningunha publicación xa que ningunha foi seleccionada
       open: Abrir publicación
       original_status: Publicación orixinal
+      quotes: Citas
       reblogs: Promocións
       replied_to_html: Respondeu a %{acct_link}
       status_changed: Publicación editada
@@ -886,6 +921,7 @@ gl:
       title: Publicacións da conta - @%{name}
       trending: Popular
       view_publicly: Ver publicamente
+      view_quoted_post: Ver publicación citada
       visibility: Visibilidade
       with_media: con medios
     strikes:
@@ -903,6 +939,8 @@ gl:
     system_checks:
       database_schema_check:
         message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
+      elasticsearch_analysis_index_mismatch:
+        message_html: Os axustes do analizador do índice Elasticsearch están obsoletos. Por favor executa <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: O grupo Elasticsearch non está ben (en vermello), as ferramentas de busca non están dispoñibles
       elasticsearch_health_yellow:
@@ -963,22 +1001,22 @@ gl:
       title: Cancelos
       updated_msg: Actualizaronse os axustes dos cancelos
     terms_of_service:
-      back: Volver aos termos do servizo
+      back: Volver ás condicións do servizo
       changelog: Que cambios se fixeron
-      create: Usa os teus propios
+      create: Usa as túas propias
       current: Actuais
       draft: Borrador
       generate: Usar un modelo
       generates:
         action: Crear
-        chance_to_review_html: "<strong>Vanse publicar automaticamente os termos do servizo creados.</strong> Terás a oportunidade de revisar o resultado. Por favor completa os detalles precisos para continuar."
+        chance_to_review_html: "<strong>Vanse publicar automaticamente as condicións do servizo creadas.</strong> Terás a oportunidade de revisar o resultado. Por favor completa os detalles precisos para continuar."
         explanation_html: O modelo dos termos do servizo proporcionados é soamente informativo, e en ningún caso constitúe un consello legal. Por favor realiza unha consulta legal sobre a túa situación concreta e posibles cuestións legais que debas afrontar.
-        title: Configurar os Termos do Servizo
-      going_live_on_html: Aplicados, con efecto desde %{date}
+        title: Configurar as Condicións do Servizo
+      going_live_on_html: Aplicadas, con efecto desde %{date}
       history: Historial
       live: Actuais
-      no_history: Non hai rexistrados cambios nos termos do servizo.
-      no_terms_of_service_html: Actualmente non tes configurados ningúns termos do servizo. Os Termos do servizo están pensados para dar claridade e protexerte de responsabilidades potenciais nas disputas coas túas usuarias.
+      no_history: Non hai rexistrados cambios nas condicións do servizo.
+      no_terms_of_service_html: Actualmente non tes configurados ningunhas condicións do servizo. As Condicións do Servizo están pensadas para dar claridade e protexerte de responsabilidades potenciais nas disputas coas túas usuarias.
       notified_on_html: Informouse ás usuarias o %{date}
       notify_users: Informar ás usuarias
       preview:
@@ -991,7 +1029,7 @@ gl:
       publish: Publicar
       published_on_html: Publicados o %{date}
       save_draft: Gardar borrador
-      title: Termos do Servizo
+      title: Condicións do Servizo
     title: Administración
     trends:
       allow: Permitir
@@ -1067,6 +1105,25 @@ gl:
           other: Utilizado por %{count} persoas na última semana
       title: Recomendacións e Suxestións
       trending: Popularidade
+    username_blocks:
+      add_new: Engadir nova
+      block_registrations: Bloqueo dos rexistros
+      comparison:
+        contains: Contén
+        equals: É igual a
+      contains_html: Contén %{string}
+      created_msg: Creouse correctamente a regra para identificadores
+      delete: Eliminar
+      edit:
+        title: Editar regra para identificadores
+      matches_exactly_html: É igual a %{string}
+      new:
+        create: Crear regra
+        title: Crear nova regra para identificadores
+      no_username_block_selected: Non se cambiou ningunha regra porque non se seleccionou ningunha
+      not_permitted: Non permitido
+      title: Regras para identificadores
+      updated_msg: Actualizouse correctamente a regra
     warning_presets:
       add_new: Engadir novo
       delete: Eliminar
@@ -1139,10 +1196,10 @@ gl:
     hint_html: Se queres mudarte desde outra conta a esta nova, aquí podes crear un alcume, que é requerido antes de poder proceder a mover os seguidores da conta antiga a esta nova. Esta acción por si mesma é <strong>inocua e reversible</strong>. <strong>A migración da conta iníciase desde a conta antiga</strong>.
     remove: Desligar alcume
   appearance:
-    advanced_web_interface: Interface web avanzada
-    advanced_web_interface_hint: Se queres empregar todo o ancho da pantalla, a interface web avanzada permíteche configurar diferentes columnas para ver tanta información como queiras. Inicio, notificacións, cronoloxía federada, varias listaxes e cancelos.
+    advanced_settings: Axustes avanzados
     animations_and_accessibility: Animacións e accesibilidade
-    confirmation_dialogs: Diálogos de confirmación
+    boosting_preferences: Preferencias das promocións
+    boosting_preferences_info_html: "<strong>Info:</strong> Independentemente dos axustes, <kbd>Maiús</kbd> + <kbd>Click</kbd> na icona %{icon} Promover promoverá inmediatamente."
     discovery: Descubrir
     localization:
       body: Mastodon tradúceno persoas voluntarias.
@@ -1244,7 +1301,7 @@ gl:
       view_strikes: Ver avisos anteriores respecto da túa conta
     too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
     use_security_key: Usa chave de seguridade
-    user_agreement_html: Lin e acepto os <a href="%{terms_of_service_path}" target="_blank">termos do servizo</a> e a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
+    user_agreement_html: Lin e acepto as <a href="%{terms_of_service_path}" target="_blank">condicións do servizo</a> e a <a href="%{privacy_policy_path}" target="_blank">directiva de privacidade</a>
     user_privacy_agreement_html: Lin e acepto a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
   author_attribution:
     example_title: Texto de mostra
@@ -1294,7 +1351,7 @@ gl:
       email_contact_html: Se non o recibes, podes escribir a <a href="mailto:%{email}">%{email}</a> pedindo axuda
       email_reconfirmation_html: Se non recibes o correo de confirmación, podes <a href="%{path}">solicitalo de novo</a>
       irreversible: Non poderás restaurar ou reactivar a conta
-      more_details_html: Para máis detalles, mira a <a href="%{terms_path}">política de privacidade</a>.
+      more_details_html: Para máis detalles, mira a <a href="%{terms_path}">directiva de privacidade</a>.
       username_available: O nome de usuaria estará dispoñible novamente
       username_unavailable: O nome de usuaria non estará dispoñible
   disputes:
@@ -1331,6 +1388,10 @@ gl:
     basic_information: Información básica
     hint_html: "<strong>Personaliza o que van ver no teu perfil público e ao lado das túas publicacións.</strong> As outras persoas estarán máis animadas a seguirte e interactuar contigo se engades algún dato sobre ti así como unha imaxe de perfil."
     other: Outros
+  emoji_styles:
+    auto: Auto
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': A solicitude que enviou non é válida ou ten formato incorrecto.
     '403': Non ten permiso para ver esta páxina.
@@ -1540,6 +1601,13 @@ gl:
       expires_at: Caduca
       uses: Usos
     title: Convidar a persoas
+  link_preview:
+    author_html: De %{name}
+    potentially_sensitive_content:
+      action: Preme para ver
+      confirm_visit: Tes certeza de querer abrir esta ligazón?
+      hide_button: Ocultar
+      label: Posible contido sensible
   lists:
     errors:
       limit: Xa acadaches o número máximo de listas
@@ -1640,6 +1708,10 @@ gl:
       title: Nova mención
     poll:
       subject: A enquisa de %{name} rematou
+    quote:
+      body: 'A túa publicación foi citada por %{name}:'
+      subject: "%{name} citou a túa publicación"
+      title: Nova cita
     reblog:
       body: 'A túa publicación promovida por %{name}:'
       subject: "%{name} promoveu a túa publicación"
@@ -1688,6 +1760,9 @@ gl:
       self_vote: Non podes votar nas túas enquisas
       too_few_options: debe ter máis de unha opción
       too_many_options: non pode haber máis de %{max} opcións
+    vote: Votar
+  posting_defaults:
+    explanation: Estes axustes vanse usar como valores por defecto para as novas publicacións, pero podes axustalas de xeito individual na caixa de edición.
   preferences:
     other: Outro
     posting_defaults: Valores por defecto
@@ -1843,6 +1918,9 @@ gl:
         other: "%{count} vídeos"
     boosted_from_html: Promovida desde %{acct_link}
     content_warning: 'Aviso sobre o contido: %{warning}'
+    content_warnings:
+      hide: Ocultar publicación
+      show: Ver máis
     default_language: Igual que o idioma da interface
     disallowed_hashtags:
       one: 'contiña un cancelo non permitido: %{tags}'
@@ -1850,21 +1928,30 @@ gl:
     edited_at_html: Editado %{date}
     errors:
       in_reply_not_found: A publicación á que tentas responder semella que non existe.
+      quoted_status_not_found: Parece que a publicación que intentas citar non existe.
     over_character_limit: Excedeu o límite de caracteres %{max}
     pin_errors:
       direct: As publicacións que só son visibles para as usuarias mencionadas non se poden fixar
       limit: Xa fixaches o número máximo permitido de publicacións
       ownership: Non podes fixar a publicación doutra usuaria
       reblog: Non se poden fixar as mensaxes promovidas
+    quote_error:
+      not_available: Publicación non dispoñible
+      pending_approval: Publicación pendente
+      revoked: Publicación retirada pola autora
+    quote_policies:
+      followers: Só para seguidoras
+      nobody: Só para min
+      public: Calquera
+    quote_post_author: Citou unha publicación de %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Directa
-      private: Só seguidoras
-      private_long: Mostrar só as seguidoras
+      direct: Mención privada
+      private: Só para seguidoras
       public: Público
-      public_long: Visible para calquera
-      unlisted: Fóra das listas
-      unlisted_long: Visible para calquera, pero non en cronoloxías públicas
+      public_long: Para calquera dentro e fóra de Mastodon
+      unlisted: Pública limitada
+      unlisted_long: Non aparece nos resultados de buscas en Mastodon, nas tendencias e cronoloxías públicas
   statuses_cleanup:
     enabled: Borrar automáticamente publicacións antigas
     enabled_hint: Borra automáticamente as túas publicacións unha vez acadan certa lonxevidade, a menos que cumpran algunha destas excepcións
@@ -1908,7 +1995,12 @@ gl:
   tags:
     does_not_match_previous_name: non concorda co nome anterior
   terms_of_service:
-    title: Termos do Servizo
+    title: Condicións do Servizo
+  terms_of_service_interstitial:
+    future_preamble_html: Estamos a facer cambios nas condicións do servizo, que terán efecto o <strong>%{date}</strong>. Cremos que debes revisar as condicións actualizados.
+    past_preamble_html: Cambiamos as condicións do servizo desde a túa última visita. Recomendámosche revisar estas condicións actualizadas.
+    review_link: Revisar as condicións do sevizo
+    title: Cambios nas condicións do servizo de %{domain}
   themes:
     contrast: Mastodon (Alto contraste)
     default: Mastodon (Escuro)
@@ -1976,11 +2068,11 @@ gl:
     terms_of_service_changed:
       agreement: Se continúas a usar %{domain} aceptas estas condicións. Se non aceptas as condicións actualizadas podería rematar o acordo con %{domain} en calquera momento e eliminarse a túa conta.
       changelog: 'Dunha ollada, aquí tes o que implican os cambios para ti:'
-      description: 'Estás a recibir este correo porque fixemos cambios nos termos do servizo en %{domain}. Estas actualizacións terán efecto desde o %{date}. Convidámoste a que revises os termos ao completo aquí:'
-      description_html: 'Estás a recibir este correo porque fixemos algúns cambios nos nosos termos do servizo en %{domain}. Estas actualizacións terán efecto desde o <strong>%{date}</strong>. Convidámoste a que leas <a href="%{path}" target="_blank">aquí as condicións actualizadas ao completo</a>:'
+      description: 'Estás a recibir este correo porque fixemos cambios nas condicións do servizo en %{domain}. Estas actualizacións terán efecto desde o %{date}. Convidámoste a que revises os termos ao completo aquí:'
+      description_html: 'Estás a recibir este correo porque fixemos algúns cambios nas nósas condicións do servizo en %{domain}. Estas actualizacións terán efecto desde o <strong>%{date}</strong>. Convidámoste a que leas <a href="%{path}" target="_blank">aquí as condicións actualizadas ao completo</a>:'
       sign_off: O equipo de %{domain}
-      subject: Actualización dos nosos termos do servizo
-      subtitle: Cambiaron os termos do servizo de %{domain}
+      subject: Actualización das condicións do servizo
+      subtitle: Cambiaron as condicións do servizo de %{domain}
       title: Notificación importante
     warning:
       appeal: Enviar unha apelación
@@ -2048,7 +2140,6 @@ gl:
       post_action: Escribir
       post_step: Saúda a todo o mundo con texto, fotos, vídeos ou enquisas.
       post_title: Escribe a túa primeira publicación
-      share_action: Compartir
       share_step: Dille ás amizades como poden atoparte en Mastodon.
       share_title: Comparte o teu perfil en Mastodon
       sign_in_action: Acceder

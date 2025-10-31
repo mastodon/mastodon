@@ -10,10 +10,6 @@ import type { BaseConfirmationModalProps } from './confirmation_modal';
 import { ConfirmationModal } from './confirmation_modal';
 
 const messages = defineMessages({
-  unfollowTitle: {
-    id: 'confirmations.unfollow.title',
-    defaultMessage: 'Unfollow user?',
-  },
   unfollowConfirm: {
     id: 'confirmations.unfollow.confirm',
     defaultMessage: 'Unfollow',
@@ -34,12 +30,11 @@ export const ConfirmUnfollowModal: React.FC<
 
   return (
     <ConfirmationModal
-      title={intl.formatMessage(messages.unfollowTitle)}
-      message={
+      title={
         <FormattedMessage
-          id='confirmations.unfollow.message'
-          defaultMessage='Are you sure you want to unfollow {name}?'
-          values={{ name: <strong>@{account.acct}</strong> }}
+          id='confirmations.unfollow.title'
+          defaultMessage='Unfollow {name}?'
+          values={{ name: `@${account.acct}` }}
         />
       }
       confirm={intl.formatMessage(messages.unfollowConfirm)}

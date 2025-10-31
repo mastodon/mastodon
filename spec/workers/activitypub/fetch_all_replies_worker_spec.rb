@@ -123,8 +123,6 @@ RSpec.describe ActivityPub::FetchAllRepliesWorker do
   end
 
   before do
-    stub_const('Status::FetchRepliesConcern::FETCH_REPLIES_ENABLED', true)
-    allow(FetchReplyWorker).to receive(:push_bulk)
     all_items.each do |item|
       next if [top_note_uri, reply_note_uri].include? item
 
@@ -145,6 +143,12 @@ RSpec.describe ActivityPub::FetchAllRepliesWorker do
       stub_const('ActivityPub::FetchAllRepliesWorker::MAX_REPLIES', 5)
       got_uris = subject.perform(status.id)
       expect(got_uris).to match_array(top_items + top_items_paged)
+    end
+
+    it 'fetches the top status only once' do
+      _ = subject.perform(status.id, { request_id: 0 })
+      expect(FetchReplyWorker).to have_enqueued_sidekiq_job(top_note_uri, { 'prefetched_body' => top_object.deep_stringify_keys, 'request_id' => 0 })
+      expect(a_request(:get, top_note_uri)).to have_been_made.once
     end
   end
 

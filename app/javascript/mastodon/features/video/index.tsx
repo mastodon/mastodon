@@ -27,11 +27,7 @@ import {
   attachFullscreenListener,
   detachFullscreenListener,
 } from 'mastodon/features/ui/util/fullscreen';
-import {
-  displayMedia,
-  useBlurhash,
-  reduceMotion,
-} from 'mastodon/initial_state';
+import { displayMedia, useBlurhash } from 'mastodon/initial_state';
 import { playerSettings } from 'mastodon/settings';
 
 import { HotkeyIndicator } from './components/hotkey_indicator';
@@ -260,7 +256,6 @@ export const Video: React.FC<{
         setMuted(videoRef.current.muted);
         void api.start({
           volume: `${videoRef.current.volume * 100}%`,
-          immediate: reduceMotion,
         });
       }
     },
@@ -346,9 +341,10 @@ export const Video: React.FC<{
     const updateProgress = () => {
       nextFrame = requestAnimationFrame(() => {
         if (videoRef.current) {
+          const progress =
+            videoRef.current.currentTime / videoRef.current.duration;
           void api.start({
-            progress: `${(videoRef.current.currentTime / videoRef.current.duration) * 100}%`,
-            immediate: reduceMotion,
+            progress: isNaN(progress) ? '0%' : `${progress * 100}%`,
             config: config.stiff,
           });
         }
@@ -736,7 +732,6 @@ export const Video: React.FC<{
     if (lastTimeRange > -1) {
       void api.start({
         buffer: `${Math.ceil(videoRef.current.buffered.end(lastTimeRange) / videoRef.current.duration) * 100}%`,
-        immediate: reduceMotion,
       });
     }
   }, [api]);
@@ -751,7 +746,6 @@ export const Video: React.FC<{
 
     void api.start({
       volume: `${videoRef.current.muted ? 0 : videoRef.current.volume * 100}%`,
-      immediate: reduceMotion,
     });
 
     persistVolume(videoRef.current.volume, videoRef.current.muted);
@@ -806,7 +800,7 @@ export const Video: React.FC<{
   // The outer wrapper is necessary to avoid reflowing the layout when going into full screen
   return (
     <div>
-      <div
+      <div /* eslint-disable-line jsx-a11y/click-events-have-key-events */
         role='menuitem'
         className={classNames('video-player', {
           inactive: !revealed,
@@ -820,7 +814,7 @@ export const Video: React.FC<{
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onClick={handleClickRoot}
-        onKeyDown={handleKeyDown}
+        onKeyDownCapture={handleKeyDown}
         tabIndex={0}
       >
         {blurhash && (
@@ -845,7 +839,7 @@ export const Video: React.FC<{
             title={alt}
             lang={lang}
             onClick={handleClick}
-            onKeyDown={handleVideoKeyDown}
+            onKeyDownCapture={handleVideoKeyDown}
             onPlay={handlePlay}
             onPause={handlePause}
             onLoadedData={handleLoadedData}

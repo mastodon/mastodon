@@ -8,13 +8,12 @@ import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import MediaGallery from 'mastodon/components/media_gallery';
 import ModalRoot from 'mastodon/components/modal_root';
 import { Poll } from 'mastodon/components/poll';
-import Audio from 'mastodon/features/audio';
+import { Audio } from 'mastodon/features/audio';
 import Card from 'mastodon/features/status/components/card';
 import MediaModal from 'mastodon/features/ui/components/media_modal';
 import { Video } from 'mastodon/features/video';
 import { IntlProvider } from 'mastodon/locales';
 import { createPollFromServerJSON } from 'mastodon/models/poll';
-import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
 
 const MEDIA_COMPONENTS = { MediaGallery, Video, Card, Poll, Hashtag, Audio };
 
@@ -34,9 +33,6 @@ export default class MediaContainer extends PureComponent {
   };
 
   handleOpenMedia = (media, index, lang) => {
-    document.body.classList.add('with-modals--active');
-    document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
-
     this.setState({ media, index, lang });
   };
 
@@ -45,16 +41,10 @@ export default class MediaContainer extends PureComponent {
     const { media } = JSON.parse(components[options.componentIndex].getAttribute('data-props'));
     const mediaList = fromJS(media);
 
-    document.body.classList.add('with-modals--active');
-    document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
-
     this.setState({ media: mediaList, lang, options });
   };
 
   handleCloseMedia = () => {
-    document.body.classList.remove('with-modals--active');
-    document.documentElement.style.marginRight = '0';
-
     this.setState({
       media: null,
       index: null,

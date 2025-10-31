@@ -9,6 +9,8 @@ import {
   fetchHashtag,
   followHashtag,
   unfollowHashtag,
+  featureHashtag,
+  unfeatureHashtag,
 } from 'mastodon/actions/tags_typed';
 import type { ApiHashtagJSON } from 'mastodon/api_types/tags';
 import { Button } from 'mastodon/components/button';
@@ -27,6 +29,11 @@ const messages = defineMessages({
   adminModeration: {
     id: 'hashtag.admin_moderation',
     defaultMessage: 'Open moderation interface for #{name}',
+  },
+  feature: { id: 'hashtag.feature', defaultMessage: 'Feature on profile' },
+  unfeature: {
+    id: 'hashtag.unfeature',
+    defaultMessage: "Don't feature on profile",
   },
 });
 
@@ -88,22 +95,51 @@ export const HashtagHeader: React.FC<{
   }, [dispatch, tagId, setTag]);
 
   const menu = useMemo(() => {
-    const tmp = [];
+    const arr = [];
 
-    if (
-      tag &&
-      signedIn &&
-      (permissions & PERMISSION_MANAGE_TAXONOMIES) ===
-        PERMISSION_MANAGE_TAXONOMIES
-    ) {
-      tmp.push({
-        text: intl.formatMessage(messages.adminModeration, { name: tag.id }),
-        href: `/admin/tags/${tag.id}`,
+    if (tag && signedIn) {
+      const handleFeature = () => {
+        if (tag.featuring) {
+          void dispatch(unfeatureHashtag({ tagId })).then((result) => {
+            if (isFulfilled(result)) {
+              setTag(result.payload);
+            }
+
+            return '';
+          });
+        } else {
+          void dispatch(featureHashtag({ tagId })).then((result) => {
+            if (isFulfilled(result)) {
+              setTag(result.payload);
+            }
+
+            return '';
+          });
+        }
+      };
+
+      arr.push({
+        text: intl.formatMessage(
+          tag.featuring ? messages.unfeature : messages.feature,
+        ),
+        action: handleFeature,
       });
+
+      arr.push(null);
+
+      if (
+        (permissions & PERMISSION_MANAGE_TAXONOMIES) ===
+        PERMISSION_MANAGE_TAXONOMIES
+      ) {
+        arr.push({
+          text: intl.formatMessage(messages.adminModeration, { name: tagId }),
+          href: `/admin/tags/${tag.id}`,
+        });
+      }
     }
 
-    return tmp;
-  }, [signedIn, permissions, intl, tag]);
+    return arr;
+  }, [setTag, dispatch, tagId, signedIn, permissions, intl, tag]);
 
   const handleFollow = useCallback(() => {
     if (!signedIn || !tag) {

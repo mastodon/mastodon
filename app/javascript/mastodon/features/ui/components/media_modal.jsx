@@ -18,7 +18,7 @@ import { getAverageFromBlurhash } from 'mastodon/blurhash';
 import { GIFV } from 'mastodon/components/gifv';
 import { Icon }  from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
-import Footer from 'mastodon/features/picture_in_picture/components/footer';
+import { Footer } from 'mastodon/features/picture_in_picture/components/footer';
 import { Video } from 'mastodon/features/video';
 import { disableSwiping } from 'mastodon/initial_state';
 
@@ -168,8 +168,8 @@ class MediaModal extends ImmutablePureComponent {
 
     const index = this.getIndex();
 
-    const leftNav  = media.size > 1 && <button tabIndex={0} className='media-modal__nav media-modal__nav--left' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' icon={ChevronLeftIcon} /></button>;
-    const rightNav = media.size > 1 && <button tabIndex={0} className='media-modal__nav  media-modal__nav--right' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' icon={ChevronRightIcon} /></button>;
+    const leftNav  = media.size > 1 && <button tabIndex={0} className='media-modal__nav media-modal__nav--prev' onClick={this.handlePrevClick} aria-label={intl.formatMessage(messages.previous)}><Icon id='chevron-left' icon={ChevronLeftIcon} /></button>;
+    const rightNav = media.size > 1 && <button tabIndex={0} className='media-modal__nav  media-modal__nav--next' onClick={this.handleNextClick} aria-label={intl.formatMessage(messages.next)}><Icon id='chevron-right' icon={ChevronRightIcon} /></button>;
 
     const content = media.map((image, idx) => {
       const width  = image.getIn(['meta', 'original', 'width']) || null;
@@ -201,8 +201,6 @@ class MediaModal extends ImmutablePureComponent {
             preview={image.get('preview_url')}
             blurhash={image.get('blurhash')}
             src={image.get('url')}
-            width={image.get('width')}
-            height={image.get('height')}
             frameRate={image.getIn(['meta', 'original', 'frame_rate'])}
             aspectRatio={`${image.getIn(['meta', 'original', 'width'])} / ${image.getIn(['meta', 'original', 'height'])}`}
             startTime={currentTime || 0}
@@ -219,8 +217,6 @@ class MediaModal extends ImmutablePureComponent {
         return (
           <GIFV
             src={image.get('url')}
-            width={width}
-            height={height}
             key={image.get('url')}
             alt={description}
             lang={lang}

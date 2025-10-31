@@ -28,15 +28,15 @@ class AnnualReport::Archetype < AnnualReport::Source
   end
 
   def polls_count
-    @polls_count ||= report_statuses.where.not(poll_id: nil).count
+    @polls_count ||= report_statuses.only_polls.count
   end
 
   def reblogs_count
-    @reblogs_count ||= report_statuses.where.not(reblog_of_id: nil).count
+    @reblogs_count ||= report_statuses.only_reblogs.count
   end
 
   def replies_count
-    @replies_count ||= report_statuses.where.not(in_reply_to_id: nil).where.not(in_reply_to_account_id: @account.id).count
+    @replies_count ||= report_statuses.where.not(in_reply_to_id: nil).not_replying_to_account(@account).count
   end
 
   def standalone_count

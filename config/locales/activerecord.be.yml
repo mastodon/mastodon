@@ -3,7 +3,7 @@ be:
   activerecord:
     attributes:
       poll:
-        expires_at: Дэдлайн
+        expires_at: Скончыцца
         options: Выбар
       user:
         agreement: Пагадненне аб абслугоўванні
@@ -15,9 +15,16 @@ be:
       user/invite_request:
         text: Прычына
     errors:
+      attributes:
+        domain:
+          invalid: не з’яўляецца сапраўдным даменным імем
+      messages:
+        invalid_domain_on_line: "%{value} не пасуе для карэктнай назвы дамена"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: утрымлівае значэнні без апісанняў
             username:
               invalid: павінна змяшчаць толькі літары, лічбы і ніжнія падкрэсліванні
               reserved: зарэзервавана
@@ -37,18 +44,24 @@ be:
           attributes:
             account_id:
               taken: ужо ў спісе
-          must_be_following: мусіць быць падпісаным уліковым запісам
+          must_be_following: мусіць быць карыстальнікам у Вашых падпісках
         status:
           attributes:
             reblog:
               taken: гэтага допісу ўжо існуе
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: занадта рана, мусіць быць пасля %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: ніжэй за дазволены ўзрост
             email:
               blocked: выкарыстоўвае забароненую крыніцу электроннай пошты
               unreachable: не існуе
             role_id:
-              elevated: не можа быць вышэй за вашу бягучую ролю
+              elevated: не можа быць вышэй за Вашу бягучую ролю
         user_role:
           attributes:
             permissions_as_keys:
@@ -56,7 +69,7 @@ be:
               elevated: не можа ўключыць дазволы, якімі не валодае ваша бягучая роля
               own_role: не можа быць зменены з вашай бягучай роляй
             position:
-              elevated: не можа быць вышэй за вашу бягучую ролю
+              elevated: не можа быць вышэй за Вашу бягучую ролю
               own_role: не можа быць зменены з вашай бягучай роляй
         webhook:
           attributes:

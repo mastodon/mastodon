@@ -16,7 +16,7 @@
 
 .status-card__actions button,
 .status-card__actions a {
-  color: rgba($white, 0.8);
+  color: color.change($white, $alpha: 0.8);
 
   &:hover,
   &:active,
@@ -96,24 +96,12 @@
   color: $white;
 }
 
-.search__input {
-  @media screen and (max-width: $no-gap-breakpoint) {
-    border-top: 0;
-    border-bottom: 0;
-  }
-}
-
-.list-editor .search .search__input {
-  border-top: 0;
-  border-bottom: 0;
-}
-
 .upload-progress__backdrop {
   background: $ui-base-color;
 }
 
 // Change the background colors of statuses
-.focusable:focus {
+.focusable:focus-visible {
   background: lighten($white, 4%);
 }
 
@@ -283,36 +271,6 @@
   }
 }
 
-.activity-stream {
-  border: 1px solid var(--background-border-color);
-
-  &--under-tabs {
-    border-top: 0;
-  }
-
-  .entry {
-    background: $white;
-
-    .detailed-status.light,
-    .more.light,
-    .status.light {
-      border-bottom-color: lighten($ui-base-color, 8%);
-    }
-  }
-
-  .status.light {
-    .status__content {
-      color: $primary-text-color;
-    }
-
-    .display-name {
-      strong {
-        color: $primary-text-color;
-      }
-    }
-  }
-}
-
 .accounts-grid {
   .account-grid-card {
     .controls {
@@ -340,14 +298,14 @@
 .simple_form {
   .warning {
     box-shadow: none;
-    background: rgba($error-red, 0.5);
+    background: color.change($error-red, $alpha: 0.5);
     text-shadow: none;
   }
 
   .recommended {
     border-color: $ui-highlight-color;
     color: $ui-highlight-color;
-    background-color: rgba($ui-highlight-color, 0.1);
+    background-color: color.change($ui-highlight-color, $alpha: 0.1);
   }
 
   input[type='text'],
@@ -369,7 +327,7 @@
 
 .compose-form .compose-form__warning {
   border-color: $ui-highlight-color;
-  background-color: rgba($ui-highlight-color, 0.1);
+  background-color: color.change($ui-highlight-color, $alpha: 0.1);
 
   &,
   a {
@@ -416,36 +374,31 @@
   }
 }
 
-.mute-modal select {
-  border: 1px solid var(--background-border-color);
-  background: $simple-background-color
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 8%))}'/></svg>")
-    no-repeat right 8px center / auto 16px;
-}
-
 .status__wrapper-direct {
-  background-color: rgba($ui-highlight-color, 0.1);
+  background-color: color.change($ui-highlight-color, $alpha: 0.1);
 
   &:focus {
-    background-color: rgba($ui-highlight-color, 0.15);
+    background-color: color.change($ui-highlight-color, $alpha: 0.15);
   }
 }
 
 .compose-form__actions .icon-button.active,
 .dropdown-button.active,
-.privacy-dropdown__option.active,
-.privacy-dropdown__option:focus,
 .language-dropdown__dropdown__results__item:focus,
 .language-dropdown__dropdown__results__item.active,
-.privacy-dropdown__option:focus .privacy-dropdown__option__content,
-.privacy-dropdown__option:focus .privacy-dropdown__option__content strong,
-.privacy-dropdown__option.active .privacy-dropdown__option__content,
-.privacy-dropdown__option.active .privacy-dropdown__option__content strong,
 .language-dropdown__dropdown__results__item:focus
   .language-dropdown__dropdown__results__item__common-name,
 .language-dropdown__dropdown__results__item.active
   .language-dropdown__dropdown__results__item__common-name {
   color: $white;
+}
+
+.privacy-dropdown__option,
+.visibility-dropdown__option {
+  &:focus,
+  &.active {
+    --dropdown-text-color: #{$white};
+  }
 }
 
 .compose-form .spoiler-input__input {
@@ -482,8 +435,12 @@
 }
 
 .inline-follow-suggestions {
-  background-color: rgba($ui-highlight-color, 0.1);
-  border-bottom-color: rgba($ui-highlight-color, 0.3);
+  background-color: color.change($ui-highlight-color, $alpha: 0.1);
+  border-bottom-color: color.change($ui-highlight-color, $alpha: 0.3);
+
+  &.focusable:focus-visible {
+    background: color.change($ui-highlight-color, $alpha: 0.1);
+  }
 }
 
 .inline-follow-suggestions__body__scrollable__card {
@@ -557,7 +514,7 @@ a.sparkline {
 
 @supports not selector(::-webkit-scrollbar) {
   html {
-    scrollbar-color: rgba($action-button-color, 0.25)
+    scrollbar-color: color.change($action-button-color, $alpha: 0.25)
       var(--background-border-color);
   }
 }
@@ -566,4 +523,8 @@ a.sparkline {
   ::-webkit-scrollbar-thumb {
     opacity: 0.25;
   }
+}
+
+kbd {
+  background-color: color.change($ui-highlight-color, $alpha: 0.1);
 }

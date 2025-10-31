@@ -36,6 +36,7 @@ class UserRole < ApplicationRecord
     manage_roles: (1 << 17),
     manage_user_access: (1 << 18),
     delete_user_data: (1 << 19),
+    view_feeds: (1 << 20),
   }.freeze
 
   EVERYONE_ROLE_ID = -99
@@ -67,6 +68,7 @@ class UserRole < ApplicationRecord
         manage_blocks
         manage_taxonomies
         manage_invites
+        view_feeds
       ).freeze,
 
       administration: %i(

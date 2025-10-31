@@ -1,10 +1,10 @@
 ---
 tok:
   about:
-    about_mastodon_html: ilo toki pi tenpo kama. sitelen esun li lon ala, jan li lawa ala e sina, jan pali li jo ala e wile ike. kin la, jan lawa li wan taso ala a! ilo Masoton la, sona sina li ken ijo pi sina taso!
+    about_mastodon_html: ilo Mastodon li pona ale. sitelen esun li lon ala. kulupu suli li lawa ala e sina. jan lawa li wan taso ala. jan pali li wile ike ala. sina taso li ken lawa e sona sina.
     contact_missing: lon ala
     contact_unavailable: sona ala
-    hosted_on: lipu Masoton pi ma %{domain}
+    hosted_on: ma %{domain} la lipu Mastodon
     title: sona suli
   accounts:
     followers:
@@ -13,7 +13,7 @@ tok:
     instance_actor_flash: sijelo ni li lon ala, li jan wan taso ala, li kulupu jan. ona li pona e nasin pi lawa mute. jan lawa o weka ala e sijelo ni.
     last_active: tenpo poka
     link_verified_on: "%{date} la mi sona e ni: jan seme li jo e lipu ni"
-    nothing_here: ala li lon ni a!
+    nothing_here: ijo ala li lon ni a!
     pin_errors:
       following: sina wile toki e pona jan la, sina o kute e ona
     posts:
@@ -28,14 +28,49 @@ tok:
       approve: o wile
       are_you_sure: ni li pona ala pona?
       avatar: sitelen
-      delete: o ala e sona
-      deleted: jan li ala e ni
+      change_email:
+        current_email: nimi poki lon
+        label: o ante e nimi
+        new_email: nimi poki wile sin
+        submit: o ante e nimi
+        title: o ante e nimi pi poki lipu tawa sijelo %{username}
+      delete: o weka e sona
+      deleted: jan li weka e ni
       demote: o lili e ken
+      domain: ma
       edit: ante toki
+      email: nimi pi poki lipu
       invite_request_text: nasin kama
       ip: nanpa IP
       joined: tenpo kama
+      location:
+        all: ale
+        local: poka
+        remote: weka
+        title: ma seme
+      moderation:
+        title: lawa seme
+      moderation_notes: lipu sona lawa
+      most_recent_activity: kepeken pi tenpo poka
+      most_recent_ip: nanpa IP pi tenpo poka
       search: o alasa
+      statuses: lipu toki
+      username: nimi sijelo
+    dashboard:
+      top_languages: toki pi kepeken suli
+      top_servers: ma pi toki suli
+    fasp:
+      debug:
+        callbacks:
+          ip: nanpa IP
+    follow_recommendations:
+      language: toki seme
+      status: nasin
+    instances:
+      dashboard:
+        instance_languages_dimension: toki pi kepeken suli
+    reports:
+      are_you_sure: sina wile ala wile?
     tags:
       search: o alasa
   privacy:

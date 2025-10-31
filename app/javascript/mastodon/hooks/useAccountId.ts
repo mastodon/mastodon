@@ -11,27 +11,25 @@ interface Params {
   id?: string;
 }
 
-export function useAccountId() {
+export const useAccountId = () => {
   const { acct, id } = useParams<Params>();
+  const dispatch = useAppDispatch();
   const accountId = useAppSelector(
     (state) =>
-      id ??
-      (state.accounts_map.get(normalizeForLookup(acct)) as string | undefined),
+      id ?? (acct ? state.accounts_map[normalizeForLookup(acct)] : undefined),
   );
-
   const account = useAppSelector((state) =>
     accountId ? state.accounts.get(accountId) : undefined,
   );
-  const isAccount = !!account;
+  const accountInStore = !!account;
 
-  const dispatch = useAppDispatch();
   useEffect(() => {
-    if (!accountId) {
+    if (typeof accountId === 'undefined' && acct) {
       dispatch(lookupAccount(acct));
-    } else if (!isAccount) {
+    } else if (accountId && !accountInStore) {
       dispatch(fetchAccount(accountId));
     }
-  }, [dispatch, accountId, acct, isAccount]);
+  }, [dispatch, accountId, acct, accountInStore]);
 
   return accountId;
-}
+};

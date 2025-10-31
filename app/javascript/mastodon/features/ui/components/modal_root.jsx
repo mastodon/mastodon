@@ -20,11 +20,10 @@ import {
   IgnoreNotificationsModal,
   AnnualReportModal,
 } from 'mastodon/features/ui/util/async-components';
-import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
 
 import BundleContainer from '../containers/bundle_container';
 
-import ActionsModal from './actions_modal';
+import { ActionsModal } from './actions_modal';
 import AudioModal from './audio_modal';
 import { BoostModal } from './boost_modal';
 import {
@@ -33,16 +32,21 @@ import {
   ConfirmDeleteListModal,
   ConfirmReplyModal,
   ConfirmEditStatusModal,
+  ConfirmUnblockModal,
   ConfirmUnfollowModal,
+  ConfirmWithdrawRequestModal,
   ConfirmClearNotificationsModal,
   ConfirmLogOutModal,
   ConfirmFollowToListModal,
   ConfirmMissingAltTextModal,
+  ConfirmRevokeQuoteModal,
+  QuietPostQuoteInfoModal,
 } from './confirmation_modals';
 import { ImageModal } from './image_modal';
 import MediaModal from './media_modal';
 import { ModalPlaceholder } from './modal_placeholder';
 import VideoModal from './video_modal';
+import { VisibilityModal } from './visibility_modal';
 
 export const MODAL_COMPONENTS = {
   'MEDIA': () => Promise.resolve({ default: MediaModal }),
@@ -55,11 +59,15 @@ export const MODAL_COMPONENTS = {
   'CONFIRM_DELETE_LIST': () => Promise.resolve({ default: ConfirmDeleteListModal }),
   'CONFIRM_REPLY': () => Promise.resolve({ default: ConfirmReplyModal }),
   'CONFIRM_EDIT_STATUS': () => Promise.resolve({ default: ConfirmEditStatusModal }),
+  'CONFIRM_UNBLOCK': () => Promise.resolve({ default: ConfirmUnblockModal }),
   'CONFIRM_UNFOLLOW': () => Promise.resolve({ default: ConfirmUnfollowModal }),
+  'CONFIRM_WITHDRAW_REQUEST': () => Promise.resolve({ default: ConfirmWithdrawRequestModal }),
   'CONFIRM_CLEAR_NOTIFICATIONS': () => Promise.resolve({ default: ConfirmClearNotificationsModal }),
   'CONFIRM_LOG_OUT': () => Promise.resolve({ default: ConfirmLogOutModal }),
   'CONFIRM_FOLLOW_TO_LIST': () => Promise.resolve({ default: ConfirmFollowToListModal }),
   'CONFIRM_MISSING_ALT_TEXT': () => Promise.resolve({ default: ConfirmMissingAltTextModal }),
+  'CONFIRM_REVOKE_QUOTE': () => Promise.resolve({ default: ConfirmRevokeQuoteModal }),
+  'CONFIRM_QUIET_QUOTE': () => Promise.resolve({ default: QuietPostQuoteInfoModal }),
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
   'DOMAIN_BLOCK': DomainBlockModal,
@@ -75,6 +83,7 @@ export const MODAL_COMPONENTS = {
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
   'IGNORE_NOTIFICATIONS': IgnoreNotificationsModal,
   'ANNUAL_REPORT': AnnualReportModal,
+  'COMPOSE_PRIVACY': () => Promise.resolve({ default: VisibilityModal }),
 };
 
 export default class ModalRoot extends PureComponent {
@@ -89,20 +98,6 @@ export default class ModalRoot extends PureComponent {
   state = {
     backgroundColor: null,
   };
-
-  getSnapshotBeforeUpdate () {
-    return { visible: !!this.props.type };
-  }
-
-  componentDidUpdate (prevProps, prevState, { visible }) {
-    if (visible) {
-      document.body.classList.add('with-modals--active');
-      document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
-    } else {
-      document.body.classList.remove('with-modals--active');
-      document.documentElement.style.marginRight = '0';
-    }
-  }
 
   setBackgroundColor = color => {
     this.setState({ backgroundColor: color });

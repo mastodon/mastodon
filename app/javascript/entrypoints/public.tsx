@@ -1,7 +1,5 @@
 import { createRoot } from 'react-dom/client';
 
-import './public-path';
-
 import { IntlMessageFormat } from 'intl-messageformat';
 import type { MessageDescriptor, PrimitiveType } from 'react-intl';
 import { defineMessages } from 'react-intl';
@@ -10,7 +8,6 @@ import Rails from '@rails/ujs';
 import axios from 'axios';
 import { throttle } from 'lodash';
 
-import { start } from '../mastodon/common';
 import { timeAgoString } from '../mastodon/components/relative_timestamp';
 import emojify from '../mastodon/features/emoji/emoji';
 import loadKeyboardExtensions from '../mastodon/load_keyboard_extensions';
@@ -19,8 +16,6 @@ import { loadPolyfills } from '../mastodon/polyfills';
 import ready from '../mastodon/ready';
 
 import 'cocoon-js-vanilla';
-
-start();
 
 const messages = defineMessages({
   usernameTaken: {
@@ -150,12 +145,14 @@ function loaded() {
       );
     });
 
+  updateDefaultQuotePrivacyFromPrivacy(
+    document.querySelector('#user_settings_attributes_default_privacy'),
+  );
+
   const reactComponents = document.querySelectorAll('[data-component]');
 
   if (reactComponents.length > 0) {
-    import(
-      /* webpackChunkName: "containers/media_container" */ '../mastodon/containers/media_container'
-    )
+    import('../mastodon/containers/media_container')
       .then(({ default: MediaContainer }) => {
         reactComponents.forEach((component) => {
           Array.from(component.children).forEach((child) => {
@@ -354,6 +351,31 @@ const setInputDisabled = (
   }
 };
 
+const setInputHint = (
+  input: HTMLInputElement | HTMLSelectElement,
+  hintPrefix: string,
+) => {
+  const fieldWrapper = input.closest<HTMLElement>('.fields-group > .input');
+  if (!fieldWrapper) return;
+
+  const hint = fieldWrapper.dataset[`${hintPrefix}Hint`];
+  const hintElement =
+    fieldWrapper.querySelector<HTMLSpanElement>(':scope > .hint');
+
+  if (hint) {
+    if (hintElement) {
+      hintElement.textContent = hint;
+    } else {
+      const newHintElement = document.createElement('span');
+      newHintElement.className = 'hint';
+      newHintElement.textContent = hint;
+      fieldWrapper.appendChild(newHintElement);
+    }
+  } else {
+    hintElement?.remove();
+  }
+};
+
 Rails.delegate(
   document,
   '#account_statuses_cleanup_policy_enabled',
@@ -368,6 +390,36 @@ Rails.delegate(
       .forEach((input) => {
         setInputDisabled(input, !target.checked);
       });
+  },
+);
+
+const updateDefaultQuotePrivacyFromPrivacy = (
+  privacySelect: EventTarget | null,
+) => {
+  if (!(privacySelect instanceof HTMLSelectElement) || !privacySelect.form)
+    return;
+
+  const select = privacySelect.form.querySelector<HTMLSelectElement>(
+    'select#user_settings_attributes_default_quote_policy',
+  );
+  if (!select) return;
+
+  setInputHint(select, privacySelect.value);
+
+  if (privacySelect.value === 'private') {
+    select.value = 'nobody';
+    setInputDisabled(select, true);
+  } else {
+    setInputDisabled(select, false);
+  }
+};
+
+Rails.delegate(
+  document,
+  '#user_settings_attributes_default_privacy',
+  'change',
+  ({ target }) => {
+    updateDefaultQuotePrivacyFromPrivacy(target);
   },
 );
 

@@ -26,14 +26,14 @@ RSpec.describe 'Log out' do
   describe 'Logging out from the JS app', :js, :streaming do
     it 'logs the user out' do
       # The frontend tries to load announcements after a short delay, but the session might be expired by then, and the browser will output an error.
-      ignore_js_error(/Failed to load resource: the server responded with a status of 422/)
+      ignore_js_error(/Failed to load resource: the server responded with a status/)
 
       visit root_path
       expect(page)
         .to have_css('body', class: 'app-body')
 
-      within '.navigation-bar' do
-        click_on 'Menu'
+      within '.navigation-panel' do
+        click_on 'More'
       end
 
       within '.dropdown-menu' do

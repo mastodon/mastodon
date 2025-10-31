@@ -104,4 +104,16 @@ class Admin::Metrics::Measure::BaseMeasure
   def canonicalized_params
     params.to_h.to_a.sort_by { |k, _v| k.to_s }.map { |k, v| "#{k}=#{v}" }.join(';')
   end
+
+  def earliest_status_id
+    snowflake_id(@start_at.beginning_of_day)
+  end
+
+  def latest_status_id
+    snowflake_id(@end_at.end_of_day)
+  end
+
+  def snowflake_id(datetime)
+    Mastodon::Snowflake.id_at(datetime, with_random: false)
+  end
 end

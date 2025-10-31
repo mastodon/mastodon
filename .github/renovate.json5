@@ -6,6 +6,7 @@
     ':labels(dependencies)',
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
     ':prHourlyLimit2', // Rate limit PR creation to a maximum of two per hour.
+    ':enableVulnerabilityAlertsWithLabel(security)',
   ],
   rebaseWhen: 'conflicted',
   minimumReleaseAge: '3', // Wait 3 days after the package has been published before upgrading it
@@ -23,28 +24,13 @@
       matchManagers: ['npm'],
       matchPackageNames: [
         'tesseract.js', // Requires code changes
-        'react-hotkeys', // Requires code changes
-
-        // Requires Webpacker upgrade or replacement
-        '@svgr/webpack',
-        '@types/webpack',
-        'babel-loader',
-        'compression-webpack-plugin',
-        'css-loader',
-        'imports-loader',
-        'mini-css-extract-plugin',
-        'postcss-loader',
-        'sass-loader',
-        'terser-webpack-plugin',
-        'webpack',
-        'webpack-assets-manifest',
-        'webpack-bundle-analyzer',
-        'webpack-dev-server',
-        'webpack-cli',
 
         // react-router: Requires manual upgrade
         'history',
         'react-router-dom',
+
+        // react-spring: Requires manual upgrade when upgrading react
+        '@react-spring/web',
       ],
       matchUpdateTypes: ['major'],
       dependencyDashboardApproval: true,
@@ -53,7 +39,6 @@
       // Require Dependency Dashboard Approval for major version bumps of these Ruby packages
       matchManagers: ['bundler'],
       matchPackageNames: [
-        'rack', // Needs to be synced with Rails version
         'strong_migrations', // Requires manual upgrade
         'sidekiq', // Requires manual upgrade
         'sidekiq-unique-jobs', // Requires manual upgrades and sync with Sidekiq version
@@ -110,6 +95,19 @@
       groupName: 'eslint (non-major)',
     },
     {
+      // Group all Storybook-related packages in the same PR
+      matchManagers: ['npm'],
+      matchPackageNames: [
+        'chromatic',
+        'storybook',
+        '@storybook/*',
+        'msw',
+        'msw-storybook-addon',
+      ],
+      matchUpdateTypes: ['patch', 'minor'],
+      groupName: 'storybook (non-major)',
+    },
+    {
       // Group actions/*-artifact in the same PR
       matchManagers: ['github-actions'],
       matchPackageNames: [
@@ -156,6 +154,12 @@
       matchPackageNames: ['opentelemetry-*'],
       matchUpdateTypes: ['patch', 'minor'],
       groupName: 'opentelemetry-ruby (non-major)',
+    },
+    {
+      // Group Playwright Ruby & JS deps in the same PR, as they need to be in sync
+      matchManagers: ['bundler', 'npm'],
+      matchPackageNames: ['playwright-ruby-client', 'playwright'],
+      groupName: 'Playwright',
     },
     // Add labels depending on package manager
     { matchManagers: ['npm', 'nvm'], addLabels: ['javascript'] },

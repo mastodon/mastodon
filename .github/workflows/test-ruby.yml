@@ -49,7 +49,7 @@ jobs:
             public/assets
             public/packs
             public/packs-test
-            tmp/cache/webpacker
+            tmp/cache/vite
           key: ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
           restore-keys: |
             ${{ matrix.mode }}-assets-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
@@ -63,7 +63,7 @@ jobs:
 
       - name: Archive asset artifacts
         run: |
-          tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs*
+          tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs* tmp/cache/vite/last-build*.json
 
       - uses: actions/upload-artifact@v4
         if: matrix.mode == 'test'
@@ -143,7 +143,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg imagemagick libpam-dev
+          additional-system-dependencies: ffmpeg libpam-dev
 
       - name: Load database schema
         run: |
@@ -173,8 +173,8 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-  test-libvips:
-    name: Libvips tests
+  test-imagemagick:
+    name: ImageMagick tests
     runs-on: ubuntu-latest
 
     needs:
@@ -220,7 +220,7 @@ jobs:
       CAS_ENABLED: true
       BUNDLE_WITH: 'pam_authentication test'
       GITHUB_RSPEC: ${{ matrix.ruby-version == '.ruby-version' && github.event.pull_request && 'true' }}
-      MASTODON_USE_LIBVIPS: true
+      MASTODON_USE_LIBVIPS: false
 
     strategy:
       fail-fast: false
@@ -245,7 +245,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg libpam-dev
+          additional-system-dependencies: ffmpeg imagemagick libpam-dev
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
@@ -324,13 +324,28 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg imagemagick
+          additional-system-dependencies: ffmpeg
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
 
       - name: Load database schema
         run: './bin/rails db:create db:schema:load db:seed'
+
+      - name: Cache Playwright Chromium browser
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-browsers-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
+      - name: Install Playwright Chromium browser (with deps)
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: yarn run playwright install --with-deps chromium
+
+      - name: Install Playwright Chromium browser deps
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: yarn run playwright install-deps chromium
 
       - run: bin/rspec spec/system --tag streaming --tag js
 
@@ -345,7 +360,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: e2e-screenshots
+          name: e2e-screenshots-${{ matrix.ruby-version }}
           path: tmp/capybara/
 
   test-search:
@@ -443,7 +458,7 @@ jobs:
         uses: ./.github/actions/setup-ruby
         with:
           ruby-version: ${{ matrix.ruby-version}}
-          additional-system-dependencies: ffmpeg imagemagick
+          additional-system-dependencies: ffmpeg
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript

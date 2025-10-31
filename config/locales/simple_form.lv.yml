@@ -39,7 +39,7 @@ lv:
       appeal:
         text: Brīdinājumu var pārsūdzēt tikai vienu reizi
       defaults:
-        autofollow: Cilvēki, kuri reģistrējas, izmantojot uzaicinājumu, automātiski sekos tev
+        autofollow: Cilvēki, kuri reģistrēsies ar uzaicinājumu, automātiski sekos Tev
         avatar: WEBP, PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions}px
         bot: Paziņo citiem, ka kontā galvenokārt tiek veiktas automatizētas darbības un tas var netikt uzraudzīts
         context: Viens vai vairāki konteksti, kur jāpiemēro filtrs
@@ -48,7 +48,7 @@ lv:
         digest: Tiek nosūtīts tikai pēc ilgstošas bezdarbības un tikai tad, ja savas prombūtnes laikā saņēmi jebkādas personīgas ziņas
         email: Tev tiks nosūtīts apstiprinājuma e-pasta ziņojums
         header: WEBP, PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions}px
-        inbox_url: Nokopē URL no tā releja sākumlapas, kuru vēlies izmantot
+        inbox_url: Releja, kuru vēlies izmantot, sākumlapas URL jāievieto starpliktuvē
         irreversible: Filtrētās ziņas neatgriezeniski pazudīs, pat ja filtrs vēlāk tiks noņemts
         locale: Lietotāja saskarnes, e-pasta ziņojumu un push paziņojumu valoda
         password: Izmanto vismaz 8 rakstzīmes
@@ -57,9 +57,9 @@ lv:
         setting_aggregate_reblogs: Nerādīt jaunus izcēlumus ziņām, kas nesen tika palielinātas (ietekmē tikai nesen saņemtos palielinājumus)
         setting_always_send_emails: Parasti e-pasta paziņojumi netiek sūtīti, kad aktīvi izmantojat Mastodon
         setting_default_sensitive: Pēc noklusējuma jūtīgi informācijas nesēji ir paslēpti, un tos var atklāt ar klikšķi
-        setting_display_media_default: Paslēpt informācijas nesējus, kas atzīmēti kā jūtīgi
-        setting_display_media_hide_all: Vienmēr slēpt multividi
-        setting_display_media_show_all: Vienmēr rādīt multividi
+        setting_display_media_default: Paslēpt attēlus un video, kas atzīmēti kā jūtīgi
+        setting_display_media_hide_all: Vienmēr slēpt attēlus un video
+        setting_display_media_show_all: Vienmēr rādīt attēlus un video
         setting_system_scrollbars_ui: Attiecas tikai uz darbvirsmas pārlūkiem, kuru pamatā ir Safari vai Chrome
         setting_use_blurhash: Pāreju pamatā ir paslēpto uzskatāmo līdzekļu krāsas, bet saturs tiek padarīts neskaidrs
         setting_use_pending_items: Paslēpt laika skalas atjauninājumus aiz klikšķa, nevis ar automātisku plūsmas ritināšanu
@@ -102,10 +102,8 @@ lv:
         status_page_url: Tās lapas URL, kurā lietotāji var redzēt šī servera statusu pārtraukuma laikā
         theme: Tēma, kuru redz apmeklētāji, kuri ir atteikušies, un jaunie lietotāji.
         thumbnail: Aptuveni 2:1 attēls, kas tiek parādīts kopā ar tava servera informāciju.
-        timeline_preview: Atteikušies apmeklētāji varēs pārlūkot jaunākos serverī pieejamos publiskos ierakstus.
         trendable_by_default: Izlaist aktuālā satura manuālu pārskatīšanu. Atsevišķas preces joprojām var noņemt no tendencēm pēc fakta.
         trends: Tendences parāda, kuras ziņas, atsauces un ziņu stāsti gūst panākumus tavā serverī.
-        trends_as_landing_page: Šī servera apraksta vietā rādīt aktuālo saturu lietotājiem un apmeklētājiem, kuri ir atteikušies. Nepieciešams iespējot tendences.
       form_challenge:
         current_password: Tu ieej drošā zonā
       imports:
@@ -142,7 +140,6 @@ lv:
         domain: Sniegtā tiešsaistas pakalpojuma neatkārtojama identifikācija.
       user:
         chosen_languages: Ja ieķeksēts, publiskos laika grafikos tiks parādītas tikai ziņas noteiktajās valodās
-        date_of_birth: Mums jāpārliecinās, ka jums ir vismaz %{age} gadi, lai varētu izmantot Mastodonu. Mēs neuzglabāsim šo informāciju.
         role: Loma nosaka, kādas lietotājam ir atļaujas.
       user_role:
         color: Krāsa, kas jāizmanto lomai visā lietotāja saskarnē, kā RGB hex formātā
@@ -220,11 +217,9 @@ lv:
         setting_aggregate_reblogs: Grupēt izcēlumus ierakstu lentās
         setting_always_send_emails: Vienmēr sūtīt e-pasta paziņojumus
         setting_auto_play_gif: Automātiski atskaņot animētos GIF
-        setting_boost_modal: Rādīt apstiprinājuma dialogu pirms izcelšanas
         setting_default_language: Publicēšanas valoda
-        setting_default_privacy: Publicēšanas privātums
+        setting_default_quote_policy: Kas var citēt
         setting_default_sensitive: Vienmēr atzīmēt informācijas nesējus kā jūtīgus
-        setting_delete_modal: Parādīt apstiprinājuma dialogu pirms ziņas dzēšanas
         setting_disable_hover_cards: Atspējot profila priekšskatījumu pēc kursora novietošanas
         setting_disable_swiping: Atspējot vilkšanas kustības
         setting_display_media: Multivides rādīšana
@@ -233,13 +228,12 @@ lv:
         setting_display_media_show_all: Parādīt visu
         setting_expand_spoilers: Vienmēr izvērst ziņas, kas apzīmētas ar brīdinājumiem par saturu
         setting_hide_network: Slēpt savu sociālo grafu
-        setting_missing_alt_text_modal: Rādīt apstiprināšanas lodziņu pirms informācijas nesēju bez aprakstošā teksta iesūtīšanas
         setting_reduce_motion: Ierobežot kustību animācijās
         setting_system_font_ui: Lietot sistēmas noklusējuma fontu
         setting_system_scrollbars_ui: Lietot sistēmas noklusējuma ritjoslu
         setting_theme: Vietnes motīvs
         setting_trends: Parādīt šodienas tendences
-        setting_unfollow_modal: Parādīt apstiprinājuma dialogu pirms pārtraukt kādam sekot
+        setting_unfollow_modal: Rādīt apstiprinājuma dialogu pirms pārtraukt kādam sekot
         setting_use_blurhash: Rādīt krāsainas pārejas paslēptajiem informācijas nesējiem
         setting_use_pending_items: Lēnais režīms
         severity: Smagums
@@ -255,6 +249,7 @@ lv:
         name: Tēmturis
       filters:
         actions:
+          blur: Paslēpt attēlus un video ar brīdinājumu
           hide: Paslēpt pilnībā
           warn: Paslēpt ar brīdinājumu
       form_admin_settings:
@@ -284,10 +279,8 @@ lv:
         status_page_url: Statusa lapas URL
         theme: Noklusētā tēma
         thumbnail: Servera sīkbilde
-        timeline_preview: Atļaut neautentificētu piekļuvi publiskajām ziņu lentām
         trendable_by_default: Atļaut tendences bez iepriekšējas pārskatīšanas
         trends: Iespējot tendences
-        trends_as_landing_page: Izmantojiet tendences kā galveno lapu
       interactions:
         must_be_follower: Bloķēt paziņojumus no ne-sekotājiem
         must_be_following: Bloķēt paziņojumus no cilvēkiem, kuriem tu neseko
@@ -308,8 +301,8 @@ lv:
         appeal: Kāds pārsūdz moderatora lēmumu
         digest: Sūtīt kopsavilkumu e-pastus
         favourite: Kāds izcēla tavu ziņu
-        follow: Kāds uzsāka tev sekot
-        follow_request: Kāds vēlas tev sekot
+        follow: Kāds uzsāka Tev sekot
+        follow_request: Kāds vēlas Tev sekot
         mention: Kāds pieminēja tevi
         pending_account: Jāpārskata jaunu kontu
         reblog: Kāds izcēla tavu ierakstu
@@ -339,6 +332,7 @@ lv:
       terms_of_service_generator:
         admin_email: E-pasta adrese juridiskiem paziņojumiem
         choice_of_law: Likuma izvēle
+        dmca_email: E-pasta adrese DMCA/autortiesību pārstāvju sūdzību iesniegšanai
         domain: Domēna vārds
         min_age: Mazākais pieļaujamais vecums
       user:

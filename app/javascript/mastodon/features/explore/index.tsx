@@ -5,11 +5,13 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { NavLink, Switch, Route } from 'react-router-dom';
 
-import ExploreIcon from '@/material-icons/400-24px/explore.svg?react';
+import TrendingUpIcon from '@/material-icons/400-24px/trending_up.svg?react';
 import { Column } from 'mastodon/components/column';
 import type { ColumnRef } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
+import { SymbolLogo } from 'mastodon/components/logo';
 import { Search } from 'mastodon/features/compose/components/search';
+import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'mastodon/identity_context';
 
 import Links from './links';
@@ -18,13 +20,14 @@ import Suggestions from './suggestions';
 import Tags from './tags';
 
 const messages = defineMessages({
-  title: { id: 'explore.title', defaultMessage: 'Explore' },
+  title: { id: 'explore.title', defaultMessage: 'Trending' },
 });
 
 const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const { signedIn } = useIdentity();
   const intl = useIntl();
   const columnRef = useRef<ColumnRef>(null);
+  const logoRequired = useBreakpoint('full');
 
   const handleHeaderClick = useCallback(() => {
     columnRef.current?.scrollTop();
@@ -38,7 +41,7 @@ const Explore: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     >
       <ColumnHeader
         icon={'explore'}
-        iconComponent={ExploreIcon}
+        iconComponent={logoRequired ? SymbolLogo : TrendingUpIcon}
         title={intl.formatMessage(messages.title)}
         onClick={handleHeaderClick}
         multiColumn={multiColumn}

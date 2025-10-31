@@ -30,7 +30,8 @@ end
 
 # This needs to be defined before Rails is initialized
 STREAMING_PORT = ENV.fetch('TEST_STREAMING_PORT', '4020')
-ENV['STREAMING_API_BASE_URL'] = "http://localhost:#{STREAMING_PORT}"
+STREAMING_HOST = ENV.fetch('TEST_STREAMING_HOST', 'localhost')
+ENV['STREAMING_API_BASE_URL'] = "http://#{STREAMING_HOST}:#{STREAMING_PORT}"
 
 require_relative '../config/environment'
 
@@ -53,7 +54,7 @@ WebMock.disable_net_connect!(
   allow_localhost: true,
   allow: Chewy.settings[:host]
 )
-Sidekiq.logger = nil
+Sidekiq.default_configuration.logger = nil
 
 DatabaseCleaner.strategy = [:deletion]
 

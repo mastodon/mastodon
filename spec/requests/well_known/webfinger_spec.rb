@@ -26,8 +26,8 @@ RSpec.describe 'The /.well-known/webfinger endpoint' do
 
       expect(response.parsed_body)
         .to include(
-          subject: eq('acct:alice@cb6e6126.ngrok.io'),
-          aliases: include('https://cb6e6126.ngrok.io/@alice', 'https://cb6e6126.ngrok.io/users/alice')
+          subject: eq(alice.to_webfinger_s),
+          aliases: include("https://#{Rails.configuration.x.local_domain}/@alice", ActivityPub::TagManager.instance.uri_for(alice))
         )
     end
   end
@@ -125,9 +125,13 @@ RSpec.describe 'The /.well-known/webfinger endpoint' do
 
       expect(response.parsed_body)
         .to include(
-          subject: 'acct:mastodon.internal@cb6e6126.ngrok.io',
-          aliases: ['https://cb6e6126.ngrok.io/actor']
+          subject: instance_actor.to_webfinger_s,
+          aliases: [instance_actor_url]
         )
+    end
+
+    def instance_actor
+      Account.where(id: Account::INSTANCE_ACTOR_ID).first
     end
   end
 
@@ -172,7 +176,7 @@ RSpec.describe 'The /.well-known/webfinger endpoint' do
 
     context 'with limited federation mode' do
       before do
-        allow(Rails.configuration.x).to receive(:limited_federation_mode).and_return(true)
+        allow(Rails.configuration.x.mastodon).to receive(:limited_federation_mode).and_return(true)
       end
 
       it 'does not return avatar in response' do

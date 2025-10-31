@@ -1,0 +1,41 @@
+name: 'Chromatic'
+
+on:
+  push:
+    branches-ignore:
+      - renovate/*
+      - stable-*
+    paths:
+      - 'package.json'
+      - 'yarn.lock'
+      - '**/*.js'
+      - '**/*.jsx'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '**/*.css'
+      - '**/*.scss'
+      - '.github/workflows/chromatic.yml'
+
+jobs:
+  chromatic:
+    name: Run Chromatic
+    runs-on: ubuntu-latest
+    if: github.repository == 'mastodon/mastodon'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
+
+      - name: Build Storybook
+        run: yarn build-storybook
+
+      - name: Run Chromatic
+        uses: chromaui/action@v12
+        with:
+          # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          zip: true
+          storybookBuildDir: 'storybook-static'

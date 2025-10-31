@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'variables' as *;
 @use 'functions' as *;
 
@@ -223,6 +224,10 @@ code {
       list-style: disc;
       margin-inline-start: 18px;
     }
+
+    .icon {
+      vertical-align: -3px;
+    }
   }
 
   ul.hint {
@@ -298,7 +303,7 @@ code {
       color: $primary-text-color;
       display: block;
       margin-bottom: 8px;
-      word-wrap: break-word;
+      overflow-wrap: break-word;
       font-weight: 500;
     }
 
@@ -393,7 +398,7 @@ code {
       max-width: 100%;
       height: auto;
       border-radius: var(--avatar-border-radius);
-      background: url('images/void.png');
+      background: url('@/images/void.png');
 
       &[src$='missing.png'] {
         visibility: hidden;
@@ -733,25 +738,31 @@ code {
   text-align: center;
 
   &.notice {
-    border: 1px solid rgba($valid-value-color, 0.5);
-    background: rgba($valid-value-color, 0.25);
+    border: 1px solid color.change($valid-value-color, $alpha: 0.5);
+    background: color.change($valid-value-color, $alpha: 0.25);
     color: $valid-value-color;
   }
 
   &.warning {
-    border: 1px solid rgba($gold-star, 0.5);
-    background: rgba($gold-star, 0.25);
+    border: 1px solid color.change($gold-star, $alpha: 0.5);
+    background: color.change($gold-star, $alpha: 0.25);
     color: $gold-star;
   }
 
   &.alert {
-    border: 1px solid rgba($error-value-color, 0.5);
-    background: rgba($error-value-color, 0.1);
+    border: 1px solid color.change($error-value-color, $alpha: 0.5);
+    background: color.change($error-value-color, $alpha: 0.1);
     color: $error-value-color;
   }
 
   &.hidden {
     display: none;
+  }
+
+  &.hidden-on-touch-devices {
+    @media screen and (pointer: coarse) {
+      display: none;
+    }
   }
 
   a {
@@ -965,7 +976,7 @@ code {
   background: $simple-background-color;
   padding: 4px;
   margin: 0 10px 20px 0;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  box-shadow: 0 0 15px color.change($base-shadow-color, $alpha: 0.2);
   display: inline-block;
 
   svg {
@@ -988,10 +999,10 @@ code {
 .simple_form {
   .warning {
     box-sizing: border-box;
-    background: rgba($error-value-color, 0.5);
+    background: color.change($error-value-color, $alpha: 0.5);
     color: $primary-text-color;
-    text-shadow: 1px 1px 0 rgba($base-shadow-color, 0.3);
-    box-shadow: 0 2px 6px rgba($base-shadow-color, 0.4);
+    text-shadow: 1px 1px 0 color.change($base-shadow-color, $alpha: 0.3);
+    box-shadow: 0 2px 6px color.change($base-shadow-color, $alpha: 0.4);
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 15px;
@@ -1156,7 +1167,7 @@ code {
 
       &__type {
         color: $darker-text-color;
-        word-break: break-word;
+        overflow-wrap: anywhere;
       }
     }
 
@@ -1350,7 +1361,7 @@ code {
       width: 100%;
       height: 100%;
       position: absolute;
-      background: rgba($error-value-color, 0.25);
+      background: color.change($error-value-color, $alpha: 0.25);
       z-index: 2;
       border-radius: 8px;
     }
@@ -1440,34 +1451,12 @@ code {
         display: block;
         color: $primary-text-color;
       }
-    }
-  }
-}
 
-.avatar-pile {
-  display: flex;
-  align-items: center;
-
-  img {
-    display: block;
-    border-radius: 8px;
-    width: 32px;
-    height: 32px;
-    border: 2px solid var(--background-color);
-    background: var(--surface-background-color);
-    margin-inline-end: -16px;
-    transform: rotate(0);
-
-    &:first-child {
-      transform: rotate(-4deg);
-    }
-
-    &:nth-child(2) {
-      transform: rotate(-2deg);
-    }
-
-    &:last-child {
-      margin-inline-end: 0;
+      .icon {
+        vertical-align: -5px;
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 }

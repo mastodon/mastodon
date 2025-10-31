@@ -23,7 +23,7 @@ module Mastodon
 
     def announce_countdown
       WARNING_SECONDS.downto(1) do |i|
-        say "Continuing in #{i} second#{i == 1 ? '' : 's'}...", true
+        say "Continuing in #{i} second#{'s' unless i == 1}...", true
         sleep 1
       end
     end

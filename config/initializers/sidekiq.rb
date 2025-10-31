@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../lib/mastodon/sidekiq_middleware'
+require_relative '../../lib/mastodon/worker_batch_middleware'
 
 Sidekiq.configure_server do |config|
   config.redis = REDIS_CONFIGURATION.sidekiq
@@ -25,6 +26,12 @@ Sidekiq.configure_server do |config|
   if ENV['MASTODON_PROMETHEUS_EXPORTER_ENABLED'] == 'true'
     require 'prometheus_exporter'
     require 'prometheus_exporter/instrumentation'
+
+    if ENV['MASTODON_PROMETHEUS_EXPORTER_LOCAL'] == 'true'
+      config.on :startup do
+        Mastodon::PrometheusExporter::LocalServer.setup!
+      end
+    end
 
     config.on :startup do
       # Ruby process metrics (memory, GC, etc)
@@ -66,14 +73,12 @@ Sidekiq.configure_server do |config|
 
   config.server_middleware do |chain|
     chain.add Mastodon::SidekiqMiddleware
-  end
-
-  config.server_middleware do |chain|
     chain.add SidekiqUniqueJobs::Middleware::Server
   end
 
   config.client_middleware do |chain|
     chain.add SidekiqUniqueJobs::Middleware::Client
+    chain.add Mastodon::WorkerBatchMiddleware
   end
 
   config.on(:startup) do
@@ -89,6 +94,8 @@ Sidekiq.configure_server do |config|
     end
   end
 
+  config.logger.level = Logger.const_get(ENV.fetch('RAILS_LOG_LEVEL', 'info').upcase.to_s)
+
   SidekiqUniqueJobs::Server.configure(config)
 end
 
@@ -97,10 +104,11 @@ Sidekiq.configure_client do |config|
 
   config.client_middleware do |chain|
     chain.add SidekiqUniqueJobs::Middleware::Client
+    chain.add Mastodon::WorkerBatchMiddleware
   end
-end
 
-Sidekiq.logger.level = ::Logger.const_get(ENV.fetch('RAILS_LOG_LEVEL', 'info').upcase.to_s)
+  config.logger.level = Logger.const_get(ENV.fetch('RAILS_LOG_LEVEL', 'info').upcase.to_s)
+end
 
 SidekiqUniqueJobs.configure do |config|
   config.enabled         = !Rails.env.test?

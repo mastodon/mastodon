@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserMailer < Devise::Mailer
+  include BulkMailSettingsConcern
+
   layout 'mailer'
 
   helper :accounts
@@ -11,6 +13,8 @@ class UserMailer < Devise::Mailer
   helper :statuses
 
   before_action :set_instance
+
+  after_action :use_bulk_mail_delivery_settings, only: [:announcement_published, :terms_of_service_changed]
 
   default to: -> { @resource.email }
 

@@ -1,10 +1,18 @@
+import type { KeyboardEvent, MouseEvent, TouchEvent } from 'react';
+
+import type { IconProp } from '../components/icon';
+
 interface BaseMenuItem {
   text: string;
+  description?: string;
+  icon?: IconProp;
+  highlighted?: boolean;
+  disabled?: boolean;
   dangerous?: boolean;
 }
 
 export interface ActionMenuItem extends BaseMenuItem {
-  action: () => void;
+  action: (event: MouseEvent | KeyboardEvent | TouchEvent) => void;
 }
 
 export interface LinkMenuItem extends BaseMenuItem {
@@ -22,3 +30,29 @@ export type MenuItem =
   | LinkMenuItem
   | ExternalLinkMenuItem
   | null;
+
+export const isMenuItem = (item: unknown): item is MenuItem => {
+  if (item === null) {
+    return true;
+  }
+
+  return typeof item === 'object' && 'text' in item;
+};
+
+export const isActionItem = (item: unknown): item is ActionMenuItem => {
+  if (!item || !isMenuItem(item)) {
+    return false;
+  }
+
+  return 'action' in item;
+};
+
+export const isExternalLinkItem = (
+  item: unknown,
+): item is ExternalLinkMenuItem => {
+  if (!item || !isMenuItem(item)) {
+    return false;
+  }
+
+  return 'href' in item;
+};

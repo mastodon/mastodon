@@ -31,6 +31,6 @@ RSpec.describe 'redirection confirmations' do
   end
 
   def redirect_title
-    I18n.t('redirects.title', instance: 'cb6e6126.ngrok.io')
+    I18n.t('redirects.title', instance: local_domain_uri.host)
   end
 end

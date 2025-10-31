@@ -8,6 +8,8 @@ RSpec.describe Webhook do
   describe 'Validations' do
     subject { Fabricate.build :webhook }
 
+    it { is_expected.to validate_length_of(:secret).is_at_least(described_class::SECRET_LENGTH_MIN) }
+
     it { is_expected.to validate_presence_of(:events) }
 
     it { is_expected.to_not allow_values([], %w(account.invalid)).for(:events) }

@@ -6,7 +6,7 @@ class ActivityPub::FetchRepliesService < BaseService
   # Limit of fetched replies
   MAX_REPLIES = 5
 
-  def call(reference_uri, collection_or_uri, max_pages: 1, allow_synchronous_requests: true, request_id: nil)
+  def call(reference_uri, collection_or_uri, max_pages: 1, allow_synchronous_requests: true, batch_id: nil, request_id: nil)
     @reference_uri = reference_uri
     @allow_synchronous_requests = allow_synchronous_requests
 
@@ -14,7 +14,12 @@ class ActivityPub::FetchRepliesService < BaseService
     return if @items.nil?
 
     @items = filter_replies(@items)
-    FetchReplyWorker.push_bulk(@items) { |reply_uri| [reply_uri, { 'request_id' => request_id }] }
+
+    WorkerBatch.new(batch_id).within do |batch|
+      FetchReplyWorker.push_bulk(@items) do |reply_uri|
+        [reply_uri, { 'request_id' => request_id, 'batch_id' => batch.id }]
+      end
+    end
 
     [@items, n_pages]
   end
@@ -57,20 +62,7 @@ class ActivityPub::FetchRepliesService < BaseService
     return unless @allow_synchronous_requests
     return if non_matching_uri_hosts?(@reference_uri, collection_or_uri)
 
-    # NOTE: For backward compatibility reasons, Mastodon signs outgoing
-    # queries incorrectly by default.
-    #
-    # While this is relevant for all URLs with query strings, this is
-    # the only code path where this happens in practice.
-    #
-    # Therefore, retry with correct signatures if this fails.
-    begin
-      fetch_resource_without_id_validation(collection_or_uri, nil, raise_on_error: :temporary)
-    rescue Mastodon::UnexpectedResponseError => e
-      raise unless e.response && e.response.code == 401 && Addressable::URI.parse(collection_or_uri).query.present?
-
-      fetch_resource_without_id_validation(collection_or_uri, nil, raise_on_error: :temporary, request_options: { omit_query_string: false })
-    end
+    fetch_resource_without_id_validation(collection_or_uri, nil, raise_on_error: :temporary)
   end
 
   def filter_replies(items)

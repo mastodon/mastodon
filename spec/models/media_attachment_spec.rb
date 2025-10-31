@@ -291,7 +291,7 @@ RSpec.describe MediaAttachment, :attachment_processing do
     let(:media) { Fabricate(:media_attachment) }
 
     before do
-      allow(Rails.configuration.x).to receive(:cache_buster_enabled).and_return(true)
+      allow(Rails.configuration.x.cache_buster).to receive(:enabled).and_return(true)
     end
 
     it 'queues CacheBusterWorker jobs' do
@@ -311,6 +311,12 @@ RSpec.describe MediaAttachment, :attachment_processing do
           .to_not enqueue_sidekiq_job(CacheBusterWorker)
       end
     end
+  end
+
+  describe '.combined_media_file_size' do
+    subject { described_class.combined_media_file_size }
+
+    it { is_expected.to be_an(Arel::Nodes::Grouping) }
   end
 
   private

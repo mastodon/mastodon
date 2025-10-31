@@ -15,13 +15,21 @@
 #
 class TermsOfService < ApplicationRecord
   scope :published, -> { where.not(published_at: nil).order(Arel.sql('coalesce(effective_date, published_at) DESC')) }
-  scope :live, -> { published.where('effective_date IS NULL OR effective_date < now()').limit(1) }
-  scope :draft, -> { where(published_at: nil).order(id: :desc).limit(1) }
+  scope :live, -> { published.where('effective_date IS NULL OR effective_date < now()') }
+  scope :upcoming, -> { published.reorder(effective_date: :asc).where('effective_date IS NOT NULL AND effective_date > now()') }
+  scope :draft, -> { where(published_at: nil).order(id: :desc) }
 
   validates :text, presence: true
   validates :changelog, :effective_date, presence: true, if: -> { published? }
+  validates :effective_date, uniqueness: true
 
   validate :effective_date_cannot_be_in_the_past
+
+  NOTIFICATION_ACTIVITY_CUTOFF = 1.year.freeze
+
+  def self.current
+    live.first || upcoming.first # For the case when none of the published terms have become effective yet
+  end
 
   def published?
     published_at.present?
@@ -39,8 +47,20 @@ class TermsOfService < ApplicationRecord
     notification_sent_at.present?
   end
 
+  def base_user_scope
+    User.confirmed.where(created_at: ..published_at).joins(:account)
+  end
+
+  def email_notification_cutoff
+    published_at - NOTIFICATION_ACTIVITY_CUTOFF
+  end
+
+  def scope_for_interstitial
+    base_user_scope.merge(Account.suspended).or(base_user_scope.where(current_sign_in_at: [nil, ...email_notification_cutoff]))
+  end
+
   def scope_for_notification
-    User.confirmed.joins(:account).merge(Account.without_suspended).where(created_at: (..published_at))
+    base_user_scope.merge(Account.without_suspended).where(current_sign_in_at: email_notification_cutoff...)
   end
 
   private

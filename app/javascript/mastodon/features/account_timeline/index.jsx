@@ -13,7 +13,6 @@ import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 
 import { lookupAccount, fetchAccount } from '../../actions/accounts';
-import { fetchFeaturedTags } from '../../actions/featured_tags';
 import { expandAccountFeaturedTimeline, expandAccountTimeline, connectTimeline, disconnectTimeline } from '../../actions/timelines';
 import { ColumnBackButton } from '../../components/column_back_button';
 import { LoadingIndicator } from '../../components/loading_indicator';
@@ -23,11 +22,12 @@ import { RemoteHint } from 'mastodon/components/remote_hint';
 
 import { AccountHeader } from './components/account_header';
 import { LimitedAccountHint } from './components/limited_account_hint';
+import { FeaturedCarousel } from '@/mastodon/components/featured_carousel';
 
 const emptyList = ImmutableList();
 
 const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = false }) => {
-  const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
+  const accountId = id || state.accounts_map[normalizeForLookup(acct)];
 
   if (accountId === null) {
     return {
@@ -86,7 +86,6 @@ class AccountTimeline extends ImmutablePureComponent {
       dispatch(expandAccountFeaturedTimeline(accountId, { tagged }));
     }
 
-    dispatch(fetchFeaturedTags(accountId));
     dispatch(expandAccountTimeline(accountId, { withReplies, tagged }));
 
     if (accountId === me) {
@@ -136,7 +135,7 @@ class AccountTimeline extends ImmutablePureComponent {
   };
 
   render () {
-    const { accountId, statusIds, isLoading, hasMore, blockedBy, suspended, isAccount, hidden, multiColumn, remote, remoteUrl } = this.props;
+    const { accountId, statusIds, isLoading, hasMore, blockedBy, suspended, isAccount, hidden, multiColumn, remote, remoteUrl, params: { tagged } } = this.props;
 
     if (isLoading && statusIds.isEmpty()) {
       return (
@@ -171,7 +170,12 @@ class AccountTimeline extends ImmutablePureComponent {
         <ColumnBackButton />
 
         <StatusList
-          prepend={<AccountHeader accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />}
+          prepend={
+            <>
+              <AccountHeader accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={tagged} />
+              {!forceEmptyState && <FeaturedCarousel accountId={this.props.accountId} tagged={tagged} />}
+            </>
+        }
           alwaysPrepend
           append={<RemoteHint accountId={accountId} />}
           scrollKey='account_timeline'

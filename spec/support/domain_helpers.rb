@@ -47,6 +47,10 @@ module DomainHelpers
       .and_yield(resolver)
   end
 
+  def local_domain_uri
+    Addressable::URI.parse("//#{Rails.configuration.x.local_domain}")
+  end
+
   private
 
   def double_mx(exchange)

@@ -33,6 +33,14 @@ class NotificationMailerPreview < ActionMailer::Preview
     mailer_for(activity.reblog.account, activity).reblog
   end
 
+  # Preview this email at http://localhost:3000/rails/mailers/notification_mailer/quote
+  def quote
+    notification = Notification.where(type: 'quote').order(:created_at).last
+    activity = notification.activity
+
+    mailer_for(activity.quoted_account, activity).quote
+  end
+
   private
 
   def mailer_for(account, activity)

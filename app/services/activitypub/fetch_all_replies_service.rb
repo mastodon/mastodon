@@ -3,10 +3,10 @@
 class ActivityPub::FetchAllRepliesService < ActivityPub::FetchRepliesService
   include JsonLdHelper
 
-  # Limit of replies to fetch per status
-  MAX_REPLIES = (ENV['FETCH_REPLIES_MAX_SINGLE'] || 500).to_i
+  # Max number of replies to fetch - for a single post
+  MAX_REPLIES = 500
 
-  def call(status_uri, collection_or_uri, max_pages: 1, request_id: nil)
+  def call(status_uri, collection_or_uri, max_pages: 1, batch_id: nil, request_id: nil)
     @status_uri = status_uri
 
     super

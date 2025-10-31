@@ -31,6 +31,10 @@ module User::HasSettings
     settings['web.reblog_modal']
   end
 
+  def setting_quick_boosting
+    settings['web.quick_boosting']
+  end
+
   def setting_delete_modal
     settings['web.delete_modal']
   end
@@ -105,6 +109,10 @@ module User::HasSettings
 
   def setting_default_privacy
     settings['default_privacy'] || (account.locked? ? 'private' : 'public')
+  end
+
+  def setting_default_quote_policy
+    settings['default_quote_policy'] || 'public'
   end
 
   def allows_report_emails?

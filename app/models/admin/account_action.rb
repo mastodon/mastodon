@@ -2,6 +2,7 @@
 
 class Admin::AccountAction
   include ActiveModel::Model
+  include ActiveModel::Attributes
   include AccountableConcern
   include Authorization
 
@@ -20,7 +21,10 @@ class Admin::AccountAction
                 :report_id,
                 :warning_preset_id
 
-  attr_reader :warning, :send_email_notification, :include_statuses
+  attr_reader :warning
+
+  attribute :include_statuses, :boolean, default: true
+  attribute :send_email_notification, :boolean, default: true
 
   alias send_email_notification? send_email_notification
   alias include_statuses? include_statuses
@@ -28,23 +32,8 @@ class Admin::AccountAction
   validates :type, :target_account, :current_account, presence: true
   validates :type, inclusion: { in: TYPES }
 
-  def initialize(attributes = {})
-    @send_email_notification = true
-    @include_statuses        = true
-
-    super
-  end
-
-  def send_email_notification=(value)
-    @send_email_notification = ActiveModel::Type::Boolean.new.cast(value)
-  end
-
-  def include_statuses=(value)
-    @include_statuses = ActiveModel::Type::Boolean.new.cast(value)
-  end
-
-  def save!
-    raise ActiveRecord::RecordInvalid, self unless valid?
+  def save
+    return false unless valid?
 
     ApplicationRecord.transaction do
       process_action!
@@ -54,6 +43,12 @@ class Admin::AccountAction
 
     process_notification!
     process_queue!
+
+    true
+  end
+
+  def save!
+    raise ActiveRecord::RecordInvalid, self unless save
   end
 
   def report
@@ -185,7 +180,7 @@ class Admin::AccountAction
     @reports ||= if type == 'none'
                    with_report? ? [report] : []
                  else
-                   Report.where(target_account: target_account).unresolved
+                   target_account.targeted_reports.unresolved
                  end
   end
 

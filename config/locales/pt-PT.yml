@@ -190,6 +190,7 @@ pt-PT:
         create_relay: Criar retransmissor
         create_unavailable_domain: Criar domínio indisponível
         create_user_role: Criar função
+        create_username_block: Criar Regra de Nome de Utilizador
         demote_user: Despromover utilizador
         destroy_announcement: Eliminar mensagem de manutenção
         destroy_canonical_email_block: Eliminar bloqueio de e-mail
@@ -203,6 +204,7 @@ pt-PT:
         destroy_status: Eliminar publicação
         destroy_unavailable_domain: Eliminar domínio indisponível
         destroy_user_role: Eliminar função
+        destroy_username_block: Eliminar Regra de Nome de Utilizador
         disable_2fa_user: Desativar 2FA
         disable_custom_emoji: Desativar emoji personalizado
         disable_relay: Desativar retransmissor
@@ -237,6 +239,7 @@ pt-PT:
         update_report: Atualizar denúncia
         update_status: Atualizar publicação
         update_user_role: Atualizar função
+        update_username_block: Atualizar Regra de Nome de Utilizador
       actions:
         approve_appeal_html: "%{name} aprovou a contestação da decisão de moderação de %{target}"
         approve_user_html: "%{name} aprovou a inscrição de %{target}"
@@ -255,6 +258,7 @@ pt-PT:
         create_relay_html: "%{name} criou o retransmissor %{target}"
         create_unavailable_domain_html: "%{name} parou as entregas ao domínio %{target}"
         create_user_role_html: "%{name} criou a função %{target}"
+        create_username_block_html: "%{name} adicionou regra para nomes de utilizadores que contêm %{target}"
         demote_user_html: "%{name} despromoveu o utilizador %{target}"
         destroy_announcement_html: "%{name} eliminou a mensagem de manutenção %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o e-mail com a hash %{target}"
@@ -268,6 +272,7 @@ pt-PT:
         destroy_status_html: "%{name} removeu a publicação de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou as entregas ao domínio %{target}"
         destroy_user_role_html: "%{name} eliminou a função %{target}"
+        destroy_username_block_html: "%{name} removeu regra para nomes de utilizadores que contêm %{target}"
         disable_2fa_user_html: "%{name} desativou o requerimento de autenticação em dois passos para o utilizador %{target}"
         disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
         disable_relay_html: "%{name} desativou o retransmissor %{target}"
@@ -302,6 +307,7 @@ pt-PT:
         update_report_html: "%{name} atualizou a denúncia %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
         update_user_role_html: "%{name} alterou a função %{target}"
+        update_username_block_html: "%{name} atualizou regra para nomes de utilizadores que contêm %{target}"
       deleted_account: conta eliminada
       empty: Não foram encontrados registos.
       filter_by_action: Filtrar por ação
@@ -319,6 +325,7 @@ pt-PT:
         create: Criar mensagem de manutenção
         title: Nova mensagem de manutenção
       preview:
+        disclaimer: Dado que os utilizadores não podem opor-se a elas, as notificações por e-mail devem ser limitadas a anúncios importantes, como notificações de violação de dados pessoais ou de encerramento de servidores.
         explanation_html: 'O e-mail será enviado para <strong>%{display_count} utilizadores</strong>. O texto seguinte será incluído na mensagem de e-mail:'
         title: Pré-visualização da mensagem de manutenção
       publish: Publicar
@@ -479,6 +486,36 @@ pt-PT:
       new:
         title: Importar bloqueios de domínio
       no_file: Nenhum ficheiro selecionado
+    fasp:
+      debug:
+        callbacks:
+          created_at: Criado em
+          delete: Eliminar
+          ip: Endereço de IP
+          request_body: Corpo do pedido
+          title: Depurar Callbacks
+      providers:
+        active: Ativo
+        base_url: URL base
+        callback: Callback
+        delete: Eliminar
+        edit: Editar Fornecedor
+        finish_registration: Terminar inscrição
+        name: Nome
+        providers: Fornecedores
+        public_key_fingerprint: Impressão digital da chave pública
+        registration_requested: Requerida inscrição
+        registrations:
+          confirm: Confirmar
+          description: Recebeu uma inscrição de um FASP. Rejeite-a se não foi você que a iniciou. Se foi você que a iniciou, compare cuidadosamente o nome e a impressão digital da chave antes de confirmar a inscrição.
+          reject: Rejeitar
+          title: Confirmar Inscrição no FASP
+        save: Guardar
+        select_capabilities: Selecionar Capacidades
+        sign_in: Iniciar Sessão
+        status: Estado
+        title: Fornecedores de Serviços Auxiliares no Fediverso
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Recomendações de quem seguir ajudam novos utilizadores a encontrar conteúdo interessante rapidamente.</strong>. Quando um utilizador não interage com outros o suficiente para formar recomendações personalizadas, estas contas são recomendadas. Elas são recalculadas diariamente a partir de uma mistura de contas com mais atividade recente e maior número de seguidores locais para um determinado idioma."
       language: Para o idioma
@@ -547,6 +584,13 @@ pt-PT:
         all: Todas
         limited: Limitadas
         title: Moderação
+      moderation_notes:
+        create: Adicionar Nota de Moderação
+        created_msg: Nota de moderação da instância criada com sucesso!
+        description_html: Ver e deixar notas para outros moderadores e para referência futura
+        destroyed_msg: Nota de moderação da instância eliminada com sucesso!
+        placeholder: Informações sobre esta instância, ações tomadas ou qualquer outra informação que o ajude na moderação desta instância no futuro.
+        title: Notas de Moderação
       private_comment: Comentário privado
       public_comment: Comentário público
       purge: Purgar
@@ -752,20 +796,31 @@ pt-PT:
         view_dashboard_description: Permite aos utilizadores acederem ao painel de controlo e a várias estatísticas
         view_devops: DevOps
         view_devops_description: Permite aos utilizadores aceder aos painéis de controlo do Sidekiq e pgHero
+        view_feeds: Ver cronologia em tempo real e de etiquetas
+        view_feeds_description: Permitir aos utilizadores aceder às cronologias em tempo real e de etiquetas independentemente das definições do servidor
       title: Funções
     rules:
       add_new: Adicionar regra
+      add_translation: Adicionar tradução
       delete: Eliminar
       description_html: Embora a maioria afirme ter lido e concordado com os termos de serviço, geralmente as pessoas só os leem depois de lhes surgir um problema. <strong>Torne fácil a leitura rápida das regras do seu servidor, apresentando-as numa lista de tópicos.</strong> Tente que cada regra seja sucinta e simples, mas tente também não dividi-las num número excessivo de tópicos separados.
       edit: Editar regra
       empty: Ainda não foi definida nenhuma regra do servidor.
+      move_down: Mover para baixo
+      move_up: Mover para cima
       title: Regras do servidor
+      translation: Tradução
+      translations: Traduções
+      translations_explanation: Opcionalmente, pode adicionar traduções para as regras do servidor. A versão predefinida será apresentada se não estiver disponível uma versão traduzida. Certifique-se sempre de que qualquer tradução fornecida está em sincronia com a versão predefinida.
     settings:
       about:
         manage_rules: Gerir regras do servidor
         preamble: Forneça informações aprofundadas sobre como o servidor é operado, moderado, financiado.
         rules_hint: Existe uma área dedicada às regras a que os teus utilizadores devem aderir.
         title: Sobre
+      allow_referrer_origin:
+        desc: Quando os seus utilizadores clicam em hiperligações para sites externos, o navegador destes pode enviar o endereço do seu servidor Mastodon como referenciador. Desative esta opção se isso identificar inequivocamente os seus utilizadores, por exemplo, se este for um servidor Mastodon pessoal.
+        title: Permitir que sites externos vejam o seu servidor Mastodon como uma fonte de tráfego
       appearance:
         preamble: Personaliza a interface web do Mastodon.
         title: Aparência
@@ -784,10 +839,10 @@ pt-PT:
         title: Desativar, por omissão, a indexação de utilizadores por parte dos motores de pesquisa
       discovery:
         follow_recommendations: Recomendações de contas
-        preamble: Revelar conteúdos interessantes é fundamental para a entrada de novos utilizadores que podem não conhecer ninguém no Mastodon. Controla como os vários recursos de descoberta funcionam no teu servidor.
+        preamble: Apresentar conteúdos interessantes é fundamental para atrair novos utilizadores que talvez não conheçam ninguém no Mastodon. Controle como várias funcionalidades de descoberta funcionam no seu servidor.
+        privacy: Privacidade
         profile_directory: Diretório de perfis
         public_timelines: Cronologias públicas
-        publish_discovered_servers: Publicar servidores descobertos
         publish_statistics: Publicar estatísticas
         title: Descobrir
         trends: Tendências
@@ -795,6 +850,16 @@ pt-PT:
         all: Para toda a gente
         disabled: Para ninguém
         users: Para utilizadores locais que se encontrem autenticados
+      feed_access:
+        modes:
+          authenticated: Apesar utilizadores autenticados
+          disabled: Requerer função de utilizador especifica
+          public: Todos
+      landing_page:
+        values:
+          about: Sobre
+          local_feed: Cronologia local
+          trends: Tendências
       registrations:
         moderation_recommandation: Certifique-se de que dispõe de uma equipa de moderação adequada e reativa antes de abrir as inscrições a todos!
         preamble: Controle quem pode criar uma conta no seu servidor.
@@ -848,13 +913,15 @@ pt-PT:
       no_status_selected: Nenhum estado foi alterado porque nenhum foi selecionado
       open: Abrir publicação
       original_status: Publicação original
+      quotes: Citações
       reblogs: Impulsos
       replied_to_html: Respondeu a %{acct_link}
       status_changed: Publicação alterada
       status_title: Publicado por @%{name}
       title: Publicações da conta - @%{name}
-      trending: Em tendência
+      trending: Em destaque
       view_publicly: Visualizar publicamente
+      view_quoted_post: Ver publicação citada
       visibility: Visibilidade
       with_media: Com multimédia
     strikes:
@@ -872,6 +939,8 @@ pt-PT:
     system_checks:
       database_schema_check:
         message_html: Existem migrações de bases de dados pendentes. Execute-as para garantir que a aplicação se comporta como esperado
+      elasticsearch_analysis_index_mismatch:
+        message_html: As definições do analisador de índices do Elasticsearch estão desactualizadas. Por favor, execute <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: O cluster elasticsearch não está de boa saúde (estado vermelho), as funcionalidades de pesquisa não estão disponíveis
       elasticsearch_health_yellow:
@@ -913,13 +982,13 @@ pt-PT:
         message_html: "<strong>O seu armazenamento de objetos está mal configurado. A privacidade dos seus utilizadores está em risco.</strong>"
     tags:
       moderation:
-        not_trendable: Não pode ser tendência
+        not_trendable: Não pode ser destacado
         not_usable: Não utilizável
         pending_review: Revisão pendente
         review_requested: Revisão solicitada
         reviewed: Revista
         title: Estado
-        trendable: Pode ser tendência
+        trendable: Pode ser destaque
         unreviewed: Não revista
         usable: Utilizável
       name: Nome
@@ -984,15 +1053,15 @@ pt-PT:
         shared_by_over_week:
           one: Partilhado por uma pessoa na última semana
           other: Partilhado por %{count} pessoas na última semana
-        title: Hiperligações em tendência
+        title: Hiperligações em destaque
         usage_comparison: Partilhado %{today} vezes hoje, em comparação com %{yesterday} ontem
-      not_allowed_to_trend: Não permitido para tendência
+      not_allowed_to_trend: Não permitido para destaque
       only_allowed: Apenas permitidos
       pending_review: Pendente de revisão
       preview_card_providers:
-        allowed: As hiperligações deste editor podem ser tendência
-        description_html: Estes são os domínios a partir dos quais hiperligações são frequentemente partilhadas no seu servidor. As suas hiperligações não serão colocadas em alta a menos que o seu domínio de origem seja aprovado. A sua aprovação (ou rejeição) estende-se a subdomínios.
-        rejected: As hiperligações deste editor não podem ser tendência
+        allowed: As hiperligações deste editor podem ser destaque
+        description_html: Estes são os domínios a partir dos quais hiperligações são frequentemente partilhadas no seu servidor. As hiperligações não serão colocadas em destaque sem que o seu domínio de origem seja aprovado. A sua aprovação (ou rejeição) estende-se a subdomínios.
+        rejected: As hiperligações deste editor não podem ser destaque
         title: Editores
       rejected: Rejeitado
       statuses:
@@ -1002,15 +1071,15 @@ pt-PT:
         confirm_allow_account: Tem a certeza que pretende aceitar as contas selecionadas?
         confirm_disallow: Tem a certeza que pretende rejeitar os estados selecionados?
         confirm_disallow_account: Tem a certeza que pretende rejeitar as contas selecionadas?
-        description_html: Estas são publicações que o seu servidor conhece e que estão a ser muito partilhadas e adicionadas aos favoritos neste momento. Pode ajudar os seus utilizadores novos e antigos a encontrar mais pessoas para seguir. Nenhuma publicação é apresentada publicamente até que o autor seja aprovado e o autor permita que a sua conta seja sugerida a outros. Também pode permitir ou rejeitar mensagens individuais.
+        description_html: Estas são publicações que o seu servidor conhece e que estão a ser muito partilhadas e adicionadas aos favoritos neste momento. Pode ajudar os seus utilizadores novos e que estão a regressar a encontrar mais pessoas para seguir. Nenhuma publicação é apresentada publicamente até que o autor seja aprovado e o autor permita que a sua conta seja sugerida a outros. Também pode permitir ou rejeitar mensagens individuais.
         disallow: Não permitir publicação
         disallow_account: Não permitir autor
-        no_status_selected: Não foram alteradas quaisquer publicações de tendências, uma vez que nenhuma foi selecionada
+        no_status_selected: Não foram alteradas quaisquer publicações em destaque, uma vez que nenhuma foi selecionada
         not_discoverable: O autor optou por não permitir que a sua conta seja sugerida a outros
         shared_by:
           one: Partilhada ou adicionada aos favoritos uma vez
           other: Partilhada ou adicionada aos favoritos %{friendly_count} vezes
-        title: Publicações em tendência
+        title: Publicações em destaque
       tags:
         current_score: Pontuação atual %{score}
         dashboard:
@@ -1026,16 +1095,35 @@ pt-PT:
         not_trendable: Não aparecerá nas tendências
         not_usable: Não pode ser utilizada
         peaked_on_and_decaying: No auge em %{date}, agora em declínio
-        title: Etiquetas em tendência
-        trendable: Pode aparecer nas tendências
+        title: Etiquetas em destaques
+        trendable: Pode aparecer nos destaques
         trending_rank: 'Tendência #%{rank}'
         usable: Pode ser utilizada
         usage_comparison: Utilizada %{today} vezes hoje, em comparação com %{yesterday} ontem
         used_by_over_week:
           one: Utilizada por uma pessoa na última semana
           other: Utilizada por %{count} pessoas na última semana
-      title: Recomendações e tendências
-      trending: Em tendência
+      title: Recomendações e destaques
+      trending: Em destaque
+    username_blocks:
+      add_new: Adicionar novo
+      block_registrations: Bloquear inscrições
+      comparison:
+        contains: Contém
+        equals: Igual a
+      contains_html: Contém %{string}
+      created_msg: Regra de nome de utilizador criada com sucesso
+      delete: Eliminar
+      edit:
+        title: Editar regra de nome de utilizador
+      matches_exactly_html: Igual a %{string}
+      new:
+        create: Criar regra
+        title: Criar nova regra de utilizador
+      no_username_block_selected: Não foi alterada nenhuma regra de nome de utilizador, pois nenhuma foi selecionada
+      not_permitted: Não permitido
+      title: Regras de nome de utilizador
+      updated_msg: Regra de nome de utilizador atualizada com sucesso
     warning_presets:
       add_new: Adicionar novo
       delete: Eliminar
@@ -1094,12 +1182,12 @@ pt-PT:
     new_trends:
       body: 'Os seguintes itens necessitam de uma revisão antes de poderem ser apresentados publicamente:'
       new_trending_links:
-        title: Hiperligações em tendência
+        title: Hiperligações em destaque
       new_trending_statuses:
-        title: Publicações em tendência
+        title: Publicações em destaque
       new_trending_tags:
-        title: Etiquetas em tendência
-      subject: Novas tendências para serem revistas em %{instance}
+        title: Etiquetas em destaque
+      subject: Novos destaques para revisão em %{instance}
   aliases:
     add_new: Criar pseudónimo
     created_msg: Criaste com sucesso um novo pseudónimo. Podes agora iniciar a migração da conta antiga.
@@ -1108,10 +1196,10 @@ pt-PT:
     hint_html: Se quiseres mudar de outra conta para esta, podes criar aqui um pseudónimo, que é necessário antes de poderes prosseguir com a migração de seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada a partir da conta antiga</strong>.
     remove: Desvincular pseudónimo
   appearance:
-    advanced_web_interface: Interface web avançada
-    advanced_web_interface_hint: 'Se quiseres utilizar toda a largura do teu ecrã, a interface web avançada permite configurar várias colunas diferentes para veres tanta informação ao mesmo tempo quanto quiseres: página inicial, notificações, cronologia federada, qualquer número de listas e etiquetas.'
+    advanced_settings: Definições avançadas
     animations_and_accessibility: Animações e acessibilidade
-    confirmation_dialogs: Caixas de confirmação
+    boosting_preferences: Definições de partilha
+    boosting_preferences_info_html: "<strong>Dica:</strong> Independente das definições, <kbd>Shift</kbd> + <kbd>Clique</kbd> no ícone %{icon} de Partilhar vai partilhar de imediato."
     discovery: Descobrir
     localization:
       body: O Mastodon é traduzido por voluntários.
@@ -1146,7 +1234,7 @@ pt-PT:
       clicking_this_link: clicar nesta hiperligação
       login_link: iniciar sessão
       proceed_to_login_html: Podes agora prosseguir para %{login_link}.
-      redirect_to_app_html: Devias ter sido reencaminhado para a aplicação <strong>%{app_name}</strong>. Se isso não aconteceu, tenta %{clicking_this_link} ou regressa manualmente para a aplicação.
+      redirect_to_app_html: Devia ter sido reencaminhado para a aplicação <strong>%{app_name}</strong>. Se isso não aconteceu, tente %{clicking_this_link} ou regresse manualmente para a aplicação.
       registration_complete: O teu registo sem %{domain} está agora concluído!
       welcome_title: Bem-vindo(a), %{name}!
       wrong_email_hint: Se este endereço de correio eletrónico não estiver correto, podes alterá-lo nas definições de conta.
@@ -1300,6 +1388,10 @@ pt-PT:
     basic_information: Informação básica
     hint_html: "<strong>Personalizq o que as pessoas veem no teu perfil público e junto das tuas publicações.</strong> É mais provável que as outras pessoas te sigam de volta ou interajam contigo se tiveres um perfil preenchido e uma imagem de perfil."
     other: Outro
+  emoji_styles:
+    auto: Auto
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': O pedido que submeteste foi inválido ou mal formulado.
     '403': Não tens a permissão necessária para ver esta página.
@@ -1327,7 +1419,7 @@ pt-PT:
       request: Pedir o teu arquivo
       size: Tamanho
     blocks: Bloqueaste
-    bookmarks: Marcadores
+    bookmarks: Itens Salvos
     csv: CSV
     domain_blocks: Bloqueios de domínio
     lists: Listas
@@ -1424,8 +1516,8 @@ pt-PT:
         one: Estás prestes a substituir a <strong>tua lista de bloqueios</strong> com até <strong>conta%{count}</strong> de <strong>%{filename}</strong>.
         other: Estás prestes a <strong>substituir a tua lista de bloqueios</strong> com até <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Estás prestes a <strong>substituir os teus marcadores</strong> com até <strong>%{count} publicações</strong> de <strong>%{filename}</strong>.
-        other: Estás prestes a <strong>substituir os teus marcadores</strong> com até <strong>%{count} publicação</strong> de <strong>%{filename}</strong>.
+        one: Está prestes a <strong>substituir os seus itens salvos</strong> com até <strong>%{count} publicação</strong> de <strong>%{filename}</strong>.
+        other: Está prestes a <strong>substituir os seus itens salvos</strong> com até <strong>%{count} publicações</strong> de <strong>%{filename}</strong>.
       domain_blocking_html:
         one: Estás prestes a <strong>substituir a tua lista de bloqueios de domínio</strong> com até <strong>%{count} domínio</strong> de <strong>%{filename}</strong>.
         other: Estás prestes a <strong>substituir a tua lista de bloqueios de domínio</strong> com até <strong>%{count} domínios</strong> de <strong>%{filename}</strong>.
@@ -1443,8 +1535,8 @@ pt-PT:
         one: Estás prestes a <strong>bloquear</strong> até <strong>%{count} conta</strong> de <strong>%{filename}</strong>.
         other: Estás prestes a <strong>bloquear</strong> até <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
       bookmarks_html:
-        one: Estás prestes a adicionar até <strong>%{count} publicação</strong> de <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
-        other: Estás prestes a adicionar até <strong>%{count} publicações</strong> de <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
+        one: Está prestes a adicionar até <strong>%{count} publicação</strong> de <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
+        other: Está prestes a adicionar até <strong>%{count} publicações</strong> de <strong>%{filename}</strong> aos teus <strong>marcadores</strong>.
       domain_blocking_html:
         one: Estás prestes a <strong>bloquear</strong> até <strong>%{count} domínio</strong> de <strong>%{filename}</strong>.
         other: Estás prestes a <strong>bloquear</strong> até <strong>%{count} domínios</strong> de <strong>%{filename}</strong>.
@@ -1469,18 +1561,18 @@ pt-PT:
     time_started: Iniciado em
     titles:
       blocking: Importar contas bloqueadas
-      bookmarks: Importar marcadores
+      bookmarks: Importar Itens Salvos
       domain_blocking: Importar domínios bloqueados
       following: Importar contas seguidas
       lists: Importar listas
       muting: Importar contas ocultadas
     type: Tipo de importação
     type_groups:
-      constructive: Seguidores e marcadores
+      constructive: Seguidores e Itens Salvos
       destructive: Bloqueios e ocultados
     types:
       blocking: Lista de bloqueios
-      bookmarks: Marcadores
+      bookmarks: Itens Salvos
       domain_blocking: Lista de domínios bloqueados
       following: Lista de pessoas que estás a seguir
       lists: Listas
@@ -1509,6 +1601,13 @@ pt-PT:
       expires_at: Expira
       uses: Utilizações
     title: Convidar pessoas
+  link_preview:
+    author_html: Por %{name}
+    potentially_sensitive_content:
+      action: Clicar para mostrar
+      confirm_visit: Tem a certeza que prentende abrir esta hiperligação?
+      hide_button: Esconder
+      label: Conteúdo potencialmente sensível
   lists:
     errors:
       limit: Atingiste o número máximo de listas permitido
@@ -1534,7 +1633,7 @@ pt-PT:
           follow: e-mails de notificação de seguidor
           follow_request: e-mails de pedido de seguidor
           mention: e-mails de notificação de menção
-          reblog: e-mails de notificação de impulsos
+          reblog: e-mails de notificação de partilhas
       resubscribe_html: Se tiveres anulado a subscrição por engano, podes voltar a subscrevê-la nas <a href="%{settings_path}">definições de notificação por e-mail</a>.
       success_html: Não receberás novamente %{type} do Mastodon em %{domain} para o teu e-mail em %{email}.
       title: Cancelar subscrição
@@ -1609,9 +1708,13 @@ pt-PT:
       title: Nova menção
     poll:
       subject: A sondagem de %{name} terminou
+    quote:
+      body: 'A sua publicação foi citada por %{name}:'
+      subject: "%{name} citou a sua publicação"
+      title: Nova citação
     reblog:
-      body: 'A tua publicação foi impulsionada por %{name}:'
-      subject: "%{name} impulsionou a tua publicação"
+      body: 'A tua publicação foi partilhada por %{name}:'
+      subject: "%{name} partilhou a sua publicação"
       title: Novo impulso
     status:
       subject: "%{name} acabou de publicar"
@@ -1657,6 +1760,9 @@ pt-PT:
       self_vote: Não podes votar numa sondagem criada por ti
       too_few_options: tem de ter mais do que um item
       too_many_options: não pode conter mais do que %{max} itens
+    vote: Votar
+  posting_defaults:
+    explanation: Essas configurações serão utilizadas como padrão quando criar novas publicações, mas poderá alterá-las individualmente no editor.
   preferences:
     other: Outro
     posting_defaults: Padrões de publicação
@@ -1810,8 +1916,11 @@ pt-PT:
       video:
         one: "%{count} vídeo"
         other: "%{count} vídeos"
-    boosted_from_html: Impulsionado por %{acct_link}
+    boosted_from_html: Partilhado por %{acct_link}
     content_warning: 'Aviso de conteúdo: %{warning}'
+    content_warnings:
+      hide: Esconder publicação
+      show: Mostrar mais
     default_language: Igual ao idioma da interface
     disallowed_hashtags:
       one: 'continha uma #etiqueta proibida: %{tags}'
@@ -1819,30 +1928,39 @@ pt-PT:
     edited_at_html: Editado em %{date}
     errors:
       in_reply_not_found: A publicação a que estás a tentar responder parece não existir.
+      quoted_status_not_found: A publicação que está a tentar citar parece não existir.
     over_character_limit: limite de caracteres %{max} excedido
     pin_errors:
       direct: As publicações que só são visíveis para os utilizadores mencionados não podem ser fixadas
       limit: Já fixaste a quantidade máxima de publicações
       ownership: Não podem ser fixadas publicações de outras pessoas
-      reblog: Não é possível fixar um impulso
+      reblog: Não é possível fixar uma partilha
+    quote_error:
+      not_available: Publicação indisponível
+      pending_approval: Publicação pendente
+      revoked: Publicação removida pelo autor
+    quote_policies:
+      followers: Apenas para seguidores
+      nobody: Apenas eu
+      public: Todos
+    quote_post_author: Citou uma publicação de %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Direto
-      private: Só para seguidores
-      private_long: Mostrar só aos seguidores
+      direct: Menção privada
+      private: Apenas seguidores
       public: Público
-      public_long: Todos podem ver
+      public_long: Qualquer pessoa dentro e fora do Mastodon
       unlisted: Não listado
-      unlisted_long: Todos podem ver, mas não aparecerá nas cronologias públicas
+      unlisted_long: Oculto dos resultados de pesquisa, tendências e linhas do tempo públicas do Mastodon
   statuses_cleanup:
     enabled: Eliminar publicações antigas automaticamente
     enabled_hint: Elimina automaticamente as tuas publicações assim que atingirem um certo limite de tempo, a não ser que correspondam a uma das seguintes exceções
     exceptions: Exceções
     explanation: Como eliminar publicações é uma operação custosa, isto é feito lentamente ao longo do tempo, quando o servidor não está ocupado. Por esta razão, as tuas publicações podem ser eliminadas um pouco depois de atingirem o limite de idade definido.
     ignore_favs: Ignorar favoritos
-    ignore_reblogs: Ignorar os impulsos
+    ignore_reblogs: Ignorar partilhas
     interaction_exceptions: Exceções baseadas em interações
-    interaction_exceptions_explanation: Tem em atenção que não há garantia de que as mensagens sejam eliminadas se ficarem abaixo do limite de favoritos ou de impulsionamento depois de os terem ultrapassado.
+    interaction_exceptions_explanation: Observe que não há garantia que as publicações serão excluídas se ficarem abaixo do limite de favoritos ou partilhas depois de terem ultrapassado esses limites.
     keep_direct: Manter mensagens diretas
     keep_direct_hint: Não elimina nenhuma das tuas mensagens diretas
     keep_media: Manter publicações com anexos de multimédia
@@ -1851,8 +1969,8 @@ pt-PT:
     keep_pinned_hint: Não elimina nenhuma das tuas publicações afixadas
     keep_polls: Manter sondagens
     keep_polls_hint: Não elimina nenhuma das tuas sondagens
-    keep_self_bookmark: Manter as publicações que marquei
-    keep_self_bookmark_hint: Não elimina as tuas próprias publicações se as tiveres nos marcadores
+    keep_self_bookmark: Manter as publicações que salvou
+    keep_self_bookmark_hint: Não eliminar as suas próprias publicações se as tiver salvo
     keep_self_fav: Manter as publicações que adicionei aos favoritos
     keep_self_fav_hint: Não elimina as tuas próprias publicações se as tiveres adicionado aos favoritos
     min_age:
@@ -1867,8 +1985,8 @@ pt-PT:
     min_age_label: Limite de idade
     min_favs: Manter publicações adicionadas aos favoritos pelos menos
     min_favs_hint: Não elimina nenhuma das tuas publicações que tenham sido adicionadas aos favoritos este número de vezes. Deixa em branco para eliminar publicações, independentemente do número de vezes que tenham sido adicionadas aos favoritos
-    min_reblogs: Manter as publicações impulsionadas, pelo menos
-    min_reblogs_hint: Não elimina nenhuma das tuas mensagens que tenham sido impulsionada pelo menos este número de vezes. Deixa em branco para eliminar as mensagens independentemente do número de impulsionamentos
+    min_reblogs: Manter, pelo menos, as publicações partilhadas
+    min_reblogs_hint: Não elimina nenhuma das suas publicações que tenha sido partilhadas pelo menos este número de vezes. Deixe em branco para eliminar publicações independentemente do número de partilhas
   stream_entries:
     sensitive_content: Conteúdo sensível
   strikes:
@@ -1878,6 +1996,11 @@ pt-PT:
     does_not_match_previous_name: não coincide com o nome anterior
   terms_of_service:
     title: Termos de Serviço
+  terms_of_service_interstitial:
+    future_preamble_html: Estamos a fazer algumas alterações aos nossos termos de serviço, que entrarão em vigor a partir de <strong>%{date}</strong>. Recomendamos que reveja os termos atualizados.
+    past_preamble_html: Alterámos os nossos termos de serviço desde a sua última visita. Recomendamos que reveja os termos atualizados.
+    review_link: Rever termos de serviço
+    title: Os termos de serviço de %{domain} estão a ser alterados
   themes:
     contrast: Mastodon (alto contraste)
     default: Mastodon (escuro)
@@ -1990,7 +2113,7 @@ pt-PT:
       checklist_subtitle: 'Vamos começar nesta nova fronteira social:'
       checklist_title: Passos de boas-vindas
       edit_profile_action: Personalizar
-      edit_profile_step: Aumenta as tuas interações com um perfil completo.
+      edit_profile_step: Aumente as suas interações ao ter um perfil mais completo.
       edit_profile_title: Personaliza o teu perfil
       explanation: Aqui estão algumas dicas para começar
       feature_action: Mais informações
@@ -2011,13 +2134,12 @@ pt-PT:
       hashtags_recent_count:
         one: "%{people} pessoa nos últimos 2 dias"
         other: "%{people} pessoas nos últimos 2 dias"
-      hashtags_subtitle: Explore o que está em tendência desde os últimos 2 dias
-      hashtags_title: Etiquetas em tendência
-      hashtags_view_more: Ver mais etiquetas em tendência
+      hashtags_subtitle: Explore o que está em destaque nos últimos 2 dias
+      hashtags_title: Etiquetas em destaque
+      hashtags_view_more: Ver mais etiquetas em destaque
       post_action: Compor
       post_step: Diz olá para o mundo com texto, fotos, vídeos ou sondagens.
       post_title: Faz a tua primeira publicação
-      share_action: Partilhar
       share_step: Diz aos teus amigos como te podem encontrar no Mastodon.
       share_title: Partilha o teu perfil de Mastodon
       sign_in_action: Iniciar sessão
@@ -2032,7 +2154,7 @@ pt-PT:
     seamless_external_login: A sessão foi iniciada através de um serviço externo, pelo que as definições de palavra-passe e e-mail não estão disponíveis.
     signed_in_as: 'Registado como:'
   verification:
-    extra_instructions_html: <strong>Dica:</strong> a hiperligação no teu site pode ser invisível. A parte importante é <code>rel="me"</code> que impede a falsificação de identidade em sítios na web com conteúdos gerados pelos utilizadores. Podes até utilizar uma etiqueta <code>link</code> no cabeçalho da página ao invés de <code>a</code>, mas o HTML deve ser acessível sem executar JavaScript.
+    extra_instructions_html: <strong>Dica:</strong> a hiperligação no seu site pode ser invisível. A parte importante é <code>rel="me"</code> que impede a falsificação de identidade em sítios na web com conteúdos gerados pelos utilizadores. Pode até utilizar uma etiqueta <code>link</code> no cabeçalho da página ao invés de <code>a</code>, mas o HTML deve ser acessível sem executar JavaScript.
     here_is_how: Eis o que fazer
     hint_html: "<strong>Verificar a sua identidade no Mastodon é para todos.</strong> Baseado em normas públicas da web, agora e para sempre gratuitas. Tudo o que precisas é de um site pessoal pelo qual as pessoas te reconheçam. Quando colocas no teu perfil uma hiperligação para esse site, vamos verificar que o site tem uma hiperligação de volta para o teu perfil e mostrar um indicador visual."
     instructions_html: Copia e cola o código abaixo no HTML do teu site. Em seguida, adiciona o endereço do teu site num dos campos extras no teu perfil, na aba "Editar perfil" e guarda as alterações.

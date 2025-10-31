@@ -1,7 +1,7 @@
-import './public-path';
 import { createRoot } from 'react-dom/client';
 
 import Rails from '@rails/ujs';
+import { decode, ValidationError } from 'blurhash';
 
 import ready from '../mastodon/ready';
 
@@ -273,7 +273,7 @@ async function mountReactComponent(element: Element) {
   );
 
   const { default: Component } = (await import(
-    `@/mastodon/components/admin/${componentName}`
+    `@/mastodon/components/admin/${componentName}.jsx`
   )) as { default: React.ComponentType };
 
   const root = createRoot(element);
@@ -363,6 +363,46 @@ ready(() => {
   document.querySelectorAll('[data-admin-component]').forEach((element) => {
     void mountReactComponent(element);
   });
+
+  document
+    .querySelectorAll<HTMLCanvasElement>('canvas[data-blurhash]')
+    .forEach((canvas) => {
+      const blurhash = canvas.dataset.blurhash;
+      if (blurhash) {
+        try {
+          // decode returns a Uint8ClampedArray<ArrayBufferLike> not Uint8ClampedArray<ArrayBuffer>
+          const pixels = decode(
+            blurhash,
+            32,
+            32,
+          ) as Uint8ClampedArray<ArrayBuffer>;
+          const ctx = canvas.getContext('2d');
+          const imageData = new ImageData(pixels, 32, 32);
+
+          ctx?.putImageData(imageData, 0, 0);
+        } catch (err) {
+          if (err instanceof ValidationError) {
+            // ignore blurhash validation errors
+            return;
+          }
+
+          throw err;
+        }
+      }
+    });
+
+  document
+    .querySelectorAll<HTMLDivElement>('.preview-card')
+    .forEach((previewCard) => {
+      const spoilerButton = previewCard.querySelector('.spoiler-button');
+      if (!spoilerButton) {
+        return;
+      }
+
+      spoilerButton.addEventListener('click', () => {
+        previewCard.classList.toggle('preview-card--image-visible');
+      });
+    });
 }).catch((reason: unknown) => {
   throw reason;
 });

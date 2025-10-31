@@ -190,6 +190,7 @@ fy:
         create_relay: Relay oanmeitsje
         create_unavailable_domain: Net beskikber domein oanmeitsje
         create_user_role: Rol oanmeitsje
+        create_username_block: Brûkersnammeregel oanmeitsje
         demote_user: Brûker degradearje
         destroy_announcement: Meidieling fuortsmite
         destroy_canonical_email_block: E-mailblokkade fuortsmite
@@ -203,6 +204,7 @@ fy:
         destroy_status: Toot fuortsmite
         destroy_unavailable_domain: Net beskikber domein fuortsmite
         destroy_user_role: Rol permanint fuortsmite
+        destroy_username_block: Brûkersnammeregel fuortsmite
         disable_2fa_user: Twa-stapsferifikaasje útskeakelje
         disable_custom_emoji: Lokale emoji útskeakelje
         disable_relay: Relay útskeakelje
@@ -237,6 +239,7 @@ fy:
         update_report: Rapportaazje bywurkje
         update_status: Berjocht bywurkje
         update_user_role: Rol bywurkje
+        update_username_block: Brûkersnammeregel bywurkje
       actions:
         approve_appeal_html: "%{name} hat it beswier tsjin de moderaasjemaatregel fan %{target} goedkard"
         approve_user_html: "%{name} hat de registraasje fan %{target} goedkard"
@@ -255,6 +258,7 @@ fy:
         create_relay_html: "%{name} hat in relay oanmakke %{target}"
         create_unavailable_domain_html: "%{name} hat de besoarging foar domein %{target} beëinige"
         create_user_role_html: "%{name} hat de rol %{target} oanmakke"
+        create_username_block_html: "%{name} hat in brûkersnammeregel mei %{target} tafoege"
         demote_user_html: Brûker %{target} is troch %{name} degradearre
         destroy_announcement_html: "%{name} hat de meidieling %{target} fuortsmiten"
         destroy_canonical_email_block_html: "%{name} hat it e-mailberjocht mei de hash %{target} deblokkearre"
@@ -268,6 +272,7 @@ fy:
         destroy_status_html: Berjocht fan %{target} is troch %{name} fuortsmiten
         destroy_unavailable_domain_html: "%{name} hat de besoarging foar domein %{target} opnij starte"
         destroy_user_role_html: "%{name} hat de rol %{target} fuortsmiten"
+        destroy_username_block_html: "%{name} hat in brûkersnammeregel mei %{target} fuortsmiten"
         disable_2fa_user_html: De fereaske twa-stapsferifikaasje foar %{target} is troch %{name} útskeakele
         disable_custom_emoji_html: Emoji %{target} is troch %{name} útskeakele
         disable_relay_html: "%{name} hat de relay %{target} útskeakele"
@@ -302,6 +307,7 @@ fy:
         update_report_html: Rapportaazje %{target} is troch %{name} bywurke
         update_status_html: "%{name} hat de berjochten %{target} bywurke"
         update_user_role_html: "%{name} hat de rol %{target} wizige"
+        update_username_block_html: "%{name} hat in brûkersnammeregel mei %{target} bywurke"
       deleted_account: fuortsmiten account
       empty: Gjin lochboeken fûn.
       filter_by_action: Op aksje filterje
@@ -309,6 +315,7 @@ fy:
       title: Auditlogboek
       unavailable_instance: "(domeinnamme net beskikber)"
     announcements:
+      back: Tebek nei meidielingen
       destroyed_msg: Fuortsmiten fan meidieling slagge!
       edit:
         title: Meidieling bewurkje
@@ -317,6 +324,10 @@ fy:
       new:
         create: Meidieling oanmeitsje
         title: Nije meidieling
+      preview:
+        disclaimer: Omdat brûkers harren net foar dizze e-mailberjochten ôfmelde kinne, moatte e-mailmeldingen beheind wurde ta wichtige oankundigingen, lykas it lekken fan brûkersgegevens of meldingen oer it sluten fan dizze server.
+        explanation_html: 'It e-mailberjocht wurdt ferstjoerd nei <strong>%{display_count} brûkers</strong>. De folgjende tekst sil yn it e-mailberjocht opnommen wurde:'
+        title: Foarbyld fan meidieling
       publish: Publisearje
       published_msg: Publisearjen fan meidieling slagge!
       scheduled_for: Ynpland foar %{time}
@@ -475,6 +486,36 @@ fy:
       new:
         title: Domeinblokkaden ymportearje
       no_file: Gjin bestân selektearre
+    fasp:
+      debug:
+        callbacks:
+          created_at: Oanmakke op
+          delete: Fuortsmite
+          ip: IP-adres
+          request_body: Kearntekst opfreegje
+          title: Callbacks debugge
+      providers:
+        active: Aktyf
+        base_url: Basis-URL
+        callback: Callback
+        delete: Fuortsmite
+        edit: Provider bewurkje
+        finish_registration: Registraasje foltôgje
+        name: Namme
+        providers: Providers
+        public_key_fingerprint: Fingerôfdruk fan publike kaai
+        registration_requested: Registraasje oanfrege
+        registrations:
+          confirm: Befêstigje
+          description: Jo hawwe in registraasje ûntfongen fan in FASP. Wegerje dizze as jo dit net oanfrege hawwe. Hawwe jo dit wol oanfrege, fergelykje dan soarchfuldich de namme en de fingerôfdruk fan de kaai eardat jo de registraasje befêstigje.
+          reject: Wegerje
+          title: FASP-registraasje befêstigje
+        save: Bewarje
+        select_capabilities: Mooglikheden selektearje
+        sign_in: Oanmelde
+        status: Status
+        title: Fediverse Auxiliary Service Providers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Dizze oanrekommandearre accounts helpe nije brûkers fluch ynteressante ynhâld</strong>te finen. Wannear’t in brûker net mei oare brûkers genôch ynteraksje hân hat om personalisearre oanrekommandaasjes te krijen, wurde yn stee dêrfan dizze accounts oanrekommandearre. Dizze accounts wurde deistich opnij berekkene mei help fan accounts mei it heechste tal resinte ynteraksjes en it heechste tal lokale folgers yn in bepaalde taal."
       language: Foar taal
@@ -543,6 +584,13 @@ fy:
         all: Alle
         limited: Beheind
         title: Moderaasje
+      moderation_notes:
+        create: Moderaasje-opmerking oanmeitsje
+        created_msg: Oanmeitsjen fan servermoderaasje-opmerking slagge!
+        description_html: Opmerkingen besjen en foar josele en oare moderatoaren efterlitte
+        destroyed_msg: Fuortsmiten fan servermoderaasje-opmerking slagge!
+        placeholder: Ynformaasje oer dizze server, nommen aksjes of wat oars dy’t jo helpe kinne om dizze server yn de takomst te moderearjen.
+        title: Moderaasje-opmerkingen
       private_comment: Priveeopmerking
       public_comment: Iepenbiere opmerking
       purge: Folslein fuortsmite
@@ -751,17 +799,26 @@ fy:
       title: Rollen
     rules:
       add_new: Rigel tafoegje
+      add_translation: Oersetting tafoegje
       delete: Fuortsmite
       description_html: Hoewol de measte minsken sizze dat se de brûksbetingsten lêzen hawwe en der mei akkoard gean, lêze minsken dizze meastentiids net oant dat der in probleem bard. <strong>Meitsje it ienfâldiger om de regels fan dizze server yn ien eachwink te sjen, troch se punt foar punt yn in list te setten.</strong> Probearje de ferskate regels koart en simpel te hâlden, mar probearje se ek net yn ferskate items ûnder te ferdielen.
       edit: Rigel bewurkje
       empty: Foar dizze server binne noch gjin regels opsteld.
+      move_down: Omleech ferpleatse
+      move_up: Omheech ferpleatse
       title: Serverrigels
+      translation: Oersetting
+      translations: Oersettingen
+      translations_explanation: Jo kinne eventueel oersettingen tafoegje foar de regels. De standertwearde wurdt toand as der gjin oerstte ferzje beskikber is. Soargje der altyd foar dat oanfoljende oersettingen bywurke bliuwe.
     settings:
       about:
         manage_rules: Serverregels beheare
         preamble: Jou wiidweidige ynformaasje oer hoe’t de server beheard, modereare en finansiere wurdt.
         rules_hint: Der is in spesjaal gebied foar regels wêr’t jo brûkers harren oan hâlde moatte.
         title: Oer
+      allow_referrer_origin:
+        desc: Wannear’t jo brûkers op koppelingen nei eksterne websites klikke, kin harren browser it adres fan jo Mastodon-server as de referrer ferstjoere. Skeakelje dit út as dit jo brûkers unyk identifisearje soe, bygelyks as dit in persoanlike Mastodon-server is.
+        title: Eksterne websites tastean om jo Mastodon-server as de boarne te sjen
       appearance:
         preamble: Mastodon’s webomjouwing oanpasse.
         title: Werjefte
@@ -780,10 +837,9 @@ fy:
         title: Brûkers standert net troch sykmasinen yndeksearje litte
       discovery:
         follow_recommendations: Oanrekommandearre accounts
-        preamble: It toanen fan ynteressante ynhâld is fan essinsjeel belang foar it oan board heljen fan nije brûkers dy’t mooglik net ien fan Mastodon kinne. Bepaal hoe’t ferskate funksjes foar it ûntdekken fan ynhâld en brûkers op jo server wurkje.
+        privacy: Privacy
         profile_directory: Profylmap
         public_timelines: Iepenbiere tiidlinen
-        publish_discovered_servers: Untdekte servers publisearje
         publish_statistics: Statistiken publisearje
         title: Untdekke
         trends: Trends
@@ -868,6 +924,8 @@ fy:
     system_checks:
       database_schema_check:
         message_html: Der binne database migraasjes yn ôfwachting. Jo moatte dizze útfiere om der foar te soargjen dat de applikaasje wurkjen bliuwt sa as it heard
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch-yndeksanalysearynstellingen binne ferâldere. Fier <code>tootctl search deploy --only-mapping --only=%{value}</code> út
       elasticsearch_health_red:
         message_html: Elasticsearch-cluster is net sûn (reade status), sykfunksjes binne net beskikber
       elasticsearch_health_yellow:
@@ -939,6 +997,7 @@ fy:
         chance_to_review_html: "<strong>De generearre gebrûksbetingsten wurde net automatysk publisearre.</strong> Jo krije gelegenheid om de resultaten te besjen. Folje de nedige gegevens yn om troch te gean."
         explanation_html: It sjabloan foar de gebrûksbetingsten is útslutend bedoeld foar ynformative doeleinen en mei net opfette wurde as juridysk advys oer hokker ûnderwerp dan ek. Freegje in eigen juridysk adviseur oer jo situaasje en foar spesifike juridyske fragen.
         title: Gebrûksbetingsten ynstelle
+      going_live_on_html: Aktueel mei yngong fan %{date}
       history: Skiednis
       live: Aktueel
       no_history: Der binne noch gjin bewarre wizigingen fan de gebrûksbetingsten.
@@ -1031,6 +1090,25 @@ fy:
           other: Dizze wike troch %{count} persoanen brûkt
       title: Oanrekommandaasjes & trends
       trending: Trending
+    username_blocks:
+      add_new: Nije tafoegje
+      block_registrations: Registraasjes blokkearje
+      comparison:
+        contains: Befettet
+        equals: Is lyk oan
+      contains_html: Befettet %{string}
+      created_msg: Brûkersnammeregel mei sukses oanmakke
+      delete: Fuortsmite
+      edit:
+        title: Brûkersnammeregel bywurkje
+      matches_exactly_html: Is lyk oan %{string}
+      new:
+        create: Regel oanmeitsje
+        title: Brûkersnammeregel oanmeitsje
+      no_username_block_selected: Der binne gjin brûkersnammeregels wizige, omdat der gjin ien selektearre waard
+      not_permitted: Net tastien
+      title: Brûkersnammeregels
+      updated_msg: Brûkersnammeregel mei sukses bywurke
     warning_presets:
       add_new: Nije tafoegje
       delete: Fuortsmite
@@ -1103,10 +1181,7 @@ fy:
     hint_html: Wannear’t jo fan in oare account ôf nei dizze account ferhúzje wolle, kinne jo hjir in alias oanmeitsje. Dit is nedich eardat jo troch gean kinne mei it ferhúzjen fan folgers fan de âlde nei dizze nije account. Dizze aksje is op eins <strong>net gefaarlik en omkearber</strong>. <strong>De accountmigraasje wurdt start fan de âlde account ôf</strong>.
     remove: Alias ûntkeppelje
   appearance:
-    advanced_web_interface: Avansearre webomjouwing
-    advanced_web_interface_hint: 'Wannear’t jo fan de hiele skermbreedte gebrûk meitsje wolle, stelt de avansearre webomjouwing jo yn steat om meardere ferskate kolommen te konfigurearjen. Hjirmei kinne jo safolle mooglik ynformaasje op itselde momint besjen, lykas: Start, meldingen, de globale tiidline, meardere listen en hashtags.'
     animations_and_accessibility: Animaasjes en tagonklikheid
-    confirmation_dialogs: Befêstigingen
     discovery: Untdekke
     localization:
       body: Mastodon wurdt troch frijwilligers oerset.
@@ -1295,6 +1370,10 @@ fy:
     basic_information: Algemiene ynformaasje
     hint_html: "<strong>Pas oan wat minsken op jo iepenbiere profyl en njonken jo berjochten sjogge.</strong> Oare minsken sille jo earder folgje en mei jo kommunisearje wannear’t jo profyl ynfolle is en jo in profylfoto hawwe."
     other: Oars
+  emoji_styles:
+    auto: Automatysk
+    native: Systeemeigen
+    twemoji: Twemoji
   errors:
     '400': De oanfraach dy’t jo yntsjinne hawwe wie ûnjildich of fout.
     '403': Jo hawwe gjin tastimming om dizze side te besjen.
@@ -1814,6 +1893,7 @@ fy:
     edited_at_html: Bewurke op %{date}
     errors:
       in_reply_not_found: It berjocht wêrop jo probearje te reagearjen liket net te bestean.
+      quoted_status_not_found: It berjocht dy’t jo probearje te sitearjen liket net te bestean.
     over_character_limit: Oer de limyt fan %{max} tekens
     pin_errors:
       direct: Berjochten dy’t allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde
@@ -1822,13 +1902,7 @@ fy:
       reblog: In boost kin net fêstset wurde
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Direkt
-      private: Allinnich folgers
-      private_long: Allinnich oan jo folgers toane
       public: Iepenbier
-      public_long: Elkenien kin it sjen
-      unlisted: Minder iepenbier
-      unlisted_long: Elkenien kin it sjen, mar net op iepenbiere tiidlinen
   statuses_cleanup:
     enabled: Automatysk âlde berjochten fuortsmite
     enabled_hint: Smyt jo berjochten automatysk fuort sa gau as se in bepaalde leeftiidsgrins berikke, útsein se oerienkomme mei ien fan de ûndersteande útsûnderingen
@@ -1873,6 +1947,11 @@ fy:
     does_not_match_previous_name: komt net oerien mei de foarige namme
   terms_of_service:
     title: Gebrûksbetingsten
+  terms_of_service_interstitial:
+    future_preamble_html: Wy bringe inkelde wizigingen oan yn ús gebrûksbetingsten, dy’t fan krêft wurde op <strong>%{date}</strong>. Wy rekommandearje jo oan om de bywurke betingsten troch te nimmen.
+    past_preamble_html: Wy hawwe ús gebrûksbetingsten wizige sûnt jo lêste besite. Wy rekommandearje jo oan om de bywurke betingsten troch te nimmen.
+    review_link: Gebrûksbetingsten besjen
+    title: De gebrûksbetingsten fan %{domain} wizigje
   themes:
     contrast: Mastodon (heech kontrast)
     default: Mastodon (donker)
@@ -1904,6 +1983,10 @@ fy:
     recovery_instructions_html: Wannear’t jo ea de tagong ta jo telefoan ferlieze, kinne jo mei help fan ien fan de werstelkoaden hjirûnder opnij tagong krije ta jo account. <strong>Soargje derfoar dat jo de werstelkoaden op in feilich plak bewarje</strong>. Jo kinne se bygelyks ôfdrukke en se tegearre mei oare wichtige dokuminten bewarje.
     webauthn: Befeiligingskaaien
   user_mailer:
+    announcement_published:
+      description: 'De behearders fan %{domain} dogge in meidieling:'
+      subject: Service-oankundiging
+      title: Service-oankundiging %{domain}
     appeal_approved:
       action: Accountynstellingen
       explanation: It beswier tsjin in troch in moderator fêststelde skeining fan jo op %{strike_date}, yntsjinne op %{appeal_date}, is goedkard. De earder fêststelde skeining is hjirby net langer jildich.
@@ -1936,6 +2019,8 @@ fy:
     terms_of_service_changed:
       agreement: Troch %{domain} brûke te bliuwen, geane jo akkoard mei dizze betingsten. As jo it net iens binne mei de bywurke betingsten, kinne jo jo oerienkomst mei %{domain} op elk winske momint beëinigje troch jo account fuort te smiten.
       changelog: 'Yn ien eachopslach betsjut dizze update foar jo:'
+      description: 'Jo ûntfange dit berjocht, omdat wy inkelde wizigingen oanbringe yn ús gebrûksbetingsten by %{domain}. Dizze oanpassingen wurde fan krêft op %{date}. Wy riede jo oan om de bywurke betingsten hjir folslein te besjen:'
+      description_html: Jo ûntfange dit e-mailberjocht, omdat wy inkelde wizigingen oanbringe yn ús gebrûksbetingsten by %{domain}. Dizze oanpassingen wurde fan krêft op <strong>%{date}</strong>. Wy riede jo oan om de <a href="%{path}" target="_blank">bywurke betingsten hjir folslein te besjen</a>.
       sign_off: It %{domain}-team
       subject: Aktualisaasje fan ús tsjinstbetingsten
       subtitle: De gebrûksbetingsten fan %{domain} wizigje
@@ -2006,7 +2091,6 @@ fy:
       post_action: Opstelle
       post_step: Sis hallo tsjin de wrâld mei tekst, foto’s, fideo’s of peilingen.
       post_title: Jo earste berjocht meitsje
-      share_action: Diele
       share_step: Lit jo freonen witte hoe’t jo te finen binne op Mastodon.
       share_title: Jo Mastodon-profyl diele
       sign_in_action: Oanmelde

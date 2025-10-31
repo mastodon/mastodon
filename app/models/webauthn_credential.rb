@@ -21,5 +21,5 @@ class WebauthnCredential < ApplicationRecord
   validates :external_id, uniqueness: true
   validates :nickname, uniqueness: { scope: :user_id }
   validates :sign_count,
-            numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: SIGN_COUNT_LIMIT - 1 }
+            numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than: SIGN_COUNT_LIMIT }
 end

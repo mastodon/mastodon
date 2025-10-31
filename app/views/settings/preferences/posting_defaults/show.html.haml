@@ -1,0 +1,52 @@
+- content_for :page_title do
+  = t('preferences.posting_defaults')
+
+- content_for :heading_actions do
+  = button_tag t('generic.save_changes'), class: 'button', form: 'edit_preferences'
+
+- if ['unlisted', 'private'].include?(current_user.setting_default_privacy)
+  - initial_quote_hint = I18n.t("simple_form.hints.defaults.setting_default_quote_policy_#{current_user.setting_default_privacy}")
+
+= simple_form_for current_user, url: settings_preferences_posting_defaults_path, html: { id: :edit_preferences } do |f|
+  = render 'shared/error_messages', object: current_user
+
+  = f.simple_fields_for :settings, current_user.settings do |ff|
+    .flash-message= t('posting_defaults.explanation')
+
+    .fields-group
+      = ff.input :default_privacy,
+                 collection: Status.selectable_visibilities,
+                 selected: current_user.setting_default_privacy,
+                 hint: false,
+                 include_blank: false,
+                 label_method: ->(visibility) { visibility == 'private' ? I18n.t('statuses.visibilities.private') : safe_join([I18n.t("statuses.visibilities.#{visibility}"), I18n.t("statuses.visibilities.#{visibility}_long")], ' - ') },
+                 label: I18n.t('simple_form.labels.defaults.setting_default_privacy'),
+                 required: false,
+                 wrapper: :with_label
+
+    .fields-group
+      = ff.input :default_quote_policy,
+                 collection: %w(public followers nobody),
+                 include_blank: false,
+                 label_method: ->(policy) { I18n.t("statuses.quote_policies.#{policy}") },
+                 label: I18n.t('simple_form.labels.defaults.setting_default_quote_policy'),
+                 hint: initial_quote_hint,
+                 required: false,
+                 wrapper: :with_label,
+                 wrapper_html: { data: { 'unlisted-hint': I18n.t('simple_form.hints.defaults.setting_default_quote_policy_unlisted'), 'private-hint': I18n.t('simple_form.hints.defaults.setting_default_quote_policy_private') } }
+
+    .fields-group
+      = ff.input :default_language,
+                 collection: [nil] + filterable_languages,
+                 hint: false,
+                 include_blank: false,
+                 label_method: ->(locale) { locale.nil? ? I18n.t('statuses.default_language') : native_locale_name(locale) },
+                 label: I18n.t('simple_form.labels.defaults.setting_default_language'),
+                 required: false,
+                 wrapper: :with_label
+
+    .fields-group
+      = ff.input :default_sensitive,
+                 hint: I18n.t('simple_form.hints.defaults.setting_default_sensitive'),
+                 label: I18n.t('simple_form.labels.defaults.setting_default_sensitive'),
+                 wrapper: :with_label

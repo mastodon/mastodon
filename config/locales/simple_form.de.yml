@@ -4,7 +4,7 @@ de:
     hints:
       account:
         attribution_domains: Eine Domain pro Zeile. Dadurch können falsche Zuschreibungen unterbunden werden.
-        discoverable: Deine öffentlichen Beiträge und dein Profil können in verschiedenen Bereichen auf Mastodon angezeigt oder empfohlen werden und dein Profil kann anderen vorgeschlagen werden.
+        discoverable: Deine öffentlichen Beiträge und dein Profil können in verschiedenen Bereichen auf Mastodon vorgestellt oder empfohlen werden, ebenso kann dein Profil anderen vorgeschlagen werden.
         display_name: Dein richtiger Name oder dein Fantasiename.
         fields: Deine Website, Pronomen, dein Alter – alles, was du möchtest.
         indexable: Deine öffentlichen Beiträge können in den Suchergebnissen auf Mastodon erscheinen. Profile, die bereits mit deinen Beiträgen interagiert haben, können deine Beiträge immer auffinden.
@@ -48,18 +48,24 @@ de:
         digest: Wenn du eine längere Zeit inaktiv bist oder du während deiner Abwesenheit in einer privaten Nachricht erwähnt worden bist
         email: Du wirst eine E-Mail zur Verifizierung dieser E-Mail-Adresse erhalten
         header: WEBP, PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
-        inbox_url: Kopiere die URL von der Startseite des gewünschten Relays
+        inbox_url: Kopiere die URL von der Startseite des gewünschten Relais
         irreversible: Bereinigte Beiträge verschwinden unwiderruflich für dich, auch dann, wenn dieser Filter zu einem späteren wieder entfernt wird
         locale: Die Sprache der Bedienoberfläche, E-Mails und Push-Benachrichtigungen
         password: Verwende mindestens 8 Zeichen
         phrase: Wird unabhängig von der Groß- und Kleinschreibung im Text oder der Inhaltswarnung eines Beitrags abgeglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
-        setting_aggregate_reblogs: Beiträge, die erst kürzlich geteilt wurden, werden nicht noch einmal angezeigt (wirkt sich nur auf zukünftige geteilte Beiträge aus)
+        setting_advanced_layout: Dadurch wird Mastodon in mehrere Spalten aufgeteilt, womit du deine Timeline, Benachrichtigungen und eine dritte Spalte deiner Wahl nebeneinander siehst. Nicht bei einem kleinen Bildschirm empfohlen.
+        setting_aggregate_reblogs: Beiträge, die erst kürzlich geteilt wurden, werden nicht noch einmal angezeigt (betrifft nur zukünftig geteilte Beiträge)
         setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail versendet, wenn du gerade auf Mastodon aktiv bist
+        setting_boost_modal: Dadurch wird beim Teilen ein Bestätigungsdialog angezeigt, um die Sichtbarkeit anzupassen.
+        setting_default_quote_policy_private: Beiträge, die nur für deine Follower bestimmt sind und auf Mastodon verfasst wurden, können nicht von anderen zitiert werden.
+        setting_default_quote_policy_unlisted: Sollten dich andere zitieren, werden ihre zitierten Beiträge ebenfalls nicht in den Trends und öffentlichen Timelines angezeigt.
         setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden – je nach Einstellung – erst nach einem zusätzlichen Klick angezeigt
         setting_display_media_default: Medien mit Inhaltswarnung ausblenden
         setting_display_media_hide_all: Medien immer ausblenden
         setting_display_media_show_all: Medien mit Inhaltswarnung immer anzeigen
+        setting_emoji_style: 'Wie Emojis dargestellt werden: „Automatisch“ verwendet native Emojis, für veraltete Browser wird jedoch Twemoji verwendet.'
+        setting_quick_boosting_html: Dadurch wird der Beitrag beim Anklicken des %{boost_icon} Teilen-Symbols sofort geteilt, anstatt das Drop-down-Menü zu öffnen. Die Möglichkeit zum Zitieren wird dabei in %{options_icon} Mehr verschoben.
         setting_system_scrollbars_ui: Betrifft nur Desktop-Browser, die auf Chrome oder Safari basieren
         setting_use_blurhash: Der Farbverlauf basiert auf den Farben der ausgeblendeten Medien, verschleiert aber jegliche Details
         setting_use_pending_items: Neue Beiträge hinter einem Klick verstecken, anstatt automatisch zu scrollen
@@ -87,6 +93,7 @@ de:
         content_cache_retention_period: Sämtliche Beiträge von anderen Servern (einschließlich geteilte Beiträge und Antworten) werden, unabhängig von der Interaktion der lokalen Nutzer*innen mit diesen Beiträgen, nach der festgelegten Anzahl von Tagen gelöscht. Das betrifft auch Beiträge, die von lokalen Nutzer*innen favorisiert oder als Lesezeichen gespeichert wurden. Private Erwähnungen zwischen Nutzer*innen von verschiedenen Servern werden ebenfalls verloren gehen und können nicht wiederhergestellt werden. Diese Option richtet sich ausschließlich an Server mit speziellen Zwecken und wird die allgemeine Nutzungserfahrung beeinträchtigen, wenn sie für den allgemeinen Gebrauch aktiviert ist.
         custom_css: Du kannst benutzerdefinierte Stile auf die Web-Version von Mastodon anwenden.
         favicon: WEBP, PNG, GIF oder JPG. Überschreibt das Standard-Mastodon-Favicon mit einem eigenen Symbol.
+        landing_page: Legt fest, welche Seite neue Besucher*innen sehen, wenn sie zum ersten Mal auf deinem Server ankommen. Für „Trends“ müssen die Trends in den Entdecken-Einstellungen aktiviert sein. Für „Lokaler Feed“ muss „Zugriff auf Live-Feeds, die lokale Beiträge beinhalten“ in den Entdecken-Einstellungen auf „Alle“ gesetzt werden.
         mascot: Überschreibt die Abbildung in der erweiterten Weboberfläche.
         media_cache_retention_period: Mediendateien aus Beiträgen von externen Nutzer*innen werden auf deinem Server zwischengespeichert. Wenn ein positiver Wert gesetzt ist, werden die Medien nach der festgelegten Anzahl von Tagen gelöscht. Sollten die Medien nach dem Löschvorgang wieder angefragt werden, werden sie erneut heruntergeladen, sofern der ursprüngliche Inhalt noch vorhanden ist. Es wird empfohlen, diesen Wert auf mindestens 14 Tage festzulegen, da die Häufigkeit der Abfrage von Linkvorschaukarten für Websites von Dritten begrenzt ist und die Linkvorschaukarten sonst nicht vor Ablauf dieser Zeit aktualisiert werden.
         min_age: Nutzer*innen werden bei der Registrierung aufgefordert, ihr Geburtsdatum zu bestätigen
@@ -102,10 +109,8 @@ de:
         status_page_url: Link zu einer Internetseite, auf der der Serverstatus während eines Ausfalls angezeigt wird
         theme: Das Design, das abgemeldete Besucher und neue Benutzer sehen.
         thumbnail: Ein Bild ungefähr im 2:1-Format, das neben den Server-Informationen angezeigt wird.
-        timeline_preview: Nicht angemeldete Personen können die neuesten öffentlichen Beiträge dieses Servers aufrufen.
         trendable_by_default: Manuelles Überprüfen angesagter Inhalte überspringen. Einzelne Elemente können später noch aus den Trends entfernt werden.
         trends: Trends zeigen, welche Beiträge, Hashtags und Nachrichten auf deinem Server immer beliebter werden.
-        trends_as_landing_page: Dies zeigt nicht angemeldeten Personen Trendinhalte anstelle einer Beschreibung des Servers an. Erfordert, dass Trends aktiviert sind.
       form_challenge:
         current_password: Du betrittst einen sicheren Bereich
       imports:
@@ -148,7 +153,9 @@ de:
         min_age: Sollte nicht unter dem gesetzlich vorgeschriebenen Mindestalter liegen.
       user:
         chosen_languages: Wenn du hier eine oder mehrere Sprachen auswählst, werden ausschließlich Beiträge in diesen Sprachen in deinen öffentlichen Timelines angezeigt
-        date_of_birth: Wir müssen sicherstellen, dass du mindestens %{age} Jahre alt bist, um Mastodon verwenden zu können. Das Alter wird nicht gespeichert.
+        date_of_birth:
+          one: Wir müssen sicherstellen, dass du mindestens %{count} Jahr alt bist, um %{domain} verwenden zu können. Wir werden diese Information nicht aufbewahren.
+          other: Wir müssen sicherstellen, dass du mindestens %{count} Jahre alt bist, um %{domain} verwenden zu können. Wir werden diese Information nicht aufbewahren.
         role: Die Rolle bestimmt, welche Berechtigungen das Konto hat.
       user_role:
         color: Farbe, die für diese Rolle in der gesamten Benutzerschnittstelle verwendet wird, als RGB im Hexadezimalsystem
@@ -156,6 +163,10 @@ de:
         name: Name der Rolle, der auch öffentlich als Badge angezeigt wird, sofern dies unten aktiviert ist
         permissions_as_keys: Benutzer*innen mit dieser Rolle haben Zugriff auf...
         position: Höhere Rollen entscheiden über Konfliktlösungen zu gewissen Situationen. Bestimmte Aktionen können nur mit geringfügigeren Rollen durchgeführt werden
+      username_block:
+        allow_with_approval: Anstatt Registrierungen komplett zu verhindern, benötigen übereinstimmende Treffer eine Genehmigung
+        comparison: Bitte beachte das Scunthorpe-Problem, wenn teilweise übereinstimmende Treffer gesperrt werden
+        username: Abgleich erfolgt unabhängig der Groß- und Kleinschreibung sowie gängiger Homoglyphen („4“ für „a“ oder „3“ für „e“)
       webhook:
         events: Zu sendende Ereignisse auswählen
         template: Erstelle deine eigenen JSON-Nutzdaten mit Hilfe von Variablen-Interpolation. Leer lassen für Standard-JSON.
@@ -213,7 +224,7 @@ de:
         fields: Zusatzfelder
         header: Titelbild
         honeypot: "%{label} (nicht ausfüllen)"
-        inbox_url: URL des Relay-Posteingangs
+        inbox_url: URL des Relais-Posteingangs
         irreversible: Endgültig, nicht nur temporär ausblenden
         locale: Sprache des Webinterface
         max_uses: Maximale Anzahl von Verwendungen
@@ -226,23 +237,26 @@ de:
         setting_aggregate_reblogs: Geteilte Beiträge in den Timelines gruppieren
         setting_always_send_emails: Benachrichtigungen immer senden
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
-        setting_boost_modal: Bestätigungsdialog beim Teilen eines Beitrags anzeigen
+        setting_boost_modal: Sichtbarkeit für geteilte Beiträge anpassen
         setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
+        setting_default_quote_policy: Wer zitieren darf
         setting_default_sensitive: Medien immer mit einer Inhaltswarnung versehen
-        setting_delete_modal: Bestätigungsdialog beim Löschen eines Beitrags anzeigen
+        setting_delete_modal: Vor dem Löschen bestätigen
         setting_disable_hover_cards: Profilvorschau deaktivieren, wenn die Maus über das Profil bewegt wird
         setting_disable_swiping: Wischgesten deaktivieren
         setting_display_media: Darstellung von Medien
         setting_display_media_default: Standard
         setting_display_media_hide_all: Alle Medien ausblenden
         setting_display_media_show_all: Alle Medien anzeigen
+        setting_emoji_style: Emoji-Stil
         setting_expand_spoilers: Beiträge mit Inhaltswarnung immer ausklappen
         setting_hide_network: Follower und „Folge ich“ nicht anzeigen
-        setting_missing_alt_text_modal: Bestätigungsdialog anzeigen, bevor Medien ohne Bildbeschreibung veröffentlicht werden
+        setting_missing_alt_text_modal: Erinnerung für Bildbeschreibung anzeigen
+        setting_quick_boosting: Schnelles Teilen aktivieren
         setting_reduce_motion: Bewegung in Animationen verringern
         setting_system_font_ui: Standardschriftart des Browsers verwenden
-        setting_system_scrollbars_ui: Bildlaufleiste des Systems verwenden
+        setting_system_scrollbars_ui: Bildlaufleiste des Betriebssystems verwenden
         setting_theme: Design
         setting_trends: Heutige Trends anzeigen
         setting_unfollow_modal: Bestätigungsdialog beim Entfolgen eines Profils anzeigen
@@ -273,12 +287,17 @@ de:
         content_cache_retention_period: Aufbewahrungsfrist für externe Inhalte
         custom_css: Eigenes CSS
         favicon: Favicon
+        landing_page: Landingpage für neue Besucher*innen
+        local_live_feed_access: Zugriff auf Live-Feeds, die lokale Beiträge beinhalten
+        local_topic_feed_access: Zugriff auf Hashtags und Links, die lokale Beiträge beinhalten
         mascot: Benutzerdefiniertes Maskottchen (Legacy)
         media_cache_retention_period: Aufbewahrungsfrist für Medien im Cache
         min_age: Erforderliches Mindestalter
         peers_api_enabled: Die entdeckten Server im Fediverse über die API veröffentlichen
         profile_directory: Profilverzeichnis aktivieren
         registrations_mode: Wer darf ein neues Konto registrieren?
+        remote_live_feed_access: Zugriff auf Live-Feeds, die Beiträge externer Server beinhalten
+        remote_topic_feed_access: Zugriff auf Hashtags und Links, die Beiträge externer Server beinhalten
         require_invite_text: Begründung für Beitritt verlangen
         show_domain_blocks: Anzeigen, welche Domains gesperrt wurden
         show_domain_blocks_rationale: Anzeigen, weshalb Domains gesperrt wurden
@@ -291,10 +310,8 @@ de:
         status_page_url: Statusseite (URL)
         theme: Standard-Design
         thumbnail: Vorschaubild des Servers
-        timeline_preview: Nicht-authentisierten Zugriff auf öffentliche Timelines gestatten
         trendable_by_default: Trends ohne vorherige Überprüfung erlauben
         trends: Trends aktivieren
-        trends_as_landing_page: Trends als Landingpage verwenden
       interactions:
         must_be_follower: Benachrichtigungen von Profilen, die mir nicht folgen, ausblenden
         must_be_following: Benachrichtigungen von Profilen, denen ich nicht folge, ausblenden
@@ -319,6 +336,7 @@ de:
         follow_request: Jemand möchte mir folgen
         mention: Ich wurde erwähnt
         pending_account: Ein neues Konto muss überprüft werden
+        quote: Jemand zitierte dich
         reblog: Mein Beitrag wurde geteilt
         report: Eine neue Meldung wurde eingereicht
         software_updates:
@@ -326,7 +344,7 @@ de:
           critical: Nur über kritische Updates informieren
           label: Eine neue Mastodon-Version ist verfügbar
           none: Nie über Updates informieren (nicht empfohlen)
-          patch: Über Fehlerbehebungen informieren
+          patch: Über Fehlerkorrekturen informieren
         trending_tag: Neuer Trend erfordert eine Überprüfung
       rule:
         hint: Zusätzliche Informationen
@@ -365,6 +383,10 @@ de:
         name: Name
         permissions_as_keys: Berechtigungen
         position: Priorität
+      username_block:
+        allow_with_approval: Registrierungen mit Genehmigung zulassen
+        comparison: Vergleichsmethode
+        username: Übereinstimmendes Wort
       webhook:
         events: Aktivierte Ereignisse
         template: Nutzdaten-Vorlage

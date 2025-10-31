@@ -2,17 +2,24 @@
 
 module Admin
   class RulesController < BaseController
-    before_action :set_rule, except: [:index, :create]
+    before_action :set_rule, except: [:index, :new, :create]
 
     def index
       authorize :rule, :index?
 
-      @rules = Rule.ordered
-      @rule  = Rule.new
+      @rules = Rule.ordered.includes(:translations)
+    end
+
+    def new
+      authorize :rule, :create?
+      @rule = Rule.new
     end
 
     def edit
       authorize @rule, :update?
+
+      missing_languages = RuleTranslation.languages - @rule.translations.pluck(:language)
+      missing_languages.each { |lang| @rule.translations.build(language: lang) }
     end
 
     def create
@@ -23,8 +30,7 @@ module Admin
       if @rule.save
         redirect_to admin_rules_path
       else
-        @rules = Rule.ordered
-        render :index
+        render :new
       end
     end
 
@@ -46,6 +52,22 @@ module Admin
       redirect_to admin_rules_path
     end
 
+    def move_up
+      authorize @rule, :update?
+
+      @rule.move!(-1)
+
+      redirect_to admin_rules_path
+    end
+
+    def move_down
+      authorize @rule, :update?
+
+      @rule.move!(+1)
+
+      redirect_to admin_rules_path
+    end
+
     private
 
     def set_rule
@@ -54,7 +76,7 @@ module Admin
 
     def resource_params
       params
-        .expect(rule: [:text, :hint, :priority])
+        .expect(rule: [:text, :hint, :priority, translations_attributes: [[:id, :language, :text, :hint, :_destroy]]])
     end
   end
 end
