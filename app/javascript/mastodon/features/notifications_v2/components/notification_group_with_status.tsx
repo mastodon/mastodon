@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import type { JSX } from 'react';
 
 import classNames from 'classnames';
-
 import { Link } from 'react-router-dom';
+
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
 import { replyComposeById } from 'mastodon/actions/compose';
 import { navigateToStatus } from 'mastodon/actions/statuses';
