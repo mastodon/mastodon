@@ -65,6 +65,8 @@ export const NotificationGroupWithStatus: React.FC<{
   const account = useAppSelector((state) =>
     state.accounts.get(accountIds.at(0) ?? ''),
   );
+  const status = useSelector(state => state.getIn(['statuses', id]));
+  const statusaccount = useSelector(state => state.getIn(['accounts', status?.get('account')]));
 
   const label = useMemo(
     () =>
@@ -133,8 +135,8 @@ export const NotificationGroupWithStatus: React.FC<{
                   <span className='notification-group__main__header__label-separator'>
                     &middot;
                   </span>
-                  <Link to={`/@${account.acct}/${statusId}`}>
-                    <RelativeTimestamp timestamp={timestamp} />
+                  <Link to={`/@${statusaccount.get('acct')}/${status.get('id')}`}>
+                    <RelativeTimestamp timestamp={status.get('created_at')} />
                   </Link>
                 </>
               )}
