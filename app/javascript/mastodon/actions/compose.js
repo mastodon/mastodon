@@ -322,11 +322,6 @@ export function submitComposeFail(error) {
 
 export function uploadCompose(files) {
   return function (dispatch, getState) {
-    // Exit if there's a quote.
-    if (getState().compose.get('quoted_status_id')) {
-      dispatch(showAlert({ message: messages.uploadQuote }));
-      return;
-    }
     const uploadLimit = getState().getIn(['server', 'server', 'configuration', 'statuses', 'max_media_attachments']);
     const media = getState().getIn(['compose', 'media_attachments']);
     const pending = getState().getIn(['compose', 'pending_media_attachments']);
