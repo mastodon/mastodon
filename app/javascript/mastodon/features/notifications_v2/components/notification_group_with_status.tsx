@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 import type { JSX } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import classNames from 'classnames';
 
 import { LinkedDisplayName } from '@/mastodon/components/display_name';
@@ -132,7 +134,9 @@ export const NotificationGroupWithStatus: React.FC<{
                   <span className='notification-group__main__header__label-separator'>
                     &middot;
                   </span>
-                  <RelativeTimestamp timestamp={timestamp} />
+                      <Link to={`/@${account.acct}/${statusId}`}>
+                        <RelativeTimestamp timestamp={timestamp} />
+                      </Link>
                 </>
               )}
             </div>
