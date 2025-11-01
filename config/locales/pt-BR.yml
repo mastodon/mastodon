@@ -796,6 +796,8 @@ pt-BR:
         view_dashboard_description: Permite que os usuários acessem o painel e várias métricas
         view_devops: DevOps
         view_devops_description: Permite aos usuários acessar os painéis da Sidekiq e pgHero
+        view_feeds: Veja transmissões ao vivo e por tópico
+        view_feeds_description: Permite que os usuários acessem os feeds ao vivo e por tópico, independentemente das configurações do servidor
       title: Funções
     rules:
       add_new: Adicionar regra
@@ -837,6 +839,7 @@ pt-BR:
         title: Optar por excluir usuários da indexação de mecanismos de pesquisa por padrão
       discovery:
         follow_recommendations: Seguir recomendações
+        preamble: A exibição de conteúdo interessante é fundamental para a integração de novos usuários que podem não conhecer ninguém no Mastodon. Controle o funcionamento de vários recursos de descoberta no seu servidor.
         privacy: Privacidade
         profile_directory: Diretório de perfis
         public_timelines: Timelines públicas
@@ -1196,6 +1199,7 @@ pt-BR:
     advanced_settings: Configurações avançadas
     animations_and_accessibility: Animações e acessibilidade
     boosting_preferences: Adicionar preferências
+    boosting_preferences_info_html: "<strong>Dica:</strong> Independentemente das configurações, <kbd>Shift</kbd> + <kbd>Clique</kbd> no ícone %{icon} Boost irá impulsionar imediatamente."
     discovery: Descobrir
     localization:
       body: Mastodon é traduzido por voluntários.
