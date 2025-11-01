@@ -113,7 +113,7 @@ class Tag < ApplicationRecord
 
       names.map do |(normalized_name, display_name)|
         tag = begin
-          matching_name(normalized_name).first_or_create!(
+          matching_name(normalized_name).first || create!(
             name: normalized_name,
             display_name: display_name.gsub(HASHTAG_INVALID_CHARS_RE, '')
           )

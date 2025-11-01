@@ -276,7 +276,7 @@ RSpec.describe Tag do
 
       threads.each(&:join)
 
-      tags = Tag.where('lower(name) = ?', tag_name_lower.downcase)
+      tags = described_class.where('lower(name) = ?', tag_name_lower.downcase)
       expect(tags.count).to eq(1)
       expect(tags.first.name.downcase).to eq(tag_name_lower.downcase)
     end
