@@ -65,6 +65,7 @@ export const NotificationGroupWithStatus: React.FC<{
   const account = useAppSelector((state) =>
     state.accounts.get(accountIds.at(0) ?? ''),
   );
+  // RelativeTimestamp
   const status = useSelector((state) =>
     statusId ? state.getIn(['statuses', statusId]) : undefined,
   );
