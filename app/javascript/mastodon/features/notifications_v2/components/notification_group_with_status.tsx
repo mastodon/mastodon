@@ -134,9 +134,9 @@ export const NotificationGroupWithStatus: React.FC<{
                   <span className='notification-group__main__header__label-separator'>
                     &middot;
                   </span>
-                      <Link to={`/@${account.acct}/${statusId}`}>
-                        <RelativeTimestamp timestamp={timestamp} />
-                      </Link>
+                  <Link to={`/@${account.acct}/${statusId}`}>
+                    <RelativeTimestamp timestamp={timestamp} />
+                  </Link>
                 </>
               )}
             </div>
