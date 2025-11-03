@@ -339,7 +339,8 @@ export const composeReducer = (state = initialState, action) => {
         if (['public', 'unlisted'].includes(visibility) && status.get('visibility') === 'private') {
           return 'private';
         }
-        if (visibility === 'direct') {
+        // Allow DMs only when quoting yourself.
+        if (visibility === 'direct' && status.get('account') !== me) {
           return 'private';
         }
         return visibility;
