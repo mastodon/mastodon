@@ -241,6 +241,9 @@ export const pasteLinkCompose = createDataLoadingThunk(
       dispatch(quoteComposeById(data.statuses[0].id));
     }
   },
+  {
+    useLoadingBar: false,
+  },
 );
 
 export const quoteComposeCancel = createAction('compose/quoteComposeCancel');

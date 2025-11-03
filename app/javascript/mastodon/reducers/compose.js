@@ -6,6 +6,7 @@ import {
   quoteCompose,
   quoteComposeCancel,
   setComposeQuotePolicy,
+  pasteLinkCompose,
 } from '@/mastodon/actions/compose_typed';
 import { timelineDelete } from 'mastodon/actions/timelines_typed';
 
@@ -93,6 +94,7 @@ const initialState = ImmutableMap({
   quoted_status_id: null,
   quote_policy: 'public',
   default_quote_policy: 'public', // Set in hydration.
+  fetching_link: false,
 });
 
 const initialPoll = ImmutableMap({
@@ -360,6 +362,10 @@ export const composeReducer = (state = initialState, action) => {
     return state.set('quoted_status_id', null);
   } else if (setComposeQuotePolicy.match(action)) {
     return state.set('quote_policy', action.payload);
+  } else if (pasteLinkCompose.pending.match(action)) {
+    return state.set('fetching_link', true);
+  } else if (pasteLinkCompose.fulfilled.match(action) || pasteLinkCompose.rejected.match(action)) {
+    return state.set('fetching_link', false);
   }
 
   switch(action.type) {
