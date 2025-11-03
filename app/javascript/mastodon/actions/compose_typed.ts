@@ -225,7 +225,8 @@ export const pasteLinkCompose = createDataLoadingThunk(
       composeState.get('poll') ||
       composeState.get('is_uploading') ||
       composeState.get('id') ||
-      composeState.get('privacy') === 'direct'
+      composeState.get('privacy') === 'direct' ||
+      !composeState.get('fetching_link') // Request has been cancelled
     )
       return;
 
@@ -244,6 +245,12 @@ export const pasteLinkCompose = createDataLoadingThunk(
   {
     useLoadingBar: false,
   },
+);
+
+// Ideally this would cancel the specific instance of the action and also cancel the HTTP request,
+// but this is good enough for now
+export const cancelPasteLinkCompose = createAction(
+  'compose/cancelPasteLinkCompose',
 );
 
 export const quoteComposeCancel = createAction('compose/quoteComposeCancel');

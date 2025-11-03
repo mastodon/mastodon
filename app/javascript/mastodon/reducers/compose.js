@@ -7,6 +7,7 @@ import {
   quoteComposeCancel,
   setComposeQuotePolicy,
   pasteLinkCompose,
+  cancelPasteLinkCompose,
 } from '@/mastodon/actions/compose_typed';
 import { timelineDelete } from 'mastodon/actions/timelines_typed';
 
@@ -365,6 +366,8 @@ export const composeReducer = (state = initialState, action) => {
   } else if (pasteLinkCompose.pending.match(action)) {
     return state.set('fetching_link', true);
   } else if (pasteLinkCompose.fulfilled.match(action) || pasteLinkCompose.rejected.match(action)) {
+    return state.set('fetching_link', false);
+  } else if (cancelPasteLinkCompose.match(action)) {
     return state.set('fetching_link', false);
   }
 
