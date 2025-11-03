@@ -572,6 +572,8 @@ ja:
         title: モデレーション
       moderation_notes:
         create: モデレーションノートを追加
+        description_html: 他のモデレーターと将来の自分にメモを残してください
+        destroyed_msg: インスタンス・モデレーションノートを正常に削除しました！
         title: モデレーションメモ
       private_comment: コメント (非公開)
       public_comment: コメント (公開)
@@ -826,6 +828,9 @@ ja:
         all: 誰にでも許可
         disabled: 誰にも許可しない
         users: ログイン済みローカルユーザーのみ許可
+      landing_page:
+        values:
+          trends: トレンド
       registrations:
         moderation_recommandation: 登録受付を開始する前に、迅速かつ適切にモデレーションを行うチームを編成しましょう！
         preamble: あなたのサーバー上でアカウントを作成できるユーザーを制御します。
@@ -879,6 +884,7 @@ ja:
       no_status_selected: 何も選択されていないため、変更されていません
       open: 投稿を開く
       original_status: オリジナルの投稿
+      quotes: 引用
       reblogs: ブースト
       replied_to_html: "%{acct_link}さんへの返信"
       status_changed: 投稿を変更しました
@@ -886,6 +892,7 @@ ja:
       title: 投稿一覧 - @%{name}
       trending: トレンド
       view_publicly: 元の投稿を開く
+      view_quoted_post: 引用されている投稿を見る
       visibility: 公開範囲
       with_media: メディアあり
     strikes:
@@ -1078,6 +1085,7 @@ ja:
       matches_exactly_html: "%{string}に一致"
       new:
         create: ルールを作成
+        title: ユーザー名ルールを作成
       title: ユーザー名ルール
     warning_presets:
       add_new: 追加
@@ -1150,7 +1158,10 @@ ja:
     hint_html: 他のアカウントからこのアカウントにフォロワーを引き継いで引っ越したい場合、ここでエイリアスを作成しておく必要があります。エイリアス自体は<strong>無害で、取り消す</strong>ことができます。<strong>引っ越しは以前のアカウント側から開始する必要があります</strong>。
     remove: エイリアスを削除
   appearance:
+    advanced_settings: 詳細設定
     animations_and_accessibility: アニメーションとアクセシビリティー
+    boosting_preferences: ブースト設定
+    boosting_preferences_info_html: "<strong>Tip:</strong> 設定に関係なく、<kbd>Shift</kbd> を押しながら %{icon} Boostアイコンを<kbd>クリック</kbd>すると、すぐにブーストされます。"
     discovery: 見つける
     localization:
       body: Mastodonは有志によって翻訳されています。
@@ -1532,6 +1543,9 @@ ja:
       expires_at: 有効期限
       uses: 使用
     title: 新規ユーザーの招待
+  link_preview:
+    potentially_sensitive_content:
+      hide_button: 非表示
   lists:
     errors:
       limit: リストの上限数に達しています
@@ -1851,6 +1865,7 @@ ja:
       public: 誰でも
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: 非公開の返信
       private: フォロワーのみ
       public: 公開
   statuses_cleanup:
