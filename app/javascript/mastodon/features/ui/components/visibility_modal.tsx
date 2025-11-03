@@ -107,6 +107,11 @@ const selectDisablePublicVisibilities = createAppSelector(
   },
 );
 
+const selectDisableDirectVisibility = createAppSelector(
+  [(state) => state.compose.get('quoted_status_id') as string | null],
+  (quotedStatusId) => !!quotedStatusId,
+);
+
 export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ onClose, onChange, statusId }, _ref) => {
@@ -128,8 +133,11 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
     const disableVisibility = !!statusId;
     const disableQuotePolicy =
       visibility === 'private' || visibility === 'direct';
-    const disablePublicVisibilities: boolean = useAppSelector(
+    const disablePublicVisibilities = useAppSelector(
       selectDisablePublicVisibilities,
+    );
+    const disableDirectVisibility = useAppSelector(
+      selectDisableDirectVisibility,
     );
 
     const visibilityItems = useMemo<SelectItem<StatusVisibility>[]>(() => {
@@ -140,13 +148,6 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
           meta: intl.formatMessage(privacyMessages.private_long),
           icon: 'lock',
           iconComponent: LockIcon,
-        },
-        {
-          value: 'direct',
-          text: intl.formatMessage(privacyMessages.direct_short),
-          meta: intl.formatMessage(privacyMessages.direct_long),
-          icon: 'at',
-          iconComponent: AlternateEmailIcon,
         },
       ];
 
@@ -169,8 +170,19 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
         );
       }
 
+      // Disable direct mentions if quoting.
+      if (!disableDirectVisibility) {
+        items.push({
+          value: 'direct',
+          text: intl.formatMessage(privacyMessages.direct_short),
+          meta: intl.formatMessage(privacyMessages.direct_long),
+          icon: 'at',
+          iconComponent: AlternateEmailIcon,
+        });
+      }
+
       return items;
-    }, [intl, disablePublicVisibilities]);
+    }, [intl, disablePublicVisibilities, disableDirectVisibility]);
     const quoteItems = useMemo<SelectItem<ApiQuotePolicy>[]>(
       () => [
         { value: 'public', text: intl.formatMessage(messages.quotePublic) },
