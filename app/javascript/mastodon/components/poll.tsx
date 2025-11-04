@@ -35,6 +35,9 @@ const messages = defineMessages({
   },
 });
 
+const isPollExpired = (expiresAt: Model.Poll['expires_at']) =>
+  new Date(expiresAt).getTime() < Date.now();
+
 interface PollProps {
   pollId: string;
   status: Status;
@@ -58,12 +61,7 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
     if (!poll) {
       return false;
     }
-    const expiresAt = poll.expires_at;
-    // Date.now() is an impure function, but since it will result in a
-    // boolean value that only updates when `poll` does, this should be
-    // safe to do.
-    // eslint-disable-next-line react-hooks/purity
-    return poll.expired || new Date(expiresAt).getTime() < Date.now();
+    return poll.expired || isPollExpired(poll.expires_at);
   }, [poll]);
   const timeRemaining = useMemo(() => {
     if (!poll) {
