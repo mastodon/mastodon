@@ -107,11 +107,6 @@ const selectDisablePublicVisibilities = createAppSelector(
   },
 );
 
-const selectDisableDirectVisibility = createAppSelector(
-  [(state) => state.compose.get('quoted_status_id') as string | null],
-  (quotedStatusId) => !!quotedStatusId,
-);
-
 export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ onClose, onChange, statusId }, _ref) => {
@@ -136,8 +131,8 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
     const disablePublicVisibilities = useAppSelector(
       selectDisablePublicVisibilities,
     );
-    const disableDirectVisibility = useAppSelector(
-      selectDisableDirectVisibility,
+    const isQuotePost = useAppSelector(
+      (state) => state.compose.get('quoted_status_id') !== null,
     );
 
     const visibilityItems = useMemo<SelectItem<StatusVisibility>[]>(() => {
@@ -148,6 +143,13 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
           meta: intl.formatMessage(privacyMessages.private_long),
           icon: 'lock',
           iconComponent: LockIcon,
+        },
+        {
+          value: 'direct',
+          text: intl.formatMessage(privacyMessages.direct_short),
+          meta: intl.formatMessage(privacyMessages.direct_long),
+          icon: 'at',
+          iconComponent: AlternateEmailIcon,
         },
       ];
 
@@ -170,19 +172,8 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
         );
       }
 
-      // Disable direct mentions if quoting.
-      if (!disableDirectVisibility) {
-        items.push({
-          value: 'direct',
-          text: intl.formatMessage(privacyMessages.direct_short),
-          meta: intl.formatMessage(privacyMessages.direct_long),
-          icon: 'at',
-          iconComponent: AlternateEmailIcon,
-        });
-      }
-
       return items;
-    }, [intl, disablePublicVisibilities, disableDirectVisibility]);
+    }, [intl, disablePublicVisibilities]);
     const quoteItems = useMemo<SelectItem<ApiQuotePolicy>[]>(
       () => [
         { value: 'public', text: intl.formatMessage(messages.quotePublic) },
@@ -327,6 +318,21 @@ export const VisibilityModal: FC<VisibilityModalProps> = forwardRef(
                 id={quoteDescriptionId}
               />
             </div>
+
+            {isQuotePost && visibility === 'direct' && (
+              <div className='visibility-modal__quote-warning'>
+                <FormattedMessage
+                  id='visibility_modal.direct_quote_warning.title'
+                  defaultMessage="Quotes can't be embedded in private mentions"
+                  tagName='h3'
+                />
+                <FormattedMessage
+                  id='visibility_modal.direct_quote_warning.text'
+                  defaultMessage='If you save the current settings, the embedded quote will be converted to a link.'
+                  tagName='p'
+                />
+              </div>
+            )}
           </div>
           <div className='dialog-modal__content__actions'>
             <Button onClick={onClose} secondary>

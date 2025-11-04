@@ -1,11 +1,12 @@
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 
 import {
+  changeComposeVisibility,
   changeUploadCompose,
   quoteCompose,
   quoteComposeCancel,
   setComposeQuotePolicy,
-} from 'mastodon/actions/compose_typed';
+} from '@/mastodon/actions/compose_typed';
 import { timelineDelete } from 'mastodon/actions/timelines_typed';
 
 import {
@@ -38,7 +39,6 @@ import {
   COMPOSE_SENSITIVITY_CHANGE,
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
-  COMPOSE_VISIBILITY_CHANGE,
   COMPOSE_LANGUAGE_CHANGE,
   COMPOSE_COMPOSING_CHANGE,
   COMPOSE_EMOJI_INSERT,
@@ -315,7 +315,11 @@ const calculateProgress = (loaded, total) => Math.min(Math.round((loaded / total
 
 /** @type {import('@reduxjs/toolkit').Reducer<typeof initialState>} */
 export const composeReducer = (state = initialState, action) => {
-  if (changeUploadCompose.fulfilled.match(action)) {
+  if (changeComposeVisibility.match(action)) {
+    return state
+      .set('privacy', action.payload)
+      .set('idempotencyKey', uuid());
+  } else if (changeUploadCompose.fulfilled.match(action)) {
     return state
       .set('is_changing_upload', false)
       .update('media_attachments', list => list.map(item => {
@@ -330,12 +334,10 @@ export const composeReducer = (state = initialState, action) => {
   } else if (changeUploadCompose.rejected.match(action)) {
     return state.set('is_changing_upload', false);
   } else if (quoteCompose.match(action)) {
-    if (state.get('privacy') === 'direct') {
-      return state;
-    }
     const status = action.payload;
+    const isDirect = state.get('privacy') === 'direct';
     return state
-      .set('quoted_status_id', status.get('id'))
+      .set('quoted_status_id', isDirect ? null : status.get('id'))
       .set('spoiler', status.get('sensitive'))
       .set('spoiler_text', status.get('spoiler_text'))
       .update('privacy', (visibility) => {
@@ -343,6 +345,13 @@ export const composeReducer = (state = initialState, action) => {
           return 'private';
         }
         return visibility;
+      })
+      .update('text', (text) => {
+        if (!isDirect) {
+          return text;
+        }
+        const url = status.get('url');
+        return text.trim() ? `${text}\n\n${url}` : url;
       });
   } else if (quoteComposeCancel.match(action)) {
     return state.set('quoted_status_id', null);
@@ -390,10 +399,6 @@ export const composeReducer = (state = initialState, action) => {
     if (!state.get('spoiler')) return state;
     return state
       .set('spoiler_text', action.text)
-      .set('idempotencyKey', uuid());
-  case COMPOSE_VISIBILITY_CHANGE:
-    return state
-      .set('privacy', action.value)
       .set('idempotencyKey', uuid());
   case COMPOSE_CHANGE:
     return state
