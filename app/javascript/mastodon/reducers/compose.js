@@ -351,6 +351,9 @@ export const composeReducer = (state = initialState, action) => {
           return text;
         }
         const url = status.get('url');
+        if (text.includes(url)) {
+          return text;
+        }
         return text.trim() ? `${text}\n\n${url}` : url;
       });
   } else if (quoteComposeCancel.match(action)) {

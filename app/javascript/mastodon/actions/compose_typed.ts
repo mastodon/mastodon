@@ -92,8 +92,10 @@ export const changeComposeVisibility = createAppThunk(
     // Append the quoted status URL to the compose text
     const url = quotedStatus.get('url') as string;
     const text = state.compose.get('text') as string;
-    const newText = text.trim() ? `${text}\n\n${url}` : url;
-    dispatch(changeCompose(newText));
+    if (!text.includes(url)) {
+      const newText = text.trim() ? `${text}\n\n${url}` : url;
+      dispatch(changeCompose(newText));
+    }
     return visibility;
   },
 );
