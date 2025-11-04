@@ -13,10 +13,10 @@ import {
 } from 'mastodon/store/typed_functions';
 
 import type { ApiQuotePolicy } from '../api_types/quotes';
-import type { Status } from '../models/status';
+import type { Status, StatusVisibility } from '../models/status';
 
 import { showAlert } from './alerts';
-import { focusCompose } from './compose';
+import { changeCompose, focusCompose } from './compose';
 import { importFetchedStatuses } from './importer';
 import { openModal } from './modal';
 
@@ -66,6 +66,39 @@ const simulateModifiedApiResponse = (
 
   return data;
 };
+
+export const changeComposeVisibility = createAppThunk(
+  'compose/visibility_change',
+  (visibility: StatusVisibility, { dispatch, getState }) => {
+    if (visibility !== 'direct') {
+      return visibility;
+    }
+
+    const state = getState();
+    const quotedStatusId = state.compose.get('quoted_status_id') as
+      | string
+      | null;
+    if (!quotedStatusId) {
+      return visibility;
+    }
+
+    // Remove the quoted status
+    dispatch(quoteComposeCancel());
+    const quotedStatus = state.statuses.get(quotedStatusId) as Status | null;
+    if (!quotedStatus) {
+      return visibility;
+    }
+
+    // Append the quoted status URL to the compose text
+    const url = quotedStatus.get('url') as string;
+    const text = state.compose.get('text') as string;
+    if (!text.includes(url)) {
+      const newText = text.trim() ? `${text}\n\n${url}` : url;
+      dispatch(changeCompose(newText));
+    }
+    return visibility;
+  },
+);
 
 export const changeUploadCompose = createDataLoadingThunk(
   'compose/changeUpload',

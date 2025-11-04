@@ -56,7 +56,6 @@ export const COMPOSE_UNMOUNT = 'COMPOSE_UNMOUNT';
 export const COMPOSE_SENSITIVITY_CHANGE  = 'COMPOSE_SENSITIVITY_CHANGE';
 export const COMPOSE_SPOILERNESS_CHANGE  = 'COMPOSE_SPOILERNESS_CHANGE';
 export const COMPOSE_SPOILER_TEXT_CHANGE = 'COMPOSE_SPOILER_TEXT_CHANGE';
-export const COMPOSE_VISIBILITY_CHANGE   = 'COMPOSE_VISIBILITY_CHANGE';
 export const COMPOSE_COMPOSING_CHANGE    = 'COMPOSE_COMPOSING_CHANGE';
 export const COMPOSE_LANGUAGE_CHANGE     = 'COMPOSE_LANGUAGE_CHANGE';
 
@@ -791,13 +790,6 @@ export function changeComposeSpoilerText(text) {
   return {
     type: COMPOSE_SPOILER_TEXT_CHANGE,
     text,
-  };
-}
-
-export function changeComposeVisibility(value) {
-  return {
-    type: COMPOSE_VISIBILITY_CHANGE,
-    value,
   };
 }
 
