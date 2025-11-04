@@ -5,7 +5,7 @@ class ActivityPub::RefetchAndVerifyQuoteWorker
   include ExponentialBackoff
   include JsonLdHelper
 
-  sidekiq_options queue: 'pull', retry: 3
+  sidekiq_options queue: 'pull', retry: 5
 
   def perform(quote_id, quoted_uri, options = {})
     quote = Quote.find(quote_id)
