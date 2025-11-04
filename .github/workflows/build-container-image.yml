@@ -35,7 +35,7 @@ jobs:
           - linux/arm64
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Prepare
         env:
@@ -119,7 +119,7 @@ jobs:
       PUSH_TO_IMAGES: ${{ inputs.push_to_images }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Download digests
         uses: actions/download-artifact@v4
