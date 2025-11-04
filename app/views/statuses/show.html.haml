@@ -8,6 +8,7 @@
 
   %link{ rel: 'alternate', type: 'application/json+oembed', href: api_oembed_url(url: short_account_status_url(@account, @status), format: 'json') }/
   %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@status) }/
+  %link{ rel: 'alternate', type: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"', href: ActivityPub::TagManager.instance.uri_for(@status) }/
 
   = opengraph 'og:site_name', site_title
   = opengraph 'og:type', 'article'
