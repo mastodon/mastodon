@@ -72,7 +72,7 @@ jobs:
       BUNDLE_RETRY: 3
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
