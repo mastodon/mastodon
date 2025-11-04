@@ -95,7 +95,7 @@ const initialState = ImmutableMap({
   quoted_status_id: null,
   quote_policy: 'public',
   default_quote_policy: 'public', // Set in hydration.
-  fetching_link: false,
+  fetching_link: null,
 });
 
 const initialPoll = ImmutableMap({
@@ -364,11 +364,11 @@ export const composeReducer = (state = initialState, action) => {
   } else if (setComposeQuotePolicy.match(action)) {
     return state.set('quote_policy', action.payload);
   } else if (pasteLinkCompose.pending.match(action)) {
-    return state.set('fetching_link', true);
+    return state.set('fetching_link', action.meta.requestId);
   } else if (pasteLinkCompose.fulfilled.match(action) || pasteLinkCompose.rejected.match(action)) {
-    return state.set('fetching_link', false);
+    return state.set('fetching_link', null);
   } else if (cancelPasteLinkCompose.match(action)) {
-    return state.set('fetching_link', false);
+    return state.set('fetching_link', null);
   }
 
   switch(action.type) {

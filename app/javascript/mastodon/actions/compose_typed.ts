@@ -216,7 +216,7 @@ export const pasteLinkCompose = createDataLoadingThunk(
       limit: 2,
     });
   },
-  (data, { dispatch, getState }) => {
+  (data, { dispatch, getState, requestId }) => {
     const composeState = getState().compose;
 
     if (
@@ -226,7 +226,7 @@ export const pasteLinkCompose = createDataLoadingThunk(
       composeState.get('is_uploading') ||
       composeState.get('id') ||
       composeState.get('privacy') === 'direct' ||
-      !composeState.get('fetching_link') // Request has been cancelled
+      composeState.get('fetching_link') !== requestId // Request has been cancelled
     )
       return;
 
