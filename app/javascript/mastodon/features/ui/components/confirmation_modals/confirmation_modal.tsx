@@ -18,6 +18,7 @@ export const ConfirmationModal: React.FC<
     onSecondary?: () => void;
     onConfirm: () => void;
     closeWhenConfirm?: boolean;
+    extraContent?: React.ReactNode;
   } & BaseConfirmationModalProps
 > = ({
   title,
@@ -29,6 +30,7 @@ export const ConfirmationModal: React.FC<
   secondary,
   onSecondary,
   closeWhenConfirm = true,
+  extraContent,
 }) => {
   const handleClick = useCallback(() => {
     if (closeWhenConfirm) {
@@ -49,6 +51,8 @@ export const ConfirmationModal: React.FC<
         <div className='safety-action-modal__confirmation'>
           <h1>{title}</h1>
           {message && <p>{message}</p>}
+
+          {extraContent}
         </div>
       </div>
 

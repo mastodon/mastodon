@@ -5743,6 +5743,34 @@ a.status-card {
   }
 }
 
+.visibility-modal {
+  &__quote-warning {
+    color: var(--nested-card-text);
+    background:
+      /* This is a bit of a silly hack for layering two background colours
+       * since --nested-card-background is too transparent for a tooltip */
+      linear-gradient(
+        var(--nested-card-background),
+        var(--nested-card-background)
+      ),
+      linear-gradient(var(--background-color), var(--background-color));
+    border: var(--nested-card-border);
+    padding: 16px;
+    border-radius: 4px;
+
+    h3 {
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: $darker-text-color;
+    }
+
+    p {
+      font-size: 0.8em;
+      color: $dark-text-color;
+    }
+  }
+}
+
 .visibility-dropdown {
   &__overlay[data-popper-placement] {
     z-index: 9999;
