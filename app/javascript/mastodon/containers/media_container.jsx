@@ -10,7 +10,7 @@ import ModalRoot from 'mastodon/components/modal_root';
 import { Poll } from 'mastodon/components/poll';
 import { Audio } from 'mastodon/features/audio';
 import Card from 'mastodon/features/status/components/card';
-import MediaModal from 'mastodon/features/ui/components/media_modal';
+import { MediaModal } from 'mastodon/features/ui/components/media_modal';
 import { Video } from 'mastodon/features/video';
 import { IntlProvider } from 'mastodon/locales';
 import { createPollFromServerJSON } from 'mastodon/models/poll';
