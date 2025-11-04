@@ -70,6 +70,9 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
 
     const handleChangeIndex = useCallback(
       (newIndex: number) => {
+        if (newIndex < 0) {
+          newIndex = media.size + newIndex;
+        }
         setIndex(newIndex % media.size);
         setZoomedIn(false);
       },
@@ -144,6 +147,7 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
     });
     const bind = useDrag(
       ({ swipe: [swipeX] }) => {
+        if (swipeX === 0) return;
         handleChangeIndex(index + swipeX * -1); // Invert swipe as swiping left loads the next slide.
       },
       { pointer: { capture: false } },
