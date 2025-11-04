@@ -41,6 +41,10 @@ const messages = defineMessages({
     id: 'quote_error.unauthorized',
     defaultMessage: 'You are not authorized to quote this post.',
   },
+  quoteErrorDirect: {
+    id: 'quote_error.direct',
+    defaultMessage: 'Quoting is not allowed with direct mentions.',
+  },
 });
 
 type SimulatedMediaAttachmentJSON = ApiMediaAttachmentJSON & {
@@ -143,6 +147,8 @@ export const quoteComposeByStatus = createAppThunk(
       dispatch(showAlert({ message: messages.quoteErrorUpload }));
     } else if (composeState.get('quoted_status_id')) {
       dispatch(showAlert({ message: messages.quoteErrorQuote }));
+    } else if (composeState.get('privacy') === 'direct') {
+      dispatch(showAlert({ message: messages.quoteErrorDirect }));
     } else if (
       status.getIn(['quote_approval', 'current_user']) !== 'automatic' &&
       status.getIn(['quote_approval', 'current_user']) !== 'manual'

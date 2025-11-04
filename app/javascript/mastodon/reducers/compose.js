@@ -330,9 +330,12 @@ export const composeReducer = (state = initialState, action) => {
   } else if (changeUploadCompose.rejected.match(action)) {
     return state.set('is_changing_upload', false);
   } else if (quoteCompose.match(action)) {
+    if (state.get('privacy') === 'direct') {
+      return state;
+    }
     const status = action.payload;
-    const shouldAppend = state.get('privacy') === 'direct' && status.get('account') !== me;
     return state
+      .set('quoted_status_id', status.get('id'))
       .set('spoiler', status.get('sensitive'))
       .set('spoiler_text', status.get('spoiler_text'))
       .update('privacy', (visibility) => {
@@ -340,13 +343,6 @@ export const composeReducer = (state = initialState, action) => {
           return 'private';
         }
         return visibility;
-      })
-      .update('quoted_status_id', () => shouldAppend ? null : status.get('id'))
-      .update('text', (text) => {
-        if (shouldAppend) {
-          return text ? `${text}\n\n${status.get('url')}` : status.get('url');
-        }
-        return text;
       });
   } else if (quoteComposeCancel.match(action)) {
     return state.set('quoted_status_id', null);
