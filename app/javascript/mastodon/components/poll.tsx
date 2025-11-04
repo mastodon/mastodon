@@ -59,6 +59,10 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
       return false;
     }
     const expiresAt = poll.expires_at;
+    // Date.now() is an impure function, but since it will result in a
+    // boolean value that only updates when `poll` does, this should be
+    // safe to do.
+    // eslint-disable-next-line react-hooks/purity
     return poll.expired || new Date(expiresAt).getTime() < Date.now();
   }, [poll]);
   const timeRemaining = useMemo(() => {
