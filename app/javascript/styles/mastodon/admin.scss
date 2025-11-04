@@ -1309,6 +1309,10 @@ a.sparkline {
   line-height: 1;
   width: 100%;
   animation: skeleton 1.2s ease-in-out infinite;
+
+  .reduce-motion & {
+    animation: none;
+  }
 }
 
 @keyframes skeleton {
