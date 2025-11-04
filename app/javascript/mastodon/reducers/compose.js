@@ -345,16 +345,6 @@ export const composeReducer = (state = initialState, action) => {
           return 'private';
         }
         return visibility;
-      })
-      .update('text', (text) => {
-        if (!isDirect) {
-          return text;
-        }
-        const url = status.get('url');
-        if (text.includes(url)) {
-          return text;
-        }
-        return text.trim() ? `${text}\n\n${url}` : url;
       });
   } else if (quoteComposeCancel.match(action)) {
     return state.set('quoted_status_id', null);
