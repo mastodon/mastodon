@@ -61,9 +61,7 @@ const updateAnnouncement = (state, announcement) => {
 export default function announcementsReducer(state = initialState, action) {
   switch(action.type) {
   case ANNOUNCEMENTS_TOGGLE_SHOW:
-    return state.withMutations(map => {
-      map.set('show', !map.get('show'));
-    });
+    return state.set('show', !state.get('show'));
   case ANNOUNCEMENTS_FETCH_REQUEST:
     return state.set('isLoading', true);
   case ANNOUNCEMENTS_FETCH_SUCCESS:
