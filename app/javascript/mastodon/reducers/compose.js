@@ -366,7 +366,7 @@ export const composeReducer = (state = initialState, action) => {
   } else if (pasteLinkCompose.pending.match(action)) {
     return state.set('fetching_link', action.meta.requestId);
   } else if (pasteLinkCompose.fulfilled.match(action) || pasteLinkCompose.rejected.match(action)) {
-    return state.set('fetching_link', null);
+    return action.meta.requestId === state.get('fetching_link') ? state.set('fetching_link', null) : state;
   } else if (cancelPasteLinkCompose.match(action)) {
     return state.set('fetching_link', null);
   }

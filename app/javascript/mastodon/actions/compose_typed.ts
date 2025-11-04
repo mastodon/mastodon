@@ -220,11 +220,7 @@ const composeStateForbidsLink = (composeState: RootState['compose']) => {
 
 export const pasteLinkCompose = createDataLoadingThunk(
   'compose/pasteLink',
-  async ({ url }: { url: string }, { getState }) => {
-    const composeState = getState().compose;
-
-    if (composeStateForbidsLink(composeState)) return;
-
+  async ({ url }: { url: string }) => {
     return await apiGetSearch({
       q: url,
       type: 'statuses',
@@ -233,10 +229,6 @@ export const pasteLinkCompose = createDataLoadingThunk(
     });
   },
   (data, { dispatch, getState, requestId }) => {
-    if (!data) {
-      return;
-    }
-
     const composeState = getState().compose;
 
     if (
@@ -259,11 +251,13 @@ export const pasteLinkCompose = createDataLoadingThunk(
   },
   {
     useLoadingBar: false,
+    condition: (_, { getState }) =>
+      !getState().compose.get('fetching_link') &&
+      !composeStateForbidsLink(getState().compose),
   },
 );
 
-// Ideally this would cancel the specific instance of the action and also cancel the HTTP request,
-// but this is good enough for now
+// Ideally this would cancel the action and the HTTP request, but this is good enough
 export const cancelPasteLinkCompose = createAction(
   'compose/cancelPasteLinkCompose',
 );
