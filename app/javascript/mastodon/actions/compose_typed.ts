@@ -14,6 +14,7 @@ import {
 
 import type { ApiQuotePolicy } from '../api_types/quotes';
 import type { Status, StatusVisibility } from '../models/status';
+import type { RootState } from '../store';
 
 import { showAlert } from './alerts';
 import { changeCompose, focusCompose } from './compose';
@@ -206,9 +207,24 @@ export const quoteComposeById = createAppThunk(
   },
 );
 
+const composeStateForbidsLink = (composeState: RootState['compose']) => {
+  return (
+    composeState.get('quoted_status_id') ||
+    composeState.get('is_submitting') ||
+    composeState.get('poll') ||
+    composeState.get('is_uploading') ||
+    composeState.get('id') ||
+    composeState.get('privacy') === 'direct'
+  );
+};
+
 export const pasteLinkCompose = createDataLoadingThunk(
   'compose/pasteLink',
-  async ({ url }: { url: string }) => {
+  async ({ url }: { url: string }, { getState }) => {
+    const composeState = getState().compose;
+
+    if (composeStateForbidsLink(composeState)) return;
+
     return await apiGetSearch({
       q: url,
       type: 'statuses',
@@ -217,15 +233,14 @@ export const pasteLinkCompose = createDataLoadingThunk(
     });
   },
   (data, { dispatch, getState, requestId }) => {
+    if (!data) {
+      return;
+    }
+
     const composeState = getState().compose;
 
     if (
-      composeState.get('quoted_status_id') ||
-      composeState.get('is_submitting') ||
-      composeState.get('poll') ||
-      composeState.get('is_uploading') ||
-      composeState.get('id') ||
-      composeState.get('privacy') === 'direct' ||
+      composeStateForbidsLink(composeState) ||
       composeState.get('fetching_link') !== requestId // Request has been cancelled
     )
       return;
