@@ -6,13 +6,14 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
-- **Add support for allowing and authoring quotes** (#35355, #35578, #35614, #35618, #35624, #35626, #35652, #35629, #35665, #35653, #35670, #35677, #35690, #35697, #35689, #35699, #35700, #35701, #35709, #35714, #35713, #35715, #35725, #35749, #35769, #35780, #35762, #35804, #35808, #35805, #35819, #35824, #35828, #35822, #35835, #35865, #35860, #35832, #35891, #35894, #35895, #35820, #35917, #35924, #35925, #35914, #35930, #35941, #35939, #35948, #35955, #35967, #35990, #35991, #35975, #35971, #36002, #35986, #36031, #36034, #36038, #36054, #36052, #36055, #36065, #36068, #36083, #36087, #36080, #36091, #36090, #36118, #36119, #36128, #36094, #36129, #36138, #36132, #36151, #36158, #36171, #36194, #36220, #36169, #36130, #36249, #36153, #36299, #36291, #36301, #36315, #36317, #36364, #36383, #36381, #36459, #36464, #36461, #36516, #36528, #36549, #36550 and #36559 by @ChaosExAnima, @ClearlyClaire, @Lycolia, @diondiondion, and @tribela)\
+- **Add support for allowing and authoring quotes** (#35355, #35578, #35614, #35618, #35624, #35626, #35652, #35629, #35665, #35653, #35670, #35677, #35690, #35697, #35689, #35699, #35700, #35701, #35709, #35714, #35713, #35715, #35725, #35749, #35769, #35780, #35762, #35804, #35808, #35805, #35819, #35824, #35828, #35822, #35835, #35865, #35860, #35832, #35891, #35894, #35895, #35820, #35917, #35924, #35925, #35914, #35930, #35941, #35939, #35948, #35955, #35967, #35990, #35991, #35975, #35971, #36002, #35986, #36031, #36034, #36038, #36054, #36052, #36055, #36065, #36068, #36083, #36087, #36080, #36091, #36090, #36118, #36119, #36128, #36094, #36129, #36138, #36132, #36151, #36158, #36171, #36194, #36220, #36169, #36130, #36249, #36153, #36299, #36291, #36301, #36315, #36317, #36364, #36383, #36381, #36459, #36464, #36461, #36516, #36528, #36549, #36550, #36559, #36693, #36704, #36690, #36689, #36696, #36721 and #36695 by @ChaosExAnima, @ClearlyClaire, @Lycolia, @diondiondion, and @tribela)\
   This includes a revamp of the composer interface.\
   See https://blog.joinmastodon.org/2025/09/introducing-quote-posts/ for a user-centric overview of the feature, and https://docs.joinmastodon.org/client/quotes/ for API documentation.
 - **Add support for fetching and refreshing replies to the web UI** (#35210, #35496, #35575, #35500, #35577, #35602, #35603, #35654, #36141, #36237, #36172, #36256, #36271, #36334, #36382, #36239, #36484, #36481, #36583, #36627 and #36547 by @ClearlyClaire, @diondiondion, @Gargron and @renchap)
 - **Add ability to block words in usernames** (#35407, #35655, and #35806 by @ClearlyClaire and @Gargron)
-- Add ability to individually disable local or remote feeds for visitors or logged-in users `disabled` value to server setting for live and topic feeds, as well as user permission to bypass that (#36338, #36467, #36497, #36563, #36577, #36585, and #36607 by @ClearlyClaire)\
-  This splits the `timeline_preview` setting into four more granular settings controlling live feeds and topic (hashtag, trending link) feeds, with 3 values each: `public`, `authenticated`, `disabled`.\
+- Add ability to individually disable local or remote feeds for visitors or logged-in users `disabled` value to server setting for live and topic feeds, as well as user permission to bypass that (#36338, #36467, #36497, #36563, #36577, #36585, #36607 and #36703 by @ClearlyClaire)\
+  This splits the `timeline_preview` setting into four more granular settings controlling live feeds and topic (hashtag, trending link) feeds.\
+  The setting for local topic feeds has 2 values: `public` and `authenticated`. Every other setting has 3 values: `public`, `authenticated`, `disabled`.\
   When `disabled`, users with the “View live and topic feeds” will still be able to view them.
 - Add support for displaying of quote posts in Moderator UI (#35964 by @ThisIsMissEm)
 - Add support for displaying link previews for Admin UI (#35958 by @ThisIsMissEm)
@@ -43,6 +44,9 @@ All notable changes to this project will be documented in this file.
 - Change appearance settings to introduce new Advanced settings section (#36496 and #36506 by @diondiondion)
 - Change display of blocked and muted quoted users (#36619 by @ClearlyClaire)\
   This adds `blocked_account`, `blocked_domain` and `muted_account` values to the `state` attribute of `Quote` and `ShallowQuote` REST API entities.
+- Change submitting an empty post to show an error rather than failing silently (#36650 by @diondiondion)
+- Change "Privacy and reach" settings from "Public profile" to their own top-level category (#27294 by @ChaelCodes)
+- Change number of times quote verification is retried to better deal with temporary failures (#36698 by @ClearlyClaire)
 - Change display of content warnings in Admin UI (#35935 by @ThisIsMissEm)
 - Change styling of column banners (#36531 by @ClearlyClaire)
 - Change recommended Node version to 24 (LTS) (#36539 by @renchap)
@@ -70,9 +74,11 @@ All notable changes to this project will be documented in this file.
 - Fix relationship not being fetched to evaluate whether to show a quote post (#36517 by @ClearlyClaire)
 - Fix rendering of poll options in status history modal (#35633 by @ThisIsMissEm)
 - Fix “mute” button being displayed to unauthenticated visitors in hashtag dropdown (#36353 by @mkljczk)
+- Fix initially selected language in Rules panel, hide selector when no alternative translations exist (#36672 by @diondiondion)
 - Fix URL comparison for mentions in case of empty path (#36613 and #36626 by @ClearlyClaire)
 - Fix hashtags not being picked up when full-width hash sign is used (#36103 and #36625 by @ClearlyClaire and @Gargron)
 - Fix layout of severed relationships when purged events are listed (#36593 by @mejofi)
+- Fix Skeleton placeholders being animated when setting to reduce animations is enabled (#36716 by @ClearlyClaire)
 - Fix vacuum tasks being interrupted by a single batch failure (#36606 by @Gargron)
 - Fix handling of unreachable network error for search services (#36587 by @mjankowski)
 - Fix bookmarks export when a bookmarked status is soft-deleted (#36576 by @ClearlyClaire)
