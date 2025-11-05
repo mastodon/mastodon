@@ -9,8 +9,8 @@ import type { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-import SoundIcon from '@/images/sound.svg?react';
 import CloseIcon from '@/material-icons/400-20px/close.svg?react';
+import SoundIcon from '@/material-icons/400-24px/audio.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
 import { undoUploadCompose } from 'mastodon/actions/compose';
