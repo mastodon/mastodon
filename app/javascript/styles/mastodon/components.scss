@@ -2991,6 +2991,7 @@ a.account__display-name {
     height: 100%;
     min-height: 100vh;
     min-height: 100dvh;
+    padding-inline: 10px;
     padding-bottom: env(safe-area-inset-bottom);
 
     &__pane {
@@ -3330,6 +3331,7 @@ a.account__display-name {
     min-height: 100vh;
     min-height: 100dvh;
     gap: 0;
+    padding-inline: 0;
   }
 
   .columns-area__panels__pane--navigational {
