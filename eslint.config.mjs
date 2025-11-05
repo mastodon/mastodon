@@ -180,6 +180,7 @@ export default tseslint.config([
     'vendor/**/*',
     'streaming/**/*',
     '.bundle/**/*',
+    'storybook-static/**/*',
   ]),
   react.configs.flat.recommended,
   react.configs.flat['jsx-runtime'],
@@ -290,6 +291,7 @@ export default tseslint.config([
       'react/jsx-tag-spacing': 'error',
       'react/jsx-wrap-multilines': 'error',
       'react/self-closing-comp': 'error',
+      'react/button-has-type': 'error',
     },
   },
   {

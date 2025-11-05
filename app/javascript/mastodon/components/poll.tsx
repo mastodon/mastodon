@@ -171,13 +171,14 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
             className='button button-secondary'
             disabled={voteDisabled}
             onClick={handleVote}
+            type='button'
           >
             <FormattedMessage id='poll.vote' defaultMessage='Vote' />
           </button>
         )}
         {!showResults && (
           <>
-            <button className='poll__link' onClick={handleReveal}>
+            <button className='poll__link' onClick={handleReveal} type='button'>
               <FormattedMessage id='poll.reveal' defaultMessage='See results' />
             </button>{' '}
             ·{' '}
@@ -185,7 +186,11 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
         )}
         {showResults && !disabled && (
           <>
-            <button className='poll__link' onClick={handleRefresh}>
+            <button
+              className='poll__link'
+              onClick={handleRefresh}
+              type='button'
+            >
               <FormattedMessage id='poll.refresh' defaultMessage='Refresh' />
             </button>{' '}
             ·{' '}

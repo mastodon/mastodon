@@ -237,6 +237,7 @@ export const DropdownMenu = <Item = MenuItem,>({
           onKeyUp={handleItemKeyUp}
           data-index={i}
           aria-disabled={disabled}
+          type='button'
         >
           <DropdownMenuItemContent item={option} />
         </button>

@@ -98,7 +98,12 @@ export const EditedTimestamp: React.FC<{
           className='dropdown-menu__item edited-timestamp__history__item'
           key={item.get('created_at') as string}
         >
-          <button data-index={index} onClick={onClick} onKeyUp={onKeyUp}>
+          <button
+            data-index={index}
+            onClick={onClick}
+            onKeyUp={onKeyUp}
+            type='button'
+          >
             {label}
           </button>
         </li>
@@ -118,7 +123,7 @@ export const EditedTimestamp: React.FC<{
       onItemClick={handleItemClick}
       forceDropdown
     >
-      <button className='dropdown-menu__text-button'>
+      <button className='dropdown-menu__text-button' type='button'>
         <FormattedMessage
           id='status.edited'
           defaultMessage='Edited {date}'
