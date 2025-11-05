@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, forwardRef } from 'react';
+import { useCallback, forwardRef } from 'react';
 
 import classNames from 'classnames';
 
@@ -55,23 +55,6 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
     },
     buttonRef,
   ) => {
-    const [activate, setActivate] = useState(false);
-    const [deactivate, setDeactivate] = useState(false);
-
-    useEffect(() => {
-      if (!animate) {
-        return;
-      }
-
-      if (activate && !active) {
-        setActivate(false);
-        setDeactivate(true);
-      } else if (!activate && active) {
-        setActivate(true);
-        setDeactivate(false);
-      }
-    }, [setActivate, setDeactivate, animate, active, activate]);
-
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
       (e) => {
         e.preventDefault();
@@ -112,8 +95,8 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
       active,
       disabled,
       inverted,
-      activate,
-      deactivate,
+      activate: animate && active,
+      deactivate: animate && !active,
       overlayed: overlay,
       'icon-button--with-counter': typeof counter !== 'undefined',
     });
