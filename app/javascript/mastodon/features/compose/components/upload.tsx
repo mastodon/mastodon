@@ -11,13 +11,25 @@ import { CSS } from '@dnd-kit/utilities';
 
 import CloseIcon from '@/material-icons/400-20px/close.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
+import HeadphonesIcon from '@/material-icons/400-24px/headphones.svg?react';
 import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
 import { undoUploadCompose } from 'mastodon/actions/compose';
 import { openModal } from 'mastodon/actions/modal';
 import { Blurhash } from 'mastodon/components/blurhash';
 import { Icon } from 'mastodon/components/icon';
 import type { MediaAttachment } from 'mastodon/models/media_attachment';
-import { useAppDispatch, useAppSelector } from 'mastodon/store';
+import {
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from 'mastodon/store';
+
+import { AudioVisualizer } from '../../audio/visualizer';
+
+const selectUserAvatar = createAppSelector(
+  [(state) => state.accounts, (state) => state.meta.get('me') as string],
+  (accounts, myId) => accounts.get(myId)?.avatar_static,
+);
 
 export const Upload: React.FC<{
   id: string;
@@ -38,6 +50,7 @@ export const Upload: React.FC<{
   const sensitive = useAppSelector(
     (state) => state.compose.get('spoiler') as boolean,
   );
+  const userAvatar = useAppSelector(selectUserAvatar);
 
   const handleUndoClick = useCallback(() => {
     dispatch(undoUploadCompose(id));
@@ -67,6 +80,8 @@ export const Upload: React.FC<{
     transform: CSS.Transform.toString(transform),
     transition,
   };
+  const preview_url = media.get('preview_url') as string | null;
+  const blurhash = media.get('blurhash') as string | null;
 
   return (
     <div
@@ -85,17 +100,19 @@ export const Upload: React.FC<{
       <div
         className='compose-form__upload__thumbnail'
         style={{
-          backgroundImage: !sensitive
-            ? `url(${media.get('preview_url') as string})`
-            : undefined,
+          backgroundImage:
+            !sensitive && preview_url ? `url(${preview_url})` : undefined,
           backgroundPosition: `${x}% ${y}%`,
         }}
       >
-        {sensitive && (
-          <Blurhash
-            hash={media.get('blurhash') as string}
-            className='compose-form__upload__preview'
-          />
+        {sensitive && blurhash && (
+          <Blurhash hash={blurhash} className='compose-form__upload__preview' />
+        )}
+        {!sensitive && !preview_url && (
+          <div className='compose-form__upload__visualizer'>
+            <AudioVisualizer poster={userAvatar} />
+            <Icon id='music' icon={HeadphonesIcon} />
+          </div>
         )}
 
         <div className='compose-form__upload__actions'>
