@@ -489,6 +489,7 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
                   className='link-button'
                   onClick={handleDetectClick}
                   disabled={type !== 'image' || isDetecting}
+                  type='button'
                 >
                   <FormattedMessage
                     id='alt_text_modal.add_text_from_image'

@@ -73,7 +73,7 @@ const LimitedAccountHint: React.FC<{ accountId: string }> = ({ accountId }) => {
         defaultMessage='This account has been hidden by the moderators of {domain}.'
         values={{ domain }}
       />
-      <button onClick={reveal} className='link-button'>
+      <button onClick={reveal} className='link-button' type='button'>
         <FormattedMessage
           id='status.quote_error.limited_account_hint.action'
           defaultMessage='Show anyway'
@@ -129,7 +129,7 @@ const FilteredQuote: React.FC<{
   return (
     <>
       {message}
-      <button onClick={reveal} className='link-button'>
+      <button onClick={reveal} className='link-button' type='button'>
         <FormattedMessage
           id='status.quote_error.limited_account_hint.action'
           defaultMessage='Show anyway'

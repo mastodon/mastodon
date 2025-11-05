@@ -232,6 +232,7 @@ const ReblogMenuItem: FC<ReblogMenuItemProps> = ({
         ref={focusRefCallback}
         aria-disabled={disabled}
         data-index={index}
+        type='button'
       >
         <DropdownMenuItemContent item={item} />
       </button>

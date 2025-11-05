@@ -557,7 +557,11 @@ export const Search: React.FC<{
                     )}
                   >
                     <span>{label}</span>
-                    <button className='icon-button' onMouseDown={forget}>
+                    <button
+                      className='icon-button'
+                      onMouseDown={forget}
+                      type='button'
+                    >
                       <Icon id='times' icon={CloseIcon} />
                     </button>
                   </div>
@@ -591,6 +595,7 @@ export const Search: React.FC<{
                   className={classNames('search__popout__menu__item', {
                     selected: selectedOption === i,
                   })}
+                  type='button'
                 >
                   {label}
                 </button>
@@ -617,6 +622,7 @@ export const Search: React.FC<{
                     selectedOption ===
                     (quickActions.length || recent.length) + i,
                 })}
+                type='button'
               >
                 {label}
               </button>
