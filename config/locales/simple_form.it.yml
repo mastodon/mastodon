@@ -93,6 +93,7 @@ it:
         content_cache_retention_period: Tutti i post da altri server (inclusi booster e risposte) verranno eliminati dopo il numero specificato di giorni, senza tener conto di eventuali interazioni con gli utenti locali con tali post. Questo include i post in cui un utente locale ha contrassegnato come segnalibri o preferiti. Anche le menzioni private tra utenti di diverse istanze andranno perse e impossibile da ripristinare. L'uso di questa impostazione è inteso per casi di scopo speciale e rompe molte aspettative dell'utente quando implementato per uso generale.
         custom_css: È possibile applicare stili personalizzati sulla versione web di Mastodon.
         favicon: WEBP, PNG, GIF o JPG. Sostituisce la favicon predefinita di Mastodon con un'icona personalizzata.
+        landing_page: Seleziona quale pagina vedono i nuovi visitatori al loro primo arrivo sul tuo server. Se selezioni "Tendenze", è necessario abilitare le tendenze nelle Impostazioni di scoperta. Se selezioni "Feed locale", allora è necessario impostare "Accesso ai feed in diretta con post locali" su "Tutti" nelle Impostazioni di scoperta.
         mascot: Sostituisce l'illustrazione nell'interfaccia web avanzata.
         media_cache_retention_period: I file multimediali da post fatti da utenti remoti sono memorizzati nella cache sul tuo server. Quando impostato a un valore positivo, i media verranno eliminati dopo il numero specificato di giorni. Se i dati multimediali sono richiesti dopo che sono stati eliminati, saranno nuovamente scaricati, se il contenuto sorgente è ancora disponibile. A causa di restrizioni su quanto spesso link anteprima carte sondaggio siti di terze parti, si consiglia di impostare questo valore ad almeno 14 giorni, o le schede di anteprima link non saranno aggiornate su richiesta prima di quel tempo.
         min_age: Agli utenti verrà chiesto di confermare la propria data di nascita durante l'iscrizione
@@ -286,6 +287,7 @@ it:
         content_cache_retention_period: Periodo di ritenzione del contenuto remoto
         custom_css: Personalizza CSS
         favicon: Favicon
+        landing_page: Pagina di destinazione per i nuovi visitatori
         local_live_feed_access: Accesso ai feed dal vivo con post locali
         local_topic_feed_access: Accesso a feed di hashtag e link con post locali
         mascot: Personalizza mascotte (legacy)
