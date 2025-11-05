@@ -225,7 +225,7 @@ export const SearchResults: React.FC<{ multiColumn: boolean }> = ({
       />
 
       <div className='explore__search-header'>
-        <Search singleColumn initialValue={trimmedValue} />
+        <Search singleColumn initialValue={trimmedValue} key={trimmedValue} />
       </div>
 
       <div className='account__section-headline'>
