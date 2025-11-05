@@ -9,9 +9,9 @@ import type { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
+import SoundIcon from '@/images/sound.svg?react';
 import CloseIcon from '@/material-icons/400-20px/close.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
-import HeadphonesIcon from '@/material-icons/400-24px/headphones.svg?react';
 import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
 import { undoUploadCompose } from 'mastodon/actions/compose';
 import { openModal } from 'mastodon/actions/modal';
@@ -111,7 +111,7 @@ export const Upload: React.FC<{
         {!sensitive && !preview_url && (
           <div className='compose-form__upload__visualizer'>
             <AudioVisualizer poster={userAvatar} />
-            <Icon id='music' icon={HeadphonesIcon} />
+            <Icon id='sound' icon={SoundIcon} />
           </div>
         )}
 
