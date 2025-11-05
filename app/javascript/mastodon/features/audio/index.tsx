@@ -616,8 +616,6 @@ export const Audio: React.FC<{
       </div>
 
       <div className='audio-player__controls'>
-        <AudioVisualizer frequencyBands={frequencyBands} poster={poster} />
-
         <div className='audio-player__controls__play'>
           <button
             type='button'
@@ -631,6 +629,8 @@ export const Audio: React.FC<{
         </div>
 
         <div className='audio-player__controls__play'>
+          <AudioVisualizer frequencyBands={frequencyBands} poster={poster} />
+
           <button
             type='button'
             title={intl.formatMessage(paused ? messages.play : messages.pause)}
