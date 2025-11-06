@@ -44,12 +44,6 @@ if ENV['MASTODON_PROMETHEUS_EXPORTER_ENABLED'] == 'true'
   end
 end
 
-before_worker_boot do
-  ActiveSupport.on_load(:active_record) do
-    ActiveRecord::Base.establish_connection
-  end
-end
-
 plugin :tmp_restart
 
 set_remote_address(proxy_protocol: :v1) if ENV['PROXY_PROTO_V1'] == 'true'
