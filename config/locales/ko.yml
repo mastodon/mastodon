@@ -1634,7 +1634,7 @@ ko:
       disabled_account: 이 계정은 완전한 사용이 불가능하게 됩니다. 하지만, 데이터 내보내기나 재활성화를 위해 접근할 수 있습니다.
       followers: 이 행동은 현재 계정의 모든 팔로워를 새 계정으로 이동시킵니다
       only_redirect_html: 대신, <a href="%{path}">프로필에 리디렉션만 표시</a>할 수도 있습니다.
-      other_data: 다른 어떤 데이터도 자동적으로 옮겨지지 않을 것입니다
+      other_data: 다른 데이터는 자동으로 이전되지 않을 것입니다 (게시물, 팔로우 목록 등)
       redirect: 현재 계정 프로필은 리다이렉트 알림과 함께 업데이트 되며 검색에서 제외 됩니다
   moderation:
     title: 중재
@@ -1887,6 +1887,7 @@ ko:
     errors:
       in_reply_not_found: 답장하려는 게시물이 존재하지 않습니다.
       quoted_status_not_found: 인용하려는 게시물이 존재하지 않습니다.
+      quoted_user_not_mentioned: 개인 멘션에서 다른 사람의 게시물을 인용할 수 없습니다.
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
       direct: 멘션된 사용자들에게만 보이는 게시물은 고정될 수 없습니다

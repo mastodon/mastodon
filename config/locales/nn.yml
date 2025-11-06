@@ -796,6 +796,8 @@ nn:
         view_dashboard_description: Gir brukere tilgang til dashbordet og ulike metrikker
         view_devops: DevOps
         view_devops_description: Gir brukere tilgang til Sidekiq og pgHero-dashbord
+        view_feeds: Sjå direktestraumar og emnestraumar
+        view_feeds_description: La brukarar sjå direkte- og emnestraumane uansett innstillingar på tenaren
       title: Roller
     rules:
       add_new: Legg til regel
@@ -843,7 +845,7 @@ nn:
         public_timelines: Offentlege tidsliner
         publish_statistics: Publiser statistikk
         title: Oppdaging
-        trends: Trender
+        trends: Populært
       domain_blocks:
         all: Til alle
         disabled: Til ingen
@@ -851,7 +853,13 @@ nn:
       feed_access:
         modes:
           authenticated: Berre godkjende brukarar
+          disabled: Krev ei spesifikk brukarrolle
           public: Alle
+      landing_page:
+        values:
+          about: Om
+          local_feed: Lokal tidsline
+          trends: Populært
       registrations:
         moderation_recommandation: Pass på at du har mange og kjappe redaktørar og moderatorar på laget ditt før du opnar for allmenn registrering!
         preamble: Kontroller kven som kan oppretta konto på tenaren din.
@@ -1664,7 +1672,6 @@ nn:
       disabled_account: Din nåværende konto vil ikke være fullt brukbar etterpå. Men du vil ha tilgang til dataeksportering såvel som reaktivering.
       followers: Denne handlinga flyttar alle fylgjarar frå denne kontoen til den nye
       only_redirect_html: Alternativt kan du velge å <a href="%{path}">bare legge ut en omdirigering på profilen din</a>.
-      other_data: Inkje anna data flyttast av seg sjølve
       redirect: Profilen til din nåværende konto vil bli oppdatert med en omdirigeringsnotis og bli fjernet fra søk
   moderation:
     title: Moderasjon
@@ -1921,6 +1928,7 @@ nn:
     errors:
       in_reply_not_found: Det ser ut til at tutet du freistar å svara ikkje finst.
       quoted_status_not_found: Innlegget du prøver å sitera ser ikkje ut til å finnast.
+      quoted_user_not_mentioned: Kan ikkje sitera ein person som ikkje er nemnd i direktemeldingar.
     over_character_limit: øvregrensa for teikn, %{max}, er nådd
     pin_errors:
       direct: Innlegg som bare er synlige for nevnte brukere kan ikke festes
