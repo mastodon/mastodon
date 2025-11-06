@@ -841,6 +841,11 @@ nan:
           authenticated: Kan-ta hōo登入ê用者
           disabled: 愛特別ê用者角色
           public: Ta̍k lâng
+      landing_page:
+        values:
+          about: 關係本站
+          local_feed: 本地ê動態
+          trends: 趨勢
       registrations:
         moderation_recommandation: 佇開放hōo ta̍k ê lâng註冊進前，請確認lí有夠額koh主動反應ê管理團隊！
         preamble: 控制ē當佇lí ê服侍器註冊ê人。
@@ -1213,6 +1218,46 @@ nan:
       redirect_to_app_html: Lí應該受重轉kàu <strong>%{app_name}</strong>應用程式，若是iáu-buē，試 %{clicking_this_link} á是手動轉去tsit ê應用程式。
       registration_complete: Lí佇 %{domain} ê註冊完成ah！
       welcome_title: 歡迎 %{name}！
+      wrong_email_hint: Nā是電子phue ê地址無正確，lí ē當tī口座設定kā改。
+    delete_account: Thâi掉口座
+    delete_account_html: Nā lí behthâi掉lí ê口座，lí ē當<a href="%{path}">ji̍h tsia繼續</a>。Lí著確認動作。
+    description:
+      prefix_invited_by_user: "@%{name} 邀請lí加入tsit ê Mastodon 服侍器！"
+      prefix_sign_up: Tsit-má註冊Mastodon ê口座！
+      suffix: 有口座，lí當tuì ta̍k ê Mastodon 服侍器跟tuè lâng、PO更新kap交換訊息等等！
+    didnt_get_confirmation: Kám無收著確認ê連結？
+    dont_have_your_security_key: Lí iáu無安全鎖(security key)？
+    forgot_password: 密碼be記得？
+    invalid_reset_password_token: 重新設密碼ê token無效á是過期ah。請重頭the̍h新ê。
+    link_to_otp: 請tuì lí ê手機á輸入雙因素認證(2FA)ê碼，á是恢復碼。
+    link_to_webauth: 用lí ê安全鎖ê裝置
+    log_in_with: 登入用
+    login: 登入
+    logout: 登出
+    migrate_account: 轉kàu無kâng ê口座
+    migrate_account_html: Nā lí ǹg望引tshuā別人tuè無kâng ê口座，請 kàu<a href="%{path}">tsia設定</a>。
+    or_log_in_with: Á是登入用
+    progress:
+      confirm: 確認電子phue
+      details: Lí ê詳細
+      review: Lán ê審查
+      rules: 接受規則
+    providers:
+      cas: CAS
+      saml: SAML
+    register: 註冊
+    registration_closed: "%{instance} 無接受新ê成員"
+    resend_confirmation: 重送確認ê連結
+    reset_password: 重設密碼
+    rules:
+      accept: 接受
+      back: Tńg去
+      invited_by: Lí通用有tuì hia收著ê邀請加入 %{domain}：
+      preamble: Tsiah-ê hōo %{domain} ê管理員設定kap實施。
+      preamble_invited: 佇lí繼續進前，請思考 %{domain} ê管理員設立ê基本規則。
+      title: Tsi̍t-kuá基本規定。
+      title_invited: Lí受邀請ah。
+    security: 安全
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:

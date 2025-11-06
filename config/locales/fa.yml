@@ -796,6 +796,8 @@ fa:
         view_dashboard_description: اجازه به کاربران برای دسترسی به داشتبورد و سنجه‌های مختلف
         view_devops: دواپس
         view_devops_description: به کاربران امکان دسترسی به داشبورد Sidekiq و pgHero را می دهد
+        view_feeds: دیدن خوراک‌های موضوع و زنده
+        view_feeds_description: می‌گذارد کاربران فارغ از تنظیمات کارساز به خوراک‌های موضوع و زنده دسترسی داشته باشند
       title: نقش‌ها
     rules:
       add_new: افزودن قانون
@@ -837,6 +839,7 @@ fa:
         title: درخواست خروج از اندیس‌گذاری پیش‌گزیدهٔ موتور جست‌وجو
       discovery:
         follow_recommendations: پیروی از پیشنهادها
+        preamble: ارائه محتوای جذّاب برای آغاز به کار کاربرانی که شاید کسی را روی ماستودون نشناسند ضروری است. واپایش چگونگی کار کردن ویژگی‌های کشف روی کارسازتان.
         privacy: محرمانگی
         profile_directory: شاخهٔ نمایه
         public_timelines: خط زمانی‌های عمومی
@@ -847,6 +850,16 @@ fa:
         all: برای همه
         disabled: برای هیچ‌کدام
         users: برای کاربران محلی واردشده
+      feed_access:
+        modes:
+          authenticated: تنها کاربران تأیید شده
+          disabled: نیازمند نقش کاربری خاص
+          public: هرکسی
+      landing_page:
+        values:
+          about: درباره
+          local_feed: خوراک محلی
+          trends: داغ‌ها
       registrations:
         moderation_recommandation: لطفاً قبل از اینکه ثبت نام را برای همه باز کنید، مطمئن شوید که یک تیم نظارتی مناسب و واکنشی دارید!
         preamble: کنترل کنید چه کسی می تواند در سرور شما یک حساب ایجاد کند.
@@ -900,6 +913,7 @@ fa:
       no_status_selected: هیچ فرسته‌ای تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
       open: گشودن فرسته
       original_status: فرستهٔ اصلی
+      quotes: نقل‌ها
       reblogs: تقویت‌ها
       replied_to_html: به %{acct_link} پاسخ داد
       status_changed: فرسته تغییر کرد
@@ -907,6 +921,7 @@ fa:
       title: پست‌های حساب - @%{name}
       trending: پرطرفدار
       view_publicly: مشاهده عمومی
+      view_quoted_post: دیدن فرستهٔ نقل شده
       visibility: نمایانی
       with_media: دارای عکس یا ویدیو
     strikes:
@@ -1181,7 +1196,10 @@ fa:
     hint_html: اگر می‌خواهید از حساب دیگری به این حساب منتقل شوید، این‌جا می‌توانید یک نام مستعار بسازید که برای انتقال از حساب قدیمی به این حساب لازم است. این کار به تنهایی <strong>بی‌ضرر و قابل بازگشت</strong> است. <strong>فرایند انتقال حساب از حساب قدیمی آغاز خواهد شد</strong>.
     remove: حذف ارتباط نام مستعار
   appearance:
+    advanced_settings: تنظیمات پیش‌رفته
     animations_and_accessibility: پویانمایی‌های و دسترسی‌پذیری
+    boosting_preferences: ترجیحات تقویت
+    boosting_preferences_info_html: "‏<strong>نکته:</strong> فارغ از تنظیمات، <kbd>تبدیل</kbd> + <kbd>کلیک</kbd> روی %{icon} نقشک تقویت بلافاصله تقویت خواهد کرد"
     discovery: کاوش
     localization:
       body: ماستودون توسط داوطلبان ترجمه شده است.
@@ -1583,6 +1601,13 @@ fa:
       expires_at: تاریخ انقضا
       uses: استفاده‌ها
     title: دعوت دیگران
+  link_preview:
+    author_html: به دست %{name}
+    potentially_sensitive_content:
+      action: زدن برای نمایش
+      confirm_visit: مطمئنید که می‌خواهید این پیوند را بگشایید؟
+      hide_button: نهفتن
+      label: محتوای بالقوه حسّاس
   lists:
     errors:
       limit: به بیشینهٔ تعداد سیاهه‌ها رسیدید
@@ -1735,6 +1760,9 @@ fa:
       self_vote: شما نمی توانید در نظرسنجی خودتان رای دهید
       too_few_options: حتماً باید بیش از یک گزینه داشته باشد
       too_many_options: نمی‌تواند بیشتر از %{max} گزینه داشته باشد
+    vote: رأی
+  posting_defaults:
+    explanation: این تنظیمات هنگام ایجاد فرسته به عنوان پیش‌گزیده استفاده خواهند شد؛ ولی می‌توانید در نویسنده برای هر فرسته تغییرش دهید.
   preferences:
     other: سایر تنظیمات
     posting_defaults: تنظیمات پیش‌فرض انتشار
@@ -1890,6 +1918,9 @@ fa:
         other: "%{count} ویدیو"
     boosted_from_html: تقویت شده از طرف %{acct_link}
     content_warning: 'هشدا محتوا: %{warning}'
+    content_warnings:
+      hide: نهفتن فرسته
+      show: نمایش بیش‌تر
     default_language: همانند زبان واسط
     disallowed_hashtags:
       one: 'دارای برچسبی غیرمجاز: %{tags}'
@@ -1904,10 +1935,23 @@ fa:
       limit: از این بیشتر نمی‌شود نوشته‌های ثابت داشت
       ownership: نوشته‌های دیگران را نمی‌توان ثابت کرد
       reblog: تقویت نمی‌تواند سنجاق شود
+    quote_error:
+      not_available: فرسته ناموجود
+      pending_approval: فرسته منتظر
+      revoked: فرسته به دست نگارنده برداشته شد
+    quote_policies:
+      followers: تنها پی‌گیران
+      nobody: فقط من
+      public: هرکسی
+    quote_post_author: فرسته‌ای از %{acct} را نقل کرد
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: اشاره خصوصی
+      private: تنها پی‌گیران
       public: عمومی
+      public_long: هرکسی داخل و خارج از ماستودون
+      unlisted: عمومی ساکت
+      unlisted_long: نهفته از نتیجه‌های جست‌وجوی ماستودون و خط‌های زمانی داغ و عمومی
   statuses_cleanup:
     enabled: حذف خودکار فرسته‌های قدیمی
     enabled_hint: فرسته‌هایتان را هنگام رسیدن به کرانهٔ سن خاصی به صورت خودکار حذف می‌کند، مگر این که با یکی از استثناهای زیر مطابق باشند

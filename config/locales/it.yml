@@ -855,6 +855,11 @@ it:
           authenticated: Solo utenti autenticati
           disabled: Richiedi un ruolo utente specifico
           public: Tutti
+      landing_page:
+        values:
+          about: Info
+          local_feed: Feed locale
+          trends: Tendenze
       registrations:
         moderation_recommandation: Assicurati di avere un team di moderazione adeguato e reattivo prima di aprire le registrazioni a tutti!
         preamble: Controlla chi può creare un account sul tuo server.
@@ -1924,6 +1929,7 @@ it:
     errors:
       in_reply_not_found: Il post a cui stai tentando di rispondere non sembra esistere.
       quoted_status_not_found: Il post che stai cercando di citare non sembra esistere.
+      quoted_user_not_mentioned: Non è possibile citare un utente non menzionato in un post di menzione privata.
     over_character_limit: Limite caratteri superato di %{max}
     pin_errors:
       direct: I messaggi visibili solo agli utenti citati non possono essere fissati in cima
