@@ -54,8 +54,10 @@ pt-BR:
         password: Use pelo menos 8 caracteres
         phrase: Corresponderá independente de maiúsculas ou minúsculas, no texto ou no Aviso de Conteúdo de um toot
         scopes: Quais APIs o aplicativo vai ter permissão de acessar. Se você selecionar uma autorização de alto nível, você não precisa selecionar individualmente os outros.
+        setting_advanced_layout: Exiba o Mastodon em um layout de várias colunas, permitindo que você visualize a linha do tempo, as notificações e uma terceira coluna de sua escolha. Não recomendado para telas menores.
         setting_aggregate_reblogs: Não mostrar novos impulsos para publicações que já foram impulsionadas recentemente (afeta somente os impulsos mais recentes)
         setting_always_send_emails: Normalmente, as notificações por e-mail não serão enviadas enquanto você estiver usando ativamente o Mastodon
+        setting_boost_modal: Quando ativada, a função de impulsionar primeiro abrirá uma caixa de diálogo de confirmação na qual você poderá alterar a visibilidade do seu impulsionamento.
         setting_default_quote_policy_private: Publicações exclusivas de seguidores criadas no Mastodon não podem ser citadas por outras pessoas.
         setting_default_quote_policy_unlisted: Quando as pessoas citarem você, suas publicações também ficarão ocultas da linha do tempo.
         setting_default_sensitive: Mídia sensível está oculta por padrão e pode ser revelada com um clique
@@ -63,6 +65,7 @@ pt-BR:
         setting_display_media_hide_all: Sempre ocultar todas as mídias
         setting_display_media_show_all: Sempre mostrar mídia sensível
         setting_emoji_style: Como exibir emojis. "Automáticos" tentará usar emojis nativos, mas voltará para o Twemoji para navegadores legados.
+        setting_quick_boosting_html: Quando ativado, clicar no ícone de impulsionamento %{boost_icon} impulsionará imediatamente o texto, em vez de abrir o menu suspenso de impulsionamento/cotação. Move a ação de cotação para o menu %{options_icon} (Opções).
         setting_system_scrollbars_ui: Se aplica apenas para navegadores de computador baseado no Safari e Chrome
         setting_use_blurhash: O blur é baseado nas cores da imagem oculta, ofusca a maioria dos detalhes
         setting_use_pending_items: Ocultar atualizações da linha do tempo atrás de um clique ao invés de rolar automaticamente
@@ -90,6 +93,7 @@ pt-BR:
         content_cache_retention_period: Todas as postagens de outros servidores (incluindo boosts e respostas) serão excluídas após o número especificado de dias, sem levar a qualquer interação do usuário local com esses posts. Isto inclui postagens onde um usuário local o marcou como favorito ou favoritos. Menções privadas entre usuários de diferentes instâncias também serão perdidas e impossíveis de restaurar. O uso desta configuração destina-se a instâncias especiais de propósitos e quebra muitas expectativas dos usuários quando implementadas para uso de propósito geral.
         custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
         favicon: WEBP, PNG, GIF ou JPG. Sobrescreve o favicon padrão do Mastodon com um ícone personalizado.
+        landing_page: Seleciona a página que os novos visitantes veem ao acessar seu servidor pela primeira vez. Se você selecionar "Tendências", as tendências precisam estar ativadas nas Configurações de Descoberta. Se você selecionar "Feed local", o "Acesso a feeds ao vivo com publicações locais" precisa estar definido como "Todos" nas Configurações de Descoberta.
         mascot: Substitui a ilustração na interface web avançada.
         media_cache_retention_period: Arquivos de mídia de mensagens de usuários remotos são armazenados em cache no seu servidor. Quando definido como valor positivo, a mídia será excluída após o número especificado de dias. Se os dados da mídia forem solicitados depois de excluídos, eles serão baixados novamente, se o conteúdo fonte ainda estiver disponível. Devido a restrições de quantas vezes os cartões de visualização de links sondam sites de terceiros, é recomendado definir este valor em pelo menos 14 dias, ou pré-visualização de links não serão atualizados a pedido antes desse tempo.
         min_age: Os usuários precisarão confirmar sua data de nascimento no cadastro
@@ -233,6 +237,7 @@ pt-BR:
         setting_aggregate_reblogs: Agrupar boosts nas linhas
         setting_always_send_emails: Sempre enviar notificações por e-mail
         setting_auto_play_gif: Reproduzir GIFs automaticamente
+        setting_boost_modal: Controle que aumenta a visibilidade
         setting_default_language: Idioma dos toots
         setting_default_privacy: Visibilidade da publicação
         setting_default_quote_policy: Quem pode citar
@@ -248,6 +253,7 @@ pt-BR:
         setting_expand_spoilers: Sempre expandir toots com Aviso de Conteúdo
         setting_hide_network: Ocultar suas relações
         setting_missing_alt_text_modal: Avise-me antes de publicar mídia sem texto alternado
+        setting_quick_boosting: Ativar aceleração rápida
         setting_reduce_motion: Reduzir animações
         setting_system_font_ui: Usar fonte padrão do sistema
         setting_system_scrollbars_ui: Usar barra de rolagem padrão do sistema

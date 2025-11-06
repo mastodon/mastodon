@@ -586,6 +586,7 @@ ca:
         created_msg: S'ha creat la nota de moderació d'instància.
         description_html: Mireu i deixeu notes per als altres moderadors i per a un mateix
         destroyed_msg: S'ha esborrat la nota de moderació d'instància.
+        placeholder: Informació sobre aquesta instància, accions preses o qualsevol altra cosa que us pugui ajudar a moderar-la en el futur.
         title: Notes de moderació
       private_comment: Comentari privat
       public_comment: Comentari públic
@@ -895,6 +896,7 @@ ca:
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
       open: Obre la publicació
       original_status: Publicació original
+      quotes: Cites
       reblogs: Impulsos
       replied_to_html: En resposta a %{acct_link}
       status_changed: Publicació canviada
@@ -902,6 +904,7 @@ ca:
       title: Publicacions del compte - @%{name}
       trending: Tendència
       view_publicly: Vegeu en públic
+      view_quoted_post: Veure la publicació citada
       visibility: Visibilitat
       with_media: Amb contingut multimèdia
     strikes:
@@ -1577,6 +1580,13 @@ ca:
       expires_at: Caduca
       uses: Usos
     title: Convidar persones
+  link_preview:
+    author_html: Per %{name}
+    potentially_sensitive_content:
+      action: Feu clic per a mostrar
+      confirm_visit: Esteu segur que voleu obrir aquest enllaç?
+      hide_button: Amaga
+      label: Contingut potencialment sensible
   lists:
     errors:
       limit: Has assolit la quantitat màxima de llistes
@@ -1885,6 +1895,9 @@ ca:
         other: "%{count} vídeos"
     boosted_from_html: Impulsat des de %{acct_link}
     content_warning: 'Avís de contingut: %{warning}'
+    content_warnings:
+      hide: Amaga la publicació
+      show: Mostra'n més
     default_language: El mateix que a la llengua de la interfície
     disallowed_hashtags:
       one: 'conté una etiqueta no permesa: %{tags}'
@@ -1899,10 +1912,15 @@ ca:
       limit: Ja has fixat el màxim nombre de tuts
       ownership: No es pot fixar el tut d'algú altre
       reblog: No es pot fixar un impuls
+    quote_error:
+      not_available: Publicació no disponible
+      pending_approval: Publicació pendent
+      revoked: Publicació eliminada per l'autor
     quote_policies:
       followers: Només seguidors
       nobody: Només jo
       public: Qualsevol
+    quote_post_author: S'ha citat una publicació de @%{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Menció privada
