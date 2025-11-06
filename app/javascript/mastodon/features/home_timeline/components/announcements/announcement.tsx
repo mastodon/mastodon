@@ -35,15 +35,15 @@ export const Announcement: FC<AnnouncementProps> = ({
   }, [active, id, dispatch, read]);
 
   // But visually show the announcement as read only when it goes out of view.
-  const [isRead, setIsRead] = useState(read);
+  const [isVisuallyRead, setIsVisuallyRead] = useState(read);
   const [previousActive, setPreviousActive] = useState(active);
   if (active !== previousActive) {
     setPreviousActive(active);
 
     // This marks the announcement as read in the UI only after it
     // went from active to inactive.
-    if (!active && isRead !== announcement.read) {
-      setIsRead(announcement.read);
+    if (!active && isVisuallyRead !== read) {
+      setIsVisuallyRead(read);
     }
   }
 
@@ -68,7 +68,7 @@ export const Announcement: FC<AnnouncementProps> = ({
 
       <ReactionsBar reactions={announcement.reactions} id={announcement.id} />
 
-      {!isRead && <span className='announcements__unread' />}
+      {!isVisuallyRead && <span className='announcements__unread' />}
     </AnimateEmojiProvider>
   );
 };
