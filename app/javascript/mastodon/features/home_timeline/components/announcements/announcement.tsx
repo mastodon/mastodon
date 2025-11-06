@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
 import type { FC } from 'react';
+import { useEffect, useState } from 'react';
 
 import { FormattedDate, FormattedMessage } from 'react-intl';
 
+import { dismissAnnouncement } from '@/mastodon/actions/announcements';
 import type { ApiAnnouncementJSON } from '@/mastodon/api_types/announcements';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
+import { useAppDispatch } from '@/mastodon/store';
 
 import { ReactionsBar } from './reactions';
 
@@ -22,13 +24,23 @@ export const Announcement: FC<AnnouncementProps> = ({
   announcement,
   active,
 }) => {
-  const [unread, setUnread] = useState(!announcement.read);
+  const { read, id } = announcement;
+
+  // Dismiss announcement when it becomes active.
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    // Only update `unread` marker once the announcement is out of view
-    if (!active && unread !== !announcement.read) {
-      setUnread(!announcement.read);
+    if (active && !read) {
+      dispatch(dismissAnnouncement(id));
     }
-  }, [announcement.read, active, unread]);
+  }, [active, id, dispatch, read]);
+
+  // But visually show the announcement as read only when it goes out of view.
+  const [unread, setUnread] = useState(!read);
+  useEffect(() => {
+    if (!active && unread !== !read) {
+      setUnread(!read);
+    }
+  }, [active, unread, read]);
 
   return (
     <AnimateEmojiProvider>
