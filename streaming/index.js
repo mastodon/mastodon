@@ -996,7 +996,7 @@ const startServer = async () => {
   // @ts-expect-error
   api.use(errorMiddleware);
 
-  api.get('/api/v1/streaming/*', (req, res) => {
+  api.get('/api/v1/streaming/*splat', (req, res) => {
     // @ts-expect-error
     const channelName = channelNameFromPath(req);
 
