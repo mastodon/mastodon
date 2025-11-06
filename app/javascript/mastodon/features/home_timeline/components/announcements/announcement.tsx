@@ -24,15 +24,15 @@ export const Announcement: FC<AnnouncementProps> = ({
   announcement,
   active,
 }) => {
-  const read = announcement.read;
+  const { read, id } = announcement;
 
   // Dismiss announcement when it becomes active.
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (active && !read) {
-      dispatch(dismissAnnouncement(announcement.id));
+      dispatch(dismissAnnouncement(id));
     }
-  }, [active, announcement.id, dispatch, read]);
+  }, [active, id, dispatch, read]);
 
   // But visually show the announcement as read only when it goes out of view.
   const [unread, setUnread] = useState(!read);
@@ -40,7 +40,7 @@ export const Announcement: FC<AnnouncementProps> = ({
     if (!active && unread !== !read) {
       setUnread(!read);
     }
-  }, [active, unread, announcement.id, read]);
+  }, [active, unread, read]);
 
   return (
     <AnimateEmojiProvider>
