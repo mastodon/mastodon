@@ -116,6 +116,9 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
           onChangeBackgroundColor(backgroundColor);
         }
       }
+      return () => {
+        onChangeBackgroundColor(null);
+      };
     }, [currentMedia, onChangeBackgroundColor]);
 
     const [viewportDimensions, setViewportDimensions] = useState<{
