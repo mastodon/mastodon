@@ -12,8 +12,7 @@ else
   bind "tcp://#{ENV.fetch('BIND', '127.0.0.1')}:#{ENV.fetch('PORT', 3000)}"
 end
 
-environment ENV.fetch('RAILS_ENV') { 'development' }
-workers     ENV.fetch('WEB_CONCURRENCY') { 2 }.to_i
+workers ENV.fetch('WEB_CONCURRENCY') { 2 }.to_i
 
 preload_app!
 
