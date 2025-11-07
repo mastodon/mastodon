@@ -418,6 +418,7 @@ export const composeReducer = (state = initialState, action) => {
       map.set('caretPosition', null);
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
+      map.set('quoted_status_id', null);
 
       map.update('media_attachments', list => list.filter(media => media.get('unattached')));
 
