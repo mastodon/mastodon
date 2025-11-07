@@ -66,7 +66,7 @@ class Api::V1::StatusesController < Api::BaseController
     if async_refresh.running?
       add_async_refresh_header(async_refresh)
     elsif !current_account.nil? && @status.should_fetch_replies?
-      add_async_refresh_header(AsyncRefresh.create(refresh_key))
+      add_async_refresh_header(AsyncRefresh.create(refresh_key, count_results: true))
 
       WorkerBatch.new.within do |batch|
         batch.connect(refresh_key, threshold: 1.0)
