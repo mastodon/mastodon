@@ -1,4 +1,4 @@
-import { useCallback, useState, useRef, useEffect } from 'react';
+import { useCallback, useState, useRef, useEffect, useMemo } from 'react';
 
 import {
   defineMessages,
@@ -97,173 +97,13 @@ export const Search: React.FC<{
   const [expanded, setExpanded] = useState(false);
   const [selectedOption, setSelectedOption] = useState(-1);
   const [quickActions, setQuickActions] = useState<SearchOption[]>([]);
-  useEffect(() => {
-    setValue(initialValue ?? '');
-    setQuickActions([]);
-  }, [initialValue]);
-  const searchOptions: SearchOption[] = [];
 
   const unfocus = useCallback(() => {
     document.querySelector('.ui')?.parentElement?.focus();
     setExpanded(false);
   }, []);
 
-  if (searchEnabled) {
-    searchOptions.push(
-      {
-        key: 'prompt-has',
-        label: (
-          <>
-            <mark>has:</mark>{' '}
-            <FormattedList
-              type='disjunction'
-              value={['media', 'poll', 'embed']}
-            />
-          </>
-        ),
-        action: (e) => {
-          e.preventDefault();
-          insertText('has:');
-        },
-      },
-      {
-        key: 'prompt-is',
-        label: (
-          <>
-            <mark>is:</mark>{' '}
-            <FormattedList type='disjunction' value={['reply', 'sensitive']} />
-          </>
-        ),
-        action: (e) => {
-          e.preventDefault();
-          insertText('is:');
-        },
-      },
-      {
-        key: 'prompt-language',
-        label: (
-          <>
-            <mark>language:</mark>{' '}
-            <FormattedMessage
-              id='search_popout.language_code'
-              defaultMessage='ISO language code'
-            />
-          </>
-        ),
-        action: (e) => {
-          e.preventDefault();
-          insertText('language:');
-        },
-      },
-      {
-        key: 'prompt-from',
-        label: (
-          <>
-            <mark>from:</mark>{' '}
-            <FormattedMessage id='search_popout.user' defaultMessage='user' />
-          </>
-        ),
-        action: (e) => {
-          e.preventDefault();
-          insertText('from:');
-        },
-      },
-      {
-        key: 'prompt-before',
-        label: (
-          <>
-            <mark>before:</mark>{' '}
-            <FormattedMessage
-              id='search_popout.specific_date'
-              defaultMessage='specific date'
-            />
-          </>
-        ),
-        action: (e) => {
-          e.preventDefault();
-          insertText('before:');
-        },
-      },
-      {
-        key: 'prompt-during',
-        label: (
-          <>
-            <mark>during:</mark>{' '}
-            <FormattedMessage
-              id='search_popout.specific_date'
-              defaultMessage='specific date'
-            />
-          </>
-        ),
-        action: (e) => {
-          e.preventDefault();
-          insertText('during:');
-        },
-      },
-      {
-        key: 'prompt-after',
-        label: (
-          <>
-            <mark>after:</mark>{' '}
-            <FormattedMessage
-              id='search_popout.specific_date'
-              defaultMessage='specific date'
-            />
-          </>
-        ),
-        action: (e) => {
-          e.preventDefault();
-          insertText('after:');
-        },
-      },
-      {
-        key: 'prompt-in',
-        label: (
-          <>
-            <mark>in:</mark>{' '}
-            <FormattedList
-              type='disjunction'
-              value={['all', 'library', 'public']}
-            />
-          </>
-        ),
-        action: (e) => {
-          e.preventDefault();
-          insertText('in:');
-        },
-      },
-    );
-  }
-
-  const recentOptions: SearchOption[] = recent.map((search) => ({
-    key: `${search.type}/${search.q}`,
-    label: labelForRecentSearch(search),
-    action: () => {
-      setValue(search.q);
-
-      if (search.type === 'account') {
-        history.push(`/@${search.q}`);
-      } else if (search.type === 'hashtag') {
-        history.push(`/tags/${search.q}`);
-      } else {
-        const queryParams = new URLSearchParams({ q: search.q });
-        if (search.type) queryParams.set('type', search.type);
-        history.push({ pathname: '/search', search: queryParams.toString() });
-      }
-
-      unfocus();
-    },
-    forget: (e) => {
-      e.stopPropagation();
-      void dispatch(forgetSearchResult(search));
-    },
-  }));
-
-  const navigableOptions = hasValue
-    ? quickActions.concat(searchOptions)
-    : recentOptions.concat(quickActions, searchOptions);
-
-  const insertText = (text: string) => {
+  const insertText = useCallback((text: string) => {
     setValue((currentValue) => {
       if (currentValue === '') {
         return text;
@@ -273,7 +113,181 @@ export const Search: React.FC<{
         return `${currentValue} ${text}`;
       }
     });
-  };
+  }, []);
+
+  const searchOptions = useMemo(() => {
+    if (!searchEnabled) {
+      return [];
+    } else {
+      const options: SearchOption[] = [
+        {
+          key: 'prompt-has',
+          label: (
+            <>
+              <mark>has:</mark>{' '}
+              <FormattedList
+                type='disjunction'
+                value={['media', 'poll', 'embed']}
+              />
+            </>
+          ),
+          action: (e) => {
+            e.preventDefault();
+            insertText('has:');
+          },
+        },
+        {
+          key: 'prompt-is',
+          label: (
+            <>
+              <mark>is:</mark>{' '}
+              <FormattedList
+                type='disjunction'
+                value={['reply', 'sensitive']}
+              />
+            </>
+          ),
+          action: (e) => {
+            e.preventDefault();
+            insertText('is:');
+          },
+        },
+        {
+          key: 'prompt-language',
+          label: (
+            <>
+              <mark>language:</mark>{' '}
+              <FormattedMessage
+                id='search_popout.language_code'
+                defaultMessage='ISO language code'
+              />
+            </>
+          ),
+          action: (e) => {
+            e.preventDefault();
+            insertText('language:');
+          },
+        },
+        {
+          key: 'prompt-from',
+          label: (
+            <>
+              <mark>from:</mark>{' '}
+              <FormattedMessage id='search_popout.user' defaultMessage='user' />
+            </>
+          ),
+          action: (e) => {
+            e.preventDefault();
+            insertText('from:');
+          },
+        },
+        {
+          key: 'prompt-before',
+          label: (
+            <>
+              <mark>before:</mark>{' '}
+              <FormattedMessage
+                id='search_popout.specific_date'
+                defaultMessage='specific date'
+              />
+            </>
+          ),
+          action: (e) => {
+            e.preventDefault();
+            insertText('before:');
+          },
+        },
+        {
+          key: 'prompt-during',
+          label: (
+            <>
+              <mark>during:</mark>{' '}
+              <FormattedMessage
+                id='search_popout.specific_date'
+                defaultMessage='specific date'
+              />
+            </>
+          ),
+          action: (e) => {
+            e.preventDefault();
+            insertText('during:');
+          },
+        },
+        {
+          key: 'prompt-after',
+          label: (
+            <>
+              <mark>after:</mark>{' '}
+              <FormattedMessage
+                id='search_popout.specific_date'
+                defaultMessage='specific date'
+              />
+            </>
+          ),
+          action: (e) => {
+            e.preventDefault();
+            insertText('after:');
+          },
+        },
+        {
+          key: 'prompt-in',
+          label: (
+            <>
+              <mark>in:</mark>{' '}
+              <FormattedList
+                type='disjunction'
+                value={['all', 'library', 'public']}
+              />
+            </>
+          ),
+          action: (e) => {
+            e.preventDefault();
+            insertText('in:');
+          },
+        },
+      ];
+      return options;
+    }
+  }, [insertText]);
+
+  const recentOptions: SearchOption[] = useMemo(
+    () =>
+      recent.map((search) => ({
+        key: `${search.type}/${search.q}`,
+        label: labelForRecentSearch(search),
+        action: () => {
+          setValue(search.q);
+
+          if (search.type === 'account') {
+            history.push(`/@${search.q}`);
+          } else if (search.type === 'hashtag') {
+            history.push(`/tags/${search.q}`);
+          } else {
+            const queryParams = new URLSearchParams({ q: search.q });
+            if (search.type) queryParams.set('type', search.type);
+            history.push({
+              pathname: '/search',
+              search: queryParams.toString(),
+            });
+          }
+
+          unfocus();
+        },
+        forget: (e) => {
+          e.stopPropagation();
+          void dispatch(forgetSearchResult(search));
+        },
+      })),
+    [dispatch, history, recent, unfocus],
+  );
+
+  const navigableOptions: SearchOption[] = useMemo(
+    () =>
+      hasValue
+        ? quickActions.concat(searchOptions)
+        : recentOptions.concat(quickActions, searchOptions),
+    [hasValue, quickActions, recentOptions, searchOptions],
+  );
 
   const submit = useCallback(
     (q: string, type?: SearchType) => {
