@@ -1,5 +1,5 @@
 import { flattenEmojiData } from 'emojibase';
-import type { CompactEmoji, FlatCompactEmoji } from 'emojibase';
+import type { CompactEmoji, FlatCompactEmoji, Locale } from 'emojibase';
 
 import {
   putEmojiData,
@@ -7,7 +7,6 @@ import {
   loadLatestEtag,
   putLatestEtag,
 } from './database';
-import { localeToUrl } from './loader-locales';
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
 import type { CustomEmojiData, LocaleOrCustom } from './types';
 import { emojiLogger } from './utils';
@@ -44,7 +43,8 @@ async function fetchAndCheckEtag<ResultType extends object[]>(
   if (locale === 'custom') {
     url.pathname = '/api/v1/custom_emojis';
   } else {
-    url.pathname = localeToUrl(locale);
+    const modulePath = await localeToPath(locale);
+    url.pathname = modulePath;
   }
 
   const oldEtag = await loadLatestEtag(locale);
@@ -78,4 +78,19 @@ async function fetchAndCheckEtag<ResultType extends object[]>(
   }
 
   return data;
+}
+
+const modules = import.meta.glob(
+  '../../../../../node_modules/emojibase-data/**/compact.json',
+  {
+    as: 'url',
+  },
+);
+
+function localeToPath(locale: Locale) {
+  const key = `../../../../../node_modules/emojibase-data/${locale}/compact.json`;
+  if (!modules[key]) {
+    throw new Error(`Unsupported locale: ${locale}`);
+  }
+  return modules[key]();
 }
