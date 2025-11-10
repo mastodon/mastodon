@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 
 import { useIntl, defineMessages } from 'react-intl';
 
@@ -41,40 +41,44 @@ const isHashtagLink = (
 };
 
 interface TargetParams {
-  hashtag?: string;
-  accountId?: string;
+  element: HTMLAnchorElement | null;
+  hashtag: string;
+  accountId: string;
 }
 
 export const HashtagMenuController: React.FC = () => {
   const intl = useIntl();
   const { signedIn } = useIdentity();
-  const [open, setOpen] = useState(false);
-  const [{ accountId, hashtag }, setTargetParams] = useState<TargetParams>({});
-  const targetRef = useRef<HTMLAnchorElement | null>(null);
-  const location = useLocation();
+
+  const [target, setTarget] = useState<TargetParams | null>(null);
+  const { element = null, accountId, hashtag } = target ?? {};
+  const open = !!element;
+
   const account = useAppSelector((state) =>
     accountId ? state.accounts.get(accountId) : undefined,
   );
 
-  useEffect(() => {
-    setOpen(false);
-    targetRef.current = null;
-  }, [setOpen, location]);
+  const location = useLocation();
+  const [previousLocation, setPreviousLocation] = useState(location);
+  if (location !== previousLocation) {
+    setPreviousLocation(location);
+    setTarget(null);
+  }
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      const target = (e.target as HTMLElement).closest('a');
+      const targetElement = (e.target as HTMLElement).closest('a');
 
       if (e.button !== 0 || e.ctrlKey || e.metaKey) {
         return;
       }
 
-      if (!isHashtagLink(target)) {
+      if (!isHashtagLink(targetElement)) {
         return;
       }
 
-      const hashtag = target.text.replace(/^#/, '');
-      const accountId = target.getAttribute('data-menu-hashtag');
+      const hashtag = targetElement.text.replace(/^#/, '');
+      const accountId = targetElement.getAttribute('data-menu-hashtag');
 
       if (!hashtag || !accountId) {
         return;
@@ -82,9 +86,7 @@ export const HashtagMenuController: React.FC = () => {
 
       e.preventDefault();
       e.stopPropagation();
-      targetRef.current = target;
-      setOpen(true);
-      setTargetParams({ hashtag, accountId });
+      setTarget({ element: targetElement, hashtag, accountId });
     };
 
     document.addEventListener('click', handleClick, { capture: true });
@@ -92,12 +94,11 @@ export const HashtagMenuController: React.FC = () => {
     return () => {
       document.removeEventListener('click', handleClick);
     };
-  }, [setTargetParams, setOpen]);
+  }, []);
 
   const handleClose = useCallback(() => {
-    setOpen(false);
-    targetRef.current = null;
-  }, [setOpen]);
+    setTarget(null);
+  }, []);
 
   const menu = useMemo(() => {
     const arr: MenuItem[] = [
@@ -139,7 +140,7 @@ export const HashtagMenuController: React.FC = () => {
       offset={offset}
       placement='bottom'
       flip
-      target={targetRef}
+      target={element}
       popperConfig={popperConfig}
     >
       {({ props, arrowProps, placement }) => (

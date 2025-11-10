@@ -101,8 +101,9 @@ const Preview: React.FC<{
   position: FocalPoint;
   onPositionChange: (arg0: FocalPoint) => void;
 }> = ({ mediaId, position, onPositionChange }) => {
-  const draggingRef = useRef<boolean>(false);
   const nodeRef = useRef<HTMLImageElement | HTMLVideoElement | null>(null);
+
+  const [dragging, setDragging] = useState<'started' | 'moving' | null>(null);
 
   const [x, y] = position;
   const style = useSpring({
@@ -110,7 +111,7 @@ const Preview: React.FC<{
       left: `${x * 100}%`,
       top: `${y * 100}%`,
     },
-    immediate: draggingRef.current,
+    immediate: dragging === 'moving',
   });
   const media = useAppSelector((state) =>
     (
@@ -122,8 +123,6 @@ const Preview: React.FC<{
   const account = useAppSelector((state) =>
     me ? state.accounts.get(me) : undefined,
   );
-
-  const [dragging, setDragging] = useState(false);
 
   const setRef = useCallback(
     (e: HTMLImageElement | HTMLVideoElement | null) => {
@@ -140,20 +139,20 @@ const Preview: React.FC<{
 
       const handleMouseMove = (e: MouseEvent) => {
         const { x, y } = getPointerPosition(nodeRef.current, e);
-        draggingRef.current = true; // This will disable the animation for quicker feedback, only do this if the mouse actually moves
+
+        setDragging('moving'); // This will disable the animation for quicker feedback, only do this if the mouse actually moves
         onPositionChange([x, y]);
       };
 
       const handleMouseUp = () => {
-        setDragging(false);
-        draggingRef.current = false;
+        setDragging(null);
         document.removeEventListener('mouseup', handleMouseUp);
         document.removeEventListener('mousemove', handleMouseMove);
       };
 
       const { x, y } = getPointerPosition(nodeRef.current, e.nativeEvent);
 
-      setDragging(true);
+      setDragging('started');
       onPositionChange([x, y]);
 
       document.addEventListener('mouseup', handleMouseUp);

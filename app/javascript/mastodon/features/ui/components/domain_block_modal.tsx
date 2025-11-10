@@ -53,8 +53,6 @@ export const DomainBlockModal: React.FC<{
   }, [dispatch]);
 
   useEffect(() => {
-    setLoading(true);
-
     apiRequest<DomainBlockPreviewResponse>('GET', 'v1/domain_blocks/preview', {
       params: { domain },
       timeout: 5000,
@@ -68,7 +66,7 @@ export const DomainBlockModal: React.FC<{
         setPreview('error');
         setLoading(false);
       });
-  }, [setPreview, setLoading, domain]);
+  }, [domain]);
 
   return (
     <div className='modal-root__modal safety-action-modal' aria-live='polite'>

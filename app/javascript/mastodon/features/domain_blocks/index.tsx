@@ -19,14 +19,12 @@ const messages = defineMessages({
 const Blocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const intl = useIntl();
   const [domains, setDomains] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [next, setNext] = useState<string | undefined>();
   const hasMore = !!next;
   const columnRef = useRef<ColumnRef>(null);
 
   useEffect(() => {
-    setLoading(true);
-
     void apiGetDomainBlocks()
       .then(({ domains, links }) => {
         const next = links.refs.find((link) => link.rel === 'next');
@@ -40,7 +38,7 @@ const Blocks: React.FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       .catch(() => {
         setLoading(false);
       });
-  }, [setLoading, setDomains, setNext]);
+  }, []);
 
   const handleLoadMore = useCallback(() => {
     setLoading(true);
