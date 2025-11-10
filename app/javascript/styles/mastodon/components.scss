@@ -1074,6 +1074,25 @@
   }
 }
 
+.split-button .dropdown-button {
+  &:first-child {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+    border-inline-end: none;
+  }
+
+  &:last-child {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    padding: 0;
+
+    .icon {
+      width: unset;
+      height: unset;
+    }
+  }
+}
+
 .character-counter {
   cursor: default;
   font-family: $font-sans-serif, sans-serif;
@@ -5601,6 +5620,17 @@ a.status-card {
 .modal-root__container .privacy-dropdown__dropdown {
   pointer-events: auto;
   z-index: 9999;
+}
+
+.privacy-dropdown__dropdown {
+  h4 {
+    --dropdown-text-color: $primary-text-color;
+
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px;
+    color: var(--dropdown-text-color);
+  }
 }
 
 .privacy-dropdown__option,

@@ -27,6 +27,7 @@ interface Props {
   classNamePrefix?: string;
   style?: React.CSSProperties;
   items: SelectItem[];
+  header?: React.ReactNode;
   onChange: (value: string) => void;
   onClose: () => void;
 }
@@ -35,6 +36,7 @@ export const DropdownSelector: React.FC<Props> = ({
   style,
   items,
   value,
+  header,
   classNamePrefix = 'privacy-dropdown',
   onClose,
   onChange,
@@ -142,42 +144,45 @@ export const DropdownSelector: React.FC<Props> = ({
   }, [onClose]);
 
   return (
-    <ul style={style} role='listbox' ref={listRef}>
-      {items.map((item) => (
-        <li
-          role='option'
-          tabIndex={0}
-          key={item.value}
-          data-index={item.value}
-          onKeyDown={handleKeyDown}
-          onClick={handleClick}
-          className={classNames(`${classNamePrefix}__option`, {
-            active: item.value === currentValue,
-          })}
-          aria-selected={item.value === currentValue}
-          ref={item.value === currentValue ? focusedItemRef : null}
-        >
-          {item.icon && item.iconComponent && (
-            <div className={`${classNamePrefix}__option__icon`}>
-              <Icon id={item.icon} icon={item.iconComponent} />
-            </div>
-          )}
+    <>
+      {header}
+      <ul style={style} role='listbox' ref={listRef}>
+        {items.map((item) => (
+          <li
+            role='option'
+            tabIndex={0}
+            key={item.value}
+            data-index={item.value}
+            onKeyDown={handleKeyDown}
+            onClick={handleClick}
+            className={classNames(`${classNamePrefix}__option`, {
+              active: item.value === currentValue,
+            })}
+            aria-selected={item.value === currentValue}
+            ref={item.value === currentValue ? focusedItemRef : null}
+          >
+            {item.icon && item.iconComponent && (
+              <div className={`${classNamePrefix}__option__icon`}>
+                <Icon id={item.icon} icon={item.iconComponent} />
+              </div>
+            )}
 
-          <div className={`${classNamePrefix}__option__content`}>
-            <strong>{item.text}</strong>
-            {item.meta}
-          </div>
-
-          {item.extra && (
-            <div
-              className={`${classNamePrefix}__option__additional`}
-              title={item.extra}
-            >
-              <Icon id='info-circle' icon={InfoIcon} />
+            <div className={`${classNamePrefix}__option__content`}>
+              <strong>{item.text}</strong>
+              {item.meta}
             </div>
-          )}
-        </li>
-      ))}
-    </ul>
+
+            {item.extra && (
+              <div
+                className={`${classNamePrefix}__option__additional`}
+                title={item.extra}
+              >
+                <Icon id='info-circle' icon={InfoIcon} />
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
