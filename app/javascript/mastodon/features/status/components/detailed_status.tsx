@@ -278,7 +278,7 @@ export const DetailedStatus: React.FC<{
             count: status.get('reblogs_count'),
             counter: (
               <span className='detailed-status__reblogs'>
-              <AnimatedNumber value={status.get('reblogs_count')} />
+                <AnimatedNumber value={status.get('reblogs_count')} />
               </span>
             ),
           }}
@@ -302,7 +302,7 @@ export const DetailedStatus: React.FC<{
             count: status.get('quotes_count'),
             counter: (
               <span className='detailed-status__quotes'>
-              <AnimatedNumber value={status.get('quotes_count')} />
+                <AnimatedNumber value={status.get('quotes_count')} />
               </span>
             ),
           }}
@@ -319,7 +319,7 @@ export const DetailedStatus: React.FC<{
             count: status.get('quotes_count'),
             counter: (
               <span className='detailed-status__quotes'>
-              <AnimatedNumber value={status.get('quotes_count')} />
+                <AnimatedNumber value={status.get('quotes_count')} />
               </span>
             ),
           }}
@@ -340,7 +340,7 @@ export const DetailedStatus: React.FC<{
           count: status.get('favourites_count'),
           counter: (
             <span className='detailed-status__favorites'>
-            <AnimatedNumber value={status.get('favourites_count')} />
+              <AnimatedNumber value={status.get('favourites_count')} />
             </span>
           ),
         }}
