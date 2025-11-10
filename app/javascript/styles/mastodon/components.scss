@@ -3179,20 +3179,21 @@ a.account__display-name {
 }
 
 .column__alert {
+  --alert-height: 54px;
+
   position: sticky;
   bottom: 0;
   z-index: 10;
   box-sizing: border-box;
   display: grid;
+  grid-template-rows: minmax(var(--alert-height), max-content);
+  align-items: end;
   width: 100%;
   max-width: 360px;
   padding: 1rem;
   margin: auto auto 0;
   overflow: clip;
-
-  &:empty {
-    padding: 0;
-  }
+  pointer-events: none;
 
   @media (max-width: #{$mobile-menu-breakpoint - 1}) {
     // Compensate for mobile menubar
@@ -3203,6 +3204,7 @@ a.account__display-name {
     // Make all nested alerts occupy the same space
     // rather than stack
     grid-area: 1 / 1;
+    pointer-events: initial;
   }
 }
 
@@ -4481,13 +4483,19 @@ a.status-card {
   box-sizing: border-box;
   text-decoration: none;
 
-  &:hover {
-    background: var(--on-surface-color);
+  &--large {
+    padding-block: 32px;
   }
 
-  &:focus-visible {
-    outline: 2px solid $ui-button-focus-outline-color;
-    outline-offset: -2px;
+  &:is(button) {
+    &:hover {
+      background: var(--on-surface-color);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $ui-button-focus-outline-color;
+      outline-offset: -2px;
+    }
   }
 
   .icon {
