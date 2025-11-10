@@ -89,7 +89,7 @@ const modules = import.meta.glob(
 
 function localeToPath(locale: Locale) {
   const key = `../../../../../node_modules/emojibase-data/${locale}/compact.json`;
-  if (!modules[key]) {
+  if (!modules[key] || typeof modules[key] !== 'function') {
     throw new Error(`Unsupported locale: ${locale}`);
   }
   return modules[key]();
