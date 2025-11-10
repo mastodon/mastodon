@@ -7,6 +7,7 @@ import {
   loadLatestEtag,
   putLatestEtag,
 } from './database';
+import { localeToUrl } from './loader-locales';
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
 import type { CustomEmojiData, LocaleOrCustom } from './types';
 import { emojiLogger } from './utils';
@@ -43,9 +44,7 @@ async function fetchAndCheckEtag<ResultType extends object[]>(
   if (locale === 'custom') {
     url.pathname = '/api/v1/custom_emojis';
   } else {
-    // This doesn't use isDevelopment() as that module loads initial state
-    // which breaks workers, as they cannot access the DOM.
-    url.pathname = `/packs${import.meta.env.DEV ? '-dev' : ''}/emoji/${locale}.json`;
+    url.pathname = localeToUrl(locale);
   }
 
   const oldEtag = await loadLatestEtag(locale);
