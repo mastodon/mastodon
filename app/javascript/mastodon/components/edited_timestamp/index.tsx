@@ -58,17 +58,7 @@ export const EditedTimestamp: React.FC<{
   }, []);
 
   const renderItem = useCallback(
-    (
-      item: HistoryItem,
-      index: number,
-      {
-        onClick,
-        onKeyUp,
-      }: {
-        onClick: React.MouseEventHandler;
-        onKeyUp: React.KeyboardEventHandler;
-      },
-    ) => {
+    (item: HistoryItem, index: number, onClick: React.MouseEventHandler) => {
       const formattedDate = (
         <RelativeTimestamp
           timestamp={item.get('created_at') as string}
@@ -98,12 +88,7 @@ export const EditedTimestamp: React.FC<{
           className='dropdown-menu__item edited-timestamp__history__item'
           key={item.get('created_at') as string}
         >
-          <button
-            data-index={index}
-            onClick={onClick}
-            onKeyUp={onKeyUp}
-            type='button'
-          >
+          <button data-index={index} onClick={onClick} type='button'>
             {label}
           </button>
         </li>
