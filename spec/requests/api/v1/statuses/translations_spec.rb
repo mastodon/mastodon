@@ -28,20 +28,41 @@ RSpec.describe 'API V1 Statuses Translations' do
 
   context 'with an oauth token' do
     describe 'POST /api/v1/statuses/:status_id/translate' do
-      let(:status) { Fabricate(:status, account: user.account, text: 'Hola', language: 'es') }
+      subject { post "/api/v1/statuses/#{status.id}/translate", headers: headers }
 
       before do
         translation = TranslationService::Translation.new(text: 'Hello')
         service = instance_double(TranslationService::DeepL, translate: [translation])
         allow(TranslationService).to receive_messages(configured?: true, configured: service)
         Rails.cache.write('translation_service/languages', { 'es' => ['en'] })
-        post "/api/v1/statuses/#{status.id}/translate", headers: headers
       end
 
-      it 'returns http success' do
-        expect(response).to have_http_status(200)
-        expect(response.content_type)
-          .to start_with('application/json')
+      context 'with a public status' do
+        let(:status) { Fabricate(:status, account: user.account, text: 'Hola', language: 'es') }
+
+        it 'returns http success' do
+          subject
+
+          expect(response)
+            .to have_http_status(200)
+          expect(response.media_type)
+            .to eq('application/json')
+        end
+      end
+
+      context 'with a private status' do
+        let(:status) { Fabricate(:status, visibility: :private, account: user.account, text: 'Hola', language: 'es') }
+
+        it 'returns http forbidden' do
+          subject
+
+          expect(response)
+            .to have_http_status(403)
+          expect(response.media_type)
+            .to eq('application/json')
+          expect(response.parsed_body)
+            .to include(error: /not allowed/)
+        end
       end
     end
   end
