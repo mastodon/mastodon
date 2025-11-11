@@ -13,7 +13,7 @@
     &:active,
     &:focus {
       .card__bar {
-        background: var(--clr-bg-accent-subtle);
+        background: var(--color-bg-accent-subtle);
       }
     }
   }
@@ -21,8 +21,8 @@
   &__img {
     height: 130px;
     position: relative;
-    background: var(--clr-bg-secondary);
-    border: 1px solid var(--clr-border-primary);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
     border-bottom: none;
 
     img {
@@ -44,8 +44,8 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background: var(--clr-bg-primary);
-    border: 1px solid var(--clr-border-primary);
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border-primary);
     border-top: none;
 
     .avatar {
@@ -60,7 +60,7 @@
         display: block;
         margin: 0;
         border-radius: 4px;
-        background: var(--clr-bg-secondary);
+        background: var(--color-bg-secondary);
         object-fit: cover;
       }
     }
@@ -75,7 +75,7 @@
 
       strong {
         font-size: 15px;
-        color: var(--clr-text-primary);
+        color: var(--color-text-primary);
         font-weight: 500;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -84,7 +84,7 @@
       span {
         display: block;
         font-size: 14px;
-        color: var(--clr-text-secondary);
+        color: var(--color-text-secondary);
         font-weight: 400;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -105,7 +105,7 @@
   .page,
   .gap {
     font-size: 14px;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     font-weight: 500;
     display: inline-block;
     padding: 6px 10px;
@@ -113,8 +113,8 @@
   }
 
   .current {
-    color: var(--clr-bg-inverted);
-    background: var(--clr-text-on-inverted);
+    color: var(--color-bg-inverted);
+    background: var(--color-text-on-inverted);
     border-radius: 100px;
     cursor: default;
     margin: 0 10px;
@@ -127,7 +127,7 @@
   .older,
   .newer {
     text-transform: uppercase;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
   }
 
   .older {
@@ -142,7 +142,7 @@
 
   .disabled {
     cursor: default;
-    color: var(--clr-text-disabled);
+    color: var(--color-text-disabled);
   }
 
   @media screen and (width <= 700px) {
@@ -160,8 +160,8 @@
 }
 
 .nothing-here {
-  color: var(--clr-text-secondary);
-  background: var(--clr-bg-primary);
+  color: var(--color-text-secondary);
+  background: var(--color-bg-primary);
   font-size: 14px;
   font-weight: 500;
   text-align: center;
@@ -172,14 +172,14 @@
   border-radius: 4px;
   padding: 20px;
   min-height: 30vh;
-  border: 1px solid var(--clr-border-primary);
+  border: 1px solid var(--color-border-primary);
 
   @media screen and (min-width: ($no-gap-breakpoint - 1)) {
     border-top: 0;
   }
 
   &--no-toolbar {
-    border-top: 1px solid var(--clr-border-primary);
+    border-top: 1px solid var(--color-border-primary);
   }
 
   &--under-tabs {
@@ -203,7 +203,7 @@
   font-size: 12px;
   line-height: 12px;
   font-weight: 500;
-  color: var(--clr-text-primary);
+  color: var(--color-text-primary);
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -213,15 +213,15 @@
 .simple_form .overridden,
 .simple_form .recommended,
 .simple_form .not_recommended {
-  background-color: var(--clr-bg-secondary);
-  border: 1px solid var(--clr-border-primary);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
 }
 
 .information-badge {
   &.superapp {
-    color: var(--clr-text-success);
-    background-color: var(--clr-bg-success-subtle);
-    border-color: var(--clr-border-on-bg-success-subtle);
+    color: var(--color-text-success);
+    background-color: var(--color-bg-success-subtle);
+    border-color: var(--color-border-on-bg-success-subtle);
   }
 }
 
@@ -229,8 +229,8 @@
   display: inline-flex;
   padding: 4px;
   padding-inline-end: 8px;
-  border: 1px solid var(--clr-text-accent);
-  color: var(--clr-text-accent);
+  border: 1px solid var(--color-text-accent);
+  color: var(--color-text-accent);
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.5px;
@@ -254,9 +254,9 @@
 }
 
 .simple_form .not_recommended {
-  color: var(--clr-text-error);
-  background-color: var(--clr-bg-error-subtle);
-  border-color: var(--clr-border-on-bg-error-subtle);
+  color: var(--color-text-error);
+  background-color: var(--color-bg-error-subtle);
+  border-color: var(--color-border-on-bg-error-subtle);
 }
 
 .account__header__fields {
@@ -264,14 +264,14 @@
   padding: 0;
   margin: 15px -15px -15px;
   border: 0 none;
-  border-top: 1px solid var(--clr-border-primary);
-  border-bottom: 1px solid var(--clr-border-primary);
+  border-top: 1px solid var(--color-border-primary);
+  border-bottom: 1px solid var(--color-border-primary);
   font-size: 14px;
   line-height: 20px;
 
   dl {
     display: flex;
-    border-bottom: 1px solid var(--clr-border-primary);
+    border-bottom: 1px solid var(--color-border-primary);
   }
 
   dt,
@@ -289,17 +289,17 @@
     font-weight: 500;
     width: 120px;
     flex: 0 0 auto;
-    color: var(--clr-text-primary);
-    background: var(--clr-bg-secondary);
+    color: var(--color-text-primary);
+    background: var(--color-bg-secondary);
   }
 
   dd {
     flex: 1 1 auto;
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
   }
 
   a {
-    color: var(--clr-text-accent);
+    color: var(--color-text-accent);
     text-decoration: none;
 
     &:hover,
@@ -310,16 +310,16 @@
   }
 
   .verified {
-    border: 1px solid var(--clr-border-on-bg-success-subtle);
-    background: var(--clr-bg-success-subtle);
+    border: 1px solid var(--color-border-on-bg-success-subtle);
+    background: var(--color-bg-success-subtle);
 
     a {
-      color: var(--clr-text-success);
+      color: var(--color-text-success);
       font-weight: 500;
     }
 
     &__mark {
-      color: var(--clr-text-success);
+      color: var(--color-text-success);
     }
   }
 
@@ -334,10 +334,10 @@
 
 .pending-account {
   &__header {
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
 
     a {
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       text-decoration: none;
 
       &:hover,
@@ -348,7 +348,7 @@
     }
 
     strong {
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       font-weight: 700;
     }
 
@@ -363,7 +363,7 @@
 }
 
 .batch-table__row--muted {
-  color: var(--clr-text-tertiary);
+  color: var(--color-text-tertiary);
 }
 
 .batch-table__row--muted .pending-account__header,
@@ -372,7 +372,7 @@
   &,
   a,
   strong {
-    color: var(--clr-text-tertiary);
+    color: var(--color-text-tertiary);
   }
 }
 
@@ -384,12 +384,12 @@
   tbody td.accounts-table__extra,
   &__count,
   &__count small {
-    color: var(--clr-text-tertiary);
+    color: var(--color-text-tertiary);
   }
 }
 
 .batch-table__row--attention {
-  color: var(--clr-text-warning);
+  color: var(--color-text-warning);
 }
 
 .batch-table__row--attention .pending-account__header,
@@ -398,7 +398,7 @@
   &,
   a,
   strong {
-    color: var(--clr-text-warning);
+    color: var(--color-text-warning);
   }
 }
 
@@ -406,6 +406,6 @@
   tbody td.accounts-table__extra,
   &__count,
   &__count small {
-    color: var(--clr-text-warning);
+    color: var(--color-text-warning);
   }
 }

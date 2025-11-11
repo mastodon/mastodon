@@ -15,7 +15,7 @@ code {
 
 .form-section {
   border-radius: 8px;
-  background: var(--clr-bg-secondary);
+  background: var(--color-bg-secondary);
   padding: 24px;
   margin-bottom: 24px;
 }
@@ -32,7 +32,7 @@ code {
     display: block;
     background: linear-gradient(
       to bottom,
-      var(--clr-bg-secondary-solid),
+      var(--color-bg-secondary-solid),
       transparent
     );
     position: absolute;
@@ -57,16 +57,16 @@ code {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  color: var(--clr-text-primary);
+  color: var(--color-text-primary);
 
   &.success {
-    color: var(--clr-text-on-success-strong);
-    background: var(--clr-bg-success-strong);
+    color: var(--color-text-on-success-strong);
+    background: var(--color-bg-success-strong);
   }
 
   &.failure {
-    color: var(--clr-text-on-error-strong);
-    background: var(--clr-bg-error-strong);
+    color: var(--color-text-on-error-strong);
+    background: var(--color-bg-error-strong);
   }
 }
 
@@ -127,7 +127,7 @@ code {
         font-family: inherit;
         font-size: 14px;
         padding-top: 5px;
-        color: var(--clr-text-primary);
+        color: var(--color-text-primary);
         display: block;
         width: auto;
       }
@@ -148,7 +148,7 @@ code {
       }
 
       label a {
-        color: var(--clr-text-accent);
+        color: var(--color-text-accent);
         text-decoration: underline;
 
         &:hover,
@@ -190,7 +190,7 @@ code {
   .lead {
     font-size: 17px;
     line-height: 22px;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     margin-bottom: 30px;
 
     &.invited-by {
@@ -198,7 +198,7 @@ code {
     }
 
     a {
-      color: var(--clr-text-accent);
+      color: var(--color-text-accent);
     }
   }
 
@@ -209,16 +209,16 @@ code {
   }
 
   .hint {
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
 
     a {
-      color: var(--clr-text-accent);
+      color: var(--color-text-accent);
     }
 
     code {
       border-radius: 3px;
       padding: 0.2em 0.4em;
-      background: var(--clr-bg-secondary);
+      background: var(--color-bg-secondary);
     }
 
     li {
@@ -243,7 +243,7 @@ code {
 
   p.hint {
     margin-bottom: 15px;
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
 
     &.subtle-hint {
       text-align: center;
@@ -279,7 +279,7 @@ code {
       & > label {
         font-family: inherit;
         font-size: 14px;
-        color: var(--clr-text-primary);
+        color: var(--color-text-primary);
         font-weight: 500;
         min-width: 150px;
         flex: 0 0 auto;
@@ -301,7 +301,7 @@ code {
     .label_input > label {
       font-family: inherit;
       font-size: 14px;
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       display: block;
       margin-bottom: 8px;
       overflow-wrap: break-word;
@@ -323,7 +323,7 @@ code {
     & > label {
       font-family: inherit;
       font-size: 14px;
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       display: block;
       font-weight: 600;
       line-height: 20px;
@@ -382,7 +382,7 @@ code {
 
   .required abbr {
     text-decoration: none;
-    color: var(--clr-text-error);
+    color: var(--color-text-error);
   }
 
   .fields-group {
@@ -475,7 +475,7 @@ code {
     margin-bottom: 5px;
     font-family: inherit;
     font-size: 14px;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     display: block;
     width: auto;
   }
@@ -485,7 +485,7 @@ code {
       label {
         font-family: inherit;
         font-size: 14px;
-        color: var(--clr-text-primary);
+        color: var(--color-text-primary);
         display: inline-block;
         width: auto;
         position: relative;
@@ -506,7 +506,7 @@ code {
   .input.static .label_input__wrapper {
     font-size: 14px;
     padding: 10px;
-    border: 1px solid var(--clr-border-primary);
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
   }
 
@@ -520,14 +520,14 @@ code {
     box-sizing: border-box;
     font-size: 14px;
     line-height: 20px;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     display: block;
     width: 100%;
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: var(--clr-bg-secondary);
-    border: 1px solid var(--clr-border-primary);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
     padding: 10px 16px;
 
@@ -536,7 +536,7 @@ code {
     }
 
     &:required:valid {
-      border-color: var(--clr-text-success);
+      border-color: var(--color-text-success);
     }
 
     @media screen and (width <= 600px) {
@@ -551,13 +551,13 @@ code {
   input[type='datetime-local'] {
     &:focus:invalid:not(:placeholder-shown),
     &:required:invalid:not(:placeholder-shown) {
-      border-color: var(--clr-text-error);
+      border-color: var(--color-text-error);
     }
   }
 
   .input.field_with_errors {
     label {
-      color: var(--clr-text-error);
+      color: var(--color-text-error);
     }
 
     input[type='text'],
@@ -567,13 +567,13 @@ code {
     input[type='datetime-local'],
     textarea,
     select {
-      border-color: var(--clr-text-error);
+      border-color: var(--color-text-error);
     }
 
     .error {
       display: block;
       font-weight: 500;
-      color: var(--clr-text-error);
+      color: var(--color-text-error);
       margin-top: 4px;
     }
   }
@@ -606,8 +606,8 @@ code {
     width: 100%;
     border: 0;
     border-radius: 4px;
-    background: var(--clr-bg-accent-strong);
-    color: var(--clr-text-on-accent-strong);
+    background: var(--color-bg-accent-strong);
+    color: var(--color-text-on-accent-strong);
     font-size: 15px;
     line-height: 22px;
     height: auto;
@@ -626,22 +626,22 @@ code {
     &:active,
     &:focus,
     &:hover {
-      background: var(--clr-bg-accent-strong-highlighted);
+      background: var(--color-bg-accent-strong-highlighted);
     }
 
     &:disabled,
     &:disabled:hover {
-      color: var(--clr-text-on-disabled);
-      background: var(--clr-bg-disabled);
+      color: var(--color-text-on-disabled);
+      background: var(--color-bg-disabled);
     }
 
     &.negative {
-      background: var(--clr-bg-error-strong);
+      background: var(--color-bg-error-strong);
 
       &:hover,
       &:active,
       &:focus {
-        background: var(--clr-bg-error-strong-highlighted);
+        background: var(--color-bg-error-strong-highlighted);
       }
     }
   }
@@ -650,14 +650,14 @@ code {
     appearance: none;
     box-sizing: border-box;
     font-size: 14px;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     display: block;
     width: 100%;
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: var(--clr-bg-secondary);
-    border: 1px solid var(--clr-border-primary);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
     padding-inline-start: 10px;
     padding-inline-end: 30px;
@@ -695,7 +695,7 @@ code {
       top: 1px;
       padding: 10px;
       font-size: 14px;
-      color: var(--clr-text-tertiary);
+      color: var(--color-text-tertiary);
       font-family: inherit;
       pointer-events: none;
       cursor: default;
@@ -735,7 +735,7 @@ code {
     bottom: 0;
     inset-inline-end: 9px;
     width: var(--icon-size);
-    background-color: var(--clr-text-tertiary);
+    background-color: var(--color-text-tertiary);
     pointer-events: none;
     mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='black'/></svg>");
     mask-position: right center;
@@ -752,30 +752,30 @@ code {
 }
 
 .flash-message {
-  color: var(--clr-text-accent);
+  color: var(--color-text-accent);
   background: transparent;
-  border: 1px solid var(--clr-text-accent);
+  border: 1px solid var(--color-text-accent);
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
   text-align: center;
 
   &.notice {
-    border: 1px solid var(--clr-border-on-bg-success-subtle);
-    background: var(--clr-bg-success-subtle);
-    color: var(--clr-text-success);
+    border: 1px solid var(--color-border-on-bg-success-subtle);
+    background: var(--color-bg-success-subtle);
+    color: var(--color-text-success);
   }
 
   &.warning {
-    border: 1px solid var(--clr-border-on-bg-warning-subtle);
-    background: var(--clr-bg-warning-subtle);
-    color: var(--clr-text-warning);
+    border: 1px solid var(--color-border-on-bg-warning-subtle);
+    background: var(--color-bg-warning-subtle);
+    color: var(--color-text-warning);
   }
 
   &.alert {
-    border: 1px solid var(--clr-border-on-bg-error-subtle);
-    background: var(--clr-bg-error-subtle);
-    color: var(--clr-text-error);
+    border: 1px solid var(--color-border-on-bg-error-subtle);
+    background: var(--color-bg-error-subtle);
+    color: var(--color-text-error);
   }
 
   &.hidden {
@@ -790,11 +790,11 @@ code {
 
   a {
     display: inline-block;
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
     text-decoration: none;
 
     &:hover {
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       text-decoration: underline;
     }
   }
@@ -824,8 +824,8 @@ code {
     border: 0;
     padding: 10px;
     font-family: $font-monospace, monospace;
-    background: var(--clr-bg-secondary);
-    color: var(--clr-text-primary);
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
     font-size: 14px;
     margin: 0;
 
@@ -840,7 +840,7 @@ code {
     }
 
     &:focus {
-      background: var(--clr-bg-accent-subtle);
+      background: var(--color-bg-accent-subtle);
     }
   }
 
@@ -896,7 +896,7 @@ code {
   text-align: center;
 
   a {
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
     text-decoration: none;
 
     &:hover {
@@ -916,7 +916,7 @@ code {
   }
 
   a {
-    color: var(--clr-text-accent);
+    color: var(--color-text-accent);
     text-transform: uppercase;
     text-decoration: none;
     font-weight: 700;
@@ -924,7 +924,7 @@ code {
     &:hover,
     &:focus,
     &:active {
-      color: var(--clr-text-accent-subtle);
+      color: var(--color-text-accent-subtle);
     }
   }
 }
@@ -932,7 +932,7 @@ code {
 .oauth-prompt,
 .follow-prompt {
   margin-bottom: 30px;
-  color: var(--clr-text-secondary);
+  color: var(--color-text-secondary);
 
   h2 {
     font-size: 16px;
@@ -941,7 +941,7 @@ code {
   }
 
   strong {
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     font-weight: 500;
 
     @each $lang in $cjk-langs {
@@ -954,7 +954,7 @@ code {
 
 .oauth-prompt {
   h3 {
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     font-size: 17px;
     line-height: 22px;
     font-weight: 500;
@@ -968,9 +968,9 @@ code {
   }
 
   .permissions-list {
-    border: 1px solid var(--clr-border-primary);
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
-    background: var(--clr-bg-secondary);
+    background: var(--color-bg-secondary);
     margin-bottom: 30px;
   }
 
@@ -999,7 +999,7 @@ code {
   background: white;
   padding: 4px;
   margin: 0 10px 20px 0;
-  box-shadow: 0 0 15px var(--clr-shadow-primary);
+  box-shadow: 0 0 15px var(--color-shadow-primary);
   display: inline-block;
 
   svg {
@@ -1010,7 +1010,7 @@ code {
 
 .qr-alternative {
   margin-bottom: 20px;
-  color: var(--clr-text-primary);
+  color: var(--color-text-primary);
   flex: 150px;
 
   samp {
@@ -1038,7 +1038,7 @@ code {
 
 .post-follow-actions {
   text-align: center;
-  color: var(--clr-text-secondary);
+  color: var(--color-text-secondary);
 
   div {
     margin-bottom: 4px;
@@ -1051,7 +1051,7 @@ code {
 
   h4 {
     font-size: 16px;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     text-align: center;
     margin-bottom: 20px;
     border: 0;
@@ -1064,7 +1064,7 @@ code {
 }
 
 .scope-danger {
-  color: var(--clr-text-error);
+  color: var(--color-text-error);
 }
 
 .form_admin_settings_site_short_description,
@@ -1079,9 +1079,9 @@ code {
 }
 
 .input-copy {
-  color: var(--clr-text-primary);
-  background: var(--clr-bg-secondary);
-  border: 1px solid var(--clr-border-primary);
+  color: var(--color-text-primary);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -1115,11 +1115,11 @@ code {
   }
 
   &.copied {
-    border-color: var(--clr-text-success);
+    border-color: var(--color-text-success);
     transition: none;
 
     button {
-      background: var(--clr-bg-success-strong);
+      background: var(--color-bg-success-strong);
       transition: none;
     }
   }
@@ -1141,8 +1141,8 @@ code {
 .permissions-list {
   &__item {
     padding: 15px;
-    color: var(--clr-text-primary);
-    border-bottom: 1px solid var(--clr-border-primary);
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-border-primary);
     display: flex;
     align-items: center;
 
@@ -1154,7 +1154,7 @@ code {
       }
 
       &__type {
-        color: var(--clr-text-secondary);
+        color: var(--color-text-secondary);
         overflow-wrap: anywhere;
       }
     }
@@ -1163,7 +1163,7 @@ code {
       flex: 0 0 auto;
       font-size: 18px;
       width: 30px;
-      color: var(--clr-text-success);
+      color: var(--color-text-success);
       display: flex;
       align-items: center;
     }
@@ -1226,11 +1226,11 @@ code {
 
   .separator {
     height: 2px;
-    background: var(--clr-border-primary);
+    background: var(--color-border-primary);
     flex: 1 1 auto;
 
     &.completed {
-      background: var(--clr-text-accent);
+      background: var(--color-text-accent);
     }
   }
 
@@ -1240,7 +1240,7 @@ code {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 2px solid var(--clr-border-primary);
+    border: 2px solid var(--color-border-primary);
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -1255,7 +1255,7 @@ code {
     position: absolute;
     font-size: 14px;
     font-weight: 500;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     padding-top: 10px;
     text-align: center;
     width: 100px;
@@ -1278,14 +1278,14 @@ code {
   }
 
   .active .circle {
-    border-color: var(--clr-text-accent);
+    border-color: var(--color-text-accent);
 
     &::before {
       content: '';
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: var(--clr-text-accent);
+      background: var(--color-text-accent);
       position: absolute;
       left: 50%;
       top: 50%;
@@ -1294,8 +1294,8 @@ code {
   }
 
   .completed .circle {
-    border-color: var(--clr-text-accent);
-    background: var(--clr-text-accent);
+    border-color: var(--color-text-accent);
+    background: var(--color-text-accent);
   }
 }
 
@@ -1306,12 +1306,12 @@ code {
   &__header-input {
     display: block;
     border-radius: 8px;
-    background: var(--clr-bg-secondary);
+    background: var(--color-bg-secondary);
     position: relative;
     cursor: pointer;
 
     &:hover {
-      background-color: var(--clr-bg-accent-subtle);
+      background-color: var(--color-bg-accent-subtle);
     }
 
     img {
@@ -1328,12 +1328,12 @@ code {
       inset-inline-start: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      color: var(--clr-text-secondary);
+      color: var(--color-text-secondary);
       z-index: 3;
     }
 
     &.selected .icon {
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       transform: none;
       inset-inline-start: auto;
       inset-inline-end: 8px;
@@ -1342,7 +1342,7 @@ code {
     }
 
     &.invalid img {
-      outline: 1px solid var(--clr-text-error);
+      outline: 1px solid var(--color-text-error);
       outline-offset: -1px;
     }
 
@@ -1352,7 +1352,7 @@ code {
       width: 100%;
       height: 100%;
       position: absolute;
-      background: var(--clr-bg-error-subtle);
+      background: var(--color-bg-error-subtle);
       z-index: 2;
       border-radius: 8px;
     }
@@ -1371,7 +1371,7 @@ code {
     display: flex;
     align-items: center;
     gap: 16px;
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
     font-size: 14px;
     line-height: 20px;
 
@@ -1388,14 +1388,14 @@ code {
       flex: 1 1 auto;
 
       strong {
-        color: var(--clr-text-primary);
+        color: var(--color-text-primary);
         font-weight: 600;
       }
 
       .hint {
         display: block;
         font-size: 14px;
-        color: var(--clr-text-secondary);
+        color: var(--color-text-secondary);
       }
 
       .recommended {
@@ -1413,7 +1413,7 @@ code {
 
     &__toggle > div {
       display: flex;
-      border-inline-start: 1px solid var(--clr-border-primary);
+      border-inline-start: 1px solid var(--color-border-primary);
       padding-inline-start: 16px;
     }
   }
@@ -1424,19 +1424,19 @@ code {
     padding: 8px 0;
     align-items: center;
     text-decoration: none;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     margin-bottom: 16px;
 
     &__text {
       flex: 1 1 auto;
       font-size: 14px;
       line-height: 20px;
-      color: var(--clr-text-secondary);
+      color: var(--color-text-secondary);
 
       strong {
         font-weight: 600;
         display: block;
-        color: var(--clr-text-primary);
+        color: var(--color-text-primary);
       }
 
       .icon {

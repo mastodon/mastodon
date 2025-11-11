@@ -17,8 +17,8 @@
 
 .emoji-mart-bar {
   &:first-child {
-    background: var(--clr-bg-tertiary);
-    border-bottom: 1px solid var(--clr-border-primary);
+    background: var(--color-bg-tertiary);
+    border-bottom: 1px solid var(--color-border-primary);
   }
 }
 
@@ -39,22 +39,22 @@
   cursor: pointer;
   background: transparent;
   border: 0;
-  color: var(--clr-text-secondary);
+  color: var(--color-text-secondary);
 
   &:hover {
     color: color-mix(
       in oklab,
-      var(--clr-text-primary),
-      var(--clr-text-secondary)
+      var(--color-text-primary),
+      var(--color-text-secondary)
     );
   }
 }
 
 .emoji-mart-anchor-selected {
-  color: var(--clr-text-accent);
+  color: var(--color-text-accent);
 
   &:hover {
-    color: var(--clr-text-accent-subtle);
+    color: var(--color-text-accent-subtle);
   }
 
   .emoji-mart-anchor-bar {
@@ -68,7 +68,7 @@
   inset-inline-start: 0;
   width: 100%;
   height: 4px;
-  background-color: var(--clr-text-accent);
+  background-color: var(--color-text-accent);
 }
 
 .emoji-mart-anchors {
@@ -105,9 +105,9 @@
     font-family: inherit;
     display: block;
     width: 100%;
-    background: var(--clr-bg-secondary);
-    color: var(--clr-text-secondary);
-    border: 1px solid var(--clr-border-primary);
+    background: var(--color-bg-secondary);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
 
     &::-moz-focus-inner {
@@ -168,7 +168,7 @@
     inset-inline-start: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--clr-bg-accent-subtle);
+    background-color: var(--color-bg-accent-subtle);
     border-radius: 100%;
   }
 }
@@ -228,7 +228,7 @@
 
 .emoji-mart-no-results {
   font-size: 14px;
-  color: var(--clr-text-tertiary);
+  color: var(--color-text-tertiary);
   text-align: center;
   padding: 5px 6px;
   padding-top: 70px;

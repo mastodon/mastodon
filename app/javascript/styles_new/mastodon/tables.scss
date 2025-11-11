@@ -11,13 +11,13 @@
     padding: 8px;
     line-height: 18px;
     vertical-align: top;
-    border-bottom: 1px solid var(--clr-border-primary);
+    border-bottom: 1px solid var(--color-border-primary);
     text-align: start;
-    background: var(--clr-bg-primary);
+    background: var(--color-bg-primary);
 
     &.critical {
       font-weight: 700;
-      color: var(--clr-text-warning);
+      color: var(--color-text-warning);
     }
   }
 
@@ -32,7 +32,7 @@
 
   & > tbody > tr:nth-child(odd) > td,
   & > tbody > tr:nth-child(odd) > th {
-    background: var(--clr-bg-primary);
+    background: var(--color-bg-primary);
   }
 
   & > tbody > tr:last-child > td,
@@ -41,11 +41,11 @@
   }
 
   a {
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
     text-decoration: none;
 
     &:hover {
-      color: var(--clr-text-accent);
+      color: var(--color-text-accent);
     }
   }
 
@@ -83,30 +83,30 @@
     & > tbody > tr > td {
       padding: 11px 10px;
       background: transparent;
-      border: 1px solid var(--clr-border-primary);
-      color: var(--clr-text-primary);
+      border: 1px solid var(--color-border-primary);
+      color: var(--color-text-primary);
     }
 
     & > tbody > tr > th {
-      color: var(--clr-text-secondary);
+      color: var(--color-text-secondary);
       font-weight: 600;
     }
   }
 
   &.batch-table {
     & > thead > tr > th {
-      background: var(--clr-bg-primary);
-      border-top: 1px solid var(--clr-border-primary);
-      border-bottom: 1px solid var(--clr-border-primary);
+      background: var(--color-bg-primary);
+      border-top: 1px solid var(--color-border-primary);
+      border-bottom: 1px solid var(--color-border-primary);
 
       &:first-child {
         border-radius: 4px 0 0;
-        border-inline-start: 1px solid var(--clr-border-primary);
+        border-inline-start: 1px solid var(--color-border-primary);
       }
 
       &:last-child {
         border-radius: 0 4px 0 0;
-        border-inline-end: 1px solid var(--clr-border-primary);
+        border-inline-end: 1px solid var(--color-border-primary);
       }
     }
   }
@@ -137,12 +137,12 @@ a.table-action-link {
   display: inline-block;
   margin-inline-end: 5px;
   padding: 0 10px;
-  color: var(--clr-text-secondary);
+  color: var(--color-text-secondary);
   font-weight: 500;
   white-space: nowrap;
 
   &:hover {
-    color: var(--clr-text-accent);
+    color: var(--color-text-accent);
   }
 
   &:first-child {
@@ -195,8 +195,8 @@ a.table-action-link {
     position: sticky;
     top: 0;
     z-index: 200;
-    border: 1px solid var(--clr-border-primary);
-    background: var(--clr-bg-primary);
+    border: 1px solid var(--color-border-primary);
+    background: var(--color-bg-primary);
     border-radius: 4px 4px 0 0;
     height: 47px;
     align-items: center;
@@ -212,13 +212,13 @@ a.table-action-link {
   }
 
   &__select-all {
-    background: var(--clr-bg-primary);
+    background: var(--color-bg-primary);
     height: 47px;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--clr-border-primary);
+    border: 1px solid var(--color-border-primary);
     border-top: 0;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     display: none;
 
     &.active {
@@ -247,7 +247,7 @@ a.table-action-link {
       background: transparent;
       border: 0;
       font: inherit;
-      color: var(--clr-text-accent);
+      color: var(--color-text-accent);
       border-radius: 4px;
       font-weight: 700;
       padding: 8px;
@@ -255,16 +255,16 @@ a.table-action-link {
       &:hover,
       &:focus,
       &:active {
-        background: var(--clr-bg-secondary);
+        background: var(--color-bg-secondary);
       }
     }
   }
 
   &__form {
     padding: 16px;
-    border: 1px solid var(--clr-border-primary);
+    border: 1px solid var(--color-border-primary);
     border-top: 0;
-    background: var(--clr-bg-primary);
+    background: var(--color-bg-primary);
 
     .fields-row {
       padding-top: 0;
@@ -273,13 +273,13 @@ a.table-action-link {
   }
 
   &__row {
-    border: 1px solid var(--clr-border-primary);
+    border: 1px solid var(--color-border-primary);
     border-top: 0;
-    background: var(--clr-bg-primary);
+    background: var(--color-bg-primary);
 
     @media screen and (max-width: $no-gap-breakpoint) {
       .optional &:first-child {
-        border-top: 1px solid var(--clr-border-primary);
+        border-top: 1px solid var(--color-border-primary);
       }
     }
 
@@ -330,7 +330,7 @@ a.table-action-link {
       &__extra {
         flex: 0 0 auto;
         text-align: end;
-        color: var(--clr-text-secondary);
+        color: var(--color-text-secondary);
         font-weight: 500;
       }
     }

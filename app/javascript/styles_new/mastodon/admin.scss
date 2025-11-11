@@ -44,8 +44,8 @@ $content-width: 840px;
 
     &__toggle {
       display: none;
-      background: var(--clr-bg-primary);
-      border-bottom: 1px solid var(--clr-border-primary);
+      background: var(--color-bg-primary);
+      border-bottom: 1px solid var(--color-border-primary);
       align-items: center;
 
       &__logo {
@@ -59,7 +59,7 @@ $content-width: 840px;
 
       &__icon {
         display: block;
-        color: var(--clr-text-secondary);
+        color: var(--color-text-secondary);
         text-decoration: none;
         flex: 0 0 auto;
         font-size: 18px;
@@ -68,7 +68,7 @@ $content-width: 840px;
         border-radius: 4px;
 
         &:focus {
-          background: var(--clr-bg-accent-subtle);
+          background: var(--color-bg-accent-subtle);
         }
 
         .material-close {
@@ -122,13 +122,13 @@ $content-width: 840px;
         align-items: center;
         gap: 6px;
         padding: 15px;
-        color: var(--clr-text-secondary);
+        color: var(--color-text-secondary);
         text-decoration: none;
         transition: all 200ms linear;
         transition-property: color, background-color;
 
         &:hover {
-          color: var(--clr-text-primary);
+          color: var(--color-text-primary);
           transition: all 100ms linear;
           transition-property: color, background-color;
         }
@@ -144,12 +144,12 @@ $content-width: 840px;
       }
 
       .warning a {
-        color: var(--clr-text-warning);
+        color: var(--color-text-warning);
         font-weight: 700;
       }
 
       .simple-navigation-active-leaf a {
-        color: var(--clr-text-accent);
+        color: var(--color-text-accent);
         border-bottom: 0;
       }
     }
@@ -224,7 +224,7 @@ $content-width: 840px;
           align-items: center;
           padding: 7px 10px;
           border-radius: 4px;
-          color: var(--clr-text-secondary);
+          color: var(--color-text-secondary);
           text-decoration: none;
           font-weight: 500;
           gap: 5px;
@@ -237,13 +237,13 @@ $content-width: 840px;
           &:hover,
           &:focus,
           &:active {
-            background: var(--clr-bg-secondary);
+            background: var(--color-bg-secondary);
           }
 
           &.selected {
             font-weight: 700;
-            color: var(--clr-text-on-accent-strong);
-            background: var(--clr-bg-accent-strong);
+            color: var(--color-text-on-accent-strong);
+            background: var(--color-bg-accent-strong);
           }
         }
       }
@@ -267,7 +267,7 @@ $content-width: 840px;
         font-size: 12px;
         display: block;
         font-weight: 500;
-        color: var(--clr-text-secondary);
+        color: var(--color-text-secondary);
         line-height: 18px;
       }
 
@@ -278,14 +278,14 @@ $content-width: 840px;
     }
 
     h2 {
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       font-size: 24px;
       line-height: 36px;
       font-weight: 700;
     }
 
     h3 {
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       font-size: 20px;
       line-height: 28px;
       font-weight: 400;
@@ -296,28 +296,28 @@ $content-width: 840px;
       text-transform: uppercase;
       font-size: 13px;
       font-weight: 700;
-      color: var(--clr-text-secondary);
+      color: var(--color-text-secondary);
       padding-top: 24px;
       margin-bottom: 8px;
-      border-top: 1px solid var(--clr-border-primary);
+      border-top: 1px solid var(--color-border-primary);
     }
 
     h6 {
       font-size: 16px;
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       line-height: 28px;
       font-weight: 500;
     }
 
     .fields-group h6 {
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       font-weight: 500;
     }
 
     .directory__tag h4 {
       font-size: 18px;
       font-weight: 700;
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       text-transform: none;
       padding-bottom: 0;
       margin-bottom: 0;
@@ -331,12 +331,12 @@ $content-width: 840px;
 
         &.private-comment {
           display: block;
-          color: var(--clr-text-secondary);
+          color: var(--color-text-secondary);
         }
 
         &.public-comment {
           display: block;
-          color: var(--clr-text-primary);
+          color: var(--color-text-primary);
         }
       }
     }
@@ -344,11 +344,11 @@ $content-width: 840px;
     & > p {
       font-size: 14px;
       line-height: 21px;
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       margin-bottom: 20px;
 
       strong {
-        color: var(--clr-text-primary);
+        color: var(--color-text-primary);
         font-weight: 500;
 
         @each $lang in $cjk-langs {
@@ -363,7 +363,7 @@ $content-width: 840px;
       width: 100%;
       height: 0;
       border: 0;
-      border-bottom: 1px solid var(--clr-border-primary);
+      border-bottom: 1px solid var(--color-border-primary);
       margin: 20px 0;
 
       &.spacer {
@@ -401,7 +401,7 @@ $content-width: 840px;
           inset-inline-start: 0;
           bottom: 0;
           overflow-y: auto;
-          background: var(--clr-bg-primary);
+          background: var(--color-bg-primary);
         }
       }
 
@@ -421,7 +421,7 @@ $content-width: 840px;
       }
 
       ul .simple-navigation-active-leaf a {
-        border-bottom-color: var(--clr-text-accent);
+        border-bottom-color: var(--color-text-accent);
       }
     }
   }
@@ -437,10 +437,10 @@ hr.spacer {
 body,
 .admin-wrapper .content {
   .muted-hint {
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
 
     a {
-      color: var(--clr-text-accent);
+      color: var(--color-text-accent);
     }
   }
 
@@ -460,29 +460,29 @@ body,
   }
 
   .positive-hint {
-    color: var(--clr-text-success);
+    color: var(--color-text-success);
     font-weight: 500;
   }
 
   .negative-hint {
-    color: var(--clr-text-error);
+    color: var(--color-text-error);
     font-weight: 500;
   }
 
   .neutral-hint {
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     font-weight: 500;
   }
 
   .warning-hint {
-    color: var(--clr-text-warning);
+    color: var(--color-text-warning);
     font-weight: 500;
   }
 }
 
 kbd {
   font-family: Courier, monospace;
-  background-color: var(--clr-bg-accent-subtle);
+  background-color: var(--color-bg-accent-subtle);
   padding: 4px;
   padding-bottom: 2px;
   border-radius: 5px;
@@ -535,21 +535,21 @@ kbd {
 
     a {
       display: inline-block;
-      color: var(--clr-text-secondary);
+      color: var(--color-text-secondary);
       text-decoration: none;
       text-transform: uppercase;
       font-size: 12px;
       font-weight: 500;
-      border-bottom: 2px solid var(--clr-bg-secondary);
+      border-bottom: 2px solid var(--color-bg-secondary);
 
       &:hover {
-        color: var(--clr-text-primary);
-        border-bottom: 2px solid var(--clr-bg-tertiary);
+        color: var(--color-text-primary);
+        border-bottom: 2px solid var(--color-bg-tertiary);
       }
 
       &.selected {
-        color: var(--clr-text-accent);
-        border-bottom: 2px solid var(--clr-text-accent);
+        color: var(--color-text-accent);
+        border-bottom: 2px solid var(--color-text-accent);
       }
     }
   }
@@ -573,7 +573,7 @@ kbd {
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
 
     @each $lang in $cjk-langs {
       &:lang(#{$lang}) {
@@ -632,7 +632,7 @@ kbd {
   font-size: 14px;
 
   a {
-    color: var(--clr-text-accent);
+    color: var(--color-text-accent);
     text-decoration: none;
 
     &:hover {
@@ -662,25 +662,25 @@ kbd {
   line-height: 20px;
   padding: 15px;
   padding-inline-start: 15px * 2 + 40px;
-  background: var(--clr-bg-primary);
-  border-right: 1px solid var(--clr-border-primary);
-  border-left: 1px solid var(--clr-border-primary);
-  border-bottom: 1px solid var(--clr-border-primary);
+  background: var(--color-bg-primary);
+  border-right: 1px solid var(--color-border-primary);
+  border-left: 1px solid var(--color-border-primary);
+  border-bottom: 1px solid var(--color-border-primary);
   position: relative;
   text-decoration: none;
-  color: var(--clr-text-secondary);
+  color: var(--color-text-secondary);
   font-size: 14px;
 
   &:first-child {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    border-top: 1px solid var(--clr-border-primary);
+    border-top: 1px solid var(--color-border-primary);
   }
 
   &:last-child {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
-    border-bottom: 1px solid var(--clr-border-primary);
+    border-bottom: 1px solid var(--color-border-primary);
   }
 
   &__avatar {
@@ -700,13 +700,13 @@ kbd {
   }
 
   &__timestamp {
-    color: var(--clr-text-tertiary);
+    color: var(--color-text-tertiary);
   }
 
   a,
   .username,
   .target {
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     text-decoration: none;
     font-weight: 500;
   }
@@ -725,12 +725,12 @@ kbd {
   line-height: 20px;
   padding: 15px;
   padding-inline-start: 15px * 2 + 40px;
-  background: var(--clr-bg-primary);
-  border: 1px solid var(--clr-border-primary);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 4px;
   position: relative;
   text-decoration: none;
-  color: var(--clr-text-secondary);
+  color: var(--color-text-secondary);
   font-size: 14px;
   margin-bottom: 15px;
 
@@ -751,13 +751,13 @@ kbd {
   }
 
   &__timestamp {
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
   }
 
   &:hover,
   &:focus,
   &:active {
-    background: var(--clr-bg-primary);
+    background: var(--color-bg-primary);
   }
 }
 
@@ -766,10 +766,10 @@ a.name-tag,
 a.inline-name-tag,
 .inline-name-tag {
   text-decoration: none;
-  color: var(--clr-text-primary);
+  color: var(--color-text-primary);
 
   &:hover {
-    color: var(--clr-text-accent);
+    color: var(--color-text-accent);
   }
 
   .username {
@@ -779,7 +779,7 @@ a.inline-name-tag,
   &.suspended {
     .username {
       text-decoration: line-through;
-      color: var(--clr-text-error);
+      color: var(--color-text-error);
     }
 
     .avatar {
@@ -812,18 +812,18 @@ a.name-tag,
 
 .speech-bubble {
   margin-bottom: 20px;
-  border-inline-start: 4px solid var(--clr-text-accent);
+  border-inline-start: 4px solid var(--color-text-accent);
 
   &.positive {
-    border-color: var(--clr-text-success);
+    border-color: var(--color-text-success);
   }
 
   &.negative {
-    border-color: var(--clr-text-error);
+    border-color: var(--color-text-error);
   }
 
   &.warning {
-    border-color: var(--clr-text-warning);
+    border-color: var(--color-text-warning);
   }
 
   &__bubble {
@@ -836,7 +836,7 @@ a.name-tag,
     font-weight: 500;
 
     a {
-      color: var(--clr-text-secondary);
+      color: var(--color-text-secondary);
     }
   }
 
@@ -846,13 +846,13 @@ a.name-tag,
   }
 
   time {
-    color: var(--clr-text-tertiary);
+    color: var(--color-text-tertiary);
   }
 }
 
 .report-card {
-  background: var(--clr-bg-primary);
-  border: 1px solid var(--clr-border-primary);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 4px;
   margin-bottom: 20px;
 
@@ -874,7 +874,7 @@ a.name-tag,
     &__stats {
       flex: 0 0 auto;
       font-weight: 500;
-      color: var(--clr-text-secondary);
+      color: var(--color-text-secondary);
       text-transform: uppercase;
       text-align: end;
 
@@ -885,12 +885,12 @@ a.name-tag,
         &:focus,
         &:hover,
         &:active {
-          color: var(--clr-text-accent);
+          color: var(--color-text-accent);
         }
       }
 
       .red {
-        color: var(--clr-text-error);
+        color: var(--color-text-error);
       }
     }
   }
@@ -899,7 +899,7 @@ a.name-tag,
     &__item {
       display: flex;
       justify-content: flex-start;
-      border-top: 1px solid var(--clr-border-primary);
+      border-top: 1px solid var(--color-border-primary);
 
       &__reported-by,
       &__assigned {
@@ -907,7 +907,7 @@ a.name-tag,
         flex: 0 0 auto;
         box-sizing: border-box;
         width: 150px;
-        color: var(--clr-text-secondary);
+        color: var(--color-text-secondary);
 
         &,
         .username {
@@ -933,10 +933,10 @@ a.name-tag,
         width: 100%;
         padding: 15px;
         text-decoration: none;
-        color: var(--clr-text-secondary);
+        color: var(--color-text-secondary);
 
         &:hover {
-          color: var(--clr-text-accent);
+          color: var(--color-text-accent);
         }
       }
     }
@@ -973,18 +973,18 @@ a.name-tag,
 
   .account__header__fields,
   .account__header__content {
-    background: var(--clr-bg-primary);
-    border: 1px solid var(--clr-border-primary);
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
     height: 100%;
   }
 
   .account__header__fields {
     margin: 0;
-    border: 1px solid var(--clr-border-primary);
+    border: 1px solid var(--color-border-primary);
 
     a {
-      color: var(--clr-text-accent);
+      color: var(--color-text-accent);
     }
 
     dl:first-child .verified {
@@ -992,14 +992,14 @@ a.name-tag,
     }
 
     .verified a {
-      color: var(--clr-text-success);
+      color: var(--color-text-success);
     }
   }
 
   .account__header__content {
     box-sizing: border-box;
     padding: 20px;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
   }
 }
 
@@ -1010,8 +1010,8 @@ a.name-tag,
 .applications-list__item,
 .filters-list__item {
   padding: 15px 0;
-  background: var(--clr-bg-primary);
-  border: 1px solid var(--clr-border-primary);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 4px;
   margin-top: 15px;
 }
@@ -1028,13 +1028,13 @@ a.name-tag,
 
 .announcements-list,
 .filters-list {
-  border: 1px solid var(--clr-border-primary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 4px;
   border-bottom: none;
 
   &__item {
     padding: 15px 0;
-    border-bottom: 1px solid var(--clr-border-primary);
+    border-bottom: 1px solid var(--color-border-primary);
 
     &__title {
       padding: 0 15px;
@@ -1042,12 +1042,12 @@ a.name-tag,
       font-weight: 500;
       font-size: 18px;
       line-height: 1.5;
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       text-decoration: none;
       margin-bottom: 10px;
 
       &:hover {
-        color: var(--clr-text-accent);
+        color: var(--color-text-accent);
       }
 
       .account-role {
@@ -1063,7 +1063,7 @@ a.name-tag,
       &:hover,
       &:focus,
       &:active {
-        color: var(--clr-text-primary);
+        color: var(--color-text-primary);
       }
     }
 
@@ -1080,7 +1080,7 @@ a.name-tag,
 
     &__meta {
       padding: 0 15px;
-      color: var(--clr-text-tertiary);
+      color: var(--color-text-tertiary);
 
       a {
         color: inherit;
@@ -1123,11 +1123,11 @@ a.name-tag,
 
   &.expired {
     .expiration {
-      color: var(--clr-text-error);
+      color: var(--color-text-error);
     }
 
     .permissions-list__item__icon {
-      color: var(--clr-text-secondary);
+      color: var(--color-text-secondary);
     }
   }
 }
@@ -1159,7 +1159,7 @@ a.name-tag,
 
   &__table {
     &__number {
-      color: var(--clr-bg-primary);
+      color: var(--color-bg-primary);
       padding: 10px;
     }
 
@@ -1181,7 +1181,7 @@ a.name-tag,
 
     &__label {
       font-weight: 700;
-      color: var(--clr-text-secondary);
+      color: var(--color-text-secondary);
     }
 
     &__box {
@@ -1190,17 +1190,21 @@ a.name-tag,
       margin: 1px;
       padding: 10px;
       font-weight: 500;
-      color: var(--clr-text-primary);
-      background: var(--clr-bg-primary);
+      color: var(--color-text-primary);
+      background: var(--color-bg-primary);
 
       @for $i from 0 through 10 {
         &--#{10 * $i} {
           @if $i > 5 {
-            color: var(--clr-text-on-accent-strong);
+            color: var(--color-text-on-accent-strong);
           }
 
           background-color: rgb(
-            from var(--clr-bg-accent-strong) r g b / #{math.div(max(1, $i), 10)}
+            from var(--color-bg-accent-strong)
+              r
+              g
+              b /
+              #{math.div(max(1, $i), 10)}
           );
         }
       }
@@ -1211,9 +1215,9 @@ a.name-tag,
 .sparkline {
   display: block;
   text-decoration: none;
-  background: var(--clr-bg-primary);
+  background: var(--color-bg-primary);
   border-radius: 4px;
-  border: 1px solid var(--clr-border-primary);
+  border: 1px solid var(--color-border-primary);
   padding: 0;
   position: relative;
   padding-bottom: 55px + 20px;
@@ -1231,22 +1235,22 @@ a.name-tag,
       margin-inline-end: 10px;
       font-weight: 500;
       font-size: 28px;
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
     }
 
     &__change {
       display: block;
       font-weight: 500;
       font-size: 18px;
-      color: var(--clr-text-secondary);
+      color: var(--color-text-secondary);
       margin-bottom: -3px;
 
       &.positive {
-        color: var(--clr-text-success);
+        color: var(--color-text-success);
       }
 
       &.negative {
-        color: var(--clr-text-error);
+        color: var(--color-text-error);
       }
     }
   }
@@ -1255,7 +1259,7 @@ a.name-tag,
     padding: 0 20px;
     padding-bottom: 10px;
     text-transform: uppercase;
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
     font-weight: 500;
   }
 
@@ -1270,12 +1274,12 @@ a.name-tag,
     }
 
     path:first-child {
-      fill: var(--clr-graph-primary-fill) !important;
+      fill: var(--color-graph-primary-fill) !important;
       fill-opacity: 1 !important;
     }
 
     path:last-child {
-      stroke: var(--clr-graph-primary-stroke) !important;
+      stroke: var(--color-graph-primary-stroke) !important;
       fill: none !important;
     }
   }
@@ -1285,17 +1289,17 @@ a.sparkline {
   &:hover,
   &:focus,
   &:active {
-    background: var(--clr-bg-accent-subtle);
+    background: var(--color-bg-accent-subtle);
   }
 }
 
 .skeleton {
-  background-color: var(--clr-bg-primary);
+  background-color: var(--color-bg-primary);
   background-image: linear-gradient(
     90deg,
-    var(--clr-bg-primary),
-    var(--clr-bg-secondary),
-    var(--clr-bg-primary)
+    var(--color-bg-primary),
+    var(--color-bg-secondary),
+    var(--color-bg-primary)
   );
   background-size: 200px 100%;
   background-repeat: no-repeat;
@@ -1326,7 +1330,7 @@ a.sparkline {
   }
 
   &__item {
-    border-bottom: 1px solid var(--clr-border-primary);
+    border-bottom: 1px solid var(--color-border-primary);
 
     &__key {
       font-weight: 500;
@@ -1335,7 +1339,7 @@ a.sparkline {
 
     &__value {
       text-align: end;
-      color: var(--clr-text-secondary);
+      color: var(--color-text-secondary);
       padding: 11px 10px;
     }
 
@@ -1344,13 +1348,13 @@ a.sparkline {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--clr-text-accent);
+      background: var(--color-text-accent);
       margin-inline-end: 10px;
 
       @for $i from 0 through 10 {
         &--#{10 * $i} {
           background-color: rgb(
-            from var(--clr-text-accent) r g b / #{math.div(max(1, $i), 10)}
+            from var(--color-text-accent) r g b / #{math.div(max(1, $i), 10)}
           );
         }
       }
@@ -1361,11 +1365,11 @@ a.sparkline {
     }
 
     &.negative {
-      color: var(--clr-text-error);
+      color: var(--color-text-error);
       font-weight: 700;
 
       .dimension__item__value {
-        color: var(--clr-text-error);
+        color: var(--color-text-error);
       }
     }
   }
@@ -1373,12 +1377,12 @@ a.sparkline {
 
 .report-reason-selector {
   border-radius: 4px;
-  background: var(--clr-bg-primary);
+  background: var(--color-bg-primary);
   margin-bottom: 20px;
 
   &__category {
     cursor: pointer;
-    border-bottom: 1px solid var(--clr-border-primary);
+    border-bottom: 1px solid var(--color-border-primary);
 
     &__label {
       padding: 15px;
@@ -1408,7 +1412,7 @@ a.sparkline {
 
   &__details {
     &__item {
-      border-bottom: 1px solid var(--clr-border-primary);
+      border-bottom: 1px solid var(--color-border-primary);
       padding: 15px 0;
 
       &:last-child {
@@ -1439,7 +1443,7 @@ a.sparkline {
 
 .account-card {
   border-radius: 4px;
-  border: 1px solid var(--clr-border-primary);
+  border: 1px solid var(--color-border-primary);
   position: relative;
 
   &__warning-badge {
@@ -1451,7 +1455,7 @@ a.sparkline {
     background:
       url('@/images/warning-stripes.svg') repeat-y left,
       url('@/images/warning-stripes.svg') repeat-y right,
-      var(--clr-bg-primary);
+      var(--color-bg-primary);
   }
 
   &__permalink {
@@ -1470,7 +1474,7 @@ a.sparkline {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      background: var(--clr-bg-secondary);
+      background: var(--color-bg-secondary);
     }
   }
 
@@ -1488,21 +1492,21 @@ a.sparkline {
         margin: 0;
         width: 56px;
         height: 56px;
-        background-color: var(--clr-bg-secondary);
+        background-color: var(--color-bg-secondary);
         border-radius: 8px;
-        border: 1px solid var(--clr-border-media);
+        border: 1px solid var(--color-border-media);
       }
     }
 
     .display-name {
-      color: var(--clr-text-secondary);
+      color: var(--color-text-secondary);
       padding-bottom: 15px;
       font-size: 15px;
       line-height: 20px;
 
       bdi {
         display: block;
-        color: var(--clr-text-primary);
+        color: var(--color-text-primary);
         font-weight: 700;
       }
     }
@@ -1531,7 +1535,7 @@ a.sparkline {
     }
 
     a {
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       text-decoration: none;
       unicode-bidi: isolate;
 
@@ -1582,14 +1586,14 @@ a.sparkline {
     &__item {
       padding: 15px 0;
       text-align: center;
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       font-weight: 600;
       font-size: 15px;
       line-height: 21px;
 
       small {
         display: block;
-        color: var(--clr-text-secondary);
+        color: var(--color-text-secondary);
         font-weight: 400;
         font-size: 13px;
         line-height: 18px;
@@ -1602,11 +1606,11 @@ a.sparkline {
   margin-bottom: 20px;
 
   &__item {
-    background: var(--clr-bg-primary);
+    background: var(--color-bg-primary);
     position: relative;
     padding: 15px;
     padding-inline-start: 15px * 2 + 40px;
-    border: 1px solid var(--clr-border-primary);
+    border: 1px solid var(--color-border-primary);
 
     &:first-child {
       border-top-left-radius: 4px;
@@ -1628,13 +1632,13 @@ a.sparkline {
     }
 
     &__header {
-      color: var(--clr-text-secondary);
+      color: var(--color-text-secondary);
       font-size: 15px;
       line-height: 20px;
       margin-bottom: 4px;
 
       .username {
-        color: var(--clr-text-primary);
+        color: var(--color-text-primary);
         font-weight: 500;
         margin-inline-end: 5px;
 
@@ -1651,7 +1655,7 @@ a.sparkline {
       }
 
       a.timestamp {
-        color: var(--clr-text-secondary);
+        color: var(--color-text-secondary);
         text-decoration: none;
 
         &:hover,
@@ -1672,7 +1676,7 @@ a.sparkline {
       line-height: 20px;
       overflow-wrap: break-word;
       font-weight: 400;
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
 
       p {
         margin-bottom: 20px;
@@ -1685,7 +1689,7 @@ a.sparkline {
       }
 
       a {
-        color: var(--clr-text-accent);
+        color: var(--color-text-accent);
         text-decoration: none;
 
         &:hover {
@@ -1729,7 +1733,7 @@ a.sparkline {
     &__description {
       padding: 15px;
       font-size: 14px;
-      color: var(--clr-text-tertiary);
+      color: var(--color-text-tertiary);
     }
   }
 
@@ -1757,7 +1761,7 @@ a.sparkline {
   float: right;
 
   a {
-    color: var(--clr-text-accent);
+    color: var(--color-text-accent);
     text-decoration: none;
 
     &:hover,
@@ -1774,14 +1778,14 @@ a.sparkline {
   line-height: 20px;
   overflow-wrap: break-word;
   font-weight: 400;
-  color: var(--clr-text-primary);
+  color: var(--color-text-primary);
   box-sizing: border-box;
   min-height: 100%;
-  border: 1px solid var(--clr-border-primary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 4px;
 
   a {
-    color: var(--clr-text-accent);
+    color: var(--color-text-accent);
     text-decoration: none;
 
     &:hover {
@@ -1806,34 +1810,34 @@ a.sparkline {
     list-style: disc;
     padding-inline-start: 15px;
     margin-bottom: 20px;
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
 
     &:last-child {
       margin-bottom: 0;
     }
 
     &__text {
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
     }
   }
 
   &__statuses-list {
     border-radius: 4px;
-    border: 1px solid var(--clr-border-primary);
+    border: 1px solid var(--color-border-primary);
     font-size: 13px;
     line-height: 18px;
     overflow: hidden;
 
     &__item {
       padding: 16px;
-      border-bottom: 1px solid var(--clr-border-primary);
+      border-bottom: 1px solid var(--color-border-primary);
 
       &:last-child {
         border-bottom: 0;
       }
 
       &__meta {
-        color: var(--clr-text-secondary);
+        color: var(--color-text-secondary);
       }
 
       a {
@@ -1870,16 +1874,16 @@ a.sparkline {
       flex: 0 0 auto;
       width: 4px;
       height: 21px;
-      background: var(--clr-bg-secondary);
+      background: var(--color-bg-secondary);
       margin: 0 2px;
       border-radius: 2px;
 
       &.positive {
-        background: var(--clr-bg-success-strong);
+        background: var(--color-bg-success-strong);
       }
 
       &.negative {
-        background: var(--clr-bg-error-strong);
+        background: var(--color-bg-error-strong);
       }
     }
   }
@@ -1908,9 +1912,9 @@ a.sparkline {
       align-items: center;
       width: calc(1.375rem + 1px);
       height: calc(1.375rem + 1px);
-      background: var(--clr-bg-primary);
-      border: 1px solid var(--clr-text-accent);
-      color: var(--clr-text-accent);
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-text-accent);
+      color: var(--color-text-accent);
       border-radius: 8px;
     }
 
@@ -1918,7 +1922,7 @@ a.sparkline {
       position: absolute;
       content: '';
       width: 1px;
-      background: var(--clr-text-accent);
+      background: var(--color-text-accent);
       bottom: 0;
       top: calc(1.875rem + 1px);
       inset-inline-start: 0.6875rem;
@@ -1936,14 +1940,14 @@ a.sparkline {
   &__entry {
     h5 {
       font-weight: 500;
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       line-height: 25px;
       margin-bottom: 16px;
     }
 
     .status {
-      border: 1px solid var(--clr-border-primary);
-      background: var(--clr-bg-secondary);
+      border: 1px solid var(--color-border-primary);
+      background: var(--color-bg-secondary);
       border-radius: 4px;
     }
   }
@@ -1956,8 +1960,8 @@ a.sparkline {
   line-height: 20px;
   overflow-wrap: break-word;
   font-weight: 400;
-  border: 1px solid var(--clr-border-primary);
-  color: var(--clr-text-primary);
+  border: 1px solid var(--color-border-primary);
+  color: var(--color-text-primary);
   box-sizing: border-box;
   min-height: 100%;
 
@@ -1992,9 +1996,9 @@ a.sparkline {
     summary {
       display: block;
       box-sizing: border-box;
-      color: var(--clr-text-primary);
-      background: var(--clr-bg-accent-subtle);
-      border: 1px solid var(--clr-border-on-bg-accent-subtle);
+      color: var(--color-text-primary);
+      background: var(--color-bg-accent-subtle);
+      border: 1px solid var(--color-border-on-bg-accent-subtle);
       border-radius: 8px;
       padding: 8px 13px;
       position: relative;
@@ -2008,7 +2012,7 @@ a.sparkline {
         display: block;
         font-size: 15px;
         line-height: 20px;
-        color: var(--clr-text-accent);
+        color: var(--color-text-accent);
         cursor: pointer;
         border: 0;
         background: transparent;
@@ -2051,7 +2055,7 @@ a.sparkline {
     }
 
     .spoiler-button__overlay__label {
-      outline: 1px solid var(--clr-border-media);
+      outline: 1px solid var(--color-border-media);
     }
 
     .hide-button {
@@ -2060,10 +2064,10 @@ a.sparkline {
       position: absolute;
       top: 5px;
       right: 5px;
-      color: var(--clr-text-on-media);
-      background: var(--clr-bg-media);
+      color: var(--color-text-on-media);
+      background: var(--color-bg-media);
       backdrop-filter: $backdrop-blur-filter;
-      outline: 1px solid var(--clr-border-media);
+      outline: 1px solid var(--color-border-media);
       border: 0;
       padding: 3px 12px;
       border-radius: 99px;
@@ -2073,7 +2077,7 @@ a.sparkline {
 
       &:hover,
       &:focus {
-        background-color: rgb(from var(--clr-bg-media-base) r g b / 90%);
+        background-color: rgb(from var(--color-bg-media-base) r g b / 90%);
       }
     }
 
@@ -2101,23 +2105,23 @@ a.sparkline {
 .admin {
   &__terms-of-service {
     &__container {
-      background: var(--clr-bg-tertiary);
+      background: var(--color-bg-tertiary);
       border-radius: 8px;
-      border: 1px solid var(--clr-border-primary);
+      border: 1px solid var(--color-border-primary);
       overflow: hidden;
 
       &__header {
         padding: 16px;
         font-size: 14px;
         line-height: 20px;
-        color: var(--clr-text-primary);
+        color: var(--color-text-primary);
         display: flex;
         align-items: center;
         gap: 12px;
       }
 
       &__body {
-        background: var(--clr-bg-primary);
+        background: var(--color-bg-primary);
         padding: 16px;
         overflow-y: scroll;
         height: 30vh;
@@ -2126,7 +2130,7 @@ a.sparkline {
 
     &__history {
       & > li {
-        border-bottom: 1px solid var(--clr-border-primary);
+        border-bottom: 1px solid var(--color-border-primary);
 
         &:last-child {
           border-bottom: 0;
@@ -2164,14 +2168,14 @@ a.sparkline {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--clr-text-tertiary);
+    background: var(--color-text-tertiary);
   }
 
   &.success {
-    color: var(--clr-text-success);
+    color: var(--color-text-success);
 
     .dot-indicator__indicator {
-      background-color: var(--clr-bg-success-strong);
+      background-color: var(--color-bg-success-strong);
     }
   }
 }

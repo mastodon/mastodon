@@ -27,7 +27,7 @@ $fluid-breakpoint: $maximum-width + 20px;
 
   li {
     position: relative;
-    border-bottom: 1px solid var(--clr-border-primary);
+    border-bottom: 1px solid var(--color-border-primary);
     padding: 1em 1.75em;
     padding-inline-start: 3em;
     font-weight: 500;
@@ -67,8 +67,8 @@ $fluid-breakpoint: $maximum-width + 20px;
       position: absolute;
       inset-inline-start: 0;
       top: 1em;
-      background: var(--clr-bg-accent-strong);
-      color: var(--clr-text-on-accent-strong);
+      background: var(--color-bg-accent-strong);
+      color: var(--color-text-on-accent-strong);
       border-radius: 50%;
       width: 4ch;
       height: 4ch;
@@ -84,13 +84,13 @@ $fluid-breakpoint: $maximum-width + 20px;
   }
 
   &__text {
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
   }
 
   &__hint {
     font-size: 14px;
     font-weight: 400;
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
   }
 }
 
@@ -103,21 +103,21 @@ $fluid-breakpoint: $maximum-width + 20px;
   > label {
     font-size: 14px;
     font-weight: 600;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
   }
 
   select {
     appearance: none;
     box-sizing: border-box;
     font-size: 14px;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
     display: block;
     width: 100%;
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: var(--clr-bg-secondary);
-    border: 1px solid var(--clr-border-primary);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
     padding-inline-start: 10px;
     padding-inline-end: 30px;

@@ -13,12 +13,12 @@
   &__chart {
     border-radius: 4px;
     display: block;
-    background: rgb(from var(--clr-text-accent) r g b / 60%);
+    background: rgb(from var(--color-text-accent) r g b / 60%);
     height: 5px;
     min-width: 1%;
 
     &.leading {
-      background: var(--clr-text-accent);
+      background: var(--color-text-accent);
     }
   }
 
@@ -38,12 +38,12 @@
     // duplication
     &::-moz-progress-bar {
       border-radius: 4px;
-      background: rgb(from var(--clr-text-accent) r g b / 60%);
+      background: rgb(from var(--color-text-accent) r g b / 60%);
     }
 
     &::-webkit-progress-value {
       border-radius: 4px;
-      background: rgb(from var(--clr-text-accent) r g b / 60%);
+      background: rgb(from var(--color-text-accent) r g b / 60%);
     }
   }
 
@@ -77,16 +77,16 @@
       box-sizing: border-box;
       width: 100%;
       font-size: 14px;
-      color: var(--clr-text-primary);
+      color: var(--color-text-primary);
       outline: 0;
       font-family: inherit;
-      background: var(--clr-bg-primary);
-      border: 1px solid var(--clr-text-secondary);
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-text-secondary);
       border-radius: 4px;
       padding: 8px 12px;
 
       &:focus {
-        border-color: var(--clr-text-accent);
+        border-color: var(--color-text-accent);
       }
 
       @media screen and (width <= 600px) {
@@ -110,7 +110,7 @@
   &__input {
     display: block;
     position: relative;
-    border: 1px solid var(--clr-text-secondary);
+    border: 1px solid var(--color-text-secondary);
     box-sizing: border-box;
     width: 17px;
     height: 17px;
@@ -124,13 +124,13 @@
     &:active,
     &:focus,
     &:hover {
-      border-color: var(--clr-text-success);
+      border-color: var(--color-text-success);
       border-width: 4px;
     }
 
     &.active {
-      background-color: var(--clr-bg-success-strong);
-      border-color: var(--clr-text-success);
+      background-color: var(--color-bg-success-strong);
+      border-color: var(--color-text-success);
     }
 
     &::-moz-focus-inner {
@@ -144,16 +144,16 @@
     }
 
     &.disabled {
-      border-color: var(--clr-text-disabled);
+      border-color: var(--color-text-disabled);
 
       &.active {
-        background: var(--clr-text-disabled);
+        background: var(--color-text-disabled);
       }
 
       &:active,
       &:focus,
       &:hover {
-        border-color: var(--clr-text-disabled);
+        border-color: var(--color-text-disabled);
         border-width: 1px;
       }
     }
@@ -164,7 +164,7 @@
     &:active,
     &:focus,
     &:hover {
-      border-color: var(--clr-text-primary);
+      border-color: var(--color-text-primary);
       border-width: 1px;
     }
   }
@@ -188,7 +188,7 @@
   &__footer {
     padding-top: 6px;
     padding-bottom: 5px;
-    color: var(--clr-text-tertiary);
+    color: var(--color-text-tertiary);
   }
 
   &__link {
@@ -197,7 +197,7 @@
     padding: 0;
     margin: 0;
     border: 0;
-    color: var(--clr-text-tertiary);
+    color: var(--color-text-tertiary);
     text-decoration: underline;
     font-size: inherit;
 
@@ -207,7 +207,7 @@
 
     &:active,
     &:focus {
-      background-color: var(--clr-bg-secondary);
+      background-color: var(--color-bg-secondary);
     }
   }
 
@@ -220,13 +220,13 @@
 }
 
 .muted .poll {
-  color: var(--clr-text-tertiary);
+  color: var(--color-text-tertiary);
 
   &__chart {
-    background: rgb(from var(--clr-text-accent) r g b / 40%);
+    background: rgb(from var(--color-text-accent) r g b / 40%);
 
     &.leading {
-      background: rgb(from var(--clr-text-accent) r g b / 60%);
+      background: rgb(from var(--color-text-accent) r g b / 60%);
     }
   }
 }

@@ -1,187 +1,188 @@
 @use '../mastodon/theme_utils' as utils;
 
 :root {
-  --clr-black: #000;
-  --clr-grey-950: #181821;
-  --clr-grey-800: #292938;
-  --clr-grey-700: #444664;
-  --clr-grey-600: #545778;
-  --clr-grey-500: #696d91;
-  --clr-grey-400: #8b8dac;
-  --clr-grey-300: #b4b6cb;
-  --clr-grey-200: #d8d9e3;
-  --clr-grey-100: #f0f0f5;
-  --clr-grey-50: #f0f1ff;
-  --clr-white: #fff;
-  --clr-indigo-600: #6147e6;
-  --clr-indigo-400: #8886ff;
-  --clr-indigo-300: #a5abfd;
-  --clr-indigo-200: #c8cdfe;
-  --clr-indigo-100: #e0e3ff;
-  --clr-indigo-50: #f0f1ff;
-  --clr-red-500: #ff637e;
-  --clr-red-600: #ec003f;
-  --clr-yellow-400: #ffb900;
-  --clr-yellow-600: #e17100;
-  --clr-green-400: #05df72;
-  --clr-green-600: #00a63e;
+  --color-black: #000;
+  --color-grey-950: #181821;
+  --color-grey-800: #292938;
+  --color-grey-700: #444664;
+  --color-grey-600: #545778;
+  --color-grey-500: #696d91;
+  --color-grey-400: #8b8dac;
+  --color-grey-300: #b4b6cb;
+  --color-grey-200: #d8d9e3;
+  --color-grey-100: #f0f0f5;
+  --color-grey-50: #f0f1ff;
+  --color-white: #fff;
+  --color-indigo-600: #6147e6;
+  --color-indigo-400: #8886ff;
+  --color-indigo-300: #a5abfd;
+  --color-indigo-200: #c8cdfe;
+  --color-indigo-100: #e0e3ff;
+  --color-indigo-50: #f0f1ff;
+  --color-red-500: #ff637e;
+  --color-red-600: #ec003f;
+  --color-yellow-400: #ffb900;
+  --color-yellow-600: #e17100;
+  --color-green-400: #05df72;
+  --color-green-600: #00a63e;
 
   /* TEXT TOKENS */
 
-  --clr-text-primary: var(--clr-grey-950);
-  --clr-text-secondary: var(--clr-grey-600);
-  --clr-text-tertiary: var(--clr-grey-500);
-  --clr-text-on-inverted: var(--clr-white);
-  --clr-text-accent: var(--clr-indigo-600);
-  --clr-text-accent-subtle: color-mix(
+  --color-text-primary: var(--color-grey-950);
+  --color-text-secondary: var(--color-grey-600);
+  --color-text-tertiary: var(--color-grey-500);
+  --color-text-on-inverted: var(--color-white);
+  --color-text-accent: var(--color-indigo-600);
+  --color-text-accent-subtle: color-mix(
     in oklab,
-    var(--clr-text-primary),
-    var(--clr-text-accent)
+    var(--color-text-primary),
+    var(--color-text-accent)
   );
-  --clr-text-on-accent-strong: var(--clr-white);
-  --clr-text-error: var(--clr-red-600);
-  --clr-text-on-error-strong: var(--clr-white);
-  --clr-text-warning: var(--clr-yellow-600);
-  --clr-text-on-warning-strong: var(--clr-white);
-  --clr-text-success: var(--clr-green-600);
-  --clr-text-on-success-strong: var(--clr-white);
-  --clr-text-disabled: var(--clr-grey-300);
-  --clr-text-on-disabled: var(--clr-grey-200);
-  --clr-text-bookmark-highlight: var(--clr-text-error);
-  --clr-text-favourite-highlight: var(--clr-text-warning);
-  --clr-text-on-media: var(--clr-white);
-  --clr-text-status-links: var(--clr-text-accent);
+  --color-text-on-accent-strong: var(--color-white);
+  --color-text-error: var(--color-red-600);
+  --color-text-on-error-strong: var(--color-white);
+  --color-text-warning: var(--color-yellow-600);
+  --color-text-on-warning-strong: var(--color-white);
+  --color-text-success: var(--color-green-600);
+  --color-text-on-success-strong: var(--color-white);
+  --color-text-disabled: var(--color-grey-300);
+  --color-text-on-disabled: var(--color-grey-200);
+  --color-text-bookmark-highlight: var(--color-text-error);
+  --color-text-favourite-highlight: var(--color-text-warning);
+  --color-text-on-media: var(--color-white);
+  --color-text-status-links: var(--color-text-accent);
 
   /* BACKGROUND TOKENS */
 
-  --clr-bg-primary: var(--clr-white);
-  --clr-bg-secondary-base: var(--clr-grey-600);
-  --clr-bg-secondary-strength: 5%;
-  --clr-bg-secondary: #{color-mix(
+  --color-bg-primary: var(--color-white);
+  --color-bg-secondary-base: var(--color-grey-600);
+  --color-bg-secondary-strength: 5%;
+  --color-bg-secondary: #{color-mix(
       in oklab,
-      var(--clr-bg-primary),
-      var(--clr-bg-secondary-base) var(--clr-bg-secondary-strength)
+      var(--color-bg-primary),
+      var(--color-bg-secondary-base) var(--color-bg-secondary-strength)
     )};
-  --clr-bg-secondary-solid: #{color-mix(
+  --color-bg-secondary-solid: #{color-mix(
       in srgb,
-      var(--clr-bg-primary),
-      var(--clr-bg-secondary-base) var(--clr-bg-secondary-strength)
+      var(--color-bg-primary),
+      var(--color-bg-secondary-base) var(--color-bg-secondary-strength)
     )};
-  --clr-bg-tertiary: #{color-mix(
+  --color-bg-tertiary: #{color-mix(
       in oklab,
-      var(--clr-bg-primary),
-      var(--clr-bg-secondary-base) calc(2 * var(--clr-bg-secondary-strength))
+      var(--color-bg-primary),
+      var(--color-bg-secondary-base)
+        calc(2 * var(--color-bg-secondary-strength))
     )};
-  --clr-bg-ambient: var(--clr-bg-primary);
-  --clr-bg-elevated: var(--clr-bg-primary);
-  --clr-bg-inverted: var(--clr-grey-950);
-  --clr-bg-media-base: var(--clr-black);
-  --clr-bg-media-strength: 65%;
-  --clr-bg-media: #{utils.css-alpha(
-      var(--clr-bg-media-base),
-      var(--clr-bg-media-strength)
+  --color-bg-ambient: var(--color-bg-primary);
+  --color-bg-elevated: var(--color-bg-primary);
+  --color-bg-inverted: var(--color-grey-950);
+  --color-bg-media-base: var(--color-black);
+  --color-bg-media-strength: 65%;
+  --color-bg-media: #{utils.css-alpha(
+      var(--color-bg-media-base),
+      var(--color-bg-media-strength)
     )};
-  --clr-bg-overlay: var(--clr-bg-primary);
-  --clr-bg-disabled: var(--clr-grey-400);
-  --clr-bg-accent-subtle-base: var(--clr-indigo-600);
-  --clr-bg-accent-subtle-strength: 8%;
-  --clr-bg-accent-subtle: #{utils.css-alpha(
-      var(--clr-bg-accent-subtle-base),
-      var(--clr-bg-accent-subtle-strength)
+  --color-bg-overlay: var(--color-bg-primary);
+  --color-bg-disabled: var(--color-grey-400);
+  --color-bg-accent-subtle-base: var(--color-indigo-600);
+  --color-bg-accent-subtle-strength: 8%;
+  --color-bg-accent-subtle: #{utils.css-alpha(
+      var(--color-bg-accent-subtle-base),
+      var(--color-bg-accent-subtle-strength)
     )};
-  --clr-bg-accent-subtle-highlighted: #{utils.css-alpha(
-      var(--clr-bg-accent-subtle-base),
-      calc(var(--clr-bg-accent-subtle-strength) * 1.5)
+  --color-bg-accent-subtle-highlighted: #{utils.css-alpha(
+      var(--color-bg-accent-subtle-base),
+      calc(var(--color-bg-accent-subtle-strength) * 1.5)
     )};
-  --clr-bg-accent-strong: var(--clr-indigo-600);
-  --clr-bg-accent-strong-highlighted: color-mix(
+  --color-bg-accent-strong: var(--color-indigo-600);
+  --color-bg-accent-strong-highlighted: color-mix(
     in oklab,
-    var(--clr-bg-accent-strong),
-    black var(--clr-bg-accent-subtle-strength)
+    var(--color-bg-accent-strong),
+    black var(--color-bg-accent-subtle-strength)
   );
-  --clr-bg-error-subtle-base: #f41b3b;
-  --clr-bg-error-subtle-strength: 12%;
-  --clr-bg-error-subtle: #{utils.css-alpha(
-      var(--clr-bg-error-subtle-base),
-      var(--clr-bg-error-subtle-strength)
+  --color-bg-error-subtle-base: #f41b3b;
+  --color-bg-error-subtle-strength: 12%;
+  --color-bg-error-subtle: #{utils.css-alpha(
+      var(--color-bg-error-subtle-base),
+      var(--color-bg-error-subtle-strength)
     )};
-  --clr-bg-error-strong: var(--clr-red-600);
-  --clr-bg-error-strong-highlighted: color-mix(
+  --color-bg-error-strong: var(--color-red-600);
+  --color-bg-error-strong-highlighted: color-mix(
     in oklab,
-    var(--clr-bg-error-strong),
-    black var(--clr-bg-error-subtle-strength)
+    var(--color-bg-error-strong),
+    black var(--color-bg-error-subtle-strength)
   );
-  --clr-bg-warning-subtle-base: #ffca1b;
-  --clr-bg-warning-subtle-strength: 10%;
-  --clr-bg-warning-subtle: #{utils.css-alpha(
-      var(--clr-bg-warning-subtle-base),
-      var(--clr-bg-warning-subtle-strength)
+  --color-bg-warning-subtle-base: #ffca1b;
+  --color-bg-warning-subtle-strength: 10%;
+  --color-bg-warning-subtle: #{utils.css-alpha(
+      var(--color-bg-warning-subtle-base),
+      var(--color-bg-warning-subtle-strength)
     )};
-  --clr-bg-warning-strong: var(--clr-yellow-600);
-  --clr-bg-warning-strong-highlighted: color-mix(
+  --color-bg-warning-strong: var(--color-yellow-600);
+  --color-bg-warning-strong-highlighted: color-mix(
     in oklab,
-    var(--clr-bg-warning-strong),
-    black var(--clr-bg-warning-subtle-strength)
+    var(--color-bg-warning-strong),
+    black var(--color-bg-warning-subtle-strength)
   );
-  --clr-bg-success-subtle-base: #17e865;
-  --clr-bg-success-subtle-strength: 15%;
-  --clr-bg-success-subtle: #{utils.css-alpha(
-      var(--clr-bg-success-subtle-base),
-      var(--clr-bg-success-subtle-strength)
+  --color-bg-success-subtle-base: #17e865;
+  --color-bg-success-subtle-strength: 15%;
+  --color-bg-success-subtle: #{utils.css-alpha(
+      var(--color-bg-success-subtle-base),
+      var(--color-bg-success-subtle-strength)
     )};
-  --clr-bg-success-strong: var(--clr-green-600);
-  --clr-bg-success-strong-highlighted: color-mix(
+  --color-bg-success-strong: var(--color-green-600);
+  --color-bg-success-strong-highlighted: color-mix(
     in oklab,
-    var(--clr-bg-success-strong),
-    black var(--clr-bg-success-subtle-strength)
+    var(--color-bg-success-strong),
+    black var(--color-bg-success-subtle-strength)
   );
 
   /* BORDER TOKENS */
 
-  --clr-border-primary-base: #000856;
-  --clr-border-primary-strength: 15%;
-  --clr-border-primary: color-mix(
+  --color-border-primary-base: #000856;
+  --color-border-primary-strength: 15%;
+  --color-border-primary: color-mix(
     in oklab,
-    var(--clr-bg-primary),
-    var(--clr-border-primary-base) var(--clr-border-primary-strength)
+    var(--color-bg-primary),
+    var(--color-border-primary-base) var(--color-border-primary-strength)
   );
-  --clr-border-media: rgb(252 248 255 / 15%);
-  --clr-border-on-bg-secondary: var(--clr-grey-200);
-  --clr-border-on-bg-accent-subtle: var(--clr-indigo-200);
-  --clr-border-on-bg-error-subtle: #{utils.css-alpha(
-      var(--clr-text-error),
+  --color-border-media: rgb(252 248 255 / 15%);
+  --color-border-on-bg-secondary: var(--color-grey-200);
+  --color-border-on-bg-accent-subtle: var(--color-indigo-200);
+  --color-border-on-bg-error-subtle: #{utils.css-alpha(
+      var(--color-text-error),
       50%
     )};
-  --clr-border-on-bg-warning-subtle: #{utils.css-alpha(
-      var(--clr-text-warning),
+  --color-border-on-bg-warning-subtle: #{utils.css-alpha(
+      var(--color-text-warning),
       50%
     )};
-  --clr-border-on-bg-success-subtle: #{utils.css-alpha(
-      var(--clr-text-success),
+  --color-border-on-bg-success-subtle: #{utils.css-alpha(
+      var(--color-text-success),
       50%
     )};
 
   /* SHADOW TOKENS */
 
-  --clr-shadow-primary-base: var(--clr-black);
-  --clr-shadow-primary-strength: 30%;
-  --clr-shadow-primary: #{utils.css-alpha(
-      var(--clr-shadow-primary-base),
-      var(--clr-shadow-primary-strength)
+  --color-shadow-primary-base: var(--color-black);
+  --color-shadow-primary-strength: 30%;
+  --color-shadow-primary: #{utils.css-alpha(
+      var(--color-shadow-primary-base),
+      var(--color-shadow-primary-strength)
     )};
   --dropdown-shadow:
-    0 20px 25px -5px var(--clr-shadow-primary),
-    0 8px 10px -6px var(--clr-shadow-primary);
-  --overlay-icon-shadow: drop-shadow(0 0 8px var(--clr-shadow-primary));
+    0 20px 25px -5px var(--color-shadow-primary),
+    0 8px 10px -6px var(--color-shadow-primary);
+  --overlay-icon-shadow: drop-shadow(0 0 8px var(--color-shadow-primary));
 
   /* GRAPHS/CHARTS TOKENS */
 
-  --clr-graph-primary-stroke: var(--clr-text-accent);
-  --clr-graph-primary-fill: var(--clr-bg-accent-subtle);
-  --clr-graph-warning-stroke: var(--clr-text-warning);
-  --clr-graph-warning-fill: var(--clr-bg-warning-subtle);
-  --clr-graph-disabled-stroke: var(--clr-text-disabled);
-  --clr-graph-disabled-fill: var(--clr-bg-disabled);
+  --color-graph-primary-stroke: var(--color-text-accent);
+  --color-graph-primary-fill: var(--color-bg-accent-subtle);
+  --color-graph-warning-stroke: var(--color-text-warning);
+  --color-graph-warning-fill: var(--color-bg-warning-subtle);
+  --color-graph-disabled-stroke: var(--color-text-disabled);
+  --color-graph-disabled-fill: var(--color-bg-disabled);
 
   /* LEGACY TOKENS */
 
@@ -191,6 +192,6 @@
 
   /* MISCELLANEOUS */
 
-  --outline-focus-default: 2px solid var(--clr-text-accent);
+  --outline-focus-default: 2px solid var(--color-text-accent);
   --avatar-border-radius: 8px;
 }

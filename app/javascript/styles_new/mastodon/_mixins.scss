@@ -4,27 +4,27 @@
   width: 100%;
   box-shadow: none;
   font-family: inherit;
-  background: var(--clr-bg-secondary);
-  color: var(--clr-text-primary);
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
   border-radius: 4px;
-  border: 1px solid var(--clr-border-on-bg-secondary);
+  border: 1px solid var(--color-border-on-bg-secondary);
   font-size: 17px;
   line-height: normal;
   margin: 0;
 }
 
 @mixin search-popout {
-  background: var(--clr-bg-elevated);
+  background: var(--color-bg-elevated);
   border-radius: 4px;
   padding: 10px 14px;
   padding-bottom: 14px;
   margin-top: 10px;
-  color: var(--clr-text-secondary);
-  box-shadow: 2px 4px 15px var(--clr-shadow-primary);
+  color: var(--color-text-secondary);
+  box-shadow: 2px 4px 15px var(--color-shadow-primary);
 
   h4 {
     text-transform: uppercase;
-    color: var(--clr-text-secondary);
+    color: var(--color-text-secondary);
     font-size: 13px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -40,6 +40,6 @@
 
   em {
     font-weight: 500;
-    color: var(--clr-text-primary);
+    color: var(--color-text-primary);
   }
 }
