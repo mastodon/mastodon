@@ -775,14 +775,41 @@
       padding: 8px;
     }
 
-    &__preview {
+    &__preview,
+    &__visualizer {
       position: absolute;
       width: 100%;
       height: 100%;
-      border-radius: 6px;
       z-index: -1;
       top: 0;
+    }
+
+    &__preview {
+      border-radius: 6px;
       inset-inline-start: 0;
+    }
+
+    &__visualizer {
+      padding: 16px;
+      box-sizing: border-box;
+
+      .audio-player__visualizer {
+        margin: 0 auto;
+        display: block;
+        height: 100%;
+      }
+
+      .icon {
+        position: absolute;
+        top: 50%;
+        inset-inline-start: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.75;
+        color: var(--player-foreground-color);
+        filter: var(--overlay-icon-shadow);
+        width: 48px;
+        height: 48px;
+      }
     }
 
     &__thumbnail {
@@ -1101,7 +1128,8 @@
   font-size: inherit;
   vertical-align: middle;
   object-fit: contain;
-  margin: -0.2ex 0.15em 0;
+  margin: -0.2ex 0.15em 0.2ex;
+  width: 16px;
   height: 16px;
 
   img {
@@ -1143,6 +1171,7 @@
   }
 
   .emojione {
+    width: 20px;
     height: 20px;
     margin: -3px 0 0;
   }
@@ -1360,11 +1389,12 @@
   }
 }
 
-.announcements__item__content {
+.announcements__content {
   overflow-wrap: break-word;
   overflow-y: auto;
 
   .emojione {
+    width: 20px;
     height: 20px;
     margin: -3px 0 0;
   }
@@ -1791,6 +1821,7 @@
     line-height: 24px;
 
     .emojione {
+      width: 24px;
       height: 24px;
       margin: -1px 0 0;
     }
@@ -2681,6 +2712,7 @@ a.account__display-name {
     outline-offset: -1px;
     border-radius: 8px;
     touch-action: none;
+    user-select: none;
   }
 
   &--zoomed-in {
@@ -2986,6 +3018,7 @@ a.account__display-name {
     height: 100%;
     min-height: 100vh;
     min-height: 100dvh;
+    padding-inline: 10px;
     padding-bottom: env(safe-area-inset-bottom);
 
     &__pane {
@@ -3148,20 +3181,21 @@ a.account__display-name {
 }
 
 .column__alert {
+  --alert-height: 54px;
+
   position: sticky;
   bottom: 0;
   z-index: 10;
   box-sizing: border-box;
   display: grid;
+  grid-template-rows: minmax(var(--alert-height), max-content);
+  align-items: end;
   width: 100%;
   max-width: 360px;
   padding: 1rem;
   margin: auto auto 0;
   overflow: clip;
-
-  &:empty {
-    padding: 0;
-  }
+  pointer-events: none;
 
   @media (max-width: #{$mobile-menu-breakpoint - 1}) {
     // Compensate for mobile menubar
@@ -3172,6 +3206,7 @@ a.account__display-name {
     // Make all nested alerts occupy the same space
     // rather than stack
     grid-area: 1 / 1;
+    pointer-events: initial;
   }
 }
 
@@ -3325,6 +3360,7 @@ a.account__display-name {
     min-height: 100vh;
     min-height: 100dvh;
     gap: 0;
+    padding-inline: 0;
   }
 
   .columns-area__panels__pane--navigational {
@@ -4027,6 +4063,7 @@ a.account__display-name {
   background: lighten($ui-highlight-color, 5%);
 }
 
+.follow_requests-unlocked_explanation,
 .switch-to-advanced {
   color: $light-text-color;
   background-color: $ui-base-color;
@@ -4037,7 +4074,7 @@ a.account__display-name {
   font-size: 13px;
   line-height: 18px;
 
-  .switch-to-advanced__toggle {
+  a {
     color: $ui-button-tertiary-color;
     font-weight: bold;
   }
@@ -4449,13 +4486,19 @@ a.status-card {
   box-sizing: border-box;
   text-decoration: none;
 
-  &:hover {
-    background: var(--on-surface-color);
+  &--large {
+    padding-block: 32px;
   }
 
-  &:focus-visible {
-    outline: 2px solid $ui-button-focus-outline-color;
-    outline-offset: -2px;
+  &:is(button) {
+    &:hover {
+      background: var(--on-surface-color);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $ui-button-focus-outline-color;
+      outline-offset: -2px;
+    }
   }
 
   .icon {
@@ -5219,8 +5262,7 @@ a.status-card {
   }
 }
 
-.empty-column-indicator,
-.follow_requests-unlocked_explanation {
+.empty-column-indicator {
   color: $dark-text-color;
   text-align: center;
   padding: 20px;
@@ -5259,10 +5301,8 @@ a.status-card {
 }
 
 .follow_requests-unlocked_explanation {
-  background: var(--surface-background-color);
-  border-bottom: 1px solid var(--background-border-color);
-  contain: initial;
-  flex-grow: 0;
+  margin: 16px;
+  margin-bottom: 0;
 }
 
 .error-column {
@@ -5741,6 +5781,34 @@ a.status-card {
   }
 }
 
+.visibility-modal {
+  &__quote-warning {
+    color: var(--nested-card-text);
+    background:
+      /* This is a bit of a silly hack for layering two background colours
+       * since --nested-card-background is too transparent for a tooltip */
+      linear-gradient(
+        var(--nested-card-background),
+        var(--nested-card-background)
+      ),
+      linear-gradient(var(--background-color), var(--background-color));
+    border: var(--nested-card-border);
+    padding: 16px;
+    border-radius: 4px;
+
+    h3 {
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: $darker-text-color;
+    }
+
+    p {
+      font-size: 0.8em;
+      color: $dark-text-color;
+    }
+  }
+}
+
 .visibility-dropdown {
   &__overlay[data-popper-placement] {
     z-index: 9999;
@@ -6094,6 +6162,7 @@ a.status-card {
   width: 100%;
   height: 100%;
   position: relative;
+  touch-action: pan-y;
 
   &__buttons {
     position: absolute;
@@ -6129,11 +6198,19 @@ a.status-card {
 }
 
 .media-modal__closer {
+  display: flex;
   position: absolute;
   top: 0;
   inset-inline-start: 0;
   inset-inline-end: 0;
   bottom: 0;
+  align-items: center;
+  justify-content: space-around; // If set to center, the fullscreen image overlay is misaligned.
+
+  > div {
+    flex-shrink: 0;
+    overflow: auto;
+  }
 }
 
 .media-modal__navigation {
@@ -7085,6 +7162,7 @@ a.status-card {
     line-height: 24px;
 
     .emojione {
+      width: 24px;
       height: 24px;
       margin: -1px 0 0;
     }
@@ -8416,6 +8494,7 @@ noscript {
       margin-bottom: 16px;
 
       .emojione {
+        width: 22px;
         height: 22px;
       }
 
@@ -8927,10 +9006,25 @@ noscript {
 }
 
 .announcements {
-  background: lighten($ui-base-color, 8%);
-  font-size: 13px;
-  display: flex;
-  align-items: flex-end;
+  width: calc(100% - 124px);
+  flex: 0 0 auto;
+  position: relative;
+  overflow: hidden;
+
+  .layout-multiple-columns & {
+    width: 100%;
+  }
+
+  @media screen and (max-width: (124px + 300px)) {
+    width: 100%;
+  }
+
+  &__root {
+    background: lighten($ui-base-color, 8%);
+    font-size: 13px;
+    display: flex;
+    align-items: flex-end;
+  }
 
   &__mastodon {
     width: 124px;
@@ -8941,19 +9035,16 @@ noscript {
     }
   }
 
-  &__container {
-    width: calc(100% - 124px);
-    flex: 0 0 auto;
-    position: relative;
-
-    @media screen and (max-width: (124px + 300px)) {
-      width: 100%;
-    }
+  &__slides {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: start;
   }
 
-  &__item {
+  &__slide {
     box-sizing: border-box;
     width: 100%;
+    flex: 0 0 100%;
     padding: 15px;
     position: relative;
     font-size: 15px;
@@ -8962,26 +9053,25 @@ noscript {
     font-weight: 400;
     max-height: 50vh;
     overflow: hidden;
-    display: flex;
     flex-direction: column;
+  }
 
-    &__range {
-      display: block;
-      font-weight: 500;
-      margin-bottom: 10px;
-      padding-inline-end: 18px;
-    }
+  &__range {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 10px;
+    padding-inline-end: 18px;
+  }
 
-    &__unread {
-      position: absolute;
-      top: 19px;
-      inset-inline-end: 19px;
-      display: block;
-      background: $highlight-text-color;
-      border-radius: 50%;
-      width: 0.625rem;
-      height: 0.625rem;
-    }
+  &__unread {
+    position: absolute;
+    top: 19px;
+    inset-inline-end: 19px;
+    display: block;
+    background: $highlight-text-color;
+    border-radius: 50%;
+    width: 0.625rem;
+    height: 0.625rem;
   }
 
   &__pagination {
@@ -8992,6 +9082,7 @@ noscript {
     inset-inline-end: 0;
     display: flex;
     align-items: center;
+    z-index: 1;
   }
 }
 
@@ -11582,5 +11673,11 @@ noscript {
       width: 16px;
       height: 16px;
     }
+  }
+
+  &__pagination {
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 }

@@ -4,8 +4,10 @@ module Status::FetchRepliesConcern
   extend ActiveSupport::Concern
 
   # debounce fetching all replies to minimize DoS
-  FETCH_REPLIES_COOLDOWN_MINUTES = (ENV['FETCH_REPLIES_COOLDOWN_MINUTES'] || 15).to_i.minutes
-  FETCH_REPLIES_INITIAL_WAIT_MINUTES = (ENV['FETCH_REPLIES_INITIAL_WAIT_MINUTES'] || 5).to_i.minutes
+  # Period to wait between fetching replies
+  FETCH_REPLIES_COOLDOWN_MINUTES = 15.minutes
+  # Period to wait after a post is first created before fetching its replies
+  FETCH_REPLIES_INITIAL_WAIT_MINUTES = 5.minutes
 
   included do
     scope :created_recently, -> { where(created_at: FETCH_REPLIES_INITIAL_WAIT_MINUTES.ago..) }

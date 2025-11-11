@@ -100,7 +100,7 @@ export function createWebsocketLogger(request, resolvedAccount) {
 
 /**
  * Initializes the log level based on the environment
- * @param {Object<string, any>} env
+ * @param {Object<string, unknown>} env
  * @param {string} environment
  */
 export function initializeLogLevel(env, environment) {

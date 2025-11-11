@@ -71,6 +71,7 @@ export const SignInBanner: React.FC = () => {
       <button
         className='button button--block'
         onClick={openClosedRegistrationsModal}
+        type='button'
       >
         <FormattedMessage
           id='sign_in_banner.create_account'

@@ -23,8 +23,6 @@
       // Require Dependency Dashboard Approval for major version bumps of these node packages
       matchManagers: ['npm'],
       matchPackageNames: [
-        'tesseract.js', // Requires code changes
-
         // react-router: Requires manual upgrade
         'history',
         'react-router-dom',

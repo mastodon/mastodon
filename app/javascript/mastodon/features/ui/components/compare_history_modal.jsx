@@ -14,7 +14,6 @@ import { IconButton } from 'mastodon/components/icon_button';
 import InlineAccount from 'mastodon/components/inline_account';
 import MediaAttachments from 'mastodon/components/media_attachments';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
-import emojify from 'mastodon/features/emoji/emoji';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
 
@@ -48,13 +47,8 @@ class CompareHistoryModal extends PureComponent {
     const { index, versions, language, onClose } = this.props;
     const currentVersion = versions.get(index);
 
-    const emojiMap = currentVersion.get('emojis').reduce((obj, emoji) => {
-      obj[`:${emoji.get('shortcode')}:`] = emoji.toJS();
-      return obj;
-    }, {});
-
-    const content = emojify(currentVersion.get('content'), emojiMap);
-    const spoilerContent = emojify(escapeTextContentForBrowser(currentVersion.get('spoiler_text')), emojiMap);
+    const content = currentVersion.get('content');
+    const spoilerContent = escapeTextContentForBrowser(currentVersion.get('spoiler_text'));
 
     const formattedDate = <RelativeTimestamp timestamp={currentVersion.get('created_at')} short={false} />;
     const formattedName = <InlineAccount accountId={currentVersion.get('account')} />;
@@ -99,7 +93,7 @@ class CompareHistoryModal extends PureComponent {
                           <EmojiHTML
                             as="span"
                             className='poll__option__text translate'
-                            htmlString={emojify(escapeTextContentForBrowser(option.get('title')), emojiMap)}
+                            htmlString={escapeTextContentForBrowser(option.get('title'))}
                             lang={language}
                           />
                         </label>

@@ -65,6 +65,7 @@ class Request
   # and 5s timeout on the TLS handshake, meaning the worst case should take
   # about 15s in total
   TIMEOUT = { connect_timeout: 5, read_timeout: 10, write_timeout: 10, read_deadline: 30 }.freeze
+  SAFE_PRESERVED_CHARS = '+,'
 
   include RoutingHelper
 
@@ -72,7 +73,7 @@ class Request
     raise ArgumentError if url.blank?
 
     @verb        = verb
-    @url         = Addressable::URI.parse(url).normalize
+    @url         = normalize_preserving_url_encodings(url, SAFE_PRESERVED_CHARS)
     @http_client = options.delete(:http_client)
     @allow_local = options.delete(:allow_local)
     @options     = {
@@ -147,6 +148,34 @@ class Request
   end
 
   private
+
+  # Using code from https://github.com/sporkmonger/addressable/blob/3450895887d0a1770660d8831d1b6fcfed9bd9d6/lib/addressable/uri.rb#L1609-L1635
+  # to preserve some URL Encodings while normalizing
+  def normalize_preserving_url_encodings(url, preserved_chars = SAFE_PRESERVED_CHARS, *flags)
+    original_uri = Addressable::URI.parse(url)
+    normalized_uri = original_uri.normalize
+
+    if original_uri.query
+      modified_query_class = Addressable::URI::CharacterClasses::QUERY.dup
+      modified_query_class.sub!('\\&', '').sub!('\\;', '')
+
+      pairs = original_uri.query.split('&', -1)
+      pairs.delete_if(&:empty?).uniq! if flags.include?(:compacted)
+      pairs.sort! if flags.include?(:sorted)
+
+      normalized_query = pairs.map do |pair|
+        Addressable::URI.normalize_component(
+          pair,
+          modified_query_class,
+          preserved_chars
+        )
+      end.join('&')
+
+      normalized_uri.query = normalized_query == '' ? nil : normalized_query
+    end
+
+    normalized_uri
+  end
 
   def set_common_headers!
     @headers['User-Agent']      = Mastodon::Version.user_agent

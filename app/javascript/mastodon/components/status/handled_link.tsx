@@ -26,7 +26,12 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   ...props
 }) => {
   // Handle hashtags
-  if (text.startsWith('#') || prevText?.endsWith('#')) {
+  if (
+    text.startsWith('#') ||
+    prevText?.endsWith('#') ||
+    text.startsWith('＃') ||
+    prevText?.endsWith('＃')
+  ) {
     const hashtag = text.slice(1).trim();
     return (
       <Link
