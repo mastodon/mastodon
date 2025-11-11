@@ -15,7 +15,6 @@ import {
 } from 'vite';
 import manifestSRI from 'vite-plugin-manifest-sri';
 import { VitePWA } from 'vite-plugin-pwa';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
@@ -167,21 +166,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       }),
       MastodonThemes(),
       MastodonAssetsManifest(),
-      viteStaticCopy({
-        targets: [
-          {
-            src: path.resolve(
-              __dirname,
-              'node_modules/emojibase-data/**/compact.json',
-            ),
-            dest: 'emoji',
-            rename(_name, ext, dir) {
-              const locale = path.basename(path.dirname(dir));
-              return `${locale}.${ext}`;
-            },
-          },
-        ],
-      }),
       MastodonServiceWorkerLocales(),
       MastodonEmojiCompressed(),
       legacy({
