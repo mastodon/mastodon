@@ -9,7 +9,7 @@ import metrics from 'prom-client';
  * @property {metrics.Gauge} redisSubscriptions
  * @property {metrics.Counter} redisMessagesReceived
  * @property {metrics.Counter<"type">} messagesSent
- * @property {import('express').RequestHandler<{}>} requestHandler
+ * @property {import('express').RequestHandler} requestHandler
  */
 
 /**
@@ -93,7 +93,7 @@ export function setupMetrics(channels, pgPool) {
   messagesSent.inc({ type: 'eventsource' }, 0);
 
   /**
-   * @type {import('express').RequestHandler<{}>}
+   * @type {import('express').RequestHandler}
    */
   const requestHandler = (req, res) => {
     metrics.register.metrics().then((output) => {

@@ -35,7 +35,7 @@ jobs:
           - linux/arm64
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Prepare
         env:
@@ -100,7 +100,7 @@ jobs:
 
       - name: Upload digest
         if: ${{ inputs.push_to_images != '' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           # `hashFiles` is used to disambiguate between streaming and non-streaming images
           name: digests-${{ hashFiles(inputs.file_to_build) }}-${{ env.PLATFORM_PAIR }}
@@ -119,10 +119,10 @@ jobs:
       PUSH_TO_IMAGES: ${{ inputs.push_to_images }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Download digests
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           path: ${{ runner.temp }}/digests
           # `hashFiles` is used to disambiguate between streaming and non-streaming images

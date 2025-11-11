@@ -47,7 +47,7 @@ export const AltTextBadge: React.FC<{ description: string }> = ({
         rootClose
         onHide={handleClose}
         show={open}
-        target={anchorRef.current}
+        target={anchorRef}
         placement='top-end'
         flip
         offset={offset}

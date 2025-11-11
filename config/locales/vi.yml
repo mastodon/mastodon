@@ -1633,7 +1633,7 @@ vi:
       disabled_account: Tài khoản này sẽ không thể tiếp tục dùng nữa. Tuy nhiên, bạn có quyền truy cập để xuất dữ liệu cũng như kích hoạt lại.
       followers: Hành động này sẽ chuyển tất cả người theo dõi từ tài khoản hiện tại sang tài khoản mới
       only_redirect_html: Ngoài ra, bạn có thể <a href="%{path}">đặt chuyển hướng trên trang hồ sơ của bạn</a>.
-      other_data: Dữ liệu khác sẽ không được di chuyển tự động
+      other_data: Không có dữ liệu nào khác sẽ được tự động di chuyển (bao gồm tút của bạn và danh sách tài khoản bạn theo dõi)
       redirect: Trang hồ sơ hiện tại của bạn sẽ hiển thị thông báo chuyển hướng và bị loại khỏi kết quả tìm kiếm
   moderation:
     title: Kiểm duyệt
@@ -1886,6 +1886,7 @@ vi:
     errors:
       in_reply_not_found: Bạn đang trả lời một tút không còn tồn tại.
       quoted_status_not_found: Bạn đang trích dẫn một tút không còn tồn tại.
+      quoted_user_not_mentioned: Không thể trích dẫn người dùng không được nhắc đến trong tút Nhắn riêng.
     over_character_limit: vượt quá giới hạn %{max} ký tự
     pin_errors:
       direct: Không thể ghim những tút nhắn riêng

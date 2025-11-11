@@ -23,7 +23,7 @@ jobs:
     if: github.repository == 'mastodon/mastodon'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Set up Javascript environment
@@ -33,7 +33,7 @@ jobs:
         run: yarn build-storybook
 
       - name: Run Chromatic
-        uses: chromaui/action@v12
+        uses: chromaui/action@v13
         with:
           # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

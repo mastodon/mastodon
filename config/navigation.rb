@@ -12,7 +12,8 @@ SimpleNavigation::Configuration.run do |navigation|
            if: -> { Rails.configuration.x.mastodon.software_update_url.present? && current_user.can?(:view_devops) && SoftwareUpdate.urgent_pending? },
            html: { class: 'warning' }
 
-    n.item :profile, safe_join([material_symbol('person'), t('settings.profile')]), settings_profile_path, if: -> { current_user.functional? && !self_destruct }, highlights_on: %r{/settings/profile|/settings/featured_tags|/settings/verification|/settings/privacy}
+    n.item :profile, safe_join([material_symbol('person'), t('settings.profile')]), settings_profile_path, if: -> { current_user.functional? && !self_destruct }, highlights_on: %r{/settings/profile|/settings/featured_tags|/settings/verification}
+    n.item :privacy, safe_join([material_symbol('globe'), t('privacy.title')]), settings_privacy_path, if: -> { current_user.functional? && !self_destruct }, highlights_on: %r{/settings/privacy}
 
     n.item :preferences, safe_join([material_symbol('settings'), t('settings.preferences')]), settings_preferences_path, if: -> { current_user.functional? && !self_destruct } do |s|
       s.item :appearance, safe_join([material_symbol('computer'), t('settings.appearance')]), settings_preferences_appearance_path

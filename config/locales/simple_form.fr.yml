@@ -56,6 +56,7 @@ fr:
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez une permission générale, vous n’avez pas besoin de sélectionner les permissions plus précises.
         setting_aggregate_reblogs: Ne pas afficher les nouveaux partages pour les messages déjà récemment partagés (n’affecte que les partages futurs)
         setting_always_send_emails: Normalement, les notifications par courriel ne seront pas envoyées lorsque vous utilisez Mastodon activement
+        setting_default_quote_policy_unlisted: Lorsque des personnes vous citent, leur message sera également masqué des fils des tendances.
         setting_default_sensitive: Les médias sensibles sont cachés par défaut et peuvent être révélés d’un simple clic
         setting_display_media_default: Masquer les médias marqués comme sensibles
         setting_display_media_hide_all: Toujours masquer les médias
@@ -73,7 +74,6 @@ fr:
       featured_tag:
         name: 'Voici quelques hashtags que vous avez utilisés récemment :'
       filters:
-        action: Choisir l'action à effectuer quand un message correspond au filtre
         actions:
           blur: Cacher les médias derrière un avertissement, sans cacher le texte
           hide: Cacher complètement le contenu filtré, faire comme s'il n'existait pas
@@ -82,7 +82,6 @@ fr:
         activity_api_enabled: Nombre de messages publiés localement, de comptes actifs et de nouvelles inscriptions par tranche hebdomadaire
         app_icon: WEBP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
         backups_retention_period: Les utilisateur·rice·s ont la possibilité de générer des archives de leurs messages pour les télécharger plus tard. Lorsqu'elles sont définies à une valeur positive, ces archives seront automatiquement supprimées de votre stockage après le nombre de jours spécifié.
-        bootstrap_timeline_accounts: Ces comptes seront épinglés en tête de liste des recommandations pour les nouveaux utilisateurs.
         closed_registrations_message: Affiché lorsque les inscriptions sont fermées
         content_cache_retention_period: Tous les messages provenant d'autres serveurs (y compris les partages et les réponses) seront supprimés passé le nombre de jours spécifié, sans tenir compte de l'interaction de l'utilisateur·rice local·e avec ces messages. Cela inclut les messages qu'un·e utilisateur·rice aurait marqué comme signets ou comme favoris. Les mentions privées entre utilisateur·rice·s de différentes instances seront également perdues et impossibles à restaurer. L'utilisation de ce paramètre est destinée à des instances spécifiques et contrevient à de nombreuses attentes des utilisateurs lorsqu'elle est appliquée à des fins d'utilisation ordinaires.
         custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
@@ -223,17 +222,23 @@ fr:
         setting_aggregate_reblogs: Grouper les partages dans les fils d’actualités
         setting_always_send_emails: Toujours envoyer les notifications par courriel
         setting_auto_play_gif: Lire automatiquement les GIFs animés
+        setting_boost_modal: Configurer la visibilité du partage
         setting_default_language: Langue de publication
+        setting_default_privacy: Visibilité de la publication
         setting_default_quote_policy: Autoriser les citations pour
         setting_default_sensitive: Toujours marquer les médias comme sensibles
+        setting_delete_modal: M'avertir avant de supprimer un message
         setting_disable_hover_cards: Désactiver l'aperçu du profil au survol
         setting_disable_swiping: Désactiver les actions par glissement
         setting_display_media: Affichage des médias
         setting_display_media_default: Défaut
         setting_display_media_hide_all: Masquer tout
         setting_display_media_show_all: Montrer tout
+        setting_emoji_style: Style des émojis
         setting_expand_spoilers: Toujours déplier les messages marqués d’un avertissement de contenu
         setting_hide_network: Cacher votre réseau
+        setting_missing_alt_text_modal: M'avertir avant de publier des médias sans texte alternatif
+        setting_quick_boosting: Activer le partage rapide
         setting_reduce_motion: Réduire la vitesse des animations
         setting_system_font_ui: Utiliser la police par défaut du système
         setting_system_scrollbars_ui: Utiliser la barre de défilement par défaut du système
@@ -267,6 +272,7 @@ fr:
         content_cache_retention_period: Durée de rétention du contenu distant
         custom_css: CSS personnalisé
         favicon: Favicon
+        landing_page: Page d'accueil pour les nouveaux visiteurs
         mascot: Mascotte personnalisée (héritée)
         media_cache_retention_period: Durée de rétention des médias dans le cache
         min_age: Âge minimum requis
@@ -311,6 +317,7 @@ fr:
         follow_request: Quelqu’un demande à vous suivre
         mention: Quelqu’un vous a mentionné⋅e
         pending_account: Nouveau compte en attente d’approbation
+        quote: Quelqu'un vous a cité
         reblog: Quelqu’un a partagé votre message
         report: Nouveau signalement soumis
         software_updates:
@@ -357,6 +364,10 @@ fr:
         name: Nom
         permissions_as_keys: Autorisations
         position: Priorité
+      username_block:
+        allow_with_approval: Autoriser les inscriptions avec approbation
+        comparison: Méthode de comparaison
+        username: Mot à faire correspondre
       webhook:
         events: Événements activés
         template: Modèle de payload

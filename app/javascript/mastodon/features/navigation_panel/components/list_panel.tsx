@@ -27,17 +27,15 @@ export const ListPanel: React.FC = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const lists = useAppSelector((state) => getOrderedLists(state));
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-
     void dispatch(fetchLists()).then(() => {
       setLoading(false);
 
       return '';
     });
-  }, [dispatch, setLoading]);
+  }, [dispatch]);
 
   return (
     <CollapsiblePanel

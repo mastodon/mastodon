@@ -20,7 +20,6 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @request_id                = request_id
     @quote                     = nil
 
-    # Only native types can be updated at the moment
     return @status if !expected_type? || already_updated_more_recently?
 
     if @status_parser.edited_at.present? && (@status.edited_at.nil? || @status_parser.edited_at > @status.edited_at)
@@ -170,8 +169,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def update_immediate_attributes!
-    @status.text         = @status_parser.text || ''
-    @status.spoiler_text = @status_parser.spoiler_text || ''
+    @status.text         = @status_parser.processed_text
+    @status.spoiler_text = @status_parser.processed_spoiler_text
     @status.sensitive    = @account.sensitized? || @status_parser.sensitive || false
     @status.language     = @status_parser.language
 
@@ -351,7 +350,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def expected_type?
-    equals_or_includes_any?(@json['type'], %w(Note Question))
+    equals_or_includes_any?(@json['type'], ActivityPub::Activity::SUPPORTED_TYPES) || equals_or_includes_any?(@json['type'], ActivityPub::Activity::CONVERTED_TYPES)
   end
 
   def record_previous_edit!

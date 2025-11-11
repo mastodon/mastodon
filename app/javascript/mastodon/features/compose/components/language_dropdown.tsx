@@ -55,6 +55,8 @@ const getFrequentlyUsedLanguages = createSelector(
       .toArray(),
 );
 
+const isTextLongEnoughForGuess = (text: string) => text.length > 20;
+
 const LanguageDropdownMenu: React.FC<{
   value: string;
   guess?: string;
@@ -375,26 +377,30 @@ export const LanguageDropdown: React.FC = () => {
   );
 
   useEffect(() => {
-    let canceled = false;
-
-    if (countLetters(text) >= 5) {
-      debouncedGuess(text)
-        .then((lang) => {
-          if (!canceled) {
-            setGuess(lang ?? '');
-          }
-        })
-        .catch(() => {
-          setGuess('');
-        });
+    if (isTextLongEnoughForGuess(text)) {
+      debouncedGuess(text, setGuess);
     } else {
-      setGuess('');
+      debouncedGuess.cancel();
     }
 
     return () => {
       canceled = true;
     };
   }, [text, setGuess]);
+
+  // Keeping track of the previous render's text length here
+  // to be able to reset the guess when the text length drops
+  // below the threshold needed to make a guess
+  const [wasLongText, setWasLongText] = useState(() =>
+    isTextLongEnoughForGuess(text),
+  );
+  if (wasLongText !== isTextLongEnoughForGuess(text)) {
+    setWasLongText(isTextLongEnoughForGuess(text));
+
+    if (wasLongText) {
+      setGuess('');
+    }
+  }
 
   return (
     <div ref={targetRef}>
