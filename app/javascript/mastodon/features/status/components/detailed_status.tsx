@@ -271,17 +271,13 @@ export const DetailedStatus: React.FC<{
         to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reblogs`}
         className='detailed-status__link'
       >
+        <span className='detailed-status__reblogs'>
+          <AnimatedNumber value={status.get('reblogs_count')} />
+        </span>
         <FormattedMessage
           id='status.reblogs'
-          defaultMessage='{count, plural, one {{counter} boost} other {{counter} boosts}}'
-          values={{
-            count: status.get('reblogs_count'),
-            counter: (
-              <span className='detailed-status__reblogs'>
-                <AnimatedNumber value={status.get('reblogs_count')} />
-              </span>
-            ),
-          }}
+          defaultMessage='{count, plural, one {boost} other {boosts}}'
+          values={{ count: status.get('reblogs_count') }}
         />
       </Link>
     );
@@ -295,34 +291,26 @@ export const DetailedStatus: React.FC<{
         to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/quotes`}
         className='detailed-status__link'
       >
+        <span className='detailed-status__quotes'>
+          <AnimatedNumber value={status.get('quotes_count')} />
+        </span>
         <FormattedMessage
           id='status.quotes'
-          defaultMessage='{count, plural, one {{counter} quote} other {{counter} quotes}}'
-          values={{
-            count: status.get('quotes_count'),
-            counter: (
-              <span className='detailed-status__quotes'>
-                <AnimatedNumber value={status.get('quotes_count')} />
-              </span>
-            ),
-          }}
+          defaultMessage='{count, plural, one {quote} other {quotes}}'
+          values={{ count: status.get('quotes_count') }}
         />
       </Link>
     );
   } else {
     quotesLink = (
       <span className='detailed-status__link'>
+        <span className='detailed-status__quotes'>
+          <AnimatedNumber value={status.get('quotes_count')} />
+        </span>
         <FormattedMessage
           id='status.quotes'
-          defaultMessage='{count, plural, one {{counter} quote} other {{counter} quotes}}'
-          values={{
-            count: status.get('quotes_count'),
-            counter: (
-              <span className='detailed-status__quotes'>
-                <AnimatedNumber value={status.get('quotes_count')} />
-              </span>
-            ),
-          }}
+          defaultMessage='{count, plural, one {quote} other {quotes}}'
+          values={{ count: status.get('quotes_count') }}
         />
       </span>
     );
@@ -333,17 +321,13 @@ export const DetailedStatus: React.FC<{
       to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/favourites`}
       className='detailed-status__link'
     >
+      <span className='detailed-status__favorites'>
+        <AnimatedNumber value={status.get('favourites_count')} />
+      </span>
       <FormattedMessage
         id='status.favourites'
-        defaultMessage='{count, plural, one {{counter} favorite} other {{counter} favorites}}'
-        values={{
-          count: status.get('favourites_count'),
-          counter: (
-            <span className='detailed-status__favorites'>
-              <AnimatedNumber value={status.get('favourites_count')} />
-            </span>
-          ),
-        }}
+        defaultMessage='{count, plural, one {favorite} other {favorites}}'
+        values={{ count: status.get('favourites_count') }}
       />
     </Link>
   );
