@@ -16,7 +16,7 @@
                 wrapper: :with_label
     .fields-group
       = f.input :password_confirmation,
-                input_html: { 'aria-label': t('simple_form.labels.defaults.confirm_new_password'), autocomplete: 'new-password' },
+                input_html: { 'aria-label': t('simple_form.labels.defaults.confirm_new_password'), autocomplete: 'new-password', minlength: User.password_length.first, maxlength: User.password_length.last },
                 label: t('simple_form.labels.defaults.confirm_new_password'),
                 required: true,
                 wrapper: :with_label
