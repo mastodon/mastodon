@@ -39,7 +39,7 @@
       .fields-row__column.fields-group.fields-row__column-6
         = f.input :password_confirmation,
                   disabled: current_account.suspended?,
-                  input_html: { 'aria-label': t('simple_form.labels.defaults.confirm_new_password'), autocomplete: 'new-password' },
+                  input_html: { 'aria-label': t('simple_form.labels.defaults.confirm_new_password'), autocomplete: 'new-password', minlength: User.password_length.first, maxlength: User.password_length.last },
                   label: t('simple_form.labels.defaults.confirm_new_password'),
                   wrapper: :with_label
 
