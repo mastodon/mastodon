@@ -1,16 +1,4 @@
-:root {
-  /* TEXT TOKENS */
-
-  --clr-text-primary: var(--clr-grey-50);
-  --clr-text-secondary: var(--clr-grey-300);
-  --clr-text-tertiary: var(--clr-grey-400);
-  --clr-text-accent: var(--clr-indigo-300);
-  --clr-text-status-links: var(--clr-text-accent);
-
-  /* BORDER TOKENS */
-
-  --clr-border-primary-strength: 18%;
-}
+@use '../mastodon/variables' as *;
 
 .status__content a,
 .reply-indicator__content a,
@@ -41,6 +29,16 @@
       }
     }
   }
+}
+
+.status__content a,
+.reply-indicator__content a,
+.edit-indicator__content a {
+  color: $highlight-text-color;
+}
+
+.report-dialog-modal__textarea::placeholder {
+  color: $inverted-text-color;
 }
 
 .link-button:disabled {

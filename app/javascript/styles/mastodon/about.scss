@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'functions' as *;
 
 $maximum-width: 1235px;
 $fluid-breakpoint: $maximum-width + 20px;
@@ -27,7 +28,7 @@ $fluid-breakpoint: $maximum-width + 20px;
 
   li {
     position: relative;
-    border-bottom: 1px solid var(--clr-border-primary);
+    border-bottom: 1px solid var(--background-border-color);
     padding: 1em 1.75em;
     padding-inline-start: 3em;
     font-weight: 500;
@@ -67,8 +68,8 @@ $fluid-breakpoint: $maximum-width + 20px;
       position: absolute;
       inset-inline-start: 0;
       top: 1em;
-      background: var(--clr-bg-accent-strong);
-      color: var(--clr-text-on-accent-strong);
+      background: $highlight-text-color;
+      color: $ui-base-color;
       border-radius: 50%;
       width: 4ch;
       height: 4ch;
@@ -84,13 +85,13 @@ $fluid-breakpoint: $maximum-width + 20px;
   }
 
   &__text {
-    color: var(--clr-text-primary);
+    color: $primary-text-color;
   }
 
   &__hint {
     font-size: 14px;
     font-weight: 400;
-    color: var(--clr-text-secondary);
+    color: $darker-text-color;
   }
 }
 
@@ -103,21 +104,21 @@ $fluid-breakpoint: $maximum-width + 20px;
   > label {
     font-size: 14px;
     font-weight: 600;
-    color: var(--clr-text-primary);
+    color: $primary-text-color;
   }
 
-  select {
+  > select {
     appearance: none;
     box-sizing: border-box;
     font-size: 14px;
-    color: var(--clr-text-primary);
+    color: $primary-text-color;
     display: block;
     width: 100%;
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: var(--clr-bg-secondary);
-    border: 1px solid var(--clr-border-primary);
+    background: $ui-base-color;
+    border: 1px solid var(--background-border-color);
     border-radius: 4px;
     padding-inline-start: 10px;
     padding-inline-end: 30px;
@@ -126,5 +127,19 @@ $fluid-breakpoint: $maximum-width + 20px;
     @media screen and (width <= 600px) {
       font-size: 16px;
     }
+  }
+
+  &::after {
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    content: '';
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14.933' height='18.467' viewBox='0 0 14.933 18.467'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='currentColor' /></svg>")
+      no-repeat 50% 50%;
+    mask-size: contain;
+    right: 8px;
+    background-color: lighten($ui-base-color, 12%);
+    pointer-events: none;
   }
 }

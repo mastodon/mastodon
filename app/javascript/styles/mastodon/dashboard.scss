@@ -1,3 +1,4 @@
+@use 'functions' as *;
 @use 'variables' as *;
 
 .dashboard__counters {
@@ -15,9 +16,9 @@
     & > div,
     & > a {
       padding: 20px;
-      background: var(--clr-bg-primary);
+      background: var(--background-color);
       border-radius: 4px;
-      border: 1px solid var(--clr-border-primary);
+      border: 1px solid var(--background-border-color);
       box-sizing: border-box;
       height: 100%;
     }
@@ -30,7 +31,7 @@
       &:hover,
       &:focus,
       &:active {
-        background: var(--clr-bg-accent-subtle);
+        background: $ui-base-color;
       }
     }
   }
@@ -40,7 +41,7 @@
     text-align: center;
     font-weight: 500;
     font-size: 24px;
-    color: var(--clr-text-primary);
+    color: $primary-text-color;
     margin-bottom: 20px;
     line-height: 30px;
   }
@@ -51,7 +52,7 @@
 
   &__label {
     font-size: 14px;
-    color: var(--clr-text-secondary);
+    color: $darker-text-color;
     text-align: center;
     font-weight: 500;
   }
@@ -84,8 +85,8 @@
     display: flex;
     align-items: baseline;
     border-radius: 4px;
-    background: var(--clr-bg-accent-strong);
-    color: var(--clr-text-on-accent-strong);
+    background: $ui-button-background-color;
+    color: $primary-text-color;
     transition: all 100ms ease-in;
     font-size: 14px;
     padding: 8px 16px;
@@ -95,18 +96,18 @@
     &:active,
     &:focus,
     &:hover {
-      background-color: var(--clr-bg-accent-strong-highlighted);
+      background-color: $ui-button-focus-background-color;
       transition: all 200ms ease-out;
     }
 
     &.positive {
-      background: var(--clr-bg-success-subtle);
-      color: var(--clr-text-success);
+      background: lighten($ui-base-color, 4%);
+      color: $valid-value-color;
     }
 
     &.negative {
-      background: var(--clr-bg-error-subtle);
-      color: var(--clr-text-error);
+      background: lighten($ui-base-color, 4%);
+      color: $error-value-color;
     }
 
     span {
