@@ -140,7 +140,14 @@ async function loadThemesFromConfig(root: string) {
       console.warn(`Invalid theme path "${themePath}" in themes.yml, skipping`);
       continue;
     }
-    themes[themeName] = themePath;
+
+    let mappedThemePath: string = themePath;
+
+    if (isStylesWithTokensEnabled()) {
+      mappedThemePath = themePath.replace('styles/', 'styles_new/');
+    }
+
+    themes[themeName] = mappedThemePath;
   }
 
   if (Object.keys(themes).length === 0) {
@@ -162,4 +169,14 @@ function isThemeFile(file: string, themes: Themes) {
 
   const basename = pathToThemeName(file);
   return basename in themes;
+}
+
+function isStylesWithTokensEnabled() {
+  // Read the ENV at plugin initialization time
+  const raw = process.env.EXPERIMENTAL_FEATURES ?? '';
+  const features = raw
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return features.includes('styles_with_tokens');
 }
