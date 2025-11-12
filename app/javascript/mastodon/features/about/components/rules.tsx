@@ -169,9 +169,13 @@ const localeOptionsSelector = createSelector(
       },
     };
     // Use the default locale as a target to translate language names.
-    const intlLocale = new Intl.DisplayNames(intl.locale, {
-      type: 'language',
-    });
+    const intlLocale =
+      // Intl.DisplayNames can be undefined in old browsers
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      Intl.DisplayNames &&
+      (new Intl.DisplayNames(intl.locale, {
+        type: 'language',
+      }) as Intl.DisplayNames | undefined);
     for (const { translations } of rules) {
       for (const locale in translations) {
         if (langs[locale]) {
@@ -179,7 +183,7 @@ const localeOptionsSelector = createSelector(
         }
         langs[locale] = {
           value: locale,
-          text: intlLocale.of(locale) ?? locale,
+          text: intlLocale?.of(locale) ?? locale,
         };
       }
     }
