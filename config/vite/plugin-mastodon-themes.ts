@@ -43,6 +43,10 @@ export function MastodonThemes(): Plugin {
 
       for (const [themeName, themePath] of Object.entries(themes)) {
         entrypoints[`themes/${themeName}`] = path.resolve(jsRoot, themePath);
+        entrypoints[`themes/${themeName}_theme_tokens`] = path.resolve(
+          jsRoot,
+          themePath.replace('styles/', 'styles_new/'),
+        );
       }
 
       return {
@@ -64,7 +68,7 @@ export function MastodonThemes(): Plugin {
         // Rewrite the URL to the entrypoint if it matches a theme.
         if (isThemeFile(req.url ?? '', themes)) {
           const themeName = pathToThemeName(req.url ?? '');
-          req.url = `/packs-dev/${themes[themeName]}`;
+          req.url = `/packs-dev/${themes[areThemeTokensEnabled() ? `${themeName}_theme_tokens` : themeName]}`;
         }
         next();
       });
@@ -77,7 +81,7 @@ export function MastodonThemes(): Plugin {
       const themePathToName = new Map(
         Object.entries(themes).map(([themeName, themePath]) => [
           path.resolve(jsRoot, themePath),
-          `/themes/${themeName}`,
+          `/themes/${areThemeTokensEnabled() ? `${themeName}_theme_tokens` : themeName}`,
         ]),
       );
       const themeNames = new Set<string>();
@@ -141,13 +145,7 @@ async function loadThemesFromConfig(root: string) {
       continue;
     }
 
-    let mappedThemePath: string = themePath;
-
-    if (isStylesWithTokensEnabled()) {
-      mappedThemePath = themePath.replace('styles/', 'styles_new/');
-    }
-
-    themes[themeName] = mappedThemePath;
+    themes[themeName] = themePath;
   }
 
   if (Object.keys(themes).length === 0) {
@@ -167,16 +165,16 @@ function isThemeFile(file: string, themes: Themes) {
     return false;
   }
 
-  const basename = pathToThemeName(file);
+  const basename = pathToThemeName(file.replace('_theme_tokens', ''));
   return basename in themes;
 }
 
-function isStylesWithTokensEnabled() {
+function areThemeTokensEnabled() {
   // Read the ENV at plugin initialization time
   const raw = process.env.EXPERIMENTAL_FEATURES ?? '';
   const features = raw
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean);
-  return features.includes('styles_with_tokens');
+  return features.includes('theme_tokens');
 }
