@@ -68,7 +68,11 @@ export function MastodonThemes(): Plugin {
         // Rewrite the URL to the entrypoint if it matches a theme.
         if (isThemeFile(req.url ?? '', themes)) {
           const themeName = pathToThemeName(req.url ?? '');
-          req.url = `/packs-dev/${themes[areThemeTokensEnabled() ? `${themeName}_theme_tokens` : themeName]}`;
+          const themePath = `/packs-dev/${themes[themeName]}`;
+          const isThemeTokenRequest = req.url.includes('_theme_tokens');
+          req.url = isThemeTokenRequest
+            ? themePath.replace('styles/', 'styles_new/')
+            : themePath;
         }
         next();
       });
@@ -156,7 +160,7 @@ async function loadThemesFromConfig(root: string) {
 }
 
 function pathToThemeName(file: string) {
-  const basename = path.basename(file);
+  const basename = path.basename(file.replace('_theme_tokens', ''));
   return basename.split(/[.?]/)[0] ?? '';
 }
 
@@ -165,12 +169,11 @@ function isThemeFile(file: string, themes: Themes) {
     return false;
   }
 
-  const basename = pathToThemeName(file.replace('_theme_tokens', ''));
+  const basename = pathToThemeName(file);
   return basename in themes;
 }
 
 function areThemeTokensEnabled() {
-  // Read the ENV at plugin initialization time
   const raw = process.env.EXPERIMENTAL_FEATURES ?? '';
   const features = raw
     .split(',')
