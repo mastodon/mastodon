@@ -35,7 +35,7 @@ module LanguagesHelper
     cy: ['Welsh', 'Cymraeg'].freeze,
     da: ['Danish', 'dansk'].freeze,
     de: ['German', 'Deutsch'].freeze,
-    dv: ['Divehi', 'Dhivehi'].freeze,
+    dv: ['Divehi', 'ދިވެހި'].freeze,
     dz: ['Dzongkha', 'རྫོང་ཁ'].freeze,
     ee: ['Ewe', 'Eʋegbe'].freeze,
     el: ['Greek', 'Ελληνικά'].freeze,
