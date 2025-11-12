@@ -80,10 +80,11 @@ async function fetchAndCheckEtag<ResultType extends object[]>(
   return data;
 }
 
-const modules = import.meta.glob(
+const modules = import.meta.glob<string>(
   '../../../../../node_modules/emojibase-data/**/compact.json',
   {
-    as: 'url',
+    query: '?url',
+    import: 'default',
   },
 );
 
