@@ -26,6 +26,7 @@ class AccountMigration < ApplicationRecord
   before_validation :set_followers_count
 
   normalizes :acct, with: ->(acct) { acct.strip.delete_prefix('@') }
+  normalizes :current_username, with: ->(value) { value.strip.delete_prefix('@') }
 
   validates :acct, presence: true, domain: { acct: true }
   validate :validate_migration_cooldown
