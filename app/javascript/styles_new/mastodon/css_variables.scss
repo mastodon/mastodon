@@ -70,8 +70,6 @@
     var(--color-bg-primary),
     var(--color-bg-secondary-base) var(--color-bg-secondary-strength)
   );
-
-  /* Secondary with doubled mix amount */
   --color-bg-tertiary: color-mix(
     in oklab,
     var(--color-bg-primary),
@@ -88,53 +86,57 @@
     )};
   --color-bg-overlay: var(--color-bg-primary);
   --color-bg-disabled: var(--color-grey-700);
-  --color-bg-accent-subtle-base: var(--color-indigo-400);
+
+  // Accent
+  --color-bg-accent-strong: var(--color-indigo-600);
   --color-bg-accent-subtle-strength: 10%;
   --color-bg-accent-subtle: #{utils.css-alpha(
-      var(--color-bg-accent-subtle-base),
+      var(--color-bg-accent-strong),
       var(--color-bg-accent-subtle-strength)
     )};
   --color-bg-accent-subtle-highlighted: #{utils.css-alpha(
-      var(--color-bg-accent-subtle-base),
+      var(--color-bg-accent-strong),
       calc(var(--color-bg-accent-subtle-strength) * 1.5)
     )};
-  --color-bg-accent-strong: var(--color-indigo-600);
   --color-bg-accent-strong-highlighted: color-mix(
     in oklab,
     var(--color-bg-accent-strong),
     black var(--color-bg-accent-subtle-strength)
   );
-  --color-bg-error-subtle-base: #f41b3b;
+
+  // Error
+  --color-bg-error-strong: var(--color-red-600);
   --color-bg-error-subtle-strength: 12%;
   --color-bg-error-subtle: #{utils.css-alpha(
-      var(--color-bg-error-subtle-base),
+      var(--color-bg-error-strong),
       var(--color-bg-error-subtle-strength)
     )};
-  --color-bg-error-strong: var(--color-red-600);
   --color-bg-error-strong-highlighted: color-mix(
     in oklab,
     var(--color-bg-error-strong),
     black var(--color-bg-error-subtle-strength)
   );
-  --color-bg-warning-subtle-base: #ffca1b;
+
+  // Warning
+  --color-bg-warning-strong: var(--color-yellow-600);
   --color-bg-warning-subtle-strength: 10%;
   --color-bg-warning-subtle: #{utils.css-alpha(
-      var(--color-bg-warning-subtle-base),
+      var(--color-bg-warning-strong),
       var(--color-bg-warning-subtle-strength)
     )};
-  --color-bg-warning-strong: var(--color-yellow-600);
   --color-bg-warning-strong-highlighted: color-mix(
     in oklab,
     var(--color-bg-warning-strong),
     black var(--color-bg-warning-subtle-strength)
   );
-  --color-bg-success-subtle-base: #17e865;
+
+  // Success
+  --color-bg-success-strong: var(--color-green-600);
   --color-bg-success-subtle-strength: 15%;
   --color-bg-success-subtle: #{utils.css-alpha(
-      var(--color-bg-success-subtle-base),
+      var(--color-bg-success-strong),
       var(--color-bg-success-subtle-strength)
     )};
-  --color-bg-success-strong: var(--color-green-600);
   --color-bg-success-strong-highlighted: color-mix(
     in oklab,
     var(--color-bg-success-strong),

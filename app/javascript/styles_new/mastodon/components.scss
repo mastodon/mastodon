@@ -133,11 +133,7 @@
     &:active,
     &:focus,
     &:hover {
-      background-color: color-mix(
-        in oklab,
-        var(--color-bg-error-strong),
-        black var(--color-bg-error-subtle-strength)
-      );
+      background-color: var(--color-bg-error-strong-highlighted);
       transition: none;
     }
   }
