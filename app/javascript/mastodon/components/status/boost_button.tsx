@@ -112,18 +112,6 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
   const statusId = status.get('id') as string;
   const wasBoosted = !!status.get('reblogged');
 
-  let count: number | undefined;
-  if (counters) {
-    count = 0;
-    // Ensure count is a valid integer.
-    if (Number.isInteger(status.get('reblogs_count'))) {
-      count += status.get('reblogs_count') as number;
-    }
-    if (Number.isInteger(status.get('quotes_count'))) {
-      count += status.get('quotes_count') as number;
-    }
-  }
-
   const showLoginPrompt = useCallback(() => {
     dispatch(
       openModal({
@@ -199,7 +187,12 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
         )}
         icon='retweet'
         iconComponent={boostIcon}
-        counter={count}
+        counter={
+          counters
+            ? (status.get('reblogs_count') as number) +
+              (status.get('quotes_count') as number)
+            : undefined
+        }
         active={isReblogged}
       />
     </Dropdown>
