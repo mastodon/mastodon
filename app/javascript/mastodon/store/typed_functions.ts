@@ -42,7 +42,7 @@ interface AppThunkConfig {
 }
 export type AppThunkApi = Pick<
   GetThunkAPI<AppThunkConfig>,
-  'getState' | 'dispatch'
+  'getState' | 'dispatch' | 'requestId'
 >;
 
 interface AppThunkOptions<Arg> {
@@ -60,7 +60,7 @@ type AppThunk<Arg = void, Returned = void> = (
 
 type AppThunkCreator<Arg = void, Returned = void, ExtraArg = unknown> = (
   arg: Arg,
-  api: AppThunkApi,
+  api: Pick<AppThunkApi, 'getState' | 'dispatch'>,
   extra?: ExtraArg,
 ) => Returned;
 
@@ -143,10 +143,10 @@ export function createAsyncThunk<Arg = void, Returned = void>(
     name,
     async (
       arg: Arg,
-      { getState, dispatch, fulfillWithValue, rejectWithValue },
+      { getState, dispatch, requestId, fulfillWithValue, rejectWithValue },
     ) => {
       try {
-        const result = await creator(arg, { dispatch, getState });
+        const result = await creator(arg, { dispatch, getState, requestId });
 
         return fulfillWithValue(result, {
           useLoadingBar: options.useLoadingBar,
@@ -280,10 +280,11 @@ export function createDataLoadingThunk<
 
   return createAsyncThunk<Args, Returned>(
     name,
-    async (arg, { getState, dispatch }) => {
+    async (arg, { getState, dispatch, requestId }) => {
       const data = await loadData(arg, {
         dispatch,
         getState,
+        requestId,
       });
 
       if (!onData) return data as Returned;
@@ -291,6 +292,7 @@ export function createDataLoadingThunk<
       const result = await onData(data, {
         dispatch,
         getState,
+        requestId,
         discardLoadData: discardLoadDataInPayload,
         actionArg: arg,
       });

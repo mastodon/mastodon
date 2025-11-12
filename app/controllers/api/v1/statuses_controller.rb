@@ -66,7 +66,7 @@ class Api::V1::StatusesController < Api::BaseController
     if async_refresh.running?
       add_async_refresh_header(async_refresh)
     elsif !current_account.nil? && @status.should_fetch_replies?
-      add_async_refresh_header(AsyncRefresh.create(refresh_key))
+      add_async_refresh_header(AsyncRefresh.create(refresh_key, count_results: true))
 
       WorkerBatch.new.within do |batch|
         batch.connect(refresh_key, threshold: 1.0)
@@ -126,10 +126,11 @@ class Api::V1::StatusesController < Api::BaseController
     @status = Status.where(account: current_account).find(params[:id])
     authorize @status, :destroy?
 
+    json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: true
+
     @status.discard_with_reblogs
     StatusPin.find_by(status: @status)&.destroy
     @status.account.statuses_count = @status.account.statuses_count - 1
-    json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: true
 
     RemovalWorker.perform_async(@status.id, { 'redraft' => !truthy_param?(:delete_media) })
 

@@ -23,6 +23,7 @@ export const LearnMoreLink: React.FC<{ children: React.ReactNode }> = ({
         onClick={handleClick}
         aria-expanded={open}
         aria-controls={accessibilityId}
+        type='button'
       >
         <FormattedMessage
           id='learn_more_link.learn_more'
@@ -48,7 +49,11 @@ export const LearnMoreLink: React.FC<{ children: React.ReactNode }> = ({
             <div className='learn-more__popout__content'>{children}</div>
 
             <div>
-              <button className='link-button' onClick={handleClick}>
+              <button
+                className='link-button'
+                onClick={handleClick}
+                type='button'
+              >
                 <FormattedMessage
                   id='learn_more_link.got_it'
                   defaultMessage='Got it'

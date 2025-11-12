@@ -1,5 +1,5 @@
 import { flattenEmojiData } from 'emojibase';
-import type { CompactEmoji, FlatCompactEmoji } from 'emojibase';
+import type { CompactEmoji, FlatCompactEmoji, Locale } from 'emojibase';
 
 import {
   putEmojiData,
@@ -43,9 +43,8 @@ async function fetchAndCheckEtag<ResultType extends object[]>(
   if (locale === 'custom') {
     url.pathname = '/api/v1/custom_emojis';
   } else {
-    // This doesn't use isDevelopment() as that module loads initial state
-    // which breaks workers, as they cannot access the DOM.
-    url.pathname = `/packs${import.meta.env.DEV ? '-dev' : ''}/emoji/${locale}.json`;
+    const modulePath = await localeToPath(locale);
+    url.pathname = modulePath;
   }
 
   const oldEtag = await loadLatestEtag(locale);
@@ -79,4 +78,20 @@ async function fetchAndCheckEtag<ResultType extends object[]>(
   }
 
   return data;
+}
+
+const modules = import.meta.glob<string>(
+  '../../../../../node_modules/emojibase-data/**/compact.json',
+  {
+    query: '?url',
+    import: 'default',
+  },
+);
+
+function localeToPath(locale: Locale) {
+  const key = `../../../../../node_modules/emojibase-data/${locale}/compact.json`;
+  if (!modules[key] || typeof modules[key] !== 'function') {
+    throw new Error(`Unsupported locale: ${locale}`);
+  }
+  return modules[key]();
 }

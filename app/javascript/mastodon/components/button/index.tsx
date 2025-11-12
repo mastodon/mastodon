@@ -78,6 +78,7 @@ export const Button: React.FC<Props> = ({
       aria-live={loading !== undefined ? 'polite' : undefined}
       onClick={handleClick}
       title={title}
+      // eslint-disable-next-line react/button-has-type -- set correctly via TS
       type={type}
       {...props}
     >

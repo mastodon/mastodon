@@ -79,7 +79,7 @@ fi:
       featured_tag:
         name: 'Tässä muutamia hiljattain käyttämiäsi aihetunnisteita:'
       filters:
-        action: Valitse, mikä toiminto suoritetaan, kun julkaisu vastaa suodatinta
+        action: Valitse, miten toimitaan, kun julkaisu vastaa suodatinta
         actions:
           blur: Piilota media varoituksen taakse piilottamatta itse tekstiä
           hide: Piilota suodatettu sisältö kokonaan, ikään kuin sitä ei olisi olemassa
@@ -88,11 +88,12 @@ fi:
         activity_api_enabled: Paikallisesti julkaistujen julkaisujen, aktiivisten käyttäjien ja rekisteröitymisten viikoittainen määrä
         app_icon: WEBP, PNG, GIF tai JPG. Korvaa oletusarvoisen mobiililaitteiden sovelluskuvakkeen haluamallasi kuvakkeella.
         backups_retention_period: Käyttäjillä on mahdollisuus arkistoida julkaisujaan myöhemmin ladattaviksi. Kun kentän arvo on positiivinen, nämä arkistot poistuvat automaattisesti, kun määritetty määrä päiviä on kulunut.
-        bootstrap_timeline_accounts: Nämä tilit kiinnitetään uusien käyttäjien seurantasuositusten alkuun.
+        bootstrap_timeline_accounts: Nämä tilit kiinnittyvät uusien käyttäjien seurantasuositusten alkuun. Syötä pilkuin eroteltu luettelo tilejä.
         closed_registrations_message: Näkyy, kun rekisteröityminen on suljettu
         content_cache_retention_period: Kaikki muiden palvelinten julkaisut (mukaan lukien tehostukset ja vastaukset) poistuvat, kun määritetty määrä päiviä on kulunut, lukuun ottamatta paikallisen käyttäjän vuorovaikutusta näiden julkaisujen kanssa. Tämä sisältää julkaisut, jotka paikallinen käyttäjä on merkinnyt kirjanmerkiksi tai suosikiksi. Myös yksityismaininnat eri palvelinten käyttäjien välillä menetetään, eikä niitä voi palauttaa. Tämä asetus on tarkoitettu käytettäväksi erityistapauksissa ja rikkoo monia käyttäjien odotuksia, kun sitä sovelletaan yleiskäyttöön.
         custom_css: Voit käyttää mukautettuja tyylejä Mastodonin selainversiossa.
         favicon: WEBP, PNG, GIF tai JPG. Korvaa oletusarvoisen Mastodonin sivustokuvakkeen haluamallasi kuvakkeella.
+        landing_page: Valitsee, minkä sivun uudet kävijät näkevät saapuessaan palvelimellesi. Jos valitset ”Trendit”, trendien tulee olla käytössä Löydettävyys-asetuksissa. Jos valitset ”Paikallinen syöte”, kohta ”Pääsy paikallisia julkaisuja esitteleviin livesyötteisiin” tulee asettaa arvoon ”Kaikki” Löydettävyys-asetuksissa.
         mascot: Korvaa kuvituksen edistyneessä selainkäyttöliittymässä.
         media_cache_retention_period: Etäkäyttäjien tekemien julkaisujen mediatiedostot ovat välimuistissa palvelimellasi. Kun kentän arvo on positiivinen, media poistuu, kun määritetty määrä päiviä on kulunut. Jos mediaa pyydetään sen poistamisen jälkeen, se ladataan uudelleen, jos lähdesisältö on vielä saatavilla. Koska linkkien esikatselun kyselyitä kolmansien osapuolien sivustoille on rajoitettu, on suositeltavaa asettaa tämä arvo vähintään 14 päivään, tai linkkien kortteja ei päivitetä pyynnöstä ennen tätä ajankohtaa.
         min_age: Käyttäjiä pyydetään rekisteröitymisen aikana vahvistamaan syntymäpäivänsä
@@ -144,6 +145,7 @@ fi:
         admin_email: Oikeudellisiin ilmoituksiin kuuluvat vastailmoitukset, oikeuden määräykset, poistopyynnöt ja lainvalvontaviranomaisten pyynnöt.
         arbitration_address: Voi olla sama kuin edellä mainittu Fyysinen osoite tai ”N/A”, jos käytät sähköpostia.
         arbitration_website: Voi olla verkkolomake tai ”N/A”, jos käytät sähköpostia.
+        choice_of_law: Kaupunki, alue, territorio tai valtio, jonka sisäinen aineellinen oikeus säätelee kaikkia vaatimuksia.
         dmca_address: Yhdysvaltalaisten operaattoreiden on käytettävä DMCA Designated Agent Directory -luetteloon rekisteröityä osoitetta. Postilokeroluettelo on saatavissa suoralla pyynnöllä, joten käytä DMCA Designated Agent Post Office Box Waiver Request -lomaketta lähettääksesi sähköpostia tekijänoikeusvirastolle ja kuvaile, että olet kotona toimiva sisältömoderaattori, joka pelkää kostoa tai rangaistusta toimistaan ja tarvitsee postilokeroa pitääkseen kotiosoitteensa poissa julkisuudesta.
         dmca_email: Voi olla sama kuin edellä mainittu ”Sähköpostiosoite oikeudellisille ilmoituksille”.
         domain: Tarjoamasi verkkopalvelun yksilöllinen tunniste.
@@ -172,7 +174,7 @@ fi:
     labels:
       account:
         attribution_domains: Verkkosivustot, jotka voivat antaa sinulle tunnustusta
-        discoverable: Pidä profiiliasi ja julkaisujasi esillä löytämisalgoritmeissa
+        discoverable: Pidä profiiliasi ja julkaisujasi esillä löydettävyysalgoritmeissa
         fields:
           name: Nimike
           value: Sisältö
@@ -285,6 +287,7 @@ fi:
         content_cache_retention_period: Etäsisällön säilytysaika
         custom_css: Mukautettu CSS
         favicon: Sivustokuvake
+        landing_page: Uusien kävijöiden aloitussivu
         local_live_feed_access: Pääsy paikallisia julkaisuja esitteleviin livesyötteisiin
         local_topic_feed_access: Pääsy paikallisia julkaisuja esitteleviin aihetunniste- ja linkkisyötteisiin
         mascot: Mukautettu maskotti (vanhentunut)

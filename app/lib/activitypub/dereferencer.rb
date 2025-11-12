@@ -44,7 +44,7 @@ class ActivityPub::Dereferencer
 
     req = Request.new(:get, uri)
 
-    req.add_headers('Accept' => 'application/activity+json, application/ld+json')
+    req.add_headers('Accept' => 'application/ld+json; profile="https://www.w3.org/ns/activitystreams", application/activity+json')
     req.add_headers(headers) if headers
     req.on_behalf_of(@signature_actor) if @signature_actor
 

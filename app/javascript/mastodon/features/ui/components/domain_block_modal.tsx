@@ -53,8 +53,6 @@ export const DomainBlockModal: React.FC<{
   }, [dispatch]);
 
   useEffect(() => {
-    setLoading(true);
-
     apiRequest<DomainBlockPreviewResponse>('GET', 'v1/domain_blocks/preview', {
       params: { domain },
       timeout: 5000,
@@ -68,7 +66,7 @@ export const DomainBlockModal: React.FC<{
         setPreview('error');
         setLoading(false);
       });
-  }, [setPreview, setLoading, domain]);
+  }, [domain]);
 
   return (
     <div className='modal-root__modal safety-action-modal' aria-live='polite'>
@@ -196,7 +194,7 @@ export const DomainBlockModal: React.FC<{
 
           <div className='spacer' />
 
-          <button onClick={handleCancel} className='link-button'>
+          <button onClick={handleCancel} className='link-button' type='button'>
             <FormattedMessage
               id='confirmation_modal.cancel'
               defaultMessage='Cancel'

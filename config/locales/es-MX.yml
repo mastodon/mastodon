@@ -796,8 +796,8 @@ es-MX:
         view_dashboard_description: Permite a los usuarios acceder al panel de control y varias métricas
         view_devops: DevOps
         view_devops_description: Permite a los usuarios acceder a los paneles de control Sidekiq y pgHero
-        view_feeds: Visualización de cronologías y tendencias
-        view_feeds_description: Permitir a los usuarios acceder a las cronologías públicas y tendencias sin importar la configuración del servidor
+        view_feeds: Ver temas y feed en vivo
+        view_feeds_description: Permitir a los usuarios acceder a temas y feeds en vivo sin importar la configuración de los servidores
       title: Roles
     rules:
       add_new: Añadir norma
@@ -852,13 +852,13 @@ es-MX:
         users: Para los usuarios locales que han iniciado sesión
       feed_access:
         modes:
-          authenticated: Solo usuarios autenticados
+          authenticated: Solo usuarios registrados
           disabled: Requerir un rol de usuario específico
           public: Todos
       landing_page:
         values:
           about: Acerca de
-          local_feed: Cronología local
+          local_feed: Feed local
           trends: Tendencias
       registrations:
         moderation_recommandation: "¡Por favor, asegúrate de contar con un equipo de moderación adecuado y activo antes de abrir el registro al público!"
@@ -1672,7 +1672,7 @@ es-MX:
       disabled_account: Tu cuenta actual no será completamente utilizable después. Sin embargo, tendrás acceso a la exportación de datos así como a la reactivación.
       followers: Esta acción migrará a todos los seguidores de la cuenta actual a la nueva cuenta
       only_redirect_html: Alternativamente, solo puedes <a href="%{path}">poner una redirección en tu perfil</a>.
-      other_data: No se moverán otros datos automáticamente
+      other_data: Ningún otro dato se moverá automáticamente (esto incluye tus publicaciones y la lista de cuentas que sigues)
       redirect: El perfil de tu cuenta actual se actualizará con un aviso de redirección y será excluido de las búsquedas
   moderation:
     title: Moderación
@@ -1929,6 +1929,7 @@ es-MX:
     errors:
       in_reply_not_found: La publicación a la que estás intentando responder no existe.
       quoted_status_not_found: La publicación que intentas citar no parece existir.
+      quoted_user_not_mentioned: No se puede citar a un usuario no mencionado en una Mención Privada.
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
       direct: Las publicaciones que son visibles solo para los usuarios mencionados no pueden fijarse

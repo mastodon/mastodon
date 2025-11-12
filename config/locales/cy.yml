@@ -911,6 +911,11 @@ cy:
           authenticated: Defnyddwyr dilys yn unig
           disabled: Gofyn am rôl defnyddiwr penodol
           public: Pawb
+      landing_page:
+        values:
+          about: Ynghylch
+          local_feed: Ffrwd leol
+          trends: Trendiau
       registrations:
         moderation_recommandation: Gwnewch yn siŵr bod gennych chi dîm cymedroli digonol ac adweithiol cyn i chi agor cofrestriadau i bawb!
         preamble: Rheoli pwy all greu cyfrif ar eich gweinydd.
@@ -1823,7 +1828,7 @@ cy:
       disabled_account: Ni fydd modd defnyddio'ch cyfrif cyfredol yn llawn wedyn. Fodd bynnag, bydd gennych fynediad i allforio data yn ogystal ag ail agor.
       followers: Bydd y weithred hon yn symud yr holl ddilynwyr o'r cyfrif cyfredol i'r cyfrif newydd
       only_redirect_html: Fel arall, <a href="%{path}">dim ond ailgyfeiriad y gallwch chi ei osod ar eich proffil</a>.
-      other_data: Ni fydd unrhyw data arall yn cael ei symud yn awtomatig
+      other_data: Bydd dim ddata arall yn cael ei symud yn awtomatig (gan gynnwys eich postiadau a'r rhestr o gyfrifon rydych chi'n eu dilyn)
       redirect: Bydd proffil eich cyfrif presennol yn cael ei diweddaru gyda hysbysiad ailgyfeirio ac yn cael ei eithrio o chwiliadau
   moderation:
     title: Cymedroil
@@ -2096,6 +2101,7 @@ cy:
     errors:
       in_reply_not_found: Nid yw'n ymddangos bod y postiad rydych chi'n ceisio ei ateb yn bodoli.
       quoted_status_not_found: Nid yw'n ymddangos bod y postiad rydych chi'n ceisio'i ddyfynnu yn bodoli.
+      quoted_user_not_mentioned: Does dim modd dyfynnu defnyddiwr heb ei grybwyll mewn postiad Crybwyll Preifat.
     over_character_limit: wedi mynd y tu hwnt i'r terfyn nodau o %{max}
     pin_errors:
       direct: Nid oes modd pinio postiadau sy'n weladwy i ddefnyddwyr a grybwyllwyd yn unig

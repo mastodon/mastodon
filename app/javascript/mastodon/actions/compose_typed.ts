@@ -13,10 +13,11 @@ import {
 } from 'mastodon/store/typed_functions';
 
 import type { ApiQuotePolicy } from '../api_types/quotes';
-import type { Status } from '../models/status';
+import type { Status, StatusVisibility } from '../models/status';
+import type { RootState } from '../store';
 
 import { showAlert } from './alerts';
-import { focusCompose } from './compose';
+import { changeCompose, focusCompose } from './compose';
 import { importFetchedStatuses } from './importer';
 import { openModal } from './modal';
 
@@ -40,6 +41,10 @@ const messages = defineMessages({
   quoteErrorUnauthorized: {
     id: 'quote_error.unauthorized',
     defaultMessage: 'You are not authorized to quote this post.',
+  },
+  quoteErrorPrivateMention: {
+    id: 'quote_error.private_mentions',
+    defaultMessage: 'Quoting is not allowed with direct mentions.',
   },
 });
 
@@ -66,6 +71,39 @@ const simulateModifiedApiResponse = (
 
   return data;
 };
+
+export const changeComposeVisibility = createAppThunk(
+  'compose/visibility_change',
+  (visibility: StatusVisibility, { dispatch, getState }) => {
+    if (visibility !== 'direct') {
+      return visibility;
+    }
+
+    const state = getState();
+    const quotedStatusId = state.compose.get('quoted_status_id') as
+      | string
+      | null;
+    if (!quotedStatusId) {
+      return visibility;
+    }
+
+    // Remove the quoted status
+    dispatch(quoteComposeCancel());
+    const quotedStatus = state.statuses.get(quotedStatusId) as Status | null;
+    if (!quotedStatus) {
+      return visibility;
+    }
+
+    // Append the quoted status URL to the compose text
+    const url = quotedStatus.get('url') as string;
+    const text = state.compose.get('text') as string;
+    if (!text.includes(url)) {
+      const newText = text.trim() ? `${text}\n\n${url}` : url;
+      dispatch(changeCompose(newText));
+    }
+    return visibility;
+  },
+);
 
 export const changeUploadCompose = createDataLoadingThunk(
   'compose/changeUpload',
@@ -130,6 +168,8 @@ export const quoteComposeByStatus = createAppThunk(
 
     if (composeState.get('id')) {
       dispatch(showAlert({ message: messages.quoteErrorEdit }));
+    } else if (composeState.get('privacy') === 'direct') {
+      dispatch(showAlert({ message: messages.quoteErrorPrivateMention }));
     } else if (composeState.get('poll')) {
       dispatch(showAlert({ message: messages.quoteErrorPoll }));
     } else if (
@@ -173,6 +213,17 @@ export const quoteComposeById = createAppThunk(
   },
 );
 
+const composeStateForbidsLink = (composeState: RootState['compose']) => {
+  return (
+    composeState.get('quoted_status_id') ||
+    composeState.get('is_submitting') ||
+    composeState.get('poll') ||
+    composeState.get('is_uploading') ||
+    composeState.get('id') ||
+    composeState.get('privacy') === 'direct'
+  );
+};
+
 export const pasteLinkCompose = createDataLoadingThunk(
   'compose/pasteLink',
   async ({ url }: { url: string }) => {
@@ -183,15 +234,12 @@ export const pasteLinkCompose = createDataLoadingThunk(
       limit: 2,
     });
   },
-  (data, { dispatch, getState }) => {
+  (data, { dispatch, getState, requestId }) => {
     const composeState = getState().compose;
 
     if (
-      composeState.get('quoted_status_id') ||
-      composeState.get('is_submitting') ||
-      composeState.get('poll') ||
-      composeState.get('is_uploading') ||
-      composeState.get('id')
+      composeStateForbidsLink(composeState) ||
+      composeState.get('fetching_link') !== requestId // Request has been cancelled
     )
       return;
 
@@ -207,6 +255,17 @@ export const pasteLinkCompose = createDataLoadingThunk(
       dispatch(quoteComposeById(data.statuses[0].id));
     }
   },
+  {
+    useLoadingBar: false,
+    condition: (_, { getState }) =>
+      !getState().compose.get('fetching_link') &&
+      !composeStateForbidsLink(getState().compose),
+  },
+);
+
+// Ideally this would cancel the action and the HTTP request, but this is good enough
+export const cancelPasteLinkCompose = createAction(
+  'compose/cancelPasteLinkCompose',
 );
 
 export const quoteComposeCancel = createAction('compose/quoteComposeCancel');

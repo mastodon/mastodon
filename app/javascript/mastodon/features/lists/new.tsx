@@ -22,6 +22,7 @@ import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { Icon } from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+import type { List } from 'mastodon/models/list';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { messages as membersMessages } from './members';
@@ -72,35 +73,22 @@ const MembersLink: React.FC<{
   );
 };
 
-const NewList: React.FC<{
-  multiColumn?: boolean;
-}> = ({ multiColumn }) => {
+const NewList: React.FC<{ list?: List | null }> = ({ list }) => {
   const dispatch = useAppDispatch();
-  const { id } = useParams<{ id?: string }>();
-  const intl = useIntl();
   const history = useHistory();
 
-  const list = useAppSelector((state) =>
-    id ? state.lists.get(id) : undefined,
-  );
-  const [title, setTitle] = useState('');
-  const [exclusive, setExclusive] = useState(false);
-  const [repliesPolicy, setRepliesPolicy] = useState<RepliesPolicyType>('list');
+  const {
+    id,
+    title: initialTitle = '',
+    exclusive: initialExclusive = false,
+    replies_policy: initialRepliesPolicy = 'list',
+  } = list ?? {};
+
+  const [title, setTitle] = useState(initialTitle);
+  const [exclusive, setExclusive] = useState(initialExclusive);
+  const [repliesPolicy, setRepliesPolicy] =
+    useState<RepliesPolicyType>(initialRepliesPolicy);
   const [submitting, setSubmitting] = useState(false);
-
-  useEffect(() => {
-    if (id) {
-      dispatch(fetchList(id));
-    }
-  }, [dispatch, id]);
-
-  useEffect(() => {
-    if (id && list) {
-      setTitle(list.title);
-      setExclusive(list.exclusive);
-      setRepliesPolicy(list.replies_policy);
-    }
-  }, [setTitle, setExclusive, setRepliesPolicy, id, list]);
 
   const handleTitleChange = useCallback(
     ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
@@ -159,6 +147,138 @@ const NewList: React.FC<{
   }, [history, dispatch, setSubmitting, id, title, exclusive, repliesPolicy]);
 
   return (
+    <form className='simple_form app-form' onSubmit={handleSubmit}>
+      <div className='fields-group'>
+        <div className='input with_label'>
+          <div className='label_input'>
+            <label htmlFor='list_title'>
+              <FormattedMessage
+                id='lists.list_name'
+                defaultMessage='List name'
+              />
+            </label>
+
+            <div className='label_input__wrapper'>
+              <input
+                id='list_title'
+                type='text'
+                value={title}
+                onChange={handleTitleChange}
+                maxLength={30}
+                required
+                placeholder=' '
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className='fields-group'>
+        <div className='input with_label'>
+          <div className='label_input'>
+            <label htmlFor='list_replies_policy'>
+              <FormattedMessage
+                id='lists.show_replies_to'
+                defaultMessage='Include replies from list members to'
+              />
+            </label>
+
+            <div className='label_input__wrapper'>
+              <select
+                id='list_replies_policy'
+                value={repliesPolicy}
+                onChange={handleRepliesPolicyChange}
+              >
+                <FormattedMessage
+                  id='lists.replies_policy.none'
+                  defaultMessage='No one'
+                >
+                  {(msg) => <option value='none'>{msg}</option>}
+                </FormattedMessage>
+                <FormattedMessage
+                  id='lists.replies_policy.list'
+                  defaultMessage='Members of the list'
+                >
+                  {(msg) => <option value='list'>{msg}</option>}
+                </FormattedMessage>
+                <FormattedMessage
+                  id='lists.replies_policy.followed'
+                  defaultMessage='Any followed user'
+                >
+                  {(msg) => <option value='followed'>{msg}</option>}
+                </FormattedMessage>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {id && (
+        <div className='fields-group'>
+          <MembersLink id={id} />
+        </div>
+      )}
+
+      <div className='fields-group'>
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label className='app-form__toggle'>
+          <div className='app-form__toggle__label'>
+            <strong>
+              <FormattedMessage
+                id='lists.exclusive'
+                defaultMessage='Hide members in Home'
+              />
+            </strong>
+            <span className='hint'>
+              <FormattedMessage
+                id='lists.exclusive_hint'
+                defaultMessage='If someone is on this list, hide them in your Home feed to avoid seeing their posts twice.'
+              />
+            </span>
+          </div>
+
+          <div className='app-form__toggle__toggle'>
+            <div>
+              <Toggle checked={exclusive} onChange={handleExclusiveChange} />
+            </div>
+          </div>
+        </label>
+      </div>
+
+      <div className='actions'>
+        <button className='button' type='submit'>
+          {submitting ? (
+            <LoadingIndicator />
+          ) : id ? (
+            <FormattedMessage id='lists.save' defaultMessage='Save' />
+          ) : (
+            <FormattedMessage id='lists.create' defaultMessage='Create' />
+          )}
+        </button>
+      </div>
+    </form>
+  );
+};
+
+const NewListWrapper: React.FC<{
+  multiColumn?: boolean;
+}> = ({ multiColumn }) => {
+  const intl = useIntl();
+  const dispatch = useAppDispatch();
+  const { id } = useParams<{ id?: string }>();
+  const list = useAppSelector((state) =>
+    id ? state.lists.get(id) : undefined,
+  );
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchList(id));
+    }
+  }, [dispatch, id]);
+
+  const isLoading = id && !list;
+
+  return (
     <Column
       bindToDocument={!multiColumn}
       label={intl.formatMessage(id ? messages.edit : messages.create)}
@@ -172,119 +292,7 @@ const NewList: React.FC<{
       />
 
       <div className='scrollable'>
-        <form className='simple_form app-form' onSubmit={handleSubmit}>
-          <div className='fields-group'>
-            <div className='input with_label'>
-              <div className='label_input'>
-                <label htmlFor='list_title'>
-                  <FormattedMessage
-                    id='lists.list_name'
-                    defaultMessage='List name'
-                  />
-                </label>
-
-                <div className='label_input__wrapper'>
-                  <input
-                    id='list_title'
-                    type='text'
-                    value={title}
-                    onChange={handleTitleChange}
-                    maxLength={30}
-                    required
-                    placeholder=' '
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className='fields-group'>
-            <div className='input with_label'>
-              <div className='label_input'>
-                <label htmlFor='list_replies_policy'>
-                  <FormattedMessage
-                    id='lists.show_replies_to'
-                    defaultMessage='Include replies from list members to'
-                  />
-                </label>
-
-                <div className='label_input__wrapper'>
-                  <select
-                    id='list_replies_policy'
-                    value={repliesPolicy}
-                    onChange={handleRepliesPolicyChange}
-                  >
-                    <FormattedMessage
-                      id='lists.replies_policy.none'
-                      defaultMessage='No one'
-                    >
-                      {(msg) => <option value='none'>{msg}</option>}
-                    </FormattedMessage>
-                    <FormattedMessage
-                      id='lists.replies_policy.list'
-                      defaultMessage='Members of the list'
-                    >
-                      {(msg) => <option value='list'>{msg}</option>}
-                    </FormattedMessage>
-                    <FormattedMessage
-                      id='lists.replies_policy.followed'
-                      defaultMessage='Any followed user'
-                    >
-                      {(msg) => <option value='followed'>{msg}</option>}
-                    </FormattedMessage>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {id && (
-            <div className='fields-group'>
-              <MembersLink id={id} />
-            </div>
-          )}
-
-          <div className='fields-group'>
-            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-            <label className='app-form__toggle'>
-              <div className='app-form__toggle__label'>
-                <strong>
-                  <FormattedMessage
-                    id='lists.exclusive'
-                    defaultMessage='Hide members in Home'
-                  />
-                </strong>
-                <span className='hint'>
-                  <FormattedMessage
-                    id='lists.exclusive_hint'
-                    defaultMessage='If someone is on this list, hide them in your Home feed to avoid seeing their posts twice.'
-                  />
-                </span>
-              </div>
-
-              <div className='app-form__toggle__toggle'>
-                <div>
-                  <Toggle
-                    checked={exclusive}
-                    onChange={handleExclusiveChange}
-                  />
-                </div>
-              </div>
-            </label>
-          </div>
-
-          <div className='actions'>
-            <button className='button' type='submit'>
-              {submitting ? (
-                <LoadingIndicator />
-              ) : id ? (
-                <FormattedMessage id='lists.save' defaultMessage='Save' />
-              ) : (
-                <FormattedMessage id='lists.create' defaultMessage='Create' />
-              )}
-            </button>
-          </div>
-        </form>
+        {isLoading ? <LoadingIndicator /> : <NewList list={list} />}
       </div>
 
       <Helmet>
@@ -298,4 +306,4 @@ const NewList: React.FC<{
 };
 
 // eslint-disable-next-line import/no-default-export
-export default NewList;
+export default NewListWrapper;

@@ -5,7 +5,6 @@
     'customManagers:dockerfileVersions',
     ':labels(dependencies)',
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
-    ':prHourlyLimit2', // Rate limit PR creation to a maximum of two per hour.
     ':enableVulnerabilityAlertsWithLabel(security)',
   ],
   rebaseWhen: 'conflicted',
@@ -23,8 +22,6 @@
       // Require Dependency Dashboard Approval for major version bumps of these node packages
       matchManagers: ['npm'],
       matchPackageNames: [
-        'tesseract.js', // Requires code changes
-
         // react-router: Requires manual upgrade
         'history',
         'react-router-dom',

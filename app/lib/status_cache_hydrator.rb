@@ -98,12 +98,12 @@ class StatusCacheHydrator
         if quote.quoted_status.nil?
           payload[nested ? :quoted_status_id : :quoted_status] = nil
           payload[:state] = 'deleted'
-        elsif StatusFilter.new(quote.quoted_status, Account.find_by(id: account_id)).filtered_for_quote?
-          payload[nested ? :quoted_status_id : :quoted_status] = nil
-          payload[:state] = 'unauthorized'
         else
-          payload[:state] = 'accepted'
-          if nested
+          filter_state = StatusFilter.new(quote.quoted_status, Account.find_by(id: account_id)).filter_state_for_quote
+          payload[:state] = filter_state || 'accepted'
+          if filter_state == 'unauthorized'
+            payload[nested ? :quoted_status_id : :quoted_status] = nil
+          elsif nested
             payload[:quoted_status_id] = quote.quoted_status_id&.to_s
           else
             payload[:quoted_status] = StatusCacheHydrator.new(quote.quoted_status).hydrate(account_id, nested: true)

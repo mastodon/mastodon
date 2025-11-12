@@ -824,6 +824,8 @@ gd:
         view_dashboard_description: Leigidh seo le cleachdaichean an deas-bhòrd agus meatrachdan inntrigeadh
         view_devops: DevOps
         view_devops_description: Leigidh seo le cleachdaichean na deas-bhùird aig Sidekiq is pgHero inntrigeadh
+        view_feeds: Seall loidhnichean-ama beòtha ’s nan cuspairean
+        view_feeds_description: Leigidh seo le cleachdaichean loidhnichean-ama beòtha ’s nan cuspairean inntrigeadh ge b’ e dè roghainnean an fhrithealaiche
       title: Dreuchdan
     rules:
       add_new: Cuir riaghailt ris
@@ -879,7 +881,13 @@ gd:
       feed_access:
         modes:
           authenticated: Cleachdaichean a chlàraich a-steach a-mhàin
+          disabled: Iarr dreuchd shònraichte a’ chleachdaiche
           public: A h-uile duine
+      landing_page:
+        values:
+          about: Mu dhèidhinn
+          local_feed: Loidhne-ama ionadail
+          trends: Treandaichean
       registrations:
         moderation_recommandation: Dèan cinnteach gu bheil sgioba maoir deiseil is deònach agad mus fhosgail thu an clàradh dhan a h-uile duine!
         preamble: Stiùirich cò dh’fhaodas cunntas a chruthachadh air an fhrithealaiche agad.
@@ -1742,7 +1750,7 @@ gd:
       disabled_account: Cha ghabh an cunntas làithreach agad a chleachdadh gu slàn às a dhèidh. Gidheadh, bidh an dà chuid às-phortadh an dàta is ath-ghnìomhachadh ri fhaighinn dhut.
       followers: Imrichidh an gnìomh seo a h-uile neach-leantainn on chunntas làithreach dhan chunntas ùr
       only_redirect_html: Mar roghainn eile, ’s urrainn dhut <a href="%{path}">ath-stiùireadh a-mhàin a chur air a’ phròifil agad</a>.
-      other_data: Cha dèid dàta sam bith eile imrich gu fèin-obrachail
+      other_data: Cha dèid dàta sam bith eile imrich gu fèin-obrachail (a’ gabhail a-staigh nam postaichean ’s liosta nan cunntasan a leanas tu)
       redirect: Thèid pròifil a’ chunntais làithrich agad ùrachadh le brath ath-stiùiridh agus às-dhùnadh on lorg
   moderation:
     title: Maorsainneachd
@@ -2007,6 +2015,7 @@ gd:
     errors:
       in_reply_not_found: Tha coltas nach eil am post dhan a tha thu airson freagairt ann.
       quoted_status_not_found: Tha coltas nach eil am post dhan a tha thu airson luaidh ann.
+      quoted_user_not_mentioned: Chan urrainn dhut neach gun iomradh air a luaidh ann am post a tha ’na iomradh prìobhaideach.
     over_character_limit: chaidh thu thar crìoch charactaran de %{max}
     pin_errors:
       direct: Chan urrainn dhut post a phrìneachadh nach fhaic ach na cleachdaichean le iomradh orra
@@ -2028,7 +2037,7 @@ gd:
       private: Luchd-leantainn a-mhàin
       public: Poblach
       public_long: Neach sam bith taobh a-staigh no a-muigh Mhastodon
-      unlisted: Poblach ach sàmhach
+      unlisted: Sàmhach
       unlisted_long: Falaichte o na toraidhean-luirg, na treandaichean ’s na loichnichean-ama poblach
   statuses_cleanup:
     enabled: Sguab às seann-phostaichean gu fèin-obrachail

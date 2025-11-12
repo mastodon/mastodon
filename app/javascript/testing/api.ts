@@ -53,6 +53,7 @@ export const mockHandlers = {
       const locale = toSupportedLocale(params.locale);
       action('fetching emoji data')(locale);
       const { default: data } = (await import(
+        /* @vite-ignore */
         `emojibase-data/${locale}/compact.json`
       )) as {
         default: CompactEmoji[];

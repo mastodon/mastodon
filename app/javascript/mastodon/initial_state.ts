@@ -35,7 +35,7 @@ interface InitialStateMeta {
   streaming_api_base_url: string;
   local_live_feed_access: 'public' | 'authenticated' | 'disabled';
   remote_live_feed_access: 'public' | 'authenticated' | 'disabled';
-  local_topic_feed_access: 'public' | 'authenticated' | 'disabled';
+  local_topic_feed_access: 'public' | 'authenticated';
   remote_topic_feed_access: 'public' | 'authenticated' | 'disabled';
   title: string;
   show_trends: boolean;
@@ -129,17 +129,21 @@ export const statusPageUrl = getMeta('status_page_url');
 export const sso_redirect = getMeta('sso_redirect');
 export const termsOfServiceEnabled = getMeta('terms_of_service_enabled');
 
-const displayNames = new Intl.DisplayNames(getMeta('locale'), {
-  type: 'language',
-  fallback: 'none',
-  languageDisplay: 'standard',
-});
+const displayNames =
+  // Intl.DisplayNames can be undefined in old browsers
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  Intl.DisplayNames &&
+  (new Intl.DisplayNames(getMeta('locale'), {
+    type: 'language',
+    fallback: 'none',
+    languageDisplay: 'standard',
+  }) as Intl.DisplayNames | undefined);
 
 export const languages = initialState?.languages.map((lang) => {
   // zh-YUE is not a valid CLDR unicode_language_id
   return [
     lang[0],
-    displayNames.of(lang[0].replace('zh-YUE', 'yue')) ?? lang[1],
+    displayNames?.of(lang[0].replace('zh-YUE', 'yue')) ?? lang[1],
     lang[2],
   ];
 });

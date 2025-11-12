@@ -860,9 +860,13 @@ eu:
       no_status_selected: Ez da bidalketarik aldatu ez delako bat ere hautatu
       open: Ireki bidalketa
       original_status: Jatorrizko bidalketa
+      quotes: Aipuak
       reblogs: Bultzadak
       status_changed: Bidalketa aldatuta
+      status_title: "%{name} erabiltzailearen bidalketa"
       trending: Joera
+      view_publicly: Publikoki ikusi
+      view_quoted_post: Aipatutako bidalketa ikusi
       visibility: Ikusgaitasuna
       with_media: Multimediarekin
     strikes:
@@ -907,6 +911,7 @@ eu:
       sidekiq_process_check:
         message_html: Ez da ari Sidekiq prozesurik exekutatzen %{value} ilad(et)an. Egiaztatu Sidekiq konfigurazioa
       software_version_check:
+        action: Ikusi eguneraketa eskuragarriak
         message_html: Mastodon eguneratze bat eskuragarri dago.
       software_version_critical_check:
         action: Ikusi eguneraketa eskuragarriak
@@ -1021,6 +1026,8 @@ eu:
           one: Pertsona batek erabilia azken astean
           other: "%{count} pertsonak erabilia azken astean"
       trending: Joerak
+    username_blocks:
+      add_new: Gehitu berria
     warning_presets:
       add_new: Gehitu berria
       delete: Ezabatu
@@ -1488,7 +1495,6 @@ eu:
       disabled_account: Zure uneko kontua ezin izango da gero erabili. Hala ere, datua exporatu ahal izango dituzu, eta berriro aktibatu.
       followers: Ekintza honek jarraitzaile guztiak eramango ditu uneko kontutik kontu berrira
       only_redirect_html: Bestela, <a href="%{path}">zure profilean birbideratze bat jar</a> dezakezu.
-      other_data: Ez da beste daturik migratuko automatikoki
       redirect: Zure uneko kontuaren profila eguneratuko da birbideratze ohar batekin eta bilaketetatik kenduko da
   moderation:
     title: Moderazioa

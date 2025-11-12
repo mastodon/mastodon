@@ -34,6 +34,8 @@ RSpec.describe ActivityPub::Activity do
       }
     end
 
+    let(:publication_date) { 1.hour.ago.utc }
+
     let(:create_json) do
       {
         '@context': [
@@ -52,7 +54,7 @@ RSpec.describe ActivityPub::Activity do
             'https://www.w3.org/ns/activitystreams#Public',
           ],
           content: 'foo',
-          published: '2025-05-24T11:03:10Z',
+          published: publication_date.iso8601,
           quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
         },
       }.deep_stringify_keys
@@ -77,7 +79,7 @@ RSpec.describe ActivityPub::Activity do
             'https://www.w3.org/ns/activitystreams#Public',
           ],
           content: 'foo',
-          published: '2025-05-24T11:03:10Z',
+          published: publication_date.iso8601,
           quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
           quoteAuthorization: approval_uri,
         },

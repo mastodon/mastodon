@@ -27,6 +27,7 @@ RSpec.describe UserMailer do
           address: 'localhost',
           port: 25,
           authentication: 'none',
+          enable_starttls_auto: true,
         }
       end
 
@@ -44,8 +45,7 @@ RSpec.describe UserMailer do
           address: 'localhost',
           port: 25,
           authentication: nil,
-          enable_starttls: nil,
-          enable_starttls_auto: true,
+          enable_starttls: :auto,
         })
       end
     end

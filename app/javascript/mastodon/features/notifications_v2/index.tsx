@@ -245,6 +245,7 @@ export const Notifications: React.FC<{
           title={intl.formatMessage(messages.markAsRead)}
           onClick={handleMarkAsRead}
           className='column-header__button'
+          type='button'
         >
           <Icon id='done-all' icon={DoneAllIcon} />
         </button>

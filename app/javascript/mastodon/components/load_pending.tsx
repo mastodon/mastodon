@@ -7,7 +7,7 @@ interface Props {
 
 export const LoadPending: React.FC<Props> = ({ onClick, count }) => {
   return (
-    <button className='load-more load-gap' onClick={onClick}>
+    <button className='load-more load-gap' onClick={onClick} type='button'>
       <FormattedMessage
         id='load_pending'
         defaultMessage='{count, plural, one {# new item} other {# new items}}'

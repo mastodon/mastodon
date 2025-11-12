@@ -13,7 +13,7 @@ gem 'haml-rails', '~>3.0'
 gem 'pg', '~> 1.5'
 gem 'pghero'
 
-gem 'aws-sdk-core', '< 3.216.0', require: false # TODO: https://github.com/mastodon/mastodon/pull/34173#issuecomment-2733378873
+gem 'aws-sdk-core', require: false
 gem 'aws-sdk-s3', '~> 1.123', require: false
 gem 'blurhash', '~> 0.1'
 gem 'fog-core', '<= 2.6.0'
@@ -114,7 +114,7 @@ group :opentelemetry do
   gem 'opentelemetry-instrumentation-http', '~> 0.27.0', require: false
   gem 'opentelemetry-instrumentation-http_client', '~> 0.26.0', require: false
   gem 'opentelemetry-instrumentation-net_http', '~> 0.26.0', require: false
-  gem 'opentelemetry-instrumentation-pg', '~> 0.32.0', require: false
+  gem 'opentelemetry-instrumentation-pg', '~> 0.33.0', require: false
   gem 'opentelemetry-instrumentation-rack', '~> 0.29.0', require: false
   gem 'opentelemetry-instrumentation-rails', '~> 0.39.0', require: false
   gem 'opentelemetry-instrumentation-redis', '~> 0.28.0', require: false
@@ -138,7 +138,7 @@ group :test do
   # Browser integration testing
   gem 'capybara', '~> 3.39'
   gem 'capybara-playwright-driver'
-  gem 'playwright-ruby-client', '1.55.0', require: false # Pinning the exact version as it needs to be kept in sync with the installed npm package
+  gem 'playwright-ruby-client', '1.56.0', require: false # Pinning the exact version as it needs to be kept in sync with the installed npm package
 
   # Used to reset the database between system tests
   gem 'database_cleaner-active_record'

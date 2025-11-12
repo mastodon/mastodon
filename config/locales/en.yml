@@ -1672,7 +1672,7 @@ en:
       disabled_account: Your current account will not be fully usable afterwards. However, you will have access to data export as well as re-activation.
       followers: This action will move all followers from the current account to the new account
       only_redirect_html: Alternatively, you can <a href="%{path}">only put up a redirect on your profile</a>.
-      other_data: No other data will be moved automatically
+      other_data: No other data will be moved automatically (including your posts and the list of accounts you follow)
       redirect: Your current account's profile will be updated with a redirect notice and be excluded from searches
   moderation:
     title: Moderation
@@ -1930,6 +1930,7 @@ en:
     errors:
       in_reply_not_found: The post you are trying to reply to does not appear to exist.
       quoted_status_not_found: The post you are trying to quote does not appear to exist.
+      quoted_user_not_mentioned: Cannot quote a non-mentioned user in a Private Mention post.
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
       direct: Posts that are only visible to mentioned users cannot be pinned

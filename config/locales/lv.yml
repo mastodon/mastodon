@@ -902,6 +902,7 @@ lv:
       title: Konta ieraksti - @%{name}
       trending: Aktuāli
       view_publicly: Skatīt publiski
+      view_quoted_post: Skatīt citēto ierakstu
       visibility: Redzamība
       with_media: Ar multividi
     strikes:
@@ -1244,7 +1245,7 @@ lv:
     setup:
       email_below_hint_html: Jāpārbauda sava surogātpasta mape vai jāpieprasa vēl vienu! Savu e-pasta adresi var labot, ja tā ir nepareiza.
       email_settings_hint_html: Jāatver saite, kuru mēs nosūtījām uz %{email}, lai sāktu izmantot Mastodon. Mēs gaidīsim šeit pat.
-      link_not_received: Vai nesaņēmi sati?
+      link_not_received: Vai nesaņēmi saiti?
       new_confirmation_instructions_sent: Pēc dažām minūtēm saņemsi jaunu e-pasta ziņojumu ar apstiprinājuma saiti.
       title: Pārbaudi savu iesūtni
     sign_in:
@@ -1644,7 +1645,6 @@ lv:
       disabled_account: Tavs pašreizējais konts pēc tam nebūs pilnībā lietojams. Tomēr tev būs piekļuve datu eksportēšanai, kā arī atkārtotai aktivizēšanai.
       followers: Veicot šo darbību, visi sekotāji tiks pārvietoti no pašreizējā konta uz jauno kontu
       only_redirect_html: Citādāk tu vari arī <a href="%{path}">savā profilā ievietot tikai novirzīšanu</a>.
-      other_data: Nekādi citi dati netiks automātiski pārvietoti
       redirect: Tava pašreizējā konta profils tiks atjaunināts ar novirzīšanas paziņojumu un tiks izslēgts no meklēšanas
   moderation:
     title: Satura pārraudzība
@@ -1680,6 +1680,8 @@ lv:
       title: Jauna pieminēšana
     poll:
       subject: "%{name} aptauja ir beigusies"
+    quote:
+      body: 'Tavu ierakstu citēja %{name}:'
     reblog:
       body: 'Tavu ziņu izcēla %{name}:'
       subject: "%{name} izcēla tavu ziņu"
@@ -1894,12 +1896,15 @@ lv:
     edited_at_html: Labots %{date}
     errors:
       in_reply_not_found: Šķiet, ka ziņa, uz kuru tu mēģini atbildēt, nepastāv.
+      quoted_status_not_found: Šķiet, ka ieraksts, kuru tu mēģini citēt, nepastāv.
     over_character_limit: pārsniegts %{max} rakstzīmju ierobežojums
     pin_errors:
       direct: Ierakstus, kas ir redzami tikai pieminētajiem lietotājiem, nevar piespraust
       limit: Jau ir piesprausts lielākais iespējamais ierakstu skaits
       ownership: Kāda cita ierakstu nevar piespraust
       reblog: Pastiprinātu ierakstu nevar piespraust
+    quote_error:
+      not_available: Ieraksts nav pieejams
     quote_policies:
       followers: Tikai sekotāji
       nobody: Tikai es

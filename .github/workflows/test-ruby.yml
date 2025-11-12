@@ -32,7 +32,7 @@ jobs:
       SECRET_KEY_BASE_DUMMY: 1
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -65,7 +65,7 @@ jobs:
         run: |
           tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs* tmp/cache/vite/last-build*.json
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         if: matrix.mode == 'test'
         with:
           path: |-
@@ -128,9 +128,9 @@ jobs:
           - '3.3'
           - '.ruby-version'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v6
         with:
           path: './'
           name: ${{ github.sha }}
@@ -230,9 +230,9 @@ jobs:
           - '3.3'
           - '.ruby-version'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v6
         with:
           path: './'
           name: ${{ github.sha }}
@@ -309,9 +309,9 @@ jobs:
           - '.ruby-version'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v6
         with:
           path: './'
           name: ${{ github.sha }}
@@ -350,14 +350,14 @@ jobs:
       - run: bin/rspec spec/system --tag streaming --tag js
 
       - name: Archive logs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: failure()
         with:
           name: e2e-logs-${{ matrix.ruby-version }}
           path: log/
 
       - name: Archive test screenshots
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: failure()
         with:
           name: e2e-screenshots-${{ matrix.ruby-version }}
@@ -447,9 +447,9 @@ jobs:
             search-image: opensearchproject/opensearch:2
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v6
         with:
           path: './'
           name: ${{ github.sha }}
@@ -469,14 +469,14 @@ jobs:
       - run: bin/rspec --tag search
 
       - name: Archive logs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: failure()
         with:
           name: test-search-logs-${{ matrix.ruby-version }}
           path: log/
 
       - name: Archive test screenshots
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: failure()
         with:
           name: test-search-screenshots

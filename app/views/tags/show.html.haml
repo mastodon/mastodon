@@ -1,6 +1,7 @@
 - content_for :header_tags do
   %link{ rel: :alternate, type: 'application/rss+xml', href: tag_url(@tag) }/
   %link{ rel: :alternate, type: 'application/activity+json', href: tag_url(@tag) }/
+  %link{ rel: :alternate, type: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"', href: tag_url(@tag) }/
   %meta{ name: 'robots', content: 'noindex' }/
   = render partial: 'shared/og'
 

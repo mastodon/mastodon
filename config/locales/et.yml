@@ -796,6 +796,8 @@ et:
         view_dashboard_description: Lubab kasutajail pääseda ligi töölauale ja erinevale meetrikale
         view_devops: DevOps
         view_devops_description: Lubab kasutajail ligipääsu Sidekiq ja pgHero töölaudadele
+        view_feeds: Vaata postituste ja teemade voogu reaalajas
+        view_feeds_description: Sõltumata serveri seadistustest luba kasutajatel vaadata postituste ja teemade voogu reaalajas
       title: Rollid
     rules:
       add_new: Lisa reegel
@@ -855,6 +857,8 @@ et:
           public: Kõik
       landing_page:
         values:
+          about: Teave
+          local_feed: Kohalik sisuvoog
           trends: Trendid
       registrations:
         moderation_recommandation: Enne kõigi jaoks registreerimise avamist veendu, et oleks olemas adekvaatne ja reageerimisvalmis modereerijaskond!
@@ -1419,7 +1423,7 @@ et:
     csv: CSV
     domain_blocks: Domeeni blokeeringud
     lists: Loetelud
-    mutes: Oled vaigistanud
+    mutes: Oled summutanud
     storage: Meedia hoidla
   featured_tags:
     add_new: Lisa uus
@@ -1524,8 +1528,8 @@ et:
         one: Oled <strong>asendamas oma loetelusid</strong> faili <strong>%{filename}</strong> sisuga. Uutesse loeteludesse lisatakse kuni <strong>%{count} konto</strong>.
         other: Oled <strong>asendamas oma loetelusid</strong> faili <strong>%{filename}</strong> sisuga. Uutesse loeteludesse lisatakse kuni <strong>%{count} kontot</strong>.
       muting_html:
-        one: Oled <strong>asendamas oma vaigistatud kontode loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} konto</strong>.
-        other: Oled <strong>asendamas oma vaigistatud kontode loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} kontot</strong>.
+        one: Oled <strong>asendamas oma summutatud kontode loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} konto</strong>.
+        other: Oled <strong>asendamas oma summutatud kontode loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} kontot</strong>.
     preambles:
       blocking_html:
         one: Oled <strong>blokeerimas</strong> kuni <strong>%{count} konto</strong> failist <strong>%{filename}</strong>.
@@ -1543,8 +1547,8 @@ et:
         one: Oled lisamas oma <strong>loeteludesse</strong> failist <strong>%{filename}</strong> kuni <strong>%{count} konto</strong>. Kui pole loetelusi, kuhu lisada, luuakse uued loetelud.
         other: Oled lisamas oma <strong>loeteludesse</strong> failist <strong>%{filename}</strong> kuni <strong>%{count} kontot</strong>. Kui pole loetelusi, kuhu lisada, luuakse uued loetelud.
       muting_html:
-        one: Oled <strong>vaigistamas</strong> kuni <strong>%{count} konto</strong> failist <strong>%{filename}</strong>.
-        other: Oled <strong>vaigistamas</strong> kuni <strong>%{count} kontot</strong> failist <strong>%{filename}</strong>.
+        one: Oled <strong>summutamas</strong> kuni <strong>%{count} konto</strong> failist <strong>%{filename}</strong>.
+        other: Oled <strong>summutamas</strong> kuni <strong>%{count} kontot</strong> failist <strong>%{filename}</strong>.
     preface: Saad importida mistahes andmeid, mis on eksporditud teisest serverist. Näiteks nimekirja inimestest, keda jälgid ja keda blokeerid.
     recent_imports: Viimati imporditud
     states:
@@ -1561,11 +1565,11 @@ et:
       domain_blocking: Blokeeritud domeenide importimine
       following: Jälgitavate kontode importimine
       lists: Loetelude importimine
-      muting: Vaigistatud kontode importimine
+      muting: Summutatud kontode importimine
     type: Importimise tüüp
     type_groups:
       constructive: Jälgimised & Järjehoidjad
-      destructive: Blokeerimised & Vaigistamised
+      destructive: Blokeerimised & summutamised
     types:
       blocking: Blokeeringute nimekiri
       bookmarks: Järjehoidjad
@@ -1668,13 +1672,13 @@ et:
       disabled_account: Pärast seda ei ole konto täielik kasutamine võimalik. Säilib andmete eksportimise ja konto taasaktiveerimise võimalus.
       followers: See käsklus kolib kõik siinse konto jälgijad üle sinu uue konto jälgijateks
       only_redirect_html: Teine võimalus on <a href="%{path}">märkida konto ümbersuunatuks</a>.
-      other_data: Muid kontoandmeid, sh postitusi automaatselt üle ei kanta
+      other_data: Muid andmeid ei teisaldata automaatselt (sealhulgas sinu postitusi ja jälgitavate kasutajakontode loendit)
       redirect: Konto eemaldatakse avalikust kataloogist ja märgitakse profiilis ümbersuunatuks
   moderation:
     title: Modereerimine
   move_handler:
     carry_blocks_over_text: See kasutaja kolis kontolt %{acct}, mis oli keelatud.
-    carry_mutes_over_text: Kasutaja kolis ümber kontolt %{acct}, mis oli vaigistatud.
+    carry_mutes_over_text: Kasutaja kolis ümber kontolt %{acct}, mis oli summutatud.
     copy_account_note_text: 'Kasutaja kolis kontolt %{acct}, kus olid eelnevad märkmed tema kohta:'
   navigation:
     toggle_menu: Menüü lülimine
@@ -1925,6 +1929,7 @@ et:
     errors:
       in_reply_not_found: Postitus, millele üritad vastata, ei näi enam eksisteerivat.
       quoted_status_not_found: Postitus, mida üritad tsiteerida, ei näi enam eksisteerivat.
+      quoted_user_not_mentioned: Privaatses mainimisega postituses ei saa tsiteerida mittemaninitud kasutajat.
     over_character_limit: tähtmärkide limiit %{max} ületatud
     pin_errors:
       direct: Ei saa kinnitada postitusi, mis on nähtavad vaid mainitud kasutajatele

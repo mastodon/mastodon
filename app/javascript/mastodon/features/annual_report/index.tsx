@@ -31,15 +31,13 @@ export const AnnualReport: React.FC<{
   year: string;
 }> = ({ year }) => {
   const [response, setResponse] = useState<AnnualReportResponse | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const currentAccount = useAppSelector((state) =>
     me ? state.accounts.get(me) : undefined,
   );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setLoading(true);
-
     apiRequestGet<AnnualReportResponse>(`v1/annual_reports/${year}`)
       .then((data) => {
         dispatch(importFetchedStatuses(data.statuses));

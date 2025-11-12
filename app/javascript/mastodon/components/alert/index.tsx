@@ -49,7 +49,11 @@ export const Alert: React.FC<{
       </span>
 
       {hasAction && (
-        <button className='notification-bar__action' onClick={onActionClick}>
+        <button
+          className='notification-bar__action'
+          onClick={onActionClick}
+          type='button'
+        >
           {action}
         </button>
       )}

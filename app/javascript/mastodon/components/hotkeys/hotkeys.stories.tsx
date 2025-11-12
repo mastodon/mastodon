@@ -153,7 +153,7 @@ export const Default = {
             the app.
           </p>
           <p>
-            When a <button>Button</button> is focused,
+            When a <button type='button'>Button</button> is focused,
             <kbd>Enter</kbd>
             should not trigger open, but <kbd>o</kbd>
             should.

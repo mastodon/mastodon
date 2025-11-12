@@ -127,7 +127,11 @@ const LoginOrSignUp: React.FC = () => {
       );
     } else {
       signupButton = (
-        <button className='button' onClick={openClosedRegistrationsModal}>
+        <button
+          className='button'
+          onClick={openClosedRegistrationsModal}
+          type='button'
+        >
           <FormattedMessage
             id='sign_in_banner.create_account'
             defaultMessage='Create account'
@@ -195,6 +199,7 @@ export const NavigationBar: React.FC = () => {
           className={classNames('ui__navigation-bar__item', { active: open })}
           onClick={handleClick}
           aria-label={intl.formatMessage(messages.menu)}
+          type='button'
         >
           <Icon id='' icon={MenuIcon} />
         </button>

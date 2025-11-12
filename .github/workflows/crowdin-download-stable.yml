@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Increase Git http.postBuffer
         # This is needed due to a bug in Ubuntu's cURL version?
