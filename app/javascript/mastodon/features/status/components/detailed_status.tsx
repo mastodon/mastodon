@@ -272,7 +272,7 @@ export const DetailedStatus: React.FC<{
         className='detailed-status__link'
       >
         <FormattedMessage
-          id='status.reblogs'
+          id='status.reblogs_count'
           defaultMessage='{count, plural, one {{counter} boost} other {{counter} boosts}}'
           values={{
             count: status.get('reblogs_count'),
@@ -296,7 +296,7 @@ export const DetailedStatus: React.FC<{
         className='detailed-status__link'
       >
         <FormattedMessage
-          id='status.quotes'
+          id='status.quotes_count'
           defaultMessage='{count, plural, one {{counter} quote} other {{counter} quotes}}'
           values={{
             count: status.get('quotes_count'),
@@ -313,7 +313,7 @@ export const DetailedStatus: React.FC<{
     quotesLink = (
       <span className='detailed-status__link'>
         <FormattedMessage
-          id='status.quotes'
+          id='status.quotes_count'
           defaultMessage='{count, plural, one {{counter} quote} other {{counter} quotes}}'
           values={{
             count: status.get('quotes_count'),
@@ -334,7 +334,7 @@ export const DetailedStatus: React.FC<{
       className='detailed-status__link'
     >
       <FormattedMessage
-        id='status.favourites'
+        id='status.favourites_count'
         defaultMessage='{count, plural, one {{counter} favorite} other {{counter} favorites}}'
         values={{
           count: status.get('favourites_count'),
