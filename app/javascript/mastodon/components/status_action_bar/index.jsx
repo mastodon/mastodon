@@ -404,6 +404,7 @@ class StatusActionBar extends ImmutablePureComponent {
             <Dropdown
               scrollKey={scrollKey}
               status={status}
+              needsStatusRefresh={quickBoosting && status.get('quote_approval') === null}
               items={menu}
               icon='ellipsis-h'
               iconComponent={MoreHorizIcon}

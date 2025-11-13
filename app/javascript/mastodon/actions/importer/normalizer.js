@@ -27,8 +27,11 @@ function stripQuoteFallback(text) {
   return wrapper.innerHTML;
 }
 
-export function normalizeStatus(status, normalOldStatus) {
+export function normalizeStatus(status, normalOldStatus, { bogusQuotePolicy = false }) {
   const normalStatus   = { ...status };
+
+  if (bogusQuotePolicy)
+    normalStatus.quote_approval = null;
 
   normalStatus.account = status.account.id;
 
@@ -109,6 +112,8 @@ export function normalizeStatus(status, normalOldStatus) {
   }
 
   if (normalOldStatus) {
+    normalStatus.quote_approval ||= normalOldStatus.quote_approval;
+
     const list = normalOldStatus.get('media_attachments');
     if (normalStatus.media_attachments && list) {
       normalStatus.media_attachments.forEach(item => {
