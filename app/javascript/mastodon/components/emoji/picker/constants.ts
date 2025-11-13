@@ -1,4 +1,4 @@
-import type { GroupMessage } from 'emojibase';
+import type { GroupKey, GroupMessage } from 'emojibase';
 import groupData from 'emojibase-data/meta/groups.json';
 
 import type { CustomEmojiData } from '@/mastodon/features/emoji/types';
@@ -6,6 +6,8 @@ import type { CustomEmojiData } from '@/mastodon/features/emoji/types';
 type CustomGroupMessage = Omit<GroupMessage, 'key'> & {
   key: string;
 };
+
+export const groupsToHide: readonly GroupKey[] = ['component'];
 
 export const groupKeysToNumber = Object.fromEntries(
   Object.entries(groupData.groups).map(([number, key]) => [
