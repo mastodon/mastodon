@@ -90,7 +90,20 @@ const PickerNavButton: FC<PickerNavProps> = ({ onSelect, message, group }) => {
     },
     [onSelect, group],
   );
-  const icon = useGroupIcon(group);
+  const { currentLocale } = useEmojiAppState();
+  const [icon, setIcon] = useState<UnicodeEmojiData | CustomEmojiData | null>(
+    () => {
+      const emoji = mockCustomEmojis.find((emoji) => emoji.category === group);
+      return emoji ?? null;
+    },
+  );
+
+  if (group in groupKeysToNumber) {
+    const groupNum = groupKeysToNumber[group];
+    if (typeof groupNum !== 'undefined') {
+      void loadUnicodeEmojiGroupIcon(groupNum, currentLocale).then(setIcon);
+    }
+  }
 
   return (
     <li>
@@ -109,23 +122,3 @@ const PickerNavButton: FC<PickerNavProps> = ({ onSelect, message, group }) => {
     </li>
   );
 };
-
-function useGroupIcon(groupKey: string) {
-  const { currentLocale } = useEmojiAppState();
-  const [icon, setIcon] = useState<UnicodeEmojiData | CustomEmojiData | null>(
-    () => {
-      const emoji = mockCustomEmojis.find(
-        (emoji) => emoji.category === groupKey,
-      );
-      return emoji ?? null;
-    },
-  );
-
-  if (groupKey in groupKeysToNumber) {
-    const group = groupKeysToNumber[groupKey];
-    if (typeof group !== 'undefined') {
-      void loadUnicodeEmojiGroupIcon(group, currentLocale).then(setIcon);
-    }
-  }
-  return icon;
-}
