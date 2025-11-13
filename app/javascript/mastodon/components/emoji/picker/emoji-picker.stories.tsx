@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 import {
   importCustomEmojiData,
@@ -7,14 +8,18 @@ import {
 
 import { MockEmojiPicker } from './index';
 
+const onSelect = action('emoji selected');
+
 const meta = {
   title: 'Components/Emoji/EmojiPicker',
-  render() {
+  render(_args, { globals }) {
+    const locale = typeof globals.locale === 'string' ? globals.locale : 'en';
+
     void importCustomEmojiData();
-    void importEmojiData('en');
-    return <MockEmojiPicker />;
+    void importEmojiData(locale);
+    return <MockEmojiPicker onSelect={onSelect} />;
   },
-} satisfies Meta<typeof MockEmojiPicker>;
+} satisfies Meta;
 
 export default meta;
 

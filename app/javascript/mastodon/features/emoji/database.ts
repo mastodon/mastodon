@@ -296,6 +296,16 @@ export async function loadLatestEtag(localeString: string) {
   return etag ?? null;
 }
 
+export async function loadUnicodeEmojiGroup(
+  group: number,
+  localeString: string,
+) {
+  const locale = toLoadedLocale(localeString);
+  const db = await loadDB();
+  const emojis = await db.getAllFromIndex(locale, 'group', group);
+  return emojis.toSorted(({ order: a = 0 }, { order: b = 0 }) => a - b);
+}
+
 export async function loadUnicodeEmojiGroupIcon(
   group: number,
   localeString: string,

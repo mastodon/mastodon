@@ -49,6 +49,86 @@
   overflow: hidden auto;
   scrollbar-width: thin;
   padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.groupHeader {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  transition: opacity 0.1s ease;
+
+  &:not(.isMinimized):hover {
+    opacity: 0.7;
+  }
+
+  button {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+.groupHeader.isMinimized {
+  opacity: 0.5;
+}
+
+.groupHeaderArrow {
+  transition: transform 0.1s ease;
+  width: 1rem;
+  height: 1rem;
+}
+
+.isMinimized .groupHeaderArrow {
+  transform: rotate(-90deg);
+}
+
+.emojiGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+}
+
+.listButton,
+.groupButton {
+  aspect-ratio: 1;
+  padding: 0;
+  appearance: none;
+  display: block;
+
+  > * {
+    pointer-events: none;
+  }
+}
+
+.listButton {
+  border: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+  text-align: center;
+  width: 100%;
+  border-radius: 5px;
+  transition: background-color 0.1s ease;
+
+  &:hover {
+    background-color: gray;
+  }
+
+  > img {
+    padding: 5px;
+  }
+
+  > * {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .nav {
@@ -61,16 +141,10 @@
 }
 
 .groupButton {
-  border-radius: 50%;
-  aspect-ratio: 1;
-  border: 1px solid gray;
   width: 2rem;
   height: 2rem;
-  padding: 0;
-
-  > * {
-    pointer-events: none;
-  }
+  border-radius: 50%;
+  border: 1px solid gray;
 }
 
 .separator {
