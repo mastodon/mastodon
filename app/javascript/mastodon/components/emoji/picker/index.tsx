@@ -95,11 +95,17 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({
       `../../../../../../node_modules/emojibase-data/${currentLocale}/messages.json`
     )
       .then((module: { default: MessagesDataset }) => {
-        setGroups(module.default.groups);
+        setGroups(
+          module.default.groups.filter(
+            (group) => !groupsToHide.includes(group.key),
+          ),
+        );
       })
       .catch((err: unknown) => {
         console.warn('fell back to en messages', err);
-        setGroups(messages.groups);
+        setGroups(
+          messages.groups.filter((group) => !groupsToHide.includes(group.key)),
+        );
       });
   }
 
