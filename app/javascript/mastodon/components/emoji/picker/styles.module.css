@@ -157,6 +157,11 @@
   height: 2rem;
   border-radius: 50%;
   border: 1px solid gray;
+
+  .settingsNav & {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 }
 
 .separator {
