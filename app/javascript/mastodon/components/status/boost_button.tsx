@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import { quoteComposeById } from '@/mastodon/actions/compose_typed';
 import { toggleReblog } from '@/mastodon/actions/interactions';
 import { openModal } from '@/mastodon/actions/modal';
+import { fetchStatus } from '@/mastodon/actions/statuses';
 import { quickBoosting } from '@/mastodon/initial_state';
 import type { ActionMenuItem } from '@/mastodon/models/dropdown_menu';
 import type { Status } from '@/mastodon/models/status';
@@ -111,6 +112,7 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
 
   const statusId = status.get('id') as string;
   const wasBoosted = !!status.get('reblogged');
+  const quoteApproval = status.get('quote_approval');
 
   const showLoginPrompt = useCallback(() => {
     dispatch(
@@ -167,9 +169,16 @@ const BoostOrQuoteMenu: FC<ReblogButtonProps> = ({ status, counters }) => {
         dispatch(toggleReblog(status.get('id'), true));
         return false;
       }
+
+      if (quoteApproval === null) {
+        dispatch(
+          fetchStatus(statusId, { forceFetch: true, alsoFetchContext: false }),
+        );
+      }
+
       return true;
     },
-    [dispatch, isLoggedIn, showLoginPrompt, status],
+    [dispatch, isLoggedIn, showLoginPrompt, status, quoteApproval, statusId],
   );
 
   return (
