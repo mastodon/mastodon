@@ -68,7 +68,7 @@ $content-width: 840px;
         border-radius: 4px;
 
         &:focus {
-          background: var(--color-bg-accent-subtle);
+          background: var(--color-bg-brand-softer);
         }
 
         .material-close {
@@ -149,7 +149,7 @@ $content-width: 840px;
       }
 
       .simple-navigation-active-leaf a {
-        color: var(--color-text-accent);
+        color: var(--color-text-brand);
         border-bottom: 0;
       }
     }
@@ -242,8 +242,8 @@ $content-width: 840px;
 
           &.selected {
             font-weight: 700;
-            color: var(--color-text-on-accent-strong);
-            background: var(--color-bg-accent-strong);
+            color: var(--color-text-on-brand-base);
+            background: var(--color-bg-brand-base);
           }
         }
       }
@@ -421,7 +421,7 @@ $content-width: 840px;
       }
 
       ul .simple-navigation-active-leaf a {
-        border-bottom-color: var(--color-text-accent);
+        border-bottom-color: var(--color-text-brand);
       }
     }
   }
@@ -440,7 +440,7 @@ body,
     color: var(--color-text-secondary);
 
     a {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
   }
 
@@ -482,7 +482,7 @@ body,
 
 kbd {
   font-family: Courier, monospace;
-  background-color: var(--color-bg-accent-subtle);
+  background-color: var(--color-bg-brand-softer);
   padding: 4px;
   padding-bottom: 2px;
   border-radius: 5px;
@@ -548,8 +548,8 @@ kbd {
       }
 
       &.selected {
-        color: var(--color-text-accent);
-        border-bottom: 2px solid var(--color-text-accent);
+        color: var(--color-text-brand);
+        border-bottom: 2px solid var(--color-text-brand);
       }
     }
   }
@@ -632,7 +632,7 @@ kbd {
   font-size: 14px;
 
   a {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     text-decoration: none;
 
     &:hover {
@@ -769,7 +769,7 @@ a.inline-name-tag,
   color: var(--color-text-primary);
 
   &:hover {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
   }
 
   .username {
@@ -812,7 +812,7 @@ a.name-tag,
 
 .speech-bubble {
   margin-bottom: 20px;
-  border-inline-start: 4px solid var(--color-text-accent);
+  border-inline-start: 4px solid var(--color-text-brand);
 
   &.positive {
     border-color: var(--color-text-success);
@@ -885,7 +885,7 @@ a.name-tag,
         &:focus,
         &:hover,
         &:active {
-          color: var(--color-text-accent);
+          color: var(--color-text-brand);
         }
       }
 
@@ -936,7 +936,7 @@ a.name-tag,
         color: var(--color-text-secondary);
 
         &:hover {
-          color: var(--color-text-accent);
+          color: var(--color-text-brand);
         }
       }
     }
@@ -984,7 +984,7 @@ a.name-tag,
     border: 1px solid var(--color-border-primary);
 
     a {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
 
     dl:first-child .verified {
@@ -1043,7 +1043,7 @@ a.name-tag,
       margin-bottom: 10px;
 
       &:hover {
-        color: var(--color-text-accent);
+        color: var(--color-text-brand);
       }
 
       .account-role {
@@ -1192,15 +1192,11 @@ a.name-tag,
       @for $i from 0 through 10 {
         &--#{10 * $i} {
           @if $i > 5 {
-            color: var(--color-text-on-accent-strong);
+            color: var(--color-text-on-brand-base);
           }
 
           background-color: rgb(
-            from var(--color-bg-accent-strong)
-              r
-              g
-              b /
-              #{math.div(max(1, $i), 10)}
+            from var(--color-bg-brand-base) r g b / #{math.div(max(1, $i), 10)}
           );
         }
       }
@@ -1285,7 +1281,7 @@ a.sparkline {
   &:hover,
   &:focus,
   &:active {
-    background: var(--color-bg-accent-subtle);
+    background: var(--color-bg-brand-softer);
   }
 }
 
@@ -1344,13 +1340,13 @@ a.sparkline {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--color-text-accent);
+      background: var(--color-text-brand);
       margin-inline-end: 10px;
 
       @for $i from 0 through 10 {
         &--#{10 * $i} {
           background-color: rgb(
-            from var(--color-text-accent) r g b / #{math.div(max(1, $i), 10)}
+            from var(--color-text-brand) r g b / #{math.div(max(1, $i), 10)}
           );
         }
       }
@@ -1685,7 +1681,7 @@ a.sparkline {
       }
 
       a {
-        color: var(--color-text-accent);
+        color: var(--color-text-brand);
         text-decoration: none;
 
         &:hover {
@@ -1757,7 +1753,7 @@ a.sparkline {
   float: right;
 
   a {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     text-decoration: none;
 
     &:hover,
@@ -1781,7 +1777,7 @@ a.sparkline {
   border-radius: 4px;
 
   a {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     text-decoration: none;
 
     &:hover {
@@ -1875,11 +1871,11 @@ a.sparkline {
       border-radius: 2px;
 
       &.positive {
-        background: var(--color-bg-success-strong);
+        background: var(--color-bg-success-base);
       }
 
       &.negative {
-        background: var(--color-bg-error-strong);
+        background: var(--color-bg-error-base);
       }
     }
   }
@@ -1909,8 +1905,8 @@ a.sparkline {
       width: calc(1.375rem + 1px);
       height: calc(1.375rem + 1px);
       background: var(--color-bg-primary);
-      border: 1px solid var(--color-text-accent);
-      color: var(--color-text-accent);
+      border: 1px solid var(--color-text-brand);
+      color: var(--color-text-brand);
       border-radius: 8px;
     }
 
@@ -1918,7 +1914,7 @@ a.sparkline {
       position: absolute;
       content: '';
       width: 1px;
-      background: var(--color-text-accent);
+      background: var(--color-text-brand);
       bottom: 0;
       top: calc(1.875rem + 1px);
       inset-inline-start: 0.6875rem;
@@ -1993,8 +1989,8 @@ a.sparkline {
       display: block;
       box-sizing: border-box;
       color: var(--color-text-primary);
-      background: var(--color-bg-accent-subtle);
-      border: 1px solid var(--color-border-on-bg-accent-subtle);
+      background: var(--color-bg-brand-softer);
+      border: 1px solid var(--color-border-on-bg-brand-softer);
       border-radius: 8px;
       padding: 8px 13px;
       position: relative;
@@ -2008,7 +2004,7 @@ a.sparkline {
         display: block;
         font-size: 15px;
         line-height: 20px;
-        color: var(--color-text-accent);
+        color: var(--color-text-brand);
         cursor: pointer;
         border: 0;
         background: transparent;
@@ -2171,7 +2167,7 @@ a.sparkline {
     color: var(--color-text-success);
 
     .dot-indicator__indicator {
-      background-color: var(--color-bg-success-strong);
+      background-color: var(--color-bg-success-base);
     }
   }
 }

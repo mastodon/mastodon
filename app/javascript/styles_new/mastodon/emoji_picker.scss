@@ -51,10 +51,10 @@
 }
 
 .emoji-mart-anchor-selected {
-  color: var(--color-text-accent);
+  color: var(--color-text-brand);
 
   &:hover {
-    color: var(--color-text-accent-subtle);
+    color: var(--color-text-brand-soft);
   }
 
   .emoji-mart-anchor-bar {
@@ -68,7 +68,7 @@
   inset-inline-start: 0;
   width: 100%;
   height: 4px;
-  background-color: var(--color-text-accent);
+  background-color: var(--color-text-brand);
 }
 
 .emoji-mart-anchors {
@@ -168,7 +168,7 @@
     inset-inline-start: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--color-bg-accent-subtle);
+    background-color: var(--color-bg-brand-softer);
     border-radius: 100%;
   }
 }

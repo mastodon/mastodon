@@ -13,12 +13,12 @@
   &__chart {
     border-radius: 4px;
     display: block;
-    background: rgb(from var(--color-text-accent) r g b / 60%);
+    background: rgb(from var(--color-text-brand) r g b / 60%);
     height: 5px;
     min-width: 1%;
 
     &.leading {
-      background: var(--color-text-accent);
+      background: var(--color-text-brand);
     }
   }
 
@@ -38,12 +38,12 @@
     // duplication
     &::-moz-progress-bar {
       border-radius: 4px;
-      background: rgb(from var(--color-text-accent) r g b / 60%);
+      background: rgb(from var(--color-text-brand) r g b / 60%);
     }
 
     &::-webkit-progress-value {
       border-radius: 4px;
-      background: rgb(from var(--color-text-accent) r g b / 60%);
+      background: rgb(from var(--color-text-brand) r g b / 60%);
     }
   }
 
@@ -86,7 +86,7 @@
       padding: 8px 12px;
 
       &:focus {
-        border-color: var(--color-text-accent);
+        border-color: var(--color-text-brand);
       }
 
       @media screen and (width <= 600px) {
@@ -129,7 +129,7 @@
     }
 
     &.active {
-      background-color: var(--color-bg-success-strong);
+      background-color: var(--color-bg-success-base);
       border-color: var(--color-text-success);
     }
 
@@ -223,10 +223,10 @@
   color: var(--color-text-tertiary);
 
   &__chart {
-    background: rgb(from var(--color-text-accent) r g b / 40%);
+    background: rgb(from var(--color-text-brand) r g b / 40%);
 
     &.leading {
-      background: rgb(from var(--color-text-accent) r g b / 60%);
+      background: rgb(from var(--color-text-brand) r g b / 60%);
     }
   }
 }

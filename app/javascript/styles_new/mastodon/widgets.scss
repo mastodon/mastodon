@@ -28,7 +28,7 @@
     }
 
     &.active > a {
-      background: var(--color-bg-accent-strong);
+      background: var(--color-bg-brand-base);
       cursor: default;
     }
 
@@ -74,7 +74,7 @@
     }
 
     &.active .avatar-stack .account__avatar {
-      border-color: var(--color-text-accent);
+      border-color: var(--color-text-brand);
     }
 
     .trends__item__current {
@@ -146,7 +146,7 @@
       &:focus,
       &:hover,
       &:active {
-        color: var(--color-text-accent);
+        color: var(--color-text-brand);
       }
     }
   }
@@ -163,7 +163,7 @@
 
   .icon {
     &.active {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
 
     &.passive {

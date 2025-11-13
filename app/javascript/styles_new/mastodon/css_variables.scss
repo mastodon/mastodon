@@ -32,19 +32,19 @@
   --color-text-secondary: var(--color-grey-400);
   --color-text-tertiary: var(--color-grey-500);
   --color-text-on-inverted: var(--color-grey-950);
-  --color-text-accent: var(--color-indigo-400);
-  --color-text-accent-subtle: color-mix(
+  --color-text-brand: var(--color-indigo-400);
+  --color-text-brand-soft: color-mix(
     in oklab,
     var(--color-text-primary),
-    var(--color-text-accent)
+    var(--color-text-brand)
   );
-  --color-text-on-accent-strong: var(--color-white);
+  --color-text-on-brand-base: var(--color-white);
   --color-text-error: var(--color-red-500);
-  --color-text-on-error-strong: var(--color-white);
+  --color-text-on-error-base: var(--color-white);
   --color-text-warning: var(--color-yellow-400);
-  --color-text-on-warning-strong: var(--color-white);
+  --color-text-on-warning-base: var(--color-white);
   --color-text-success: var(--color-green-400);
-  --color-text-on-success-strong: var(--color-white);
+  --color-text-on-success-base: var(--color-white);
   --color-text-disabled: var(--color-grey-600);
   --color-text-on-disabled: var(--color-grey-400);
   --color-text-bookmark-highlight: var(--color-text-error);
@@ -58,23 +58,26 @@
 
   /* BACKGROUND TOKENS */
 
+  // Neutrals
   --color-bg-primary: var(--color-grey-950);
+  --overlay-strength-secondary: 10%;
   --color-bg-secondary-base: var(--color-indigo-200);
-  --color-bg-secondary-strength: 10%;
   --color-bg-secondary: #{utils.css-alpha(
       var(--color-bg-secondary-base),
-      var(--color-bg-secondary-strength)
+      var(--overlay-strength-secondary)
     )};
   --color-bg-secondary-solid: color-mix(
     in srgb,
     var(--color-bg-primary),
-    var(--color-bg-secondary-base) var(--color-bg-secondary-strength)
+    var(--color-bg-secondary-base) var(--overlay-strength-secondary)
   );
   --color-bg-tertiary: color-mix(
     in oklab,
     var(--color-bg-primary),
-    var(--color-bg-secondary-base) calc(2 * var(--color-bg-secondary-strength))
+    var(--color-bg-secondary-base) calc(2 * var(--overlay-strength-secondary))
   );
+
+  // Utility
   --color-bg-ambient: var(--color-bg-primary);
   --color-bg-elevated: var(--color-grey-800);
   --color-bg-inverted: var(--color-grey-50);
@@ -87,85 +90,96 @@
   --color-bg-overlay: var(--color-bg-primary);
   --color-bg-disabled: var(--color-grey-700);
 
-  // Accent
-  --color-bg-accent-strong: var(--color-indigo-600);
-  --color-bg-accent-subtle-strength: 10%;
-  --color-bg-accent-subtle: #{utils.css-alpha(
-      var(--color-bg-accent-strong),
-      var(--color-bg-accent-subtle-strength)
-    )};
-  --color-bg-accent-subtle-highlighted: #{utils.css-alpha(
-      var(--color-bg-accent-strong),
-      calc(var(--color-bg-accent-subtle-strength) * 1.5)
-    )};
-  --color-bg-accent-strong-highlighted: color-mix(
+  // Brand
+  --overlay-strength-brand: 10%;
+  --color-bg-brand-base: var(--color-indigo-600);
+  --color-bg-brand-base-hover: color-mix(
     in oklab,
-    var(--color-bg-accent-strong),
-    black var(--color-bg-accent-subtle-strength)
+    var(--color-bg-brand-base),
+    black var(--overlay-strength-brand)
   );
+  --color-bg-brand-soft: #{utils.css-alpha(
+      var(--color-bg-brand-base),
+      calc(var(--overlay-strength-brand) * 1.5)
+    )};
+  --color-bg-brand-softer: #{utils.css-alpha(
+      var(--color-bg-brand-base),
+      var(--overlay-strength-brand)
+    )};
 
   // Error
-  --color-bg-error-strong: var(--color-red-600);
-  --color-bg-error-subtle-strength: 12%;
-  --color-bg-error-subtle: #{utils.css-alpha(
-      var(--color-bg-error-strong),
-      var(--color-bg-error-subtle-strength)
-    )};
-  --color-bg-error-strong-highlighted: color-mix(
+  --overlay-strength-error: 12%;
+  --color-bg-error-base: var(--color-red-600);
+  --color-bg-error-base-hover: color-mix(
     in oklab,
-    var(--color-bg-error-strong),
-    black var(--color-bg-error-subtle-strength)
+    var(--color-bg-error-base),
+    black var(--overlay-strength-error)
   );
+  --color-bg-error-soft: #{utils.css-alpha(
+      var(--color-bg-error-base),
+      calc(var(--overlay-strength-error) * 1.5)
+    )};
+  --color-bg-error-softer: #{utils.css-alpha(
+      var(--color-bg-error-base),
+      var(--overlay-strength-error)
+    )};
 
   // Warning
-  --color-bg-warning-strong: var(--color-yellow-600);
-  --color-bg-warning-subtle-strength: 10%;
-  --color-bg-warning-subtle: #{utils.css-alpha(
-      var(--color-bg-warning-strong),
-      var(--color-bg-warning-subtle-strength)
-    )};
-  --color-bg-warning-strong-highlighted: color-mix(
+  --overlay-strength-warning: 10%;
+  --color-bg-warning-base: var(--color-yellow-600);
+  --color-bg-warning-base-hover: color-mix(
     in oklab,
-    var(--color-bg-warning-strong),
-    black var(--color-bg-warning-subtle-strength)
+    var(--color-bg-warning-base),
+    black var(--overlay-strength-warning)
   );
+  --color-bg-warning-soft: #{utils.css-alpha(
+      var(--color-bg-warning-base),
+      calc(var(--overlay-strength-warning) * 1.5)
+    )};
+  --color-bg-warning-softer: #{utils.css-alpha(
+      var(--color-bg-warning-base),
+      var(--overlay-strength-warning)
+    )};
 
   // Success
-  --color-bg-success-strong: var(--color-green-600);
-  --color-bg-success-subtle-strength: 15%;
-  --color-bg-success-subtle: #{utils.css-alpha(
-      var(--color-bg-success-strong),
-      var(--color-bg-success-subtle-strength)
-    )};
-  --color-bg-success-strong-highlighted: color-mix(
+  --overlay-strength-success: 15%;
+  --color-bg-success-base: var(--color-green-600);
+  --color-bg-success-base-hover: color-mix(
     in oklab,
-    var(--color-bg-success-strong),
-    black var(--color-bg-success-subtle-strength)
+    var(--color-bg-success-base),
+    black var(--overlay-strength-success)
   );
+  --color-bg-success-soft: #{utils.css-alpha(
+      var(--color-bg-success-base),
+      calc(var(--overlay-strength-success) * 1.5)
+    )};
+  --color-bg-success-softer: #{utils.css-alpha(
+      var(--color-bg-success-base),
+      var(--overlay-strength-success)
+    )};
 
   /* BORDER TOKENS */
 
-  --color-border-primary-base: var(--color-indigo-200);
-  --color-border-primary-strength: 18%;
+  --border-strength-primary: 18%;
   --color-border-primary: #{utils.css-alpha(
-      var(--color-border-primary-base),
-      var(--color-border-primary-strength)
+      var(--color-indigo-200),
+      var(--border-strength-primary)
     )};
   --color-border-media: rgb(252 248 255 / 15%);
   --color-border-on-bg-secondary: #{utils.css-alpha(
-      var(--color-border-primary-base),
-      calc(var(--color-border-primary-strength) / 1.5)
+      var(--color-indigo-200),
+      calc(var(--border-strength-primary) / 1.5)
     )};
-  --color-border-on-bg-accent-subtle: var(--color-border-primary);
-  --color-border-on-bg-error-subtle: #{utils.css-alpha(
+  --color-border-on-bg-brand-softer: var(--color-border-primary);
+  --color-border-on-bg-error-softer: #{utils.css-alpha(
       var(--color-text-error),
       50%
     )};
-  --color-border-on-bg-warning-subtle: #{utils.css-alpha(
+  --color-border-on-bg-warning-softer: #{utils.css-alpha(
       var(--color-text-warning),
       50%
     )};
-  --color-border-on-bg-success-subtle: #{utils.css-alpha(
+  --color-border-on-bg-success-softer: #{utils.css-alpha(
       var(--color-text-success),
       50%
     )};
@@ -173,11 +187,10 @@
 
   /* SHADOW TOKENS */
 
-  --color-shadow-primary-base: var(--color-black);
-  --color-shadow-primary-strength: 80%;
+  --shadow-strength-primary: 80%;
   --color-shadow-primary: #{utils.css-alpha(
-      var(--color-shadow-primary-base),
-      var(--color-shadow-primary-strength)
+      var(--color-black),
+      var(--shadow-strength-primary)
     )};
   --dropdown-shadow:
     0 20px 25px -5px var(--color-shadow-primary),
@@ -186,10 +199,10 @@
 
   /* GRAPHS/CHARTS TOKENS */
 
-  --color-graph-primary-stroke: var(--color-text-accent);
-  --color-graph-primary-fill: var(--color-bg-accent-subtle);
+  --color-graph-primary-stroke: var(--color-text-brand);
+  --color-graph-primary-fill: var(--color-bg-brand-softer);
   --color-graph-warning-stroke: var(--color-text-warning);
-  --color-graph-warning-fill: var(--color-bg-warning-subtle);
+  --color-graph-warning-fill: var(--color-bg-warning-softer);
   --color-graph-disabled-stroke: var(--color-text-disabled);
   --color-graph-disabled-fill: var(--color-bg-disabled);
 
@@ -201,7 +214,7 @@
 
   /* MISCELLANEOUS */
 
-  --outline-focus-default: 2px solid var(--color-text-accent);
+  --outline-focus-default: 2px solid var(--color-text-brand);
   --avatar-border-radius: 8px;
 }
 

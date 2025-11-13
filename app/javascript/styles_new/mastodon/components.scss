@@ -28,7 +28,7 @@
   display: block;
   font-size: 15px;
   line-height: 20px;
-  color: var(--color-text-accent);
+  color: var(--color-text-brand);
   border: 0;
   background: transparent;
   padding: 0;
@@ -55,8 +55,8 @@
 }
 
 .help-button {
-  color: var(--color-text-on-accent-strong);
-  background: var(--color-bg-accent-strong);
+  color: var(--color-text-on-brand-base);
+  background: var(--color-bg-brand-base);
   border: 0;
   border-radius: 20px;
   cursor: pointer;
@@ -69,7 +69,7 @@
   &:active,
   &:focus,
   &:hover {
-    background: var(--color-bg-accent-strong-highlighted);
+    background: var(--color-bg-brand-base-hover);
   }
 
   &:focus-visible {
@@ -83,11 +83,11 @@
 }
 
 .button {
-  background-color: var(--color-bg-accent-strong);
+  background-color: var(--color-bg-brand-base);
   border: 10px none;
   border-radius: 4px;
   box-sizing: border-box;
-  color: var(--color-text-on-accent-strong);
+  color: var(--color-text-on-brand-base);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -110,11 +110,11 @@
   &:active,
   &:focus,
   &:hover {
-    background-color: var(--color-bg-accent-strong-highlighted);
+    background-color: var(--color-bg-brand-base-hover);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-bg-accent-strong);
+    outline: 2px solid var(--color-bg-brand-base);
     outline-offset: 2px;
   }
 
@@ -127,13 +127,13 @@
   }
 
   &--dangerous {
-    background-color: var(--color-bg-error-strong);
-    color: var(--color-text-on-error-strong);
+    background-color: var(--color-bg-error-base);
+    color: var(--color-text-on-error-base);
 
     &:active,
     &:focus,
     &:hover {
-      background-color: var(--color-bg-error-strong-highlighted);
+      background-color: var(--color-bg-error-base-hover);
       transition: none;
     }
   }
@@ -142,8 +142,8 @@
     &:active,
     &:focus,
     &:hover {
-      color: var(--color-text-on-error-strong);
-      background-color: var(--color-bg-error-strong);
+      color: var(--color-text-on-error-base);
+      background-color: var(--color-bg-error-base);
       transition: none;
     }
   }
@@ -160,22 +160,22 @@
   }
 
   &.copied {
-    color: var(--color-text-on-success-strong);
-    background-color: var(--color-bg-success-strong);
+    color: var(--color-text-on-success-base);
+    background-color: var(--color-bg-success-base);
     transition: none;
   }
 
   &.button-secondary {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     background: transparent;
     padding: 6px 17px;
-    border: 1px solid var(--color-text-accent);
+    border: 1px solid var(--color-text-brand);
 
     &:active,
     &:focus,
     &:hover {
-      border-color: var(--color-text-accent);
-      color: var(--color-text-accent);
+      border-color: var(--color-text-brand);
+      color: var(--color-text-brand);
       background-color: transparent;
       text-decoration: none;
     }
@@ -204,7 +204,7 @@
   }
 
   &.button--plain {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     background: transparent;
     padding: 6px;
 
@@ -218,7 +218,7 @@
     &:focus,
     &:hover {
       border-color: transparent;
-      color: var(--color-text-accent-subtle);
+      color: var(--color-text-brand-soft);
       background-color: transparent;
       text-decoration: none;
     }
@@ -284,7 +284,7 @@
   --default-icon-color: var(--color-text-secondary);
   --default-bg-color: transparent;
   --hover-icon-color: var(--color-text-primary);
-  --hover-bg-color: var(--color-bg-accent-subtle);
+  --hover-bg-color: var(--color-bg-brand-softer);
 
   display: inline-flex;
   color: var(--default-icon-color);
@@ -313,7 +313,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-text-accent);
+    outline: 2px solid var(--color-text-brand);
   }
 
   &.disabled {
@@ -328,15 +328,15 @@
   }
 
   &.active {
-    --default-icon-color: var(--color-text-accent);
-    --hover-icon-color: var(--color-text-accent);
+    --default-icon-color: var(--color-text-brand);
+    --hover-icon-color: var(--color-text-brand);
     --hover-bg-color: transparent;
   }
 
   &.overlayed {
     --default-icon-color: rgb(from var(--color-text-on-media) r g b / 70%);
     --default-bg-color: var(--color-bg-media);
-    --hover-icon-color: var(--color-text-accent);
+    --hover-icon-color: var(--color-text-brand);
     --hover-bg-color: rgb(from var(--color-bg-media-base) r g b / 90%);
 
     box-sizing: content-box;
@@ -363,8 +363,8 @@
   &.copied {
     color: var(--color-text-success);
     transition: none;
-    background-color: var(--color-bg-success-subtle);
-    border-color: var(--color-border-on-bg-accent-subtle);
+    background-color: var(--color-bg-success-softer);
+    border-color: var(--color-border-on-bg-brand-softer);
   }
 }
 
@@ -444,8 +444,8 @@ body > [data-popper-placement] {
       }
 
       &.selected {
-        color: var(--color-text-on-accent-strong);
-        background: var(--color-bg-accent-strong);
+        color: var(--color-text-on-brand-base);
+        background: var(--color-bg-brand-base);
 
         .autosuggest-account .display-name__account {
           color: inherit;
@@ -543,14 +543,14 @@ body > [data-popper-placement] {
 
     &.active {
       transition: none;
-      border-color: var(--color-text-accent);
+      border-color: var(--color-text-brand);
     }
   }
 
   &__warning {
     color: var(--color-text-primary);
-    background: var(--color-bg-warning-subtle);
-    border: 1px solid var(--color-border-on-bg-warning-subtle);
+    background: var(--color-bg-warning-softer);
+    border: 1px solid var(--color-border-on-bg-warning-softer);
     padding: 8px 10px;
     border-radius: 4px;
     font-size: 13px;
@@ -567,7 +567,7 @@ body > [data-popper-placement] {
     }
 
     a {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
       font-weight: 500;
       text-decoration: underline;
 
@@ -618,8 +618,8 @@ body > [data-popper-placement] {
 
   .spoiler-input__input {
     padding: 12px 12px - 5px;
-    background: var(--color-bg-accent-subtle);
-    color: var(--color-text-accent);
+    background: var(--color-bg-brand-softer);
+    color: var(--color-text-brand);
   }
 
   &__dropdowns {
@@ -754,8 +754,8 @@ body > [data-popper-placement] {
       padding: 8px;
 
       .icon-button.active {
-        color: var(--color-text-on-warning-strong);
-        background: var(--color-bg-warning-strong);
+        color: var(--color-text-on-warning-base);
+        background: var(--color-bg-warning-base);
       }
     }
   }
@@ -804,12 +804,12 @@ body > [data-popper-placement] {
 
     .icon-button {
       box-sizing: content-box;
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
 
       &:hover,
       &:focus,
       &:active {
-        color: var(--color-text-accent);
+        color: var(--color-text-brand);
       }
 
       &.disabled {
@@ -817,8 +817,8 @@ body > [data-popper-placement] {
       }
 
       &.active {
-        background: var(--color-bg-accent-strong);
-        color: var(--color-text-on-accent-strong);
+        background: var(--color-bg-brand-base);
+        color: var(--color-text-on-brand-base);
       }
     }
   }
@@ -889,7 +889,7 @@ body > [data-popper-placement] {
         font-weight: 500;
         line-height: 20px;
         letter-spacing: 0.1px;
-        color: var(--color-text-accent);
+        color: var(--color-text-brand);
         background-color: var(--color-bg-secondary-solid);
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -920,9 +920,9 @@ body > [data-popper-placement] {
   display: flex;
   align-items: center;
   gap: 4px;
-  color: var(--color-text-accent);
+  color: var(--color-text-brand);
   background: transparent;
-  border: 1px solid var(--color-text-accent);
+  border: 1px solid var(--color-text-brand);
   border-radius: 6px;
   padding: 4px 8px;
   font-size: 13px;
@@ -952,9 +952,9 @@ body > [data-popper-placement] {
   }
 
   &.active {
-    color: var(--color-text-on-accent-strong);
-    border-color: var(--color-bg-accent-strong);
-    background: var(--color-bg-accent-strong);
+    color: var(--color-text-on-brand-base);
+    border-color: var(--color-bg-brand-base);
+    background: var(--color-bg-brand-base);
   }
 
   &.warning {
@@ -962,9 +962,9 @@ body > [data-popper-placement] {
     border-color: var(--color-text-warning);
 
     &.active {
-      color: var(--color-text-on-warning-strong);
-      border-color: var(--color-bg-warning-strong);
-      background-color: var(--color-bg-warning-strong);
+      color: var(--color-text-on-warning-base);
+      border-color: var(--color-bg-warning-base);
+      background-color: var(--color-bg-warning-base);
     }
   }
 }
@@ -1102,7 +1102,7 @@ body > [data-popper-placement] {
   }
 
   a.unhandled-link {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
   }
 
   .status__content__text {
@@ -1255,7 +1255,7 @@ body > [data-popper-placement] {
     overflow: hidden;
 
     a {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
   }
 
@@ -1322,7 +1322,7 @@ body > [data-popper-placement] {
     }
 
     &.unhandled-link {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
   }
 }
@@ -1337,7 +1337,7 @@ body > [data-popper-placement] {
   align-items: center;
   font-size: 15px;
   line-height: 22px;
-  color: var(--color-text-accent);
+  color: var(--color-text-brand);
   border: 0;
   background: transparent;
   padding: 0;
@@ -1387,7 +1387,7 @@ body > [data-popper-placement] {
 
   &__button {
     display: inline;
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     border: 0;
     background: transparent;
     padding: 0;
@@ -1403,9 +1403,9 @@ body > [data-popper-placement] {
 
 .focusable {
   &:focus-visible {
-    outline: 2px solid var(--color-text-accent);
+    outline: 2px solid var(--color-text-brand);
     outline-offset: -2px;
-    background: var(--color-bg-accent-subtle);
+    background: var(--color-bg-brand-softer);
   }
 }
 
@@ -1526,7 +1526,7 @@ body > [data-popper-placement] {
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--color-bg-accent-subtle);
+    background: var(--color-bg-brand-softer);
     opacity: 0;
     animation: fade 0.7s reverse both 0.3s;
     pointer-events: none;
@@ -1678,10 +1678,10 @@ body > [data-popper-placement] {
 .notification-ungrouped--direct,
 .notification-group--direct,
 .notification-group--annual-report {
-  background: var(--color-bg-accent-subtle);
+  background: var(--color-bg-brand-softer);
 
   &:focus {
-    background: var(--color-bg-accent-subtle-highlighted);
+    background: var(--color-bg-brand-soft);
   }
 }
 
@@ -1689,7 +1689,7 @@ body > [data-popper-placement] {
 .notification-ungrouped--direct {
   .status__prepend,
   .notification-ungrouped__header {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
   }
 }
 
@@ -1816,11 +1816,11 @@ body > [data-popper-placement] {
 .detailed-status__wrapper-direct {
   .detailed-status,
   .detailed-status__action-bar {
-    background: var(--color-bg-accent-subtle);
+    background: var(--color-bg-brand-softer);
   }
 
   .status__prepend {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
   }
 }
 
@@ -1871,7 +1871,7 @@ body > [data-popper-placement] {
   line-height: 20px;
   letter-spacing: 0.25px;
   color: var(--color-text-secondary);
-  background: var(--color-bg-accent-subtle);
+  background: var(--color-bg-brand-softer);
   border-radius: 8px;
   cursor: default;
 }
@@ -1994,18 +1994,18 @@ body > [data-popper-placement] {
 
   &__domain-pill {
     display: inline-flex;
-    background: var(--color-bg-accent-subtle);
+    background: var(--color-bg-brand-softer);
     border-radius: 4px;
     border: 0;
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
     padding: 4px 8px;
 
     &.active {
-      color: var(--color-text-on-accent-strong);
-      background: var(--color-bg-accent-strong);
+      color: var(--color-text-on-brand-base);
+      background: var(--color-bg-brand-base);
     }
 
     &__popout {
@@ -2037,8 +2037,8 @@ body > [data-popper-placement] {
         &__icon {
           width: 40px;
           height: 40px;
-          color: var(--color-text-on-accent-strong);
-          background: var(--color-bg-accent-strong);
+          color: var(--color-text-on-brand-base);
+          background: var(--color-bg-brand-base);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -2054,10 +2054,10 @@ body > [data-popper-placement] {
       }
 
       &__handle {
-        border: 2px dashed var(--color-border-on-accent-subtle);
-        background: var(--color-bg-accent-subtle);
+        border: 2px dashed var(--color-border-on-brand-softer);
+        background: var(--color-bg-brand-softer);
         padding: 12px 8px;
-        color: var(--color-text-accent);
+        color: var(--color-text-brand);
         border-radius: 4px;
 
         &__label {
@@ -2093,7 +2093,7 @@ body > [data-popper-placement] {
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          color: var(--color-text-accent);
+          color: var(--color-text-brand);
         }
 
         h6 {
@@ -2227,7 +2227,8 @@ body > [data-popper-placement] {
       inset-inline-start: 50%;
       transform: translate(-50%, -50%);
       color: var(--color-text-primary);
-      text-shadow: 1px 1px 2px var(--color-shadow-primary-base);
+      text-shadow: 1px 1px 2px
+        rgb(from var(--color-shadow-primary) r g b / 100%);
       font-weight: 700;
       font-size: 15px;
     }
@@ -2246,8 +2247,8 @@ body > [data-popper-placement] {
     border-radius: $height;
     min-width: $height - 2 * $h-padding; // to ensure that it is never narrower than a circle
     line-height: $height + 1px; // to visually center the numbers
-    color: var(--color-text-on-accent-strong);
-    background: var(--color-bg-accent-strong);
+    color: var(--color-text-on-brand-base);
+    background: var(--color-bg-brand-base);
     border-width: 1px;
     border-style: solid;
     border-color: var(--color-bg-primary);
@@ -2497,7 +2498,7 @@ a.account__display-name {
   gap: 10px;
 
   .icon {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     width: 18px;
     height: 18px;
   }
@@ -2802,7 +2803,7 @@ a.account__display-name {
   }
 
   &--highlighted {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
   }
 
   &-content {
@@ -2994,7 +2995,7 @@ a.account__display-name {
     color: inherit;
 
     &.active {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
 
     &:focus {
@@ -3002,7 +3003,7 @@ a.account__display-name {
     }
 
     &:focus-visible {
-      border-top-color: var(--color-text-accent);
+      border-top-color: var(--color-text-brand);
       border-radius: 0;
     }
   }
@@ -3449,8 +3450,8 @@ a.account__display-name {
     position: absolute;
     inset-inline-start: 9px;
     top: -13px;
-    color: var(--color-text-on-accent-strong);
-    background: var(--color-bg-accent-strong);
+    color: var(--color-text-on-brand-base);
+    background: var(--color-bg-brand-base);
     border: 2px solid var(--color-bg-primary);
     padding: 1px 6px;
     border-radius: 6px;
@@ -3516,7 +3517,7 @@ a.account__display-name {
   &.focused {
     transition: none;
     outline: 0;
-    border-color: var(--color-text-accent);
+    border-color: var(--color-text-brand);
   }
 
   &.copied {
@@ -3823,7 +3824,7 @@ a.account__display-name {
   background: transparent;
   border: 1px solid var(--color-border-primary);
   border-radius: 4px 4px 0 0;
-  color: var(--color-text-accent);
+  color: var(--color-text-brand);
   cursor: pointer;
   flex: 0 0 auto;
   font-size: 16px;
@@ -3849,7 +3850,7 @@ a.account__display-name {
   background: transparent;
   border: 0;
   font-family: inherit;
-  color: var(--color-text-accent);
+  color: var(--color-text-brand);
   cursor: pointer;
   white-space: nowrap;
   font-size: 16px;
@@ -3911,24 +3912,24 @@ a.account__display-name {
   height: 20px;
   padding: 0;
   border-radius: 10px;
-  background-color: rgb(from var(--color-bg-accent-subtle) r g b / 50%);
-  border: 1px solid rgb(from var(--color-text-accent) r g b / 50%);
+  background-color: rgb(from var(--color-bg-brand-softer) r g b / 50%);
+  border: 1px solid rgb(from var(--color-text-brand) r g b / 50%);
   box-sizing: border-box;
 
   .react-toggle:hover:not(.react-toggle--disabled) & {
     background-color: rgb(
-      from var(--color-bg-accent-subtle) r g b /
-        calc(50% + var(--color-bg-accent-subtle-strength))
+      from var(--color-bg-brand-softer) r g b /
+        calc(50% + var(--overlay-strength-brand))
     );
   }
 
   .react-toggle--checked & {
-    background-color: var(--color-bg-accent-strong);
-    border-color: var(--color-bg-accent-strong);
+    background-color: var(--color-bg-brand-base);
+    border-color: var(--color-bg-brand-base);
   }
 
   .react-toggle--checked:not(.react-toggle--disabled):hover & {
-    background-color: var(--color-bg-accent-strong-highlighted);
+    background-color: var(--color-bg-brand-base-hover);
   }
 }
 
@@ -3944,14 +3945,14 @@ a.account__display-name {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: var(--color-text-on-accent-strong);
+  background-color: var(--color-text-on-brand-base);
   box-sizing: border-box;
   transition: all 0.25s ease;
   transition-property: border-color, left;
 
   .react-toggle--checked & {
     inset-inline-start: 32px - 16px - 2px;
-    border-color: var(--color-bg-accent-strong);
+    border-color: var(--color-bg-brand-base);
   }
 }
 
@@ -3967,7 +3968,7 @@ a.account__display-name {
   line-height: 18px;
 
   a {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     font-weight: bold;
   }
 }
@@ -4000,7 +4001,7 @@ a.account__display-name {
   }
 
   &.active {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
   }
 
   &:focus {
@@ -4008,7 +4009,7 @@ a.account__display-name {
   }
 
   &:focus-visible {
-    border-color: var(--color-text-accent);
+    border-color: var(--color-text-brand);
     border-radius: 0;
   }
 
@@ -4136,7 +4137,7 @@ a.account__display-name {
     cursor: pointer;
 
     & > div {
-      background: rgb(from var(--color-shadow-primary-base) r g b / 60%);
+      background: rgb(from var(--color-shadow-primary) r g b / 60%);
       border-radius: 8px;
       padding: 12px 9px;
       backdrop-filter: $backdrop-blur-filter;
@@ -4182,7 +4183,7 @@ a.status-card {
     .status-card__host,
     .status-card__author,
     .status-card__description {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
   }
 }
@@ -4198,7 +4199,7 @@ a.status-card {
     .status-card__host,
     .status-card__author,
     .status-card__description {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
   }
 }
@@ -4389,7 +4390,7 @@ a.status-card {
     }
 
     &:focus-visible {
-      outline: 2px solid var(--color-text-accent);
+      outline: 2px solid var(--color-text-brand);
       outline-offset: -2px;
     }
   }
@@ -4418,14 +4419,14 @@ a.status-card {
   }
 
   a {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     text-decoration: none;
 
     &:hover,
     &:focus,
     &:active {
       text-decoration: underline;
-      color: var(--color-text-accent-subtle);
+      color: var(--color-text-brand-soft);
     }
   }
 
@@ -4477,7 +4478,7 @@ a.status-card {
   z-index: 1;
 
   &.active {
-    box-shadow: 0 1px 0 var(--color-bg-accent-subtle);
+    box-shadow: 0 1px 0 var(--color-bg-brand-softer);
 
     &::before {
       display: block;
@@ -4493,7 +4494,7 @@ a.status-card {
       z-index: 1;
       background: radial-gradient(
         ellipse,
-        rgb(from var(--color-bg-accent-subtle-base) r g b / 23%) 0%,
+        rgb(from var(--color-bg-brand-softer-base) r g b / 23%) 0%,
         transparent 60%
       );
     }
@@ -4524,12 +4525,12 @@ a.status-card {
 
   &__mode-button {
     margin-left: auto;
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     font-weight: bold;
     font-size: 14px;
 
     &:hover {
-      color: var(--color-text-accent-subtle);
+      color: var(--color-text-brand-soft);
     }
   }
 }
@@ -4577,7 +4578,7 @@ a.status-card {
 
   .column-header__back-button {
     flex: 1;
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
 
     &.compact {
       flex: 0 0 auto;
@@ -4587,8 +4588,8 @@ a.status-card {
 
   &.active {
     .column-header__icon {
-      color: var(--color-text-accent);
-      text-shadow: 0 0 10px var(--color-bg-accent-subtle);
+      color: var(--color-text-brand);
+      text-shadow: 0 0 10px var(--color-bg-brand-softer);
     }
   }
 
@@ -4647,10 +4648,10 @@ a.status-card {
   }
 
   &.active {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
 
     &:hover {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
   }
 
@@ -5076,7 +5077,7 @@ a.status-card {
         &:hover,
         &:active,
         &:focus {
-          background: var(--color-bg-accent-subtle);
+          background: var(--color-bg-brand-softer);
           color: color-mix(
             in oklab,
             var(--color-text-primary),
@@ -5127,8 +5128,8 @@ a.status-card {
 
       &--is-focused,
       &--is-selected {
-        color: var(--color-text-on-accent-strong);
-        background: var(--color-bg-accent-strong);
+        color: var(--color-text-on-brand-base);
+        background: var(--color-bg-brand-base);
       }
     }
   }
@@ -5177,7 +5178,7 @@ a.status-card {
   }
 
   a {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     text-decoration: none;
 
     &:hover {
@@ -5405,7 +5406,7 @@ a.status-card {
   .icon {
     width: 24px;
     height: 24px;
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
   }
 
   span {
@@ -5434,7 +5435,7 @@ a.status-card {
   inset-inline-start: 0;
   top: 0;
   height: 6px;
-  background: var(--color-text-accent);
+  background: var(--color-text-brand);
   border-radius: 6px;
 }
 
@@ -5542,8 +5543,8 @@ a.status-card {
 
   &:focus,
   &.active {
-    background: var(--color-bg-accent-strong);
-    color: var(--color-text-on-accent-strong);
+    background: var(--color-bg-brand-base);
+    color: var(--color-text-on-brand-base);
     outline: 0;
 
     .privacy-dropdown__option__content,
@@ -5552,7 +5553,7 @@ a.status-card {
     .visibility-dropdown__option__content,
     .visibility-dropdown__option__content strong,
     .visibility-dropdown__option__additional {
-      color: var(--color-text-on-accent-strong);
+      color: var(--color-text-on-brand-base);
     }
   }
 
@@ -5662,12 +5663,12 @@ a.status-card {
 
         &:focus,
         &.active {
-          background: var(--color-bg-accent-strong);
-          color: var(--color-text-on-accent-strong);
+          background: var(--color-bg-brand-base);
+          color: var(--color-text-on-brand-base);
           outline: 0;
 
           .language-dropdown__dropdown__results__item__common-name {
-            color: var(--color-text-on-accent-strong);
+            color: var(--color-text-on-brand-base);
           }
         }
       }
@@ -5678,7 +5679,7 @@ a.status-card {
 .visibility-modal {
   &__quote-warning {
     color: var(--color-text-primary);
-    background: var(--color-bg-warning-subtle);
+    background: var(--color-bg-warning-softer);
     padding: 16px;
     border-radius: 4px;
 
@@ -5823,8 +5824,8 @@ a.status-card {
         &:focus,
         &:active,
         &.selected {
-          color: var(--color-text-on-accent-strong);
-          background: var(--color-bg-accent-strong);
+          color: var(--color-text-on-brand-base);
+          background: var(--color-bg-brand-base);
 
           .icon-button {
             color: inherit;
@@ -5926,7 +5927,7 @@ a.status-card {
   }
 
   &:focus-visible {
-    box-shadow: 0 0 0 2px var(--color-text-accent);
+    box-shadow: 0 0 0 2px var(--color-text-brand);
   }
 
   &[aria-hidden='true'] {
@@ -5960,7 +5961,7 @@ a.status-card {
     }
 
     button {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
       padding: 0;
       border: 0;
       background: 0;
@@ -6063,7 +6064,7 @@ a.status-card {
       --hover-icon-color: var(--color-text-on-media);
       --hover-bg-color: rgb(
         from var(--color-text-on-media) r g b /
-          var(--color-bg-secondary-strength)
+          var(--overlay-strength-secondary)
       );
 
       padding: 8px;
@@ -6142,7 +6143,7 @@ a.status-card {
   &:focus .icon,
   &:active .icon {
     background: rgb(
-      from var(--color-text-on-media) r g b / var(--color-bg-secondary-strength)
+      from var(--color-text-on-media) r g b / var(--overlay-strength-secondary)
     );
   }
 }
@@ -6175,8 +6176,7 @@ a.status-card {
       --default-bg-color: transparent;
       --hover-icon-color: var(--color-text-on-media);
       --hover-bg-color: rgb(
-        from var(--color-text-on-media) r g b /
-          var(--color-bg-accent-subtle-strength)
+        from var(--color-text-on-media) r g b / var(--overlay-strength-brand)
       );
 
       .icon {
@@ -6184,9 +6184,9 @@ a.status-card {
       }
 
       &.active {
-        --default-icon-color: var(--color-text-accent);
-        --hover-icon-color: var(--color-text-accent);
-        --hover-bg-color: var(--color-bg-accent-subtle-highlighted);
+        --default-icon-color: var(--color-text-brand);
+        --hover-icon-color: var(--color-text-brand);
+        --hover-bg-color: var(--color-bg-brand-soft);
       }
 
       &.star-icon.active {
@@ -6194,7 +6194,7 @@ a.status-card {
         --hover-icon-color: var(--color-text-favourite-highlight);
         --hover-bg-color: rgb(
           from var(--color-text-favourite-highlight) r g b /
-            var(--color-bg-accent-subtle-strength)
+            var(--overlay-strength-brand)
         );
       }
 
@@ -6319,8 +6319,8 @@ a.status-card {
 
     &__icon {
       border-radius: 64px;
-      color: var(--color-text-on-accent-strong);
-      background: var(--color-bg-accent-strong);
+      color: var(--color-text-on-brand-base);
+      background: var(--color-bg-brand-base);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -6703,7 +6703,7 @@ a.status-card {
 
     a {
       text-decoration: none;
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
       font-weight: 500;
 
       &:hover {
@@ -6728,7 +6728,7 @@ a.status-card {
   }
 
   .status__content a {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
   }
 
   .status__content,
@@ -6760,9 +6760,9 @@ a.status-card {
     }
 
     &.active {
-      color: var(--color-text-on-success-strong);
-      background: var(--color-bg-success-strong);
-      border-color: var(--color-bg-success-strong);
+      color: var(--color-text-on-success-base);
+      background: var(--color-bg-success-base);
+      border-color: var(--color-bg-success-base);
     }
   }
 
@@ -6842,9 +6842,9 @@ a.status-card {
     &:hover,
     &:focus,
     &:active {
-      color: var(--color-text-on-error-strong);
-      background: var(--color-bg-error-strong);
-      border-color: var(--color-bg-error-strong);
+      color: var(--color-text-on-error-base);
+      background: var(--color-bg-error-base);
+      border-color: var(--color-bg-error-base);
     }
   }
 
@@ -6903,7 +6903,7 @@ a.status-card {
     &:hover,
     &:active,
     &:focus {
-      background: var(--color-bg-accent-subtle);
+      background: var(--color-bg-brand-softer);
     }
   }
 }
@@ -6960,7 +6960,7 @@ a.status-card {
     }
 
     a {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
 
     hr {
@@ -6980,7 +6980,7 @@ a.status-card {
 }
 
 .loading-bar {
-  background-color: var(--color-bg-accent-strong);
+  background-color: var(--color-bg-brand-base);
   height: 3px;
   position: fixed;
   top: 0;
@@ -7343,7 +7343,7 @@ a.status-card {
    * the real colours dynamically as inline styles */
   --player-foreground-color: var(--color-text-on-media);
   --player-background-color: var(--color-bg-media-base);
-  --player-accent-color: var(--color-text-accent);
+  --player-accent-color: var(--color-text-brand);
 
   box-sizing: border-box;
   container: audio-player / inline-size;
@@ -7941,7 +7941,7 @@ a.status-card {
         width: 40px;
         height: 3px;
         border-radius: 4px 4px 0 0;
-        background: var(--color-text-accent);
+        background: var(--color-text-brand);
       }
     }
   }
@@ -8004,7 +8004,7 @@ a.status-card {
 
     &.checked,
     &.indeterminate {
-      border-color: var(--color-text-accent);
+      border-color: var(--color-text-brand);
     }
 
     .icon {
@@ -8020,7 +8020,7 @@ a.status-card {
   border-radius: 50%;
   width: calc(100% - 4px);
   height: calc(100% - 4px);
-  background: var(--color-text-accent);
+  background: var(--color-text-brand);
 }
 
 .check-box {
@@ -8031,8 +8031,8 @@ a.status-card {
 
     &.checked,
     &.indeterminate {
-      background: var(--color-bg-accent-strong);
-      color: var(--color-text-on-accent-strong);
+      background: var(--color-bg-brand-base);
+      color: var(--color-text-on-brand-base);
     }
   }
 }
@@ -8053,7 +8053,7 @@ noscript {
     max-width: 400px;
 
     a {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
       text-decoration: underline;
 
       &:hover {
@@ -8425,7 +8425,7 @@ noscript {
       }
 
       a {
-        color: var(--color-text-accent);
+        color: var(--color-text-brand);
       }
 
       .icon {
@@ -8546,7 +8546,7 @@ noscript {
       }
 
       &:focus {
-        background: var(--color-bg-accent-subtle);
+        background: var(--color-bg-brand-softer);
       }
     }
   }
@@ -8739,7 +8739,7 @@ noscript {
 
   &__unread {
     display: inline-block;
-    background: var(--color-text-accent);
+    background: var(--color-text-brand);
     border-radius: 50%;
     width: 0.625rem;
     height: 0.625rem;
@@ -8808,7 +8808,7 @@ noscript {
   }
 
   &__root {
-    background: var(--color-bg-accent-subtle);
+    background: var(--color-bg-brand-softer);
     font-size: 13px;
     display: flex;
     align-items: flex-end;
@@ -8856,7 +8856,7 @@ noscript {
     top: 19px;
     inset-inline-end: 19px;
     display: block;
-    background: var(--color-text-accent);
+    background: var(--color-text-brand);
     border-radius: 50%;
     width: 0.625rem;
     height: 0.625rem;
@@ -8892,13 +8892,13 @@ noscript {
 
   &__item {
     flex-shrink: 0;
-    background: var(--color-bg-accent-subtle);
+    background: var(--color-bg-brand-softer);
     color: color-mix(
       in oklab,
       var(--color-text-primary),
       var(--color-text-secondary)
     );
-    border: 1px solid var(--color-border-on-bg-accent-subtle);
+    border: 1px solid var(--color-border-on-bg-brand-softer);
     border-radius: 3px;
     box-sizing: border-box;
     margin: 2px;
@@ -8940,15 +8940,15 @@ noscript {
     &:focus,
     &:active {
       color: var(--color-text-primary);
-      background: var(--color-bg-accent-subtle-highlighted);
+      background: var(--color-bg-brand-soft);
       transition: all 200ms ease-out;
       transition-property: background-color, color;
     }
 
     &.active {
-      color: var(--color-text-accent);
-      background-color: var(--color-bg-accent-subtle);
-      border-color: var(--color-text-accent);
+      color: var(--color-text-brand);
+      background-color: var(--color-bg-brand-softer);
+      border-color: var(--color-text-brand);
       transition: all 100ms ease-in;
       transition-property: background-color, color;
     }
@@ -9015,7 +9015,7 @@ noscript {
       inset-inline-start: 0;
       width: 100%;
       height: 100%;
-      border-inline-start: 4px solid var(--color-text-accent);
+      border-inline-start: 4px solid var(--color-text-brand);
       pointer-events: none;
     }
   }
@@ -9240,7 +9240,7 @@ noscript {
       &:hover,
       &:active,
       &:focus {
-        color: var(--color-text-accent);
+        color: var(--color-text-brand);
       }
     }
 
@@ -9276,7 +9276,7 @@ noscript {
         &:hover,
         &:active,
         &:focus {
-          color: var(--color-text-accent);
+          color: var(--color-text-brand);
         }
       }
     }
@@ -9752,7 +9752,7 @@ noscript {
   }
 
   a {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     text-decoration: underline;
 
     &:focus,
@@ -9809,8 +9809,8 @@ noscript {
   margin: 10px;
   margin-bottom: 5px;
   border-radius: 8px;
-  border: 1px solid var(--color-border-on-bg-accent-subtle);
-  background: var(--color-bg-accent-subtle);
+  border: 1px solid var(--color-border-on-bg-brand-softer);
+  background: var(--color-bg-brand-softer);
   overflow: hidden;
   flex-shrink: 0;
 
@@ -9841,7 +9841,7 @@ noscript {
     }
 
     h1 {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
       font-size: 22px;
       line-height: 33px;
       font-weight: 700;
@@ -9870,14 +9870,14 @@ noscript {
     padding: 15px 10px;
 
     .icon-button {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
   }
 }
 
 .warning-banner {
-  border: 1px solid var(--color-border-on-bg-error-subtle);
-  background: var(--color-bg-error-subtle);
+  border: 1px solid var(--color-border-on-bg-error-softer);
+  background: var(--color-bg-error-softer);
 
   &__message {
     h1 {
@@ -10131,7 +10131,7 @@ noscript {
       padding: 20px;
       border-radius: 4px;
       border: 1px solid var(--color-border-primary);
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
       cursor: pointer;
       width: 100%;
       background: none;
@@ -10260,7 +10260,7 @@ noscript {
   background: transparent;
   text-transform: uppercase;
   cursor: pointer;
-  color: var(--color-text-accent);
+  color: var(--color-text-brand);
   font-weight: 700;
   border-radius: 4px;
   padding: 0 4px;
@@ -10268,7 +10268,7 @@ noscript {
   &:hover,
   &:focus,
   &:active {
-    background: var(--color-bg-accent-subtle);
+    background: var(--color-bg-brand-softer);
   }
 }
 
@@ -10370,14 +10370,14 @@ noscript {
     color: inherit;
     text-decoration: none;
     padding: 4px 12px;
-    background: var(--color-bg-accent-subtle);
+    background: var(--color-bg-brand-softer);
     border-radius: 4px;
     font-weight: 500;
 
     &:hover,
     &:focus,
     &:active {
-      background: var(--color-bg-accent-subtle-highlighted);
+      background: var(--color-bg-brand-soft);
     }
   }
 
@@ -10396,10 +10396,10 @@ noscript {
   padding: 16px 0;
   padding-bottom: 0;
   border-bottom: 1px solid var(--color-border-primary);
-  background: var(--color-bg-accent-subtle);
+  background: var(--color-bg-brand-softer);
 
   &.focusable:focus-visible {
-    background: var(--color-bg-accent-subtle);
+    background: var(--color-bg-brand-softer);
   }
 
   &__header {
@@ -10449,8 +10449,8 @@ noscript {
 
       &__icon {
         border-radius: 50%;
-        color: var(--color-text-on-accent-strong);
-        background: var(--color-bg-accent-strong);
+        color: var(--color-text-on-brand-base);
+        background: var(--color-bg-brand-base);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -10626,8 +10626,8 @@ noscript {
   }
 
   &__badge {
-    color: var(--color-text-on-accent-strong);
-    background: var(--color-bg-accent-strong);
+    color: var(--color-text-on-brand-base);
+    background: var(--color-bg-brand-base);
     border-radius: 100px;
     padding: 2px 8px;
   }
@@ -10695,8 +10695,8 @@ noscript {
     }
 
     .filtered-notifications-banner__badge {
-      color: var(--color-text-on-accent-strong);
-      background: var(--color-bg-accent-strong);
+      color: var(--color-text-on-brand-base);
+      background: var(--color-bg-brand-base);
       border-radius: 4px;
       padding: 1px 6px;
     }
@@ -10778,7 +10778,7 @@ noscript {
     &:hover,
     &:focus,
     &:active {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
   }
 }
@@ -10806,7 +10806,7 @@ noscript {
 
   &--follow &__icon,
   &--follow-request &__icon {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
   }
 
   &--favourite &__icon {
@@ -11060,7 +11060,7 @@ noscript {
     inset-inline-start: 0;
     width: 100%;
     height: 100%;
-    border-inline-start: 4px solid var(--color-text-accent);
+    border-inline-start: 4px solid var(--color-text-brand);
     pointer-events: none;
   }
 }
@@ -11257,8 +11257,8 @@ noscript {
   display: block;
   box-sizing: border-box;
   color: var(--color-text-primary);
-  background: var(--color-bg-accent-subtle);
-  border: 1px solid var(--color-border-on-bg-accent-subtle);
+  background: var(--color-bg-brand-softer);
+  border: 1px solid var(--color-border-on-bg-brand-softer);
   border-radius: 8px;
   padding: 8px (5px + 8px);
   position: relative;

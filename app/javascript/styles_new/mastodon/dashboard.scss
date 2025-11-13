@@ -30,7 +30,7 @@
       &:hover,
       &:focus,
       &:active {
-        background: var(--color-bg-accent-subtle);
+        background: var(--color-bg-brand-softer);
       }
     }
   }
@@ -84,8 +84,8 @@
     display: flex;
     align-items: baseline;
     border-radius: 4px;
-    background: var(--color-bg-accent-strong);
-    color: var(--color-text-on-accent-strong);
+    background: var(--color-bg-brand-base);
+    color: var(--color-text-on-brand-base);
     transition: all 100ms ease-in;
     font-size: 14px;
     padding: 8px 16px;
@@ -95,17 +95,17 @@
     &:active,
     &:focus,
     &:hover {
-      background-color: var(--color-bg-accent-strong-highlighted);
+      background-color: var(--color-bg-brand-base-hover);
       transition: all 200ms ease-out;
     }
 
     &.positive {
-      background: var(--color-bg-success-subtle);
+      background: var(--color-bg-success-softer);
       color: var(--color-text-success);
     }
 
     &.negative {
-      background: var(--color-bg-error-subtle);
+      background: var(--color-bg-error-softer);
       color: var(--color-text-error);
     }
 

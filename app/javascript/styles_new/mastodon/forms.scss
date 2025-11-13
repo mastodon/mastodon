@@ -60,13 +60,13 @@ code {
   color: var(--color-text-primary);
 
   &.success {
-    color: var(--color-text-on-success-strong);
-    background: var(--color-bg-success-strong);
+    color: var(--color-text-on-success-base);
+    background: var(--color-bg-success-base);
   }
 
   &.failure {
-    color: var(--color-text-on-error-strong);
-    background: var(--color-bg-error-strong);
+    color: var(--color-text-on-error-base);
+    background: var(--color-bg-error-base);
   }
 }
 
@@ -148,7 +148,7 @@ code {
       }
 
       label a {
-        color: var(--color-text-accent);
+        color: var(--color-text-brand);
         text-decoration: underline;
 
         &:hover,
@@ -198,7 +198,7 @@ code {
     }
 
     a {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
   }
 
@@ -212,7 +212,7 @@ code {
     color: var(--color-text-secondary);
 
     a {
-      color: var(--color-text-accent);
+      color: var(--color-text-brand);
     }
 
     code {
@@ -606,8 +606,8 @@ code {
     width: 100%;
     border: 0;
     border-radius: 4px;
-    background: var(--color-bg-accent-strong);
-    color: var(--color-text-on-accent-strong);
+    background: var(--color-bg-brand-base);
+    color: var(--color-text-on-brand-base);
     font-size: 15px;
     line-height: 22px;
     height: auto;
@@ -626,7 +626,7 @@ code {
     &:active,
     &:focus,
     &:hover {
-      background: var(--color-bg-accent-strong-highlighted);
+      background: var(--color-bg-brand-base-hover);
     }
 
     &:disabled,
@@ -636,12 +636,12 @@ code {
     }
 
     &.negative {
-      background: var(--color-bg-error-strong);
+      background: var(--color-bg-error-base);
 
       &:hover,
       &:active,
       &:focus {
-        background: var(--color-bg-error-strong-highlighted);
+        background: var(--color-bg-error-base-hover);
       }
     }
   }
@@ -752,29 +752,29 @@ code {
 }
 
 .flash-message {
-  color: var(--color-text-accent);
+  color: var(--color-text-brand);
   background: transparent;
-  border: 1px solid var(--color-text-accent);
+  border: 1px solid var(--color-text-brand);
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
   text-align: center;
 
   &.notice {
-    border: 1px solid var(--color-border-on-bg-success-subtle);
-    background: var(--color-bg-success-subtle);
+    border: 1px solid var(--color-border-on-bg-success-softer);
+    background: var(--color-bg-success-softer);
     color: var(--color-text-success);
   }
 
   &.warning {
-    border: 1px solid var(--color-border-on-bg-warning-subtle);
-    background: var(--color-bg-warning-subtle);
+    border: 1px solid var(--color-border-on-bg-warning-softer);
+    background: var(--color-bg-warning-softer);
     color: var(--color-text-warning);
   }
 
   &.alert {
-    border: 1px solid var(--color-border-on-bg-error-subtle);
-    background: var(--color-bg-error-subtle);
+    border: 1px solid var(--color-border-on-bg-error-softer);
+    background: var(--color-bg-error-softer);
     color: var(--color-text-error);
   }
 
@@ -840,7 +840,7 @@ code {
     }
 
     &:focus {
-      background: var(--color-bg-accent-subtle);
+      background: var(--color-bg-brand-softer);
     }
   }
 
@@ -916,7 +916,7 @@ code {
   }
 
   a {
-    color: var(--color-text-accent);
+    color: var(--color-text-brand);
     text-transform: uppercase;
     text-decoration: none;
     font-weight: 700;
@@ -924,7 +924,7 @@ code {
     &:hover,
     &:focus,
     &:active {
-      color: var(--color-text-accent-subtle);
+      color: var(--color-text-brand-soft);
     }
   }
 }
@@ -1119,7 +1119,7 @@ code {
     transition: none;
 
     button {
-      background: var(--color-bg-success-strong);
+      background: var(--color-bg-success-base);
       transition: none;
     }
   }
@@ -1230,7 +1230,7 @@ code {
     flex: 1 1 auto;
 
     &.completed {
-      background: var(--color-text-accent);
+      background: var(--color-text-brand);
     }
   }
 
@@ -1278,14 +1278,14 @@ code {
   }
 
   .active .circle {
-    border-color: var(--color-text-accent);
+    border-color: var(--color-text-brand);
 
     &::before {
       content: '';
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: var(--color-text-accent);
+      background: var(--color-text-brand);
       position: absolute;
       left: 50%;
       top: 50%;
@@ -1294,8 +1294,8 @@ code {
   }
 
   .completed .circle {
-    border-color: var(--color-text-accent);
-    background: var(--color-text-accent);
+    border-color: var(--color-text-brand);
+    background: var(--color-text-brand);
   }
 }
 
@@ -1311,7 +1311,7 @@ code {
     cursor: pointer;
 
     &:hover {
-      background-color: var(--color-bg-accent-subtle);
+      background-color: var(--color-bg-brand-softer);
     }
 
     img {
@@ -1352,7 +1352,7 @@ code {
       width: 100%;
       height: 100%;
       position: absolute;
-      background: var(--color-bg-error-subtle);
+      background: var(--color-bg-error-softer);
       z-index: 2;
       border-radius: 8px;
     }
