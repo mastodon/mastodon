@@ -330,7 +330,7 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
         });
     }, [dispatch, setIsSaving, mediaId, onClose, position, description]);
 
-    const handleKeyUp = useCallback(
+    const handleKeyDown = useCallback(
       (e: React.KeyboardEvent) => {
         if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
           e.preventDefault();
@@ -457,7 +457,7 @@ export const AltTextModal = forwardRef<ModalRef, Props & Partial<RestoreProps>>(
                   id='description'
                   value={isDetecting ? ' ' : description}
                   onChange={handleDescriptionChange}
-                  onKeyUp={handleKeyUp}
+                  onKeyDown={handleKeyDown}
                   lang={lang}
                   placeholder={intl.formatMessage(
                     type === 'audio'
