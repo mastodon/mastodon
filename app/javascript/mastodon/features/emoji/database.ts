@@ -312,21 +312,11 @@ export async function loadUnicodeEmojiGroupIcon(
 ) {
   const locale = toLoadedLocale(localeString);
   const db = await loadDB();
-  const trx = db.transaction(locale);
-  const index = trx.store.index('group');
-  let first: UnicodeEmojiData | null = null;
-  for await (const cursor of index.iterate(group)) {
-    if (!first) {
-      first = cursor.value;
-    } else if (
-      cursor.value.order &&
-      first.order &&
-      cursor.value.order < first.order
-    ) {
-      first = cursor.value;
-    }
-  }
-  return first;
+  const trx = db.transaction(locale, 'readonly');
+  const index = trx.store.index('groupOrder');
+  const range = IDBKeyRange.bound([group, 0], [group, Number.MAX_SAFE_INTEGER]);
+  const cursor = await index.openCursor(range);
+  return cursor?.value ?? null;
 }
 
 // Private functions
