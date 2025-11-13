@@ -55,7 +55,7 @@ export const PickerGroupList: FC<PickerGroupListProps> = ({
           isMinimized && classes.isMinimized,
         )}
       >
-        <button type='button' onClick={handleToggleMinimize}>
+        <button type='button' onClick={handleToggleMinimize} data-group={group}>
           {name}
           <ArrowIcon className={classes.groupHeaderArrow} />
         </button>

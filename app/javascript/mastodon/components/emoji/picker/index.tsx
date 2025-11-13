@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { FC, MouseEventHandler } from 'react';
 
 import type { GroupMessage, MessagesDataset } from 'emojibase';
@@ -38,9 +38,24 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({ onSelect }) => {
     },
     [onSelect],
   );
+
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const handleGroupSelect = useCallback((key: string) => {
-    // eslint-disable-next-line no-console
-    console.log('Selected group:', key);
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+
+    if (mockCustomGroups.at(0)?.key === key) {
+      wrapper.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const groupHeader = wrapper.querySelector<HTMLHeadingElement>(
+      `[data-group="${key}"]`,
+    );
+    if (groupHeader) {
+      groupHeader.focus({ preventScroll: true });
+      groupHeader.scrollIntoView({ behavior: 'smooth' });
+    }
   }, []);
 
   const [showSettings, setShowSettings] = useState(false);
@@ -91,7 +106,7 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({ onSelect }) => {
         </div>
         {showSettings && <div className={classes.main}>Settings here</div>}
         {!showSettings && (
-          <div className={classes.main}>
+          <div className={classes.main} ref={wrapperRef}>
             {mockCustomGroups.map((group) => (
               <PickerGroupList
                 key={group.key}
@@ -154,12 +169,18 @@ const PickerNavButton: FC<PickerNavProps> = ({ onSelect, message, group }) => {
     return emoji ?? null;
   });
 
-  if (group in groupKeysToNumber && icon === null) {
-    const groupNum = groupKeysToNumber[group];
-    if (typeof groupNum !== 'undefined') {
-      void loadUnicodeEmojiGroupIcon(groupNum, currentLocale).then(setIcon);
+  useEffect(() => {
+    if (icon !== null) {
+      return;
     }
-  }
+
+    if (group in groupKeysToNumber) {
+      const groupNum = groupKeysToNumber[group];
+      if (typeof groupNum !== 'undefined') {
+        void loadUnicodeEmojiGroupIcon(groupNum, currentLocale).then(setIcon);
+      }
+    }
+  }, [currentLocale, group, icon]);
 
   return (
     <li>
