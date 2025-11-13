@@ -1,26 +1,19 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import type { FC, MouseEventHandler } from 'react';
 
-import type { GroupMessage, MessagesDataset } from 'emojibase';
-import messages from 'emojibase-data/en/messages.json';
+import classNames from 'classnames';
 
-import { loadUnicodeEmojiGroupIcon } from '@/mastodon/features/emoji/database';
-import { useEmojiAppState } from '@/mastodon/features/emoji/mode';
 import type { AnyEmojiData } from '@/mastodon/features/emoji/types';
-import { usePrevious } from '@/mastodon/hooks/usePrevious';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 
-import { Emoji } from '..';
 import { IconButton } from '../../icon_button';
 import { CustomEmojiProvider } from '../context';
 
-import {
-  groupKeysToNumber,
-  groupsToHide,
-  mockCustomEmojis,
-  mockCustomGroups,
-} from './constants';
+import { mockCustomEmojis, mockCustomGroups } from './constants';
+import { PickerGroupButton } from './group-button';
+import { useLocaleMessages } from './hooks';
 import { PickerGroupList } from './list';
+import { PickerSettings } from './settings';
 import classes from './styles.module.css';
 
 interface MockEmojiPickerProps {
@@ -38,6 +31,12 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({ onSelect }) => {
     },
     [onSelect],
   );
+
+  const [showSettings, setShowSettings] = useState(false);
+  const handleSettingsClick: MouseEventHandler = useCallback((event) => {
+    event.preventDefault();
+    setShowSettings((prev) => !prev);
+  }, []);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const handleGroupSelect = useCallback((key: string) => {
@@ -58,35 +57,7 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({ onSelect }) => {
     }
   }, []);
 
-  const [showSettings, setShowSettings] = useState(false);
-  const handleSettingsClick: MouseEventHandler = useCallback((event) => {
-    event.preventDefault();
-    setShowSettings((prev) => !prev);
-  }, []);
-
-  const { currentLocale } = useEmojiAppState();
-  // This isn't needed in real life, as the current locale is only set on page load.
-  const prevLocale = usePrevious(currentLocale);
-  const [groups, setGroups] = useState<GroupMessage[]>([]);
-  if (prevLocale !== currentLocale) {
-    // This is messy, but it's just for the mock picker.
-    import(
-      `../../../../../../node_modules/emojibase-data/${currentLocale}/messages.json`
-    )
-      .then((module: { default: MessagesDataset }) => {
-        setGroups(
-          module.default.groups.filter(
-            (group) => !groupsToHide.includes(group.key),
-          ),
-        );
-      })
-      .catch((err: unknown) => {
-        console.warn('fell back to en messages', err);
-        setGroups(
-          messages.groups.filter((group) => !groupsToHide.includes(group.key)),
-        );
-      });
-  }
+  const { groups } = useLocaleMessages();
 
   return (
     <CustomEmojiProvider emojis={mockCustomEmojis}>
@@ -104,7 +75,7 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({ onSelect }) => {
             onClick={handleSettingsClick}
           />
         </div>
-        {showSettings && <div className={classes.main}>Settings here</div>}
+        {showSettings && <PickerSettings />}
         {!showSettings && (
           <div className={classes.main} ref={wrapperRef}>
             {mockCustomGroups.map((group) => (
@@ -125,77 +96,33 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({ onSelect }) => {
             ))}
           </div>
         )}
-        <ul className={classes.nav}>
+        <ul
+          className={classNames(
+            classes.nav,
+            showSettings && classes.settingsNav,
+          )}
+        >
           {mockCustomGroups.map((group) => (
-            <PickerNavButton
+            <PickerGroupButton
               key={group.key}
               onSelect={handleGroupSelect}
               message={group.message}
               group={group.key}
+              disabled={showSettings}
             />
           ))}
           <li key='separator' className={classes.separator} />
           {groups.map((group) => (
-            <PickerNavButton
+            <PickerGroupButton
               key={group.key}
               onSelect={handleGroupSelect}
               message={group.message}
               group={group.key}
+              disabled={showSettings}
             />
           ))}
         </ul>
       </div>
     </CustomEmojiProvider>
-  );
-};
-
-interface PickerNavProps {
-  onSelect: (key: string) => void;
-  group: string;
-  message: string;
-}
-
-const PickerNavButton: FC<PickerNavProps> = ({ onSelect, message, group }) => {
-  const handleClick: MouseEventHandler = useCallback(
-    (event) => {
-      event.preventDefault();
-      onSelect(group);
-    },
-    [onSelect, group],
-  );
-  const { currentLocale } = useEmojiAppState();
-  const [icon, setIcon] = useState<AnyEmojiData | null>(() => {
-    const emoji = mockCustomEmojis.find((emoji) => emoji.category === group);
-    return emoji ?? null;
-  });
-
-  useEffect(() => {
-    if (icon !== null) {
-      return;
-    }
-
-    if (group in groupKeysToNumber) {
-      const groupNum = groupKeysToNumber[group];
-      if (typeof groupNum !== 'undefined') {
-        void loadUnicodeEmojiGroupIcon(groupNum, currentLocale).then(setIcon);
-      }
-    }
-  }, [currentLocale, group, icon]);
-
-  return (
-    <li>
-      <button
-        type='button'
-        title={message}
-        onClick={handleClick}
-        className={classes.groupButton}
-      >
-        {icon && (
-          <Emoji
-            code={'unicode' in icon ? icon.unicode : `:${icon.shortcode}:`}
-          />
-        )}
-      </button>
-    </li>
   );
 };

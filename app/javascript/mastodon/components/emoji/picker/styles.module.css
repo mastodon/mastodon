@@ -1,5 +1,6 @@
 .wrapper {
   --max-width: 20rem;
+  --col-count: 6;
 
   display: grid;
   gap: 0.5rem;
@@ -92,7 +93,7 @@
 
 .emojiGrid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(var(--col-count), 1fr);
   gap: 0.5rem;
 }
 
@@ -145,6 +146,11 @@
   height: 2rem;
   border-radius: 50%;
   border: 1px solid gray;
+
+  .settingsNav & {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 }
 
 .separator {
