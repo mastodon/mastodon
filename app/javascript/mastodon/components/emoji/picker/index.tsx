@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { FC, MouseEventHandler } from 'react';
 
 import classNames from 'classnames';
@@ -32,12 +32,7 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({ onSelect }) => {
     [onSelect],
   );
 
-  const [showSettings, setShowSettings] = useState(false);
-  const handleSettingsClick: MouseEventHandler = useCallback((event) => {
-    event.preventDefault();
-    setShowSettings((prev) => !prev);
-  }, []);
-
+  const { groups } = useLocaleMessages();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const handleGroupSelect = useCallback((key: string) => {
     const wrapper = wrapperRef.current;
@@ -57,7 +52,19 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({ onSelect }) => {
     }
   }, []);
 
-  const { groups } = useLocaleMessages();
+  const searchRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    const searchInput = searchRef.current;
+    if (!searchInput) return;
+
+    searchInput.focus();
+  }, []);
+
+  const [showSettings, setShowSettings] = useState(false);
+  const handleSettingsClick: MouseEventHandler = useCallback((event) => {
+    event.preventDefault();
+    setShowSettings((prev) => !prev);
+  }, []);
 
   return (
     <CustomEmojiProvider emojis={mockCustomEmojis}>
@@ -67,6 +74,7 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({ onSelect }) => {
             type='search'
             placeholder='Search emojis'
             className={classes.search}
+            ref={searchRef}
           />
           <IconButton
             icon='settings'
