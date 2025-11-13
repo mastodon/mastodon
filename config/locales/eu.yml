@@ -860,9 +860,13 @@ eu:
       no_status_selected: Ez da bidalketarik aldatu ez delako bat ere hautatu
       open: Ireki bidalketa
       original_status: Jatorrizko bidalketa
+      quotes: Aipuak
       reblogs: Bultzadak
       status_changed: Bidalketa aldatuta
+      status_title: "%{name} erabiltzailearen bidalketa"
       trending: Joera
+      view_publicly: Publikoki ikusi
+      view_quoted_post: Aipatutako bidalketa ikusi
       visibility: Ikusgaitasuna
       with_media: Multimediarekin
     strikes:
@@ -907,6 +911,7 @@ eu:
       sidekiq_process_check:
         message_html: Ez da ari Sidekiq prozesurik exekutatzen %{value} ilad(et)an. Egiaztatu Sidekiq konfigurazioa
       software_version_check:
+        action: Ikusi eguneraketa eskuragarriak
         message_html: Mastodon eguneratze bat eskuragarri dago.
       software_version_critical_check:
         action: Ikusi eguneraketa eskuragarriak
@@ -1021,6 +1026,8 @@ eu:
           one: Pertsona batek erabilia azken astean
           other: "%{count} pertsonak erabilia azken astean"
       trending: Joerak
+    username_blocks:
+      add_new: Gehitu berria
     warning_presets:
       add_new: Gehitu berria
       delete: Ezabatu
