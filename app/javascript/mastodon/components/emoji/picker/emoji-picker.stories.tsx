@@ -1,3 +1,6 @@
+import type { FC } from 'react';
+import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
 
@@ -14,12 +17,24 @@ const meta = {
   title: 'Components/Emoji/EmojiPicker',
   render(_args, { globals }) {
     const locale = typeof globals.locale === 'string' ? globals.locale : 'en';
-
-    void importCustomEmojiData();
-    void importEmojiData(locale);
-    return <MockEmojiPicker onSelect={onSelect} />;
+    return <StoryComponent locale={locale} />;
   },
 } satisfies Meta;
+
+const StoryComponent: FC<{ locale: string }> = ({ locale }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  void Promise.all([importCustomEmojiData(), importEmojiData(locale)]).then(
+    () => {
+      setLoaded(true);
+    },
+  );
+
+  if (!loaded) {
+    return null;
+  }
+  return <MockEmojiPicker onSelect={onSelect} />;
+};
 
 export default meta;
 
