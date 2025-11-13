@@ -32,7 +32,7 @@ export const loadPending = timeline => ({
   timeline,
 });
 
-export function updateTimeline(timeline, status, { accept = undefined, bogusQuotePolicy = false }) {
+export function updateTimeline(timeline, status, { accept = undefined, bogusQuotePolicy = false } = {}) {
   return (dispatch, getState) => {
     if (typeof accept === 'function' && !accept(status)) {
       return;
