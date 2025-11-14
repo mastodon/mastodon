@@ -673,8 +673,8 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
 
       dispatch(useEmoji(suggestion));
     } else if (suggestion.type === 'hashtag') {
-      completion    = suggestion.name.slice(token.length - 1);
-      startPosition = position + token.length;
+      completion    = token + suggestion.name.slice(token.length - 1);
+      startPosition = position - 1;
     } else if (suggestion.type === 'account') {
       completion    = `@${getState().getIn(['accounts', suggestion.id, 'acct'])}`;
       startPosition = position - 1;
