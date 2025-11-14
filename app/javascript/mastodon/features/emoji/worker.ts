@@ -19,5 +19,7 @@ async function loadData(locale: string, path?: string) {
   } else {
     throw new Error('Path is required for loading locale emoji data');
   }
-  self.postMessage(`loaded ${importCount} emojis into ${locale}`);
+  if (importCount) {
+    self.postMessage(`loaded ${importCount} emojis into ${locale}`);
+  }
 }
