@@ -162,7 +162,7 @@ describe('loadEmojiDataToState', () => {
     const dbCall = vi
       .spyOn(db, 'loadEmojiByHexcode')
       .mockRejectedValue(new db.LocaleNotLoadedError('en'));
-    vi.spyOn(loader, 'importEmojiData').mockResolvedValueOnce();
+    vi.spyOn(loader, 'importEmojiData').mockResolvedValueOnce(undefined);
     const consoleCall = vi
       .spyOn(console, 'warn')
       .mockImplementationOnce(() => null);
