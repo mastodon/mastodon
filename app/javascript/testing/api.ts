@@ -1,8 +1,5 @@
-import type { CompactEmoji } from 'emojibase';
 import { http, HttpResponse } from 'msw';
 import { action } from 'storybook/actions';
-
-import { toSupportedLocale } from '@/mastodon/features/emoji/locale';
 
 import { customEmojiFactory, relationshipsFactory } from './factories';
 
@@ -47,21 +44,6 @@ export const mockHandlers = {
     action('fetching custom emoji data')();
     return HttpResponse.json([customEmojiFactory()]);
   }),
-  emojiData: http.get<{ locale: string }>(
-    '/packs-dev/emoji/:locale.json',
-    async ({ params }) => {
-      const locale = toSupportedLocale(params.locale);
-      action('fetching emoji data')(locale);
-      const { default: data } = (await import(
-        /* @vite-ignore */
-        `emojibase-data/${locale}/compact.json`
-      )) as {
-        default: CompactEmoji[];
-      };
-
-      return HttpResponse.json([data]);
-    },
-  ),
 };
 
 export const unhandledRequestHandler = ({ url }: Request) => {

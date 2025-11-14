@@ -42,5 +42,14 @@ module.exports = {
         ],
       },
     },
+    {
+      'files': ['app/javascript/**/*.module.scss', 'app/javascript/**/*.module.css'],
+      rules: {
+        'selector-pseudo-class-no-unknown': [
+          true,
+          { ignorePseudoClasses: ['global'] },
+        ],
+      }
+    }
   ],
 };
