@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.1] - 2025-11-13
+
+### Fixes
+
+- Fix Cmd/Ctrl + Enter not submitting Alt text modal on some browsers (#36866 by @diondiondion)
+- Fix posts coming from public/hashtag streaming being marked as unquotable (#36860 and #36869 by @ClearlyClaire)
+- Fix old previously-undiscovered posts being treated as new when receiving an `Update` (#36848 by @ClearlyClaire)
+- Fix blank screen in browsers that don't support `Intl.DisplayNames` (#36847 by @diondiondion)
+- Fix filters not being applied to quotes in detailed view (#36843 by @ClearlyClaire)
+- Fix scroll shift caused by fetch-all-replies alerts (#36807 by @diondiondion)
+- Fix dropdown menu not focusing first item when opened via keyboard (#36804 by @diondiondion)
+- Fix assets build issue on arch64 (#36781 by @ClearlyClaire)
+- Fix `/api/v1/statuses/:id/context` sometimes returing `Mastodon-Async-Refresh` without `result_count` (#36779 by @ClearlyClaire)
+- Fix prepared quote not being discarded with contents when replying (#36778 by @ClearlyClaire)
+
 ## [4.5.0] - 2025-11-06
 
 ### Added
