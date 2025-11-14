@@ -1,0 +1,130 @@
+@use 'variables' as *;
+
+$maximum-width: 1235px;
+$fluid-breakpoint: $maximum-width + 20px;
+
+.container {
+  box-sizing: border-box;
+  max-width: $maximum-width;
+  margin: 0 auto;
+  position: relative;
+
+  @media screen and (max-width: $fluid-breakpoint) {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+
+.brand {
+  position: relative;
+  text-decoration: none;
+}
+
+.rules-list {
+  font-size: 15px;
+  line-height: 22px;
+  counter-reset: list-counter;
+
+  li {
+    position: relative;
+    border-bottom: 1px solid var(--color-border-primary);
+    padding: 1em 1.75em;
+    padding-inline-start: 3em;
+    font-weight: 500;
+    counter-increment: list-counter;
+    min-height: 4ch;
+
+    button {
+      background: transparent;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      text-align: start;
+      font: inherit;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: transparent;
+      }
+
+      &[aria-expanded='false'] .rules-list__hint {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @supports (-webkit-line-clamp: 2) {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          white-space: normal;
+        }
+      }
+    }
+
+    &::before {
+      content: counter(list-counter);
+      position: absolute;
+      inset-inline-start: 0;
+      top: 1em;
+      background: var(--color-bg-brand-base);
+      color: var(--color-text-on-brand-base);
+      border-radius: 50%;
+      width: 4ch;
+      height: 4ch;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__text {
+    color: var(--color-text-primary);
+  }
+
+  &__hint {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-text-secondary);
+  }
+}
+
+.rules-languages {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  position: relative;
+
+  > label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  select {
+    appearance: none;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: var(--color-text-primary);
+    display: block;
+    width: 100%;
+    outline: 0;
+    font-family: inherit;
+    resize: vertical;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
+    border-radius: 4px;
+    padding-inline-start: 10px;
+    padding-inline-end: 30px;
+    height: 41px;
+
+    @media screen and (width <= 600px) {
+      font-size: 16px;
+    }
+  }
+}
