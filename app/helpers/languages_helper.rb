@@ -100,7 +100,7 @@ module LanguagesHelper
     lo: ['Lao', 'ລາວ'].freeze,
     lt: ['Lithuanian', 'lietuvių kalba'].freeze,
     lu: ['Luba-Katanga', 'Tshiluba'].freeze,
-    lv: ['Latvian', 'latviešu valoda'].freeze,
+    lv: ['Latvian', 'Latviski'].freeze,
     mg: ['Malagasy', 'fiteny malagasy'].freeze,
     mh: ['Marshallese', 'Kajin M̧ajeļ'].freeze,
     mi: ['Māori', 'te reo Māori'].freeze,
