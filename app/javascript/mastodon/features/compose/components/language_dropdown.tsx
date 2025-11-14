@@ -20,7 +20,7 @@ import { languages as preloadedLanguages } from 'mastodon/initial_state';
 import type { RootState } from 'mastodon/store';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import { debouncedGuess } from '../util/language_detection';
+import { debouncedGuess, countLetters } from '../util/language_detection';
 
 const messages = defineMessages({
   changeLanguage: {
@@ -382,6 +382,10 @@ export const LanguageDropdown: React.FC = () => {
     } else {
       debouncedGuess.cancel();
     }
+
+    return () => {
+      canceled = true;
+    };
   }, [text, setGuess]);
 
   // Keeping track of the previous render's text length here
