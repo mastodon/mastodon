@@ -54,6 +54,7 @@ fr-CA:
         password: Utilisez au moins 8 caractères
         phrase: Sera filtré peu importe la casse ou l’avertissement de contenu du message
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez une permission générale, vous n’avez pas besoin de sélectionner les permissions plus précises.
+        setting_advanced_layout: Afficher Mastodon avec une mise en page multicolonnes, vous permettant de visualiser le flux, les notifications et une troisième colonne de votre choix. Non recommandé pour les écrans plus petits.
         setting_aggregate_reblogs: Ne pas afficher les nouveaux partages pour les messages déjà récemment partagés (n’affecte que les partages futurs)
         setting_always_send_emails: Normalement, les notifications par courriel ne seront pas envoyées lorsque vous utilisez Mastodon activement
         setting_default_quote_policy_unlisted: Lorsque des personnes vous citent, leur message sera également masqué des fils des tendances.
@@ -86,6 +87,7 @@ fr-CA:
         content_cache_retention_period: Tous les messages provenant d'autres serveurs (y compris les partages et les réponses) seront supprimés passé le nombre de jours spécifié, sans tenir compte de l'interaction de l'utilisateur·rice local·e avec ces messages. Cela inclut les messages qu'un·e utilisateur·rice aurait marqué comme signets ou comme favoris. Les mentions privées entre utilisateur·rice·s de différentes instances seront également perdues et impossibles à restaurer. L'utilisation de ce paramètre est destinée à des instances spécifiques et contrevient à de nombreuses attentes des utilisateurs lorsqu'elle est appliquée à des fins d'utilisation ordinaires.
         custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
         favicon: WEBP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
+        landing_page: ".."
         mascot: Remplace l'illustration dans l'interface Web avancée.
         media_cache_retention_period: Les fichiers médias des messages publiés par des utilisateurs distants sont mis en cache sur votre serveur. Lorsque cette valeur est positive, les médias sont supprimés au terme du nombre de jours spécifié. Si les données des médias sont demandées après leur suppression, elles seront téléchargées à nouveau, dans la mesure où le contenu source est toujours disponible. En raison des restrictions concernant la fréquence à laquelle les cartes de prévisualisation des liens interrogent des sites tiers, il est recommandé de fixer cette valeur à au moins 14 jours, faute de quoi les cartes de prévisualisation des liens ne seront pas mises à jour à la demande avant cette échéance.
         min_age: Les utilisateurs seront invités à confirmer leur date de naissance lors de l'inscription
@@ -356,6 +358,7 @@ fr-CA:
         min_age: Âge minimum
       user:
         date_of_birth_2i: Mois
+        date_of_birth_3i: Jour
         role: Rôle
         time_zone: Fuseau horaire
       user_role:
