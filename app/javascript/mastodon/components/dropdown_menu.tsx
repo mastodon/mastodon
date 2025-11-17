@@ -26,6 +26,7 @@ import {
   closeDropdownMenu,
 } from 'mastodon/actions/dropdown_menu';
 import { openModal, closeModal } from 'mastodon/actions/modal';
+import { fetchStatus } from 'mastodon/actions/statuses';
 import { CircularProgress } from 'mastodon/components/circular_progress';
 import { isUserTouching } from 'mastodon/is_mobile';
 import {
@@ -303,6 +304,7 @@ interface DropdownProps<Item extends object | null = MenuItem> {
    */
   scrollKey?: string;
   status?: ImmutableMap<string, unknown>;
+  needsStatusRefresh?: boolean;
   forceDropdown?: boolean;
   renderItem?: RenderItemFn<Item>;
   renderHeader?: RenderHeaderFn<Item>;
@@ -326,6 +328,7 @@ export const Dropdown = <Item extends object | null = MenuItem>({
   placement = 'bottom',
   offset = [5, 5],
   status,
+  needsStatusRefresh,
   forceDropdown = false,
   renderItem,
   renderHeader,
@@ -345,6 +348,7 @@ export const Dropdown = <Item extends object | null = MenuItem>({
   const prefetchAccountId = status
     ? status.getIn(['account', 'id'])
     : undefined;
+  const statusId = status?.get('id') as string | undefined;
 
   const handleClose = useCallback(() => {
     if (buttonRef.current) {
@@ -409,6 +413,15 @@ export const Dropdown = <Item extends object | null = MenuItem>({
           dispatch(fetchRelationships([prefetchAccountId]));
         }
 
+        if (needsStatusRefresh && statusId) {
+          dispatch(
+            fetchStatus(statusId, {
+              forceFetch: true,
+              alsoFetchContext: false,
+            }),
+          );
+        }
+
         if (isUserTouching() && !forceDropdown) {
           dispatch(
             openModal({
@@ -442,6 +455,8 @@ export const Dropdown = <Item extends object | null = MenuItem>({
       items,
       forceDropdown,
       handleClose,
+      statusId,
+      needsStatusRefresh,
     ],
   );
 

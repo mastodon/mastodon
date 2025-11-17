@@ -52,6 +52,9 @@ const randomUpTo = max =>
 export const connectTimelineStream = (timelineId, channelName, params = {}, options = {}) => {
   const { messages } = getLocale();
 
+  // Public streams are currently not returning personalized quote policies
+  const bogusQuotePolicy = channelName.startsWith('public') || channelName.startsWith('hashtag');
+
   return connectStream(channelName, params, (dispatch, getState) => {
     // @ts-ignore
     const locale = getState().getIn(['meta', 'locale']);
@@ -97,11 +100,11 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
         switch (data.event) {
         case 'update':
           // @ts-expect-error
-          dispatch(updateTimeline(timelineId, JSON.parse(data.payload), options.accept));
+          dispatch(updateTimeline(timelineId, JSON.parse(data.payload), { accept: options.accept, bogusQuotePolicy }));
           break;
         case 'status.update':
           // @ts-expect-error
-          dispatch(updateStatus(JSON.parse(data.payload)));
+          dispatch(updateStatus(JSON.parse(data.payload), { bogusQuotePolicy }));
           break;
         case 'delete':
           dispatch(deleteFromTimelines(data.payload));

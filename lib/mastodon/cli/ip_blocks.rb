@@ -107,9 +107,9 @@ module Mastodon::CLI
       IpBlock.severity_no_access.find_each do |ip_block|
         case options[:format]
         when 'nginx'
-          say "deny #{ip_block.ip}/#{ip_block.ip.prefix};"
+          say "deny #{ip_block.to_cidr};"
         else
-          say "#{ip_block.ip}/#{ip_block.ip.prefix}"
+          say ip_block.to_cidr
         end
       end
     end

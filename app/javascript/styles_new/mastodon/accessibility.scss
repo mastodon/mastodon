@@ -1,0 +1,13 @@
+@use 'variables' as *;
+
+%emoji-color-inversion {
+  filter: invert(1);
+}
+
+.emojione {
+  @each $emoji in $emojis-requiring-inversion {
+    &[title=':#{$emoji}:'] {
+      @extend %emoji-color-inversion;
+    }
+  }
+}

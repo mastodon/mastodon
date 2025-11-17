@@ -1,0 +1,54 @@
+:root {
+  /* TEXT TOKENS */
+
+  --color-text-primary: var(--color-grey-50);
+  --color-text-secondary: var(--color-grey-300);
+  --color-text-tertiary: var(--color-grey-400);
+  --color-text-brand: var(--color-indigo-300);
+  --color-text-status-links: var(--color-text-brand);
+
+  /* BORDER TOKENS */
+
+  --border-strength-primary: 18%;
+}
+
+.status__content a,
+.reply-indicator__content a,
+.edit-indicator__content a,
+.link-footer a,
+.status__content__read-more-button,
+.status__content__translate-button {
+  text-decoration: underline;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+
+  &.mention {
+    text-decoration: none;
+
+    span {
+      text-decoration: underline;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      span {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.link-button:disabled {
+  cursor: not-allowed;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none !important;
+  }
+}

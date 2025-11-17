@@ -32,7 +32,7 @@ function getStatusResultFunction(
     };
   }
 
-  if (statusBase.get('isLoading')) {
+  if (statusBase.get('isLoading') && !statusBase.get('content')) {
     return {
       status: null,
       loadingState: 'loading',
@@ -74,7 +74,7 @@ function getStatusResultFunction(
       map.set('matched_filters', filtered);
       map.set('matched_media_filters', mediaFiltered);
     }),
-    loadingState: 'complete'
+    loadingState: statusBase.get('isLoading') ? 'loading' : 'complete'
   };
 }
 

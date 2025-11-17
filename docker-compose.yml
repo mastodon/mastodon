@@ -59,7 +59,7 @@ services:
   web:
     # You can uncomment the following line if you want to not use the prebuilt image, for example if you have local code changes
     # build: .
-    image: ghcr.io/mastodon/mastodon:v4.5.0
+    image: ghcr.io/mastodon/mastodon:v4.5.1
     restart: always
     env_file: .env.production
     command: bundle exec puma -C config/puma.rb
@@ -83,7 +83,7 @@ services:
     # build:
     #   dockerfile: ./streaming/Dockerfile
     #   context: .
-    image: ghcr.io/mastodon/mastodon-streaming:v4.5.0
+    image: ghcr.io/mastodon/mastodon-streaming:v4.5.1
     restart: always
     env_file: .env.production
     command: node ./streaming/index.js
@@ -102,7 +102,7 @@ services:
   sidekiq:
     # You can uncomment the following line if you want to not use the prebuilt image, for example if you have local code changes
     # build: .
-    image: ghcr.io/mastodon/mastodon:v4.5.0
+    image: ghcr.io/mastodon/mastodon:v4.5.1
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq
@@ -115,7 +115,7 @@ services:
     volumes:
       - ./public/system:/mastodon/public/system
     healthcheck:
-      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ [78]' || false"]
+      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 8' || false"]
 
   ## Uncomment to enable federation with tor instances along with adding the following ENV variables
   ## http_hidden_proxy=http://privoxy:8118

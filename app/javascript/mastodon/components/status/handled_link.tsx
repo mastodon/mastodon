@@ -27,12 +27,14 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
 }) => {
   // Handle hashtags
   if (
-    text.startsWith('#') ||
-    prevText?.endsWith('#') ||
-    text.startsWith('＃') ||
-    prevText?.endsWith('＃')
+    (text.startsWith('#') ||
+      prevText?.endsWith('#') ||
+      text.startsWith('＃') ||
+      prevText?.endsWith('＃')) &&
+    !text.includes('%')
   ) {
     const hashtag = text.slice(1).trim();
+
     return (
       <Link
         className={classNames('mention hashtag', className)}
@@ -69,7 +71,7 @@ export const HandledLink: FC<HandledLinkProps & ComponentProps<'a'>> = ({
   return (
     <a
       {...props}
-      href={href}
+      href={encodeURI(href)}
       title={href}
       className={classNames('unhandled-link', className)}
       target='_blank'

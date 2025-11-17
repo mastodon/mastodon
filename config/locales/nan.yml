@@ -1258,10 +1258,60 @@ nan:
       title: Tsi̍t-kuá基本規定。
       title_invited: Lí受邀請ah。
     security: 安全
+    set_new_password: 設新ê密碼
+    setup:
+      email_below_hint_html: 請檢查lí ê pùn-sò phue資料giap-á，á是請求koh送tsi̍t改。Lí通改電子phue地址，nā是有出入。
+      email_settings_hint_html: 請tshi̍h guán送kàu %{email} ê連結，來開始用 Mastodon。Guán ē佇tsia等。
+      link_not_received: Kám iáu bē收著連結？
+      new_confirmation_instructions_sent: Lí ē tī幾分鐘後收著新ê電子phue，有確認連結！
+      title: 請檢查lí ê收件giap-á
+    sign_in:
+      preamble_html: 請用lí佇 <strong>%{domain}</strong> ê口座kap密碼登入。若是lí ê口座tī別ê服侍器，lí bē當tī tsia登入。
+      title: 登入 %{domain}
+    status:
+      account_status: 口座ê狀態
+      confirming: Teh等電子phue確認完成。
+      functional: Lí ê口座完全ē當用。
+    use_security_key: 用安全鎖
+    user_agreement_html: 我有讀而且同意 <a href="%{terms_of_service_path}" target="_blank">服務規定</a> kap <a href="%{privacy_policy_path}" target="_blank">隱私權政策</a>
+    user_privacy_agreement_html: 我有讀而且同意 <a href="%{privacy_policy_path}" target="_blank">隱私權政策</a>
+  author_attribution:
+    example_title: 見本文字
+    hint_html: Lí kám佇Mastodon外口寫新聞á是blog文章？控制當in佇Mastodon分享ê時陣，án-tsuánn表示作者資訊。
+    instructions: 請確認lí ê文章HTML內底有tsit ê code：
+    more_from_html: 看 %{name} ê其他內容
+    s_blog: "%{name} ê Blog"
+    then_instructions: 了後，kā公開ê所在ê域名加kàu下kha ê格á：
+    title: 作者ê落名
+  challenge:
+    confirm: 繼續
+    hint_html: "<strong>提醒：</strong>Guán佇一點鐘內底，bē koh問密碼。"
+    invalid_password: 無效ê密碼
+    prompt: 確認密碼來繼續
+  crypto:
+    errors:
+      invalid_key: m̄是有效ê Ed25519 á是 Curve25519 鎖
+  date:
+    formats:
+      default: "%Y年%b月%d日"
+      with_month_name: "%Y年%B月%d日"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}點鐘前"
+      about_x_months: "%{count}kò月前"
+      about_x_years: "%{count}年前"
+      almost_x_years: 接近%{count}年前
+      half_a_minute: 頭tú-á
+      less_than_x_minutes: "%{count}分鐘前以內"
+      less_than_x_seconds: 頭tú-á
+      over_x_years: "%{count}年"
+      x_days: "%{count}kang"
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:
     default_language: Kap界面ê語言sio kâng
+  terms_of_service:
+    title: 服務規定
   two_factor_authentication:
     disable: 停止用雙因素認證
   user_mailer:
