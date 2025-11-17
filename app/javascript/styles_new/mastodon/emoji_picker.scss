@@ -1,0 +1,248 @@
+@use 'variables' as *;
+
+.emoji-mart {
+  font-size: 13px;
+  display: inline-block;
+
+  &,
+  * {
+    box-sizing: border-box;
+    line-height: 1.15;
+  }
+
+  .emoji-mart-emoji {
+    padding: 6px;
+  }
+}
+
+.emoji-mart-bar {
+  &:first-child {
+    background: var(--color-bg-tertiary);
+    border-bottom: 1px solid var(--color-border-primary);
+  }
+}
+
+.emoji-mart-anchors {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px;
+  line-height: 0;
+}
+
+.emoji-mart-anchor {
+  position: relative;
+  flex: 1;
+  text-align: center;
+  padding: 12px 4px;
+  overflow: hidden;
+  transition: color 0.1s ease-out;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  color: var(--color-text-secondary);
+
+  &:hover {
+    color: color-mix(
+      in oklab,
+      var(--color-text-primary),
+      var(--color-text-secondary)
+    );
+  }
+}
+
+.emoji-mart-anchor-selected {
+  color: var(--color-text-brand);
+
+  &:hover {
+    color: var(--color-text-brand-soft);
+  }
+
+  .emoji-mart-anchor-bar {
+    bottom: -1px;
+  }
+}
+
+.emoji-mart-anchor-bar {
+  position: absolute;
+  bottom: -5px;
+  inset-inline-start: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-text-brand);
+}
+
+.emoji-mart-anchors {
+  i {
+    display: inline-block;
+    width: 100%;
+    max-width: 22px;
+  }
+
+  svg {
+    fill: currentColor;
+    max-height: 18px;
+  }
+}
+
+.emoji-mart-scroll {
+  overflow-y: scroll;
+  height: 270px;
+  max-height: 35vh;
+  padding: 0 6px 6px;
+  will-change: transform;
+}
+
+.emoji-mart-search {
+  padding: 10px;
+  padding-inline-end: 45px;
+  position: relative;
+
+  input {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 7px 9px;
+    padding-inline-end: 25px;
+    font-family: inherit;
+    display: block;
+    width: 100%;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-primary);
+    border-radius: 4px;
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    &:active,
+    &:focus {
+      outline: none !important;
+      border-width: 1px !important;
+    }
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+  }
+}
+
+.emoji-mart-search-icon {
+  position: absolute;
+  top: 18px;
+  inset-inline-end: 45px + 5px;
+  z-index: 2;
+  padding: 2px 5px 1px;
+  border: 0;
+  background: none;
+  transition: all 100ms linear;
+  transition-property: opacity;
+  pointer-events: auto;
+
+  &:disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  svg {
+    fill: currentColor;
+  }
+}
+
+.emoji-mart-category .emoji-mart-emoji {
+  cursor: pointer;
+
+  span {
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:hover::before {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-bg-brand-softer);
+    border-radius: 100%;
+  }
+}
+
+.emoji-mart-category-label {
+  z-index: 2;
+  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
+  span {
+    display: block;
+    width: 100%;
+    font-weight: 500;
+    padding: 5px 6px;
+  }
+}
+
+/* For screenreaders only, via https://stackoverflow.com/a/19758620 */
+.emoji-mart-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+.emoji-mart-category-list {
+  margin: 0;
+  padding: 0;
+}
+
+.emoji-mart-category-list li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+.emoji-mart-emoji {
+  position: relative;
+  display: inline-block;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-size: 0;
+
+  span {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.emoji-mart-no-results {
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+  text-align: center;
+  padding: 5px 6px;
+  padding-top: 70px;
+
+  .emoji-mart-no-results-label {
+    margin-top: 0.2em;
+  }
+
+  .emoji-mart-emoji:hover::before {
+    cursor: default;
+    content: none;
+  }
+}
+
+.emoji-mart-preview {
+  display: none;
+}

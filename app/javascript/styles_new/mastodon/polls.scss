@@ -1,0 +1,232 @@
+@use 'sass:color';
+@use 'variables' as *;
+
+.poll {
+  margin-top: 16px;
+  font-size: 14px;
+
+  li {
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  &__chart {
+    border-radius: 4px;
+    display: block;
+    background: rgb(from var(--color-text-brand) r g b / 60%);
+    height: 5px;
+    min-width: 1%;
+
+    &.leading {
+      background: var(--color-text-brand);
+    }
+  }
+
+  progress {
+    border: 0;
+    display: block;
+    width: 100%;
+    height: 5px;
+    appearance: none;
+    background: transparent;
+
+    &::-webkit-progress-bar {
+      background: transparent;
+    }
+
+    // Those rules need to be entirely separate or they won't work, hence the
+    // duplication
+    &::-moz-progress-bar {
+      border-radius: 4px;
+      background: rgb(from var(--color-text-brand) r g b / 60%);
+    }
+
+    &::-webkit-progress-value {
+      border-radius: 4px;
+      background: rgb(from var(--color-text-brand) r g b / 60%);
+    }
+  }
+
+  &__option {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 6px 0;
+    line-height: 18px;
+    cursor: default;
+    overflow: hidden;
+
+    &__text {
+      display: inline-block;
+      overflow-wrap: break-word;
+      max-width: calc(100% - 45px - 25px);
+    }
+
+    input[type='radio'],
+    input[type='checkbox'] {
+      display: none;
+    }
+
+    .autosuggest-input {
+      flex: 1 1 auto;
+    }
+
+    input[type='text'] {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      font-size: 14px;
+      color: var(--color-text-primary);
+      outline: 0;
+      font-family: inherit;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-text-secondary);
+      border-radius: 4px;
+      padding: 8px 12px;
+
+      &:focus {
+        border-color: var(--color-text-brand);
+      }
+
+      @media screen and (width <= 600px) {
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.5px;
+      }
+    }
+
+    &.selectable {
+      cursor: pointer;
+    }
+
+    &.editable,
+    &.disabled {
+      align-items: center;
+      overflow: visible;
+    }
+  }
+
+  &__input {
+    display: block;
+    position: relative;
+    border: 1px solid var(--color-text-secondary);
+    box-sizing: border-box;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    flex: 0 0 auto;
+
+    &.checkbox {
+      border-radius: 4px;
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      border-color: var(--color-text-success);
+      border-width: 4px;
+    }
+
+    &.active {
+      background-color: var(--color-bg-success-base);
+      border-color: var(--color-text-success);
+    }
+
+    &::-moz-focus-inner {
+      outline: 0 !important;
+      border: 0;
+    }
+
+    &:focus,
+    &:active {
+      outline: 0 !important;
+    }
+
+    &.disabled {
+      border-color: var(--color-text-disabled);
+
+      &.active {
+        background: var(--color-text-disabled);
+      }
+
+      &:active,
+      &:focus,
+      &:hover {
+        border-color: var(--color-text-disabled);
+        border-width: 1px;
+      }
+    }
+  }
+
+  &__option.editable &__input,
+  &__option.disabled &__input {
+    &:active,
+    &:focus,
+    &:hover {
+      border-color: var(--color-text-primary);
+      border-width: 1px;
+    }
+  }
+
+  &__number {
+    display: inline-block;
+    width: 45px;
+    font-weight: 700;
+    flex: 0 0 45px;
+  }
+
+  &__voted {
+    padding: 0 5px;
+    display: inline-block;
+
+    &__mark {
+      font-size: 18px;
+    }
+  }
+
+  &__footer {
+    padding-top: 6px;
+    padding-bottom: 5px;
+    color: var(--color-text-tertiary);
+  }
+
+  &__link {
+    display: inline;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    color: var(--color-text-tertiary);
+    text-decoration: underline;
+    font-size: inherit;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:active,
+    &:focus {
+      background-color: var(--color-bg-secondary);
+    }
+  }
+
+  .button {
+    height: 36px;
+    padding: 0 16px;
+    margin-inline-end: 10px;
+    font-size: 14px;
+  }
+}
+
+.muted .poll {
+  color: var(--color-text-tertiary);
+
+  &__chart {
+    background: rgb(from var(--color-text-brand) r g b / 40%);
+
+    &.leading {
+      background: rgb(from var(--color-text-brand) r g b / 60%);
+    }
+  }
+}
