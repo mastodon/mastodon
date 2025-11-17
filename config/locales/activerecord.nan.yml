@@ -14,3 +14,9 @@ nan:
         username: 用者ê名
       user/invite_request:
         text: 原因
+    errors:
+      models:
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: 傷緊ah，著khah uànn佇 %{date}
