@@ -30,8 +30,9 @@ interface LocaleTable {
   value: UnicodeEmojiData;
   indexes: {
     group: number;
+    groupOrder: [number, number];
     label: string;
-    order: number;
+    order?: number;
     tags: string[];
   };
 }
@@ -39,7 +40,7 @@ type LocaleTables = Record<Locale, LocaleTable>;
 
 type Database = IDBPDatabase<EmojiDB>;
 
-const SCHEMA_VERSION = 1;
+const SCHEMA_VERSION = 2;
 
 const loadedLocales = new Set<Locale>();
 
@@ -52,24 +53,42 @@ const loadDB = (() => {
   // Actually load the DB.
   async function initDB() {
     const db = await openDB<EmojiDB>('mastodon-emoji', SCHEMA_VERSION, {
-      upgrade(database) {
-        const customTable = database.createObjectStore('custom', {
-          keyPath: 'shortcode',
-          autoIncrement: false,
-        });
-        customTable.createIndex('category', 'category');
-
-        database.createObjectStore('etags');
-
-        for (const locale of SUPPORTED_LOCALES) {
-          const localeTable = database.createObjectStore(locale, {
-            keyPath: 'hexcode',
+      upgrade(database, oldVersion, _newVersion, transaction) {
+        const storeNames = database.objectStoreNames;
+        if (!storeNames.contains('custom')) {
+          const customTable = database.createObjectStore('custom', {
+            keyPath: 'shortcode',
             autoIncrement: false,
           });
-          localeTable.createIndex('group', 'group');
-          localeTable.createIndex('label', 'label');
-          localeTable.createIndex('order', 'order');
-          localeTable.createIndex('tags', 'tags', { multiEntry: true });
+          customTable.createIndex('category', 'category');
+        }
+
+        if (!storeNames.contains('etags')) {
+          database.createObjectStore('etags');
+        }
+
+        for (const locale of SUPPORTED_LOCALES) {
+          if (!storeNames.contains(locale)) {
+            database.createObjectStore(locale, {
+              keyPath: 'hexcode',
+              autoIncrement: false,
+            });
+          }
+          const localeTable = transaction.objectStore(locale);
+
+          if (oldVersion < 1) {
+            localeTable.createIndex('group', 'group');
+            localeTable.createIndex('label', 'label');
+            localeTable.createIndex('tags', 'tags', { multiEntry: true });
+          }
+          if (oldVersion < 2) {
+            if (localeTable.indexNames.contains('order')) {
+              localeTable.deleteIndex('order');
+            }
+            localeTable.createIndex('groupOrder', ['group', 'order'], {
+              unique: false,
+            });
+          }
         }
       },
     });
@@ -170,6 +189,29 @@ export async function loadLatestEtag(localeString: string) {
   }
   const etag = await db.get('etags', locale);
   return etag ?? null;
+}
+
+export async function loadUnicodeEmojiGroup(
+  group: number,
+  localeString: string,
+) {
+  const locale = toLoadedLocale(localeString);
+  const db = await loadDB();
+  const emojis = await db.getAllFromIndex(locale, 'group', group);
+  return emojis.toSorted(({ order: a = 0 }, { order: b = 0 }) => a - b);
+}
+
+export async function loadUnicodeEmojiGroupIcon(
+  group: number,
+  localeString: string,
+) {
+  const locale = toLoadedLocale(localeString);
+  const db = await loadDB();
+  const trx = db.transaction(locale, 'readonly');
+  const index = trx.store.index('groupOrder');
+  const range = IDBKeyRange.bound([group, 0], [group, Number.MAX_SAFE_INTEGER]);
+  const cursor = await index.openCursor(range);
+  return cursor?.value ?? null;
 }
 
 // Private functions
