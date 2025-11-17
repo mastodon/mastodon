@@ -97,7 +97,7 @@ RSpec.describe 'IP Blocks' do
 
       expect(response.parsed_body)
         .to include(
-          ip: eq("#{ip_block.ip}/#{ip_block.ip.prefix}"),
+          ip: eq(ip_block.to_cidr),
           severity: eq(ip_block.severity.to_s)
         )
     end
@@ -216,7 +216,7 @@ RSpec.describe 'IP Blocks' do
       expect(response.content_type)
         .to start_with('application/json')
       expect(response.parsed_body).to match(hash_including({
-        ip: "#{ip_block.ip}/#{ip_block.ip.prefix}",
+        ip: ip_block.to_cidr,
         severity: 'sign_up_requires_approval',
         comment: 'Decreasing severity',
       }))
