@@ -69,21 +69,30 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
     const [zoomedIn, setZoomedIn] = useState(false);
     const currentMedia = media.get(index);
 
+    const [wrapperStyles, api] = useSpring(() => ({
+      x: index * -1 * window.innerWidth,
+    }));
+
     const handleChangeIndex = useCallback(
-      (newIndex: number) => {
+      (newIndex: number, animate = false) => {
         if (newIndex < 0) {
           newIndex = media.size + newIndex;
+        } else if (newIndex >= media.size) {
+          newIndex = newIndex % media.size;
         }
-        setIndex(newIndex % media.size);
+        setIndex(newIndex);
         setZoomedIn(false);
+        if (animate) {
+          void api.start({ x: -1 * newIndex * window.innerWidth });
+        }
       },
-      [media.size],
+      [api, media.size],
     );
     const handlePrevClick = useCallback(() => {
-      handleChangeIndex(index - 1);
+      handleChangeIndex(index - 1, true);
     }, [handleChangeIndex, index]);
     const handleNextClick = useCallback(() => {
-      handleChangeIndex(index + 1);
+      handleChangeIndex(index + 1, true);
     }, [handleChangeIndex, index]);
 
     const handleKeyDown = useCallback(
@@ -99,6 +108,20 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
         }
       },
       [handleNextClick, handlePrevClick],
+    );
+
+    const bind = useDrag(
+      ({ active, movement: [mx], direction: [xDir], cancel }) => {
+        if (active && Math.abs(mx) > window.innerWidth / 2) {
+          handleChangeIndex(index + (xDir > 0 ? -1 : 1));
+          cancel();
+        }
+        const x = -1 * index * window.innerWidth + (active ? mx : 0);
+        void api.start({
+          x,
+        });
+      },
+      { pointer: { capture: false } },
     );
 
     useEffect(() => {
@@ -144,17 +167,6 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
     const handleZoomClick = useCallback(() => {
       setZoomedIn((prev) => !prev);
     }, []);
-
-    const wrapperStyles = useSpring({
-      x: `-${index * 100}%`,
-    });
-    const bind = useDrag(
-      ({ swipe: [swipeX] }) => {
-        if (swipeX === 0) return;
-        handleChangeIndex(index + swipeX * -1); // Invert swipe as swiping left loads the next slide.
-      },
-      { pointer: { capture: false } },
-    );
 
     const [navigationHidden, setNavigationHidden] = useState(false);
     const handleToggleNavigation = useCallback(() => {
