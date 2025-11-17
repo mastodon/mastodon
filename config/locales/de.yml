@@ -1279,8 +1279,8 @@ de:
     security: Sicherheit
     set_new_password: Neues Passwort einrichten
     setup:
-      email_below_hint_html: Überprüfe deinen Spam-Ordner oder lass dir den Bestätigungslink erneut zusenden. Falls die angegebene E-Mail-Adresse falsch ist, kannst du sie auch korrigieren.
-      email_settings_hint_html: Klicke auf den Link, den wir an %{email} gesendet haben, um mit Mastodon loszulegen. Wir warten hier solange auf dich.
+      email_below_hint_html: Überprüfe deinen Spam-/Junk-Ordner oder lass dir den Bestätigungslink erneut zusenden. Falls du die vorherige E-Mail-Adresse falsch eingegeben hast, kannst du sie hier korrigieren.
+      email_settings_hint_html: Klicke auf den Link, den wir dir an %{email} geschickt haben, um mit Mastodon zu starten. Wir warten hier solange auf dich.
       link_not_received: Keinen Bestätigungslink erhalten?
       new_confirmation_instructions_sent: In wenigen Minuten wirst du eine neue E-Mail mit dem Bestätigungslink erhalten!
       title: Überprüfe dein E-Mail-Postfach
@@ -1738,8 +1738,8 @@ de:
     code_hint: Gib den Code ein, den deine 2FA- bzw. TOTP-App generiert hat, um den Vorgang zu bestätigen
     description_html: Wenn du die <strong>Zwei-Faktor-Authentisierung</strong> (2FA) mit einer Authentifizierungs-App deines Smartphones aktivierst, benötigst du neben dem regulären Passwort zusätzlich auch den zeitbasierten Code der 2FA-App, um dich anmelden zu können.
     enable: Aktivieren
-    instructions_html: "<strong>Scanne diesen QR-Code mit einer beliebigen Authentisierungs-App (TOTP)</strong>. Diese App generiert dann zeitbasierte Codes, die du beim Anmelden zusätzlich zum regulären Passwort eingeben musst."
-    manual_instructions: Wenn du den QR-Code nicht einscannen kannst, sondern die Zahlenfolge manuell eingeben musst, ist hier der geheime Token für deine 2FA-App.
+    instructions_html: "<strong>Scanne diesen QR-Code mit einer beliebigen Authentisierungs-App (TOTP)</strong> ein. Die App generiert dann zeitbasierte Codes, die du beim Anmelden zusätzlich zum regulären Passwort eingeben musst."
+    manual_instructions: 'Wenn du den QR-Code nicht einscannen kannst, sondern die Zahlenfolge manuell eingeben musst, ist hier der geheime Code für deine 2FA-App:'
     setup: Einrichten
     wrong_code: Der eingegebene Code ist ungültig! Laufen Serverzeit und Gerätezeit synchron?
   pagination:
@@ -2116,7 +2116,7 @@ de:
       edit_profile_action: Personalisieren
       edit_profile_step: Mit einem vollständigen Profil interagieren andere eher mit dir.
       edit_profile_title: Personalisiere dein Profil
-      explanation: Hier sind ein paar Tipps, um loszulegen
+      explanation: Hier sind ein paar Tipps für den Start
       feature_action: Mehr erfahren
       feature_audience: Mastodon bietet dir eine einzigartige Möglichkeit, deine Reichweite ohne Mittelsperson zu verwalten. Auf deiner eigenen Infrastruktur bereitgestellt, ermöglicht Mastodon es dir, jedem anderen Mastodon-Server zu folgen und von jedem anderen Server aus gefolgt zu werden. Ebenso steht Mastodon unter deiner Kontrolle.
       feature_audience_title: Baue deine Reichweite mit Vertrauen auf

@@ -79,7 +79,7 @@ es-MX:
       featured_tag:
         name: 'Aquí están algunas de las etiquetas que más has usado recientemente:'
       filters:
-        action: Elige qué acción realizar cuando una publicación coincide con el filtro
+        action: Elige qué acción realizar cuando una publicación coincida con el filtro
         actions:
           blur: Ocultar contenido multimedia detrás de una advertencia, sin ocultar el propio texto
           hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
@@ -88,7 +88,7 @@ es-MX:
         activity_api_enabled: Conteo de publicaciones publicadas localmente, usuarios activos, y nuevos registros en periodos semanales
         app_icon: WEBP, PNG, GIF o JPG. Reemplaza el icono de aplicación predeterminado en dispositivos móviles con un icono personalizado.
         backups_retention_period: Los usuarios tienen la posibilidad de generar archivos de sus mensajes para descargarlos más adelante. Cuando se establece en un valor positivo, estos archivos se eliminarán automáticamente del almacenamiento después del número especificado de días.
-        bootstrap_timeline_accounts: Estas cuentas se colocarán en la parte superior de las recomendaciones de cuentas a las que seguir para los nuevos usuarios. Proporciona una lista de cuentas separadas por comas.
+        bootstrap_timeline_accounts: Estas cuentas aparecerán en la parte superior de las recomendaciones de seguimiento de los nuevos usuarios. Proporciona una lista de cuentas separadas por comas.
         closed_registrations_message: Mostrado cuando los registros están cerrados
         content_cache_retention_period: Todas las publicaciones de otros servidores (incluyendo impuestos y respuestas) serán borrados después del número de días especificado, sin tener en cuenta cualquier interacción del usuario local con esas publicaciones. Esto incluye los mensajes que un usuario local haya marcado como favoritos. Las menciones privadas entre usuarios de diferentes instancias también se perderán y será imposible restaurarlas. El uso de esta configuración está pensado para instancias de propósito especial y rompe muchas expectativas de los usuarios cuando se implementa para uso general.
         custom_css: Puedes aplicar estilos personalizados a la versión web de Mastodon.
@@ -372,7 +372,9 @@ es-MX:
         jurisdiction: Jurisdicción legal
         min_age: Edad mínima
       user:
+        date_of_birth_1i: Año
         date_of_birth_2i: Mes
+        date_of_birth_3i: Día
         role: Rol
         time_zone: Zona horaria
       user_role:
