@@ -46,6 +46,8 @@ interface MediaModalProps {
   volume?: number;
 }
 
+const MIN_SWIPE_DISTANCE = 400;
+
 export const MediaModal: FC<MediaModalProps> = forwardRef<
   HTMLDivElement,
   MediaModalProps
@@ -70,7 +72,7 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
     const currentMedia = media.get(index);
 
     const [wrapperStyles, api] = useSpring(() => ({
-      x: index * -1 * window.innerWidth,
+      x: `-${index * 100}%`,
     }));
 
     const handleChangeIndex = useCallback(
@@ -83,7 +85,7 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
         setIndex(newIndex);
         setZoomedIn(false);
         if (animate) {
-          void api.start({ x: -1 * newIndex * window.innerWidth });
+          void api.start({ x: `-${newIndex * 100}%` });
         }
       },
       [api, media.size],
@@ -112,13 +114,18 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
 
     const bind = useDrag(
       ({ active, movement: [mx], direction: [xDir], cancel }) => {
-        if (active && Math.abs(mx) > window.innerWidth / 2) {
-          handleChangeIndex(index + (xDir > 0 ? -1 : 1));
+        // If dragging and swipe distance is enough, change the index.
+        if (
+          active &&
+          Math.abs(mx) > Math.min(window.innerWidth / 4, MIN_SWIPE_DISTANCE)
+        ) {
+          handleChangeIndex(index - xDir);
           cancel();
         }
-        const x = -1 * index * window.innerWidth + (active ? mx : 0);
+        // Set the x position via calc to ensure proper centering regardless of screen size.
+        const x = active ? mx : 0;
         void api.start({
-          x,
+          x: `calc(-${index * 100}% + ${x}px)`,
         });
       },
       { pointer: { capture: false } },
