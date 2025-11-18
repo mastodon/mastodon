@@ -45,7 +45,7 @@ function isNodeLinkHashtag(element: Node): element is HTMLLinkElement {
  * Removes duplicates from an hashtag list, case-insensitive, keeping only the best one
  * "Best" here is defined by the one with the more casing difference (ie, the most camel-cased one)
  * @param hashtags The list of hashtags
- * @returns The input hashtags, but with only 1 occurence of each (case-insensitive)
+ * @returns The input hashtags, but with only 1 occurrence of each (case-insensitive)
  */
 function uniqueHashtagsWithCaseHandling(hashtags: string[]) {
   const groups = groupBy(hashtags, (tag) =>
@@ -76,7 +76,7 @@ function uniqueHashtagsWithCaseHandling(hashtags: string[]) {
 
 // Create the collator once, this is much more efficient
 const collator = new Intl.Collator(undefined, {
-  sensitivity: 'base', // we use this to emulate the ASCII folding done on the server-side, hopefuly more efficiently
+  sensitivity: 'base', // we use this to emulate the ASCII folding done on the server-side, hopefully more efficiently
 });
 
 function localeAwareInclude(collection: string[], value: string) {
