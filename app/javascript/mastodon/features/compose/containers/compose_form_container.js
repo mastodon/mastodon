@@ -13,6 +13,7 @@ import {
 import { pasteLinkCompose } from 'mastodon/actions/compose_typed';
 import { openModal } from 'mastodon/actions/modal';
 import { PRIVATE_QUOTE_MODAL_ID } from 'mastodon/features/ui/components/confirmation_modals/private_quote_notify';
+import { me } from 'mastodon/initial_state';
 
 import ComposeForm from '../components/compose_form';
 
@@ -53,6 +54,7 @@ const mapStateToProps = state => ({
   quoteToPrivate:
     !!state.getIn(['compose', 'quoted_status_id'])
     && state.getIn(['compose', 'privacy']) === 'private'
+    && state.getIn(['statuses', state.getIn(['compose', 'quoted_status_id']), 'account']) !== me
     && !state.getIn(['settings', 'dismissed_banners', PRIVATE_QUOTE_MODAL_ID]),
   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
   lang: state.getIn(['compose', 'language']),
