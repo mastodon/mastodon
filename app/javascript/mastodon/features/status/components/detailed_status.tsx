@@ -4,7 +4,7 @@
                   @typescript-eslint/no-unsafe-assignment */
 
 import type { CSSProperties } from 'react';
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -55,6 +55,8 @@ export const DetailedStatus: React.FC<{
   pictureInPicture: any;
   onToggleHidden?: (status: any) => void;
   onToggleMediaVisibility?: () => void;
+  ancestors?: number;
+  multiColumn?: boolean;
 }> = ({
   status,
   onOpenMedia,
@@ -69,6 +71,8 @@ export const DetailedStatus: React.FC<{
   pictureInPicture,
   onToggleMediaVisibility,
   onToggleHidden,
+  ancestors = 0,
+  multiColumn = false,
 }) => {
   const properStatus = status?.get('reblog') ?? status;
   const [height, setHeight] = useState(0);
@@ -122,6 +126,30 @@ export const DetailedStatus: React.FC<{
   const handleTranslate = useCallback(() => {
     if (onTranslate) onTranslate(status);
   }, [onTranslate, status]);
+
+  // The component is managed and will change if the status changes
+  // Ancestors can increase when loading a thread, in which case we want to scroll,
+  // or decrease if a post is deleted, in which case we don't want to mess with it
+  const previousAncestors = useRef(-1);
+  useEffect(() => {
+    if (nodeRef.current && previousAncestors.current < ancestors) {
+      nodeRef.current.scrollIntoView(true);
+
+      // In the single-column interface, `scrollIntoView` will put the post behind the header, so compensate for that.
+      if (!multiColumn) {
+        const offset = document
+          .querySelector('.column-header__wrapper')
+          ?.getBoundingClientRect().bottom;
+
+        if (offset) {
+          const scrollingElement = document.scrollingElement ?? document.body;
+          scrollingElement.scrollBy(0, -offset);
+        }
+      }
+    }
+
+    previousAncestors.current = ancestors;
+  }, [ancestors, multiColumn]);
 
   if (!properStatus) {
     return null;
