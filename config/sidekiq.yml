@@ -1,5 +1,5 @@
 ---
-:dead_max_jobs: 100_000
+:dead_max_jobs: <%= ENV.fetch('SIDEKIQ_DEADQUEUESIZE', 100_000) %>
 :concurrency: <%= ENV.fetch('SIDEKIQ_CONCURRENCY', 5) %>
 :queues:
   - [default, 8]
