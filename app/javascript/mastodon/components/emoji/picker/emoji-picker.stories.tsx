@@ -12,6 +12,7 @@ import { toSupportedLocale } from '@/mastodon/features/emoji/locale';
 import { MockEmojiPicker } from './index';
 
 const onSelect = action('emoji selected');
+const onSkinToneChange = action('skin tone changed');
 
 const meta = {
   title: 'Components/Emoji/EmojiPicker',
@@ -34,7 +35,9 @@ const StoryComponent: FC<{ locale: string }> = ({ locale }) => {
   if (!loaded) {
     return null;
   }
-  return <MockEmojiPicker onSelect={onSelect} />;
+  return (
+    <MockEmojiPicker onSelect={onSelect} onSkinToneChange={onSkinToneChange} />
+  );
 };
 
 async function loadEmojiData(localeString: string) {

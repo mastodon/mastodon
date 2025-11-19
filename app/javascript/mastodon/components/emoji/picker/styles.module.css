@@ -43,8 +43,8 @@
   padding: 0.25rem 0.5rem;
 }
 
-.main {
-  grid-area: 2 / 2 / 3 / 3;
+.main,
+.settings {
   border-radius: 0.25rem;
   background-color: whitesmoke;
   overflow: hidden auto;
@@ -53,6 +53,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.main {
+  grid-area: 2 / 2 / 3 / 3;
 }
 
 .groupHeader {
@@ -146,15 +150,59 @@
   height: 2rem;
   border-radius: 50%;
   border: 1px solid gray;
-
-  .settingsNav & {
-    opacity: 0.5;
-    pointer-events: none;
-  }
 }
 
 .separator {
   height: 1px;
   background-color: gray;
   flex-shrink: 0;
+}
+
+.settings {
+  grid-area: 2 / 1 / 3 / 3;
+
+  legend {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.headerTitle {
+  flex-grow: 1;
+  color: gray;
+  font-size: 1.25em;
+}
+
+.skinTonesWrapper {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  font-size: 1.5rem;
+
+  input {
+    appearance: none;
+    background: none;
+    margin: 0;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    line-height: 100%;
+    cursor: pointer;
+    min-width: 2.5em;
+  }
+
+  input:checked {
+    border-color: black;
+    background-color: lightgray;
+  }
+
+  input::before {
+    content: attr(data-emoji);
+    display: block;
+    font-size: 1.5em;
+    line-height: 1;
+  }
 }

@@ -1,4 +1,4 @@
-import type { GroupKey, GroupMessage } from 'emojibase';
+import type { GroupKey, GroupMessage, SkinToneKey } from 'emojibase';
 import groupData from 'emojibase-data/meta/groups.json';
 
 import type { CustomEmojiData } from '@/mastodon/features/emoji/types';
@@ -15,6 +15,17 @@ export const groupKeysToNumber = Object.fromEntries(
     Number(number),
   ]),
 );
+
+export type SkinTone = SkinToneKey | 'default';
+
+export const toneToEmoji: Record<SkinTone, string> = {
+  default: '👋',
+  dark: '👋🏿',
+  'medium-dark': '👋🏾',
+  medium: '👋🏽',
+  'medium-light': '👋🏼',
+  light: '👋🏻',
+};
 
 export const mockCustomGroups = [
   { key: 'blobcat', message: 'Blobcat', order: 1 },
