@@ -1,18 +1,15 @@
 .wrapper {
-  --max-width: 20rem;
-  --col-count: 6;
-
   display: grid;
   gap: 0.5rem;
   grid-template-rows: auto 1fr;
-  grid-template-columns: 2rem minmax(10rem, calc(var(--max-width) - 4rem));
+  grid-template-columns: 2rem auto;
   background-color: lightgray;
   padding: 0.5rem;
   border-radius: 0.25rem;
   width: 100%;
-  max-width: var(--max-width);
   max-height: 50vh;
   box-sizing: border-box;
+  min-width: 250px;
 
   :global(.emojione) {
     margin: 0;
@@ -97,7 +94,7 @@
 
 .emojiGrid {
   display: grid;
-  grid-template-columns: repeat(var(--col-count), 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(2rem, 1fr));
   gap: 0.5rem;
 }
 

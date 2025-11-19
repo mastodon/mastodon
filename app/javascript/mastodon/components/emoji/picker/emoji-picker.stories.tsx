@@ -36,7 +36,21 @@ const StoryComponent: FC<{ locale: string }> = ({ locale }) => {
     return null;
   }
   return (
-    <MockEmojiPicker onSelect={onSelect} onSkinToneChange={onSkinToneChange} />
+    <div
+      style={{
+        resize: 'horizontal',
+        padding: '1rem',
+        border: '1px solid gray',
+        overflow: 'auto',
+        width: '400px',
+        minWidth: 'calc(250px + 2rem)',
+      }}
+    >
+      <MockEmojiPicker
+        onSelect={onSelect}
+        onSkinToneChange={onSkinToneChange}
+      />
+    </div>
   );
 };
 
