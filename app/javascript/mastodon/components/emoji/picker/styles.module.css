@@ -71,7 +71,7 @@
   margin-bottom: 0.5rem;
   transition: opacity 0.1s ease;
 
-  &:not(.isMinimized):hover {
+  &:hover {
     opacity: 0.7;
   }
 
@@ -85,10 +85,6 @@
     align-items: center;
     width: 100%;
   }
-}
-
-.groupHeader.isMinimized {
-  opacity: 0.5;
 }
 
 .groupHeaderArrow {
