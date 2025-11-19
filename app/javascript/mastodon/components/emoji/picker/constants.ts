@@ -1,9 +1,27 @@
+import { createContext, useContext } from 'react';
+
 import type { GroupKey, GroupMessage, SkinToneKey } from 'emojibase';
 import groupData from 'emojibase-data/meta/groups.json';
 
 import type { CustomEmojiData } from '@/mastodon/features/emoji/types';
 
-type CustomGroupMessage = Omit<GroupMessage, 'key'> & {
+export interface PickerContext {
+  skinTone: SkinTone;
+  hiddenGroups: string[];
+  recentlyUsed: string[];
+}
+
+const pickerContext = createContext<PickerContext>({
+  skinTone: 'default',
+  hiddenGroups: [],
+  recentlyUsed: [],
+});
+
+export const PickerContextProvider = pickerContext.Provider;
+
+export const usePickerContext = () => useContext(pickerContext);
+
+export type CustomGroupMessage = Omit<GroupMessage, 'key'> & {
   key: string;
 };
 

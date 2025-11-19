@@ -1,14 +1,19 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { FC } from 'react';
 
+import { IconButton } from '@/mastodon/components/icon_button';
 import type { AnyEmojiData } from '@/mastodon/features/emoji/types';
 import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
 
-import { IconButton } from '../../icon_button';
 import { CustomEmojiProvider } from '../context';
 
 import type { SkinTone } from './constants';
-import { mockCustomEmojis, mockCustomGroups } from './constants';
+import {
+  mockCustomEmojis,
+  mockCustomGroups,
+  PickerContextProvider,
+  usePickerContext,
+} from './constants';
 import { PickerGroupButton } from './group-button';
 import { useLocaleMessages } from './hooks';
 import { PickerGroupList } from './list';
@@ -30,21 +35,60 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({
     setShowSettings((prev) => !prev);
   }, []);
 
+  const [skinTone, setSkinTone] = useState<SkinTone>('default');
+  const handleSkinToneChange = useCallback(
+    (tone: SkinTone) => {
+      setSkinTone(tone);
+      onSkinToneChange?.(tone);
+    },
+    [onSkinToneChange],
+  );
+
+  const [recentlyUsed, setRecentlyUsed] = useState<string[]>([
+    ':blobcat_heart:',
+    ':mastodon:',
+    '👍',
+  ]);
+  const handleClearRecentlyUsed = useCallback(() => {
+    setRecentlyUsed([]);
+  }, []);
+
+  const handleEmojiPick = useCallback(
+    (emojiCode: string) => {
+      onSelect?.(emojiCode);
+      if (!recentlyUsed.includes(emojiCode)) {
+        setRecentlyUsed((prev) => [emojiCode, ...prev].slice(0, 10));
+      }
+    },
+    [onSelect, recentlyUsed],
+  );
+
+  const [hiddenGroups, setHiddenGroups] = useState<string[]>([]);
+  const handleToggleHiddenGroup = useCallback((group: string) => {
+    setHiddenGroups((prev) =>
+      prev.includes(group) ? prev.filter((g) => g !== group) : [...prev, group],
+    );
+  }, []);
+
   return (
     <CustomEmojiProvider emojis={mockCustomEmojis}>
-      <div className={classes.wrapper}>
-        {showSettings ? (
-          <PickerSettings
-            onClose={handleSettingsClick}
-            onSkinToneChange={onSkinToneChange}
-          />
-        ) : (
-          <PickerMain
-            onSelect={onSelect}
-            onSettingsClick={handleSettingsClick}
-          />
-        )}
-      </div>
+      <PickerContextProvider value={{ skinTone, hiddenGroups, recentlyUsed }}>
+        <div className={classes.wrapper}>
+          {showSettings ? (
+            <PickerSettings
+              onClose={handleSettingsClick}
+              onSkinToneChange={handleSkinToneChange}
+              onToggleHiddenGroup={handleToggleHiddenGroup}
+              onClearRecentlyUsed={handleClearRecentlyUsed}
+            />
+          ) : (
+            <PickerMain
+              onSelect={handleEmojiPick}
+              onSettingsClick={handleSettingsClick}
+            />
+          )}
+        </div>
+      </PickerContextProvider>
     </CustomEmojiProvider>
   );
 };
@@ -90,6 +134,13 @@ const PickerMain: FC<
 
     searchInput.focus();
   }, []);
+
+  const { hiddenGroups } = usePickerContext();
+  const customGroups = useMemo(
+    () => mockCustomGroups.filter(({ key }) => !hiddenGroups.includes(key)),
+    [hiddenGroups],
+  );
+
   return (
     <>
       <div className={classes.header}>
@@ -108,7 +159,7 @@ const PickerMain: FC<
       </div>
 
       <div className={classes.main} ref={wrapperRef}>
-        {mockCustomGroups.map((group) => (
+        {customGroups.map((group) => (
           <PickerGroupList
             key={group.key}
             group={group.key}
@@ -126,7 +177,7 @@ const PickerMain: FC<
         ))}
       </div>
       <ul className={classes.nav}>
-        {mockCustomGroups.map((group) => (
+        {customGroups.map((group) => (
           <PickerGroupButton
             key={group.key}
             onSelect={handleGroupSelect}
@@ -134,7 +185,9 @@ const PickerMain: FC<
             group={group.key}
           />
         ))}
-        <li key='separator' className={classes.separator} />
+        {customGroups.length > 0 && (
+          <li key='separator' className={classes.separator} />
+        )}
         {groups.map((group) => (
           <PickerGroupButton
             key={group.key}

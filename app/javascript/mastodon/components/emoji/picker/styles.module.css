@@ -25,14 +25,23 @@
   gap: 0.5rem;
   align-items: center;
   grid-area: 1 / 1 / 1 / 3;
+  color: gray;
 
-  svg {
-    color: gray;
+  .search,
+  h2 {
+    flex-grow: 1;
+  }
+
+  h2 {
+    font-size: 1.25em;
+  }
+
+  button {
+    color: inherit;
   }
 }
 
 .search {
-  flex-grow: 1;
   appearance: none;
   border: 1px solid gray;
   border-radius: 0.25rem;
@@ -163,17 +172,14 @@
   }
 }
 
-.headerTitle {
-  flex-grow: 1;
-  color: gray;
-  font-size: 1.25em;
-}
-
 .skinTonesWrapper {
+  --max-button-size: 3rem;
+
   display: flex;
   gap: 0.5rem;
   justify-content: space-between;
   font-size: 1.5rem;
+  max-width: calc(var(--max-button-size) * 6 + 0.5rem * 5);
 
   input {
     appearance: none;
@@ -188,7 +194,8 @@
     border: 1px solid gray;
     line-height: 100%;
     cursor: pointer;
-    min-width: 2.5em;
+    width: 100%;
+    max-width: var(--max-button-size);
   }
 
   input:checked {
@@ -202,4 +209,29 @@
     font-size: 1.5em;
     line-height: 1;
   }
+}
+
+.hiddenGroupHeader {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+
+  span {
+    flex-grow: 1;
+  }
+
+  button {
+    font-size: 0.75em;
+  }
+}
+
+.hiddenGroupItem {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  margin-bottom: 0.25rem;
+  background: lightgray;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
 }
