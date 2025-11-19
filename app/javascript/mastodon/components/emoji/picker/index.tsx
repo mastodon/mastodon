@@ -16,7 +16,7 @@ import {
 } from './constants';
 import { PickerGroupButton } from './group-button';
 import { useLocaleMessages } from './hooks';
-import { PickerGroupList } from './list';
+import { PickerGroupCustomList, PickerGroupList } from './list';
 import { PickerSettings } from './settings';
 import classes from './styles.module.css';
 
@@ -70,9 +70,14 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({
     );
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- TODO: Set up favourites management
+  const [favourites, setFavourites] = useState<string[]>(['🖤']);
+
   return (
     <CustomEmojiProvider emojis={mockCustomEmojis}>
-      <PickerContextProvider value={{ skinTone, hiddenGroups, recentlyUsed }}>
+      <PickerContextProvider
+        value={{ skinTone, hiddenGroups, favourites, recentlyUsed }}
+      >
         <div className={classes.wrapper}>
           {showSettings ? (
             <PickerSettings
@@ -135,7 +140,7 @@ const PickerMain: FC<
     searchInput.focus();
   }, []);
 
-  const { hiddenGroups } = usePickerContext();
+  const { hiddenGroups, favourites, recentlyUsed } = usePickerContext();
   const customGroups = useMemo(
     () => mockCustomGroups.filter(({ key }) => !hiddenGroups.includes(key)),
     [hiddenGroups],
@@ -159,6 +164,22 @@ const PickerMain: FC<
       </div>
 
       <div className={classes.main} ref={wrapperRef}>
+        {favourites.length > 0 && (
+          <PickerGroupCustomList
+            name='Favourites'
+            group='favourites'
+            onSelect={handleEmojiSelect}
+            emojiKeys={favourites}
+          />
+        )}
+        {recentlyUsed.length > 0 && (
+          <PickerGroupCustomList
+            name='Recently Used'
+            group='recent'
+            onSelect={handleEmojiSelect}
+            emojiKeys={recentlyUsed}
+          />
+        )}
         {customGroups.map((group) => (
           <PickerGroupList
             key={group.key}

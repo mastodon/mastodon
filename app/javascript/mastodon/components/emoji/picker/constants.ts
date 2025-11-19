@@ -9,12 +9,14 @@ export interface PickerContext {
   skinTone: SkinTone;
   hiddenGroups: string[];
   recentlyUsed: string[];
+  favourites: string[];
 }
 
 const pickerContext = createContext<PickerContext>({
   skinTone: 'default',
   hiddenGroups: [],
   recentlyUsed: [],
+  favourites: [],
 });
 
 export const PickerContextProvider = pickerContext.Provider;
@@ -74,7 +76,7 @@ export const mockCustomEmojis = [
     static_url:
       'https://pics.ishella.gay/custom_emojis/images/000/025/993/static/56c38669cdca5d1c.png',
     visible_in_picker: true,
-    category: 'mastodon',
+    category: 'logos',
   },
   {
     shortcode: 'fediverse',
