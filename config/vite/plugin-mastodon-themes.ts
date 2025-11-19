@@ -44,7 +44,7 @@ export function MastodonThemes(): Plugin {
         ...themes,
         default_theme_tokens: 'styles_new/application.scss',
         'mastodon-light_theme_tokens': 'styles_new/mastodon-light.scss',
-        contract_theme_tokens: 'styles_new/contrast.scss',
+        contrast_theme_tokens: 'styles_new/contrast.scss',
       };
 
       for (const [themeName, themePath] of Object.entries(allThemes)) {
