@@ -14394,13 +14394,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-expiration@npm:7.3.0, workbox-expiration@npm:^7.3.0":
+"workbox-core@npm:7.4.0":
+  version: 7.4.0
+  resolution: "workbox-core@npm:7.4.0"
+  checksum: 10c0/ae7c762df084b57d3d10f42b83a508a5c0bec5663de4c9cefc2b5c2893922a816f451cf8ec45ee76d204a3a6e90ee52b6c550a6cba9109d9bb644da9e98fb9e8
+  languageName: node
+  linkType: hard
+
+"workbox-expiration@npm:7.3.0":
   version: 7.3.0
   resolution: "workbox-expiration@npm:7.3.0"
   dependencies:
     idb: "npm:^7.0.1"
     workbox-core: "npm:7.3.0"
   checksum: 10c0/6040d72122ece901becfcc59974586e9cc9b6309840b83b652c9f9aafe32ff89783404a431cadf6f888f80e5371252820e425ced499742964d6d68687f6fad1a
+  languageName: node
+  linkType: hard
+
+"workbox-expiration@npm:^7.3.0":
+  version: 7.4.0
+  resolution: "workbox-expiration@npm:7.4.0"
+  dependencies:
+    idb: "npm:^7.0.1"
+    workbox-core: "npm:7.4.0"
+  checksum: 10c0/d4f5e96e6d58d74a1be7d8c842e68e9fc2d4a22664f629ec71570039a1876e033ca1e54d68eccded83d901999e48fb388c1f807b14f706b9b83c7b3ab5815cf8
   languageName: node
   linkType: hard
 
@@ -14459,7 +14476,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-routing@npm:7.3.0, workbox-routing@npm:^7.3.0":
+"workbox-routing@npm:7.3.0":
   version: 7.3.0
   resolution: "workbox-routing@npm:7.3.0"
   dependencies:
@@ -14468,12 +14485,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-strategies@npm:7.3.0, workbox-strategies@npm:^7.3.0":
+"workbox-routing@npm:^7.3.0":
+  version: 7.4.0
+  resolution: "workbox-routing@npm:7.4.0"
+  dependencies:
+    workbox-core: "npm:7.4.0"
+  checksum: 10c0/62a2a3f24a5c54fc716e9275ccd032c5e35cf645d3bcf670c91531a2a8308025767a4ff799d36483eab50c007647748ab309ea1af76847ebcd78203ef4069ae6
+  languageName: node
+  linkType: hard
+
+"workbox-strategies@npm:7.3.0":
   version: 7.3.0
   resolution: "workbox-strategies@npm:7.3.0"
   dependencies:
     workbox-core: "npm:7.3.0"
   checksum: 10c0/50f3c28b46b54885a9461ad6559010d9abb2a7e35e0128d05c268f3ea0a96b1a747934758121d0e821f7af63946d9db8f4d2d7e0146f12555fb05c768e6b82bb
+  languageName: node
+  linkType: hard
+
+"workbox-strategies@npm:^7.3.0":
+  version: 7.4.0
+  resolution: "workbox-strategies@npm:7.4.0"
+  dependencies:
+    workbox-core: "npm:7.4.0"
+  checksum: 10c0/c25771af342ce10aee006d749e7adba4e77e7379b39cd96dbd05557f0f4968ff1ac88001022fb588ce2c105e5dfded321ce9f14344291c19ab753db37e6611f8
   languageName: node
   linkType: hard
 
@@ -14494,13 +14529,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-window@npm:7.3.0, workbox-window@npm:^7.3.0":
+"workbox-window@npm:7.3.0":
   version: 7.3.0
   resolution: "workbox-window@npm:7.3.0"
   dependencies:
     "@types/trusted-types": "npm:^2.0.2"
     workbox-core: "npm:7.3.0"
   checksum: 10c0/dbda33c4761ec40051cfe6e3f1701b2381b4f3b191f7a249c32f683503ea35cf8b42d1f99df5ba3b693fac78705d8ed0c191488bdd178c525d1291d0161ec8ff
+  languageName: node
+  linkType: hard
+
+"workbox-window@npm:^7.3.0":
+  version: 7.4.0
+  resolution: "workbox-window@npm:7.4.0"
+  dependencies:
+    "@types/trusted-types": "npm:^2.0.2"
+    workbox-core: "npm:7.4.0"
+  checksum: 10c0/6013d1019fe3bbb06d8e572b6a4ccfec6fc0879448337997c193fde08738c2fa420a4dca385b00220ef1feac3539e82b01896c85f77cd8c45cff379e7a6cb1d5
   languageName: node
   linkType: hard
 
