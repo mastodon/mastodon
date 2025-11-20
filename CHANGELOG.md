@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.9] - 2025-11-20
+
+### Fixed
+
+- Fix `tootctl upgrade storage-schema` failing with `ArgumentError` (#36914 by @shugo)
+- Fix old previously-undiscovered posts being treated as new when receiving an `Update` (#36848 by @ClearlyClaire)
+- Fix filters not being applied to quotes in detailed view (#36843 by @ClearlyClaire)
+
 ## [4.4.8] - 2025-10-21
 
 ### Security
