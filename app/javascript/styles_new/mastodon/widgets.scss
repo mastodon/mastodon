@@ -46,10 +46,6 @@
       overflow: hidden;
       text-overflow: ellipsis;
 
-      .fa {
-        color: var(--color-text-secondary);
-      }
-
       small {
         display: block;
         font-weight: 400;
@@ -61,7 +57,6 @@
 
     &.active h4 {
       &,
-      .fa,
       small,
       .trends__item__current {
         color: var(--color-text-primary);

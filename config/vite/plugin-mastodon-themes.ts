@@ -40,13 +40,15 @@ export function MastodonThemes(): Plugin {
 
       // Get all files mentioned in the themes.yml file.
       const themes = await loadThemesFromConfig(projectRoot);
+      const allThemes = {
+        ...themes,
+        default_theme_tokens: 'styles_new/application.scss',
+        'mastodon-light_theme_tokens': 'styles_new/mastodon-light.scss',
+        contrast_theme_tokens: 'styles_new/contrast.scss',
+      };
 
-      for (const [themeName, themePath] of Object.entries(themes)) {
+      for (const [themeName, themePath] of Object.entries(allThemes)) {
         entrypoints[`themes/${themeName}`] = path.resolve(jsRoot, themePath);
-        entrypoints[`themes/${themeName}_theme_tokens`] = path.resolve(
-          jsRoot,
-          themePath.replace('styles/', 'styles_new/'),
-        );
       }
 
       return {
