@@ -33,5 +33,13 @@ RSpec.describe Collection do
         it { is_expected.to_not be_valid }
       end
     end
+
+    context 'when there are more items than allowed' do
+      subject { Fabricate.build(:collection, collection_items:) }
+
+      let(:collection_items) { Fabricate.build_times(described_class::MAX_ITEMS + 1, :collection_item, collection: nil) }
+
+      it { is_expected.to_not be_valid }
+    end
   end
 end

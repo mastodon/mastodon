@@ -18,6 +18,8 @@
 #  tag_id       :bigint(8)
 #
 class Collection < ApplicationRecord
+  MAX_ITEMS = 25
+
   belongs_to :account
   belongs_to :tag, optional: true
 
@@ -30,6 +32,7 @@ class Collection < ApplicationRecord
                            numericality: { greater_than_or_equal: 0 },
                            if: :remote?
   validate :tag_is_usable
+  validate :items_do_not_exceed_limit
 
   def remote?
     !local?
@@ -41,5 +44,9 @@ class Collection < ApplicationRecord
     return if tag.blank?
 
     errors.add(:tag, :unusable) unless tag.usable?
+  end
+
+  def items_do_not_exceed_limit
+    errors.add(:collection_items, :too_many, count: MAX_ITEMS) if collection_items.size > MAX_ITEMS
   end
 end
