@@ -17,5 +17,21 @@ RSpec.describe Collection do
 
       it { is_expected.to validate_presence_of(:remote_items) }
     end
+
+    context 'when using a hashtag as category' do
+      subject { Fabricate.build(:collection, tag:) }
+
+      context 'when hashtag is usable' do
+        let(:tag) { Fabricate.build(:tag) }
+
+        it { is_expected.to be_valid }
+      end
+
+      context 'when hashtag is not usable' do
+        let(:tag) { Fabricate.build(:tag, usable: false) }
+
+        it { is_expected.to_not be_valid }
+      end
+    end
   end
 end

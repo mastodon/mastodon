@@ -8,7 +8,8 @@ Fabricator(:collection_item) do
 end
 
 Fabricator(:unverified_remote_collection_item, from: :collection_item) do
-  account nil
-  object_uri { Fabricate.build(:remote_account).uri }
+  account      nil
+  state        :pending
+  object_uri   { Fabricate.build(:remote_account).uri }
   approval_uri { sequence(:uri) { |i| "https://example.com/authorizations/#{i}" } }
 end

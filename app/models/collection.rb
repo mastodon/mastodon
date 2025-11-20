@@ -29,8 +29,17 @@ class Collection < ApplicationRecord
   validates :remote_items, presence: true,
                            numericality: { greater_than_or_equal: 0 },
                            if: :remote?
+  validate :tag_is_usable
 
   def remote?
     !local?
+  end
+
+  private
+
+  def tag_is_usable
+    return if tag.blank?
+
+    errors.add(:tag, :unusable) unless tag.usable?
   end
 end
