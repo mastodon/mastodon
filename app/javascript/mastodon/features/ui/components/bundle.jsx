@@ -33,13 +33,13 @@ class Bundle extends PureComponent {
     forceRender: false,
   };
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     this.load(this.props);
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.fetchComponent !== this.props.fetchComponent) {
-      this.load(nextProps);
+  componentDidUpdate(prevProps) {
+    if (prevProps.fetchComponent !== this.props.fetchComponent) {
+      this.load(this.props);
     }
   }
 
