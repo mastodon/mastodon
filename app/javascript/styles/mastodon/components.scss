@@ -7699,6 +7699,8 @@ a.status-card {
   position: relative;
   background: $base-shadow-color;
   max-width: 100%;
+  max-height: max(400px, 60vh);
+  margin-inline: auto;
   border-radius: 8px;
   box-sizing: border-box;
   color: $white;
