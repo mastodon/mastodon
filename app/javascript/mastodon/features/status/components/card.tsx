@@ -1,6 +1,6 @@
 import punycode from 'node:punycode';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useId, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -105,6 +105,8 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
     setRevealed(true);
   }, []);
 
+  const spoilerButtonId = useId();
+
   if (card === null) {
     return null;
   }
@@ -193,34 +195,31 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
     />
   );
 
-  let spoilerButton = (
-    <button
-      type='button'
-      onClick={handleReveal}
-      className='spoiler-button__overlay'
-    >
-      <span className='spoiler-button__overlay__label'>
-        <FormattedMessage
-          id='status.sensitive_warning'
-          defaultMessage='Sensitive content'
-        />
-        <span className='spoiler-button__overlay__action'>
-          <FormattedMessage
-            id='status.media.show'
-            defaultMessage='Click to show'
-          />
-        </span>
-      </span>
-    </button>
-  );
-
-  spoilerButton = (
+  const spoilerButton = (
     <div
       className={classNames('spoiler-button', {
         'spoiler-button--minified': revealed,
       })}
+      id={spoilerButtonId}
     >
-      {spoilerButton}
+      <button
+        type='button'
+        onClick={handleReveal}
+        className='spoiler-button__overlay'
+      >
+        <span className='spoiler-button__overlay__label'>
+          <FormattedMessage
+            id='status.sensitive_warning'
+            defaultMessage='Sensitive content'
+          />
+          <span className='spoiler-button__overlay__action'>
+            <FormattedMessage
+              id='status.media.show'
+              defaultMessage='Click to show'
+            />
+          </span>
+        </span>
+      </button>
     </div>
   );
 
@@ -261,13 +260,15 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
     }
 
     return (
-      // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-      <div
-        className={classNames('status-card', { expanded: largeImage })}
-        onClick={revealed ? undefined : handleReveal}
-      >
+      <div className={classNames('status-card', { expanded: largeImage })}>
         {embed}
-        <a href={card.get('url')} target='_blank' rel='noopener'>
+        <a
+          href={card.get('url')}
+          target='_blank'
+          rel='noopener'
+          onClick={revealed ? undefined : handleReveal}
+          aria-describedby={revealed ? undefined : spoilerButtonId}
+        >
           {description}
         </a>
       </div>
