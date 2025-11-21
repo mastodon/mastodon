@@ -1,12 +1,10 @@
 import punycode from 'node:punycode';
 
-import { PureComponent } from 'react';
+import { useCallback, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-
-import { is } from 'immutable';
 
 import DescriptionIcon from '@/material-icons/400-24px/description-fill.svg?react';
 import OpenInNewIcon from '@/material-icons/400-24px/open_in_new.svg?react';
@@ -68,45 +66,10 @@ interface CardProps {
   sensitive?: boolean;
 }
 
-// eslint-disable-next-line import/no-default-export
-export default class Card extends PureComponent<CardProps> {
-  state = {
-    previewLoaded: false,
-    embedded: false,
-    revealed: !this.props.sensitive,
-  };
-
-  UNSAFE_componentWillReceiveProps(nextProps: CardProps) {
-    if (!is(this.props.card, nextProps.card)) {
-      this.setState({ embedded: false, previewLoaded: false });
-    }
-
-    if (this.props.sensitive !== nextProps.sensitive) {
-      this.setState({ revealed: !nextProps.sensitive });
-    }
-  }
-
-  handleEmbedClick = () => {
-    this.setState({ embedded: true });
-  };
-
-  handleExternalLinkClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
-
-  handleImageLoad = () => {
-    this.setState({ previewLoaded: true });
-  };
-
-  handleReveal = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    this.setState({ revealed: true });
-  };
-
-  renderVideo() {
-    const { card } = this.props;
-    const content = {
+const CardVideo: React.FC<Pick<CardProps, 'card'>> = ({ card }) => (
+  <div
+    className='status-card__image status-card-video'
+    dangerouslySetInnerHTML={{
       __html: card
         ? handleIframeUrl(
             card.get('html'),
@@ -114,226 +77,239 @@ export default class Card extends PureComponent<CardProps> {
             card.get('provider_name'),
           )
         : '',
-    };
+    }}
+    style={{ aspectRatio: '16 / 9' }}
+  />
+);
 
-    return (
-      <div
-        className='status-card__image status-card-video'
-        dangerouslySetInnerHTML={content}
-        style={{ aspectRatio: '16 / 9' }}
-      />
-    );
+const Card: React.FC<CardProps> = ({ card, sensitive }) => {
+  const [previewLoaded, setPreviewLoaded] = useState(false);
+  const [embedded, setEmbedded] = useState(false);
+  const [revealed, setRevealed] = useState(!sensitive);
+
+  const handleEmbedClick = useCallback(() => {
+    setEmbedded(true);
+  }, []);
+
+  const handleExternalLinkClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+  }, []);
+
+  const handleImageLoad = useCallback(() => {
+    setPreviewLoaded(true);
+  }, []);
+
+  const handleReveal = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setRevealed(true);
+  }, []);
+
+  if (card === null) {
+    return null;
   }
 
-  render() {
-    const { card } = this.props;
-    const { embedded, revealed } = this.state;
+  const provider =
+    card.get('provider_name').length === 0
+      ? decodeIDNA(getHostname(card.get('url')))
+      : card.get('provider_name');
+  const interactive = card.get('type') === 'video';
+  const language = card.get('language') || '';
+  const largeImage =
+    (card.get('image').length > 0 && card.get('width') > card.get('height')) ||
+    interactive;
+  const showAuthor = !!card.getIn(['authors', 0, 'accountId']);
 
-    if (card === null) {
-      return null;
-    }
+  const description = (
+    <div className='status-card__content' dir='auto'>
+      <span className='status-card__host'>
+        <span lang={language}>{provider}</span>
+        {card.get('published_at') && (
+          <>
+            {' '}
+            · <RelativeTimestamp timestamp={card.get('published_at')} />
+          </>
+        )}
+      </span>
 
-    const provider =
-      card.get('provider_name').length === 0
-        ? decodeIDNA(getHostname(card.get('url')))
-        : card.get('provider_name');
-    const interactive = card.get('type') === 'video';
-    const language = card.get('language') || '';
-    const largeImage =
-      (card.get('image').length > 0 &&
-        card.get('width') > card.get('height')) ||
-      interactive;
-    const showAuthor = !!card.getIn(['authors', 0, 'accountId']);
-
-    const description = (
-      <div className='status-card__content' dir='auto'>
-        <span className='status-card__host'>
-          <span lang={language}>{provider}</span>
-          {card.get('published_at') && (
-            <>
-              {' '}
-              · <RelativeTimestamp timestamp={card.get('published_at')} />
-            </>
-          )}
-        </span>
-
-        <strong
-          className='status-card__title'
-          title={card.get('title')}
-          lang={language}
-        >
-          {card.get('title')}
-        </strong>
-
-        {!showAuthor &&
-          (card.get('author_name').length > 0 ? (
-            <span className='status-card__author'>
-              <FormattedMessage
-                id='link_preview.author'
-                defaultMessage='By {name}'
-                values={{ name: <strong>{card.get('author_name')}</strong> }}
-              />
-            </span>
-          ) : (
-            <span className='status-card__description' lang={language}>
-              {card.get('description')}
-            </span>
-          ))}
-      </div>
-    );
-
-    const thumbnailStyle: React.CSSProperties = {
-      visibility: revealed ? undefined : 'hidden',
-      aspectRatio: '1',
-    };
-
-    if (largeImage && card.get('type') === 'video') {
-      thumbnailStyle.aspectRatio = `16 / 9`;
-    } else if (largeImage) {
-      thumbnailStyle.aspectRatio = '1.91 / 1';
-    }
-
-    let embed;
-
-    const canvas = (
-      <Blurhash
-        className={classNames('status-card__image-preview', {
-          'status-card__image-preview--hidden':
-            revealed && this.state.previewLoaded,
-        })}
-        hash={card.get('blurhash')}
-        dummy={!useBlurhash}
-      />
-    );
-
-    const thumbnailDescription = card.get('image_description');
-    const thumbnail = (
-      <img
-        src={card.get('image')}
-        alt={thumbnailDescription}
-        title={thumbnailDescription}
+      <strong
+        className='status-card__title'
+        title={card.get('title')}
         lang={language}
-        style={thumbnailStyle}
-        onLoad={this.handleImageLoad}
-        className='status-card__image-image'
-      />
-    );
-
-    let spoilerButton = (
-      <button
-        type='button'
-        onClick={this.handleReveal}
-        className='spoiler-button__overlay'
       >
-        <span className='spoiler-button__overlay__label'>
-          <FormattedMessage
-            id='status.sensitive_warning'
-            defaultMessage='Sensitive content'
-          />
-          <span className='spoiler-button__overlay__action'>
+        {card.get('title')}
+      </strong>
+
+      {!showAuthor &&
+        (card.get('author_name').length > 0 ? (
+          <span className='status-card__author'>
             <FormattedMessage
-              id='status.media.show'
-              defaultMessage='Click to show'
+              id='link_preview.author'
+              defaultMessage='By {name}'
+              values={{ name: <strong>{card.get('author_name')}</strong> }}
             />
           </span>
+        ) : (
+          <span className='status-card__description' lang={language}>
+            {card.get('description')}
+          </span>
+        ))}
+    </div>
+  );
+
+  const thumbnailStyle: React.CSSProperties = {
+    visibility: revealed ? undefined : 'hidden',
+    aspectRatio: '1',
+  };
+
+  if (largeImage && card.get('type') === 'video') {
+    thumbnailStyle.aspectRatio = `16 / 9`;
+  } else if (largeImage) {
+    thumbnailStyle.aspectRatio = '1.91 / 1';
+  }
+
+  let embed;
+
+  const canvas = (
+    <Blurhash
+      className={classNames('status-card__image-preview', {
+        'status-card__image-preview--hidden': revealed && previewLoaded,
+      })}
+      hash={card.get('blurhash')}
+      dummy={!useBlurhash}
+    />
+  );
+
+  const thumbnailDescription = card.get('image_description');
+  const thumbnail = (
+    <img
+      src={card.get('image')}
+      alt={thumbnailDescription}
+      title={thumbnailDescription}
+      lang={language}
+      style={thumbnailStyle}
+      onLoad={handleImageLoad}
+      className='status-card__image-image'
+    />
+  );
+
+  let spoilerButton = (
+    <button
+      type='button'
+      onClick={handleReveal}
+      className='spoiler-button__overlay'
+    >
+      <span className='spoiler-button__overlay__label'>
+        <FormattedMessage
+          id='status.sensitive_warning'
+          defaultMessage='Sensitive content'
+        />
+        <span className='spoiler-button__overlay__action'>
+          <FormattedMessage
+            id='status.media.show'
+            defaultMessage='Click to show'
+          />
         </span>
-      </button>
-    );
+      </span>
+    </button>
+  );
 
-    spoilerButton = (
-      <div
-        className={classNames('spoiler-button', {
-          'spoiler-button--minified': revealed,
-        })}
-      >
-        {spoilerButton}
-      </div>
-    );
+  spoilerButton = (
+    <div
+      className={classNames('spoiler-button', {
+        'spoiler-button--minified': revealed,
+      })}
+    >
+      {spoilerButton}
+    </div>
+  );
 
-    if (interactive) {
-      if (embedded) {
-        embed = this.renderVideo();
-      } else {
-        embed = (
-          <div className='status-card__image'>
-            {canvas}
-            {thumbnail}
-
-            {revealed ? (
-              <div
-                className='status-card__actions'
-                onClick={this.handleEmbedClick}
-                role='none'
-              >
-                <div>
-                  <button type='button' onClick={this.handleEmbedClick}>
-                    <Icon id='play' icon={PlayArrowIcon} />
-                  </button>
-                  <a
-                    href={card.get('url')}
-                    onClick={this.handleExternalLinkClick}
-                    target='_blank'
-                    rel='noopener'
-                  >
-                    <Icon id='external-link' icon={OpenInNewIcon} />
-                  </a>
-                </div>
-              </div>
-            ) : (
-              spoilerButton
-            )}
-          </div>
-        );
-      }
-
-      return (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-        <div
-          className={classNames('status-card', { expanded: largeImage })}
-          onClick={revealed ? undefined : this.handleReveal}
-        >
-          {embed}
-          <a href={card.get('url')} target='_blank' rel='noopener'>
-            {description}
-          </a>
-        </div>
-      );
-    } else if (card.get('image')) {
+  if (interactive) {
+    if (embedded) {
+      embed = <CardVideo card={card} />;
+    } else {
       embed = (
         <div className='status-card__image'>
           {canvas}
           {thumbnail}
-        </div>
-      );
-    } else {
-      embed = (
-        <div className='status-card__image'>
-          <Icon id='file-text' icon={DescriptionIcon} />
+
+          {revealed ? (
+            <div
+              className='status-card__actions'
+              onClick={handleEmbedClick}
+              role='none'
+            >
+              <div>
+                <button type='button' onClick={handleEmbedClick}>
+                  <Icon id='play' icon={PlayArrowIcon} />
+                </button>
+                <a
+                  href={card.get('url')}
+                  onClick={handleExternalLinkClick}
+                  target='_blank'
+                  rel='noopener'
+                >
+                  <Icon id='external-link' icon={OpenInNewIcon} />
+                </a>
+              </div>
+            </div>
+          ) : (
+            spoilerButton
+          )}
         </div>
       );
     }
 
     return (
-      <>
-        <a
-          href={card.get('url')}
-          className={classNames('status-card', {
-            expanded: largeImage,
-            bottomless: showAuthor,
-          })}
-          target='_blank'
-          rel='noopener'
-        >
-          {embed}
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+      <div
+        className={classNames('status-card', { expanded: largeImage })}
+        onClick={revealed ? undefined : handleReveal}
+      >
+        {embed}
+        <a href={card.get('url')} target='_blank' rel='noopener'>
           {description}
         </a>
-
-        {showAuthor && (
-          <MoreFromAuthor
-            accountId={card.getIn(['authors', 0, 'accountId']) as string}
-          />
-        )}
-      </>
+      </div>
+    );
+  } else if (card.get('image')) {
+    embed = (
+      <div className='status-card__image'>
+        {canvas}
+        {thumbnail}
+      </div>
+    );
+  } else {
+    embed = (
+      <div className='status-card__image'>
+        <Icon id='file-text' icon={DescriptionIcon} />
+      </div>
     );
   }
-}
+
+  return (
+    <>
+      <a
+        href={card.get('url')}
+        className={classNames('status-card', {
+          expanded: largeImage,
+          bottomless: showAuthor,
+        })}
+        target='_blank'
+        rel='noopener'
+      >
+        {embed}
+        {description}
+      </a>
+
+      {showAuthor && (
+        <MoreFromAuthor
+          accountId={card.getIn(['authors', 0, 'accountId']) as string}
+        />
+      )}
+    </>
+  );
+};
+
+// eslint-disable-next-line import/no-default-export
+export default Card;
