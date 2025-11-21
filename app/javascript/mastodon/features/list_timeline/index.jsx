@@ -74,10 +74,9 @@ class ListTimeline extends PureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    const { dispatch } = this.props;
-    const { id } = prevProps.params;
+    const { dispatch, params: {id} } = this.props;
 
-    if (id !== this.props.params.id) {
+    if (id !== prevProps.params.id) {
       if (this.disconnect) {
         this.disconnect();
         this.disconnect = null;
