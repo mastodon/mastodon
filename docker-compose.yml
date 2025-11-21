@@ -29,7 +29,7 @@ services:
   #   restart: always
   #   image: docker.elastic.co/elasticsearch/elasticsearch:8.19.7
   #   environment:
-  #     - "ELASTIC_PASSWORD=ChangeMeAndUpdateInEnvFile"
+  #     - "ELASTIC_PASSWORD=ChangeMeAndUpdateInEnvFile"  // Username is elastic. Do not change the username.
   #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true"
   #     - "xpack.license.self_generated.type=basic"
   #     - "xpack.security.enabled=false"
@@ -56,7 +56,6 @@ services:
   #       hard: 65536
   #   ports:
   #     - '127.0.0.1:9200:9200'
-
 
   web:
     # You can uncomment the following line if you want to not use the prebuilt image, for example if you have local code changes
