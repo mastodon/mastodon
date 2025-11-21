@@ -15,7 +15,7 @@ RSpec.describe Collection do
 
       it { is_expected.to validate_presence_of(:uri) }
 
-      it { is_expected.to validate_presence_of(:remote_items) }
+      it { is_expected.to validate_presence_of(:original_number_of_items) }
     end
 
     context 'when using a hashtag as category' do

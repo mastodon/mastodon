@@ -11,7 +11,7 @@ class CreateCollections < ActiveRecord::Migration[8.0]
       t.boolean :sensitive, null: false # rubocop:disable Rails/ThreeStateBooleanColumn
       t.boolean :discoverable, null: false # rubocop:disable Rails/ThreeStateBooleanColumn
       t.references :tag, foreign_key: true
-      t.integer :remote_items
+      t.integer :original_number_of_items
 
       t.timestamps
     end

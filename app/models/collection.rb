@@ -4,18 +4,18 @@
 #
 # Table name: collections
 #
-#  id           :bigint(8)        not null, primary key
-#  description  :text             not null
-#  discoverable :boolean          not null
-#  local        :boolean          not null
-#  name         :string           not null
-#  remote_items :integer
-#  sensitive    :boolean          not null
-#  uri          :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  account_id   :bigint(8)        not null
-#  tag_id       :bigint(8)
+#  id                       :bigint(8)        not null, primary key
+#  description              :text             not null
+#  discoverable             :boolean          not null
+#  local                    :boolean          not null
+#  name                     :string           not null
+#  original_number_of_items :integer
+#  sensitive                :boolean          not null
+#  uri                      :string
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  account_id               :bigint(8)        not null
+#  tag_id                   :bigint(8)
 #
 class Collection < ApplicationRecord
   MAX_ITEMS = 25
@@ -28,9 +28,10 @@ class Collection < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :uri, presence: true, if: :remote?
-  validates :remote_items, presence: true,
-                           numericality: { greater_than_or_equal: 0 },
-                           if: :remote?
+  validates :original_number_of_items,
+            presence: true,
+            numericality: { greater_than_or_equal: 0 },
+            if: :remote?
   validate :tag_is_usable
   validate :items_do_not_exceed_limit
 

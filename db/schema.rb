@@ -377,7 +377,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_19_093332) do
     t.boolean "sensitive", null: false
     t.boolean "discoverable", null: false
     t.bigint "tag_id"
-    t.integer "remote_items"
+    t.integer "original_number_of_items"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_collections_on_account_id"
