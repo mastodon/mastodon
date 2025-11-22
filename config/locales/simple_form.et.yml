@@ -8,7 +8,7 @@ et:
         display_name: Su täisnimi või naljanimi.
         fields: Su koduleht, sugu, vanus. Mistahes, mida soovid.
         indexable: Sinu avalikud postitused võivad ilmuda Mastodoni otsingutulemustes. Inimesed, kes on sinu postitustele reageerinud, saavad neid otsida nii või naa.
-        note: 'Saad @mainida teisi inimesi või #silte.'
+        note: 'Saad @mainida teisi inimesi või #teemaviiteid.'
         show_collections: Inimesed saavad sirvida su jälgijaid ja jälgitavaid. Inimesed, keda sa jälgid, näevad seda sõltumata häälestuse valikust.
         unlocked: Teised kasutajad saavad sind jälgima hakata nõusolekut küsimata. Eemalda märge, kui soovid jälgimistaotlusi üle vaadata ja valida, kas nõustuda või keelduda uute jälgijatega.
       account_alias:
@@ -16,7 +16,7 @@ et:
       account_migration:
         acct: Sisesta kasutajanimi@domeen, kuhu soovid konto siit kolida
       account_warning_preset:
-        text: Saab kasutada postituse süntaksi, näiteks URLe, silte ja mainimisi
+        text: Saad kasutada postituse süntaksi, näiteks võrguaadresse, teemaviiteid ja mainimisi
         title: Valikuline. Ei ole nähtav saajale
       admin_account_action:
         include_statuses: Kasutaja näeb, millised postitused on põhjustanud moderaatori otsuse või hoiatuse
@@ -77,7 +77,7 @@ et:
         domain: See võib olla e-postiaadressis näha olev domeen või MX-kirje, mida aadress kasutab. Kontroll toimub liitumise käigus.
         with_dns_records: Püütakse lahendada selle domeeni DNS-kirjed ja ühtlasi blokeerida ka selle tulemused
       featured_tag:
-        name: 'Siin on mõned nendest siltidest, mida oled viimati kasutanud:'
+        name: 'Siin on mõned nendest teemaviiteid, mida oled viimati kasutanud:'
       filters:
         action: Vali tegevus, kui postitus vastab filtrile
         actions:
@@ -110,7 +110,7 @@ et:
         theme: Teema, mida näevad sisenemata ning uued kasutajad.
         thumbnail: Umbes 2:1 mõõdus pilt serveri informatsiooni kõrval.
         trendable_by_default: Populaarse sisu ülevaatuse vahele jätmine. Pärast seda on siiski võimalik üksikuid üksusi trendidest eemaldada.
-        trends: Trendid näitavad, millised postitused, sildid ja uudislood koguvad sinu serveris tähelepanu.
+        trends: Trendid näitavad, millised postitused, teemaviited ja uudislood koguvad sinu serveris tähelepanu.
       form_challenge:
         current_password: Turvalisse alasse sisenemine
       imports:
@@ -272,7 +272,7 @@ et:
       email_domain_block:
         with_dns_records: Kaasa domeeni MX-kirjed ning IP-aadressid
       featured_tag:
-        name: Silt
+        name: Teemaviide
       filters:
         actions:
           blur: Peida hoiatusega meedia
@@ -353,10 +353,10 @@ et:
         indexable: Kaasa profiilileht otsimootoritesse
         show_application: Näita, millisest äpist postituse saatsid
       tag:
-        listable: Luba sellel sildil ilmuda profiilide kataloogis
-        name: Silt
-        trendable: Luba sellel sildil trendida
-        usable: Luba seda märksõna postitustes kasutada lokaalselt
+        listable: Luba sellel teemaviitel ilmuda profiilide kataloogis
+        name: Teemaviide
+        trendable: Luba sellel teemaviitel olla nähtav viimaste trendide all
+        usable: Luba seda teemaviidet postitustes kasutada lokaalselt
       terms_of_service:
         changelog: Mis on muutunud?
         effective_date: Jõustumise kuupäev
