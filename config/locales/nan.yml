@@ -1268,10 +1268,19 @@ nan:
     sign_in:
       preamble_html: 請用lí佇 <strong>%{domain}</strong> ê口座kap密碼登入。若是lí ê口座tī別ê服侍器，lí bē當tī tsia登入。
       title: 登入 %{domain}
+    sign_up:
+      manual_review: 佇 %{domain} ê註冊ē經過guán ê管理員人工審查。為著tsān guán 進行lí ê註冊，寫tsi̍t點á關係lí家己kap想beh tī %{domain}註冊ê理由。
+      preamble: Nā是lí tī tsit ê服侍器有口座，lí ē當tuè別ê佇聯邦宇宙ê lâng，無論伊ê口座tī tó-tsi̍t站。
+      title: Lán做伙設定 %{domain}。
     status:
       account_status: 口座ê狀態
       confirming: Teh等電子phue確認完成。
       functional: Lí ê口座完全ē當用。
+      pending: Lán ê人員teh處理lí ê申請。Tse可能愛一段時間。若是申請允准，lí ē收著e-mail。
+      redirecting_to: Lí ê口座無活動，因為tann轉kàu %{acct}。
+      self_destruct: 因為 %{domain} teh-beh關掉，lí kan-ta ē當有限接近使用lí ê口座。
+      view_strikes: 看早前tuì lí ê口座ê警告
+    too_fast: 添表ê速度傷緊，請koh試。
     use_security_key: 用安全鎖
     user_agreement_html: 我有讀而且同意 <a href="%{terms_of_service_path}" target="_blank">服務規定</a> kap <a href="%{privacy_policy_path}" target="_blank">隱私權政策</a>
     user_privacy_agreement_html: 我有讀而且同意 <a href="%{privacy_policy_path}" target="_blank">隱私權政策</a>
@@ -1306,6 +1315,53 @@ nan:
       less_than_x_seconds: 頭tú-á
       over_x_years: "%{count}年"
       x_days: "%{count}kang"
+      x_minutes: "%{count}分"
+      x_months: "%{count}個月"
+      x_seconds: "%{count}秒"
+  deletes:
+    challenge_not_passed: Lí輸入ê資訊毋著
+    confirm_password: 輸入lí tsit-má ê密碼，驗證lí ê身份
+    confirm_username: 輸入lí ê口座ê名，來確認程序
+    proceed: Thâi掉口座
+    success_msg: Lí ê口座thâi掉成功
+    warning:
+      before: 佇繼續進前，請斟酌讀下kha ê說明：
+      caches: 已經hōo其他ê站the̍h著cache ê內容，可能iáu ē有資料
+      data_removal: Lí ê PO文kap其他ê資料ē永永thâi掉。
+      email_change_html: Lí ē當<a href="%{path}">改lí ê電子phue地址</a>，suah毋免thâi掉lí ê口座。
+      email_contact_html: 若是iáu buē收著phue，lí通寄kàu <a href="mailto:%{email}">%{email}</a> tshuē幫tsān
+      email_reconfirmation_html: Nā是lí iáu bē收著驗證phue，lí通<a href="%{path}">koh請求</a>
+      irreversible: Lí bē當復原á是重頭啟用lí ê口座
+      more_details_html: 其他資訊，請看<a href="%{terms_path}">隱私政策</a>。
+      username_available: Lí ê用者名別lâng ē當申請
+      username_unavailable: Lí ê口座ē保留，而且別lâng bē當用
+  disputes:
+    strikes:
+      action_taken: 行ê行動
+      appeal: 投訴
+      appeal_approved: Tsit ê警告已經投訴成功，bē koh有效。
+      appeal_rejected: Tsit ê投訴已經受拒絕
+      appeal_submitted_at: 投訴送出去ah
+      appealed_msg: Lí ê投訴送出去ah。Nā受允准，ē通知lí。
+      appeals:
+        submit: 送投訴
+      approve_appeal: 允准投訴
+      associated_report: 關聯ê報告
+      created_at: 過時ê
+      description_html: Tsiah ê是 %{instance} ê人員送hōo lí ê，tuì lí ê口座行ê行動kap警告。
+      recipient: 送kàu
+      reject_appeal: 拒絕投訴
+      status: 'PO文 #%{id}'
+      status_removed: 嘟文已經tuì系統thâi掉
+      title: "%{action} tuì %{date}"
+      title_actions:
+        delete_statuses: Thâi掉PO文
+        disable: 冷凍口座
+        mark_statuses_as_sensitive: Kā PO文標做敏感ê
+        none: 警告
+        sensitive: Kā 口座文標做敏感ê
+        silence: 口座制限
+        suspend: 停止口座權限
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:
