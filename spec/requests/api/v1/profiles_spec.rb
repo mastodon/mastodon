@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Deleting profile images' do
+  include_context 'with API authentication', oauth_scopes: 'write:accounts'
+
   let(:account) do
     Fabricate(
       :account,
@@ -10,9 +12,7 @@ RSpec.describe 'Deleting profile images' do
       header: fixture_file_upload('attachment.jpg', 'image/jpeg')
     )
   end
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: account.user.id, scopes: scopes) }
-  let(:scopes)  { 'write:accounts' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  let(:user) { account.user }
 
   describe 'DELETE /api/v1/profile' do
     context 'when deleting an avatar' do

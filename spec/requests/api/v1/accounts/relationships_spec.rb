@@ -7,10 +7,7 @@ RSpec.describe 'GET /api/v1/accounts/relationships' do
     get '/api/v1/accounts/relationships', headers: headers, params: params
   end
 
-  let(:user)    { Fabricate(:user) }
-  let(:scopes)  { 'read:follows' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:follows'
 
   let(:simon) { Fabricate(:account) }
   let(:lewis) { Fabricate(:account) }
