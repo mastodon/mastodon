@@ -112,17 +112,21 @@ class AttachmentBatch
     keys.each_slice(LIMIT) do |keys_slice|
       logger.debug { "Deleting #{keys_slice.size} objects" }
 
-      bucket.delete_objects(
-        {
-          delete: {
-            objects: keys_slice.map { |key| { key: key } },
-            quiet: true,
+      # Calling the client directly because `Aws::S3::Bucket#delete_objects` does not let us pass `http_read_timeout`
+      Aws::Plugins::UserAgent.metric('RESOURCE_MODEL') do
+        bucket.client.delete_objects(
+          {
+            delete: {
+              objects: keys_slice.map { |key| { key: key } },
+              quiet: true,
+            },
+            bucket: bucket.name,
           },
-        },
-        {
-          http_read_timeout: [Paperclip::Attachment.default_options[:s3_options][:http_read_timeout], 120].max,
-        }
-      )
+          {
+            http_read_timeout: [Paperclip::Attachment.default_options[:s3_options][:http_read_timeout], 120].max,
+          }
+        )
+      end
     rescue => e
       retries += 1
 
