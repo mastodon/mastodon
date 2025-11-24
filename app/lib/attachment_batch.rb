@@ -112,17 +112,10 @@ class AttachmentBatch
     keys.each_slice(LIMIT) do |keys_slice|
       logger.debug { "Deleting #{keys_slice.size} objects" }
 
-      bucket.delete_objects(
-        {
-          delete: {
-            objects: keys_slice.map { |key| { key: key } },
-            quiet: true,
-          },
-        },
-        {
-          http_read_timeout: [Paperclip::Attachment.default_options[:s3_options][:http_read_timeout], 120].max,
-        }
-      )
+      bucket.delete_objects(delete: {
+        objects: keys_slice.map { |key| { key: key } },
+        quiet: true,
+      })
     rescue => e
       retries += 1
 
