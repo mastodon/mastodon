@@ -114,6 +114,16 @@ export const PickerGroupCustomList: FC<
     );
   }
 
+  // Finally, load all custom emojis that haven't been loaded yet.
+  if (missingCustomKeys.length > 0) {
+    setEmojis((prevEmojis) => {
+      const newCustomEmojis = mockCustomEmojis.filter((emoji) =>
+        missingCustomKeys.includes(`:${emoji.shortcode}:`),
+      );
+      return mergeNewEmojis(prevEmojis ?? [], newCustomEmojis, emojiKeys);
+    });
+  }
+
   return <PickerGroupListInner emojis={emojis} {...props} />;
 };
 
