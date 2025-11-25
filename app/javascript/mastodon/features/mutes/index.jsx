@@ -40,7 +40,7 @@ class Mutes extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  UNSAFE_componentWillMount () {
+  componentDidMount () {
     this.props.dispatch(fetchMutes());
   }
 
