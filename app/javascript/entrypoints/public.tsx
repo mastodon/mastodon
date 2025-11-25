@@ -4,8 +4,8 @@ import { IntlMessageFormat } from 'intl-messageformat';
 import type { MessageDescriptor, PrimitiveType } from 'react-intl';
 import { defineMessages } from 'react-intl';
 
-import Rails from '@rails/ujs';
 import axios from 'axios';
+import { on } from 'delegated-events';
 import { throttle } from 'lodash';
 
 import { timeAgoString } from '../mastodon/components/relative_timestamp';
@@ -175,10 +175,9 @@ function loaded() {
       });
   }
 
-  Rails.delegate(
-    document,
-    'input#user_account_attributes_username',
+  on(
     'input',
+    'input#user_account_attributes_username',
     throttle(
       ({ target }) => {
         if (!(target instanceof HTMLInputElement)) return;
@@ -202,60 +201,47 @@ function loaded() {
     ),
   );
 
-  Rails.delegate(
-    document,
-    '#user_password,#user_password_confirmation',
-    'input',
-    () => {
-      const password = document.querySelector<HTMLInputElement>(
-        'input#user_password',
-      );
-      const confirmation = document.querySelector<HTMLInputElement>(
-        'input#user_password_confirmation',
-      );
-      if (!confirmation || !password) return;
+  on('input', '#user_password,#user_password_confirmation', () => {
+    const password = document.querySelector<HTMLInputElement>(
+      'input#user_password',
+    );
+    const confirmation = document.querySelector<HTMLInputElement>(
+      'input#user_password_confirmation',
+    );
+    if (!confirmation || !password) return;
 
-      if (
-        confirmation.value &&
-        confirmation.value.length > password.maxLength
-      ) {
-        confirmation.setCustomValidity(
-          formatMessage(messages.passwordExceedsLength),
-        );
-      } else if (password.value && password.value !== confirmation.value) {
-        confirmation.setCustomValidity(
-          formatMessage(messages.passwordDoesNotMatch),
-        );
-      } else {
-        confirmation.setCustomValidity('');
-      }
-    },
-  );
+    if (confirmation.value && confirmation.value.length > password.maxLength) {
+      confirmation.setCustomValidity(
+        formatMessage(messages.passwordExceedsLength),
+      );
+    } else if (password.value && password.value !== confirmation.value) {
+      confirmation.setCustomValidity(
+        formatMessage(messages.passwordDoesNotMatch),
+      );
+    } else {
+      confirmation.setCustomValidity('');
+    }
+  });
 }
 
-Rails.delegate(
-  document,
-  '#edit_profile input[type=file]',
-  'change',
-  ({ target }) => {
-    if (!(target instanceof HTMLInputElement)) return;
+on('change', '#edit_profile input[type=file]', ({ target }) => {
+  if (!(target instanceof HTMLInputElement)) return;
 
-    const avatar = document.querySelector<HTMLImageElement>(
-      `img#${target.id}-preview`,
-    );
+  const avatar = document.querySelector<HTMLImageElement>(
+    `img#${target.id}-preview`,
+  );
 
-    if (!avatar) return;
+  if (!avatar) return;
 
-    let file: File | undefined;
-    if (target.files) file = target.files[0];
+  let file: File | undefined;
+  if (target.files) file = target.files[0];
 
-    const url = file ? URL.createObjectURL(file) : avatar.dataset.originalSrc;
+  const url = file ? URL.createObjectURL(file) : avatar.dataset.originalSrc;
 
-    if (url) avatar.src = url;
-  },
-);
+  if (url) avatar.src = url;
+});
 
-Rails.delegate(document, '.input-copy input', 'click', ({ target }) => {
+on('click', '.input-copy input', ({ target }) => {
   if (!(target instanceof HTMLInputElement)) return;
 
   target.focus();
@@ -263,7 +249,7 @@ Rails.delegate(document, '.input-copy input', 'click', ({ target }) => {
   target.setSelectionRange(0, target.value.length);
 });
 
-Rails.delegate(document, '.input-copy button', 'click', ({ target }) => {
+on('click', '.input-copy button', ({ target }) => {
   if (!(target instanceof HTMLButtonElement)) return;
 
   const input = target.parentNode?.querySelector<HTMLInputElement>(
@@ -312,22 +298,22 @@ const toggleSidebar = () => {
   sidebar.classList.toggle('visible');
 };
 
-Rails.delegate(document, '.sidebar__toggle__icon', 'click', () => {
+on('click', '.sidebar__toggle__icon', () => {
   toggleSidebar();
 });
 
-Rails.delegate(document, '.sidebar__toggle__icon', 'keydown', (e) => {
+on('keydown', '.sidebar__toggle__icon', (e) => {
   if (e.key === ' ' || e.key === 'Enter') {
     e.preventDefault();
     toggleSidebar();
   }
 });
 
-Rails.delegate(document, 'img.custom-emoji', 'mouseover', ({ target }) => {
+on('mouseover', 'img.custom-emoji', ({ target }) => {
   if (target instanceof HTMLImageElement && target.dataset.original)
     target.src = target.dataset.original;
 });
-Rails.delegate(document, 'img.custom-emoji', 'mouseout', ({ target }) => {
+on('mouseout', 'img.custom-emoji', ({ target }) => {
   if (target instanceof HTMLImageElement && target.dataset.static)
     target.src = target.dataset.static;
 });
@@ -376,22 +362,17 @@ const setInputHint = (
   }
 };
 
-Rails.delegate(
-  document,
-  '#account_statuses_cleanup_policy_enabled',
-  'change',
-  ({ target }) => {
-    if (!(target instanceof HTMLInputElement) || !target.form) return;
+on('change', '#account_statuses_cleanup_policy_enabled', ({ target }) => {
+  if (!(target instanceof HTMLInputElement) || !target.form) return;
 
-    target.form
-      .querySelectorAll<
-        HTMLInputElement | HTMLSelectElement
-      >('input:not([type=hidden], #account_statuses_cleanup_policy_enabled), select')
-      .forEach((input) => {
-        setInputDisabled(input, !target.checked);
-      });
-  },
-);
+  target.form
+    .querySelectorAll<
+      HTMLInputElement | HTMLSelectElement
+    >('input:not([type=hidden], #account_statuses_cleanup_policy_enabled), select')
+    .forEach((input) => {
+      setInputDisabled(input, !target.checked);
+    });
+});
 
 const updateDefaultQuotePrivacyFromPrivacy = (
   privacySelect: EventTarget | null,
@@ -414,18 +395,13 @@ const updateDefaultQuotePrivacyFromPrivacy = (
   }
 };
 
-Rails.delegate(
-  document,
-  '#user_settings_attributes_default_privacy',
-  'change',
-  ({ target }) => {
-    updateDefaultQuotePrivacyFromPrivacy(target);
-  },
-);
+on('change', '#user_settings_attributes_default_privacy', ({ target }) => {
+  updateDefaultQuotePrivacyFromPrivacy(target);
+});
 
 // Empty the honeypot fields in JS in case something like an extension
 // automatically filled them.
-Rails.delegate(document, '#registration_new_user,#new_user', 'submit', () => {
+on('submit', '#registration_new_user,#new_user', () => {
   [
     'user_website',
     'user_confirm_password',
@@ -439,7 +415,7 @@ Rails.delegate(document, '#registration_new_user,#new_user', 'submit', () => {
   });
 });
 
-Rails.delegate(document, '.rules-list button', 'click', ({ target }) => {
+on('click', '.rules-list button', ({ target }) => {
   if (!(target instanceof HTMLElement)) {
     return;
   }

@@ -32,6 +32,12 @@ eo:
           attributes:
             url:
               invalid: ne estas valida URL
+        collection:
+          attributes:
+            collection_items:
+              too_many: estas tro multaj, ne pli ol %{count} estas permesataj
+            tag:
+              unusable: ne povus esti uzata
         doorkeeper/application:
           attributes:
             website:

@@ -32,6 +32,12 @@ vi:
           attributes:
             url:
               invalid: không phải là một URL hợp lệ
+        collection:
+          attributes:
+            collection_items:
+              too_many: quá nhiều, không được hơn %{count}
+            tag:
+              unusable: không được phép dùng
         doorkeeper/application:
           attributes:
             website:

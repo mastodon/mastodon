@@ -341,8 +341,8 @@ export const composeReducer = (state = initialState, action) => {
     const isDirect = state.get('privacy') === 'direct';
     return state
       .set('quoted_status_id', isDirect ? null : status.get('id'))
-      .set('spoiler', status.get('sensitive'))
-      .set('spoiler_text', status.get('spoiler_text'))
+      .update('spoiler', spoiler => (spoiler) || !!status.get('spoiler_text'))
+      .update('spoiler_text', (spoiler_text) => spoiler_text || status.get('spoiler_text'))
       .update('privacy', (visibility) => {
         if (['public', 'unlisted'].includes(visibility) && status.get('visibility') === 'private') {
           return 'private';

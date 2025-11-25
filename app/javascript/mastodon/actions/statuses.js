@@ -203,8 +203,8 @@ export function deleteStatusFail(id, error) {
   };
 }
 
-export const updateStatus = status => dispatch =>
-  dispatch(importFetchedStatus(status));
+export const updateStatus = (status, { bogusQuotePolicy }) => dispatch =>
+  dispatch(importFetchedStatus(status, { bogusQuotePolicy }));
 
 export function muteStatus(id) {
   return (dispatch) => {
