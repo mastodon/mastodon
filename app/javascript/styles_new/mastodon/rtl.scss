@@ -1,0 +1,50 @@
+@use 'variables' as *;
+
+body.rtl {
+  direction: rtl;
+
+  .reactions-bar {
+    direction: rtl;
+  }
+
+  .announcements__mastodon,
+  .drawer__inner__mastodon > img {
+    transform: scaleX(-1);
+  }
+
+  .compose-form .autosuggest-textarea__textarea {
+    padding-right: 10px;
+    padding-left: 10px + 22px;
+  }
+
+  .columns-area {
+    direction: rtl;
+  }
+
+  .account__avatar-wrapper {
+    float: right;
+  }
+
+  .column-header__setting-arrows {
+    float: left;
+  }
+
+  .admin-wrapper {
+    direction: rtl;
+  }
+
+  .react-swipeable-view-container > * {
+    direction: rtl;
+  }
+
+  .column-back-button__icon {
+    transform: scale(-1, 1);
+  }
+
+  .dismissable-banner,
+  .warning-banner {
+    &__action {
+      float: left;
+    }
+  }
+}

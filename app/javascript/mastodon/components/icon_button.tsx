@@ -2,6 +2,8 @@ import { useCallback, forwardRef } from 'react';
 
 import classNames from 'classnames';
 
+import { usePrevious } from '../hooks/usePrevious';
+
 import { AnimatedNumber } from './animated_number';
 import type { IconProp } from './icon';
 import { Icon } from './icon';
@@ -91,12 +93,15 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
       ...(active ? activeStyle : {}),
     };
 
+    const previousActive = usePrevious(active) ?? active;
+    const shouldAnimate = animate && active !== previousActive;
+
     const classes = classNames(className, 'icon-button', {
       active,
       disabled,
       inverted,
-      activate: animate && active,
-      deactivate: animate && !active,
+      activate: shouldAnimate && active,
+      deactivate: shouldAnimate && !active,
       overlayed: overlay,
       'icon-button--with-counter': typeof counter !== 'undefined',
     });

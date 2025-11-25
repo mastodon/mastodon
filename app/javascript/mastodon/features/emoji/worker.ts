@@ -1,18 +1,25 @@
-import { importEmojiData, importCustomEmojiData } from './loader';
+import { importCustomEmojiData, importEmojiData } from './loader';
 
 addEventListener('message', handleMessage);
 self.postMessage('ready'); // After the worker is ready, notify the main thread
 
-function handleMessage(event: MessageEvent<string>) {
-  const { data: locale } = event;
-  void loadData(locale);
+function handleMessage(event: MessageEvent<{ locale: string; path?: string }>) {
+  const {
+    data: { locale, path },
+  } = event;
+  void loadData(locale, path);
 }
 
-async function loadData(locale: string) {
-  if (locale !== 'custom') {
-    await importEmojiData(locale);
+async function loadData(locale: string, path?: string) {
+  let importCount: number | undefined;
+  if (locale === 'custom') {
+    importCount = (await importCustomEmojiData())?.length;
+  } else if (path) {
+    importCount = (await importEmojiData(locale, path))?.length;
   } else {
-    await importCustomEmojiData();
+    throw new Error('Path is required for loading locale emoji data');
   }
-  self.postMessage(`loaded ${locale}`);
+  if (importCount) {
+    self.postMessage(`loaded ${importCount} emojis into ${locale}`);
+  }
 }

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Update < ActivityPub::Activity
+  # Updates to unknown objects older than that are ignored
+  OBJECT_AGE_THRESHOLD = 1.day
+
   def perform
     @account.schedule_refresh_if_stale!
 
@@ -26,11 +29,20 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
 
     @status = Status.find_by(uri: object_uri, account_id: @account.id)
 
+    # Ignore updates for old unknown objects, since those are updates we are not interested in
+    return if @status.nil? && object_too_old?
+
     # We may be getting `Create` and `Update` out of order
     @status ||= ActivityPub::Activity::Create.new(@json, @account, **@options).perform
 
     return if @status.nil?
 
     ActivityPub::ProcessStatusUpdateService.new.call(@status, @json, @object, request_id: @options[:request_id])
+  end
+
+  def object_too_old?
+    @object['published'].present? && @object['published'].to_datetime < OBJECT_AGE_THRESHOLD.ago
+  rescue Date::Error
+    false
   end
 end

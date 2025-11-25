@@ -1,0 +1,40 @@
+# frozen_string_literal: true
+
+# == Schema Information
+#
+# Table name: collection_items
+#
+#  id                        :bigint(8)        not null, primary key
+#  activity_uri              :string
+#  approval_last_verified_at :datetime
+#  approval_uri              :string
+#  object_uri                :string
+#  position                  :integer          default(1), not null
+#  state                     :integer          default("pending"), not null
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  account_id                :bigint(8)
+#  collection_id             :bigint(8)        not null
+#
+class CollectionItem < ApplicationRecord
+  belongs_to :collection
+  belongs_to :account, optional: true
+
+  enum :state,
+       { pending: 0, accepted: 1, rejected: 2, revoked: 3 },
+       validate: true
+
+  delegate :local?, :remote?, to: :collection
+
+  validates :position, numericality: { only_integer: true, greater_than: 0 }
+  validates :activity_uri, presence: true, if: :local_item_with_remote_account?
+  validates :approval_uri, absence: true, unless: :local?
+  validates :account, presence: true, if: :accepted?
+  validates :object_uri, presence: true, if: -> { account.nil? }
+
+  scope :ordered, -> { order(position: :asc) }
+
+  def local_item_with_remote_account?
+    local? && account&.remote?
+  end
+end

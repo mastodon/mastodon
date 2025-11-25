@@ -46,7 +46,7 @@ export const SignInBanner: React.FC = () => {
         <a
           href={sso_redirect}
           data-method='post'
-          className='button button--block button-tertiary'
+          className='button button--block button-secondary'
         >
           <FormattedMessage
             id='sign_in_banner.sso_redirect'
@@ -98,7 +98,7 @@ export const SignInBanner: React.FC = () => {
         />
       </p>
       {signupButton}
-      <a href='/auth/sign_in' className='button button--block button-tertiary'>
+      <a href='/auth/sign_in' className='button button--block button-secondary'>
         <FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' />
       </a>
     </div>

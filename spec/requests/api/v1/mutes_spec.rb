@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Mutes' do
-  let(:user)    { Fabricate(:user) }
-  let(:scopes)  { 'read:mutes' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:mutes'
 
   describe 'GET /api/v1/mutes' do
     subject do

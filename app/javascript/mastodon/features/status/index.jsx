@@ -159,18 +159,16 @@ class Status extends ImmutablePureComponent {
   };
 
   UNSAFE_componentWillMount () {
-    this.props.dispatch(fetchStatus(this.props.params.statusId));
+    this.props.dispatch(fetchStatus(this.props.params.statusId, { forceFetch: true }));
   }
 
   componentDidMount () {
     attachFullscreenListener(this.onFullScreenChange);
-
-    this._scrollStatusIntoView();
   }
 
   UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.params.statusId !== this.props.params.statusId && nextProps.params.statusId) {
-      this.props.dispatch(fetchStatus(nextProps.params.statusId));
+      this.props.dispatch(fetchStatus(nextProps.params.statusId, { forceFetch: true }));
     }
 
     if (nextProps.status && nextProps.status.get('id') !== this.state.loadedStatusId) {
@@ -487,34 +485,10 @@ class Status extends ImmutablePureComponent {
     this.statusNode = c;
   };
 
-  _scrollStatusIntoView () {
-    const { status, multiColumn } = this.props;
-
-    if (status) {
-      requestIdleCallback(() => {
-        this.statusNode?.scrollIntoView(true);
-
-        // In the single-column interface, `scrollIntoView` will put the post behind the header,
-        // so compensate for that.
-        if (!multiColumn) {
-          const offset = document.querySelector('.column-header__wrapper')?.getBoundingClientRect()?.bottom;
-          if (offset) {
-            const scrollingElement = document.scrollingElement || document.body;
-            scrollingElement.scrollBy(0, -offset);
-          }
-        }
-      });
-    }
-  }
-
   componentDidUpdate (prevProps) {
-    const { status, ancestorsIds, descendantsIds } = this.props;
+    const { status, descendantsIds } = this.props;
 
     const isSameStatus = status && (prevProps.status?.get('id') === status.get('id'));
-
-    if (status && (ancestorsIds.length > prevProps.ancestorsIds.length || !isSameStatus)) {
-      this._scrollStatusIntoView();
-    }
 
     // Only highlight replies after the initial load
     if (prevProps.descendantsIds.length && isSameStatus) {
@@ -619,6 +593,8 @@ class Status extends ImmutablePureComponent {
                   showMedia={this.state.showMedia}
                   onToggleMediaVisibility={this.handleToggleMediaVisibility}
                   pictureInPicture={pictureInPicture}
+                  ancestors={this.props.ancestorsIds.length}
+                  multiColumn={multiColumn}
                 />
 
                 <ActionBar

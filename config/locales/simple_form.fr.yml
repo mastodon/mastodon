@@ -31,7 +31,7 @@ fr:
           suspend: Empêcher toute interaction depuis ou vers ce compte et supprimer son contenu. Réversible dans les 30 jours. Cloture tous les signalements concernant ce compte.
         warning_preset_id: Facultatif. Vous pouvez toujours ajouter un texte personnalisé à la fin de la présélection
       announcement:
-        all_day: Coché, seules les dates de l’intervalle de temps seront affichées
+        all_day: Lorsque coché, seules les dates de l’intervalle de temps seront affichées
         ends_at: Facultatif. La fin de l'annonce surviendra automatiquement à ce moment
         scheduled_at: Laisser vide pour publier l’annonce immédiatement
         starts_at: Facultatif. Si votre annonce est liée à une période spécifique
@@ -54,6 +54,7 @@ fr:
         password: Utilisez au moins 8 caractères
         phrase: Sera filtré peu importe la casse ou l’avertissement de contenu du message
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez une permission générale, vous n’avez pas besoin de sélectionner les permissions plus précises.
+        setting_advanced_layout: Afficher Mastodon avec une mise en page multicolonnes, vous permettant de visualiser le flux, les notifications et une troisième colonne de votre choix. Non recommandé pour les écrans plus petits.
         setting_aggregate_reblogs: Ne pas afficher les nouveaux partages pour les messages déjà récemment partagés (n’affecte que les partages futurs)
         setting_always_send_emails: Normalement, les notifications par courriel ne seront pas envoyées lorsque vous utilisez Mastodon activement
         setting_default_quote_policy_unlisted: Lorsque des personnes vous citent, leur message sera également masqué des fils des tendances.
@@ -152,6 +153,8 @@ fr:
         name: Nom public du rôle, si le rôle est configuré pour être affiché avec un badge
         permissions_as_keys: Les utilisateur·rice·s ayant ce rôle auront accès à …
         position: Dans certaines situations, un rôle supérieur peut trancher la résolution d'un conflit. Mais certaines opérations ne peuvent être effectuées que sur des rôles ayant une priorité inférieure
+      username_block:
+        comparison: Veuillez garder à l'esprit le problème de Scunthorpe lors du blocage des correspondances partielles
       webhook:
         events: Sélectionnez les événements à envoyer
         template: Écrivez votre propre bloc JSON avec la possibilité d’utiliser de l’interpolation de variables. Laissez vider pour utiliser le bloc JSON par défaut.
@@ -353,9 +356,8 @@ fr:
         jurisdiction: Juridiction
         min_age: Âge minimum
       user:
-        date_of_birth_1i: Jour
         date_of_birth_2i: Mois
-        date_of_birth_3i: Année
+        date_of_birth_3i: Jour
         role: Rôle
         time_zone: Fuseau horaire
       user_role:

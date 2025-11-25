@@ -61,10 +61,6 @@ class NotifyService < BaseService
       NotificationPermission.exists?(account: @recipient, from_account: @sender)
     end
 
-    def from_limited?
-      @sender.silenced? && not_following?
-    end
-
     def message?
       @notification.type == :mention
     end

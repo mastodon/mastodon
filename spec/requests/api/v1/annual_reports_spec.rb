@@ -3,9 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'API V1 Annual Reports' do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication'
 
   describe 'GET /api/v1/annual_reports' do
     context 'when not authorized' do

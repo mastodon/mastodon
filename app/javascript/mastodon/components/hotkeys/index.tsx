@@ -180,25 +180,24 @@ export function useHotkeys<T extends HTMLElement>(handlers: HandlerMap) {
 
       if (shouldHandleEvent) {
         const matchCandidates: {
-          handler: (event: KeyboardEvent) => void;
+          // A candidate will be have an undefined handler if it's matched,
+          // but handled in a parent component rather than this one.
+          handler: ((event: KeyboardEvent) => void) | undefined;
           priority: number;
         }[] = [];
 
         (Object.keys(hotkeyMatcherMap) as HotkeyName[]).forEach(
           (handlerName) => {
             const handler = handlersRef.current[handlerName];
+            const hotkeyMatcher = hotkeyMatcherMap[handlerName];
 
-            if (handler) {
-              const hotkeyMatcher = hotkeyMatcherMap[handlerName];
+            const { isMatch, priority } = hotkeyMatcher(
+              event,
+              bufferedKeys.current,
+            );
 
-              const { isMatch, priority } = hotkeyMatcher(
-                event,
-                bufferedKeys.current,
-              );
-
-              if (isMatch) {
-                matchCandidates.push({ handler, priority });
-              }
+            if (isMatch) {
+              matchCandidates.push({ handler, priority });
             }
           },
         );
