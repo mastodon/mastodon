@@ -124,6 +124,15 @@ export const PickerGroupCustomList: FC<
     });
   }
 
+  // If there is an emoji but no key, remove it.
+  if (emojis !== null && emojis.length > emojiKeys.length) {
+    setEmojis(
+      (prevEmojis) =>
+        prevEmojis?.filter((emoji) => emojiKeys.includes(emojiToKey(emoji))) ??
+        [],
+    );
+  }
+
   return <PickerGroupListInner emojis={emojis} {...props} />;
 };
 
