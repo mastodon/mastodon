@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type { FC, MouseEventHandler } from 'react';
 
 import classNames from 'classnames';
@@ -11,7 +11,6 @@ import { useEmojiAppState } from '@/mastodon/features/emoji/mode';
 import { emojiToUnicodeHex } from '@/mastodon/features/emoji/normalize';
 import type { AnyEmojiData } from '@/mastodon/features/emoji/types';
 import { isCustomEmoji } from '@/mastodon/features/emoji/utils';
-import { usePrevious } from '@/mastodon/hooks/usePrevious';
 import ArrowIcon from '@/material-icons/400-24px/arrow_drop_down.svg?react';
 
 import { Emoji } from '..';
@@ -56,54 +55,77 @@ export const PickerGroupCustomList: FC<
     return customEmojis.length > 0 ? customEmojis : null;
   });
 
-  // Next, load all Unicode emojis.
-  const { currentLocale } = useEmojiAppState();
-  const prevKeyCount = usePrevious(emojiKeys.length) ?? null;
-  if (
-    prevKeyCount === null ||
-    (prevKeyCount !== emojiKeys.length &&
-      (emojis === null || emojis.length < emojiKeys.length))
-  ) {
-    // Convert to Unicode hex codes.
+  // Determine which missing keys are Unicode and which are custom.
+  const [missingUnicodeKeys, missingCustomKeys] = useMemo(() => {
+    const emojisToKeys = emojis?.map(emojiToKey) ?? [];
     const unicodeKeys = emojiKeys
       .filter((key) => !isCustomEmoji(key))
-      .map((code) => emojiToUnicodeHex(code));
-    if (unicodeKeys.length === 0) {
-      return;
-    }
-    void searchEmojisByHexcodes(unicodeKeys, currentLocale).then(
-      (unicodeEmojis) => {
-        if (emojis?.length === emojiKeys.length) {
-          return;
-        }
-        // Combine custom and Unicode emojis based on the original key order.
-        setEmojis((prevEmojis) => {
-          const combinedEmojis = prevEmojis ?? [];
+      .map((code) => emojiToUnicodeHex(code))
+      .filter((code) => !emojisToKeys.includes(code));
+    const customKeys = emojiKeys.filter(
+      (key) => isCustomEmoji(key) && !emojisToKeys.includes(key),
+    );
+    return [unicodeKeys, customKeys];
+  }, [emojiKeys, emojis]);
 
-          return (
-            emojiKeys
-              .map((key) => {
-                if (isCustomEmoji(key)) {
-                  return combinedEmojis.find(
-                    (e) => 'shortcode' in e && e.shortcode === key.slice(1, -1),
-                  );
-                }
-                return (
-                  unicodeEmojis.find(
-                    (e) => e.hexcode === emojiToUnicodeHex(key),
-                  ) ?? null
-                );
-              })
-              // Discard any unknown emojis.
-              .filter((e): e is AnyEmojiData => !!e)
-          );
+  // Next, load all Unicode emojis.
+  const { currentLocale } = useEmojiAppState();
+  const [loading, setLoading] = useState(false); // Use to avoid duplicate loads.
+  if (missingUnicodeKeys.length > 0 && !loading) {
+    setLoading(true);
+
+    void searchEmojisByHexcodes(missingUnicodeKeys, currentLocale).then(
+      (unicodeEmojis) => {
+        setEmojis((prevEmojis) => {
+          setLoading(false);
+          return mergeNewEmojis(prevEmojis ?? [], unicodeEmojis, emojiKeys);
         });
       },
     );
   }
 
+  // Finally, load all custom emojis that haven't been loaded yet.
+  if (missingCustomKeys.length > 0) {
+    setEmojis((prevEmojis) => {
+      const newCustomEmojis = mockCustomEmojis.filter((emoji) =>
+        missingCustomKeys.includes(`:${emoji.shortcode}:`),
+      );
+      return mergeNewEmojis(prevEmojis ?? [], newCustomEmojis, emojiKeys);
+    });
+  }
+
   return <PickerGroupListInner emojis={emojis} {...props} />;
 };
+
+function emojiToKey(emoji: AnyEmojiData): string {
+  return 'hexcode' in emoji ? emoji.hexcode : `:${emoji.shortcode}:`;
+}
+
+function mergeNewEmojis(
+  currentEmojis: AnyEmojiData[],
+  newEmojis: AnyEmojiData[],
+  emojiKeys: string[],
+): AnyEmojiData[] {
+  const allEmojis = new Map([
+    ...currentEmojis.map(
+      (emoji) => [emojiToKey(emoji), emoji] satisfies [string, AnyEmojiData],
+    ),
+    ...newEmojis.map(
+      (emoji) => [emojiToKey(emoji), emoji] satisfies [string, AnyEmojiData],
+    ),
+  ]);
+
+  return (
+    emojiKeys
+      .map((key) =>
+        isCustomEmoji(key)
+          ? allEmojis.get(key)
+          : allEmojis.get(emojiToUnicodeHex(key)),
+      )
+      // Discard any missing emojis.
+      .filter((e) => !!e)
+  );
+}
 
 const PickerGroupListInner: FC<
   PickerGroupListProps & { emojis: AnyEmojiData[] | null }
