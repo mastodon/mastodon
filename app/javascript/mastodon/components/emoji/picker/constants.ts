@@ -10,6 +10,7 @@ export interface PickerContext {
   hiddenGroups: string[];
   recentlyUsed: string[];
   favourites: string[];
+  setFavourite: (emojiCode: string) => void;
 }
 
 const pickerContext = createContext<PickerContext>({
@@ -17,6 +18,9 @@ const pickerContext = createContext<PickerContext>({
   hiddenGroups: [],
   recentlyUsed: [],
   favourites: [],
+  setFavourite: () => {
+    throw new Error('setFavourite not implemented');
+  },
 });
 
 export const PickerContextProvider = pickerContext.Provider;

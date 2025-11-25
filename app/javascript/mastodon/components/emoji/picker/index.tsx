@@ -70,13 +70,30 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({
     );
   }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- TODO: Set up favourites management
   const [favourites, setFavourites] = useState<string[]>(['🖤']);
+  const handleSetFavourite = useCallback((emojiCode: string) => {
+    const emojiKey = emojiCode;
+    setFavourites((prev) => {
+      const prevCodes = new Set(prev);
+      if (prevCodes.has(emojiKey)) {
+        prevCodes.delete(emojiKey);
+      } else {
+        prevCodes.add(emojiKey);
+      }
+      return Array.from(prevCodes);
+    });
+  }, []);
 
   return (
     <CustomEmojiProvider emojis={mockCustomEmojis}>
       <PickerContextProvider
-        value={{ skinTone, hiddenGroups, favourites, recentlyUsed }}
+        value={{
+          skinTone,
+          hiddenGroups,
+          favourites,
+          recentlyUsed,
+          setFavourite: handleSetFavourite,
+        }}
       >
         <div className={classes.wrapper}>
           {showSettings ? (

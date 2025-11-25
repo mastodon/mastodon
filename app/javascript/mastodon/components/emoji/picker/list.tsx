@@ -15,7 +15,11 @@ import ArrowIcon from '@/material-icons/400-24px/arrow_drop_down.svg?react';
 
 import { Emoji } from '..';
 
-import { groupKeysToNumber, mockCustomEmojis } from './constants';
+import {
+  groupKeysToNumber,
+  mockCustomEmojis,
+  usePickerContext,
+} from './constants';
 import classes from './styles.module.css';
 
 interface PickerGroupListProps {
@@ -57,7 +61,7 @@ export const PickerGroupCustomList: FC<
 
   // Determine which missing keys are Unicode and which are custom.
   const [missingUnicodeKeys, missingCustomKeys] = useMemo(() => {
-    const emojisToKeys = emojis?.map(emojiToKey) ?? [];
+    const emojisToKeys = emojis?.map((e) => emojiToKey(e)) ?? [];
     const unicodeKeys = emojiKeys
       .filter((key) => !isCustomEmoji(key))
       .map((code) => emojiToUnicodeHex(code))
@@ -94,11 +98,23 @@ export const PickerGroupCustomList: FC<
     });
   }
 
+  // If there is an emoji but no key, remove it.
+  if (emojis !== null && emojis.length > emojiKeys.length) {
+    setEmojis(
+      (prevEmojis) =>
+        prevEmojis?.filter((emoji) => emojiKeys.includes(emojiToKey(emoji))) ??
+        [],
+    );
+  }
+
   return <PickerGroupListInner emojis={emojis} {...props} />;
 };
 
-function emojiToKey(emoji: AnyEmojiData): string {
-  return 'hexcode' in emoji ? emoji.hexcode : `:${emoji.shortcode}:`;
+function emojiToKey(emoji: AnyEmojiData, hexcode = true): string {
+  if ('shortcode' in emoji) {
+    return `:${emoji.shortcode}:`;
+  }
+  return hexcode ? emoji.hexcode : emoji.unicode;
 }
 
 function mergeNewEmojis(
@@ -106,6 +122,9 @@ function mergeNewEmojis(
   newEmojis: AnyEmojiData[],
   emojiKeys: string[],
 ): AnyEmojiData[] {
+  if (newEmojis.length === 0) {
+    return currentEmojis;
+  }
   const allEmojis = new Map([
     ...currentEmojis.map(
       (emoji) => [emojiToKey(emoji), emoji] satisfies [string, AnyEmojiData],
@@ -117,11 +136,7 @@ function mergeNewEmojis(
 
   return (
     emojiKeys
-      .map((key) =>
-        isCustomEmoji(key)
-          ? allEmojis.get(key)
-          : allEmojis.get(emojiToUnicodeHex(key)),
-      )
+      .map((key) => allEmojis.get(emojiToUnicodeHex(key)))
       // Discard any missing emojis.
       .filter((e) => !!e)
   );
@@ -177,12 +192,21 @@ const PickerListEmoji: FC<PickerListEmojiProps> = ({ emoji, onClick }) => {
   const handleClick: MouseEventHandler = useCallback(() => {
     onClick(emoji);
   }, [emoji, onClick]);
+  const { setFavourite } = usePickerContext();
+  const handleContextMenu: MouseEventHandler = useCallback(
+    (event) => {
+      event.preventDefault();
+      setFavourite(emojiToKey(emoji, false));
+    },
+    [emoji, setFavourite],
+  );
   return (
     <li>
       <button
         type='button'
         title={'unicode' in emoji ? emoji.label : `:${emoji.shortcode}:`}
         onClick={handleClick}
+        onContextMenu={handleContextMenu}
         className={classes.listButton}
       >
         <Emoji
