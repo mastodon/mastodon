@@ -27,6 +27,9 @@ class Collection < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
+  validates :local, inclusion: [true, false]
+  validates :sensitive, inclusion: [true, false]
+  validates :discoverable, inclusion: [true, false]
   validates :uri, presence: true, if: :remote?
   validates :original_number_of_items,
             presence: true,

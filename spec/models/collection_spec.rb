@@ -10,6 +10,12 @@ RSpec.describe Collection do
 
     it { is_expected.to validate_presence_of(:description) }
 
+    it { is_expected.to_not allow_value(nil).for(:local) }
+
+    it { is_expected.to_not allow_value(nil).for(:sensitive) }
+
+    it { is_expected.to_not allow_value(nil).for(:discoverable) }
+
     context 'when collection is remote' do
       subject { Fabricate.build :collection, local: false }
 
