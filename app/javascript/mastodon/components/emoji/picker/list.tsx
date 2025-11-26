@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import type { FC, MouseEventHandler } from 'react';
 
 import classNames from 'classnames';
@@ -21,11 +21,12 @@ import {
   usePickerContext,
 } from './constants';
 import classes from './styles.module.css';
+import { emojiToKey } from './utils';
 
 interface PickerGroupListProps {
   group: string;
   name: string;
-  onSelect: (emoji: AnyEmojiData) => void;
+  onInfoOpen: (emoji: AnyEmojiData) => void;
 }
 
 export const PickerGroupList: FC<PickerGroupListProps> = ({
@@ -110,13 +111,6 @@ export const PickerGroupCustomList: FC<
   return <PickerGroupListInner emojis={emojis} {...props} />;
 };
 
-function emojiToKey(emoji: AnyEmojiData, hexcode = true): string {
-  if ('shortcode' in emoji) {
-    return `:${emoji.shortcode}:`;
-  }
-  return hexcode ? emoji.hexcode : emoji.unicode;
-}
-
 function mergeNewEmojis(
   currentEmojis: AnyEmojiData[],
   newEmojis: AnyEmojiData[],
@@ -144,7 +138,7 @@ function mergeNewEmojis(
 
 const PickerGroupListInner: FC<
   PickerGroupListProps & { emojis: AnyEmojiData[] | null }
-> = ({ group, name, onSelect, emojis }) => {
+> = ({ group, name, emojis, onInfoOpen }) => {
   const [isMinimized, setMinimized] = useState(false);
   const handleToggleMinimize = useCallback(() => {
     setMinimized((prev) => !prev);
@@ -174,7 +168,7 @@ const PickerGroupListInner: FC<
             <PickerListEmoji
               key={'unicode' in emoji ? emoji.hexcode : emoji.shortcode}
               emoji={emoji}
-              onClick={onSelect}
+              onInfoOpen={onInfoOpen}
             />
           ))}
         </ul>
@@ -185,33 +179,53 @@ const PickerGroupListInner: FC<
 
 interface PickerListEmojiProps {
   emoji: AnyEmojiData;
-  onClick: (emoji: AnyEmojiData) => void;
+  onInfoOpen: (emoji: AnyEmojiData) => void;
 }
 
-const PickerListEmoji: FC<PickerListEmojiProps> = ({ emoji, onClick }) => {
-  const handleClick: MouseEventHandler = useCallback(() => {
-    onClick(emoji);
-  }, [emoji, onClick]);
-  const { setFavourite } = usePickerContext();
+const PRESS_DURATION = 300; // ms
+
+const PickerListEmoji: FC<PickerListEmojiProps> = ({ emoji, onInfoOpen }) => {
+  const { onSelect } = usePickerContext();
+  const code = emojiToKey(emoji, false);
+
+  // On mouse down, start a timer. If it completes, show info and clear the ref.
+  const pressTimerRef = useRef<number | null>(null);
+  const handleMouseDown: MouseEventHandler = useCallback(() => {
+    pressTimerRef.current = window.setTimeout(() => {
+      onInfoOpen(emoji);
+      pressTimerRef.current = null;
+    }, PRESS_DURATION);
+  }, [emoji, onInfoOpen]);
+
+  // On mouse up before timer completes, select the emoji.
+  const handleMouseUp: MouseEventHandler = useCallback(() => {
+    if (pressTimerRef.current) {
+      clearTimeout(pressTimerRef.current);
+      pressTimerRef.current = null;
+      onSelect(code);
+    }
+  }, [code, onSelect]);
+
   const handleContextMenu: MouseEventHandler = useCallback(
     (event) => {
       event.preventDefault();
-      setFavourite(emojiToKey(emoji, false));
+      onInfoOpen(emoji);
     },
-    [emoji, setFavourite],
+    [emoji, onInfoOpen],
   );
+
   return (
     <li>
       <button
         type='button'
         title={'unicode' in emoji ? emoji.label : `:${emoji.shortcode}:`}
-        onClick={handleClick}
         onContextMenu={handleContextMenu}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
         className={classes.listButton}
       >
-        <Emoji
-          code={'unicode' in emoji ? emoji.unicode : `:${emoji.shortcode}:`}
-        />
+        <Emoji code={code} />
       </button>
     </li>
   );

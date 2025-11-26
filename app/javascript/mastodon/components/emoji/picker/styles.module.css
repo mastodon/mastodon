@@ -63,6 +63,7 @@
 
 .main {
   grid-area: 2 / 2 / 3 / 3;
+  position: relative;
 }
 
 .groupHeader {
@@ -158,6 +159,40 @@
   height: 1px;
   background-color: gray;
   flex-shrink: 0;
+}
+
+.info {
+  --emoji-size: 3rem;
+
+  position: sticky;
+  bottom: -0.5rem;
+  left: -0.5rem;
+  margin: -0.5rem;
+  width: calc(100% + 1rem);
+  background-color: lightgray;
+  padding: 0.5rem 0.5rem 0 0;
+  display: flex;
+  align-items: start;
+  gap: 0.5rem;
+
+  > button {
+    color: gray;
+  }
+}
+
+.infoEmoji {
+  width: var(--emoji-size);
+  height: var(--emoji-size);
+  font-size: calc(var(--emoji-size) - 1rem);
+
+  > img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.infoLabel {
+  flex-grow: 1;
 }
 
 .settings {

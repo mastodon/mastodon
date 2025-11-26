@@ -16,6 +16,7 @@ import {
 } from './constants';
 import { PickerGroupButton } from './group-button';
 import { useLocaleMessages } from './hooks';
+import { PickerEmojiInfo } from './info';
 import { PickerGroupCustomList, PickerGroupList } from './list';
 import { PickerSettings } from './settings';
 import classes from './styles.module.css';
@@ -71,7 +72,7 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({
   }, []);
 
   const [favourites, setFavourites] = useState<string[]>(['🖤']);
-  const handleSetFavourite = useCallback((emojiCode: string) => {
+  const handleToggleFavourite = useCallback((emojiCode: string) => {
     const emojiKey = emojiCode;
     setFavourites((prev) => {
       const prevCodes = new Set(prev);
@@ -92,7 +93,8 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({
           hiddenGroups,
           favourites,
           recentlyUsed,
-          setFavourite: handleSetFavourite,
+          onSelect: handleEmojiPick,
+          onFavourite: handleToggleFavourite,
         }}
       >
         <div className={classes.wrapper}>
@@ -104,10 +106,7 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({
               onClearRecentlyUsed={handleClearRecentlyUsed}
             />
           ) : (
-            <PickerMain
-              onSelect={handleEmojiPick}
-              onSettingsClick={handleSettingsClick}
-            />
+            <PickerMain onSettingsClick={handleSettingsClick} />
           )}
         </div>
       </PickerContextProvider>
@@ -115,20 +114,11 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({
   );
 };
 
-const PickerMain: FC<
-  MockEmojiPickerProps & { onSettingsClick: () => void }
-> = ({ onSelect, onSettingsClick }) => {
-  const handleEmojiSelect = useCallback(
-    (emoji: AnyEmojiData) => {
-      if (onSelect) {
-        const code =
-          'unicode' in emoji ? emoji.unicode : `:${emoji.shortcode}:`;
-        onSelect(code);
-      }
-    },
-    [onSelect],
-  );
+interface PickerMainProps {
+  onSettingsClick: () => void;
+}
 
+const PickerMain: FC<PickerMainProps> = ({ onSettingsClick }) => {
   const { groups } = useLocaleMessages();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const handleGroupSelect = useCallback((key: string) => {
@@ -157,11 +147,20 @@ const PickerMain: FC<
     searchInput.focus();
   }, []);
 
-  const { hiddenGroups, favourites, recentlyUsed } = usePickerContext();
+  const pickerContext = usePickerContext();
+  const { hiddenGroups, favourites, recentlyUsed } = pickerContext;
   const customGroups = useMemo(
     () => mockCustomGroups.filter(({ key }) => !hiddenGroups.includes(key)),
     [hiddenGroups],
   );
+
+  const [emojiInfo, setEmojiInfo] = useState<null | AnyEmojiData>(null);
+  const handleInfoOpen = useCallback((emoji: AnyEmojiData) => {
+    setEmojiInfo(emoji);
+  }, []);
+  const handleInfoClose = useCallback(() => {
+    setEmojiInfo(null);
+  }, []);
 
   return (
     <>
@@ -185,16 +184,16 @@ const PickerMain: FC<
           <PickerGroupCustomList
             name='Favourites'
             group='favourites'
-            onSelect={handleEmojiSelect}
             emojiKeys={favourites}
+            onInfoOpen={handleInfoOpen}
           />
         )}
         {recentlyUsed.length > 0 && (
           <PickerGroupCustomList
             name='Recently Used'
             group='recent'
-            onSelect={handleEmojiSelect}
             emojiKeys={recentlyUsed}
+            onInfoOpen={handleInfoOpen}
           />
         )}
         {customGroups.map((group) => (
@@ -202,7 +201,7 @@ const PickerMain: FC<
             key={group.key}
             group={group.key}
             name={group.message}
-            onSelect={handleEmojiSelect}
+            onInfoOpen={handleInfoOpen}
           />
         ))}
         {groups.map((group) => (
@@ -210,9 +209,12 @@ const PickerMain: FC<
             key={group.key}
             group={group.key}
             name={group.message}
-            onSelect={handleEmojiSelect}
+            onInfoOpen={handleInfoOpen}
           />
         ))}
+        {emojiInfo && (
+          <PickerEmojiInfo emoji={emojiInfo} onClose={handleInfoClose} />
+        )}
       </div>
       <ul className={classes.nav}>
         {customGroups.map((group) => (

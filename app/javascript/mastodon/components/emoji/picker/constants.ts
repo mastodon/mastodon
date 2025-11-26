@@ -10,7 +10,8 @@ export interface PickerContext {
   hiddenGroups: string[];
   recentlyUsed: string[];
   favourites: string[];
-  setFavourite: (emojiCode: string) => void;
+  onSelect: (emojiCode: string) => void;
+  onFavourite: (emojiCode: string) => void;
 }
 
 const pickerContext = createContext<PickerContext>({
@@ -18,8 +19,11 @@ const pickerContext = createContext<PickerContext>({
   hiddenGroups: [],
   recentlyUsed: [],
   favourites: [],
-  setFavourite: () => {
-    throw new Error('setFavourite not implemented');
+  onSelect() {
+    throw new Error('onSelect not implemented');
+  },
+  onFavourite() {
+    throw new Error('onFavourite not implemented');
   },
 });
 
