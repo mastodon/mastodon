@@ -538,7 +538,7 @@ class Status extends ImmutablePureComponent {
     } else if (status.get('card') && !status.get('quote')) {
       media = (
         <Card
-          key={`${status.get('id')}-${status.get('sensitive')}`}
+          key={`${status.get('id')}-${status.get('edited_at')}`}
           card={status.get('card')}
           sensitive={status.get('sensitive')}
         />
