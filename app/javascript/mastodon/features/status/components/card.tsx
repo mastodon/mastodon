@@ -117,9 +117,9 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
       : card.get('provider_name');
   const interactive = card.get('type') === 'video';
   const language = card.get('language') || '';
+  const hasImage = (card.get('image')?.length ?? 0) > 0;
   const largeImage =
-    (card.get('image').length > 0 && card.get('width') > card.get('height')) ||
-    interactive;
+    (hasImage && card.get('width') > card.get('height')) || interactive;
   const showAuthor = !!card.getIn(['authors', 0, 'accountId']);
 
   const description = (
@@ -185,7 +185,7 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
   const thumbnailDescription = card.get('image_description');
   const thumbnail = (
     <img
-      src={card.get('image')}
+      src={card.get('image') ?? undefined}
       alt={thumbnailDescription}
       title={thumbnailDescription}
       lang={language}
