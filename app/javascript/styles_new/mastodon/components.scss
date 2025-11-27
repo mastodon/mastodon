@@ -7161,6 +7161,13 @@ a.status-card {
   grid-template-rows: 1fr 1fr;
   gap: 2px;
 
+  &--layout-1 {
+    // The size of single images is determined by their
+    // aspect-ratio, applied via inline style attribute
+    width: initial;
+    max-height: 460px;
+  }
+
   &--layout-2 {
     & > .media-gallery__item:nth-child(1) {
       border-end-end-radius: 0;
