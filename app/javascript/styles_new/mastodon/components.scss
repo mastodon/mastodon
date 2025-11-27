@@ -4494,7 +4494,7 @@ a.status-card {
       z-index: 1;
       background: radial-gradient(
         ellipse,
-        rgb(from var(--color-bg-brand-softer-base) r g b / 23%) 0%,
+        rgb(from var(--color-bg-brand-base) r g b / 23%) 0%,
         transparent 60%
       );
     }
@@ -7492,6 +7492,8 @@ a.status-card {
   color: var(--color-text-on-media);
   background: var(--color-bg-media);
   max-width: 100%;
+  max-height: max(400px, 60vh);
+  margin-inline: auto;
   border-radius: 8px;
   box-sizing: border-box;
   display: flex;
