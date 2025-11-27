@@ -20,6 +20,6 @@
   = opengraph 'profile:username', acct(@account)[1..]
 
   = render 'og_description', activity: @status
-  = render 'og_image', activity: @status, account: @account
+  = render 'og_image', status: @status, account: @account
 
 = render 'shared/web_app'

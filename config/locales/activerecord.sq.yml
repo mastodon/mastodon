@@ -32,6 +32,12 @@ sq:
           attributes:
             url:
               invalid: s’është URL e vlefshme
+        collection:
+          attributes:
+            collection_items:
+              too_many: janë shumë, nuk lejohen më tepër se %{count}
+            tag:
+              unusable: mund të mos përdoret dot
         doorkeeper/application:
           attributes:
             website:

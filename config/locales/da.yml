@@ -66,7 +66,7 @@ da:
       disabled: Frosset
       display_name: Visningsnavn
       domain: Domæne
-      edit: Redigere
+      edit: Rediger
       email: E-mail
       email_status: E-mailstatus
       enable: Optø
@@ -1593,13 +1593,13 @@ da:
     invalid: Denne invitation er ikke gyldig
     invited_by: 'Du blev inviteret af:'
     max_uses:
-      one: 1 benyttelse
-      other: "%{count} benyttelser"
+      one: 1 anvendelse
+      other: "%{count} anvendelser"
     max_uses_prompt: Ubegrænset
     prompt: Generér og del links med andre for at give dem adgang til denne server
     table:
       expires_at: Udløber
-      uses: Benyttelser
+      uses: Anvendelser
     title: Invitér personer
   link_preview:
     author_html: Af %{name}
@@ -1901,7 +1901,7 @@ da:
       user_domain_block: "%{target_name} blev blokeret"
     lost_followers: Tabte følgere
     lost_follows: Mistet følger
-    preamble: Der kan mistes fulgte objekter og følgere, når et domæne blokeres eller moderatorerne beslutter at suspendere en ekstern server. Når det sker, kan der downloades lister over afbrudte relationer til inspektion og mulig import på anden server.
+    preamble: Du kan miste fulgte og følgere, når du blokerer et domæne, eller når dine moderatorer beslutter at suspendere en fjernserver. Når det sker, kan du downloade lister over afbrudte forhold til inspektion og eventuelt import til en anden server.
     purged: Oplysninger om denne server er blevet renset af serveradministratoreren.
     type: Begivenhed
   statuses:
@@ -1957,12 +1957,12 @@ da:
     enabled: Slet automatisk gamle indlæg
     enabled_hint: Sletter automatisk dine indlæg, når disse når en bestemt alder, medmindre de matcher en af undtagelserne nedenfor
     exceptions: Undtagelser
-    explanation: Sletning af indlæg er en ressourcekrævende operation, hvorfor dette sker gradvist over tid, når serveren ellers ikke er optaget. Indlæg kan derfor blive slettet efter, at de reelt har passeret aldersgrænsen.
+    explanation: Da sletning af indlæg er en kostbar operation, foregår dette langsomt over tid, når serveren ikke er optaget af andre opgaver. Af denne grund kan dine indlæg blive slettet et stykke tid efter, at de har nået alderstærsklen.
     ignore_favs: Ignorér favoritter
     ignore_reblogs: Ignorér fremhævelser
     interaction_exceptions: Undtagelser baseret på interaktioner
     interaction_exceptions_explanation: Bemærk, at det ikke garanteres, at indlæg slettes, hvis de når under favorit- eller fremhævelses-tærsklerne efter én gang at været nået over dem.
-    keep_direct: Behold direkte besked
+    keep_direct: Behold direkte beskeder
     keep_direct_hint: Sletter ingen af dine direkte beskeder
     keep_media: Behold indlæg med medievedhæftninger
     keep_media_hint: Sletter ingen af dine indlæg med medievedhæftninger
@@ -2004,7 +2004,7 @@ da:
     title: Tjenestevilkårene for %{domain} ændres
   themes:
     contrast: Mastodon (høj kontrast)
-    default: Mastodont (mørkt)
+    default: Mastodon (mørkt)
     mastodon-light: Mastodon (lyst)
     system: Automatisk (benyt systemtema)
   time:
@@ -2024,8 +2024,8 @@ da:
     edit: Redigér
     enabled: Tofaktorgodkendelse aktiveret
     enabled_success: Tofaktorgodkendelse aktiveret
-    generate_recovery_codes: Generere gendannelseskoder
-    lost_recovery_codes: Gendannelseskoder muliggør adgang til din konto, hvis du mister din mobil. Ved mistet gendannelseskoder, kan disse regenerere her. Dine gamle gendannelseskoder ugyldiggøres.
+    generate_recovery_codes: Generer gendannelseskoder
+    lost_recovery_codes: Gendannelseskoder giver dig mulighed for at få adgang til din konto igen, hvis du mister din telefon. Hvis du har mistet dine gendannelseskoder, kan du generere dem igen her. Dine gamle gendannelseskoder vil blive ugyldige.
     methods: Tofaktormetoder
     otp: Godkendelses-app
     recovery_codes: Sikkerhedskopieret gendannelseskoder
@@ -2122,7 +2122,7 @@ da:
       feature_audience_title: Opbyg et publikum i tillid
       feature_control: Man ved selv bedst, hvad man ønsker at se på sit hjemmefeed. Ingen algoritmer eller annoncer til at spilde tiden. Følg alle på tværs af enhver Mastodon-server fra en enkelt konto og modtag deres indlæg i kronologisk rækkefølge, og gør dette hjørne af internet lidt mere personligt.
       feature_control_title: Hold styr på egen tidslinje
-      feature_creativity: Mastodon understøtter indlæg med lyd, video og billede, tilgængelighedsbeskrivelser, meningsmålinger, indhold advarsler, animerede avatarer, tilpassede emojis, miniaturebeskæringskontrol og mere, for at gøre det lettere at udtrykke sig online. Uanset om man udgiver sin kunst, musik eller podcast, så står Mastodon til rådighed.
+      feature_creativity: Mastodon understøtter lyd-, video- og billedindlæg, tilgængelighedsbeskrivelser, afstemninger, indholdsadvarsler, animerede avatarer, brugerdefinerede emojis, kontrol over beskæring af miniaturebilleder og meget mere, så du lettere kan udtrykke dig online. Uanset om du udgiver din kunst, din musik eller din podcast, er Mastodon der for dig.
       feature_creativity_title: Uovertruffen kreativitet
       feature_moderation: Mastodon lægger beslutningstagning tilbage i brugerens hænder. Hver server opretter deres egne regler og reguleringer, som håndhæves lokalt og ikke ovenfra som virksomhedernes sociale medier, hvilket gør det til den mest fleksible mht. at reagere på behovene hos forskellige persongrupper. Deltag på en server med de regler, man er enige med, eller driv en egen server.
       feature_moderation_title: Moderering af måden, tingene bør være på

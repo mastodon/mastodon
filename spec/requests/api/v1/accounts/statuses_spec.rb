@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'API V1 Accounts Statuses' do
-  let(:user) { Fabricate(:user) }
-  let(:scopes) { 'read:statuses' }
-  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:statuses'
 
   describe 'GET /api/v1/accounts/:account_id/statuses' do
     it 'returns expected headers', :aggregate_failures do

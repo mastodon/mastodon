@@ -4,29 +4,30 @@
 #
 # Table name: media_attachments
 #
-#  id                          :bigint(8)        not null, primary key
-#  status_id                   :bigint(8)
-#  file_file_name              :string
-#  file_content_type           :string
-#  file_file_size              :integer
-#  file_updated_at             :datetime
-#  remote_url                  :string           default(""), not null
-#  created_at                  :datetime         not null
-#  updated_at                  :datetime         not null
-#  shortcode                   :string
-#  type                        :integer          default("image"), not null
-#  file_meta                   :json
-#  account_id                  :bigint(8)
-#  description                 :text
-#  scheduled_status_id         :bigint(8)
-#  blurhash                    :string
-#  processing                  :integer
-#  file_storage_schema_version :integer
-#  thumbnail_file_name         :string
-#  thumbnail_content_type      :string
-#  thumbnail_file_size         :integer
-#  thumbnail_updated_at        :datetime
-#  thumbnail_remote_url        :string
+#  id                               :bigint(8)        not null, primary key
+#  blurhash                         :string
+#  description                      :text
+#  file_content_type                :string
+#  file_file_name                   :string
+#  file_file_size                   :integer
+#  file_meta                        :json
+#  file_storage_schema_version      :integer
+#  file_updated_at                  :datetime
+#  processing                       :integer
+#  remote_url                       :string           default(""), not null
+#  shortcode                        :string
+#  thumbnail_content_type           :string
+#  thumbnail_file_name              :string
+#  thumbnail_file_size              :integer
+#  thumbnail_remote_url             :string
+#  thumbnail_storage_schema_version :integer
+#  thumbnail_updated_at             :datetime
+#  type                             :integer          default("image"), not null
+#  created_at                       :datetime         not null
+#  updated_at                       :datetime         not null
+#  account_id                       :bigint(8)
+#  scheduled_status_id              :bigint(8)
+#  status_id                        :bigint(8)
 #
 
 class MediaAttachment < ApplicationRecord

@@ -29,7 +29,7 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
     return [null, null];
   }
 
-  word = word.trim().toLowerCase();
+  word = word.trim();
 
   if (word.length > 0) {
     return [left + 1, word];

@@ -4,19 +4,47 @@ require 'rails_helper'
 
 RSpec.describe 'Media' do
   describe 'Player page' do
+    let(:status) { Fabricate :status }
+
+    before { status.media_attachments << media }
+
     context 'when signed in' do
       before { sign_in Fabricate(:user) }
 
-      it 'visits the media player page and renders the media' do
-        status = Fabricate :status
-        media = Fabricate :media_attachment, type: :video
-        status.media_attachments << media
+      context 'when media type is video' do
+        let(:media) { Fabricate :media_attachment, type: :video }
 
-        visit medium_player_path(media)
+        it 'visits the player page and renders media' do
+          visit medium_player_path(media)
 
-        expect(page)
-          .to have_css('body', class: 'player')
-          .and have_css('div[data-component="Video"]')
+          expect(page)
+            .to have_css('body', class: 'player')
+            .and have_css('div[data-component="Video"] video[controls="controls"] source')
+        end
+      end
+
+      context 'when media type is gifv' do
+        let(:media) { Fabricate :media_attachment, type: :gifv }
+
+        it 'visits the player page and renders media' do
+          visit medium_player_path(media)
+
+          expect(page)
+            .to have_css('body', class: 'player')
+            .and have_css('div[data-component="MediaGallery"] video[loop="loop"] source')
+        end
+      end
+
+      context 'when media type is audio' do
+        let(:media) { Fabricate :media_attachment, type: :audio }
+
+        it 'visits the player page and renders media' do
+          visit medium_player_path(media)
+
+          expect(page)
+            .to have_css('body', class: 'player')
+            .and have_css('div[data-component="Audio"] audio source')
+        end
       end
     end
   end

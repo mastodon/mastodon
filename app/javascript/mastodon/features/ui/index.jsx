@@ -108,7 +108,7 @@ class SwitchingColumnsArea extends PureComponent {
     forceOnboarding: PropTypes.bool,
   };
 
-  UNSAFE_componentWillMount () {
+  componentDidMount () {
     document.body.classList.toggle('layout-single-column', this.props.singleColumn);
     document.body.classList.toggle('layout-multiple-columns', !this.props.singleColumn);
   }

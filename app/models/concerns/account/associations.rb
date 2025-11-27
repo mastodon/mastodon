@@ -13,6 +13,8 @@ module Account::Associations
         has_many :account_warnings
         has_many :aliases, class_name: 'AccountAlias'
         has_many :bookmarks
+        has_many :collections
+        has_many :collection_items
         has_many :conversations, class_name: 'AccountConversation'
         has_many :custom_filters
         has_many :favourites

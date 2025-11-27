@@ -495,6 +495,24 @@ sl:
       new:
         title: Uvozi blokade domen
       no_file: Nobena datoteka ni izbrana
+    fasp:
+      debug:
+        callbacks:
+          delete: Izbriši
+          ip: Naslov IP
+      providers:
+        base_url: Osnovna povezava
+        callback: Povratni klic
+        delete: Izbriši
+        edit: Uredi ponudnika
+        finish_registration: Dokončaj registracijo
+        name: Ime
+        registrations:
+          confirm: Potrdi
+          reject: Zavrni
+        save: Shrani
+        sign_in: Prijava
+        status: Stanje
     follow_recommendations:
       description_html: "<strong>Sledi priporočilom pomaga novim uporabnikom, da hitro najdejo zanimivo vsebino</strong>. Če uporabnik ni dovolj komuniciral z drugimi, da bi oblikoval prilagojena priporočila za sledenje, se namesto tega priporočajo ti računi. Dnevno se ponovno izračunajo iz kombinacije računov z najvišjimi nedavnimi angažiranostmi in najvišjim številom krajevnih sledilcev za določen jezik."
       language: Za jezik
@@ -569,6 +587,9 @@ sl:
         all: Vse
         limited: Omejeno
         title: Moderiranje
+      moderation_notes:
+        description_html: Pokaži in pusti opombe drugim moderatorjem in sebi v prihodnosti
+        title: Opombe moderiranja
       private_comment: Zasebni komentar
       public_comment: Javni komentar
       purge: Očisti
@@ -783,11 +804,16 @@ sl:
       title: Vloge
     rules:
       add_new: Dodaj pravilo
+      add_translation: Dodaj prevod
       delete: Izbriši
       description_html: Večina trdi, da so prebrali in da se strinjajo s pogoji rabe storitve, vendar le-teh ponavadi ne preberejo, dokler ne pride do težav. <strong>Poenostavite in naredite pravila svojega strežnika vidna na prvi pogled tako, da jih izpišete v označenem seznamu.</strong>Posamezna pravila skušajte ohraniti kratka in enostavna, ne razbijajte pa jih v preveč različnih točk.
       edit: Uredi pravilo
       empty: Zaenkrat še ni opredeljenih pravil.
+      move_down: Premakni navzdol
+      move_up: Premakni navzgor
       title: Pravila strežnika
+      translation: Prevod
+      translations: Prevodi
     settings:
       about:
         manage_rules: Upravljaj pravila strežnika
@@ -812,6 +838,7 @@ sl:
         title: Privzeto izvzemi uporabnike iz indeksiranja iskalnika
       discovery:
         follow_recommendations: Sledi priporočilom
+        privacy: Zasebnost
         profile_directory: Imenik profilov
         public_timelines: Javne časovnice
         publish_statistics: Objavi statistiko
@@ -821,6 +848,9 @@ sl:
         all: Vsem
         disabled: Nikomur
         users: Prijavljenim krajevnim uporabnikom
+      landing_page:
+        values:
+          trends: Trendi
       registrations:
         moderation_recommandation: Preden prijave odprete za vse poskrbite, da imate v ekipi moderatorjev zadosti aktivnih članov.
         preamble: Nadzirajte, kdo lahko ustvari račun na vašem strežniku.
@@ -874,6 +904,7 @@ sl:
       no_status_selected: Nobena objava ni bila spremenjena, ker ni bila nobena izbrana
       open: Odpri objavo
       original_status: Izvorna objava
+      quotes: Citati
       reblogs: Ponovljeni blogi
       replied_to_html: V odgovor %{acct_link}
       status_changed: Objava spremenjena
@@ -1070,6 +1101,15 @@ sl:
           two: Uporabili %{count} osebi v zadnjem tednu
       title: Priporočila in trendi
       trending: V porastu
+    username_blocks:
+      add_new: Dodaj novo
+      comparison:
+        contains: Vsebuje
+      contains_html: Vsebuje %{string}
+      delete: Izbriši
+      new:
+        create: Ustvari pravilo
+      not_permitted: Ni dovoljeno
     warning_presets:
       add_new: Dodaj novo
       delete: Izbriši
@@ -1144,6 +1184,7 @@ sl:
     hint_html: Če se želite preseliti iz drugega računa v tega, lahko tukaj ustvarite vzdevek, ki je potreben, preden lahko nadaljujete s selitvijo sledilcev iz starega računa v tega. To dejanje je samo po sebi <strong>neškodljivo in povratno</strong>. <strong>Selitev računa sprožite iz starega računa</strong>.
     remove: Razveži vzdevek
   appearance:
+    advanced_settings: Napredne nastavitve
     animations_and_accessibility: Animacije in dostopnost
     discovery: Odkrito
     localization:
@@ -1333,6 +1374,8 @@ sl:
     basic_information: Osnovni podatki
     hint_html: "<strong>Prilagodite, kaj ljudje vidijo na vašem javnem profilu in poleg vaših objav.</strong> Drugi vam bodo raje sledili nazaj in z vami klepetali, če boste imeli izpolnjen profil in nastavljeno profilno sliko."
     other: Drugo
+  emoji_styles:
+    auto: Samodejno
   errors:
     '400': Zahteva, ki ste jo oddali, je neveljavna ali nepravilno oblikovana.
     '403': Nimate dovoljenja za ogled te strani.
@@ -1582,6 +1625,11 @@ sl:
       expires_at: Poteče
       uses: Uporabe
     title: Povabite ljudi
+  link_preview:
+    author_html: Avtor/ica %{name}
+    potentially_sensitive_content:
+      action: Kliknite za prikaz
+      hide_button: Skrij
   lists:
     errors:
       limit: Dosegli ste največje število seznamov
@@ -1681,6 +1729,9 @@ sl:
       title: Nova omemba
     poll:
       subject: Anketa, ki jo je pripravil/a %{name}, se je iztekla
+    quote:
+      body: 'Vašo objavo je citiral/a %{name}:'
+      title: Nov citat
     reblog:
       body: 'Vašo objavo je izpostavil/a %{name}:'
       subject: "%{name} je izpostavil/a vašo objavo"
@@ -1729,6 +1780,7 @@ sl:
       self_vote: Ne morete glasovati v lastnih anketah
       too_few_options: mora imeti več kot en element
       too_many_options: ne more vsebovati več kot %{max} elementov
+    vote: Glasuj
   preferences:
     other: Ostalo
     posting_defaults: Privzete nastavitev objavljanja
@@ -1890,6 +1942,9 @@ sl:
         two: "%{count} video posnetka"
     boosted_from_html: Izpostavljeno z računa %{acct_link}
     content_warning: 'Opozorilo o vsebini: %{warning}'
+    content_warnings:
+      hide: Skrij objavo
+      show: Pokaži več
     default_language: Enak kot jezik vmesnika
     disallowed_hashtags:
       few: 'vsebuje nedovoljene ključnike: %{tags}'
@@ -1905,9 +1960,19 @@ sl:
       limit: Pripeli ste največje število objav
       ownership: Objava nekoga drugega ne more biti pripeta
       reblog: Izpostavitev ne more biti pripeta
+    quote_error:
+      not_available: Objava ni na voljo
+    quote_policies:
+      followers: Samo sledilci
+      nobody: Samo jaz
+      public: Vsi
     title: "%{name}: »%{quote}«"
     visibilities:
+      direct: Zasebna omemba
+      private: Samo sledilci
       public: Javno
+      public_long: Vsem, ki so ali niso na Mastodonu
+      unlisted: Tiho javno
   statuses_cleanup:
     enabled: Samodejno izbriši stare objave
     enabled_hint: Samodejno izbriše vaše objave, ko dosežejo določen starostni prag, razen če ne ustrezajo eni od spodnjih izjem
@@ -1952,6 +2017,8 @@ sl:
     does_not_match_previous_name: se ne ujema s prejšnjim imenom
   terms_of_service:
     title: Pogoji uporabe
+  terms_of_service_interstitial:
+    title: Spreminjajo se pogoji uporabe domene %{domain}
   themes:
     contrast: Mastodon (Visok kontrast)
     default: Mastodon (Temna)

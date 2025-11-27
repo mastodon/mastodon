@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Filters' do
-  let(:user)    { Fabricate(:user) }
-  let(:scopes)  { 'read:filters write:filters' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:filters write:filters'
 
   shared_examples 'unauthorized for invalid token' do
     let(:headers) { { 'Authorization' => '' } }

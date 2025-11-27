@@ -3,10 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin Measures' do
-  let(:user)    { Fabricate(:admin_user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
-  let(:account) { Fabricate(:account) }
+  include_context 'with API authentication', user_fabricator: :admin_user
+
   let(:params) do
     {
       keys: %w(instance_accounts instance_follows instance_followers),

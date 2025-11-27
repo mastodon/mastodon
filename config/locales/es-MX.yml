@@ -839,7 +839,7 @@ es-MX:
         title: Optar por los usuarios fuera de la indexación en los motores de búsqueda por defecto
       discovery:
         follow_recommendations: Recomendaciones de cuentas
-        preamble: Exponer contenido interesante es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie en Mastodon. Controla cómo funcionan en tu servidor las diferentes opciones de descubrimiento.
+        preamble: Mostrar contenido interesante es fundamental para atraer a nuevos usuarios que quizá no conozcan a nadie en Mastodon. Controla cómo funcionan las distintas funciones de descubrimiento en tu servidor.
         privacy: Privacidad
         profile_directory: Directorio de perfiles
         public_timelines: Lineas de tiempo públicas
@@ -1196,7 +1196,7 @@ es-MX:
     hint_html: Si deseas migrar de otra cuenta a esta, aquí puedes crear un alias, que es necesario para poder mover seguidores de la cuenta anterior a esta. Esta acción por sí misma es <strong>inofensiva y reversible</strong>. <strong>La migración de la cuenta se inicia desde la cuenta anterior</strong>.
     remove: Desvincular alias
   appearance:
-    advanced_settings: Ajustes avanzados
+    advanced_settings: Configuración avanzada
     animations_and_accessibility: Animaciones y accesibilidad
     boosting_preferences: Preferencias de impulso
     boosting_preferences_info_html: "<strong>Consejo:</strong> Sin importar los ajustes, pulsar <kbd>Mayus</kbd> al hacer <kbd>clic</kbd> en el icono de %{icon} Impulsar, dará impulso inmediatamente."
@@ -1604,8 +1604,8 @@ es-MX:
   link_preview:
     author_html: Por %{name}
     potentially_sensitive_content:
-      action: Pulsa para mostrar
-      confirm_visit: "¿Seguro que quieres abrir este enlace?"
+      action: Haz clic para mostrar
+      confirm_visit: "¿Estás seguro de que deseas abrir este enlace?"
       hide_button: Ocultar
       label: Contenido potencialmente sensible
   lists:
@@ -1672,7 +1672,7 @@ es-MX:
       disabled_account: Tu cuenta actual no será completamente utilizable después. Sin embargo, tendrás acceso a la exportación de datos así como a la reactivación.
       followers: Esta acción migrará a todos los seguidores de la cuenta actual a la nueva cuenta
       only_redirect_html: Alternativamente, solo puedes <a href="%{path}">poner una redirección en tu perfil</a>.
-      other_data: Ningún otro dato se moverá automáticamente (esto incluye tus publicaciones y la lista de cuentas que sigues)
+      other_data: No se transferirán automáticamente otros datos (incluidas tus publicaciones y la lista de cuentas que sigues)
       redirect: El perfil de tu cuenta actual se actualizará con un aviso de redirección y será excluido de las búsquedas
   moderation:
     title: Moderación
@@ -1929,7 +1929,7 @@ es-MX:
     errors:
       in_reply_not_found: La publicación a la que estás intentando responder no existe.
       quoted_status_not_found: La publicación que intentas citar no parece existir.
-      quoted_user_not_mentioned: No se puede citar a un usuario no mencionado en una Mención Privada.
+      quoted_user_not_mentioned: No se puede citar a un usuario no mencionado en una mención privada.
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
       direct: Las publicaciones que son visibles solo para los usuarios mencionados no pueden fijarse
@@ -1939,12 +1939,12 @@ es-MX:
     quote_error:
       not_available: Publicación no disponible
       pending_approval: Publicación pendiente
-      revoked: Publicación borrada por el autor
+      revoked: Publicación eliminada por el autor
     quote_policies:
       followers: Solo seguidores
       nobody: Solo yo
       public: Cualquiera
-    quote_post_author: Citando una publicación de %{acct}
+    quote_post_author: Cita de una publicación de %{acct}
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Mención privada
