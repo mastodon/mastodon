@@ -7698,14 +7698,13 @@ a.status-card {
   overflow: hidden;
   position: relative;
   background: $base-shadow-color;
-  max-width: 100%;
+  width: 100%;
   max-height: max(400px, 60vh);
   margin-inline: auto;
   border-radius: 8px;
   box-sizing: border-box;
   color: $white;
   display: flex;
-  align-items: center;
   outline: 1px solid var(--media-outline-color);
   outline-offset: -1px;
   z-index: 2;
