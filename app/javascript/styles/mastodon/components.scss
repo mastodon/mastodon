@@ -6204,12 +6204,14 @@ a.status-card {
   inset-inline-start: 0;
   inset-inline-end: 0;
   bottom: 0;
-  align-items: center;
-  justify-content: space-around; // If set to center, the fullscreen image overlay is misaligned.
 
   > div {
     flex-shrink: 0;
     overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
 }
 
