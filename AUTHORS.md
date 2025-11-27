@@ -538,7 +538,7 @@ and provided thanks to the work of the following contributors:
 * [Drew Schuster](mailto:dtschust@gmail.com)
 * [Dryusdan](mailto:dryusdan@dryusdan.fr)
 * [Eai](mailto:eai@mizle.net)
-* [Eashwar Ranganathan](mailto:eranganathan@lyft.com)
+* [Eashwar Ranganathan](mailto:eashwar@eashwar.com)
 * [Ed Knutson](mailto:knutsoned@gmail.com)
 * [Elizabeth Martín Campos](mailto:me@elizabeth.sh)
 * [Elizabeth Myers](mailto:elizabeth@interlinked.me)
