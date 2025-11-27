@@ -4,10 +4,7 @@ class CreateCollectionService
   def call(params, account)
     tag = params.delete(:tag)
     account_ids = params.delete(:account_ids)
-    @collection = Collection.new(params)
-    @collection.account = account
-    @collection.local = true
-    @collection.tag = find_or_create_tag(tag)
+    @collection = Collection.new(params.merge({ account:, local: true, tag: find_or_create_tag(tag) }))
     build_items(account_ids)
 
     @collection.save!
