@@ -122,7 +122,11 @@ $content-width: 840px;
         align-items: center;
         gap: 6px;
         padding: 15px;
-        color: var(--color-text-secondary);
+        color: color-mix(
+          in oklab,
+          var(--color-text-primary),
+          var(--color-text-secondary)
+        );
         text-decoration: none;
         transition: all 200ms linear;
         transition-property: color, background-color;

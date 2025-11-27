@@ -796,6 +796,8 @@ sv:
         view_dashboard_description: Ger användare tillgång till instrumentpanelen och olika mätvärden
         view_devops: DevOps
         view_devops_description: Ger användare tillgång till instrumentpanelerna Sidekiq och pgHero
+        view_feeds: Visa live- och ämnesflöden
+        view_feeds_description: Ger användare tillgång till live-och ämnesflöden oavsett serverinställningar
       title: Roller
     rules:
       add_new: Lägg till regel
@@ -837,6 +839,7 @@ sv:
         title: Undantag användare från sökmotorindexering som standard
       discovery:
         follow_recommendations: Följrekommendationer
+        preamble: Att visa intressant innehåll är avgörande för nya användare som kanske inte känner någon på Mastodon. Styr hur olika upptäcktsfunktioner fungerar på din Server.
         privacy: Integritet
         profile_directory: Profilkatalog
         public_timelines: Offentliga tidslinjer
@@ -847,6 +850,16 @@ sv:
         all: Till alla
         disabled: För ingen
         users: För inloggade lokala användare
+      feed_access:
+        modes:
+          authenticated: Endast autentiserade användare
+          disabled: Kräv specifik användarroll
+          public: Alla
+      landing_page:
+        values:
+          about: Om
+          local_feed: Lokalt flöde
+          trends: Trender
       registrations:
         moderation_recommandation: Se till att du har ett tillräckligt och reaktivt modereringsteam innan du öppnar registreringar till alla!
         preamble: Kontrollera vem som kan skapa ett konto på din server.
@@ -900,6 +913,7 @@ sv:
       no_status_selected: Inga inlägg ändrades eftersom inga valdes
       open: Öppna inlägg
       original_status: Ursprungligt inlägg
+      quotes: Citat
       reblogs: Ombloggningar
       replied_to_html: Svarade på %{acct_link}
       status_changed: Inlägg ändrat
@@ -907,6 +921,7 @@ sv:
       title: Kontoinlägg - @%{name}
       trending: Trendande
       view_publicly: Visa offentligt
+      view_quoted_post: Visa citerat inlägg
       visibility: Synlighet
       with_media: Med media
     strikes:
@@ -1181,7 +1196,10 @@ sv:
     hint_html: Om du vill flytta från ett annat konto till detta kan du skapa ett alias här, detta krävs innan du kan fortsätta med att flytta följare från det gamla kontot till detta. Denna åtgärd är <strong>ofarlig och kan ångras</strong>. <strong>Kontomigreringen initieras från det gamla kontot.</strong>.
     remove: Avlänka alias
   appearance:
+    advanced_settings: Avancerade inställningar
     animations_and_accessibility: Animationer och tillgänglighet
+    boosting_preferences: Boostinställningar
+    boosting_preferences_info_html: "<strong>Tips:</strong> Oavsett inställningar kommer <kbd>Skifttangenten</kbd> + <kbd>Klick</kbd> på %{icon} boostikonen att boosta omedelbart."
     discovery: Upptäck
     localization:
       body: Mastodon översätts av volontärer.
@@ -1583,6 +1601,13 @@ sv:
       expires_at: Utgår
       uses: Användningar
     title: Bjud in andra
+  link_preview:
+    author_html: Av %{name}
+    potentially_sensitive_content:
+      action: Klicka för att visa
+      confirm_visit: Är du säker på att du vill öppna den här länken?
+      hide_button: Dölj
+      label: Potentiellt känsligt innehåll
   lists:
     errors:
       limit: Du har nått det maximala antalet listor
@@ -1647,6 +1672,7 @@ sv:
       disabled_account: Ditt nuvarande konto kommer inte att kunna användas fullt ut efteråt. Du kommer dock att ha tillgång till dataexport samt återaktivering.
       followers: Den här åtgärden kommer att flytta alla följare från det nuvarande kontot till det nya kontot
       only_redirect_html: Alternativt kan du <a href="%{path}">bara sätta upp en omdirigering på din profil</a>.
+      other_data: Inga andra data kommer att flyttas automatiskt (inklusive dina inlägg och listan över konton du följer)
       redirect: Ditt nuvarande kontos profil kommer att uppdateras med ett meddelande om omdirigering och uteslutas från sökningar
   moderation:
     title: Moderera
@@ -1735,6 +1761,8 @@ sv:
       too_few_options: måste ha mer än ett objekt
       too_many_options: kan inte innehålla mer än %{max} objekt
     vote: Rösta
+  posting_defaults:
+    explanation: Dessa inställningar kommer att användas som standard när du skapar nya inlägg, men du kan redigera dem per inlägg i kompositören.
   preferences:
     other: Annat
     posting_defaults: Standardinställningar för inlägg
@@ -1890,6 +1918,9 @@ sv:
         other: "%{count} videor"
     boosted_from_html: Boostad från %{acct_link}
     content_warning: 'Innehållsvarning: %{warning}'
+    content_warnings:
+      hide: Dölj inlägg
+      show: Visa mer
     default_language: Samma som användargränssnittet
     disallowed_hashtags:
       one: 'innehöll en otillåten hashtag: %{tags}'
@@ -1898,15 +1929,30 @@ sv:
     errors:
       in_reply_not_found: Inlägget du försöker svara på verkar inte existera.
       quoted_status_not_found: Inlägget du försöker svara på verkar inte existera.
+      quoted_user_not_mentioned: Kan inte citera en icke-omnämnt användare i ett privat omnämnandeinlägg.
     over_character_limit: teckengräns på %{max} har överskridits
     pin_errors:
       direct: Inlägg som endast är synliga för nämnda användare kan inte fästas
       limit: Du har redan fäst det maximala antalet inlägg
       ownership: Någon annans inlägg kan inte fästas
       reblog: En boost kan inte fästas
+    quote_error:
+      not_available: Inlägg ej tillgängligt
+      pending_approval: Väntande inlägg
+      revoked: Inlägg borttaget av författaren
+    quote_policies:
+      followers: Endast följare
+      nobody: Bara jag
+      public: Alla
+    quote_post_author: Citerade ett inlägg av %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Privat omnämnande
+      private: Endast följare
       public: Offentlig
+      public_long: Alla på och utanför Mastodon
+      unlisted: Offentlig (begränsad)
+      unlisted_long: Dold från Mastodon-sökresultat, trendar och offentliga tidslinjer
   statuses_cleanup:
     enabled: Ta automatiskt bort gamla inlägg
     enabled_hint: Raderar dina inlägg automatiskt när de når en specifik ålder, såvida de inte matchar något av undantagen nedan
