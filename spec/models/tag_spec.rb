@@ -265,6 +265,27 @@ RSpec.describe Tag do
     end
   end
 
+  describe '.find_or_create_by_names_race_condition' do
+    it 'handles simultaneous inserts of the same tag in different cases without error' do
+      tag_name_upper = 'Rails'
+      tag_name_lower = 'rails'
+
+      threads = []
+
+      2.times do |i|
+        threads << Thread.new do
+          described_class.find_or_create_by_names(i.zero? ? tag_name_upper : tag_name_lower)
+        end
+      end
+
+      threads.each(&:join)
+
+      tags = described_class.where('lower(name) = ?', tag_name_lower.downcase)
+      expect(tags.count).to eq(1)
+      expect(tags.first.name.downcase).to eq(tag_name_lower.downcase)
+    end
+  end
+
   describe '.search_for' do
     it 'finds tag records with matching names' do
       tag = Fabricate(:tag, name: 'match')
