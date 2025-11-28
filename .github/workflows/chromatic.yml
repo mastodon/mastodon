@@ -1,4 +1,6 @@
 name: 'Chromatic'
+permissions:
+  contents: read
 
 on:
   push:
@@ -11,7 +13,7 @@ jobs:
     name: Check for relevant changes
     runs-on: ubuntu-latest
     outputs:
-      src_changed: ${{ steps.filter.outputs.src }}
+      changed: ${{ steps.filter.outputs.src }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -37,7 +39,7 @@ jobs:
     name: Run Chromatic
     runs-on: ubuntu-latest
     needs: pathcheck
-    if: github.repository == 'mastodon/mastodon' && needs.pathcheck.outputs.src == 'true'
+    if: github.repository == 'mastodon/mastodon' && needs.pathcheck.outputs.changed == 'true'
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -53,7 +55,6 @@ jobs:
       - name: Run Chromatic
         uses: chromaui/action@v13
         with:
-          # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           zip: true
           storybookBuildDir: 'storybook-static'
