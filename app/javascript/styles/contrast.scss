@@ -1,3 +1,8 @@
-@use 'contrast/variables';
-@use 'application';
+@use 'mastodon/css_variables';
+@use 'mastodon/variables';
+@use 'common';
 @use 'contrast/diff';
+
+html {
+  color-scheme: dark;
+}

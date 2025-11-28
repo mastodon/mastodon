@@ -4,11 +4,11 @@ module ThemeHelper
   def theme_style_tags(theme)
     if theme == 'system'
       ''.html_safe.tap do |tags|
-        tags << vite_stylesheet_tag(theme_path_for('mastodon-light'), type: :virtual, media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
-        tags << vite_stylesheet_tag(theme_path_for('default'), type: :virtual, media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
+        tags << vite_stylesheet_tag('themes/mastodon-light', type: :virtual, media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
+        tags << vite_stylesheet_tag('themes/default', type: :virtual, media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
       end
     else
-      vite_stylesheet_tag theme_path_for(theme), type: :virtual, media: 'all', crossorigin: 'anonymous'
+      vite_stylesheet_tag "themes/#{theme}", type: :virtual, media: 'all', crossorigin: 'anonymous'
     end
   end
 
@@ -52,9 +52,5 @@ module ThemeHelper
 
   def theme_color_for(theme)
     theme == 'mastodon-light' ? Themes::THEME_COLORS[:light] : Themes::THEME_COLORS[:dark]
-  end
-
-  def theme_path_for(theme)
-    Mastodon::Feature.theme_tokens_enabled? ? "themes/#{theme}_theme_tokens" : "themes/#{theme}"
   end
 end
