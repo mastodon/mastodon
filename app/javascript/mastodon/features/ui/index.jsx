@@ -449,7 +449,7 @@ class UI extends PureComponent {
   };
 
   handleHotkeyFocusColumn = e => {
-    focusColumn({index: e.key * 1});
+    focusColumn(e.key * 1);
   };
 
   handleHotkeyLoadMore = () => {
@@ -459,10 +459,7 @@ class UI extends PureComponent {
   handleMoveUp = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      focusColumn({
-        index: 1,
-        focusItem: 'first-visible',
-      });
+      focusColumn(1);
     } else {
       focusItemSibling(currentItemIndex, -1);
     }
@@ -471,10 +468,7 @@ class UI extends PureComponent {
   handleMoveDown = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      focusColumn({
-        index: 1,
-        focusItem: 'first-visible',
-      });
+      focusColumn(1);
     } else {
       focusItemSibling(currentItemIndex, 1);
     }
