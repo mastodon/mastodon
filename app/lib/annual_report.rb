@@ -18,6 +18,13 @@ class AnnualReport
     'annual_report_'
   end
 
+  def self.current_campaign
+    return unless Mastodon::Feature.wrapstodon_enabled?
+
+    datetime = Time.now.utc
+    datetime.year if datetime.month == 12 && (10..31).cover?(datetime.day)
+  end
+
   def initialize(account, year)
     @account = account
     @year = year
