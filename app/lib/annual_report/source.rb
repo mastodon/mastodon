@@ -12,6 +12,10 @@ class AnnualReport::Source
     raise NotImplementedError
   end
 
+  def eligible?
+    true
+  end
+
   protected
 
   def report_statuses
