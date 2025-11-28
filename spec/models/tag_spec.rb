@@ -270,7 +270,7 @@ RSpec.describe Tag do
 
       2.times do |i|
         threads << Thread.new do
-          Tag.find_or_create_by_names(i.zero? ? tag_name_upper : tag_name_lower)
+          described_class.find_or_create_by_names(i.zero? ? tag_name_upper : tag_name_lower)
         end
       end
 
