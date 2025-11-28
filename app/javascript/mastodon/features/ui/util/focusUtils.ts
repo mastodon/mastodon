@@ -1,5 +1,3 @@
-import { initialState } from '@/mastodon/initial_state';
-
 interface FocusColumnOptions {
   index?: number;
   focusItem?: 'first' | 'first-visible';
@@ -14,7 +12,10 @@ export function focusColumn({
   focusItem = 'first',
 }: FocusColumnOptions = {}) {
   // Skip the leftmost drawer in multi-column mode
-  const indexOffset = initialState?.meta.advanced_layout ? 1 : 0;
+  const isMultiColumnLayout = !!document.querySelector(
+    'body.layout-multiple-columns',
+  );
+  const indexOffset = isMultiColumnLayout ? 1 : 0;
 
   const column = document.querySelector(
     `.column:nth-child(${index + indexOffset})`,
