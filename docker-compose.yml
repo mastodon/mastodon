@@ -27,8 +27,9 @@ services:
 
   # es:
   #   restart: always
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.29
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:8.19.7
   #   environment:
+  #     - "ELASTIC_PASSWORD=password"  #Username is elastic. Do not change the username.
   #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true"
   #     - "xpack.license.self_generated.type=basic"
   #     - "xpack.security.enabled=false"
