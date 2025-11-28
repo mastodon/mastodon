@@ -81,6 +81,26 @@ export function getFocusedItemIndex() {
 }
 
 /**
+ * Focus the topmost item of the column that currently has focus,
+ * or the first column if none
+ */
+export function focusFirstItem() {
+  const focusedElement = document.activeElement;
+  const container =
+    focusedElement?.closest('.scrollable') ??
+    document.querySelector('.scrollable');
+
+  if (!container) return;
+
+  const itemToFocus = container.querySelector<HTMLElement>('.focusable');
+
+  if (itemToFocus) {
+    container.scrollTo(0, 0);
+    itemToFocus.focus();
+  }
+}
+
+/**
  * Focus the item next to the one with the provided index
  */
 export function focusItemSibling(
