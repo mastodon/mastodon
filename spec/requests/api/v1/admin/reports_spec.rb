@@ -67,9 +67,31 @@ RSpec.describe 'Reports' do
           .to match_array(expected_response)
       end
 
-      context 'with resolved param' do
+      context 'with outdated resolved param' do
         let(:params) { { resolved: true } }
+        let(:scope) { Report.resolved }
+
+        it 'returns the resolved reports' do
+          subject
+
+          expect(response.parsed_body).to match_array(expected_response)
+        end
+      end
+
+      context 'with status param of resolved' do
+        let(:params) { { status: 'resolved' } }
         let(:scope)  { Report.resolved }
+
+        it 'returns only the resolved reports' do
+          subject
+
+          expect(response.parsed_body).to match_array(expected_response)
+        end
+      end
+
+      context 'with status param of all' do
+        let(:params) { { status: 'all' } }
+        let(:scope)  { Report.all }
 
         it 'returns only the resolved reports' do
           subject
