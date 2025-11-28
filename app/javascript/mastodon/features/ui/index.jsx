@@ -78,7 +78,7 @@ import {
   Quotes,
 } from './util/async-components';
 import { ColumnsContextProvider } from './util/columns_context';
-import { focusColumn, getFocusedItemIndex, focusItemSibling } from './util/focusUtils';
+import { focusColumn, getFocusedItemIndex, focusItemSibling, focusFirstItem } from './util/focusUtils';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
@@ -449,20 +449,21 @@ class UI extends PureComponent {
   };
 
   handleHotkeyFocusColumn = e => {
-    focusColumn({index: e.key * 1});
+    focusColumn(e.key * 1);
   };
 
   handleHotkeyLoadMore = () => {
     document.querySelector('.load-more')?.focus();
   };
 
+  handleMoveToTop = () => {
+    focusFirstItem();
+  };
+
   handleMoveUp = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      focusColumn({
-        index: 1,
-        focusItem: 'first-visible',
-      });
+      focusColumn(1);
     } else {
       focusItemSibling(currentItemIndex, -1);
     }
@@ -471,10 +472,7 @@ class UI extends PureComponent {
   handleMoveDown = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      focusColumn({
-        index: 1,
-        focusItem: 'first-visible',
-      });
+      focusColumn(1);
     } else {
       focusItemSibling(currentItemIndex, 1);
     }
@@ -562,6 +560,7 @@ class UI extends PureComponent {
       focusLoadMore: this.handleHotkeyLoadMore,
       moveDown: this.handleMoveDown,
       moveUp: this.handleMoveUp,
+      moveToTop: this.handleMoveToTop,
       back: this.handleHotkeyBack,
       goToHome: this.handleHotkeyGoToHome,
       goToNotifications: this.handleHotkeyGoToNotifications,
