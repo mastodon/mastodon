@@ -31,10 +31,30 @@ Doorkeeper.configure do
   # If you want to disable expiration, set this to nil.
   access_token_expires_in nil
 
-  # Assign a custom TTL for implicit grants.
-  # custom_access_token_expires_in do |oauth_client|
-  #   oauth_client.application.additional_settings.implicit_oauth_expiration
-  # end
+  # context.grant_type to compare with Doorkeeper::OAUTH grant type constants
+  # context.client for client (Doorkeeper::Application)
+  # context.scopes for scopes
+  custom_access_token_expires_in do |context|
+    # If the client is confidential (all clients pre 4.3) and it hasn't
+    # requested offline_access, then we don't want to expire access tokens.
+    # Applications created by users are also considered confidential.
+    if context.client.confidential? && !context.scopes.exists?('offline_access')
+      nil
+    else
+      15.minutes.to_i
+    end
+  end
+
+  use_refresh_token do |context|
+    context.scopes.exists?('offline_access')
+  end
+
+  after_successful_strategy_response do |request, _response|
+    if request.is_a? Doorkeeper::OAuth::RefreshTokenRequest
+      Web::PushSubscription.where(access_token_id: request.refresh_token.id).update!(access_token_id: request.access_token.id)
+      SessionActivation.where(access_token_id: request.refresh_token.id).update!(access_token_id: request.access_token.id)
+    end
+  end
 
   # Use a custom class for generating the access token.
   # https://github.com/doorkeeper-gem/doorkeeper#custom-access-token-generator
@@ -71,6 +91,7 @@ Doorkeeper.configure do
   # https://github.com/doorkeeper-gem/doorkeeper/wiki/Using-Scopes
   default_scopes  :read
   optional_scopes :profile,
+                  :offline_access,
                   :write,
                   :'write:accounts',
                   :'write:blocks',
@@ -122,7 +143,9 @@ Doorkeeper.configure do
   # By default it retrieves first from the `HTTP_AUTHORIZATION` header, then
   # falls back to the `:client_id` and `:client_secret` params from the `params` object.
   # Check out the wiki for more information on customization
-  # client_credentials :from_basic, :from_params
+  #
+  # This is the default value:
+  client_credentials :from_basic, :from_params
 
   # Change the way access token is authenticated from the request object.
   # By default it retrieves first from the `HTTP_AUTHORIZATION` header, then
@@ -167,7 +190,17 @@ Doorkeeper.configure do
   #   http://tools.ietf.org/html/rfc6819#section-4.4.3
   #
 
-  grant_flows %w(authorization_code client_credentials)
+  grant_flows %w(authorization_code client_credentials refresh_token)
+
+  # If the client is not a confidential client, it should not be able to use the
+  # client_credentials grant flow, since it cannot keep a secret.
+  allow_grant_flow_for_client do |grant_flow, client|
+    if grant_flow == Doorkeeper::OAuth::CLIENT_CREDENTIALS
+      client.confidential?
+    else
+      true
+    end
+  end
 
   # Under some circumstances you might want to have applications auto-approved,
   # so that the user skips the authorization step.
