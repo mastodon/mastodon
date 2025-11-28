@@ -96,6 +96,28 @@ RSpec.describe '/api/v1/accounts' do
       end
     end
 
+    context 'when missing username value' do
+      subject do
+        post '/api/v1/accounts', headers: headers, params: { password: '12345678', email: 'hello@world.tld', agreement: 'true' }
+      end
+
+      it 'returns http unprocessable entity with username error message' do
+        expect { subject }
+          .to not_change(User, :count)
+          .and not_change(Account, :count)
+
+        expect(response)
+          .to have_http_status(422)
+        expect(response.media_type)
+          .to eq('application/json')
+        expect(response.parsed_body)
+          .to include(
+            error: /Validation failed/,
+            details: include(username: contain_exactly(include(error: 'ERR_BLANK', description: /can't be blank/)))
+          )
+      end
+    end
+
     context 'when age verification is enabled' do
       before do
         Setting.min_age = 16
