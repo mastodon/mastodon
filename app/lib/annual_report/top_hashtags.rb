@@ -15,6 +15,10 @@ class AnnualReport::TopHashtags < AnnualReport::Source
     }
   end
 
+  def eligible?
+    report_statuses.joins(:tags).exists?
+  end
+
   private
 
   def top_hashtags

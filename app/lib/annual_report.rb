@@ -23,6 +23,12 @@ class AnnualReport
     @year = year
   end
 
+  def eligible?
+    with_read_replica do
+      SOURCES.all? { |klass| klass.new(@account, @year).eligible? }
+    end
+  end
+
   def generate
     return if GeneratedAnnualReport.exists?(account: @account, year: @year)
 

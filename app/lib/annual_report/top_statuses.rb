@@ -11,6 +11,10 @@ class AnnualReport::TopStatuses < AnnualReport::Source
     }
   end
 
+  def eligible?
+    report_statuses.public_visibility.exists?
+  end
+
   private
 
   def status_identifier(status)
