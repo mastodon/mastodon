@@ -8,14 +8,11 @@ class AnnualReport
     AnnualReport::TypeDistribution,
     AnnualReport::TopStatuses,
     AnnualReport::MostUsedApps,
-    AnnualReport::CommonlyInteractedWithAccounts,
     AnnualReport::TimeSeries,
     AnnualReport::TopHashtags,
-    AnnualReport::MostRebloggedAccounts,
-    AnnualReport::Percentiles,
   ].freeze
 
-  SCHEMA = 1
+  SCHEMA = 2
 
   def self.table_name_prefix
     'annual_report_'
@@ -24,12 +21,6 @@ class AnnualReport
   def initialize(account, year)
     @account = account
     @year = year
-  end
-
-  def self.prepare(year)
-    SOURCES.each do |klass|
-      klass.prepare(year)
-    end
   end
 
   def generate

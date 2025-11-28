@@ -13,13 +13,4 @@ RSpec.describe AnnualReport do
         .to change(GeneratedAnnualReport, :count).by(1)
     end
   end
-
-  describe '.prepare' do
-    before { Fabricate :status }
-
-    it 'generates records from source class which prepare data' do
-      expect { described_class.prepare(Time.current.year) }
-        .to change(AnnualReport::StatusesPerAccountCount, :count).by(1)
-    end
-  end
 end
