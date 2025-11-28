@@ -42,6 +42,14 @@ class Collection < ApplicationRecord
     !local?
   end
 
+  def items_for(account = nil)
+    return collection_items if account.nil?
+
+    collection_items.reject do |collection_item|
+      account.blocking?(collection_item.account)
+    end
+  end
+
   private
 
   def tag_is_usable
