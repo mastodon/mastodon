@@ -59,3 +59,4 @@ jobs:
           zip: true
           storybookBuildDir: 'storybook-static'
           exitZeroOnChanges: false # Fail workflow if changes are found
+          autoAcceptChanges: 'main' # Auto-accept changes on main branch only
