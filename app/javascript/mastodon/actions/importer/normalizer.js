@@ -4,9 +4,20 @@ import { expandSpoilers } from '../../initial_state';
 
 const domParser = new DOMParser();
 
+function stripQuoteFallback(text) {
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = text;
+
+  wrapper.querySelector('.quote-inline')?.remove();
+
+  return wrapper.innerHTML;
+}
+
 export function searchTextFromRawStatus (status) {
   const spoilerText   = status.spoiler_text || '';
-  const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+  // Strip quote fallback link for quote posts so search/title text doesn't show "RE: https://..."
+  const contentForSearch = status.quote ? stripQuoteFallback(status.content) : status.content;
+  const searchContent = ([spoilerText, contentForSearch].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
   return domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
 }
 
@@ -16,15 +27,6 @@ export function normalizeFilterResult(result) {
   normalResult.filter = normalResult.filter.id;
 
   return normalResult;
-}
-
-function stripQuoteFallback(text) {
-  const wrapper = document.createElement('div');
-  wrapper.innerHTML = text;
-
-  wrapper.querySelector('.quote-inline')?.remove();
-
-  return wrapper.innerHTML;
 }
 
 export function normalizeStatus(status, normalOldStatus, { bogusQuotePolicy = false }) {
@@ -87,7 +89,10 @@ export function normalizeStatus(status, normalOldStatus, { bogusQuotePolicy = fa
     }
 
     const spoilerText   = normalStatus.spoiler_text || '';
-    const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+    // Strip the quote fallback link from content before building search_index
+    // so that titles don't show "RE: https://..." for quote posts
+    const contentForSearch = normalStatus.quote ? stripQuoteFallback(status.content) : status.content;
+    const searchContent = ([spoilerText, contentForSearch].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
 
     normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
     normalStatus.contentHtml  = normalStatus.content;
