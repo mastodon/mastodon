@@ -1,5 +1,4 @@
 @use 'variables' as *;
-@use 'functions' as *;
 
 html.has-modal {
   &,
@@ -17,11 +16,11 @@ html.has-modal {
 
 body {
   font-family: $font-sans-serif, sans-serif;
-  background: var(--background-color);
+  background: var(--color-bg-ambient);
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
-  color: $primary-text-color;
+  color: var(--color-text-primary);
   text-rendering: optimizelegibility;
 
   // Disable kerning for Japanese text to preserve monospaced alignment for readability
@@ -118,6 +117,7 @@ body {
 
   &.admin {
     padding: 0;
+    background: var(--color-bg-primary);
   }
 
   &.error {
@@ -157,7 +157,7 @@ body {
 a {
   &:focus {
     border-radius: 4px;
-    outline: $ui-button-focus-outline;
+    outline: var(--outline-focus-default);
   }
 
   &:focus:not(:focus-visible) {
@@ -212,7 +212,7 @@ button {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.7;
-  color: lighten($error-red, 4%);
+  color: var(--color-text-error);
   text-align: center;
 
   & > div {
@@ -228,7 +228,7 @@ button {
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--color-text-brand);
 
     &:hover,
     &:focus,
@@ -238,11 +238,11 @@ button {
   }
 
   &__footer {
-    color: $dark-text-color;
+    color: var(--color-text-secondary);
     font-size: 13px;
 
     a {
-      color: $dark-text-color;
+      color: var(--color-text-secondary);
     }
   }
 
@@ -250,7 +250,7 @@ button {
     display: inline;
     border: 0;
     background: transparent;
-    color: $dark-text-color;
+    color: var(--color-text-secondary);
     font: inherit;
     padding: 0;
     margin: 0;
@@ -267,7 +267,7 @@ button {
     }
 
     &.copied {
-      color: $valid-value-color;
+      color: var(--mas-status-success-color);
       transition: none;
     }
   }

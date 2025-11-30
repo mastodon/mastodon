@@ -8,14 +8,11 @@ class AnnualReport
     AnnualReport::TypeDistribution,
     AnnualReport::TopStatuses,
     AnnualReport::MostUsedApps,
-    AnnualReport::CommonlyInteractedWithAccounts,
     AnnualReport::TimeSeries,
     AnnualReport::TopHashtags,
-    AnnualReport::MostRebloggedAccounts,
-    AnnualReport::Percentiles,
   ].freeze
 
-  SCHEMA = 1
+  SCHEMA = 2
 
   def self.table_name_prefix
     'annual_report_'
@@ -26,9 +23,9 @@ class AnnualReport
     @year = year
   end
 
-  def self.prepare(year)
-    SOURCES.each do |klass|
-      klass.prepare(year)
+  def eligible?
+    with_read_replica do
+      SOURCES.all? { |klass| klass.new(@account, @year).eligible? }
     end
   end
 

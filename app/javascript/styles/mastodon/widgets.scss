@@ -1,6 +1,5 @@
 @use 'sass:color';
 @use 'variables' as *;
-@use 'functions' as *;
 
 .directory {
   &__tag {
@@ -12,24 +11,24 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border: 1px solid var(--background-border-color);
+      border: 1px solid var(--color-border-primary);
       border-radius: 4px;
       padding: 15px;
       text-decoration: none;
       color: inherit;
-      box-shadow: 0 0 15px color.change($base-shadow-color, $alpha: 0.2);
+      box-shadow: 0 0 15px var(--color-shadow-primary);
     }
 
     & > a {
       &:hover,
       &:active,
       &:focus {
-        background: $ui-base-color;
+        background: var(--color-bg-primary);
       }
     }
 
     &.active > a {
-      background: $ui-highlight-color;
+      background: var(--color-bg-brand-base);
       cursor: default;
     }
 
@@ -42,7 +41,7 @@
       flex: 1 1 auto;
       font-size: 18px;
       font-weight: 700;
-      color: $primary-text-color;
+      color: var(--color-text-primary);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -52,7 +51,7 @@
         font-weight: 400;
         font-size: 15px;
         margin-top: 8px;
-        color: $darker-text-color;
+        color: var(--color-text-secondary);
       }
     }
 
@@ -60,7 +59,7 @@
       &,
       small,
       .trends__item__current {
-        color: $primary-text-color;
+        color: var(--color-text-primary);
       }
     }
 
@@ -70,7 +69,7 @@
     }
 
     &.active .avatar-stack .account__avatar {
-      border-color: $ui-highlight-color;
+      border-color: var(--color-text-brand);
     }
 
     .trends__item__current {
@@ -95,7 +94,7 @@
   thead th {
     text-align: center;
     text-transform: uppercase;
-    color: $darker-text-color;
+    color: var(--color-text-secondary);
     font-weight: 700;
     padding: 10px;
 
@@ -107,7 +106,7 @@
   tbody td {
     padding: 15px 0;
     vertical-align: middle;
-    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    border-bottom: 1px solid var(--color-border-primary);
   }
 
   tbody tr:last-child td {
@@ -119,11 +118,11 @@
     text-align: center;
     font-size: 15px;
     font-weight: 500;
-    color: $primary-text-color;
+    color: var(--color-text-primary);
 
     small {
       display: block;
-      color: $darker-text-color;
+      color: var(--color-text-secondary);
       font-weight: 400;
       font-size: 14px;
     }
@@ -132,7 +131,7 @@
   tbody td.accounts-table__extra {
     width: 120px;
     text-align: end;
-    color: $darker-text-color;
+    color: var(--color-text-secondary);
     padding-inline-end: 16px;
 
     a {
@@ -142,7 +141,7 @@
       &:focus,
       &:hover,
       &:active {
-        color: $highlight-text-color;
+        color: var(--color-text-brand);
       }
     }
   }
@@ -159,15 +158,15 @@
 
   .icon {
     &.active {
-      color: $highlight-text-color;
+      color: var(--color-text-brand);
     }
 
     &.passive {
-      color: $passive-text-color;
+      color: var(--color-text-warning);
     }
 
     &.active.passive {
-      color: $active-passive-text-color;
+      color: var(--color-text-success);
     }
   }
 

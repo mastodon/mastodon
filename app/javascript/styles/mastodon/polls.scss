@@ -1,6 +1,5 @@
 @use 'sass:color';
 @use 'variables' as *;
-@use 'functions' as *;
 
 .poll {
   margin-top: 16px;
@@ -14,12 +13,12 @@
   &__chart {
     border-radius: 4px;
     display: block;
-    background: darken($ui-primary-color, 5%);
+    background: rgb(from var(--color-text-brand) r g b / 60%);
     height: 5px;
     min-width: 1%;
 
     &.leading {
-      background: $ui-highlight-color;
+      background: var(--color-text-brand);
     }
   }
 
@@ -39,12 +38,12 @@
     // duplication
     &::-moz-progress-bar {
       border-radius: 4px;
-      background: darken($ui-primary-color, 5%);
+      background: rgb(from var(--color-text-brand) r g b / 60%);
     }
 
     &::-webkit-progress-value {
       border-radius: 4px;
-      background: darken($ui-primary-color, 5%);
+      background: rgb(from var(--color-text-brand) r g b / 60%);
     }
   }
 
@@ -78,16 +77,16 @@
       box-sizing: border-box;
       width: 100%;
       font-size: 14px;
-      color: $secondary-text-color;
+      color: var(--color-text-primary);
       outline: 0;
       font-family: inherit;
-      background: $ui-base-color;
-      border: 1px solid $darker-text-color;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-text-secondary);
       border-radius: 4px;
       padding: 8px 12px;
 
       &:focus {
-        border-color: $ui-highlight-color;
+        border-color: var(--color-text-brand);
       }
 
       @media screen and (width <= 600px) {
@@ -111,7 +110,7 @@
   &__input {
     display: block;
     position: relative;
-    border: 1px solid $ui-primary-color;
+    border: 1px solid var(--color-text-secondary);
     box-sizing: border-box;
     width: 17px;
     height: 17px;
@@ -125,13 +124,13 @@
     &:active,
     &:focus,
     &:hover {
-      border-color: lighten($valid-value-color, 15%);
+      border-color: var(--color-text-success);
       border-width: 4px;
     }
 
     &.active {
-      background-color: $valid-value-color;
-      border-color: $valid-value-color;
+      background-color: var(--color-bg-success-base);
+      border-color: var(--color-text-success);
     }
 
     &::-moz-focus-inner {
@@ -145,16 +144,16 @@
     }
 
     &.disabled {
-      border-color: $dark-text-color;
+      border-color: var(--color-text-disabled);
 
       &.active {
-        background: $dark-text-color;
+        background: var(--color-text-disabled);
       }
 
       &:active,
       &:focus,
       &:hover {
-        border-color: $dark-text-color;
+        border-color: var(--color-text-disabled);
         border-width: 1px;
       }
     }
@@ -165,7 +164,7 @@
     &:active,
     &:focus,
     &:hover {
-      border-color: $ui-primary-color;
+      border-color: var(--color-text-primary);
       border-width: 1px;
     }
   }
@@ -189,7 +188,7 @@
   &__footer {
     padding-top: 6px;
     padding-bottom: 5px;
-    color: $dark-text-color;
+    color: var(--color-text-tertiary);
   }
 
   &__link {
@@ -198,7 +197,7 @@
     padding: 0;
     margin: 0;
     border: 0;
-    color: $dark-text-color;
+    color: var(--color-text-tertiary);
     text-decoration: underline;
     font-size: inherit;
 
@@ -208,7 +207,7 @@
 
     &:active,
     &:focus {
-      background-color: color.change($dark-text-color, $alpha: 0.1);
+      background-color: var(--color-bg-secondary);
     }
   }
 
@@ -221,13 +220,13 @@
 }
 
 .muted .poll {
-  color: $dark-text-color;
+  color: var(--color-text-tertiary);
 
   &__chart {
-    background: rgba(darken($ui-primary-color, 14%), 0.7);
+    background: rgb(from var(--color-text-brand) r g b / 40%);
 
     &.leading {
-      background: color.change($ui-highlight-color, $alpha: 0.5);
+      background: rgb(from var(--color-text-brand) r g b / 60%);
     }
   }
 }

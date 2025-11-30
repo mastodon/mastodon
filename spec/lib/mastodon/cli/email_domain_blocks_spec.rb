@@ -15,16 +15,61 @@ RSpec.describe Mastodon::CLI::EmailDomainBlocks do
   describe '#list' do
     let(:action) { :list }
 
+    context 'with both --only-blocked and --only-with-approval' do
+      let(:options) { { only_blocked: true, only_with_approval: true } }
+
+      it 'warns about usage and exits' do
+        expect { subject }
+          .to raise_error(Thor::Error, 'Cannot specify both --only-blocked and --only-with-approval')
+      end
+    end
+
     context 'with email domain block records' do
       let!(:parent_block) { Fabricate(:email_domain_block) }
       let!(:child_block) { Fabricate(:email_domain_block, parent: parent_block) }
+      let!(:parent_allow_block) { Fabricate(:email_domain_block, allow_with_approval: true) }
+      let!(:child_allow_block) { Fabricate(:email_domain_block, parent: parent_allow_block, allow_with_approval: true) }
 
-      it 'lists the blocks' do
+      it 'lists all the blocks by default' do
         expect { subject }
           .to output_results(
             parent_block.domain,
-            child_block.domain
+            child_block.domain,
+            parent_allow_block.domain,
+            child_allow_block.domain
           )
+      end
+
+      context 'with the --only-blocked flag set' do
+        let(:options) { { only_blocked: true } }
+
+        it 'lists only blocked domains' do
+          expect { subject }
+            .to output_results(
+              parent_block.domain,
+              child_block.domain
+            )
+            .and not_output_results(
+              parent_allow_block.domain,
+              child_allow_block.domain
+            )
+        end
+      end
+
+      context 'with the --only-with-approval flag set' do
+        let(:options) { { only_with_approval: true } }
+
+        it 'lists only manually approvable domains' do
+          expect { subject }
+            .to output_results(
+              parent_allow_block.domain,
+              child_allow_block.domain
+            )
+            .and not_output_results(
+              parent_block.domain,
+              child_block.domain
+            )
+        end
       end
     end
   end
@@ -56,6 +101,7 @@ RSpec.describe Mastodon::CLI::EmailDomainBlocks do
     context 'when no blocks exist' do
       let(:domain) { 'host.example' }
       let(:arguments) { [domain] }
+      let(:options) { { allow_with_approval: false } }
 
       it 'adds a new block' do
         expect { subject }
@@ -67,7 +113,7 @@ RSpec.describe Mastodon::CLI::EmailDomainBlocks do
     context 'with --with-dns-records true' do
       let(:domain) { 'host.example' }
       let(:arguments) { [domain] }
-      let(:options) { { with_dns_records: true } }
+      let(:options) { { allow_with_approval: false, with_dns_records: true } }
 
       before do
         configure_mx(domain: domain, exchange: 'other.host')

@@ -1,33 +1,30 @@
-@use 'sass:color';
-@use 'variables' as *;
-
 @mixin search-input {
   outline: 0;
   box-sizing: border-box;
   width: 100%;
   box-shadow: none;
   font-family: inherit;
-  background: var(--input-background-color);
-  color: $darker-text-color;
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
   border-radius: 4px;
-  border: 1px solid var(--background-border-color);
+  border: 1px solid var(--color-border-on-bg-secondary);
   font-size: 17px;
   line-height: normal;
   margin: 0;
 }
 
 @mixin search-popout {
-  background: $simple-background-color;
+  background: var(--color-bg-elevated);
   border-radius: 4px;
   padding: 10px 14px;
   padding-bottom: 14px;
   margin-top: 10px;
-  color: $light-text-color;
-  box-shadow: 2px 4px 15px color.change($base-shadow-color, $alpha: 0.4);
+  color: var(--color-text-secondary);
+  box-shadow: 2px 4px 15px var(--color-shadow-primary);
 
   h4 {
     text-transform: uppercase;
-    color: $light-text-color;
+    color: var(--color-text-secondary);
     font-size: 13px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -43,6 +40,6 @@
 
   em {
     font-weight: 500;
-    color: $inverted-text-color;
+    color: var(--color-text-primary);
   }
 }
