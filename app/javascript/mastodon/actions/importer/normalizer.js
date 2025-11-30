@@ -15,8 +15,9 @@ function stripQuoteFallback(text) {
 
 export function searchTextFromRawStatus (status) {
   const spoilerText   = status.spoiler_text || '';
-  // Strip quote fallback link for quote posts so search/title text doesn't show "RE: https://..."
-  const contentForSearch = status.quote ? stripQuoteFallback(status.content) : status.content;
+  // Always strip quote fallback link so search/title text doesn't show "RE: https://..."
+  // even if the quote is no longer accessible (e.g., deleted or rejected).
+  const contentForSearch = stripQuoteFallback(status.content);
   const searchContent = ([spoilerText, contentForSearch].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
   return domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
 }
@@ -41,7 +42,7 @@ export function normalizeStatus(status, normalOldStatus, { bogusQuotePolicy = fa
     normalStatus.reblog = status.reblog.id;
   }
 
-  if (status.quote?.quoted_status ?? status.quote?.quoted_status_id) {
+  if (status.quote) {
     normalStatus.quote = {
       ...status.quote,
       quoted_status: status.quote.quoted_status?.id ?? status.quote?.quoted_status_id,
@@ -89,9 +90,11 @@ export function normalizeStatus(status, normalOldStatus, { bogusQuotePolicy = fa
     }
 
     const spoilerText   = normalStatus.spoiler_text || '';
-    // Strip the quote fallback link from content before building search_index
-    // so that titles don't show "RE: https://..." for quote posts
-    const contentForSearch = normalStatus.quote ? stripQuoteFallback(status.content) : status.content;
+    // Always strip the quote fallback link from content before building search_index
+    // so that titles don't show "RE: https://..." for quote posts.
+    // We strip unconditionally because the content may contain the fallback even if
+    // the quote is no longer accessible (e.g., deleted or rejected).
+    const contentForSearch = stripQuoteFallback(status.content);
     const searchContent = ([spoilerText, contentForSearch].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
 
     normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
