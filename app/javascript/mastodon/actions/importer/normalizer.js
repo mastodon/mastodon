@@ -41,7 +41,7 @@ export function normalizeStatus(status, normalOldStatus, { bogusQuotePolicy = fa
     normalStatus.reblog = status.reblog.id;
   }
 
-  if (status.quote?.quoted_status ?? status.quote?.quoted_status_id) {
+  if (status.quote) {
     normalStatus.quote = {
       ...status.quote,
       quoted_status: status.quote.quoted_status?.id ?? status.quote?.quoted_status_id,
