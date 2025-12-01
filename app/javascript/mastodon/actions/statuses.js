@@ -85,6 +85,8 @@ export function fetchStatus(id, {
       dispatch(fetchStatusSuccess(skipLoading));
     }).catch(error => {
       dispatch(fetchStatusFail(id, error, skipLoading, parentQuotePostId));
+      if (error.status === 404)
+        dispatch(deleteFromTimelines(id));
     });
   };
 }
