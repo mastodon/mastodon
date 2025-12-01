@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_19_093332) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_01_155054) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -404,6 +404,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_19_093332) do
     t.string "name"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.bigint "featured_emoji_id"
     t.index ["name"], name: "index_custom_emoji_categories_on_name", unique: true
   end
 
@@ -1426,6 +1427,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_19_093332) do
   add_foreign_key "collections", "tags"
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
+  add_foreign_key "custom_emoji_categories", "custom_emojis", column: "featured_emoji_id", on_delete: :nullify
   add_foreign_key "custom_filter_keywords", "custom_filters", on_delete: :cascade
   add_foreign_key "custom_filter_statuses", "custom_filters", on_delete: :cascade
   add_foreign_key "custom_filter_statuses", "statuses", on_delete: :cascade
