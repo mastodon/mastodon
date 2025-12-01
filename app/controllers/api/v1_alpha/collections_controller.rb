@@ -13,7 +13,7 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
 
   def show
     cache_if_unauthenticated!
-    @collection = Collection.includes(collection_items: :account).find(params[:id])
+    @collection = Collection.find(params[:id])
 
     render json: @collection, serializer: REST::CollectionSerializer
   end

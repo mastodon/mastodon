@@ -33,6 +33,8 @@ class CollectionItem < ApplicationRecord
   validates :object_uri, presence: true, if: -> { account.nil? }
 
   scope :ordered, -> { order(position: :asc) }
+  scope :with_accounts, -> { includes(account: [:account_stat, :user]) }
+  scope :not_blocked_by, ->(account) { where.not(accounts: { id: account.blocking }) }
 
   def local_item_with_remote_account?
     local? && account&.remote?
