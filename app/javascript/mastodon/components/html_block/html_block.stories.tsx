@@ -10,7 +10,8 @@ const meta = {
     htmlString: `<p>Hello, world!</p>
 <p><a href="#">A link</a></p>
 <p>This should be filtered out: <button>Bye!</button></p>
-<p>This also has emoji: 🖤</p>`,
+<p>This also has emoji: 🖤</p>
+<p>an extra line!</p>`,
   },
   argTypes: {
     extraEmojis: {
