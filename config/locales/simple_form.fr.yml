@@ -57,11 +57,15 @@ fr:
         setting_advanced_layout: Afficher Mastodon avec une mise en page multicolonnes, vous permettant de visualiser le flux, les notifications et une troisième colonne de votre choix. Non recommandé pour les écrans plus petits.
         setting_aggregate_reblogs: Ne pas afficher les nouveaux partages pour les messages déjà récemment partagés (n’affecte que les partages futurs)
         setting_always_send_emails: Normalement, les notifications par courriel ne seront pas envoyées lorsque vous utilisez Mastodon activement
+        setting_boost_modal: Lorsque cette option est activée, avant de partager un message un écran de confirmation vous permettra de changer la visibilité du partage.
+        setting_default_quote_policy_private: Les messages limités aux personnes qui vous suivent publiés depuis Mastodon ne peuvent pas être cités.
         setting_default_quote_policy_unlisted: Lorsque des personnes vous citent, leur message sera également masqué des fils des tendances.
         setting_default_sensitive: Les médias sensibles sont cachés par défaut et peuvent être révélés d’un simple clic
         setting_display_media_default: Masquer les médias marqués comme sensibles
         setting_display_media_hide_all: Toujours masquer les médias
         setting_display_media_show_all: Toujours afficher les médias
+        setting_emoji_style: Manière d'afficher les émojis. Utiliser « Auto » pour essayer d'utiliser les émojis natifs, mais Twemoji sera utilisé pour les anciens navigateurs.
+        setting_quick_boosting_html: Lorsque cette option est activée, cliquer sur l'icône de partage %{boost_icon} va immédiatement partager le message au lieu d'ouvrir le menu déroulant Partage/Citation. L'action de citation est déplacée dans le menu %{options_icon} (options).
         setting_system_scrollbars_ui: S'applique uniquement aux navigateurs basés sur Safari et Chrome
         setting_use_blurhash: Les dégradés sont basés sur les couleurs des images cachées mais n’en montrent pas les détails
         setting_use_pending_items: Cacher les mises à jour des fils d’actualités derrière un clic, au lieu de les afficher automatiquement
@@ -75,6 +79,7 @@ fr:
       featured_tag:
         name: 'Voici quelques hashtags que vous avez utilisés récemment :'
       filters:
+        action: Choisir l'action à effectuer quand un message correspond au filtre
         actions:
           blur: Cacher les médias derrière un avertissement, sans cacher le texte
           hide: Cacher complètement le contenu filtré, faire comme s'il n'existait pas
@@ -83,10 +88,12 @@ fr:
         activity_api_enabled: Nombre de messages publiés localement, de comptes actifs et de nouvelles inscriptions par tranche hebdomadaire
         app_icon: WEBP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
         backups_retention_period: Les utilisateur·rice·s ont la possibilité de générer des archives de leurs messages pour les télécharger plus tard. Lorsqu'elles sont définies à une valeur positive, ces archives seront automatiquement supprimées de votre stockage après le nombre de jours spécifié.
+        bootstrap_timeline_accounts: Ces comptes seront épinglés en haut des recommandations pour les nouveaux utilisateurs. Accepte une liste de comptes séparés par des virgules.
         closed_registrations_message: Affiché lorsque les inscriptions sont fermées
         content_cache_retention_period: Tous les messages provenant d'autres serveurs (y compris les partages et les réponses) seront supprimés passé le nombre de jours spécifié, sans tenir compte de l'interaction de l'utilisateur·rice local·e avec ces messages. Cela inclut les messages qu'un·e utilisateur·rice aurait marqué comme signets ou comme favoris. Les mentions privées entre utilisateur·rice·s de différentes instances seront également perdues et impossibles à restaurer. L'utilisation de ce paramètre est destinée à des instances spécifiques et contrevient à de nombreuses attentes des utilisateurs lorsqu'elle est appliquée à des fins d'utilisation ordinaires.
         custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
         favicon: WEBP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
+        landing_page: Sélectionner la page à afficher aux nouveaux visiteurs quand ils arrivent sur votre serveur. Pour utiliser « Tendances » les tendances doivent être activées dans les paramètres de découverte. Pour utiliser « Fil local » le paramètre « Accès au flux en direct de ce serveur » doit être défini sur « Tout le monde » dans les paramètres de découverte.
         mascot: Remplace l'illustration dans l'interface Web avancée.
         media_cache_retention_period: Les fichiers médias des messages publiés par des utilisateurs distants sont mis en cache sur votre serveur. Lorsque cette valeur est positive, les médias sont supprimés au terme du nombre de jours spécifié. Si les données des médias sont demandées après leur suppression, elles seront téléchargées à nouveau, dans la mesure où le contenu source est toujours disponible. En raison des restrictions concernant la fréquence à laquelle les cartes de prévisualisation des liens interrogent des sites tiers, il est recommandé de fixer cette valeur à au moins 14 jours, faute de quoi les cartes de prévisualisation des liens ne seront pas mises à jour à la demande avant cette échéance.
         min_age: Les utilisateurs seront invités à confirmer leur date de naissance lors de l'inscription
@@ -146,6 +153,9 @@ fr:
         min_age: Ne doit pas être en dessous de l’âge minimum requis par les lois de votre juridiction.
       user:
         chosen_languages: Lorsque coché, seuls les messages dans les langues sélectionnées seront affichés sur les fils publics
+        date_of_birth:
+          one: Nous devons vérifier que vous avez au moins %{count} an pour utiliser %{domain}. Cette information ne sera pas conservée.
+          other: Nous devons vérifier que vous avez au moins %{count} ans pour utiliser %{domain}. Cette information ne sera pas conservée.
         role: Le rôle définit quelles autorisations a l'utilisateur⋅rice.
       user_role:
         color: Couleur à attribuer au rôle dans l'interface, au format hexadécimal RVB
@@ -154,7 +164,9 @@ fr:
         permissions_as_keys: Les utilisateur·rice·s ayant ce rôle auront accès à …
         position: Dans certaines situations, un rôle supérieur peut trancher la résolution d'un conflit. Mais certaines opérations ne peuvent être effectuées que sur des rôles ayant une priorité inférieure
       username_block:
+        allow_with_approval: Au lieu de bloquer l'inscription, les inscriptions correspondantes nécessiteront votre approbation
         comparison: Veuillez garder à l'esprit le problème de Scunthorpe lors du blocage des correspondances partielles
+        username: Correspondra peu importe la casse utilisée et pour les homoglyphes courants – par exemple « 4 » pour « a » ou « 3 » pour « e »
       webhook:
         events: Sélectionnez les événements à envoyer
         template: Écrivez votre propre bloc JSON avec la possibilité d’utiliser de l’interpolation de variables. Laissez vider pour utiliser le bloc JSON par défaut.
@@ -276,12 +288,16 @@ fr:
         custom_css: CSS personnalisé
         favicon: Favicon
         landing_page: Page d'accueil pour les nouveaux visiteurs
+        local_live_feed_access: Accès au flux en direct de ce serveur
+        local_topic_feed_access: Accès aux flux hashtag et lien de ce serveur
         mascot: Mascotte personnalisée (héritée)
         media_cache_retention_period: Durée de rétention des médias dans le cache
         min_age: Âge minimum requis
         peers_api_enabled: Publie la liste des serveurs découverts dans l'API
         profile_directory: Activer l’annuaire des profils
         registrations_mode: Qui peut s’inscrire
+        remote_live_feed_access: Accès au flux en direct des autres serveurs
+        remote_topic_feed_access: Accès aux flux hashtag et lien des autres serveurs
         require_invite_text: Exiger une raison pour s’inscrire
         show_domain_blocks: Afficher les blocages de domaines
         show_domain_blocks_rationale: Montrer pourquoi les domaines ont été bloqués
@@ -356,6 +372,7 @@ fr:
         jurisdiction: Juridiction
         min_age: Âge minimum
       user:
+        date_of_birth_1i: Année
         date_of_birth_2i: Mois
         date_of_birth_3i: Jour
         role: Rôle
