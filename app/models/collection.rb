@@ -38,8 +38,16 @@ class Collection < ApplicationRecord
   validate :tag_is_usable
   validate :items_do_not_exceed_limit
 
+  scope :with_items, -> { includes(:collection_items).merge(CollectionItem.with_accounts) }
+
   def remote?
     !local?
+  end
+
+  def items_for(account = nil)
+    result = collection_items.with_accounts
+    result = result.not_blocked_by(account) unless account.nil?
+    result
   end
 
   private

@@ -48,4 +48,28 @@ RSpec.describe Collection do
       it { is_expected.to_not be_valid }
     end
   end
+
+  describe '#item_for' do
+    subject { Fabricate(:collection) }
+
+    let!(:items) { Fabricate.times(2, :collection_item, collection: subject) }
+
+    context 'when given no account' do
+      it 'returns all items' do
+        expect(subject.items_for).to match_array(items)
+      end
+    end
+
+    context 'when given an account' do
+      let(:account) { Fabricate(:account) }
+
+      before do
+        account.block!(items.first.account)
+      end
+
+      it 'does not return items blocked by this account' do
+        expect(subject.items_for(account)).to contain_exactly(items.last)
+      end
+    end
+  end
 end
