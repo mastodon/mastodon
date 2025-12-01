@@ -23,7 +23,7 @@ class REST::CustomEmojiSerializer < ActiveModel::Serializer
   end
 
   def featured
-    object.category.featured_emoji_id == object.id
+    object.featured?
   end
 
   def category_loaded?
