@@ -13,6 +13,7 @@
 
 class CustomEmojiCategory < ApplicationRecord
   has_many :emojis, class_name: 'CustomEmoji', foreign_key: 'category_id', inverse_of: :category, dependent: nil
+  belongs_to :featured_emoji, class_name: 'CustomEmoji', optional: true, inverse_of: :category
 
   validates :name, presence: true, uniqueness: true
 
