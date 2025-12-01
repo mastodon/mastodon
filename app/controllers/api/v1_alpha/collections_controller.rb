@@ -9,7 +9,14 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
 
   before_action -> { doorkeeper_authorize! :write, :'write:collections' }, only: [:create]
 
-  before_action :require_user!
+  before_action :require_user!, only: [:create]
+
+  def show
+    cache_if_unauthenticated!
+    @collection = Collection.find(params[:id])
+
+    render json: @collection, serializer: REST::CollectionSerializer
+  end
 
   def create
     @collection = CreateCollectionService.new.call(collection_params, current_user.account)

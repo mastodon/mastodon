@@ -112,8 +112,14 @@ class Tag < ApplicationRecord
       names = Array(name_or_names).map { |str| [normalize(str), str] }.uniq(&:first)
 
       names.map do |(normalized_name, display_name)|
-        tag = matching_name(normalized_name).first || create(name: normalized_name,
-                                                             display_name: display_name.gsub(HASHTAG_INVALID_CHARS_RE, ''))
+        tag = begin
+          matching_name(normalized_name).first || create!(
+            name: normalized_name,
+            display_name: display_name.gsub(HASHTAG_INVALID_CHARS_RE, '')
+          )
+        rescue ActiveRecord::RecordNotUnique
+          find_normalized(normalized_name)
+        end
 
         yield tag if block_given?
 

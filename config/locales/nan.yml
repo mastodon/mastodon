@@ -31,7 +31,7 @@ nan:
       created_msg: 管理記錄成功建立！
       destroyed_msg: 管理記錄成功thâi掉！
     accounts:
-      add_email_domain_block: 封鎖電子phue ê網域
+      add_email_domain_block: 封鎖電子phue ê域名
       approve: 允准
       approved_msg: 成功審核 %{username} ê註冊申請ah
       are_you_sure: Lí kám確定？
@@ -412,7 +412,7 @@ nan:
         stop_communication: Lí ê服侍器ē停止kap hia ê服侍器聯絡。
         title: 確認封鎖域名 %{domain}
         undo_relationships: Tse ē取消任何ê佇in ê服侍器ê口座kap lí ê之間ê跟tuè關係。
-      created_msg: 當leh封鎖網域
+      created_msg: 當leh封鎖域名
       destroyed_msg: 已經取消封鎖域名
       domain: 域名
       edit: 編輯域名封鎖
@@ -457,12 +457,12 @@ nan:
       new:
         create: 加添域名
         resolve: 解析域名
-        title: 封鎖新ê電子phue網域
+        title: 封鎖新ê電子phue ê域名
       no_email_domain_block_selected: 因為無揀任何電子phue域名封鎖，所以lóng無改變
       not_permitted: 無允准
       resolved_dns_records_hint_html: 域名解析做下kha ê MX域名，tsiah ê域名上後負責收電子phue。封鎖MX域名ē封任何有siâng款MX域名ê電子郵件ê註冊，就算通看見ê域名無kâng，mā án-ne。<strong>Tio̍h細膩，m̄通封鎖主要ê電子phue提供者。</strong>
       resolved_through_html: 通過 %{domain} 解析
-      title: 封鎖ê電子phue網域
+      title: 封鎖ê電子phue域名
     export_domain_allows:
       new:
         title: 輸入允准ê域名
@@ -659,7 +659,7 @@ nan:
       are_you_sure: Lí kám確定？
       assign_to_self: 分配hōo家kī
       assigned: 分配管理者
-      by_target_domain: 受檢舉ê口座ê網域
+      by_target_domain: 受檢舉ê口座ê域名
       cancel: 取消
       category: 類別
       category_description_html: Tsit ê 受檢舉ê口座kap/á是內容，ē佇kap tsit ê口座ê聯絡內底引用。
@@ -1362,6 +1362,68 @@ nan:
         sensitive: Kā 口座文標做敏感ê
         silence: 口座制限
         suspend: 停止口座權限
+      your_appeal_approved: Lí ê投訴受允准
+      your_appeal_pending: Lí有送投訴
+      your_appeal_rejected: Lí ê投訴已經受拒絕
+  edit_profile:
+    basic_information: 基本ê資訊
+    hint_html: "<strong>自訂lâng佇lí ê個人資料kap lí ê Po文邊仔所通看ê。</strong>Nā是lí有添好個人資料kap標á，別lâng較有可能kā lí跟tuè轉去，kap lí互動。"
+    other: 其他
+  emoji_styles:
+    auto: 自動
+    native: 原底ê
+    twemoji: Twemoji
+  errors:
+    '400': Lí所送ê請求無效，á是格式毋著。
+    '403': Lí bô權限來看tsit頁。
+    '404': Lí teh tshuē ê頁無佇leh。
+    '406': Tsit頁bē當照lí所請求ê格式提供。
+    '410': Lí所tshuē ê頁，無佇tsia ah。
+    '422':
+      content: 安全驗證出tshê。Lí kám有封鎖cookie？
+      title: 安全驗證失敗
+    '429': 請求siunn tsē
+    '500':
+      content: 歹勢，guán ê後臺出問題ah。
+      title: Tsit頁無正確
+    '503': Tsit頁bē當提供，因為服侍器暫時出tshê。
+    noscript_html: Beh用Mastodon web app，請拍開JavaScript。另外，請試Mastodon hōo lí ê平臺用ê <a href="%{apps_path}">app</a>。
+  existing_username_validator:
+    not_found: bē當用tsit ê名tshuē著本地ê用者
+    not_found_multiple: tshuē無 %{usernames}
+  exports:
+    archive_takeout:
+      date: 日期
+      download: Kā lí ê檔案載落
+      hint_html: Lí ē當請求lí ê <strong>PO文kap所傳ê媒體</strong>ê檔案。輸出ê資料ē用ActivityPub格式，通hōo適用ê軟體讀。Lí ē當每7 kang請求tsi̍t kái。
+      in_progress: Teh備辦lí ê檔案……
+      request: 請求lí ê檔案
+      size: Sài-suh
+    blocks: Lí封鎖ê
+    bookmarks: 冊籤
+    csv: CSV
+    domain_blocks: 域名封鎖
+    lists: 列單
+    mutes: Lí消音ê
+    storage: 媒體儲存
+  featured_tags:
+    add_new: 加新ê
+    errors:
+      limit: Lí已經kā hashtag推薦kàu盡磅ah。
+    hint_html: "<strong>佇個人資料推薦lí上重要ê hashtag。</strong>Tse是誠好ê家私，通the̍h來追蹤lí ê創意作品kap長期計畫。推薦ê hashtag ē佇lí ê個人資料顯目展示，koh允准緊緊接近使用lí家tī ê PO文。"
+  filters:
+    contexts:
+      account: 個人資料
+      home: Tshù kap列單
+      notifications: 通知
+      public: 公共ê時間線
+      thread: 會話
+    edit:
+      add_keyword: 加關鍵字
+      keywords: 關鍵字
+      statuses: 個別ê PO文
+      statuses_hint_html: Tsit ê過濾器應用佇所揀ê個別ê PO文，毋管in敢有符合下kha ê關鍵字<a href="%{path}">重頭看，á是kā PO文tuì tsit ê過濾器suá掉</a>。
+      title: 編輯過濾器
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:

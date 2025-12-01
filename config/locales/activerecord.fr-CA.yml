@@ -32,6 +32,12 @@ fr-CA:
           attributes:
             url:
               invalid: n’est pas un URL valide
+        collection:
+          attributes:
+            collection_items:
+              too_many: trop d'éléments, seuls %{count} éléments sont permis
+            tag:
+              unusable: ne peut pas être utilisé
         doorkeeper/application:
           attributes:
             website:
