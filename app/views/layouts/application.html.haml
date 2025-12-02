@@ -36,7 +36,7 @@
     = vite_preload_file_tag "mastodon/locales/#{I18n.locale}.json"
     = csrf_meta_tags unless skip_csrf_meta_tags?
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce, property: 'csp-nonce', nonce: request.content_security_policy_nonce }
-    :javascript
+    %script{ nonce: request.content_security_policy_nonce, type: 'text/javascript' }
       const {userTheme} = document.documentElement.dataset;
       const useDarkMode = userTheme !== 'mastodon-light' || userTheme === 'system' && window.matchMedia("(prefers-color-scheme: dark)").matches;
       const useHighContrast = userTheme === 'contrast' || window.matchMedia("(prefers-contrast: more)").matches;
