@@ -27,7 +27,7 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
   private
 
   def collection_params
-    params.permit(:name, :description, :sensitive, :discoverable, :tag, account_ids: [])
+    params.permit(:name, :description, :sensitive, :discoverable, :tag_name, account_ids: [])
   end
 
   def check_feature_enabled
