@@ -1,6 +1,6 @@
 @use 'theme_utils' as utils;
 
-:root {
+html {
   --color-black: #000;
   --color-grey-950: #181821;
   --color-grey-800: #292938;
@@ -217,13 +217,4 @@
 
   --outline-focus-default: 2px solid var(--color-text-brand);
   --avatar-border-radius: 8px;
-}
-
-body {
-  // Variable for easily inverting directional UI elements,
-  --text-x-direction: 1;
-
-  &.rtl {
-    --text-x-direction: -1;
-  }
 }
