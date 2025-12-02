@@ -72,6 +72,8 @@ namespace :api, format: false do
     resources :annual_reports, only: [:index, :show] do
       member do
         post :read
+        post :generate
+        get :state
       end
     end
 

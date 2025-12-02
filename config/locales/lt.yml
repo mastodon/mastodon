@@ -127,7 +127,7 @@ lt:
       remove_avatar: Pašalinti avatarą
       remove_header: Pašalinti antraštę
       removed_avatar_msg: Sėkmingai pašalintas %{username} avataro vaizdas.
-      removed_header_msg: Sėkmingai pašalintas %{username} antraštės vaizdas.
+      removed_header_msg: Sėkmingai pašalintas %{username} antraštės paveikslėlis
       resend_confirmation:
         already_confirmed: Šis naudotojas jau patvirtintas.
         send: Iš naujo siųsti patvirtinimo nuorodą
@@ -617,11 +617,13 @@ lt:
       no_status_selected: Jokie įrašai nebuvo pakeisti, nes nė vienas buvo pasirinktas
       open: Atidaryti įrašą
       original_status: Originalus įrašas
+      quotes: Paminėjimai
       replied_to_html: Atsakyta į %{acct_link}
       status_title: Paskelbė @%{name}
       title: Paskyros įrašai – @%{name}
       trending: Tendencinga
       view_publicly: Peržiūrėti viešai
+      view_quoted_post: Peržiūrėti paminėtą įrašą
       with_media: Su medija
     system_checks:
       database_schema_check:
@@ -876,6 +878,7 @@ lt:
     security: Apsauga
     set_new_password: Nustatyti naują slaptažodį
     setup:
+      email_below_hint_html: Patikrinkite savo šlamšto aplanką arba paprašykite naujo el. laiško. Jei el. pašto adresas neteisingas, galite jį pataisyti.
       email_settings_hint_html: Spustelėkite nuorodą, kurią atsiuntėme adresu %{email}, kad pradėtumėte naudoti „Mastodon“. Lauksime čia.
       link_not_received: Negavai nuorodos?
       title: Patikrinti pašto dėžutę
@@ -930,7 +933,9 @@ lt:
       your_appeal_pending: Pateikei apeliaciją
       your_appeal_rejected: Tavo apeliacija buvo atmesta
   edit_profile:
+    basic_information: Pagrindinė informacija
     hint_html: "<strong>Tinkink tai, ką žmonės mato tavo viešame profilyje ir šalia įrašų.</strong> Kiti žmonės labiau linkę sekti atgal ir bendrauti su tavimi, jei tavo profilis yra užpildytas ir turi profilio nuotrauką."
+    other: Kita
   emoji_styles:
     auto: Automatinis
     native: Vietiniai
@@ -1075,6 +1080,10 @@ lt:
       body: 'Tave %{name} paminėjo:'
       subject: Tave paminėjo %{name}
       title: Naujas paminėjimas
+    quote:
+      body: 'Tavo įrašą paminėjo %{name}:'
+      subject: "%{name} paminėjo jūsų įrašą"
+      title: Naujas paminėjimas
     reblog:
       body: 'Tavo įrašą pakėlė %{name}:'
       subject: "%{name} pakėlė tavo įrašą"
@@ -1208,11 +1217,22 @@ lt:
     content_warning: 'Turinio įspėjimas: %{warning}'
     errors:
       quoted_status_not_found: Įrašas, kurį bandote cituoti, atrodo, neegzistuoja.
+      quoted_user_not_mentioned: Privačiame paminėjime negalima cituoti citatoje nepaminėto vartotojo.
     over_character_limit: pasiektas %{max} simbolių limitas
     pin_errors:
       limit: Jūs jau prisegėte maksimalų toot'ų skaičų
       ownership: Kitų vartotojų toot'ai negali būti prisegti
       reblog: Pakeltos žinutės negali būti prisegtos
+    quote_error:
+      not_available: Įrašas nepasiekiamas
+      pending_approval: Įrašas peržiūrimas
+      revoked: Autorius pašalino įrašą
+    quote_policies:
+      followers: Tik sekėjai
+      nobody: Tik aš
+      public: Visi
+    quote_post_author: Paminėjo %{acct} įrašą
+    title: '%{name}: "%{quote}"'
     visibilities:
       public: Vieša
   statuses_cleanup:

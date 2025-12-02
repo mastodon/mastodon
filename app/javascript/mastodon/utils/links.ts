@@ -5,20 +5,26 @@ export function setupLinkListeners() {
 
   // We don't want to target links with data-confirm here, as those are handled already.
   on('click', 'a[data-method]:not([data-confirm])', handleMethodLink);
+
+  // We also want to target buttons with data-confirm that are not inside forms.
+  on('click', ':not(form) button[data-confirm]:not([form])', handleConfirmLink);
 }
 
 function handleConfirmLink(event: MouseEvent) {
-  const anchor = event.currentTarget;
-  if (!(anchor instanceof HTMLAnchorElement)) {
+  const target = event.currentTarget;
+  if (
+    !(target instanceof HTMLAnchorElement) &&
+    !(target instanceof HTMLButtonElement)
+  ) {
     return;
   }
-  const message = anchor.dataset.confirm;
+  const message = target.dataset.confirm;
   if (!message || !window.confirm(message)) {
     event.preventDefault();
     return;
   }
 
-  if (anchor.dataset.method) {
+  if (target.dataset.method) {
     handleMethodLink(event);
   }
 }

@@ -42,6 +42,26 @@ RSpec.describe 'Instances' do
       end
     end
 
+    context 'when wrapstodon is enabled', feature: :wrapstodon do
+      before do
+        travel_to Time.utc(2025, 12, 20)
+      end
+
+      it 'returns http success and the wrapstodon year' do
+        get api_v2_instance_path
+
+        expect(response)
+          .to have_http_status(200)
+
+        expect(response.content_type)
+          .to start_with('application/json')
+
+        expect(response.parsed_body)
+          .to be_present
+          .and include(wrapstodon: 2025)
+      end
+    end
+
     def include_configuration_limits
       include(
         configuration: include(

@@ -41,7 +41,7 @@ lt:
       defaults:
         autofollow: Žmonės, kurie užsiregistruos per kvietimą, automatiškai seks tave
         avatar: WEBP, PNG, GIF arba JPG. Ne daugiau kaip %{size}. Bus sumažintas iki %{dimensions} tšk.
-        bot: Signalizuoti kitiems, kad paskyroje daugiausia atliekami automatiniai veiksmai ir kad ji gali būti nestebima.
+        bot: Pranešti visiems, kad paskyroje daugiausia atliekami automatiniai veiksmai ir kad jos neverta sekti
         context: Vienas arba keli kontekstai, kuriems turėtų būti taikomas filtras
         current_password: Saugumo sumetimais įvesk dabartinės paskyros slaptažodį
         current_username: Kad patvirtintum, įvesk dabartinės paskyros naudotojo vardą
@@ -56,11 +56,14 @@ lt:
         scopes: Prie kurių API programai bus leidžiama pasiekti. Pasirinkus aukščiausio lygio sritį, atskirų sričių pasirinkti nereikia.
         setting_aggregate_reblogs: Nerodyti naujų pakėlimų įrašams, kurie neseniai buvo pakelti (taikoma tik naujai gautiems pakėlimams).
         setting_always_send_emails: Paprastai el. laiško pranešimai nebus siunčiami, kai aktyviai naudoji Mastodon.
+        setting_default_quote_policy_private: Tik sekėjams skirti įrašai, paskelbti platformoje „Mastodon“, negali būti cituojami kitų.
+        setting_default_quote_policy_unlisted: Kai žmonės jus cituos, jų įrašai taip pat bus paslėpti iš populiariausių naujienų srauto.
         setting_default_sensitive: Jautrioji medija pagal numatytuosius nustatymus yra paslėpta ir gali būti atskleista spustelėjus.
         setting_display_media_default: Slėpti mediją, pažymėtą kaip jautrią
         setting_display_media_hide_all: Visada slėpti mediją
         setting_display_media_show_all: Visada rodyti mediją
         setting_emoji_style: Kaip rodyti emodžius. „Auto“ bandys naudoti vietinius jaustukus, bet senesnėse naršyklėse grįš prie Tvejaustukų.
+        setting_quick_boosting_html: Kai ši funkcija įjungta, paspaudus ant %{boost_icon} Paryškinimo piktogramos, įrašas bus iškart paryškintas, o ne atidarytas išskleidžiamasis meniu „paryškinti/cituoti“. Citavimo veiksmas perkeliamas į %{options_icon} meniu.
         setting_system_scrollbars_ui: Taikoma tik darbalaukio naršyklėms, karkasiniais „Safari“ ir „Chrome“.
         setting_use_blurhash: Gradientai pagrįsti paslėptų vizualizacijų spalvomis, bet užgožia bet kokias detales.
         setting_use_pending_items: Slėpti laiko skalės naujienas po paspaudimo, vietoj automatinio srauto slinkimo.
@@ -79,6 +82,7 @@ lt:
         activity_api_enabled: Vietinių paskelbtų įrašų, aktyvių naudotojų ir naujų registracijų skaičiai kas savaitę
         app_icon: WEBP, PNG, GIF arba JPG. Pakeičia numatytąją programos piktogramą mobiliuosiuose įrenginiuose pasirinktine piktograma.
         backups_retention_period: Naudotojai gali generuoti savo įrašų archyvus, kuriuos vėliau galės atsisiųsti. Nustačius teigiamą reikšmę, šie archyvai po nurodyto dienų skaičiaus bus automatiškai ištrinti iš saugyklos.
+        bootstrap_timeline_accounts: Šios paskyros bus rekomenduojamos naujiems naudotojams Rekomenduojami sekimai skyrelyje. Pateikite rekomenduojamas paskyras, atskirtas kableliais.
         content_cache_retention_period: Visi įrašai iš kitų serverių (įskaitant pakėlimus ir atsakymus) bus ištrinti po nurodyto dienų skaičiaus, neatsižvelgiant į bet kokią vietinio naudotojo sąveiką su tais įrašais. Tai taikoma ir tiems įrašams, kuriuos vietinis naudotojas yra pažymėjęs kaip žymes ar mėgstamus. Privačios paminėjimai tarp naudotojų iš skirtingų instancijų taip pat bus prarastos ir jų bus neįmanoma atkurti. Šis nustatymas skirtas naudoti ypatingos paskirties instancijose, o įgyvendinus jį bendram naudojimui, pažeidžiami daugelio naudotojų lūkesčiai.
         favicon: WEBP, PNG, GIF arba JPG. Pakeičia numatytąją Mastodon svetaines piktogramą pasirinktine piktograma.
         mascot: Pakeičia išplėstinės žiniatinklio sąsajos iliustraciją.
@@ -144,6 +148,7 @@ lt:
         email: El. pašto adresas
         expires_in: Nustoja galioti po
         fields: Papildomi laukai
+        header: Antraštės paveikslėlis
         irreversible: Mesti vietoj slėpti
         locale: Sąsajos kalba
         max_uses: Maksimalus naudojimo skaičius
@@ -156,6 +161,7 @@ lt:
         setting_always_send_emails: Visada siųsti el. laiško pranešimus
         setting_auto_play_gif: Automatiškai leisti animuotų GIF
         setting_default_language: Skelbimo kalba
+        setting_default_quote_policy: Kas gali cituoti
         setting_default_sensitive: Visada žymėti mediją kaip jautrią
         setting_disable_hover_cards: Išjungti profilio peržiūrą užvedus
         setting_disable_swiping: Išjungti perbraukimo judėjimus
@@ -187,7 +193,7 @@ lt:
           hide: Slėpti visiškai
           warn: Slėpti su įspėjimu
       form_admin_settings:
-        activity_api_enabled: Skelbti suvestinį statistiką apie naudotojų veiklą per API
+        activity_api_enabled: Skelbti suvestinę statistiką apie naudotojų veiklą per API
         app_icon: Programėlės piktograma
         bootstrap_timeline_accounts: Visada rekomenduoti šias paskyras naujiems naudotojams
         content_cache_retention_period: Nuotolinio turinio saugojimo laikotarpis
@@ -216,6 +222,7 @@ lt:
         follow_request: Kažkas paprašė sekti tave
         mention: Kažkas paminėjo tave
         pending_account: Reikia peržiūros naujam paskyrui
+        quote: Kažkas jus paminėjo
         reblog: Kažkas pakėlė tavo įrašą
         software_updates:
           label: Yra nauja Mastodon versija
