@@ -29,14 +29,14 @@ export const AnnualReportAnnouncement: React.FC<{
       {hasData ? (
         <Button onClick={onOpen}>
           <FormattedMessage
-            id='annual_report.announcement.archetype.oracle'
+            id='annual_report.announcement.action_view'
             defaultMessage='View my Wrapstodon'
           />
         </Button>
       ) : (
         <Button loading={isLoading} onClick={onRequestBuild}>
           <FormattedMessage
-            id='annual_report.announcement.archetype.oracle'
+            id='annual_report.announcement.action_build'
             defaultMessage='Build my Wrapstodon'
           />
         </Button>
