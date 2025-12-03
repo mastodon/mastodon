@@ -1706,16 +1706,22 @@ en-GB:
       body: 'You were mentioned by %{name} in:'
       subject: You were mentioned by %{name}
       title: New mention
+    moderation_warning:
+      subject: You have received a moderation warning
     poll:
       subject: A poll by %{name} has ended
     quote:
       body: 'Your post was quoted by %{name}:'
       subject: "%{name} quoted your post"
       title: New quote
+    quoted_update:
+      subject: "%{name} edited a post you have quoted"
     reblog:
       body: 'Your post was boosted by %{name}:'
       subject: "%{name} boosted your post"
       title: New boost
+    severed_relationships:
+      subject: You have lost connections due to a moderation decision
     status:
       subject: "%{name} just posted"
     update:

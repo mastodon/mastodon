@@ -91,23 +91,23 @@ de:
         bootstrap_timeline_accounts: Diese Konten werden an den Anfang der Follow-Empfehlungen für neue Nutzer angeheftet. Gib eine durch Kommata getrennte Liste von Konten an.
         closed_registrations_message: Wird angezeigt, wenn Registrierungen deaktiviert sind
         content_cache_retention_period: Sämtliche Beiträge von anderen Servern (einschließlich geteilte Beiträge und Antworten) werden, unabhängig von der Interaktion der lokalen Nutzer*innen mit diesen Beiträgen, nach der festgelegten Anzahl von Tagen gelöscht. Das betrifft auch Beiträge, die von lokalen Nutzer*innen favorisiert oder als Lesezeichen gespeichert wurden. Private Erwähnungen zwischen Nutzer*innen von verschiedenen Servern werden ebenfalls verloren gehen und können nicht wiederhergestellt werden. Diese Option richtet sich ausschließlich an Server mit speziellen Zwecken und wird die allgemeine Nutzungserfahrung beeinträchtigen, wenn sie für den allgemeinen Gebrauch aktiviert ist.
-        custom_css: Du kannst benutzerdefinierte Stile auf die Web-Version von Mastodon anwenden.
+        custom_css: Du kannst eigene Stylesheets für das Webinterface von Mastodon verwenden.
         favicon: WEBP, PNG, GIF oder JPG. Überschreibt das Standard-Mastodon-Favicon mit einem eigenen Symbol.
         landing_page: Legt fest, welche Seite neue Besucher*innen sehen, wenn sie zum ersten Mal auf deinem Server ankommen. Für „Trends“ müssen die Trends in den Entdecken-Einstellungen aktiviert sein. Für „Lokaler Feed“ muss „Zugriff auf Live-Feeds, die lokale Beiträge beinhalten“ in den Entdecken-Einstellungen auf „Alle“ gesetzt werden.
-        mascot: Überschreibt die Abbildung in der erweiterten Weboberfläche.
+        mascot: Überschreibt die Abbildung im erweiterten Webinterface.
         media_cache_retention_period: Mediendateien aus Beiträgen von externen Nutzer*innen werden auf deinem Server zwischengespeichert. Wenn ein positiver Wert gesetzt ist, werden die Medien nach der festgelegten Anzahl von Tagen gelöscht. Sollten die Medien nach dem Löschvorgang wieder angefragt werden, werden sie erneut heruntergeladen, sofern der ursprüngliche Inhalt noch vorhanden ist. Es wird empfohlen, diesen Wert auf mindestens 14 Tage festzulegen, da die Häufigkeit der Abfrage von Linkvorschaukarten für Websites von Dritten begrenzt ist und die Linkvorschaukarten sonst nicht vor Ablauf dieser Zeit aktualisiert werden.
         min_age: Nutzer*innen werden bei der Registrierung aufgefordert, ihr Geburtsdatum zu bestätigen
         peers_api_enabled: Eine Liste von Domains, die diesem Server im Fediverse begegnet sind. Hierbei werden keine Angaben darüber gemacht, ob du mit einem bestimmten Server föderierst, sondern nur, dass dein Server davon weiß. Dies wird von Diensten verwendet, die allgemein Statistiken übers Ferdiverse sammeln.
         profile_directory: Dieses Verzeichnis zeigt alle Profile an, die sich dafür entschieden haben, entdeckt zu werden.
-        require_invite_text: Wenn Registrierungen eine manuelle Genehmigung erfordern, dann werden Nutzer einen Grund für ihre Registrierung angeben müssen
+        require_invite_text: Wenn Registrierungen eine manuelle Genehmigung erfordern, müssen Benutzer*innen ihren Beitrittswunsch begründen
         site_contact_email: Wie man dich bei rechtlichen oder Support-Anfragen erreichen kann.
         site_contact_username: Wie man dich auf Mastodon erreichen kann.
         site_extended_description: Alle zusätzlichen Informationen, die für Besucher*innen und deine Benutzer*innen nützlich sein könnten. Kann mit der Markdown-Syntax formatiert werden.
         site_short_description: Eine kurze Beschreibung zur eindeutigen Identifizierung des Servers. Wer betreibt ihn, für wen ist er bestimmt?
-        site_terms: Verwende eine eigene Datenschutzerklärung oder lasse das Feld leer, um die allgemeine Vorlage zu verwenden. Kann mit der Markdown-Syntax formatiert werden.
+        site_terms: Verwende eine eigene Datenschutzerklärung oder lass das Feld leer, um die allgemeine Vorlage zu verwenden. Kann mit der Markdown-Syntax formatiert werden.
         site_title: Wie Personen neben dem Domainnamen auf deinen Server verweisen können.
         status_page_url: Link zu einer Internetseite, auf der der Serverstatus während eines Ausfalls angezeigt wird
-        theme: Das Design, das abgemeldete Besucher und neue Benutzer sehen.
+        theme: Das Design, das nicht angemeldete Personen sehen.
         thumbnail: Ein Bild ungefähr im 2:1-Format, das neben den Server-Informationen angezeigt wird.
         trendable_by_default: Manuelles Überprüfen angesagter Inhalte überspringen. Einzelne Elemente können später noch aus den Trends entfernt werden.
         trends: Trends zeigen, welche Beiträge, Hashtags und Nachrichten auf deinem Server immer beliebter werden.
@@ -161,7 +161,7 @@ de:
         color: Farbe, die für diese Rolle in der gesamten Benutzerschnittstelle verwendet wird, als RGB im Hexadezimalsystem
         highlighted: Dies macht die Rolle öffentlich im Profil sichtbar
         name: Name der Rolle, der auch öffentlich als Badge angezeigt wird, sofern dies unten aktiviert ist
-        permissions_as_keys: Benutzer*innen mit dieser Rolle haben Zugriff auf...
+        permissions_as_keys: Nutzer*innen mit dieser Rolle haben Zugriff auf …
         position: Höhere Rollen entscheiden über Konfliktlösungen zu gewissen Situationen. Bestimmte Aktionen können nur mit geringfügigeren Rollen durchgeführt werden
       username_block:
         allow_with_approval: Anstatt Registrierungen komplett zu verhindern, benötigen übereinstimmende Treffer eine Genehmigung
@@ -282,7 +282,7 @@ de:
         activity_api_enabled: Aggregierte Nutzungsdaten über die API veröffentlichen
         app_icon: App-Symbol
         backups_retention_period: Aufbewahrungsfrist für Archive
-        bootstrap_timeline_accounts: Neuen Nutzern immer diese Konten empfehlen
+        bootstrap_timeline_accounts: Neuen Nutzer*innen immer diese Konten empfehlen
         closed_registrations_message: Nachricht, falls Registrierungen deaktiviert sind
         content_cache_retention_period: Aufbewahrungsfrist für externe Inhalte
         custom_css: Eigenes CSS
@@ -290,7 +290,7 @@ de:
         landing_page: Landingpage für neue Besucher*innen
         local_live_feed_access: Zugriff auf Live-Feeds, die lokale Beiträge beinhalten
         local_topic_feed_access: Zugriff auf Hashtags und Links, die lokale Beiträge beinhalten
-        mascot: Benutzerdefiniertes Maskottchen (Legacy)
+        mascot: Eigenes Maskottchen (Veraltet)
         media_cache_retention_period: Aufbewahrungsfrist für Medien im Cache
         min_age: Erforderliches Mindestalter
         peers_api_enabled: Die entdeckten Server im Fediverse über die API veröffentlichen
