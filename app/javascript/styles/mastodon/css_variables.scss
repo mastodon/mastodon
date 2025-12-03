@@ -39,6 +39,7 @@
     var(--color-text-brand)
   );
   --color-text-on-brand-base: var(--color-white);
+  --color-text-brand-on-inverted: var(--color-indigo-600);
   --color-text-error: var(--color-red-500);
   --color-text-on-error-base: var(--color-white);
   --color-text-warning: var(--color-yellow-400);
@@ -60,7 +61,7 @@
 
   // Neutrals
   --color-bg-primary: var(--color-grey-950);
-  --overlay-strength-secondary: 10%;
+  --overlay-strength-secondary: 8%;
   --color-bg-secondary-base: var(--color-indigo-200);
   --color-bg-secondary: #{utils.css-alpha(
       var(--color-bg-secondary-base),
