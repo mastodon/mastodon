@@ -275,15 +275,9 @@ RSpec.describe Tag do
       tag_name_upper = 'Rails'
       tag_name_lower = 'rails'
 
-      threads = []
-
-      2.times do |i|
-        threads << Thread.new do
-          described_class.find_or_create_by_names(i.zero? ? tag_name_upper : tag_name_lower)
-        end
+      multi_threaded_execution(2) do |index|
+        described_class.find_or_create_by_names(index.zero? ? tag_name_upper : tag_name_lower)
       end
-
-      threads.each(&:join)
 
       tags = described_class.where('lower(name) = ?', tag_name_lower.downcase)
       expect(tags.count).to eq(1)
