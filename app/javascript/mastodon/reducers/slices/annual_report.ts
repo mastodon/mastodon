@@ -46,7 +46,7 @@ export const annualReport = annualReportSlice.reducer;
 
 export const selectWrapstodonYear = createAppSelector(
   [(state) => state.server.getIn(['server', 'wrapstodon'])],
-  (year: unknown) => (typeof year === 'number' && year <= 2000 ? year : null),
+  (year: unknown) => (typeof year === 'number' && year > 2000 ? year : null),
 );
 
 // This kicks everything off, and is called after fetching the server info.
