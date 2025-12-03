@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import {
+  importFetchedAccounts,
+  importFetchedStatuses,
+} from '@/mastodon/actions/importer';
 import { insertIntoTimeline } from '@/mastodon/actions/timelines';
 import type { ApiAnnualReportState } from '@/mastodon/api/annual_report';
 import {
@@ -114,5 +118,9 @@ export const getReport = createDataLoadingThunk(
     }
     return apiGetAnnualReport(year);
   },
-  (data) => data.annual_reports[0],
+  (data, { dispatch }) => {
+    dispatch(importFetchedStatuses(data.statuses));
+    dispatch(importFetchedAccounts(data.accounts));
+    return data.annual_reports[0];
+  },
 );
