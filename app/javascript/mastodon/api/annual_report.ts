@@ -1,4 +1,4 @@
-import { apiRequestGet, apiRequestPost } from '../api';
+import api, { getAsyncRefreshHeader } from '../api';
 
 export type APIAnnualReportState =
   | 'available'
@@ -6,10 +6,21 @@ export type APIAnnualReportState =
   | 'eligible'
   | 'ineligible';
 
-export const apiGetAnnualReportState = (year: number) =>
-  apiRequestGet<{ state: APIAnnualReportState }>(
-    `v1/annual_reports/${year}/state`,
+export const apiGetAnnualReportState = async (year: number) => {
+  const response = await api().get<{ state: APIAnnualReportState }>(
+    `/api/v1/annual_reports/${year}/state`,
   );
 
-export const apiRequestGenerateAnnualReport = (year: number) =>
-  apiRequestPost(`v1/annual_reports/${year}/generate`);
+  return {
+    state: response.data.state,
+    refresh: getAsyncRefreshHeader(response),
+  };
+};
+
+export const apiRequestGenerateAnnualReport = async (year: number) => {
+  const response = await api().post(`/api/v1/annual_reports/${year}/generate`);
+
+  return {
+    refresh: getAsyncRefreshHeader(response),
+  };
+};

@@ -8,6 +8,8 @@ import { debounce } from 'lodash';
 import { TIMELINE_GAP, TIMELINE_SUGGESTIONS } from 'mastodon/actions/timelines';
 import { RegenerationIndicator } from 'mastodon/components/regeneration_indicator';
 import { InlineFollowSuggestions } from 'mastodon/features/home_timeline/components/inline_follow_suggestions';
+import { AnnualReportTimeline } from 'mastodon/features/annual_report/timeline';
+import { TIMELINE_WRAPSTODON } from '@/mastodon/reducers/slices/annual_report';
 
 import { StatusQuoteManager } from '../components/status_quoted';
 
@@ -63,10 +65,12 @@ export default class StatusList extends ImmutablePureComponent {
         switch(statusId) {
         case TIMELINE_SUGGESTIONS:
           return (
-            <InlineFollowSuggestions
-              key='inline-follow-suggestions'
-            />
+            <InlineFollowSuggestions key={TIMELINE_SUGGESTIONS} />
           );
+        case TIMELINE_WRAPSTODON:
+          return (
+            <AnnualReportTimeline key={TIMELINE_WRAPSTODON} />
+          )
         case TIMELINE_GAP:
           return (
             <LoadGap

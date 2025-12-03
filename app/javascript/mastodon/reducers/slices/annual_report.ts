@@ -62,21 +62,18 @@ export const checkAnnualReport = createAppThunk(
 
 const fetchReportState = createDataLoadingThunk(
   `${annualReportSlice.name}/fetchReportState`,
-  async (_arg: { retry?: number } | undefined, { getState }) => {
+  async (_arg: unknown, { getState }) => {
     const { year } = getState().annualReport;
     if (!year) {
       throw new Error('Year is not set');
     }
     return apiGetAnnualReportState(year);
   },
-  ({ state }, { dispatch, actionArg = {} }) => {
-    // If we are generating, poll up to 10 times with increasing delay.
-    const { retry = 0 } = actionArg;
-    const iteration = retry + 1;
-    if (state === 'generating' && iteration <= 10) {
+  ({ state, refresh }, { dispatch }) => {
+    if (state === 'generating' && refresh) {
       window.setTimeout(() => {
-        void dispatch(fetchReportState({ retry: iteration }));
-      }, 1_000 * iteration);
+        void dispatch(fetchReportState());
+      }, 1_000 * refresh.retry);
     }
 
     return state;
