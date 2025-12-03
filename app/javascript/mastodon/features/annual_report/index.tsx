@@ -59,7 +59,7 @@ export const AnnualReport: React.FC<{
 
   const report = response?.annual_reports[0];
 
-  if (!report) {
+  if (!report || report.schema_version !== 1) {
     return null;
   }
 

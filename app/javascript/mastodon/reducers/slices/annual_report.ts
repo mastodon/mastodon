@@ -2,11 +2,13 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 import { insertIntoTimeline } from '@/mastodon/actions/timelines';
+import type { ApiAnnualReportState } from '@/mastodon/api/annual_report';
 import {
+  apiGetAnnualReport,
   apiGetAnnualReportState,
   apiRequestGenerateAnnualReport,
 } from '@/mastodon/api/annual_report';
-import type { APIAnnualReportState } from '@/mastodon/api/annual_report';
+import type { AnnualReport } from '@/mastodon/models/annual_report';
 
 import {
   createAppThunk,
@@ -17,7 +19,8 @@ export const TIMELINE_WRAPSTODON = 'inline-wrapstodon';
 
 interface AnnualReportState {
   year?: number;
-  state?: APIAnnualReportState;
+  state?: ApiAnnualReportState;
+  report?: AnnualReport;
 }
 
 const annualReportSlice = createSlice({
@@ -35,6 +38,11 @@ const annualReportSlice = createSlice({
       })
       .addCase(generateReport.pending, (state) => {
         state.state = 'generating';
+      })
+      .addCase(getReport.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.report = action.payload;
+        }
       });
   },
 });
@@ -74,6 +82,8 @@ const fetchReportState = createDataLoadingThunk(
       window.setTimeout(() => {
         void dispatch(fetchReportState());
       }, 1_000 * refresh.retry);
+    } else if (state === 'available') {
+      void dispatch(getReport());
     }
 
     return state;
@@ -94,4 +104,16 @@ export const generateReport = createDataLoadingThunk(
   (_arg: unknown, { dispatch }) => {
     void dispatch(fetchReportState());
   },
+);
+
+export const getReport = createDataLoadingThunk(
+  `${annualReportSlice.name}/getReport`,
+  async (_arg: unknown, { getState }) => {
+    const { year } = getState().annualReport;
+    if (!year) {
+      throw new Error('Year is not set');
+    }
+    return apiGetAnnualReport(year);
+  },
+  (data) => data.annual_reports[0],
 );
