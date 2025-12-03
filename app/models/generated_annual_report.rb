@@ -29,7 +29,12 @@ class GeneratedAnnualReport < ApplicationRecord
   end
 
   def account_ids
-    data['most_reblogged_accounts'].pluck('account_id') + data['commonly_interacted_with_accounts'].pluck('account_id')
+    case schema_version
+    when 1
+      data['most_reblogged_accounts'].pluck('account_id') + data['commonly_interacted_with_accounts'].pluck('account_id')
+    when 2
+      []
+    end
   end
 
   def status_ids
