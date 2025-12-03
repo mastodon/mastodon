@@ -1,4 +1,3 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 import { insertIntoTimeline } from '@/mastodon/actions/timelines';
@@ -11,6 +10,7 @@ import {
 import type { AnnualReport } from '@/mastodon/models/annual_report';
 
 import {
+  createAppSelector,
   createAppThunk,
   createDataLoadingThunk,
 } from '../../store/typed_functions';
@@ -18,7 +18,6 @@ import {
 export const TIMELINE_WRAPSTODON = 'inline-wrapstodon';
 
 interface AnnualReportState {
-  year?: number;
   state?: ApiAnnualReportState;
   report?: AnnualReport;
 }
@@ -26,11 +25,7 @@ interface AnnualReportState {
 const annualReportSlice = createSlice({
   name: 'annualReport',
   initialState: {} as AnnualReportState,
-  reducers: {
-    setYear(state, action: PayloadAction<number>) {
-      state.year = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers(builder) {
     builder
       .addCase(fetchReportState.fulfilled, (state, action) => {
@@ -49,15 +44,19 @@ const annualReportSlice = createSlice({
 
 export const annualReport = annualReportSlice.reducer;
 
+export const selectWrapstodonYear = createAppSelector(
+  [(state) => state.server.getIn(['server', 'wrapstodon'])],
+  (year: unknown) => (typeof year === 'number' && year <= 2000 ? year : null),
+);
+
 // This kicks everything off, and is called after fetching the server info.
 export const checkAnnualReport = createAppThunk(
   `${annualReportSlice.name}/checkAnnualReport`,
   async (_arg: unknown, { dispatch, getState }) => {
-    const year = getState().server.getIn(['server', 'wrapstodon']);
-    if (typeof year !== 'number' || year <= 0) {
+    const year = selectWrapstodonYear(getState());
+    if (!year) {
       return;
     }
-    dispatch(annualReportSlice.actions.setYear(year));
     const state = await dispatch(fetchReportState());
     if (
       state.meta.requestStatus === 'fulfilled' &&
@@ -71,7 +70,7 @@ export const checkAnnualReport = createAppThunk(
 const fetchReportState = createDataLoadingThunk(
   `${annualReportSlice.name}/fetchReportState`,
   async (_arg: unknown, { getState }) => {
-    const { year } = getState().annualReport;
+    const year = selectWrapstodonYear(getState());
     if (!year) {
       throw new Error('Year is not set');
     }
@@ -95,7 +94,7 @@ const fetchReportState = createDataLoadingThunk(
 export const generateReport = createDataLoadingThunk(
   `${annualReportSlice.name}/generateReport`,
   async (_arg: unknown, { getState }) => {
-    const { year } = getState().annualReport;
+    const year = selectWrapstodonYear(getState());
     if (!year) {
       throw new Error('Year is not set');
     }
@@ -109,7 +108,7 @@ export const generateReport = createDataLoadingThunk(
 export const getReport = createDataLoadingThunk(
   `${annualReportSlice.name}/getReport`,
   async (_arg: unknown, { getState }) => {
-    const { year } = getState().annualReport;
+    const year = selectWrapstodonYear(getState());
     if (!year) {
       throw new Error('Year is not set');
     }
