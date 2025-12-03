@@ -43,7 +43,8 @@ class AnnualReport
       account: @account,
       year: @year,
       schema_version: SCHEMA,
-      data: data
+      data: data,
+      share_key: SecureRandom.hex(8)
     )
   end
 
