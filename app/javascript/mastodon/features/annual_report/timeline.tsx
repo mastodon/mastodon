@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import type { FC } from 'react';
 
-import { showAlert } from '@/mastodon/actions/alerts';
+import { openModal } from '@/mastodon/actions/modal';
 import {
   generateReport,
   selectWrapstodonYear,
@@ -20,12 +20,7 @@ export const AnnualReportTimeline: FC = () => {
   }, [dispatch]);
 
   const handleOpen = useCallback(() => {
-    dispatch(
-      // TODO: Implement opening the annual report view when components are ready.
-      showAlert({
-        message: 'Not yet implemented.',
-      }),
-    );
+    dispatch(openModal({ modalType: 'ANNUAL_REPORT', modalProps: {} }));
   }, [dispatch]);
 
   if (!year || !state || state === 'ineligible') {
