@@ -8,6 +8,7 @@ import { closeModal } from '@/mastodon/actions/modal';
 import { Button } from '@/mastodon/components/button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { me } from '@/mastodon/initial_state';
+import type { AnnualReport as AnnualReportData } from '@/mastodon/models/annual_report';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { Archetype, archetypeNames } from './archetype';
@@ -21,37 +22,12 @@ const shareMessage = defineMessage({
   defaultMessage: 'I got the {archetype} archetype!',
 });
 
-export const AnnualReport: FC = () => {
+// Share = false when using the embedded version of the report.
+export const AnnualReport: FC<{ share?: boolean }> = ({ share = true }) => {
   const currentAccount = useAppSelector((state) =>
     me ? state.accounts.get(me) : undefined,
   );
   const report = useAppSelector((state) => state.annualReport.report);
-
-  const intl = useIntl();
-  const dispatch = useAppDispatch();
-  const handleShareClick = useCallback(() => {
-    if (!report) return;
-
-    // Generate the share message.
-    const archetypeName = intl.formatMessage(
-      archetypeNames[report.data.archetype],
-    );
-    const shareLines = [
-      intl.formatMessage(shareMessage, {
-        archetype: archetypeName,
-      }),
-    ];
-    // Share URL is only available for schema version 2.
-    if (report.schema_version === 2 && report.share_url) {
-      shareLines.push(report.share_url);
-    }
-    shareLines.push(`#Wrapstodon${report.year}`);
-
-    // Reset the composer and focus it with the share message, then close the modal.
-    dispatch(resetCompose());
-    dispatch(focusCompose(shareLines.join('\n\n')));
-    dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
-  }, [report, intl, dispatch]);
 
   if (!report) {
     return <LoadingIndicator />;
@@ -84,8 +60,36 @@ export const AnnualReport: FC = () => {
         />
         <MostUsedHashtag data={report.data.top_hashtags} />
         <NewPosts data={report.data.time_series} />
-        <Button text='Share here' onClick={handleShareClick} />
+        {share && <ShareButton report={report} />}
       </div>
     </div>
   );
+};
+
+const ShareButton: FC<{ report: AnnualReportData }> = ({ report }) => {
+  const intl = useIntl();
+  const dispatch = useAppDispatch();
+  const handleShareClick = useCallback(() => {
+    // Generate the share message.
+    const archetypeName = intl.formatMessage(
+      archetypeNames[report.data.archetype],
+    );
+    const shareLines = [
+      intl.formatMessage(shareMessage, {
+        archetype: archetypeName,
+      }),
+    ];
+    // Share URL is only available for schema version 2.
+    if (report.schema_version === 2 && report.share_url) {
+      shareLines.push(report.share_url);
+    }
+    shareLines.push(`#Wrapstodon${report.year}`);
+
+    // Reset the composer and focus it with the share message, then close the modal.
+    dispatch(resetCompose());
+    dispatch(focusCompose(shareLines.join('\n\n')));
+    dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
+  }, [report, intl, dispatch]);
+
+  return <Button text='Share here' onClick={handleShareClick} />;
 };
