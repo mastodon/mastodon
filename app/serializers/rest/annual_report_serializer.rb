@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class REST::AnnualReportSerializer < ActiveModel::Serializer
+  include RoutingHelper
+
   attributes :year, :data, :schema_version, :share_url
 
   def share_url
