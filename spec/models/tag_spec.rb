@@ -256,17 +256,29 @@ RSpec.describe Tag do
   end
 
   describe '.find_or_create_by_names' do
-    let(:upcase_string) { 'abcABCａｂｃＡＢＣやゆよ' }
-    let(:downcase_string) { 'abcabcａｂｃａｂｃやゆよ' }
+    context 'when called with a block' do
+      let(:upcase_string) { 'abcABCａｂｃＡＢＣやゆよ' }
+      let(:downcase_string) { 'abcabcａｂｃａｂｃやゆよ' }
+      let(:args) { [upcase_string, downcase_string] }
 
-    it 'runs a passed block once per tag regardless of duplicates' do
-      count = 0
-
-      described_class.find_or_create_by_names([upcase_string, downcase_string]) do |_tag|
-        count += 1
+      it 'runs the block once per normalized tag regardless of duplicates' do
+        expect { |block| described_class.find_or_create_by_names(args, &block) }
+          .to yield_control.once
       end
+    end
 
-      expect(count).to eq 1
+    context 'when passed an array' do
+      it 'creates multiples tags' do
+        expect { described_class.find_or_create_by_names(%w(tips tags toes)) }
+          .to change(described_class, :count).by(3)
+      end
+    end
+
+    context 'when passed a string' do
+      it 'creates a single tag' do
+        expect { described_class.find_or_create_by_names('test') }
+          .to change(described_class, :count).by(1)
+      end
     end
   end
 
