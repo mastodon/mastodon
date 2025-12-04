@@ -9,8 +9,6 @@ html {
     color-scheme: dark light;
 
     @media (prefers-color-scheme: dark) {
-      color-scheme: dark;
-
       @include dark.tokens;
 
       @media (prefers-contrast: more) {
@@ -19,8 +17,6 @@ html {
     }
 
     @media (prefers-color-scheme: light) {
-      color-scheme: light;
-
       @include light.tokens;
 
       @media (prefers-contrast: more) {
@@ -31,18 +27,21 @@ html {
 }
 
 .theme-dark,
-html:not([data-user-theme='mastodon-light'], [data-user-theme='system']) {
+html:where(
+  :not([data-user-theme='mastodon-light'], [data-user-theme='system'])
+) {
   color-scheme: dark;
 
   @include dark.tokens;
 }
 
-html[data-user-theme='contrast'] {
+html[data-user-theme='contrast'],
+html[data-user-theme='contrast'] .theme-dark {
   @include dark.contrast-overrides;
 }
 
 .theme-light,
-html[data-user-theme='mastodon-light'] {
+html:where([data-user-theme='mastodon-light']) {
   color-scheme: light;
 
   @include light.tokens;
