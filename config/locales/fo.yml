@@ -1706,16 +1706,22 @@ fo:
       body: 'Tú var umrødd/ur av %{name} í:'
       subject: Tú var umrødd/ur av %{name}
       title: Nýggj umrøða
+    moderation_warning:
+      subject: Tú hevur móttikið eina umsjónarávaring
     poll:
       subject: Ein spurnarkanning hjá %{name} er endað
     quote:
       body: 'Postur tín var siteraður av %{name}:'
       subject: "%{name} siteraði postin hjá tær"
       title: Nýggj sitering
+    quoted_update:
+      subject: "%{name} rættaði ein post, sum tú hevur siterað"
     reblog:
       body: 'Postur tín var stimbraður av %{name}:'
       subject: "%{name} stimbraði tín post"
       title: Nýggj stimbran
+    severed_relationships:
+      subject: Tú hevur mist sambond vegna eina umsjónaravgerð
     status:
       subject: "%{name} hevur júst postað"
     update:
@@ -2179,3 +2185,5 @@ fo:
     not_supported: Hesin kagin stuðlar ikki uppundir trygdarlyklar
     otp_required: Fyri at brúka trygdarlyklar er neyðugt at gera váttan í tveimum stigum virkna fyrst.
     registered_on: Skrásett %{date}
+  wrapstodon:
+    title: Wrapstodon %{year} fyri %{name}

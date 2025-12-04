@@ -1720,6 +1720,8 @@ es:
       body: 'Tu publicación fue impulsada por %{name}:'
       subject: "%{name} impulsó tu publicación"
       title: Nueva difusión
+    severed_relationships:
+      subject: Has perdido conexiones debido a una decisión de moderación
     status:
       subject: "%{name} acaba de publicar"
     update:
@@ -2183,3 +2185,5 @@ es:
     not_supported: Este navegador no soporta claves de seguridad
     otp_required: Para usar claves de seguridad, por favor habilite primero la autenticación de doble factor.
     registered_on: Registrado el %{date}
+  wrapstodon:
+    title: Wrapstodon %{year} para %{name}
