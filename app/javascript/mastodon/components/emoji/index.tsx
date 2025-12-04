@@ -3,13 +3,12 @@ import { useContext, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 
-import {
-  EMOJI_TYPE_CUSTOM,
-  EMOJIS_REQUIRING_INVERSION_IN_DARK_MODE,
-  EMOJIS_REQUIRING_INVERSION_IN_LIGHT_MODE,
-} from '@/mastodon/features/emoji/constants';
+import { EMOJI_TYPE_CUSTOM } from '@/mastodon/features/emoji/constants';
 import { useEmojiAppState } from '@/mastodon/features/emoji/mode';
-import { unicodeHexToUrl } from '@/mastodon/features/emoji/normalize';
+import {
+  emojiToInversionClassName,
+  unicodeHexToUrl,
+} from '@/mastodon/features/emoji/normalize';
 import {
   isStateLoaded,
   loadEmojiDataToState,
@@ -47,12 +46,15 @@ export const Emoji: FC<EmojiProps> = ({
   }, [appState.currentLocale, state]);
 
   const animate = useContext(AnimateEmojiContext);
-  const fallback = showFallback ? code : null;
 
-  const inversionClasses = classNames({
-    'invert-on-light': EMOJIS_REQUIRING_INVERSION_IN_LIGHT_MODE.includes(code),
-    'invert-on-dark': EMOJIS_REQUIRING_INVERSION_IN_DARK_MODE.includes(code),
-  });
+  const inversionClass = emojiToInversionClassName(code);
+
+  const plainEmojiCode = inversionClass ? (
+    <span className={inversionClass}>{code}</span>
+  ) : (
+    code
+  );
+  const fallback = showFallback ? plainEmojiCode : null;
 
   // If the code is invalid or we otherwise know it's not valid, show the fallback.
   if (!state) {
@@ -60,11 +62,7 @@ export const Emoji: FC<EmojiProps> = ({
   }
 
   if (!shouldRenderImage(state, appState.mode)) {
-    return inversionClasses ? (
-      <span className={inversionClasses}>{code}</span>
-    ) : (
-      code
-    );
+    return plainEmojiCode;
   }
 
   if (!isStateLoaded(state)) {
@@ -94,7 +92,7 @@ export const Emoji: FC<EmojiProps> = ({
       src={src}
       alt={state.data.unicode}
       title={state.data.label}
-      className={classNames('emojione', inversionClasses)}
+      className={classNames('emojione', inversionClass)}
       loading='lazy'
     />
   );

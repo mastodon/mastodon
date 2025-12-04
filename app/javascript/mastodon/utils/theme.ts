@@ -1,3 +1,8 @@
+export function getUserTheme() {
+  const { userTheme } = document.documentElement.dataset;
+  return userTheme;
+}
+
 export function isDarkMode() {
   const { userTheme } = document.documentElement.dataset;
   return (

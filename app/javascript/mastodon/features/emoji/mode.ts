@@ -3,7 +3,7 @@
 
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 import { isDevelopment } from '@/mastodon/utils/environment';
-import { isDarkMode } from '@/mastodon/utils/is_dark_mode';
+import { isDarkMode } from '@/mastodon/utils/theme';
 
 import {
   EMOJI_MODE_NATIVE,
