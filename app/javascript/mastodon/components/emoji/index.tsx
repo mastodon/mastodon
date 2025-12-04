@@ -49,12 +49,7 @@ export const Emoji: FC<EmojiProps> = ({
 
   const inversionClass = emojiToInversionClassName(code);
 
-  const plainEmojiCode = inversionClass ? (
-    <span className={inversionClass}>{code}</span>
-  ) : (
-    code
-  );
-  const fallback = showFallback ? plainEmojiCode : null;
+  const fallback = showFallback ? code : null;
 
   // If the code is invalid or we otherwise know it's not valid, show the fallback.
   if (!state) {
@@ -62,7 +57,7 @@ export const Emoji: FC<EmojiProps> = ({
   }
 
   if (!shouldRenderImage(state, appState.mode)) {
-    return plainEmojiCode;
+    return code;
   }
 
   if (!isStateLoaded(state)) {
