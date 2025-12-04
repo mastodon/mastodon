@@ -57,6 +57,11 @@ RSpec.describe Tag do
     end
   end
 
+  describe 'Normalizations' do
+    it { is_expected.to normalize(:display_name).from('#HelloWorld').to('HelloWorld') }
+    it { is_expected.to normalize(:display_name).from('Hello❤️World').to('HelloWorld') }
+  end
+
   describe 'HASHTAG_RE' do
     subject { described_class::HASHTAG_RE }
 
@@ -251,17 +256,29 @@ RSpec.describe Tag do
   end
 
   describe '.find_or_create_by_names' do
-    let(:upcase_string) { 'abcABCａｂｃＡＢＣやゆよ' }
-    let(:downcase_string) { 'abcabcａｂｃａｂｃやゆよ' }
+    context 'when called with a block' do
+      let(:upcase_string) { 'abcABCａｂｃＡＢＣやゆよ' }
+      let(:downcase_string) { 'abcabcａｂｃａｂｃやゆよ' }
+      let(:args) { [upcase_string, downcase_string] }
 
-    it 'runs a passed block once per tag regardless of duplicates' do
-      count = 0
-
-      described_class.find_or_create_by_names([upcase_string, downcase_string]) do |_tag|
-        count += 1
+      it 'runs the block once per normalized tag regardless of duplicates' do
+        expect { |block| described_class.find_or_create_by_names(args, &block) }
+          .to yield_control.once
       end
+    end
 
-      expect(count).to eq 1
+    context 'when passed an array' do
+      it 'creates multiples tags' do
+        expect { described_class.find_or_create_by_names(%w(tips tags toes)) }
+          .to change(described_class, :count).by(3)
+      end
+    end
+
+    context 'when passed a string' do
+      it 'creates a single tag' do
+        expect { described_class.find_or_create_by_names('test') }
+          .to change(described_class, :count).by(1)
+      end
     end
   end
 
@@ -270,15 +287,9 @@ RSpec.describe Tag do
       tag_name_upper = 'Rails'
       tag_name_lower = 'rails'
 
-      threads = []
-
-      2.times do |i|
-        threads << Thread.new do
-          described_class.find_or_create_by_names(i.zero? ? tag_name_upper : tag_name_lower)
-        end
+      multi_threaded_execution(2) do |index|
+        described_class.find_or_create_by_names(index.zero? ? tag_name_upper : tag_name_lower)
       end
-
-      threads.each(&:join)
 
       tags = described_class.where('lower(name) = ?', tag_name_lower.downcase)
       expect(tags.count).to eq(1)

@@ -1,0 +1,12 @@
+- content_for :page_title, t('wrapstodon.title', name: display_name(@account), year: @generated_annual_report.year)
+
+- content_for :header_tags do
+  %meta{ name: 'robots', content: 'noindex, noarchive' }/
+
+  = opengraph 'og:site_name', site_title
+  = opengraph 'profile:username', acct(@account)[1..]
+
+  = vite_typescript_tag 'wrapstodon.tsx', crossorigin: 'anonymous'
+
+#wrapstodon
+= render_wrapstodon_share_data @generated_annual_report

@@ -1706,16 +1706,22 @@ pt-BR:
       body: "%{name} te mencionou em:"
       subject: "%{name} te mencionou"
       title: Nova menção
+    moderation_warning:
+      subject: Você recebeu um aviso de moderação
     poll:
       subject: Uma enquete por %{name} terminou
     quote:
       body: 'Sua publicação foi Citada por %{name}:'
       subject: "%{name} citou sua publicação"
       title: Nova citação
+    quoted_update:
+      subject: "%{name} editou uma publicação que você citou"
     reblog:
       body: "%{name} impulsionou a sua publicação:"
       subject: "%{name} impulsionou a sua publicação"
       title: Novo impulso
+    severed_relationships:
+      subject: Você perdeu conexões devido a uma decisão da moderação
     status:
       subject: "%{name} acabou de publicar"
     update:
@@ -1734,6 +1740,7 @@ pt-BR:
           quadrillion: QUA
           thousand: MIL
           trillion: TRI
+          unit: ''
   otp_authentication:
     code_hint: Digite o código gerado pelo seu aplicativo autenticador para confirmar
     description_html: Se você ativar a <strong>autenticação de dois fatores</strong> usando um aplicativo autenticador, ao se conectar será exigido que você esteja com o seu telefone, que gerará tokens para você entrar.
@@ -2179,3 +2186,5 @@ pt-BR:
     not_supported: Este navegador não tem suporte a chaves de segurança
     otp_required: Para usar chaves de segurança, ative a autenticação de dois fatores.
     registered_on: Registrado em %{date}
+  wrapstodon:
+    title: Wrapstodon de %{year} para %{name}

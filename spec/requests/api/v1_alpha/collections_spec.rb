@@ -95,4 +95,103 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
       end
     end
   end
+
+  describe 'PATCH /api/v1_alpha/collections/:id' do
+    subject do
+      patch "/api/v1_alpha/collections/#{collection.id}", headers: headers, params: params
+    end
+
+    let(:collection) { Fabricate(:collection) }
+    let(:params) { {} }
+
+    context 'when user is not owner' do
+      it 'returns http forbidden' do
+        subject
+
+        expect(response).to have_http_status(403)
+      end
+    end
+
+    context 'when user is the owner' do
+      let(:collection) do
+        Fabricate(:collection,
+                  account: user.account,
+                  name: 'Pople to follow',
+                  description: 'Cool pople',
+                  sensitive: true,
+                  discoverable: false)
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:collections'
+
+      context 'with valid params' do
+        let(:params) do
+          {
+            name: 'People to follow',
+            description: 'Cool people',
+            sensitive: '0',
+            discoverable: '1',
+          }
+        end
+
+        it 'updates the collection and returns http success' do
+          subject
+          collection.reload
+
+          expect(response).to have_http_status(200)
+          expect(collection.name).to eq 'People to follow'
+          expect(collection.description).to eq 'Cool people'
+          expect(collection.sensitive).to be false
+          expect(collection.discoverable).to be true
+        end
+      end
+
+      context 'with invalid params' do
+        let(:params) { { name: '' } }
+
+        it 'returns http unprocessable content and detailed errors' do
+          subject
+
+          expect(response).to have_http_status(422)
+          expect(response.parsed_body).to include({
+            'error' => a_hash_including({
+              'details' => a_hash_including({
+                'name' => [{ 'error' => 'ERR_BLANK', 'description' => "can't be blank" }],
+              }),
+            }),
+          })
+        end
+      end
+    end
+  end
+
+  describe 'DELETE /api/v1_alpha/collections/:id' do
+    subject do
+      delete "/api/v1_alpha/collections/#{collection.id}", headers: headers
+    end
+
+    let(:collection) { Fabricate(:collection) }
+
+    context 'when user is not owner' do
+      it 'returns http forbidden' do
+        subject
+
+        expect(response).to have_http_status(403)
+      end
+    end
+
+    context 'when user is the owner' do
+      let(:collection) { Fabricate(:collection, account: user.account) }
+
+      it_behaves_like 'forbidden for wrong scope', 'read:collections'
+
+      it 'deletes the collection and returns http success' do
+        collection
+
+        expect { subject }.to change(Collection, :count).by(-1)
+
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end

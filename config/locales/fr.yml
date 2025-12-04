@@ -1709,16 +1709,22 @@ fr:
       body: "%{name} vous a mentionné⋅e dans :"
       subject: "%{name} vous a mentionné·e"
       title: Nouvelle mention
+    moderation_warning:
+      subject: Vous avez reçu un avertissement de la modération
     poll:
       subject: Un sondage de %{name} est terminé
     quote:
       body: 'Votre message a été cité par %{name}:'
       subject: "%{name} a cité votre message"
       title: Nouvelle citation
+    quoted_update:
+      subject: "%{name} a modifié un message que vous avez cité"
     reblog:
       body: 'Votre message été partagé par %{name} :'
       subject: "%{name} a partagé votre message"
       title: Nouveau partage
+    severed_relationships:
+      subject: Vous avez perdu des relations à cause d’une décision de modération
     status:
       subject: "%{name} vient de publier"
     update:
@@ -2182,3 +2188,5 @@ fr:
     not_supported: Ce navigateur ne prend pas en charge les clés de sécurité
     otp_required: Pour utiliser les clés de sécurité, veuillez d'abord activer l'authentification à deux facteurs.
     registered_on: Inscrit le %{date}
+  wrapstodon:
+    title: Wrapstodon %{year} pour %{name}

@@ -5,13 +5,14 @@
 # Table name: generated_annual_reports
 #
 #  id             :bigint(8)        not null, primary key
-#  account_id     :bigint(8)        not null
-#  year           :integer          not null
 #  data           :jsonb            not null
 #  schema_version :integer          not null
+#  share_key      :string
 #  viewed_at      :datetime
+#  year           :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  account_id     :bigint(8)        not null
 #
 
 class GeneratedAnnualReport < ApplicationRecord
@@ -28,7 +29,12 @@ class GeneratedAnnualReport < ApplicationRecord
   end
 
   def account_ids
-    data['most_reblogged_accounts'].pluck('account_id') + data['commonly_interacted_with_accounts'].pluck('account_id')
+    case schema_version
+    when 1
+      data['most_reblogged_accounts'].pluck('account_id') + data['commonly_interacted_with_accounts'].pluck('account_id')
+    when 2
+      []
+    end
   end
 
   def status_ids

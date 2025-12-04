@@ -1710,16 +1710,22 @@ is:
       body: "%{name} minntist á þig í:"
       subject: "%{name} minntist á þig"
       title: Ný tilvísun
+    moderation_warning:
+      subject: Þú hefur fengið aðvörun frá umsjónarmanni
     poll:
       subject: Könnun frá %{name} er lokið
     quote:
       body: "%{name} vitnaði í færsluna þína:"
       subject: "%{name} vitnaði í færsluna þína"
       title: Ný tilvitnun
+    quoted_update:
+      subject: "%{name} breytti færslu sem þú hefur vitnað í"
     reblog:
       body: "%{name} endurbirti færsluna þína:"
       subject: "%{name} endurbirti færsluna þína"
       title: Ný endurbirting
+    severed_relationships:
+      subject: Þú hefur tapað tengingum vegna ákvörðunar umsjónarmanna
     status:
       subject: "%{name} sendi inn rétt í þessu"
     update:
@@ -2183,3 +2189,5 @@ is:
     not_supported: Þessi vafri styður ekki öryggislykla
     otp_required: Til að nota öryggislykla skaltu fyrst virkja tveggja-þátta auðkenningu.
     registered_on: Skráði sig %{date}
+  wrapstodon:
+    title: Wrapstodon %{year} fyrir %{name}

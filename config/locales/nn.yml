@@ -1090,7 +1090,7 @@ nn:
           tag_uses_measure: brukarar totalt
         description_html: Dette er emneknagger som for øyeblikket vises i mange innlegg som serveren din ser. Det kan hjelpe dine brukere med å finne ut hva folk snakker mest om i øyeblikket. Ingen emneknagger vises offentlig før du godkjenner dem.
         listable: Kan bli foreslått
-        no_tag_selected: Ingen merkelappar vart endra fordi ingen var valde
+        no_tag_selected: Ingen emneknaggar vart endra fordi ingen var valde
         not_listable: Vil ikke bli foreslått
         not_trendable: Kjem ikkje til å syna under trendar
         not_usable: Kan ikke brukes
@@ -1706,16 +1706,22 @@ nn:
       body: 'Du vart nemnd av %{name} i:'
       subject: Du vart nemnd av %{name}
       title: Ny omtale
+    moderation_warning:
+      subject: Du har fått ei moderasjonsåtvaring
     poll:
       subject: Meiningsmålinga frå %{name} er avslutta
     quote:
       body: 'Innlegget ditt vart sitert av %{name}:'
       subject: "%{name} siterte innlegget ditt"
       title: Nytt sitat
+    quoted_update:
+      subject: "%{name} redigerte eit innlegg du har sitert"
     reblog:
       body: 'Statusen din vart framheva av %{name}:'
       subject: "%{name} framheva statusen din"
       title: Ny framheving
+    severed_relationships:
+      subject: Du har tapte tilkoplingar på grunn av ei avgjerd frå ein moderator
     status:
       subject: "%{name} postet nettopp"
     update:

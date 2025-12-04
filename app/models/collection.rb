@@ -50,12 +50,20 @@ class Collection < ApplicationRecord
     result
   end
 
+  def tag_name
+    tag&.formatted_name
+  end
+
+  def tag_name=(new_name)
+    self.tag = Tag.find_or_create_by_names(new_name).first
+  end
+
   private
 
   def tag_is_usable
     return if tag.blank?
 
-    errors.add(:tag, :unusable) unless tag.usable?
+    errors.add(:tag_name, :unusable) unless tag.usable?
   end
 
   def items_do_not_exceed_limit

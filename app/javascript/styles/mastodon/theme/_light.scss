@@ -1,97 +1,70 @@
-@use 'theme_utils' as utils;
+@use 'utils';
 
-:root {
-  --color-black: #000;
-  --color-grey-950: #181821;
-  --color-grey-800: #292938;
-  --color-grey-700: #444664;
-  --color-grey-600: #545778;
-  --color-grey-500: #696d91;
-  --color-grey-400: #8b8dac;
-  --color-grey-300: #b4b6cb;
-  --color-grey-200: #d8d9e3;
-  --color-grey-100: #f0f0f5;
-  --color-grey-50: #f0f1ff;
-  --color-white: #fff;
-  --color-indigo-600: #6147e6;
-  --color-indigo-400: #8886ff;
-  --color-indigo-300: #a5abfd;
-  --color-indigo-200: #c8cdfe;
-  --color-indigo-100: #e0e3ff;
-  --color-indigo-50: #f0f1ff;
-  --color-red-500: #ff637e;
-  --color-red-600: #ec003f;
-  --color-yellow-400: #ffb900;
-  --color-yellow-600: #e17100;
-  --color-green-400: #05df72;
-  --color-green-600: #00a63e;
-
+@mixin tokens {
   /* TEXT TOKENS */
 
-  --color-text-primary: var(--color-grey-50);
-  --color-text-secondary: var(--color-grey-400);
+  --color-text-primary: var(--color-grey-950);
+  --color-text-secondary: var(--color-grey-600);
   --color-text-tertiary: var(--color-grey-500);
-  --color-text-on-inverted: var(--color-grey-950);
-  --color-text-brand: var(--color-indigo-400);
+  --color-text-on-inverted: var(--color-white);
+  --color-text-brand: var(--color-indigo-600);
   --color-text-brand-soft: color-mix(
     in oklab,
     var(--color-text-primary),
     var(--color-text-brand)
   );
   --color-text-on-brand-base: var(--color-white);
-  --color-text-error: var(--color-red-500);
+  --color-text-brand-on-inverted: var(--color-indigo-400);
+  --color-text-error: var(--color-red-600);
   --color-text-on-error-base: var(--color-white);
-  --color-text-warning: var(--color-yellow-400);
+  --color-text-warning: var(--color-yellow-600);
   --color-text-on-warning-base: var(--color-white);
-  --color-text-success: var(--color-green-400);
+  --color-text-success: var(--color-green-600);
   --color-text-on-success-base: var(--color-white);
-  --color-text-disabled: var(--color-grey-600);
-  --color-text-on-disabled: var(--color-grey-400);
+  --color-text-disabled: var(--color-grey-300);
+  --color-text-on-disabled: var(--color-grey-200);
   --color-text-bookmark-highlight: var(--color-text-error);
   --color-text-favourite-highlight: var(--color-text-warning);
   --color-text-on-media: var(--color-white);
-  --color-text-status-links: color-mix(
-    in oklab,
-    var(--color-text-primary),
-    var(--color-text-secondary)
-  );
+  --color-text-status-links: var(--color-text-brand);
 
   /* BACKGROUND TOKENS */
 
   // Neutrals
-  --color-bg-primary: var(--color-grey-950);
-  --overlay-strength-secondary: 10%;
-  --color-bg-secondary-base: var(--color-indigo-200);
-  --color-bg-secondary: #{utils.css-alpha(
-      var(--color-bg-secondary-base),
-      var(--overlay-strength-secondary)
+  --color-bg-primary: var(--color-white);
+  --overlay-strength-secondary: 5%;
+  --color-bg-secondary-base: var(--color-grey-600);
+  --color-bg-secondary: #{color-mix(
+      in oklab,
+      var(--color-bg-primary),
+      var(--color-bg-secondary-base) var(--overlay-strength-secondary)
     )};
-  --color-bg-secondary-solid: color-mix(
-    in srgb,
-    var(--color-bg-primary),
-    var(--color-bg-secondary-base) var(--overlay-strength-secondary)
-  );
-  --color-bg-tertiary: color-mix(
-    in oklab,
-    var(--color-bg-primary),
-    var(--color-bg-secondary-base) calc(2 * var(--overlay-strength-secondary))
-  );
+  --color-bg-secondary-solid: #{color-mix(
+      in srgb,
+      var(--color-bg-primary),
+      var(--color-bg-secondary-base) var(--overlay-strength-secondary)
+    )};
+  --color-bg-tertiary: #{color-mix(
+      in oklab,
+      var(--color-bg-primary),
+      var(--color-bg-secondary-base) calc(2 * var(--overlay-strength-secondary))
+    )};
 
   // Utility
   --color-bg-ambient: var(--color-bg-primary);
   --color-bg-elevated: var(--color-bg-primary);
-  --color-bg-inverted: var(--color-grey-50);
+  --color-bg-inverted: var(--color-grey-950);
   --color-bg-media-base: var(--color-black);
   --color-bg-media-strength: 65%;
   --color-bg-media: #{utils.css-alpha(
       var(--color-bg-media-base),
       var(--color-bg-media-strength)
     )};
-  --color-bg-overlay: var(--color-black);
-  --color-bg-disabled: var(--color-grey-700);
+  --color-bg-overlay: var(--color-bg-primary);
+  --color-bg-disabled: var(--color-grey-400);
 
   // Brand
-  --overlay-strength-brand: 10%;
+  --overlay-strength-brand: 8%;
   --color-bg-brand-base: var(--color-indigo-600);
   --color-bg-brand-base-hover: color-mix(
     in oklab,
@@ -126,7 +99,7 @@
 
   // Warning
   --overlay-strength-warning: 10%;
-  --color-bg-warning-base: var(--color-yellow-600);
+  --color-bg-warning-base: var(--color-yellow-700);
   --color-bg-warning-base-hover: color-mix(
     in oklab,
     var(--color-bg-warning-base),
@@ -160,17 +133,15 @@
 
   /* BORDER TOKENS */
 
-  --border-strength-primary: 18%;
-  --color-border-primary: #{utils.css-alpha(
-      var(--color-indigo-200),
-      var(--border-strength-primary)
-    )};
+  --border-strength-primary: 15%;
+  --color-border-primary: color-mix(
+    in oklab,
+    var(--color-bg-primary),
+    var(--color-grey-950) var(--border-strength-primary)
+  );
   --color-border-media: rgb(252 248 255 / 15%);
-  --color-border-on-bg-secondary: #{utils.css-alpha(
-      var(--color-indigo-200),
-      calc(var(--border-strength-primary) / 1.5)
-    )};
-  --color-border-on-bg-brand-softer: var(--color-border-primary);
+  --color-border-on-bg-secondary: var(--color-grey-200);
+  --color-border-on-bg-brand-softer: var(--color-indigo-200);
   --color-border-on-bg-error-softer: #{utils.css-alpha(
       var(--color-text-error),
       50%
@@ -187,7 +158,7 @@
 
   /* SHADOW TOKENS */
 
-  --shadow-strength-primary: 80%;
+  --shadow-strength-primary: 30%;
   --color-shadow-primary: #{utils.css-alpha(
       var(--color-black),
       var(--shadow-strength-primary)
@@ -208,21 +179,21 @@
 
   /* LEGACY TOKENS */
 
-  --rich-text-container-color: rgb(87 24 60 / 100%);
-  --rich-text-text-color: rgb(255 175 212 / 100%);
-  --rich-text-decorations-color: rgb(128 58 95 / 100%);
-
-  /* MISCELLANEOUS */
-
-  --outline-focus-default: 2px solid var(--color-text-brand);
-  --avatar-border-radius: 8px;
+  --rich-text-container-color: rgb(255 216 231 / 100%);
+  --rich-text-text-color: rgb(114 47 83 / 100%);
+  --rich-text-decorations-color: rgb(255 175 212 / 100%);
 }
 
-body {
-  // Variable for easily inverting directional UI elements,
-  --text-x-direction: 1;
+@mixin contrast-overrides {
+  /* TEXT TOKENS */
 
-  &.rtl {
-    --text-x-direction: -1;
-  }
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-grey-800);
+  --color-text-tertiary: var(--color-grey-700);
+  --color-text-brand: var(--color-indigo-600);
+
+  /* BORDER TOKENS */
+
+  --border-strength-primary: 30%;
+  --color-border-on-bg-secondary: var(--color-grey-300);
 }

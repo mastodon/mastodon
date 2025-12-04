@@ -1784,16 +1784,22 @@ he:
       body: 'התקבלה פניה עבורך מאת %{name} ב:'
       subject: התקבלה פניה עבורך מאת %{name}
       title: אזכור חדש
+    moderation_warning:
+      subject: קיבלת אזהרה מצוות ניהול התוכן
     poll:
       subject: סקר מאת %{name} הסתיים
     quote:
       body: 'הודעתך צוטטה על ידי %{name}:'
       subject: "%{name} ציטט.ה את הודעתך"
       title: ציטוט חדש
+    quoted_update:
+      subject: "%{name} ערך הודעה שהשתמשת בה בציטוט"
     reblog:
       body: 'הודעתך הודהדה על ידי %{name}:'
       subject: הודעתך הודהדה על ידי%{name}
       title: הדהוד חדש
+    severed_relationships:
+      subject: איבדת קשרים עם משתמשים אחרים עקב החלטת צוות ניהול התוכן
     status:
       subject: "%{name} בדיוק פרסם"
     update:
@@ -2267,3 +2273,5 @@ he:
     not_supported: דפדפן זה לא תומך במפתחות אבטחה
     otp_required: על מנת להשתמש במפתחות אבטחה אנא אפשר.י אימות דו-שלבי קודם.
     registered_on: נרשם ב %{date}
+  wrapstodon:
+    title: סיכומודון %{year} עבור %{name}

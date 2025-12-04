@@ -1667,16 +1667,22 @@ zh-CN:
       body: "%{name} 提到了你："
       subject: "%{name} 提到了你"
       title: 新的提及
+    moderation_warning:
+      subject: 你收到了一条管理警告
     poll:
       subject: "%{name} 创建的一个投票已经结束"
     quote:
       body: 你的嘟文被 %{name} 引用了：
       subject: "%{name} 引用了你的嘟文"
       title: 新引用
+    quoted_update:
+      subject: "%{name} 编辑了一条你之前引用过的嘟文"
     reblog:
       body: 你的嘟文被 %{name} 转嘟了：
       subject: "%{name} 转嘟了你的嘟文"
       title: 新的转嘟
+    severed_relationships:
+      subject: 由于管理决定，您已失去网络上的关注关系
     status:
       subject: "%{name} 刚刚发布嘟文"
     update:
@@ -2135,3 +2141,5 @@ zh-CN:
     not_supported: 此浏览器不支持安全密钥
     otp_required: 要使用安全密钥，请先启用双因素认证。
     registered_on: 注册于 %{date}
+  wrapstodon:
+    title: "%{name}的%{year}年Wrapstodon年度回顾"

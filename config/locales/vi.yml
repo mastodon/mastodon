@@ -1667,16 +1667,22 @@ vi:
       body: 'Bạn vừa được nhắc đến bởi %{name} trong:'
       subject: Bạn vừa được nhắc đến bởi %{name}
       title: Lượt nhắc mới
+    moderation_warning:
+      subject: Bạn vừa nhận một cảnh báo kiểm duyệt
     poll:
       subject: Vốt của %{name} đã kết thúc
     quote:
       body: 'Tút của bạn được trích dẫn bởi %{name}:'
       subject: "%{name} vừa trích dẫn tút của bạn"
       title: Trích dẫn mới
+    quoted_update:
+      subject: "%{name} đã chỉnh sửa tút mà bạn trích dẫn"
     reblog:
       body: Tút của bạn vừa được %{name} đăng lại
       subject: "%{name} vừa đăng lại tút của bạn"
       title: Lượt đăng lại mới
+    severed_relationships:
+      subject: Bạn bị mất các mối quan hệ vì một quyết định kiểm duyệt
     status:
       subject: Bài đăng mới từ %{name}
     update:
@@ -2135,3 +2141,5 @@ vi:
     not_supported: Trình duyệt của bạn không hỗ trợ khóa bảo mật
     otp_required: Để dùng khóa bảo mật, trước tiên hãy kích hoạt xác thực 2 bước.
     registered_on: Đăng ký vào %{date}
+  wrapstodon:
+    title: Wrapstodon %{year} cho %{name}

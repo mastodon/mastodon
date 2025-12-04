@@ -1706,16 +1706,22 @@ es-AR:
       body: 'Fuiste mencionado por %{name} en:'
       subject: Fuiste mencionado por %{name}
       title: Nueva mención
+    moderation_warning:
+      subject: Recibiste una advertencia de moderación
     poll:
       subject: Terminó una encuesta de %{name}
     quote:
       body: 'Tu mensaje fue citado por %{name}:'
       subject: "%{name} citó tu mensaje"
       title: Nueva cita
+    quoted_update:
+      subject: "%{name} editó un mensaje que citaste"
     reblog:
       body: "%{name} adhirió a tu mensaje:"
       subject: "%{name} adhirió a tu mensaje"
       title: Nueva adhesión
+    severed_relationships:
+      subject: Perdiste seguidores y/o cuentas seguidas, debido a una decisión de moderación
     status:
       subject: "%{name} acaba de enviar un mensaje"
     update:
@@ -2179,3 +2185,5 @@ es-AR:
     not_supported: Este navegador web no soporta llaves de seguridad
     otp_required: Para usar llaves de seguridad, por favor, primero habilitá la autenticación de dos factores.
     registered_on: Registrado el %{date}
+  wrapstodon:
+    title: MastodonAnual %{year} para %{name}

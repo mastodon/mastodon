@@ -1,66 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useCallback } from 'react';
+import type { FC } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
 
-import {
-  importFetchedStatuses,
-  importFetchedAccounts,
-} from 'mastodon/actions/importer';
-import { apiRequestGet, apiRequestPost } from 'mastodon/api';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
-import { me } from 'mastodon/initial_state';
-import type { Account } from 'mastodon/models/account';
-import type { AnnualReport as AnnualReportData } from 'mastodon/models/annual_report';
-import type { Status } from 'mastodon/models/status';
-import { useAppSelector, useAppDispatch } from 'mastodon/store';
+import { focusCompose, resetCompose } from '@/mastodon/actions/compose';
+import { closeModal } from '@/mastodon/actions/modal';
+import { Button } from '@/mastodon/components/button';
+import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { me } from '@/mastodon/initial_state';
+import type { AnnualReport as AnnualReportData } from '@/mastodon/models/annual_report';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { Archetype } from './archetype';
+import { Archetype, archetypeNames } from './archetype';
 import { Followers } from './followers';
 import { HighlightedPost } from './highlighted_post';
 import { MostUsedHashtag } from './most_used_hashtag';
 import { NewPosts } from './new_posts';
-import { Percentile } from './percentile';
 
-interface AnnualReportResponse {
-  annual_reports: AnnualReportData[];
-  accounts: Account[];
-  statuses: Status[];
-}
+const shareMessage = defineMessage({
+  id: 'annual_report.summary.share_message',
+  defaultMessage: 'I got the {archetype} archetype!',
+});
 
-export const AnnualReport: React.FC<{
-  year: string;
-}> = ({ year }) => {
-  const [response, setResponse] = useState<AnnualReportResponse | null>(null);
-  const [loading, setLoading] = useState(true);
+// Share = false when using the embedded version of the report.
+export const AnnualReport: FC<{ share?: boolean }> = ({ share = true }) => {
   const currentAccount = useAppSelector((state) =>
     me ? state.accounts.get(me) : undefined,
   );
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    apiRequestGet<AnnualReportResponse>(`v1/annual_reports/${year}`)
-      .then((data) => {
-        dispatch(importFetchedStatuses(data.statuses));
-        dispatch(importFetchedAccounts(data.accounts));
-
-        setResponse(data);
-        setLoading(false);
-
-        return apiRequestPost(`v1/annual_reports/${year}/read`);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, [dispatch, year, setResponse, setLoading]);
-
-  if (loading) {
-    return <LoadingIndicator />;
-  }
-
-  const report = response?.annual_reports[0];
+  const report = useAppSelector((state) => state.annualReport.report);
 
   if (!report) {
-    return null;
+    return <LoadingIndicator />;
   }
 
   return (
@@ -89,9 +59,37 @@ export const AnnualReport: React.FC<{
           total={currentAccount?.followers_count}
         />
         <MostUsedHashtag data={report.data.top_hashtags} />
-        <Percentile data={report.data.percentiles} />
         <NewPosts data={report.data.time_series} />
+        {share && <ShareButton report={report} />}
       </div>
     </div>
   );
+};
+
+const ShareButton: FC<{ report: AnnualReportData }> = ({ report }) => {
+  const intl = useIntl();
+  const dispatch = useAppDispatch();
+  const handleShareClick = useCallback(() => {
+    // Generate the share message.
+    const archetypeName = intl.formatMessage(
+      archetypeNames[report.data.archetype],
+    );
+    const shareLines = [
+      intl.formatMessage(shareMessage, {
+        archetype: archetypeName,
+      }),
+    ];
+    // Share URL is only available for schema version 2.
+    if (report.schema_version === 2 && report.share_url) {
+      shareLines.push(report.share_url);
+    }
+    shareLines.push(`#Wrapstodon${report.year}`);
+
+    // Reset the composer and focus it with the share message, then close the modal.
+    dispatch(resetCompose());
+    dispatch(focusCompose(shareLines.join('\n\n')));
+    dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
+  }, [report, intl, dispatch]);
+
+  return <Button text='Share here' onClick={handleShareClick} />;
 };

@@ -45,7 +45,7 @@ RSpec.describe CreateCollectionService do
       end
 
       context 'when given a tag' do
-        let(:params) { base_params.merge(tag: '#people') }
+        let(:params) { base_params.merge(tag_name: '#people') }
 
         context 'when the tag exists' do
           let!(:tag) { Fabricate.create(:tag, name: 'people') }

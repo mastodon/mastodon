@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
-import { scrollTopTimeline, loadPending } from '../../../actions/timelines';
-import StatusList from '../../../components/status_list';
-import { me } from '../../../initial_state';
+import { scrollTopTimeline, loadPending, TIMELINE_SUGGESTIONS } from '@/mastodon/actions/timelines';
+import StatusList from '@/mastodon/components/status_list';
+import { me } from '@/mastodon/initial_state';
+import { TIMELINE_WRAPSTODON } from '@/mastodon/reducers/slices/annual_report';
 
 const makeGetStatusIds = (pending = false) => createSelector([
   (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
@@ -14,7 +15,7 @@ const makeGetStatusIds = (pending = false) => createSelector([
   (state)           => state.get('statuses'),
 ], (columnSettings, statusIds, statuses) => {
   return statusIds.filter(id => {
-    if (id === null || id === 'inline-follow-suggestions') return true;
+    if (id === null || id === TIMELINE_SUGGESTIONS || id === TIMELINE_WRAPSTODON) return true;
 
     const statusForId = statuses.get(id);
 

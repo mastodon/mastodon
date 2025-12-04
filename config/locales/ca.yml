@@ -1684,16 +1684,22 @@ ca:
       body: "%{name} t'ha mencionat en:"
       subject: "%{name} t'ha mencionat"
       title: Nova menció
+    moderation_warning:
+      subject: Heu rebut un avís de moderació
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
     quote:
       body: 'La vostra publicació ha estat citada per %{name}:'
       subject: "%{name} ha citat la vostra publicació"
       title: Nova citació
+    quoted_update:
+      subject: "%{name} ha editat una publicació que heu citat"
     reblog:
       body: "%{name} ha impulsat el teu estat:"
       subject: "%{name} ha impulsat el teu estat"
       title: Nou impuls
+    severed_relationships:
+      subject: Heu perdut connexions degut a una decisió de moderació
     status:
       subject: "%{name} ha publicat"
     update:
@@ -2153,3 +2159,5 @@ ca:
     not_supported: Aquest navegador no suporta claus de seguretat
     otp_required: Per a usar claus de seguretat, activeu primer l'autenticació de dos factors.
     registered_on: Registrat en %{date}
+  wrapstodon:
+    title: Wrapstodon %{year} per a %{name}

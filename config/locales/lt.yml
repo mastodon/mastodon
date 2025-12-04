@@ -1,7 +1,7 @@
 ---
 lt:
   about:
-    about_mastodon_html: 'Ateities socialinis tinklas: jokių reklamų ir įmonių sekimo, etiškas dizainas bei decentralizacija! Turėkite savo duomenis su „Mastodon“.'
+    about_mastodon_html: 'Ateities socialinis tinklas: jokių reklamų ir įmonių sekimo, etiškas dizainas bei decentralizacija! Turėkite savo duomenis su „Mastodon“!'
     contact_missing: Nenustatyta
     contact_unavailable: Nėra
     hosted_on: "„Mastodon“ talpinamas domene %{domain}"
@@ -25,6 +25,7 @@ lt:
       one: Įrašas
       other: Įrašų
     posts_tab_heading: Įrašai
+    self_follow_error: Neleidžiama sekti savo pačių paskyros
   admin:
     account_actions:
       action: Atlikti veiksmą
@@ -36,8 +37,9 @@ lt:
       created_msg: Prižiūrėjimo pastaba sėkmingai sukurta!
       destroyed_msg: Prižiūrėjimo pastaba sėkmingai sunaikinta!
     accounts:
+      add_email_domain_block: Blokuoti el. pašto domeną
       approve: Patvirtinti
-      approved_msg: Sėkmingai patvirtinta %{username} registracijos paraiška.
+      approved_msg: Sėkmingai patvirtinta %{username} registracijos paraiška
       are_you_sure: Ar esi įsitikinęs (-usi)?
       avatar: Avataras
       by_domain: Domenas
@@ -47,13 +49,13 @@ lt:
         label: Keisti el. paštą
         new_email: Naujas el. paštas
         submit: Keisti el. paštą
-        title: Keisti el. paštą %{username}
+        title: Keisti el. paštą vartotjui %{username}
       change_role:
         changed_msg: Vaidmuo sėkmingai pakeistas.
         edit_roles: Tvarkyti naudotojų vaidmenis
         label: Keisti vaidmenį
         no_role: Jokios vaidmenį
-        title: Keisti vaidmenį %{username}
+        title: Keisti teises vartotojui %{username}
       confirm: Patvirtinti
       confirmed: Patvirtinta
       confirming: Patvirtinama
@@ -61,7 +63,7 @@ lt:
       delete: Ištrinti duomenis
       deleted: Ištrinta
       demote: Pažeminti
-      destroyed_msg: "%{username} duomenys dabar laukia eilėje, kad būtų netrukus ištrinti."
+      destroyed_msg: "%{username} duomenys dabar laukia eilėje, kad būtų netrukus ištrinti"
       disable: Sustabdyti
       disable_two_factor_authentication: Išjungti 2FA
       disabled: Pristabdyta
@@ -72,7 +74,7 @@ lt:
       email_status: El. pašto būsena
       enable: Panaikinti sustabdymą
       enabled: Įjungta
-      enabled_msg: Sėkmingai panaikintas %{username} paskyros sustabdymas.
+      enabled_msg: Sėkmingai %{username} paskyros sustabdymas panaikintas
       followers: Sekėjai
       follows: Seka
       header: Antraštė
@@ -90,7 +92,7 @@ lt:
       media_attachments: Medijos priedai
       memorialize: Paversti į memorialinį
       memorialized: Memorializuota
-      memorialized_msg: Sėkmingai paversta %{username} į memorialinę paskyrą.
+      memorialized_msg: Sėkmingai %{username} paskyra paversta į memorialinę
       moderation:
         active: Aktyvus
         all: Visi
@@ -119,14 +121,14 @@ lt:
       public: Viešas
       push_subscription_expires: PuSH prenumerata baigiasi
       redownload: Atnaujinti profilį
-      redownloaded_msg: Sėkmingai atnaujintas %{username} profilis iš kilmės šaltinio.
+      redownloaded_msg: Sėkmingai atnaujintas %{username} profilis iš pradinio šaltinio
       reject: Atmesti
-      rejected_msg: Sėkmingai atmesta %{username} registracijos paraiška.
+      rejected_msg: Sėkmingai atmesta %{username} registracijos paraiška
       remote_suspension_irreversible: Šios paskyros duomenys negrįžtamai ištrinti.
       remote_suspension_reversible_hint_html: Paskyra jų serveryje buvo pristabdyta, o duomenys bus visiškai pašalinti %{date}. Iki to laiko nuotolinis serveris gali atkurti šią paskyrą be jokių neigiamų pasekmių. Jei nori iš karto pašalinti visus paskyros duomenis, gali tai padaryti toliau.
       remove_avatar: Pašalinti avatarą
       remove_header: Pašalinti antraštę
-      removed_avatar_msg: Sėkmingai pašalintas %{username} avataro vaizdas.
+      removed_avatar_msg: Sėkmingai pašalintas %{username} avataro vaizdas
       removed_header_msg: Sėkmingai pašalintas %{username} antraštės paveikslėlis
       resend_confirmation:
         already_confirmed: Šis naudotojas jau patvirtintas.
