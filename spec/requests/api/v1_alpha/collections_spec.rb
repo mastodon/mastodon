@@ -164,4 +164,34 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
       end
     end
   end
+
+  describe 'DELETE /api/v1_alpha/collections/:id' do
+    subject do
+      delete "/api/v1_alpha/collections/#{collection.id}", headers: headers
+    end
+
+    let(:collection) { Fabricate(:collection) }
+
+    it_behaves_like 'forbidden for wrong scope', 'read:collections'
+
+    context 'when user is not owner' do
+      it 'returns http forbidden' do
+        subject
+
+        expect(response).to have_http_status(403)
+      end
+    end
+
+    context 'when user is the owner' do
+      let(:collection) { Fabricate(:collection, account: user.account) }
+
+      it 'deletes the collection and returns http success' do
+        collection
+
+        expect { subject }.to change(Collection, :count).by(-1)
+
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end
