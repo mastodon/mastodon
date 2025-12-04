@@ -6,6 +6,7 @@
   = opengraph 'og:site_name', site_title
   = opengraph 'profile:username', acct(@account)[1..]
 
-  = vite_typescript_tag 'annual_report.tsx', crossorigin: 'anonymous'
+  = vite_typescript_tag 'wrapstodon.tsx', crossorigin: 'anonymous'
 
-#wrapstodon{ data: { props: render_wrapstodon_share_data(@generated_annual_report) } }
+#wrapstodon
+= render_wrapstodon_share_data @generated_annual_report

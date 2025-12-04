@@ -20,12 +20,13 @@ function loaded() {
   if (!mountNode) {
     throw new Error('Mount node not found');
   }
-  if (!mountNode.dataset.props) {
+  const propsNode = document.getElementById('wrapstodon-data');
+  if (!propsNode) {
     throw new Error('Initial state prop not found');
   }
 
   const initialState = JSON.parse(
-    mountNode.dataset.props,
+    propsNode.textContent,
   ) as ApiAnnualReportResponse;
 
   const report = initialState.annual_reports[0];
