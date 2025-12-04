@@ -13,11 +13,12 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
 
   before_action :require_user!, only: [:create]
 
+  before_action :set_collection, only: [:show, :update, :destroy]
+
   after_action :verify_authorized
 
   def show
     cache_if_unauthenticated!
-    @collection = Collection.find(params[:id])
     authorize @collection, :show?
 
     render json: @collection, serializer: REST::CollectionSerializer
@@ -32,7 +33,6 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
   end
 
   def update
-    @collection = Collection.find(params[:id])
     authorize @collection, :update?
 
     @collection.update!(collection_update_params) # TODO: Create a service for this to federate changes
@@ -40,7 +40,19 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
     render json: @collection, serializer: REST::CollectionSerializer
   end
 
+  def destroy
+    authorize @collection, :destroy?
+
+    @collection.destroy
+
+    head 200
+  end
+
   private
+
+  def set_collection
+    @collection = Collection.find(params[:id])
+  end
 
   def collection_creation_params
     params.permit(:name, :description, :sensitive, :discoverable, :tag_name, account_ids: [])
