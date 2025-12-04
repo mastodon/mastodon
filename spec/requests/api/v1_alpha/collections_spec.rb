@@ -104,8 +104,6 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
     let(:collection) { Fabricate(:collection) }
     let(:params) { {} }
 
-    it_behaves_like 'forbidden for wrong scope', 'read:collections'
-
     context 'when user is not owner' do
       it 'returns http forbidden' do
         subject
@@ -123,6 +121,8 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
                   sensitive: true,
                   discoverable: false)
       end
+
+      it_behaves_like 'forbidden for wrong scope', 'read:collections'
 
       context 'with valid params' do
         let(:params) do
@@ -172,8 +172,6 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
 
     let(:collection) { Fabricate(:collection) }
 
-    it_behaves_like 'forbidden for wrong scope', 'read:collections'
-
     context 'when user is not owner' do
       it 'returns http forbidden' do
         subject
@@ -184,6 +182,8 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
 
     context 'when user is the owner' do
       let(:collection) { Fabricate(:collection, account: user.account) }
+
+      it_behaves_like 'forbidden for wrong scope', 'read:collections'
 
       it 'deletes the collection and returns http success' do
         collection

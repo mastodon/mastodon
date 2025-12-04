@@ -9,9 +9,9 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
 
   before_action :check_feature_enabled
 
-  before_action -> { doorkeeper_authorize! :write, :'write:collections' }, only: [:create]
+  before_action -> { doorkeeper_authorize! :write, :'write:collections' }, only: [:create, :update, :destroy]
 
-  before_action :require_user!, only: [:create]
+  before_action :require_user!, only: [:create, :update, :destroy]
 
   before_action :set_collection, only: [:show, :update, :destroy]
 
