@@ -176,6 +176,28 @@ RSpec.describe StatusCacheHydrator do
           end
         end
 
+        context 'when the quoted post has a poll authored by the user' do
+          let(:poll) { Fabricate(:poll, account: account) }
+          let(:quoted_status) { Fabricate(:status, poll: poll, account: account) }
+
+          it 'renders the same attributes as a full render' do
+            expect(subject).to eql(compare_to_hash)
+          end
+        end
+
+        context 'when the quoted post has been voted in' do
+          let(:poll) { Fabricate(:poll, options: %w(Yellow Blue)) }
+          let(:quoted_status) { Fabricate(:status, poll: poll) }
+
+          before do
+            VoteService.new.call(account, poll, [0])
+          end
+
+          it 'renders the same attributes as a full render' do
+            expect(subject).to eql(compare_to_hash)
+          end
+        end
+
         context 'when the quoted post matches account filters' do
           let(:quoted_status) { Fabricate(:status, text: 'this toot is about that banned word') }
 
