@@ -48,7 +48,10 @@ const handleIframeUrl = (html, url, providerName) => {
     iframeUrl.searchParams.set('autoplay', 1)
     iframeUrl.searchParams.set('auto_play', 1)
 
-    if (startTime && providerName === "YouTube") iframeUrl.searchParams.set('start', startTime)
+    if (providerName === 'YouTube') {
+      iframeUrl.searchParams.set('start', startTime || '');
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    }
 
     iframe.src = iframeUrl.href
 
