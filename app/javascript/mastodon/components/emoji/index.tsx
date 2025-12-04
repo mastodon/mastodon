@@ -1,7 +1,13 @@
 import type { FC } from 'react';
 import { useContext, useEffect, useState } from 'react';
 
-import { EMOJI_TYPE_CUSTOM } from '@/mastodon/features/emoji/constants';
+import classNames from 'classnames';
+
+import {
+  EMOJI_TYPE_CUSTOM,
+  EMOJIS_REQUIRING_INVERSION_IN_DARK_MODE,
+  EMOJIS_REQUIRING_INVERSION_IN_LIGHT_MODE,
+} from '@/mastodon/features/emoji/constants';
 import { useEmojiAppState } from '@/mastodon/features/emoji/mode';
 import { unicodeHexToUrl } from '@/mastodon/features/emoji/normalize';
 import {
@@ -43,13 +49,22 @@ export const Emoji: FC<EmojiProps> = ({
   const animate = useContext(AnimateEmojiContext);
   const fallback = showFallback ? code : null;
 
+  const inversionClasses = classNames({
+    'invert-on-light': EMOJIS_REQUIRING_INVERSION_IN_LIGHT_MODE.includes(code),
+    'invert-on-dark': EMOJIS_REQUIRING_INVERSION_IN_DARK_MODE.includes(code),
+  });
+
   // If the code is invalid or we otherwise know it's not valid, show the fallback.
   if (!state) {
     return fallback;
   }
 
   if (!shouldRenderImage(state, appState.mode)) {
-    return code;
+    return inversionClasses ? (
+      <span className={inversionClasses}>{code}</span>
+    ) : (
+      code
+    );
   }
 
   if (!isStateLoaded(state)) {
@@ -79,7 +94,7 @@ export const Emoji: FC<EmojiProps> = ({
       src={src}
       alt={state.data.unicode}
       title={state.data.label}
-      className='emojione'
+      className={classNames('emojione', inversionClasses)}
       loading='lazy'
     />
   );
