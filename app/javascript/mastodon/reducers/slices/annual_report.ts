@@ -1,3 +1,4 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
@@ -29,7 +30,12 @@ interface AnnualReportState {
 const annualReportSlice = createSlice({
   name: 'annualReport',
   initialState: {} as AnnualReportState,
-  reducers: {},
+  reducers: {
+    setReport(state, action: PayloadAction<AnnualReport>) {
+      state.report = action.payload;
+      state.state = 'available';
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchReportState.fulfilled, (state, action) => {
@@ -47,6 +53,7 @@ const annualReportSlice = createSlice({
 });
 
 export const annualReport = annualReportSlice.reducer;
+export const { setReport } = annualReportSlice.actions;
 
 export const selectWrapstodonYear = createAppSelector(
   [(state) => state.server.getIn(['server', 'wrapstodon'])],
