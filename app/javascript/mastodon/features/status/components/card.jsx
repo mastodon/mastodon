@@ -40,17 +40,20 @@ const domParser = new DOMParser();
 const handleIframeUrl = (html, url, providerName) => {
   const document = domParser.parseFromString(html, 'text/html').documentElement;
   const iframe = document.querySelector('iframe');
-  const startTime = new URL(url).searchParams.get('t')
+  const startTime = new URL(url).searchParams.get('t');
 
   if (iframe) {
-    const iframeUrl = new URL(iframe.src)
+    const iframeUrl = new URL(iframe.src);
 
-    iframeUrl.searchParams.set('autoplay', 1)
-    iframeUrl.searchParams.set('auto_play', 1)
+    iframeUrl.searchParams.set('autoplay', 1);
+    iframeUrl.searchParams.set('auto_play', 1);
 
-    if (startTime && providerName === "YouTube") iframeUrl.searchParams.set('start', startTime)
+    if (providerName === 'YouTube') {
+      iframeUrl.searchParams.set('start', startTime || '');
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    }
 
-    iframe.src = iframeUrl.href
+    iframe.src = iframeUrl.href;
 
     // DOM parser creates html/body elements around original HTML fragment,
     // so we need to get innerHTML out of the body and not the entire document
