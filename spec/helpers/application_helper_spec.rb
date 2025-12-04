@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationHelper do
-  describe 'body_classes' do
-    context 'with a body class string from a controller' do
+  describe 'html_classes' do
+    context 'with non-default user settings' do
       before do
         user = Fabricate :user
         user.settings['web.use_system_font'] = true
@@ -15,17 +15,9 @@ RSpec.describe ApplicationHelper do
       end
 
       it 'uses the current theme and user settings classes in the result' do
-        expect(helper.body_classes)
-          .to match(/theme-default/)
-          .and match(/system-font/)
+        expect(helper.html_classes)
+          .to match(/system-font/)
           .and match(/reduce-motion/)
-      end
-
-      it 'includes values set via content_for' do
-        helper.content_for(:body_classes) { 'admin' }
-
-        expect(helper.body_classes)
-          .to match(/admin/)
       end
 
       private
@@ -35,9 +27,18 @@ RSpec.describe ApplicationHelper do
           def current_account
             @current_account ||= Fabricate(:account, user: User.last)
           end
-
-          def current_theme = 'default'
         end
+      end
+    end
+  end
+
+  describe 'body_classes' do
+    context 'with a body class string from a controller' do
+      it 'includes values set via content_for' do
+        helper.content_for(:body_classes) { 'admin' }
+
+        expect(helper.body_classes)
+          .to match(/admin/)
       end
     end
   end

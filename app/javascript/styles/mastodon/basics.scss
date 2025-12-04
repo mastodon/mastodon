@@ -3,6 +3,20 @@
 html {
   color: var(--color-text-primary);
   background: var(--color-bg-ambient);
+
+  &.custom-scrollbars {
+    scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
+  }
+
+  --outline-focus-default: 2px solid var(--color-text-brand);
+  --avatar-border-radius: 8px;
+
+  // Variable for easily inverting directional UI elements,
+  --text-x-direction: 1;
+
+  &.rtl {
+    --text-x-direction: -1;
+  }
 }
 
 html.has-modal {
@@ -37,7 +51,7 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0%);
   -webkit-tap-highlight-color: transparent;
 
-  &.system-font {
+  .system-font & {
     // system-ui => standard property (Chrome/Android WebView 56+, Opera 43+, Safari 11+)
     // -apple-system => Safari <11 specific
     // BlinkMacSystemFont => Chrome <56 on macOS specific

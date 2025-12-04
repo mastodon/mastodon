@@ -1,31 +1,6 @@
-@use '../mastodon/theme_utils' as utils;
+@use 'utils';
 
-:root {
-  --color-black: #000;
-  --color-grey-950: #181821;
-  --color-grey-800: #292938;
-  --color-grey-700: #444664;
-  --color-grey-600: #545778;
-  --color-grey-500: #696d91;
-  --color-grey-400: #8b8dac;
-  --color-grey-300: #b4b6cb;
-  --color-grey-200: #d8d9e3;
-  --color-grey-100: #f0f0f5;
-  --color-grey-50: #f0f1ff;
-  --color-white: #fff;
-  --color-indigo-600: #6147e6;
-  --color-indigo-400: #8886ff;
-  --color-indigo-300: #a5abfd;
-  --color-indigo-200: #c8cdfe;
-  --color-indigo-100: #e0e3ff;
-  --color-indigo-50: #f0f1ff;
-  --color-red-500: #ff637e;
-  --color-red-600: #ec003f;
-  --color-yellow-400: #ffb900;
-  --color-yellow-600: #e17100;
-  --color-green-400: #05df72;
-  --color-green-600: #00a63e;
-
+@mixin tokens {
   /* TEXT TOKENS */
 
   --color-text-primary: var(--color-grey-950);
@@ -124,7 +99,7 @@
 
   // Warning
   --overlay-strength-warning: 10%;
-  --color-bg-warning-base: var(--color-yellow-600);
+  --color-bg-warning-base: var(--color-yellow-700);
   --color-bg-warning-base-hover: color-mix(
     in oklab,
     var(--color-bg-warning-base),
@@ -207,9 +182,18 @@
   --rich-text-container-color: rgb(255 216 231 / 100%);
   --rich-text-text-color: rgb(114 47 83 / 100%);
   --rich-text-decorations-color: rgb(255 175 212 / 100%);
+}
 
-  /* MISCELLANEOUS */
+@mixin contrast-overrides {
+  /* TEXT TOKENS */
 
-  --outline-focus-default: 2px solid var(--color-text-brand);
-  --avatar-border-radius: 8px;
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-grey-800);
+  --color-text-tertiary: var(--color-grey-700);
+  --color-text-brand: var(--color-indigo-600);
+
+  /* BORDER TOKENS */
+
+  --border-strength-primary: 30%;
+  --color-border-on-bg-secondary: var(--color-grey-300);
 }
