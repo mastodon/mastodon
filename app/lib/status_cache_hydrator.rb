@@ -26,12 +26,7 @@ class StatusCacheHydrator
 
   def hydrate_non_reblog_payload(empty_payload, account_id, nested: false)
     empty_payload.tap do |payload|
-      fill_status_payload(payload, @status, account_id, nested:)
-
-      if payload[:poll]
-        payload[:poll][:voted] = @status.account_id == account_id
-        payload[:poll][:own_votes] = []
-      end
+      fill_status_payload(payload, @status, account_id, fresh: !nested, nested:)
     end
   end
 
@@ -45,18 +40,7 @@ class StatusCacheHydrator
       # used to create the status, we need to hydrate it here too
       payload[:reblog][:application] = payload_reblog_application if payload[:reblog][:application].nil? && @status.reblog.account_id == account_id
 
-      fill_status_payload(payload[:reblog], @status.reblog, account_id, nested:)
-
-      if payload[:reblog][:poll]
-        if @status.reblog.account_id == account_id
-          payload[:reblog][:poll][:voted] = true
-          payload[:reblog][:poll][:own_votes] = []
-        else
-          own_votes = PollVote.where(poll_id: @status.reblog.poll_id, account_id: account_id).pluck(:choice)
-          payload[:reblog][:poll][:voted] = !own_votes.empty?
-          payload[:reblog][:poll][:own_votes] = own_votes
-        end
-      end
+      fill_status_payload(payload[:reblog], @status.reblog, account_id, fresh: false, nested:)
 
       payload[:filtered]   = payload[:reblog][:filtered]
       payload[:favourited] = payload[:reblog][:favourited]
@@ -64,7 +48,7 @@ class StatusCacheHydrator
     end
   end
 
-  def fill_status_payload(payload, status, account_id, nested: false)
+  def fill_status_payload(payload, status, account_id, nested: false, fresh: true)
     payload[:favourited] = Favourite.exists?(account_id: account_id, status_id: status.id)
     payload[:reblogged]  = Status.exists?(account_id: account_id, reblog_of_id: status.id)
     payload[:muted]      = ConversationMute.exists?(account_id: account_id, conversation_id: status.conversation_id)
@@ -72,6 +56,30 @@ class StatusCacheHydrator
     payload[:pinned]     = StatusPin.exists?(account_id: account_id, status_id: status.id) if status.account_id == account_id
     payload[:filtered]   = mapped_applied_custom_filter(account_id, status)
     payload[:quote] = hydrate_quote_payload(payload[:quote], status.quote, account_id, nested:) if payload[:quote]
+
+    if payload[:poll]
+      if fresh
+        # If the status is brand new, we don't need to look up votes in database
+        payload[:poll][:voted] = status.account_id == account_id
+        payload[:poll][:own_votes] = []
+      elsif status.account_id == account_id
+        payload[:poll][:voted] = true
+        payload[:poll][:own_votes] = []
+      else
+        own_votes = PollVote.where(poll_id: status.poll_id, account_id: account_id).pluck(:choice)
+        payload[:poll][:voted] = !own_votes.empty?
+        payload[:poll][:own_votes] = own_votes
+      end
+    end
+
+    # Nested statuses are more likely to have a stale cache
+    fill_status_stats(payload, status) if nested
+  end
+
+  def fill_status_stats(payload, status)
+    payload[:replies_count] = status.replies_count
+    payload[:reblogs_count] = status.untrusted_reblogs_count || status.reblogs_count
+    payload[:favourites_count] = status.untrusted_favourites_count || status.favourites_count
   end
 
   def hydrate_quote_payload(empty_payload, quote, account_id, nested: false)
