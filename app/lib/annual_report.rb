@@ -5,9 +5,7 @@ class AnnualReport
 
   SOURCES = [
     AnnualReport::Archetype,
-    AnnualReport::TypeDistribution,
     AnnualReport::TopStatuses,
-    AnnualReport::MostUsedApps,
     AnnualReport::TimeSeries,
     AnnualReport::TopHashtags,
   ].freeze

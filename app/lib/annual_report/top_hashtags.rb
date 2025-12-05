@@ -2,7 +2,7 @@
 
 class AnnualReport::TopHashtags < AnnualReport::Source
   MINIMUM_TAGGINGS = 1
-  SET_SIZE = 5
+  SET_SIZE = 1
 
   def generate
     {
