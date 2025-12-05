@@ -1,6 +1,7 @@
 @use 'base';
 @use 'dark';
 @use 'light';
+@use 'utils';
 
 html {
   @include base.palette;
@@ -10,6 +11,7 @@ html {
 
     @media (prefers-color-scheme: dark) {
       @include dark.tokens;
+      @include utils.invert-on-dark;
 
       @media (prefers-contrast: more) {
         @include dark.contrast-overrides;
@@ -18,6 +20,7 @@ html {
 
     @media (prefers-color-scheme: light) {
       @include light.tokens;
+      @include utils.invert-on-light;
 
       @media (prefers-contrast: more) {
         @include light.contrast-overrides;
@@ -33,6 +36,7 @@ html:where(
   color-scheme: dark;
 
   @include dark.tokens;
+  @include utils.invert-on-dark;
 }
 
 html[data-user-theme='contrast'],
@@ -45,4 +49,5 @@ html:where([data-user-theme='mastodon-light']) {
   color-scheme: light;
 
   @include light.tokens;
+  @include utils.invert-on-light;
 }

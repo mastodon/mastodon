@@ -5,9 +5,7 @@ class AnnualReport
 
   SOURCES = [
     AnnualReport::Archetype,
-    AnnualReport::TypeDistribution,
     AnnualReport::TopStatuses,
-    AnnualReport::MostUsedApps,
     AnnualReport::TimeSeries,
     AnnualReport::TopHashtags,
   ].freeze
@@ -22,7 +20,7 @@ class AnnualReport
     return unless Mastodon::Feature.wrapstodon_enabled?
 
     datetime = Time.now.utc
-    datetime.year if datetime.month == 12 && (1..31).cover?(datetime.day)
+    datetime.year if datetime.month == 12 && (10..31).cover?(datetime.day)
   end
 
   def initialize(account, year)

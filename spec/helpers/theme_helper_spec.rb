@@ -12,7 +12,8 @@ RSpec.describe ThemeHelper do
       it 'returns the mastodon-light and application stylesheets with correct color schemes' do
         expect(html_links.first.attributes.symbolize_keys)
           .to include(
-            href: have_attributes(value: match(/mastodon-light/)),
+            # This is now identical to the default theme & will be unified very soon
+            href: have_attributes(value: match(/default/)),
             media: have_attributes(value: 'not all and (prefers-color-scheme: dark)')
           )
         expect(html_links.last.attributes.symbolize_keys)

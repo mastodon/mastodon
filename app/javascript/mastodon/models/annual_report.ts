@@ -42,13 +42,6 @@ interface AnnualReportV2 {
   time_series: TimeSeriesMonth[];
   top_hashtags: NameAndCount[];
   top_statuses: TopStatuses;
-  most_used_apps: NameAndCount[];
-  type_distribution: {
-    total: number;
-    reblogs: number;
-    replies: number;
-    standalone: number;
-  };
 }
 
 export type AnnualReport = {
