@@ -10,6 +10,8 @@ import {
   SKIN_TONE_CODES,
   EMOJIS_WITH_DARK_BORDER,
   EMOJIS_WITH_LIGHT_BORDER,
+  EMOJIS_REQUIRING_INVERSION_IN_LIGHT_MODE,
+  EMOJIS_REQUIRING_INVERSION_IN_DARK_MODE,
 } from './constants';
 import type { CustomEmojiMapArg, ExtraCustomEmojiMap } from './types';
 
@@ -148,6 +150,16 @@ export function twemojiToUnicodeInfo(
   }
 
   return hexNumbersToString(mappedCodes);
+}
+
+export function emojiToInversionClassName(emoji: string): string | null {
+  if (EMOJIS_REQUIRING_INVERSION_IN_DARK_MODE.includes(emoji)) {
+    return 'invert-on-dark';
+  }
+  if (EMOJIS_REQUIRING_INVERSION_IN_LIGHT_MODE.includes(emoji)) {
+    return 'invert-on-light';
+  }
+  return null;
 }
 
 export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg) {

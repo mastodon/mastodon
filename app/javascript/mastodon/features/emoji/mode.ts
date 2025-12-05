@@ -3,6 +3,7 @@
 
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
 import { isDevelopment } from '@/mastodon/utils/environment';
+import { isDarkMode } from '@/mastodon/utils/theme';
 
 import {
   EMOJI_MODE_NATIVE,
@@ -27,7 +28,7 @@ export function useEmojiAppState(): EmojiAppState {
     currentLocale: locale,
     locales: [locale],
     mode,
-    darkTheme: document.body.classList.contains('theme-default'),
+    darkTheme: isDarkMode(),
   };
 }
 
