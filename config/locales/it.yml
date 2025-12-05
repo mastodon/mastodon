@@ -1706,16 +1706,22 @@ it:
       body: 'Sei stato menzionato da %{name} su:'
       subject: Sei stato menzionato da %{name}
       title: Nuova menzione
+    moderation_warning:
+      subject: Hai ricevuto un avviso di moderazione
     poll:
       subject: Un sondaggio da %{name} è terminato
     quote:
       body: 'Il tuo post è stato citato da %{name}:'
       subject: "%{name} ha citato il tuo post"
       title: Nuova citazione
+    quoted_update:
+      subject: "%{name} ha modificato un post che hai citato"
     reblog:
       body: 'Il tuo status è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
       title: Nuova condivisione
+    severed_relationships:
+      subject: Hai perso le connessioni a causa di una decisione della moderazione
     status:
       subject: "%{name} ha appena pubblicato un post"
     update:
@@ -2179,3 +2185,5 @@ it:
     not_supported: Questo browser non supporta le chiavi di sicurezza
     otp_required: Per utilizzare le chiavi di sicurezza, prima abilita l'autenticazione a due fattori.
     registered_on: Registrato il %{date}
+  wrapstodon:
+    title: Wrapstodon %{year} per %{name}
