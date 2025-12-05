@@ -1,5 +1,7 @@
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { Button } from '@/mastodon/components/button';
 
 import styles from './styles.module.scss';
@@ -12,7 +14,7 @@ export const AnnualReportAnnouncement: React.FC<{
   onOpen: () => void;
 }> = ({ year, hasData, isLoading, onRequestBuild, onOpen }) => {
   return (
-    <div className={styles.wrapper}>
+    <div className={classNames('theme-dark', styles.wrapper)}>
       <h2>
         <FormattedMessage
           id='annual_report.announcement.title'
