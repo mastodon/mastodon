@@ -6,6 +6,10 @@ namespace :api, format: false do
 
   # Experimental JSON / REST API
   namespace :v1_alpha do
+    resources :accounts, only: [] do
+      resources :collections, only: [:index]
+    end
+
     resources :async_refreshes, only: :show
 
     resources :collections, only: [:show, :create, :update, :destroy]

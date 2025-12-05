@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-class REST::CollectionSerializer < ActiveModel::Serializer
-  attributes :uri, :name, :description, :local, :sensitive, :discoverable,
-             :created_at, :updated_at
-
+class REST::CollectionSerializer < REST::BaseCollectionSerializer
   belongs_to :account, serializer: REST::AccountSerializer
-  belongs_to :tag, serializer: REST::StatusSerializer::TagSerializer
 
   has_many :items, serializer: REST::CollectionItemSerializer
 
