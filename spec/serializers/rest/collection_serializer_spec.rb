@@ -15,6 +15,7 @@ RSpec.describe REST::CollectionSerializer do
   let(:tag) { Fabricate(:tag, name: 'discovery') }
   let(:collection) do
     Fabricate(:collection,
+              id: 2342,
               name: 'Exquisite follows',
               description: 'Always worth a follow',
               local: true,
@@ -27,6 +28,7 @@ RSpec.describe REST::CollectionSerializer do
     expect(subject)
       .to include(
         'account' => an_instance_of(Hash),
+        'id' => '2342',
         'name' => 'Exquisite follows',
         'description' => 'Always worth a follow',
         'local' => true,
