@@ -65,6 +65,7 @@ lt:
       demote: Pažeminti
       destroyed_msg: "%{username} duomenys dabar laukia eilėje, kad būtų netrukus ištrinti"
       disable: Sustabdyti
+      disable_sign_in_token_auth: Išjungti el. pašto prieigos rakto tapatybės nustatymą
       disable_two_factor_authentication: Išjungti 2FA
       disabled: Pristabdyta
       display_name: Rodomas vardas
@@ -73,6 +74,7 @@ lt:
       email: El. paštas
       email_status: El. pašto būsena
       enable: Panaikinti sustabdymą
+      enable_sign_in_token_auth: Įjungti el. pašto prieigos rakto tapatybės nustatymą
       enabled: Įjungta
       enabled_msg: Sėkmingai %{username} paskyros sustabdymas panaikintas
       followers: Sekėjai
@@ -139,13 +141,14 @@ lt:
       resubscribe: Prenumeruoti iš naujo
       role: Vaidmuo
       search: Ieškoti
+      search_same_email_domain: Kiti naudotojai su tuo pačiu el. pašto domenu
       search_same_ip: Kiti naudotojai su tuo pačiu IP
       security: Saugumas
       security_measures:
         only_password: Tik slaptažodis
         password_and_2fa: Slaptažodis ir 2FA
-      sensitive: Priversti žymėti kaip jautrią
-      sensitized: Pažymėta kaip jautri
+      sensitive: Priversti žymėti kaip su jautria informacija
+      sensitized: Pažymėti kaip jautrią informaciją
       shared_inbox_url: Bendras gautiejų URL
       show:
         created_reports: Sukurtos ataskaitos
@@ -163,7 +166,7 @@ lt:
       unblock_email: Atblokuoti el. pašto adresą
       unblocked_email_msg: Sėkmingai atblokuotas %{username} el. pašto adresas.
       unconfirmed_email: Nepatvirtintas el. pašto adresas.
-      undo_sensitized: Atšaukti privertimą žymėti kaip jautrią
+      undo_sensitized: Atšaukti privertimą žymėti kaip jautrią informaciją
       undo_silenced: Atšaukti ribojimą
       undo_suspension: Atšaukti pristabdymą
       unsilenced_msg: Sėkmingai atšauktas %{username} paskyros ribojimas.
@@ -179,13 +182,16 @@ lt:
         approve_appeal: Patvirtinti apeliaciją
         approve_user: Patvirtinti naudotoją
         assigned_to_self_report: Priskirti ataskaitą
+        change_email_user: Keisti el. paštą vartotjui
         change_role_user: Keisti naudotojo vaidmenį
         confirm_user: Patvirtinti naudotoją
         create_account_warning: Kurti įspėjimą
         create_announcement: Kurti skelbimą
+        create_canonical_email_block: Sukurti el. pašto blokavimą
         create_custom_emoji: Kurti pasirinktinį jaustuką
         create_domain_allow: Kurti domeno leidimą
         create_domain_block: Kurti domeno bloką
+        create_email_domain_block: Sukurti el. pašto domeno blokavimą
         create_ip_block: Kurti IP taisyklę
         create_relay: Kurti perdavimą
         create_unavailable_domain: Kurti nepasiekiamą domeną
@@ -193,9 +199,11 @@ lt:
         create_username_block: Kurti naudotojo vardo taisyklę
         demote_user: Pažeminti naudotoją
         destroy_announcement: Ištrinti skelbimą
+        destroy_canonical_email_block: Ištrinti el. pašto blokavimą
         destroy_custom_emoji: Ištrinti pasirinktinį jaustuką
         destroy_domain_allow: Ištrinti domeno leidimą
         destroy_domain_block: Ištrinti domeno bloką
+        destroy_email_domain_block: Ištrinti el. pašto domeno blokavimą
         destroy_instance: Išvalyti domeną
         destroy_ip_block: Ištrinti IP taisyklę
         destroy_relay: Ištrinti perdavimą
@@ -206,6 +214,7 @@ lt:
         disable_2fa_user: Išjungti 2FA
         disable_custom_emoji: Išjungti pasirinktinį jaustuką
         disable_relay: Išjungti perdavimą
+        disable_sign_in_token_auth_user: Išjungti el. pašto prieigos rakto tapatybės nustatymą naudotojui
         disable_user: Išjungti naudotoją
         enable_custom_emoji: Įjungti pasirinktinį jaustuką
         enable_relay: Įjungti perdavimą
@@ -220,12 +229,12 @@ lt:
         resend_user: Iš naujo siųsti patvirtinimo laišką
         reset_password_user: Nustatyti iš naujo slaptažodį
         resolve_report: Išspręsti ataskaitą
-        sensitive_account: Priversti žymėti kaip jautrią paskyrai
+        sensitive_account: Nustatyti kaip jautrios informacijos paskyrą
         silence_account: Riboti paskyrą
         suspend_account: Pristabdyti paskyrą
         unassigned_report: Panaikinti priskyrimą ataskaitą
         unblock_email_account: Atblokuoti el. pašto adresą
-        unsensitive_account: Atšaukti privertimą žymėti kaip jautrią paskyrai
+        unsensitive_account: Atšaukti privertimą žymėti kaip jautrios informacijos paskyrą
         unsilence_account: Atšaukti riboti paskyrą
         unsuspend_account: Atšaukti paskyros pristabdymą
         update_announcement: Atnaujinti skelbimą
@@ -459,9 +468,19 @@ lt:
       new:
         title: Importuoti domeno blokavimus
       no_file: Nėra pasirinkto failo
+    fasp:
+      providers:
+        sign_in: Prisijungti
+        title: Fediverse Auxiliary Service tiekėjai
+      title: FAST
     follow_recommendations:
+      description_html: "<strong>Rekomendacijos padeda naujiems vartotojams greitai rasti įdomų turinį</strong>. Kai vartotojas nėra pakankamai bendravęs su kitais, kad būtų galima suformuoti asmeninį turinį, vietoj to rekomenduojami šios paskyros. Jos perskaičiuojamos kasdien, remiantis kas pastaruoju metu sulaukė didžiausio susidomėjimo ir turi daugiausiai vietinių sekėjų tam tikra kalba."
       language: Kalbui
       status: Būsena
+      suppress: Slėpti rekomendacijas
+      suppressed: Paslėpta
+      title: Sekti rekomendacijas
+      unsuppress: Atkurti rekomendaciją
     instances:
       audit_log:
         title: Naujausi audito žurnalai
@@ -502,6 +521,8 @@ lt:
         expired: Nebegaliojantis
         title: Filtras
       title: Kvietimai
+    ip_blocks:
+      delete: Ištrinti
     relays:
       add_new: Pridėti naują pamainą
       delete: Ištrinti
@@ -564,7 +585,7 @@ lt:
         invite_users_description: Leidžia naudotojams pakviesti naujus žmones į serverį.
         manage_invites: Tvarkyti kvietimus
         manage_invites_description: Leidžia naudotojams naršyti ir deaktyvuoti kvietimų nuorodas.
-        manage_taxonomies_description: Leidžia naudotojams peržiūrėti tendencingą turinį ir atnaujinti saitažodžių nustatymus
+        manage_taxonomies_description: Leidžia naudotojams peržiūrėti tendencingą turinį ir atnaujinti grotažymių nustatymus
     settings:
       branding:
         title: Firminio ženklo kūrimas
@@ -661,7 +682,8 @@ lt:
       open: Peržiūrėti viešai
       reset: Atkurti
       search: Paieška
-      title: Saitažodžiai
+      title: Grotažymė
+      updated_msg: Grotažymės nustatymai sėkmingai atnaujinti
     terms_of_service:
       back: Atgal į paslaugų sąlygas
       changelog: Kas pasikeitė
@@ -749,9 +771,10 @@ lt:
           tag_servers_dimension: Populiariausi serveriai
           tag_servers_measure: skirtingi serveriai
           tag_uses_measure: bendri naudojimai
+        description_html: Tai yra grotažymės, kurios šiuo metu dažnai pasirodo daugelyje jūsų serverio matomų įrašų. Tai gali padėti jūsų vartotojams sužinoti, apie ką žmonės šiuo metu kalba daugiausiai. Grotažymės nėra rodomos viešai, kol jūs jų nepatvirtinate.
         listable: Gali būti siūloma
         not_trendable: Nepasirodys tendencijose
-        title: Tendencingos saitažodžiai
+        title: Populiarios grotažymės
         trendable: Gali pasirodyti tendencijose
         trending_rank: 'Tendencinga #%{rank}'
       title: Rekomendacijos ir tendencijos
@@ -806,10 +829,12 @@ lt:
       new_trending_statuses:
         title: Tendencingi įrašai
       new_trending_tags:
-        title: Tendencingos saitažodžiai
+        title: Populiarios grotažymės
       subject: Naujos tendencijos peržiūrimos %{instance}
   appearance:
     animations_and_accessibility: Animacijos ir pritaikymas neįgaliesiems
+    boosting_preferences: Pasidalinimo nustatymai
+    boosting_preferences_info_html: "<strong>Patarimas:</strong> Nepriklausomai nuo nustatymų, <kbd>Shift</kbd> + <kbd>Click</kbd> ant %{icon} Dalintis ikonos iš karto pasidalins įrašu."
     discovery: Atradimas
     localization:
       body: Mastodon verčia savanoriai.
@@ -971,7 +996,7 @@ lt:
     storage: Medijos saugykla
   featured_tags:
     add_new: Pridėti naują
-    hint_html: "<strong>Savo profilyje parodyk svarbiausius saitažodžius.</strong> Tai puikus įrankis kūrybiniams darbams ir ilgalaikiams projektams sekti, todėl svarbiausios saitažodžiai rodomi matomoje vietoje profilyje ir leidžia greitai pasiekti tavo paties įrašus."
+    hint_html: "<strong>Savo profilyje parodyk svarbiausias grotažymes.</strong> Tai puikus įrankis kūrybiniams darbams ir ilgalaikiams projektams sekti, todėl svarbiausios grotažymės rodomos matomoje vietoje profilyje ir leidžia greitai pasiekti tavo paties įrašus."
   filters:
     contexts:
       account: Profiliai
@@ -996,7 +1021,7 @@ lt:
     changes_saved_msg: Pakeitimai sėkmingai išsaugoti!
     copy: Kopijuoti
     delete: Ištrinti
-    deselect: Panaikinti visus žymėjimus
+    deselect: Atžymėti visus
     order_by: Tvarkyti pagal
     save_changes: Išsaugoti pakeitimus
     today: šiandien
@@ -1050,6 +1075,9 @@ lt:
     title: Tapatybės nustatymo istorija
   mail_subscriptions:
     unsubscribe:
+      emails:
+        notification_emails:
+          reblog: dalintis pranešimų el. pašto laiškais
       success_html: Daugiau negausi %{type} „Mastodon“ domene %{domain} į savo el. paštą %{email}.
   media_attachments:
     validations:
@@ -1087,9 +1115,9 @@ lt:
       subject: "%{name} paminėjo jūsų įrašą"
       title: Naujas paminėjimas
     reblog:
-      body: 'Tavo įrašą pakėlė %{name}:'
-      subject: "%{name} pakėlė tavo įrašą"
-      title: Naujas pakėlimas
+      body: 'Tavo įrašą dalinosi %{name}:'
+      subject: "%{name} dalinosi tavo įrašu"
+      title: Naujas dalinimasis
   notifications:
     administration_emails: Administratoriaus el. laiško pranešimai
     email_events: Įvykiai, skirti el. laiško pranešimams
@@ -1144,6 +1172,9 @@ lt:
     status: Paskyros būsena
   remote_follow:
     missing_resource: Jūsų paskyros nukreipimo URL nerasta
+  rss:
+    descriptions:
+      tag: 'Vieši įrašai su grotažymėmis #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Jūs pasieketė limitą (%{limit}) galimų toot'ų per dieną
     over_total_limit: Jūs pasieketė %{limit} limitą galimų toot'ų
@@ -1187,7 +1218,7 @@ lt:
     development: Kūrimas
     edit_profile: Redaguoti profilį
     export: Eksportuoti
-    featured_tags: Rodomi saitažodžiai
+    featured_tags: Išskirtos grotažymės
     import: Importuoti
     import_and_export: Importas ir eksportas
     migrate: Paskyros migracija
@@ -1215,7 +1246,7 @@ lt:
         many: "%{count} vaizdo"
         one: "%{count} vaizdas"
         other: "%{count} vaizdų"
-    boosted_from_html: Pakelta iš %{acct_link}
+    boosted_from_html: Dalintasi iš %{acct_link}
     content_warning: 'Turinio įspėjimas: %{warning}'
     errors:
       quoted_status_not_found: Įrašas, kurį bandote cituoti, atrodo, neegzistuoja.
@@ -1224,7 +1255,7 @@ lt:
     pin_errors:
       limit: Jūs jau prisegėte maksimalų toot'ų skaičų
       ownership: Kitų vartotojų toot'ai negali būti prisegti
-      reblog: Pakeltos žinutės negali būti prisegtos
+      reblog: Žinutės, kuriomis pasidalinta, negali būti papildomai prisegtos
     quote_error:
       not_available: Įrašas nepasiekiamas
       pending_approval: Įrašas peržiūrimas
@@ -1239,20 +1270,23 @@ lt:
       public: Vieša
   statuses_cleanup:
     enabled_hint: Automatiškai ištrina įrašus, kai jie pasiekia nustatytą amžiaus ribą, nebent jie atitinka vieną iš toliau nurodytų išimčių
+    ignore_reblogs: Ignoruoti pasidalinimus
     interaction_exceptions_explanation: Atkreipk dėmesį, kad negarantuojama, jog įrašai nebus ištrinti, jei jų mėgstamumo ar pasidalinimo riba bus žemesnė, nors vieną kartą ji jau buvo viršyta.
     keep_polls_hint: Neištrina jokių tavo apklausų
-    keep_self_bookmark: Laikyti įrašus, kuriuos pažymėjai
+    keep_self_bookmark: Laikyti įrašus, kuriuos pažymėjai su žyma
     keep_self_bookmark_hint: Neištrina tavo pačių įrašų, jei esi juos pažymėjęs (-usi)
     keep_self_fav_hint: Neištrina tavo pačių įrašų, jei esi juos pamėgęs (-usi)
     min_age_label: Amžiaus riba
+    min_reblogs: Pasidalintus įrašus laikyti bent
+    min_reblogs_hint: Neištrina jokių jūsų įrašų, kuriais buvo dalintasi bent tiek kartų. Palikite tuščią laukelį, jei norite ištrinti pasidalitus įrašus, nepriklausomai nuo jų paskelbimų skaičiaus
   stream_entries:
     sensitive_content: Jautrus turinys
   terms_of_service:
     title: Paslaugų sąlygos
   themes:
     contrast: Mastodon (didelis kontrastas)
-    default: Mastodon (tamsi)
-    mastodon-light: Mastodon (šviesi)
+    default: Mastodon (Tamsus)
+    mastodon-light: Mastodon (Šviesus)
     system: Automatinis (naudoti sistemos temą)
   two_factor_authentication:
     add: Pridėti
@@ -1337,8 +1371,8 @@ lt:
       follows_title: Ką sekti
       follows_view_more: Peržiūrėti daugiau sekamų žmonių
       hashtags_subtitle: Naršyk, kas tendencinga per pastarąsias 2 dienas
-      hashtags_title: Tendencingos saitažodžiai
-      hashtags_view_more: Peržiūrėti daugiau tendencingų saitažodžių
+      hashtags_title: Populiarios grotažymės
+      hashtags_view_more: Peržiūrėti daugiau populiarių grotažymių
       post_action: Sukurti
       post_step: Sakyk labas pasauliui tekstu, nuotraukomis, vaizdo įrašais arba apklausomis.
       post_title: Sukūrk savo pirmąjį įrašą

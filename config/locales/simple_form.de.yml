@@ -40,14 +40,14 @@ de:
         text: Du kannst nur einmal Einspruch gegen eine Maßnahme einlegen
       defaults:
         autofollow: Personen, die sich über deine Einladung registrieren, folgen automatisch deinem Profil
-        avatar: WEBP, PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
+        avatar: WebP, PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
         bot: Signalisiert, dass dieses Konto hauptsächlich automatisierte Aktionen durchführt und möglicherweise nicht persönlich betreut wird
         context: Orte, an denen der Filter aktiv sein soll
         current_password: Gib aus Sicherheitsgründen bitte das Passwort des aktuellen Kontos ein
         current_username: Um das zu bestätigen, gib den Profilnamen des aktuellen Kontos ein
         digest: Wenn du eine längere Zeit inaktiv bist oder du während deiner Abwesenheit in einer privaten Nachricht erwähnt worden bist
         email: Du wirst eine E-Mail zur Verifizierung dieser E-Mail-Adresse erhalten
-        header: WEBP, PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
+        header: WebP, PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
         inbox_url: Kopiere die URL von der Startseite des gewünschten Relais
         irreversible: Bereinigte Beiträge verschwinden unwiderruflich für dich, auch dann, wenn dieser Filter zu einem späteren wieder entfernt wird
         locale: Die Sprache der Bedienoberfläche, E-Mails und Push-Benachrichtigungen
@@ -86,13 +86,13 @@ de:
           warn: Den gefilterten Beitrag hinter einer Warnung, die den Filtertitel beinhaltet, ausblenden
       form_admin_settings:
         activity_api_enabled: Anzahl der wöchentlichen Beiträge, aktiven Profile und Registrierungen auf diesem Server
-        app_icon: WEBP, PNG, GIF oder JPG. Überschreibt das Standard-App-Symbol auf mobilen Geräten mit einem eigenen Symbol.
+        app_icon: WebP, PNG, GIF oder JPG. Überschreibt das Standard-App-Symbol auf mobilen Geräten mit einem eigenen Symbol.
         backups_retention_period: Nutzer*innen haben die Möglichkeit, Archive ihrer Beiträge zu erstellen, die sie später herunterladen können. Wenn ein positiver Wert gesetzt ist, werden diese Archive nach der festgelegten Anzahl von Tagen automatisch aus deinem Speicher gelöscht.
         bootstrap_timeline_accounts: Diese Konten werden an den Anfang der Follow-Empfehlungen für neue Nutzer angeheftet. Gib eine durch Kommata getrennte Liste von Konten an.
         closed_registrations_message: Wird angezeigt, wenn Registrierungen deaktiviert sind
         content_cache_retention_period: Sämtliche Beiträge von anderen Servern (einschließlich geteilte Beiträge und Antworten) werden, unabhängig von der Interaktion der lokalen Nutzer*innen mit diesen Beiträgen, nach der festgelegten Anzahl von Tagen gelöscht. Das betrifft auch Beiträge, die von lokalen Nutzer*innen favorisiert oder als Lesezeichen gespeichert wurden. Private Erwähnungen zwischen Nutzer*innen von verschiedenen Servern werden ebenfalls verloren gehen und können nicht wiederhergestellt werden. Diese Option richtet sich ausschließlich an Server mit speziellen Zwecken und wird die allgemeine Nutzungserfahrung beeinträchtigen, wenn sie für den allgemeinen Gebrauch aktiviert ist.
         custom_css: Du kannst eigene Stylesheets für das Webinterface von Mastodon verwenden.
-        favicon: WEBP, PNG, GIF oder JPG. Überschreibt das Standard-Mastodon-Favicon mit einem eigenen Symbol.
+        favicon: WebP, PNG, GIF oder JPG. Überschreibt das Standard-Mastodon-Favicon mit einem eigenen Favicon.
         landing_page: Legt fest, welche Seite neue Besucher*innen sehen, wenn sie zum ersten Mal auf deinem Server ankommen. Für „Trends“ müssen die Trends in den Entdecken-Einstellungen aktiviert sein. Für „Lokaler Feed“ muss „Zugriff auf Live-Feeds, die lokale Beiträge beinhalten“ in den Entdecken-Einstellungen auf „Alle“ gesetzt werden.
         mascot: Überschreibt die Abbildung im erweiterten Webinterface.
         media_cache_retention_period: Mediendateien aus Beiträgen von externen Nutzer*innen werden auf deinem Server zwischengespeichert. Wenn ein positiver Wert gesetzt ist, werden die Medien nach der festgelegten Anzahl von Tagen gelöscht. Sollten die Medien nach dem Löschvorgang wieder angefragt werden, werden sie erneut heruntergeladen, sofern der ursprüngliche Inhalt noch vorhanden ist. Es wird empfohlen, diesen Wert auf mindestens 14 Tage festzulegen, da die Häufigkeit der Abfrage von Linkvorschaukarten für Websites von Dritten begrenzt ist und die Linkvorschaukarten sonst nicht vor Ablauf dieser Zeit aktualisiert werden.
@@ -229,7 +229,7 @@ de:
         locale: Sprache des Webinterface
         max_uses: Maximale Anzahl von Verwendungen
         new_password: Neues Passwort
-        note: Biografie
+        note: Über mich
         otp_attempt: Zwei-Faktor-Authentisierung
         password: Passwort
         phrase: Wort oder Formulierung
