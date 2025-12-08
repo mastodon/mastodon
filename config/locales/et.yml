@@ -1706,16 +1706,22 @@ et:
       body: "%{name} mainis sind:"
       subject: "%{name} mainis sind"
       title: Uus mainimine
+    moderation_warning:
+      subject: Su kasutajakonto on saanud moderaatoritelt hoiatuse
     poll:
       subject: "%{name} küsitlus lõppes"
     quote:
       body: "%{name} tsiteeris sinu postitust:"
       subject: "%{name} tsiteeris sinu postitust"
       title: Uus tsitaat
+    quoted_update:
+      subject: "%{name} on muutnud sinu poolt tsiteeritud postitust"
     reblog:
       body: "%{name} jagas edasi postitust:"
       subject: "%{name} jagas postitust"
       title: Uus jagamine
+    severed_relationships:
+      subject: Moderaatorite otsuse tõttu oled kaotanud jälgijaid ja jälgitavaid
     status:
       subject: "%{name} postitas äsja"
     update:
@@ -2181,3 +2187,5 @@ et:
     not_supported: See veebilehitseja ei toeta turvavõtmeid
     otp_required: Turvavõtmete kasutamiseks tuleb eelnevalt sisse lülitada kaheastmeline autentimine.
     registered_on: Registreeritud %{date}
+  wrapstodon:
+    title: "%{year}. aasta Mastodoni kokkuvõte: %{name}"
