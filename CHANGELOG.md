@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.10] - 2025-12-08
+
+### Security
+
+- Fix inconsistent error handling leaking information on existence of private posts ([GHSA-gwhw-gcjx-72v8](https://github.com/mastodon/mastodon/security/advisories/GHSA-gwhw-gcjx-72v8))
+
+### Fixed
+
+- Fix YouTube embeds by sending referer (#37126 by @ChaosExAnima)
+- Fix YouTube iframe not being able to start at a defined time (#26584 by @BrunoViveiros)
+- Fix streamed quoted polls not being hydrated correctly (#37118 by @ClearlyClaire)
+- Fix error handling when re-fetching already-known statuses (#37077 by @ClearlyClaire)
+- Fix known expensive S3 batch delete operation failing because of short timeouts (#37004 by @ClearlyClaire)
+
 ## [4.4.9] - 2025-11-20
 
 ### Fixed
