@@ -1,16 +1,26 @@
 import { useEffect } from 'react';
 
-import { AnnualReport } from 'mastodon/features/annual_report';
+import classNames from 'classnames';
+
+import { AnnualReport } from '.';
+import styles from './index.module.scss';
 
 const AnnualReportModal: React.FC<{
   onChangeBackgroundColor: (color: string) => void;
 }> = ({ onChangeBackgroundColor }) => {
   useEffect(() => {
-    onChangeBackgroundColor('var(--indigo-1)');
+    onChangeBackgroundColor('var(--color-bg-media-base)');
   }, [onChangeBackgroundColor]);
 
   return (
-    <div className='modal-root__modal annual-report-modal'>
+    <div
+      className={classNames(
+        'modal-root__modal',
+        styles.modalWrapper,
+        styles.variables,
+        'theme-dark',
+      )}
+    >
       <AnnualReport />
     </div>
   );
