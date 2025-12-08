@@ -33,7 +33,7 @@ de:
       created_msg: Moderationshinweis erfolgreich abgespeichert!
       destroyed_msg: Moderationsnotiz erfolgreich entfernt!
     accounts:
-      add_email_domain_block: E-Mail-Domain sperren
+      add_email_domain_block: E-Mail-Domain blockieren
       approve: Genehmigen
       approved_msg: Antrag zur Registrierung von %{username} erfolgreich genehmigt
       are_you_sure: Bist du dir sicher?
@@ -154,10 +154,10 @@ de:
       subscribe: Abonnieren
       suspend: Sperren
       suspended: Gesperrt
-      suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto entsperren, um es wieder zu verwenden, aber es wird keine Daten wiederherstellen, die es davor hatte.
+      suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst die Kontosperrung aufheben, damit es wieder aktiv ist und funktioniert, aber es werden keine früheren Daten wiederhergestellt.
       suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du das nachfolgend tun.
       title: Konten
-      unblock_email: E-Mail-Adresse entsperren
+      unblock_email: Blockierung der E-Mail-Adresse aufheben
       unblocked_email_msg: E-Mail-Adresse von %{username} erfolgreich entsperrt
       unconfirmed_email: Unbestätigte E-Mail-Adresse
       undo_sensitized: Inhaltswarnung aufheben
@@ -184,7 +184,7 @@ de:
         create_canonical_email_block: E-Mail-Sperre erstellen
         create_custom_emoji: Eigene Emojis erstellen
         create_domain_allow: Domain erlauben
-        create_domain_block: Domain sperren
+        create_domain_block: Domain blockieren
         create_email_domain_block: E-Mail-Domain-Sperre erstellen
         create_ip_block: IP-Regel erstellen
         create_relay: Relais erstellen
@@ -218,20 +218,20 @@ de:
         promote_user: Benutzer*in hochstufen
         publish_terms_of_service: Nutzungsbedingungen veröffentlichen
         reject_appeal: Einspruch ablehnen
-        reject_user: Benutzer*in ablehnen
+        reject_user: Profil ablehnen
         remove_avatar_user: Profilbild entfernen
         reopen_report: Meldung wieder eröffnen
-        resend_user: Bestätigungs-E-Mail erneut senden
+        resend_user: Bestätigungs-E-Mail erneut zuschicken
         reset_password_user: Passwort zurücksetzen
         resolve_report: Meldung klären
         sensitive_account: Konto mit erzwungener Inhaltswarnung
         silence_account: Konto stummschalten
         suspend_account: Konto sperren
         unassigned_report: Meldung widerrufen
-        unblock_email_account: E-Mail-Adresse entsperren
+        unblock_email_account: Blockierung der E-Mail-Adresse aufheben
         unsensitive_account: Konto mit erzwungener Inhaltswarnung rückgängig machen
         unsilence_account: Konto nicht mehr stummschalten
-        unsuspend_account: Konto entsperren
+        unsuspend_account: Kontosperre aufheben
         update_announcement: Ankündigung aktualisieren
         update_custom_emoji: Eigenes Emoji aktualisieren
         update_domain_block: Domain-Sperre aktualisieren
@@ -241,7 +241,7 @@ de:
         update_user_role: Rolle bearbeiten
         update_username_block: Regel für Profilnamen aktualisieren
       actions:
-        approve_appeal_html: "%{name} hat den Einspruch gegen eine Moderationsentscheidung von %{target} genehmigt"
+        approve_appeal_html: "%{name} genehmigte den Einspruch gegen eine Moderationsentscheidung von %{target}"
         approve_user_html: "%{name} genehmigte die Registrierung von %{target}"
         assigned_to_self_report_html: "%{name} wies sich die Meldung %{target} selbst zu"
         change_email_user_html: "%{name} änderte die E-Mail-Adresse von %{target}"
@@ -255,7 +255,7 @@ de:
         create_domain_block_html: "%{name} sperrte die Domain %{target}"
         create_email_domain_block_html: "%{name} sperrte die E-Mail-Domain %{target}"
         create_ip_block_html: "%{name} erstellte eine IP-Regel für %{target}"
-        create_relay_html: "%{name} erstellte ein Relay %{target}"
+        create_relay_html: "%{name} erstellte ein Relais %{target}"
         create_unavailable_domain_html: "%{name} beendete die Zustellung an die Domain %{target}"
         create_user_role_html: "%{name} erstellte die Rolle %{target}"
         create_username_block_html: "%{name} erstellte eine Regel für Profilnamen mit %{target}"
@@ -285,7 +285,7 @@ de:
         memorialize_account_html: "%{name} wandelte das Konto von %{target} in eine Gedenkseite um"
         promote_user_html: "%{name} beförderte %{target}"
         publish_terms_of_service_html: "%{name} aktualisierte die Nutzungsbedingungen"
-        reject_appeal_html: "%{name} hat den Einspruch gegen eine Moderationsentscheidung von %{target} abgelehnt"
+        reject_appeal_html: "%{name} lehnte den Einspruch gegen eine Moderationsentscheidung von %{target} ab"
         reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
         remove_avatar_user_html: "%{name} entfernte das Profilbild von %{target}"
         reopen_report_html: "%{name} öffnete die Meldung %{target} wieder"
@@ -296,14 +296,14 @@ de:
         silence_account_html: "%{name} schaltete das Konto von %{target} stumm"
         suspend_account_html: "%{name} sperrte das Konto von %{target}"
         unassigned_report_html: "%{name} entfernte die Zuweisung der Meldung %{target}"
-        unblock_email_account_html: "%{name} hat die E-Mail-Adresse von %{target} entsperrt"
-        unsensitive_account_html: "%{name} hat die Inhaltswarnung für Medien von %{target} aufgehoben"
+        unblock_email_account_html: "%{name} entsperrte die E-Mail-Adresse von %{target}"
+        unsensitive_account_html: "%{name} hob die Inhaltswarnung für Medien von %{target} auf"
         unsilence_account_html: "%{name} hob die Stummschaltung von %{target} auf"
         unsuspend_account_html: "%{name} entsperrte das Konto von %{target}"
         update_announcement_html: "%{name} überarbeitete die Ankündigung %{target}"
         update_custom_emoji_html: "%{name} bearbeitete das Emoji %{target}"
         update_domain_block_html: "%{name} aktualisierte die Domain-Sperre für %{target}"
-        update_ip_block_html: "%{name} änderte die Regel für die IP-Adresse %{target}"
+        update_ip_block_html: "%{name} änderte eine IP-Regel für %{target}"
         update_report_html: "%{name} überarbeitete die Meldung %{target}"
         update_status_html: "%{name} überarbeitete einen Beitrag von %{target}"
         update_user_role_html: "%{name} änderte die Rolle von %{target}"
@@ -366,7 +366,7 @@ de:
       shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
       title: Emojis
       uncategorized: Unkategorisiert
-      unlist: Nicht anzeigen
+      unlist: Ausblenden
       unlisted: Nicht sichtbar
       update_failed_msg: Konnte dieses Emoji nicht bearbeiten
       updated_msg: Emoji erfolgreich bearbeitet!
@@ -522,7 +522,7 @@ de:
       status: Status
       suppress: Folgeempfehlung unterbinden
       suppressed: Unterdrückt
-      title: Folgeempfehlungen
+      title: Follower-Empfehlungen
       unsuppress: Folgeempfehlung nicht mehr unterbinden
     instances:
       audit_log:
@@ -825,7 +825,7 @@ de:
         preamble: Passe das Webinterface von Mastodon an.
         title: Design
       branding:
-        preamble: Das Branding deines Servers unterscheidet ihn von anderen Servern im Netzwerk. Diese Informationen können in einer Vielzahl von Umgebungen angezeigt werden, z. B. in der Weboberfläche von Mastodon, in nativen Anwendungen, in Linkvorschauen auf anderen Websites und in Messaging-Apps und so weiter. Aus diesem Grund ist es am besten, diese Informationen klar, kurz und prägnant zu halten.
+        preamble: Das Branding deines Servers unterscheidet ihn von anderen Servern im Netzwerk. Diese Informationen können in einer Vielzahl von Umgebungen angezeigt werden, z. B. im Webinterface von Mastodon, in nativen Anwendungen, in der Linkvorschau auf anderen Websites, in Messaging-Apps und so weiter. Aus diesem Grund ist es am besten, diese Informationen klar, kurz und prägnant zu halten.
         title: Branding
       captcha_enabled:
         desc_html: Dies beruht auf externen Skripten von hCaptcha, die ein Sicherheits- und Datenschutzproblem darstellen könnten. Darüber hinaus <strong>kann das den Registrierungsprozess für manche Menschen (insbesondere für Menschen mit Behinderung) erheblich erschweren</strong>. Aus diesen Gründen solltest du alternative Maßnahmen in Betracht ziehen, z. B. eine Registrierung basierend auf einer Einladung oder auf Genehmigungen.
@@ -1054,7 +1054,7 @@ de:
           one: In den vergangenen 7 Tagen von einem Profil geteilt
           other: In den vergangenen 7 Tagen von %{count} Profilen geteilt
         title: Angesagte Links
-        usage_comparison: Heute %{today}-mal und gestern %{yesterday}-mal geteilt
+        usage_comparison: Heute %{today} × und gestern %{yesterday} × geteilt
       not_allowed_to_trend: Darf nicht trenden
       only_allowed: Nur Genehmigte
       pending_review: Überprüfung ausstehend
@@ -1099,7 +1099,7 @@ de:
         trendable: In Trends erlaubt
         trending_rank: Platz %{rank}
         usable: In Beiträgen erlaubt
-        usage_comparison: Heute %{today}-mal und gestern %{yesterday}-mal verwendet
+        usage_comparison: Heute %{today} × und gestern %{yesterday} × verwendet
         used_by_over_week:
           one: In den vergangenen 7 Tagen von einem Profil verwendet
           other: In den vergangenen 7 Tagen von %{count} Profilen verwendet
@@ -1889,7 +1889,7 @@ de:
     profile: Öffentliches Profil
     relationships: Follower und Folge ich
     severed_relationships: Getrennte Beziehungen
-    statuses_cleanup: Automatische Löschung
+    statuses_cleanup: Automatisiertes Löschen
     strikes: Maßnahmen
     two_factor_authentication: Zwei-Faktor-Authentisierung
     webauthn_authentication: Sicherheitsschlüssel
@@ -1941,7 +1941,7 @@ de:
       pending_approval: Veröffentlichung ausstehend
       revoked: Beitrag durch Autor*in entfernt
     quote_policies:
-      followers: Nur Follower
+      followers: Nur Follower und ich
       nobody: Nur ich
       public: Alle
     quote_post_author: Zitierte %{acct}

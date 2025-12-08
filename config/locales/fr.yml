@@ -506,6 +506,7 @@ fr:
         finish_registration: Terminer l'inscription
         name: Nom
         providers: Fournisseur
+        public_key_fingerprint: Empreinte de la clé publique
         registration_requested: Inscription demandée
         registrations:
           confirm: Confirmer
@@ -821,6 +822,7 @@ fr:
         rules_hint: Il y a un espace dédié pour les règles auxquelles vos utilisateurs sont invités à adhérer.
         title: À propos
       allow_referrer_origin:
+        desc: Quand les utilisateurs cliquent sur un lien externe, leur navigateur peut envoyer l'adresse du serveur Mastodon en tant qu'adresse d'origine. À désactiver si cela permet d'identifier les utilisateurs, par exemple s'il s'agit d'un serveur Mastodon personnel.
         title: Autoriser les sites externes à voir votre serveur Mastodon comme une source de trafic
       appearance:
         preamble: Personnaliser l'interface web de Mastodon.
@@ -840,6 +842,7 @@ fr:
         title: Par défaut, ne pas indexer les comptes dans les moteurs de recherche
       discovery:
         follow_recommendations: Suivre les recommandations
+        preamble: Il est essentiel de donner de la visibilité à des contenus intéressants pour attirer des utilisateur⋅rice⋅s néophytes qui ne connaissent peut-être personne sur Mastodon. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
         privacy: Vie privée
         profile_directory: Annuaire des profils
         public_timelines: Fils publics
@@ -853,6 +856,7 @@ fr:
       feed_access:
         modes:
           authenticated: Utilisateurs authentifiés uniquement
+          disabled: Nécessite un rôle spécifique
           public: Tout le monde
       landing_page:
         values:
@@ -938,6 +942,8 @@ fr:
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
+      elasticsearch_analysis_index_mismatch:
+        message_html: Les paramètres de l'analyseur d'index d'Elasticsearch ne sont plus à jour. Veuillez lancer <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Le cluster Elasticsearch n’est pas sain (statut rouge), les fonctionnalités de recherche ne sont pas disponible
       elasticsearch_health_yellow:
@@ -1113,11 +1119,14 @@ fr:
       delete: Supprimer
       edit:
         title: Modifier la règle de nom d'utilisateur
+      matches_exactly_html: Égal à %{string}
       new:
         create: Créer une règle
         title: Créer une nouvelle règle de nom d'utilisateur
       no_username_block_selected: Aucune règle de nom d'utilisateur n'a été modifiée car aucune n'a été sélectionnée
+      not_permitted: Non autorisé
       title: Règles de nom d'utilisateur
+      updated_msg: Règle de nom d'utilisateur mise à jour
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Supprimer
@@ -1193,6 +1202,7 @@ fr:
     advanced_settings: Paramètres avancés
     animations_and_accessibility: Animations et accessibilité
     boosting_preferences: Préférences de partage
+    boosting_preferences_info_html: "<strong>Astuce :</strong> indépendamment des paramètres, <kbd>Maj</kbd> + <kbd>Clic</kbd> sur l'icône %{icon} Boost va immédiatement partager."
     discovery: Découverte
     localization:
       body: Mastodon est traduit par des volontaires.
@@ -1597,6 +1607,7 @@ fr:
   link_preview:
     author_html: Par %{name}
     potentially_sensitive_content:
+      action: Cliquer pour afficher
       confirm_visit: Voulez-vous vraiment ouvrir ce lien ?
       hide_button: Masquer
       label: Contenu potentiellement sensible
@@ -1921,6 +1932,7 @@ fr:
     errors:
       in_reply_not_found: Le message auquel vous essayez de répondre ne semble pas exister.
       quoted_status_not_found: Le message que vous essayez de citer ne semble pas exister.
+      quoted_user_not_mentioned: Impossible de citer un compte non mentionné dans une mention privée.
     over_character_limit: limite de %{max} caractères dépassée
     pin_errors:
       direct: Les messages qui ne sont visibles que pour les utilisateur·rice·s mentionné·e·s ne peuvent pas être épinglés
@@ -1989,6 +2001,8 @@ fr:
   terms_of_service:
     title: Conditions d'utilisation
   terms_of_service_interstitial:
+    future_preamble_html: Nous avons modifié nos conditions d'utilisation, ces changements entreront en vigueur le <strong>%{date}</strong>. Nous vous invitons à prendre connaissance des nouvelles conditions.
+    past_preamble_html: Nous avons modifié nos conditions d'utilisation depuis votre dernière visite. Nous vous invitons à prendre connaissance des nouvelles conditions.
     review_link: Vérifier les conditions d'utilisation
     title: Les conditions d'utilisation de %{domain} ont changées
   themes:

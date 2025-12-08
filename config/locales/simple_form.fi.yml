@@ -19,7 +19,7 @@ fi:
         text: Voit käyttää julkaisun syntaksia, kuten URL-osoitteita, aihetunnisteita ja mainintoja
         title: Valinnainen. Ei näy vastaanottajalle
       admin_account_action:
-        include_statuses: Käyttäjä näkee, mitkä julkaisut johtivat moderointitoimeen tai -varoitukseen
+        include_statuses: Käyttäjä näkee, mitkä julkaisut johtivat moderointitoimeen tai -⁠varoitukseen
         send_email_notification: Käyttäjä saa selvityksen siitä, mitä hänen tililleen tapahtui
         text_html: Valinnainen. Voit käyttää julkaisun syntaksia. Voit <a href="%{path}">lisätä varoitusasetuksia</a> säästääksesi aikaa
         type_html: Valitse mitä teet käyttäjälle <strong>%{acct}</strong>
@@ -28,7 +28,7 @@ fi:
           none: Käytä tätä lähettääksesi varoitus käyttäjälle käynnistämättä mitään muita toimia.
           sensitive: Pakota kaikki tämän käyttäjän mediatiedostot arkaluonteisiksi.
           silence: Estä käyttäjää lähettämästä julkaisuja, joiden näkyvyys on julkinen, sekä piilota hänen julkaisunsa ja häneen liittyvät ilmoitukset niiltä, jotka eivät seuraa häntä. Sulkee kaikki tiliin kohdistuvat raportit.
-          suspend: Estä kaikki vuorovaikutus tältä tililtä ja tälle tilille sekä poista kaikki sen sisältö. Peruttavissa 30 päivän ajan. Sulkee kaikki tiliin kohdistuvat raportit.
+          suspend: Estä kaikki vuorovaikutus tältä tililtä ja tälle tilille sekä poista kaikki sen sisältö. Peruttavissa 30 päivän ajan. Sulkee kaikki tiliin kohdistuvat raportit.
         warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
       announcement:
         all_day: Kun valittuna, vain aikavälin päivät näytetään
@@ -48,7 +48,7 @@ fi:
         digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
         email: Sinulle lähetetään vahvistusviesti
         header: WEBP, PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
-        inbox_url: Kopioi URL-osoite haluamasi välittäjän etusivulta
+        inbox_url: Kopioi URL-⁠osoite haluamasi välittäjän etusivulta
         irreversible: Suodatetut julkaisut katoavat peruuttamattomasti, vaikka suodatin poistettaisiin myöhemmin
         locale: Käyttöliittymän, sähköpostiviestien ja puskuilmoitusten kieli
         password: Käytä vähintään 8:aa merkkiä
@@ -65,12 +65,12 @@ fi:
         setting_display_media_hide_all: Piilota mediasisältö aina
         setting_display_media_show_all: Näytä mediasisältö aina
         setting_emoji_style: Miten emojit näkyvät. ”Automaattinen” pyrkii käyttämään natiiveja emojeita, mutta Twemoji-emojeita käytetään varavaihtoehtoina vanhoissa selaimissa.
-        setting_quick_boosting_html: Kun käytössä, %{boost_icon} Tehosta-kuvakkeen painaminen tehostaa välittömästi sen sijaan, että Tehosta/Lainaa-pudotusvalikko avautuisi. Siirtää lainaustoiminnon %{options_icon} (Valinnat) -valikkoon.
+        setting_quick_boosting_html: Kun käytössä, %{boost_icon} Tehosta-kuvakkeen painaminen tehostaa välittömästi sen sijaan, että Tehosta/Lainaa-pudotusvalikko avautuisi. Siirtää lainaustoiminnon %{options_icon} (Valinnat) -⁠valikkoon.
         setting_system_scrollbars_ui: Koskee vain Safari- ja Chrome-pohjaisia työpöytäselaimia
         setting_use_blurhash: Liukuvärit perustuvat piilotettujen kuvien väreihin mutta sumentavat yksityiskohdat
         setting_use_pending_items: Piilota aikajanan päivitykset napsautuksen taakse syötteen automaattisen vierityksen sijaan
         username: Voit käyttää kirjaimia, numeroita ja alaviivoja
-        whole_word: Kun avainsana tai -fraasi on täysin aakkosnumeerinen, suodatin aktivoituu vain sen täysvastineille
+        whole_word: Kun avainsana tai -⁠fraasi on kokonaan aakkosnumeerinen, suodatin tulee voimaan vain sen täysvastineille
       domain_allow:
         domain: Tämä verkkotunnus voi noutaa tietoja tältä palvelimelta, ja sieltä saapuvat tiedot käsitellään ja tallennetaan
       email_domain_block:
@@ -99,7 +99,7 @@ fi:
         min_age: Käyttäjiä pyydetään rekisteröitymisen aikana vahvistamaan syntymäpäivänsä
         peers_api_enabled: Luettelo verkkotunnuksista, jotka tämä palvelin on kohdannut fediversumissa. Se ei kerro, federoitko tietyn palvelimen kanssa, vaan että palvelimesi on ylipäätään tietoinen siitä. Tätä tietoa käytetään palveluissa, jotka keräävät tilastoja federoinnista yleisellä tasolla.
         profile_directory: Profiilihakemisto luetteloi kaikki käyttäjät, jotka ovat valinneet olla löydettävissä.
-        require_invite_text: Kun rekisteröityminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” -tekstikentästä pakollinen vapaaehtoisen sijaan
+        require_invite_text: Kun rekisteröityminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” -⁠tekstikentästä pakollinen vapaaehtoisen sijaan
         site_contact_email: Miten sinut voi tavoittaa oikeus- tai tukikysymyksissä.
         site_contact_username: Miten sinut voi tavoittaa Mastodonissa.
         site_extended_description: Kaikki lisätiedot, jotka voivat olla hyödyllisiä kävijöille ja käyttäjille. Voidaan jäsentää Markdown-syntaksilla.
@@ -146,7 +146,7 @@ fi:
         arbitration_address: Voi olla sama kuin edellä mainittu Fyysinen osoite tai ”N/A”, jos käytät sähköpostia.
         arbitration_website: Voi olla verkkolomake tai ”N/A”, jos käytät sähköpostia.
         choice_of_law: Kaupunki, alue, territorio tai valtio, jonka sisäinen aineellinen oikeus säätelee kaikkia vaatimuksia.
-        dmca_address: Yhdysvaltalaisten operaattoreiden on käytettävä DMCA Designated Agent Directory -luetteloon rekisteröityä osoitetta. Postilokeroluettelo on saatavissa suoralla pyynnöllä, joten käytä DMCA Designated Agent Post Office Box Waiver Request -lomaketta lähettääksesi sähköpostia tekijänoikeusvirastolle ja kuvaile, että olet kotona toimiva sisältömoderaattori, joka pelkää kostoa tai rangaistusta toimistaan ja tarvitsee postilokeroa pitääkseen kotiosoitteensa poissa julkisuudesta.
+        dmca_address: Yhdysvaltalaisten operaattoreiden on käytettävä DMCA Designated Agent Directory -⁠luetteloon rekisteröityä osoitetta. Postilokeroluettelo on saatavissa suoralla pyynnöllä, joten käytä DMCA Designated Agent Post Office Box Waiver Request -⁠lomaketta lähettääksesi sähköpostia tekijänoikeusvirastolle ja kuvaile, että olet kotona toimiva sisältömoderaattori, joka pelkää kostoa tai rangaistusta toimistaan ja tarvitsee postilokeroa pitääkseen kotiosoitteensa poissa julkisuudesta.
         dmca_email: Voi olla sama kuin edellä mainittu ”Sähköpostiosoite oikeudellisille ilmoituksille”.
         domain: Tarjoamasi verkkopalvelun yksilöllinen tunniste.
         jurisdiction: Mainitse valtio, jossa laskujen maksaja asuu. Jos kyseessä on yritys tai muu yhteisö, mainitse valtio, johon se on rekisteröity, ja tarvittaessa kaupunki, alue, territorio tai osavaltio.
@@ -203,7 +203,7 @@ fi:
       announcement:
         all_day: Koko päivän tapahtuma
         ends_at: Tapahtuman loppu
-        scheduled_at: Ajoita julkaisu
+        scheduled_at: Ajasta julkaisu
         starts_at: Tapahtuman alku
         text: Tiedote
       appeal:
@@ -224,7 +224,7 @@ fi:
         fields: Lisäkentät
         header: Otsakekuva
         honeypot: "%{label} (älä täytä)"
-        inbox_url: Välittäjän postilaatikon URL-osoite
+        inbox_url: Välittäjän postilaatikon URL-⁠osoite
         irreversible: Pudota piilottamisen sijaan
         locale: Käyttöliittymän kieli
         max_uses: Käyttökertoja enintään

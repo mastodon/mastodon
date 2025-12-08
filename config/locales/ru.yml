@@ -29,9 +29,9 @@ ru:
   admin:
     account_actions:
       action: Выполнить действие
-      already_silenced: Эта учетная запись уже ограничена.
-      already_suspended: Эта учетная запись уже заблокирована.
-      title: Осуществить модерацию в отношении учётной записи %{acct}
+      already_silenced: Эта учётная запись уже ограничена.
+      already_suspended: Эта учётная запись уже заблокирована.
+      title: Произвести модерацию учётной записи %{acct}
     account_moderation_notes:
       create: Создать заметку
       created_msg: Заметка для модераторов добавлена
@@ -63,9 +63,9 @@ ru:
       delete: Удалить данные
       deleted: Удалена
       demote: Разжаловать
-      destroyed_msg: Данные %{username} поставлены в очередь на удаление
+      destroyed_msg: Данные %{username} будут удалены в ближайшее время
       disable: Отключить
-      disable_sign_in_token_auth: Отключить аутентификацию по e-mail кодам
+      disable_sign_in_token_auth: Отключить аутентификацию с помощью одноразового пароля по эл. почте
       disable_two_factor_authentication: Отключить 2FA
       disabled: Отключена
       display_name: Отображаемое имя
@@ -74,9 +74,9 @@ ru:
       email: Адрес электронной почты
       email_status: Подтверждение учётной записи
       enable: Включить
-      enable_sign_in_token_auth: Включить аутентификацию по e-mail кодам
-      enabled: Включен
-      enabled_msg: Учётная запись %{username} успешно разморожена
+      enable_sign_in_token_auth: Включить аутентификацию с помощью одноразового пароля по эл. почте
+      enabled: Включена
+      enabled_msg: Отменено отключение учётной записи %{username}
       followers: Подписчики
       follows: Подписки
       header: Обложка профиля
@@ -92,9 +92,9 @@ ru:
         title: По расположению
       login_status: Состояние учётной записи
       media_attachments: Медиавложения
-      memorialize: Сделать мемориалом
-      memorialized: In memoriam
-      memorialized_msg: "%{username} успешно превращён в памятник"
+      memorialize: Почтить память
+      memorialized: Мемориальная
+      memorialized_msg: Учётная запись %{username} превращена в мемориальную
       moderation:
         active: Действующие
         all: Все
@@ -109,7 +109,7 @@ ru:
       no_account_selected: Ничего не изменилось, так как ни одна учётная запись не была выделена
       no_limits_imposed: Ограничения отсутствуют
       no_role_assigned: Роль не присвоена
-      not_subscribed: Не подписаны
+      not_subscribed: Подписка отсутствует
       pending: Ожидает одобрения
       perform_full_suspension: Заблокировать
       previous_strikes: Зафиксированные нарушения
@@ -118,9 +118,9 @@ ru:
         many: За этой учётной записью числится <strong>%{count}</strong> нарушений.
         one: За этой учётной записью числится <strong>%{count}</strong> нарушение.
         other: За этой учётной записью числится <strong>%{count}</strong> нарушений.
-      promote: Повысить
+      promote: Сделать администратором
       protocol: Протокол
-      public: Публичный
+      public: Профиль
       push_subscription_expires: Подписка PuSH истекает
       redownload: Обновить аватар
       redownloaded_msg: Профиль %{username} успешно обновлен из оригинала
@@ -138,7 +138,7 @@ ru:
         success: Ссылка для подтверждения успешно отправлена!
       reset: Сбросить
       reset_password: Сбросить пароль
-      resubscribe: Переподписаться
+      resubscribe: Пересоздать подписку
       role: Роль
       search: Поиск
       search_same_email_domain: Другие пользователи с тем же доменом эл. почты
@@ -169,9 +169,9 @@ ru:
       undo_sensitized: Не скрывать медиа
       undo_silenced: Не ограничивать
       undo_suspension: Разблокировать
-      unsilenced_msg: Ограничения с учётной записи %{username} сняты успешно
+      unsilenced_msg: Отменено ограничение учётной записи %{username}
       unsubscribe: Отписаться
-      unsuspended_msg: Учётная запись %{username} успешно разморожена
+      unsuspended_msg: Учётная запись %{username} разблокирована
       username: Имя пользователя
       view_domain: Просмотр сводки по домену
       warn: Предупредить
@@ -214,11 +214,11 @@ ru:
         disable_2fa_user: Отключение 2FA
         disable_custom_emoji: Отключение эмодзи
         disable_relay: Отключение ретранслятора
-        disable_sign_in_token_auth_user: Отключение аутентификации по e-mail кодам
+        disable_sign_in_token_auth_user: Отключение аутентификации с помощью одноразового пароля по эл. почте
         disable_user: Заморозка пользователей
         enable_custom_emoji: Включение эмодзи
         enable_relay: Включение ретранслятора
-        enable_sign_in_token_auth_user: Включение аутентификации по e-mail кодам
+        enable_sign_in_token_auth_user: Включение аутентификации с помощью одноразового пароля по эл. почте
         enable_user: Разморозка пользователей
         memorialize_account: Присвоение пользователям статуса «мемориала»
         promote_user: Повышение пользователей
@@ -282,11 +282,11 @@ ru:
         disable_2fa_user_html: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
         disable_custom_emoji_html: "%{name} отключил(а) эмодзи %{target}"
         disable_relay_html: "%{name} отключил(а) ретранслятор %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} отключил(а) аутентификацию по e-mail кодам для %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} отключил(а) аутентификацию с помощью одноразового пароля по эл. почте для %{target}"
         disable_user_html: "%{name} заморозил(а) пользователя %{target}"
         enable_custom_emoji_html: "%{name} включил(а) эмодзи %{target}"
         enable_relay_html: "%{name} включил(а) ретранслятор %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} включил(а) аутентификацию по e-mail кодам для %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} включил(а) аутентификацию с помощью одноразового пароля по эл. почте для %{target}"
         enable_user_html: "%{name} разморозил(а) пользователя %{target}"
         memorialize_account_html: "%{name} перевел(а) учётную запись пользователя %{target} в статус памятника"
         promote_user_html: "%{name} повысил(а) пользователя %{target}"
@@ -342,7 +342,7 @@ ru:
       unpublish: Скрыть
       unpublished_msg: Объявление скрыто
       updated_msg: Объявление отредактировано
-    critical_update_pending: Ожидается обновление критического уровня
+    critical_update_pending: Доступно критическое обновление
     custom_emojis:
       assign_category: Задать категорию
       by_domain: Домен
@@ -384,25 +384,25 @@ ru:
       new_users: новые пользователи
       opened_reports: новые жалобы
       pending_appeals_html:
-        few: "<strong>%{count}</strong> ожидают аппеляции"
-        many: "<strong>%{count}</strong> ожидают апелляции"
-        one: "<strong>%{count}</strong> ожидает апелляции"
-        other: 'Ожидают апелляции: <strong>%{count}</strong>'
+        few: "<strong>%{count}</strong> открытые апелляции"
+        many: "<strong>%{count}</strong> открытых апелляций"
+        one: "<strong>%{count}</strong> открытая апелляция"
+        other: "<strong>%{count}</strong> открытых апелляций"
       pending_reports_html:
-        few: "<strong>%{count}</strong> ожидающих отчета"
-        many: "<strong>%{count}</strong> ожидающих отчетов"
-        one: "<strong>%{count}</strong> ожидающий отчет"
-        other: "<strong>%{count}</strong> ожидающих отчетов"
+        few: "<strong>%{count}</strong> открытые жалобы"
+        many: "<strong>%{count}</strong> открытых жалоб"
+        one: "<strong>%{count}</strong> открытая жалоба"
+        other: "<strong>%{count}</strong> открытых жалоб"
       pending_tags_html:
-        few: "<strong>%{count}</strong> ожидающих хэштега"
-        many: "<strong>%{count}</strong> ожидающих хэштегов"
-        one: "<strong>%{count}</strong> ожидающий хэштег"
-        other: "<strong>%{count}</strong> ожидающих хэштегов"
+        few: "<strong>%{count}</strong> нерассмотренных хештега"
+        many: "<strong>%{count}</strong> нерассмотренных хештегов"
+        one: "<strong>%{count}</strong> нерассмотренный хештег"
+        other: "<strong>%{count}</strong> нерассмотренных хештегов"
       pending_users_html:
-        few: "<strong>%{count}</strong> ожидающих пользователя"
-        many: "<strong>%{count}</strong> ожидающих пользователей"
-        one: "<strong>%{count}</strong> ожидающий пользователь"
-        other: "<strong>%{count}</strong> ожидающих пользователей"
+        few: "<strong>%{count}</strong> заявки на регистрацию"
+        many: "<strong>%{count}</strong> заявок на регистрацию"
+        one: "<strong>%{count}</strong> заявка на регистрацию"
+        other: "<strong>%{count}</strong> заявок на регистрацию"
       resolved_reports: жалоб решено
       software: Программное обеспечение
       sources: Источники регистрации
@@ -416,12 +416,12 @@ ru:
         empty: Апелляций не найдено.
         title: Апелляции
     domain_allows:
-      add_new: Внести в белый список
-      created_msg: Домен добавлен в белый список
-      destroyed_msg: Домен убран из белого списка
+      add_new: Внести домен в белый список
+      created_msg: Домен внесён в белый список, федерация с ним теперь разрешена
+      destroyed_msg: Домен исключён из белого списка, федерация с ним больше не разрешена
       export: Экспорт
       import: Импорт
-      undo: Убрать из белого списка
+      undo: Исключить из белого списка
     domain_blocks:
       add_new: Заблокировать домен
       confirm_suspension:
@@ -468,28 +468,28 @@ ru:
       add_new: Добавить
       allow_registrations_with_approval: Разрешить регистрацию с одобрением
       attempts_over_week:
-        few: "%{count} попытки за последнюю неделю"
-        many: "%{count} попыток за последнюю неделю"
-        one: "%{count} попытка за последнюю неделю"
+        few: "%{count} попытки регистрации за последнюю неделю"
+        many: "%{count} попыток регистрации за последнюю неделю"
+        one: "%{count} попытка регистрации за последнюю неделю"
         other: "%{count} попыток регистрации за последнюю неделю"
-      created_msg: Домен email забанен, ура
-      delete: Удалить
+      created_msg: Домен электронной почты заблокирован
+      delete: Разблокировать
       dns:
         types:
           mx: Запись MX
       domain: Домен
       new:
-        create: Создать блокировку
-        resolve: Проверить домен
-        title: Блокировка нового почтового домена
-      no_email_domain_block_selected: Блокировки почтовых доменов не были изменены, так как ни один из них не был выбран
-      not_permitted: Не разрешено
-      resolved_dns_records_hint_html: Доменное имя указывает на следующие MX-домены, которые в конечном итоге отвечают за прием электронной почты. Блокировка MX-домена будет блокировать регистрации с любого адреса электронной почты, который использует тот же MX-домен, даже если видимое доменное имя отличается от него. <strong>Будьте осторожны, чтобы не заблокировать основных провайдеров электронной почты</strong>
-      resolved_through_html: Разрешено через %{domain}
+        create: Заблокировать домен
+        resolve: Проверить DNS-записи
+        title: Заблокировать домен электронной почты
+      no_email_domain_block_selected: Ничего не изменилось, так как ни один почтовый домен не был выделен
+      not_permitted: Недостаточно прав
+      resolved_dns_records_hint_html: Доменное имя указывает на следующие MX-домены, которые в конечном итоге отвечают за приём электронной почты. Блокировка MX-домена приведёт к блокировке регистраций со всех адресов электронной почты, которые используют тот же MX-домен, даже если видимое доменное имя отличается от него. <strong>Будьте осторожны, чтобы не заблокировать основных провайдеров электронной почты</strong>
+      resolved_through_html: Из DNS-записей домена %{domain}
       title: Блокировки по домену эл. почты
     export_domain_allows:
       new:
-        title: Импорт домена разрешён
+        title: Импорт белого списка доменов
       no_file: Файл не выбран
     export_domain_blocks:
       import:
@@ -527,12 +527,12 @@ ru:
         status: Пост
       title: FASP
     follow_recommendations:
-      description_html: "<strong>Следуйте рекомендациям, чтобы помочь новым пользователям быстро находить интересный контент</strong>. Если пользователь не взаимодействовал с другими в достаточной степени, чтобы сформировать персонализированные рекомендации, вместо этого рекомендуется использовать эти учетные записи. Они пересчитываются на ежедневной основе на основе комбинации аккаунтов с наибольшим количеством недавних взаимодействий и наибольшим количеством местных подписчиков для данного языка."
-      language: Для языка
-      status: Статус
+      description_html: "<strong>Рекомендации профилей помогают новым пользователям быстрее найти что-нибудь интересное</strong>. Если пользователь мало взаимодействовал с другими и составить персонализированные рекомендации не получается, будут предложены указанные здесь профили. Эти рекомендации обновляются ежедневно из совокупности учётных записей с наибольшим количеством недавних взаимодействий и наибольшим количеством подписчиков с этого сервера для данного языка."
+      language: Фильтр по языку
+      status: Фильтр по состоянию
       suppress: Скрыть рекомендацию
       suppressed: Скрыта
-      title: Рекомендации подписок
+      title: Рекомендации профилей
       unsuppress: Восстановить рекомендацию
     instances:
       audit_log:
@@ -1666,6 +1666,7 @@ ru:
     authentication_methods:
       otp: приложения для генерации кодов
       password: пароля
+      sign_in_token: одноразового пароля по эл. почте
       webauthn: электронного ключа
     description_html: Если вы заметили действия, которых не совершали, вам следует сменить пароль и включить двухфакторную аутентификацию.
     empty: История входов отсутствует

@@ -31,7 +31,7 @@ nan:
       created_msg: 管理記錄成功建立！
       destroyed_msg: 管理記錄成功thâi掉！
     accounts:
-      add_email_domain_block: 封鎖電子phue ê網域
+      add_email_domain_block: 封鎖電子phue ê域名
       approve: 允准
       approved_msg: 成功審核 %{username} ê註冊申請ah
       are_you_sure: Lí kám確定？
@@ -412,7 +412,7 @@ nan:
         stop_communication: Lí ê服侍器ē停止kap hia ê服侍器聯絡。
         title: 確認封鎖域名 %{domain}
         undo_relationships: Tse ē取消任何ê佇in ê服侍器ê口座kap lí ê之間ê跟tuè關係。
-      created_msg: 當leh封鎖網域
+      created_msg: 當leh封鎖域名
       destroyed_msg: 已經取消封鎖域名
       domain: 域名
       edit: 編輯域名封鎖
@@ -457,12 +457,12 @@ nan:
       new:
         create: 加添域名
         resolve: 解析域名
-        title: 封鎖新ê電子phue網域
+        title: 封鎖新ê電子phue ê域名
       no_email_domain_block_selected: 因為無揀任何電子phue域名封鎖，所以lóng無改變
       not_permitted: 無允准
       resolved_dns_records_hint_html: 域名解析做下kha ê MX域名，tsiah ê域名上後負責收電子phue。封鎖MX域名ē封任何有siâng款MX域名ê電子郵件ê註冊，就算通看見ê域名無kâng，mā án-ne。<strong>Tio̍h細膩，m̄通封鎖主要ê電子phue提供者。</strong>
       resolved_through_html: 通過 %{domain} 解析
-      title: 封鎖ê電子phue網域
+      title: 封鎖ê電子phue域名
     export_domain_allows:
       new:
         title: 輸入允准ê域名
@@ -659,7 +659,7 @@ nan:
       are_you_sure: Lí kám確定？
       assign_to_self: 分配hōo家kī
       assigned: 分配管理者
-      by_target_domain: 受檢舉ê口座ê網域
+      by_target_domain: 受檢舉ê口座ê域名
       cancel: 取消
       category: 類別
       category_description_html: Tsit ê 受檢舉ê口座kap/á是內容，ē佇kap tsit ê口座ê聯絡內底引用。
@@ -1268,10 +1268,19 @@ nan:
     sign_in:
       preamble_html: 請用lí佇 <strong>%{domain}</strong> ê口座kap密碼登入。若是lí ê口座tī別ê服侍器，lí bē當tī tsia登入。
       title: 登入 %{domain}
+    sign_up:
+      manual_review: 佇 %{domain} ê註冊ē經過guán ê管理員人工審查。為著tsān guán 進行lí ê註冊，寫tsi̍t點á關係lí家己kap想beh tī %{domain}註冊ê理由。
+      preamble: Nā是lí tī tsit ê服侍器有口座，lí ē當tuè別ê佇聯邦宇宙ê lâng，無論伊ê口座tī tó-tsi̍t站。
+      title: Lán做伙設定 %{domain}。
     status:
       account_status: 口座ê狀態
       confirming: Teh等電子phue確認完成。
       functional: Lí ê口座完全ē當用。
+      pending: Lán ê人員teh處理lí ê申請。Tse可能愛一段時間。若是申請允准，lí ē收著e-mail。
+      redirecting_to: Lí ê口座無活動，因為tann轉kàu %{acct}。
+      self_destruct: 因為 %{domain} teh-beh關掉，lí kan-ta ē當有限接近使用lí ê口座。
+      view_strikes: 看早前tuì lí ê口座ê警告
+    too_fast: 添表ê速度傷緊，請koh試。
     use_security_key: 用安全鎖
     user_agreement_html: 我有讀而且同意 <a href="%{terms_of_service_path}" target="_blank">服務規定</a> kap <a href="%{privacy_policy_path}" target="_blank">隱私權政策</a>
     user_privacy_agreement_html: 我有讀而且同意 <a href="%{privacy_policy_path}" target="_blank">隱私權政策</a>
@@ -1306,6 +1315,179 @@ nan:
       less_than_x_seconds: 頭tú-á
       over_x_years: "%{count}年"
       x_days: "%{count}kang"
+      x_minutes: "%{count}分"
+      x_months: "%{count}個月"
+      x_seconds: "%{count}秒"
+  deletes:
+    challenge_not_passed: Lí輸入ê資訊毋著
+    confirm_password: 輸入lí tsit-má ê密碼，驗證lí ê身份
+    confirm_username: 輸入lí ê口座ê名，來確認程序
+    proceed: Thâi掉口座
+    success_msg: Lí ê口座thâi掉成功
+    warning:
+      before: 佇繼續進前，請斟酌讀下kha ê說明：
+      caches: 已經hōo其他ê站the̍h著cache ê內容，可能iáu ē有資料
+      data_removal: Lí ê PO文kap其他ê資料ē永永thâi掉。
+      email_change_html: Lí ē當<a href="%{path}">改lí ê電子phue地址</a>，suah毋免thâi掉lí ê口座。
+      email_contact_html: 若是iáu buē收著phue，lí通寄kàu <a href="mailto:%{email}">%{email}</a> tshuē幫tsān
+      email_reconfirmation_html: Nā是lí iáu bē收著驗證phue，lí通<a href="%{path}">koh請求</a>
+      irreversible: Lí bē當復原á是重頭啟用lí ê口座
+      more_details_html: 其他資訊，請看<a href="%{terms_path}">隱私政策</a>。
+      username_available: Lí ê用者名別lâng ē當申請
+      username_unavailable: Lí ê口座ē保留，而且別lâng bē當用
+  disputes:
+    strikes:
+      action_taken: 行ê行動
+      appeal: 投訴
+      appeal_approved: Tsit ê警告已經投訴成功，bē koh有效。
+      appeal_rejected: Tsit ê投訴已經受拒絕
+      appeal_submitted_at: 投訴送出去ah
+      appealed_msg: Lí ê投訴送出去ah。Nā受允准，ē通知lí。
+      appeals:
+        submit: 送投訴
+      approve_appeal: 允准投訴
+      associated_report: 關聯ê報告
+      created_at: 過時ê
+      description_html: Tsiah ê是 %{instance} ê人員送hōo lí ê，tuì lí ê口座行ê行動kap警告。
+      recipient: 送kàu
+      reject_appeal: 拒絕投訴
+      status: 'PO文 #%{id}'
+      status_removed: 嘟文已經tuì系統thâi掉
+      title: "%{action} tuì %{date}"
+      title_actions:
+        delete_statuses: Thâi掉PO文
+        disable: 冷凍口座
+        mark_statuses_as_sensitive: Kā PO文標做敏感ê
+        none: 警告
+        sensitive: Kā 口座文標做敏感ê
+        silence: 口座制限
+        suspend: 停止口座權限
+      your_appeal_approved: Lí ê投訴受允准
+      your_appeal_pending: Lí有送投訴
+      your_appeal_rejected: Lí ê投訴已經受拒絕
+  edit_profile:
+    basic_information: 基本ê資訊
+    hint_html: "<strong>自訂lâng佇lí ê個人資料kap lí ê Po文邊仔所通看ê。</strong>Nā是lí有添好個人資料kap標á，別lâng較有可能kā lí跟tuè轉去，kap lí互動。"
+    other: 其他
+  emoji_styles:
+    auto: 自動
+    native: 原底ê
+    twemoji: Twemoji
+  errors:
+    '400': Lí所送ê請求無效，á是格式毋著。
+    '403': Lí bô權限來看tsit頁。
+    '404': Lí teh tshuē ê頁無佇leh。
+    '406': Tsit頁bē當照lí所請求ê格式提供。
+    '410': Lí所tshuē ê頁，無佇tsia ah。
+    '422':
+      content: 安全驗證出tshê。Lí kám有封鎖cookie？
+      title: 安全驗證失敗
+    '429': 請求siunn tsē
+    '500':
+      content: 歹勢，guán ê後臺出問題ah。
+      title: Tsit頁無正確
+    '503': Tsit頁bē當提供，因為服侍器暫時出tshê。
+    noscript_html: Beh用Mastodon web app，請拍開JavaScript。另外，請試Mastodon hōo lí ê平臺用ê <a href="%{apps_path}">app</a>。
+  existing_username_validator:
+    not_found: bē當用tsit ê名tshuē著本地ê用者
+    not_found_multiple: tshuē無 %{usernames}
+  exports:
+    archive_takeout:
+      date: 日期
+      download: Kā lí ê檔案載落
+      hint_html: Lí ē當請求lí ê <strong>PO文kap所傳ê媒體</strong>ê檔案。輸出ê資料ē用ActivityPub格式，通hōo適用ê軟體讀。Lí ē當每7 kang請求tsi̍t kái。
+      in_progress: Teh備辦lí ê檔案……
+      request: 請求lí ê檔案
+      size: Sài-suh
+    blocks: Lí封鎖ê
+    bookmarks: 冊籤
+    csv: CSV
+    domain_blocks: 域名封鎖
+    lists: 列單
+    mutes: Lí消音ê
+    storage: 媒體儲存
+  featured_tags:
+    add_new: 加新ê
+    errors:
+      limit: Lí已經kā hashtag推薦kàu盡磅ah。
+    hint_html: "<strong>佇個人資料推薦lí上重要ê hashtag。</strong>Tse是誠好ê家私，通the̍h來追蹤lí ê創意作品kap長期計畫。推薦ê hashtag ē佇lí ê個人資料顯目展示，koh允准緊緊接近使用lí家tī ê PO文。"
+  filters:
+    contexts:
+      account: 個人資料
+      home: Tshù kap列單
+      notifications: 通知
+      public: 公共ê時間線
+      thread: 會話
+    edit:
+      add_keyword: 加關鍵字
+      keywords: 關鍵字
+      statuses: 個別ê PO文
+      statuses_hint_html: Tsit ê過濾器應用佇所揀ê個別ê PO文，毋管in敢有符合下kha ê關鍵字<a href="%{path}">重頭看，á是kā PO文tuì tsit ê過濾器suá掉</a>。
+      title: 編輯過濾器
+    errors:
+      deprecated_api_multiple_keywords: Tsiah ê參數bē當tuì tsit ê應用程式改，因為in應用超過tsi̍t个過濾關鍵字。請用khah新ê應用程式，á是網頁界面。
+      invalid_context: 無提供內文á是內文無效
+    index:
+      contexts: "%{contexts} 內底ê過濾器"
+      delete: Thâi掉
+      empty: Lí bô半个過濾器。
+      expires_in: 佇 %{distance} kàu期
+      expires_on: 佇 %{date} kàu期
+      keywords:
+        other: "%{count} ê關鍵字"
+      statuses:
+        other: "%{count} 篇PO文"
+      statuses_long:
+        other: "%{count} 篇khàm掉ê個別PO文"
+      title: 過濾器
+    new:
+      save: 儲存新ê過濾器
+      title: 加新ê過濾器
+    statuses:
+      back_to_filter: 轉去過濾器
+      batch:
+        remove: Tuì過濾器內suá掉
+      index:
+        hint: Tsit ê過濾器應用kàu所揀ê個別PO文，無論敢有其他ê條件。Lí ē當tuì網頁界面加koh khah tsē PO文kàu tsit ê過濾器。
+        title: 過濾ê PO文
+  generic:
+    all: 全部
+    all_items_on_page_selected_html:
+      other: Tsit頁ê %{count} ê項目有揀ah。
+    all_matching_items_selected_html:
+      other: 符合lí ê tshiau-tshuē ê %{count} ê項目有揀ah。
+    cancel: 取消
+    changes_saved_msg: 改變儲存成功！
+    confirm: 確認
+    copy: Khóo-pih
+    delete: Thâi掉
+    deselect: 取消lóng揀
+    none: 無
+    order_by: 排列照
+    save_changes: 儲存改變
+    select_all_matching_items:
+      other: 揀 %{count} ê符合lí所tshiau-tshuē ê項目。
+    today: 今á日
+    validation_errors:
+      other: 干焦iáu有狀況！請看下kha ê %{count} 項錯誤。
+  imports:
+    errors:
+      empty: 空ê CSV檔案
+      incompatible_type: Kap所揀ê輸入類型無配合
+      invalid_csv_file: 無效ê CSV檔案。錯誤：%{error}
+      over_rows_processing_limit: 包含超過 %{count} tsuā
+      too_large: 檔案siunn大
+    failures: 失敗
+    imported: 輸入ah
+    mismatched_types_warning: Lí ká-ná kā輸入類型揀毋著，請koh確認。
+    modes:
+      merge: 合併
+      merge_long: 保存已經有ê記錄，koh加新ê
+      overwrite: Khàm掉
+      overwrite_long: 用新ê記錄khàm掉tann ê
+    overwrite_preambles:
+      blocking_html:
+        other: Lí teh-beh用 <strong>%{filename}</strong> ê <strong>%{count} ê口座</strong>，<strong>替換lí ê封鎖列單</strong>。
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:
