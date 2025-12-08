@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.28] - 2025-12-08
+
+### Security
+
+- Fix inconsistent error handling leaking information on existence of private posts ([GHSA-gwhw-gcjx-72v8](https://github.com/mastodon/mastodon/security/advisories/GHSA-gwhw-gcjx-72v8))
+
+### Fixed
+
+- Fix old previously-undiscovered posts being treated as new when receiving an `Update` (#36848 by @ClearlyClaire)
+
 ## [4.2.27] - 2025-10-13
 
 ### Security
