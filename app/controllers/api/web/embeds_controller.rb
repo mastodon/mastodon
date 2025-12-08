@@ -30,7 +30,7 @@ class Api::Web::EmbedsController < Api::Web::BaseController
   def set_status
     @status = Status.find(params[:id])
     authorize @status, :show?
-  rescue Mastodon::NotPermittedError
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
   end
 end
