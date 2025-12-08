@@ -1,7 +1,10 @@
 import { FormattedNumber, FormattedMessage } from 'react-intl';
 
-import ChatBubbleIcon from '@/material-icons/400-24px/chat_bubble.svg?react';
+import classNames from 'classnames';
+
 import type { TimeSeriesMonth } from 'mastodon/models/annual_report';
+
+import styles from './index.module.scss';
 
 export const NewPosts: React.FC<{
   data: TimeSeriesMonth[];
@@ -9,40 +12,12 @@ export const NewPosts: React.FC<{
   const posts = data.reduce((sum, item) => sum + item.statuses, 0);
 
   return (
-    <div className='annual-report__bento__box annual-report__summary__new-posts'>
-      <svg width={500} height={500}>
-        <defs>
-          <pattern
-            id='posts'
-            x='0'
-            y='0'
-            width='32'
-            height='35'
-            patternUnits='userSpaceOnUse'
-          >
-            <circle cx='12' cy='12' r='12' fill='var(--lime)' />
-            <ChatBubbleIcon
-              fill='var(--indigo-1)'
-              x='4'
-              y='4'
-              width='16'
-              height='16'
-            />
-          </pattern>
-        </defs>
-
-        <rect
-          width={500}
-          height={500}
-          fill='url(#posts)'
-          style={{ opacity: 0.2 }}
-        />
-      </svg>
-
-      <div className='annual-report__summary__new-posts__number'>
+    <div className={classNames(styles.box, styles.newPosts, styles.content)}>
+      <div className={styles.statLarge}>
         <FormattedNumber value={posts} />
       </div>
-      <div className='annual-report__summary__new-posts__label'>
+
+      <div className={styles.title}>
         <FormattedMessage
           id='annual_report.summary.new_posts.new_posts'
           defaultMessage='new posts'
