@@ -563,6 +563,7 @@ eu:
         create: Gehitu Moderazio Oharra
         created_msg: Instantziako moderazio oharra ongi sortu da!
         description_html: Ikusi eta idatzi oharrak beste moderatzaileentzat eta zuretzat etorkizunerako
+        title: Moderazio oharrak
       private_comment: Iruzkin pribatua
       public_comment: Iruzkin publikoa
       purge: Ezabatu betiko
@@ -771,6 +772,8 @@ eu:
       description_html: Gehienek erabilera baldintzak irakurri eta onartu dituztela baieztatzen badute ere, orokorrean arazoren bat dagoen arte ez dituzte irakurtzen. <strong>Zerbitzariaren arauak begirada batean ikustea errazteko buletadun zerrenda batean bildu.</strong> Saiatu arauak labur eta sinple idazten, baina elementu askotan banatu gabe.
       edit: Editatu araua
       empty: Ez da zerbitzariko araurik definitu oraindik.
+      move_down: Behera mugitu
+      move_up: Mugitu gora
       title: Zerbitzariaren arauak
       translation: Itzulpena
       translations: Itzulpenak
@@ -862,8 +865,11 @@ eu:
       open: Ireki bidalketa
       original_status: Jatorrizko bidalketa
       reblogs: Bultzadak
+      replied_to_html: "%{acct_link}(r)i erantzuten"
       status_changed: Bidalketa aldatuta
+      status_title: "%{name} erabiltzailearen bidalketa"
       trending: Joera
+      view_publicly: Publikoki ikusi
       visibility: Ikusgaitasuna
       with_media: Multimediarekin
     strikes:
@@ -908,6 +914,7 @@ eu:
       sidekiq_process_check:
         message_html: Ez da ari Sidekiq prozesurik exekutatzen %{value} ilad(et)an. Egiaztatu Sidekiq konfigurazioa
       software_version_check:
+        action: Ikusi eguneraketa eskuragarriak
         message_html: Mastodon eguneratze bat eskuragarri dago.
       software_version_critical_check:
         action: Ikusi eguneraketa eskuragarriak

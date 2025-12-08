@@ -1706,6 +1706,7 @@ en-GB:
       self_vote: You cannot vote in your own polls
       too_few_options: must have more than one item
       too_many_options: can't contain more than %{max} items
+    vote: Vote
   preferences:
     other: Other
     posting_defaults: Posting defaults
@@ -1874,8 +1875,13 @@ en-GB:
       limit: You have already pinned the maximum number of posts
       ownership: Someone else's post cannot be pinned
       reblog: A boost cannot be pinned
+    quote_policies:
+      followers: Followers only
+      nobody: Just me
+      public: Anyone
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Private mention
       private: Followers-only
       private_long: Only show to followers
       public: Public

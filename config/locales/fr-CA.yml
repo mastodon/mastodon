@@ -489,9 +489,19 @@ fr-CA:
           created_at: Créé à
           delete: Supprimer
           ip: Adresse IP
+          request_body: Corps de la demande
+          title: Déboguer les rappels
       providers:
+        active: Activé
+        base_url: URL de base
+        callback: Rappel
+        delete: Supprimer
+        edit: Modifier un fournisseur
+        finish_registration: Terminer l'inscription
         name: Nom
         providers: Fournisseur
+        public_key_fingerprint: Empreinte de la clé publique
+        registration_requested: Inscription demandée
         registrations:
           confirm: Confirmer
           description: Vous avez reçu une souscription d'un FSAF. Rejetez-la si vous ne l'avez pas initiée. Si c'est bien votre intention, comparez le nom et l'empreinte de la clé avant de confirmer la souscription.
@@ -502,6 +512,7 @@ fr-CA:
         sign_in: Se connecter
         status: État
         title: Fournisseurs de Services Auxiliaire du Fedivers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Les recommandations d'abonnement aident les nouvelles personnes à trouver rapidement du contenu intéressant</strong>. Si un·e utilisateur·rice n'a pas assez interagi avec les autres pour avoir des recommandations personnalisées, ces comptes sont alors recommandés. La sélection est mise à jour quotidiennement depuis un mélange de comptes ayant le plus d'interactions récentes et le plus grand nombre d'abonné·e·s locaux pour une langue donnée."
       language: Pour la langue
@@ -571,6 +582,11 @@ fr-CA:
         limited: Limité
         title: Modération
       moderation_notes:
+        create: Ajouter une note de modération
+        created_msg: Note de modération de l'instance créée avec succès !
+        description_html: Voir et laisser des notes pour les autres modérateurs et pour référence future
+        destroyed_msg: Note de modération de l'instance supprimée avec succès !
+        placeholder: Informations à propos de cette instance, actions entreprises ou de toute autre chose qui vous aidera à modérer cette instance à l'avenir.
         title: Notes de modération
       private_comment: Commentaire privé
       public_comment: Commentaire public
@@ -785,15 +801,21 @@ fr-CA:
       description_html: Bien que la plupart des gens prétende avoir lu les conditions d'utilisation avant de les accepter, généralement les utilisateur·rice·s ne les lisent vraiment que lorsque un problème apparaît. <strong>Pour faciliter la visualisation des règles de votre serveur en un seul coup d’œil, présentez-les sous la forme d'une liste à puces !</strong> Essayez de garder chacune des règles simple et concise, mais faites attention à ne pas non plus les diviser en de trop nombreux éléments distincts.
       edit: Modifier la règle
       empty: Aucune règle de serveur n'a été définie pour l'instant.
+      move_down: Déplacer vers le bas
+      move_up: Déplacer vers le haut
       title: Règles du serveur
       translation: Traduction
       translations: Traductions
+      translations_explanation: Vous pouvez éventuellement ajouter des traductions pour les règles. La valeur par défaut sera affichée si aucune version traduite n'est disponible. Veuillez toujours vous assurer que toute traduction fournie est synchronisée avec la valeur par défaut.
     settings:
       about:
         manage_rules: Gérer les règles du serveur
         preamble: Fournissez des informations détaillées sur le fonctionnement, la modération et le financement du serveur.
         rules_hint: Il y a un espace dédié pour les règles auxquelles vos utilisateurs sont invités à adhérer.
         title: À propos
+      allow_referrer_origin:
+        desc: Quand les utilisateurs cliquent sur un lien externe, leur navigateur peut envoyer l'adresse du serveur Mastodon en tant qu'adresse d'origine. À désactiver si cela permet d'identifier les utilisateurs, par exemple s'il s'agit d'un serveur Mastodon personnel.
+        title: Autoriser les sites externes à voir votre serveur Mastodon comme une source de trafic
       appearance:
         preamble: Personnaliser l'interface web de Mastodon.
         title: Apparence
@@ -813,6 +835,7 @@ fr-CA:
       discovery:
         follow_recommendations: Suivre les recommandations
         preamble: Faire apparaître un contenu intéressant est essentiel pour interagir avec de nouveaux utilisateurs qui ne connaissent peut-être personne sur Mastodonte. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
+        privacy: Vie privée
         profile_directory: Annuaire des profils
         public_timelines: Fils publics
         publish_statistics: Publier les statistiques
@@ -823,7 +846,7 @@ fr-CA:
         disabled: À personne
         users: Aux utilisateur·rice·s connecté·e·s localement
       registrations:
-        moderation_recommandation: Veuillez vous assurer d'avoir une équipe de modération adéquate et réactive avant d'ouvrir les inscriptions à tout le monde!
+        moderation_recommandation: Veuillez vous assurer d'avoir une équipe de modération adéquate et réactive avant d'ouvrir les inscriptions à tout le monde !
         preamble: Affecte qui peut créer un compte sur votre serveur.
         title: Inscriptions
       registrations_mode:
@@ -899,6 +922,8 @@ fr-CA:
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
+      elasticsearch_analysis_index_mismatch:
+        message_html: Les paramètres de l'analyseur d'index d'Elasticsearch ne sont plus à jour. Veuillez lancer <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Le cluster Elasticsearch n’est pas sain (statut rouge), les fonctionnalités de recherche ne sont pas disponible
       elasticsearch_health_yellow:
@@ -1684,6 +1709,7 @@ fr-CA:
       self_vote: Vous ne pouvez pas voter à vos propres sondages
       too_few_options: doit avoir plus qu’une proposition
       too_many_options: ne peut contenir plus de %{max} propositions
+    vote: Voter
   preferences:
     other: Autre
     posting_defaults: Paramètres de publication par défaut
@@ -1852,8 +1878,13 @@ fr-CA:
       limit: Vous avez déjà épinglé le nombre maximum de messages
       ownership: Vous ne pouvez pas épingler un message ne vous appartenant pas
       reblog: Un partage ne peut pas être épinglé
+    quote_policies:
+      followers: Abonné·e·s seulement
+      nobody: Moi uniquement
+      public: Tout le monde
     title: "%{name} : « %{quote} »"
     visibilities:
+      direct: Mention privée
       private: Abonné⋅e⋅s uniquement
       private_long: Afficher seulement à vos vos abonné·e·s
       public: Publique
@@ -1905,6 +1936,9 @@ fr-CA:
   terms_of_service:
     title: Conditions d'utilisation
   terms_of_service_interstitial:
+    future_preamble_html: Nous avons modifié nos conditions d'utilisation, ces changements entreront en vigueur le <strong>%{date}</strong>. Nous vous invitons à prendre connaissance des nouvelles conditions.
+    past_preamble_html: Nous avons modifié nos conditions d'utilisation depuis votre dernière visite. Nous vous invitons à prendre connaissance des nouvelles conditions.
+    review_link: Vérifier les conditions d'utilisation
     title: Les conditions d'utilisation de %{domain} ont changées
   themes:
     contrast: Mastodon (Contraste élevé)

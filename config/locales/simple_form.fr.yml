@@ -31,7 +31,7 @@ fr:
           suspend: Empêcher toute interaction depuis ou vers ce compte et supprimer son contenu. Réversible dans les 30 jours. Cloture tous les signalements concernant ce compte.
         warning_preset_id: Facultatif. Vous pouvez toujours ajouter un texte personnalisé à la fin de la présélection
       announcement:
-        all_day: Coché, seules les dates de l’intervalle de temps seront affichées
+        all_day: Lorsque coché, seules les dates de l’intervalle de temps seront affichées
         ends_at: Facultatif. La fin de l'annonce surviendra automatiquement à ce moment
         scheduled_at: Laisser vide pour publier l’annonce immédiatement
         starts_at: Facultatif. Si votre annonce est liée à une période spécifique
@@ -149,6 +149,9 @@ fr:
         min_age: Ne doit pas être en dessous de l’âge minimum requis par les lois de votre juridiction.
       user:
         chosen_languages: Lorsque coché, seuls les messages dans les langues sélectionnées seront affichés sur les fils publics
+        date_of_birth:
+          one: Nous devons vérifier que vous avez au moins %{count} an pour utiliser %{domain}. Cette information ne sera pas conservée.
+          other: Nous devons vérifier que vous avez au moins %{count} ans pour utiliser %{domain}. Cette information ne sera pas conservée.
         role: Le rôle définit quelles autorisations a l'utilisateur⋅rice.
       user_role:
         color: Couleur à attribuer au rôle dans l'interface, au format hexadécimal RVB
