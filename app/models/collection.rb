@@ -44,6 +44,7 @@ class Collection < ApplicationRecord
       .left_joins(:collection_items)
       .group(collections: :id)
   }
+  scope :with_tag, -> { includes(:tag) }
 
   def remote?
     !local?
