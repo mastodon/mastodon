@@ -15,6 +15,7 @@ RSpec.describe REST::BaseCollectionSerializer do
   let(:tag) { Fabricate(:tag, name: 'discovery') }
   let(:collection) do
     Fabricate(:collection,
+              id: 2342,
               name: 'Exquisite follows',
               description: 'Always worth a follow',
               local: true,
@@ -26,6 +27,7 @@ RSpec.describe REST::BaseCollectionSerializer do
   it 'includes the relevant attributes' do
     expect(subject)
       .to include(
+        'id' => '2342',
         'name' => 'Exquisite follows',
         'description' => 'Always worth a follow',
         'local' => true,
