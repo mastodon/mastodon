@@ -39,7 +39,16 @@ module WebAppControllerConcern
       end
 
       format.json do
-        redirect_to(permalink_redirector.redirect_uri, allow_other_host: true)
+        # Validate the redirect URI before allowing an external redirect.
+        # Only allow same-host redirects or hosts explicitly whitelisted via
+        # ENV['ALLOWED_REDIRECT_HOSTS'] (comma-separated). Any invalid or
+        # non-whitelisted redirect will fall back to the internal confirmation path.
+        safe_uri = validated_redirect_uri(permalink_redirector.redirect_uri)
+        if safe_uri.present?
+          redirect_to(safe_uri, allow_other_host: true)
+        else
+          redirect_to(permalink_redirector.redirect_confirmation_path, allow_other_host: false)
+        end
       end
     end
   end
@@ -62,5 +71,44 @@ module WebAppControllerConcern
 
   def set_referer_header
     response.set_header('Referrer-Policy', Setting.allow_referrer_origin ? 'strict-origin-when-cross-origin' : 'same-origin')
+  end
+
+  private
+
+  # Validate a redirect URI string and return it if it's allowed, otherwise nil.
+  # Allowed if:
+  # - it's a valid http/https URI
+  # - host matches request.host, or
+  # - host is present in ENV['ALLOWED_REDIRECT_HOSTS'] (comma-separated)
+  #
+  # If you need to allow additional hosts, set ENV['ALLOWED_REDIRECT_HOSTS']="example.com,another.example"
+  def validated_redirect_uri(uri_str)
+    return nil if uri_str.blank?
+
+    begin
+      uri = URI.parse(uri_str)
+    rescue URI::InvalidURIError
+      return nil
+    end
+
+    # Only allow http and https schemes
+    return nil unless uri.scheme.in?(%w[http https])
+    return nil if uri.host.blank?
+
+    # Normalize host (strip possible surrounding brackets for IPv6 etc.)
+    host = uri.host.downcase
+
+    # Allow same-host redirects
+    return uri_str if host == request.host.downcase
+
+    # Load whitelist from ENV; fallback to empty array if not provided
+    allowed = ENV.fetch('ALLOWED_REDIRECT_HOSTS', '').split(',').map(&:strip).reject(&:empty?).map(&:downcase)
+
+    # Ensure request.host is always considered allowed (defense in depth)
+    allowed << request.host.downcase unless allowed.include?(request.host.downcase)
+
+    return uri_str if allowed.include?(host)
+
+    nil
   end
 end
