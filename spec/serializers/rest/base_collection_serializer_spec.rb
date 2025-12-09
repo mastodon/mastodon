@@ -38,20 +38,4 @@ RSpec.describe REST::BaseCollectionSerializer do
         'updated_at' => match_api_datetime_format
       )
   end
-
-  describe 'Counting items' do
-    before do
-      Fabricate.times(2, :collection_item, collection:)
-    end
-
-    it 'can count items on demand' do
-      expect(subject['item_count']).to eq 2
-    end
-
-    it 'can use precalculated counts' do
-      collection.define_singleton_method :item_count, -> { 8 }
-
-      expect(subject['item_count']).to eq 8
-    end
-  end
 end

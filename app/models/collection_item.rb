@@ -17,7 +17,7 @@
 #  collection_id             :bigint(8)        not null
 #
 class CollectionItem < ApplicationRecord
-  belongs_to :collection
+  belongs_to :collection, counter_cache: :item_count
   belongs_to :account, optional: true
 
   enum :state,
