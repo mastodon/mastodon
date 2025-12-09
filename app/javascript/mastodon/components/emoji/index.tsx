@@ -3,7 +3,10 @@ import { useContext, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 
-import { EMOJI_TYPE_CUSTOM } from '@/mastodon/features/emoji/constants';
+import {
+  EMOJI_TYPE_CUSTOM,
+  EMOJI_TYPE_UNICODE,
+} from '@/mastodon/features/emoji/constants';
 import { useEmojiAppState } from '@/mastodon/features/emoji/mode';
 import {
   emojiToInversionClassName,
@@ -56,15 +59,22 @@ export const Emoji: FC<EmojiProps> = ({
     return fallback;
   }
 
-  if (!shouldRenderImage(state, appState.mode)) {
-    return code;
-  }
-
   if (!isStateLoaded(state)) {
     if (showLoading) {
       return <span className='emojione emoji-loading' title={code} />;
     }
     return fallback;
+  }
+
+  if (!shouldRenderImage(state, appState.mode)) {
+    if (state.type === EMOJI_TYPE_UNICODE) {
+      return (
+        <span className='emoji' title={state.data.shortcodes?.join(', ')}>
+          {state.data.unicode}
+        </span>
+      );
+    }
+    return code;
   }
 
   if (state.type === EMOJI_TYPE_CUSTOM) {

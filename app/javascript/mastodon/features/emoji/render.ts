@@ -7,6 +7,7 @@ import {
 import {
   loadCustomEmojiByShortcode,
   loadEmojiByHexcode,
+  loadLegacyShortcodesByShortcode,
   LocaleNotLoadedError,
 } from './database';
 import { importEmojiData } from './loader';
@@ -126,12 +127,26 @@ export async function loadEmojiDataToState(
         };
       }
     } else {
-      const data = await loadCustomEmojiByShortcode(state.code);
-      if (data) {
+      const [customData, legacyData] = await Promise.all([
+        loadCustomEmojiByShortcode(state.code),
+        loadLegacyShortcodesByShortcode(state.code),
+      ]);
+      if (customData) {
         return {
           ...state,
-          data,
+          data: customData,
         };
+      } else if (legacyData) {
+        log(
+          'Found legacy shortcode %s, loading unicode emoji %s',
+          state.code,
+          legacyData.hexcode,
+        );
+        return await loadEmojiDataToState(
+          { type: EMOJI_TYPE_UNICODE, code: legacyData.hexcode },
+          locale,
+          retry,
+        );
       }
     }
     // If not found, assume it's not an emoji and return null.
