@@ -1,7 +1,11 @@
+import { defineMessages } from 'react-intl';
+
 import { SUPPORTED_LOCALES } from 'emojibase';
 import type { Locale, ShortcodesDataset } from 'emojibase';
 import type { DBSchema, IDBPDatabase } from 'idb';
 import { openDB } from 'idb';
+
+import type { TranslatableString } from '@/mastodon/models/alert';
 
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
 import type {
@@ -56,6 +60,22 @@ const SCHEMA_VERSION = 2;
 const loadedLocales = new Set<Locale>();
 
 const log = emojiLogger('database');
+
+const messages = defineMessages({
+  alertTitle: {
+    id: 'emoji.database.alert_title',
+    defaultMessage: 'Reload the page',
+  },
+  dbUpgradeBlocked: {
+    id: 'emoji.database.upgrade_blocked',
+    defaultMessage:
+      'Please close other tabs using Mastodon to finish updating.',
+  },
+  dbUpgradeBlocking: {
+    id: 'emoji.database.upgrade_blocking',
+    defaultMessage: 'Please refresh the page to finish updating.',
+  },
+});
 
 // Loads the database in a way that ensures it's only loaded once.
 const loadDB = (() => {
@@ -118,6 +138,7 @@ const loadDB = (() => {
         );
       },
       blocked(currentVersion, blockedVersion) {
+        void showAlert(messages.dbUpgradeBlocked);
         log(
           'Emoji database upgrade from version %d to %d is blocked',
           currentVersion,
@@ -125,8 +146,9 @@ const loadDB = (() => {
         );
       },
       blocking(currentVersion, blockedVersion) {
+        void showAlert(messages.dbUpgradeBlocking);
         log(
-          'Emoji database upgrade from version %d to %d is blocking',
+          'Emoji database upgrade from version %d is blocking upgrade to %d',
           currentVersion,
           blockedVersion,
         );
@@ -298,6 +320,13 @@ async function hasLocale(locale: Locale, db: Database): Promise<boolean> {
   }
   const rowCount = await db.count(locale);
   return !!rowCount;
+}
+
+async function showAlert(message: TranslatableString) {
+  const { store } = await import('@/mastodon/store/store');
+  const { showAlert } = await import('@/mastodon/actions/alerts');
+
+  store.dispatch(showAlert({ title: messages.alertTitle, message }));
 }
 
 // Testing helpers
