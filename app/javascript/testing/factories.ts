@@ -115,6 +115,7 @@ export function unicodeEmojiFactory(
     hexcode: 'test',
     label: 'Test',
     unicode: '🧪',
+    shortcodes: ['test_emoji'],
     ...data,
   };
 }
