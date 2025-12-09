@@ -2,12 +2,6 @@ import type { ComponentProps } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import {
-  importCustomEmojiData,
-  importLegacyShortcodes,
-} from '@/mastodon/features/emoji/loader';
-import { Awaited } from '@/testing/components';
-
 import { Emoji } from './index';
 
 type EmojiProps = ComponentProps<typeof Emoji> & { state: string };
@@ -42,18 +36,9 @@ const meta = {
     },
   },
   render(args) {
-    return (
-      <Awaited cb={cb}>
-        <Emoji {...args} />
-      </Awaited>
-    );
+    return <Emoji {...args} />;
   },
 } satisfies Meta<EmojiProps>;
-
-const cb = async () => {
-  await importCustomEmojiData();
-  await importLegacyShortcodes();
-};
 
 export default meta;
 
