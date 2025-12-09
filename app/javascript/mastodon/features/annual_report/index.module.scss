@@ -1,9 +1,13 @@
 .modalWrapper {
-  max-width: 600px;
-  border-radius: 16px;
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 40px;
   overflow-y: auto;
+  pointer-events: none;
+  scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
 
   .loading-indicator .circular-progress {
     color: var(--lime);
@@ -11,7 +15,12 @@
 }
 
 .wrapper {
+  position: relative;
+  max-width: 600px;
+  padding: 24px;
+  contain: layout;
   flex: 0 0 auto;
+  pointer-events: auto;
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
   background:
@@ -21,10 +30,11 @@
     radial-gradient(at 16% 95%, #1e948299 0, transparent 50%),
     radial-gradient(at 80% 91%, #16dae499 0, transparent 50%)
       var(--color-bg-primary);
-  padding: 24px;
   border-radius: 40px;
-  contain: layout;
-  position: relative;
+
+  @media (width < 600px) {
+    padding: 12px;
+  }
 
   &::after {
     content: '';
