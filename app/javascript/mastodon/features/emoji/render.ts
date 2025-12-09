@@ -129,7 +129,7 @@ export async function loadEmojiDataToState(
           ...state,
           type: EMOJI_TYPE_UNICODE,
           data,
-          shortcode: legacyCode?.shortcodes.at(0) ?? data.shortcodes?.at(0),
+          shortcode: data.shortcodes?.at(0) ?? legacyCode?.shortcodes.at(0),
         };
       }
     } else {
