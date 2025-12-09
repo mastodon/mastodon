@@ -2,10 +2,8 @@ import { createRoot } from 'react-dom/client';
 
 import { Provider as ReduxProvider } from 'react-redux';
 
-import {
-  importFetchedAccounts,
-  importFetchedStatuses,
-} from '@/mastodon/actions/importer';
+import { importFetchedStatuses } from '@/mastodon/actions/importer';
+import { hydrateStore } from '@/mastodon/actions/store';
 import type { ApiAnnualReportResponse } from '@/mastodon/api/annual_report';
 import { Router } from '@/mastodon/components/router';
 import { WrapstodonShare } from '@/mastodon/features/annual_report/share';
@@ -33,7 +31,14 @@ function loaded() {
   if (!report) {
     throw new Error('Initial state report not found');
   }
-  store.dispatch(importFetchedAccounts(initialState.accounts));
+
+  // Set up store
+  store.dispatch(
+    hydrateStore({
+      meta: { locale: document.documentElement.lang },
+      accounts: initialState.accounts,
+    }),
+  );
   store.dispatch(importFetchedStatuses(initialState.statuses));
 
   store.dispatch(setReport(report));
