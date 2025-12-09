@@ -14,6 +14,19 @@
   }
 }
 
+.closeButton {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  padding: 8px;
+  border-radius: 100%;
+
+  --default-icon-color: var(--color-bg-primary);
+  --default-bg-color: var(--color-text-primary);
+  --hover-icon-color: var(--color-bg-primary);
+  --hover-bg-color: var(--color-text-primary);
+}
+
 .wrapper {
   position: relative;
   max-width: 600px;

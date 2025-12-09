@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { FC } from 'react';
 
-import { defineMessage, FormattedMessage } from 'react-intl';
+import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
 
 import { useLocation } from 'react-router';
 
 import classNames from 'classnames/bind';
 
 import { closeModal } from '@/mastodon/actions/modal';
+import { IconButton } from '@/mastodon/components/icon_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { me } from '@/mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
 import { Archetype } from './archetype';
 import { Followers } from './followers';
@@ -30,6 +32,7 @@ export const shareMessage = defineMessage({
 export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
   context = 'standalone',
 }) => {
+  const intl = useIntl();
   const dispatch = useAppDispatch();
   const report = useAppSelector((state) => state.annualReport.report);
   const account = useAppSelector((state) => {
@@ -42,16 +45,18 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
     return undefined;
   });
 
-  console.log(report, account?.toJS());
+  const close = useCallback(() => {
+    dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
+  }, [dispatch]);
 
   // Close modal when navigating away from within
   const { pathname } = useLocation();
   const [initialPathname] = useState(pathname);
   useEffect(() => {
     if (pathname !== initialPathname) {
-      dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
+      close();
     }
-  }, [pathname, initialPathname, dispatch]);
+  }, [pathname, initialPathname, close]);
 
   if (!report) {
     return <LoadingIndicator />;
@@ -84,6 +89,18 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
           />
         </h1>
         {account && <p>@{account.acct}</p>}
+        {context === 'modal' && (
+          <IconButton
+            title={intl.formatMessage({
+              id: 'annual_report.summary.close',
+              defaultMessage: 'Close',
+            })}
+            className={styles.closeButton}
+            icon='close'
+            iconComponent={CloseIcon}
+            onClick={close}
+          />
+        )}
       </div>
 
       <div className={styles.stack}>
