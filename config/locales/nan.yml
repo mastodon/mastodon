@@ -1424,6 +1424,70 @@ nan:
       statuses: 個別ê PO文
       statuses_hint_html: Tsit ê過濾器應用佇所揀ê個別ê PO文，毋管in敢有符合下kha ê關鍵字<a href="%{path}">重頭看，á是kā PO文tuì tsit ê過濾器suá掉</a>。
       title: 編輯過濾器
+    errors:
+      deprecated_api_multiple_keywords: Tsiah ê參數bē當tuì tsit ê應用程式改，因為in應用超過tsi̍t个過濾關鍵字。請用khah新ê應用程式，á是網頁界面。
+      invalid_context: 無提供內文á是內文無效
+    index:
+      contexts: "%{contexts} 內底ê過濾器"
+      delete: Thâi掉
+      empty: Lí bô半个過濾器。
+      expires_in: 佇 %{distance} kàu期
+      expires_on: 佇 %{date} kàu期
+      keywords:
+        other: "%{count} ê關鍵字"
+      statuses:
+        other: "%{count} 篇PO文"
+      statuses_long:
+        other: "%{count} 篇khàm掉ê個別PO文"
+      title: 過濾器
+    new:
+      save: 儲存新ê過濾器
+      title: 加新ê過濾器
+    statuses:
+      back_to_filter: 轉去過濾器
+      batch:
+        remove: Tuì過濾器內suá掉
+      index:
+        hint: Tsit ê過濾器應用kàu所揀ê個別PO文，無論敢有其他ê條件。Lí ē當tuì網頁界面加koh khah tsē PO文kàu tsit ê過濾器。
+        title: 過濾ê PO文
+  generic:
+    all: 全部
+    all_items_on_page_selected_html:
+      other: Tsit頁ê %{count} ê項目有揀ah。
+    all_matching_items_selected_html:
+      other: 符合lí ê tshiau-tshuē ê %{count} ê項目有揀ah。
+    cancel: 取消
+    changes_saved_msg: 改變儲存成功！
+    confirm: 確認
+    copy: Khóo-pih
+    delete: Thâi掉
+    deselect: 取消lóng揀
+    none: 無
+    order_by: 排列照
+    save_changes: 儲存改變
+    select_all_matching_items:
+      other: 揀 %{count} ê符合lí所tshiau-tshuē ê項目。
+    today: 今á日
+    validation_errors:
+      other: 干焦iáu有狀況！請看下kha ê %{count} 項錯誤。
+  imports:
+    errors:
+      empty: 空ê CSV檔案
+      incompatible_type: Kap所揀ê輸入類型無配合
+      invalid_csv_file: 無效ê CSV檔案。錯誤：%{error}
+      over_rows_processing_limit: 包含超過 %{count} tsuā
+      too_large: 檔案siunn大
+    failures: 失敗
+    imported: 輸入ah
+    mismatched_types_warning: Lí ká-ná kā輸入類型揀毋著，請koh確認。
+    modes:
+      merge: 合併
+      merge_long: 保存已經有ê記錄，koh加新ê
+      overwrite: Khàm掉
+      overwrite_long: 用新ê記錄khàm掉tann ê
+    overwrite_preambles:
+      blocking_html:
+        other: Lí teh-beh用 <strong>%{filename}</strong> ê <strong>%{count} ê口座</strong>，<strong>替換lí ê封鎖列單</strong>。
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:

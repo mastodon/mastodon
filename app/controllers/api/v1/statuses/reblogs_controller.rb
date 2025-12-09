@@ -36,7 +36,7 @@ class Api::V1::Statuses::ReblogsController < Api::V1::Statuses::BaseController
 
     relationships = StatusRelationshipsPresenter.new([@status], current_account.id, reblogs_map: { @reblog.id => false }, attributes_map: { @reblog.id => { reblogs_count: count } })
     render json: @reblog, serializer: REST::StatusSerializer, relationships: relationships
-  rescue Mastodon::NotPermittedError
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
   end
 
@@ -45,7 +45,7 @@ class Api::V1::Statuses::ReblogsController < Api::V1::Statuses::BaseController
   def set_reblog
     @reblog = Status.find(params[:status_id])
     authorize @reblog, :show?
-  rescue Mastodon::NotPermittedError
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
   end
 

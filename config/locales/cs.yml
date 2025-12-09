@@ -1784,16 +1784,22 @@ cs:
       body: 'Uživatel %{name} vás zmínil v:'
       subject: Uživatel %{name} vás zmínil
       title: Nová zmínka
+    moderation_warning:
+      subject: Obdrželi jste moderační varování
     poll:
       subject: Anketa od %{name} skončila
     quote:
       body: 'Váš příspěvek citoval účet %{name}:'
       subject: "%{name} citovali váš příspěvek"
       title: Nová citace
+    quoted_update:
+      subject: "%{name} upravili příspěvek, který jste citovali"
     reblog:
       body: 'Uživatel %{name} boostnul váš příspěvek:'
       subject: Uživatel %{name} boostnul váš příspěvek
       title: Nový boost
+    severed_relationships:
+      subject: Ztratili jste spojení, kvůli moderačnímu rozhodnutí
     status:
       subject: Nový příspěvek od %{name}
     update:
@@ -2267,3 +2273,5 @@ cs:
     not_supported: Tento prohlížeč nepodporuje bezpečnostní klíče
     otp_required: Pro použití bezpečnostních klíčů prosím nejprve zapněte dvoufázové ověřování.
     registered_on: Přidán %{date}
+  wrapstodon:
+    title: Wrapstodon %{year} pro %{name}

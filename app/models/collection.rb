@@ -39,6 +39,12 @@ class Collection < ApplicationRecord
   validate :items_do_not_exceed_limit
 
   scope :with_items, -> { includes(:collection_items).merge(CollectionItem.with_accounts) }
+  scope :with_item_count, lambda {
+    select('collections.*, COUNT(collection_items.id)')
+      .left_joins(:collection_items)
+      .group(collections: :id)
+  }
+  scope :with_tag, -> { includes(:tag) }
 
   def remote?
     !local?

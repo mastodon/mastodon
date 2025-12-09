@@ -8,7 +8,7 @@ lt:
         display_name: Tavo pilnas vardas arba smagus vardas.
         fields: Tavo pagrindinis puslapis, įvardžiai, amžius, bet kas, ko tik nori.
         indexable: Tavo vieši įrašai gali būti rodomi Mastodon paieškos rezultatuose. Žmonės, kurie bendravo su tavo įrašais, gali jų ieškoti nepriklausomai nuo to.
-        note: 'Gali @paminėti kitus žmones arba #saitažodžius.'
+        note: 'Gali @paminėti kitus žmones arba #grotažymes.'
         show_collections: Žmonės galės peržiūrėti tavo sekimus ir sekėjus. Žmonės, kuriuos seki, matys, kad juos seki, nepaisant to.
         unlocked: Žmonės galės jus sekti nepaprašę patvirtinimo. Panaikinkite žymėjimą, jei norite peržiūrėti sekimo prašymus ir pasirinkti, ar priimti, ar atmesti naujus sekėjus.
       account_alias:
@@ -55,8 +55,9 @@ lt:
         phrase: Bus suderinta, neatsižvelgiant į teksto lygį arba įrašo turinio įspėjimą
         scopes: Prie kurių API programai bus leidžiama pasiekti. Pasirinkus aukščiausio lygio sritį, atskirų sričių pasirinkti nereikia.
         setting_advanced_layout: Rodykite „Mastodon“ kaip kelių stulpelių išdėstymą, leidžiantį peržiūrėti įrašų srautą, pranešimus ir trečiąjį stulpelį pagal savo pasirinkimą. Nerekomenduojama mažesniems ekranams.
-        setting_aggregate_reblogs: Nerodyti naujų pakėlimų įrašams, kurie neseniai buvo pakelti (taikoma tik naujai gautiems pakėlimams).
+        setting_aggregate_reblogs: Neberodyti naujų pasidalinimų įrašais, kuriais neseniai buvo pasidalinta (taikoma tik naujai daromiems pasidalinimams)
         setting_always_send_emails: Paprastai el. laiško pranešimai nebus siunčiami, kai aktyviai naudoji Mastodon.
+        setting_boost_modal: Kai ši funkcija įjungta, pasidalijant įrašu pirmiausia atsivers patvirtinimo langas, kuriame galėsite pakeisti savo pasidalijimo matomumo nustatymus.
         setting_default_quote_policy_private: Tik sekėjams skirti įrašai, paskelbti platformoje „Mastodon“, negali būti cituojami kitų.
         setting_default_quote_policy_unlisted: Kai žmonės jus cituos, jų įrašai taip pat bus paslėpti iš populiariausių naujienų srauto.
         setting_default_sensitive: Jautrioji medija pagal numatytuosius nustatymus yra paslėpta ir gali būti atskleista spustelėjus.
@@ -70,10 +71,12 @@ lt:
         setting_use_pending_items: Slėpti laiko skalės naujienas po paspaudimo, vietoj automatinio srauto slinkimo.
         username: Gali naudoti raides, skaičius ir pabraukimus
         whole_word: Kai raktažodis ar frazė yra tik raidinis ir skaitmeninis, jis bus taikomas tik tada, jei atitiks visą žodį
+      domain_allow:
+        domain: Nurodytas domenas galės gauti duomenis iš šio serverio ir iš jo gaunami duomenys bus apdorojami ir saugomi
       email_domain_block:
         with_dns_records: Bus bandoma išspręsti nurodyto domeno DNS įrašus, o rezultatai taip pat bus blokuojami
       featured_tag:
-        name: 'Štai keletas pastaruoju metu dažniausiai saitažodžių, kurių tu naudojai:'
+        name: 'Štai keletas pastaruoju metu dažniausiai tavo naudotų grotažymių:'
       filters:
         actions:
           blur: Slėpti mediją po įspėjimu, neslepiant paties teksto
@@ -94,8 +97,9 @@ lt:
         site_contact_email: Kaip žmonės gali su tavimi susisiekti teisiniais ar pagalbos užklausimais.
         site_contact_username: Kaip žmonės gali tave pasiekti Mastodon.
         site_extended_description: Bet kokia papildoma informacija, kuri gali būti naudinga lankytojams ir naudotojams. Gali būti struktūrizuota naudojant Markdown sintaksę.
+        theme: Tema, kurią mato atsijungę lankytojai ir nauji vartotojai.
         thumbnail: Maždaug 2:1 dydžio vaizdas, rodomas šalia tavo serverio informacijos.
-        trends: Trendai rodo, kurios įrašai, saitažodžiai ir naujienų istorijos tavo serveryje sulaukia didžiausio susidomėjimo.
+        trends: Tendencijos rodo, kurie įrašai, grotažymės ir naujienų istorijos tavo serveryje sulaukia didžiausio susidomėjimo.
       imports:
         data: CSV failas, eksportuotas iš kito „Mastodon“ serverio.
       invite_request:
@@ -140,6 +144,11 @@ lt:
         title: Pavadinimas
       admin_account_action:
         include_statuses: Įtraukti praneštus įrašus į el. laišką
+        type: Veiksmas
+        types:
+          disable: Sustabdyti
+          none: Siųsti įspėjimą
+          sensitive: Jautrus(-i)
       defaults:
         autofollow: Kviesti sekti tavo paskyrą
         avatar: Profilio nuotrauka
@@ -161,6 +170,7 @@ lt:
         setting_aggregate_reblogs: Grupuoti pakėlimus laiko skalėse
         setting_always_send_emails: Visada siųsti el. laiško pranešimus
         setting_auto_play_gif: Automatiškai leisti animuotų GIF
+        setting_boost_modal: Kontroliuoti pasidalijimų matomumo nustatymus
         setting_default_language: Skelbimo kalba
         setting_default_quote_policy: Kas gali cituoti
         setting_default_sensitive: Visada žymėti mediją kaip jautrią
@@ -172,6 +182,7 @@ lt:
         setting_emoji_style: Jaustuko stilius
         setting_expand_spoilers: Visada išplėsti įrašus, pažymėtus turinio įspėjimais
         setting_hide_network: Slėpti savo socialinę diagramą
+        setting_quick_boosting: Įjunkite greitą pasidalinimą
         setting_reduce_motion: Sumažinti judėjimą animacijose
         setting_system_font_ui: Naudoti numatytąjį sistemos šriftą
         setting_system_scrollbars_ui: Naudoti numatytąją sistemos slankjuostę
@@ -187,7 +198,7 @@ lt:
       email_domain_block:
         with_dns_records: Įtraukti MX įrašus ir domeno IP adresus
       featured_tag:
-        name: Saitažodis
+        name: Grotažymė
       filters:
         actions:
           blur: Slėpti mediją su įspėjimu
@@ -200,9 +211,11 @@ lt:
         content_cache_retention_period: Nuotolinio turinio saugojimo laikotarpis
         custom_css: Pasirinktinis CSS
         favicon: Svetainės piktograma
+        local_topic_feed_access: Prieiga prie grotažymių ir nuorodų sienų srautų, kuriuose pateikiami vietiniai įrašai
         mascot: Pasirinktinis talismanas (pasenęs)
         min_age: Mažiausias amžiaus reikalavimas
         registrations_mode: Kas gali užsiregistruoti
+        remote_topic_feed_access: Prieiga prie grotažymių ir nuorodų srautų, kuriuose pateikiami išoriniai įrašai
         require_invite_text: Reikalauti priežasties prisijungti
         show_domain_blocks_rationale: Rodyti, kodėl domenai buvo užblokuoti
         site_extended_description: Išplėstas aprašymas
@@ -224,7 +237,7 @@ lt:
         mention: Kažkas paminėjo tave
         pending_account: Reikia peržiūros naujam paskyrui
         quote: Kažkas jus paminėjo
-        reblog: Kažkas pakėlė tavo įrašą
+        reblog: Kažkas dalinosi tavo įrašu
         software_updates:
           label: Yra nauja Mastodon versija
           patch: Pranešti apie klaidų ištaisymo atnaujinimus
@@ -236,10 +249,10 @@ lt:
         indexable: Įtraukti profilio puslapį į paieškos variklius
         show_application: Rodyti, iš kurios programėles išsiuntei įrašą
       tag:
-        listable: Leisti šį saitažodį rodyti paieškose ir pasiūlymuose
-        name: Saitažodis
-        trendable: Leisti šį saitažodį rodyti pagal trendus
-        usable: Leisti įrašams naudoti šį saitažodį vietoje
+        listable: Leisti šį grotažodį rodyti paieškose ir pasiūlymuose
+        name: Grotažymė
+        trendable: Leisti šią grotažymę rodyti tendencijose
+        usable: Leisti įrašams naudoti šią grotažymę lokaliai
       terms_of_service:
         changelog: Kas pasikeitė?
         text: Paslaugų sąlygos
