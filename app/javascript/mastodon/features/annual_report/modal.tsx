@@ -17,11 +17,10 @@ const AnnualReportModal: React.FC<{
       className={classNames(
         'modal-root__modal',
         styles.modalWrapper,
-        styles.variables,
         'theme-dark',
       )}
     >
-      <AnnualReport />
+      <AnnualReport context='modal' />
     </div>
   );
 };
