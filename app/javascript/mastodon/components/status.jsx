@@ -619,7 +619,7 @@ class Status extends ImmutablePureComponent {
               </>
             )}
 
-            {(!isQuotedPost || !showActions) &&
+            {(showActions && !isQuotedPost) &&
               <StatusActionBar scrollKey={scrollKey} status={status} account={account}  {...other} />
             }
           </div>
