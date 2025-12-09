@@ -65,16 +65,20 @@ const loadDB = (() => {
   async function initDB() {
     const db = await openDB<EmojiDB>('mastodon-emoji', SCHEMA_VERSION, {
       upgrade(database, oldVersion, newVersion, trx) {
-        if (oldVersion < 1) {
+        if (!database.objectStoreNames.contains('custom')) {
           const customTable = database.createObjectStore('custom', {
             keyPath: 'shortcode',
             autoIncrement: false,
           });
           customTable.createIndex('category', 'category');
+        }
 
+        if (!database.objectStoreNames.contains('etags')) {
           database.createObjectStore('etags');
+        }
 
-          for (const locale of SUPPORTED_LOCALES) {
+        for (const locale of SUPPORTED_LOCALES) {
+          if (!database.objectStoreNames.contains(locale)) {
             const localeTable = database.createObjectStore(locale, {
               keyPath: 'hexcode',
               autoIncrement: false,
@@ -83,9 +87,20 @@ const loadDB = (() => {
             localeTable.createIndex('label', 'label');
             localeTable.createIndex('order', 'order');
             localeTable.createIndex('tags', 'tags', { multiEntry: true });
+            localeTable.createIndex('shortcodes', 'shortcodes', {
+              multiEntry: true,
+            });
+          }
+          // Added in version 2.
+          const localeTable = trx.objectStore(locale);
+          if (!localeTable.indexNames.contains('shortcodes')) {
+            localeTable.createIndex('shortcodes', 'shortcodes', {
+              multiEntry: true,
+            });
           }
         }
-        if (oldVersion < 2) {
+
+        if (!database.objectStoreNames.contains('shortcodes')) {
           const shortcodeTable = database.createObjectStore('shortcodes', {
             keyPath: 'hexcode',
             autoIncrement: false,
@@ -94,12 +109,6 @@ const loadDB = (() => {
           shortcodeTable.createIndex('shortcodes', 'shortcodes', {
             multiEntry: true,
           });
-
-          for (const locale of SUPPORTED_LOCALES) {
-            trx
-              .objectStore(locale)
-              .createIndex('shortcodes', 'shortcodes', { multiEntry: true });
-          }
         }
 
         log(
