@@ -2,6 +2,7 @@ import { IDBFactory } from 'fake-indexeddb';
 
 import { customEmojiFactory, unicodeEmojiFactory } from '@/testing/factories';
 
+import { EMOJI_DB_SHORTCODE_TEST } from './constants';
 import {
   putEmojiData,
   loadEmojiByHexcode,
@@ -196,8 +197,17 @@ describe('emoji database', () => {
     });
 
     test('retrieves the etag for loaded locale', async () => {
+      await putEmojiData(
+        [unicodeEmojiFactory({ hexcode: EMOJI_DB_SHORTCODE_TEST })],
+        'en',
+      );
       const etag = await loadLatestEtag('en');
       expect(etag).toBe('etag');
+    });
+
+    test('returns null if locale has no shortcodes', async () => {
+      const etag = await loadLatestEtag('en');
+      expect(etag).toBeNull();
     });
 
     test('returns null if locale not loaded', async () => {

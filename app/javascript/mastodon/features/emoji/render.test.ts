@@ -121,17 +121,24 @@ describe('loadEmojiDataToState', () => {
     const dbCall = vi
       .spyOn(db, 'loadEmojiByHexcode')
       .mockResolvedValue(unicodeEmojiFactory());
+    const dbLegacyCall = vi
+      .spyOn(db, 'loadLegacyShortcodesByShortcode')
+      .mockResolvedValueOnce({
+        shortcodes: ['legacy_code'],
+        hexcode: '1F60A',
+      });
     const unicodeState = {
       type: 'unicode',
       code: '1F60A',
     } as const satisfies EmojiStateUnicode;
     const result = await loadEmojiDataToState(unicodeState, 'en');
     expect(dbCall).toHaveBeenCalledWith('1F60A', 'en');
+    expect(dbLegacyCall).toHaveBeenCalledWith('1F60A');
     expect(result).toEqual({
       type: 'unicode',
       code: '1F60A',
       data: unicodeEmojiFactory(),
-      shortcode: 'test_emoji',
+      shortcode: 'legacy_code',
     });
   });
 
