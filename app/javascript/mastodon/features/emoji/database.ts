@@ -3,6 +3,7 @@ import type { Locale, ShortcodesDataset } from 'emojibase';
 import type { DBSchema, IDBPDatabase } from 'idb';
 import { openDB } from 'idb';
 
+import { EMOJI_DB_SHORTCODE_TEST } from './constants';
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
 import type {
   CustomEmojiData,
@@ -254,8 +255,7 @@ export async function loadLatestEtag(localeString: string) {
 
   // Check if shortcodes exist for the given Unicode locale.
   if (locale !== 'custom') {
-    // 2122 is the trademark sign, which we know has shortcodes in all datasets.
-    const result = await db.get(locale, '2122');
+    const result = await db.get(locale, EMOJI_DB_SHORTCODE_TEST);
     if (!result?.shortcodes) {
       return null;
     }

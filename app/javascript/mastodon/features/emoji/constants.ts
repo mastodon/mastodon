@@ -25,6 +25,8 @@ export const EMOJI_TYPE_CUSTOM = 'custom';
 
 export const EMOJI_DB_NAME_SHORTCODES = 'shortcodes';
 
+export const EMOJI_DB_SHORTCODE_TEST = '2122'; // 2122 is the trademark sign, which we know has shortcodes in all datasets.
+
 export const EMOJIS_WITH_DARK_BORDER = [
   '🎱', // 1F3B1
   '🐜', // 1F41C
