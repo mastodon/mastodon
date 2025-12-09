@@ -129,7 +129,8 @@ export async function loadEmojiDataToState(
           ...state,
           type: EMOJI_TYPE_UNICODE,
           data,
-          shortcode: data.shortcodes?.at(0) ?? legacyCode?.shortcodes.at(0),
+          // TODO: Use CLDR shortcodes when the picker supports them.
+          shortcode: legacyCode?.shortcodes.at(0),
         };
       }
     } else {
