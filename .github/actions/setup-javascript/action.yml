@@ -1,42 +1,165 @@
 name: 'Setup Javascript'
-description: 'Setup a Javascript environment ready to run the Mastodon code'
+description: 'Setup a Javascript environment ready to run the Mastodon code (improved: multi-manager support, smarter caching, optional production-only install, node version input)'
 inputs:
   onlyProduction:
     description: Only install production dependencies
     default: 'false'
+  node-version:
+    description: Override the Node.js version (if empty, .nvmrc will be used)
+    default: '24'
+  node-version-file:
+    description: File that contains the Node.js version (used when node-version is empty)
+    default: '.nvmrc'
+  dependency-manager:
+    description: Which package manager to use. Set to "auto" to detect from lockfiles (yarn, npm, pnpm, auto)
+    default: 'auto'
+  cache:
+    description: Enable dependency cache (true/false)
+    default: 'true'
+  npm-auth-token:
+    description: Optional npm auth token. Provide via secrets if needed for private registries.
+    default: ''
 
 runs:
   using: 'composite'
   steps:
+    - name: Determine Node version
+      id: node-version
+      shell: bash
+      run: |
+        if [ -n "${{ inputs.node-version }}" ]; then
+          echo "version=${{ inputs.node-version }}" >> $GITHUB_OUTPUT
+        elif [ -f "${{ inputs.node-version-file }}" ]; then
+          ver=$(cat "${{ inputs.node-version-file }}" | tr -d ' \n')
+          echo "version=$ver" >> $GITHUB_OUTPUT
+        else
+          echo "version=lts/*" >> $GITHUB_OUTPUT
+
     - name: Set up Node.js
       uses: actions/setup-node@v6
       with:
-        node-version-file: '.nvmrc'
+        node-version: ${{ steps.node-version.outputs.version }}
+        # We manage dependency caches ourselves (see below) so keep setup-node cache disabled
+        cache: 'false'
 
-    # The following is needed because we can not use `cache: true` for `setup-node`, as it does not support Corepack yet and mess up with the cache location if ran after Node is installed
-    - name: Enable corepack
+    - name: Enable Corepack (manages yarn/pnpm versions)
       shell: bash
-      run: corepack enable
+      run: |
+        corepack enable
+        corepack --version || true
 
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
+    - name: Detect package manager
+      id: detect-pm
       shell: bash
-      run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+      run: |
+        pm="${{ inputs.dependency-manager }}"
+        if [ -z "$pm" ] || [ "$pm" = "auto" ]; then
+          if [ -f pnpm-lock.yaml ]; then
+            pm=pnpm
+          elif [ -f package-lock.json ]; then
+            pm=npm
+          elif [ -f yarn.lock ]; then
+            pm=yarn
+          else
+            pm=yarn
+          fi
+        fi
+        echo "pm=$pm" >> $GITHUB_OUTPUT
+
+    - name: Prepare package manager via Corepack (pnpm/yarn)
+      if: steps.detect-pm.outputs.pm == 'pnpm' || steps.detect-pm.outputs.pm == 'yarn'
+      shell: bash
+      run: |
+        pm=${{ steps.detect-pm.outputs.pm }}
+        if [ "$pm" = "pnpm" ]; then
+          corepack prepare pnpm@latest --activate
+        elif [ "$pm" = "yarn" ]; then
+          corepack prepare yarn@stable --activate
+        fi
+        echo "prepared=true" >> $GITHUB_OUTPUT
+
+    - name: Optionally write npm auth token
+      if: ${{ inputs.npm-auth-token != '' }}
+      shell: bash
+      run: |
+        mkdir -p ~/.npm
+        echo "//registry.npmjs.org/:_authToken=${{ inputs.npm-auth-token }}" > ~/.npm/_authToken
+
+    - name: Get dependency cache path
+      id: cache-path
+      shell: bash
+      run: |
+        pm=${{ steps.detect-pm.outputs.pm }}
+        dir=""
+        if [ "$pm" = "yarn" ]; then
+          # yarn v1/v2+: use configured cacheFolder if available, fallback to ~/.cache/yarn
+          dir=$(yarn config get cacheFolder 2>/dev/null || true)
+          if [ -z "$dir" ] || [ "$dir" = "undefined" ]; then
+            dir="$HOME/.cache/yarn"
+          fi
+        elif [ "$pm" = "pnpm" ]; then
+          # pnpm store path should work once pnpm is available via corepack
+          dir=$(pnpm store path 2>/dev/null || true)
+          if [ -z "$dir" ]; then
+            dir="$HOME/.pnpm-store"
+          fi
+        else
+          # npm
+          dir="$HOME/.npm"
+        fi
+        echo "dir=$dir" >> $GITHUB_OUTPUT
 
     - uses: actions/cache@v4
-      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      id: deps-cache
+      if: ${{ inputs.cache == 'true' }}
       with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        path: ${{ steps.cache-path.outputs.dir }}
+        key: ${{ runner.os }}-deps-${{ steps.detect-pm.outputs.pm }}-${{ hashFiles('**/yarn.lock','**/package-lock.json','**/pnpm-lock.yaml') }}
         restore-keys: |
-          ${{ runner.os }}-yarn-
+          ${{ runner.os }}-deps-${{ steps.detect-pm.outputs.pm }}-
 
-    - name: Install all yarn packages
+    - name: Install dependencies (choose command by package manager)
       shell: bash
-      run: yarn install --immutable
-      if: inputs.onlyProduction == 'false'
+      env:
+        CI: true
+      run: |
+        set -euo pipefail
+        pm=${{ steps.detect-pm.outputs.pm }}
+        onlyProd="${{ inputs.onlyProduction }}"
+        echo "Using package manager: $pm"
+        if [ "$pm" = "yarn" ]; then
+          if [ "$onlyProd" = "false" ]; then
+            echo "Running: yarn install --immutable"
+            yarn install --immutable
+          else
+            echo "Running: yarn workspaces focus --production"
+            yarn workspaces focus --production
+          fi
+        elif [ "$pm" = "pnpm" ]; then
+          if [ "$onlyProd" = "false" ]; then
+            echo "Running: pnpm install --frozen-lockfile"
+            pnpm install --frozen-lockfile
+          else
+            echo "Running: pnpm install --prod --frozen-lockfile"
+            pnpm install --prod --frozen-lockfile
+          fi
+        else
+          # npm
+          if [ "$onlyProd" = "false" ]; then
+            echo "Running: npm ci"
+            npm ci
+          else
+            # For npm v7+, --omit=dev removes dev dependencies
+            echo "Running: npm ci --omit=dev"
+            npm ci --omit=dev
+          fi
+        fi
 
-    - name: Install all production yarn packages
+    - name: Print versions & status
       shell: bash
-      run: yarn workspaces focus --production
-      if: inputs.onlyProduction != 'false'
+      run: |
+        echo "Node: $(node -v)"
+        echo "NPM: $(npm -v || echo 'npm not found')"
+        echo "Yarn: $(yarn -v || echo 'yarn not found')"
+        echo "pnpm: $(pnpm -v || echo 'pnpm not found')"
+        echo "Cache hit: ${{ steps.deps-cache.outputs.cache-hit || 'false' }}"
