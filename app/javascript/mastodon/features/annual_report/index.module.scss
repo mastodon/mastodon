@@ -43,14 +43,11 @@
   }
 }
 
-.bento {
+.stack {
+  --grid-spacing: 12px;
+
   display: grid;
-  gap: 12px;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-rows: minmax(0, auto) minmax(0, 1fr) minmax(0, auto) minmax(
-      0,
-      auto
-    );
+  gap: var(--grid-spacing);
 }
 
 .box {
@@ -115,26 +112,79 @@
 }
 
 .mostBoostedPost {
-  grid-column: span 3;
   padding: 0;
   padding-top: 8px;
+  overflow: hidden;
+}
+
+.statsGrid {
+  display: grid;
+  gap: var(--grid-spacing);
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    'followers hashtag'
+    'new-posts hashtag';
+
+  @media (width < 680px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'followers new-posts'
+      'hashtag hashtag';
+  }
+
+  &:empty {
+    display: none;
+  }
+
+  &.onlyHashtag {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'hashtag';
+  }
+
+  &.noHashtag {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'followers new-posts';
+  }
+
+  &.singleNumber {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: 'number hashtag';
+
+    @media (width < 680px) {
+      grid-template-areas:
+        'number number'
+        'hashtag hashtag';
+    }
+  }
+
+  &.singleNumber.noHashtag {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'number';
+  }
 }
 
 .followers {
-  grid-column: 1;
+  grid-area: followers;
+
+  .singleNumber & {
+    grid-area: number;
+  }
 }
 
 .newPosts {
-  grid-column: 1;
+  grid-area: new-posts;
+
+  .singleNumber & {
+    grid-area: number;
+  }
 }
 
 .mostUsedHashtag {
-  grid-column: span 2;
-  grid-row: span 2;
+  grid-area: hashtag;
+  padding-block: 24px;
 }
 
 .archetype {
-  grid-column: span 3;
   display: flex;
   flex-direction: column;
   align-items: center;

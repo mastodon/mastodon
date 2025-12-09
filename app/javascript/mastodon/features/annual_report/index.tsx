@@ -3,8 +3,9 @@ import type { FC } from 'react';
 
 import { defineMessage, FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
 import { useLocation } from 'react-router';
+
+import classNames from 'classnames/bind';
 
 import { closeModal } from '@/mastodon/actions/modal';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
@@ -17,6 +18,8 @@ import { HighlightedPost } from './highlighted_post';
 import styles from './index.module.scss';
 import { MostUsedHashtag } from './most_used_hashtag';
 import { NewPosts } from './new_posts';
+
+const moduleClassNames = classNames.bind(styles);
 
 export const shareMessage = defineMessage({
   id: 'annual_report.summary.share_message',
@@ -46,13 +49,24 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
     return <LoadingIndicator />;
   }
 
-  const topHashtag = report.data.top_hashtags[0] ?? {
-    name: 'mastodon',
-    count: 12,
-  };
+  const newPostCount = report.data.time_series.reduce(
+    (sum, item) => sum + item.statuses,
+    0,
+  );
+
+  const newFollowerCount = report.data.time_series.reduce(
+    (sum, item) => sum + item.followers,
+    0,
+  );
+
+  const topHashtag = report.data.top_hashtags[0];
+  //  ?? {
+  //   name: 'mastodon',
+  //   count: 12,
+  // };
 
   return (
-    <div className={classNames(styles.wrapper, 'theme-dark')}>
+    <div className={moduleClassNames(styles.wrapper, 'theme-dark')}>
       <div className={styles.header}>
         <h1>
           <FormattedMessage
@@ -70,14 +84,19 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
         </p>
       </div>
 
-      <div className={styles.bento}>
+      <div className={styles.stack}>
         <HighlightedPost data={report.data.top_statuses} />
-        <Followers
-          data={report.data.time_series}
-          total={currentAccount?.followers_count}
-        />
-        <MostUsedHashtag hashtag={topHashtag} />
-        <NewPosts data={report.data.time_series} />
+        <div
+          className={moduleClassNames(styles.statsGrid, {
+            noHashtag: !topHashtag,
+            onlyHashtag: !(newFollowerCount && newPostCount),
+            singleNumber: !!newFollowerCount !== !!newPostCount,
+          })}
+        >
+          {!!newFollowerCount && <Followers count={newFollowerCount} />}
+          {!!newPostCount && <NewPosts count={newPostCount} />}
+          {topHashtag && <MostUsedHashtag hashtag={topHashtag} />}
+        </div>
         <Archetype
           report={report}
           currentAccount={currentAccount}
