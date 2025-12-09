@@ -73,10 +73,6 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
   );
 
   const topHashtag = report.data.top_hashtags[0];
-  //  ?? {
-  //   name: 'mastodon',
-  //   count: 12,
-  // };
 
   return (
     <div className={moduleClassNames(styles.wrapper, 'theme-dark')}>
