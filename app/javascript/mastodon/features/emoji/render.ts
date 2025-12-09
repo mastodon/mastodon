@@ -117,36 +117,28 @@ export async function loadEmojiDataToState(
 
   // First, try to load the data from IndexedDB.
   try {
+    const legacyCode = await loadLegacyShortcodesByShortcode(state.code);
     // This is duplicative, but that's because TS can't distinguish the state type easily.
-    if (state.type === EMOJI_TYPE_UNICODE) {
-      const data = await loadEmojiByHexcode(state.code, locale);
+    if (state.type === EMOJI_TYPE_UNICODE || legacyCode) {
+      const data = await loadEmojiByHexcode(
+        legacyCode?.hexcode ?? state.code,
+        locale,
+      );
+      if (data) {
+        return {
+          ...state,
+          type: EMOJI_TYPE_UNICODE,
+          data,
+          shortcode: legacyCode?.shortcodes.at(0) ?? data.shortcodes?.at(0),
+        };
+      }
+    } else {
+      const data = await loadCustomEmojiByShortcode(state.code);
       if (data) {
         return {
           ...state,
           data,
         };
-      }
-    } else {
-      const [customData, legacyData] = await Promise.all([
-        loadCustomEmojiByShortcode(state.code),
-        loadLegacyShortcodesByShortcode(state.code),
-      ]);
-      if (customData) {
-        return {
-          ...state,
-          data: customData,
-        };
-      } else if (legacyData) {
-        log(
-          'Found legacy shortcode %s, loading unicode emoji %s',
-          state.code,
-          legacyData.hexcode,
-        );
-        return await loadEmojiDataToState(
-          { type: EMOJI_TYPE_UNICODE, code: legacyData.hexcode },
-          locale,
-          retry,
-        );
       }
     }
     // If not found, assume it's not an emoji and return null.
