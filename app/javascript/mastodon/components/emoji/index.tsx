@@ -68,8 +68,12 @@ export const Emoji: FC<EmojiProps> = ({
 
   if (!shouldRenderImage(state, appState.mode)) {
     if (state.type === EMOJI_TYPE_UNICODE) {
+      const shortcode = state.shortcode;
       return (
-        <span className='emoji' title={state.data.shortcodes?.join(', ')}>
+        <span
+          className='emoji'
+          title={shortcode ? `:${shortcode}:` : undefined}
+        >
           {state.data.unicode}
         </span>
       );
