@@ -31,10 +31,18 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
   context = 'standalone',
 }) => {
   const dispatch = useAppDispatch();
-  const currentAccount = useAppSelector((state) =>
-    me ? state.accounts.get(me) : undefined,
-  );
   const report = useAppSelector((state) => state.annualReport.report);
+  const account = useAppSelector((state) => {
+    if (me) {
+      return state.accounts.get(me);
+    }
+    if (report?.schema_version === 2) {
+      return state.accounts.get(report.account_id);
+    }
+    return undefined;
+  });
+
+  console.log(report, account?.toJS());
 
   // Close modal when navigating away from within
   const { pathname } = useLocation();
@@ -75,13 +83,7 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
             values={{ year: report.year }}
           />
         </h1>
-        <p>
-          <FormattedMessage
-            id='annual_report.summary.here_it_is'
-            defaultMessage='Here is your {year} in review:'
-            values={{ year: report.year }}
-          />
-        </p>
+        {account && <p>@{account.acct}</p>}
       </div>
 
       <div className={styles.stack}>
@@ -99,8 +101,8 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
         </div>
         <Archetype
           report={report}
-          currentAccount={currentAccount}
-          share={context === 'modal'}
+          account={account}
+          canShare={context === 'modal'}
         />
       </div>
     </div>

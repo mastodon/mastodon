@@ -12,6 +12,7 @@ import replier from '@/images/archetypes/replier.png';
 import space_elements from '@/images/archetypes/space_elements.png';
 import { Avatar } from '@/mastodon/components/avatar';
 import { Button } from '@/mastodon/components/button';
+import { me } from '@/mastodon/initial_state';
 import type { Account } from '@/mastodon/models/account';
 import type {
   AnnualReport,
@@ -110,14 +111,14 @@ const illustrations = {
 
 export const Archetype: React.FC<{
   report: AnnualReport;
-  currentAccount: Account | undefined;
-  share: boolean;
-}> = ({ report, currentAccount, share }) => {
+  account?: Account;
+  canShare: boolean;
+}> = ({ report, account, canShare }) => {
   const intl = useIntl();
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const isSelfView = !!currentAccount;
+  const isSelfView = account?.id === me;
 
-  const [isRevealed, setIsRevealed] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(!isSelfView);
   const reveal = useCallback(() => {
     setIsRevealed(true);
     wrapperRef.current?.focus();
@@ -128,6 +129,8 @@ export const Archetype: React.FC<{
     ? archetypeSelfDescriptions
     : archetypePublicDescriptions;
 
+  const name = account?.display_name;
+
   return (
     <div
       className={classNames(styles.box, styles.archetype)}
@@ -136,11 +139,13 @@ export const Archetype: React.FC<{
       ref={wrapperRef}
     >
       <div className={styles.archetypeArtboard}>
-        <Avatar
-          account={currentAccount}
-          size={50}
-          className={styles.archetypeAvatar}
-        />
+        {account && (
+          <Avatar
+            account={account}
+            size={50}
+            className={styles.archetypeAvatar}
+          />
+        )}
         <div className={styles.archetypeIllustrationWrapper}>
           <img
             src={illustrations[archetype]}
@@ -157,12 +162,20 @@ export const Archetype: React.FC<{
           className={styles.archetypePlanetRing}
         />
       </div>
-      <div className={styles.content}>
+      <div className={classNames(styles.content, styles.comfortable)}>
         <h2 className={styles.title}>
-          <FormattedMessage
-            id='annual_report.summary.archetype.title'
-            defaultMessage='Your archetype'
-          />
+          {isSelfView ? (
+            <FormattedMessage
+              id='annual_report.summary.archetype.title_self'
+              defaultMessage='Your archetype'
+            />
+          ) : (
+            <FormattedMessage
+              id='annual_report.summary.archetype.title_public'
+              defaultMessage="{name}'s archetype"
+              values={{ name }}
+            />
+          )}
         </h2>
         <p className={styles.statLarge}>
           {isRevealed ? (
@@ -176,7 +189,9 @@ export const Archetype: React.FC<{
         </p>
         <p>
           {isRevealed ? (
-            intl.formatMessage(descriptions[archetype])
+            intl.formatMessage(descriptions[archetype], {
+              name,
+            })
           ) : (
             <FormattedMessage
               id='annual_report.summary.archetype.reveal_description'
@@ -194,7 +209,7 @@ export const Archetype: React.FC<{
           />
         </Button>
       )}
-      {isRevealed && share && <ShareButton report={report} />}
+      {isRevealed && canShare && <ShareButton report={report} />}
     </div>
   );
 };
