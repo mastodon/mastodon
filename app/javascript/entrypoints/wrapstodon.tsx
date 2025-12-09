@@ -6,7 +6,7 @@ import { importFetchedStatuses } from '@/mastodon/actions/importer';
 import { hydrateStore } from '@/mastodon/actions/store';
 import type { ApiAnnualReportResponse } from '@/mastodon/api/annual_report';
 import { Router } from '@/mastodon/components/router';
-import { WrapstodonShare } from '@/mastodon/features/annual_report/share';
+import { WrapstodonSharedPage } from '@/mastodon/features/annual_report/shared_page';
 import { IntlProvider, loadLocale } from '@/mastodon/locales';
 import { loadPolyfills } from '@/mastodon/polyfills';
 import ready from '@/mastodon/ready';
@@ -48,7 +48,7 @@ function loaded() {
     <IntlProvider>
       <ReduxProvider store={store}>
         <Router>
-          <WrapstodonShare />
+          <WrapstodonSharedPage />
         </Router>
       </ReduxProvider>
     </IntlProvider>,

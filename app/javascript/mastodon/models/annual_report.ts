@@ -55,5 +55,6 @@ export type AnnualReport = {
       schema_version: 2;
       data: AnnualReportV2;
       share_url: string | null;
+      account_id: string;
     }
 );

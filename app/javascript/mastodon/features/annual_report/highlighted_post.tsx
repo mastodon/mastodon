@@ -1,102 +1,77 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return,
                   @typescript-eslint/no-explicit-any,
-                  @typescript-eslint/no-unsafe-assignment */
-
-import { useCallback } from 'react';
+                  @typescript-eslint/no-unsafe-assignment,
+                  @typescript-eslint/no-unsafe-member-access,
+                  @typescript-eslint/no-unsafe-call */
 
 import { FormattedMessage } from 'react-intl';
 
-import { DisplayName } from '@/mastodon/components/display_name';
-import { toggleStatusSpoilers } from 'mastodon/actions/statuses';
-import { DetailedStatus } from 'mastodon/features/status/components/detailed_status';
-import { me } from 'mastodon/initial_state';
+import classNames from 'classnames';
+
+import { StatusQuoteManager } from 'mastodon/components/status_quoted';
 import type { TopStatuses } from 'mastodon/models/annual_report';
-import { makeGetStatus, makeGetPictureInPicture } from 'mastodon/selectors';
-import { useAppSelector, useAppDispatch } from 'mastodon/store';
+import { makeGetStatus } from 'mastodon/selectors';
+import { useAppSelector } from 'mastodon/store';
+
+import styles from './index.module.scss';
 
 const getStatus = makeGetStatus() as unknown as (arg0: any, arg1: any) => any;
-const getPictureInPicture = makeGetPictureInPicture() as unknown as (
-  arg0: any,
-  arg1: any,
-) => any;
 
 export const HighlightedPost: React.FC<{
   data: TopStatuses;
 }> = ({ data }) => {
-  let statusId, label;
+  const { by_reblogs, by_favourites, by_replies } = data;
 
-  if (data.by_reblogs) {
-    statusId = data.by_reblogs;
-    label = (
-      <FormattedMessage
-        id='annual_report.summary.highlighted_post.by_reblogs'
-        defaultMessage='most boosted post'
-      />
-    );
-  } else if (data.by_favourites) {
-    statusId = data.by_favourites;
-    label = (
-      <FormattedMessage
-        id='annual_report.summary.highlighted_post.by_favourites'
-        defaultMessage='most favourited post'
-      />
-    );
-  } else {
-    statusId = data.by_replies;
-    label = (
-      <FormattedMessage
-        id='annual_report.summary.highlighted_post.by_replies'
-        defaultMessage='post with the most replies'
-      />
-    );
-  }
+  const statusId = by_reblogs || by_favourites || by_replies;
 
-  const dispatch = useAppDispatch();
-  const domain = useAppSelector((state) => state.meta.get('domain'));
   const status = useAppSelector((state) =>
     statusId ? getStatus(state, { id: statusId }) : undefined,
   );
-  const pictureInPicture = useAppSelector((state) =>
-    statusId ? getPictureInPicture(state, { id: statusId }) : undefined,
-  );
-  const account = useAppSelector((state) =>
-    me ? state.accounts.get(me) : undefined,
-  );
-
-  const handleToggleHidden = useCallback(() => {
-    dispatch(toggleStatusSpoilers(statusId));
-  }, [dispatch, statusId]);
 
   if (!status) {
-    return (
-      <div className='annual-report__bento__box annual-report__summary__most-boosted-post' />
+    return <div className={classNames(styles.box, styles.mostBoostedPost)} />;
+  }
+
+  let label;
+  if (by_reblogs) {
+    label = (
+      <FormattedMessage
+        id='annual_report.summary.highlighted_post.boost_count'
+        defaultMessage='This post was boosted {count, plural, one {once} other {# times}}.'
+        values={{ count: status.get('reblogs_count') }}
+      />
+    );
+  } else if (by_favourites) {
+    label = (
+      <FormattedMessage
+        id='annual_report.summary.highlighted_post.favourite_count'
+        defaultMessage='This post was favorited {count, plural, one {once} other {# times}}.'
+        values={{ count: status.get('favourites_count') }}
+      />
+    );
+  } else {
+    label = (
+      <FormattedMessage
+        id='annual_report.summary.highlighted_post.reply_count'
+        defaultMessage='This post got {count, plural, one {one reply} other {# replies}}.'
+        values={{ count: status.get('replies_count') }}
+      />
     );
   }
 
-  const displayName = (
-    <span className='display-name'>
-      <strong className='display-name__html'>
-        <FormattedMessage
-          id='annual_report.summary.highlighted_post.possessive'
-          defaultMessage="{name}'s"
-          values={{
-            name: <DisplayName account={account} variant='simple' />,
-          }}
-        />
-      </strong>
-      <span className='display-name__account'>{label}</span>
-    </span>
-  );
-
   return (
-    <div className='annual-report__bento__box annual-report__summary__most-boosted-post'>
-      <DetailedStatus
-        status={status}
-        pictureInPicture={pictureInPicture}
-        domain={domain}
-        onToggleHidden={handleToggleHidden}
-        overrideDisplayName={displayName}
-      />
+    <div className={classNames(styles.box, styles.mostBoostedPost)}>
+      <div className={styles.content}>
+        <h2 className={styles.title}>
+          <FormattedMessage
+            id='annual_report.summary.highlighted_post.title'
+            defaultMessage='Most popular post'
+          />
+        </h2>
+        <p>{label}</p>
+      </div>
+
+      <StatusQuoteManager showActions={false} id={`${statusId}`} />
     </div>
   );
 };
