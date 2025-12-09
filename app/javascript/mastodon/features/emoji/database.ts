@@ -251,6 +251,16 @@ export async function loadLatestEtag(localeString: string) {
   if (!rowCount) {
     return null; // No data for this locale, return null even if there is an etag.
   }
+
+  // Check if shortcodes exist for the given Unicode locale.
+  if (locale !== 'custom') {
+    // 2122 is the trademark sign, which we know has shortcodes in all datasets.
+    const result = await db.get(locale, '2122');
+    if (!result?.shortcodes) {
+      return null;
+    }
+  }
+
   const etag = await db.get('etags', locale);
   return etag ?? null;
 }

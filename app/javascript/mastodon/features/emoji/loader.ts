@@ -51,6 +51,7 @@ export async function importEmojiData(
     const shortcodesResponse = await fetchAndCheckEtag<ShortcodesDataset>(
       locale,
       shortcodesPath,
+      false,
     );
     if (shortcodesResponse) {
       shortcodesData.push(shortcodesResponse);
@@ -129,13 +130,14 @@ export function localeToShortcodesPath(locale: Locale) {
 export async function fetchAndCheckEtag<ResultType extends object[] | object>(
   localeString: string,
   path: string,
+  checkEtag = true,
 ): Promise<ResultType | null> {
   const locale = toSupportedLocaleOrCustom(localeString);
 
   // Use location.origin as this script may be loaded from a CDN domain.
   const url = new URL(path, location.origin);
 
-  const oldEtag = await loadLatestEtag(locale);
+  const oldEtag = checkEtag ? await loadLatestEtag(locale) : null;
   const response = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -156,7 +158,7 @@ export async function fetchAndCheckEtag<ResultType extends object[] | object>(
 
   // Store the ETag for future requests
   const etag = response.headers.get('ETag');
-  if (etag) {
+  if (etag && checkEtag) {
     await putLatestEtag(etag, localeString);
   }
 
