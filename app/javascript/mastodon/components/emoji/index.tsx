@@ -50,8 +50,6 @@ export const Emoji: FC<EmojiProps> = ({
 
   const animate = useContext(AnimateEmojiContext);
 
-  const inversionClass = emojiToInversionClassName(code);
-
   const fallback = showFallback ? code : null;
 
   // If the code is invalid or we otherwise know it's not valid, show the fallback.
@@ -66,12 +64,16 @@ export const Emoji: FC<EmojiProps> = ({
     return fallback;
   }
 
+  const inversionClass =
+    state.type === EMOJI_TYPE_UNICODE &&
+    emojiToInversionClassName(state.data.unicode);
+
   if (!shouldRenderImage(state, appState.mode)) {
     if (state.type === EMOJI_TYPE_UNICODE) {
       const shortcode = state.shortcode;
       return (
         <span
-          className='emoji'
+          className={classNames('emoji', inversionClass)}
           title={shortcode ? `:${shortcode}:` : undefined}
         >
           {state.data.unicode}
