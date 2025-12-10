@@ -1,8 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { accountFactoryState, statusFactoryState } from '@/testing/factories';
+import {
+  accountFactoryState,
+  annualReportFactory,
+  statusFactoryState,
+} from '@/testing/factories';
 
 import { AnnualReport } from '.';
+
+const SAMPLE_HASHTAG = {
+  name: 'Mastodon',
+  count: 14,
+};
 
 const meta = {
   title: 'Components/AnnualReport',
@@ -13,108 +22,14 @@ const meta = {
   parameters: {
     state: {
       accounts: {
-        '1': accountFactoryState(),
+        '1': accountFactoryState({ display_name: 'Freddie Fruitbat' }),
       },
       statuses: {
         '1': statusFactoryState(),
       },
-      annualReport: {
-        state: 'available',
-        report: {
-          schema_version: 2,
-          share_url: '#',
-          account_id: '1',
-          year: 2025,
-          data: {
-            archetype: 'lurker',
-            time_series: [
-              {
-                month: 1,
-                statuses: 0,
-                followers: 0,
-                following: 0,
-              },
-              {
-                month: 2,
-                statuses: 0,
-                followers: 0,
-                following: 0,
-              },
-              {
-                month: 3,
-                statuses: 0,
-                followers: 0,
-                following: 0,
-              },
-              {
-                month: 4,
-                statuses: 0,
-                followers: 0,
-                following: 0,
-              },
-              {
-                month: 5,
-                statuses: 1,
-                followers: 1,
-                following: 3,
-              },
-              {
-                month: 6,
-                statuses: 7,
-                followers: 1,
-                following: 0,
-              },
-              {
-                month: 7,
-                statuses: 2,
-                followers: 0,
-                following: 0,
-              },
-              {
-                month: 8,
-                statuses: 2,
-                followers: 0,
-                following: 0,
-              },
-              {
-                month: 9,
-                statuses: 11,
-                followers: 0,
-                following: 1,
-              },
-              {
-                month: 10,
-                statuses: 12,
-                followers: 0,
-                following: 1,
-              },
-              {
-                month: 11,
-                statuses: 6,
-                followers: 0,
-                following: 1,
-              },
-              {
-                month: 12,
-                statuses: 4,
-                followers: 0,
-                following: 0,
-              },
-            ],
-            top_hashtags: [
-              {
-                name: 'Mastodon',
-                count: 14,
-              },
-            ],
-            top_statuses: {
-              by_reblogs: '1',
-              by_replies: '1',
-              by_favourites: '1',
-            },
-          },
-        },
-      },
+      annualReport: annualReportFactory({
+        top_hashtag: SAMPLE_HASHTAG,
+      }),
     },
   },
 } satisfies Meta<typeof AnnualReport>;
@@ -123,6 +38,68 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Standalone: Story = {
+  args: {
+    context: 'standalone',
+  },
+  render: (args) => <AnnualReport {...args} />,
+};
+
+export const InModal: Story = {
+  args: {
+    context: 'modal',
+  },
+  render: (args) => <AnnualReport {...args} />,
+};
+
+export const ArchetypeOracle: Story = {
+  ...InModal,
+  parameters: {
+    state: {
+      annualReport: annualReportFactory({
+        archetype: 'oracle',
+        top_hashtag: SAMPLE_HASHTAG,
+      }),
+    },
+  },
+  render: (args) => <AnnualReport {...args} />,
+};
+
+export const NoHashtag: Story = {
+  ...InModal,
+  parameters: {
+    state: {
+      annualReport: annualReportFactory({
+        archetype: 'booster',
+      }),
+    },
+  },
+  render: (args) => <AnnualReport {...args} />,
+};
+
+export const NoNewPosts: Story = {
+  ...InModal,
+  parameters: {
+    state: {
+      annualReport: annualReportFactory({
+        archetype: 'pollster',
+        top_hashtag: SAMPLE_HASHTAG,
+        without_posts: true,
+      }),
+    },
+  },
+  render: (args) => <AnnualReport {...args} />,
+};
+
+export const NoNewPostsNoHashtag: Story = {
+  ...InModal,
+  parameters: {
+    state: {
+      annualReport: annualReportFactory({
+        archetype: 'replier',
+        without_posts: true,
+      }),
+    },
+  },
   render: (args) => <AnnualReport {...args} />,
 };
