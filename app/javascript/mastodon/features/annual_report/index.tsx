@@ -108,13 +108,15 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
         >
           {!!newFollowerCount && <Followers count={newFollowerCount} />}
           {!!newPostCount && <NewPosts count={newPostCount} />}
-          {topHashtag && <MostUsedHashtag hashtag={topHashtag} />}
+          {topHashtag && (
+            <MostUsedHashtag
+              hashtag={topHashtag}
+              name={account?.display_name}
+              context={context}
+            />
+          )}
         </div>
-        <Archetype
-          report={report}
-          account={account}
-          canShare={context === 'modal'}
-        />
+        <Archetype report={report} account={account} context={context} />
       </div>
     </div>
   );

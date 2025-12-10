@@ -12,7 +12,6 @@ import replier from '@/images/archetypes/replier.png';
 import space_elements from '@/images/archetypes/space_elements.png';
 import { Avatar } from '@/mastodon/components/avatar';
 import { Button } from '@/mastodon/components/button';
-import { me } from '@/mastodon/initial_state';
 import type { Account } from '@/mastodon/models/account';
 import type {
   AnnualReport,
@@ -112,11 +111,11 @@ const illustrations = {
 export const Archetype: React.FC<{
   report: AnnualReport;
   account?: Account;
-  canShare: boolean;
-}> = ({ report, account, canShare }) => {
+  context: 'modal' | 'standalone';
+}> = ({ report, account, context }) => {
   const intl = useIntl();
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const isSelfView = account?.id === me;
+  const isSelfView = context === 'modal';
 
   const [isRevealed, setIsRevealed] = useState(!isSelfView);
   const reveal = useCallback(() => {
@@ -209,7 +208,7 @@ export const Archetype: React.FC<{
           />
         </Button>
       )}
-      {isRevealed && canShare && <ShareButton report={report} />}
+      {isRevealed && isSelfView && <ShareButton report={report} />}
     </div>
   );
 };
