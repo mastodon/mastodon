@@ -1,5 +1,7 @@
 import type { FC } from 'react';
 
+import { FormattedMessage } from 'react-intl';
+
 import { IconLogo } from '@/mastodon/components/logo';
 
 import { AnnualReport } from './index';
@@ -11,7 +13,11 @@ export const WrapstodonSharedPage: FC = () => {
       <AnnualReport />
       <footer className={classes.footer}>
         <IconLogo className={classes.logo} />
-        Generated with ♥ by the Mastodon team
+        <FormattedMessage
+          id='annual_report.shared_page.footer'
+          defaultMessage='Generated with {heart} by the Mastodon team'
+          values={{ heart: '♥' }}
+        />
       </footer>
     </main>
   );

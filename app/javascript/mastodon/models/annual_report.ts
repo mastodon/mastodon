@@ -16,9 +16,9 @@ export interface TimeSeriesMonth {
 }
 
 export interface TopStatuses {
-  by_reblogs: number;
-  by_favourites: number;
-  by_replies: number;
+  by_reblogs: string;
+  by_favourites: string;
+  by_replies: string;
 }
 
 export type Archetype =
