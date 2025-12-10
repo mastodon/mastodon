@@ -1,12 +1,13 @@
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
+import { reinsertAnnualReport, TIMELINE_WRAPSTODON } from '@/mastodon/reducers/slices/annual_report';
 import api, { getLinks } from 'mastodon/api';
 import { compareId } from 'mastodon/compare_id';
 import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
 
 import { importFetchedStatus, importFetchedStatuses } from './importer';
 import { submitMarkers } from './markers';
-import {timelineDelete} from './timelines_typed';
+import { timelineDelete } from './timelines_typed';
 
 export { disconnectTimeline } from './timelines_typed';
 
@@ -24,8 +25,15 @@ export const TIMELINE_CONNECT      = 'TIMELINE_CONNECT';
 export const TIMELINE_MARK_AS_PARTIAL = 'TIMELINE_MARK_AS_PARTIAL';
 export const TIMELINE_INSERT          = 'TIMELINE_INSERT';
 
+// When adding new special markers here, make sure to update TIMELINE_NON_STATUS_MARKERS in actions/timelines_typed.js
 export const TIMELINE_SUGGESTIONS = 'inline-follow-suggestions';
 export const TIMELINE_GAP = null;
+
+export const TIMELINE_NON_STATUS_MARKERS = [
+  TIMELINE_GAP,
+  TIMELINE_SUGGESTIONS,
+  TIMELINE_WRAPSTODON,
+];
 
 export const loadPending = timeline => ({
   type: TIMELINE_LOAD_PENDING,
@@ -124,6 +132,7 @@ export function expandTimeline(timelineId, path, params = {}) {
 
       if (timelineId === 'home') {
         dispatch(submitMarkers());
+        dispatch(reinsertAnnualReport())
       }
     } catch(error) {
       dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
