@@ -1,5 +1,14 @@
 $mobile-breakpoint: 540px;
 
+@font-face {
+  font-family: silkscreen-wrapstodon;
+  src: url('@/fonts/silkscreen-wrapstodon/silkscreen-regular.woff2')
+    format('woff2');
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}
+
 .modalWrapper {
   position: absolute;
   inset: 0;
@@ -25,7 +34,7 @@ $mobile-breakpoint: 540px;
   --default-bg-color: var(--color-text-primary);
   --hover-icon-color: var(--color-bg-primary);
   --hover-bg-color: var(--color-text-primary);
-  --corner-distance: 24px;
+  --corner-distance: 18px;
 
   position: absolute;
   top: var(--corner-distance);
@@ -80,17 +89,14 @@ $mobile-breakpoint: 540px;
   text-align: center;
 
   h1 {
-    font-family: monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-size: 30px;
-    font-weight: 600;
+    font-family: silkscreen-wrapstodon, monospace;
+    font-size: 28px;
     line-height: 1;
     margin-bottom: 8px;
     padding-inline: 40px; // Prevent overlap with close button
 
     @media (width < $mobile-breakpoint) {
-      font-size: 20px;
+      font-size: 22px;
       margin-bottom: 4px;
     }
   }
