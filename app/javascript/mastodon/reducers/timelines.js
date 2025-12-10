@@ -36,7 +36,7 @@ const initialTimeline = ImmutableMap({
   items: ImmutableList(),
 });
 
-const isNonStatusId = value => !Number.isInteger(value);
+const isNonStatusId = value => Number.isNaN(Number.parseInt(value, 10));
 
 const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, isLoadingRecent, usePendingItems) => {
   // This method is pretty tricky because:
