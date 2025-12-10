@@ -19,7 +19,8 @@ const getStatus = makeGetStatus() as unknown as (arg0: any, arg1: any) => any;
 
 export const HighlightedPost: React.FC<{
   data: TopStatuses;
-}> = ({ data }) => {
+  context: 'modal' | 'standalone';
+}> = ({ data, context }) => {
   const { by_reblogs, by_favourites, by_replies } = data;
 
   const statusId = by_reblogs || by_favourites || by_replies;
@@ -68,7 +69,7 @@ export const HighlightedPost: React.FC<{
             defaultMessage='Most popular post'
           />
         </h2>
-        <p>{label}</p>
+        {context === 'modal' && <p>{label}</p>}
       </div>
 
       <StatusQuoteManager showActions={false} id={`${statusId}`} />

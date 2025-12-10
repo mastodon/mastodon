@@ -66,10 +66,9 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
     0,
   );
 
-  const newFollowerCount = report.data.time_series.reduce(
-    (sum, item) => sum + item.followers,
-    0,
-  );
+  const newFollowerCount =
+    context === 'modal' &&
+    report.data.time_series.reduce((sum, item) => sum + item.followers, 0);
 
   const topHashtag = report.data.top_hashtags[0];
 
@@ -99,7 +98,7 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
       </div>
 
       <div className={styles.stack}>
-        <HighlightedPost data={report.data.top_statuses} />
+        <HighlightedPost data={report.data.top_statuses} context={context} />
         <div
           className={moduleClassNames(styles.statsGrid, {
             noHashtag: !topHashtag,
