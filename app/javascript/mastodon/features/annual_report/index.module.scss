@@ -11,6 +11,10 @@ $mobile-breakpoint: 540px;
   pointer-events: none;
   scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
 
+  @media (width < $mobile-breakpoint) {
+    padding-inline: 10px;
+  }
+
   .loading-indicator .circular-progress {
     color: var(--lime);
   }
@@ -251,6 +255,10 @@ $mobile-breakpoint: 540px;
   flex-direction: column;
   align-items: center;
   gap: 12px;
+
+  p {
+    max-width: 460px;
+  }
 }
 
 .archetypeArtboard {
