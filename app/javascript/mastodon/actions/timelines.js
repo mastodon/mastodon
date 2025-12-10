@@ -1,12 +1,13 @@
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
+import { reinsertAnnualReport } from '@/mastodon/reducers/slices/annual_report';
 import api, { getLinks } from 'mastodon/api';
 import { compareId } from 'mastodon/compare_id';
 import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
 
 import { importFetchedStatus, importFetchedStatuses } from './importer';
 import { submitMarkers } from './markers';
-import {timelineDelete} from './timelines_typed';
+import { timelineDelete } from './timelines_typed';
 
 export { disconnectTimeline } from './timelines_typed';
 
@@ -124,6 +125,7 @@ export function expandTimeline(timelineId, path, params = {}) {
 
       if (timelineId === 'home') {
         dispatch(submitMarkers());
+        dispatch(reinsertAnnualReport())
       }
     } catch(error) {
       dispatch(expandTimelineFail(timelineId, error, isLoadingMore));

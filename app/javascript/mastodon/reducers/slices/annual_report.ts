@@ -6,6 +6,7 @@ import {
   importFetchedStatuses,
 } from '@/mastodon/actions/importer';
 import { insertIntoTimeline } from '@/mastodon/actions/timelines';
+import { timelineDelete } from '@/mastodon/actions/timelines_typed';
 import type { ApiAnnualReportState } from '@/mastodon/api/annual_report';
 import {
   apiGetAnnualReport,
@@ -75,6 +76,25 @@ export const checkAnnualReport = createAppThunk(
     ) {
       dispatch(insertIntoTimeline('home', TIMELINE_WRAPSTODON, 1));
     }
+  },
+);
+
+export const reinsertAnnualReport = createAppThunk(
+  `${annualReportSlice.name}/reinsertAnnualReport`,
+  (_arg: unknown, { dispatch, getState }) => {
+    dispatch(
+      timelineDelete({
+        statusId: TIMELINE_WRAPSTODON,
+        accountId: '',
+        references: [],
+        reblogOf: null,
+      }),
+    );
+    const { state } = getState().annualReport;
+    if (!state || state === 'ineligible') {
+      return;
+    }
+    dispatch(insertIntoTimeline('home', TIMELINE_WRAPSTODON, 1));
   },
 );
 
