@@ -72,7 +72,7 @@ export const HighlightedPost: React.FC<{
         {context === 'modal' && <p>{label}</p>}
       </div>
 
-      <StatusQuoteManager showActions={false} id={`${statusId}`} />
+      <StatusQuoteManager showActions={false} id={statusId} />
     </div>
   );
 };
