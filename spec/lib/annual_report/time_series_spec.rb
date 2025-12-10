@@ -13,7 +13,7 @@ RSpec.describe AnnualReport::TimeSeries do
         expect(subject.generate)
           .to include(
             time_series: match(
-              include(followers: 0, following: 0, month: 1, statuses: 0)
+              include(followers: 0, month: 12, statuses: 0)
             )
           )
       end
@@ -37,7 +37,7 @@ RSpec.describe AnnualReport::TimeSeries do
         expect(subject.generate)
           .to include(
             time_series: match(
-              include(followers: 1, following: 1, month: 1, statuses: 1)
+              include(followers: 1, month: 12, statuses: 1)
             )
           )
       end
