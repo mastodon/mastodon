@@ -28,7 +28,6 @@ export const shareMessage = defineMessage({
   defaultMessage: 'I got the {archetype} archetype!',
 });
 
-// Share = false when using the embedded version of the report.
 export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
   context = 'standalone',
 }) => {
