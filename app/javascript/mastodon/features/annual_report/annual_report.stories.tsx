@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import {
-  accountFactoryState,
-  // statusFactoryState
-} from '@/testing/factories';
+import { accountFactoryState, statusFactoryState } from '@/testing/factories';
 
 import { AnnualReport } from '.';
 
@@ -18,9 +15,9 @@ const meta = {
       accounts: {
         '1': accountFactoryState(),
       },
-      // statuses: {
-      //   '1': statusFactoryState(),
-      // },
+      statuses: {
+        '1': statusFactoryState(),
+      },
       annualReport: {
         state: 'available',
         report: {

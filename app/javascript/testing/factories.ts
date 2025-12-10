@@ -1,4 +1,4 @@
-import { Map as ImmutableMap } from 'immutable';
+import { Map as ImmutableMap, List } from 'immutable';
 
 import type { ApiRelationshipJSON } from '@/mastodon/api_types/relationships';
 import type { ApiStatusJSON } from '@/mastodon/api_types/statuses';
@@ -75,16 +75,18 @@ export const statusFactory: FactoryFunction<ApiStatusJSON> = ({
   mentions: [],
   tags: [],
   emojis: [],
-  content: '<p>This is a test status.</p>',
+  contentHtml: '<p>This is a test status.</p>',
   ...data,
 });
 
 export const statusFactoryState = (
   options: FactoryOptions<ApiStatusJSON> = {},
 ) =>
-  ImmutableMap<string, unknown>(
-    statusFactory(options) as unknown as Record<string, unknown>,
-  ) as unknown as Status;
+  ImmutableMap<string, unknown>({
+    ...(statusFactory(options) as unknown as Record<string, unknown>),
+    account: options.account?.id ?? '1',
+    tags: List(options.tags),
+  }) as unknown as Status;
 
 export const relationshipsFactory: FactoryFunction<ApiRelationshipJSON> = ({
   id,
