@@ -1,6 +1,6 @@
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 
-import { timelineDelete } from 'mastodon/actions/timelines_typed';
+import { timelineDelete, isNonStatusId } from 'mastodon/actions/timelines_typed';
 
 import {
   blockAccountSuccess,
@@ -19,7 +19,6 @@ import {
   TIMELINE_MARK_AS_PARTIAL,
   TIMELINE_INSERT,
   TIMELINE_GAP,
-  TIMELINE_SUGGESTIONS,
   disconnectTimeline,
 } from '../actions/timelines';
 import { compareId } from '../compare_id';
@@ -36,7 +35,6 @@ const initialTimeline = ImmutableMap({
   items: ImmutableList(),
 });
 
-const isNonStatusId = value => Number.isNaN(Number.parseInt(value, 10));
 
 const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, isLoadingRecent, usePendingItems) => {
   // This method is pretty tricky because:

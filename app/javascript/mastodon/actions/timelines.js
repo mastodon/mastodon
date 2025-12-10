@@ -25,6 +25,7 @@ export const TIMELINE_CONNECT      = 'TIMELINE_CONNECT';
 export const TIMELINE_MARK_AS_PARTIAL = 'TIMELINE_MARK_AS_PARTIAL';
 export const TIMELINE_INSERT          = 'TIMELINE_INSERT';
 
+// When adding new special markers here, make sure to update TIMELINE_NON_STATUS_MARKERS in actions/timelines_typed.js
 export const TIMELINE_SUGGESTIONS = 'inline-follow-suggestions';
 export const TIMELINE_GAP = null;
 
