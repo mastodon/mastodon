@@ -1,3 +1,14 @@
+$mobile-breakpoint: 540px;
+
+@font-face {
+  font-family: silkscreen-wrapstodon;
+  src: url('@/fonts/silkscreen-wrapstodon/silkscreen-regular.woff2')
+    format('woff2');
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}
+
 .modalWrapper {
   position: absolute;
   inset: 0;
@@ -9,22 +20,33 @@
   pointer-events: none;
   scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
 
+  @media (width < $mobile-breakpoint) {
+    padding-inline: 10px;
+  }
+
   .loading-indicator .circular-progress {
     color: var(--lime);
   }
 }
 
 .closeButton {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  padding: 8px;
-  border-radius: 100%;
-
   --default-icon-color: var(--color-bg-primary);
   --default-bg-color: var(--color-text-primary);
   --hover-icon-color: var(--color-bg-primary);
   --hover-bg-color: var(--color-text-primary);
+  --corner-distance: 18px;
+
+  position: absolute;
+  top: var(--corner-distance);
+  right: var(--corner-distance);
+  padding: 8px;
+  border-radius: 100%;
+
+  @media (width < $mobile-breakpoint) {
+    --corner-distance: 16px;
+
+    padding: 4px;
+  }
 }
 
 .wrapper {
@@ -45,8 +67,10 @@
       var(--color-bg-primary);
   border-radius: 40px;
 
-  @media (width < 600px) {
-    padding: 12px;
+  @media (width < $mobile-breakpoint) {
+    padding-inline: 12px;
+    padding-bottom: 12px;
+    border-radius: 28px;
   }
 
   &::after {
@@ -65,13 +89,16 @@
   text-align: center;
 
   h1 {
-    font-family: monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-size: 30px;
-    font-weight: 600;
-    line-height: 1.5;
+    font-family: silkscreen-wrapstodon, monospace;
+    font-size: 28px;
+    line-height: 1;
     margin-bottom: 8px;
+    padding-inline: 40px; // Prevent overlap with close button
+
+    @media (width < $mobile-breakpoint) {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
   }
 
   p {
@@ -150,6 +177,10 @@
   font-weight: 500;
   line-height: 1;
   overflow-wrap: break-word;
+
+  @media (width < $mobile-breakpoint) {
+    font-size: 24px;
+  }
 }
 
 .mostBoostedPost {
@@ -166,7 +197,7 @@
     'followers hashtag'
     'new-posts hashtag';
 
-  @media (width < 680px) {
+  @media (width < $mobile-breakpoint) {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       'followers new-posts'
@@ -191,7 +222,7 @@
     grid-template-columns: 1fr 2fr;
     grid-template-areas: 'number hashtag';
 
-    @media (width < 680px) {
+    @media (width < $mobile-breakpoint) {
       grid-template-areas:
         'number number'
         'hashtag hashtag';
@@ -230,6 +261,10 @@
   flex-direction: column;
   align-items: center;
   gap: 12px;
+
+  p {
+    max-width: 460px;
+  }
 }
 
 .archetypeArtboard {

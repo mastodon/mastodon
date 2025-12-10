@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import type { FC } from 'react';
 
-import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
+import { defineMessage, useIntl } from 'react-intl';
 
 import { useLocation } from 'react-router';
 
@@ -75,13 +75,7 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
   return (
     <div className={moduleClassNames(styles.wrapper, 'theme-dark')}>
       <div className={styles.header}>
-        <h1>
-          <FormattedMessage
-            id='annual_report.summary.title'
-            defaultMessage='Wrapstodon {year}'
-            values={{ year: report.year }}
-          />
-        </h1>
+        <h1>Wrapstodon {report.year}</h1>
         {account && <p>@{account.acct}</p>}
         {context === 'modal' && (
           <IconButton

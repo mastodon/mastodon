@@ -42,14 +42,12 @@ export const Standalone: Story = {
   args: {
     context: 'standalone',
   },
-  render: (args) => <AnnualReport {...args} />,
 };
 
 export const InModal: Story = {
   args: {
     context: 'modal',
   },
-  render: (args) => <AnnualReport {...args} />,
 };
 
 export const ArchetypeOracle: Story = {
@@ -62,7 +60,6 @@ export const ArchetypeOracle: Story = {
       }),
     },
   },
-  render: (args) => <AnnualReport {...args} />,
 };
 
 export const NoHashtag: Story = {
@@ -74,7 +71,6 @@ export const NoHashtag: Story = {
       }),
     },
   },
-  render: (args) => <AnnualReport {...args} />,
 };
 
 export const NoNewPosts: Story = {
@@ -88,7 +84,6 @@ export const NoNewPosts: Story = {
       }),
     },
   },
-  render: (args) => <AnnualReport {...args} />,
 };
 
 export const NoNewPostsNoHashtag: Story = {
@@ -101,5 +96,4 @@ export const NoNewPostsNoHashtag: Story = {
       }),
     },
   },
-  render: (args) => <AnnualReport {...args} />,
 };
