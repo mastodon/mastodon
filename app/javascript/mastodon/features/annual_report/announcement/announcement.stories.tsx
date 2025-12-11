@@ -1,38 +1,60 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { fn } from 'storybook/test';
+import { action } from 'storybook/actions';
 
+import type { AnyFunction, OmitValueType } from '@/mastodon/utils/types';
+
+import type { AnnualReportAnnouncementProps } from '.';
 import { AnnualReportAnnouncement } from '.';
 
-const meta = {
-  title: 'Components/AnnualReportAnnouncement',
-  component: AnnualReportAnnouncement,
-  args: {
-    hasData: false,
-    isLoading: false,
-    year: '2025',
-    onRequestBuild: fn(),
-    onOpen: fn(),
+type Props = OmitValueType<
+  // We can't use the name 'state' here because it's reserved for overriding Redux state.
+  Omit<AnnualReportAnnouncementProps, 'state'> & {
+    reportState: AnnualReportAnnouncementProps['state'];
   },
-} satisfies Meta<typeof AnnualReportAnnouncement>;
+  AnyFunction // Remove any functions, as they can't meaningfully be controlled in Storybook.
+>;
+
+const meta = {
+  title: 'Components/AnnualReport/Announcement',
+  args: {
+    reportState: 'eligible',
+    year: '2025',
+  },
+  argTypes: {
+    reportState: {
+      control: {
+        type: 'select',
+      },
+      options: ['eligible', 'generating', 'available'],
+    },
+  },
+  render({ reportState, ...args }: Props) {
+    return (
+      <AnnualReportAnnouncement
+        state={reportState}
+        {...args}
+        onDismiss={action('dismissed announcement')}
+        onOpen={action('opened report modal')}
+        onRequestBuild={action('requested build')}
+      />
+    );
+  },
+} satisfies Meta<Props>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-  render: (args) => <AnnualReportAnnouncement {...args} />,
-};
+export const Default: Story = {};
 
 export const Loading: Story = {
   args: {
-    isLoading: true,
+    reportState: 'generating',
   },
-  render: Default.render,
 };
 
 export const WithData: Story = {
   args: {
-    hasData: true,
+    reportState: 'available',
   },
-  render: Default.render,
 };
