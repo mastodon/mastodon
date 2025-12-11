@@ -40,8 +40,8 @@ RSpec.describe AnnualReport::TopStatuses do
           .to include(
             top_statuses: include(
               by_reblogs: reblogged_status.id.to_s,
-              by_favourites: favourited_status.id.to_s,
-              by_replies: replied_status.id.to_s
+              by_favourites: nil,
+              by_replies: nil
             )
           )
       end

@@ -5,8 +5,8 @@ class AnnualReport::TopStatuses < AnnualReport::Source
     {
       top_statuses: {
         by_reblogs: status_identifier(most_reblogged_status),
-        by_favourites: status_identifier(most_favourited_status),
-        by_replies: status_identifier(most_replied_status),
+        by_favourites: nil,
+        by_replies: nil,
       },
     }
   end
