@@ -97,17 +97,6 @@ $mobile-breakpoint: 540px;
     padding-bottom: 12px;
     border-radius: 0;
   }
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: inherit;
-    border-radius: inherit;
-    filter: blur(20px);
-    opacity: 0.5;
-  }
 }
 
 .header {
