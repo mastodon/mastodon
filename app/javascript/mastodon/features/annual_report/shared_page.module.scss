@@ -13,16 +13,33 @@ $mobile-breakpoint: 540px;
 }
 
 .footer {
-  text-align: center;
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
   align-items: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  font-size: 16px;
+  text-align: center;
   color: var(--color-text-secondary);
 }
 
 .logo {
   width: 2rem;
   opacity: 0.6;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  a:any-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover {
+    color: var(--color-text-primary);
+  }
 }
