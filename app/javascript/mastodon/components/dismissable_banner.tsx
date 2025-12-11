@@ -3,6 +3,8 @@ import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import type { Map as ImmutableMap } from 'immutable';
+
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { changeSetting } from 'mastodon/actions/settings';
 import { bannerSettings } from 'mastodon/settings';
@@ -19,10 +21,14 @@ interface Props {
 }
 
 export function useDismissableBannerState({ id }: Props) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const dismissed: boolean = useAppSelector((state) =>
-    /* eslint-disable-next-line */
-    state.settings.getIn(['dismissed_banners', id], false),
+  const dismissed = useAppSelector(
+    (state) =>
+      !!(
+        state.settings as ImmutableMap<
+          'dismissed_banners',
+          ImmutableMap<string, boolean>
+        >
+      ).getIn(['dismissed_banners', id], false),
   );
 
   const [isVisible, setIsVisible] = useState(
