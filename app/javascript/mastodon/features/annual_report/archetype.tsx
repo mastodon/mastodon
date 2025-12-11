@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
@@ -12,6 +12,7 @@ import replier from '@/images/archetypes/replier.png';
 import space_elements from '@/images/archetypes/space_elements.png';
 import { Avatar } from '@/mastodon/components/avatar';
 import { Button } from '@/mastodon/components/button';
+import { useDismissible } from '@/mastodon/hooks/useDismissible';
 import type { Account } from '@/mastodon/models/account';
 import type {
   AnnualReport,
@@ -117,11 +118,15 @@ export const Archetype: React.FC<{
   const wrapperRef = useRef<HTMLDivElement>(null);
   const isSelfView = context === 'modal';
 
-  const [isRevealed, setIsRevealed] = useState(!isSelfView);
-  const reveal = useCallback(() => {
-    setIsRevealed(true);
+  const { wasDismissed: wasRevealed, dismiss: reveal } = useDismissible(
+    `annual_report_archetype_${report.year}`,
+  );
+  const isRevealed = !isSelfView || wasRevealed;
+
+  const handleReveal = useCallback(() => {
+    reveal();
     wrapperRef.current?.focus();
-  }, []);
+  }, [reveal]);
 
   const archetype = report.data.archetype;
   const descriptions = isSelfView
@@ -201,7 +206,7 @@ export const Archetype: React.FC<{
         </p>
       </div>
       {!isRevealed && (
-        <Button onClick={reveal}>
+        <Button onClick={handleReveal}>
           <FormattedMessage
             id='annual_report.summary.archetype.reveal'
             defaultMessage='Reveal my archetype'
