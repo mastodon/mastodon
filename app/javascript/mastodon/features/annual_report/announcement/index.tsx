@@ -20,19 +20,17 @@ export const AnnualReportAnnouncement: React.FC<
 > = ({ year, state, onRequestBuild, onOpen, onDismiss }) => {
   return (
     <div className={classNames('theme-dark', styles.wrapper)}>
-      <h2>
-        <FormattedMessage
-          id='annual_report.announcement.title'
-          defaultMessage='Wrapstodon {year} has arrived'
-          values={{ year }}
-        />
-      </h2>
-      <p>
-        <FormattedMessage
-          id='annual_report.announcement.description'
-          defaultMessage='Discover more about your engagement on Mastodon over the past year.'
-        />
-      </p>
+      <FormattedMessage
+        id='annual_report.announcement.title'
+        defaultMessage='Wrapstodon {year} has arrived'
+        values={{ year }}
+        tagName='h2'
+      />
+      <FormattedMessage
+        id='annual_report.announcement.description'
+        defaultMessage='Discover more about your engagement on Mastodon over the past year.'
+        tagName='p'
+      />
       {state === 'available' ? (
         <Button onClick={onOpen}>
           <FormattedMessage
