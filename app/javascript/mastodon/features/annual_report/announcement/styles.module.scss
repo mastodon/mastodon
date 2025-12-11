@@ -16,6 +16,7 @@
       var(--color-bg-primary);
   border-bottom: 1px solid var(--color-border-primary);
   position: relative;
+  pointer-events: all;
 
   h2 {
     font-size: 20px;
@@ -33,5 +34,9 @@
     bottom: 8px;
     right: 8px;
     margin-inline: 0;
+  }
+
+  :global(.modal-root__modal) & {
+    border-radius: 16px;
   }
 }

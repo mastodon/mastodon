@@ -11,7 +11,7 @@ export interface AnnualReportAnnouncementProps {
   year: string;
   state: Exclude<ApiAnnualReportState, 'ineligible'>;
   onRequestBuild: () => void;
-  onOpen: () => void;
+  onOpen?: () => void; // This is optional when inside the modal, as it won't be shown then.
   onDismiss: () => void;
 }
 

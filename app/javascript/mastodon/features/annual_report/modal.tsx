@@ -1,11 +1,17 @@
+import type { MouseEventHandler } from 'react';
 import { useCallback, useEffect } from 'react';
 
 import classNames from 'classnames';
 
 import { closeModal } from '@/mastodon/actions/modal';
-import { useAppDispatch } from '@/mastodon/store';
+import {
+  generateReport,
+  selectWrapstodonYear,
+} from '@/mastodon/reducers/slices/annual_report';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AnnualReport } from '.';
+import { AnnualReportAnnouncement } from './announcement';
 import styles from './index.module.scss';
 
 const AnnualReportModal: React.FC<{
@@ -15,16 +21,41 @@ const AnnualReportModal: React.FC<{
     onChangeBackgroundColor('var(--color-bg-media-base)');
   }, [onChangeBackgroundColor]);
 
+  const { state } = useAppSelector((state) => state.annualReport);
+  const year = useAppSelector(selectWrapstodonYear);
+
+  const showAnnouncement = year && state && state !== 'available';
+
   const dispatch = useAppDispatch();
-  const handleCloseModal = useCallback<React.MouseEventHandler<HTMLDivElement>>(
+
+  const handleBuildRequest = useCallback(() => {
+    void dispatch(generateReport());
+  }, [dispatch]);
+
+  const handleClose = useCallback(() => {
+    dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
+  }, [dispatch]);
+
+  const handleCloseModal: MouseEventHandler = useCallback(
     (e) => {
-      if (e.target === e.currentTarget)
-        dispatch(
-          closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }),
-        );
+      if (e.target === e.currentTarget) {
+        handleClose();
+      }
     },
-    [dispatch],
+    [handleClose],
   );
+
+  // Auto-close if ineligible
+  useEffect(() => {
+    if (state === 'ineligible') {
+      handleClose();
+    }
+  }, [handleClose, state]);
+
+  if (state === 'ineligible') {
+    // Not sure how you got here, but don't show anything.
+    return null;
+  }
 
   return (
     // It's fine not to provide a keyboard handler here since there is a global
@@ -40,7 +71,16 @@ const AnnualReportModal: React.FC<{
       )}
       onClick={handleCloseModal}
     >
-      <AnnualReport context='modal' />
+      {!showAnnouncement ? (
+        <AnnualReport context='modal' />
+      ) : (
+        <AnnualReportAnnouncement
+          year={year.toString()}
+          state={state}
+          onDismiss={handleClose}
+          onRequestBuild={handleBuildRequest}
+        />
+      )}
     </div>
   );
 };
