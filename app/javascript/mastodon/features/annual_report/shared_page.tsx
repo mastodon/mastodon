@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { IconLogo } from '@/mastodon/components/logo';
+import { me } from '@/mastodon/initial_state';
 
 import { AnnualReport } from './index';
 import classes from './shared_page.module.scss';
@@ -25,12 +26,14 @@ export const WrapstodonSharedPage: FC = () => {
               defaultMessage='About'
             />
           </a>
-          <a href='https://joinmastodon.org/servers'>
-            <FormattedMessage
-              id='annual_report.shared_page.sign_up'
-              defaultMessage='Sign up'
-            />
-          </a>
+          {!me && (
+            <a href='https://joinmastodon.org/servers'>
+              <FormattedMessage
+                id='annual_report.shared_page.sign_up'
+                defaultMessage='Sign up'
+              />
+            </a>
+          )}
           <a href='https://joinmastodon.org/sponsors'>
             <FormattedMessage
               id='annual_report.shared_page.donate'

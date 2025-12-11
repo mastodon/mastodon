@@ -10,6 +10,7 @@
 
   = render 'og_description', account: @account
 
+  = render_initial_state
   = vite_typescript_tag 'wrapstodon.tsx', crossorigin: 'anonymous'
 
 - content_for :html_classes, 'theme-dark'
