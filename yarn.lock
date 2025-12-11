@@ -12,10 +12,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@acemir/cssom@npm:^0.9.23":
-  version: 0.9.24
-  resolution: "@acemir/cssom@npm:0.9.24"
-  checksum: 10c0/1c7bf8a61a74d9ecbc3b12fba697384461b3234441ed5a10f5c34aef91fdf4f1e3322fcd6659a8eaddd591eddc2259efd278212236100d90a6e16f77794d98bd
+"@acemir/cssom@npm:^0.9.28":
+  version: 0.9.28
+  resolution: "@acemir/cssom@npm:0.9.28"
+  checksum: 10c0/1e192d216c4236171d9930b42b9a965052d4578b23c6ddaa17c7c3d0820ffb872258544a83af163ae2d41b3bdccd6b6c4c14b2d32eb9f8b8b63972d74f46bd83
   languageName: node
   linkType: hard
 
@@ -46,29 +46,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@asamuzakjp/css-color@npm:^4.0.3":
-  version: 4.0.4
-  resolution: "@asamuzakjp/css-color@npm:4.0.4"
+"@asamuzakjp/css-color@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "@asamuzakjp/css-color@npm:4.1.0"
   dependencies:
     "@csstools/css-calc": "npm:^2.1.4"
-    "@csstools/css-color-parser": "npm:^3.0.10"
+    "@csstools/css-color-parser": "npm:^3.1.0"
     "@csstools/css-parser-algorithms": "npm:^3.0.5"
     "@csstools/css-tokenizer": "npm:^3.0.4"
-    lru-cache: "npm:^11.1.0"
-  checksum: 10c0/5a4eb3c8594f58f3df06c867a6cda4a33f702f5cd682d6afa5074813f16fd05e732653ac79bd6fc66390554e158ac478103ad5e885fd9cf154b69bb67639e82f
+    lru-cache: "npm:^11.2.2"
+  checksum: 10c0/097b9270a5befb765885dda43d6914ccbaa575565525d307e8ba3ba07f98e466062f4a77b9657e65160db9110c41c59cf5a6937479647f73637aeddf5c421579
   languageName: node
   linkType: hard
 
-"@asamuzakjp/dom-selector@npm:^6.7.4":
-  version: 6.7.5
-  resolution: "@asamuzakjp/dom-selector@npm:6.7.5"
+"@asamuzakjp/dom-selector@npm:^6.7.6":
+  version: 6.7.6
+  resolution: "@asamuzakjp/dom-selector@npm:6.7.6"
   dependencies:
     "@asamuzakjp/nwsapi": "npm:^2.3.9"
     bidi-js: "npm:^1.0.3"
     css-tree: "npm:^3.1.0"
     is-potential-custom-element-name: "npm:^1.0.1"
-    lru-cache: "npm:^11.2.2"
-  checksum: 10c0/72ac4dc45aac9165222345aacc1db51a84094f159e9e2fa71bc89befd2d78fd00a76c7ff9a8a1ceb60e7ce198a4ec0275a4d878bea67b756cadbf3d9680162c4
+    lru-cache: "npm:^11.2.4"
+  checksum: 10c0/1715faae0787f0c8430b3a0ff3db8576a5b9a4f964408d0808fc2060ab01e0c2f5d8e26409de54b8641433c891dab8b561b196e58798811146084c561a4954ce
   languageName: node
   linkType: hard
 
@@ -1275,7 +1275,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@csstools/css-color-parser@npm:^3.0.10, @csstools/css-color-parser@npm:^3.1.0":
+"@csstools/css-color-parser@npm:^3.1.0":
   version: 3.1.0
   resolution: "@csstools/css-color-parser@npm:3.1.0"
   dependencies:
@@ -1297,7 +1297,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@csstools/css-syntax-patches-for-csstree@npm:^1.0.14":
+"@csstools/css-syntax-patches-for-csstree@npm:1.0.14":
   version: 1.0.14
   resolution: "@csstools/css-syntax-patches-for-csstree@npm:1.0.14"
   peerDependencies:
@@ -6244,14 +6244,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cssstyle@npm:^5.3.3":
-  version: 5.3.3
-  resolution: "cssstyle@npm:5.3.3"
+"cssstyle@npm:^5.3.4":
+  version: 5.3.4
+  resolution: "cssstyle@npm:5.3.4"
   dependencies:
-    "@asamuzakjp/css-color": "npm:^4.0.3"
-    "@csstools/css-syntax-patches-for-csstree": "npm:^1.0.14"
+    "@asamuzakjp/css-color": "npm:^4.1.0"
+    "@csstools/css-syntax-patches-for-csstree": "npm:1.0.14"
     css-tree: "npm:^3.1.0"
-  checksum: 10c0/0e082992851a1ded3662bda420f86dc1c90510a21cf237ddf573a1e121a722a3f78bb8f6eb46b33f267da25162e8e1fe968f7002114c9ab1d0d4e11dad9c5ee8
+  checksum: 10c0/7499ea8cbc2f759ded275428e0811d147baa6a964a44577711cee5edabee2230cf76b6bd20a556603f99ebc6fff80afdcba6c00bcbb1d41ae50cd09cd9fe9a2d
   languageName: node
   linkType: hard
 
@@ -8943,12 +8943,12 @@ __metadata:
   linkType: hard
 
 "jsdom@npm:^27.0.0":
-  version: 27.2.0
-  resolution: "jsdom@npm:27.2.0"
+  version: 27.3.0
+  resolution: "jsdom@npm:27.3.0"
   dependencies:
-    "@acemir/cssom": "npm:^0.9.23"
-    "@asamuzakjp/dom-selector": "npm:^6.7.4"
-    cssstyle: "npm:^5.3.3"
+    "@acemir/cssom": "npm:^0.9.28"
+    "@asamuzakjp/dom-selector": "npm:^6.7.6"
+    cssstyle: "npm:^5.3.4"
     data-urls: "npm:^6.0.0"
     decimal.js: "npm:^10.6.0"
     html-encoding-sniffer: "npm:^4.0.0"
@@ -8971,7 +8971,7 @@ __metadata:
   peerDependenciesMeta:
     canvas:
       optional: true
-  checksum: 10c0/52d847e1aef099071d66d1d9aedcdd2f15e7ea781da9cfb41dc0d4caf741c5870c346396f8d1182d611427ae47a53f69a6f16410c698950e5809d3fed5a1672d
+  checksum: 10c0/b022ed8f6ce175afd97fbd42eb65b03b2be3b23df86cf87f018b6d2e757682fe8348e719a14780d6fa3fe8a65e531ba71b38db80f312818a32b77f01e31f267e
   languageName: node
   linkType: hard
 
@@ -9378,10 +9378,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^11.0.0, lru-cache@npm:^11.1.0, lru-cache@npm:^11.2.2":
-  version: 11.2.2
-  resolution: "lru-cache@npm:11.2.2"
-  checksum: 10c0/72d7831bbebc85e2bdefe01047ee5584db69d641c48d7a509e86f66f6ee111b30af7ec3bd68a967d47b69a4b1fa8bbf3872630bd06a63b6735e6f0a5f1c8e83d
+"lru-cache@npm:^11.0.0, lru-cache@npm:^11.2.2, lru-cache@npm:^11.2.4":
+  version: 11.2.4
+  resolution: "lru-cache@npm:11.2.4"
+  checksum: 10c0/4a24f9b17537619f9144d7b8e42cd5a225efdfd7076ebe7b5e7dc02b860a818455201e67fbf000765233fe7e339d3c8229fc815e9b58ee6ede511e07608c19b2
   languageName: node
   linkType: hard
 
