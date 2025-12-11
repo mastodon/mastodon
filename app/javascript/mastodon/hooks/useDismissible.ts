@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import type { Map as ImmutableMap } from 'immutable';
 
@@ -19,27 +19,24 @@ export function useDismissible(id: string) {
       ).getIn(['dismissed_banners', id], false),
   );
 
-  const [isVisible, setIsVisible] = useState(
-    !bannerSettings.get(id) && !dismissed,
-  );
+  const wasDismissed = !!bannerSettings.get(id) || dismissed;
 
   const dispatch = useAppDispatch();
 
   const dismiss = useCallback(() => {
-    setIsVisible(false);
     bannerSettings.set(id, true);
     dispatch(changeSetting(['dismissed_banners', id], true));
   }, [id, dispatch]);
 
   useEffect(() => {
     // Store legacy localStorage setting on server
-    if (!isVisible && !dismissed) {
+    if (wasDismissed && !dismissed) {
       dispatch(changeSetting(['dismissed_banners', id], true));
     }
-  }, [id, dispatch, isVisible, dismissed]);
+  }, [id, dispatch, wasDismissed, dismissed]);
 
   return {
-    wasDismissed: !isVisible,
+    wasDismissed,
     dismiss,
   };
 }
