@@ -51,6 +51,8 @@ $mobile-breakpoint: 540px;
 }
 
 .wrapper {
+  --gradient-strength: 0.4;
+
   box-sizing: border-box;
   position: relative;
   max-width: 600px;
@@ -62,11 +64,31 @@ $mobile-breakpoint: 540px;
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
   background:
-    radial-gradient(at 40% 87%, #240c9a99 0, transparent 50%),
-    radial-gradient(at 19% 10%, #6b0c9a99 0, transparent 50%),
-    radial-gradient(at 90% 27%, #9a0c8299 0, transparent 50%),
-    radial-gradient(at 16% 95%, #1e948299 0, transparent 50%),
-    radial-gradient(at 80% 91%, #16dae499 0, transparent 50%)
+    radial-gradient(
+      at 10% 27%,
+      rgba(83, 12, 154, var(--gradient-strength)) 0,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 91% 10%,
+      rgba(30, 24, 223, var(--gradient-strength)) 0,
+      transparent 25%
+    ),
+    radial-gradient(
+      at 10% 91%,
+      rgba(22, 218, 228, var(--gradient-strength)) 0,
+      transparent 40%
+    ),
+    radial-gradient(
+      at 75% 87%,
+      rgba(37, 31, 217, var(--gradient-strength)) 0,
+      transparent 20%
+    ),
+    radial-gradient(
+        at 84% 60%,
+        rgba(95, 30, 148, var(--gradient-strength)) 0,
+        transparent 40%
+      )
       var(--color-bg-primary);
   border-radius: 40px;
 
@@ -84,6 +106,7 @@ $mobile-breakpoint: 540px;
     background: inherit;
     border-radius: inherit;
     filter: blur(20px);
+    opacity: 0.5;
   }
 }
 
