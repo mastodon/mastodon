@@ -74,7 +74,7 @@ export const checkAnnualReport = createAppThunk(
       state.meta.requestStatus === 'fulfilled' &&
       state.payload !== 'ineligible'
     ) {
-      dispatch(insertIntoTimeline('home', TIMELINE_WRAPSTODON, 1));
+      dispatch(insertIntoTimeline('home', TIMELINE_WRAPSTODON, 0));
     }
   },
 );
@@ -94,7 +94,7 @@ export const reinsertAnnualReport = createAppThunk(
     if (!state || state === 'ineligible') {
       return;
     }
-    dispatch(insertIntoTimeline('home', TIMELINE_WRAPSTODON, 1));
+    dispatch(insertIntoTimeline('home', TIMELINE_WRAPSTODON, 0));
   },
 );
 
