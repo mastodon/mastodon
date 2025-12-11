@@ -1,6 +1,8 @@
 import { useCallback } from 'react';
 import type { FC } from 'react';
 
+import { FormattedMessage } from 'react-intl';
+
 import classNames from 'classnames';
 
 import IconPlanet from '@/images/icons/icon_planet.svg?react';
@@ -43,7 +45,10 @@ export const AnnualReportNavItem: FC = () => {
       <Icon icon={IconPlanet} id='wrapstodon-planet' width='24' height='24' />
       <span>Wrapstodon {year}</span>
       <span className={classNames('column-link__badge', classes.navItemBadge)}>
-        New
+        <FormattedMessage
+          id='annual_report.nav_item.badge'
+          defaultMessage='New'
+        />
       </span>
     </button>
   );
