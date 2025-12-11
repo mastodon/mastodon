@@ -1,6 +1,5 @@
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 
-import { reinsertAnnualReport, TIMELINE_WRAPSTODON } from '@/mastodon/reducers/slices/annual_report';
 import api, { getLinks } from 'mastodon/api';
 import { compareId } from 'mastodon/compare_id';
 import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
@@ -32,7 +31,6 @@ export const TIMELINE_GAP = null;
 export const TIMELINE_NON_STATUS_MARKERS = [
   TIMELINE_GAP,
   TIMELINE_SUGGESTIONS,
-  TIMELINE_WRAPSTODON,
 ];
 
 export const loadPending = timeline => ({
@@ -132,7 +130,6 @@ export function expandTimeline(timelineId, path, params = {}) {
 
       if (timelineId === 'home') {
         dispatch(submitMarkers());
-        dispatch(reinsertAnnualReport())
       }
     } catch(error) {
       dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
