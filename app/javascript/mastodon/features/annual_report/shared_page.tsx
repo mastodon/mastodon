@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { IconLogo } from '@/mastodon/components/logo';
 
 import { AnnualReport } from './index';
-import classes from './shared_page.module.css';
+import classes from './shared_page.module.scss';
 
 export const WrapstodonSharedPage: FC = () => {
   return (

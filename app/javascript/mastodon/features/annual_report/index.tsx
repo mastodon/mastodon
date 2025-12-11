@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import type { FC } from 'react';
 
-import { defineMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import { useLocation } from 'react-router';
 
@@ -22,11 +22,6 @@ import { MostUsedHashtag } from './most_used_hashtag';
 import { NewPosts } from './new_posts';
 
 const moduleClassNames = classNames.bind(styles);
-
-export const shareMessage = defineMessage({
-  id: 'annual_report.summary.share_message',
-  defaultMessage: 'I got the {archetype} archetype!',
-});
 
 export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
   context = 'standalone',

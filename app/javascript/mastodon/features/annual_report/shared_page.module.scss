@@ -1,7 +1,15 @@
+$mobile-breakpoint: 540px;
+
 .wrapper {
-  max-width: max-content;
+  box-sizing: border-box;
+  max-width: 600px;
   margin-inline: auto;
   padding: 40px 10px;
+
+  @media (width < $mobile-breakpoint) {
+    padding-top: 0;
+    padding-inline: 0;
+  }
 }
 
 .footer {

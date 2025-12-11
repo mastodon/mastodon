@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import type { FC } from 'react';
 
-import { useIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 import { resetCompose, focusCompose } from '@/mastodon/actions/compose';
 import { closeModal } from '@/mastodon/actions/modal';
@@ -9,8 +9,18 @@ import { Button } from '@/mastodon/components/button';
 import type { AnnualReport as AnnualReportData } from '@/mastodon/models/annual_report';
 import { useAppDispatch } from '@/mastodon/store';
 
-import { shareMessage } from '.';
 import { archetypeNames } from './archetype';
+
+const messages = defineMessages({
+  share_message: {
+    id: 'annual_report.summary.share_message',
+    defaultMessage: 'I got the {archetype} archetype!',
+  },
+  share_on_mastodon: {
+    id: 'annual_report.summary.share_on_mastodon',
+    defaultMessage: 'Share on Mastodon',
+  },
+});
 
 export const ShareButton: FC<{ report: AnnualReportData }> = ({ report }) => {
   const intl = useIntl();
@@ -21,7 +31,7 @@ export const ShareButton: FC<{ report: AnnualReportData }> = ({ report }) => {
       archetypeNames[report.data.archetype],
     );
     const shareLines = [
-      intl.formatMessage(shareMessage, {
+      intl.formatMessage(messages.share_message, {
         archetype: archetypeName,
       }),
     ];
@@ -37,5 +47,10 @@ export const ShareButton: FC<{ report: AnnualReportData }> = ({ report }) => {
     dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
   }, [report, intl, dispatch]);
 
-  return <Button text='Share here' onClick={handleShareClick} />;
+  return (
+    <Button
+      text={intl.formatMessage(messages.share_on_mastodon)}
+      onClick={handleShareClick}
+    />
+  );
 };

@@ -4,10 +4,14 @@
                   @typescript-eslint/no-unsafe-member-access,
                   @typescript-eslint/no-unsafe-call */
 
+import type { ComponentPropsWithoutRef } from 'react';
+import { useCallback } from 'react';
+
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { InterceptStatusClicks } from 'mastodon/components/status/intercept_status_clicks';
 import { StatusQuoteManager } from 'mastodon/components/status_quoted';
 import type { TopStatuses } from 'mastodon/models/annual_report';
 import { makeGetStatus } from 'mastodon/selectors';
@@ -27,6 +31,24 @@ export const HighlightedPost: React.FC<{
 
   const status = useAppSelector((state) =>
     statusId ? getStatus(state, { id: statusId }) : undefined,
+  );
+
+  const handleClick = useCallback<
+    ComponentPropsWithoutRef<typeof InterceptStatusClicks>['onPreventedClick']
+  >(
+    (clickedArea) => {
+      const link: string =
+        clickedArea === 'account'
+          ? status.getIn(['account', 'url'])
+          : status.get('url');
+
+      if (context === 'standalone') {
+        window.location.href = link;
+      } else {
+        window.open(link, '_blank');
+      }
+    },
+    [status, context],
   );
 
   if (!status) {
@@ -72,7 +94,9 @@ export const HighlightedPost: React.FC<{
         {context === 'modal' && <p>{label}</p>}
       </div>
 
-      <StatusQuoteManager showActions={false} id={statusId} />
+      <InterceptStatusClicks onPreventedClick={handleClick}>
+        <StatusQuoteManager showActions={false} id={statusId} />
+      </InterceptStatusClicks>
     </div>
   );
 };

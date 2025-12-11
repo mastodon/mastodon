@@ -21,7 +21,8 @@ $mobile-breakpoint: 540px;
   scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
 
   @media (width < $mobile-breakpoint) {
-    padding-inline: 10px;
+    padding-top: 0;
+    padding-inline: 0;
   }
 
   .loading-indicator .circular-progress {
@@ -50,37 +51,51 @@ $mobile-breakpoint: 540px;
 }
 
 .wrapper {
+  --gradient-strength: 0.4;
+
+  box-sizing: border-box;
   position: relative;
   max-width: 600px;
   padding: 24px;
+  padding-top: 40px;
   contain: layout;
   flex: 0 0 auto;
-  pointer-events: auto;
+  pointer-events: all;
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
   background:
-    radial-gradient(at 40% 87%, #240c9a99 0, transparent 50%),
-    radial-gradient(at 19% 10%, #6b0c9a99 0, transparent 50%),
-    radial-gradient(at 90% 27%, #9a0c8299 0, transparent 50%),
-    radial-gradient(at 16% 95%, #1e948299 0, transparent 50%),
-    radial-gradient(at 80% 91%, #16dae499 0, transparent 50%)
+    radial-gradient(
+      at 10% 27%,
+      rgba(83, 12, 154, var(--gradient-strength)) 0,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 91% 10%,
+      rgba(30, 24, 223, var(--gradient-strength)) 0,
+      transparent 25%
+    ),
+    radial-gradient(
+      at 10% 91%,
+      rgba(22, 218, 228, var(--gradient-strength)) 0,
+      transparent 40%
+    ),
+    radial-gradient(
+      at 75% 87%,
+      rgba(37, 31, 217, var(--gradient-strength)) 0,
+      transparent 20%
+    ),
+    radial-gradient(
+        at 84% 60%,
+        rgba(95, 30, 148, var(--gradient-strength)) 0,
+        transparent 40%
+      )
       var(--color-bg-primary);
   border-radius: 40px;
 
   @media (width < $mobile-breakpoint) {
     padding-inline: 12px;
     padding-bottom: 12px;
-    border-radius: 28px;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: inherit;
-    border-radius: inherit;
-    filter: blur(20px);
+    border-radius: 0;
   }
 }
 
@@ -92,7 +107,7 @@ $mobile-breakpoint: 540px;
     font-family: silkscreen-wrapstodon, monospace;
     font-size: 28px;
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     padding-inline: 40px; // Prevent overlap with close button
 
     @media (width < $mobile-breakpoint) {
@@ -116,7 +131,7 @@ $mobile-breakpoint: 540px;
 
 .box {
   position: relative;
-  padding: 16px;
+  padding: 24px;
   border-radius: 16px;
   background: rgb(from var(--color-bg-primary) r g b / 60%);
   box-shadow: inset 0 0 0 1px rgb(from var(--color-text-primary) r g b / 40%);
@@ -150,7 +165,6 @@ $mobile-breakpoint: 540px;
   flex-direction: column;
   justify-content: center;
   gap: 8px;
-  padding: 16px;
   font-size: 14px;
   text-align: center;
   text-wrap: balance;
@@ -164,6 +178,10 @@ $mobile-breakpoint: 540px;
   text-transform: uppercase;
   color: #c2c8ff;
   font-weight: 500;
+
+  &:last-child {
+    margin-bottom: -3px;
+  }
 }
 
 .statLarge {
@@ -185,7 +203,7 @@ $mobile-breakpoint: 540px;
 
 .mostBoostedPost {
   padding: 0;
-  padding-top: 8px;
+  padding-top: 24px;
   overflow: hidden;
 }
 
@@ -260,7 +278,7 @@ $mobile-breakpoint: 540px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 
   p {
     max-width: 460px;
