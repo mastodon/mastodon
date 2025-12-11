@@ -9,6 +9,7 @@
   = opengraph 'profile:username', acct(@account)[1..]
 
   = render 'og_description', account: @account
+  = render 'og_image', report: @generated_annual_report
 
   = vite_typescript_tag 'wrapstodon.tsx', crossorigin: 'anonymous'
 
