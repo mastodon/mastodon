@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import type { FC } from 'react';
 
 import { openModal } from '@/mastodon/actions/modal';
-import { useDismissableBannerState } from '@/mastodon/components/dismissable_banner';
+import { useDismissible } from '@/mastodon/hooks/useDismissible';
 import {
   generateReport,
   selectWrapstodonYear,
@@ -20,9 +20,9 @@ export const AnnualReportTimeline: FC = () => {
     void dispatch(generateReport());
   }, [dispatch]);
 
-  const { wasDismissed, dismiss } = useDismissableBannerState({
-    id: `annual_report_announcement_${year}`,
-  });
+  const { wasDismissed, dismiss } = useDismissible(
+    `annual_report_announcement_${year}`,
+  );
 
   const handleOpen = useCallback(() => {
     dispatch(openModal({ modalType: 'ANNUAL_REPORT', modalProps: {} }));
