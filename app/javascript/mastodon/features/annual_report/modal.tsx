@@ -16,9 +16,15 @@ const AnnualReportModal: React.FC<{
   }, [onChangeBackgroundColor]);
 
   const dispatch = useAppDispatch();
-  const handleCloseModal = useCallback(() => {
-    dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
-  }, [dispatch]);
+  const handleCloseModal = useCallback<React.MouseEventHandler<HTMLDivElement>>(
+    (e) => {
+      if (e.target === e.currentTarget)
+        dispatch(
+          closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }),
+        );
+    },
+    [dispatch],
+  );
 
   return (
     // It's fine not to provide a keyboard handler here since there is a global
