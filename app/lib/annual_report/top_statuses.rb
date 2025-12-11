@@ -12,7 +12,7 @@ class AnnualReport::TopStatuses < AnnualReport::Source
   end
 
   def eligible?
-    report_statuses.public_visibility.exists?
+    report_statuses.distributable_visibility.exists?
   end
 
   private
@@ -43,7 +43,7 @@ class AnnualReport::TopStatuses < AnnualReport::Source
 
   def base_scope
     report_statuses
-      .public_visibility
+      .distributable_visibility
       .joins(:status_stat)
   end
 end
