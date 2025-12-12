@@ -16,8 +16,8 @@ export const WrapstodonSharedPage: FC = () => {
         <IconLogo className={classes.logo} />
         <FormattedMessage
           id='annual_report.shared_page.footer'
-          defaultMessage='Generated with {heart} by the Mastodon team'
-          values={{ heart: '♥' }}
+          defaultMessage='Generated with {emoji} by the Mastodon team'
+          values={{ emoji: '🐘' }}
         />
         <nav className={classes.nav}>
           <a href='https://joinmastodon.org'>
