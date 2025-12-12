@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import type { FC } from 'react';
 
 import { openModal } from '@/mastodon/actions/modal';
+import { useDismissible } from '@/mastodon/hooks/useDismissible';
 import {
   generateReport,
   selectWrapstodonYear,
@@ -19,21 +20,26 @@ export const AnnualReportTimeline: FC = () => {
     void dispatch(generateReport());
   }, [dispatch]);
 
+  const { wasDismissed, dismiss } = useDismissible(
+    `annual_report_announcement_${year}`,
+  );
+
   const handleOpen = useCallback(() => {
     dispatch(openModal({ modalType: 'ANNUAL_REPORT', modalProps: {} }));
-  }, [dispatch]);
+    dismiss();
+  }, [dismiss, dispatch]);
 
-  if (!year || !state || state === 'ineligible') {
+  if (!year || wasDismissed || !state || state === 'ineligible') {
     return null;
   }
 
   return (
     <AnnualReportAnnouncement
       year={year.toString()}
-      hasData={state === 'available'}
-      isLoading={state === 'generating'}
+      state={state}
       onRequestBuild={handleBuildRequest}
       onOpen={handleOpen}
+      onDismiss={dismiss}
     />
   );
 };
