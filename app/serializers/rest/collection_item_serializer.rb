@@ -3,7 +3,11 @@
 class REST::CollectionItemSerializer < ActiveModel::Serializer
   delegate :accepted?, to: :object
 
-  attributes :position, :state
+  attributes :id, :position, :state
 
   belongs_to :account, serializer: REST::AccountSerializer, if: :accepted?
+
+  def id
+    object.id.to_s
+  end
 end

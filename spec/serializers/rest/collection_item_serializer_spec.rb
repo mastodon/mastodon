@@ -7,6 +7,7 @@ RSpec.describe REST::CollectionItemSerializer do
 
   let(:collection_item) do
     Fabricate(:collection_item,
+              id: 2342,
               state:,
               position: 4)
   end
@@ -17,6 +18,7 @@ RSpec.describe REST::CollectionItemSerializer do
     it 'includes the relevant attributes including the account' do
       expect(subject)
         .to include(
+          'id' => '2342',
           'account' => an_instance_of(Hash),
           'state' => 'accepted',
           'position' => 4
