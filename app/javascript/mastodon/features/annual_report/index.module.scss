@@ -333,6 +333,19 @@ $mobile-breakpoint: 540px;
   mix-blend-mode: screen;
 }
 
+.shareButtonWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.secondaryShareButton {
+  // Extra selector is needed to override color
+  &:global(.button) {
+    color: var(--color-text-primary);
+  }
+}
+
 .navItemBadge {
   background: var(--color-bg-brand-soft);
 }
