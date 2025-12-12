@@ -41,14 +41,8 @@ class StatusRelationshipsPresenter
   end
 
   # This one is currently on-demand as it is only used for quote posts
-  def preloaded_account_relations
-    @preloaded_account_relations ||= begin
-      accounts = @statuses.compact.flat_map { |s| [s.account, s.proper.account, s.proper.quote&.quoted_account] }.uniq.compact
-
-      account_ids = accounts.pluck(:id)
-      account_domains = accounts.pluck(:domain).uniq
-      Account.find(@current_account_id).relations_map(account_ids, account_domains)
-    end
+  def authoring_accounts
+    @authoring_accounts ||= @statuses.compact.flat_map { |s| [s.account, s.proper.account, s.proper.quote&.quoted_account] }.uniq.compact
   end
 
   private

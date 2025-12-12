@@ -19,6 +19,13 @@ class REST::BaseQuoteSerializer < ActiveModel::Serializer
   private
 
   def status_filter
-    @status_filter ||= StatusFilter.new(object.quoted_status, current_user&.account, instance_options[:relationships]&.preloaded_account_relations || {})
+    @status_filter ||= begin
+      if current_user && instance_options[:relationships]
+        account_ids = instance_options[:relationships].authoring_accounts.pluck(:id)
+        domains = instance_options[:relationships].authoring_accounts.pluck(:domain).uniq
+        current_user.account.preload_relations!(account_ids, domains)
+      end
+      StatusFilter.new(object.quoted_status, current_user&.account)
+    end
   end
 end
