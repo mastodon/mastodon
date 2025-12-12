@@ -12,11 +12,13 @@ import replier from '@/images/archetypes/replier.png';
 import space_elements from '@/images/archetypes/space_elements.png';
 import { Avatar } from '@/mastodon/components/avatar';
 import { Button } from '@/mastodon/components/button';
+import { me } from '@/mastodon/initial_state';
 import type { Account } from '@/mastodon/models/account';
 import type {
   AnnualReport,
   Archetype as ArchetypeData,
 } from '@/mastodon/models/annual_report';
+import { wrapstodonSettings } from '@/mastodon/settings';
 
 import styles from './index.module.scss';
 import { ShareButton } from './share_button';
@@ -117,9 +119,16 @@ export const Archetype: React.FC<{
   const wrapperRef = useRef<HTMLDivElement>(null);
   const isSelfView = context === 'modal';
 
-  const [isRevealed, setIsRevealed] = useState(!isSelfView);
+  const [isRevealed, setIsRevealed] = useState(
+    () =>
+      !isSelfView ||
+      (me ? (wrapstodonSettings.get(me)?.archetypeRevealed ?? false) : true),
+  );
   const reveal = useCallback(() => {
     setIsRevealed(true);
+    if (me) {
+      wrapstodonSettings.set(me, { archetypeRevealed: true });
+    }
     wrapperRef.current?.focus();
   }, []);
 
