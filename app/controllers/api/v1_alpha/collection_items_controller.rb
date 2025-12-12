@@ -11,6 +11,7 @@ class Api::V1Alpha::CollectionItemsController < Api::BaseController
 
   before_action :set_collection
   before_action :set_account, only: [:create]
+  before_action :set_collection_item, only: [:destroy]
 
   after_action :verify_authorized
 
@@ -23,6 +24,14 @@ class Api::V1Alpha::CollectionItemsController < Api::BaseController
     render json: @item, serializer: REST::CollectionItemSerializer
   end
 
+  def destroy
+    authorize @collection, :update?
+
+    @collection_item.destroy
+
+    head 200
+  end
+
   private
 
   def set_collection
@@ -33,6 +42,10 @@ class Api::V1Alpha::CollectionItemsController < Api::BaseController
     return render(json: { error: '`account_id` parameter is missing' }, status: 422) if params[:account_id].blank?
 
     @account = Account.find(params[:account_id])
+  end
+
+  def set_collection_item
+    @collection_item = @collection.collection_items.find(params[:id])
   end
 
   def check_feature_enabled
