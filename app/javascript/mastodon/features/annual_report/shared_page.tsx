@@ -17,7 +17,7 @@ export const WrapstodonSharedPage: FC = () => {
         <FormattedMessage
           id='annual_report.shared_page.footer'
           defaultMessage='Generated with {heart} by the Mastodon team'
-          values={{ heart: '♥' }}
+          values={{ heart: '🐘' }}
         />
         <nav className={classes.nav}>
           <a href='https://joinmastodon.org'>
