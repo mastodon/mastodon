@@ -63,3 +63,6 @@ export const searchHistory = new Settings<Record<string, RecentSearch[]>>(
 export const playerSettings = new Settings<{ volume: number; muted: boolean }>(
   'mastodon_player',
 );
+export const wrapstodonSettings = new Settings<
+  Record<string, { archetypeRevealed: boolean }>
+>('wrapstodon');
