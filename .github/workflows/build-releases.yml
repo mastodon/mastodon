@@ -9,7 +9,44 @@ permissions:
   packages: write
 
 jobs:
+  check-latest-stable:
+    runs-on: ubuntu-latest
+    outputs:
+      latest: ${{ steps.check.outputs.is_latest_stable }}
+    steps:
+      # Repository needs to be cloned to list branches
+      - name: Clone repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Check latest stable
+        shell: bash
+        id: check
+        run: |
+          ref="${GITHUB_REF#refs/tags/}"
+
+          if [[ "$ref" =~ ^v([0-9]+)\.([0-9]+)(\.[0-9]+)?$ ]]; then
+            current="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
+          else
+            echo "tag $ref is not semver"
+            echo "is_latest_stable=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          latest=$(git for-each-ref --format='%(refname:short)' "refs/remotes/origin/stable-*.*" \
+            | sed -E 's#^origin/stable-##' \
+            | sort -Vr \
+            | head -n1)
+
+          if [[ "$current" == "$latest" ]]; then
+            echo "is_latest_stable=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_latest_stable=false" >> "$GITHUB_OUTPUT"
+          fi
+
   build-image:
+    needs: check-latest-stable
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: Dockerfile
@@ -21,13 +58,14 @@ jobs:
       # Only tag with latest when ran against the latest stable branch
       # This needs to be updated after each minor version release
       flavor: |
-        latest=${{ startsWith(github.ref, 'refs/tags/v4.5.') }}
+        latest=${{ needs.check-latest-stable.outputs.latest }}
       tags: |
         type=pep440,pattern={{raw}}
         type=pep440,pattern=v{{major}}.{{minor}}
     secrets: inherit
 
   build-image-streaming:
+    needs: check-latest-stable
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: streaming/Dockerfile
@@ -39,7 +77,7 @@ jobs:
       # Only tag with latest when ran against the latest stable branch
       # This needs to be updated after each minor version release
       flavor: |
-        latest=${{ startsWith(github.ref, 'refs/tags/v4.5.') }}
+        latest=${{ needs.check-latest-stable.outputs.latest }}
       tags: |
         type=pep440,pattern={{raw}}
         type=pep440,pattern=v{{major}}.{{minor}}

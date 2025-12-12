@@ -22,7 +22,7 @@ class ActivityPub::SharesController < ActivityPub::BaseController
   def set_status
     @status = @account.statuses.find(params[:status_id])
     authorize @status, :show?
-  rescue Mastodon::NotPermittedError
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
   end
 

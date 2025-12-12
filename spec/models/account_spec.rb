@@ -781,4 +781,37 @@ RSpec.describe Account do
       expect(subject.reload.followers_count).to eq 15
     end
   end
+
+  describe '#featureable?' do
+    subject { Fabricate.build(:account, domain: (local ? nil : 'example.com'), discoverable:) }
+
+    context 'when account is local' do
+      let(:local) { true }
+
+      context 'when account is discoverable' do
+        let(:discoverable) { true }
+
+        it 'returns `true`' do
+          expect(subject.featureable?).to be true
+        end
+      end
+
+      context 'when account is not discoverable' do
+        let(:discoverable) { false }
+
+        it 'returns `false`' do
+          expect(subject.featureable?).to be false
+        end
+      end
+    end
+
+    context 'when account is remote' do
+      let(:local) { false }
+      let(:discoverable) { true }
+
+      it 'returns `false`' do
+        expect(subject.featureable?).to be false
+      end
+    end
+  end
 end

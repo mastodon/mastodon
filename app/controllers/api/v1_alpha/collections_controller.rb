@@ -71,7 +71,6 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
   def set_collections
     @collections = @account.collections
                            .with_tag
-                           .with_item_count
                            .order(created_at: :desc)
                            .offset(offset_param)
                            .limit(limit_param(DEFAULT_COLLECTIONS_LIMIT))

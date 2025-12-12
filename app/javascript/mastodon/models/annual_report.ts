@@ -16,9 +16,9 @@ export interface TimeSeriesMonth {
 }
 
 export interface TopStatuses {
-  by_reblogs: number;
-  by_favourites: number;
-  by_replies: number;
+  by_reblogs: string;
+  by_favourites: string;
+  by_replies: string;
 }
 
 export type Archetype =
@@ -55,5 +55,6 @@ export type AnnualReport = {
       schema_version: 2;
       data: AnnualReportV2;
       share_url: string | null;
+      account_id: string;
     }
 );

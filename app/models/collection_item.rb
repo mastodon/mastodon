@@ -17,7 +17,7 @@
 #  collection_id             :bigint(8)        not null
 #
 class CollectionItem < ApplicationRecord
-  belongs_to :collection
+  belongs_to :collection, counter_cache: :item_count
   belongs_to :account, optional: true
 
   enum :state,
@@ -32,11 +32,21 @@ class CollectionItem < ApplicationRecord
   validates :account, presence: true, if: :accepted?
   validates :object_uri, presence: true, if: -> { account.nil? }
 
+  before_validation :set_position, on: :create
+
   scope :ordered, -> { order(position: :asc) }
   scope :with_accounts, -> { includes(account: [:account_stat, :user]) }
   scope :not_blocked_by, ->(account) { where.not(accounts: { id: account.blocking }) }
 
   def local_item_with_remote_account?
     local? && account&.remote?
+  end
+
+  private
+
+  def set_position
+    return if position_changed?
+
+    self.position = self.class.where(collection_id:).maximum(:position).to_i + 1
   end
 end
