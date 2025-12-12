@@ -174,7 +174,7 @@ $mobile-breakpoint: 540px;
 
 .title {
   text-transform: uppercase;
-  color: #c2c8ff;
+  color: var(--color-text-brand-soft);
   font-weight: 500;
 
   &:last-child {
@@ -331,6 +331,19 @@ $mobile-breakpoint: 540px;
   top: 0;
   left: 0;
   mix-blend-mode: screen;
+}
+
+.shareButtonWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.secondaryShareButton {
+  // Extra selector is needed to override color
+  &:global(.button) {
+    color: var(--color-text-primary);
+  }
 }
 
 .navItemBadge {
