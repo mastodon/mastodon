@@ -144,7 +144,7 @@ export const hydrateSearch = createAppAsyncThunk(
   'search/hydrate',
   (_args, { dispatch, getState }) => {
     const me = getState().meta.get('me') as string;
-    const history = searchHistory.get(me) as RecentSearch[] | null;
+    const history = searchHistory.get(me);
 
     if (history !== null) {
       dispatch(updateSearchHistory(history));
