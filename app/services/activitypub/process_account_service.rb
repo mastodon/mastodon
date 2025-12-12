@@ -135,7 +135,39 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def set_fetchable_key!
+    public_key, = public_key_and_key_id
+
     @account.public_key = public_key || ''
+    @account.public_key_id = public_key_id
+  end
+
+  def public_key_and_key_id
+    value = first_of_value(@json['publicKey'])
+
+    return if value.nil?
+
+    if value.is_a?(Hash)
+      key = value['publicKeyPem']
+      value = value['id']
+
+      # Skip storing/checking the key ID if it's a fragment of the current document
+      value = nil if value.split('#').first == @account.uri
+
+      return [key, nil] if value.nil?
+    end
+
+    key_id = value
+
+    # Key is fetched without ID validation because of a GoToSocial bug
+    value = fetch_resource_without_id_validation(key_id)
+
+    # Special handling for GoToSocial which returns the whole actor for the key ID
+    value = first_of_value(value['publicKey']) if value.is_a?(Hash) && value.key?('publicKey')
+
+    key = value['publicKeyPem']
+    key_id = nil unless value['owner'] == @account.uri
+
+    [key, key_id]
   end
 
   def set_fetchable_attributes!
@@ -225,16 +257,6 @@ class ActivityPub::ProcessAccountService < BaseService
     value = first_of_value(value['url']) if value.is_a?(Hash) && value['type'] == 'Image'
     value = value['href'] if value.is_a?(Hash)
     value if value.is_a?(String)
-  end
-
-  def public_key
-    value = first_of_value(@json['publicKey'])
-
-    return if value.nil?
-    return value['publicKeyPem'] if value.is_a?(Hash)
-
-    key = fetch_resource_without_id_validation(value)
-    key['publicKeyPem'] if key
   end
 
   def url
