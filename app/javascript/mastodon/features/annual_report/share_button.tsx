@@ -22,9 +22,9 @@ const messages = defineMessages({
     id: 'annual_report.summary.share_on_mastodon',
     defaultMessage: 'Share on Mastodon',
   },
-  share: {
-    id: 'annual_report.summary.share',
-    defaultMessage: 'Share…',
+  share_elsewhere: {
+    id: 'annual_report.summary.share_elsewhere',
+    defaultMessage: 'Share elsewhere',
   },
   copy_link: {
     id: 'annual_report.summary.copy_link',
@@ -87,7 +87,7 @@ export const ShareButton: FC<{ report: AnnualReportData }> = ({ report }) => {
         plain
         className={styles.secondaryShareButton}
         text={intl.formatMessage(
-          supportsNativeShare ? messages.share : messages.copy_link,
+          supportsNativeShare ? messages.share_elsewhere : messages.copy_link,
         )}
         onClick={handleSecondaryShare}
       />
