@@ -11,6 +11,11 @@ import type { Preview } from '@storybook/react-vite';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import { action } from 'storybook/actions';
 
+import {
+  importCustomEmojiData,
+  importLegacyShortcodes,
+  importEmojiData,
+} from '@/mastodon/features/emoji/loader';
 import type { LocaleData } from '@/mastodon/locales';
 import { reducerWithInitialState } from '@/mastodon/reducers';
 import { defaultMiddleware } from '@/mastodon/store/store';
@@ -127,7 +132,12 @@ const preview: Preview = {
       </MemoryRouter>
     ),
   ],
-  loaders: [mswLoader],
+  loaders: [
+    mswLoader,
+    importCustomEmojiData,
+    importLegacyShortcodes,
+    ({ globals: { locale } }) => importEmojiData(locale as string),
+  ],
   parameters: {
     layout: 'centered',
 

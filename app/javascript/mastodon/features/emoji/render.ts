@@ -7,6 +7,7 @@ import {
 import {
   loadCustomEmojiByShortcode,
   loadEmojiByHexcode,
+  loadLegacyShortcodesByShortcode,
   LocaleNotLoadedError,
 } from './database';
 import { importEmojiData } from './loader';
@@ -116,13 +117,20 @@ export async function loadEmojiDataToState(
 
   // First, try to load the data from IndexedDB.
   try {
+    const legacyCode = await loadLegacyShortcodesByShortcode(state.code);
     // This is duplicative, but that's because TS can't distinguish the state type easily.
-    if (state.type === EMOJI_TYPE_UNICODE) {
-      const data = await loadEmojiByHexcode(state.code, locale);
+    if (state.type === EMOJI_TYPE_UNICODE || legacyCode) {
+      const data = await loadEmojiByHexcode(
+        legacyCode?.hexcode ?? state.code,
+        locale,
+      );
       if (data) {
         return {
           ...state,
+          type: EMOJI_TYPE_UNICODE,
           data,
+          // TODO: Use CLDR shortcodes when the picker supports them.
+          shortcode: legacyCode?.shortcodes.at(0),
         };
       }
     } else {
