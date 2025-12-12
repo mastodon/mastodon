@@ -21,7 +21,7 @@ export const DisplayNameWithoutDomain: FC<
         {account ? (
           <EmojiHTML
             className='display-name__html'
-            htmlString={account.get('display_name_html')}
+            htmlString={account.get('display_name')}
             as='strong'
             extraEmojis={account.get('emojis')}
           />

@@ -49,7 +49,6 @@ export interface AccountShape
   emojis: ImmutableList<CustomEmoji>;
   fields: ImmutableList<AccountField>;
   roles: ImmutableList<AccountRole>;
-  display_name_html: string;
   note_emojified: string;
   note_plain: string | null;
   hidden: boolean;
@@ -68,7 +67,6 @@ export const accountDefaultValues: AccountShape = {
   discoverable: false,
   indexable: false,
   display_name: '',
-  display_name_html: '',
   emojis: ImmutableList<CustomEmoji>(),
   fields: ImmutableList<AccountField>(),
   group: false,
@@ -133,7 +131,7 @@ export function createAccountFromServerJSON(serverJSON: ApiAccountJSON) {
     roles: ImmutableList(
       serverJSON.roles?.map((role) => AccountRoleFactory(role)),
     ),
-    display_name_html: escapeTextContentForBrowser(displayName),
+    display_name: displayName,
     note_emojified: accountNote,
     note_plain: unescapeHTML(accountNote),
     url:
