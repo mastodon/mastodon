@@ -27,6 +27,7 @@ namespace :settings do
     resources :follows, only: :index, controller: :following_accounts
     resources :blocks, only: :index, controller: :blocked_accounts
     resources :mutes, only: :index, controller: :muted_accounts
+    resources :account_notes, only: :index, controller: :account_notes
     resources :lists, only: :index
     resources :domain_blocks, only: :index, controller: :blocked_domains
     resources :bookmarks, only: :index
