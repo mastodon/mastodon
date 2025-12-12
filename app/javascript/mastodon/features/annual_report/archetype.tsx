@@ -137,7 +137,8 @@ export const Archetype: React.FC<{
     ? archetypeSelfDescriptions
     : archetypePublicDescriptions;
 
-  const name = account?.display_name;
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we specifically want to fallback if `display_name` is empty
+  const name = account?.display_name || account?.username;
 
   return (
     <div
