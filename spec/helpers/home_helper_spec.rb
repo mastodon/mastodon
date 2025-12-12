@@ -21,7 +21,7 @@ RSpec.describe HomeHelper do
     end
 
     context 'with a valid account' do
-      let(:account) { Fabricate(:account) }
+      let(:account) { Fabricate.build(:account) }
 
       before { helper.extend controller_helpers }
 
