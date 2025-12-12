@@ -11,7 +11,11 @@ import { closeModal } from '@/mastodon/actions/modal';
 import { IconButton } from '@/mastodon/components/icon_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { me } from '@/mastodon/initial_state';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import {
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '@/mastodon/store';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
 import { Archetype } from './archetype';
@@ -23,21 +27,26 @@ import { NewPosts } from './new_posts';
 
 const moduleClassNames = classNames.bind(styles);
 
+const accountSelector = createAppSelector(
+  [(state) => state.accounts, (state) => state.annualReport.report],
+  (accounts, report) => {
+    if (me) {
+      return accounts.get(me);
+    }
+    if (report?.schema_version === 2) {
+      return accounts.get(report.account_id);
+    }
+    return undefined;
+  },
+);
+
 export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
   context = 'standalone',
 }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const report = useAppSelector((state) => state.annualReport.report);
-  const account = useAppSelector((state) => {
-    if (me) {
-      return state.accounts.get(me);
-    }
-    if (report?.schema_version === 2) {
-      return state.accounts.get(report.account_id);
-    }
-    return undefined;
-  });
+  const account = useAppSelector(accountSelector);
 
   const close = useCallback(() => {
     dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
