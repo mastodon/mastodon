@@ -52,4 +52,53 @@ RSpec.describe 'Api::V1Alpha::CollectionItems', feature: :collections do
       end
     end
   end
+
+  describe 'DELETE /api/v1_alpha/collections/:collection_id/items/:id' do
+    subject do
+      delete "/api/v1_alpha/collections/#{collection.id}/items/#{item.id}", headers: headers
+    end
+
+    let(:collection) { Fabricate(:collection, account: user.account) }
+    let(:item) { Fabricate(:collection_item, collection:) }
+
+    it_behaves_like 'forbidden for wrong scope', 'read'
+
+    context 'when user is owner of the collection' do
+      context 'when item belongs to collection' do
+        it 'deletes the collection item and returns http success' do
+          item # Make sure this exists before calling the API
+
+          expect do
+            subject
+          end.to change(collection.collection_items, :count).by(-1)
+
+          expect(response).to have_http_status(200)
+        end
+      end
+
+      context 'when item does not belong to to collection' do
+        let(:item) { Fabricate(:collection_item) }
+
+        it 'returns http not found' do
+          item # Make sure this exists before calling the API
+
+          expect do
+            subject
+          end.to_not change(CollectionItem, :count)
+
+          expect(response).to have_http_status(404)
+        end
+      end
+    end
+
+    context 'when user is not the owner of the collection' do
+      let(:collection) { Fabricate(:collection) }
+
+      it 'returns http forbidden' do
+        subject
+
+        expect(response).to have_http_status(403)
+      end
+    end
+  end
 end
