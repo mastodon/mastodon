@@ -7,7 +7,6 @@ class PublishScheduledStatusWorker
 
   def perform(scheduled_status_id)
     scheduled_status = ScheduledStatus.find(scheduled_status_id)
-    scheduled_status.destroy!
 
     return true if scheduled_status.account.user_disabled?
 
@@ -15,8 +14,13 @@ class PublishScheduledStatusWorker
       scheduled_status.account,
       options_with_objects(scheduled_status.params.with_indifferent_access)
     )
+
+    scheduled_status.destroy!
   rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid
+    scheduled_status&.destroy!
     true
+  rescue Mastodon::ValidationError, PostStatusService::UnexpectedMentionsError => e
+    raise e
   end
 
   def options_with_objects(options)
