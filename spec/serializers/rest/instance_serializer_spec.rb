@@ -15,7 +15,7 @@ RSpec.describe REST::InstanceSerializer do
   describe 'configuration' do
     it 'returns the VAPID public key' do
       expect(serialization['configuration']['vapid']).to eq({
-        'public_key' => Rails.configuration.x.vapid_public_key,
+        'public_key' => Rails.configuration.x.vapid.public_key,
       })
     end
 

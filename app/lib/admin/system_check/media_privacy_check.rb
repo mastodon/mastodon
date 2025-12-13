@@ -13,7 +13,7 @@ class Admin::SystemCheck::MediaPrivacyCheck < Admin::SystemCheck::BaseCheck
   end
 
   def message
-    Admin::SystemCheck::Message.new(@failure_message, @failure_value, @failure_action, true)
+    Admin::SystemCheck::Message.new(@failure_message, @failure_value, @failure_action, critical: true)
   end
 
   private
@@ -76,7 +76,7 @@ class Admin::SystemCheck::MediaPrivacyCheck < Admin::SystemCheck::BaseCheck
 
   def media_attachment
     @media_attachment ||= begin
-      attachment = Account.representative.media_attachments.first
+      attachment = Account.representative.media_attachments.take
       if attachment.present?
         attachment.touch
         attachment

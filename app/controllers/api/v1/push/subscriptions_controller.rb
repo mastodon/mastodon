@@ -16,15 +16,7 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
   def create
     with_redis_lock("push_subscription:#{current_user.id}") do
       destroy_web_push_subscriptions!
-
-      @push_subscription = Web::PushSubscription.create!(
-        endpoint: subscription_params[:endpoint],
-        key_p256dh: subscription_params[:keys][:p256dh],
-        key_auth: subscription_params[:keys][:auth],
-        data: data_params,
-        user_id: current_user.id,
-        access_token_id: doorkeeper_token.id
-      )
+      @push_subscription = Web::PushSubscription.create!(web_push_subscription_params)
     end
 
     render json: @push_subscription, serializer: REST::WebPushSubscriptionSerializer
@@ -54,13 +46,25 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
     not_found if @push_subscription.nil?
   end
 
+  def web_push_subscription_params
+    {
+      access_token_id: doorkeeper_token.id,
+      data: data_params,
+      endpoint: subscription_params[:endpoint],
+      key_auth: subscription_params[:keys][:auth],
+      key_p256dh: subscription_params[:keys][:p256dh],
+      standard: subscription_params[:standard] || false,
+      user_id: current_user.id,
+    }
+  end
+
   def subscription_params
-    params.require(:subscription).permit(:endpoint, keys: [:auth, :p256dh])
+    params.expect(subscription: [:endpoint, :standard, keys: [:auth, :p256dh]])
   end
 
   def data_params
     return {} if params[:data].blank?
 
-    params.require(:data).permit(:policy, alerts: Notification::TYPES)
+    params.expect(data: [:policy, alerts: Notification::TYPES])
   end
 end

@@ -57,6 +57,7 @@ class Admin::ActionLogFilter
     enable_relay: { target_type: 'Relay', action: 'enable' }.freeze,
     memorialize_account: { target_type: 'Account', action: 'memorialize' }.freeze,
     promote_user: { target_type: 'User', action: 'promote' }.freeze,
+    publish_terms_of_service: { target_type: 'TermsOfService', action: 'publish' }.freeze,
     remove_avatar_user: { target_type: 'User', action: 'remove_avatar' }.freeze,
     reopen_report: { target_type: 'Report', action: 'reopen' }.freeze,
     resend_user: { target_type: 'User', action: 'resend' }.freeze,
@@ -76,6 +77,9 @@ class Admin::ActionLogFilter
     update_user_role: { target_type: 'UserRole', action: 'update' }.freeze,
     update_ip_block: { target_type: 'IpBlock', action: 'update' }.freeze,
     unblock_email_account: { target_type: 'Account', action: 'unblock_email' }.freeze,
+    create_username_block: { target_type: 'UsernameBlock', action: 'create' }.freeze,
+    update_username_block: { target_type: 'UsernameBlock', action: 'update' }.freeze,
+    destroy_username_block: { target_type: 'UsernameBlock', action: 'destroy' }.freeze,
   }.freeze
 
   attr_reader :params

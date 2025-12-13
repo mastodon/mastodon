@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Polls' do
-  let(:user)    { Fabricate(:user) }
-  let(:scopes)  { 'read:statuses' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:statuses'
 
   describe 'GET /api/v1/polls/:id' do
     subject do
@@ -33,6 +30,31 @@ RSpec.describe 'Polls' do
             votes_count: poll.votes_count
           )
         )
+      end
+    end
+
+    context 'when poll is remote and needs refresh' do
+      let(:poll) { Fabricate(:poll, last_fetched_at: nil, account: remote_account, status: status) }
+      let(:remote_account) { Fabricate :account, domain: 'host.example' }
+      let(:service) { instance_double(ActivityPub::FetchRemotePollService, call: nil) }
+      let(:status) { Fabricate(:status, visibility: 'public', account: remote_account) }
+
+      before { allow(ActivityPub::FetchRemotePollService).to receive(:new).and_return(service) }
+
+      it 'returns poll data and calls fetch remote service' do
+        subject
+
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body).to match(
+          a_hash_including(
+            id: poll.id.to_s
+          )
+        )
+        expect(service)
+          .to have_received(:call).with(poll, user.account)
       end
     end
 

@@ -745,10 +745,8 @@ sr-Latn:
         title: Podrazumevano isključi korisnike iz indeksiranja pretraživača
       discovery:
         follow_recommendations: Preporuke za praćenje
-        preamble: Održavanje zanimljivih sadržaja na površini je ključno u privlačenju novih korisnika koji možda ne znaju nikoga na Mastodon-u. Kontrolišite kako različiti načini istraživanja funkcionišu na vašem serveru.
         profile_directory: Direktorijum profilâ
         public_timelines: Javne vremenske linije
-        publish_discovered_servers: Objavi otkrivene servere
         publish_statistics: Objavi statistiku
         title: Otkrivanje
         trends: Trendovi
@@ -1004,10 +1002,7 @@ sr-Latn:
     hint_html: Ako želite da se preselite sa drugog naloga na ovaj, ovde možete napraviti pseudonim, koji je neophodan pre nego što možete nastaviti sa prebacivanjem pratilaca sa starog naloga na ovaj. Ova radnja sama po sebi je <strong>bezopasna i reverzibilna</strong>. <strong>Preseljenje naloga se inicira sa starog naloga</strong>.
     remove: Odveži pseudonim
   appearance:
-    advanced_web_interface: Napredno veb okruženje
-    advanced_web_interface_hint: 'Ako želite da iskoristite celu širinu ekrana, napredno veb okruženje vam omogućuje da konfigurišete mnogo različitih kolona da biste videli onoliko informacija u isto vreme koliko želite: početnu stranicu, obaveštenja, združenu vremensku liniju, bilo koji broj lista i heš oznaka.'
     animations_and_accessibility: Animacije i pristupačnost
-    confirmation_dialogs: Dijalozi potvrde
     discovery: Otkrivanje
     localization:
       body: Mastodon prevode dobrovoljci.
@@ -1060,7 +1055,6 @@ sr-Latn:
     migrate_account: Premeštanje u drugi nalog
     migrate_account_html: Ako želite da preusmerite ovaj nalog na neki drugi, možete to <a href="%{path}">podesiti ovde</a>.
     or_log_in_with: Ili se prijavite sa
-    privacy_policy_agreement_html: Pročitao/-la sam i saglasan/-a sam sa <a href="%{privacy_policy_path}" target="_blank">politikom privatnosti</a>
     progress:
       details: Vaši detalji
       review: Naš pregled
@@ -1083,7 +1077,6 @@ sr-Latn:
     security: Bezbednost
     set_new_password: Postavi novu lozinku
     setup:
-      email_settings_hint_html: Kliknite na vezu koji smo vam poslali da verifikujete %{email}. Čekaćemo ovde.
       link_not_received: Niste dobili vezu?
       title: Proverite svoje prijemno sanduče
     sign_in:
@@ -1091,7 +1084,6 @@ sr-Latn:
       title: Prijavite se na %{domain}
     sign_up:
       manual_review: Naši moderatori ručno pregledaju registracije na %{domain}. Da biste nam pomogli da obradimo vašu registraciju, napišite nešto o sebi i zašto želite nalog na %{domain}.
-      preamble: Sa nalogom na ovom Mastodon serveru, moći ćete da pratite bilo koga sa mreže, bez obzira na to na kom serveru se njegov/njen nalog nalazi.
       title: Hajde da Vam namestimo nalog na %{domain}.
     status:
       account_status: Status naloga
@@ -1406,7 +1398,6 @@ sr-Latn:
       disabled_account: Vaš trenutni nalog više neće biti upotrebljiv. Međutim, imaćete pristup izvozu podataka kao i reaktivaciji.
       followers: Ova radnja će premestiti sve pratioce sa trenutnog naloga na novi nalog
       only_redirect_html: Umesto preseljenja, možete <a href="%{path}">samo dodati preusmeravajući link na svoj profil.</a>.
-      other_data: Ostali podaci neće biti automatski prebačeni
       redirect: Profil Vašeg sadašnjeg naloga će biti ažuriran sa obaveštenjem o preusmerenju i biće isključen iz pretrage
   moderation:
     title: Moderacija
@@ -1544,7 +1535,6 @@ sr-Latn:
   scheduled_statuses:
     over_daily_limit: Prekoračili ste granicu od %{limit} planiranih objava za danas
     over_total_limit: Prekoračili ste granicu od %{limit} planiranih objava
-    too_soon: Planirani datum mora biti u budućnosti
   self_destruct:
     lead_html: Nažalost, <strong>%{domain}</strong> se trajno zatvara. Ako ste tamo imali nalog, nećete moći da nastavite da ga koristite, ali i dalje možete da zatražite rezervnu kopiju svojih podataka.
     title: Ovaj server se zatvara
@@ -1660,13 +1650,7 @@ sr-Latn:
       reblog: Podrška ne može da se prikači
     title: "%{name}: „%{quote}”"
     visibilities:
-      direct: Direktno
-      private: Samo pratioci
-      private_long: Prikaži samo pratiocima
       public: Javno
-      public_long: Svako može da vidi
-      unlisted: Neizlistano
-      unlisted_long: Svako može da vidi, ali nije izlistano na javnim vremenskim linijama
   statuses_cleanup:
     enabled: Automatski izbriši stare objave
     enabled_hint: Automatski briše vaše objave kada dostignu određeni starosni prag, osim ako se ne podudaraju sa jednim od izuzetaka u nastavku
@@ -1836,7 +1820,6 @@ sr-Latn:
       post_action: Napišite
       post_step: Pozdravite svet tekstom, fotografijama, video zapisima ili anketama.
       post_title: Napišite svoju prvu objavu
-      share_action: Podelite
       share_step: Neka vaši prijatelji znaju kako da vas pronađu na Mastodon-u.
       share_title: Podelite svoj Mastodon profil
       sign_in_action: Prijavite se

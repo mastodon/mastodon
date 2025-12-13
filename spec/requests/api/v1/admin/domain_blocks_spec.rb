@@ -3,11 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Domain Blocks' do
-  let(:role)    { UserRole.find_by(name: 'Admin') }
-  let(:user)    { Fabricate(:user, role: role) }
-  let(:scopes)  { 'admin:read:domain_blocks admin:write:domain_blocks' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', user_fabricator: :admin_user, oauth_scopes: 'admin:read:domain_blocks admin:write:domain_blocks'
 
   describe 'GET /api/v1/admin/domain_blocks' do
     subject do
@@ -215,6 +211,19 @@ RSpec.describe 'Domain Blocks' do
         expect(response).to have_http_status(422)
         expect(response.content_type)
           .to start_with('application/json')
+      end
+    end
+
+    context 'when severity is invalid' do
+      let(:params) { { domain: 'bar.com', severity: :bar } }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body[:error]).to eq('Validation failed: Severity is not included in the list')
       end
     end
   end

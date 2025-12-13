@@ -16,37 +16,6 @@ def redirect_with_vary(path)
 end
 
 Rails.application.routes.draw do
-  # Paths of routes on the web app that to not require to be indexed or
-  # have alternative format representations requiring separate controllers
-  web_app_paths = %w(
-    /getting-started
-    /keyboard-shortcuts
-    /home
-    /public
-    /public/local
-    /public/remote
-    /conversations
-    /lists/(*any)
-    /links/(*any)
-    /notifications/(*any)
-    /notifications_v2/(*any)
-    /favourites
-    /bookmarks
-    /pinned
-    /start/(*any)
-    /directory
-    /explore/(*any)
-    /search
-    /publish
-    /follow_requests
-    /blocks
-    /domain_blocks
-    /mutes
-    /followed_tags
-    /statuses/(*any)
-    /deck/(*any)
-  ).freeze
-
   root 'home#index'
 
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
@@ -86,7 +55,8 @@ Rails.application.routes.draw do
 
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
-  get 'custom.css', to: 'custom_css#show', as: :custom_css
+  get 'custom.css', to: 'custom_css#show'
+  resources :custom_css, only: :show, path: :css
 
   get 'remote_interaction_helper', to: 'remote_interaction_helper#index'
 
@@ -125,7 +95,20 @@ Rails.application.routes.draw do
 
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
-  resources :accounts, path: 'users', only: [:show], param: :username do
+  concern :account_resources do
+    resources :followers, only: [:index], controller: :follower_accounts
+    resources :following, only: [:index], controller: :following_accounts
+
+    scope module: :activitypub do
+      resource :outbox, only: [:show]
+      resource :inbox, only: [:create]
+      resources :collections, only: [:show]
+      resource :followers_synchronization, only: [:show]
+      resources :quote_authorizations, only: [:show]
+    end
+  end
+
+  resources :accounts, path: 'users', only: [:show], param: :username, concerns: :account_resources do
     resources :statuses, only: [:show] do
       member do
         get :activity
@@ -136,19 +119,28 @@ Rails.application.routes.draw do
       resources :likes, only: [:index], module: :activitypub
       resources :shares, only: [:index], module: :activitypub
     end
+  end
 
-    resources :followers, only: [:index], controller: :follower_accounts
-    resources :following, only: [:index], controller: :following_accounts
+  scope path: 'ap', as: 'ap' do
+    resources :accounts, path: 'users', only: [:show], param: :id, concerns: :account_resources do
+      resources :statuses, only: [:show] do
+        member do
+          get :activity
+        end
 
-    scope module: :activitypub do
-      resource :outbox, only: [:show]
-      resource :inbox, only: [:create]
-      resources :collections, only: [:show]
-      resource :followers_synchronization, only: [:show]
+        resources :replies, only: [:index], module: :activitypub
+        resources :likes, only: [:index], module: :activitypub
+        resources :shares, only: [:index], module: :activitypub
+      end
     end
   end
 
   resource :inbox, only: [:create], module: :activitypub
+  resources :contexts, only: [:show], module: :activitypub, constraints: { id: /[0-9]+-[0-9]+/ } do
+    member do
+      get :items
+    end
+  end
 
   constraints(encoded_path: /%40.*/) do
     get '/:encoded_path', to: redirect { |params|
@@ -159,6 +151,7 @@ Rails.application.routes.draw do
   constraints(username: %r{[^@/.]+}) do
     with_options to: 'accounts#show' do
       get '/@:username', as: :short_account
+      get '/@:username/featured'
       get '/@:username/with_replies', as: :short_account_with_replies
       get '/@:username/media', as: :short_account_media
       get '/@:username/tagged/:tag', as: :short_account_tag
@@ -170,6 +163,7 @@ Rails.application.routes.draw do
     get '/@:account_username/followers', to: 'follower_accounts#index'
     get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
     get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
+    get '/@:account_username/wrapstodon/:year/:share_key', to: 'wrapstodon#show', as: :public_wrapstodon
   end
 
   get '/@:username_with_domain/(*any)', to: 'home#index', constraints: { username_with_domain: %r{([^/])+?} }, as: :account_with_domain, format: false
@@ -226,16 +220,18 @@ Rails.application.routes.draw do
 
   draw(:api)
 
-  web_app_paths.each do |path|
-    get path, to: 'home#index'
-  end
+  draw(:fasp)
+
+  draw(:web_app)
 
   get '/web/(*any)', to: redirect('/%{any}', status: 302), as: :web, defaults: { any: '' }, format: false
   get '/about',      to: 'about#show'
   get '/about/more', to: redirect('/about')
 
-  get '/privacy-policy', to: 'privacy#show', as: :privacy_policy
-  get '/terms',          to: redirect('/privacy-policy')
+  get '/privacy-policy',   to: 'privacy#show', as: :privacy_policy
+  get '/terms-of-service', to: 'terms_of_service#show', as: :terms_of_service
+  get '/terms-of-service/:date', to: 'terms_of_service#show', as: :terms_of_service_version
+  get '/terms', to: redirect('/terms-of-service')
 
   match '/', via: [:post, :put, :patch, :delete], to: 'application#raise_not_found', format: false
   match '*unmatched_route', via: :all, to: 'application#raise_not_found', format: false

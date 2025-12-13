@@ -38,7 +38,7 @@ zh-HK:
         current_email: 現時電郵
         label: 更改電郵
         new_email: 新的電郵
-        submit: 改變電郵
+        submit: 更改電郵
         title: 改變 %{username} 的電郵
       change_role:
         changed_msg: 成功更改身份！
@@ -182,6 +182,7 @@ zh-HK:
         destroy_domain_block: 刪除已封鎖的域名
         destroy_instance: 清除網域
         destroy_ip_block: 刪除 IP 規則
+        destroy_relay: 刪除中繼
         destroy_status: 刪除文章
         destroy_unavailable_domain: 刪除無效域名
         destroy_user_role: 刪除身份
@@ -189,6 +190,7 @@ zh-HK:
         disable_custom_emoji: 停用自定的 Emoji 表情符號
         disable_user: 停用帳號
         enable_custom_emoji: 啟用自定的 Emoji 表情符號
+        enable_relay: 啟用中繼
         enable_user: 啟用帳號
         memorialize_account: 把帳號設定為悼念帳號
         promote_user: 提升帳號權限
@@ -425,6 +427,21 @@ zh-HK:
       new:
         title: 匯入封鎖的網域
       no_file: 未選擇檔案
+    fasp:
+      debug:
+        callbacks:
+          delete: 刪除
+          ip: IP 地址
+      providers:
+        delete: 刪除
+        name: 名稱
+        registrations:
+          confirm: 確認
+          reject: 拒絕
+        save: 儲存
+        sign_in: 登入
+        status: 狀態
+      title: FASP
     follow_recommendations:
       description_html: "<strong>跟隨建議幫助新使用者快速找到有趣內容。</strong> 當使用者尚未和其他帳號足夠多的互動以產生個人化建議時，以下帳號將被推荐。這些是一句指定語言的近期參與度和本地粉絲數最高之帳戶組合每日重新計算。"
       language: 按語言
@@ -690,7 +707,11 @@ zh-HK:
       description_html: 通常大部份宣稱已經閱讀並同意服務條款的人，在出現事故之前都沒有仔細閱讀條款內文。<strong>為了讓人方便閱讀服務條款，請以條列的形式將伺服器規則盡可能地寫得簡短一點</strong>。嘗試把每一項規則寫得簡短易明，但又不要把它們拆得過份瑣碎。
       edit: 編輯規則
       empty: 尚未定義伺服器規則
+      move_down: 向下移
+      move_up: 向上移
       title: 伺服器守則
+      translation: 翻譯
+      translations: 翻譯
     settings:
       about:
         manage_rules: 管理伺服器規則
@@ -715,10 +736,9 @@ zh-HK:
         title: 預設用戶不在搜尋引擎索引之內
       discovery:
         follow_recommendations: 追蹤建議
-        preamble: 呈現有趣的內容有助於吸引不認識 Mastodon 的使用者新手上路。控制各種探索功能在你的伺服器上的運作方式。
+        privacy: 私隱
         profile_directory: 個人檔案目錄
         public_timelines: 公共時間軸
-        publish_discovered_servers: 公開已知的伺服器
         publish_statistics: 公佈統計數據
         title: 探索
         trends: 熱門
@@ -832,8 +852,23 @@ zh-HK:
         action: 在此查看更多資訊
         message_html: "<strong>你的對象儲存配置錯誤。你的使用者的私隱有危險。</strong>"
     tags:
+      name: 名稱
+      newest: 最新
+      oldest: 最舊
+      reset: 重設
       review: 審核文章
+      search: 搜尋
       updated_msg: 成功更新主題標籤設定
+    terms_of_service:
+      current: 目前
+      draft: 草稿
+      generates:
+        action: 產生
+      history: 歷史
+      notify_users: 通知使用者
+      publish: 發佈
+      save_draft: 儲存草稿
+      title: 服務條款
     title: 管理
     trends:
       allow: 允許
@@ -965,10 +1000,7 @@ zh-HK:
     hint_html: 如果你想由另一個帳戶轉移到此帳號，你可以在此處創建別名 (alias)，然後系統容許你將關注者由舊帳戶轉移到此帳號。此操作是<strong>無害且可以還原的</strong>。 <strong>帳號遷移程序，需要在舊帳號啟動</strong>。
     remove: 取消連結別名 (Alias)
   appearance:
-    advanced_web_interface: 進階網頁介面
-    advanced_web_interface_hint: 如果你想善用整個螢幕闊度，你可以啟用「進階網頁介面」，在畫面上配置多個不同的欄目，讓你能根據需要，同時查看盡可能多的信息，支援的欄位包括：主頁、通知、其他站點和任何的列表和標籤。
     animations_and_accessibility: 動畫和輔助功能
-    confirmation_dialogs: 確認對話框
     discovery: 探索
     localization:
       body: Mastodon 是由志願者翻譯的。
@@ -1021,7 +1053,6 @@ zh-HK:
     migrate_account: 轉移到另一個帳號
     migrate_account_html: 想要將這個帳號指向另一個帳號可<a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或登入於
-    privacy_policy_agreement_html: 我已閱讀且同意<a href="%{privacy_policy_path}" target="_blank">私隱政策</a>
     progress:
       details: 你的資料
       review: 我們的審核
@@ -1044,7 +1075,6 @@ zh-HK:
     security: 登入資訊
     set_new_password: 設定新密碼
     setup:
-      email_settings_hint_html: 請點擊我們發送給你的連結來驗證 %{email}。我們會等着你。
       link_not_received: 收不到連結嗎？
       title: 檢查你的信箱
     sign_in:
@@ -1052,7 +1082,6 @@ zh-HK:
       title: 登入 %{domain}
     sign_up:
       manual_review: "%{domain} 的註冊均需要我們的管理員手動審核。為了幫助我們處理你的註冊，請填寫一些關於你的資訊，以及為何想在 %{domain} 上開設帳號。"
-      preamble: 有了這個 Mastodon 伺服器的帳號，無論將帳號託管在何處，你都可以追蹤網絡上任何人。
       title: 讓我為你在 %{domain} 上設定好。
     status:
       account_status: 帳戶文章
@@ -1062,6 +1091,8 @@ zh-HK:
       view_strikes: 查看針對你的帳戶的過往警告
     too_fast: 你太快遞交了，請再試一次。
     use_security_key: 使用安全密鑰裝置
+  author_attribution:
+    example_title: 範例文字
   challenge:
     confirm: 繼續
     hint_html: "<strong>温馨提示</strong> 我們在未來一小時內不會再要求你填寫密碼。"
@@ -1351,7 +1382,6 @@ zh-HK:
       disabled_account: 你的當前帳號將不能完整地運作。但你將會有權力匯出你的數據和重新啟用你的帳號。
       followers: 此操作將會由當前帳號轉移所有追隨者至新帳號
       only_redirect_html: 另外，你亦可<a href="%{path}">只在你的個人資料頁面放上重新定向標記</a>.
-      other_data: 並不會自動轉移其他數據
       redirect: 你的當前帳號的個人資料頁面將會加上一個重新定向公告，並會在搜尋結果中被剔除。
   moderation:
     title: 營運
@@ -1489,7 +1519,6 @@ zh-HK:
   scheduled_statuses:
     over_daily_limit: 你已經超越了當天排定發文的限額 (%{limit})
     over_total_limit: 你已經超越了排定發文的限額 (%{limit})
-    too_soon: 不可以改變過去哦，嘟文只可以排定在未來
   self_destruct:
     lead_html: 很遺憾，<strong>%{domain}</strong> 即將永久停止服務。如果你在該處擁有帳號，你將無法繼續使用它，但你仍然可以要求備份你的數據。
     title: 這個伺服器即將停止服務
@@ -1549,10 +1578,12 @@ zh-HK:
     delete: 刪除帳戶
     development: 開發
     edit_profile: 修改個人資料
+    export: 匯出
     featured_tags: 推薦的標籤
     import: 匯入
     import_and_export: 匯入及匯出
     migrate: 帳戶遷移
+    notifications: 電郵通知
     preferences: 偏好設定
     profile: 個人資料
     relationships: 關注及追隨者
@@ -1597,13 +1628,8 @@ zh-HK:
       reblog: 不能置頂轉推
     title: "%{name}：「%{quote}」"
     visibilities:
-      direct: 私人訊息
-      private: 關注者觀看
-      private_long: 只有關注你的人能看到
+      direct: 私訊
       public: 公開
-      public_long: 所有人都能看到
-      unlisted: 公開，但不在公共時間軸顯示
-      unlisted_long: 所有人都能看到，但不在公共時間軸（本站時間軸、跨站時間軸）顯示
   statuses_cleanup:
     enabled: 自動刪除舊嘟文
     enabled_hint: 當您的嘟文達到指定的時間門檻後，自動刪除嘟文，除非他們符合其中以下例外條件之一
@@ -1706,6 +1732,8 @@ zh-HK:
       further_actions_html: 如果這不是你，我們建議你立即 %{action} 並啟用雙重認證，以確保帳號安全。
       subject: 你的帳號被一個新的 IP 地址存取
       title: 新登入
+    terms_of_service_changed:
+      title: 重要更新
     warning:
       appeal: 提交申訴
       appeal_description: 如果你認為這個有誤，你可以向 %{instance} 的工作人員提出申訴。
@@ -1771,7 +1799,6 @@ zh-HK:
       post_action: 撰寫
       post_step: 用文字、相片、影片或投票跟大家打個招呼吧。
       post_title: 發表你的第一則帖文
-      share_action: 分享
       share_step: 讓你的朋友知道如何在 Mastodon 上找到你。
       share_title: 分享你的 Mastodon 個人檔案
       sign_in_action: 登入
@@ -1791,6 +1818,7 @@ zh-HK:
     instructions_html: 複製並貼上以下的程式碼到你網站的 HTML 中，然後在個人檔案的「修改個人檔案」頁籤中的額外欄位加入你該網址，並儲存變更。
     verification: 驗證
     verified_links: 已驗證的連結
+    website_verification: 網站驗證
   webauthn_credentials:
     add: 新增安全密鑰裝置
     create:

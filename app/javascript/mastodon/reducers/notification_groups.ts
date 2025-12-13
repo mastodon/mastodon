@@ -534,10 +534,13 @@ export const notificationGroupsReducer = createReducer<NotificationGroupsState>(
             if (existingGroupIndex > -1) {
               const existingGroup = state.groups[existingGroupIndex];
               if (existingGroup && existingGroup.type !== 'gap') {
-                group.notifications_count += existingGroup.notifications_count;
-                group.sampleAccountIds = group.sampleAccountIds
-                  .concat(existingGroup.sampleAccountIds)
-                  .slice(0, NOTIFICATIONS_GROUP_MAX_AVATARS);
+                if (group.partial) {
+                  group.notifications_count +=
+                    existingGroup.notifications_count;
+                  group.sampleAccountIds = group.sampleAccountIds
+                    .concat(existingGroup.sampleAccountIds)
+                    .slice(0, NOTIFICATIONS_GROUP_MAX_AVATARS);
+                }
                 state.groups.splice(existingGroupIndex, 1);
               }
             }

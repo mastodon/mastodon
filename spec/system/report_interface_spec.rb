@@ -40,5 +40,7 @@ RSpec.describe 'report interface', :attachment_processing, :js, :streaming do
     within '.report-actions' do
       click_on I18n.t('admin.reports.mark_as_resolved')
     end
+    expect(page)
+      .to have_content(I18n.t('admin.reports.resolved_msg'))
   end
 end

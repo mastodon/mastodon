@@ -25,7 +25,9 @@ module Admin
     rescue Mastodon::NotPermittedError
       flash[:alert] = I18n.t('admin.domain_blocks.not_permitted')
     else
-      redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+      flash[:notice] = I18n.t('admin.domain_blocks.created_msg')
+    ensure
+      redirect_to admin_instances_path(limited: '1')
     end
 
     def new
@@ -34,7 +36,7 @@ module Admin
     end
 
     def edit
-      authorize :domain_block, :create?
+      authorize :domain_block, :update?
     end
 
     def create
@@ -114,7 +116,12 @@ module Admin
     end
 
     def form_domain_block_batch_params
-      params.require(:form_domain_block_batch).permit(domain_blocks_attributes: [:enabled, :domain, :severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate])
+      params
+        .expect(
+          form_domain_block_batch: [
+            domain_blocks_attributes: [[:enabled, :domain, :severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate]],
+          ]
+        )
     end
 
     def action_from_button
@@ -122,7 +129,7 @@ module Admin
     end
 
     def requires_confirmation?
-      @domain_block.valid? && (@domain_block.new_record? || @domain_block.severity_changed?) && @domain_block.severity.to_s == 'suspend' && !params[:confirm]
+      @domain_block.valid? && (@domain_block.new_record? || @domain_block.severity_changed?) && @domain_block.suspend? && !params[:confirm]
     end
   end
 end

@@ -5,6 +5,18 @@ module Auth::CaptchaConcern
 
   include Hcaptcha::Adapters::ViewMethods
 
+  CAPTCHA_DIRECTIVES = %w(
+    connect_src
+    frame_src
+    script_src
+    style_src
+  ).freeze
+
+  CAPTCHA_SOURCES = %w(
+    https://*.hcaptcha.com
+    https://hcaptcha.com
+  ).freeze
+
   included do
     helper_method :render_captcha
   end
@@ -42,25 +54,34 @@ module Auth::CaptchaConcern
   end
 
   def extend_csp_for_captcha!
-    policy = request.content_security_policy&.clone
+    return unless captcha_required? && request.content_security_policy.present?
 
-    return unless captcha_required? && policy.present?
-
-    %w(script_src frame_src style_src connect_src).each do |directive|
-      values = policy.send(directive)
-
-      values << 'https://hcaptcha.com' unless values.include?('https://hcaptcha.com') || values.include?('https:')
-      values << 'https://*.hcaptcha.com' unless values.include?('https://*.hcaptcha.com') || values.include?('https:')
-
-      policy.send(directive, *values)
-    end
-
-    request.content_security_policy = policy
+    request.content_security_policy = captcha_adjusted_policy
   end
 
   def render_captcha
     return unless captcha_required?
 
     hcaptcha_tags
+  end
+
+  private
+
+  def captcha_adjusted_policy
+    request.content_security_policy.clone.tap do |policy|
+      populate_captcha_policy(policy)
+    end
+  end
+
+  def populate_captcha_policy(policy)
+    CAPTCHA_DIRECTIVES.each do |directive|
+      values = policy.send(directive)
+
+      CAPTCHA_SOURCES.each do |source|
+        values << source unless values.include?(source) || values.include?('https:')
+      end
+
+      policy.send(directive, *values)
+    end
   end
 end

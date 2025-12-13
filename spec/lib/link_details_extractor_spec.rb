@@ -49,7 +49,8 @@ RSpec.describe LinkDetailsExtractor do
       <html lang="en">
       <head>
         <title>Man bites dog</title>
-        <meta name="description" content="A dog&#39;s tale">
+        <meta name="descripTION" content="A dog&#39;s tale">
+        <link rel="pretty IcoN" href="/favicon.ico">
       </head>
       </html>
     HTML
@@ -59,7 +60,8 @@ RSpec.describe LinkDetailsExtractor do
         .to have_attributes(
           title: eq('Man bites dog'),
           description: eq("A dog's tale"),
-          language: eq('en')
+          language: eq('en'),
+          icon: eq('https://example.com/favicon.ico')
         )
     end
   end
@@ -116,7 +118,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with the first tag is invalid JSON' do
@@ -134,7 +136,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with the first tag is null' do
@@ -152,7 +154,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with preceding block of unsupported LD+JSON' do
@@ -192,7 +194,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with unsupported in same block LD+JSON' do
@@ -216,7 +218,7 @@ RSpec.describe LinkDetailsExtractor do
         </html>
       HTML
 
-      include_examples 'structured data'
+      it_behaves_like 'structured data'
     end
 
     context 'with author names as array' do
@@ -247,6 +249,44 @@ RSpec.describe LinkDetailsExtractor do
         expect(subject.author_name).to eq 'Author 1, Author 2'
       end
     end
+
+    context 'with embedded arrays' do
+      let(:ld_json) do
+        {
+          '@context' => 'https://schema.org',
+          '@type' => 'NewsArticle',
+          'headline' => 'A lot of authors',
+          'description' => 'But we decided to cram them into one',
+          'author' => [[{
+            '@type' => 'Person',
+            'name' => ['Author 1'],
+          }]],
+          'publisher' => [[{
+            '@type' => 'NewsMediaOrganization',
+            'name' => 'Pet News',
+            'url' => 'https://example.com',
+          }]],
+        }.to_json
+      end
+      let(:html) { <<~HTML }
+        <!doctype html>
+        <html>
+        <body>
+          <script type="application/ld+json">
+            #{ld_json}
+          </script>
+        </body>
+        </html>
+      HTML
+
+      it 'gives correct author_name' do
+        expect(subject.author_name).to eq 'Author 1'
+      end
+
+      it 'gives provider_name' do
+        expect(subject.provider_name).to eq 'Pet News'
+      end
+    end
   end
 
   context 'when Open Graph protocol data is present' do
@@ -256,7 +296,7 @@ RSpec.describe LinkDetailsExtractor do
       <head>
         <meta property="og:url" content="https://example.com/dog.html">
         <meta property="og:title" content="Man bites dog">
-        <meta property="og:description" content="A dog's tale">
+        <meta property="OG:description" content="A dog's tale">
         <meta property="article:published_time" content="2022-01-31T19:53:00+00:00">
         <meta property="og:author" content="Charlie Brown">
         <meta property="og:locale" content="en">

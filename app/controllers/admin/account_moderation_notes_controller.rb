@@ -29,10 +29,8 @@ module Admin
     private
 
     def resource_params
-      params.require(:account_moderation_note).permit(
-        :content,
-        :target_account_id
-      )
+      params
+        .expect(account_moderation_note: [:content, :target_account_id])
     end
 
     def set_account_moderation_note

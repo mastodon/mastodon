@@ -3,22 +3,12 @@
 module Account::AttributionDomains
   extend ActiveSupport::Concern
 
+  ATTRIBUTION_DOMAINS_LIMIT = 100
+
   included do
-    validates :attribution_domains_as_text, domain: { multiline: true }, lines: { maximum: 100 }, if: -> { local? && will_save_change_to_attribution_domains? }
-  end
+    normalizes :attribution_domains, with: ->(arr) { arr.filter_map { |str| str.to_s.strip.delete_prefix('http://').delete_prefix('https://').delete_prefix('*.').presence }.uniq }
 
-  def attribution_domains_as_text
-    self[:attribution_domains].join("\n")
-  end
-
-  def attribution_domains_as_text=(str)
-    self[:attribution_domains] = str.split.filter_map do |line|
-      line
-        .strip
-        .delete_prefix('http://')
-        .delete_prefix('https://')
-        .delete_prefix('*.')
-    end
+    validates :attribution_domains, domain: true, length: { maximum: ATTRIBUTION_DOMAINS_LIMIT }, if: -> { local? && will_save_change_to_attribution_domains? }
   end
 
   def can_be_attributed_from?(domain)

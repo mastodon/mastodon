@@ -4,29 +4,30 @@
 #
 # Table name: media_attachments
 #
-#  id                          :bigint(8)        not null, primary key
-#  status_id                   :bigint(8)
-#  file_file_name              :string
-#  file_content_type           :string
-#  file_file_size              :integer
-#  file_updated_at             :datetime
-#  remote_url                  :string           default(""), not null
-#  created_at                  :datetime         not null
-#  updated_at                  :datetime         not null
-#  shortcode                   :string
-#  type                        :integer          default("image"), not null
-#  file_meta                   :json
-#  account_id                  :bigint(8)
-#  description                 :text
-#  scheduled_status_id         :bigint(8)
-#  blurhash                    :string
-#  processing                  :integer
-#  file_storage_schema_version :integer
-#  thumbnail_file_name         :string
-#  thumbnail_content_type      :string
-#  thumbnail_file_size         :integer
-#  thumbnail_updated_at        :datetime
-#  thumbnail_remote_url        :string
+#  id                               :bigint(8)        not null, primary key
+#  blurhash                         :string
+#  description                      :text
+#  file_content_type                :string
+#  file_file_name                   :string
+#  file_file_size                   :integer
+#  file_meta                        :json
+#  file_storage_schema_version      :integer
+#  file_updated_at                  :datetime
+#  processing                       :integer
+#  remote_url                       :string           default(""), not null
+#  shortcode                        :string
+#  thumbnail_content_type           :string
+#  thumbnail_file_name              :string
+#  thumbnail_file_size              :integer
+#  thumbnail_remote_url             :string
+#  thumbnail_storage_schema_version :integer
+#  thumbnail_updated_at             :datetime
+#  type                             :integer          default("image"), not null
+#  created_at                       :datetime         not null
+#  updated_at                       :datetime         not null
+#  account_id                       :bigint(8)
+#  scheduled_status_id              :bigint(8)
+#  status_id                        :bigint(8)
 #
 
 class MediaAttachment < ApplicationRecord
@@ -115,13 +116,14 @@ class MediaAttachment < ApplicationRecord
   VIDEO_PASSTHROUGH_OPTIONS = {
     video_codecs: ['h264'].freeze,
     audio_codecs: ['aac', nil].freeze,
-    colorspaces: ['yuv420p'].freeze,
+    colorspaces: ['yuv420p', 'yuvj420p'].freeze,
     options: {
       format: 'mp4',
       convert_options: {
         output: {
           'loglevel' => 'fatal',
           'map_metadata' => '-1',
+          'movflags' => 'faststart', # Move metadata to start of file so playback can begin before download finishes
           'c:v' => 'copy',
           'c:a' => 'copy',
         }.freeze,
@@ -227,6 +229,10 @@ class MediaAttachment < ApplicationRecord
     file.blank? && remote_url.present?
   end
 
+  def discarded?
+    status&.discarded? || (status_id.present? && status.nil?)
+  end
+
   def significantly_changed?
     description_previously_changed? || thumbnail_updated_at_previously_changed? || file_meta_previously_changed?
   end
@@ -291,6 +297,10 @@ class MediaAttachment < ApplicationRecord
 
     def supported_file_extensions
       IMAGE_FILE_EXTENSIONS + VIDEO_FILE_EXTENSIONS + AUDIO_FILE_EXTENSIONS
+    end
+
+    def combined_media_file_size
+      arel_table.coalesce(arel_table[:file_file_size], 0) + arel_table.coalesce(arel_table[:thumbnail_file_size], 0)
     end
 
     private
@@ -416,12 +426,14 @@ class MediaAttachment < ApplicationRecord
 
   # Record the cache keys to burst before the file get actually deleted
   def prepare_cache_bust!
-    return unless Rails.configuration.x.cache_buster_enabled
+    return unless Rails.configuration.x.cache_buster.enabled
 
     @paths_to_cache_bust = MediaAttachment.attachment_definitions.keys.flat_map do |attachment_name|
       attachment = public_send(attachment_name)
+      next if attachment.blank?
+
       styles = DEFAULT_STYLES | attachment.styles.keys
-      styles.map { |style| attachment.path(style) }
+      styles.map { |style| attachment.url(style) }
     end.compact
   rescue => e
     # We really don't want any error here preventing media deletion
@@ -431,7 +443,7 @@ class MediaAttachment < ApplicationRecord
   # Once Paperclip has deleted the files, we can't recover the cache keys,
   # so use the previously-saved ones
   def bust_cache!
-    return unless Rails.configuration.x.cache_buster_enabled
+    return unless Rails.configuration.x.cache_buster.enabled
 
     CacheBusterWorker.push_bulk(@paths_to_cache_bust) { |path| [path] }
   rescue => e

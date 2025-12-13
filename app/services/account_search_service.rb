@@ -6,7 +6,7 @@ class AccountSearchService < BaseService
   MENTION_ONLY_RE = /\A#{Account::MENTION_RE}\z/i
 
   # Min. number of characters to look for non-exact matches
-  MIN_QUERY_LENGTH = 5
+  MIN_QUERY_LENGTH = 3
 
   class QueryBuilder
     def initialize(query, account, options = {})
@@ -128,11 +128,37 @@ class AccountSearchService < BaseService
 
     def core_query
       {
-        multi_match: {
-          query: @query,
-          type: 'best_fields',
-          fields: %w(username^2 display_name^2 text text.*),
-          operator: 'and',
+        dis_max: {
+          queries: [
+            {
+              match: {
+                username: {
+                  query: @query,
+                  analyzer: 'word_join_analyzer',
+                },
+              },
+            },
+
+            {
+              match: {
+                display_name: {
+                  query: @query,
+                  analyzer: 'word_join_analyzer',
+                },
+              },
+            },
+
+            {
+              multi_match: {
+                query: @query,
+                type: 'best_fields',
+                fields: %w(text text.*),
+                operator: 'and',
+              },
+            },
+          ],
+
+          tie_breaker: 0.5,
         },
       }
     end
@@ -151,6 +177,12 @@ class AccountSearchService < BaseService
         'search.limit' => @limit,
         'search.backend' => Chewy.enabled? ? 'elasticsearch' : 'database'
       )
+
+      # Trigger searching accounts using providers.
+      # This will not return any immediate results but has the
+      # potential to fill the local database with relevant
+      # accounts for the next time the search is performed.
+      Fasp::AccountSearchWorker.perform_async(@query) if options[:query_fasp]
 
       search_service_results.compact.uniq.tap do |results|
         span.set_attribute('search.results.count', results.size)
@@ -224,7 +256,7 @@ class AccountSearchService < BaseService
     ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
 
     records
-  rescue Faraday::ConnectionFailed, Parslet::ParseFailed
+  rescue Faraday::ConnectionFailed, Parslet::ParseFailed, Errno::ENETUNREACH
     nil
   end
 

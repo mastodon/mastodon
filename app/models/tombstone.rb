@@ -5,11 +5,11 @@
 # Table name: tombstones
 #
 #  id           :bigint(8)        not null, primary key
-#  account_id   :bigint(8)
+#  by_moderator :boolean
 #  uri          :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  by_moderator :boolean
+#  account_id   :bigint(8)        not null
 #
 
 class Tombstone < ApplicationRecord

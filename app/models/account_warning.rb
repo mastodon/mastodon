@@ -27,6 +27,7 @@ class AccountWarning < ApplicationRecord
     suspend: 4_000,
   }, suffix: :action
 
+  APPEAL_WINDOW = 20.days
   RECENT_PERIOD = 3.months.freeze
 
   normalizes :text, with: ->(text) { text.to_s }, apply_to_nil: true
@@ -47,6 +48,10 @@ class AccountWarning < ApplicationRecord
 
   def overruled?
     overruled_at.present?
+  end
+
+  def appeal_eligible?
+    created_at >= APPEAL_WINDOW.ago
   end
 
   def to_log_human_identifier

@@ -68,6 +68,7 @@ RSpec.describe InstancePresenter do
     context 'with the GITHUB_REPOSITORY env variable set' do
       around do |example|
         ClimateControl.modify GITHUB_REPOSITORY: 'other/repo' do
+          reload_configuration
           example.run
         end
       end
@@ -80,6 +81,7 @@ RSpec.describe InstancePresenter do
     context 'without the GITHUB_REPOSITORY env variable set' do
       around do |example|
         ClimateControl.modify GITHUB_REPOSITORY: nil do
+          reload_configuration
           example.run
         end
       end
@@ -87,6 +89,10 @@ RSpec.describe InstancePresenter do
       it 'defaults to the core mastodon repo URL' do
         expect(instance_presenter.source_url).to eq('https://github.com/mastodon/mastodon')
       end
+    end
+
+    def reload_configuration
+      Rails.configuration.x.mastodon = Rails.application.config_for(:mastodon)
     end
   end
 

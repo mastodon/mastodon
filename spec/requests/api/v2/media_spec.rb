@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Media API', :attachment_processing do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'write' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'write'
 
   describe 'POST /api/v2/media' do
     context 'when small media format attachment is processed immediately' do
@@ -33,7 +30,7 @@ RSpec.describe 'Media API', :attachment_processing do
       let(:params) do
         {
           file: fixture_file_upload('attachment-jpg.123456_abcd', 'image/jpeg'),
-          description: 'aa' * MediaAttachment::MAX_DESCRIPTION_LENGTH,
+          description: 'a' * MediaAttachment::MAX_DESCRIPTION_LENGTH * 2,
         }
       end
 

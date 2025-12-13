@@ -8,7 +8,7 @@ RSpec.describe Admin::AccountsController do
   before { sign_in current_user, scope: :user }
 
   describe 'GET #index' do
-    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let(:current_user) { Fabricate(:admin_user) }
     let(:params) do
       {
         origin: 'local',
@@ -53,22 +53,21 @@ RSpec.describe Admin::AccountsController do
   end
 
   describe 'GET #show' do
-    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let(:current_user) { Fabricate(:admin_user) }
 
     describe 'account moderation notes' do
       let(:account) { Fabricate(:account) }
 
       it 'includes moderation notes' do
-        note1 = Fabricate(:account_moderation_note, target_account: account)
-        note2 = Fabricate(:account_moderation_note, target_account: account)
+        note1 = Fabricate(:account_moderation_note, target_account: account, content: 'Note 1 remarks')
+        note2 = Fabricate(:account_moderation_note, target_account: account, content: 'Note 2 remarks')
 
         get :show, params: { id: account.id }
         expect(response).to have_http_status(200)
 
-        moderation_notes = assigns(:moderation_notes).to_a
-
-        expect(moderation_notes.size).to be 2
-        expect(moderation_notes).to eq [note1, note2]
+        expect(response.body)
+          .to include(note1.content)
+          .and include(note2.content)
       end
     end
 

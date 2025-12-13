@@ -180,7 +180,7 @@ sv:
         change_role_user: Ändra roll för användaren
         confirm_user: Bekräfta användare
         create_account_warning: Skapa varning
-        create_announcement: Skapa kungörelse
+        create_announcement: Skapa notis
         create_canonical_email_block: Skapa E-post block
         create_custom_emoji: Skapa egen emoji
         create_domain_allow: Skapa tillåten domän
@@ -190,8 +190,9 @@ sv:
         create_relay: Skapa ombud
         create_unavailable_domain: Skapa otillgänglig domän
         create_user_role: Skapa roll
+        create_username_block: Skapa användarnamnsregel
         demote_user: Degradera användare
-        destroy_announcement: Radera kungörelse
+        destroy_announcement: Radera notis
         destroy_canonical_email_block: Ta bort e-post block
         destroy_custom_emoji: Radera egen emoji
         destroy_domain_allow: Ta bort tillåten domän
@@ -203,6 +204,7 @@ sv:
         destroy_status: Radera inlägg
         destroy_unavailable_domain: Ta bort otillgänglig domän
         destroy_user_role: Förstör roll
+        destroy_username_block: Ta bort användarnamnsregel
         disable_2fa_user: Inaktivera 2FA
         disable_custom_emoji: Inaktivera egna emojis
         disable_relay: Inaktivera ombud
@@ -214,6 +216,7 @@ sv:
         enable_user: Aktivera användare
         memorialize_account: Minnesmärk konto
         promote_user: Befordra användare
+        publish_terms_of_service: Publicera användarvillkor
         reject_appeal: Avvisa överklagande
         reject_user: Avvisa användare
         remove_avatar_user: Ta bort avatar
@@ -229,13 +232,14 @@ sv:
         unsensitive_account: Ångra tvinga känsligt konto
         unsilence_account: Ångra begränsa konto
         unsuspend_account: Ångra avstängning av konto
-        update_announcement: Uppdatera kungörelse
+        update_announcement: Uppdatera notis
         update_custom_emoji: Uppdatera egna emojis
         update_domain_block: Uppdatera blockerad domän
         update_ip_block: Uppdatera IP-regel
         update_report: Uppdatera rapport
         update_status: Uppdatera inlägg
         update_user_role: Uppdatera roll
+        update_username_block: Uppdatera användarnamnsregel
       actions:
         approve_appeal_html: "%{name} godkände överklagande av modereringsbeslut från %{target}"
         approve_user_html: "%{name} godkände registrering från %{target}"
@@ -254,6 +258,7 @@ sv:
         create_relay_html: "%{name} skapade ombudet %{target}"
         create_unavailable_domain_html: "%{name} stoppade leverans till domänen %{target}"
         create_user_role_html: "%{name} skapade rollen %{target}"
+        create_username_block_html: "%{name} lade till regel för användarnamn som innehåller %{target}"
         demote_user_html: "%{name} nedgraderade användare %{target}"
         destroy_announcement_html: "%{name} raderade kungörelsen %{target}"
         destroy_canonical_email_block_html: "%{name} avblockerade e-post med hash%{target}"
@@ -267,6 +272,7 @@ sv:
         destroy_status_html: "%{name} tog bort inlägget av %{target}"
         destroy_unavailable_domain_html: "%{name} återupptog leverans till domänen %{target}"
         destroy_user_role_html: "%{name} raderade rollen %{target}"
+        destroy_username_block_html: "%{name} borttagna regler för användarnamn som innehåller %{target}"
         disable_2fa_user_html: "%{name} inaktiverade tvåfaktorsautentiseringskrav för användaren %{target}"
         disable_custom_emoji_html: "%{name} inaktiverade emoji %{target}"
         disable_relay_html: "%{name} inaktiverade ombudet %{target}"
@@ -278,6 +284,7 @@ sv:
         enable_user_html: "%{name} aktiverade inloggning för användaren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}s konto till en minnessida"
         promote_user_html: "%{name} befordrade användaren %{target}"
+        publish_terms_of_service_html: "%{name} publicerade uppdateringar till användarvillkoren"
         reject_appeal_html: "%{name} avvisade överklagande av modereringsbeslut från %{target}"
         reject_user_html: "%{name} avvisade registrering från %{target}"
         remove_avatar_user_html: "%{name} tog bort %{target}s avatar"
@@ -300,6 +307,7 @@ sv:
         update_report_html: "%{name} uppdaterade rapporten %{target}"
         update_status_html: "%{name} uppdaterade inlägget av %{target}"
         update_user_role_html: "%{name} ändrade rollen %{target}"
+        update_username_block_html: "%{name} uppdaterade regel för användarnamn som innehåller %{target}"
       deleted_account: raderat konto
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
@@ -307,6 +315,7 @@ sv:
       title: Revisionslogg
       unavailable_instance: "(domännamn inte tillgängligt)"
     announcements:
+      back: Tillbaka till anslagstavlan
       destroyed_msg: Kungörelsen raderades!
       edit:
         title: Redigera kungörelse
@@ -315,6 +324,10 @@ sv:
       new:
         create: Skapa kungörelse
         title: Ny kungörelse
+      preview:
+        disclaimer: Eftersom användare inte kan välja bort dem bör, e-postmeddelanden begränsas till viktiga meddelanden som personuppgiftsincidenter och meddelanden om stängning ned servern.
+        explanation_html: 'E-postmeddelandet kommer att skickas till <strong>%{display_count} användare</strong>. Följande text kommer att inkluderas i meddelandet:'
+        title: Förhandsgranska notifikation
       publish: Publicera
       published_msg: Publicerade kungörelsen!
       scheduled_for: Schemalagd till %{time}
@@ -473,6 +486,36 @@ sv:
       new:
         title: Importera domänblockeringar
       no_file: Ingen fil vald
+    fasp:
+      debug:
+        callbacks:
+          created_at: Skapad den
+          delete: Radera
+          ip: IP-adress
+          request_body: Förfrågans innehåll
+          title: Felsök återanrop
+      providers:
+        active: Aktiv
+        base_url: Bas-URL
+        callback: Återanrop
+        delete: Ta bort
+        edit: Redigera leverantör
+        finish_registration: Slutför registrering
+        name: Namn
+        providers: Leverantörer
+        public_key_fingerprint: Fingeravtryck för offentlig nyckel
+        registration_requested: Registrering begärd
+        registrations:
+          confirm: Bekräfta
+          description: Du fick en registrering från en FASP. Avvisa den om du inte initierade detta. Om du initierat detta, jämför noggrant namn och nyckelns fingeravtryck innan du bekräftar registreringen.
+          reject: Avvisa
+          title: Bekräfta registrering av FASP
+        save: Spara
+        select_capabilities: Välj funktioner
+        sign_in: Logga in
+        status: Status
+        title: Fediverse Auxiliary Service Providers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Följrekommendationer hjälper nya användare att snabbt hitta intressant innehåll</strong>. När en användare inte har interagerat med andra tillräckligt mycket för att forma personliga följrekommendationer, rekommenderas istället dessa konton. De beräknas om varje dag från en mix av konton med nylig aktivitet och högst antal följare för ett givet språk."
       language: För språket
@@ -541,6 +584,13 @@ sv:
         all: Alla
         limited: Begränsad
         title: Moderering
+      moderation_notes:
+        create: Lägg till anteckning för modereringen
+        created_msg: Skapandet av anteckningen för modereringen av den här instansen lyckades!
+        description_html: Visa och lämna anteckningar för andra moderatorer och ditt framtida jag
+        destroyed_msg: Borttagningen av anteckningen för modereringen av instansen lyckades!
+        placeholder: Information om den här instansen, åtgärder som har vidtagits eller något annat som kommer att hjälpa dig att moderera den här instansen i framtiden.
+        title: Anteckningar för modereringen
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
       purge: Rensa
@@ -746,20 +796,31 @@ sv:
         view_dashboard_description: Ger användare tillgång till instrumentpanelen och olika mätvärden
         view_devops: DevOps
         view_devops_description: Ger användare tillgång till instrumentpanelerna Sidekiq och pgHero
+        view_feeds: Visa live- och ämnesflöden
+        view_feeds_description: Ger användare tillgång till live-och ämnesflöden oavsett serverinställningar
       title: Roller
     rules:
       add_new: Lägg till regel
+      add_translation: Lägg till översättning
       delete: Radera
       description_html: Även om de flesta hävdar att de samtycker till tjänstevillkoren, läser folk ofta inte igenom dem förrän det uppstår problem. <strong>Gör dina serverregler mer lättöverskådliga genom att tillhandahålla dem i en enkel punktlista.</strong> Försök att hålla enskilda regler korta och koncisa utan att samtidigt separera dem till för många enskilda punkter.
       edit: Ändra regel
       empty: Inga serverregler har ännu angetts.
+      move_down: Flytta ned
+      move_up: Flytta upp
       title: Serverns regler
+      translation: Översättning
+      translations: Översättningar
+      translations_explanation: Du kan eventuellt lägga till översättningar av reglerna. Standardvärdet kommer att visas om ingen översatt version är tillgänglig. Se alltid till att alla angivna översättningar är i synk med standardvärdet.
     settings:
       about:
         manage_rules: Hantera serverregler
         preamble: Ange fördjupad information om hur servern driftas, modereras och finansieras.
         rules_hint: Det finns ett dedikerat ställe för regler som användarna förväntas följa.
         title: Om
+      allow_referrer_origin:
+        desc: När dina användare klickar på länkar till externa webbplatser, kan deras webbläsare skicka adressen till din Mastodon-server som referent. Inaktivera detta skulle kunna identifiera dina användare, t.ex. om detta är en personlig Mastodon-server.
+        title: Tillåt externa webbplatser att se din Mastodon-server som en trafikkälla
       appearance:
         preamble: Anpassa Mastodons webbgränssnitt.
         title: Utseende
@@ -778,10 +839,10 @@ sv:
         title: Undantag användare från sökmotorindexering som standard
       discovery:
         follow_recommendations: Följrekommendationer
-        preamble: Att visa intressant innehåll är avgörande i onboarding av nya användare som kanske inte känner någon på Mastodon. Styr hur olika upptäcktsfunktioner fungerar på din server.
+        preamble: Att visa intressant innehåll är avgörande för nya användare som kanske inte känner någon på Mastodon. Styr hur olika upptäcktsfunktioner fungerar på din Server.
+        privacy: Integritet
         profile_directory: Profilkatalog
         public_timelines: Offentliga tidslinjer
-        publish_discovered_servers: Publicera upptäckta servrar
         publish_statistics: Publicera statistik
         title: Upptäck
         trends: Trender
@@ -789,6 +850,16 @@ sv:
         all: Till alla
         disabled: För ingen
         users: För inloggade lokala användare
+      feed_access:
+        modes:
+          authenticated: Endast autentiserade användare
+          disabled: Kräv specifik användarroll
+          public: Alla
+      landing_page:
+        values:
+          about: Om
+          local_feed: Lokalt flöde
+          trends: Trender
       registrations:
         moderation_recommandation: Se till att du har ett tillräckligt och reaktivt modereringsteam innan du öppnar registreringar till alla!
         preamble: Kontrollera vem som kan skapa ett konto på din server.
@@ -842,6 +913,7 @@ sv:
       no_status_selected: Inga inlägg ändrades eftersom inga valdes
       open: Öppna inlägg
       original_status: Ursprungligt inlägg
+      quotes: Citat
       reblogs: Ombloggningar
       replied_to_html: Svarade på %{acct_link}
       status_changed: Inlägg ändrat
@@ -849,6 +921,7 @@ sv:
       title: Kontoinlägg - @%{name}
       trending: Trendande
       view_publicly: Visa offentligt
+      view_quoted_post: Visa citerat inlägg
       visibility: Synlighet
       with_media: Med media
     strikes:
@@ -866,6 +939,8 @@ sv:
     system_checks:
       database_schema_check:
         message_html: Det finns väntande databasmigreringar. Vänligen kör dem för att säkerställa att programmet beter sig som förväntat
+      elasticsearch_analysis_index_mismatch:
+        message_html: Inställningarna för indexanalys med elastisk sökning är inte uppdaterade. Var god kör <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch kluster är ohälsosamt (röd status), sökfunktioner är otillgängliga
       elasticsearch_health_yellow:
@@ -925,6 +1000,36 @@ sv:
       search: Sök
       title: Hashtaggar
       updated_msg: Hashtagg-inställningarna har uppdaterats
+    terms_of_service:
+      back: Tillbaka till användarvillkoren
+      changelog: Vad har ändrats
+      create: Använd dina egna
+      current: Nuvarande
+      draft: Utkast
+      generate: Använd mall
+      generates:
+        action: Generera
+        chance_to_review_html: "<strong>De genererade villkoren för tjänsten kommer inte att publiceras automatiskt.</strong> Du kommer att ha en chans att granska resultatet. Vänligen fyll i nödvändig information för att fortsätta."
+        explanation_html: Användarvillkorsmallen tillhandahålls endast i informationssyfte, och skall inte tolkas som juridisk rådgivning i något ämne. Rådgör med ditt eget juridiska ombud om din situation och specifika juridiska frågor du har.
+        title: Inställningar för användarvillkor
+      going_live_on_html: Live, gäller %{date}
+      history: Historik
+      live: Aktuella
+      no_history: Det finns inga sparade ändringar i användarvillkoren ännu.
+      no_terms_of_service_html: Du har för närvarande inte några användarvillkor. Användarvillkoren är avsedda att ge klarhet och skydda dig i tvister med dina användare.
+      notified_on_html: Användare meddelade på %{date}
+      notify_users: Meddela användare
+      preview:
+        explanation_html: 'E-postmeddelandet kommer att skickas till <strong>%{display_count} användare</strong> som har registrerat sig före %{date}. Följande text kommer att inkluderas i meddelandet:'
+        send_preview: Skicka till %{email} för förhandsgranskning
+        send_to_all:
+          one: Skicka %{display_count} meddelande
+          other: Skicka %{display_count} meddelanden
+        title: Förhandsgranska användarvillkorsmeddelande
+      publish: Publicera
+      published_on_html: Publicerade den %{date}
+      save_draft: Spara utkast
+      title: Användarvillkor
     title: Administration
     trends:
       allow: Tillåt
@@ -1000,6 +1105,25 @@ sv:
           other: Använd av %{count} personer under den senaste veckan
       title: Rekommendationer & Trender
       trending: Trendande
+    username_blocks:
+      add_new: Lägg till ny
+      block_registrations: Registrerade blockeringar
+      comparison:
+        contains: Innehåller
+        equals: Lika
+      contains_html: Innehåller %{string}
+      created_msg: Användarnamnsregel har skapats
+      delete: Ta bort
+      edit:
+        title: Redigera användarnamnsregel
+      matches_exactly_html: Lika med %{string}
+      new:
+        create: Skapa regel
+        title: Skapa ny användarnamnsregel
+      no_username_block_selected: Inga användarnamn regler ändrades eftersom ingen valdes
+      not_permitted: Ej tillåtet
+      title: Regler för användarnamn
+      updated_msg: Uppdaterade användarnamnsregel
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
@@ -1072,10 +1196,10 @@ sv:
     hint_html: Om du vill flytta från ett annat konto till detta kan du skapa ett alias här, detta krävs innan du kan fortsätta med att flytta följare från det gamla kontot till detta. Denna åtgärd är <strong>ofarlig och kan ångras</strong>. <strong>Kontomigreringen initieras från det gamla kontot.</strong>.
     remove: Avlänka alias
   appearance:
-    advanced_web_interface: Avancerat webbgränssnitt
-    advanced_web_interface_hint: 'Om du vill utnyttja hela skärmens bredd så kan du i det avancerade webbgränssnittet ställa in många olika kolumner för att se så mycket information samtidigt som du vill: Hem, notiser, federerad tidslinje, valfritt antal listor och hashtaggar.'
+    advanced_settings: Avancerade inställningar
     animations_and_accessibility: Animationer och tillgänglighet
-    confirmation_dialogs: Bekräftelsedialoger
+    boosting_preferences: Boostinställningar
+    boosting_preferences_info_html: "<strong>Tips:</strong> Oavsett inställningar kommer <kbd>Skifttangenten</kbd> + <kbd>Klick</kbd> på %{icon} boostikonen att boosta omedelbart."
     discovery: Upptäck
     localization:
       body: Mastodon översätts av volontärer.
@@ -1132,7 +1256,6 @@ sv:
     migrate_account: Flytta till ett annat konto
     migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
     or_log_in_with: Eller logga in med
-    privacy_policy_agreement_html: Jag har läst och godkänner <a href="%{privacy_policy_path}" target="_blank">integritetspolicyn</a>
     progress:
       confirm: Bekräfta e-postadress
       details: Dina uppgifter
@@ -1157,7 +1280,7 @@ sv:
     set_new_password: Skriv in nytt lösenord
     setup:
       email_below_hint_html: Kolla din skräppost-mapp eller begär en ny. Du kan korrigera din e-postadress om den är fel.
-      email_settings_hint_html: Klicka på länken som vi har skickat till dig för att bekräfta %{email}. Vi väntar här.
+      email_settings_hint_html: Klicka på länken vi skickade till %{email} för att börja använda Mastodon. Vi väntar här.
       link_not_received: Fick du ingen länk?
       new_confirmation_instructions_sent: Du kommer att få ett nytt e-postmeddelande med bekräftelselänken om några minuter!
       title: Kolla din inkorg
@@ -1166,7 +1289,7 @@ sv:
       title: Logga in på %{domain}
     sign_up:
       manual_review: Registreringar på %{domain} går igenom manuell granskning av våra moderatorer. För att hjälpa oss att hantera din registrering, skriv lite om dig själv och varför du vill ha ett konto på %{domain}.
-      preamble: Med ett konto på denna Mastodon-server kan du följa alla andra personer på nätverket, oavsett vilken server deras konto tillhör.
+      preamble: Med ett konto på denna Mastodon-server kan du följa alla andra personer i fediversum, oavsett vilken server deras konto tillhör.
       title: Låt oss få igång dig på %{domain}.
     status:
       account_status: Kontostatus
@@ -1178,6 +1301,8 @@ sv:
       view_strikes: Visa tidigare prickar på ditt konto
     too_fast: Formuläret har skickats för snabbt, försök igen.
     use_security_key: Använd säkerhetsnyckel
+    user_agreement_html: Jag har läst och godkänner <a href="%{terms_of_service_path}" target="_blank">användarvillkoren</a> och <a href="%{privacy_policy_path}" target="_blank">integritetspolicy</a>
+    user_privacy_agreement_html: Jag har läst och godkänner <a href="%{privacy_policy_path}" target="_blank">integritetspolicyn</a>
   author_attribution:
     example_title: Exempeltext
     hint_html: Skriver du nyheter eller bloggartiklar utanför Mastodon? Kontrollera hur du får krediteras när de delas på Mastodon.
@@ -1263,6 +1388,10 @@ sv:
     basic_information: Allmän information
     hint_html: "<strong>Anpassa vad folk ser på din offentliga profil och bredvid dina inlägg.</strong> Andra personer är mer benägna att följa dig och interagera med dig när du har en ifylld profil och en profilbild."
     other: Övrigt
+  emoji_styles:
+    auto: Automatiskt
+    native: Ursprunglig
+    twemoji: Twemoji
   errors:
     '400': Förfrågningen som du skickade in var ogiltig eller felaktigt utformad.
     '403': Du har inte behörighet att visa den här sidan.
@@ -1472,6 +1601,13 @@ sv:
       expires_at: Utgår
       uses: Användningar
     title: Bjud in andra
+  link_preview:
+    author_html: Av %{name}
+    potentially_sensitive_content:
+      action: Klicka för att visa
+      confirm_visit: Är du säker på att du vill öppna den här länken?
+      hide_button: Dölj
+      label: Potentiellt känsligt innehåll
   lists:
     errors:
       limit: Du har nått det maximala antalet listor
@@ -1536,7 +1672,7 @@ sv:
       disabled_account: Ditt nuvarande konto kommer inte att kunna användas fullt ut efteråt. Du kommer dock att ha tillgång till dataexport samt återaktivering.
       followers: Den här åtgärden kommer att flytta alla följare från det nuvarande kontot till det nya kontot
       only_redirect_html: Alternativt kan du <a href="%{path}">bara sätta upp en omdirigering på din profil</a>.
-      other_data: Ingen annan data kommer att flyttas automatiskt
+      other_data: Inga andra data kommer att flyttas automatiskt (inklusive dina inlägg och listan över konton du följer)
       redirect: Ditt nuvarande kontos profil kommer att uppdateras med ett meddelande om omdirigering och uteslutas från sökningar
   moderation:
     title: Moderera
@@ -1572,6 +1708,10 @@ sv:
       title: Ny omnämning
     poll:
       subject: En undersökning av %{name} har avslutats
+    quote:
+      body: 'Ditt inlägg citerades av %{name}:'
+      subject: "%{name} citerade ditt inlägg"
+      title: Nytt citat
     reblog:
       body: 'Ditt inlägg boostades av %{name}:'
       subject: "%{name} boostade ditt inlägg"
@@ -1620,6 +1760,9 @@ sv:
       self_vote: Du kan inte rösta i dina egna omröstningar
       too_few_options: måste ha mer än ett objekt
       too_many_options: kan inte innehålla mer än %{max} objekt
+    vote: Rösta
+  posting_defaults:
+    explanation: Dessa inställningar kommer att användas som standard när du skapar nya inlägg, men du kan redigera dem per inlägg i kompositören.
   preferences:
     other: Annat
     posting_defaults: Standardinställningar för inlägg
@@ -1676,7 +1819,7 @@ sv:
   scheduled_statuses:
     over_daily_limit: Du har överskridit dygnsgränsen på %{limit} schemalagda inlägg
     over_total_limit: Du har överskridit gränsen på %{limit} schemalagda inlägg
-    too_soon: Schemaläggningsdatumet måste vara i framtiden
+    too_soon: datumet måste vara i framtiden
   self_destruct:
     lead_html: Tyvärr stänger <strong>%{domain}</strong> för gott. Om du hade ett konto där kommer du inte längre kunna använda det, men du kan fortfarande begära en säkerhetskopia av din data.
     title: Denna server stänger ned
@@ -1775,6 +1918,9 @@ sv:
         other: "%{count} videor"
     boosted_from_html: Boostad från %{acct_link}
     content_warning: 'Innehållsvarning: %{warning}'
+    content_warnings:
+      hide: Dölj inlägg
+      show: Visa mer
     default_language: Samma som användargränssnittet
     disallowed_hashtags:
       one: 'innehöll en otillåten hashtag: %{tags}'
@@ -1782,21 +1928,31 @@ sv:
     edited_at_html: 'Ändrad: %{date}'
     errors:
       in_reply_not_found: Inlägget du försöker svara på verkar inte existera.
+      quoted_status_not_found: Inlägget du försöker svara på verkar inte existera.
+      quoted_user_not_mentioned: Kan inte citera en icke-omnämnt användare i ett privat omnämnandeinlägg.
     over_character_limit: teckengräns på %{max} har överskridits
     pin_errors:
       direct: Inlägg som endast är synliga för nämnda användare kan inte fästas
       limit: Du har redan fäst det maximala antalet inlägg
       ownership: Någon annans inlägg kan inte fästas
       reblog: En boost kan inte fästas
+    quote_error:
+      not_available: Inlägg ej tillgängligt
+      pending_approval: Väntande inlägg
+      revoked: Inlägg borttaget av författaren
+    quote_policies:
+      followers: Endast följare
+      nobody: Bara jag
+      public: Alla
+    quote_post_author: Citerade ett inlägg av %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Direkt
+      direct: Privat omnämnande
       private: Endast följare
-      private_long: Visa endast till följare
       public: Offentlig
-      public_long: Alla kan se
-      unlisted: Olistade
-      unlisted_long: Alla kan se, men listas inte på offentliga tidslinjer
+      public_long: Alla på och utanför Mastodon
+      unlisted: Offentlig (begränsad)
+      unlisted_long: Dold från Mastodon-sökresultat, trendar och offentliga tidslinjer
   statuses_cleanup:
     enabled: Ta automatiskt bort gamla inlägg
     enabled_hint: Raderar dina inlägg automatiskt när de når en specifik ålder, såvida de inte matchar något av undantagen nedan
@@ -1839,6 +1995,13 @@ sv:
       too_late: Det är för sent att överklaga denna strejk
   tags:
     does_not_match_previous_name: matchar inte det föregående namnet
+  terms_of_service:
+    title: Användarvillkor
+  terms_of_service_interstitial:
+    future_preamble_html: Vi gör några ändringar i våra användarvillkor som kommer att vara gäller från och med <strong>%{date}</strong>. Vi uppmanar dig att granska de uppdaterade villkoren.
+    past_preamble_html: Vi har ändrat våra användarvillkor sedan ditt senaste besök. Vi uppmanar dig att granska de uppdaterade villkoren.
+    review_link: Granska villkoren för tjänsten
+    title: Villkoren för tjänsten i %{domain} ändras
   themes:
     contrast: Mastodon (Hög kontrast)
     default: Mastodon (Mörk)
@@ -1870,6 +2033,10 @@ sv:
     recovery_instructions_html: Om du någonsin tappar åtkomst till din telefon kan du använda någon av återställningskoderna nedan för att återställa åtkomst till ditt konto. <strong> Håll återställningskoderna säkra </strong>. Du kan till exempel skriva ut dem och lagra dem med andra viktiga dokument.
     webauthn: Säkerhetsnycklar
   user_mailer:
+    announcement_published:
+      description: 'Administratörerna på %{domain} gör ett tillkännagivande:'
+      subject: Tjänstkungörelse
+      title: Kungörelser från %{domain}
     appeal_approved:
       action: Kontoinställningar
       explanation: Överklagandet du skickade in den %{appeal_date} för pricken på ditt konto den %{strike_date} har godkänts. Ditt konto har återigen bra anseende.
@@ -1899,6 +2066,15 @@ sv:
       further_actions_html: Om detta inte var du, rekommenderar vi att du snarast %{action} och aktiverar tvåfaktorsautentisering för att hålla ditt konto säkert.
       subject: Ditt konto har nåtts från en ny IP-adress
       title: En ny inloggning
+    terms_of_service_changed:
+      agreement: Genom att fortsätta använda %{domain} godkänner du dessa villkor. Om du inte håller med om de uppdaterade villkoren kan du när som helst säga upp ditt avtal med %{domain} genom att radera ditt konto.
+      changelog: 'I korthet, här är vad denna uppdatering innebär för dig:'
+      description: 'Du får det här e-postmeddelandet eftersom att vi gör vissa ändringar i våra användarvillkor för %{domain}. De här uppdateringarna kommer att börja gälla %{date}. Vi uppmuntrar dig att granska de uppdaterade villkoren här i sin helhet:'
+      description_html: Du får det här e-postmeddelandet eftersom att vi gör några ändringar till våra användningsvillkor för %{domain}. De här uppdateringarna kommer att börja gälla från <strong>%{date}</strong>. Vi uppmuntrar dig att granska de uppdaterade villkoren i sin helhet <a href="%{path}" target="_blank">här</a>.
+      sign_off: "%{domain} teamet"
+      subject: Uppdateringar till våra användarvillkor
+      subtitle: Villkoren för tjänsten på %{domain} ändras
+      title: Viktig uppdatering
     warning:
       appeal: Skicka överklagan
       appeal_description: Om du anser detta felaktigt kan du skicka överklagan till administratörerna av %{instance}.
@@ -1965,7 +2141,6 @@ sv:
       post_action: Skriv
       post_step: Säg hej till världen med text, foton, videor eller omröstningar.
       post_title: Skapa ditt första inlägg
-      share_action: Dela
       share_step: Låt dina vänner veta hur de hittar dig på Mastodon.
       share_title: Dela din Mastodon-profil
       sign_in_action: Logga in

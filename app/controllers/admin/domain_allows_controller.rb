@@ -37,6 +37,7 @@ class Admin::DomainAllowsController < Admin::BaseController
   end
 
   def resource_params
-    params.require(:domain_allow).permit(:domain)
+    params
+      .expect(domain_allow: [:domain])
   end
 end

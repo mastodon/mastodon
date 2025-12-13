@@ -13,11 +13,14 @@ module Account::Associations
         has_many :account_warnings
         has_many :aliases, class_name: 'AccountAlias'
         has_many :bookmarks
+        has_many :collections
+        has_many :collection_items
         has_many :conversations, class_name: 'AccountConversation'
         has_many :custom_filters
         has_many :favourites
         has_many :featured_tags, -> { includes(:tag) }
         has_many :list_accounts
+        has_many :instance_moderation_notes
         has_many :media_attachments
         has_many :mentions
         has_many :migrations, class_name: 'AccountMigration'

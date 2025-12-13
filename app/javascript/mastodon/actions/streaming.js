@@ -11,7 +11,7 @@ import {
 } from './announcements';
 import { updateConversations } from './conversations';
 import { processNewNotificationForGroups, refreshStaleNotificationGroups, pollRecentNotifications as pollRecentGroupNotifications } from './notification_groups';
-import { updateNotifications, expandNotifications } from './notifications';
+import { updateNotifications } from './notifications';
 import { updateStatus } from './statuses';
 import {
   updateTimeline,
@@ -33,26 +33,37 @@ const randomUpTo = max =>
   Math.floor(Math.random() * Math.floor(max));
 
 /**
+ * @typedef {import('mastodon/store').AppDispatch} Dispatch
+ * @typedef {import('mastodon/store').GetState} GetState
+ * @typedef {import('redux').UnknownAction} UnknownAction
+ * @typedef {function(Dispatch, GetState): Promise<void>} FallbackFunction
+ */
+
+/**
  * @param {string} timelineId
  * @param {string} channelName
  * @param {Object.<string, string>} params
  * @param {Object} options
- * @param {function(Function, Function): Promise<void>} [options.fallback]
- * @param {function(): void} [options.fillGaps]
+ * @param {FallbackFunction} [options.fallback]
+ * @param {function(): UnknownAction} [options.fillGaps]
  * @param {function(object): boolean} [options.accept]
  * @returns {function(): void}
  */
 export const connectTimelineStream = (timelineId, channelName, params = {}, options = {}) => {
   const { messages } = getLocale();
 
+  // Public streams are currently not returning personalized quote policies
+  const bogusQuotePolicy = channelName.startsWith('public') || channelName.startsWith('hashtag');
+
   return connectStream(channelName, params, (dispatch, getState) => {
+    // @ts-ignore
     const locale = getState().getIn(['meta', 'locale']);
 
     // @ts-expect-error
     let pollingId;
 
     /**
-     * @param {function(Function, Function): Promise<void>} fallback
+     * @param {FallbackFunction} fallback
      */
 
     const useFallback = async fallback => {
@@ -89,11 +100,11 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
         switch (data.event) {
         case 'update':
           // @ts-expect-error
-          dispatch(updateTimeline(timelineId, JSON.parse(data.payload), options.accept));
+          dispatch(updateTimeline(timelineId, JSON.parse(data.payload), { accept: options.accept, bogusQuotePolicy }));
           break;
         case 'status.update':
           // @ts-expect-error
-          dispatch(updateStatus(JSON.parse(data.payload)));
+          dispatch(updateStatus(JSON.parse(data.payload), { bogusQuotePolicy }));
           break;
         case 'delete':
           dispatch(deleteFromTimelines(data.payload));
@@ -107,9 +118,6 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
           break;
         }
         case 'notifications_merged': {
-          const state = getState();
-          if (state.notifications.top || !state.notifications.mounted)
-            dispatch(expandNotifications({ forceLoad: true, maxId: undefined }));
           dispatch(refreshStaleNotificationGroups());
           break;
         }
@@ -135,7 +143,7 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
 };
 
 /**
- * @param {Function} dispatch
+ * @param {Dispatch} dispatch
  */
 async function refreshHomeTimelineAndNotification(dispatch) {
   await dispatch(expandHomeTimeline({ maxId: undefined }));
@@ -154,7 +162,11 @@ async function refreshHomeTimelineAndNotification(dispatch) {
  * @returns {function(): void}
  */
 export const connectUserStream = () =>
-  connectTimelineStream('home', 'user', {}, { fallback: refreshHomeTimelineAndNotification, fillGaps: fillHomeTimelineGaps });
+  connectTimelineStream('home', 'user', {}, {
+    fallback: refreshHomeTimelineAndNotification,
+    // @ts-expect-error
+    fillGaps: fillHomeTimelineGaps
+  });
 
 /**
  * @param {Object} options
@@ -162,7 +174,10 @@ export const connectUserStream = () =>
  * @returns {function(): void}
  */
 export const connectCommunityStream = ({ onlyMedia } = {}) =>
-  connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => (fillCommunityTimelineGaps({ onlyMedia })) });
+  connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`, {}, {
+    // @ts-expect-error
+    fillGaps: () => (fillCommunityTimelineGaps({ onlyMedia }))
+  });
 
 /**
  * @param {Object} options
@@ -171,7 +186,10 @@ export const connectCommunityStream = ({ onlyMedia } = {}) =>
  * @returns {function(): void}
  */
 export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
-  connectTimelineStream(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote }) });
+  connectTimelineStream(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, {}, {
+    // @ts-expect-error
+    fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote })
+  });
 
 /**
  * @param {string} columnId
@@ -194,4 +212,7 @@ export const connectDirectStream = () =>
  * @returns {function(): void}
  */
 export const connectListStream = listId =>
-  connectTimelineStream(`list:${listId}`, 'list', { list: listId }, { fillGaps: () => fillListTimelineGaps(listId) });
+  connectTimelineStream(`list:${listId}`, 'list', { list: listId }, {
+    // @ts-expect-error
+    fillGaps: () => fillListTimelineGaps(listId)
+  });

@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'credentials API' do
-  let(:user)     { Fabricate(:user, account_attributes: { discoverable: false, locked: true, indexable: false }) }
-  let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)   { 'read:accounts write:accounts' }
-  let(:headers)  { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', user_fabricator: :private_user, oauth_scopes: 'read:accounts write:accounts'
 
   describe 'GET /api/v1/accounts/verify_credentials' do
     subject do
@@ -53,8 +50,6 @@ RSpec.describe 'credentials API' do
       patch '/api/v1/accounts/update_credentials', headers: headers, params: params
     end
 
-    before { allow(ActivityPub::UpdateDistributionWorker).to receive(:perform_async) }
-
     let(:params) do
       {
         avatar: fixture_file_upload('avatar.gif', 'image/gif'),
@@ -64,6 +59,7 @@ RSpec.describe 'credentials API' do
         indexable: true,
         locked: false,
         note: 'Hello!',
+        attribution_domains: ['example.com'],
         source: {
           privacy: 'unlisted',
           sensitive: true,
@@ -85,13 +81,18 @@ RSpec.describe 'credentials API' do
     end
 
     describe 'with invalid data' do
-      let(:params) { { note: 'This is too long. ' * 30 } }
+      let(:params) { { note: 'a' * 2 * Account::NOTE_LENGTH_LIMIT } }
 
       it 'returns http unprocessable entity' do
         subject
         expect(response).to have_http_status(422)
         expect(response.content_type)
           .to start_with('application/json')
+        expect(response.parsed_body)
+          .to include(
+            error: /Validation failed/,
+            details: include(note: contain_exactly(include(error: 'ERR_TOO_LONG', description: /character limit/)))
+          )
       end
     end
 
@@ -102,35 +103,29 @@ RSpec.describe 'credentials API' do
         .to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')
-
-      expect(response.parsed_body).to include({
-        source: hash_including({
-          discoverable: true,
-          indexable: true,
-        }),
-        locked: false,
-      })
-
-      expect(ActivityPub::UpdateDistributionWorker)
-        .to have_received(:perform_async).with(user.account_id)
-    end
-
-    def expect_account_updates
+      expect(response.parsed_body)
+        .to include({
+          source: hash_including({
+            discoverable: true,
+            indexable: true,
+          }),
+          locked: false,
+        })
       expect(user.account.reload)
         .to have_attributes(
           display_name: eq("Alice Isn't Dead"),
           note: 'Hello!',
           avatar: exist,
-          header: exist
+          header: exist,
+          attribution_domains: ['example.com']
         )
-    end
-
-    def expect_user_updates
       expect(user.reload)
         .to have_attributes(
           setting_default_privacy: eq('unlisted'),
           setting_default_sensitive: be(true)
         )
+      expect(ActivityPub::UpdateDistributionWorker)
+        .to have_enqueued_sidekiq_job(user.account_id)
     end
   end
 end

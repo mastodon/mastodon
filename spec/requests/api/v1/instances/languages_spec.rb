@@ -9,10 +9,21 @@ RSpec.describe 'Languages' do
     end
 
     it 'returns http success and includes supported languages' do
-      expect(response).to have_http_status(200)
+      expect(response)
+        .to have_http_status(200)
       expect(response.content_type)
         .to start_with('application/json')
-      expect(response.parsed_body.pluck(:code)).to match_array LanguagesHelper::SUPPORTED_LOCALES.keys.map(&:to_s)
+      expect(response.parsed_body)
+        .to match_array(supported_locale_expectations)
+    end
+
+    def supported_locale_expectations
+      LanguagesHelper::SUPPORTED_LOCALES.map do |key, values|
+        include(
+          code: key.to_s,
+          name: values.first
+        )
+      end
     end
   end
 end

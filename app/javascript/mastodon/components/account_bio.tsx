@@ -1,20 +1,47 @@
-import { useLinks } from 'mastodon/../hooks/useLinks';
+import classNames from 'classnames';
 
-export const AccountBio: React.FC<{
-  note: string;
+import { useAppSelector } from '../store';
+
+import { EmojiHTML } from './emoji/html';
+import { useElementHandledLink } from './status/handled_link';
+
+interface AccountBioProps {
   className: string;
-}> = ({ note, className }) => {
-  const handleClick = useLinks();
+  accountId: string;
+  showDropdown?: boolean;
+}
 
-  if (note.length === 0 || note === '<p></p>') {
+export const AccountBio: React.FC<AccountBioProps> = ({
+  className,
+  accountId,
+  showDropdown = false,
+}) => {
+  const htmlHandlers = useElementHandledLink({
+    hashtagAccountId: showDropdown ? accountId : undefined,
+  });
+
+  const note = useAppSelector((state) => {
+    const account = state.accounts.get(accountId);
+    if (!account) {
+      return '';
+    }
+    return account.note_emojified;
+  });
+  const extraEmojis = useAppSelector((state) => {
+    const account = state.accounts.get(accountId);
+    return account?.emojis;
+  });
+
+  if (note.length === 0) {
     return null;
   }
 
   return (
-    <div
-      className={`${className} translate`}
-      dangerouslySetInnerHTML={{ __html: note }}
-      onClickCapture={handleClick}
+    <EmojiHTML
+      htmlString={note}
+      extraEmojis={extraEmojis}
+      className={classNames(className, 'translate')}
+      {...htmlHandlers}
     />
   );
 };

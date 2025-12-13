@@ -1,0 +1,53 @@
+@use 'base';
+@use 'dark';
+@use 'light';
+@use 'utils';
+
+html {
+  @include base.palette;
+
+  &:where([data-user-theme='system']) {
+    color-scheme: dark light;
+
+    @media (prefers-color-scheme: dark) {
+      @include dark.tokens;
+      @include utils.invert-on-dark;
+
+      @media (prefers-contrast: more) {
+        @include dark.contrast-overrides;
+      }
+    }
+
+    @media (prefers-color-scheme: light) {
+      @include light.tokens;
+      @include utils.invert-on-light;
+
+      @media (prefers-contrast: more) {
+        @include light.contrast-overrides;
+      }
+    }
+  }
+}
+
+.theme-dark,
+html:where(
+  :not([data-user-theme='mastodon-light'], [data-user-theme='system'])
+) {
+  color-scheme: dark;
+
+  @include dark.tokens;
+  @include utils.invert-on-dark;
+}
+
+html[data-user-theme='contrast'],
+html[data-user-theme='contrast'] .theme-dark {
+  @include dark.contrast-overrides;
+}
+
+.theme-light,
+html:where([data-user-theme='mastodon-light']) {
+  color-scheme: light;
+
+  @include light.tokens;
+  @include utils.invert-on-light;
+}

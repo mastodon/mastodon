@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Oauth::AuthorizedApplicationsController do
+RSpec.describe OAuth::AuthorizedApplicationsController do
   render_views
 
   describe 'GET #index' do
@@ -21,6 +21,8 @@ RSpec.describe Oauth::AuthorizedApplicationsController do
           .to have_http_status(200)
         expect(response.headers['Cache-Control'])
           .to include('private, no-store')
+        expect(response.parsed_body.at('body.admin'))
+          .to be_present
         expect(controller.stored_location_for(:user))
           .to eq '/oauth/authorized_applications'
       end
@@ -43,7 +45,7 @@ RSpec.describe Oauth::AuthorizedApplicationsController do
     let!(:application) { Fabricate(:application) }
     let!(:access_token) { Fabricate(:accessible_access_token, application: application, resource_owner_id: user.id) }
     let!(:web_push_subscription) { Fabricate(:web_push_subscription, user: user, access_token: access_token) }
-    let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
+    let(:redis_pipeline_stub) { instance_double(Redis::PipelinedConnection, publish: nil) }
 
     before do
       sign_in user, scope: :user

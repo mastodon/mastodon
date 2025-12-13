@@ -7,7 +7,7 @@ class RemoveSuspendedSilencedAccountFields < ActiveRecord::Migration[5.2]
 
   class DomainBlock < ApplicationRecord
     # Dummy class, to make migration possible across version changes
-    enum severity: [:silence, :suspend, :noop]
+    enum :severity, [:silence, :suspend, :noop]
 
     has_many :accounts, foreign_key: :domain, primary_key: :domain
   end

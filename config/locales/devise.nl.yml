@@ -7,6 +7,7 @@ nl:
       send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw account kunt bevestigen. Kijk tussen je spam wanneer niks werd ontvangen.
     failure:
       already_authenticated: Je bent al ingelogd.
+      closed_registrations: Jouw registratiepoging is geblokkeerd vanwege een netwerkbeleid. Wanneer je denkt dat dit een fout is, neem dan contact op via %{email}.
       inactive: Jouw account is nog niet geactiveerd.
       invalid: "%{authentication_keys} of wachtwoord ongeldig."
       last_attempt: Je hebt nog één poging over voordat jouw account wordt opgeschort.
@@ -94,11 +95,6 @@ nl:
       updated_not_active: Jouw wachtwoord is gewijzigd.
     registrations:
       destroyed: Jouw account is succesvol verwijderd. Wellicht tot ziens.
-      signed_up: Je bent geregistreerd.
-      signed_up_but_inactive: Je bent geregistreerd. Je kon alleen niet automatisch ingelogd worden omdat jouw account nog niet geactiveerd is.
-      signed_up_but_locked: Je bent ingeschreven. Je kon alleen niet automatisch ingelogd worden omdat jouw account is opgeschort.
-      signed_up_but_pending: Er is een bericht met een bevestigingslink naar jouw e-mailadres verzonden. Nadat je op deze link hebt geklikt nemen we jouw aanvraag in behandeling. Je wordt op de hoogte gesteld wanneer deze wordt goedgekeurd.
-      signed_up_but_unconfirmed: Je ontvangt via e-mail instructies hoe je jouw account kunt activeren. Kijk tussen je spam wanneer niks werd ontvangen.
       update_needs_confirmation: Je hebt je e-mailadres succesvol gewijzigd, maar we moeten je nieuwe mailadres nog bevestigen. Controleer jouw e-mail en klik op de link in de mail om jouw e-mailadres te bevestigen. Kijk tussen je spam wanneer niks werd ontvangen.
       updated: Jouw accountgegevens zijn opgeslagen.
     sessions:

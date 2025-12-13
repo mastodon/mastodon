@@ -5,7 +5,7 @@
 import { loadIntlPolyfills } from './intl';
 
 function importExtraPolyfills() {
-  return import(/* webpackChunkName: "extra_polyfills" */ './extra_polyfills');
+  return import('./extra_polyfills');
 }
 
 export function loadPolyfills() {
@@ -14,8 +14,28 @@ export function loadPolyfills() {
   const needsExtraPolyfills = !window.requestIdleCallback;
 
   return Promise.all([
+    loadVitePreloadPolyfill(),
     loadIntlPolyfills(),
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- those properties might not exist in old browsers, even if they are always here in types
-    needsExtraPolyfills && importExtraPolyfills(),
+    needsExtraPolyfills ? importExtraPolyfills() : Promise.resolve(),
+    loadEmojiPolyfills(),
   ]);
 }
+
+// In the case of no /v support, rely on the emojibase data.
+async function loadEmojiPolyfills() {
+  if (!('unicodeSets' in RegExp.prototype)) {
+    emojiRegexPolyfill = (await import('emojibase-regex/emoji')).default;
+  }
+}
+
+// Loads Vite's module preload polyfill for older browsers, but not in a Worker context.
+function loadVitePreloadPolyfill() {
+  if (typeof document === 'undefined') return;
+  // @ts-expect-error -- This is a virtual module provided by Vite.
+  // eslint-disable-next-line import/extensions
+  return import('vite/modulepreload-polyfill');
+}
+
+// Null unless polyfill is needed.
+export let emojiRegexPolyfill: RegExp | null = null;

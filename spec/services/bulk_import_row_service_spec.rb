@@ -115,7 +115,7 @@ RSpec.describe BulkImportRowService do
             account.follow!(target_account)
           end
 
-          include_examples 'row import success and list addition'
+          it_behaves_like 'row import success and list addition'
         end
 
         context 'when the user already requested to follow the target account' do
@@ -123,17 +123,17 @@ RSpec.describe BulkImportRowService do
             account.request_follow!(target_account)
           end
 
-          include_examples 'row import success and list addition'
+          it_behaves_like 'row import success and list addition'
         end
 
         context 'when the target account is neither followed nor requested' do
-          include_examples 'row import success and list addition'
+          it_behaves_like 'row import success and list addition'
         end
 
         context 'when the target account is the user themself' do
           let(:target_account) { account }
 
-          include_examples 'row import success and list addition'
+          it_behaves_like 'row import success and list addition'
         end
 
         def add_target_account_to_list
@@ -153,7 +153,7 @@ RSpec.describe BulkImportRowService do
       end
 
       context 'when the list does not exist yet' do
-        include_examples 'common behavior'
+        it_behaves_like 'common behavior'
       end
 
       context 'when the list exists' do
@@ -161,7 +161,7 @@ RSpec.describe BulkImportRowService do
           Fabricate(:list, account: account, title: list_name)
         end
 
-        include_examples 'common behavior'
+        it_behaves_like 'common behavior'
 
         it 'does not create a new list' do
           account.follow!(target_account)

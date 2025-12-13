@@ -180,6 +180,14 @@ RSpec.describe JsonLdHelper do
         expect(compacted.dig('object', 'tag', 0, 'href')).to eq ['foo']
         expect(safe_for_forwarding?(json, compacted)).to be true
       end
+
+      context 'when array size mismatch exists' do
+        subject { helper.patch_for_forwarding!(json, alternate) }
+
+        let(:alternate) { json.merge('to' => %w(one two three)) }
+
+        it { is_expected.to be_nil }
+      end
     end
 
     describe 'safe_for_forwarding?' do

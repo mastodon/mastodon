@@ -7,6 +7,7 @@ tr:
       send_paranoid_instructions: E-posta adresiniz veritabanımızda varsa, e-posta adresinizi birkaç dakika içinde nasıl doğrulayacağınıza ilişkin talimatları içeren bir e-posta alacaksınız. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
     failure:
       already_authenticated: Zaten oturum açtınız.
+      closed_registrations: Ağ politikası nedeniyle kayıt girişiminiz engellenmiştir. Bunun bir hata olduğunu düşünüyorsanız %{email} ile iletişime geçin.
       inactive: Hesabınız henüz etkinleştirilmedi.
       invalid: Geçersiz %{authentication_keys} ya da parola.
       last_attempt: Hesabınız kilitlenmeden önce bir kez daha denemeniz gerekir.
@@ -94,11 +95,6 @@ tr:
       updated_not_active: Parolanız başarıyla değiştirildi.
     registrations:
       destroyed: Görüşürüz! hesabın başarıyla iptal edildi. Umarız seni sonra tekrar görürüz.
-      signed_up: Hoş geldiniz! Başarılı bir şekilde oturum açtınız.
-      signed_up_but_inactive: Başarıyla kaydoldun. Ancak, seni içeri alamıyoruz çünkü hesabın henüz aktif değil.
-      signed_up_but_locked: Başarıyla kaydoldun. Ancak, seni içeri alamıyoruz çünkü hesabın kilitli.
-      signed_up_but_pending: Onay bağlantısına sahip bir mesaj e-posta adresinize gönderildi. Bağlantıyı tıkladıktan sonra başvurunuzu inceleyeceğiz. Onaylanması durumunda size bilgi verilecektir.
-      signed_up_but_unconfirmed: Onay bağlantısına sahip bir mesaj e-posta adresinize gönderildi. Lütfen hesabınızı etkinleştirmek için bağlantıyı takip edin. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
       update_needs_confirmation: Hesabınızı başarıyla güncellediniz, ancak yeni e-posta adresinizi doğrulamamız gerekiyor. Lütfen e-postanızı kontrol edin ve yeni e-posta adresinizi onaylamak için onay bağlantısını izleyin. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
       updated: Hesabınız başarıyla güncellendi.
     sessions:

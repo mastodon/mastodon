@@ -26,6 +26,7 @@ RSpec.describe REST::StatusSerializer do
       status.status_stat.tap do |status_stat|
         status_stat.reblogs_count = 10
         status_stat.favourites_count = 20
+        status_stat.quotes_count = 15
         status_stat.save
       end
     end
@@ -34,6 +35,7 @@ RSpec.describe REST::StatusSerializer do
       it 'shows the trusted counts' do
         expect(subject['reblogs_count']).to eq(10)
         expect(subject['favourites_count']).to eq(20)
+        expect(subject['quotes_count']).to eq(15)
       end
     end
 
@@ -49,6 +51,26 @@ RSpec.describe REST::StatusSerializer do
       it 'shows the untrusted counts' do
         expect(subject['reblogs_count']).to eq(30)
         expect(subject['favourites_count']).to eq(40)
+      end
+    end
+
+    context 'with created_at' do
+      it 'is serialized as RFC 3339 datetime' do
+        expect(subject)
+          .to include(
+            'created_at' => match_api_datetime_format
+          )
+      end
+    end
+
+    context 'when edited_at is populated' do
+      let(:status) { Fabricate.build :status, edited_at: 3.days.ago }
+
+      it 'is serialized as RFC 3339 datetime' do
+        expect(subject)
+          .to include(
+            'edited_at' => match_api_datetime_format
+          )
       end
     end
   end

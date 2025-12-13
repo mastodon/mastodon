@@ -8,20 +8,70 @@ si:
       user:
         agreement: සේවා ගිවිසුම
         email: වි-තැපැල් ලිපිනය
+        locale: ප්‍රදේශය
         password: මුර පදය
       user/account:
         username: පරිශීලක නාමය
       user/invite_request:
         text: හේතුව
     errors:
+      attributes:
+        domain:
+          invalid: වලංගු වසම් නාමයක් නොවේ.
+      messages:
+        invalid_domain_on_line: "%{value} වලංගු වසම් නාමයක් නොවේ."
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: ලේබල නොමැති අගයන් අඩංගු වේ.
             username:
               invalid: අකුරු, අංක සහ යට-ඉරි පමණි
               reserved: වෙන් කර ඇත
+        admin/webhook:
+          attributes:
+            url:
+              invalid: වලංගු URL එකක් නොවේ.
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: වලංගු URL එකක් නොවේ.
+        import:
+          attributes:
+            data:
+              malformed: විකෘති වී ඇත
+        list_account:
+          attributes:
+            account_id:
+              taken: දැනටමත් ලැයිස්තුවේ ඇත.
+          must_be_following: අනුගමනය කරන ගිණුමක් විය යුතුය.
+        status:
+          attributes:
+            reblog:
+              taken: තනතුරේ කොටසක් දැනටමත් පවතී.
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: ඉක්මනින් වැඩියි, %{date}ට වඩා පසුව විය යුතුයි.
         user:
           attributes:
+            date_of_birth:
+              below_limit: වයස් සීමාවට වඩා අඩුය
             email:
               blocked: නොඉඩ දෙන වි-තැපැල් ප්‍රතිපාදකයෙකු භාවිතා කරයි
               unreachable: පෙනෙන හැටියට නොපවතී
+            role_id:
+              elevated: ඔබගේ වත්මන් භූමිකාවට වඩා උසස් විය නොහැක.
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: මූලික භූමිකාව සඳහා ආරක්ෂිත නොවන අවසරයන් ඇතුළත් කරන්න.
+              elevated: ඔබගේ වත්මන් භූමිකාව සතුව නොමැති අවසරයන් ඇතුළත් කළ නොහැක.
+              own_role: ඔබගේ වත්මන් භූමිකාව සමඟ වෙනස් කළ නොහැක.
+            position:
+              elevated: ඔබගේ වත්මන් භූමිකාවට වඩා උසස් විය නොහැක.
+              own_role: ඔබගේ වත්මන් භූමිකාව සමඟ වෙනස් කළ නොහැක.
+        webhook:
+          attributes:
+            events:
+              invalid_permissions: ඔබට අයිතිවාසිකම් නොමැති සිදුවීම් ඇතුළත් කළ නොහැක.

@@ -16,7 +16,8 @@ class StatusReachFinder
   private
 
   def reached_account_inboxes
-    Account.where(id: reached_account_ids).inboxes
+    scope = Account.where(id: reached_account_ids)
+    inboxes_without_suspended_for(scope)
   end
 
   def reached_account_ids
@@ -29,8 +30,10 @@ class StatusReachFinder
       [
         replied_to_account_id,
         reblog_of_account_id,
+        quote_of_account_id,
         mentioned_account_ids,
         reblogs_account_ids,
+        quotes_account_ids,
         favourites_account_ids,
         replies_account_ids,
       ].tap do |arr|
@@ -45,12 +48,21 @@ class StatusReachFinder
     @status.in_reply_to_account_id if distributable?
   end
 
+  def quote_of_account_id
+    @status.quote&.quoted_account_id
+  end
+
   def reblog_of_account_id
     @status.reblog.account_id if @status.reblog?
   end
 
   def mentioned_account_ids
     @status.mentions.pluck(:account_id)
+  end
+
+  # Beware: Quotes can be created without the author having had access to the status
+  def quotes_account_ids
+    @status.quotes.pluck(:account_id) if distributable? || unsafe?
   end
 
   # Beware: Reblogs can be created without the author having had access to the status
@@ -69,13 +81,8 @@ class StatusReachFinder
   end
 
   def followers_inboxes
-    if @status.in_reply_to_local_account? && distributable?
-      @status.account.followers.or(@status.thread.account.followers.not_domain_blocked_by_account(@status.account)).inboxes
-    elsif @status.direct_visibility? || @status.limited_visibility?
-      []
-    else
-      @status.account.followers.inboxes
-    end
+    scope = followers_scope
+    inboxes_without_suspended_for(scope)
   end
 
   def relay_inboxes
@@ -92,5 +99,20 @@ class StatusReachFinder
 
   def unsafe?
     @options[:unsafe]
+  end
+
+  def followers_scope
+    if @status.in_reply_to_local_account? && distributable?
+      @status.account.followers.or(@status.thread.account.followers.not_domain_blocked_by_account(@status.account))
+    elsif @status.direct_visibility? || @status.limited_visibility?
+      Account.none
+    else
+      @status.account.followers
+    end
+  end
+
+  def inboxes_without_suspended_for(scope)
+    scope.merge!(Account.without_suspended) unless unsafe?
+    scope.inboxes
   end
 end

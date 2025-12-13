@@ -7,6 +7,8 @@ en:
     hosted_on: Mastodon hosted on %{domain}
     title: About
   accounts:
+    errors:
+      cannot_be_added_to_collections: This account cannot be added to collections.
     followers:
       one: Follower
       other: Followers
@@ -190,6 +192,7 @@ en:
         create_relay: Create Relay
         create_unavailable_domain: Create Unavailable Domain
         create_user_role: Create Role
+        create_username_block: Create Username Rule
         demote_user: Demote User
         destroy_announcement: Delete Announcement
         destroy_canonical_email_block: Delete Email Block
@@ -203,6 +206,7 @@ en:
         destroy_status: Delete Post
         destroy_unavailable_domain: Delete Unavailable Domain
         destroy_user_role: Destroy Role
+        destroy_username_block: Delete Username Rule
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
         disable_relay: Disable Relay
@@ -214,6 +218,7 @@ en:
         enable_user: Enable User
         memorialize_account: Memorialize Account
         promote_user: Promote User
+        publish_terms_of_service: Publish Terms of Service
         reject_appeal: Reject Appeal
         reject_user: Reject User
         remove_avatar_user: Remove Avatar
@@ -236,6 +241,7 @@ en:
         update_report: Update Report
         update_status: Update Post
         update_user_role: Update Role
+        update_username_block: Update Username Rule
       actions:
         approve_appeal_html: "%{name} approved moderation decision appeal from %{target}"
         approve_user_html: "%{name} approved sign-up from %{target}"
@@ -254,6 +260,7 @@ en:
         create_relay_html: "%{name} created a relay %{target}"
         create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
         create_user_role_html: "%{name} created %{target} role"
+        create_username_block_html: "%{name} added rule for usernames containing %{target}"
         demote_user_html: "%{name} demoted user %{target}"
         destroy_announcement_html: "%{name} deleted announcement %{target}"
         destroy_canonical_email_block_html: "%{name} unblocked email with the hash %{target}"
@@ -267,6 +274,7 @@ en:
         destroy_status_html: "%{name} removed post by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
         destroy_user_role_html: "%{name} deleted %{target} role"
+        destroy_username_block_html: "%{name} removed rule for usernames containing %{target}"
         disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji_html: "%{name} disabled emoji %{target}"
         disable_relay_html: "%{name} disabled the relay %{target}"
@@ -278,6 +286,7 @@ en:
         enable_user_html: "%{name} enabled login for user %{target}"
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
         promote_user_html: "%{name} promoted user %{target}"
+        publish_terms_of_service_html: "%{name} published updates to the terms of service"
         reject_appeal_html: "%{name} rejected moderation decision appeal from %{target}"
         reject_user_html: "%{name} rejected sign-up from %{target}"
         remove_avatar_user_html: "%{name} removed %{target}'s avatar"
@@ -300,6 +309,7 @@ en:
         update_report_html: "%{name} updated report %{target}"
         update_status_html: "%{name} updated post by %{target}"
         update_user_role_html: "%{name} changed %{target} role"
+        update_username_block_html: "%{name} updated rule for usernames containing %{target}"
       deleted_account: deleted account
       empty: No logs found.
       filter_by_action: Filter by action
@@ -307,6 +317,7 @@ en:
       title: Audit log
       unavailable_instance: "(domain name unavailable)"
     announcements:
+      back: Back to announcements
       destroyed_msg: Announcement successfully deleted!
       edit:
         title: Edit announcement
@@ -315,6 +326,10 @@ en:
       new:
         create: Create announcement
         title: New announcement
+      preview:
+        disclaimer: As users cannot opt out of them, email notifications should be limited to important announcements such as personal data breach or server closure notifications.
+        explanation_html: 'The email will be sent to <strong>%{display_count} users</strong>. The following text will be included in the e-mail:'
+        title: Preview announcement notification
       publish: Publish
       published_msg: Announcement successfully published!
       scheduled_for: Scheduled for %{time}
@@ -473,6 +488,36 @@ en:
       new:
         title: Import domain blocks
       no_file: No file selected
+    fasp:
+      debug:
+        callbacks:
+          created_at: Created at
+          delete: Delete
+          ip: IP address
+          request_body: Request body
+          title: Debug Callbacks
+      providers:
+        active: Active
+        base_url: Base URL
+        callback: Callback
+        delete: Delete
+        edit: Edit Provider
+        finish_registration: Finish registration
+        name: Name
+        providers: Providers
+        public_key_fingerprint: Public key fingerprint
+        registration_requested: Registration requested
+        registrations:
+          confirm: Confirm
+          description: You received a registration from a FASP. Reject it if you did not initiate this. If you initiated this, carefully compare name and key fingerprint before confirming the registration.
+          reject: Reject
+          title: Confirm FASP Registration
+        save: Save
+        select_capabilities: Select Capabilities
+        sign_in: Sign In
+        status: Status
+        title: Fediverse Auxiliary Service Providers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Follow recommendations help new users quickly find interesting content</strong>. When a user has not interacted with others enough to form personalized follow recommendations, these accounts are recommended instead. They are re-calculated on a daily basis from a mix of accounts with the highest recent engagements and highest local follower counts for a given language."
       language: For language
@@ -541,6 +586,13 @@ en:
         all: All
         limited: Limited
         title: Moderation
+      moderation_notes:
+        create: Add Moderation Note
+        created_msg: Instance moderation note successfully created!
+        description_html: View and leave notes for other moderators and your future self
+        destroyed_msg: Instance moderation note successfully deleted!
+        placeholder: Information about this instance, actions taken, or anything else that will help you moderate this instance in the future.
+        title: Moderation Notes
       private_comment: Private comment
       public_comment: Public comment
       purge: Purge
@@ -746,20 +798,31 @@ en:
         view_dashboard_description: Allows users to access the dashboard and various metrics
         view_devops: DevOps
         view_devops_description: Allows users to access Sidekiq and pgHero dashboards
+        view_feeds: View live and topic feeds
+        view_feeds_description: Allows users to access the live and topic feeds regardless of server settings
       title: Roles
     rules:
       add_new: Add rule
+      add_translation: Add translation
       delete: Delete
       description_html: While most claim to have read and agree to the terms of service, usually people do not read through until after a problem arises. <strong>Make it easier to see your server's rules at a glance by providing them in a flat bullet point list.</strong> Try to keep individual rules short and simple, but try not to split them up into many separate items either.
       edit: Edit rule
       empty: No server rules have been defined yet.
+      move_down: Move down
+      move_up: Move up
       title: Server rules
+      translation: Translation
+      translations: Translations
+      translations_explanation: You can optionally add translations for the rules. The default value will be shown if no translated version is available. Please always ensure any provided translation is in sync with the default value.
     settings:
       about:
         manage_rules: Manage server rules
         preamble: Provide in-depth information about how the server is operated, moderated, funded.
         rules_hint: There is a dedicated area for rules that your users are expected to adhere to.
         title: About
+      allow_referrer_origin:
+        desc: When your users click links to external sites, their browser may send the address of your Mastodon server as the referrer. Disable this if this would uniquely identify your users, e.g. if this is a personal Mastodon server.
+        title: Allow external sites to see your Mastodon server as a traffic source
       appearance:
         preamble: Customize Mastodon's web interface.
         title: Appearance
@@ -778,10 +841,10 @@ en:
         title: Opt users out of search engine indexing by default
       discovery:
         follow_recommendations: Follow recommendations
-        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
+        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone on Mastodon. Control how various discovery features work on your server.
+        privacy: Privacy
         profile_directory: Profile directory
         public_timelines: Public timelines
-        publish_discovered_servers: Publish discovered servers
         publish_statistics: Publish statistics
         title: Discovery
         trends: Trends
@@ -789,6 +852,16 @@ en:
         all: To everyone
         disabled: To no one
         users: To logged-in local users
+      feed_access:
+        modes:
+          authenticated: Authenticated users only
+          disabled: Require specific user role
+          public: Everyone
+      landing_page:
+        values:
+          about: About
+          local_feed: Local feed
+          trends: Trends
       registrations:
         moderation_recommandation: Please make sure you have an adequate and reactive moderation team before you open registrations to everyone!
         preamble: Control who can create an account on your server.
@@ -842,6 +915,7 @@ en:
       no_status_selected: No posts were changed as none were selected
       open: Open post
       original_status: Original post
+      quotes: Quotes
       reblogs: Reblogs
       replied_to_html: Replied to %{acct_link}
       status_changed: Post changed
@@ -849,6 +923,7 @@ en:
       title: Account posts - @%{name}
       trending: Trending
       view_publicly: View publicly
+      view_quoted_post: View quoted post
       visibility: Visibility
       with_media: With media
     strikes:
@@ -866,6 +941,8 @@ en:
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch index analyzer settings are outdated. Please run <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Elasticsearch cluster is unhealthy (red status), search features are unavailable
       elasticsearch_health_yellow:
@@ -925,6 +1002,36 @@ en:
       search: Search
       title: Hashtags
       updated_msg: Hashtag settings updated successfully
+    terms_of_service:
+      back: Back to terms of service
+      changelog: What's changed
+      create: Use your own
+      current: Current
+      draft: Draft
+      generate: Use template
+      generates:
+        action: Generate
+        chance_to_review_html: "<strong>The generated terms of service will not be published automatically.</strong> You will have a chance to review the results. Please fill in the necessary details to proceed."
+        explanation_html: The terms of service template provided is for informational purposes only, and should not be construed as legal advice on any subject matter. Please consult with your own legal counsel on your situation and specific legal questions you have.
+        title: Terms of Service Setup
+      going_live_on_html: Live, effective %{date}
+      history: History
+      live: Live
+      no_history: There are no recorded changes of the terms of service yet.
+      no_terms_of_service_html: You don't currently have any terms of service configured. Terms of service are meant to provide clarity and protect you from potential liabilities in disputes with your users.
+      notified_on_html: Users notified on %{date}
+      notify_users: Notify users
+      preview:
+        explanation_html: 'The email will be sent to <strong>%{display_count} users</strong> who have signed up before %{date}. The following text will be included in the e-mail:'
+        send_preview: Send preview to %{email}
+        send_to_all:
+          one: Send %{display_count} email
+          other: Send %{display_count} emails
+        title: Preview terms of service notification
+      publish: Publish
+      published_on_html: Published on %{date}
+      save_draft: Save draft
+      title: Terms of Service
     title: Administration
     trends:
       allow: Allow
@@ -1000,6 +1107,25 @@ en:
           other: Used by %{count} people over the last week
       title: Recommendations & Trends
       trending: Trending
+    username_blocks:
+      add_new: Add new
+      block_registrations: Block registrations
+      comparison:
+        contains: Contains
+        equals: Equals
+      contains_html: Contains %{string}
+      created_msg: Successfully created username rule
+      delete: Delete
+      edit:
+        title: Edit username rule
+      matches_exactly_html: Equals %{string}
+      new:
+        create: Create rule
+        title: Create new username rule
+      no_username_block_selected: No username rules were changed as none were selected
+      not_permitted: Not permitted
+      title: Username rules
+      updated_msg: Successfully updated username rule
     warning_presets:
       add_new: Add new
       delete: Delete
@@ -1072,10 +1198,10 @@ en:
     hint_html: If you want to move from another account to this one, here you can create an alias, which is required before you can proceed with moving followers from the old account to this one. This action by itself is <strong>harmless and reversible</strong>. <strong>The account migration is initiated from the old account</strong>.
     remove: Unlink alias
   appearance:
-    advanced_web_interface: Advanced web interface
-    advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
+    advanced_settings: Advanced settings
     animations_and_accessibility: Animations and accessibility
-    confirmation_dialogs: Confirmation dialogs
+    boosting_preferences: Boosting preferences
+    boosting_preferences_info_html: "<strong>Tip:</strong> Regardless of settings, <kbd>Shift</kbd> + <kbd>Click</kbd> on the %{icon} Boost icon will immediately boost."
     discovery: Discovery
     localization:
       body: Mastodon is translated by volunteers.
@@ -1132,7 +1258,6 @@ en:
     migrate_account: Move to a different account
     migrate_account_html: If you wish to redirect this account to a different one, you can <a href="%{path}">configure it here</a>.
     or_log_in_with: Or log in with
-    privacy_policy_agreement_html: I have read and agree to the <a href="%{privacy_policy_path}" target="_blank">privacy policy</a>
     progress:
       confirm: Confirm email
       details: Your details
@@ -1157,7 +1282,7 @@ en:
     set_new_password: Set new password
     setup:
       email_below_hint_html: Check your spam folder, or request another one. You can correct your email address if it's wrong.
-      email_settings_hint_html: Click the link we sent you to verify %{email}. We'll wait right here.
+      email_settings_hint_html: Click the link we sent to %{email} to begin using Mastodon. We'll wait right here.
       link_not_received: Didn't get a link?
       new_confirmation_instructions_sent: You will receive a new email with the confirmation link in a few minutes!
       title: Check your inbox
@@ -1166,7 +1291,7 @@ en:
       title: Login to %{domain}
     sign_up:
       manual_review: Sign-ups on %{domain} go through manual review by our moderators. To help us process your registration, write a bit about yourself and why you want an account on %{domain}.
-      preamble: With an account on this Mastodon server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
+      preamble: With an account on this Mastodon server, you'll be able to follow any other person on the fediverse, regardless of where their account is hosted.
       title: Let's get you set up on %{domain}.
     status:
       account_status: Account status
@@ -1178,6 +1303,8 @@ en:
       view_strikes: View past strikes against your account
     too_fast: Form submitted too fast, try again.
     use_security_key: Use security key
+    user_agreement_html: I have read and agree to the <a href="%{terms_of_service_path}" target="_blank">terms of service</a> and <a href="%{privacy_policy_path}" target="_blank">privacy policy</a>
+    user_privacy_agreement_html: I have read and agree to the <a href="%{privacy_policy_path}" target="_blank">privacy policy</a>
   author_attribution:
     example_title: Sample text
     hint_html: Are you writing news or blog articles outside of Mastodon? Control how you get credited when they are shared on Mastodon.
@@ -1263,6 +1390,10 @@ en:
     basic_information: Basic information
     hint_html: "<strong>Customize what people see on your public profile and next to your posts.</strong> Other people are more likely to follow you back and interact with you when you have a filled out profile and a profile picture."
     other: Other
+  emoji_styles:
+    auto: Auto
+    native: Native
+    twemoji: Twemoji
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -1472,6 +1603,13 @@ en:
       expires_at: Expires
       uses: Uses
     title: Invite people
+  link_preview:
+    author_html: By %{name}
+    potentially_sensitive_content:
+      action: Click to show
+      confirm_visit: Are you sure you wish to open this link?
+      hide_button: Hide
+      label: Potentially sensitive content
   lists:
     errors:
       limit: You have reached the maximum number of lists
@@ -1536,7 +1674,7 @@ en:
       disabled_account: Your current account will not be fully usable afterwards. However, you will have access to data export as well as re-activation.
       followers: This action will move all followers from the current account to the new account
       only_redirect_html: Alternatively, you can <a href="%{path}">only put up a redirect on your profile</a>.
-      other_data: No other data will be moved automatically
+      other_data: No other data will be moved automatically (including your posts and the list of accounts you follow)
       redirect: Your current account's profile will be updated with a redirect notice and be excluded from searches
   moderation:
     title: Moderation
@@ -1570,12 +1708,22 @@ en:
       body: 'You were mentioned by %{name} in:'
       subject: You were mentioned by %{name}
       title: New mention
+    moderation_warning:
+      subject: You have received a moderation warning
     poll:
       subject: A poll by %{name} has ended
+    quote:
+      body: 'Your post was quoted by %{name}:'
+      subject: "%{name} quoted your post"
+      title: New quote
+    quoted_update:
+      subject: "%{name} edited a post you have quoted"
     reblog:
       body: 'Your post was boosted by %{name}:'
       subject: "%{name} boosted your post"
       title: New boost
+    severed_relationships:
+      subject: You have lost connections due to a moderation decision
     status:
       subject: "%{name} just posted"
     update:
@@ -1621,6 +1769,9 @@ en:
       self_vote: You cannot vote in your own polls
       too_few_options: must have more than one item
       too_many_options: can't contain more than %{max} items
+    vote: Vote
+  posting_defaults:
+    explanation: These settings will be used as defaults when you create new posts, but you can edit them per post within the composer.
   preferences:
     other: Other
     posting_defaults: Posting defaults
@@ -1677,7 +1828,7 @@ en:
   scheduled_statuses:
     over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
     over_total_limit: You have exceeded the limit of %{limit} scheduled posts
-    too_soon: The scheduled date must be in the future
+    too_soon: date must be in the future
   self_destruct:
     lead_html: Unfortunately, <strong>%{domain}</strong> is permanently closing down. If you had an account there, you will not be able to continue using it, but you can still request a backup of your data.
     title: This server is closing down
@@ -1776,6 +1927,9 @@ en:
         other: "%{count} videos"
     boosted_from_html: Boosted from %{acct_link}
     content_warning: 'Content warning: %{warning}'
+    content_warnings:
+      hide: Hide post
+      show: Show more
     default_language: Same as interface language
     disallowed_hashtags:
       one: 'contained a disallowed hashtag: %{tags}'
@@ -1783,21 +1937,31 @@ en:
     edited_at_html: Edited %{date}
     errors:
       in_reply_not_found: The post you are trying to reply to does not appear to exist.
+      quoted_status_not_found: The post you are trying to quote does not appear to exist.
+      quoted_user_not_mentioned: Cannot quote a non-mentioned user in a Private Mention post.
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
       direct: Posts that are only visible to mentioned users cannot be pinned
       limit: You have already pinned the maximum number of posts
       ownership: Someone else's post cannot be pinned
       reblog: A boost cannot be pinned
+    quote_error:
+      not_available: Post unavailable
+      pending_approval: Post pending
+      revoked: Post removed by author
+    quote_policies:
+      followers: Followers only
+      nobody: Just me
+      public: Anyone
+    quote_post_author: Quoted a post by %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Direct
-      private: Followers-only
-      private_long: Only show to followers
+      direct: Private mention
+      private: Followers only
       public: Public
-      public_long: Everyone can see
-      unlisted: Unlisted
-      unlisted_long: Everyone can see, but not listed on public timelines
+      public_long: Anyone on and off Mastodon
+      unlisted: Quiet public
+      unlisted_long: Hidden from Mastodon search results, trending, and public timelines
   statuses_cleanup:
     enabled: Automatically delete old posts
     enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below
@@ -1840,6 +2004,13 @@ en:
       too_late: It is too late to appeal this strike
   tags:
     does_not_match_previous_name: does not match the previous name
+  terms_of_service:
+    title: Terms of Service
+  terms_of_service_interstitial:
+    future_preamble_html: We're making some changes to our terms of service, which will be effective on <strong>%{date}</strong>. We encourage you to review the updated terms.
+    past_preamble_html: We have changed our terms of service since your last visit. We encourage you to review the updated terms.
+    review_link: Review terms of service
+    title: The terms of service of %{domain} are changing
   themes:
     contrast: Mastodon (High contrast)
     default: Mastodon (Dark)
@@ -1871,6 +2042,10 @@ en:
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
     webauthn: Security keys
   user_mailer:
+    announcement_published:
+      description: 'The administrators of %{domain} are making an announcement:'
+      subject: Service announcement
+      title: "%{domain} service announcement"
     appeal_approved:
       action: Account Settings
       explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been approved. Your account is once again in good standing.
@@ -1900,6 +2075,15 @@ en:
       further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
       subject: Your account has been accessed from a new IP address
       title: A new sign-in
+    terms_of_service_changed:
+      agreement: By continuing to use %{domain}, you are agreeing to these terms. If you disagree with the updated terms, you may terminate your agreement with %{domain} at any time by deleting your account.
+      changelog: 'At a glance, here is what this update means for you:'
+      description: 'You are receiving this e-mail because we''re making some changes to our terms of service at %{domain}. These updates will take effect on %{date}. We encourage you to review the updated terms in full here:'
+      description_html: You are receiving this e-mail because we're making some changes to our terms of service at %{domain}. These updates will take effect on <strong>%{date}</strong>. We encourage you to review the <a href="%{path}" target="_blank">updated terms in full here</a>.
+      sign_off: The %{domain} team
+      subject: Updates to our terms of service
+      subtitle: The terms of service of %{domain} are changing
+      title: Important update
     warning:
       appeal: Submit an appeal
       appeal_description: If you believe this is an error, you can submit an appeal to the staff of %{instance}.
@@ -1966,7 +2150,6 @@ en:
       post_action: Compose
       post_step: Say hello to the world with text, photos, videos, or polls.
       post_title: Make your first post
-      share_action: Share
       share_step: Let your friends know how to find you on Mastodon.
       share_title: Share your Mastodon profile
       sign_in_action: Sign in
@@ -2005,3 +2188,6 @@ en:
     not_supported: This browser doesn't support security keys
     otp_required: To use security keys please enable two-factor authentication first.
     registered_on: Registered on %{date}
+  wrapstodon:
+    description: See how %{name} used Mastodon this year!
+    title: Wrapstodon %{year} for %{name}

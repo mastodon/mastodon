@@ -18,7 +18,7 @@ class Admin::Disputes::AppealsController < Admin::BaseController
   end
 
   def reject
-    authorize @appeal, :approve?
+    authorize @appeal, :reject?
     log_action :reject, @appeal
     @appeal.reject!(current_account)
     UserMailer.appeal_rejected(@appeal.account.user, @appeal).deliver_later

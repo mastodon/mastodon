@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe AccountPolicy do
   subject { described_class }
 
-  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+  let(:admin)   { Fabricate(:admin_user).account }
   let(:john)    { Fabricate(:account) }
   let(:alice)   { Fabricate(:account) }
 
@@ -70,7 +70,7 @@ RSpec.describe AccountPolicy do
   end
 
   permissions :suspend?, :silence? do
-    let(:staff) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+    let(:staff) { Fabricate(:admin_user).account }
 
     context 'when staff' do
       context 'when record is staff' do
@@ -94,7 +94,7 @@ RSpec.describe AccountPolicy do
   end
 
   permissions :memorialize? do
-    let(:other_admin) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+    let(:other_admin) { Fabricate(:admin_user).account }
 
     context 'when admin' do
       context 'when record is admin' do
@@ -153,6 +153,38 @@ RSpec.describe AccountPolicy do
     context 'when not admin' do
       it 'denies' do
         expect(subject).to_not permit(john, alice)
+      end
+    end
+  end
+
+  permissions :feature? do
+    context 'when account is featureable?' do
+      it 'permits' do
+        expect(subject).to permit(alice, john)
+      end
+    end
+
+    context 'when account is not featureable' do
+      before { allow(alice).to receive(:featureable?).and_return(false) }
+
+      it 'denies' do
+        expect(subject).to_not permit(john, alice)
+      end
+    end
+
+    context 'when account is blocked' do
+      before { alice.block!(john) }
+
+      it 'denies' do
+        expect(subject).to_not permit(alice, john)
+      end
+    end
+
+    context 'when account is blocking' do
+      before { john.block!(alice) }
+
+      it 'denies' do
+        expect(subject).to_not permit(alice, john)
       end
     end
   end

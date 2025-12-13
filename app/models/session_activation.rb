@@ -38,9 +38,7 @@ class SessionActivation < ApplicationRecord
     end
 
     def activate(**)
-      activation = create!(**)
-      purge_old
-      activation
+      create!(**).tap { purge_old }
     end
 
     def deactivate(id)

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-import type { IntlShape } from 'react-intl';
+import type { MessageDescriptor, PrimitiveType, IntlShape } from 'react-intl';
 import { injectIntl, defineMessages } from 'react-intl';
 
 const messages = defineMessages({
@@ -102,7 +102,13 @@ const getUnitDelay = (units: string) => {
 };
 
 export const timeAgoString = (
-  intl: Pick<IntlShape, 'formatDate' | 'formatMessage'>,
+  intl: {
+    formatDate: IntlShape['formatDate'];
+    formatMessage: (
+      { id, defaultMessage }: MessageDescriptor,
+      values?: Record<string, PrimitiveType>,
+    ) => string;
+  },
   date: Date,
   now: number,
   year: number,

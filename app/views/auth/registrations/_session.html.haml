@@ -1,7 +1,7 @@
 %tr
   %td
     %span{ title: session.user_agent }<
-      = material_symbol session_device_icon(session), 'aria-label': session_device_icon(session)
+      = material_symbol session_device_icon(session)
       &nbsp;
       = t 'sessions.description',
           browser: t("sessions.browsers.#{session.browser}", default: session.browser.to_s),

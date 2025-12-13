@@ -2,6 +2,8 @@
 
 class Api::V1::StatusesController < Api::BaseController
   include Authorization
+  include AsyncRefreshesConcern
+  include Api::InteractionPoliciesConcern
 
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :update, :destroy]
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :update, :destroy]
@@ -9,6 +11,7 @@ class Api::V1::StatusesController < Api::BaseController
   before_action :set_statuses, only:         [:index]
   before_action :set_status, only:           [:show, :context]
   before_action :set_thread, only:           [:create]
+  before_action :set_quoted_status, only:    [:create]
   before_action :check_statuses_limit, only: [:index]
 
   override_rate_limit_headers :create, family: :statuses
@@ -57,6 +60,20 @@ class Api::V1::StatusesController < Api::BaseController
     @context = Context.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
     statuses = [@status] + @context.ancestors + @context.descendants
 
+    refresh_key = "context:#{@status.id}:refresh"
+    async_refresh = AsyncRefresh.new(refresh_key)
+
+    if async_refresh.running?
+      add_async_refresh_header(async_refresh)
+    elsif !current_account.nil? && @status.should_fetch_replies?
+      add_async_refresh_header(AsyncRefresh.create(refresh_key, count_results: true))
+
+      WorkerBatch.new.within do |batch|
+        batch.connect(refresh_key, threshold: 1.0)
+        ActivityPub::FetchAllRepliesWorker.perform_async(@status.id, { 'batch_id' => batch.id })
+      end
+    end
+
     render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
   end
 
@@ -65,6 +82,8 @@ class Api::V1::StatusesController < Api::BaseController
       current_user.account,
       text: status_params[:status],
       thread: @thread,
+      quoted_status: @quoted_status,
+      quote_approval_policy: quote_approval_policy,
       media_ids: status_params[:media_ids],
       sensitive: status_params[:sensitive],
       spoiler_text: status_params[:spoiler_text],
@@ -96,7 +115,8 @@ class Api::V1::StatusesController < Api::BaseController
       sensitive: status_params[:sensitive],
       language: status_params[:language],
       spoiler_text: status_params[:spoiler_text],
-      poll: status_params[:poll]
+      poll: status_params[:poll],
+      quote_approval_policy: quote_approval_policy
     )
 
     render json: @status, serializer: REST::StatusSerializer
@@ -106,12 +126,13 @@ class Api::V1::StatusesController < Api::BaseController
     @status = Status.where(account: current_account).find(params[:id])
     authorize @status, :destroy?
 
+    json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: true
+
     @status.discard_with_reblogs
     StatusPin.find_by(status: @status)&.destroy
     @status.account.statuses_count = @status.account.statuses_count - 1
-    json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: true
 
-    RemovalWorker.perform_async(@status.id, { 'redraft' => true })
+    RemovalWorker.perform_async(@status.id, { 'redraft' => !truthy_param?(:delete_media) })
 
     render json: json
   end
@@ -125,7 +146,7 @@ class Api::V1::StatusesController < Api::BaseController
   def set_status
     @status = Status.find(params[:id])
     authorize @status, :show?
-  rescue Mastodon::NotPermittedError
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
   end
 
@@ -134,6 +155,14 @@ class Api::V1::StatusesController < Api::BaseController
     authorize(@thread, :show?) if @thread.present?
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: 404
+  end
+
+  def set_quoted_status
+    @quoted_status = Status.find(status_params[:quoted_status_id])&.proper if status_params[:quoted_status_id].present?
+    authorize(@quoted_status, :quote?) if @quoted_status.present?
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
+    # TODO: distinguish between non-existing and non-quotable posts
+    render json: { error: I18n.t('statuses.errors.quoted_status_not_found') }, status: 404
   end
 
   def check_statuses_limit
@@ -152,6 +181,8 @@ class Api::V1::StatusesController < Api::BaseController
     params.permit(
       :status,
       :in_reply_to_id,
+      :quoted_status_id,
+      :quote_approval_policy,
       :sensitive,
       :spoiler_text,
       :visibility,

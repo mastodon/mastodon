@@ -20,10 +20,11 @@ bg:
           invalid: не е действително име на домейн
       messages:
         invalid_domain_on_line: "%{value} не е действително име на домейн"
-        too_many_lines: е над ограничение от %{limit} реда
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: съдържа стойности с липсващи етикети
             username:
               invalid: трябва да е само буквено-цифрено и долни черти
               reserved: е запазено
@@ -39,12 +40,23 @@ bg:
           attributes:
             data:
               malformed: е деформиран
+        list_account:
+          attributes:
+            account_id:
+              taken: е вече в списъка
+          must_be_following: трябва да е последван акаунт
         status:
           attributes:
             reblog:
               taken: от публикациите вече съществуват
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: е твърде скоро и трябва да е по-късно от %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: е под възрастовата граница
             email:
               blocked: използва се забранен доставчик на услуга за е-поща
               unreachable: изглежда не съществува

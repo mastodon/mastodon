@@ -7,6 +7,7 @@ ko:
       send_paranoid_instructions: 이메일 주소가 저희 데이터베이스에 있는 경우, 몇 분 내에 이메일 주소를 확인하는 방법에 대한 안내가 포함된 이메일을 받을 수 있습니다. 이 이메일을 받지 못했다면 스팸 폴더를 확인해 주세요.
     failure:
       already_authenticated: 이미 로그인 된 상태입니다.
+      closed_registrations: 네트워크 정책에 의해 가입 시도가 차단되었습니다. 오류라고 생각된다면 %{email}에 문의해주세요.
       inactive: 계정이 아직 활성화 되지 않았습니다.
       invalid: 올바르지 않은 %{authentication_keys} 혹은 암호입니다.
       last_attempt: 계정이 잠기기까지 한 번의 시도가 남았습니다.
@@ -94,11 +95,6 @@ ko:
       updated_not_active: 암호를 잘 변경하였습니다.
     registrations:
       destroyed: 안녕히 가세요! 계정이 성공적으로 제거되었습니다. 다시 만나기를 희망합니다.
-      signed_up: 안녕하세요! 성공적으로 가입했습니다.
-      signed_up_but_inactive: 성공적으로 가입했습니다. 하지만 계정이 활성화되지 않았기 때문에 아직 로그인할 수 없습니다.
-      signed_up_but_locked: 성공적으로 가입했습니다. 하지만 계정이 잠겨있기 때문에 아직 로그인할 수 없습니다.
-      signed_up_but_pending: 확인 링크를 포함한 메일이 발송 되었습니다. 링크를 클릭한 이후, 우리가 당신의 신청양식을 검토합니다. 승인이 되면 알림을 발송합니다.
-      signed_up_but_unconfirmed: 확인 링크를 포함한 메일이 발송 되었습니다. 링크를 클릭해 계정을 활성화 하세요. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
       update_needs_confirmation: 계정 정보를 성공적으로 업데이트했으며, 새 이메일 주소에 대한 확인이 필요합니다. 이메일로 전달된 링크를 따라 새 이메일을 확인하세요. 메일을 받지 못하셨다면 스팸 폴더를 확인해 주세요.
       updated: 계정 정보가 성공적으로 업데이트 되었습니다.
     sessions:

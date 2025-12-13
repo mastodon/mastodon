@@ -49,7 +49,7 @@ export function configFromEnv(env, environment) {
     if (typeof parsedUrl.password === 'string') baseConfig.password = parsedUrl.password;
     if (typeof parsedUrl.host === 'string') baseConfig.host = parsedUrl.host;
     if (typeof parsedUrl.user === 'string') baseConfig.user = parsedUrl.user;
-    if (typeof parsedUrl.port === 'string') {
+    if (typeof parsedUrl.port === 'string' && parsedUrl.port) {
       const parsedPort = parseInt(parsedUrl.port, 10);
       if (isNaN(parsedPort)) {
         throw new Error('Invalid port specified in DATABASE_URL environment variable');
@@ -65,7 +65,7 @@ export function configFromEnv(env, environment) {
     if (typeof parsedUrl.ssl === 'boolean') {
       baseConfig.ssl = parsedUrl.ssl;
     } else if (typeof parsedUrl.ssl === 'object' && !Array.isArray(parsedUrl.ssl) && parsedUrl.ssl !== null) {
-      /** @type {Record<string, any>} */
+      /** @type {Record<string, unknown>} */
       const sslOptions = parsedUrl.ssl;
       baseConfig.ssl = {};
 

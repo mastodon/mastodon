@@ -5,18 +5,18 @@ require 'rails_helper'
 RSpec.describe Auth::RegistrationsController do
   render_views
 
-  shared_examples 'checks for enabled registrations' do |path|
+  shared_examples 'registration mode based responses' do |path|
     context 'when in single user mode and open for registration' do
       before do
         Setting.registrations_mode = 'open'
         allow(Rails.configuration.x).to receive(:single_user_mode).and_return(true)
       end
 
-      it 'redirects to root' do
+      it 'redirects to sign-in' do
         Fabricate(:account)
         get path
 
-        expect(response).to redirect_to '/'
+        expect(response).to redirect_to '/auth/sign_in'
         expect(Rails.configuration.x).to have_received(:single_user_mode)
       end
     end
@@ -27,10 +27,10 @@ RSpec.describe Auth::RegistrationsController do
         allow(Rails.configuration.x).to receive(:single_user_mode).and_return(false)
       end
 
-      it 'redirects to root' do
+      it 'redirects to sign-in' do
         get path
 
-        expect(response).to redirect_to '/'
+        expect(response).to redirect_to '/auth/sign_in'
         expect(Rails.configuration.x).to have_received(:single_user_mode)
       end
     end
@@ -156,7 +156,7 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    include_examples 'checks for enabled registrations', :new
+    it_behaves_like 'registration mode based responses', :new
   end
 
   describe 'POST #create' do
@@ -342,7 +342,7 @@ RSpec.describe Auth::RegistrationsController do
       end
     end
 
-    include_examples 'checks for enabled registrations', :create
+    it_behaves_like 'registration mode based responses', :create
   end
 
   describe 'DELETE #destroy' do

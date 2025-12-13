@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Filters' do
-  let(:user)    { Fabricate(:user) }
-  let(:scopes)  { 'read:filters write:filters' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:filters write:filters'
 
   shared_examples 'unauthorized for invalid token' do
     let(:headers) { { 'Authorization' => '' } }
@@ -113,6 +110,21 @@ RSpec.describe 'Filters' do
         expect(response).to have_http_status(422)
         expect(response.content_type)
           .to start_with('application/json')
+      end
+    end
+
+    context 'when the given filter_action value is invalid' do
+      let(:params) { { title: 'magic', filter_action: 'imaginary_value', keywords_attributes: [keyword: 'magic'] } }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response)
+          .to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to include(error: /Action is not included/)
       end
     end
   end

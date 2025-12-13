@@ -18,7 +18,7 @@ jobs:
     steps:
       # Repository needs to be cloned so `git rev-parse` below works
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - id: version_vars
         run: |
           echo mastodon_version_metadata=pr-${{ github.event.pull_request.number }}-$(git rev-parse --short ${{github.event.pull_request.head.sha}}) >> $GITHUB_OUTPUT
@@ -32,8 +32,6 @@ jobs:
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: Dockerfile
-      platforms: linux/amd64,linux/arm64
-      use_native_arm64_builder: true
       push_to_images: |
         ghcr.io/mastodon/mastodon
       version_metadata: ${{ needs.compute-suffix.outputs.metadata }}
@@ -49,8 +47,6 @@ jobs:
     uses: ./.github/workflows/build-container-image.yml
     with:
       file_to_build: streaming/Dockerfile
-      platforms: linux/amd64,linux/arm64
-      use_native_arm64_builder: true
       push_to_images: |
         ghcr.io/mastodon/mastodon-streaming
       version_metadata: ${{ needs.compute-suffix.outputs.metadata }}

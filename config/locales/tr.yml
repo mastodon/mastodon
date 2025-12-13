@@ -1,7 +1,7 @@
 ---
 tr:
   about:
-    about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezi olmayan</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir!
+    about_mastodon_html: 'Geleceğin sosyal ağı: Reklam yok, kurumsal gözetim yok, etik tasarım ve merkeziyetsizlik! Mastodon ile verilerinizin sahibi olun!'
     contact_missing: Ayarlanmadı
     contact_unavailable: Bulunamadı
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
@@ -190,6 +190,7 @@ tr:
         create_relay: Aktarıcı Oluştur
         create_unavailable_domain: Mevcut Olmayan Alan Adı Oluştur
         create_user_role: Rol Oluştur
+        create_username_block: Kullanıcı Adı Kuralı Oluştur
         demote_user: Kullanıcıyı Düşür
         destroy_announcement: Duyuru Sil
         destroy_canonical_email_block: E-Posta Engelini Sil
@@ -203,6 +204,7 @@ tr:
         destroy_status: Durumu Sil
         destroy_unavailable_domain: Mevcut Olmayan Alan Adı Sil
         destroy_user_role: Rolü Kaldır
+        destroy_username_block: Kullanıcı Adı Kuralını Sil
         disable_2fa_user: 2AD Kapat
         disable_custom_emoji: Özel İfadeyi Devre Dışı Bırak
         disable_relay: Aktarıcıyı Devre Dışı Bırak
@@ -214,6 +216,7 @@ tr:
         enable_user: Kullanıcıyı Etkinleştir
         memorialize_account: Hesabı Anıtlaştır
         promote_user: Kullanıcıyı Yükselt
+        publish_terms_of_service: Hizmet Şartlarını Yayınla
         reject_appeal: İtirazı Reddet
         reject_user: Kullanıcıyı Reddet
         remove_avatar_user: Profil Resmini Kaldır
@@ -236,6 +239,7 @@ tr:
         update_report: Raporu Güncelle
         update_status: Durumu Güncelle
         update_user_role: Rolü Güncelle
+        update_username_block: Kullanıcı Adı Kuralını Güncelle
       actions:
         approve_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını kabul etti"
         approve_user_html: "%{name}, %{target} konumundan kaydı onayladı"
@@ -254,6 +258,7 @@ tr:
         create_relay_html: "%{name}, %{target} aktarıcısını oluşturdu"
         create_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı durdurdu"
         create_user_role_html: "%{name}, %{target} rolünü oluşturdu"
+        create_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural ekledi"
         demote_user_html: "%{name}, %{target} kullanıcısını düşürdü"
         destroy_announcement_html: "%{name}, %{target} duyurusunu sildi"
         destroy_canonical_email_block_html: "%{name}, %{target} karmasıyla e-posta engelini kaldırdı"
@@ -267,6 +272,7 @@ tr:
         destroy_status_html: "%{name}, %{target} kullanıcısının gönderisini kaldırdı"
         destroy_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı sürdürdü"
         destroy_user_role_html: "%{name}, %{target} rolünü sildi"
+        destroy_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural silindi"
         disable_2fa_user_html: "%{name}, %{target} kullanıcısının iki aşamalı doğrulama gereksinimini kapattı"
         disable_custom_emoji_html: "%{name}, %{target} emojisini devre dışı bıraktı"
         disable_relay_html: "%{name}, %{target} aktarıcısını devre dışı bıraktı"
@@ -278,6 +284,7 @@ tr:
         enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
         memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
         promote_user_html: "%{name}, %{target} kullanıcısını yükseltti"
+        publish_terms_of_service_html: "%{name} hizmet şartları güncellemelerini yayınladı"
         reject_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını reddetti"
         reject_user_html: "%{name}, %{target} konumundan kaydı reddetti"
         remove_avatar_user_html: "%{name}, %{target} kullanıcısının avatarını kaldırdı"
@@ -300,6 +307,7 @@ tr:
         update_report_html: "%{name}, %{target} raporunu güncelledi"
         update_status_html: "%{name}, %{target} kullanıcısının gönderisini güncelledi"
         update_user_role_html: "%{name}, %{target} rolünü değiştirdi"
+        update_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural güncellendi"
       deleted_account: hesap silindi
       empty: Kayıt bulunamadı.
       filter_by_action: Eyleme göre filtre
@@ -307,6 +315,7 @@ tr:
       title: Denetim günlüğü
       unavailable_instance: "(alan adı mevcut değil)"
     announcements:
+      back: Duyurulara geri dön
       destroyed_msg: Duyuru başarıyla silindi!
       edit:
         title: Duyuruyu düzenle
@@ -315,6 +324,10 @@ tr:
       new:
         create: Duyuru oluştur
         title: Yeni duyuru
+      preview:
+        disclaimer: Kullanıcılar bu bildirimleri almayı iptal edemediği için, e-posta bildirimleri kişisel veri ihlali veya sunucu kapatma bildirimleri gibi önemli duyurularla sınırlandırılmalıdır.
+        explanation_html: 'E-posta, <strong>%{display_count} kullanıcıya</strong> gönderilecektir. E-posta içerisinde aşağıdaki metin yer alacaktır:'
+        title: Duyuru bildiriminin önizlemesine bak
       publish: Yayınla
       published_msg: Duyuru başarıyla yayınlandı!
       scheduled_for: "%{time} için zamanlandı"
@@ -473,6 +486,36 @@ tr:
       new:
         title: Domain bloklarını içe aktar
       no_file: Dosya seçilmedi
+    fasp:
+      debug:
+        callbacks:
+          created_at: Oluşturulma tarihi
+          delete: Sil
+          ip: IP adresi
+          request_body: İstek gövdesi
+          title: Hata ayıklama geri çağrıları
+      providers:
+        active: Etkin
+        base_url: Temel URL
+        callback: Geri çağırma
+        delete: Sil
+        edit: Sağlayıcıyı Düzenle
+        finish_registration: Kaydı tamamla
+        name: Ad
+        providers: Sağlayıcılar
+        public_key_fingerprint: Açık anahtar parmak izi
+        registration_requested: Kayıt istendi
+        registrations:
+          confirm: Onayla
+          description: FASP'tan bir kayıt aldınız. Eğer bunu siz başlatmadıysanız reddedin. Eğer siz başlattıysanız, kaydı onaylamadan önce ad ve anahtar parmak izini dikkatlice karşılaştırın.
+          reject: Reddet
+          title: FASP Kaydını Onayla
+        save: Kaydet
+        select_capabilities: Yetenekleri Seç
+        sign_in: Oturum Aç
+        status: Durum
+        title: Fediverse Yardımcı Hizmet Sağlayıcıları (FASP)
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Takip önerileri yeni kullanıcıların hızlı bir şekilde ilginç içerik bulmalarını sağlar</strong>. Eğer bir kullanıcı, kişisel takip önerileri almaya yetecek kadar başkalarıyla etkileşime girmediğinde, onun yerine bu hesaplar önerilir. Bu öneriler, verili bir dil için en yüksek takipçi sayısına ve en yüksek güncel meşguliyete sahip hesapların bir karışımdan günlük olarak hesaplanıyorlar."
       language: Dil için
@@ -541,6 +584,13 @@ tr:
         all: Tümü
         limited: Sınırlı
         title: Denetim
+      moderation_notes:
+        create: Denetleme Notu Ekle
+        created_msg: Sunucu denetleme notu başarıyla oluşturuldu!
+        description_html: Kendiniz ve diğer moderatörler için not bırakın veya notları görüntüleyin
+        destroyed_msg: Sunucu denetleme notu başarıyla silindi!
+        placeholder: Bu sunucu hakkında bilgi, gerçekleştirilen eylemler veya ileride bu sunucunun denetimi için işinize yarayabilecek herhangi bir şey.
+        title: Denetleme Notları
       private_comment: Özel yorum
       public_comment: Genel yorum
       purge: Temizle
@@ -746,20 +796,31 @@ tr:
         view_dashboard_description: Kullanıcıların ana panele ve çeşitli ölçütlere erişmesine izin verir
         view_devops: DevOps
         view_devops_description: Kullanıcıların Sidekiq ve pgHero panellerine erişmesine izin verir
+        view_feeds: Canlı ve konu akışlarını görüntüle
+        view_feeds_description: Kullanıcıların sunucu ayarlarından bağımsız olarak canlı ve konu akışlarına erişmelerini sağlar
       title: Roller
     rules:
       add_new: Kural ekle
+      add_translation: Çeviri ekle
       delete: Sil
       description_html: Her ne kadar çoğu hizmet kullanım şartlarını okuyup kabul ettiğini söylese de, insanlar onu ancak bir sorun çıktığında gözden geçiriyorlar. <strong>Sunucunuzun kurallarını bir bakışta kolayca görülecek şekilde düz bir madde listesi şeklinde sunun</strong>. Tekil kuralları kısa ve yalın tutmaya çalışan ama onları çok sayıda maddeye bölmemeye de çalışın.
       edit: Kuralı düzenle
       empty: Henüz bir sunucu kuralı tanımlanmadı.
+      move_down: Aşağı taşı
+      move_up: Yukarı taşı
       title: Sunucu kuralları
+      translation: Çeviri
+      translations: Çeviriler
+      translations_explanation: İsteğe bağlı olarak kurallar için çeviriler ekleyebilirsiniz. Çevrilmiş bir sürüm mevcut değilse varsayılan değer gösterilecektir. Lütfen her zaman sağlanan çevirinin varsayılan değerle senkronize olduğundan emin olun.
     settings:
       about:
         manage_rules: Sunucu kurallarını yönet
         preamble: Sunucunun nasıl işletildiği, yönetildiği ve fonlandığı hakkında ayrıntılı bilgi verin.
         rules_hint: Kullanıcılarınızın uyması beklenen kurallar için özel bir alan var.
         title: Hakkında
+      allow_referrer_origin:
+        desc: Kullanıcılarınız harici sitelere giden bağlantılara tıkladığında, tarayıcıları Mastodon sunucunuzun adresini yönlendiren olarak gönderebilir. Bu, kullanıcılarınızı benzersiz bir şekilde tanımlayacaksa, örneğin bu kişisel bir Mastodon sunucusuysa, bunu devre dışı bırakın.
+        title: Harici sitelerin Mastodon sunucunuzu bir trafik kaynağı olarak görmesine izin verin
       appearance:
         preamble: Mastodon'un web arayüzünü düzenleyin.
         title: Görünüm
@@ -779,9 +840,9 @@ tr:
       discovery:
         follow_recommendations: Takip önerileri
         preamble: İlginç içeriği gezinmek, Mastodon'da kimseyi tanımayan yeni kullanıcıları alıştırmak için oldukça etkilidir. Sunucunuzdaki çeşitli keşif özelliklerinin nasıl çalıştığını denetleyin.
+        privacy: Gizlilik
         profile_directory: Profil dizini
         public_timelines: Genel zaman çizelgeleri
-        publish_discovered_servers: Keşfedilen sunucuları yayınla
         publish_statistics: İstatistikleri yayınla
         title: Keşfet
         trends: Öne çıkanlar
@@ -789,6 +850,16 @@ tr:
         all: Herkes için
         disabled: Hiç kimseye
         users: Oturum açan yerel kullanıcılara
+      feed_access:
+        modes:
+          authenticated: Sadece yetkilendirilmiş kullanıcılar
+          disabled: Belirli kullanıcı rolü gerekir
+          public: Herkes
+      landing_page:
+        values:
+          about: Hakkında
+          local_feed: Yerel akış
+          trends: Öne çıkanlar
       registrations:
         moderation_recommandation: Lütfen kayıtları herkese açmadan önce yeterli ve duyarlı bir denetleyici ekibine sahip olduğunuzdan emin olun!
         preamble: Sunucunuzda kimin hesap oluşturabileceğini denetleyin.
@@ -842,6 +913,7 @@ tr:
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
       open: Gönderiyi aç
       original_status: Özgün gönderi
+      quotes: Alıntılar
       reblogs: Yeniden Paylaşımlar
       replied_to_html: Yanıtladı %{acct_link}
       status_changed: Gönderi değişti
@@ -849,6 +921,7 @@ tr:
       title: Hesap gönderileri - @%{name}
       trending: Öne çıkanlar
       view_publicly: Herkese açık görüntüle
+      view_quoted_post: Alıntılanmış gönderiyi görüntüle
       visibility: Görünürlük
       with_media: Medya ile
     strikes:
@@ -866,6 +939,8 @@ tr:
     system_checks:
       database_schema_check:
         message_html: Beklemede olan veritabanı güncellemeleri mevcut. Uygulamanın beklenildiği gibi çalışması için lütfen onları çalıştırın
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch indeks çözümleyici ayarları artık güncel değil. Lütfen <code>tootctl search deploy --only-mapping --only=%{value}</code> komutunu çalıştırın
       elasticsearch_health_red:
         message_html: Elasticsearch kümesi sağlıksız (kırmızı durum), arama özellikleri mevcut değil
       elasticsearch_health_yellow:
@@ -925,6 +1000,36 @@ tr:
       search: Ara
       title: Etiketler
       updated_msg: Etiket ayarları başarıyla güncellendi
+    terms_of_service:
+      back: Hizmet şartlarına dön
+      changelog: Ne Değişti
+      create: Kendinizinkini kullanın
+      current: Şimdiki
+      draft: Taslak
+      generate: Şablon kullan
+      generates:
+        action: Oluştur
+        chance_to_review_html: "<strong>Üretilmiş hizmet şartları otomatik olarak yayınlanmayacaktır.</strong> Sonucu gözden geçirme şansınız olacaktır. Devam etmek için lütfen gerekli ayrıntıları doldurun."
+        explanation_html: Sağlanan hizmet şartları şablonu yalnızca bilgilendirme amaçlıdır ve herhangi bir konuda yasal tavsiye olarak yorumlanmamalıdır. Lütfen durumunuz ve belirli yasal sorularınız hakkında kendi hukuk müşavirinize danışın.
+        title: Hizmet Şartları Kurulumu
+      going_live_on_html: Canlı, %{date} tarihinden beri yürürlükte
+      history: Tarihçe
+      live: Canlı
+      no_history: Henüz kaydedilmiş hizmet şartları değişikliği yok.
+      no_terms_of_service_html: Şu anda yapılandırılmış herhangi bir hizmet şartınız yok. Hizmet şartları, kullanıcılarınızla olan anlaşmazlıklarda netlik sağlamak ve sizi olası yükümlülüklerden korumak içindir.
+      notified_on_html: Kullanıcılar %{date} tarihinde bilgilendirildi
+      notify_users: Kullanıcılara bildir
+      preview:
+        explanation_html: 'E-posta, %{date} tarihinden önce kaydolan <strong>%{display_count} kullanıcıya</strong> gönderilecektir. E-posta içerisinde aşağıdaki metin yer alacaktır:'
+        send_preview: Ön izlemeyi %{email} adresine gönder
+        send_to_all:
+          one: "%{display_count} e-posta gönder"
+          other: "%{display_count} e-posta gönder"
+        title: Hizmet şartları bildirimini öz izle
+      publish: Yayınla
+      published_on_html: "%{date} tarihinde yayınlandı"
+      save_draft: Taslağı kaydet
+      title: Hizmet Şartları
     title: Yönetim
     trends:
       allow: İzin ver
@@ -1000,6 +1105,25 @@ tr:
           other: Geçen hafta %{count} kişi tarafından kullanıldı
       title: Öneriler ve Öne Çıkanlar
       trending: Öne çıkanlar
+    username_blocks:
+      add_new: Yeni ekle
+      block_registrations: Kayıtları engelle
+      comparison:
+        contains: İçerir
+        equals: Eşit
+      contains_html: "%{string} içerir"
+      created_msg: Kullanıcı adı kuralı başarıyla oluşturuldu
+      delete: Sil
+      edit:
+        title: Kullanıcı adı kuralını düzenle
+      matches_exactly_html: "%{string} değerine eşittir"
+      new:
+        create: Kural oluştur
+        title: Yeni kullanıcı adı kuralı oluştur
+      no_username_block_selected: Hiçbir kullanıcı adı kuralı değiştirilmedi çünkü hiçbiri seçilmedi
+      not_permitted: İzin verilmiyor
+      title: Kullanıcı adı kuralları
+      updated_msg: Kullanıcı adı kuralı başarıyla güncellendi
     warning_presets:
       add_new: Yeni ekle
       delete: Sil
@@ -1072,10 +1196,10 @@ tr:
     hint_html: Başka bir hesaptan bu hesaba taşınmak istiyorsanız, takipçileri eski hesaptan bu hesaba taşımadan önce gerekli olan takma adı burada oluşturabilirsiniz. Bu eylem kendi başına <strong>zararsızdır ve geri döndürülebilir</strong>. <strong>Hesap taşıma işlemi eski hesaptan başlatılır</strong>.
     remove: Takma adların bağlantısını kaldır
   appearance:
-    advanced_web_interface: Gelişmiş web arayüzü
-    advanced_web_interface_hint: 'Tüm ekran genişliğinizden yararlanmak istiyorsanız, gelişmiş web arayüzü istediğiniz kadar bilgi görecek kadar çok sayıda farklı sütunu yapılandırmanıza olanak tanır: Anasayfa, bildirimler, birleşik zaman çizelgesi, istediğiniz sayıda liste ve etiket.'
+    advanced_settings: Gelişmiş ayarlar
     animations_and_accessibility: Animasyonlar ve erişilebilirlik
-    confirmation_dialogs: Onay iletişim kutuları
+    boosting_preferences: Öne çıkarma seçenekleri
+    boosting_preferences_info_html: "<strong>İpucu:</strong> Ayarlardan bağımsız olarak, %{icon} Öne Çıkar simgesine <kbd>Shift</kbd> + <kbd>Tıklama</kbd> uygulandığından öne çıkarma hemen gerçekleştirilir."
     discovery: Keşfet
     localization:
       body: Mastodon, gönüllüler tarafından çevrilmektedir.
@@ -1132,7 +1256,6 @@ tr:
     migrate_account: Farklı bir hesaba taşıyın
     migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsan, <a href="%{path}">buradan yapılandırabilirsin</a>.
     or_log_in_with: 'Veya şununla oturum açın:'
-    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">Gizlilik politikasını</a> okudum ve kabul ettim
     progress:
       confirm: E-postanızı onaylayın
       details: Ayrıntılarınız
@@ -1157,7 +1280,7 @@ tr:
     set_new_password: Yeni parola belirle
     setup:
       email_below_hint_html: İstenmeyenler dizininize bakın veya başka bir onay bağlantısı isteyin. Eğer yanlışsa e-posta adresinizi de düzeltebilirsiniz.
-      email_settings_hint_html: "%{email} adresinizi doğrulamak için size gönderdiğimiz bağlantıya tıklayın. Biz burada bekliyoruz."
+      email_settings_hint_html: Mastodon kullanmaya başlamak %{email} adresine gönderdiğimiz bağlantıya tıklayın. Sizi burada bekliyoruz.
       link_not_received: Bağlantı gelmedi mi?
       new_confirmation_instructions_sent: Birkaç dakika içerisinde onaylama bağlantısını içeren yeni bir e-posta alacaksınız!
       title: Gelen kutunuzu kontrol edin
@@ -1166,7 +1289,7 @@ tr:
       title: "%{domain} giriş yapın"
     sign_up:
       manual_review: "%{domain} kayıtları moderatörler tarafından manuel olarak inceleniyor. Kaydınızı işlememizi kolaylaştırmak için kendiniz ve %{domain} sunucusundan neden hesap istediğiniz hakkında biraz bilgi verin."
-      preamble: Bu Mastodon sunucusu üzerinden bir hesap ile ağdaki herhangi bir kişiyi, hesabı hangi sunucuda saklanırsa saklansın, takip edebilirsiniz.
+      preamble: Bu Mastodon sunucusu üzerinden bir hesap ile fediverseteki herhangi bir kişiyi, hangi sunucuda olursa olsun, takip edebilirsiniz.
       title: "%{domain} için kurulumunuzu yapalım."
     status:
       account_status: Hesap durumu
@@ -1178,6 +1301,8 @@ tr:
       view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     use_security_key: Güvenlik anahtarını kullan
+    user_agreement_html: <a href="%{terms_of_service_path}" target="_blank">hizmet şartları</a> ve <a href="%{privacy_policy_path}" target="_blank">gizlilik politikasını</a> okudum ve kabul ediyorum
+    user_privacy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">Gizlilik politikasını</a> okudum ve kabul ettim
   author_attribution:
     example_title: Örnek metin
     hint_html: Mastodon dışında haber veya günlük yazıları mı yazıyorsunuz? Bu yazılar Mastodon'da paylaşıldığında size nasıl atıf yapılacağını denetleyin.
@@ -1263,6 +1388,10 @@ tr:
     basic_information: Temel bilgiler
     hint_html: "<strong>İnsanlara herkese açık profilinizde ve gönderilerinizin yanında ne göstermek istediğinizi düzenleyin.</strong> Dolu bir profile ve bir profil resmine sahip olduğunuzda diğer insanlar daha yüksek ihtimalle sizi takip etmek ve sizinle etkileşime geçmek isteyeceklerdir."
     other: Diğer
+  emoji_styles:
+    auto: Otomatik
+    native: Yerel
+    twemoji: Twemoji
   errors:
     '400': Gönderdiğiniz istek geçersiz veya hatalı biçimlendirilmiş.
     '403': Bu sayfayı görmek için izniniz yok.
@@ -1472,6 +1601,13 @@ tr:
       expires_at: Bitiş tarihi
       uses: Kullanım
     title: İnsanları davet et
+  link_preview:
+    author_html: 'Yazan: %{name}'
+    potentially_sensitive_content:
+      action: Göstermek için tıklayın
+      confirm_visit: Bu bağlantıyı açmak istediğinizden emin misiniz?
+      hide_button: Gizle
+      label: Potansiyel olarak hassas içerik
   lists:
     errors:
       limit: Azami liste sayısına ulaştınız
@@ -1481,7 +1617,7 @@ tr:
       password: parola
       sign_in_token: e-posta güvenlik kodu
       webauthn: güvenlik anahtarları
-    description_html: Eğer tanımadığınız bir faaliyet görüyorsanız, parolanızı değiştirmeyi ve iki aşamalı kimlik doğrulamayı etkinleştirmeyi düşünün.
+    description_html: Eğer tanımadığınız bir faaliyet görürseniz, parolanızı değiştirmeyi ve iki aşamalı kimlik doğrulamayı etkinleştirmeyi değerlendirin.
     empty: Kimlik doğrulama geçmişi yok
     failed_sign_in_html: "%{method} yöntemiyle %{ip} (%{browser}) adresinden başarısız oturum açma girişimi"
     successful_sign_in_html: "%{method} yöntemiyle %{ip} (%{browser}) adresinden başarılı oturum açma"
@@ -1536,7 +1672,7 @@ tr:
       disabled_account: Sonrasında, mevcut hesabınız tamamen kullanılabilir olmayacaktır. Ancak, yeniden etkinleştirme işleminin yanı sıra veri dışa aktarma erişimine sahip olacaksınız.
       followers: Bu eylem tüm takipçileri şu anki hesaptan yeni hesaba taşıyacaktır
       only_redirect_html: Alternatif olarak, <a href="%{path}">sadece profilinize bir yönlendirme koyabilirsiniz</a>.
-      other_data: Başka bir veri otomatik olarak taşınmayacaktır
+      other_data: Başka (gönderileriniz ve takip ettiğiniz hesapların listesi dahil) hiçbir veri otomatik olarak taşınmayacaktır
       redirect: Mevcut hesabınızın profili bir yönlendirme bildirimi ile güncellenecek ve aramaların dışında tutulacaktır
   moderation:
     title: Denetim
@@ -1570,12 +1706,22 @@ tr:
       body: "%{name} senden bahsetti:"
       subject: "%{name} senden bahsetti"
       title: Yeni bahsetme
+    moderation_warning:
+      subject: Hesabınız bir denetim uyarısı aldı
     poll:
       subject: Anket %{name} tarafından sonlandırıldı
+    quote:
+      body: "%{name} durumunuzu yeniden paylaştı:"
+      subject: "%{name} gönderini yeniden paylaştı"
+      title: Yeni alıntı
+    quoted_update:
+      subject: "%{name} alıntıladığınız bir gönderiyi düzenledi"
     reblog:
       body: "%{name} durumunuzu yeniden paylaştı:"
       subject: "%{name} durumunuzu yeniden paylaştı"
       title: Yeni paylaşım
+    severed_relationships:
+      subject: Bir denetim kararı nedeniyle bağlantılarınızı kaybettiniz
     status:
       subject: "%{name} az önce gönderdi"
     update:
@@ -1620,6 +1766,9 @@ tr:
       self_vote: Kendi anketlerinizde oy kullanamazsınız
       too_few_options: birden fazla öğeye sahip olmalı
       too_many_options: "%{max} öğeden fazla öğe içeremez"
+    vote: Oyla
+  posting_defaults:
+    explanation: Bu ayarlar, yeni gönderiler oluştururken varsayılan olarak kullanılacaktır, ancak bunları oluşturucu içinde her gönderi için ayrı ayrı düzenleyebilirsiniz.
   preferences:
     other: Diğer
     posting_defaults: Gönderi varsayılanları
@@ -1676,7 +1825,7 @@ tr:
   scheduled_statuses:
     over_daily_limit: Bugün için %{limit} zamanlanmış gönderi sınırını aştınız
     over_total_limit: "%{limit} zamanlanmış gönderi sınırını aştınız"
-    too_soon: Programlanan tarih bugünden ileri bir tarihte olmalıdır
+    too_soon: tarih ileri bir tarih olmalıdır
   self_destruct:
     lead_html: Maalesef <strong>%{domain}</strong> kalıcı olarak kapanıyor. Eğer orada hesabınız varsa, onu kullanmaya devam edemeyeceksiniz, ancak yine de verinizin bir yedeğini isteyebilirsiniz.
     title: Bu sunucu kapanıyor
@@ -1775,6 +1924,9 @@ tr:
         other: "%{count} videolar"
     boosted_from_html: "%{acct_link} kişisinden yeniden paylaştı"
     content_warning: 'İçerik uyarısı: %{warning}'
+    content_warnings:
+      hide: Gönderiyi gizle
+      show: Daha fazlasını göster
     default_language: Arayüz diliyle aynı
     disallowed_hashtags:
       one: 'izin verilmeyen bir etiket içeriyordu: %{tags}'
@@ -1782,21 +1934,31 @@ tr:
     edited_at_html: "%{date} tarihinde düzenlendi"
     errors:
       in_reply_not_found: Yanıtlamaya çalıştığınız durum yok gibi görünüyor.
+      quoted_status_not_found: Alıntılamaya çalıştığınız gönderi mevcut görünmüyor.
+      quoted_user_not_mentioned: Özel Bahsetme gönderisinde bahsedilmeyen bir kullanıcıyı alıntılamak mümkün değildir.
     over_character_limit: "%{max} karakter limiti aşıldı"
     pin_errors:
       direct: Sadece değinilen kullanıcıların görebileceği gönderiler üstte tutulamaz
       limit: Halihazırda maksimum sayıda gönderi sabitlediniz
       ownership: Başkasının gönderisi sabitlenemez
       reblog: Bir gönderi sabitlenemez
+    quote_error:
+      not_available: Gönderi kullanılamıyor
+      pending_approval: Gönderi beklemede
+      revoked: Gönderi yazarı tarafından kaldırıldı
+    quote_policies:
+      followers: Sadece takipçiler
+      nobody: Sadece ben
+      public: Herkes
+    quote_post_author: "@%{acct} adlı kullanıcının bir gönderisini alıntıladı"
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Doğrudan
+      direct: Özel değini
       private: Sadece takipçiler
-      private_long: Sadece takipçilerime gönder
       public: Herkese açık
-      public_long: Herkese açık zaman tüneline gönder
-      unlisted: Listelenmemiş
-      unlisted_long: Herkes görebilir fakat herkese açık zaman tünellerinde listelenmez
+      public_long: Mastodon'da olan olmayan herkes
+      unlisted: Sessizce herkese açık
+      unlisted_long: Mastodon arama sonuçlarında, öne çıkanlarda ve herkese açık zaman çizelgesinde gizli
   statuses_cleanup:
     enabled: Eski gönderileri otomatik olarak sil
     enabled_hint: Belirli bir zaman eşiğine ulaşan eski gönderilerinizi, aşağıdaki istisnalara uymadıkları sürece otomatik olarak siler
@@ -1839,6 +2001,13 @@ tr:
       too_late: Bu eyleme itiraz etmek için çok geç
   tags:
     does_not_match_previous_name: önceki adla eşleşmiyor
+  terms_of_service:
+    title: Hizmet Şartları
+  terms_of_service_interstitial:
+    future_preamble_html: Hizmet şartlarımızda <strong>%{date}</strong> tarihinden itibaren geçerli olacak bazı değişiklikler yapıyoruz. Güncellenen şartları incelemenizi öneririz.
+    past_preamble_html: Son ziyaretinizden bu yana hizmet şartlarımızı değiştirdik. Güncellenen şartları incelemenizi öneririz.
+    review_link: Hizmet şartlarını incele
+    title: "%{domain} adresindeki hizmet şartları değişiyor"
   themes:
     contrast: Mastodon (Yüksek karşıtlık)
     default: Mastodon (Karanlık)
@@ -1870,6 +2039,10 @@ tr:
     recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. <strong>Kurtarma kodlarınızı güvenli halde tutunuz.</strong> Örneğin: kodların çıktısını alıp diğer önemli belgeleriniz ile birlikte saklayabilirsiniz.'
     webauthn: Güvenlik anahtarları
   user_mailer:
+    announcement_published:
+      description: "%{domain} yöneticileri bir duyuru yapıyorlar:"
+      subject: Hizmet duyurusu
+      title: "%{domain} hizmet duyurusu"
     appeal_approved:
       action: Hesap Ayarları
       explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız onaylandı. Hesabınız artık tekrar iyi durumda."
@@ -1899,6 +2072,15 @@ tr:
       further_actions_html: Eğer oturum açan siz değildiyseniz, hesabınızı güvenli tutmanız için hemen %{action} yapmanızı ve iki aşamalı yetkilendirmeyi etkinleştirmenizi öneriyoruz.
       subject: Hesabınıza yeni bir IP adresinden erişim oldu
       title: Yeni bir oturum açma
+    terms_of_service_changed:
+      agreement: "%{domain} sunucusunu kullanmaya devam ederek bu şartları kabul etmiş olursunuz. Güncellenen şartları kabul etmiyorsanız, %{domain} ile olan sözleşmenizi istediğiniz zaman hesabınızı silerek feshedebilirsiniz."
+      changelog: 'Bir bakışta, bu güncellemenin sizin için anlamı şudur:'
+      description: 'Bu e-postayı alıyorsunuz çünkü %{domain} adresindeki hizmet şartlarımızda bazı değişiklikler yapıyoruz. Bu değişiklikler %{date} tarihinde geçerli olacak. Aşağıda tümü yer alan güncellenen şartları incelemenizi öneriyoruz:'
+      description_html: Bu e-postayı alıyorsunuz çünkü %{domain} adresindeki hizmet şartlarımızda bazı değişiklikler yapıyoruz. Bu değişiklikler <strong>%{date}</strong> tarihinde geçerli olacak. <a href="%{path}" target="_blank">Tüm güncellenen şartları</a> incelemenizi öneriyoruz.
+      sign_off: "%{domain} Ekibi"
+      subject: Şimdiki hizmet şartlarımıza güncellemeler
+      subtitle: "%{domain} adresindeki hizmet şartları değişiyor"
+      title: Önemli güncelleme
     warning:
       appeal: Bir itiraz gönder
       appeal_description: Bunun bir hata olduğunu düşünüyorsanız, %{instance} sunucusunun personeline bir itiraz gönderebilirsiniz.
@@ -1965,7 +2147,6 @@ tr:
       post_action: Oluştur
       post_step: Dünyaya metin, fotoğraf, video ve anketlerle merhaba deyin.
       post_title: İlk gönderinizi oluşturun
-      share_action: Paylaş
       share_step: Arkadaşlarınıza Mastodon'da size nasıl ulaşabileceklerini söyleyin.
       share_title: Mastodon profilinizi paylaşın
       sign_in_action: Oturum aç
@@ -2004,3 +2185,5 @@ tr:
     not_supported: Bu tarayıcı güvenlik anahtarlarını desteklemiyor
     otp_required: Güvenlik anahtarlarını kullanmak için lütfen önce iki adımlı kimlik doğrulamayı etkinleştirin.
     registered_on: "%{date} tarihinde kaydoldu"
+  wrapstodon:
+    title: "%{name} için %{year} Wrapstodon'u"

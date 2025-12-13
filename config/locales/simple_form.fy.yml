@@ -3,13 +3,14 @@ fy:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Ien per rigel. Beskermet tsjin falske attribúsjes.
+        attribution_domains: Ien per rigel. Beskermet tsjin falske attribúsjes.
         discoverable: Jo iepenbiere berjochten kinne útljochte wurde op ferskate plakken binnen Mastodon en jo account kin oanrekommandearre wurde oan oare brûkers.
         display_name: Jo folsleine namme of in aardige bynamme.
         fields: Jo website, persoanlike foarnammewurden, leeftiid, alles wat jo mar kwyt wolle.
         indexable: Jo iepenbiere berjochten kinne ferskine yn de sykresultaten op Mastodon. Minsken dy’t reagearre hawwe op jo berjochten kinne se hoe dan ek trochsykje.
         note: 'Jo kinne oare minsken @fermelde of #hashtags brûke.'
         show_collections: Minsken kinne sjen wa’t jo folgje en wa’t jo folget.
+        unlocked: Minsken kinne jo folgje sûnder dêrfoar tastimming freegje te hoegen. Wannear’t jo nije folgers hânmjittich goedkarre wolle, moatte jo dizze opsje deselektearje.
       account_alias:
         acct: Fermeld de brûkersnamme@domein fan de account fan wêr’t jo ferhúzje wolle
       account_migration:
@@ -59,6 +60,8 @@ fy:
         setting_display_media_default: As gefoelich markearre media ferstopje
         setting_display_media_hide_all: Media altyd ferstopje
         setting_display_media_show_all: Media altyd toane
+        setting_emoji_style: Wêrmei moatte emojis werjûn wurde. ‘Automatysk’ probearret de systeemeigen emojis te brûken, mar falt werom op Twemoji foar âldere browsers.
+        setting_system_scrollbars_ui: Allinnich fan tapassing op desktopbrowsers basearre op Safari en Chromium
         setting_use_blurhash: Dizige kleuroergongen binne basearre op de kleuren fan de ferstoppe media, wêrmei elk detail ferdwynt
         setting_use_pending_items: De tiidline wurdt bywurke troch op it oantal nije items te klikken, yn stee fan dat dizze automatysk bywurke wurdt
         username: Jo kinne letters, sifers en ûnderstreekjes brûke
@@ -71,21 +74,21 @@ fy:
       featured_tag:
         name: 'Hjir binne inkelde fan de hashtags dy’t jo koartlyn brûkt hawwe:'
       filters:
-        action: Kies hokker aksjes útfierd wurde moatte, wannear’t in berjocht oerienkomt mei it filter
         actions:
+          blur: Media ferstopje efter in warskôging, sûnder de tekst sels te ferstopjen
           hide: Ferstopje de filtere ynhâld folslein, as oft it net bestiet
           warn: Ferstopje de filtere ynhâld efter in warskôging, mei de titel fan it filter as warskôgingstekst
       form_admin_settings:
         activity_api_enabled: Tal lokaal publisearre artikelen, aktive brûkers en nije registraasjes yn wyklikse werjefte
         app_icon: WEBP, PNG, GIF of JPG. Ferfangt op mobile apparaten it standert app-pictogram mei in oanpast piktogram.
         backups_retention_period: Brûkers hawwe de mooglikheid om argiven fan harren berjochten te generearjen om letter te downloaden. Wannear ynsteld op in positive wearde, wurde dizze argiven automatysk fuortsmiten út jo ûnthâld nei it opjûne oantal dagen.
-        bootstrap_timeline_accounts: Dizze accounts wurde boppe oan de oanrekommandaasjes oan nije brûkers toand. Meardere brûkersnammen troch komma’s skiede.
         closed_registrations_message: Werjûn wannear’t registraasje fan nije accounts útskeakele is
         content_cache_retention_period: Alle berjochten fan oare servers (ynklusyf boosts en reaksjes) wurde fuortsmiten nei it opjûne oantal dagen, nettsjinsteande iennige lokale brûkersynteraksje mei dy berjochten. Dit oanbelanget ek berjochten dy’t in lokale brûker oan harren blêdwizers tafoege hat of as favoryt markearre hat. Priveeberjochten tusken brûkers fan ferskate servers gean ek ferlern en binne ûnmooglik te werstellen. It gebrûk fan dizze ynstelling is bedoeld foar servers dy’t in spesjaal doel tsjinje en oertrêdet in protte brûkersferwachtingen wannear’t dizze foar algemien gebrûk ymplemintearre wurdt.
         custom_css: Jo kinne oanpaste CSS tapasse op de webferzje fan dizze Mastodon-server.
         favicon: WEBP, PNG, GIF of JPG. Ferfangt de standert Mastodon-favicon mei in oanpast piktogram.
         mascot: Oerskriuwt de yllustraasje yn de avansearre webomjouwing.
         media_cache_retention_period: Mediabestannen fan berjochten fan eksterne brûkers wurde op jo server yn de buffer bewarre. Wannear ynsteld op in positive wearde, wurde media fuortsmiten nei it opjûne oantal dagen. As de mediagegevens opfrege wurde neidat se fuortsmiten binne, wurde se opnij download wannear de orizjinele ynhâld noch hieltyd beskikber is. Fanwegen beheiningen op hoe faak keppelingsfoarbylden websites fan tredden rieplachtsje, wurdt oanrekommandearre om dizze wearde yn te stellen op op syn minste 14 dagen. Oars wurde keppelingsfoarbylden net op oanfraach bywurke.
+        min_age: Brûkers krije wylst harren registraasje de fraach om harren bertedatum te befêstigjen
         peers_api_enabled: In list mei domeinnammen, dêr’t dizze server yn fediverse kontakt hân mei hat. Hjir wurdt gjin data dield, oft jo mei in bepaalde server federearrest, mar alinnich, dat jo server dat wit. Dit wurdt foar tsjinsten brûkt, dy’t statistiken oer federaasje yn algemiene sin sammelet.
         profile_directory: De brûkersgids befettet in list fan alle brûkers dy¥t derfoar keazen hawwe om ûntdekt wurde te kinnen.
         require_invite_text: Meitsje it ynfoljen fan ‘Wêrom wolle jo jo hjir registrearje?’ ferplicht yn stee fan opsjoneel, wannear’t registraasjes hânmjittich goedkard wurde moatte
@@ -98,10 +101,8 @@ fy:
         status_page_url: URL fan in side dêr’t minsken de steat fan dizze server sjen kinne wylst in steuring
         theme: Tema dy’t ôfmelde besikers en nije brûkers sjen.
         thumbnail: In ôfbylding fan ûngefear in ferhâlding fan 2:1 dy’t njonken jo serverynformaasje toand wurdt.
-        timeline_preview: Net oanmelde besikers kinne de meast resinte, op de server oanwêzige iepenbiere berjochten besjen.
         trendable_by_default: Hânmjittige beoardieling fan trends oerslaan. Yndividuele items kinne letter dochs noch ôfkard wurde.
         trends: Trends toane hokker berjochten, hashtags en nijsberjochten op jo server oan populariteit winne.
-        trends_as_landing_page: Toan trending ynhâld oan ôfmelde brûkers en besikers yn stee fan in beskriuwing fan dizze server. Fereasket dat trends ynskeakele binne.
       form_challenge:
         current_password: Jo betrêdzje in feilige omjouwing
       imports:
@@ -128,8 +129,25 @@ fy:
         show_application: Jo kinne sels altyd sjen mei hokker app jo in berjocht pleatst hawwe.
       tag:
         name: Jo kinne elk wurd mei in haadletter begjinne, om sa bygelyks de tekst mear lêsber te meitsjen
+      terms_of_service:
+        changelog: Kin strukturearre wurde mei Markdown-syntaksis.
+        effective_date: In reedlike perioade kin fariearje fan 10 oant 30 dagen fan de datum ôf wêrop jo jo brûkers op de hichte stelle.
+        text: Kin strukturearre wurde mei Markdown-syntaksis.
+      terms_of_service_generator:
+        admin_email: Juridyske meidielingen binne û.o. tsjinoantekeningen, rjochterlike befelen, ferwiderfersiken en fersiken om wetshanthaving.
+        arbitration_address: Kin itselde wêze as boppesteande strjitteof ‘N/A’ by gebrûk fan e-mail.
+        arbitration_website: Kin in webformulier wêze, of ‘N/A’ as e-mail brûkt wurdt.
+        choice_of_law: Stêd, regio, grûngebiet of steat dêr’t de ynterne materiële wetten fan tapassing binne op alle oanspraken.
+        dmca_address: 'Brûk foar behearders yn de FS: it adres dat registrearre is yn de DMCA Designated Agent Directory. Op fersyk is der in postbuslist beskikber. Brûk it DMCA Designated Agent Post Office Box Waiver Request om it Copyright Office te e-mailen en te beskriuwen dat jo in thúsbasearre ynhâldsmoderator binne dy’t wraak of fergelding frezet foar jo dieden en in postbus brûke moat om jo húsadres út it publike domein te hâlden.'
+        dmca_email: Kin itselde e-mailadres wêze as ‘E-mailadres foar juridyske berjochten’ hjirboppe.
+        domain: In unike identifikaasje fan de online tsjinst dy’t ferliend wurdt.
+        jurisdiction: Fermeld it lân wêr’t de persoan wennet dy’t de rekkeningen betellet. As it in bedriuw of in oare entiteit is, fermeld it lân wêr’t it opnommen is en de stêd, regio, grûngebiet of steat, foar safier fan tapassing.
+        min_age: Mei net leger wêze as de minimale fereaske leeftiid neffens de wetten fan jo jurisdiksje.
       user:
         chosen_languages: Allinnich berjochten yn de selektearre talen wurde op de iepenbiere tiidline toand
+        date_of_birth:
+          one: Wy moatte derfoar soargje dat jo op syn minst %{count} binne om %{domain} brûke te meien. Dit wurdt net bewarre.
+          other: Wy moatte derfoar soargje dat jo op syn minst %{count} binne om %{domain} brûke te meien. Dit wurdt net bewarre.
         role: De rol bepaalt hokker rjochten in brûker hat.
       user_role:
         color: Kleur dy’t brûkt wurdt foar de rol yn de UI, as RGB yn heksadesimaal formaat
@@ -143,7 +161,7 @@ fy:
         url: Wêr’t eveneminten nei ta stjoerd wurde
     labels:
       account:
-        attribution_domains_as_text: Websites dy’t jo wurdearring jaan meie
+        attribution_domains: Websites dy’t jo wurdearring jaan meie
         discoverable: Profyl en bydragen yn sykalgoritmen opnimme litte
         fields:
           name: Label
@@ -207,21 +225,21 @@ fy:
         setting_aggregate_reblogs: Boosts yn tiidlinen groepearje
         setting_always_send_emails: Altyd e-mailmeldingen ferstjoere
         setting_auto_play_gif: Spylje animearre GIF’s automatysk ôf
-        setting_boost_modal: Freegje foar it boosten fan in berjocht in befêstiging
         setting_default_language: Taal fan jo berjochten
-        setting_default_privacy: Sichtberheid fan nije berjochten
+        setting_default_quote_policy: Wa kin sitearje
         setting_default_sensitive: Media altyd as gefoelich markearje
-        setting_delete_modal: Freegje foar it fuortsmiten fan in berjocht in befêstiging
         setting_disable_hover_cards: Profylfoarbylden troch der oerhinne te sweven útskeakelje
         setting_disable_swiping: Feibewegingen útskeakelje
         setting_display_media: Mediawerjefte
         setting_display_media_default: Standert
         setting_display_media_hide_all: Alles ferstopje
         setting_display_media_show_all: Alles toane
+        setting_emoji_style: Emojistyl
         setting_expand_spoilers: Berjochten mei ynhâldswarskôgingen altyd útklappe
         setting_hide_network: Jo folgers en wa’t jo folget ferstopje
         setting_reduce_motion: Stadigere animaasjes
         setting_system_font_ui: Standertlettertype fan jo systeem brûke
+        setting_system_scrollbars_ui: Standert skowbalke fan jo systeem brûke
         setting_theme: Websitetema
         setting_trends: Trends fan hjoed toane
         setting_unfollow_modal: Freegje foar it ûntfolgjen fan ien in befêstiging
@@ -240,6 +258,7 @@ fy:
         name: Hashtag
       filters:
         actions:
+          blur: Media mei in warskôging ferstopje
           hide: Folslein ferstopje
           warn: Mei in warskôging ferstopje
       form_admin_settings:
@@ -253,6 +272,7 @@ fy:
         favicon: Favicon
         mascot: Oanpaste maskotte (legacy)
         media_cache_retention_period: Bewartermyn mediabuffer
+        min_age: Fereaske minimum leeftiid
         peers_api_enabled: Publyklik meitsjen fan ûntdekte servers yn de API
         profile_directory: Brûkersgids ynskeakelje
         registrations_mode: Wa kin harren registrearje
@@ -268,10 +288,8 @@ fy:
         status_page_url: URL fan steatside
         theme: Standerttema
         thumbnail: Serverthumbnail
-        timeline_preview: Tagong ta de iepenbiere tiidlinen sûnder oan te melden tastean
         trendable_by_default: Trends goedkarre sûnder yn it foar geande beoardieling
         trends: Trends ynskeakelje
-        trends_as_landing_page: Lit trends op de startside sjen
       interactions:
         must_be_follower: Meldingen fan minsken dy’t jo net folgje blokkearje
         must_be_following: Meldingen fan minsken dy’t jo net folgje blokkearje
@@ -316,7 +334,22 @@ fy:
         name: Hashtag
         trendable: Goedkarre dat dizze hashtag ûnder trends te sjen is
         usable: Berjochten tastean dizze hashtag lokaal te brûken
+      terms_of_service:
+        changelog: Wat is wizige?
+        effective_date: Yngongsdatum
+        text: Gebrûksbetingsten
+      terms_of_service_generator:
+        admin_email: E-mailadres foar juridyske meldingen
+        arbitration_address: Strjitte foar arbitraazjemeldingen
+        arbitration_website: Website foar it yntsjinjen fan arbitraazjemeldingen
+        choice_of_law: Kar fan rjochtsgebiet
+        dmca_address: Strjitte foar DMCA/auteursrjocht-meidielingen
+        dmca_email: E-mailadres foar DMCA/auteursrjocht-meidielingen
+        domain: Domein
+        jurisdiction: Rjochtsgebiet
+        min_age: Minimum leeftiid
       user:
+        date_of_birth_2i: Moanne
         role: Rol
         time_zone: Tiidsône
       user_role:

@@ -3,9 +3,43 @@
 require 'rails_helper'
 
 RSpec.describe Tag do
-  include_examples 'Reviewable'
+  it_behaves_like 'Reviewable'
 
-  describe 'validations' do
+  describe 'Validations' do
+    describe 'name' do
+      context 'with a new record' do
+        subject { Fabricate.build :tag, name: 'original' }
+
+        it { is_expected.to allow_value('changed').for(:name) }
+      end
+
+      context 'with an existing record' do
+        subject { Fabricate :tag, name: 'original' }
+
+        it { is_expected.to_not allow_value('changed').for(:name).with_message(previous_name_error_message) }
+        it { is_expected.to allow_value('ORIGINAL').for(:name) }
+      end
+    end
+
+    describe 'display_name' do
+      context 'with a new record' do
+        subject { Fabricate.build :tag, name: 'original', display_name: 'OriginalDisplayName' }
+
+        it { is_expected.to allow_value('ChangedDisplayName').for(:display_name) }
+      end
+
+      context 'with an existing record' do
+        subject { Fabricate :tag, name: 'original', display_name: 'OriginalDisplayName' }
+
+        it { is_expected.to_not allow_value('ChangedDisplayName').for(:display_name).with_message(previous_name_error_message) }
+        it { is_expected.to allow_value('ORIGINAL').for(:display_name) }
+      end
+    end
+
+    def previous_name_error_message
+      I18n.t('tags.does_not_match_previous_name')
+    end
+
     it 'invalid with #' do
       expect(described_class.new(name: '#hello_world')).to_not be_valid
     end
@@ -21,6 +55,11 @@ RSpec.describe Tag do
     it 'valid with ａｅｓｔｈｅｔｉｃ' do
       expect(described_class.new(name: 'ａｅｓｔｈｅｔｉｃ')).to be_valid
     end
+  end
+
+  describe 'Normalizations' do
+    it { is_expected.to normalize(:display_name).from('#HelloWorld').to('HelloWorld') }
+    it { is_expected.to normalize(:display_name).from('Hello❤️World').to('HelloWorld') }
   end
 
   describe 'HASHTAG_RE' do
@@ -48,6 +87,10 @@ RSpec.describe Tag do
 
     it 'matches ﻿#ａｅｓｔｈｅｔｉｃ' do
       expect(subject.match('﻿this is #ａｅｓｔｈｅｔｉｃ').to_s).to eq '#ａｅｓｔｈｅｔｉｃ'
+    end
+
+    it 'matches ＃ｆｏｏ' do
+      expect(subject.match('this is ＃ｆｏｏ').to_s).to eq '＃ｆｏｏ'
     end
 
     it 'matches digits at the start' do
@@ -213,17 +256,44 @@ RSpec.describe Tag do
   end
 
   describe '.find_or_create_by_names' do
-    let(:upcase_string) { 'abcABCａｂｃＡＢＣやゆよ' }
-    let(:downcase_string) { 'abcabcａｂｃａｂｃやゆよ' }
+    context 'when called with a block' do
+      let(:upcase_string) { 'abcABCａｂｃＡＢＣやゆよ' }
+      let(:downcase_string) { 'abcabcａｂｃａｂｃやゆよ' }
+      let(:args) { [upcase_string, downcase_string] }
 
-    it 'runs a passed block once per tag regardless of duplicates' do
-      count = 0
+      it 'runs the block once per normalized tag regardless of duplicates' do
+        expect { |block| described_class.find_or_create_by_names(args, &block) }
+          .to yield_control.once
+      end
+    end
 
-      described_class.find_or_create_by_names([upcase_string, downcase_string]) do |_tag|
-        count += 1
+    context 'when passed an array' do
+      it 'creates multiples tags' do
+        expect { described_class.find_or_create_by_names(%w(tips tags toes)) }
+          .to change(described_class, :count).by(3)
+      end
+    end
+
+    context 'when passed a string' do
+      it 'creates a single tag' do
+        expect { described_class.find_or_create_by_names('test') }
+          .to change(described_class, :count).by(1)
+      end
+    end
+  end
+
+  describe '.find_or_create_by_names_race_condition' do
+    it 'handles simultaneous inserts of the same tag in different cases without error' do
+      tag_name_upper = 'Rails'
+      tag_name_lower = 'rails'
+
+      multi_threaded_execution(2) do |index|
+        described_class.find_or_create_by_names(index.zero? ? tag_name_upper : tag_name_lower)
       end
 
-      expect(count).to eq 1
+      tags = described_class.where('lower(name) = ?', tag_name_lower.downcase)
+      expect(tags.count).to eq(1)
+      expect(tags.first.name.downcase).to eq(tag_name_lower.downcase)
     end
   end
 

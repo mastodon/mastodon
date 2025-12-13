@@ -1,15 +1,9 @@
 # frozen_string_literal: true
 
-class Api::V1::InstancesController < Api::BaseController
-  skip_before_action :require_authenticated_user!, unless: :limited_federation_mode?
-  skip_around_action :set_locale
+class Api::V1::InstancesController < Api::V2::InstancesController
+  include DeprecationConcern
 
-  vary_by ''
-
-  # Override `current_user` to avoid reading session cookies unless in limited federation mode
-  def current_user
-    super if limited_federation_mode?
-  end
+  deprecate_api '2022-11-14'
 
   def show
     cache_even_if_authenticated!

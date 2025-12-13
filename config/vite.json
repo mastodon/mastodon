@@ -1,0 +1,23 @@
+{
+  "all": {
+    "sourceCodeDir": "app/javascript",
+    "additionalEntrypoints": [
+      "~/{fonts,icons,images}/**/*",
+      "~/styles/entrypoints/*.scss"
+    ],
+    "watchAdditionalPaths": []
+  },
+  "production": {
+    "publicOutputDir": "packs"
+  },
+  "development": {
+    "autoBuild": true,
+    "publicOutputDir": "packs-dev",
+    "port": 3036
+  },
+  "test": {
+    "autoBuild": true,
+    "publicOutputDir": "packs-test",
+    "port": 3037
+  }
+}

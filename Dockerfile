@@ -1,7 +1,7 @@
-# syntax=docker/dockerfile:1.10
+# syntax=docker/dockerfile:1.18
 
 # This file is designed for production server deployment, not local development work
-# For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/README.md#docker
+# For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/docs/DEVELOPMENT.md#docker
 
 # Please see https://docs.docker.com/engine/reference/builder for information about
 # the extended buildx capabilities used in this file.
@@ -9,19 +9,20 @@
 # See: https://docs.docker.com/build/building/multi-platform/
 ARG TARGETPLATFORM=${TARGETPLATFORM}
 ARG BUILDPLATFORM=${BUILDPLATFORM}
+ARG BASE_REGISTRY="docker.io"
 
-# Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.3.x"]
+# Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.4.x"]
 # renovate: datasource=docker depName=docker.io/ruby
-ARG RUBY_VERSION="3.3.6"
-# # Node version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="20"]
+ARG RUBY_VERSION="3.4.7"
+# # Node.js version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="22"]
 # renovate: datasource=node-version depName=node
-ARG NODE_MAJOR_VERSION="22"
-# Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="bookworm"]
-ARG DEBIAN_VERSION="bookworm"
-# Node image to use for base image based on combined variables (ex: 20-bookworm-slim)
-FROM docker.io/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim AS node
-# Ruby image to use for base image based on combined variables (ex: 3.3.x-slim-bookworm)
-FROM docker.io/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} AS ruby
+ARG NODE_MAJOR_VERSION="24"
+# Debian image to use for base image, change with [--build-arg DEBIAN_VERSION="trixie"]
+ARG DEBIAN_VERSION="trixie"
+# Node.js image to use for base image based on combined variables (ex: 20-trixie-slim)
+FROM ${BASE_REGISTRY}/node:${NODE_MAJOR_VERSION}-${DEBIAN_VERSION}-slim AS node
+# Ruby image to use for base image based on combined variables (ex: 3.4.x-slim-trixie)
+FROM ${BASE_REGISTRY}/ruby:${RUBY_VERSION}-slim-${DEBIAN_VERSION} AS ruby
 
 # Resulting version string is vX.X.X-MASTODON_VERSION_PRERELEASE+MASTODON_VERSION_METADATA
 # Example: v4.3.0-nightly.2023.11.09+pr-123456
@@ -60,7 +61,7 @@ ENV \
 ENV \
   # Configure the IP to bind Mastodon to when serving traffic
   BIND="0.0.0.0" \
-  # Use production settings for Yarn, Node and related nodejs based tools
+  # Use production settings for Yarn, Node.js and related tools
   NODE_ENV="production" \
   # Use production settings for Ruby on Rails
   RAILS_ENV="production" \
@@ -124,13 +125,6 @@ RUN \
 # Create temporary build layer from base image
 FROM ruby AS build
 
-# Copy Node package configuration files into working directory
-COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
-COPY .yarn /opt/mastodon/.yarn
-
-COPY --from=node /usr/local/bin /usr/local/bin
-COPY --from=node /usr/local/lib /usr/local/lib
-
 ARG TARGETPLATFORM
 
 # hadolint ignore=DL3008
@@ -153,6 +147,7 @@ RUN \
   libpq-dev \
   libssl-dev \
   libtool \
+  libyaml-dev \
   meson \
   nasm \
   pkg-config \
@@ -164,10 +159,10 @@ RUN \
   libexpat1-dev \
   libgirepository1.0-dev \
   libheif-dev \
+  libhwy-dev \
   libimagequant-dev \
   libjpeg62-turbo-dev \
   liblcms2-dev \
-  liborc-dev \
   libspng-dev \
   libtiff-dev \
   libwebp-dev \
@@ -183,18 +178,12 @@ RUN \
   libx265-dev \
   ;
 
-RUN \
-  # Configure Corepack
-  rm /usr/local/bin/yarn*; \
-  corepack enable; \
-  corepack prepare --activate;
-
 # Create temporary libvips specific build layer from build layer
 FROM build AS libvips
 
 # libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
 # renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
-ARG VIPS_VERSION=8.16.0
+ARG VIPS_VERSION=8.17.3
 # libvips download URL, change with [--build-arg VIPS_URL="https://github.com/libvips/libvips/releases/download"]
 ARG VIPS_URL=https://github.com/libvips/libvips/releases/download
 
@@ -217,14 +206,14 @@ FROM build AS ffmpeg
 
 # ffmpeg version to compile, change with [--build-arg FFMPEG_VERSION="7.0.x"]
 # renovate: datasource=repology depName=ffmpeg packageName=openpkg_current/ffmpeg
-ARG FFMPEG_VERSION=7.1
+ARG FFMPEG_VERSION=8.0
 # ffmpeg download URL, change with [--build-arg FFMPEG_URL="https://ffmpeg.org/releases"]
-ARG FFMPEG_URL=https://ffmpeg.org/releases
+ARG FFMPEG_URL=https://github.com/FFmpeg/FFmpeg/archive/refs/tags
 
 WORKDIR /usr/local/ffmpeg/src
 # Download and extract ffmpeg source code
-ADD ${FFMPEG_URL}/ffmpeg-${FFMPEG_VERSION}.tar.xz /usr/local/ffmpeg/src/
-RUN tar xf ffmpeg-${FFMPEG_VERSION}.tar.xz;
+ADD ${FFMPEG_URL}/n${FFMPEG_VERSION}.tar.gz /usr/local/ffmpeg/src/
+RUN tar xf n${FFMPEG_VERSION}.tar.gz && mv FFmpeg-n${FFMPEG_VERSION} ffmpeg-${FFMPEG_VERSION};
 
 WORKDIR /usr/local/ffmpeg/src/ffmpeg-${FFMPEG_VERSION}
 
@@ -279,38 +268,37 @@ RUN \
   # Download and install required Gems
   bundle install -j"$(nproc)";
 
-# Create temporary node specific build layer from build layer
-FROM build AS yarn
+# Create temporary assets build layer from build layer
+FROM build AS precompiler
 
 ARG TARGETPLATFORM
 
-# Copy Node package configuration files into working directory
-COPY package.json yarn.lock .yarnrc.yml /opt/mastodon/
-COPY streaming/package.json /opt/mastodon/streaming/
-COPY .yarn /opt/mastodon/.yarn
+# Copy Mastodon sources into layer
+COPY . /opt/mastodon/
+
+# Copy Node.js binaries/libraries into layer
+COPY --from=node /usr/local/bin /usr/local/bin
+COPY --from=node /usr/local/lib /usr/local/lib
+
+RUN \
+  # Configure Corepack
+  rm /usr/local/bin/yarn*; \
+  corepack enable; \
+  corepack prepare --activate;
 
 # hadolint ignore=DL3008
 RUN \
   --mount=type=cache,id=corepack-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/corepack,sharing=locked \
   --mount=type=cache,id=yarn-cache-${TARGETPLATFORM},target=/usr/local/share/.cache/yarn,sharing=locked \
-  # Install Node packages
+  # Install Node.js packages
   yarn workspaces focus --production @mastodon/mastodon;
 
-# Create temporary assets build layer from build layer
-FROM build AS precompiler
-
-# Copy Mastodon sources into precompiler layer
-COPY . /opt/mastodon/
-
-# Copy bundler and node packages from build layer to container
-COPY --from=yarn /opt/mastodon /opt/mastodon/
-COPY --from=bundler /opt/mastodon /opt/mastodon/
-COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
-# Copy libvips components to layer for precompiler
+# Copy libvips components into layer for precompiler
 COPY --from=libvips /usr/local/libvips/bin /usr/local/bin
 COPY --from=libvips /usr/local/libvips/lib /usr/local/lib
-
-ARG TARGETPLATFORM
+# Copy bundler packages into layer for precompiler
+COPY --from=bundler /opt/mastodon /opt/mastodon/
+COPY --from=bundler /usr/local/bundle/ /usr/local/bundle/
 
 RUN \
   ldconfig; \
@@ -336,28 +324,28 @@ RUN \
   # Apt update install non-dev versions of necessary components
   apt-get install -y --no-install-recommends \
   libexpat1 \
-  libglib2.0-0 \
-  libicu72 \
+  libglib2.0-0t64 \
+  libicu76 \
   libidn12 \
   libpq5 \
-  libreadline8 \
-  libssl3 \
+  libreadline8t64 \
+  libssl3t64 \
   libyaml-0-2 \
   # libvips components
   libcgif0 \
   libexif12 \
   libheif1 \
+  libhwy1t64 \
   libimagequant0 \
   libjpeg62-turbo \
   liblcms2-2 \
-  liborc-0.4-0 \
   libspng0 \
   libtiff6 \
   libwebp7 \
   libwebpdemux2 \
   libwebpmux3 \
   # ffmpeg components
-  libdav1d6 \
+  libdav1d7 \
   libmp3lame0 \
   libopencore-amrnb0 \
   libopencore-amrwb0 \
@@ -367,9 +355,9 @@ RUN \
   libvorbis0a \
   libvorbisenc2 \
   libvorbisfile3 \
-  libvpx7 \
+  libvpx9 \
   libx264-164 \
-  libx265-199 \
+  libx265-215 \
   ;
 
 # Copy Mastodon sources into final layer

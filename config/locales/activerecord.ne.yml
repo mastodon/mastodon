@@ -1,1 +1,35 @@
+---
 ne:
+  activerecord:
+    attributes:
+      user:
+        agreement: सेवा सम्झौता
+        email: ईमेल ठेगाना
+        password: पासवर्ड
+      user/account:
+        username: प्रयोगकर्ता नाम
+      user/invite_request:
+        text: कारण
+    errors:
+      attributes:
+        domain:
+          invalid: मान्य डोमेन नाम होइन
+      messages:
+        invalid_domain_on_line: "%{value} मान्य डोमेन नाम होइन"
+      models:
+        account:
+          attributes:
+            username:
+              invalid: अक्षर, संख्या र अन्डरस्कोर मात्र हुनु पर्छ
+        admin/webhook:
+          attributes:
+            url:
+              invalid: मान्य URL होइन
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: मान्य URL होइन
+        list_account:
+          attributes:
+            account_id:
+              taken: पहिले नै सूचीमा छ

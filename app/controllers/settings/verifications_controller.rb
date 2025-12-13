@@ -8,7 +8,7 @@ class Settings::VerificationsController < Settings::BaseController
 
   def update
     if UpdateAccountService.new.call(@account, account_params)
-      ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
+      ActivityPub::UpdateDistributionWorker.perform_in(ActivityPub::UpdateDistributionWorker::DEBOUNCE_DELAY, @account.id)
       redirect_to settings_verification_path, notice: I18n.t('generic.changes_saved_msg')
     else
       render :show
@@ -18,7 +18,9 @@ class Settings::VerificationsController < Settings::BaseController
   private
 
   def account_params
-    params.require(:account).permit(:attribution_domains_as_text)
+    params.expect(account: [:attribution_domains]).tap do |params|
+      params[:attribution_domains] = params[:attribution_domains].split if params[:attribution_domains]
+    end
   end
 
   def set_account

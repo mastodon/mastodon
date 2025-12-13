@@ -3,10 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Accounts Notes API' do
-  let(:user)     { Fabricate(:user) }
-  let(:token)    { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)   { 'write:accounts' }
-  let(:headers)  { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'write:accounts'
+
   let(:account) { Fabricate(:account) }
   let(:comment) { 'foo' }
 
@@ -29,7 +27,7 @@ RSpec.describe 'Accounts Notes API' do
     end
 
     context 'when account note exceeds allowed length', :aggregate_failures do
-      let(:comment) { 'a' * 2_001 }
+      let(:comment) { 'a' * AccountNote::COMMENT_SIZE_LIMIT * 2 }
 
       it 'does not create account note' do
         subject

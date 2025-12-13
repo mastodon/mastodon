@@ -31,6 +31,7 @@ class Sanitize
         next true if /^(h|p|u|dt|e)-/.match?(e) # microformats classes
         next true if /^(mention|hashtag)$/.match?(e) # semantic classes
         next true if /^(ellipsis|invisible)$/.match?(e) # link formatting classes
+        next true if e == 'quote-inline'
       end
 
       node['class'] = class_list.join(' ')
@@ -64,6 +65,44 @@ class Sanitize
       current_node.wrap('<p></p>')
     end
 
+    # We assume that incomming <math> nodes are of the form
+    # <math><semantics>...<annotation>...</annotation></semantics></math>
+    # according to the [FEP]. We try to grab the most relevant plain-text
+    # annotation from the semantics node, and use it to display a representation
+    # of the mathematics.
+    #
+    # FEP: https://codeberg.org/fediverse/fep/src/branch/main/fep/dc88/fep-dc88.md
+    MATH_TRANSFORMER = lambda do |env|
+      math = env[:node]
+      return if env[:is_allowlisted]
+      return unless math.element? && env[:node_name] == 'math'
+
+      semantics = math.element_children[0]
+      return if semantics.nil? || semantics.name != 'semantics'
+
+      # next, we find the plain-text description
+      is_annotation_with_encoding = lambda do |encoding, node|
+        return false unless node.name == 'annotation'
+
+        node.attributes['encoding'].value == encoding
+      end
+
+      annotation = semantics.children.find(&is_annotation_with_encoding.curry['application/x-tex'])
+      if annotation
+        text = if math.attributes['display']&.value == 'block'
+                 "$$#{annotation.text}$$"
+               else
+                 "$#{annotation.text}$"
+               end
+        math.replace(math.document.create_text_node(text))
+        return
+      end
+      # Don't bother surrounding 'text/plain' annotations with dollar signs,
+      # since it isn't LaTeX
+      annotation = semantics.children.find(&is_annotation_with_encoding.curry['text/plain'])
+      math.replace(math.document.create_text_node(annotation.text)) unless annotation.nil?
+    end
+
     MASTODON_STRICT = freeze_config(
       elements: %w(p br span a del s pre blockquote code b strong u i em ul ol li ruby rt rp),
 
@@ -72,11 +111,12 @@ class Sanitize
         'span' => %w(class translate),
         'ol' => %w(start reversed),
         'li' => %w(value),
+        'p' => %w(class),
       },
 
       add_attributes: {
         'a' => {
-          'rel' => 'nofollow noopener noreferrer',
+          'rel' => 'nofollow noopener',
           'target' => '_blank',
         },
       },
@@ -86,24 +126,23 @@ class Sanitize
       transformers: [
         ALLOWED_CLASS_TRANSFORMER,
         TRANSLATE_TRANSFORMER,
+        MATH_TRANSFORMER,
         UNSUPPORTED_ELEMENTS_TRANSFORMER,
         UNSUPPORTED_HREF_TRANSFORMER,
       ]
     )
 
     MASTODON_OEMBED = freeze_config(
-      elements: %w(audio embed iframe source video),
+      elements: %w(audio iframe source video),
 
       attributes: {
         'audio' => %w(controls),
-        'embed' => %w(height src type width),
         'iframe' => %w(allowfullscreen frameborder height scrolling src width),
         'source' => %w(src type),
         'video' => %w(controls height loop width),
       },
 
       protocols: {
-        'embed' => { 'src' => HTTP_PROTOCOLS },
         'iframe' => { 'src' => HTTP_PROTOCOLS },
         'source' => { 'src' => HTTP_PROTOCOLS },
       },

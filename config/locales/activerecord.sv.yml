@@ -20,10 +20,11 @@ sv:
           invalid: är inte ett giltigt domännamn
       messages:
         invalid_domain_on_line: "%{value} Är inte ett giltigt domännamn"
-        too_many_lines: överskrider gränsen på %{limit} rader
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: innehåller värden med saknade etiketter
             username:
               invalid: endast bokstäver, siffror och understrykning
               reserved: är reserverat
@@ -31,6 +32,12 @@ sv:
           attributes:
             url:
               invalid: är inte en giltig URL
+        collection:
+          attributes:
+            collection_items:
+              too_many: är för många, fler än %{count} är inte tillåtet
+            tag:
+              unusable: får inte användas
         doorkeeper/application:
           attributes:
             website:
@@ -39,12 +46,23 @@ sv:
           attributes:
             data:
               malformed: är felformad
+        list_account:
+          attributes:
+            account_id:
+              taken: finns redan i listan
+          must_be_following: måste vara ett följt konto
         status:
           attributes:
             reblog:
               taken: av status finns redan
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: är för tidigt, måste vara senare än %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: är under åldersgränsen
             email:
               blocked: använder en icke tillåten e-postleverantör
               unreachable: verkar inte existera

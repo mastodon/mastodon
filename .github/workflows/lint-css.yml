@@ -34,10 +34,10 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
 
       - name: Stylelint
-        run: yarn lint:css -f github
+        run: yarn lint:css --custom-formatter @csstools/stylelint-formatter-github

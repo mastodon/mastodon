@@ -21,6 +21,6 @@ class Disputes::AppealsController < Disputes::BaseController
   end
 
   def appeal_params
-    params.require(:appeal).permit(:text)
+    params.expect(appeal: [:text])
   end
 end

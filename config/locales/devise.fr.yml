@@ -7,6 +7,7 @@ fr:
       send_paranoid_instructions: Si votre adresse électronique existe dans notre base de données, vous allez bientôt recevoir un courriel contenant les instructions de confirmation de votre compte. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
     failure:
       already_authenticated: Vous êtes déjà connecté⋅e.
+      closed_registrations: Votre tentative d'inscription a été bloquée en raison d'une politique de réseau. Si vous pensez qu'il s'agit d'une erreur, contactez %{email}.
       inactive: Votre compte n’est pas encore activé.
       invalid: "%{authentication_keys} ou mot de passe invalide."
       last_attempt: Vous avez droit à une dernière tentative avant que votre compte ne soit verrouillé.
@@ -94,11 +95,6 @@ fr:
       updated_not_active: Votre mot de passe a été modifié avec succès.
     registrations:
       destroyed: Au revoir ! Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.
-      signed_up: Bienvenue ! Vous êtes connecté.
-      signed_up_but_inactive: Vous êtes bien enregistré·e. Vous ne pouvez cependant pas vous connecter car votre compte n’est pas encore activé.
-      signed_up_but_locked: Vous êtes bien enregistré·e. Vous ne pouvez cependant pas vous connecter car votre compte est verrouillé.
-      signed_up_but_pending: Un message avec un lien de confirmation a été envoyé à votre adresse courriel. Après avoir cliqué sur le lien, nous examinerons votre demande. Vous serez informé·e si elle a été approuvée.
-      signed_up_but_unconfirmed: Un message contenant un lien de confirmation a été envoyé à votre adresse de courriel. Ouvrez ce lien pour activer votre compte. Veuillez vérifier votre dossier d'indésirables si vous ne recevez pas le courriel.
       update_needs_confirmation: Votre compte a bien été mis à jour, mais nous devons vérifier votre nouvelle adresse de courriel. Merci de vérifier vos courriels et de cliquer sur le lien de confirmation pour finaliser la validation de votre nouvelle adresse. Si vous n'avez pas reçu le courriel, vérifiez votre dossier d’indésirables.
       updated: Votre compte a été modifié avec succès.
     sessions:

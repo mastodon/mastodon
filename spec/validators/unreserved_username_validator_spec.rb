@@ -6,11 +6,17 @@ RSpec.describe UnreservedUsernameValidator do
   let(:record_class) do
     Class.new do
       include ActiveModel::Validations
+
       attr_accessor :username
 
       validates_with UnreservedUsernameValidator
+
+      def self.name
+        'Foo'
+      end
     end
   end
+
   let(:record) { record_class.new }
 
   describe '#validate' do
@@ -113,7 +119,7 @@ RSpec.describe UnreservedUsernameValidator do
         end
 
         def stub_reserved_usernames(value)
-          allow(Setting).to receive(:[]).with('reserved_usernames').and_return(value)
+          value&.each { |str| Fabricate(:username_block, username: str, exact: true) }
         end
       end
     end

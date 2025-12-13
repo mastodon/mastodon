@@ -5,6 +5,15 @@ module Admin
     def index
       authorize :custom_emoji, :index?
 
+      # If filtering by local emojis, remove by_domain filter.
+      params.delete(:by_domain) if params[:local].present?
+
+      # If filtering by domain, ensure remote filter is set.
+      if params[:by_domain].present?
+        params.delete(:local)
+        params[:remote] = '1'
+      end
+
       @custom_emojis = filtered_custom_emojis.eager_load(:local_counterpart).page(params[:page])
       @form          = Form::CustomEmojiBatch.new
     end
@@ -44,7 +53,8 @@ module Admin
     private
 
     def resource_params
-      params.require(:custom_emoji).permit(:shortcode, :image, :visible_in_picker)
+      params
+        .expect(custom_emoji: [:shortcode, :image, :visible_in_picker])
     end
 
     def filtered_custom_emojis
@@ -74,7 +84,8 @@ module Admin
     end
 
     def form_custom_emoji_batch_params
-      params.require(:form_custom_emoji_batch).permit(:action, :category_id, :category_name, custom_emoji_ids: [])
+      params
+        .expect(form_custom_emoji_batch: [:action, :category_id, :category_name, custom_emoji_ids: []])
     end
   end
 end

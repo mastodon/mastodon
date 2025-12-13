@@ -4,31 +4,15 @@ Capybara.server_host = 'localhost'
 Capybara.server_port = 3000
 Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
 
-require 'selenium/webdriver'
-
-def common_chrome_options
-  options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument '--window-size=1680,1050'
-  options.add_argument '--disable-search-engine-choice-screen'
-  options
+Capybara.register_driver(:playwright) do |app|
+  Capybara::Playwright::Driver.new(app)
 end
+Capybara.javascript_driver = :playwright
 
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: common_chrome_options)
+if ENV['CI'].present?
+  # Reduce intermittent failures from slow CI runner environment
+  Capybara.default_max_wait_time = 2**3
 end
-
-Capybara.register_driver :headless_chrome do |app|
-  options = common_chrome_options
-  options.add_argument '--headless=new'
-
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :chrome,
-    options: options
-  )
-end
-
-Capybara.javascript_driver = :headless_chrome
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do

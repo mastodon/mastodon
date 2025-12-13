@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module SystemHelpers
-  def admin_user
-    Fabricate(:user, role: UserRole.find_by(name: 'Admin'))
-  end
+  FRONTEND_TRANSLATIONS = JSON.parse Rails.root.join('app', 'javascript', 'mastodon', 'locales', 'en.json').read
 
   def submit_button
     I18n.t('generic.save_changes')
@@ -19,5 +17,9 @@ module SystemHelpers
 
   def css_id(record)
     "##{dom_id(record)}"
+  end
+
+  def frontend_translations(key)
+    FRONTEND_TRANSLATIONS[key]
   end
 end

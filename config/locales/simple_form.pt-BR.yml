@@ -3,14 +3,14 @@ pt-BR:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Um por linha. Protege de falsas atribuições.
+        attribution_domains: Um por linha. Protege contra atribuições falsas.
         discoverable: Suas publicações e perfil públicos podem ser destaques ou recomendados em várias áreas de Mastodon, e seu perfil pode ser sugerido a outros usuários.
         display_name: Seu nome completo ou apelido.
         fields: Sua página inicial, pronomes, idade ou qualquer coisa que quiser.
         indexable: Suas publicações públicas podem aparecer nos resultados da pesquisa em Mastodon. As pessoas que interagiram com suas publicações podem conseguir pesquisá-las independentemente disso.
-        note: 'Você pode @mencionar outras pessoas ou #hashtags.'
-        show_collections: As pessoas poderão navegar entre os seus seguidores e seguidores. As pessoas que você segue verão que você as segue independentemente disso.
-        unlocked: As pessoas poderão seguir você sem solicitar aprovação. Desmarque caso você queira revisar as solicitações de seguidor e escolha se queira aceitar ou rejeitar novos seguidores.
+        note: 'Você pode @mencionar outras pessoas ou usar #hashtags.'
+        show_collections: As pessoas podem ver seus seguidores e quem você está seguindo. Os perfis que você seguir saberão que você os segue independentemente do que selecionar.
+        unlocked: As pessoas poderão te seguir sem solicitar aprovação. Desmarque caso você queira revisar as solicitações.
       account_alias:
         acct: Especifique o usuário@domínio de onde veio
       account_migration:
@@ -27,8 +27,8 @@ pt-BR:
           disable: Impede o usuário de usar a conta, porém sem excluí-la ou suspendê-la.
           none: Use isto para enviar uma advertência ao usuário, sem nenhuma outra ação.
           sensitive: Marca todas as mídias do usuário como sensível.
-          silence: Impede o usuário de enviar postagens visualmente públicas, além de ocultar suas publicações e notificações dos que não o seguem. Ademais, fecha todas as denúncias contra esta conta.
-          suspend: Impede qualquer interação de ou para esta conta e exclui seu conteúdo. Reversível dentro de 30 dias. Ademais, fecha todas as denúncias contra esta conta.
+          silence: Impede o usuário de postar publicamente, restringe suas publicações e notificações a somente quem o segue. Encerra todas as denúncias contra esta conta.
+          suspend: Impede qualquer interação de ou para esta conta e exclui seu conteúdo. Reversível dentro de 30 dias. Encerra todas as denúncias contra esta conta.
         warning_preset_id: Opcional. Você pode adicionar texto personalizado no final da advertência pré-definida
       announcement:
         all_day: Quando marcada, apenas as datas do período serão mostradas
@@ -37,14 +37,14 @@ pt-BR:
         starts_at: Opcional. Caso o comunicado esteja vinculado a um período específico
         text: Você pode usar a sintaxe do toot. Considere o espaço que o comunicado ocupará na tela do usuário
       appeal:
-        text: Você só pode solicitar uma revisão uma vez
+        text: Você só pode recorrer uma vez
       defaults:
         autofollow: Pessoas que criarem conta através de seu convite te seguirão automaticamente
         avatar: WEBP, PNG, GIF ou JPG. No máximo %{size}. Será reduzido para %{dimensions}px
-        bot: Essa conta executa principalmente ações automatizadas e pode não ser monitorada
+        bot: Sinaliza aos outros de que essa conta executa principalmente ações automatizadas e pode não ser monitorada
         context: Um ou mais contextos onde o filtro deve atuar
         current_password: Para fins de segurança, digite a senha da conta atual
-        current_username: Para confirmar, digite o nome de usuário da conta atual
+        current_username: Para confirmar, entre com nome de usuário da conta atual
         digest: Enviado apenas após um longo período de inatividade com um resumo das menções recebidas durante ausência
         email: Você receberá um e-mail de confirmação
         header: WEBP, PNG, GIF ou JPG. No máximo %{size}. Será reduzido para %{dimensions}px
@@ -54,12 +54,19 @@ pt-BR:
         password: Use pelo menos 8 caracteres
         phrase: Corresponderá independente de maiúsculas ou minúsculas, no texto ou no Aviso de Conteúdo de um toot
         scopes: Quais APIs o aplicativo vai ter permissão de acessar. Se você selecionar uma autorização de alto nível, você não precisa selecionar individualmente os outros.
-        setting_aggregate_reblogs: Não mostra novos impulsos para publicações já receberam recentemente (afeta somente os impulsos mais recentes)
+        setting_advanced_layout: Exiba o Mastodon em um layout de várias colunas, permitindo que você visualize a linha do tempo, as notificações e uma terceira coluna de sua escolha. Não recomendado para telas menores.
+        setting_aggregate_reblogs: Não mostrar novos impulsos para publicações que já foram impulsionadas recentemente (afeta somente os impulsos mais recentes)
         setting_always_send_emails: Normalmente, as notificações por e-mail não serão enviadas enquanto você estiver usando ativamente o Mastodon
+        setting_boost_modal: Quando ativada, a função de impulsionar primeiro abrirá uma caixa de diálogo de confirmação onde você poderá alterar a visibilidade do seu impulsionamento.
+        setting_default_quote_policy_private: Publicações exclusivas de seguidores criadas no Mastodon não podem ser citadas por outras pessoas.
+        setting_default_quote_policy_unlisted: Quando as pessoas citarem você, suas publicações também ficarão ocultas da linha do tempo.
         setting_default_sensitive: Mídia sensível está oculta por padrão e pode ser revelada com um clique
         setting_display_media_default: Sempre ocultar mídia sensível
         setting_display_media_hide_all: Sempre ocultar todas as mídias
         setting_display_media_show_all: Sempre mostrar mídia sensível
+        setting_emoji_style: Como exibir emojis. "Automáticos" tentará usar emojis nativos, mas voltará para o Twemoji para navegadores legados.
+        setting_quick_boosting_html: Quando ativado, clicar no ícone de impulsionamento %{boost_icon} impulsionará imediatamente o texto, em vez de abrir o menu suspenso de impulsionamento/citação. Move a ação de citação para o menu %{options_icon} (Opções).
+        setting_system_scrollbars_ui: Se aplica apenas para navegadores de computador baseado no Safari e Chrome
         setting_use_blurhash: O blur é baseado nas cores da imagem oculta, ofusca a maioria dos detalhes
         setting_use_pending_items: Ocultar atualizações da linha do tempo atrás de um clique ao invés de rolar automaticamente
         username: Você pode usar letras, números e underlines
@@ -72,21 +79,24 @@ pt-BR:
       featured_tag:
         name: 'Aqui estão algumas hashtags usadas recentemente:'
       filters:
-        action: Escolher qual ação executar quando uma publicação corresponder ao filtro
+        action: Escolha qual ação performar quando uma postagem coincidir com o filtro
         actions:
+          blur: Oculte a mídia com um aviso, porém mantenha o texto visível
           hide: Esconder completamente o conteúdo filtrado, comportando-se como se ele não existisse
           warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
       form_admin_settings:
         activity_api_enabled: Contagem de publicações locais, usuários ativos e novos usuários semanais
         app_icon: WEBP, PNG, GIF ou JPG. Sobrescrever o ícone padrão do aplicativo em dispositivos móveis com um ícone personalizado.
-        backups_retention_period: Os usuários têm a capacidade de gerar arquivos de suas postagens para baixar mais tarde. Quando definido como um valor positivo, esses arquivos serão automaticamente excluídos do seu armazenamento após o número especificado de dias.
-        bootstrap_timeline_accounts: Estas contas serão fixadas no topo das recomendações de novos usuários para seguir.
+        backups_retention_period: Os usuários podem gerar arquivos de suas postagens para baixar mais tarde. Quando definido como um valor positivo, esses arquivos serão automaticamente excluídos do seu armazenamento após o número especificado de dias.
+        bootstrap_timeline_accounts: Estas contas serão fixadas ao topo das recomendações de novos usuários. Forneça uma lista de contas separada por vírgulas.
         closed_registrations_message: Exibido quando as inscrições estiverem fechadas
         content_cache_retention_period: Todas as postagens de outros servidores (incluindo boosts e respostas) serão excluídas após o número especificado de dias, sem levar a qualquer interação do usuário local com esses posts. Isto inclui postagens onde um usuário local o marcou como favorito ou favoritos. Menções privadas entre usuários de diferentes instâncias também serão perdidas e impossíveis de restaurar. O uso desta configuração destina-se a instâncias especiais de propósitos e quebra muitas expectativas dos usuários quando implementadas para uso de propósito geral.
         custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
         favicon: WEBP, PNG, GIF ou JPG. Sobrescreve o favicon padrão do Mastodon com um ícone personalizado.
+        landing_page: Seleciona a página que os novos visitantes veem ao acessar seu servidor pela primeira vez. Se você selecionar "Tendências", as tendências precisam estar ativadas nas Configurações de Descoberta. Se você selecionar "Feed local", o "Acesso a feeds ao vivo com publicações locais" precisa estar definido como "Todos" nas Configurações de Descoberta.
         mascot: Substitui a ilustração na interface web avançada.
         media_cache_retention_period: Arquivos de mídia de mensagens de usuários remotos são armazenados em cache no seu servidor. Quando definido como valor positivo, a mídia será excluída após o número especificado de dias. Se os dados da mídia forem solicitados depois de excluídos, eles serão baixados novamente, se o conteúdo fonte ainda estiver disponível. Devido a restrições de quantas vezes os cartões de visualização de links sondam sites de terceiros, é recomendado definir este valor em pelo menos 14 dias, ou pré-visualização de links não serão atualizados a pedido antes desse tempo.
+        min_age: Os usuários precisarão confirmar sua data de nascimento no cadastro
         peers_api_enabled: Uma lista de nomes de domínio que este servidor encontrou no "fediverse". Nenhum dado é incluído aqui sobre se você concorda com os padroes operacionais de um determinado servidor, apenas que o seu servidor sabe disso. Esta ferramenta é utilizado por serviços que recolhem estatísticas sob as normas da federação (grupo de empresas que concordam sob paramentros operacionais específicos), em termos gerais.
         profile_directory: O diretório de perfis lista todos os usuários que optaram por permitir que suas contas sejam descobertas.
         require_invite_text: 'Quando o cadastro de novas contas exigir aprovação manual, tornar obrigatório, ao invés de opcional, o texto de solicitação de convite: "Por que você deseja ingressar nessa comunidade?"'
@@ -99,10 +109,8 @@ pt-BR:
         status_page_url: URL de uma página onde as pessoas podem ver o status deste servidor durante uma interrupção
         theme: Tema que visitantes e novos usuários veem.
         thumbnail: Uma imagem de aproximadamente 2:1 exibida ao lado da informação de sua instância.
-        timeline_preview: Visitantes conseguirão navegar pelas postagens públicas mais recentes disponíveis na instância.
         trendable_by_default: Pular a revisão manual do conteúdo em tendência. Itens individuais ainda poderão ser removidos das tendências após a sua exibição.
         trends: Tendências mostram quais publicações, hashtags e notícias estão ganhando destaque na sua instância.
-        trends_as_landing_page: Mostrar conteúdo de tendências para usuários deslogados e visitantes em vez de uma descrição deste servidor. Requer que as tendências sejam ativadas.
       form_challenge:
         current_password: Você está entrando em uma área segura
       imports:
@@ -129,8 +137,25 @@ pt-BR:
         show_application: Você sempre conseguirá ver qual aplicativo realizou sua publicação independentemente disso.
       tag:
         name: Você pode mudar a capitalização das letras, por exemplo, para torná-la mais legível
+      terms_of_service:
+        changelog: Pode ser estruturado com a sintaxe Markdown.
+        effective_date: Um intervalo de tempo razoável pode variar de 10 a 30 dias a partir da data em que notificar seus usuários.
+        text: Pode ser estruturado com a sintaxe Markdown.
+      terms_of_service_generator:
+        admin_email: Avisos legais incluem contra-notificações, ordens judiciais, solicitações de remoção e solicitações de órgãos de fiscalização.
+        arbitration_address: Pode ser o mesmo do endereço colocado cima, ou use "N/A" se estiver utilizando e-mail.
+        arbitration_website: Pode ser um formulário online, ou use "N/A" caso esteja utilizando um e-mail.
+        choice_of_law: Cidade, região, território ou estado cujas leis substantivas internas serão aplicáveis a todas e quaisquer reivindicações.
+        dmca_address: Para operadores dos EUA, utilize o endereço registrado no Diretório de Agentes Designados pela DMCA. Um endereço de Caixa Postal está disponível mediante solicitação direta; use a Solicitação de Isenção de Caixa Postal de Agente Designado pela DMCA para enviar um e-mail ao Escritório de Direitos Autorais, explicando que você é um moderador de conteúdo que trabalha em casa e teme vingança ou retaliação por suas ações, precisando usar uma Caixa Postal para remover seu endereço residencial da visualização pública.
+        dmca_email: Pode ser o mesmo e-mail utilizado acima em "Endereço de e-mail para avisos legais".
+        domain: Identificação única do serviço online que você está fornecendo.
+        jurisdiction: Liste o país onde quem paga as contas reside. Se for uma empresa ou outra entidade, liste o país onde ela está incorporada, e a cidade, região, território ou estado, conforme apropriado.
+        min_age: Não deve ter menos que a idade mínima exigida pelas suas leis locais.
       user:
         chosen_languages: Apenas as publicações dos idiomas selecionados serão exibidas nas linhas públicas
+        date_of_birth:
+          one: Precisamos ter certeza de que você tem, no mínimo, %{count} anos para usar o %{domain} Não armazenaremos essa informação.
+          other: Temos que ter certeza de que você é pelo menos %{count} para usar o %{domain} Não vamos armazenar isso.
         role: A função controla quais permissões o usuário tem.
       user_role:
         color: Cor a ser usada para o cargo em toda a interface do usuário, como RGB no formato hexadecimal
@@ -138,13 +163,17 @@ pt-BR:
         name: Nome público do cargo, se ele for definido para ser exibido como um distintivo
         permissions_as_keys: Usuários com esse cargo terão acesso a...
         position: Um cargo superior decide a resolução de conflitos em certas situações. Certas ações só podem ser executadas com cargos de menor prioridade
+      username_block:
+        allow_with_approval: Em vez de impedir a inscrição completa, a correspondência de cadastros exigirá sua aprovação
+        comparison: Por favor, esteja atento ao problema de Scunthorpe ao bloquear correspondências parciais
+        username: Serão correspondidos independentemente de casar e homólogos comuns como "4" para "a" ou "3" para "e"
       webhook:
         events: Selecione eventos para enviar
         template: Elabore seu próprio conteúdo JSON usando interpolação de variáveis. Deixe em branco para utilizar o JSON padrão.
         url: Aonde os eventos serão enviados
     labels:
       account:
-        attribution_domains_as_text: Sites permitidos para credenciar você
+        attribution_domains: Sites autorizados a creditar você.
         discoverable: Destacar perfil e publicações nos algoritmos de descoberta
         fields:
           name: Rótulo
@@ -208,21 +237,26 @@ pt-BR:
         setting_aggregate_reblogs: Agrupar boosts nas linhas
         setting_always_send_emails: Sempre enviar notificações por e-mail
         setting_auto_play_gif: Reproduzir GIFs automaticamente
-        setting_boost_modal: Solicitar confirmação antes de dar boost
+        setting_boost_modal: Controlar a visibilidade dos impulsos
         setting_default_language: Idioma dos toots
-        setting_default_privacy: Privacidade dos toots
+        setting_default_privacy: Visibilidade da publicação
+        setting_default_quote_policy: Quem pode citar
         setting_default_sensitive: Sempre marcar mídia como sensível
-        setting_delete_modal: Solicitar confirmação antes de excluir toot
+        setting_delete_modal: Avise-me antes de apagar uma publicação
         setting_disable_hover_cards: Desativar visualização de perfil ao passar o mouse por cima
         setting_disable_swiping: Desabilitar movimentos deslizantes
         setting_display_media: Exibição das mídias
         setting_display_media_default: Padrão
         setting_display_media_hide_all: Ocultar tudo
         setting_display_media_show_all: Mostrar tudo
+        setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Sempre expandir toots com Aviso de Conteúdo
         setting_hide_network: Ocultar suas relações
+        setting_missing_alt_text_modal: Avise-me antes de publicar mídia sem texto alternado
+        setting_quick_boosting: Ativar impulsionamento rápido
         setting_reduce_motion: Reduzir animações
         setting_system_font_ui: Usar fonte padrão do sistema
+        setting_system_scrollbars_ui: Usar barra de rolagem padrão do sistema
         setting_theme: Tema do site
         setting_trends: Mostrar em alta hoje
         setting_unfollow_modal: Solicitar confirmação antes de deixar de seguir alguém
@@ -241,6 +275,7 @@ pt-BR:
         name: Hashtag
       filters:
         actions:
+          blur: Oculte a mídia com um aviso
           hide: Ocultar completamente
           warn: Ocultar com um aviso
       form_admin_settings:
@@ -252,11 +287,17 @@ pt-BR:
         content_cache_retention_period: Período de retenção de conteúdo remoto
         custom_css: CSS personalizável
         favicon: Favicon
+        landing_page: Página inicial para novos visitantes
+        local_live_feed_access: Acessar feeds ao vivo com destaque em publicações locais
+        local_topic_feed_access: Acessar hasthtag e endereços de feed com destaque em publicações locais
         mascot: Mascote personalizado (legado)
         media_cache_retention_period: Período de retenção do cachê de mídia
+        min_age: Requisito de idade mínimia
         peers_api_enabled: Publicar lista de instâncias de servidor descobertas na API
         profile_directory: Ativar diretório de perfis
         registrations_mode: Quem pode se inscrever
+        remote_live_feed_access: Acessar feeds ao vivo com destaque em publicações antigas
+        remote_topic_feed_access: Acessar hasthtag e endereços de feed com destaque em publicações antigas
         require_invite_text: Exigir uma razão para entrar
         show_domain_blocks: Mostrar domínios bloqueados
         show_domain_blocks_rationale: Mostrar por que domínios foram bloqueados
@@ -269,10 +310,8 @@ pt-BR:
         status_page_url: Endereço da página de status
         theme: Tema padrão
         thumbnail: Miniatura do servidor
-        timeline_preview: Permitir acesso não autenticado às linhas do tempo públicas
         trendable_by_default: Permitir tendências sem revisão prévia
         trends: Habilitar tendências
-        trends_as_landing_page: Usar tendências como página inicial
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de não-seguidos
@@ -297,6 +336,7 @@ pt-BR:
         follow_request: Enviar e-mail quando alguém quiser te seguir
         mention: Enviar e-mail quando alguém te mencionar
         pending_account: Enviar e-mail quando uma nova conta precisa ser revisada
+        quote: Alguém citou você
         reblog: Enviar e-mail quando alguém der boost nos teus toots
         report: Nova denúncia foi enviada
         software_updates:
@@ -317,7 +357,24 @@ pt-BR:
         name: Hashtag
         trendable: Permitir que esta hashtag fique em alta
         usable: Permitir que as publicações usem esta hashtag localmente
+      terms_of_service:
+        changelog: O que mudou?
+        effective_date: Data de vigência
+        text: Termos de Serviço
+      terms_of_service_generator:
+        admin_email: Endereço de e-mail para avisos legais
+        arbitration_address: Endereço físico para avisos de arbitragem.
+        arbitration_website: Site para submissão de notificações de arbitragem
+        choice_of_law: Lei de regência
+        dmca_address: Endereço físico para notificações de DMCA/direitos autorais
+        dmca_email: Endereço de e-mail para notificações de DMCA/direitos autorais
+        domain: Domínio
+        jurisdiction: Jurisdição legal
+        min_age: Idade mínima
       user:
+        date_of_birth_1i: Ano
+        date_of_birth_2i: Mês
+        date_of_birth_3i: Dia
         role: Cargo
         time_zone: Fuso horário
       user_role:
@@ -326,6 +383,10 @@ pt-BR:
         name: Nome
         permissions_as_keys: Permissões
         position: Prioridade
+      username_block:
+        allow_with_approval: Permitir inscrições com aprovação
+        comparison: Método de comparação
+        username: Palavra para corresponder
       webhook:
         events: Eventos habilitados
         template: Conteúdo JSON

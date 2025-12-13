@@ -1,4 +1,5 @@
-$no-columns-breakpoint: 600px;
+@use 'sass:color';
+@use 'variables' as *;
 
 code {
   font-family: $font-monospace, monospace;
@@ -14,7 +15,7 @@ code {
 
 .form-section {
   border-radius: 8px;
-  background: var(--surface-background-color);
+  background: var(--color-bg-secondary);
   padding: 24px;
   margin-bottom: 24px;
 }
@@ -31,7 +32,7 @@ code {
     display: block;
     background: linear-gradient(
       to bottom,
-      var(--surface-background-color),
+      var(--color-bg-secondary-solid),
       transparent
     );
     position: absolute;
@@ -56,14 +57,16 @@ code {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  color: $primary-text-color;
+  color: var(--color-text-primary);
 
   &.success {
-    background: $success-green;
+    color: var(--color-text-on-success-base);
+    background: var(--color-bg-success-base);
   }
 
   &.failure {
-    background: $error-red;
+    color: var(--color-text-on-error-base);
+    background: var(--color-bg-error-base);
   }
 }
 
@@ -75,6 +78,21 @@ code {
   .input {
     margin-bottom: 16px;
     overflow: hidden;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &__toolbar {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .character-counter {
+        flex: 0 0 auto;
+      }
+    }
 
     &.hidden {
       margin: 0;
@@ -109,7 +127,7 @@ code {
         font-family: inherit;
         font-size: 14px;
         padding-top: 5px;
-        color: $primary-text-color;
+        color: var(--color-text-primary);
         display: block;
         width: auto;
       }
@@ -130,7 +148,7 @@ code {
       }
 
       label a {
-        color: $highlight-text-color;
+        color: var(--color-text-brand);
         text-decoration: underline;
 
         &:hover,
@@ -172,7 +190,7 @@ code {
   .lead {
     font-size: 17px;
     line-height: 22px;
-    color: $secondary-text-color;
+    color: var(--color-text-primary);
     margin-bottom: 30px;
 
     &.invited-by {
@@ -180,7 +198,7 @@ code {
     }
 
     a {
-      color: $highlight-text-color;
+      color: var(--color-text-brand);
     }
   }
 
@@ -191,21 +209,25 @@ code {
   }
 
   .hint {
-    color: $darker-text-color;
+    color: var(--color-text-secondary);
 
     a {
-      color: $highlight-text-color;
+      color: var(--color-text-brand);
     }
 
     code {
       border-radius: 3px;
       padding: 0.2em 0.4em;
-      background: darken($ui-base-color, 12%);
+      background: var(--color-bg-secondary);
     }
 
     li {
       list-style: disc;
       margin-inline-start: 18px;
+    }
+
+    .icon {
+      vertical-align: -3px;
     }
   }
 
@@ -221,7 +243,7 @@ code {
 
   p.hint {
     margin-bottom: 15px;
-    color: $darker-text-color;
+    color: var(--color-text-secondary);
 
     &.subtle-hint {
       text-align: center;
@@ -257,7 +279,7 @@ code {
       & > label {
         font-family: inherit;
         font-size: 14px;
-        color: $primary-text-color;
+        color: var(--color-text-primary);
         font-weight: 500;
         min-width: 150px;
         flex: 0 0 auto;
@@ -279,10 +301,10 @@ code {
     .label_input > label {
       font-family: inherit;
       font-size: 14px;
-      color: $primary-text-color;
+      color: var(--color-text-primary);
       display: block;
       margin-bottom: 8px;
-      word-wrap: break-word;
+      overflow-wrap: break-word;
       font-weight: 500;
     }
 
@@ -301,7 +323,7 @@ code {
     & > label {
       font-family: inherit;
       font-size: 14px;
-      color: $primary-text-color;
+      color: var(--color-text-primary);
       display: block;
       font-weight: 600;
       line-height: 20px;
@@ -325,10 +347,33 @@ code {
     columns: unset;
   }
 
-  .input.datetime .label_input select {
-    display: inline-block;
-    width: auto;
-    flex: 0;
+  .input.datetime .label_input,
+  .input.date .label_input {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+    select {
+      display: inline-block;
+      width: auto;
+      flex: 0;
+    }
+  }
+
+  .input.date_of_birth .label_input {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    input {
+      box-sizing: content-box;
+      width: 32px;
+      flex: 0;
+
+      &:last-child {
+        width: 64px;
+      }
+    }
   }
 
   .input.select.select--languages {
@@ -337,7 +382,7 @@ code {
 
   .required abbr {
     text-decoration: none;
-    color: lighten($error-value-color, 12%);
+    color: var(--color-text-error);
   }
 
   .fields-group {
@@ -354,7 +399,7 @@ code {
       max-width: 100%;
       height: auto;
       border-radius: var(--avatar-border-radius);
-      background: url('images/void.png');
+      background: url('@/images/void.png');
 
       &[src$='missing.png'] {
         visibility: hidden;
@@ -430,7 +475,7 @@ code {
     margin-bottom: 5px;
     font-family: inherit;
     font-size: 14px;
-    color: $primary-text-color;
+    color: var(--color-text-primary);
     display: block;
     width: auto;
   }
@@ -440,7 +485,7 @@ code {
       label {
         font-family: inherit;
         font-size: 14px;
-        color: $primary-text-color;
+        color: var(--color-text-primary);
         display: inline-block;
         width: auto;
         position: relative;
@@ -461,7 +506,7 @@ code {
   .input.static .label_input__wrapper {
     font-size: 14px;
     padding: 10px;
-    border: 1px solid $dark-text-color;
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
   }
 
@@ -475,14 +520,14 @@ code {
     box-sizing: border-box;
     font-size: 14px;
     line-height: 20px;
-    color: $primary-text-color;
+    color: var(--color-text-primary);
     display: block;
     width: 100%;
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: $ui-base-color;
-    border: 1px solid var(--background-border-color);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
     padding: 10px 16px;
 
@@ -491,7 +536,7 @@ code {
     }
 
     &:required:valid {
-      border-color: $valid-value-color;
+      border-color: var(--color-text-success);
     }
 
     @media screen and (width <= 600px) {
@@ -506,13 +551,13 @@ code {
   input[type='datetime-local'] {
     &:focus:invalid:not(:placeholder-shown),
     &:required:invalid:not(:placeholder-shown) {
-      border-color: lighten($error-red, 12%);
+      border-color: var(--color-text-error);
     }
   }
 
   .input.field_with_errors {
     label {
-      color: lighten($error-red, 12%);
+      color: var(--color-text-error);
     }
 
     input[type='text'],
@@ -522,13 +567,13 @@ code {
     input[type='datetime-local'],
     textarea,
     select {
-      border-color: lighten($error-red, 12%);
+      border-color: var(--color-text-error);
     }
 
     .error {
       display: block;
       font-weight: 500;
-      color: lighten($error-red, 12%);
+      color: var(--color-text-error);
       margin-top: 4px;
     }
   }
@@ -540,6 +585,7 @@ code {
   .actions {
     margin-top: 30px;
     display: flex;
+    gap: 10px;
 
     &.actions--top {
       margin-top: 0;
@@ -548,19 +594,20 @@ code {
   }
 
   .stacked-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     margin-top: 30px;
     margin-bottom: 15px;
   }
 
-  button,
-  .button,
-  .block-button {
+  .btn {
     display: block;
     width: 100%;
     border: 0;
     border-radius: 4px;
-    background: $ui-button-background-color;
-    color: $ui-button-color;
+    background: var(--color-bg-brand-base);
+    color: var(--color-text-on-brand-base);
     font-size: 15px;
     line-height: 22px;
     height: auto;
@@ -571,8 +618,6 @@ code {
     cursor: pointer;
     font-weight: 500;
     outline: 0;
-    margin-bottom: 10px;
-    margin-inline-end: 10px;
 
     &:last-child {
       margin-inline-end: 0;
@@ -581,31 +626,23 @@ code {
     &:active,
     &:focus,
     &:hover {
-      background-color: $ui-button-focus-background-color;
+      background: var(--color-bg-brand-base-hover);
     }
 
+    &:disabled,
     &:disabled:hover {
-      background-color: $ui-primary-color;
+      color: var(--color-text-on-disabled);
+      background: var(--color-bg-disabled);
     }
 
     &.negative {
-      background: $ui-button-destructive-background-color;
+      background: var(--color-bg-error-base);
 
       &:hover,
       &:active,
       &:focus {
-        background-color: $ui-button-destructive-focus-background-color;
+        background: var(--color-bg-error-base-hover);
       }
-    }
-  }
-
-  .button.button-tertiary {
-    padding: 9px;
-
-    &:hover,
-    &:focus,
-    &:active {
-      padding: 10px;
     }
   }
 
@@ -613,16 +650,14 @@ code {
     appearance: none;
     box-sizing: border-box;
     font-size: 14px;
-    color: $primary-text-color;
+    color: var(--color-text-primary);
     display: block;
     width: 100%;
     outline: 0;
     font-family: inherit;
     resize: vertical;
-    background: $ui-base-color
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 12%))}'/></svg>")
-      no-repeat right 8px center / auto 14px;
-    border: 1px solid var(--background-border-color);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
     padding-inline-start: 10px;
     padding-inline-end: 30px;
@@ -638,6 +673,18 @@ code {
   }
 
   .label_input {
+    position: relative;
+
+    &__loading-indicator {
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      inset-inline-start: 0;
+      border: 1px solid transparent;
+      padding: 10px 16px;
+      width: 100%;
+    }
+
     &__wrapper {
       position: relative;
     }
@@ -648,7 +695,7 @@ code {
       top: 1px;
       padding: 10px;
       font-size: 14px;
-      color: $dark-text-color;
+      color: var(--color-text-tertiary);
       font-family: inherit;
       pointer-events: none;
       cursor: default;
@@ -668,6 +715,33 @@ code {
       }
     }
   }
+
+  .status-card {
+    contain: unset;
+  }
+}
+
+/* Double-chevron icon for custom select components */
+.select-wrapper,
+.select .label_input__wrapper {
+  width: 100%;
+
+  &::after {
+    --icon-size: 11px;
+
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    inset-inline-end: 9px;
+    width: var(--icon-size);
+    background-color: var(--color-text-tertiary);
+    pointer-events: none;
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='black'/></svg>");
+    mask-position: right center;
+    mask-size: var(--icon-size);
+    mask-repeat: no-repeat;
+  }
 }
 
 .block-icon {
@@ -678,43 +752,49 @@ code {
 }
 
 .flash-message {
-  background: var(--background-color);
-  color: $highlight-text-color;
-  border: 1px solid $highlight-text-color;
+  color: var(--color-text-brand);
+  background: transparent;
+  border: 1px solid var(--color-text-brand);
   border-radius: 4px;
   padding: 15px 10px;
   margin-bottom: 30px;
   text-align: center;
 
   &.notice {
-    border: 1px solid rgba($valid-value-color, 0.5);
-    background: rgba($valid-value-color, 0.25);
-    color: $valid-value-color;
+    border: 1px solid var(--color-border-on-bg-success-softer);
+    background: var(--color-bg-success-softer);
+    color: var(--color-text-success);
   }
 
   &.warning {
-    border: 1px solid rgba($gold-star, 0.5);
-    background: rgba($gold-star, 0.25);
-    color: $gold-star;
+    border: 1px solid var(--color-border-on-bg-warning-softer);
+    background: var(--color-bg-warning-softer);
+    color: var(--color-text-warning);
   }
 
   &.alert {
-    border: 1px solid rgba($error-value-color, 0.5);
-    background: rgba($error-value-color, 0.1);
-    color: $error-value-color;
+    border: 1px solid var(--color-border-on-bg-error-softer);
+    background: var(--color-bg-error-softer);
+    color: var(--color-text-error);
   }
 
   &.hidden {
     display: none;
   }
 
+  &.hidden-on-touch-devices {
+    @media screen and (pointer: coarse) {
+      display: none;
+    }
+  }
+
   a {
     display: inline-block;
-    color: $darker-text-color;
+    color: var(--color-text-secondary);
     text-decoration: none;
 
     &:hover {
-      color: $primary-text-color;
+      color: var(--color-text-primary);
       text-decoration: underline;
     }
   }
@@ -744,8 +824,8 @@ code {
     border: 0;
     padding: 10px;
     font-family: $font-monospace, monospace;
-    background: $ui-base-color;
-    color: $primary-text-color;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
     font-size: 14px;
     margin: 0;
 
@@ -760,7 +840,7 @@ code {
     }
 
     &:focus {
-      background: lighten($ui-base-color, 4%);
+      background: var(--color-bg-brand-softer);
     }
   }
 
@@ -816,7 +896,7 @@ code {
   text-align: center;
 
   a {
-    color: $darker-text-color;
+    color: var(--color-text-secondary);
     text-decoration: none;
 
     &:hover {
@@ -836,7 +916,7 @@ code {
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--color-text-brand);
     text-transform: uppercase;
     text-decoration: none;
     font-weight: 700;
@@ -844,7 +924,7 @@ code {
     &:hover,
     &:focus,
     &:active {
-      color: lighten($highlight-text-color, 8%);
+      color: var(--color-text-brand-soft);
     }
   }
 }
@@ -852,7 +932,7 @@ code {
 .oauth-prompt,
 .follow-prompt {
   margin-bottom: 30px;
-  color: $darker-text-color;
+  color: var(--color-text-secondary);
 
   h2 {
     font-size: 16px;
@@ -861,7 +941,7 @@ code {
   }
 
   strong {
-    color: $secondary-text-color;
+    color: var(--color-text-primary);
     font-weight: 500;
 
     @each $lang in $cjk-langs {
@@ -874,7 +954,7 @@ code {
 
 .oauth-prompt {
   h3 {
-    color: $ui-secondary-color;
+    color: var(--color-text-primary);
     font-size: 17px;
     line-height: 22px;
     font-weight: 500;
@@ -888,9 +968,9 @@ code {
   }
 
   .permissions-list {
-    border: 1px solid $ui-base-color;
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
-    background: darken($ui-base-color, 4%);
+    background: var(--color-bg-secondary);
     margin-bottom: 30px;
   }
 
@@ -916,10 +996,10 @@ code {
 
 .qr-code {
   flex: 0 0 auto;
-  background: $simple-background-color;
+  background: white;
   padding: 4px;
   margin: 0 10px 20px 0;
-  box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+  box-shadow: 0 0 15px var(--color-shadow-primary);
   display: inline-block;
 
   svg {
@@ -930,48 +1010,12 @@ code {
 
 .qr-alternative {
   margin-bottom: 20px;
-  color: $secondary-text-color;
+  color: var(--color-text-primary);
   flex: 150px;
 
   samp {
     display: block;
     font-size: 14px;
-  }
-}
-
-.simple_form {
-  .warning {
-    box-sizing: border-box;
-    background: rgba($error-value-color, 0.5);
-    color: $primary-text-color;
-    text-shadow: 1px 1px 0 rgba($base-shadow-color, 0.3);
-    box-shadow: 0 2px 6px rgba($base-shadow-color, 0.4);
-    border-radius: 4px;
-    padding: 10px;
-    margin-bottom: 15px;
-
-    a {
-      color: $primary-text-color;
-      text-decoration: underline;
-
-      &:hover,
-      &:focus,
-      &:active {
-        text-decoration: none;
-      }
-    }
-
-    strong {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 5px;
-
-      @each $lang in $cjk-langs {
-        &:lang(#{$lang}) {
-          font-weight: 700;
-        }
-      }
-    }
   }
 }
 
@@ -994,7 +1038,7 @@ code {
 
 .post-follow-actions {
   text-align: center;
-  color: $darker-text-color;
+  color: var(--color-text-secondary);
 
   div {
     margin-bottom: 4px;
@@ -1007,7 +1051,7 @@ code {
 
   h4 {
     font-size: 16px;
-    color: $primary-text-color;
+    color: var(--color-text-primary);
     text-align: center;
     margin-bottom: 20px;
     border: 0;
@@ -1020,7 +1064,7 @@ code {
 }
 
 .scope-danger {
-  color: $warning-red;
+  color: var(--color-text-error);
 }
 
 .form_admin_settings_site_short_description,
@@ -1035,8 +1079,9 @@ code {
 }
 
 .input-copy {
-  background: darken($ui-base-color, 10%);
-  border: 1px solid darken($ui-base-color, 14%);
+  color: var(--color-text-primary);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -1070,11 +1115,11 @@ code {
   }
 
   &.copied {
-    border-color: $valid-value-color;
+    border-color: var(--color-text-success);
     transition: none;
 
     button {
-      background: $valid-value-color;
+      background: var(--color-bg-success-base);
       transition: none;
     }
   }
@@ -1096,8 +1141,8 @@ code {
 .permissions-list {
   &__item {
     padding: 15px;
-    color: $ui-secondary-color;
-    border-bottom: 1px solid lighten($ui-base-color, 4%);
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-border-primary);
     display: flex;
     align-items: center;
 
@@ -1109,8 +1154,8 @@ code {
       }
 
       &__type {
-        color: $darker-text-color;
-        word-break: break-word;
+        color: var(--color-text-secondary);
+        overflow-wrap: anywhere;
       }
     }
 
@@ -1118,7 +1163,7 @@ code {
       flex: 0 0 auto;
       font-size: 18px;
       width: 30px;
-      color: $valid-value-color;
+      color: var(--color-text-success);
       display: flex;
       align-items: center;
     }
@@ -1181,11 +1226,11 @@ code {
 
   .separator {
     height: 2px;
-    background: $ui-base-lighter-color;
+    background: var(--color-border-primary);
     flex: 1 1 auto;
 
     &.completed {
-      background: $highlight-text-color;
+      background: var(--color-text-brand);
     }
   }
 
@@ -1195,7 +1240,7 @@ code {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 2px solid $ui-base-lighter-color;
+    border: 2px solid var(--color-border-primary);
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -1210,7 +1255,7 @@ code {
     position: absolute;
     font-size: 14px;
     font-weight: 500;
-    color: $secondary-text-color;
+    color: var(--color-text-primary);
     padding-top: 10px;
     text-align: center;
     width: 100px;
@@ -1233,14 +1278,14 @@ code {
   }
 
   .active .circle {
-    border-color: $highlight-text-color;
+    border-color: var(--color-text-brand);
 
     &::before {
       content: '';
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: $highlight-text-color;
+      background: var(--color-text-brand);
       position: absolute;
       left: 50%;
       top: 50%;
@@ -1249,19 +1294,25 @@ code {
   }
 
   .completed .circle {
-    border-color: $highlight-text-color;
-    background: $highlight-text-color;
+    border-color: var(--color-text-brand);
+    background: var(--color-text-brand);
   }
 }
 
 .app-form {
+  padding: 16px;
+
   &__avatar-input,
   &__header-input {
     display: block;
     border-radius: 8px;
-    background: var(--dropdown-background-color);
+    background: var(--color-bg-secondary);
     position: relative;
     cursor: pointer;
+
+    &:hover {
+      background-color: var(--color-bg-brand-softer);
+    }
 
     img {
       position: absolute;
@@ -1277,12 +1328,12 @@ code {
       inset-inline-start: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      color: $darker-text-color;
+      color: var(--color-text-secondary);
       z-index: 3;
     }
 
     &.selected .icon {
-      color: $primary-text-color;
+      color: var(--color-text-primary);
       transform: none;
       inset-inline-start: auto;
       inset-inline-end: 8px;
@@ -1291,7 +1342,7 @@ code {
     }
 
     &.invalid img {
-      outline: 1px solid $error-value-color;
+      outline: 1px solid var(--color-text-error);
       outline-offset: -1px;
     }
 
@@ -1301,13 +1352,9 @@ code {
       width: 100%;
       height: 100%;
       position: absolute;
-      background: rgba($error-value-color, 0.25);
+      background: var(--color-bg-error-softer);
       z-index: 2;
       border-radius: 8px;
-    }
-
-    &:hover {
-      background-color: var(--dropdown-border-color);
     }
   }
 
@@ -1324,7 +1371,7 @@ code {
     display: flex;
     align-items: center;
     gap: 16px;
-    color: $darker-text-color;
+    color: var(--color-text-secondary);
     font-size: 14px;
     line-height: 20px;
 
@@ -1341,14 +1388,14 @@ code {
       flex: 1 1 auto;
 
       strong {
-        color: $primary-text-color;
+        color: var(--color-text-primary);
         font-weight: 600;
       }
 
       .hint {
         display: block;
         font-size: 14px;
-        color: $darker-text-color;
+        color: var(--color-text-secondary);
       }
 
       .recommended {
@@ -1366,8 +1413,37 @@ code {
 
     &__toggle > div {
       display: flex;
-      border-inline-start: 1px solid var(--background-border-color);
+      border-inline-start: 1px solid var(--color-border-primary);
       padding-inline-start: 16px;
+    }
+  }
+
+  &__link {
+    display: flex;
+    gap: 16px;
+    padding: 8px 0;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    margin-bottom: 16px;
+
+    &__text {
+      flex: 1 1 auto;
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--color-text-secondary);
+
+      strong {
+        font-weight: 600;
+        display: block;
+        color: var(--color-text-primary);
+      }
+
+      .icon {
+        vertical-align: -5px;
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 }

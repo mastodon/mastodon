@@ -8,12 +8,13 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   DISCOVERIES_PER_REQUEST = 1000
 
   # Should be called when uri has already been checked for locality
-  def call(uri, prefetched_body: nil, on_behalf_of: nil, expected_actor_uri: nil, request_id: nil)
+  def call(uri, prefetched_body: nil, on_behalf_of: nil, expected_actor_uri: nil, request_id: nil, depth: nil)
     return if domain_not_allowed?(uri)
 
+    @depth = depth || 0
     @request_id = request_id || "#{Time.now.utc.to_i}-status-#{uri}"
     @json = if prefetched_body.nil?
-              fetch_resource(uri, true, on_behalf_of)
+              fetch_status(uri, true, on_behalf_of)
             else
               body_to_json(prefetched_body, compare_id: uri)
             end
@@ -52,7 +53,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
       return nil if discoveries > DISCOVERIES_PER_REQUEST
     end
 
-    ActivityPub::Activity.factory(activity_json, actor, request_id: @request_id).perform
+    ActivityPub::Activity.factory(activity_json, actor, request_id: @request_id, depth: @depth).perform
   end
 
   private
@@ -79,5 +80,21 @@ class ActivityPub::FetchRemoteStatusService < BaseService
 
   def expected_object_type?
     equals_or_includes_any?(@json['type'], ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES)
+  end
+
+  def fetch_status(uri, id_is_known, on_behalf_of = nil)
+    begin
+      fetch_resource(uri, id_is_known, on_behalf_of, raise_on_error: :all)
+    rescue Mastodon::UnexpectedResponseError => e
+      return unless e.response.code == 404
+
+      # If this is a 404 from a public status from a remote account, delete it
+      existing_status = Status.remote.find_by(uri: uri)
+      if existing_status&.distributable?
+        Rails.logger.debug { "FetchRemoteStatusService - Got 404 for orphaned status with URI #{uri}, deleting" }
+        Tombstone.find_or_create_by(uri: uri, account: existing_status.account)
+        RemoveStatusService.new.call(existing_status, redraft: false)
+      end
+    end
   end
 end

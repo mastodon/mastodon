@@ -1,3 +1,5 @@
+import { checkAnnualReport } from '@/mastodon/reducers/slices/annual_report';
+
 import api from '../api';
 
 import { importFetchedAccount } from './importer';
@@ -29,6 +31,9 @@ export const fetchServer = () => (dispatch, getState) => {
     .get('/api/v2/instance').then(({ data }) => {
       if (data.contact.account) dispatch(importFetchedAccount(data.contact.account));
       dispatch(fetchServerSuccess(data));
+      if (data.wrapstodon) {
+        void dispatch(checkAnnualReport());
+      }
     }).catch(err => dispatch(fetchServerFail(err)));
 };
 

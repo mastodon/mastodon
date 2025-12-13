@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe REST::AccountSerializer do
   subject { serialized_record_json(account, described_class) }
 
+  let(:default_datetime) { DateTime.new(2024, 11, 28, 16, 20, 0) }
   let(:role)    { Fabricate(:user_role, name: 'Role', highlighted: true) }
   let(:user)    { Fabricate(:user, role: role) }
   let(:account) { user.account }
@@ -42,6 +43,29 @@ RSpec.describe REST::AccountSerializer do
 
     it 'marks it as such' do
       expect(subject['memorial']).to be true
+    end
+  end
+
+  context 'when created_at is populated' do
+    before do
+      account.account_stat.update!(created_at: default_datetime)
+    end
+
+    it 'parses as RFC 3339 datetime' do
+      expect(subject)
+        .to include(
+          'created_at' => match_api_datetime_format
+        )
+    end
+  end
+
+  context 'when last_status_at is populated' do
+    before do
+      account.account_stat.update!(last_status_at: default_datetime)
+    end
+
+    it 'is serialized as yyyy-mm-dd' do
+      expect(subject['last_status_at']).to eq('2024-11-28')
     end
   end
 end

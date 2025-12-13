@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 .emoji-mart {
   font-size: 13px;
   display: inline-block;
@@ -15,7 +17,8 @@
 
 .emoji-mart-bar {
   &:first-child {
-    background: var(--dropdown-border-color);
+    background: var(--color-bg-tertiary);
+    border-bottom: 1px solid var(--color-border-primary);
   }
 }
 
@@ -36,18 +39,22 @@
   cursor: pointer;
   background: transparent;
   border: 0;
-  color: $darker-text-color;
+  color: var(--color-text-secondary);
 
   &:hover {
-    color: lighten($darker-text-color, 4%);
+    color: color-mix(
+      in oklab,
+      var(--color-text-primary),
+      var(--color-text-secondary)
+    );
   }
 }
 
 .emoji-mart-anchor-selected {
-  color: $highlight-text-color;
+  color: var(--color-text-brand);
 
   &:hover {
-    color: lighten($highlight-text-color, 4%);
+    color: var(--color-text-brand-soft);
   }
 
   .emoji-mart-anchor-bar {
@@ -61,7 +68,7 @@
   inset-inline-start: 0;
   width: 100%;
   height: 4px;
-  background-color: $highlight-text-color;
+  background-color: var(--color-text-brand);
 }
 
 .emoji-mart-anchors {
@@ -98,9 +105,9 @@
     font-family: inherit;
     display: block;
     width: 100%;
-    background: $ui-base-color;
-    color: $darker-text-color;
-    border: 1px solid var(--background-border-color);
+    background: var(--color-bg-secondary);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-primary);
     border-radius: 4px;
 
     &::-moz-focus-inner {
@@ -130,7 +137,6 @@
   transition: all 100ms linear;
   transition-property: opacity;
   pointer-events: auto;
-  opacity: 0.7;
 
   &:disabled {
     cursor: default;
@@ -138,7 +144,7 @@
   }
 
   svg {
-    fill: $darker-text-color;
+    fill: currentColor;
   }
 }
 
@@ -149,6 +155,9 @@
     z-index: 1;
     position: relative;
     text-align: center;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
   }
 
   &:hover::before {
@@ -159,7 +168,7 @@
     inset-inline-start: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--dropdown-border-color);
+    background-color: var(--color-bg-brand-softer);
     border-radius: 100%;
   }
 }
@@ -187,7 +196,7 @@
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   border: 0;
 }
 
@@ -219,7 +228,7 @@
 
 .emoji-mart-no-results {
   font-size: 14px;
-  color: $dark-text-color;
+  color: var(--color-text-tertiary);
   text-align: center;
   padding: 5px 6px;
   padding-top: 70px;

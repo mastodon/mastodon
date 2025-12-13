@@ -62,11 +62,13 @@ module Admin
     end
 
     def resource_params
-      params.require(:email_domain_block).permit(:domain, :allow_with_approval, other_domains: [])
+      params
+        .expect(email_domain_block: [:domain, :allow_with_approval, other_domains: []])
     end
 
     def form_email_domain_block_batch_params
-      params.require(:form_email_domain_block_batch).permit(email_domain_block_ids: [])
+      params
+        .expect(form_email_domain_block_batch: [email_domain_block_ids: []])
     end
 
     def action_from_button

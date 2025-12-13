@@ -92,7 +92,7 @@ class BatchedRemoveStatusService < BaseService
       pipeline.publish(status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', payload)
     end
 
-    status.tags.map { |tag| tag.name.mb_chars.downcase }.each do |hashtag|
+    status.tags.map { |tag| tag.name.downcase }.each do |hashtag|
       pipeline.publish("timeline:hashtag:#{hashtag}", payload)
       pipeline.publish("timeline:hashtag:#{hashtag}:local", payload) if status.local?
     end

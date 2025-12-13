@@ -12,6 +12,7 @@ import { Sparklines, SparklinesCurve } from 'react-sparklines';
 
 import { ShortNumber } from 'mastodon/components/short_number';
 import { Skeleton } from 'mastodon/components/skeleton';
+import type { Hashtag as HashtagType } from 'mastodon/models/tags';
 
 interface SilentErrorBoundaryProps {
   children: React.ReactNode;
@@ -80,15 +81,32 @@ export const ImmutableHashtag = ({ hashtag }: ImmutableHashtagProps) => (
   />
 );
 
+export const CompatibilityHashtag: React.FC<{
+  hashtag: HashtagType;
+}> = ({ hashtag }) => (
+  <Hashtag
+    name={hashtag.name}
+    to={`/tags/${hashtag.name}`}
+    people={
+      (hashtag.history[0].accounts as unknown as number) * 1 +
+      ((hashtag.history[1]?.accounts ?? 0) as unknown as number) * 1
+    }
+    history={hashtag.history
+      .map((day) => (day.uses as unknown as number) * 1)
+      .reverse()}
+  />
+);
+
 export interface HashtagProps {
   className?: string;
   description?: React.ReactNode;
   history?: number[];
   name: string;
-  people: number;
+  people?: number;
   to: string;
   uses?: number;
   withGraph?: boolean;
+  children?: React.ReactNode;
 }
 
 export const Hashtag: React.FC<HashtagProps> = ({
@@ -100,6 +118,7 @@ export const Hashtag: React.FC<HashtagProps> = ({
   className,
   description,
   withGraph = true,
+  children,
 }) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
@@ -134,12 +153,14 @@ export const Hashtag: React.FC<HashtagProps> = ({
           <Sparklines
             width={50}
             height={28}
-            data={history ? history : Array.from(Array(7)).map(() => 0)}
+            data={history ?? Array.from(Array(7)).map(() => 0)}
           >
             <SparklinesCurve style={{ fill: 'none' }} />
           </Sparklines>
         </SilentErrorBoundary>
       </div>
     )}
+
+    {children && <div className='trends__item__buttons'>{children}</div>}
   </div>
 );

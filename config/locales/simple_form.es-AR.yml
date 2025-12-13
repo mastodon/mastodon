@@ -3,7 +3,7 @@ es-AR:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Una por línea. Protege de falsas atribuciones.
+        attribution_domains: Uno por línea. Protege de falsas atribuciones.
         discoverable: Tu perfil y publicaciones pueden ser destacadas o recomendadas en varias áreas de Mastodon, y tu perfil puede ser sugerido a otros usuarios.
         display_name: Tu nombre completo o tu pseudónimo.
         fields: Tu sitio web, pronombres, edad, o lo que quieras.
@@ -54,12 +54,19 @@ es-AR:
         password: Usá al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o las advertencias de contenido de un mensaje
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionás el alcance de nivel más alto, no necesitás seleccionar las individuales.
+        setting_advanced_layout: Mostrar Mastodon como una disposición de varias columnas, permitiéndote ver la línea temporal, las notificaciones y una tercera columna de tu elección. No recomendado para pantallas pequeñas.
         setting_aggregate_reblogs: No mostrar nuevas adhesiones de los mensajes que fueron recientemente adheridos (sólo afecta a las adhesiones recibidas recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
+        setting_boost_modal: Al estar activado, la adhesión abrirá primero un diálogo de confirmación en el que podés cambiar su visibilidad.
+        setting_default_quote_policy_private: Los mensajes solo para seguidores redactados en Mastodon no pueden ser citados por otras cuentas.
+        setting_default_quote_policy_unlisted: Cuando otras cuentas te citen, sus publicaciones también se ocultarán de las líneas temporales de tendencias.
         setting_default_sensitive: El contenido de medios sensibles está oculto predeterminadamente y puede ser mostrado con un clic
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Siempre ocultar todos los medios
         setting_display_media_show_all: Siempre mostrar todos los medios
+        setting_emoji_style: Cómo se mostrarán los emojis. "Automático" intentará usar emojis nativos, cambiando a Twemoji en navegadores antiguos.
+        setting_quick_boosting_html: Al estar habilitado, haciendo clic en el ícono de adhesión %{boost_icon} vas a adherir al mensaje inmediatamente, en lugar de abrir el menú desplegable de adhesión/citas. Esto cambia la acción de citas al menú de opciones %{options_icon}.
+        setting_system_scrollbars_ui: Solo aplica para navegadores web de escritorio basados en Safari y Chrome
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar actualizaciones de la línea temporal detrás de un clic en lugar de desplazar automáticamente el flujo
         username: Podés usar letras, números y subguiones ("_")
@@ -74,19 +81,22 @@ es-AR:
       filters:
         action: Elegir qué acción realizar cuando un mensaje coincide con el filtro
         actions:
+          blur: Ocultar medios detrás de una advertencia, sin ocultar el texto en sí mismo
           hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
           warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
       form_admin_settings:
         activity_api_enabled: Conteos de mensajes publicados localmente, cuentas activas y nuevos registros en tandas semanales
         app_icon: WEBP, PNG, GIF o JPG. Reemplaza el ícono de aplicación predeterminado en dispositivos móviles con uno personalizado.
         backups_retention_period: Los usuarios tienen la capacidad de generar archivos historiales de sus mensajes para descargar más adelante. Cuando se establece un valor positivo, estos archivos se eliminarán automáticamente de su almacenamiento después del número especificado de días.
-        bootstrap_timeline_accounts: Estas cuentas serán fijadas a la parte superior de las recomendaciones de cuentas a seguir para nuevos usuarios.
+        bootstrap_timeline_accounts: Estas cuentas se fijarán en la parte superior de las recomendaciones de seguimiento para los nuevos usuarios. Proporcioná una lista de cuentas separadas por comas.
         closed_registrations_message: Mostrado cuando los registros están cerrados
         content_cache_retention_period: Todos los mensajes de otros servidores (incluyendo adhesiones y respuestas) se eliminarán después del número de días especificado, sin tener en cuenta la interacción del usuario local con esos mensajes. Esto incluye mensajes que un usuario local haya agregado a marcadores o los haya marcado como favoritos. Las menciones privadas entre usuarios de diferentes servidores también se perderán y también serán imposibles de restaurar. El uso de esta configuración está destinado a servidores de propósito especial y rompe muchas expectativas de los usuarios cuando se implementa para uso general.
         custom_css: Podés aplicar estilos personalizados a la versión web de Mastodon.
         favicon: WEBP, PNG, GIF o JPG. Reemplaza el favicón predeterminado de Mastodon con uno personalizado.
+        landing_page: Selecciona qué página se carga para los nuevos visitantes cuando llegan por primera vez a tu servidor. Si seleccionás «Tendencias», entonces las tendencias tienen que estar habilitadas en la configuración de «Descubrimiento». Si seleccionás «Línea temporal local», entonces «Acceso a líneas temporales en vivo, destacando mensajes locales» tiene que estar establecida a «Todos» en la configuración de «Descubrimiento».
         mascot: Reemplaza la ilustración en la interface web avanzada.
         media_cache_retention_period: Los archivos de medios de mensajes publicados por usuarios remotos se almacenan en la memoria caché en tu servidor. Cuando se establece un valor positivo, los medios se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si es que el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlace consultan a sitios web de terceros, se recomienda establecer este valor a, al menos, 14 días, o las tarjetas de previsualización de enlaces no se actualizarán a pedido antes de ese momento.
+        min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento durante el registro
         peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Acá no se incluye ningún dato sobre si federás con un servidor determinado, sólo que tu servidor lo conoce. Esto es usado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado a que su cuenta pueda ser descubierta.
         require_invite_text: Cuando registros aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
@@ -99,10 +109,8 @@ es-AR:
         status_page_url: Dirección web de una página donde la gente puede ver el estado de este servidor durante un apagón
         theme: El tema que los visitantes no registrados y los nuevos usuarios ven.
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
-        timeline_preview: Los visitantes no registrados podrán navegar por los mensajes públicos más recientes disponibles en el servidor.
         trendable_by_default: Omití la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
         trends: Las tendencias muestran qué mensajes, etiquetas y noticias están ganando tracción en tu servidor.
-        trends_as_landing_page: Mostrar contenido en tendencia para usuarios que no iniciaron sesión y visitantes, en lugar de una descripción de este servidor. Requiere que las tendencias estén habilitadas.
       form_challenge:
         current_password: Estás ingresando en un área segura
       imports:
@@ -129,8 +137,25 @@ es-AR:
         show_application: Sin embargo, siempre podrás ver desde qué aplicación se envió tu mensaje.
       tag:
         name: Sólo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
+      terms_of_service:
+        changelog: Se puede estructurar con sintaxis Markdown.
+        effective_date: Un plazo razonable puede oscilar entre 10 y 30 días a partir de la fecha de notificación a tus usuarios.
+        text: Se puede estructurar con sintaxis Markdown.
+      terms_of_service_generator:
+        admin_email: Los avisos legales incluyen devoluciones, órdenes judiciales, solicitudes de retiro y solicitudes de cumplimiento de la ley.
+        arbitration_address: Puede ser la misma que la dirección física anterior, o «N.D.» si usa correo electrónico.
+        arbitration_website: Puede ser un formulario web, o «N.D.» si usa correo electrónico.
+        choice_of_law: Ciudad, región, territorio o declaración de las leyes de sustancia interna de las que se regirán todas y cada una de las reclamaciones.
+        dmca_address: Para operadores estadounidenses, usen la dirección registrada en el Directorio de Agente Designado del DMCA. Una lista de casillas de correo está disponible bajo petición directa, usen la solicitud de exención del apartado postal del agente designado de la DMCA para enviar un correo electrónico a la Oficina de Derechos de Autor y describir que ustedes son moderadores de contenido basado en el hogar que temen venganza o represalia por sus acciones y que necesitan usar una casilla de correo para eliminar su dirección postal de la vista pública.
+        dmca_email: Puede ser el mismo correo electrónico utilizado para «Dirección de correo electrónico para avisos legales» de arriba.
+        domain: Identificación única del servicio en línea que estás proporcionando.
+        jurisdiction: Listá el país donde vive quien paga las facturas. Si es una empresa u otra entidad, enumerá el país donde está basada y la ciudad, región, territorio o provincia/estado, según corresponda.
+        min_age: No debería estar por debajo de la edad mínima requerida por las leyes de su jurisdicción.
       user:
         chosen_languages: Cuando estén marcados, sólo se mostrarán los mensajes en los idiomas seleccionados en las líneas temporales públicas
+        date_of_birth:
+          one: Tenemos que asegurarnos de que al menos tenés %{count} años de edad para usar %{domain}. No almacenaremos esta información.
+          other: Tenemos que asegurarnos de que al menos tenés %{count} años de edad para usar %{domain}. No almacenaremos esta información.
         role: El rol controla qué permisos tiene el usuario.
       user_role:
         color: Color que se utilizará para el rol a lo largo de la interface de usuario, como RGB en formato hexadecimal
@@ -138,13 +163,17 @@ es-AR:
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a…
         position: Un rol más alto decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con prioridad inferior
+      username_block:
+        allow_with_approval: En lugar de impedir el registro total, los registros coincidentes requerirán tu aprobación
+        comparison: Por favor, tené en cuenta el Problema de Scunthorpe al bloquear coincidencias parciales
+        username: Coincidirá sin importar la capitalización de letras y los homoglifos comunes como «4» para «a», o «3» para «e»
       webhook:
         events: Seleccionar eventos para enviar
         template: Creá tu propio archivo JSON usando interpolación variable. Dejalo en blanco para usar el archivo JSON predeterminado.
         url: Adónde serán enviados los eventos
     labels:
       account:
-        attribution_domains_as_text: Sitios web autorizados a acreditarte
+        attribution_domains: Sitios web autorizados a acreditarte
         discoverable: Destacar perfil y mensajes en algoritmos de descubrimiento
         fields:
           name: Nombre de campo
@@ -208,21 +237,26 @@ es-AR:
         setting_aggregate_reblogs: Agrupar adhesiones en las líneas temporales
         setting_always_send_emails: Siempre enviar notificaciones por correo electrónico
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
-        setting_boost_modal: Mostrar diálogo de confirmación antes de adherir
+        setting_boost_modal: Control de visibilidad de adhesiones
         setting_default_language: Idioma de tus mensajes
-        setting_default_privacy: Privacidad de mensajes
+        setting_default_privacy: Visibilidad del mensaje
+        setting_default_quote_policy: Quién puede citar
         setting_default_sensitive: Siempre marcar medios como sensibles
-        setting_delete_modal: Mostrar diálogo de confirmación antes de eliminar un mensaje
+        setting_delete_modal: Advertirme antes de eliminar un mensaje
         setting_disable_hover_cards: Deshabilitar previsualización del perfil al pasar el cursor
         setting_disable_swiping: Deshabilitar movimientos de deslizamiento
         setting_display_media: Visualización de medios
         setting_display_media_default: Predeterminada
         setting_display_media_hide_all: Ocultar todo
         setting_display_media_show_all: Mostrar todo
+        setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Siempre expandir los mensajes marcados con advertencias de contenido
         setting_hide_network: Ocultá tu gráfica social
+        setting_missing_alt_text_modal: Advertirme antes de enviar medios sin texto alternativo
+        setting_quick_boosting: Habilitar adhesión rápida
         setting_reduce_motion: Reducir el movimiento de las animaciones
         setting_system_font_ui: Utilizar la tipografía predeterminada del sistema
+        setting_system_scrollbars_ui: Usar la barra de desplazamiento predeterminada del sistema operativo
         setting_theme: Tema del sitio
         setting_trends: Mostrar las tendencias de hoy
         setting_unfollow_modal: Mostrar diálogo de confirmación antes de dejar de seguir a una cuenta
@@ -241,6 +275,7 @@ es-AR:
         name: Etiqueta
       filters:
         actions:
+          blur: Ocultar medios con una advertencia
           hide: Ocultar completamente
           warn: Ocultar con una advertencia
       form_admin_settings:
@@ -252,11 +287,17 @@ es-AR:
         content_cache_retention_period: Período de retención de contenido remoto
         custom_css: CSS personalizado
         favicon: Favicón
+        landing_page: Página de carga para nuevos visitantes
+        local_live_feed_access: Acceso a líneas temporales en vivo, destacando mensajes locales
+        local_topic_feed_access: Acceso a líneas temporales de etiquetas y enlaces, destacando mensajes locales
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de la caché de medios
+        min_age: Edad mínima requerida
         peers_api_enabled: Publicar lista de servidores descubiertos en la API
         profile_directory: Habilitar directorio de perfiles
         registrations_mode: Quién puede registrarse
+        remote_live_feed_access: Acceso a líneas temporales en vivo, destacando mensajes remotos
+        remote_topic_feed_access: Acceso a líneas temporales de etiquetas y enlaces, destacando mensajes remotos
         require_invite_text: Requerir un motivo para unirse
         show_domain_blocks: Mostrar dominios bloqueados
         show_domain_blocks_rationale: Mostrar por qué se bloquearon los dominios
@@ -269,10 +310,8 @@ es-AR:
         status_page_url: Dirección web de la página de estado
         theme: Tema predeterminado
         thumbnail: Miniatura del servidor
-        timeline_preview: Permitir el acceso no autenticado a las líneas temporales públicas
         trendable_by_default: Permitir tendencias sin revisión previa
         trends: Habilitar tendencias
-        trends_as_landing_page: Usar las tendencias como la página de destino
       interactions:
         must_be_follower: Bloquear notificaciones de cuentas que no te siguen
         must_be_following: Bloquear notificaciones de cuentas que no seguís
@@ -297,6 +336,7 @@ es-AR:
         follow_request: Una cuenta solicita seguirte
         mention: Una cuenta te menciona
         pending_account: Una nueva cuenta necesita revisión
+        quote: Alguien te citó
         reblog: Una cuenta adhiere a tu mensaje
         report: Se envió una nueva denuncia
         software_updates:
@@ -317,7 +357,24 @@ es-AR:
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir que los mensajes usen esta etiqueta localmente
+      terms_of_service:
+        changelog: "¿Qué cambió?"
+        effective_date: Fecha efectiva
+        text: Términos del servicio
+      terms_of_service_generator:
+        admin_email: Dirección de correo electrónico para avisos legales
+        arbitration_address: Dirección física para avisos de arbitraje
+        arbitration_website: Sitio web para enviar avisos de arbitraje
+        choice_of_law: Elección de ley
+        dmca_address: Dirección física para avisos de DMCA/derechos de autor
+        dmca_email: Dirección de correo electrónico para avisos de DMCA/derechos de autor
+        domain: Dominio
+        jurisdiction: Jurisdicción legal
+        min_age: Edad mínima
       user:
+        date_of_birth_1i: Año
+        date_of_birth_2i: Mes
+        date_of_birth_3i: Día
         role: Rol
         time_zone: Zona horaria
       user_role:
@@ -326,6 +383,10 @@ es-AR:
         name: Nombre
         permissions_as_keys: Permisos
         position: Prioridad
+      username_block:
+        allow_with_approval: Permitir registros con aprobación
+        comparison: Método de comparación
+        username: Palabra a coincidir
       webhook:
         events: Eventos habilitados
         template: Plantilla de carga

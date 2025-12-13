@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 
+import { domain } from 'mastodon/initial_state';
 import type { Percentiles } from 'mastodon/models/annual_report';
 
 export const Percentile: React.FC<{
@@ -12,7 +13,7 @@ export const Percentile: React.FC<{
     <div className='annual-report__bento__box annual-report__summary__percentile'>
       <FormattedMessage
         id='annual_report.summary.percentile.text'
-        defaultMessage='<topLabel>That puts you in the top</topLabel><percentage></percentage><bottomLabel>of Mastodon users.</bottomLabel>'
+        defaultMessage='<topLabel>That puts you in the top</topLabel><percentage></percentage><bottomLabel>of {domain} users.</bottomLabel>'
         values={{
           topLabel: (str) => (
             <div className='annual-report__summary__percentile__label'>
@@ -44,6 +45,8 @@ export const Percentile: React.FC<{
               )}
             </div>
           ),
+
+          domain,
         }}
       >
         {(message) => <>{message}</>}

@@ -12,7 +12,7 @@ RSpec.describe CacheBuster do
   let(:purge_url) { 'https://example.com/test_purge' }
 
   describe '#bust' do
-    shared_examples 'makes_request' do
+    shared_examples 'cache busting request' do
       it 'makes an HTTP purging request' do
         method = http_method&.to_sym || :get
         stub_request(method, purge_url).to_return(status: 200)
@@ -28,28 +28,28 @@ RSpec.describe CacheBuster do
     end
 
     context 'when using default options' do
-      include_examples 'makes_request'
+      it_behaves_like 'cache busting request'
     end
 
     context 'when specifying a secret header' do
       let(:secret_header) { 'X-Purge-Secret' }
       let(:secret) { SecureRandom.hex(20) }
 
-      include_examples 'makes_request'
+      it_behaves_like 'cache busting request'
     end
 
     context 'when specifying a PURGE method' do
       let(:http_method) { 'purge' }
 
       context 'when not using headers' do
-        include_examples 'makes_request'
+        it_behaves_like 'cache busting request'
       end
 
       context 'when specifying a secret header' do
         let(:secret_header) { 'X-Purge-Secret' }
         let(:secret) { SecureRandom.hex(20) }
 
-        include_examples 'makes_request'
+        it_behaves_like 'cache busting request'
       end
     end
   end

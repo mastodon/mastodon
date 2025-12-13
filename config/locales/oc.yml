@@ -442,10 +442,7 @@ oc:
     add_new: Crear un alias
     remove: Desligar l’alias
   appearance:
-    advanced_web_interface: Interfàcia web avançada
-    advanced_web_interface_hint: 'Se volètz utilizar la nautor complèta de l’ecran, l’interfàcia web avançada vos permet de configurar diferentas colomnas per mostrar tan d’informacions que volètz : Acuèlh, notificacions, flux d’actualitat, e d’autras listas e etiquetas.'
     animations_and_accessibility: Animacion e accessibilitat
-    confirmation_dialogs: Fenèstras de confirmacion
     discovery: Descobèrta
     localization:
       body: Mastodon es traduch per de benevòls.
@@ -481,7 +478,6 @@ oc:
     migrate_account: Mudar endacòm mai
     migrate_account_html: Se volètz mandar los visitors d’aqueste compte a un autre, podètz<a href="%{path}"> o configurar aquí</a>.
     or_log_in_with: O autentificatz-vos amb
-    privacy_policy_agreement_html: Ai legit e accepti la <a href="%{privacy_policy_path}" target="_blank">politica de confidencialitat</a>
     providers:
       cas: CAS
       saml: SAML
@@ -672,7 +668,6 @@ oc:
     warning:
       before: 'Abans de contunhar, volgatz legir aquestas nòtas amb atencion :'
       only_redirect_html: Autrament, podètz <a href="%{path}">solament definir una redireccion sus vòstre perfil</a>.
-      other_data: Cap d’autra donada serà desplaçada automaticament
   moderation:
     title: Moderacion
   notification_mailer:
@@ -765,7 +760,6 @@ oc:
   scheduled_statuses:
     over_daily_limit: Avètz passat la limita de %{limit}  tuts programats per aquel jorn
     over_total_limit: Avètz passat la limita de %{limit}  tuts programats
-    too_soon: La data planificada deu èsser dins lo futur
   sessions:
     activity: Darrièra activitat
     browser: Navigator
@@ -850,13 +844,7 @@ oc:
       reblog: Se pòt pas penjar un tut partejat
     title: '%{name} : "%{quote}"'
     visibilities:
-      direct: Dirècte
-      private: Seguidors solament
-      private_long: Mostrar pas qu’als seguidors
       public: Public
-      public_long: Tot lo monde pòt veire
-      unlisted: Pas listat
-      unlisted_long: Tot lo monde pòt veire mai serà pas visible sul flux public
   statuses_cleanup:
     enabled: Supression automatica de publicacions ancianas
     enabled_hint: Suprimís automaticament vòstras publicacions quand correspondon al critèri d’atge causit, levat se correspondon tanben a las excepcions çai-jos

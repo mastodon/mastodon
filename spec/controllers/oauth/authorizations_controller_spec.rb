@@ -2,7 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe Oauth::AuthorizationsController do
+RSpec.describe OAuth::AuthorizationsController do
+  render_views
+
   let(:app) { Doorkeeper::Application.create!(name: 'test', redirect_uri: 'http://localhost/', scopes: 'read') }
 
   describe 'GET #new' do
@@ -24,6 +26,8 @@ RSpec.describe Oauth::AuthorizationsController do
           .to have_http_status(200)
         expect(response.headers['Cache-Control'])
           .to include('private, no-store')
+        expect(response.parsed_body.at('body.modal-layout'))
+          .to be_present
         expect(controller.stored_location_for(:user))
           .to eq authorize_path_for(app)
       end

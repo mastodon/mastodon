@@ -40,6 +40,7 @@ class FanOutOnWriteService < BaseService
     deliver_to_self!
 
     unless @options[:skip_notifications]
+      notify_quoted_account!
       notify_mentioned_accounts!
       notify_about_update! if update?
     end
@@ -69,6 +70,12 @@ class FanOutOnWriteService < BaseService
     FeedManager.instance.push_to_home(@account, @status, update: update?) if @account.local?
   end
 
+  def notify_quoted_account!
+    return unless @status.quote&.quoted_account&.local? && @status.quote&.accepted?
+
+    LocalNotificationWorker.perform_async(@status.quote.quoted_account_id, @status.quote.id, 'Quote', 'quote')
+  end
+
   def notify_mentioned_accounts!
     @status.active_mentions.where.not(id: @options[:silenced_account_ids] || []).joins(:account).merge(Account.local).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
       LocalNotificationWorker.push_bulk(mentions) do |mention|
@@ -92,6 +99,12 @@ class FanOutOnWriteService < BaseService
         [account.id, @status.id, 'Status', 'update']
       end
     end
+
+    @status.quotes.accepted.find_in_batches do |quotes|
+      LocalNotificationWorker.push_bulk(quotes) do |quote|
+        [quote.account_id, quote.status_id, 'Status', 'quoted_update']
+      end
+    end
   end
 
   def deliver_to_all_followers!
@@ -103,7 +116,7 @@ class FanOutOnWriteService < BaseService
   end
 
   def deliver_to_hashtag_followers!
-    TagFollow.where(tag_id: @status.tags.map(&:id)).select(:id, :account_id).reorder(nil).find_in_batches do |follows|
+    TagFollow.for_local_distribution.where(tag_id: @status.tags.map(&:id)).select(:id, :account_id).reorder(nil).find_in_batches do |follows|
       FeedInsertWorker.push_bulk(follows) do |follow|
         [@status.id, follow.account_id, 'tags', { 'update' => update? }]
       end
@@ -128,8 +141,8 @@ class FanOutOnWriteService < BaseService
 
   def broadcast_to_hashtag_streams!
     @status.tags.map(&:name).each do |hashtag|
-      redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}", anonymous_payload)
-      redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:local", anonymous_payload) if @status.local?
+      redis.publish("timeline:hashtag:#{hashtag.downcase}", anonymous_payload)
+      redis.publish("timeline:hashtag:#{hashtag.downcase}:local", anonymous_payload) if @status.local?
     end
   end
 

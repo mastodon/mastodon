@@ -13,6 +13,7 @@ end
 
 RSpec.shared_examples 'forbidden for wrong role' do |wrong_role|
   let(:role) { UserRole.find_by(name: wrong_role) }
+  let(:user) { Fabricate(:user, role:) }
 
   it 'returns http forbidden' do
     # Some examples have a subject which needs to be called to make a request

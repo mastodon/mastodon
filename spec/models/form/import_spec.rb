@@ -61,10 +61,7 @@ RSpec.describe Form::Import do
       let(:import_type) { 'following' }
       let(:import_file) { 'boop.ogg' }
 
-      it 'has errors' do
-        # NOTE: not testing more specific error because we don't know the string to match
-        expect(subject).to model_have_error_on_field(:data)
-      end
+      it { is_expected.to_not allow_value(data).for(:data) }
     end
 
     context 'when importing more follows than allowed' do
@@ -261,13 +258,13 @@ RSpec.describe Form::Import do
       end
     end
 
-    it_behaves_like 'on successful import', 'following', 'merge', 'imports.txt', (%w(user@example.com user@test.com).map { |acct| { 'acct' => acct } })
-    it_behaves_like 'on successful import', 'following', 'overwrite', 'imports.txt', (%w(user@example.com user@test.com).map { |acct| { 'acct' => acct } })
-    it_behaves_like 'on successful import', 'blocking', 'merge', 'imports.txt', (%w(user@example.com user@test.com).map { |acct| { 'acct' => acct } })
-    it_behaves_like 'on successful import', 'blocking', 'overwrite', 'imports.txt', (%w(user@example.com user@test.com).map { |acct| { 'acct' => acct } })
-    it_behaves_like 'on successful import', 'muting', 'merge', 'imports.txt', (%w(user@example.com user@test.com).map { |acct| { 'acct' => acct } })
-    it_behaves_like 'on successful import', 'domain_blocking', 'merge', 'domain_blocks.csv', (%w(bad.domain worse.domain reject.media).map { |domain| { 'domain' => domain } })
-    it_behaves_like 'on successful import', 'bookmarks', 'merge', 'bookmark-imports.txt', (%w(https://example.com/statuses/1312 https://local.com/users/foo/statuses/42 https://unknown-remote.com/users/bar/statuses/1 https://example.com/statuses/direct).map { |uri| { 'uri' => uri } })
+    it_behaves_like('on successful import', 'following', 'merge', 'imports.txt', %w(user@example.com user@test.com).map { |acct| { 'acct' => acct } })
+    it_behaves_like('on successful import', 'following', 'overwrite', 'imports.txt', %w(user@example.com user@test.com).map { |acct| { 'acct' => acct } })
+    it_behaves_like('on successful import', 'blocking', 'merge', 'imports.txt', %w(user@example.com user@test.com).map { |acct| { 'acct' => acct } })
+    it_behaves_like('on successful import', 'blocking', 'overwrite', 'imports.txt', %w(user@example.com user@test.com).map { |acct| { 'acct' => acct } })
+    it_behaves_like('on successful import', 'muting', 'merge', 'imports.txt', %w(user@example.com user@test.com).map { |acct| { 'acct' => acct } })
+    it_behaves_like('on successful import', 'domain_blocking', 'merge', 'domain_blocks.csv', %w(bad.domain worse.domain reject.media).map { |domain| { 'domain' => domain } })
+    it_behaves_like('on successful import', 'bookmarks', 'merge', 'bookmark-imports.txt', %w(https://example.com/statuses/1312 https://local.com/users/foo/statuses/42 https://unknown-remote.com/users/bar/statuses/1 https://example.com/statuses/direct).map { |uri| { 'uri' => uri } })
 
     it_behaves_like 'on successful import', 'following', 'merge', 'following_accounts.csv', [
       { 'acct' => 'user@example.com', 'show_reblogs' => true, 'notify' => false, 'languages' => nil },

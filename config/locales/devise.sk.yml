@@ -4,7 +4,7 @@ sk:
     confirmations:
       confirmed: Vaša e-mailová adresa bola úspešne potvrdená.
       send_instructions: O niekoľko minút obdržíte e-mail s pokynmi na potvrdenie svojho účtu. Prosíme, skontrolujte si aj zložku spam, ak ste tento e-mail nedostali.
-      send_paranoid_instructions: Ak sa vaša e-mailová adresa nachádza v našej databáze, o niekoľko minút obdržíte e-mail s pokynmi na potvrdenie svojho účtu. Prosíme, skontrolujte aj zložku spam, ste tento e-mail nedostali.
+      send_paranoid_instructions: Ak sa vaša e-mailová adresa nachádza v našej databáze, o niekoľko minút obdržíte e-mail s pokynmi na potvrdenie svojho účtu. Prosíme, skontrolujte aj zložku spam, ak ste tento e-mail nedostali.
     failure:
       already_authenticated: Už ste sa prihlásili.
       inactive: Váš účet ešte nie je aktivovaný.
@@ -88,23 +88,18 @@ sk:
       success: Úspešné overenie z účtu %{kind}.
     passwords:
       no_token: Túto stránku nemôžete navštíviť, ak vás sem nepresmeroval e-mail s pokynmi na obnovu hesla. Pokiaľ prichádzate z tohto e-mailu, uistite sa, že ste použili celú adresu URL z e-mailu.
-      send_instructions: Ak sa vaša emailová adresa nachádza v databáze, o niekoľko minút dostanete e-mail s pokynmi na nastavenie nového hesla. Ak ste ho nedostali, skontrolujte aj priečinok pre spam.
-      send_paranoid_instructions: Ak sa vaša emailová adresa nachádza v databáze, o niekoľko minút dostanete e-mail s pokynmi na nastavenie nového hesla. Ak ste ho nedostali, skontrolujte aj priečinok pre spam.
+      send_instructions: Ak sa vaša e-mailová adresa nachádza v databáze, o niekoľko minút dostanete e-mail s pokynmi na nastavenie nového hesla. Ak ste ho nedostali, skontrolujte aj priečinok pre spam.
+      send_paranoid_instructions: Ak sa vaša e-mailová adresa nachádza v databáze, o niekoľko minút dostanete e-mail s pokynmi na nastavenie nového hesla. Ak ste ho nedostali, skontrolujte aj priečinok pre spam.
       updated: Vaše heslo bolo úspešne zmenené. Teraz ste sa prihlásili.
       updated_not_active: Vaše heslo bolo úspešne zmenené.
     registrations:
       destroyed: Dovidenia! Váš účet bol úspešne zrušený. Dúfame ale, že vás tu opäť niekedy uvidíme.
-      signed_up: Vitajte! Vaša registrácia bola úspešná.
-      signed_up_but_inactive: Registrácia bola úspešná. Avšak váš účet ešte nebol aktivovaný, takže sa nemôžete prihlásiť.
-      signed_up_but_locked: Registrácia bola úspešná. Avšak váš účet je zamknutý, takže sa nemôžete prihlásiť.
-      signed_up_but_pending: Na váš e-mail bola odoslaná správa s odkazom na overenie. Po kliknutí na odkaz vašu prihlášku skontrolujeme. O jej schválení vás budeme informovať.
-      signed_up_but_unconfirmed: Na váš e-mail bola odoslaná správa s odkazom na overenie. Svoj účet aktivujte kliknutím na odkaz. Ak ste e-mail nedostali, skontrolujte svoj priečinok pre spam.
       update_needs_confirmation: Váš účet bol úspešne zmenený, ale ešte potrebujeme overiť vašu novú e-mailovú adresu. Overíte ju kliknutím na potvrdzovací odkaz zaslaný na váš e-mail. Ak ste e-mail nedostali, skontrolujte svoj priečinok pre spam.
       updated: Váš účet bol úspešne aktualizovaný.
     sessions:
-      already_signed_out: Úspešne ste sa odhlásili.
+      already_signed_out: Odhlásenie prebehlo úspešne.
       signed_in: Úspešne ste sa prihlásili.
-      signed_out: Úspešne ste sa odhlásili.
+      signed_out: Odhlásenie prebehlo úspešne.
     unlocks:
       send_instructions: O niekoľko minút obdržíte e-mail s pokynmi na odomknutie svojho účtu. Prosíme, skontrolujte si aj zložku spam, ak ste tento e-mail nedostali.
       send_paranoid_instructions: Ak váš účet existuje, o niekoľko minút obdržíte e-mail s pokynmi na jeho odomknutie. Prosíme, skontrolujte si aj zložku spam, ak ste tento e-mail nedostali.

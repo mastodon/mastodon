@@ -18,6 +18,8 @@ class REST::CredentialAccountSerializer < REST::AccountSerializer
       hide_collections: object.hide_collections,
       discoverable: object.discoverable,
       indexable: object.indexable,
+      attribution_domains: object.attribution_domains,
+      quote_policy: user.setting_default_quote_policy,
     }
   end
 

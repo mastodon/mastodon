@@ -79,7 +79,14 @@ module Mastodon::CLI
 
       account  = Account.new(username: username)
       password = SecureRandom.hex
-      user     = User.new(email: options[:email], password: password, agreement: true, role_id: role_id, confirmed_at: options[:confirmed] ? Time.now.utc : nil, bypass_invite_request_check: true)
+      user = User.new(
+        email: options[:email],
+        password: password,
+        agreement: true,
+        role_id: role_id,
+        confirmed_at: options[:confirmed] ? Time.now.utc : nil,
+        bypass_registration_checks: true
+      )
 
       if options[:reattach]
         account = Account.find_local(username) || Account.new(username: username)
@@ -158,13 +165,16 @@ module Mastodon::CLI
         user.role_id = nil
       end
 
-      password = SecureRandom.hex if options[:reset_password]
-      user.password = password if options[:reset_password]
       user.email = options[:email] if options[:email]
       user.disabled = false if options[:enable]
       user.disabled = true if options[:disable]
       user.approved = true if options[:approve]
-      user.otp_required_for_login = false if options[:disable_2fa]
+      user.disable_two_factor! if options[:disable_2fa]
+
+      # Password changes are a little different, as we also need to ensure
+      # sessions, subscriptions, and access tokens are revoked after changing:
+      password = SecureRandom.hex if options[:reset_password]
+      user.change_password!(password) if options[:reset_password]
 
       if user.save
         user.confirm if options[:confirm]

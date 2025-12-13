@@ -33,15 +33,11 @@ RSpec.describe PollExpirationNotifyWorker do
       end
 
       context 'when poll is local' do
-        it 'notifies voters' do
+        it 'notifies voters, owner, and local voters' do
           expect(ActivityPub::DistributePollUpdateWorker).to have_enqueued_sidekiq_job(poll.status.id)
-        end
 
-        it 'notifies owner' do
           expect(LocalNotificationWorker).to have_enqueued_sidekiq_job(poll.account.id, poll.id, 'Poll', 'poll')
-        end
 
-        it 'notifies local voters' do
           expect(LocalNotificationWorker).to have_enqueued_sidekiq_job(poll_vote.account.id, poll.id, 'Poll', 'poll')
         end
       end
@@ -49,15 +45,11 @@ RSpec.describe PollExpirationNotifyWorker do
       context 'when poll is remote' do
         let(:remote?) { true }
 
-        it 'does not notify remote voters' do
+        it 'does not notify remote voters or owner, does notify local voters' do
           expect(ActivityPub::DistributePollUpdateWorker).to_not have_enqueued_sidekiq_job(poll.status.id)
-        end
 
-        it 'does not notify owner' do
           expect(LocalNotificationWorker).to_not have_enqueued_sidekiq_job(poll.account.id, poll.id, 'Poll', 'poll')
-        end
 
-        it 'notifies local voters' do
           expect(LocalNotificationWorker).to have_enqueued_sidekiq_job(poll_vote.account.id, poll.id, 'Poll', 'poll')
         end
       end

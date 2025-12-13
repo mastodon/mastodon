@@ -7,6 +7,7 @@ class FollowerAccountsController < ApplicationController
   vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
 
   before_action :require_account_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
+  before_action :protect_hidden_collections, if: -> { request.format.json? }
 
   skip_around_action :set_locale, if: -> { request.format == :json }
   skip_before_action :require_functional!, unless: :limited_federation_mode?
@@ -18,8 +19,6 @@ class FollowerAccountsController < ApplicationController
       end
 
       format.json do
-        raise Mastodon::NotPermittedError if page_requested? && @account.hide_collections?
-
         expires_in(page_requested? ? 0 : 3.minutes, public: public_fetch_mode?)
 
         render json: collection_presenter,
@@ -41,12 +40,16 @@ class FollowerAccountsController < ApplicationController
     @follows = scope.recent.page(params[:page]).per(FOLLOW_PER_PAGE).preload(:account)
   end
 
+  def protect_hidden_collections
+    raise Mastodon::NotPermittedError if page_requested? && @account.hide_collections?
+  end
+
   def page_requested?
     params[:page].present?
   end
 
   def page_url(page)
-    account_followers_url(@account, page: page) unless page.nil?
+    ActivityPub::TagManager.instance.followers_uri_for(@account, page: page) unless page.nil?
   end
 
   def next_page_url
@@ -60,17 +63,17 @@ class FollowerAccountsController < ApplicationController
   def collection_presenter
     if page_requested?
       ActivityPub::CollectionPresenter.new(
-        id: account_followers_url(@account, page: params.fetch(:page, 1)),
+        id: page_url(params.fetch(:page, 1)),
         type: :ordered,
         size: @account.followers_count,
         items: follows.map { |follow| ActivityPub::TagManager.instance.uri_for(follow.account) },
-        part_of: account_followers_url(@account),
+        part_of: ActivityPub::TagManager.instance.followers_uri_for(@account),
         next: next_page_url,
         prev: prev_page_url
       )
     else
       ActivityPub::CollectionPresenter.new(
-        id: account_followers_url(@account),
+        id: ActivityPub::TagManager.instance.followers_uri_for(@account),
         type: :ordered,
         size: @account.followers_count,
         first: page_url(1)

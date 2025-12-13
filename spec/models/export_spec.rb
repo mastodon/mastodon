@@ -14,15 +14,20 @@ RSpec.describe Export do
   end
 
   describe '#to_bookmarks_csv' do
-    before { Fabricate.times(2, :bookmark, account: account) }
-
+    let!(:bookmark) { Fabricate(:bookmark, account: account) }
     let(:export) { CSV.parse(subject.to_bookmarks_csv) }
+    let!(:second_bookmark) { Fabricate(:bookmark, account: account) }
+    let!(:bookmark_of_soft_deleted) { Fabricate(:bookmark, account: account) }
+
+    before do
+      bookmark_of_soft_deleted.status.discard
+    end
 
     it 'returns a csv of bookmarks' do
       expect(export)
         .to contain_exactly(
-          include(/statuses/),
-          include(/statuses/)
+          [ActivityPub::TagManager.instance.uri_for(bookmark.status)],
+          [ActivityPub::TagManager.instance.uri_for(second_bookmark.status)]
         )
     end
   end

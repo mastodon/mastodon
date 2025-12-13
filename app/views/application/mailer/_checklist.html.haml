@@ -29,8 +29,8 @@
                     %div
                       - if defined?(show_apps_buttons) && show_apps_buttons
                         .email-welcome-apps-btns
-                          = link_to image_tag(frontend_asset_url('images/mailer-new/store-icons/btn-app-store.png'), alt: t('user_mailer.welcome.apps_ios_action'), width: 120, height: 40), 'https://apps.apple.com/app/mastodon-for-iphone-and-ipad/id1571998974'
-                          = link_to image_tag(frontend_asset_url('images/mailer-new/store-icons/btn-google-play.png'), alt: t('user_mailer.welcome.apps_android_action'), width: 120, height: 40), 'https://play.google.com/store/apps/details?id=org.joinmastodon.android'
+                          = link_to image_tag(frontend_asset_url('images/mailer-new/store-icons/btn-app-store.png'), alt: t('user_mailer.welcome.apps_ios_action'), width: 120, height: 40), app_store_url_ios
+                          = link_to image_tag(frontend_asset_url('images/mailer-new/store-icons/btn-google-play.png'), alt: t('user_mailer.welcome.apps_android_action'), width: 120, height: 40), app_store_url_android
                       - elsif defined?(button_text) && defined?(button_url) && defined?(checked) && !checked
                         = render 'application/mailer/button', text: button_text, url: button_url, has_arrow: false
                     /[if mso]

@@ -3,9 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Preferences' do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication'
 
   describe 'GET /api/v1/preferences' do
     context 'when not authorized' do

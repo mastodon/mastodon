@@ -142,7 +142,7 @@ pt-BR:
         only_password: Apenas senha
         password_and_2fa: Senha e autenticação de dois fatores
       sensitive: Sensíveis
-      sensitized: marcadas como sensíveis
+      sensitized: Marcadas como sensíveis
       shared_inbox_url: Link da caixa de entrada compartilhada
       show:
         created_reports: Denúncias criadas
@@ -190,6 +190,7 @@ pt-BR:
         create_relay: Criar Retransmissão
         create_unavailable_domain: Criar domínio indisponível
         create_user_role: Criar cargo
+        create_username_block: Criar regra de usuário
         demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
         destroy_canonical_email_block: Deletar bloqueio de Email
@@ -203,6 +204,7 @@ pt-BR:
         destroy_status: Excluir publicação
         destroy_unavailable_domain: Excluir domínio indisponível
         destroy_user_role: Destruir cargo
+        destroy_username_block: Excluir regra de usuário
         disable_2fa_user: Desativar autenticação de dois fatores
         disable_custom_emoji: Desativar emoji personalizado
         disable_relay: Desativar Retransmissão
@@ -214,6 +216,7 @@ pt-BR:
         enable_user: Ativar usuário
         memorialize_account: Converter conta em memorial
         promote_user: Promover usuário
+        publish_terms_of_service: Publicar termos de serviço
         reject_appeal: Rejeitar revisão
         reject_user: Rejeitar usuário
         remove_avatar_user: Remover imagem de perfil
@@ -236,6 +239,7 @@ pt-BR:
         update_report: Atualizar Relatório
         update_status: Editar Status
         update_user_role: Atualizar cargo
+        update_username_block: Atualizar regra de usuário
       actions:
         approve_appeal_html: "%{name} aprovou a revisão da decisão da moderação em %{target}"
         approve_user_html: "%{name} aprovado inscrição de %{target}"
@@ -254,6 +258,7 @@ pt-BR:
         create_relay_html: "%{name} criou uma retransmissão %{target}"
         create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
         create_user_role_html: "%{name} criou o cargo %{target}"
+        create_username_block_html: Regra %{name} adicionada para nomes de usuário contendo %{target}
         demote_user_html: "%{name} rebaixou o usuário %{target}"
         destroy_announcement_html: "%{name} excluiu o anúncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o endereço e-mail com o hash %{target}"
@@ -267,6 +272,7 @@ pt-BR:
         destroy_status_html: "%{name} removeu a publicação de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
         destroy_user_role_html: "%{name} excluiu o cargo %{target}"
+        destroy_username_block_html: Regra %{name} removida por usuário contendo %{target}
         disable_2fa_user_html: "%{name} desativou a exigência da autenticação de dois fatores para o usuário %{target}"
         disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
         disable_relay_html: "%{name} desativou uma retransmissão %{target}"
@@ -278,6 +284,7 @@ pt-BR:
         enable_user_html: "%{name} ativou o login para %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
         promote_user_html: "%{name} promoveu o usuário %{target}"
+        publish_terms_of_service_html: "%{name} publicou atualizações aos termos de serviço"
         reject_appeal_html: "%{name} rejeitou a revisão da decisão da moderação em %{target}"
         reject_user_html: "%{name} rejeitou a inscrição de %{target}"
         remove_avatar_user_html: "%{name} removeu a imagem de perfil de %{target}"
@@ -300,6 +307,7 @@ pt-BR:
         update_report_html: "%{name} atualizou o relatório %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
         update_user_role_html: "%{name} alterou o cargo %{target}"
+        update_username_block_html: Regra %{name} atualizada para nomes de usuários contendo %{target}
       deleted_account: conta excluída
       empty: Nenhum registro encontrado.
       filter_by_action: Filtrar por ação
@@ -307,6 +315,7 @@ pt-BR:
       title: Auditar histórico
       unavailable_instance: "(nome de domínio indisponível)"
     announcements:
+      back: Voltar aos anúncios
       destroyed_msg: Anúncio excluído!
       edit:
         title: Editar anúncio
@@ -315,6 +324,10 @@ pt-BR:
       new:
         create: Criar anúncio
         title: Novo anúncio
+      preview:
+        disclaimer: Como os usuários não podem optar por não participar deles, as notificações por e-mail devem estar limitadas a anúncios importantes, como a violação de dados pessoais ou notificações de fechamento do servidor.
+        explanation_html: 'Esse e-mail será enviado a <strong>%{display_count} usuários</strong>. O texto a seguir será incluído ao e-mail:'
+        title: Visualizar anúncio
       publish: Publicar
       published_msg: Anúncio publicado!
       scheduled_for: Agendado para %{time}
@@ -473,6 +486,36 @@ pt-BR:
       new:
         title: Importar bloqueio de domínios
       no_file: Nenhum arquivo selecionado
+    fasp:
+      debug:
+        callbacks:
+          created_at: Criado em
+          delete: Apagar
+          ip: Endereço de IP
+          request_body: Corpo da solicitação
+          title: Depurar Callbacks
+      providers:
+        active: Ativo
+        base_url: URL Base
+        callback: Callback
+        delete: Apagar
+        edit: Editar provedor
+        finish_registration: Finalizar o cadastro
+        name: Nome
+        providers: Provedores
+        public_key_fingerprint: Impressão digital de chave pública
+        registration_requested: Cadastro solicitado
+        registrations:
+          confirm: Confirmar
+          description: Você recebeu um registro de um FASP. Rejeite se você não tiver iniciado isso. Se você iniciou isso, compare cuidadosamente o nome e a impressão digital da chave antes de confirmar o registro.
+          reject: Rejeitar
+          title: Confirmar o registro FASP
+        save: Salvar
+        select_capabilities: Selecionar recursos
+        sign_in: Entrar
+        status: Estado
+        title: Provedores de serviços auxiliares do Fediverso
+      title: FASP
     follow_recommendations:
       description_html: "<strong>A recomendação de contas ajuda os novos usuários a encontrar rapidamente conteúdo interessante</strong>. Quando um usuário ainda não tiver interagido o suficiente para gerar recomendações de contas, essas contas serão recomendadas. Essas recomendações são recalculadas diariamente a partir de uma lista de contas com alto engajamento e maior número de seguidores locais em uma dada língua."
       language: Na língua
@@ -541,6 +584,13 @@ pt-BR:
         all: Todos
         limited: Limitados
         title: Moderação
+      moderation_notes:
+        create: Adicionar Nota de Moderação
+        created_msg: Nota de moderação da instância criada com sucesso!
+        description_html: Visualize e deixe anotações para outros moderadores e seu próprio futuro
+        destroyed_msg: Nota de moderação da instância excluída com sucesso!
+        placeholder: Informações sobre esta instância, ações tomadas, ou qualquer outra coisa que ajudará você a moderar esta instância no futuro.
+        title: Notas de Moderação
       private_comment: Comentário privado
       public_comment: Comentário público
       purge: Limpar
@@ -746,20 +796,31 @@ pt-BR:
         view_dashboard_description: Permite que os usuários acessem o painel e várias métricas
         view_devops: DevOps
         view_devops_description: Permite aos usuários acessar os painéis da Sidekiq e pgHero
+        view_feeds: Veja transmissões ao vivo e por tópico
+        view_feeds_description: Permite que os usuários acessem os feeds ao vivo e por tópico, independentemente das configurações do servidor
       title: Funções
     rules:
       add_new: Adicionar regra
+      add_translation: Adicionar tradução
       delete: Deletar
       description_html: Embora a maioria afirme ter lido e concordado com os termos de serviço, geralmente as pessoas só leem depois de surgir um problema. <strong>Faça com que seja mais fácil ver as regras do seu servidor rapidamente fornecendo-as em uma lista.</strong> Tente manter cada regra curta e simples, mas também tente não dividi-las em muitos itens separados.
       edit: Editar regra
       empty: Nenhuma regra do servidor foi definida.
+      move_down: Mover pra baixo
+      move_up: Mover para cima
       title: Regras do servidor
+      translation: Tradução
+      translations: Traduções
+      translations_explanation: Você pode opcionalmente adicionar traduções para as regras. O valor padrão será mostrado se nenhuma versão traduzida estiver disponível. Por favor, sempre se certifique de que qualquer tradução fornecida está em sincronia com o valor padrão.
     settings:
       about:
         manage_rules: Gerenciar regras do servidor
         preamble: Forneça informações detalhadas sobre como o servidor é operado, moderado e financiado.
         rules_hint: Existe uma área dedicada para as regras que os usuários devem aderir.
         title: Sobre
+      allow_referrer_origin:
+        desc: Quando os usuários clicam em links para sites externos, seu navegador pode enviar o endereço do servidor Mastodon como referente. Desative isto se isso identificaria exclusivamente seus usuários, por exemplo, se este for um servidor Mastodon pessoal.
+        title: Permitir que sites externos vejam seu servidor Mastodon como fonte de tráfego
       appearance:
         preamble: Personalize a interface web do Mastodon.
         title: Aparência
@@ -778,10 +839,10 @@ pt-BR:
         title: Optar por excluir usuários da indexação de mecanismos de pesquisa por padrão
       discovery:
         follow_recommendations: Seguir recomendações
-        preamble: Navegar por um conteúdo interessante é fundamental para integrar novos usuários que podem não conhecer ninguém no Mastodon. Controle como várias características de descoberta funcionam no seu servidor.
+        preamble: A exibição de conteúdo interessante é fundamental para a integração de novos usuários que podem não conhecer ninguém no Mastodon. Controle o funcionamento de vários recursos de descoberta no seu servidor.
+        privacy: Privacidade
         profile_directory: Diretório de perfis
         public_timelines: Timelines públicas
-        publish_discovered_servers: Publicar servidores descobertos
         publish_statistics: Publicar estatísticas
         title: Descobrir
         trends: Tendências
@@ -789,6 +850,16 @@ pt-BR:
         all: Para todos
         disabled: Para ninguém
         users: Para usuários locais logados
+      feed_access:
+        modes:
+          authenticated: Apenas usuários autenticados
+          disabled: Exige função específica de usuário
+          public: Todos
+      landing_page:
+        values:
+          about: Sobre
+          local_feed: Feed local
+          trends: Em alta
       registrations:
         moderation_recommandation: Por favor, certifique-se de ter uma equipe de moderação adequada e reativa antes de abrir as inscrições para todos!
         preamble: Controle quem pode criar uma conta no seu servidor.
@@ -842,6 +913,7 @@ pt-BR:
       no_status_selected: Nenhuma publicação foi modificada porque nenhuma estava selecionada
       open: Publicação aberta
       original_status: Publicação original
+      quotes: Citações
       reblogs: Reblogs
       replied_to_html: Respondeu à %{acct_link}
       status_changed: Publicação alterada
@@ -849,6 +921,7 @@ pt-BR:
       title: Publicações da conta - @%{name}
       trending: Em alta
       view_publicly: Ver publicamente
+      view_quoted_post: Visualizar citação publicada
       visibility: Visibilidade
       with_media: Com mídia
     strikes:
@@ -866,6 +939,8 @@ pt-BR:
     system_checks:
       database_schema_check:
         message_html: Existem migrações de banco de dados pendentes. Execute-as para garantir que o aplicativo se comporte como esperado
+      elasticsearch_analysis_index_mismatch:
+        message_html: Os mapeamentos de índice do Elasticsearch estão desatualizados. Por favor, execute <code>tootctl search deploy --only-mapping --only=%{value}</code>
       elasticsearch_health_red:
         message_html: O agrupamento de Elasticsearch não é saudável (estado vermelho); os recursos de pesquisa não estão disponíveis
       elasticsearch_health_yellow:
@@ -925,6 +1000,36 @@ pt-BR:
       search: Buscar
       title: Hashtags
       updated_msg: Configurações de hashtag atualizadas
+    terms_of_service:
+      back: Voltar aos termos de serviço
+      changelog: O que há de novo
+      create: Usar o meu próprio
+      current: Atual
+      draft: Rascunho
+      generate: Usar modelo
+      generates:
+        action: Gerar
+        chance_to_review_html: "<strong>Os termos de serviço gerado não será publicado automaticamente.</strong>Você terá uma chance de revisar os resultados. Preencha os detalhes necessários para continuar"
+        explanation_html: O modelo de termos de serviço fornecido é apenas para fins informativos e não deve ser interpretado como aconselhamento jurídico sobre qualquer assunto. Consulte seu próprio advogado para esclarecer sua situação e dúvidas jurídicas específicas.
+        title: Configuração dos Termos de Serviço
+      going_live_on_html: Em vigor a partir de %{date}
+      history: Histórico
+      live: Em vigor
+      no_history: Ainda não há alterações registradas nos termos de serviço.
+      no_terms_of_service_html: Atualmente, você não tem nenhum termo de serviço configurado. Os termos de serviço servem para fornecer clareza e protegê-lo de possíveis responsabilidades em disputas com seus usuários.
+      notified_on_html: Usuários notificados em %{date}
+      notify_users: Notificar usuários
+      preview:
+        explanation_html: 'O e-mail será enviado para <strong>%{display_count} usuários</strong> que se inscreveram antes de %{date}. O seguinte texto será incluído no e-mail:'
+        send_preview: Enviar pŕevia para %{email}
+        send_to_all:
+          one: Enviar %{display_count} email
+          other: Enviar %{display_count} emails
+        title: Prévia da notificação dos termos de serviço
+      publish: Publicar
+      published_on_html: Publicado em %{date}
+      save_draft: Salvar rascunho
+      title: Termos de Serviço
     title: Administração
     trends:
       allow: Permitir
@@ -1000,6 +1105,25 @@ pt-BR:
           other: Usado por %{count} pessoas na última semana
       title: Recomendações e tendências
       trending: Em alta
+    username_blocks:
+      add_new: Adicionar novo
+      block_registrations: Bloquear inscrições
+      comparison:
+        contains: Conteúdo
+        equals: Igual
+      contains_html: Contém %{string}
+      created_msg: Regra de nome de usuário criada com sucesso
+      delete: Excluir
+      edit:
+        title: Editar nome de usuário
+      matches_exactly_html: "%{string} É igual"
+      new:
+        create: Criar regra
+        title: Criar regra de usuário
+      no_username_block_selected: Nenhuma regra de usuário foi trocada nenhuma foi selecionada
+      not_permitted: Não permitido
+      title: Regras de usuário
+      updated_msg: Regra de usuário atualizada com sucesso
     warning_presets:
       add_new: Adicionar novo
       delete: Excluir
@@ -1072,10 +1196,10 @@ pt-BR:
     hint_html: Se você quiser migrar de uma outra conta para esta, você pode criar um atalho aqui, o que é necessário antes que você possa migrar os seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada pela conta antiga</strong>.
     remove: Desvincular alias
   appearance:
-    advanced_web_interface: Interface avançada de colunas
-    advanced_web_interface_hint: 'Se você deseja usar toda a sua largura de tela, a interface avançada permite que você configure muitas colunas diferentes para ver tantas informações ao mesmo tempo quanto você deseja: Página inicial, notificações, linha local, linha global, qualquer número de listas e hashtags.'
+    advanced_settings: Configurações avançadas
     animations_and_accessibility: Animações e acessibilidade
-    confirmation_dialogs: Diálogos de confirmação
+    boosting_preferences: Adicionar preferências
+    boosting_preferences_info_html: "<strong>Dica:</strong> Independentemente das configurações, <kbd>Shift</kbd> + <kbd>Clique</kbd> no ícone %{icon} Boost irá impulsionar imediatamente."
     discovery: Descobrir
     localization:
       body: Mastodon é traduzido por voluntários.
@@ -1132,7 +1256,6 @@ pt-BR:
     migrate_account: Mudar-se para outra conta
     migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou entre com
-    privacy_policy_agreement_html: Eu li e concordo com a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
     progress:
       confirm: Confirmar e-mail
       details: Suas informações
@@ -1157,7 +1280,7 @@ pt-BR:
     set_new_password: Definir uma nova senha
     setup:
       email_below_hint_html: Verifique a sua pasta de spam, ou solicite outra. Você pode corrigir o seu endereço de e-mail se estiver errado.
-      email_settings_hint_html: Clique no link que te enviamos para verificar %{email}. Esperaremos aqui.
+      email_settings_hint_html: Clique no link que enviamos para %{email} para começar a usar o Mastodon. Estaremos esperando aqui.
       link_not_received: Não recebeu um link?
       new_confirmation_instructions_sent: Você receberá um novo e-mail com o link de confirmação em alguns minutos!
       title: Verifique sua caixa de entrada
@@ -1166,7 +1289,7 @@ pt-BR:
       title: Entrar em %{domain}
     sign_up:
       manual_review: Inscrições no %{domain} passam pela revisão manual dos nossos moderadores. Para nos ajudar a processar o seu cadastro, escreva um pouco sobre você e por que você quer uma conta no %{domain}.
-      preamble: Com uma conta neste servidor Mastodon, você poderá seguir qualquer outra pessoa na rede, independentemente de onde sua conta esteja hospedada.
+      preamble: Com uma conta neste servidor do Mastodon, você poderá seguir qualquer outra pessoa no fediverso, independentemente de onde a conta dela esteja hospedada.
       title: Então vamos lá criar uma conta em %{domain}.
     status:
       account_status: Status da conta
@@ -1178,6 +1301,8 @@ pt-BR:
       view_strikes: Veja os avisos anteriores em relação à sua conta
     too_fast: O formulário foi enviado muito rapidamente, tente novamente.
     use_security_key: Usar chave de segurança
+    user_agreement_html: Eu li e concordo com os <a href="%{terms_of_service_path}" target="_blank">termos de serviço</a> e <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>.
+    user_privacy_agreement_html: Eu li e concordo com a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>.
   author_attribution:
     example_title: Texto de amostra
     hint_html: Você está escrevendo notícias ou artigos de blogs fora do Mastodon? Controle como você é credenciado quando eles forem compartilhados no Mastodon.
@@ -1263,6 +1388,10 @@ pt-BR:
     basic_information: Informações básicas
     hint_html: "<strong>Personalize o que as pessoas veem no seu perfil público e ao lado de suas publicações.</strong> É mais provável que outras pessoas o sigam de volta e interajam com você quando você tiver um perfil preenchido e uma foto de perfil."
     other: Outro
+  emoji_styles:
+    auto: Automático
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': A solicitação enviada é inválida ou incorreta.
     '403': Você não tem permissão para ver esta página.
@@ -1389,7 +1518,34 @@ pt-BR:
       bookmarks_html:
         one: Você está prestes a <strong>substituir seus salvos</strong> por até <strong>%{count} publicação</strong> de <strong>%{filename}</strong>.
         other: Você está prestes a <strong>substituir seus salvos</strong> por até <strong>%{count} publicações</strong> de <strong>%{filename}</strong>.
+      domain_blocking_html:
+        one: Você está prestes a <strong>substituir seu bloco de lista do domínio</strong> com <strong>%{count} domínio</strong> de <strong>%{filename}</strong>.
+        other: Você está prestes a <strong>substituir sua lista de bloqueio de domínio</strong> com <strong>domínios%{count}</strong> de <strong>%{filename}</strong>.
+      following_html:
+        one: Você está prestes a <strong>seguir</strong> <strong>%{count} contas</strong> de <strong>%{filename}</strong> e <strong>parar de seguir todos os outros</strong>.
+        other: Você está prestes a <strong>seguir</strong> até <strong>%{count} contas</strong> de <strong>%{filename}</strong> e <strong>deixar de seguir qualquer outra pessoa</strong>.
+      lists_html:
+        one: Você está prestes a <strong>substituir suas listas</strong> pelo conteúdo de <strong>%{filename}</strong>. Até <strong>%{count} conta</strong> será adicionada às novas listas.
+        other: Você está prestes a <strong>substituir suas listas</strong> pelo conteúdo de <strong>%{filename}</strong>. Até <strong>%{count} contas</strong> serão adicionadas às novas listas.
+      muting_html:
+        one: Você está prestes a <strong>substituir sua lista de contas silenciadas</strong> por até <strong>%{count} conta</strong> de <strong>%{filename}</strong>.
+        other: Você está prestes a <strong>substituir sua lista de contas silenciadas</strong> por até <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
     preambles:
+      blocking_html:
+        one: Você está prestes a <strong>bloquear</strong> até <strong>%{count} conta</strong> de <strong>%{filename}</strong>.
+        other: Você está prestes a <strong>bloquear</strong> até <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
+      bookmarks_html:
+        one: Você está prestes a adicionar até <strong>%{count} post</strong> de <strong>%{filename}</strong> aos seus <strong>favoritos</strong>.
+        other: Você está prestes a adicionar até <strong>%{count} posts</strong> de <strong>%{filename}</strong> aos seus <strong>favoritos</strong>.
+      domain_blocking_html:
+        one: Você está prestes a <strong>bloquear</strong> até <strong>%{count} domínio</strong> de <strong>%{filename}</strong>.
+        other: Você está prestes a <strong>bloquear</strong> até <strong>%{count} domínios</strong> de <strong>%{filename}</strong>.
+      following_html:
+        one: Você está prestes a <strong>seguir</strong> até <strong>%{count} conta</strong> de <strong>%{filename}</strong>.
+        other: Você está prestes a <strong>seguir</strong> até <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
+      lists_html:
+        one: Você está prestes a adicionar até <strong>%{count} conta</strong> a partir de <strong>%{filename}</strong> para suas <strong>listas</strong>. Novas listas serão criadas se não houver uma para a qual adicionar.
+        other: Você está prestes a adicionar até <strong>%{count} contas</strong> a partir de <strong>%{filename}</strong> para suas <strong>listas</strong>. Novas listas serão criadas se não houver uma para a qual adicionar.
       muting_html:
         one: Você está prestes a <strong>silenciar</strong> <strong>%{count}  conta</strong> de <strong>%{filename}</strong>.
         other: Você está prestes a <strong>silenciar</strong> mais de <strong>%{count} contas</strong> de <strong>%{filename}</strong>.
@@ -1445,6 +1601,13 @@ pt-BR:
       expires_at: Expira em
       uses: Usos
     title: Convidar pessoas
+  link_preview:
+    author_html: Por %{name}
+    potentially_sensitive_content:
+      action: Clique para mostrar
+      confirm_visit: Tem certeza que deseja abrir esse link?
+      hide_button: Ocultar
+      label: Conteúdo potencialmente sensível
   lists:
     errors:
       limit: Você atingiu o número máximo de listas
@@ -1509,7 +1672,7 @@ pt-BR:
       disabled_account: Sua conta não estará totalmente funcional ao término deste processo. Entretanto, você terá acesso à exportação de dados bem como à reativação.
       followers: Esta ação moverá todos os seguidores da conta atual para a nova conta
       only_redirect_html: Alternativamente, você pode <a href="%{path}">apenas colocar um redirecionamento no seu perfil</a>.
-      other_data: Nenhum outro dado será movido automaticamente
+      other_data: Nenhum outro dado será movido automaticamente (isto inclui suas postagens e a lista de conta que segue)
       redirect: O perfil atual da sua conta será atualizado com um aviso de redirecionamento e também será excluído das pesquisas
   moderation:
     title: Moderação
@@ -1543,12 +1706,22 @@ pt-BR:
       body: "%{name} te mencionou em:"
       subject: "%{name} te mencionou"
       title: Nova menção
+    moderation_warning:
+      subject: Você recebeu um aviso de moderação
     poll:
       subject: Uma enquete por %{name} terminou
+    quote:
+      body: 'Sua publicação foi Citada por %{name}:'
+      subject: "%{name} citou sua publicação"
+      title: Nova citação
+    quoted_update:
+      subject: "%{name} editou uma publicação que você citou"
     reblog:
       body: "%{name} impulsionou a sua publicação:"
       subject: "%{name} impulsionou a sua publicação"
       title: Novo impulso
+    severed_relationships:
+      subject: Você perdeu conexões devido a uma decisão da moderação
     status:
       subject: "%{name} acabou de publicar"
     update:
@@ -1567,6 +1740,7 @@ pt-BR:
           quadrillion: QUA
           thousand: MIL
           trillion: TRI
+          unit: ''
   otp_authentication:
     code_hint: Digite o código gerado pelo seu aplicativo autenticador para confirmar
     description_html: Se você ativar a <strong>autenticação de dois fatores</strong> usando um aplicativo autenticador, ao se conectar será exigido que você esteja com o seu telefone, que gerará tokens para você entrar.
@@ -1593,6 +1767,9 @@ pt-BR:
       self_vote: Você não pode votar nas suas próprias enquetes
       too_few_options: deve ter mais que um item
       too_many_options: não pode ter mais que %{max} itens
+    vote: Votar
+  posting_defaults:
+    explanation: Estas configurações serão usadas como padrão quando você criar publicações, mas você pode editá-las por postagem no compositor.
   preferences:
     other: Outro
     posting_defaults: Padrões de publicação
@@ -1649,7 +1826,7 @@ pt-BR:
   scheduled_statuses:
     over_daily_limit: Você excedeu o limite de %{limit} publicações agendadas para esse dia
     over_total_limit: Você excedeu o limite de %{limit} publicações agendadas
-    too_soon: A data agendada precisa ser no futuro
+    too_soon: a data deve ser no futuro
   self_destruct:
     lead_html: Infelizmente, <strong>%{domain}</strong> está se encerrando de forma permanente. Se você tem uma conta lá, não poderá continuar a usá-la, mas ainda pode solicitar uma cópia dos seus dados.
     title: Este servidor está sendo fechado
@@ -1748,6 +1925,9 @@ pt-BR:
         other: "%{count} vídeos"
     boosted_from_html: Impulso de %{acct_link}
     content_warning: 'Aviso de conteúdo: %{warning}'
+    content_warnings:
+      hide: Ocultar publicação
+      show: Exibir mais
     default_language: Igual ao idioma da interface
     disallowed_hashtags:
       one: 'continha hashtag não permitida: %{tags}'
@@ -1755,21 +1935,31 @@ pt-BR:
     edited_at_html: Editado em %{date}
     errors:
       in_reply_not_found: A publicação que você quer responder parece não existir.
+      quoted_status_not_found: A publicação que você quer responder parece não existir.
+      quoted_user_not_mentioned: Não é possível citar um usuário não mencionado em uma postagem de Menção Privada.
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
       direct: Publicações visíveis apenas para usuários mencionados não podem ser fixadas
       limit: Você alcançou o número limite de publicações fixadas
       ownership: As publicações dos outros não podem ser fixadas
       reblog: Um impulso não pode ser fixado
+    quote_error:
+      not_available: Publicação indisponível
+      pending_approval: Publicação pendente
+      revoked: Publicação removida pelo autor
+    quote_policies:
+      followers: Apenas seguidores
+      nobody: Apenas eu
+      public: Qualquer um
+    quote_post_author: Publicação citada por %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Direto
+      direct: Citação privada
       private: Apenas seguidores
-      private_long: Exibir apenas para seguidores
       public: Público
-      public_long: Todos podem ver
-      unlisted: Não listado
-      unlisted_long: Todos podem ver, mas não é listado em linhas do tempo públicas
+      public_long: Qualquer um dentro ou fora do Mástodon
+      unlisted: Publicação silenciada
+      unlisted_long: Oculto aos resultados de pesquisa em Mástodon
   statuses_cleanup:
     enabled: Excluir publicações antigas automaticamente
     enabled_hint: Exclui suas publicações automaticamente assim que elas alcançam sua validade, a não ser que se enquadrem em alguma das exceções abaixo
@@ -1812,6 +2002,13 @@ pt-BR:
       too_late: É tarde demais para solicitar uma revisão desta punição
   tags:
     does_not_match_previous_name: não corresponde ao nome anterior
+  terms_of_service:
+    title: Termos de Serviço
+  terms_of_service_interstitial:
+    future_preamble_html: Estamos fazendo algumas alterações nos termos de serviço, que entrarão em vigor em <strong>%{date}</strong>. Nós recomendamos que você reveja os termos atualizados.
+    past_preamble_html: Alteramos nossos termos de serviço desde a sua última visita. Recomendamos que você revise os termos atualizados.
+    review_link: Revisar os termos do serviço
+    title: Os termos de serviço do %{domain} estão mudando
   themes:
     contrast: Mastodon  (Alto contraste)
     default: Mastodon (Noturno)
@@ -1843,6 +2040,10 @@ pt-BR:
     recovery_instructions_html: Se você perder acesso ao seu celular, você pode usar um dos códigos de recuperação abaixo para acessar a sua conta. <strong>Mantenha os códigos de recuperação em um local seguro</strong>. Por exemplo, você pode imprimi-los e guardá-los junto a outros documentos importantes.
     webauthn: Chaves de segurança
   user_mailer:
+    announcement_published:
+      description: 'Os administradores do %{domain} estão fazendo um anúncio:'
+      subject: Anúncio de serviço
+      title: Anúncio de serviço de %{domain}
     appeal_approved:
       action: Configurações da conta
       explanation: A revisão da punição na sua conta em %{strike_date} que você enviou em %{appeal_date} foi aprovada. Sua conta está novamente em situação regular.
@@ -1872,6 +2073,15 @@ pt-BR:
       further_actions_html: Se não foi você, recomendamos que você %{action} imediatamente e ative a autenticação de dois fatores para manter sua conta segura.
       subject: Sua conta foi acessada a partir de um novo endereço IP
       title: Um novo login
+    terms_of_service_changed:
+      agreement: Ao continuar a usar %{domain}, você concorda com estes termos. Se discordar dos termos atualizados, poderá encerrar seu acordo com %{domain} a qualquer momento excluindo sua conta.
+      changelog: 'Em resumo, veja o que essa atualização significa para você:'
+      description: 'Você recebeu este e-mail porque faremos algumas mudanças nos Termos de Serviço do %{domain}. Essas atualizações entrarão em vigor a partir de %{date}. Veja o que mudou aqui:'
+      description_html: Você recebeu este e-mail porque faremos algumas mudanças nos Termos de Serviço do %{domain}. Essas atualizações entrarão em vigor a partir de <strong>%{date}</strong>. <a href="%{path}" target="_blank">Veja o que mudou aqui</a>.
+      sign_off: A equipe do %{domain}
+      subject: Atualizações dos nossos termos de serviço
+      subtitle: Os termos de serviço do %{domain} estão mudando.
+      title: atualização importante
     warning:
       appeal: Enviar uma revisão
       appeal_description: Se você acredita que isso é um erro, você pode enviar uma revisão para a equipe de %{instance}.
@@ -1938,7 +2148,6 @@ pt-BR:
       post_action: Escrever
       post_step: Diga olá para o mundo com texto, fotos, vídeos ou enquetes.
       post_title: Crie sua primeira publicação
-      share_action: Compartilhar
       share_step: Deixe seus amigos saberem como te encontrar no Mastodon.
       share_title: Compartilhe seu perfil do Mastodon
       sign_in_action: Entrar
@@ -1977,3 +2186,5 @@ pt-BR:
     not_supported: Este navegador não tem suporte a chaves de segurança
     otp_required: Para usar chaves de segurança, ative a autenticação de dois fatores.
     registered_on: Registrado em %{date}
+  wrapstodon:
+    title: Wrapstodon de %{year} para %{name}

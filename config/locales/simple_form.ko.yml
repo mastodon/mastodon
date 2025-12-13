@@ -3,7 +3,7 @@ ko:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: 한 줄에 하나씩. 가짜 기여로부터 보호합니다.
+        attribution_domains: 한 줄에 하나씩. 가짜 기여로부터 보호합니다.
         discoverable: 내 공개 게시물과 프로필이 마스토돈의 다양한 추천 기능에 나타날 수 있고 프로필이 다른 사용자에게 제안될 수 있습니다
         display_name: 진짜 이름 또는 재미난 이름.
         fields: 홈페이지, 호칭, 나이, 뭐든지 적고 싶은 것들.
@@ -56,10 +56,16 @@ ko:
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
         setting_aggregate_reblogs: 최근에 부스트 됐던 게시물은 새로 부스트 되어도 보여주지 않기 (새로 받은 부스트에만 적용됩니다)
         setting_always_send_emails: 기본적으로 마스토돈을 활동적으로 사용하고 있을 때에는 이메일 알림이 보내지지 않습니다
+        setting_boost_modal: 활성화하면 부스트하기 전에 부스트의 공개설정을 바꿀 수 있는 확인창이 먼저 뜨게 됩니다.
+        setting_default_quote_policy_private: 마스토돈에서 작성된 팔로워 전용 게시물은 다른 사용자가 인용할 수 없습니다.
+        setting_default_quote_policy_unlisted: 사람들에게 인용된 경우, 인용한 게시물도 유행 타임라인에서 감추게 됩니다.
         setting_default_sensitive: 민감한 미디어는 기본적으로 가려져 있으며 클릭해서 볼 수 있습니다
         setting_display_media_default: 민감함으로 표시된 미디어 가리기
         setting_display_media_hide_all: 모든 미디어를 가리기
         setting_display_media_show_all: 모든 미디어를 보이기
+        setting_emoji_style: 에모지 표현 방식. "자동"은 시스템 기본 에모지를 적용하고 그렇지 못하는 오래된 브라우저의 경우 트웨모지를 사용합니다.
+        setting_quick_boosting_html: 활성화하면 %{boost_icon}부스트 아이콘을 클릭했을 때 부스트/인용 드롭다운 메뉴가 뜨지 않고 바로 부스트하게 됩니다. 인용은 %{options_icon} (옵션) 메뉴 안으로 이동합니다.
+        setting_system_scrollbars_ui: 사파리와 크롬 기반의 데스크탑 브라우저만 적용됩니다
         setting_use_blurhash: 그라디언트는 숨겨진 내용의 색상을 기반으로 하지만 상세 내용은 보이지 않게 합니다
         setting_use_pending_items: 타임라인의 새 게시물을 자동으로 보여 주는 대신, 클릭해서 나타내도록 합니다
         username: 문자, 숫자, 밑줄을 사용할 수 있습니다
@@ -74,19 +80,20 @@ ko:
       filters:
         action: 게시물이 필터에 걸러질 때 어떤 동작을 수행할 지 고르세요
         actions:
+          blur: 텍스트는 숨기지 않고 그대로 둔 채 경고 뒤에 미디어를 숨김니다
           hide: 필터에 걸러진 글을 처음부터 없었던 것처럼 완전히 가리기
           warn: 필터 제목을 언급하는 경고 뒤에 걸러진 내용을 숨기기
       form_admin_settings:
         activity_api_enabled: 주별 로컬에 게시된 글, 활성 사용자 및 새로운 가입자 수
         app_icon: WEBP, PNG, GIF 또는 JPG. 모바일 기기에 쓰이는 기본 아이콘을 대체합니다.
         backups_retention_period: 사용자들은 나중에 다운로드하기 위해 게시물 아카이브를 생성할 수 있습니다. 양수로 설정된 경우 이 아카이브들은 지정된 일수가 지난 후에 저장소에서 자동으로 삭제될 것입니다.
-        bootstrap_timeline_accounts: 이 계정들은 팔로우 추천 목록 상단에 고정됩니다.
         closed_registrations_message: 새 가입을 차단했을 때 표시됩니다
-        content_cache_retention_period: 다른 서버의 모든 게시물(부스트 및 답글 포함)은 해당 게시물에 대한 로컬 사용자의 상호 작용과 관계없이 지정된 일수가 지나면 삭제됩니다. 여기에는 로컬 사용자가 북마크 또는 즐겨찾기로 표시한 게시물도 포함됩니다. 다른 인스턴스 사용자와 주고 받은 비공개 멘션도 손실되며 복원할 수 없습니다. 이 설정은 특수 목적의 인스턴스를 위한 것이며 일반적인 용도의 많은 사용자의 예상이 빗나가게 됩니다.
+        content_cache_retention_period: "(부스트 및 답글 포함) 다른 서버의 모든 게시물은 해당 게시물에 대한 로컬 사용자의 상호 작용과 관계없이 지정된 일수가 지나면 삭제됩니다. 여기에는 로컬 사용자가 북마크 또는 즐겨찾기로 표시한 게시물도 포함됩니다. 다른 인스턴스 사용자와 주고 받은 개인 멘션도 손실되며 복원할 수 없습니다. 이 설정은 특수 목적의 인스턴스를 위한 것이며 일반적인 용도의 많은 사용자의 예상이 빗나가게 됩니다."
         custom_css: 사용자 지정 스타일을 웹 버전의 마스토돈에 지정할 수 있습니다.
         favicon: WEBP, PNG, GIF 또는 JPG. 기본 파비콘을 대체합니다.
         mascot: 고급 웹 인터페이스의 그림을 대체합니다.
         media_cache_retention_period: 원격 사용자가 작성한 글의 미디어 파일은 이 서버에 캐시됩니다. 양수로 설정하면 지정된 일수 후에 미디어가 삭제됩니다. 삭제된 후에 미디어 데이터를 요청하면 원본 콘텐츠를 사용할 수 있는 경우 다시 다운로드됩니다. 링크 미리 보기 카드가 타사 사이트를 폴링하는 빈도에 제한이 있으므로 이 값을 최소 14일로 설정하는 것이 좋으며, 그렇지 않으면 그 이전에는 링크 미리 보기 카드가 제때 업데이트되지 않을 것입니다.
+        min_age: 사용자들은 가입할 때 생일을 확인받게 됩니다
         peers_api_enabled: 이 서버가 연합우주에서 만났던 서버들에 대한 도메인 네임의 목록입니다. 해당 서버와 어떤 연합을 했는지에 대한 정보는 전혀 포함되지 않고, 단순히 그 서버를 알고 있는지에 대한 것입니다. 이것은 일반적으로 연합에 대한 통계를 수집할 때 사용됩니다.
         profile_directory: 프로필 책자는 발견되기를 희망하는 모든 사람들의 목록을 나열합니다.
         require_invite_text: 가입이 수동 승인을 필요로 할 때, "왜 가입하려고 하나요?" 항목을 선택사항으로 두는 것보다는 필수로 두는 것이 낫습니다
@@ -99,10 +106,8 @@ ko:
         status_page_url: 이 서버가 중단된 동안 사람들이 서버의 상태를 볼 수 있는 페이지 URL
         theme: 로그인 하지 않은 사용자나 새로운 사용자가 보게 될 테마.
         thumbnail: 대략 2:1 비율의 이미지가 서버 정보 옆에 표시됩니다.
-        timeline_preview: 로그아웃 한 사용자들이 이 서버에 있는 최신 공개글들을 볼 수 있게 합니다.
         trendable_by_default: 유행하는 콘텐츠에 대한 수동 승인을 건너뜁니다. 이 설정이 적용된 이후에도 각각의 항목들을 삭제할 수 있습니다.
         trends: 트렌드는 어떤 게시물, 해시태그 그리고 뉴스 기사가 이 서버에서 인기를 끌고 있는지 보여줍니다.
-        trends_as_landing_page: 로그아웃한 사용자와 방문자에게 서버 설명 대신 유행하는 내용을 보여줍니다. 유행 기능을 활성화해야 합니다.
       form_challenge:
         current_password: 당신은 보안 구역에 진입하고 있습니다
       imports:
@@ -129,8 +134,24 @@ ko:
         show_application: 나 자신은 이 설정과 관계 없이 어떤 앱으로 게시물을 작성했는지 볼 수 있습니다.
       tag:
         name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
+      terms_of_service:
+        changelog: 마크다운 문법을 사용할 수 있습니다.
+        effective_date: 사용자에게 통지한 날로부터 10일에서 30일 사이가 합리적인 기간입니다.
+        text: 마크다운 문법을 사용할 수 있습니다.
+      terms_of_service_generator:
+        admin_email: 법적 고지에는 이의 제기, 법원 명령, 게시 중단 요청, 법 집행 요청이 포함됩니다.
+        arbitration_address: 위의 실제 주소와 같을 수 있으며, 이메일을 사용한다면 "N/A"로 두세요.
+        arbitration_website: 웹 형태를 사용할 수 있습니다. 이메일을 사용한다면 "N/A"로 둘 수 있습니다.
+        choice_of_law: 모든 청구에 대해 법령이 적용되는 시, 지역, 영토 또는 주.
+        dmca_address: 미국 운영자의 경우 DMCA 지정 대리인 디렉토리에 등록된 주소를 사용하세요. 사서함 목록은 직접 요청 시에 제공되며, DMCA 지정 대리인 사서함 면제 요청을 사용하여 저작권 사무소에 이메일을 보내 자신의 행동에 대한 복수나 보복이 두려워 사서함을 사용하여 집 주소를 공개하지 않아야 하는 재택 콘텐츠 중재자임을 설명하세요.
+        dmca_email: 상단의 "법적 통지를 위한 이메일 주소"와 같은 주소를 사용할 수 있습니다.
+        domain: 귀하가 제공하는 온라인 서비스의 고유 식별정보입니다.
+        jurisdiction: 요금을 지불하는 사람이 거주하는 국가를 기재하세요. 회사나 기타 법인인 경우 해당 법인이 설립된 국가와 도시, 지역, 영토 또는 주를 적절히 기재하세요.
+        min_age: 관할지역의 법률에서 요구하는 최저 연령보다 작으면 안 됩니다.
       user:
         chosen_languages: 체크하면, 선택 된 언어로 작성된 게시물들만 공개 타임라인에 보여집니다
+        date_of_birth:
+          other: "%{domain}을 이용하려면 %{count}세 이상임을 확인해야 합니다. 이 정보는 저장되지 않습니다."
         role: 역할은 사용자가 어떤 권한을 가지게 될 지 결정합니다.
       user_role:
         color: 색상은 사용자 인터페이스에서 역할을 나타내기 위해 사용되며, RGB 16진수 형식입니다
@@ -138,13 +159,16 @@ ko:
         name: 역할이 배지로 표시될 경우, 그 역할에 대한 공개적인 이름입니다
         permissions_as_keys: 이 역할을 가진 사용자는 다음에 접근할 수 있게 됩니다...
         position: 특정 상황에서 충돌이 발생할 경우 더 높은 역할이 충돌을 해결합니다. 특정 작업은 우선순위가 낮은 역할에 대해서만 수행될 수 있습니다
+      username_block:
+        allow_with_approval: 바로 가입을 막는 대신, 일치하는 가입에 승인을 요구합니다
+        username: 대소문자와 관계 없고 "4"를 "a"로, "3"을 "e"로 사용하는 등의 보편적으로 사용되는 비슷한 문자까지 매치됩니다
       webhook:
         events: 전송할 이벤트를 선택하세요
-        template: 원하는 JSON 페이로드를 변수와 함께 작성하거나, 그냥 냅둬서 기본 JSON을 사용할 수 있습니다.
+        template: 원하는 JSON 페이로드를 변수와 함께 작성하거나, 그대로 두어 기본 JSON을 사용할 수 있습니다.
         url: 이벤트가 어디로 전송될 지
     labels:
       account:
-        attribution_domains_as_text: 나를 기여자로 올릴 수 있도록 허용된 웹사이트들
+        attribution_domains: 나를 기여자로 올릴 수 있도록 허용된 웹사이트들
         discoverable: 발견하기 알고리즘에 프로필과 게시물을 추천하기
         fields:
           name: 라벨
@@ -208,21 +232,26 @@ ko:
         setting_aggregate_reblogs: 타임라인의 부스트를 그룹화
         setting_always_send_emails: 항상 이메일 알림 보내기
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
-        setting_boost_modal: 부스트 전 확인 창을 표시
+        setting_boost_modal: 부스트 공개범위 제어
         setting_default_language: 게시물 언어
-        setting_default_privacy: 게시물 프라이버시
+        setting_default_privacy: 게시물 공개 범위
+        setting_default_quote_policy: 인용할 수 있는 사람
         setting_default_sensitive: 미디어를 언제나 민감한 콘텐츠로 설정
-        setting_delete_modal: 게시물 삭제 전 확인 창을 표시
+        setting_delete_modal: 게시물을 삭제하기 전 경고하기
         setting_disable_hover_cards: 호버시 프로필 미리보기를 비활성화
         setting_disable_swiping: 스와이프 모션 비활성화
         setting_display_media: 미디어 표시
         setting_display_media_default: 기본
         setting_display_media_hide_all: 모두 가리기
         setting_display_media_show_all: 모두 보이기
+        setting_emoji_style: 에모지 스타일
         setting_expand_spoilers: 내용 경고로 표시된 게시물을 항상 펼치기
         setting_hide_network: 내 인맥 숨기기
+        setting_missing_alt_text_modal: 대체텍스트가 없는 미디어를 포함하여 게시하기 전 경고
+        setting_quick_boosting: 빠른 부스트 활성화
         setting_reduce_motion: 애니메이션 줄이기
         setting_system_font_ui: 시스템의 기본 글꼴을 사용
+        setting_system_scrollbars_ui: 시스템 기본 스크롤바 사용
         setting_theme: 사이트 테마
         setting_trends: 오늘의 유행 보이기
         setting_unfollow_modal: 누군가를 언팔로우 할 때 확인란 표시하기
@@ -241,6 +270,7 @@ ko:
         name: 해시태그
       filters:
         actions:
+          blur: 경고와 함께 미디어 숨기기
           hide: 완전히 숨기기
           warn: 경고와 함께 숨기기
       form_admin_settings:
@@ -252,11 +282,17 @@ ko:
         content_cache_retention_period: 리모트 콘텐츠 보유 기간
         custom_css: 사용자 정의 CSS
         favicon: 파비콘
+        landing_page: 새 방문자를 위한 랜딩 페이지
+        local_live_feed_access: 로컬 게시물에 대한 실시간 피드 접근
+        local_topic_feed_access: 로컬 게시물에 대한 해시태그와 링크 피드 접근
         mascot: 사용자 정의 마스코트 (legacy)
         media_cache_retention_period: 미디어 캐시 유지 기한
+        min_age: 최소 연령 제한
         peers_api_enabled: API에 발견 된 서버들의 목록 발행
         profile_directory: 프로필 책자 활성화
         registrations_mode: 누가 가입할 수 있는지
+        remote_live_feed_access: 리모트 게시물에 대한 실시간 피드 접근
+        remote_topic_feed_access: 리모트 게시물에 대한 해시태그와 링크 피드 접근
         require_invite_text: 가입 하는 이유를 필수로 입력하게 하기
         show_domain_blocks: 도메인 차단 보여주기
         show_domain_blocks_rationale: 왜 도메인이 차단되었는지 보여주기
@@ -269,10 +305,8 @@ ko:
         status_page_url: 상태 페이지 URL
         theme: 기본 테마
         thumbnail: 서버 썸네일
-        timeline_preview: 로그인 하지 않고 공개 타임라인에 접근하는 것을 허용
         trendable_by_default: 사전 리뷰 없이 트렌드에 오르는 것을 허용
         trends: 유행 활성화
-        trends_as_landing_page: 유행을 방문 페이지로 쓰기
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
@@ -297,6 +331,7 @@ ko:
         follow_request: 누군가 나를 팔로우 하길 요청할 때
         mention: 누군가 나를 언급했을 때
         pending_account: 새 계정이 심사가 필요할 때
+        quote: 누군가 나를 인용했을 때
         reblog: 누군가 내 게시물을 부스트 했을 때
         report: 새 신고가 접수되었을 때
         software_updates:
@@ -317,7 +352,24 @@ ko:
         name: 해시태그
         trendable: 이 해시태그가 유행에 나타날 수 있도록 허용
         usable: 이 해시태그를 로컬 게시물에서 사용 가능하도록 허용
+      terms_of_service:
+        changelog: 무엇이 바뀌었나요?
+        effective_date: 시행일
+        text: 이용 약관
+      terms_of_service_generator:
+        admin_email: 법적 조치를 위한 이메일 주소
+        arbitration_address: 중재 통지를 위한 실제 주소
+        arbitration_website: 중재 통지를 제출하기 위한 웹사이트
+        choice_of_law: 준거법 지정
+        dmca_address: DMCA/저작권 통지를 위한 실제 주소
+        dmca_email: DMCA/저작권 통지를 위한 이메일 주소
+        domain: 도메인
+        jurisdiction: 법적 관할권
+        min_age: 최소 연령
       user:
+        date_of_birth_1i: 년
+        date_of_birth_2i: 월
+        date_of_birth_3i: 일
         role: 역할
         time_zone: 시간대
       user_role:
@@ -326,6 +378,10 @@ ko:
         name: 이름
         permissions_as_keys: 권한
         position: 우선순위
+      username_block:
+        allow_with_approval: 승인을 통한 가입 허용
+        comparison: 비교 방식
+        username: 일치할 단어
       webhook:
         events: 활성화된 이벤트
         template: 페이로드 템플릿

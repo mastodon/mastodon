@@ -12,6 +12,7 @@ on:
       - '**/*.rb'
       - '.github/workflows/test-migrations.yml'
       - 'lib/tasks/tests.rake'
+      - 'lib/tasks/db.rake'
 
   pull_request:
     paths:
@@ -63,7 +64,6 @@ jobs:
       DB_HOST: localhost
       DB_USER: postgres
       DB_PASS: postgres
-      DISABLE_SIMPLECOV: true
       RAILS_ENV: test
       BUNDLE_CLEAN: true
       BUNDLE_FROZEN: true
@@ -72,10 +72,22 @@ jobs:
       BUNDLE_RETRY: 3
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
+
+      - name: Ensure no errors with `db:prepare`
+        run: |
+          bin/rails db:drop
+          bin/rails db:prepare
+          bin/rails db:migrate
+
+      - name: Ensure no errors with `db:prepare` and SKIP_POST_DEPLOYMENT_MIGRATIONS
+        run: |
+          bin/rails db:drop
+          SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails db:prepare
+          bin/rails db:migrate
 
       - name: Test "one step migration" flow
         run: |
@@ -90,6 +102,11 @@ jobs:
           bin/rails db:drop
           bin/rails db:create
           SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails tests:migrations:prepare_database
+
+          # Migrate up to v4.2.0 breakpoint
+          bin/rails db:migrate VERSION=20230907150100
+
+          # Migrate the rest
           SKIP_POST_DEPLOYMENT_MIGRATIONS=true bin/rails db:migrate
           bin/rails db:migrate
           bin/rails tests:migrations:check_database

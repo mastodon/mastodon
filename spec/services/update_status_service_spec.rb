@@ -150,6 +150,14 @@ RSpec.describe UpdateStatusService do
         .to eq [bob.id]
       expect(status.mentions.pluck(:account_id))
         .to contain_exactly(alice.id, bob.id)
+
+      # Going back when a mention was switched to silence should still be possible
+      subject.call(status, status.account_id, text: 'Hello @alice')
+
+      expect(status.active_mentions.pluck(:account_id))
+        .to eq [alice.id]
+      expect(status.mentions.pluck(:account_id))
+        .to contain_exactly(alice.id, bob.id)
     end
   end
 

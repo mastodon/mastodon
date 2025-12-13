@@ -1,0 +1,30 @@
+/# locals: (preview_card:)
+
+.preview-card
+  .status-card.expanded
+    .status-card__image{ class: preview_card_aspect_ratio_classname(preview_card) }
+      .spoiler-button
+        %button.hide-button{ type: 'button' }= t('link_preview.potentially_sensitive_content.hide_button')
+        %button.spoiler-button__overlay{ type: 'button' }
+          %span.spoiler-button__overlay__label
+            %span= t('link_preview.potentially_sensitive_content.label')
+            %span.spoiler-button__overlay__action
+              %span= t('link_preview.potentially_sensitive_content.action')
+      %canvas.status-card__image-preview{ 'data-blurhash': preview_card.blurhash, width: 32, height: 32 }
+      = image_tag preview_card.image.url, alt: '', class: 'status-card__image-image'
+    = link_to preview_card.url, target: '_blank', rel: 'noopener', data: { confirm: t('link_preview.potentially_sensitive_content.confirm_visit') } do
+      .status-card__content{ dir: 'auto' }
+        %span.status-card__host
+          %span{ lang: preview_card.language }
+            = preview_card.provider_name
+          - if preview_card.published_at
+            ·
+            %time.relative-formatted{ datetime: preview_card.published_at.iso8601, title: l(preview_card.published_at) }= l(preview_card.published_at)
+        %strong.status-card__title{ title: preview_card.title, lang: preview_card.language }
+          = preview_card.title
+        - if preview_card.author_name.present?
+          %span.status-card__author
+            = t('link_preview.author_html', name: content_tag(:strong, preview_card.author_name))
+        - else
+          %span.status-card__description{ lang: preview_card.language }
+            = preview_card.description

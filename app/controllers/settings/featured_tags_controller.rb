@@ -12,7 +12,7 @@ class Settings::FeaturedTagsController < Settings::BaseController
   end
 
   def create
-    @featured_tag = CreateFeaturedTagService.new.call(current_account, featured_tag_params[:name], force: false)
+    @featured_tag = CreateFeaturedTagService.new.call(current_account, featured_tag_params[:name], raise_error: false)
 
     if @featured_tag.valid?
       redirect_to settings_featured_tags_path
@@ -44,6 +44,6 @@ class Settings::FeaturedTagsController < Settings::BaseController
   end
 
   def featured_tag_params
-    params.require(:featured_tag).permit(:name)
+    params.expect(featured_tag: [:name])
   end
 end

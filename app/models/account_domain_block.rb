@@ -5,10 +5,10 @@
 # Table name: account_domain_blocks
 #
 #  id         :bigint(8)        not null, primary key
-#  domain     :string
+#  domain     :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  account_id :bigint(8)
+#  account_id :bigint(8)        not null
 #
 
 class AccountDomainBlock < ApplicationRecord

@@ -3,12 +3,14 @@ cs:
   simple_form:
     hints:
       account:
+        attribution_domains: Jeden na řádek. Chrání před falešným připisováním autorství.
         discoverable: Vaše veřejné příspěvky a profil mohou být zobrazeny nebo doporučeny v různých oblastech Mastodonu a váš profil může být navrhován ostatním uživatelům.
         display_name: Vaše celé jméno nebo přezdívka.
         fields: Vaše domovská stránka, zájmena, věk, cokoliv chcete.
         indexable: Vaše veřejné příspěvky se mohou objevit ve výsledcích vyhledávání na Mastodonu. Lidé, kteří s vašimi příspěvky interagovaly, je mohou stále vyhledávat.
         note: 'Můžete @zmínit jiné osoby nebo #hashtagy.'
         show_collections: Lidé budou moci procházet skrz sledující. Lidé, které sledujete, uvidí, že je sledujete bezohledně.
+        unlocked: Lidé vás budou moci sledovat, aniž by vás žádali o schválení. Zrušte zaškrtnutí, pokud chcete kontrolovat požadavky o sledování a vybírat si, zda přijmete nebo odmítnete nové sledující.
       account_alias:
         acct: Zadejte svůj účet, ze kterého se chcete přesunout jinam, ve formátu přezdívka@doména
       account_migration:
@@ -52,12 +54,19 @@ cs:
         password: Použijte alespoň 8 znaků
         phrase: Shoda bude nalezena bez ohledu na velikost písmen v textu příspěvku či varování o obsahu
         scopes: Která API bude aplikace moct používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat jednotlivě.
+        setting_advanced_layout: Zobrazit Mastodon ve vícesloupovém rozvržení, umožňující zobrazení časoé osy, oznámení a třetího sloupce vašeho výběru. Není doporučeno pro menší obrazovky.
         setting_aggregate_reblogs: Nezobrazovat nové boosty pro příspěvky, které byly nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
         setting_always_send_emails: Jinak nebudou e-mailové notifikace posílány, když Mastodon aktivně používáte
+        setting_boost_modal: Pokud je povoleno, boostnutí nejprve otevře dialogové okno pro potvrzení, ve kterém můžete změnit viditelnost svého boostu.
+        setting_default_quote_policy_private: Příspěvky pouze pro sledující, které jsou vytvořeny na Mastodonu, nemohou být citovány ostatními.
+        setting_default_quote_policy_unlisted: Když vás lidé citují, jejich příspěvek bude v časové ose populárních příspěvků také skryt.
         setting_default_sensitive: Citlivá média jsou ve výchozím stavu skryta a mohou být zobrazena kliknutím
         setting_display_media_default: Skrývat média označená jako citlivá
         setting_display_media_hide_all: Vždy skrývat média
         setting_display_media_show_all: Vždy zobrazovat média
+        setting_emoji_style: Jak se budou zobrazovat emoji. "Auto" zkusí použít výchozí emoji, ale pro starší prohlížeče použije Twemoji.
+        setting_quick_boosting_html: Pokud je povoleno, kliknutím na %{boost_icon} Boost ikonu okamžitě boostnete místo otevření rozbalovací nabídky boost/citace. Přemístí citaci do nabídky %{options_icon} (Možnosti).
+        setting_system_scrollbars_ui: Platí pouze pro desktopové prohlížeče založené na Safari nebo Chrome
         setting_use_blurhash: Gradienty jsou vytvořeny na základě barvev skrytých médií, ale zakrývají veškeré detaily
         setting_use_pending_items: Aktualizovat časovou osu až po kliknutí namísto automatického rolování kanálu
         username: Pouze písmena, číslice a podtržítka
@@ -70,21 +79,24 @@ cs:
       featured_tag:
         name: 'Zde jsou některé z hashtagů, které jste nedávno použili:'
       filters:
-        action: Vyberte, jakou akci provést, když příspěvek odpovídá filtru
+        action: Vyberte, která akce má být provedena, když příspěvek odpovídá filtru
         actions:
+          blur: Skrýt média za varováním, bez skrytí samotného textu
           hide: Úplně schovat filtrovaný obsah tak, jako by neexistoval
           warn: Schovat filtrovaný obsah za varováním zmiňujicím název filtru
       form_admin_settings:
         activity_api_enabled: Počty lokálně zveřejnělých příspěvků, aktivních uživatelů a nových registrací v týdenních intervalech
         app_icon: WEBP, PNG, GIF nebo JPG. Nahradí výchozí ikonu aplikace v mobilních zařízeních vlastní ikonou.
         backups_retention_period: Uživatelé mají možnost vytvářet archivy svých příspěvků, které si mohou stáhnout později. Pokud je nastaveno na kladnou hodnotu, budou tyto archivy po zadaném počtu dní automaticky odstraněny z úložiště.
-        bootstrap_timeline_accounts: Tyto účty budou připnuty na vrchol nových uživatelů podle doporučení.
+        bootstrap_timeline_accounts: Tyto účty budou připnuty na vrcholu doporučení pro nové uživatele. Napište čárkou oddělený seznam účtů.
         closed_registrations_message: Zobrazeno při zavření registrace
         content_cache_retention_period: Všechny příspěvky z jiných serverů (včetně boostů a odpovědí) budou po uplynutí stanoveného počtu dní smazány bez ohledu na interakci místního uživatele s těmito příspěvky. To se týká i příspěvků, které místní uživatel přidal do záložek nebo oblíbených. Soukromé zmínky mezi uživateli z různých instancí budou rovněž ztraceny a nebude možné je obnovit. Použití tohoto nastavení je určeno pro instance pro speciální účely a při implementaci pro obecné použití porušuje mnohá očekávání uživatelů.
         custom_css: Můžete použít vlastní styly ve verzi Mastodonu.
         favicon: WEBP, PNG, GIF nebo JPG. Nahradí výchozí favicon Mastodonu vlastní ikonou.
+        landing_page: Vybere stránku, kterou návštěvníci uvidí, když prvně přijdou na tvůj server. Pokud zvolíte "Trendy", je třeba povolit trendy v nastavení objevování. Pokud zvolíte "Místní kanál", je třeba v nastavení Objevování nastavit "Přístup k živým kanálům s lokálními příspěvky" na "Všichni".
         mascot: Přepíše ilustraci v pokročilém webovém rozhraní.
         media_cache_retention_period: Mediální soubory z příspěvků vzdálených uživatelů se ukládají do mezipaměti na vašem serveru. Pokud je nastaveno na kladnou hodnotu, budou média po zadaném počtu dní odstraněna. Pokud jsou mediální data vyžádána po jejich odstranění, budou znovu stažena, pokud je zdrojový obsah stále k dispozici. Vzhledem k omezením týkajícím se četnosti dotazů karet náhledů odkazů na weby třetích stran se doporučuje nastavit tuto hodnotu alespoň na 14 dní, jinak nebudou karty náhledů odkazů na vyžádání aktualizovány dříve.
+        min_age: Uživatelé budou požádáni, aby při registraci potvrdili datum svého narození
         peers_api_enabled: Seznam názvů domén se kterými se tento server setkal ve fediversu. Neobsahuje žádná data o tom, zda jste federovali s daným serverem, pouze že o něm váš server ví. Toto je využíváno službami, které sbírají o federování statistiku v obecném smyslu.
         profile_directory: Adresář profilu obsahuje seznam všech uživatelů, kteří se přihlásili, aby mohli být nalezeni.
         require_invite_text: Pokud přihlášení vyžaduje ruční schválení, měl by být textový vstup „Proč se chcete připojit?“ povinný spíše než volitelný
@@ -97,10 +109,8 @@ cs:
         status_page_url: URL stránky, kde mohou lidé vidět stav tohoto serveru během výpadku
         theme: Vzhled stránky, který vidí noví a odhlášení uživatelé.
         thumbnail: Přibližně 2:1 obrázek zobrazený vedle informací o vašem serveru.
-        timeline_preview: Odhlášení uživatelé budou moci procházet nejnovější veřejné příspěvky na serveru.
         trendable_by_default: Přeskočit manuální kontrolu populárního obsahu. Jednotlivé položky mohou být odstraněny z trendů později.
         trends: Trendy zobrazují, které příspěvky, hashtagy a zprávy získávají na serveru pozornost.
-        trends_as_landing_page: Zobrazit populární obsah odhlášeným uživatelům a návštěvníkům místo popisu tohoto serveru. Vyžaduje povolení trendů.
       form_challenge:
         current_password: Vstupujete do zabezpečeného prostoru
       imports:
@@ -127,20 +137,45 @@ cs:
         show_application: I tak budete vždy moci vidět, která aplikace zveřejnila váš příspěvek.
       tag:
         name: Můžete měnit pouze velikost písmen, například kvůli lepší čitelnosti
+      terms_of_service:
+        changelog: Může být strukturováno pomocí Markdown syntaxu.
+        effective_date: Rozumné časové rozpětí může být kdykoliv od 10 do 30 dnů od doby, kdy upozorníte své uživatele.
+        text: Může být strukturováno pomocí Markdown syntaxu.
+      terms_of_service_generator:
+        admin_email: Právní oznámení zahrnují protioznámení, soudní příkazy, žádosti o stáhnutí příspěvků a žádosti od právních vymahačů.
+        arbitration_address: Může být stejné jako výše uvedená fyzická adresa, nebo „N/A“, pokud používáte e-mail.
+        arbitration_website: Může být webový formulář nebo „N/A“, pokud používáte email.
+        choice_of_law: Město, region, území nebo stát, jehož vnitřní hmotné právo stanovuje povinnosti pro veškeré nároky.
+        dmca_address: V případě provozovatelů v USA použijte adresu zapsanou v DMCA Designated Agent Directory. Na přímou žádost je možné použít namísto domovské adresy PO box. V tomto případě použijte DMCA Designated Agent Post Office Box Waiver Request k zaslání emailu Copyright Office a řekněte jim, že jste malým moderátorem obsahu, který se obavá pomsty nabo odplaty za Vaši práci a potřebujete použít PO box, abyste schovali Vaši domovskou adresu před širokou veřejností.
+        dmca_email: Může být stejný e-mail použitý pro „E-mailová adresa pro právní upozornění.“
+        domain: Jedinečná identifikace online služby, kterou poskytujete.
+        jurisdiction: Uveďte zemi, kde žije ten, kdo platí účty. Pokud je to společnost nebo jiný subjekt, uveďte zemi, v níž je zapsán do obchodního rejstříku, a město, region, území, případně stát, pokud je to povinné.
+        min_age: Neměla by být pod minimálním věkem požadovaným zákony vaší jurisdikce.
       user:
         chosen_languages: Po zaškrtnutí budou ve veřejných časových osách zobrazeny pouze příspěvky ve zvolených jazycích
+        date_of_birth:
+          few: Musíme se ujistit, že je Vám alespoň %{count}, abyste mohli používat %{domain}. Nebudeme to ukládat.
+          many: Musíme se ujistit, že je Vám alespoň %{count} let, abyste mohli používat %{domain}. Nebudeme to ukládat.
+          one: Musíme se ujistit, že je Vám alespoň %{count} rok, abyste mohli používat %{domain}. Nebudeme to ukládat.
+          other: Musíme se ujistit, že je Vám alespoň %{count}, abyste mohli používat %{domain}. Nebudeme to ukládat.
+        role: Role určuje, která oprávnění uživatel má.
       user_role:
         color: Barva, která má být použita pro roli v celém UI, jako RGB v hex formátu
         highlighted: Toto roli učiní veřejně viditelnou
         name: Veřejný název role, pokud má být role zobrazena jako odznak
         permissions_as_keys: Uživatelé s touto rolí budou moci...
         position: Vyšší role rozhoduje o řešení konfliktů v určitých situacích. Některé akce lze provádět pouze na rolích s nižší prioritou
+      username_block:
+        allow_with_approval: Namísto toho, aby se zabránilo registraci, bude vyžadováno vaše schválení
+        comparison: Mějte prosím na paměti 'Scunthorpe problém' při blokování částečných shod
+        username: Bude součástí shod bez ohledu na kapitalizace a běžné homoglyfy jako "4" pro "a" nebo "3" pro "e"
       webhook:
         events: Zvolte odesílané události
         template: Sestavte si vlastní JSON payload pomocí interpolace proměnných. Pro výchozí JSON ponechte prázdné.
         url: Kam budou události odesílány
     labels:
       account:
+        attribution_domains: Webové stránky s povolením Vám připsat autorství
         discoverable: Zobrazovat profil a příspěvky ve vyhledávacích algoritmech
         fields:
           name: Označení
@@ -204,21 +239,26 @@ cs:
         setting_aggregate_reblogs: Seskupovat boosty v časových osách
         setting_always_send_emails: Vždy posílat e-mailová oznámení
         setting_auto_play_gif: Automaticky přehrávat animace GIF
-        setting_boost_modal: Před boostnutím zobrazovat potvrzovací okno
+        setting_boost_modal: Ovládání viditelnosti boostování
         setting_default_language: Jazyk příspěvků
-        setting_default_privacy: Soukromí příspěvků
+        setting_default_privacy: Viditelnost příspěvků
+        setting_default_quote_policy: Kdo může citovat
         setting_default_sensitive: Vždy označovat média jako citlivá
-        setting_delete_modal: Před smazáním příspěvku zobrazovat potvrzovací dialog
+        setting_delete_modal: Upozornit před odstraněním příspěvku
         setting_disable_hover_cards: Zakázat náhled profilu při přejetí myší
         setting_disable_swiping: Vypnout gesta přejetí prsty
         setting_display_media: Zobrazování médií
         setting_display_media_default: Výchozí
         setting_display_media_hide_all: Skrýt vše
         setting_display_media_show_all: Zobrazit vše
+        setting_emoji_style: Styl emoji
         setting_expand_spoilers: Vždy rozbalit příspěvky označené varováními o obsahu
         setting_hide_network: Skrýt mou síť
+        setting_missing_alt_text_modal: Upozornit před odesláním médií bez popisného textu
+        setting_quick_boosting: Povolit rychlé boostnutí
         setting_reduce_motion: Omezit pohyb v animacích
         setting_system_font_ui: Použít výchozí písmo systému
+        setting_system_scrollbars_ui: Použít výchozí posuvník systému
         setting_theme: Vzhled stránky
         setting_trends: Zobrazit dnešní trendy
         setting_unfollow_modal: Před zrušením sledování zobrazovat potvrzovací okno
@@ -237,6 +277,7 @@ cs:
         name: Hashtag
       filters:
         actions:
+          blur: Skrýt média za varováním
           hide: Zcela skrýt
           warn: Skrýt s varováním
       form_admin_settings:
@@ -248,11 +289,17 @@ cs:
         content_cache_retention_period: Doba uchovávání vzdáleného obsahu
         custom_css: Vlastní CSS
         favicon: Favicon
+        landing_page: Úvodní stránka pro nové návštěvníky
+        local_live_feed_access: Přístup k živým kanálům s lokálními příspěvky
+        local_topic_feed_access: Přístup ke kanálům s hashtagy a odkazy s lokálními příspěvky
         mascot: Vlastní maskot (zastaralé)
         media_cache_retention_period: Doba uchovávání mezipaměti médií
+        min_age: Minimální věková hranice
         peers_api_enabled: Zveřejnit seznam nalezených serverů v API
         profile_directory: Povolit adresář profilů
         registrations_mode: Kdo se může přihlásit
+        remote_live_feed_access: Přístup k live kanálům s vzdálenými příspěvky
+        remote_topic_feed_access: Přístup ke kanálům s hashtagy a odkazy se vzdálenými příspěvky
         require_invite_text: Požadovat důvod pro připojení
         show_domain_blocks: Zobrazit blokace domén
         show_domain_blocks_rationale: Zobrazit proč byly blokovány domény
@@ -265,10 +312,8 @@ cs:
         status_page_url: URL stránky se stavem
         theme: Výchozí motiv
         thumbnail: Miniatura serveru
-        timeline_preview: Povolit neověřený přístup k veřejným časovým osám
         trendable_by_default: Povolit trendy bez předchozí revize
         trends: Povolit trendy
-        trends_as_landing_page: Použít trendy jako vstupní stránku
       interactions:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete
@@ -293,6 +338,7 @@ cs:
         follow_request: Někdo požádal o možnost vás sledovat
         mention: Někdo vás zmínil
         pending_account: Je třeba posoudit nový účet
+        quote: Někdo vás citoval
         reblog: Někdo boostnul váš příspěvek
         report: Je odesláno nové hlášení
         software_updates:
@@ -313,7 +359,24 @@ cs:
         name: Hashtag
         trendable: Povolit zobrazení tohoto hashtagu mezi populárními
         usable: Povolit příspěvkům používat tento hashtag lokálně
+      terms_of_service:
+        changelog: Co se změnilo?
+        effective_date: Datum platnosti
+        text: Podmínky užití
+      terms_of_service_generator:
+        admin_email: E-mailová adresa pro právní upozornění
+        arbitration_address: Fyzická adresa pro upozornění na arbitrační řízení
+        arbitration_website: Webová stránka pro zasílání arbitračních upozornění
+        choice_of_law: Volba zákona
+        dmca_address: Fyzická adresa pro oznámení DMCA/porušení autorských práv
+        dmca_email: E-mailová adresa pro oznámení DMCA/porušení autorských práv
+        domain: Doména
+        jurisdiction: Právní příslušnost
+        min_age: Věková hranice
       user:
+        date_of_birth_1i: Rok
+        date_of_birth_2i: Měsíc
+        date_of_birth_3i: Den
         role: Role
         time_zone: Časové pásmo
       user_role:
@@ -322,6 +385,10 @@ cs:
         name: Název
         permissions_as_keys: Oprávnění
         position: Priorita
+      username_block:
+        allow_with_approval: Povolit registrace se schválením
+        comparison: Srovnávací metoda
+        username: Na základě slov
       webhook:
         events: Zapnuté události
         template: Šablona payloadu

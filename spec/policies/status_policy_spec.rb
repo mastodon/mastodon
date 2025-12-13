@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe StatusPolicy, type: :model do
   subject { described_class }
 
-  let(:admin) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:admin) { Fabricate(:admin_user) }
   let(:alice) { Fabricate(:account, username: 'alice') }
   let(:bob) { Fabricate(:account, username: 'bob') }
   let(:status) { Fabricate(:status, account: alice) }
@@ -82,6 +82,92 @@ RSpec.describe StatusPolicy, type: :model do
         status.visibility = :private
 
         expect(subject).to_not permit(viewer, status)
+      end
+    end
+  end
+
+  context 'with the permission of quote?' do
+    permissions :quote? do
+      it 'does not grant access when direct and account is viewer' do
+        status.visibility = :direct
+
+        expect(subject).to_not permit(status.account, status)
+      end
+
+      it 'does not grant access access when direct and viewer is mentioned but not explicitly allowed' do
+        status.visibility = :direct
+        status.mentions = [Fabricate(:mention, account: bob)]
+
+        expect(subject).to_not permit(bob, status)
+      end
+
+      it 'does not grant access access when direct and viewer is mentioned but not explicitly allowed and mentions are loaded' do
+        status.visibility = :direct
+        status.mentions = [Fabricate(:mention, account: bob)]
+        status.active_mentions.load
+
+        expect(subject).to_not permit(bob, status)
+      end
+
+      it 'denies access when direct and viewer is not mentioned' do
+        viewer = Fabricate(:account)
+        status.visibility = :direct
+
+        expect(subject).to_not permit(viewer, status)
+      end
+
+      it 'denies access when private and viewer is not mentioned' do
+        viewer = Fabricate(:account)
+        status.visibility = :private
+
+        expect(subject).to_not permit(viewer, status)
+      end
+
+      it 'grants access when private and viewer is mentioned but not otherwise allowed' do
+        status.visibility = :private
+        status.mentions = [Fabricate(:mention, account: bob)]
+
+        expect(subject).to_not permit(bob, status)
+      end
+
+      it 'denies access when private and non-viewer is mentioned' do
+        viewer = Fabricate(:account)
+        status.visibility = :private
+        status.mentions = [Fabricate(:mention, account: bob)]
+
+        expect(subject).to_not permit(viewer, status)
+      end
+
+      it 'denies access when private and account is following viewer' do
+        follow = Fabricate(:follow)
+        status.visibility = :private
+        status.account = follow.target_account
+
+        expect(subject).to_not permit(follow.account, status)
+      end
+
+      it 'denies access when public but policy does not allow anyone' do
+        viewer = Fabricate(:account)
+        expect(subject).to_not permit(viewer, status)
+      end
+
+      it 'grants access when public and policy allows everyone' do
+        status.quote_approval_policy = Status::QUOTE_APPROVAL_POLICY_FLAGS[:public]
+        viewer = Fabricate(:account)
+        expect(subject).to permit(viewer, status)
+      end
+
+      it 'denies access when public and policy allows followers but viewer is not one' do
+        status.quote_approval_policy = Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers]
+        viewer = Fabricate(:account)
+        expect(subject).to_not permit(viewer, status)
+      end
+
+      it 'grants access when public and policy allows followers and viewer is one' do
+        status.quote_approval_policy = Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers]
+        viewer = Fabricate(:account)
+        viewer.follow!(status.account)
+        expect(subject).to permit(viewer, status)
       end
     end
   end

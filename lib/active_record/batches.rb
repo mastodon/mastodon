@@ -13,7 +13,9 @@ module ActiveRecord
 
       column_names.unshift(primary_key)
 
-      relation = relation.reorder(build_batch_orders(order).to_h).limit(batch_limit)
+      cursor = Array(primary_key)
+
+      relation = relation.reorder(build_batch_orders(cursor, order).to_h).limit(batch_limit)
       relation.skip_query_cache!
 
       batch_relation = relation

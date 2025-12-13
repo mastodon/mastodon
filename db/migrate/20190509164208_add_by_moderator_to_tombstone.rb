@@ -2,6 +2,6 @@
 
 class AddByModeratorToTombstone < ActiveRecord::Migration[5.2]
   def change
-    add_column :tombstones, :by_moderator, :boolean
+    add_column :tombstones, :by_moderator, :boolean # rubocop:disable Rails/ThreeStateBooleanColumn
   end
 end

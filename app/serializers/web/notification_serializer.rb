@@ -13,7 +13,7 @@ class Web::NotificationSerializer < ActiveModel::Serializer
   end
 
   def preferred_locale
-    current_push_subscription.associated_user&.locale || I18n.default_locale
+    current_push_subscription.user&.locale || I18n.default_locale
   end
 
   def notification_id

@@ -3,74 +3,6 @@
 module Account::Interactions
   extend ActiveSupport::Concern
 
-  class_methods do
-    def following_map(target_account_ids, account_id)
-      Follow.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |follow, mapping|
-        mapping[follow.target_account_id] = {
-          reblogs: follow.show_reblogs?,
-          notify: follow.notify?,
-          languages: follow.languages,
-        }
-      end
-    end
-
-    def followed_by_map(target_account_ids, account_id)
-      follow_mapping(Follow.where(account_id: target_account_ids, target_account_id: account_id), :account_id)
-    end
-
-    def blocking_map(target_account_ids, account_id)
-      follow_mapping(Block.where(target_account_id: target_account_ids, account_id: account_id), :target_account_id)
-    end
-
-    def blocked_by_map(target_account_ids, account_id)
-      follow_mapping(Block.where(account_id: target_account_ids, target_account_id: account_id), :account_id)
-    end
-
-    def muting_map(target_account_ids, account_id)
-      Mute.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |mute, mapping|
-        mapping[mute.target_account_id] = {
-          notifications: mute.hide_notifications?,
-        }
-      end
-    end
-
-    def requested_map(target_account_ids, account_id)
-      FollowRequest.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |follow_request, mapping|
-        mapping[follow_request.target_account_id] = {
-          reblogs: follow_request.show_reblogs?,
-          notify: follow_request.notify?,
-          languages: follow_request.languages,
-        }
-      end
-    end
-
-    def requested_by_map(target_account_ids, account_id)
-      follow_mapping(FollowRequest.where(account_id: target_account_ids, target_account_id: account_id), :account_id)
-    end
-
-    def endorsed_map(target_account_ids, account_id)
-      follow_mapping(AccountPin.where(account_id: account_id, target_account_id: target_account_ids), :target_account_id)
-    end
-
-    def account_note_map(target_account_ids, account_id)
-      AccountNote.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |note, mapping|
-        mapping[note.target_account_id] = {
-          comment: note.comment,
-        }
-      end
-    end
-
-    def domain_blocking_map_by_domain(target_domains, account_id)
-      follow_mapping(AccountDomainBlock.where(account_id: account_id, domain: target_domains), :domain)
-    end
-
-    private
-
-    def follow_mapping(query, field)
-      query.pluck(field).index_with(true)
-    end
-  end
-
   included do
     # Follow relations
     has_many :follow_requests, dependent: :destroy
@@ -87,6 +19,9 @@ module Account::Interactions
       has_many :severed_relationships, foreign_key: 'local_account_id', inverse_of: :local_account
       has_many :remote_severed_relationships, foreign_key: 'remote_account_id', inverse_of: :remote_account
     end
+
+    # Hashtag follows
+    has_many :tag_follows, inverse_of: :account, dependent: :destroy
 
     # Account notes
     has_many :account_notes, dependent: :destroy
@@ -112,7 +47,7 @@ module Account::Interactions
   end
 
   def follow!(other_account, reblogs: nil, notify: nil, languages: nil, uri: nil, rate_limit: false, bypass_limit: false)
-    rel = active_relationships.create_with(show_reblogs: reblogs.nil? ? true : reblogs, notify: notify.nil? ? false : notify, languages: languages, uri: uri, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
+    rel = active_relationships.create_with(show_reblogs: reblogs.nil? || reblogs, notify: notify.nil? ? false : notify, languages: languages, uri: uri, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
                               .find_or_create_by!(target_account: other_account)
 
     rel.show_reblogs = reblogs   unless reblogs.nil?
@@ -125,7 +60,7 @@ module Account::Interactions
   end
 
   def request_follow!(other_account, reblogs: nil, notify: nil, languages: nil, uri: nil, rate_limit: false, bypass_limit: false)
-    rel = follow_requests.create_with(show_reblogs: reblogs.nil? ? true : reblogs, notify: notify.nil? ? false : notify, uri: uri, languages: languages, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
+    rel = follow_requests.create_with(show_reblogs: reblogs.nil? || reblogs, notify: notify.nil? ? false : notify, uri: uri, languages: languages, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
                          .find_or_create_by!(target_account: other_account)
 
     rel.show_reblogs = reblogs   unless reblogs.nil?
@@ -280,26 +215,12 @@ module Account::Interactions
   def local_followers_hash
     Rails.cache.fetch("followers_hash:#{id}:local") do
       digest = "\x00" * 32
-      followers.where(domain: nil).pluck_each(:username) do |username|
-        Xorcist.xor!(digest, Digest::SHA256.digest(ActivityPub::TagManager.instance.uri_for_username(username)))
+      followers.where(domain: nil).pluck_each(:id_scheme, :id, :username) do |id_scheme, id, username|
+        uri = id_scheme == 'numeric_ap_id' ? ActivityPub::TagManager.instance.uri_for_account_id(id) : ActivityPub::TagManager.instance.uri_for_username(username)
+        Xorcist.xor!(digest, Digest::SHA256.digest(uri))
       end
       digest.unpack1('H*')
     end
-  end
-
-  def relations_map(account_ids, domains = nil, **options)
-    relations = {
-      blocked_by: Account.blocked_by_map(account_ids, id),
-      following: Account.following_map(account_ids, id),
-    }
-
-    return relations if options[:skip_blocking_and_muting]
-
-    relations.merge!({
-      blocking: Account.blocking_map(account_ids, id),
-      muting: Account.muting_map(account_ids, id),
-      domain_blocking_by_domain: Account.domain_blocking_map_by_domain(domains, id),
-    })
   end
 
   def normalized_domain(domain)

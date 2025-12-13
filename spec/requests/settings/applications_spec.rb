@@ -40,5 +40,23 @@ RSpec.describe 'Settings / Exports' do
       expect(response)
         .to redirect_to(settings_applications_path)
     end
+
+    it 'gracefully handles invalid nested params' do
+      post settings_applications_path(doorkeeper_application: 'invalid')
+
+      expect(response)
+        .to have_http_status(400)
+    end
+  end
+
+  describe 'PUT /settings/applications/:id' do
+    let(:application) { Fabricate :application, owner: user }
+
+    it 'gracefully handles invalid nested params' do
+      put settings_application_path(application.id, doorkeeper_application: 'invalid')
+
+      expect(response)
+        .to have_http_status(400)
+    end
   end
 end

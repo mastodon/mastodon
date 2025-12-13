@@ -3,23 +3,27 @@
 // emojiIndex.search functionality.
 import type { BaseEmoji } from 'emoji-mart';
 import type { Emoji } from 'emoji-mart/dist-es/utils/data';
+import emojiCompressed from 'virtual:mastodon-emoji-compressed';
+import type {
+  Search,
+  ShortCodesToEmojiData,
+} from 'virtual:mastodon-emoji-compressed';
 
-import type { Search, ShortCodesToEmojiData } from './emoji_compressed';
-import emojiCompressed from './emoji_compressed';
-import { unicodeToUnifiedName } from './unicode_to_unified_name';
+import { unicodeToUnifiedName } from './unicode_utils';
 
-type Emojis = {
-  [key in NonNullable<keyof ShortCodesToEmojiData>]: {
+type Emojis = Record<
+  NonNullable<keyof ShortCodesToEmojiData>,
+  {
     native: BaseEmoji['native'];
     search: Search;
     short_names: Emoji['short_names'];
     unified: Emoji['unified'];
-  };
-};
+  }
+>;
 
 const [
   shortCodesToEmojiData,
-  skins,
+  _skins,
   categories,
   short_names,
   _emojisWithoutShortCodes,
@@ -43,4 +47,4 @@ Object.keys(shortCodesToEmojiData).forEach((shortCode) => {
   };
 });
 
-export { emojis, skins, categories, short_names };
+export { emojis, categories, short_names };

@@ -5,11 +5,11 @@
 # Table name: account_aliases
 #
 #  id         :bigint(8)        not null, primary key
-#  account_id :bigint(8)
 #  acct       :string           default(""), not null
 #  uri        :string           default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  account_id :bigint(8)        not null
 #
 
 class AccountAlias < ApplicationRecord

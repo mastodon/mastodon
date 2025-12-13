@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { Record as ImmutableRecord } from 'immutable';
 
+import { me } from 'mastodon/initial_state';
 import { accountDefaultValues } from 'mastodon/models/account';
 import type { Account, AccountShape } from 'mastodon/models/account';
 import type { Relationship } from 'mastodon/models/relationship';
@@ -45,3 +46,29 @@ export function makeGetAccount() {
     },
   );
 }
+
+export const getAccountHidden = createSelector(
+  [
+    (state: RootState, id: string) => state.accounts.get(id)?.hidden,
+    (state: RootState, id: string) =>
+      state.relationships.get(id)?.following ||
+      state.relationships.get(id)?.requested,
+    (state: RootState, id: string) => id === me,
+  ],
+  (hidden, followingOrRequested, isSelf) => {
+    return hidden && !(isSelf || followingOrRequested);
+  },
+);
+
+export const getAccountFamiliarFollowers = createSelector(
+  [
+    (state: RootState) => state.accounts,
+    (state: RootState, id: string) => state.accounts_familiar_followers[id],
+  ],
+  (accounts, accounts_familiar_followers) => {
+    if (!accounts_familiar_followers) return null;
+    return accounts_familiar_followers
+      .map((id) => accounts.get(id))
+      .filter((f) => !!f);
+  },
+);

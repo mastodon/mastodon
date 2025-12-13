@@ -20,6 +20,9 @@ class Invite < ApplicationRecord
   include Expireable
 
   COMMENT_SIZE_LIMIT = 420
+  ELIGIBLE_CODE_CHARACTERS = [*('a'..'z'), *('A'..'Z'), *('0'..'9')].freeze
+  HOMOGLYPHS = %w(0 1 I l O).freeze
+  VALID_CODE_CHARACTERS = ELIGIBLE_CODE_CHARACTERS - HOMOGLYPHS
 
   belongs_to :user, inverse_of: :invites
   has_many :users, inverse_of: :invite, dependent: nil
@@ -28,7 +31,7 @@ class Invite < ApplicationRecord
 
   validates :comment, length: { maximum: COMMENT_SIZE_LIMIT }
 
-  before_validation :set_code
+  before_validation :set_code, on: :create
 
   def valid_for_use?
     (max_uses.nil? || uses < max_uses) && !expired? && user&.functional?
@@ -38,7 +41,7 @@ class Invite < ApplicationRecord
 
   def set_code
     loop do
-      self.code = ([*('a'..'z'), *('A'..'Z'), *('0'..'9')] - %w(0 1 I l O)).sample(8).join
+      self.code = VALID_CODE_CHARACTERS.sample(8).join
       break if Invite.find_by(code: code).nil?
     end
   end

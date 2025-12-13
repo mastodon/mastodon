@@ -1,0 +1,20 @@
+- content_for :page_title do
+  = t('admin.fasp.providers.title')
+
+- content_for :heading do
+  %h2= t('admin.fasp.providers.title')
+  = render 'admin/fasp/shared/links'
+
+- unless @providers.empty?
+  %hr.spacer
+
+  .table-wrapper
+    %table.table#providers
+      %thead
+        %tr
+          %th= t('admin.fasp.providers.name')
+          %th= t('admin.fasp.providers.base_url')
+          %th= t('admin.fasp.providers.status')
+          %th
+      %tbody
+        = render partial: 'provider', collection: @providers

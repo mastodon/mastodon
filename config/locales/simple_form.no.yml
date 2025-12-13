@@ -70,17 +70,15 @@
       featured_tag:
         name: 'Her er noen av emneknaggene du har brukt i det siste:'
       filters:
-        action: Velg hvilken handling som skal utføres når et innlegg samsvarer med filteret
         actions:
           hide: Skjul filtrert innhold fullstendig, som om det ikke eksisterte
           warn: Skjul det filtrerte innholdet bak et varsel som omtaler filterets tittel
       form_admin_settings:
         activity_api_enabled: Teller med lokale publiserte innlegg, aktive brukere og nye registreringer i ukentlige bøtter
-        bootstrap_timeline_accounts: Disse kontoene vil bli festet til toppen av nye brukeres følge-anbefalinger.
         closed_registrations_message: Vises når det er stengt for registrering
         custom_css: Du kan bruke egendefinerte stiler på nettversjonen av Mastodon.
         mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
-        peers_api_enabled: En liste over domenenavn denne serveren har oppstått i fødiverset. Det finnes ikke data om du føderer med en gitt server, for akkurat det serveren din vet om. Dette brukes av tjenester som i all hovedsak innhenter føderasjonsstatistikk.
+        peers_api_enabled: En liste over domenenavn denne serveren har oppdaget i fødiverset. Dette er ikke noen indikasjon på om du fødererer med en gitt server, kun at din server vet om den. Dette brukes av tjenester som samler statistikk om fødiverset generelt.
         profile_directory: Profilkatalogen viser alle brukere som har valgt å kunne bli oppdaget.
         require_invite_text: Når registreringer krever manuell godkjenning, må du gjøre «Hvorfor vil du bli med?»-tekstinput obligatorisk i stedet for valgfritt
         site_contact_email: Hvordan mennesker får tak i deg for rettslige spørsmål eller brukerstøtte.
@@ -92,10 +90,8 @@
         status_page_url: URL-adressen til en side hvor folk kan se tilstanden til denne tjeneren under et avbrudd
         theme: Tema som vises for nye brukere og besøkende som ikke er logget inn.
         thumbnail: Et omtrent 2:1 bilde vist sammen med serverinformasjonen din.
-        timeline_preview: Logget ut besøkende vil kunne bla gjennom de siste offentlige innlegg tilgjengelig på serveren.
         trendable_by_default: Hopp over manuell gjennomgang av populære innhold. Individuelle elementer kan fjernes fra populært etter faktaen.
         trends: Trender viser hvilke innlegg, emneknagger og nyheter som får trekkraft på serveren din.
-        trends_as_landing_page: Vis populære innhold til innloggede brukere og besøkende i stedet for en beskrivelse av tjeneren. Krever populært for å bli aktivert.
       form_challenge:
         current_password: Du går inn i et sikkert område
       imports:
@@ -198,11 +194,8 @@
         setting_aggregate_reblogs: Samle fremhevinger i tidslinjer
         setting_always_send_emails: Alltid send e-postvarslinger
         setting_auto_play_gif: Autoavspill animert GIF-filer
-        setting_boost_modal: Vis bekreftelse før fremheving
         setting_default_language: Innleggsspråk
-        setting_default_privacy: Postintegritet
         setting_default_sensitive: Merk alltid media som følsomt
-        setting_delete_modal: Vis bekreftelse før du sletter et innlegg
         setting_disable_swiping: Skru av sveipebevegelser
         setting_display_media: Mediavisning
         setting_display_media_default: Standard
@@ -234,6 +227,7 @@
           warn: Skjul med en advarsel
       form_admin_settings:
         activity_api_enabled: Publiser samlet statistikk om brukeraktivitet i API
+        app_icon: App-ikon
         backups_retention_period: Brukers oppbevaringsperiode for arkiv
         bootstrap_timeline_accounts: Anbefaler alltid disse kontoene til nye brukere
         closed_registrations_message: Egendefinert melding når registrering ikke er tilgjengelig
@@ -255,10 +249,8 @@
         status_page_url: Status side lenke
         theme: Standard tema
         thumbnail: Miniatyrbilde til server
-        timeline_preview: Tillat uautentisert tilgang til offentlige tidslinjer
         trendable_by_default: Tillat trender uten foregående vurdering
         trends: Aktiver trender
-        trends_as_landing_page: Bruk trender som landingsside
       interactions:
         must_be_follower: Blokker varslinger fra ikke-følgere
         must_be_following: Blokker varslinger fra personer du ikke følger
@@ -301,6 +293,10 @@
         listable: Tillat denne emneknaggen å vises i søk og på profilmappen
         name: Emneknagg
         trendable: Tillat denne emneknaggen til å vises under trender
+      terms_of_service:
+        text: Bruksvilkår
+      terms_of_service_generator:
+        domain: Domene
       user:
         role: Rolle
         time_zone: Tidssone

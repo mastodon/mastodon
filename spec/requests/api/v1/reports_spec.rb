@@ -3,17 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Reports' do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'write:reports' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'write:reports'
 
   describe 'POST /api/v1/reports' do
     subject do
       post '/api/v1/reports', headers: headers, params: params
     end
 
-    let!(:admin)         { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let!(:admin)         { Fabricate(:admin_user) }
     let(:status)         { Fabricate(:status) }
     let(:target_account) { status.account }
     let(:category)       { 'other' }

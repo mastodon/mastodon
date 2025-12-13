@@ -31,7 +31,8 @@ class Admin::Trends::StatusesController < Admin::BaseController
   end
 
   def trends_status_batch_params
-    params.require(:trends_status_batch).permit(:action, status_ids: [])
+    params
+      .expect(trends_status_batch: [:action, status_ids: []])
   end
 
   def action_from_button

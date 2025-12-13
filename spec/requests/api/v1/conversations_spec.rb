@@ -3,10 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe 'API V1 Conversations' do
+  include_context 'with API authentication', oauth_scopes: 'read:statuses'
+
   let!(:user) { Fabricate(:user, account_attributes: { username: 'alice' }) }
-  let(:scopes) { 'read:statuses' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   let(:other) { Fabricate(:user) }
 

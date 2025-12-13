@@ -6,6 +6,7 @@ RSpec.describe ExistingUsernameValidator do
   let(:record_class) do
     Class.new do
       include ActiveModel::Validations
+
       attr_accessor :contact, :friends
 
       def self.name

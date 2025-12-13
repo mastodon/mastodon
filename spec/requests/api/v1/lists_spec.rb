@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Lists' do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'read:lists write:lists' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:lists write:lists'
 
   describe 'GET /api/v1/lists' do
     subject do
@@ -132,9 +129,12 @@ RSpec.describe 'Lists' do
       it 'returns http unprocessable entity' do
         subject
 
-        expect(response).to have_http_status(422)
+        expect(response)
+          .to have_http_status(422)
         expect(response.content_type)
           .to start_with('application/json')
+        expect(response.parsed_body)
+          .to include(error: /Replies policy is not included/)
       end
     end
   end

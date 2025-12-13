@@ -170,7 +170,7 @@ ja:
       whitelisted: 連合許可済み
     action_logs:
       action_types:
-        approve_appeal: 抗議を承認
+        approve_appeal: 異議申立を承認
         approve_user: ユーザーの承認
         assigned_to_self_report: 通報の担当者に設定
         change_email_user: ユーザーのメールアドレスの変更
@@ -187,6 +187,7 @@ ja:
         create_relay: リレーの追加
         create_unavailable_domain: 配送できないドメインを作成
         create_user_role: ロールを作成
+        create_username_block: ユーザー名ルールを作成
         demote_user: ユーザーを降格
         destroy_announcement: お知らせを削除
         destroy_canonical_email_block: メールアドレスブロックの削除
@@ -200,6 +201,7 @@ ja:
         destroy_status: 投稿を削除
         destroy_unavailable_domain: 配送できないドメインを削除
         destroy_user_role: ロールを削除
+        destroy_username_block: ユーザー名ルールを削除
         disable_2fa_user: 二要素認証を無効化
         disable_custom_emoji: カスタム絵文字を無効化
         disable_relay: リレーの無効化
@@ -211,7 +213,8 @@ ja:
         enable_user: ユーザーを有効化
         memorialize_account: 追悼アカウント化
         promote_user: ユーザーを昇格
-        reject_appeal: 抗議を却下
+        publish_terms_of_service: サービス利用規約を公開
+        reject_appeal: 異議申立を却下
         reject_user: ユーザーを拒否
         remove_avatar_user: アイコンを削除
         reopen_report: 未解決に戻す
@@ -233,8 +236,9 @@ ja:
         update_report: 通報の更新
         update_status: 投稿を更新
         update_user_role: ロールを更新
+        update_username_block: ユーザー名ルールを更新
       actions:
-        approve_appeal_html: "%{name}さんが%{target}さんからの抗議を承認しました"
+        approve_appeal_html: "%{name}さんが%{target}さんからの異議申立を承認しました"
         approve_user_html: "%{name}さんが%{target}さんからの登録を承認しました"
         assigned_to_self_report_html: "%{name}さんが通報 %{target}を自身の担当に割り当てました"
         change_email_user_html: "%{name} さんが %{target} さんのメールアドレスを変更しました"
@@ -275,7 +279,8 @@ ja:
         enable_user_html: "%{name}さんが%{target}さんのログインを有効化しました"
         memorialize_account_html: "%{name}さんが%{target}さんを追悼アカウントページに登録しました"
         promote_user_html: "%{name}さんが%{target}さんを昇格しました"
-        reject_appeal_html: "%{name}さんが%{target}からの抗議を却下しました"
+        publish_terms_of_service_html: "%{name} がサービス利用規約の更新を公開しました"
+        reject_appeal_html: "%{name}さんが%{target}からの異議申立を却下しました"
         reject_user_html: "%{name}さんが%{target}さんからの登録を拒否しました"
         remove_avatar_user_html: "%{name}さんが%{target}さんのアイコンを削除しました"
         reopen_report_html: "%{name}さんが通報 %{target}を未解決に戻しました"
@@ -304,6 +309,7 @@ ja:
       title: 操作履歴
       unavailable_instance: "(ドメイン名が利用できません)"
     announcements:
+      back: アナウンスに戻る
       destroyed_msg: お知らせが削除されました
       edit:
         title: お知らせを編集
@@ -312,6 +318,10 @@ ja:
       new:
         create: お知らせを作成
         title: お知らせを追加
+      preview:
+        disclaimer: メール通知はユーザーがオプトアウトできないため、個人データの漏洩やサーバー閉鎖の通知など重要なアナウンスに限定されるべきです。
+        explanation_html: このメールは<strong>%{display_count}ユーザー</strong>へ送られます。次の文章がメールに含まれます：
+        title: アナウンスの通知のプレビュー
       publish: 公開する
       published_msg: お知らせを掲載しました
       scheduled_for: "%{time}に予約"
@@ -362,7 +372,7 @@ ja:
       new_users: 新規ユーザー
       opened_reports: 新規通報
       pending_appeals_html:
-        other: 保留中の抗議 <strong>%{count}</strong>件
+        other: "<strong>%{count}</strong>件の保留中の異議申立"
       pending_reports_html:
         other: 保留中の通報 <strong>%{count}</strong>件
       pending_tags_html:
@@ -379,8 +389,8 @@ ja:
       website: ウェブサイト
     disputes:
       appeals:
-        empty: 抗議はありません。
-        title: 抗議
+        empty: 異議申立はありません。
+        title: 異議申立
     domain_allows:
       add_new: 連合を許可
       created_msg: 連合を許可しました
@@ -465,6 +475,36 @@ ja:
       new:
         title: ドメインブロックをインポート
       no_file: ファイルが選択されていません
+    fasp:
+      debug:
+        callbacks:
+          created_at: 作成元
+          delete: 削除
+          ip: IPアドレス
+          request_body: リクエスト本文
+          title: デバッグ　コールバック
+      providers:
+        active: アクティブ
+        base_url: 基本URL
+        callback: コールバック
+        delete: 削除
+        edit: プロバイダーの編集
+        finish_registration: 登録を完了
+        name: 名前
+        providers: プロバイダ
+        public_key_fingerprint: 公開キーのフィンガープリント
+        registration_requested: 登録がリクエストされました
+        registrations:
+          confirm: 確定
+          description: FASPから登録を受け取りました。自分で登録していないなら拒否してください。自分で登録した場合は、登録を確定する前に名前と鍵のフィンガープリントを慎重に比較してください。
+          reject: 拒否
+          title: FASP登録を確認
+        save: 保存
+        select_capabilities: 機能選択
+        sign_in: サインイン
+        status: ステータス
+        title: フェディバース補助サービスプロバイダ
+      title: FASP
     follow_recommendations:
       description_html: "<strong>おすすめフォローは、新規ユーザーが興味のあるコンテンツをすばやく見つけるのに役立ちます。</strong>ユーザーが他のユーザーとの交流を十分にしていない場合、パーソナライズされたおすすめフォローを生成する代わりに、これらのアカウントが表示されます。最近のエンゲージメントが最も高いアカウントと、特定の言語のローカルフォロワー数が最も多いアカウントを組み合わせて､毎日再計算されます。"
       language: 言語
@@ -507,7 +547,7 @@ ja:
         instance_accounts_dimension: 最もフォローされているアカウント
         instance_accounts_measure: 保存されたアカウント
         instance_followers_measure: そこでの我々のフォロワー
-        instance_follows_measure: リモートフォローしているアカウント
+        instance_follows_measure: こちらからのフォロー数
         instance_languages_dimension: 人気の言語
         instance_media_attachments_measure: 保存されたメディア
         instance_reports_measure: 通報
@@ -530,6 +570,11 @@ ja:
         all: すべて
         limited: 制限あり
         title: モデレーション
+      moderation_notes:
+        create: モデレーションノートを追加
+        description_html: 他のモデレーターと将来の自分にメモを残してください
+        destroyed_msg: インスタンス・モデレーションノートを正常に削除しました！
+        title: モデレーションメモ
       private_comment: コメント (非公開)
       public_comment: コメント (公開)
       purge: パージ
@@ -700,8 +745,8 @@ ja:
         invite_users_description: ユーザーが新しい人を招待できるようにします
         manage_announcements: お知らせの管理
         manage_announcements_description: ユーザーがアナウンスを管理できるようにします
-        manage_appeals: 抗議の管理
-        manage_appeals_description: ユーザーはモデレーションアクションに対する抗議を確認できます
+        manage_appeals: 異議申立の管理
+        manage_appeals_description: ユーザーはモデレーションアクションに対する異議申立を確認できます
         manage_blocks: ブロックの管理
         manage_blocks_description: メールプロバイダとIPアドレスのブロックを許可
         manage_custom_emojis: カスタム絵文字を管理
@@ -735,17 +780,26 @@ ja:
       title: ロール
     rules:
       add_new: ルールを追加
+      add_translation: 翻訳を追加
       delete: 削除
       description_html: たいていの人が利用規約を読んで同意したと言いますが、普通は問題が発生するまで読みません。<strong>箇条書きにして、サーバーのルールが一目で分かるようにしましょう</strong>。個々のルールは短くシンプルなものにし、多くの項目に分割しないようにしましょう。
       edit: ルールを編集
       empty: サーバーのルールが定義されていません。
+      move_down: 下へ移動
+      move_up: 上へ移動
       title: サーバーのルール
+      translation: 翻訳
+      translations: 翻訳
+      translations_explanation: オプションとしてルールに翻訳を追加できます。翻訳されたバージョンがない場合、デフォルトの値が表示されます。表示される翻訳がデフォルトの値と対応していることを常に確認しておいてください。
     settings:
       about:
         manage_rules: サーバーのルールを管理
         preamble: サーバーの運営、管理、資金調達の方法について、詳細な情報を提供します。
         rules_hint: ユーザーが守るべきルールのための専用エリアがあります。
         title: このサーバーについて
+      allow_referrer_origin:
+        desc: ユーザが外部サイトへのリンクをクリックする際、ユーザーのブラウザはあなたのMastodonサーバーのアドレスを紹介者として送信することがあります。 これによりあなたのユーザーが特定されてしまう場合、例えば個人用のMastodonサーバーなどである場合などは無効にしてください。
+        title: 外部サイトが Mastodon サーバーをトラフィックソースとして表示することを許可する
       appearance:
         preamble: ウェブインターフェースをカスタマイズします。
         title: 外観
@@ -764,10 +818,9 @@ ja:
         title: デフォルトで検索エンジンによるインデックスを拒否する
       discovery:
         follow_recommendations: おすすめフォロー
-        preamble: Mastodon を知らないユーザーを取り込むには、興味深いコンテンツを浮上させることが重要です。サーバー上で様々なディスカバリー機能がどのように機能するかを制御します。
+        privacy: プライバシー
         profile_directory: ディレクトリ
         public_timelines: 公開タイムライン
-        publish_discovered_servers: 接続しているサーバーを公開する
         publish_statistics: 統計情報を公開する
         title: 見つける
         trends: トレンド
@@ -775,6 +828,9 @@ ja:
         all: 誰にでも許可
         disabled: 誰にも許可しない
         users: ログイン済みローカルユーザーのみ許可
+      landing_page:
+        values:
+          trends: トレンド
       registrations:
         moderation_recommandation: 登録受付を開始する前に、迅速かつ適切にモデレーションを行うチームを編成しましょう！
         preamble: あなたのサーバー上でアカウントを作成できるユーザーを制御します。
@@ -828,6 +884,7 @@ ja:
       no_status_selected: 何も選択されていないため、変更されていません
       open: 投稿を開く
       original_status: オリジナルの投稿
+      quotes: 引用
       reblogs: ブースト
       replied_to_html: "%{acct_link}さんへの返信"
       status_changed: 投稿を変更しました
@@ -835,6 +892,7 @@ ja:
       title: 投稿一覧 - @%{name}
       trending: トレンド
       view_publicly: 元の投稿を開く
+      view_quoted_post: 引用されている投稿を見る
       visibility: 公開範囲
       with_media: メディアあり
     strikes:
@@ -846,12 +904,14 @@ ja:
         sensitive: "%{name}さんが%{target}さんのアカウントを閲覧注意としてマークしました"
         silence: "%{name}さんが%{target}さんを制限しました"
         suspend: "%{name}さんが%{target}さんのアカウントを停止しました"
-      appeal_approved: 抗議済み
-      appeal_pending: 保留中の抗議
-      appeal_rejected: 却下済みの抗議
+      appeal_approved: 異議申立済み
+      appeal_pending: 保留中の異議申立
+      appeal_rejected: 却下済みの異議申立
     system_checks:
       database_schema_check:
         message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
+      elasticsearch_analysis_index_mismatch:
+        message_html: Elasticsearch インデックスアナライザの設定が古くなっています。 <code>tootctl search deploy --only-mapping --only=%{value}</code>を実行してください
       elasticsearch_health_red:
         message_html: 'Elasticsearchクラスターに異常があります(status: red)。検索機能が利用できなくなっています'
       elasticsearch_health_yellow:
@@ -911,6 +971,35 @@ ja:
       search: 検索
       title: ハッシュタグ
       updated_msg: ハッシュタグ設定が更新されました
+    terms_of_service:
+      back: 利用規約に戻る
+      changelog: 変更箇所
+      create: 自分のものを使う
+      current: 現在
+      draft: 下書き
+      generate: テンプレートを使用
+      generates:
+        action: 作成
+        chance_to_review_html: "<strong>生成された利用規約は自動的には公開されません。</strong>結果を確認する機会があります。手続きに必要な詳細を記入してください。"
+        explanation_html: 提供された利用規約のテンプレートは情報提供のみを目的としており、いかなる主題に関しても法的助言と見なされるべきではありません。ご自身の状況や具体的な法的質問については、必ずご自身の弁護士に相談してください。
+        title: 利用規約の設定
+      going_live_on_html: "%{date}より有効"
+      history: 履歴
+      live: 公開中
+      no_history: 利用規約の変更はまだ記録されていません。
+      no_terms_of_service_html: 現在、利用規約が設定されていません。利用規約は、明確さを提供し、ユーザーとのトラブルにおける潜在的な責任からあなたを保護するためのものです。
+      notified_on_html: "%{date}に通知されたユーザー"
+      notify_users: ユーザに通知
+      preview:
+        explanation_html: メールは、%{date} より前に登録した<strong>%{display_count}人のユーザー</strong>に送信されます。以下のテキストがメールに含まれます：
+        send_preview: "%{email} にプレビューを送信"
+        send_to_all:
+          other: "%{display_count}件のメールを送信"
+        title: サービス利用規約の通知をプレビュー
+      publish: 公開
+      published_on_html: "%{date} に公開"
+      save_draft: 下書きを保存
+      title: サービス利用規約
     title: 管理
     trends:
       allow: 許可
@@ -983,6 +1072,21 @@ ja:
           other: 週間%{count}人に使用されました
       title: おすすめとトレンド
       trending: トレンド
+    username_blocks:
+      add_new: ルールを作成
+      block_registrations: 登録拒否
+      comparison:
+        contains: 含む
+        equals: 一致
+      contains_html: "%{string}を含む"
+      delete: 削除
+      edit:
+        title: ユーザー名ルールの編集
+      matches_exactly_html: "%{string}に一致"
+      new:
+        create: ルールを作成
+        title: ユーザー名ルールを作成
+      title: ユーザー名ルール
     warning_presets:
       add_new: 追加
       delete: 削除
@@ -1054,10 +1158,10 @@ ja:
     hint_html: 他のアカウントからこのアカウントにフォロワーを引き継いで引っ越したい場合、ここでエイリアスを作成しておく必要があります。エイリアス自体は<strong>無害で、取り消す</strong>ことができます。<strong>引っ越しは以前のアカウント側から開始する必要があります</strong>。
     remove: エイリアスを削除
   appearance:
-    advanced_web_interface: 上級者向けUI
-    advanced_web_interface_hint: ディスプレイを幅いっぱいまで活用したい場合、上級者向け UI をおすすめします。ホーム、通知、連合タイムライン、更にはリストやハッシュタグなど、様々な異なるカラムから望む限りの情報を一度に受け取れるような設定が可能になります。
+    advanced_settings: 詳細設定
     animations_and_accessibility: アニメーションとアクセシビリティー
-    confirmation_dialogs: 確認ダイアログ
+    boosting_preferences: ブースト設定
+    boosting_preferences_info_html: "<strong>Tip:</strong> 設定に関係なく、<kbd>Shift</kbd> を押しながら %{icon} Boostアイコンを<kbd>クリック</kbd>すると、すぐにブーストされます。"
     discovery: 見つける
     localization:
       body: Mastodonは有志によって翻訳されています。
@@ -1114,7 +1218,6 @@ ja:
     migrate_account: 別のアカウントに引っ越す
     migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
     or_log_in_with: または次のサービスでログイン
-    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">プライバシーポリシー</a>を読み、同意します
     progress:
       confirm: メールアドレスの確認
       details: ユーザー情報
@@ -1139,7 +1242,7 @@ ja:
     set_new_password: 新しいパスワード
     setup:
       email_below_hint_html: 確認メールが迷惑メールフォルダに振り分けられていないか確認してください。メールアドレスを間違えた場合は、ここでメールアドレスの変更と確認メールの再送ができます。
-      email_settings_hint_html: メールに記載のリンクを開いて %{email} を確認してください。
+      email_settings_hint_html: "%{email} に送信したリンクをクリックして Mastodon の使用を開始します。ここでお待ちしています。"
       link_not_received: 確認メールを受信できない場合は
       new_confirmation_instructions_sent: 確認用のリンクを記載した新しいメールを送信しました
       title: 確認メールを送信しました
@@ -1148,7 +1251,7 @@ ja:
       title: "%{domain}にログイン"
     sign_up:
       manual_review: "%{domain} への登録にはモデレーターによる承認が必要です。審査の参考になるように、簡単な自己紹介や %{domain} に登録したい理由などを記入してください。"
-      preamble: この Mastodon サーバーのアカウントがあれば、ネットワーク上の他の人のアカウントがどこでホストされているかに関係なく、その人をフォローすることができます。
+      preamble: この Mastodon サーバーのアカウントがあれば、fediverse上の他の人のアカウントがどこでホストされているかに関係なく、その人をフォローすることができます。
       title: さあ %{domain} でセットアップしましょう.
     status:
       account_status: アカウントの状態
@@ -1160,6 +1263,8 @@ ja:
       view_strikes: 過去のストライクを表示
     too_fast: フォームの送信が速すぎます。もう一度やり直してください。
     use_security_key: セキュリティキーを使用
+    user_agreement_html: <a href="%{terms_of_service_path}" target="_blank">利用規約</a> および <a href="%{privacy_policy_path}" target="_blank">プライバシーポリシー</a>を読み、同意します。
+    user_privacy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">プライバシーポリシー</a>を読み、同意します
   author_attribution:
     example_title: サンプルテキスト
     hint_html: Mastodonの外でニュースやブログなどを執筆しているユーザーは、Mastodonで自分の記事が共有されたときに著者情報を表示させることができます。
@@ -1214,19 +1319,19 @@ ja:
   disputes:
     strikes:
       action_taken: 取られた措置
-      appeal: 抗議
+      appeal: 異議申立
       appeal_approved: このストライクは申し立てが承認され、有効ではありません。
       appeal_rejected: 申し立ては拒否されました
-      appeal_submitted_at: 抗議が送信されました
+      appeal_submitted_at: 異議申立の送信日時
       appealed_msg: 申し立てが送信されました。承認されると通知されます。
       appeals:
-        submit: 抗議を送信
-      approve_appeal: 抗議を承認
+        submit: 異議申立を送信
+      approve_appeal: 異議申立を承認
       associated_report: 関連する通報
       created_at: 日時
       description_html: これらは、%{instance}のスタッフがあなたのアカウントに対して行った措置や、あなたに送られた警告です。
       recipient: 送信元
-      reject_appeal: 抗議を却下
+      reject_appeal: 異議申立を却下
       status: '投稿 #%{id}'
       status_removed: 既に削除されています
       title: "%{date}に%{action}"
@@ -1245,6 +1350,10 @@ ja:
     basic_information: 基本情報
     hint_html: "<strong>アカウントのトップページや投稿の隣に表示される公開情報です。</strong>プロフィールとアイコンを設定することで、ほかのユーザーは親しみやすく、またフォローしやすくなります。"
     other: その他
+  emoji_styles:
+    auto: オート
+    native: ネイティブ
+    twemoji: Twemoji
   errors:
     '400': 送信されたリクエストは無効であるか、または不正なフォーマットです。
     '403': このページを表示する権限がありません。
@@ -1434,6 +1543,9 @@ ja:
       expires_at: 有効期限
       uses: 使用
     title: 新規ユーザーの招待
+  link_preview:
+    potentially_sensitive_content:
+      hide_button: 非表示
   lists:
     errors:
       limit: リストの上限数に達しています
@@ -1498,7 +1610,6 @@ ja:
       disabled_account: 引っ越した後はデータのエクスポートと再有効化を除きほとんどの機能が利用できなくなります
       followers: すべてのフォロワーを現在のアカウントから新しいアカウントに引き継ぎます
       only_redirect_html: または、<a href="%{path}">フォロワーを残したまま引っ越す</a>こともできます。
-      other_data: その他のデータは自動的に引き継がれません
       redirect: プロフィールに引っ越し済みの通知が表示され、検索結果から除外されます
   moderation:
     title: モデレーション
@@ -1582,6 +1693,9 @@ ja:
       self_vote: 自分のアンケートには解答できません
       too_few_options: は複数必要です
       too_many_options: は%{max}個までです
+    vote: 投票
+  posting_defaults:
+    explanation: これらの設定は投稿を新規作成するときにデフォルトとして使用されますが、作成画面で投稿ごとに変更できます。
   preferences:
     other: その他
     posting_defaults: デフォルトの投稿設定
@@ -1638,7 +1752,7 @@ ja:
   scheduled_statuses:
     over_daily_limit: その日予約できる投稿数 %{limit}を超えています
     over_total_limit: 予約できる投稿数 %{limit}を超えています
-    too_soon: より先の時間を指定してください
+    too_soon: 日付は未来でなければなりません
   self_destruct:
     lead_html: 残念ながら、<strong>%{domain}</strong> は恒久的に閉鎖されます。ここにお持ちだったアカウントを今後使うことはできませんが、これまでのデータのバックアップを要求することはまだ可能です。
     title: このサーバーは閉鎖されます
@@ -1746,15 +1860,15 @@ ja:
       limit: 固定できる投稿数の上限に達しました
       ownership: 他人の投稿を固定することはできません
       reblog: ブーストを固定することはできません
+    quote_policies:
+      followers: フォロワーのみ
+      nobody: 自分のみ
+      public: 誰でも
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: ダイレクト
-      private: フォロワー限定
-      private_long: フォロワーにのみ表示されます
+      direct: 非公開の返信
+      private: フォロワーのみ
       public: 公開
-      public_long: 誰でも見ることができ、かつ公開タイムラインに表示されます
-      unlisted: 非収載
-      unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   statuses_cleanup:
     enabled: 古い投稿を自動的に削除する
     enabled_hint: 設定した期間を過ぎた投稿は、以下の例外に該当しない限り、自動的に削除されます
@@ -1794,9 +1908,16 @@ ja:
     sensitive_content: 閲覧注意
   strikes:
     errors:
-      too_late: このストライクに抗議するには遅すぎます
+      too_late: 異議申立をするには遅すぎます
   tags:
     does_not_match_previous_name: 以前の名前と一致しません
+  terms_of_service:
+    title: サービス利用規約
+  terms_of_service_interstitial:
+    future_preamble_html: サービス利用規約にいくつかの変更が加えられています。これは <strong>%{date}</strong>に適用されます。 更新された条件を確認することをお勧めします。
+    past_preamble_html: 前回の訪問時から利用規約が変更されました。更新された条件を確認することをお勧めします。
+    review_link: 利用規約を確認する
+    title: "%{domain} の利用規約が変更されています"
   themes:
     contrast: Mastodon (ハイコントラスト)
     default: Mastodon (ダーク)
@@ -1828,6 +1949,10 @@ ja:
     recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
     webauthn: セキュリティキー
   user_mailer:
+    announcement_published:
+      description: "%{domain}の管理者からの告知："
+      subject: サービスに関する告知
+      title: "%{domain}のサービスに関する告知"
     appeal_approved:
       action: アカウント設定
       explanation: "%{strike_date}のストライクに対して、あなたが%{appeal_date}に行った申し立ては承認されました。アカウントは正常な状態に戻りました。"
@@ -1838,7 +1963,7 @@ ja:
       explanation: "%{strike_date}のストライクに対して、あなたが%{appeal_date}に行った申し立ては却下されました。"
       subject: "%{date}の申し立てが拒否されました"
       subtitle: 申し立ては拒否されました。
-      title: 却下された抗議
+      title: 却下された異議申立
     backup_ready:
       explanation: Mastodonアカウントの完全バックアップをリクエストしました。
       extra: ダウンロードの準備ができました！
@@ -1857,8 +1982,17 @@ ja:
       further_actions_html: あなたがログインしていない場合は、すぐに%{action}し、アカウントを安全に保つために二要素認証を有効にすることをお勧めします。
       subject: 新しいIPアドレスからのアクセスがありました
       title: 新しいサインイン
+    terms_of_service_changed:
+      agreement: "%{domain} を引き続き使用することで、これらの条件に同意したことになります。更新された条件に同意しない場合は、アカウントを削除することでいつでも %{domain} との契約を終了することができます。"
+      changelog: 一目で分かる、この更新があなたにとって意味することは次の通りです：
+      description: このメールは、%{domain} の利用規約にいくつかの変更が加えられているため発信されました。これらの変更は %{date}より有効です。更新された利用規約をこちらで全てご確認いただくことをお勧めします：
+      description_html: このメールは、%{domain} の利用規約にいくつかの変更が加えられているため発信されました。これらの変更は <strong>%{date}</strong>より有効です。<a href="%{path}" target="_blank">更新された利用規約をこちらで全て</a>ご確認いただくことをお勧めします。
+      sign_off: "%{domain} チーム"
+      subject: 利用規約の更新
+      subtitle: "%{domain} の利用規約が変更されています"
+      title: 重要な更新
     warning:
-      appeal: 抗議を送信
+      appeal: 異議申立を送信
       appeal_description: これが間違いだと思われる場合は、%{instance}のスタッフに申し立てすることができます。
       categories:
         spam: スパム
@@ -1922,7 +2056,6 @@ ja:
       post_action: 作成
       post_step: 試しになにか書いてみましょう。写真、ビデオ、アンケートなど、なんでも大丈夫です.
       post_title: はじめての投稿
-      share_action: 共有
       share_step: Mastodon アカウントをほかの人に紹介しましょう。
       share_title: プロフィールをシェアする
       sign_in_action: ログイン

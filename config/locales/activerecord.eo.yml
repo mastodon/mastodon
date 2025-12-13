@@ -20,10 +20,11 @@ eo:
           invalid: ne estas valida domajna nomo
       messages:
         invalid_domain_on_line: "%{value} ne estas valida domajna nomo"
-        too_many_lines: superas la limon de %{limit} linioj
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: enhavas valorojn kun mankantaj etikedoj
             username:
               invalid: devas enhavi nur literojn, ciferojn kaj substrekojn
               reserved: rezervita
@@ -31,6 +32,12 @@ eo:
           attributes:
             url:
               invalid: ne estas valida URL
+        collection:
+          attributes:
+            collection_items:
+              too_many: estas tro multaj, ne pli ol %{count} estas permesataj
+            tag:
+              unusable: ne povus esti uzata
         doorkeeper/application:
           attributes:
             website:
@@ -39,12 +46,23 @@ eo:
           attributes:
             data:
               malformed: estas misformita
+        list_account:
+          attributes:
+            account_id:
+              taken: jam estas sur la listo
+          must_be_following: devas esti sekvata konto
         status:
           attributes:
             reblog:
               taken: de afiŝo jam ekzistas
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: estas tro frue, devas esti pli malfrue ol %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: estas sub la aĝlimidato
             email:
               blocked: uzas nepermesitan retpoŝtan provizanton
               unreachable: ŝajne ne ekzistas

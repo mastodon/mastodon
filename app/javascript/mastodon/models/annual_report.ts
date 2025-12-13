@@ -16,9 +16,9 @@ export interface TimeSeriesMonth {
 }
 
 export interface TopStatuses {
-  by_reblogs: number;
-  by_favourites: number;
-  by_replies: number;
+  by_reblogs: string;
+  by_favourites: string;
+  by_replies: string;
 }
 
 export type Archetype =
@@ -37,8 +37,24 @@ interface AnnualReportV1 {
   archetype: Archetype;
 }
 
-export interface AnnualReport {
-  year: number;
-  schema_version: number;
-  data: AnnualReportV1;
+interface AnnualReportV2 {
+  archetype: Archetype;
+  time_series: TimeSeriesMonth[];
+  top_hashtags: NameAndCount[];
+  top_statuses: TopStatuses;
 }
+
+export type AnnualReport = {
+  year: number;
+} & (
+  | {
+      schema_version: 1;
+      data: AnnualReportV1;
+    }
+  | {
+      schema_version: 2;
+      data: AnnualReportV2;
+      share_url: string | null;
+      account_id: string;
+    }
+);

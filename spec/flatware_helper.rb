@@ -3,7 +3,7 @@
 if defined?(Flatware)
   Flatware.configure do |config|
     config.after_fork do |test_env_number|
-      unless ENV.fetch('DISABLE_SIMPLECOV', nil) == 'true'
+      if ENV.fetch('COVERAGE', false)
         require 'simplecov'
         SimpleCov.at_fork.call(test_env_number) # Combines parallel coverage results
       end

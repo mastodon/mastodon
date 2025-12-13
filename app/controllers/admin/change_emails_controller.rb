@@ -41,9 +41,8 @@ module Admin
     end
 
     def resource_params
-      params.require(:user).permit(
-        :unconfirmed_email
-      )
+      params
+        .expect(user: [:unconfirmed_email])
     end
   end
 end

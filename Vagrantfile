@@ -54,6 +54,7 @@ sudo apt-get install \
   pkg-config \
   protobuf-compiler \
   zlib1g-dev \
+  libvips42t64 \
   -y
 
 # Install rvm
@@ -134,7 +135,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "ubuntu/focal64"
+  config.vm.box = "bento/ubuntu-24.04"
 
   config.vm.provider :virtualbox do |vb|
     vb.name = "mastodon"
@@ -174,7 +175,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if config.vm.networks.any? { |type, options| type == :private_network }
     config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['rw', 'actimeo=1']
   else
-    config.vm.synced_folder ".", "/vagrant"
+    config.vm.synced_folder ".", "/vagrant", type: "rsync", create: true, rsync__args: ["--verbose", "--archive", "--delete", "-z"]
   end
 
   # Otherwise, you can access the site at http://localhost:3000 and http://localhost:4000 , http://localhost:8080

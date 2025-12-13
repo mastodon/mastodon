@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Admin::Reports::ActionsController do
   render_views
 
-  let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+  let(:user) { Fabricate(:admin_user) }
 
   before do
     sign_in user, scope: :user
@@ -143,6 +143,12 @@ RSpec.describe Admin::Reports::ActionsController do
           subject
           expect(media_attached_status.reload.sensitive).to be true
         end
+      end
+
+      context 'when the action is "invalid_action"' do
+        let(:action) { 'invalid_action' }
+
+        it { is_expected.to redirect_to(admin_report_path(report)) }
       end
     end
 

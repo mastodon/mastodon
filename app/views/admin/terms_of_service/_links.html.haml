@@ -1,0 +1,6 @@
+.content__heading__tabs
+  = render_navigation renderer: :links do |primary|
+    :ruby
+      primary.item :current, safe_join([material_symbol('description'), t('admin.terms_of_service.current')]), admin_terms_of_service_index_path
+      primary.item :draft, safe_join([material_symbol('description'), t('admin.terms_of_service.draft')]), admin_terms_of_service_draft_path
+      primary.item :previous, safe_join([material_symbol('history'), t('admin.terms_of_service.history')]), admin_terms_of_service_history_path

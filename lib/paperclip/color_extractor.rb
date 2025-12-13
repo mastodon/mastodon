@@ -182,9 +182,9 @@ module Paperclip
       t += 1 if t.negative?
       t -= 1 if t > 1
 
-      return (p + ((q - p) * 6 * t)) if t < 1 / 6.0
+      return p + ((q - p) * 6 * t) if t < 1 / 6.0
       return q if t < 1 / 2.0
-      return (p + ((q - p) * ((2 / 3.0) - t) * 6)) if t < 2 / 3.0
+      return p + ((q - p) * ((2 / 3.0) - t) * 6) if t < 2 / 3.0
 
       p
     end
@@ -239,7 +239,7 @@ module Paperclip
     end
 
     def rgb_to_hex(rgb)
-      format('#%02x%02x%02x', rgb.r, rgb.g, rgb.b)
+      format('#%02x%02x%02x', rgb.r, rgb.g, rgb.b) # rubocop:disable Style/FormatStringToken
     end
   end
 end

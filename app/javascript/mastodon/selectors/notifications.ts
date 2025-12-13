@@ -26,7 +26,10 @@ const filterNotificationsByAllowedTypes = (
     );
   }
   return notifications.filter(
-    (item) => item.type === 'gap' || allowedType === item.type,
+    (item) =>
+      item.type === 'gap' ||
+      allowedType === item.type ||
+      (allowedType === 'mention' && item.type === 'quote'),
   );
 };
 

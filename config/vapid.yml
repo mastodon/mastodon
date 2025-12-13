@@ -1,0 +1,17 @@
+# You can generate the private and public keys using the following task. You
+# should only generate this once per instance. If you later decide to change it,
+# all push subscriptions will be invalidated, requiring users to access the
+# website again to resubscribe.
+#
+# Generate on the CLI:
+# `bundle exec rails mastodon:webpush:generate_vapid_key`
+#
+# Generate via Docker Compose:
+# `docker-compose run --rm web bundle exec rails mastodon:webpush:generate_vapid_key`
+#
+# For more information visit
+# https://rossta.net/blog/using-the-web-push-api-with-vapid.html
+#
+shared:
+  private_key: <%= ENV.fetch('VAPID_PRIVATE_KEY', nil)&.to_json %>
+  public_key: <%= ENV.fetch('VAPID_PUBLIC_KEY', nil)&.to_json %>

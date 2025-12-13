@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'FeaturedTags' do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'read:accounts write:accounts' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:accounts write:accounts'
 
   describe 'GET /api/v1/featured_tags' do
     context 'with wrong scope' do
@@ -127,10 +124,10 @@ RSpec.describe 'FeaturedTags' do
         FeaturedTag.create(name: params[:name], account: user.account)
       end
 
-      it 'returns http unprocessable entity' do
+      it 'returns http success' do
         post '/api/v1/featured_tags', headers: headers, params: params
 
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
       end

@@ -7,6 +7,7 @@ it:
       send_paranoid_instructions: Se il tuo indirizzo email esiste nel nostro database, riceverai un'email con le istruzioni su come confermare il tuo indirizzo email in pochi minuti. Sei pregato di controllare la tua cartella dello spam se non hai ricevuto quest'email.
     failure:
       already_authenticated: Sei già connesso.
+      closed_registrations: Il tuo tentativo di registrazione è stato bloccato a causa di una politica di rete. Se ritieni che si tratti di un errore, contatta %{email}.
       inactive: Il tuo profilo non è ancora attivo.
       invalid: "%{authentication_keys} o password non valida."
       last_attempt: Hai un altro tentativo, prima che il tuo profilo venga bloccato.
@@ -94,11 +95,6 @@ it:
       updated_not_active: La tua password è stata modificata correttamente.
     registrations:
       destroyed: Addio! Il tuo profilo è stato eliminato correttamente. Speriamo di rivederti presto.
-      signed_up: Benvenuto! Ti sei registrato con successo.
-      signed_up_but_inactive: Ti sei registrato con successo. Tuttavia, non siamo riusciti a farti accedere perché il tuo profilo non è ancora stato attivato.
-      signed_up_but_locked: Ti sei registrato con successo. Tuttavia, non siamo riusciti a farti accedere perché il tuo profilo è bloccato.
-      signed_up_but_pending: Un messaggio con un link di conferma è stato inviato al tuo indirizzo email. Una volta che avrai cliccato il link, revisioneremo la tua richiesta. Sarai notificato, se verrà approvata.
-      signed_up_but_unconfirmed: Un messaggio con un link di conferma è stato inviato al tuo indirizzo email. Sei pregato di seguire il link per attivare il tuo profilo. Sei pregato di controllare la tua cartella dello spam, se non hai ricevuto quest'email.
       update_needs_confirmation: Hai aggiornato correttamente il tuo profilo, ma dobbiamo verificare il tuo nuovo indirizzo email. Sei pregato di controllare la tua email e di seguire il link di conferma, per confermare il tuo nuovo indirizzo email. Sei pregato di controllare la tua cartella dello spam, se non hai ricevuto quest'email.
       updated: Il tuo profilo è stato aggiornato con successo.
     sessions:

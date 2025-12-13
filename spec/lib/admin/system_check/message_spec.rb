@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Admin::SystemCheck::Message do
-  subject(:check) { described_class.new(:key_value, :value_value, :action_value, :critical_value) }
+  subject(:check) { described_class.new(:key_value, :value_value, :action_value, critical: :critical_value) }
 
   it 'providers readers when initialized' do
     expect(check.key).to eq :key_value

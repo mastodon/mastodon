@@ -1,5 +1,14 @@
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 
+import {
+  changeComposeVisibility,
+  changeUploadCompose,
+  quoteCompose,
+  quoteComposeCancel,
+  setComposeQuotePolicy,
+  pasteLinkCompose,
+  cancelPasteLinkCompose,
+} from '@/mastodon/actions/compose_typed';
 import { timelineDelete } from 'mastodon/actions/timelines_typed';
 
 import {
@@ -32,21 +41,14 @@ import {
   COMPOSE_SENSITIVITY_CHANGE,
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
-  COMPOSE_VISIBILITY_CHANGE,
   COMPOSE_LANGUAGE_CHANGE,
   COMPOSE_COMPOSING_CHANGE,
   COMPOSE_EMOJI_INSERT,
-  COMPOSE_UPLOAD_CHANGE_REQUEST,
-  COMPOSE_UPLOAD_CHANGE_SUCCESS,
-  COMPOSE_UPLOAD_CHANGE_FAIL,
   COMPOSE_RESET,
   COMPOSE_POLL_ADD,
   COMPOSE_POLL_REMOVE,
   COMPOSE_POLL_OPTION_CHANGE,
   COMPOSE_POLL_SETTINGS_CHANGE,
-  INIT_MEDIA_EDIT_MODAL,
-  COMPOSE_CHANGE_MEDIA_DESCRIPTION,
-  COMPOSE_CHANGE_MEDIA_FOCUS,
   COMPOSE_CHANGE_MEDIA_ORDER,
   COMPOSE_SET_STATUS,
   COMPOSE_FOCUS,
@@ -73,6 +75,7 @@ const initialState = ImmutableMap({
   is_submitting: false,
   is_changing_upload: false,
   is_uploading: false,
+  should_redirect_to_compose_page: false,
   progress: 0,
   isUploadingThumbnail: false,
   thumbnailProgress: 0,
@@ -87,13 +90,12 @@ const initialState = ImmutableMap({
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   tagHistory: ImmutableList(),
-  media_modal: ImmutableMap({
-    id: null,
-    description: '',
-    focusX: 0,
-    focusY: 0,
-    dirty: false,
-  }),
+
+  // Quotes
+  quoted_status_id: null,
+  quote_policy: 'public',
+  default_quote_policy: 'public', // Set in hydration.
+  fetching_link: null,
 });
 
 const initialPoll = ImmutableMap({
@@ -125,8 +127,11 @@ function clearAll(state) {
     map.set('sensitive', state.get('default_sensitive'));
     map.set('language', state.get('default_language'));
     map.update('media_attachments', list => list.clear());
+    map.set('progress', 0);
     map.set('poll', null);
     map.set('idempotencyKey', uuid());
+    map.set('quoted_status_id', null);
+    map.set('quote_policy', state.get('default_quote_policy'));
   });
 }
 
@@ -140,6 +145,7 @@ function appendMedia(state, media, file) {
     map.update('media_attachments', list => list.push(media.set('unattached', true)));
     map.set('is_uploading', false);
     map.set('is_processing', false);
+    map.set('progress', 0);
     map.set('resetFileKey', Math.floor((Math.random() * 0x10000)));
     map.set('idempotencyKey', uuid());
     map.update('pending_media_attachments', n => n - 1);
@@ -254,12 +260,26 @@ const expiresInFromExpiresAt = expires_at => {
 
 const mergeLocalHashtagResults = (suggestions, prefix, tagHistory) => {
   prefix = prefix.toLowerCase();
+
   if (suggestions.length < 4) {
     const localTags = tagHistory.filter(tag => tag.toLowerCase().startsWith(prefix) && !suggestions.some(suggestion => suggestion.type === 'hashtag' && suggestion.name.toLowerCase() === tag.toLowerCase()));
-    return suggestions.concat(localTags.slice(0, 4 - suggestions.length).toJS().map(tag => ({ type: 'hashtag', name: tag })));
-  } else {
-    return suggestions;
+    suggestions = suggestions.concat(localTags.slice(0, 4 - suggestions.length).toJS().map(tag => ({ type: 'hashtag', name: tag })));
   }
+
+  // Prefer capitalization from personal history, unless personal history is all lower-case
+  const fixSuggestionCapitalization = (suggestion) => {
+    if (suggestion.type !== 'hashtag')
+      return suggestion;
+
+    const tagFromHistory = tagHistory.find((tag) => tag.localeCompare(suggestion.name, undefined, { sensitivity: 'accent' }) === 0);
+
+    if (!tagFromHistory || tagFromHistory.toLowerCase() === tagFromHistory)
+      return suggestion;
+
+    return { ...suggestion, name: tagFromHistory };
+  };
+
+  return suggestions.map(fixSuggestionCapitalization);
 };
 
 const normalizeSuggestions = (state, { accounts, emojis, tags, token }) => {
@@ -294,16 +314,74 @@ const updatePoll = (state, index, value, maxOptions) => state.updateIn(['poll', 
   return tmp;
 });
 
-export default function compose(state = initialState, action) {
+const calculateProgress = (loaded, total) => Math.min(Math.round((loaded / total) * 100), 100);
+
+/** @type {import('@reduxjs/toolkit').Reducer<typeof initialState>} */
+export const composeReducer = (state = initialState, action) => {
+  if (changeComposeVisibility.match(action)) {
+    return state
+      .set('privacy', action.payload)
+      .set('idempotencyKey', uuid());
+  } else if (changeUploadCompose.fulfilled.match(action)) {
+    return state
+      .set('is_changing_upload', false)
+      .update('media_attachments', list => list.map(item => {
+        if (item.get('id') === action.payload.media.id) {
+          return fromJS(action.payload.media).set('unattached', !action.payload.attached);
+        }
+
+        return item;
+      }));
+  } else if (changeUploadCompose.pending.match(action)) {
+    return state.set('is_changing_upload', true);
+  } else if (changeUploadCompose.rejected.match(action)) {
+    return state.set('is_changing_upload', false);
+  } else if (quoteCompose.match(action)) {
+    const status = action.payload;
+    const isDirect = state.get('privacy') === 'direct';
+    return state
+      .set('quoted_status_id', isDirect ? null : status.get('id'))
+      .update('spoiler', spoiler => (spoiler) || !!status.get('spoiler_text'))
+      .update('spoiler_text', (spoiler_text) => spoiler_text || status.get('spoiler_text'))
+      .update('privacy', (visibility) => {
+        if (['public', 'unlisted'].includes(visibility) && status.get('visibility') === 'private') {
+          return 'private';
+        }
+        return visibility;
+      });
+  } else if (quoteComposeCancel.match(action)) {
+    return state.set('quoted_status_id', null);
+  } else if (setComposeQuotePolicy.match(action)) {
+    return state.set('quote_policy', action.payload);
+  } else if (pasteLinkCompose.pending.match(action)) {
+    return state.set('fetching_link', action.meta.requestId);
+  } else if (pasteLinkCompose.fulfilled.match(action) || pasteLinkCompose.rejected.match(action)) {
+    return action.meta.requestId === state.get('fetching_link') ? state.set('fetching_link', null) : state;
+  } else if (cancelPasteLinkCompose.match(action)) {
+    return state.set('fetching_link', null);
+  }
+
   switch(action.type) {
   case STORE_HYDRATE:
-    return hydrate(state, action.state.get('compose'));
+    if (action.state.get('compose'))
+      return hydrate(state, action.state.get('compose'));
+    return state;
   case COMPOSE_MOUNT:
-    return state.set('mounted', state.get('mounted') + 1);
+    return state
+      .set('mounted', state.get('mounted') + 1)
+      .set('should_redirect_to_compose_page', false);
   case COMPOSE_UNMOUNT:
     return state
       .set('mounted', Math.max(state.get('mounted') - 1, 0))
-      .set('is_composing', false);
+      .set('is_composing', false)
+      .set(
+        'should_redirect_to_compose_page',
+        (state.get('mounted') === 1 &&
+          state.get('is_composing') === true &&
+          (state.get('text').trim() !== '' ||
+          state.get('media_attachments').size > 0)
+        )
+      );
   case COMPOSE_SENSITIVITY_CHANGE:
     return state.withMutations(map => {
       if (!state.get('spoiler')) {
@@ -326,10 +404,6 @@ export default function compose(state = initialState, action) {
     return state
       .set('spoiler_text', action.text)
       .set('idempotencyKey', uuid());
-  case COMPOSE_VISIBILITY_CHANGE:
-    return state
-      .set('privacy', action.value)
-      .set('idempotencyKey', uuid());
   case COMPOSE_CHANGE:
     return state
       .set('text', action.text)
@@ -346,6 +420,7 @@ export default function compose(state = initialState, action) {
       map.set('caretPosition', null);
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
+      map.set('quoted_status_id', null);
 
       map.update('media_attachments', list => list.filter(media => media.get('unattached')));
 
@@ -369,16 +444,13 @@ export default function compose(state = initialState, action) {
     });
   case COMPOSE_SUBMIT_REQUEST:
     return state.set('is_submitting', true);
-  case COMPOSE_UPLOAD_CHANGE_REQUEST:
-    return state.set('is_changing_upload', true);
+
   case COMPOSE_REPLY_CANCEL:
   case COMPOSE_RESET:
   case COMPOSE_SUBMIT_SUCCESS:
     return clearAll(state);
   case COMPOSE_SUBMIT_FAIL:
     return state.set('is_submitting', false);
-  case COMPOSE_UPLOAD_CHANGE_FAIL:
-    return state.set('is_changing_upload', false);
   case COMPOSE_UPLOAD_REQUEST:
     return state.set('is_uploading', true).update('pending_media_attachments', n => n + 1);
   case COMPOSE_UPLOAD_PROCESSING:
@@ -386,15 +458,19 @@ export default function compose(state = initialState, action) {
   case COMPOSE_UPLOAD_SUCCESS:
     return appendMedia(state, fromJS(action.media), action.file);
   case COMPOSE_UPLOAD_FAIL:
-    return state.set('is_uploading', false).set('is_processing', false).update('pending_media_attachments', n => n - 1);
+    return state
+      .set('is_uploading', false)
+      .set('is_processing', false)
+      .set('progress', 0)
+      .update('pending_media_attachments', n => n - 1);
   case COMPOSE_UPLOAD_UNDO:
     return removeMedia(state, action.media_id);
   case COMPOSE_UPLOAD_PROGRESS:
-    return state.set('progress', Math.round((action.loaded / action.total) * 100));
+    return state.set('progress', calculateProgress(action.loaded, action.total));
   case THUMBNAIL_UPLOAD_REQUEST:
     return state.set('isUploadingThumbnail', true);
   case THUMBNAIL_UPLOAD_PROGRESS:
-    return state.set('thumbnailProgress', Math.round((action.loaded / action.total) * 100));
+    return state.set('thumbnailProgress', calculateProgress(action.loaded, action.total));
   case THUMBNAIL_UPLOAD_FAIL:
     return state.set('isUploadingThumbnail', false);
   case THUMBNAIL_UPLOAD_SUCCESS:
@@ -407,20 +483,6 @@ export default function compose(state = initialState, action) {
 
         return item;
       }));
-  case INIT_MEDIA_EDIT_MODAL: {
-    const media =  state.get('media_attachments').find(item => item.get('id') === action.id);
-    return state.set('media_modal', ImmutableMap({
-      id: action.id,
-      description: media.get('description') || '',
-      focusX: media.getIn(['meta', 'focus', 'x'], 0),
-      focusY: media.getIn(['meta', 'focus', 'y'], 0),
-      dirty: false,
-    }));
-  }
-  case COMPOSE_CHANGE_MEDIA_DESCRIPTION:
-    return state.setIn(['media_modal', 'description'], action.description).setIn(['media_modal', 'dirty'], true);
-  case COMPOSE_CHANGE_MEDIA_FOCUS:
-    return state.setIn(['media_modal', 'focusX'], action.focusX).setIn(['media_modal', 'focusY'], action.focusY).setIn(['media_modal', 'dirty'], true);
   case COMPOSE_MENTION:
     return state.withMutations(map => {
       map.update('text', text => [text.trim(), `@${action.account.get('acct')} `].filter((str) => str.length !== 0).join(' '));
@@ -458,17 +520,6 @@ export default function compose(state = initialState, action) {
     }
   case COMPOSE_EMOJI_INSERT:
     return insertEmoji(state, action.position, action.emoji, action.needsSpace);
-  case COMPOSE_UPLOAD_CHANGE_SUCCESS:
-    return state
-      .set('is_changing_upload', false)
-      .setIn(['media_modal', 'dirty'], false)
-      .update('media_attachments', list => list.map(item => {
-        if (item.get('id') === action.media.id) {
-          return fromJS(action.media).set('unattached', !action.attached);
-        }
-
-        return item;
-      }));
   case REDRAFT:
     return state.withMutations(map => {
       map.set('text', action.raw_text || unescapeHTML(expandMentions(action.status)));
@@ -481,6 +532,9 @@ export default function compose(state = initialState, action) {
       map.set('sensitive', action.status.get('sensitive'));
       map.set('language', action.status.get('language'));
       map.set('id', null);
+      map.set('quoted_status_id', action.status.getIn(['quote', 'quoted_status'], null));
+      // Mastodon-authored posts can be expected to have at most one automatic approval policy
+      map.set('quote_policy', action.status.getIn(['quote_approval', 'automatic', 0]) || 'nobody');
 
       if (action.status.get('spoiler_text').length > 0) {
         map.set('spoiler', true);
@@ -491,10 +545,15 @@ export default function compose(state = initialState, action) {
       }
 
       if (action.status.get('poll')) {
+        let options = ImmutableList(action.status.get('poll').options.map(x => x.title));
+        if (options.size < action.maxOptions) {
+          options = options.push('');
+        }
+
         map.set('poll', ImmutableMap({
-          options: action.status.getIn(['poll', 'options']).map(x => x.get('title')),
-          multiple: action.status.getIn(['poll', 'multiple']),
-          expires_in: expiresInFromExpiresAt(action.status.getIn(['poll', 'expires_at'])),
+          options: options,
+          multiple: action.status.get('poll').multiple,
+          expires_in: expiresInFromExpiresAt(action.status.get('poll').expires_at),
         }));
       }
     });
@@ -510,6 +569,9 @@ export default function compose(state = initialState, action) {
       map.set('idempotencyKey', uuid());
       map.set('sensitive', action.status.get('sensitive'));
       map.set('language', action.status.get('language'));
+      map.set('quoted_status_id', action.status.getIn(['quote', 'quoted_status'], null));
+      // Mastodon-authored posts can be expected to have at most one automatic approval policy
+      map.set('quote_policy', action.status.getIn(['quote_approval', 'automatic', 0]) || 'nobody');
 
       if (action.spoiler_text.length > 0) {
         map.set('spoiler', true);
@@ -520,10 +582,15 @@ export default function compose(state = initialState, action) {
       }
 
       if (action.status.get('poll')) {
+        let options = ImmutableList(action.status.get('poll').options.map(x => x.title));
+        if (options.size < action.maxOptions) {
+          options = options.push('');
+        }
+
         map.set('poll', ImmutableMap({
-          options: action.status.getIn(['poll', 'options']).map(x => x.get('title')),
-          multiple: action.status.getIn(['poll', 'multiple']),
-          expires_in: expiresInFromExpiresAt(action.status.getIn(['poll', 'expires_at'])),
+          options: options,
+          multiple: action.status.get('poll').multiple,
+          expires_in: expiresInFromExpiresAt(action.status.get('poll').expires_at),
         }));
       }
     });
@@ -550,4 +617,4 @@ export default function compose(state = initialState, action) {
   default:
     return state;
   }
-}
+};

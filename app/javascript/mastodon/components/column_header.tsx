@@ -9,7 +9,8 @@ import ArrowBackIcon from '@/material-icons/400-24px/arrow_back.svg?react';
 import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
-import SettingsIcon from '@/material-icons/400-24px/settings.svg?react';
+import UnfoldLessIcon from '@/material-icons/400-24px/unfold_less.svg?react';
+import UnfoldMoreIcon from '@/material-icons/400-24px/unfold_more.svg?react';
 import type { IconProp } from 'mastodon/components/icon';
 import { Icon } from 'mastodon/components/icon';
 import { ButtonInTabsBar } from 'mastodon/features/ui/util/columns_context';
@@ -17,7 +18,7 @@ import { useIdentity } from 'mastodon/identity_context';
 
 import { useAppHistory } from './router';
 
-const messages = defineMessages({
+export const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
   hide: { id: 'column_header.hide_settings', defaultMessage: 'Hide settings' },
   moveLeft: {
@@ -52,6 +53,7 @@ const BackButton: React.FC<{
         compact: onlyIcon,
       })}
       aria-label={intl.formatMessage(messages.back)}
+      type='button'
     >
       <Icon
         id='chevron-left'
@@ -171,6 +173,7 @@ export const ColumnHeader: React.FC<Props> = ({
       <button
         className='text-btn column-header__setting-btn'
         onClick={handlePin}
+        type='button'
       >
         <Icon id='times' icon={CloseIcon} />{' '}
         <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' />
@@ -184,6 +187,7 @@ export const ColumnHeader: React.FC<Props> = ({
           aria-label={intl.formatMessage(messages.moveLeft)}
           className='icon-button column-header__setting-btn'
           onClick={handleMoveLeft}
+          type='button'
         >
           <Icon id='chevron-left' icon={ChevronLeftIcon} />
         </button>
@@ -192,6 +196,7 @@ export const ColumnHeader: React.FC<Props> = ({
           aria-label={intl.formatMessage(messages.moveRight)}
           className='icon-button column-header__setting-btn'
           onClick={handleMoveRight}
+          type='button'
         >
           <Icon id='chevron-right' icon={ChevronRightIcon} />
         </button>
@@ -202,6 +207,7 @@ export const ColumnHeader: React.FC<Props> = ({
       <button
         className='text-btn column-header__setting-btn'
         onClick={handlePin}
+        type='button'
       >
         <Icon id='plus' icon={AddIcon} />{' '}
         <FormattedMessage id='column_header.pin' defaultMessage='Pin' />
@@ -236,9 +242,13 @@ export const ColumnHeader: React.FC<Props> = ({
           collapsed ? messages.show : messages.hide,
         )}
         onClick={handleToggleClick}
+        type='button'
       >
         <i className='icon-with-badge'>
-          <Icon id='sliders' icon={SettingsIcon} />
+          <Icon
+            id='sliders'
+            icon={collapsed ? UnfoldMoreIcon : UnfoldLessIcon}
+          />
           {collapseIssues && <i className='icon-with-badge__issue-badge' />}
         </i>
       </button>
@@ -255,7 +265,11 @@ export const ColumnHeader: React.FC<Props> = ({
           <>
             {backButton}
 
-            <button onClick={handleTitleClick} className='column-header__title'>
+            <button
+              onClick={handleTitleClick}
+              className='column-header__title'
+              type='button'
+            >
               {!backButton && (
                 <Icon
                   id={icon}

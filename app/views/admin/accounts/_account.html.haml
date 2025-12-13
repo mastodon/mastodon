@@ -25,7 +25,7 @@
           %td.accounts-table__extra
             - if account.local?
               - if account.user_email
-                = link_to account.user_email.split('@').last, admin_accounts_path(email: "%@#{account.user_email.split('@').last}"), title: account.user_email
+                = link_to account.user_email_domain, admin_accounts_path(email: "%@#{account.user_email_domain}"), title: account.user_email
               - else
                 \-
               %br/

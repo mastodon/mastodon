@@ -3,7 +3,7 @@ sq:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Një për rresht. Kjo mbron nga atribuime të rreme.
+        attribution_domains: Një për rresht. Kjo mbron nga atribuime të rreme.
         discoverable: Postimet dhe profili juaj publik mund të shfaqen, ose rekomandohen në zona të ndryshme të Mastodon-it dhe profili juaj mund të sugjerohet përdoruesve të tjerë.
         display_name: Emri juaj i plotë, ose emri juaj lojcak.
         fields: Faqja juaj hyrëse, përemra, moshë, ç’të keni qejf.
@@ -54,12 +54,18 @@ sq:
         password: Përdorni të paktën 8 shenja
         phrase: Do të kërkohet përputhje pavarësish se teksti ose sinjalizimi mbi lëndën e një mesazhi është shkruar me të mëdha apo me të vogla
         scopes: Cilat API do të lejohen të përdorin aplikacioni. Nëse përzgjidhni një shkallë të epërme, nuk ju duhet të përzgjidhni individualet një nga një.
+        setting_advanced_layout: Shfaqe Mastodon-in si një skemë me shumë shtylla, duke ju lejuar të shihni rrjedhën kohore, njoftimet dhe një shtyllë të tretë zgjedhur prej jush. Nuk rekomandohet për ekrane të vegjël.
         setting_aggregate_reblogs: Mos shfaq përforcime të reja për mesazhe që janë përforcuar tani së fundi (prek vetëm përforcime të marra rishtas)
         setting_always_send_emails: Normalisht s’do të dërgohen njoftime, kur përdorni aktivisht Mastodon-in
+        setting_boost_modal: Kur është e aktivizuar, përforcimi së pari do të hapë një dialog ripohimi në të cilin mund të ndryshoni dukshmërinë e përforcimit tuaj.
+        setting_default_quote_policy_private: Në Mastodon s’mund të citohen nga të tjerë postim Vetëm-për-ndjekësit.
+        setting_default_quote_policy_unlisted: Kur njerëzit ju citojnë, nga rrjedha kohore e gjërave në modë do të kalohen si të fshehura edhe postimet e tyre.
         setting_default_sensitive: Media rezervat fshihet, si parazgjedhje, dhe mund të shfaqet me një klikim
         setting_display_media_default: Fshih media me shenjën rezervat
         setting_display_media_hide_all: Fshih përherë mediat
         setting_display_media_show_all: Mediat shfaqi përherë
+        setting_quick_boosting_html: Kur aktivizohet, klikimi mbi ikonën e Përforcimeve %{boost_icon} do të bëjë menjëherë përforcimin, në vend se të hapet menuja hapmbyll e përforcimeve/citimeve. E rikalon veprimin e citimit te menuja %{options_icon} (Mundësi).
+        setting_system_scrollbars_ui: Ka vend vetëm për shfletues desktop bazuar në Safari dhe Chrome
         setting_use_blurhash: Gradientët bazohen në ngjyrat e elementëve pamorë të fshehur, por errësojnë çfarëdo hollësie
         setting_use_pending_items: Fshihi përditësimet e rrjedhës kohore pas një klikimi, në vend të rrëshqitjes automatike nëpër prurje
         username: Mund të përdorni shkronja, numra dhe nënvija
@@ -72,21 +78,24 @@ sq:
       featured_tag:
         name: 'Ja disa nga hashtag-ët që përdorët tani afër:'
       filters:
-        action: Zgjidhni cili veprim të kryhet, kur një postim ka përputhje me një filtër
+        action: Zgjidhni cili veprim të kryhet, kur një postim ka përkim me një filtër
         actions:
+          blur: Fshihe median pas një sinjalizimi, pa fshehur vetë tekstin
           hide: Fshihe plotësisht lëndën e filtruar, duke u sjellë sikur të mos ekzistonte
           warn: Fshihe lëndën e filtruar pas një sinjalizimi që përmend titullin e filtrit
       form_admin_settings:
         activity_api_enabled: Numër postimesh të botuar lokalisht, përdoruesish aktiv dhe regjistrimesh të reja sipas matjesh javore
         app_icon: WEBP, PNG, GIF, ose JPG. Anashkalon ikonë parazgjedhje aplikacioni në pajisje celulare me një ikonë vetjake.
         backups_retention_period: Përdorues kanë aftësinë të prodhojnë arkiva të postimeve të tyre për t’i shkarkuar më vonë. Kur i jepet një vlerë pozitive, këto arkiva do të fshihen automatikisht prej depozitës tuaj pas numrit të dhënë të ditëve.
-        bootstrap_timeline_accounts: Këto llogari do të fiksohen në krye të rekomandimeve për ndjekje nga përdorues të rinj.
+        bootstrap_timeline_accounts: Këto llogari do të fiksohen në krye të rekomandimeve për ndjekje për përdoruesin e ri. Jepni një listë llogarish ndarë me presje.
         closed_registrations_message: Shfaqur kur mbyllen dritare regjistrimesh
         content_cache_retention_period: Krejt postimet prej shërbyesve të tjerë (përfshi përforcime dhe përgjigje) do të fshihen pas numrit të caktuar të ditëve, pa marrë parasysh çfarëdo ndërveprimi përdoruesi me këto postime. Kjo përfshin postime kur një përdorues vendor u ka vënë shenjë si faqerojtës, ose të parapëlqyer. Do të humbin gjithashtu dhe përmendje private mes përdoruesish nga instanca të ndryshme dhe s’do të jetë e mundshme të rikthehen. Përdorimi i këtij rregullimi është menduar për instanca me qëllim të caktuar dhe ndërhyn në çka presin mjaft përdorues, kur sendërtohet për përdorim të përgjithshëm.
         custom_css: Stile vetjakë mund të aplikoni në versionin web të Mastodon-it.
         favicon: WEBP, PNG, GIF, ose JPG. Anashkalon favikonën parazgjedhje Mastodon me një ikonë vetjake.
+        landing_page: Përzgjedh cilën faqe shohin vizitorët e rinj, kur vijnë për herë të parë në shërbyesin tuaj. Nëse përzgjidhni “Në modë”, atëherë “në modë” duhet aktivizuar te Rregullime për Zbulime. Nëse përzgjidhni “Prurje vendore”, atëherë “Hyrje te prurje vendore që përmbajnë postime vendore” duhet vënë si “Gjithkush”, te Rregullime për Zbulime.
         mascot: Anashkalon ilustrimin te ndërfaqja web e thelluar.
         media_cache_retention_period: Kartela media nga postime të bëra nga përdorues të largët ruhen në një fshehtinë në shërbyesin tuaj. Kur i jepet një vlerë pozitive, media do të fshihet pas numrit të dhënë të ditëve. Nëse të dhënat e medias duhen pas fshirjes, do të rishkarkohen, nëse lënda burim mund të kihet ende. Për shkak kufizimesh mbi sa shpesh skeda paraparjesh lidhjesh ndërveprojnë me sajte palësh të treta, rekomandohet të vihet kjo vlerë të paktën 14 ditë, ose skedat e paraparjes së lidhje s’do të përditësohen duke e kërkuar para asaj kohe.
+        min_age: Përdoruesve do t’ju kërkohet gjatë regjistrimit të ripohojnë datën e lindjes
         peers_api_enabled: Një listë emrash përkatësish që ky shërbyes ka hasur në fedivers. Këtu s’jepen të dhëna nëse jeni i federuar me shërbyesin e dhënë, thjesht tregohet se shërbyesi juaj e njeh. Kjo përdoret nga shërbime që mbledhin statistika mbi federimin në kuptimin e përgjithshëm.
         profile_directory: Drejtoria e profileve paraqet krejt përdoruesit që kanë zgjedhur të jenë të zbulueshëm.
         require_invite_text: Kur regjistrimet lypin miratim dorazi, bëje tekstin “Përse doni të bëheni pjesë?” të detyrueshëm, në vend se opsional
@@ -99,10 +108,8 @@ sq:
         status_page_url: URL e faqe ku njerëzit mund të shohin gjendjen e këtij shërbyesi, gjatë një ndërprerje të funksionimit
         theme: Temë që shohin vizitorët që kanë bërë daljen dhe përdorues të rinj.
         thumbnail: Një figurë afërsisht 2:1 e shfaqur tok me hollësi mbi shërbyesin tuaj.
-        timeline_preview: Vizitorët që kanë bërë daljen do të jenë në gjendje të shfletojnë postimet më të freskëta publike të passhme në shërbyes.
         trendable_by_default: Anashkalo shqyrtim dorazi lënde në modë. Gjëra individuale prapë mund të hiqen nga lëndë në modë pas publikimi.
         trends: Gjërat në modë shfaqin cilat postime, hashtagë dhe histori të reja po tërheqin vëmendjen në shërbyesin tuaj.
-        trends_as_landing_page: Shfaq lëndë në modë për përdorues jo të futur në llogari dhe për vizitorë, në vend se të një përshkrimi të këtij shërbyesi. Lyp që të jenë të aktivizuara gjërat në modë.
       form_challenge:
         current_password: Po hyni në një zonë të sigurt
       imports:
@@ -129,8 +136,25 @@ sq:
         show_application: Pavarësisht nga kjo, do të jeni përherë në gjendje të shihni cili aplikacion botoi postimin tuaj.
       tag:
         name: Mund të ndryshoni shkronjat vetëm nga të mëdha në të vogla ose anasjelltas, për shembull, për t’i bërë më të lexueshme
+      terms_of_service:
+        changelog: Mund të strukturohet me sintaksë Markdown.
+        effective_date: Një kuadër kohor i arsyeshëm mund të shtrihet nga 10 deri në 30 ditë nga data që njoftoni përdoruesit tuaj.
+        text: Mund të strukturohet me sintaksë Markdown.
+      terms_of_service_generator:
+        admin_email: Njoftimet ligjore përfshijnë kundërnjoftime, vendime gjyqi, kërkesa për për nxjerrje sajti jashtë shërbimit dhe kërkesa nga organe ligjore.
+        arbitration_address: Mund të jetë e njëjtë me adresën Fizike më sipër, ose “N/A”, nëse përdoret email.
+        arbitration_website: Mund të jetë një formular web, ose “N/A”, nëse përdoret email.
+        choice_of_law: Qytet, rajon, territor ose shtet, ligjet e brendshme të të cilit do të administrojnë çfarëdo dhe tërë pretendimet.
+        dmca_address: Për operatorë në ShBA, përdorni adresën e regjistruar te DMCA Designated Agent Directory. Regjistrimi me A P.O. Box bëhet me kërkesë të drejtpërdrejtë, përdorni DMCA Designated Agent Post Office Box Waiver Request që t’i dërgoni email Copyright Office-it dhe t’i përshkruani se jeni një moderator shtëpiak lënde që ka frikë nga hakmarrje apo ndëshkim për veprimet tuaja dhe që ka nevojë të përdor një P.O. Box për heqjen e adresës së shtëpisë tuaj nga sytë e publikut.
+        dmca_email: Mund të jetë i njëjti email i përdorur për “Adresë email për njoftime ligjore” më sipër.
+        domain: Identifikues unik për shërbimin internetor që po ofroni.
+        jurisdiction: Vendosni vendin ku jeton cilido që paguan faturat. Nëse është një shoqëri apo tjetër njësi, vendosni vendin ku është regjistruar, si dhe qytetin, rajonin, territorin apo shtetin përkatës.
+        min_age: S’duhet të jetë nën moshën minimum të domosdoshme nga ligjet në juridiksionin tuaj.
       user:
         chosen_languages: Në iu vëntë shenjë, te rrjedha kohore publike do të shfaqen vetëm mesazhe në gjuhët e përzgjedhura
+        date_of_birth:
+          one: Na duhet të sigurohemi se jeni të paktën %{count} që të përdorni %{domain}. S’do ta depozitojmë këtë.
+          other: Na duhet të sigurohemi se jeni të paktën %{count} që të përdorni %{domain}. S’do ta depozitojmë këtë.
         role: Roli kontrollon cilat leje ka përdoruesi.
       user_role:
         color: Ngjyrë për t’u përdorur për rolin nëpër UI, si RGB në format gjashtëmbëdhjetësh
@@ -138,13 +162,17 @@ sq:
         name: Emër publik për rolin, nëse roli është ujdisur të shfaqet si një stemë
         permissions_as_keys: Përdoruesit me këtë rol do të mund të…
         position: Role më të lartë vendosin zgjidhje përplasje në disa raste. Disa veprime mund të kryhen vetëm mbi role të një shkalle më të ulët
+      username_block:
+        allow_with_approval: Në vend të pengimit aty për aty të regjistrimit, regjistrime me përkim do të duan miratimin tuaj
+        comparison: Ju lutemi, mbani parasysh Problemin Scunthorpe, kur bllokohen përkime të pjesshme
+        username: Do të merret si përkim, pavarësisht shkrimit me të mëdha apo të vogla dhe pavarësisht homoglifesh të tilla si "4" për "a", ose "3" për "e"
       webhook:
         events: Përzgjidhni akte për dërgim
         template: Hartoni ngarkesë tuajën JSON, duke përdorur ndërkëmbim ndryshoresh. Lëreni të zbrazët, për JSON-in parazgjedhje.
         url: Ku do të dërgohen aktet
     labels:
       account:
-        attribution_domains_as_text: Sajte të lejuar t’ju japin hakë
+        attribution_domains: Sajte të lejuar t’ju japin hakë
         discoverable: Profilin dhe postimet bëji objekt të algoritmeve të zbulimit
         fields:
           name: Etiketë
@@ -208,21 +236,26 @@ sq:
         setting_aggregate_reblogs: Grupoji përforcimet në rrjedha kohore
         setting_always_send_emails: Dërgo përherë njoftime me email
         setting_auto_play_gif: Vetëluaji GIF-et e animuar
-        setting_boost_modal: Shfaq dialog ripohimi përpara përforcimi
+        setting_boost_modal: Kontrolloni dukshmëri përforcimesh
         setting_default_language: Gjuhë postimi
-        setting_default_privacy: Privatësi postimi
+        setting_default_privacy: Dukshmëri postimi
+        setting_default_quote_policy: Cilët mund të citojnë
         setting_default_sensitive: Mediave vëru përherë shenjë si rezervat
-        setting_delete_modal: Shfaq dialog ripohimi përpara fshirjes së një mesazhi
+        setting_delete_modal: Sinjalizomë, para fshirjes së një postimi
         setting_disable_hover_cards: Çaktivizo paraparje profili, kur i kalohet kursori përsipër
         setting_disable_swiping: Çaktivizo lëvizje me fërkim
         setting_display_media: Shfaqje mediash
         setting_display_media_default: Parazgjedhje
         setting_display_media_hide_all: Fshihi krejt
         setting_display_media_show_all: Shfaqi krejt
+        setting_emoji_style: Stil emoji-sh
         setting_expand_spoilers: Mesazhet me sinjalizime mbi lëndën, zgjeroji përherë
         setting_hide_network: Fshiheni rrjetin tuaj
+        setting_missing_alt_text_modal: Sinjalizomë, para postimi mediash pa tekst alternativ
+        setting_quick_boosting: Aktivizo përforcim të shpejtë
         setting_reduce_motion: Zvogëlo lëvizjen në animacione
         setting_system_font_ui: Përdor shkronja parazgjedhje të sistemit
+        setting_system_scrollbars_ui: Përdor shtyllë rrëshqitjesh parazgjedhje të sistemit
         setting_theme: Temë sajti
         setting_trends: Shfaq prirjet sot
         setting_unfollow_modal: Shfaq dialog ripohimi përpara heqjes së ndjekjes për dikë
@@ -241,6 +274,7 @@ sq:
         name: Hashtag
       filters:
         actions:
+          blur: Fshihe median me një sinjalizim
           hide: Fshihe plotësisht
           warn: Fshihe me një sinjalizim
       form_admin_settings:
@@ -252,11 +286,17 @@ sq:
         content_cache_retention_period: Periudhë mbajtjeje lënde të largët
         custom_css: CSS Vetjake
         favicon: Favikonë
+        landing_page: Faqe mbërritje për vizitorë të rinj
+        local_live_feed_access: Hyrje te prurje të atypëratyshme që përmbajnë postime vendore
+        local_topic_feed_access: Hyrje te prurje hashtag-ësh dhe lidhjesh që përmbajnë postime vendore
         mascot: Simbol vetjak (e dikurshme)
         media_cache_retention_period: Periudhë mbajtjeje lënde media
+        min_age: Domosdosmëri moshe minimum
         peers_api_enabled: Publiko te API listë shërbyesish të zbuluar
         profile_directory: Aktivizo drejtori profilesh
         registrations_mode: Kush mund të regjistrohet
+        remote_live_feed_access: Hyrje te prurje të atypëratyshme që përmbajnë postime nga larg
+        remote_topic_feed_access: Hyrje te prurje hashtag-ësh dhe lidhjesh që përmbajnë postime nga larg
         require_invite_text: Kërko një arsye për pjesëmarrje
         show_domain_blocks: Shfaq bllokime përkatësish
         show_domain_blocks_rationale: Shfaq pse janë bllokuar përkatësitë
@@ -269,10 +309,8 @@ sq:
         status_page_url: URL faqeje gjendjesh
         theme: Temë parazgjedhje
         thumbnail: Miniaturë shërbyesi
-        timeline_preview: Lejo hyrje pa mirëfilltësim te rrjedha kohore publike
         trendable_by_default: Lejoni gjëra në modë pa shqyrtim paraprak
         trends: Aktivizo gjëra në modë
-        trends_as_landing_page: Përdor gjërat në modë si faqe hyrëse
       interactions:
         must_be_follower: Blloko njoftime nga jo-ndjekës
         must_be_following: Blloko njoftime nga persona që s’i ndiqni
@@ -297,6 +335,7 @@ sq:
         follow_request: Dikush kërkoi t’ju ndjekë
         mention: Dikush ju përmendi
         pending_account: Llogaria e re lyp shqyrtim
+        quote: Dikush ju citoi
         reblog: Dikush përforcoi gjendjen tuaj
         report: Parashtrohet raportim i ri
         software_updates:
@@ -317,7 +356,24 @@ sq:
         name: Hashtag
         trendable: Lejoje këtë hashtag të shfaqet në prirje
         usable: Lejoji postimet të përdorin lokalisht këtë hashtag
+      terms_of_service:
+        changelog: Ç’ka ndryshuar?
+        effective_date: Datë efektive
+        text: Kushte Shërbimi
+      terms_of_service_generator:
+        admin_email: Adresë email për njoftime ligjore
+        arbitration_address: Adresë fizike për njoftime arbitrazhi
+        arbitration_website: Sajtin për parashtrim njoftime arbitrazhi
+        choice_of_law: Zgjedhje Ligji
+        dmca_address: Adresë fizike për njoftime DMCA/të drejtash kopjimi
+        dmca_email: Adresë email për njoftime DMCA/të drejtash kopjimi
+        domain: Përkatësi
+        jurisdiction: Juridiksion ligjor
+        min_age: Mosha minimale
       user:
+        date_of_birth_1i: Vit
+        date_of_birth_2i: Muaj
+        date_of_birth_3i: Ditë
         role: Rol
         time_zone: Zonë kohore
       user_role:
@@ -326,6 +382,10 @@ sq:
         name: Emër
         permissions_as_keys: Leje
         position: Përparësi
+      username_block:
+        allow_with_approval: Lejo regjistrim me miratim
+        comparison: Metodë krahasimi
+        username: Fjalë për t’u vëzhguar
       webhook:
         events: Akte të aktivizuar
         template: Gjedhe ngarkese

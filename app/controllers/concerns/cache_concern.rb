@@ -28,7 +28,7 @@ module CacheConcern
   def render_with_cache(**options)
     raise ArgumentError, 'Only JSON render calls are supported' unless options.key?(:json) || block_given?
 
-    key        = options.delete(:key) || [[params[:controller], params[:action]].join('/'), options[:json].respond_to?(:cache_key) ? options[:json].cache_key : nil, options[:fields].nil? ? nil : options[:fields].join(',')].compact.join(':')
+    key        = options.delete(:key) || [[params[:controller], params[:action]].join('/'), options[:json].respond_to?(:cache_key) ? options[:json].cache_key : nil, options[:fields]&.join(',')].compact.join(':')
     expires_in = options.delete(:expires_in) || 3.minutes
     body       = Rails.cache.read(key, raw: true)
 

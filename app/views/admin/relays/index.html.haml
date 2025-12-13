@@ -3,7 +3,7 @@
 
 .simple_form
   %p.hint= t('admin.relays.description_html')
-  = link_to @relays.empty? ? t('admin.relays.setup') : t('admin.relays.add_new'), new_admin_relay_path, class: 'block-button'
+  = link_to @relays.empty? ? t('admin.relays.setup') : t('admin.relays.add_new'), new_admin_relay_path, class: 'button button--block'
 
 - unless @relays.empty?
   %hr.spacer

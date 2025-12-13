@@ -6,6 +6,7 @@
 
   %link{ rel: 'alternate', type: 'application/rss+xml', href: rss_url }/
   %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@account) }/
+  %link{ rel: 'alternate', type: 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"', href: ActivityPub::TagManager.instance.uri_for(@account) }/
 
   - @account.fields.select(&:verifiable?).each do |field|
     %link{ rel: 'me', type: 'text/html', href: field.value }/

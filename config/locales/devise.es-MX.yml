@@ -7,6 +7,7 @@ es-MX:
       send_paranoid_instructions: Si su dirección de correo electrónico existe en nuestra base de datos, recibirá un correo electrónico con instrucciones sobre cómo confirmar su dirección de correo en pocos minutos.
     failure:
       already_authenticated: Usted ya está registrado.
+      closed_registrations: Su intento de registro ha sido bloqueado debido a una política de red. Si cree que se trata de un error, póngase en contacto con %{email}.
       inactive: Su cuenta no ha sido activada aún.
       invalid: "%{authentication_keys} o contraseña inválida."
       last_attempt: Tiene un intento más antes de que tu cuenta sea bloqueada.
@@ -94,11 +95,6 @@ es-MX:
       updated_not_active: Su contraseña ha sido cambiada con éxito.
     registrations:
       destroyed: "¡Adios! Su cuenta ha sido cancelada con éxito. Esperamos verle pronto de nuevo."
-      signed_up: "¡Bienvenido! Se ha registrado con éxito."
-      signed_up_but_inactive: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta no ha sido activada todavía.
-      signed_up_but_locked: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta está bloqueada.
-      signed_up_but_pending: Un mensaje con un enlace de confirmacion ha sido enviado a su direccion de email. Luego de clickear el link revisaremos su aplicacion. Seras notificado si es aprovada.
-      signed_up_but_unconfirmed: Un mensaje con un enlace de confirmación ha sido enviado a su correo electrónico. Por favor siga el enlace para activar su cuenta.
       update_needs_confirmation: Ha actualizado su cuenta con éxito, pero necesitamos verificar su nueva dirección de correo. Por favor compruebe su correo y siga el enlace para confirmar su nueva dirección de correo.
       updated: su cuenta ha sido actualizada con éxito.
     sessions:

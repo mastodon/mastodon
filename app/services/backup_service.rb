@@ -6,6 +6,8 @@ class BackupService < BaseService
   include Payloadable
   include ContextHelper
 
+  CHUNK_SIZE = 1.megabyte
+
   attr_reader :account, :backup
 
   def call(backup)
@@ -61,7 +63,7 @@ class BackupService < BaseService
       dump_actor!(zipfile)
     end
 
-    archive_filename = "#{['archive', Time.now.utc.strftime('%Y%m%d%H%M%S'), SecureRandom.hex(16)].join('-')}.zip"
+    archive_filename = "#{['archive', Time.current.to_fs(:number), SecureRandom.hex(16)].join('-')}.zip"
 
     @backup.dump      = ActionDispatch::Http::UploadedFile.new(tempfile: tmp_file, filename: archive_filename)
     @backup.processed = true
@@ -180,8 +182,6 @@ class BackupService < BaseService
       adapter: ActivityPub::Adapter
     ).as_json
   end
-
-  CHUNK_SIZE = 1.megabyte
 
   def download_to_zip(zipfile, attachment, filename)
     adapter = Paperclip.io_adapters.for(attachment)

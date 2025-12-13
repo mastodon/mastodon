@@ -67,31 +67,59 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService do
       type: 'Collection',
       id: actor.featured_collection_url,
       items: items,
-    }.with_indifferent_access
-  end
-
-  shared_examples 'sets pinned posts' do
-    before do
-      stub_request(:get, 'https://example.com/account/pinned/known').to_return(status: 200, body: Oj.dump(status_json_pinned_known), headers: { 'Content-Type': 'application/activity+json' })
-      stub_request(:get, 'https://example.com/account/pinned/unknown-inlined').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_inlined), headers: { 'Content-Type': 'application/activity+json' })
-      stub_request(:get, 'https://example.com/account/pinned/unknown-unreachable').to_return(status: 404)
-      stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_reachable), headers: { 'Content-Type': 'application/activity+json' })
-      stub_request(:get, 'https://example.com/account/collections/featured').to_return(status: 200, body: Oj.dump(featured_with_null), headers: { 'Content-Type': 'application/activity+json' })
-
-      subject.call(actor, note: true, hashtag: false)
-    end
-
-    it 'sets expected posts as pinned posts' do
-      expect(actor.pinned_statuses.pluck(:uri)).to contain_exactly(
-        'https://example.com/account/pinned/known',
-        'https://example.com/account/pinned/unknown-inlined',
-        'https://example.com/account/pinned/unknown-reachable'
-      )
-      expect(actor.pinned_statuses).to_not include(known_status)
-    end
+    }.deep_stringify_keys
   end
 
   describe '#call' do
+    subject { described_class.new.call(actor, note: true, hashtag: false) }
+
+    shared_examples 'sets pinned posts' do
+      before do
+        stub_request(:get, 'https://example.com/account/pinned/known').to_return(status: 200, body: Oj.dump(status_json_pinned_known), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://example.com/account/pinned/unknown-inlined').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_inlined), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://example.com/account/pinned/unknown-unreachable').to_return(status: 404)
+        stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_reachable), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, 'https://example.com/account/collections/featured').to_return(status: 200, body: Oj.dump(featured_with_null), headers: { 'Content-Type': 'application/activity+json' })
+
+        subject
+      end
+
+      it 'sets expected posts as pinned posts' do
+        expect(actor.pinned_statuses.pluck(:uri)).to contain_exactly(
+          'https://example.com/account/pinned/known',
+          'https://example.com/account/pinned/unknown-inlined',
+          'https://example.com/account/pinned/unknown-reachable'
+        )
+        expect(actor.pinned_statuses).to_not include(known_status)
+      end
+    end
+
+    context 'when passing the collection via an argument' do
+      subject { described_class.new.call(actor, note: true, hashtag: false, collection: collection_or_uri) }
+
+      context 'when the collection is an URL' do
+        let(:collection_or_uri) { actor.featured_collection_url }
+
+        before do
+          stub_request(:get, actor.featured_collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
+        end
+
+        it_behaves_like 'sets pinned posts'
+      end
+
+      context 'when the collection is inlined' do
+        let(:collection_or_uri) do
+          {
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            type: 'Collection',
+            items: items,
+          }.deep_stringify_keys
+        end
+
+        it_behaves_like 'sets pinned posts'
+      end
+    end
+
     context 'when the endpoint is a Collection' do
       before do
         stub_request(:get, actor.featured_collection_url).to_return(status: 200, body: Oj.dump(payload), headers: { 'Content-Type': 'application/activity+json' })
@@ -121,7 +149,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService do
 
         before do
           stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_reachable), headers: { 'Content-Type': 'application/activity+json' })
-          subject.call(actor, note: true, hashtag: false)
+          subject
         end
 
         it 'sets expected posts as pinned posts' do
@@ -157,7 +185,7 @@ RSpec.describe ActivityPub::FetchFeaturedCollectionService do
 
         before do
           stub_request(:get, 'https://example.com/account/pinned/unknown-reachable').to_return(status: 200, body: Oj.dump(status_json_pinned_unknown_reachable), headers: { 'Content-Type': 'application/activity+json' })
-          subject.call(actor, note: true, hashtag: false)
+          subject
         end
 
         it 'sets expected posts as pinned posts' do

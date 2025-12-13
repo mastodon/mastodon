@@ -36,7 +36,8 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { submitMarkers } from '../../actions/markers';
-import Column from '../../components/column';
+import { Column } from '../../components/column';
+import type { ColumnRef } from '../../components/column';
 import { ColumnHeader } from '../../components/column_header';
 import { LoadGap } from '../../components/load_gap';
 import ScrollableList from '../../components/scrollable_list';
@@ -96,30 +97,7 @@ export const Notifications: React.FC<{
     selectNeedsNotificationPermission,
   );
 
-  const columnRef = useRef<Column>(null);
-
-  const selectChild = useCallback((index: number, alignTop: boolean) => {
-    const container = columnRef.current?.node as HTMLElement | undefined;
-
-    if (!container) return;
-
-    const element = container.querySelector<HTMLElement>(
-      `article:nth-of-type(${index + 1}) .focusable`,
-    );
-
-    if (element) {
-      if (alignTop && container.scrollTop > element.offsetTop) {
-        element.scrollIntoView(true);
-      } else if (
-        !alignTop &&
-        container.scrollTop + container.clientHeight <
-          element.offsetTop + element.offsetHeight
-      ) {
-        element.scrollIntoView(false);
-      }
-      element.focus();
-    }
-  }, []);
+  const columnRef = useRef<ColumnRef>(null);
 
   // Keep track of mounted components for unread notification handling
   useEffect(() => {
@@ -186,28 +164,6 @@ export const Notifications: React.FC<{
     columnRef.current?.scrollTop();
   }, []);
 
-  const handleMoveUp = useCallback(
-    (id: string) => {
-      const elementIndex =
-        notifications.findIndex(
-          (item) => item.type !== 'gap' && item.group_key === id,
-        ) - 1;
-      selectChild(elementIndex, true);
-    },
-    [notifications, selectChild],
-  );
-
-  const handleMoveDown = useCallback(
-    (id: string) => {
-      const elementIndex =
-        notifications.findIndex(
-          (item) => item.type !== 'gap' && item.group_key === id,
-        ) + 1;
-      selectChild(elementIndex, false);
-    },
-    [notifications, selectChild],
-  );
-
   const handleMarkAsRead = useCallback(() => {
     dispatch(markNotificationsAsRead());
     void dispatch(submitMarkers({ immediate: true }));
@@ -240,8 +196,6 @@ export const Notifications: React.FC<{
         <NotificationGroup
           key={item.group_key}
           notificationGroupId={item.group_key}
-          onMoveUp={handleMoveUp}
-          onMoveDown={handleMoveDown}
           unread={
             lastReadId !== '0' &&
             !!item.page_max_id &&
@@ -250,15 +204,7 @@ export const Notifications: React.FC<{
         />
       ),
     );
-  }, [
-    notifications,
-    isLoading,
-    hasMore,
-    lastReadId,
-    handleLoadGap,
-    handleMoveUp,
-    handleMoveDown,
-  ]);
+  }, [notifications, isLoading, hasMore, lastReadId, handleLoadGap]);
 
   const prepend = (
     <>
@@ -299,6 +245,7 @@ export const Notifications: React.FC<{
           title={intl.formatMessage(messages.markAsRead)}
           onClick={handleMarkAsRead}
           className='column-header__button'
+          type='button'
         >
           <Icon id='done-all' icon={DoneAllIcon} />
         </button>

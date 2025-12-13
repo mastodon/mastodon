@@ -19,7 +19,7 @@ class FetchLinkCardService < BaseService
     @status       = status
     @original_url = parse_urls
 
-    return if @original_url.nil? || @status.with_preview_card?
+    return if @original_url.nil? || @status.with_preview_card? || @status.with_media? || @status.quote.present?
 
     @url = @original_url.to_s
 

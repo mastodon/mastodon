@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Obtaining OAuth Tokens' do
+RSpec.describe 'Managing OAuth Tokens' do
   describe 'POST /oauth/token' do
     subject do
       post '/oauth/token', params: params
@@ -29,7 +29,7 @@ RSpec.describe 'Obtaining OAuth Tokens' do
         access_grant.plaintext_token
       end
 
-      shared_examples 'returns originally requested scopes' do
+      shared_examples 'original scope request preservation' do
         it 'returns all scopes requested for the given code' do
           subject
 
@@ -41,26 +41,26 @@ RSpec.describe 'Obtaining OAuth Tokens' do
       context 'with no scopes specified' do
         let(:scope) { nil }
 
-        include_examples 'returns originally requested scopes'
+        it_behaves_like 'original scope request preservation'
       end
 
       context 'with scopes specified' do
         context 'when the scopes were requested for this code' do
           let(:scope) { 'write' }
 
-          include_examples 'returns originally requested scopes'
+          it_behaves_like 'original scope request preservation'
         end
 
         context 'when the scope was not requested for the code' do
           let(:scope) { 'follow' }
 
-          include_examples 'returns originally requested scopes'
+          it_behaves_like 'original scope request preservation'
         end
 
         context 'when the scope does not belong to the application' do
           let(:scope) { 'push' }
 
-          include_examples 'returns originally requested scopes'
+          it_behaves_like 'original scope request preservation'
         end
       end
     end
@@ -102,6 +102,25 @@ RSpec.describe 'Obtaining OAuth Tokens' do
           end
         end
       end
+    end
+  end
+
+  describe 'POST /oauth/revoke' do
+    subject { post '/oauth/revoke', params: { client_id: application.uid, token: access_token.token } }
+
+    let!(:user) { Fabricate(:user) }
+    let!(:application) { Fabricate(:application, confidential: false) }
+    let!(:access_token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, application: application) }
+    let!(:web_push_subscription) { Fabricate(:web_push_subscription, user: user, access_token: access_token) }
+
+    it 'revokes the token and removes subscriptions' do
+      expect { subject }
+        .to change { access_token.reload.revoked_at }.from(nil).to(be_present)
+
+      expect(Web::PushSubscription.where(access_token: access_token).count)
+        .to eq(0)
+      expect { web_push_subscription.reload }
+        .to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

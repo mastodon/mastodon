@@ -6,46 +6,101 @@ import { me } from '../initial_state';
 import { getFilters } from './filters';
 
 export { makeGetAccount } from "./accounts";
+export { getStatusList } from "./statuses";
+
+const getStatusInputSelectors = [
+  (state, { id }) => state.getIn(['statuses', id]),
+  (state, { id }) => state.getIn(['statuses', state.getIn(['statuses', id, 'reblog'])]),
+  (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
+  (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
+  getFilters,
+  (_, { contextType }) => ['detailed', 'bookmarks', 'favourites', 'search'].includes(contextType),
+];
+
+function getStatusResultFunction(
+  statusBase,
+  statusReblog,
+  accountBase,
+  accountReblog,
+  filters,
+  warnInsteadOfHide
+) {
+  if (!statusBase) {
+    return {
+      status: null,
+      loadingState: 'not-found',
+    };
+  }
+
+  // When a status is loading, a `isLoading` property is set
+  // A status can be loading because it is not known yet (in which case it will only contain `isLoading`)
+  // or because it is being re-fetched; in the latter case, `visibility` will always be set to a non-empty
+  // string.
+  if (statusBase.get('isLoading') && !statusBase.get('visibility')) {
+    return {
+      status: null,
+      loadingState: 'loading',
+    }
+  }
+
+  if (statusReblog) {
+    statusReblog = statusReblog.set('account', accountReblog);
+  } else {
+    statusReblog = null;
+  }
+
+  let filtered = false;
+  let mediaFiltered = false;
+  if ((accountReblog || accountBase).get('id') !== me && filters) {
+    let filterResults = statusReblog?.get('filtered') || statusBase.get('filtered') || ImmutableList();
+    if (!warnInsteadOfHide && filterResults.some((result) => filters.getIn([result.get('filter'), 'filter_action']) === 'hide')) {
+      return {
+        status: null,
+        loadingState: 'filtered',
+      }
+    }
+
+    let mediaFilters = filterResults.filter(result => filters.getIn([result.get('filter'), 'filter_action']) === 'blur');
+    if (!mediaFilters.isEmpty()) {
+      mediaFiltered = mediaFilters.map(result => filters.getIn([result.get('filter'), 'title']));
+    }
+
+    filterResults = filterResults.filter(result => filters.has(result.get('filter')) && filters.getIn([result.get('filter'), 'filter_action']) !== 'blur');
+    if (!filterResults.isEmpty()) {
+      filtered = filterResults.map(result => filters.getIn([result.get('filter'), 'title']));
+    }
+  }
+
+  return {
+    status: statusBase.withMutations(map => {
+      map.set('reblog', statusReblog);
+      map.set('account', accountBase);
+      map.set('matched_filters', filtered);
+      map.set('matched_media_filters', mediaFiltered);
+    }),
+    loadingState: statusBase.get('isLoading') ? 'loading' : 'complete'
+  };
+}
 
 export const makeGetStatus = () => {
   return createSelector(
-    [
-      (state, { id }) => state.getIn(['statuses', id]),
-      (state, { id }) => state.getIn(['statuses', state.getIn(['statuses', id, 'reblog'])]),
-      (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
-      (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
-      getFilters,
-    ],
-
-    (statusBase, statusReblog, accountBase, accountReblog, filters) => {
-      if (!statusBase || statusBase.get('isLoading')) {
-        return null;
-      }
-
-      if (statusReblog) {
-        statusReblog = statusReblog.set('account', accountReblog);
-      } else {
-        statusReblog = null;
-      }
-
-      let filtered = false;
-      if ((accountReblog || accountBase).get('id') !== me && filters) {
-        let filterResults = statusReblog?.get('filtered') || statusBase.get('filtered') || ImmutableList();
-        if (filterResults.some((result) => filters.getIn([result.get('filter'), 'filter_action']) === 'hide')) {
-          return null;
-        }
-        filterResults = filterResults.filter(result => filters.has(result.get('filter')));
-        if (!filterResults.isEmpty()) {
-          filtered = filterResults.map(result => filters.getIn([result.get('filter'), 'title']));
-        }
-      }
-
-      return statusBase.withMutations(map => {
-        map.set('reblog', statusReblog);
-        map.set('account', accountBase);
-        map.set('matched_filters', filtered);
-      });
+    getStatusInputSelectors,
+    (...args) => {
+      const {status} = getStatusResultFunction(...args);
+      return status
     },
+  );
+};
+
+/**
+ * This selector extends the `makeGetStatus` with a more detailed
+ * `loadingState`, which is useful to find out why `null` is returned
+ * for the `status` field
+ */
+export const makeGetStatusWithExtraInfo = () => {
+  return createSelector(
+    getStatusInputSelectors,
+    getStatusResultFunction,
   );
 };
 
@@ -59,28 +114,6 @@ export const makeGetPictureInPicture = () => {
   }));
 };
 
-const ALERT_DEFAULTS = {
-  dismissAfter: 5000,
-  style: false,
-};
-
-const formatIfNeeded = (intl, message, values) => {
-  if (typeof message === 'object') {
-    return intl.formatMessage(message, values);
-  }
-
-  return message;
-};
-
-export const getAlerts = createSelector([state => state.get('alerts'), (_, { intl }) => intl], (alerts, intl) =>
-  alerts.map(item => ({
-    ...ALERT_DEFAULTS,
-    ...item,
-    action: formatIfNeeded(intl, item.action, item.values),
-    title: formatIfNeeded(intl, item.title, item.values),
-    message: formatIfNeeded(intl, item.message, item.values),
-  })).toArray());
-
 export const makeGetNotification = () => createSelector([
   (_, base)             => base,
   (state, _, accountId) => state.getIn(['accounts', accountId]),
@@ -90,30 +123,3 @@ export const makeGetReport = () => createSelector([
   (_, base) => base,
   (state, _, targetAccountId) => state.getIn(['accounts', targetAccountId]),
 ], (base, targetAccount) => base.set('target_account', targetAccount));
-
-export const getAccountGallery = createSelector([
-  (state, id) => state.getIn(['timelines', `account:${id}:media`, 'items'], ImmutableList()),
-  state       => state.get('statuses'),
-  (state, id) => state.getIn(['accounts', id]),
-], (statusIds, statuses, account) => {
-  let medias = ImmutableList();
-
-  statusIds.forEach(statusId => {
-    const status = statuses.get(statusId).set('account', account);
-    medias = medias.concat(status.get('media_attachments').map(media => media.set('status', status)));
-  });
-
-  return medias;
-});
-
-export const getAccountHidden = createSelector([
-  (state, id) => state.getIn(['accounts', id, 'hidden']),
-  (state, id) => state.getIn(['relationships', id, 'following']) || state.getIn(['relationships', id, 'requested']),
-  (state, id) => id === me,
-], (hidden, followingOrRequested, isSelf) => {
-  return hidden && !(isSelf || followingOrRequested);
-});
-
-export const getStatusList = createSelector([
-  (state, type) => state.getIn(['status_lists', type, 'items']),
-], (items) => items.toList());

@@ -66,7 +66,7 @@ export const Story = ({
       <a className='story__thumbnail' href={url} target='blank' rel='noopener'>
         {thumbnail ? (
           <>
-            <div className={classNames('story__thumbnail__preview', { 'story__thumbnail__preview--hidden': thumbnailLoaded })}><Blurhash hash={blurhash} /></div>
+            {!thumbnailLoaded && <Blurhash hash={blurhash} className='story__thumbnail__preview' />}
             <img src={thumbnail} onLoad={handleImageLoad} alt={thumbnailDescription} title={thumbnailDescription} lang={lang} />
           </>
         ) : <Skeleton />}

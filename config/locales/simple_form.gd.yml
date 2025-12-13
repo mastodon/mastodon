@@ -3,7 +3,7 @@ gd:
   simple_form:
     hints:
       account:
-        attribution_domains_as_text: Loidhne fa leth do gach fear. Dìonaidh seo o iomraidhean meallta.
+        attribution_domains: Loidhne fa leth do gach fear. Dìonaidh seo o iomraidhean meallta.
         discoverable: Dh’fhaoidte gun dèid na postaichean poblach ’s a’ phròifil agad a bhrosnachadh no a mholadh ann an caochladh roinnean de Mhastodon agus gun dèid a’ phròifil agad a mholadh do chàch.
         display_name: D’ ainm slàn no spòrsail.
         fields: An duilleag-dhachaigh agad, roimhearan, aois, rud sam bith a thogras tu.
@@ -54,12 +54,19 @@ gd:
         password: Cleachd co-dhiù 8 caractaran
         phrase: Thèid a mhaidseadh gun aire air litrichean mòra ’s beaga no air rabhadh susbainte puist
         scopes: Na APIan a dh’fhaodas an aplacaid inntrigeadh. Ma thaghas tu sgòp air ìre as àirde, cha leig thu leas sgòpaichean fa leth a thaghadh.
+        setting_advanced_layout: Seall Mastodon ’na ioma-cholbh ach am faic thu an loidhne-ama, na brathan agus treas colbh a thaghas tu fhèin. Cha mholamaid seo air sgrìnichean beaga.
         setting_aggregate_reblogs: Na seall brosnachaidhean ùra do phostaichean a chaidh a bhrosnachadh o chionn goirid (cha doir seo buaidh ach air brosnachaidhean ùra o seo a-mach)
         setting_always_send_emails: Mar as àbhaist, cha dèid brathan puist-d a chur nuair a a bhios tu ri Mastodon gu cunbhalach
+        setting_boost_modal: Ma tha seo an comas, thèid còmhradh dearbhaidh a shealltainn far an urrainn dhut faicsinneachd a’ phuist agad atharrachadh nuair a bhios tu ri brosnachadh.
+        setting_default_quote_policy_private: Chan urrainn do chàch postaichean dhan luchd-leantainn a-mhàin a chaidh a sgrìobhadh le Mastodon a luaidh.
+        setting_default_quote_policy_unlisted: Nuair a luaidheas daoine thu, thèid am post aca-san fhalach o loidhnichean-ama nan treandaichean.
         setting_default_sensitive: Thèid meadhanan frionasach fhalach a ghnàth is gabhaidh an nochdadh le briogadh orra
         setting_display_media_default: Falaich meadhanan ris a bheil comharra gu bheil iad frionasach
         setting_display_media_hide_all: Falaich na meadhanan an-còmhnaidh
         setting_display_media_show_all: Seall na meadhanan an-còmhnaidh
+        setting_emoji_style: An dòigh air an dèid emojis a shealltainn. Feuchaidh “Fèin-obrachail” ris na h-emojis tùsail a chleachdadh ach thèid Twemoji a chleachdadh ’nan àite air seann-bhrabhsairean.
+        setting_quick_boosting_html: Ma tha seo an comas, ma nì thu briogadh air ìomhaigheag %{boost_icon} a’ bhrosnachaidh, thèid a bhrosnachadh sa bhad seach a bhith a’ fosgladh clàr-taice teàrnach a’ bhrosnachaidh/luaidh. Thèid gnìomh an luaidh a ghluasad gu clàr-taice %{options_icon} nan roghainnean.
+        setting_system_scrollbars_ui: Chan obraich seo ach air brabhsairean desktop stèidhichte air Safari ’s Chrome
         setting_use_blurhash: Tha caiseadan stèidhichte air dathan nan nithean lèirsinneach a chaidh fhalach ach chan fhaicear am mion-fhiosrachadh
         setting_use_pending_items: Falaich ùrachaidhean na loidhne-ama air cùlaibh briogaidh seach a bhith a’ sgroladh nam postaichean gu fèin-obrachail
         username: Faodaidh tu litrichean, àireamhan is fo-loidhnichean a chleachdadh
@@ -74,19 +81,21 @@ gd:
       filters:
         action: Tagh na thachras nuair a bhios post a’ maidseadh na criathraige
         actions:
+          blur: Falaich na meadhanan air cùlaibh rabhaidh gun a bhith a’ falach an teacsa fhèin
           hide: Falaich an t-susbaint chriathraichte uile gu lèir mar nach robh i ann idir
           warn: Falaich an t-susbaint chriathraichte air cùlaibh rabhaidh a dh’innseas tiotal na criathraige
       form_admin_settings:
         activity_api_enabled: Cunntasan nam postaichean a chaidh fhoillseachadh gu h-ionadail, nan cleachdaichean gnìomhach ’s nan clàraidhean ùra an am bucaidean seachdaineil
         app_icon: WEBP, PNG, GIF no JPG. Tar-àithnidh seo ìomhaigheag bhunaiteach na h-aplacaid air uidheaman mobile le ìomhaigheag ghnàthaichte.
         backups_retention_period: "’S urrainn do chleachdaichean tasg-lannan dhe na postaichean aca a gintinn airson an luchdadh a-nuas an uairsin. Nuair a bhios luach dearbh air, thèid na tasg-lannan a sguabadh às on stòras agad gu fèin-obrachail às dèidh an àireamh de làithean a shònraich thu."
-        bootstrap_timeline_accounts: Thèid na cunntasan seo a phrìneachadh air bàrr nam molaidhean leantainn dhan luchd-cleachdaidh ùr.
         closed_registrations_message: Thèid seo a shealltainn nuair a bhios an clàradh dùinte
         content_cache_retention_period: Thèid a h-uile post o fhrithealaiche sam bith eile (a’ gabhail a-staigh brosnachaidhean is freagairtean) a sguabadh às às dèidh na h-àireimh de làithean a shònraich thu ’s gun diù a chon air eadar-ghabhail ionadail air na postaichean ud. Gabhaidh seo a-steach na postaichean a chuir cleachdaiche ionadail ris na h-annsachdan aca no comharran-lìn riutha. Thèid iomraidhean prìobhaideach eadar cleachdaichean o ionstansan diofraichte air chall cuideachd agus cha ghabh an aiseag idir. Tha an roghainn seo do dh’ionstansan sònraichte a-mhàin agus briseadh e dùilean an luchd-cleachdaidh nuair a rachadh a chleachdadh gu coitcheann.
         custom_css: "’S urrainn dhut stoidhlean gnàthaichte a chur an sàs air an tionndadh-lìn de Mhastodon."
         favicon: WEBP, PNG, GIF no JPG. Tar-àithnidh seo favicon bunaiteach Mhastodon le ìomhaigheag ghnàthaichte.
+        landing_page: Taghaidh seo an duilleag a chì aoighean ùra nuair a thadhlas air an fhrithealaiche agad a’ chiad turas. ma thaghas tu “Treandaichean”, feumaidh tu na treandaichean a chur an comas ann ann roghainnean an rùrachaidh. Ma thaghas tu “Loidhne-ama ionadail”, feumaidh tu “Inntrigeadh dhan t-saoghal bheò sa bheil postaichean ionadail” a shuidheachadh air “A h-uile duine” ann an roghainnean an rùrachaidh.
         mascot: Tar-àithnidh seo an sgead-dhealbh san eadar-aghaidh-lìn adhartach.
         media_cache_retention_period: Thèid faidhlichean meadhain o phostaichean a chruthaich cleachdaichean cèine a chur ri tasgadan an fhrithealaiche agad. Nuair a shuidhicheas tu seo air luach dearbh, thèid na meadhanan a sguabadh às às dèidh na h-àireimh de làithean a shònraich thu. Ma tha dàta meadhain ga iarraidh às dèidh a sguabaidh às, thèid a luchdadh a-nuas a-rithist ma tha susbaint an tùis ri fhaighinn fhathast. Ri linn cuingeachaidhean air mar a cheasnaicheas cairtean ro-sheallaidh làraichean threas-phàrtaidhean, mholamaid gun suidhich thu an luach seo air 14 làithean ar a char as giorra no cha dèid an ùrachadh nuair a thèid an iarraidh ron àm sin.
+        min_age: Thèid iarraidh air an luchd-cleachdaidh gun dearbh iad an là-breith rè a’ chlàraidh
         peers_api_enabled: Seo liosta de dh’ainmean àrainne ris an do thachair am frithealaiche seo sa cho-shaoghal. Chan eil dàta sam bith ’ga ghabhail a-staigh an-seo mu a bheil thu co-naisgte ri frithealaiche sònraichte gus nach eil ach dìreach gu bheil am frithealaiche agad eòlach air. Thèid seo a chleachdadh le seirbheisean a chruinnicheas stadastaireachd air a’ cho-nasgadh san fharsaingeachd.
         profile_directory: Seallaidh eòlaire nam pròifil liosta dhen luchd-cleachdaidh a dh’aontaich gun gabh an rùrachadh.
         require_invite_text: Nuair a bhios aontachadh a làimh riatanach dhan chlàradh, dèan an raon teacsa “Carson a bu mhiann leat ballrachd fhaighinn?” riatanach seach roghainneil
@@ -99,10 +108,8 @@ gd:
         status_page_url: URL duilleige far am faicear staid an fhrithealaiche seo nuair a bhios e sìos
         theme: An t-ùrlar a chì na h-aoighean gun chlàradh a-staigh agus an luchd-cleachdaidh ùr.
         thumbnail: Dealbh mu 2:1 a thèid a shealltainn ri taobh fiosrachadh an fhrithealaiche agad.
-        timeline_preview: "’S urrainn dha na h-aoighean gun chlàradh a-staigh na postaichean poblach as ùire a tha ri fhaighinn air an fhrithealaiche a bhrabhsadh."
         trendable_by_default: Geàrr leum thar lèirmheas a làimh na susbainte a’ treandadh. Gabhaidh nithean fa leth a thoirt far nan treandaichean fhathast an uairsin.
         trends: Seallaidh na treandaichean na postaichean, tagaichean hais is naidheachdan a tha fèill mhòr orra air an fhrithealaiche agad.
-        trends_as_landing_page: Seall susbaint a’ treandadh dhan fheadhainn nach do chlàraich a-steach is do dh’aoighean seach tuairisgeul an fhrithealaiche seo. Feumaidh treandaichean a bhith an comas airson sin.
       form_challenge:
         current_password: Tha thu a’ tighinn a-steach gu raon tèarainte
       imports:
@@ -129,8 +136,27 @@ gd:
         show_application: Gidheadh, chì thu dè an aplacaid a dh’fhoillsich am post agad an-còmhnaidh.
       tag:
         name: Mar eisimpleir, ’s urrainn dhut measgachadh de litrichean mòra ’s beaga a chleachdadh ach an gabh a leughadh nas fhasa
+      terms_of_service:
+        changelog: "’S urrainn dhut structar a chur air le co-chàradh Markdown."
+        effective_date: Faodaidh ceann-ama reusanta a bhith rud sam bith eadar 10 is 30 latha on cheann-là a chuireas tu brath-fios dhan luchd-cleachdaidh agad.
+        text: "’S urrainn dhut structar a chur air le co-chàradh Markdown."
+      terms_of_service_generator:
+        admin_email: Gabhaidh sanasan laghail a-staigh brathan-àichidh, òrduighean cùirte, iarrtasan toirt air falbh agus iarrtasan co-èigneachadh an lagha.
+        arbitration_address: Faodaidh e a bhith co-ionnan ris an t-seòladh fhiosaigeach gu h-àrd no “N/A” ma tha thu a’ cleachdadh post-d.
+        arbitration_website: Faodaidh e a bhith na fhoirm-lìn no “N/A” ma tha thu a’ cleachdadh post-d.
+        choice_of_law: Am baile, an sgìre, an ranntair no an stàit a riaghlas na laghan brìoghmhor sònraichte aige tagraidhean sam bith.
+        dmca_address: Airson gnìomharaichean sna SA, cleachd an seòladh a tha clàraichte san DMCA Designated Agent Directory. Faodaidh tu cleachdadh seòladh P.O. Box iarraidh, cleachd DMCA Designated Agent Post Office Box Waiver Request airson post-d a chur gun Copyright Office agus mìnich gur e “home-based content moderator” a th’ annad agus eagal ort ro dhìoghaltas no dìoladh-fiach air do ghnìomhan agus gum feum thu P.O. Box a chleachdadh airson seòladh do dhachaigh fhalach o shealladh poblach.
+        dmca_email: Faodaidh tu an t-aon phost-d a chleachdadh ’s a chleachd thu airson “Seòladh puist-d airson sanasan laghail” gu h-àrd.
+        domain: Aithneachadh àraidh dhen t-seirbheis air loidhne a tha thu a’ solar.
+        jurisdiction: Innis an dùthaich far a bheil an neach a phàigheas na bilichean a’ fuireach. Mas e companaidh no eintiteas eile a th’ ann, innis an dùthaich far a bheil e corpaichte agus am baile, sgìre, ranntair no stàit mar a tha iomchaidh.
+        min_age: Cha bu chòir seo a bhith fon aois as lugha a dh’iarras laghain an t-uachdranais laghail agad.
       user:
         chosen_languages: Nuair a bhios cromag ris, cha nochd ach postaichean sna cànain a thagh thu air loidhnichean-ama poblach
+        date_of_birth:
+          few: Feumaidh sinn dèanamh cinnteach gu bheil thu %{count} bliadhnaichean a dh’aois air a char as lugha mus cleachd thu %{domain}. Cha chlàraich sinn seo.
+          one: Feumaidh sinn dèanamh cinnteach gu bheil thu %{count} bhliadhna a dh’aois air a char as lugha mus cleachd thu %{domain}. Cha chlàraich sinn seo.
+          other: Feumaidh sinn dèanamh cinnteach gu bheil thu %{count} bliadhna a dh’aois air a char as lugha mus cleachd thu %{domain}. Cha chlàraich sinn seo.
+          two: Feumaidh sinn dèanamh cinnteach gu bheil thu %{count} bhliadhna a dh’aois air a char as lugha mus cleachd thu %{domain}. Cha chlàraich sinn seo.
         role: Stiùiridh an dreuchd dè na ceadan a bhios aig cleachdaiche.
       user_role:
         color: An datha a bhios air an dreuchd air feadh na h-eadar-aghaidh, ’na RGB san fhòrmat sia-dheicheach
@@ -138,13 +164,17 @@ gd:
         name: Ainm poblach na dreuchd ma chaidh a suidheachadh gun nochd i na baidse
         permissions_as_keys: Gheibh na cleachdaichean aig a bheil an dreuchd seo inntrigeadh dha…
         position: Ma tha còmhstri ann, buannaichidh an dreuchd as àirde ann an cuid a shuidheachaidhean. Tha gnìomhan sònraichte ann nach urrainn ach dreuchdan le prìomhachas ìosail a ghabhail
+      username_block:
+        allow_with_approval: An àite bacadh clàraidh gu tur, bidh clàraidhean a mhaidsicheas feumach air d’ aonta
+        comparison: Thoir an aire air an Scunthorpe Problem nuair a bhacas tu maidsichean pàirteach
+        username: Bidh am maidseadh coma mu litrichean mòra ’s beaga agus co-ghlifichean cumanta a leithid “4” an àite “a” no “3” an àite “e”
       webhook:
         events: Tagh na tachartasan a thèid a chur
         template: Cruthaich an JSON payload agad fhèin le eadar-phòlachadh chaochladairean. Fàg seo bàn airson JSON bunaiteach fhaighinn.
         url: Far an dèid na tachartasan a chur
     labels:
       account:
-        attribution_domains_as_text: Na làraichean-lìn a dh’fhaodas iomradh a thoirt ort
+        attribution_domains: Na làraichean-lìn a dh’fhaodas iomradh a thoirt ort
         discoverable: Brosnaich a’ phròifil is postaichean agad sna h-algairimean rùrachaidh
         fields:
           name: Leubail
@@ -208,21 +238,26 @@ gd:
         setting_aggregate_reblogs: Buidhnich na brosnachaidhean air an loidhne-ama
         setting_always_send_emails: Cuir brathan puist-d an-còmhnaidh
         setting_auto_play_gif: Cluich GIFs beòthaichte gu fèin-obrachail
-        setting_boost_modal: Seall còmhradh dearbhaidh mus dèan thu brosnachadh
+        setting_boost_modal: Smachd air faicsinneachd nam brosnachaidhean
         setting_default_language: Cànan postaidh
-        setting_default_privacy: Prìobhaideachd postaidh
+        setting_default_privacy: Faicsinneachd nam post
+        setting_default_quote_policy: Cò dh’fhaodas luaidh
         setting_default_sensitive: Cuir comharra ri meadhanan an-còmhnaidh gu bheil iad frionasach
-        setting_delete_modal: Seall còmhradh dearbhaidh mus sguab thu às post
+        setting_delete_modal: Thoir rabhadh dhomh mus dèid post a sguabadh às
         setting_disable_hover_cards: Na ro-sheall pròifil nuair a dh’fhanas mi os a cionn
         setting_disable_swiping: Cuir gluasadan grad-shlaighdidh à comas
         setting_display_media: Sealltainn nam meadhanan
         setting_display_media_default: Bun-roghainn
         setting_display_media_hide_all: Falaich na h-uile
         setting_display_media_show_all: Seall na h-uile
+        setting_emoji_style: Stoidhle nan Emojis
         setting_expand_spoilers: Leudaich postaichean ris a bheil rabhadh susbainte an-còmhnaidh
         setting_hide_network: Falaich an graf sòisealta agad
+        setting_missing_alt_text_modal: Thoir rabhadh dhomh mus postaich mi meadhan às aonais roghainn teacsa
+        setting_quick_boosting: Cuir am brosnachadh luath an comas
         setting_reduce_motion: Ìslich an gluasad sna beòthachaidhean
         setting_system_font_ui: Cleachd cruth-clò bunaiteach an t-siostaim
+        setting_system_scrollbars_ui: Seall bàr-sgrolaidh bunaiteach an t-siostaim
         setting_theme: Ùrlar na làraich
         setting_trends: Seall na treandaichean an-diugh
         setting_unfollow_modal: Seall còmhradh dearbhaidh mus sguir thu de chuideigin a leantainn
@@ -241,6 +276,7 @@ gd:
         name: Taga hais
       filters:
         actions:
+          blur: Falaich na meadhanan le rabhadh
           hide: Falaich uile gu lèir
           warn: Falaich le rabhadh
       form_admin_settings:
@@ -252,11 +288,17 @@ gd:
         content_cache_retention_period: Ùine glèidhidh aig susbaint chèin
         custom_css: CSS gnàthaichte
         favicon: Favicon
+        landing_page: An duilleag-laighe do dh’aoighean ùra
+        local_live_feed_access: Inntrigeadh dhan t-saoghal bheò sa bheil postaichean ionadail
+        local_topic_feed_access: Inntrigeadh dha loidhnichean-ama nan tagaichean hais is ceanglaichean sa bheil postaichean ionadail
         mascot: Suaichnean gnàthaichte (dìleabach)
         media_cache_retention_period: Ùine glèidhidh aig tasgadan nam meadhanan
+        min_age: Riatanas aoise as lugha
         peers_api_enabled: Foillsich liosta nam frithealaichean a chaidh a rùrachadh san API
         profile_directory: Cuir eòlaire nam pròifil an comas
         registrations_mode: Cò dh’fhaodas clàradh
+        remote_live_feed_access: Inntrigeadh dhan t-saoghal bheò sa bheil postaichean cèine
+        remote_topic_feed_access: Inntrigeadh dha loidhnichean-ama nan tagaichean hais is ceanglaichean sa bheil postaichean cèine
         require_invite_text: Iarr adhbhar clàraidh
         show_domain_blocks: Seall bacaidhean àrainne
         show_domain_blocks_rationale: Seall carson a chaidh àrainnean a bacadh
@@ -269,10 +311,8 @@ gd:
         status_page_url: URL duilleag na staide
         theme: An t-ùrlar bunaiteach
         thumbnail: Dealbhag an fhrithealaiche
-        timeline_preview: Ceadaich inntrigeadh gun ùghdarrachadh air na loidhnichean-ama phoblach
         trendable_by_default: Ceadaich treandaichean gun lèirmheas ro làimh
         trends: Cuir na treandaichean an comas
-        trends_as_landing_page: Cleachd na treandaichean ’nan duilleag-laighe
       interactions:
         must_be_follower: Bac na brathan nach eil o luchd-leantainn
         must_be_following: Bac na brathan o dhaoine nach lean thu
@@ -297,6 +337,7 @@ gd:
         follow_request: Dh’iarr cuideigin ’gad leantainn
         mention: Thug cuideigin iomradh ort
         pending_account: Tha cunntas ùr feumach air lèirmheas
+        quote: Luaidh cuideigin thu
         reblog: Bhrosnaich cuideigin am post agad
         report: Chaidh gearan ùr a chur a-null
         software_updates:
@@ -317,7 +358,22 @@ gd:
         name: Taga hais
         trendable: Faodaidh an taga hais seo nochdadh am measg nan treandaichean
         usable: Faodaidh postaichean an taga hais seo a chleachdadh gu h-ionadail
+      terms_of_service:
+        changelog: Dè tha air atharrachadh?
+        effective_date: Ceann-là èifeachd
+        text: Teirmichean na seirbheise
+      terms_of_service_generator:
+        admin_email: Seòladh puist-d airson sanasan laghail
+        arbitration_address: Seòladh fiosaigeach airson sanasan eadar-bhreith
+        arbitration_website: Làrach-lìn airson sanasan eadar-bhreith a chur a-null
+        choice_of_law: Taghadh an lagha
+        dmca_address: Seòladh fiosaigeach airson sanasan DMCA/còir-lethbhreac
+        dmca_email: Seòladh puist-d airson sanasan DMCA/còir-lethbhreac
+        domain: Àrainn
+        jurisdiction: Uachdranas laghail
+        min_age: An aois as lugha
       user:
+        date_of_birth_2i: Mìos
         role: Dreuchd
         time_zone: Roinn-tìde
       user_role:
@@ -326,6 +382,10 @@ gd:
         name: Ainm
         permissions_as_keys: Ceadan
         position: Prìomhachas
+      username_block:
+        allow_with_approval: Ceadaich clàradh le aontachadh
+        comparison: Dòigh a’ choimheis
+        username: Am facal ri mhaidseadh
       webhook:
         events: Na tachartas an comas
         template: Teamplaid payload

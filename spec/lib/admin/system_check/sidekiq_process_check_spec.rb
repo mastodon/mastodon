@@ -35,11 +35,11 @@ RSpec.describe Admin::SystemCheck::SidekiqProcessCheck do
 
   describe 'message' do
     it 'sends values to message instance' do
-      allow(Admin::SystemCheck::Message).to receive(:new).with(:sidekiq_process_check, 'default, push, mailers, pull, scheduler, ingress')
+      allow(Admin::SystemCheck::Message).to receive(:new).with(:sidekiq_process_check, 'default, push, mailers, pull, scheduler, ingress, fasp')
 
       check.message
 
-      expect(Admin::SystemCheck::Message).to have_received(:new).with(:sidekiq_process_check, 'default, push, mailers, pull, scheduler, ingress')
+      expect(Admin::SystemCheck::Message).to have_received(:new).with(:sidekiq_process_check, 'default, push, mailers, pull, scheduler, ingress, fasp')
     end
   end
 end

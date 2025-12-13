@@ -1,5 +1,5 @@
 # This file is designed for production server deployment, not local development work
-# For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/README.md#docker
+# For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/docs/DEVELOPMENT.md#docker
 
 services:
   db:
@@ -27,7 +27,7 @@ services:
 
   # es:
   #   restart: always
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.29
   #   environment:
   #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true"
   #     - "xpack.license.self_generated.type=basic"
@@ -59,7 +59,7 @@ services:
   web:
     # You can uncomment the following line if you want to not use the prebuilt image, for example if you have local code changes
     # build: .
-    image: ghcr.io/mastodon/mastodon:v4.3.1
+    image: ghcr.io/mastodon/mastodon:v4.5.3
     restart: always
     env_file: .env.production
     command: bundle exec puma -C config/puma.rb
@@ -83,7 +83,7 @@ services:
     # build:
     #   dockerfile: ./streaming/Dockerfile
     #   context: .
-    image: ghcr.io/mastodon/mastodon-streaming:v4.3.1
+    image: ghcr.io/mastodon/mastodon-streaming:v4.5.3
     restart: always
     env_file: .env.production
     command: node ./streaming/index.js
@@ -100,8 +100,9 @@ services:
       - redis
 
   sidekiq:
-    build: .
-    image: ghcr.io/mastodon/mastodon:v4.3.1
+    # You can uncomment the following line if you want to not use the prebuilt image, for example if you have local code changes
+    # build: .
+    image: ghcr.io/mastodon/mastodon:v4.5.3
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq
@@ -114,7 +115,7 @@ services:
     volumes:
       - ./public/system:/mastodon/public/system
     healthcheck:
-      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 8' || false"]
 
   ## Uncomment to enable federation with tor instances along with adding the following ENV variables
   ## http_hidden_proxy=http://privoxy:8118

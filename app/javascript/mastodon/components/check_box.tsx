@@ -7,11 +7,11 @@ import { Icon } from './icon';
 
 interface Props {
   value: string;
-  checked: boolean;
-  indeterminate: boolean;
-  name: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  label: React.ReactNode;
+  checked?: boolean;
+  indeterminate?: boolean;
+  name?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  label?: React.ReactNode;
 }
 
 export const CheckBox: React.FC<Props> = ({
@@ -30,6 +30,7 @@ export const CheckBox: React.FC<Props> = ({
         value={value}
         checked={checked}
         onChange={onChange}
+        readOnly={!onChange}
       />
 
       <span
@@ -42,7 +43,7 @@ export const CheckBox: React.FC<Props> = ({
         )}
       </span>
 
-      <span>{label}</span>
+      {label && <span>{label}</span>}
     </label>
   );
 };

@@ -12,7 +12,7 @@ class Export
   def to_bookmarks_csv
     CSV.generate do |csv|
       account.bookmarks.includes(:status).reorder(id: :desc).each do |bookmark|
-        csv << [ActivityPub::TagManager.instance.uri_for(bookmark.status)]
+        csv << [ActivityPub::TagManager.instance.uri_for(bookmark.status)] if bookmark.status.present?
       end
     end
   end

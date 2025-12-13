@@ -4,6 +4,7 @@ require 'singleton'
 
 class ActivityPub::TagManager
   include Singleton
+  include JsonLdHelper
   include RoutingHelper
 
   CONTEXT = 'https://www.w3.org/ns/activitystreams'
@@ -13,11 +14,11 @@ class ActivityPub::TagManager
   }.freeze
 
   def public_collection?(uri)
-    uri == COLLECTIONS[:public] || uri == 'as:Public' || uri == 'Public'
+    uri == COLLECTIONS[:public] || %w(as:Public Public).include?(uri)
   end
 
   def url_for(target)
-    return target.url if target.respond_to?(:local?) && !target.local?
+    return unsupported_uri_scheme?(target.url) ? nil : target.url if target.respond_to?(:local?) && !target.local?
 
     return unless target.respond_to?(:object_type)
 
@@ -38,16 +39,37 @@ class ActivityPub::TagManager
 
     case target.object_type
     when :person
-      target.instance_actor? ? instance_actor_url : account_url(target)
+      if target.instance_actor?
+        instance_actor_url
+      elsif target.numeric_ap_id?
+        ap_account_url(target.id)
+      else
+        account_url(target)
+      end
+    when :conversation
+      context_url(target) unless target.parent_account_id.nil? || target.parent_status_id.nil?
     when :note, :comment, :activity
-      return activity_account_status_url(target.account, target) if target.reblog?
+      if target.account.numeric_ap_id?
+        return activity_ap_account_status_url(target.account, target) if target.reblog?
 
-      account_status_url(target.account, target)
+        ap_account_status_url(target.account.id, target)
+      else
+        return activity_account_status_url(target.account, target) if target.reblog?
+
+        account_status_url(target.account, target)
+      end
     when :emoji
       emoji_url(target)
     when :flag
       target.uri
     end
+  end
+
+  def approval_uri_for(quote, check_approval: true)
+    return quote.approval_uri unless quote.quoted_account&.local?
+    return if check_approval && !quote.accepted?
+
+    quote.quoted_account.numeric_ap_id? ? ap_account_quote_authorization_url(quote.quoted_account_id, quote) : account_quote_authorization_url(quote.quoted_account, quote)
   end
 
   def key_uri_for(target)
@@ -58,6 +80,10 @@ class ActivityPub::TagManager
     account_url(username: username)
   end
 
+  def uri_for_account_id(id)
+    ap_account_url(id: id)
+  end
+
   def generate_uri_for(_target)
     URI.join(root_url, 'payloads', SecureRandom.uuid)
   end
@@ -65,29 +91,73 @@ class ActivityPub::TagManager
   def activity_uri_for(target)
     raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
-    activity_account_status_url(target.account, target)
+    target.account.numeric_ap_id? ? activity_ap_account_status_url(target.account.id, target) : activity_account_status_url(target.account, target)
+  end
+
+  def context_uri_for(target, page_params = nil)
+    raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
+
+    items_context_url(target.conversation, page_params)
   end
 
   def replies_uri_for(target, page_params = nil)
     raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
-    account_status_replies_url(target.account, target, page_params)
+    target.account.numeric_ap_id? ? ap_account_status_replies_url(target.account.id, target, page_params) : account_status_replies_url(target.account, target, page_params)
   end
 
   def likes_uri_for(target)
     raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
-    account_status_likes_url(target.account, target)
+    target.account.numeric_ap_id? ? ap_account_status_likes_url(target.account.id, target) : account_status_likes_url(target.account, target)
   end
 
   def shares_uri_for(target)
     raise ArgumentError, 'target must be a local activity' unless %i(note comment activity).include?(target.object_type) && target.local?
 
-    account_status_shares_url(target.account, target)
+    target.account.numeric_ap_id? ? ap_account_status_shares_url(target.account.id, target) : account_status_shares_url(target.account, target)
   end
 
-  def followers_uri_for(target)
-    target.local? ? account_followers_url(target) : target.followers_url.presence
+  def following_uri_for(target, ...)
+    raise ArgumentError, 'target must be a local account' unless target.local?
+
+    target.numeric_ap_id? ? ap_account_following_index_url(target.id, ...) : account_following_index_url(target, ...)
+  end
+
+  def followers_uri_for(target, ...)
+    return target.followers_url.presence unless target.local?
+
+    target.numeric_ap_id? ? ap_account_followers_url(target.id, ...) : account_followers_url(target, ...)
+  end
+
+  def collection_uri_for(target, ...)
+    raise ArgumentError, 'target must be a local account' unless target.local?
+
+    target.numeric_ap_id? ? ap_account_collection_url(target.id, ...) : account_collection_url(target, ...)
+  end
+
+  def inbox_uri_for(target)
+    raise ArgumentError, 'target must be a local account' unless target.local?
+
+    if target.instance_actor?
+      instance_actor_inbox_url
+    elsif target.numeric_ap_id?
+      ap_account_inbox_url(target.id)
+    else
+      account_inbox_url(target)
+    end
+  end
+
+  def outbox_uri_for(target, ...)
+    raise ArgumentError, 'target must be a local account' unless target.local?
+
+    if target.instance_actor?
+      instance_actor_outbox_url(...)
+    elsif target.numeric_ap_id?
+      ap_account_outbox_url(target.id, ...)
+    else
+      account_outbox_url(target, ...)
+    end
   end
 
   # Primary audience of a status
@@ -99,7 +169,7 @@ class ActivityPub::TagManager
     when 'public'
       [COLLECTIONS[:public]]
     when 'unlisted', 'private'
-      [account_followers_url(status.account)]
+      [followers_uri_for(status.account)]
     when 'direct', 'limited'
       if status.account.silenced?
         # Only notify followers if the account is locally silenced
@@ -133,7 +203,7 @@ class ActivityPub::TagManager
 
     case status.visibility
     when 'public'
-      cc << account_followers_url(status.account)
+      cc << followers_uri_for(status.account)
     when 'unlisted'
       cc << COLLECTIONS[:public]
     end
@@ -177,6 +247,19 @@ class ActivityPub::TagManager
     path_params[param]
   end
 
+  def uris_to_local_accounts(uris)
+    usernames = []
+    ids = []
+
+    uris.each do |uri|
+      param, value = uri_to_local_account_params(uri)
+      usernames << value.downcase if param == :username
+      ids << value if param == :id
+    end
+
+    Account.local.with_username(usernames).or(Account.local.where(id: ids))
+  end
+
   def uri_to_actor(uri)
     uri_to_resource(uri, Account)
   end
@@ -187,7 +270,7 @@ class ActivityPub::TagManager
     if local_uri?(uri)
       case klass.name
       when 'Account'
-        klass.find_local(uri_to_local_id(uri, :username))
+        uris_to_local_accounts([uri]).first
       else
         StatusFinder.new(uri).status
       end
@@ -198,5 +281,20 @@ class ActivityPub::TagManager
     end
   rescue ActiveRecord::RecordNotFound
     nil
+  end
+
+  private
+
+  def uri_to_local_account_params(uri)
+    return unless local_uri?(uri)
+
+    path_params = Rails.application.routes.recognize_path(uri)
+
+    case path_params[:controller]
+    when 'accounts'
+      path_params.key?(:username) ? [:username, path_params[:username]] : [:id, path_params[:id]]
+    when 'instance_actors'
+      [:id, -99]
+    end
   end
 end

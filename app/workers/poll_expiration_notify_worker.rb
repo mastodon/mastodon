@@ -8,7 +8,7 @@ class PollExpirationNotifyWorker
   def perform(poll_id)
     @poll = Poll.find(poll_id)
 
-    return if does_not_expire?
+    return if missing_expiration?
     requeue! && return if not_due_yet?
 
     notify_remote_voters_and_owner! if @poll.local?
@@ -24,7 +24,7 @@ class PollExpirationNotifyWorker
 
   private
 
-  def does_not_expire?
+  def missing_expiration?
     @poll.expires_at.nil?
   end
 

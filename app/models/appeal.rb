@@ -16,8 +16,6 @@
 #  updated_at             :datetime         not null
 #
 class Appeal < ApplicationRecord
-  MAX_STRIKE_AGE = 20.days
-
   TEXT_LENGTH_LIMIT = 2_000
 
   belongs_to :account
@@ -68,6 +66,6 @@ class Appeal < ApplicationRecord
   private
 
   def validate_time_frame
-    errors.add(:base, I18n.t('strikes.errors.too_late')) if strike.created_at < MAX_STRIKE_AGE.ago
+    errors.add(:base, I18n.t('strikes.errors.too_late')) unless strike.appeal_eligible?
   end
 end

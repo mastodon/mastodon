@@ -20,10 +20,11 @@ da:
           invalid: er ikke et gyldigt domænenavn
       messages:
         invalid_domain_on_line: "%{value} er ikke et gyldigt domænenavn"
-        too_many_lines: overstiger grænsen på %{limit} linjer
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: indeholder værdier med manglende etiketter
             username:
               invalid: må kun indeholde cifre, bogstaver og understreger
               reserved: er reserveret
@@ -31,6 +32,12 @@ da:
           attributes:
             url:
               invalid: er ikke en gyldig URL
+        collection:
+          attributes:
+            collection_items:
+              too_many: er for mange, ikke mere end %{count} er tilladt
+            tag:
+              unusable: må ikke anvendes
         doorkeeper/application:
           attributes:
             website:
@@ -39,12 +46,23 @@ da:
           attributes:
             data:
               malformed: har ugyldigt format
+        list_account:
+          attributes:
+            account_id:
+              taken: er allerede på listen
+          must_be_following: skal være konto, der følges
         status:
           attributes:
             reblog:
-              taken: af status findes allerede
+              taken: af indlæg findes allerede
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: er for tidligt, skal være efter %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: er under alderskravet
             email:
               blocked: bruger en ikke-tilladt e-mailudbyder
               unreachable: ser ikke ud til at eksistere

@@ -12,36 +12,16 @@ defaults: &defaults
   registrations_mode: 'none'
   profile_directory: true
   closed_registrations_message: ''
-  timeline_preview: true
+  local_live_feed_access: 'public'
+  remote_live_feed_access: 'public'
+  local_topic_feed_access: 'public'
+  remote_topic_feed_access: 'public'
   show_staff_badge: true
   preview_sensitive_media: false
   noindex: false
   theme: 'system'
   trends: true
-  trends_as_landing_page: true
   trendable_by_default: false
-  reserved_usernames:
-    - abuse
-    - account
-    - accounts
-    - admin
-    - administration
-    - administrator
-    - admins
-    - help
-    - helpdesk
-    - instance
-    - mod
-    - moderator
-    - moderators
-    - mods
-    - owner
-    - root
-    - security
-    - server
-    - staff
-    - support
-    - webmaster
   disallowed_hashtags: # space separated string or list of hashtags without the hash
   bootstrap_timeline_accounts: ''
   activity_api_enabled: true
@@ -51,6 +31,8 @@ defaults: &defaults
   require_invite_text: false
   backups_retention_period: 7
   captcha_enabled: false
+  allow_referrer_origin: false
+  landing_page: 'trends'
 
 development:
   <<: *defaults

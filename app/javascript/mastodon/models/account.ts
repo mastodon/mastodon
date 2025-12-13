@@ -1,5 +1,5 @@
 import type { RecordOf } from 'immutable';
-import { List, Record as ImmutableRecord } from 'immutable';
+import { List as ImmutableList, Record as ImmutableRecord } from 'immutable';
 
 import escapeTextContentForBrowser from 'escape-html';
 
@@ -8,8 +8,6 @@ import type {
   ApiAccountRoleJSON,
   ApiAccountJSON,
 } from 'mastodon/api_types/accounts';
-import type { ApiCustomEmojiJSON } from 'mastodon/api_types/custom_emoji';
-import emojify from 'mastodon/features/emoji/emoji';
 import { unescapeHTML } from 'mastodon/utils/html';
 
 import { CustomEmojiFactory } from './custom_emoji';
@@ -46,16 +44,17 @@ const AccountRoleFactory = ImmutableRecord<AccountRoleShape>({
 // Account
 export interface AccountShape
   extends Required<
-    Omit<ApiAccountJSON, 'emojis' | 'fields' | 'roles' | 'moved'>
+    Omit<ApiAccountJSON, 'emojis' | 'fields' | 'roles' | 'moved' | 'url'>
   > {
-  emojis: List<CustomEmoji>;
-  fields: List<AccountField>;
-  roles: List<AccountRole>;
+  emojis: ImmutableList<CustomEmoji>;
+  fields: ImmutableList<AccountField>;
+  roles: ImmutableList<AccountRole>;
   display_name_html: string;
   note_emojified: string;
   note_plain: string | null;
   hidden: boolean;
   moved: string | null;
+  url: string;
 }
 
 export type Account = RecordOf<AccountShape>;
@@ -70,8 +69,8 @@ export const accountDefaultValues: AccountShape = {
   indexable: false,
   display_name: '',
   display_name_html: '',
-  emojis: List<CustomEmoji>(),
-  fields: List<AccountField>(),
+  emojis: ImmutableList<CustomEmoji>(),
+  fields: ImmutableList<AccountField>(),
   group: false,
   header: '',
   header_static: '',
@@ -82,7 +81,7 @@ export const accountDefaultValues: AccountShape = {
   note: '',
   note_emojified: '',
   note_plain: 'string',
-  roles: List<AccountRole>(),
+  roles: ImmutableList<AccountRole>(),
   uri: '',
   url: '',
   username: '',
@@ -102,26 +101,11 @@ export const accountDefaultValues: AccountShape = {
 
 const AccountFactory = ImmutableRecord<AccountShape>(accountDefaultValues);
 
-type EmojiMap = Record<string, ApiCustomEmojiJSON>;
-
-function makeEmojiMap(emojis: ApiCustomEmojiJSON[]) {
-  return emojis.reduce<EmojiMap>((obj, emoji) => {
-    obj[`:${emoji.shortcode}:`] = emoji;
-    return obj;
-  }, {});
-}
-
-function createAccountField(
-  jsonField: ApiAccountFieldJSON,
-  emojiMap: EmojiMap,
-) {
+function createAccountField(jsonField: ApiAccountFieldJSON) {
   return AccountFieldFactory({
     ...jsonField,
-    name_emojified: emojify(
-      escapeTextContentForBrowser(jsonField.name),
-      emojiMap,
-    ),
-    value_emojified: emojify(jsonField.value, emojiMap),
+    name_emojified: escapeTextContentForBrowser(jsonField.name),
+    value_emojified: jsonField.value,
     value_plain: unescapeHTML(jsonField.value),
   });
 }
@@ -129,26 +113,33 @@ function createAccountField(
 export function createAccountFromServerJSON(serverJSON: ApiAccountJSON) {
   const { moved, ...accountJSON } = serverJSON;
 
-  const emojiMap = makeEmojiMap(accountJSON.emojis);
-
   const displayName =
     accountJSON.display_name.trim().length === 0
       ? accountJSON.username
       : accountJSON.display_name;
 
+  const accountNote =
+    accountJSON.note && accountJSON.note !== '<p></p>' ? accountJSON.note : '';
+
   return AccountFactory({
     ...accountJSON,
     moved: moved?.id,
-    fields: List(
-      serverJSON.fields.map((field) => createAccountField(field, emojiMap)),
+    fields: ImmutableList(
+      serverJSON.fields.map((field) => createAccountField(field)),
     ),
-    emojis: List(serverJSON.emojis.map((emoji) => CustomEmojiFactory(emoji))),
-    roles: List(serverJSON.roles?.map((role) => AccountRoleFactory(role))),
-    display_name_html: emojify(
-      escapeTextContentForBrowser(displayName),
-      emojiMap,
+    emojis: ImmutableList(
+      serverJSON.emojis.map((emoji) => CustomEmojiFactory(emoji)),
     ),
-    note_emojified: emojify(accountJSON.note, emojiMap),
-    note_plain: unescapeHTML(accountJSON.note),
+    roles: ImmutableList(
+      serverJSON.roles?.map((role) => AccountRoleFactory(role)),
+    ),
+    display_name_html: escapeTextContentForBrowser(displayName),
+    note_emojified: accountNote,
+    note_plain: unescapeHTML(accountNote),
+    url:
+      accountJSON.url?.startsWith('http://') ||
+      accountJSON.url?.startsWith('https://')
+        ? accountJSON.url
+        : accountJSON.uri,
   });
 }

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SuspendAccountService, :inline_jobs do
+RSpec.describe SuspendAccountService do
   shared_examples 'common behavior' do
     subject { described_class.new.call(account) }
 
@@ -11,6 +11,7 @@ RSpec.describe SuspendAccountService, :inline_jobs do
 
     before do
       allow(FeedManager.instance).to receive_messages(unmerge_from_home: nil, unmerge_from_list: nil)
+      allow(Rails.configuration.x.cache_buster).to receive(:enabled).and_return(true)
 
       local_follower.follow!(account)
       list.accounts << account
@@ -23,6 +24,7 @@ RSpec.describe SuspendAccountService, :inline_jobs do
     it 'unmerges from feeds of local followers and changes file mode and preserves suspended flag' do
       expect { subject }
         .to change_file_mode
+        .and enqueue_sidekiq_job(CacheBusterWorker).with(account.media_attachments.first.file.url(:original))
         .and not_change_suspended_flag
       expect(FeedManager.instance).to have_received(:unmerge_from_home).with(account, local_follower)
       expect(FeedManager.instance).to have_received(:unmerge_from_list).with(account, list)
@@ -38,18 +40,13 @@ RSpec.describe SuspendAccountService, :inline_jobs do
   end
 
   describe 'suspending a local account' do
-    def match_update_actor_request(req, account)
-      json = JSON.parse(req.body)
+    def match_update_actor_request(json, account)
+      json = JSON.parse(json)
       actor_id = ActivityPub::TagManager.instance.uri_for(account)
       json['type'] == 'Update' && json['actor'] == actor_id && json['object']['id'] == actor_id && json['object']['suspended']
     end
 
-    before do
-      stub_request(:post, 'https://alice.com/inbox').to_return(status: 201)
-      stub_request(:post, 'https://bob.com/inbox').to_return(status: 201)
-    end
-
-    include_examples 'common behavior' do
+    it_behaves_like 'common behavior' do
       let!(:account)         { Fabricate(:account) }
       let!(:remote_follower) { Fabricate(:account, uri: 'https://alice.com', inbox_url: 'https://alice.com/inbox', protocol: :activitypub, domain: 'alice.com') }
       let!(:remote_reporter) { Fabricate(:account, uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub, domain: 'bob.com') }
@@ -61,23 +58,21 @@ RSpec.describe SuspendAccountService, :inline_jobs do
 
       it 'sends an Update actor activity to followers and reporters' do
         subject
-        expect(a_request(:post, remote_follower.inbox_url).with { |req| match_update_actor_request(req, account) }).to have_been_made.once
-        expect(a_request(:post, remote_reporter.inbox_url).with { |req| match_update_actor_request(req, account) }).to have_been_made.once
+
+        expect(ActivityPub::DeliveryWorker)
+          .to have_enqueued_sidekiq_job(satisfying { |json| match_update_actor_request(json, account) }, account.id, remote_follower.inbox_url).once
+          .and have_enqueued_sidekiq_job(satisfying { |json| match_update_actor_request(json, account) }, account.id, remote_reporter.inbox_url).once
       end
     end
   end
 
   describe 'suspending a remote account' do
-    def match_reject_follow_request(req, account, followee)
-      json = JSON.parse(req.body)
+    def match_reject_follow_request(json, account, followee)
+      json = JSON.parse(json)
       json['type'] == 'Reject' && json['actor'] == ActivityPub::TagManager.instance.uri_for(followee) && json['object']['actor'] == account.uri
     end
 
-    before do
-      stub_request(:post, 'https://bob.com/inbox').to_return(status: 201)
-    end
-
-    include_examples 'common behavior' do
+    it_behaves_like 'common behavior' do
       let!(:account)        { Fabricate(:account, domain: 'bob.com', uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
       let!(:local_followee) { Fabricate(:account) }
 
@@ -88,7 +83,8 @@ RSpec.describe SuspendAccountService, :inline_jobs do
       it 'sends a Reject Follow activity', :aggregate_failures do
         subject
 
-        expect(a_request(:post, account.inbox_url).with { |req| match_reject_follow_request(req, account, local_followee) }).to have_been_made.once
+        expect(ActivityPub::DeliveryWorker)
+          .to have_enqueued_sidekiq_job(satisfying { |json| match_reject_follow_request(json, account, local_followee) }, local_followee.id, account.inbox_url).once
       end
     end
   end

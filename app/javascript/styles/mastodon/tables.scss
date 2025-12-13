@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 .table {
   width: 100%;
   max-width: 100%;
@@ -9,13 +11,13 @@
     padding: 8px;
     line-height: 18px;
     vertical-align: top;
-    border-bottom: 1px solid var(--background-border-color);
+    border-bottom: 1px solid var(--color-border-primary);
     text-align: start;
-    background: var(--background-color);
+    background: var(--color-bg-primary);
 
     &.critical {
       font-weight: 700;
-      color: $gold-star;
+      color: var(--color-text-warning);
     }
   }
 
@@ -30,7 +32,7 @@
 
   & > tbody > tr:nth-child(odd) > td,
   & > tbody > tr:nth-child(odd) > th {
-    background: var(--background-color);
+    background: var(--color-bg-primary);
   }
 
   & > tbody > tr:last-child > td,
@@ -39,11 +41,11 @@
   }
 
   a {
-    color: $darker-text-color;
+    color: var(--color-text-secondary);
     text-decoration: none;
 
     &:hover {
-      color: $highlight-text-color;
+      color: var(--color-text-brand);
     }
   }
 
@@ -81,30 +83,30 @@
     & > tbody > tr > td {
       padding: 11px 10px;
       background: transparent;
-      border: 1px solid var(--background-border-color);
-      color: $secondary-text-color;
+      border: 1px solid var(--color-border-primary);
+      color: var(--color-text-primary);
     }
 
     & > tbody > tr > th {
-      color: $darker-text-color;
+      color: var(--color-text-secondary);
       font-weight: 600;
     }
   }
 
   &.batch-table {
     & > thead > tr > th {
-      background: var(--background-color);
-      border-top: 1px solid var(--background-border-color);
-      border-bottom: 1px solid var(--background-border-color);
+      background: var(--color-bg-primary);
+      border-top: 1px solid var(--color-border-primary);
+      border-bottom: 1px solid var(--color-border-primary);
 
       &:first-child {
         border-radius: 4px 0 0;
-        border-inline-start: 1px solid var(--background-border-color);
+        border-inline-start: 1px solid var(--color-border-primary);
       }
 
       &:last-child {
         border-radius: 0 4px 0 0;
-        border-inline-end: 1px solid var(--background-border-color);
+        border-inline-end: 1px solid var(--color-border-primary);
       }
     }
   }
@@ -135,12 +137,12 @@ a.table-action-link {
   display: inline-block;
   margin-inline-end: 5px;
   padding: 0 10px;
-  color: $darker-text-color;
+  color: var(--color-text-secondary);
   font-weight: 500;
   white-space: nowrap;
 
   &:hover {
-    color: $highlight-text-color;
+    color: var(--color-text-brand);
   }
 
   &:first-child {
@@ -149,6 +151,14 @@ a.table-action-link {
 }
 
 .batch-table {
+  &--no-toolbar {
+    .batch-table__toolbar {
+      position: static;
+      height: 4px;
+      border-bottom: none;
+    }
+  }
+
   &__toolbar,
   &__row {
     display: flex;
@@ -184,9 +194,9 @@ a.table-action-link {
   &__toolbar {
     position: sticky;
     top: 0;
-    z-index: 1;
-    border: 1px solid var(--background-border-color);
-    background: var(--background-color);
+    z-index: 200;
+    border: 1px solid var(--color-border-primary);
+    background: var(--color-bg-primary);
     border-radius: 4px 4px 0 0;
     height: 47px;
     align-items: center;
@@ -194,17 +204,21 @@ a.table-action-link {
     &__actions {
       text-align: end;
       padding-inline-end: 16px - 5px;
+
+      .table-action-link {
+        padding: 0;
+      }
     }
   }
 
   &__select-all {
-    background: var(--background-color);
+    background: var(--color-bg-primary);
     height: 47px;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--color-border-primary);
     border-top: 0;
-    color: $secondary-text-color;
+    color: var(--color-text-primary);
     display: none;
 
     &.active {
@@ -233,7 +247,7 @@ a.table-action-link {
       background: transparent;
       border: 0;
       font: inherit;
-      color: $highlight-text-color;
+      color: var(--color-text-brand);
       border-radius: 4px;
       font-weight: 700;
       padding: 8px;
@@ -241,16 +255,16 @@ a.table-action-link {
       &:hover,
       &:focus,
       &:active {
-        background: lighten($ui-base-color, 8%);
+        background: var(--color-bg-secondary);
       }
     }
   }
 
   &__form {
     padding: 16px;
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--color-border-primary);
     border-top: 0;
-    background: var(--background-color);
+    background: var(--color-bg-primary);
 
     .fields-row {
       padding-top: 0;
@@ -259,13 +273,13 @@ a.table-action-link {
   }
 
   &__row {
-    border: 1px solid var(--background-border-color);
+    border: 1px solid var(--color-border-primary);
     border-top: 0;
-    background: var(--background-color);
+    background: var(--color-bg-primary);
 
     @media screen and (max-width: $no-gap-breakpoint) {
       .optional &:first-child {
-        border-top: 1px solid var(--background-border-color);
+        border-top: 1px solid var(--color-border-primary);
       }
     }
 
@@ -316,7 +330,7 @@ a.table-action-link {
       &__extra {
         flex: 0 0 auto;
         text-align: end;
-        color: $darker-text-color;
+        color: var(--color-text-secondary);
         font-weight: 500;
       }
     }
@@ -341,25 +355,10 @@ a.table-action-link {
 
   // Reset the status card to not have borders, background or padding when
   // inline in the table of statuses
-  .status__card {
+  .batch-table__row__content > .status__card {
     border: none;
     background: none;
     padding: 0;
-  }
-
-  .nothing-here {
-    border: 1px solid var(--background-border-color);
-    border-top: 0;
-    box-shadow: none;
-    background: var(--background-color);
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      border-top: 1px solid var(--background-border-color);
-    }
-
-    &--no-toolbar {
-      border-top: 1px solid var(--background-border-color);
-    }
   }
 
   @media screen and (width <= 870px) {
