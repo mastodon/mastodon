@@ -2,7 +2,7 @@
 
 module DatabaseHelper
   def replica_enabled?
-    ENV['REPLICA_DB_NAME'] || ENV.fetch('REPLICA_DATABASE_URL', nil)
+    ENV['REPLICA_DB_NAME'] || ENV['REPLICA_DB_HOST'] || ENV.fetch('REPLICA_DATABASE_URL', nil)
   end
   module_function :replica_enabled?
 
