@@ -217,8 +217,10 @@ class FeedManager
                     .where(id: timeline_status_ids)
                     .where.not(account: into_account)
                     .where.not(account: into_account.following)
-                    .tagged_with_none(TagFollow.where(account: into_account).pluck(:tag_id))
-
+                    .tagged_with_none(TagFollow.where(account: into_account)
+                                              .where.not(tag_id: from_tag.id)
+                                              .pluck(:tag_id))
+  
     scope.select(:id, :reblog_of_id).reorder(nil).find_each do |status|
       remove_from_feed(:home, into_account.id, status, aggregate_reblogs: into_account.user&.aggregates_reblogs?)
     end
