@@ -22,7 +22,7 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def unsuspend?
-    role.can?(:manage_users) && record.suspension_origin_local?
+    role.can?(:manage_users) && record.suspension_origin_local? && role.overrides?(record.user_role)
   end
 
   def sensitive?
@@ -30,7 +30,7 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def unsensitive?
-    role.can?(:manage_users)
+    role.can?(:manage_users) && role.overrides?(record.user_role)
   end
 
   def silence?
@@ -38,7 +38,7 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def unsilence?
-    role.can?(:manage_users)
+    role.can?(:manage_users) && role.overrides?(record.user_role)
   end
 
   def redownload?
