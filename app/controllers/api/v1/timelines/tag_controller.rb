@@ -4,7 +4,7 @@ class Api::V1::Timelines::TagController < Api::V1::Timelines::TopicController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }
   before_action :load_tag
 
-  PERMITTED_PARAMS = %i(local limit only_media).freeze
+  PERMITTED_PARAMS = %i(any all none local remote limit only_media).freeze
 
   def show
     cache_if_unauthenticated!
