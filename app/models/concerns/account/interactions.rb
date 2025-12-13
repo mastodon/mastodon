@@ -143,7 +143,7 @@ module Account::Interactions
   end
 
   def domain_blocking?(other_domain)
-    domain_blocks.exists?(domain: other_domain)
+    domain_blocks.exists?(domain: normalized_domain(other_domain))
   end
 
   def muting?(other_account)
