@@ -53,7 +53,7 @@ class BulkImport < ApplicationRecord
     BulkImport.increment_counter(:processed_items, bulk_import_id)
     BulkImport.increment_counter(:imported_items, bulk_import_id) if imported
 
-    # Since the incrementation has been done atomically, concurrent access to `bulk_import` is now bening
+    # Since the incrementation has been done atomically, concurrent access to `bulk_import` is now benign
     bulk_import = BulkImport.find(bulk_import_id)
     bulk_import.update!(state: :finished, finished_at: Time.now.utc) if bulk_import.processed_items == bulk_import.total_items
   end

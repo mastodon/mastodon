@@ -28,7 +28,7 @@ module ApplicationExtension
   end
 
   def redirect_uris
-    # Doorkeeper stores the redirect_uri value as a newline delimeted list in
+    # Doorkeeper stores the redirect_uri value as a newline delimited list in
     # the database:
     redirect_uri.split
   end

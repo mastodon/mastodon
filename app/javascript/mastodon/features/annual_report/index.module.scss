@@ -1,0 +1,351 @@
+$mobile-breakpoint: 540px;
+
+@font-face {
+  font-family: silkscreen-wrapstodon;
+  src: url('@/fonts/silkscreen-wrapstodon/silkscreen-regular.woff2')
+    format('woff2');
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}
+
+.modalWrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 40px;
+  overflow-y: auto;
+  scrollbar-color: var(--color-text-secondary) var(--color-bg-secondary);
+
+  @media (width < $mobile-breakpoint) {
+    padding: 0;
+  }
+
+  .loading-indicator .circular-progress {
+    color: var(--lime);
+  }
+}
+
+.closeButton {
+  --default-icon-color: var(--color-bg-primary);
+  --default-bg-color: var(--color-text-primary);
+  --hover-icon-color: var(--color-bg-primary);
+  --hover-bg-color: var(--color-text-primary);
+  --corner-distance: 18px;
+
+  position: absolute;
+  top: var(--corner-distance);
+  right: var(--corner-distance);
+  padding: 8px;
+  border-radius: 100%;
+
+  @media (width < $mobile-breakpoint) {
+    --corner-distance: 16px;
+
+    padding: 4px;
+  }
+}
+
+.wrapper {
+  --gradient-strength: 0.4;
+
+  box-sizing: border-box;
+  position: relative;
+  max-width: 600px;
+  padding: 24px;
+  padding-top: 40px;
+  contain: layout;
+  flex: 0 0 auto;
+  pointer-events: all;
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  background:
+    radial-gradient(
+      at 10% 27%,
+      rgba(83, 12, 154, var(--gradient-strength)) 0,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 91% 10%,
+      rgba(30, 24, 223, var(--gradient-strength)) 0,
+      transparent 25%
+    ),
+    radial-gradient(
+      at 10% 91%,
+      rgba(22, 218, 228, var(--gradient-strength)) 0,
+      transparent 40%
+    ),
+    radial-gradient(
+      at 75% 87%,
+      rgba(37, 31, 217, var(--gradient-strength)) 0,
+      transparent 20%
+    ),
+    radial-gradient(
+        at 84% 60%,
+        rgba(95, 30, 148, var(--gradient-strength)) 0,
+        transparent 40%
+      )
+      var(--color-bg-primary);
+  border-radius: 40px;
+
+  @media (width < $mobile-breakpoint) {
+    padding-inline: 12px;
+    padding-bottom: 12px;
+    border-radius: 0;
+  }
+}
+
+.header {
+  margin-bottom: 18px;
+  text-align: center;
+
+  h1 {
+    font-family: silkscreen-wrapstodon, monospace;
+    font-size: 28px;
+    line-height: 1;
+    margin-bottom: 4px;
+    padding-inline: 40px; // Prevent overlap with close button
+
+    @media (width < $mobile-breakpoint) {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+.stack {
+  --grid-spacing: 12px;
+
+  display: grid;
+  gap: var(--grid-spacing);
+}
+
+.box {
+  position: relative;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgb(from var(--color-bg-primary) r g b / 60%);
+  box-shadow: inset 0 0 0 1px rgb(from var(--color-text-primary) r g b / 40%);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    display: block;
+    height: 1px;
+    background-image: linear-gradient(
+      to right,
+      transparent,
+      white,
+      transparent
+    );
+  }
+
+  &::before {
+    top: 0;
+  }
+
+  &::after {
+    bottom: 0;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  text-align: center;
+  text-wrap: balance;
+
+  &.comfortable {
+    gap: 12px;
+  }
+}
+
+.title {
+  text-transform: uppercase;
+  color: var(--color-text-brand-soft);
+  font-weight: 500;
+
+  &:last-child {
+    margin-bottom: -3px;
+  }
+}
+
+.statLarge {
+  font-size: 24px;
+  font-weight: 500;
+  overflow-wrap: break-word;
+}
+
+.statExtraLarge {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1;
+  overflow-wrap: break-word;
+
+  @media (width < $mobile-breakpoint) {
+    font-size: 24px;
+  }
+}
+
+.mostBoostedPost {
+  padding: 0;
+  padding-top: 24px;
+  overflow: hidden;
+}
+
+.statsGrid {
+  display: grid;
+  gap: var(--grid-spacing);
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas:
+    'followers hashtag'
+    'new-posts hashtag';
+
+  @media (width < $mobile-breakpoint) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'followers new-posts'
+      'hashtag hashtag';
+  }
+
+  &:empty {
+    display: none;
+  }
+
+  &.onlyHashtag {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'hashtag';
+  }
+
+  &.noHashtag {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'followers new-posts';
+  }
+
+  &.singleNumber {
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: 'number hashtag';
+
+    @media (width < $mobile-breakpoint) {
+      grid-template-areas:
+        'number number'
+        'hashtag hashtag';
+    }
+  }
+
+  &.singleNumber.noHashtag {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'number';
+  }
+}
+
+.followers {
+  grid-area: followers;
+
+  .singleNumber & {
+    grid-area: number;
+  }
+}
+
+.newPosts {
+  grid-area: new-posts;
+
+  .singleNumber & {
+    grid-area: number;
+  }
+}
+
+.mostUsedHashtag {
+  grid-area: hashtag;
+  padding-block: 24px;
+}
+
+.archetype {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  p {
+    max-width: 460px;
+  }
+}
+
+.archetypeArtboard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  width: 180px;
+  padding-top: 40px;
+}
+
+.archetypeAvatar {
+  position: absolute;
+  top: 7px;
+  left: 4px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.archetypeIllustrationWrapper {
+  position: relative;
+  width: 92px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 100%;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset -10px -4px 15px #00000080;
+  }
+}
+
+.archetypeIllustration {
+  width: 100%;
+}
+
+.blurredImage {
+  filter: blur(10px);
+}
+
+.archetypePlanetRing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  mix-blend-mode: screen;
+}
+
+.shareButtonWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.secondaryShareButton {
+  // Extra selector is needed to override color
+  &:global(.button) {
+    color: var(--color-text-primary);
+  }
+}
+
+.navItemBadge {
+  background: var(--color-bg-brand-soft);
+}

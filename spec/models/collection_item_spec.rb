@@ -38,4 +38,23 @@ RSpec.describe CollectionItem do
       it { is_expected.to validate_presence_of(:object_uri) }
     end
   end
+
+  describe 'Creation' do
+    let(:collection) { Fabricate(:collection) }
+    let(:other_collection) { Fabricate(:collection) }
+    let(:account) { Fabricate(:account) }
+    let(:other_account) { Fabricate(:account) }
+
+    it 'automatically sets the `position` if absent' do
+      first_item = collection.collection_items.create(account:)
+      second_item = collection.collection_items.create(account: other_account)
+      unrelated_item = other_collection.collection_items.create(account:)
+      custom_item = other_collection.collection_items.create(account: other_account, position: 7)
+
+      expect(first_item.position).to eq 1
+      expect(second_item.position).to eq 2
+      expect(unrelated_item.position).to eq 1
+      expect(custom_item.position).to eq 7
+    end
+  end
 end

@@ -5,7 +5,6 @@ import {
   importFetchedAccounts,
   importFetchedStatuses,
 } from '@/mastodon/actions/importer';
-import { insertIntoTimeline } from '@/mastodon/actions/timelines';
 import type { ApiAnnualReportState } from '@/mastodon/api/annual_report';
 import {
   apiGetAnnualReport,
@@ -19,8 +18,6 @@ import {
   createAppThunk,
   createDataLoadingThunk,
 } from '../../store/typed_functions';
-
-export const TIMELINE_WRAPSTODON = 'inline-wrapstodon';
 
 interface AnnualReportState {
   state?: ApiAnnualReportState;
@@ -63,18 +60,12 @@ export const selectWrapstodonYear = createAppSelector(
 // This kicks everything off, and is called after fetching the server info.
 export const checkAnnualReport = createAppThunk(
   `${annualReportSlice.name}/checkAnnualReport`,
-  async (_arg: unknown, { dispatch, getState }) => {
+  (_arg: unknown, { dispatch, getState }) => {
     const year = selectWrapstodonYear(getState());
     if (!year) {
       return;
     }
-    const state = await dispatch(fetchReportState());
-    if (
-      state.meta.requestStatus === 'fulfilled' &&
-      state.payload !== 'ineligible'
-    ) {
-      dispatch(insertIntoTimeline('home', TIMELINE_WRAPSTODON, 1));
-    }
+    void dispatch(fetchReportState());
   },
 );
 

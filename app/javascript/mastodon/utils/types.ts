@@ -14,3 +14,9 @@
 export type SomeRequired<T, K extends keyof T> = T & Required<Pick<T, K>>;
 export type SomeOptional<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>> &
   Partial<Pick<T, K>>;
+
+export type OmitValueType<T, V> = {
+  [K in keyof T as T[K] extends V ? never : K]: T[K];
+};
+
+export type AnyFunction = (...args: never) => unknown;

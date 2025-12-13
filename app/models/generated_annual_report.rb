@@ -33,7 +33,7 @@ class GeneratedAnnualReport < ApplicationRecord
     when 1
       data['most_reblogged_accounts'].pluck('account_id') + data['commonly_interacted_with_accounts'].pluck('account_id')
     when 2
-      []
+      [account_id]
     end
   end
 

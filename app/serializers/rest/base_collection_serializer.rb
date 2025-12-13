@@ -9,8 +9,4 @@ class REST::BaseCollectionSerializer < ActiveModel::Serializer
   def id
     object.id.to_s
   end
-
-  def item_count
-    object.respond_to?(:item_count) ? object.item_count : object.collection_items.count
-  end
 end
