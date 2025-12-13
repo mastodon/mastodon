@@ -15,12 +15,12 @@ class PublishScheduledStatusWorker
       options_with_objects(scheduled_status.params.with_indifferent_access)
     )
 
-    scheduled_status.destroy!  #Destroy AFTER successful posting
+    scheduled_status.destroy!
   rescue ActiveRecord::RecordNotFound, ActiveRecord::RecordInvalid
     scheduled_status&.destroy!
     true
   rescue Mastodon::ValidationError, PostStatusService::UnexpectedMentionsError => e
-    raise e # Re-raise to let Sidekiq handle retries
+    raise e
   end
 
   def options_with_objects(options)
