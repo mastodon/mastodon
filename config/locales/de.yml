@@ -7,6 +7,8 @@ de:
     hosted_on: Mastodon, gehostet auf %{domain}
     title: Über
   accounts:
+    errors:
+      cannot_be_added_to_collections: Dieses Konto darf keinen Sammlungen hinzugefügt werden.
     followers:
       one: Follower
       other: Follower
@@ -54,15 +56,15 @@ de:
         title: Rolle für %{username} ändern
       confirm: Bestätigen
       confirmed: Bestätigt
-      confirming: Bestätigung
+      confirming: Bestätigung ausstehend
       custom: Angepasst
       delete: Daten löschen
       deleted: Gelöscht
       demote: Zurückstufen
-      destroyed_msg: Daten von %{username} wurden zum Löschen in die Warteschlange eingereiht
+      destroyed_msg: Die Daten von %{username} befinden sich nun in der Warteschlange und werden in Kürze gelöscht
       disable: Einfrieren
       disable_sign_in_token_auth: E-Mail-Token-Authentisierung deaktivieren
-      disable_two_factor_authentication: Zwei-Faktor-Authentisierung deaktivieren
+      disable_two_factor_authentication: Zwei-Faktor-Authentisierung (2FA) deaktivieren
       disabled: Eingefroren
       display_name: Anzeigename
       domain: Domain
@@ -2025,7 +2027,7 @@ de:
       too_many_requests: Der Übersetzungsdienst hat kürzlich zu viele Anfragen erhalten.
   two_factor_authentication:
     add: Hinzufügen
-    disable: Zwei-Faktor-Authentisierung deaktivieren
+    disable: Zwei-Faktor-Authentisierung (2FA) deaktivieren
     disabled_success: Zwei-Faktor-Authentisierung erfolgreich deaktiviert
     edit: Bearbeiten
     enabled: Zwei-Faktor-Authentisierung (2FA) ist aktiviert
@@ -2155,7 +2157,7 @@ de:
   users:
     follow_limit_reached: Du kannst nicht mehr als %{limit} Profilen folgen
     go_to_sso_account_settings: Kontoeinstellungen des Identitätsanbieters aufrufen
-    invalid_otp_token: Ungültiger Code der Zwei-Faktor-Authentisierung
+    invalid_otp_token: Ungültiger Code der Zwei-Faktor-Authentisierung (2FA)
     otp_lost_help_html: Wenn du sowohl die E-Mail-Adresse als auch das Passwort nicht mehr weißt, melde dich bitte bei uns unter %{email}
     rate_limited: Zu viele Authentisierungsversuche. Bitte versuche es später noch einmal.
     seamless_external_login: Du bist über einen externen Dienst angemeldet, daher sind Passwort- und E-Mail-Einstellungen nicht verfügbar.
@@ -2186,4 +2188,5 @@ de:
     otp_required: Um Sicherheitsschlüssel zu verwenden, aktiviere zunächst die Zwei-Faktor-Authentisierung.
     registered_on: Registriert am %{date}
   wrapstodon:
+    description: Sieh dir an, wie %{name} dieses Jahr Mastodon verwendet hat!
     title: Wrapstodon %{year} für %{name}
