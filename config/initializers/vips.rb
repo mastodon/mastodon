@@ -6,7 +6,7 @@ if Rails.configuration.x.use_vips
   require 'vips'
 
   unless Vips.at_least_libvips?(8, 13)
-    abort <<~ERROR.squish
+    abort <<~ERROR.squish # rubocop:disable Rails/Exit
       Incompatible libvips version (#{Vips.version_string}), please install libvips >= 8.13
     ERROR
   end
