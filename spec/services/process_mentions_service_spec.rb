@@ -6,6 +6,25 @@ RSpec.describe ProcessMentionsService do
   subject { described_class.new }
 
   let(:account) { Fabricate(:account, username: 'alice') }
+  let(:alice) { Fabricate(:account, username: 'alice') }
+
+  context 'when mentioning a domain-blocked ActivityPub account' do
+    let(:evil_user) { Fabricate(:account, username: 'eviluser', domain: 'evil.com', protocol: :activitypub, inbox_url: 'http://evil.com/inbox') }
+    let(:status) { Fabricate(:status, account: alice, text: "Hello @#{evil_user.acct}", visibility: :public) }
+
+    before do
+      alice.domain_blocks.create!(domain: 'evil.com')
+    end
+
+    it 'does not create a mention for the domain-blocked account' do
+      subject.call(status)
+
+      mentions = status.mentions.reload
+
+      expect(mentions.count).to eq(0)
+      expect(evil_user.mentions.where(status: status).count).to eq(0)
+    end
+  end
 
   context 'when mentions contain blocked accounts' do
     let(:non_blocked_account)          { Fabricate(:account) }
