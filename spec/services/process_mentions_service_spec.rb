@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ProcessMentionsService do
   subject { described_class.new }
 
-  let(:account) { Fabricate(:account, username: 'account') }
+  let(:account) { Fabricate(:account, username: 'alice') }
 
   context 'when mentioning a domain-blocked ActivityPub account' do
     let(:evil_user) { Fabricate(:account, username: 'eviluser', domain: 'evil.com', protocol: :activitypub, inbox_url: 'http://evil.com/inbox') }
