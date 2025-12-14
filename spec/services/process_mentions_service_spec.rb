@@ -17,7 +17,6 @@ RSpec.describe ProcessMentionsService do
 
     it 'does not create a mention for the domain-blocked account' do
       subject.call(status)
-
       mentions = status.mentions.reload
 
       expect(mentions.count).to eq(0)
