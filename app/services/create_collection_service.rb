@@ -17,7 +17,8 @@ class CreateCollectionService
 
     account_ids.each do |account_id|
       account = Account.find(account_id)
-      # TODO: validate preferences
+      raise Mastodon::NotPermittedError, I18n.t('accounts.errors.cannot_be_added_to_collections') unless AccountPolicy.new(@collection.account, account).feature?
+
       @collection.collection_items.build(account:)
     end
   end
