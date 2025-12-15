@@ -446,6 +446,10 @@ export const Search: React.FC<{
         case 'ArrowDown':
           e.preventDefault();
 
+          if (!expanded) {
+            setExpanded(true);
+          }
+
           if (navigableOptions.length > 0) {
             setSelectedOption(
               Math.min(selectedOption + 1, navigableOptions.length - 1),
@@ -484,7 +488,7 @@ export const Search: React.FC<{
           break;
       }
     },
-    [navigableOptions, selectedOption, submit, value],
+    [expanded, navigableOptions, selectedOption, submit, value],
   );
 
   const handleInputFocus = useCallback(() => {
