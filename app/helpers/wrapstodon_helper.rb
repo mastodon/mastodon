@@ -9,7 +9,7 @@ module WrapstodonHelper
       scope_name: :current_user
     ).as_json
 
-    payload[:logged_in] = user_signed_in?
+    payload[:me] = current_account.id.to_s if user_signed_in?
 
     json_string = payload.to_json
 
