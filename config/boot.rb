@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 unless ENV.key?('RAILS_ENV')
-  abort <<~ERROR
+  abort <<~ERROR # rubocop:disable Rails/Exit
     The RAILS_ENV environment variable is not set.
 
     Please set it correctly depending on context:

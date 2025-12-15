@@ -275,7 +275,7 @@ class Request
   end
 
   if ::HTTP::Response.methods.include?(:body_with_limit) && !Rails.env.production?
-    abort 'HTTP::Response#body_with_limit is already defined, the monkey patch will not be applied'
+    raise 'HTTP::Response#body_with_limit is already defined, the monkey patch will not be applied'
   else
     class ::HTTP::Response
       include Request::ClientLimit

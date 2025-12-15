@@ -39,7 +39,7 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
     return @body if defined?(@body)
 
     @body = request.body.read
-    @body.force_encoding('UTF-8') if @body.present?
+    @body.presence&.force_encoding('UTF-8')
 
     request.body.rewind if request.body.respond_to?(:rewind)
 
