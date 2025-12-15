@@ -12,7 +12,7 @@ class WrapstodonController < ApplicationController
   skip_before_action :require_functional!, only: :show, unless: :limited_federation_mode?
 
   def show
-    expires_in 10.seconds, public: true if current_account.nil?
+    expires_in 10.minutes, public: true if current_account.nil?
   end
 
   private
