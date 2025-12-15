@@ -13,7 +13,7 @@ namespace :api, format: false do
     resources :async_refreshes, only: :show
 
     resources :collections, only: [:show, :create, :update, :destroy] do
-      resources :items, only: [:create], controller: 'collection_items'
+      resources :items, only: [:create, :destroy], controller: 'collection_items'
     end
   end
 
