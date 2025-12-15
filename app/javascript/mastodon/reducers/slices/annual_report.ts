@@ -62,7 +62,8 @@ export const checkAnnualReport = createAppThunk(
   `${annualReportSlice.name}/checkAnnualReport`,
   (_arg: unknown, { dispatch, getState }) => {
     const year = selectWrapstodonYear(getState());
-    if (!year) {
+    const me = getState().meta.get('me') as string;
+    if (!year || !me) {
       return;
     }
     void dispatch(fetchReportState());

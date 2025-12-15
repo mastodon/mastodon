@@ -2,9 +2,10 @@
 
 class CreateCollectionService
   def call(params, account)
-    account_ids = params.delete(:account_ids)
+    @account = account
+    @accounts_to_add = Account.find(params.delete(:account_ids) || [])
     @collection = Collection.new(params.merge({ account:, local: true }))
-    build_items(account_ids)
+    build_items
 
     @collection.save!
     @collection
@@ -12,13 +13,14 @@ class CreateCollectionService
 
   private
 
-  def build_items(account_ids)
-    return if account_ids.blank?
+  def build_items
+    return if @accounts_to_add.empty?
 
-    account_ids.each do |account_id|
-      account = Account.find(account_id)
-      # TODO: validate preferences
-      @collection.collection_items.build(account:)
+    @account.preload_relations!(@accounts_to_add.map(&:id))
+    @accounts_to_add.each do |account_to_add|
+      raise Mastodon::NotPermittedError, I18n.t('accounts.errors.cannot_be_added_to_collections') unless AccountPolicy.new(@account, account_to_add).feature?
+
+      @collection.collection_items.build(account: account_to_add)
     end
   end
 end

@@ -12,6 +12,7 @@ import replier from '@/images/archetypes/replier.png';
 import space_elements from '@/images/archetypes/space_elements.png';
 import { Avatar } from '@/mastodon/components/avatar';
 import { Button } from '@/mastodon/components/button';
+import { DisplayName } from '@/mastodon/components/display_name';
 import { me } from '@/mastodon/initial_state';
 import type { Account } from '@/mastodon/models/account';
 import type {
@@ -137,9 +138,6 @@ export const Archetype: React.FC<{
     ? archetypeSelfDescriptions
     : archetypePublicDescriptions;
 
-  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing -- we specifically want to fallback if `display_name` is empty
-  const name = account?.display_name || account?.username;
-
   return (
     <div
       className={classNames(styles.box, styles.archetype)}
@@ -182,7 +180,9 @@ export const Archetype: React.FC<{
             <FormattedMessage
               id='annual_report.summary.archetype.title_public'
               defaultMessage="{name}'s archetype"
-              values={{ name }}
+              values={{
+                name: <DisplayName variant='simple' account={account} />,
+              }}
             />
           )}
         </h2>
@@ -199,7 +199,7 @@ export const Archetype: React.FC<{
         <p>
           {isRevealed ? (
             intl.formatMessage(descriptions[archetype], {
-              name,
+              name: <DisplayName variant='simple' account={account} />,
             })
           ) : (
             <FormattedMessage

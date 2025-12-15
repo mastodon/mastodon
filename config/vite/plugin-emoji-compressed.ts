@@ -15,9 +15,8 @@ export function MastodonEmojiCompressed(): Plugin {
     },
     async load(id) {
       if (id === resolvedVirtualModuleId) {
-        const { default: emojiCompressed } = await import(
-          '../../app/javascript/mastodon/features/emoji/emoji_compressed.mjs'
-        );
+        const { default: emojiCompressed } =
+          await import('../../app/javascript/mastodon/features/emoji/emoji_compressed.mjs');
         return `export default ${JSON.stringify(emojiCompressed)};`;
       }
 

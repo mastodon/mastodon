@@ -2,8 +2,6 @@ import type { ComponentProps } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { importCustomEmojiData } from '@/mastodon/features/emoji/loader';
-
 import { Emoji } from './index';
 
 type EmojiProps = ComponentProps<typeof Emoji> & { state: string };
@@ -38,7 +36,6 @@ const meta = {
     },
   },
   render(args) {
-    void importCustomEmojiData();
     return <Emoji {...args} />;
   },
 } satisfies Meta<EmojiProps>;
@@ -52,5 +49,11 @@ export const Default: Story = {};
 export const CustomEmoji: Story = {
   args: {
     code: ':custom:',
+  },
+};
+
+export const LegacyEmoji: Story = {
+  args: {
+    code: ':copyright:',
   },
 };

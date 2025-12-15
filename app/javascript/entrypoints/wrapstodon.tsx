@@ -25,7 +25,7 @@ function loaded() {
 
   const initialState = JSON.parse(
     propsNode.textContent,
-  ) as ApiAnnualReportResponse;
+  ) as ApiAnnualReportResponse & { me?: string };
 
   const report = initialState.annual_reports[0];
   if (!report) {
@@ -35,7 +35,10 @@ function loaded() {
   // Set up store
   store.dispatch(
     hydrateStore({
-      meta: { locale: document.documentElement.lang },
+      meta: {
+        locale: document.documentElement.lang,
+        me: initialState.me,
+      },
       accounts: initialState.accounts,
     }),
   );

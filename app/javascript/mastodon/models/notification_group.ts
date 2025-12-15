@@ -14,20 +14,24 @@ import type { ApiReportJSON } from 'mastodon/api_types/reports';
 // This corresponds to the max length of `group.sampleAccountIds`
 export const NOTIFICATIONS_GROUP_MAX_AVATARS = 8;
 
-interface BaseNotificationGroup
-  extends Omit<BaseNotificationGroupJSON, 'sample_account_ids'> {
+interface BaseNotificationGroup extends Omit<
+  BaseNotificationGroupJSON,
+  'sample_account_ids'
+> {
   sampleAccountIds: string[];
   partial: boolean;
 }
 
-interface BaseNotificationWithStatus<Type extends NotificationWithStatusType>
-  extends BaseNotificationGroup {
+interface BaseNotificationWithStatus<
+  Type extends NotificationWithStatusType,
+> extends BaseNotificationGroup {
   type: Type;
   statusId: string | undefined;
 }
 
-interface BaseNotification<Type extends NotificationType>
-  extends BaseNotificationGroup {
+interface BaseNotification<
+  Type extends NotificationType,
+> extends BaseNotificationGroup {
   type: Type;
 }
 
@@ -53,26 +57,25 @@ export type AccountWarningAction =
   | 'sensitive'
   | 'silence'
   | 'suspend';
-export interface AccountWarning
-  extends Omit<ApiAccountWarningJSON, 'target_account'> {
+export interface AccountWarning extends Omit<
+  ApiAccountWarningJSON,
+  'target_account'
+> {
   targetAccountId: string;
 }
 
-export interface NotificationGroupModerationWarning
-  extends BaseNotification<'moderation_warning'> {
+export interface NotificationGroupModerationWarning extends BaseNotification<'moderation_warning'> {
   moderationWarning: AccountWarning;
 }
 
 type AccountRelationshipSeveranceEvent =
   ApiAccountRelationshipSeveranceEventJSON;
-export interface NotificationGroupSeveredRelationships
-  extends BaseNotification<'severed_relationships'> {
+export interface NotificationGroupSeveredRelationships extends BaseNotification<'severed_relationships'> {
   event: AccountRelationshipSeveranceEvent;
 }
 
 type AnnualReportEvent = ApiAnnualReportEventJSON;
-export interface NotificationGroupAnnualReport
-  extends BaseNotification<'annual_report'> {
+export interface NotificationGroupAnnualReport extends BaseNotification<'annual_report'> {
   annualReport: AnnualReportEvent;
 }
 
@@ -80,8 +83,7 @@ interface Report extends Omit<ApiReportJSON, 'target_account'> {
   targetAccountId: string;
 }
 
-export interface NotificationGroupAdminReport
-  extends BaseNotification<'admin.report'> {
+export interface NotificationGroupAdminReport extends BaseNotification<'admin.report'> {
   report: Report;
 }
 
