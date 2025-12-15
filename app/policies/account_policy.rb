@@ -66,6 +66,6 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def feature?
-    record.featureable? && !current_account.blocking?(record) && !record.blocking?(current_account)
+    record.featureable? && !current_account.blocking?(record) && !current_account.blocked_by?(record)
   end
 end
