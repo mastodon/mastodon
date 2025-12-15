@@ -3,17 +3,16 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import { DisplayName } from '@/mastodon/components/display_name';
-import { useAppSelector } from '@/mastodon/store';
+import type { Account } from '@/mastodon/models/account';
 import type { NameAndCount } from 'mastodon/models/annual_report';
 
-import { accountSelector } from '.';
 import styles from './index.module.scss';
 
 export const MostUsedHashtag: React.FC<{
   hashtag: NameAndCount;
   context: 'modal' | 'standalone';
-}> = ({ hashtag, context }) => {
-  const account = useAppSelector(accountSelector);
+  account?: Account;
+}> = ({ hashtag, context, account }) => {
   return (
     <div
       className={classNames(styles.box, styles.mostUsedHashtag, styles.content)}

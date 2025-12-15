@@ -26,7 +26,7 @@ import { NewPosts } from './new_posts';
 
 const moduleClassNames = classNames.bind(styles);
 
-export const accountSelector = createAppSelector(
+const accountSelector = createAppSelector(
   [(state) => state.accounts, (state) => state.annualReport.report],
   (accounts, report) => {
     if (report?.schema_version === 2) {
@@ -103,7 +103,11 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
           {!!newFollowerCount && <Followers count={newFollowerCount} />}
           {!!newPostCount && <NewPosts count={newPostCount} />}
           {topHashtag && (
-            <MostUsedHashtag hashtag={topHashtag} context={context} />
+            <MostUsedHashtag
+              hashtag={topHashtag}
+              account={account}
+              context={context}
+            />
           )}
         </div>
         <Archetype report={report} account={account} context={context} />
