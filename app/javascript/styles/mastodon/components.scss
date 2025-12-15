@@ -628,11 +628,6 @@ body > [data-popper-placement] {
     gap: 8px;
     margin: 8px;
     flex-wrap: wrap;
-
-    & > div {
-      overflow: hidden;
-      display: flex;
-    }
   }
 
   &__uploads {
@@ -772,7 +767,6 @@ body > [data-popper-placement] {
     align-items: center;
     flex: 1 1 auto;
     max-width: 100%;
-    overflow: hidden;
   }
 
   &__buttons {
