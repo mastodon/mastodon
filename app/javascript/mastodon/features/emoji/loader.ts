@@ -94,36 +94,50 @@ export async function importLegacyShortcodes() {
   return Object.keys(shortcodesData);
 }
 
-const emojiModules = import.meta.glob<string>(
-  '../../../../../node_modules/emojibase-data/**/compact.json',
-  {
-    query: '?url',
-    import: 'default',
-  },
+const emojiModules = new Map(
+  Object.entries(
+    import.meta.glob<string>(
+      '../../../../../node_modules/emojibase-data/**/compact.json',
+      {
+        query: '?url',
+        import: 'default',
+      },
+    ),
+  ).map(([key, loader]) => {
+    const match = /emojibase-data\/([^/]+)\/compact\.json$/.exec(key);
+    return [match?.at(1) ?? key, loader];
+  }),
 );
 
 export function localeToEmojiPath(locale: Locale) {
-  const key = `../../../../../node_modules/emojibase-data/${locale}/compact.json`;
-  if (!emojiModules[key] || typeof emojiModules[key] !== 'function') {
+  const path = emojiModules.get(locale);
+  if (!path) {
     throw new Error(`Unsupported locale: ${locale}`);
   }
-  return emojiModules[key]();
+  return path();
 }
 
-const shortcodesModules = import.meta.glob<string>(
-  '../../../../../node_modules/emojibase-data/**/shortcodes/cldr.json',
-  {
-    query: '?url',
-    import: 'default',
-  },
+const shortcodesModules = new Map(
+  Object.entries(
+    import.meta.glob<string>(
+      '../../../../../node_modules/emojibase-data/**/shortcodes/cldr.json',
+      {
+        query: '?url',
+        import: 'default',
+      },
+    ),
+  ).map(([key, loader]) => {
+    const match = /emojibase-data\/([^/]+)\/shortcodes\/cldr\.json$/.exec(key);
+    return [match?.at(1) ?? key, loader];
+  }),
 );
 
 export function localeToShortcodesPath(locale: Locale) {
-  const key = `../../../../../node_modules/emojibase-data/${locale}/shortcodes/cldr.json`;
-  if (!shortcodesModules[key] || typeof shortcodesModules[key] !== 'function') {
+  const path = shortcodesModules.get(locale);
+  if (!path) {
     throw new Error(`Unsupported locale for shortcodes: ${locale}`);
   }
-  return shortcodesModules[key]();
+  return path();
 }
 
 export async function fetchAndCheckEtag<ResultType extends object[] | object>(
