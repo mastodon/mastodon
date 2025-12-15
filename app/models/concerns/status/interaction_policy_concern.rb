@@ -26,7 +26,7 @@ module Status::InteractionPolicyConcern
   end
 
   # Returns `:automatic`, `:manual`, `:unknown` or `:denied`
-  def quote_policy_for_account(other_account, preloaded_relations: {})
+  def quote_policy_for_account(other_account)
     return :denied if other_account.nil? || direct_visibility? || reblog?
 
     following_author = nil
@@ -41,7 +41,7 @@ module Status::InteractionPolicyConcern
     return :automatic if automatic_policy.anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:public])
 
     if automatic_policy.anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:followers])
-      following_author = preloaded_relations[:following] ? preloaded_relations[:following][account_id] : other_account.following?(account) if following_author.nil?
+      following_author = other_account.following?(account) if following_author.nil?
       return :automatic if following_author
     end
 
@@ -54,7 +54,7 @@ module Status::InteractionPolicyConcern
     return :manual if manual_policy.anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:public])
 
     if manual_policy.anybits?(QUOTE_APPROVAL_POLICY_FLAGS[:followers])
-      following_author = preloaded_relations[:following] ? preloaded_relations[:following][account_id] : other_account.following?(account) if following_author.nil?
+      following_author = other_account.following?(account) if following_author.nil?
       return :manual if following_author
     end
 
