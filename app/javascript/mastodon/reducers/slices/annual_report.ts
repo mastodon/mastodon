@@ -11,6 +11,7 @@ import {
   apiGetAnnualReportState,
   apiRequestGenerateAnnualReport,
 } from '@/mastodon/api/annual_report';
+import { wrapstodon } from '@/mastodon/initial_state';
 import type { AnnualReport } from '@/mastodon/models/annual_report';
 
 import {
@@ -20,13 +21,17 @@ import {
 } from '../../store/typed_functions';
 
 interface AnnualReportState {
+  year?: number;
   state?: ApiAnnualReportState;
   report?: AnnualReport;
 }
 
 const annualReportSlice = createSlice({
   name: 'annualReport',
-  initialState: {} as AnnualReportState,
+  initialState: {
+    year: wrapstodon?.year,
+    state: wrapstodon?.state,
+  } as AnnualReportState,
   reducers: {
     setReport(state, action: PayloadAction<AnnualReport>) {
       state.report = action.payload;
@@ -53,8 +58,8 @@ export const annualReport = annualReportSlice.reducer;
 export const { setReport } = annualReportSlice.actions;
 
 export const selectWrapstodonYear = createAppSelector(
-  [(state) => state.server.getIn(['server', 'wrapstodon'])],
-  (year: unknown) => (typeof year === 'number' && year > 2000 ? year : null),
+  [(state) => state.annualReport.year],
+  (year: number | null | undefined) => year ?? null,
 );
 
 // This kicks everything off, and is called after fetching the server info.

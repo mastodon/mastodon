@@ -34,6 +34,25 @@ class AnnualReport
     end
   end
 
+  def state
+    return 'available' if GeneratedAnnualReport.exists?(account_id: @account.id, year: @year)
+
+    async_refresh = AsyncRefresh.new(refresh_key)
+
+    if async_refresh.running?
+      yield async_refresh if block_given?
+      'generating'
+    elsif AnnualReport.current_campaign == @year && eligible?
+      'eligible'
+    else
+      'ineligible'
+    end
+  end
+
+  def refresh_key
+    "wrapstodon:#{@account.id}:#{@year}"
+  end
+
   def generate
     return if GeneratedAnnualReport.exists?(account: @account, year: @year)
 

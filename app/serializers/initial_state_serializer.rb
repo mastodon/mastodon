@@ -32,6 +32,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:use_pending_items] = object_account_user.setting_use_pending_items
       store[:show_trends]       = Setting.trends && object_account_user.setting_trends
       store[:emoji_style]       = object_account_user.settings['web.emoji_style']
+      store[:wrapstodon]        = wrapstodon
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media
@@ -93,6 +94,16 @@ class InitialStateSerializer < ActiveModel::Serializer
   end
 
   private
+
+  def wrapstodon
+    current_campaign = AnnualReport.current_campaign
+    return if current_campaign.blank?
+
+    {
+      year: current_campaign,
+      state: AnnualReport.new(object.current_account, current_campaign).state,
+    }
+  end
 
   def default_meta_store
     {
