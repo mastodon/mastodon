@@ -70,15 +70,7 @@ export const Emoji: FC<EmojiProps> = ({
 
   if (!shouldRenderImage(state, appState.mode)) {
     if (state.type === EMOJI_TYPE_UNICODE) {
-      const shortcode = state.shortcode;
-      return (
-        <span
-          className={classNames('emoji', inversionClass)}
-          title={shortcode ? `:${shortcode}:` : undefined}
-        >
-          {state.data.unicode}
-        </span>
-      );
+      return state.data.unicode;
     }
     return code;
   }
