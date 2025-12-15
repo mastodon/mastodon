@@ -926,6 +926,11 @@ body > [data-popper-placement] {
   text-overflow: ellipsis;
   white-space: nowrap;
 
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: 2px;
+  }
+
   &[disabled] {
     cursor: default;
     color: var(--color-text-disabled);
