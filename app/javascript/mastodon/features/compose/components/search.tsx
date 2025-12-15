@@ -1,4 +1,11 @@
-import { useCallback, useState, useRef, useEffect, useMemo } from 'react';
+import {
+  useCallback,
+  useState,
+  useRef,
+  useEffect,
+  useMemo,
+  useId,
+} from 'react';
 
 import {
   defineMessages,
@@ -432,7 +439,8 @@ export const Search: React.FC<{
       switch (e.key) {
         case 'Escape':
           e.preventDefault();
-          unfocus();
+          searchInputRef.current?.focus();
+          setExpanded(false);
 
           break;
         case 'ArrowDown':
@@ -476,10 +484,10 @@ export const Search: React.FC<{
           break;
       }
     },
-    [unfocus, navigableOptions, selectedOption, submit, value],
+    [navigableOptions, selectedOption, submit, value],
   );
 
-  const handleFocus = useCallback(() => {
+  const handleInputFocus = useCallback(() => {
     setExpanded(true);
     setSelectedOption(-1);
 
@@ -495,9 +503,15 @@ export const Search: React.FC<{
     }
   }, [setExpanded, setSelectedOption, singleColumn]);
 
-  const handleBlur = useCallback(() => {
+  const handleInputBlur = useCallback(() => {
     setSelectedOption(-1);
   }, [setSelectedOption]);
+
+  const getOptionFocusHandler = useCallback((index: number) => {
+    return () => {
+      setSelectedOption(index);
+    };
+  }, []);
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -526,6 +540,8 @@ export const Search: React.FC<{
     return () => null;
   }, [expanded]);
 
+  const searchOptionsHeading = useId();
+
   return (
     <form ref={formRef} className={classNames('search', { active: expanded })}>
       <input
@@ -541,13 +557,20 @@ export const Search: React.FC<{
         value={value}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
       />
 
       <ClearButton hasValue={hasValue} onClick={handleClear} />
 
-      <div className='search__popout' tabIndex={-1}>
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+      <div
+        className='search__popout'
+        role='dialog'
+        tabIndex={-1}
+        aria-labelledby={searchOptionsHeading}
+        onKeyDown={handleKeyDown}
+      >
         {!hasValue && (
           <>
             <h4>
@@ -565,6 +588,7 @@ export const Search: React.FC<{
                     tabIndex={0}
                     role='button'
                     onMouseDown={action}
+                    onFocus={getOptionFocusHandler(i)}
                     className={classNames(
                       'search__popout__menu__item search__popout__menu__item--flex',
                       { selected: selectedOption === i },
@@ -606,6 +630,7 @@ export const Search: React.FC<{
                 <button
                   key={key}
                   onMouseDown={action}
+                  onFocus={getOptionFocusHandler(i)}
                   className={classNames('search__popout__menu__item', {
                     selected: selectedOption === i,
                   })}
@@ -618,7 +643,7 @@ export const Search: React.FC<{
           </>
         )}
 
-        <h4>
+        <h4 id={searchOptionsHeading}>
           <FormattedMessage
             id='search_popout.options'
             defaultMessage='Search options'
@@ -627,20 +652,22 @@ export const Search: React.FC<{
 
         {searchEnabled && signedIn ? (
           <div className='search__popout__menu'>
-            {searchOptions.map(({ key, label, action }, i) => (
-              <button
-                key={key}
-                onMouseDown={action}
-                className={classNames('search__popout__menu__item', {
-                  selected:
-                    selectedOption ===
-                    (quickActions.length || recent.length) + i,
-                })}
-                type='button'
-              >
-                {label}
-              </button>
-            ))}
+            {searchOptions.map(({ key, label, action }, i) => {
+              const currentIndex = (quickActions.length || recent.length) + i;
+              return (
+                <button
+                  key={key}
+                  onMouseDown={action}
+                  onFocus={getOptionFocusHandler(currentIndex)}
+                  className={classNames('search__popout__menu__item', {
+                    selected: selectedOption === currentIndex,
+                  })}
+                  type='button'
+                >
+                  {label}
+                </button>
+              );
+            })}
           </div>
         ) : (
           <div className='search__popout__menu__message'>
