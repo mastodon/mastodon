@@ -27,7 +27,7 @@ import { NewPosts } from './new_posts';
 
 const moduleClassNames = classNames.bind(styles);
 
-const accountSelector = createAppSelector(
+export const accountSelector = createAppSelector(
   [(state) => state.accounts, (state) => state.annualReport.report],
   (accounts, report) => {
     if (me) {
@@ -107,11 +107,7 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
           {!!newFollowerCount && <Followers count={newFollowerCount} />}
           {!!newPostCount && <NewPosts count={newPostCount} />}
           {topHashtag && (
-            <MostUsedHashtag
-              hashtag={topHashtag}
-              name={account?.display_name}
-              context={context}
-            />
+            <MostUsedHashtag hashtag={topHashtag} context={context} />
           )}
         </div>
         <Archetype report={report} account={account} context={context} />

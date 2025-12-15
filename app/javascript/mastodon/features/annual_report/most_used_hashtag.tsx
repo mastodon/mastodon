@@ -2,15 +2,18 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
+import { DisplayName } from '@/mastodon/components/display_name';
+import { useAppSelector } from '@/mastodon/store';
 import type { NameAndCount } from 'mastodon/models/annual_report';
 
+import { accountSelector } from '.';
 import styles from './index.module.scss';
 
 export const MostUsedHashtag: React.FC<{
   hashtag: NameAndCount;
-  name: string | undefined;
   context: 'modal' | 'standalone';
-}> = ({ hashtag, name, context }) => {
+}> = ({ hashtag, context }) => {
+  const account = useAppSelector(accountSelector);
   return (
     <div
       className={classNames(styles.box, styles.mostUsedHashtag, styles.content)}
@@ -25,20 +28,22 @@ export const MostUsedHashtag: React.FC<{
       <div className={styles.statExtraLarge}>#{hashtag.name}</div>
 
       <p>
-        {context === 'modal' ? (
+        {context === 'modal' && (
           <FormattedMessage
             id='annual_report.summary.most_used_hashtag.used_count'
             defaultMessage='You included this hashtag in {count, plural, one {one post} other {# posts}}.'
             values={{ count: hashtag.count }}
           />
-        ) : (
-          name && (
-            <FormattedMessage
-              id='annual_report.summary.most_used_hashtag.used_count_public'
-              defaultMessage='{name} included this hashtag in {count, plural, one {one post} other {# posts}}.'
-              values={{ count: hashtag.count, name }}
-            />
-          )
+        )}
+        {context !== 'modal' && account && (
+          <FormattedMessage
+            id='annual_report.summary.most_used_hashtag.used_count_public'
+            defaultMessage='{name} included this hashtag in {count, plural, one {one post} other {# posts}}.'
+            values={{
+              count: hashtag.count,
+              name: <DisplayName variant='simple' account={account} />,
+            }}
+          />
         )}
       </p>
     </div>
