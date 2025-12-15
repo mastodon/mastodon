@@ -81,9 +81,8 @@ export async function importCustomEmojiData() {
 }
 
 export async function importLegacyShortcodes() {
-  const { default: shortcodesPath } = await import(
-    'emojibase-data/en/shortcodes/iamcal.json?url'
-  );
+  const { default: shortcodesPath } =
+    await import('emojibase-data/en/shortcodes/iamcal.json?url');
   const response = await fetch(shortcodesPath);
   if (!response.ok) {
     throw new Error(

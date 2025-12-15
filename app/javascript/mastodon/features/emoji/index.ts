@@ -67,9 +67,8 @@ async function fallbackLoad() {
 
 async function loadEmojiLocale(localeString: string) {
   const locale = toSupportedLocale(localeString);
-  const { importEmojiData, localeToEmojiPath: localeToPath } = await import(
-    './loader'
-  );
+  const { importEmojiData, localeToEmojiPath: localeToPath } =
+    await import('./loader');
 
   if (worker) {
     const path = await localeToPath(locale);
