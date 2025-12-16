@@ -55,12 +55,31 @@ const preview: Preview = {
     locale: 'en',
   },
   decorators: [
-    (Story, { parameters, globals, args }) => {
+    (Story, { parameters, globals, args, argTypes }) => {
       // Get the locale from the global toolbar
       // and merge it with any parameters or args state.
       const { locale } = globals as { locale: string };
       const { state = {} } = parameters;
-      const { state: argsState = {} } = args;
+
+      const argsState: Record<string, unknown> = {};
+      for (const [key, value] of Object.entries(args)) {
+        const argType = argTypes[key];
+        if (argType?.reduxPath) {
+          const reduxPath = Array.isArray(argType.reduxPath)
+            ? argType.reduxPath.map((p) => p.toString())
+            : argType.reduxPath.split('.');
+
+          reduxPath.reduce((acc, key, i) => {
+            if (acc[key] === undefined) {
+              acc[key] = {};
+            }
+            if (i === reduxPath.length - 1) {
+              acc[key] = value;
+            }
+            return acc[key] as Record<string, unknown>;
+          }, argsState);
+        }
+      }
 
       const reducer = reducerWithInitialState(
         {
@@ -69,7 +88,7 @@ const preview: Preview = {
           },
         },
         state as Record<string, unknown>,
-        argsState as Record<string, unknown>,
+        argsState,
       );
 
       const store = configureStore({
