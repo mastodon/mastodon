@@ -13,7 +13,7 @@ import {
   putLatestEtag,
   putLegacyShortcodes,
 } from './database';
-import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
+import { toSupportedLocale, toValidEtagName } from './locale';
 import type { CustomEmojiData } from './types';
 
 export async function importEmojiData(
@@ -25,7 +25,7 @@ export async function importEmojiData(
 
   // Validate the provided path.
   if (path && !/^[/a-z]*\/packs\/assets\/compact-\w+\.json$/.test(path)) {
-    throw new Error('Invalid path for emoji data');
+    throw new Error(`Invalid path for emoji data: ${path}`);
   } else {
     // Otherwise get the path if not provided.
     path ??= await localeToEmojiPath(locale);
@@ -42,16 +42,15 @@ export async function importEmojiData(
       typeof shortcodes === 'string' &&
       !/^[/a-z]*\/packs\/assets\/shortcodes\/cldr\.json$/.test(shortcodes)
     ) {
-      throw new Error('Invalid path for shortcodes data');
+      throw new Error(`Invalid path for shortcodes data: ${shortcodes}`);
     }
     const shortcodesPath =
       typeof shortcodes === 'string'
         ? shortcodes
         : await localeToShortcodesPath(locale);
     const shortcodesResponse = await fetchAndCheckEtag<ShortcodesDataset>(
-      locale,
+      `${locale}-shortcodes`,
       shortcodesPath,
-      false,
     );
     if (shortcodesResponse) {
       shortcodesData.push(shortcodesResponse);
@@ -83,13 +82,13 @@ export async function importCustomEmojiData() {
 export async function importLegacyShortcodes() {
   const { default: shortcodesPath } =
     await import('emojibase-data/en/shortcodes/iamcal.json?url');
-  const response = await fetch(shortcodesPath);
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch legacy shortcodes data: ${response.statusText}`,
-    );
+  const shortcodesData = await fetchAndCheckEtag<ShortcodesDataset>(
+    'shortcodes',
+    shortcodesPath,
+  );
+  if (!shortcodesData) {
+    return;
   }
-  const shortcodesData = (await response.json()) as ShortcodesDataset;
   await putLegacyShortcodes(shortcodesData);
   return Object.keys(shortcodesData);
 }
@@ -141,16 +140,16 @@ export function localeToShortcodesPath(locale: Locale) {
 }
 
 export async function fetchAndCheckEtag<ResultType extends object[] | object>(
-  localeString: string,
+  etagString: string,
   path: string,
   checkEtag = true,
 ): Promise<ResultType | null> {
-  const locale = toSupportedLocaleOrCustom(localeString);
+  const etagName = toValidEtagName(etagString);
 
   // Use location.origin as this script may be loaded from a CDN domain.
   const url = new URL(path, location.origin);
 
-  const oldEtag = checkEtag ? await loadLatestEtag(locale) : null;
+  const oldEtag = checkEtag ? await loadLatestEtag(etagName) : null;
   const response = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -163,7 +162,7 @@ export async function fetchAndCheckEtag<ResultType extends object[] | object>(
   }
   if (!response.ok) {
     throw new Error(
-      `Failed to fetch emoji data for ${locale}: ${response.statusText}`,
+      `Failed to fetch emoji data for ${etagName}: ${response.statusText}`,
     );
   }
 
@@ -172,7 +171,7 @@ export async function fetchAndCheckEtag<ResultType extends object[] | object>(
   // Store the ETag for future requests
   const etag = response.headers.get('ETag');
   if (etag && checkEtag) {
-    await putLatestEtag(etag, localeString);
+    await putLatestEtag(etag, etagName);
   }
 
   return data;

@@ -20,7 +20,7 @@ async function loadData(locale: string, path?: string) {
   if (locale === EMOJI_TYPE_CUSTOM) {
     importCount = (await importCustomEmojiData())?.length;
   } else if (locale === EMOJI_DB_NAME_SHORTCODES) {
-    importCount = (await importLegacyShortcodes()).length;
+    importCount = (await importLegacyShortcodes())?.length;
   } else if (path) {
     importCount = (await importEmojiData(locale, path))?.length;
   } else {

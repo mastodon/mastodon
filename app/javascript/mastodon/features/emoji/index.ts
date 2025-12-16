@@ -64,7 +64,7 @@ async function fallbackLoad() {
   await loadCustomEmoji();
   const { importLegacyShortcodes } = await import('./loader');
   const shortcodes = await importLegacyShortcodes();
-  if (shortcodes.length) {
+  if (shortcodes?.length) {
     log('loaded %d legacy shortcodes', shortcodes.length);
   }
   await loadEmojiLocale(userLocale);
