@@ -76,7 +76,7 @@ export async function importCustomEmojiData() {
   if (!emojis) {
     return;
   }
-  await putCustomEmojiData(emojis);
+  await putCustomEmojiData(emojis, true);
   return emojis;
 }
 

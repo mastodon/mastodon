@@ -48,6 +48,19 @@ describe('emoji database', () => {
         customEmojiFactory(),
       );
     });
+
+    test('clears existing custom emoji if specified', async () => {
+      const { db } = await testGet();
+      await putCustomEmojiData([customEmojiFactory({ shortcode: 'emoji1' })]);
+      await putCustomEmojiData(
+        [customEmojiFactory({ shortcode: 'emoji2' })],
+        true,
+      );
+      await expect(db.get('custom', 'emoji1')).resolves.toBeUndefined();
+      await expect(db.get('custom', 'emoji2')).resolves.toEqual(
+        customEmojiFactory({ shortcode: 'emoji2' }),
+      );
+    });
   });
 
   describe('putLegacyShortcodes', () => {

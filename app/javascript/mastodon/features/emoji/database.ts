@@ -161,11 +161,23 @@ export async function putEmojiData(emojis: UnicodeEmojiData[], locale: Locale) {
   await trx.done;
 }
 
-export async function putCustomEmojiData(emojis: CustomEmojiData[]) {
+export async function putCustomEmojiData(
+  emojis: CustomEmojiData[],
+  clear = false,
+) {
   const db = await loadDB();
   const trx = db.transaction('custom', 'readwrite');
+
+  // When importing from the API, clear everything first.
+  if (clear) {
+    await trx.store.clear();
+    log('Cleared existing custom emojis in database');
+  }
+
   await Promise.all(emojis.map((emoji) => trx.store.put(emoji)));
   await trx.done;
+
+  log('Imported %d custom emojis into database', emojis.length);
 }
 
 export async function putLegacyShortcodes(shortcodes: ShortcodesDataset) {
@@ -186,6 +198,13 @@ export async function putLatestEtag(etag: string, localeString: string) {
   const locale = toSupportedLocaleOrCustom(localeString);
   const db = await loadDB();
   await db.put('etags', etag, locale);
+}
+
+export async function clearEtag(localeString: string) {
+  const locale = toSupportedLocaleOrCustom(localeString);
+  const db = await loadDB();
+  await db.delete('etags', locale);
+  log('Cleared etag for %s', locale);
 }
 
 export async function loadEmojiByHexcode(
