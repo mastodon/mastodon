@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Account::FinderConcern do
   describe '.representative' do
     context 'with an instance actor using an invalid legacy username' do
-      let(:legacy_value) { 'legacy:value' }
+      let(:legacy_value) { 'localhost:3000' }
 
       before { Account.find(Account::INSTANCE_ACTOR_ID).update_attribute(:username, legacy_value) }
 
