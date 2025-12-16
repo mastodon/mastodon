@@ -3,17 +3,13 @@ import type { FC } from 'react';
 
 import { openModal } from '@/mastodon/actions/modal';
 import { useDismissible } from '@/mastodon/hooks/useDismissible';
-import {
-  generateReport,
-  selectWrapstodonYear,
-} from '@/mastodon/reducers/slices/annual_report';
+import { generateReport } from '@/mastodon/reducers/slices/annual_report';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AnnualReportAnnouncement } from './announcement';
 
 export const AnnualReportTimeline: FC = () => {
-  const { state } = useAppSelector((state) => state.annualReport);
-  const year = useAppSelector(selectWrapstodonYear);
+  const { state, year } = useAppSelector((state) => state.annualReport);
 
   const dispatch = useAppDispatch();
   const handleBuildRequest = useCallback(() => {

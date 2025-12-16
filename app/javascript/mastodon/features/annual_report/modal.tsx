@@ -4,10 +4,7 @@ import { useCallback, useEffect } from 'react';
 import classNames from 'classnames';
 
 import { closeModal } from '@/mastodon/actions/modal';
-import {
-  generateReport,
-  selectWrapstodonYear,
-} from '@/mastodon/reducers/slices/annual_report';
+import { generateReport } from '@/mastodon/reducers/slices/annual_report';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AnnualReport } from '.';
@@ -21,8 +18,7 @@ const AnnualReportModal: React.FC<{
     onChangeBackgroundColor('var(--color-bg-media-base)');
   }, [onChangeBackgroundColor]);
 
-  const { state } = useAppSelector((state) => state.annualReport);
-  const year = useAppSelector(selectWrapstodonYear);
+  const { state, year } = useAppSelector((state) => state.annualReport);
 
   const showAnnouncement = year && state && state !== 'available';
 
