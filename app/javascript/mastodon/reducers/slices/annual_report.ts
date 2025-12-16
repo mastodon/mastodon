@@ -13,12 +13,11 @@ import {
 } from '@/mastodon/api/annual_report';
 import { wrapstodon } from '@/mastodon/initial_state';
 import type { AnnualReport } from '@/mastodon/models/annual_report';
-
 import {
   createAppSelector,
   createAppThunk,
   createDataLoadingThunk,
-} from '../../store/typed_functions';
+} from '@/mastodon/store/typed_functions';
 
 interface AnnualReportState {
   year?: number;
@@ -62,13 +61,18 @@ export const selectWrapstodonYear = createAppSelector(
   (year: number | null | undefined) => year ?? null,
 );
 
-// This kicks everything off, and is called after fetching the server info.
+// Called on initial load to check if we need to refresh the report state.
 export const checkAnnualReport = createAppThunk(
   `${annualReportSlice.name}/checkAnnualReport`,
   (_arg: unknown, { dispatch, getState }) => {
     const year = selectWrapstodonYear(getState());
     const me = getState().meta.get('me') as string;
-    if (!year || !me) {
+
+    // If we have a state, we only need to fetch it again to poll for changes.
+    const state = getState().annualReport.state;
+    const needsStateRefresh = !state || state === 'generating';
+
+    if (!year || !me || !needsStateRefresh) {
       return;
     }
     void dispatch(fetchReportState());
@@ -89,8 +93,6 @@ const fetchReportState = createDataLoadingThunk(
       window.setTimeout(() => {
         void dispatch(fetchReportState());
       }, 1_000 * refresh.retry);
-    } else if (state === 'available') {
-      void dispatch(getReport());
     }
 
     return state;
