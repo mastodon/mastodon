@@ -1,11 +1,7 @@
+import type { ApiAnnualReportState } from './api/annual_report';
 import type { ApiAccountJSON } from './api_types/accounts';
 
 type InitialStateLanguage = [code: string, name: string, localName: string];
-
-interface InitialWrapstodonState {
-  year: number;
-  state: 'available' | 'generating' | 'eligible' | 'ineligible';
-}
 
 interface InitialStateMeta {
   access_token: string;
@@ -61,6 +57,11 @@ interface Role {
   permissions: string;
   color: string;
   highlighted: boolean;
+}
+
+interface InitialWrapstodonState {
+  year: number;
+  state: ApiAnnualReportState;
 }
 
 export interface InitialState {
