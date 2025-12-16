@@ -41,7 +41,7 @@ export function importFetchedAccounts(accounts) {
       processAccount(account.moved);
     }
 
-    if (account.emojis) {
+    if (account.emojis && account.username === account.acct) {
       importCustomEmoji(account.emojis);
     }
   }
@@ -86,7 +86,7 @@ export function importFetchedStatuses(statuses, options = {}) {
         status.card.authors.forEach(author => author.account && pushUnique(accounts, author.account));
       }
 
-      if (status.emojis) {
+      if (status.emojis && status.account.username === status.account.acct) {
         importCustomEmoji(status.emojis);
       }
     }
