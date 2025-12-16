@@ -3,6 +3,37 @@
 require 'rails_helper'
 
 RSpec.describe Account::FinderConcern do
+  describe '.representative' do
+    context 'with an instance actor using an invalid legacy username' do
+      let(:legacy_value) { 'localhost:3000' }
+
+      before { Account.find(Account::INSTANCE_ACTOR_ID).update_attribute(:username, legacy_value) }
+
+      it 'updates the username to the new value' do
+        expect { Account.representative }
+          .to change { Account.find(Account::INSTANCE_ACTOR_ID).username }.from(legacy_value).to('mastodon.internal')
+      end
+    end
+
+    context 'without an instance actor' do
+      before { Account.find(Account::INSTANCE_ACTOR_ID).destroy! }
+
+      it 'creates an instance actor' do
+        expect { Account.representative }
+          .to change(Account.where(id: Account::INSTANCE_ACTOR_ID), :count).from(0).to(1)
+      end
+    end
+
+    context 'with a correctly loaded instance actor' do
+      let(:instance_actor) { Account.find(Account::INSTANCE_ACTOR_ID) }
+
+      it 'returns the instance actor record' do
+        expect(Account.representative)
+          .to eq(instance_actor)
+      end
+    end
+  end
+
   describe 'local finders' do
     let!(:account) { Fabricate(:account, username: 'Alice') }
 
