@@ -10,6 +10,7 @@ module WrapstodonHelper
     ).as_json
 
     payload[:me] = current_account.id.to_s if user_signed_in?
+    payload[:domain] = Addressable::IDNA.to_unicode(Rails.configuration.x.local_domain)
 
     json_string = payload.to_json
 
