@@ -161,10 +161,13 @@ export async function putEmojiData(emojis: UnicodeEmojiData[], locale: Locale) {
   await trx.done;
 }
 
-export async function putCustomEmojiData(
-  emojis: CustomEmojiData[],
+export async function putCustomEmojiData({
+  emojis,
   clear = false,
-) {
+}: {
+  emojis: CustomEmojiData[];
+  clear?: boolean;
+}) {
   const db = await loadDB();
   const trx = db.transaction('custom', 'readwrite');
 
