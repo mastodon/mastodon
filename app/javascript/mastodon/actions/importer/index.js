@@ -40,6 +40,10 @@ export function importFetchedAccounts(accounts) {
     if (account.moved) {
       processAccount(account.moved);
     }
+
+    if (account.emojis) {
+      importCustomEmoji(account.emojis);
+    }
   }
 
   accounts.forEach(processAccount);
