@@ -27,7 +27,7 @@ import { NewPosts } from './new_posts';
 
 const moduleClassNames = classNames.bind(styles);
 
-const accountSelector = createAppSelector(
+export const accountSelector = createAppSelector(
   [(state) => state.accounts, (state) => state.annualReport.report],
   (accounts, report) => {
     if (report?.schema_version === 2) {
