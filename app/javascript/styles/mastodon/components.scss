@@ -2848,7 +2848,7 @@ a.account__display-name {
     cursor: default;
 
     &:focus {
-      color: rgb(from var(--color-text-disabled) r g b / 70%);
+      color: var(--color-text-on-disabled);
       background: var(--color-bg-disabled);
       outline: 0;
     }
@@ -3994,8 +3994,8 @@ a.account__display-name {
   box-sizing: border-box;
 
   &:hover,
-  &:focus,
-  &:active {
+  &:active,
+  &:focus-visible {
     color: var(--color-text-primary);
   }
 
@@ -4013,14 +4013,7 @@ a.account__display-name {
   }
 
   &--logo {
-    background: transparent;
     padding: 10px;
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: transparent;
-    }
   }
 }
 
