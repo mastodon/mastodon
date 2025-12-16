@@ -110,5 +110,12 @@
               as: :boolean,
               wrapper: :with_label
 
+  %h4= t('admin.settings.discovery.wrapstodon')
+
+  .fields-group
+    = f.input :wrapstodon,
+              as: :boolean,
+              wrapper: :with_label
+
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
