@@ -1,6 +1,7 @@
 import { createPollFromServerJSON } from 'mastodon/models/poll';
 
 import { importAccounts } from './accounts';
+import { importCustomEmoji } from './emoji';
 import { normalizeStatus } from './normalizer';
 import { importPolls } from './polls';
 
@@ -79,6 +80,10 @@ export function importFetchedStatuses(statuses, options = {}) {
 
       if (status.card) {
         status.card.authors.forEach(author => author.account && pushUnique(accounts, author.account));
+      }
+
+      if (status.emojis) {
+        importCustomEmoji(status.emojis);
       }
     }
 
