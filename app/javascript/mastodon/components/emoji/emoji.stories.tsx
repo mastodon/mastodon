@@ -2,6 +2,9 @@ import type { ComponentProps } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { customEmojiFactory } from '@/testing/factories';
+
+import { CustomEmojiProvider } from './context';
 import { Emoji } from './index';
 
 type EmojiProps = ComponentProps<typeof Emoji> & {
@@ -34,7 +37,11 @@ const meta = {
     },
   },
   render(args) {
-    return <Emoji {...args} />;
+    return (
+      <CustomEmojiProvider emojis={[customEmojiFactory()]}>
+        <Emoji {...args} />
+      </CustomEmojiProvider>
+    );
   },
 } satisfies Meta<EmojiProps>;
 
@@ -47,11 +54,5 @@ export const Default: Story = {};
 export const CustomEmoji: Story = {
   args: {
     code: ':custom:',
-  },
-};
-
-export const LegacyEmoji: Story = {
-  args: {
-    code: ':copyright:',
   },
 };

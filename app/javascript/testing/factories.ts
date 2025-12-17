@@ -128,8 +128,8 @@ export function customEmojiFactory(
 ): CustomEmojiData {
   return {
     shortcode: 'custom',
-    static_url: 'emoji/custom/static',
-    url: 'emoji/custom',
+    static_url: '/custom-emoji/logo.svg',
+    url: '/custom-emoji/logo.svg',
     visible_in_picker: true,
     ...data,
   };
