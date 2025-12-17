@@ -5,7 +5,7 @@
   %h2= t('admin.settings.title')
   = render partial: 'admin/settings/shared/links'
 
-= simple_form_for @admin_settings, url: admin_settings_about_path, html: { method: :patch } do |f|
+= simple_form_for @admin_settings, url: admin_settings_about_path do |f|
   = render 'shared/error_messages', object: @admin_settings
 
   %p.lead= t('admin.settings.about.preamble')
