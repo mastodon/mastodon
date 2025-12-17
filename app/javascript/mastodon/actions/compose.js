@@ -674,8 +674,11 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
       dispatch(useEmoji(suggestion));
     } else if (suggestion.type === 'hashtag') {
       // TODO: it could make sense to keep the “most capitalized” of the two
-      if (suggestion.name.slice(0, token.length - 1).localeCompare(token.slice(1), undefined, { sensitivity: 'accent' }) === 0) {
-        completion = token + suggestion.name.slice(token.length - 1);
+      const tokenName = token.slice(1); // strip leading '#'
+      const suggestionPrefix = suggestion.name.slice(0, tokenName.length);
+      const prefixMatchesSuggestion = suggestionPrefix.localeCompare(tokenName, undefined, { sensitivity: 'accent' }) === 0;
+      if (prefixMatchesSuggestion) {
+        completion = token + suggestion.name.slice(tokenName.length);
       } else {
         completion = `${token.slice(0, 1)}${suggestion.name}`;
       }
