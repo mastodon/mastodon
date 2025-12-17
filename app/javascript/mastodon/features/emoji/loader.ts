@@ -23,13 +23,7 @@ export async function importEmojiData(
 ) {
   const locale = toSupportedLocale(localeString);
 
-  // Validate the provided path.
-  if (path && !/^[/a-z]*\/packs\/assets\/compact-\w+\.json$/.test(path)) {
-    throw new Error(`Invalid path for emoji data: ${path}`);
-  } else {
-    // Otherwise get the path if not provided.
-    path ??= await localeToEmojiPath(locale);
-  }
+  path ??= await localeToEmojiPath(locale);
 
   const emojis = await fetchAndCheckEtag<CompactEmoji[]>(locale, path);
   if (!emojis) {
@@ -37,13 +31,7 @@ export async function importEmojiData(
   }
 
   const shortcodesData: ShortcodesDataset[] = [];
-  if (shortcodes) {
-    if (
-      typeof shortcodes === 'string' &&
-      !/^[/a-z]*\/packs\/assets\/shortcodes\/cldr\.json$/.test(shortcodes)
-    ) {
-      throw new Error(`Invalid path for shortcodes data: ${shortcodes}`);
-    }
+  if (typeof shortcodes === 'string') {
     const shortcodesPath =
       typeof shortcodes === 'string'
         ? shortcodes

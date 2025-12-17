@@ -33,7 +33,7 @@ export function toValidEtagName(input: string): EtagTypes {
 }
 
 function isSupportedLocale(locale: string): locale is Locale {
-  return SUPPORTED_LOCALES.includes(locale.toLowerCase() as Locale);
+  return SUPPORTED_LOCALES.includes(locale as Locale);
 }
 
 function isLocaleWithShortcodes(input: string): input is LocaleWithShortcodes {
