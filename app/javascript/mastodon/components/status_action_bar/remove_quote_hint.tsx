@@ -12,6 +12,8 @@ import { Button } from '../button';
 import { useDismissableBannerState } from '../dismissable_banner';
 import { Icon } from '../icon';
 
+import classes from './remove_quote_hint.module.css';
+
 const DISMISSABLE_BANNER_ID = 'notifications/remove_quote_hint';
 
 /**
@@ -93,7 +95,7 @@ export const RemoveQuoteHint: React.FC<{
                         id: 'status.more',
                         defaultMessage: 'More',
                       })}
-                      style={{ verticalAlign: 'middle' }}
+                      className={classes.inlineIcon}
                     />
                   ),
                 }}
