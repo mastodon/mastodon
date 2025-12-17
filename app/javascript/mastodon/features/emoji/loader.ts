@@ -16,29 +16,22 @@ import {
 import { toSupportedLocale, toValidEtagName } from './locale';
 import type { CustomEmojiData } from './types';
 
-export async function importEmojiData(
-  localeString: string,
-  path?: string,
-  shortcodes: boolean | string = true,
-) {
+export async function importEmojiData(localeString: string, shortcodes = true) {
   const locale = toSupportedLocale(localeString);
 
-  path ??= await localeToEmojiPath(locale);
-
-  const emojis = await fetchAndCheckEtag<CompactEmoji[]>(locale, path);
+  const emojis = await fetchAndCheckEtag<CompactEmoji[]>(
+    locale,
+    localeToEmojiPath(locale),
+  );
   if (!emojis) {
     return;
   }
 
   const shortcodesData: ShortcodesDataset[] = [];
-  if (typeof shortcodes === 'string') {
-    const shortcodesPath =
-      typeof shortcodes === 'string'
-        ? shortcodes
-        : await localeToShortcodesPath(locale);
+  if (shortcodes) {
     const shortcodesResponse = await fetchAndCheckEtag<ShortcodesDataset>(
       `${locale}-shortcodes`,
-      shortcodesPath,
+      localeToShortcodesPath(locale),
     );
     if (shortcodesResponse) {
       shortcodesData.push(shortcodesResponse);
@@ -81,50 +74,40 @@ export async function importLegacyShortcodes() {
   return Object.keys(shortcodesData);
 }
 
-const emojiModules = new Map(
-  Object.entries(
-    import.meta.glob<string>(
-      '../../../../../node_modules/emojibase-data/**/compact.json',
-      {
-        query: '?url',
-        import: 'default',
-      },
-    ),
-  ).map(([key, loader]) => {
-    const match = /emojibase-data\/([^/]+)\/compact\.json$/.exec(key);
-    return [match?.at(1) ?? key, loader];
-  }),
+const emojiModules = import.meta.glob<string>(
+  '../../../../../node_modules/emojibase-data/**/compact.json',
+  {
+    query: '?url',
+    import: 'default',
+    eager: true,
+  },
 );
 
 export function localeToEmojiPath(locale: Locale) {
-  const path = emojiModules.get(locale);
+  const key = `../../../../../node_modules/emojibase-data/${locale}/compact.json`;
+  const path = emojiModules[key];
   if (!path) {
     throw new Error(`Unsupported locale: ${locale}`);
   }
-  return path();
+  return path;
 }
 
-const shortcodesModules = new Map(
-  Object.entries(
-    import.meta.glob<string>(
-      '../../../../../node_modules/emojibase-data/**/shortcodes/cldr.json',
-      {
-        query: '?url',
-        import: 'default',
-      },
-    ),
-  ).map(([key, loader]) => {
-    const match = /emojibase-data\/([^/]+)\/shortcodes\/cldr\.json$/.exec(key);
-    return [match?.at(1) ?? key, loader];
-  }),
+const shortcodesModules = import.meta.glob<string>(
+  '../../../../../node_modules/emojibase-data/**/shortcodes/cldr.json',
+  {
+    query: '?url',
+    import: 'default',
+    eager: true,
+  },
 );
 
 export function localeToShortcodesPath(locale: Locale) {
-  const path = shortcodesModules.get(locale);
+  const key = `../../../../../node_modules/emojibase-data/${locale}/shortcodes/cldr.json`;
+  const path = shortcodesModules[key];
   if (!path) {
     throw new Error(`Unsupported locale for shortcodes: ${locale}`);
   }
-  return path();
+  return path;
 }
 
 export async function fetchAndCheckEtag<ResultType extends object[] | object>(

@@ -1,8 +1,6 @@
-import type { Locale } from 'emojibase';
-
 import { initialState } from '@/mastodon/initial_state';
 
-import type { EMOJI_DB_NAME_SHORTCODES, EMOJI_TYPE_CUSTOM } from './constants';
+import type { EMOJI_DB_NAME_SHORTCODES } from './constants';
 import { toSupportedLocale } from './locale';
 import type { LocaleOrCustom } from './types';
 import { emojiLogger } from './utils';
@@ -71,14 +69,11 @@ async function fallbackLoad() {
 
 async function loadEmojiLocale(localeString: string) {
   const locale = toSupportedLocale(localeString);
-  const { importEmojiData, localeToEmojiPath, localeToShortcodesPath } =
-    await import('./loader');
+  const { importEmojiData } = await import('./loader');
 
   if (worker) {
-    const path = await localeToEmojiPath(locale);
-    const shortcodesPath = await localeToShortcodesPath(locale);
-    log('asking worker to load locale %s from %s', locale, path);
-    messageWorker(locale, path, shortcodesPath);
+    log('asking worker to load locale %s', locale);
+    messageWorker(locale);
   } else {
     const emojis = await importEmojiData(locale);
     if (emojis) {
@@ -100,16 +95,10 @@ export async function loadCustomEmoji() {
 }
 
 function messageWorker(
-  locale: typeof EMOJI_TYPE_CUSTOM | typeof EMOJI_DB_NAME_SHORTCODES,
-): void;
-function messageWorker(locale: Locale, path: string, shortcodes?: string): void;
-function messageWorker(
   locale: LocaleOrCustom | typeof EMOJI_DB_NAME_SHORTCODES,
-  path?: string,
-  shortcodes?: string,
 ) {
   if (!worker) {
     return;
   }
-  worker.postMessage({ locale, path, shortcodes });
+  worker.postMessage({ locale });
 }
