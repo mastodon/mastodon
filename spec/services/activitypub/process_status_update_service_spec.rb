@@ -602,7 +602,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
   context 'when an approved quote of a local post gets updated through an explicit update, removing text' do
     let(:quoted_account) { Fabricate(:account) }
-    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, state: :accepted) }
     let(:approval_uri) { ActivityPub::TagManager.instance.approval_uri_for(quote) }
 
@@ -638,7 +638,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
   context 'when an approved quote of a local post gets updated through an explicit update' do
     let(:quoted_account) { Fabricate(:account) }
-    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, state: :accepted) }
     let(:approval_uri) { ActivityPub::TagManager.instance.approval_uri_for(quote) }
 
