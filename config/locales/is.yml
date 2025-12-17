@@ -7,6 +7,8 @@ is:
     hosted_on: Mastodon hýst á %{domain}
     title: Um hugbúnaðinn
   accounts:
+    errors:
+      cannot_be_added_to_collections: Þessum aðgangi er ekki hægt að bæta í söfn.
     followers:
       one: fylgjandi
       other: fylgjendur
@@ -2190,4 +2192,5 @@ is:
     otp_required: Til að nota öryggislykla skaltu fyrst virkja tveggja-þátta auðkenningu.
     registered_on: Skráði sig %{date}
   wrapstodon:
+    description: Sjáðu hvernig %{name} notaði Mastodon á árinu!
     title: Wrapstodon %{year} fyrir %{name}
