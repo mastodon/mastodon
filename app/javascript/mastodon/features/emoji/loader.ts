@@ -15,9 +15,18 @@ import {
 } from './database';
 import { toSupportedLocale, toValidEtagName } from './locale';
 import type { CustomEmojiData } from './types';
+import { emojiLogger } from './utils';
+
+const log = emojiLogger('loader');
 
 export async function importEmojiData(localeString: string, shortcodes = true) {
   const locale = toSupportedLocale(localeString);
+
+  log(
+    'importing emoji data for locale %s%s',
+    locale,
+    shortcodes ? ' and shortcodes' : '',
+  );
 
   const emojis = await fetchAndCheckEtag<CompactEmoji[]>(
     locale,
@@ -142,6 +151,7 @@ export async function fetchAndCheckEtag<ResultType extends object[] | object>(
   // Store the ETag for future requests
   const etag = response.headers.get('ETag');
   if (etag && checkEtag) {
+    log(`storing new etag for ${etagName}: ${etag}`);
     await putLatestEtag(etag, etagName);
   }
 
