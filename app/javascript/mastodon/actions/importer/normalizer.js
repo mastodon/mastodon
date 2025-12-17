@@ -2,6 +2,8 @@ import escapeTextContentForBrowser from 'escape-html';
 
 import { expandSpoilers } from '../../initial_state';
 
+import { importCustomEmoji } from './emoji';
+
 const domParser = new DOMParser();
 
 export function searchTextFromRawStatus (status) {
@@ -150,6 +152,10 @@ export function normalizeAnnouncement(announcement) {
   const normalAnnouncement = { ...announcement };
 
   normalAnnouncement.contentHtml = normalAnnouncement.content;
+
+  if (normalAnnouncement.emojis) {
+    importCustomEmoji(normalAnnouncement.emojis);
+  }
 
   return normalAnnouncement;
 }
