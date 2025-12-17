@@ -6,8 +6,6 @@ import type { EMOJI_DB_NAME_SHORTCODES, EMOJI_TYPE_CUSTOM } from './constants';
 import { toSupportedLocale } from './locale';
 import type { LocaleOrCustom } from './types';
 import { emojiLogger } from './utils';
-// eslint-disable-next-line import/default -- Importing via worker loader.
-import EmojiWorker from './worker?worker&inline';
 
 const userLocale = toSupportedLocale(initialState?.meta.locale ?? 'en');
 
@@ -18,13 +16,14 @@ const log = emojiLogger('index');
 // This is too short, but better to fallback quickly than wait.
 const WORKER_TIMEOUT = 1_000;
 
-export function initializeEmoji() {
+export async function initializeEmoji() {
   log('initializing emojis');
 
   // Create a temp worker, and assign it to the module-level worker once we know it's ready.
   let tempWorker: Worker | null = null;
   if (!worker && 'Worker' in window) {
     try {
+      const { default: EmojiWorker } = await import('./worker?worker&inline');
       tempWorker = new EmojiWorker();
     } catch (err) {
       console.warn('Error creating web worker:', err);
