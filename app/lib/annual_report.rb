@@ -17,7 +17,7 @@ class AnnualReport
   end
 
   def self.current_campaign
-    return unless Mastodon::Feature.wrapstodon_enabled?
+    return unless Setting.wrapstodon
 
     datetime = Time.now.utc
     datetime.year if datetime.month == 12 && (10..31).cover?(datetime.day)
