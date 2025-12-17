@@ -92,9 +92,15 @@
     %h4= t 'appearance.boosting_preferences'
 
     .fields-group
-      = ff.input :'web.reblog_modal', wrapper: :with_label, hint: I18n.t('simple_form.hints.defaults.setting_boost_modal'), label: I18n.t('simple_form.labels.defaults.setting_boost_modal')
+      = ff.input :'web.reblog_modal',
+                 hint: I18n.t('simple_form.hints.defaults.setting_boost_modal'),
+                 label: I18n.t('simple_form.labels.defaults.setting_boost_modal'),
+                 wrapper: :with_label
     .fields-group
-      = ff.input :'web.quick_boosting', wrapper: :with_label, hint: t('simple_form.hints.defaults.setting_quick_boosting_html', boost_icon: material_symbol('repeat'), options_icon: material_symbol('more_horiz')), label: I18n.t('simple_form.labels.defaults.setting_quick_boosting')
+      = ff.input :'web.quick_boosting',
+                 hint: t('simple_form.hints.defaults.setting_quick_boosting_html', boost_icon: material_symbol('repeat'), options_icon: material_symbol('more_horiz')),
+                 label: I18n.t('simple_form.labels.defaults.setting_quick_boosting'),
+                 wrapper: :with_label
     .flash-message.hidden-on-touch-devices= t('appearance.boosting_preferences_info_html', icon: material_symbol('repeat'))
 
     %h4= t 'appearance.sensitive_content'
