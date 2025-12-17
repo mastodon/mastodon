@@ -7,6 +7,8 @@ es:
     hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
   accounts:
+    errors:
+      cannot_be_added_to_collections: Esta cuenta no se puede añadir a las colecciones.
     followers:
       one: Seguidor
       other: Seguidores
@@ -2186,4 +2188,5 @@ es:
     otp_required: Para usar claves de seguridad, por favor habilite primero la autenticación de doble factor.
     registered_on: Registrado el %{date}
   wrapstodon:
+    description: "¡Mira cómo %{name} ha usado Mastodon este año!"
     title: Wrapstodon %{year} para %{name}

@@ -7,6 +7,8 @@ cy:
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     title: Ynghylch
   accounts:
+    errors:
+      cannot_be_added_to_collections: Does dim modd ychwanegu'r cyfrif hwn at gasgliadau.
     followers:
       few: Dilynwyr
       many: Dilynwyr
@@ -1862,16 +1864,22 @@ cy:
       body: 'Caswoch eich crybwyll gan %{name} yn:'
       subject: Cawsoch eich crybwyll gan %{name}
       title: Crywbylliad newydd
+    moderation_warning:
+      subject: Rydych wedi derbyn rhybudd gan gymedrolwr
     poll:
       subject: Mae arolwg gan %{name} wedi dod i ben
     quote:
       body: 'Mae %{name} wedi dyfynnu eich postiad :'
       subject: Mae %{name} wedi dyfynnu eich postiad
       title: Dyfyniad newydd
+    quoted_update:
+      subject: Golygodd %{name} bostiad rydych chi wedi'i ddyfynnu
     reblog:
       body: 'Cafodd eich postiad ei hybu gan %{name}:'
       subject: Rhoddodd %{name} hwb i'ch postiad
       title: Hwb newydd
+    severed_relationships:
+      subject: Rydych chi wedi colli cysylltiadau oherwydd penderfyniad cymedroli
     status:
       subject: "%{name} newydd ei bostio"
     update:
@@ -2355,3 +2363,6 @@ cy:
     not_supported: Nid yw'r porwr hwn yn cynnal allweddi diogelwch
     otp_required: I ddefnyddio allweddi diogelwch, galluogwch ddilysu dau ffactor yn gyntaf.
     registered_on: Cofrestrwyd ar %{date}
+  wrapstodon:
+    description: Gweler sut defnyddiodd %{name} Mastodon eleni!
+    title: Wrapstodon %{year} ar gyfer %{name}
