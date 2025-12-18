@@ -28,20 +28,20 @@ export async function importEmojiData(localeString: string, shortcodes = true) {
     shortcodes ? ' and shortcodes' : '',
   );
 
-  const emojis = await fetchAndCheckEtag<CompactEmoji[]>(
-    locale,
-    localeToEmojiPath(locale),
-  );
+  const emojis = await fetchAndCheckEtag<CompactEmoji[]>({
+    etagString: locale,
+    path: localeToEmojiPath(locale),
+  });
   if (!emojis) {
     return;
   }
 
   const shortcodesData: ShortcodesDataset[] = [];
   if (shortcodes) {
-    const shortcodesResponse = await fetchAndCheckEtag<ShortcodesDataset>(
-      `${locale}-shortcodes`,
-      localeToShortcodesPath(locale),
-    );
+    const shortcodesResponse = await fetchAndCheckEtag<ShortcodesDataset>({
+      etagString: `${locale}-shortcodes`,
+      path: localeToShortcodesPath(locale),
+    });
     if (shortcodesResponse) {
       shortcodesData.push(shortcodesResponse);
     } else {
@@ -58,10 +58,10 @@ export async function importEmojiData(localeString: string, shortcodes = true) {
 }
 
 export async function importCustomEmojiData() {
-  const emojis = await fetchAndCheckEtag<CustomEmojiData[]>(
-    'custom',
-    '/api/v1/custom_emojis',
-  );
+  const emojis = await fetchAndCheckEtag<CustomEmojiData[]>({
+    etagString: 'custom',
+    path: '/api/v1/custom_emojis',
+  });
   if (!emojis) {
     return;
   }
@@ -70,12 +70,13 @@ export async function importCustomEmojiData() {
 }
 
 export async function importLegacyShortcodes() {
-  const { default: shortcodesPath } =
+  const { default: path } =
     await import('emojibase-data/en/shortcodes/iamcal.json?url');
-  const shortcodesData = await fetchAndCheckEtag<ShortcodesDataset>(
-    'shortcodes',
-    shortcodesPath,
-  );
+  const shortcodesData = await fetchAndCheckEtag<ShortcodesDataset>({
+    checkEtag: true,
+    etagString: 'shortcodes',
+    path,
+  });
   if (!shortcodesData) {
     return;
   }
@@ -119,11 +120,15 @@ export function localeToShortcodesPath(locale: Locale) {
   return path;
 }
 
-export async function fetchAndCheckEtag<ResultType extends object[] | object>(
-  etagString: string,
-  path: string,
-  checkEtag = true,
-): Promise<ResultType | null> {
+export async function fetchAndCheckEtag<ResultType extends object[] | object>({
+  etagString,
+  path,
+  checkEtag = false,
+}: {
+  etagString: string;
+  path: string;
+  checkEtag?: boolean;
+}): Promise<ResultType | null> {
   const etagName = toValidEtagName(etagString);
 
   // Use location.origin as this script may be loaded from a CDN domain.
