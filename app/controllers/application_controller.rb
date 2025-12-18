@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_account
   helper_method :current_session
   helper_method :current_theme
-  helper_method :prefers_contrast
+  helper_method :color_scheme
+  helper_method :contrast
   helper_method :single_user_mode?
   helper_method :use_seamless_external_login?
   helper_method :sso_account_settings
@@ -178,8 +179,23 @@ class ApplicationController < ActionController::Base
     current_user.setting_theme
   end
 
-  def prefers_contrast
-    current_user.setting_prefers_contrast || 'default'
+  def color_scheme
+    current = current_user&.setting_color_scheme
+    return current if current && current != 'auto'
+
+    return 'dark' if current_theme.include?('default') || current_theme.include?('contrast')
+    return 'light' if current_theme.include?('light')
+
+    'auto'
+  end
+
+  def contrast
+    current = current_user&.setting_contrast
+    return current if current && current != 'auto'
+
+    return 'high' if current_theme.include?('contrast')
+
+    'auto'
   end
 
   def respond_with_error(code)

@@ -59,8 +59,12 @@ module User::HasSettings
     settings['theme']
   end
 
-  def setting_prefers_contrast
-    settings['web.prefers_contrast']
+  def setting_color_scheme
+    settings['web.color_scheme']
+  end
+
+  def setting_contrast
+    settings['web.contrast']
   end
 
   def setting_display_media
