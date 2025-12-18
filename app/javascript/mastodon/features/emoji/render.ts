@@ -4,12 +4,6 @@ import {
   EMOJI_TYPE_UNICODE,
   EMOJI_TYPE_CUSTOM,
 } from './constants';
-import {
-  loadEmojiByHexcode,
-  loadLegacyShortcodesByShortcode,
-  LocaleNotLoadedError,
-} from './database';
-import { importEmojiData } from './loader';
 import { emojiToUnicodeHex } from './normalize';
 import type {
   EmojiLoadedState,
@@ -121,6 +115,12 @@ export async function loadEmojiDataToState(
     return null;
   }
 
+  const {
+    loadLegacyShortcodesByShortcode,
+    loadEmojiByHexcode,
+    LocaleNotLoadedError,
+  } = await import('./database');
+
   // First, try to load the data from IndexedDB.
   try {
     const legacyCode = await loadLegacyShortcodesByShortcode(state.code);
@@ -155,6 +155,7 @@ export async function loadEmojiDataToState(
         state.code,
         locale,
       );
+      const { importEmojiData } = await import('./loader');
       await importEmojiData(locale); // Use this from the loader file as it can be awaited.
       return loadEmojiDataToState(state, locale, true);
     }
