@@ -10,19 +10,19 @@ class ActivityPub::Parser::InteractionPolicyParser
     flags = 0
     return flags if @json.blank?
 
-    flags |= quote_subpolicy(@json['automaticApproval'])
+    flags |= subpolicy(@json['automaticApproval'])
     flags <<= 16
-    flags |= quote_subpolicy(@json['manualApproval'])
+    flags |= subpolicy(@json['manualApproval'])
 
     flags
   end
 
   private
 
-  def quote_subpolicy(subpolicy)
+  def subpolicy(partial_json)
     flags = 0
 
-    allowed_actors = Array(subpolicy).dup
+    allowed_actors = Array(partial_json).dup
     allowed_actors.uniq!
 
     flags |= InteractionPolicy::POLICY_FLAGS[:public] if allowed_actors.delete('as:Public') || allowed_actors.delete('Public') || allowed_actors.delete('https://www.w3.org/ns/activitystreams#Public')
