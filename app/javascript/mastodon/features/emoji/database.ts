@@ -5,11 +5,7 @@ import { openDB } from 'idb';
 
 import { EMOJI_DB_SHORTCODE_TEST } from './constants';
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
-import type {
-  CustomEmojiData,
-  UnicodeEmojiData,
-  LocaleOrCustom,
-} from './types';
+import type { CustomEmojiData, UnicodeEmojiData, EtagTypes } from './types';
 import { emojiLogger } from './utils';
 
 interface EmojiDB extends LocaleTables, DBSchema {
@@ -32,7 +28,7 @@ interface EmojiDB extends LocaleTables, DBSchema {
     };
   };
   etags: {
-    key: LocaleOrCustom;
+    key: EtagTypes;
     value: string;
   };
 }
@@ -197,10 +193,9 @@ export async function putLegacyShortcodes(shortcodes: ShortcodesDataset) {
   await trx.done;
 }
 
-export async function putLatestEtag(etag: string, localeString: string) {
-  const locale = toSupportedLocaleOrCustom(localeString);
+export async function putLatestEtag(etag: string, name: EtagTypes) {
   const db = await loadDB();
-  await db.put('etags', etag, locale);
+  await db.put('etags', etag, name);
 }
 
 export async function clearEtag(localeString: string) {
