@@ -32,22 +32,24 @@
                  wrapper: :with_label,
                  required: false
       - if Mastodon::Feature.new_theme_options_enabled?
-        = ff.input :'web.color_scheme',
-                   as: :radio_buttons,
-                   collection: %w(auto light dark),
-                   include_blank: false,
-                   label: I18n.t('simple_form.labels.defaults.setting_color_scheme'),
-                   label_method: ->(contrast) { I18n.t("color_scheme.#{contrast}", default: contrast) },
-                   wrapper: :with_label,
-                   required: false
-        = ff.input :'web.contrast',
-                   as: :radio_buttons,
-                   collection: %w(auto high),
-                   include_blank: false,
-                   label: I18n.t('simple_form.labels.defaults.setting_contrast'),
-                   label_method: ->(contrast) { I18n.t("contrast.#{contrast}", default: contrast) },
-                   wrapper: :with_label,
-                   required: false
+        .input.horizontal-options
+          = ff.input :'web.color_scheme',
+                     as: :radio_buttons,
+                     collection: %w(auto light dark),
+                     include_blank: false,
+                     label: I18n.t('simple_form.labels.defaults.setting_color_scheme'),
+                     label_method: ->(contrast) { I18n.t("color_scheme.#{contrast}", default: contrast) },
+                     wrapper: :with_label,
+                     required: false
+        .input.horizontal-options
+          = ff.input :'web.contrast',
+                     as: :radio_buttons,
+                     collection: %w(auto high),
+                     include_blank: false,
+                     label: I18n.t('simple_form.labels.defaults.setting_contrast'),
+                     label_method: ->(contrast) { I18n.t("contrast.#{contrast}", default: contrast) },
+                     wrapper: :with_label,
+                     required: false
 
   .fields-group
     = f.simple_fields_for :settings, current_user.settings do |ff|
