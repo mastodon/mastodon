@@ -70,8 +70,15 @@ export async function importCustomEmojiData() {
 }
 
 export async function importLegacyShortcodes() {
-  const { default: path } =
-    await import('emojibase-data/en/shortcodes/iamcal.json?url');
+  const globPaths = import.meta.glob<string>(
+    // We use import.meta.glob to eagerly load the URL, as the regular import() doesn't work inside the Web Worker.
+    '../../../../../node_modules/emojibase-data/en/shortcodes/iamcal.json',
+    { eager: true, import: 'default', query: '?url' },
+  );
+  const path = Object.values(globPaths)[0];
+  if (!path) {
+    throw new Error('IAMCAL shortcodes path not found');
+  }
   const shortcodesData = await fetchAndCheckEtag<ShortcodesDataset>({
     checkEtag: true,
     etagString: 'shortcodes',
@@ -84,17 +91,16 @@ export async function importLegacyShortcodes() {
   return Object.keys(shortcodesData);
 }
 
-const emojiModules = import.meta.glob<string>(
-  '../../../../../node_modules/emojibase-data/**/compact.json',
-  {
-    query: '?url',
-    import: 'default',
-    eager: true,
-  },
-);
-
-export function localeToEmojiPath(locale: Locale) {
+function localeToEmojiPath(locale: Locale) {
   const key = `../../../../../node_modules/emojibase-data/${locale}/compact.json`;
+  const emojiModules = import.meta.glob<string>(
+    '../../../../../node_modules/emojibase-data/**/compact.json',
+    {
+      query: '?url',
+      import: 'default',
+      eager: true,
+    },
+  );
   const path = emojiModules[key];
   if (!path) {
     throw new Error(`Unsupported locale: ${locale}`);
@@ -102,17 +108,16 @@ export function localeToEmojiPath(locale: Locale) {
   return path;
 }
 
-const shortcodesModules = import.meta.glob<string>(
-  '../../../../../node_modules/emojibase-data/**/shortcodes/cldr.json',
-  {
-    query: '?url',
-    import: 'default',
-    eager: true,
-  },
-);
-
-export function localeToShortcodesPath(locale: Locale) {
+function localeToShortcodesPath(locale: Locale) {
   const key = `../../../../../node_modules/emojibase-data/${locale}/shortcodes/cldr.json`;
+  const shortcodesModules = import.meta.glob<string>(
+    '../../../../../node_modules/emojibase-data/**/shortcodes/cldr.json',
+    {
+      query: '?url',
+      import: 'default',
+      eager: true,
+    },
+  );
   const path = shortcodesModules[key];
   if (!path) {
     throw new Error(`Unsupported locale for shortcodes: ${locale}`);
@@ -120,7 +125,7 @@ export function localeToShortcodesPath(locale: Locale) {
   return path;
 }
 
-export async function fetchAndCheckEtag<ResultType extends object[] | object>({
+async function fetchAndCheckEtag<ResultType extends object[] | object>({
   etagString,
   path,
   checkEtag = false,
