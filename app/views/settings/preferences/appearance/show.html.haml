@@ -29,7 +29,8 @@
                  include_blank: false,
                  label_method: ->(theme) { I18n.t("themes.#{theme}", default: theme) },
                  label: I18n.t('simple_form.labels.defaults.setting_theme'),
-                 wrapper: :with_label
+                 wrapper: :with_label,
+                 required: false
       - if Mastodon::Feature.new_theme_options_enabled?
         = ff.input :'web.color_scheme',
                    as: :radio_buttons,
@@ -56,7 +57,8 @@
                  hint: I18n.t('simple_form.hints.defaults.setting_emoji_style'),
                  label: I18n.t('simple_form.labels.defaults.setting_emoji_style'),
                  label_method: ->(emoji_style) { I18n.t("emoji_styles.#{emoji_style}", default: emoji_style) },
-                 wrapper: :with_label
+                 wrapper: :with_label,
+                 required: false
 
   - unless I18n.locale == :en
     .flash-message.translation-prompt
@@ -104,7 +106,8 @@
                  item_wrapper_tag: 'li',
                  label_method: ->(item) { t("simple_form.hints.defaults.setting_display_media_#{item}") },
                  label: I18n.t('simple_form.labels.defaults.setting_display_media'),
-                 wrapper: :with_floating_label
+                 wrapper: :with_floating_label,
+                 required: false
 
     .fields-group
       = ff.input :'web.use_blurhash',
