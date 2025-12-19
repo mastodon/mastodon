@@ -91,6 +91,7 @@ class Account < ApplicationRecord
   include Account::FaspConcern
   include Account::FinderConcern
   include Account::Header
+  include Account::InteractionPolicyConcern
   include Account::Interactions
   include Account::Mappings
   include Account::Merging
