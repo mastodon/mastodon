@@ -160,7 +160,7 @@ module Account::Interactions
 
   def domain_blocking?(other_domain)
     preloaded_relation(:domain_blocking_by_domain, other_domain) do
-      domain_blocks.exists?(domain: other_domain)
+      domain_blocks.exists?(domain: normalized_domain(other_domain))
     end
   end
 
