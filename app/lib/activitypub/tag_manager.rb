@@ -264,6 +264,10 @@ class ActivityPub::TagManager
     uri_to_resource(uri, Account)
   end
 
+  def key_uri_to_actor(uri)
+    Account.find_by(uri: uri.split('#').first) || Account.find_by(public_key_id: uri)
+  end
+
   def uri_to_resource(uri, klass)
     return if uri.nil?
 
