@@ -4,19 +4,18 @@ import { FormattedMessage } from 'react-intl';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import { fetchRelationships } from 'mastodon/actions/accounts';
+import { revealAccount } from 'mastodon/actions/accounts_typed';
+import { fetchStatus } from 'mastodon/actions/statuses';
 import { LearnMoreLink } from 'mastodon/components/learn_more_link';
 import StatusContainer from 'mastodon/containers/status_container';
 import { domain } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 import type { Status } from 'mastodon/models/status';
+import { makeGetStatusWithExtraInfo } from 'mastodon/selectors';
+import { getAccountHidden } from 'mastodon/selectors/accounts';
 import type { RootState } from 'mastodon/store';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
-
-import { fetchRelationships } from '../actions/accounts';
-import { revealAccount } from '../actions/accounts_typed';
-import { fetchStatus } from '../actions/statuses';
-import { makeGetStatusWithExtraInfo } from '../selectors';
-import { getAccountHidden } from '../selectors/accounts';
 
 import { Button } from './button';
 
@@ -333,7 +332,7 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
   );
 };
 
-interface StatusQuoteManagerProps {
+export interface StatusQuoteManagerProps {
   id: string;
   contextType?: string;
   [key: string]: unknown;

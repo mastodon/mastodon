@@ -7,6 +7,8 @@ tr:
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
     title: Hakkında
   accounts:
+    errors:
+      cannot_be_added_to_collections: Bu hesap koleksiyonlara eklenemez.
     followers:
       one: Takipçi
       other: Takipçiler
@@ -846,6 +848,7 @@ tr:
         publish_statistics: İstatistikleri yayınla
         title: Keşfet
         trends: Öne çıkanlar
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Herkes için
         disabled: Hiç kimseye
@@ -2186,4 +2189,5 @@ tr:
     otp_required: Güvenlik anahtarlarını kullanmak için lütfen önce iki adımlı kimlik doğrulamayı etkinleştirin.
     registered_on: "%{date} tarihinde kaydoldu"
   wrapstodon:
+    description: "%{name} kullanıcısının bu yıl Mastodon'u nasıl kullandığını görün!"
     title: "%{name} için %{year} Wrapstodon'u"

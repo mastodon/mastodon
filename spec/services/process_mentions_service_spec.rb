@@ -8,9 +8,9 @@ RSpec.describe ProcessMentionsService do
   let(:account) { Fabricate(:account, username: 'alice') }
 
   context 'when mentions contain blocked accounts' do
-    let(:non_blocked_account)          { Fabricate(:account) }
-    let(:individually_blocked_account) { Fabricate(:account) }
-    let(:domain_blocked_account)       { Fabricate(:account, domain: 'evil.com') }
+    let!(:non_blocked_account)          { Fabricate(:account) }
+    let!(:individually_blocked_account) { Fabricate(:account) }
+    let!(:domain_blocked_account)       { Fabricate(:account, domain: 'evil.com', protocol: :activitypub) }
     let(:status) { Fabricate(:status, account: account, text: "Hello @#{non_blocked_account.acct} @#{individually_blocked_account.acct} @#{domain_blocked_account.acct}", visibility: :public) }
 
     before do

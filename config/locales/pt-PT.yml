@@ -7,6 +7,8 @@ pt-PT:
     hosted_on: Mastodon alojado em %{domain}
     title: Sobre
   accounts:
+    errors:
+      cannot_be_added_to_collections: Esta conta não pode ser adicionada às coleções.
     followers:
       one: Seguidor
       other: Seguidores
@@ -846,6 +848,7 @@ pt-PT:
         publish_statistics: Publicar estatísticas
         title: Descobrir
         trends: Tendências
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Para toda a gente
         disabled: Para ninguém
@@ -1715,7 +1718,7 @@ pt-PT:
       subject: "%{name} citou a sua publicação"
       title: Nova citação
     quoted_update:
-      subject: "%{name} editou uma publicação que citaste"
+      subject: "%{name} editou uma publicação que citou"
     reblog:
       body: 'A tua publicação foi partilhada por %{name}:'
       subject: "%{name} partilhou a sua publicação"
@@ -2185,3 +2188,6 @@ pt-PT:
     not_supported: Este navegador não funciona com chaves de segurança
     otp_required: Para utilizares chaves de segurança, ativa primeiro a autenticação de dois fatores.
     registered_on: Registado em %{date}
+  wrapstodon:
+    description: Veja como %{name} utilizou o Mastodon este ano!
+    title: Wrapstodon %{year} de %{name}

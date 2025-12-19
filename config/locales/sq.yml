@@ -7,6 +7,8 @@ sq:
     hosted_on: Server Mastodon i strehuar në %{domain}
     title: Mbi
   accounts:
+    errors:
+      cannot_be_added_to_collections: Kjo llogari s’mund të shtohet në koleksione.
     followers:
       one: Ndjekës
       other: Ndjekës
@@ -838,6 +840,7 @@ sq:
         publish_statistics: Publiko statistika
         title: Zbulim
         trends: Në modë
+        wrapstodon: Përmbledhjedon
       domain_blocks:
         all: Për këdo
         disabled: Për askënd
@@ -2169,3 +2172,5 @@ sq:
     not_supported: Ky shfletues nuk mbulon kyçe sigurie
     otp_required: Që të përdoren kyçe sigurie, ju lutemi, së pari aktivizoni mirëfilltësimin dyfaktorësh.
     registered_on: Regjistruar më %{date}
+  wrapstodon:
+    description: Shihni si u përdor Mastodon-in këtë vit nga %{name}!

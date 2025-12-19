@@ -4,6 +4,7 @@ import type { List } from 'immutable';
 
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
+import type { CustomEmoji } from '@/mastodon/models/custom_emoji';
 import type { Status } from '@/mastodon/models/status';
 
 import type { Mention } from './embedded_status';
@@ -33,6 +34,7 @@ export const EmbeddedStatusContent: React.FC<{
       className={className}
       lang={status.get('language') as string}
       htmlString={status.get('contentHtml') as string}
+      extraEmojis={status.get('emojis') as List<CustomEmoji>}
     />
   );
 };

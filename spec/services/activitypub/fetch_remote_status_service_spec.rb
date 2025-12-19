@@ -330,7 +330,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService do
         end
 
         it 'updates status' do
-          expect(existing_status.reload.quote_approval_policy).to eq(Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16)
+          expect(existing_status.reload.quote_approval_policy).to eq(InteractionPolicy::POLICY_FLAGS[:public] << 16)
         end
       end
     end

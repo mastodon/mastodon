@@ -7,6 +7,8 @@ fi:
     hosted_on: Mastodon palvelimella %{domain}
     title: Tietoja
   accounts:
+    errors:
+      cannot_be_added_to_collections: Tätä tiliä ei voi lisätä kokoelmiin.
     followers:
       one: seuraaja
       other: seuraajaa
@@ -846,6 +848,7 @@ fi:
         publish_statistics: Julkaise tilastot
         title: Löydettävyys
         trends: Trendit
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Kaikille
         disabled: Ei kenellekään
@@ -2185,3 +2188,6 @@ fi:
     not_supported: Tämä selain ei tue suojausavaimia
     otp_required: Jos haluat käyttää suojausavaimia, ota ensin kaksivaiheinen todennus käyttöön.
     registered_on: Rekisteröity %{date}
+  wrapstodon:
+    description: Katso, kuinka %{name} käytti Mastodonia tänä vuonna!
+    title: Käyttäjän %{name} Wrapstodon vuodelle %{year}

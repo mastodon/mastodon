@@ -7,6 +7,8 @@ es-MX:
     hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
   accounts:
+    errors:
+      cannot_be_added_to_collections: Esta cuenta no se puede añadir a las colecciones.
     followers:
       one: Seguidor
       other: Seguidores
@@ -40,14 +42,14 @@ es-MX:
       avatar: Foto de perfil
       by_domain: Dominio
       change_email:
-        changed_msg: Correo cambiado exitosamente!
+        changed_msg: "¡Correo electrónico cambiado correctamente!"
         current_email: Correo electrónico actual
         label: Cambiar el correo electrónico
         new_email: Nuevo correo electrónico
         submit: Cambiar el correo electrónico
         title: Cambiar el correo electrónico de %{username}
       change_role:
-        changed_msg: Rol cambiado exitosamente!
+        changed_msg: "¡Rol cambiado correctamente!"
         edit_roles: Administrar roles de usuario
         label: Cambiar de rol
         no_role: Sin rol
@@ -105,7 +107,7 @@ es-MX:
       no_account_selected: Ninguna cuenta se cambió como ninguna fue seleccionada
       no_limits_imposed: Sin límites impuestos
       no_role_assigned: Sin rol asignado
-      not_subscribed: No se está suscrito
+      not_subscribed: No suscrito
       pending: Revisión pendiente
       perform_full_suspension: Suspender
       previous_strikes: Amonestaciones previas
@@ -139,10 +141,10 @@ es-MX:
       search_same_ip: Otros usuarios con la misma IP
       security: Seguridad
       security_measures:
-        only_password: Sólo contraseña
+        only_password: Solo contraseña
         password_and_2fa: Contraseña y 2FA
       sensitive: Sensible
-      sensitized: marcado como sensible
+      sensitized: Marcado como sensible
       shared_inbox_url: URL de bandeja compartida
       show:
         created_reports: Reportes hechos por esta cuenta
@@ -161,10 +163,10 @@ es-MX:
       unblocked_email_msg: Desbloqueo exitoso de la dirección de correo de %{username}
       unconfirmed_email: Correo electrónico sin confirmar
       undo_sensitized: Desmarcar como sensible
-      undo_silenced: Des-silenciar
-      undo_suspension: Des-suspender
+      undo_silenced: Deshacer límite
+      undo_suspension: Deshacer suspensión
       unsilenced_msg: Se quitó con éxito el límite de la cuenta %{username}
-      unsubscribe: Desuscribir
+      unsubscribe: Cancelar suscripción
       unsuspended_msg: Se quitó con éxito la suspensión de la cuenta de %{username}
       username: Nombre de usuario
       view_domain: Ver resumen del dominio
@@ -312,7 +314,7 @@ es-MX:
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
-      title: Log de auditoría
+      title: Registro de auditoría
       unavailable_instance: "(nombre de dominio no disponible)"
     announcements:
       back: Volver a la sección de anuncios
@@ -359,7 +361,7 @@ es-MX:
       listed: Listados
       new:
         title: Añadir nuevo emoji personalizado
-      no_emoji_selected: No se cambió ningún emoji ya que no se seleccionó ninguno
+      no_emoji_selected: No se modificó ningún emoji, ya que no se seleccionó ninguno
       not_permitted: No tienes permiso para realizar esta acción
       overwrite: Sobrescribir
       shortcode: Código de atajo
@@ -373,8 +375,8 @@ es-MX:
       upload: Subir
     dashboard:
       active_users: usuarios activos
-      interactions: interaccciones
-      media_storage: Almacenamiento
+      interactions: interacciones
+      media_storage: Almacenamiento multimedia
       new_users: nuevos usuarios
       opened_reports: informes abiertos
       pending_appeals_html:
@@ -413,7 +415,7 @@ es-MX:
       confirm_suspension:
         cancel: Cancelar
         confirm: Suspender
-        permanent_action: Deshacer la suspensión no recuperará ningún data o relaciones.
+        permanent_action: Anular la suspensión no restaurará ningún dato ni relación.
         preamble_html: Estás a punto de suspender a <strong>%{domain}</strong> y sus subdominios.
         remove_all_data: Esto eliminará todo el contenido, multimedia y datos de perfil de las cuentas de este dominio de tu servidor.
         stop_communication: Tu servidor dejará de comunicarse con estos servidores.
@@ -436,7 +438,7 @@ es-MX:
           silence: Limitar
           suspend: Suspender
         title: Nuevo bloque de dominio
-      no_domain_block_selected: No se cambió ningún bloqueo de dominio ya que ninguno fue seleccionado
+      no_domain_block_selected: No se modificó ningún bloqueo de dominio, ya que no se seleccionó ninguno
       not_permitted: No tienes permiso para realizar esta acción
       obfuscate: Ocultar nombre de dominio
       obfuscate_hint: Oculta parcialmente el nombre de dominio en la lista si mostrar la lista de limitaciones de dominio está habilitado
@@ -624,12 +626,12 @@ es-MX:
         '94670856': 3 años
       new:
         title: Crear nueva regla IP
-      no_ip_block_selected: No se han cambiado reglas IP ya que no se ha seleccionado ninguna
+      no_ip_block_selected: No se modificó ninguna regla de IP, ya que no se seleccionó ninguna
       title: Reglas IP
     relationships:
       title: Relaciones de %{acct}
     relays:
-      add_new: Añadir un nuevo relés
+      add_new: Añadir nuevo relé
       delete: Borrar
       description_html: Un <strong>relés de federación</strong> es un servidor intermedio que intercambia grandes volúmenes de publicaciones públicas entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores pequeños y medianos a descubrir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manualmente a personas de servidores remotos.
       disable: Deshabilitar
@@ -659,7 +661,7 @@ es-MX:
         mark_as_sensitive_description_html: Los archivos multimedia en las publicaciones reportadas se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar las futuras infracciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará la amonestación, y se cerrará el informe.
-        silence_description_html: La cuenta será visible sólo para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Siempre puede ser revertido. Cierra todos los reportes contra esta cuenta.
+        silence_description_html: La cuenta será visible solo para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Siempre puede ser revertido. Cierra todos los reportes contra esta cuenta.
         suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y eventualmente eliminados, e interactuar con ella será imposible. Reversible durante 30 días. Cierra todos los reportes contra esta cuenta.
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       actions_description_remote_html: Decide qué medidas tomar para resolver este reporte. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
@@ -846,6 +848,7 @@ es-MX:
         publish_statistics: Publicar estadísticas
         title: Descubrimiento
         trends: Tendencias
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: A todos
         disabled: A nadie
@@ -2186,4 +2189,5 @@ es-MX:
     otp_required: Para usar claves de seguridad, por favor habilite primero la autenticación de doble factor.
     registered_on: Registrado el %{date}
   wrapstodon:
+    description: "¡Ve cómo %{name} usó Mastodon este año!"
     title: Wrapstodon %{year} para %{name}

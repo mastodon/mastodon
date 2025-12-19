@@ -7,6 +7,8 @@ zh-TW:
     hosted_on: 於 %{domain} 託管之 Mastodon 站點
     title: 關於本站
   accounts:
+    errors:
+      cannot_be_added_to_collections: 此帳號無法被加至集合中。
     followers:
       other: 跟隨者
     following: 正在跟隨
@@ -834,6 +836,7 @@ zh-TW:
         publish_statistics: 公開統計資料
         title: 探索
         trends: 熱門趨勢
+        wrapstodon: Mastodon 年度回顧
       domain_blocks:
         all: 至任何人
         disabled: 至沒有人
@@ -2148,4 +2151,5 @@ zh-TW:
     otp_required: 請先啟用兩階段驗證以使用安全金鑰。
     registered_on: 註冊於 %{date}
   wrapstodon:
+    description: 來瞧瞧 %{name} 今年是如何使用 Mastodon 吧！
     title: "%{name} 的 %{year} Mastodon 年度回顧 (Wrapstodon)"

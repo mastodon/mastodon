@@ -7,6 +7,8 @@ de:
     hosted_on: Mastodon, gehostet auf %{domain}
     title: Über
   accounts:
+    errors:
+      cannot_be_added_to_collections: Dieses Konto darf keinen Sammlungen hinzugefügt werden.
     followers:
       one: Follower
       other: Follower
@@ -54,15 +56,15 @@ de:
         title: Rolle für %{username} ändern
       confirm: Bestätigen
       confirmed: Bestätigt
-      confirming: Bestätigung
+      confirming: Bestätigung ausstehend
       custom: Angepasst
       delete: Daten löschen
       deleted: Gelöscht
       demote: Zurückstufen
-      destroyed_msg: Daten von %{username} wurden zum Löschen in die Warteschlange eingereiht
+      destroyed_msg: Die Daten von %{username} befinden sich nun in der Warteschlange und werden in Kürze gelöscht
       disable: Einfrieren
       disable_sign_in_token_auth: E-Mail-Token-Authentisierung deaktivieren
-      disable_two_factor_authentication: Zwei-Faktor-Authentisierung deaktivieren
+      disable_two_factor_authentication: Zwei-Faktor-Authentisierung (2FA) deaktivieren
       disabled: Eingefroren
       display_name: Anzeigename
       domain: Domain
@@ -80,7 +82,7 @@ de:
       invite_request_text: Begründung für das Beitreten
       invited_by: Eingeladen von
       ip: IP-Adresse
-      joined: Mitglied seit
+      joined: Registriert am
       location:
         all: Alle
         local: Lokal
@@ -103,12 +105,12 @@ de:
       most_recent_activity: Letzte Aktivität
       most_recent_ip: Letzte IP-Adresse
       no_account_selected: Keine Konten wurden geändert, da keine ausgewählt wurden
-      no_limits_imposed: Keine Beschränkungen
+      no_limits_imposed: Keine Einschränkungen
       no_role_assigned: Keine Rolle zugewiesen
       not_subscribed: Nicht abonniert
       pending: Überprüfung ausstehend
       perform_full_suspension: Sperren
-      previous_strikes: Vorherige Maßnahmen
+      previous_strikes: Frühere Maßnahmen
       previous_strikes_description_html:
         one: Gegen dieses Konto wurde <strong>eine</strong> Maßnahme verhängt.
         other: Gegen dieses Konto wurden <strong>%{count}</strong> Maßnahmen verhängt.
@@ -129,14 +131,14 @@ de:
       resend_confirmation:
         already_confirmed: Dieses Profil wurde bereits bestätigt
         send: Bestätigungslink erneut zusenden
-        success: Bestätigungslink erfolgreich gesendet!
+        success: Bestätigungslink erfolgreich verschickt!
       reset: Zurücksetzen
       reset_password: Passwort zurücksetzen
       resubscribe: Erneut abonnieren
       role: Rolle
       search: Suchen
       search_same_email_domain: Andere Konten mit der gleichen E-Mail-Domain
-      search_same_ip: Andere Konten mit derselben IP-Adresse
+      search_same_ip: Andere Konten mit der gleichen IP-Adresse
       security: Sicherheit
       security_measures:
         only_password: Nur Passwort
@@ -145,7 +147,7 @@ de:
       sensitized: Mit Inhaltswarnung versehen
       shared_inbox_url: Geteilte Posteingangsadresse
       show:
-        created_reports: Erstellte Meldungen
+        created_reports: Eingereichte Meldungen
         targeted_reports: Von Anderen gemeldet
       silence: Stummschalten
       silenced: Stummgeschaltet
@@ -209,7 +211,7 @@ de:
         disable_custom_emoji: Eigenes Emoji deaktivieren
         disable_relay: Relais deaktivieren
         disable_sign_in_token_auth_user: E-Mail-Token-Authentisierung für dieses Konto deaktivieren
-        disable_user: Benutzer*in deaktivieren
+        disable_user: Profil deaktivieren
         enable_custom_emoji: Eigenes Emoji aktivieren
         enable_relay: Relais aktivieren
         enable_sign_in_token_auth_user: E-Mail-Token-Authentisierung für dieses Konto aktivieren
@@ -333,8 +335,8 @@ de:
       scheduled_for: Geplant für %{time}
       scheduled_msg: Ankündigung ist zur Veröffentlichung vorgemerkt!
       title: Ankündigungen
-      unpublish: Veröffentlichung rückgängig machen
-      unpublished_msg: Ankündigung ist jetzt nicht mehr sichtbar!
+      unpublish: Ankündigung zurücknehmen
+      unpublished_msg: Ankündigung erfolgreich zurückgenommen!
       updated_msg: Ankündigung erfolgreich aktualisiert!
     critical_update_pending: Kritisches Update ausstehend
     custom_emojis:
@@ -376,7 +378,7 @@ de:
       interactions: Interaktionen
       media_storage: Medien
       new_users: neue Profile
-      opened_reports: eingereichte Meldungen
+      opened_reports: Unbearbeitete Meldungen
       pending_appeals_html:
         one: "<strong>%{count}</strong> ausstehender Einspruch"
         other: "<strong>%{count}</strong> ausstehende Einsprüche"
@@ -846,6 +848,7 @@ de:
         publish_statistics: Statistiken veröffentlichen
         title: Entdecken
         trends: Trends
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Allen
         disabled: Niemandem
@@ -1505,7 +1508,7 @@ de:
       too_large: Datei ist zu groß
     failures: Fehler
     imported: Importiert
-    mismatched_types_warning: Möglicherweise hast du den falschen Typ für diesen Import ausgewählt. Bitte überprüfe alles noch einmal.
+    mismatched_types_warning: Möglicherweise hast du das falsche Format für diesen Import ausgewählt. Bitte überprüfe alles noch einmal.
     modes:
       merge: Zusammenführen
       merge_long: Bestehende Datensätze beibehalten und neue hinzufügen
@@ -2025,7 +2028,7 @@ de:
       too_many_requests: Der Übersetzungsdienst hat kürzlich zu viele Anfragen erhalten.
   two_factor_authentication:
     add: Hinzufügen
-    disable: Zwei-Faktor-Authentisierung deaktivieren
+    disable: Zwei-Faktor-Authentisierung (2FA) deaktivieren
     disabled_success: Zwei-Faktor-Authentisierung erfolgreich deaktiviert
     edit: Bearbeiten
     enabled: Zwei-Faktor-Authentisierung (2FA) ist aktiviert
@@ -2155,7 +2158,7 @@ de:
   users:
     follow_limit_reached: Du kannst nicht mehr als %{limit} Profilen folgen
     go_to_sso_account_settings: Kontoeinstellungen des Identitätsanbieters aufrufen
-    invalid_otp_token: Ungültiger Code der Zwei-Faktor-Authentisierung
+    invalid_otp_token: Ungültiger Code der Zwei-Faktor-Authentisierung (2FA)
     otp_lost_help_html: Wenn du sowohl die E-Mail-Adresse als auch das Passwort nicht mehr weißt, melde dich bitte bei uns unter %{email}
     rate_limited: Zu viele Authentisierungsversuche. Bitte versuche es später noch einmal.
     seamless_external_login: Du bist über einen externen Dienst angemeldet, daher sind Passwort- und E-Mail-Einstellungen nicht verfügbar.
@@ -2186,4 +2189,5 @@ de:
     otp_required: Um Sicherheitsschlüssel zu verwenden, aktiviere zunächst die Zwei-Faktor-Authentisierung.
     registered_on: Registriert am %{date}
   wrapstodon:
+    description: Sieh dir an, wie %{name} dieses Jahr Mastodon verwendet hat!
     title: Wrapstodon %{year} für %{name}

@@ -29,7 +29,27 @@
                  include_blank: false,
                  label_method: ->(theme) { I18n.t("themes.#{theme}", default: theme) },
                  label: I18n.t('simple_form.labels.defaults.setting_theme'),
-                 wrapper: :with_label
+                 wrapper: :with_label,
+                 required: false
+      - if Mastodon::Feature.new_theme_options_enabled?
+        .input.horizontal-options
+          = ff.input :'web.color_scheme',
+                     as: :radio_buttons,
+                     collection: %w(auto light dark),
+                     include_blank: false,
+                     label: I18n.t('simple_form.labels.defaults.setting_color_scheme'),
+                     label_method: ->(contrast) { I18n.t("color_scheme.#{contrast}", default: contrast) },
+                     wrapper: :with_label,
+                     required: false
+        .input.horizontal-options
+          = ff.input :'web.contrast',
+                     as: :radio_buttons,
+                     collection: %w(auto high),
+                     include_blank: false,
+                     label: I18n.t('simple_form.labels.defaults.setting_contrast'),
+                     label_method: ->(contrast) { I18n.t("contrast.#{contrast}", default: contrast) },
+                     wrapper: :with_label,
+                     required: false
 
   .fields-group
     = f.simple_fields_for :settings, current_user.settings do |ff|
@@ -39,11 +59,13 @@
                  hint: I18n.t('simple_form.hints.defaults.setting_emoji_style'),
                  label: I18n.t('simple_form.labels.defaults.setting_emoji_style'),
                  label_method: ->(emoji_style) { I18n.t("emoji_styles.#{emoji_style}", default: emoji_style) },
-                 wrapper: :with_label
+                 wrapper: :with_label,
+                 required: false
 
   - unless I18n.locale == :en
     .flash-message.translation-prompt
-      #{t 'appearance.localization.body'} #{content_tag(:a, t('appearance.localization.guide_link_text'), href: t('appearance.localization.guide_link'), target: '_blank', rel: 'noopener')}
+      = t 'appearance.localization.body'
+      = link_to t('appearance.localization.guide_link_text'), t('appearance.localization.guide_link'), target: '_blank', rel: 'noopener'
 
   = f.simple_fields_for :settings, current_user.settings do |ff|
     %h4= t 'appearance.animations_and_accessibility'
@@ -86,7 +108,8 @@
                  item_wrapper_tag: 'li',
                  label_method: ->(item) { t("simple_form.hints.defaults.setting_display_media_#{item}") },
                  label: I18n.t('simple_form.labels.defaults.setting_display_media'),
-                 wrapper: :with_floating_label
+                 wrapper: :with_floating_label,
+                 required: false
 
     .fields-group
       = ff.input :'web.use_blurhash',

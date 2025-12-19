@@ -7,6 +7,8 @@ en-GB:
     hosted_on: Mastodon hosted on %{domain}
     title: About
   accounts:
+    errors:
+      cannot_be_added_to_collections: This account cannot be added to collections.
     followers:
       one: Follower
       other: Followers
@@ -102,7 +104,7 @@ en-GB:
       moderation_notes: Moderation notes
       most_recent_activity: Most recent activity
       most_recent_ip: Most recent IP
-      no_account_selected: No accounts were changed as none were selected
+      no_account_selected: No accounts were changed, as none were selected
       no_limits_imposed: No limits imposed
       no_role_assigned: No role assigned
       not_subscribed: Not subscribed
@@ -154,7 +156,7 @@ en-GB:
       subscribe: Subscribe
       suspend: Suspend
       suspended: Suspended
-      suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
+      suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable, but it will not recover any data it previously had.
       suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       title: Accounts
       unblock_email: Unblock email address
@@ -273,7 +275,7 @@ en-GB:
         destroy_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
         destroy_user_role_html: "%{name} deleted %{target} role"
         destroy_username_block_html: "%{name} removed rule for usernames containing %{target}"
-        disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
+        disable_2fa_user_html: "%{name} disabled two-factor requirement for user %{target}"
         disable_custom_emoji_html: "%{name} disabled emoji %{target}"
         disable_relay_html: "%{name} disabled the relay %{target}"
         disable_sign_in_token_auth_user_html: "%{name} disabled email token authentication for %{target}"
@@ -326,7 +328,7 @@ en-GB:
         title: New announcement
       preview:
         disclaimer: As users cannot opt out of them, email notifications should be limited to important announcements such as personal data breach or server closure notifications.
-        explanation_html: 'The email will be sent to <strong>%{display_count} users</strong>. The following text will be included in the e-mail:'
+        explanation_html: 'The email will be sent to <strong>%{display_count} users</strong>. The following text will be included in the email:'
         title: Preview announcement notification
       publish: Publish
       published_msg: Announcement successfully published!
@@ -363,7 +365,7 @@ en-GB:
       not_permitted: You are not permitted to perform this action
       overwrite: Overwrite
       shortcode: Shortcode
-      shortcode_hint: At least 2 characters, only alphanumeric characters and underscores
+      shortcode_hint: At least two characters, only alphanumeric characters and underscores
       title: Custom emojis
       uncategorized: Uncategorised
       unlist: Unlist
@@ -443,7 +445,7 @@ en-GB:
       private_comment: Private comment
       private_comment_hint: Comment about this domain limitation for internal use by the moderators.
       public_comment: Public comment
-      public_comment_hint: Comment about this domain limitation for the general public, if advertising the list of domain limitations is enabled.
+      public_comment_hint: Comment about this domain limitation for the general public if advertising the list of domain limitations is enabled.
       reject_media: Reject media files
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
       reject_reports: Reject reports
@@ -547,7 +549,7 @@ en-GB:
       content_policies:
         comment: Internal note
         description_html: You can define content policies that will be applied to all accounts from this domain and any of its subdomains.
-        limited_federation_mode_description_html: You can chose whether to allow federation with this domain.
+        limited_federation_mode_description_html: You can choose whether to allow federation with this domain.
         policies:
           reject_media: Reject media
           reject_reports: Reject reports
@@ -616,15 +618,15 @@ en-GB:
       created_msg: Successfully added new IP rule
       delete: Delete
       expires_in:
-        '1209600': 2 weeks
-        '15778476': 6 months
-        '2629746': 1 month
-        '31556952': 1 year
-        '86400': 1 day
-        '94670856': 3 years
+        '1209600': two weeks
+        '15778476': six months
+        '2629746': one month
+        '31556952': one year
+        '86400': one day
+        '94670856': three years
       new:
         title: Create new IP rule
-      no_ip_block_selected: No IP rules were changed as none were selected
+      no_ip_block_selected: No IP rules were changed, as none were selected
       title: IP rules
     relationships:
       title: "%{acct}'s relationships"
@@ -640,7 +642,7 @@ en-GB:
       inbox_url: Relay URL
       pending: Waiting for relay's approval
       save_and_enable: Save and enable
-      setup: Setup a relay connection
+      setup: Set up a relay connection
       signatures_not_enabled: Relays may not work correctly while secure mode or limited federation mode is enabled
       status: Status
       title: Relays
@@ -657,12 +659,12 @@ en-GB:
       actions:
         delete_description_html: The reported posts will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
         mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future infractions by the same account.
-        other_description_html: See more options for controlling the account's behaviour and customise communication to the reported account.
+        other_description_html: See more options for controlling the account's behaviour and customising communication to the reported account.
         resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
-        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted. Closes all reports against this account.
-        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. Reversible within 30 days. Closes all reports against this account.
+        silence_description_html: The account will be visible only to those who already follow it or manually look it up, severely limiting its reach. This can always be reverted. This closes all reports against this account.
+        suspend_description_html: The account and all its contents will be inaccessible and eventually deleted, and interacting with it will be impossible. This is reversible within 30 days. This closes all reports against this account.
       actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an email notification will be sent to them, except when the <strong>Spam</strong> category is selected.
-      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
+      actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handles its content.
       actions_no_posts: This report doesn't have any associated posts to delete
       add_to_report: Add more to report
       already_suspended_badges:
@@ -724,7 +726,7 @@ en-GB:
           suspend_html: Suspend <strong>@%{acct}</strong>, making their profile and contents inaccessible and impossible to interact with
         close_report: 'Mark report #%{id} as resolved'
         close_reports_html: Mark <strong>all</strong> reports against <strong>@%{acct}</strong> as resolved
-        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now unless they get unsuspended in the meantime
+        delete_data_html: Delete <strong>@%{acct}</strong>'s profile and contents 30 days from now, unless they get unsuspended in the meantime
         preview_preamble_html: "<strong>@%{acct}</strong> will receive a warning with the following contents:"
         record_strike_html: Record a strike against <strong>@%{acct}</strong> to help you escalate on future violations from this account
         send_email_html: Send <strong>@%{acct}</strong> a warning email
@@ -748,7 +750,7 @@ en-GB:
         moderation: Moderation
         special: Special
       delete: Delete
-      description_html: With <strong>user roles</strong>, you can customize which functions and areas of Mastodon your users can access.
+      description_html: With <strong>user roles</strong>, you can customise which functions and areas of Mastodon your users can access.
       edit: Edit '%{name}' role
       everyone: Default permissions
       everyone_full_description_html: This is the <strong>base role</strong> affecting <strong>all users</strong>, even those without an assigned role. All other roles inherit permissions from it.
@@ -815,11 +817,11 @@ en-GB:
     settings:
       about:
         manage_rules: Manage server rules
-        preamble: Provide in-depth information about how the server is operated, moderated, funded.
-        rules_hint: There is a dedicated area for rules that your users are expected to adhere to.
+        preamble: Provide in-depth information about how the server is operated, moderated, and funded.
+        rules_hint: There is a dedicated area for rules to which your users are expected to adhere.
         title: About
       allow_referrer_origin:
-        desc: When your users click links to external sites, their browser may send the address of your Mastodon server as the referrer. Disable this if this would uniquely identify your users, e.g. if this is a personal Mastodon server.
+        desc: When your users click links to external sites, their browser may send the address of your Mastodon server as the referrer. Disable this if this would uniquely identify your users, eg if this is a personal Mastodon server.
         title: Allow external sites to see your Mastodon server as a traffic source
       appearance:
         preamble: Customise Mastodon's web interface.
@@ -846,6 +848,7 @@ en-GB:
         publish_statistics: Publish statistics
         title: Discovery
         trends: Trends
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: To everyone
         disabled: To no one
@@ -880,7 +883,7 @@ en-GB:
       delete: Delete uploaded file
       destroyed_msg: Site upload successfully deleted!
     software_updates:
-      critical_update: Critical — please update quickly
+      critical_update: Critical – please update quickly
       description: It is recommended to keep your Mastodon installation up to date to benefit from the latest fixes and features. Moreover, it is sometimes critical to update Mastodon in a timely manner to avoid security issues. For these reasons, Mastodon checks for updates every 30 minutes, and will notify you according to your email notification preferences.
       documentation_link: Learn more
       release_notes: Release notes
@@ -889,7 +892,7 @@ en-GB:
       types:
         major: Major release
         minor: Minor release
-        patch: Patch release — bugfixes and easy to apply changes
+        patch: Patch release – bug fixes and easy to apply changes
       version: Version
     statuses:
       account: Author
@@ -918,7 +921,7 @@ en-GB:
       replied_to_html: Replied to %{acct_link}
       status_changed: Post changed
       status_title: Post by @%{name}
-      title: Account posts - @%{name}
+      title: Account posts – @%{name}
       trending: Trending
       view_publicly: View publicly
       view_quoted_post: View quoted post
@@ -973,7 +976,7 @@ en-GB:
         message_html: A critical Mastodon update is available, please update as quickly as possible.
       software_version_patch_check:
         action: See available updates
-        message_html: A bugfix Mastodon update is available.
+        message_html: A bug fix Mastodon update is available.
       upload_check_privacy_error:
         action: Check here for more information
         message_html: "<strong>Your web server is misconfigured. The privacy of your users is at risk.</strong>"
@@ -1020,7 +1023,7 @@ en-GB:
       notified_on_html: Users notified on %{date}
       notify_users: Notify users
       preview:
-        explanation_html: 'The email will be sent to <strong>%{display_count} users</strong> who have signed up before %{date}. The following text will be included in the e-mail:'
+        explanation_html: 'The email will be sent to <strong>%{display_count} users</strong> who have signed up before %{date}. The following text will be included in the email:'
         send_preview: Send preview to %{email}
         send_to_all:
           one: Send %{display_count} email
@@ -1044,12 +1047,12 @@ en-GB:
         confirm_allow_provider: Are you sure you want to allow selected providers?
         confirm_disallow: Are you sure you want to disallow selected links?
         confirm_disallow_provider: Are you sure you want to disallow selected providers?
-        description_html: These are links that are currently being shared a lot by accounts that your server sees posts from. It can help your users find out what's going on in the world. No links are displayed publicly until you approve the publisher. You can also allow or reject individual links.
+        description_html: These are links that are currently being shared a lot by accounts from which your server sees posts. It can help your users find out what's going on in the world. No links are displayed publicly until you approve the publisher. You can also allow or reject individual links.
         disallow: Disallow link
         disallow_provider: Disallow publisher
-        no_link_selected: No links were changed as none were selected
+        no_link_selected: No links were changed, as none were selected
         publishers:
-          no_publisher_selected: No publishers were changed as none were selected
+          no_publisher_selected: No publishers were changed, as none were selected
         shared_by_over_week:
           one: Shared by one person over the last week
           other: Shared by %{count} people over the last week
@@ -1074,7 +1077,7 @@ en-GB:
         description_html: These are posts that your server knows about that are currently being shared and favourited a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
         disallow: Disallow post
         disallow_account: Disallow author
-        no_status_selected: No trending posts were changed as none were selected
+        no_status_selected: No trending posts were changed, as none were selected
         not_discoverable: Author has not opted-in to being discoverable
         shared_by:
           one: Shared or favourited one time
@@ -1090,7 +1093,7 @@ en-GB:
           tag_uses_measure: total uses
         description_html: These are hashtags that are currently appearing in a lot of posts that your server sees. It can help your users find out what people are talking the most about at the moment. No hashtags are displayed publicly until you approve them.
         listable: Can be suggested
-        no_tag_selected: No tags were changed as none were selected
+        no_tag_selected: No tags were changed, as none were selected
         not_listable: Won't be suggested
         not_trendable: Won't appear under trends
         not_usable: Cannot be used
@@ -1243,7 +1246,7 @@ en-GB:
     description:
       prefix_invited_by_user: "@%{name} invites you to join this server of Mastodon!"
       prefix_sign_up: Sign up on Mastodon today!
-      suffix: With an account, you will be able to follow people, post updates and exchange messages with users from any Mastodon server and more!
+      suffix: With an account, you will be able to follow people, post updates, and exchange messages with users from any Mastodon server and more!
     didnt_get_confirmation: Didn't receive a confirmation link?
     dont_have_your_security_key: Don't have your security key?
     forgot_password: Forgot your password?
@@ -1313,7 +1316,7 @@ en-GB:
     title: Author attribution
   challenge:
     confirm: Continue
-    hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
+    hint_html: "<strong>Tip:</strong> we won't ask you for your password again for the next hour."
     invalid_password: Invalid password
     prompt: Confirm password to continue
   crypto:
@@ -1414,7 +1417,7 @@ en-GB:
     archive_takeout:
       date: Date
       download: Download your archive
-      hint_html: You can request an archive of your <strong>posts and uploaded media</strong>. The exported data will be in the ActivityPub format, readable by any compliant software. You can request an archive every 7 days.
+      hint_html: You can request an archive of your <strong>posts and uploaded media</strong>. The exported data will be in the ActivityPub format, readable by any compliant software. You can request an archive every seven days.
       in_progress: Compiling your archive...
       request: Request your archive
       size: Size
@@ -1429,7 +1432,7 @@ en-GB:
     add_new: Add new
     errors:
       limit: You have already featured the maximum number of hashtags
-    hint_html: "<strong>What are featured hashtags?</strong> They are displayed prominently on your public profile and allow people to browse your public posts specifically under those hashtags. They are a great tool for keeping track of creative works or long-term projects."
+    hint_html: "<strong>Feature your most important hashtags on your profile.</strong> A great tool for keeping track of your creative works and long-term projects, featured hashtags are displayed prominently on your profile and allow quick access to your own posts."
   filters:
     contexts:
       account: Profiles
@@ -1568,8 +1571,8 @@ en-GB:
       muting: Importing muted accounts
     type: Import type
     type_groups:
-      constructive: Follows & Bookmarks
-      destructive: Blocks & mutes
+      constructive: Follows and bookmarks
+      destructive: Blocks and mutes
     types:
       blocking: Blocking list
       bookmarks: Bookmarks
@@ -1642,7 +1645,7 @@ en-GB:
       images_and_video: Cannot attach a video to a post that already contains images
       not_found: Media %{ids} not found or already attached to another post
       not_ready: Cannot attach files that have not finished processing. Try again in a moment!
-      too_many: Cannot attach more than 4 files
+      too_many: Cannot attach more than four files
   migrations:
     acct: Moved to
     cancel: Cancel redirect
@@ -1776,11 +1779,11 @@ en-GB:
   privacy:
     hint_html: "<strong>Customise how you want your profile and your posts to be found.</strong> A variety of features in Mastodon can help you reach a wider audience when enabled. Take a moment to review these settings to make sure they fit your use case."
     privacy: Privacy
-    privacy_hint_html: Control how much you want to disclose for the benefit of others. People discover interesting profiles and cool apps by browsing other people's follows and seeing which apps they post from, but you may prefer to keep it hidden.
+    privacy_hint_html: Control how much you want to disclose for the benefit of others. People discover interesting profiles and cool apps by browsing other people's follows and seeing from which apps they post, but you may prefer to keep it hidden.
     reach: Reach
     reach_hint_html: Control whether you want to be discovered and followed by new people. Do you want your posts to appear on the Explore screen? Do you want other people to see you in their follow recommendations? Do you want to accept all new followers automatically, or have granular control over each one?
     search: Search
-    search_hint_html: Control how you want to be found. Do you want people to find you by what you've publicly posted about? Do you want people outside Mastodon to find your profile when searching the web? Please mind that total exclusion from all search engines cannot be guaranteed for public information.
+    search_hint_html: Control how you want to be found. Do you want people to find you by what you've publicly posted about? Do you want people outside Mastodon to find your profile when searching the web? Please bear in mind that total exclusion from all search engines cannot be guaranteed for public information.
     title: Privacy and reach
   privacy_policy:
     title: Privacy Policy
@@ -1991,9 +1994,9 @@ en-GB:
       '7889238': 3 months
     min_age_label: Age threshold
     min_favs: Keep posts favourited at least
-    min_favs_hint: Doesn't delete any of your posts that has received at least this number of favourites. Leave blank to delete posts regardless of their number of favourites
+    min_favs_hint: Doesn't delete any of your posts that have received at least this number of favourites. Leave blank to delete posts regardless of their number of favourites
     min_reblogs: Keep posts boosted at least
-    min_reblogs_hint: Doesn't delete any of your posts that has been boosted at least this number of times. Leave blank to delete posts regardless of their number of boosts
+    min_reblogs_hint: Doesn't delete any of your posts that have been boosted at least this number of times. Leave blank to delete posts regardless of their number of boosts
   stream_entries:
     sensitive_content: Sensitive content
   strikes:
@@ -2075,8 +2078,8 @@ en-GB:
     terms_of_service_changed:
       agreement: By continuing to use %{domain}, you are agreeing to these terms. If you disagree with the updated terms, you may terminate your agreement with %{domain} at any time by deleting your account.
       changelog: 'At a glance, here is what this update means for you:'
-      description: 'You are receiving this e-mail because we''re making some changes to our terms of service at %{domain}. These updates will take effect on %{date}. We encourage you to review the updated terms in full here:'
-      description_html: You are receiving this e-mail because we're making some changes to our terms of service at %{domain}. These updates will take effect on <strong>%{date}</strong>. We encourage you to review the <a href="%{path}" target="_blank">updated terms in full here</a>.
+      description: 'You are receiving this email because we''re making some changes to our terms of service at %{domain}. These updates will take effect on %{date}. We encourage you to review the updated terms in full here:'
+      description_html: You are receiving this email because we're making some changes to our terms of service at %{domain}. These updates will take effect on <strong>%{date}</strong>. We encourage you to review the <a href="%{path}" target="_blank">updated terms in full here</a>.
       sign_off: The %{domain} team
       subject: Updates to our terms of service
       subtitle: The terms of service of %{domain} are changing
@@ -2139,9 +2142,9 @@ en-GB:
       follows_title: Who to follow
       follows_view_more: View more people to follow
       hashtags_recent_count:
-        one: "%{people} person in the past 2 days"
-        other: "%{people} people in the past 2 days"
-      hashtags_subtitle: Explore what’s trending since past 2 days
+        one: "%{people} person in the past two days"
+        other: "%{people} people in the past two days"
+      hashtags_subtitle: Explore what’s trending since the past two days
       hashtags_title: Trending hashtags
       hashtags_view_more: View more trending hashtags
       post_action: Compose
@@ -2161,9 +2164,9 @@ en-GB:
     seamless_external_login: You are logged in via an external service, so password and email settings are not available.
     signed_in_as: 'Logged in as:'
   verification:
-    extra_instructions_html: <strong>Tip:</strong> The link on your website can be invisible. The important part is <code>rel="me"</code> which prevents impersonation on websites with user-generated content. You can even use a <code>link</code> tag in the header of the page instead of <code>a</code>, but the HTML must be accessible without executing JavaScript.
+    extra_instructions_html: <strong>Tip:</strong> the link on your website can be invisible. The important part is <code>rel="me"</code> which prevents impersonation on websites with user-generated content. You can even use a <code>link</code> tag in the header of the page instead of <code>a</code>, but the HTML must be accessible without executing JavaScript.
     here_is_how: Here's how
-    hint_html: "<strong>Verifying your identity on Mastodon is for everyone.</strong> Based on open web standards, now and forever free. All you need is a personal website that people recognize you by. When you link to this website from your profile, we will check that the website links back to your profile and show a visual indicator on it."
+    hint_html: "<strong>Verifying your identity on Mastodon is for everyone.</strong> Based on open web standards, now and forever free. All you need is a personal website that people recognise you by. When you link to this website from your profile, we will check that the website links back to your profile and show a visual indicator on it."
     instructions_html: Copy and paste the code below into the HTML of your website. Then add the address of your website into one of the extra fields on your profile from the "Edit profile" tab and save changes.
     verification: Verification
     verified_links: Your verified links
@@ -2186,4 +2189,5 @@ en-GB:
     otp_required: To use security keys please enable two-factor authentication first.
     registered_on: Registered on %{date}
   wrapstodon:
+    description: See how %{name} used Mastodon this year!
     title: Wrapstodon %{year} for %{name}

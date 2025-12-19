@@ -7,6 +7,8 @@ it:
     hosted_on: Mastodon ospitato su %{domain}
     title: Info
   accounts:
+    errors:
+      cannot_be_added_to_collections: Questo account non può essere aggiunto alle collezioni.
     followers:
       one: Seguace
       other: Seguaci
@@ -846,6 +848,7 @@ it:
         publish_statistics: Pubblica le statistiche
         title: Scopri
         trends: Tendenze
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: A tutti
         disabled: A nessuno
@@ -2186,4 +2189,5 @@ it:
     otp_required: Per utilizzare le chiavi di sicurezza, prima abilita l'autenticazione a due fattori.
     registered_on: Registrato il %{date}
   wrapstodon:
+    description: Guarda come %{name} ha utilizzato Mastodon quest'anno!
     title: Wrapstodon %{year} per %{name}

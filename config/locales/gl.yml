@@ -7,6 +7,8 @@ gl:
     hosted_on: Mastodon aloxado en %{domain}
     title: Sobre
   accounts:
+    errors:
+      cannot_be_added_to_collections: Non se pode engadir esta conta ás coleccións.
     followers:
       one: Seguidora
       other: Seguidoras
@@ -846,6 +848,7 @@ gl:
         publish_statistics: Publicar estatísticas
         title: Descubrir
         trends: Tendencias
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Para todos
         disabled: Para ninguén
@@ -2186,4 +2189,5 @@ gl:
     otp_required: Para usar chaves de seguridade tes que activar primeiro o segundo factor.
     registered_on: Rexistrado o %{date}
   wrapstodon:
+    description: Mira como usou %{name} Mastodon este ano!
     title: Wrapstodon %{year} de %{name}

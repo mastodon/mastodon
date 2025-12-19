@@ -7,6 +7,8 @@ nan:
     hosted_on: 佇 %{domain} 運作 ê Mastodon站
     title: 關係本站
   accounts:
+    errors:
+      cannot_be_added_to_collections: Tsit ê口座袂當加入kàu集合。
     followers:
       other: 跟tuè ê
     following: Leh跟tuè
@@ -1488,6 +1490,34 @@ nan:
     overwrite_preambles:
       blocking_html:
         other: Lí teh-beh用 <strong>%{filename}</strong> ê <strong>%{count} ê口座</strong>，<strong>替換lí ê封鎖列單</strong>。
+      bookmarks_html:
+        other: Lí teh-beh用 <strong>%{filename}</strong> ê <strong>%{count} ê PO文</strong>，<strong>替換lí ê冊籤</strong>。
+      domain_blocking_html:
+        other: Lí teh-beh用 <strong>%{filename}</strong> ê <strong>%{count} ê域名</strong>，<strong>替換lí ê域名封鎖列單</strong>。
+      following_html:
+        other: Lí當beh<strong>跟tuè</strong>對 <strong>%{filename}</strong> 內底ê <strong>%{count} ê口座</strong>，而且<strong>停止跟tuè別lâng</strong>。
+      lists_html:
+        other: Lí當beh用 <strong>%{filename}</strong> ê內容<strong>取代lí ê列單</strong>。<strong>%{count} ê口座</strong>會加添kàu新列單。
+      muting_html:
+        other: Lí teh-beh用 <strong>%{filename}</strong> ê <strong>%{count} ê口座</strong>，<strong>替換lí ê消音口座ê列單</strong>。
+    preambles:
+      blocking_html:
+        other: Lí teh-beh kā <strong>%{filename}</strong>內底ê<strong>%{count} ê口座</strong><strong>封鎖</strong>。
+      bookmarks_html:
+        other: Lí當beh對 <strong>%{filename}</strong> 加添 <strong>%{count} 篇PO文</strong>kàu lí ê <strong>冊籤</strong>。
+      domain_blocking_html:
+        other: Lí teh-beh kā <strong>%{filename}</strong>內底ê<strong>%{count} ê域名</strong><strong>封鎖</strong>。
+      following_html:
+        other: Lí teh-beh kā <strong>%{filename}</strong>內底ê<strong>%{count} ê口座</strong><strong>跟tuè</strong>。
+      lists_html:
+        other: Lí當beh對 <strong>%{filename}</strong> 加 <strong>%{count} ê口座</strong> kàu lí ê<strong>列單</strong>。若無列單通加添，新ê列單ē建立。
+      muting_html:
+        other: Lí teh-beh kā <strong>%{filename}</strong>內底ê<strong>%{count} ê口座</strong><strong>消音</strong>。
+    preface: Lí ē當輸入lí對別ê服侍器輸出ê資料，比如lí所跟tuè ê á是封鎖ê ê列單。
+    recent_imports: 最近輸入ê
+  login_activities:
+    authentication_methods:
+      webauthn: 安全檢查
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:

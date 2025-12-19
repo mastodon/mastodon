@@ -7,6 +7,8 @@ es-AR:
     hosted_on: Mastodon alojado en %{domain}
     title: Información
   accounts:
+    errors:
+      cannot_be_added_to_collections: Esta cuenta no puede ser agregada a colecciones.
     followers:
       one: Seguidor
       other: Seguidores
@@ -846,6 +848,7 @@ es-AR:
         publish_statistics: Publicar estadísticas
         title: Descubrí
         trends: Tendencias
+        wrapstodon: MastodonAnual
       domain_blocks:
         all: A todos
         disabled: A nadie
@@ -2186,4 +2189,5 @@ es-AR:
     otp_required: Para usar llaves de seguridad, por favor, primero habilitá la autenticación de dos factores.
     registered_on: Registrado el %{date}
   wrapstodon:
+    description: "¡Enterate cómo %{name} usó Mastodon este año!"
     title: MastodonAnual %{year} para %{name}

@@ -8,7 +8,6 @@ import classNames from 'classnames';
 import IconPlanet from '@/images/icons/icon_planet.svg?react';
 import { openModal } from '@/mastodon/actions/modal';
 import { Icon } from '@/mastodon/components/icon';
-import { selectWrapstodonYear } from '@/mastodon/reducers/slices/annual_report';
 import {
   createAppSelector,
   useAppDispatch,
@@ -23,8 +22,7 @@ const selectReportModalOpen = createAppSelector(
 );
 
 export const AnnualReportNavItem: FC = () => {
-  const { state } = useAppSelector((state) => state.annualReport);
-  const year = useAppSelector(selectWrapstodonYear);
+  const { state, year } = useAppSelector((state) => state.annualReport);
   const active = useAppSelector(selectReportModalOpen);
 
   const dispatch = useAppDispatch();

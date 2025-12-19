@@ -10,13 +10,13 @@ en-GB:
         indexable: Your public posts may appear in search results on Mastodon. People who have interacted with your posts may be able to search them regardless.
         note: 'You can @mention other people or #hashtags.'
         show_collections: People will be able to browse through your follows and followers. People that you follow will see that you follow them regardless.
-        unlocked: People will be able to follow you without requesting approval. Uncheck if you want to review follow requests and choose whether to accept or reject new followers.
+        unlocked: People will be able to follow you without requesting approval. Untick if you want to review follow requests and choose whether to accept or reject new followers.
       account_alias:
         acct: Specify the username@domain of the account you want to move from
       account_migration:
         acct: Specify the username@domain of the account you want to move to
       account_warning_preset:
-        text: You can use post syntax, such as URLs, hashtags and mentions
+        text: You can use post syntax, such as URLs, hashtags, and mentions
         title: Optional. Not visible to the recipient
       admin_account_action:
         include_statuses: The user will see which posts have caused the moderation action or warning
@@ -29,9 +29,9 @@ en-GB:
           sensitive: Force all this user's media attachments to be flagged as sensitive.
           silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
           suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
-        warning_preset_id: Optional. You can still add custom text to end of the preset
+        warning_preset_id: Optional. You can still add custom text to the end of the preset
       announcement:
-        all_day: When checked, only the dates of the time range will be displayed
+        all_day: When ticked, only the dates of the time range will be displayed
         ends_at: Optional. Announcement will be automatically unpublished at this time
         scheduled_at: Leave blank to publish the announcement immediately
         starts_at: Optional. In case your announcement is bound to a specific time range
@@ -43,20 +43,20 @@ en-GB:
         avatar: WEBP, PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
         bot: Signal to others that the account mainly performs automated actions and might not be monitored
         context: One or multiple contexts where the filter should apply
-        current_password: For security purposes please enter the password of the current account
+        current_password: For security purposes, please enter the password of the current account
         current_username: To confirm, please enter the username of the current account
         digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
-        email: You will be sent a confirmation e-mail
+        email: You will be sent a confirmation email
         header: WEBP, PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
-        inbox_url: Copy the URL from the frontpage of the relay you want to use
-        irreversible: Filtered posts will disappear irreversibly, even if filter is later removed
-        locale: The language of the user interface, e-mails and push notifications
-        password: Use at least 8 characters
+        inbox_url: Copy the URL from the front page of the relay you want to use
+        irreversible: Filtered posts will disappear irreversibly, even if the filter is later removed
+        locale: The language of the user interface, emails, and push notifications
+        password: Use at least eight characters
         phrase: Will be matched regardless of casing in text or content warning of a post
         scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
         setting_advanced_layout: Display Mastodon as a multi-column layout, allowing you to view the timeline, notifications, and a third column of your choosing. Not recommended for smaller screens.
         setting_aggregate_reblogs: Do not show new boosts for posts that have been recently boosted (only affects newly-received boosts)
-        setting_always_send_emails: Normally e-mail notifications won't be sent when you are actively using Mastodon
+        setting_always_send_emails: Normally email notifications won't be sent when you are actively using Mastodon
         setting_boost_modal: When enabled, boosting will first open a confirmation dialogue in which you can change the visibility of your boost.
         setting_default_quote_policy_private: Followers-only posts authored on Mastodon can't be quoted by others.
         setting_default_quote_policy_unlisted: When people quote you, their post will also be hidden from trending timelines.
@@ -67,14 +67,14 @@ en-GB:
         setting_emoji_style: How to display emojis. "Auto" will try using native emoji, but falls back to Twemoji for legacy browsers.
         setting_quick_boosting_html: When enabled, clicking on the %{boost_icon} Boost icon will immediately boost instead of opening the boost/quote dropdown menu. Relocates the quoting action to the %{options_icon} (Options) menu.
         setting_system_scrollbars_ui: Applies only to desktop browsers based on Safari and Chrome
-        setting_use_blurhash: Gradients are based on the colors of the hidden visuals but obfuscate any details
+        setting_use_blurhash: Gradients are based on the colours of the hidden visuals but obfuscate any details
         setting_use_pending_items: Hide timeline updates behind a click instead of automatically scrolling the feed
         username: You can use letters, numbers, and underscores
         whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
       domain_allow:
         domain: This domain will be able to fetch data from this server and incoming data from it will be processed and stored
       email_domain_block:
-        domain: This can be the domain name that shows up in the e-mail address or the MX record it uses. They will be checked upon sign-up.
+        domain: This can be the domain name that shows up in the email address or the MX record it uses. They will be checked upon sign-up.
         with_dns_records: An attempt to resolve the given domain's DNS records will be made and the results will also be blocked
       featured_tag:
         name: 'Here are some of the hashtags you used the most recently:'
@@ -90,14 +90,14 @@ en-GB:
         backups_retention_period: Users have the ability to generate archives of their posts to download later. When set to a positive value, these archives will be automatically deleted from your storage after the specified number of days.
         bootstrap_timeline_accounts: These accounts will be pinned to the top of new users' follow recommendations. Provide a comma-separated list of accounts.
         closed_registrations_message: Displayed when sign-ups are closed
-        content_cache_retention_period: All posts from other servers (including boosts and replies) will be deleted after the specified number of days, without regard to any local user interaction with those posts. This includes posts where a local user has marked it as bookmarks or favorites. Private mentions between users from different instances will also be lost and impossible to restore. Use of this setting is intended for special purpose instances and breaks many user expectations when implemented for general purpose use.
+        content_cache_retention_period: All posts from other servers (including boosts and replies) will be deleted after the specified number of days, without regard to any local user interaction with those posts. This includes posts where a local user has marked it as bookmarks or favourites. Private mentions between users from different instances will also be lost and impossible to restore. Use of this setting is intended for special purpose instances and breaks many user expectations when implemented for general purpose use.
         custom_css: You can apply custom styles on the web version of Mastodon.
         favicon: WEBP, PNG, GIF or JPG. Overrides the default Mastodon favicon with a custom icon.
         landing_page: Selects what page new visitors see when they first arrive on your server. If you select "Trends", then Trends needs to be enabled in the Discovery Settings. If you select "Local feed", then "Access to live feeds featuring local posts" needs to be set to "Everyone" in the Discovery Settings.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Media files from posts made by remote users are cached on your server. When set to a positive value, media will be deleted after the specified number of days. If the media data is requested after it is deleted, it will be re-downloaded, if the source content is still available. Due to restrictions on how often link preview cards poll third-party sites, it is recommended to set this value to at least 14 days, or link preview cards will not be updated on demand before that time.
         min_age: Users will be asked to confirm their date of birth during sign-up
-        peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
+        peers_api_enabled: A list of domain names this server has encountered in the Fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: The profile directory lists all users who have opted-in to be discoverable.
         require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
         site_contact_email: How people can reach you for legal or support inquiries.
@@ -110,7 +110,8 @@ en-GB:
         theme: Theme that logged out visitors and new users see.
         thumbnail: A roughly 2:1 image displayed alongside your server information.
         trendable_by_default: Skip manual review of trending content. Individual items can still be removed from trends after the fact.
-        trends: Trends show which posts, hashtags and news stories are gaining traction on your server.
+        trends: Trends show which posts, hashtags, and news stories are gaining traction on your server.
+        wrapstodon: Offer local users to generate a playful summary of their Mastodon use during the year. This feature is available between the 10th and 31st of December of each year, and is offered to users who made at least one Public or Quiet Public post and used at least one hashtag within the year.
       form_challenge:
         current_password: You are entering a secure area
       imports:
@@ -131,7 +132,7 @@ en-GB:
         text: Describe a rule or requirement for users on this server. Try to keep it short and simple
       sessions:
         otp: 'Enter the two-factor code generated by your phone app or use one of your recovery codes:'
-        webauthn: If it's an USB key be sure to insert it and, if necessary, tap it.
+        webauthn: If it's a USB key be sure to insert it and, if necessary, tap it.
       settings:
         indexable: Your profile page may appear in search results on Google, Bing, and others.
         show_application: You will always be able to see which app published your post regardless.
@@ -145,11 +146,11 @@ en-GB:
         admin_email: Legal notices include counternotices, court orders, takedown requests, and law enforcement requests.
         arbitration_address: Can be the same as Physical address above, or “N/A” if using email.
         arbitration_website: Can be a web form, or “N/A” if using email.
-        choice_of_law: City, region, territory or state the internal substantive laws of which shall govern any and all claims.
+        choice_of_law: City, region, territory, or state, the internal substantive laws of which shall govern any and all claims.
         dmca_address: For US operators, use the address registered in the DMCA Designated Agent Directory. A P.O. Box listing is available upon direct request, use the DMCA Designated Agent Post Office Box Waiver Request to email the Copyright Office and describe that you are a home-based content moderator who fears revenge or retribution for your actions and need to use a P.O. Box to remove your home address from public view.
         dmca_email: Can be the same email used for “Email address for legal notices” above.
         domain: Unique identification of the online service you are providing.
-        jurisdiction: List the country where whoever pays the bills lives. If it’s a company or other entity, list the country where it’s incorporated, and the city, region, territory or state as appropriate.
+        jurisdiction: List the country where whoever pays the bills lives. If it’s a company or other entity, list the country where it’s incorporated, and the city, region, territory, or state as appropriate.
         min_age: Should not be below the minimum age required by the laws of your jurisdiction.
       user:
         chosen_languages: When checked, only posts in selected languages will be displayed in public timelines
@@ -158,7 +159,7 @@ en-GB:
           other: We have to make sure you're at least %{count} to use %{domain}. We won't store this.
         role: The role controls which permissions the user has.
       user_role:
-        color: Color to be used for the role throughout the UI, as RGB in hex format
+        color: Colour to be used for the role throughout the UI, as RGB in hex format
         highlighted: This makes the role publicly visible
         name: Public name of the role, if role is set to be displayed as a badge
         permissions_as_keys: Users with this role will have access to...
@@ -170,7 +171,7 @@ en-GB:
       webhook:
         events: Select events to send
         template: Compose your own JSON payload using variable interpolation. Leave blank for default JSON.
-        url: Where events will be sent to
+        url: Where events will be sent
     labels:
       account:
         attribution_domains: Websites allowed to credit you
@@ -189,8 +190,8 @@ en-GB:
         text: Preset text
         title: Title
       admin_account_action:
-        include_statuses: Include reported posts in the e-mail
-        send_email_notification: Notify the user per e-mail
+        include_statuses: Include reported posts in the email
+        send_email_notification: Notify the user per email
         text: Custom warning
         type: Action
         types:
@@ -219,7 +220,7 @@ en-GB:
         current_password: Current password
         data: Data
         display_name: Display name
-        email: E-mail address
+        email: Email address
         expires_in: Expire after
         fields: Profile metadata
         header: Header
@@ -227,7 +228,7 @@ en-GB:
         inbox_url: URL of the relay inbox
         irreversible: Drop instead of hide
         locale: Interface language
-        max_uses: Max number of uses
+        max_uses: Maximum number of uses
         new_password: New password
         note: Bio
         otp_attempt: Two-factor code
@@ -235,7 +236,7 @@ en-GB:
         phrase: Keyword or phrase
         setting_advanced_layout: Enable advanced web interface
         setting_aggregate_reblogs: Group boosts in timelines
-        setting_always_send_emails: Always send e-mail notifications
+        setting_always_send_emails: Always send email notifications
         setting_auto_play_gif: Auto-play animated GIFs
         setting_boost_modal: Control boosting visibility
         setting_default_language: Posting language
@@ -259,7 +260,7 @@ en-GB:
         setting_system_scrollbars_ui: Use system's default scrollbar
         setting_theme: Site theme
         setting_trends: Show today's trends
-        setting_unfollow_modal: Show confirmation dialog before unfollowing someone
+        setting_unfollow_modal: Show confirmation dialogue before unfollowing someone
         setting_use_blurhash: Show colourful gradients for hidden media
         setting_use_pending_items: Slow mode
         severity: Severity
@@ -295,13 +296,13 @@ en-GB:
         min_age: Minimum age requirement
         peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Enable profile directory
-        registrations_mode: Who can sign-up
+        registrations_mode: Who can sign up
         remote_live_feed_access: Access to live feeds featuring remote posts
         remote_topic_feed_access: Access to hashtag and link feeds featuring remote posts
         require_invite_text: Require a reason to join
         show_domain_blocks: Show domain blocks
         show_domain_blocks_rationale: Show why domains were blocked
-        site_contact_email: Contact e-mail
+        site_contact_email: Contact email
         site_contact_username: Contact username
         site_extended_description: Extended description
         site_short_description: Server description
@@ -312,6 +313,7 @@ en-GB:
         thumbnail: Server thumbnail
         trendable_by_default: Allow trends without prior review
         trends: Enable trends
+        wrapstodon: Enable Wrapstodon
       interactions:
         must_be_follower: Block notifications from non-followers
         must_be_following: Block notifications from people you don't follow
@@ -344,7 +346,7 @@ en-GB:
           critical: Notify on critical updates only
           label: A new Mastodon version is available
           none: Never notify of updates (not recommended)
-          patch: Notify on bugfix updates
+          patch: Notify on bug fix updates
         trending_tag: New trend requires review
       rule:
         hint: Additional information

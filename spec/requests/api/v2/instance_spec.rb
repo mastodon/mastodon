@@ -42,7 +42,7 @@ RSpec.describe 'Instances' do
       end
     end
 
-    context 'when wrapstodon is enabled', feature: :wrapstodon do
+    context 'when wrapstodon is enabled' do
       before do
         travel_to Time.utc(2025, 12, 20)
       end

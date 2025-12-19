@@ -7,6 +7,8 @@ zh-CN:
     hosted_on: 运行在 %{domain} 上的 Mastodon 实例
     title: 关于本站
   accounts:
+    errors:
+      cannot_be_added_to_collections: 此账号无法被添加到关注列表内。
     followers:
       other: 关注者
     following: 正在关注
@@ -832,6 +834,7 @@ zh-CN:
         publish_statistics: 发布统计数据
         title: 发现
         trends: 热门
+        wrapstodon: Wrapstodon 年度回顾
       domain_blocks:
         all: 对每个人
         disabled: 不对任何人
@@ -2142,4 +2145,5 @@ zh-CN:
     otp_required: 要使用安全密钥，请先启用双因素认证。
     registered_on: 注册于 %{date}
   wrapstodon:
+    description: 来看看%{name}今年是怎么使用Mastodon的！
     title: "%{name}的%{year}年Wrapstodon年度回顾"

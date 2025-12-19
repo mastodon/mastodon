@@ -114,6 +114,11 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
 
     const bind = useDrag(
       ({ active, movement: [mx], direction: [xDir], cancel }) => {
+        // Disable swipe when zoomed in.
+        if (zoomedIn) {
+          return;
+        }
+
         // If dragging and swipe distance is enough, change the index.
         if (
           active &&

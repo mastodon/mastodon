@@ -57,25 +57,16 @@ class Api::V1::AnnualReportsController < Api::BaseController
     render_empty
   end
 
-  def refresh_key
-    "wrapstodon:#{current_account.id}:#{year}"
-  end
-
   private
 
   def report_state
-    return 'available' if GeneratedAnnualReport.exists?(account_id: current_account.id, year: year)
-
-    async_refresh = AsyncRefresh.new(refresh_key)
-
-    if async_refresh.running?
+    AnnualReport.new(current_account, year).state do |async_refresh|
       add_async_refresh_header(async_refresh, retry_seconds: 2)
-      'generating'
-    elsif AnnualReport.current_campaign == year && AnnualReport.new(current_account, year).eligible?
-      'eligible'
-    else
-      'ineligible'
     end
+  end
+
+  def refresh_key
+    "wrapstodon:#{current_account.id}:#{year}"
   end
 
   def year

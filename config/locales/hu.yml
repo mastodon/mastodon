@@ -7,6 +7,8 @@ hu:
     hosted_on: "%{domain} Mastodon-kiszolgáló"
     title: Névjegy
   accounts:
+    errors:
+      cannot_be_added_to_collections: Ez a fiók nem adható hozzá gyűjteményekhez.
     followers:
       one: Követő
       other: Követő
@@ -846,6 +848,7 @@ hu:
         publish_statistics: Statisztikák közzététele
         title: Felfedezés
         trends: Trendek
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Mindenkinek
         disabled: Senkinek
@@ -2185,3 +2188,6 @@ hu:
     not_supported: Ez a böngésző nem támogatja a biztonsági kulcsokat
     otp_required: A biztonsági kulcsok használatához először engedélyezd a kétlépcsős hitelesítést.
     registered_on: 'Regisztráció ekkor: %{date}'
+  wrapstodon:
+    description: Nézd meg, hogy %{name} hogyan használta a Mastodont az éven!
+    title: Wrapstodon %{year} – %{name}

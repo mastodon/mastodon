@@ -161,9 +161,9 @@ RSpec.describe PostStatusService do
   end
 
   it 'creates a status with the quote approval policy set' do
-    status = create_status_with_options(quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16)
+    status = create_status_with_options(quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:followers] << 16)
 
-    expect(status.quote_approval_policy).to eq(Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16)
+    expect(status.quote_approval_policy).to eq(InteractionPolicy::POLICY_FLAGS[:followers] << 16)
   end
 
   it 'processes mentions' do

@@ -7,6 +7,8 @@ cs:
     hosted_on: Mastodon na doméně %{domain}
     title: O službě
   accounts:
+    errors:
+      cannot_be_added_to_collections: Tento účet nelze přidat do kolekcí.
     followers:
       few: Sledující
       many: Sledujících
@@ -2274,4 +2276,5 @@ cs:
     otp_required: Pro použití bezpečnostních klíčů prosím nejprve zapněte dvoufázové ověřování.
     registered_on: Přidán %{date}
   wrapstodon:
+    description: Podívejte se, jak %{name} používali Mastodon v tomto roce!
     title: Wrapstodon %{year} pro %{name}

@@ -7,6 +7,8 @@ fr-CA:
     hosted_on: Serveur Mastodon hébergé sur %{domain}
     title: À propos
   accounts:
+    errors:
+      cannot_be_added_to_collections: Ce compte ne peut pas être ajouté aux collections.
     followers:
       one: Abonné·e
       other: Abonné·e·s
@@ -849,6 +851,7 @@ fr-CA:
         publish_statistics: Publier les statistiques
         title: Découverte
         trends: Tendances
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: À tout le monde
         disabled: À personne
@@ -2189,4 +2192,5 @@ fr-CA:
     otp_required: Pour utiliser les clés de sécurité, veuillez d'abord activer l'authentification à deux facteurs.
     registered_on: Inscrit le %{date}
   wrapstodon:
+    description: Voir comment %{name} a utilisé Mastodon cette année !
     title: Wrapstodon %{year} pour %{name}

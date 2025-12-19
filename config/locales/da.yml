@@ -7,6 +7,8 @@ da:
     hosted_on: Mastodon hostet på %{domain}
     title: Om
   accounts:
+    errors:
+      cannot_be_added_to_collections: Denne konto kan ikke tilføjes til samlinger.
     followers:
       one: Følger
       other: Følgere
@@ -846,6 +848,7 @@ da:
         publish_statistics: Udgiv statistik
         title: Opdagelse
         trends: Trends
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Til alle
         disabled: Til ingen
@@ -2186,4 +2189,5 @@ da:
     otp_required: For at bruge sikkerhedsnøgler skal tofaktorgodkendelse først aktiveres.
     registered_on: Registreret d. %{date}
   wrapstodon:
+    description: Se hvordan %{name} brugte Mastodon i år!
     title: Wrapstodon %{year} for %{name}

@@ -17,7 +17,7 @@ class AnnualReport
   end
 
   def self.current_campaign
-    return unless Mastodon::Feature.wrapstodon_enabled?
+    return unless Setting.wrapstodon
 
     datetime = Time.now.utc
     datetime.year if datetime.month == 12 && (10..31).cover?(datetime.day)
@@ -32,6 +32,25 @@ class AnnualReport
     with_read_replica do
       SOURCES.all? { |klass| klass.new(@account, @year).eligible? }
     end
+  end
+
+  def state
+    return 'available' if GeneratedAnnualReport.exists?(account_id: @account.id, year: @year)
+
+    async_refresh = AsyncRefresh.new(refresh_key)
+
+    if async_refresh.running?
+      yield async_refresh if block_given?
+      'generating'
+    elsif AnnualReport.current_campaign == @year && eligible?
+      'eligible'
+    else
+      'ineligible'
+    end
+  end
+
+  def refresh_key
+    "wrapstodon:#{@account.id}:#{@year}"
   end
 
   def generate

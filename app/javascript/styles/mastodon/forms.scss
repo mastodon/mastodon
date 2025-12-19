@@ -716,6 +716,17 @@ code {
     }
   }
 
+  .horizontal-options .label_input__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .radio,
+    .radio > label {
+      margin-bottom: 0;
+    }
+  }
+
   .status-card {
     contain: unset;
   }

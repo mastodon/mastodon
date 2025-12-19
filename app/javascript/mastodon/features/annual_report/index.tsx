@@ -10,6 +10,7 @@ import classNames from 'classnames/bind';
 import { closeModal } from '@/mastodon/actions/modal';
 import { IconButton } from '@/mastodon/components/icon_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { getReport } from '@/mastodon/reducers/slices/annual_report';
 import {
   createAppSelector,
   useAppDispatch,
@@ -26,7 +27,7 @@ import { NewPosts } from './new_posts';
 
 const moduleClassNames = classNames.bind(styles);
 
-const accountSelector = createAppSelector(
+export const accountSelector = createAppSelector(
   [(state) => state.accounts, (state) => state.annualReport.report],
   (accounts, report) => {
     if (report?.schema_version === 2) {
@@ -43,6 +44,13 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
   const dispatch = useAppDispatch();
   const report = useAppSelector((state) => state.annualReport.report);
   const account = useAppSelector(accountSelector);
+  const needsReport = !report; // Make into boolean to avoid object comparison in deps.
+
+  useEffect(() => {
+    if (needsReport) {
+      void dispatch(getReport());
+    }
+  }, [dispatch, needsReport]);
 
   const close = useCallback(() => {
     dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
@@ -57,7 +65,7 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
     }
   }, [pathname, initialPathname, close]);
 
-  if (!report) {
+  if (needsReport) {
     return <LoadingIndicator />;
   }
 
