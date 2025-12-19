@@ -7,6 +7,7 @@ import {
   stringToEmojiState,
   tokenizeText,
 } from './render';
+import type { EmojiStateCustom } from './types';
 
 describe('tokenizeText', () => {
   test('returns an array of text to be a single token', () => {
@@ -82,12 +83,8 @@ describe('stringToEmojiState', () => {
     });
   });
 
-  test('returns custom emoji state for valid custom emoji', () => {
-    expect(stringToEmojiState(':smile:')).toEqual({
-      type: 'custom',
-      code: 'smile',
-      data: undefined,
-    });
+  test('returns null for custom emoji without data', () => {
+    expect(stringToEmojiState(':smile:')).toBeNull();
   });
 
   test('returns custom emoji state with data when provided', () => {
@@ -107,7 +104,6 @@ describe('stringToEmojiState', () => {
 
   test('returns null for invalid emoji strings', () => {
     expect(stringToEmojiState('notanemoji')).toBeNull();
-    expect(stringToEmojiState(':invalid-emoji:')).toBeNull();
   });
 });
 
@@ -130,31 +126,19 @@ describe('loadEmojiDataToState', () => {
     });
   });
 
-  test('loads custom emoji data into state', async () => {
-    const dbCall = vi
-      .spyOn(db, 'loadCustomEmojiByShortcode')
-      .mockResolvedValueOnce(customEmojiFactory());
-    const customState = { type: 'custom', code: 'smile' } as const;
-    const result = await loadEmojiDataToState(customState, 'en');
-    expect(dbCall).toHaveBeenCalledWith('smile');
-    expect(result).toEqual({
+  test('returns null for custom emoji without data', async () => {
+    const customState = {
       type: 'custom',
       code: 'smile',
-      data: customEmojiFactory(),
-    });
+    } as const satisfies EmojiStateCustom;
+    const result = await loadEmojiDataToState(customState, 'en');
+    expect(result).toBeNull();
   });
 
   test('returns null if unicode emoji not found in database', async () => {
     vi.spyOn(db, 'loadEmojiByHexcode').mockResolvedValueOnce(undefined);
     const unicodeState = { type: 'unicode', code: '1F60A' } as const;
     const result = await loadEmojiDataToState(unicodeState, 'en');
-    expect(result).toBeNull();
-  });
-
-  test('returns null if custom emoji not found in database', async () => {
-    vi.spyOn(db, 'loadCustomEmojiByShortcode').mockResolvedValueOnce(undefined);
-    const customState = { type: 'custom', code: 'smile' } as const;
-    const result = await loadEmojiDataToState(customState, 'en');
     expect(result).toBeNull();
   });
 

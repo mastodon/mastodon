@@ -4,11 +4,7 @@ import {
   EMOJI_TYPE_UNICODE,
   EMOJI_TYPE_CUSTOM,
 } from './constants';
-import {
-  loadCustomEmojiByShortcode,
-  loadEmojiByHexcode,
-  LocaleNotLoadedError,
-} from './database';
+import { loadEmojiByHexcode, LocaleNotLoadedError } from './database';
 import { importEmojiData } from './loader';
 import { emojiToUnicodeHex } from './normalize';
 import type {
@@ -79,7 +75,7 @@ export function tokenizeText(text: string): TokenizedText {
 export function stringToEmojiState(
   code: string,
   customEmoji: ExtraCustomEmojiMap = {},
-): EmojiState | null {
+): EmojiStateUnicode | Required<EmojiStateCustom> | null {
   if (isUnicodeEmoji(code)) {
     return {
       type: EMOJI_TYPE_UNICODE,
@@ -89,11 +85,13 @@ export function stringToEmojiState(
 
   if (isCustomEmoji(code)) {
     const shortCode = code.slice(1, -1);
-    return {
-      type: EMOJI_TYPE_CUSTOM,
-      code: shortCode,
-      data: customEmoji[shortCode],
-    };
+    if (customEmoji[shortCode]) {
+      return {
+        type: EMOJI_TYPE_CUSTOM,
+        code: shortCode,
+        data: customEmoji[shortCode],
+      };
+    }
   }
 
   return null;
@@ -114,26 +112,23 @@ export async function loadEmojiDataToState(
     return state;
   }
 
+  // Don't try to load data for custom emoji.
+  if (state.type === EMOJI_TYPE_CUSTOM) {
+    return null;
+  }
+
   // First, try to load the data from IndexedDB.
   try {
     // This is duplicative, but that's because TS can't distinguish the state type easily.
-    if (state.type === EMOJI_TYPE_UNICODE) {
-      const data = await loadEmojiByHexcode(state.code, locale);
-      if (data) {
-        return {
-          ...state,
-          data,
-        };
-      }
-    } else {
-      const data = await loadCustomEmojiByShortcode(state.code);
-      if (data) {
-        return {
-          ...state,
-          data,
-        };
-      }
+    const data = await loadEmojiByHexcode(state.code, locale);
+    if (data) {
+      return {
+        ...state,
+        type: EMOJI_TYPE_UNICODE,
+        data,
+      };
     }
+
     // If not found, assume it's not an emoji and return null.
     log(
       'Could not find emoji %s of type %s for locale %s',
