@@ -1974,11 +1974,11 @@ en:
     enabled: Automatically delete old posts
     enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below
     exceptions: Exceptions
-    explanation: Because deleting posts is an expensive operation, this is done slowly over time when the server is not otherwise busy. For this reason, your posts may be deleted a while after they reach the age threshold.
+    explanation: Automated deletion is performed with low priority. There may be a delay between reaching the age threshold and being removed.
     ignore_favs: Ignore favorites
     ignore_reblogs: Ignore boosts
     interaction_exceptions: Exceptions based on interactions
-    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favorite or boost threshold after having once gone over them.
+    interaction_exceptions_explanation: Posts which temporarily exceed the favorite or boost threshold may be retained even if they are later decreased.
     keep_direct: Keep direct messages
     keep_direct_hint: Doesn't delete any of your direct messages
     keep_media: Keep posts with media attachments
