@@ -33,6 +33,7 @@ describe('emojiToUnicodeHex', () => {
     ['⚫', '26AB'],
     ['🖤', '1F5A4'],
     ['💀', '1F480'],
+    ['❤️', '2764'], // Checks for trailing variation selector removal.
     ['💂‍♂️', '1F482-200D-2642-FE0F'],
   ] as const)(
     'emojiToUnicodeHex converts %s to %s',
