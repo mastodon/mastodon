@@ -164,6 +164,7 @@ $content-width: 840px;
     width: 100%;
     max-width: $content-width;
     flex: 1 1 auto;
+    isolation: isolate;
   }
 
   @media screen and (max-width: ($content-width + $sidebar-width)) {
