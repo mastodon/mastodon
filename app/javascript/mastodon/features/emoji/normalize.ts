@@ -32,6 +32,12 @@ export function emojiToUnicodeHex(emoji: string): string {
       codes.push(code);
     }
   }
+
+  // Handles how Emojibase removes the variation selector for single code emojis.
+  // See: https://emojibase.dev/docs/spec/#merged-variation-selectors
+  if (codes.at(1) === VARIATION_SELECTOR_CODE && codes.length === 2) {
+    codes.pop();
+  }
   return hexNumbersToString(codes);
 }
 
