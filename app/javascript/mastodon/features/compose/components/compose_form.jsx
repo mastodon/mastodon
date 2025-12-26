@@ -30,6 +30,7 @@ import { ReplyIndicator } from './reply_indicator';
 import { UploadForm } from './upload_form';
 import { Warning } from './warning';
 import { ComposeQuotedStatus } from './quoted_post';
+import { QuotePolicyButton } from './quote_policy_button';
 import { VisibilityButton } from './visibility_button';
 
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
@@ -264,6 +265,7 @@ class ComposeForm extends ImmutablePureComponent {
 
           <div className='compose-form__dropdowns'>
             <VisibilityButton disabled={this.props.isEditing} />
+            <QuotePolicyButton disabled={this.props.isEditing} />
             <LanguageDropdown />
           </div>
 
