@@ -15,13 +15,31 @@ import { DropdownSelector } from 'mastodon/components/dropdown_selector';
 import { Icon } from 'mastodon/components/icon';
 
 const messages = defineMessages({
-  public_short: { id: 'quote_policy.public.short', defaultMessage: 'Anyone can quote' },
-  public_long: { id: 'quote_policy.public.long', defaultMessage: 'Anyone can quote this post' },
-  followers_short: { id: 'quote_policy.followers.short', defaultMessage: 'Followers only' },
-  followers_long: { id: 'quote_policy.followers.long', defaultMessage: 'Only your followers can quote' },
+  public_short: {
+    id: 'quote_policy.public.short',
+    defaultMessage: 'Anyone can quote',
+  },
+  public_long: {
+    id: 'quote_policy.public.long',
+    defaultMessage: 'Anyone can quote this post',
+  },
+  followers_short: {
+    id: 'quote_policy.followers.short',
+    defaultMessage: 'Followers only',
+  },
+  followers_long: {
+    id: 'quote_policy.followers.long',
+    defaultMessage: 'Only your followers can quote',
+  },
   nobody_short: { id: 'quote_policy.nobody.short', defaultMessage: 'No one' },
-  nobody_long: { id: 'quote_policy.nobody.long', defaultMessage: 'No one can quote this post' },
-  change_quote_policy: { id: 'quote_policy.change', defaultMessage: 'Change who can quote' },
+  nobody_long: {
+    id: 'quote_policy.nobody.long',
+    defaultMessage: 'No one can quote this post',
+  },
+  change_quote_policy: {
+    id: 'quote_policy.change',
+    defaultMessage: 'Change who can quote',
+  },
 });
 
 interface QuotePolicyDropdownProps {
