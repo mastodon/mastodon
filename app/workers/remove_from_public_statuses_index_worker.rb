@@ -10,6 +10,6 @@ class RemoveFromPublicStatusesIndexWorker
 
     account.remove_from_public_statuses_index!
   rescue ActiveRecord::RecordNotFound
-    true
+    PublicStatusesIndex.filter(term: { account_id: account_id }).delete_all
   end
 end
