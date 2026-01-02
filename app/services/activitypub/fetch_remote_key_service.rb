@@ -32,7 +32,7 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   private
 
   def find_actor(uri, prefetched_body, suppress_errors)
-    actor   = ActivityPub::TagManager.instance.uri_to_actor(uri)
+    actor   = ActivityPub::TagManager.instance.key_uri_to_actor(uri)
     actor ||= ActivityPub::FetchRemoteActorService.new.call(uri, prefetched_body: prefetched_body, suppress_errors: suppress_errors)
     actor
   end
