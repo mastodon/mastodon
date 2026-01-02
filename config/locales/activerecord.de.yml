@@ -4,7 +4,7 @@ de:
     attributes:
       poll:
         expires_at: Abstimmungsende
-        options: Auswahlmöglichkeiten
+        options: Auswahlfelder
       user:
         agreement: Service-Vereinbarung
         email: E-Mail-Adresse
@@ -35,7 +35,7 @@ de:
         collection:
           attributes:
             collection_items:
-              too_many: zu viele, mehr als %{count} sind nicht erlaubt
+              too_many: sind zu viele, mehr als %{count} sind nicht erlaubt
             tag:
               unusable: darf nicht verwendet werden
         doorkeeper/application:
@@ -58,11 +58,11 @@ de:
         terms_of_service:
           attributes:
             effective_date:
-              too_soon: Datum muss später als %{date} sein
+              too_soon: zu früh, Datum muss später als %{date} liegen
         user:
           attributes:
             date_of_birth:
-              below_limit: liegt unterhalb der Altersgrenze
+              below_limit: liegt unterhalb des Mindestalters
             email:
               blocked: verwendet einen unerlaubten E-Mail-Anbieter
               unreachable: scheint nicht zu existieren

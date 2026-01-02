@@ -7,6 +7,8 @@ nn:
     hosted_on: "%{domain} er vert for Mastodon"
     title: Om
   accounts:
+    errors:
+      cannot_be_added_to_collections: Du kan ikkje leggja til denne brukarkontoen i samlingar.
     followers:
       one: Fylgjar
       other: Fylgjarar
@@ -846,6 +848,7 @@ nn:
         publish_statistics: Publiser statistikk
         title: Oppdaging
         trends: Populært
+        wrapstodon: Mastodon-året
       domain_blocks:
         all: Til alle
         disabled: Til ingen
@@ -1316,6 +1319,13 @@ nn:
     hint_html: "<strong>Tips:</strong> Vi skal ikkje spørja deg om passordet ditt igjen i laupet av den neste timen."
     invalid_password: Ugyldig passord
     prompt: Stadfest passord for å halda fram
+  color_scheme:
+    auto: Auto
+    dark: Mørkt
+    light: Lyst
+  contrast:
+    auto: Auto
+    high: Høg
   crypto:
     errors:
       invalid_key: er ikkje ein gild Ed25519 eller Curve25519 nykel
@@ -2185,3 +2195,6 @@ nn:
     not_supported: Denne nettleseren støtter ikke sikkerhetsnøkler
     otp_required: For å bruke sikkerhetsnøkler, må du først aktivere to-faktor autentisering.
     registered_on: Registrert den %{date}
+  wrapstodon:
+    description: Sjå korleis %{name} brukte Mastodon i år!
+    title: Mastodon-året %{year} for %{name}

@@ -834,6 +834,7 @@ nan:
         publish_statistics: 發布統計
         title: 發現
         trends: 趨勢
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Kàu ta̍k ê lâng
         disabled: 無kàu tó tsi̍t ê
@@ -1299,6 +1300,13 @@ nan:
     hint_html: "<strong>提醒：</strong>Guán佇一點鐘內底，bē koh問密碼。"
     invalid_password: 無效ê密碼
     prompt: 確認密碼來繼續
+  color_scheme:
+    auto: 自動
+    dark: 暗ê
+    light: 光ê
+  contrast:
+    auto: 自動
+    high: 高ê
   crypto:
     errors:
       invalid_key: m̄是有效ê Ed25519 á是 Curve25519 鎖
@@ -1515,9 +1523,100 @@ nan:
         other: Lí teh-beh kā <strong>%{filename}</strong>內底ê<strong>%{count} ê口座</strong><strong>消音</strong>。
     preface: Lí ē當輸入lí對別ê服侍器輸出ê資料，比如lí所跟tuè ê á是封鎖ê ê列單。
     recent_imports: 最近輸入ê
+    states:
+      finished: 完成ah
+      in_progress: Teh處理
+      scheduled: 有排入去
+      unconfirmed: Iáu未確認
+    status: 狀態
+    success: Lí ê資料成功傳上去，時到ê處理
+    time_started: 開始佇
+    titles:
+      blocking: Teh輸入封鎖ê口座
+      bookmarks: Teh輸入冊籤
+      domain_blocking: Teh輸入封鎖ê域名
+      following: Teh輸入leh跟tuè ê口座
+      lists: Teh輸入列單
+      muting: Teh輸入消音ê口座
+    type: 輸入類型
+    type_groups:
+      constructive: Leh跟tuè ê kap冊籤
+      destructive: 封鎖kap消音
+    types:
+      blocking: 封鎖ê列單
+      bookmarks: 冊籤
+      domain_blocking: 域名封鎖列單
+      following: Leh跟tuè ê列單
+      lists: 列單
+      muting: 消音ê列單
+    upload: 傳上去
+  invites:
+    delete: 停用
+    expired: 過期ah
+    expires_in:
+      '1800': 30 分以後
+      '21600': 6 點鐘以後
+      '3600': 1 點鐘以後
+      '43200': 12 點鐘以後
+      '604800': 1 禮拜以後
+      '86400': 1 kang以後
+    expires_in_prompt: 永永
+    generate: 生邀請ê連結
+    invalid: Tsit ê邀請無效
+    invited_by: Lí予伊邀請：
+    max_uses:
+      other: "%{count} 改"
+    max_uses_prompt: 無限制
+    prompt: 生分享ê連結，邀請別lâng佇tsit臺服侍器註冊
+    table:
+      expires_at: 過期ê時
+      uses: 使用幾改
+    title: 邀請lâng
+  link_preview:
+    author_html: Tuì %{name}
+    potentially_sensitive_content:
+      action: Tshi̍h來顯示
+      confirm_visit: Lí kám確定beh開tsit ê連結？
+      hide_button: Khàm掉
+      label: 可能敏感ê內容
+  lists:
+    errors:
+      limit: Lí已經加kàu列表數ê盡磅ah。
   login_activities:
     authentication_methods:
+      otp: 雙因素認證app
+      password: 密碼
+      sign_in_token: 電子批ê安全碼
       webauthn: 安全檢查
+    description_html: Nā lí看見認bē出ê活動，請考慮改lí ê密碼kap啟用雙因素認證。
+    empty: 無認證ê歷史
+    failed_sign_in_html: Uì %{ip} (%{browser}) 用 %{method} 試登入失敗
+    successful_sign_in_html: Uì %{ip} (%{browser}) 用 %{method} 登入成功
+    title: 認證歷史
+  mail_subscriptions:
+    unsubscribe:
+      action: Hennh，mài訂
+      complete: 無訂ah
+      confirmation_html: Lí kám確定beh取消訂 %{domain} ê Mastodon 內底 ê %{type} kàu lí ê電子批 %{email}？Lí ē當隨時對lí ê<a href="%{settings_path}">電子批通知設定</a>重訂。
+      emails:
+        notification_emails:
+          favourite: 收藏通知電子批
+          follow: 跟tuè通知電子批
+          follow_request: 跟tuè請求電子批
+          mention: 提起通知電子批
+          reblog: 轉送通知電子批
+      resubscribe_html: Nā出tshê取消訂，lí通重訂tuì lí ê<a href="%{settings_path}">電子批通知設定</a>。
+      success_html: Lí bē koh收著佇 %{domain} ê Mastodon內底ê %{type} kàu lí ê電子批 %{email}。
+      title: 取消訂
+  media_attachments:
+    validations:
+      images_and_video: Bē當佇有影像ê PO文內底加影片
+      not_found: Tshuē無媒體 %{ids}，或者有kah佇別篇PO文
+      not_ready: Bē當kah iáu bē處理suah ê檔案。請等leh koh試！
+      too_many: Bē當kah超過4 ê檔案
+  migrations:
+    acct: Suá kàu
+    cancel: 取消重轉
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:

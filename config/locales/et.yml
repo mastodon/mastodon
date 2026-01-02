@@ -7,6 +7,8 @@ et:
     hosted_on: Mastodoni teenus serveris %{domain}
     title: Veebirakenduse teave
   accounts:
+    errors:
+      cannot_be_added_to_collections: Seda kontot ei saa kogusse lisada.
     followers:
       one: Jälgija
       other: Jälgijaid
@@ -846,6 +848,7 @@ et:
         publish_statistics: Avalda statistika
         title: Avastamine
         trends: Trendid
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Kõigile
         disabled: Mitte kellelegi
@@ -1316,6 +1319,13 @@ et:
     hint_html: "<strong>Nõuanne:</strong> Me ei küsi salasõna uuesti järgmise tunni jooksul."
     invalid_password: Vigane salasõna
     prompt: Jätkamiseks salasõna veelkord
+  color_scheme:
+    auto: Auto
+    dark: Tume
+    light: Hele
+  contrast:
+    auto: Auto
+    high: Suur
   crypto:
     errors:
       invalid_key: ei ole õige Ed25519 ega Curve25519 võti
@@ -2188,4 +2198,5 @@ et:
     otp_required: Turvavõtmete kasutamiseks tuleb eelnevalt sisse lülitada kaheastmeline autentimine.
     registered_on: Registreeritud %{date}
   wrapstodon:
+    description: Vaata, kuidas %{name} kasutas Mastodoni see aasta!
     title: "%{year}. aasta Mastodoni kokkuvõte: %{name}"
