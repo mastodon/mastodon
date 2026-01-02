@@ -107,7 +107,8 @@ RSpec.describe 'API V1 Annual Reports' do
         before do
           travel_to Time.utc(2025, 12, 20)
 
-          status = Fabricate(:status, visibility: :public, account: user.account)
+          # Define the ID manually as it is otherwise handled by the database, which is not affected by `travel_to`
+          status = Fabricate(:status, visibility: :public, account: user.account, id: Mastodon::Snowflake.id_at(Time.now.utc))
           status.tags << Fabricate(:tag)
         end
 
@@ -129,7 +130,8 @@ RSpec.describe 'API V1 Annual Reports' do
         before do
           travel_to Time.utc(2025, 6, 20)
 
-          status = Fabricate(:status, visibility: :public, account: user.account)
+          # Define the ID manually as it is otherwise handled by the database, which is not affected by `travel_to`
+          status = Fabricate(:status, visibility: :public, account: user.account, id: Mastodon::Snowflake.id_at(Time.now.utc))
           status.tags << Fabricate(:tag)
         end
 
