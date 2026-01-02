@@ -40,10 +40,10 @@ class ConnectionPool::SharedConnectionPool < ConnectionPool
     if preferred_tag.is_a?(Hash) && preferred_tag[:force]
       # ConnectionPool 2.4+ calls `checkin(force: true)` after fork.
       # When this happens, we should remove all connections from Thread.current
-  
+
       connection_keys = ::Thread.current.keys.select { |key| key.to_s.start_with?("#{@key}-") && !key.to_s.start_with?("#{@key_count}-") }
       count_keys = ::Thread.current.keys.select { |key| key.to_s.start_with?("#{@key_count}-") }
-  
+
       connection_keys.each do |key|
         @available.push(::Thread.current[key])
         ::Thread.current[key] = nil
