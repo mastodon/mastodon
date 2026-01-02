@@ -5,30 +5,35 @@
   .filter-subset
     %strong= t('admin.reports.status')
     %ul
-      %li= filter_link_to t('admin.reports.unresolved'), resolved: nil
-      %li= filter_link_to t('admin.reports.resolved'), resolved: '1'
+      %li= filter_link_to t('admin.reports.all'), status: 'all'
+      %li= filter_link_to t('admin.reports.unresolved'), status: 'unresolved'
+      %li= filter_link_to t('admin.reports.resolved'), status: 'resolved'
   .filter-subset
     %strong= t('admin.reports.target_origin')
     %ul
       %li= filter_link_to t('admin.accounts.location.all'), target_origin: nil
-      %li= filter_link_to t('admin.accounts.location.local'), target_origin: 'local'
-      %li= filter_link_to t('admin.accounts.location.remote'), target_origin: 'remote'
+      %li= filter_link_to t('admin.accounts.location.local'), target_origin: 'local', search_term: nil, search_type: nil
+      %li= filter_link_to t('admin.accounts.location.remote'), target_origin: 'remote', search_term: nil, search_type: nil
 
 = form_with url: admin_reports_url, method: :get, class: :simple_form do |form|
   .fields-group
-    - ReportFilter::KEYS.each do |key|
-      = form.hidden_field key, value: params[key] if params[key].present?
+    = form.hidden_field :status, value: 'all'
 
-    - %i(by_target_domain).each do |key|
-      .input.string.optional
-        = form.text_field key,
-                          value: params[key],
-                          class: 'string optional',
-                          placeholder: I18n.t("admin.reports.#{key}")
+    .input.string.optional.input--with-select
+      = form.select :search_type, options_for_select([[I18n.t('admin.reports.search_type_target'), 'target'], [I18n.t('admin.reports.search_type_source'), 'source']], params[:search_type] || 'target')
+      = form.text_field :search_term,
+                        value: params[:search_term],
+                        class: 'string optional',
+                        placeholder: I18n.t('admin.reports.search_term')
+
+    %p.hint= t('admin.reports.search_help_html')
 
     .actions
       %button.button= t('admin.accounts.search')
       = link_to t('admin.accounts.reset'), admin_reports_path, class: 'button button--dangerous'
+
+- if @reports.empty?
+  = nothing_here 'nothing-here'
 
 - @reports.group_by(&:target_account).each do |target_account, reports|
   .report-card
@@ -72,8 +77,14 @@
                 = t('admin.reports.forwarded_to', domain: target_account.domain)
 
           .report-card__summary__item__assigned
+            - if report.action_taken?
+              = t('admin.reports.resolved')
+            - else
+              = t('admin.reports.unresolved')
+            %br
             - if report.assigned_account.present?
               = admin_account_link_to report.assigned_account
             - else
-              \-
-= paginate @reports
+              = t('admin.reports.not_assigned')
+
+= paginate @reports unless @reports.empty?
