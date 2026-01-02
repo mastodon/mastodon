@@ -52,7 +52,7 @@ export const HighlightedPost: React.FC<{
   );
 
   if (!status) {
-    return <div className={classNames(styles.box, styles.mostBoostedPost)} />;
+    return null;
   }
 
   let label;
