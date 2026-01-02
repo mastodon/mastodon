@@ -32,6 +32,11 @@ export const HoverCardAccount = forwardRef<
   const account = useAppSelector((state) =>
     accountId ? state.accounts.get(accountId) : undefined,
   );
+  // Get the moved account data if this account has moved
+  // This allows us to show proper follow button for the new account
+  const movedAccount = useAppSelector((state) =>
+    account?.moved ? state.accounts.get(account.moved) : undefined,
+  );
   const suspended = account?.suspended;
   const hidden = useAppSelector((state) =>
     accountId ? getAccountHidden(state, accountId) : undefined,
@@ -96,6 +101,28 @@ export const HoverCardAccount = forwardRef<
                   defaultMessage='This profile has been hidden by the moderators of {domain}.'
                   values={{ domain }}
                 />
+              )}
+            </div>
+          ) : account.moved ? (
+            // Issue #35623: Show moved account notice instead of regular content
+            // This prevents following the old account and provides a link + follow button for the new account
+            <div className='hover-card__moved-notice'>
+              <FormattedMessage
+                id='account.moved_to_short'
+                defaultMessage='This account has moved to {acct}'
+                values={{
+                  acct: movedAccount ? (
+                    <Link to={`/@${movedAccount.acct}`}>
+                      <strong>@{movedAccount.acct}</strong>
+                    </Link>
+                  ) : (
+                    <strong>@{account.moved}</strong>
+                  ),
+                }}
+              />
+              {/* Follow button that follows the NEW account, not the old one */}
+              {movedAccount && (
+                <FollowButton accountId={movedAccount.id} compact />
               )}
             </div>
           ) : (
