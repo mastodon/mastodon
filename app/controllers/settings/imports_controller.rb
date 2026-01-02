@@ -13,6 +13,7 @@ class Settings::ImportsController < Settings::BaseController
     domain_blocking: 'blocked_domains_failures.csv',
     bookmarks: 'bookmarks_failures.csv',
     lists: 'lists_failures.csv',
+    filters: 'filters_failures.csv',
   }.freeze
 
   TYPE_TO_HEADERS_MAP = {
@@ -22,6 +23,7 @@ class Settings::ImportsController < Settings::BaseController
     domain_blocking: false,
     bookmarks: false,
     lists: false,
+    filters: false,
   }.freeze
 
   RECENT_IMPORTS_LIMIT = 10
@@ -55,6 +57,8 @@ class Settings::ImportsController < Settings::BaseController
               csv << [row.data['uri']]
             when :lists
               csv << [row.data['list_name'], row.data['acct']]
+            when :filters
+              csv << [row.data['title'], row.data['context'], row.data['keywords'], row.data['whole_word'], row.data['action'], row.data['expires_at']]
             end
           end
         end
