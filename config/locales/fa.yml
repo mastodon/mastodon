@@ -7,6 +7,8 @@ fa:
     hosted_on: ماستودون میزبانی شده روی %{domain}
     title: درباره
   accounts:
+    errors:
+      cannot_be_added_to_collections: این حساب نمی‌تواند به مجموعه‌ها اضافه شود.
     followers:
       one: پی‌گیرنده
       other: پی‌گیرنده
@@ -846,6 +848,7 @@ fa:
         publish_statistics: انتشار آمار
         title: کشف
         trends: پرطرفدارها
+        wrapstodon: خلاصهٔ ماستودون
       domain_blocks:
         all: برای همه
         disabled: برای هیچ‌کدام
@@ -1316,6 +1319,13 @@ fa:
     hint_html: "<strong>نکته:</strong> ما در یک ساعت آینده گذرواژه‌تان را از شما نخواهیم پرسید."
     invalid_password: گذرواژه نامعتبر
     prompt: برای ادامه گذرواژه‌تان را تأیید کنید
+  color_scheme:
+    auto: خودکار
+    dark: تیره
+    light: روشن
+  contrast:
+    auto: خودکار
+    high: زیاد
   crypto:
     errors:
       invalid_key: یک کلید معتبر Ed25519 یا Curve25519 نیست
@@ -2186,4 +2196,5 @@ fa:
     otp_required: برای استفاده از کلیدهای امنیتی، لطفاً ابتدا تأیید هویت دو عاملی را به کار بیندازید.
     registered_on: ثبت‌شده در %{date}
   wrapstodon:
+    description: دیدن چگونگی استفادهٔ امسال %{name} از ماستودون
     title: خلاصهٔ ماستودون %{year} برای %{name}

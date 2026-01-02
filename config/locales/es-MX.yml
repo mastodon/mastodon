@@ -1319,6 +1319,13 @@ es-MX:
     hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
     invalid_password: Contraseña incorrecta
     prompt: Confirmar contraseña para seguir
+  color_scheme:
+    auto: Automático
+    dark: Oscuro
+    light: Claro
+  contrast:
+    auto: Automático
+    high: Alto
   crypto:
     errors:
       invalid_key: no es una clave Ed25519 o Curve25519 válida
@@ -1896,7 +1903,7 @@ es-MX:
     notifications: Notificaciones por correo electrónico
     preferences: Preferencias
     profile: Perfil
-    relationships: Siguiendo y seguidores
+    relationships: Seguimientos
     severed_relationships: Relaciones cortadas
     statuses_cleanup: Eliminación automática de publicaciones
     strikes: Amonestaciones de moderación
@@ -1910,7 +1917,7 @@ es-MX:
       user_domain_block: Bloqueaste %{target_name}
     lost_followers: Seguidores perdidos
     lost_follows: Cuentas seguidas perdidas
-    preamble: Puedes perder cuentas seguidas y seguidores cuando bloqueas un dominio o cuando tus moderadores deciden suspender un servidor remoto. Cuando esto suceda, podrás descargar listas de relaciones cortadas, para ser inspeccionadas y posiblemente importadas en otro servidor.
+    preamble: Es posible que pierdas seguidores y seguidos cuando bloquees un dominio o cuando tus moderadores decidan suspender un servidor remoto. Cuando eso ocurra, podrás descargar listas de relaciones interrumpidas, para inspeccionarlas y posiblemente importarlas a otro servidor.
     purged: La información sobre este servidor ha sido purgada por los administradores de tu servidor.
     type: Evento
   statuses:
