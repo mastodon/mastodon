@@ -6,7 +6,7 @@ shared:
   software_update_url: <%= ENV.fetch('UPDATE_CHECK_URL', 'https://api.joinmastodon.org/update-check')&.to_json %>
   source:
     base_url: <%= ENV.fetch('SOURCE_BASE_URL', nil)&.to_json %>
-    repository: <%= ENV.fetch('GITHUB_REPOSITORY', 'mastodon/mastodon') %>
+    repository: <%= ENV.fetch('GITHUB_REPOSITORY', nil).presence || 'mastodon/mastodon' %>
     tag: <%= ENV.fetch('SOURCE_TAG', nil) %>
   version:
     metadata: <%= ENV.fetch('MASTODON_VERSION_METADATA', nil)&.to_json %>
