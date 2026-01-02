@@ -19,7 +19,7 @@ class GroupedNotificationsPresenter < ActiveModelSerializers::Model
   def accounts
     @accounts ||= begin
       if partial_avatars?
-        @grouped_notifications.map { |group| group.sample_accounts.first }.compact.uniq(&:id)
+        @grouped_notifications.filter_map { |group| group.sample_accounts.first }.compact.uniq(&:id)
       else
         @grouped_notifications.flat_map(&:sample_accounts).compact.uniq(&:id)
       end
