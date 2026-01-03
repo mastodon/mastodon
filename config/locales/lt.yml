@@ -1270,8 +1270,9 @@ lt:
       public: Vieša
   statuses_cleanup:
     enabled_hint: Automatiškai ištrina įrašus, kai jie pasiekia nustatytą amžiaus ribą, nebent jie atitinka vieną iš toliau nurodytų išimčių
+    explanation: Automatinis ištrynimas atliekamas su žemu prioritetu. Gali būti vėlavimas tarp amžiaus ribos pasiekimo ir ištrynimo.
     ignore_reblogs: Ignoruoti pasidalinimus
-    interaction_exceptions_explanation: Atkreipk dėmesį, kad negarantuojama, jog įrašai nebus ištrinti, jei jų mėgstamumo ar pasidalinimo riba bus žemesnė, nors vieną kartą ji jau buvo viršyta.
+    interaction_exceptions_explanation: Įrašai, kurie laikinai viršija mėgstamų ar pasidalinimų ribą, gali būti išsaugomi net jei vėliau jie sumažėja.
     keep_polls_hint: Neištrina jokių tavo apklausų
     keep_self_bookmark: Laikyti įrašus, kuriuos pažymėjai su žyma
     keep_self_bookmark_hint: Neištrina tavo pačių įrašų, jei esi juos pažymėjęs (-usi)
