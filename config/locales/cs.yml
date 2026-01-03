@@ -2059,11 +2059,11 @@ cs:
     enabled: Automaticky mazat staré příspěvky
     enabled_hint: Automaticky maže vaše příspěvky poté, co dosáhnou stanoveného stáří, nesplňují-li některou z výjimek níže
     exceptions: Výjimky
-    explanation: Protože je mazání příspěvků nákladná operace, je prováděno pomalu v čase, kdy server není zaneprázdněn ničím jiným. Z tohoto důvodu mohou být vaše příspěvky smazány delší dobu po dosažení stanoveného stáří.
+    explanation: Automatické smazání je prováděno s nízkou prioritou. Může dojít ke zpoždění mezi dosažením věkové hranice a odstraněním.
     ignore_favs: Ignorovat oblíbení
     ignore_reblogs: Ignorovat boosty
     interaction_exceptions: Výjimky založené na interakcích
-    interaction_exceptions_explanation: Upozorňujeme, že není zaručeno smazání příspěvků, které nedosahují stanového počtu oblíbení nebo boostnutí poté, co už byly jednou zkontrolovány.
+    interaction_exceptions_explanation: Příspěvky, které dočasně překročí práh oblíbených nebo boostů, mohou být zachovány, i pokud se později počet sníží.
     keep_direct: Zachovat přímé zprávy
     keep_direct_hint: Nesmaže žádnou z vašich přímých zpráv
     keep_media: Zachovat příspěvky s mediálními přílohami

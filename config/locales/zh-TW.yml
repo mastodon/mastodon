@@ -1932,11 +1932,11 @@ zh-TW:
     enabled: 自動刪除舊嘟文
     enabled_hint: 一旦達到指定的保存期限，就會自動刪除您的嘟文，除非該嘟文符合下列例外
     exceptions: 例外
-    explanation: 因為刪除嘟文是耗費資源的操作，當伺服器不那麼忙碌時才會慢慢完成。因此，您的嘟文將於到達保存期限後一段時間才會被刪除。
+    explanation: 自動刪除將以低優先度執行。達到刪除效期門檻與實際刪除時間可能有些許延遲。
     ignore_favs: 忽略最愛數
     ignore_reblogs: 忽略轉嘟數
     interaction_exceptions: 基於互動的例外規則
-    interaction_exceptions_explanation: 請注意嘟文是無法保證被刪除的，如果於一次處理過後嘟文低於最愛或轉嘟的門檻。
+    interaction_exceptions_explanation: 暫時超過最愛或轉嘟門檻之嘟文若稍候下降後，可能將被保留。
     keep_direct: 保留私訊
     keep_direct_hint: 不會刪除任何您的私訊
     keep_media: 保留包含多媒體附加檔案之嘟文

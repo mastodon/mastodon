@@ -1973,11 +1973,11 @@ da:
     enabled: Slet automatisk gamle indlæg
     enabled_hint: Sletter automatisk dine indlæg, når disse når en bestemt alder, medmindre de matcher en af undtagelserne nedenfor
     exceptions: Undtagelser
-    explanation: Da sletning af indlæg er en kostbar operation, foregår dette langsomt over tid, når serveren ikke er optaget af andre opgaver. Af denne grund kan dine indlæg blive slettet et stykke tid efter, at de har nået alderstærsklen.
+    explanation: Automatisk sletning udføres med lav prioritet. Der kan være en forsinkelse mellem, at aldersgrænsen nås, og sletning.
     ignore_favs: Ignorér favoritter
     ignore_reblogs: Ignorér fremhævelser
     interaction_exceptions: Undtagelser baseret på interaktioner
-    interaction_exceptions_explanation: Bemærk, at det ikke garanteres, at indlæg slettes, hvis de når under favorit- eller fremhævelses-tærsklerne efter én gang at været nået over dem.
+    interaction_exceptions_explanation: Indlæg, der midlertidigt overskrider favorit- eller fremhævelsestærsklen, kan blive bevaret, selvom de senere reduceres.
     keep_direct: Behold direkte beskeder
     keep_direct_hint: Sletter ingen af dine direkte beskeder
     keep_media: Behold indlæg med medievedhæftninger
