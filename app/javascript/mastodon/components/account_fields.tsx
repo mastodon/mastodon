@@ -27,6 +27,7 @@ export const AccountFields: React.FC<Pick<Account, 'fields' | 'emojis'>> = ({
           <EmojiHTML
             as='dt'
             htmlString={pair.name_emojified}
+            extraEmojis={emojis}
             className='translate'
             {...htmlHandlers}
           />
