@@ -21,12 +21,28 @@ RSpec.describe 'API V1 Accounts Statuses' do
     end
 
     context 'with only media' do
-      it 'returns http success' do
+      let(:status_attachments) { [Fabricate(:media_attachment, account: user.account)] }
+      let(:removed_status_attachments) { [Fabricate(:media_attachment, account: user.account)] }
+      let!(:status_with_unordered_attachments) { Fabricate(:status, account: user.account, media_attachments: [Fabricate(:media_attachment, account: user.account)]) }
+      let!(:status) { Fabricate(:status, account: user.account, media_attachments: status_attachments, ordered_media_attachment_ids: status_attachments.pluck(:id)) }
+      let!(:status_with_edited_out_media) { Fabricate(:status, account: user.account, media_attachments: removed_status_attachments, ordered_media_attachment_ids: removed_status_attachments.pluck(:id)) }
+
+      before do
+        UpdateStatusService.new.call(status_with_edited_out_media, user.account_id, text: 'edited', media_ids: [])
+      end
+
+      it 'returns http success with expected statuses' do
         get "/api/v1/accounts/#{user.account.id}/statuses", params: { only_media: true }, headers: headers
 
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
+        expect(response.parsed_body)
+          .to have_attributes(size: 2)
+          .and contain_exactly(
+            include(id: status_with_unordered_attachments.id.to_s),
+            include(id: status.id.to_s)
+          )
       end
     end
 
