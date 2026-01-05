@@ -1973,11 +1973,11 @@ gl:
     enabled: Borrar automáticamente publicacións antigas
     enabled_hint: Borra automáticamente as túas publicacións unha vez acadan certa lonxevidade, a menos que cumpran algunha destas excepcións
     exceptions: Excepcións
-    explanation: O borrado de publicacións vaise facendo aos poucos cando o servidor non ten moito traballo, é unha tarefa que consume moitos recursos. Así, a eliminación das túas publicacións podería ser lixeiramente posterior a cando lle correspondería por antigüidade.
+    explanation: O proceso de borrado automático ten baixa prioridade. Podería haber un retraso entre acadar o momento de borrado e que se borre realmente.
     ignore_favs: Ignorar favoritas
     ignore_reblogs: Ignorar promocións
     interaction_exceptions: Excepcións baseadas en interaccións
-    interaction_exceptions_explanation: Ten en conta que non hai garantía de que se eliminen as túas publicacións se baixan do límite de promocións ou favorecementos se nalgún momento o tivese superado.
+    interaction_exceptions_explanation: As publicación que excederon de xeito temporal o límite de favorecementos ou promocións poderían quedar retidas incluso se despois diminuíse ese valor.
     keep_direct: Manter mensaxes directas
     keep_direct_hint: Non borrar ningunha das túas mensaxes directas
     keep_media: Manter publicacións que conteñen multimedia

@@ -1617,6 +1617,70 @@ nan:
   migrations:
     acct: Suá kàu
     cancel: 取消重轉
+    cancel_explanation: 取消重轉ē重啟用lí tsit-má ê口座，毋過bē kā suá kah tsit ê口座ê跟tuè者suá轉去。
+    cancelled_msg: 取消重轉成功。
+    errors:
+      already_moved: kap已經suá ê口座相kâng
+      missing_also_known_as: 毋是tsit ê口座ê別名
+      move_to_self: bē當是目前ê口座
+      not_found: tshuē無
+      on_cooldown: Lí leh歇喘
+    followers_count: 轉ê時ê跟tuè ê
+    incoming_migrations: 對無仝ê口座轉
+    incoming_migrations_html: Nā欲對別ê口座轉kàu tsia，tāi先tio̍h<a href="%{path}">開口座ê別名</a>。
+    moved_msg: Lí ê口座tsit-má teh重轉kàu %{acct}，lí ê跟tuè ê mā ē轉。
+    not_redirecting: Lí ê口座iáu buē重轉kàu其他ê口座。
+    on_cooldown: Lí最近有suá lí ê口座。Tsit ê功能ē佇 %{count} kang後koh開放。
+    past_migrations: 過去ê遷suá
+    proceed_with_move: Suá跟tuè ê
+    redirected_msg: Lí ê口座tsit-má重轉kàu %{acct}。
+    redirecting_to: Lí ê口座leh重轉kàu %{acct}。
+    set_redirect: 設定重轉
+    warning:
+      backreference_required: 新ê口座定著先設定kātsit-ê口座引用倒轉
+      before: 佇繼續進前，請斟酌讀下kha ê說明：
+      cooldown: 轉口座了後會有等待ê期間，hit時lí bē當koh suá
+      disabled_account: 了後，lí 目前ê口座ē完全bē當用。毋過，lí ē有接近使用權，來輸出資料kap重啟用。
+      followers: Tsit ê動作ē對tsit má ê口座suá逐个跟tuè ê，kàu新ê口座
+      only_redirect_html: Á是lí通<a href="%{path}">kan-ta 佇lí ê個人資料khǹg重轉</a>。
+      other_data: 其他ê資料bē自動轉（包含lí ê PO文kap lí跟tuè ê口座列單）
+      redirect: Lí tsit-má 口座ê個人資料ē更新，加添重轉標示，而且buē包佇tshiau-tshuē ê結果。
+  moderation:
+    title: 管理
+  move_handler:
+    carry_blocks_over_text: Tsit ê用者對lí有封鎖ê %{acct} suá過來。
+    carry_mutes_over_text: Tsit ê用者對lí有消音ê %{acct} suá過來。
+    copy_account_note_text: Tsit ê用者對 %{acct} suá過來，下kha是lí進前對伊ê註：
+  navigation:
+    toggle_menu: 切換目錄
+  notification_mailer:
+    admin:
+      report:
+        subject: "%{name} 送出檢舉"
+      sign_up:
+        subject: "%{name} 註冊ah"
+    favourite:
+      body: Lí ê PO文hōo %{name} kah意：
+      subject: "%{name} kah意lí ê PO文"
+      title: 新ê kah意
+    follow:
+      body: "%{name} tsit-má跟tuè lí！"
+      subject: "%{name} tsit-má跟tuè lí"
+      title: 新ê跟tuè者
+    follow_request:
+      action: 管理跟tuè ê請求
+      body: "%{name} 請求跟tuè lí"
+      subject: 等待跟tuè lí ê：%{name}
+      title: 新ê跟tuè請求
+    mention:
+      action: 回應
+      body: "%{name} 佇PO文kā lí提起："
+      subject: "%{name} 佇PO文kā lí提起"
+      title: 新ê提起
+    moderation_warning:
+      subject: Lí有收著管理ê警告
+    poll:
+      subject: "%{name} 舉辦ê投票suah ah"
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:

@@ -1973,11 +1973,11 @@ es-AR:
     enabled: Eliminar automáticamente mensajes antiguos
     enabled_hint: Elimina automáticamente tus mensajes una vez que alcancen un umbral de edad especificado, a menos que coincidan con una de las excepciones a continuación
     exceptions: Exepciones
-    explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente con el tiempo cuando el servidor no está ocupado. Por esta razón, tus mensajes pueden ser borrados un poco después de que alcancen el umbral de edad.
+    explanation: La eliminación automática se ejecuta con baja prioridad. Puede haber un retraso entre alcanzar el umbral de edad y eliminar los mensajes.
     ignore_favs: Ignorar mensajes marcados como favoritos
     ignore_reblogs: Ignorar adhesiones
     interaction_exceptions: Excepciones basadas en interacciones
-    interaction_exceptions_explanation: Tené en cuenta que no hay garantía de que los mensajes se eliminen si van por debajo del umbral de los mensajes marcados como favorito o de las adhesiones después de haberlos superado una vez.
+    interaction_exceptions_explanation: Los mensajes que excedan temporalmente el umbral de favoritos o de adhesiones pueden ser retenidos incluso si más tarde se reducen.
     keep_direct: Conservar mensajes directos
     keep_direct_hint: No elimina ninguno de tus mensajes directos
     keep_media: Conservar mensajes con archivos adjuntos
