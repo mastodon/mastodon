@@ -31,7 +31,7 @@
 
   "onCreateCommand": {
     "git": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-    "nvm": "nvm install"
+    "nvm": "bash -c 'source /usr/local/share/nvm/nvm.sh && nvm install'"
   },
   "postCreateCommand": "bin/setup",
   "waitFor": "postCreateCommand",
