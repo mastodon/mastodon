@@ -5,7 +5,7 @@ services:
       context: ..
       dockerfile: .devcontainer/Dockerfile
       args:
-        - SKIP_RBENV_RBUILD=true
+        SKIP_RBENV_RBUILD: "true"
     volumes:
       - ..:/workspaces/mastodon:cached
     environment:
