@@ -31,7 +31,7 @@
 
   "onCreateCommand": {
     "git": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-    "mise": "mise install node@$(cat .nvmrc)"
+    "mise": "mise use -g node@$(cat .nvmrc)"
   },
   "postCreateCommand": "bin/setup",
   "waitFor": "postCreateCommand",
