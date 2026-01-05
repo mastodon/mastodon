@@ -36,9 +36,9 @@
     "DISABLE_FORGERY_REQUEST_PROTECTION": "true",
     "ES_ENABLED": "",
     "LIBRE_TRANSLATE_ENDPOINT": "",
-    "MISE_DATA_DIR": "${containerEnv:HOME}/.local/share/mise",
-    "MISE_CONFIG_DIR": "${containerEnv:HOME}/.config/mise",
-    "MISE_CACHE_DIR": "${containerEnv:HOME}/.cache/mise"
+    "MISE_DATA_DIR": "/home/vscode/.local/share/mise",
+    "MISE_CONFIG_DIR": "/home/vscode/.config/mise",
+    "MISE_CACHE_DIR": "/home/vscode/.cache/mise"
   },
 
   "onCreateCommand": {
