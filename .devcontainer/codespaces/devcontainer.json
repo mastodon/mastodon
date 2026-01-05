@@ -38,7 +38,10 @@
     "LIBRE_TRANSLATE_ENDPOINT": ""
   },
 
-  "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "onCreateCommand": {
+    "git": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+    "nvm": "nvm install"
+  },
   "postCreateCommand": "bin/setup",
   "waitFor": "postCreateCommand",
 

@@ -1,11 +1,6 @@
 # For details, see https://github.com/devcontainers/images/tree/main/src/ruby
 FROM mcr.microsoft.com/devcontainers/ruby:1-3.3-bookworm
 
-# Install node version from .nvmrc
-WORKDIR /app
-COPY .nvmrc .
-RUN /bin/bash --login -i -c "nvm install"
-
 # Install additional OS packages
 RUN apt-get update && \
     export DEBIAN_FRONTEND=noninteractive && \
