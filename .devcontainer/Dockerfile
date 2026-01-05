@@ -1,14 +1,10 @@
-# For details, see https://github.com/devcontainers/images/tree/main/src/ruby
-FROM mcr.microsoft.com/devcontainers/ruby:1-3.3-bookworm
-
-#rbenv skip
-ARG SKIP_RBENV_RBUILD=true
-ENV SKIP_RBENV_RBUILD=${SKIP_RBENV_RBUILD}
+# For details, see https://github.com/rails/devcontainer/tree/main/images/ruby/.devcontainer
+FROM ghcr.io/rails/devcontainer/images/ruby:2.2.2-3.4.8
 
 # Install additional OS packages
-RUN apt-get update && \
+RUN sudo apt-get update && \
     export DEBIAN_FRONTEND=noninteractive && \
-    apt-get -y install --no-install-recommends libicu-dev libidn11-dev ffmpeg imagemagick libvips42 libpam-dev
+    sudo apt-get -y install --no-install-recommends libicu-dev libidn11-dev ffmpeg imagemagick libvips42 libpam-dev
 
 # Disable download prompt for Corepack
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0

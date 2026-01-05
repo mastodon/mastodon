@@ -8,10 +8,17 @@ def system!(*args)
   system(*args, exception: true)
 end
 
+def add_mise_to_path
+  mise_shims = File.expand_path('~/.local/share/mise/shims')
+  ENV['PATH'] = "#{mise_shims}:#{ENV['PATH']}" if Dir.exist?(mise_shims)
+end
+
 FileUtils.chdir APP_ROOT do
   # This script is a way to set up or update your development environment automatically.
   # This script is idempotent, so that you can run it at any time and get an expectable outcome.
   # Add necessary setup steps to this file.
+
+  add_mise_to_path
 
   puts "\n== Installing Ruby dependencies =="
   system! 'gem install bundler --conservative'

@@ -23,7 +23,7 @@
     }
   },
 
-  "remoteUser": "root",
+  "remoteUser": "vscode",
 
   "otherPortsAttributes": {
     "onAutoForward": "silent"
@@ -31,7 +31,7 @@
 
   "onCreateCommand": {
     "git": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-    "nvm": "bash -c 'source /usr/local/share/nvm/nvm.sh && nvm install'"
+    "mise": "mise install node@$(cat .nvmrc)"
   },
   "postCreateCommand": "bin/setup",
   "waitFor": "postCreateCommand",
