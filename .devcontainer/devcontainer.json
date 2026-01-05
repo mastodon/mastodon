@@ -29,6 +29,12 @@
     "onAutoForward": "silent"
   },
 
+  "remoteEnv": {
+    "MISE_DATA_DIR": "${containerEnv:HOME}/.local/share/mise",
+    "MISE_CONFIG_DIR": "${containerEnv:HOME}/.config/mise",
+    "MISE_CACHE_DIR": "${containerEnv:HOME}/.cache/mise"
+  },
+
   "onCreateCommand": {
     "git": "git config --global --add safe.directory ${containerWorkspaceFolder}",
     "mise": "mise install node@$(cat .nvmrc)"
