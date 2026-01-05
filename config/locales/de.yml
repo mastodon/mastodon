@@ -587,12 +587,12 @@ de:
         limited: Eingeschränkt
         title: Server
       moderation_notes:
-        create: Moderationsnotiz hinzufügen
-        created_msg: Moderationsnotiz für diesen Server erfolgreich erstellt!
-        description_html: Hinterlasse Notizen für dich und deine Moderator*innen
-        destroyed_msg: Moderationsnotiz für diesen Server erfolgreich entfernt!
+        create: Moderationsvermerk hinzufügen
+        created_msg: Moderationsvermerk für diesen Server erfolgreich erstellt!
+        description_html: Hinterlasse interne Vermerke für dich und deine Moderator*innen
+        destroyed_msg: Moderationvermerk für diesen Server erfolgreich entfernt!
         placeholder: Informationen über diesen Server, ergriffene Maßnahmen oder andere Sachverhalte, die in Zukunft nützlich sein könnten.
-        title: Moderationsnotizen
+        title: Moderationsvermerke
       private_comment: Privater Kommentar
       public_comment: Öffentlicher Kommentar
       purge: Säubern
@@ -647,13 +647,13 @@ de:
       status: Status
       title: Relais
     report_notes:
-      created_msg: Notiz zur Meldung erfolgreich erstellt!
-      destroyed_msg: Notiz zur Meldung erfolgreich entfernt!
+      created_msg: Vermerk zur Meldung erfolgreich erstellt!
+      destroyed_msg: Vermerk zur Meldung erfolgreich entfernt!
     reports:
       account:
         notes:
-          one: "%{count} Notiz"
-          other: "%{count} Notizen"
+          one: "%{count} Vermerk"
+          other: "%{count} Vermerke"
       action_log: Protokoll
       action_taken_by: Maßnahme ergriffen von
       actions:
@@ -673,12 +673,12 @@ de:
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
       assigned: Zugewiesene*r Moderator*in
-      by_target_domain: Domain des gemeldeten Kontos
+      by_target_domain: Server des gemeldeten Kontos
       cancel: Abbrechen
       category: Kategorie
       category_description_html: Der Grund, weshalb dieses Konto und/oder der Inhalt gemeldet worden ist, wird in der Kommunikation mit dem gemeldeten Konto erwähnt
       comment:
-        none: Kein
+        none: Ohne ergänzenden Kommentar
       comment_description_html: "%{name} ergänzte die Meldung um folgende Hinweis:"
       confirm: Bestätigen
       confirm_action: Maßnahme gegen @%{acct} bestätigen
@@ -696,9 +696,9 @@ de:
         create_and_resolve: Mit Notiz als geklärt markieren
         create_and_unresolve: Mit Notiz wieder öffnen
         delete: Löschen
-        placeholder: Bitte beschreibe, welche Maßnahmen bzw. Sanktionen ergriffen worden sind, und führe alles auf, was es Erwähnenswertes zu diesem Profil zu berichten gibt …
-        title: Notizen
-      notes_description_html: Internen Hinweis an dich und andere Moderator*innen hinterlassen
+        placeholder: Bitte beschreibe, welche Maßnahmen ergriffen worden sind, und führe alles auf, was es Erwähnenswertes zu diesem Profil zu berichten gibt …
+        title: Vermerke
+      notes_description_html: Internen Vermerk an dich und andere Moderator*innen hinterlassen
       processed_msg: Meldung Nr. %{id} erfolgreich bearbeitet
       quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
       remote_user_placeholder: das externe Profil von %{instance}
@@ -1973,11 +1973,11 @@ de:
     enabled: Alte Beiträge automatisch entfernen
     enabled_hint: Löscht automatisch deine Beiträge, sobald sie die angegebene Altersgrenze erreicht haben, es sei denn, sie entsprechen einer der unten angegebenen Ausnahmen
     exceptions: Ausnahmen
-    explanation: Damit der Server nicht durch das Löschen von Beiträgen ausgebremst wird, wartet die Mastodon-Software, bis wenig(er) los ist. Deshalb könnten deine Beiträge ggf. erst einige Zeit nach Erreichen der Altersgrenze gelöscht werden.
+    explanation: Automatisiertes Löschen erfolgt mit niedriger Priorität. Möglicherweise gibt es zwischen der erreichten Altersgrenze und des Löschvorgangs eine Verzögerung.
     ignore_favs: Favoriten ignorieren
     ignore_reblogs: Geteilte Beiträge ignorieren
     interaction_exceptions: Ausnahmen basierend auf Interaktionen
-    interaction_exceptions_explanation: Beachte, dass Beiträge nicht gelöscht werden, sobald deine Grenzwerte für Favoriten oder geteilte Beiträge einmal überschritten wurden – auch dann nicht, wenn diese Schwellenwerte mittlerweile nicht mehr erreicht werden.
+    interaction_exceptions_explanation: Beiträge, die vorübergehend die Grenzwerte für Favoriten und geteilte Beiträge überschreiten, können auch dann erhalten bleiben, wenn ihre Werte später zurückgehen.
     keep_direct: Private Erwähnungen behalten
     keep_direct_hint: Löscht keinen deiner Beiträge mit privaten Erwähnungen
     keep_media: Beiträge mit Medien behalten

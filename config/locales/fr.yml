@@ -1976,11 +1976,11 @@ fr:
     enabled: Supprimer automatiquement vos anciens messages
     enabled_hint: Supprime automatiquement vos messages une fois qu'ils ont atteint un seuil d'ancienneté défini, à moins qu'ils ne correspondent à l'une des exceptions ci-dessous
     exceptions: Exceptions
-    explanation: Parce que la suppression de messages est une opération lourde, cela se fait lentement au fil du temps lorsque le serveur n'est pas autrement occupé. Pour cette raison, vos messages peuvent être supprimés un peu plus tard que le seuil d'ancienneté défini.
+    explanation: La suppression automatique est effectuée avec une faible priorité. Il peut y avoir un délai entre le seuil d'ancienneté défini et la suppression effective.
     ignore_favs: Ignorer les favoris
     ignore_reblogs: Ignorer les partages
     interaction_exceptions: Exceptions basées sur les interactions
-    interaction_exceptions_explanation: Notez qu'il n'est pas garanti que les messages soient supprimés s'ils passent sous le seuil des favoris ou des partages une fois qu'ils les ont dépassés.
+    interaction_exceptions_explanation: Les messages ayant dépassé temporairement le seuil de favori ou de partage peuvent être conservés, même s'ils repassent sous le seuil.
     keep_direct: Conserver les messages directs
     keep_direct_hint: Ne supprime aucun de vos messages directs
     keep_media: Conserver les messages avec des fichiers médias joints
