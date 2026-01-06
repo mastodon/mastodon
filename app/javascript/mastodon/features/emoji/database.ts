@@ -1,54 +1,12 @@
 import { SUPPORTED_LOCALES } from 'emojibase';
-import type { Locale, ShortcodesDataset } from 'emojibase';
-import type { DBSchema, IDBPDatabase } from 'idb';
-import { openDB } from 'idb';
+import type { FlatCompactEmoji, Locale, ShortcodesDataset } from 'emojibase';
 
 import { EMOJI_DB_SHORTCODE_TEST } from './constants';
+import { openEmojiDB } from './db-schema';
+import type { Database } from './db-schema';
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
-import type { CustomEmojiData, UnicodeEmojiData, EtagTypes } from './types';
+import type { CustomEmojiData, EtagTypes } from './types';
 import { emojiLogger } from './utils';
-
-interface EmojiDB extends LocaleTables, DBSchema {
-  custom: {
-    key: string;
-    value: CustomEmojiData;
-    indexes: {
-      category: string;
-    };
-  };
-  shortcodes: {
-    key: string;
-    value: {
-      hexcode: string;
-      shortcodes: string[];
-    };
-    indexes: {
-      hexcode: string;
-      shortcodes: string[];
-    };
-  };
-  etags: {
-    key: EtagTypes;
-    value: string;
-  };
-}
-
-interface LocaleTable {
-  key: string;
-  value: UnicodeEmojiData;
-  indexes: {
-    group: number;
-    label: string;
-    order: number;
-    tags: string[];
-    shortcodes: string[];
-  };
-}
-type LocaleTables = Record<Locale, LocaleTable>;
-
-type Database = IDBPDatabase<EmojiDB>;
-
-const SCHEMA_VERSION = 2;
 
 const loadedLocales = new Set<Locale>();
 
@@ -60,75 +18,7 @@ const loadDB = (() => {
 
   // Actually load the DB.
   async function initDB() {
-    const db = await openDB<EmojiDB>('mastodon-emoji', SCHEMA_VERSION, {
-      upgrade(database, oldVersion, newVersion, trx) {
-        if (!database.objectStoreNames.contains('custom')) {
-          const customTable = database.createObjectStore('custom', {
-            keyPath: 'shortcode',
-            autoIncrement: false,
-          });
-          customTable.createIndex('category', 'category');
-        }
-
-        if (!database.objectStoreNames.contains('etags')) {
-          database.createObjectStore('etags');
-        }
-
-        for (const locale of SUPPORTED_LOCALES) {
-          if (!database.objectStoreNames.contains(locale)) {
-            const localeTable = database.createObjectStore(locale, {
-              keyPath: 'hexcode',
-              autoIncrement: false,
-            });
-            localeTable.createIndex('group', 'group');
-            localeTable.createIndex('label', 'label');
-            localeTable.createIndex('order', 'order');
-            localeTable.createIndex('tags', 'tags', { multiEntry: true });
-            localeTable.createIndex('shortcodes', 'shortcodes', {
-              multiEntry: true,
-            });
-          }
-          // Added in version 2.
-          const localeTable = trx.objectStore(locale);
-          if (!localeTable.indexNames.contains('shortcodes')) {
-            localeTable.createIndex('shortcodes', 'shortcodes', {
-              multiEntry: true,
-            });
-          }
-        }
-
-        if (!database.objectStoreNames.contains('shortcodes')) {
-          const shortcodeTable = database.createObjectStore('shortcodes', {
-            keyPath: 'hexcode',
-            autoIncrement: false,
-          });
-          shortcodeTable.createIndex('hexcode', 'hexcode');
-          shortcodeTable.createIndex('shortcodes', 'shortcodes', {
-            multiEntry: true,
-          });
-        }
-
-        log(
-          'Upgraded emoji database from version %d to %d',
-          oldVersion,
-          newVersion,
-        );
-      },
-      blocked(currentVersion, blockedVersion) {
-        log(
-          'Emoji database upgrade from version %d to %d is blocked',
-          currentVersion,
-          blockedVersion,
-        );
-      },
-      blocking(currentVersion, blockedVersion) {
-        log(
-          'Emoji database upgrade from version %d is blocking upgrade to %d',
-          currentVersion,
-          blockedVersion,
-        );
-      },
-    });
+    const db = await openEmojiDB();
     await syncLocales(db);
     log('Loaded database version %d', db.version);
     return db;
@@ -149,7 +39,7 @@ const loadDB = (() => {
   return loadPromise;
 })();
 
-export async function putEmojiData(emojis: UnicodeEmojiData[], locale: Locale) {
+export async function putEmojiData(emojis: FlatCompactEmoji[], locale: Locale) {
   loadedLocales.add(locale);
   const db = await loadDB();
   const trx = db.transaction(locale, 'readwrite');
@@ -212,30 +102,6 @@ export async function loadEmojiByHexcode(
   const db = await loadDB();
   const locale = toLoadedLocale(localeString);
   return db.get(locale, hexcode);
-}
-
-export async function searchEmojisByHexcodes(
-  hexcodes: string[],
-  localeString: string,
-) {
-  const db = await loadDB();
-  const locale = toLoadedLocale(localeString);
-  const sortedCodes = hexcodes.toSorted();
-  const results = await db.getAll(
-    locale,
-    IDBKeyRange.bound(sortedCodes.at(0), sortedCodes.at(-1)),
-  );
-  return results.filter((emoji) => hexcodes.includes(emoji.hexcode));
-}
-
-export async function searchEmojisByTag(tag: string, localeString: string) {
-  const db = await loadDB();
-  const locale = toLoadedLocale(localeString);
-  const range = IDBKeyRange.bound(
-    tag.toLowerCase(),
-    `${tag.toLowerCase()}\uffff`,
-  );
-  return db.getAllFromIndex(locale, 'tags', range);
 }
 
 export async function loadCustomEmojiByShortcode(shortcode: string) {
