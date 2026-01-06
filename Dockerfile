@@ -157,7 +157,7 @@ RUN \
   ;
 
 # Debian build stage for media libraries (libvips, ffmpeg)
-FROM ${BASE_REGISTRY}/debian:${DEBIAN_VERSION}-slim AS native-build
+FROM ${BASE_REGISTRY}/debian:${DEBIAN_VERSION}-slim AS media-build
 
 ARG TARGETPLATFORM
 
@@ -208,7 +208,7 @@ RUN \
   ;
 
 # Create temporary libvips specific build layer
-FROM native-build AS libvips
+FROM media-build AS libvips
 
 # libvips version to compile, change with [--build-arg VIPS_VERSION="8.15.2"]
 # renovate: datasource=github-releases depName=libvips packageName=libvips/libvips
@@ -231,7 +231,7 @@ RUN \
   ninja install;
 
 # Create temporary ffmpeg specific build layer
-FROM native-build AS ffmpeg
+FROM media-build AS ffmpeg
 
 # ffmpeg version to compile, change with [--build-arg FFMPEG_VERSION="7.0.x"]
 # renovate: datasource=repology depName=ffmpeg packageName=openpkg_current/ffmpeg
@@ -287,25 +287,17 @@ RUN \
   --mount=type=cache,id=apt-lib-${TARGETPLATFORM},target=/var/lib/apt,sharing=locked \
   # Install build tools and bundler dependencies from APT
   apt-get install -y --no-install-recommends \
-  autoconf \
-  automake \
   build-essential \
-  cmake \
   git \
   libgdbm-dev \
-  libglib2.0-dev \
   libgmp-dev \
   libicu-dev \
   libidn-dev \
   libpq-dev \
   libssl-dev \
-  libtool \
   libyaml-dev \
-  meson \
-  nasm \
-  pkg-config \
   shared-mime-info \
-  xz-utils \
+  zlib1g-dev \
   ;
 
 # Create temporary bundler specific build layer from build layer
