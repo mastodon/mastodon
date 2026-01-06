@@ -44,6 +44,23 @@ export function anyEmojiRegex() {
   );
 }
 
+export function hexStringToNumbers(hexString: string): number[] {
+  return hexString
+    .split('-')
+    .map((code) => Number.parseInt(code, 16))
+    .filter((code) => !Number.isNaN(code));
+}
+
+export function hexNumbersToString(codes: unknown[], padding = 4): string {
+  return codes
+    .filter(
+      (code): code is number =>
+        typeof code === 'number' && code > 0 && !Number.isNaN(code),
+    )
+    .map((code) => code.toString(16).padStart(padding, '0').toUpperCase())
+    .join('-');
+}
+
 function supportsRegExpSets() {
   return 'unicodeSets' in RegExp.prototype;
 }

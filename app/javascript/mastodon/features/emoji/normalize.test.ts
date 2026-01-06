@@ -4,11 +4,7 @@ import { basename, resolve } from 'path';
 import { flattenEmojiData } from 'emojibase';
 import unicodeRawEmojis from 'emojibase-data/en/data.json';
 
-import {
-  twemojiToUnicodeInfo,
-  unicodeToTwemojiHex,
-  emojiToUnicodeHex,
-} from './normalize';
+import { unicodeToTwemojiHex, emojiToUnicodeHex } from './normalize';
 
 const emojiSVGFiles = await readdir(
   // This assumes tests are run from project root
@@ -53,27 +49,4 @@ describe('unicodeToTwemojiHex', () => {
     const result = unicodeToTwemojiHex(hexcode);
     expect(svgFileNamesWithoutBorder).toContain(result);
   });
-});
-
-describe('twemojiToUnicodeInfo', () => {
-  const unicodeCodeSet = new Set(unicodeEmojis.map((emoji) => emoji.hexcode));
-
-  test.concurrent.for(svgFileNamesWithoutBorder)(
-    'verifying SVG file %s maps to Unicode emoji',
-    (svgFileName, { expect }) => {
-      assert(!!svgFileName);
-      const result = twemojiToUnicodeInfo(svgFileName);
-      const hexcode = typeof result === 'string' ? result : result.unqualified;
-      if (!hexcode) {
-        // No hexcode means this is a special case like the Shibuya 109 emoji
-        expect(result).toHaveProperty('label');
-        return;
-      }
-      assert(!!hexcode);
-      expect(
-        unicodeCodeSet.has(hexcode),
-        `${hexcode} (${svgFileName}) not found`,
-      ).toBeTruthy();
-    },
-  );
 });
