@@ -1,5 +1,7 @@
 import { isList } from 'immutable';
 
+import { fromHexcodeToCodepoint } from 'emojibase';
+
 import { assetHost } from '@/mastodon/utils/config';
 
 import {
@@ -13,31 +15,14 @@ import {
 } from './constants';
 import { toSupportedLocale } from './locale';
 import type { CustomEmojiMapArg, ExtraCustomEmojiMap } from './types';
-import { hexNumbersToString, hexStringToNumbers } from './utils';
+import { emojiToUnicodeHex } from './utils';
 
 // Misc codes that have special handling
 const EYE_CODE = 0x1f441;
 const SPEECH_BUBBLE_CODE = 0x1f5e8;
 
-export function emojiToUnicodeHex(emoji: string): string {
-  const codes: number[] = [];
-  for (const char of emoji) {
-    const code = char.codePointAt(0);
-    if (code !== undefined) {
-      codes.push(code);
-    }
-  }
-
-  // Handles how Emojibase removes the variation selector for single code emojis.
-  // See: https://emojibase.dev/docs/spec/#merged-variation-selectors
-  if (codes.at(1) === VARIATION_SELECTOR_CODE && codes.length === 2) {
-    codes.pop();
-  }
-  return hexNumbersToString(codes);
-}
-
 export function unicodeToTwemojiHex(unicodeHex: string): string {
-  const codes = hexStringToNumbers(unicodeHex);
+  const codes = fromHexcodeToCodepoint(unicodeHex);
   const normalizedCodes: number[] = [];
   for (let i = 0; i < codes.length; i++) {
     const code = codes[i];
@@ -59,14 +44,15 @@ export function unicodeToTwemojiHex(unicodeHex: string): string {
     normalizedCodes.push(code);
   }
 
-  return hexNumbersToString(normalizedCodes, 0).toLowerCase();
+  return normalizedCodes
+    .map((code) => code.toString(16))
+    .join('-')
+    .toLowerCase();
 }
 
-export const CODES_WITH_DARK_BORDER =
-  EMOJIS_WITH_DARK_BORDER.map(emojiToUnicodeHex);
+const CODES_WITH_DARK_BORDER = EMOJIS_WITH_DARK_BORDER.map(emojiToUnicodeHex);
 
-export const CODES_WITH_LIGHT_BORDER =
-  EMOJIS_WITH_LIGHT_BORDER.map(emojiToUnicodeHex);
+const CODES_WITH_LIGHT_BORDER = EMOJIS_WITH_LIGHT_BORDER.map(emojiToUnicodeHex);
 
 export function unicodeHexToUrl(unicodeHex: string, darkMode: boolean): string {
   const normalizedHex = unicodeToTwemojiHex(unicodeHex);

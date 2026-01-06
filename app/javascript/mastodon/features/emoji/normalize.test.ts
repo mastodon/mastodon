@@ -4,7 +4,7 @@ import { basename, resolve } from 'path';
 import { flattenEmojiData } from 'emojibase';
 import unicodeRawEmojis from 'emojibase-data/en/data.json';
 
-import { unicodeToTwemojiHex, emojiToUnicodeHex } from './normalize';
+import { unicodeToTwemojiHex } from './normalize';
 
 const emojiSVGFiles = await readdir(
   // This assumes tests are run from project root
@@ -21,23 +21,6 @@ const svgFileNamesWithoutBorder = svgFileNames.filter(
 );
 
 const unicodeEmojis = flattenEmojiData(unicodeRawEmojis);
-
-describe('emojiToUnicodeHex', () => {
-  test.concurrent.for([
-    ['🎱', '1F3B1'],
-    ['🐜', '1F41C'],
-    ['⚫', '26AB'],
-    ['🖤', '1F5A4'],
-    ['💀', '1F480'],
-    ['❤️', '2764'], // Checks for trailing variation selector removal.
-    ['💂‍♂️', '1F482-200D-2642-FE0F'],
-  ] as const)(
-    'emojiToUnicodeHex converts %s to %s',
-    ([emoji, hexcode], { expect }) => {
-      expect(emojiToUnicodeHex(emoji)).toBe(hexcode);
-    },
-  );
-});
 
 describe('unicodeToTwemojiHex', () => {
   test.concurrent.for(
