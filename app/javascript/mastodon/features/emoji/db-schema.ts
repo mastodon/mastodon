@@ -56,7 +56,7 @@ type Transaction<Mode extends IDBTransactionMode = 'versionchange'> =
 
 export type Database = IDBPDatabase<EmojiDB>;
 
-const SCHEMA_VERSION = 2;
+const SCHEMA_VERSION = 3;
 
 export async function openEmojiDB() {
   const db = await openDB<EmojiDB>('mastodon-emoji', SCHEMA_VERSION, {
@@ -140,29 +140,42 @@ function createLocaleTable(
   database: Database,
   trx: Transaction,
 ) {
-  const localeTable = database.objectStoreNames.contains(locale)
-    ? trx.objectStore(locale)
-    : database.createObjectStore(locale, {
-        keyPath: 'hexcode',
-        autoIncrement: false,
-      });
-
-  // Added in version 2.
-  if (!localeTable.indexNames.contains('shortcodes')) {
-    localeTable.createIndex('shortcodes', 'shortcodes', {
-      multiEntry: true,
+  if (!database.objectStoreNames.contains(locale)) {
+    database.createObjectStore(locale, {
+      keyPath: 'hexcode',
+      autoIncrement: false,
     });
   }
 
-  // Changed in version 3.
-  const oldIndexes = ['group', 'order', 'tag', 'label'] as const;
-  deleteOldIndexes(localeTable, oldIndexes);
-
-  localeTable.createIndex('groupOrder', ['group', 'order']);
-  localeTable.createIndex('tokens', 'tokens', { multiEntry: true });
-  localeTable.createIndex('skinHexcodes', 'skinHexcodes', {
-    multiEntry: true,
+  maybeAddIndex({
+    trx,
+    storeName: locale,
+    indexName: 'shortcodes',
+    options: { multiEntry: true },
   });
+  maybeAddIndex({
+    trx,
+    storeName: locale,
+    indexName: 'groupOrder',
+    keys: ['group', 'order'],
+  });
+  maybeAddIndex({
+    trx,
+    storeName: locale,
+    indexName: 'tokens',
+    keys: 'tokens',
+    options: { multiEntry: true },
+  });
+  maybeAddIndex({
+    trx,
+    storeName: locale,
+    indexName: 'skinHexcodes',
+    keys: 'skinHexcodes',
+    options: { multiEntry: true },
+  });
+
+  const oldIndexes = ['group', 'order', 'tag', 'label'] as const;
+  deleteOldIndexes(trx.objectStore(locale), oldIndexes);
 }
 
 function deleteOldIndexes(

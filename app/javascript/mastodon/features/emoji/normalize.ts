@@ -67,8 +67,6 @@ export function unicodeHexToUrl(unicodeHex: string, darkMode: boolean): string {
   return url;
 }
 
-let segmenter: Intl.Segmenter | null = null;
-
 /**
  * Tokenizes an input string into words, using Intl.Segmenter if available.
  * @param input Any input string.
@@ -84,7 +82,7 @@ export function extractTokens(input: string, localeString: string): string[] {
   // Prefer to use Intl.Segmenter if available for better locale support.
   if (typeof Intl.Segmenter === 'function') {
     const locale = toSupportedLocale(localeString);
-    segmenter ??= new Intl.Segmenter(locale, { granularity: 'word' });
+    const segmenter = new Intl.Segmenter(locale, { granularity: 'word' });
 
     for (const { isWordLike, segment } of segmenter.segment(
       input.replaceAll('_', ' '), // Handle underscores from shortcodes.
