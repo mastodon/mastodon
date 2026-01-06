@@ -1,11 +1,17 @@
 import { SUPPORTED_LOCALES } from 'emojibase';
-import type { FlatCompactEmoji, Locale, ShortcodesDataset } from 'emojibase';
+import type {
+  CompactEmoji,
+  Locale,
+  ShortcodesDataset,
+  SkinTone,
+} from 'emojibase';
 
 import { EMOJI_DB_SHORTCODE_TEST } from './constants';
 import { openEmojiDB } from './db-schema';
 import type { Database } from './db-schema';
 import { toSupportedLocale, toSupportedLocaleOrCustom } from './locale';
-import type { CustomEmojiData, EtagTypes } from './types';
+import { extractTokens } from './normalize';
+import type { CustomEmojiData, UnicodeEmojiData, EtagTypes } from './types';
 import { emojiLogger } from './utils';
 
 const loadedLocales = new Set<Locale>();
@@ -39,11 +45,13 @@ const loadDB = (() => {
   return loadPromise;
 })();
 
-export async function putEmojiData(emojis: FlatCompactEmoji[], locale: Locale) {
+export async function putEmojiData(emojis: CompactEmoji[], locale: Locale) {
   loadedLocales.add(locale);
   const db = await loadDB();
   const trx = db.transaction(locale, 'readwrite');
-  await Promise.all(emojis.map((emoji) => trx.store.put(emoji)));
+  await Promise.all(
+    emojis.map((emoji) => trx.store.put(transformEmojiData(emoji, locale))),
+  );
   await trx.done;
 }
 
@@ -101,7 +109,11 @@ export async function loadEmojiByHexcode(
 ) {
   const db = await loadDB();
   const locale = toLoadedLocale(localeString);
-  return db.get(locale, hexcode);
+  const result = await db.get(locale, hexcode);
+  if (result) {
+    return result;
+  }
+  return db.getFromIndex(locale, 'skinHexcodes', IDBKeyRange.only(hexcode));
 }
 
 export async function loadCustomEmojiByShortcode(shortcode: string) {
@@ -149,6 +161,63 @@ export async function loadLatestEtag(localeString: string) {
 }
 
 // Private functions
+
+const SKIN_TONE_MAP: Record<number, SkinTone> = {
+  0x1f3fb: 1, // Light skin tone
+  0x1f3fc: 2, // Medium-light skin tone
+  0x1f3fd: 3, // Medium skin tone
+  0x1f3fe: 4, // Medium-dark skin tone
+  0x1f3ff: 5, // Dark skin tone
+};
+
+function transformEmojiData(
+  emoji: CompactEmoji,
+  locale: Locale,
+): UnicodeEmojiData {
+  const { shortcodes = [], tags = [], label, emoticon, ...rest } = emoji;
+  const extract = (str: string) => extractTokens(str, locale);
+
+  let normalizedEmoticons: string[] | undefined = undefined;
+  if (Array.isArray(emoticon)) {
+    normalizedEmoticons = emoticon;
+  } else if (emoticon) {
+    normalizedEmoticons = [emoticon];
+  }
+
+  const tokens = [
+    ...new Set([
+      ...shortcodes.map(extract).flat(),
+      ...tags.map(extract).flat(),
+      ...extract(label),
+      ...(normalizedEmoticons ?? []),
+    ]),
+  ].sort();
+
+  const res: UnicodeEmojiData = {
+    tokens,
+    shortcodes,
+    tags,
+    label,
+    emoticons: normalizedEmoticons,
+    ...rest,
+  };
+
+  for (const skin of emoji.skins ?? []) {
+    res.skinHexcodes ??= [];
+    res.skinHexcodes.push(skin.hexcode);
+
+    res.skinTones ??= [];
+    for (const codePoint of skin.unicode) {
+      const tone = SKIN_TONE_MAP[codePoint.codePointAt(0) ?? 0];
+      if (tone) {
+        res.skinTones.push(tone);
+        break;
+      }
+    }
+  }
+
+  return res;
+}
 
 async function syncLocales(db: Database) {
   const locales = await Promise.all(

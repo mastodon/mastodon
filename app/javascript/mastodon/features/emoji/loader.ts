@@ -1,10 +1,5 @@
-import { flattenEmojiData } from 'emojibase';
-import type {
-  CompactEmoji,
-  FlatCompactEmoji,
-  Locale,
-  ShortcodesDataset,
-} from 'emojibase';
+import { joinShortcodes } from 'emojibase';
+import type { CompactEmoji, Locale, ShortcodesDataset } from 'emojibase';
 
 import {
   putEmojiData,
@@ -28,7 +23,7 @@ export async function importEmojiData(localeString: string, shortcodes = true) {
     shortcodes ? ' and shortcodes' : '',
   );
 
-  const emojis = await fetchAndCheckEtag<CompactEmoji[]>({
+  let emojis = await fetchAndCheckEtag<CompactEmoji[]>({
     etagString: locale,
     path: localeToEmojiPath(locale),
   });
@@ -49,12 +44,10 @@ export async function importEmojiData(localeString: string, shortcodes = true) {
     }
   }
 
-  const flattenedEmojis: FlatCompactEmoji[] = flattenEmojiData(
-    emojis,
-    shortcodesData,
-  );
-  await putEmojiData(flattenedEmojis, locale);
-  return flattenedEmojis;
+  emojis = joinShortcodes(emojis, shortcodesData);
+
+  await putEmojiData(emojis, locale);
+  return emojis;
 }
 
 export async function importCustomEmojiData() {

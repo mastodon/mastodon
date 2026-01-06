@@ -15,6 +15,8 @@ export const SKIN_TONE_CODES = [
   0x1f3ff, // Dark skin tone
 ] as const;
 
+export const EMOJI_MIN_TOKEN_LENGTH = 2;
+
 // Emoji rendering modes. A mode is what we are using to render emojis, a style is what the user has selected.
 export const EMOJI_MODE_NATIVE = 'native';
 export const EMOJI_MODE_NATIVE_WITH_FLAGS = 'native-flags';
