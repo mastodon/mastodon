@@ -1724,6 +1724,8 @@ sv:
       body: 'Ditt inlägg boostades av %{name}:'
       subject: "%{name} boostade ditt inlägg"
       title: Ny boost
+    severed_relationships:
+      subject: Du har förlorat kontakter på grund av ett moderationsbeslut
     status:
       subject: "%{name} publicerade just ett inlägg"
     update:
@@ -1965,9 +1967,11 @@ sv:
     enabled: Ta automatiskt bort gamla inlägg
     enabled_hint: Raderar dina inlägg automatiskt när de når en specifik ålder, såvida de inte matchar något av undantagen nedan
     exceptions: Undantag
+    explanation: Automatisk radering utförs med låg prioritet. Det kan finnas en fördröjning mellan att nå åldersgränsen och att tas bort.
     ignore_favs: Bortse från favoriter
     ignore_reblogs: Ignorera boostar
     interaction_exceptions: Undantag baserat på interaktioner
+    interaction_exceptions_explanation: Inlägg som tillfälligt överskrider favorit- eller höjningströskeln kan behållas även om de senare minskas.
     keep_direct: Behåll direktmeddelanden
     keep_direct_hint: Tar inte bort någon av dina direktmeddelanden
     keep_media: Behåll inlägg med mediebilagor
@@ -2180,8 +2184,11 @@ sv:
       error: Det gick inte att ta bort din säkerhetsnyckel. Försök igen.
       success: Din säkerhetsnyckel har raderats.
     invalid_credential: Ogiltig säkerhetsnyckel
+    nickname: Smeknamn
     nickname_hint: Ange smeknamnet på din nya säkerhetsnyckel
     not_enabled: Du har inte aktiverat WebAuthn än
     not_supported: Denna webbläsare stöder inte säkerhetsnycklar
     otp_required: För att använda säkerhetsnycklar måste du först aktivera tvåfaktorsautentisering.
     registered_on: Registrerad den %{date}
+  wrapstodon:
+    description: Se hur %{name} använde Mastodon i år!
