@@ -1,5 +1,6 @@
 import { isList } from 'immutable';
 
+import type { CompactEmoji, SkinTone } from 'emojibase';
 import { fromHexcodeToCodepoint } from 'emojibase';
 
 import { assetHost } from '@/mastodon/utils/config';
@@ -13,9 +14,90 @@ import {
   EMOJIS_REQUIRING_INVERSION_IN_DARK_MODE,
   EMOJI_MIN_TOKEN_LENGTH,
 } from './constants';
-import { toSupportedLocale } from './locale';
-import type { CustomEmojiMapArg, ExtraCustomEmojiMap } from './types';
+import type {
+  CustomEmojiMapArg,
+  ExtraCustomEmojiMap,
+  UnicodeEmojiData,
+} from './types';
 import { emojiToUnicodeHex } from './utils';
+
+const SKIN_TONE_MAP: Record<number, SkinTone> = {
+  0x1f3fb: 1, // Light skin tone
+  0x1f3fc: 2, // Medium-light skin tone
+  0x1f3fd: 3, // Medium skin tone
+  0x1f3fe: 4, // Medium-dark skin tone
+  0x1f3ff: 5, // Dark skin tone
+};
+
+export function transformEmojiData(
+  emoji: CompactEmoji,
+  segmenter: Intl.Segmenter | null,
+): UnicodeEmojiData {
+  const {
+    shortcodes = [],
+    tags = [],
+    label,
+    emoticon,
+    hexcode,
+    unicode,
+    group,
+    order,
+    skins = [],
+  } = emoji;
+  const extract = (str: string) => extractTokens(str, segmenter);
+
+  let normalizedEmoticons: string[] | undefined = undefined;
+  if (emoticon) {
+    normalizedEmoticons = Array.isArray(emoticon) ? emoticon : [emoticon];
+  }
+
+  const tokens = [
+    ...new Set([
+      ...shortcodes.map(extract).flat(),
+      ...tags.map(extract).flat(),
+      ...extract(label),
+      ...(normalizedEmoticons ?? []),
+    ]),
+  ].sort((a, b) => a.localeCompare(b));
+
+  const res: UnicodeEmojiData = {
+    tokens,
+    shortcodes,
+    label,
+    emoticons: normalizedEmoticons,
+    hexcode,
+    unicode,
+    group,
+    order,
+  };
+
+  for (const skin of skins) {
+    res.skinHexcodes ??= [];
+    res.skinHexcodes.push(skin.hexcode);
+
+    res.skinTones ??= [];
+    for (const codePoint of skin.unicode) {
+      const tone = SKIN_TONE_MAP[codePoint.codePointAt(0) ?? 0];
+      if (tone) {
+        res.skinTones.push(tone);
+        break;
+      }
+    }
+  }
+
+  return res;
+}
+
+export function skinHexcodeToEmoji(
+  skinHexcode: string,
+  emoji: UnicodeEmojiData,
+): UnicodeEmojiData {
+  return {
+    ...emoji,
+    unicode: String.fromCodePoint(...fromHexcodeToCodepoint(skinHexcode)),
+    hexcode: skinHexcode,
+  };
+}
 
 // Misc codes that have special handling
 const EYE_CODE = 0x1f441;
@@ -67,41 +149,6 @@ export function unicodeHexToUrl(unicodeHex: string, darkMode: boolean): string {
   return url;
 }
 
-/**
- * Tokenizes an input string into words, using Intl.Segmenter if available.
- * @param input Any input string.
- * @param localeString Locale string to use for segmentation.
- * @returns Array of tokens in lowercase.
- */
-export function extractTokens(input: string, localeString: string): string[] {
-  if (!input.trim()) {
-    return [];
-  }
-  const tokens: string[] = [];
-
-  // Prefer to use Intl.Segmenter if available for better locale support.
-  if (typeof Intl.Segmenter === 'function') {
-    const locale = toSupportedLocale(localeString);
-    const segmenter = new Intl.Segmenter(locale, { granularity: 'word' });
-
-    for (const { isWordLike, segment } of segmenter.segment(
-      input.replaceAll('_', ' '), // Handle underscores from shortcodes.
-    )) {
-      if (isWordLike && segment.length > EMOJI_MIN_TOKEN_LENGTH) {
-        tokens.push(segment.toLowerCase());
-      }
-    }
-  } else {
-    // Fallback to simple splitting.
-    input.split(/[\s_-]+/).forEach((word) => {
-      if (/\w/.test(word) && word.length > EMOJI_MIN_TOKEN_LENGTH) {
-        tokens.push(word.toLowerCase());
-      }
-    });
-  }
-  return tokens;
-}
-
 export function emojiToInversionClassName(emoji: string): string | null {
   if (EMOJIS_REQUIRING_INVERSION_IN_DARK_MODE.includes(emoji)) {
     return 'invert-on-dark';
@@ -131,4 +178,41 @@ export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg) {
       );
   }
   return extraEmojis;
+}
+
+// Private functions
+
+/**
+ * Tokenizes an input string into words, using Intl.Segmenter if available.
+ * @param input Any input string.
+ * @param segmenter Segmenter, if available.
+ * @returns Array of tokens in lowercase.
+ */
+function extractTokens(
+  input: string,
+  segmenter: Intl.Segmenter | null,
+): string[] {
+  if (!input.trim()) {
+    return [];
+  }
+  const tokens: string[] = [];
+
+  // Prefer to use Intl.Segmenter if available for better locale support.
+  if (segmenter) {
+    for (const { isWordLike, segment } of segmenter.segment(
+      input.replaceAll('_', ' '), // Handle underscores from shortcodes.
+    )) {
+      if (isWordLike && segment.length > EMOJI_MIN_TOKEN_LENGTH) {
+        tokens.push(segment.toLowerCase());
+      }
+    }
+  } else {
+    // Fallback to simple splitting.
+    input.split(/[\s_-]+/).forEach((word) => {
+      if (/\w/.test(word) && word.length > EMOJI_MIN_TOKEN_LENGTH) {
+        tokens.push(word.toLowerCase());
+      }
+    });
+  }
+  return tokens;
 }
