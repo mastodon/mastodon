@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 module PrivateAddressCheck
-  module_function
-
-  CIDR_LIST = [
+  IP4_CIDR_LIST = [
     IPAddr.new('0.0.0.0/8'),       # Current network (only valid as source address)
     IPAddr.new('100.64.0.0/10'),   # Shared Address Space
     IPAddr.new('172.16.0.0/12'),   # Private network
@@ -16,6 +14,9 @@ module PrivateAddressCheck
     IPAddr.new('224.0.0.0/4'),     # IP multicast (former Class D network)
     IPAddr.new('240.0.0.0/4'),     # Reserved (former Class E network)
     IPAddr.new('255.255.255.255'), # Broadcast
+  ].freeze
+
+  CIDR_LIST = (IP4_CIDR_LIST + IP4_CIDR_LIST.map(&:ipv4_mapped) + [
     IPAddr.new('64:ff9b::/96'),    # IPv4/IPv6 translation (RFC 6052)
     IPAddr.new('100::/64'),        # Discard prefix (RFC 6666)
     IPAddr.new('2001::/32'),       # Teredo tunneling
@@ -25,7 +26,9 @@ module PrivateAddressCheck
     IPAddr.new('2002::/16'),       # 6to4
     IPAddr.new('fc00::/7'),        # Unique local address
     IPAddr.new('ff00::/8'),        # Multicast
-  ].freeze
+  ]).freeze
+
+  module_function
 
   def private_address?(address)
     address.private? || address.loopback? || address.link_local? || CIDR_LIST.any? { |cidr| cidr.include?(address) }
