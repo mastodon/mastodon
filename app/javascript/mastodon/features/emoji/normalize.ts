@@ -3,8 +3,6 @@ import { isList } from 'immutable';
 import type { CompactEmoji, SkinTone } from 'emojibase';
 import { fromHexcodeToCodepoint } from 'emojibase';
 
-import { assetHost } from '@/mastodon/utils/config';
-
 import {
   VARIATION_SELECTOR_CODE,
   KEYCAP_CODE,
@@ -136,10 +134,18 @@ const CODES_WITH_DARK_BORDER = EMOJIS_WITH_DARK_BORDER.map(emojiToUnicodeHex);
 
 const CODES_WITH_LIGHT_BORDER = EMOJIS_WITH_LIGHT_BORDER.map(emojiToUnicodeHex);
 
-export function unicodeHexToUrl(unicodeHex: string, darkMode: boolean): string {
+export function unicodeHexToUrl({
+  unicodeHex,
+  darkTheme,
+  assetHost,
+}: {
+  unicodeHex: string;
+  darkTheme: boolean;
+  assetHost: string;
+}): string {
   const normalizedHex = unicodeToTwemojiHex(unicodeHex);
   let url = `${assetHost}/emoji/${normalizedHex}`;
-  if (darkMode && CODES_WITH_LIGHT_BORDER.includes(normalizedHex)) {
+  if (darkTheme && CODES_WITH_LIGHT_BORDER.includes(normalizedHex)) {
     url += '_border';
   }
   if (CODES_WITH_DARK_BORDER.includes(normalizedHex)) {

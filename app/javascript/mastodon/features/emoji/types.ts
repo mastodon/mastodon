@@ -32,6 +32,7 @@ export interface EmojiAppState {
   currentLocale: Locale;
   mode: EmojiMode;
   darkTheme: boolean;
+  assetHost: string;
 }
 
 export type CustomEmojiData = ApiCustomEmojiJSON;
