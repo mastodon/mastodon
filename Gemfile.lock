@@ -187,10 +187,10 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     debug_inspector (1.2.0)
-    devise (4.9.4)
+    devise (5.0.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
+      railties (>= 7.0)
       responders
       warden (~> 1.2.3)
     devise-two-factor (6.4.0)
@@ -965,7 +965,7 @@ DEPENDENCIES
   csv (~> 3.2)
   database_cleaner-active_record
   debug (~> 1.8)
-  devise (~> 4.9)
+  devise
   devise-two-factor
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.2)
