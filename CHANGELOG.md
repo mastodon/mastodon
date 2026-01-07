@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [4.4.29] - 2026-01-07
+## [4.2.29] - 2026-01-07
 
 ### Security
 
