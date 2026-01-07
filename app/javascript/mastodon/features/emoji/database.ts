@@ -17,7 +17,7 @@ import {
   transformCustomEmojiData,
   transformEmojiData,
 } from './normalize';
-import type { UnicodeEmojiData, EtagTypes } from './types';
+import type { AnyEmojiData, EtagTypes } from './types';
 import { emojiLogger } from './utils';
 
 const loadedLocales = new Set<Locale>();
@@ -51,7 +51,15 @@ const loadDB = (() => {
   return loadPromise;
 })();
 
-export async function search(query: string, localeString: string) {
+export async function search({
+  query,
+  locale: localeString,
+  count = 0,
+}: {
+  query: string;
+  locale: string;
+  count?: number;
+}) {
   performance.mark('emoji-search-start');
 
   // Get the locale, and extract tokens from the query.
@@ -68,7 +76,7 @@ export async function search(query: string, localeString: string) {
 
   // Create an array of
   const db = await loadDB();
-  const resultArrays: Map<string, UnicodeEmojiData>[] = [];
+  const resultArrays: Map<string, AnyEmojiData>[] = [];
   for (let i = 0; i < queryTokens.length; i++) {
     const token = queryTokens[i];
     if (!token) continue;
@@ -79,11 +87,19 @@ export async function search(query: string, localeString: string) {
         ? IDBKeyRange.bound(token, token + '\uffff')
         : IDBKeyRange.only(token);
 
-    const queryResults = await db.getAllFromIndex(locale, 'tokens', range);
-    log('found %d results for token "%s"', queryResults.length, token);
-    const resultMap = new Map(
-      queryResults.map((emoji) => [emoji.hexcode, emoji]),
-    );
+    const [unicodeResults, customResults] = await Promise.all([
+      db.getAllFromIndex(locale, 'tokens', range),
+      db.getAllFromIndex('custom', 'tokens', range),
+    ]);
+    const resultMap = new Map<string, AnyEmojiData>([
+      ...unicodeResults.map(
+        (emoji) => [emoji.hexcode, emoji] as [string, AnyEmojiData],
+      ),
+      ...customResults.map(
+        (emoji) => [emoji.shortcode, emoji] as [string, AnyEmojiData],
+      ),
+    ]);
+    log('found %d results for token "%s"', resultMap.size, token);
     resultArrays.push(resultMap);
   }
 
@@ -91,10 +107,10 @@ export async function search(query: string, localeString: string) {
   const results = Array.from(
     resultArrays
       .reduce((prev, curr) => {
-        const intersection = new Map<string, UnicodeEmojiData>();
-        for (const [hexcode, emoji] of prev) {
-          if (curr.has(hexcode)) {
-            intersection.set(hexcode, emoji);
+        const intersection = new Map<string, AnyEmojiData>();
+        for (const [code, emoji] of prev) {
+          if (curr.has(code)) {
+            intersection.set(code, emoji);
           }
         }
         return intersection;
@@ -102,12 +118,12 @@ export async function search(query: string, localeString: string) {
       .values(),
   );
 
-  // Sort all results by whether they include the last token exactly, then by order.
   const lastToken = queryTokens.at(-1);
   if (!lastToken) {
     throw new Error('Missing tokens from query');
   }
   results.sort((a, b) => {
+    // Checks if a or b has the last token exactly, or only a prefix.
     const aHasToken = a.tokens.includes(lastToken);
     const bHasToken = b.tokens.includes(lastToken);
     if (aHasToken && !bHasToken) {
@@ -115,7 +131,21 @@ export async function search(query: string, localeString: string) {
     } else if (!aHasToken && bHasToken) {
       return 1;
     }
-    return (a.order ?? 0) - (b.order ?? 0);
+
+    // If one is a custom emoji, prioritize it over Unicode emojis.
+    if ('category' in a) {
+      return -1;
+    } else if ('category' in b) {
+      return 1;
+    }
+
+    // If both are Unicode emojis, prioritize by order.
+    if ('order' in a && 'order' in b) {
+      return (a.order ?? 0) - (b.order ?? 0); // If these are both Unicode emojis, sort by order.
+    }
+
+    // ¯\_(ツ)_/¯
+    return 0;
   });
 
   const time = performance.measure('emoji-search-end', 'emoji-search-start');
@@ -126,6 +156,9 @@ export async function search(query: string, localeString: string) {
     results.length,
     time.duration,
   );
+  if (count > 0) {
+    return results.slice(0, count);
+  }
   return results;
 }
 
