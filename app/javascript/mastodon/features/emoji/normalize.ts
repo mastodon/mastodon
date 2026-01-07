@@ -3,6 +3,8 @@ import { isList } from 'immutable';
 import type { CompactEmoji, SkinTone } from 'emojibase';
 import { fromHexcodeToCodepoint } from 'emojibase';
 
+import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
+
 import {
   VARIATION_SELECTOR_CODE,
   KEYCAP_CODE,
@@ -13,6 +15,7 @@ import {
   EMOJI_MIN_TOKEN_LENGTH,
 } from './constants';
 import type {
+  CustomEmojiData,
   CustomEmojiMapArg,
   ExtraCustomEmojiMap,
   UnicodeEmojiData,
@@ -84,6 +87,19 @@ export function transformEmojiData(
   }
 
   return res;
+}
+
+export function transformCustomEmojiData(
+  emoji: ApiCustomEmojiJSON,
+): CustomEmojiData {
+  const tokens = emoji.shortcode
+    .split('_')
+    .filter((word) => word.length >= EMOJI_MIN_TOKEN_LENGTH)
+    .map((word) => word.toLowerCase());
+  return {
+    ...emoji,
+    tokens,
+  };
 }
 
 export function skinHexcodeToEmoji(

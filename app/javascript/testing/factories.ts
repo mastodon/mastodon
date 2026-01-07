@@ -133,6 +133,7 @@ export function customEmojiFactory(
     static_url: '/custom-emoji/logo.svg',
     url: '/custom-emoji/logo.svg',
     visible_in_picker: true,
+    tokens: ['custom'],
     ...data,
   };
 }

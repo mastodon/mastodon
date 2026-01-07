@@ -20,6 +20,7 @@ interface EmojiDB extends LocaleTables, DBSchema {
     key: string;
     value: CustomEmojiData;
     indexes: {
+      tokens: string[];
       category: string;
     };
   };
@@ -68,6 +69,12 @@ export async function openEmojiDB() {
         });
       }
       maybeAddIndex({ trx, storeName: 'custom', indexName: 'category' });
+      maybeAddIndex({
+        trx,
+        storeName: 'custom',
+        indexName: 'tokens',
+        options: { multiEntry: true },
+      });
 
       if (!database.objectStoreNames.contains('etags')) {
         database.createObjectStore('etags');

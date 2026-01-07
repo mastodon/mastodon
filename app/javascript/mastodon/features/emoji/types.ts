@@ -35,7 +35,7 @@ export interface EmojiAppState {
   assetHost: string;
 }
 
-export type CustomEmojiData = ApiCustomEmojiJSON;
+export type CustomEmojiData = ApiCustomEmojiJSON & { tokens: string[] };
 export interface UnicodeEmojiData extends Omit<
   CompactEmoji,
   'emoticon' | 'skins' | 'tags'

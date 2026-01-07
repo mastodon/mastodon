@@ -1,6 +1,8 @@
 import { SUPPORTED_LOCALES } from 'emojibase';
 import type { CompactEmoji, Locale, ShortcodesDataset } from 'emojibase';
 
+import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
+
 import { EMOJI_DB_SHORTCODE_TEST } from './constants';
 import { openEmojiDB } from './db-schema';
 import type { Database } from './db-schema';
@@ -12,9 +14,10 @@ import {
 import {
   extractTokens,
   skinHexcodeToEmoji,
+  transformCustomEmojiData,
   transformEmojiData,
 } from './normalize';
-import type { CustomEmojiData, EtagTypes, UnicodeEmojiData } from './types';
+import type { UnicodeEmojiData, EtagTypes } from './types';
 import { emojiLogger } from './utils';
 
 const loadedLocales = new Set<Locale>();
@@ -144,7 +147,7 @@ export async function putCustomEmojiData({
   emojis,
   clear = false,
 }: {
-  emojis: CustomEmojiData[];
+  emojis: ApiCustomEmojiJSON[];
   clear?: boolean;
 }) {
   const db = await loadDB();
@@ -156,7 +159,9 @@ export async function putCustomEmojiData({
     log('Cleared existing custom emojis in database');
   }
 
-  await Promise.all(emojis.map((emoji) => trx.store.put(emoji)));
+  await Promise.all(
+    emojis.map((emoji) => trx.store.put(transformCustomEmojiData(emoji))),
+  );
   await trx.done;
 
   log('Imported %d custom emojis into database', emojis.length);
