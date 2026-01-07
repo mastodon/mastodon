@@ -118,7 +118,7 @@ GEM
       rexml
     base64 (0.3.0)
     bcp47_spec (0.2.1)
-    bcrypt (3.1.20)
+    bcrypt (3.1.21)
     benchmark (0.5.0)
     better_errors (2.10.1)
       erubi (>= 1.0.0)
@@ -129,7 +129,7 @@ GEM
     binding_of_caller (1.0.1)
       debug_inspector (>= 1.2.0)
     blurhash (0.1.8)
-    bootsnap (1.19.0)
+    bootsnap (1.20.1)
       msgpack (~> 1.2)
     brakeman (7.1.2)
       racc
@@ -240,7 +240,7 @@ GEM
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
-    faraday-follow_redirects (0.4.0)
+    faraday-follow_redirects (0.5.0)
       faraday (>= 1, < 3)
     faraday-httpclient (2.0.2)
       httpclient (>= 2.2)
@@ -248,7 +248,7 @@ GEM
       net-http (~> 0.5)
     fast_blank (1.0.1)
     fastimage (2.4.0)
-    ffi (1.17.2)
+    ffi (1.17.3)
     ffi-compiler (1.3.2)
       ffi (>= 1.15.5)
       rake
@@ -271,7 +271,7 @@ GEM
       fog-json (>= 1.0)
     formatador (1.2.3)
       reline
-    forwardable (1.3.3)
+    forwardable (1.4.0)
     fugit (1.12.1)
       et-orbi (~> 1.4)
       raabro (~> 1.4)
@@ -298,7 +298,8 @@ GEM
       rubocop (>= 1.0)
       sysexits (~> 1.1)
     hashdiff (1.2.1)
-    hashie (5.0.0)
+    hashie (5.1.0)
+      logger
     hcaptcha (7.1.0)
       json
     highline (3.1.2)
@@ -427,7 +428,7 @@ GEM
       activesupport (>= 4)
       railties (>= 4)
       request_store (~> 1.0)
-    loofah (2.24.1)
+    loofah (2.25.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.9.0)
@@ -447,13 +448,14 @@ GEM
     mime-types-data (3.2025.0924)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (5.27.0)
+    minitest (6.0.1)
+      prism (~> 1.5)
     msgpack (1.8.0)
-    multi_json (1.18.0)
+    multi_json (1.19.1)
     mutex_m (0.3.0)
     net-http (0.6.0)
       uri
-    net-imap (0.6.0)
+    net-imap (0.6.2)
       date
       net-protocol
     net-ldap (0.20.0)
@@ -466,7 +468,7 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.5)
-    nokogiri (1.18.10)
+    nokogiri (1.19.0)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     oj (3.16.13)
@@ -591,7 +593,7 @@ GEM
     parslet (2.0.0)
     pastel (0.8.0)
       tty-color (~> 0.5)
-    pg (1.6.2)
+    pg (1.6.3)
     pghero (3.7.0)
       activerecord (>= 7.1)
     playwright-ruby-client (1.57.1)
@@ -609,7 +611,7 @@ GEM
       net-smtp
       premailer (~> 1.7, >= 1.7.9)
     prettyprint (0.2.0)
-    prism (1.6.0)
+    prism (1.7.0)
     prometheus_exporter (2.3.1)
       webrick
     propshaft (1.3.1)
@@ -696,7 +698,7 @@ GEM
       readline (~> 0.0)
     rdf-normalize (0.7.0)
       rdf (~> 3.3)
-    rdoc (6.17.0)
+    rdoc (7.0.3)
       erb
       psych (>= 4.0.0)
       tsort
@@ -716,7 +718,7 @@ GEM
       railties (>= 7.0)
     rexml (3.4.4)
     rotp (6.3.0)
-    rouge (4.6.1)
+    rouge (4.7.0)
     rpam2 (4.0.2)
     rqrcode (3.1.1)
       chunky_png (~> 1.0)
@@ -761,9 +763,9 @@ GEM
       rubocop-ast (>= 1.47.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.48.0)
+    rubocop-ast (1.49.0)
       parser (>= 3.3.7.2)
-      prism (~> 1.4)
+      prism (~> 1.7)
     rubocop-capybara (2.22.1)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
@@ -774,7 +776,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.47.1, < 2.0)
-    rubocop-rails (2.34.2)
+    rubocop-rails (2.34.3)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
@@ -860,7 +862,7 @@ GEM
     test-prof (1.5.0)
     thor (1.4.0)
     tilt (2.6.1)
-    timeout (0.5.0)
+    timeout (0.6.0)
     tpm-key_attestation (0.14.1)
       bindata (~> 2.4)
       openssl (> 2.0)
@@ -888,7 +890,7 @@ GEM
     unf_ext (0.0.9.1)
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
-    unicode-emoji (4.1.0)
+    unicode-emoji (4.2.0)
     uri (1.1.1)
     useragent (0.16.11)
     validate_url (1.0.15)
@@ -944,7 +946,7 @@ DEPENDENCIES
   better_errors (~> 2.9)
   binding_of_caller (~> 1.0)
   blurhash (~> 0.1)
-  bootsnap (~> 1.19.0)
+  bootsnap
   brakeman (~> 7.0)
   browser
   bundler-audit (~> 0.9)
@@ -1091,7 +1093,7 @@ DEPENDENCIES
   xorcist (~> 1.1)
 
 RUBY VERSION
-  ruby 3.4.1p0
+  ruby 3.4.8
 
 BUNDLED WITH
-  4.0.2
+  4.0.3
