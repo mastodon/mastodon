@@ -119,8 +119,9 @@ export function unicodeEmojiFactory(
     label: 'Test',
     unicode: '🧪',
     shortcodes: ['test_emoji'],
-    tokens: ['test', 'emoji'],
-    emoticons: [],
+    tokens: ['emoji', 'test'],
+    group: 1,
+    order: 1,
     ...data,
   };
 }

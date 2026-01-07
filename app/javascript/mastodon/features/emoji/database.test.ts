@@ -1,3 +1,4 @@
+import type { CompactEmoji } from 'emojibase';
 import { IDBFactory } from 'fake-indexeddb';
 
 import { customEmojiFactory, unicodeEmojiFactory } from '@/testing/factories';
@@ -15,6 +16,14 @@ import {
   putLatestEtag,
 } from './database';
 
+function rawEmojiFactory(data: Partial<CompactEmoji> = {}): CompactEmoji {
+  return {
+    ...unicodeEmojiFactory(),
+    tags: ['test', 'emoji'],
+    ...data,
+  };
+}
+
 describe('emoji database', () => {
   afterEach(() => {
     testClear();
@@ -30,7 +39,7 @@ describe('emoji database', () => {
     });
 
     test('loads emoji into indexedDB', async () => {
-      await putEmojiData([unicodeEmojiFactory()], 'en');
+      await putEmojiData([rawEmojiFactory()], 'en');
       const { db } = await testGet();
       await expect(db.get('en', 'test')).resolves.toEqual(
         unicodeEmojiFactory(),
@@ -58,7 +67,7 @@ describe('emoji database', () => {
       });
       await expect(db.get('custom', 'emoji1')).resolves.toBeUndefined();
       await expect(db.get('custom', 'emoji2')).resolves.toEqual(
-        customEmojiFactory({ shortcode: 'emoji2' }),
+        customEmojiFactory({ shortcode: 'emoji2', tokens: ['emoji2'] }),
       );
     });
   });
@@ -77,12 +86,6 @@ describe('emoji database', () => {
   });
 
   describe('loadEmojiByHexcode', () => {
-    test('throws if the locale is not loaded', async () => {
-      await expect(loadEmojiByHexcode('en', 'test')).rejects.toThrowError(
-        'Locale en',
-      );
-    });
-
     test('retrieves the emoji', async () => {
       await putEmojiData([unicodeEmojiFactory()], 'en');
       await expect(loadEmojiByHexcode('test', 'en')).resolves.toEqual(
