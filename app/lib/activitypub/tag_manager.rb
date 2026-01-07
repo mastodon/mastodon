@@ -50,7 +50,7 @@ class ActivityPub::TagManager
       context_url(target) unless target.parent_account_id.nil? || target.parent_status_id.nil?
     when :note, :comment, :activity
       if target.account.numeric_ap_id?
-        return activity_ap_account_status_url(target.account, target) if target.reblog?
+        return activity_ap_account_status_url(target.account.id, target) if target.reblog?
 
         ap_account_status_url(target.account.id, target)
       else
