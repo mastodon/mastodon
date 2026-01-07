@@ -9,8 +9,12 @@ import {
   toSupportedLocale,
   toSupportedLocaleOrCustom,
 } from './locale';
-import { skinHexcodeToEmoji, transformEmojiData } from './normalize';
-import type { CustomEmojiData, EtagTypes } from './types';
+import {
+  extractTokens,
+  skinHexcodeToEmoji,
+  transformEmojiData,
+} from './normalize';
+import type { CustomEmojiData, EtagTypes, UnicodeEmojiData } from './types';
 import { emojiLogger } from './utils';
 
 const loadedLocales = new Set<Locale>();
@@ -43,6 +47,84 @@ const loadDB = (() => {
   };
   return loadPromise;
 })();
+
+export async function search(query: string, localeString: string) {
+  performance.mark('emoji-search-start');
+
+  // Get the locale, and extract tokens from the query.
+  const locale = await toLoadedLocale(localeString);
+  const segmenter = localeToSegmenter(locale);
+  const queryTokens = extractTokens(query, segmenter);
+
+  if (queryTokens.length === 0) {
+    log('no tokens extracted from query "%s"', query);
+    return [];
+  }
+
+  log('searching for tokens %o in locale %s', queryTokens, locale);
+
+  // Create an array of
+  const db = await loadDB();
+  const resultArrays: Map<string, UnicodeEmojiData>[] = [];
+  for (let i = 0; i < queryTokens.length; i++) {
+    const token = queryTokens[i];
+    if (!token) continue;
+
+    // Only query the range for the last token to allow partial matches.
+    const range =
+      i === queryTokens.length - 1
+        ? IDBKeyRange.bound(token, token + '\uffff')
+        : IDBKeyRange.only(token);
+
+    const queryResults = await db.getAllFromIndex(locale, 'tokens', range);
+    log('found %d results for token "%s"', queryResults.length, token);
+    const resultMap = new Map(
+      queryResults.map((emoji) => [emoji.hexcode, emoji]),
+    );
+    resultArrays.push(resultMap);
+  }
+
+  // Utilize maps to find the intersection of all result sets.
+  const results = Array.from(
+    resultArrays
+      .reduce((prev, curr) => {
+        const intersection = new Map<string, UnicodeEmojiData>();
+        for (const [hexcode, emoji] of prev) {
+          if (curr.has(hexcode)) {
+            intersection.set(hexcode, emoji);
+          }
+        }
+        return intersection;
+      })
+      .values(),
+  );
+
+  // Sort all results by whether they include the last token exactly, then by order.
+  const lastToken = queryTokens.at(-1);
+  if (!lastToken) {
+    throw new Error('Missing tokens from query');
+  }
+  results.sort((a, b) => {
+    const aHasToken = a.tokens.includes(lastToken);
+    const bHasToken = b.tokens.includes(lastToken);
+    if (aHasToken && !bHasToken) {
+      return -1;
+    } else if (!aHasToken && bHasToken) {
+      return 1;
+    }
+    return (a.order ?? 0) - (b.order ?? 0);
+  });
+
+  const time = performance.measure('emoji-search-end', 'emoji-search-start');
+  log(
+    'search for "%s" in locale %s returned %d results and took %dms',
+    query,
+    locale,
+    results.length,
+    time.duration,
+  );
+  return results;
+}
 
 export async function putEmojiData(emojis: CompactEmoji[], locale: Locale) {
   loadedLocales.add(locale);
@@ -111,7 +193,7 @@ export async function loadEmojiByHexcode(
   localeString: string,
 ) {
   const db = await loadDB();
-  const locale = toLoadedLocale(localeString);
+  const locale = await toLoadedLocale(localeString);
   const result = await db.get(locale, hexcode);
   if (result) {
     return result;
@@ -195,13 +277,16 @@ async function syncLocales(db: Database) {
   log('Loaded %d locales: %o', loadedLocales.size, loadedLocales);
 }
 
-function toLoadedLocale(localeString: string) {
+async function toLoadedLocale(localeString: string) {
   const locale = toSupportedLocale(localeString);
   if (localeString !== locale) {
     log(`Locale ${locale} is different from provided ${localeString}`);
   }
   if (!loadedLocales.has(locale)) {
-    throw new LocaleNotLoadedError(locale);
+    log('Locale %s not loaded, importing...', locale);
+    const { importEmojiData } = await import('./loader');
+    await importEmojiData(locale);
+    return locale;
   }
   return locale;
 }

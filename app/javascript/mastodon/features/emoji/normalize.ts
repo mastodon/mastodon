@@ -186,15 +186,13 @@ export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg) {
   return extraEmojis;
 }
 
-// Private functions
-
 /**
  * Tokenizes an input string into words, using Intl.Segmenter if available.
  * @param input Any input string.
  * @param segmenter Segmenter, if available.
  * @returns Array of tokens in lowercase.
  */
-function extractTokens(
+export function extractTokens(
   input: string,
   segmenter: Intl.Segmenter | null,
 ): string[] {
@@ -208,14 +206,14 @@ function extractTokens(
     for (const { isWordLike, segment } of segmenter.segment(
       input.replaceAll('_', ' '), // Handle underscores from shortcodes.
     )) {
-      if (isWordLike && segment.length > EMOJI_MIN_TOKEN_LENGTH) {
+      if (isWordLike && segment.length >= EMOJI_MIN_TOKEN_LENGTH) {
         tokens.push(segment.toLowerCase());
       }
     }
   } else {
     // Fallback to simple splitting.
     input.split(/[\s_-]+/).forEach((word) => {
-      if (/\w/.test(word) && word.length > EMOJI_MIN_TOKEN_LENGTH) {
+      if (/\w/.test(word) && word.length >= EMOJI_MIN_TOKEN_LENGTH) {
         tokens.push(word.toLowerCase());
       }
     });

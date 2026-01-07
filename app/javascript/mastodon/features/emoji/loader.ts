@@ -128,11 +128,11 @@ async function fetchAndCheckEtag<ResultType extends object[] | object>({
   checkEtag?: boolean;
 }): Promise<ResultType | null> {
   const etagName = toValidEtagName(etagString);
+  const oldEtag = checkEtag ? await loadLatestEtag(etagName) : null;
 
   // Use location.origin as this script may be loaded from a CDN domain.
   const url = new URL(path, location.origin);
 
-  const oldEtag = checkEtag ? await loadLatestEtag(etagName) : null;
   const response = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
@@ -141,6 +141,7 @@ async function fetchAndCheckEtag<ResultType extends object[] | object>({
   });
   // If not modified, return null
   if (response.status === 304) {
+    log('etag not modified for %s', etagName);
     return null;
   }
   if (!response.ok) {
@@ -156,6 +157,8 @@ async function fetchAndCheckEtag<ResultType extends object[] | object>({
   if (etag && checkEtag) {
     log(`storing new etag for ${etagName}: ${etag}`);
     await putLatestEtag(etag, etagName);
+  } else if (!etag) {
+    log(`no etag found in response for ${etagName}`);
   }
 
   return data;
