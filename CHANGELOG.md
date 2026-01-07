@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.2.29] - 2026-01-07
+
+### Security
+
+- Fix SSRF protection bypass ([GHSA](https://github.com/mastodon/mastodon/security/advisories/GHSA-xfrj-c749-jxxq))
+
+### Fixed
+
+- Fix mentions of domain-blocked users being processed (#37257 by @ClearlyClaire)
+
 ## [4.2.28] - 2025-12-08
 
 ### Security
