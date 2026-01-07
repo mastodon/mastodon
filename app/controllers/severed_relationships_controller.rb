@@ -27,7 +27,7 @@ class SeveredRelationshipsController < ApplicationController
   private
 
   def set_event
-    @event = AccountRelationshipSeveranceEvent.find(params[:id])
+    @event = AccountRelationshipSeveranceEvent.where(account: current_account).find(params[:id])
   end
 
   def following_data
