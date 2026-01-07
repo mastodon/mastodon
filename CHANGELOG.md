@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.11] - 2026-01-07
+
+### Security
+
+- Fix SSRF protection bypass ([GHSA](https://github.com/mastodon/mastodon/security/advisories/GHSA-xfrj-c749-jxxq))
+- Fix missing ownership check in severed relationships controller ([GHSA](https://github.com/mastodon/mastodon/security/advisories/GHSA-ww85-x9cp-5v24))
+
+### Changed
+
+- Change HTTP Signature verification status from 401 to 503 on temporary failure to get remote actor (#37221 by @ClearlyClaire)
+
+### Fixed
+
+- Fix mentions of domain-blocked users being processed (#37257 by @ClearlyClaire)
+
 ## [4.4.10] - 2025-12-08
 
 ### Security
