@@ -1,31 +1,51 @@
 name: 'Chromatic'
+permissions:
+  contents: read
 
 on:
   push:
     branches-ignore:
       - renovate/*
       - stable-*
-    paths:
-      - 'package.json'
-      - 'yarn.lock'
-      - '**/*.js'
-      - '**/*.jsx'
-      - '**/*.ts'
-      - '**/*.tsx'
-      - '**/*.css'
-      - '**/*.scss'
-      - '.github/workflows/chromatic.yml'
 
 jobs:
-  chromatic:
-    name: Run Chromatic
+  pathcheck:
+    name: Check for relevant changes
     runs-on: ubuntu-latest
-    if: github.repository == 'mastodon/mastodon'
+    outputs:
+      changed: ${{ steps.filter.outputs.src }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            src:
+              - 'package.json'
+              - 'yarn.lock'
+              - '**/*.js'
+              - '**/*.jsx'
+              - '**/*.ts'
+              - '**/*.tsx'
+              - '**/*.css'
+              - '**/*.scss'
+              - '.github/workflows/chromatic.yml'
+
+  chromatic:
+    name: Run Chromatic
+    runs-on: ubuntu-latest
+    needs: pathcheck
+    if: github.repository == 'mastodon/mastodon' && needs.pathcheck.outputs.changed == 'true'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
 
@@ -35,7 +55,8 @@ jobs:
       - name: Run Chromatic
         uses: chromaui/action@v13
         with:
-          # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           zip: true
           storybookBuildDir: 'storybook-static'
+          exitZeroOnChanges: false # Fail workflow if changes are found
+          autoAcceptChanges: 'main' # Auto-accept changes on main branch only

@@ -7,6 +7,8 @@ ga:
     hosted_on: Mastodon arna óstáil ar %{domain}
     title: Maidir le
   accounts:
+    errors:
+      cannot_be_added_to_collections: Ní féidir an cuntas seo a chur le bailiúcháin.
     followers:
       few: Leantóirí
       many: Leantóirí
@@ -888,6 +890,7 @@ ga:
         publish_statistics: Staitisticí a fhoilsiú
         title: Fionnachtain
         trends: Treochtaí
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Do chách
         disabled: Do dhuine ar bith
@@ -1375,6 +1378,13 @@ ga:
     hint_html: "<strong>Leid:</strong> Ní iarrfaimid do phasfhocal ort arís go ceann uair an chloig eile."
     invalid_password: Pasfhocal neamhbhailí
     prompt: Deimhnigh an pasfhocal chun leanúint ar aghaidh
+  color_scheme:
+    auto: Uath
+    dark: Dorcha
+    light: Solas
+  contrast:
+    auto: Uath
+    high: Ard
   crypto:
     errors:
       invalid_key: nach eochair bhailí Ed25519 nó Curve25519 í
@@ -1825,16 +1835,22 @@ ga:
       body: 'Luaigh %{name} thú i:'
       subject: Luaigh %{name} thú
       title: Lua nua
+    moderation_warning:
+      subject: Tá rabhadh modhnóireachta faighte agat
     poll:
       subject: Tháinig deireadh le vótaíocht le %{name}
     quote:
       body: 'Luaigh %{name} do phost:'
       subject: Luaigh %{name} do phost
       title: Luachan nua
+    quoted_update:
+      subject: Chuir %{name} post in eagar a luaigh tú
     reblog:
       body: 'Treisíodh do phostáil le %{name}:'
       subject: Mhol %{name} do phostáil
       title: Moladh nua
+    severed_relationships:
+      subject: Tá naisc caillte agat mar gheall ar chinneadh modhnóireachta
     status:
       subject: Tá %{name} díreach postáilte
     update:
@@ -2088,11 +2104,9 @@ ga:
     enabled: Scrios seanphostálacha go huathoibríoch
     enabled_hint: Scriostar do phostálacha go huathoibríoch nuair a shroicheann siad tairseach aoise sonraithe, ach amháin má thagann siad le ceann de na heisceachtaí thíos
     exceptions: Eisceachtaí
-    explanation: Toisc gur oibríocht chostasach é postálacha a scriosadh, déantar é seo go mall le himeacht ama nuair nach mbíonn an freastalaí gnóthach ar bhealach eile. Ar an ábhar sin, d’fhéadfadh sé go scriosfar do phostálacha tamall tar éis dóibh an tairseach aoise a bhaint amach.
     ignore_favs: Tabhair neamhaird ar toghanna
     ignore_reblogs: Déan neamhaird de boosts
     interaction_exceptions: Eisceachtaí bunaithe ar idirghníomhaíochtaí
-    interaction_exceptions_explanation: Tabhair faoi deara nach bhfuil aon ráthaíocht go scriosfar postálacha má théann siad faoi bhun na tairsí is ansa leat nó an teanndáileog tar éis dóibh dul thar iad uair amháin.
     keep_direct: Coinnigh teachtaireachtaí díreacha
     keep_direct_hint: Ní scriosann sé aon cheann de do theachtaireachtaí díreacha
     keep_media: Coinnigh postálacha le ceangaltáin meán
@@ -2313,3 +2327,6 @@ ga:
     not_supported: Ní thacaíonn an brabhsálaí seo le heochracha slándála
     otp_required: Chun eochracha slándála a úsáid cumasaigh fíordheimhniú dhá fhachtóir ar dtús.
     registered_on: Cláraithe ar %{date}
+  wrapstodon:
+    description: Féach conas a d'úsáid %{name} Mastodon i mbliana!
+    title: Wrapstodon %{year} do %{name}

@@ -66,6 +66,10 @@ class CustomEmoji < ApplicationRecord
     :emoji
   end
 
+  def featured?
+    category&.featured_emoji_id == id
+  end
+
   def copy!
     copy = self.class.find_or_initialize_by(domain: nil, shortcode: shortcode)
     copy.image = image

@@ -7,6 +7,8 @@ it:
     hosted_on: Mastodon ospitato su %{domain}
     title: Info
   accounts:
+    errors:
+      cannot_be_added_to_collections: Questo account non può essere aggiunto alle collezioni.
     followers:
       one: Seguace
       other: Seguaci
@@ -846,6 +848,7 @@ it:
         publish_statistics: Pubblica le statistiche
         title: Scopri
         trends: Tendenze
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: A tutti
         disabled: A nessuno
@@ -1316,6 +1319,13 @@ it:
     hint_html: "<strong>Suggerimento:</strong> Non ti chiederemo di nuovo la tua password per la prossima ora."
     invalid_password: Password non valida
     prompt: Conferma la tua password per continuare
+  color_scheme:
+    auto: Automatica
+    dark: Scura
+    light: Chiara
+  contrast:
+    auto: Automatico
+    high: Alto
   crypto:
     errors:
       invalid_key: non è una chiave Ed25519 o Curve25519 valida
@@ -1706,16 +1716,22 @@ it:
       body: 'Sei stato menzionato da %{name} su:'
       subject: Sei stato menzionato da %{name}
       title: Nuova menzione
+    moderation_warning:
+      subject: Hai ricevuto un avviso di moderazione
     poll:
       subject: Un sondaggio da %{name} è terminato
     quote:
       body: 'Il tuo post è stato citato da %{name}:'
       subject: "%{name} ha citato il tuo post"
       title: Nuova citazione
+    quoted_update:
+      subject: "%{name} ha modificato un post che hai citato"
     reblog:
       body: 'Il tuo status è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
       title: Nuova condivisione
+    severed_relationships:
+      subject: Hai perso le connessioni a causa di una decisione della moderazione
     status:
       subject: "%{name} ha appena pubblicato un post"
     update:
@@ -1957,11 +1973,11 @@ it:
     enabled: Cancella automaticamente i vecchi post
     enabled_hint: Cancella automaticamente i tuoi post quando diventano più vecchi di una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto
     exceptions: Eccezioni
-    explanation: Poiché l'eliminazione dei post è un'operazione che richiede molte risorse, questa viene eseguita quando il server non è occupato da altre operazioni. Per questo motivo, i tuoi post possono essere cancellati un po' dopo che raggiungono la soglia di età.
+    explanation: L'eliminazione automatica viene eseguita con bassa priorità. Potrebbe verificarsi un ritardo tra il raggiungimento della soglia di età e la rimozione.
     ignore_favs: Ignora preferiti
     ignore_reblogs: Ignora condivisioni
     interaction_exceptions: Eccezioni basate sulle interazioni
-    interaction_exceptions_explanation: Tieni conto che non c'è garanzia che i post vengano cancellati se vanno al di sotto della soglia per i preferiti o i condivisi dopo averla superata.
+    interaction_exceptions_explanation: I post che superano temporaneamente la soglia dei preferiti o delle condivisioni potrebbero essere conservati anche se in seguito vengono diminuiti.
     keep_direct: Conserva messaggi diretti
     keep_direct_hint: Non cancella nessuno dei tuoi messaggi diretti
     keep_media: Conserva post con media allegati
@@ -2179,3 +2195,6 @@ it:
     not_supported: Questo browser non supporta le chiavi di sicurezza
     otp_required: Per utilizzare le chiavi di sicurezza, prima abilita l'autenticazione a due fattori.
     registered_on: Registrato il %{date}
+  wrapstodon:
+    description: Guarda come %{name} ha utilizzato Mastodon quest'anno!
+    title: Wrapstodon %{year} per %{name}

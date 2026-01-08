@@ -11,6 +11,7 @@ export const CustomEmojiFactory = ImmutableRecord<CustomEmojiShape>({
   static_url: '',
   url: '',
   category: '',
+  featured: false,
   visible_in_picker: false,
 });
 

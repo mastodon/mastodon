@@ -2,6 +2,51 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.4] - 2026-01-07
+
+### Security
+
+- Fix SSRF protection bypass ([GHSA](https://github.com/mastodon/mastodon/security/advisories/GHSA-xfrj-c749-jxxq))
+- Fix missing ownership check in severed relationships controller ([GHSA](https://github.com/mastodon/mastodon/security/advisories/GHSA-ww85-x9cp-5v24))
+
+### Changed
+
+- Change HTTP Signature verification status from 401 to 503 on temporary failure to get remote actor (#37221 by @ClearlyClaire)
+
+### Fixed
+
+- Fix custom emojis not being rendered in profile fields (#37365 by @ClearlyClaire)
+- Fix serialization of context pages (#37376 by @ClearlyClaire)
+- Fix quotes with CWs but no text not having fallback link (#37361 by @ClearlyClaire)
+- Fix outdated link target for “locked” warning (#37366 by @ClearlyClaire)
+- Fix local custom emojis sometimes being rendered in remote posts (#37284 by @ChaosExAnima)
+- Fix some assets not being loaded from configured CDN (#37310 by @ChaosExAnima)
+- Fix notifications page error in Tor browser (#37285 by @diondiondion)
+- Fix custom emojis not being displayed in CWs and fav/boost notifications (#37272 and #37306 by @ChaosExAnima and @ClearlyClaire)
+- Fix default `Admin` role not including `view_feeds` permission (#37301 by @ClearlyClaire)
+- Fix hashtag autocomplete replacing suggestion's first characters with input (#37281 by @ClearlyClaire)
+- Fix mentions of domain-blocked users being processed (#37257 by @ClearlyClaire)
+
+## [4.5.3] - 2025-12-08
+
+### Security
+
+- Fix inconsistent error handling leaking information on existence of private posts ([GHSA-gwhw-gcjx-72v8](https://github.com/mastodon/mastodon/security/advisories/GHSA-gwhw-gcjx-72v8))
+
+### Fixed
+
+- Fix “Delete and Redraft” on a non-quote being treated as a quote post in some cases (#37140 by @ClearlyClaire)
+- Fix YouTube embeds by sending referer (#37126 by @ChaosExAnima)
+- Fix streamed quoted polls not being hydrated correctly (#37118 by @ClearlyClaire)
+- Fix creation of duplicate conversations (#37108 by @oneiros)
+- Fix extraneous `noreferrer` in external links (#37107 by @ChaosExAnima)
+- Fix edge case error handling in some database migrations (#37079 by @ClearlyClaire)
+- Fix error handling when re-fetching already-known statuses (#37077 by @ClearlyClaire)
+- Fix post navigation in single-column mode when Advanced UI is enabled (#37044 by @diondiondion)
+- Fix `tootctl status remove` removing quoted posts and remote quotes of local posts (#37009 by @ClearlyClaire)
+- Fix known expensive S3 batch delete operation failing because of short timeouts (#37004 by @ClearlyClaire)
+- Fix compose autosuggest always lowercasing input token (#36995 by @ClearlyClaire)
+
 ## [4.5.2] - 2025-11-20
 
 ### Changed

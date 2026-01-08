@@ -846,6 +846,7 @@ sv:
         publish_statistics: Publicera statistik
         title: Upptäck
         trends: Trender
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Till alla
         disabled: För ingen
@@ -1316,6 +1317,13 @@ sv:
     hint_html: "<strong>Tips:</strong> Vi frågar dig inte efter ditt lösenord igen under nästkommande timme."
     invalid_password: Ogiltigt lösenord
     prompt: Bekräfta lösenord för att fortsätta
+  color_scheme:
+    auto: Auto
+    dark: Mörkt
+    light: Ljust
+  contrast:
+    auto: Auto
+    high: Hög
   crypto:
     errors:
       invalid_key: är inte en giltig Ed25519 eller Curve25519 nyckel
@@ -1716,6 +1724,8 @@ sv:
       body: 'Ditt inlägg boostades av %{name}:'
       subject: "%{name} boostade ditt inlägg"
       title: Ny boost
+    severed_relationships:
+      subject: Du har förlorat kontakter på grund av ett moderationsbeslut
     status:
       subject: "%{name} publicerade just ett inlägg"
     update:
@@ -1957,11 +1967,11 @@ sv:
     enabled: Ta automatiskt bort gamla inlägg
     enabled_hint: Raderar dina inlägg automatiskt när de når en specifik ålder, såvida de inte matchar något av undantagen nedan
     exceptions: Undantag
-    explanation: Eftersom inläggsradering är resursintensivt görs detta stegvis när servern inte är högbelastad. Därför kan det dröja innan dina inlägg raderas efter att de uppnått ålderströskeln.
+    explanation: Automatisk radering utförs med låg prioritet. Det kan finnas en fördröjning mellan att nå åldersgränsen och att tas bort.
     ignore_favs: Bortse från favoriter
     ignore_reblogs: Ignorera boostar
     interaction_exceptions: Undantag baserat på interaktioner
-    interaction_exceptions_explanation: Observera att det inte finns någon garanti att inlägg blir raderade om de går under favorit- eller boost-tröskeln efter att en gång ha gått över dem.
+    interaction_exceptions_explanation: Inlägg som tillfälligt överskrider favorit- eller höjningströskeln kan behållas även om de senare minskas.
     keep_direct: Behåll direktmeddelanden
     keep_direct_hint: Tar inte bort någon av dina direktmeddelanden
     keep_media: Behåll inlägg med mediebilagor
@@ -2174,8 +2184,11 @@ sv:
       error: Det gick inte att ta bort din säkerhetsnyckel. Försök igen.
       success: Din säkerhetsnyckel har raderats.
     invalid_credential: Ogiltig säkerhetsnyckel
+    nickname: Smeknamn
     nickname_hint: Ange smeknamnet på din nya säkerhetsnyckel
     not_enabled: Du har inte aktiverat WebAuthn än
     not_supported: Denna webbläsare stöder inte säkerhetsnycklar
     otp_required: För att använda säkerhetsnycklar måste du först aktivera tvåfaktorsautentisering.
     registered_on: Registrerad den %{date}
+  wrapstodon:
+    description: Se hur %{name} använde Mastodon i år!

@@ -40,14 +40,7 @@ export function MastodonThemes(): Plugin {
 
       // Get all files mentioned in the themes.yml file.
       const themes = await loadThemesFromConfig(projectRoot);
-      const allThemes = {
-        ...themes,
-        default_theme_tokens: 'styles_new/application.scss',
-        'mastodon-light_theme_tokens': 'styles_new/mastodon-light.scss',
-        contrast_theme_tokens: 'styles_new/contrast.scss',
-      };
-
-      for (const [themeName, themePath] of Object.entries(allThemes)) {
+      for (const [themeName, themePath] of Object.entries(themes)) {
         entrypoints[`themes/${themeName}`] = path.resolve(jsRoot, themePath);
       }
 
@@ -70,11 +63,7 @@ export function MastodonThemes(): Plugin {
         // Rewrite the URL to the entrypoint if it matches a theme.
         if (isThemeFile(req.url ?? '', themes)) {
           const themeName = pathToThemeName(req.url ?? '');
-          const themePath = `/packs-dev/${themes[themeName]}`;
-          const isThemeTokenRequest = req.url.includes('_theme_tokens');
-          req.url = isThemeTokenRequest
-            ? themePath.replace('styles/', 'styles_new/')
-            : themePath;
+          req.url = `/packs-dev/${themes[themeName]}`;
         }
         next();
       });
@@ -87,7 +76,7 @@ export function MastodonThemes(): Plugin {
       const themePathToName = new Map(
         Object.entries(themes).map(([themeName, themePath]) => [
           path.resolve(jsRoot, themePath),
-          `/themes/${areThemeTokensEnabled() ? `${themeName}_theme_tokens` : themeName}`,
+          `/themes/${themeName}`,
         ]),
       );
       const themeNames = new Set<string>();
@@ -150,7 +139,6 @@ async function loadThemesFromConfig(root: string) {
       console.warn(`Invalid theme path "${themePath}" in themes.yml, skipping`);
       continue;
     }
-
     themes[themeName] = themePath;
   }
 
@@ -162,7 +150,7 @@ async function loadThemesFromConfig(root: string) {
 }
 
 function pathToThemeName(file: string) {
-  const basename = path.basename(file.replace('_theme_tokens', ''));
+  const basename = path.basename(file);
   return basename.split(/[.?]/)[0] ?? '';
 }
 
@@ -173,13 +161,4 @@ function isThemeFile(file: string, themes: Themes) {
 
   const basename = pathToThemeName(file);
   return basename in themes;
-}
-
-function areThemeTokensEnabled() {
-  const raw = process.env.EXPERIMENTAL_FEATURES ?? '';
-  const features = raw
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean);
-  return features.includes('theme_tokens');
 }

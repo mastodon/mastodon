@@ -7,6 +7,8 @@ gl:
     hosted_on: Mastodon aloxado en %{domain}
     title: Sobre
   accounts:
+    errors:
+      cannot_be_added_to_collections: Non se pode engadir esta conta ás coleccións.
     followers:
       one: Seguidora
       other: Seguidoras
@@ -846,6 +848,7 @@ gl:
         publish_statistics: Publicar estatísticas
         title: Descubrir
         trends: Tendencias
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Para todos
         disabled: Para ninguén
@@ -1316,6 +1319,13 @@ gl:
     hint_html: "<strong>Nota:</strong> Non che pediremos o contrasinal na seguinte hora."
     invalid_password: Contrasinal incorrecto
     prompt: Confirma o contrasinal para continuar
+  color_scheme:
+    auto: Auto
+    dark: Escuro
+    light: Claro
+  contrast:
+    auto: Auto
+    high: Alto
   crypto:
     errors:
       invalid_key: non é unha chave Ed25519 ou Curve25519 válida
@@ -1706,16 +1716,22 @@ gl:
       body: "%{name} mencionoute en:"
       subject: Foches mencionada por %{name}
       title: Nova mención
+    moderation_warning:
+      subject: Recibiches unha advertencia da moderación
     poll:
       subject: A enquisa de %{name} rematou
     quote:
       body: 'A túa publicación foi citada por %{name}:'
       subject: "%{name} citou a túa publicación"
       title: Nova cita
+    quoted_update:
+      subject: "%{name} editou unha publicación que citaches"
     reblog:
       body: 'A túa publicación promovida por %{name}:'
       subject: "%{name} promoveu a túa publicación"
       title: Nova promoción
+    severed_relationships:
+      subject: Perdeches algunhas relacións debido a decisións da moderación
     status:
       subject: "%{name} publicou"
     update:
@@ -1957,11 +1973,11 @@ gl:
     enabled: Borrar automáticamente publicacións antigas
     enabled_hint: Borra automáticamente as túas publicacións unha vez acadan certa lonxevidade, a menos que cumpran algunha destas excepcións
     exceptions: Excepcións
-    explanation: O borrado de publicacións vaise facendo aos poucos cando o servidor non ten moito traballo, é unha tarefa que consume moitos recursos. Así, a eliminación das túas publicacións podería ser lixeiramente posterior a cando lle correspondería por antigüidade.
+    explanation: O proceso de borrado automático ten baixa prioridade. Podería haber un retraso entre acadar o momento de borrado e que se borre realmente.
     ignore_favs: Ignorar favoritas
     ignore_reblogs: Ignorar promocións
     interaction_exceptions: Excepcións baseadas en interaccións
-    interaction_exceptions_explanation: Ten en conta que non hai garantía de que se eliminen as túas publicacións se baixan do límite de promocións ou favorecementos se nalgún momento o tivese superado.
+    interaction_exceptions_explanation: As publicación que excederon de xeito temporal o límite de favorecementos ou promocións poderían quedar retidas incluso se despois diminuíse ese valor.
     keep_direct: Manter mensaxes directas
     keep_direct_hint: Non borrar ningunha das túas mensaxes directas
     keep_media: Manter publicacións que conteñen multimedia
@@ -2179,3 +2195,6 @@ gl:
     not_supported: Este navegador non ten soporte para chaves de seguridade
     otp_required: Para usar chaves de seguridade tes que activar primeiro o segundo factor.
     registered_on: Rexistrado o %{date}
+  wrapstodon:
+    description: Mira como usou %{name} Mastodon este ano!
+    title: Wrapstodon %{year} de %{name}

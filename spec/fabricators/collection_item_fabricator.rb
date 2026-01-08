@@ -3,7 +3,7 @@
 Fabricator(:collection_item) do
   collection                { Fabricate.build(:collection) }
   account                   { Fabricate.build(:account) }
-  position                  1
+  position                  { sequence(:position, 1) }
   state                     :accepted
 end
 

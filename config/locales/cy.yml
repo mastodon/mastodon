@@ -7,6 +7,8 @@ cy:
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     title: Ynghylch
   accounts:
+    errors:
+      cannot_be_added_to_collections: Does dim modd ychwanegu'r cyfrif hwn at gasgliadau.
     followers:
       few: Dilynwyr
       many: Dilynwyr
@@ -1392,6 +1394,13 @@ cy:
     hint_html: "<strong>Awgrym:</strong> Fyddwn ni ddim yn gofyn i chi am eich cyfrinair eto am yr awr nesaf."
     invalid_password: Cyfrinair annilys
     prompt: Cadarnhewch gyfrinair i barhau
+  color_scheme:
+    auto: Awto
+    dark: Tywyll
+    light: Golau
+  contrast:
+    auto: Awto
+    high: Uchel
   crypto:
     errors:
       invalid_key: ddim yn allwedd Ed25519 na Curve25519 dilys
@@ -1862,16 +1871,22 @@ cy:
       body: 'Caswoch eich crybwyll gan %{name} yn:'
       subject: Cawsoch eich crybwyll gan %{name}
       title: Crywbylliad newydd
+    moderation_warning:
+      subject: Rydych wedi derbyn rhybudd gan gymedrolwr
     poll:
       subject: Mae arolwg gan %{name} wedi dod i ben
     quote:
       body: 'Mae %{name} wedi dyfynnu eich postiad :'
       subject: Mae %{name} wedi dyfynnu eich postiad
       title: Dyfyniad newydd
+    quoted_update:
+      subject: Golygodd %{name} bostiad rydych chi wedi'i ddyfynnu
     reblog:
       body: 'Cafodd eich postiad ei hybu gan %{name}:'
       subject: Rhoddodd %{name} hwb i'ch postiad
       title: Hwb newydd
+    severed_relationships:
+      subject: Rydych chi wedi colli cysylltiadau oherwydd penderfyniad cymedroli
     status:
       subject: "%{name} newydd ei bostio"
     update:
@@ -2129,11 +2144,9 @@ cy:
     enabled: Dileu hen bostiadau'n awtomatig
     enabled_hint: Yn dileu eich postiadau yn awtomatig ar ôl iddyn nhw gyrraedd trothwy oed penodedig, oni bai eu bod yn cyfateb i un o'r eithriadau isod
     exceptions: Eithriadau
-    explanation: Oherwydd bod dileu postiadau yn weithrediad drud, mae hyn yn cael ei wneud yn araf dros amser pan nad yw'r gweinydd yn brysur fel arall. Am y rheswm hwn, efallai y bydd eich postiadau yn cael eu dileu ychydig ar ôl iddyn nhw gyrraedd y trothwy oed.
     ignore_favs: Anwybyddu ffefrynnau
     ignore_reblogs: Anwybyddu hybiau
     interaction_exceptions: Eithriadau yn seiliedig ar ryngweithio
-    interaction_exceptions_explanation: Sylwch nad oes unrhyw sicrwydd y bydd postiadau'n cael eu dileu os ydyn nhw'n mynd o dan y trothwy ffefrynnau neu hybu ar ôl mynd drostyn nhw unwaith.
     keep_direct: Cadw negeseuon uniongyrchol
     keep_direct_hint: Nid yw'n dileu unrhyw un o'ch negeseuon uniongyrchol
     keep_media: Cadw postiadau gydag atodiadau cyfryngau
@@ -2355,3 +2368,6 @@ cy:
     not_supported: Nid yw'r porwr hwn yn cynnal allweddi diogelwch
     otp_required: I ddefnyddio allweddi diogelwch, galluogwch ddilysu dau ffactor yn gyntaf.
     registered_on: Cofrestrwyd ar %{date}
+  wrapstodon:
+    description: Gweler sut defnyddiodd %{name} Mastodon eleni!
+    title: Wrapstodon %{year} ar gyfer %{name}

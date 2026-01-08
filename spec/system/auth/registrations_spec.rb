@@ -3,6 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe 'Auth Registration' do
+  context 'when there are server rules' do
+    let!(:rule) { Fabricate :rule, text: 'You must be seven meters tall' }
+
+    it 'shows rules page before proceeding with sign up' do
+      visit new_user_registration_path
+      expect(page)
+        .to have_title(I18n.t('auth.register'))
+        .and have_content(rule.text)
+    end
+  end
+
   context 'when age verification is enabled' do
     before { Setting.min_age = 16 }
 

@@ -163,6 +163,7 @@ Rails.application.routes.draw do
     get '/@:account_username/followers', to: 'follower_accounts#index'
     get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
     get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
+    get '/@:account_username/wrapstodon/:year/:share_key', to: 'wrapstodon#show', as: :public_wrapstodon
   end
 
   get '/@:username_with_domain/(*any)', to: 'home#index', constraints: { username_with_domain: %r{([^/])+?} }, as: :account_with_domain, format: false

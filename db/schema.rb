@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_19_093332) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_17_091936) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -200,6 +200,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_19_093332) do
     t.string "attribution_domains", default: [], array: true
     t.string "following_url", default: "", null: false
     t.integer "id_scheme", default: 1
+    t.integer "feature_approval_policy", default: 0, null: false
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), COALESCE(lower((domain)::text), ''::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["domain", "id"], name: "index_accounts_on_domain_and_id"
@@ -380,6 +381,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_19_093332) do
     t.integer "original_number_of_items"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_count", default: 0, null: false
     t.index ["account_id"], name: "index_collections_on_account_id"
     t.index ["tag_id"], name: "index_collections_on_tag_id"
   end
@@ -404,6 +406,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_19_093332) do
     t.string "name"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.bigint "featured_emoji_id"
     t.index ["name"], name: "index_custom_emoji_categories_on_name", unique: true
   end
 
@@ -615,6 +618,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_19_093332) do
     t.datetime "viewed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "share_key"
     t.index ["account_id", "year"], name: "index_generated_annual_reports_on_account_id_and_year", unique: true
   end
 
@@ -1426,6 +1430,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_19_093332) do
   add_foreign_key "collections", "tags"
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
+  add_foreign_key "custom_emoji_categories", "custom_emojis", column: "featured_emoji_id", on_delete: :nullify
   add_foreign_key "custom_filter_keywords", "custom_filters", on_delete: :cascade
   add_foreign_key "custom_filter_statuses", "custom_filters", on_delete: :cascade
   add_foreign_key "custom_filter_statuses", "statuses", on_delete: :cascade

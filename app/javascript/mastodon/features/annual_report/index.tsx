@@ -1,96 +1,124 @@
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import type { FC } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
+import { useLocation } from 'react-router';
+
+import classNames from 'classnames/bind';
+
+import { closeModal } from '@/mastodon/actions/modal';
+import { IconButton } from '@/mastodon/components/icon_button';
+import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { getReport } from '@/mastodon/reducers/slices/annual_report';
 import {
-  importFetchedStatuses,
-  importFetchedAccounts,
-} from 'mastodon/actions/importer';
-import { apiRequestGet, apiRequestPost } from 'mastodon/api';
-import { LoadingIndicator } from 'mastodon/components/loading_indicator';
-import { me } from 'mastodon/initial_state';
-import type { Account } from 'mastodon/models/account';
-import type { AnnualReport as AnnualReportData } from 'mastodon/models/annual_report';
-import type { Status } from 'mastodon/models/status';
-import { useAppSelector, useAppDispatch } from 'mastodon/store';
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '@/mastodon/store';
+import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
 import { Archetype } from './archetype';
 import { Followers } from './followers';
 import { HighlightedPost } from './highlighted_post';
+import styles from './index.module.scss';
 import { MostUsedHashtag } from './most_used_hashtag';
 import { NewPosts } from './new_posts';
-import { Percentile } from './percentile';
 
-interface AnnualReportResponse {
-  annual_reports: AnnualReportData[];
-  accounts: Account[];
-  statuses: Status[];
-}
+const moduleClassNames = classNames.bind(styles);
 
-export const AnnualReport: React.FC<{
-  year: string;
-}> = ({ year }) => {
-  const [response, setResponse] = useState<AnnualReportResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const currentAccount = useAppSelector((state) =>
-    me ? state.accounts.get(me) : undefined,
-  );
+export const accountSelector = createAppSelector(
+  [(state) => state.accounts, (state) => state.annualReport.report],
+  (accounts, report) => {
+    if (report?.schema_version === 2) {
+      return accounts.get(report.account_id);
+    }
+    return undefined;
+  },
+);
+
+export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
+  context = 'standalone',
+}) => {
+  const intl = useIntl();
   const dispatch = useAppDispatch();
+  const report = useAppSelector((state) => state.annualReport.report);
+  const account = useAppSelector(accountSelector);
+  const needsReport = !report; // Make into boolean to avoid object comparison in deps.
 
   useEffect(() => {
-    apiRequestGet<AnnualReportResponse>(`v1/annual_reports/${year}`)
-      .then((data) => {
-        dispatch(importFetchedStatuses(data.statuses));
-        dispatch(importFetchedAccounts(data.accounts));
+    if (needsReport) {
+      void dispatch(getReport());
+    }
+  }, [dispatch, needsReport]);
 
-        setResponse(data);
-        setLoading(false);
+  const close = useCallback(() => {
+    dispatch(closeModal({ modalType: 'ANNUAL_REPORT', ignoreFocus: false }));
+  }, [dispatch]);
 
-        return apiRequestPost(`v1/annual_reports/${year}/read`);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, [dispatch, year, setResponse, setLoading]);
+  // Close modal when navigating away from within
+  const { pathname } = useLocation();
+  const [initialPathname] = useState(pathname);
+  useEffect(() => {
+    if (pathname !== initialPathname) {
+      close();
+    }
+  }, [pathname, initialPathname, close]);
 
-  if (loading) {
+  if (needsReport) {
     return <LoadingIndicator />;
   }
 
-  const report = response?.annual_reports[0];
+  const newPostCount = report.data.time_series.reduce(
+    (sum, item) => sum + item.statuses,
+    0,
+  );
 
-  if (!report) {
-    return null;
-  }
+  const newFollowerCount =
+    context === 'modal' &&
+    report.data.time_series.reduce((sum, item) => sum + item.followers, 0);
+
+  const topHashtag = report.data.top_hashtags[0];
 
   return (
-    <div className='annual-report'>
-      <div className='annual-report__header'>
-        <h1>
-          <FormattedMessage
-            id='annual_report.summary.thanks'
-            defaultMessage='Thanks for being part of Mastodon!'
+    <div className={moduleClassNames(styles.wrapper, 'theme-dark')}>
+      <div className={styles.header}>
+        <h1>Wrapstodon {report.year}</h1>
+        {account && <p>@{account.acct}</p>}
+        {context === 'modal' && (
+          <IconButton
+            title={intl.formatMessage({
+              id: 'annual_report.summary.close',
+              defaultMessage: 'Close',
+            })}
+            className={styles.closeButton}
+            icon='close'
+            iconComponent={CloseIcon}
+            onClick={close}
           />
-        </h1>
-        <p>
-          <FormattedMessage
-            id='annual_report.summary.here_it_is'
-            defaultMessage='Here is your {year} in review:'
-            values={{ year: report.year }}
-          />
-        </p>
+        )}
       </div>
 
-      <div className='annual-report__bento annual-report__summary'>
-        <Archetype data={report.data.archetype} />
-        <HighlightedPost data={report.data.top_statuses} />
-        <Followers
-          data={report.data.time_series}
-          total={currentAccount?.followers_count}
-        />
-        <MostUsedHashtag data={report.data.top_hashtags} />
-        <Percentile data={report.data.percentiles} />
-        <NewPosts data={report.data.time_series} />
+      <div className={styles.stack}>
+        <HighlightedPost data={report.data.top_statuses} context={context} />
+        <div
+          className={moduleClassNames(styles.statsGrid, {
+            noHashtag: !topHashtag,
+            onlyHashtag: !(newFollowerCount && newPostCount),
+            singleNumber: !!newFollowerCount !== !!newPostCount,
+          })}
+        >
+          {!!newFollowerCount && <Followers count={newFollowerCount} />}
+          {!!newPostCount && <NewPosts count={newPostCount} />}
+          {topHashtag && (
+            <MostUsedHashtag
+              hashtag={topHashtag}
+              account={account}
+              context={context}
+            />
+          )}
+        </div>
+        <Archetype report={report} account={account} context={context} />
       </div>
     </div>
   );

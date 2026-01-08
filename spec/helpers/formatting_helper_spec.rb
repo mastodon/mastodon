@@ -18,7 +18,7 @@ RSpec.describe FormattingHelper do
     end
 
     context 'with a spoiler and an emoji and a poll' do
-      let(:status) { Fabricate(:status, text: 'Hello :world: <>', spoiler_text: 'This is a spoiler<>', poll: Fabricate(:poll, options: %w(Yes<> No))) }
+      let(:status) { Fabricate(:status, text: 'Hello :world: <>', spoiler_text: 'This is a spoiler<>', poll: Fabricate.build(:poll, options: %w(Yes<> No))) }
 
       before { Fabricate :custom_emoji, shortcode: 'world' }
 

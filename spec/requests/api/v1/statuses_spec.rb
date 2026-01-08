@@ -264,7 +264,7 @@ RSpec.describe '/api/v1/statuses' do
       end
 
       context 'with a quote to a non-mentioned user in a Private Mention' do
-        let!(:quoted_status) { Fabricate(:status, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+        let!(:quoted_status) { Fabricate(:status, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
         let(:params) do
           {
             status: 'Hello, this is a quote',
@@ -283,7 +283,7 @@ RSpec.describe '/api/v1/statuses' do
       end
 
       context 'with a quote to a mentioned user in a Private Mention' do
-        let!(:quoted_status) { Fabricate(:status, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+        let!(:quoted_status) { Fabricate(:status, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
         let(:params) do
           {
             status: "Hello @#{quoted_status.account.acct}, this is a quote",
@@ -305,7 +305,7 @@ RSpec.describe '/api/v1/statuses' do
       end
 
       context 'with a quote of a reblog' do
-        let(:quoted_status) { Fabricate(:status, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+        let(:quoted_status) { Fabricate(:status, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
         let(:reblog) { Fabricate(:status, reblog: quoted_status) }
         let(:params) do
           {
@@ -344,7 +344,7 @@ RSpec.describe '/api/v1/statuses' do
             .to start_with('application/json')
           expect(response.parsed_body[:quote]).to be_present
           expect(response.parsed_body[:spoiler_text]).to eq 'this is a CW'
-          expect(response.parsed_body[:content]).to eq ''
+          expect(response.parsed_body[:content]).to match(/RE: /)
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
           expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
         end
@@ -501,7 +501,7 @@ RSpec.describe '/api/v1/statuses' do
 
         it 'updates the status', :aggregate_failures do
           expect { subject }
-            .to change { status.reload.quote_approval_policy }.to(Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16)
+            .to change { status.reload.quote_approval_policy }.to(InteractionPolicy::POLICY_FLAGS[:public] << 16)
 
           expect(response).to have_http_status(200)
           expect(response.content_type)

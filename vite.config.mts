@@ -120,6 +120,8 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       manifest: true,
       outDir,
       assetsDir: 'assets',
+      assetsInlineLimit: (filePath, _) =>
+        /\.woff2?$/.exec(filePath) ? false : undefined,
       rollupOptions: {
         input: await findEntrypoints(),
         output: {
@@ -153,6 +155,14 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
           },
         },
       },
+    },
+    experimental: {
+      /**
+       * Setting this causes Vite to not rely on the base config for import URLs,
+       * and instead uses import.meta.url, which is what we want for proper CDN support.
+       * @see https://github.com/mastodon/mastodon/pull/37310
+       */
+      renderBuiltUrl: () => undefined,
     },
     worker: {
       format: 'es',

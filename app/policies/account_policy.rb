@@ -64,4 +64,8 @@ class AccountPolicy < ApplicationPolicy
   def review?
     role.can?(:manage_taxonomies)
   end
+
+  def feature?
+    record.featureable? && !current_account.blocking?(record) && !current_account.blocked_by?(record)
+  end
 end

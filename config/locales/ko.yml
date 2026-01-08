@@ -7,6 +7,8 @@ ko:
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     title: 정보
   accounts:
+    errors:
+      cannot_be_added_to_collections: 이 계정은 컬렉션에 추가할 수 없습니다.
     followers:
       other: 팔로워
     following: 팔로잉
@@ -1915,11 +1917,9 @@ ko:
     enabled: 오래된 게시물 자동 삭제
     enabled_hint: 아래의 예외 목록에 해당하지 않는다면, 명시된 기한 이후 당신의 게시물을 자동으로 삭제합니다
     exceptions: 예외
-    explanation: 게시물 삭제는 많은 성능이 필요하기 때문에, 서버에서 바쁘지 않을 때 시간을 들여서 천천히 진행합니다. 이런 이유로, 당신의 게시물은 아마도 정해진 기간보다 좀 더 시간이 지난 이후에 삭제될 것입니다.
     ignore_favs: 좋아요 무시
     ignore_reblogs: 부스트 무시
     interaction_exceptions: 상호작용에 기반한 예외들
-    interaction_exceptions_explanation: 좋아요나 부스트 수가 설정한 값을 넘은 후 다시 낮아진 경우에는 게시물이 삭제되는 것을 보장하지 못합니다.
     keep_direct: 다이렉트 메시지 유지
     keep_direct_hint: 다이렉트 메시지를 삭제하지 않습니다
     keep_media: 미디어가 있는 게시물 유지
@@ -2136,3 +2136,5 @@ ko:
     not_supported: 이 브라우저는 보안 키를 지원하지 않습니다
     otp_required: 보안 키를 사용하기 위해서는 2단계 인증을 먼저 활성화 해 주세요
     registered_on: "%{date}에 등록됨"
+  wrapstodon:
+    title: "%{name} 님의 %{year} 랩스토돈"
