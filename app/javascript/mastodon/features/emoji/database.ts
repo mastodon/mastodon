@@ -54,11 +54,11 @@ const loadDB = (() => {
 export async function search({
   query,
   locale: localeString,
-  count = 0,
+  limit = 0,
 }: {
   query: string;
   locale: string;
-  count?: number;
+  limit?: number;
 }) {
   performance.mark('emoji-search-start');
 
