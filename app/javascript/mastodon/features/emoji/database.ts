@@ -74,7 +74,7 @@ export async function search({
 
   log('searching for tokens %o in locale %s', queryTokens, locale);
 
-  // Create an array of
+  // Create an array of emoji results
   const db = await loadDB();
   const resultArrays: Map<string, AnyEmojiData>[] = [];
   for (let i = 0; i < queryTokens.length; i++) {
