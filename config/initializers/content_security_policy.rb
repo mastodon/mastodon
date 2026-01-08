@@ -50,6 +50,12 @@ Rails.application.config.content_security_policy do |p|
     p.script_src :self, plausible_domain
     p.connect_src :self, plausible_domain
   end
+
+  if ENV['UMAMI_SCRIPT'].present?
+    umami_domain = URI.parse(ENV['UMAMI_SCRIPT']).host
+    p.script_src :self, umami_domain
+    p.connect_src :self, umami_domain
+  end
 end
 
 # Report CSP violations to a specified URI
