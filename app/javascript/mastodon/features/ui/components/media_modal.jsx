@@ -201,8 +201,6 @@ class MediaModal extends ImmutablePureComponent {
             preview={image.get('preview_url')}
             blurhash={image.get('blurhash')}
             src={image.get('url')}
-            width={image.get('width')}
-            height={image.get('height')}
             frameRate={image.getIn(['meta', 'original', 'frame_rate'])}
             aspectRatio={`${image.getIn(['meta', 'original', 'width'])} / ${image.getIn(['meta', 'original', 'height'])}`}
             startTime={currentTime || 0}
@@ -219,8 +217,6 @@ class MediaModal extends ImmutablePureComponent {
         return (
           <GIFV
             src={image.get('url')}
-            width={width}
-            height={height}
             key={image.get('url')}
             alt={description}
             lang={lang}

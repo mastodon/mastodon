@@ -34,7 +34,7 @@ const mapStateToProps = state => ({
   maxChars: state.getIn(['server', 'server', 'configuration', 'statuses', 'max_characters'], 500),
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch, props) => ({
 
   onChange (text) {
     dispatch(changeCompose(text));
@@ -47,7 +47,11 @@ const mapDispatchToProps = (dispatch) => ({
         modalProps: {},
       }));
     } else {
-      dispatch(submitCompose());
+      dispatch(submitCompose((status) => {
+        if (props.redirectOnSuccess) {
+          window.location.assign(status.url);
+        }
+      }));
     }
   },
 

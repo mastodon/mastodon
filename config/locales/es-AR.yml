@@ -580,10 +580,10 @@ es-AR:
         title: Moderación
       moderation_notes:
         create: Agregar nota de moderación
-        created_msg: "¡Nota de moderación de instancia creada!"
-        description_html: Ver y dejar notas para otros moderadores y a tu yo futuro
-        destroyed_msg: "¡Nota de moderación de instancia eliminada con éxito!"
-        placeholder: Información sobre esta instancia, acciones tomadas o cualquier otra cosa que te ayude a moderar esta instancia en el futuro.
+        created_msg: "¡Nota de moderación de servidor creada exitosamente!"
+        description_html: Ver y dejar notas para otros moderadores y como referencia futura
+        destroyed_msg: "¡Nota de moderación de servidor eliminada exitosamente!"
+        placeholder: Información sobre este servidor, acciones tomadas, o cualquier otra cosa que te ayude a moderar al mismo en el futuro.
         title: Notas de moderación
       private_comment: Comentario privado
       public_comment: Comentario público
@@ -1706,6 +1706,7 @@ es-AR:
       self_vote: No podés votar en tus propias encuestas
       too_few_options: debe tener más de un elemento
       too_many_options: no puede contener más de %{max} elementos
+    vote: Votar
   preferences:
     other: Otras opciones
     posting_defaults: Configuración predeterminada de mensajes
@@ -1875,12 +1876,12 @@ es-AR:
       ownership: No se puede fijar el mensaje de otra cuenta
       reblog: No se puede fijar una adhesión
     quote_policies:
-      followers: Seguidores y usuarios mencionados
-      nobody: Solo usuarios mencionados
-      public: Todos
+      followers: Solo seguidores
+      nobody: Solo yo
+      public: Cualquier cuenta
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Directo
+      direct: Mención privada
       private: Sólo a seguidores
       private_long: Sólo mostrar a seguidores
       public: Público

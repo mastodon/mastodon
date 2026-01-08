@@ -10,6 +10,7 @@ class ActivityPub::RefetchAndVerifyQuoteWorker
   def perform(quote_id, quoted_uri, options = {})
     quote = Quote.find(quote_id)
     ActivityPub::VerifyQuoteService.new.call(quote, fetchable_quoted_uri: quoted_uri, request_id: options[:request_id])
+    ::DistributionWorker.perform_async(quote.status_id, { 'update' => true }) if quote.state_previously_changed?
   rescue ActiveRecord::RecordNotFound
     # Do nothing
     true

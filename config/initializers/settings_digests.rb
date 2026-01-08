@@ -3,7 +3,7 @@
 Rails.application.config.to_prepare do
   custom_css = begin
     Setting.custom_css
-  rescue ActiveRecord::AdapterError # Running without a database, not migrated, no connection, etc
+  rescue # Running without a cache, database, not migrated, no connection, etc
     nil
   end
 

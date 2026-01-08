@@ -1669,6 +1669,7 @@ zh-TW:
       self_vote: 您無法於您的嘟文投票
       too_few_options: 必須包含至少一個項目
       too_many_options: 不能包含多於 %{max} 個項目
+    vote: 投票
   preferences:
     other: 其他
     posting_defaults: 嘟文預設值
@@ -1826,7 +1827,7 @@ zh-TW:
       other: 含有不得使用的標籤： %{tags}
     edited_at_html: 編輯於 %{date}
     errors:
-      in_reply_not_found: 您嘗試回覆的嘟文看起來不存在。
+      in_reply_not_found: 您嘗試回覆之嘟文似乎不存在。
     over_character_limit: 已超過 %{max} 字的限制
     pin_errors:
       direct: 無法釘選只有僅提及使用者可見之嘟文
@@ -1834,9 +1835,9 @@ zh-TW:
       ownership: 不能釘選他人的嘟文
       reblog: 不能釘選轉嘟
     quote_policies:
-      followers: 跟隨者與已提及使用者
-      nobody: 僅限已提及使用者
-      public: 任何人
+      followers: 僅限跟隨者
+      nobody: 僅有我
+      public: 所有人
     title: "%{name}：「%{quote}」"
     visibilities:
       direct: 私訊

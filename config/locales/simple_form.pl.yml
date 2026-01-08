@@ -56,6 +56,7 @@ pl:
         scopes: Wybór API, do których aplikacja będzie miała dostęp. Jeżeli wybierzesz nadrzędny zakres, nie musisz wybierać jego elementów.
         setting_aggregate_reblogs: Nie pokazuj nowych podbić dla wpisów, które zostały niedawno podbite (dotyczy tylko nowo otrzymanych podbić)
         setting_always_send_emails: Powiadomienia e-mail zwykle nie będą wysyłane, gdy używasz Mastodon
+        setting_default_quote_policy: To ustawienie będzie skuteczne tylko dla postów utworzonych z następną wersją Mastodon, ale możesz wybrać swoje preferencje w przygotowaniu.
         setting_default_sensitive: Wrażliwe multimedia są domyślnie schowane i mogą być odkryte kliknięciem
         setting_display_media_default: Ukrywaj zawartość multimedialną oznaczoną jako wrażliwa
         setting_display_media_hide_all: Zawsze ukrywaj zawartość multimedialną
@@ -75,6 +76,7 @@ pl:
       filters:
         action: Wybierz akcję do wykonania, gdy post pasuje do filtra
         actions:
+          blur: Ukryj media za ostrzeżeniem, bez ukrywania samego tekstu
           hide: Całkowicie ukryj przefiltrowaną zawartość, jakby nie istniała
           warn: Ukryj filtrowaną zawartość za ostrzeżeniem wskazującym tytuł filtra
       form_admin_settings:
@@ -88,6 +90,7 @@ pl:
         favicon: WEBP, PNG, GIF, albo JPEG. Nadpisuje domyślną faviconę Mastodona.
         mascot: Nadpisuje ilustrację w zaawansowanym interfejsie internetowym.
         media_cache_retention_period: Media z wpisów od obcych użytkowników są cache'owane na twoim serwerze. Kiedy dana wartość jest dodatnia, media te będą usunięte po tylu dniach. Jeżeli usunięte media zostaną potem zażądane, oryginał zostanie ponownie pobrany (o ile jest dalej dostępny). Z powodu ograniczeń dot. częstotliwości z jaką karty podglądu linków dopytują się o dane od stron trzecich, zalecana wartość to min. 14 dni, bo karty podglądu linków nie będą wcześniej odświeżane na żądane.
+        min_age: Użytkownicy zostaną poproszeni o potwierdzenie daty urodzenia podczas rejestracji
         peers_api_enabled: Lista nazw domen, z którymi ten serwer spotkał się w fediverse. Nie są tu zawarte żadne dane o tym, czy użytkownik dokonuje federacji z danym serwerem, a jedynie, że jego serwer o tym wie. Jest to wykorzystywane przez serwisy, które zbierają statystyki dotyczące federacji w ogólnym sensie.
         profile_directory: Katalog profili zawiera listę wszystkich użytkowników, którzy zgodzili się na bycie znalezionymi.
         require_invite_text: Kiedy rejestracje wymagają ręcznego zatwierdzenia, ustaw pole "Dlaczego chcesz dołączyć?" jako obowiązkowe, a nie opcjonalne
@@ -132,15 +135,25 @@ pl:
         name: Możesz zmieniać tylko wielkość liter, np. aby były bardziej widoczne
       terms_of_service:
         changelog: Może być stworzony przy pomocy składni Markdown.
+        effective_date: Uzasadnione ramy czasowe mogą być różne w dowolnym miejscu od 10 do 30 dni od daty powiadomienia użytkowników.
         text: Może być stworzony przy pomocy składni Markdown.
       terms_of_service_generator:
         admin_email: Zawiadomienia prawne obejmują środki zapobiegawcze, nakazy sądowe, wnioski o popełnienie sprawy oraz wnioski organów ścigania.
+        arbitration_address: Czy może być taki sam jak adres fizyczny powyżej lub „N/A” jeśli używasz adresu e-mail.
+        arbitration_website: Może być formularzem internetowym lub „N/A”, jeśli używasz adresu e-mail.
         choice_of_law: Miasto, region, terytorium lub stan, którego wewnętrzne prawo będzie regulowało wszelkie roszczenia.
         dmca_address: W przypadku operatorów z USA należy użyć adresu zarejestrowanego w DMCA Designated Agent Directory. Lista skrytek pocztowych dostępna jest na bezpośrednią prośbę użytkownika. Użyj DMCA Agent Post Office Box Waiver Request, aby wysłać email do Copyright Office z informacją, że jesteś domowym administratorm treści i z powodu obawy o zemstę lub odwetu za swoje działania, musisz użyć skrytki pocztowej, żeby usunąć swój adres domowy z dostępu publicznego.
+        dmca_email: Czy może ten sam adres e-mail używany dla powyższego "Adres e-mail dla prawnych zawiadomień"?
         domain: Unikalny numer identyfikacji świadczonej przez Ciebie usługi online.
         jurisdiction: Wymień państwo, w którym mieszkają osoby płacące rachunki. Jeżeli jest to spółka lub inny zarejestrowany podmiot, w zależności od przypadku podaj państwo, w którym jest zarejestrowany, a także miasto, region czy województwo.
+        min_age: Nie powinien być niższy niż minimalny wiek wymagany przez prawo twojego państwa.
       user:
         chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą wyświetlane na publicznych osiach czasu
+        date_of_birth:
+          few: Musimy upewnić się, że jesteś co najmniej %{count} aby użyć %{domain}. Nie będziemy tego przechowywać.
+          many: Musimy upewnić się, że jesteś co najmniej %{count} aby użyć %{domain}. Nie będziemy tego przechowywać.
+          one: Musimy upewnić się, że jesteś co najmniej %{count} aby użyć %{domain}. Nie będziemy tego przechowywać.
+          other: Musimy upewnić się, że jesteś co najmniej %{count} aby użyć %{domain}. Nie będziemy tego przechowywać.
         role: Rola kontroluje uprawnienia użytkownika.
       user_role:
         color: Kolor używany dla roli w całym interfejsie użytkownika, wyrażony jako RGB w formacie szesnastkowym
@@ -221,6 +234,7 @@ pl:
         setting_boost_modal: Pytaj o potwierdzenie przed podbiciem
         setting_default_language: Język wpisów
         setting_default_privacy: Widoczność wpisów
+        setting_default_quote_policy: Kto może cytować
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
         setting_delete_modal: Pytaj o potwierdzenie przed usunięciem wpisu
         setting_disable_hover_cards: Wyłącz podgląd profilu po najechaniu
@@ -253,6 +267,7 @@ pl:
         name: Hasztag
       filters:
         actions:
+          blur: Ukryj media z ostrzeżeniem
           hide: Ukryj całkowicie
           warn: Ukryj z ostrzeżeniem
       form_admin_settings:
@@ -266,6 +281,7 @@ pl:
         favicon: Favicon
         mascot: Własna ikona
         media_cache_retention_period: Okres przechowywania pamięci podręcznej
+        min_age: Wymagany minimalny wiek
         peers_api_enabled: Opublikuj listę odkrytych serwerów w API
         profile_directory: Włącz katalog profilów
         registrations_mode: Kto może się zarejestrować
@@ -331,6 +347,7 @@ pl:
         usable: Pozwól na umieszczanie tego hashtagu w lokalnych wpisach
       terms_of_service:
         changelog: Co się zmieniło?
+        effective_date: Data wejścia w życie
         text: Warunki korzystania z usługi
       terms_of_service_generator:
         admin_email: Adres e-mail przeznaczony do celów prawnych
@@ -341,7 +358,11 @@ pl:
         dmca_email: Adres e-mail dla zgłoszeń naruszenia DMCA/praw autorskich
         domain: Domena
         jurisdiction: Jurysdykcja
+        min_age: Wiek minimalny
       user:
+        date_of_birth_1i: Dzień
+        date_of_birth_2i: Miesiąc
+        date_of_birth_3i: Rok
         role: Rola
         time_zone: Strefa czasowa
       user_role:

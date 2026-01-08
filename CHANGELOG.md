@@ -2,6 +2,179 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.11] - 2026-01-07
+
+### Security
+
+- Fix SSRF protection bypass ([GHSA](https://github.com/mastodon/mastodon/security/advisories/GHSA-xfrj-c749-jxxq))
+- Fix missing ownership check in severed relationships controller ([GHSA](https://github.com/mastodon/mastodon/security/advisories/GHSA-ww85-x9cp-5v24))
+
+### Changed
+
+- Change HTTP Signature verification status from 401 to 503 on temporary failure to get remote actor (#37221 by @ClearlyClaire)
+
+### Fixed
+
+- Fix mentions of domain-blocked users being processed (#37257 by @ClearlyClaire)
+
+## [4.4.10] - 2025-12-08
+
+### Security
+
+- Fix inconsistent error handling leaking information on existence of private posts ([GHSA-gwhw-gcjx-72v8](https://github.com/mastodon/mastodon/security/advisories/GHSA-gwhw-gcjx-72v8))
+
+### Fixed
+
+- Fix YouTube embeds by sending referer (#37126 by @ChaosExAnima)
+- Fix YouTube iframe not being able to start at a defined time (#26584 by @BrunoViveiros)
+- Fix streamed quoted polls not being hydrated correctly (#37118 by @ClearlyClaire)
+- Fix error handling when re-fetching already-known statuses (#37077 by @ClearlyClaire)
+- Fix known expensive S3 batch delete operation failing because of short timeouts (#37004 by @ClearlyClaire)
+
+## [4.4.9] - 2025-11-20
+
+### Fixed
+
+- Fix `tootctl upgrade storage-schema` failing with `ArgumentError` (#36914 by @shugo)
+- Fix old previously-undiscovered posts being treated as new when receiving an `Update` (#36848 by @ClearlyClaire)
+- Fix filters not being applied to quotes in detailed view (#36843 by @ClearlyClaire)
+
+## [4.4.8] - 2025-10-21
+
+### Security
+
+- Fix quote control bypass ([GHSA-8h43-rcqj-wpc6](https://github.com/mastodon/mastodon/security/advisories/GHSA-8h43-rcqj-wpc6))
+
+## [4.4.7] - 2025-10-15
+
+### Fixed
+
+- Fix forwarder being called with `nil` status when quote post is soft-deleted (#36463 by @ClearlyClaire)
+- Fix moderation warning e-mails that include posts (#36462 by @ClearlyClaire)
+- Fix allow_referrer_origin typo (#36460 by @ShadowJonathan)
+
+## [4.4.6] - 2025-10-13
+
+### Security
+
+- Update dependencies `rack` and `uri`
+- Fix streaming server connection not being closed on user suspension (by @ThisIsMissEm, [GHSA-r2fh-jr9c-9pxh](https://github.com/mastodon/mastodon/security/advisories/GHSA-r2fh-jr9c-9pxh))
+- Fix password change through admin CLI not invalidating existing sessions and access tokens (by @ThisIsMissEm, [GHSA-f3q3-rmf7-9655](https://github.com/mastodon/mastodon/security/advisories/GHSA-f3q3-rmf7-9655))
+- Fix streaming server allowing access to public timelines even without the `read` or `read:statuses` OAuth scopes (by @ThisIsMissEm, [GHSA-7gwh-mw97-qjgp](https://github.com/mastodon/mastodon/security/advisories/GHSA-7gwh-mw97-qjgp))
+
+### Added
+
+- Add support for processing quotes of deleted posts signaled through a `Tombstone` (#36381 by @ClearlyClaire)
+
+### Fixed
+
+- Fix quote post state sometimes not being updated through streaming server (#36408 by @ClearlyClaire)
+- Fix inconsistent “pending tags” count on admin dashboard (#36404 by @mjankowski)
+- Fix JSON payload being potentially mutated when processing interaction policies (#36392 by @ClearlyClaire)
+- Fix quotes not being displayed in email notifications (#36379 by @diondiondion)
+- Fix redirect to external object when URL is missing or malformed (#36347 by @ClearlyClaire)
+- Fix quotes not being displayed in the featured carousel (#36335 by @diondiondion)
+
+## [4.4.5] - 2025-09-23
+
+### Security
+
+- Update dependencies
+
+### Added
+
+- Add support for `has:quote` in search (#36217 by @ClearlyClaire)
+
+### Changed
+
+- Change quoted posts from silenced accounts to use a click-through rather than being hidden (#36166 and #36167 by @ClearlyClaire)
+
+### Fixed
+
+- Fix processing of out-of-order `Update` as implicit updates (#36190 by @ClearlyClaire)
+- Fix getting `Create` and `Update` out of order (#36176 by @ClearlyClaire)
+- Fix quotes with Content Warnings but no text being shown without Content Warnings (#36150 by @ClearlyClaire)
+
+## [4.4.4] - 2025-09-16
+
+### Security
+
+- Update dependencies
+
+### Fixed
+
+- Fix missing memoization in `Web::PushNotificationWorker` (#36085 by @ClearlyClaire)
+- Fix unresponsive areas around GIFV modals in some cases (#36059 by @ClearlyClaire)
+- Fix missing `beforeUnload` confirmation when a poll is being authored (#36030 by @ClearlyClaire)
+- Fix processing of remote edited statuses with new media and no text (#35970 by @unfokus)
+- Fix polls not being displayed in moderation interface (#35644 and #35933 by @ThisIsMissEm)
+- Fix WebUI handling of deleted quoted posts (#35909 and #35918 by @ClearlyClaire and @diondiondion)
+- Fix “Edit” and “Delete & Redraft” on a poll not inserting empty option (#35892 by @ClearlyClaire)
+- Fix loading of some compatibility CSS on some configurations (#35876 by @shleeable)
+- Fix HttpLog not being enabled with `RAILS_LOG_LEVEL=debug` (#35833 by @mjankowski)
+- Fix self-destruct scheduler behavior on some Redis setups (#35823 by @ClearlyClaire)
+- Fix `tootctl admin create` not bypassing reserved username checks (#35779 by @ClearlyClaire)
+- Fix interaction policy changes in implicit updates not being saved (#35751 by @ClearlyClaire)
+- Fix quote revocation not being streamed (#35710 by @ClearlyClaire)
+- Fix export of large user archives by enabling Zip64 (#35850 by @ClearlyClaire)
+
+### Changed
+
+- Change labels for quote policy settings (#35893 by @ClearlyClaire)
+- Change standalone “Share” page to redirect to web interface after posting (#35763 by @ChaosExAnima)
+
+## [4.4.3] - 2025-08-05
+
+### Security
+
+- Update dependencies
+- Fix incorrect rate-limit handling [GHSA-84ch-6436-c7mg](https://github.com/mastodon/mastodon/security/advisories/GHSA-84ch-6436-c7mg)
+
+### Fixed
+
+- Fix race condition caused by ActiveRecord query cache in `Create` critical path (#35662 by @ClearlyClaire)
+- Fix race condition caused by quote post processing (#35657 by @ClearlyClaire)
+- Fix WebUI crashing for accounts with `null` URL (#35651 by @ClearlyClaire)
+- Fix friends-of-friends recommendations suggesting already-requested accounts (#35604 by @ClearlyClaire)
+- Fix synchronous recursive fetching of deeply-nested quoted posts (#35600 by @ClearlyClaire)
+- Fix “Expand this post” link including user `@undefined` (#35478 by @ClearlyClaire)
+
+### Changed
+
+- Change `StatusReachFinder` to consider quotes as well as reblogs (#35601 by @ClearlyClaire)
+- Add restrictions on which quote posts can trend (#35507 by @ClearlyClaire)
+- Change quote verification to not bypass authorization flow for mentions (#35528 by @ClearlyClaire)
+
+## [4.4.2] - 2025-07-23
+
+### Security
+
+- Update dependencies
+
+### Fixed
+
+- Fix menu not clickable in Firefox (#35390 and #35414 by @diondiondion)
+- Add `lang` attribute to current composer language in alt text modal (#35412 by @diondiondion)
+- Fix quote posts styling on notifications page (#35411 by @diondiondion)
+- Improve a11y of custom select menus in notifications settings (#35403 by @diondiondion)
+- Fix selected item in poll select menus is unreadable in Firefox (#35402 by @diondiondion)
+- Update age limit wording (#35387 by @diondiondion)
+- Fix support for quote verification in implicit status updates (#35384 by @ClearlyClaire)
+- Improve `Dropdown` component accessibility (#35373 by @diondiondion)
+- Fix processing some incoming quotes failing because of missing JSON-LD context (#35354 and #35380 by @ClearlyClaire)
+- Make bio hashtags open the local page instead of the remote instance (#35349 by @ChaosExAnima)
+- Fix styling of external log-in button (#35320 by @ClearlyClaire)
+
+## [4.4.1] - 2025-07-09
+
+### Fixed
+
+- Fix nearly every sub-directory being crawled as part of Vite build (#35323 by @ClearlyClaire)
+- Fix assets not building when Redis is unavailable (#35321 by @oneiros)
+- Fix replying from media modal or pop-in-player tagging user `@undefined` (#35317 by @ClearlyClaire)
+- Fix support for special characters in various environment variables (#35314 by @mjankowski and @ClearlyClaire)
+- Fix some database migrations failing for indexes manually removed by admins (#35309 by @mjankowski)
+
 ## [4.4.0] - 2025-07-08
 
 ### Added
