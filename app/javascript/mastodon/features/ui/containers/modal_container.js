@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => ({
     } else {
       dispatch(closeModal({
         modalType: undefined,
-        ignoreFocus: ignoreFocus,
+        ignoreFocus,
       }));
     }
   },
