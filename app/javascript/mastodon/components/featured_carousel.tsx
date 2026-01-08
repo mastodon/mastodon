@@ -20,7 +20,7 @@ import { useDrag } from '@use-gesture/react';
 import { expandAccountFeaturedTimeline } from '@/mastodon/actions/timelines';
 import { Icon } from '@/mastodon/components/icon';
 import { IconButton } from '@/mastodon/components/icon_button';
-import StatusContainer from '@/mastodon/containers/status_container';
+import { StatusQuoteManager } from '@/mastodon/components/status_quoted';
 import { usePrevious } from '@/mastodon/hooks/usePrevious';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import ChevronLeftIcon from '@/material-icons/400-24px/chevron_left.svg?react';
@@ -218,12 +218,7 @@ const FeaturedCarouselItem: React.FC<
       ref={handleRef}
       {...props}
     >
-      <StatusContainer
-        // @ts-expect-error inferred props are wrong
-        id={statusId}
-        contextType='account'
-        withCounters
-      />
+      <StatusQuoteManager id={statusId} contextType='account' withCounters />
     </animated.div>
   );
 };

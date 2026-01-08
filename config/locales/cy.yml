@@ -1590,7 +1590,7 @@ cy:
       domain_blocking_html:
         few: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
         many: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
-        one: Rydych ar fin <strong>disodli eich rhestr blociau parth</strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
+        one: Rydych ar fin <strong>amnewid eich rhestr blociau parth</strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
         other: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
         two: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong.
         zero: Rydych ar fin <strong>amnewid eich rhestr rhwystro parthau </strong> gyda hyd at <strong>%{count} parth</strong> o <strong>%{filename}</strong>.
@@ -1862,6 +1862,7 @@ cy:
       self_vote: Nid oes modd i chi bleidleisio yn eich polau eich hun
       too_few_options: rhaid cael mwy nag un eitem
       too_many_options: ni all gynnwys mwy na %{max} eitem
+    vote: Pleidleisio
   preferences:
     other: Arall
     posting_defaults: Rhagosodiadau postio
@@ -1898,7 +1899,7 @@ cy:
     last_active: Yn weithgar ddiwethaf
     most_recent: Y diweddaraf
     moved: Wedi symud
-    mutual: Cydfudd
+    mutual: Yn Gyffredin
     primary: Cynradd
     relationship: Perthynas
     remove_selected_domains: Tynnu'r holl ddilynwyr o'r parthau a ddewiswyd
@@ -2047,12 +2048,12 @@ cy:
       ownership: Nid oes modd pinio postiad rhywun arall
       reblog: Nid oes modd pinio hwb
     quote_policies:
-      followers: Dilynwyr a defnyddwyr wedi'u crybwyll
-      nobody: Dim ond defnyddwyr wedi'u crybwyll
+      followers: Dilynwyr yn unig
+      nobody: Dim ond fi
       public: Pawb
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Uniongyrchol
+      direct: Crybwylliad preifat
       private: Dilynwyr yn unig
       private_long: Dangos i ddilynwyr yn unig
       public: Cyhoeddus

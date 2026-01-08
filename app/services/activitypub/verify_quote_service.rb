@@ -3,9 +3,12 @@
 class ActivityPub::VerifyQuoteService < BaseService
   include JsonLdHelper
 
+  MAX_SYNCHRONOUS_DEPTH = 2
+
   # Optionally fetch quoted post, and verify the quote is authorized
-  def call(quote, fetchable_quoted_uri: nil, prefetched_quoted_object: nil, prefetched_approval: nil, request_id: nil)
+  def call(quote, fetchable_quoted_uri: nil, prefetched_quoted_object: nil, prefetched_approval: nil, request_id: nil, depth: nil)
     @request_id = request_id
+    @depth = depth || 0
     @quote = quote
     @fetching_error = nil
 
@@ -42,14 +45,7 @@ class ActivityPub::VerifyQuoteService < BaseService
       true
     end
 
-    # Always allow someone to quote posts in which they are mentioned
-    if @quote.quoted_status.active_mentions.exists?(mentions: { account_id: @quote.account_id })
-      @quote.accept!
-
-      true
-    else
-      false
-    end
+    false
   end
 
   def fetch_approval_object(uri, prefetched_body: nil)
@@ -72,10 +68,12 @@ class ActivityPub::VerifyQuoteService < BaseService
     return if uri.nil? || @quote.quoted_status.present?
 
     status = ActivityPub::TagManager.instance.uri_to_resource(uri, Status)
-    status ||= ActivityPub::FetchRemoteStatusService.new.call(uri, on_behalf_of: @quote.account.followers.local.first, prefetched_body:, request_id: @request_id)
+    raise Mastodon::RecursionLimitExceededError if @depth > MAX_SYNCHRONOUS_DEPTH && status.nil?
 
-    @quote.update(quoted_status: status) if status.present?
-  rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS => e
+    status ||= ActivityPub::FetchRemoteStatusService.new.call(uri, on_behalf_of: @quote.account.followers.local.first, prefetched_body:, request_id: @request_id, depth: @depth + 1)
+
+    @quote.update(quoted_status: status) if status.present? && !status.reblog?
+  rescue Mastodon::RecursionLimitExceededError, Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS => e
     @fetching_error = e
   end
 
@@ -90,9 +88,9 @@ class ActivityPub::VerifyQuoteService < BaseService
     # It's not safe to fetch if the inlined object is cross-origin or doesn't match expectations
     return if object['id'] != uri || non_matching_uri_hosts?(@quote.approval_uri, object['id'])
 
-    status = ActivityPub::FetchRemoteStatusService.new.call(object['id'], prefetched_body: object, on_behalf_of: @quote.account.followers.local.first, request_id: @request_id)
+    status = ActivityPub::FetchRemoteStatusService.new.call(object['id'], prefetched_body: object, on_behalf_of: @quote.account.followers.local.first, request_id: @request_id, depth: @depth)
 
-    if status.present?
+    if status.present? && !status.reblog?
       @quote.update(quoted_status: status)
       true
     else

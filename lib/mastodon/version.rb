@@ -13,7 +13,7 @@ module Mastodon
     end
 
     def patch
-      0
+      11
     end
 
     def suffix

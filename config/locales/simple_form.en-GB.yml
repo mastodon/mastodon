@@ -75,6 +75,7 @@ en-GB:
       filters:
         action: Chose which action to perform when a post matches the filter
         actions:
+          blur: Hide media behind a warning, without hiding the text itself
           hide: Completely hide the filtered content, behaving as if it did not exist
           warn: Hide the filtered content behind a warning mentioning the filter's title
       form_admin_settings:
@@ -88,6 +89,7 @@ en-GB:
         favicon: WEBP, PNG, GIF or JPG. Overrides the default Mastodon favicon with a custom icon.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Media files from posts made by remote users are cached on your server. When set to a positive value, media will be deleted after the specified number of days. If the media data is requested after it is deleted, it will be re-downloaded, if the source content is still available. Due to restrictions on how often link preview cards poll third-party sites, it is recommended to set this value to at least 14 days, or link preview cards will not be updated on demand before that time.
+        min_age: Users will be asked to confirm their date of birth during sign-up
         peers_api_enabled: A list of domain names this server has encountered in the fediverse. No data is included here about whether you federate with a given server, just that your server knows about it. This is used by services that collect statistics on federation in a general sense.
         profile_directory: The profile directory lists all users who have opted-in to be discoverable.
         require_invite_text: When sign-ups require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
@@ -132,12 +134,18 @@ en-GB:
         name: You can only change the casing of the letters, for example, to make it more readable
       terms_of_service:
         changelog: Can be structured with Markdown syntax.
+        effective_date: A reasonable timeframe can range anywhere from 10 to 30 days from the date you notify your users.
         text: Can be structured with Markdown syntax.
       terms_of_service_generator:
         admin_email: Legal notices include counternotices, court orders, takedown requests, and law enforcement requests.
+        arbitration_address: Can be the same as Physical address above, or “N/A” if using email.
+        arbitration_website: Can be a web form, or “N/A” if using email.
+        choice_of_law: City, region, territory or state the internal substantive laws of which shall govern any and all claims.
         dmca_address: For US operators, use the address registered in the DMCA Designated Agent Directory. A P.O. Box listing is available upon direct request, use the DMCA Designated Agent Post Office Box Waiver Request to email the Copyright Office and describe that you are a home-based content moderator who fears revenge or retribution for your actions and need to use a P.O. Box to remove your home address from public view.
+        dmca_email: Can be the same email used for “Email address for legal notices” above.
         domain: Unique identification of the online service you are providing.
         jurisdiction: List the country where whoever pays the bills lives. If it’s a company or other entity, list the country where it’s incorporated, and the city, region, territory or state as appropriate.
+        min_age: Should not be below the minimum age required by the laws of your jurisdiction.
       user:
         chosen_languages: When checked, only posts in selected languages will be displayed in public timelines
         role: The role controls which permissions the user has.
@@ -220,6 +228,7 @@ en-GB:
         setting_boost_modal: Show confirmation dialogue before boosting
         setting_default_language: Posting language
         setting_default_privacy: Posting privacy
+        setting_default_quote_policy: Who can quote
         setting_default_sensitive: Always mark media as sensitive
         setting_delete_modal: Show confirmation dialogue before deleting a post
         setting_disable_hover_cards: Disable profile preview on hover
@@ -252,6 +261,7 @@ en-GB:
         name: Hashtag
       filters:
         actions:
+          blur: Hide media with a warning
           hide: Hide completely
           warn: Hide with a warning
       form_admin_settings:
@@ -265,6 +275,7 @@ en-GB:
         favicon: Favicon
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period
+        min_age: Minimum age requirement
         peers_api_enabled: Publish list of discovered servers in the API
         profile_directory: Enable profile directory
         registrations_mode: Who can sign-up
@@ -330,16 +341,22 @@ en-GB:
         usable: Allow posts to use this hashtag locally
       terms_of_service:
         changelog: What's changed?
+        effective_date: Effective date
         text: Terms of Service
       terms_of_service_generator:
         admin_email: Email address for legal notices
         arbitration_address: Physical address for arbitration notices
         arbitration_website: Website for submitting arbitration notices
+        choice_of_law: Choice of Law
         dmca_address: Physical address for DMCA/copyright notices
         dmca_email: Email address for DMCA/copyright notices
         domain: Domain
         jurisdiction: Legal jurisdiction
+        min_age: Minimum age
       user:
+        date_of_birth_1i: Day
+        date_of_birth_2i: Month
+        date_of_birth_3i: Year
         role: Role
         time_zone: Time Zone
       user_role:

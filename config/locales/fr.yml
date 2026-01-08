@@ -319,6 +319,7 @@ fr:
         create: Créer une annonce
         title: Nouvelle annonce
       preview:
+        disclaimer: Étant donné que les utilisateurs ne peuvent pas s'en retirer, les notifications par courriel devraient être limitées à des annonces importantes telles que des violations de données personnelles ou des notifications de fermeture de serveur.
         explanation_html: 'L''e-mail sera envoyé à <strong>%{display_count} utilisateurs</strong>. Le texte suivant sera inclus :'
         title: Aperçu de la notification d'annonce
       publish: Publier
@@ -1853,7 +1854,6 @@ fr:
       reblog: Un partage ne peut pas être épinglé
     title: "%{name} : « %{quote} »"
     visibilities:
-      direct: Direct
       private: Abonné⋅e⋅s uniquement
       private_long: Afficher seulement à vos vos abonné·e·s
       public: Publique
@@ -1904,6 +1904,8 @@ fr:
     does_not_match_previous_name: ne correspond pas au nom précédent
   terms_of_service:
     title: Conditions d'utilisation
+  terms_of_service_interstitial:
+    title: Les conditions d'utilisation de %{domain} ont changées
   themes:
     contrast: Mastodon (Contraste élevé)
     default: Mastodon (Sombre)

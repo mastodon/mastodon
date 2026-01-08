@@ -53,52 +53,11 @@
 
 %h3= t('admin.statuses.contents')
 
-.status__card
-  - if @status.reblog?
-    .status__prepend
-      = material_symbol('repeat')
-      = t('statuses.boosted_from_html', acct_link: admin_account_inline_link_to(@status.proper.account, path: admin_account_status_path(@status.proper.account.id, @status.proper.id)))
-  - elsif @status.reply? && @status.in_reply_to_id.present?
-    .status__prepend
-      = material_symbol('reply')
-      = t('admin.statuses.replied_to_html', acct_link: admin_account_inline_link_to(@status.in_reply_to_account, path: @status.thread.present? ? admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id) : nil))
-  .status__content><
-    - if @status.proper.spoiler_text.blank?
-      = prerender_custom_emojis(status_content_format(@status.proper), @status.proper.emojis)
-    - else
-      %details<
-        %summary><
-          %strong> Content warning: #{prerender_custom_emojis(h(@status.proper.spoiler_text), @status.proper.emojis)}
-        = prerender_custom_emojis(status_content_format(@status.proper), @status.proper.emojis)
-
-    - unless @status.proper.ordered_media_attachments.empty?
-      = render partial: 'admin/reports/media_attachments', locals: { status: @status.proper }
-
-    .detailed-status__meta
-      - if @status.application
-        = @status.application.name
-        ·
-      %span.detailed-status__datetime
-        %time.formatted{ datetime: @status.created_at.iso8601, title: l(@status.created_at) }= l(@status.created_at)
-      - if @status.edited?
-        ·
-        %span.detailed-status__datetime
-          = t('statuses.edited_at_html', date: content_tag(:time, l(@status.edited_at), datetime: @status.edited_at.iso8601, title: l(@status.edited_at), class: 'formatted'))
-      - if @status.discarded?
-        ·
-        %span.negative-hint= t('admin.statuses.deleted')
-      - unless @status.reblog?
-        ·
-        = material_symbol(visibility_icon(@status))
-        = t("statuses.visibilities.#{@status.visibility}")
-      - if @status.proper.sensitive?
-        ·
-        = material_symbol('visibility_off')
-        = t('stream_entries.sensitive_content')
+= render partial: 'admin/shared/status', object: @status
 
 %hr.spacer/
 
-%h3= t('admin.statuses.history')
+%h3#history= t('admin.statuses.history')
 - if @status.edits.empty?
   %p= t('admin.statuses.no_history')
 - else

@@ -32,7 +32,7 @@ const Embed: React.FC<{ id: string }> = ({ id }) => {
   const dispatchRenderSignal = useRenderSignal();
 
   useEffect(() => {
-    dispatch(fetchStatus(id, false, false));
+    dispatch(fetchStatus(id, { alsoFetchContext: false }));
   }, [dispatch, id]);
 
   const handleToggleHidden = useCallback(() => {
