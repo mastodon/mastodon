@@ -7,6 +7,8 @@ sv:
     hosted_on: Mastodon-värd på %{domain}
     title: Om
   accounts:
+    errors:
+      cannot_be_added_to_collections: Detta konto kan inte läggas till i samlingar.
     followers:
       one: Följare
       other: Följare
@@ -1714,12 +1716,16 @@ sv:
       body: 'Du nämndes av %{name} i:'
       subject: Du nämndes av %{name}
       title: Ny omnämning
+    moderation_warning:
+      subject: Du har mottagit en modereringsvarning
     poll:
       subject: En undersökning av %{name} har avslutats
     quote:
       body: 'Ditt inlägg citerades av %{name}:'
       subject: "%{name} citerade ditt inlägg"
       title: Nytt citat
+    quoted_update:
+      subject: "%{name} redigerade ett inlägg du har citerat"
     reblog:
       body: 'Ditt inlägg boostades av %{name}:'
       subject: "%{name} boostade ditt inlägg"
@@ -2192,3 +2198,4 @@ sv:
     registered_on: Registrerad den %{date}
   wrapstodon:
     description: Se hur %{name} använde Mastodon i år!
+    title: Wrapstodon %{year} för %{name}
