@@ -40,6 +40,9 @@
     - if ENV['PLAUSIBLE_SCRIPT'].present?
       <script defer data-domain="#{ENV.fetch('LOCAL_DOMAIN', request.host)}" src="#{ENV.fetch('PLAUSIBLE_SCRIPT', nil)}"></script>
 
+    - if ENV['UMAMI_SCRIPT'].present? && ENV['UMAMI_WEBSITE_ID'].present?
+      <script defer data-website-id="#{ENV.fetch('UMAMI_WEBSITE_ID')}" src="#{ENV.fetch('UMAMI_SCRIPT')}"></script>
+
     = custom_stylesheet
 
     = yield :header_tags
