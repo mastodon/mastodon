@@ -28,6 +28,7 @@ class SignatureParser
       key = scanner[:key]
       # Detect a duplicate key
       raise Mastodon::SignatureVerificationError, 'Error parsing signature with duplicate keys' if params.key?(key)
+
       # This is not actually correct with regards to quoted pairs, but it's consistent
       # with our previous implementation, and good enough in practice.
       params[key] = scanner[:value] || scanner[:quoted_value][1...-1]
