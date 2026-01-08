@@ -21,7 +21,7 @@ class Quote < ApplicationRecord
   REFRESH_DEADLINE = 6.hours
 
   enum :state,
-       { pending: 0, accepted: 1, rejected: 2, revoked: 3 },
+       { pending: 0, accepted: 1, rejected: 2, revoked: 3, deleted: 4 },
        validate: true
 
   belongs_to :status
@@ -31,9 +31,10 @@ class Quote < ApplicationRecord
   belongs_to :quoted_account, class_name: 'Account', optional: true
 
   before_validation :set_accounts
-
+  before_validation :set_activity_uri, only: :create, if: -> { account.local? && quoted_account&.remote? }
   validates :activity_uri, presence: true, if: -> { account.local? && quoted_account&.remote? }
   validate :validate_visibility
+  validate :validate_original_quoted_status
 
   def accept!
     update!(state: :accepted)
@@ -68,5 +69,13 @@ class Quote < ApplicationRecord
     return if account_id == quoted_account_id || quoted_status.nil? || quoted_status.distributable?
 
     errors.add(:quoted_status_id, :visibility_mismatch)
+  end
+
+  def validate_original_quoted_status
+    errors.add(:quoted_status_id, :reblog_unallowed) if quoted_status&.reblog?
+  end
+
+  def set_activity_uri
+    self.activity_uri = [ActivityPub::TagManager.instance.uri_for(account), '/quote_requests/', SecureRandom.uuid].join
   end
 end

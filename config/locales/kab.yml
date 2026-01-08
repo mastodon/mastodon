@@ -33,6 +33,11 @@ kab:
         new_email: Imayl amaynut
         submit: Beddel imayl
         title: Beddel imayl-ik s %{username}
+      change_role:
+        edit_roles: Sefrek timlilin n usqdac
+        label: Snifel tamlilt
+        no_role: War tamlilt
+        title: Snifel tamlilt n %{username}
       confirm: Sentem
       confirmed: Yettwasentem
       confirming: Asentem
@@ -95,6 +100,7 @@ kab:
       reset: Wennez
       reset_password: Beddel awal uffir
       resubscribe: Ales ajerred
+      role: Tamlilt
       search: Nadi
       search_same_ip: Imseqdacen-nniḍen s tansa IP am tinn-ik
       security: Taɣellist
@@ -121,6 +127,7 @@ kab:
       whitelisted: Deg tebdert tamellalt
     action_logs:
       action_types:
+        change_role_user: Snifel tamlilt n useqdac
         confirm_user: Sentem aseqdac
         create_announcement: Rnu-d ulɣu
         create_custom_emoji: Rnu imujit udmawan
@@ -128,6 +135,7 @@ kab:
         create_domain_block: Rnu-d asewḥel n taɣult
         create_ip_block: Rnu alugen n IP
         create_unavailable_domain: Rnu-d taɣult ur nelli ara
+        create_user_role: Snulfu-d tamlilt
         destroy_announcement: Kkes ulɣu
         destroy_custom_emoji: Kkes imujit udmawan
         destroy_domain_allow: Kkes taɣult yettusirgen
@@ -135,6 +143,7 @@ kab:
         destroy_ip_block: Kkes alugen n IP
         destroy_status: Kkes tasufeɣt
         destroy_unavailable_domain: Kkes taɣult ur nelli ara
+        destroy_user_role: Senger tamlilt
         disable_2fa_user: Gdel 2FA
         disable_custom_emoji: Sens imujit udmawan
         disable_user: Sens aseqdac
@@ -150,6 +159,7 @@ kab:
         update_custom_emoji: Leqqem imuji udmawan
         update_domain_block: Leqqem iḥder n taɣult
         update_status: Leqqem tasufeɣt
+        update_user_role: Leqqem tamlilt
       actions:
         assigned_to_self_report_html: "%{name} imudd aneqqis %{target} i yiman-nsen"
         create_account_warning_html: "%{name} yuzen alɣu i %{target}"
@@ -274,12 +284,16 @@ kab:
           delete: Kkes
           ip: Tansa IP
       providers:
+        active: D urmid
         delete: Kkes
+        edit: Ẓreg asaǧǧaw
+        finish_registration: Fakk ajerred
         name: Isem
         providers: Asaǧǧaw
         registrations:
           confirm: Sentem
         save: Sekles
+        sign_in: Qqen
       title: FASP
     follow_recommendations:
       language: I tutlayt
@@ -383,6 +397,10 @@ kab:
       updated_at: Yettwaleqqem
       view_profile: Wali amaɣnu
     roles:
+      add_new: Rnu tawuri
+      assigned_users:
+        one: "%{count} n useqdac"
+        other: "%{count} n iseqdacen"
       categories:
         administration: Tadbelt
         invites: Iɛeṛṛuḍen
@@ -391,20 +409,28 @@ kab:
       everyone: Tisirag timezwura
       privileges:
         administrator: Anedbal
+        manage_federation: Sefrek Tafidiralit
+        manage_roles: Sefrek ilugan
+        manage_rules: Sefrek ilugan
         manage_settings: Asefrek n iɣewwaṛen
+        manage_users: Sefrek iqeddacen
         view_dashboard: Timẓriwt n tfelwit
     rules:
       add_new: Rnu alugen
+      add_translation: Ad yernu tasuqilt
       delete: Kkes
       edit: Ẓreg alugen
       empty: Mazal ur ttwasbadun ara yilugan n uqeddac.
       title: Ilugan n uqeddac
+      translation: Tasuqilt
+      translations: Tisuqilin
     settings:
       about:
         title: Ɣef
       appearance:
         title: Udem
       discovery:
+        privacy: Tabaḍnit
         profile_directory: Akaram n imaɣnuten
         title: Asnirem
         trends: Ayen mucaɛen
@@ -432,16 +458,24 @@ kab:
       contents: Agbur
       deleted: Yettwakkes
       favourites: Imenyafen
+      in_reply_to: Tiririt i
       language: Tutlayt
       media:
         title: Amidya
       open: Ldi tasuffeɣt
-      trending: Ayen mucaɛen
+      status_title: Tasuffeɣt sɣur @%{name}
+      trending: Inezzaɣ
       visibility: Abani
       with_media: S umidya
     system_checks:
+      elasticsearch_preset:
+        action: Wali tasemlit
+      elasticsearch_preset_single_node:
+        action: Wali tasemlit
       rules_check:
         action: Sefrek ilugan n uqeddac
+      software_version_check:
+        message_html: Yella lqem n Mastodon.
       software_version_critical_check:
         action: Wali ileqqman yellan
       software_version_patch_check:
@@ -454,7 +488,10 @@ kab:
       title: Ihacṭagen
     terms_of_service:
       changelog: Amaynut
+      create: Sqedcet ayla-nwen
       draft: Arewway
+      generates:
+        action: Sirew
       history: Amazray
       live: Srid
       publish: Asuffeɣ
@@ -463,25 +500,35 @@ kab:
     title: Tadbelt
     trends:
       allow: Sireg
+      links:
+        allow: Sireg aseɣwen
+        title: Iseɣwan inezzaɣ
       statuses:
-        title: Tisuffaɣ mucaɛen
+        title: Tisuffaɣ tinezzaɣ
       tags:
         dashboard:
           tag_languages_dimension: Tutlayin ifazen
-      trending: Ayen mucaɛen
+        title: Ihacṭagen inezzaɣ
+        trending_rank: 'Anezzuɣ #%{rank}'
+      trending: Inezzaɣ
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
     webhooks:
       delete: Kkes
       enable: Rmed
+      enabled: D urmid
   admin_mailer:
     new_report:
       body: "%{reporter} yettwazen ɣef %{target}"
       subject: Aneqqis amaynut i %{instance} (#%{id})
     new_trends:
+      new_trending_links:
+        title: Iseɣwan inezzaɣ
       new_trending_statuses:
-        title: Tisuffaɣ mucaɛen
+        title: Tisuffaɣ tinezzaɣ
+      new_trending_tags:
+        title: Ihacṭagen inezzaɣ
   appearance:
     advanced_web_interface: Agrudem n web leqqayen
     discovery: Asnirem
@@ -524,10 +571,10 @@ kab:
     migrate_account: Gujj ɣer umiḍan nniḍen
     or_log_in_with: Neɣ eqqen s
     progress:
-      confirm: Sentem imayl
-      details: Isalli-inek
+      confirm: Asentem n imayl
+      details: Isalli-inek·inem
       review: Tamuɣli-nneɣ
-      rules: Qbel ilugan
+      rules: Abal n ilugan
     providers:
       cas: CAS
       saml: SAML
@@ -539,6 +586,7 @@ kab:
       accept: Qbel
       back: Tuɣalin
       invited_by: 'Tzemreḍ ad tkecmeḍ ɣer %{domain} s tanemmirt i tinnubga i d-teṭṭfeḍ sɣur :'
+      preamble: Tiyi ttwasemmant-d yerna ttwaḍemnent sɣur imḍebbren n %{domain}.
       preamble_invited: Uqbel ad tkemmleḍ, ttxil-k·m ẓer ilugan i d-sbedden yimkariyen n %{domain}.
       title: Kra n yilugan igejdanen.
       title_invited: Tettwaɛerḍeḍ.
@@ -550,11 +598,14 @@ kab:
       preamble_html: Kcem ar <strong>%{domain}</strong> s inekcam-inek n tuqqna. Ma yella yezga-d umiḍan-ik deg uqeddac-nniḍen, ur tezmireḍ ara ad tkecmeḍ sya.
       title: Akeččum ɣer %{domain}
     sign_up:
+      preamble: S umiḍan yellan deg uqeddac-a n Mastodon, ad tizimreḍ ad t-ḍefreḍ yal yiwen nniḍen i yellan deg fediverse, akken yebɣu yili wanda i yella umiḍan-nsen.
       title: Iyya ad d-nessewjed tiɣawsiwin i %{domain}.
     status:
       account_status: Addad n umiḍan
       functional: Amiḍan-inek·inem yetteddu s lekmal-is.
     use_security_key: Seqdec tasarut n teɣlist
+    user_agreement_html: Ɣriɣ yerna qebleɣ <a href="<a href="%{terms_of_service_path}" target="_blank">" target="_blank">tiwtilin ne useqdec</a> akked <a href="%{privacy_policy_path}" target="_blank">tsertit n tbaḍnit</a>
+    user_privacy_agreement_html: Ɣriɣ yerna qebleɣ <a href="%{privacy_policy_path}" target="_blank">tasertit n tbaḍnit</a>
   author_attribution:
     example_title: Amedya n weḍris
     more_from_html: Ugar s ɣur %{name}
@@ -612,6 +663,7 @@ kab:
       date: Azemz
       download: Sider-d aḥraz-ik·im
       size: Teɣzi
+    blocks: Tregleḍ
     bookmarks: Ticraḍ
     csv: CSV
     lists: Tibdarin
@@ -823,6 +875,8 @@ kab:
     statuses_cleanup: Tukksa tawurmant n tsuffaɣ
     two_factor_authentication: Asesteb s snat n tarrayin
     webauthn_authentication: Tisura n teɣlist
+  severed_relationships:
+    download: Azdam (%{count})
   statuses:
     attached:
       audio:
@@ -835,9 +889,15 @@ kab:
         one: "%{count} n tbidyutt"
         other: "%{count} n tbidyutin"
     edited_at_html: Tettwaẓreg ass n %{date}
+    pin_errors:
+      reblog: Azuzer ur yezmir ara ad yili d unṭiḍ
+    quote_policies:
+      followers: Imeḍfaṛen kan
+      nobody: Nekki kan
+      public: Yal yiwen
     title: '%{name} : "%{quote}"'
     visibilities:
-      direct: Usrid
+      direct: Abdar uslig
       private: Imeḍfaṛen kan
       private_long: Ssken i ymeḍfaṛen kan
       public: Azayez
@@ -845,6 +905,7 @@ kab:
       unlisted: War tabdert
   statuses_cleanup:
     enabled: Tukksa n tsuffaɣ tiqburin s wudem awurman
+    keep_pinned: Eǧǧ tisuffaɣ tunṭiḍin
     min_age:
       '1209600': 2 n yimalasen
       '15778476': 6 n wayyuren
@@ -880,6 +941,8 @@ kab:
   user_mailer:
     appeal_approved:
       action: Iɣewwaṛen n umiḍan
+    suspicious_sign_in:
+      change_password: snifel awal-ik·im n uɛeddi
     terms_of_service_changed:
       sign_off: Agraw n %{domain}
     warning:
@@ -900,12 +963,14 @@ kab:
       edit_profile_title: Sagen amaɣnu-inek·inem
       feature_action: Issin ugar
       follow_action: Ḍfeṛ
+      follow_title: Sagen isuddam n yisallen n wejgu-k·m agejdan
       follows_subtitle: Ḍfer imiḍanen yettwassnen mliḥ
       follows_title: Anwa ara ḍefṛeḍ
       follows_view_more: Ssken-d ugar n medden ay tzemred ad tḍefred
-      hashtags_subtitle: Wali ayen ileḥḥun seg sin wussan-a iεeddan
-      hashtags_title: Ihacṭagen mucaɛen
-      hashtags_view_more: Sken-d ugar n yihacṭagen mucaɛen
+      hashtags_subtitle: Snirem ayen yellan d anezzuɣ deg 2 n wussan-a iεeddan
+      hashtags_title: Ihacṭagen inezzaɣ
+      hashtags_view_more: Sken-d ugar n yihacṭagen inezzaɣ
+      post_action: Aru
       post_step: Ini-as azul i umaḍal s uḍris, s tiwlafin, s tividyutin neɣ s tefranin.
       post_title: Aru tasuffeɣt-inek·inem tamezwarut
       share_step: Init-asen i yimeddukal-nwen amek ara ken-id-afen deg Mastodon.
@@ -918,6 +983,9 @@ kab:
   verification:
     here_is_how: Ha-t-a amek
     verification: Asenqed
+    website_verification: Asenqed n usmel web
   webauthn_credentials:
     add: Rnu tasarut n teɣlist tamaynut
+    create:
+      success: Tasarut-ik·im n tɣellist tettwarna akken iwata.
     delete: Kkes

@@ -17,9 +17,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return reject_payload! if unsupported_object_type? || non_matching_uri_hosts?(@account.uri, object_uri) || tombstone_exists? || !related_to_local_activity?
 
     with_redis_lock("create:#{object_uri}") do
-      return if delete_arrived_first?(object_uri) || poll_vote?
+      Status.uncached do
+        return if delete_arrived_first?(object_uri) || poll_vote?
 
-      @status = find_existing_status
+        @status = find_existing_status
+      end
 
       if @status.nil?
         process_status
@@ -54,16 +56,16 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     process_audience
 
     ApplicationRecord.transaction do
-      @status = Status.create!(@params)
+      @status = Status.create!(@params.merge(quote: @quote))
       attach_tags(@status)
       attach_mentions(@status)
       attach_counts(@status)
-      attach_quote(@status)
     end
 
     resolve_thread(@status)
     resolve_unresolved_mentions(@status)
     fetch_replies(@status)
+    fetch_and_verify_quote
     distribute
     forward_for_reply
   end
@@ -199,18 +201,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     end
   end
 
-  def attach_quote(status)
-    return if @quote.nil?
-
-    @quote.status = status
-    @quote.save
-
-    embedded_quote = safe_prefetched_embed(@account, @status_parser.quoted_object, @json['context'])
-    ActivityPub::VerifyQuoteService.new.call(@quote, fetchable_quoted_uri: @quote_uri, prefetched_quoted_object: embedded_quote, request_id: @options[:request_id])
-  rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
-    ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(30..600).seconds, @quote.id, @quote_uri, { 'request_id' => @options[:request_id] })
-  end
-
   def process_tags
     return if @object['tag'].nil?
 
@@ -227,11 +217,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def process_quote
     @quote_uri = @status_parser.quote_uri
-    return if @quote_uri.blank?
+    return unless @status_parser.quote?
 
     approval_uri = @status_parser.quote_approval_uri
-    approval_uri = nil if unsupported_uri_scheme?(approval_uri)
-    @quote = Quote.new(account: @account, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
+    approval_uri = nil if unsupported_uri_scheme?(approval_uri) || TagManager.instance.local_url?(approval_uri)
+    @quote = Quote.new(account: @account, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?, state: @status_parser.deleted_quote? ? :deleted : :pending)
   end
 
   def process_hashtag(tag)
@@ -376,6 +366,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     ActivityPub::FetchRepliesWorker.perform_async(status.id, uri, { 'request_id' => @options[:request_id] }) unless uri.nil?
   rescue => e
     Rails.logger.warn "Error fetching replies: #{e}"
+  end
+
+  def fetch_and_verify_quote
+    return if @quote.nil?
+
+    embedded_quote = safe_prefetched_embed(@account, @status_parser.quoted_object, @json['context'])
+    ActivityPub::VerifyQuoteService.new.call(@quote, fetchable_quoted_uri: @quote_uri, prefetched_quoted_object: embedded_quote, request_id: @options[:request_id], depth: @options[:depth])
+  rescue Mastodon::RecursionLimitExceededError, Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
+    ActivityPub::RefetchAndVerifyQuoteWorker.perform_in(rand(30..600).seconds, @quote.id, @quote_uri, { 'request_id' => @options[:request_id] })
   end
 
   def conversation_from_uri(uri)

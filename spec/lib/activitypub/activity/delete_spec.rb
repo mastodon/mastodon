@@ -12,27 +12,22 @@ RSpec.describe ActivityPub::Activity::Delete do
       id: 'foo',
       type: 'Delete',
       actor: ActivityPub::TagManager.instance.uri_for(sender),
-      object: ActivityPub::TagManager.instance.uri_for(status),
+      object: object_json,
       signature: 'foo',
-    }.with_indifferent_access
+    }.deep_stringify_keys
   end
+
+  let(:object_json) { ActivityPub::TagManager.instance.uri_for(status) }
 
   describe '#perform' do
     subject { described_class.new(json, sender) }
 
-    before do
-      subject.perform
-    end
-
     it 'deletes sender\'s status' do
+      subject.perform
       expect(Status.find_by(id: status.id)).to be_nil
     end
-  end
 
-  context 'when the status has been reblogged' do
-    describe '#perform' do
-      subject { described_class.new(json, sender) }
-
+    context 'when the status has been reblogged' do
       let!(:reblogger) { Fabricate(:account) }
       let!(:follower)  { Fabricate(:account, username: 'follower', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
       let!(:reblog)    { Fabricate(:status, account: reblogger, reblog: status) }
@@ -55,12 +50,8 @@ RSpec.describe ActivityPub::Activity::Delete do
         expect { reblog.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
-  end
 
-  context 'when the status has been reported' do
-    describe '#perform' do
-      subject { described_class.new(json, sender) }
-
+    context 'when the status has been reported' do
       let!(:reporter) { Fabricate(:account) }
 
       before do
@@ -76,23 +67,9 @@ RSpec.describe ActivityPub::Activity::Delete do
         expect(Status.with_discarded.find_by(id: status.id)).to_not be_nil
       end
     end
-  end
 
-  context 'when the deleted object is an account' do
-    let(:json) do
-      {
-        '@context': 'https://www.w3.org/ns/activitystreams',
-        id: 'foo',
-        type: 'Delete',
-        actor: ActivityPub::TagManager.instance.uri_for(sender),
-        object: ActivityPub::TagManager.instance.uri_for(sender),
-        signature: 'foo',
-      }.with_indifferent_access
-    end
-
-    describe '#perform' do
-      subject { described_class.new(json, sender) }
-
+    context 'when the deleted object is an account' do
+      let(:object_json) { ActivityPub::TagManager.instance.uri_for(sender) }
       let(:service) { instance_double(DeleteAccountService, call: true) }
 
       before do
@@ -106,27 +83,36 @@ RSpec.describe ActivityPub::Activity::Delete do
           .to have_received(:call).with(sender, { reserve_username: false, skip_activitypub: true })
       end
     end
-  end
 
-  context 'when the deleted object is a quote authorization' do
-    let(:quoter) { Fabricate(:account, domain: 'b.example.com') }
-    let(:status) { Fabricate(:status, account: quoter) }
-    let(:quoted_status) { Fabricate(:status, account: sender, uri: 'https://example.com/statuses/1234') }
-    let!(:quote) { Fabricate(:quote, approval_uri: 'https://example.com/approvals/1234', state: :accepted, status: status, quoted_status: quoted_status) }
+    context 'when the deleted object is a quote authorization' do
+      let(:quoter) { Fabricate(:account, domain: 'b.example.com') }
+      let(:status) { Fabricate(:status, account: quoter) }
+      let(:quoted_status) { Fabricate(:status, account: sender, uri: 'https://example.com/statuses/1234') }
+      let!(:quote) { Fabricate(:quote, approval_uri: 'https://example.com/approvals/1234', state: :accepted, status: status, quoted_status: quoted_status) }
 
-    let(:json) do
-      {
-        '@context': 'https://www.w3.org/ns/activitystreams',
-        id: 'foo',
-        type: 'Delete',
-        actor: ActivityPub::TagManager.instance.uri_for(sender),
-        object: quote.approval_uri,
-        signature: 'foo',
-      }.with_indifferent_access
+      let(:object_json) { quote.approval_uri }
+
+      it 'revokes the authorization' do
+        expect { subject.perform }
+          .to change { quote.reload.state }.to('revoked')
+      end
     end
 
-    describe '#perform' do
-      subject { described_class.new(json, sender) }
+    context 'when the deleted object is an inlined quote authorization' do
+      let(:quoter) { Fabricate(:account, domain: 'b.example.com') }
+      let(:status) { Fabricate(:status, account: quoter) }
+      let(:quoted_status) { Fabricate(:status, account: sender, uri: 'https://example.com/statuses/1234') }
+      let!(:quote) { Fabricate(:quote, approval_uri: 'https://example.com/approvals/1234', state: :accepted, status: status, quoted_status: quoted_status) }
+
+      let(:object_json) do
+        {
+          type: 'QuoteAuthorization',
+          id: quote.approval_uri,
+          attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
+          interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
+          interactingObject: ActivityPub::TagManager.instance.uri_for(status),
+        }.deep_stringify_keys
+      end
 
       it 'revokes the authorization' do
         expect { subject.perform }

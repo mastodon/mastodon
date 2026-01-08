@@ -12,6 +12,11 @@ class StreamingServerManager
 
     queue = Queue.new
 
+    if ENV['DEBUG_STREAMING_SERVER'].present?
+      logger = Logger.new($stdout)
+      logger.level = 'debug'
+    end
+
     @queue = queue
 
     @running_thread = Thread.new do
@@ -31,7 +36,7 @@ class StreamingServerManager
         # Spawn a thread to listen on streaming server output
         output_thread = Thread.new do
           stdout_err.each_line do |line|
-            Rails.logger.info "Streaming server: #{line}"
+            logger&.info "Streaming server: #{line}"
 
             if status == :starting && line.match('Streaming API now listening on')
               status = :started
@@ -115,11 +120,11 @@ RSpec.configure do |config|
     self.use_transactional_tests = true
   end
 
-  private
-
   def streaming_server_manager
     @streaming_server_manager ||= StreamingServerManager.new
   end
+
+  private
 
   def streaming_examples_present?
     RSpec.world.filtered_examples.values.flatten.any? { |example| example.metadata[:streaming] == true }

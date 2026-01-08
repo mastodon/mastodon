@@ -101,7 +101,8 @@
       cursor: pointer;
     }
 
-    &.editable {
+    &.editable,
+    &.disabled {
       align-items: center;
       overflow: visible;
     }
@@ -159,7 +160,8 @@
     }
   }
 
-  &__option.editable &__input {
+  &__option.editable &__input,
+  &__option.disabled &__input {
     &:active,
     &:focus,
     &:hover {

@@ -15,6 +15,12 @@ class StatusFilter
     blocked_by_policy? || (account_present? && filtered_status?) || silenced_account?
   end
 
+  def filtered_for_quote?
+    return false if !account.nil? && account.id == status.account_id
+
+    blocked_by_policy? || (account_present? && filtered_status?)
+  end
+
   private
 
   def account_present?

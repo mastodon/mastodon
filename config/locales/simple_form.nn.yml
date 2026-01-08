@@ -16,7 +16,7 @@ nn:
       account_migration:
         acct: Angi brukarnamn@domene til brukaren du ynskjer å flytta til
       account_warning_preset:
-        text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og omtaler
+        text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og omtalar
         title: Valfritt. Ikkje synleg for mottakar
       admin_account_action:
         include_statuses: Brukaren får sjå kva tut som førte til moderatorhandlinga eller -åtvaringa
@@ -56,7 +56,7 @@ nn:
         scopes: API-ane som programmet vil få tilgjenge til. Ettersom du vel eit toppnivåomfang tarv du ikkje velja einskilde API-ar.
         setting_aggregate_reblogs: Ikkje vis nye framhevingar for tut som nyleg har vorte heva fram (Påverkar berre nylege framhevingar)
         setting_always_send_emails: Vanlegvis vil ikkje e-postvarsel bli sendt når du brukar Mastodon aktivt
-        setting_default_quote_policy: Dei nemnde folka får alltid lov å sitera. Denne innstillinga har berre verknad for innlegg som er laga med den neste utgåva av Mastodon, men du kan velja kva du vil ha i førebuingane
+        setting_default_quote_policy: Denne innstillinga har berre verknad for innlegg som er laga med den neste utgåva av Mastodon, men du kan velja kva du vil ha i førebuingane.
         setting_default_sensitive: Sensitive media vert gøymde som standard, og du syner dei ved å klikka på dei
         setting_display_media_default: Gøym media som er merka som sensitive
         setting_display_media_hide_all: Alltid skjul alt media
@@ -85,7 +85,7 @@ nn:
         backups_retention_period: Brukarar har moglegheit til å generere arkiv av sine innlegg for å laste ned seinare. Når sett til ein positiv verdi, blir desse arkiva automatisk sletta frå lagringa etter eit gitt antal dagar.
         bootstrap_timeline_accounts: Desse kontoane vil bli festa øverst på fylgjaranbefalingane til nye brukarar.
         closed_registrations_message: Vist når det er stengt for registrering
-        content_cache_retention_period: Alle innlegg frå andre tenarar (inkludert framhevingar og svar) vil bli sletta etter talet på dagar du skriv inn, uansett om nokon har samhandla med desse innlegga. Dette inkluderer innlegg der ein lokal brukar har merka det som bokmerke eller som favoritt. Private omtaler mellom brukarar frå ulike nettstader vil gå tapt og vera umogleg å gjenskapa. Bruk av denne innstillinga er meint for spesielle nettstader og bryt med det mange forventar av ein vanleg nettstad.
+        content_cache_retention_period: Alle innlegg frå andre tenarar (inkludert framhevingar og svar) vil bli sletta etter talet på dagar du skriv inn, uansett om nokon har samhandla med desse innlegga. Dette inkluderer innlegg der ein lokal brukar har merka det som bokmerke eller som favoritt. Private omtalar mellom brukarar frå ulike nettstader vil gå tapt og vera umogleg å gjenskapa. Bruk av denne innstillinga er meint for spesielle nettstader og bryt med det mange forventar av ein vanleg nettstad.
         custom_css: Du kan bruka eigendefinerte stilar på nettversjonen av Mastodon.
         favicon: WEBP, PNG, GIF eller JPG. Overstyrer det standarde Mastodon-favikonet med eit eigendefinert ikon.
         mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
@@ -150,8 +150,8 @@ nn:
       user:
         chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
         date_of_birth:
-          one: Me må syta for at du er minst %{count} for å bruka Masodon. Me lagrar ikkje dette.
-          other: Me må syta for at du er minst %{count} for å bruka Masodon. Me lagrar ikkje dette.
+          one: Me må sikra oss at du er minst %{count} for å bruka %{domain}. Me lagrar ikkje dette.
+          other: Me må sikra oss at du er minst %{count} for å bruka %{domain}. Me lagrar ikkje dette.
         role: Rolla kontrollerer kva løyve brukaren har.
       user_role:
         color: Fargen som skal nyttast for denne rolla i heile brukargrensesnittet, som RGB i hex-format
@@ -236,7 +236,7 @@ nn:
         setting_default_sensitive: Merk alltid media som nærtakande
         setting_delete_modal: Vis stadfesting før du slettar eit tut
         setting_disable_hover_cards: Skru av profilvising når peikaren er over
-        setting_disable_swiping: Skru av sveipebevegelser
+        setting_disable_swiping: Skru av sveiperørsler
         setting_display_media: Medievisning
         setting_display_media_default: Standard
         setting_display_media_hide_all: Gøym alle
@@ -329,12 +329,12 @@ nn:
           all: Varsle om alle oppdateringar
           critical: Varsle kun om kristiske oppdateringar
           label: Ein ny versjon av Mastodon er tilgjengeleg
-          none: Aldri varsle om oppdateringar (ikkje anbefalt)
+          none: Aldri varsle om oppdateringar (ikkje tilrådd)
           patch: Varsle om feilrettingsoppdateringar
         trending_tag: Ny trend krev gjennomgang
       rule:
         hint: Meir informasjon
-        text: Regler
+        text: Regel
       settings:
         indexable: Ta med profilsida i søkjemotorar
         show_application: Vis kva app du brukte når du skreiv innlegg
@@ -374,7 +374,7 @@ nn:
         template: Nyttelastmal
         url: Endepunkts-URL
     'no': Nei
-    not_recommended: Ikkje anbefalt
+    not_recommended: Ikkje tilrådd
     overridden: Overstyrt
     recommended: Tilrådt
     required:

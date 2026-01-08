@@ -64,7 +64,7 @@ RSpec.describe 'API Web Push Subscriptions' do
     end
   end
 
-  describe 'PUT /api/web/push_subscriptions' do
+  describe 'PUT /api/web/push_subscriptions/:id' do
     before { sign_in Fabricate :user }
 
     let(:subscription) { Fabricate :web_push_subscription }

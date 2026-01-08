@@ -66,7 +66,7 @@ module ApplicationHelper
 
   def provider_sign_in_link(provider)
     label = Devise.omniauth_configs[provider]&.strategy&.display_name.presence || I18n.t("auth.providers.#{provider}", default: provider.to_s.chomp('_oauth2').capitalize)
-    link_to label, omniauth_authorize_path(:user, provider), class: "button button-#{provider}", method: :post
+    link_to label, omniauth_authorize_path(:user, provider), class: "btn button-#{provider}", method: :post
   end
 
   def locale_direction
@@ -100,6 +100,16 @@ module ApplicationHelper
     return false if record.nil?
 
     policy(record).public_send(:"#{action}?")
+  end
+
+  def conditional_link_to(condition, name, options = {}, html_options = {}, &block)
+    if condition && !current_page?(block_given? ? name : options)
+      link_to(name, options, html_options, &block)
+    elsif block_given?
+      content_tag(:span, options, html_options, &block)
+    else
+      content_tag(:span, name, html_options)
+    end
   end
 
   def material_symbol(icon, attributes = {})
