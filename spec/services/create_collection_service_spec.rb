@@ -30,9 +30,10 @@ RSpec.describe CreateCollectionService do
       end
 
       context 'when given account ids' do
-        let(:account_ids) do
-          Fabricate.times(2, :account).map { |a| a.id.to_s }
+        let(:accounts) do
+          Fabricate.times(2, :account)
         end
+        let(:account_ids) { accounts.map { |a| a.id.to_s } }
         let(:params) do
           base_params.merge(account_ids:)
         end
@@ -42,10 +43,22 @@ RSpec.describe CreateCollectionService do
             subject.call(params, author)
           end.to change(CollectionItem, :count).by(2)
         end
+
+        context 'when one account may not be added' do
+          before do
+            accounts.last.update(discoverable: false)
+          end
+
+          it 'raises an error' do
+            expect do
+              subject.call(params, author)
+            end.to raise_error(Mastodon::NotPermittedError)
+          end
+        end
       end
 
       context 'when given a tag' do
-        let(:params) { base_params.merge(tag: '#people') }
+        let(:params) { base_params.merge(tag_name: '#people') }
 
         context 'when the tag exists' do
           let!(:tag) { Fabricate.create(:tag, name: 'people') }

@@ -7,6 +7,8 @@ tr:
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
     title: Hakkında
   accounts:
+    errors:
+      cannot_be_added_to_collections: Bu hesap koleksiyonlara eklenemez.
     followers:
       one: Takipçi
       other: Takipçiler
@@ -846,6 +848,7 @@ tr:
         publish_statistics: İstatistikleri yayınla
         title: Keşfet
         trends: Öne çıkanlar
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Herkes için
         disabled: Hiç kimseye
@@ -1316,6 +1319,13 @@ tr:
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
     invalid_password: Geçersiz parola
     prompt: Devam etmek için parolanızı doğrulayın
+  color_scheme:
+    auto: Otomatik
+    dark: Koyu
+    light: Açık
+  contrast:
+    auto: Otomatik
+    high: Yüksek
   crypto:
     errors:
       invalid_key: geçerli bir Ed25519 veya Curve25519 anahtarı değil
@@ -1706,16 +1716,22 @@ tr:
       body: "%{name} senden bahsetti:"
       subject: "%{name} senden bahsetti"
       title: Yeni bahsetme
+    moderation_warning:
+      subject: Hesabınız bir denetim uyarısı aldı
     poll:
       subject: Anket %{name} tarafından sonlandırıldı
     quote:
       body: "%{name} durumunuzu yeniden paylaştı:"
       subject: "%{name} gönderini yeniden paylaştı"
       title: Yeni alıntı
+    quoted_update:
+      subject: "%{name} alıntıladığınız bir gönderiyi düzenledi"
     reblog:
       body: "%{name} durumunuzu yeniden paylaştı:"
       subject: "%{name} durumunuzu yeniden paylaştı"
       title: Yeni paylaşım
+    severed_relationships:
+      subject: Bir denetim kararı nedeniyle bağlantılarınızı kaybettiniz
     status:
       subject: "%{name} az önce gönderdi"
     update:
@@ -1957,11 +1973,11 @@ tr:
     enabled: Eski gönderileri otomatik olarak sil
     enabled_hint: Belirli bir zaman eşiğine ulaşan eski gönderilerinizi, aşağıdaki istisnalara uymadıkları sürece otomatik olarak siler
     exceptions: İstisnalar
-    explanation: Gönderi silme maliyetli bir iş olduğu için, sunucu çok yoğun olmadığında yavaş yavaş yapılmaktadır. Bu nedenle, gönderilerinizin zaman eşiği geldiğinde silinmesi belirli bir süre alabilir.
+    explanation: Otomatik silme işlemi düşük öncelikli olarak gerçekleştirilir. Yaş sınırına ulaşılması ile silinmesi arasında bir gecikme olabilir.
     ignore_favs: Favorileri yoksay
     ignore_reblogs: Teşvikleri yoksay
     interaction_exceptions: Etkileşimlere dayalı istisnalar
-    interaction_exceptions_explanation: Bir kere değerlendirmeye alındıktan sonra, belirtilen beğeni veya teşvik eşiğinin altında düşünce gönderilerin silinmesinin bir güvencesi yok.
+    interaction_exceptions_explanation: Favori veya tekrar gönderim eşiğini geçici olarak aşan gönderiler, daha sonra düşürülseler bile saklanabilir.
     keep_direct: Doğrudan iletileri sakla
     keep_direct_hint: Herhangi bir doğrudan iletinizi silmez
     keep_media: Görüntü eki olan gönderileri sakla
@@ -2174,8 +2190,12 @@ tr:
       error: Güvenlik anahtarını silerken bir sorun oluştu. Lütfen tekrar deneyin.
       success: Güvenlik anahtarınız başarıyla silindi.
     invalid_credential: Geçersiz güvenlik anahtarı
+    nickname: Takma Ad
     nickname_hint: Yeni güvenlik anahtarınızın takma adını girin
     not_enabled: Henüz WebAuthn'u etkinleştirmediniz
     not_supported: Bu tarayıcı güvenlik anahtarlarını desteklemiyor
     otp_required: Güvenlik anahtarlarını kullanmak için lütfen önce iki adımlı kimlik doğrulamayı etkinleştirin.
     registered_on: "%{date} tarihinde kaydoldu"
+  wrapstodon:
+    description: "%{name} kullanıcısının bu yıl Mastodon'u nasıl kullandığını görün!"
+    title: "%{name} için %{year} Wrapstodon'u"

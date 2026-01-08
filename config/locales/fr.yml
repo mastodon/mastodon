@@ -7,6 +7,8 @@ fr:
     hosted_on: Serveur Mastodon hébergé sur %{domain}
     title: À propos
   accounts:
+    errors:
+      cannot_be_added_to_collections: Ce compte ne peut pas être ajouté aux collections.
     followers:
       one: Abonné·e
       other: Abonné·e·s
@@ -506,6 +508,7 @@ fr:
         finish_registration: Terminer l'inscription
         name: Nom
         providers: Fournisseur
+        public_key_fingerprint: Empreinte de la clé publique
         registration_requested: Inscription demandée
         registrations:
           confirm: Confirmer
@@ -821,6 +824,7 @@ fr:
         rules_hint: Il y a un espace dédié pour les règles auxquelles vos utilisateurs sont invités à adhérer.
         title: À propos
       allow_referrer_origin:
+        desc: Quand les utilisateurs cliquent sur un lien externe, leur navigateur peut envoyer l'adresse du serveur Mastodon en tant qu'adresse d'origine. À désactiver si cela permet d'identifier les utilisateurs, par exemple s'il s'agit d'un serveur Mastodon personnel.
         title: Autoriser les sites externes à voir votre serveur Mastodon comme une source de trafic
       appearance:
         preamble: Personnaliser l'interface web de Mastodon.
@@ -840,12 +844,14 @@ fr:
         title: Par défaut, ne pas indexer les comptes dans les moteurs de recherche
       discovery:
         follow_recommendations: Suivre les recommandations
+        preamble: Il est essentiel de donner de la visibilité à des contenus intéressants pour attirer des utilisateur⋅rice⋅s néophytes qui ne connaissent peut-être personne sur Mastodon. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
         privacy: Vie privée
         profile_directory: Annuaire des profils
         public_timelines: Fils publics
         publish_statistics: Publier les statistiques
         title: Découverte
         trends: Tendances
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: À tout le monde
         disabled: À personne
@@ -853,6 +859,7 @@ fr:
       feed_access:
         modes:
           authenticated: Utilisateurs authentifiés uniquement
+          disabled: Nécessite un rôle spécifique
           public: Tout le monde
       landing_page:
         values:
@@ -938,6 +945,8 @@ fr:
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
+      elasticsearch_analysis_index_mismatch:
+        message_html: Les paramètres de l'analyseur d'index d'Elasticsearch ne sont plus à jour. Veuillez lancer <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Le cluster Elasticsearch n’est pas sain (statut rouge), les fonctionnalités de recherche ne sont pas disponible
       elasticsearch_health_yellow:
@@ -1113,11 +1122,14 @@ fr:
       delete: Supprimer
       edit:
         title: Modifier la règle de nom d'utilisateur
+      matches_exactly_html: Égal à %{string}
       new:
         create: Créer une règle
         title: Créer une nouvelle règle de nom d'utilisateur
       no_username_block_selected: Aucune règle de nom d'utilisateur n'a été modifiée car aucune n'a été sélectionnée
+      not_permitted: Non autorisé
       title: Règles de nom d'utilisateur
+      updated_msg: Règle de nom d'utilisateur mise à jour
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Supprimer
@@ -1193,6 +1205,7 @@ fr:
     advanced_settings: Paramètres avancés
     animations_and_accessibility: Animations et accessibilité
     boosting_preferences: Préférences de partage
+    boosting_preferences_info_html: "<strong>Astuce :</strong> indépendamment des paramètres, <kbd>Maj</kbd> + <kbd>Clic</kbd> sur l'icône %{icon} Boost va immédiatement partager."
     discovery: Découverte
     localization:
       body: Mastodon est traduit par des volontaires.
@@ -1309,6 +1322,13 @@ fr:
     hint_html: "<strong>Astuce :</strong> Nous ne vous demanderons plus votre mot de passe pour la prochaine heure."
     invalid_password: Mot de passe invalide
     prompt: Confirmez votre mot de passe pour continuer
+  color_scheme:
+    auto: Automatique
+    dark: Sombre
+    light: Clair
+  contrast:
+    auto: Automatique
+    high: Élevé
   crypto:
     errors:
       invalid_key: n’est pas une clé Ed25519 ou Curve25519 valide
@@ -1597,6 +1617,7 @@ fr:
   link_preview:
     author_html: Par %{name}
     potentially_sensitive_content:
+      action: Cliquer pour afficher
       confirm_visit: Voulez-vous vraiment ouvrir ce lien ?
       hide_button: Masquer
       label: Contenu potentiellement sensible
@@ -1664,6 +1685,7 @@ fr:
       disabled_account: Votre compte actuel ne sera pas entièrement utilisable par la suite. Cependant, vous aurez accès à l'exportation de données et à la réactivation.
       followers: Cette action va déménager tou·te·s les abonné·e·s du compte actuel vers le nouveau compte
       only_redirect_html: Alternativement, vous pouvez <a href="%{path}">seulement appliquer une redirection sur votre profil</a>.
+      other_data: Aucune autre donnée ne sera déplacée automatiquement (y compris vos messages et la liste des comptes suivis)
       redirect: Le profil de votre compte actuel sera mis à jour avec un avis de redirection et sera exclu des recherches
   moderation:
     title: Modération
@@ -1697,16 +1719,22 @@ fr:
       body: "%{name} vous a mentionné⋅e dans :"
       subject: "%{name} vous a mentionné·e"
       title: Nouvelle mention
+    moderation_warning:
+      subject: Vous avez reçu un avertissement de la modération
     poll:
       subject: Un sondage de %{name} est terminé
     quote:
       body: 'Votre message a été cité par %{name}:'
       subject: "%{name} a cité votre message"
       title: Nouvelle citation
+    quoted_update:
+      subject: "%{name} a modifié un message que vous avez cité"
     reblog:
       body: 'Votre message été partagé par %{name} :'
       subject: "%{name} a partagé votre message"
       title: Nouveau partage
+    severed_relationships:
+      subject: Vous avez perdu des relations à cause d’une décision de modération
     status:
       subject: "%{name} vient de publier"
     update:
@@ -1920,6 +1948,7 @@ fr:
     errors:
       in_reply_not_found: Le message auquel vous essayez de répondre ne semble pas exister.
       quoted_status_not_found: Le message que vous essayez de citer ne semble pas exister.
+      quoted_user_not_mentioned: Impossible de citer un compte non mentionné dans une mention privée.
     over_character_limit: limite de %{max} caractères dépassée
     pin_errors:
       direct: Les messages qui ne sont visibles que pour les utilisateur·rice·s mentionné·e·s ne peuvent pas être épinglés
@@ -1947,11 +1976,11 @@ fr:
     enabled: Supprimer automatiquement vos anciens messages
     enabled_hint: Supprime automatiquement vos messages une fois qu'ils ont atteint un seuil d'ancienneté défini, à moins qu'ils ne correspondent à l'une des exceptions ci-dessous
     exceptions: Exceptions
-    explanation: Parce que la suppression de messages est une opération lourde, cela se fait lentement au fil du temps lorsque le serveur n'est pas autrement occupé. Pour cette raison, vos messages peuvent être supprimés un peu plus tard que le seuil d'ancienneté défini.
+    explanation: La suppression automatique est effectuée avec une faible priorité. Il peut y avoir un délai entre le seuil d'ancienneté défini et la suppression effective.
     ignore_favs: Ignorer les favoris
     ignore_reblogs: Ignorer les partages
     interaction_exceptions: Exceptions basées sur les interactions
-    interaction_exceptions_explanation: Notez qu'il n'est pas garanti que les messages soient supprimés s'ils passent sous le seuil des favoris ou des partages une fois qu'ils les ont dépassés.
+    interaction_exceptions_explanation: Les messages ayant dépassé temporairement le seuil de favori ou de partage peuvent être conservés, même s'ils repassent sous le seuil.
     keep_direct: Conserver les messages directs
     keep_direct_hint: Ne supprime aucun de vos messages directs
     keep_media: Conserver les messages avec des fichiers médias joints
@@ -1988,6 +2017,8 @@ fr:
   terms_of_service:
     title: Conditions d'utilisation
   terms_of_service_interstitial:
+    future_preamble_html: Nous avons modifié nos conditions d'utilisation, ces changements entreront en vigueur le <strong>%{date}</strong>. Nous vous invitons à prendre connaissance des nouvelles conditions.
+    past_preamble_html: Nous avons modifié nos conditions d'utilisation depuis votre dernière visite. Nous vous invitons à prendre connaissance des nouvelles conditions.
     review_link: Vérifier les conditions d'utilisation
     title: Les conditions d'utilisation de %{domain} ont changées
   themes:
@@ -2162,8 +2193,12 @@ fr:
       error: Il y a eu un problème en supprimant votre clé de sécurité. Veuillez réessayer.
       success: Votre clé de sécurité a été supprimée avec succès.
     invalid_credential: Clé de sécurité invalide
-    nickname_hint: Entrez le surnom de votre nouvelle clé de sécurité
+    nickname: Nom de la clé de sécurité
+    nickname_hint: Entrez le nom de votre nouvelle clé de sécurité
     not_enabled: Vous n'avez pas encore activé WebAuthn
     not_supported: Ce navigateur ne prend pas en charge les clés de sécurité
     otp_required: Pour utiliser les clés de sécurité, veuillez d'abord activer l'authentification à deux facteurs.
     registered_on: Inscrit le %{date}
+  wrapstodon:
+    description: Voir comment %{name} a utilisé Mastodon cette année !
+    title: Wrapstodon %{year} pour %{name}

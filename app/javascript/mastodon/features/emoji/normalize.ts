@@ -10,6 +10,8 @@ import {
   SKIN_TONE_CODES,
   EMOJIS_WITH_DARK_BORDER,
   EMOJIS_WITH_LIGHT_BORDER,
+  EMOJIS_REQUIRING_INVERSION_IN_LIGHT_MODE,
+  EMOJIS_REQUIRING_INVERSION_IN_DARK_MODE,
 } from './constants';
 import type { CustomEmojiMapArg, ExtraCustomEmojiMap } from './types';
 
@@ -29,6 +31,12 @@ export function emojiToUnicodeHex(emoji: string): string {
     if (code !== undefined) {
       codes.push(code);
     }
+  }
+
+  // Handles how Emojibase removes the variation selector for single code emojis.
+  // See: https://emojibase.dev/docs/spec/#merged-variation-selectors
+  if (codes.at(1) === VARIATION_SELECTOR_CODE && codes.length === 2) {
+    codes.pop();
   }
   return hexNumbersToString(codes);
 }
@@ -148,6 +156,16 @@ export function twemojiToUnicodeInfo(
   }
 
   return hexNumbersToString(mappedCodes);
+}
+
+export function emojiToInversionClassName(emoji: string): string | null {
+  if (EMOJIS_REQUIRING_INVERSION_IN_DARK_MODE.includes(emoji)) {
+    return 'invert-on-dark';
+  }
+  if (EMOJIS_REQUIRING_INVERSION_IN_LIGHT_MODE.includes(emoji)) {
+    return 'invert-on-light';
+  }
+  return null;
 }
 
 export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg) {

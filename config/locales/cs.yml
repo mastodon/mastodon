@@ -7,6 +7,8 @@ cs:
     hosted_on: Mastodon na doméně %{domain}
     title: O službě
   accounts:
+    errors:
+      cannot_be_added_to_collections: Tento účet nelze přidat do kolekcí.
     followers:
       few: Sledující
       many: Sledujících
@@ -874,6 +876,7 @@ cs:
         publish_statistics: Zveřejnit statistiku
         title: Objevování
         trends: Trendy
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Všem
         disabled: Nikomu
@@ -1354,6 +1357,13 @@ cs:
     hint_html: "<strong>Tip:</strong> Po dobu jedné hodiny vás o heslo nebudeme znovu žádat."
     invalid_password: Neplatné heslo
     prompt: Pokračujte potvrzením hesla
+  color_scheme:
+    auto: Auto
+    dark: Tmavý
+    light: Světlý
+  contrast:
+    auto: Auto
+    high: Vysoký
   crypto:
     errors:
       invalid_key: není platný klíč Ed25519 nebo Curve25519
@@ -1784,16 +1794,22 @@ cs:
       body: 'Uživatel %{name} vás zmínil v:'
       subject: Uživatel %{name} vás zmínil
       title: Nová zmínka
+    moderation_warning:
+      subject: Obdrželi jste moderační varování
     poll:
       subject: Anketa od %{name} skončila
     quote:
       body: 'Váš příspěvek citoval účet %{name}:'
       subject: "%{name} citovali váš příspěvek"
       title: Nová citace
+    quoted_update:
+      subject: "%{name} upravili příspěvek, který jste citovali"
     reblog:
       body: 'Uživatel %{name} boostnul váš příspěvek:'
       subject: Uživatel %{name} boostnul váš příspěvek
       title: Nový boost
+    severed_relationships:
+      subject: Ztratili jste spojení, kvůli moderačnímu rozhodnutí
     status:
       subject: Nový příspěvek od %{name}
     update:
@@ -2043,11 +2059,11 @@ cs:
     enabled: Automaticky mazat staré příspěvky
     enabled_hint: Automaticky maže vaše příspěvky poté, co dosáhnou stanoveného stáří, nesplňují-li některou z výjimek níže
     exceptions: Výjimky
-    explanation: Protože je mazání příspěvků nákladná operace, je prováděno pomalu v čase, kdy server není zaneprázdněn ničím jiným. Z tohoto důvodu mohou být vaše příspěvky smazány delší dobu po dosažení stanoveného stáří.
+    explanation: Automatické smazání je prováděno s nízkou prioritou. Může dojít ke zpoždění mezi dosažením věkové hranice a odstraněním.
     ignore_favs: Ignorovat oblíbení
     ignore_reblogs: Ignorovat boosty
     interaction_exceptions: Výjimky založené na interakcích
-    interaction_exceptions_explanation: Upozorňujeme, že není zaručeno smazání příspěvků, které nedosahují stanového počtu oblíbení nebo boostnutí poté, co už byly jednou zkontrolovány.
+    interaction_exceptions_explanation: Příspěvky, které dočasně překročí práh oblíbených nebo boostů, mohou být zachovány, i pokud se později počet sníží.
     keep_direct: Zachovat přímé zprávy
     keep_direct_hint: Nesmaže žádnou z vašich přímých zpráv
     keep_media: Zachovat příspěvky s mediálními přílohami
@@ -2267,3 +2283,6 @@ cs:
     not_supported: Tento prohlížeč nepodporuje bezpečnostní klíče
     otp_required: Pro použití bezpečnostních klíčů prosím nejprve zapněte dvoufázové ověřování.
     registered_on: Přidán %{date}
+  wrapstodon:
+    description: Podívejte se, jak %{name} používali Mastodon v tomto roce!
+    title: Wrapstodon %{year} pro %{name}

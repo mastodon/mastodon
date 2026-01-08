@@ -512,34 +512,6 @@ RSpec.describe Status do
     end
   end
 
-  describe 'before_validation' do
-    it 'sets account being replied to correctly over intermediary nodes' do
-      first_status = Fabricate(:status, account: bob)
-      intermediary = Fabricate(:status, thread: first_status, account: alice)
-      final        = Fabricate(:status, thread: intermediary, account: alice)
-
-      expect(final.in_reply_to_account_id).to eq bob.id
-    end
-
-    it 'creates new conversation for stand-alone status' do
-      expect(described_class.create(account: alice, text: 'First').conversation_id).to_not be_nil
-    end
-
-    it 'keeps conversation of parent node' do
-      parent = Fabricate(:status, text: 'First')
-      expect(described_class.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
-    end
-
-    it 'sets `local` to true for status by local account' do
-      expect(described_class.create(account: alice, text: 'foo').local).to be true
-    end
-
-    it 'sets `local` to false for status by remote account' do
-      alice.update(domain: 'example.com')
-      expect(described_class.create(account: alice, text: 'foo').local).to be false
-    end
-  end
-
   describe 'Validations' do
     context 'with a remote account' do
       subject { Fabricate.build :status, account: remote_account }
@@ -588,13 +560,49 @@ RSpec.describe Status do
         end
       end
     end
-  end
 
-  describe 'after_create' do
-    it 'saves ActivityPub uri as uri for local status' do
-      status = described_class.create(account: alice, text: 'foo')
-      status.reload
-      expect(status.uri).to start_with('https://')
+    describe 'Wiring up replies and conversations' do
+      it 'sets account being replied to correctly over intermediary nodes' do
+        first_status = Fabricate(:status, account: bob)
+        intermediary = Fabricate(:status, thread: first_status, account: alice)
+        final        = Fabricate(:status, thread: intermediary, account: alice)
+
+        expect(final.in_reply_to_account_id).to eq bob.id
+      end
+
+      it 'creates new conversation for stand-alone status' do
+        new_status = nil
+        expect do
+          new_status = described_class.create(account: alice, text: 'First')
+        end.to change(Conversation, :count).by(1)
+
+        expect(new_status.conversation_id).to_not be_nil
+        expect(new_status.conversation.parent_status_id).to eq new_status.id
+      end
+
+      it 'keeps conversation of parent node' do
+        parent = Fabricate(:status, text: 'First')
+        expect(described_class.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
+      end
+    end
+
+    describe 'Setting the `local` flag correctly' do
+      it 'sets `local` to true for status by local account' do
+        expect(described_class.create(account: alice, text: 'foo').local).to be true
+      end
+
+      it 'sets `local` to false for status by remote account' do
+        alice.update(domain: 'example.com')
+        expect(described_class.create(account: alice, text: 'foo').local).to be false
+      end
+    end
+
+    describe 'after_create' do
+      it 'saves ActivityPub uri as uri for local status' do
+        status = described_class.create(account: alice, text: 'foo')
+        status.reload
+        expect(status.uri).to start_with('https://')
+      end
     end
   end
 end

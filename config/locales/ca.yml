@@ -7,6 +7,8 @@ ca:
     hosted_on: Mastodon allotjat a %{domain}
     title: Quant a
   accounts:
+    errors:
+      cannot_be_added_to_collections: Aquest compte no es pot afegir a coŀleccions.
     followers:
       one: Seguidor
       other: Seguidors
@@ -839,6 +841,7 @@ ca:
         publish_statistics: Publica estadístiques
         title: Descobriment
         trends: Tendències
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Per a tothom
         disabled: Per a ningú
@@ -1295,6 +1298,13 @@ ca:
     hint_html: "<strong>Pista:</strong> No et preguntarem un altre cop la teva contrasenya en la pròxima hora."
     invalid_password: Contrasenya no vàlida
     prompt: Confirmi la contrasenya per a continuar
+  color_scheme:
+    auto: Auto
+    dark: Fosc
+    light: Clar
+  contrast:
+    auto: Auto
+    high: Alt
   crypto:
     errors:
       invalid_key: no és una clau Ed25519 o Curve25519 vàlida
@@ -1684,16 +1694,22 @@ ca:
       body: "%{name} t'ha mencionat en:"
       subject: "%{name} t'ha mencionat"
       title: Nova menció
+    moderation_warning:
+      subject: Heu rebut un avís de moderació
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
     quote:
       body: 'La vostra publicació ha estat citada per %{name}:'
       subject: "%{name} ha citat la vostra publicació"
       title: Nova citació
+    quoted_update:
+      subject: "%{name} ha editat una publicació que heu citat"
     reblog:
       body: "%{name} ha impulsat el teu estat:"
       subject: "%{name} ha impulsat el teu estat"
       title: Nou impuls
+    severed_relationships:
+      subject: Heu perdut connexions degut a una decisió de moderació
     status:
       subject: "%{name} ha publicat"
     update:
@@ -1931,11 +1947,9 @@ ca:
     enabled: Esborra automàticament tuts antics
     enabled_hint: Suprimeix automàticament els teus tuts quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents
     exceptions: Excepcions
-    explanation: Com que suprimir tuts és una operació cara, es fa lentament amb el pas del temps i quan el servidor no està ocupat. Per aquest motiu, és possible que els teus tuts se suprimeixin un temps després d’assolir el llindar d’edat.
     ignore_favs: Ignora favorits
     ignore_reblogs: Ignora impulsos
     interaction_exceptions: Excepcions basades en interaccions
-    interaction_exceptions_explanation: Has de tenir en compte que no es garanteix que es suprimeixen els tuts si passen per sota del llindar de favorit o impuls després d'haver-lo superat.
     keep_direct: Mantenir missatges directes
     keep_direct_hint: No esborra cap dels teus missatges directes
     keep_media: Mantenir els tuts amb contingut gràfic
@@ -2153,3 +2167,6 @@ ca:
     not_supported: Aquest navegador no suporta claus de seguretat
     otp_required: Per a usar claus de seguretat, activeu primer l'autenticació de dos factors.
     registered_on: Registrat en %{date}
+  wrapstodon:
+    description: Mira com %{name} ha fet servir Mastodon enguany.
+    title: Wrapstodon %{year} per a %{name}

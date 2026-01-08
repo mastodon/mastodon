@@ -46,7 +46,7 @@ RSpec.describe 'Interaction policies' do
     context 'when changing the interaction policy' do
       it 'changes the interaction policy, returns the updated status, and schedules distribution jobs' do
         expect { subject }
-          .to change { status.reload.quote_approval_policy }.to(Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] << 16)
+          .to change { status.reload.quote_approval_policy }.to(InteractionPolicy::POLICY_FLAGS[:followers] << 16)
 
         expect(response).to have_http_status(200)
         expect(response.content_type)

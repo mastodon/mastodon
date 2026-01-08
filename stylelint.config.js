@@ -2,7 +2,6 @@ module.exports = {
   extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier-scss'],
   ignoreFiles: [
     'app/javascript/styles/mastodon/reset.scss',
-    'app/javascript/styles_new/mastodon/reset.scss',
     'coverage/**/*',
     'node_modules/**/*',
     'public/assets/**/*',
@@ -32,7 +31,7 @@ module.exports = {
   },
   overrides: [
     {
-      'files': ['app/javascript/styles/entrypoints/mailer.scss', 'app/javascript/styles_new/entrypoints/mailer.scss'],
+      files: ['app/javascript/styles/entrypoints/mailer.scss'],
       rules: {
         'property-no-unknown': [
           true,
@@ -42,6 +41,15 @@ module.exports = {
             ] },
         ],
       },
+    },
+    {
+      files: ['app/javascript/**/*.module.scss'],
+      rules: {
+        'selector-pseudo-class-no-unknown': [
+          true,
+          { ignorePseudoClasses: ['global'] },
+        ]
+      }
     },
   ],
 };

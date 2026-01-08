@@ -1,10 +1,10 @@
-import punycode from 'node:punycode';
-
 import { useCallback, useId, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+
+import punycode from 'punycode/';
 
 import DescriptionIcon from '@/material-icons/400-24px/description-fill.svg?react';
 import OpenInNewIcon from '@/material-icons/400-24px/open_in_new.svg?react';
@@ -48,8 +48,10 @@ const handleIframeUrl = (html: string, url: string, providerName: string) => {
     iframeUrl.searchParams.set('autoplay', '1');
     iframeUrl.searchParams.set('auto_play', '1');
 
-    if (startTime && providerName === 'YouTube')
-      iframeUrl.searchParams.set('start', startTime);
+    if (providerName === 'YouTube') {
+      iframeUrl.searchParams.set('start', startTime ?? '');
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    }
 
     iframe.src = iframeUrl.href;
 

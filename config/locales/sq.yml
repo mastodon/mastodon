@@ -7,6 +7,8 @@ sq:
     hosted_on: Server Mastodon i strehuar në %{domain}
     title: Mbi
   accounts:
+    errors:
+      cannot_be_added_to_collections: Kjo llogari s’mund të shtohet në koleksione.
     followers:
       one: Ndjekës
       other: Ndjekës
@@ -838,6 +840,7 @@ sq:
         publish_statistics: Publiko statistika
         title: Zbulim
         trends: Në modë
+        wrapstodon: Përmbledhjedon
       domain_blocks:
         all: Për këdo
         disabled: Për askënd
@@ -1305,6 +1308,13 @@ sq:
     hint_html: "<strong>Ndihmëz:</strong> S’do t’ju pyesim për fjalëkalimin tuaj sërish, për një orë."
     invalid_password: Fjalëkalim i pavlefshëm
     prompt: Që të vazhdohet, ripohoni fjalëkalimin
+  color_scheme:
+    auto: Automatike
+    dark: E errët
+    light: E çelët
+  contrast:
+    auto: Automatik
+    high: I lartë
   crypto:
     errors:
       invalid_key: s’është kyç Ed25519 ose Curve25519 i vlefshëm
@@ -1691,16 +1701,22 @@ sq:
       body: 'U përmendët nga %{name} në:'
       subject: U përmendët nga %{name}
       title: Përmendje e re
+    moderation_warning:
+      subject: Ju është dhënë një sinjalizim moderimi
     poll:
       subject: Përfundoi një pyetësor nga %{name}
     quote:
       body: 'Postimi juaj u citua nga %{name}:'
       subject: "%{name} citoi postimin tuaj"
       title: Citim i ri
+    quoted_update:
+      subject: "%{name} përpunoi një postim që keni cituar"
     reblog:
       body: 'Gjendja juaj u përforcua nga %{name}:'
       subject: "%{name} përforcoi gjendjen tuaj"
       title: Përforcim i ri
+    severed_relationships:
+      subject: Keni humbur lidhjet, për shkak të një vendimi moderimi
     status:
       subject: "%{name} sapo postoi"
     update:
@@ -1941,11 +1957,11 @@ sq:
     enabled: Fshi automatikisht postime të vjetra
     enabled_hint: Fshin automatikisht postimet tuaja, pasi mbërrijnë një prag të caktuar moshe, hiq rastin kur ka përputhje me një nga përjashtimet më poshtë
     exceptions: Përjashtime
-    explanation: Ngaqë fshirja e postimeve është një veprim i shtrenjtë, kjo bëhet ngadalë, gjatë kohës kur shërbyesi s’është i zënë. Për këtë arsye, postimet tuaja mund të fshihen pas ca kohësh pasi të ketë mbërritur pragun e moshës për to.
+    explanation: Fshirja e automatizuar kryhet me përparësi të ulët. Mund të ketë një vonesë mes arritjes së pragut të moshës dhe heqjes faktike.
     ignore_favs: Shpërfilli të parapëlqyerit
     ignore_reblogs: Shpërfilli përforcimet
     interaction_exceptions: Përjashtime bazuar në ndërveprime
-    interaction_exceptions_explanation: Kini parasysh se nuk ka garanci se postimet do të fshihen, nëse kalojnë nën pragun për të parapëlqyerat ose përforcimet, pasi kanë kaluar një herë në to.
+    interaction_exceptions_explanation: Postime të cilët tejkalojnë përkohësisht pragun për si të parapëlqyer ose të përforcimeve, mund të mbahen edhe pse më vonë numri i tyre ulet.
     keep_direct: Mbaj mesazhet e drejtpërdrejtë
     keep_direct_hint: S’fshihet ndonjë nga mesazhet tuaj të drejtpërdrejtë
     keep_media: Mbaj postime me bashkëngjitje media
@@ -2158,8 +2174,12 @@ sq:
       error: Pati një problem me fshirjen e kyçit tuaj të sigurisë. Ju lutemi, riprovoni.
       success: Kyçi juaj i sigurisë u fshi me sukses.
     invalid_credential: Kyç i pavlefshëm sigurie
+    nickname: Nofkë
     nickname_hint: Jepni nofkën e kyçit tuaj të ri të sigurisë
     not_enabled: S’e keni aktivizuar ende WebAuthn-in
     not_supported: Ky shfletues nuk mbulon kyçe sigurie
     otp_required: Që të përdoren kyçe sigurie, ju lutemi, së pari aktivizoni mirëfilltësimin dyfaktorësh.
     registered_on: Regjistruar më %{date}
+  wrapstodon:
+    description: Shihni si u përdor Mastodon-in këtë vit nga %{name}!
+    title: Përmbledhjedon %{year} për %{name}

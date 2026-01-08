@@ -7,7 +7,7 @@ en-GB:
         options: Choices
       user:
         agreement: Service agreement
-        email: E-mail address
+        email: Email address
         locale: Locale
         password: Password
       user/account:
@@ -26,7 +26,7 @@ en-GB:
             fields:
               fields_with_values_missing_labels: contains values with missing labels
             username:
-              invalid: must contain only letters, numbers and underscores
+              invalid: must contain only letters, numbers, and underscores
               reserved: is reserved
         admin/webhook:
           attributes:
@@ -64,7 +64,7 @@ en-GB:
             date_of_birth:
               below_limit: is below the age limit
             email:
-              blocked: uses a disallowed e-mail provider
+              blocked: uses a disallowed email provider
               unreachable: does not seem to exist
             role_id:
               elevated: cannot be higher than your current role
@@ -80,4 +80,4 @@ en-GB:
         webhook:
           attributes:
             events:
-              invalid_permissions: cannot include events you don't have the rights to
+              invalid_permissions: cannot include events to which you don't have the rights

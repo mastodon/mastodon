@@ -32,6 +32,12 @@ fr-CA:
           attributes:
             url:
               invalid: n’est pas un URL valide
+        collection:
+          attributes:
+            collection_items:
+              too_many: trop d'éléments, seuls %{count} éléments sont permis
+            tag:
+              unusable: ne peut pas être utilisé
         doorkeeper/application:
           attributes:
             website:
@@ -43,7 +49,7 @@ fr-CA:
         list_account:
           attributes:
             account_id:
-              taken: est déjà sur la liste
+              taken: est déjà dans la liste
           must_be_following: dois être un compte suivi
         status:
           attributes:

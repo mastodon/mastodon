@@ -7,6 +7,8 @@ is:
     hosted_on: Mastodon hýst á %{domain}
     title: Um hugbúnaðinn
   accounts:
+    errors:
+      cannot_be_added_to_collections: Þessum aðgangi er ekki hægt að bæta í söfn.
     followers:
       one: fylgjandi
       other: fylgjendur
@@ -848,6 +850,7 @@ is:
         publish_statistics: Birta tölfræði
         title: Uppgötvun
         trends: Vinsælt
+        wrapstodon: Ársuppgjörið
       domain_blocks:
         all: Til allra
         disabled: Til engra
@@ -1320,6 +1323,13 @@ is:
     hint_html: "<strong>Ábending:</strong> Við munum ekki spyrja þig um lykilorðið aftur næstu klukkustundina."
     invalid_password: Ógilt lykilorð
     prompt: Staðfestu lykilorðið til að halda áfram
+  color_scheme:
+    auto: Sjálfvirkt
+    dark: Dökkt
+    light: Ljóst
+  contrast:
+    auto: Sjálfvirkt
+    high: Mikið
   crypto:
     errors:
       invalid_key: er ekki gildur Ed25519 eða Curve25519-lykill
@@ -1710,16 +1720,22 @@ is:
       body: "%{name} minntist á þig í:"
       subject: "%{name} minntist á þig"
       title: Ný tilvísun
+    moderation_warning:
+      subject: Þú hefur fengið aðvörun frá umsjónarmanni
     poll:
       subject: Könnun frá %{name} er lokið
     quote:
       body: "%{name} vitnaði í færsluna þína:"
       subject: "%{name} vitnaði í færsluna þína"
       title: Ný tilvitnun
+    quoted_update:
+      subject: "%{name} breytti færslu sem þú hefur vitnað í"
     reblog:
       body: "%{name} endurbirti færsluna þína:"
       subject: "%{name} endurbirti færsluna þína"
       title: Ný endurbirting
+    severed_relationships:
+      subject: Þú hefur tapað tengingum vegna ákvörðunar umsjónarmanna
     status:
       subject: "%{name} sendi inn rétt í þessu"
     update:
@@ -1961,11 +1977,11 @@ is:
     enabled: Sjálfkrafa eyða eldri færslum
     enabled_hint: Eyðir sjálfkrafa færslum þínum um leið og þær ná tilteknum aldursmörkum, nema ef þær samsvara einni af undantekningunum hér fyrir neðan
     exceptions: Undantekningar
-    explanation: Þar sem eyðing færslna gerir talsverðar kröfur til kerfisins, er þetta gert smátt og smátt þegar netþjónninn er ekki upptekinn við annað. Að þessum sökum má vera að færslunum þínum sé eytt einhverjum tíma eftir að þær ná skilgreindum aldursmörkum.
+    explanation: Sjálfvirk eyðing er framkvæmd með lágum forgangi. Það gæti verið töf á milli þess að aldursmörkum sé náð og þess að færslur séu fjarlægðar.
     ignore_favs: Hunsa eftirlæti
     ignore_reblogs: Hunsa endurbirtingar
     interaction_exceptions: Undantekningar byggðar á gagnvirkni
-    interaction_exceptions_explanation: Athugaðu að ekki er öruggt að færslum sé eytt við að fara niður fyrir skilgreind mörk eftirlæta eða endurbirtinga ef þær hafa einu sinni farið upp fyrir þessi mörk.
+    interaction_exceptions_explanation: Færslur sem tímabundið fara yfir mörk um eftirlæti eða endurbirtingar, gætu haldist jafnvel þótt mörkin séu síðar lækkuð.
     keep_direct: Halda beinum skilaboðum
     keep_direct_hint: Eyðir ekki neinum af beinu skilaboðunum þínum
     keep_media: Halda færslum með myndaviðhengjum
@@ -2178,8 +2194,12 @@ is:
       error: Það kom upp villa við að eyða öryggislyklinum þínum. Reyndu aftur.
       success: Tókst að eyða öryggislyklinum þínum.
     invalid_credential: Ógildur öryggislykill
+    nickname: Gælunafn
     nickname_hint: Settu inn stuttnefni fyrir nýja öryggislykilinn þinn
     not_enabled: Þú hefur ennþá ekki virkjað WebAuthn
     not_supported: Þessi vafri styður ekki öryggislykla
     otp_required: Til að nota öryggislykla skaltu fyrst virkja tveggja-þátta auðkenningu.
     registered_on: Skráði sig %{date}
+  wrapstodon:
+    description: Sjáðu hvernig %{name} notaði Mastodon á árinu!
+    title: Ársuppgjörið %{year} fyrir %{name}

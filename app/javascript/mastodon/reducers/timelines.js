@@ -1,6 +1,6 @@
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 
-import { timelineDelete } from 'mastodon/actions/timelines_typed';
+import { timelineDelete, isNonStatusId } from 'mastodon/actions/timelines_typed';
 
 import {
   blockAccountSuccess,
@@ -19,7 +19,6 @@ import {
   TIMELINE_MARK_AS_PARTIAL,
   TIMELINE_INSERT,
   TIMELINE_GAP,
-  TIMELINE_SUGGESTIONS,
   disconnectTimeline,
 } from '../actions/timelines';
 import { compareId } from '../compare_id';
@@ -36,7 +35,6 @@ const initialTimeline = ImmutableMap({
   items: ImmutableList(),
 });
 
-const isPlaceholder = value => value === TIMELINE_GAP || value === TIMELINE_SUGGESTIONS;
 
 const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, isLoadingRecent, usePendingItems) => {
   // This method is pretty tricky because:
@@ -69,20 +67,20 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
         // First, find the furthest (if properly sorted, oldest) item in the timeline that is
         // newer than the oldest fetched one, as it's most likely that it delimits the gap.
         // Start the gap *after* that item.
-        const lastIndex = oldIds.findLastIndex(id => !isPlaceholder(id) && compareId(id, newIds.last()) >= 0) + 1;
+        const lastIndex = oldIds.findLastIndex(id => !isNonStatusId(id) && compareId(id, newIds.last()) >= 0) + 1;
 
         // Then, try to find the furthest (if properly sorted, oldest) item in the timeline that
         // is newer than the most recent fetched one, as it delimits a section comprised of only
         // items older or within `newIds` (or that were deleted from the server, so should be removed
         // anyway).
         // Stop the gap *after* that item.
-        const firstIndex = oldIds.take(lastIndex).findLastIndex(id => !isPlaceholder(id) && compareId(id, newIds.first()) > 0) + 1;
+        const firstIndex = oldIds.take(lastIndex).findLastIndex(id => !isNonStatusId(id) && compareId(id, newIds.first()) > 0) + 1;
 
         let insertedIds = ImmutableOrderedSet(newIds).withMutations(insertedIds => {
           // It is possible, though unlikely, that the slice we are replacing contains items older
           // than the elements we got from the API. Get them and add them back at the back of the
           // slice.
-          const olderIds = oldIds.slice(firstIndex, lastIndex).filter(id => !isPlaceholder(id) && compareId(id, newIds.last()) < 0);
+          const olderIds = oldIds.slice(firstIndex, lastIndex).filter(id => !isNonStatusId(id) && compareId(id, newIds.last()) < 0);
           insertedIds.union(olderIds);
 
           // Make sure we aren't inserting duplicates

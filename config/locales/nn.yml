@@ -7,6 +7,8 @@ nn:
     hosted_on: "%{domain} er vert for Mastodon"
     title: Om
   accounts:
+    errors:
+      cannot_be_added_to_collections: Du kan ikkje leggja til denne brukarkontoen i samlingar.
     followers:
       one: Fylgjar
       other: Fylgjarar
@@ -846,6 +848,7 @@ nn:
         publish_statistics: Publiser statistikk
         title: Oppdaging
         trends: Populært
+        wrapstodon: Mastodon-året
       domain_blocks:
         all: Til alle
         disabled: Til ingen
@@ -1090,7 +1093,7 @@ nn:
           tag_uses_measure: brukarar totalt
         description_html: Dette er emneknagger som for øyeblikket vises i mange innlegg som serveren din ser. Det kan hjelpe dine brukere med å finne ut hva folk snakker mest om i øyeblikket. Ingen emneknagger vises offentlig før du godkjenner dem.
         listable: Kan bli foreslått
-        no_tag_selected: Ingen merkelappar vart endra fordi ingen var valde
+        no_tag_selected: Ingen emneknaggar vart endra fordi ingen var valde
         not_listable: Vil ikke bli foreslått
         not_trendable: Kjem ikkje til å syna under trendar
         not_usable: Kan ikke brukes
@@ -1316,6 +1319,13 @@ nn:
     hint_html: "<strong>Tips:</strong> Vi skal ikkje spørja deg om passordet ditt igjen i laupet av den neste timen."
     invalid_password: Ugyldig passord
     prompt: Stadfest passord for å halda fram
+  color_scheme:
+    auto: Auto
+    dark: Mørkt
+    light: Lyst
+  contrast:
+    auto: Auto
+    high: Høg
   crypto:
     errors:
       invalid_key: er ikkje ein gild Ed25519 eller Curve25519 nykel
@@ -1706,16 +1716,22 @@ nn:
       body: 'Du vart nemnd av %{name} i:'
       subject: Du vart nemnd av %{name}
       title: Ny omtale
+    moderation_warning:
+      subject: Du har fått ei moderasjonsåtvaring
     poll:
       subject: Meiningsmålinga frå %{name} er avslutta
     quote:
       body: 'Innlegget ditt vart sitert av %{name}:'
       subject: "%{name} siterte innlegget ditt"
       title: Nytt sitat
+    quoted_update:
+      subject: "%{name} redigerte eit innlegg du har sitert"
     reblog:
       body: 'Statusen din vart framheva av %{name}:'
       subject: "%{name} framheva statusen din"
       title: Ny framheving
+    severed_relationships:
+      subject: Du har tapte tilkoplingar på grunn av ei avgjerd frå ein moderator
     status:
       subject: "%{name} postet nettopp"
     update:
@@ -1887,7 +1903,7 @@ nn:
     notifications: Epostvarsel
     preferences: Innstillingar
     profile: Profil
-    relationships: Fylgje og fylgjarar
+    relationships: Fylgjer og fylgjarar
     severed_relationships: Brotne forhold
     statuses_cleanup: Automatisert sletting av innlegg
     strikes: Modereringsadvarsler
@@ -1943,7 +1959,7 @@ nn:
     quote_policies:
       followers: Berre fylgjarar
       nobody: Berre eg
-      public: Allle
+      public: Alle
     quote_post_author: Siterte eit innlegg av %{acct}
     title: "%{name}: «%{quote}»"
     visibilities:
@@ -1957,11 +1973,11 @@ nn:
     enabled: Slett gamle innlegg automatisk
     enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
     exceptions: Unntak
-    explanation: Siden sletting av innlegg er en krevende operasjon, blir dette gjort sakte over tid når tjeneren ellers ikke er opptatt. Av denne grunn kan det hende at innleggene dine slettes først en stund etter at de har nådd aldersgrensen.
+    explanation: Automatisk sletting blir utført med låg prioritet. Det kan vera forseinkingar mellom når innlegga når aldersgrensa og når dei blir sletta.
     ignore_favs: Ignorer favoritter
     ignore_reblogs: Ignorer fremhevinger
     interaction_exceptions: Unntak basert på interaksjoner
-    interaction_exceptions_explanation: Merk at det ikke er noen garanti for at innlegg blir slettet hvis de går under favoritt- eller fremhevelsesgrensen etter å ha gått over dem en gang.
+    interaction_exceptions_explanation: Innlegg som mellombels kjem over favoritt- eller framhevingsgrensa kan bli behaldne sjølv om dei seinare minkar.
     keep_direct: Behold direktemeldinger
     keep_direct_hint: Sletter ingen av direktemeldingene dine
     keep_media: Behold innlegg med mediavedlegg
@@ -2179,3 +2195,6 @@ nn:
     not_supported: Denne nettleseren støtter ikke sikkerhetsnøkler
     otp_required: For å bruke sikkerhetsnøkler, må du først aktivere to-faktor autentisering.
     registered_on: Registrert den %{date}
+  wrapstodon:
+    description: Sjå korleis %{name} brukte Mastodon i år!
+    title: Mastodon-året %{year} for %{name}

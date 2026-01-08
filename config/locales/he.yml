@@ -7,6 +7,8 @@ he:
     hosted_on: מסטודון שיושב בכתובת %{domain}
     title: אודות
   accounts:
+    errors:
+      cannot_be_added_to_collections: לא ניתן להוסיף חשבון זה לאוספים.
     followers:
       many: עוקבים
       one: עוקב
@@ -874,6 +876,7 @@ he:
         publish_statistics: פרסום הסטטיסטיקות בפומבי
         title: תגליות
         trends: נושאים חמים
+        wrapstodon: סיכומודון
       domain_blocks:
         all: לכולם
         disabled: לאף אחד
@@ -1354,6 +1357,13 @@ he:
     hint_html: "<strong>טיפ:</strong> לא נבקש את סיסמתך שוב בשעה הקרובה."
     invalid_password: סיסמה שגויה
     prompt: יש לאשר את הסיסמה כדי להמשיך
+  color_scheme:
+    auto: אוטומטי
+    dark: אפל
+    light: בהיר
+  contrast:
+    auto: אוטומטי
+    high: גבוהה
   crypto:
     errors:
       invalid_key: זהו לא מפתח Ed25519 או Curve25519 קביל
@@ -1784,16 +1794,22 @@ he:
       body: 'התקבלה פניה עבורך מאת %{name} ב:'
       subject: התקבלה פניה עבורך מאת %{name}
       title: אזכור חדש
+    moderation_warning:
+      subject: קיבלת אזהרה מצוות ניהול התוכן
     poll:
       subject: סקר מאת %{name} הסתיים
     quote:
       body: 'הודעתך צוטטה על ידי %{name}:'
       subject: "%{name} ציטט.ה את הודעתך"
       title: ציטוט חדש
+    quoted_update:
+      subject: "%{name} ערך הודעה שהשתמשת בה בציטוט"
     reblog:
       body: 'הודעתך הודהדה על ידי %{name}:'
       subject: הודעתך הודהדה על ידי%{name}
       title: הדהוד חדש
+    severed_relationships:
+      subject: איבדת קשרים עם משתמשים אחרים עקב החלטת צוות ניהול התוכן
     status:
       subject: "%{name} בדיוק פרסם"
     update:
@@ -2043,11 +2059,11 @@ he:
     enabled: מחק הודעות ישנות אוטומטית
     enabled_hint: מוחק אוטומטית את הודעותיך לכשהגיעו לסף גיל שנקבע מראש, אלא אם הן תואמות את אחת ההחרגות למטה
     exceptions: החרגות
-    explanation: היות ומחיקת הודעות היא פעולה יקרה במשאבים, היא נעשית לאט לאורך זמן כאשר השרת לא עסוק במשימות אחרות. לכן, ייתכן שההודעות שלך ימחקו מעט אחרי שיגיעו לסף הגיל שהוגדר.
+    explanation: מחיקה אוטומטית מבוצעת בעדיפות נמוכה. יתכן עיכוב מההגעה לסף הגיל ועד להסרה בפועל.
     ignore_favs: התעלם ממחובבים
     ignore_reblogs: התעלם מהדהודים
     interaction_exceptions: החרגות מבוססות אינטראקציות
-    interaction_exceptions_explanation: כדאי לשים לב שאין ערובה למחיקת הודעות אם הן יורדות מתחת לסף החיבובים או ההדהודים לאחר הסריקה הראשונית.
+    interaction_exceptions_explanation: פרסומים שעברו זמנית שת סף החיבובים או ההדהודים עשויים להשמר גם אם מאוחר יותר בוטלו החיבובים או ההדהודים.
     keep_direct: שמירת הודעות ישירות
     keep_direct_hint: לא מוחק אך אחת מההודעות הישירות שלך
     keep_media: שמור הודעות עם מדיה
@@ -2262,8 +2278,12 @@ he:
       error: היתה בעיה במחיקת מפתח האבטחה. נסה בשנית.
       success: מפתח האבטחה נמחק בהצלחה.
     invalid_credential: אסימון אבטחה לא תקין
+    nickname: כינוי
     nickname_hint: הכנס.י כינוי למפתח האבטחה החדש שלך
     not_enabled: לא אפשרת את WebAuthn עדיין
     not_supported: דפדפן זה לא תומך במפתחות אבטחה
     otp_required: על מנת להשתמש במפתחות אבטחה אנא אפשר.י אימות דו-שלבי קודם.
     registered_on: נרשם ב %{date}
+  wrapstodon:
+    description: ראו איך %{name} השתמשו במסטודון השנה!
+    title: סיכומודון %{year} עבור %{name}

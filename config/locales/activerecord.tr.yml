@@ -32,6 +32,12 @@ tr:
           attributes:
             url:
               invalid: geçerli bir URL değil
+        collection:
+          attributes:
+            collection_items:
+              too_many: çok fazla, en fazla %{count} olabilir
+            tag:
+              unusable: kullanılamaz
         doorkeeper/application:
           attributes:
             website:

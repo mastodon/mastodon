@@ -48,4 +48,82 @@ RSpec.describe Collection do
       it { is_expected.to_not be_valid }
     end
   end
+
+  describe '#item_for' do
+    subject { Fabricate(:collection) }
+
+    let!(:items) { Fabricate.times(2, :collection_item, collection: subject) }
+
+    context 'when given no account' do
+      it 'returns all items' do
+        expect(subject.items_for).to match_array(items)
+      end
+    end
+
+    context 'when given an account' do
+      let(:account) { Fabricate(:account) }
+
+      before do
+        account.block!(items.first.account)
+      end
+
+      it 'does not return items blocked by this account' do
+        expect(subject.items_for(account)).to contain_exactly(items.last)
+      end
+    end
+  end
+
+  describe '#tag_name=' do
+    context 'when the collection is new and has no tag' do
+      subject { Fabricate.build(:collection) }
+
+      context 'when the tag exists' do
+        let!(:tag) { Fabricate.create(:tag, name: 'people') }
+
+        it 'correctly assigns the existing tag' do
+          subject.tag_name = '#people'
+
+          expect(subject.tag).to eq tag
+        end
+      end
+
+      context 'when the tag does not exist' do
+        it 'creates and assigns a new tag' do
+          expect do
+            subject.tag_name = '#people'
+          end.to change(Tag, :count).by(1)
+
+          expect(subject.tag).to be_present
+          expect(subject.tag.name).to eq 'people'
+        end
+      end
+    end
+
+    context 'when the collection is persisted and has a tag' do
+      subject { Fabricate(:collection, tag:) }
+
+      let!(:tag) { Fabricate(:tag, name: 'people') }
+
+      context 'when the new tag is the same' do
+        it 'does not change the object' do
+          subject.tag_name = '#People'
+
+          expect(subject.tag).to eq tag
+          expect(subject).to_not be_changed
+        end
+      end
+
+      context 'when the new tag is different' do
+        it 'creates and assigns a new tag' do
+          expect do
+            subject.tag_name = '#bots'
+          end.to change(Tag, :count).by(1)
+
+          expect(subject.tag).to be_present
+          expect(subject.tag.name).to eq 'bots'
+          expect(subject).to be_changed
+        end
+      end
+    end
+  end
 end

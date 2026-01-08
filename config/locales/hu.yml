@@ -7,6 +7,8 @@ hu:
     hosted_on: "%{domain} Mastodon-kiszolgáló"
     title: Névjegy
   accounts:
+    errors:
+      cannot_be_added_to_collections: Ez a fiók nem adható hozzá gyűjteményekhez.
     followers:
       one: Követő
       other: Követő
@@ -846,6 +848,7 @@ hu:
         publish_statistics: Statisztikák közzététele
         title: Felfedezés
         trends: Trendek
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Mindenkinek
         disabled: Senkinek
@@ -1316,6 +1319,13 @@ hu:
     hint_html: "<strong>Hasznos:</strong> Nem fogjuk megint a jelszavadat kérdezni a következő órában."
     invalid_password: Érvénytelen jelszó
     prompt: Add meg a jelszót a folytatáshoz
+  color_scheme:
+    auto: Automatikus
+    dark: Sötét
+    light: Világos
+  contrast:
+    auto: Automatikus
+    high: Magas
   crypto:
     errors:
       invalid_key: érvénytelen Ed25519 vagy Curve25519 kulcs
@@ -1706,16 +1716,22 @@ hu:
       body: "%{name} megemlített téged:"
       subject: "%{name} megemlített téged"
       title: Új említés
+    moderation_warning:
+      subject: Moderációs figyelmeztetést kaptál
     poll:
       subject: "%{name} szavazása véget ért"
     quote:
       body: 'A bejegyzésedet %{name} idézte:'
       subject: "%{name} idézte a bejegyzésedet"
       title: Új idézet
+    quoted_update:
+      subject: "%{name} szerkesztett egy bejegyzést, melyet idéztél"
     reblog:
       body: 'A bejegyzésedet %{name} megtolta:'
       subject: "%{name} megtolta a bejegyzésedet"
       title: Új megtolás
+    severed_relationships:
+      subject: Moderációs döntés miatt kapcsolatokat veszítettél
     status:
       subject: "%{name} bejegyzést írt"
     update:
@@ -1957,11 +1973,11 @@ hu:
     enabled: Régi bejegyzések automatikus törlése
     enabled_hint: Automatikusan törli a bejegyzéseidet, ahogy azok elérik a megadott korhatárt, kivéve azokat, melyek illeszkednek valamely alábbi kivételre
     exceptions: Kivételek
-    explanation: Mivel a bejegyzések törlése drága művelet, ezért ez időben elnyújtva történik, amikor a kiszolgáló épp nem elfoglalt. Ezért lehetséges, hogy a bejegyzéseid valamivel később lesznek törölve, mint ahogy azok elérik a korhatárukat.
+    explanation: Az automatizált törlés alacsony prioritással történik. Késleltetés lehet a korkorlát elérése és az eltávolítás között.
     ignore_favs: Kedvencek kihagyása
     ignore_reblogs: Megtolások kihagyása
     interaction_exceptions: Interakció alapú kivételek
-    interaction_exceptions_explanation: Nincs arra garancia, hogy olyan bejegyzések törlésre kerüljenek, melyek épp a megadott kedvencnek jelölési vagy megtolási határ alatt vannak, de régebben e fölött is jártak már.
+    interaction_exceptions_explanation: Azok a bejegyzések, melyek ideiglenesen túllépik a kedvencnek jelölési vagy megtolási korlátot meg lesznek tartva, még akkor is, ha később ezek alá esnek.
     keep_direct: Közvetlen üzenetek megtartása
     keep_direct_hint: Nem törli egyetlen közvetlen üzenetedet sem
     keep_media: Médiacsatolmánnyal ellátott bejegyzések megtartása
@@ -2174,8 +2190,12 @@ hu:
       error: A biztonsági kulcs törlése közben hiba történt. Kérlek, próbáld újra.
       success: A biztonsági kulcsodat sikeresen töröltük.
     invalid_credential: Érvénytelen biztonsági kulcs
+    nickname: Becenév
     nickname_hint: Írd be az új biztonsági kulcsod becenevét
     not_enabled: Még nem engedélyezted a WebAuthn-t
     not_supported: Ez a böngésző nem támogatja a biztonsági kulcsokat
     otp_required: A biztonsági kulcsok használatához először engedélyezd a kétlépcsős hitelesítést.
     registered_on: 'Regisztráció ekkor: %{date}'
+  wrapstodon:
+    description: Nézd meg, hogy %{name} hogyan használta a Mastodont az éven!
+    title: Wrapstodon %{year} – %{name}

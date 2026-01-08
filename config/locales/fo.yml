@@ -7,6 +7,8 @@ fo:
     hosted_on: Mastodon hýst á %{domain}
     title: Um
   accounts:
+    errors:
+      cannot_be_added_to_collections: Hendan kontan kann ikki leggjast afturat søvnum.
     followers:
       one: Fylgjari
       other: Fylgjarar
@@ -846,6 +848,7 @@ fo:
         publish_statistics: Legg hagtøl út
         title: Uppdaging
         trends: Rák
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Til øll
         disabled: Til ongan
@@ -1316,6 +1319,13 @@ fo:
     hint_html: "<strong>Góð ráð:</strong> vit spyrja teg ikki aftur um loyniorðið næsta tíman."
     invalid_password: Skeivt loyniorð
     prompt: Vátta loyniorð fyri at halda fram
+  color_scheme:
+    auto: Sjálvvirkandi
+    dark: Myrkt
+    light: Ljóst
+  contrast:
+    auto: Sjálvvirkandi
+    high: Høgt
   crypto:
     errors:
       invalid_key: er ikki ein gildur Ed25519 ella Curve25519 lykil
@@ -1706,16 +1716,22 @@ fo:
       body: 'Tú var umrødd/ur av %{name} í:'
       subject: Tú var umrødd/ur av %{name}
       title: Nýggj umrøða
+    moderation_warning:
+      subject: Tú hevur móttikið eina umsjónarávaring
     poll:
       subject: Ein spurnarkanning hjá %{name} er endað
     quote:
       body: 'Postur tín var siteraður av %{name}:'
       subject: "%{name} siteraði postin hjá tær"
       title: Nýggj sitering
+    quoted_update:
+      subject: "%{name} rættaði ein post, sum tú hevur siterað"
     reblog:
       body: 'Postur tín var stimbraður av %{name}:'
       subject: "%{name} stimbraði tín post"
       title: Nýggj stimbran
+    severed_relationships:
+      subject: Tú hevur mist sambond vegna eina umsjónaravgerð
     status:
       subject: "%{name} hevur júst postað"
     update:
@@ -1957,11 +1973,11 @@ fo:
     enabled: Strika gamlar postar sjálvvirkandi
     enabled_hint: Strikar postar tínar sjálvvirkandi, tá teir verða eldri enn eitt vist, uttan so at teir samsvara við eitt av undantøkunum niðanfyri
     exceptions: Undantøk
-    explanation: Av tí at striking av postum er dýrt virksemi, so verður tað gjørt spakuliga yvir tíð, tá ambætarin annars ikki er upptikin. Tí kunnu postarnir hjá tær verða strikaðir eina løtu aftaná, at tíðarfreistin er rokkin.
+    explanation: Sjálvvirkandi striking verður gjørd við lágari raðfesting. Ein seinking kann vera millum evstamarkið og sjálva strikingina.
     ignore_favs: Sí burtur frá yndispostum
     ignore_reblogs: Sí burtur frá stimbranum
     interaction_exceptions: Undantøk grundað á samvirkni
-    interaction_exceptions_explanation: Legg til merkis, at eingin trygd er fyri at postar verða strikaðir, um teir fara undir mørkini fyri yndispostar ella stimbranir eftir at teir einaferð eru farnir uppum.
+    interaction_exceptions_explanation: Postar sum fyribils koma uppum mørkini fyri yndispostar ella strimbraðar postar kunnu vera varðveittir sjálvt um teir seinni minkast.
     keep_direct: Varðveit beinleiðis boð
     keep_direct_hint: Strikar ikki beinleiðis boð hjá tær
     keep_media: Varðveit postar, sum hava viðheftar miðlafílur
@@ -2179,3 +2195,6 @@ fo:
     not_supported: Hesin kagin stuðlar ikki uppundir trygdarlyklar
     otp_required: Fyri at brúka trygdarlyklar er neyðugt at gera váttan í tveimum stigum virkna fyrst.
     registered_on: Skrásett %{date}
+  wrapstodon:
+    description: Sí hvussu %{name} brúkti Mastodon í ár!
+    title: Wrapstodon %{year} fyri %{name}

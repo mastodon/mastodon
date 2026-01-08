@@ -7,6 +7,8 @@ fa:
     hosted_on: ماستودون میزبانی شده روی %{domain}
     title: درباره
   accounts:
+    errors:
+      cannot_be_added_to_collections: این حساب نمی‌تواند به مجموعه‌ها اضافه شود.
     followers:
       one: پی‌گیرنده
       other: پی‌گیرنده
@@ -846,6 +848,7 @@ fa:
         publish_statistics: انتشار آمار
         title: کشف
         trends: پرطرفدارها
+        wrapstodon: خلاصهٔ ماستودون
       domain_blocks:
         all: برای همه
         disabled: برای هیچ‌کدام
@@ -1316,6 +1319,13 @@ fa:
     hint_html: "<strong>نکته:</strong> ما در یک ساعت آینده گذرواژه‌تان را از شما نخواهیم پرسید."
     invalid_password: گذرواژه نامعتبر
     prompt: برای ادامه گذرواژه‌تان را تأیید کنید
+  color_scheme:
+    auto: خودکار
+    dark: تیره
+    light: روشن
+  contrast:
+    auto: خودکار
+    high: زیاد
   crypto:
     errors:
       invalid_key: یک کلید معتبر Ed25519 یا Curve25519 نیست
@@ -1706,16 +1716,22 @@ fa:
       body: "%{name} در این‌جا به شما اشاره کرد:"
       subject: "%{name} به شما اشاره کرد"
       title: اشارهٔ جدید
+    moderation_warning:
+      subject: هشداری مدیریتی گرفته‌اید
     poll:
       subject: نظرسنجی‌ای از %{name} پایان یافت
     quote:
       body: 'فرسته‌تان توسط %{name} نقل شد:'
       subject: "%{name} فرسته‌تان را نقل کرد"
       title: نقل‌قول جدید
+    quoted_update:
+      subject: "‏%{name} فرسته‌ای که نقل کردید را ویراست"
     reblog:
       body: "%{name} فرستهٔ شما را تقویت کرد:"
       subject: "%{name} فرستهٔ شما را تقویت کرد"
       title: تقویت تازه
+    severed_relationships:
+      subject: بنا به تصمیمی مدیریتی ارتباطاتی را از دست داده‌اید
     status:
       subject: "%{name} چیزی فرستاد"
     update:
@@ -1957,11 +1973,10 @@ fa:
     enabled: حذف خودکار فرسته‌های قدیمی
     enabled_hint: فرسته‌هایتان را هنگام رسیدن به کرانهٔ سن خاصی به صورت خودکار حذف می‌کند، مگر این که با یکی از استثناهای زیر مطابق باشند
     exceptions: استثناها
-    explanation: از آن‌جا که حذف فرسته‌ها، عملی پرهزینه است، این کار به آرامی در هنگام پرکار نبودن کارساز انجام می‌شود. به این خاطر، ممکن است فرسته‌هایتان مدّتی پس از رسیدن به آستانهٔ سن حذف شوند.
     ignore_favs: چشم‌پوشی از برگزیده‌ها
     ignore_reblogs: چشم‌پوشی از تقویت‌ها
     interaction_exceptions: استثناها بر پایهٔ برهم‌کنش‌ها
-    interaction_exceptions_explanation: توجّه داشته باشید که ضمانتی بر حذف شدن فرسته‌هایی که پس از یک بار گذشتن زمان از آن‌ها، به زیر کرانهٔ برگزیدن یا تقویت می‌روند نیست.
+    interaction_exceptions_explanation: فرسته‌هایی که موقتاً از حد آستانه‌ی برگزیدن یا تقویت فراتر بروند، ممکن است حتی در صورت کاهش بعدی نیز حفظ شوند.
     keep_direct: نگه داشتن پیام‌های خصوصی
     keep_direct_hint: هیچ یک از پیام‌های خصوصیتان را حذف نمی‌کند
     keep_media: نگه داشتن فرسته‌ها با پیوست‌های رسانه‌ای
@@ -2179,3 +2194,6 @@ fa:
     not_supported: این مرورگر از کلیدهای امنیتی پشتیبانی نمی‌کند
     otp_required: برای استفاده از کلیدهای امنیتی، لطفاً ابتدا تأیید هویت دو عاملی را به کار بیندازید.
     registered_on: ثبت‌شده در %{date}
+  wrapstodon:
+    description: دیدن چگونگی استفادهٔ امسال %{name} از ماستودون
+    title: خلاصهٔ ماستودون %{year} برای %{name}
