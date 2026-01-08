@@ -71,6 +71,10 @@ export async function search({
     log('no tokens extracted from query "%s"', query);
     return [];
   }
+  const lastToken = queryTokens.at(-1);
+  if (!lastToken) {
+    throw new Error('Missing tokens from query');
+  }
 
   log('searching for tokens %o in locale %s', queryTokens, locale);
 
@@ -118,10 +122,6 @@ export async function search({
       .values(),
   );
 
-  const lastToken = queryTokens.at(-1);
-  if (!lastToken) {
-    throw new Error('Missing tokens from query');
-  }
   results.sort((a, b) => {
     // Checks if a or b has the last token exactly, or only a prefix.
     const aHasToken = a.tokens.includes(lastToken);
@@ -156,8 +156,8 @@ export async function search({
     results.length,
     time.duration,
   );
-  if (count > 0) {
-    return results.slice(0, count);
+  if (limit > 0) {
+    return results.slice(0, limit);
   }
   return results;
 }
