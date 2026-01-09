@@ -59,7 +59,7 @@ module PrivateAddressCheck
   def private_address?(address)
     address = address.native
     raise ArgumentError, "IPAddr mismatch, #{address.class}" unless address.is_a?(IPAddr)
-    
+
     address.private? || address.loopback? || address.link_local? || CIDR_LIST.any? { |cidr| cidr.include?(address) }
   end
 end
