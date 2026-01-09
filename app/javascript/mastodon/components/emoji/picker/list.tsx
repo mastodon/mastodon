@@ -10,7 +10,6 @@ import {
   loadUnicodeEmojiGroup,
 } from '@/mastodon/features/emoji/database';
 import { useEmojiAppState } from '@/mastodon/features/emoji/mode';
-import { emojiToUnicodeHex } from '@/mastodon/features/emoji/normalize';
 import type { AnyEmojiData } from '@/mastodon/features/emoji/types';
 import { isCustomEmoji } from '@/mastodon/features/emoji/utils';
 import ArrowIcon from '@/material-icons/400-24px/arrow_drop_down.svg?react';

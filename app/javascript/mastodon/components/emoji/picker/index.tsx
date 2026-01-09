@@ -85,30 +85,6 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({
     });
   }, []);
 
-  const { currentLocale } = useEmojiAppState();
-  // This isn't needed in real life, as the current locale is only set on page load.
-  const prevLocale = usePrevious(currentLocale);
-  const [groups, setGroups] = useState<GroupMessage[]>([]);
-  if (prevLocale !== currentLocale) {
-    // This is messy, but it's just for the mock picker.
-    import(
-      `../../../../../../node_modules/emojibase-data/${currentLocale}/messages.json`
-    )
-      .then((module: { default: MessagesDataset }) => {
-        setGroups(
-          module.default.groups.filter(
-            (group) => !groupsToHide.includes(group.key),
-          ),
-        );
-      })
-      .catch((err: unknown) => {
-        console.warn('fell back to en messages', err);
-        setGroups(
-          messages.groups.filter((group) => !groupsToHide.includes(group.key)),
-        );
-      });
-  }
-
   return (
     <CustomEmojiProvider emojis={mockCustomEmojis}>
       <PickerContextProvider
