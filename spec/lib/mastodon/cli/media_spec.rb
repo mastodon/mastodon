@@ -93,9 +93,10 @@ RSpec.describe Mastodon::CLI::Media do
         let!(:reblogged_media) { Fabricate(:media_attachment, created_at: 1.month.ago, remote_url: 'https://example.com/image.jpg', status: reblogged_status) }
 
         let!(:non_interacted_status) { Fabricate(:status, account: remote_account) }
-        let!(:non_interacted_media) { Fabricate(:media_attachment, created_at: 1.month.ago, remote_url: 'https://example.com/image.jpg', status: non_interacted_status) }
 
         before do
+          media_attachment.update(status: non_interacted_status)
+
           Fabricate(:favourite, account: local_account, status: favourited_status)
           Fabricate(:bookmark, account: local_account, status: bookmarked_status)
           Fabricate(:status, account: local_account, in_reply_to_id: replied_to_status.id)
@@ -110,7 +111,9 @@ RSpec.describe Mastodon::CLI::Media do
           expect(bookmarked_media.reload.file).to be_present
           expect(replied_to_media.reload.file).to be_present
           expect(reblogged_media.reload.file).to be_present
-          expect(non_interacted_media.reload.file).to be_blank
+
+          expect(media_attachment.reload.file).to be_blank
+          expect(media_attachment.reload.thumbnail).to be_blank
         end
       end
     end

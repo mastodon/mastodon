@@ -67,7 +67,7 @@ module Mastodon::CLI
       unless options[:prune_profiles] || options[:remove_headers]
         attachment_scope = MediaAttachment.cached.remote.where(created_at: ..time_ago)
 
-        attachment_scope = attachment_scope.where.not(status_id: Status.with_local_interaction.select(:id)) if options[:keep_interacted]
+        attachment_scope = attachment_scope.without_local_interaction if options[:keep_interacted]
 
         processed, aggregate = parallelize_with_progress(attachment_scope) do |media_attachment|
           next if media_attachment.file.blank?
