@@ -29,7 +29,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.3'
 gem 'devise', '5.0.0.rc'
-gem 'devise-two-factor', github: 'devise-two-factor/devise-two-factor'
+gem 'devise-two-factor'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'

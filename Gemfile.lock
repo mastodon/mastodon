@@ -1,14 +1,4 @@
 GIT
-  remote: https://github.com/devise-two-factor/devise-two-factor.git
-  revision: c2001a834ef5078d351392da7a732a93c32278b9
-  specs:
-    devise-two-factor (6.2.0)
-      activesupport (>= 7.0, < 8.2)
-      devise (>= 4.0, < 5.0)
-      railties (>= 7.0, < 8.2)
-      rotp (~> 6.0)
-
-GIT
   remote: https://github.com/mastodon/webpush.git
   revision: 9631ac63045cfabddacc69fc06e919b4c13eb913
   ref: 9631ac63045cfabddacc69fc06e919b4c13eb913
@@ -203,6 +193,11 @@ GEM
       railties (>= 7.0)
       responders
       warden (~> 1.2.3)
+    devise-two-factor (6.3.1)
+      activesupport (>= 7.0, < 8.2)
+      devise (>= 4.0, < 5.0)
+      railties (>= 7.0, < 8.2)
+      rotp (~> 6.0)
     devise_pam_authenticatable2 (9.2.0)
       devise (>= 4.0.0)
       rpam2 (~> 4.0)
@@ -970,7 +965,7 @@ DEPENDENCIES
   database_cleaner-active_record
   debug (~> 1.8)
   devise (= 5.0.0.rc)
-  devise-two-factor!
+  devise-two-factor
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.2)
   doorkeeper (~> 5.6)
