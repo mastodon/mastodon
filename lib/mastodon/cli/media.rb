@@ -28,8 +28,8 @@ module Mastodon::CLI
       the last webfinger request and update to the user has to be before they
       are pruned. It defaults to 7 days.
       If --keep-interacted is specified, any media attached to a status that
-      was favourited, bookmarked, replied to, or reblogged by a local account
-      will be preserved.
+      was favourited, bookmarked, quoted, replied to, or reblogged by a local
+      account will be preserved.
       If --prune-profiles is specified, only avatars and headers are removed.
       If --remove-headers is specified, only headers are removed.
       If --include-follows is specified along with --prune-profiles or
