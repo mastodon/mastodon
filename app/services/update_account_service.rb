@@ -23,8 +23,8 @@ class UpdateAccountService < BaseService
     follow_requests = FollowRequest.where(target_account: account)
     follow_requests = follow_requests.preload(:account).reject do |req|
       req.account.silenced? ||
-      account.blocking?(req.account) ||  # target blocks requester
-      req.account.blocking?(account)     # requester blocks target
+      account.blocking?(req.account) ||  # account blocks requester
+      req.account.blocking?(account)     # requester blocks account
     end
     AuthorizeFollowWorker.push_bulk(follow_requests, limit: 1_000) do |req|
       [req.account_id, req.target_account_id]
