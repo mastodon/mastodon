@@ -1,7 +1,8 @@
 import debug from 'debug';
-import { fromUnicodeToHexcode } from 'emojibase';
 
 import { emojiRegexPolyfill } from '@/mastodon/polyfills';
+
+import { VARIATION_SELECTOR_CODE } from './constants';
 
 export function emojiLogger(segment: string) {
   return debug(`emojis:${segment}`);
@@ -46,7 +47,24 @@ export function anyEmojiRegex() {
 }
 
 export function emojiToUnicodeHex(emoji: string): string {
-  return fromUnicodeToHexcode(emoji, false);
+  const codes: string[] = [];
+  for (const char of emoji) {
+    const code = char.codePointAt(0);
+    if (code !== undefined) {
+      codes.push(code.toString(16).toUpperCase().padStart(4, '0'));
+    }
+  }
+
+  // Handles how Emojibase removes the variation selector for single code emojis.
+  // See: https://emojibase.dev/docs/spec/#merged-variation-selectors
+  if (
+    codes.at(1) === VARIATION_SELECTOR_CODE.toString(16).toUpperCase() &&
+    codes.length === 2
+  ) {
+    codes.pop();
+  }
+
+  return codes.join('-');
 }
 
 function supportsRegExpSets() {
