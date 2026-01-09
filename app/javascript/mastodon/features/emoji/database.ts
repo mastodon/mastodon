@@ -18,7 +18,7 @@ import {
   transformEmojiData,
 } from './normalize';
 import type { AnyEmojiData, EtagTypes } from './types';
-import { emojiLogger } from './utils';
+import { emojiLogger, isCustomEmoji } from './utils';
 
 const loadedLocales = new Set<Locale>();
 
@@ -265,6 +265,18 @@ export async function searchCustomEmojisByShortcodes(shortcodes: string[]) {
     IDBKeyRange.bound(sortedCodes.at(0), sortedCodes.at(-1)),
   );
   return results.filter((emoji) => shortcodes.includes(emoji.shortcode));
+}
+
+export async function loadEmojisByCodes(codes: string[], localeString: string) {
+  const locale = await toLoadedLocale(localeString);
+  const results = await Promise.all(
+    codes.map((code) =>
+      isCustomEmoji(code)
+        ? loadCustomEmojiByShortcode(code)
+        : loadEmojiByHexcode(code, locale),
+    ),
+  );
+  return results.filter((emoji): emoji is AnyEmojiData => !!emoji);
 }
 
 export async function loadLegacyShortcodesByShortcode(shortcode: string) {

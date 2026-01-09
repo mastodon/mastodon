@@ -1,12 +1,25 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { usePrevious } from '@dnd-kit/utilities';
 import type { MessagesDataset } from 'emojibase';
 import enMessages from 'emojibase-data/en/messages.json';
 
+import { loadEmojisByCodes } from '@/mastodon/features/emoji/database';
 import { useEmojiAppState } from '@/mastodon/features/emoji/mode';
+import type { AnyEmojiData } from '@/mastodon/features/emoji/types';
 
 import { groupsToHide } from './constants';
+
+export function useEmojisFromCodes(codes: string[]) {
+  const { currentLocale } = useEmojiAppState();
+  const [emojis, setEmojis] = useState<AnyEmojiData[] | null>(null);
+
+  useEffect(() => {
+    void loadEmojisByCodes(codes, currentLocale).then(setEmojis);
+  }, [codes, currentLocale]);
+
+  return emojis;
+}
 
 export function useLocaleMessages() {
   const { currentLocale } = useEmojiAppState();

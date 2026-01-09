@@ -45,7 +45,7 @@ export const MockEmojiPicker: FC<MockEmojiPickerProps> = ({
     [onSkinToneChange],
   );
 
-  const [recentlyUsed, setRecentlyUsed] = useState<string[]>([
+  const [recentlyUsed, setRecentlyUsed] = useState([
     ':blobcat_heart:',
     ':mastodon:',
     '👍',
@@ -147,8 +147,7 @@ const PickerMain: FC<PickerMainProps> = ({ onSettingsClick }) => {
     searchInput.focus();
   }, []);
 
-  const pickerContext = usePickerContext();
-  const { hiddenGroups, favourites, recentlyUsed } = pickerContext;
+  const { hiddenGroups, favourites, recentlyUsed } = usePickerContext();
   const customGroups = useMemo(
     () => mockCustomGroups.filter(({ key }) => !hiddenGroups.includes(key)),
     [hiddenGroups],
