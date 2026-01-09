@@ -300,9 +300,10 @@ export async function loadUnicodeEmojiGroup(
   group: number,
   localeString: string,
 ) {
-  const locale = toLoadedLocale(localeString);
+  const locale = await toLoadedLocale(localeString);
   const db = await loadDB();
-  const emojis = await db.getAllFromIndex(locale, 'group', group);
+  const range = IDBKeyRange.bound([group, 0], [group, Number.MAX_SAFE_INTEGER]);
+  const emojis = await db.getAllFromIndex(locale, 'groupOrder', range);
   return emojis.toSorted(({ order: a = 0 }, { order: b = 0 }) => a - b);
 }
 
@@ -310,7 +311,7 @@ export async function loadUnicodeEmojiGroupIcon(
   group: number,
   localeString: string,
 ) {
-  const locale = toLoadedLocale(localeString);
+  const locale = await toLoadedLocale(localeString);
   const db = await loadDB();
   const trx = db.transaction(locale, 'readonly');
   const index = trx.store.index('groupOrder');

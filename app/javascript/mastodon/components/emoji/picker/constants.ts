@@ -69,6 +69,7 @@ export const mockCustomEmojis = [
       'https://pics.ishella.gay/custom_emojis/images/000/001/217/static/abede62a1fe634cf.png',
     visible_in_picker: true,
     category: 'blobcat',
+    tokens: ['blobcat', 'heart'],
   },
   {
     shortcode: 'blobcat_wave',
@@ -77,6 +78,7 @@ export const mockCustomEmojis = [
       'https://pics.ishella.gay/custom_emojis/images/000/001/250/static/f924277a36414906.png',
     visible_in_picker: true,
     category: 'blobcat',
+    tokens: ['blobcat', 'wave'],
   },
   {
     shortcode: 'mastodon',
@@ -85,6 +87,7 @@ export const mockCustomEmojis = [
       'https://pics.ishella.gay/custom_emojis/images/000/025/993/static/56c38669cdca5d1c.png',
     visible_in_picker: true,
     category: 'logos',
+    tokens: ['mastodon'],
   },
   {
     shortcode: 'fediverse',
@@ -93,6 +96,7 @@ export const mockCustomEmojis = [
       'https://pics.ishella.gay/custom_emojis/images/000/001/198/static/b8041a4f365c4518.png',
     visible_in_picker: true,
     category: 'logos',
+    tokens: ['fediverse'],
   },
   {
     shortcode: 'ace_heart',
@@ -101,6 +105,7 @@ export const mockCustomEmojis = [
       'https://pics.ishella.gay/custom_emojis/images/000/001/220/static/8689758e37a1bfbc.png',
     visible_in_picker: true,
     category: 'lgbt',
+    tokens: ['ace', 'heart'],
   },
   {
     shortcode: 'nbi_heart',
@@ -109,5 +114,6 @@ export const mockCustomEmojis = [
       'https://pics.ishella.gay/custom_emojis/images/000/001/199/static/a06d788bce50f260.png',
     visible_in_picker: true,
     category: 'lgbt',
+    tokens: ['nbi', 'heart'],
   },
 ] satisfies (CustomEmojiData & { category: string })[];

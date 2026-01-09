@@ -3,12 +3,13 @@ import type { FC, MouseEventHandler } from 'react';
 
 import classNames from 'classnames';
 
+import { fromUnicodeToHexcode } from 'emojibase';
+
 import {
+  loadEmojiByHexcode,
   loadUnicodeEmojiGroup,
-  searchEmojisByHexcodes,
 } from '@/mastodon/features/emoji/database';
 import { useEmojiAppState } from '@/mastodon/features/emoji/mode';
-import { emojiToUnicodeHex } from '@/mastodon/features/emoji/normalize';
 import type { AnyEmojiData } from '@/mastodon/features/emoji/types';
 import { isCustomEmoji } from '@/mastodon/features/emoji/utils';
 import ArrowIcon from '@/material-icons/400-24px/arrow_drop_down.svg?react';
@@ -65,7 +66,7 @@ export const PickerGroupCustomList: FC<
     const emojisToKeys = emojis?.map((e) => emojiToKey(e)) ?? [];
     const unicodeKeys = emojiKeys
       .filter((key) => !isCustomEmoji(key))
-      .map((code) => emojiToUnicodeHex(code))
+      .map((code) => fromUnicodeToHexcode(code))
       .filter((code) => !emojisToKeys.includes(code));
     const customKeys = emojiKeys.filter(
       (key) => isCustomEmoji(key) && !emojisToKeys.includes(key),
@@ -79,14 +80,18 @@ export const PickerGroupCustomList: FC<
   if (missingUnicodeKeys.length > 0 && !loading) {
     setLoading(true);
 
-    void searchEmojisByHexcodes(missingUnicodeKeys, currentLocale).then(
-      (unicodeEmojis) => {
-        setEmojis((prevEmojis) => {
-          setLoading(false);
-          return mergeNewEmojis(prevEmojis ?? [], unicodeEmojis, emojiKeys);
-        });
-      },
-    );
+    void Promise.all(
+      missingUnicodeKeys.map((code) => loadEmojiByHexcode(code, currentLocale)),
+    ).then((unicodeEmojis) => {
+      setEmojis((prevEmojis) => {
+        setLoading(false);
+        return mergeNewEmojis(
+          prevEmojis ?? [],
+          unicodeEmojis.filter((e) => !!e),
+          emojiKeys,
+        );
+      });
+    });
   }
 
   // Finally, load all custom emojis that haven't been loaded yet.
@@ -130,7 +135,7 @@ function mergeNewEmojis(
 
   return (
     emojiKeys
-      .map((key) => allEmojis.get(emojiToUnicodeHex(key)))
+      .map((key) => allEmojis.get(fromUnicodeToHexcode(key)))
       // Discard any missing emojis.
       .filter((e) => !!e)
   );
