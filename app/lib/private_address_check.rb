@@ -27,7 +27,7 @@ module PrivateAddressCheck
     IPAddr.new('203.0.113.0/24'),     # TEST-NET-3 (documentation)
     IPAddr.new('192.88.99.0/24'),     # 6to4 relay anycast (deprecated)
     IPAddr.new('224.0.0.0/4'),        # Multicast
-    IPAddr.new('240.0.0.0/4')         # Reserved (future use)
+    IPAddr.new('240.0.0.0/4'),        # Reserved (future use)
   ].freeze
 
   # IPv6 special-purpose and non-globally-routable ranges
@@ -45,7 +45,7 @@ module PrivateAddressCheck
     IPAddr.new('2002::/16'),          # 6to4
     IPAddr.new('fc00::/7'),           # Unique local address (ULA)
     IPAddr.new('fe80::/10'),          # Link-local unicast
-    IPAddr.new('ff00::/8')            # Multicast
+    IPAddr.new('ff00::/8'),           # Multicast
   ].freeze
 
   CIDR_LIST = (
