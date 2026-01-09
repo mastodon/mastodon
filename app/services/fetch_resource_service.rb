@@ -60,8 +60,12 @@ class FetchResourceService < BaseService
     elsif !terminal
       link_header = response['Link'] && parse_link_header(response)
 
-      if link_header&.find_link(%w(rel alternate))
-        process_link_headers(link_header)
+      # Check for ActivityPub-specific alternate links, not just any alternate
+      ap_json = link_header&.find_link(%w(rel alternate), %w(type application/activity+json)) ||
+                link_header&.find_link(%w(rel alternate), ['type', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'])
+
+      if ap_json
+        process(ap_json.href, terminal: true)
       elsif response.mime_type == 'text/html'
         process_html(response)
       end
