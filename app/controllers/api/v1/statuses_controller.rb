@@ -116,9 +116,7 @@ class Api::V1::StatusesController < Api::BaseController
       poll: status_params[:poll],
     }
 
-    if status_params[:quote_approval_policy].present?
-      update_options[:quote_approval_policy] = quote_approval_policy
-    end
+    update_options[:quote_approval_policy] = quote_approval_policy if status_params[:quote_approval_policy].present?
 
     UpdateStatusService.new.call(@status, current_account.id, update_options)
 
