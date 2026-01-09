@@ -67,8 +67,8 @@ class ActivityPub::FetchRemoteActorService < BaseService
   def split_acct(acct)
     username, domain = acct.delete_prefix('acct:').split('@', 2)
 
-    raise Error, 'Invalid acct URI: missing username' if username.blank?
-    raise Error, 'Invalid acct URI: missing domain' if domain.blank?
+    raise Error, 'acct URI: missing username' if username.blank?
+    raise Error, 'acct URI: missing domain' if domain.blank?
 
     [username, domain]
   end
