@@ -7,7 +7,7 @@
 
 module PrivateAddressCheck
   IP4_CIDR_LIST = [
-    IPAddr.new('0.0.0.0/8'),          # "This" network
+    IPAddr.new('0.0.0.0/8'),          # Current network (only valid as source address)
     IPAddr.new('127.0.0.0/8'),        # Loopback
     IPAddr.new('10.0.0.0/8'),         # RFC1918 private
     IPAddr.new('172.16.0.0/12'),      # RFC1918 private
