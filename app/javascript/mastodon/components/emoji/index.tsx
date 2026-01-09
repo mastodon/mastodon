@@ -88,7 +88,10 @@ export const Emoji: FC<EmojiProps> = ({
     );
   }
 
-  const src = unicodeHexToUrl(state.code, appState.darkTheme);
+  const src = unicodeHexToUrl({
+    unicodeHex: state.code,
+    ...appState,
+  });
 
   return (
     <img

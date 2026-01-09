@@ -1,4 +1,5 @@
 import debug from 'debug';
+import { fromUnicodeToHexcode } from 'emojibase';
 
 import { emojiRegexPolyfill } from '@/mastodon/polyfills';
 
@@ -42,6 +43,10 @@ export function anyEmojiRegex() {
     `${EMOJI_REGEX}|${CUSTOM_EMOJI_REGEX.source}`,
     supportedFlags('gi'),
   );
+}
+
+export function emojiToUnicodeHex(emoji: string): string {
+  return fromUnicodeToHexcode(emoji, false);
 }
 
 function supportsRegExpSets() {
