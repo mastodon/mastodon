@@ -8,33 +8,33 @@
 module PrivateAddressCheck
   IP4_CIDR_LIST = [
     IPAddr.new('0.0.0.0/8'),          # Current network (only valid as source address)
-    IPAddr.new('127.0.0.0/8'),        # Loopback
     IPAddr.new('10.0.0.0/8'),         # RFC1918 private
-    IPAddr.new('172.16.0.0/12'),      # RFC1918 private
-    IPAddr.new('192.168.0.0/16'),     # RFC1918 private
-    IPAddr.new('169.254.0.0/16'),     # Link-local
-    IPAddr.new('198.18.0.0/15'),      # Network benchmark testing
     IPAddr.new('100.64.0.0/10'),      # Carrier-grade NAT (CGNAT)
-    IPAddr.new('255.255.255.255/32'), # Limited broadcast
+    IPAddr.new('127.0.0.0/8'),        # Loopback
+    IPAddr.new('169.254.0.0/16'),     # Link-local
+    IPAddr.new('172.16.0.0/12'),      # RFC1918 private
     IPAddr.new('192.0.0.0/29'),       # IPv4 Service Continuity Prefix
+    IPAddr.new('192.0.0.0/24'),       # IETF protocol assignments
     IPAddr.new('192.0.0.8/32'),       # IPv4 dummy address
     IPAddr.new('192.0.0.170/32'),     # NAT64 well-known prefix (part)
     IPAddr.new('192.0.0.171/32'),     # NAT64 well-known prefix (part)
-    IPAddr.new('192.175.48.0/24'),    # AS112 sink
-    IPAddr.new('192.0.0.0/24'),       # IETF protocol assignments
     IPAddr.new('192.0.2.0/24'),       # TEST-NET-1 (documentation)
+    IPAddr.new('192.88.99.0/24'),     # 6to4 relay anycast (deprecated)
+    IPAddr.new('192.168.0.0/16'),     # RFC1918 private
+    IPAddr.new('192.175.48.0/24'),    # AS112 sink
+    IPAddr.new('198.18.0.0/15'),      # Network benchmark testing
     IPAddr.new('198.51.100.0/24'),    # TEST-NET-2 (documentation)
     IPAddr.new('203.0.113.0/24'),     # TEST-NET-3 (documentation)
-    IPAddr.new('192.88.99.0/24'),     # 6to4 relay anycast (deprecated)
     IPAddr.new('224.0.0.0/4'),        # Multicast
     IPAddr.new('240.0.0.0/4'),        # Reserved (future use)
+    IPAddr.new('255.255.255.255/32'), # Limited broadcast
   ].freeze
 
   # IPv6 special-purpose and non-globally-routable ranges
   IP6_CIDR_LIST = [
-    IPAddr.new('::ffff:0:0/96'),      # IPv4-mapped IPv6 addresses
     IPAddr.new('::/128'),             # Unspecified
     IPAddr.new('::1/128'),            # Loopback
+    IPAddr.new('::ffff:0:0/96'),      # IPv4-mapped IPv6 addresses
     IPAddr.new('64:ff9b::/96'),       # NAT64 WKP
     IPAddr.new('64:ff9b:1::/48'),     # NAT64 locally assigned
     IPAddr.new('100::/64'),           # Discard prefix
