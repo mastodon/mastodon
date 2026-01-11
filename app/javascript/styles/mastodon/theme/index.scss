@@ -30,9 +30,7 @@ html {
 }
 
 .theme-dark,
-html:where(
-  :not([data-user-theme='mastodon-light'], [data-user-theme='system'])
-) {
+html:where([data-user-theme='default']) {
   color-scheme: dark;
 
   @include dark.tokens;
@@ -45,7 +43,9 @@ html[data-user-theme='contrast'] .theme-dark {
 }
 
 .theme-light,
-html:where([data-user-theme='mastodon-light']) {
+html:where(
+  :not([data-user-theme='default'], [data-user-theme='system'])
+) {
   color-scheme: light;
 
   @include light.tokens;
