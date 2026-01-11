@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 # Sources:
-#   - RFC 1918 (private addressing)
-#   - IANA IPv4 Special-Purpose Address Registry
-#   - RFC 5735 / RFC 6890 / RFC 6598
+#  - RFC 1918 (private addressing)
+#  - IANA IPv4 Special-Purpose Address Registry
+#  - RFC 5735 / RFC 6890 / RFC 6598
 
 module PrivateAddressCheck
   IP4_CIDR_LIST = [
