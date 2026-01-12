@@ -6,7 +6,7 @@ module ThemeHelper
 
     request.content_security_policy = request.content_security_policy.clone.tap do |policy|
       values = policy.script_src
-      values << "'sha-256-#{entry[:digest]}'"
+      values << "'sha256-#{entry[:digest]}'"
       policy.script_src(*values)
     end
 
