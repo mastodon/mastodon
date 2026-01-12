@@ -20,6 +20,7 @@
     - if use_mask_icon?
       %link{ rel: 'mask-icon', href: frontend_asset_path('images/logo-symbol-icon.svg'), color: '#6364FF' }/
     %link{ rel: 'manifest', href: manifest_path(format: :json) }/
+    = javascript_inline_tag 'theme-selection.js'
     = theme_color_tags current_theme
     %meta{ name: 'mobile-web-app-capable', content: 'yes' }/
 

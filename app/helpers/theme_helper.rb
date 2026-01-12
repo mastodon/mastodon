@@ -1,6 +1,19 @@
 # frozen_string_literal: true
 
 module ThemeHelper
+  def javascript_inline_tag(path)
+    contents = File.read(path).html_safe # rubocop:disable Rails/OutputSafety
+    digest = Digest::SHA256.base64digest(contents)
+
+    request.content_security_policy = request.content_security_policy.clone.tap do |policy|
+      values = policy.script_src
+      values << "'sha-256-#{digest}'"
+      policy.script_src(*values)
+    end
+
+    content_tag(:script, contents, type: 'text/javascript')
+  end
+
   def theme_style_tags(theme)
     if theme == 'system'
       ''.html_safe.tap do |tags|
