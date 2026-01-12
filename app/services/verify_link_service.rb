@@ -44,6 +44,6 @@ class VerifyLinkService < BaseService
       res.headers['Location']
     end
 
-    redirect_to_url == @link_back
+    redirect_to_url&.downcase == @link_back.downcase
   end
 end
