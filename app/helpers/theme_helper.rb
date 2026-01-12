@@ -2,16 +2,15 @@
 
 module ThemeHelper
   def javascript_inline_tag(path)
-    contents = File.read(::Rails.application.assets.load_path.find(path)&.path).html_safe # rubocop:disable Rails/OutputSafety
-    digest = Digest::SHA256.base64digest(contents)
+    entry = InlineScriptManager.instance.file(path)
 
     request.content_security_policy = request.content_security_policy.clone.tap do |policy|
       values = policy.script_src
-      values << "'sha-256-#{digest}'"
+      values << "'sha-256-#{entry[:digest]}'"
       policy.script_src(*values)
     end
 
-    content_tag(:script, contents, type: 'text/javascript')
+    content_tag(:script, entry[:contents], type: 'text/javascript')
   end
 
   def theme_style_tags(theme)
