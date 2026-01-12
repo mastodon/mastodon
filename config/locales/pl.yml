@@ -866,10 +866,21 @@ pl:
         publish_statistics: Publikuj statystyki
         title: Odkrywanie
         trends: Trendy
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Każdemu
         disabled: Nikomu
         users: Zalogowanym lokalnym użytkownikom
+      feed_access:
+        modes:
+          authenticated: tylko zalogowani użytkownicy
+          disabled: Wymagaj określonej roli użytkownika
+          public: Wszyscy
+      landing_page:
+        values:
+          about: O nas
+          local_feed: Lokalny kanał
+          trends: Trendy
       registrations:
         moderation_recommandation: Upewnij się, że masz adekwatny i szybko reagujący zespół moderacyjny przed otwarciem rejestracji!
         preamble: Kontroluj, kto może utworzyć konto na Twoim serwerze.
@@ -923,6 +934,7 @@ pl:
       no_status_selected: Żaden wpis nie został zmieniony, bo żaden nie został wybrany
       open: Otwarty post
       original_status: Oryginalny post
+      quotes: Cytaty
       reblogs: Podbicia
       replied_to_html: Odpowiedziano na %{acct_link}
       status_changed: Post zmieniony
@@ -1209,6 +1221,7 @@ pl:
     hint_html: Jeżeli chcesz przenieść się z innego konta na to, możesz utworzyć alias, który jest wymagany zanim zaczniesz przenoszenie obserwacji z poprzedniego konta na to. To działanie <strong>nie wyrządzi szkód i jest odwracalne</strong>. <strong>Migracja konta jest inicjowana ze starego konta</strong>.
     remove: Odłącz alias
   appearance:
+    advanced_settings: Ustawienia zaawansowane
     animations_and_accessibility: Animacje i dostępność
     discovery: Odkrywanie
     localization:
@@ -1326,6 +1339,13 @@ pl:
     hint_html: "<strong>Informacja:</strong> Nie będziemy prosić Cię o ponowne podanie hasła przez następną godzinę."
     invalid_password: Nieprawidłowe hasło
     prompt: Potwierdź hasło, aby kontynuować
+  color_scheme:
+    auto: Automatyczne
+    dark: Ciemny
+    light: Jasny
+  contrast:
+    auto: Automatyczny
+    high: Wysoki
   crypto:
     errors:
       invalid_key: nie jest prawidłowym kluczem Ed25519 lub Curve25519
@@ -1651,6 +1671,10 @@ pl:
       expires_at: Wygaśnie po
       uses: Użycia
     title: Zaproś użytkowników
+  link_preview:
+    author_html: Przez %{name}
+    potentially_sensitive_content:
+      action: Kliknij, aby pokazać
   lists:
     errors:
       limit: Przekroczono maksymalną liczbę utworzonych list

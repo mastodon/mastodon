@@ -1681,6 +1681,74 @@ nan:
       subject: Lí有收著管理ê警告
     poll:
       subject: "%{name} 舉辦ê投票suah ah"
+    quote:
+      body: Lí ê PO文hōo %{name} 引用：
+      subject: "%{name} 引用lí ê PO文"
+      title: 新ê引用
+    quoted_update:
+      subject: "%{name} 編輯lí有引用ê PO文"
+    reblog:
+      body: Lí ê PO文hōo %{name} 轉送：
+      subject: "%{name} 轉送lí ê PO文"
+      title: 新ê轉送
+    severed_relationships:
+      subject: 因為管理ê決定，lí失去聯絡ah
+    status:
+      subject: "%{name} 頭tú-á PO文"
+    update:
+      subject: "%{name} 有編輯PO文"
+  notifications:
+    administration_emails: 管理員ê電子phue通知
+    email_events: 電子phue通知ê事件
+    email_events_hint: 揀lí想beh收ê通知ê事件：
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+  otp_authentication:
+    code_hint: 請輸入lí ê驗證應用程式生成ê code，來確認
+    description_html: Nā lí啟用用驗證應用程式ê<strong>雙因素驗證</strong>，登入需要lí有手機á，伊ê產生token hōo lí輸入。
+    enable: 啟用
+    instructions_html: "<strong>請用lí手機á ê TOTP應用程式（親像Google Authenticator）掃描tsit ê QR code</strong>。對tsit-má起，hit ê應用程式ê生token，佇lí登入ê時陣著輸入。"
+    manual_instructions: 若lí bē當掃描 QR code，需要手動輸入下kha ê光碼：
+    setup: 設定
+    wrong_code: Lí輸入ê碼無效！服侍器時間kap設備時間kám lóng正確？
+  pagination:
+    newer: 較新ê
+    next: 後一頁
+    older: 較舊ê
+    prev: 頂一頁
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Lí有投票ah
+      duplicate_options: 包含重覆ê項目
+      duration_too_long: 傷久ah
+      duration_too_short: 傷緊ah
+      expired: 投票結束ah
+      invalid_choice: 所揀ê選項無佇leh
+      over_character_limit: Bē當比 %{max} ê字元tsē
+      self_vote: Lí bē當佇lí開ê投票投
+      too_few_options: 項目定著愛超過一ê
+      too_many_options: Bē當包含超過 %{max} ê項目
+    vote: 投票
+  posting_defaults:
+    explanation: Tsiah ê設定ē用做預設ê值，若lí開新ê PO文，毋過lí會當佇編輯器內底，個別編輯PO文。
+  preferences:
+    other: 其他
+    posting_defaults: PO文預設值
+    public_timelines: 公共ê時間線
+  privacy:
+    hint_html: "<strong>自訂lí beh án-nuá hōo lí ê個人資料kap PO文受lâng發現。</strong>Mastodon ê tsē-tsē功能nā是拍開，通幫tsān lí接觸kàu較闊ê觀眾。請開一寡時間重看tsiah ê設定，確認in合lí ê使用例。"
+    privacy: 隱私權
+    privacy_hint_html: 控制lí想欲為別lâng ê利益，公開guā tsē內容。Lâng用瀏覽別lâng ê跟tuè koh看in用啥物應用程式PO文，來發現心適ê個人資料kap時行ê應用程式，但是lí凡勢beh保持khàm起來。
+    reach: 接觸
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:

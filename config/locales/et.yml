@@ -38,7 +38,7 @@ et:
       add_email_domain_block: Blokeeri e-posti domeen
       approve: Võta vastu
       approved_msg: Kasutaja %{username} liitumisavaldus rahuldatud
-      are_you_sure: Oled kindel?
+      are_you_sure: Kas oled kindel?
       avatar: Profiilipilt
       by_domain: Domeen
       change_email:
@@ -47,7 +47,7 @@ et:
         label: Muuda e-posti aadressi
         new_email: Uus е-posti aadress
         submit: Muuda e-posti aadressi
-        title: Muuda e-postiaadressi kasutajale %{username}
+        title: Muuda kasutaja %{username} e-posti aadressi
       change_role:
         changed_msg: Roll on muudetud!
         edit_roles: Halda kasutaja rolle
@@ -1973,9 +1973,11 @@ et:
     enabled: Vanade postituste automaatne kustutamine
     enabled_hint: Kustutab automaatselt postitused, mis ületavad määratud ajalimiiti, välja arvatud allpool toodud erandite puhul
     exceptions: Erandid
+    explanation: Automaatne kustutamine toimib madala prioriteetusega protsessi abil. Vanuse ülempiiri ja tegeliku kustutamise vahel võib seetõttu tekkida viivitus.
     ignore_favs: Eira lemmikuid
     ignore_reblogs: Eira jagamisi
     interaction_exceptions: Interaktsioonidel põhinevad erandid
+    interaction_exceptions_explanation: Postitused, mis ajutiselt ületavad lemmikuks lisamise või hooandmise künnise, võivad jääda alles isegi siis, kui nimetatud tegevuste arv hiljem väheneb.
     keep_direct: Säilita otsesõnumid
     keep_direct_hint: Ei kustuta otsesõnumeid
     keep_media: Meedialisanditega postituste säilitamine
@@ -2190,6 +2192,7 @@ et:
       error: Turvavõtme kustutamisel tekkis tõrge. Palun proovi uuesti.
       success: Turvavõtmed edukalt kustutatud.
     invalid_credential: Vigane turvavõti
+    nickname: Hüüdnimi
     nickname_hint: Uue turvavõtme hüüdnimi
     not_enabled: Veebiautentimine pole sisse lülitatud
     not_supported: See veebilehitseja ei toeta turvavõtmeid
