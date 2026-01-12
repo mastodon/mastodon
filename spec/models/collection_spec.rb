@@ -126,4 +126,10 @@ RSpec.describe Collection do
       end
     end
   end
+
+  describe '#object_type' do
+    it 'returns `:featured_collection`' do
+      expect(subject.object_type).to eq :featured_collection
+    end
+  end
 end

@@ -62,6 +62,8 @@ class ActivityPub::TagManager
       emoji_url(target)
     when :flag
       target.uri
+    when :featured_collection
+      ap_account_featured_collection_url(target.account.id, target)
     end
   end
 
