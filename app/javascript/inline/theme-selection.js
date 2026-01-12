@@ -5,8 +5,7 @@
   const contrastMediaWatcher = window.matchMedia('(prefers-contrast: more)');
 
   const updateColorScheme = () => {
-    const useDarkMode = userTheme !== 'mastodon-light' || userTheme === 'system' && colorSchemeMediaWatcher.matches;
-
+    const useDarkMode = userTheme === 'system' ? colorSchemeMediaWatcher.matches : userTheme !== 'mastodon-light';
     element.dataset.mode = useDarkMode ? 'dark' : 'light';
   };
 
@@ -22,4 +21,3 @@
   updateColorScheme();
   updateContrast();
 })(document.documentElement);
-
