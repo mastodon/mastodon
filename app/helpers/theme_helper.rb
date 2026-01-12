@@ -2,7 +2,7 @@
 
 module ThemeHelper
   def javascript_inline_tag(path)
-    contents = File.read(path).html_safe # rubocop:disable Rails/OutputSafety
+    contents = File.read(::Rails.application.assets.load_path.find(path)&.path).html_safe # rubocop:disable Rails/OutputSafety
     digest = Digest::SHA256.base64digest(contents)
 
     request.content_security_policy = request.content_security_policy.clone.tap do |policy|
