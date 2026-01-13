@@ -71,7 +71,7 @@ RSpec.describe 'Media API', :attachment_processing do
         allow(user.account).to receive(:media_attachments).and_return(media_attachments)
       end
 
-      context 'when imagemagick cannot identify the file type' do
+      context 'when file type cannot be identified' do
         before do
           allow(media_attachments).to receive(:create!).and_raise(Paperclip::Errors::NotIdentifiedByImageMagickError)
         end

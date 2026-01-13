@@ -9,7 +9,7 @@ RUN /bin/bash --login -i -c "nvm install"
 # Install additional OS packages
 RUN apt-get update && \
     export DEBIAN_FRONTEND=noninteractive && \
-    apt-get -y install --no-install-recommends libicu-dev libidn11-dev ffmpeg imagemagick libvips42 libpam-dev
+    apt-get -y install --no-install-recommends libicu-dev libidn11-dev ffmpeg libvips42 libpam-dev
 
 # Disable download prompt for Corepack
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
