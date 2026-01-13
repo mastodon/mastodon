@@ -508,6 +508,15 @@ RSpec.describe '/api/v1/statuses' do
             .to start_with('application/json')
         end
       end
+
+      context 'when status has non-default quote policy and param is omitted' do
+        let(:status) { Fabricate(:status, account: user.account, quote_approval_policy: 'nobody') }
+
+        it 'preserves existing quote approval policy' do
+          expect { subject }
+            .to_not(change { status.reload.quote_approval_policy })
+        end
+      end
     end
   end
 
