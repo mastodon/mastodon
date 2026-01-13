@@ -32,7 +32,7 @@ RSpec.describe 'Content-Security-Policy' do
       img-src 'self' data: blob: #{local_domain}
       manifest-src 'self' #{local_domain}
       media-src 'self' data: #{local_domain}
-      script-src 'self' #{local_domain} 'wasm-unsafe-eval'
+      script-src 'self' #{local_domain} 'wasm-unsafe-eval' 'sha256-Q/2Cjx8v06hAdOF8/DeBUpsmBcSj7sLN3I/WpTF8T8c='
       style-src 'self' #{local_domain} 'nonce-ZbA+JmE7+bK8F5qvADZHuQ=='
       worker-src 'self' blob: #{local_domain}
     CSP
