@@ -3,49 +3,12 @@
 @use 'light';
 @use 'utils';
 
-/* Mode: Auto (system) */
-
 html {
   @include base.palette;
-
-  &:not(.theme-dark, .theme-light),
-  &:where([data-user-theme='system']) {
-    color-scheme: dark light;
-
-    @media (prefers-color-scheme: dark) {
-      @include dark.tokens;
-      @include utils.invert-on-dark;
-
-      @media (prefers-contrast: more) {
-        @include dark.contrast-overrides;
-      }
-
-      &.theme-high-contrast {
-        @include dark.contrast-overrides;
-      }
-    }
-
-    @media (prefers-color-scheme: light) {
-      @include light.tokens;
-      @include utils.invert-on-light;
-
-      @media (prefers-contrast: more) {
-        @include light.contrast-overrides;
-      }
-
-      &.theme-high-contrast {
-        @include light.contrast-overrides;
-      }
-    }
-  }
 }
 
-/* Mode: Dark */
-
-.theme-dark,
-html:where(
-  :not([data-user-theme='mastodon-light'], [data-user-theme='system'])
-) {
+[data-color-scheme='dark'],
+html:not([data-color-scheme]) {
   color-scheme: dark;
 
   @include dark.tokens;
@@ -55,21 +18,13 @@ html:where(
     @include dark.contrast-overrides;
   }
 
-  &.theme-high-contrast,
-  .theme-high-contrast & {
+  &[data-contrast='high'],
+  [data-contrast='high'] & {
     @include dark.contrast-overrides;
   }
 }
 
-html:where([data-user-theme='contrast']),
-html:where([data-user-theme='contrast']) .theme-dark {
-  @include dark.contrast-overrides;
-}
-
-/* Mode: Light */
-
-.theme-light,
-html:where([data-user-theme='mastodon-light']) {
+[data-color-scheme='light'] {
   color-scheme: light;
 
   @include light.tokens;
@@ -79,8 +34,8 @@ html:where([data-user-theme='mastodon-light']) {
     @include light.contrast-overrides;
   }
 
-  &.theme-high-contrast,
-  .theme-high-contrast & {
+  &[data-contrast='high'],
+  [data-contrast='high'] & {
     @include light.contrast-overrides;
   }
 }
