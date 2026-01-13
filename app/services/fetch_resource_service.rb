@@ -58,17 +58,7 @@ class FetchResourceService < BaseService
 
       [@url, { prefetched_body: body }]
     elsif !terminal
-      link_header = response['Link'] && parse_link_header(response)
-
-      # Check for ActivityPub-specific alternate links, not just any alternate
-      ap_json = link_header&.find_link(%w(rel alternate), %w(type application/activity+json)) ||
-                link_header&.find_link(%w(rel alternate), ['type', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'])
-
-      if ap_json
-        process(ap_json.href, terminal: true)
-      elsif response.mime_type == 'text/html'
-        process_html(response)
-      end
+      process_link_headers(response) || process_html(response)
     end
   end
 
@@ -83,13 +73,18 @@ class FetchResourceService < BaseService
     process(json_link['href'], terminal: true) unless json_link.nil?
   end
 
-  def process_link_headers(link_header)
+  def process_link_headers(response)
+    link_header = response['Link'] && parse_link_header(response)
+    return if link_header.nil?
+
     json_link = link_header.find_link(%w(rel alternate), %w(type application/activity+json)) || link_header.find_link(%w(rel alternate), ['type', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'])
 
     process(json_link.href, terminal: true) unless json_link.nil?
   end
 
   def parse_link_header(response)
+    return unless response.mime_type == 'text/html'
+
     LinkHeader.parse(response['Link'].is_a?(Array) ? response['Link'].first : response['Link'])
   end
 end
