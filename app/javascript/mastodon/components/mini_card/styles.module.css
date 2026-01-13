@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+.list {
+  min-width: 0;
+  display: flex;
+  gap: 4px;
+  overflow: hidden;
+  height: 54px;
+  position: relative;
+}
+
+.card,
+.more {
+  border: 1px solid var(--color-border-primary);
+  padding: 8px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.label {
+  color: var(--color-text-secondary);
+}
+
+.value {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.more {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  appearance: none;
+  background: none;
+}
