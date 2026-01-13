@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { FC, Key, ReactNode } from 'react';
+import type { FC, Key, MouseEventHandler, ReactNode } from 'react';
 
 import classNames from 'classnames';
 
@@ -10,11 +10,13 @@ import classes from './styles.module.css';
 interface MiniCardListProps {
   cards?: (Pick<MiniCardProps, 'label' | 'value'> & { key?: Key })[];
   children?: ReactNode;
+  onOverflowClick?: MouseEventHandler;
 }
 
 export const MiniCardList: FC<MiniCardListProps> = ({
   cards = [],
   children,
+  onOverflowClick,
 }) => {
   const { wrapperRef, listRef, hidden, showOverflow } = useOverflow();
 
@@ -33,6 +35,7 @@ export const MiniCardList: FC<MiniCardListProps> = ({
       <button
         type='button'
         className={classNames(classes.more, !showOverflow && classes.hidden)}
+        onClick={onOverflowClick}
       >
         + {hidden} more
       </button>

@@ -15,13 +15,6 @@ export const MiniCard: FC<MiniCardProps> = ({ label, value, className }) => {
     return null;
   }
 
-  if (typeof value === 'string') {
-    const url = toUrl(value);
-    if (url) {
-      value = <a href={url.toString()}>{url.hostname}</a>;
-    }
-  }
-
   return (
     <div className={classNames(classes.card, className)}>
       <dt className={classes.label}>{label}</dt>
@@ -29,14 +22,3 @@ export const MiniCard: FC<MiniCardProps> = ({ label, value, className }) => {
     </div>
   );
 };
-
-function toUrl(value: string) {
-  try {
-    const url = new URL(value);
-    if (url.protocol !== 'https:') {
-      return null;
-    }
-    return url;
-  } catch {}
-  return null;
-}

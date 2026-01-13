@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 import { MiniCardList } from './list';
 
@@ -8,10 +9,17 @@ const meta = {
   args: {
     cards: [
       { label: 'Pronouns', value: 'they/them' },
-      { label: 'Website', value: 'https://bowie-the-dj.meow' },
-      { label: 'Free playlists', value: 'https://soundcloud.com/bowie-the-dj' },
+      {
+        label: 'Website',
+        value: <a href='https://example.com'>bowie-the-db.meow</a>,
+      },
+      {
+        label: 'Free playlists',
+        value: <a href='https://soundcloud.com/bowie-the-dj'>soundcloud.com</a>,
+      },
       { label: 'Location', value: 'Purris, France' },
     ],
+    onOverflowClick: action('Overflow clicked'),
   },
   render(args) {
     return (
