@@ -14,10 +14,6 @@ html:not([data-color-scheme]) {
   @include dark.tokens;
   @include utils.invert-on-dark;
 
-  @media (prefers-contrast: more) {
-    @include dark.contrast-overrides;
-  }
-
   &[data-contrast='high'],
   [data-contrast='high'] & {
     @include dark.contrast-overrides;
@@ -29,10 +25,6 @@ html:not([data-color-scheme]) {
 
   @include light.tokens;
   @include utils.invert-on-light;
-
-  @media (prefers-contrast: more) {
-    @include light.contrast-overrides;
-  }
 
   &[data-contrast='high'],
   [data-contrast='high'] & {
