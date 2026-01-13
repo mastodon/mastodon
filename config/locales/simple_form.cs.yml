@@ -54,13 +54,18 @@ cs:
         password: Použijte alespoň 8 znaků
         phrase: Shoda bude nalezena bez ohledu na velikost písmen v textu příspěvku či varování o obsahu
         scopes: Která API bude aplikace moct používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat jednotlivě.
+        setting_advanced_layout: Zobrazit Mastodon ve vícesloupovém rozvržení, umožňující zobrazení časoé osy, oznámení a třetího sloupce vašeho výběru. Není doporučeno pro menší obrazovky.
         setting_aggregate_reblogs: Nezobrazovat nové boosty pro příspěvky, které byly nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
         setting_always_send_emails: Jinak nebudou e-mailové notifikace posílány, když Mastodon aktivně používáte
-        setting_default_quote_policy: Toto nastavení se projeví pouze u příspěvků vytvořených s další verzí Mastodon, ale svou předvolbu si můžete vybrat předem.
+        setting_boost_modal: Pokud je povoleno, boostnutí nejprve otevře dialogové okno pro potvrzení, ve kterém můžete změnit viditelnost svého boostu.
+        setting_default_quote_policy_private: Příspěvky pouze pro sledující, které jsou vytvořeny na Mastodonu, nemohou být citovány ostatními.
+        setting_default_quote_policy_unlisted: Když vás lidé citují, jejich příspěvek bude v časové ose populárních příspěvků také skryt.
         setting_default_sensitive: Citlivá média jsou ve výchozím stavu skryta a mohou být zobrazena kliknutím
         setting_display_media_default: Skrývat média označená jako citlivá
         setting_display_media_hide_all: Vždy skrývat média
         setting_display_media_show_all: Vždy zobrazovat média
+        setting_emoji_style: Jak se budou zobrazovat emoji. "Auto" zkusí použít výchozí emoji, ale pro starší prohlížeče použije Twemoji.
+        setting_quick_boosting_html: Pokud je povoleno, kliknutím na %{boost_icon} Boost ikonu okamžitě boostnete místo otevření rozbalovací nabídky boost/citace. Přemístí citaci do nabídky %{options_icon} (Možnosti).
         setting_system_scrollbars_ui: Platí pouze pro desktopové prohlížeče založené na Safari nebo Chrome
         setting_use_blurhash: Gradienty jsou vytvořeny na základě barvev skrytých médií, ale zakrývají veškeré detaily
         setting_use_pending_items: Aktualizovat časovou osu až po kliknutí namísto automatického rolování kanálu
@@ -88,6 +93,7 @@ cs:
         content_cache_retention_period: Všechny příspěvky z jiných serverů (včetně boostů a odpovědí) budou po uplynutí stanoveného počtu dní smazány bez ohledu na interakci místního uživatele s těmito příspěvky. To se týká i příspěvků, které místní uživatel přidal do záložek nebo oblíbených. Soukromé zmínky mezi uživateli z různých instancí budou rovněž ztraceny a nebude možné je obnovit. Použití tohoto nastavení je určeno pro instance pro speciální účely a při implementaci pro obecné použití porušuje mnohá očekávání uživatelů.
         custom_css: Můžete použít vlastní styly ve verzi Mastodonu.
         favicon: WEBP, PNG, GIF nebo JPG. Nahradí výchozí favicon Mastodonu vlastní ikonou.
+        landing_page: Vybere stránku, kterou návštěvníci uvidí, když prvně přijdou na tvůj server. Pokud zvolíte "Trendy", je třeba povolit trendy v nastavení objevování. Pokud zvolíte "Místní kanál", je třeba v nastavení Objevování nastavit "Přístup k živým kanálům s lokálními příspěvky" na "Všichni".
         mascot: Přepíše ilustraci v pokročilém webovém rozhraní.
         media_cache_retention_period: Mediální soubory z příspěvků vzdálených uživatelů se ukládají do mezipaměti na vašem serveru. Pokud je nastaveno na kladnou hodnotu, budou média po zadaném počtu dní odstraněna. Pokud jsou mediální data vyžádána po jejich odstranění, budou znovu stažena, pokud je zdrojový obsah stále k dispozici. Vzhledem k omezením týkajícím se četnosti dotazů karet náhledů odkazů na weby třetích stran se doporučuje nastavit tuto hodnotu alespoň na 14 dní, jinak nebudou karty náhledů odkazů na vyžádání aktualizovány dříve.
         min_age: Uživatelé budou požádáni, aby při registraci potvrdili datum svého narození
@@ -103,10 +109,8 @@ cs:
         status_page_url: URL stránky, kde mohou lidé vidět stav tohoto serveru během výpadku
         theme: Vzhled stránky, který vidí noví a odhlášení uživatelé.
         thumbnail: Přibližně 2:1 obrázek zobrazený vedle informací o vašem serveru.
-        timeline_preview: Odhlášení uživatelé budou moci procházet nejnovější veřejné příspěvky na serveru.
         trendable_by_default: Přeskočit manuální kontrolu populárního obsahu. Jednotlivé položky mohou být odstraněny z trendů později.
         trends: Trendy zobrazují, které příspěvky, hashtagy a zprávy získávají na serveru pozornost.
-        trends_as_landing_page: Zobrazit populární obsah odhlášeným uživatelům a návštěvníkům místo popisu tohoto serveru. Vyžaduje povolení trendů.
       form_challenge:
         current_password: Vstupujete do zabezpečeného prostoru
       imports:
@@ -161,6 +165,10 @@ cs:
         name: Veřejný název role, pokud má být role zobrazena jako odznak
         permissions_as_keys: Uživatelé s touto rolí budou moci...
         position: Vyšší role rozhoduje o řešení konfliktů v určitých situacích. Některé akce lze provádět pouze na rolích s nižší prioritou
+      username_block:
+        allow_with_approval: Namísto toho, aby se zabránilo registraci, bude vyžadováno vaše schválení
+        comparison: Mějte prosím na paměti 'Scunthorpe problém' při blokování částečných shod
+        username: Bude součástí shod bez ohledu na kapitalizace a běžné homoglyfy jako "4" pro "a" nebo "3" pro "e"
       webhook:
         events: Zvolte odesílané události
         template: Sestavte si vlastní JSON payload pomocí interpolace proměnných. Pro výchozí JSON ponechte prázdné.
@@ -231,21 +239,23 @@ cs:
         setting_aggregate_reblogs: Seskupovat boosty v časových osách
         setting_always_send_emails: Vždy posílat e-mailová oznámení
         setting_auto_play_gif: Automaticky přehrávat animace GIF
-        setting_boost_modal: Před boostnutím zobrazovat potvrzovací okno
+        setting_boost_modal: Ovládání viditelnosti boostování
         setting_default_language: Jazyk příspěvků
-        setting_default_privacy: Soukromí příspěvků
+        setting_default_privacy: Viditelnost příspěvků
         setting_default_quote_policy: Kdo může citovat
         setting_default_sensitive: Vždy označovat média jako citlivá
-        setting_delete_modal: Před smazáním příspěvku zobrazovat potvrzovací dialog
+        setting_delete_modal: Upozornit před odstraněním příspěvku
         setting_disable_hover_cards: Zakázat náhled profilu při přejetí myší
         setting_disable_swiping: Vypnout gesta přejetí prsty
         setting_display_media: Zobrazování médií
         setting_display_media_default: Výchozí
         setting_display_media_hide_all: Skrýt vše
         setting_display_media_show_all: Zobrazit vše
+        setting_emoji_style: Styl emoji
         setting_expand_spoilers: Vždy rozbalit příspěvky označené varováními o obsahu
         setting_hide_network: Skrýt mou síť
-        setting_missing_alt_text_modal: Zobrazit potvrzovací dialog před odesláním médií bez alt textu
+        setting_missing_alt_text_modal: Upozornit před odesláním médií bez popisného textu
+        setting_quick_boosting: Povolit rychlé boostnutí
         setting_reduce_motion: Omezit pohyb v animacích
         setting_system_font_ui: Použít výchozí písmo systému
         setting_system_scrollbars_ui: Použít výchozí posuvník systému
@@ -279,12 +289,17 @@ cs:
         content_cache_retention_period: Doba uchovávání vzdáleného obsahu
         custom_css: Vlastní CSS
         favicon: Favicon
+        landing_page: Úvodní stránka pro nové návštěvníky
+        local_live_feed_access: Přístup k živým kanálům s lokálními příspěvky
+        local_topic_feed_access: Přístup ke kanálům s hashtagy a odkazy s lokálními příspěvky
         mascot: Vlastní maskot (zastaralé)
         media_cache_retention_period: Doba uchovávání mezipaměti médií
         min_age: Minimální věková hranice
         peers_api_enabled: Zveřejnit seznam nalezených serverů v API
         profile_directory: Povolit adresář profilů
         registrations_mode: Kdo se může přihlásit
+        remote_live_feed_access: Přístup k live kanálům s vzdálenými příspěvky
+        remote_topic_feed_access: Přístup ke kanálům s hashtagy a odkazy se vzdálenými příspěvky
         require_invite_text: Požadovat důvod pro připojení
         show_domain_blocks: Zobrazit blokace domén
         show_domain_blocks_rationale: Zobrazit proč byly blokovány domény
@@ -297,10 +312,8 @@ cs:
         status_page_url: URL stránky se stavem
         theme: Výchozí motiv
         thumbnail: Miniatura serveru
-        timeline_preview: Povolit neověřený přístup k veřejným časovým osám
         trendable_by_default: Povolit trendy bez předchozí revize
         trends: Povolit trendy
-        trends_as_landing_page: Použít trendy jako vstupní stránku
       interactions:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete
@@ -325,6 +338,7 @@ cs:
         follow_request: Někdo požádal o možnost vás sledovat
         mention: Někdo vás zmínil
         pending_account: Je třeba posoudit nový účet
+        quote: Někdo vás citoval
         reblog: Někdo boostnul váš příspěvek
         report: Je odesláno nové hlášení
         software_updates:
@@ -371,6 +385,10 @@ cs:
         name: Název
         permissions_as_keys: Oprávnění
         position: Priorita
+      username_block:
+        allow_with_approval: Povolit registrace se schválením
+        comparison: Srovnávací metoda
+        username: Na základě slov
       webhook:
         events: Zapnuté události
         template: Šablona payloadu

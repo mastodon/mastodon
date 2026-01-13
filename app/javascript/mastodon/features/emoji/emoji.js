@@ -148,6 +148,12 @@ const emojifyNode = (node, customEmojis) => {
   }
 };
 
+/**
+ * Legacy emoji processing function.
+ * @param {string} str
+ * @param {object} customEmojis
+ * @returns {string}
+ */
 const emojify = (str, customEmojis = {}) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = str;

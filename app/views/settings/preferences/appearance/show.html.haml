@@ -31,20 +31,21 @@
                  label: I18n.t('simple_form.labels.defaults.setting_theme'),
                  wrapper: :with_label
 
+  .fields-group
+    = f.simple_fields_for :settings, current_user.settings do |ff|
+      = ff.input :'web.emoji_style',
+                 collection: %w(auto twemoji native),
+                 include_blank: false,
+                 hint: I18n.t('simple_form.hints.defaults.setting_emoji_style'),
+                 label: I18n.t('simple_form.labels.defaults.setting_emoji_style'),
+                 label_method: ->(emoji_style) { I18n.t("emoji_styles.#{emoji_style}", default: emoji_style) },
+                 wrapper: :with_label
+
   - unless I18n.locale == :en
     .flash-message.translation-prompt
       #{t 'appearance.localization.body'} #{content_tag(:a, t('appearance.localization.guide_link_text'), href: t('appearance.localization.guide_link'), target: '_blank', rel: 'noopener')}
 
   = f.simple_fields_for :settings, current_user.settings do |ff|
-    %h4= t 'appearance.advanced_web_interface'
-
-    %p.hint= t 'appearance.advanced_web_interface_hint'
-
-    .fields-group
-      = ff.input :'web.advanced_layout',
-                 hint: false,
-                 label: I18n.t('simple_form.labels.defaults.setting_advanced_layout'),
-                 wrapper: :with_label
     %h4= t 'appearance.animations_and_accessibility'
 
     .fields-group
@@ -66,12 +67,13 @@
     .fields-group
       = ff.input :'web.trends', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_trends')
 
-    %h4= t 'appearance.confirmation_dialogs'
+    %h4= t 'appearance.boosting_preferences'
 
     .fields-group
-      = ff.input :'web.reblog_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_boost_modal')
-      = ff.input :'web.delete_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_delete_modal')
-      = ff.input :'web.missing_alt_text_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_missing_alt_text_modal')
+      = ff.input :'web.reblog_modal', wrapper: :with_label, hint: I18n.t('simple_form.hints.defaults.setting_boost_modal'), label: I18n.t('simple_form.labels.defaults.setting_boost_modal')
+    .fields-group
+      = ff.input :'web.quick_boosting', wrapper: :with_label, hint: t('simple_form.hints.defaults.setting_quick_boosting_html', boost_icon: material_symbol('repeat'), options_icon: material_symbol('more_horiz')), label: I18n.t('simple_form.labels.defaults.setting_quick_boosting')
+    .flash-message.hidden-on-touch-devices= t('appearance.boosting_preferences_info_html', icon: material_symbol('repeat'))
 
     %h4= t 'appearance.sensitive_content'
 
@@ -94,6 +96,18 @@
 
     .fields-group
       = ff.input :'web.expand_content_warnings', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_expand_spoilers')
+
+    %h4= t 'appearance.advanced_settings'
+
+    .fields-group
+      = ff.input :'web.advanced_layout',
+                 hint: I18n.t('simple_form.hints.defaults.setting_advanced_layout'),
+                 label: I18n.t('simple_form.labels.defaults.setting_advanced_layout'),
+                 wrapper: :with_label
+
+    .fields-group
+      = ff.input :'web.delete_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_delete_modal')
+      = ff.input :'web.missing_alt_text_modal', wrapper: :with_label, label: I18n.t('simple_form.labels.defaults.setting_missing_alt_text_modal')
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

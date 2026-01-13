@@ -44,7 +44,7 @@ pt-BR:
         bot: Sinaliza aos outros de que essa conta executa principalmente ações automatizadas e pode não ser monitorada
         context: Um ou mais contextos onde o filtro deve atuar
         current_password: Para fins de segurança, digite a senha da conta atual
-        current_username: Para confirmar, digite o nome de usuário da conta atual
+        current_username: Para confirmar, entre com nome de usuário da conta atual
         digest: Enviado apenas após um longo período de inatividade com um resumo das menções recebidas durante ausência
         email: Você receberá um e-mail de confirmação
         header: WEBP, PNG, GIF ou JPG. No máximo %{size}. Será reduzido para %{dimensions}px
@@ -54,13 +54,18 @@ pt-BR:
         password: Use pelo menos 8 caracteres
         phrase: Corresponderá independente de maiúsculas ou minúsculas, no texto ou no Aviso de Conteúdo de um toot
         scopes: Quais APIs o aplicativo vai ter permissão de acessar. Se você selecionar uma autorização de alto nível, você não precisa selecionar individualmente os outros.
+        setting_advanced_layout: Exiba o Mastodon em um layout de várias colunas, permitindo que você visualize a linha do tempo, as notificações e uma terceira coluna de sua escolha. Não recomendado para telas menores.
         setting_aggregate_reblogs: Não mostrar novos impulsos para publicações que já foram impulsionadas recentemente (afeta somente os impulsos mais recentes)
         setting_always_send_emails: Normalmente, as notificações por e-mail não serão enviadas enquanto você estiver usando ativamente o Mastodon
-        setting_default_quote_policy: Esta configuração só terá efeito para posts criados com a próxima versão do Mastodon, mas você pode selecionar sua preferência na preparação.
+        setting_boost_modal: Quando ativada, a função de impulsionar primeiro abrirá uma caixa de diálogo de confirmação onde você poderá alterar a visibilidade do seu impulsionamento.
+        setting_default_quote_policy_private: Publicações exclusivas de seguidores criadas no Mastodon não podem ser citadas por outras pessoas.
+        setting_default_quote_policy_unlisted: Quando as pessoas citarem você, suas publicações também ficarão ocultas da linha do tempo.
         setting_default_sensitive: Mídia sensível está oculta por padrão e pode ser revelada com um clique
         setting_display_media_default: Sempre ocultar mídia sensível
         setting_display_media_hide_all: Sempre ocultar todas as mídias
         setting_display_media_show_all: Sempre mostrar mídia sensível
+        setting_emoji_style: Como exibir emojis. "Automáticos" tentará usar emojis nativos, mas voltará para o Twemoji para navegadores legados.
+        setting_quick_boosting_html: Quando ativado, clicar no ícone de impulsionamento %{boost_icon} impulsionará imediatamente o texto, em vez de abrir o menu suspenso de impulsionamento/citação. Move a ação de citação para o menu %{options_icon} (Opções).
         setting_system_scrollbars_ui: Se aplica apenas para navegadores de computador baseado no Safari e Chrome
         setting_use_blurhash: O blur é baseado nas cores da imagem oculta, ofusca a maioria dos detalhes
         setting_use_pending_items: Ocultar atualizações da linha do tempo atrás de um clique ao invés de rolar automaticamente
@@ -88,6 +93,7 @@ pt-BR:
         content_cache_retention_period: Todas as postagens de outros servidores (incluindo boosts e respostas) serão excluídas após o número especificado de dias, sem levar a qualquer interação do usuário local com esses posts. Isto inclui postagens onde um usuário local o marcou como favorito ou favoritos. Menções privadas entre usuários de diferentes instâncias também serão perdidas e impossíveis de restaurar. O uso desta configuração destina-se a instâncias especiais de propósitos e quebra muitas expectativas dos usuários quando implementadas para uso de propósito geral.
         custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
         favicon: WEBP, PNG, GIF ou JPG. Sobrescreve o favicon padrão do Mastodon com um ícone personalizado.
+        landing_page: Seleciona a página que os novos visitantes veem ao acessar seu servidor pela primeira vez. Se você selecionar "Tendências", as tendências precisam estar ativadas nas Configurações de Descoberta. Se você selecionar "Feed local", o "Acesso a feeds ao vivo com publicações locais" precisa estar definido como "Todos" nas Configurações de Descoberta.
         mascot: Substitui a ilustração na interface web avançada.
         media_cache_retention_period: Arquivos de mídia de mensagens de usuários remotos são armazenados em cache no seu servidor. Quando definido como valor positivo, a mídia será excluída após o número especificado de dias. Se os dados da mídia forem solicitados depois de excluídos, eles serão baixados novamente, se o conteúdo fonte ainda estiver disponível. Devido a restrições de quantas vezes os cartões de visualização de links sondam sites de terceiros, é recomendado definir este valor em pelo menos 14 dias, ou pré-visualização de links não serão atualizados a pedido antes desse tempo.
         min_age: Os usuários precisarão confirmar sua data de nascimento no cadastro
@@ -103,10 +109,8 @@ pt-BR:
         status_page_url: URL de uma página onde as pessoas podem ver o status deste servidor durante uma interrupção
         theme: Tema que visitantes e novos usuários veem.
         thumbnail: Uma imagem de aproximadamente 2:1 exibida ao lado da informação de sua instância.
-        timeline_preview: Visitantes conseguirão navegar pelas postagens públicas mais recentes disponíveis na instância.
         trendable_by_default: Pular a revisão manual do conteúdo em tendência. Itens individuais ainda poderão ser removidos das tendências após a sua exibição.
         trends: Tendências mostram quais publicações, hashtags e notícias estão ganhando destaque na sua instância.
-        trends_as_landing_page: Mostrar conteúdo de tendências para usuários deslogados e visitantes em vez de uma descrição deste servidor. Requer que as tendências sejam ativadas.
       form_challenge:
         current_password: Você está entrando em uma área segura
       imports:
@@ -159,6 +163,10 @@ pt-BR:
         name: Nome público do cargo, se ele for definido para ser exibido como um distintivo
         permissions_as_keys: Usuários com esse cargo terão acesso a...
         position: Um cargo superior decide a resolução de conflitos em certas situações. Certas ações só podem ser executadas com cargos de menor prioridade
+      username_block:
+        allow_with_approval: Em vez de impedir a inscrição completa, a correspondência de cadastros exigirá sua aprovação
+        comparison: Por favor, esteja atento ao problema de Scunthorpe ao bloquear correspondências parciais
+        username: Serão correspondidos independentemente de casar e homólogos comuns como "4" para "a" ou "3" para "e"
       webhook:
         events: Selecione eventos para enviar
         template: Elabore seu próprio conteúdo JSON usando interpolação de variáveis. Deixe em branco para utilizar o JSON padrão.
@@ -229,21 +237,23 @@ pt-BR:
         setting_aggregate_reblogs: Agrupar boosts nas linhas
         setting_always_send_emails: Sempre enviar notificações por e-mail
         setting_auto_play_gif: Reproduzir GIFs automaticamente
-        setting_boost_modal: Solicitar confirmação antes de dar boost
+        setting_boost_modal: Controlar a visibilidade dos impulsos
         setting_default_language: Idioma dos toots
-        setting_default_privacy: Privacidade dos toots
+        setting_default_privacy: Visibilidade da publicação
         setting_default_quote_policy: Quem pode citar
         setting_default_sensitive: Sempre marcar mídia como sensível
-        setting_delete_modal: Solicitar confirmação antes de excluir toot
+        setting_delete_modal: Avise-me antes de apagar uma publicação
         setting_disable_hover_cards: Desativar visualização de perfil ao passar o mouse por cima
         setting_disable_swiping: Desabilitar movimentos deslizantes
         setting_display_media: Exibição das mídias
         setting_display_media_default: Padrão
         setting_display_media_hide_all: Ocultar tudo
         setting_display_media_show_all: Mostrar tudo
+        setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Sempre expandir toots com Aviso de Conteúdo
         setting_hide_network: Ocultar suas relações
-        setting_missing_alt_text_modal: Mostrar caixa de diálogo de confirmação antes de postar mídia sem texto alternativo.
+        setting_missing_alt_text_modal: Avise-me antes de publicar mídia sem texto alternado
+        setting_quick_boosting: Ativar impulsionamento rápido
         setting_reduce_motion: Reduzir animações
         setting_system_font_ui: Usar fonte padrão do sistema
         setting_system_scrollbars_ui: Usar barra de rolagem padrão do sistema
@@ -277,12 +287,17 @@ pt-BR:
         content_cache_retention_period: Período de retenção de conteúdo remoto
         custom_css: CSS personalizável
         favicon: Favicon
+        landing_page: Página inicial para novos visitantes
+        local_live_feed_access: Acessar feeds ao vivo com destaque em publicações locais
+        local_topic_feed_access: Acessar hasthtag e endereços de feed com destaque em publicações locais
         mascot: Mascote personalizado (legado)
         media_cache_retention_period: Período de retenção do cachê de mídia
         min_age: Requisito de idade mínimia
         peers_api_enabled: Publicar lista de instâncias de servidor descobertas na API
         profile_directory: Ativar diretório de perfis
         registrations_mode: Quem pode se inscrever
+        remote_live_feed_access: Acessar feeds ao vivo com destaque em publicações antigas
+        remote_topic_feed_access: Acessar hasthtag e endereços de feed com destaque em publicações antigas
         require_invite_text: Exigir uma razão para entrar
         show_domain_blocks: Mostrar domínios bloqueados
         show_domain_blocks_rationale: Mostrar por que domínios foram bloqueados
@@ -295,10 +310,8 @@ pt-BR:
         status_page_url: Endereço da página de status
         theme: Tema padrão
         thumbnail: Miniatura do servidor
-        timeline_preview: Permitir acesso não autenticado às linhas do tempo públicas
         trendable_by_default: Permitir tendências sem revisão prévia
         trends: Habilitar tendências
-        trends_as_landing_page: Usar tendências como página inicial
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de não-seguidos
@@ -323,6 +336,7 @@ pt-BR:
         follow_request: Enviar e-mail quando alguém quiser te seguir
         mention: Enviar e-mail quando alguém te mencionar
         pending_account: Enviar e-mail quando uma nova conta precisa ser revisada
+        quote: Alguém citou você
         reblog: Enviar e-mail quando alguém der boost nos teus toots
         report: Nova denúncia foi enviada
         software_updates:
@@ -369,6 +383,10 @@ pt-BR:
         name: Nome
         permissions_as_keys: Permissões
         position: Prioridade
+      username_block:
+        allow_with_approval: Permitir inscrições com aprovação
+        comparison: Método de comparação
+        username: Palavra para corresponder
       webhook:
         events: Eventos habilitados
         template: Conteúdo JSON

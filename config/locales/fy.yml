@@ -190,6 +190,7 @@ fy:
         create_relay: Relay oanmeitsje
         create_unavailable_domain: Net beskikber domein oanmeitsje
         create_user_role: Rol oanmeitsje
+        create_username_block: Brûkersnammeregel oanmeitsje
         demote_user: Brûker degradearje
         destroy_announcement: Meidieling fuortsmite
         destroy_canonical_email_block: E-mailblokkade fuortsmite
@@ -203,6 +204,7 @@ fy:
         destroy_status: Toot fuortsmite
         destroy_unavailable_domain: Net beskikber domein fuortsmite
         destroy_user_role: Rol permanint fuortsmite
+        destroy_username_block: Brûkersnammeregel fuortsmite
         disable_2fa_user: Twa-stapsferifikaasje útskeakelje
         disable_custom_emoji: Lokale emoji útskeakelje
         disable_relay: Relay útskeakelje
@@ -237,6 +239,7 @@ fy:
         update_report: Rapportaazje bywurkje
         update_status: Berjocht bywurkje
         update_user_role: Rol bywurkje
+        update_username_block: Brûkersnammeregel bywurkje
       actions:
         approve_appeal_html: "%{name} hat it beswier tsjin de moderaasjemaatregel fan %{target} goedkard"
         approve_user_html: "%{name} hat de registraasje fan %{target} goedkard"
@@ -255,6 +258,7 @@ fy:
         create_relay_html: "%{name} hat in relay oanmakke %{target}"
         create_unavailable_domain_html: "%{name} hat de besoarging foar domein %{target} beëinige"
         create_user_role_html: "%{name} hat de rol %{target} oanmakke"
+        create_username_block_html: "%{name} hat in brûkersnammeregel mei %{target} tafoege"
         demote_user_html: Brûker %{target} is troch %{name} degradearre
         destroy_announcement_html: "%{name} hat de meidieling %{target} fuortsmiten"
         destroy_canonical_email_block_html: "%{name} hat it e-mailberjocht mei de hash %{target} deblokkearre"
@@ -268,6 +272,7 @@ fy:
         destroy_status_html: Berjocht fan %{target} is troch %{name} fuortsmiten
         destroy_unavailable_domain_html: "%{name} hat de besoarging foar domein %{target} opnij starte"
         destroy_user_role_html: "%{name} hat de rol %{target} fuortsmiten"
+        destroy_username_block_html: "%{name} hat in brûkersnammeregel mei %{target} fuortsmiten"
         disable_2fa_user_html: De fereaske twa-stapsferifikaasje foar %{target} is troch %{name} útskeakele
         disable_custom_emoji_html: Emoji %{target} is troch %{name} útskeakele
         disable_relay_html: "%{name} hat de relay %{target} útskeakele"
@@ -302,6 +307,7 @@ fy:
         update_report_html: Rapportaazje %{target} is troch %{name} bywurke
         update_status_html: "%{name} hat de berjochten %{target} bywurke"
         update_user_role_html: "%{name} hat de rol %{target} wizige"
+        update_username_block_html: "%{name} hat in brûkersnammeregel mei %{target} bywurke"
       deleted_account: fuortsmiten account
       empty: Gjin lochboeken fûn.
       filter_by_action: Op aksje filterje
@@ -831,7 +837,6 @@ fy:
         title: Brûkers standert net troch sykmasinen yndeksearje litte
       discovery:
         follow_recommendations: Oanrekommandearre accounts
-        preamble: It toanen fan ynteressante ynhâld is fan essinsjeel belang foar it oan board heljen fan nije brûkers dy’t mooglik net ien fan Mastodon kinne. Bepaal hoe’t ferskate funksjes foar it ûntdekken fan ynhâld en brûkers op jo server wurkje.
         privacy: Privacy
         profile_directory: Profylmap
         public_timelines: Iepenbiere tiidlinen
@@ -1085,6 +1090,25 @@ fy:
           other: Dizze wike troch %{count} persoanen brûkt
       title: Oanrekommandaasjes & trends
       trending: Trending
+    username_blocks:
+      add_new: Nije tafoegje
+      block_registrations: Registraasjes blokkearje
+      comparison:
+        contains: Befettet
+        equals: Is lyk oan
+      contains_html: Befettet %{string}
+      created_msg: Brûkersnammeregel mei sukses oanmakke
+      delete: Fuortsmite
+      edit:
+        title: Brûkersnammeregel bywurkje
+      matches_exactly_html: Is lyk oan %{string}
+      new:
+        create: Regel oanmeitsje
+        title: Brûkersnammeregel oanmeitsje
+      no_username_block_selected: Der binne gjin brûkersnammeregels wizige, omdat der gjin ien selektearre waard
+      not_permitted: Net tastien
+      title: Brûkersnammeregels
+      updated_msg: Brûkersnammeregel mei sukses bywurke
     warning_presets:
       add_new: Nije tafoegje
       delete: Fuortsmite
@@ -1157,10 +1181,7 @@ fy:
     hint_html: Wannear’t jo fan in oare account ôf nei dizze account ferhúzje wolle, kinne jo hjir in alias oanmeitsje. Dit is nedich eardat jo troch gean kinne mei it ferhúzjen fan folgers fan de âlde nei dizze nije account. Dizze aksje is op eins <strong>net gefaarlik en omkearber</strong>. <strong>De accountmigraasje wurdt start fan de âlde account ôf</strong>.
     remove: Alias ûntkeppelje
   appearance:
-    advanced_web_interface: Avansearre webomjouwing
-    advanced_web_interface_hint: 'Wannear’t jo fan de hiele skermbreedte gebrûk meitsje wolle, stelt de avansearre webomjouwing jo yn steat om meardere ferskate kolommen te konfigurearjen. Hjirmei kinne jo safolle mooglik ynformaasje op itselde momint besjen, lykas: Start, meldingen, de globale tiidline, meardere listen en hashtags.'
     animations_and_accessibility: Animaasjes en tagonklikheid
-    confirmation_dialogs: Befêstigingen
     discovery: Untdekke
     localization:
       body: Mastodon wurdt troch frijwilligers oerset.
@@ -1349,6 +1370,10 @@ fy:
     basic_information: Algemiene ynformaasje
     hint_html: "<strong>Pas oan wat minsken op jo iepenbiere profyl en njonken jo berjochten sjogge.</strong> Oare minsken sille jo earder folgje en mei jo kommunisearje wannear’t jo profyl ynfolle is en jo in profylfoto hawwe."
     other: Oars
+  emoji_styles:
+    auto: Automatysk
+    native: Systeemeigen
+    twemoji: Twemoji
   errors:
     '400': De oanfraach dy’t jo yntsjinne hawwe wie ûnjildich of fout.
     '403': Jo hawwe gjin tastimming om dizze side te besjen.
@@ -1868,6 +1893,7 @@ fy:
     edited_at_html: Bewurke op %{date}
     errors:
       in_reply_not_found: It berjocht wêrop jo probearje te reagearjen liket net te bestean.
+      quoted_status_not_found: It berjocht dy’t jo probearje te sitearjen liket net te bestean.
     over_character_limit: Oer de limyt fan %{max} tekens
     pin_errors:
       direct: Berjochten dy’t allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde
@@ -1876,12 +1902,7 @@ fy:
       reblog: In boost kin net fêstset wurde
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: Allinnich folgers
-      private_long: Allinnich oan jo folgers toane
       public: Iepenbier
-      public_long: Elkenien kin it sjen
-      unlisted: Minder iepenbier
-      unlisted_long: Elkenien kin it sjen, mar net op iepenbiere tiidlinen
   statuses_cleanup:
     enabled: Automatysk âlde berjochten fuortsmite
     enabled_hint: Smyt jo berjochten automatysk fuort sa gau as se in bepaalde leeftiidsgrins berikke, útsein se oerienkomme mei ien fan de ûndersteande útsûnderingen

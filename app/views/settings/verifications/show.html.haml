@@ -28,7 +28,7 @@
       - @verified_links.each do |field|
         %li
           %span.verified-badge
-            = material_symbol 'check', class: 'verified-badge__mark'
+            = material_symbol 'check', { class: 'verified-badge__mark' }
             %span= field.value
 
 = simple_form_for @account, url: settings_verification_path, html: { class: 'form-section' } do |f|

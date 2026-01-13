@@ -28,7 +28,7 @@ const textAtCursorMatchesToken = (str, caretPosition, searchTokens) => {
     return [null, null];
   }
 
-  word = word.trim().toLowerCase();
+  word = word.trim();
 
   if (word.length > 0) {
     return [left + 1, word];
@@ -61,7 +61,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
 
   static defaultProps = {
     autoFocus: true,
-    searchTokens: ['@', ':', '#'],
+    searchTokens: ['@', '＠', ':', '#', '＃'],
   };
 
   state = {

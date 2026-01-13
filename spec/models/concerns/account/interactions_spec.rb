@@ -563,6 +563,22 @@ RSpec.describe Account::Interactions do
       me.follow!(remote_alice)
       expect(remote_alice.local_followers_hash).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
     end
+
+    context 'when using numeric ID based scheme' do
+      let(:me) { Fabricate(:account, username: 'Me', id_scheme: :numeric_ap_id) }
+
+      it 'returns correct hash for local users' do
+        expect(remote_alice.local_followers_hash).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
+      end
+
+      it 'invalidates cache as needed when removing or adding followers' do
+        expect(remote_alice.local_followers_hash).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
+        me.unfollow!(remote_alice)
+        expect(remote_alice.local_followers_hash).to eq '0000000000000000000000000000000000000000000000000000000000000000'
+        me.follow!(remote_alice)
+        expect(remote_alice.local_followers_hash).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
+      end
+    end
   end
 
   describe 'muting an account' do

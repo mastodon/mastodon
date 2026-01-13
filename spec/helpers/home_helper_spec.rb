@@ -41,57 +41,19 @@ RSpec.describe HomeHelper do
     end
   end
 
-  describe 'obscured_counter' do
-    context 'with a value of less than zero' do
-      let(:count) { -10 }
+  describe 'field_verified_class' do
+    subject { helper.field_verified_class(verified) }
 
-      it 'returns the correct string' do
-        expect(helper.obscured_counter(count)).to eq '0'
-      end
-    end
-
-    context 'with a value of zero' do
-      let(:count) { 0 }
-
-      it 'returns the correct string' do
-        expect(helper.obscured_counter(count)).to eq '0'
-      end
-    end
-
-    context 'with a value of one' do
-      let(:count) { 1 }
-
-      it 'returns the correct string' do
-        expect(helper.obscured_counter(count)).to eq '1'
-      end
-    end
-
-    context 'with a value of more than one' do
-      let(:count) { 10 }
-
-      it 'returns the correct string' do
-        expect(helper.obscured_counter(count)).to eq '1+'
-      end
-    end
-  end
-
-  describe 'custom_field_classes' do
     context 'with a verified field' do
-      let(:field) { instance_double(Account::Field, verified?: true) }
+      let(:verified) { true }
 
-      it 'returns verified string' do
-        result = helper.custom_field_classes(field)
-        expect(result).to eq 'verified'
-      end
+      it { is_expected.to eq('verified') }
     end
 
     context 'with a non-verified field' do
-      let(:field) { instance_double(Account::Field, verified?: false) }
+      let(:verified) { false }
 
-      it 'returns verified string' do
-        result = helper.custom_field_classes(field)
-        expect(result).to eq 'emojify'
-      end
+      it { is_expected.to eq('emojify') }
     end
   end
 

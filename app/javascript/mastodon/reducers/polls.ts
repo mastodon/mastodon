@@ -1,7 +1,6 @@
 import type { Reducer } from '@reduxjs/toolkit';
 
 import { importPolls } from 'mastodon/actions/importer/polls';
-import { makeEmojiMap } from 'mastodon/models/custom_emoji';
 import { createPollOptionTranslationFromServerJSON } from 'mastodon/models/poll';
 import type { Poll } from 'mastodon/models/poll';
 
@@ -20,16 +19,11 @@ const statusTranslateSuccess = (state: PollsState, pollTranslation?: Poll) => {
 
   if (!poll) return;
 
-  const emojiMap = makeEmojiMap(poll.emojis);
-
   pollTranslation.options.forEach((item, index) => {
     const option = poll.options[index];
     if (!option) return;
 
-    option.translation = createPollOptionTranslationFromServerJSON(
-      item,
-      emojiMap,
-    );
+    option.translation = createPollOptionTranslationFromServerJSON(item);
   });
 };
 

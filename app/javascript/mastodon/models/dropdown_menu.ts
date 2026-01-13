@@ -1,10 +1,18 @@
+import type { KeyboardEvent, MouseEvent, TouchEvent } from 'react';
+
+import type { IconProp } from '../components/icon';
+
 interface BaseMenuItem {
   text: string;
+  description?: string;
+  icon?: IconProp;
+  highlighted?: boolean;
+  disabled?: boolean;
   dangerous?: boolean;
 }
 
 export interface ActionMenuItem extends BaseMenuItem {
-  action: () => void;
+  action: (event: MouseEvent | KeyboardEvent | TouchEvent) => void;
 }
 
 export interface LinkMenuItem extends BaseMenuItem {

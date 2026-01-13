@@ -1,7 +1,8 @@
+-# locals: (status:, is_quote: false)
 - if status.with_poll?
   .poll
     %ul
-      - status.preloadable_poll.options.each_with_index do |option, _index|
+      - status.preloadable_poll.options.each do |option|
         %li
           %label.poll__option.disabled<>
             - if status.preloadable_poll.multiple?
@@ -13,6 +14,9 @@
     %button.button.button-secondary{ disabled: true }
       = t('polls.vote')
 
+- if status.with_preview_card?
+  = render partial: 'admin/shared/preview_card', locals: { preview_card: status.preview_card }
+
 - if status.with_media?
   - if status.ordered_media_attachments.first.video?
     = render_video_component(status, visible: false)
@@ -20,3 +24,24 @@
     = render_audio_component(status)
   - else
     = render_media_gallery_component(status, visible: false)
+
+- if status.quote
+  - if status.quote.accepted? && status.quote.quoted_status.present?
+    - if is_quote
+      .status__quote-author-button
+        %span= t('statuses.quote_post_author', acct: acct(status.account))
+    - else
+      .status__quote
+        = render partial: 'admin/shared/status', object: status.quote.quoted_status, locals: { is_quote: true }
+  - else
+    .status__quote.status__quote--error
+      - if status.quote.pending?
+        %span= t('statuses.quote_error.pending_approval')
+      - elsif status.quote.revoked?
+        %span= t('statuses.quote_error.revoked')
+      - else
+        %span= t('statuses.quote_error.not_available')
+
+      - if status.quote.quoted_status.present? && can?(:show, status.quote.quoted_status)
+        = link_to admin_account_status_path(status.quote.quoted_status.account.id, status.quote.quoted_status), class: 'link-button' do
+          = t('admin.statuses.view_quoted_post')

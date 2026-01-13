@@ -14,7 +14,6 @@ class Form::AdminSettings
     site_terms
     registrations_mode
     closed_registrations_message
-    timeline_preview
     bootstrap_timeline_accounts
     theme
     activity_api_enabled
@@ -25,7 +24,6 @@ class Form::AdminSettings
     thumbnail
     mascot
     trends
-    trends_as_landing_page
     trendable_by_default
     show_domain_blocks
     show_domain_blocks_rationale
@@ -41,6 +39,11 @@ class Form::AdminSettings
     app_icon
     favicon
     min_age
+    local_live_feed_access
+    remote_live_feed_access
+    local_topic_feed_access
+    remote_topic_feed_access
+    landing_page
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -58,7 +61,6 @@ class Form::AdminSettings
     preview_sensitive_media
     profile_directory
     trends
-    trends_as_landing_page
     trendable_by_default
     noindex
     require_invite_text
@@ -82,20 +84,30 @@ class Form::AdminSettings
   }.freeze
 
   DESCRIPTION_LIMIT = 200
+  DOMAIN_BLOCK_AUDIENCES = %w(disabled users all).freeze
+  REGISTRATION_MODES = %w(open approved none).freeze
+  FEED_ACCESS_MODES = %w(public authenticated disabled).freeze
+  ALTERNATE_FEED_ACCESS_MODES = %w(public authenticated).freeze
+  LANDING_PAGE = %w(trends about local_feed).freeze
 
   attr_accessor(*KEYS)
 
-  validates :registrations_mode, inclusion: { in: %w(open approved none) }, if: -> { defined?(@registrations_mode) }
+  validates :registrations_mode, inclusion: { in: REGISTRATION_MODES }, if: -> { defined?(@registrations_mode) }
   validates :site_contact_email, :site_contact_username, presence: true, if: -> { defined?(@site_contact_username) || defined?(@site_contact_email) }
   validates :site_contact_username, existing_username: true, if: -> { defined?(@site_contact_username) }
   validates :bootstrap_timeline_accounts, existing_username: { multiple: true }, if: -> { defined?(@bootstrap_timeline_accounts) }
-  validates :show_domain_blocks, inclusion: { in: %w(disabled users all) }, if: -> { defined?(@show_domain_blocks) }
-  validates :show_domain_blocks_rationale, inclusion: { in: %w(disabled users all) }, if: -> { defined?(@show_domain_blocks_rationale) }
+  validates :show_domain_blocks, inclusion: { in: DOMAIN_BLOCK_AUDIENCES }, if: -> { defined?(@show_domain_blocks) }
+  validates :show_domain_blocks_rationale, inclusion: { in: DOMAIN_BLOCK_AUDIENCES }, if: -> { defined?(@show_domain_blocks_rationale) }
+  validates :local_live_feed_access, inclusion: { in: FEED_ACCESS_MODES }, if: -> { defined?(@local_live_feed_access) }
+  validates :remote_live_feed_access, inclusion: { in: FEED_ACCESS_MODES }, if: -> { defined?(@remote_live_feed_access) }
+  validates :local_topic_feed_access, inclusion: { in: ALTERNATE_FEED_ACCESS_MODES }, if: -> { defined?(@local_topic_feed_access) }
+  validates :remote_topic_feed_access, inclusion: { in: FEED_ACCESS_MODES }, if: -> { defined?(@remote_topic_feed_access) }
   validates :media_cache_retention_period, :content_cache_retention_period, :backups_retention_period, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@media_cache_retention_period) || defined?(@content_cache_retention_period) || defined?(@backups_retention_period) }
   validates :min_age, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@min_age) }
   validates :site_short_description, length: { maximum: DESCRIPTION_LIMIT }, if: -> { defined?(@site_short_description) }
   validates :status_page_url, url: true, allow_blank: true
   validate :validate_site_uploads
+  validates :landing_page, inclusion: { in: LANDING_PAGE }, if: -> { defined?(@landing_page) }
 
   KEYS.each do |key|
     define_method(key) do

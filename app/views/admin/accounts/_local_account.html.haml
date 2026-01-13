@@ -34,7 +34,7 @@
 %tr
   %th= t('admin.accounts.email_status')
   %td
-    - if account.user&.confirmed?
+    - if account.user_confirmed?
       = t('admin.accounts.confirmed')
     - else
       = t('admin.accounts.confirming')

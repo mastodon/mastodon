@@ -170,10 +170,9 @@ class PreviewCard < ApplicationRecord
   private
 
   def serialized_authors
-    if author_name? || author_url? || author_account_id?
-      PreviewCard::Author
-        .new(self)
-    end
+    return unless author_name? || author_url? || author_account_id?
+
+    PreviewCard::Author.new(self)
   end
 
   def extract_dimensions

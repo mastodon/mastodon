@@ -93,10 +93,8 @@ lad:
         status_page_url: Adreso URL de la pajina ande la djente puede ver el estado de este sirvidor durante una insidensya
         theme: El tema ke los vizitantes no enrejistrados i los muevos utilizadores ven.
         thumbnail: Una imaje de aproksimadamente 2:1 se amostra djunto a la enformasyon de tu sirvidor.
-        timeline_preview: Los vizitantes no konektados podran navigar por los mesajes publikos mas resientes desponivles en el sirvidor.
         trendable_by_default: Omite la revizyon manuala del kontenido en trend. Los elementos individuales ainda podran supremirse de los trendes.
         trends: Los trendes amostran ke mesajes, etiketas i haberes estan ganando traksyon en tu sirvidor.
-        trends_as_landing_page: Amostra kontenido en trend para utilizadores i vizitantes en lugar de una deskripsyon de este sirvidor. Rekiere ke los trendes esten kapasitados.
       form_challenge:
         current_password: Estas entrando en un area siguro
       imports:
@@ -201,16 +199,17 @@ lad:
         setting_aggregate_reblogs: Agrupa repartajasyones en linyas
         setting_always_send_emails: Siempre embia avizos por posta
         setting_auto_play_gif: Siempre reproduse los GIFs animados
-        setting_boost_modal: Amostra ventana de konfirmasyon antes de repartajar
         setting_default_language: Lingua de publikasyones
-        setting_default_privacy: Privasita de publikasyones
+        setting_default_privacy: Vizibilita de puvlikasyones
+        setting_default_quote_policy: Ken puede sitar
         setting_default_sensitive: Syempre marka multimedia komo sensivles
-        setting_delete_modal: Mostra dialogo de konfirmasyon antes de efasar una publikasyon
+        setting_disable_hover_cards: Dezaktiva vista previa del profil al pasar el kursor
         setting_disable_swiping: Inkapasita movimyentos de arresvalamiento
         setting_display_media: Vizualizasyon de multimedia
         setting_display_media_default: Predeterminado
         setting_display_media_hide_all: Eskonde todo
         setting_display_media_show_all: Amostra todo
+        setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Siempre espande las publikasyones markadas kon avertensyas de kontenido
         setting_hide_network: Eskonde tu red sosyala
         setting_reduce_motion: Reduse el movimyento en animasyones
@@ -245,6 +244,7 @@ lad:
         favicon: Ikona de favoritos
         mascot: Maskota personalizada (legado)
         media_cache_retention_period: Periodo de retensyon de kashe multimedia
+        min_age: Edad minima rekerida
         peers_api_enabled: Publika lista de sirvidores diskuviertos en la API
         profile_directory: Kapasita katalogo de profiles
         registrations_mode: Ken puede enrejistrarse
@@ -260,10 +260,8 @@ lad:
         status_page_url: URL de pajina de estado
         theme: Tema predeterminado
         thumbnail: Minyatura del sirvidor
-        timeline_preview: Permite el akseso no autentifikado a las linyas de tiempo publikas
         trendable_by_default: Permite trendes sin revizyon previa
         trends: Kapasita trendes
-        trends_as_landing_page: Kulanea trendes komo la pajina prinsipala
       interactions:
         must_be_follower: Bloka avizos de personas ke no te sigen
         must_be_following: Bloka avizos de personas a las kualas no siges
@@ -288,6 +286,7 @@ lad:
         follow_request: Alguno tiene solisitado segirte
         mention: Alguno te enmento
         pending_account: Muevo kuento nesesita revizyon
+        quote: Alguno te sita
         reblog: Alguno repartajo tu publikasyon
         report: Muevo raporto fue embiado
         software_updates:
@@ -312,7 +311,9 @@ lad:
         changelog: Ke troko?
         text: Terminos de servisyo
       terms_of_service_generator:
+        choice_of_law: Legislasyon aplikavle
         domain: Domeno
+        min_age: Edad minima
       user:
         date_of_birth_1i: Diya
         date_of_birth_2i: Mez
@@ -325,6 +326,8 @@ lad:
         name: Nombre
         permissions_as_keys: Permisos
         position: Priorita
+      username_block:
+        allow_with_approval: Permite enrejistrasyones kon aprovasyon
       webhook:
         events: Evenimientos kapasitados
         template: Modelo de kontenido

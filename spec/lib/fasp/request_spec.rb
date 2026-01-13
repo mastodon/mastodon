@@ -27,6 +27,14 @@ RSpec.describe Fasp::Request do
             'Signature-Input' => /.+/,
           })
       end
+
+      it 'tracks that a successful connection was made' do
+        provider.delivery_failure_tracker.track_failure!
+
+        expect do
+          subject.send(method, '/test_path')
+        end.to change(provider.delivery_failure_tracker, :failures).from(1).to(0)
+      end
     end
 
     context 'when the response is not signed' do
@@ -53,6 +61,21 @@ RSpec.describe Fasp::Request do
             subject.send(method, '/test_path')
           end.to raise_error(Mastodon::UnexpectedResponseError)
         end
+      end
+    end
+
+    context 'when the request raises an error' do
+      before do
+        stub_request(method, 'https://reqprov.example.com/fasp/test_path')
+          .to_raise(HTTP::ConnectionError)
+      end
+
+      it "records the failure using the provider's delivery failure tracker" do
+        expect do
+          subject.send(method, '/test_path')
+        end.to raise_error(HTTP::ConnectionError)
+
+        expect(provider.delivery_failure_tracker.failures).to eq 1
       end
     end
   end

@@ -206,4 +206,110 @@ RSpec.describe Fasp::Provider do
       end
     end
   end
+
+  describe '#delivery_failure_tracker' do
+    subject { Fabricate(:fasp_provider) }
+
+    it 'returns a `DeliverFailureTracker` instance' do
+      expect(subject.delivery_failure_tracker).to be_a(DeliveryFailureTracker)
+    end
+  end
+
+  describe '#available?' do
+    subject { Fabricate(:fasp_provider, delivery_last_failed_at:) }
+
+    let(:delivery_last_failed_at) { nil }
+
+    before do
+      allow(subject.delivery_failure_tracker).to receive(:available?).and_return(available)
+    end
+
+    context 'when the delivery failure tracker reports it is available' do
+      let(:available) { true }
+
+      it 'returns true' do
+        expect(subject.available?).to be true
+      end
+    end
+
+    context 'when the delivery failure tracker reports it is unavailable' do
+      let(:available) { false }
+
+      context 'when the last failure was more than one hour ago' do
+        let(:delivery_last_failed_at) { 61.minutes.ago }
+
+        it 'returns true' do
+          expect(subject.available?).to be true
+        end
+      end
+
+      context 'when the last failure is very recent' do
+        let(:delivery_last_failed_at) { 5.minutes.ago }
+
+        it 'returns false' do
+          expect(subject.available?).to be false
+        end
+      end
+    end
+  end
+
+  describe '#update_availability!' do
+    subject { Fabricate(:fasp_provider, delivery_last_failed_at:) }
+
+    before do
+      allow(subject.delivery_failure_tracker).to receive(:available?).and_return(available)
+    end
+
+    context 'when `delivery_last_failed_at` is `nil`' do
+      let(:delivery_last_failed_at) { nil }
+
+      context 'when the delivery failure tracker reports it is available' do
+        let(:available) { true }
+
+        it 'does not update the provider' do
+          subject.update_availability!
+
+          expect(subject.saved_changes?).to be false
+        end
+      end
+
+      context 'when the delivery failure tracker reports it is unavailable' do
+        let(:available) { false }
+
+        it 'sets `delivery_last_failed_at` to the current time' do
+          freeze_time
+
+          subject.update_availability!
+
+          expect(subject.delivery_last_failed_at).to eq Time.zone.now
+        end
+      end
+    end
+
+    context 'when `delivery_last_failed_at` is present' do
+      context 'when the delivery failure tracker reports it is available' do
+        let(:available) { true }
+        let(:delivery_last_failed_at) { 5.minutes.ago }
+
+        it 'sets `delivery_last_failed_at` to `nil`' do
+          subject.update_availability!
+
+          expect(subject.delivery_last_failed_at).to be_nil
+        end
+      end
+
+      context 'when the delivery failure tracker reports it is unavailable' do
+        let(:available) { false }
+        let(:delivery_last_failed_at) { 5.minutes.ago }
+
+        it 'updates `delivery_last_failed_at` to the current time' do
+          freeze_time
+
+          subject.update_availability!
+
+          expect(subject.delivery_last_failed_at).to eq Time.zone.now
+        end
+      end
+    end
+  end
 end

@@ -54,13 +54,18 @@ fo:
         password: Skriva minst 8 tekin
         phrase: Fer at samsvara óanæsð um tað er skrivað við lítlum ella stórum ella um postar hava innihaldsávaringar
         scopes: Hvørji API nýtsluskipanin fær atgongd til. Velur tú eitt vav á hægsta stigi, so er ikki neyðugt at velja tey einstøku.
+        setting_advanced_layout: Vís Mastodon í fleiri teigum, soleiðis at tú sær tíðarlinju, fráboðanir og ein triðja teig, sum tú velur. Ikki viðmælt fyri smærri skermar.
         setting_aggregate_reblogs: Vís ikki nýggjar stimbranir fyri postar, sum nýliga eru stimbraðir (ávirkar einans stimbranir, ið eru móttiknar fyri kortum)
         setting_always_send_emails: Vanliga vera teldupostfráboðanir ikki sendar, tá tú virkin brúkar Mastodon
-        setting_default_quote_policy: Hendan stillingin verður bara virkin fyri postar, sum verða stovnaðir í næstu Mastodon útgávuni, men sum fyrireiking til tað, kanst tú velja tína stilling longu nú.
+        setting_boost_modal: Tá hetta er virkið opna stimbranir fyrst eitt váttanarvindeyga, har tú kanst broyta hvussu tín stimbran sæst.
+        setting_default_quote_policy_private: Postar, sum einans eru fyri fylgjarar á Mastodon, kunnu ikki siterast av øðrum.
+        setting_default_quote_policy_unlisted: Tá fólk sitera teg, so vera teirra postar eisini fjaldir frá tíðarlinjum við ráki.
         setting_default_sensitive: Viðkvæmar miðlafílur eru fjaldar og kunnu avdúkast við einum klikki
         setting_display_media_default: Fjal miðlafílur, sum eru merktar sum viðkvæmar
         setting_display_media_hide_all: Fjal altíð miðlafílur
         setting_display_media_show_all: Vís altíð miðlafílur
+        setting_emoji_style: Hvussu kenslutekn vera víst. "Sjálvvirkandi" roynir at brúka upprunalig kenslutekn, men fellir aftur á Twitter kenslutekn í eldri kagum.
+        setting_quick_boosting_html: Tá hetta er virkið, hendir stimbranin beinanvegin tá trýst verður á %{boost_icon} Stimbranar-ímyndin, í staðin fyri at stimbranar/siterings-valmyndin verður latin um. Flytir siteringsmøguleikan til %{options_icon} (Valmøguleikar) valmyndina.
         setting_system_scrollbars_ui: Er einans viðkomandi fyri skriviborðskagar grundaðir á Safari og Chrome
         setting_use_blurhash: Gradientar eru grundaðir á litirnar av fjaldu myndunum, men grugga allar smálutir
         setting_use_pending_items: Fjal tíðarlinjudagføringar aftan fyri eitt klikk heldur enn at skrulla tilføringina sjálvvirkandi
@@ -88,6 +93,7 @@ fo:
         content_cache_retention_period: Allir postar frá øðrum ambætarum (íroknað stimbranir og svar) verða strikaði eftir ásetta talið av døgum, óansæð hvussu lokalir brúkarar hava samvirkað við hesar postar. Hetta fevnir eisini um postar, sum lokalir brúkarar hava bókamerkt ella yndismerkt. Privatar umrøður millum brúkarar frá ymiskum ambætarum verða eisini burturmistar og ómøguligar at endurskapa. Brúk av hesi stillingini er einans hugsað til serligar støður og oyðileggur nógv, sum brúkarar vænta av einum vanligum ambætara.
         custom_css: Tú kanst seta títt egna snið upp í net-útgávuni av Mastodon.
         favicon: WEBP, PNG, GIF ella JPG. Býtir vanligu Mastodon fav-ikonina um við eina ser-ikon.
+        landing_page: Velur hvørja síðu nýggj vitandi síggja tá tey koma á ambætaran hjá tær. Neyðugt er at rák eru gjørd virkin í Uppdagingarstillingum, um tú velur "Rák". Velur tú "Lokal rás" má "Atgongd til beinleiðis rásir við lokalum postum" vera sett til "Øll" í Uppdagingarstillingum.
         mascot: Skúgvar til viks myndprýðingina í framkomna vev-markamótinum.
         media_cache_retention_period: Miðlafílur frá postum, sum fjarbrúkarar hava gjørt, verða goymdir á tínum ambætara. Tá hetta er sett til eitt virði størri enn 0, so verða miðlafílurnar strikaðar eftir ásetta talið av døgum. Um miðladátur verða umbidnar eftir at tær eru strikaðar, verða tær tiknar innaftur á ambætaran, um keldutilfarið enn er tøkt. Vegna avmarkingar á hvussu ofta undanvísingarkort til leinki spyrja triðjapartsstøð, so verður mælt til at seta hetta virðið til í minsta lagi 14 dagar. Annars verða umbønir um dagføringar av undanvísingarkortum til leinki ikki gjørdar áðrenn hetta.
         min_age: Brúkarar verða spurdir um at vátta teirra føðingardag, tá tey skráseta seg
@@ -103,10 +109,8 @@ fo:
         status_page_url: Slóð til eina síðu, har ið fólk kunnu síggja støðuna á hesum ambætaranum í sambandi við streymslit
         theme: Uppsetingareyðkenni, sum vitjandi, ið ikki eru ritaði inn, og nýggir brúkarar síggja.
         thumbnail: Ein mynd í lutfallinum 2:1, sum verður víst saman við ambætaraupplýsingunum hjá tær.
-        timeline_preview: Vitjandi, sum eru ritaði út, fara at kunna blaða ígjøgnum nýggjastu almennu postarnar, sum eru tøkir á ambætaranum.
         trendable_by_default: Loyp uppum serskilda eftirkannan av tilfari, sum er vælumtókt. Einstakir lutir kunnu framvegis strikast frá listum við vælumtóktum tilfari seinni.
         trends: Listar við vælumtóktum tilfari vísa, hvørjir postar, frámerki og tíðindasøgur hava framburð á tínum ambætara.
-        trends_as_landing_page: Vís vitjandi og brúkarum, sum ikki eru innritaðir, rák í staðin fyri eina lýsing av ambætaranum. Krevur at rák eru virkin.
       form_challenge:
         current_password: Tú ert á veg til eitt trygt øki
       imports:
@@ -159,6 +163,10 @@ fo:
         name: Almenna navnið á leiklutinum, um leikluturin er settur at verða vístur sum eitt tignarmerki
         permissions_as_keys: Brúkarar við hesum leiklutinum fara at fáa atgongd til...
         position: Hægri leiklutur er avgerandi fyri loysn av ósemjum í ávísum støðum. Ávísar atgerðir kunnu einans verða gjørdar móti leiklutum, sum hava eina lægri raðfesting
+      username_block:
+        allow_with_approval: Í staðin fyri at forða heilt fyri skráseting, fara samsvarandi skrásetingar at krevja, at tú góðkennir tær
+        comparison: Vinarliga gev Scunthorpe-trupulleikanum gætur, tá tú blokerar lutvís samsvar
+        username: Samsvar vera funnin óansæð stórar og smáar bókstavir og vanligar homoglyffir, sosum "4" fyri "a" og "3" fyri "e"
       webhook:
         events: Vel hendingar at senda
         template: Samanset títt egna JSON farm við at brúka variabul-interpolasjón. Lat vera blankt fyri sjálvgaldandi JSON.
@@ -229,21 +237,23 @@ fo:
         setting_aggregate_reblogs: Bólka stimbranir í tíðarlinjum
         setting_always_send_emails: Send altíð fráboðanir við telduposti
         setting_auto_play_gif: Spæl teknimyndagjørdar GIFar sjálvvirkandi
-        setting_boost_modal: Vís váttanarmynd, áðrenn tú stimbrar postar
+        setting_boost_modal: Stýr hvussu stimbranir síggjast
         setting_default_language: Mál, sum verður brúkt til postar
-        setting_default_privacy: Hvussu privatir eru postar?
+        setting_default_privacy: Postar sýni
         setting_default_quote_policy: Hvør kann sitera
         setting_default_sensitive: Merk altíð miðlafílur sum viðkvæmar
-        setting_delete_modal: Vís váttanarmynd, áðrenn postar verða strikaðir
+        setting_delete_modal: Ávara meg áðrenn ein postur er strikaður
         setting_disable_hover_cards: Ger undanvísing, tá músin verður flutt yvir vangan, óvirkna
         setting_disable_swiping: Ger sveipurørslur óvirknar
         setting_display_media: Vístir miðlar
         setting_display_media_default: Sjálvvirði
         setting_display_media_hide_all: Fjal alt
         setting_display_media_show_all: Vís alt
+        setting_emoji_style: Kensluteknsstílur
         setting_expand_spoilers: Víðka altíð postar, sum eru merktir við innihaldsávaringum
         setting_hide_network: Fjal sosiala grafin hjá tær
-        setting_missing_alt_text_modal: Spyr um góðkenning áðrenn miðlar uttan alternativan tekst verða postaðir
+        setting_missing_alt_text_modal: Ávara meg áðrenn miðlar uttan alt tekst verða postaðir
+        setting_quick_boosting: Ger skjóta stimbran virkna
         setting_reduce_motion: Minka um rørslu í teknimyndum
         setting_system_font_ui: Brúka vanliga skriftaslagið hjá skipanini
         setting_system_scrollbars_ui: Brúka vanliga skrullibjálkan hjá skipanini
@@ -277,12 +287,17 @@ fo:
         content_cache_retention_period: Tíðarskeið fyri varðveiðslu av fjartilfari
         custom_css: Serskilt CSS
         favicon: Favikon
+        landing_page: Heimasíða til nýggj vitjandi
+        local_live_feed_access: Atgongd til beinleiðis rásir við lokalum postum
+        local_topic_feed_access: Atgongd til frámerki og rásir við leinkjum við lokalum postum
         mascot: Serskildur maskottur (arvur)
         media_cache_retention_period: Tíðarskeið, har miðlagoymslur verða varðveittar
         min_age: Aldursmark
         peers_api_enabled: Kunnger lista við uppdagaðum ambætarum í API'num
         profile_directory: Ger vangaskrá virkna
         registrations_mode: Hvør kann tilmelda seg
+        remote_live_feed_access: Atgongd til beinleiðis rásir við fjarum postum
+        remote_topic_feed_access: Atgongd til frámerki og rásir við leinkjum við fjarum postum
         require_invite_text: Krev eina orsøk at luttaka
         show_domain_blocks: Vís navnaøkisblokeringar
         show_domain_blocks_rationale: Vís hví navnaøki vóru blokeraði
@@ -295,10 +310,8 @@ fo:
         status_page_url: Slóð til støðusíðu
         theme: Sjálvvalt uppsetingareyðkenni
         thumbnail: Ambætarasmámynd
-        timeline_preview: Loyv teimum, sum ikki eru ritaði inn, atgongd til almennar tíðarlinjur
         trendable_by_default: Loyv vælumtóktum tilfari uttan at viðgera tað fyrst
         trends: Loyv ráki
-        trends_as_landing_page: Brúka rák sum lendingarsíðu
       interactions:
         must_be_follower: Blokera fráboðanum frá teimum, sum ikki fylgja tær
         must_be_following: Blokera fráboðanum frá teimum, tú ikki fylgir
@@ -323,6 +336,7 @@ fo:
         follow_request: Onkur biður um at fylgja tær
         mention: Onkur nevndi teg
         pending_account: Nýggj konta krevur viðgerð
+        quote: Onkur siteraði teg
         reblog: Onkur stimbraði postin hjá tær
         report: Nýggj melding er send inn
         software_updates:
@@ -369,6 +383,10 @@ fo:
         name: Navn
         permissions_as_keys: Loyvi
         position: Raðfesting
+      username_block:
+        allow_with_approval: Loyv skrásetingum við góðkenning
+        comparison: Samanberingarmetoda
+        username: Orð, sum skal samsvara
       webhook:
         events: Virknar hendingar
         template: Farmaformur

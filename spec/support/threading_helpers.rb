@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
+require 'concurrent/atomic/cyclic_barrier'
+
 module ThreadingHelpers
   def multi_threaded_execution(thread_count)
-    wait_for_start = true
+    barrier = Concurrent::CyclicBarrier.new(thread_count)
 
     threads = Array.new(thread_count) do
       Thread.new do
-        true while wait_for_start
+        barrier.wait
         yield
       end
     end
 
-    wait_for_start = false
     threads.each(&:join)
   end
 end

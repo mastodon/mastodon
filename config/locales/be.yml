@@ -196,6 +196,7 @@ be:
         create_relay: Стварыць рэтранслятар
         create_unavailable_domain: Стварыць недаступны Дамен
         create_user_role: Стварыць ролю
+        create_username_block: Стварыць правіла імя карыстальніка
         demote_user: Панізіць карыстальніка
         destroy_announcement: Выдаліць аб'яву
         destroy_canonical_email_block: Выдаліць блакіроўку электроннай пошты
@@ -209,6 +210,7 @@ be:
         destroy_status: Выдаліць допіс
         destroy_unavailable_domain: Выдаліць недаступны дамен
         destroy_user_role: Выдаліць ролю
+        destroy_username_block: Выдаліць правіла імя карыстальніка
         disable_2fa_user: Адключыць двухэтапнае спраўджанне
         disable_custom_emoji: Адключыць адвольныя эмодзі
         disable_relay: Выключыць рэтранслятар
@@ -243,6 +245,7 @@ be:
         update_report: Абнавіць скаргу
         update_status: Абнавіць допіс
         update_user_role: Абнавіць ролю
+        update_username_block: Абнавіць правіла імя карыстальніка
       actions:
         approve_appeal_html: Карыстальнік %{name} ухваліў запыт на мадэрацыю %{target}
         approve_user_html: "%{name} пацвердзіў рэгістрацыю ад %{target}"
@@ -261,6 +264,7 @@ be:
         create_relay_html: "%{name} стварыў(-ла) рэтранслятар %{target}"
         create_unavailable_domain_html: "%{name} прыпыніў дастаўку да дамена %{target}"
         create_user_role_html: "%{name} зрабіў ролю %{target}"
+        create_username_block_html: Адміністратар %{name} дадаў правіла для імён карыстальнікаў, у якіх %{target}
         demote_user_html: "%{name} прыбраў карыстальніка %{target}"
         destroy_announcement_html: "%{name} выдаліў аб'яву %{target}"
         destroy_canonical_email_block_html: "%{name} разблакіраваў эл. пошту з хэшам %{target}"
@@ -274,6 +278,7 @@ be:
         destroy_status_html: "%{name} выдаліў допіс %{target}"
         destroy_unavailable_domain_html: "%{name} дазволіў працягнуць адпраўку на дамен %{target}"
         destroy_user_role_html: "%{name} выдаліў ролю %{target}"
+        destroy_username_block_html: Адміністратар %{name} прыбраў правіла для імён карыстальнікаў, у якіх %{target}
         disable_2fa_user_html: "%{name} амяніў абавязковую двухфактарную верыфікацыю для карыстальніка %{target}"
         disable_custom_emoji_html: "%{name} заблакіраваў эмодзі %{target}"
         disable_relay_html: "%{name} выключыў(-ла) рэтранслятар %{target}"
@@ -308,6 +313,7 @@ be:
         update_report_html: "%{name} абнавіў скаргу %{target}"
         update_status_html: "%{name} абнавіў допіс %{target}"
         update_user_role_html: "%{name} змяніў ролю %{target}"
+        update_username_block_html: Адміністратар %{name} змяніў правіла для імён карыстальнікаў, у якіх %{target}
       deleted_account: выдалены ўліковы запіс
       empty: Логі не знойдзены.
       filter_by_action: Фільтраваць па дзеянню
@@ -818,6 +824,8 @@ be:
         view_dashboard_description: Дазваляе праглядаць панэль кіравання і розныя метрыкі
         view_devops: DevOps
         view_devops_description: Дае доступ да панэляў кіравання Sidekiq і pgHero
+        view_feeds: Глядзець жывую і тэматычныя стужкі
+        view_feeds_description: Даць карыстальнікам доступ да жывой і тэматычных стужак, незалежна ад налад сервера
       title: Ролі
     rules:
       add_new: Дадаць правіла
@@ -859,7 +867,7 @@ be:
         title: Перадвызначана выключыць карыстальнікаў з індэксацыі пашуковымі рухавікамі
       discovery:
         follow_recommendations: Выконвайце рэкамендацыі
-        preamble: Прадстаўленне цікавага кантэнту дапамагае прыцягнуць новых карыстальнікаў, якія могуць не ведаць нікога на Mastodon. Кантралюйце працу розных функцый выяўлення на вашым серверы.
+        preamble: Паказ цікавага кантэнту карысны ў прывабліванні новых карыстальнікаў, якія могуць нікога не ведаць у Mastodon. Кантралюйце, як розныя функцыі выяўлення працуюць на Вашым серверы.
         privacy: Прыватнасць
         profile_directory: Дырэкторыя профіляў
         public_timelines: Публічная паслядоўнасць публікацый
@@ -870,6 +878,16 @@ be:
         all: Для ўсіх
         disabled: Нікому
         users: Лакальным карыстальнікам, якія ўвайшлі
+      feed_access:
+        modes:
+          authenticated: Толькі аўтэнтыфікаваныя карыстальнікі
+          disabled: Запатрабаваць адмысловую ролю карыстальніка
+          public: Усе
+      landing_page:
+        values:
+          about: Падрабязна
+          local_feed: Тутэйшая стужка
+          trends: Трэнды
       registrations:
         moderation_recommandation: Пераканайцеся, што ў вас ёсць адэкватная і аператыўная каманда мадэратараў, перш чым адчыняць рэгістрацыю для ўсіх жадаючых!
         preamble: Кантралюйце, хто можа ствараць уліковы запіс на вашым серверы.
@@ -923,6 +941,7 @@ be:
       no_status_selected: Ніводная публікацыя не была зменена, бо ніводная не была выбрана
       open: Адкрыць допіс
       original_status: Зыходны допіс
+      quotes: Цытаты
       reblogs: Рэпосты
       replied_to_html: Адказ карыстальніку %{acct_link}
       status_changed: Допіс зменены
@@ -930,6 +949,7 @@ be:
       title: Допісы карыстальніка - @%{name}
       trending: Трэндавае
       view_publicly: Глядзець публічна
+      view_quoted_post: Паглядзець цытаваны допіс
       visibility: Бачнасць
       with_media: З медыя
     strikes:
@@ -1121,6 +1141,25 @@ be:
           other: Выкарысталі %{count} чалавек за апошні тыдзень
       title: Рэкамендацыі і трэнды
       trending: Трэндавае
+    username_blocks:
+      add_new: Дадаць новае
+      block_registrations: Заблакіраваць рэгістрацыю
+      comparison:
+        contains: Мае
+        equals: Такое ж, як
+      contains_html: Мае %{string}
+      created_msg: Правіла імя карыстальніка паспяхова створанае
+      delete: Выдаліць
+      edit:
+        title: Змяніць правіла імя карыстальніка
+      matches_exactly_html: Такое ж, як %{string}
+      new:
+        create: Стварыць правіла
+        title: Стварыць новае правіла імя карыстальніка
+      no_username_block_selected: Аніводнае з правіл імён карыстальніка не было змененае, бо аніводнае не было абранае
+      not_permitted: Забаронена
+      title: Правілы імені карыстальніка
+      updated_msg: Правіла імя карыстальніка паспяхова абноўленае
     warning_presets:
       add_new: Дадаць новы
       delete: Выдаліць
@@ -1195,10 +1234,10 @@ be:
     hint_html: Калі вы хочаце перайсці з іншага ўліковага запісу ў гэты, то тут вы можаце стварыць псеўданім, каб перамясціць падпісчыкаў са старога ўліковага запісу ў гэты. Гэта дзеянне з'яўляецца <strong>бясшкодным і зварачальным</strong>. <strong>Перанос уліковага запісу пачынаецца са старога ўліковага запісу</strong>.
     remove: Адмацаваць псеўданім
   appearance:
-    advanced_web_interface: Пашыраны вэб-інтэрфейс
-    advanced_web_interface_hint: 'Калі вы хочаце выкарыстоўваць усю шырыню экрана, пашыраны вэб-інтэрфейс дазваляе вам наладзіць мноства розных слупкоў, каб бачыць столькі інфармацыі, колькі вам трэба: галоўная, апавяшчэнні, глабальная стужка, любая колькасць спісаў і хэштэгаў.'
+    advanced_settings: Дадатковыя налады
     animations_and_accessibility: Анімацыі і даступнасць
-    confirmation_dialogs: Дыялогавыя вокны пацвярджэння
+    boosting_preferences: Налады пашырэння
+    boosting_preferences_info_html: "<strong>Падказка:</strong> незалежна ад налад, камбінацыя <kbd>Shift</kbd> + <kbd>Клік мышы</kbd> па іконцы %{icon} пашырыць допіс імгненна."
     discovery: Адкрыцці
     localization:
       body: Mastodon перакладаецца добраахвотнікамі.
@@ -1387,6 +1426,10 @@ be:
     basic_information: Асноўная інфармацыя
     hint_html: "<strong>Наладзьце тое, што людзі будуць бачыць у вашым профілі і побач з вашымі паведамленнямі.</strong> Іншыя людзі з большай верагоднасцю будуць сачыць і ўзаемадзейнічаць з вамі, калі ў вас ёсць запоўнены профіль і фота профілю."
     other: Іншае
+  emoji_styles:
+    auto: Аўтаматычны
+    native: Мясцовы
+    twemoji: Twemoji
   errors:
     '400': Запыт, які вы адправілі, памылковы або няправільны.
     '403': У вас няма дазволу на прагляд гэтай старонкі.
@@ -1636,6 +1679,13 @@ be:
       expires_at: Дзее да
       uses: Выкарыстанні
     title: Запрасіць людзей
+  link_preview:
+    author_html: Ад %{name}
+    potentially_sensitive_content:
+      action: Націсніце, каб паказаць
+      confirm_visit: Вы ўпэўненыя, што хочаце адкрыць гэту спасылку?
+      hide_button: Схаваць
+      label: Патэнцыйна далікатны кантэнт
   lists:
     errors:
       limit: Вы дасягнулі макс. колькасці спісаў
@@ -1736,6 +1786,10 @@ be:
       title: Новае згадванне
     poll:
       subject: Апытанне ад %{name} скончылася
+    quote:
+      body: 'Ваш допіс працытаваў карыстальнік %{name}:'
+      subject: Карыстальнік %{name} працытаваў Ваш допіс
+      title: Цытаваць
     reblog:
       body: "%{name} пашырыў(-ла) Ваш допіс:"
       subject: "%{name} пашырыў ваш допіс"
@@ -1785,6 +1839,8 @@ be:
       too_few_options: павінна быць болей за адзін варыянт
       too_many_options: колькасць варыянтаў не можа перавышаць %{max}
     vote: Прагаласаваць
+  posting_defaults:
+    explanation: Гэтыя налады будуць ужывацца па змаўчанні, калі Вы будзеце ствараць новыя допісы, але Вы зможаце змяняць іх для кожнага допісу ў акне для напісання.
   preferences:
     other: Іншае
     posting_defaults: Публікаваць па змаўчанні
@@ -1946,6 +2002,9 @@ be:
         other: "%{count} відэафайла"
     boosted_from_html: Пашырыў уліковы запіс %{acct_link}
     content_warning: 'Папярэджанне аб змесціве: %{warning}'
+    content_warnings:
+      hide: Схаваць допіс
+      show: Паказаць усё роўна
     default_language: Такая, што і мова інтэрфэйсу
     disallowed_hashtags:
       few: 'змяшчае недазволеныя хэштэгі: %{tags}'
@@ -1955,25 +2014,31 @@ be:
     edited_at_html: Адрэдагавана %{date}
     errors:
       in_reply_not_found: Здаецца, допіс, на які вы спрабуеце адказаць, не існуе.
+      quoted_status_not_found: Выглядае, што допісу, які Вы спрабуеце цытаваць, не існуе.
+      quoted_user_not_mentioned: Немагчыма цытаваць незгаданага карыстальніка ў допісе прыватнага згадвання.
     over_character_limit: перавышаная колькасць сімвалаў у %{max}
     pin_errors:
       direct: Допісы, бачныя толькі згаданым карыстальнікам, нельга замацаваць
       limit: Вы ўжо замацавалі максімальную колькасць допісаў
       ownership: Немагчыма замацаваць чужы допіс
       reblog: Немагчыма замацаваць пашырэнне
+    quote_error:
+      not_available: Допіс недаступны
+      pending_approval: Допіс чакае ўхвалення
+      revoked: Аўтар выдаліў допіс
     quote_policies:
       followers: Толькі падпісчыкі
       nobody: Толькі я
       public: Усе
+    quote_post_author: Цытаваў(-ла) допіс %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Прыватнае згадванне
-      private: Для падпісчыкаў
-      private_long: Паказваць толькі падпісчыкам
+      private: Толькі для падпісчыкаў
       public: Публічны
-      public_long: Усе могуць бачыць
-      unlisted: Не ў спісе
-      unlisted_long: Усе могуць пабачыць гэты допіс, але ён не паказваецца ў публічных стужках
+      public_long: Усе ў Mastodon і па-за ім
+      unlisted: Ціхі публічны
+      unlisted_long: Схавана ў выніках пошуку Mastodon, трэндах і публічных стужках
   statuses_cleanup:
     enabled: Аўтаматычна выдаляць старыя допісы
     enabled_hint: Аўтаматычна выдаляць вашыя допісы, калі яны дасягаюць вызначанага тэрміну, акрамя наступных выпадкаў

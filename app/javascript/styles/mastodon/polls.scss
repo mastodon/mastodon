@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'variables' as *;
 @use 'functions' as *;
 
@@ -59,7 +60,6 @@
 
     &__text {
       display: inline-block;
-      word-wrap: break-word;
       overflow-wrap: break-word;
       max-width: calc(100% - 45px - 25px);
     }
@@ -208,7 +208,7 @@
 
     &:active,
     &:focus {
-      background-color: rgba($dark-text-color, 0.1);
+      background-color: color.change($dark-text-color, $alpha: 0.1);
     }
   }
 
@@ -227,7 +227,7 @@
     background: rgba(darken($ui-primary-color, 14%), 0.7);
 
     &.leading {
-      background: rgba($ui-highlight-color, 0.5);
+      background: color.change($ui-highlight-color, $alpha: 0.5);
     }
   }
 }

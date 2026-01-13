@@ -187,6 +187,7 @@ ja:
         create_relay: リレーの追加
         create_unavailable_domain: 配送できないドメインを作成
         create_user_role: ロールを作成
+        create_username_block: ユーザー名ルールを作成
         demote_user: ユーザーを降格
         destroy_announcement: お知らせを削除
         destroy_canonical_email_block: メールアドレスブロックの削除
@@ -200,6 +201,7 @@ ja:
         destroy_status: 投稿を削除
         destroy_unavailable_domain: 配送できないドメインを削除
         destroy_user_role: ロールを削除
+        destroy_username_block: ユーザー名ルールを削除
         disable_2fa_user: 二要素認証を無効化
         disable_custom_emoji: カスタム絵文字を無効化
         disable_relay: リレーの無効化
@@ -234,6 +236,7 @@ ja:
         update_report: 通報の更新
         update_status: 投稿を更新
         update_user_role: ロールを更新
+        update_username_block: ユーザー名ルールを更新
       actions:
         approve_appeal_html: "%{name}さんが%{target}さんからの異議申立を承認しました"
         approve_user_html: "%{name}さんが%{target}さんからの登録を承認しました"
@@ -569,6 +572,8 @@ ja:
         title: モデレーション
       moderation_notes:
         create: モデレーションノートを追加
+        description_html: 他のモデレーターと将来の自分にメモを残してください
+        destroyed_msg: インスタンス・モデレーションノートを正常に削除しました！
         title: モデレーションメモ
       private_comment: コメント (非公開)
       public_comment: コメント (公開)
@@ -813,7 +818,6 @@ ja:
         title: デフォルトで検索エンジンによるインデックスを拒否する
       discovery:
         follow_recommendations: おすすめフォロー
-        preamble: Mastodon を知らないユーザーを取り込むには、興味深いコンテンツを浮上させることが重要です。サーバー上で様々なディスカバリー機能がどのように機能するかを制御します。
         privacy: プライバシー
         profile_directory: ディレクトリ
         public_timelines: 公開タイムライン
@@ -824,6 +828,9 @@ ja:
         all: 誰にでも許可
         disabled: 誰にも許可しない
         users: ログイン済みローカルユーザーのみ許可
+      landing_page:
+        values:
+          trends: トレンド
       registrations:
         moderation_recommandation: 登録受付を開始する前に、迅速かつ適切にモデレーションを行うチームを編成しましょう！
         preamble: あなたのサーバー上でアカウントを作成できるユーザーを制御します。
@@ -877,6 +884,7 @@ ja:
       no_status_selected: 何も選択されていないため、変更されていません
       open: 投稿を開く
       original_status: オリジナルの投稿
+      quotes: 引用
       reblogs: ブースト
       replied_to_html: "%{acct_link}さんへの返信"
       status_changed: 投稿を変更しました
@@ -884,6 +892,7 @@ ja:
       title: 投稿一覧 - @%{name}
       trending: トレンド
       view_publicly: 元の投稿を開く
+      view_quoted_post: 引用されている投稿を見る
       visibility: 公開範囲
       with_media: メディアあり
     strikes:
@@ -1063,6 +1072,21 @@ ja:
           other: 週間%{count}人に使用されました
       title: おすすめとトレンド
       trending: トレンド
+    username_blocks:
+      add_new: ルールを作成
+      block_registrations: 登録拒否
+      comparison:
+        contains: 含む
+        equals: 一致
+      contains_html: "%{string}を含む"
+      delete: 削除
+      edit:
+        title: ユーザー名ルールの編集
+      matches_exactly_html: "%{string}に一致"
+      new:
+        create: ルールを作成
+        title: ユーザー名ルールを作成
+      title: ユーザー名ルール
     warning_presets:
       add_new: 追加
       delete: 削除
@@ -1134,10 +1158,10 @@ ja:
     hint_html: 他のアカウントからこのアカウントにフォロワーを引き継いで引っ越したい場合、ここでエイリアスを作成しておく必要があります。エイリアス自体は<strong>無害で、取り消す</strong>ことができます。<strong>引っ越しは以前のアカウント側から開始する必要があります</strong>。
     remove: エイリアスを削除
   appearance:
-    advanced_web_interface: 上級者向けUI
-    advanced_web_interface_hint: ディスプレイを幅いっぱいまで活用したい場合、上級者向け UI をおすすめします。ホーム、通知、連合タイムライン、更にはリストやハッシュタグなど、様々な異なるカラムから望む限りの情報を一度に受け取れるような設定が可能になります。
+    advanced_settings: 詳細設定
     animations_and_accessibility: アニメーションとアクセシビリティー
-    confirmation_dialogs: 確認ダイアログ
+    boosting_preferences: ブースト設定
+    boosting_preferences_info_html: "<strong>Tip:</strong> 設定に関係なく、<kbd>Shift</kbd> を押しながら %{icon} Boostアイコンを<kbd>クリック</kbd>すると、すぐにブーストされます。"
     discovery: 見つける
     localization:
       body: Mastodonは有志によって翻訳されています。
@@ -1326,6 +1350,10 @@ ja:
     basic_information: 基本情報
     hint_html: "<strong>アカウントのトップページや投稿の隣に表示される公開情報です。</strong>プロフィールとアイコンを設定することで、ほかのユーザーは親しみやすく、またフォローしやすくなります。"
     other: その他
+  emoji_styles:
+    auto: オート
+    native: ネイティブ
+    twemoji: Twemoji
   errors:
     '400': 送信されたリクエストは無効であるか、または不正なフォーマットです。
     '403': このページを表示する権限がありません。
@@ -1515,6 +1543,9 @@ ja:
       expires_at: 有効期限
       uses: 使用
     title: 新規ユーザーの招待
+  link_preview:
+    potentially_sensitive_content:
+      hide_button: 非表示
   lists:
     errors:
       limit: リストの上限数に達しています
@@ -1664,6 +1695,8 @@ ja:
       too_few_options: は複数必要です
       too_many_options: は%{max}個までです
     vote: 投票
+  posting_defaults:
+    explanation: これらの設定は投稿を新規作成するときにデフォルトとして使用されますが、作成画面で投稿ごとに変更できます。
   preferences:
     other: その他
     posting_defaults: デフォルトの投稿設定
@@ -1834,12 +1867,9 @@ ja:
       public: 誰でも
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: フォロワー限定
-      private_long: フォロワーにのみ表示されます
+      direct: 非公開の返信
+      private: フォロワーのみ
       public: 公開
-      public_long: 誰でも見ることができ、かつ公開タイムラインに表示されます
-      unlisted: 非収載
-      unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   statuses_cleanup:
     enabled: 古い投稿を自動的に削除する
     enabled_hint: 設定した期間を過ぎた投稿は、以下の例外に該当しない限り、自動的に削除されます

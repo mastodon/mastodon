@@ -95,7 +95,20 @@ Rails.application.routes.draw do
 
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
-  resources :accounts, path: 'users', only: [:show], param: :username do
+  concern :account_resources do
+    resources :followers, only: [:index], controller: :follower_accounts
+    resources :following, only: [:index], controller: :following_accounts
+
+    scope module: :activitypub do
+      resource :outbox, only: [:show]
+      resource :inbox, only: [:create]
+      resources :collections, only: [:show]
+      resource :followers_synchronization, only: [:show]
+      resources :quote_authorizations, only: [:show]
+    end
+  end
+
+  resources :accounts, path: 'users', only: [:show], param: :username, concerns: :account_resources do
     resources :statuses, only: [:show] do
       member do
         get :activity
@@ -106,19 +119,28 @@ Rails.application.routes.draw do
       resources :likes, only: [:index], module: :activitypub
       resources :shares, only: [:index], module: :activitypub
     end
+  end
 
-    resources :followers, only: [:index], controller: :follower_accounts
-    resources :following, only: [:index], controller: :following_accounts
+  scope path: 'ap', as: 'ap' do
+    resources :accounts, path: 'users', only: [:show], param: :id, concerns: :account_resources do
+      resources :statuses, only: [:show] do
+        member do
+          get :activity
+        end
 
-    scope module: :activitypub do
-      resource :outbox, only: [:show]
-      resource :inbox, only: [:create]
-      resources :collections, only: [:show]
-      resource :followers_synchronization, only: [:show]
+        resources :replies, only: [:index], module: :activitypub
+        resources :likes, only: [:index], module: :activitypub
+        resources :shares, only: [:index], module: :activitypub
+      end
     end
   end
 
   resource :inbox, only: [:create], module: :activitypub
+  resources :contexts, only: [:show], module: :activitypub, constraints: { id: /[0-9]+-[0-9]+/ } do
+    member do
+      get :items
+    end
+  end
 
   constraints(encoded_path: /%40.*/) do
     get '/:encoded_path', to: redirect { |params|

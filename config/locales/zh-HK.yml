@@ -736,7 +736,6 @@ zh-HK:
         title: 預設用戶不在搜尋引擎索引之內
       discovery:
         follow_recommendations: 追蹤建議
-        preamble: 呈現有趣的內容有助於吸引不認識 Mastodon 的使用者新手上路。控制各種探索功能在你的伺服器上的運作方式。
         privacy: 私隱
         profile_directory: 個人檔案目錄
         public_timelines: 公共時間軸
@@ -1001,10 +1000,7 @@ zh-HK:
     hint_html: 如果你想由另一個帳戶轉移到此帳號，你可以在此處創建別名 (alias)，然後系統容許你將關注者由舊帳戶轉移到此帳號。此操作是<strong>無害且可以還原的</strong>。 <strong>帳號遷移程序，需要在舊帳號啟動</strong>。
     remove: 取消連結別名 (Alias)
   appearance:
-    advanced_web_interface: 進階網頁介面
-    advanced_web_interface_hint: 如果你想善用整個螢幕闊度，你可以啟用「進階網頁介面」，在畫面上配置多個不同的欄目，讓你能根據需要，同時查看盡可能多的信息，支援的欄位包括：主頁、通知、其他站點和任何的列表和標籤。
     animations_and_accessibility: 動畫和輔助功能
-    confirmation_dialogs: 確認對話框
     discovery: 探索
     localization:
       body: Mastodon 是由志願者翻譯的。
@@ -1634,12 +1630,7 @@ zh-HK:
     title: "%{name}：「%{quote}」"
     visibilities:
       direct: 私訊
-      private: 關注者觀看
-      private_long: 只有關注你的人能看到
       public: 公開
-      public_long: 所有人都能看到
-      unlisted: 公開，但不在公共時間軸顯示
-      unlisted_long: 所有人都能看到，但不在公共時間軸（本站時間軸、跨站時間軸）顯示
   statuses_cleanup:
     enabled: 自動刪除舊嘟文
     enabled_hint: 當您的嘟文達到指定的時間門檻後，自動刪除嘟文，除非他們符合其中以下例外條件之一

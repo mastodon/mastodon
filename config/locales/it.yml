@@ -190,6 +190,7 @@ it:
         create_relay: Crea Relay
         create_unavailable_domain: Crea Dominio Non Disponibile
         create_user_role: Crea Ruolo
+        create_username_block: Crea regola del nome utente
         demote_user: Retrocedi Utente
         destroy_announcement: Elimina Annuncio
         destroy_canonical_email_block: Elimina il blocco dell'e-mail
@@ -203,6 +204,7 @@ it:
         destroy_status: Elimina Toot
         destroy_unavailable_domain: Elimina Dominio Non Disponibile
         destroy_user_role: Distruggi Ruolo
+        destroy_username_block: Cancella regola del nome utente
         disable_2fa_user: Disabilita A2F
         disable_custom_emoji: Disabilita Emoji Personalizzata
         disable_relay: Disabilita Relay
@@ -237,6 +239,7 @@ it:
         update_report: Aggiorna segnalazione
         update_status: Aggiorna Toot
         update_user_role: Aggiorna Ruolo
+        update_username_block: Aggiorna regola del nome utente
       actions:
         approve_appeal_html: "%{name} ha approvato il ricorso sulla decisione di moderazione da %{target}"
         approve_user_html: "%{name} ha approvato l'iscrizione da %{target}"
@@ -255,6 +258,7 @@ it:
         create_relay_html: "%{name} ha creato un relay %{target}"
         create_unavailable_domain_html: "%{name} ha interrotto la consegna al dominio %{target}"
         create_user_role_html: "%{name} ha creato il ruolo %{target}"
+        create_username_block_html: "%{name} ha aggiunto la regola per i nomi utente contenenti %{target}"
         demote_user_html: "%{name} ha retrocesso l'utente %{target}"
         destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
         destroy_canonical_email_block_html: "%{name} ha sbloccato l'e-mail con l'hash %{target}"
@@ -268,6 +272,7 @@ it:
         destroy_status_html: "%{name} ha rimosso il toot di %{target}"
         destroy_unavailable_domain_html: "%{name} ha ripreso la consegna al dominio %{target}"
         destroy_user_role_html: "%{name} ha eliminato il ruolo %{target}"
+        destroy_username_block_html: "%{name} ha rimosso la regola per i nomi utente contenenti %{target}"
         disable_2fa_user_html: "%{name} ha disabilitato l'autenticazione a due fattori per l'utente %{target}"
         disable_custom_emoji_html: "%{name} ha disabilitato emoji %{target}"
         disable_relay_html: "%{name} ha disabilitato il relay %{target}"
@@ -302,6 +307,7 @@ it:
         update_report_html: "%{name} ha aggiornato la segnalazione %{target}"
         update_status_html: "%{name} ha aggiornato lo status di %{target}"
         update_user_role_html: "%{name} ha modificato il ruolo %{target}"
+        update_username_block_html: "%{name} ha aggiornato la regola per i nomi utente contenenti %{target}"
       deleted_account: account eliminato
       empty: Nessun log trovato.
       filter_by_action: Filtra per azione
@@ -790,6 +796,8 @@ it:
         view_dashboard_description: Consente agli utenti di accedere alla dashboard e alle varie metriche
         view_devops: DevOps
         view_devops_description: Consente agli utenti di accedere alle dashboard Sidekiq e pgHero
+        view_feeds: Visualizza feed in diretta e feed di argomenti
+        view_feeds_description: Consente agli utenti di accedere ai feed in diretta e ai feed di argomenti indipendentemente dalle impostazioni del server
       title: Ruoli
     rules:
       add_new: Aggiungi regola
@@ -831,7 +839,7 @@ it:
         title: Esclude gli utenti dall'indicizzazione dei motori di ricerca per impostazione predefinita
       discovery:
         follow_recommendations: Segui le raccomandazioni
-        preamble: La comparsa di contenuti interessanti è determinante per l'arrivo di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla in che modo varie funzionalità di scoperta funzionano sul tuo server.
+        preamble: La scoperta di contenuti interessanti è fondamentale per l'inserimento di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla l'andamento delle varie funzionalità di scoperta sul tuo server.
         privacy: Privacy
         profile_directory: Directory del profilo
         public_timelines: Timeline pubbliche
@@ -842,6 +850,16 @@ it:
         all: A tutti
         disabled: A nessuno
         users: Agli utenti locali connessi
+      feed_access:
+        modes:
+          authenticated: Solo utenti autenticati
+          disabled: Richiedi un ruolo utente specifico
+          public: Tutti
+      landing_page:
+        values:
+          about: Info
+          local_feed: Feed locale
+          trends: Tendenze
       registrations:
         moderation_recommandation: Assicurati di avere un team di moderazione adeguato e reattivo prima di aprire le registrazioni a tutti!
         preamble: Controlla chi può creare un account sul tuo server.
@@ -895,6 +913,7 @@ it:
       no_status_selected: Nessun status è stato modificato perché nessuno era stato selezionato
       open: Apri il post
       original_status: Post originale
+      quotes: Citazioni
       reblogs: Condivisioni
       replied_to_html: Risposta a %{acct_link}
       status_changed: Post modificato
@@ -902,6 +921,7 @@ it:
       title: Post dell'account - @%{name}
       trending: Di tendenza
       view_publicly: Visualizza pubblicamente
+      view_quoted_post: Visualizza il post citato
       visibility: Visibilità
       with_media: con media
     strikes:
@@ -1085,6 +1105,25 @@ it:
           other: Usato da %{count} persone nell'ultima settimana
       title: Raccomandazioni & Tendenze
       trending: Di tendenza
+    username_blocks:
+      add_new: Aggiungi una nuova
+      block_registrations: Blocco delle registrazioni
+      comparison:
+        contains: Contiene
+        equals: Uguale a
+      contains_html: Contiene %{string}
+      created_msg: Regola del nome utente creata con successo
+      delete: Elimina
+      edit:
+        title: Modifica regola del nome utente
+      matches_exactly_html: Uguale a %{string}
+      new:
+        create: Crea regola
+        title: Crea una nuova regola del nome utente
+      no_username_block_selected: Non sono state modificate le regole del nome utente in quanto non sono state selezionate
+      not_permitted: Non consentito
+      title: Regole del nome utente
+      updated_msg: Regola del nome utente aggiornata con successo
     warning_presets:
       add_new: Aggiungi nuovo
       delete: Cancella
@@ -1157,12 +1196,10 @@ it:
     hint_html: Se vuoi trasferirti da un altro account a questo, qui puoi creare un alias, che è necessario prima di poter spostare i seguaci dal vecchio account a questo. Questa azione è <strong>innocua e reversibile</strong>. <strong>La migrazione dell'account è avviata dal vecchio account</strong>.
     remove: Scollega alias
   appearance:
-    advanced_web_interface: Interfaccia web avanzata
-    advanced_web_interface_hint: |-
-      Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:
-      Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
+    advanced_settings: Impostazioni avanzate
     animations_and_accessibility: Animazioni e accessibilità
-    confirmation_dialogs: Dialoghi di conferma
+    boosting_preferences: Preferenze di potenziamento
+    boosting_preferences_info_html: "<strong>Suggerimento:</strong> Indipendentemente dalle impostazioni, <kbd>Maiusc</kbd> + <kbd>Fare clic su</kbd> sull'icona Boost %{icon} aumenterà immediatamente."
     discovery: Scoperta
     localization:
       body: Mastodon è tradotto da volontari.
@@ -1351,6 +1388,10 @@ it:
     basic_information: Informazioni di base
     hint_html: "<strong>Personalizza ciò che le persone vedono sul tuo profilo pubblico e accanto ai tuoi post.</strong> È più probabile che altre persone ti seguano e interagiscano con te quando hai un profilo compilato e un'immagine del profilo."
     other: Altro
+  emoji_styles:
+    auto: Automatico
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': La richiesta che hai inviato non è valida o non è corretta.
     '403': Non sei autorizzato a visualizzare questa pagina.
@@ -1560,6 +1601,13 @@ it:
       expires_at: Scade
       uses: Utilizzi
     title: Invita persone
+  link_preview:
+    author_html: Di %{name}
+    potentially_sensitive_content:
+      action: Clicca per mostrare
+      confirm_visit: Si è sicuri di voler aprire questo link?
+      hide_button: Nascondi
+      label: Contenuto potenzialmente sensibile
   lists:
     errors:
       limit: Hai raggiunto il numero massimo di liste
@@ -1660,6 +1708,10 @@ it:
       title: Nuova menzione
     poll:
       subject: Un sondaggio da %{name} è terminato
+    quote:
+      body: 'Il tuo post è stato citato da %{name}:'
+      subject: "%{name} ha citato il tuo post"
+      title: Nuova citazione
     reblog:
       body: 'Il tuo status è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
@@ -1709,6 +1761,8 @@ it:
       too_few_options: deve avere più di un elemento
       too_many_options: non può contenere più di %{max} elementi
     vote: Vota
+  posting_defaults:
+    explanation: Queste impostazioni verranno utilizzate come predefinite quando crei nuovi post, ma puoi modificarle per ogni post all'interno della casella di testo.
   preferences:
     other: Altro
     posting_defaults: Predefinite di pubblicazione
@@ -1864,6 +1918,9 @@ it:
         other: "%{count} video"
     boosted_from_html: Condiviso da %{acct_link}
     content_warning: 'Avviso di contenuto: %{warning}'
+    content_warnings:
+      hide: Nascondi il post
+      show: Mostra di più
     default_language: Come la lingua dell'interfaccia
     disallowed_hashtags:
       one: 'contiene un hashtag non permesso: %{tags}'
@@ -1871,25 +1928,31 @@ it:
     edited_at_html: Modificato il %{date}
     errors:
       in_reply_not_found: Il post a cui stai tentando di rispondere non sembra esistere.
+      quoted_status_not_found: Il post che stai cercando di citare non sembra esistere.
+      quoted_user_not_mentioned: Non è possibile citare un utente non menzionato in un post di menzione privata.
     over_character_limit: Limite caratteri superato di %{max}
     pin_errors:
       direct: I messaggi visibili solo agli utenti citati non possono essere fissati in cima
       limit: Hai già fissato in cima il massimo numero di post
       ownership: Non puoi fissare in cima un post di qualcun altro
       reblog: Un toot condiviso non può essere fissato in cima
+    quote_error:
+      not_available: Post non disponibile
+      pending_approval: Post in attesa
+      revoked: Post rimosso dall'autore
     quote_policies:
       followers: Solo i seguaci
       nobody: Solo io
       public: Chiunque
+    quote_post_author: Citato un post di %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Menzione privata
-      private: Mostra solo ai tuoi seguaci
-      private_long: Mostra solo ai seguaci
+      private: Solo i seguaci
       public: Pubblico
-      public_long: Tutti lo possono vedere
-      unlisted: Pubblico, ma non visibile sulla timeline pubblica
-      unlisted_long: Tutti lo possono vedere, ma non compare nelle timeline pubbliche
+      public_long: Chiunque dentro e fuori Mastodon
+      unlisted: Pubblico silenzioso
+      unlisted_long: Nascosto dai risultati di ricerca di Mastodon, dalle tendenze e dalle timeline pubbliche
   statuses_cleanup:
     enabled: Cancella automaticamente i vecchi post
     enabled_hint: Cancella automaticamente i tuoi post quando diventano più vecchi di una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto

@@ -190,6 +190,7 @@ pt-BR:
         create_relay: Criar Retransmissão
         create_unavailable_domain: Criar domínio indisponível
         create_user_role: Criar cargo
+        create_username_block: Criar regra de usuário
         demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
         destroy_canonical_email_block: Deletar bloqueio de Email
@@ -203,6 +204,7 @@ pt-BR:
         destroy_status: Excluir publicação
         destroy_unavailable_domain: Excluir domínio indisponível
         destroy_user_role: Destruir cargo
+        destroy_username_block: Excluir regra de usuário
         disable_2fa_user: Desativar autenticação de dois fatores
         disable_custom_emoji: Desativar emoji personalizado
         disable_relay: Desativar Retransmissão
@@ -237,6 +239,7 @@ pt-BR:
         update_report: Atualizar Relatório
         update_status: Editar Status
         update_user_role: Atualizar cargo
+        update_username_block: Atualizar regra de usuário
       actions:
         approve_appeal_html: "%{name} aprovou a revisão da decisão da moderação em %{target}"
         approve_user_html: "%{name} aprovado inscrição de %{target}"
@@ -255,6 +258,7 @@ pt-BR:
         create_relay_html: "%{name} criou uma retransmissão %{target}"
         create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
         create_user_role_html: "%{name} criou o cargo %{target}"
+        create_username_block_html: Regra %{name} adicionada para nomes de usuário contendo %{target}
         demote_user_html: "%{name} rebaixou o usuário %{target}"
         destroy_announcement_html: "%{name} excluiu o anúncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o endereço e-mail com o hash %{target}"
@@ -268,6 +272,7 @@ pt-BR:
         destroy_status_html: "%{name} removeu a publicação de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
         destroy_user_role_html: "%{name} excluiu o cargo %{target}"
+        destroy_username_block_html: Regra %{name} removida por usuário contendo %{target}
         disable_2fa_user_html: "%{name} desativou a exigência da autenticação de dois fatores para o usuário %{target}"
         disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
         disable_relay_html: "%{name} desativou uma retransmissão %{target}"
@@ -302,6 +307,7 @@ pt-BR:
         update_report_html: "%{name} atualizou o relatório %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
         update_user_role_html: "%{name} alterou o cargo %{target}"
+        update_username_block_html: Regra %{name} atualizada para nomes de usuários contendo %{target}
       deleted_account: conta excluída
       empty: Nenhum registro encontrado.
       filter_by_action: Filtrar por ação
@@ -790,6 +796,8 @@ pt-BR:
         view_dashboard_description: Permite que os usuários acessem o painel e várias métricas
         view_devops: DevOps
         view_devops_description: Permite aos usuários acessar os painéis da Sidekiq e pgHero
+        view_feeds: Veja transmissões ao vivo e por tópico
+        view_feeds_description: Permite que os usuários acessem os feeds ao vivo e por tópico, independentemente das configurações do servidor
       title: Funções
     rules:
       add_new: Adicionar regra
@@ -831,7 +839,7 @@ pt-BR:
         title: Optar por excluir usuários da indexação de mecanismos de pesquisa por padrão
       discovery:
         follow_recommendations: Seguir recomendações
-        preamble: Navegar por um conteúdo interessante é fundamental para integrar novos usuários que podem não conhecer ninguém no Mastodon. Controle como várias características de descoberta funcionam no seu servidor.
+        preamble: A exibição de conteúdo interessante é fundamental para a integração de novos usuários que podem não conhecer ninguém no Mastodon. Controle o funcionamento de vários recursos de descoberta no seu servidor.
         privacy: Privacidade
         profile_directory: Diretório de perfis
         public_timelines: Timelines públicas
@@ -842,6 +850,16 @@ pt-BR:
         all: Para todos
         disabled: Para ninguém
         users: Para usuários locais logados
+      feed_access:
+        modes:
+          authenticated: Apenas usuários autenticados
+          disabled: Exige função específica de usuário
+          public: Todos
+      landing_page:
+        values:
+          about: Sobre
+          local_feed: Feed local
+          trends: Em alta
       registrations:
         moderation_recommandation: Por favor, certifique-se de ter uma equipe de moderação adequada e reativa antes de abrir as inscrições para todos!
         preamble: Controle quem pode criar uma conta no seu servidor.
@@ -895,6 +913,7 @@ pt-BR:
       no_status_selected: Nenhuma publicação foi modificada porque nenhuma estava selecionada
       open: Publicação aberta
       original_status: Publicação original
+      quotes: Citações
       reblogs: Reblogs
       replied_to_html: Respondeu à %{acct_link}
       status_changed: Publicação alterada
@@ -902,6 +921,7 @@ pt-BR:
       title: Publicações da conta - @%{name}
       trending: Em alta
       view_publicly: Ver publicamente
+      view_quoted_post: Visualizar citação publicada
       visibility: Visibilidade
       with_media: Com mídia
     strikes:
@@ -1085,6 +1105,25 @@ pt-BR:
           other: Usado por %{count} pessoas na última semana
       title: Recomendações e tendências
       trending: Em alta
+    username_blocks:
+      add_new: Adicionar novo
+      block_registrations: Bloquear inscrições
+      comparison:
+        contains: Conteúdo
+        equals: Igual
+      contains_html: Contém %{string}
+      created_msg: Regra de nome de usuário criada com sucesso
+      delete: Excluir
+      edit:
+        title: Editar nome de usuário
+      matches_exactly_html: "%{string} É igual"
+      new:
+        create: Criar regra
+        title: Criar regra de usuário
+      no_username_block_selected: Nenhuma regra de usuário foi trocada nenhuma foi selecionada
+      not_permitted: Não permitido
+      title: Regras de usuário
+      updated_msg: Regra de usuário atualizada com sucesso
     warning_presets:
       add_new: Adicionar novo
       delete: Excluir
@@ -1157,10 +1196,10 @@ pt-BR:
     hint_html: Se você quiser migrar de uma outra conta para esta, você pode criar um atalho aqui, o que é necessário antes que você possa migrar os seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada pela conta antiga</strong>.
     remove: Desvincular alias
   appearance:
-    advanced_web_interface: Interface avançada de colunas
-    advanced_web_interface_hint: 'Se você deseja usar toda a sua largura de tela, a interface avançada permite que você configure muitas colunas diferentes para ver tantas informações ao mesmo tempo quanto você deseja: Página inicial, notificações, linha local, linha global, qualquer número de listas e hashtags.'
+    advanced_settings: Configurações avançadas
     animations_and_accessibility: Animações e acessibilidade
-    confirmation_dialogs: Diálogos de confirmação
+    boosting_preferences: Adicionar preferências
+    boosting_preferences_info_html: "<strong>Dica:</strong> Independentemente das configurações, <kbd>Shift</kbd> + <kbd>Clique</kbd> no ícone %{icon} Boost irá impulsionar imediatamente."
     discovery: Descobrir
     localization:
       body: Mastodon é traduzido por voluntários.
@@ -1349,6 +1388,10 @@ pt-BR:
     basic_information: Informações básicas
     hint_html: "<strong>Personalize o que as pessoas veem no seu perfil público e ao lado de suas publicações.</strong> É mais provável que outras pessoas o sigam de volta e interajam com você quando você tiver um perfil preenchido e uma foto de perfil."
     other: Outro
+  emoji_styles:
+    auto: Automático
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': A solicitação enviada é inválida ou incorreta.
     '403': Você não tem permissão para ver esta página.
@@ -1558,6 +1601,13 @@ pt-BR:
       expires_at: Expira em
       uses: Usos
     title: Convidar pessoas
+  link_preview:
+    author_html: Por %{name}
+    potentially_sensitive_content:
+      action: Clique para mostrar
+      confirm_visit: Tem certeza que deseja abrir esse link?
+      hide_button: Ocultar
+      label: Conteúdo potencialmente sensível
   lists:
     errors:
       limit: Você atingiu o número máximo de listas
@@ -1658,6 +1708,10 @@ pt-BR:
       title: Nova menção
     poll:
       subject: Uma enquete por %{name} terminou
+    quote:
+      body: 'Sua publicação foi Citada por %{name}:'
+      subject: "%{name} citou sua publicação"
+      title: Nova citação
     reblog:
       body: "%{name} impulsionou a sua publicação:"
       subject: "%{name} impulsionou a sua publicação"
@@ -1680,6 +1734,7 @@ pt-BR:
           quadrillion: QUA
           thousand: MIL
           trillion: TRI
+          unit: ''
   otp_authentication:
     code_hint: Digite o código gerado pelo seu aplicativo autenticador para confirmar
     description_html: Se você ativar a <strong>autenticação de dois fatores</strong> usando um aplicativo autenticador, ao se conectar será exigido que você esteja com o seu telefone, que gerará tokens para você entrar.
@@ -1707,6 +1762,8 @@ pt-BR:
       too_few_options: deve ter mais que um item
       too_many_options: não pode ter mais que %{max} itens
     vote: Votar
+  posting_defaults:
+    explanation: Estas configurações serão usadas como padrão quando você criar publicações, mas você pode editá-las por postagem no compositor.
   preferences:
     other: Outro
     posting_defaults: Padrões de publicação
@@ -1862,6 +1919,9 @@ pt-BR:
         other: "%{count} vídeos"
     boosted_from_html: Impulso de %{acct_link}
     content_warning: 'Aviso de conteúdo: %{warning}'
+    content_warnings:
+      hide: Ocultar publicação
+      show: Exibir mais
     default_language: Igual ao idioma da interface
     disallowed_hashtags:
       one: 'continha hashtag não permitida: %{tags}'
@@ -1869,25 +1929,31 @@ pt-BR:
     edited_at_html: Editado em %{date}
     errors:
       in_reply_not_found: A publicação que você quer responder parece não existir.
+      quoted_status_not_found: A publicação que você quer responder parece não existir.
+      quoted_user_not_mentioned: Não é possível citar um usuário não mencionado em uma postagem de Menção Privada.
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
       direct: Publicações visíveis apenas para usuários mencionados não podem ser fixadas
       limit: Você alcançou o número limite de publicações fixadas
       ownership: As publicações dos outros não podem ser fixadas
       reblog: Um impulso não pode ser fixado
+    quote_error:
+      not_available: Publicação indisponível
+      pending_approval: Publicação pendente
+      revoked: Publicação removida pelo autor
     quote_policies:
       followers: Apenas seguidores
       nobody: Apenas eu
       public: Qualquer um
+    quote_post_author: Publicação citada por %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Citação privada
       private: Apenas seguidores
-      private_long: Exibir apenas para seguidores
       public: Público
-      public_long: Todos podem ver
-      unlisted: Não listado
-      unlisted_long: Todos podem ver, mas não é listado em linhas do tempo públicas
+      public_long: Qualquer um dentro ou fora do Mástodon
+      unlisted: Publicação silenciada
+      unlisted_long: Oculto aos resultados de pesquisa em Mástodon
   statuses_cleanup:
     enabled: Excluir publicações antigas automaticamente
     enabled_hint: Exclui suas publicações automaticamente assim que elas alcançam sua validade, a não ser que se enquadrem em alguma das exceções abaixo

@@ -5,6 +5,7 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import {
   blockAccount,
@@ -331,9 +332,10 @@ export const Account: React.FC<AccountProps> = ({
           {account &&
             withBio &&
             (account.note.length > 0 ? (
-              <div
+              <EmojiHTML
                 className='account__note translate'
-                dangerouslySetInnerHTML={{ __html: account.note_emojified }}
+                htmlString={account.note_emojified}
+                extraEmojis={account.emojis}
               />
             ) : (
               <div className='account__note account__note--missing'>

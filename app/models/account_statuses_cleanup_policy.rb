@@ -161,7 +161,7 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   end
 
   def without_poll_scope
-    Status.where(poll_id: nil)
+    Status.without_polls
   end
 
   def without_popular_scope

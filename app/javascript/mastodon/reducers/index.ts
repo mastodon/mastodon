@@ -101,9 +101,9 @@ const RootStateRecord = ImmutableRecord(initialRootState, 'RootState');
 export const rootReducer = combineReducers(reducers, RootStateRecord);
 
 export function reducerWithInitialState(
-  stateOverrides: Record<string, unknown> = {},
+  ...stateOverrides: Record<string, unknown>[]
 ) {
-  const initialStateRecord = mergeDeep(initialRootState, stateOverrides);
+  const initialStateRecord = mergeDeep(initialRootState, ...stateOverrides);
   const PatchedRootStateRecord = ImmutableRecord(
     initialStateRecord,
     'RootState',

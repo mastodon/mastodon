@@ -46,6 +46,9 @@
         %th= t('admin.statuses.reblogs')
         %td= friendly_number_to_human @status.reblogs_count
       %tr
+        %th= t('admin.statuses.quotes')
+        %td= friendly_number_to_human @status.quotes_count
+      %tr
         %th= t('admin.statuses.favourites')
         %td= friendly_number_to_human @status.favourites_count
 

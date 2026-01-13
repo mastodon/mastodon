@@ -196,6 +196,7 @@ gd:
         create_relay: Cruthaich ath-sheachadan
         create_unavailable_domain: Cruthaich àrainn nach eil ri fhaighinn
         create_user_role: Cruthaich dreuchd
+        create_username_block: Cruthaich riaghailt ainm-cleachdaiche
         demote_user: Ìslich an cleachdaiche
         destroy_announcement: Sguab às am brath-fios
         destroy_canonical_email_block: Sguab às bacadh a’ phuist-d
@@ -209,6 +210,7 @@ gd:
         destroy_status: Sguab às am post
         destroy_unavailable_domain: Sguab às àrainn nach eil ri fhaighinn
         destroy_user_role: Mill an dreuchd
+        destroy_username_block: Sguab às riaghailt ainm-cleachdaiche
         disable_2fa_user: Cuir an dearbhadh dà-cheumnach à comas
         disable_custom_emoji: Cuir an t-Emoji gnàthaichte à comas
         disable_relay: Cuir an t-ath-sheachadan à comas
@@ -243,6 +245,7 @@ gd:
         update_report: Ùraich an gearan
         update_status: Ùraich am post
         update_user_role: Ùraich an dreuchd
+        update_username_block: Ùraich riaghailt ainm-cleachdaiche
       actions:
         approve_appeal_html: Dh’aontaich %{name} ri ath-thagradh air co-dhùnadh na maorsainneachd o %{target}
         approve_user_html: Dh’aontaich %{name} ri clàradh o %{target}
@@ -261,6 +264,7 @@ gd:
         create_relay_html: Chruthaich %{name} an t-ath-sheachadan %{target}
         create_unavailable_domain_html: Sguir %{name} ris an lìbhrigeadh dhan àrainn %{target}
         create_user_role_html: Chruthaich %{name} an dreuchd %{target}
+        create_username_block_html: Chuir %{name} riaghailt ris airson ainmean-cleachdaidh sa bheil %{target}
         demote_user_html: Dh’ìslich %{name} an cleachdaiche %{target}
         destroy_announcement_html: Sguab %{name} às am brath-fios %{target}
         destroy_canonical_email_block_html: Dhì-bhac %{name} am post-d air a bheil an hais %{target}
@@ -274,6 +278,7 @@ gd:
         destroy_status_html: Thug %{name} post aig %{target} air falbh
         destroy_unavailable_domain_html: Lean %{name} air adhart leis an lìbhrigeadh dhan àrainn %{target}
         destroy_user_role_html: Sguab %{name} às an dreuchd %{target}
+        destroy_username_block_html: Thug %{name} an riaghailt airson ainmean-cleachdaidh sa bheil %{target} air falbh
         disable_2fa_user_html: Chuir %{name} riatanas an dearbhaidh dà-cheumnaich à comas dhan chleachdaiche %{target}
         disable_custom_emoji_html: Chuir %{name} an Emoji %{target} à comas
         disable_relay_html: Chuir %{name} an t-ath-sheachadan %{target} à comas
@@ -308,6 +313,7 @@ gd:
         update_report_html: Dh’ùraich %{name} an gearan %{target}
         update_status_html: Dh’ùraich %{name} post le %{target}
         update_user_role_html: Dh’atharraich %{name} an dreuchd %{target}
+        update_username_block_html: Dh’ùraich %{name} an riaghailt airson ainmean-cleachdaidh sa bheil %{target}
       deleted_account: chaidh an cunntas a sguabadh às
       empty: Cha deach loga a lorg.
       filter_by_action: Criathraich a-rèir gnìomha
@@ -818,6 +824,8 @@ gd:
         view_dashboard_description: Leigidh seo le cleachdaichean an deas-bhòrd agus meatrachdan inntrigeadh
         view_devops: DevOps
         view_devops_description: Leigidh seo le cleachdaichean na deas-bhùird aig Sidekiq is pgHero inntrigeadh
+        view_feeds: Seall loidhnichean-ama beòtha ’s nan cuspairean
+        view_feeds_description: Leigidh seo le cleachdaichean loidhnichean-ama beòtha ’s nan cuspairean inntrigeadh ge b’ e dè roghainnean an fhrithealaiche
       title: Dreuchdan
     rules:
       add_new: Cuir riaghailt ris
@@ -870,6 +878,16 @@ gd:
         all: Dhan a h-uile duine
         disabled: Na seall idir
         users: Dhan luchd-chleachdaidh a clàraich a-steach gu h-ionadail
+      feed_access:
+        modes:
+          authenticated: Cleachdaichean a chlàraich a-steach a-mhàin
+          disabled: Iarr dreuchd shònraichte a’ chleachdaiche
+          public: A h-uile duine
+      landing_page:
+        values:
+          about: Mu dhèidhinn
+          local_feed: Loidhne-ama ionadail
+          trends: Treandaichean
       registrations:
         moderation_recommandation: Dèan cinnteach gu bheil sgioba maoir deiseil is deònach agad mus fhosgail thu an clàradh dhan a h-uile duine!
         preamble: Stiùirich cò dh’fhaodas cunntas a chruthachadh air an fhrithealaiche agad.
@@ -923,6 +941,7 @@ gd:
       no_status_selected: Cha deach post sam bith atharrachadh o nach deach gin dhiubh a thaghadh
       open: Fosgail am post
       original_status: Am post tùsail
+      quotes: Luaidhean
       reblogs: Brosnachaidhean
       replied_to_html: Freagairt do %{acct_link}
       status_changed: Post air atharrachadh
@@ -930,6 +949,7 @@ gd:
       title: Postaichean a’ chunntais – @%{name}
       trending: A’ treandadh
       view_publicly: Seall gu poblach
+      view_quoted_post: Seall am post ’ga luaidh
       visibility: Faicsinneachd
       with_media: Le meadhanan riutha
     strikes:
@@ -1121,6 +1141,25 @@ gd:
           two: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
       title: Molaidhean ⁊ treandaichean
       trending: A’ treandadh
+    username_blocks:
+      add_new: Cuir tè ùr ris
+      block_registrations: Bac clàradh
+      comparison:
+        contains: Anns a bheil
+        equals: Co-ionnan ri
+      contains_html: Anns a bheil %{string}
+      created_msg: Chaidh riaghailt ainm-cleachdaiche a chruthachadh
+      delete: Sguab às
+      edit:
+        title: Deasaich riaghailt ainm-cleachdaiche
+      matches_exactly_html: Co-ionnan ri %{string}
+      new:
+        create: Cruthaich riaghailt
+        title: Cruthaich riaghailt ainm-cleachdaiche ùr
+      no_username_block_selected: Cha deach riaghailt ainm-cleachdaiche sam bith atharrachadh o nach deach gin dhiubh a thaghadh
+      not_permitted: Chan eil seo ceadaichte
+      title: Riaghailtean ainm-chleachdaiche
+      updated_msg: Chaidh riaghailt ainm-cleachdaiche ùrachadh
     warning_presets:
       add_new: Cuir fear ùr ris
       delete: Sguab às
@@ -1195,10 +1234,10 @@ gd:
     hint_html: Nam bu mhiann leat imrich o chunntas eile dhan fhear seo, ’s urrainn dhut alias a chruthachadh an-seo agus feumaidh tu sin a dhèanamh mus urrainn dhut tòiseachadh air an luchd-leantainn agad imrich on seann-chunntas dhan fhear seo. Tha an gnìomh seo fhèin <strong>neo-chronail is chan eil e buan</strong>. <strong>Tòisichidh tu air imrich a’ chunntais on t-seann-chunntas</strong>.
     remove: Dì-cheangail an t-alias
   appearance:
-    advanced_web_interface: Eadar-aghaidh-lìn adhartach
-    advanced_web_interface_hint: 'Ma tha thu airson leud na sgrìn agad gu lèir a chleachdadh, leigidh an eadar-aghaidh-lìn adhartach leat mòran cholbhan eadar-dhealaichte a cho-rèiteachadh airson uiread de dh''fhiosrachadh ''s a thogras tu fhaicinn aig an aon àm: Dachaigh, brathan, loidhne-ama cho-naisgte, liostaichean is tagaichean hais a rèir do thoil.'
+    advanced_settings: Roghainnean adhartach
     animations_and_accessibility: Beòthachaidhean agus so-ruigsinneachd
-    confirmation_dialogs: Còmhraidhean dearbhaidh
+    boosting_preferences: Roghainnean brosnachaidh
+    boosting_preferences_info_html: "<strong>Gliocas:</strong> Ge b’ e dè na roghainnean, ma nì thu<kbd>Shift</kbd> + <kbd>Briogadh</kbd> air ìomhaigheag%{icon} a’ bhrosnachaidh, thèid a bhrosnachadh sa bhad."
     discovery: Rùrachadh
     localization:
       body: Tha Mastodon ’ga eadar-theangachadh le saor-thoilich.
@@ -1387,6 +1426,10 @@ gd:
     basic_information: Fiosrachadh bunasach
     hint_html: "<strong>Gnàthaich na chithear air a’ phròifil phoblach agad is ri taobh nam postaichean agad.</strong> Bidh càch nas buailtiche do leantainn agus conaltradh leat nuair a bhios tu air a’ phròifil agad a lìonadh agus dealbh rithe."
     other: Eile
+  emoji_styles:
+    auto: Fèin-obrachail
+    native: Tùsail
+    twemoji: Twemoji
   errors:
     '400': Cha robh an t-iarrtas a chuir thu a-null dligheach no bha droch-chruth air.
     '403': Chan eil cead agad gus an duilleag seo a shealltainn.
@@ -1537,10 +1580,10 @@ gd:
         other: Tha thu an impis suas ri <strong>%{count} àrainn</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean àrainne</strong> agad.
         two: Tha thu an impis suas ri <strong>%{count} àrainn</strong> o <strong>%{filename}</strong> a chur <strong>an àite liosta nam bacaidhean àrainne</strong> agad.
       following_html:
-        few: Tha thu an impis suas ri <strong>%{count} cunntasan</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
-        one: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
-        other: Tha thu an impis suas ri <strong>%{count} cunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
-        two: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn duine sam bith eile</strong>.
+        few: Tha thu an impis suas ri <strong>%{count} cunntasan</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn neach sam bith eile</strong>.
+        one: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn neach sam bith eile</strong>.
+        other: Tha thu an impis suas ri <strong>%{count} cunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn neach sam bith eile</strong>.
+        two: Tha thu an impis suas ri <strong>%{count} chunntas</strong> o <strong>%{filename}</strong> <strong>a leantainn</strong> agus <strong>sguiridh tu a leantainn neach sam bith eile</strong>.
       lists_html:
         few: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan liostaichean agad</strong>. Thèid suas ri <strong>%{count} cunntasan</strong> a chur ri liostaichean ùra.
         one: Tha thu an impis susbaint <strong>%{filename}</strong> a chur <strong>an àite nan liostaichean agad</strong>. Thèid suas ri <strong>%{count} chunntas</strong> a chur ri liostaichean ùra.
@@ -1636,6 +1679,13 @@ gd:
       expires_at: Falbhaidh an ùine air
       uses: Cleachdadh
     title: Thoir cuireadh do dhaoine
+  link_preview:
+    author_html: Le %{name}
+    potentially_sensitive_content:
+      action: Dèan briogadh gus a shealltainn
+      confirm_visit: A bheil thu cinnteach gu bheil thu airson an ceangal seo fhosgladh?
+      hide_button: Falaich
+      label: Susbaint fhrionasach ma dh’fhaoidte
   lists:
     errors:
       limit: Ràinig thu na tha ceadaichte dhut de liostaichean
@@ -1736,6 +1786,10 @@ gd:
       title: Iomradh ùr
     poll:
       subject: Thàinig cunntas-bheachd le %{name} gu crìoch
+    quote:
+      body: 'Chaidh post a luaidh le %{name}:'
+      subject: Luaidh %{name} am post agad
+      title: Luaidh ùr
     reblog:
       body: 'Chaidh am post agad a bhrosnachadh le %{name}:'
       subject: Bhrosnaich %{name} am post agad
@@ -1785,6 +1839,8 @@ gd:
       too_few_options: "– feumaidh iomadh nì a bhith aige"
       too_many_options: "– chan fhaod còrr is %{max} nì a bhith ’na bhroinn"
     vote: Bhòt
+  posting_defaults:
+    explanation: Thèid na roghainnean seo a chleachdadh nam bun-roghainnean nuair a chruthaicheas tu post ùr ach ’s urrainn dhut an deasachadh fhathast do gach post fa leth fhad ’s a bhios tu ri sgrìobhadh.
   preferences:
     other: Eile
     posting_defaults: Bun-roghainnean a’ phostaidh
@@ -1946,6 +2002,9 @@ gd:
         two: "%{count} video"
     boosted_from_html: Brosnachadh o %{acct_link}
     content_warning: 'Rabhadh susbainte: %{warning}'
+    content_warnings:
+      hide: Falaich am post
+      show: Seall barrachd dheth
     default_language: Co-ionnan ri cànan na h-eadar-aghaidh
     disallowed_hashtags:
       few: "– bha na tagaichean hais toirmisgte seo ann: %{tags}"
@@ -1955,25 +2014,31 @@ gd:
     edited_at_html: Air a dheasachadh %{date}
     errors:
       in_reply_not_found: Tha coltas nach eil am post dhan a tha thu airson freagairt ann.
+      quoted_status_not_found: Tha coltas nach eil am post dhan a tha thu airson luaidh ann.
+      quoted_user_not_mentioned: Chan urrainn dhut neach gun iomradh air a luaidh ann am post a tha ’na iomradh prìobhaideach.
     over_character_limit: chaidh thu thar crìoch charactaran de %{max}
     pin_errors:
       direct: Chan urrainn dhut post a phrìneachadh nach fhaic ach na cleachdaichean le iomradh orra
       limit: Tha an àireamh as motha de phostaichean prìnichte agad a tha ceadaichte
       ownership: Chan urrainn dhut post càich a phrìneachadh
       reblog: Chan urrainn dhut brosnachadh a phrìneachadh
+    quote_error:
+      not_available: Chan eil am post ri fhaighinn
+      pending_approval: Cha deach dèiligeadh ris a’ phost fhathast
+      revoked: Chaidh am post a thoirt air falbh leis an ùghdar
     quote_policies:
       followers: Luchd-leantainn a-mhàin
       nobody: Mi fhìn a-mhàin
-      public: Duine sam bith
+      public: Neach sam bith
+    quote_post_author: Luaidh air post le %{acct}
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Iomradh prìobhaideach
       private: Luchd-leantainn a-mhàin
-      private_long: Na seall ach dhan luchd-leantainn
       public: Poblach
-      public_long: Chì a h-uile duine seo
-      unlisted: Falaichte o liostaichean
-      unlisted_long: Chì a h-uile duine seo ach cha nochd e air loidhnichean-ama poblach
+      public_long: Neach sam bith taobh a-staigh no a-muigh Mhastodon
+      unlisted: Sàmhach
+      unlisted_long: Falaichte o na toraidhean-luirg, na treandaichean ’s na loichnichean-ama poblach
   statuses_cleanup:
     enabled: Sguab às seann-phostaichean gu fèin-obrachail
     enabled_hint: Sguabaidh seo às na seann-phostaichean agad gu fèin-obrachail nuair a ruigeas iad stairsneach aoise sònraichte ach ma fhreagras iad ri gin dhe na h-eisgeachdan gu h-ìosal

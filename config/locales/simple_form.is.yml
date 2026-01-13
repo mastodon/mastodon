@@ -54,13 +54,18 @@ is:
         password: Notaðu minnst 8 stafi
         phrase: Verður notað til samsvörunar burtséð frá stafstöðu texta eða viðvörunar vegna efnis í færslu
         scopes: Að hvaða API-kerfisviðmótum forritið fær aðgang. Ef þú velur efsta-stigs svið, þarftu ekki að gefa einstakar heimildir.
+        setting_advanced_layout: Birta Mastodon í margra dálka framsetningu, sem gerir kleift að skoða saman tímalínu, tilkynningar og þriðja dálk að eigin vali. Ekki er mælt með þessu fyrir smærri skjái.
         setting_aggregate_reblogs: Ekki sýna nýjar endurbirtingar á færslum sem hafa nýlega verið endurbirtar (hefur bara áhrif á ný-mótteknar endurbirtingar)
         setting_always_send_emails: Venjulega eru tilkynningar í tölvupósti ekki sendar þegar þú ert virk/ur í að nota Mastodon
-        setting_default_quote_policy: Þessi stilling gildir einungis fyrir færslur sem útbúnar eru með næstu útgáfu Mastodon, en þú getur valið þetta fyrirfram til undirbúnings.
+        setting_boost_modal: Þegar þetta er virkt, mun endurbirting fyrst opna staðfestingarglugga, þar sem þú getur breytt sýnileika endurbirtingarinnar þinnar.
+        setting_default_quote_policy_private: Aðrir geta ekki vitnað í færslur einungis til fylgjenda sem skrifaðar eru á Mastodon.
+        setting_default_quote_policy_unlisted: Þegar fólk vitnar í þig verða færslurnar þeirr einnig faldar á vinsældatímalínum.
         setting_default_sensitive: Viðkvæmt myndefni er sjálfgefið falið og er hægt að birta með smelli
         setting_display_media_default: Fela myndefni sem merkt er viðkvæmt
         setting_display_media_hide_all: Alltaf fela allt myndefni
         setting_display_media_show_all: Alltaf birta myndefni sem merkt er viðkvæmt
+        setting_emoji_style: Hvernig birta skal lyndistákn (emoji). "Sjálfvirkt" mun reyna að nota innbyggð lyndistákn, en til vara verða notuð Twemoji-tákn fyrir eldri vafra.
+        setting_quick_boosting_html: Þegar þetta er virkt, sé smellt á %{boost_icon}-endurbirtingartáknið mun endurbirting eiga sér stað strax í stað þess að opna endurbirta/tilvitnun fellivalmyndina. Tilvitnunaraðgerðin færist þá yfir í %{options_icon} (Options) valmyndina.
         setting_system_scrollbars_ui: Á einungis við um vafra fyrir vinnutölvur sem byggjast á Safari og Chrome
         setting_use_blurhash: Litstiglarnir byggja á litunum í földu myndunum, en gera öll smáatriði óskýr
         setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er, í stað þess að hún skruni streyminu sjálfvirkt
@@ -88,6 +93,7 @@ is:
         content_cache_retention_period: Öllum færslum af öðrum netþjónum (þar með taldar endurbirtingar og svör) verður eytt eftir uppgefinn fjölda daga, án tillits til gagnvirkni staðværra notenda við þessar færslur. Þetta á einnig við um færslur sem notandinn hefur merkt sem bókamerki eða eftirlæti. Beinar tilvísanir (einkaspjall) milli notenda af mismunandi netþjónum munu einnig tapast og er engin leið til að endurheimta þær. Notkun á þessari stillingu er einungis ætluð sérstilltum netþjónum og mun skemma fyrir notendum ef þetta er sett upp fyrir almenna notkun.
         custom_css: Þú getur virkjað sérsniðna stíla í vefútgáfu Mastodon.
         favicon: WEBP, PNG, GIF eða JPG. Tekur yfir sjálfgefna Mastodon favicon-táknmynd með sérsniðinni táknmynd.
+        landing_page: Þetta ákvarðar hvaða síðu nýir gestir sjá þegar þeir koma fyrst á netþjóninn þinn. Ef þú velur "Vinsælt" þá þurfa vinsælar færslur að vera virkjaðar í stillingum fyrir Uppgötvun. Ef þú velur "Staðbundið streymi" þá þarf "Aðgangur að beinum streymum, þar með töldum staðværum færslum" að vera stillt á "Allir" í stillingum fyrir Uppgötvun.
         mascot: Þetta tekyr yfir myndskreytinguna í ítarlega vefviðmótinu.
         media_cache_retention_period: Myndefnisskrár úr færslum sem gerðar eru af fjartengdum notendum eru geymdar á netþjóninum þínum. Þegar þetta er stillt á jákvætt gildi, verður þessum skrám eytt sjáfkrafa eftir þeim tiltekna fjölda daga. Ef beðið er um myndefnið eftir að því er eytt, mun það verða sótt aftur ef frumgögnin eru ennþá aðgengileg. Vegna takmarkana á hversu oft forskoðunarspjöld tengla eru sótt á utanaðkomandi netþjóna, þá er mælt með því að setja þetta gildi á að minnsta kosti 14 daga, annars gæti mistekist að uppfæra forskoðunarspjöld tengla eftir þörfum fyrir þann tíma.
         min_age: Notendur verða beðnir um að staðfesta fæðingardag sinn við nýskráningu
@@ -103,10 +109,8 @@ is:
         status_page_url: Slóð á síðu þar sem fólk getur séð ástand netþjónsins þegar vandræði koma upp
         theme: Þema sem útskráðir gestir og nýjir notendur sjá.
         thumbnail: Mynd um það bil 2:1 sem birtist samhliða upplýsingum um netþjóninn þinn.
-        timeline_preview: Gestir sem ekki eru skráðir inn munu geta skoðað nýjustu opinberu færslurnar sem tiltækar eru á þjóninum.
         trendable_by_default: Sleppa handvirkri yfirferð á vinsælu efni. Áfram verður hægt að fjarlægja stök atriði úr vinsældarlistum.
         trends: Vinsældir sýna hvaða færslur, myllumerki og fréttasögur séu í umræðunni á netþjóninum þínum.
-        trends_as_landing_page: Sýna vinsælt efni til ekki-innskráðra notenda í stað lýsingar á þessum netþjóni. Krefst þess að vinsældir efnis sé virkjað.
       form_challenge:
         current_password: Þú ert að fara inn á öryggissvæði
       imports:
@@ -159,6 +163,10 @@ is:
         name: Opinbert heiti hlutverks, ef birta á hlutverk sem merki
         permissions_as_keys: Notendur með þetta hlutverk munu hafa aðgang að...
         position: Rétthærra hlutverk ákvarðar lausn árekstra í ákveðnum tilfellum. Sumar aðgerðir er aðeins hægt að framkvæma á hlutverk með lægri forgangi
+      username_block:
+        allow_with_approval: Í stað þess að loka alfarið á nýskráningar, munu samsvarandi nýskráningar þurfa samþykki þitt
+        comparison: Hafðu í huga Scunthorpe-vandamálið (Scunthorpe inniheldur orð sem ýmsar síur reyna að banna) þegar þú útilokar samsvarandi orðhluta
+        username: Mun samsvara án tillits til stafstöðu eða algengra táknlíkinga á borð við "4" í stað "a" eða "3" í stað "e"
       webhook:
         events: Veldu atburði sem á að senda
         template: Sníddu eigin JSON með breytilegri brúun. Skiljið eftir autt fyrir sjálfgefið JSON.
@@ -229,21 +237,23 @@ is:
         setting_aggregate_reblogs: Hópa endurbirtingar í tímalínum
         setting_always_send_emails: Alltaf senda tilkynningar í tölvupósti
         setting_auto_play_gif: Spila sjálfkrafa GIF-hreyfimyndir
-        setting_boost_modal: Sýna staðfestingarglugga fyrir endurbirtingu
+        setting_boost_modal: Stýrðu sýnileika endurbirtinga
         setting_default_language: Tungumál sem skrifað er á
-        setting_default_privacy: Gagnaleynd færslna
+        setting_default_privacy: Sýnileiki færslna
         setting_default_quote_policy: Hverjir geta gert tilvitnanir
         setting_default_sensitive: Alltaf merkja myndefni sem viðkvæmt
-        setting_delete_modal: Birta staðfestingarglugga áður en færslu er eytt
+        setting_delete_modal: Vara mig við áður en færslum er eytt
         setting_disable_hover_cards: Gera óvirka forskoðun notandasniðs við yfirsvif
         setting_disable_swiping: Gera strokuhreyfingar óvirkar
         setting_display_media: Birting myndefnis
         setting_display_media_default: Sjálfgefið
         setting_display_media_hide_all: Fela allt
         setting_display_media_show_all: Birta allt
+        setting_emoji_style: Stíll lyndistákna
         setting_expand_spoilers: Alltaf útfella færslur sem eru með aðvörun vegna efnisins
         setting_hide_network: Fela félagsnetið þitt
-        setting_missing_alt_text_modal: Birta staðfestingarglugga áður en myndefni án ALT-hjálpartexta er birt
+        setting_missing_alt_text_modal: Vara mig við áður en myndefni er birt án ALT-varatexta
+        setting_quick_boosting: Virkja fljótlega endurbirtingu
         setting_reduce_motion: Minnka hreyfingu í hreyfimyndum
         setting_system_font_ui: Nota sjálfgefið letur kerfisins
         setting_system_scrollbars_ui: Nota sjálfgefna skrunstiku kerfisins
@@ -277,12 +287,17 @@ is:
         content_cache_retention_period: Tímabil sem á að geyma fjartengt efni
         custom_css: Sérsniðið CSS
         favicon: Auðkennismynd
+        landing_page: Kynningarsíða fyrir nýja gesti
+        local_live_feed_access: Aðgangur að beinum streymum, þar með töldum staðværum færslum
+        local_topic_feed_access: Aðgangur að myllumerkjum og tengdum streymum, þar með töldum staðværum færslum
         mascot: Sérsniðið gæludýr (eldra)
         media_cache_retention_period: Tímalengd sem myndefni haldið
         min_age: Kröfur um lágmarksaldur
         peers_api_enabled: Birta lista yfir uppgötvaða netþjóna í API-kerfisviðmótinu
         profile_directory: Virkja notendamöppu
         registrations_mode: Hverjir geta nýskráð sig
+        remote_live_feed_access: Aðgangur að beinum streymum, þar með töldum fjartengdum færslum
+        remote_topic_feed_access: Aðgangur að myllumerkjum og tengdum streymum, þar með töldum fjartengdum færslum
         require_invite_text: Krefjast ástæðu fyrir þátttöku
         show_domain_blocks: Sýna útilokanir léna
         show_domain_blocks_rationale: Sýna af hverju lokað var á lén
@@ -295,10 +310,8 @@ is:
         status_page_url: Slóð á ástandssíðu
         theme: Sjálfgefið þema
         thumbnail: Smámynd vefþjóns
-        timeline_preview: Leyfa óauðkenndan aðgang að opinberum tímalínum
         trendable_by_default: Leyfa vinsælt efni án undanfarandi yfirferðar
         trends: Virkja vinsælt
-        trends_as_landing_page: Nota vinsælasta sem upphafssíðu
       interactions:
         must_be_follower: Loka á tilkynningar frá þeim sem ekki eru fylgjendur
         must_be_following: Loka á tilkynningar frá þeim sem þú fylgist ekki með
@@ -323,6 +336,7 @@ is:
         follow_request: Einhver hefur beðið um að fylgjast með þér
         mention: Einhver minntist á þig
         pending_account: Nýr notandaaðgangur þarfnast yfirferðar
+        quote: Einhver vitnaði í þig
         reblog: Einhver endurbirti færsluna þína
         report: Ný kæra hefur verið send inn
         software_updates:
@@ -369,6 +383,10 @@ is:
         name: Nafn
         permissions_as_keys: Heimildir
         position: Forgangur
+      username_block:
+        allow_with_approval: Leyfa skráningar með samþykki
+        comparison: Aðferð við samanburð
+        username: Orð sem samsvara
       webhook:
         events: Virkjaðir atburðir
         template: Sniðmát gagna

@@ -190,6 +190,7 @@ eo:
         create_relay: Krei Relajson
         create_unavailable_domain: Krei Nehaveblan Domajnon
         create_user_role: Krei Rolon
+        create_username_block: Krei uzantnoman regulon
         demote_user: Malpromocii Uzanton
         destroy_announcement: Forigi Anoncon
         destroy_canonical_email_block: Forigi retpoŝtan blokon
@@ -203,6 +204,7 @@ eo:
         destroy_status: Forigi Afiŝon
         destroy_unavailable_domain: Forigi Nehaveblan Domajnon
         destroy_user_role: Detrui Rolon
+        destroy_username_block: Forigi uzantnoman regulon
         disable_2fa_user: Malebligi 2FA
         disable_custom_emoji: Malŝalti Proprajn Bildosignojn
         disable_relay: Malebligi Relajson
@@ -237,6 +239,7 @@ eo:
         update_report: Ĝisdatigo de Raporto
         update_status: Ĝisdatigi Afiŝon
         update_user_role: Ĝisdatigi rolon
+        update_username_block: Ĝisdatigi uzantnoman regulon
       actions:
         approve_appeal_html: "%{name} aprobis apelacion kontraŭ reguliga decido de %{target}"
         approve_user_html: "%{name} aprobis la registriĝon de %{target}"
@@ -828,7 +831,6 @@ eo:
         title: Defaŭltigi, ke uzantoj ne estu aŭtomate aldonitaj al la serĉilo-indekso sen sia konsento
       discovery:
         follow_recommendations: Sekvorekomendoj
-        preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
         privacy: Privateco
         profile_directory: Profilujo
         public_timelines: Publikaj templinioj
@@ -1082,6 +1084,24 @@ eo:
           other: Uzita de %{count} personoj ekde lasta semajno
       title: Rekomendoj kaj Tendencoj
       trending: Popularaĵoj
+    username_blocks:
+      add_new: Aldoni novan
+      comparison:
+        contains: Enhavas
+        equals: Egalas
+      contains_html: Enhavas %{string}
+      created_msg: Sukcese kreita uzantnomo-regulo
+      delete: Forigi
+      edit:
+        title: Redakti uzantnoman regulon
+      matches_exactly_html: Egalas %{string}
+      new:
+        create: Krei regulon
+        title: Krei novan uzantnoman regulon
+      no_username_block_selected: Neniuj uzantnomaj reguloj estis ŝanĝitaj ĉar neniuj estis elektitaj
+      not_permitted: Ne permesita
+      title: Uzantnomaj reguloj
+      updated_msg: Sukcese ĝisdatigita uzantnoma regulo
     warning_presets:
       add_new: Aldoni novan
       delete: Forigi
@@ -1154,10 +1174,7 @@ eo:
     hint_html: Se vi volas translokiĝi de alia konto al ĉi tie, kreu alinomon. Ĝi estas <strong>sekura kaj inversebla</strong>. <strong>Ĝi komencitas de malnova konto</strong>.
     remove: Malligili alinomon
   appearance:
-    advanced_web_interface: Altnivela retpaĝa interfaco
-    advanced_web_interface_hint: 'Se vi volas uzi la tutan larĝecon de via ekrano, la kompleksa reta interfaco permesas al vi agordi multajn malsamajn kolumnojn por vidi tiom da informoj kiom vi volas samtempe: Hejmo, sciigoj, fratara templinio, kaj ajna kvanto de listoj kaj kradvortoj.'
     animations_and_accessibility: Animacioj kaj alirebleco
-    confirmation_dialogs: Konfirmaj fenestroj
     discovery: Eltrovo
     localization:
       body: Mastodon estas tradukita de volontuloj.
@@ -1304,7 +1321,7 @@ eo:
     warning:
       before: 'Antau ol dauri, legu ĉi tiujn notojn zorgeme:'
       caches: Enhavo kiu kaŝmemorigitas de aliaj serviloj eble restas
-      data_removal: Viaj afiŝoj kaj aliaj informoj estos forigita por eterne
+      data_removal: Viaj afiŝoj kaj aliaj informoj estos forigita por ĉiam
       email_change_html: Vi povas <a href="%{path}">ŝanĝi vian retadreson</a> sen forigi vian konton
       email_contact_html: Se ĝi ankoraŭ ne alvenas, vi povas retpoŝti al <a href="mailto:%{email}">%{email}</a> por helpo
       email_reconfirmation_html: Se vi ne ricevas la konfirmretpoŝton, vi povas <a href="%{path}">denove peti</a>
@@ -1346,6 +1363,10 @@ eo:
     basic_information: Baza informo
     hint_html: "<strong>Personigi, kion homoj vidi en via publika profilo kaj apud viaj afiŝoj. </strong> Aliaj homoj estas pli probable resekvi vin kaj interagi kun vi se vi havus finigitan profilon kaj profilan foton."
     other: Alia
+  emoji_styles:
+    auto: Aŭtomata
+    native: Denaska
+    twemoji: Twemoji
   errors:
     '400': La peto kiun vi sendis estas nevalida au malformas.
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
@@ -1657,6 +1678,10 @@ eo:
       title: Nova mencio
     poll:
       subject: Enketo de %{name} finitas
+    quote:
+      body: 'Via afiŝo estis citita de %{name}:'
+      subject: "%{name} citis vian afiŝon"
+      title: Nova citaĵo
     reblog:
       body: 'Via mesaĝo estis diskonigita de %{name}:'
       subject: "%{name} diskonigis vian afiŝon"
@@ -1706,6 +1731,8 @@ eo:
       too_few_options: devas enhavi pli da unu propono
       too_many_options: ne povas enhavi pli da %{max} proponoj
     vote: Voĉdoni
+  posting_defaults:
+    explanation: Ĉi tiuj agordoj estos uzataj kiel defaŭltaj kiam vi kreas novajn afiŝojn, sed vi povas redakti ilin per afiŝo en la redaktilo.
   preferences:
     other: Aliaj aferoj
     posting_defaults: Afiŝaj defaŭltoj
@@ -1868,6 +1895,7 @@ eo:
     edited_at_html: Redaktis je %{date}
     errors:
       in_reply_not_found: Mesaĝo kiun vi provas respondi ŝajnas ne ekzisti.
+      quoted_status_not_found: La afiŝo, kiun vi provas citi, ŝajne ne ekzistas.
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
       direct: Mesaĝoj kiu videbla nun al la uzantoj ne povas alpinglitis
@@ -1881,12 +1909,11 @@ eo:
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Privada mencio
-      private: Montri nur al sekvantoj
-      private_long: Montri nur al sekvantoj
+      private: Nur sekvantoj
       public: Publika
-      public_long: Ĉiuj povas vidi
-      unlisted: Ne enlistigita
-      unlisted_long: Ĉiuj povas vidi, sed nelistigita en publikaj templinioj
+      public_long: Ĉiujn ajn ĉe kaj ekster Mastodon
+      unlisted: Diskrete publika
+      unlisted_long: Kaŝita de serĉrezultoj, tendencoj kaj publikaj templinioj de Mastodon
   statuses_cleanup:
     enabled: Aŭtomate forigi malnovajn postojn
     enabled_hint: Automate forigi viajn mesaĝojn kiam ili atingas la aĝlimon kaj havas escepton

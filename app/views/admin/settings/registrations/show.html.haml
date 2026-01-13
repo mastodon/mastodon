@@ -18,7 +18,7 @@
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :registrations_mode,
-                collection: %w(open approved none),
+                collection: f.object.class::REGISTRATION_MODES,
                 include_blank: false,
                 label_method: ->(mode) { I18n.t("admin.settings.registrations_mode.modes.#{mode}") },
                 warning_hint: I18n.t('admin.settings.registrations_mode.warning_hint'),

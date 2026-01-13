@@ -102,10 +102,8 @@ ar:
         status_page_url: العنوان التشعبي حيث يمكن للناس رؤية صفحة حالة هذا الخادم عند حدوث عطب ما
         theme: الشكل الذي يشاهده الزوار الجدد و الغير مسجلين الدخول.
         thumbnail: عرض حوالي 2:1 صورة إلى جانب معلومات الخادم الخاص بك.
-        timeline_preview: الزوار الذين سجلوا خروجهم سيكونون قادرين على تصفح أحدث المشاركات العامة المتاحة على الخادم.
         trendable_by_default: تخطي مراجعة المحتوى التريند اليدوي. لا يزال من الممكن الإزالة اللاحقة للعناصر الفردية من التريندات.
         trends: تُظهِر المتداولة أي من المنشورات والوسوم وقصص الأخبار التي تجذب الانتباه على خادمك.
-        trends_as_landing_page: إظهار المحتوى المتداوَل للمستخدمين والزوار غير المسجلين بدلاً من وصف هذا الخادم. يتطلب هذا تفعيل المتداولة.
       form_challenge:
         current_password: إنك بصدد الدخول إلى منطقة آمنة
       imports:
@@ -225,21 +223,19 @@ ar:
         setting_aggregate_reblogs: جمّع المنشورات المعاد نشرها في الخيوط الزمنية
         setting_always_send_emails: ارسل إشعارات البريد الإلكتروني دائماً
         setting_auto_play_gif: تشغيل تلقائي لِوَسائط جيف المتحركة
-        setting_boost_modal: إظهار مربع حوار التأكيد قبل إعادة نشر أي منشور
         setting_default_language: لغة النشر
-        setting_default_privacy: خصوصية المنشور
+        setting_default_privacy: مدى ظهور المنشور
         setting_default_quote_policy: من يستطيع الاقتباس
         setting_default_sensitive: اعتبر الوسائط دائما كمحتوى حساس
-        setting_delete_modal: إظهار مربع حوار التأكيد قبل حذف أي منشور
         setting_disable_hover_cards: تعطيل معاينة الملف الشخصي عند التمرير
         setting_disable_swiping: تعطيل حركات التمرير
         setting_display_media: عرض الوسائط
         setting_display_media_default: افتراضي
         setting_display_media_hide_all: إخفاء الكل
         setting_display_media_show_all: عرض الكل
+        setting_emoji_style: نمط الوجوه التعبيرية
         setting_expand_spoilers: توسيع المنشورات التي تحتوي على تحذيرات عن المحتوى دائما
         setting_hide_network: إخفِ شبكتك
-        setting_missing_alt_text_modal: إظهار حوار التأكيد قبل نشر وسائط دون نص بديل
         setting_reduce_motion: تخفيض عدد الصور في الوسائط المتحركة
         setting_system_font_ui: استخدم الخطوط الافتراضية للنظام
         setting_system_scrollbars_ui: استخدام شريط التمرير الافتراضي للنظام
@@ -291,10 +287,8 @@ ar:
         status_page_url: الرابط التشعبي لصفحة حالة الخادم
         theme: الحُلَّة الإفتراضية
         thumbnail: الصورة المصغرة للخادم
-        timeline_preview: السماح بالوصول غير الموثق إلى الخيوط الزمنية العامة
         trendable_by_default: السماح للوسوم بالظهور على المتداوَلة دون مراجعة مسبقة
         trends: تمكين المتداوَلة
-        trends_as_landing_page: استخدام المُتداوَلة كصفحة ترحيب
       interactions:
         must_be_follower: حظر الإشعارات القادمة من حسابات لا تتبعك
         must_be_following: حظر الإشعارات القادمة من الحسابات التي لا تتابعها
@@ -319,6 +313,7 @@ ar:
         follow_request: ابعث بريدا إلكترونيا عندما يقوم أحدهم بإرسال طلب بالمتابعة
         mention: ابعث بريداً إلكترونيًا عندما يُشير إليك أو يذكُرك أحدهم
         pending_account: ابعث رسالة إلكترونية إن كان هناك حساب جديد بحاجة إلى مراجعة
+        quote: شخص ما اقتبس منك
         reblog: عندما يقوم أحدهم بإعادة نشر منشورك
         report: هناك إبلاغ جديد تم إرساله
         software_updates:
@@ -365,6 +360,9 @@ ar:
         name: التسمية
         permissions_as_keys: الصلاحيات
         position: الأولوية
+      username_block:
+        allow_with_approval: السماح بالتسجيلات بعد الموافقة
+        comparison: طريقة المقارنة
       webhook:
         events: الأحداث المفعلة
         template: قالب الحمولة

@@ -1,35 +1,35 @@
 ---
 fa:
   about:
-    about_mastodon_html: 'شبکه‌ی اجتماعی آینده: بدون تبلیغات، بدون شنود از طرف شرکت‌ها، طراحی اخلاق‌مدار، و معماری غیرمتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
+    about_mastodon_html: 'شبکهٔ اجتماعی آینده: بدون تبلیغ، بدون شنود شرکت‌ها، طراحی اخلاق مدار و معماری نامتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
     contact_missing: تنظیم نشده
     contact_unavailable: موجود نیست
-    hosted_on: ماستودون، میزبانی‌شده روی %{domain}
+    hosted_on: ماستودون میزبانی شده روی %{domain}
     title: درباره
   accounts:
     followers:
-      one: پیگیر
-      other: پیگیر
+      one: پی‌گیرنده
+      other: پی‌گیرنده
     following: پی می‌گیرد
-    instance_actor_flash: این حساب یک عامل مجازی است که به نمایندگی از خود کارساز استفاده می‌شود و نه هیچ یکی از کاربران. این حساب به منظور اتصال به فدراسیون استفاده می‌شود و نباید معلق شود.
-    last_active: آخرین فعالیت
+    instance_actor_flash: این حساب عاملی مجازیست که به نمایندگی از خود کارساز استفاده می‌شود و نه کاربری جداگانه. این حساب به منظور اتصال به فدراسیون استفاده می‌شود و نباید معلق شود.
+    last_active: آخرین فعّالیت
     link_verified_on: مالکیت این پیوند در %{date} بررسی شد
-    nothing_here: این‌جا چیزی نیست!
+    nothing_here: چیزی این‌جا نیست!
     pin_errors:
       following: باید کاربری که می‌خواهید پیشنهاد دهید را دنبال کرده باشید
     posts:
       one: فرسته
       other: فرسته‌ها
     posts_tab_heading: فرسته‌ها
-    self_follow_error: دنبال کردن حساب کاربری شما مجاز نیست
+    self_follow_error: پی‌گیری حساب خودتان مجاز نیست
   admin:
     account_actions:
       action: انجامِ کنش
-      already_silenced: این جساب از پیش محدود شده.
-      already_suspended: این جساب از پیش معلّق شده.
+      already_silenced: این حساب از پیش محدود شده.
+      already_suspended: این حساب از پیش معلّق شده.
       title: انجام کنش مدیریتی روی %{acct}
     account_moderation_notes:
-      create: افزودن یادداشت
+      create: گذاشتن یادداشت
       created_msg: یادداشت مدیر با موفقیت ساخته شد!
       destroyed_msg: یادداشت نظارتی با موفقیت نابود شد!
     accounts:
@@ -190,6 +190,7 @@ fa:
         create_relay: ایجاد رله
         create_unavailable_domain: ایجاد دامنهٔ ناموجود
         create_user_role: ایجاد نقش
+        create_username_block: ایجاد قانون نام‌کاربری
         demote_user: تنزل کاربر
         destroy_announcement: حذف اعلامیه
         destroy_canonical_email_block: حذف انسداد رایانامه
@@ -203,6 +204,7 @@ fa:
         destroy_status: حذف وضعیت
         destroy_unavailable_domain: حذف دامنهٔ ناموجود
         destroy_user_role: نابودی نقش
+        destroy_username_block: حذف قانون نام‌کاربری
         disable_2fa_user: از کار انداختن ورود دومرحله‌ای
         disable_custom_emoji: از کار انداختن شکلک سفارشی
         disable_relay: غیرفعال‌سازی رله
@@ -237,6 +239,7 @@ fa:
         update_report: به‌روز رسانی گزارش
         update_status: به‌روز رسانی وضعیت
         update_user_role: به روزرسانی نقش
+        update_username_block: به‌روزرسانی قانون نام‌کاربری
       actions:
         approve_appeal_html: "%{name} درخواست تجدیدنظر تصمیم مدیر را از %{target} پذیرفت"
         approve_user_html: "%{name} ثبت نام %{target} را تایید کرد"
@@ -255,6 +258,7 @@ fa:
         create_relay_html: "%{name} یک رله %{target} ایجاد کرد"
         create_unavailable_domain_html: "%{name} تحویل محتوا به دامنه %{target} را متوقف کرد"
         create_user_role_html: "%{name} نقش %{target} را ایجاد کرد"
+        create_username_block_html: "‫‏%{name} قانونی برای نام‌های کاربری دارای %{target} افزود"
         demote_user_html: "%{name} کاربر %{target} را تنزل داد"
         destroy_announcement_html: "%{name} اعلامیهٔ %{target} را حذف کرد"
         destroy_canonical_email_block_html: "%{name} رایانامه با درهم‌ریزی %{target} را نامسدود کرد"
@@ -268,6 +272,7 @@ fa:
         destroy_status_html: "%{name} وضعیت %{target} را برداشت"
         destroy_unavailable_domain_html: "%{name} تحویل محتوا به دامنه %{target} را از سر گرفت"
         destroy_user_role_html: "%{name} نقش %{target} را حذف کرد"
+        destroy_username_block_html: "‫‏%{name} قانون نام‌های کاربری دارای %{target} را برداشت"
         disable_2fa_user_html: "%{name} ضرورت ورود دو مرحله‌ای را برای کاربر %{target} غیر فعال کرد"
         disable_custom_emoji_html: "%{name} شکلک %{target} را غیرفعال کرد"
         disable_relay_html: "%{name} رله %{target} را غیرفعال کرد"
@@ -302,6 +307,7 @@ fa:
         update_report_html: "%{name} گزارش %{target} را به‌روز کرد"
         update_status_html: "%{name} نوشتهٔ %{target} را به‌روز کرد"
         update_user_role_html: "%{name} نقش %{target} را تغییر داد"
+        update_username_block_html: "‫‏%{name} قانونی برای نام‌های کاربری دارای %{target} را به‌روز کرد"
       deleted_account: حساب حذف شد
       empty: هیچ گزارشی پیدا نشد.
       filter_by_action: پالایش بر اساس کنش
@@ -790,6 +796,8 @@ fa:
         view_dashboard_description: اجازه به کاربران برای دسترسی به داشتبورد و سنجه‌های مختلف
         view_devops: دواپس
         view_devops_description: به کاربران امکان دسترسی به داشبورد Sidekiq و pgHero را می دهد
+        view_feeds: دیدن خوراک‌های موضوع و زنده
+        view_feeds_description: می‌گذارد کاربران فارغ از تنظیمات کارساز به خوراک‌های موضوع و زنده دسترسی داشته باشند
       title: نقش‌ها
     rules:
       add_new: افزودن قانون
@@ -831,7 +839,7 @@ fa:
         title: درخواست خروج از اندیس‌گذاری پیش‌گزیدهٔ موتور جست‌وجو
       discovery:
         follow_recommendations: پیروی از پیشنهادها
-        preamble: ارائه محتوای جالب در جذب کاربران جدیدی که ممکن است کسی ماستودون را نشناسند، مفید است. نحوه عملکرد ویژگی‌های کشف مختلف روی سرور خود را کنترل کنید.
+        preamble: ارائه محتوای جذّاب برای آغاز به کار کاربرانی که شاید کسی را روی ماستودون نشناسند ضروری است. واپایش چگونگی کار کردن ویژگی‌های کشف روی کارسازتان.
         privacy: محرمانگی
         profile_directory: شاخهٔ نمایه
         public_timelines: خط زمانی‌های عمومی
@@ -842,6 +850,16 @@ fa:
         all: برای همه
         disabled: برای هیچ‌کدام
         users: برای کاربران محلی واردشده
+      feed_access:
+        modes:
+          authenticated: تنها کاربران تأیید شده
+          disabled: نیازمند نقش کاربری خاص
+          public: هرکسی
+      landing_page:
+        values:
+          about: درباره
+          local_feed: خوراک محلی
+          trends: داغ‌ها
       registrations:
         moderation_recommandation: لطفاً قبل از اینکه ثبت نام را برای همه باز کنید، مطمئن شوید که یک تیم نظارتی مناسب و واکنشی دارید!
         preamble: کنترل کنید چه کسی می تواند در سرور شما یک حساب ایجاد کند.
@@ -895,6 +913,7 @@ fa:
       no_status_selected: هیچ فرسته‌ای تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
       open: گشودن فرسته
       original_status: فرستهٔ اصلی
+      quotes: نقل‌ها
       reblogs: تقویت‌ها
       replied_to_html: به %{acct_link} پاسخ داد
       status_changed: فرسته تغییر کرد
@@ -902,6 +921,7 @@ fa:
       title: پست‌های حساب - @%{name}
       trending: پرطرفدار
       view_publicly: مشاهده عمومی
+      view_quoted_post: دیدن فرستهٔ نقل شده
       visibility: نمایانی
       with_media: دارای عکس یا ویدیو
     strikes:
@@ -1085,6 +1105,25 @@ fa:
           other: در هفته گذشته توسط %{count} نفر استفاده شده است
       title: توصیه ها و روندها
       trending: پرطرفدار
+    username_blocks:
+      add_new: افزودن جدید
+      block_registrations: انسداد ثبت‌نام‌ها
+      comparison:
+        contains: دارای
+        equals: برابر
+      contains_html: دارای %{string}
+      created_msg: قانون نام کاربری با موفّقیت ایجاد شد
+      delete: حذف
+      edit:
+        title: ویرایش قانون نام‌کاربری
+      matches_exactly_html: برابر %{string}
+      new:
+        create: ایجاد قانون
+        title: ایجاد قانون نام‌کاربری جدید
+      no_username_block_selected: هیچ قاعدهٔ نام کاربری‌ای تغییری نکرد زیرا هیچ‌کدام گزیده نشده بودند
+      not_permitted: مجاز نیست
+      title: قانون نام کاربری
+      updated_msg: قانون نام کاربری با موفّقیت به‌روز شد
     warning_presets:
       add_new: افزودن تازه
       delete: زدودن
@@ -1157,10 +1196,10 @@ fa:
     hint_html: اگر می‌خواهید از حساب دیگری به این حساب منتقل شوید، این‌جا می‌توانید یک نام مستعار بسازید که برای انتقال از حساب قدیمی به این حساب لازم است. این کار به تنهایی <strong>بی‌ضرر و قابل بازگشت</strong> است. <strong>فرایند انتقال حساب از حساب قدیمی آغاز خواهد شد</strong>.
     remove: حذف ارتباط نام مستعار
   appearance:
-    advanced_web_interface: رابط کاربری پیشرفته
-    advanced_web_interface_hint: اگر می‌خواهید از تمامی پهنای صفحه‌تان استفاده کنید، رابط پیش‌رفتهٔ وب می‌گذارد هر چند ستون را که می‌خواهید، برای دیدن اطّلاعات بیش‌تر در یک زمان، پیکربندی کنید:‌خانه، آگاهی‌ها، خط زمانی عمومی،‌ هرتعدادی از سیاهه‌ها و برچسب‌ها.
+    advanced_settings: تنظیمات پیش‌رفته
     animations_and_accessibility: پویانمایی‌های و دسترسی‌پذیری
-    confirmation_dialogs: پیغام‌های تأیید
+    boosting_preferences: ترجیحات تقویت
+    boosting_preferences_info_html: "<strong>نکته:</strong> فارغ از تنظیمات، <kbd>تبدیل</kbd> + <kbd>کلیک</kbd> روی %{icon} نقشک تقویت بلافاصله تقویت خواهد کرد."
     discovery: کاوش
     localization:
       body: ماستودون توسط داوطلبان ترجمه شده است.
@@ -1349,6 +1388,10 @@ fa:
     basic_information: اطلاعات پایه
     hint_html: "<strong>شخصی‌سازی آن چه مردم روی نمایهٔ عمومیتان و کنار فرسته‌هایتان می‌بینند.</strong> هنگامی که نمایه‌ای کامل و یک تصویر نمایه داشته باشید،‌ احتمال پی‌گیری متقابل و تعامل با شما بیش‌تر است."
     other: سایر
+  emoji_styles:
+    auto: خودکار
+    native: بومی
+    twemoji: توییموجی
   errors:
     '400': درخواستی که فرستادید نامعتبر یا اشتباه بود.
     '403': شما اجازهٔ دیدن این صفحه را ندارید.
@@ -1558,6 +1601,13 @@ fa:
       expires_at: تاریخ انقضا
       uses: استفاده‌ها
     title: دعوت دیگران
+  link_preview:
+    author_html: به دست %{name}
+    potentially_sensitive_content:
+      action: زدن برای نمایش
+      confirm_visit: مطمئنید که می‌خواهید این پیوند را بگشایید؟
+      hide_button: نهفتن
+      label: محتوای بالقوه حسّاس
   lists:
     errors:
       limit: به بیشینهٔ تعداد سیاهه‌ها رسیدید
@@ -1658,6 +1708,10 @@ fa:
       title: اشارهٔ جدید
     poll:
       subject: نظرسنجی‌ای از %{name} پایان یافت
+    quote:
+      body: 'فرسته‌تان توسط %{name} نقل شد:'
+      subject: "%{name} فرسته‌تان را نقل کرد"
+      title: نقل‌قول جدید
     reblog:
       body: "%{name} فرستهٔ شما را تقویت کرد:"
       subject: "%{name} فرستهٔ شما را تقویت کرد"
@@ -1706,6 +1760,9 @@ fa:
       self_vote: شما نمی توانید در نظرسنجی خودتان رای دهید
       too_few_options: حتماً باید بیش از یک گزینه داشته باشد
       too_many_options: نمی‌تواند بیشتر از %{max} گزینه داشته باشد
+    vote: رأی
+  posting_defaults:
+    explanation: این تنظیمات هنگام ایجاد فرسته به عنوان پیش‌گزیده استفاده خواهند شد؛ ولی می‌توانید در نویسنده برای هر فرسته تغییرش دهید.
   preferences:
     other: سایر تنظیمات
     posting_defaults: تنظیمات پیش‌فرض انتشار
@@ -1861,6 +1918,9 @@ fa:
         other: "%{count} ویدیو"
     boosted_from_html: تقویت شده از طرف %{acct_link}
     content_warning: 'هشدا محتوا: %{warning}'
+    content_warnings:
+      hide: نهفتن فرسته
+      show: نمایش بیش‌تر
     default_language: همانند زبان واسط
     disallowed_hashtags:
       one: 'دارای برچسبی غیرمجاز: %{tags}'
@@ -1868,21 +1928,31 @@ fa:
     edited_at_html: ویراسته در %{date}
     errors:
       in_reply_not_found: به نظر نمی‌رسد وضعیتی که می‌خواهید به آن پاسخ دهید، وجود داشته باشد.
+      quoted_status_not_found: به نظر نمی‌رسد فرسته‌ای که می‌خواهید نقلش کنید وجود داشته باشد.
+      quoted_user_not_mentioned: نمی‌توان کاربری اشاره نشده را در فرستهٔ اشارهٔ خصوصی نقل کرد.
     over_character_limit: از حد مجاز %{max} حرف فراتر رفتید
     pin_errors:
       direct: فرسته‌هایی که فقط برای کاربران اشاره شده نمایانند نمی‌توانند سنجاق شوند
       limit: از این بیشتر نمی‌شود نوشته‌های ثابت داشت
       ownership: نوشته‌های دیگران را نمی‌توان ثابت کرد
       reblog: تقویت نمی‌تواند سنجاق شود
+    quote_error:
+      not_available: فرسته ناموجود
+      pending_approval: فرسته منتظر
+      revoked: فرسته به دست نگارنده برداشته شد
+    quote_policies:
+      followers: تنها پی‌گیران
+      nobody: فقط من
+      public: هرکسی
+    quote_post_author: فرسته‌ای از %{acct} را نقل کرد
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: اشاره خصوصی
-      private: خصوصی
-      private_long: تنها پیگیران شما می‌بینند
+      private: تنها پی‌گیران
       public: عمومی
-      public_long: همه می‌توانند ببینند
-      unlisted: فهرست نشده
-      unlisted_long: عمومی، ولی در فهرست نوشته‌ها نمایش نمی‌یابد
+      public_long: هرکسی داخل و خارج از ماستودون
+      unlisted: عمومی ساکت
+      unlisted_long: نهفته از نتیجه‌های جست‌وجوی ماستودون و خط‌های زمانی داغ و عمومی
   statuses_cleanup:
     enabled: حذف خودکار فرسته‌های قدیمی
     enabled_hint: فرسته‌هایتان را هنگام رسیدن به کرانهٔ سن خاصی به صورت خودکار حذف می‌کند، مگر این که با یکی از استثناهای زیر مطابق باشند
@@ -2019,7 +2089,7 @@ fa:
         silence: همچنان می‌توانید از حساب خود استفاده کنید، اما فقط افرادی که از قبل شما را دنبال می‌کنند، پست‌های شما را در این سرور می‌بینند و ممکن است از ویژگی‌های مختلف کشف مستثنی شوید. با این حال، دیگران ممکن است همچنان به صورت دستی شما را دنبال کنند.
         suspend: دیگر نمی توانید از حساب خود استفاده کنید و نمایه و سایر داده های شما دیگر در دسترس نیستند. هنوز هم می‌توانید برای درخواست پشتیبان‌گیری از داده‌های خود وارد شوید تا زمانی که داده‌ها در حدود 30 روز به طور کامل حذف شوند، اما ما برخی از داده‌های اولیه را حفظ می‌کنیم تا از تعلیق فرار نکنید.
       reason: 'دلیل:'
-      statuses: 'پست های ذکر شده:'
+      statuses: 'فرسته‌های ارجاع داده:'
       subject:
         delete_statuses: فرسته‌هایتان روی %{acct} برداشته شده‌اند
         disable: حساب %{acct} شما متوقف شده است

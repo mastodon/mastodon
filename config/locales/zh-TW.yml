@@ -187,6 +187,7 @@ zh-TW:
         create_relay: 新增中繼
         create_unavailable_domain: 新增無法存取的網域
         create_user_role: 新增角色
+        create_username_block: 新增使用者名稱規則
         demote_user: 將用戶降級
         destroy_announcement: 刪除公告
         destroy_canonical_email_block: 刪除電子郵件封鎖
@@ -200,6 +201,7 @@ zh-TW:
         destroy_status: 刪除狀態
         destroy_unavailable_domain: 刪除無法存取的網域
         destroy_user_role: 移除角色
+        destroy_username_block: 刪除使用者名稱規則
         disable_2fa_user: 停用兩階段驗證
         disable_custom_emoji: 停用自訂 emoji 表情符號
         disable_relay: 停用中繼
@@ -234,6 +236,7 @@ zh-TW:
         update_report: 更新檢舉報告
         update_status: 更新狀態
         update_user_role: 更新角色
+        update_username_block: 變更使用者名稱規則
       actions:
         approve_appeal_html: "%{name} 已批准來自 %{target} 的審核決定申訴"
         approve_user_html: "%{name} 已批准自 %{target} 而來的註冊"
@@ -252,6 +255,7 @@ zh-TW:
         create_relay_html: "%{name} 已新增中繼 %{target}"
         create_unavailable_domain_html: "%{name} 停止發送至網域 %{target}"
         create_user_role_html: "%{name} 已新增 %{target} 角色"
+        create_username_block_html: "%{name} 已新增使用者名稱包含 %{target} 之規則"
         demote_user_html: "%{name} 將使用者 %{target} 降級"
         destroy_announcement_html: "%{name} 已刪除公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 已解除封鎖 hash 為 %{target} 之電子郵件"
@@ -265,6 +269,7 @@ zh-TW:
         destroy_status_html: "%{name} 已刪除 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 已恢復對網域 %{target} 的發送"
         destroy_user_role_html: "%{name} 已刪除 %{target} 角色"
+        destroy_username_block_html: "%{name} 已移除使用者名稱包含 %{target} 之規則"
         disable_2fa_user_html: "%{name} 已停用使用者 %{target} 的兩階段驗證 (2FA) "
         disable_custom_emoji_html: "%{name} 已停用自訂 emoji 表情符號 %{target}"
         disable_relay_html: "%{name} 已停用中繼 %{target}"
@@ -299,6 +304,7 @@ zh-TW:
         update_report_html: "%{name} 已更新 %{target} 的檢舉"
         update_status_html: "%{name} 已更新 %{target} 的嘟文"
         update_user_role_html: "%{name} 已變更 %{target} 角色"
+        update_username_block_html: "%{name} 已變更使用者名稱包含 %{target} 之規則"
       deleted_account: 已刪除帳號
       empty: 找不到 log
       filter_by_action: 按動作過濾
@@ -776,6 +782,8 @@ zh-TW:
         view_dashboard_description: 允許使用者存取儀表板與各種指標
         view_devops: DevOps
         view_devops_description: 允許使用者存取 Sidekiq 與 pgHero 儀表板
+        view_feeds: 檢視即時內容與主題
+        view_feeds_description: 允許使用者無論伺服器設定為何皆可存取即時內容與主題
       title: 角色
     rules:
       add_new: 新增規則
@@ -819,7 +827,7 @@ zh-TW:
         title: 預設將使用者排除於搜尋引擎索引
       discovery:
         follow_recommendations: 跟隨建議
-        preamble: 呈現有趣的內容有助於 Mastodon 上一人不識的新手上路。控制各種不同的分類於您伺服器上如何被探索到。
+        preamble: 呈現有趣的內容有助於 Mastodon 上一人不識的新手上路。控制您伺服器上各類探索功能之運作方式。
         privacy: 隱私權
         profile_directory: 個人檔案目錄
         public_timelines: 公開時間軸
@@ -830,6 +838,16 @@ zh-TW:
         all: 至任何人
         disabled: 至沒有人
         users: 套用至所有登入的本站使用者
+      feed_access:
+        modes:
+          authenticated: 僅限已登入之使用者
+          disabled: 需要特定使用者權限
+          public: 任何人
+      landing_page:
+        values:
+          about: 關於
+          local_feed: 本站時間軸
+          trends: 熱門趨勢
       registrations:
         moderation_recommandation: 對所有人開放註冊之前，請確保您有人手充足且反應靈敏的管理員團隊！
         preamble: 控制誰能於您伺服器上建立帳號。
@@ -883,6 +901,7 @@ zh-TW:
       no_status_selected: 因未選取嘟文，所以什麼事都沒發生。
       open: 公開嘟文
       original_status: 原始嘟文
+      quotes: 引用嘟文
       reblogs: 轉嘟
       replied_to_html: 回覆給 %{acct_link}
       status_changed: 嘟文已編輯
@@ -890,6 +909,7 @@ zh-TW:
       title: 嘟文帳號 - @%{name}
       trending: 熱門
       view_publicly: 公開檢視
+      view_quoted_post: 檢視引用嘟文
       visibility: 可見性
       with_media: 含有媒體檔案
     strikes:
@@ -1069,6 +1089,25 @@ zh-TW:
           other: 上週被 %{count} 個人使用
       title: 推薦內容與熱門趨勢
       trending: 熱門
+    username_blocks:
+      add_new: 新增
+      block_registrations: 禁止註冊
+      comparison:
+        contains: 包含
+        equals: 等於
+      contains_html: 包含 %{string}
+      created_msg: 已成功新增使用者名稱規則
+      delete: 刪除
+      edit:
+        title: 編輯使用者名稱規則
+      matches_exactly_html: 等於 %{string}
+      new:
+        create: 新增規則
+        title: 新增使用者名稱規則
+      no_username_block_selected: 因未選取任何使用者名稱規則，所以什麼事都沒發生
+      not_permitted: 不允許
+      title: 使用者名稱規則
+      updated_msg: 已成功變更使用者名稱規則
     warning_presets:
       add_new: 新增
       delete: 刪除
@@ -1140,10 +1179,10 @@ zh-TW:
     hint_html: 如果想由其他帳號轉移至此帳號，您能於此處新增別名，稍後系統將容許您將跟隨者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要於舊帳號啟動</strong>。
     remove: 取消連結別名
   appearance:
-    advanced_web_interface: 進階網頁介面
-    advanced_web_interface_hint: 進階網頁介面能使您設定許多不同的欄位來善用螢幕空間，依需要同時查看許多不同的資訊如：首頁、通知、聯邦宇宙時間軸、任意數量的列表與主題標籤。
+    advanced_settings: 進階設定
     animations_and_accessibility: 動畫與無障礙設定
-    confirmation_dialogs: 確認對話框
+    boosting_preferences: 轉嘟偏好設定
+    boosting_preferences_info_html: "<strong>小技巧：</strong> 無論設定為何， <kbd>Shift</kbd> + <kbd>Click</kbd> 於 %{icon} 轉嘟圖示將會立即轉嘟。"
     discovery: 探索
     localization:
       body: Mastodon 是由志願者所翻譯。
@@ -1332,6 +1371,10 @@ zh-TW:
     basic_information: 基本資訊
     hint_html: "<strong>自訂人們能於您個人檔案及嘟文旁所見之內容。</strong>當您完成填寫個人檔案及設定大頭貼後，其他人們比較願意跟隨您並與您互動。"
     other: 其他
+  emoji_styles:
+    auto: 自動
+    native: 原生風格
+    twemoji: Twemoji
   errors:
     '400': 您所送出的請求無效或格式不正確。
     '403': 您沒有檢視這個頁面的權限。
@@ -1521,6 +1564,13 @@ zh-TW:
       expires_at: 失效時間
       uses: 已使用次數
     title: 邀請使用者
+  link_preview:
+    author_html: 來自 %{name}
+    potentially_sensitive_content:
+      action: 點擊以顯示
+      confirm_visit: 您確定要開啟此連結嗎？
+      hide_button: 隱藏
+      label: 可能為敏感內容
   lists:
     errors:
       limit: 您所建立之列表數量已達上限
@@ -1621,6 +1671,10 @@ zh-TW:
       title: 新的提及
     poll:
       subject: 由 %{name} 發起的投票已結束
+    quote:
+      body: 您的嘟文被 %{name} 引用：
+      subject: "%{name} 已引用您的嘟文"
+      title: 新引用
     reblog:
       body: 您的嘟文被 %{name} 轉嘟：
       subject: "%{name} 已轉嘟您的嘟文"
@@ -1670,6 +1724,8 @@ zh-TW:
       too_few_options: 必須包含至少一個項目
       too_many_options: 不能包含多於 %{max} 個項目
     vote: 投票
+  posting_defaults:
+    explanation: 這些設定將作為您建立新嘟文時之預設值，但您能於編輯器中編輯個別嘟文之設定。
   preferences:
     other: 其他
     posting_defaults: 嘟文預設值
@@ -1822,31 +1878,40 @@ zh-TW:
         other: "%{count} 段影片"
     boosted_from_html: 轉嘟自 %{acct_link}
     content_warning: 內容警告： %{warning}
+    content_warnings:
+      hide: 隱藏嘟文
+      show: 顯示更多
     default_language: 與介面語言相同
     disallowed_hashtags:
       other: 含有不得使用的標籤： %{tags}
     edited_at_html: 編輯於 %{date}
     errors:
       in_reply_not_found: 您嘗試回覆之嘟文似乎不存在。
+      quoted_status_not_found: 您嘗試引用之嘟文似乎不存在。
+      quoted_user_not_mentioned: 無法於私訊嘟文中引用無提及之使用者。
     over_character_limit: 已超過 %{max} 字的限制
     pin_errors:
       direct: 無法釘選只有僅提及使用者可見之嘟文
       limit: 釘選嘟文的數量已達上限
       ownership: 不能釘選他人的嘟文
       reblog: 不能釘選轉嘟
+    quote_error:
+      not_available: 無法取得該嘟文
+      pending_approval: 嘟文正在等候審核中
+      revoked: 嘟文已被作者移除
     quote_policies:
       followers: 僅限跟隨者
       nobody: 僅有我
       public: 所有人
+    quote_post_author: 已引用 %{acct} 之嘟文
     title: "%{name}：「%{quote}」"
     visibilities:
       direct: 私訊
       private: 僅限跟隨者
-      private_long: 只有跟隨您的人能看到
       public: 公開
-      public_long: 所有人都能看到
+      public_long: 所有人 (無論在 Mastodon 上與否)
       unlisted: 不於公開時間軸顯示
-      unlisted_long: 所有人都能看到，但不會出現在公開時間軸上
+      unlisted_long: 不顯示於 Mastodon 之搜尋結果、熱門趨勢、及公開時間軸上
   statuses_cleanup:
     enabled: 自動刪除舊嘟文
     enabled_hint: 一旦達到指定的保存期限，就會自動刪除您的嘟文，除非該嘟文符合下列例外

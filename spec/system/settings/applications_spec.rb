@@ -130,12 +130,17 @@ RSpec.describe 'Settings applications page' do
 
   describe 'Regenerating an app token' do
     it 'updates the app token' do
-      visit settings_application_path(application)
+      expect { visit settings_application_path(application) }
+        .to change(user_application_token, :first).from(be_nil).to(be_present)
 
       expect { regenerate_token }
-        .to(change { user.token_for_app(application) })
+        .to(change { user_application_token.first.token })
       expect(page)
         .to have_content(I18n.t('applications.token_regenerated'))
+    end
+
+    def user_application_token
+      Doorkeeper::AccessToken.where(application:).where(resource_owner_id: user)
     end
 
     def regenerate_token

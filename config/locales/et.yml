@@ -190,6 +190,7 @@ et:
         create_relay: Loo sõnumivahendusserver
         create_unavailable_domain: Kättesaamatu domeeni lisamine
         create_user_role: Loo roll
+        create_username_block: Lisa kasutajanime reegel
         demote_user: Alandas kasutaja
         destroy_announcement: Eemaldas teadaande
         destroy_canonical_email_block: Kustuta e-posti blokeering
@@ -203,6 +204,7 @@ et:
         destroy_status: Kustuta postitus
         destroy_unavailable_domain: Kättesaamatu domeeni kustutamine
         destroy_user_role: Rolli kustutamine
+        destroy_username_block: Kustuta kasutajanime reegel
         disable_2fa_user: Keela 2FA
         disable_custom_emoji: Keelas kohandatud emotikoni
         disable_relay: Lülita sõnumivahendusserver välja
@@ -237,6 +239,7 @@ et:
         update_report: Uuendamise raport
         update_status: Uuenda postitust
         update_user_role: Uuenda rolli
+        update_username_block: Uuenda kasutajanime reeglit
       actions:
         approve_appeal_html: "%{name} kiitis heaks modereerimise otsuse vaidlustuse %{target} poolt"
         approve_user_html: "%{name} kiitis heaks registreerimise %{target} poolt"
@@ -255,6 +258,7 @@ et:
         create_relay_html: "%{name} lõi sõnumivahendusserveri: %{target}"
         create_unavailable_domain_html: "%{name} lõpetas edastamise domeeni %{target}"
         create_user_role_html: "%{name} lõi rolli %{target}"
+        create_username_block_html: "%{name} lisas kasutajanime reegli, milles sisaldub %{target}"
         demote_user_html: "%{name} alandas kasutajat %{target}"
         destroy_announcement_html: "%{name} kustutas teadaande %{target}"
         destroy_canonical_email_block_html: "%{name} eemaldas blokeeringu e-postilt räsiga %{target}"
@@ -268,6 +272,7 @@ et:
         destroy_status_html: "%{name} kustutas %{target} postituse"
         destroy_unavailable_domain_html: "%{name} taastas edastamise domeeni %{target}"
         destroy_user_role_html: "%{name} kustutas %{target} rolli"
+        destroy_username_block_html: "%{name} eemaldas kasutajanime reegli, milles sisaldub %{target}"
         disable_2fa_user_html: "%{name} eemaldas kasutaja %{target} kahe etapise nõude"
         disable_custom_emoji_html: "%{name} keelas emotikooni %{target}"
         disable_relay_html: "%{name} eemaldas sõnumivahendusserveri kasutuselt: %{target}"
@@ -302,6 +307,7 @@ et:
         update_report_html: "%{name} uuendas raportit %{target}"
         update_status_html: "%{name} muutis %{target} postitust"
         update_user_role_html: "%{name} muutis %{target} rolli"
+        update_username_block_html: "%{name} uuendas kasutajanime reeglit, milles sisaldub %{target}"
       deleted_account: kustutatud konto
       empty: Logisi ei leitud.
       filter_by_action: Filtreeri tegevuse järgi
@@ -378,8 +384,8 @@ et:
         one: "<strong>%{count}</strong> ootel raport"
         other: "<strong>%{count}</strong> ootel raportit"
       pending_tags_html:
-        one: "<strong>%{count}</strong> ootel silt"
-        other: "<strong>%{count}</strong> ootel silti"
+        one: "<strong>%{count}</strong> ootel teemaviide"
+        other: "<strong>%{count}</strong> ootel teemaviidet"
       pending_users_html:
         one: "<strong>%{count}</strong> ootel kasutaja"
         other: "<strong>%{count}</strong> ootel kasutajat"
@@ -777,7 +783,7 @@ et:
         manage_settings: Halda sätteid
         manage_settings_description: Lubab kasutajatel muuta lehekülje sätteid
         manage_taxonomies: Halda taksonoomiaid
-        manage_taxonomies_description: Luba kasutajatel populaarset sisu üle vaadata ning uuendada siltide sätteid
+        manage_taxonomies_description: Luba kasutajatel populaarset sisu üle vaadata ning uuendada teemaviidete seadistusi
         manage_user_access: Halda kasutajate ligipääsu
         manage_user_access_description: Võimaldab kasutajatel keelata teiste kasutajate kaheastmelise autentimise, muuta oma e-posti aadressi ja lähtestada oma parooli
         manage_users: Kasutajate haldamine
@@ -790,6 +796,8 @@ et:
         view_dashboard_description: Lubab kasutajail pääseda ligi töölauale ja erinevale meetrikale
         view_devops: DevOps
         view_devops_description: Lubab kasutajail ligipääsu Sidekiq ja pgHero töölaudadele
+        view_feeds: Vaata postituste ja teemade voogu reaalajas
+        view_feeds_description: Sõltumata serveri seadistustest luba kasutajatel vaadata postituste ja teemade voogu reaalajas
       title: Rollid
     rules:
       add_new: Lisa reegel
@@ -842,6 +850,16 @@ et:
         all: Kõigile
         disabled: Mitte kellelegi
         users: Sisseloginud kohalikele kasutajatele
+      feed_access:
+        modes:
+          authenticated: Vaid autenditud kasutajad
+          disabled: Eelda konkreetse kasutajarolli olemasolu
+          public: Kõik
+      landing_page:
+        values:
+          about: Teave
+          local_feed: Kohalik sisuvoog
+          trends: Trendid
       registrations:
         moderation_recommandation: Enne kõigi jaoks registreerimise avamist veendu, et oleks olemas adekvaatne ja reageerimisvalmis modereerijaskond!
         preamble: Kes saab serveril konto luua.
@@ -895,6 +913,7 @@ et:
       no_status_selected: Ühtegi postitust ei muudetud, sest ühtegi polnud valitud
       open: Ava postitus
       original_status: Algne postitus
+      quotes: Tsitaadid
       reblogs: Jagamised
       replied_to_html: Vastatud %{acct_link}
       status_changed: Muudetud postitus
@@ -902,6 +921,7 @@ et:
       title: Postitus kontolt - @%{name}
       trending: Populaarne
       view_publicly: Nähtav avalikult
+      view_quoted_post: Vaata tsiteeritud postitust
       visibility: Nähtavus
       with_media: Meediaga
     strikes:
@@ -978,8 +998,8 @@ et:
       reset: Lähtesta
       review: Vaata olek üle
       search: Otsi
-      title: Märksõnad
-      updated_msg: Sildi sätted edukalt uuendatud
+      title: Teemaviited
+      updated_msg: Teemaviite seadistused on uuendatud
     terms_of_service:
       back: Tagasi teenuse tingimustesse
       changelog: Mis on muutunud
@@ -1068,14 +1088,14 @@ et:
           tag_servers_dimension: Populaarseimad serverid
           tag_servers_measure: erinevat serverit
           tag_uses_measure: kasutajaid kokku
-        description_html: Need sildid ilmuvad praegu paljudes postitutes mida su server näeb. See võib aidata su kasutajatel leida seda millest kõige rohkem parajasti räägitakse. Ühtegi silti ei näidata avalikult, enne nende heaks kiitmist.
+        description_html: Need teemaviited ilmuvad praegu paljudes postitutes, mida su server näeb. See võib aidata su kasutajatel leida seda millest kõige rohkem parajasti räägitakse. Ühtegi teemaviidet ei näidata enne nende heaks kiitmist avalikult.
         listable: Võib olla soovitatud
         no_tag_selected: Silte ei muudetud, kuna ühtegi polnud valitud
         not_listable: Ei soovitata
         not_trendable: Ei ilmu trendides
         not_usable: Ei saa kasutada
         peaked_on_and_decaying: Populaarseim %{date}, nüüd langemas
-        title: Trendikad sildid
+        title: Trendikad teemaviited
         trendable: Võib ilmuda trendides
         trending_rank: 'Trendides #%{rank}'
         usable: Kasutatav
@@ -1085,6 +1105,25 @@ et:
           other: Kasutatud %{count} kasutaja poolt viimase nädala jooksul
       title: Soovitused ja trendid
       trending: Trendid
+    username_blocks:
+      add_new: Lisa uus
+      block_registrations: Blokeeri registreerimisi
+      comparison:
+        contains: Sisaldab
+        equals: Võrdub
+      contains_html: 'Sisaldab: %{string}'
+      created_msg: Kasutajanime reegli lisamine õnnestus
+      delete: Kustuta
+      edit:
+        title: Muuda kasutajanime reeglit
+      matches_exactly_html: 'Võrdub: %{string}'
+      new:
+        create: Lisa reegel
+        title: Lisa uus kasutajanime reegel
+      no_username_block_selected: Ühtegi kasutajanimereeglit ei muudetud, kuna midagi polnud valitud
+      not_permitted: Ei ole lubatud
+      title: Kasutajanime reeglid
+      updated_msg: Kasutajanime reegli uuendamine õnnestus
     warning_presets:
       add_new: Lisa uus
       delete: Kustuta
@@ -1147,7 +1186,7 @@ et:
       new_trending_statuses:
         title: Trendikad postitused
       new_trending_tags:
-        title: Trendikad sildid
+        title: Trendikad teemaviited
       subject: Uued %{instance} trendid ülevaatuseks
   aliases:
     add_new: Pane kolimiseks valmis
@@ -1157,10 +1196,10 @@ et:
     hint_html: Kui soovid konto siia üle kolida, pead esmalt siin määrama kolitava konto aadressi. Seejärel on konto valmis võtma vastu jälgijaid vanalt kontolt. Kolitava konto aadressi määramine on iseenesest <strong>kahjutu ja tagasipööratav</strong>. <strong>Jälgijate tegelik kolimine käivitatakse vanalt kontolt</strong>.
     remove: Loobu suunamise vastuvõtmisest
   appearance:
-    advanced_web_interface: Kohandatud veebiliides
-    advanced_web_interface_hint: 'Kui soovid kasutada kogu ekraani laiust, saab kohandatud veebiliideses seadistada mitut veergu, nii et samal ajal oleks näha nii palju infot kui soovid: Kodu, teavitused, föderatsiooni ajajoon ning kuitahes palju nimekirju ja silte.'
+    advanced_settings: Täpsemad seadistused
     animations_and_accessibility: Animatsioonid ja ligipääs
-    confirmation_dialogs: Kinnitusdialoogid
+    boosting_preferences: Hooandmise eelistused
+    boosting_preferences_info_html: "<strong>Soovitus:</strong> Sõltumata seadistusest, <kbd>Shift</kbd> + <kbd>Klõps</kbd> %{icon} ikoonil käivitab hooandmise koheselt."
     discovery: Avastamine
     localization:
       body: Mastodoni tõlgivad vabatahtlikud.
@@ -1349,6 +1388,10 @@ et:
     basic_information: Põhiinfo
     hint_html: "<strong>Kohanda, mida inimesed näevad su avalikul profiilil ja postituste kõrval.</strong> Inimesed alustavad tõenäolisemalt sinu jälgimist ja interakteeruvad sinuga, kui sul on täidetud profiil ja profiilipilt."
     other: Muu
+  emoji_styles:
+    auto: Automaatne
+    native: Rakenduseomane
+    twemoji: Twemoji
   errors:
     '400': Esitatud päring oli vigane või valesti vormindatud.
     '403': Sul puudub õigus seda lehte vaadata.
@@ -1380,13 +1423,13 @@ et:
     csv: CSV
     domain_blocks: Domeeni blokeeringud
     lists: Loetelud
-    mutes: Oled vaigistanud
+    mutes: Oled summutanud
     storage: Meedia hoidla
   featured_tags:
     add_new: Lisa uus
     errors:
-      limit: Oled jõudnud siltide lubatud maksimumarvuni
-    hint_html: "<strong>Mis on esiletõstetud sildid?</strong> Neid silte näidatakse su avalikul profiilil esiletõstetult ning need aitavad teistel leida postitusi, millel on selline silt. See on hea viis, kuidas hoida järge loovtöödel või pikaajalistel projektidel."
+      limit: Oled jõudnud teemaviidete lubatud maksimumarvuni
+    hint_html: "<strong>Mis on esiletõstetud teemaviited?</strong> Neid teemaviiteid näidatakse su avalikul profiilil esiletõstetult ning need aitavad teistel leida postitusi, millel on selline teemaviide. See on hea viis, kuidas hoida järge loovtöödel või pikaajalistel projektidel."
   filters:
     contexts:
       account: Profiilid
@@ -1485,8 +1528,8 @@ et:
         one: Oled <strong>asendamas oma loetelusid</strong> faili <strong>%{filename}</strong> sisuga. Uutesse loeteludesse lisatakse kuni <strong>%{count} konto</strong>.
         other: Oled <strong>asendamas oma loetelusid</strong> faili <strong>%{filename}</strong> sisuga. Uutesse loeteludesse lisatakse kuni <strong>%{count} kontot</strong>.
       muting_html:
-        one: Oled <strong>asendamas oma vaigistatud kontode loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} konto</strong>.
-        other: Oled <strong>asendamas oma vaigistatud kontode loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} kontot</strong>.
+        one: Oled <strong>asendamas oma summutatud kontode loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} konto</strong>.
+        other: Oled <strong>asendamas oma summutatud kontode loetelu</strong> faili <strong>%{filename}</strong> sisuga, milles on kuni <strong>%{count} kontot</strong>.
     preambles:
       blocking_html:
         one: Oled <strong>blokeerimas</strong> kuni <strong>%{count} konto</strong> failist <strong>%{filename}</strong>.
@@ -1504,8 +1547,8 @@ et:
         one: Oled lisamas oma <strong>loeteludesse</strong> failist <strong>%{filename}</strong> kuni <strong>%{count} konto</strong>. Kui pole loetelusi, kuhu lisada, luuakse uued loetelud.
         other: Oled lisamas oma <strong>loeteludesse</strong> failist <strong>%{filename}</strong> kuni <strong>%{count} kontot</strong>. Kui pole loetelusi, kuhu lisada, luuakse uued loetelud.
       muting_html:
-        one: Oled <strong>vaigistamas</strong> kuni <strong>%{count} konto</strong> failist <strong>%{filename}</strong>.
-        other: Oled <strong>vaigistamas</strong> kuni <strong>%{count} kontot</strong> failist <strong>%{filename}</strong>.
+        one: Oled <strong>summutamas</strong> kuni <strong>%{count} konto</strong> failist <strong>%{filename}</strong>.
+        other: Oled <strong>summutamas</strong> kuni <strong>%{count} kontot</strong> failist <strong>%{filename}</strong>.
     preface: Saad importida mistahes andmeid, mis on eksporditud teisest serverist. Näiteks nimekirja inimestest, keda jälgid ja keda blokeerid.
     recent_imports: Viimati imporditud
     states:
@@ -1522,11 +1565,11 @@ et:
       domain_blocking: Blokeeritud domeenide importimine
       following: Jälgitavate kontode importimine
       lists: Loetelude importimine
-      muting: Vaigistatud kontode importimine
+      muting: Summutatud kontode importimine
     type: Importimise tüüp
     type_groups:
       constructive: Jälgimised & Järjehoidjad
-      destructive: Blokeerimised & Vaigistamised
+      destructive: Blokeerimised & summutamised
     types:
       blocking: Blokeeringute nimekiri
       bookmarks: Järjehoidjad
@@ -1558,6 +1601,13 @@ et:
       expires_at: Aegub
       uses: Kasutust
     title: Kutsu inimesi
+  link_preview:
+    author_html: Autorilt %{name}
+    potentially_sensitive_content:
+      action: Vaatamiseks klõpsa
+      confirm_visit: Kas oled kindel, et soovid selle lingi avada?
+      hide_button: Peida
+      label: Võimalik delikaatne sisu
   lists:
     errors:
       limit: Oled jõudnud loetelude lubatud maksimumarvuni
@@ -1628,7 +1678,7 @@ et:
     title: Modereerimine
   move_handler:
     carry_blocks_over_text: See kasutaja kolis kontolt %{acct}, mis oli keelatud.
-    carry_mutes_over_text: Kasutaja kolis ümber kontolt %{acct}, mis oli vaigistatud.
+    carry_mutes_over_text: Kasutaja kolis ümber kontolt %{acct}, mis oli summutatud.
     copy_account_note_text: 'Kasutaja kolis kontolt %{acct}, kus olid eelnevad märkmed tema kohta:'
   navigation:
     toggle_menu: Menüü lülimine
@@ -1658,6 +1708,10 @@ et:
       title: Uus mainimine
     poll:
       subject: "%{name} küsitlus lõppes"
+    quote:
+      body: "%{name} tsiteeris sinu postitust:"
+      subject: "%{name} tsiteeris sinu postitust"
+      title: Uus tsitaat
     reblog:
       body: "%{name} jagas edasi postitust:"
       subject: "%{name} jagas postitust"
@@ -1707,6 +1761,8 @@ et:
       too_few_options: peab olema rohkem kui üks vastus
       too_many_options: ei saa sisaldada rohkem kui %{max} vastust
     vote: Hääleta
+  posting_defaults:
+    explanation: Järgnevad seadistused on uute küsitluste loomisel kasutusel vaikimisi valikutena, kuid neid saad küsitluse koostamisel ka muuta.
   preferences:
     other: Muu
     posting_defaults: Postitamise vaikesätted
@@ -1759,7 +1815,7 @@ et:
     content_warning: 'Sisuhoiatus:'
     descriptions:
       account: "@%{acct} avalikud postitused"
-      tag: 'Avalikud postitused sildiga #%{hashtag}'
+      tag: 'Avalikud postitused teemaviitega #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Lubatud ajastatud postituste arv %{limit} päevas on tänaseks ületatud
     over_total_limit: Oled jõudnud ajastatud postituste lubatud maksimumarvuni %{limit}
@@ -1824,7 +1880,7 @@ et:
     development: Arendus
     edit_profile: Muuda profiili
     export: Eksport
-    featured_tags: Esile toodud sildid
+    featured_tags: Esile toodud teemaviited
     import: Impordi
     import_and_export: Import / eksport
     migrate: Konto kolimine
@@ -1862,32 +1918,41 @@ et:
         other: "%{count} videot"
     boosted_from_html: "%{acct_link} jagamine"
     content_warning: 'Sisu hoiatus: %{warning}'
+    content_warnings:
+      hide: Peida postitus
+      show: Näita rohkem
     default_language: Kasutajaliidese keelega sama
     disallowed_hashtags:
-      one: 'sisaldab ebasobivat silti: %{tags}'
-      other: 'sisaldab ebasobivaid silte: %{tags}'
+      one: 'sisaldab ebasobivat teemaviidet: %{tags}'
+      other: 'sisaldab ebasobivaid teemaviiteid: %{tags}'
     edited_at_html: Muudetud %{date}
     errors:
       in_reply_not_found: Postitus, millele üritad vastata, ei näi enam eksisteerivat.
+      quoted_status_not_found: Postitus, mida üritad tsiteerida, ei näi enam eksisteerivat.
+      quoted_user_not_mentioned: Privaatses mainimisega postituses ei saa tsiteerida mittemaninitud kasutajat.
     over_character_limit: tähtmärkide limiit %{max} ületatud
     pin_errors:
       direct: Ei saa kinnitada postitusi, mis on nähtavad vaid mainitud kasutajatele
       limit: Kinnitatud on juba maksimaalne arv postitusi
       ownership: Kellegi teise postitust ei saa kinnitada
       reblog: Jagamist ei saa kinnitada
+    quote_error:
+      not_available: Postitus pole saadaval
+      pending_approval: Postitus on ootel
+      revoked: Autor on postituse eemaldanud
     quote_policies:
       followers: Ainult jälgijad
       nobody: Ainult mina
       public: Kõik
+    quote_post_author: Tsiteeris kasutaja %{acct} postitust
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privaatne mainimine
-      private: Ainult jälgijatele
-      private_long: Näevad ainult jälgijad
+      private: Ainult jälgijad
       public: Avalik
-      public_long: Postitused on kõigile näha
-      unlisted: Ajajooneväline
-      unlisted_long: Kõigile näha, kuid ei näidata avalikel ajajoontel
+      public_long: Nii kasutajad kui mittekasutajad
+      unlisted: Vaikselt avalik
+      unlisted_long: Peidetud Mastodoni otsingutulemustest, pupulaarsust koguva sisu voost ja avalikult ajajoonelt
   statuses_cleanup:
     enabled: Vanade postituste automaatne kustutamine
     enabled_hint: Kustutab automaatselt postitused, mis ületavad määratud ajalimiiti, välja arvatud allpool toodud erandite puhul
@@ -2074,7 +2139,7 @@ et:
         other: "%{people} inimest viimase 2 päeva jooksul"
       hashtags_subtitle: Avasta, mis viimase 2 päeva jooksul on toimunud
       hashtags_title: Populaarsed märksõnad
-      hashtags_view_more: Vaata teisi trendikaid märksõnu
+      hashtags_view_more: Vaata teisi trendikaid teemaviiteid
       post_action: Postita
       post_step: Tervita maailma teksti, fotode, videote või küsitlustega.
       post_title: Tee oma esimene postitus

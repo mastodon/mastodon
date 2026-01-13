@@ -46,11 +46,11 @@ export function importFetchedAccounts(accounts) {
   return importAccounts({ accounts: normalAccounts });
 }
 
-export function importFetchedStatus(status) {
-  return importFetchedStatuses([status]);
+export function importFetchedStatus(status, options = {}) {
+  return importFetchedStatuses([status], options);
 }
 
-export function importFetchedStatuses(statuses) {
+export function importFetchedStatuses(statuses, options = {}) {
   return (dispatch, getState) => {
     const accounts = [];
     const normalStatuses = [];
@@ -58,7 +58,7 @@ export function importFetchedStatuses(statuses) {
     const filters = [];
 
     function processStatus(status) {
-      pushUnique(normalStatuses, normalizeStatus(status, getState().getIn(['statuses', status.id])));
+      pushUnique(normalStatuses, normalizeStatus(status, getState().getIn(['statuses', status.id]), options));
       pushUnique(accounts, status.account);
 
       if (status.filtered) {

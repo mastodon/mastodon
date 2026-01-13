@@ -27,7 +27,7 @@ class DomainAllow < ApplicationRecord
     end
 
     def allowed_domains
-      select(:domain)
+      pluck(:domain)
     end
 
     def rule_for(domain)

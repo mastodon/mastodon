@@ -18,7 +18,7 @@ class AnnualReport::CommonlyInteractedWithAccounts < AnnualReport::Source
   private
 
   def commonly_interacted_with_accounts
-    report_statuses.where.not(in_reply_to_account_id: @account.id).group(:in_reply_to_account_id).having(minimum_interaction_count).order(count_all: :desc).limit(SET_SIZE).count
+    report_statuses.not_replying_to_account(@account).group(:in_reply_to_account_id).having(minimum_interaction_count).order(count_all: :desc).limit(SET_SIZE).count
   end
 
   def minimum_interaction_count

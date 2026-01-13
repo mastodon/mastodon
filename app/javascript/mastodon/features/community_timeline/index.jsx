@@ -10,7 +10,8 @@ import { connect } from 'react-redux';
 import PeopleIcon from '@/material-icons/400-24px/group.svg?react';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import { domain } from 'mastodon/initial_state';
+import { domain, localLiveFeedAccess } from 'mastodon/initial_state';
+import { canViewFeed } from 'mastodon/permissions';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { connectCommunityStream } from '../../actions/streaming';
@@ -120,7 +121,20 @@ class CommunityTimeline extends PureComponent {
 
   render () {
     const { intl, hasUnread, columnId, multiColumn, onlyMedia } = this.props;
+    const { signedIn, permissions } = this.props.identity;
     const pinned = !!columnId;
+
+    const emptyMessage = canViewFeed(signedIn, permissions, localLiveFeedAccess) ? (
+      <FormattedMessage
+        id='empty_column.community'
+        defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!'
+      />
+    ) : (
+      <FormattedMessage
+        id='empty_column.disabled_feed'
+        defaultMessage='This feed has been disabled by your server administrators.'
+      />
+    );
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
@@ -144,7 +158,7 @@ class CommunityTimeline extends PureComponent {
           scrollKey={`community_timeline-${columnId}`}
           timelineId={`community${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
+          emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         />
 

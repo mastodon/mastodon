@@ -54,13 +54,18 @@ tr:
         password: En az 8 karakter kullanın
         phrase: Metnin büyük/küçük harf durumundan veya gönderinin içerik uyarısından bağımsız olarak eşleştirilecek
         scopes: Uygulamanın erişmesine izin verilen API'ler. Üst seviye bir kapsam seçtiyseniz, bireysel kapsam seçmenize gerek yoktur.
+        setting_advanced_layout: Mastodon'u çok sütunlu bir düzen olarak görüntüleyin, böylece zaman akışını, bildirimleri ve seçtiğiniz üçüncü sütunu görüntüleyebilirsiniz. Küçük ekranlar için önerilmez.
         setting_aggregate_reblogs: Yakın zamanda teşvik edilmiş gönderiler için yeni teşvikleri göstermeyin (yalnızca yeni alınan teşvikleri etkiler)
         setting_always_send_emails: Normalde, Mastodon'u aktif olarak kullanırken e-posta bildirimleri gönderilmeyecektir
-        setting_default_quote_policy: Bu ayar yalnızca bir sonraki Mastodon sürümüyle oluşturulan gönderiler için geçerli olacak, ancak hazırlık aşamasında tercihinizi seçebilirsiniz.
+        setting_boost_modal: Etkinleştirildiğinde öne çıkarmanızın görünürlüğünü değiştirebileceğiniz bir onay iletişim kutusu açar.
+        setting_default_quote_policy_private: Mastodon'da sadece takipçilere yönelik gönderiler başkaları tarafından alıntılanamaz.
+        setting_default_quote_policy_unlisted: İnsanlar sizden alıntı yaptığında, onların gönderileri de trend zaman tünellerinden gizlenecektir.
         setting_default_sensitive: Hassas medya varsayılan olarak gizlidir ve bir tıklama ile gösterilebilir
         setting_display_media_default: Hassas olarak işaretlenmiş medyayı gizle
         setting_display_media_hide_all: Medyayı her zaman gizle
         setting_display_media_show_all: Medyayı her zaman göster
+        setting_emoji_style: Emojiler nasıl görüntülensin. "Otomatik" seçeneği yerel emojileri kullanmaya çalışır, ancak eski tarayıcılar için Twemoji'yi kullanır.
+        setting_quick_boosting_html: Etkinleştirildiğinde, %{boost_icon} Öne Çıkar simgesine tıklandığında, öne çıkar/alıntı açılır menüsünü görüntüleme yerine hemen öne çıkarma işlemi gerçekleştirilir. Alıntı işlevi %{options_icon} (Seçenekler) menüsüne taşınır.
         setting_system_scrollbars_ui: Yalnızca Safari ve Chrome tabanlı masaüstü tarayıcılar için geçerlidir
         setting_use_blurhash: Gradyenler gizli görsellerin renklerine dayanır, ancak detayları gizler
         setting_use_pending_items: Akışı otomatik olarak kaydırmak yerine, zaman çizelgesi güncellemelerini tek bir tıklamayla gizleyin
@@ -88,6 +93,7 @@ tr:
         content_cache_retention_period: Diğer sunuculardaki (öne çıkarma ve yanıtlar da dahil olmak üzere) tüm gönderiler belirlenen gün sonunda, yerel bir kullanıcının etkileşimine bakılmadan, silinecektir. Yerel bir kullanıcının yerimlerine veya favorilerine eklediği gönderiler de dahildir. Farklı sunuculardaki kullanıcılar arasındaki özel bahsetmeler de kaybolacak ve geri getirilmeleri mümkün olmayacaktır. Bu ayarın kullanımı özel amaçlı sunucular içindir ve genel amaçlı kullanımda etkinleştirildiğinde kullanıcı beklentilerini karşılamayabilir.
         custom_css: Mastodon'un web sürümüne özel biçimler uygulayabilirsiniz.
         favicon: WEBP, PNG, GIF veya JPG. Varsayılan Mastodon simgesini isteğe bağlı bir simgeyle değiştirir.
+        landing_page: Yeni ziyaretçilerin sunucunuza ilk geldiklerinde görecekleri sayfayı seçer. "Öne çıkanlar" seçeneğini seçerseniz, Keşif Ayarlarında öne çıkanların etkinleştirilmesi gerekir. "Yerel akış" seçeneğini seçerseniz, Keşif Ayarlarında "Yerel gönderileri içeren canlı akışlara erişim" seçeneğinin "Herkes" olarak ayarlanması gerekir.
         mascot: Gelişmiş web arayüzündeki illüstrasyonu geçersiz kılar.
         media_cache_retention_period: Uzak kullanıcıların gönderilerindeki ortam dosyaları sunucunuzda önbelleklenir. Pozitif bir değer verildiğinde, ortam dosyaları belirlenen gün sonunda silinecektir. Eğer ortam dosyaları silindikten sonra istenirse, kaynak içerik hala mevcutsa, tekrar indirilecektir. Bağlantı önizleme kartlarının üçüncü parti siteleri yoklamasına ilişkin kısıtlamalar nedeniyle, bu değeri en azından 14 gün olarak ayarlamanız önerilir, yoksa bağlantı önizleme kartları bu süreden önce isteğe bağlı olarak güncellenmeyecektir.
         min_age: Kullanıcılardan kayıt olurken doğum tarihlerini doğrulamaları istenecektir
@@ -103,10 +109,8 @@ tr:
         status_page_url: İnsanların bir kesinti halinde sunucunun durumunu görebilecekleri bir sayfanın URL'si
         theme: Giriş yapmamış ziyaretçilerin ve yeni kullanıcıların gördüğü tema.
         thumbnail: Sunucu bilginizin yanında gösterilen yaklaşık 2:1'lik görüntü.
-        timeline_preview: Giriş yapmamış ziyaretçiler, sunucuda mevcut olan en son genel gönderileri tarayabilecekler.
         trendable_by_default: Öne çıkan içeriğin elle incelenmesini atla. Tekil öğeler sonrada öne çıkanlardan kaldırılabilir.
         trends: Öne çıkanlar, sunucunuzda ilgi toplayan gönderileri, etiketleri ve haber yazılarını gösterir.
-        trends_as_landing_page: Giriş yapmış kullanıcılar ve ziyaretçilere sunucunun açıklması yerine öne çıkan içeriği göster. Öne çıkanların etkin olması gerekir.
       form_challenge:
         current_password: Güvenli bir bölgeye giriyorsunuz
       imports:
@@ -159,6 +163,10 @@ tr:
         name: Rolün, eğer rozet olarak görüntülenmesi ayarlandıysa kullanılacak herkese açık ismi
         permissions_as_keys: Bu role sahip kullanıcıların şunlara erişimi var...
         position: Belirli durumlarda çatışmayı çözmek için daha yüksek rol belirleyicidir. Bazı eylemler ancak daha düşük öncelikteki rollere uygulanabilir
+      username_block:
+        allow_with_approval: Kayıt işlemini tamamen engellemek yerine, eşleşen kayıtlar onayınızı gerektirecektir
+        comparison: Kısmi eşleşmeleri engellerken lütfen Scunthorpe Problemini aklınızda bulundurun
+        username: '"a" için "4" veya "e" için "3" gibi büyük/küçük harfe ve yaygın homogliflere bakılmaksızın eşleştirilecektir'
       webhook:
         events: Gönderilecek etkinlikleri seçin
         template: Değişken değerleme kullanarak kendi JSON yükünüzü oluşturun. Varsayılan JSON için boş bırakın.
@@ -229,21 +237,23 @@ tr:
         setting_aggregate_reblogs: Zaman çizelgesindeki boostları grupla
         setting_always_send_emails: Her zaman e-posta bildirimleri gönder
         setting_auto_play_gif: Hareketli GIF'leri otomatik oynat
-        setting_boost_modal: Paylaşmadan önce onay iletişim kutusu göster
+        setting_boost_modal: Öne çıkarma görünürlüğünü denetleyin
         setting_default_language: Gönderi dili
-        setting_default_privacy: Gönderi gizliliği
+        setting_default_privacy: Gönderi görünürlüğü
         setting_default_quote_policy: Kimler alıntılayabilir
         setting_default_sensitive: Medyayı her zaman hassas olarak işaretle
-        setting_delete_modal: Bir gönderiyi silmeden önce onay iletişim kutusu göster
+        setting_delete_modal: Bir gönderiyi silmeden beni uyar
         setting_disable_hover_cards: Üstüne geldiğinde profil önizlemesini devre dışı bırak
         setting_disable_swiping: Kaydırma hareketlerini devre dışı bırak
         setting_display_media: Medya görüntüleme
         setting_display_media_default: Varsayılan
         setting_display_media_hide_all: Tümünü gizle
         setting_display_media_show_all: Tümünü göster
+        setting_emoji_style: Emoji stili
         setting_expand_spoilers: İçerik uyarılarıyla işaretli gönderileri her zaman genişlet
         setting_hide_network: Sosyal grafiğini gizle
-        setting_missing_alt_text_modal: Alternatif metni olmayan medya göndermeden önce onay sorusu göster
+        setting_missing_alt_text_modal: Alternatif metni olmayan bir medya göndermeden önce beni uyar
+        setting_quick_boosting: Hızlı öne çıkarmayı etkinleştir
         setting_reduce_motion: Animasyonlarda hareketi azalt
         setting_system_font_ui: Sistemin varsayılan yazı tipini kullan
         setting_system_scrollbars_ui: Sistemin varsayılan kaydırma çubuğunu kullan
@@ -277,12 +287,17 @@ tr:
         content_cache_retention_period: Uzak içerik saklama süresi
         custom_css: Özel CSS
         favicon: Yer imi simgesi
+        landing_page: Yeni ziyaretçiler için giriş sayfası
+        local_live_feed_access: Yerel gönderileri ön plana çıkaran canlı akışlara erişim
+        local_topic_feed_access: Yerel gönderileri ön plana çıkaran etiket ve bağlantı akışlarına erişim
         mascot: Özel maskot (eski)
         media_cache_retention_period: Medya önbelleği saklama süresi
         min_age: Azami yaş gereksinimi
         peers_api_enabled: API'de keşfedilen sunucuların listesini yayınla
         profile_directory: Profil dizinini etkinleştir
         registrations_mode: Kim kaydolabilir
+        remote_live_feed_access: Uzaktan gönderileri ön plana çıkaran canlı akışlara erişim
+        remote_topic_feed_access: Uzaktan gönderileri ön plana çıkaran etiket ve bağlantı akışlarına erişim
         require_invite_text: Katılmak için bir gerekçe iste
         show_domain_blocks: Engellenen alan adlarını göster
         show_domain_blocks_rationale: Alan adlarının neden engellendiğini göster
@@ -295,10 +310,8 @@ tr:
         status_page_url: Durum sayfası URL'si
         theme: Öntanımlı tema
         thumbnail: Sunucu küçük resmi
-        timeline_preview: Genel zaman çizelgelerine yetkisiz erişime izin ver
         trendable_by_default: Ön incelemesiz öne çıkanlara izin ver
         trends: Öne çıkanları etkinleştir
-        trends_as_landing_page: Giriş sayfası olarak öne çıkanları kullan
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle
@@ -323,6 +336,7 @@ tr:
         follow_request: Biri seni takip etmek istedi
         mention: Birisi senden bahsetti
         pending_account: Yeni hesabın incelenmesi gerekiyor
+        quote: Birisi senden alıntı yaptı
         reblog: Birisi gönderini boostladı
         report: Yeni rapor gönderildi
         software_updates:
@@ -369,6 +383,10 @@ tr:
         name: Ad
         permissions_as_keys: İzinler
         position: Öncelik
+      username_block:
+        allow_with_approval: Onay ile kayıtlara izin ver
+        comparison: Karşılaştırma yöntemi
+        username: Eşleşecek kelime
       webhook:
         events: Etkin olaylar
         template: Yük şablonu

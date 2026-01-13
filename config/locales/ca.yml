@@ -190,6 +190,7 @@ ca:
         create_relay: Crea un repetidor
         create_unavailable_domain: Crea un domini no disponible
         create_user_role: Crea Rol
+        create_username_block: Crear regla de nom d'usuari
         demote_user: Degrada l'usuari
         destroy_announcement: Esborra l'anunci
         destroy_canonical_email_block: Elimina el blocatge del correu electrònic
@@ -203,6 +204,7 @@ ca:
         destroy_status: Elimina la publicació
         destroy_unavailable_domain: Esborra domini no disponible
         destroy_user_role: Destrueix Rol
+        destroy_username_block: Eliminar regla de nom d'usuari
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
         disable_relay: Desactiva el repetidor
@@ -237,6 +239,7 @@ ca:
         update_report: Actualitza l'informe
         update_status: Actualitza l'estat
         update_user_role: Actualitza Rol
+        update_username_block: Actualitzar regla de nom d'usuari
       actions:
         approve_appeal_html: "%{name} ha aprovat l'apel·lació a la decisió de moderació de %{target}"
         approve_user_html: "%{name} ha aprovat el registre de %{target}"
@@ -583,6 +586,7 @@ ca:
         created_msg: S'ha creat la nota de moderació d'instància.
         description_html: Mireu i deixeu notes per als altres moderadors i per a un mateix
         destroyed_msg: S'ha esborrat la nota de moderació d'instància.
+        placeholder: Informació sobre aquesta instància, accions preses o qualsevol altra cosa que us pugui ajudar a moderar-la en el futur.
         title: Notes de moderació
       private_comment: Comentari privat
       public_comment: Comentari públic
@@ -829,7 +833,6 @@ ca:
         title: Exclou per defecte els usuaris de la indexació dels motors de cerca
       discovery:
         follow_recommendations: Seguir les recomanacions
-        preamble: L'aparició de contingut interessant és fonamental per atraure els nous usuaris que podrien no saber res de Mastodon. Controla com funcionen diverses opcions de descobriment en el teu servidor.
         privacy: Privacitat
         profile_directory: Directori de perfils
         public_timelines: Línies de temps públiques
@@ -893,6 +896,7 @@ ca:
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
       open: Obre la publicació
       original_status: Publicació original
+      quotes: Cites
       reblogs: Impulsos
       replied_to_html: En resposta a %{acct_link}
       status_changed: Publicació canviada
@@ -900,6 +904,7 @@ ca:
       title: Publicacions del compte - @%{name}
       trending: Tendència
       view_publicly: Vegeu en públic
+      view_quoted_post: Veure la publicació citada
       visibility: Visibilitat
       with_media: Amb contingut multimèdia
     strikes:
@@ -1083,6 +1088,24 @@ ca:
           other: Emprat per %{count} persones en la darrera setmana
       title: Recomanacions i tendències
       trending: Tendència
+    username_blocks:
+      add_new: Afegeix-ne una de nova
+      comparison:
+        contains: Conté
+        equals: És igual a
+      contains_html: Conté %{string}
+      created_msg: Creada una regla de nom d'usuari
+      delete: Elimina
+      edit:
+        title: Editar regla de nom d'usuari
+      matches_exactly_html: És igual a %{string}
+      new:
+        create: Crea una regla
+        title: Crear nova regla de nom d'usuari
+      no_username_block_selected: No s'ha canviat cap regla de nom d'usuari perquè no se n'havia seleccionat cap
+      not_permitted: No permés
+      title: Regles de nom d'usuari
+      updated_msg: Actualitzada una regla de nom d'usuari
     warning_presets:
       add_new: Afegir-ne un de nou
       delete: Elimina
@@ -1155,10 +1178,7 @@ ca:
     hint_html: Si et vols moure des d'un altre compte a aquest, aquí pots crear un àlies, el qual és requerit abans que puguis procedir a moure els seguidors del compte vell a aquest. Aquesta acció és per si mateixa <strong>inofensiva i reversible</strong>. <strong>La migració del compte és iniciada des de'l compte vell</strong>.
     remove: Desvincula l'àlies
   appearance:
-    advanced_web_interface: Interfície web avançada
-    advanced_web_interface_hint: 'Si vols fer ús de tota l''amplada de la teva pantalla, la interfície web avançada et permet configurar diverses columnes per a veure molta més informació al mateix temps: Inici, notificacions, línia de temps federada i qualsevol quantitat de llistes i etiquetes.'
     animations_and_accessibility: Animacions i accessibilitat
-    confirmation_dialogs: Diàlegs de confirmació
     discovery: Descobriment
     localization:
       body: Mastodon és traduït per voluntaris.
@@ -1347,6 +1367,10 @@ ca:
     basic_information: Informació bàsica
     hint_html: "<strong>Personalitza el que la gent veu en el teu perfil públic i a prop dels teus tuts..</strong> És més probable que altres persones et segueixin i interaccionin amb tu quan tens emplenat el teu perfil i amb la teva imatge."
     other: Altres
+  emoji_styles:
+    auto: Automàtic
+    native: Nadiu
+    twemoji: Twemoji
   errors:
     '400': La sol·licitud que vas emetre no era vàlida o no era correcta.
     '403': No tens permís per a veure aquesta pàgina.
@@ -1556,6 +1580,13 @@ ca:
       expires_at: Caduca
       uses: Usos
     title: Convidar persones
+  link_preview:
+    author_html: Per %{name}
+    potentially_sensitive_content:
+      action: Feu clic per a mostrar
+      confirm_visit: Esteu segur que voleu obrir aquest enllaç?
+      hide_button: Amaga
+      label: Contingut potencialment sensible
   lists:
     errors:
       limit: Has assolit la quantitat màxima de llistes
@@ -1656,6 +1687,10 @@ ca:
       title: Nova menció
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
+    quote:
+      body: 'La vostra publicació ha estat citada per %{name}:'
+      subject: "%{name} ha citat la vostra publicació"
+      title: Nova citació
     reblog:
       body: "%{name} ha impulsat el teu estat:"
       subject: "%{name} ha impulsat el teu estat"
@@ -1860,6 +1895,9 @@ ca:
         other: "%{count} vídeos"
     boosted_from_html: Impulsat des de %{acct_link}
     content_warning: 'Avís de contingut: %{warning}'
+    content_warnings:
+      hide: Amaga la publicació
+      show: Mostra'n més
     default_language: El mateix que a la llengua de la interfície
     disallowed_hashtags:
       one: 'conté una etiqueta no permesa: %{tags}'
@@ -1867,25 +1905,29 @@ ca:
     edited_at_html: Editat %{date}
     errors:
       in_reply_not_found: El tut al qual intentes respondre sembla que no existeix.
+      quoted_status_not_found: Sembla que la publicació que vols citar no existeix.
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
       direct: Els tuts que només són visibles per als usuaris mencionats no poden ser fixats
       limit: Ja has fixat el màxim nombre de tuts
       ownership: No es pot fixar el tut d'algú altre
       reblog: No es pot fixar un impuls
+    quote_error:
+      not_available: Publicació no disponible
+      pending_approval: Publicació pendent
+      revoked: Publicació eliminada per l'autor
     quote_policies:
       followers: Només seguidors
       nobody: Només jo
       public: Qualsevol
+    quote_post_author: S'ha citat una publicació de @%{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Menció privada
       private: Només seguidors
-      private_long: Mostra només als seguidors
       public: Públic
-      public_long: Tothom pot veure-ho
-      unlisted: No llistat
-      unlisted_long: Tothom ho pot veure, però no es mostra en les línies de temps públiques
+      public_long: Tothom dins o fora Mastodon
+      unlisted_long: Amagat dels resultats de cerca de Mastodon, de les tendències i de les línies temporals
   statuses_cleanup:
     enabled: Esborra automàticament tuts antics
     enabled_hint: Suprimeix automàticament els teus tuts quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents

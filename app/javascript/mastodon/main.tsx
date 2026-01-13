@@ -2,10 +2,10 @@ import { createRoot } from 'react-dom/client';
 
 import { Globals } from '@react-spring/web';
 
+import * as perf from '@/mastodon/utils/performance';
 import { setupBrowserNotifications } from 'mastodon/actions/notifications';
 import Mastodon from 'mastodon/containers/mastodon';
 import { me, reduceMotion } from 'mastodon/initial_state';
-import * as perf from 'mastodon/performance';
 import ready from 'mastodon/ready';
 import { store } from 'mastodon/store';
 
@@ -28,6 +28,9 @@ function main() {
         skipAnimation: true,
       });
     }
+
+    const { initializeEmoji } = await import('./features/emoji/index');
+    initializeEmoji();
 
     const root = createRoot(mountNode);
     root.render(<Mastodon {...props} />);
@@ -52,9 +55,8 @@ function main() {
         'Notification' in window &&
         Notification.permission === 'granted'
       ) {
-        const registerPushNotifications = await import(
-          'mastodon/actions/push_notifications'
-        );
+        const registerPushNotifications =
+          await import('mastodon/actions/push_notifications');
 
         store.dispatch(registerPushNotifications.register());
       }

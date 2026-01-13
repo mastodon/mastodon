@@ -467,6 +467,9 @@ br:
         not_usable: N'haller ket en implijout
         title: Gerioù-klik diouzh ar c'hiz
       trending: Diouzh ar c'hiz
+    username_blocks:
+      add_new: Ouzhpennañ unan nevez
+      delete: Dilemel
     warning_presets:
       add_new: Ouzhpennañ unan nevez
       delete: Dilemel
@@ -571,6 +574,9 @@ br:
   edit_profile:
     basic_information: Titouroù diavaez
     other: All
+  emoji_styles:
+    auto: Emgefreek
+    twemoji: Twemoji
   exports:
     archive_takeout:
       date: Deiziad
@@ -680,6 +686,10 @@ br:
       title: Heulier nevez
     mention:
       action: Respont
+    quote:
+      body: 'Meneget eo bet hoc''h embannadur gant %{name}:'
+      subject: Gant %{name} eo bet meneget hoc'h embannadur
+      title: Meneg nevez
     reblog:
       body: 'Skignet eo bet hoc''h embannadur gant %{name}:'
       subject: 'Gant %{name} eo bet skignet hoc''h embannadur '
@@ -797,6 +807,8 @@ br:
         other: "%{count} skeudenn"
         two: "%{count} skeudenn"
     edited_at_html: Kemmet d'an %{date}
+    errors:
+      quoted_status_not_found: War a seblant, n'eus ket eus an embannadenn emaoc'h o klask menegiñ.
     pin_errors:
       ownership: N'hallit ket spilhennañ embannadurioù ar re all
       reblog: N'haller ket spilhennañ ur skignadenn
@@ -807,10 +819,7 @@ br:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Meneg prevez
-      private: Heulierien·ezed hepken
       public: Publik
-      public_long: Pep hini a c'hall gwelet
-      unlisted: Anlistennet
   statuses_cleanup:
     keep_direct: Mirout ar c'hannadoù eeun
     keep_media: Derc'hel an embannadurioù gant restroù stag

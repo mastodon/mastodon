@@ -2,25 +2,19 @@ import { useCallback, useMemo } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
-import classNames from 'classnames';
 import { useHistory } from 'react-router-dom';
 
 import OpenInNewIcon from '@/material-icons/400-24px/open_in_new.svg?react';
-import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
 import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import ReplyAllIcon from '@/material-icons/400-24px/reply_all.svg?react';
 import StarIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import StarBorderIcon from '@/material-icons/400-24px/star.svg?react';
-import RepeatActiveIcon from '@/svg-icons/repeat_active.svg?react';
-import RepeatDisabledIcon from '@/svg-icons/repeat_disabled.svg?react';
-import RepeatPrivateIcon from '@/svg-icons/repeat_private.svg?react';
-import RepeatPrivateActiveIcon from '@/svg-icons/repeat_private_active.svg?react';
 import { replyCompose } from 'mastodon/actions/compose';
-import { toggleReblog, toggleFavourite } from 'mastodon/actions/interactions';
+import { toggleFavourite } from 'mastodon/actions/interactions';
 import { openModal } from 'mastodon/actions/modal';
 import { IconButton } from 'mastodon/components/icon_button';
+import { BoostButton } from 'mastodon/components/status/boost_button';
 import { useIdentity } from 'mastodon/identity_context';
-import { me } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 import type { Status } from 'mastodon/models/status';
 import { makeGetStatus } from 'mastodon/selectors';
@@ -33,7 +27,7 @@ const messages = defineMessages({
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
   reblog_private: {
     id: 'status.reblog_private',
-    defaultMessage: 'Boost with original visibility',
+    defaultMessage: 'Share again with your followers',
   },
   cancel_reblog_private: {
     id: 'status.cancel_reblog_private',
@@ -92,7 +86,6 @@ export const Footer: React.FC<{
         openModal({
           modalType: 'INTERACTION',
           modalProps: {
-            type: 'reply',
             accountId: status.getIn(['account', 'id']),
             url: status.get('uri'),
           },
@@ -113,7 +106,6 @@ export const Footer: React.FC<{
         openModal({
           modalType: 'INTERACTION',
           modalProps: {
-            type: 'favourite',
             accountId: status.getIn(['account', 'id']),
             url: status.get('uri'),
           },
@@ -121,30 +113,6 @@ export const Footer: React.FC<{
       );
     }
   }, [dispatch, status, signedIn]);
-
-  const handleReblogClick = useCallback(
-    (e: React.MouseEvent) => {
-      if (!status) {
-        return;
-      }
-
-      if (signedIn) {
-        dispatch(toggleReblog(status.get('id'), e.shiftKey));
-      } else {
-        dispatch(
-          openModal({
-            modalType: 'INTERACTION',
-            modalProps: {
-              type: 'reblog',
-              accountId: status.getIn(['account', 'id']),
-              url: status.get('uri'),
-            },
-          }),
-        );
-      }
-    },
-    [dispatch, status, signedIn],
-  );
 
   const handleOpenClick = useCallback(
     (e: React.MouseEvent) => {
@@ -163,13 +131,6 @@ export const Footer: React.FC<{
     return null;
   }
 
-  const publicStatus = ['public', 'unlisted'].includes(
-    status.get('visibility') as string,
-  );
-  const reblogPrivate =
-    status.getIn(['account', 'id']) === me &&
-    status.get('visibility') === 'private';
-
   let replyIcon, replyIconComponent, replyTitle;
 
   if (status.get('in_reply_to_id', null) === null) {
@@ -180,24 +141,6 @@ export const Footer: React.FC<{
     replyIcon = 'reply-all';
     replyIconComponent = ReplyAllIcon;
     replyTitle = intl.formatMessage(messages.replyAll);
-  }
-
-  let reblogTitle, reblogIconComponent;
-
-  if (status.get('reblogged')) {
-    reblogTitle = intl.formatMessage(messages.cancel_reblog_private);
-    reblogIconComponent = publicStatus
-      ? RepeatActiveIcon
-      : RepeatPrivateActiveIcon;
-  } else if (publicStatus) {
-    reblogTitle = intl.formatMessage(messages.reblog);
-    reblogIconComponent = RepeatIcon;
-  } else if (reblogPrivate) {
-    reblogTitle = intl.formatMessage(messages.reblog_private);
-    reblogIconComponent = RepeatPrivateIcon;
-  } else {
-    reblogTitle = intl.formatMessage(messages.cannot_reblog);
-    reblogIconComponent = RepeatDisabledIcon;
   }
 
   const favouriteTitle = intl.formatMessage(
@@ -225,16 +168,7 @@ export const Footer: React.FC<{
         counter={status.get('replies_count') as number}
       />
 
-      <IconButton
-        className={classNames('status__action-bar-button', { reblogPrivate })}
-        disabled={!publicStatus && !reblogPrivate}
-        active={status.get('reblogged') as boolean}
-        title={reblogTitle}
-        icon='retweet'
-        iconComponent={reblogIconComponent}
-        onClick={handleReblogClick}
-        counter={status.get('reblogs_count') as number}
-      />
+      <BoostButton counters status={status} />
 
       <IconButton
         className='status__action-bar-button star-icon'

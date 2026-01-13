@@ -6,6 +6,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 import { Icon }  from 'mastodon/components/icon';
+import { DisplayName } from '@/mastodon/components/display_name';
 
 export default class FollowRequestNote extends ImmutablePureComponent {
 
@@ -19,7 +20,7 @@ export default class FollowRequestNote extends ImmutablePureComponent {
     return (
       <div className='follow-request-banner'>
         <div className='follow-request-banner__message'>
-          <FormattedMessage id='account.requested_follow' defaultMessage='{name} has requested to follow you' values={{ name: <bdi><strong dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} /></bdi> }} />
+          <FormattedMessage id='account.requested_follow' defaultMessage='{name} has requested to follow you' values={{ name: <DisplayName account={account} variant='simple' /> }} />
         </div>
 
         <div className='follow-request-banner__action'>

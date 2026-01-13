@@ -18,11 +18,6 @@
               wrapper: :with_label
 
   .fields-group
-    = f.input :trends_as_landing_page,
-              as: :boolean,
-              wrapper: :with_label
-
-  .fields-group
     = f.input :trendable_by_default,
               as: :boolean,
               wrapper: :with_label,
@@ -30,10 +25,35 @@
 
   %h4= t('admin.settings.discovery.public_timelines')
 
-  .fields-group
-    = f.input :timeline_preview,
-              as: :boolean,
-              wrapper: :with_label
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :local_live_feed_access,
+                collection: f.object.class::FEED_ACCESS_MODES,
+                include_blank: false,
+                label_method: ->(mode) { I18n.t("admin.settings.feed_access.modes.#{mode}") },
+                wrapper: :with_label
+
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :remote_live_feed_access,
+                collection: f.object.class::FEED_ACCESS_MODES,
+                include_blank: false,
+                label_method: ->(mode) { I18n.t("admin.settings.feed_access.modes.#{mode}") },
+                wrapper: :with_label
+
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :local_topic_feed_access,
+                collection: f.object.class::ALTERNATE_FEED_ACCESS_MODES,
+                include_blank: false,
+                label_method: ->(mode) { I18n.t("admin.settings.feed_access.modes.#{mode}") },
+                wrapper: :with_label
+
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :remote_topic_feed_access,
+                collection: f.object.class::FEED_ACCESS_MODES,
+                include_blank: false,
+                label_method: ->(mode) { I18n.t("admin.settings.feed_access.modes.#{mode}") },
+                wrapper: :with_label
 
   %h4= t('admin.settings.discovery.privacy')
 

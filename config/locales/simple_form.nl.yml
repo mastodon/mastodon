@@ -54,13 +54,18 @@ nl:
         password: Gebruik tenminste 8 tekens
         phrase: Komt overeen ongeacht hoofd-/kleine letters of een inhoudswaarschuwing
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
+        setting_advanced_layout: Geef Mastodon in meerdere kolommen weer, waarmee je jouw tijdlijn, meldingen en een derde kolom naar keuze in een opslag kunt bekijken. Niet aanbevolen voor kleinere schermen.
         setting_aggregate_reblogs: Geen nieuwe boosts tonen voor berichten die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
         setting_always_send_emails: Normaliter worden er geen e-mailmeldingen verstuurd wanneer je actief Mastodon gebruikt
-        setting_default_quote_policy: Deze instelling is alleen van kracht voor berichten die gemaakt zijn met de volgende Mastodon-versie, maar je kunt je voorkeur nu alvast instellen.
+        setting_boost_modal: Wanneer dit is ingeschakeld, krijg je eerst een bevestigingsvenster te zien waarmee je de zichtbaarheid van je boost kunt wijzigen.
+        setting_default_quote_policy_private: Berichten aan alleen volgers afkomstig van Mastodon kunnen niet door anderen worden geciteerd.
+        setting_default_quote_policy_unlisted: Wanneer mensen jou citeren, verschijnt hun bericht ook niet onder trends.
         setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
         setting_display_media_show_all: Media altijd tonen
+        setting_emoji_style: Waarmee moeten emojis worden weergegeven. ‘Auto’ probeert de systeemeigen emojis te gebruiken, maar valt terug op Twemoji voor oudere webbrowsers.
+        setting_quick_boosting_html: Wanneer dit is ingeschakeld, boost je in één keer wanneer je op het %{boost_icon} boostpictogram klikt en verplaatst de citeeroptie zich naar het %{options_icon} optiemenu. Wanneer dit is uitgeschakeld krijg je gelijk de mogelijkheid om te boosten of te citeren.
         setting_system_scrollbars_ui: Alleen van toepassing op desktopbrowsers gebaseerd op Safari en Chrome
         setting_use_blurhash: Wazige kleurovergangen zijn gebaseerd op de kleuren van de verborgen media, waarmee elk detail verdwijnt
         setting_use_pending_items: De tijdlijn wordt bijgewerkt door op het aantal nieuwe items te klikken, in plaats van dat deze automatisch wordt bijgewerkt
@@ -88,6 +93,7 @@ nl:
         content_cache_retention_period: Alle berichten van andere servers (inclusief boosts en reacties) worden verwijderd na het opgegeven aantal dagen, ongeacht enige lokale gebruikersinteractie met die berichten. Dit betreft ook berichten die een lokale gebruiker aan diens bladwijzers heeft toegevoegd of als favoriet heeft gemarkeerd. Privéberichten tussen gebruikers van verschillende servers gaan ook verloren en zijn onmogelijk te herstellen. Het gebruik van deze instelling is bedoeld voor servers die een speciaal doel dienen en overtreedt veel gebruikersverwachtingen wanneer deze voor algemeen gebruik wordt geïmplementeerd.
         custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze Mastodon-server.
         favicon: WEBP, PNG, GIF of JPG. Vervangt de standaard Mastodon favicon met een aangepast pictogram.
+        landing_page: Selecteert welke pagina nieuwe bezoekers te zien krijgen wanneer ze voor het eerst op jouw server terechtkomen. Wanneer je ‘Trends’ selecteert, moeten trends ingeschakeld zijn onder 'Serverinstellingen > Ontdekken'. Als je ‘Lokale tijdlijn’ selecteert, moet ‘Toegang tot openbare lokale berichten’ worden ingesteld op ‘Iedereen’ onder 'Serverinstellingen > Ontdekken'.
         mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
         media_cache_retention_period: Mediabestanden van berichten van externe gebruikers worden op jouw server in de cache opgeslagen. Indien ingesteld op een positieve waarde, worden media verwijderd na het opgegeven aantal dagen. Als de mediagegevens worden opgevraagd nadat ze zijn verwijderd, worden ze opnieuw gedownload wanneer de originele inhoud nog steeds beschikbaar is. Vanwege beperkingen op hoe vaak linkvoorbeelden sites van derden raadplegen, wordt aanbevolen om deze waarde in te stellen op ten minste 14 dagen. Anders worden linkvoorbeelden niet op aanvraag bijgewerkt.
         min_age: Gebruikers krijgen tijdens hun inschrijving de vraag om hun geboortedatum te bevestigen
@@ -103,10 +109,8 @@ nl:
         status_page_url: URL van een pagina waar mensen de status van deze server kunnen zien tijdens een storing
         theme: Thema die (niet ingelogde) bezoekers en nieuwe gebruikers zien.
         thumbnail: Een afbeelding van ongeveer een verhouding van 2:1 die naast jouw serverinformatie wordt getoond.
-        timeline_preview: Bezoekers (die niet zijn ingelogd) kunnen de meest recente, op de server aanwezige openbare berichten bekijken.
         trendable_by_default: Handmatige beoordeling van trends overslaan. Individuele items kunnen later alsnog worden afgekeurd.
         trends: Trends laten zien welke berichten, hashtags en nieuwsberichten op jouw server aan populariteit winnen.
-        trends_as_landing_page: Toon trending inhoud aan uitgelogde gebruikers en bezoekers in plaats van een beschrijving van deze server. Vereist dat trends zijn ingeschakeld.
       form_challenge:
         current_password: Je betreedt een veilige omgeving
       imports:
@@ -159,6 +163,10 @@ nl:
         name: Openbare naam van de rol, wanneer de rol als badge op profielpagina's wordt getoond
         permissions_as_keys: Gebruikers met deze rol hebben toegang tot...
         position: Een hogere rol beslist in bepaalde situaties over het oplossen van conflicten. Bepaalde acties kunnen alleen worden uitgevoerd op rollen met een lagere prioriteit
+      username_block:
+        allow_with_approval: In plaats van dat het registreren helemaal wordt voorkomen, zullen overeenkomstige registraties jouw goedkeuring vereisen
+        comparison: Houd rekening met het Scunthorpe-probleem wanneer je gedeeltelijke overeenkomsten blokkeert
+        username: Wordt gezien als overeenkomst ongeacht de lettergrootte en gangbare lettervervangingen zoals "4" voor "a" of "3" voor "e"
       webhook:
         events: Selecteer de te verzenden gebeurtenissen
         template: Maak een eigen JSON payload aan met variabele interpolatie. Laat leeg voor standaard JSON.
@@ -229,21 +237,23 @@ nl:
         setting_aggregate_reblogs: Boosts in tijdlijnen groeperen
         setting_always_send_emails: Altijd e-mailmeldingen verzenden
         setting_auto_play_gif: Geanimeerde GIF's automatisch afspelen
-        setting_boost_modal: Vraag voor het boosten van een bericht een bevestiging
+        setting_boost_modal: Zichtbaarheid van boosts
         setting_default_language: Taal van berichten
-        setting_default_privacy: Privacy voor nieuwe berichten
+        setting_default_privacy: Zichtbaarheid van nieuwe berichten
         setting_default_quote_policy: Wie mag jou citeren
         setting_default_sensitive: Media altijd als gevoelig markeren
-        setting_delete_modal: Vraag voor het verwijderen van een bericht een bevestiging
+        setting_delete_modal: Waarschuw mij wanneer ik een bericht probeer te verwijderen
         setting_disable_hover_cards: Hover-kaarten met profielvoorbeelden uitschakelen
         setting_disable_swiping: Swipebewegingen uitschakelen
         setting_display_media: Mediaweergave
         setting_display_media_default: Standaard
         setting_display_media_hide_all: Alles verbergen
         setting_display_media_show_all: Alles tonen
+        setting_emoji_style: Emoji-stijl
         setting_expand_spoilers: Berichten met inhoudswaarschuwingen altijd uitklappen
         setting_hide_network: Jouw volgers en wie je volgt verbergen
-        setting_missing_alt_text_modal: Bevestigingsvenster tonen voor het plaatsen van media zonder alt-tekst
+        setting_missing_alt_text_modal: Waarschuw mij wanneer ik een bericht zonder alt-tekst probeer te plaatsen
+        setting_quick_boosting: Snel boosten inschakelen
         setting_reduce_motion: Beweging in animaties verminderen
         setting_system_font_ui: Standaardlettertype van het systeem gebruiken
         setting_system_scrollbars_ui: Standaard scrollbalk van het systeem gebruiken
@@ -277,12 +287,17 @@ nl:
         content_cache_retention_period: Bewaartermijn voor externe inhoud
         custom_css: Aangepaste CSS
         favicon: Favicon
+        landing_page: Landingspagina voor nieuwe bezoekers
+        local_live_feed_access: Toegang tot openbare lokale berichten
+        local_topic_feed_access: Toegang tot overzicht met lokale hashtags en links
         mascot: Aangepaste mascotte (legacy)
         media_cache_retention_period: Bewaartermijn mediacache
         min_age: Vereiste minimumleeftijd
         peers_api_enabled: Lijst van bekende servers via de API publiceren
         profile_directory: Gebruikersgids inschakelen
         registrations_mode: Wie kan zich registreren
+        remote_live_feed_access: Toegang tot openbare berichten van andere servers
+        remote_topic_feed_access: Toegang tot overzicht met hashtags en links van andere servers
         require_invite_text: Opgeven van een reden is verplicht
         show_domain_blocks: Domeinblokkades tonen
         show_domain_blocks_rationale: Redenen voor domeinblokkades tonen
@@ -295,10 +310,8 @@ nl:
         status_page_url: URL van statuspagina
         theme: Standaardthema
         thumbnail: Server-miniatuur
-        timeline_preview: Toegang tot de openbare tijdlijnen zonder in te loggen toestaan
         trendable_by_default: Trends goedkeuren zonder voorafgaande beoordeling
         trends: Trends inschakelen
-        trends_as_landing_page: Laat trends op de startpagina zien
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
@@ -323,6 +336,7 @@ nl:
         follow_request: Wanneer iemand jou wil volgen
         mention: Je bent door iemand vermeld
         pending_account: Wanneer een nieuw account moet worden beoordeeld
+        quote: Iemand heeft jou geciteerd
         reblog: Wanneer iemand jouw bericht heeft geboost
         report: Nieuwe rapportage is ingediend
         software_updates:
@@ -369,6 +383,10 @@ nl:
         name: Naam
         permissions_as_keys: Rechten
         position: Prioriteit
+      username_block:
+        allow_with_approval: Registraties met goedkeuring toestaan
+        comparison: Methode van vergelijking
+        username: Overeen te komen woord
       webhook:
         events: Ingeschakelde gebeurtenissen
         template: Sjabloon Payload

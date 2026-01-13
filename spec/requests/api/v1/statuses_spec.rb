@@ -133,6 +133,21 @@ RSpec.describe '/api/v1/statuses' do
         expect(response).to have_http_status(200)
         expect(response.content_type)
           .to start_with('application/json')
+        expect(response.headers['Mastodon-Async-Refresh']).to be_nil
+      end
+
+      context 'with a remote status' do
+        let(:status) { Fabricate(:status, account: Fabricate(:account, domain: 'example.com'), created_at: 1.hour.ago, updated_at: 1.hour.ago) }
+
+        it 'returns http success and queues discovery of new posts' do
+          expect { get "/api/v1/statuses/#{status.id}/context", headers: headers }
+            .to enqueue_sidekiq_job(ActivityPub::FetchAllRepliesWorker)
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.headers['Mastodon-Async-Refresh']).to match(/result_count=0/)
+        end
       end
     end
 
@@ -153,6 +168,183 @@ RSpec.describe '/api/v1/statuses' do
           expect(response).to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
+        end
+      end
+
+      context 'without a quote policy' do
+        let(:user) do
+          Fabricate(:user, settings: { default_quote_policy: 'followers' })
+        end
+
+        it 'returns post with user default quote policy, as well as rate limit headers', :aggregate_failures do
+          subject
+          expect(user.setting_default_quote_policy).to eq 'followers'
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:quote_approval]).to include({
+            automatic: ['followers'],
+            manual: [],
+            current_user: 'automatic',
+          })
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
+        end
+      end
+
+      context 'without a quote policy and the user defaults to nobody' do
+        let(:user) do
+          Fabricate(:user, settings: { default_quote_policy: 'nobody' })
+        end
+
+        it 'returns post with user default quote policy, as well as rate limit headers', :aggregate_failures do
+          subject
+          expect(user.setting_default_quote_policy).to eq 'nobody'
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:quote_approval]).to include({
+            automatic: [],
+            manual: [],
+            current_user: 'automatic',
+          })
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
+        end
+      end
+
+      context 'with a quote policy' do
+        let(:quoted_status) { Fabricate(:status, account: user.account) }
+        let(:params) do
+          {
+            status: 'Hello world, this is a self-quote',
+            quote_approval_policy: 'followers',
+          }
+        end
+
+        it 'returns post with appropriate quote policy, as well as rate limit headers', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:quote_approval]).to include({
+            automatic: ['followers'],
+            manual: [],
+            current_user: 'automatic',
+          })
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
+        end
+      end
+
+      context 'with a self-quote post' do
+        let!(:quoted_status) { Fabricate(:status, account: user.account) }
+        let(:params) do
+          {
+            status: 'Hello world, this is a self-quote',
+            quoted_status_id: quoted_status.id,
+          }
+        end
+
+        it 'returns a quote post, as well as rate limit headers', :aggregate_failures do
+          expect { subject }.to change(user.account.statuses, :count).by(1)
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:quote]).to be_present
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
+        end
+      end
+
+      context 'with a quote to a non-mentioned user in a Private Mention' do
+        let!(:quoted_status) { Fabricate(:status, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+        let(:params) do
+          {
+            status: 'Hello, this is a quote',
+            quoted_status_id: quoted_status.id,
+            visibility: :direct,
+          }
+        end
+
+        it 'returns an error and does not create a post', :aggregate_failures do
+          expect { subject }.to_not change(user.account.statuses, :count)
+
+          expect(response).to have_http_status(422)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
+      end
+
+      context 'with a quote to a mentioned user in a Private Mention' do
+        let!(:quoted_status) { Fabricate(:status, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+        let(:params) do
+          {
+            status: "Hello @#{quoted_status.account.acct}, this is a quote",
+            quoted_status_id: quoted_status.id,
+            visibility: :direct,
+          }
+        end
+
+        it 'returns a quote post, as well as rate limit headers', :aggregate_failures do
+          expect { subject }.to change(user.account.statuses, :count).by(1)
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:quote]).to be_present
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
+        end
+      end
+
+      context 'with a quote of a reblog' do
+        let(:quoted_status) { Fabricate(:status, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+        let(:reblog) { Fabricate(:status, reblog: quoted_status) }
+        let(:params) do
+          {
+            status: 'Hello world, this is a self-quote',
+            quoted_status_id: reblog.id,
+          }
+        end
+
+        it 'returns a quote post, as well as rate limit headers', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:quote]).to be_present
+          expect(response.parsed_body[:quote][:quoted_status][:id]).to eq quoted_status.id.to_s
+          expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
+          expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
+        end
+      end
+
+      context 'with a self-quote post and a CW but no text' do
+        let(:quoted_status) { Fabricate(:status, account: user.account) }
+        let(:params) do
+          {
+            spoiler_text: 'this is a CW',
+            quoted_status_id: quoted_status.id,
+          }
+        end
+
+        it 'returns a quote post, as well as rate limit headers', :aggregate_failures do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body[:quote]).to be_present
+          expect(response.parsed_body[:spoiler_text]).to eq 'this is a CW'
+          expect(response.parsed_body[:content]).to match(/RE: /)
           expect(response.headers['X-RateLimit-Limit']).to eq RateLimiter::FAMILIES[:statuses][:limit].to_s
           expect(response.headers['X-RateLimit-Remaining']).to eq (RateLimiter::FAMILIES[:statuses][:limit] - 1).to_s
         end
@@ -286,9 +478,10 @@ RSpec.describe '/api/v1/statuses' do
 
     describe 'PUT /api/v1/statuses/:id' do
       subject do
-        put "/api/v1/statuses/#{status.id}", headers: headers, params: { status: 'I am updated' }
+        put "/api/v1/statuses/#{status.id}", headers: headers, params: params
       end
 
+      let(:params) { { status: 'I am updated' } }
       let(:scopes) { 'write:statuses' }
       let(:status) { Fabricate(:status, account: user.account) }
 
@@ -301,6 +494,19 @@ RSpec.describe '/api/v1/statuses' do
         expect(response.content_type)
           .to start_with('application/json')
         expect(status.reload.text).to eq 'I am updated'
+      end
+
+      context 'when updating only the quote policy' do
+        let(:params) { { status: status.text, quote_approval_policy: 'public' } }
+
+        it 'updates the status', :aggregate_failures do
+          expect { subject }
+            .to change { status.reload.quote_approval_policy }.to(Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16)
+
+          expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
       end
     end
   end

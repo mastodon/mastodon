@@ -196,6 +196,7 @@ pl:
         create_relay: Utwórz przekaźnik
         create_unavailable_domain: Utwórz niedostępną domenę
         create_user_role: Utwórz rolę
+        create_username_block: Utwórz zasadę nazwy użytkownika
         demote_user: Zdegraduj użytkownika
         destroy_announcement: Usuń ogłoszenie
         destroy_canonical_email_block: Usuń blokadę e-mail
@@ -209,6 +210,7 @@ pl:
         destroy_status: Usuń wpis
         destroy_unavailable_domain: Usuń niedostępną domenę
         destroy_user_role: Zlikwiduj rolę
+        destroy_username_block: Usuń zasadę nazwy użytkownika
         disable_2fa_user: Wyłącz 2FA
         disable_custom_emoji: Wyłącz niestandardowe emoji
         disable_relay: Wyłącz przekaźnik
@@ -243,6 +245,7 @@ pl:
         update_report: Wiadomości or raporcie
         update_status: Aktualizuj wpis
         update_user_role: Aktualizuj rolę
+        update_username_block: Zaktualizuj zasadę nazwy użytkownika
       actions:
         approve_appeal_html: "%{name} zatwierdził(-a) odwołanie decyzji moderacyjnej od %{target}"
         approve_user_html: "%{name} zatwierdził rejestrację od %{target}"
@@ -261,6 +264,7 @@ pl:
         create_relay_html: "%{name} utworzył przekaźnik %{target}"
         create_unavailable_domain_html: "%{name} przestał(a) doręczać na domenę %{target}"
         create_user_role_html: "%{name} utworzył rolę %{target}"
+        create_username_block_html: Użytkownik %{name} dodał zasadę dla nazw użytkowników zawierających %{target}
         demote_user_html: "%{name} zdegradował(a) użytkownika %{target}"
         destroy_announcement_html: "%{name} usunął(-ęła) ogłoszenie %{target}"
         destroy_canonical_email_block_html: "%{name} odblokował(a) e-mail z hashem %{target}"
@@ -274,6 +278,7 @@ pl:
         destroy_status_html: "%{name} usunął(-ęła) wpis użytkownika %{target}"
         destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
         destroy_user_role_html: "%{name} usunął rolę %{target}"
+        destroy_username_block_html: Użytkownik %{name} usunął zasadę dla nazw użytkowników zawierających %{target}
         disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwuskładnikowe użytkownikowi %{target}"
         disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
         disable_relay_html: "%{name} wyłączył przekaźnik %{target}"
@@ -308,6 +313,7 @@ pl:
         update_report_html: "%{target} zaktualizowany przez %{name}"
         update_status_html: "%{name} zaktualizował(a) wpis użytkownika %{target}"
         update_user_role_html: "%{name} zmienił rolę %{target}"
+        update_username_block_html: Użytkownik %{name} zaktualizował zasadę dla nazw użytkowników zawierających %{target}
       deleted_account: usunięte konto
       empty: Nie znaleziono aktywności w dzienniku.
       filter_by_action: Filtruj według działania
@@ -325,6 +331,7 @@ pl:
         create: Utwórz ogłoszenie
         title: Nowe ogłoszenie
       preview:
+        disclaimer: Ponieważ użytkownicy nie mogą zrezygnować z otrzymywania powiadomień email, powinny one ograniczać się do ważnych ogłoszeń, takich jak powiadomienia o naruszeniu bezpieczeństwa danych osobowych lub zamknięciu serwera.
         explanation_html: 'Wiadomość e-mail zostanie wysłana do <strong>%{display_count} użytkowników</strong>. Otrzymają oni wiadomość o następującej treści:'
         title: Podgląd powiadomienia
       publish: Opublikuj
@@ -501,6 +508,7 @@ pl:
           created_at: 'Utworzono:'
           delete: Usuń
           ip: Adres IP
+          request_body: Treść zgłoszenia
       providers:
         active: Aktywne
         base_url: Podstawowy adres URL
@@ -509,10 +517,12 @@ pl:
         finish_registration: Zakończ rejestrację
         name: Nazwa
         providers: Dostawca
+        public_key_fingerprint: Odcisk klucza publicznego
         registration_requested: Wymagana rejestracja
         registrations:
           confirm: Zatwierdź
           reject: Odrzuć
+          title: Potwierdź rejestrację FASP
         save: Zapisz
         sign_in: Zaloguj się
         status: Status
@@ -594,6 +604,10 @@ pl:
         title: Moderacja
       moderation_notes:
         create: Dodaj notatkę moderacyjną
+        created_msg: Notatka dotycząca moderacji instancji została pomyślnie utworzona!
+        description_html: Wyświetlaj i zostawiaj notatki dla innych moderatorów oraz dla siebie samego w przyszłości
+        destroyed_msg: Notatka dotycząca moderacji instancji została pomyślnie usunięta!
+        placeholder: Informacje o tej instancji, podjętych działaniach lub wszelkie inne informacje, które pomogą ci moderować tę instancję w przyszłości.
         title: Notatki moderacyjne
       private_comment: Prywatny komentarz
       public_comment: Publiczny komentarz
@@ -806,6 +820,8 @@ pl:
         view_dashboard_description: Pozwala użytkownikom na dostęp do panelu i różnych metryk
         view_devops: DevOps
         view_devops_description: Pozwala użytkownikom na dostęp do paneli Sidekiq i pgHero
+        view_feeds: Wyświetlaj aktualności i kanały tematyczne
+        view_feeds_description: Umożliwia użytkownikom dostęp do aktualności i kanałów tematycznych niezależnie od ustawień serwera
       title: Role
     rules:
       add_new: Dodaj zasadę
@@ -819,6 +835,7 @@ pl:
       title: Regulamin serwera
       translation: Tłumaczenie
       translations: Tłumaczenia
+      translations_explanation: Możesz opcjonalnie dodać tłumaczenia reguł. Wyświetlany będzie tekst domyślny, jeśli nie ma dostępnej wersji przetłumaczonej. Zawsze upewnij się, że podane tłumaczenie jest zgodne z tekstem domyślnym.
     settings:
       about:
         manage_rules: Zarządzaj regułami serwera
@@ -843,7 +860,6 @@ pl:
         title: Domyślnie żądaj nieindeksowania użytkowników przez wyszukiwarki
       discovery:
         follow_recommendations: Polecane konta
-        preamble: Prezentowanie interesujących treści ma kluczowe znaczenie dla nowych użytkowników, którzy mogą nie znać nikogo z Mastodona. Kontroluj, jak różne funkcje odkrywania działają na Twoim serwerze.
         privacy: Prywatność
         profile_directory: Katalog profilów
         public_timelines: Publiczne osie czasu
@@ -1102,6 +1118,23 @@ pl:
           other: Użyte przez %{count} osób w ciągu ostatniego tygodnia
       title: Rekomendacje i Trendy
       trending: Popularne
+    username_blocks:
+      add_new: Dodaj nową
+      block_registrations: Zablokuj rejestracje
+      comparison:
+        contains: Zawiera
+        equals: Równa się
+      contains_html: Zawiera %{string}
+      delete: Usuń
+      edit:
+        title: Edytuj zasadę nazwy użytkownika
+      matches_exactly_html: Równa się %{string}
+      new:
+        create: Dodaj zasadę
+        title: Utwórz zasadę nazwy użytkownika
+      not_permitted: Brak uprawnień
+      title: Zasady nazwy użytkownika
+      updated_msg: Pomyślnie zaktualizowano zasadę nazwy użytkownika
     warning_presets:
       add_new: Dodaj nowy
       delete: Usuń
@@ -1176,10 +1209,7 @@ pl:
     hint_html: Jeżeli chcesz przenieść się z innego konta na to, możesz utworzyć alias, który jest wymagany zanim zaczniesz przenoszenie obserwacji z poprzedniego konta na to. To działanie <strong>nie wyrządzi szkód i jest odwracalne</strong>. <strong>Migracja konta jest inicjowana ze starego konta</strong>.
     remove: Odłącz alias
   appearance:
-    advanced_web_interface: Zaawansowany interfejs użytkownika
-    advanced_web_interface_hint: Jeśli chcesz użyć pełną szerokość swojego ekranu, zaawansowany interfejs użytkownika pozwala Ci skonfigurować wiele różnych kolumn, by zobaczyć jak najwięcej informacji kiedy tylko chcesz. Strona główna, Powiadomienia, Globalna oś czasu, dowolna ilość list i hasztagów.
     animations_and_accessibility: Animacje i dostępność
-    confirmation_dialogs: Dialogi potwierdzenia
     discovery: Odkrywanie
     localization:
       body: Mastodon jest tłumaczony przez wolontariuszy.
@@ -1368,6 +1398,10 @@ pl:
     basic_information: Podstawowe informacje
     hint_html: "<strong>Dostosuj to, co ludzie widzą na Twoim profilu publicznym i obok Twoich wpisów.</strong> Inne osoby są bardziej skłonne obserwować Cię i wchodzić z Tobą w interakcje, gdy masz wypełniony profil i zdjęcie profilowe."
     other: Inne
+  emoji_styles:
+    auto: Automatycznie
+    native: Natywny
+    twemoji: Twemoji
   errors:
     '400': Wysłane zgłoszenie jest nieprawidłowe lub uszkodzone.
     '403': Nie masz uprawnień, aby wyświetlić tę stronę.
@@ -1717,6 +1751,9 @@ pl:
       title: Nowe wspomnienie o Tobie
     poll:
       subject: Ankieta %{name} zakończyła się
+    quote:
+      subject: "%{name} cytował twój post"
+      title: Nowy cytat
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: Twój wpis został podbity przez %{name}
@@ -1936,6 +1973,7 @@ pl:
     edited_at_html: Edytowane %{date}
     errors:
       in_reply_not_found: Post, na który próbujesz odpowiedzieć, nie istnieje.
+      quoted_status_not_found: Wpis, który próbujesz zacytować, nie istnieje.
     over_character_limit: limit %{max} znaków przekroczony
     pin_errors:
       direct: Nie możesz przypiąć wpisu, który jest widoczny tylko dla wspomnianych użytkowników
@@ -1948,12 +1986,9 @@ pl:
       public: Każdy
     title: '%{name}: "%{quote}"'
     visibilities:
-      private: Tylko dla obserwujących
-      private_long: Widoczne tylko dla osób, które Cię obserwują
       public: Publiczne
-      public_long: Widoczne dla wszystkich użytkowników
-      unlisted: Niewypisane
-      unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
+      unlisted: Niewidoczny
+      unlisted_long: Ukryte w wynikach wyszukiwania Mastodona, trendach i publicznych osiach czasu
   statuses_cleanup:
     enabled: Automatycznie usuwaj stare wiadomości
     enabled_hint: Automatycznie usuwa Twoje posty, gdy osiągną określony próg wiekowy, chyba że spełniają jeden z poniższych wyjątków
@@ -1999,6 +2034,8 @@ pl:
   terms_of_service:
     title: Regulamin
   terms_of_service_interstitial:
+    future_preamble_html: Wprowadzamy pewne zmiany w naszych warunkach świadczenia usług, które zaczną obowiązywać od <strong>%{date}</strong>. Zachęcamy do zapoznania się z aktualnymi warunkami.
+    past_preamble_html: Od czasu twojej ostatniej wizyty zmieniliśmy warunki korzystania z usługi. Zachęcamy do zapoznania się z aktualnymi warunkami.
     review_link: Przeglądnij Warunki Korzystania
     title: Warunki korzystania z %{domain} zmieniają się
   themes:
@@ -2033,6 +2070,7 @@ pl:
     webauthn: Klucze bezpieczeństwa
   user_mailer:
     announcement_published:
+      description: 'Administratorzy %{domain} publikują ogłoszenie:'
       subject: Ogłoszenie serwisu
       title: Ogłoszenie serwisu %{domain}
     appeal_approved:
@@ -2067,6 +2105,8 @@ pl:
     terms_of_service_changed:
       agreement: Kontynuując używanie %{domain}, zgadzasz się na te warunki. Jeśli nie zgadzasz się ze zaktualizowanymi warunkami, możesz wypowiedzieć umowę z %{domain} w dowolnym momencie, usuwając swoje konto.
       changelog: 'W skrócie oto co oznacza dla Ciebie ta aktualizacja:'
+      description: 'Otrzymujesz tę wiadomość email, ponieważ wprowadzamy pewne zmiany w naszych warunkach świadczenia usług w domenie %{domain}. Aktualizacje te zaczną obowiązywać od dnia %{date}. Zachęcamy do zapoznania się z pełną treścią zaktualizowanych warunków tutaj:'
+      description_html: Otrzymujesz tę wiadomość email, ponieważ wprowadzamy pewne zmiany w naszych warunkach świadczenia usług w domenie %{domain}. Aktualizacje te zaczną obowiązywać od dnia <strong>%{date}</strong>. Zachęcamy do zapoznania się z <a href="%{path}" target="_blank">pełną treścią zaktualizowanych warunków tutaj</a>.
       sign_off: Zespół %{domain}
       subject: Aktualizacja warunków korzystania z usług
       subtitle: Warunki korzystania z %{domain} zmieniają się

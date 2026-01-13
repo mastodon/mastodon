@@ -190,6 +190,7 @@ nl:
         create_relay: Relay aanmaken
         create_unavailable_domain: Niet beschikbaar domein aanmaken
         create_user_role: Rol aanmaken
+        create_username_block: Gebruikersnaam-regel aanmaken
         demote_user: Gebruiker degraderen
         destroy_announcement: Mededeling verwijderen
         destroy_canonical_email_block: E-mailblokkade verwijderen
@@ -203,6 +204,7 @@ nl:
         destroy_status: Toot verwijderen
         destroy_unavailable_domain: Niet beschikbaar domein verwijderen
         destroy_user_role: Rol permanent verwijderen
+        destroy_username_block: Gebruikersnaam-regel verwijderen
         disable_2fa_user: Tweestapsverificatie uitschakelen
         disable_custom_emoji: Lokale emojij uitschakelen
         disable_relay: Relay uitschakelen
@@ -237,6 +239,7 @@ nl:
         update_report: Rapportage bijwerken
         update_status: Bericht bijwerken
         update_user_role: Rol bijwerken
+        update_username_block: Gebruikersnaam-regel bijwerken
       actions:
         approve_appeal_html: "%{name} heeft het bezwaar tegen de moderatiemaatregel van %{target} goedgekeurd"
         approve_user_html: "%{name} heeft de registratie van %{target} goedgekeurd"
@@ -255,6 +258,7 @@ nl:
         create_relay_html: "%{name} heeft een relay aangemaakt %{target}"
         create_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} beëindigd"
         create_user_role_html: "%{name} maakte de rol %{target} aan"
+        create_username_block_html: "%{name} heeft regel toegevoegd voor gebruikersnamen die %{target} bevatten"
         demote_user_html: Gebruiker %{target} is door %{name} gedegradeerd
         destroy_announcement_html: "%{name} heeft de mededeling %{target} verwijderd"
         destroy_canonical_email_block_html: "%{name} deblokkeerde e-mail met de hash %{target}"
@@ -268,6 +272,7 @@ nl:
         destroy_status_html: Bericht van %{target} is door %{name} verwijderd
         destroy_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} hervat"
         destroy_user_role_html: "%{name} verwijderde de rol %{target}"
+        destroy_username_block_html: "%{name} heeft regel verwijderd voor gebruikersnamen die %{target} bevatten"
         disable_2fa_user_html: De vereiste tweestapsverificatie voor %{target} is door %{name} uitgeschakeld
         disable_custom_emoji_html: Emoji %{target} is door %{name} uitgeschakeld
         disable_relay_html: "%{name} heeft de relay %{target} uitgeschakeld"
@@ -302,6 +307,7 @@ nl:
         update_report_html: Rapportage %{target} is door %{name} bijgewerkt
         update_status_html: "%{name} heeft de berichten van %{target} bijgewerkt"
         update_user_role_html: "%{name} wijzigde de rol %{target}"
+        update_username_block_html: "%{name} heeft regel bijgewerkt voor gebruikersnamen die %{target} bevatten"
       deleted_account: verwijderd account
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
@@ -790,6 +796,8 @@ nl:
         view_dashboard_description: Geeft gebruikers toegang tot het dashboard en verschillende statistieken
         view_devops: DevOps
         view_devops_description: Geeft gebruikers toegang tot de dashboards van Sidekiq en pgHero
+        view_feeds: Openbare en hashtagtijdlijnen bekijken
+        view_feeds_description: Hiermee kunnen gebruikers toegang krijgen tot de openbare en hashtagtijdlijnen, ongeacht de serverinstellingen
       title: Rollen
     rules:
       add_new: Regel toevoegen
@@ -831,7 +839,7 @@ nl:
         title: Gebruikers standaard niet door zoekmachines laten indexeren
       discovery:
         follow_recommendations: Aanbevolen accounts
-        preamble: Het tonen van interessante inhoud is van essentieel belang voor het aan boord halen van nieuwe gebruikers, die mogelijk niemand van Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van inhoud en gebruikers op jouw server werken.
+        preamble: Interessante inhoud uitlichten is van essentieel belang voor onboarding van nieuwe gebruikers, die mogelijk niemand op Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van inhoud en gebruikers op jouw server werken.
         privacy: Privacy
         profile_directory: Gebruikersgids
         public_timelines: Openbare tijdlijnen
@@ -842,6 +850,16 @@ nl:
         all: Aan iedereen
         disabled: Aan niemand
         users: Aan ingelogde lokale gebruikers
+      feed_access:
+        modes:
+          authenticated: Alleen ingelogde gebruikers
+          disabled: Specifieke gebruikersrol vereisen
+          public: Iedereen
+      landing_page:
+        values:
+          about: Over
+          local_feed: Lokale tijdlijn
+          trends: Trends
       registrations:
         moderation_recommandation: Zorg ervoor dat je een adequaat en responsief moderatieteam hebt voordat je registraties voor iedereen openstelt!
         preamble: Toezicht houden op wie een account op deze server kan registreren.
@@ -895,13 +913,15 @@ nl:
       no_status_selected: Er werden geen berichten gewijzigd, omdat er geen enkele werd geselecteerd
       open: Bericht tonen
       original_status: Oorspronkelijk bericht
+      quotes: Citaten
       reblogs: Boosts
       replied_to_html: Reageerde op %{acct_link}
       status_changed: Bericht veranderd
       status_title: Bericht van @%{name}
       title: Accountberichten - @%{name}
       trending: Trending
-      view_publicly: In het openbaar bekijken
+      view_publicly: Openbaar bericht bekijken
+      view_quoted_post: Geciteerde berichten tonen
       visibility: Zichtbaarheid
       with_media: Met media
     strikes:
@@ -974,7 +994,7 @@ nl:
       name: Naam
       newest: Nieuwste
       oldest: Oudste
-      open: In het openbaar bekijken
+      open: Oorspronkelijk bericht bekijken
       reset: Opnieuw
       review: Status beoordelen
       search: Zoeken
@@ -1085,6 +1105,25 @@ nl:
           other: Door %{count} mensen tijdens de afgelopen week gebruikt
       title: Aanbevelingen & trends
       trending: Trending
+    username_blocks:
+      add_new: Nieuwe toevoegen
+      block_registrations: Registraties blokkeren
+      comparison:
+        contains: Bevat
+        equals: Is gelijk aan
+      contains_html: Bevat %{string}
+      created_msg: Gebruikersnaam-regel succesvol aangemaakt
+      delete: Verwijderen
+      edit:
+        title: Gebruikersnaam-regel bewerken
+      matches_exactly_html: Is gelijk aan %{string}
+      new:
+        create: Regel aanmaken
+        title: Nieuwe gebruikersnaam-regel aanmaken
+      no_username_block_selected: Er zijn geen gebruikersnaam-regels gewijzigd omdat er geen zijn geselecteerd
+      not_permitted: Niet toegestaan
+      title: Gebruikersnaam-regels
+      updated_msg: Gebruikersnaam-regel succesvol bijgewerkt
     warning_presets:
       add_new: Nieuwe toevoegen
       delete: Verwijderen
@@ -1157,10 +1196,10 @@ nl:
     hint_html: Wanneer je vanaf een ander account naar dit account wilt verhuizen, kun je hier een alias aanmaken. Dit is nodig voordat je verder kunt gaan met het verhuizen van volgers van het oude naar dit nieuwe account. Deze actie is op zich <strong>ongevaarlijk en omkeerbaar</strong>. <strong>De accountmigratie wordt gestart vanaf het oude account</strong>.
     remove: Alias ontkoppelen
   appearance:
-    advanced_web_interface: Geavanceerde webomgeving
-    advanced_web_interface_hint: 'Wanneer je van de hele schermbreedte gebruik wilt maken, stelt de geavanceerde webomgeving je in staat om meerdere verschillende kolommen te configureren. Hiermee kun je zoveel mogelijk informatie op hetzelfde moment bekijken, zoals: Start, meldingen, de globale tijdlijn, meerdere lijsten en hashtags.'
+    advanced_settings: Geavanceerde instellingen
     animations_and_accessibility: Animaties en toegankelijkheid
-    confirmation_dialogs: Bevestigingen
+    boosting_preferences: Boosten
+    boosting_preferences_info_html: "<strong>Tip:</strong> Ongeacht je instellingen, kun je met <kbd>Shift</kbd> + <kbd>Klik</kbd> op het %{icon} boostpictogram onmiddelijk boosten."
     discovery: Ontdekken
     localization:
       body: Mastodon wordt door vrijwilligers vertaald.
@@ -1349,6 +1388,10 @@ nl:
     basic_information: Algemene informatie
     hint_html: "<strong>Wat mensen op jouw openbare profiel en naast je berichten zien aanpassen.</strong> Andere mensen gaan je waarschijnlijk eerder volgen en hebben vaker interactie met je, wanneer je profiel is ingevuld en je een profielfoto hebt."
     other: Overige
+  emoji_styles:
+    auto: Auto
+    native: Systeemeigen
+    twemoji: Twemoji
   errors:
     '400': De aanvraag die je hebt ingediend was ongeldig of foutief.
     '403': Jij hebt geen toestemming om deze pagina te bekijken.
@@ -1558,6 +1601,13 @@ nl:
       expires_at: Verloopt op
       uses: Aantal keer te gebruiken
     title: Mensen uitnodigen
+  link_preview:
+    author_html: Door %{name}
+    potentially_sensitive_content:
+      action: Klik om te tonen
+      confirm_visit: Ben je zeker dat je deze link wilt openen?
+      hide_button: Verberg
+      label: Mogelijk gevoelige inhoud
   lists:
     errors:
       limit: Je hebt het maximum aantal lijsten bereikt
@@ -1658,6 +1708,10 @@ nl:
       title: Nieuwe vermelding
     poll:
       subject: Een peiling van %{name} is beëindigd
+    quote:
+      body: 'Jouw bericht werd door %{name} geciteerd:'
+      subject: "%{name} heeft jouw bericht geciteerd"
+      title: Nieuw citaat
     reblog:
       body: 'Jouw bericht werd door %{name} geboost:'
       subject: "%{name} boostte jouw bericht"
@@ -1707,9 +1761,11 @@ nl:
       too_few_options: moet meer dan één item bevatten
       too_many_options: kan niet meer dan %{max} items bevatten
     vote: Stemmen
+  posting_defaults:
+    explanation: Deze instellingen worden als standaard gebruikt wanneer je nieuwe berichten aanmaakt, maar je kunt ze per bericht aanpassen.
   preferences:
     other: Overig
-    posting_defaults: Instellingen voor berichten
+    posting_defaults: Jouw nieuwe berichten
     public_timelines: Openbare tijdlijnen
   privacy:
     hint_html: "<strong>Hoe wil je dat jouw profiel en berichten kunnen worden gevonden?</strong> Een verscheidenheid aan functies in Mastodon kunnen je helpen om een groter publiek te bereiken als ze zijn ingeschakeld. Neem rustig de tijd om deze instellingen te bekijken, om er zo zeker van te zijn dat ze aan jouw wensen voldoen."
@@ -1862,6 +1918,9 @@ nl:
         other: "%{count} video's"
     boosted_from_html: Geboost van %{acct_link}
     content_warning: 'Inhoudswaarschuwing: %{warning}'
+    content_warnings:
+      hide: Bericht verbergen
+      show: Meer tonen
     default_language: Hetzelfde als de taal van de gebruikersomgeving
     disallowed_hashtags:
       one: 'bevatte een niet toegestane hashtag: %{tags}'
@@ -1869,25 +1928,31 @@ nl:
     edited_at_html: Bewerkt op %{date}
     errors:
       in_reply_not_found: Het bericht waarop je probeert te reageren lijkt niet te bestaan.
+      quoted_status_not_found: Het bericht die je probeert te citeren lijkt niet te bestaan.
+      quoted_user_not_mentioned: Een niet-vermelde gebruiker kan niet in een privébericht worden geciteerd.
     over_character_limit: Limiet van %{max} tekens overschreden
     pin_errors:
       direct: Berichten die alleen zichtbaar zijn voor vermelde gebruikers, kunnen niet worden vastgezet
       limit: Je hebt het maximaal aantal bericht al vastgemaakt
       ownership: Een bericht van iemand anders kan niet worden vastgemaakt
       reblog: Een boost kan niet worden vastgezet
+    quote_error:
+      not_available: Bericht is niet beschikbaar
+      pending_approval: Bericht in afwachting van goedkeuring
+      revoked: Bericht verwijderd door auteur
     quote_policies:
       followers: Alleen volgers
       nobody: Alleen ik
       public: Iedereen
+    quote_post_author: Citeerde een bericht van %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privébericht
       private: Alleen volgers
-      private_long: Alleen aan jouw volgers tonen
       public: Openbaar
-      public_long: Aan iedereen tonen, ook op openbare tijdlijnen
+      public_long: Iedereen op en buiten Mastodon
       unlisted: Minder openbaar
-      unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
+      unlisted_long: Niet zichtbaar in de zoekresultaten van Mastodon, onder trends, hashtags en op openbare tijdlijnen
   statuses_cleanup:
     enabled: Automatisch oude berichten verwijderen
     enabled_hint: Verwijder uw berichten automatisch zodra ze een bepaalde leeftijdsgrens bereiken, tenzij ze overeenkomen met een van de onderstaande uitzonderingen

@@ -6,6 +6,7 @@ RSpec.describe URLValidator do
   let(:record_class) do
     Class.new do
       include ActiveModel::Validations
+
       attr_accessor :profile
 
       validates :profile, url: true

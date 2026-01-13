@@ -107,6 +107,7 @@ module LanguagesHelper
     mk: ['Macedonian', 'македонски јазик'].freeze,
     ml: ['Malayalam', 'മലയാളം'].freeze,
     mn: ['Mongolian', 'Монгол хэл'].freeze,
+    'mn-Mong': ['Traditional Mongolian', 'ᠮᠣᠩᠭᠣᠯ ᠬᠡᠯᠡ'].freeze,
     mr: ['Marathi', 'मराठी'].freeze,
     ms: ['Malay', 'Bahasa Melayu'].freeze,
     'ms-Arab': ['Jawi Malay', 'بهاس ملايو'].freeze,

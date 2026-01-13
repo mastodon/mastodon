@@ -352,34 +352,7 @@ RSpec.describe 'signature verification concern' do
     end
   end
 
-  # TODO: Remove when feature is enabled
-  context 'with an HTTP Message Signature (final RFC version) when support is disabled' do
-    before { Fabricate(:account, domain: 'remote.domain', uri: 'https://remote.domain/users/bob', private_key: nil, public_key: actor_keypair.public_key.to_pem) }
-
-    context 'with a valid signature on a GET request' do
-      let(:signature_input) do
-        'sig1=("@method" "@target-uri");created=1703066400;keyid="https://remote.domain/users/bob#main-key"'
-      end
-      let(:signature_header) do
-        'sig1=:WfM6q/qBqhUyqPUDt9metjadJGtLLpmMTBzk/t+R3byKe4/TGAXC6vBB/M6NsD5qv8GCmQGtisCMQxJQO0IGODGzi+Jv+eqDJ50agMVXNV6nUOzY44c4/XTPoI98qyx1oEMa4Hefy3vSYKq96iDVAc+RDLCMTeGP3wn9wizjD1SNmU0RZI1bTB+eCkywMP9mM5zXzUOYF+Qkuf+WdEpPR1XUGPlnqfdvPalcKVfaI/VThBjI91D/lmUGoa69x4EBEHM+aJmW6086e7/dVh+FndKkdGfXslZXFZKi2flTGQZgEWLn948SqAaJQROkJg8B14Sb1NONS1qZBhK3Mum8Pg==:' # rubocop:disable Layout/LineLength
-      end
-
-      it 'cannot verify signature', :aggregate_failures do
-        get '/activitypub/signature_required', headers: {
-          'Host' => 'www.example.com',
-          'Signature-Input' => signature_input,
-          'Signature' => signature_header,
-        }
-
-        expect(response).to have_http_status(401)
-        expect(response.parsed_body).to match(
-          error: 'Error parsing signature parameters'
-        )
-      end
-    end
-  end
-
-  context 'with an HTTP Message Signature (final RFC version)', feature: :http_message_signatures do
+  context 'with an HTTP Message Signature (final RFC version)' do
     context 'with a known account' do
       let!(:actor) { Fabricate(:account, domain: 'remote.domain', uri: 'https://remote.domain/users/bob', private_key: nil, public_key: actor_keypair.public_key.to_pem) }
 

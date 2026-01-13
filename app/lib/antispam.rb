@@ -32,41 +32,60 @@ class Antispam
     end
   end
 
-  def local_preflight_check!(status)
-    return unless spammy_texts.any? { |spammy_text| status.text.include?(spammy_text) }
-    return unless suspicious_reply_or_mention?(status)
-    return unless status.account.created_at >= ACCOUNT_AGE_EXEMPTION.ago
+  def initialize(status)
+    @status = status
+  end
 
-    report_if_needed!(status.account)
+  def local_preflight_check!
+    return unless considered_spam?
 
-    raise SilentlyDrop, status
+    report_if_needed!
+
+    raise SilentlyDrop, @status
   end
 
   private
+
+  def considered_spam?
+    (all_time_suspicious? || recent_suspicious?) && suspicious_reply_or_mention?
+  end
+
+  def all_time_suspicious?
+    all_time_spammy_texts.any? { |spammy_text| status_text.include?(spammy_text) }
+  end
+
+  def recent_suspicious?
+    @status.account.created_at >= ACCOUNT_AGE_EXEMPTION.ago && spammy_texts.any? { |spammy_text| status_text.include?(spammy_text) }
+  end
 
   def spammy_texts
     redis.smembers('antispam:spammy_texts')
   end
 
-  def suspicious_reply_or_mention?(status)
-    parent = status.thread
-    return true if parent.present? && !Follow.exists?(account_id: parent.account_id, target_account: status.account_id)
-
-    account_ids = status.mentions.map(&:account_id).uniq
-    !Follow.exists?(account_id: account_ids, target_account_id: status.account.id)
+  def all_time_spammy_texts
+    redis.smembers('antispam:all_time_spammy_texts')
   end
 
-  def report_if_needed!(account)
-    return if system_reports.unresolved.exists?(target_account: account)
+  def suspicious_reply_or_mention?
+    account_ids = ([@status.in_reply_to_account_id] + @status.mentions.map(&:account_id)).uniq
+    !Follow.exists?(account_id: account_ids, target_account_id: @status.account.id)
+  end
+
+  def report_if_needed!
+    return if system_reports.unresolved.exists?(target_account: @status.account)
 
     system_reports.create!(
       category: :spam,
       comment: 'Account automatically reported for posting a banned URL',
-      target_account: account
+      target_account: @status.account
     )
   end
 
   def system_reports
     Account.representative.reports
+  end
+
+  def status_text
+    @status_text ||= @status.text.unicode_normalize(:nfkc).downcase
   end
 end

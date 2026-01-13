@@ -190,6 +190,7 @@ fo:
         create_relay: Stovna reiðlag
         create_unavailable_domain: Stovna navnaøki, sum ikki er tøkt
         create_user_role: Stovna leiklut
+        create_username_block: Stovna brúkaranavnsreglu
         demote_user: Lækka brúkara í tign
         destroy_announcement: Strika kunngerð
         destroy_canonical_email_block: Strika t-postablokk
@@ -203,6 +204,7 @@ fo:
         destroy_status: Strika post
         destroy_unavailable_domain: Strika navnaøki, sum ikki er tøkt
         destroy_user_role: Bein burtur leiklut
+        destroy_username_block: Strika brúkaranavnsreglu
         disable_2fa_user: Ger 2FA óvirkið
         disable_custom_emoji: Ger serligt kenslutekn óvirkið
         disable_relay: Ger reiðlag óvirkið
@@ -237,6 +239,7 @@ fo:
         update_report: Dagfør frágreiðing
         update_status: Dagfør Uppslag
         update_user_role: Dagfør Leiklut
+        update_username_block: Dagfør brúkaranavnsreglu
       actions:
         approve_appeal_html: "%{name} góðkendi umsjónaráheitan frá %{target}"
         approve_user_html: "%{name} góðtók umsókn frá %{target}"
@@ -255,6 +258,7 @@ fo:
         create_relay_html: "%{name} gjørdi eitt reiðlag %{target}"
         create_unavailable_domain_html: "%{name} steðgaði veiting til navnaøkið %{target}"
         create_user_role_html: "%{name} stovnaði %{target} leiklutin"
+        create_username_block_html: "%{name} legði reglu afturat fyri brúkaranøvn, sum innihalda %{target}"
         demote_user_html: "%{name} lækkaði tignina hjá brúkaranum %{target}"
         destroy_announcement_html: "%{name} strikaðar fráboðanir %{target}"
         destroy_canonical_email_block_html: "%{name} strikaði blokeringina av teldupostin við hashkodu %{target}"
@@ -268,6 +272,7 @@ fo:
         destroy_status_html: "%{name} slettaði upplegg hjá %{target}"
         destroy_unavailable_domain_html: "%{name} tók upp aftir veiting til navnaøkið %{target}"
         destroy_user_role_html: "%{name} slettaði leiklutin hjá %{target}"
+        destroy_username_block_html: "%{name} strikaði reglu fyri brúkaranøvn, sum innihalda %{target}"
         disable_2fa_user_html: "%{name} slepti kravið um váttan í tveimum stigum fyri brúkaran %{target}"
         disable_custom_emoji_html: "%{name} gjørdi kensluteknið %{target} óvirkið"
         disable_relay_html: "%{name} gjørdi reiðlagið %{target} óvirkið"
@@ -302,6 +307,7 @@ fo:
         update_report_html: "%{name} dagførdi meldingina %{target}"
         update_status_html: "%{name} dagførdi postin hjá %{target}"
         update_user_role_html: "%{name} broyttir %{target} leiklutir"
+        update_username_block_html: "%{name} dagførdi reglu fyri brúkaranøvn, sum innihalda %{target}"
       deleted_account: strikað konta
       empty: Eingir loggar funnir.
       filter_by_action: Filtrera eftir atgerð
@@ -790,6 +796,8 @@ fo:
         view_dashboard_description: Gevur brúkarum atgongd til kunningarbrettið og ymisk mát
         view_devops: DevOps
         view_devops_description: Gevur brúkarum atgongd til Sidekiq- og pgHero-kunningarbretti
+        view_feeds: Vís beinleiðis rásir og evnisrásir
+        view_feeds_description: Loyvir brúkarum atgongd til beinleiðis rásir og evnisrásir, óansæð ambætisstillingar
       title: Leiklutir
     rules:
       add_new: Ger nýggja reglu
@@ -842,6 +850,16 @@ fo:
         all: Til øll
         disabled: Til ongan
         users: Fyri lokalum brúkarum, sum eru ritaðir inn
+      feed_access:
+        modes:
+          authenticated: Einans váttaðir brúkarar
+          disabled: Krev serstakan brúkaraleiklut
+          public: Øll
+      landing_page:
+        values:
+          about: Um
+          local_feed: Lokal rás
+          trends: Rák
       registrations:
         moderation_recommandation: Vinarliga tryggja tær, at tú hevur eitt nøktandi og klárt umsjónartoymi, áðreen tú letur upp fyri skrásetingum frá øllum!
         preamble: Stýr, hvør kann stovna eina kontu á tínum ambætara.
@@ -895,6 +913,7 @@ fo:
       no_status_selected: Eingir postar vóru broyttir, tí eingir vóru valdir
       open: Lat post upp
       original_status: Upprunapostur
+      quotes: Sitatir
       reblogs: Endurbloggar
       replied_to_html: Svaraði %{acct_link}
       status_changed: Postur broyttur
@@ -902,6 +921,7 @@ fo:
       title: Kontupostar - @%{name}
       trending: Vælumtókt
       view_publicly: Vís fyri øllum
+      view_quoted_post: Vís siteraðan post
       visibility: Sýni
       with_media: Við miðli
     strikes:
@@ -1085,6 +1105,25 @@ fo:
           other: Brúkt av %{count} brúkarum seinastu vikuna
       title: Tilmæli & rák
       trending: Vælumtókt
+    username_blocks:
+      add_new: Legg afturat
+      block_registrations: Blokera skrásetingar
+      comparison:
+        contains: Inniheldur
+        equals: Er tað sama sum
+      contains_html: Inniheldur %{string}
+      created_msg: Eydnaðist at leggja brúkaranavnsreglu afturat
+      delete: Strika
+      edit:
+        title: Broyt brúkaranavnsreglu
+      matches_exactly_html: Tað sama sum %{string}
+      new:
+        create: Stovna reglu
+        title: Stovna brúkaranavnsreglu
+      no_username_block_selected: Ongar brúkaranavnsreglur vóru broyttar, tí ongar vóru valdar
+      not_permitted: Ikki loyvt
+      title: Brúkaranavnsreglur
+      updated_msg: Eydnaðist at dagføra brúkaranavnsreglu
     warning_presets:
       add_new: Legg afturat
       delete: Strika
@@ -1157,10 +1196,10 @@ fo:
     hint_html: Ynskir tú at flyta frá eini aðrari kontu til hesa, so kanst tú stovna eitt tøkuheiti her. Tað er kravt, áðrenn tú kanst fara í gongd við at flyta fylgjarar frá gomlu kontuni til hesa. Hendan atgerðin er í sær sjálvum <strong>meinaleys og kann angrast</strong>. <strong>Flytingin av kontuni verður sett í gongd frá gomlu kontuni</strong>.
     remove: Strika tilknýti til tøkuheiti
   appearance:
-    advanced_web_interface: Framkomið vevmarkamót
-    advanced_web_interface_hint: 'Ynskir tú at brúka alla skermbreiddina, so loyvir framkomna vevmarkamóti tær at uppseta fleiri ymiskar teigar, soleiðis at tú kanst síggja so nógvar upplýsingar, sum tú ynskir, samstundis: Heima, fráboðanir, sameind tíðarlinja og óavmarkað tal av listum og frámerkjum.'
+    advanced_settings: Framkomnar stillingar
     animations_and_accessibility: Teknimyndagerð og atkomuligheit
-    confirmation_dialogs: Váttanarskermmyndir
+    boosting_preferences: Stimbranarynski
+    boosting_preferences_info_html: "<strong>Góð ráð:</strong> Óansæð stillingar, so verður beinan vegin stimbrað, um trýst verður á <kbd>Shift</kbd> + <kbd>klikk</kbd> á %{icon} stimbranar-ímyndina."
     discovery: Uppdaging
     localization:
       body: Mastodon er umsett av sjálvbodnum.
@@ -1349,6 +1388,10 @@ fo:
     basic_information: Grundleggjandi upplýsingar
     hint_html: "<strong>Tillaga tað, sum fólk síggja á tínum almenna vanga og við síðna av tínum postum.</strong> Sannlíkindini fyri, at onnur fylgja tær og virka saman við tær eru størri, tá tú hevur fylt út vangan og eina vangamynd."
     other: Onnur
+  emoji_styles:
+    auto: Sjálvvirkandi
+    native: Upprunalig
+    twemoji: Twitter kenslutekn
   errors:
     '400': Umbønin, sum tú sendi inn, var ógildug ella hevði skeivt skap.
     '403': Tú hevur ikki loyvi at síggja hesa síðuna.
@@ -1558,6 +1601,13 @@ fo:
       expires_at: Rennir út
       uses: Brúk
     title: Bjóða fólki
+  link_preview:
+    author_html: Av %{name}
+    potentially_sensitive_content:
+      action: Klikka fyri at vísa
+      confirm_visit: Er tú vís/ur í, at tú vil lata hetta leinkið upp?
+      hide_button: Fjal
+      label: Tilfar, sum møguliga er viðkvæmt
   lists:
     errors:
       limit: Tú hevur rokkið mesta talið av listum
@@ -1658,6 +1708,10 @@ fo:
       title: Nýggj umrøða
     poll:
       subject: Ein spurnarkanning hjá %{name} er endað
+    quote:
+      body: 'Postur tín var siteraður av %{name}:'
+      subject: "%{name} siteraði postin hjá tær"
+      title: Nýggj sitering
     reblog:
       body: 'Postur tín var stimbraður av %{name}:'
       subject: "%{name} stimbraði tín post"
@@ -1707,6 +1761,8 @@ fo:
       too_few_options: má hava meiri enn ein valmøguleika
       too_many_options: kann ikki innihalda fleiri enn %{max} valmøguleikar
     vote: Atkvøð
+  posting_defaults:
+    explanation: Hesar stillingar verða brúktar sum sjálvval tá stovnar nýggjar postar, men tú kanst rætta tær fyri hvønn post í rættiøkinum.
   preferences:
     other: Annað
     posting_defaults: Postingarstillingar
@@ -1862,6 +1918,9 @@ fo:
         other: "%{count} sjónfílur"
     boosted_from_html: Stimbrað frá %{acct_link}
     content_warning: 'Innihaldsávaring: %{warning}'
+    content_warnings:
+      hide: Fjal post
+      show: Vís meiri
     default_language: Sama sum markamótsmál
     disallowed_hashtags:
       one: 'innihelt eitt vrakað frámerki: %{tags}'
@@ -1869,25 +1928,31 @@ fo:
     edited_at_html: Rættað %{date}
     errors:
       in_reply_not_found: Posturin, sum tú roynir at svara, sýnist ikki at finnast.
+      quoted_status_not_found: Posturin, sum tú roynir at sitera, sýnist ikki at finnast.
+      quoted_user_not_mentioned: Kann ikki sitera ein brúkara, sum ikki er nevndur, í einum posti, sum er ein privat umrøða.
     over_character_limit: mesta tal av teknum, %{max}, rokkið
     pin_errors:
       direct: Postar, sum einans eru sjónligir hjá nevndum brúkarum, kunnu ikki festast
       limit: Tú hevur longu fest loyvda talið av postum
       ownership: Postar hjá øðrum kunnu ikki festast
       reblog: Ein stimbran kann ikki festast
+    quote_error:
+      not_available: Postur ikki tøkur
+      pending_approval: Postur bíðar
+      revoked: Posturin burturbeindur av høvundinum
     quote_policies:
       followers: Einans fylgjarar
       nobody: Bara eg
       public: Ein og hvør
+    quote_post_author: Siteraði ein post hjá %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privat umrøða
       private: Einans fylgjarar
-      private_long: Vís einans fyri fylgjarum
       public: Alment
-      public_long: Øll kunnu síggja
-      unlisted: Ólistað
-      unlisted_long: Øll kunnu síggja, men ikki listað á almennum tíðarlinjum
+      public_long: Øll í og uttanfyri Mastodon
+      unlisted: Stillur almenningur
+      unlisted_long: Fjalt frá leitiúrslitum, rákum og almennum tíðarlinjum í Mastodon
   statuses_cleanup:
     enabled: Strika gamlar postar sjálvvirkandi
     enabled_hint: Strikar postar tínar sjálvvirkandi, tá teir verða eldri enn eitt vist, uttan so at teir samsvara við eitt av undantøkunum niðanfyri

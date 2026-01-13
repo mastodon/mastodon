@@ -31,7 +31,7 @@ fr:
           suspend: Empêcher toute interaction depuis ou vers ce compte et supprimer son contenu. Réversible dans les 30 jours. Cloture tous les signalements concernant ce compte.
         warning_preset_id: Facultatif. Vous pouvez toujours ajouter un texte personnalisé à la fin de la présélection
       announcement:
-        all_day: Coché, seules les dates de l’intervalle de temps seront affichées
+        all_day: Lorsque coché, seules les dates de l’intervalle de temps seront affichées
         ends_at: Facultatif. La fin de l'annonce surviendra automatiquement à ce moment
         scheduled_at: Laisser vide pour publier l’annonce immédiatement
         starts_at: Facultatif. Si votre annonce est liée à une période spécifique
@@ -54,13 +54,18 @@ fr:
         password: Utilisez au moins 8 caractères
         phrase: Sera filtré peu importe la casse ou l’avertissement de contenu du message
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez une permission générale, vous n’avez pas besoin de sélectionner les permissions plus précises.
+        setting_advanced_layout: Afficher Mastodon avec une mise en page multicolonnes, vous permettant de visualiser le flux, les notifications et une troisième colonne de votre choix. Non recommandé pour les écrans plus petits.
         setting_aggregate_reblogs: Ne pas afficher les nouveaux partages pour les messages déjà récemment partagés (n’affecte que les partages futurs)
         setting_always_send_emails: Normalement, les notifications par courriel ne seront pas envoyées lorsque vous utilisez Mastodon activement
-        setting_default_quote_policy: Ce paramètre ne prendra effet que pour les messages créés avec la prochaine version de Mastodon, mais vous pouvez sélectionner votre préférence en avance.
+        setting_boost_modal: Lorsque cette option est activée, avant de partager un message un écran de confirmation vous permettra de changer la visibilité du partage.
+        setting_default_quote_policy_private: Les messages limités aux personnes qui vous suivent publiés depuis Mastodon ne peuvent pas être cités.
+        setting_default_quote_policy_unlisted: Lorsque des personnes vous citent, leur message sera également masqué des fils des tendances.
         setting_default_sensitive: Les médias sensibles sont cachés par défaut et peuvent être révélés d’un simple clic
         setting_display_media_default: Masquer les médias marqués comme sensibles
         setting_display_media_hide_all: Toujours masquer les médias
         setting_display_media_show_all: Toujours afficher les médias
+        setting_emoji_style: Manière d'afficher les émojis. Utiliser « Auto » pour essayer d'utiliser les émojis natifs, mais Twemoji sera utilisé pour les anciens navigateurs.
+        setting_quick_boosting_html: Lorsque cette option est activée, cliquer sur l'icône de partage %{boost_icon} va immédiatement partager le message au lieu d'ouvrir le menu déroulant Partage/Citation. L'action de citation est déplacée dans le menu %{options_icon} (options).
         setting_system_scrollbars_ui: S'applique uniquement aux navigateurs basés sur Safari et Chrome
         setting_use_blurhash: Les dégradés sont basés sur les couleurs des images cachées mais n’en montrent pas les détails
         setting_use_pending_items: Cacher les mises à jour des fils d’actualités derrière un clic, au lieu de les afficher automatiquement
@@ -88,6 +93,7 @@ fr:
         content_cache_retention_period: Tous les messages provenant d'autres serveurs (y compris les partages et les réponses) seront supprimés passé le nombre de jours spécifié, sans tenir compte de l'interaction de l'utilisateur·rice local·e avec ces messages. Cela inclut les messages qu'un·e utilisateur·rice aurait marqué comme signets ou comme favoris. Les mentions privées entre utilisateur·rice·s de différentes instances seront également perdues et impossibles à restaurer. L'utilisation de ce paramètre est destinée à des instances spécifiques et contrevient à de nombreuses attentes des utilisateurs lorsqu'elle est appliquée à des fins d'utilisation ordinaires.
         custom_css: Vous pouvez appliquer des styles personnalisés sur la version Web de Mastodon.
         favicon: WEBP, PNG, GIF ou JPG. Remplace la favicon Mastodon par défaut avec une icône personnalisée.
+        landing_page: Sélectionner la page à afficher aux nouveaux visiteurs quand ils arrivent sur votre serveur. Pour utiliser « Tendances » les tendances doivent être activées dans les paramètres de découverte. Pour utiliser « Fil local » le paramètre « Accès au flux en direct de ce serveur » doit être défini sur « Tout le monde » dans les paramètres de découverte.
         mascot: Remplace l'illustration dans l'interface Web avancée.
         media_cache_retention_period: Les fichiers médias des messages publiés par des utilisateurs distants sont mis en cache sur votre serveur. Lorsque cette valeur est positive, les médias sont supprimés au terme du nombre de jours spécifié. Si les données des médias sont demandées après leur suppression, elles seront téléchargées à nouveau, dans la mesure où le contenu source est toujours disponible. En raison des restrictions concernant la fréquence à laquelle les cartes de prévisualisation des liens interrogent des sites tiers, il est recommandé de fixer cette valeur à au moins 14 jours, faute de quoi les cartes de prévisualisation des liens ne seront pas mises à jour à la demande avant cette échéance.
         min_age: Les utilisateurs seront invités à confirmer leur date de naissance lors de l'inscription
@@ -103,10 +109,8 @@ fr:
         status_page_url: URL d'une page où les gens peuvent voir l'état de ce serveur en cas de panne
         theme: Thème que verront les utilisateur·rice·s déconnecté·e·s ainsi que les nouveaux·elles utilisateur·rice·s.
         thumbnail: Une image d'environ 2:1 affichée à côté des informations de votre serveur.
-        timeline_preview: Les utilisateur⋅rice⋅s déconnecté⋅e⋅s pourront parcourir les derniers messages publics disponibles sur le serveur.
         trendable_by_default: Ignorer l'examen manuel du contenu tendance. Des éléments individuels peuvent toujours être supprimés des tendances après coup.
         trends: Les tendances montrent quels messages, hashtags et actualités gagnent en popularité sur votre serveur.
-        trends_as_landing_page: Afficher le contenu tendance au lieu d'une description de ce serveur pour les comptes déconnectés et les non-inscrit⋅e⋅s. Nécessite que les tendances soient activées.
       form_challenge:
         current_password: Vous entrez une zone sécurisée
       imports:
@@ -149,6 +153,9 @@ fr:
         min_age: Ne doit pas être en dessous de l’âge minimum requis par les lois de votre juridiction.
       user:
         chosen_languages: Lorsque coché, seuls les messages dans les langues sélectionnées seront affichés sur les fils publics
+        date_of_birth:
+          one: Nous devons vérifier que vous avez au moins %{count} an pour utiliser %{domain}. Cette information ne sera pas conservée.
+          other: Nous devons vérifier que vous avez au moins %{count} ans pour utiliser %{domain}. Cette information ne sera pas conservée.
         role: Le rôle définit quelles autorisations a l'utilisateur⋅rice.
       user_role:
         color: Couleur à attribuer au rôle dans l'interface, au format hexadécimal RVB
@@ -156,6 +163,10 @@ fr:
         name: Nom public du rôle, si le rôle est configuré pour être affiché avec un badge
         permissions_as_keys: Les utilisateur·rice·s ayant ce rôle auront accès à …
         position: Dans certaines situations, un rôle supérieur peut trancher la résolution d'un conflit. Mais certaines opérations ne peuvent être effectuées que sur des rôles ayant une priorité inférieure
+      username_block:
+        allow_with_approval: Au lieu de bloquer l'inscription, les inscriptions correspondantes nécessiteront votre approbation
+        comparison: Veuillez garder à l'esprit le problème de Scunthorpe lors du blocage des correspondances partielles
+        username: Correspondra peu importe la casse utilisée et pour les homoglyphes courants – par exemple « 4 » pour « a » ou « 3 » pour « e »
       webhook:
         events: Sélectionnez les événements à envoyer
         template: Écrivez votre propre bloc JSON avec la possibilité d’utiliser de l’interpolation de variables. Laissez vider pour utiliser le bloc JSON par défaut.
@@ -226,21 +237,23 @@ fr:
         setting_aggregate_reblogs: Grouper les partages dans les fils d’actualités
         setting_always_send_emails: Toujours envoyer les notifications par courriel
         setting_auto_play_gif: Lire automatiquement les GIFs animés
-        setting_boost_modal: Demander confirmation avant de partager un message
+        setting_boost_modal: Configurer la visibilité du partage
         setting_default_language: Langue de publication
-        setting_default_privacy: Confidentialité des messages
+        setting_default_privacy: Visibilité de la publication
         setting_default_quote_policy: Autoriser les citations pour
         setting_default_sensitive: Toujours marquer les médias comme sensibles
-        setting_delete_modal: Demander confirmation avant de supprimer un message
+        setting_delete_modal: M'avertir avant de supprimer un message
         setting_disable_hover_cards: Désactiver l'aperçu du profil au survol
         setting_disable_swiping: Désactiver les actions par glissement
         setting_display_media: Affichage des médias
         setting_display_media_default: Défaut
         setting_display_media_hide_all: Masquer tout
         setting_display_media_show_all: Montrer tout
+        setting_emoji_style: Style des émojis
         setting_expand_spoilers: Toujours déplier les messages marqués d’un avertissement de contenu
         setting_hide_network: Cacher votre réseau
-        setting_missing_alt_text_modal: Afficher une fenêtre de confirmation avant de poster un média sans texte alternatif
+        setting_missing_alt_text_modal: M'avertir avant de publier des médias sans texte alternatif
+        setting_quick_boosting: Activer le partage rapide
         setting_reduce_motion: Réduire la vitesse des animations
         setting_system_font_ui: Utiliser la police par défaut du système
         setting_system_scrollbars_ui: Utiliser la barre de défilement par défaut du système
@@ -274,12 +287,17 @@ fr:
         content_cache_retention_period: Durée de rétention du contenu distant
         custom_css: CSS personnalisé
         favicon: Favicon
+        landing_page: Page d'accueil pour les nouveaux visiteurs
+        local_live_feed_access: Accès au flux en direct de ce serveur
+        local_topic_feed_access: Accès aux flux hashtag et lien de ce serveur
         mascot: Mascotte personnalisée (héritée)
         media_cache_retention_period: Durée de rétention des médias dans le cache
         min_age: Âge minimum requis
         peers_api_enabled: Publie la liste des serveurs découverts dans l'API
         profile_directory: Activer l’annuaire des profils
         registrations_mode: Qui peut s’inscrire
+        remote_live_feed_access: Accès au flux en direct des autres serveurs
+        remote_topic_feed_access: Accès aux flux hashtag et lien des autres serveurs
         require_invite_text: Exiger une raison pour s’inscrire
         show_domain_blocks: Afficher les blocages de domaines
         show_domain_blocks_rationale: Montrer pourquoi les domaines ont été bloqués
@@ -292,10 +310,8 @@ fr:
         status_page_url: URL de la page de l'état du serveur
         theme: Thème par défaut
         thumbnail: Miniature du serveur
-        timeline_preview: Autoriser l’accès non authentifié aux fils publics
         trendable_by_default: Autoriser les tendances sans révision préalable
         trends: Activer les tendances
-        trends_as_landing_page: Utiliser les tendances comme page d'accueil
       interactions:
         must_be_follower: Bloquer les notifications des personnes qui ne vous suivent pas
         must_be_following: Bloquer les notifications des personnes que vous ne suivez pas
@@ -320,6 +336,7 @@ fr:
         follow_request: Quelqu’un demande à vous suivre
         mention: Quelqu’un vous a mentionné⋅e
         pending_account: Nouveau compte en attente d’approbation
+        quote: Quelqu'un vous a cité
         reblog: Quelqu’un a partagé votre message
         report: Nouveau signalement soumis
         software_updates:
@@ -366,6 +383,10 @@ fr:
         name: Nom
         permissions_as_keys: Autorisations
         position: Priorité
+      username_block:
+        allow_with_approval: Autoriser les inscriptions avec approbation
+        comparison: Méthode de comparaison
+        username: Mot à faire correspondre
       webhook:
         events: Événements activés
         template: Modèle de payload

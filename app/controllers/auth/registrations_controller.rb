@@ -23,11 +23,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     super(&:build_invite_request)
   end
 
-  def edit # rubocop:disable Lint/UselessMethodDefinition
+  def edit
     super
   end
 
-  def create # rubocop:disable Lint/UselessMethodDefinition
+  def create
     super
   end
 
@@ -89,7 +89,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path unless allowed_registration?(request.remote_ip, @invite)
+    redirect_to new_user_session_path, alert: I18n.t('devise.failure.closed_registrations', email: Setting.site_contact_email) unless allowed_registration?(request.remote_ip, @invite)
   end
 
   def invite_code

@@ -110,11 +110,19 @@ RSpec.describe '/api/v1/accounts' do
         let(:date_of_birth) { 13.years.ago.strftime('%d.%m.%Y') }
 
         it 'returns http unprocessable entity' do
-          subject
+          expect { subject }
+            .to not_change(User, :count)
+            .and not_change(Account, :count)
 
-          expect(response).to have_http_status(422)
+          expect(response)
+            .to have_http_status(422)
           expect(response.content_type)
             .to start_with('application/json')
+          expect(response.parsed_body)
+            .to include(
+              error: /Validation failed/,
+              details: include(date_of_birth: contain_exactly(include(error: 'ERR_BELOW_LIMIT', description: /below the age limit/)))
+            )
         end
       end
 
@@ -122,9 +130,27 @@ RSpec.describe '/api/v1/accounts' do
         let(:date_of_birth) { 17.years.ago.strftime('%d.%m.%Y') }
 
         it 'creates a user', :aggregate_failures do
-          subject
+          expect { subject }
+            .to change(User, :count).by(1)
+            .and change(Account, :count).by(1)
 
-          expect(response).to have_http_status(200)
+          expect(response)
+            .to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
+      end
+
+      context 'when date of birth is over age limit in ISO-8601 format' do
+        let(:date_of_birth) { 17.years.ago.to_date.iso8601 }
+
+        it 'creates a user', :aggregate_failures do
+          expect { subject }
+            .to change(User, :count).by(1)
+            .and change(Account, :count).by(1)
+
+          expect(response)
+            .to have_http_status(200)
           expect(response.content_type)
             .to start_with('application/json')
         end

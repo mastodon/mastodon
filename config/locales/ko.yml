@@ -187,6 +187,7 @@ ko:
         create_relay: 릴레이 생성
         create_unavailable_domain: 사용 불가능한 도메인 생성
         create_user_role: 역할 생성
+        create_username_block: 새 사용자명 규칙 만들기
         demote_user: 사용자 강등
         destroy_announcement: 공지사항 삭제
         destroy_canonical_email_block: 이메일 차단 삭제
@@ -200,6 +201,7 @@ ko:
         destroy_status: 게시물 삭제
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
         destroy_user_role: 역할 삭제
+        destroy_username_block: 사용자명 규칙 삭제
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
         disable_relay: 릴레이 비활성화
@@ -234,6 +236,7 @@ ko:
         update_report: 신고 업데이트
         update_status: 게시물 수정
         update_user_role: 역할 수정
+        update_username_block: 사용자명 규칙 업데이트
       actions:
         approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 승인했습니다"
         approve_user_html: "%{name} 님이 %{target} 님의 가입을 승인했습니다"
@@ -252,6 +255,7 @@ ko:
         create_relay_html: "%{name} 님이 릴레이 %{target}를 생성했습니다"
         create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지했습니다"
         create_user_role_html: "%{name} 님이 %{target} 역할을 생성했습니다"
+        create_username_block_html: "%{name} 님이 %{target}를 포함하는 사용자명에 대한 규칙을 생성했습니다"
         demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
         destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단 해제했습니다"
@@ -265,6 +269,7 @@ ko:
         destroy_status_html: "%{name} 님이 %{target} 님의 게시물을 삭제했습니다"
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
         destroy_user_role_html: "%{name} 님이 %{target} 역할을 삭제했습니다"
+        destroy_username_block_html: "%{name} 님이 %{target}를 포함하는 사용자명에 대한 규칙을 삭제했습니다"
         disable_2fa_user_html: "%{name} 님이 사용자 %{target} 님의 2단계 인증을 비활성화 했습니다"
         disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화했습니다"
         disable_relay_html: "%{name} 님이 릴레이 %{target}를 비활성화했습니다"
@@ -299,6 +304,7 @@ ko:
         update_report_html: "%{name} 님이 신고 %{target}를 업데이트 했습니다"
         update_status_html: "%{name} 님이 %{target}의 게시물을 업데이트했습니다"
         update_user_role_html: "%{name} 님이 %{target} 역할을 수정했습니다"
+        update_username_block_html: "%{name} 님이 %{target}를 포함하는 사용자명에 대한 규칙을 수정했습니다"
       deleted_account: 계정을 삭제했습니다
       empty: 로그를 찾을 수 없습니다
       filter_by_action: 동작 별 필터
@@ -778,6 +784,8 @@ ko:
         view_dashboard_description: 사용자가 여러 통계정보를 볼 수 있는 대시보드에 접근할 수 있도록 허용
         view_devops: 데브옵스
         view_devops_description: Sidekiq과 pgHero 대시보드에 접근할 수 있도록 허용
+        view_feeds: 실시간, 해시태그 피드 보기
+        view_feeds_description: 서버 설정에 관계 없이 실시간과 해시태그 피드에 접근할 수 있도록 허용
       title: 역할
     rules:
       add_new: 규칙 추가
@@ -819,7 +827,6 @@ ko:
         title: 사용자들이 기본적으로 검색엔진에 인덱싱되지 않도록 합니다
       discovery:
         follow_recommendations: 팔로우 추천
-        preamble: 흥미로운 콘텐츠를 노출하는 것은 마스토돈을 알지 못할 수도 있는 신규 사용자를 유입시키는 데 중요합니다. 이 서버에서 작동하는 다양한 발견하기 기능을 제어합니다.
         privacy: 개인정보
         profile_directory: 프로필 책자
         public_timelines: 공개 타임라인
@@ -830,6 +837,16 @@ ko:
         all: 모두에게
         disabled: 아무에게도 안 함
         users: 로그인 한 사용자에게
+      feed_access:
+        modes:
+          authenticated: 로그인한 사용자들만
+          disabled: 특정한 사용자 역할 필요
+          public: 모두
+      landing_page:
+        values:
+          about: 정보
+          local_feed: 로컬 피드
+          trends: 유행
       registrations:
         moderation_recommandation: 모두에게 가입을 열기 전에 적절하고 반응이 빠른 중재 팀을 데리고 있는지 확인해 주세요!
         preamble: 누가 이 서버에 계정을 만들 수 있는지 제어합니다.
@@ -883,6 +900,7 @@ ko:
       no_status_selected: 아무 것도 선택 되지 않아 어떤 게시물도 바뀌지 않았습니다
       open: 게시물 열기
       original_status: 원본 게시물
+      quotes: 인용
       reblogs: 리블로그
       replied_to_html: "%{acct_link} 님에게 답장"
       status_changed: 게시물 변경됨
@@ -890,6 +908,7 @@ ko:
       title: 계정 게시물 - @%{name}
       trending: 유행 중
       view_publicly: 공개시점으로 보기
+      view_quoted_post: 인용된 게시물 보기
       visibility: 공개 설정
       with_media: 미디어 있음
     strikes:
@@ -1069,6 +1088,25 @@ ko:
           other: 지난 주 동안 %{count} 명의 사람들이 사용했습니다
       title: 추천과 유행
       trending: 유행 중
+    username_blocks:
+      add_new: 새로 추가
+      block_registrations: 가입 차단
+      comparison:
+        contains: 포함
+        equals: 일치
+      contains_html: "%{string} 포함"
+      created_msg: 사용자명 규칙을 생성했습니다
+      delete: 삭제
+      edit:
+        title: 사용자명 규칙 편집
+      matches_exactly_html: "%{string}과 일치"
+      new:
+        create: 규칙 만들기
+        title: 새 유저네임 규칙 만들기
+      no_username_block_selected: 아무 것도 선택 되지 않아 어떤 사용자명 규칙도 변경 되지 않았습니다
+      not_permitted: 허용하지 않음
+      title: 사용자명 규칙
+      updated_msg: 사용자명 규칙을 변경했습니다
     warning_presets:
       add_new: 새로 추가
       delete: 삭제
@@ -1140,10 +1178,10 @@ ko:
     hint_html: 다른 계정에서 이 계정으로 옮기길 원하는 경우, 여기에서 별칭을 만들 수 있습니다, 기존 계정의 팔로워를 이쪽으로 옮기고 싶은 경우 필요한 과정입니다. 이 행동 자체는 <strong>해롭지 않고 되돌리기가 가능합니다</strong>.<strong>계정 이주는 이전 계정에서 착수하게 됩니다</strong>
     remove: 별칭 연결 끊기
   appearance:
-    advanced_web_interface: 고급 웹 인터페이스
-    advanced_web_interface_hint: '화면의 가로폭을 가득 채우고 싶다면, 고급 웹 인터페이스는 한 번에 여러 정보를 볼 수 있도록 여러 컬럼을 설정할 수 있도록 합니다: 홈, 알림, 연합타임라인, 리스트, 해시태그 등'
+    advanced_settings: 고급 설정
     animations_and_accessibility: 애니메이션과 접근성
-    confirmation_dialogs: 확인 대화상자
+    boosting_preferences: 부스팅 설정
+    boosting_preferences_info_html: "<strong>팁:</strong> 설정에 관계 없이 %{icon}을 <kbd>시프트</kbd>+<kbd>클릭</kbd>하여 곧바로 부스트할 수 있습니다."
     discovery: 발견하기
     localization:
       body: 마스토돈은 자원봉사자들에 의해 번역되었습니다.
@@ -1332,6 +1370,10 @@ ko:
     basic_information: 기본 정보
     hint_html: "<strong>사람들이 공개 프로필을 보고서 게시물을 볼 때를 위한 프로필을 꾸밉니다.</strong> 프로필과 프로필 사진을 채우면 다른 사람들이 나를 팔로우하고 나와 교류할 기회가 더 많아집니다."
     other: 기타
+  emoji_styles:
+    auto: 자동
+    native: 시스템 기본
+    twemoji: 트웨모지
   errors:
     '400': 제출한 요청이 올바르지 않습니다.
     '403': 이 페이지를 표시할 권한이 없습니다.
@@ -1521,6 +1563,13 @@ ko:
       expires_at: 만료
       uses: 이용 수
     title: 초대하기
+  link_preview:
+    author_html: "%{name} 작성"
+    potentially_sensitive_content:
+      action: 클릭하여 보기
+      confirm_visit: 정말로 이 링크를 여시겠습니까?
+      hide_button: 숨기기
+      label: 민감한 컨텐츠일 수 있음
   lists:
     errors:
       limit: 리스트 최대 개수를 초과합니다
@@ -1621,6 +1670,10 @@ ko:
       title: 새 답글
     poll:
       subject: "%{name}의 설문이 종료됨"
+    quote:
+      body: '당신의 게시물을 %{name} 님이 인용했습니다:'
+      subject: "%{name} 님이 내 게시물을 인용했습니다"
+      title: 새 인용
     reblog:
       body: '당신의 게시물을 %{name} 님이 부스트 했습니다:'
       subject: "%{name} 님이 내 게시물을 부스트 했습니다"
@@ -1670,6 +1723,8 @@ ko:
       too_few_options: 둘 이상의 항목이 있어야 함
       too_many_options: 항목은 %{max}개를 넘을 수 없습니다
     vote: 투표
+  posting_defaults:
+    explanation: 이 설정은 새 게시물을 작성할 때 기본값으로 쓰이지만, 작성기 내에서 게시물별로 편집할 수 있습니다.
   preferences:
     other: 기타
     posting_defaults: 게시물 기본설정
@@ -1822,31 +1877,40 @@ ko:
         other: "%{count} 개의 영상"
     boosted_from_html: "%{acct_link}의 글을 부스트"
     content_warning: '열람 주의: %{warning}'
+    content_warnings:
+      hide: 게시물 숨기기
+      show: 더 보기
     default_language: 화면 표시 언어와 동일하게
     disallowed_hashtags:
       other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
     edited_at_html: "%{date}에 편집됨"
     errors:
       in_reply_not_found: 답장하려는 게시물이 존재하지 않습니다.
+      quoted_status_not_found: 인용하려는 게시물이 존재하지 않습니다.
+      quoted_user_not_mentioned: 개인 멘션에서 다른 사람의 게시물을 인용할 수 없습니다.
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
       direct: 멘션된 사용자들에게만 보이는 게시물은 고정될 수 없습니다
       limit: 이미 너무 많은 게시물을 고정했습니다
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
+    quote_error:
+      not_available: 게시물 사용 불가
+      pending_approval: 계류 중인 게시물
+      revoked: 원작성자에 의해 게시물 삭제됨
     quote_policies:
       followers: 팔로워만
       nobody: 나만
       public: 누구나
+    quote_post_author: 인용된 %{acct} 님의 게시물
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: 개인 멘션
-      private: 비공개
-      private_long: 팔로워에게만 공개됩니다
+      private: 팔로워만
       public: 공개
-      public_long: 누구나 볼 수 있으며, 공개 타임라인에 표시됩니다
-      unlisted: 미등재
-      unlisted_long: 누구나 볼 수 있지만, 공개 타임라인에는 표시되지 않습니다
+      public_long: 마스토돈 내외 모두
+      unlisted: 조용한 공개
+      unlisted_long: 마스토돈 검색결과, 유행, 공개 타임라인에서 숨기기
   statuses_cleanup:
     enabled: 오래된 게시물 자동 삭제
     enabled_hint: 아래의 예외 목록에 해당하지 않는다면, 명시된 기한 이후 당신의 게시물을 자동으로 삭제합니다

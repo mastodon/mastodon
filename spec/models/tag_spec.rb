@@ -17,6 +17,7 @@ RSpec.describe Tag do
         subject { Fabricate :tag, name: 'original' }
 
         it { is_expected.to_not allow_value('changed').for(:name).with_message(previous_name_error_message) }
+        it { is_expected.to allow_value('ORIGINAL').for(:name) }
       end
     end
 
@@ -31,6 +32,7 @@ RSpec.describe Tag do
         subject { Fabricate :tag, name: 'original', display_name: 'OriginalDisplayName' }
 
         it { is_expected.to_not allow_value('ChangedDisplayName').for(:display_name).with_message(previous_name_error_message) }
+        it { is_expected.to allow_value('ORIGINAL').for(:display_name) }
       end
     end
 
@@ -80,6 +82,10 @@ RSpec.describe Tag do
 
     it 'matches ﻿#ａｅｓｔｈｅｔｉｃ' do
       expect(subject.match('﻿this is #ａｅｓｔｈｅｔｉｃ').to_s).to eq '#ａｅｓｔｈｅｔｉｃ'
+    end
+
+    it 'matches ＃ｆｏｏ' do
+      expect(subject.match('this is ＃ｆｏｏ').to_s).to eq '＃ｆｏｏ'
     end
 
     it 'matches digits at the start' do

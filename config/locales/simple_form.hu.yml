@@ -54,13 +54,18 @@ hu:
         password: Legalább 8 karakter
         phrase: Illeszkedni fog kis/nagybetű függetlenül, és tartalmi figyelmeztetések mögött is
         scopes: Mely API-kat érheti el az alkalmazás. Ha felső szintű hatáskört választasz, nem kell egyesével kiválasztanod az alatta lévőeket.
+        setting_advanced_layout: A Mastodon megjelenítése többhasábos elrendezéssel, így az idővonal, az értesítések és egy harmadik választott hasáb jelenik meg. Kisebb kijelzők esetén nem javasolt.
         setting_aggregate_reblogs: Ne mutassunk megtolásokat olyan bejegyzésekhez, melyeket nemrég toltak meg (csak új megtolásokra lép életbe)
         setting_always_send_emails: Alapesetben nem küldünk e-mail-értesítéseket, ha aktívan használod a Mastodont
-        setting_default_quote_policy: A beállítás csak a Mastodon következő verziójával készült bejegyzésekre lesz hatással, de előre kiválaszthatod az előnyben részesített beállítást.
+        setting_boost_modal: Ha engedélyezve van, akkor a megtolás egy megerősítő párbeszédablakot jelenít meg, melyen kiválaszthatod a megtolásod láthatóságát.
+        setting_default_quote_policy_private: A Mastodonon írt, csak követőknek szóló bejegyzéseket mások nem idézhetik.
+        setting_default_quote_policy_unlisted: Amikor idéznek tőled, a bejegyzésük rejtve lesz a felkapott bejegyzések hírfolyamain is.
         setting_default_sensitive: A kényes médiatartalmat alapesetben elrejtjük, de egyetlen kattintással előhozható
         setting_display_media_default: Kényes tartalomnak jelölt média elrejtése
         setting_display_media_hide_all: Média elrejtése mindig
         setting_display_media_show_all: Média megjelenítése mindig
+        setting_emoji_style: Az emodzsik megjelenítési módja. Az „Automatikus” megpróbálja a natív emodzsikat használni, de az örökölt böngészők esetén a Twemojira vált vissza.
+        setting_quick_boosting_html: Ha engedélyezve van, akkor a %{boost_icon} Megtolás azonnal megtörténik, ahelyett hogy megnyitná a megtolás/idézés legördülő menüje. Az idézési műveletet áthelyezi a %{options_icon} (Beállítások) menübe.
         setting_system_scrollbars_ui: Csak Chrome és Safari alapú asztali böngészőkre vonatkozik
         setting_use_blurhash: A kihomályosítás az eredeti képből történik, de minden részletet elrejt
         setting_use_pending_items: Idővonal frissítése csak kattintásra automatikus görgetés helyett
@@ -88,6 +93,7 @@ hu:
         content_cache_retention_period: Minden más kiszolgálóról származó bejegyzés (megtolásokkal és válaszokkal együtt) törölve lesz a megadott számú nap elteltével, függetlenül a helyi felhasználók ezekkel a bejegyzésekkel történő interakcióitól. Ebben azok a bejegyzések is benne vannak, melyeket a helyi felhasználó könyvjelzőzött vagy kedvencnek jelölt. A különböző kiszolgálók felhasználói közötti privát üzenetek is el fognak veszni visszaállíthatatlanul. Ennek a beállításnak a használata különleges felhasználási esetekre javasolt, mert számos felhasználói elvárás fog eltörni, ha általános céllal használják.
         custom_css: A Mastodon webes verziójában használhatsz egyéni stílusokat.
         favicon: WEBP, PNG, GIF vagy JPG. Az alapértelmezett Mastodon favicont felülírja egy egyéni ikonnal.
+        landing_page: Kiválasztja, hogy a webhely új látogatói mit látnak, amikor először érkeznek a kiszolgálóra. Ha a „Trendek” lehetőséget választod, akkor engedélyezni kell a trendeket a Felfedezési beállításokban. Ha a „Helyi hírfolyamot” választod, akkor a „Helyi bejegyzéseket tartalmazó helyi élő idővonalak elérése” lehetőséget „Mindenki” értékre kell állítani a Felfedezési beállításokban.
         mascot: Felülbírálja a speciális webes felületen található illusztrációt.
         media_cache_retention_period: A távoli felhasználók bejegyzéseinek médiatartalmait a kiszolgálód gyorsítótárazza. Ha pozitív értékre állítják, ezek a médiatartalmak a megadott számú nap után törölve lesznek. Ha a médiát újra lekérik, miután törlődött, újra le fogjuk tölteni, ha az eredeti még elérhető. A hivatkozások előnézeti kártyáinak harmadik fél weboldalai felé történő hivatkozásaira alkalmazott megkötései miatt javasolt, hogy ezt az értéket legalább 14 napra állítsuk, ellenkező esetben a hivatkozások előnézeti kártyái szükség esetén nem fognak tudni frissülni ezen idő előtt.
         min_age: A felhasználók a regisztráció során arra lesznek kérve, hogy erősítsek meg a születési dátumukat
@@ -103,10 +109,8 @@ hu:
         status_page_url: Annak az oldalnak az URL-je, melyen ennek a kiszolgálónak az állapotát látják az emberek egy leállás során
         theme: A téma, melyet a kijelentkezett látogatók és az új felhasználók látnak.
         thumbnail: Egy durván 2:1 arányú kép, amely a kiszolgálóinformációk mellett jelenik meg.
-        timeline_preview: A kijelentkezett látogatók továbbra is böngészhetik a kiszolgáló legfrissebb nyilvános bejegyzéseit.
         trendable_by_default: Kézi felülvizsgálat kihagyása a felkapott tartalmaknál. Az egyes elemek utólag távolíthatók el a trendek közül.
         trends: A trendek azt mondják meg, hogy mely bejegyzések, hashtagek és hírbejegyzések felkapottak a kiszolgálódon.
-        trends_as_landing_page: Felkapott tartalmak mutatása a kijelentkezett felhasználók és látogatók számára ennek a kiszolgálónak a leírása helyett. Szükséges hozzá a trendek engedélyezése.
       form_challenge:
         current_password: Beléptél egy biztonsági térben
       imports:
@@ -159,6 +163,10 @@ hu:
         name: A szerep nyilvános neve, ha a szerepet úgy állították be, hogy jelvényként látható legyen
         permissions_as_keys: A felhasználók ezzel a szereppel elérhetik a...
         position: A magasabb szerepkör oldja fel az ütközéseket bizonyos helyzetekben. Bizonyos műveleteket csak alacsonyabb prioritású szerepkörrel lehet elvégezni.
+      username_block:
+        allow_with_approval: A regisztráció azonnali megakadályozása helyett az illeszkedő regisztrációkhoz jóváhagyás szükséges
+        comparison: Vegye figyelembe a Scunthorpe-problémát, amikor részleges egyezéseket blokkol
+        username: Az illeszkedés egyezőnek tekinti a kis- és nagybetűket, valamint a gyakori homoglifákat, mint a „4” és az „a” vagy a „3” és az „e”
       webhook:
         events: Válaszd ki a küldendő eseményeket
         template: Saját JSON adatcsomagot állíthatsz össze változó-behelyettesítés használatával. Hagyd üresen az alapértelmezett JSON adatcsomaghoz.
@@ -229,21 +237,23 @@ hu:
         setting_aggregate_reblogs: Megtolások csoportosítása az idővonalakon
         setting_always_send_emails: E-mail-értesítések küldése mindig
         setting_auto_play_gif: GIF-ek automatikus lejátszása
-        setting_boost_modal: Megerősítés kérése megtolás előtt
+        setting_boost_modal: Megtolás láthatóságának beállítása
         setting_default_language: Bejegyzések nyelve
-        setting_default_privacy: Bejegyzések láthatósága
+        setting_default_privacy: Közzététel láthatósága
         setting_default_quote_policy: Ki idézhet
         setting_default_sensitive: Minden médiafájl megjelölése kényesként
-        setting_delete_modal: Megerősítés kérése bejegyzés törlése előtt
+        setting_delete_modal: Figyelmeztetés egy bejegyzés törlése előtt
         setting_disable_hover_cards: Profilelőnézet letiltása föléhúzás esetén
         setting_disable_swiping: Elhúzás művelet kikapcsolása
         setting_display_media: Média megjelenítése
         setting_display_media_default: Alapértelmezés
         setting_display_media_hide_all: Mindent elrejt
         setting_display_media_show_all: Mindent mutat
+        setting_emoji_style: Emodzsistílus
         setting_expand_spoilers: Tartalmi figyelmeztetéssel ellátott bejegyzések automatikus kinyitása
         setting_hide_network: Hálózatod elrejtése
-        setting_missing_alt_text_modal: Megerősítési párbeszédablak megjelenítése a helyettesítő szöveg nélküli média közzététele előtt
+        setting_missing_alt_text_modal: Figyelmeztetés alternatív szöveg nélküli média közzétetele előtt
+        setting_quick_boosting: Gyors megtolás engedélyezése
         setting_reduce_motion: Animációk mozgásának csökkentése
         setting_system_font_ui: Rendszer betűtípusának használata
         setting_system_scrollbars_ui: Rendszer alapértelmezett görgetősávjának használata
@@ -277,12 +287,17 @@ hu:
         content_cache_retention_period: Távoli tartalmak megtartási időszaka
         custom_css: Egyéni CSS
         favicon: Könyvjelzőikon
+        landing_page: Kezdőoldal az új látogatóknak
+        local_live_feed_access: Helyi bejegyzéseket bemutató élő hírfolyamok elérése
+        local_topic_feed_access: Helyi bejegyzéseket bemutató hashtagek és hivatkozásfolyamok elérése
         mascot: Egyéni kabala (örökölt)
         media_cache_retention_period: Média-gyorsítótár megtartási időszaka
         min_age: Minimális korhatár
         peers_api_enabled: Felfedezett kiszolgálók listájának közzététele az API-ban
         profile_directory: Profiladatbázis engedélyezése
         registrations_mode: Ki regisztrálhat
+        remote_live_feed_access: Távoli bejegyzéseket bemutató élő hírfolyamok elérése
+        remote_topic_feed_access: Távoli bejegyzéseket bemutató hashtagek és hivatkozásfolyamok elérése
         require_invite_text: Indok megkövetelése a csatlakozáshoz
         show_domain_blocks: Domain tiltások megjelenitése
         show_domain_blocks_rationale: A domainek letiltási okainak megjelenítése
@@ -295,10 +310,8 @@ hu:
         status_page_url: Állapotoldal URL-je
         theme: Alapértelmezett téma
         thumbnail: Kiszolgáló bélyegképe
-        timeline_preview: A nyilvános idővonalak hitelesítés nélküli elérésének engedélyezése
         trendable_by_default: Trendek engedélyezése előzetes ellenőrzés nélkül
         trends: Trendek engedélyezése
-        trends_as_landing_page: Trendek használata nyitóoldalként
       interactions:
         must_be_follower: Nem követőidtől érkező értesítések tiltása
         must_be_following: Nem követettjeidtől érkező értesítések tiltása
@@ -323,6 +336,7 @@ hu:
         follow_request: E-mail küldése, amikor valaki követni szeretne téged
         mention: E-mail küldése, amikor valaki megemlít téged
         pending_account: E-mail küldése, ha új fiókot kell engedélyezni
+        quote: E-mail küldése, amikor valaki idéz téged
         reblog: Valaki megtolta a bejegyzésedet
         report: Új bejelentést küldtek be
         software_updates:
@@ -369,6 +383,10 @@ hu:
         name: Név
         permissions_as_keys: Engedélyek
         position: Prioritás
+      username_block:
+        allow_with_approval: Regisztráció engedélyezése jóváhagyással
+        comparison: Összehasonlítás módja
+        username: Ellenőrzendő szó
       webhook:
         events: Engedélyezett események
         template: Adatcsomag sablon

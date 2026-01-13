@@ -49,8 +49,8 @@ RSpec.describe FollowerAccountsController do
           expect(response.parsed_body)
             .to include(
               orderedItems: contain_exactly(
-                include(follow_from_bob.account.username),
-                include(follow_from_chris.account.username)
+                ActivityPub::TagManager.instance.uri_for(follow_from_bob.account),
+                ActivityPub::TagManager.instance.uri_for(follow_from_chris.account)
               ),
               totalItems: eq(2),
               partOf: be_present

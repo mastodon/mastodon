@@ -190,6 +190,7 @@ hu:
         create_relay: Továbbító létrehozása
         create_unavailable_domain: Elérhetetlen domain létrehozása
         create_user_role: Szerepkör létrehozása
+        create_username_block: Felhasználónév-szabály létrehozása
         demote_user: Felhasználó lefokozása
         destroy_announcement: Közlemény törlése
         destroy_canonical_email_block: E-mail-tiltás törlése
@@ -203,6 +204,7 @@ hu:
         destroy_status: Bejegyzés törlése
         destroy_unavailable_domain: Elérhetetlen domain törlése
         destroy_user_role: Szerepkör eltávolítása
+        destroy_username_block: Felhasználónév-szabály törlése
         disable_2fa_user: Kétlépcsős hitelesítés letiltása
         disable_custom_emoji: Egyéni emodzsi letiltása
         disable_relay: Továbbító letiltása
@@ -237,6 +239,7 @@ hu:
         update_report: Bejelentés frissítése
         update_status: Bejegyzés frissítése
         update_user_role: Szerepkör frissítése
+        update_username_block: Felhasználónév-szabály frissítése
       actions:
         approve_appeal_html: "%{name} jóváhagyott egy fellebbezést %{target} moderátori döntéséről"
         approve_user_html: "%{name} jóváhagyta %{target} regisztrációját"
@@ -255,6 +258,7 @@ hu:
         create_relay_html: "%{name} létrehozta az átirányítót: %{target}"
         create_unavailable_domain_html: "%{name} leállította a kézbesítést a %{target} domainbe"
         create_user_role_html: "%{name} létrehozta a(z) %{target} szerepkört"
+        create_username_block_html: "%{name} az ezt tartalmazó felhasználónevekre vonatkozó szabályt hozott létre: %{target}"
         demote_user_html: "%{name} lefokozta %{target} felhasználót"
         destroy_announcement_html: "%{name} törölte a %{target} közleményt"
         destroy_canonical_email_block_html: "%{name} engedélyezte a(z) %{target} hashű e-mailt"
@@ -268,6 +272,7 @@ hu:
         destroy_status_html: "%{name} eltávolította %{target} felhasználó bejegyzését"
         destroy_unavailable_domain_html: "%{name} újraindította a kézbesítést a %{target} domainbe"
         destroy_user_role_html: "%{name} törölte a(z) %{target} szerepkört"
+        destroy_username_block_html: "%{name} az ezt tartalmazó felhasználónevekre vonatkozó szabályt törölt: %{target}"
         disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős hitelesítést %{target} felhasználó fiókján"
         disable_custom_emoji_html: "%{name} letiltotta az emodzsit: %{target}"
         disable_relay_html: "%{name} letiltotta az átirányítót: %{target}"
@@ -302,6 +307,7 @@ hu:
         update_report_html: "%{name} frissítette a %{target} bejelentést"
         update_status_html: "%{name} frissítette %{target} felhasználó bejegyzését"
         update_user_role_html: "%{name} módosította a(z) %{target} szerepkört"
+        update_username_block_html: "%{name} az ezt tartalmazó felhasználónevekre vonatkozó szabályt frissített: %{target}"
       deleted_account: törölt fiók
       empty: Nem található napló.
       filter_by_action: Szűrés művelet alapján
@@ -790,6 +796,8 @@ hu:
         view_dashboard_description: Lehetővé teszi, hogy a felhasználó elérje az irányítópultot és vele számos metrikát
         view_devops: DevOps
         view_devops_description: Lehetővé teszi, hogy a felhasználó elérje a Sidekiq és pgHero irányítópultjait
+        view_feeds: Élő és témahírfolyamok megtekintése
+        view_feeds_description: A kiszolgálóbeállításoktól függetlenül engedélyezi az élő és témahírfolyamok elérését
       title: Szerepek
     rules:
       add_new: Szabály hozzáadása
@@ -842,6 +850,16 @@ hu:
         all: Mindenkinek
         disabled: Senkinek
         users: Bejelentkezett helyi felhasználóknak
+      feed_access:
+        modes:
+          authenticated: Csak hitelesített felhasználók
+          disabled: Konkrét felhasználói szerepkör megkövetelése
+          public: Mindenki
+      landing_page:
+        values:
+          about: Névjegy
+          local_feed: Helyi idővonal
+          trends: Trendek
       registrations:
         moderation_recommandation: Győződj meg arról, hogy megfelelő és gyors reagálású moderátor csapatod van, mielőtt mindenki számára megnyitod a regisztrációt!
         preamble: Szabályozd, hogy ki hozhat létre fiókot a kiszolgálón.
@@ -895,6 +913,7 @@ hu:
       no_status_selected: Nem változtattunk meg egy bejegyzést sem, mert semmi sem volt kiválasztva
       open: Bejegyzés megnyitása
       original_status: Eredeti bejegyzés
+      quotes: Idézetek
       reblogs: Megosztások
       replied_to_html: 'Válasz neki: %{acct_link}'
       status_changed: A bejegyzés megváltozott
@@ -902,6 +921,7 @@ hu:
       title: Fiók bejegyzései – @%{name}
       trending: Felkapott
       view_publicly: Megtekintés nyilvánosan
+      view_quoted_post: Idézett bejegyzés megtekintése
       visibility: Láthatóság
       with_media: Médiával
     strikes:
@@ -1085,6 +1105,25 @@ hu:
           other: "%{count} ember használta a múlt héten"
       title: Ajánlások és trendek
       trending: Felkapott
+    username_blocks:
+      add_new: Új hozzáadása
+      block_registrations: Regisztrációk blokkolása
+      comparison:
+        contains: Tartalmazza
+        equals: Megegyezik vele
+      contains_html: 'Tartalmazza ezt: %{string}'
+      created_msg: Felhasználónév-szabály sikeresen létrehozva
+      delete: Törlés
+      edit:
+        title: Felhasználónév-szabály szerkesztése
+      matches_exactly_html: 'Megegyezik ezzel: %{string}'
+      new:
+        create: Szabály létrehozása
+        title: Új felhasználónév-szabály létrehozása
+      no_username_block_selected: Nem változott meg egy felhasználónév-szabály sem, mert semmi sem volt kiválasztva
+      not_permitted: Nem engedélyezett
+      title: Felhasználónév-szabályok
+      updated_msg: Felhasználónév-szabály sikeresen frissítve
     warning_presets:
       add_new: Új hozzáadása
       delete: Törlés
@@ -1157,10 +1196,10 @@ hu:
     hint_html: Ha másik fiókról kívánsz átlépni erre a fiókra, itt létrehozhatsz egy aliast, amelyre szükség van, mielőtt folytathatod a követők áthelyezését a régi fiókból erre. Ez az áthelyezés önmagában <strong>ártalmatlan és visszafordítható</strong> folyamat. <strong>A fiók áttelepítése a régi fiókból indul el. </strong>
     remove: Alias szétkapcsolása
   appearance:
-    advanced_web_interface: Speciális webes felület
-    advanced_web_interface_hint: 'Ha szeretnéd, a képernyő teljes szélességét kihasználhatod. A speciális webes felülettel különböző oszlopokat állíthatsz be, hogy egyszerre annyi információt láthass, amennyit csak akarsz: Kezdőoldal, értesítések, föderációs idővonal, bármennyi lista vagy hashtag.'
+    advanced_settings: Speciális beállítások
     animations_and_accessibility: Animáció és akadálymentesítés
-    confirmation_dialogs: Megerősítő párbeszédablakok
+    boosting_preferences: Megtolási beállítások
+    boosting_preferences_info_html: "<strong>Tipp:</strong> A beállításoktól függetlenül, ha <kbd>Shift</kbd> + <kbd>katinttást</kbd> használsz a %{icon} Megtolás ikonon, akkor azonnal megteszi."
     discovery: Felfedezés
     localization:
       body: A Mastodont önkéntesek fordítják.
@@ -1349,6 +1388,10 @@ hu:
     basic_information: Általános információk
     hint_html: "<strong>Tedd egyedivé, mi látnak mások a profilodon és a bejegyzéseid mellett.</strong> Mások nagyobb eséllyel követnek vissza és lépnek veled kapcsolatba, ha van kitöltött profilod és profilképed."
     other: Egyéb
+  emoji_styles:
+    auto: Automatikus
+    native: Natív
+    twemoji: Twemoji
   errors:
     '400': A küldött kérés érvénytelen vagy hibás volt.
     '403': Nincs jogosultságod az oldal megtekintéséhez.
@@ -1558,6 +1601,13 @@ hu:
       expires_at: Lejárat
       uses: Használat
     title: Meghívások
+  link_preview:
+    author_html: 'Szerző: %{name}'
+    potentially_sensitive_content:
+      action: Kattints a megjelenítéshez
+      confirm_visit: Biztos, hogy megnyitod ezt a hivatkozást?
+      hide_button: Elrejtés
+      label: Lehet, hogy kényes tartalom
   lists:
     errors:
       limit: Elérted a listák maximális számát
@@ -1658,6 +1708,10 @@ hu:
       title: Új említés
     poll:
       subject: "%{name} szavazása véget ért"
+    quote:
+      body: 'A bejegyzésedet %{name} idézte:'
+      subject: "%{name} idézte a bejegyzésedet"
+      title: Új idézet
     reblog:
       body: 'A bejegyzésedet %{name} megtolta:'
       subject: "%{name} megtolta a bejegyzésedet"
@@ -1707,6 +1761,8 @@ hu:
       too_few_options: több, mint egy opciónak kell lennie
       too_many_options: nem lehet több, mint %{max} opció
     vote: Szavazás
+  posting_defaults:
+    explanation: Ezek a beállítások lesznek alapértelmezésként használva, amikor új bejegyzéseket hoz létre, de a szerkesztő segítségével bejegyzésenként szerkeszthetők.
   preferences:
     other: Egyéb
     posting_defaults: Bejegyzések alapértelmezései
@@ -1862,6 +1918,9 @@ hu:
         other: "%{count} videó"
     boosted_from_html: Megtolva innen %{acct_link}
     content_warning: 'Tartalmi figyelmeztetés: %{warning}'
+    content_warnings:
+      hide: Bejegyzés elrejtése
+      show: Több megjelenítése
     default_language: Felhasználói felület nyelvével azonos
     disallowed_hashtags:
       one: 'tiltott hashtaget tartalmaz: %{tags}'
@@ -1869,25 +1928,31 @@ hu:
     edited_at_html: 'Szerkesztve: %{date}'
     errors:
       in_reply_not_found: Már nem létezik az a bejegyzés, melyre válaszolni szeretnél.
+      quoted_status_not_found: Már nem létezik az a bejegyzés, amelyből idézni szeretnél.
+      quoted_user_not_mentioned: Nem idézhet meg nem említett felhasználót egy privát említési bejegyzésben.
     over_character_limit: túllépted a maximális %{max} karakteres keretet
     pin_errors:
       direct: A csak a megemlített felhasználók számára látható bejegyzések nem tűzhetők ki
       limit: Elérted a kitűzhető bejegyzések maximális számát
       ownership: Nem tűzheted ki valaki más bejegyzését
       reblog: Megtolt bejegyzést nem tudsz kitűzni
+    quote_error:
+      not_available: A bejegyzés nem érhető el
+      pending_approval: A bejegyzés függőben van
+      revoked: A szerző eltávolította a bejegyzést
     quote_policies:
       followers: Csak követőknek
       nobody: Csak én
       public: Bárki
+    quote_post_author: Idézte %{acct} bejegyzését
     title: "%{name}: „%{quote}”"
     visibilities:
       direct: Privát említés
       private: Csak követőknek
-      private_long: Csak a követőidnek jelenik meg
       public: Nyilvános
-      public_long: Bárki láthatja
-      unlisted: Listázatlan
-      unlisted_long: Mindenki látja, de a nyilvános idővonalakon nem jelenik meg
+      public_long: Bárki a Mastodonon és azon kívül
+      unlisted: Csendes nyilvános
+      unlisted_long: Elrejtve a Mastodon keresési találataiban, a felkapottak között és a nyilvános idővonalakon
   statuses_cleanup:
     enabled: Régi bejegyzések automatikus törlése
     enabled_hint: Automatikusan törli a bejegyzéseidet, ahogy azok elérik a megadott korhatárt, kivéve azokat, melyek illeszkednek valamely alábbi kivételre

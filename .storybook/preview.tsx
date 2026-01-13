@@ -12,13 +12,14 @@ import { initialize, mswLoader } from 'msw-storybook-addon';
 import { action } from 'storybook/actions';
 
 import type { LocaleData } from '@/mastodon/locales';
-import { reducerWithInitialState, rootReducer } from '@/mastodon/reducers';
+import { reducerWithInitialState } from '@/mastodon/reducers';
 import { defaultMiddleware } from '@/mastodon/store/store';
 import { mockHandlers, unhandledRequestHandler } from '@/testing/api';
 
 // If you want to run the dark theme during development,
 // you can change the below to `/application.scss`
 import '../app/javascript/styles/mastodon-light.scss';
+import './styles.css';
 
 const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
   query: { as: 'json' },
@@ -49,12 +50,23 @@ const preview: Preview = {
     locale: 'en',
   },
   decorators: [
-    (Story, { parameters }) => {
+    (Story, { parameters, globals, args }) => {
+      // Get the locale from the global toolbar
+      // and merge it with any parameters or args state.
+      const { locale } = globals as { locale: string };
       const { state = {} } = parameters;
-      let reducer = rootReducer;
-      if (typeof state === 'object' && state) {
-        reducer = reducerWithInitialState(state as Record<string, unknown>);
-      }
+      const { state: argsState = {} } = args;
+
+      const reducer = reducerWithInitialState(
+        {
+          meta: {
+            locale,
+          },
+        },
+        state as Record<string, unknown>,
+        argsState as Record<string, unknown>,
+      );
+
       const store = configureStore({
         reducer,
         middleware(getDefaultMiddleware) {

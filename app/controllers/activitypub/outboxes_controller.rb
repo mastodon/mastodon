@@ -73,6 +73,8 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
   end
 
   def set_account
-    @account = params[:account_username].present? ? Account.find_local!(username_param) : Account.representative
+    return super if params[:account_username].present? || params[:account_id].present?
+
+    @account = Account.representative
   end
 end

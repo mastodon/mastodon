@@ -313,9 +313,7 @@ module Mastodon::CLI
     end
 
     def combined_media_sum
-      Arel.sql(<<~SQL.squish)
-        COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)
-      SQL
+      MediaAttachment.combined_media_file_size
     end
 
     def preload_records_from_mixed_objects(objects)

@@ -68,7 +68,7 @@ RSpec.describe RemoteFollow do
       Addressable::URI.new(
         host: 'quitter.no',
         path: '/main/ostatussub',
-        query_values: { profile: "https://#{Rails.configuration.x.local_domain}/users/alice" },
+        query_values: { profile: ActivityPub::TagManager.instance.uri_for(account) },
         scheme: 'https'
       ).to_s
     end

@@ -6,6 +6,7 @@ import { parseIntFromEnvValue } from './utils.js';
  * @typedef RedisConfiguration
  * @property {string|undefined} url
  * @property {import('ioredis').RedisOptions} options
+ * @property {string|undefined} namespace
  */
 
 /**

@@ -190,6 +190,7 @@ tr:
         create_relay: Aktarıcı Oluştur
         create_unavailable_domain: Mevcut Olmayan Alan Adı Oluştur
         create_user_role: Rol Oluştur
+        create_username_block: Kullanıcı Adı Kuralı Oluştur
         demote_user: Kullanıcıyı Düşür
         destroy_announcement: Duyuru Sil
         destroy_canonical_email_block: E-Posta Engelini Sil
@@ -203,6 +204,7 @@ tr:
         destroy_status: Durumu Sil
         destroy_unavailable_domain: Mevcut Olmayan Alan Adı Sil
         destroy_user_role: Rolü Kaldır
+        destroy_username_block: Kullanıcı Adı Kuralını Sil
         disable_2fa_user: 2AD Kapat
         disable_custom_emoji: Özel İfadeyi Devre Dışı Bırak
         disable_relay: Aktarıcıyı Devre Dışı Bırak
@@ -237,6 +239,7 @@ tr:
         update_report: Raporu Güncelle
         update_status: Durumu Güncelle
         update_user_role: Rolü Güncelle
+        update_username_block: Kullanıcı Adı Kuralını Güncelle
       actions:
         approve_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını kabul etti"
         approve_user_html: "%{name}, %{target} konumundan kaydı onayladı"
@@ -255,6 +258,7 @@ tr:
         create_relay_html: "%{name}, %{target} aktarıcısını oluşturdu"
         create_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı durdurdu"
         create_user_role_html: "%{name}, %{target} rolünü oluşturdu"
+        create_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural ekledi"
         demote_user_html: "%{name}, %{target} kullanıcısını düşürdü"
         destroy_announcement_html: "%{name}, %{target} duyurusunu sildi"
         destroy_canonical_email_block_html: "%{name}, %{target} karmasıyla e-posta engelini kaldırdı"
@@ -268,6 +272,7 @@ tr:
         destroy_status_html: "%{name}, %{target} kullanıcısının gönderisini kaldırdı"
         destroy_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı sürdürdü"
         destroy_user_role_html: "%{name}, %{target} rolünü sildi"
+        destroy_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural silindi"
         disable_2fa_user_html: "%{name}, %{target} kullanıcısının iki aşamalı doğrulama gereksinimini kapattı"
         disable_custom_emoji_html: "%{name}, %{target} emojisini devre dışı bıraktı"
         disable_relay_html: "%{name}, %{target} aktarıcısını devre dışı bıraktı"
@@ -302,6 +307,7 @@ tr:
         update_report_html: "%{name}, %{target} raporunu güncelledi"
         update_status_html: "%{name}, %{target} kullanıcısının gönderisini güncelledi"
         update_user_role_html: "%{name}, %{target} rolünü değiştirdi"
+        update_username_block_html: "%{name}, %{target} içeren kullanıcı adları için kural güncellendi"
       deleted_account: hesap silindi
       empty: Kayıt bulunamadı.
       filter_by_action: Eyleme göre filtre
@@ -790,6 +796,8 @@ tr:
         view_dashboard_description: Kullanıcıların ana panele ve çeşitli ölçütlere erişmesine izin verir
         view_devops: DevOps
         view_devops_description: Kullanıcıların Sidekiq ve pgHero panellerine erişmesine izin verir
+        view_feeds: Canlı ve konu akışlarını görüntüle
+        view_feeds_description: Kullanıcıların sunucu ayarlarından bağımsız olarak canlı ve konu akışlarına erişmelerini sağlar
       title: Roller
     rules:
       add_new: Kural ekle
@@ -842,6 +850,16 @@ tr:
         all: Herkes için
         disabled: Hiç kimseye
         users: Oturum açan yerel kullanıcılara
+      feed_access:
+        modes:
+          authenticated: Sadece yetkilendirilmiş kullanıcılar
+          disabled: Belirli kullanıcı rolü gerekir
+          public: Herkes
+      landing_page:
+        values:
+          about: Hakkında
+          local_feed: Yerel akış
+          trends: Öne çıkanlar
       registrations:
         moderation_recommandation: Lütfen kayıtları herkese açmadan önce yeterli ve duyarlı bir denetleyici ekibine sahip olduğunuzdan emin olun!
         preamble: Sunucunuzda kimin hesap oluşturabileceğini denetleyin.
@@ -895,6 +913,7 @@ tr:
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
       open: Gönderiyi aç
       original_status: Özgün gönderi
+      quotes: Alıntılar
       reblogs: Yeniden Paylaşımlar
       replied_to_html: Yanıtladı %{acct_link}
       status_changed: Gönderi değişti
@@ -902,6 +921,7 @@ tr:
       title: Hesap gönderileri - @%{name}
       trending: Öne çıkanlar
       view_publicly: Herkese açık görüntüle
+      view_quoted_post: Alıntılanmış gönderiyi görüntüle
       visibility: Görünürlük
       with_media: Medya ile
     strikes:
@@ -1085,6 +1105,25 @@ tr:
           other: Geçen hafta %{count} kişi tarafından kullanıldı
       title: Öneriler ve Öne Çıkanlar
       trending: Öne çıkanlar
+    username_blocks:
+      add_new: Yeni ekle
+      block_registrations: Kayıtları engelle
+      comparison:
+        contains: İçerir
+        equals: Eşit
+      contains_html: "%{string} içerir"
+      created_msg: Kullanıcı adı kuralı başarıyla oluşturuldu
+      delete: Sil
+      edit:
+        title: Kullanıcı adı kuralını düzenle
+      matches_exactly_html: "%{string} değerine eşittir"
+      new:
+        create: Kural oluştur
+        title: Yeni kullanıcı adı kuralı oluştur
+      no_username_block_selected: Hiçbir kullanıcı adı kuralı değiştirilmedi çünkü hiçbiri seçilmedi
+      not_permitted: İzin verilmiyor
+      title: Kullanıcı adı kuralları
+      updated_msg: Kullanıcı adı kuralı başarıyla güncellendi
     warning_presets:
       add_new: Yeni ekle
       delete: Sil
@@ -1157,10 +1196,10 @@ tr:
     hint_html: Başka bir hesaptan bu hesaba taşınmak istiyorsanız, takipçileri eski hesaptan bu hesaba taşımadan önce gerekli olan takma adı burada oluşturabilirsiniz. Bu eylem kendi başına <strong>zararsızdır ve geri döndürülebilir</strong>. <strong>Hesap taşıma işlemi eski hesaptan başlatılır</strong>.
     remove: Takma adların bağlantısını kaldır
   appearance:
-    advanced_web_interface: Gelişmiş web arayüzü
-    advanced_web_interface_hint: 'Tüm ekran genişliğinizden yararlanmak istiyorsanız, gelişmiş web arayüzü istediğiniz kadar bilgi görecek kadar çok sayıda farklı sütunu yapılandırmanıza olanak tanır: Anasayfa, bildirimler, birleşik zaman çizelgesi, istediğiniz sayıda liste ve etiket.'
+    advanced_settings: Gelişmiş ayarlar
     animations_and_accessibility: Animasyonlar ve erişilebilirlik
-    confirmation_dialogs: Onay iletişim kutuları
+    boosting_preferences: Öne çıkarma seçenekleri
+    boosting_preferences_info_html: "<strong>İpucu:</strong> Ayarlardan bağımsız olarak, %{icon} Öne Çıkar simgesine <kbd>Shift</kbd> + <kbd>Tıklama</kbd> uygulandığından öne çıkarma hemen gerçekleştirilir."
     discovery: Keşfet
     localization:
       body: Mastodon, gönüllüler tarafından çevrilmektedir.
@@ -1349,6 +1388,10 @@ tr:
     basic_information: Temel bilgiler
     hint_html: "<strong>İnsanlara herkese açık profilinizde ve gönderilerinizin yanında ne göstermek istediğinizi düzenleyin.</strong> Dolu bir profile ve bir profil resmine sahip olduğunuzda diğer insanlar daha yüksek ihtimalle sizi takip etmek ve sizinle etkileşime geçmek isteyeceklerdir."
     other: Diğer
+  emoji_styles:
+    auto: Otomatik
+    native: Yerel
+    twemoji: Twemoji
   errors:
     '400': Gönderdiğiniz istek geçersiz veya hatalı biçimlendirilmiş.
     '403': Bu sayfayı görmek için izniniz yok.
@@ -1558,6 +1601,13 @@ tr:
       expires_at: Bitiş tarihi
       uses: Kullanım
     title: İnsanları davet et
+  link_preview:
+    author_html: 'Yazan: %{name}'
+    potentially_sensitive_content:
+      action: Göstermek için tıklayın
+      confirm_visit: Bu bağlantıyı açmak istediğinizden emin misiniz?
+      hide_button: Gizle
+      label: Potansiyel olarak hassas içerik
   lists:
     errors:
       limit: Azami liste sayısına ulaştınız
@@ -1658,6 +1708,10 @@ tr:
       title: Yeni bahsetme
     poll:
       subject: Anket %{name} tarafından sonlandırıldı
+    quote:
+      body: "%{name} durumunuzu yeniden paylaştı:"
+      subject: "%{name} gönderini yeniden paylaştı"
+      title: Yeni alıntı
     reblog:
       body: "%{name} durumunuzu yeniden paylaştı:"
       subject: "%{name} durumunuzu yeniden paylaştı"
@@ -1707,6 +1761,8 @@ tr:
       too_few_options: birden fazla öğeye sahip olmalı
       too_many_options: "%{max} öğeden fazla öğe içeremez"
     vote: Oyla
+  posting_defaults:
+    explanation: Bu ayarlar, yeni gönderiler oluştururken varsayılan olarak kullanılacaktır, ancak bunları oluşturucu içinde her gönderi için ayrı ayrı düzenleyebilirsiniz.
   preferences:
     other: Diğer
     posting_defaults: Gönderi varsayılanları
@@ -1862,6 +1918,9 @@ tr:
         other: "%{count} videolar"
     boosted_from_html: "%{acct_link} kişisinden yeniden paylaştı"
     content_warning: 'İçerik uyarısı: %{warning}'
+    content_warnings:
+      hide: Gönderiyi gizle
+      show: Daha fazlasını göster
     default_language: Arayüz diliyle aynı
     disallowed_hashtags:
       one: 'izin verilmeyen bir etiket içeriyordu: %{tags}'
@@ -1869,25 +1928,31 @@ tr:
     edited_at_html: "%{date} tarihinde düzenlendi"
     errors:
       in_reply_not_found: Yanıtlamaya çalıştığınız durum yok gibi görünüyor.
+      quoted_status_not_found: Alıntılamaya çalıştığınız gönderi mevcut görünmüyor.
+      quoted_user_not_mentioned: Özel Bahsetme gönderisinde bahsedilmeyen bir kullanıcıyı alıntılamak mümkün değildir.
     over_character_limit: "%{max} karakter limiti aşıldı"
     pin_errors:
       direct: Sadece değinilen kullanıcıların görebileceği gönderiler üstte tutulamaz
       limit: Halihazırda maksimum sayıda gönderi sabitlediniz
       ownership: Başkasının gönderisi sabitlenemez
       reblog: Bir gönderi sabitlenemez
+    quote_error:
+      not_available: Gönderi kullanılamıyor
+      pending_approval: Gönderi beklemede
+      revoked: Gönderi yazarı tarafından kaldırıldı
     quote_policies:
       followers: Sadece takipçiler
       nobody: Sadece ben
       public: Herkes
+    quote_post_author: "@%{acct} adlı kullanıcının bir gönderisini alıntıladı"
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Özel değini
       private: Sadece takipçiler
-      private_long: Sadece takipçilerime gönder
       public: Herkese açık
-      public_long: Herkese açık zaman tüneline gönder
-      unlisted: Listelenmemiş
-      unlisted_long: Herkes görebilir fakat herkese açık zaman tünellerinde listelenmez
+      public_long: Mastodon'da olan olmayan herkes
+      unlisted: Sessizce herkese açık
+      unlisted_long: Mastodon arama sonuçlarında, öne çıkanlarda ve herkese açık zaman çizelgesinde gizli
   statuses_cleanup:
     enabled: Eski gönderileri otomatik olarak sil
     enabled_hint: Belirli bir zaman eşiğine ulaşan eski gönderilerinizi, aşağıdaki istisnalara uymadıkları sürece otomatik olarak siler

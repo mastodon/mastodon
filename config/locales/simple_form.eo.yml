@@ -49,18 +49,20 @@ eo:
         email: Vi ricevos konfirman retpoŝton
         header: WEBP, PNG, GIF aŭ JPG. Maksimume %{size}. Malgrandiĝos al %{dimensions}px
         inbox_url: Kopiu la URL de la ĉefpaĝo de la ripetilo, kiun vi volas uzi
-        irreversible: La filtritaj mesaĝoj malaperos por eterne, eĉ se la filtrilo poste estas forigita
+        irreversible: La filtritaj mesaĝoj malaperos por ĉiam, eĉ se la filtrilo poste estas forigita
         locale: La lingvo de la fasado, retpoŝtaĵoj, kaj sciigoj
         password: Uzu almenaŭ 8 signojn
         phrase: Estos provita senzorge pri la uskleco de teksto aŭ averto pri enhavo de mesaĝo
         scopes: Kiujn API-ojn la aplikaĵo permesiĝos atingi. Se vi elektas supran amplekson, vi ne bezonas elekti la individuajn.
         setting_aggregate_reblogs: Ne montri novajn plusendojn de mesaĝoj lastatempe plusenditaj (nur efikas al nove ricevitaj plusendoj)
         setting_always_send_emails: Normale, la sciigoj per retpoŝto ne estos senditaj kiam vi uzas Mastodon aktive
-        setting_default_quote_policy: Ĉi tiu agordo nur validos por afiŝoj kreitaj per la sekva versio de Mastodon, sed vi povas elekti vian preferon prepare.
+        setting_default_quote_policy_private: Afiŝoj nur por sekvantoj verkitaj ĉe Mastodon ne povas esti cititaj de aliaj.
+        setting_default_quote_policy_unlisted: Kiam homoj citas vin, ilia afiŝo ankaŭ estos kaŝita de tendencaj templinioj.
         setting_default_sensitive: La tiklaj vidaŭdaĵoj estas implicite kaŝitaj kaj povas esti malkaŝitaj per alklako
         setting_display_media_default: Kaŝi plurmediojn markitajn kiel tiklaj
         setting_display_media_hide_all: Ĉiam kaŝi la vidaŭdaĵojn
         setting_display_media_show_all: Ĉiam montri la vidaŭdaĵojn
+        setting_emoji_style: Kiel montri emoĝiojn. "Aŭtomata" provos uzi denaskajn emoĝiojn, sed uzas Twemoji por malnovaj retumiloj.
         setting_system_scrollbars_ui: Aplikas nur por surtablaj retumiloj baziĝas de Safari kaj Chrome
         setting_use_blurhash: Transirojn estas bazita sur la koloroj de la kaŝitaj aŭdovidaĵoj sed ne montri iun ajn detalon
         setting_use_pending_items: Kaŝi tempoliniajn ĝisdatigojn malantaŭ klako anstataŭ aŭtomate rulumi la fluon
@@ -103,10 +105,8 @@ eo:
         status_page_url: URL de paĝo kie homoj povas vidi la staton de ĉi tiu servilo dum malfunkcio
         theme: Etoso kiun elsalutitaj vizitantoj kaj novaj uzantoj vidas.
         thumbnail: Ĉirkaua 2:1 bildo montritas kun via servilinformo.
-        timeline_preview: Elsalutitaj vizitantoj povos vidi la plej lastajn publikajn mesaĝojn disponeblaj en la servilo.
         trendable_by_default: Ignori permanan kontrolon de tendenca enhavo.
         trends: Tendencoj montras kiu mesaĝoj, kradvortoj kaj novaĵoj populariĝas en via servilo.
-        trends_as_landing_page: Montru tendencan enhavon al elsalutitaj uzantoj kaj vizitantoj anstataŭ priskribo de ĉi tiu servilo. Necesas ke tendencoj estu ebligitaj.
       form_challenge:
         current_password: Vi eniras sekuran areon
       imports:
@@ -229,21 +229,19 @@ eo:
         setting_aggregate_reblogs: Grupigi diskonigojn en templinioj
         setting_always_send_emails: Ĉiam sendi la sciigojn per retpoŝto
         setting_auto_play_gif: Aŭtomate ekigi GIF-ojn
-        setting_boost_modal: Montri konfirman fenestron antaŭ ol diskonigi mesaĝon
         setting_default_language: Publikada lingvo
-        setting_default_privacy: Privateco de afiŝado
+        setting_default_privacy: Afiŝa videblo
         setting_default_quote_policy: Kiu povas citi
         setting_default_sensitive: Ĉiam marki la vidaŭdaĵojn kiel tiklaj
-        setting_delete_modal: Montri konfirman fenestron antaŭ ol forigi mesaĝon
         setting_disable_hover_cards: Malebligi profilan antaŭmontron kiam oni musumas
         setting_disable_swiping: Malebligi svingajn movojn
         setting_display_media: Vidigo de vidaŭdaĵoj
         setting_display_media_default: Implicita
         setting_display_media_hide_all: Kaŝi ĉiujn
         setting_display_media_show_all: Montri ĉiujn
+        setting_emoji_style: Emoĝio-stilo
         setting_expand_spoilers: Ĉiam malfoldas mesaĝojn markitajn per averto pri enhavo
         setting_hide_network: Kaŝi viajn sekvantojn kaj sekvatojn
-        setting_missing_alt_text_modal: Montru konfirman dialogon antaŭ afiŝado de aŭdvidaĵoj sen altteksto
         setting_reduce_motion: Redukti la movecojn de la animacioj
         setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
         setting_system_scrollbars_ui: Uzu la defaŭltan rulumilon de la sistemo
@@ -295,10 +293,8 @@ eo:
         status_page_url: URL de la paĝo de stato
         theme: Implicita etoso
         thumbnail: Bildeto de servilo
-        timeline_preview: Permesi la neaŭtentigitan aliron al la publikaj templinioj
         trendable_by_default: Permesi tendencojn sen deviga kontrolo
         trends: Ŝalti furorojn
-        trends_as_landing_page: Uzu tendencojn kiel la landpaĝon
       interactions:
         must_be_follower: Bloki sciigojn de nesekvantoj
         must_be_following: Bloki sciigojn de homoj, kiujn vi ne sekvas
@@ -323,6 +319,7 @@ eo:
         follow_request: Sendi retmesaĝon kiam iu petas sekvi vin
         mention: Sendi retmesaĝon kiam iu mencias vin
         pending_account: Sendi retmesaĝon kiam nova konto bezonas kontrolon
+        quote: Iu citis vin
         reblog: Sendi retmesaĝon kiam iu diskonigas vian mesaĝon
         report: Nova raporto estas proponita
         software_updates:
@@ -369,6 +366,8 @@ eo:
         name: Nomo
         permissions_as_keys: Permesoj
         position: Prioritato
+      username_block:
+        allow_with_approval: Permesi aliĝojn kun aprobo
       webhook:
         events: Ŝaltitaj eventoj
         template: Utilŝarĝa ŝablono

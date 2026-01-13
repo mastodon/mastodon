@@ -13,6 +13,8 @@ module Admin::ActionLogsHelper
       end
     when 'UserRole'
       link_to log.human_identifier, admin_roles_path(log.target_id)
+    when 'UsernameBlock'
+      link_to log.human_identifier, edit_admin_username_block_path(log.target_id)
     when 'Report'
       link_to "##{log.human_identifier.presence || log.target_id}", admin_report_path(log.target_id)
     when 'Instance', 'DomainBlock', 'DomainAllow', 'UnavailableDomain'

@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-class Fasp::BackfillWorker
-  include Sidekiq::Worker
-
-  sidekiq_options queue: 'fasp', retry: 5
+class Fasp::BackfillWorker < Fasp::BaseWorker
+  sidekiq_options retry: 5
 
   def perform(backfill_request_id)
     backfill_request = Fasp::BackfillRequest.find(backfill_request_id)
 
-    announce(backfill_request)
+    with_provider(backfill_request.fasp_provider) do
+      announce(backfill_request)
 
-    backfill_request.advance!
+      backfill_request.advance!
+    end
   rescue ActiveRecord::RecordNotFound
     # ignore missing backfill requests
   end

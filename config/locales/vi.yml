@@ -187,6 +187,7 @@ vi:
         create_relay: Tạo relay
         create_unavailable_domain: Bỏ liên hợp
         create_user_role: Tạo vai trò
+        create_username_block: Tạo quy tắc tên người dùng
         demote_user: Hạ vai trò
         destroy_announcement: Xóa thông báo
         destroy_canonical_email_block: Bỏ chặn địa chỉ email biến thể
@@ -200,6 +201,7 @@ vi:
         destroy_status: Xóa tút
         destroy_unavailable_domain: Cho phép liên hợp
         destroy_user_role: Xóa vai trò
+        destroy_username_block: Xóa quy tắc tên người dùng
         disable_2fa_user: Vô hiệu hóa 2FA
         disable_custom_emoji: Vô hiệu hóa emoji
         disable_relay: Tắt relay
@@ -211,7 +213,7 @@ vi:
         enable_user: Cho phép đăng nhập
         memorialize_account: Gán tưởng niệm
         promote_user: Nâng vai trò
-        publish_terms_of_service: Đăng Điều khoản Dịch vụ
+        publish_terms_of_service: Tạo Điều khoản Dịch vụ
         reject_appeal: Từ chối khiếu nại
         reject_user: Từ chối đăng ký
         remove_avatar_user: Xóa ảnh đại diện
@@ -234,6 +236,7 @@ vi:
         update_report: Cập nhật báo cáo
         update_status: Cập nhật tút
         update_user_role: Cập nhật vai trò
+        update_username_block: Cập nhật quy tắc tên người dùng
       actions:
         approve_appeal_html: "%{name} đã chấp nhận khiếu nại từ %{target}"
         approve_user_html: "%{name} đã chấp nhận đăng ký từ %{target}"
@@ -252,6 +255,7 @@ vi:
         create_relay_html: "%{name} đã tạo relay %{target}"
         create_unavailable_domain_html: "%{name} đã bỏ liên hợp với máy chủ %{target}"
         create_user_role_html: "%{name} đã tạo vai trò %{target}"
+        create_username_block_html: "%{name} thêm quy tắc cho tên người dùng chứa %{target}"
         demote_user_html: "%{name} đã hạ vai trò của %{target}"
         destroy_announcement_html: "%{name} đã xóa thông báo %{target}"
         destroy_canonical_email_block_html: "%{name} đã bỏ chặn địa chỉ email biến thể %{target}"
@@ -265,6 +269,7 @@ vi:
         destroy_status_html: "%{name} đã xóa tút của %{target}"
         destroy_unavailable_domain_html: "%{name} tiếp tục liên hợp với máy chủ %{target}"
         destroy_user_role_html: "%{name} đã xóa vai trò %{target}"
+        destroy_username_block_html: "%{name} xóa quy tắc cho tên người dùng chứa %{target}"
         disable_2fa_user_html: "%{name} đã vô hiệu hóa xác thực 2 bước của %{target}"
         disable_custom_emoji_html: "%{name} đã ẩn emoji %{target}"
         disable_relay_html: "%{name} đã tắt relay %{target}"
@@ -299,6 +304,7 @@ vi:
         update_report_html: "%{name} đã cập nhật báo cáo %{target}"
         update_status_html: "%{name} đã cập nhật tút của %{target}"
         update_user_role_html: "%{name} đã cập nhật vai trò %{target}"
+        update_username_block_html: "%{name} đã cập nhật quy tắc cho tên người dùng chứa %{target}"
       deleted_account: tài khoản đã xóa
       empty: Không tìm thấy bản ghi.
       filter_by_action: Theo hành động
@@ -776,6 +782,8 @@ vi:
         view_dashboard_description: Cho phép truy cập trang tổng quan và các chỉ số khác
         view_devops: Nhà phát triển
         view_devops_description: Cho phép truy cập trang tổng quan Sidekiq và pgHero
+        view_feeds: Xem nguồn cấp dữ liệu trực tiếp và theo chủ đề
+        view_feeds_description: Cho phép người dùng truy cập nguồn cấp dữ liệu trực tiếp và theo chủ đề bất kể cài đặt máy chủ
       title: Danh sách vai trò
     rules:
       add_new: Thêm nội quy
@@ -817,7 +825,7 @@ vi:
         title: Mặc định người dùng không xuất hiện trong công cụ tìm kiếm
       discovery:
         follow_recommendations: Gợi ý theo dõi
-        preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trong Mastodon. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
+        preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trên Mastodon. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
         privacy: Riêng tư
         profile_directory: Danh bạ
         public_timelines: Bảng tin
@@ -828,6 +836,16 @@ vi:
         all: Tới mọi người
         disabled: Không ai
         users: Để đăng nhập người cục bộ
+      feed_access:
+        modes:
+          authenticated: Chỉ những người dùng đã xác minh
+          disabled: Yêu cầu vai trò người dùng cụ thể
+          public: Mọi người
+      landing_page:
+        values:
+          about: Giới thiệu
+          local_feed: Bảng tin máy chủ
+          trends: Xu hướng
       registrations:
         moderation_recommandation: Vui lòng đảm bảo rằng bạn có một đội ngũ kiểm duyệt và phản ứng nhanh trước khi mở đăng ký cho mọi người!
         preamble: Kiểm soát những ai có thể tạo tài khoản trên máy chủ của bạn.
@@ -881,6 +899,7 @@ vi:
       no_status_selected: Bạn chưa chọn bất kỳ tút nào
       open: Mở tút
       original_status: Tút gốc
+      quotes: Trích dẫn
       reblogs: Lượt đăng lại
       replied_to_html: Trả lời đến %{acct_link}
       status_changed: Tút đã sửa
@@ -888,6 +907,7 @@ vi:
       title: Tút từ tài khoản - @%{name}
       trending: Xu hướng
       view_publicly: Xem công khai
+      view_quoted_post: Xem những tút được trích dẫn
       visibility: Hiển thị
       with_media: Có media
     strikes:
@@ -1067,6 +1087,25 @@ vi:
           other: "%{count} người dùng tuần rồi"
       title: Đề xuất & Xu hướng
       trending: Xu hướng
+    username_blocks:
+      add_new: Thêm mới
+      block_registrations: Cấm đăng ký
+      comparison:
+        contains: Có chứa
+        equals: Tương tự
+      contains_html: Có chứa %{string}
+      created_msg: Đã tạo quy tắc tên người dùng thành công
+      delete: Xóa
+      edit:
+        title: Sửa quy tắc tên người dùng
+      matches_exactly_html: Có chứa %{string}
+      new:
+        create: Tạo quy tắc
+        title: Tạo quy tắc tên người dùng mới
+      no_username_block_selected: Chưa chọn quy tắc tên người dùng nào
+      not_permitted: Cấm
+      title: Quy tắc tên người dùng
+      updated_msg: Đã cập nhật quy tắc tên người dùng thành công
     warning_presets:
       add_new: Thêm mới
       delete: Xóa bỏ
@@ -1138,10 +1177,10 @@ vi:
     hint_html: Nếu bạn muốn chuyển từ máy chủ khác sang máy chủ này, bắt buộc bạn phải tạo tên người dùng mới thì mới có thể tiến hành chuyển được người theo dõi. Hành động này <strong>không ảnh hưởng gì và có thể đảo ngược</strong>. <strong>Việc di chuyển tài khoản được bắt đầu từ tài khoản cũ</strong>.
     remove: Bỏ liên kết bí danh
   appearance:
-    advanced_web_interface: Bố cục
-    advanced_web_interface_hint: Xếp giao diện thành nhiều cột, hợp với màn hình rộng.
+    advanced_settings: Cài đặt nâng cao
     animations_and_accessibility: Hiệu ứng
-    confirmation_dialogs: Hộp thoại xác nhận
+    boosting_preferences: Thiết lập đăng lại
+    boosting_preferences_info_html: "<strong>Mẹo:</strong> Bất kể cài đặt, <kbd>Shift</kbd> + <kbd>Click</kbd> trên biểu tượng %{icon} Đăng lại sẽ lập tức đăng lại."
     discovery: Khám phá
     localization:
       body: Mastodon được dịch bởi tình nguyện viên.
@@ -1330,6 +1369,10 @@ vi:
     basic_information: Thông tin cơ bản
     hint_html: Mọi người sẽ muốn theo dõi và tương tác với bạn hơn nếu bạn có ảnh đại diện và hồ sơ hoàn chỉnh.
     other: Khác
+  emoji_styles:
+    auto: Tự động
+    native: Nguyên bản
+    twemoji: Twemoji
   errors:
     '400': Yêu cầu bạn gửi không hợp lệ hoặc sai hình thức.
     '403': Bạn không có quyền xem trang này.
@@ -1519,6 +1562,13 @@ vi:
       expires_at: Hết hạn
       uses: Sử dụng
     title: Mời bạn bè
+  link_preview:
+    author_html: Bởi %{name}
+    potentially_sensitive_content:
+      action: Nhấn để xem
+      confirm_visit: Bạn có chắc muốn mở liên kết này?
+      hide_button: Ẩn
+      label: Có khả năng là nội dung nhạy cảm
   lists:
     errors:
       limit: Bạn đã đạt đến số lượng danh sách tối đa
@@ -1619,6 +1669,10 @@ vi:
       title: Lượt nhắc mới
     poll:
       subject: Vốt của %{name} đã kết thúc
+    quote:
+      body: 'Tút của bạn được trích dẫn bởi %{name}:'
+      subject: "%{name} vừa trích dẫn tút của bạn"
+      title: Trích dẫn mới
     reblog:
       body: Tút của bạn vừa được %{name} đăng lại
       subject: "%{name} vừa đăng lại tút của bạn"
@@ -1668,6 +1722,8 @@ vi:
       too_few_options: phải có nhiều hơn một mục
       too_many_options: tối đa %{max} lựa chọn
     vote: Vốt
+  posting_defaults:
+    explanation: Các thiết lập này sẽ được sử dụng làm mặc định khi bạn tạo tút mới. Bạn vẫn có thể chỉnh sửa từng tút khi soạn thảo.
   preferences:
     other: Khác
     posting_defaults: Mặc định cho tút
@@ -1675,7 +1731,7 @@ vi:
   privacy:
     hint_html: Tùy chỉnh cách mọi người tìm thấy hồ sơ và tút của bạn.
     privacy: Riêng tư
-    privacy_hint_html: Kiểm soát mức độ chi tiết bạn muốn tiết lộ. Mọi người khám phá các hồ sơ thú vị và các ứng dụng thú vị bằng cách theo dõi những người khác và xem họ đăng từ ứng dụng nào, nhưng có thể bạn muốn ẩn nó đi.
+    privacy_hint_html: Kiểm soát mức độ tiết lộ chi tiết. Mọi người khám phá các hồ sơ thú vị và các ứng dụng thú vị bằng cách xem bạn theo dõi ai và bạn đăng bằng ứng dụng nào, nhưng có thể bạn muốn ẩn nó đi.
     reach: Tiếp cận
     reach_hint_html: Kiểm soát cách bạn được đề xuất và theo dõi. Bạn có muốn tút của mình xuất hiện trên trang Khám phá không? Bạn có muốn bạn xuất hiện trong các đề xuất theo dõi của người khác không? Bạn muốn tự động chấp nhận tất cả những người theo dõi mới hay tự duyệt từng người theo dõi?
     search: Tìm kiếm
@@ -1820,31 +1876,40 @@ vi:
         other: "%{count} video"
     boosted_from_html: Đã đăng lại từ %{acct_link}
     content_warning: 'Cảnh báo nội dung: %{warning}'
+    content_warnings:
+      hide: Ẩn tút
+      show: Mở rộng
     default_language: Giống giao diện
     disallowed_hashtags:
       other: 'chứa các hashtag bị cấm: %{tags}'
     edited_at_html: Sửa %{date}
     errors:
       in_reply_not_found: Bạn đang trả lời một tút không còn tồn tại.
+      quoted_status_not_found: Bạn đang trích dẫn một tút không còn tồn tại.
+      quoted_user_not_mentioned: Không thể trích dẫn người dùng không được nhắc đến trong tút Nhắn riêng.
     over_character_limit: vượt quá giới hạn %{max} ký tự
     pin_errors:
       direct: Không thể ghim những tút nhắn riêng
       limit: Bạn đã ghim quá số lượng tút cho phép
       ownership: Không thể ghim tút của người khác
       reblog: Không thể ghim tút đăng lại
+    quote_error:
+      not_available: Tút không khả dụng
+      pending_approval: Tút đang chờ duyệt
+      revoked: Tút gốc đã bị tác giả gỡ
     quote_policies:
       followers: Chỉ người theo dõi
       nobody: Chỉ tôi
       public: Bất cứ ai
+    quote_post_author: Trích dẫn từ tút của @%{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Nhắn riêng
-      private: Riêng tư
-      private_long: Chỉ người theo dõi mới được xem
+      private: Chỉ người theo dõi
       public: Công khai
-      public_long: Ai cũng có thể thấy
+      public_long: Bất kỳ ai trong và ngoài Mastodon
       unlisted: Hạn chế
-      unlisted_long: Không hiện trên bảng tin máy chủ
+      unlisted_long: Ẩn khỏi kết quả tìm kiếm, xu hướng và dòng thời gian công khai của Mastodon
   statuses_cleanup:
     enabled: Tự động xóa những tút cũ
     enabled_hint: Trừ những ngoại lệ bên dưới

@@ -190,6 +190,7 @@ sq:
         create_relay: Krijoni Rele
         create_unavailable_domain: Krijo Përkatësi të Papërdorshme
         create_user_role: Krijoni Rol
+        create_username_block: Krijoni Rregull Emrash Përdoruesish
         demote_user: Zhgradoje Përdoruesin
         destroy_announcement: Fshije Lajmërimin
         destroy_canonical_email_block: Fshini Bllokim Email-esh
@@ -203,6 +204,7 @@ sq:
         destroy_status: Fshi Gjendje
         destroy_unavailable_domain: Fshi Përkatësi të Papërdorshme
         destroy_user_role: Asgjësoje Rolin
+        destroy_username_block: Fshini Rregull Emrash Përdoruesish
         disable_2fa_user: Çaktivizo 2FA-në
         disable_custom_emoji: Çaktivizo Emotikon Vetjak
         disable_relay: Çaktivizoje Relenë
@@ -237,6 +239,7 @@ sq:
         update_report: Përditësoni Raportimin
         update_status: Përditëso Gjendjen
         update_user_role: Përditësoni Rol
+        update_username_block: Përditësoni Rregull Emrash Përdoruesish
       actions:
         approve_appeal_html: "%{name} miratoi apelim vendimi moderimi nga %{target}"
         approve_user_html: "%{name} miratoi regjistrim nga %{target}"
@@ -255,6 +258,7 @@ sq:
         create_relay_html: "%{name} krijoi një rele %{target}"
         create_unavailable_domain_html: "%{name} ndali dërgimin drejt përkatësisë %{target}"
         create_user_role_html: "%{name} krijoi rolin %{target}"
+        create_username_block_html: "%{name} shtoi rregull për emra përdoruesish që përmbajnë %{target}"
         demote_user_html: "%{name} zhgradoi përdoruesin %{target}"
         destroy_announcement_html: "%{name} fshiu lajmërimin për %{target}"
         destroy_canonical_email_block_html: "%{name} zhbllokoi email me hashin %{target}"
@@ -268,6 +272,7 @@ sq:
         destroy_status_html: "%{name} hoqi gjendje nga %{target}"
         destroy_unavailable_domain_html: "%{name} rinisi dërgimin drejt përkatësisë %{target}"
         destroy_user_role_html: "%{name} fshiu rolin %{target}"
+        destroy_username_block_html: "%{name} hoqi rregull për emra përdoruesish që përmbajnë %{target}"
         disable_2fa_user_html: "%{name} çaktivizoi domosdoshmërinë për dyfaktorësh për përdoruesin %{target}"
         disable_custom_emoji_html: "%{name} çaktivizoi emoxhin %{target}"
         disable_relay_html: "%{name} çaktivizoi relenë %{target}"
@@ -302,6 +307,7 @@ sq:
         update_report_html: "%{name} përditësoi raportimin %{target}"
         update_status_html: "%{name} përditësoi gjendjen me %{target}"
         update_user_role_html: "%{name} ndryshoi rolin për %{target}"
+        update_username_block_html: "%{name} përditësoi rregull për emra përdoruesish që përmbajnë %{target}"
       deleted_account: fshiu llogarinë
       empty: S’u gjetën regjistra.
       filter_by_action: Filtroji sipas veprimit
@@ -825,7 +831,7 @@ sq:
         title: Lëri, si parazgjedhje, përdoruesit jashtë indeksimi nga motorë kërkimesh
       discovery:
         follow_recommendations: Rekomandime ndjekjeje
-        preamble: Shpërfaqja e lëndës interesante është me rëndësi kyçe për mirëseardhjen e përdoruesve të rinj që mund të mos njohin njeri në Mastodon. Kontrolloni se si funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi.
+        preamble: Shpërfaqja e lëndës interesante është me rëndësi për mirëseardhjen e përdoruesve të rinj, të cilët mund të mos njohin njeri në Mastodon. Kontrolloni se funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi lënde.
         privacy: Privatësi
         profile_directory: Drejtori profilesh
         public_timelines: Rrjedha kohore publike
@@ -836,6 +842,16 @@ sq:
         all: Për këdo
         disabled: Për askënd
         users: Për përdorues vendorë që kanë bërë hyrjen
+      feed_access:
+        modes:
+          authenticated: Vetëm përdorues të mirëfilltësuar
+          disabled: Lyp doemos rol specifik përdoruesi
+          public: Kushdo
+      landing_page:
+        values:
+          about: Mbi
+          local_feed: Prurje vendore
+          trends: Në modë
       registrations:
         moderation_recommandation: Ju lutemi, sigurohuni si keni një ekip adekuat dhe reagues moderimi, përpara se të hapni regjistrimet për këdo!
         preamble: Kontrolloni cilët mund të krijojnë llogari në shërbyesin tuaj.
@@ -889,6 +905,7 @@ sq:
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       open: Hape postimin
       original_status: Postim origjinal
+      quotes: Ctime
       reblogs: Riblogime
       replied_to_html: Iu përgjigj %{acct_link}
       status_changed: Postimi ndryshoi
@@ -896,6 +913,7 @@ sq:
       title: Postime llogarie - @%{name}
       trending: Në modë
       view_publicly: Shiheni publikisht
+      view_quoted_post: Shihni postimin e cituar
       visibility: Dukshmëri
       with_media: Me media
     strikes:
@@ -1076,6 +1094,25 @@ sq:
           other: Përdorur nga %{count} vetë gjatë javës së kaluar
       title: Rekomandime & Prirje
       trending: Në modë
+    username_blocks:
+      add_new: Shtoni të ri
+      block_registrations: Blloko regjistrimet
+      comparison:
+        contains: Përmban
+        equals: Është baras me
+      contains_html: Përmban %{string}
+      created_msg: U krijua me sukses rregull emrash përdoruesish
+      delete: Fshije
+      edit:
+        title: Përpunoni rregull emrash përdoruesi
+      matches_exactly_html: Baras me %{string}
+      new:
+        create: Krijoni rregull
+        title: Krijoni rregull të ri emrash përdoruesish
+      no_username_block_selected: S’u ndryshua ndonjë rregull emrash përdoruesishm ngaqë s’u përzgjodh ndonjë
+      not_permitted: Jo i lejuar
+      title: Rregulla emrash përdoruesish
+      updated_msg: Rregulli i emrave të përdoruesve u përditësua me sukses
     warning_presets:
       add_new: Shtoni të ri
       delete: Fshije
@@ -1148,10 +1185,10 @@ sq:
     hint_html: Nëse doni të kaloni nga një llogari tjetër në këtë këtu, këtu mund të krijoni një alias, i cili është i domosdoshëm përpara se të ecni më tej me kalimin e ndjekësve prej llogarisë së vjetër te kjo këtu. Ky veprim, në vetvete, është <strong>i padëmshëm dhe i prapakthyeshëm</strong>. <strong>Migrimi i llogarisë fillohet prej llogarisë së vjetër</strong>.
     remove: Hiqe aliasin
   appearance:
-    advanced_web_interface: Ndërfaqe web e thelluar
-    advanced_web_interface_hint: 'Nëse doni të shfrytëzoni krejt gjerësinë e ekranit tuaj, ndërfaqja e thelluar web ju lejon të formësoni shumë shtylla për të parë në të njëjtën kohë aq hollësi sa doni: Kreu, njoftime, rrjedhë kohore të federuarash, çfarëdo numri listash dhe hashtag-ësh.'
+    advanced_settings: Rregullime të mëtejshme
     animations_and_accessibility: Animacione dhe përdorim nga persona me aftësi të kufizuara
-    confirmation_dialogs: Dialogë ripohimesh
+    boosting_preferences: Parapëlqime përforcimesh
+    boosting_preferences_info_html: "<strong>Ndihmëz:</strong> Pavarësisht rregullimeve, <kbd>Shift</kbd> + <kbd>Klikim</kbd> mbi ikonën e Përforcimeve %{icon} do të bëjë menjëherë përforcim."
     discovery: Zbulim
     localization:
       body: Mastodon-i përkthehet nga vullnetarë.
@@ -1549,6 +1586,13 @@ sq:
       expires_at: Skadon më
       uses: Përdorime
     title: Ftoni njerëz
+  link_preview:
+    author_html: Nga %{name}
+    potentially_sensitive_content:
+      action: Klikoni për shfaqje
+      confirm_visit: Jeni i sigurt se doni të hapet kjo lidhje?
+      hide_button: Fshihe
+      label: Lëndë potencalisht me spec
   lists:
     errors:
       limit: Keni mbërritur në numrin maksimum të listave
@@ -1649,6 +1693,10 @@ sq:
       title: Përmendje e re
     poll:
       subject: Përfundoi një pyetësor nga %{name}
+    quote:
+      body: 'Postimi juaj u citua nga %{name}:'
+      subject: "%{name} citoi postimin tuaj"
+      title: Citim i ri
     reblog:
       body: 'Gjendja juaj u përforcua nga %{name}:'
       subject: "%{name} përforcoi gjendjen tuaj"
@@ -1698,6 +1746,8 @@ sq:
       too_few_options: duhet të ketë më tepër se një element
       too_many_options: s’mund të përmbajë më tepër se %{max} elementë
     vote: Votoni
+  posting_defaults:
+    explanation: Këto rregullime do të përdoren si parazgjedhje, kur krijoni postime të reja, por mund t’i përpunoni për postim, brenda hartuesit.
   preferences:
     other: Tjetër
     posting_defaults: Parazgjedhje postimesh
@@ -1853,6 +1903,9 @@ sq:
         other: "%{count} video"
     boosted_from_html: Përforcuar nga %{acct_link}
     content_warning: 'Sinjalizim lënde: %{warning}'
+    content_warnings:
+      hide: Fshihe postimin
+      show: Shfaq më tepër
     default_language: Njësoj me gjuhën e ndërfaqes
     disallowed_hashtags:
       one: 'përmbante një hashtag të palejuar: %{tags}'
@@ -1860,25 +1913,30 @@ sq:
     edited_at_html: Përpunuar më %{date}
     errors:
       in_reply_not_found: Gjendja të cilës po provoni t’i përgjigjeni s’duket se ekziston.
+      quoted_status_not_found: Postimi që po rrekeni të citoni nuk duket se ekziston.
+      quoted_user_not_mentioned: S’mund të citohet një përdorues që s’është përmendur në një postim Përmendje Private.
     over_character_limit: u tejkalua kufi shenjash prej %{max}
     pin_errors:
       direct: Postimet që janë të dukshme vetëm për përdoruesit e përmendur s’mund të fiksohen
       limit: Keni fiksuar tashmë numrin maksimum të mesazheve
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       reblog: S’mund të fiksohet një përforcim
+    quote_error:
+      not_available: Postim që s’mund të kihet
+      pending_approval: Postim pezull
+      revoked: Postim i hequr nga autori
     quote_policies:
       followers: Vetëm ndjekës
       nobody: Thjesht unë
       public: Cilido
+    quote_post_author: U citua një postim nga %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Përmendje private
-      private: Vetëm ndjekësve
-      private_long: Shfaqua vetëm ndjekësve
+      private: Vetëm ndjekës
       public: Publike
-      public_long: Mund ta shohë kushdo
-      unlisted: Jo në listë
-      unlisted_long: Mund ta shohë gjithkush, por s’gjendet në rrjedha publike kohore
+      public_long: Cilido që hyn e del në Mastodon
+      unlisted_long: Fshehur nga përfundime kërkimi në Mastodon, rrjedha kohore gjërash në modë dhe publike
   statuses_cleanup:
     enabled: Fshi automatikisht postime të vjetra
     enabled_hint: Fshin automatikisht postimet tuaja, pasi mbërrijnë një prag të caktuar moshe, hiq rastin kur ka përputhje me një nga përjashtimet më poshtë

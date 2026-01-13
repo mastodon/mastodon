@@ -190,6 +190,7 @@ ia:
         create_relay: Crear repetitor
         create_unavailable_domain: Crear dominio indisponibile
         create_user_role: Crear un rolo
+        create_username_block: Crear regula de nomine de usator
         demote_user: Degradar usator
         destroy_announcement: Deler annuncio
         destroy_canonical_email_block: Deler blocada de e-mail
@@ -203,6 +204,7 @@ ia:
         destroy_status: Deler message
         destroy_unavailable_domain: Deler dominio indisponibile
         destroy_user_role: Destruer rolo
+        destroy_username_block: Deler regula de nomine de usator
         disable_2fa_user: Disactivar A2F
         disable_custom_emoji: Disactivar emoji personalisate
         disable_relay: Disactivar repetitor
@@ -237,6 +239,7 @@ ia:
         update_report: Actualisar le reporto
         update_status: Actualisar le message
         update_user_role: Actualisar rolo
+        update_username_block: Actualisar regula de nomine de usator
       actions:
         approve_appeal_html: "%{name} approbava appello del decision de moderation de %{target}"
         approve_user_html: "%{name} approbava inscription de %{target}"
@@ -255,6 +258,7 @@ ia:
         create_relay_html: "%{name} ha create un repetitor %{target}"
         create_unavailable_domain_html: "%{name} stoppava livration al dominio %{target}"
         create_user_role_html: "%{name} creava rolo de %{target}"
+        create_username_block_html: "%{name} ha addite un regula pro nomines de usator que contine %{target}"
         demote_user_html: "%{name} degradava usator %{target}"
         destroy_announcement_html: "%{name} deleva annuncio %{target}"
         destroy_canonical_email_block_html: "%{name} disblocava le e-mail con le hash %{target}"
@@ -268,6 +272,7 @@ ia:
         destroy_status_html: "%{name} removeva un message de %{target}"
         destroy_unavailable_domain_html: "%{name} reprendeva le livration al dominio %{target}"
         destroy_user_role_html: "%{name} deleva le rolo %{target}"
+        destroy_username_block_html: "%{name} ha removite un regula pro nomines de usator que contine %{target}"
         disable_2fa_user_html: "%{name} disactivava le authentication a duo factores pro le usator %{target}"
         disable_custom_emoji_html: "%{name} disactivava le emoji %{target}"
         disable_relay_html: "%{name} ha disactivate le repetitor %{target}"
@@ -302,6 +307,7 @@ ia:
         update_report_html: "%{name} actualisava reporto %{target}"
         update_status_html: "%{name} actualisava message de %{target}"
         update_user_role_html: "%{name} cambiava rolo de %{target}"
+        update_username_block_html: "%{name} ha actualisate un regula pro nomines de usator que contine %{target}"
       deleted_account: conto delite
       empty: Nulle registros trovate.
       filter_by_action: Filtrar per action
@@ -314,7 +320,7 @@ ia:
       edit:
         title: Modificar annuncio
       empty: Necun annuncios trovate.
-      live: In directo
+      live: In vivo
       new:
         create: Crear annuncio
         title: Nove annuncio
@@ -790,6 +796,8 @@ ia:
         view_dashboard_description: Permitte que usatores accede al tabuliero de instrumentos e a varie statisticas
         view_devops: DevOps
         view_devops_description: Permitte que usatores accede al tabulieros de instrumentos de Sidekiq e pgHero
+        view_feeds: Vider canales thematic e in vivo
+        view_feeds_description: Permitte que usatores acceder al canales thematic e in vivo independentemente del configuration del servitor
       title: Rolos
     rules:
       add_new: Adder regula
@@ -842,6 +850,16 @@ ia:
         all: A omnes
         disabled: A necuno
         users: A usators local in session
+      feed_access:
+        modes:
+          authenticated: Solmente usatores authenticate
+          disabled: Requirer un rolo de usator specific
+          public: Omnes
+      landing_page:
+        values:
+          about: A proposito
+          local_feed: Canal local
+          trends: Tendentias
       registrations:
         moderation_recommandation: Per favor assecura te de haber un equipa de moderation adequate e reactive ante de aperir le inscription a omnes!
         preamble: Controla qui pote crear un conto sur tu servitor.
@@ -895,6 +913,7 @@ ia:
       no_status_selected: Necun message ha essite cambiate perque necun ha essite seligite
       open: Aperir message
       original_status: Message original
+      quotes: Citationes
       reblogs: Republicationes
       replied_to_html: Responsa a %{acct_link}
       status_changed: Message cambiate
@@ -902,6 +921,7 @@ ia:
       title: Messages del conto – @%{name}
       trending: Tendentias
       view_publicly: Vider publicamente
+      view_quoted_post: Vider message citate
       visibility: Visibilitate
       with_media: Con multimedia
     strikes:
@@ -1085,6 +1105,25 @@ ia:
           other: Usate per %{count} personas in le ultime septimana
       title: Recommendationes e tendentias
       trending: In tendentia
+    username_blocks:
+      add_new: Adder nove
+      block_registrations: Blocar registrationes
+      comparison:
+        contains: Contine
+        equals: Es equal a
+      contains_html: Contine %{string}
+      created_msg: Regula de nomine de usator create con successo
+      delete: Deler
+      edit:
+        title: Modificar regula de nomine de usator
+      matches_exactly_html: Es equal a %{string}
+      new:
+        create: Crear regula
+        title: Crear nove regula de nomine de usator
+      no_username_block_selected: Necun regula de usator ha essite cambiate perque necun ha essite seligite
+      not_permitted: Non permittite
+      title: Regulas de nomine de usator
+      updated_msg: Regula de nomine de usator actualisate con successo
     warning_presets:
       add_new: Adder nove
       delete: Deler
@@ -1157,10 +1196,10 @@ ia:
     hint_html: Si tu vole migrar de un altere conto a iste, tu pote crear un alias ci, que es necessari pro poter transferer le sequitores del conto ancian a iste. Iste action per se es <strong>innocue e reversibile</strong>. <strong>Le migration del conto es initiate desde le conto ancian</strong>.
     remove: Disligar alias
   appearance:
-    advanced_web_interface: Interfacie web avantiate
-    advanced_web_interface_hint: 'Si tu vole utilisar tote le largessa de tu schermo, le interfacie web avantiate te permitte configurar multe columnas differente pro vider al mesme tempore tante informationes como tu vole: pagina principal, notificationes, chronologia federate, un numero illimitate de listas e hashtags.'
+    advanced_settings: Parametros avantiate
     animations_and_accessibility: Animationes e accessibilitate
-    confirmation_dialogs: Dialogos de confirmation
+    boosting_preferences: Preferentias de impulso
+    boosting_preferences_info_html: "<strong>Consilio:</strong> Independentemente del parametros, <kbd>Shift</kbd> + <kbd>clic</kbd> sur le icone %{icon} “Impulsar” impulsara immediatemente."
     discovery: Discoperta
     localization:
       body: Mastodon es traducite per voluntarios.
@@ -1349,6 +1388,10 @@ ia:
     basic_information: Information basic
     hint_html: "<strong>Personalisa lo que le personas vide sur tu profilo public e presso tu messages.</strong> Il es plus probabile que altere personas te seque e interage con te quando tu ha un profilo complete e un photo."
     other: Alteres
+  emoji_styles:
+    auto: Automatic
+    native: Native
+    twemoji: Twemoji
   errors:
     '400': Le requesta que tu ha inviate non es valide o es mal formate.
     '403': Tu non ha le permission de acceder a iste pagina.
@@ -1558,6 +1601,13 @@ ia:
       expires_at: Expira
       uses: Usos
     title: Invitar personas
+  link_preview:
+    author_html: Per %{name}
+    potentially_sensitive_content:
+      action: Clicca pro monstrar
+      confirm_visit: Es tu secur que tu vole aperir iste message?
+      hide_button: Celar
+      label: Contento potentialmente sensibile
   lists:
     errors:
       limit: Tu ha attingite le maxime numero de listas
@@ -1658,6 +1708,10 @@ ia:
       title: Nove mention
     poll:
       subject: Un sondage de %{name} ha finite
+    quote:
+      body: 'Tu message ha essite citate per %{name}:'
+      subject: "%{name} ha citate tu message"
+      title: Nove citation
     reblog:
       body: "%{name} ha impulsate tu message:"
       subject: "%{name} ha impulsate tu message"
@@ -1707,6 +1761,8 @@ ia:
       too_few_options: debe haber plus de un elemento
       too_many_options: non pote continer plus de %{max} elementos
     vote: Votar
+  posting_defaults:
+    explanation: Iste parametros essera usate como predefinite quando tu crea nove messages, ma tu pote modificar los pro cata message in le compositor.
   preferences:
     other: Alteres
     posting_defaults: Parametros de publication predefinite
@@ -1862,6 +1918,9 @@ ia:
         other: "%{count} videos"
     boosted_from_html: Impulsate desde %{acct_link}
     content_warning: 'Advertimento de contento: %{warning}'
+    content_warnings:
+      hide: Celar message
+      show: Monstrar plus
     default_language: Mesme como lingua de interfacie
     disallowed_hashtags:
       one: 'contineva un hashtag non autorisate: %{tags}'
@@ -1869,25 +1928,30 @@ ia:
     edited_at_html: Modificate le %{date}
     errors:
       in_reply_not_found: Le message a que tu tenta responder non pare exister.
+      quoted_status_not_found: Le message que tu tenta citar non pare exister.
     over_character_limit: limite de characteres de %{max} excedite
     pin_errors:
       direct: Messages que es solo visibile a usatores mentionate non pote esser appunctate
       limit: Tu ha jam appunctate le maxime numero de messages
       ownership: Le message de alcuno altere non pote esser appunctate
       reblog: Un impulso non pote esser affixate
+    quote_error:
+      not_available: Message indisponibile
+      pending_approval: Message pendente
+      revoked: Message removite per le autor
     quote_policies:
       followers: Solmente sequitores
       nobody: Solo io
       public: Omnes
+    quote_post_author: Ha citate un message de %{acct}
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Mention private
       private: Solmente sequitores
-      private_long: Solmente monstrar a sequitores
       public: Public
-      public_long: Omnes pote vider
-      unlisted: Non listate
-      unlisted_long: Omnes pote vider, ma non es listate in le chronologias public
+      public_long: Quicunque, sur Mastodon o non
+      unlisted: Public ma quiete
+      unlisted_long: Celate in resultatos de recerca, tendentias e chronologias public de Mastodon
   statuses_cleanup:
     enabled: Deler automaticamente le messages ancian
     enabled_hint: Dele automaticamente tu messages un vice que illos attinge un limine de etate specificate, salvo que illes concorda un del exceptiones infra

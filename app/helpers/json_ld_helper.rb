@@ -134,7 +134,7 @@ module JsonLdHelper
         patch_for_forwarding!(value, compacted_value)
       elsif value.is_a?(Array)
         compacted_value = [compacted_value] unless compacted_value.is_a?(Array)
-        return if value.size != compacted_value.size
+        return nil if value.size != compacted_value.size
 
         compacted[key] = value.zip(compacted_value).map do |v, vc|
           if v.is_a?(Hash) && vc.is_a?(Hash)

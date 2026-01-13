@@ -10,7 +10,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     @activity_json             = activity_json
     @json                      = object_json
-    @status_parser             = ActivityPub::Parser::StatusParser.new(@json, followers_collection: status.account.followers_url, actor_uri: ActivityPub::TagManager.instance.uri_for(status.account))
+    @status_parser             = ActivityPub::Parser::StatusParser.new(@json, followers_collection: status.account.followers_url, following_collection: status.account.following_url, actor_uri: ActivityPub::TagManager.instance.uri_for(status.account))
     @uri                       = @status_parser.uri
     @status                    = status
     @account                   = status.account
@@ -20,7 +20,6 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @request_id                = request_id
     @quote                     = nil
 
-    # Only native types can be updated at the moment
     return @status if !expected_type? || already_updated_more_recently?
 
     if @status_parser.edited_at.present? && (@status.edited_at.nil? || @status_parser.edited_at > @status.edited_at)
@@ -170,8 +169,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def update_immediate_attributes!
-    @status.text         = @status_parser.text || ''
-    @status.spoiler_text = @status_parser.spoiler_text || ''
+    @status.text         = @status_parser.processed_text
+    @status.spoiler_text = @status_parser.processed_spoiler_text
     @status.sensitive    = @account.sensitized? || @status_parser.sensitive || false
     @status.language     = @status_parser.language
 
@@ -287,10 +286,10 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     return unless quote_uri.present? && @status.quote.present?
 
     quote = @status.quote
-    return if quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(quote.quoted_status) != quote_uri
+    return if quote.quoted_status.present? && (ActivityPub::TagManager.instance.uri_for(quote.quoted_status) != quote_uri || quote.quoted_status.local?)
 
     approval_uri = @status_parser.quote_approval_uri
-    approval_uri = nil if unsupported_uri_scheme?(approval_uri)
+    approval_uri = nil if unsupported_uri_scheme?(approval_uri) || TagManager.instance.local_url?(approval_uri)
 
     quote.update(approval_uri: approval_uri, state: :pending, legacy: @status_parser.legacy_quote?) if quote.approval_uri != @status_parser.quote_approval_uri
 
@@ -302,19 +301,19 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     if @status_parser.quote?
       approval_uri = @status_parser.quote_approval_uri
-      approval_uri = nil if unsupported_uri_scheme?(approval_uri)
+      approval_uri = nil if unsupported_uri_scheme?(approval_uri) || TagManager.instance.local_url?(approval_uri)
 
       if @status.quote.present?
-        state = @status_parser.deleted_quote? ? :deleted : :pending
-
         # If the quoted post has changed, discard the old object and create a new one
         if @status.quote.quoted_status.present? && ActivityPub::TagManager.instance.uri_for(@status.quote.quoted_status) != quote_uri
+          # Revoke the quote while we get a chance… maybe this should be a `before_destroy` hook?
+          RevokeQuoteService.new.call(@status.quote) if @status.quote.quoted_account&.local? && @status.quote.accepted?
           @status.quote.destroy
-          quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?, state: state)
+          quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?, state: @status_parser.deleted_quote? ? :deleted : :pending)
           @quote_changed = true
         else
           quote = @status.quote
-          quote.update(approval_uri: approval_uri, state: :pending, legacy: @status_parser.legacy_quote?) if quote.approval_uri != @status_parser.quote_approval_uri
+          quote.update(approval_uri: approval_uri, state: :pending, legacy: @status_parser.legacy_quote?) if quote.approval_uri != approval_uri
         end
       else
         quote = Quote.create(status: @status, approval_uri: approval_uri, legacy: @status_parser.legacy_quote?)
@@ -351,7 +350,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def expected_type?
-    equals_or_includes_any?(@json['type'], %w(Note Question))
+    equals_or_includes_any?(@json['type'], ActivityPub::Activity::SUPPORTED_TYPES) || equals_or_includes_any?(@json['type'], ActivityPub::Activity::CONVERTED_TYPES)
   end
 
   def record_previous_edit!

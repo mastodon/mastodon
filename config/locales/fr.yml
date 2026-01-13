@@ -190,6 +190,7 @@ fr:
         create_relay: Créer un relais
         create_unavailable_domain: Créer un domaine indisponible
         create_user_role: Créer le rôle
+        create_username_block: Créer une règle de nom d'utilisateur
         demote_user: Rétrograder l’utilisateur·ice
         destroy_announcement: Supprimer l’annonce
         destroy_canonical_email_block: Supprimer le blocage de courriel
@@ -203,6 +204,7 @@ fr:
         destroy_status: Supprimer le message
         destroy_unavailable_domain: Supprimer le domaine indisponible
         destroy_user_role: Détruire le rôle
+        destroy_username_block: Supprimer la règle de nom d'utilisateur
         disable_2fa_user: Désactiver l’A2F
         disable_custom_emoji: Désactiver les émojis personnalisés
         disable_relay: Désactiver le relais
@@ -237,6 +239,7 @@ fr:
         update_report: Mettre à jour le rapport
         update_status: Mettre à jour le message
         update_user_role: Mettre à jour le rôle
+        update_username_block: Mettre à jour la règle de nom d'utilisateur
       actions:
         approve_appeal_html: "%{name} a approuvé l'appel de la décision de modération émis par %{target}"
         approve_user_html: "%{name} a approuvé l’inscription de %{target}"
@@ -255,6 +258,7 @@ fr:
         create_relay_html: "%{name} a créé un relais %{target}"
         create_unavailable_domain_html: "%{name} a arrêté la livraison vers le domaine %{target}"
         create_user_role_html: "%{name} a créé le rôle %{target}"
+        create_username_block_html: "%{name} a ajouté une règle pour les noms d'utilisateur contenant %{target}"
         demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
         destroy_announcement_html: "%{name} a supprimé l'annonce %{target}"
         destroy_canonical_email_block_html: "%{name} a débloqué l'adresse email avec le hachage %{target}"
@@ -268,6 +272,7 @@ fr:
         destroy_status_html: "%{name} a supprimé le message de %{target}"
         destroy_unavailable_domain_html: "%{name} a repris la livraison au domaine %{target}"
         destroy_user_role_html: "%{name} a supprimé le rôle %{target}"
+        destroy_username_block_html: "%{name} a supprimé une règle pour les noms d'utilisateurs contenant %{target}"
         disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·rice %{target}"
         disable_custom_emoji_html: "%{name} a désactivé l'émoji %{target}"
         disable_relay_html: "%{name} a désactivé le relais %{target}"
@@ -302,6 +307,7 @@ fr:
         update_report_html: "%{name} a mis à jour le rapport de signalement %{target}"
         update_status_html: "%{name} a mis à jour le message de %{target}"
         update_user_role_html: "%{name} a changé le rôle %{target}"
+        update_username_block_html: "%{name} a mis à jour une règle pour les noms d'utilisateurs contenant %{target}"
       deleted_account: compte supprimé
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
@@ -489,9 +495,19 @@ fr:
           created_at: Créé à
           delete: Supprimer
           ip: Adresse IP
+          request_body: Corps de la demande
+          title: Déboguer les rappels
       providers:
+        active: Activé
+        base_url: URL de base
+        callback: Rappel
+        delete: Supprimer
+        edit: Modifier un fournisseur
+        finish_registration: Terminer l'inscription
         name: Nom
         providers: Fournisseur
+        public_key_fingerprint: Empreinte de la clé publique
+        registration_requested: Inscription demandée
         registrations:
           confirm: Confirmer
           description: Vous avez reçu une souscription d'un FSAF. Rejetez-la si vous ne l'avez pas initiée. Si c'est bien votre intention, comparez le nom et l'empreinte de la clé avant de confirmer la souscription.
@@ -502,6 +518,7 @@ fr:
         sign_in: Se connecter
         status: État
         title: Fournisseurs de Services Auxiliaire du Fedivers
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Les recommandations d'abonnement aident les nouvelles personnes à trouver rapidement du contenu intéressant</strong>. Si un·e utilisateur·rice n'a pas assez interagi avec les autres pour avoir des recommandations personnalisées, ces comptes sont alors recommandés. La sélection est mise à jour quotidiennement depuis un mélange de comptes ayant le plus d'interactions récentes et le plus grand nombre d'abonné·e·s locaux pour une langue donnée."
       language: Pour la langue
@@ -571,6 +588,11 @@ fr:
         limited: Limité
         title: Modération
       moderation_notes:
+        create: Ajouter une note de modération
+        created_msg: Note de modération de l'instance créée avec succès !
+        description_html: Voir et laisser des notes pour les autres modérateurs et pour référence future
+        destroyed_msg: Note de modération de l'instance supprimée avec succès !
+        placeholder: Informations à propos de cette instance, actions entreprises ou de toute autre chose qui vous aidera à modérer cette instance à l'avenir.
         title: Notes de modération
       private_comment: Commentaire privé
       public_comment: Commentaire public
@@ -777,6 +799,8 @@ fr:
         view_dashboard_description: Permet aux utilisateur⋅rice⋅s d'accéder au tableau de bord et à diverses statistiques
         view_devops: DevOps
         view_devops_description: Permet aux utilisateur⋅rice⋅s d'accéder aux tableaux de bord Sidekiq et pgHero
+        view_feeds: Voir les flux en direct et les fils de discussion
+        view_feeds_description: Permet aux utilisateur·rice·s d'accéder aux flux en direct et de discussion indépendamment des paramètres du serveur
       title: Rôles
     rules:
       add_new: Ajouter une règle
@@ -785,15 +809,21 @@ fr:
       description_html: Bien que la plupart des gens prétende avoir lu les conditions d'utilisation avant de les accepter, généralement les utilisateur·rice·s ne les lisent vraiment que lorsque un problème apparaît. <strong>Pour faciliter la visualisation des règles de votre serveur en un seul coup d’œil, présentez-les sous la forme d'une liste à puces !</strong> Essayez de garder chacune des règles simple et concise, mais faites attention à ne pas non plus les diviser en de trop nombreux éléments distincts.
       edit: Modifier la règle
       empty: Aucune règle de serveur n'a été définie pour l'instant.
+      move_down: Déplacer vers le bas
+      move_up: Déplacer vers le haut
       title: Règles du serveur
       translation: Traduction
       translations: Traductions
+      translations_explanation: Vous pouvez éventuellement ajouter des traductions pour les règles. La valeur par défaut sera affichée si aucune version traduite n'est disponible. Veuillez toujours vous assurer que toute traduction fournie est synchronisée avec la valeur par défaut.
     settings:
       about:
         manage_rules: Gérer les règles du serveur
         preamble: Fournissez des informations détaillées sur le fonctionnement, la modération et le financement du serveur.
         rules_hint: Il y a un espace dédié pour les règles auxquelles vos utilisateurs sont invités à adhérer.
         title: À propos
+      allow_referrer_origin:
+        desc: Quand les utilisateurs cliquent sur un lien externe, leur navigateur peut envoyer l'adresse du serveur Mastodon en tant qu'adresse d'origine. À désactiver si cela permet d'identifier les utilisateurs, par exemple s'il s'agit d'un serveur Mastodon personnel.
+        title: Autoriser les sites externes à voir votre serveur Mastodon comme une source de trafic
       appearance:
         preamble: Personnaliser l'interface web de Mastodon.
         title: Apparence
@@ -813,6 +843,7 @@ fr:
       discovery:
         follow_recommendations: Suivre les recommandations
         preamble: Il est essentiel de donner de la visibilité à des contenus intéressants pour attirer des utilisateur⋅rice⋅s néophytes qui ne connaissent peut-être personne sur Mastodon. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
+        privacy: Vie privée
         profile_directory: Annuaire des profils
         public_timelines: Fils publics
         publish_statistics: Publier les statistiques
@@ -822,8 +853,18 @@ fr:
         all: À tout le monde
         disabled: À personne
         users: Aux utilisateur·rice·s connecté·e·s localement
+      feed_access:
+        modes:
+          authenticated: Utilisateurs authentifiés uniquement
+          disabled: Nécessite un rôle spécifique
+          public: Tout le monde
+      landing_page:
+        values:
+          about: À propos
+          local_feed: Fil local
+          trends: Tendances
       registrations:
-        moderation_recommandation: Veuillez vous assurer d'avoir une équipe de modération adéquate et réactive avant d'ouvrir les inscriptions à tout le monde!
+        moderation_recommandation: Veuillez vous assurer d'avoir une équipe de modération adéquate et réactive avant d'ouvrir les inscriptions à tout le monde !
         preamble: Affecte qui peut créer un compte sur votre serveur.
         title: Inscriptions
       registrations_mode:
@@ -875,6 +916,7 @@ fr:
       no_status_selected: Aucun message n’a été modifié car aucun n’a été sélectionné
       open: Ouvrir le message
       original_status: Message original
+      quotes: Citations
       reblogs: Partages
       replied_to_html: Répondu à %{acct_link}
       status_changed: Message modifié
@@ -882,6 +924,7 @@ fr:
       title: Messages du compte - @%{name}
       trending: Tendances
       view_publicly: Afficher de manière publique
+      view_quoted_post: Voir la publication citée
       visibility: Visibilité
       with_media: Avec médias
     strikes:
@@ -899,6 +942,8 @@ fr:
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
+      elasticsearch_analysis_index_mismatch:
+        message_html: Les paramètres de l'analyseur d'index d'Elasticsearch ne sont plus à jour. Veuillez lancer <code>tootctl search deploy --only=%{value}</code>
       elasticsearch_health_red:
         message_html: Le cluster Elasticsearch n’est pas sain (statut rouge), les fonctionnalités de recherche ne sont pas disponible
       elasticsearch_health_yellow:
@@ -1063,6 +1108,25 @@ fr:
           other: Utilisé par %{count} personnes au cours de la dernière semaine
       title: Recommandations et tendances
       trending: Tendances
+    username_blocks:
+      add_new: Ajouter un nouveau
+      block_registrations: Bloquer les inscriptions
+      comparison:
+        contains: Contient
+        equals: Est égal à
+      contains_html: Contient %{string}
+      created_msg: Règle de nom d'utilisateur créée avec succès
+      delete: Supprimer
+      edit:
+        title: Modifier la règle de nom d'utilisateur
+      matches_exactly_html: Égal à %{string}
+      new:
+        create: Créer une règle
+        title: Créer une nouvelle règle de nom d'utilisateur
+      no_username_block_selected: Aucune règle de nom d'utilisateur n'a été modifiée car aucune n'a été sélectionnée
+      not_permitted: Non autorisé
+      title: Règles de nom d'utilisateur
+      updated_msg: Règle de nom d'utilisateur mise à jour
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Supprimer
@@ -1135,10 +1199,10 @@ fr:
     hint_html: Si vous voulez déménager d’un autre compte vers celui-ci, vous pouvez créer ici un alias, qui est nécessaire avant de pouvoir migrer les abonné·e·s de l’ancien compte vers celui-ci. Cette action en soi est <strong>inoffensive et réversible</strong>. <strong>La migration du compte est initiée à partir de l’ancien compte</strong>.
     remove: Détacher l'alias
   appearance:
-    advanced_web_interface: Interface web avancée
-    advanced_web_interface_hint: 'Si vous voulez utiliser toute la largeur de votre écran, l’interface web avancée vous permet de configurer plusieurs colonnes différentes pour voir autant d’informations que vous le souhaitez en même temps : Accueil, notifications, fil fédéré, un nombre illimité de listes et hashtags.'
+    advanced_settings: Paramètres avancés
     animations_and_accessibility: Animations et accessibilité
-    confirmation_dialogs: Dialogues de confirmation
+    boosting_preferences: Préférences de partage
+    boosting_preferences_info_html: "<strong>Astuce :</strong> indépendamment des paramètres, <kbd>Maj</kbd> + <kbd>Clic</kbd> sur l'icône %{icon} Boost va immédiatement partager."
     discovery: Découverte
     localization:
       body: Mastodon est traduit par des volontaires.
@@ -1327,6 +1391,10 @@ fr:
     basic_information: Informations de base
     hint_html: "<strong>Personnalisez ce que les gens voient sur votre profil public et à côté de vos messages.</strong> Les autres personnes seront plus susceptibles de vous suivre et d’interagir avec vous lorsque vous avez un profil complet et une photo."
     other: Autre
+  emoji_styles:
+    auto: Auto
+    native: Natif
+    twemoji: Twemoji
   errors:
     '400': La demande que vous avez soumise est invalide ou mal formée.
     '403': Vous n’avez pas accès à cette page.
@@ -1536,6 +1604,13 @@ fr:
       expires_at: Expire
       uses: Utilisations
     title: Inviter des gens
+  link_preview:
+    author_html: Par %{name}
+    potentially_sensitive_content:
+      action: Cliquer pour afficher
+      confirm_visit: Voulez-vous vraiment ouvrir ce lien ?
+      hide_button: Masquer
+      label: Contenu potentiellement sensible
   lists:
     errors:
       limit: Vous avez atteint le nombre maximum de listes
@@ -1636,6 +1711,10 @@ fr:
       title: Nouvelle mention
     poll:
       subject: Un sondage de %{name} est terminé
+    quote:
+      body: 'Votre message a été cité par %{name}:'
+      subject: "%{name} a cité votre message"
+      title: Nouvelle citation
     reblog:
       body: 'Votre message été partagé par %{name} :'
       subject: "%{name} a partagé votre message"
@@ -1684,6 +1763,9 @@ fr:
       self_vote: Vous ne pouvez pas voter à vos propres sondages
       too_few_options: doit avoir plus qu’une proposition
       too_many_options: ne peut contenir plus de %{max} propositions
+    vote: Voter
+  posting_defaults:
+    explanation: Ces paramètres seront utilisés par défaut lorsque vous créez de nouveaux messages, mais vous pouvez les modifier par message dans le champs de rédaction.
   preferences:
     other: Autre
     posting_defaults: Paramètres de publication par défaut
@@ -1839,6 +1921,9 @@ fr:
         other: "%{count} vidéos"
     boosted_from_html: Partagé depuis %{acct_link}
     content_warning: 'Avertissement de contenu : %{warning}'
+    content_warnings:
+      hide: Masquer le message
+      show: Afficher plus
     default_language: Même langue que celle de l’interface
     disallowed_hashtags:
       one: 'contient un hashtag désactivé : %{tags}'
@@ -1846,20 +1931,31 @@ fr:
     edited_at_html: Modifié le %{date}
     errors:
       in_reply_not_found: Le message auquel vous essayez de répondre ne semble pas exister.
+      quoted_status_not_found: Le message que vous essayez de citer ne semble pas exister.
+      quoted_user_not_mentioned: Impossible de citer un compte non mentionné dans une mention privée.
     over_character_limit: limite de %{max} caractères dépassée
     pin_errors:
       direct: Les messages qui ne sont visibles que pour les utilisateur·rice·s mentionné·e·s ne peuvent pas être épinglés
       limit: Vous avez déjà épinglé le nombre maximum de messages
       ownership: Vous ne pouvez pas épingler un message ne vous appartenant pas
       reblog: Un partage ne peut pas être épinglé
+    quote_error:
+      not_available: Message indisponible
+      pending_approval: Message en attente
+      revoked: Message supprimé par l'auteur
+    quote_policies:
+      followers: Abonné·e·s seulement
+      nobody: Moi uniquement
+      public: Tout le monde
+    quote_post_author: A cité un message de %{acct}
     title: "%{name} : « %{quote} »"
     visibilities:
-      private: Abonné⋅e⋅s uniquement
-      private_long: Afficher seulement à vos vos abonné·e·s
+      direct: Mention privée
+      private: Abonné·e·s seulement
       public: Publique
-      public_long: Tout le monde peut voir vos messages
-      unlisted: Public sans être affiché sur le fil public
-      unlisted_long: Tout le monde peut voir vos messages mais ils ne seront pas listés sur les fils publics
+      public_long: Tout le monde sur et en dehors de Mastodon
+      unlisted: Public discret
+      unlisted_long: Caché des résultats de recherche, des tendances et des fils d'actualité publics
   statuses_cleanup:
     enabled: Supprimer automatiquement vos anciens messages
     enabled_hint: Supprime automatiquement vos messages une fois qu'ils ont atteint un seuil d'ancienneté défini, à moins qu'ils ne correspondent à l'une des exceptions ci-dessous
@@ -1905,6 +2001,9 @@ fr:
   terms_of_service:
     title: Conditions d'utilisation
   terms_of_service_interstitial:
+    future_preamble_html: Nous avons modifié nos conditions d'utilisation, ces changements entreront en vigueur le <strong>%{date}</strong>. Nous vous invitons à prendre connaissance des nouvelles conditions.
+    past_preamble_html: Nous avons modifié nos conditions d'utilisation depuis votre dernière visite. Nous vous invitons à prendre connaissance des nouvelles conditions.
+    review_link: Vérifier les conditions d'utilisation
     title: Les conditions d'utilisation de %{domain} ont changées
   themes:
     contrast: Mastodon (Contraste élevé)

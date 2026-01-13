@@ -56,11 +56,13 @@ ca:
         scopes: API permeses per a accedir a l'aplicació. Si selecciones un àmbit de nivell superior, no cal que en seleccionis un d'individual.
         setting_aggregate_reblogs: No mostra els nous impulsos dels tuts que ja s'han impulsat recentment (només afecta als impulsos nous rebuts)
         setting_always_send_emails: Normalment, no s'enviarà cap notificació per correu electrònic mentre facis servir Mastodon
-        setting_default_quote_policy: Aquesta configuració només tindrà efecte en les publicacions creades amb la següent versió de Mastodon, però podeu seleccionar-la en preparació.
+        setting_default_quote_policy_private: Altres no poden citar publicacions fetes a Mastodon només per a seguidors.
+        setting_default_quote_policy_unlisted: Quan la gent et citi la seva publicació estarà amagada de les línies de temps de tendències.
         setting_default_sensitive: El contingut sensible està ocult per defecte i es pot mostrar fent-hi clic
         setting_display_media_default: Amaga el contingut gràfic marcat com a sensible
         setting_display_media_hide_all: Oculta sempre tot el contingut multimèdia
         setting_display_media_show_all: Mostra sempre el contingut gràfic
+        setting_emoji_style: Com mostrar els emojis. "Automàtic" provarà de fer servir els emojis nadius, però revertirà a twemojis en els navegadors antics.
         setting_system_scrollbars_ui: S'aplica només als navegadors d'escriptori basats en Safari i Chrome
         setting_use_blurhash: Els degradats es basen en els colors de les imatges ocultes, però n'enfosqueixen els detalls
         setting_use_pending_items: Amaga les actualitzacions de la línia de temps després de fer un clic, en lloc de desplaçar-les automàticament
@@ -103,10 +105,8 @@ ca:
         status_page_url: Enllaç de la pàgina on els usuaris poden veure l'estat d'aquest servidor durant una interrupció del servei
         theme: El tema que els visitants i els nous usuaris veuen.
         thumbnail: Una imatge d'aproximadament 2:1 que es mostra al costat la informació del teu servidor.
-        timeline_preview: Els visitants amb sessió no iniciada seran capaços de navegar per els tuts més recents en el teu servidor.
         trendable_by_default: Omet la revisió manual del contingut en tendència. Els articles individuals poden encara ser eliminats després del fet.
         trends: Les tendències mostren quins tuts, etiquetes i notícies estan guanyant força en el teu servidor.
-        trends_as_landing_page: Mostra el contingut en tendència als usuaris i visitants no autenticats enlloc de la descripció d'aquest servidor. Requereix que les tendències estiguin activades.
       form_challenge:
         current_password: Estàs entrant en una àrea segura
       imports:
@@ -228,21 +228,19 @@ ca:
         setting_aggregate_reblogs: Agrupar impulsos en les línies de temps
         setting_always_send_emails: Envia'm sempre notificacions per correu electrònic
         setting_auto_play_gif: Reprodueix automàticament els GIF animats
-        setting_boost_modal: Mostra la finestra de confirmació abans d'impulsar
         setting_default_language: Llengua dels tuts
-        setting_default_privacy: Privacitat dels tuts
+        setting_default_privacy: Visibilitat de la publicació
         setting_default_quote_policy: Qui pot citar
         setting_default_sensitive: Marcar sempre el contingut gràfic com a sensible
-        setting_delete_modal: Mostra la finestra de confirmació abans d'esborrar un tut
         setting_disable_hover_cards: Deshabilita la vista prèvia del perfil en passar-hi per sobre
         setting_disable_swiping: Desactiva les animacions
         setting_display_media: Visualització multimèdia
         setting_display_media_default: Per defecte
         setting_display_media_hide_all: Amaga-ho tot
         setting_display_media_show_all: Mostra-ho tot
+        setting_emoji_style: Estil d'emojis
         setting_expand_spoilers: Desplega sempre els tuts marcats amb advertències de contingut
         setting_hide_network: Amaga la teva xarxa
-        setting_missing_alt_text_modal: Mostra un diàleg de confirmació abans de publicar contingut sense text alternatiu
         setting_reduce_motion: Redueix el moviment de les animacions
         setting_system_font_ui: Usa la lletra predeterminada del sistema
         setting_system_scrollbars_ui: Usa la barra de desplaçament predeterminada del sistema
@@ -294,10 +292,8 @@ ca:
         status_page_url: Enllaç de la pàgina d'estat
         theme: Tema per defecte
         thumbnail: Miniatura del servidor
-        timeline_preview: Permet l'accés no autenticat a les línies de temps públiques
         trendable_by_default: Permet tendències sense revisió prèvia
         trends: Activa les tendències
-        trends_as_landing_page: Fer servir les tendències com a pàgina inicial
       interactions:
         must_be_follower: Bloqueja les notificacions de persones que no em segueixen
         must_be_following: Bloqueja les notificacions de persones no seguides
@@ -322,6 +318,7 @@ ca:
         follow_request: Algú sol·licita seguir-te
         mention: Algú et menciona
         pending_account: Un nou compte necessita revisió
+        quote: Algú us ha citat
         reblog: Algú comparteix el teu estat
         report: S'ha enviat l'informe nou
         software_updates:
@@ -368,6 +365,8 @@ ca:
         name: Nom
         permissions_as_keys: Permisos
         position: Prioritat
+      username_block:
+        comparison: Mètode de comparació
       webhook:
         events: Esdeveniments activats
         template: Plantilla de càrrega

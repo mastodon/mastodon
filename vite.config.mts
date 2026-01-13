@@ -1,29 +1,94 @@
 import path from 'node:path';
+import { readdir } from 'node:fs/promises';
 
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
-import react from '@vitejs/plugin-react';
-import { PluginOption } from 'vite';
-import svgr from 'vite-plugin-svgr';
-import { visualizer } from 'rollup-plugin-visualizer';
-import RailsPlugin from 'vite-plugin-rails';
-import { VitePWA } from 'vite-plugin-pwa';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import legacy from '@vitejs/plugin-legacy';
-
-import { defineConfig, UserConfigFnPromise, UserConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 import postcssPresetEnv from 'postcss-preset-env';
+import Compress from 'rollup-plugin-gzip';
+import { visualizer } from 'rollup-plugin-visualizer';
+import {
+  PluginOption,
+  defineConfig,
+  UserConfigFnPromise,
+  UserConfig,
+} from 'vite';
+import manifestSRI from 'vite-plugin-manifest-sri';
+import { VitePWA } from 'vite-plugin-pwa';
+import svgr from 'vite-plugin-svgr';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
 import { MastodonThemes } from './config/vite/plugin-mastodon-themes';
 import { MastodonNameLookup } from './config/vite/plugin-name-lookup';
+import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
 
 const jsRoot = path.resolve(__dirname, 'app/javascript');
 
+const cssAliasClasses: ReadonlyArray<string> = ['components', 'features'];
+
 export const config: UserConfigFnPromise = async ({ mode, command }) => {
+  const isProdBuild = mode === 'production' && command === 'build';
+
+  let outDirName = 'packs-dev';
+  if (mode === 'test') {
+    outDirName = 'packs-test';
+  } else if (mode === 'production') {
+    outDirName = 'packs';
+  }
+  const outDir = path.resolve('public', outDirName);
+
   return {
     root: jsRoot,
+    base: `/${outDirName}/`,
+    envDir: __dirname,
+    resolve: {
+      alias: {
+        '~/': `${jsRoot}/`,
+        '@/': `${jsRoot}/`,
+      },
+    },
     css: {
+      modules: {
+        generateScopedName(name, filename) {
+          let prefix = '';
+
+          // Use the top two segments of the path as the prefix.
+          const [parentDirName, dirName] = path
+            .dirname(filename)
+            .split(path.sep)
+            .slice(-2)
+            .map((dir) => dir.toLowerCase());
+
+          // If the parent directory is in the cssAliasClasses list, use
+          // the first four letters of it as the prefix, otherwise use the full name.
+          if (parentDirName) {
+            if (cssAliasClasses.includes(parentDirName)) {
+              prefix = parentDirName.slice(0, 4);
+            } else {
+              prefix = parentDirName;
+            }
+          }
+
+          // If we have a directory name, append it to the prefix.
+          if (dirName) {
+            prefix = `${prefix}_${dirName}`;
+          }
+
+          // If the file is not styles.module.scss or style.module.scss,
+          // append the file base name to the prefix.
+          const baseName = path.basename(
+            filename,
+            `.module${path.extname(filename)}`,
+          );
+          if (baseName !== 'styles' && baseName !== 'style') {
+            prefix = `${prefix}_${baseName}`;
+          }
+
+          return `_${prefix}__${name}`;
+        },
+      },
       postcss: {
         plugins: [
           postcssPresetEnv({
@@ -40,12 +105,23 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         // but it needs to be scoped to the whole domain
         'Service-Worker-Allowed': '/',
       },
+      hmr: {
+        // Forcing the protocol to be insecure helps if you are proxying your dev server with SSL,
+        // because Vite still tries to connect to localhost.
+        protocol: 'ws',
+      },
+      port: 3036,
     },
     build: {
       commonjsOptions: { transformMixedEsModules: true },
       chunkSizeWarningLimit: 1 * 1024 * 1024, // 1MB
       sourcemap: true,
+      emptyOutDir: mode !== 'production',
+      manifest: true,
+      outDir,
+      assetsDir: 'assets',
       rollupOptions: {
+        input: await findEntrypoints(),
         output: {
           chunkFileNames({ facadeModuleId, name }) {
             if (!facadeModuleId) {
@@ -78,28 +154,39 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         },
       },
     },
+    experimental: {
+      /**
+       * Setting this causes Vite to not rely on the base config for import URLs,
+       * and instead uses import.meta.url, which is what we want for proper CDN support.
+       * @see https://github.com/mastodon/mastodon/pull/37310
+       */
+      renderBuiltUrl: () => undefined,
+    },
+    worker: {
+      format: 'es',
+    },
     plugins: [
       tsconfigPaths({ projects: [path.resolve(__dirname, 'tsconfig.json')] }),
-      RailsPlugin({
-        compress: mode === 'production' && command === 'build',
-        sri: {
-          manifestPaths: ['.vite/manifest.json', '.vite/manifest-assets.json'],
-        },
-      }),
-      MastodonThemes(),
       react({
         babel: {
           plugins: ['formatjs', 'transform-react-remove-prop-types'],
         },
       }),
+      MastodonThemes(),
+      MastodonAssetsManifest(),
       MastodonServiceWorkerLocales(),
       MastodonEmojiCompressed(),
       legacy({
         renderLegacyChunks: false,
         modernPolyfills: true,
       }),
+      isProdBuild && (Compress() as PluginOption),
+      command === 'build' &&
+        manifestSRI({
+          manifestPaths: ['.vite/manifest.json'],
+        }),
       VitePWA({
-        srcDir: 'mastodon/service_worker',
+        srcDir: path.resolve(jsRoot, 'mastodon/service_worker'),
         // We need to use injectManifest because we use our own service worker
         strategies: 'injectManifest',
         manifest: false,
@@ -130,5 +217,41 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
     ],
   } satisfies UserConfig;
 };
+
+async function findEntrypoints() {
+  const entrypoints: Record<string, string> = {};
+
+  // First, JS entrypoints
+  const jsEntrypointsDir = path.resolve(jsRoot, 'entrypoints');
+  const jsEntrypoints = await readdir(jsEntrypointsDir, {
+    withFileTypes: true,
+  });
+  const jsExtTest = /\.[jt]sx?$/;
+  for (const file of jsEntrypoints) {
+    if (file.isFile() && jsExtTest.test(file.name)) {
+      entrypoints[file.name.replace(jsExtTest, '')] = path.resolve(
+        jsEntrypointsDir,
+        file.name,
+      );
+    }
+  }
+
+  // Next, SCSS entrypoints
+  const scssEntrypointsDir = path.resolve(jsRoot, 'styles/entrypoints');
+  const scssEntrypoints = await readdir(scssEntrypointsDir, {
+    withFileTypes: true,
+  });
+  const scssExtTest = /\.s?css$/;
+  for (const file of scssEntrypoints) {
+    if (file.isFile() && scssExtTest.test(file.name)) {
+      entrypoints[file.name.replace(scssExtTest, '')] = path.resolve(
+        scssEntrypointsDir,
+        file.name,
+      );
+    }
+  }
+
+  return entrypoints;
+}
 
 export default defineConfig(config);

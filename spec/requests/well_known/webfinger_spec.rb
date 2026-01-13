@@ -27,7 +27,7 @@ RSpec.describe 'The /.well-known/webfinger endpoint' do
       expect(response.parsed_body)
         .to include(
           subject: eq(alice.to_webfinger_s),
-          aliases: include("https://#{Rails.configuration.x.local_domain}/@alice", "https://#{Rails.configuration.x.local_domain}/users/alice")
+          aliases: include("https://#{Rails.configuration.x.local_domain}/@alice", ActivityPub::TagManager.instance.uri_for(alice))
         )
     end
   end

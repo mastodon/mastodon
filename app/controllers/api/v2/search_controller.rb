@@ -20,7 +20,7 @@ class Api::V2::SearchController < Api::BaseController
     @search = Search.new(search_results)
     render json: @search, serializer: REST::SearchSerializer
   rescue Mastodon::SyntaxError
-    unprocessable_entity
+    unprocessable_content
   rescue ActiveRecord::RecordNotFound
     not_found
   end

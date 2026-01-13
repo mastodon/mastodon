@@ -316,7 +316,6 @@ ast:
         title: Retención del conteníu
       discovery:
         follow_recommendations: Recomendación de cuentes
-        preamble: L'apaición de conteníu interesante ye fundamental p'atrayer persones nueves que nun conozan nada de Mastodon. Controla'l funcionamientu de delles funciones de descubrimientu d'esti sirvidor.
         profile_directory: Direutoriu de perfiles
         public_timelines: Llinies de tiempu públiques
         publish_statistics: Espublizamientu d'estadístiques
@@ -326,6 +325,9 @@ ast:
         all: A tol mundu
         disabled: A naide
         users: A los perfiles llocales
+      feed_access:
+        modes:
+          public: Tol mundu
       registrations:
         preamble: Controla quién pue crear una cuenta nel sirvidor.
         title: Rexistros
@@ -429,10 +431,7 @@ ast:
   aliases:
     empty: Nun tienes nengún nomatu.
   appearance:
-    advanced_web_interface: Interfaz web avanzada
-    advanced_web_interface_hint: 'Si quies asegúrate de que s''use tol llargor de la pantalla, la interfaz web avanzada permítete configurar columnes estremaes pa ver muncha más información al empar: Aniciu, avisos, llinia de tiempu federada y cualesquier cantidá de llistes y etiquetes.'
     animations_and_accessibility: Animaciones y accesibilidá
-    confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrimientu
     localization:
       body: Mastodon tradúcenlu voluntarios,
@@ -810,11 +809,6 @@ ast:
       ownership: Nun se pue fixar la publicación d'otru perfil
       reblog: Nun se pue fixar una publicación compartida
     title: "%{name}: «%{quote}»"
-    visibilities:
-      private: Namás siguidores
-      private_long: Namás los ven los perfiles siguidores
-      public_long: Tol mundu pue velos
-      unlisted_long: Tol mundu pue velos, mas nun apaecen nes llinies de tiempu públiques
   statuses_cleanup:
     exceptions: Esceiciones
     interaction_exceptions: Esceiciones basaes nes interaiciones

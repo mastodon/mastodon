@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useRef, useState } from 'react';
+import { useEffect, useCallback, useRef, useState, useId } from 'react';
 
 import { FormattedMessage, useIntl, defineMessages } from 'react-intl';
 
@@ -19,13 +19,12 @@ import { DisplayName } from 'mastodon/components/display_name';
 import { FollowButton } from 'mastodon/components/follow_button';
 import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
+import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import { VerifiedBadge } from 'mastodon/components/verified_badge';
 import { domain } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
-  follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   previous: { id: 'lightbox.previous', defaultMessage: 'Previous' },
   next: { id: 'lightbox.next', defaultMessage: 'Next' },
   dismiss: {
@@ -56,9 +55,7 @@ const messages = defineMessages({
   },
 });
 
-const Source: React.FC<{
-  id: ApiSuggestionSourceJSON;
-}> = ({ id }) => {
+const Source: React.FC<{ id: ApiSuggestionSourceJSON }> = ({ id }) => {
   const intl = useIntl();
 
   let label, hint;
@@ -168,10 +165,11 @@ const Card: React.FC<{
 
 const DISMISSIBLE_ID = 'home/follow-suggestions';
 
-export const InlineFollowSuggestions: React.FC<{
-  hidden?: boolean;
-}> = ({ hidden }) => {
+export const InlineFollowSuggestions: React.FC<{ hidden?: boolean }> = ({
+  hidden,
+}) => {
   const intl = useIntl();
+  const uniqueId = useId();
   const dispatch = useAppDispatch();
   const suggestions = useAppSelector((state) => state.suggestions.items);
   const isLoading = useAppSelector((state) => state.suggestions.isLoading);
@@ -257,9 +255,14 @@ export const InlineFollowSuggestions: React.FC<{
   }
 
   return (
-    <div className='inline-follow-suggestions'>
+    <div
+      role='group'
+      aria-labelledby={uniqueId}
+      className='inline-follow-suggestions focusable'
+      tabIndex={-1}
+    >
       <div className='inline-follow-suggestions__header'>
-        <h3>
+        <h3 id={uniqueId}>
           <FormattedMessage
             id='follow_suggestions.who_to_follow'
             defaultMessage='Who to follow'
@@ -288,13 +291,17 @@ export const InlineFollowSuggestions: React.FC<{
           ref={bodyRef}
           onScroll={handleScroll}
         >
-          {suggestions.map((suggestion) => (
-            <Card
-              key={suggestion.account_id}
-              id={suggestion.account_id}
-              sources={suggestion.sources}
-            />
-          ))}
+          {isLoading ? (
+            <LoadingIndicator />
+          ) : (
+            suggestions.map((suggestion) => (
+              <Card
+                key={suggestion.account_id}
+                id={suggestion.account_id}
+                sources={suggestion.sources}
+              />
+            ))
+          )}
         </div>
 
         {canScrollLeft && (

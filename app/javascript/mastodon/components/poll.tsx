@@ -8,13 +8,12 @@ import classNames from 'classnames';
 import { animated, useSpring } from '@react-spring/web';
 import escapeTextContentForBrowser from 'escape-html';
 
+import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import { fetchPoll, vote } from 'mastodon/actions/polls';
 import { Icon } from 'mastodon/components/icon';
-import emojify from 'mastodon/features/emoji/emoji';
 import { useIdentity } from 'mastodon/identity_context';
-import { makeEmojiMap } from 'mastodon/models/custom_emoji';
 import type * as Model from 'mastodon/models/poll';
 import type { Status } from 'mastodon/models/status';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
@@ -109,7 +108,6 @@ export const Poll: React.FC<PollProps> = ({ pollId, disabled, status }) => {
         openModal({
           modalType: 'INTERACTION',
           modalProps: {
-            type: 'vote',
             accountId: status.getIn(['account', 'id']),
             url: status.get('uri'),
           },
@@ -235,12 +233,11 @@ const PollOption: React.FC<PollOptionProps> = (props) => {
     let titleHtml = option.translation?.titleHtml ?? option.titleHtml;
 
     if (!titleHtml) {
-      const emojiMap = makeEmojiMap(poll.emojis);
-      titleHtml = emojify(escapeTextContentForBrowser(title), emojiMap);
+      titleHtml = escapeTextContentForBrowser(title);
     }
 
     return titleHtml;
-  }, [option, poll, title]);
+  }, [option, title]);
 
   // Handlers
   const handleOptionChange = useCallback(() => {
@@ -306,10 +303,11 @@ const PollOption: React.FC<PollOptionProps> = (props) => {
           </span>
         )}
 
-        <span
+        <EmojiHTML
           className='poll__option__text translate'
           lang={lang}
-          dangerouslySetInnerHTML={{ __html: titleHtml }}
+          htmlString={titleHtml}
+          extraEmojis={poll.emojis}
         />
 
         {!!voted && (

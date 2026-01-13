@@ -82,7 +82,7 @@ class FollowService < BaseService
 
     LocalNotificationWorker.perform_async(@target_account.id, follow.id, follow.class.name, 'follow')
     MergeWorker.perform_async(@target_account.id, @source_account.id, 'home')
-    MergeWorker.push_bulk(List.where(account: @source_account).joins(:list_accounts).where(list_accounts: { account_id: @target_account.id }).pluck(:id)) do |list_id|
+    MergeWorker.push_bulk(@source_account.owned_lists.with_list_account(@target_account).pluck(:id)) do |list_id|
       [@target_account.id, list_id, 'list']
     end
 

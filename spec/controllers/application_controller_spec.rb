@@ -219,16 +219,16 @@ RSpec.describe ApplicationController do
     it_behaves_like 'error response', 410
   end
 
-  describe 'unprocessable_entity' do
+  describe 'unprocessable_content' do
     controller do
-      def route_unprocessable_entity
-        unprocessable_entity
+      def route_unprocessable_content
+        unprocessable_content
       end
     end
 
     subject do
-      routes.draw { get 'route_unprocessable_entity' => 'anonymous#route_unprocessable_entity' }
-      get 'route_unprocessable_entity'
+      routes.draw { get 'route_unprocessable_content' => 'anonymous#route_unprocessable_content' }
+      get 'route_unprocessable_content'
     end
 
     it_behaves_like 'error response', 422

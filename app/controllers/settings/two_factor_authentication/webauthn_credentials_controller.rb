@@ -52,7 +52,7 @@ module Settings
             end
           else
             flash[:error] = I18n.t('webauthn_credentials.create.error')
-            status = :unprocessable_entity
+            status = :unprocessable_content
           end
         else
           flash[:error] = t('webauthn_credentials.create.error')
@@ -86,13 +86,11 @@ module Settings
       private
 
       def redirect_invalid_otp
-        flash[:error] = t('webauthn_credentials.otp_required')
-        redirect_to settings_two_factor_authentication_methods_path
+        redirect_to settings_two_factor_authentication_methods_path, flash: { error: t('webauthn_credentials.otp_required') }
       end
 
       def redirect_invalid_webauthn
-        flash[:error] = t('webauthn_credentials.not_enabled')
-        redirect_to settings_two_factor_authentication_methods_path
+        redirect_to settings_two_factor_authentication_methods_path, flash: { error: t('webauthn_credentials.not_enabled') }
       end
     end
   end

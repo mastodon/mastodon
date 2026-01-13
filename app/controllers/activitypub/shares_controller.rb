@@ -28,7 +28,7 @@ class ActivityPub::SharesController < ActivityPub::BaseController
 
   def shares_collection_presenter
     ActivityPub::CollectionPresenter.new(
-      id: account_status_shares_url(@account, @status),
+      id: ActivityPub::TagManager.instance.shares_uri_for(@status),
       type: :unordered,
       size: @status.reblogs_count
     )

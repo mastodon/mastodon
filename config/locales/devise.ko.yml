@@ -7,6 +7,7 @@ ko:
       send_paranoid_instructions: 이메일 주소가 저희 데이터베이스에 있는 경우, 몇 분 내에 이메일 주소를 확인하는 방법에 대한 안내가 포함된 이메일을 받을 수 있습니다. 이 이메일을 받지 못했다면 스팸 폴더를 확인해 주세요.
     failure:
       already_authenticated: 이미 로그인 된 상태입니다.
+      closed_registrations: 네트워크 정책에 의해 가입 시도가 차단되었습니다. 오류라고 생각된다면 %{email}에 문의해주세요.
       inactive: 계정이 아직 활성화 되지 않았습니다.
       invalid: 올바르지 않은 %{authentication_keys} 혹은 암호입니다.
       last_attempt: 계정이 잠기기까지 한 번의 시도가 남았습니다.

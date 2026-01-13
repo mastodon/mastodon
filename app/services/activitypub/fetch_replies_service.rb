@@ -6,7 +6,7 @@ class ActivityPub::FetchRepliesService < BaseService
   # Limit of fetched replies
   MAX_REPLIES = 5
 
-  def call(reference_uri, collection_or_uri, max_pages: 1, allow_synchronous_requests: true, request_id: nil)
+  def call(reference_uri, collection_or_uri, max_pages: 1, allow_synchronous_requests: true, batch_id: nil, request_id: nil)
     @reference_uri = reference_uri
     @allow_synchronous_requests = allow_synchronous_requests
 
@@ -14,7 +14,12 @@ class ActivityPub::FetchRepliesService < BaseService
     return if @items.nil?
 
     @items = filter_replies(@items)
-    FetchReplyWorker.push_bulk(@items) { |reply_uri| [reply_uri, { 'request_id' => request_id }] }
+
+    WorkerBatch.new(batch_id).within do |batch|
+      FetchReplyWorker.push_bulk(@items) do |reply_uri|
+        [reply_uri, { 'request_id' => request_id, 'batch_id' => batch.id }]
+      end
+    end
 
     [@items, n_pages]
   end

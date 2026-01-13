@@ -54,12 +54,16 @@ ja:
         password: 少なくとも8文字は入力してください
         phrase: 投稿内容の大文字小文字や閲覧注意に関係なく一致
         scopes: アプリの API に許可するアクセス権を選択してください。最上位のスコープを選択する場合、個々のスコープを選択する必要はありません。
+        setting_advanced_layout: Mastodonを複数カラムのレイアウトで表示します。タイムライン、通知、そして好みのカラムを閲覧できます。小さい画面には非推奨です。
         setting_aggregate_reblogs: 最近ブーストされた投稿が新たにブーストされても表示しません (設定後受信したものにのみ影響)
         setting_always_send_emails: 通常、Mastodon からメール通知は行われません。
+        setting_boost_modal: 有効にすると、ブーストによって、まず、ブーストの公開範囲を設定できる確認ダイアログが表示されます。
         setting_default_sensitive: 閲覧注意状態のメディアはデフォルトでは内容が伏せられ、クリックして初めて閲覧できるようになります
         setting_display_media_default: 閲覧注意としてマークされたメディアは隠す
         setting_display_media_hide_all: メディアを常に隠す
         setting_display_media_show_all: メディアを常に表示する
+        setting_emoji_style: 絵文字の表示方法。「オート」の場合、可能ならネイティブの絵文字を使用し、レガシーなブラウザではTwemojiで代替します。
+        setting_quick_boosting_html: 有効にすると、%{boost_icon} ブーストアイコンのクリックで即座にブーストされます。ブースト/引用ドロップダウンは開きません。引用アクションは %{options_icon} (オプション) メニューに移されます。
         setting_system_scrollbars_ui: Safari/Chromeベースのデスクトップブラウザーでのみ有効です
         setting_use_blurhash: ぼかしはメディアの色を元に生成されますが、細部は見えにくくなっています
         setting_use_pending_items: 新着があってもタイムラインを自動的にスクロールしないようにします
@@ -102,10 +106,8 @@ ja:
         status_page_url: 障害発生時などにユーザーがサーバーの状態を確認できるページのURL
         theme: ログインしていない人と新規ユーザーに表示されるテーマ。
         thumbnail: サーバー情報と共に表示される、アスペクト比が約 2:1 の画像。
-        timeline_preview: ログインしていないユーザーがサーバー上の最新の公開投稿を閲覧できるようにします。
         trendable_by_default: トレンドの審査を省略します。トレンドは掲載後でも個別に除外できます。
         trends: トレンドは、サーバー上で人気を集めている投稿、ハッシュタグ、ニュース記事などが表示されます。
-        trends_as_landing_page: ログインしていないユーザーに対して、サーバーの説明の代わりにトレンドコンテンツを表示します。トレンドを有効にする必要があります。
       form_challenge:
         current_password: セキュリティ上重要なエリアにアクセスしています
       imports:
@@ -225,21 +227,23 @@ ja:
         setting_aggregate_reblogs: ブーストをまとめる
         setting_always_send_emails: 常にメール通知を送信する
         setting_auto_play_gif: アニメーションGIFを自動再生する
-        setting_boost_modal: ブーストする前に確認ダイアログを表示する
+        setting_boost_modal: ブーストの公開範囲の設定
         setting_default_language: 投稿する言語
         setting_default_privacy: 投稿の公開範囲
         setting_default_quote_policy: 引用できるユーザー
         setting_default_sensitive: メディアを常に閲覧注意としてマークする
-        setting_delete_modal: 投稿を削除する前に確認ダイアログを表示する
+        setting_delete_modal: 投稿を削除する前に警告する
         setting_disable_hover_cards: マウスオーバーでプロフィールをポップアップしない
         setting_disable_swiping: スワイプでの切り替えを無効にする
         setting_display_media: メディアの表示
         setting_display_media_default: 標準
         setting_display_media_hide_all: 非表示
         setting_display_media_show_all: 表示
+        setting_emoji_style: 絵文字スタイル
         setting_expand_spoilers: 閲覧注意としてマークされた投稿を常に展開する
         setting_hide_network: 繋がりを隠す
-        setting_missing_alt_text_modal: 代替テキストなしでメディアを投稿する前に確認ダイアログを表示する
+        setting_missing_alt_text_modal: 代替テキストなしでメディアを投稿する前に警告する
+        setting_quick_boosting: クイックブーストの有効化
         setting_reduce_motion: アニメーションの動きを減らす
         setting_system_font_ui: システムのデフォルトフォントを使う
         setting_system_scrollbars_ui: システムのデフォルトのスクロールバーを使う
@@ -291,10 +295,8 @@ ja:
         status_page_url: サーバーの状態ページのURL
         theme: デフォルトテーマ
         thumbnail: サーバーのサムネイル
-        timeline_preview: 公開タイムラインへの未認証のアクセスを許可する
         trendable_by_default: 審査前のトレンドの掲載を許可する
         trends: トレンドを有効にする
-        trends_as_landing_page: 新規登録画面にトレンドを表示する
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
         must_be_following: フォローしていないユーザーからの通知をブロック
@@ -319,6 +321,7 @@ ja:
         follow_request: フォローリクエストを受けた時
         mention: 返信が来た時
         pending_account: 新しいアカウントの承認が必要な時
+        quote: 投稿が引用された時
         reblog: 投稿がブーストされた時
         report: 新しい通報が送信された時
         software_updates:
@@ -365,6 +368,9 @@ ja:
         name: 名前
         permissions_as_keys: 権限
         position: 優先度
+      username_block:
+        allow_with_approval: 承認制での新規登録を可能にする
+        comparison: 比較方法
       webhook:
         events: 有効なイベント
         template: ペイロードテンプレート

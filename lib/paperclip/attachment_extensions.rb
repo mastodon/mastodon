@@ -73,8 +73,8 @@ module Paperclip
       @url_generator.for_as_default(style_name)
     end
 
+    STOPLIGHT_COOL_OFF_TIME = 30
     STOPLIGHT_THRESHOLD = 10
-    STOPLIGHT_COOLDOWN  = 30
 
     # We overwrite this method to put a circuit breaker around
     # calls to object storage, to stop hitting APIs that are slow
@@ -84,11 +84,12 @@ module Paperclip
       # Don't go through Stoplight if we don't have anything object-storage-oriented to do
       return super if @queued_for_delete.empty? && @queued_for_write.empty? && !dirty?
 
-      Stoplight('object-storage')
-        .with_threshold(STOPLIGHT_THRESHOLD)
-        .with_cool_off_time(STOPLIGHT_COOLDOWN)
-        .with_error_handler { |error, handle| error.is_a?(Seahorse::Client::NetworkingError) ? handle.call(error) : raise(error) }
-        .run { super }
+      Stoplight(
+        'object-storage',
+        cool_off_time: STOPLIGHT_COOL_OFF_TIME,
+        threshold: STOPLIGHT_THRESHOLD,
+        tracked_errors: [Seahorse::Client::NetworkingError]
+      ).run { super }
     end
   end
 end

@@ -26,9 +26,9 @@ zh-CN:
         types:
           disable: 禁止用户使用账号，但不会删除或隐藏账号内容。
           none: 用它来向用户发送警告，不会触发其他操作。
-          sensitive: 强制将此用户的所有媒体文件标记为敏感内容。
-          silence: 阻止用户发送公开嘟文，除了关注者以外，其他人都无法看到他的嘟文和通知。关闭针对此账号的所有举报。
-          suspend: 阻止此账号的任何交互并删除其内容。30天内可以撤销操作。关闭针对此账号的所有举报。
+          sensitive: 强制将此用户的全部媒体文件标记为敏感内容。
+          silence: 阻止用户发送公开嘟文，除了关注者以外，其他人都无法看到他的嘟文和通知。关闭针对此账号的全部举报。
+          suspend: 阻止此账号的任何交互并删除其内容。30天内可以撤销操作。关闭针对此账号的全部举报。
         warning_preset_id: 可选。你可以在预置文本末尾添加自定义文本
       announcement:
         all_day: 如果选中，只有该时间段内的日期会显示。
@@ -54,13 +54,18 @@ zh-CN:
         password: 至少需要8个字符
         phrase: 匹配将忽略嘟文或内容警告里的字母大小写
         scopes: 哪些 API 被允许使用。如果你勾选了更高一级的范围，就不用单独选中子项目了。
+        setting_advanced_layout: 将 Mastodon 的界面显示为多列布局，允许你同时查看时间线、通知及可自主选择的第三列。屏幕尺寸较小的情况下不推荐使用。
         setting_aggregate_reblogs: 不显示最近已经被转嘟过的嘟文(只会影响新收到的转嘟)
         setting_always_send_emails: 一般情况下，如果你活跃使用 Mastodon，我们不会向你发送电子邮件通知
-        setting_default_quote_policy: 此设置将仅对下个Mastodon版本创建的帖子生效，但您可以在准备中选择您的偏好。
+        setting_boost_modal: 如果启用，转嘟前会先打开确认对话框，以便更改转嘟的可见性。
+        setting_default_quote_policy_private: Mastodon上发布的仅限关注者可见的嘟文无法被他人引用。
+        setting_default_quote_policy_unlisted: 当其他人引用你时，他们的嘟文也会从热门时间线上隐藏。
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
         setting_display_media_default: 隐藏被标记为敏感内容的媒体
         setting_display_media_hide_all: 始终隐藏媒体
         setting_display_media_show_all: 始终显示媒体
+        setting_emoji_style: 如何显示Emoji表情符号。选择“自动”将尝试使用原生Emoji，但在旧浏览器中会备选使用Twemoji。
+        setting_quick_boosting_html: 如果启用，点击 %{boost_icon} 转嘟图标将立即转嘟，而非开启“转嘟/引用”的下拉式菜单。这会使引用嘟文操作的按钮移动到 %{options_icon} （选项）菜单中。
         setting_system_scrollbars_ui: 仅对基于 Safari 或 Chromium 内核的桌面端浏览器有效
         setting_use_blurhash: 渐变是基于模糊后的隐藏内容生成的
         setting_use_pending_items: 点击查看时间线更新，而非自动滚动更新动态。
@@ -88,10 +93,11 @@ zh-CN:
         content_cache_retention_period: 来自其它实例的所有嘟文（包括转嘟与回复）都将在指定天数后被删除，不论本实例用户是否与这些嘟文产生过交互。这包括被本实例用户喜欢和收藏的嘟文。实例间用户的私下提及也将丢失并无法恢复。此设置针对的是特殊用途的实例，用于一般用途时会打破许多用户的期望。
         custom_css: 你可以为网页版 Mastodon 应用自定义样式。
         favicon: WEBP、PNG、GIF 或 JPG。使用自定义图标覆盖 Mastodon 的默认图标。
+        landing_page: 选择新访客首次访问您的服务器时看到的页面。 如果选择“热门”，则需要在“发现”设置中启用热门趋势。 如果选择“本站动态”，则在“发现”设置中“展示本站嘟文的实时动态访问权限”一项需要设置为“所有人”。
         mascot: 覆盖高级网页界面中的绘图形象。
         media_cache_retention_period: 来自外站用户嘟文的媒体文件将被缓存到你的实例上。当该值被设为正值时，缓存的媒体文件将在指定天数后被清除。如果媒体文件在被清除后重新被请求，且源站内容仍然可用，它将被重新下载。由于链接预览卡拉取第三方站点的频率受到限制，建议将此值设置为至少 14 天，如果小于该值，链接预览卡将不会按需更新。
         min_age: 用户注册时必须确认出生日期
-        peers_api_enabled: 本站在联邦宇宙中遇到的站点列表。 此处不包含关于您是否与给定站点联合的数据，只是您的实例知道它。 这由收集一般意义上的联合统计信息的服务使用。
+        peers_api_enabled: 本站在联邦宇宙中遇到的站点列表。 此处不包含关于你是否与给定站点联合的数据，只是你的实例知道它。 这由收集一般意义上的联合统计信息的服务使用。
         profile_directory: 个人资料目录会列出所有选择可被发现的用户。
         require_invite_text: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
         site_contact_email: 他人需要询恰法务或支持信息时的联络方式
@@ -103,10 +109,8 @@ zh-CN:
         status_page_url: 配置一个网址，当服务中断时，人们可以通过该网址查看服务器的状态。
         theme: 给未登录访客和新用户使用的主题。
         thumbnail: 与服务器信息一并展示的约 2:1 比例的图像。
-        timeline_preview: 未登录访客将能够浏览服务器上的最新公开嘟文。
         trendable_by_default: 跳过对热门内容的手工审核。个别项目仍可在之后从趋势中删除。
         trends: 热门页中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
-        trends_as_landing_page: 向注销的用户和访问者显示热门内容，而不是对该服务器的描述，需要启用热门。
       form_challenge:
         current_password: 你正在进入安全区域
       imports:
@@ -135,22 +139,22 @@ zh-CN:
         name: 你只能改变字母的大小写，让它更易读
       terms_of_service:
         changelog: 可以使用 Markdown 语法。
-        effective_date: 合理的时间范围可以是从您通知用户之日起 10 到 30 天。
+        effective_date: 合理的时间范围可以是从你通知用户之日起 10 到 30 天。
         text: 可以使用 Markdown 语法。
       terms_of_service_generator:
         admin_email: 法务通知包括反通知、法院命令、内容下架要求与执法机关的要求。
         arbitration_address: 可以与上面的实际地址相同，如果使用电子邮件则为“N/A”。
         arbitration_website: 可以是网页表单，如果使用电子邮件则为“N/A”。
-        choice_of_law: 适用内部实质法律以管辖任何及所有索赔的城市、地区、领土或州。
+        choice_of_law: 适用内部实质法律以管辖任何及全部索赔的城市、地区、领土或州。
         dmca_address: 如果你是位于美国的运营者，请使用在 DMCA 指定代表名录中注册的地址。如果你需要使用邮政信箱，可以直接申请。请使用 DMCA 指定代表邮政信箱豁免申请表，通过电子邮件联系版权办公室，并声明你是居家内容审核员，因担心审核操作会招致报复或打击报复，需要使用邮政信箱以避免公开家庭住址。
         dmca_email: 可以与上面“法律声明的电子邮件地址”使用相同的电子邮件地址。
         domain: 你所提供的在线服务的唯一标识。
         jurisdiction: 请列出支付运营费用者所在的国家/地区。如果为公司或其他实体，请列出其注册的国家/地区以及相应的城市、地区、领地或州。
-        min_age: 不应低于您所在地法律管辖权要求的最低年龄。
+        min_age: 不应低于你所在地法律管辖权要求的最低年龄。
       user:
         chosen_languages: 仅选中语言的嘟文会出现在公共时间线上（全不选则显示所有语言的嘟文）
         date_of_birth:
-          other: 我们必须确保您至少年满 %{count} 岁才能使用 %{domain}。我们不会存储此信息。
+          other: 我们必须确保你至少年满 %{count} 岁才能使用 %{domain}。我们不会存储此信息。
         role: 角色用于控制用户拥有的权限。
       user_role:
         color: 在界面各处用于标记该角色的颜色，以十六进制 RGB 格式表示
@@ -158,6 +162,10 @@ zh-CN:
         name: 角色的公开名称，将在外显为徽章时使用
         permissions_as_keys: 具有此角色的用户将有权访问...
         position: 用于在特定情况下处理决策冲突。一些特定操作只能对优先级更低的角色执行
+      username_block:
+        allow_with_approval: 不直接禁止注册，而是使匹配的新注册需要你的批准
+        comparison: 屏蔽部分匹配时请注意潜在的Scunthrope问题（正常单词内部包含被屏蔽的部分）
+        username: 匹配将不限大小写及常见同形异义字符，如“4”和“A”及“3”和“E”等
       webhook:
         events: 选择要发送的事件
         template: 使用变量插值来构建自己的JSON负载。如果要使用默认的JSON，请留空。
@@ -228,21 +236,23 @@ zh-CN:
         setting_aggregate_reblogs: 在时间线中合并转嘟
         setting_always_send_emails: 总是发送电子邮件通知
         setting_auto_play_gif: 自动播放 GIF 动画
-        setting_boost_modal: 在转嘟前询问我
+        setting_boost_modal: 控制转嘟可见性
         setting_default_language: 发布语言
-        setting_default_privacy: 嘟文默认可见范围
+        setting_default_privacy: 嘟文可见性
         setting_default_quote_policy: 谁可以引用
         setting_default_sensitive: 始终标记媒体为敏感内容
-        setting_delete_modal: 在删除嘟文前询问我
+        setting_delete_modal: 删除嘟文前警告我
         setting_disable_hover_cards: 禁用悬停资料预览
         setting_disable_swiping: 禁用滑动动作
         setting_display_media: 媒体显示
         setting_display_media_default: 默认
         setting_display_media_hide_all: 隐藏全部
         setting_display_media_show_all: 显示全部
+        setting_emoji_style: 表情符号样式
         setting_expand_spoilers: 一律展开具有内容警告的嘟文
         setting_hide_network: 隐藏你的社交网络
-        setting_missing_alt_text_modal: 发布媒体时若未为其设置替代文本，则显示确认对话框
+        setting_missing_alt_text_modal: 发送没有设置替代文本的媒体内容前警告我
+        setting_quick_boosting: 启用快速转嘟
         setting_reduce_motion: 降低过渡动画效果
         setting_system_font_ui: 使用系统默认字体
         setting_system_scrollbars_ui: 使用系统默认样式的滚动条
@@ -276,12 +286,17 @@ zh-CN:
         content_cache_retention_period: 外站内容保留期
         custom_css: 自定义 CSS
         favicon: Favicon
+        landing_page: 新访客的主页
+        local_live_feed_access: 展示本站嘟文的实时动态访问权限
+        local_topic_feed_access: 展示本站嘟文的话题标签及实时动态访问权限
         mascot: 自定义吉祥物（旧）
         media_cache_retention_period: 媒体缓存保留期
         min_age: 最低年龄要求
         peers_api_enabled: 在API中公开的已知实例的服务器的列表
         profile_directory: 启用用户目录
         registrations_mode: 谁可以注册
+        remote_live_feed_access: 展示外站嘟文的实时动态访问权限
+        remote_topic_feed_access: 展示外站嘟文的话题标签及实时动态访问权限
         require_invite_text: 注册时需要提供理由
         show_domain_blocks: 显示站点屏蔽列表
         show_domain_blocks_rationale: 显示站点屏蔽原因
@@ -294,10 +309,8 @@ zh-CN:
         status_page_url: 状态页网址
         theme: 默认主题
         thumbnail: 本站缩略图
-        timeline_preview: 允许未登录用户访问公共时间线
         trendable_by_default: 允许在未审核的情况下将话题置为热门
         trends: 启用热门
-        trends_as_landing_page: 使用热门页作为登陆页面
       interactions:
         must_be_follower: 屏蔽来自未关注我的用户的通知
         must_be_following: 屏蔽来自我未关注的用户的通知
@@ -322,10 +335,11 @@ zh-CN:
         follow_request: 有人向我发送了关注请求
         mention: 有人提到了我
         pending_account: 有账号需要审核
+        quote: 有人引用了我的嘟文
         reblog: 有人转嘟了我的嘟文
         report: 有人提交了新举报
         software_updates:
-          all: 通知所有更新
+          all: 通知全部更新
           critical: 仅在有关键更新时通知
           label: 有新的 Mastodon 版本可用
           none: 从不通知更新（不推荐）
@@ -368,6 +382,10 @@ zh-CN:
         name: 名称
         permissions_as_keys: 权限
         position: 优先级
+      username_block:
+        allow_with_approval: 注册时需要批准
+        comparison: 比较方法
+        username: 字词匹配
       webhook:
         events: 已启用事件
         template: Payload 模板

@@ -17,6 +17,10 @@
 #  status_id         :bigint(8)        not null
 #
 class Quote < ApplicationRecord
+  include Paginable
+
+  has_one :notification, as: :activity, dependent: :destroy
+
   BACKGROUND_REFRESH_INTERVAL = 1.week.freeze
   REFRESH_DEADLINE = 6.hours
 
@@ -33,8 +37,13 @@ class Quote < ApplicationRecord
   before_validation :set_accounts
   before_validation :set_activity_uri, only: :create, if: -> { account.local? && quoted_account&.remote? }
   validates :activity_uri, presence: true, if: -> { account.local? && quoted_account&.remote? }
+  validates :approval_uri, absence: true, if: -> { quoted_account&.local? }
   validate :validate_visibility
   validate :validate_original_quoted_status
+
+  after_create_commit :increment_counter_caches!
+  after_destroy_commit :decrement_counter_caches!
+  after_update_commit :update_counter_caches!
 
   def accept!
     update!(state: :accepted)
@@ -50,6 +59,12 @@ class Quote < ApplicationRecord
 
   def acceptable?
     accepted? || !legacy?
+  end
+
+  def ensure_quoted_access
+    status.mentions.create!(account: quoted_account, silent: true)
+  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
+    nil
   end
 
   def schedule_refresh_if_stale!
@@ -77,5 +92,28 @@ class Quote < ApplicationRecord
 
   def set_activity_uri
     self.activity_uri = [ActivityPub::TagManager.instance.uri_for(account), '/quote_requests/', SecureRandom.uuid].join
+  end
+
+  def increment_counter_caches!
+    return unless accepted?
+
+    quoted_status&.increment_count!(:quotes_count)
+  end
+
+  def decrement_counter_caches!
+    return unless accepted?
+
+    quoted_status&.decrement_count!(:quotes_count)
+  end
+
+  def update_counter_caches!
+    return if legacy? || !state_previously_changed?
+
+    if accepted?
+      quoted_status&.increment_count!(:quotes_count)
+    else
+      # TODO: are there cases where this would not be correct?
+      quoted_status&.decrement_count!(:quotes_count)
+    end
   end
 end

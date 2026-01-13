@@ -144,6 +144,16 @@ namespace :tests do
         exit(1)
       end
 
+      unless Setting.landing_page == 'about'
+        puts 'Landing page settings not migrated as expected'
+        exit(1)
+      end
+
+      unless Setting.local_live_feed_access == 'authenticated'
+        puts 'Local live feed access not migrated as expected'
+        exit(1)
+      end
+
       puts 'No errors found. Database state is consistent with a successful migration process.'
     end
 
@@ -161,6 +171,13 @@ namespace :tests do
         VALUES
           (1, 'https://example.com/users/foobar', 'foobar@example.com', now(), now()),
           (1, 'https://example.com/users/foobar', 'foobar@example.com', now(), now());
+
+        /* trends_as_landing_page is technically not a 3.3.0 setting, but it's easier to just add it here */
+        INSERT INTO "settings"
+          (id, thing_type, thing_id, var, value, created_at, updated_at)
+        VALUES
+          (7, NULL, NULL, 'timeline_preview', E'--- false\n', now(), now()),
+          (8, NULL, NULL, 'trends_as_landing_page', E'--- false\n', now(), now());
 
         /* Doorkeeper records
            While the `read:me` scope was technically not valid in 3.3.0,

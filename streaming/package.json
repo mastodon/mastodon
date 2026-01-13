@@ -1,7 +1,7 @@
 {
   "name": "@mastodon/streaming",
   "license": "AGPL-3.0-or-later",
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.10.3",
   "engines": {
     "node": ">=20"
   },
@@ -21,13 +21,13 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "ioredis": "^5.3.2",
-    "jsdom": "^26.0.0",
+    "jsdom": "^27.0.0",
     "pg": "^8.5.0",
     "pg-connection-string": "^2.6.0",
     "pino": "^9.0.0",
     "pino-http": "^10.0.0",
     "prom-client": "^15.0.0",
-    "uuid": "^11.0.0",
+    "uuid": "^13.0.0",
     "ws": "^8.12.1"
   },
   "devDependencies": {
@@ -35,11 +35,10 @@
     "@types/cors": "^2.8.16",
     "@types/express": "^4.17.17",
     "@types/pg": "^8.6.6",
-    "@types/uuid": "^10.0.0",
     "@types/ws": "^8.5.9",
     "globals": "^16.0.0",
     "pino-pretty": "^13.0.0",
-    "typescript": "~5.7.3",
+    "typescript": "~5.9.0",
     "typescript-eslint": "^8.28.0"
   },
   "optionalDependencies": {

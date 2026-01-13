@@ -13,6 +13,7 @@ class ActivityPub::VerifyQuoteService < BaseService
     @fetching_error = nil
 
     fetch_quoted_post_if_needed!(fetchable_quoted_uri, prefetched_body: prefetched_quoted_object)
+    return if quote.quoted_account&.local?
     return if fast_track_approval! || quote.approval_uri.blank?
 
     @json = fetch_approval_object(quote.approval_uri, prefetched_body: prefetched_approval)

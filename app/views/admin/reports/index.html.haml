@@ -30,8 +30,7 @@
       %button.button= t('admin.accounts.search')
       = link_to t('admin.accounts.reset'), admin_reports_path, class: 'button button--dangerous'
 
-- @reports.group_by(&:target_account_id).each_value do |reports|
-  - target_account = reports.first.target_account
+- @reports.group_by(&:target_account).each do |target_account, reports|
   .report-card
     .report-card__profile
       = account_link_to target_account, '', path: admin_account_path(target_account.id)
@@ -42,7 +41,7 @@
           %span.red= t('admin.accounts.suspended')
         - elsif target_account.silenced?
           %span.red= t('admin.accounts.silenced')
-        - elsif target_account.user&.disabled?
+        - elsif target_account.user_disabled?
           %span.red= t('admin.accounts.disabled')
         - else
           %span.neutral= t('admin.accounts.no_limits_imposed')

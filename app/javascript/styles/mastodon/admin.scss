@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'sass:math';
 @use 'functions' as *;
 @use 'variables' as *;
@@ -12,6 +13,7 @@ $content-width: 840px;
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   padding: env(safe-area-inset-top) env(safe-area-inset-right)
     env(safe-area-inset-bottom) env(safe-area-inset-left);
 
@@ -24,6 +26,7 @@ $content-width: 840px;
 
   .sidebar-wrapper {
     min-height: 100vh;
+    min-height: 100dvh;
     overflow: hidden;
     pointer-events: none;
     flex: 1 1 auto;
@@ -162,7 +165,7 @@ $content-width: 840px;
     flex: 1 1 auto;
   }
 
-  @media screen and (max-width: $content-width + $sidebar-width) {
+  @media screen and (max-width: ($content-width + $sidebar-width)) {
     .sidebar-wrapper--empty {
       display: none;
     }
@@ -297,9 +300,9 @@ $content-width: 840px;
       font-size: 13px;
       font-weight: 700;
       color: $darker-text-color;
-      padding-bottom: 8px;
+      padding-top: 24px;
       margin-bottom: 8px;
-      border-bottom: 1px solid var(--background-border-color);
+      border-top: 1px solid var(--background-border-color);
     }
 
     h6 {
@@ -483,6 +486,14 @@ body,
     color: $gold-star;
     font-weight: 500;
   }
+}
+
+kbd {
+  font-family: Courier, monospace;
+  background-color: color.change($ui-secondary-color, $alpha: 0.1);
+  padding: 4px;
+  padding-bottom: 2px;
+  border-radius: 5px;
 }
 
 .filters {
@@ -693,7 +704,7 @@ body,
   }
 
   &__title {
-    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   &__timestamp {
@@ -744,7 +755,7 @@ body,
   }
 
   &__title {
-    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   &__timestamp {
@@ -1064,6 +1075,17 @@ a.name-tag,
       }
     }
 
+    &__action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+
+      &:not(.no-wrap) {
+        flex-wrap: wrap;
+      }
+    }
+
     &__meta {
       padding: 0 15px;
       color: $dark-text-color;
@@ -1080,10 +1102,8 @@ a.name-tag,
       }
     }
 
-    &__action-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    &__actions {
+      margin-inline-start: auto;
     }
 
     &__permissions {
@@ -1255,7 +1275,7 @@ a.name-tag,
     }
 
     path:first-child {
-      fill: rgba($highlight-text-color, 0.25) !important;
+      fill: color.change($highlight-text-color, $alpha: 0.25) !important;
       fill-opacity: 1 !important;
     }
 
@@ -1289,6 +1309,10 @@ a.sparkline {
   line-height: 1;
   width: 100%;
   animation: skeleton 1.2s ease-in-out infinite;
+
+  .reduce-motion & {
+    animation: none;
+  }
 }
 
 @keyframes skeleton {
@@ -1385,7 +1409,7 @@ a.sparkline {
 
 .report-header {
   display: grid;
-  grid-gap: 15px;
+  gap: 15px;
   grid-template-columns: minmax(0, 1fr) 300px;
 
   &__details {
@@ -1495,7 +1519,7 @@ a.sparkline {
     margin: 8px 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     max-height: 21px * 2;
     position: relative;
     font-size: 15px;
@@ -1652,7 +1676,7 @@ a.sparkline {
     &__content {
       font-size: 15px;
       line-height: 20px;
-      word-wrap: break-word;
+      overflow-wrap: break-word;
       font-weight: 400;
       color: $primary-text-color;
 
@@ -1754,7 +1778,7 @@ a.sparkline {
   padding: 15px;
   font-size: 15px;
   line-height: 20px;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   font-weight: 400;
   color: $primary-text-color;
   box-sizing: border-box;
@@ -1937,12 +1961,33 @@ a.sparkline {
   background: $ui-base-color;
   font-size: 15px;
   line-height: 20px;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   font-weight: 400;
   border: 1px solid lighten($ui-base-color, 4%);
   color: $primary-text-color;
   box-sizing: border-box;
   min-height: 100%;
+
+  &.status--has-quote {
+    .quote-inline {
+      display: none;
+    }
+  }
+
+  .status__quote & {
+    // Remove the border from the .status__card within .status__quote
+    border: none;
+
+    .display-name__account {
+      line-height: inherit;
+    }
+
+    .status__avatar,
+    .status__avatar .account__avatar {
+      width: 32px;
+      height: 32px;
+    }
+  }
 
   .status__prepend {
     padding: 0 0 15px;
@@ -1950,11 +1995,112 @@ a.sparkline {
     align-items: center;
   }
 
-  .status__content {
-    padding-top: 0;
-
+  > details {
     summary {
-      display: list-item;
+      display: block;
+      box-sizing: border-box;
+      background: var(--nested-card-background);
+      color: var(--nested-card-text);
+      border: var(--nested-card-border);
+      border-radius: 8px;
+      padding: 8px 13px;
+      position: relative;
+      font-size: 15px;
+      line-height: 22px;
+      cursor: pointer;
+
+      &::after {
+        content: attr(data-show, 'Show more');
+        margin-top: 8px;
+        display: block;
+        font-size: 15px;
+        line-height: 20px;
+        color: $highlight-text-color;
+        cursor: pointer;
+        border: 0;
+        background: transparent;
+        padding: 0;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      &:hover,
+      &:focus-visible {
+        &::after {
+          text-decoration: underline !important;
+        }
+      }
+    }
+
+    &[open] summary {
+      margin-bottom: 16px;
+
+      &::after {
+        content: attr(data-hide, 'Hide post');
+      }
+    }
+  }
+
+  .preview-card {
+    position: relative;
+    max-width: 566px;
+
+    .status-card__image {
+      &--video {
+        aspect-ratio: 16 / 9;
+      }
+
+      &--large {
+        aspect-ratio: 1.91 / 1;
+      }
+
+      aspect-ratio: 1;
+    }
+
+    .spoiler-button__overlay__label {
+      outline: 1px solid var(--media-outline-color);
+    }
+
+    .hide-button {
+      // Toggled to appear when the preview-card is unblurred:
+      display: none;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: $white;
+      border: 0;
+      outline: 1px solid var(--media-outline-color);
+      background-color: color.change($black, $alpha: 0.45);
+      backdrop-filter: $backdrop-blur-filter;
+      padding: 3px 12px;
+      border-radius: 99px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+
+      &:hover,
+      &:focus {
+        background-color: color.change($black, $alpha: 0.9);
+      }
+    }
+
+    &.preview-card--image-visible {
+      .hide-button {
+        display: block;
+      }
+
+      .spoiler-button__overlay,
+      .status-card__image-preview {
+        display: none;
+      }
+    }
+  }
+
+  .detailed-status__meta {
+    .detailed-status__application,
+    .detailed-status__datetime,
+    .detailed-status__link {
+      color: inherit;
     }
   }
 }

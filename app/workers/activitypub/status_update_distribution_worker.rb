@@ -17,10 +17,10 @@ class ActivityPub::StatusUpdateDistributionWorker < ActivityPub::DistributionWor
 
   def activity
     ActivityPub::ActivityPresenter.new(
-      id: [ActivityPub::TagManager.instance.uri_for(@status), '#updates/', @status.edited_at.to_i].join,
+      id: [ActivityPub::TagManager.instance.uri_for(@status), '#updates/', @options[:updated_at]&.to_datetime&.to_i || @status.edited_at.to_i].join,
       type: 'Update',
       actor: ActivityPub::TagManager.instance.uri_for(@status.account),
-      published: @status.edited_at,
+      published: @options[:updated_at]&.to_datetime || @status.edited_at,
       to: ActivityPub::TagManager.instance.to(@status),
       cc: ActivityPub::TagManager.instance.cc(@status),
       virtual_object: @status

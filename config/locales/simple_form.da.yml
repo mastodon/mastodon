@@ -5,7 +5,7 @@ da:
       account:
         attribution_domains: Ét pr. linje. Beskytter mod falske tilskrivninger.
         discoverable: Dine offentlige indlæg og profil kan blive fremhævet eller anbefalet i forskellige områder af Mastodon, og profilen kan blive foreslået til andre brugere.
-        display_name: Dit fulde navn eller dit sjove navn.
+        display_name: Dit fulde navn eller et kaldenavn.
         fields: Din hjemmeside, dine pronominer, din alder, eller hvad du har lyst til.
         indexable: Dine offentlige indlæg vil kunne vises i Mastodon-søgeresultater. Folk, som har interageret med dem, vil kunne finde dem uanset.
         note: 'Du kan @omtale andre personer eller #hashtags.'
@@ -54,13 +54,18 @@ da:
         password: Brug mindst 8 tegn
         phrase: Matches uanset uanset brug af store/små bogstaver i teksten eller indholdsadvarsel for et indlæg
         scopes: De API'er, som applikationen vil kunne tilgå. Vælges en topniveaudstrækning, vil detailvalg være unødvendige.
+        setting_advanced_layout: Vis Mastodon som et layout med flere kolonner, så du kan se tidslinjen, notifikationer og en tredje kolonne efter eget valg. Anbefales ikke til mindre skærme.
         setting_aggregate_reblogs: Vis ikke nye fremhævelser for nyligt fremhævede indlæg (påvirker kun nyligt modtagne fremhævelser)
         setting_always_send_emails: Normalt sendes ingen e-mailnotifikationer under aktivt brug af Mastodon
-        setting_default_quote_policy: Denne indstilling træder kun i kraft for indlæg oprettet med den næste Mastodon-version, men egen præference kan vælges som forberedelse.
+        setting_boost_modal: Når aktiveret, åbnes der ved fremhævelse først en bekræftelsesdialog, hvor du kan ændre synligheden af din fremhævelse.
+        setting_default_quote_policy_private: Kun-følgere indlæg forfattet på Mastodon kan ikke citeres af andre.
+        setting_default_quote_policy_unlisted: Når folk citerer dig, vil deres indlæg også blive skjult fra trendtidslinjer.
         setting_default_sensitive: Sensitive medier er som standard skjult og kan vises med et klik
         setting_display_media_default: Skjul medier med sensitiv-markering
         setting_display_media_hide_all: Skjul altid medier
         setting_display_media_show_all: Vis altid medier
+        setting_emoji_style: Hvordan emojis skal vises. "Auto" vil forsøge at bruge indbyggede emojis, men skifter tilbage til Twemoji i ældre webbrowsere.
+        setting_quick_boosting_html: Når aktiveret, vil klik på %{boost_icon} fremhæv-ikonet straks fremhæve i stedet for at åbne fremhæv/citér-foldudmenuen. Flytter citeringshandlingen til %{options_icon} menuen (Indstillinger).
         setting_system_scrollbars_ui: Gælder kun for desktop-browsere baseret på Safari og Chrome
         setting_use_blurhash: Gradienter er baseret på de skjulte grafikelementers farver, men slører alle detaljer
         setting_use_pending_items: Skjul tidslinjeopdateringer bag et klik i stedet for brug af auto-feedrulning
@@ -88,6 +93,7 @@ da:
         content_cache_retention_period: Alle indlæg fra andre servere (herunder fremhævelser og besvarelser) slettes efter det angivne antal dage uden hensyn til lokal brugerinteraktion med disse indlæg. Dette omfatter indlæg, hvor en lokal bruger har markeret dem som bogmærker eller favoritter. Private omtaler mellem brugere fra forskellige instanser vil også være tabt og umulige at gendanne. Brugen af denne indstilling er beregnet til særlige formål instanser og bryder mange brugerforventninger ved implementering til almindelig brug.
         custom_css: Man kan anvende tilpassede stilarter på Mastodon-webversionen.
         favicon: WEBP, PNG, GIF eller JPG. Tilsidesætter standard Mastodon favikonet på mobilenheder med et tilpasset ikon.
+        landing_page: Vælger, hvilken side nye besøgende ser, når de først ankommer til din server. Hvis du vælger "Trender", skal trends være aktiveret i Opdagelse-indstillingerne. Hvis du vælger "Lokalt feed", skal "Adgang til live feeds med lokale indlæg" være indstillet til "Alle" i Opdagelse-indstillingerne.
         mascot: Tilsidesætter illustrationen i den avancerede webgrænseflade.
         media_cache_retention_period: Mediefiler fra indlæg oprettet af eksterne brugere er cachet på din server. Når sat til positiv værdi, slettes medier efter det angivne antal dage. Anmodes om mediedata efter de er slettet, gendownloades de, hvis kildeindholdet stadig er tilgængeligt. Grundet begrænsninger på, hvor ofte linkforhåndsvisningskort forespørger tredjeparts websteder, anbefales det at sætte denne værdi til mindst 14 dage, ellers opdateres linkforhåndsvisningskort ikke efter behov før det tidspunkt.
         min_age: Brugere anmodes om at bekræfte deres fødselsdato under tilmelding
@@ -103,10 +109,8 @@ da:
         status_page_url: URL'en til en side, hvor status for denne server kan ses under en afbrydelse
         theme: Tema, som udloggede besøgende og nye brugere ser.
         thumbnail: Et ca. 2:1 billede vist sammen med serveroplysningerne.
-        timeline_preview: Udloggede besøgende kan gennemse serverens seneste offentlige indlæg.
         trendable_by_default: Spring manuel gennemgang af trendindhold over. Individuelle elementer kan stadig fjernes fra trends efter kendsgerningen.
         trends: Tendenser viser, hvilke indlæg, hashtags og nyheder opnår momentum på serveren.
-        trends_as_landing_page: Vis tendensindhold til udloggede brugere og besøgende i stedet for en beskrivelse af denne server. Kræver, at tendenser er aktiveret.
       form_challenge:
         current_password: Du bevæger dig ind på et sikkert område
       imports:
@@ -159,6 +163,10 @@ da:
         name: Offentligt rollennavn, hvis rollen er opsat til fremstå som et badge
         permissions_as_keys: Brugere med denne rolle vil kunne tilgå...
         position: Højere rolle bestemmer konfliktløsning i visse situationer. Visse handlinger kan kun udføres på roller med lavere prioritet
+      username_block:
+        allow_with_approval: I stedet for at forhindre tilmelding helt, vil matchende tilmeldinger kræve din godkendelse
+        comparison: Vær opmærksom på Scunthorpe-problemet ved blokering af delvise match
+        username: Matches uanset minuskel/majuskel-brug og alm. homoglyffer, såsom "4" for "a" eller "3" for "e"
       webhook:
         events: Vælg begivenheder at sende
         template: Skriv din egen JSON nyttelast ved hjælp af variabel interpolation. Lad feltet stå tomt for standard JSON.
@@ -171,7 +179,7 @@ da:
           name: Etiket
           value: Indhold
         indexable: Medtag offentlige indlæg i søgeresultater
-        show_collections: Vis følger og følgere på profil
+        show_collections: Vis fulgte og følgere på profil
         unlocked: Acceptér automatisk nye følgere
       account_alias:
         acct: Brugernavn på den gamle konto
@@ -219,7 +227,7 @@ da:
         inbox_url: URL til videreformidlingsindbakken
         irreversible: Fjern istedet for skjul
         locale: Grænsefladesprog
-        max_uses: Maks. antal afbenyttelser
+        max_uses: Maks. antal anvendelser
         new_password: Ny adgangskode
         note: Biografi
         otp_attempt: Tofaktorkode
@@ -229,21 +237,23 @@ da:
         setting_aggregate_reblogs: Gruppér fremhævelser på tidslinjer
         setting_always_send_emails: Send altid e-mailnotifikationer
         setting_auto_play_gif: Autoafspil animerede GIF'er
-        setting_boost_modal: Vis bekræftelsesdialog inden fremhævelse
+        setting_boost_modal: Kontrollér synlighed af fremhævelse
         setting_default_language: Sprog for indlæg
-        setting_default_privacy: Fortrolighed for indlæg
+        setting_default_privacy: Indlægssynlighed
         setting_default_quote_policy: Hvem kan citere
         setting_default_sensitive: Markér altid medier som sensitive
-        setting_delete_modal: Vis bekræftelsesdialog før et indlæg slettes
+        setting_delete_modal: Advar mig før sletning af et indlæg
         setting_disable_hover_cards: Deaktivér profilforhåndsvisning ved svæv (hover)
         setting_disable_swiping: Deaktivér strygebevægelser
         setting_display_media: Medievisning
         setting_display_media_default: Standard
         setting_display_media_hide_all: Skjul alle
         setting_display_media_show_all: Vis alle
+        setting_emoji_style: Emoji-stil
         setting_expand_spoilers: Udvid altid indlæg markeret med indholdsadvarsler
         setting_hide_network: Skjul din sociale graf
-        setting_missing_alt_text_modal: Vis bekræftelsesdialog inden medier uden alt-tekst lægges op
+        setting_missing_alt_text_modal: Advar mig, før medier uden alternativ tekst lægges op
+        setting_quick_boosting: Aktivér hurtig fremhævelse
         setting_reduce_motion: Reducér animationsbevægelse
         setting_system_font_ui: Brug systemets standardskrifttype
         setting_system_scrollbars_ui: Brug standard systemrullebjælke
@@ -277,12 +287,17 @@ da:
         content_cache_retention_period: Opbevaringsperiode for eksternt indhold
         custom_css: Tilpasset CSS
         favicon: Favikon
+        landing_page: Landingside for nye besøgende
+        local_live_feed_access: Adgang til live feeds med lokale indlæg
+        local_topic_feed_access: Adgang til hashtag- og link-feeds med lokale indlæg
         mascot: Tilpasset maskot (ældre funktion)
         media_cache_retention_period: Media-cache opbevaringsperiode
         min_age: Minimums alderskrav
         peers_api_enabled: Udgiv liste over fundne server i API'en
         profile_directory: Aktivér profiloversigt
         registrations_mode: Hvem, der kan tilmelde sig
+        remote_live_feed_access: Adgang til live feeds med eksterne indlæg
+        remote_topic_feed_access: Adgang til hashtag- og link-feeds med eksterne indlæg
         require_invite_text: Kræv tilmeldingsbegrundelse
         show_domain_blocks: Vis domæneblokeringer
         show_domain_blocks_rationale: Vis, hvorfor domæner blev blokeret
@@ -295,10 +310,8 @@ da:
         status_page_url: Statusside-URL
         theme: Standardtema
         thumbnail: Serverminiaturebillede
-        timeline_preview: Tillad ikke-godkendt adgang til offentlige tidslinjer
         trendable_by_default: Tillad ikke-reviderede trends
         trends: Aktivér trends
-        trends_as_landing_page: Brug tendenser som destinationssiden
       interactions:
         must_be_follower: Blokér notifikationer fra bruger, der ikke følger dig
         must_be_following: Blokér notifikationer fra brugere, du ikke følger
@@ -323,6 +336,7 @@ da:
         follow_request: Nogen anmodede om at følge dig
         mention: Nogen omtalte dig
         pending_account: Ny konto kræver gennemgang
+        quote: Nogen citerede dig
         reblog: Nogen fremhævede dit indlæg
         report: Ny anmeldelse indsendt
         software_updates:
@@ -369,6 +383,10 @@ da:
         name: Navn
         permissions_as_keys: Tilladelser
         position: Prioritet
+      username_block:
+        allow_with_approval: Tillad registreringer med godkendelse
+        comparison: Sammenligningsmetode
+        username: Ord, som skal matches
       webhook:
         events: Aktive begivenheder
         template: Payload skabelon

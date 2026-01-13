@@ -5,19 +5,20 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings,
-             :languages
+             :languages, :features
 
   attribute :critical_updates_pending, if: -> { object&.role&.can?(:view_devops) && SoftwareUpdate.check_enabled? }
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
   has_one :role, serializer: REST::RoleSerializer
 
-  def meta # rubocop:disable Metrics/AbcSize
+  def meta
     store = default_meta_store
 
     if object.current_account
       store[:me]                = object.current_account.id.to_s
       store[:boost_modal]       = object_account_user.setting_boost_modal
+      store[:quick_boosting]    = object_account_user.setting_quick_boosting
       store[:delete_modal]      = object_account_user.setting_delete_modal
       store[:missing_alt_text_modal] = object_account_user.settings['web.missing_alt_text_modal']
       store[:auto_play_gif]     = object_account_user.setting_auto_play_gif
@@ -30,6 +31,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:use_blurhash]      = object_account_user.setting_use_blurhash
       store[:use_pending_items] = object_account_user.setting_use_pending_items
       store[:show_trends]       = Setting.trends && object_account_user.setting_trends
+      store[:emoji_style]       = object_account_user.settings['web.emoji_style']
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media
@@ -53,6 +55,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:default_privacy]   = object.visibility || object_account_user.setting_default_privacy
       store[:default_sensitive] = object_account_user.setting_default_sensitive
       store[:default_language]  = object_account_user.preferred_posting_language
+      store[:default_quote_policy] = object_account_user.setting_default_quote_policy
     end
 
     store[:text] = object.text if object.text
@@ -85,6 +88,10 @@ class InitialStateSerializer < ActiveModel::Serializer
     LanguagesHelper::SUPPORTED_LOCALES.map { |(key, value)| [key, value[0], value[1]] }
   end
 
+  def features
+    Mastodon::Feature.enabled_features
+  end
+
   private
 
   def default_meta_store
@@ -105,12 +112,15 @@ class InitialStateSerializer < ActiveModel::Serializer
       sso_redirect: sso_redirect,
       status_page_url: Setting.status_page_url,
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
-      timeline_preview: Setting.timeline_preview,
       title: instance_presenter.title,
-      trends_as_landing_page: Setting.trends_as_landing_page,
+      landing_page: Setting.landing_page,
       trends_enabled: Setting.trends,
       version: instance_presenter.version,
       terms_of_service_enabled: TermsOfService.current.present?,
+      local_live_feed_access: Setting.local_live_feed_access,
+      remote_live_feed_access: Setting.remote_live_feed_access,
+      local_topic_feed_access: Setting.local_topic_feed_access,
+      remote_topic_feed_access: Setting.remote_topic_feed_access,
     }
   end
 

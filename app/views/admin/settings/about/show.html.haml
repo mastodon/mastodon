@@ -24,7 +24,7 @@
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :show_domain_blocks,
                 collection_wrapper_tag: 'ul',
-                collection: %i(disabled users all),
+                collection: f.object.class::DOMAIN_BLOCK_AUDIENCES,
                 include_blank: false,
                 item_wrapper_tag: 'li',
                 label_method: ->(value) { t("admin.settings.domain_blocks.#{value}") },
@@ -32,7 +32,7 @@
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :show_domain_blocks_rationale,
                 collection_wrapper_tag: 'ul',
-                collection: %i(disabled users all),
+                collection: f.object.class::DOMAIN_BLOCK_AUDIENCES,
                 include_blank: false,
                 item_wrapper_tag: 'li',
                 label_method: ->(value) { t("admin.settings.domain_blocks.#{value}") },

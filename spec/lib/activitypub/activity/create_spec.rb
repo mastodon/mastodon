@@ -915,7 +915,7 @@ RSpec.describe ActivityPub::Activity::Create do
       end
 
       context 'with an unverifiable quote of a known post' do
-        let(:quoted_status) { Fabricate(:status) }
+        let(:quoted_status) { Fabricate(:status, account: Fabricate(:account, domain: 'example.com')) }
 
         let(:object_json) do
           build_object(

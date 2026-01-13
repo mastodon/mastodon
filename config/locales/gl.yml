@@ -190,6 +190,7 @@ gl:
         create_relay: Crear Repetidor
         create_unavailable_domain: Crear dominio Non dispoñible
         create_user_role: Crear Rol
+        create_username_block: Crear regra para Identificadores
         demote_user: Degradar usuaria
         destroy_announcement: Eliminar anuncio
         destroy_canonical_email_block: Eliminar bloqueo do correo
@@ -203,6 +204,7 @@ gl:
         destroy_status: Eliminar publicación
         destroy_unavailable_domain: Eliminar dominio Non dispoñible
         destroy_user_role: Eliminar Rol
+        destroy_username_block: Eliminar regra para Identificadores
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar emoticona personalizada
         disable_relay: Desactivar Repetidor
@@ -237,6 +239,7 @@ gl:
         update_report: Actualización da denuncia
         update_status: Actualizar publicación
         update_user_role: Actualizar Rol
+        update_username_block: Actualizar regra para Identificadores
       actions:
         approve_appeal_html: "%{name} aprobou a apelación da decisión da moderación de %{target}"
         approve_user_html: "%{name} aprobou o rexistro de %{target}"
@@ -255,6 +258,7 @@ gl:
         create_relay_html: "%{name} creou un repetidor en %{target}"
         create_unavailable_domain_html: "%{name} deixou de interactuar co dominio %{target}"
         create_user_role_html: "%{name} creou o rol %{target}"
+        create_username_block_html: "%{name} engadiu unha regra para identificadores que contén %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
         destroy_announcement_html: "%{name} eliminou o anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueou o correo con suma de comprobación %{target}"
@@ -268,6 +272,7 @@ gl:
         destroy_status_html: "%{name} eliminou a publicación de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a interacción co dominio %{target}"
         destroy_user_role_html: "%{name} eliminou o rol %{target}"
+        destroy_username_block_html: "%{name} retirou unha regra para identificadores que contén %{target}"
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
         disable_relay_html: "%{name} desactivou o repetidor %{target}"
@@ -302,6 +307,7 @@ gl:
         update_report_html: "%{name} actualizou a denuncia %{target}"
         update_status_html: "%{name} actualizou a publicación de %{target}"
         update_user_role_html: "%{name} cambiou o rol %{target}"
+        update_username_block_html: "%{name} actualizou a regra para identificadores que contén %{target}"
       deleted_account: conta eliminada
       empty: Non se atoparon rexistros.
       filter_by_action: Filtrar por acción
@@ -790,6 +796,8 @@ gl:
         view_dashboard_description: Permite acceder ao taboleiro e varias métricas do servidor
         view_devops: DevOps
         view_devops_description: Permite acceder aos taboleiros Sidekiq e phHero
+        view_feeds: Ver as canles do directo e temas
+        view_feeds_description: Permite ás usuarias acceder ás canles de directo e temas independentemento dos axustes do servidor.
       title: Roles
     rules:
       add_new: Engadir regra
@@ -842,6 +850,16 @@ gl:
         all: Para todos
         disabled: Para ninguén
         users: Para usuarias locais conectadas
+      feed_access:
+        modes:
+          authenticated: Só para usuarias con sesión iniciada
+          disabled: Requerir un rol da usuaria específico
+          public: Para calquera
+      landing_page:
+        values:
+          about: Sobre
+          local_feed: Cronoloxía Local
+          trends: Tendencias
       registrations:
         moderation_recommandation: Por favor, pon interese en crear un equipo de moderación competente e reactivo antes de permitir que calquera poida crear unha conta!
         preamble: Xestiona quen pode crear unha conta no teu servidor.
@@ -895,6 +913,7 @@ gl:
       no_status_selected: Non se cambiou ningunha publicación xa que ningunha foi seleccionada
       open: Abrir publicación
       original_status: Publicación orixinal
+      quotes: Citas
       reblogs: Promocións
       replied_to_html: Respondeu a %{acct_link}
       status_changed: Publicación editada
@@ -902,6 +921,7 @@ gl:
       title: Publicacións da conta - @%{name}
       trending: Popular
       view_publicly: Ver publicamente
+      view_quoted_post: Ver publicación citada
       visibility: Visibilidade
       with_media: con medios
     strikes:
@@ -1085,6 +1105,25 @@ gl:
           other: Utilizado por %{count} persoas na última semana
       title: Recomendacións e Suxestións
       trending: Popularidade
+    username_blocks:
+      add_new: Engadir nova
+      block_registrations: Bloqueo dos rexistros
+      comparison:
+        contains: Contén
+        equals: É igual a
+      contains_html: Contén %{string}
+      created_msg: Creouse correctamente a regra para identificadores
+      delete: Eliminar
+      edit:
+        title: Editar regra para identificadores
+      matches_exactly_html: É igual a %{string}
+      new:
+        create: Crear regra
+        title: Crear nova regra para identificadores
+      no_username_block_selected: Non se cambiou ningunha regra porque non se seleccionou ningunha
+      not_permitted: Non permitido
+      title: Regras para identificadores
+      updated_msg: Actualizouse correctamente a regra
     warning_presets:
       add_new: Engadir novo
       delete: Eliminar
@@ -1157,10 +1196,10 @@ gl:
     hint_html: Se queres mudarte desde outra conta a esta nova, aquí podes crear un alcume, que é requerido antes de poder proceder a mover os seguidores da conta antiga a esta nova. Esta acción por si mesma é <strong>inocua e reversible</strong>. <strong>A migración da conta iníciase desde a conta antiga</strong>.
     remove: Desligar alcume
   appearance:
-    advanced_web_interface: Interface web avanzada
-    advanced_web_interface_hint: Se queres empregar todo o ancho da pantalla, a interface web avanzada permíteche configurar diferentes columnas para ver tanta información como queiras. Inicio, notificacións, cronoloxía federada, varias listaxes e cancelos.
+    advanced_settings: Axustes avanzados
     animations_and_accessibility: Animacións e accesibilidade
-    confirmation_dialogs: Diálogos de confirmación
+    boosting_preferences: Preferencias das promocións
+    boosting_preferences_info_html: "<strong>Info:</strong> Independentemente dos axustes, <kbd>Maiús</kbd> + <kbd>Click</kbd> na icona %{icon} Promover promoverá inmediatamente."
     discovery: Descubrir
     localization:
       body: Mastodon tradúceno persoas voluntarias.
@@ -1349,6 +1388,10 @@ gl:
     basic_information: Información básica
     hint_html: "<strong>Personaliza o que van ver no teu perfil público e ao lado das túas publicacións.</strong> As outras persoas estarán máis animadas a seguirte e interactuar contigo se engades algún dato sobre ti así como unha imaxe de perfil."
     other: Outros
+  emoji_styles:
+    auto: Auto
+    native: Nativo
+    twemoji: Twemoji
   errors:
     '400': A solicitude que enviou non é válida ou ten formato incorrecto.
     '403': Non ten permiso para ver esta páxina.
@@ -1558,6 +1601,13 @@ gl:
       expires_at: Caduca
       uses: Usos
     title: Convidar a persoas
+  link_preview:
+    author_html: De %{name}
+    potentially_sensitive_content:
+      action: Preme para ver
+      confirm_visit: Tes certeza de querer abrir esta ligazón?
+      hide_button: Ocultar
+      label: Posible contido sensible
   lists:
     errors:
       limit: Xa acadaches o número máximo de listas
@@ -1658,6 +1708,10 @@ gl:
       title: Nova mención
     poll:
       subject: A enquisa de %{name} rematou
+    quote:
+      body: 'A túa publicación foi citada por %{name}:'
+      subject: "%{name} citou a túa publicación"
+      title: Nova cita
     reblog:
       body: 'A túa publicación promovida por %{name}:'
       subject: "%{name} promoveu a túa publicación"
@@ -1707,6 +1761,8 @@ gl:
       too_few_options: debe ter máis de unha opción
       too_many_options: non pode haber máis de %{max} opcións
     vote: Votar
+  posting_defaults:
+    explanation: Estes axustes vanse usar como valores por defecto para as novas publicacións, pero podes axustalas de xeito individual na caixa de edición.
   preferences:
     other: Outro
     posting_defaults: Valores por defecto
@@ -1862,6 +1918,9 @@ gl:
         other: "%{count} vídeos"
     boosted_from_html: Promovida desde %{acct_link}
     content_warning: 'Aviso sobre o contido: %{warning}'
+    content_warnings:
+      hide: Ocultar publicación
+      show: Ver máis
     default_language: Igual que o idioma da interface
     disallowed_hashtags:
       one: 'contiña un cancelo non permitido: %{tags}'
@@ -1869,25 +1928,31 @@ gl:
     edited_at_html: Editado %{date}
     errors:
       in_reply_not_found: A publicación á que tentas responder semella que non existe.
+      quoted_status_not_found: Parece que a publicación que intentas citar non existe.
+      quoted_user_not_mentioned: Non se pode citar a unha usuaria non mencionada nunha Mención Privada.
     over_character_limit: Excedeu o límite de caracteres %{max}
     pin_errors:
       direct: As publicacións que só son visibles para as usuarias mencionadas non se poden fixar
       limit: Xa fixaches o número máximo permitido de publicacións
       ownership: Non podes fixar a publicación doutra usuaria
       reblog: Non se poden fixar as mensaxes promovidas
+    quote_error:
+      not_available: Publicación non dispoñible
+      pending_approval: Publicación pendente
+      revoked: Publicación retirada pola autora
     quote_policies:
       followers: Só para seguidoras
       nobody: Só para min
       public: Calquera
+    quote_post_author: Citou unha publicación de %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Mención privada
-      private: Só seguidoras
-      private_long: Mostrar só as seguidoras
+      private: Só para seguidoras
       public: Público
-      public_long: Visible para calquera
-      unlisted: Fóra das listas
-      unlisted_long: Visible para calquera, pero non en cronoloxías públicas
+      public_long: Para calquera dentro e fóra de Mastodon
+      unlisted: Pública limitada
+      unlisted_long: Non aparece nos resultados de buscas en Mastodon, nas tendencias e cronoloxías públicas
   statuses_cleanup:
     enabled: Borrar automáticamente publicacións antigas
     enabled_hint: Borra automáticamente as túas publicacións unha vez acadan certa lonxevidade, a menos que cumpran algunha destas excepcións
@@ -2051,7 +2116,7 @@ gl:
       edit_profile_action: Personalizar
       edit_profile_step: Aumenta as túas interaccións grazas a un perfil descriptivo.
       edit_profile_title: Personaliza o teu perfil
-      explanation: Aquí tes algunhas endereitas para ir aprendendo
+      explanation: Aquí tes algúns consellos para ir aprendendo
       feature_action: Saber máis
       feature_audience: Mastodon dache a oportunidade de xestionar sen intermediarios as túas relacións. Incluso se usas o teu propio servidor Mastodon poderás seguir e ser seguida desde calquera outro servidor Mastodon conectado á rede e estará baixo o teu control exclusivo.
       feature_audience_title: Crea a túa audiencia con tranquilidade

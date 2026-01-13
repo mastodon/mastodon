@@ -54,13 +54,18 @@ es-AR:
         password: Usá al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o las advertencias de contenido de un mensaje
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionás el alcance de nivel más alto, no necesitás seleccionar las individuales.
+        setting_advanced_layout: Mostrar Mastodon como una disposición de varias columnas, permitiéndote ver la línea temporal, las notificaciones y una tercera columna de tu elección. No recomendado para pantallas pequeñas.
         setting_aggregate_reblogs: No mostrar nuevas adhesiones de los mensajes que fueron recientemente adheridos (sólo afecta a las adhesiones recibidas recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
-        setting_default_quote_policy: Este ajuste solo tendrá efecto en mensajes creados usando la próxima versión mayor de Mastodon, pero podés configurarlo con anticipación.
+        setting_boost_modal: Al estar activado, la adhesión abrirá primero un diálogo de confirmación en el que podés cambiar su visibilidad.
+        setting_default_quote_policy_private: Los mensajes solo para seguidores redactados en Mastodon no pueden ser citados por otras cuentas.
+        setting_default_quote_policy_unlisted: Cuando otras cuentas te citen, sus publicaciones también se ocultarán de las líneas temporales de tendencias.
         setting_default_sensitive: El contenido de medios sensibles está oculto predeterminadamente y puede ser mostrado con un clic
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Siempre ocultar todos los medios
         setting_display_media_show_all: Siempre mostrar todos los medios
+        setting_emoji_style: Cómo se mostrarán los emojis. "Automático" intentará usar emojis nativos, cambiando a Twemoji en navegadores antiguos.
+        setting_quick_boosting_html: Al estar habilitado, haciendo clic en el ícono de adhesión %{boost_icon} vas a adherir al mensaje inmediatamente, en lugar de abrir el menú desplegable de adhesión/citas. Esto cambia la acción de citas al menú de opciones %{options_icon}.
         setting_system_scrollbars_ui: Solo aplica para navegadores web de escritorio basados en Safari y Chrome
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar actualizaciones de la línea temporal detrás de un clic en lugar de desplazar automáticamente el flujo
@@ -88,6 +93,7 @@ es-AR:
         content_cache_retention_period: Todos los mensajes de otros servidores (incluyendo adhesiones y respuestas) se eliminarán después del número de días especificado, sin tener en cuenta la interacción del usuario local con esos mensajes. Esto incluye mensajes que un usuario local haya agregado a marcadores o los haya marcado como favoritos. Las menciones privadas entre usuarios de diferentes servidores también se perderán y también serán imposibles de restaurar. El uso de esta configuración está destinado a servidores de propósito especial y rompe muchas expectativas de los usuarios cuando se implementa para uso general.
         custom_css: Podés aplicar estilos personalizados a la versión web de Mastodon.
         favicon: WEBP, PNG, GIF o JPG. Reemplaza el favicón predeterminado de Mastodon con uno personalizado.
+        landing_page: Selecciona qué página se carga para los nuevos visitantes cuando llegan por primera vez a tu servidor. Si seleccionás «Tendencias», entonces las tendencias tienen que estar habilitadas en la configuración de «Descubrimiento». Si seleccionás «Línea temporal local», entonces «Acceso a líneas temporales en vivo, destacando mensajes locales» tiene que estar establecida a «Todos» en la configuración de «Descubrimiento».
         mascot: Reemplaza la ilustración en la interface web avanzada.
         media_cache_retention_period: Los archivos de medios de mensajes publicados por usuarios remotos se almacenan en la memoria caché en tu servidor. Cuando se establece un valor positivo, los medios se eliminarán después del número especificado de días. Si los datos multimedia se solicitan después de eliminarse, se volverán a descargar, si es que el contenido fuente todavía está disponible. Debido a restricciones en la frecuencia con la que las tarjetas de previsualización de enlace consultan a sitios web de terceros, se recomienda establecer este valor a, al menos, 14 días, o las tarjetas de previsualización de enlaces no se actualizarán a pedido antes de ese momento.
         min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento durante el registro
@@ -103,10 +109,8 @@ es-AR:
         status_page_url: Dirección web de una página donde la gente puede ver el estado de este servidor durante un apagón
         theme: El tema que los visitantes no registrados y los nuevos usuarios ven.
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
-        timeline_preview: Los visitantes no registrados podrán navegar por los mensajes públicos más recientes disponibles en el servidor.
         trendable_by_default: Omití la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
         trends: Las tendencias muestran qué mensajes, etiquetas y noticias están ganando tracción en tu servidor.
-        trends_as_landing_page: Mostrar contenido en tendencia para usuarios que no iniciaron sesión y visitantes, en lugar de una descripción de este servidor. Requiere que las tendencias estén habilitadas.
       form_challenge:
         current_password: Estás ingresando en un área segura
       imports:
@@ -159,6 +163,10 @@ es-AR:
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a…
         position: Un rol más alto decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con prioridad inferior
+      username_block:
+        allow_with_approval: En lugar de impedir el registro total, los registros coincidentes requerirán tu aprobación
+        comparison: Por favor, tené en cuenta el Problema de Scunthorpe al bloquear coincidencias parciales
+        username: Coincidirá sin importar la capitalización de letras y los homoglifos comunes como «4» para «a», o «3» para «e»
       webhook:
         events: Seleccionar eventos para enviar
         template: Creá tu propio archivo JSON usando interpolación variable. Dejalo en blanco para usar el archivo JSON predeterminado.
@@ -229,21 +237,23 @@ es-AR:
         setting_aggregate_reblogs: Agrupar adhesiones en las líneas temporales
         setting_always_send_emails: Siempre enviar notificaciones por correo electrónico
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
-        setting_boost_modal: Mostrar diálogo de confirmación antes de adherir
+        setting_boost_modal: Control de visibilidad de adhesiones
         setting_default_language: Idioma de tus mensajes
-        setting_default_privacy: Privacidad de mensajes
+        setting_default_privacy: Visibilidad del mensaje
         setting_default_quote_policy: Quién puede citar
         setting_default_sensitive: Siempre marcar medios como sensibles
-        setting_delete_modal: Mostrar diálogo de confirmación antes de eliminar un mensaje
+        setting_delete_modal: Advertirme antes de eliminar un mensaje
         setting_disable_hover_cards: Deshabilitar previsualización del perfil al pasar el cursor
         setting_disable_swiping: Deshabilitar movimientos de deslizamiento
         setting_display_media: Visualización de medios
         setting_display_media_default: Predeterminada
         setting_display_media_hide_all: Ocultar todo
         setting_display_media_show_all: Mostrar todo
+        setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Siempre expandir los mensajes marcados con advertencias de contenido
         setting_hide_network: Ocultá tu gráfica social
-        setting_missing_alt_text_modal: Mostrar diálogo de confirmación antes de enviar medios sin texto alternativo
+        setting_missing_alt_text_modal: Advertirme antes de enviar medios sin texto alternativo
+        setting_quick_boosting: Habilitar adhesión rápida
         setting_reduce_motion: Reducir el movimiento de las animaciones
         setting_system_font_ui: Utilizar la tipografía predeterminada del sistema
         setting_system_scrollbars_ui: Usar la barra de desplazamiento predeterminada del sistema operativo
@@ -277,12 +287,17 @@ es-AR:
         content_cache_retention_period: Período de retención de contenido remoto
         custom_css: CSS personalizado
         favicon: Favicón
+        landing_page: Página de carga para nuevos visitantes
+        local_live_feed_access: Acceso a líneas temporales en vivo, destacando mensajes locales
+        local_topic_feed_access: Acceso a líneas temporales de etiquetas y enlaces, destacando mensajes locales
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de la caché de medios
         min_age: Edad mínima requerida
         peers_api_enabled: Publicar lista de servidores descubiertos en la API
         profile_directory: Habilitar directorio de perfiles
         registrations_mode: Quién puede registrarse
+        remote_live_feed_access: Acceso a líneas temporales en vivo, destacando mensajes remotos
+        remote_topic_feed_access: Acceso a líneas temporales de etiquetas y enlaces, destacando mensajes remotos
         require_invite_text: Requerir un motivo para unirse
         show_domain_blocks: Mostrar dominios bloqueados
         show_domain_blocks_rationale: Mostrar por qué se bloquearon los dominios
@@ -295,10 +310,8 @@ es-AR:
         status_page_url: Dirección web de la página de estado
         theme: Tema predeterminado
         thumbnail: Miniatura del servidor
-        timeline_preview: Permitir el acceso no autenticado a las líneas temporales públicas
         trendable_by_default: Permitir tendencias sin revisión previa
         trends: Habilitar tendencias
-        trends_as_landing_page: Usar las tendencias como la página de destino
       interactions:
         must_be_follower: Bloquear notificaciones de cuentas que no te siguen
         must_be_following: Bloquear notificaciones de cuentas que no seguís
@@ -323,6 +336,7 @@ es-AR:
         follow_request: Una cuenta solicita seguirte
         mention: Una cuenta te menciona
         pending_account: Una nueva cuenta necesita revisión
+        quote: Alguien te citó
         reblog: Una cuenta adhiere a tu mensaje
         report: Se envió una nueva denuncia
         software_updates:
@@ -369,6 +383,10 @@ es-AR:
         name: Nombre
         permissions_as_keys: Permisos
         position: Prioridad
+      username_block:
+        allow_with_approval: Permitir registros con aprobación
+        comparison: Método de comparación
+        username: Palabra a coincidir
       webhook:
         events: Eventos habilitados
         template: Plantilla de carga

@@ -54,13 +54,18 @@ vi:
         password: Tối thiểu 8 ký tự
         phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
         scopes: Ứng dụng sẽ được phép truy cập những API nào. Nếu bạn chọn quyền cấp cao nhất, không cần chọn quyền nhỏ.
+        setting_advanced_layout: Hiển thị Mastodon dưới dạng bố cục nhiều cột, cho phép bạn xem dòng thời gian, thông báo và cột thứ ba mà bạn chọn. Không nên dùng cho màn hình nhỏ.
         setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì sẽ không hiện những lượt đăng lại khác trên bảng tin
         setting_always_send_emails: Bình thường thì sẽ không gửi khi bạn đang dùng Mastodon
-        setting_default_quote_policy: Thiết lập này chỉ hiệu lực đối với các tút được tạo bằng phiên bản Mastodon tiếp theo, nhưng bạn có thể chọn trước sẵn.
+        setting_boost_modal: Nếu được bật, trước khi đăng lại sẽ mở hộp thoại xác nhận - trong đó bạn có thể thay đổi mức độ hiển thị tút của mình.
+        setting_default_quote_policy_private: Không thể trích dẫn tút chỉ dành cho người theo dõi trên Mastodon.
+        setting_default_quote_policy_unlisted: Khi ai đó trích dẫn bạn, tút của họ cũng sẽ bị ẩn khỏi bảng tin công khai.
         setting_default_sensitive: Bắt buộc nhấn vào mới có thể xem
         setting_display_media_default: Click để xem
         setting_display_media_hide_all: Luôn ẩn
         setting_display_media_show_all: Luôn hiện
+        setting_emoji_style: Cách hiển thị Emoji. "Tự động" sẽ dùng biểu tượng cảm xúc nguyên bản, nhưng đối với các trình duyệt cũ sẽ chuyển thành Twemoji.
+        setting_quick_boosting_html: Nếu bật, nhấn biểu tượng %{boost_icon} Đăng lại sẽ lập tức đăng lại thay vì mở menu xổ xuống đăng lại/trích dẫn. Chuyển vị trí hành động trích dẫn sang menu %{options_icon} (Tùy chọn).
         setting_system_scrollbars_ui: Chỉ áp dụng trình duyệt Chrome và Safari bản desktop
         setting_use_blurhash: Phủ lớp màu làm nhòe đi hình ảnh nhạy cảm
         setting_use_pending_items: Dồn lại toàn bộ tút mới và chỉ hiển thị khi nhấn vào
@@ -88,6 +93,7 @@ vi:
         content_cache_retention_period: Tất cả tút từ các máy chủ khác (bao gồm cả đăng lại và trả lời) sẽ bị xóa sau số ngày được chỉ định mà không tính đến bất kỳ tương tác nào của người dùng cục bộ với các tút đó. Điều này bao gồm các tút mà người dùng cục bộ đã đánh dấu nó là dấu trang hoặc mục yêu thích. Những lượt nhắc riêng tư giữa những người dùng từ các máy chủ khác nhau cũng sẽ bị mất và không thể khôi phục. Việc sử dụng cài đặt này dành cho các trường hợp có mục đích đặc biệt và phá vỡ nhiều kỳ vọng của người dùng khi được triển khai cho mục đích sử dụng chung.
         custom_css: Bạn có thể tùy chỉnh phong cách trên bản web của Mastodon.
         favicon: WEBP, PNG, GIF hoặc JPG. Dùng favicon Maston tùy chỉnh.
+        landing_page: Chọn trang mà khách truy cập mới sẽ thấy khi họ lần đầu truy cập máy chủ của bạn. Nếu bạn chọn "Xu hướng", thì cần bật xu hướng trong Cài đặt Khám phá. Nếu bạn chọn "Bảng tin máy chủ", thì cần đặt "Truy cập vào nguồn cấp dữ liệu trực tiếp có bài đăng cục bộ" thành "Mọi người" trong Cài đặt Khám phá.
         mascot: Ghi đè hình minh họa trong giao diện web nâng cao.
         media_cache_retention_period: Các tệp phương tiện từ các tút do người dùng máy chủ khác thực hiện sẽ được lưu vào bộ đệm trên máy chủ của bạn. Khi được đặt thành giá trị dương, phương tiện sẽ bị xóa sau số ngày được chỉ định. Nếu dữ liệu phương tiện được yêu cầu sau khi bị xóa, dữ liệu đó sẽ được tải xuống lại nếu nội dung nguồn vẫn còn. Do những hạn chế về tần suất thẻ xem trước liên kết thăm dò ý kiến ​​các trang web của bên thứ ba, bạn nên đặt giá trị này thành ít nhất 14 ngày, nếu không thẻ xem trước liên kết sẽ không được cập nhật theo yêu cầu trước thời gian đó.
         min_age: Thành viên sẽ được yêu cầu xác nhận ngày sinh của họ trong quá trình đăng ký
@@ -103,10 +109,8 @@ vi:
         status_page_url: URL của trang nơi mọi người có thể xem trạng thái của máy chủ này khi ngừng hoạt động
         theme: Chủ đề mà khách truy cập đăng xuất và người mới nhìn thấy.
         thumbnail: 'Một hình ảnh tỉ lệ 2: 1 được hiển thị cùng với thông tin máy chủ của bạn.'
-        timeline_preview: Khách truy cập đã đăng xuất sẽ có thể xem các tút công khai gần đây nhất trên máy chủ.
         trendable_by_default: Bỏ qua việc duyệt thủ công nội dung xu hướng. Các mục riêng lẻ vẫn có thể bị xóa khỏi xu hướng sau này.
         trends: Hiển thị những tút, hashtag và tin tức đang được thảo luận nhiều trên máy chủ của bạn.
-        trends_as_landing_page: Hiển thị nội dung xu hướng cho người dùng chưa đăng nhập thay vì mô tả về máy chủ này. Yêu cầu xu hướng được kích hoạt.
       form_challenge:
         current_password: Biểu mẫu này an toàn
       imports:
@@ -158,6 +162,10 @@ vi:
         name: Tên công khai của vai trò, nếu vai trò được đặt để hiển thị dưới dạng huy hiệu
         permissions_as_keys: Người có vai trò này sẽ có quyền truy cập vào...
         position: Vai trò cao hơn sẽ có quyền quyết định xung đột trong các tình huống. Các vai trò có mức độ ưu tiên thấp hơn chỉ có thể thực hiện một số hành động nhất định
+      username_block:
+        allow_with_approval: Thay vì cấm đăng ký ngay lập tức, bạn sẽ duyệt phù hợp trước khi đăng ký
+        comparison: Xin hãy lưu ý đến Vấn đề Scunthorpe khi chặn các từ trùng khớp một phần
+        username: Sẽ được khớp bất kể chữ hoa và chữ tượng hình phổ biến như "4" cho "a" hoặc "3" cho "e"
       webhook:
         events: Chọn sự kiện để gửi
         template: Soạn JSON payload của riêng bạn bằng phép nội suy biến. Để trống để dùng JSON mặc định.
@@ -228,21 +236,23 @@ vi:
         setting_aggregate_reblogs: Không hiện lượt đăng lại trùng lặp
         setting_always_send_emails: Luôn gửi email thông báo
         setting_auto_play_gif: Tự động phát ảnh GIF
-        setting_boost_modal: Hỏi trước khi đăng lại tút
+        setting_boost_modal: Kiểm soát khả năng đăng lại
         setting_default_language: Ngôn ngữ tút
         setting_default_privacy: Kiểu tút
         setting_default_quote_policy: Ai có thể trích dẫn
         setting_default_sensitive: Đánh dấu media nhạy cảm
-        setting_delete_modal: Hỏi trước khi xóa tút
+        setting_delete_modal: Cảnh báo tôi trước khi xóa một tút
         setting_disable_hover_cards: Không popup hồ sơ
         setting_disable_swiping: Không thao tác vuốt
         setting_display_media: Media nhạy cảm
         setting_display_media_default: Mặc định
         setting_display_media_hide_all: Ẩn toàn bộ
         setting_display_media_show_all: Hiện toàn bộ
+        setting_emoji_style: Phong cách Emoji
         setting_expand_spoilers: Luôn mở rộng tút chứa nội dung ẩn
         setting_hide_network: Ẩn quan hệ của bạn
-        setting_missing_alt_text_modal: Hỏi trước khi đăng media không có văn bản thay thế
+        setting_missing_alt_text_modal: Cảnh báo tôi trước khi đăng media mà không có alt text
+        setting_quick_boosting: Bật đăng lại nhanh
         setting_reduce_motion: Giảm chuyển động ảnh GIF
         setting_system_font_ui: Phông chữ mặc định hệ thống
         setting_system_scrollbars_ui: Thanh cuộn mặc định hệ thống
@@ -276,12 +286,17 @@ vi:
         content_cache_retention_period: Khoảng thời gian lưu giữ nội dung máy chủ khác
         custom_css: Tùy chỉnh CSS
         favicon: Favicon
+        landing_page: Trang mở đầu dành cho khách ghé thăm
+        local_live_feed_access: Truy cập bảng tin gồm những tút của máy chủ
+        local_topic_feed_access: Truy cập hashtag và bảng tin liên kết gồm những tút của máy chủ
         mascot: Tùy chỉnh linh vật (kế thừa)
         media_cache_retention_period: Thời hạn lưu trữ cache media
         min_age: Độ tuổi tối thiểu
         peers_api_enabled: Công khai danh sách các máy chủ được phát hiện trong API
         profile_directory: Cho phép hiện danh bạ thành viên
         registrations_mode: Ai có thể đăng ký
+        remote_live_feed_access: Truy cập bảng tin gồm những tút từ máy chủ khác
+        remote_topic_feed_access: Truy cập hashtag và bảng tin liên kết gồm những tút từ máy chủ khác
         require_invite_text: Yêu cầu lí do đăng ký
         show_domain_blocks: Xem máy chủ chặn
         show_domain_blocks_rationale: Hiện lý do máy chủ bị chặn
@@ -294,10 +309,8 @@ vi:
         status_page_url: URL trang trạng thái
         theme: Chủ đề mặc định
         thumbnail: Hình thu nhỏ của máy chủ
-        timeline_preview: Cho phép truy cập vào dòng thời gian công khai
         trendable_by_default: Cho phép lên xu hướng mà không cần duyệt trước
         trends: Bật xu hướng
-        trends_as_landing_page: Dùng trang xu hướng làm trang chào mừng
       interactions:
         must_be_follower: Những người không theo dõi bạn
         must_be_following: Những người bạn không theo dõi
@@ -322,6 +335,7 @@ vi:
         follow_request: Ai đó yêu cầu theo dõi bạn
         mention: Ai đó nhắc đến bạn
         pending_account: Phê duyệt tài khoản mới
+        quote: Ai đó trích dẫn bạn
         reblog: Ai đó đăng lại tút của bạn
         report: Ai đó gửi báo cáo
         software_updates:
@@ -368,6 +382,10 @@ vi:
         name: Tên
         permissions_as_keys: Quyền
         position: Mức độ ưu tiên
+      username_block:
+        allow_with_approval: Cho đăng ký nhưng duyệt thủ công
+        comparison: Phương pháp so sánh
+        username: Khớp từ
       webhook:
         events: Những sự kiện đã bật
         template: Mẫu payload

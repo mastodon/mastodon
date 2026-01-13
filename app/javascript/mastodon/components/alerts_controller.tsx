@@ -3,15 +3,15 @@ import { useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import type { IntlShape } from 'react-intl';
 
-import classNames from 'classnames';
-
 import { dismissAlert } from 'mastodon/actions/alerts';
 import type {
-  Alert,
+  Alert as AlertType,
   TranslatableString,
   TranslatableValues,
 } from 'mastodon/models/alert';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
+
+import { Alert } from './alert';
 
 const formatIfNeeded = (
   intl: IntlShape,
@@ -25,8 +25,8 @@ const formatIfNeeded = (
   return message;
 };
 
-const Alert: React.FC<{
-  alert: Alert;
+const TimedAlert: React.FC<{
+  alert: AlertType;
   dismissAfter: number;
 }> = ({
   alert: { key, title, message, values, action, onClick },
@@ -62,29 +62,13 @@ const Alert: React.FC<{
   }, [dispatch, setActive, key, dismissAfter]);
 
   return (
-    <div
-      className={classNames('notification-bar', {
-        'notification-bar-active': active,
-      })}
-    >
-      <div className='notification-bar-wrapper'>
-        {title && (
-          <span className='notification-bar-title'>
-            {formatIfNeeded(intl, title, values)}
-          </span>
-        )}
-
-        <span className='notification-bar-message'>
-          {formatIfNeeded(intl, message, values)}
-        </span>
-
-        {action && (
-          <button className='notification-bar-action' onClick={onClick}>
-            {formatIfNeeded(intl, action, values)}
-          </button>
-        )}
-      </div>
-    </div>
+    <Alert
+      isActive={active}
+      title={title ? formatIfNeeded(intl, title, values) : undefined}
+      message={formatIfNeeded(intl, message, values)}
+      action={action ? formatIfNeeded(intl, action, values) : undefined}
+      onActionClick={onClick}
+    />
   );
 };
 
@@ -98,7 +82,11 @@ export const AlertsController: React.FC = () => {
   return (
     <div className='notification-list'>
       {alerts.map((alert, idx) => (
-        <Alert key={alert.key} alert={alert} dismissAfter={5000 + idx * 1000} />
+        <TimedAlert
+          key={alert.key}
+          alert={alert}
+          dismissAfter={5000 + idx * 1000}
+        />
       ))}
     </div>
   );
