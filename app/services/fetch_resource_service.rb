@@ -67,6 +67,8 @@ class FetchResourceService < BaseService
   end
 
   def process_html(response)
+    return unless response.mime_type == 'text/html'
+
     page      = Nokogiri::HTML5(response.body_with_limit)
     json_link = page.xpath('//link[nokogiri:link_rel_include(@rel, "alternate")]', NokogiriHandler).find { |link| ACTIVITY_STREAM_LINK_TYPES.include?(link['type']) }
 
@@ -83,8 +85,6 @@ class FetchResourceService < BaseService
   end
 
   def parse_link_header(response)
-    return unless response.mime_type == 'text/html'
-
     LinkHeader.parse(response['Link'].is_a?(Array) ? response['Link'].first : response['Link'])
   end
 end
