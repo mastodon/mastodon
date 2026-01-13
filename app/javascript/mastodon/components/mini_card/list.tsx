@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { FC, Key, MouseEventHandler, ReactNode } from 'react';
 
+import { FormattedMessage } from 'react-intl';
+
 import classNames from 'classnames';
 
 import { MiniCard } from '.';
@@ -37,7 +39,11 @@ export const MiniCardList: FC<MiniCardListProps> = ({
         className={classNames(classes.more, !showOverflow && classes.hidden)}
         onClick={onOverflowClick}
       >
-        + {hidden} more
+        <FormattedMessage
+          id='minicard.more_items'
+          defaultMessage='+ {hidden} more'
+          values={{ hidden }}
+        />
       </button>
     </div>
   );
