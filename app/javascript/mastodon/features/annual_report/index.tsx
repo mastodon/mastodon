@@ -81,7 +81,7 @@ export const AnnualReport: FC<{ context?: 'modal' | 'standalone' }> = ({
   const topHashtag = report.data.top_hashtags[0];
 
   return (
-    <div className={moduleClassNames(styles.wrapper, 'theme-dark')}>
+    <div className={styles.wrapper} data-color-scheme='dark'>
       <div className={styles.header}>
         <h1>Wrapstodon {report.year}</h1>
         {account && <p>@{account.acct}</p>}
