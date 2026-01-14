@@ -198,7 +198,7 @@ RSpec.describe ActivityPub::TagManager do
 
       it 'returns a string starting with web domain and with the expected path' do
         expect(subject.uri_for(collection))
-          .to eq("#{host_prefix}/ap/users/#{collection.account.id}/featured_collections/#{collection.id}")
+          .to eq("#{host_prefix}/ap/users/#{collection.account.id}/collections/#{collection.id}")
       end
     end
 
