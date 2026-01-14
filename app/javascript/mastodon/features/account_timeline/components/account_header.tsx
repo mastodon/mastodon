@@ -203,18 +203,6 @@ export const AccountHeader: React.FC<{
     return null;
   }
 
-  let lockedIcon: React.ReactNode;
-
-  if (account.locked) {
-    lockedIcon = (
-      <Icon
-        id='lock'
-        icon={LockIcon}
-        aria-label={intl.formatMessage(messages.account_locked)}
-      />
-    );
-  }
-
   const fields = account.fields;
   const isLocal = !account.acct.includes('@');
   const username = account.acct.split('@')[0];
@@ -305,7 +293,13 @@ export const AccountHeader: React.FC<{
                   domain={domain ?? ''}
                   isSelf={me === account.id}
                 />
-                {lockedIcon}
+                {account.locked && (
+                  <Icon
+                    id='lock'
+                    icon={LockIcon}
+                    aria-label={intl.formatMessage(messages.account_locked)}
+                  />
+                )}
               </small>
             </h1>
           </div>
