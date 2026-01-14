@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
+import { useIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
@@ -30,115 +30,6 @@ import { AccountLinks } from './links';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
 import { AccountTabs } from './tabs';
-
-const messages = defineMessages({
-  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
-  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
-  linkVerifiedOn: {
-    id: 'account.link_verified_on',
-    defaultMessage: 'Ownership of this link was checked on {date}',
-  },
-  account_locked: {
-    id: 'account.locked_info',
-    defaultMessage:
-      'This account privacy status is set to locked. The owner manually reviews who can follow them.',
-  },
-  mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
-  direct: { id: 'account.direct', defaultMessage: 'Privately mention @{name}' },
-  unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
-  block: { id: 'account.block', defaultMessage: 'Block @{name}' },
-  mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
-  report: { id: 'account.report', defaultMessage: 'Report @{name}' },
-  share: { id: 'account.share', defaultMessage: "Share @{name}'s profile" },
-  copy: { id: 'account.copy', defaultMessage: 'Copy link to profile' },
-  media: { id: 'account.media', defaultMessage: 'Media' },
-  blockDomain: {
-    id: 'account.block_domain',
-    defaultMessage: 'Block domain {domain}',
-  },
-  unblockDomain: {
-    id: 'account.unblock_domain',
-    defaultMessage: 'Unblock domain {domain}',
-  },
-  hideReblogs: {
-    id: 'account.hide_reblogs',
-    defaultMessage: 'Hide boosts from @{name}',
-  },
-  showReblogs: {
-    id: 'account.show_reblogs',
-    defaultMessage: 'Show boosts from @{name}',
-  },
-  enableNotifications: {
-    id: 'account.enable_notifications',
-    defaultMessage: 'Notify me when @{name} posts',
-  },
-  disableNotifications: {
-    id: 'account.disable_notifications',
-    defaultMessage: 'Stop notifying me when @{name} posts',
-  },
-  preferences: {
-    id: 'navigation_bar.preferences',
-    defaultMessage: 'Preferences',
-  },
-  follow_requests: {
-    id: 'navigation_bar.follow_requests',
-    defaultMessage: 'Follow requests',
-  },
-  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favorites' },
-  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
-  followed_tags: {
-    id: 'navigation_bar.followed_tags',
-    defaultMessage: 'Followed hashtags',
-  },
-  blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
-  domain_blocks: {
-    id: 'navigation_bar.domain_blocks',
-    defaultMessage: 'Blocked domains',
-  },
-  mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
-  endorse: { id: 'account.endorse', defaultMessage: 'Feature on profile' },
-  unendorse: {
-    id: 'account.unendorse',
-    defaultMessage: "Don't feature on profile",
-  },
-  add_or_remove_from_list: {
-    id: 'account.add_or_remove_from_list',
-    defaultMessage: 'Add or Remove from lists',
-  },
-  admin_account: {
-    id: 'status.admin_account',
-    defaultMessage: 'Open moderation interface for @{name}',
-  },
-  admin_domain: {
-    id: 'status.admin_domain',
-    defaultMessage: 'Open moderation interface for {domain}',
-  },
-  languages: {
-    id: 'account.languages',
-    defaultMessage: 'Change subscribed languages',
-  },
-  openOriginalPage: {
-    id: 'account.open_original_page',
-    defaultMessage: 'Open original page',
-  },
-  removeFromFollowers: {
-    id: 'account.remove_from_followers',
-    defaultMessage: 'Remove {name} from followers',
-  },
-  confirmRemoveFromFollowersTitle: {
-    id: 'confirmations.remove_from_followers.title',
-    defaultMessage: 'Remove follower?',
-  },
-  confirmRemoveFromFollowersMessage: {
-    id: 'confirmations.remove_from_followers.message',
-    defaultMessage:
-      '{name} will stop following you. Are you sure you want to proceed?',
-  },
-  confirmRemoveFromFollowersButton: {
-    id: 'confirmations.remove_from_followers.confirm',
-    defaultMessage: 'Remove follower',
-  },
-});
 
 const titleFromAccount = (account: Account) => {
   const displayName = account.display_name;
@@ -266,7 +157,11 @@ export const AccountHeader: React.FC<{
                   <Icon
                     id='lock'
                     icon={LockIcon}
-                    aria-label={intl.formatMessage(messages.account_locked)}
+                    aria-label={intl.formatMessage({
+                      id: 'account.locked_info',
+                      defaultMessage:
+                        'This account privacy status is set to locked. The owner manually reviews who can follow them.',
+                    })}
                   />
                 )}
               </small>
