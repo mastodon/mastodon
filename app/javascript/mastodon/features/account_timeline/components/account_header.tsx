@@ -11,23 +11,16 @@ import { AccountFields } from '@/mastodon/components/account_fields';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
-import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
-import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
-import ShareIcon from '@/material-icons/400-24px/share.svg?react';
-import { followAccount } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'mastodon/components/badge';
-import { CopyIconButton } from 'mastodon/components/copy_icon_button';
 import {
   FollowersCounter,
   FollowingCounter,
   StatusesCounter,
 } from 'mastodon/components/counters';
-import { FollowButton } from 'mastodon/components/follow_button';
 import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import { Icon } from 'mastodon/components/icon';
-import { IconButton } from 'mastodon/components/icon_button';
 import { ShortNumber } from 'mastodon/components/short_number';
 import { AccountNote } from 'mastodon/features/account/components/account_note';
 import { DomainPill } from 'mastodon/features/account/components/domain_pill';
@@ -38,10 +31,10 @@ import type { Account } from 'mastodon/models/account';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
+import { AccountButtons } from './buttons';
 import { FamiliarFollowers } from './familiar_followers';
 import { AccountInfo } from './info';
 import { MemorialNote } from './memorial_note';
-import { AccountMenu } from './menu';
 import { MovedNote } from './moved_note';
 import { AccountTabs } from './tabs';
 
@@ -179,18 +172,6 @@ export const AccountHeader: React.FC<{
   );
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
 
-  const handleNotifyToggle = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.notifying) {
-      dispatch(followAccount(account.id, { notify: false }));
-    } else {
-      dispatch(followAccount(account.id, { notify: true }));
-    }
-  }, [dispatch, account, relationship]);
-
   const handleOpenAvatar = useCallback(
     (e: React.MouseEvent) => {
       if (e.button !== 0 || e.ctrlKey || e.metaKey) {
@@ -216,81 +197,13 @@ export const AccountHeader: React.FC<{
     [dispatch, account],
   );
 
-  const handleShare = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    void navigator.share({
-      url: account.url,
-    });
-  }, [account]);
-
   const suspended = account?.suspended;
-
-  const menu = accountId !== me && <AccountMenu accountId={accountId} />;
 
   if (!account) {
     return null;
   }
 
-  let actionBtn: React.ReactNode,
-    bellBtn: React.ReactNode,
-    lockedIcon: React.ReactNode,
-    shareBtn: React.ReactNode;
-
-  if (relationship?.requested || relationship?.following) {
-    bellBtn = (
-      <IconButton
-        icon={relationship.notifying ? 'bell' : 'bell-o'}
-        iconComponent={
-          relationship.notifying ? NotificationsActiveIcon : NotificationsIcon
-        }
-        active={relationship.notifying}
-        title={intl.formatMessage(
-          relationship.notifying
-            ? messages.disableNotifications
-            : messages.enableNotifications,
-          { name: account.username },
-        )}
-        onClick={handleNotifyToggle}
-      />
-    );
-  }
-
-  if ('share' in navigator) {
-    shareBtn = (
-      <IconButton
-        className='optional'
-        icon=''
-        iconComponent={ShareIcon}
-        title={intl.formatMessage(messages.share, {
-          name: account.username,
-        })}
-        onClick={handleShare}
-      />
-    );
-  } else {
-    shareBtn = (
-      <CopyIconButton
-        className='optional'
-        title={intl.formatMessage(messages.copy)}
-        value={account.url}
-      />
-    );
-  }
-
-  const isMovedAndUnfollowedAccount = account.moved && !relationship?.following;
-
-  if (!isMovedAndUnfollowedAccount) {
-    actionBtn = (
-      <FollowButton
-        accountId={accountId}
-        className='account__header__follow-button'
-        labelLength='long'
-      />
-    );
-  }
+  let lockedIcon: React.ReactNode;
 
   if (account.locked) {
     lockedIcon = (
@@ -373,12 +286,10 @@ export const AccountHeader: React.FC<{
               />
             </a>
 
-            <div className='account__header__buttons account__header__buttons--desktop'>
-              {!hidden && actionBtn}
-              {!hidden && bellBtn}
-              {!hidden && shareBtn}
-              {menu}
-            </div>
+            <AccountButtons
+              accountId={accountId}
+              className='account__header__buttons--desktop'
+            />
           </div>
 
           <div className='account__header__tabs__name'>
@@ -407,11 +318,11 @@ export const AccountHeader: React.FC<{
             <FamiliarFollowers accountId={accountId} />
           )}
 
-          <div className='account__header__buttons account__header__buttons--mobile'>
-            {!hidden && actionBtn}
-            {!hidden && bellBtn}
-            {menu}
-          </div>
+          <AccountButtons
+            className='account__header__buttons--mobile'
+            accountId={accountId}
+            noShare
+          />
 
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
