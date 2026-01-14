@@ -60,14 +60,23 @@ function useOverflow() {
     const listEle = listRef.current;
     if (!listEle) return;
 
+    const reset = () => {
+      for (const child of listEle.children) {
+        if (child instanceof HTMLElement) {
+          child.ariaHidden = 'false';
+        }
+      }
+      listEle.style.removeProperty('max-width');
+      setHidden(0);
+    };
+
     // Calculate the width via the parent element, minus the more button, minus the padding.
     const maxWidth =
       (listEle.parentElement?.offsetWidth ?? 0) -
       (listEle.nextElementSibling?.scrollWidth ?? 0) -
       4;
     if (maxWidth <= 0) {
-      listEle.style.removeProperty('max-width');
-      setHidden(0);
+      reset();
       return;
     }
 
@@ -78,18 +87,18 @@ function useOverflow() {
       if (child instanceof HTMLElement) {
         const rightOffset = child.offsetLeft + child.offsetWidth;
         if (rightOffset <= maxWidth) {
+          child.ariaHidden = 'false';
           visible += 1;
           totalWidth = rightOffset;
         } else {
-          break;
+          child.ariaHidden = 'true';
         }
       }
     }
 
     // All are visible, so remove max-width restriction.
     if (visible === listEle.children.length) {
-      listEle.style.removeProperty('max-width');
-      setHidden(0);
+      reset();
       return;
     }
 
