@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
@@ -11,27 +11,11 @@ import { AccountFields } from '@/mastodon/components/account_fields';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
-import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react';
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
-import {
-  followAccount,
-  unblockAccount,
-  unmuteAccount,
-  pinAccount,
-  unpinAccount,
-  removeAccountFromFollowers,
-} from 'mastodon/actions/accounts';
-import { initBlockModal } from 'mastodon/actions/blocks';
-import { mentionCompose, directCompose } from 'mastodon/actions/compose';
-import {
-  initDomainBlockModal,
-  unblockDomain,
-} from 'mastodon/actions/domain_blocks';
+import { followAccount } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
-import { initMuteModal } from 'mastodon/actions/mutes';
-import { initReport } from 'mastodon/actions/reports';
 import { Avatar } from 'mastodon/components/avatar';
 import { Badge, AutomatedBadge, GroupBadge } from 'mastodon/components/badge';
 import { CopyIconButton } from 'mastodon/components/copy_icon_button';
@@ -40,7 +24,6 @@ import {
   FollowingCounter,
   StatusesCounter,
 } from 'mastodon/components/counters';
-import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { FollowButton } from 'mastodon/components/follow_button';
 import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import { Icon } from 'mastodon/components/icon';
@@ -52,17 +35,14 @@ import FollowRequestNoteContainer from 'mastodon/features/account/containers/fol
 import { useIdentity } from 'mastodon/identity_context';
 import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
-import type { MenuItem } from 'mastodon/models/dropdown_menu';
-import {
-  PERMISSION_MANAGE_USERS,
-  PERMISSION_MANAGE_FEDERATION,
-} from 'mastodon/permissions';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { FamiliarFollowers } from './familiar_followers';
 import { MemorialNote } from './memorial_note';
+import { AccountMenu } from './menu';
 import { MovedNote } from './moved_note';
+import { AccountTabs } from './tabs';
 
 const messages = defineMessages({
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
@@ -191,60 +171,12 @@ export const AccountHeader: React.FC<{
 }> = ({ accountId, hideTabs }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
-  const { signedIn, permissions } = useIdentity();
+  const { signedIn } = useIdentity();
   const account = useAppSelector((state) => state.accounts.get(accountId));
   const relationship = useAppSelector((state) =>
     state.relationships.get(accountId),
   );
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
-
-  const handleBlock = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.blocking) {
-      dispatch(unblockAccount(account.id));
-    } else {
-      dispatch(initBlockModal(account));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleMention = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(mentionCompose(account));
-  }, [dispatch, account]);
-
-  const handleDirect = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(directCompose(account));
-  }, [dispatch, account]);
-
-  const handleReport = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(initReport(account));
-  }, [dispatch, account]);
-
-  const handleReblogToggle = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.showing_reblogs) {
-      dispatch(followAccount(account.id, { reblogs: false }));
-    } else {
-      dispatch(followAccount(account.id, { reblogs: true }));
-    }
-  }, [dispatch, account, relationship]);
 
   const handleNotifyToggle = useCallback(() => {
     if (!account) {
@@ -257,82 +189,6 @@ export const AccountHeader: React.FC<{
       dispatch(followAccount(account.id, { notify: true }));
     }
   }, [dispatch, account, relationship]);
-
-  const handleMute = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.muting) {
-      dispatch(unmuteAccount(account.id));
-    } else {
-      dispatch(initMuteModal(account));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleBlockDomain = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(initDomainBlockModal(account));
-  }, [dispatch, account]);
-
-  const handleUnblockDomain = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    const domain = account.acct.split('@')[1];
-
-    if (!domain) {
-      return;
-    }
-
-    dispatch(unblockDomain(domain));
-  }, [dispatch, account]);
-
-  const handleEndorseToggle = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    if (relationship?.endorsed) {
-      dispatch(unpinAccount(account.id));
-    } else {
-      dispatch(pinAccount(account.id));
-    }
-  }, [dispatch, account, relationship]);
-
-  const handleAddToList = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(
-      openModal({
-        modalType: 'LIST_ADDER',
-        modalProps: {
-          accountId: account.id,
-        },
-      }),
-    );
-  }, [dispatch, account]);
-
-  const handleChangeLanguages = useCallback(() => {
-    if (!account) {
-      return;
-    }
-
-    dispatch(
-      openModal({
-        modalType: 'SUBSCRIBED_LANGUAGES',
-        modalProps: {
-          accountId: account.id,
-        },
-      }),
-    );
-  }, [dispatch, account]);
 
   const handleOpenAvatar = useCallback(
     (e: React.MouseEvent) => {
@@ -370,239 +226,8 @@ export const AccountHeader: React.FC<{
   }, [account]);
 
   const suspended = account?.suspended;
-  const isRemote = account?.acct !== account?.username;
-  const remoteDomain = isRemote ? account?.acct.split('@')[1] : null;
 
-  const menuItems = useMemo(() => {
-    const arr: MenuItem[] = [];
-
-    if (!account) {
-      return arr;
-    }
-
-    if (signedIn && !account.suspended) {
-      arr.push({
-        text: intl.formatMessage(messages.mention, {
-          name: account.username,
-        }),
-        action: handleMention,
-      });
-      arr.push({
-        text: intl.formatMessage(messages.direct, {
-          name: account.username,
-        }),
-        action: handleDirect,
-      });
-      arr.push(null);
-    }
-
-    if (isRemote) {
-      arr.push({
-        text: intl.formatMessage(messages.openOriginalPage),
-        href: account.url,
-      });
-      arr.push(null);
-    }
-
-    if (signedIn) {
-      if (relationship?.following) {
-        if (!relationship.muting) {
-          if (relationship.showing_reblogs) {
-            arr.push({
-              text: intl.formatMessage(messages.hideReblogs, {
-                name: account.username,
-              }),
-              action: handleReblogToggle,
-            });
-          } else {
-            arr.push({
-              text: intl.formatMessage(messages.showReblogs, {
-                name: account.username,
-              }),
-              action: handleReblogToggle,
-            });
-          }
-
-          arr.push({
-            text: intl.formatMessage(messages.languages),
-            action: handleChangeLanguages,
-          });
-          arr.push(null);
-        }
-
-        arr.push({
-          text: intl.formatMessage(
-            relationship.endorsed ? messages.unendorse : messages.endorse,
-          ),
-          action: handleEndorseToggle,
-        });
-        arr.push({
-          text: intl.formatMessage(messages.add_or_remove_from_list),
-          action: handleAddToList,
-        });
-        arr.push(null);
-      }
-
-      if (relationship?.followed_by) {
-        const handleRemoveFromFollowers = () => {
-          dispatch(
-            openModal({
-              modalType: 'CONFIRM',
-              modalProps: {
-                title: intl.formatMessage(
-                  messages.confirmRemoveFromFollowersTitle,
-                ),
-                message: intl.formatMessage(
-                  messages.confirmRemoveFromFollowersMessage,
-                  { name: <strong>{account.acct}</strong> },
-                ),
-                confirm: intl.formatMessage(
-                  messages.confirmRemoveFromFollowersButton,
-                ),
-                onConfirm: () => {
-                  void dispatch(removeAccountFromFollowers({ accountId }));
-                },
-              },
-            }),
-          );
-        };
-
-        arr.push({
-          text: intl.formatMessage(messages.removeFromFollowers, {
-            name: account.username,
-          }),
-          action: handleRemoveFromFollowers,
-          dangerous: true,
-        });
-      }
-
-      if (relationship?.muting) {
-        arr.push({
-          text: intl.formatMessage(messages.unmute, {
-            name: account.username,
-          }),
-          action: handleMute,
-        });
-      } else {
-        arr.push({
-          text: intl.formatMessage(messages.mute, {
-            name: account.username,
-          }),
-          action: handleMute,
-          dangerous: true,
-        });
-      }
-
-      if (relationship?.blocking) {
-        arr.push({
-          text: intl.formatMessage(messages.unblock, {
-            name: account.username,
-          }),
-          action: handleBlock,
-        });
-      } else {
-        arr.push({
-          text: intl.formatMessage(messages.block, {
-            name: account.username,
-          }),
-          action: handleBlock,
-          dangerous: true,
-        });
-      }
-
-      if (!account.suspended) {
-        arr.push({
-          text: intl.formatMessage(messages.report, {
-            name: account.username,
-          }),
-          action: handleReport,
-          dangerous: true,
-        });
-      }
-    }
-
-    if (signedIn && isRemote) {
-      arr.push(null);
-
-      if (relationship?.domain_blocking) {
-        arr.push({
-          text: intl.formatMessage(messages.unblockDomain, {
-            domain: remoteDomain,
-          }),
-          action: handleUnblockDomain,
-        });
-      } else {
-        arr.push({
-          text: intl.formatMessage(messages.blockDomain, {
-            domain: remoteDomain,
-          }),
-          action: handleBlockDomain,
-          dangerous: true,
-        });
-      }
-    }
-
-    if (
-      (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS ||
-      (isRemote &&
-        (permissions & PERMISSION_MANAGE_FEDERATION) ===
-          PERMISSION_MANAGE_FEDERATION)
-    ) {
-      arr.push(null);
-      if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
-        arr.push({
-          text: intl.formatMessage(messages.admin_account, {
-            name: account.username,
-          }),
-          href: `/admin/accounts/${account.id}`,
-        });
-      }
-      if (
-        isRemote &&
-        (permissions & PERMISSION_MANAGE_FEDERATION) ===
-          PERMISSION_MANAGE_FEDERATION
-      ) {
-        arr.push({
-          text: intl.formatMessage(messages.admin_domain, {
-            domain: remoteDomain,
-          }),
-          href: `/admin/instances/${remoteDomain}`,
-        });
-      }
-    }
-
-    return arr;
-  }, [
-    dispatch,
-    accountId,
-    account,
-    relationship,
-    permissions,
-    isRemote,
-    remoteDomain,
-    intl,
-    signedIn,
-    handleAddToList,
-    handleBlock,
-    handleBlockDomain,
-    handleChangeLanguages,
-    handleDirect,
-    handleEndorseToggle,
-    handleMention,
-    handleMute,
-    handleReblogToggle,
-    handleReport,
-    handleUnblockDomain,
-  ]);
-
-  const menu = accountId !== me && (
-    <Dropdown
-      disabled={menuItems.length === 0}
-      items={menuItems}
-      icon='ellipsis-v'
-      iconComponent={MoreHorizIcon}
-    />
-  );
+  const menu = accountId !== me && <AccountMenu accountId={accountId} />;
 
   if (!account) {
     return null;
@@ -920,25 +545,7 @@ export const AccountHeader: React.FC<{
         </div>
       </AnimateEmojiProvider>
 
-      {!(hideTabs || hidden) && (
-        <div className='account__section-headline'>
-          <NavLink exact to={`/@${account.acct}/featured`}>
-            <FormattedMessage id='account.featured' defaultMessage='Featured' />
-          </NavLink>
-          <NavLink exact to={`/@${account.acct}`}>
-            <FormattedMessage id='account.posts' defaultMessage='Posts' />
-          </NavLink>
-          <NavLink exact to={`/@${account.acct}/with_replies`}>
-            <FormattedMessage
-              id='account.posts_with_replies'
-              defaultMessage='Posts and replies'
-            />
-          </NavLink>
-          <NavLink exact to={`/@${account.acct}/media`}>
-            <FormattedMessage id='account.media' defaultMessage='Media' />
-          </NavLink>
-        </div>
-      )}
+      {!hideTabs && !hidden && <AccountTabs acct={account.acct} />}
 
       <Helmet>
         <title>{titleFromAccount(account)}</title>
