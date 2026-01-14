@@ -13,7 +13,6 @@ import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
-import { Badge, AutomatedBadge, GroupBadge } from 'mastodon/components/badge';
 import {
   FollowersCounter,
   FollowingCounter,
@@ -31,6 +30,7 @@ import type { Account } from 'mastodon/models/account';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
+import { AccountBadges } from './badges';
 import { AccountButtons } from './buttons';
 import { FamiliarFollowers } from './familiar_followers';
 import { AccountInfo } from './info';
@@ -209,25 +209,6 @@ export const AccountHeader: React.FC<{
   const domain = isLocal ? localDomain : account.acct.split('@')[1];
   const isIndexable = !account.noindex;
 
-  const badges = [];
-
-  if (account.bot) {
-    badges.push(<AutomatedBadge key='bot-badge' />);
-  } else if (account.group) {
-    badges.push(<GroupBadge key='group-badge' />);
-  }
-
-  account.roles.forEach((role) => {
-    badges.push(
-      <Badge
-        key={`role-badge-${role.get('id')}`}
-        label={<span>{role.get('name')}</span>}
-        domain={domain}
-        roleId={role.get('id')}
-      />,
-    );
-  });
-
   return (
     <div className='account-timeline__header'>
       {!hidden && account.memorial && <MemorialNote />}
@@ -304,9 +285,7 @@ export const AccountHeader: React.FC<{
             </h1>
           </div>
 
-          {badges.length > 0 && (
-            <div className='account__header__badges'>{badges}</div>
-          )}
+          <AccountBadges accountId={accountId} />
 
           {account.id !== me && signedIn && !(suspended || hidden) && (
             <FamiliarFollowers accountId={accountId} />
