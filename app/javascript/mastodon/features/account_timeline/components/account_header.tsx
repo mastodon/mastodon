@@ -39,6 +39,7 @@ import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { FamiliarFollowers } from './familiar_followers';
+import { AccountInfo } from './info';
 import { MemorialNote } from './memorial_note';
 import { AccountMenu } from './menu';
 import { MovedNote } from './moved_note';
@@ -238,69 +239,6 @@ export const AccountHeader: React.FC<{
     lockedIcon: React.ReactNode,
     shareBtn: React.ReactNode;
 
-  const info: React.ReactNode[] = [];
-
-  if (me !== account.id && relationship) {
-    if (
-      relationship.followed_by &&
-      (relationship.following || relationship.requested)
-    ) {
-      info.push(
-        <span key='mutual' className='relationship-tag'>
-          <FormattedMessage
-            id='account.mutual'
-            defaultMessage='You follow each other'
-          />
-        </span>,
-      );
-    } else if (relationship.followed_by) {
-      info.push(
-        <span key='followed_by' className='relationship-tag'>
-          <FormattedMessage
-            id='account.follows_you'
-            defaultMessage='Follows you'
-          />
-        </span>,
-      );
-    } else if (relationship.requested_by) {
-      info.push(
-        <span key='requested_by' className='relationship-tag'>
-          <FormattedMessage
-            id='account.requests_to_follow_you'
-            defaultMessage='Requests to follow you'
-          />
-        </span>,
-      );
-    }
-
-    if (relationship.blocking) {
-      info.push(
-        <span key='blocking' className='relationship-tag'>
-          <FormattedMessage id='account.blocking' defaultMessage='Blocking' />
-        </span>,
-      );
-    }
-
-    if (relationship.muting) {
-      info.push(
-        <span key='muting' className='relationship-tag'>
-          <FormattedMessage id='account.muting' defaultMessage='Muting' />
-        </span>,
-      );
-    }
-
-    if (relationship.domain_blocking) {
-      info.push(
-        <span key='domain_blocking' className='relationship-tag'>
-          <FormattedMessage
-            id='account.domain_blocking'
-            defaultMessage='Blocking domain'
-          />
-        </span>,
-      );
-    }
-  }
-
   if (relationship?.requested || relationship?.following) {
     bellBtn = (
       <IconButton
@@ -407,7 +345,9 @@ export const AccountHeader: React.FC<{
           )}
 
         <div className='account__header__image'>
-          <div className='account__header__info'>{info}</div>
+          {me !== account.id && relationship && (
+            <AccountInfo relationship={relationship} />
+          )}
 
           {!(suspended || hidden) && (
             <img
