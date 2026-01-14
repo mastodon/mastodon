@@ -4,7 +4,6 @@ import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
-import { NavLink } from 'react-router-dom';
 
 import { AccountBio } from '@/mastodon/components/account_bio';
 import { AccountFields } from '@/mastodon/components/account_fields';
@@ -13,18 +12,11 @@ import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
-import {
-  FollowersCounter,
-  FollowingCounter,
-  StatusesCounter,
-} from 'mastodon/components/counters';
 import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import { Icon } from 'mastodon/components/icon';
-import { ShortNumber } from 'mastodon/components/short_number';
 import { AccountNote } from 'mastodon/features/account/components/account_note';
 import { DomainPill } from 'mastodon/features/account/components/domain_pill';
 import FollowRequestNoteContainer from 'mastodon/features/account/containers/follow_request_note_container';
-import { useIdentity } from 'mastodon/identity_context';
 import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
@@ -34,6 +26,7 @@ import { AccountBadges } from './badges';
 import { AccountButtons } from './buttons';
 import { FamiliarFollowers } from './familiar_followers';
 import { AccountInfo } from './info';
+import { AccountLinks } from './links';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
 import { AccountTabs } from './tabs';
@@ -165,7 +158,6 @@ export const AccountHeader: React.FC<{
 }> = ({ accountId, hideTabs }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
-  const { signedIn } = useIdentity();
   const account = useAppSelector((state) => state.accounts.get(accountId));
   const relationship = useAppSelector((state) =>
     state.relationships.get(accountId),
@@ -197,17 +189,14 @@ export const AccountHeader: React.FC<{
     [dispatch, account],
   );
 
-  const suspended = account?.suspended;
-
   if (!account) {
     return null;
   }
 
-  const fields = account.fields;
+  const suspendedOrHidden = hidden || account.suspended;
   const isLocal = !account.acct.includes('@');
   const username = account.acct.split('@')[0];
   const domain = isLocal ? localDomain : account.acct.split('@')[1];
-  const isIndexable = !account.noindex;
 
   return (
     <div className='account-timeline__header'>
@@ -221,17 +210,16 @@ export const AccountHeader: React.FC<{
           inactive: !!account.moved,
         })}
       >
-        {!(suspended || hidden || account.moved) &&
-          relationship?.requested_by && (
-            <FollowRequestNoteContainer account={account} />
-          )}
+        {!suspendedOrHidden && !account.moved && relationship?.requested_by && (
+          <FollowRequestNoteContainer account={account} />
+        )}
 
         <div className='account__header__image'>
           {me !== account.id && relationship && (
             <AccountInfo relationship={relationship} />
           )}
 
-          {!(suspended || hidden) && (
+          {!suspendedOrHidden && (
             <img
               src={autoPlayGif ? account.header : account.header_static}
               alt=''
@@ -250,7 +238,7 @@ export const AccountHeader: React.FC<{
               onClick={handleOpenAvatar}
             >
               <Avatar
-                account={suspended || hidden ? undefined : account}
+                account={suspendedOrHidden ? undefined : account}
                 size={92}
               />
             </a>
@@ -287,7 +275,7 @@ export const AccountHeader: React.FC<{
 
           <AccountBadges accountId={accountId} />
 
-          {account.id !== me && signedIn && !(suspended || hidden) && (
+          {me && account.id !== me && !suspendedOrHidden && (
             <FamiliarFollowers accountId={accountId} />
           )}
 
@@ -297,10 +285,10 @@ export const AccountHeader: React.FC<{
             noShare
           />
 
-          {!(suspended || hidden) && (
+          {!suspendedOrHidden && (
             <div className='account__header__extra'>
               <div className='account__header__bio'>
-                {account.id !== me && signedIn && (
+                {me && account.id !== me && (
                   <AccountNote accountId={accountId} />
                 )}
 
@@ -327,43 +315,14 @@ export const AccountHeader: React.FC<{
                     </dd>
                   </dl>
 
-                  <AccountFields fields={fields} emojis={account.emojis} />
+                  <AccountFields
+                    fields={account.fields}
+                    emojis={account.emojis}
+                  />
                 </div>
               </div>
 
-              <div className='account__header__extra__links'>
-                <NavLink
-                  to={`/@${account.acct}`}
-                  title={intl.formatNumber(account.statuses_count)}
-                >
-                  <ShortNumber
-                    value={account.statuses_count}
-                    renderer={StatusesCounter}
-                  />
-                </NavLink>
-
-                <NavLink
-                  exact
-                  to={`/@${account.acct}/following`}
-                  title={intl.formatNumber(account.following_count)}
-                >
-                  <ShortNumber
-                    value={account.following_count}
-                    renderer={FollowingCounter}
-                  />
-                </NavLink>
-
-                <NavLink
-                  exact
-                  to={`/@${account.acct}/followers`}
-                  title={intl.formatNumber(account.followers_count)}
-                >
-                  <ShortNumber
-                    value={account.followers_count}
-                    renderer={FollowersCounter}
-                  />
-                </NavLink>
-              </div>
+              <AccountLinks accountId={accountId} />
             </div>
           )}
         </div>
@@ -375,7 +334,7 @@ export const AccountHeader: React.FC<{
         <title>{titleFromAccount(account)}</title>
         <meta
           name='robots'
-          content={isLocal && isIndexable ? 'all' : 'noindex'}
+          content={isLocal && !account.noindex ? 'all' : 'noindex'}
         />
         <link rel='canonical' href={account.url} />
       </Helmet>
