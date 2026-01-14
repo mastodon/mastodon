@@ -43,7 +43,6 @@ gem 'omniauth_openid_connect', '~> 0.8.0'
 gem 'omniauth-rails_csrf_protection', '~> 2.0'
 gem 'omniauth-saml', '~> 2.0'
 
-gem 'benchmark' # TODO, remove when httplog gemspec adds this
 gem 'color_diff', '~> 0.1'
 gem 'csv', '~> 3.2'
 gem 'discard', '~> 1.2'
