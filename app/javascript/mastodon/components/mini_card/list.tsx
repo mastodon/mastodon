@@ -147,43 +147,59 @@ function useOverflow() {
     return observer;
   }, [handleChildrenChange]);
 
-  // Disconnect on unmount.
-  useEffect(() => {
-    const resizeObserverCleanup = resizeObserver();
-    const mutationObserverCleanup = mutationObserver();
-
-    return () => {
-      resizeObserverCleanup.disconnect();
-      mutationObserverCleanup.disconnect();
-    };
-  }, [mutationObserver, resizeObserver]);
+  // Set up observers.
+  const handleObserve = useCallback(() => {
+    if (wrapperRef.current) {
+      resizeObserver().observe(wrapperRef.current);
+    }
+    if (listRef.current) {
+      mutationObserver().observe(listRef.current, { childList: true });
+      handleChildrenChange();
+    }
+  }, [handleChildrenChange, mutationObserver, resizeObserver]);
 
   // Watch the wrapper for size changes, and recalculate when it resizes.
-  const wrapperRef = useCallback(
+  const wrapperRef = useRef<HTMLElement | null>(null);
+  const wrapperRefCallback = useCallback(
     (node: HTMLElement | null) => {
       if (node) {
-        resizeObserver().observe(node);
+        wrapperRef.current = node;
+        handleObserve();
       }
     },
-    [resizeObserver],
+    [handleObserve],
   );
 
   // If there are changes to the children, recalculate which are visible.
   const listRefCallback = useCallback(
     (node: HTMLElement | null) => {
       if (node) {
-        mutationObserver().observe(node, { childList: true });
         listRef.current = node;
-        handleChildrenChange();
+        handleObserve();
       }
     },
-    [handleChildrenChange, mutationObserver],
+    [handleObserve],
   );
+
+  useEffect(() => {
+    handleObserve();
+
+    return () => {
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect();
+        resizeObserverRef.current = null;
+      }
+      if (mutationObserverRef.current) {
+        mutationObserverRef.current.disconnect();
+        mutationObserverRef.current = null;
+      }
+    };
+  }, [handleObserve]);
 
   return {
     hiddenCount,
     hasOverflow: hiddenCount > 0,
-    wrapperRef,
+    wrapperRef: wrapperRefCallback,
     hiddenIndex,
     maxWidth,
     listRef: listRefCallback,
