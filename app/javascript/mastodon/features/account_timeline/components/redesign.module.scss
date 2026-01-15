@@ -1,3 +1,34 @@
+.nameWrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.name {
+  flex-grow: 1;
+
+  h1 {
+    font-size: 22px;
+    white-space: initial;
+    text-overflow: initial;
+    line-height: normal;
+  }
+
+  button {
+    appearance: none;
+    border: none;
+    background: none;
+    padding: 0;
+    text-decoration: underline;
+  }
+
+  :global(.icon-info) {
+    margin-left: 2px;
+    width: 1em;
+    height: 1em;
+    vertical-align: -2px;
+  }
+}
+
 .fieldList {
   margin-top: 16px;
 }

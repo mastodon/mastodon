@@ -1,25 +1,22 @@
 import { useCallback } from 'react';
 
-import { useIntl } from 'react-intl';
-
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
 import { AccountBio } from '@/mastodon/components/account_bio';
-import { DisplayName } from '@/mastodon/components/display_name';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
-import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
-import { Icon } from 'mastodon/components/icon';
 import { AccountNote } from 'mastodon/features/account/components/account_note';
-import { DomainPill } from 'mastodon/features/account/components/domain_pill';
 import FollowRequestNoteContainer from 'mastodon/features/account/containers/follow_request_note_container';
 import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
+import { isRedesignEnabled } from '../common';
+
+import { AccountName } from './account_name';
 import { AccountBadges } from './badges';
 import { AccountButtons } from './buttons';
 import { FamiliarFollowers } from './familiar_followers';
@@ -47,7 +44,6 @@ export const AccountHeader: React.FC<{
   hideTabs?: boolean;
 }> = ({ accountId, hideTabs }) => {
   const dispatch = useAppDispatch();
-  const intl = useIntl();
   const account = useAppSelector((state) => state.accounts.get(accountId));
   const relationship = useAppSelector((state) =>
     state.relationships.get(accountId),
@@ -85,8 +81,6 @@ export const AccountHeader: React.FC<{
 
   const suspendedOrHidden = hidden || account.suspended;
   const isLocal = !account.acct.includes('@');
-  const username = account.acct.split('@')[0];
-  const domain = isLocal ? localDomain : account.acct.split('@')[1];
 
   return (
     <div className='account-timeline__header'>
@@ -133,38 +127,16 @@ export const AccountHeader: React.FC<{
               />
             </a>
 
-            <AccountButtons
-              accountId={accountId}
-              className='account__header__buttons--desktop'
-            />
+            {!isRedesignEnabled() && (
+              <AccountButtons
+                accountId={accountId}
+                className='account__header__buttons--desktop'
+              />
+            )}
           </div>
 
           <div className='account__header__tabs__name'>
-            <h1>
-              <DisplayName account={account} variant='simple' />
-              <small>
-                <span>
-                  @{username}
-                  <span className='invisible'>@{domain}</span>
-                </span>
-                <DomainPill
-                  username={username ?? ''}
-                  domain={domain ?? ''}
-                  isSelf={me === account.id}
-                />
-                {account.locked && (
-                  <Icon
-                    id='lock'
-                    icon={LockIcon}
-                    aria-label={intl.formatMessage({
-                      id: 'account.locked_info',
-                      defaultMessage:
-                        'This account privacy status is set to locked. The owner manually reviews who can follow them.',
-                    })}
-                  />
-                )}
-              </small>
-            </h1>
+            <AccountName accountId={accountId} />
           </div>
 
           <AccountBadges accountId={accountId} />
