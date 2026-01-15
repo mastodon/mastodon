@@ -22,13 +22,15 @@ import type { Account } from 'mastodon/models/account';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
+import { isRedesignEnabled } from '../common';
+
 import { AccountBadges } from './badges';
 import { AccountButtons } from './buttons';
 import { FamiliarFollowers } from './familiar_followers';
 import { AccountInfo } from './info';
-import { AccountLinks } from './links';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
+import { AccountNumberFields } from './number_fields';
 import { AccountTabs } from './tabs';
 
 const titleFromAccount = (account: Account) => {
@@ -193,22 +195,24 @@ export const AccountHeader: React.FC<{
                 />
 
                 <div className='account__header__fields'>
-                  <dl>
-                    <dt>
-                      <FormattedMessage
-                        id='account.joined_short'
-                        defaultMessage='Joined'
-                      />
-                    </dt>
-                    <dd>
-                      <FormattedDateWrapper
-                        value={account.created_at}
-                        year='numeric'
-                        month='short'
-                        day='2-digit'
-                      />
-                    </dd>
-                  </dl>
+                  {!isRedesignEnabled() && (
+                    <dl>
+                      <dt>
+                        <FormattedMessage
+                          id='account.joined_short'
+                          defaultMessage='Joined'
+                        />
+                      </dt>
+                      <dd>
+                        <FormattedDateWrapper
+                          value={account.created_at}
+                          year='numeric'
+                          month='short'
+                          day='2-digit'
+                        />
+                      </dd>
+                    </dl>
+                  )}
 
                   <AccountFields
                     fields={account.fields}
@@ -217,7 +221,7 @@ export const AccountHeader: React.FC<{
                 </div>
               </div>
 
-              <AccountLinks accountId={accountId} />
+              <AccountNumberFields accountId={accountId} />
             </div>
           )}
         </div>
