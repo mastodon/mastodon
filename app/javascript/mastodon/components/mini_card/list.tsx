@@ -11,11 +11,13 @@ import classes from './styles.module.css';
 
 interface MiniCardListProps {
   cards?: (Pick<MiniCardProps, 'label' | 'value'> & { key?: Key })[];
+  className?: string;
   onOverflowClick?: MouseEventHandler;
 }
 
 export const MiniCardList: FC<MiniCardListProps> = ({
   cards = [],
+  className,
   onOverflowClick,
 }) => {
   const {
@@ -28,7 +30,7 @@ export const MiniCardList: FC<MiniCardListProps> = ({
   } = useOverflow();
 
   return (
-    <div className={classes.wrapper} ref={wrapperRef}>
+    <div className={classNames(classes.wrapper, className)} ref={wrapperRef}>
       <dl className={classes.list} ref={listRef} style={{ maxWidth }}>
         {cards.map((card, index) => (
           <MiniCard

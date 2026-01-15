@@ -1,18 +1,16 @@
 import { useCallback } from 'react';
 
-import { useIntl, FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
 import { AccountBio } from '@/mastodon/components/account_bio';
-import { AccountFields } from '@/mastodon/components/account_fields';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
-import { FormattedDateWrapper } from 'mastodon/components/formatted_date';
 import { Icon } from 'mastodon/components/icon';
 import { AccountNote } from 'mastodon/features/account/components/account_note';
 import { DomainPill } from 'mastodon/features/account/components/domain_pill';
@@ -22,11 +20,10 @@ import type { Account } from 'mastodon/models/account';
 import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import { isRedesignEnabled } from '../common';
-
 import { AccountBadges } from './badges';
 import { AccountButtons } from './buttons';
 import { FamiliarFollowers } from './familiar_followers';
+import { AccountHeaderFields } from './fields';
 import { AccountInfo } from './info';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
@@ -194,31 +191,7 @@ export const AccountHeader: React.FC<{
                   className='account__header__content'
                 />
 
-                <div className='account__header__fields'>
-                  {!isRedesignEnabled() && (
-                    <dl>
-                      <dt>
-                        <FormattedMessage
-                          id='account.joined_short'
-                          defaultMessage='Joined'
-                        />
-                      </dt>
-                      <dd>
-                        <FormattedDateWrapper
-                          value={account.created_at}
-                          year='numeric'
-                          month='short'
-                          day='2-digit'
-                        />
-                      </dd>
-                    </dl>
-                  )}
-
-                  <AccountFields
-                    fields={account.fields}
-                    emojis={account.emojis}
-                  />
-                </div>
+                <AccountHeaderFields accountId={accountId} />
               </div>
 
               <AccountNumberFields accountId={accountId} />
