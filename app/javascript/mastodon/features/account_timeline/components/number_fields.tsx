@@ -32,7 +32,7 @@ export const AccountNumberFields: FC<{ accountId: string }> = ({
     <div
       className={classNames(
         'account__header__extra__links',
-        isRedesignEnabled() && classes.number_field_wrapper,
+        isRedesignEnabled() && classes.fieldNumbersWrapper,
       )}
     >
       {!isRedesignEnabled() && (

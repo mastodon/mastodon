@@ -1,9 +1,36 @@
-.field_list {
+.fieldList {
   margin-top: 16px;
 }
 
-.number_field_wrapper {
+.fieldNumbersWrapper {
   a {
     font-weight: unset;
+  }
+}
+
+.modalFieldsList {
+  padding: 24px;
+}
+
+.modalFieldItem {
+  &:not(:first-child) {
+    padding-top: 12px;
+  }
+
+  &:not(:last-child)::after {
+    content: '';
+    display: block;
+    border-bottom: 1px solid var(--color-border-primary);
+    margin-top: 12px;
+  }
+
+  dt {
+    color: var(--color-text-secondary);
+    font-size: 13px;
+  }
+
+  dd {
+    font-weight: 600;
+    font-size: 15px;
   }
 }

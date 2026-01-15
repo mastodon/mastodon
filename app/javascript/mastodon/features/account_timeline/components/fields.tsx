@@ -90,7 +90,7 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
   return (
     <MiniCardList
       cards={cards}
-      className={classes.field_list}
+      className={classes.fieldList}
       onOverflowClick={handleOverflowClick}
     />
   );
