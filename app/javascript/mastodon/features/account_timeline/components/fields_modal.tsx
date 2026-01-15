@@ -34,6 +34,7 @@ export const AccountFieldsModal: FC<{
       <div className='dialog-modal__header'>
         <IconButton
           icon='close'
+          className={classes.modalCloseButton}
           onClick={onClose}
           iconComponent={CloseIcon}
           title={intl.formatMessage({
@@ -41,7 +42,7 @@ export const AccountFieldsModal: FC<{
             defaultMessage: 'Close',
           })}
         />
-        <span className='dialog-modal__header__title'>
+        <span className={`${classes.modalTitle} dialog-modal__header__title`}>
           <FormattedMessage
             id='account_fields_modal.title'
             defaultMessage="{name}'s info"
