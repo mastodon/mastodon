@@ -35,5 +35,11 @@ RSpec.describe ActivityPub::CollectionSerializer do
 
       it { is_expected.to eq(ActiveModel::Serializer::CollectionSerializer) }
     end
+
+    context 'with a Collection' do
+      let(:model) { Collection.new }
+
+      it { is_expected.to eq(ActivityPub::FeaturedCollectionSerializer) }
+    end
   end
 end
