@@ -81,6 +81,19 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
         end
       end
     end
+
+    context 'when the requesting user is blocked by the given account' do
+      before do
+        account.block!(user.account)
+      end
+
+      it 'returns an empty array' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(response.parsed_body[:collections]).to eq []
+      end
+    end
   end
 
   describe 'GET /api/v1_alpha/collections/:id' do
