@@ -20,7 +20,7 @@ export const MiniCardList: FC<MiniCardListProps> = ({
   children,
   onOverflowClick,
 }) => {
-  const { wrapperRef, listRef, hidden, showOverflow } = useOverflow();
+  const { wrapperRef, listRef, hiddenCount, hasOverflow } = useOverflow();
 
   return (
     <div className={classes.wrapper} ref={wrapperRef}>
@@ -36,13 +36,13 @@ export const MiniCardList: FC<MiniCardListProps> = ({
       </dl>
       <button
         type='button'
-        className={classNames(classes.more, !showOverflow && classes.hidden)}
+        className={classNames(classes.more, !hasOverflow && classes.hidden)}
         onClick={onOverflowClick}
       >
         <FormattedMessage
           id='minicard.more_items'
-          defaultMessage='+ {hidden} more'
-          values={{ hidden }}
+          defaultMessage='+ {count} more'
+          values={{ count: hiddenCount }}
         />
       </button>
     </div>
@@ -50,7 +50,7 @@ export const MiniCardList: FC<MiniCardListProps> = ({
 };
 
 function useOverflow() {
-  const [hidden, setHidden] = useState(0);
+  const [hiddenCount, setHiddenCount] = useState(0);
 
   // This is the item container element.
   const listRef = useRef<HTMLElement | null>(null);
@@ -67,7 +67,7 @@ function useOverflow() {
         }
       }
       listEle.style.removeProperty('max-width');
-      setHidden(0);
+      setHiddenCount(0);
     };
 
     // Calculate the width via the parent element, minus the more button, minus the padding.
@@ -104,7 +104,7 @@ function useOverflow() {
 
     // Set the width to avoid wrapping, and set hidden count.
     listEle.style.setProperty('max-width', `${totalWidth}px`);
-    setHidden(listEle.children.length - visible);
+    setHiddenCount(listEle.children.length - visible);
   }, []);
 
   // Set up observers to watch for size and content changes.
@@ -176,8 +176,8 @@ function useOverflow() {
   );
 
   return {
-    hidden,
-    showOverflow: hidden > 0,
+    hiddenCount,
+    hasOverflow: hiddenCount > 0,
     wrapperRef,
     listRef: listRefCallback,
     recalculate: handleRecalculate,

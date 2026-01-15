@@ -10,7 +10,6 @@
   display: flex;
   gap: 4px;
   overflow: hidden;
-  height: 54px;
   position: relative;
 }
 
@@ -20,6 +19,18 @@
   padding: 8px;
   border-radius: 8px;
   flex-shrink: 0;
+}
+
+.card {
+  max-width: 20vw;
+  overflow: hidden;
+}
+
+.more {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  appearance: none;
+  background: none;
 }
 
 .hidden {
@@ -36,9 +47,9 @@
   font-weight: 600;
 }
 
-.more {
-  color: var(--color-text-secondary);
-  font-weight: 600;
-  appearance: none;
-  background: none;
+.label,
+.value {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

@@ -11,7 +11,7 @@ export interface MiniCardProps {
 }
 
 export const MiniCard: FC<MiniCardProps> = ({ label, value, className }) => {
-  if (!value || !label) {
+  if (!label) {
     return null;
   }
 
