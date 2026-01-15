@@ -8,9 +8,6 @@
 module PrivateAddressCheck
   IP4_CIDR_LIST = [
     IPAddr.new('0.0.0.0/8'),            # Class A (reserved) — Current network (0.0.0.0 – 0.255.255.255)
-    IPAddr.new('11.0.0.0/8'),           # Class A — Former DoD (11.0.0.0 – 11.255.255.255)
-    IPAddr.new('22.0.0.0/8'),           # Class A — Former DoD (22.0.0.0 – 22.255.255.255)
-    IPAddr.new('30.0.0.0/8'),           # Class A — Former DoD (30.0.0.0 – 30.255.255.255)
     IPAddr.new('100.64.0.0/10'),        # Class A — CGNAT (100.64.0.0 – 100.127.255.255)
     IPAddr.new('169.254.169.254/32'),   # Class B — Cloud metadata (169.254.169.254)
     IPAddr.new('192.0.0.0/29'),         # Class C — Service Continuity (192.0.0.0 – 192.0.0.7)
@@ -40,7 +37,6 @@ module PrivateAddressCheck
     IPAddr.new('64:ff9b::/96'),         # NAT64 WKP (0064:ff9b:0000:0000:0000:0000:0000:0000 - 0064:ff9b:0000:0000:0000:0000:ffff:ffff)
     IPAddr.new('64:ff9b:1::/48'),       # NAT64 locally assigned (0064:ff9b:0001:0000:0000:0000:0000:0000 - 0064:ff9b:0001:ffff:ffff:ffff:ffff:ffff)
     IPAddr.new('100::/64'),             # Discard prefix (0100:0000:0000:0000:0000:0000:0000:0000 - 0100:0000:0000:0000:ffff:ffff:ffff:ffff)
-    IPAddr.new('2000::/3'),             # Global unicast (2000:0000:0000:0000:0000:0000:0000:0000 - 3fff:ffff:ffff:ffff:ffff:ffff:ffff:ffff)
     IPAddr.new('2001::/23'),            # IETF special (2001:0000:0000:0000:0000:0000:0000:0000 - 2001:01ff:ffff:ffff:ffff:ffff:ffff:ffff)
     IPAddr.new('2001::/32'),            # Teredo (2001:0000:0000:0000:0000:0000:0000:0000 - 2001:0000:ffff:ffff:ffff:ffff:ffff:ffff)
     IPAddr.new('2001:2::/48'),          # BMWG (2001:0002:0000:0000:0000:0000:0000:0000 - 2001:0002:0000:ffff:ffff:ffff:ffff:ffff)
