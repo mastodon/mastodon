@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { FC, Key, MouseEventHandler, ReactNode } from 'react';
+import type { FC, Key, MouseEventHandler } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -11,28 +11,33 @@ import classes from './styles.module.css';
 
 interface MiniCardListProps {
   cards?: (Pick<MiniCardProps, 'label' | 'value'> & { key?: Key })[];
-  children?: ReactNode;
   onOverflowClick?: MouseEventHandler;
 }
 
 export const MiniCardList: FC<MiniCardListProps> = ({
   cards = [],
-  children,
   onOverflowClick,
 }) => {
-  const { wrapperRef, listRef, hiddenCount, hasOverflow } = useOverflow();
+  const {
+    wrapperRef,
+    listRef,
+    hiddenCount,
+    hasOverflow,
+    hiddenIndex,
+    maxWidth,
+  } = useOverflow();
 
   return (
     <div className={classes.wrapper} ref={wrapperRef}>
-      <dl className={classes.list} ref={listRef}>
+      <dl className={classes.list} ref={listRef} style={{ maxWidth }}>
         {cards.map((card, index) => (
           <MiniCard
             key={card.key ?? index}
             label={card.label}
             value={card.value}
+            hidden={index >= hiddenIndex}
           />
         ))}
-        {children}
       </dl>
       <button
         type='button'
@@ -50,7 +55,9 @@ export const MiniCardList: FC<MiniCardListProps> = ({
 };
 
 function useOverflow() {
+  const [hiddenIndex, setHiddenIndex] = useState(-1);
   const [hiddenCount, setHiddenCount] = useState(0);
+  const [maxWidth, setMaxWidth] = useState<number | 'none'>('none');
 
   // This is the item container element.
   const listRef = useRef<HTMLElement | null>(null);
@@ -61,13 +68,9 @@ function useOverflow() {
     if (!listEle) return;
 
     const reset = () => {
-      for (const child of listEle.children) {
-        if (child instanceof HTMLElement) {
-          child.ariaHidden = 'false';
-        }
-      }
-      listEle.style.removeProperty('max-width');
+      setHiddenIndex(-1);
       setHiddenCount(0);
+      setMaxWidth('none');
     };
 
     // Calculate the width via the parent element, minus the more button, minus the padding.
@@ -82,18 +85,19 @@ function useOverflow() {
 
     // Iterate through children until we exceed max width.
     let visible = 0;
+    let index = 0;
     let totalWidth = 0;
     for (const child of listEle.children) {
       if (child instanceof HTMLElement) {
         const rightOffset = child.offsetLeft + child.offsetWidth;
         if (rightOffset <= maxWidth) {
-          child.ariaHidden = 'false';
           visible += 1;
           totalWidth = rightOffset;
         } else {
-          child.ariaHidden = 'true';
+          break;
         }
       }
+      index++;
     }
 
     // All are visible, so remove max-width restriction.
@@ -103,8 +107,9 @@ function useOverflow() {
     }
 
     // Set the width to avoid wrapping, and set hidden count.
-    listEle.style.setProperty('max-width', `${totalWidth}px`);
+    setHiddenIndex(index);
     setHiddenCount(listEle.children.length - visible);
+    setMaxWidth(totalWidth);
   }, []);
 
   // Set up observers to watch for size and content changes.
@@ -179,6 +184,8 @@ function useOverflow() {
     hiddenCount,
     hasOverflow: hiddenCount > 0,
     wrapperRef,
+    hiddenIndex,
+    maxWidth,
     listRef: listRefCallback,
     recalculate: handleRecalculate,
   };
