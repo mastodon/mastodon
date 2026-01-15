@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { DisplayName } from '@/mastodon/components/display_name';
+import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { IconButton } from '@/mastodon/components/icon_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
@@ -51,25 +52,27 @@ export const AccountFieldsModal: FC<{
         </span>
       </div>
       <div className='dialog-modal__content'>
-        <dl className={classes.modalFieldsList}>
-          {account.fields.map((field, index) => (
-            <div key={index} className={classes.modalFieldItem}>
-              <EmojiHTML
-                as='dt'
-                htmlString={field.name_emojified}
-                extraEmojis={account.emojis}
-                className='translate'
-                {...htmlHandlers}
-              />
-              <EmojiHTML
-                as='dd'
-                htmlString={field.value_emojified}
-                extraEmojis={account.emojis}
-                {...htmlHandlers}
-              />
-            </div>
-          ))}
-        </dl>
+        <AnimateEmojiProvider>
+          <dl className={classes.modalFieldsList}>
+            {account.fields.map((field, index) => (
+              <div key={index} className={classes.modalFieldItem}>
+                <EmojiHTML
+                  as='dt'
+                  htmlString={field.name_emojified}
+                  extraEmojis={account.emojis}
+                  className='translate'
+                  {...htmlHandlers}
+                />
+                <EmojiHTML
+                  as='dd'
+                  htmlString={field.value_emojified}
+                  extraEmojis={account.emojis}
+                  {...htmlHandlers}
+                />
+              </div>
+            ))}
+          </dl>
+        </AnimateEmojiProvider>
       </div>
     </div>
   );
