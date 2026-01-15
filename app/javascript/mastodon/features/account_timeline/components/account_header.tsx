@@ -369,6 +369,19 @@ export const AccountHeader: React.FC<{
     });
   }, [account]);
 
+  const handleCopyUsername = useCallback(() => {
+    if (!account) {
+      return;
+    }
+  
+    const isLocal = !account.acct.includes('@');
+    const username = account.acct.split('@')[0];
+    const domain = isLocal ? localDomain : account.acct.split('@')[1];
+    const fullHandle = `@${username}@${domain}`;
+    
+    void navigator.clipboard.writeText(fullHandle);
+  }, [account]);
+
   const suspended = account?.suspended;
   const isRemote = account?.acct !== account?.username;
   const remoteDomain = isRemote ? account?.acct.split('@')[1] : null;
@@ -820,7 +833,11 @@ export const AccountHeader: React.FC<{
             <h1>
               <DisplayName account={account} variant='simple' />
               <small>
-                <span>
+                <span 
+                  onClick={handleCopyUsername}
+                  style={{ cursor: 'pointer' }}
+                  title={`Click to copy @${username}@${domain}`}
+                >
                   @{username}
                   <span className='invisible'>@{domain}</span>
                 </span>
