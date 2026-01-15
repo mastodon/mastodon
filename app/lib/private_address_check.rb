@@ -10,7 +10,6 @@ module PrivateAddressCheck
     IPAddr.new('0.0.0.0/8'),            # Class A (reserved) — Current network (0.0.0.0 – 0.255.255.255)
     IPAddr.new('100.64.0.0/10'),        # Class A — CGNAT (100.64.0.0 – 100.127.255.255)
     IPAddr.new('169.254.169.254/32'),   # Class B — Cloud metadata (169.254.169.254)
-    IPAddr.new('192.0.0.0/29'),         # Class C — Service Continuity (192.0.0.0 – 192.0.0.7)
     IPAddr.new('192.0.0.0/24'),         # Class C — IETF assignments (192.0.0.0 – 192.0.0.255)
     IPAddr.new('192.0.0.8/32'),         # Class C — Dummy address (192.0.0.8)
     IPAddr.new('192.0.0.170/32'),       # Class C — NAT64 part (192.0.0.170)
