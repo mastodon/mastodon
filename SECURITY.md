@@ -2,11 +2,7 @@
 
 ## Supported Versions
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 3.4.x   | :white_check_mark: |
-| 3.3.x   | :white_check_mark: |
-| < 3.3   | :x:                |
+This branch is unsupported. See https://github.com/mastodon/mastodon/security/policy for current information.
 
 ## Reporting a Vulnerability
 
