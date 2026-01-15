@@ -320,7 +320,8 @@ GEM
     http_accept_language (2.1.1)
     httpclient (2.9.0)
       mutex_m
-    httplog (1.7.3)
+    httplog (1.8.0)
+      benchmark
       rack (>= 2.0)
       rainbow (>= 2.0.0)
     i18n (1.14.8)
@@ -985,7 +986,7 @@ DEPENDENCIES
   htmlentities (~> 4.3)
   http (~> 5.3.0)
   http_accept_language (~> 2.1)
-  httplog (~> 1.7.0)
+  httplog (~> 1.8.0)
   i18n
   i18n-tasks (~> 1.0)
   idn-ruby
