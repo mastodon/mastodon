@@ -29,6 +29,10 @@ export const MiniCardList: FC<MiniCardListProps> = ({
     maxWidth,
   } = useOverflow();
 
+  if (!cards.length) {
+    return null;
+  }
+
   return (
     <div className={classNames(classes.wrapper, className)} ref={wrapperRef}>
       <dl className={classes.list} ref={listRef} style={{ maxWidth }}>
@@ -37,21 +41,23 @@ export const MiniCardList: FC<MiniCardListProps> = ({
             key={card.key ?? index}
             label={card.label}
             value={card.value}
-            hidden={index >= hiddenIndex}
+            hidden={hasOverflow && index >= hiddenIndex}
           />
         ))}
       </dl>
-      <button
-        type='button'
-        className={classNames(classes.more, !hasOverflow && classes.hidden)}
-        onClick={onOverflowClick}
-      >
-        <FormattedMessage
-          id='minicard.more_items'
-          defaultMessage='+ {count} more'
-          values={{ count: hiddenCount }}
-        />
-      </button>
+      {cards.length > 1 && (
+        <button
+          type='button'
+          className={classNames(classes.more, !hasOverflow && classes.hidden)}
+          onClick={onOverflowClick}
+        >
+          <FormattedMessage
+            id='minicard.more_items'
+            defaultMessage='+ {count} more'
+            values={{ count: hiddenCount }}
+          />
+        </button>
+      )}
     </div>
   );
 };
