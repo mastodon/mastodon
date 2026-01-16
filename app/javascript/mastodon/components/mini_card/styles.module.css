@@ -6,7 +6,6 @@
 }
 
 .list {
-  min-width: 0;
   display: flex;
   gap: 4px;
   overflow: hidden;
@@ -26,6 +25,14 @@
   font-weight: 600;
   appearance: none;
   background: none;
+  aspect-ratio: 1;
+  height: 100%;
+  transition: all 300ms linear;
+}
+
+.more:hover {
+  background-color: var(--color-bg-brand-softer);
+  color: var(--color-text-primary);
 }
 
 .hidden {

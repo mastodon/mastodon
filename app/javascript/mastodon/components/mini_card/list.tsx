@@ -46,17 +46,19 @@ export const MiniCardList: FC<MiniCardListProps> = ({
         ))}
       </dl>
       {cards.length > 1 && (
-        <button
-          type='button'
-          className={classNames(classes.more, !hasOverflow && classes.hidden)}
-          onClick={onOverflowClick}
-        >
-          <FormattedMessage
-            id='minicard.more_items'
-            defaultMessage='+ {count} more'
-            values={{ count: hiddenCount }}
-          />
-        </button>
+        <div>
+          <button
+            type='button'
+            className={classNames(classes.more, !hasOverflow && classes.hidden)}
+            onClick={onOverflowClick}
+          >
+            <FormattedMessage
+              id='minicard.more_items'
+              defaultMessage='+{count}'
+              values={{ count: hiddenCount }}
+            />
+          </button>
+        </div>
       )}
     </div>
   );
