@@ -28,14 +28,17 @@ module ThemeHelper
     end
   end
 
-  def theme_color_tags(theme)
-    if theme == 'system'
+  def theme_color_tags(color_scheme)
+    case color_scheme
+    when 'auto'
       ''.html_safe.tap do |tags|
         tags << tag.meta(name: 'theme-color', content: Themes::THEME_COLORS[:dark], media: '(prefers-color-scheme: dark)')
         tags << tag.meta(name: 'theme-color', content: Themes::THEME_COLORS[:light], media: '(prefers-color-scheme: light)')
       end
-    else
-      tag.meta name: 'theme-color', content: theme_color_for(theme)
+    when 'light'
+      tag.meta name: 'theme-color', content: Themes::THEME_COLORS[:light]
+    when 'dark'
+      tag.meta name: 'theme-color', content: Themes::THEME_COLORS[:dark]
     end
   end
 
@@ -64,9 +67,5 @@ module ThemeHelper
     Rails.cache.fetch(:setting_digest_custom_css) do
       Setting.custom_css&.then { |content| Digest::SHA256.hexdigest(content) }
     end
-  end
-
-  def theme_color_for(theme)
-    theme == 'mastodon-light' ? Themes::THEME_COLORS[:light] : Themes::THEME_COLORS[:dark]
   end
 end
