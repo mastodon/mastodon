@@ -38,10 +38,13 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
           </h1>
           <p>
             {username}@
-            <button type='button'>
-              {domain}
+            <DomainPill
+              username={username ?? ''}
+              domain={domain}
+              isSelf={me === account.id}
+            >
               <Icon id='info' icon={InfoIcon} />
-            </button>
+            </DomainPill>
           </p>
         </div>
         <AccountButtons accountId={accountId} />
