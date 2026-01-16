@@ -20,12 +20,12 @@
     - if use_mask_icon?
       %link{ rel: 'mask-icon', href: frontend_asset_path('images/logo-symbol-icon.svg'), color: '#6364FF' }/
     %link{ rel: 'manifest', href: manifest_path(format: :json) }/
-    = javascript_inline_tag 'theme-selection.js'
     = theme_color_tags color_scheme
     %meta{ name: 'mobile-web-app-capable', content: 'yes' }/
 
     %title= html_title
 
+    = vite_typescript_tag 'theme-selection.ts', crossorigin: 'anonymous'
     = theme_style_tags current_theme
     = vite_client_tag
     = vite_react_refresh_tag

@@ -1,22 +1,6 @@
 # frozen_string_literal: true
 
 module ThemeHelper
-  def javascript_inline_tag(path)
-    entry = InlineScriptManager.instance.file(path)
-
-    # Only add hash if we don't allow arbitrary includes already, otherwise it's going
-    # to break the React Tools browser extension or other inline scripts
-    unless Rails.env.development? && request.content_security_policy.dup.script_src.include?("'unsafe-inline'")
-      request.content_security_policy = request.content_security_policy.clone.tap do |policy|
-        values = policy.script_src
-        values << "'sha256-#{entry[:digest]}'"
-        policy.script_src(*values)
-      end
-    end
-
-    content_tag(:script, entry[:contents], type: 'text/javascript')
-  end
-
   def theme_style_tags(theme)
     if theme == 'system'
       ''.html_safe.tap do |tags|
