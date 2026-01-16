@@ -37,7 +37,7 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
             <DisplayName account={account} variant='simple' />
           </h1>
           <p>
-            {username}@
+            @{username}@
             <DomainPill
               username={username ?? ''}
               domain={domain}
