@@ -9,17 +9,10 @@ RSpec.describe ThemeHelper do
     context 'when using "system" theme' do
       let(:theme) { 'system' }
 
-      it 'returns the mastodon-light and application stylesheets with correct color schemes' do
+      it 'returns the default theme' do
         expect(html_links.first.attributes.symbolize_keys)
           .to include(
-            # This is now identical to the default theme & will be unified very soon
-            href: have_attributes(value: match(/default/)),
-            media: have_attributes(value: 'not all and (prefers-color-scheme: dark)')
-          )
-        expect(html_links.last.attributes.symbolize_keys)
-          .to include(
-            href: have_attributes(value: match(/default/)),
-            media: have_attributes(value: '(prefers-color-scheme: dark)')
+            href: have_attributes(value: match(/default/))
           )
       end
     end
@@ -41,8 +34,7 @@ RSpec.describe ThemeHelper do
       it 'returns the theme stylesheet without color scheme information' do
         expect(html_links.first.attributes.symbolize_keys)
           .to include(
-            href: have_attributes(value: match(/default/)),
-            media: have_attributes(value: 'all')
+            href: have_attributes(value: match(/default/))
           )
       end
     end
