@@ -41,7 +41,7 @@ RSpec.describe ThemeHelper do
       it 'returns the theme stylesheet without color scheme information' do
         expect(html_links.first.attributes.symbolize_keys)
           .to include(
-            href: have_attributes(value: match(/contrast/)),
+            href: have_attributes(value: match(/default/)),
             media: have_attributes(value: 'all')
           )
       end
