@@ -61,7 +61,30 @@ svg.badgeIcon {
 }
 
 .fieldList {
+  --color-field-underline: var(--color-grey-300);
+
   margin-top: 16px;
+}
+
+.fieldVerified {
+  --color-field-underline: #dc03f0;
+}
+
+.fieldValue a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-field-underline);
+}
+
+.fieldIconVerified {
+  width: 1rem;
+  vertical-align: middle;
+  margin-left: 2px;
+
+  // Need to override .icon path.
+  path {
+    fill: url('#VerifiedGradient');
+  }
 }
 
 .fieldNumbersWrapper {
