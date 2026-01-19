@@ -25,9 +25,13 @@ class SignatureParser
 
     # Use `skip` instead of `scan` as we only care about the subgroups
     while scanner.skip(PARAM_RE)
+      key = scanner[:key]
+      # Detect a duplicate key
+      raise Mastodon::SignatureVerificationError, 'Error parsing signature with duplicate keys' if params.key?(key)
+
       # This is not actually correct with regards to quoted pairs, but it's consistent
       # with our previous implementation, and good enough in practice.
-      params[scanner[:key]] = scanner[:value] || scanner[:quoted_value][1...-1]
+      params[key] = scanner[:value] || scanner[:quoted_value][1...-1]
 
       scanner.skip(/\s*/)
       return params if scanner.eos?

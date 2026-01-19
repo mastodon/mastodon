@@ -50,7 +50,7 @@ class ActivityPub::TagManager
       context_url(target) unless target.parent_account_id.nil? || target.parent_status_id.nil?
     when :note, :comment, :activity
       if target.account.numeric_ap_id?
-        return activity_ap_account_status_url(target.account, target) if target.reblog?
+        return activity_ap_account_status_url(target.account.id, target) if target.reblog?
 
         ap_account_status_url(target.account.id, target)
       else
@@ -62,6 +62,8 @@ class ActivityPub::TagManager
       emoji_url(target)
     when :flag
       target.uri
+    when :featured_collection
+      ap_account_collection_url(target.account.id, target)
     end
   end
 
@@ -133,7 +135,7 @@ class ActivityPub::TagManager
   def collection_uri_for(target, ...)
     raise ArgumentError, 'target must be a local account' unless target.local?
 
-    target.numeric_ap_id? ? ap_account_collection_url(target.id, ...) : account_collection_url(target, ...)
+    target.numeric_ap_id? ? ap_account_actor_collection_url(target.id, ...) : account_actor_collection_url(target, ...)
   end
 
   def inbox_uri_for(target)

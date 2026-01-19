@@ -1617,6 +1617,138 @@ nan:
   migrations:
     acct: Suá kàu
     cancel: 取消重轉
+    cancel_explanation: 取消重轉ē重啟用lí tsit-má ê口座，毋過bē kā suá kah tsit ê口座ê跟tuè者suá轉去。
+    cancelled_msg: 取消重轉成功。
+    errors:
+      already_moved: kap已經suá ê口座相kâng
+      missing_also_known_as: 毋是tsit ê口座ê別名
+      move_to_self: bē當是目前ê口座
+      not_found: tshuē無
+      on_cooldown: Lí leh歇喘
+    followers_count: 轉ê時ê跟tuè ê
+    incoming_migrations: 對無仝ê口座轉
+    incoming_migrations_html: Nā欲對別ê口座轉kàu tsia，tāi先tio̍h<a href="%{path}">開口座ê別名</a>。
+    moved_msg: Lí ê口座tsit-má teh重轉kàu %{acct}，lí ê跟tuè ê mā ē轉。
+    not_redirecting: Lí ê口座iáu buē重轉kàu其他ê口座。
+    on_cooldown: Lí最近有suá lí ê口座。Tsit ê功能ē佇 %{count} kang後koh開放。
+    past_migrations: 過去ê遷suá
+    proceed_with_move: Suá跟tuè ê
+    redirected_msg: Lí ê口座tsit-má重轉kàu %{acct}。
+    redirecting_to: Lí ê口座leh重轉kàu %{acct}。
+    set_redirect: 設定重轉
+    warning:
+      backreference_required: 新ê口座定著先設定kātsit-ê口座引用倒轉
+      before: 佇繼續進前，請斟酌讀下kha ê說明：
+      cooldown: 轉口座了後會有等待ê期間，hit時lí bē當koh suá
+      disabled_account: 了後，lí 目前ê口座ē完全bē當用。毋過，lí ē有接近使用權，來輸出資料kap重啟用。
+      followers: Tsit ê動作ē對tsit má ê口座suá逐个跟tuè ê，kàu新ê口座
+      only_redirect_html: Á是lí通<a href="%{path}">kan-ta 佇lí ê個人資料khǹg重轉</a>。
+      other_data: 其他ê資料bē自動轉（包含lí ê PO文kap lí跟tuè ê口座列單）
+      redirect: Lí tsit-má 口座ê個人資料ē更新，加添重轉標示，而且buē包佇tshiau-tshuē ê結果。
+  moderation:
+    title: 管理
+  move_handler:
+    carry_blocks_over_text: Tsit ê用者對lí有封鎖ê %{acct} suá過來。
+    carry_mutes_over_text: Tsit ê用者對lí有消音ê %{acct} suá過來。
+    copy_account_note_text: Tsit ê用者對 %{acct} suá過來，下kha是lí進前對伊ê註：
+  navigation:
+    toggle_menu: 切換目錄
+  notification_mailer:
+    admin:
+      report:
+        subject: "%{name} 送出檢舉"
+      sign_up:
+        subject: "%{name} 註冊ah"
+    favourite:
+      body: Lí ê PO文hōo %{name} kah意：
+      subject: "%{name} kah意lí ê PO文"
+      title: 新ê kah意
+    follow:
+      body: "%{name} tsit-má跟tuè lí！"
+      subject: "%{name} tsit-má跟tuè lí"
+      title: 新ê跟tuè者
+    follow_request:
+      action: 管理跟tuè ê請求
+      body: "%{name} 請求跟tuè lí"
+      subject: 等待跟tuè lí ê：%{name}
+      title: 新ê跟tuè請求
+    mention:
+      action: 回應
+      body: "%{name} 佇PO文kā lí提起："
+      subject: "%{name} 佇PO文kā lí提起"
+      title: 新ê提起
+    moderation_warning:
+      subject: Lí有收著管理ê警告
+    poll:
+      subject: "%{name} 舉辦ê投票suah ah"
+    quote:
+      body: Lí ê PO文hōo %{name} 引用：
+      subject: "%{name} 引用lí ê PO文"
+      title: 新ê引用
+    quoted_update:
+      subject: "%{name} 編輯lí有引用ê PO文"
+    reblog:
+      body: Lí ê PO文hōo %{name} 轉送：
+      subject: "%{name} 轉送lí ê PO文"
+      title: 新ê轉送
+    severed_relationships:
+      subject: 因為管理ê決定，lí失去聯絡ah
+    status:
+      subject: "%{name} 頭tú-á PO文"
+    update:
+      subject: "%{name} 有編輯PO文"
+  notifications:
+    administration_emails: 管理員ê電子phue通知
+    email_events: 電子phue通知ê事件
+    email_events_hint: 揀lí想beh收ê通知ê事件：
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+  otp_authentication:
+    code_hint: 請輸入lí ê驗證應用程式生成ê code，來確認
+    description_html: Nā lí啟用用驗證應用程式ê<strong>雙因素驗證</strong>，登入需要lí有手機á，伊ê產生token hōo lí輸入。
+    enable: 啟用
+    instructions_html: "<strong>請用lí手機á ê TOTP應用程式（親像Google Authenticator）掃描tsit ê QR code</strong>。對tsit-má起，hit ê應用程式ê生token，佇lí登入ê時陣著輸入。"
+    manual_instructions: 若lí bē當掃描 QR code，需要手動輸入下kha ê光碼：
+    setup: 設定
+    wrong_code: Lí輸入ê碼無效！服侍器時間kap設備時間kám lóng正確？
+  pagination:
+    newer: 較新ê
+    next: 後一頁
+    older: 較舊ê
+    prev: 頂一頁
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Lí有投票ah
+      duplicate_options: 包含重覆ê項目
+      duration_too_long: 傷久ah
+      duration_too_short: 傷緊ah
+      expired: 投票結束ah
+      invalid_choice: 所揀ê選項無佇leh
+      over_character_limit: Bē當比 %{max} ê字元tsē
+      self_vote: Lí bē當佇lí開ê投票投
+      too_few_options: 項目定著愛超過一ê
+      too_many_options: Bē當包含超過 %{max} ê項目
+    vote: 投票
+  posting_defaults:
+    explanation: Tsiah ê設定ē用做預設ê值，若lí開新ê PO文，毋過lí會當佇編輯器內底，個別編輯PO文。
+  preferences:
+    other: 其他
+    posting_defaults: PO文預設值
+    public_timelines: 公共ê時間線
+  privacy:
+    hint_html: "<strong>自訂lí beh án-nuá hōo lí ê個人資料kap PO文受lâng發現。</strong>Mastodon ê tsē-tsē功能nā是拍開，通幫tsān lí接觸kàu較闊ê觀眾。請開一寡時間重看tsiah ê設定，確認in合lí ê使用例。"
+    privacy: 隱私權
+    privacy_hint_html: 控制lí想欲為別lâng ê利益，公開guā tsē內容。Lâng用瀏覽別lâng ê跟tuè koh看in用啥物應用程式PO文，來發現心適ê個人資料kap時行ê應用程式，但是lí凡勢beh保持khàm起來。
+    reach: 接觸
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
   statuses:

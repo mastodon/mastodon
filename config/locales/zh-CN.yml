@@ -1930,11 +1930,11 @@ zh-CN:
     enabled: 自动删除旧嘟文
     enabled_hint: 自动删除你发布的超过指定期限的嘟文，除非满足下列条件之一
     exceptions: 例外
-    explanation: 删除嘟文会占用大量服务器资源，所以这个操作将在服务器空闲时完成。因此，你的嘟文可能会在达到删除期限之后一段时间才会被删除。
-    ignore_favs: 喜欢数阈值
+    explanation: 自动删除以较低优先级执行。嘟文可能会在达到删除期限之后一段时间才会被删除。
+    ignore_favs: 忽略喜欢
     ignore_reblogs: 转嘟数阈值
     interaction_exceptions: 基于互动的例外
-    interaction_exceptions_explanation: 请注意，如果嘟文的转嘟数和喜欢数超过保留阈值之后，又降到阈值以下，则可能不会被删除。
+    interaction_exceptions_explanation: 嘟文的转嘟数和喜欢数若超过保留阈值，即便之后又降到阈值以下，也可能不会被删除。
     keep_direct: 保留私信
     keep_direct_hint: 不删除你的任何私信
     keep_media: 保留带媒体附件的嘟文
@@ -2146,6 +2146,7 @@ zh-CN:
       error: 删除你的安全密钥时出错。请重试。
       success: 你的安全密钥已成功删除。
     invalid_credential: 无效的安全密钥
+    nickname: 昵称
     nickname_hint: 输入你的新安全密钥的昵称
     not_enabled: 你尚未启用WebAuthn
     not_supported: 此浏览器不支持安全密钥

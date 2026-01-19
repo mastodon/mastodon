@@ -1973,11 +1973,11 @@ fi:
     enabled: Poista vanhat julkaisut automaattisesti
     enabled_hint: Poistaa julkaisusi automaattisesti, kun ne saavuttavat valitun ikäkynnyksen, ellei jokin alla olevista poikkeuksista tule kyseeseen
     exceptions: Poikkeukset
-    explanation: Koska julkaisujen poistaminen on raskas toimi, se tapahtuu hitaasti aikaa myöten silloin kun palvelin ei ole muutoin ruuhkainen. Siksi viestejäsi voi poistua vasta tovi sen jälkeen kun ne ovat ylittäneet ikäkynnyksen.
+    explanation: Automaattipoisto suoritetaan pienellä prioriteetilla. Ikäkynnyksen saavuttamisen ja poistetuksi tulemisen välillä saattaa olla viive.
     ignore_favs: Ohita suosikit
     ignore_reblogs: Ohita tehostukset
     interaction_exceptions: Vuorovaikutuksiin perustuvat poikkeukset
-    interaction_exceptions_explanation: Huomaa, ettei julkaisujen poistumisesta ole varmuutta, jos ne alittavat suosikki- tai tehostusrajan sen jälkeen kun ne on kerran ylitetty.
+    interaction_exceptions_explanation: Julkaisut, jotka ylittävät väliaikaisesti suosikki- tai tehostusrajan, voidaan säilyttää, vaikka rajat myöhemmin alittuisivat.
     keep_direct: Säilytä yksityisviestit
     keep_direct_hint: Ei poista yksityisviestejäsi
     keep_media: Säilytä julkaisut, joissa on medialiitteitä
@@ -2190,6 +2190,7 @@ fi:
       error: Suojausavaimen poistamisessa oli ongelma. Yritä uudelleen.
       success: Suojausavaimesi poisto onnistui.
     invalid_credential: Virheellinen suojausavain
+    nickname: Lempinimi
     nickname_hint: Anna uuden suojausaivaimesi lempinimi
     not_enabled: Et ole vielä ottanut WebAuthn-ohjelmaa käyttöön
     not_supported: Tämä selain ei tue suojausavaimia

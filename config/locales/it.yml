@@ -1973,11 +1973,11 @@ it:
     enabled: Cancella automaticamente i vecchi post
     enabled_hint: Cancella automaticamente i tuoi post quando diventano più vecchi di una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto
     exceptions: Eccezioni
-    explanation: Poiché l'eliminazione dei post è un'operazione che richiede molte risorse, questa viene eseguita quando il server non è occupato da altre operazioni. Per questo motivo, i tuoi post possono essere cancellati un po' dopo che raggiungono la soglia di età.
+    explanation: L'eliminazione automatica viene eseguita con bassa priorità. Potrebbe verificarsi un ritardo tra il raggiungimento della soglia di età e la rimozione.
     ignore_favs: Ignora preferiti
     ignore_reblogs: Ignora condivisioni
     interaction_exceptions: Eccezioni basate sulle interazioni
-    interaction_exceptions_explanation: Tieni conto che non c'è garanzia che i post vengano cancellati se vanno al di sotto della soglia per i preferiti o i condivisi dopo averla superata.
+    interaction_exceptions_explanation: I post che superano temporaneamente la soglia dei preferiti o delle condivisioni potrebbero essere conservati anche se in seguito vengono diminuiti.
     keep_direct: Conserva messaggi diretti
     keep_direct_hint: Non cancella nessuno dei tuoi messaggi diretti
     keep_media: Conserva post con media allegati
@@ -2190,6 +2190,7 @@ it:
       error: Si è verificato un problema durante la cancellazione della chiave di sicurezza. Dovresti riprovare.
       success: La chiave di sicurezza è stata cancellata.
     invalid_credential: Chiave di sicurezza non valida
+    nickname: Soprannome
     nickname_hint: Inserisci il soprannome della tua nuova chiave di sicurezza
     not_enabled: Non hai ancora abilitato WebAuthn
     not_supported: Questo browser non supporta le chiavi di sicurezza

@@ -1,48 +1,124 @@
 import { isList } from 'immutable';
 
-import { assetHost } from '@/mastodon/utils/config';
+import type { CompactEmoji, SkinTone } from 'emojibase';
+import { fromHexcodeToCodepoint } from 'emojibase';
+
+import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 
 import {
   VARIATION_SELECTOR_CODE,
   KEYCAP_CODE,
-  GENDER_FEMALE_CODE,
-  GENDER_MALE_CODE,
-  SKIN_TONE_CODES,
   EMOJIS_WITH_DARK_BORDER,
   EMOJIS_WITH_LIGHT_BORDER,
   EMOJIS_REQUIRING_INVERSION_IN_LIGHT_MODE,
   EMOJIS_REQUIRING_INVERSION_IN_DARK_MODE,
+  EMOJI_MIN_TOKEN_LENGTH,
 } from './constants';
-import type { CustomEmojiMapArg, ExtraCustomEmojiMap } from './types';
+import type {
+  CustomEmojiData,
+  CustomEmojiMapArg,
+  ExtraCustomEmojiMap,
+  UnicodeEmojiData,
+} from './types';
+import { emojiToUnicodeHex } from './utils';
 
-// Misc codes that have special handling
-const SKIER_CODE = 0x26f7;
-const CHRISTMAS_TREE_CODE = 0x1f384;
-const MR_CLAUS_CODE = 0x1f385;
-const EYE_CODE = 0x1f441;
-const LEVITATING_PERSON_CODE = 0x1f574;
-const SPEECH_BUBBLE_CODE = 0x1f5e8;
-const MS_CLAUS_CODE = 0x1f936;
+const SKIN_TONE_MAP: Record<number, SkinTone> = {
+  0x1f3fb: 1, // Light skin tone
+  0x1f3fc: 2, // Medium-light skin tone
+  0x1f3fd: 3, // Medium skin tone
+  0x1f3fe: 4, // Medium-dark skin tone
+  0x1f3ff: 5, // Dark skin tone
+};
 
-export function emojiToUnicodeHex(emoji: string): string {
-  const codes: number[] = [];
-  for (const char of emoji) {
-    const code = char.codePointAt(0);
-    if (code !== undefined) {
-      codes.push(code);
+export function transformEmojiData(
+  emoji: CompactEmoji,
+  segmenter: Intl.Segmenter | null,
+): UnicodeEmojiData {
+  const {
+    shortcodes = [],
+    tags = [],
+    label,
+    emoticon,
+    hexcode,
+    unicode,
+    group,
+    order,
+    skins = [],
+  } = emoji;
+  const extract = (str: string) => extractTokens(str, segmenter);
+
+  let normalizedEmoticons: string[] | undefined = undefined;
+  if (emoticon) {
+    normalizedEmoticons = Array.isArray(emoticon) ? emoticon : [emoticon];
+  }
+
+  const tokens = [
+    ...new Set([
+      ...shortcodes.map(extract).flat(),
+      ...tags.map(extract).flat(),
+      ...extract(label),
+      ...(normalizedEmoticons ?? []),
+    ]),
+  ].sort((a, b) => a.localeCompare(b));
+
+  const res: UnicodeEmojiData = {
+    tokens,
+    shortcodes,
+    label,
+    emoticons: normalizedEmoticons,
+    hexcode,
+    unicode,
+    group,
+    order,
+  };
+
+  for (const skin of skins) {
+    res.skinHexcodes ??= [];
+    res.skinHexcodes.push(skin.hexcode);
+
+    res.skinTones ??= [];
+    for (const codePoint of skin.unicode) {
+      const tone = SKIN_TONE_MAP[codePoint.codePointAt(0) ?? 0];
+      if (tone) {
+        res.skinTones.push(tone);
+        break;
+      }
     }
   }
 
-  // Handles how Emojibase removes the variation selector for single code emojis.
-  // See: https://emojibase.dev/docs/spec/#merged-variation-selectors
-  if (codes.at(1) === VARIATION_SELECTOR_CODE && codes.length === 2) {
-    codes.pop();
-  }
-  return hexNumbersToString(codes);
+  return res;
 }
 
+export function transformCustomEmojiData(
+  emoji: ApiCustomEmojiJSON,
+): CustomEmojiData {
+  const tokens = emoji.shortcode
+    .split('_')
+    .filter((word) => word.length >= EMOJI_MIN_TOKEN_LENGTH)
+    .map((word) => word.toLowerCase());
+  return {
+    ...emoji,
+    tokens,
+  };
+}
+
+export function skinHexcodeToEmoji(
+  skinHexcode: string,
+  emoji: UnicodeEmojiData,
+): UnicodeEmojiData {
+  return {
+    ...emoji,
+    unicode: String.fromCodePoint(...fromHexcodeToCodepoint(skinHexcode)),
+    hexcode: skinHexcode,
+  };
+}
+
+// Misc codes that have special handling
+const EYE_CODE = 0x1f441;
+const SPEECH_BUBBLE_CODE = 0x1f5e8;
+
 export function unicodeToTwemojiHex(unicodeHex: string): string {
-  const codes = hexStringToNumbers(unicodeHex);
+  const codes = fromHexcodeToCodepoint(unicodeHex);
   const normalizedCodes: number[] = [];
   for (let i = 0; i < codes.length; i++) {
     const code = codes[i];
@@ -64,19 +140,28 @@ export function unicodeToTwemojiHex(unicodeHex: string): string {
     normalizedCodes.push(code);
   }
 
-  return hexNumbersToString(normalizedCodes, 0).toLowerCase();
+  return normalizedCodes
+    .map((code) => code.toString(16))
+    .join('-')
+    .toLowerCase();
 }
 
-export const CODES_WITH_DARK_BORDER =
-  EMOJIS_WITH_DARK_BORDER.map(emojiToUnicodeHex);
+const CODES_WITH_DARK_BORDER = EMOJIS_WITH_DARK_BORDER.map(emojiToUnicodeHex);
 
-export const CODES_WITH_LIGHT_BORDER =
-  EMOJIS_WITH_LIGHT_BORDER.map(emojiToUnicodeHex);
+const CODES_WITH_LIGHT_BORDER = EMOJIS_WITH_LIGHT_BORDER.map(emojiToUnicodeHex);
 
-export function unicodeHexToUrl(unicodeHex: string, darkMode: boolean): string {
+export function unicodeHexToUrl({
+  unicodeHex,
+  darkTheme,
+  assetHost,
+}: {
+  unicodeHex: string;
+  darkTheme: boolean;
+  assetHost: string;
+}): string {
   const normalizedHex = unicodeToTwemojiHex(unicodeHex);
   let url = `${assetHost}/emoji/${normalizedHex}`;
-  if (darkMode && CODES_WITH_LIGHT_BORDER.includes(normalizedHex)) {
+  if (darkTheme && CODES_WITH_LIGHT_BORDER.includes(normalizedHex)) {
     url += '_border';
   }
   if (CODES_WITH_DARK_BORDER.includes(normalizedHex)) {
@@ -84,78 +169,6 @@ export function unicodeHexToUrl(unicodeHex: string, darkMode: boolean): string {
   }
   url += '.svg';
   return url;
-}
-
-interface TwemojiSpecificEmoji {
-  unqualified?: string;
-  gender?: number;
-  skin?: number;
-  label?: string;
-}
-
-// Normalize man/woman to male/female
-const GENDER_CODES_MAP: Record<number, number> = {
-  [GENDER_FEMALE_CODE]: GENDER_FEMALE_CODE,
-  [GENDER_MALE_CODE]: GENDER_MALE_CODE,
-  // These are man/woman markers, but are used for gender sometimes.
-  [0x1f468]: GENDER_MALE_CODE,
-  [0x1f469]: GENDER_FEMALE_CODE,
-};
-
-const TWEMOJI_SPECIAL_CASES: Record<string, string | TwemojiSpecificEmoji> = {
-  '1F441-200D-1F5E8': '1F441-FE0F-200D-1F5E8-FE0F', // Eye in speech bubble
-  // An emoji that was never ported to the Unicode standard.
-  // See: https://emojipedia.org/shibuya
-  E50A: { label: 'Shibuya 109' },
-};
-
-export function twemojiToUnicodeInfo(
-  twemojiHex: string,
-): TwemojiSpecificEmoji | string {
-  const specialCase = TWEMOJI_SPECIAL_CASES[twemojiHex.toUpperCase()];
-  if (specialCase) {
-    return specialCase;
-  }
-  const codes = hexStringToNumbers(twemojiHex);
-  let gender: undefined | number;
-  let skin: undefined | number;
-  for (const code of codes) {
-    if (!gender && code in GENDER_CODES_MAP) {
-      gender = GENDER_CODES_MAP[code];
-    } else if (!skin && code in SKIN_TONE_CODES) {
-      skin = code;
-    }
-
-    // Exit if we have both skin and gender
-    if (skin && gender) {
-      break;
-    }
-  }
-
-  let mappedCodes: unknown[] = codes;
-
-  if (codes.at(-1) === CHRISTMAS_TREE_CODE && codes.length >= 3 && gender) {
-    // Twemoji uses the christmas tree with a ZWJ for Mr. and Mrs. Claus,
-    // but in Unicode that only works for Mx. Claus.
-    const START_CODE =
-      gender === GENDER_FEMALE_CODE ? MS_CLAUS_CODE : MR_CLAUS_CODE;
-    mappedCodes = [START_CODE, skin];
-  } else if (codes.at(-1) === KEYCAP_CODE && codes.length === 2) {
-    // For key emoji, insert the variation selector
-    mappedCodes = [codes[0], VARIATION_SELECTOR_CODE, KEYCAP_CODE];
-  } else if (
-    (codes.at(0) === SKIER_CODE || codes.at(0) === LEVITATING_PERSON_CODE) &&
-    codes.length > 1
-  ) {
-    // Twemoji offers more gender and skin options for the skier and levitating person emoji.
-    return {
-      unqualified: hexNumbersToString([codes.at(0)]),
-      skin,
-      gender,
-    };
-  }
-
-  return hexNumbersToString(mappedCodes);
 }
 
 export function emojiToInversionClassName(emoji: string): string | null {
@@ -189,19 +202,37 @@ export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg) {
   return extraEmojis;
 }
 
-function hexStringToNumbers(hexString: string): number[] {
-  return hexString
-    .split('-')
-    .map((code) => Number.parseInt(code, 16))
-    .filter((code) => !Number.isNaN(code));
-}
+/**
+ * Tokenizes an input string into words, using Intl.Segmenter if available.
+ * @param input Any input string.
+ * @param segmenter Segmenter, if available.
+ * @returns Array of tokens in lowercase.
+ */
+export function extractTokens(
+  input: string,
+  segmenter: Intl.Segmenter | null,
+): string[] {
+  if (!input.trim()) {
+    return [];
+  }
+  const tokens: string[] = [];
 
-function hexNumbersToString(codes: unknown[], padding = 4): string {
-  return codes
-    .filter(
-      (code): code is number =>
-        typeof code === 'number' && code > 0 && !Number.isNaN(code),
-    )
-    .map((code) => code.toString(16).padStart(padding, '0').toUpperCase())
-    .join('-');
+  // Prefer to use Intl.Segmenter if available for better locale support.
+  if (segmenter) {
+    for (const { isWordLike, segment } of segmenter.segment(
+      input.replaceAll('_', ' '), // Handle underscores from shortcodes.
+    )) {
+      if (isWordLike && segment.length >= EMOJI_MIN_TOKEN_LENGTH) {
+        tokens.push(segment.toLowerCase());
+      }
+    }
+  } else {
+    // Fallback to simple splitting.
+    input.split(/[\s_-]+/).forEach((word) => {
+      if (/\w/.test(word) && word.length >= EMOJI_MIN_TOKEN_LENGTH) {
+        tokens.push(word.toLowerCase());
+      }
+    });
+  }
+  return tokens;
 }
