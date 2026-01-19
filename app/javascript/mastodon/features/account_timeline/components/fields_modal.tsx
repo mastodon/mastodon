@@ -2,9 +2,13 @@ import type { FC } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
+import IconVerified from '@/images/icons/icon_verified.svg?react';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
+import { Icon } from '@/mastodon/components/icon';
 import { IconButton } from '@/mastodon/components/icon_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
@@ -64,12 +68,25 @@ export const AccountFieldsModal: FC<{
                   className='translate'
                   {...htmlHandlers}
                 />
-                <EmojiHTML
-                  as='dd'
-                  htmlString={field.value_emojified}
-                  extraEmojis={account.emojis}
-                  {...htmlHandlers}
-                />
+                <dd>
+                  <EmojiHTML
+                    as='span'
+                    htmlString={field.value_emojified}
+                    extraEmojis={account.emojis}
+                    className={classNames(
+                      classes.fieldValue,
+                      !!field.verified_at && classes.fieldVerified,
+                    )}
+                    {...htmlHandlers}
+                  />
+                  {!!field.verified_at && (
+                    <Icon
+                      id='verified'
+                      icon={IconVerified}
+                      className={classes.fieldIconVerified}
+                    />
+                  )}
+                </dd>
               </div>
             ))}
           </dl>
