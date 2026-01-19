@@ -7,18 +7,6 @@ const meta = {
   title: 'Components/MiniCard',
   component: MiniCardList,
   args: {
-    cards: [
-      { label: 'Pronouns', value: 'they/them' },
-      {
-        label: 'Website',
-        value: <a href='https://example.com'>bowie-the-db.meow</a>,
-      },
-      {
-        label: 'Free playlists',
-        value: <a href='https://soundcloud.com/bowie-the-dj'>soundcloud.com</a>,
-      },
-      { label: 'Location', value: 'Purris, France' },
-    ],
     onOverflowClick: action('Overflow clicked'),
   },
   render(args) {
@@ -43,7 +31,22 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    cards: [
+      { label: 'Pronouns', value: 'they/them' },
+      {
+        label: 'Website',
+        value: <a href='https://example.com'>bowie-the-db.meow</a>,
+      },
+      {
+        label: 'Free playlists',
+        value: <a href='https://soundcloud.com/bowie-the-dj'>soundcloud.com</a>,
+      },
+      { label: 'Location', value: 'Purris, France' },
+    ],
+  },
+};
 
 export const LongValue: Story = {
   args: {
@@ -58,5 +61,11 @@ export const LongValue: Story = {
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       },
     ],
+  },
+};
+
+export const OneCard: Story = {
+  args: {
+    cards: [{ label: 'Pronouns', value: 'they/them' }],
   },
 };
