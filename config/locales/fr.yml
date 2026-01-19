@@ -1322,6 +1322,13 @@ fr:
     hint_html: "<strong>Astuce :</strong> Nous ne vous demanderons plus votre mot de passe pour la prochaine heure."
     invalid_password: Mot de passe invalide
     prompt: Confirmez votre mot de passe pour continuer
+  color_scheme:
+    auto: Automatique
+    dark: Sombre
+    light: Clair
+  contrast:
+    auto: Automatique
+    high: Élevé
   crypto:
     errors:
       invalid_key: n’est pas une clé Ed25519 ou Curve25519 valide
@@ -1969,11 +1976,11 @@ fr:
     enabled: Supprimer automatiquement vos anciens messages
     enabled_hint: Supprime automatiquement vos messages une fois qu'ils ont atteint un seuil d'ancienneté défini, à moins qu'ils ne correspondent à l'une des exceptions ci-dessous
     exceptions: Exceptions
-    explanation: Parce que la suppression de messages est une opération lourde, cela se fait lentement au fil du temps lorsque le serveur n'est pas autrement occupé. Pour cette raison, vos messages peuvent être supprimés un peu plus tard que le seuil d'ancienneté défini.
+    explanation: La suppression automatique est effectuée avec une faible priorité. Il peut y avoir un délai entre le seuil d'ancienneté défini et la suppression effective.
     ignore_favs: Ignorer les favoris
     ignore_reblogs: Ignorer les partages
     interaction_exceptions: Exceptions basées sur les interactions
-    interaction_exceptions_explanation: Notez qu'il n'est pas garanti que les messages soient supprimés s'ils passent sous le seuil des favoris ou des partages une fois qu'ils les ont dépassés.
+    interaction_exceptions_explanation: Les messages ayant dépassé temporairement le seuil de favori ou de partage peuvent être conservés, même s'ils repassent sous le seuil.
     keep_direct: Conserver les messages directs
     keep_direct_hint: Ne supprime aucun de vos messages directs
     keep_media: Conserver les messages avec des fichiers médias joints
@@ -2186,7 +2193,8 @@ fr:
       error: Il y a eu un problème en supprimant votre clé de sécurité. Veuillez réessayer.
       success: Votre clé de sécurité a été supprimée avec succès.
     invalid_credential: Clé de sécurité invalide
-    nickname_hint: Entrez le surnom de votre nouvelle clé de sécurité
+    nickname: Nom de la clé de sécurité
+    nickname_hint: Entrez le nom de votre nouvelle clé de sécurité
     not_enabled: Vous n'avez pas encore activé WebAuthn
     not_supported: Ce navigateur ne prend pas en charge les clés de sécurité
     otp_required: Pour utiliser les clés de sécurité, veuillez d'abord activer l'authentification à deux facteurs.

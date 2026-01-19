@@ -51,9 +51,9 @@ class Quote < ApplicationRecord
 
   def reject!
     if accepted?
-      update!(state: :revoked)
+      update!(state: :revoked, approval_uri: nil)
     elsif !revoked?
-      update!(state: :rejected)
+      update!(state: :rejected, approval_uri: nil)
     end
   end
 

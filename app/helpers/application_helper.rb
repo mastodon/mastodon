@@ -89,6 +89,12 @@ module ApplicationHelper
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
 
+  def page_color_scheme
+    return content_for(:force_color_scheme) if content_for(:force_color_scheme)
+
+    color_scheme
+  end
+
   def label_for_scope(scope)
     safe_join [
       tag.samp(scope, class: { 'scope-danger' => SessionActivation::DEFAULT_SCOPES.include?(scope.to_s) }),
@@ -151,6 +157,19 @@ module ApplicationHelper
 
   def opengraph(property, content)
     tag.meta(content: content, property: property)
+  end
+
+  def html_attributes
+    base = {
+      lang: I18n.locale,
+      class: html_classes,
+      'data-contrast': contrast.parameterize,
+      'data-color-scheme': page_color_scheme.parameterize,
+    }
+
+    base[:'data-system-theme'] = 'true' if page_color_scheme == 'auto'
+
+    base
   end
 
   def html_classes

@@ -32,6 +32,13 @@ export function toValidEtagName(input: string): EtagTypes {
   return toSupportedLocale(lower);
 }
 
+export function localeToSegmenter(locale: Locale): Intl.Segmenter | null {
+  if (typeof Intl.Segmenter === 'function') {
+    return new Intl.Segmenter(locale, { granularity: 'word' });
+  }
+  return null;
+}
+
 function isSupportedLocale(locale: string): locale is Locale {
   return SUPPORTED_LOCALES.includes(locale as Locale);
 }

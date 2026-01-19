@@ -1319,6 +1319,13 @@ es-MX:
     hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
     invalid_password: Contraseña incorrecta
     prompt: Confirmar contraseña para seguir
+  color_scheme:
+    auto: Automático
+    dark: Oscuro
+    light: Claro
+  contrast:
+    auto: Automático
+    high: Alto
   crypto:
     errors:
       invalid_key: no es una clave Ed25519 o Curve25519 válida
@@ -1896,7 +1903,7 @@ es-MX:
     notifications: Notificaciones por correo electrónico
     preferences: Preferencias
     profile: Perfil
-    relationships: Siguiendo y seguidores
+    relationships: Seguimientos
     severed_relationships: Relaciones cortadas
     statuses_cleanup: Eliminación automática de publicaciones
     strikes: Amonestaciones de moderación
@@ -1910,7 +1917,7 @@ es-MX:
       user_domain_block: Bloqueaste %{target_name}
     lost_followers: Seguidores perdidos
     lost_follows: Cuentas seguidas perdidas
-    preamble: Puedes perder cuentas seguidas y seguidores cuando bloqueas un dominio o cuando tus moderadores deciden suspender un servidor remoto. Cuando esto suceda, podrás descargar listas de relaciones cortadas, para ser inspeccionadas y posiblemente importadas en otro servidor.
+    preamble: Es posible que pierdas seguidores y seguidos cuando bloquees un dominio o cuando tus moderadores decidan suspender un servidor remoto. Cuando eso ocurra, podrás descargar listas de relaciones interrumpidas, para inspeccionarlas y posiblemente importarlas a otro servidor.
     purged: La información sobre este servidor ha sido purgada por los administradores de tu servidor.
     type: Evento
   statuses:
@@ -1966,11 +1973,11 @@ es-MX:
     enabled: Borrar automáticamente publicaciones antiguas
     enabled_hint: Elimina automáticamente tus publicaciones una vez que alcancen un umbral de tiempo especificado, a menos que coincidan con alguna de las excepciones detalladas debajo
     exceptions: Excepciones
-    explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente, a lo largo de un tiempo, cuando el servidor no está ocupado. Por este motivo, puede que tus publicaciones sean borradas algo después de que alcancen el umbral de tiempo especificado.
+    explanation: La eliminación automática se realiza con baja prioridad. Puede haber un retraso entre el momento en que se alcanza el límite de antigüedad y el momento en que se elimina.
     ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar impulsos
     interaction_exceptions: Excepciones basadas en interacciones
-    interaction_exceptions_explanation: Ten en cuenta que no se garantiza la eliminación de las publicaciones si bajan del umbral de favoritos o de impulso después de haberlos superado una vez.
+    interaction_exceptions_explanation: Las publicaciones que superen temporalmente el límite de favoritos o de impulso pueden conservarse aunque posteriormente se reduzcan.
     keep_direct: Mantener mensajes directos
     keep_direct_hint: No elimina ninguno de tus mensajes directos
     keep_media: Mantener publicaciones con multimedia adjunto
@@ -2183,6 +2190,7 @@ es-MX:
       error: Hubo un problema al añadir su clave de seguridad. Por favor, inténtalo de nuevo.
       success: Su clave de seguridad se ha eliminado correctamente.
     invalid_credential: Clave de seguridad no válida
+    nickname: Apodo
     nickname_hint: Introduzca el apodo de su nueva clave de seguridad
     not_enabled: Aún no has activado WebAuthn
     not_supported: Este navegador no soporta claves de seguridad

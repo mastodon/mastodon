@@ -128,6 +128,28 @@ RSpec.describe ActivityPub::TagManager do
             .to eq("#{host_prefix}/ap/users/#{status.account.id}/statuses/#{status.id}")
         end
       end
+
+      context 'with a reblog' do
+        let(:status) { Fabricate(:status, account:, reblog: Fabricate(:status)) }
+
+        context 'when using a numeric ID based scheme' do
+          let(:account) { Fabricate(:account, id_scheme: :numeric_ap_id) }
+
+          it 'returns a string starting with web domain and with the expected path' do
+            expect(subject.uri_for(status))
+              .to eq("#{host_prefix}/ap/users/#{status.account.id}/statuses/#{status.id}/activity")
+          end
+        end
+
+        context 'when using the legacy username based scheme' do
+          let(:account) { Fabricate(:account, id_scheme: :username_ap_id) }
+
+          it 'returns a string starting with web domain and with the expected path' do
+            expect(subject.uri_for(status))
+              .to eq("#{host_prefix}/users/#{status.account.username}/statuses/#{status.id}/activity")
+          end
+        end
+      end
     end
 
     context 'with a remote status' do
@@ -168,6 +190,23 @@ RSpec.describe ActivityPub::TagManager do
 
       it 'returns the expected URL' do
         expect(subject.uri_for(status.conversation)).to eq status.conversation.uri
+      end
+    end
+
+    context 'with a local collection' do
+      let(:collection) { Fabricate(:collection) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.uri_for(collection))
+          .to eq("#{host_prefix}/ap/users/#{collection.account.id}/collections/#{collection.id}")
+      end
+    end
+
+    context 'with a remote collection' do
+      let(:collection) { Fabricate(:remote_collection) }
+
+      it 'returns the expected URL' do
+        expect(subject.uri_for(collection)).to eq collection.uri
       end
     end
   end

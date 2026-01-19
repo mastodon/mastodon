@@ -1319,6 +1319,13 @@ en-GB:
     hint_html: "<strong>Tip:</strong> we won't ask you for your password again for the next hour."
     invalid_password: Invalid password
     prompt: Confirm password to continue
+  color_scheme:
+    auto: Auto
+    dark: Dark
+    light: Light
+  contrast:
+    auto: Auto
+    high: High
   crypto:
     errors:
       invalid_key: is not a valid Ed25519 or Curve25519 key
@@ -1966,11 +1973,11 @@ en-GB:
     enabled: Automatically delete old posts
     enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below
     exceptions: Exceptions
-    explanation: Because deleting posts is an expensive operation, this is done slowly over time when the server is not otherwise busy. For this reason, your posts may be deleted a while after they reach the age threshold.
+    explanation: Automated deletion is performed with low priority. There may be a delay between reaching the age threshold and being removed.
     ignore_favs: Ignore favourites
     ignore_reblogs: Ignore boosts
     interaction_exceptions: Exceptions based on interactions
-    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favourite or boost threshold after having once gone over them.
+    interaction_exceptions_explanation: Posts which temporarily exceed the favourite or boost threshold may be retained even if they are later decreased.
     keep_direct: Keep direct messages
     keep_direct_hint: Doesn't delete any of your direct messages
     keep_media: Keep posts with media attachments
@@ -2183,6 +2190,7 @@ en-GB:
       error: There was a problem deleting you security key. Please try again.
       success: Your security key was successfully deleted.
     invalid_credential: Invalid security key
+    nickname: Nickname
     nickname_hint: Enter the nickname of your new security key
     not_enabled: You haven't enabled WebAuthn yet
     not_supported: This browser doesn't support security keys

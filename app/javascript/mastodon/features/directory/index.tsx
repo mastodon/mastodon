@@ -83,6 +83,9 @@ export const Directory: React.FC<{
     (state) =>
       state.user_lists.getIn(['directory', 'isLoading'], true) as boolean,
   );
+  const hasMore = useAppSelector(
+    (state) => !!state.user_lists.getIn(['directory', 'next']),
+  );
 
   useEffect(() => {
     void dispatch(fetchDirectory({ order, local }));
@@ -182,7 +185,7 @@ export const Directory: React.FC<{
 
       <LoadMore
         onClick={handleLoadMore}
-        visible={!initialLoad}
+        visible={!initialLoad && hasMore}
         loading={isLoading}
       />
     </div>

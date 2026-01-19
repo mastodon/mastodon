@@ -4,7 +4,6 @@ import {
   EMOJI_TYPE_UNICODE,
   EMOJI_TYPE_CUSTOM,
 } from './constants';
-import { emojiToUnicodeHex } from './normalize';
 import type {
   EmojiLoadedState,
   EmojiMode,
@@ -16,6 +15,7 @@ import type {
 import {
   anyEmojiRegex,
   emojiLogger,
+  emojiToUnicodeHex,
   isCustomEmoji,
   isUnicodeEmoji,
   stringHasUnicodeFlags,
@@ -140,12 +140,7 @@ export async function loadEmojiDataToState(
     }
 
     // If not found, assume it's not an emoji and return null.
-    log(
-      'Could not find emoji %s of type %s for locale %s',
-      state.code,
-      state.type,
-      locale,
-    );
+    log('Could not find emoji %s for locale %s', state.code, locale);
     return null;
   } catch (err: unknown) {
     // If the locale is not loaded, load it and retry once.

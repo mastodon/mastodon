@@ -918,7 +918,7 @@ const startServer = async () => {
 
     res.write(':)\n');
 
-    const heartbeat = setInterval(() => res.write(':thump\n'), 15000);
+    const heartbeat = setInterval(() => res.write(':thump\n\n'), 15000);
 
     req.on('close', () => {
       req.log.info({ accountId: req.accountId }, `Ending stream`);

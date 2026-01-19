@@ -4,7 +4,7 @@ de:
     about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung durch Unternehmen – dafür dezentral und mit Anstand! Behalte mit Mastodon die Kontrolle über deine Daten!'
     contact_missing: Nicht festgelegt
     contact_unavailable: Nicht verfügbar
-    hosted_on: Mastodon, gehostet auf %{domain}
+    hosted_on: Mastodon, eingerichtet auf %{domain}
     title: Über
   accounts:
     errors:
@@ -314,7 +314,7 @@ de:
       empty: Protokolle nicht gefunden.
       filter_by_action: Nach Aktion filtern
       filter_by_user: Nach Benutzer*in filtern
-      title: Audit-Log
+      title: Protokoll
       unavailable_instance: "(Server nicht verfügbar)"
     announcements:
       back: Zurück zu den Ankündigungen
@@ -328,7 +328,7 @@ de:
         title: Neue Ankündigung
       preview:
         disclaimer: Da sich Profile nicht davon abmelden können, sollten Benachrichtigungen per E-Mail auf wichtige Ankündigungen wie z. B. zu Datenpannen oder Serverabschaltung beschränkt sein.
-        explanation_html: 'Die E-Mail wird an <strong>%{display_count} Nutzer*innen</strong> gesendet. Folgendes wird in der E-Mail enthalten sein:'
+        explanation_html: 'Die E-Mail wird <strong>%{display_count} Profilen</strong> geschickt. Folgendes wird in der E-Mail stehen:'
         title: Vorschau der Ankündigung
       publish: Veröffentlichen
       published_msg: Ankündigung erfolgreich veröffentlicht!
@@ -438,8 +438,8 @@ de:
           silence: Stummschaltung
           suspend: Sperren
         title: Neue Domain einschränken
-      no_domain_block_selected: Keine Domains gesperrt, weil keine ausgewählt wurde(n)
-      not_permitted: Du bist nicht berechtigt, diese Aktion durchzuführen
+      no_domain_block_selected: Keine Domain(s) gesperrt, weil keine ausgewählt wurde(n)
+      not_permitted: Dir ist es nicht erlaubt, diese Handlung durchzuführen
       obfuscate: Domain-Name verschleiern
       obfuscate_hint: Den Domain-Namen öffentlich nur teilweise bekannt geben, sofern die Liste der Domain-Beschränkungen aktiviert ist
       private_comment: Nicht-öffentliche Notiz
@@ -469,7 +469,7 @@ de:
         resolve: Domain auflösen
         title: Neue E-Mail-Domain sperren
       no_email_domain_block_selected: Es wurden keine E-Mail-Domain-Sperren geändert, da keine ausgewählt wurden
-      not_permitted: Nicht gestattet
+      not_permitted: Nicht erlaubt
       resolved_dns_records_hint_html: Die Domain wird zu den folgenden MX-Domains aufgelöst, die für die Annahme von E-Mails zuständig sind. Das Sperren einer MX-Domain sperrt Anmeldungen aller E-Mail-Adressen, die dieselbe MX-Domain verwenden, auch wenn die sichtbare Domain anders lautet. <strong>Achte daher darauf, keine großen E-Mail-Anbieter versehentlich zu sperren.</strong>
       resolved_through_html: Durch %{domain} aufgelöst
       title: Gesperrte E-Mail-Domains
@@ -528,8 +528,8 @@ de:
       unsuppress: Folgeempfehlung nicht mehr unterbinden
     instances:
       audit_log:
-        title: Neueste Audit-Logs
-        view_all: Alle Audit-Logs anzeigen
+        title: Neueste Protokolle
+        view_all: Alle Protokolle anzeigen
       availability:
         description_html:
           one: Wenn die Zustellung an die Domain <strong>%{count} Tag</strong> lang erfolglos bleibt, werden keine weiteren Zustellversuche unternommen, bis eine Zustellung <em>von</em> der Domain empfangen wird.
@@ -587,12 +587,12 @@ de:
         limited: Eingeschränkt
         title: Server
       moderation_notes:
-        create: Moderationsnotiz hinzufügen
-        created_msg: Moderationsnotiz für diesen Server erfolgreich erstellt!
-        description_html: Hinterlasse Notizen für dich und deine Moderator*innen
-        destroyed_msg: Moderationsnotiz für diesen Server erfolgreich entfernt!
+        create: Moderationsvermerk hinzufügen
+        created_msg: Moderationsvermerk für diesen Server erfolgreich erstellt!
+        description_html: Hinterlasse interne Vermerke für dich und deine Moderator*innen
+        destroyed_msg: Moderationvermerk für diesen Server erfolgreich entfernt!
         placeholder: Informationen über diesen Server, ergriffene Maßnahmen oder andere Sachverhalte, die in Zukunft nützlich sein könnten.
-        title: Moderationsnotizen
+        title: Moderationsvermerke
       private_comment: Privater Kommentar
       public_comment: Öffentlicher Kommentar
       purge: Säubern
@@ -647,14 +647,14 @@ de:
       status: Status
       title: Relais
     report_notes:
-      created_msg: Notiz zur Meldung erfolgreich erstellt!
-      destroyed_msg: Notiz zur Meldung erfolgreich entfernt!
+      created_msg: Vermerk zur Meldung erfolgreich erstellt!
+      destroyed_msg: Vermerk zur Meldung erfolgreich entfernt!
     reports:
       account:
         notes:
-          one: "%{count} Notiz"
-          other: "%{count} Notizen"
-      action_log: Audit-Log
+          one: "%{count} Vermerk"
+          other: "%{count} Vermerke"
+      action_log: Protokoll
       action_taken_by: Maßnahme ergriffen von
       actions:
         delete_description_html: Der gemeldete Beitrag wird gelöscht und die ergriffene Maßnahme wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Kontos zu helfen.
@@ -673,16 +673,16 @@ de:
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
       assigned: Zugewiesene*r Moderator*in
-      by_target_domain: Domain des gemeldeten Kontos
+      by_target_domain: Server des gemeldeten Kontos
       cancel: Abbrechen
       category: Kategorie
       category_description_html: Der Grund, weshalb dieses Konto und/oder der Inhalt gemeldet worden ist, wird in der Kommunikation mit dem gemeldeten Konto erwähnt
       comment:
-        none: Kein
+        none: Ohne ergänzenden Kommentar
       comment_description_html: "%{name} ergänzte die Meldung um folgende Hinweis:"
       confirm: Bestätigen
       confirm_action: Maßnahme gegen @%{acct} bestätigen
-      created_at: Gemeldet
+      created_at: Gemeldet am
       delete_and_resolve: Beiträge löschen
       forwarded: Weitergeleitet
       forwarded_replies_explanation: Diese Meldung stammt von einem externen Profil und betrifft einen externen Inhalt. Der Inhalt wurde an dich weitergeleitet, weil er eine Antwort auf ein bei dir registriertes Profil ist.
@@ -696,9 +696,9 @@ de:
         create_and_resolve: Mit Notiz als geklärt markieren
         create_and_unresolve: Mit Notiz wieder öffnen
         delete: Löschen
-        placeholder: Bitte beschreibe, welche Maßnahmen bzw. Sanktionen ergriffen worden sind, und führe alles auf, was es Erwähnenswertes zu diesem Profil zu berichten gibt …
-        title: Notizen
-      notes_description_html: Notiz an dich und andere Moderator*innen hinterlassen
+        placeholder: Bitte beschreibe, welche Maßnahmen ergriffen worden sind, und führe alles auf, was es Erwähnenswertes zu diesem Profil zu berichten gibt …
+        title: Vermerke
+      notes_description_html: Internen Vermerk an dich und andere Moderator*innen hinterlassen
       processed_msg: Meldung Nr. %{id} erfolgreich bearbeitet
       quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
       remote_user_placeholder: das externe Profil von %{instance}
@@ -706,7 +706,7 @@ de:
       report: "%{id}. Meldung"
       reported_account: Gemeldetes Konto
       reported_by: Gemeldet von
-      reported_with_application: Per App gemeldet
+      reported_with_application: Gemeldet via
       resolved: Geklärt
       resolved_msg: Meldung erfolgreich geklärt!
       skip_to_actions: Zur Maßnahme springen
@@ -724,7 +724,7 @@ de:
           mark_as_sensitive_html: Medien der beanstandeten Beiträge mit einer Inhaltswarnung versehen
           silence_html: Schränkt die Reichweite von <strong>@%{acct}</strong> stark ein, indem das Profil und dessen Inhalte nur für Personen sichtbar sind, die dem Profil bereits folgen oder es manuell aufrufen
           suspend_html: "<strong>@%{acct}</strong> sperren, sodass das Profil und dessen Inhalte nicht mehr zugänglich sind und keine Interaktion mehr möglich ist"
-        close_report: Meldung Nr. %{id} als geklärt markieren
+        close_report: Meldung Nr. %{id} als erledigt markieren
         close_reports_html: "<strong>Alle</strong> Meldungen gegen <strong>@%{acct}</strong> als geklärt markieren"
         delete_data_html: Das Profil und die Inhalte von <strong>@%{acct}</strong> in 30 Tagen löschen, es sei denn, das Konto wird in der Zwischenzeit entsperrt
         preview_preamble_html: "<strong>@%{acct}</strong> wird eine Warnung mit folgenden Inhalten erhalten:"
@@ -792,7 +792,7 @@ de:
         manage_users_description: Erlaubt es Benutzer*innen, die Details anderer Profile einzusehen und diese Accounts zu moderieren
         manage_webhooks: Webhooks verwalten
         manage_webhooks_description: Erlaubt es Benutzer*innen, Webhooks für administrative Vorkommnisse einzurichten
-        view_audit_log: Audit-Log anzeigen
+        view_audit_log: Protokoll anzeigen
         view_audit_log_description: Erlaubt es Benutzer*innen, den Verlauf der administrativen Handlungen auf diesem Server einzusehen
         view_dashboard: Dashboard anzeigen
         view_dashboard_description: Gewährt Benutzer*innen den Zugriff auf das Dashboard und verschiedene Metriken
@@ -896,7 +896,7 @@ de:
       version: Version
     statuses:
       account: Autor*in
-      application: Anwendung
+      application: App
       back_to_account: Zurück zum Konto
       back_to_report: Zurück zur Seite mit den Meldungen
       batch:
@@ -923,7 +923,7 @@ de:
       status_title: Beitrag von @%{name}
       title: Beiträge des Kontos – @%{name}
       trending: Trends
-      view_publicly: Öffentlich anzeigen
+      view_publicly: Originalbeitrag öffnen
       view_quoted_post: Zitierten Beitrag anzeigen
       visibility: Sichtbarkeit
       with_media: Mit Medien
@@ -973,7 +973,7 @@ de:
         message_html: Ein Mastodon-Update ist verfügbar.
       software_version_critical_check:
         action: Verfügbare Updates ansehen
-        message_html: Ein kritisches Mastodon-Update ist verfügbar – bitte aktualisiere so schnell wie möglich.
+        message_html: Ein wichtiges Sicherheitsupdate ist verfügbar – bitte aktualisiere Mastodon so schnell wie möglich.
       software_version_patch_check:
         action: Verfügbare Updates ansehen
         message_html: Ein Mastodon-Update mit Bugfixes ist verfügbar.
@@ -1058,7 +1058,7 @@ de:
           other: In den vergangenen 7 Tagen von %{count} Profilen geteilt
         title: Angesagte Links
         usage_comparison: Heute %{today} × und gestern %{yesterday} × geteilt
-      not_allowed_to_trend: Darf nicht trenden
+      not_allowed_to_trend: Trend nicht erlaubt
       only_allowed: Nur Genehmigte
       pending_review: Überprüfung ausstehend
       preview_card_providers:
@@ -1263,12 +1263,12 @@ de:
       confirm: E-Mail bestätigen
       details: Deine Daten
       review: Unsere Überprüfung
-      rules: Regeln akzeptieren
+      rules: Serverregeln akzeptieren
     providers:
       cas: CAS
       saml: SAML
     register: Registrieren
-    registration_closed: "%{instance} akzeptiert keine neuen Mitglieder"
+    registration_closed: "%{instance} akzeptiert keine neuen Registrierungen"
     resend_confirmation: Bestätigungslink erneut zusenden
     reset_password: Passwort zurücksetzen
     rules:
@@ -1305,7 +1305,7 @@ de:
     too_fast: Formular zu schnell übermittelt. Bitte versuche es erneut.
     use_security_key: Sicherheitsschlüssel verwenden
     user_agreement_html: Ich stimme den <a href="%{terms_of_service_path}" target="_blank">Nutzungsbedingungen</a> sowie der <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> zu
-    user_privacy_agreement_html: Ich stimme der <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> zu
+    user_privacy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> gelesen und bin mit ihr einverstanden
   author_attribution:
     example_title: Beispieltitel
     hint_html: Schreibst du außerhalb von Mastodon journalistische Artikel oder andere Texte, beispielsweise in einem Blog? Lege hier fest, wann auf dein Profil verwiesen werden soll, wenn Links zu deinen Werken auf Mastodon geteilt werden.
@@ -1319,6 +1319,13 @@ de:
     hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
     invalid_password: Ungültiges Passwort
     prompt: Bestätige mit deinem Passwort, um fortzufahren
+  color_scheme:
+    auto: Automatisch
+    dark: Dunkel
+    light: Hell
+  contrast:
+    auto: Automatisch
+    high: Hoch
   crypto:
     errors:
       invalid_key: ist kein gültiger Ed25519- oder Curve25519-Schlüssel
@@ -1356,7 +1363,7 @@ de:
       irreversible: Du wirst dein Konto nicht mehr wiederherstellen oder reaktivieren können
       more_details_html: Weitere Details findest du in der <a href="%{terms_path}">Datenschutzerklärung</a>.
       username_available: Dein Profilname wird wieder verfügbar sein
-      username_unavailable: Dein Profilname wird auch nach dem Löschen für andere nicht zugänglich sein
+      username_unavailable: Dein Profilname kann nach der Kontolöschung nicht neu registriert werden – und steht nicht mehr zur Verfügung
   disputes:
     strikes:
       action_taken: Maßnahme
@@ -1380,7 +1387,7 @@ de:
         delete_statuses: Beitragsentfernung
         disable: Konto einfrieren
         mark_statuses_as_sensitive: Beiträge mit einer Inhaltswarnung versehen
-        none: Warnung
+        none: Verwarnung
         sensitive: Profil mit einer Inhaltswarnung versehen
         silence: Kontobeschränkung
         suspend: Kontosperre
@@ -1411,7 +1418,7 @@ de:
     '503': Die Seite konnte wegen eines temporären Serverfehlers nicht angezeigt werden.
     noscript_html: Bitte aktiviere JavaScript, um das Webinterface von Mastodon zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Apps</a> für Mastodon verwenden.
   existing_username_validator:
-    not_found: kann lokale Konten mit diesem Profilnamen nicht finden
+    not_found: kann kein lokales Konto mit diesem Profilnamen finden
     not_found_multiple: "%{usernames} konnten nicht gefunden werden"
   exports:
     archive_takeout:
@@ -1596,16 +1603,16 @@ de:
     invalid: Diese Einladung ist ungültig
     invited_by: 'Du wurdest eingeladen von:'
     max_uses:
-      one: Eine Verwendung
-      other: "%{count} Verwendungen"
-    max_uses_prompt: Unbegrenzt
-    prompt: Erstelle Einladungen und teile die dazugehörigen Links, um anderen einen Zugang zu diesem Server zu gewähren
+      one: 1 × Registrierung
+      other: "%{count} × Registrierungen"
+    max_uses_prompt: Keine Begrenzung der Registrierungen
+    prompt: Erstelle Einladungen und teile die dazugehörigen Links, um anderen die Registrierung auf diesem Server zu gestatten
     table:
       expires_at: Läuft ab
-      uses: Verwendungen
+      uses: Registrierungen
     title: Einladungen
   link_preview:
-    author_html: Von %{name}
+    author_html: von %{name}
     potentially_sensitive_content:
       action: Zum Anzeigen anklicken
       confirm_visit: Möchtest du diesen Link wirklich öffnen?
@@ -1724,13 +1731,13 @@ de:
       subject: "%{name} teilte deinen Beitrag"
       title: Dein Beitrag wurde geteilt
     severed_relationships:
-      subject: Du hast die Verbindung aufgrund einer Moderationsentscheidung verloren
+      subject: Du hast den Zugriff auf diesen Server wegen einer Entscheidung der Moderator*innen verloren
     status:
       subject: "%{name} veröffentlichte gerade einen Beitrag"
     update:
       subject: "%{name} bearbeitete einen Beitrag"
   notifications:
-    administration_emails: Admin-E-Mail-Benachrichtigungen
+    administration_emails: Benachrichtigungen per E-Mail an die Admins
     email_events: Benachrichtigungen per E-Mail
     email_events_hint: 'Bitte die Ereignisse auswählen, für die du Benachrichtigungen per E-Mail erhalten möchtest:'
   number:
@@ -1883,7 +1890,7 @@ de:
     account_settings: Kontoeinstellungen
     aliases: Konto-Aliasse
     appearance: Design
-    authorized_apps: Autorisierte Anwendungen
+    authorized_apps: Genehmigte Apps
     back: Zurück zu Mastodon
     delete: Kontolöschung
     development: Entwicklung
@@ -1893,7 +1900,7 @@ de:
     import: Importieren
     import_and_export: Importieren und exportieren
     migrate: Kontoumzug
-    notifications: E-Mail-Benachrichtigungen
+    notifications: Benachrichtigungen
     preferences: Einstellungen
     profile: Öffentliches Profil
     relationships: Follower und Folge ich
@@ -1903,7 +1910,7 @@ de:
     two_factor_authentication: Zwei-Faktor-Authentisierung
     webauthn_authentication: Sicherheitsschlüssel
   severed_relationships:
-    download: Herunterladen (%{count})
+    download: Download (%{count} Follower)
     event_type:
       account_suspension: Kontosperre (%{target_name})
       domain_block: Serversperre (%{target_name})
@@ -1941,7 +1948,7 @@ de:
       quoted_user_not_mentioned: Nur ein erwähntes Profil kann in einer privaten Erwähnung zitiert werden.
     over_character_limit: Begrenzung von %{max} Zeichen überschritten
     pin_errors:
-      direct: Beiträge, die nur für erwähnte Profile sichtbar sind, können nicht angeheftet werden
+      direct: Beiträge mit privaten Erwähnungen können nicht angeheftet werden
       limit: Du hast bereits die maximale Anzahl an Beiträgen angeheftet
       ownership: Du kannst nur eigene Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
@@ -1966,13 +1973,13 @@ de:
     enabled: Alte Beiträge automatisch entfernen
     enabled_hint: Löscht automatisch deine Beiträge, sobald sie die angegebene Altersgrenze erreicht haben, es sei denn, sie entsprechen einer der unten angegebenen Ausnahmen
     exceptions: Ausnahmen
-    explanation: Damit der Server nicht durch das Löschen von Beiträgen ausgebremst wird, wartet die Mastodon-Software, bis wenig(er) los ist. Deshalb könnten deine Beiträge ggf. erst einige Zeit nach Erreichen der Altersgrenze gelöscht werden.
+    explanation: Automatisiertes Löschen erfolgt mit niedriger Priorität. Möglicherweise gibt es zwischen der erreichten Altersgrenze und des Löschvorgangs eine Verzögerung.
     ignore_favs: Favoriten ignorieren
     ignore_reblogs: Geteilte Beiträge ignorieren
     interaction_exceptions: Ausnahmen basierend auf Interaktionen
-    interaction_exceptions_explanation: Beachte, dass Beiträge nicht gelöscht werden, sobald deine Grenzwerte für Favoriten oder geteilte Beiträge einmal überschritten wurden – auch dann nicht, wenn diese Schwellenwerte mittlerweile nicht mehr erreicht werden.
-    keep_direct: Private Nachrichten behalten
-    keep_direct_hint: Löscht keinen deiner Beiträge, die nur für erwähnte Profile sichtbar sind
+    interaction_exceptions_explanation: Beiträge, die vorübergehend die Grenzwerte für Favoriten und geteilte Beiträge überschreiten, können auch dann erhalten bleiben, wenn ihre Werte später zurückgehen.
+    keep_direct: Private Erwähnungen behalten
+    keep_direct_hint: Löscht keinen deiner Beiträge mit privaten Erwähnungen
     keep_media: Beiträge mit Medien behalten
     keep_media_hint: Löscht keinen deiner Beiträge mit Medienanhängen
     keep_pinned: Angeheftete Beiträge behalten
@@ -2034,7 +2041,7 @@ de:
     enabled: Zwei-Faktor-Authentisierung (2FA) ist aktiviert
     enabled_success: Zwei-Faktor-Authentisierung (2FA) erfolgreich aktiviert
     generate_recovery_codes: Wiederherstellungscodes erstellen
-    lost_recovery_codes: Wiederherstellungscodes ermöglichen es dir, wieder Zugang zu deinem Konto zu erlangen, falls du keinen Zugriff mehr auf die Zwei-Faktor-Authentisierung oder den Sicherheitsschlüssel hast. Solltest du diese Wiederherstellungscodes verloren haben, kannst du sie hier neu generieren. Deine alten, bereits erstellten Wiederherstellungscodes werden dadurch ungültig.
+    lost_recovery_codes: Mit Wiederherstellungscodes erhältst du Zugang zu deinem Konto, falls du keinen Zugriff mehr auf die Zwei-Faktor-Authentisierung (2FA) oder den Sicherheitsschlüssel hast. Solltest du diese Wiederherstellungscodes verloren haben, kannst du sie hier neu erstellen. Deine alten, bereits erstellten Wiederherstellungscodes werden dadurch ungültig.
     methods: Methoden der Zwei-Faktor-Authentisierung
     otp: Authentisierungs-App
     recovery_codes: Wiederherstellungscodes sichern
@@ -2079,7 +2086,7 @@ de:
       agreement: Du stimmst den neuen Nutzungsbedingungen automatisch zu, wenn du %{domain} weiterhin verwendest. Falls du mit diesen nicht einverstanden bist, kannst du die Vereinbarung mit %{domain} jederzeit widerrufen, indem du dein Konto dort löschst.
       changelog: 'Die Änderungen im Überblick:'
       description: 'Du erhältst diese E-Mail, weil wir für %{domain} einige Änderungen an unseren Nutzungsbedingungen vorgenommen haben. Diese Änderungen gelten ab %{date}. Wir empfehlen, die vollständig aktualisierte Fassung hier zu lesen:'
-      description_html: Du erhältst diese E-Mail, weil wir für %{domain} einige Änderungen an unseren Nutzungsbedingungen vorgenommen haben. Diese Änderungen gelten ab <strong>%{date}</strong>. Wir empfehlen, die <a href="%{path}" target="_blank">vollständig aktualisierte Fassung hier zu lesen</a>.
+      description_html: Du erhältst diese E-Mail, weil wir unsere Nutzungsbedingungen für %{domain} überarbeitet haben. Die Änderungen gelten ab <strong>%{date}</strong>. Wir empfehlen dir, die <a href="%{path}" target="_blank">aktualisierten Nutzungsbedingungen</a> gründlich durchzulesen.
       sign_off: Das Team von %{domain}
       subject: Aktualisierung unserer Nutzungsbedingungen
       subtitle: Die Nutzungsbedingungen von %{domain} ändern sich
@@ -2116,8 +2123,8 @@ de:
         silence: Konto stummgeschaltet
         suspend: Konto gesperrt
     welcome:
-      apps_android_action: Aus dem Google Play Store herunterladen
-      apps_ios_action: Im App Store herunterladen
+      apps_android_action: Bei Google Play (Android) herunterladen
+      apps_ios_action: Im App Store (Apple) herunterladen
       apps_step: Lade unsere offiziellen Apps herunter.
       apps_title: Mastodon-Apps
       checklist_subtitle: 'Fangen wir an, diese neue soziale Dimension zu erkunden:'
@@ -2169,7 +2176,7 @@ de:
     hint_html: "<strong>Alle können ihre Identität auf Mastodon verifizieren.</strong> Basierend auf offenen Standards – jetzt und für immer kostenlos. Alles, was du brauchst, ist eine eigene Website. Wenn du von deinem Profil auf diese Website verlinkst, überprüfen wir, ob die Website zu deinem Profil zurückverlinkt, und zeigen einen visuellen Hinweis an."
     instructions_html: Kopiere den unten stehenden Code und füge ihn in den HTML-Code deiner Website ein. Trage anschließend die Adresse deiner Website in ein Zusatzfeld auf deinem Profil ein und speichere die Änderungen. Die Zusatzfelder befinden sich im Reiter „Profil bearbeiten“.
     verification: Verifizierung
-    verified_links: Deine verifizierten Domains
+    verified_links: Deine verifizierten Links
     website_verification: Verifizierung einer Website
   webauthn_credentials:
     add: Sicherheitsschlüssel hinzufügen
@@ -2183,6 +2190,7 @@ de:
       error: Beim Entfernen des Sicherheitsschlüssels ist ein Fehler aufgetreten. Bitte versuche es erneut.
       success: Dein Sicherheitsschlüssel wurde erfolgreich entfernt.
     invalid_credential: Ungültiger Sicherheitsschlüssel
+    nickname: Name des Sicherheitsschlüssels
     nickname_hint: Gib den Spitznamen deines neuen Sicherheitsschlüssels ein
     not_enabled: Du hast WebAuthn noch nicht aktiviert
     not_supported: Dieser Browser unterstützt keine Sicherheitsschlüssel

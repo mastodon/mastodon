@@ -15,8 +15,6 @@ class HtmlAwareFormatter
   end
 
   def to_s
-    return ''.html_safe if text.blank?
-
     if local?
       linkify
     else
@@ -29,6 +27,8 @@ class HtmlAwareFormatter
   private
 
   def reformat
+    return ''.html_safe if text.blank?
+
     Sanitize.fragment(text, Sanitize::Config::MASTODON_STRICT)
   end
 

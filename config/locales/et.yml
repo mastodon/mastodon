@@ -7,6 +7,8 @@ et:
     hosted_on: Mastodoni teenus serveris %{domain}
     title: Veebirakenduse teave
   accounts:
+    errors:
+      cannot_be_added_to_collections: Seda kontot ei saa kogusse lisada.
     followers:
       one: Jälgija
       other: Jälgijaid
@@ -36,7 +38,7 @@ et:
       add_email_domain_block: Blokeeri e-posti domeen
       approve: Võta vastu
       approved_msg: Kasutaja %{username} liitumisavaldus rahuldatud
-      are_you_sure: Oled kindel?
+      are_you_sure: Kas oled kindel?
       avatar: Profiilipilt
       by_domain: Domeen
       change_email:
@@ -45,7 +47,7 @@ et:
         label: Muuda e-posti aadressi
         new_email: Uus е-posti aadress
         submit: Muuda e-posti aadressi
-        title: Muuda e-postiaadressi kasutajale %{username}
+        title: Muuda kasutaja %{username} e-posti aadressi
       change_role:
         changed_msg: Roll on muudetud!
         edit_roles: Halda kasutaja rolle
@@ -846,6 +848,7 @@ et:
         publish_statistics: Avalda statistika
         title: Avastamine
         trends: Trendid
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Kõigile
         disabled: Mitte kellelegi
@@ -1316,6 +1319,13 @@ et:
     hint_html: "<strong>Nõuanne:</strong> Me ei küsi salasõna uuesti järgmise tunni jooksul."
     invalid_password: Vigane salasõna
     prompt: Jätkamiseks salasõna veelkord
+  color_scheme:
+    auto: Auto
+    dark: Tume
+    light: Hele
+  contrast:
+    auto: Auto
+    high: Suur
   crypto:
     errors:
       invalid_key: ei ole õige Ed25519 ega Curve25519 võti
@@ -1963,11 +1973,11 @@ et:
     enabled: Vanade postituste automaatne kustutamine
     enabled_hint: Kustutab automaatselt postitused, mis ületavad määratud ajalimiiti, välja arvatud allpool toodud erandite puhul
     exceptions: Erandid
-    explanation: Kuna postituste kustutamine on kulukas toiming, tehakse seda aja jooksul aeglaselt, kui server pole muidu hõivatud. Sel põhjusel võidakse postitused kustutada alles mõne aja möödudes pärast vanusepiirini jõudmist.
+    explanation: Automaatne kustutamine toimib madala prioriteetusega protsessi abil. Vanuse ülempiiri ja tegeliku kustutamise vahel võib seetõttu tekkida viivitus.
     ignore_favs: Eira lemmikuid
     ignore_reblogs: Eira jagamisi
     interaction_exceptions: Interaktsioonidel põhinevad erandid
-    interaction_exceptions_explanation: Postitused ei pruugi kustuda, kui meeldimiste või jagamiste arv langeb alla määratu, kui need on kord olnud sellest üle.
+    interaction_exceptions_explanation: Postitused, mis ajutiselt ületavad lemmikuks lisamise või hooandmise künnise, võivad jääda alles isegi siis, kui nimetatud tegevuste arv hiljem väheneb.
     keep_direct: Säilita otsesõnumid
     keep_direct_hint: Ei kustuta otsesõnumeid
     keep_media: Meedialisanditega postituste säilitamine
@@ -2182,10 +2192,12 @@ et:
       error: Turvavõtme kustutamisel tekkis tõrge. Palun proovi uuesti.
       success: Turvavõtmed edukalt kustutatud.
     invalid_credential: Vigane turvavõti
+    nickname: Hüüdnimi
     nickname_hint: Uue turvavõtme hüüdnimi
     not_enabled: Veebiautentimine pole sisse lülitatud
     not_supported: See veebilehitseja ei toeta turvavõtmeid
     otp_required: Turvavõtmete kasutamiseks tuleb eelnevalt sisse lülitada kaheastmeline autentimine.
     registered_on: Registreeritud %{date}
   wrapstodon:
+    description: Vaata, kuidas %{name} kasutas Mastodoni see aasta!
     title: "%{year}. aasta Mastodoni kokkuvõte: %{name}"

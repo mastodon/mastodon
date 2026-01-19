@@ -5,49 +5,29 @@
 
 html {
   @include base.palette;
-
-  &:where([data-user-theme='system']) {
-    color-scheme: dark light;
-
-    @media (prefers-color-scheme: dark) {
-      @include dark.tokens;
-      @include utils.invert-on-dark;
-
-      @media (prefers-contrast: more) {
-        @include dark.contrast-overrides;
-      }
-    }
-
-    @media (prefers-color-scheme: light) {
-      @include light.tokens;
-      @include utils.invert-on-light;
-
-      @media (prefers-contrast: more) {
-        @include light.contrast-overrides;
-      }
-    }
-  }
 }
 
-.theme-dark,
-html:where(
-  :not([data-user-theme='mastodon-light'], [data-user-theme='system'])
-) {
+[data-color-scheme='dark'],
+html:not([data-color-scheme]) {
   color-scheme: dark;
 
   @include dark.tokens;
   @include utils.invert-on-dark;
+
+  &[data-contrast='high'],
+  [data-contrast='high'] & {
+    @include dark.contrast-overrides;
+  }
 }
 
-html[data-user-theme='contrast'],
-html[data-user-theme='contrast'] .theme-dark {
-  @include dark.contrast-overrides;
-}
-
-.theme-light,
-html:where([data-user-theme='mastodon-light']) {
+[data-color-scheme='light'] {
   color-scheme: light;
 
   @include light.tokens;
   @include utils.invert-on-light;
+
+  &[data-contrast='high'],
+  [data-contrast='high'] & {
+    @include light.contrast-overrides;
+  }
 }

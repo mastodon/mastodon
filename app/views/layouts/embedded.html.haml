@@ -1,5 +1,5 @@
 !!! 5
-%html{ lang: I18n.locale }
+%html{ lang: I18n.locale, 'data-contrast': 'auto', 'data-color-scheme': 'light' }
   %head
     %meta{ charset: 'utf-8' }/
     %meta{ name: 'robots', content: 'noindex' }/
@@ -11,10 +11,11 @@
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
+    = javascript_inline_tag 'theme-selection.js'
     = vite_client_tag
     = vite_react_refresh_tag
     = vite_polyfills_tag
-    = theme_style_tags 'mastodon-light'
+    = theme_style_tags 'system'
     = vite_preload_file_tag "mastodon/locales/#{I18n.locale}.json"
     = render_initial_state
     = vite_typescript_tag 'embed.tsx', integrity: true, crossorigin: 'anonymous'

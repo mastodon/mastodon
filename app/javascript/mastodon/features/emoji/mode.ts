@@ -2,6 +2,7 @@
 // See: https://github.com/nolanlawson/emoji-picker-element/blob/master/src/picker/utils/testColorEmojiSupported.js
 
 import { createAppSelector, useAppSelector } from '@/mastodon/store';
+import { assetHost } from '@/mastodon/utils/config';
 import { isDevelopment } from '@/mastodon/utils/environment';
 import { isDarkMode } from '@/mastodon/utils/theme';
 
@@ -29,6 +30,7 @@ export function useEmojiAppState(): EmojiAppState {
     locales: [locale],
     mode,
     darkTheme: isDarkMode(),
+    assetHost,
   };
 }
 

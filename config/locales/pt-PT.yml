@@ -1319,6 +1319,13 @@ pt-PT:
     hint_html: "<strong>Dica:</strong> Não vamos pedir novamente a tua palavra-passe durante a próxima hora."
     invalid_password: Palavra-passe inválida
     prompt: Confirma a palavra-passe para continuar
+  color_scheme:
+    auto: Auto
+    dark: Escuro
+    light: Claro
+  contrast:
+    auto: Auto
+    high: Alto
   crypto:
     errors:
       invalid_key: não é uma chave Ed25519 ou Curve25519 válida
@@ -1966,11 +1973,11 @@ pt-PT:
     enabled: Eliminar publicações antigas automaticamente
     enabled_hint: Elimina automaticamente as tuas publicações assim que atingirem um certo limite de tempo, a não ser que correspondam a uma das seguintes exceções
     exceptions: Exceções
-    explanation: Como eliminar publicações é uma operação custosa, isto é feito lentamente ao longo do tempo, quando o servidor não está ocupado. Por esta razão, as tuas publicações podem ser eliminadas um pouco depois de atingirem o limite de idade definido.
+    explanation: A eliminação automática é realizada com baixa prioridade. Pode haver um atraso entre atingir o limite de idade e a sua eliminação.
     ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar partilhas
     interaction_exceptions: Exceções baseadas em interações
-    interaction_exceptions_explanation: Observe que não há garantia que as publicações serão excluídas se ficarem abaixo do limite de favoritos ou partilhas depois de terem ultrapassado esses limites.
+    interaction_exceptions_explanation: As publicações que excederem temporariamente o limite de favoritos ou partilhas podem ser mantidas, mesmo que mais tarde baixem do limite.
     keep_direct: Manter mensagens diretas
     keep_direct_hint: Não elimina nenhuma das tuas mensagens diretas
     keep_media: Manter publicações com anexos de multimédia
@@ -2183,6 +2190,7 @@ pt-PT:
       error: Ocorreu um problema ao remover a tua chave de segurança. Tenta novamente.
       success: A tua chave de segurança foi corretamente eliminada.
     invalid_credential: Chave de segurança inválida
+    nickname: Alcunha
     nickname_hint: Introduz a alcunha da tua nova chave de segurança
     not_enabled: Ainda não ativaste o WebAuthn
     not_supported: Este navegador não funciona com chaves de segurança

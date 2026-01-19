@@ -88,6 +88,7 @@ gd:
         activity_api_enabled: Cunntasan nam postaichean a chaidh fhoillseachadh gu h-ionadail, nan cleachdaichean gnìomhach ’s nan clàraidhean ùra an am bucaidean seachdaineil
         app_icon: WEBP, PNG, GIF no JPG. Tar-àithnidh seo ìomhaigheag bhunaiteach na h-aplacaid air uidheaman mobile le ìomhaigheag ghnàthaichte.
         backups_retention_period: "’S urrainn do chleachdaichean tasg-lannan dhe na postaichean aca a gintinn airson an luchdadh a-nuas an uairsin. Nuair a bhios luach dearbh air, thèid na tasg-lannan a sguabadh às on stòras agad gu fèin-obrachail às dèidh an àireamh de làithean a shònraich thu."
+        bootstrap_timeline_accounts: Thèid na cunntasan seo a phrìneachadh air bàrr nam molaidhean leantainn dhan luchd-cleachdaidh ùr. Solar liosta de chunntasan sgaraichte le cromagan.
         closed_registrations_message: Thèid seo a shealltainn nuair a bhios an clàradh dùinte
         content_cache_retention_period: Thèid a h-uile post o fhrithealaiche sam bith eile (a’ gabhail a-staigh brosnachaidhean is freagairtean) a sguabadh às às dèidh na h-àireimh de làithean a shònraich thu ’s gun diù a chon air eadar-ghabhail ionadail air na postaichean ud. Gabhaidh seo a-steach na postaichean a chuir cleachdaiche ionadail ris na h-annsachdan aca no comharran-lìn riutha. Thèid iomraidhean prìobhaideach eadar cleachdaichean o ionstansan diofraichte air chall cuideachd agus cha ghabh an aiseag idir. Tha an roghainn seo do dh’ionstansan sònraichte a-mhàin agus briseadh e dùilean an luchd-cleachdaidh nuair a rachadh a chleachdadh gu coitcheann.
         custom_css: "’S urrainn dhut stoidhlean gnàthaichte a chur an sàs air an tionndadh-lìn de Mhastodon."
@@ -110,6 +111,7 @@ gd:
         thumbnail: Dealbh mu 2:1 a thèid a shealltainn ri taobh fiosrachadh an fhrithealaiche agad.
         trendable_by_default: Geàrr leum thar lèirmheas a làimh na susbainte a’ treandadh. Gabhaidh nithean fa leth a thoirt far nan treandaichean fhathast an uairsin.
         trends: Seallaidh na treandaichean na postaichean, tagaichean hais is naidheachdan a tha fèill mhòr orra air an fhrithealaiche agad.
+        wrapstodon: Tairg gintinn geàrr-chunntais àbhaich air mar a chleachd iad Mastodon rè a’ bhliadhna dhan luchd-cleachdaidh ionadail. Bidh an gleus seo ri fhaighinn eadar an 10mh is 31mh dhen Dùbhlachd gach bliadhna ’s thèid a thairgsinn dhan luchd-cleachdaidh a rinn co-dhiù aon post poblach no sàmhach ’s a chleachd co-dhiù aon taga hais rè a’ bhliadhna.
       form_challenge:
         current_password: Tha thu a’ tighinn a-steach gu raon tèarainte
       imports:
@@ -239,6 +241,8 @@ gd:
         setting_always_send_emails: Cuir brathan puist-d an-còmhnaidh
         setting_auto_play_gif: Cluich GIFs beòthaichte gu fèin-obrachail
         setting_boost_modal: Smachd air faicsinneachd nam brosnachaidhean
+        setting_color_scheme: Modh
+        setting_contrast: Iomsgaradh
         setting_default_language: Cànan postaidh
         setting_default_privacy: Faicsinneachd nam post
         setting_default_quote_policy: Cò dh’fhaodas luaidh
@@ -313,6 +317,7 @@ gd:
         thumbnail: Dealbhag an fhrithealaiche
         trendable_by_default: Ceadaich treandaichean gun lèirmheas ro làimh
         trends: Cuir na treandaichean an comas
+        wrapstodon: Cuir Wrapstodon an comas
       interactions:
         must_be_follower: Bac na brathan nach eil o luchd-leantainn
         must_be_following: Bac na brathan o dhaoine nach lean thu
@@ -373,7 +378,9 @@ gd:
         jurisdiction: Uachdranas laghail
         min_age: An aois as lugha
       user:
+        date_of_birth_1i: Bliadhna
         date_of_birth_2i: Mìos
+        date_of_birth_3i: Latha
         role: Dreuchd
         time_zone: Roinn-tìde
       user_role:

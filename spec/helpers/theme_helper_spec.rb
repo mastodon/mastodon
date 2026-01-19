@@ -9,17 +9,10 @@ RSpec.describe ThemeHelper do
     context 'when using "system" theme' do
       let(:theme) { 'system' }
 
-      it 'returns the mastodon-light and application stylesheets with correct color schemes' do
+      it 'returns the default theme' do
         expect(html_links.first.attributes.symbolize_keys)
           .to include(
-            # This is now identical to the default theme & will be unified very soon
-            href: have_attributes(value: match(/default/)),
-            media: have_attributes(value: 'not all and (prefers-color-scheme: dark)')
-          )
-        expect(html_links.last.attributes.symbolize_keys)
-          .to include(
-            href: have_attributes(value: match(/default/)),
-            media: have_attributes(value: '(prefers-color-scheme: dark)')
+            href: have_attributes(value: match(/default/))
           )
       end
     end
@@ -41,20 +34,19 @@ RSpec.describe ThemeHelper do
       it 'returns the theme stylesheet without color scheme information' do
         expect(html_links.first.attributes.symbolize_keys)
           .to include(
-            href: have_attributes(value: match(/contrast/)),
-            media: have_attributes(value: 'all')
+            href: have_attributes(value: match(/default/))
           )
       end
     end
   end
 
   describe 'theme_color_tags' do
-    let(:result) { helper.theme_color_tags(theme) }
+    let(:result) { helper.theme_color_tags(color_scheme) }
 
     context 'when using system theme' do
-      let(:theme) { 'system' }
+      let(:color_scheme) { 'auto' }
 
-      it 'returns the mastodon-light and default stylesheets with correct color schemes' do
+      it 'returns both color schemes with appropriate media queries' do
         expect(html_theme_colors.first.attributes.symbolize_keys)
           .to include(
             content: have_attributes(value: Themes::THEME_COLORS[:dark]),
@@ -68,10 +60,10 @@ RSpec.describe ThemeHelper do
       end
     end
 
-    context 'when using mastodon-light theme' do
-      let(:theme) { 'mastodon-light' }
+    context 'when light color scheme' do
+      let(:color_scheme) { 'light' }
 
-      it 'returns the theme stylesheet without color scheme information' do
+      it 'returns the light color' do
         expect(html_theme_colors.first.attributes.symbolize_keys)
           .to include(
             content: have_attributes(value: Themes::THEME_COLORS[:light])
@@ -79,10 +71,10 @@ RSpec.describe ThemeHelper do
       end
     end
 
-    context 'when using other theme' do
-      let(:theme) { 'contrast' }
+    context 'when using dark color scheme' do
+      let(:color_scheme) { 'dark' }
 
-      it 'returns the theme stylesheet without color scheme information' do
+      it 'returns the dark color' do
         expect(html_theme_colors.first.attributes.symbolize_keys)
           .to include(
             content: have_attributes(value: Themes::THEME_COLORS[:dark])

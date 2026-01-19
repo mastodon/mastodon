@@ -60,6 +60,10 @@ class Collection < ApplicationRecord
     self.tag = Tag.find_or_create_by_names(new_name).first
   end
 
+  def object_type
+    :featured_collection
+  end
+
   private
 
   def tag_is_usable

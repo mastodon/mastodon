@@ -80,7 +80,7 @@ vi:
       invite_request_text: Lý do đăng ký
       invited_by: Được mời bởi
       ip: IP
-      joined: Đã tham gia
+      joined: Tham gia
       location:
         all: Tất cả
         local: Máy chủ này
@@ -1300,6 +1300,13 @@ vi:
     hint_html: "<strong>Mẹo:</strong> Chúng tôi sẽ không hỏi lại mật khẩu của bạn sau này."
     invalid_password: Mật khẩu không hợp lệ
     prompt: Nhập mật khẩu để tiếp tục
+  color_scheme:
+    auto: Tự động
+    dark: Tối
+    light: Sáng
+  contrast:
+    auto: Tự động
+    high: Cao
   crypto:
     errors:
       invalid_key: không phải là mã khóa Ed25519 hoặc Curve25519 đúng
@@ -1923,11 +1930,11 @@ vi:
     enabled: Tự động xóa những tút cũ
     enabled_hint: Trừ những ngoại lệ bên dưới
     exceptions: Ngoại lệ
-    explanation: Số lượng tút sẽ tăng dần theo năm tháng. Bạn nên xóa những tút cũ khi tới một thời điểm nhất định.
+    explanation: Có thể xảy ra độ trễ nhất định giữa thời điểm đạt ngưỡng và thời điểm tút bị xóa.
     ignore_favs: Số lượt thích
     ignore_reblogs: Số lượt đăng lại
     interaction_exceptions: Ngoại lệ dựa theo tương tác
-    interaction_exceptions_explanation: Lưu ý là không có gì đảm bảo rằng các tút sẽ bị xóa nếu chúng bị giảm lượt thích hoặc đăng lại, dù đã từng đạt.
+    interaction_exceptions_explanation: Những tút vượt ngưỡng tương tác vẫn sẽ được giữ lại, kể cả khi lượt thích/đăng lại giảm sau đó.
     keep_direct: Giữ lại những tút nhắn riêng
     keep_direct_hint: Không xóa những tút nhắn riêng của bạn
     keep_media: Giữ lại những tút có media
@@ -2139,6 +2146,7 @@ vi:
       error: Có vấn đề khi xóa khóa bảo mật. Xin thử lại.
       success: Đã xóa khóa bảo mật thành công.
     invalid_credential: Khóa bảo mật không hợp lệ
+    nickname: Biệt danh
     nickname_hint: Nhập tên mới cho khóa bảo mật của bạn
     not_enabled: Bạn chưa kích hoạt WebAuthn
     not_supported: Trình duyệt của bạn không hỗ trợ khóa bảo mật

@@ -16,10 +16,22 @@ RSpec.describe CollectionPolicy do
   end
 
   permissions :show? do
-    it 'permits everyone to show' do
+    it 'permits when no user is given' do
       expect(policy).to permit(nil, collection)
+    end
+
+    it 'permits unblocked users' do
       expect(policy).to permit(owner, collection)
       expect(policy).to permit(other_user, collection)
+    end
+
+    it 'denies blocked users' do
+      domain_blocked_user = Fabricate(:remote_account)
+      owner.block_domain!(domain_blocked_user.domain)
+      owner.block!(other_user)
+
+      expect(policy).to_not permit(domain_blocked_user, collection)
+      expect(policy).to_not permit(other_user, collection)
     end
   end
 

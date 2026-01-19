@@ -118,7 +118,7 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
       ? decodeIDNA(getHostname(card.get('url')))
       : card.get('provider_name');
   const interactive = card.get('type') === 'video';
-  const language = card.get('language') || '';
+  const language = card.get('language') ?? '';
   const hasImage = (card.get('image')?.length ?? 0) > 0;
   const largeImage =
     (hasImage && card.get('width') > card.get('height')) || interactive;
@@ -131,7 +131,11 @@ const Card: React.FC<CardProps> = ({ card, sensitive }) => {
         {card.get('published_at') && (
           <>
             {' '}
-            · <RelativeTimestamp timestamp={card.get('published_at')} />
+            ·{' '}
+            <RelativeTimestamp
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              timestamp={card.get('published_at')!}
+            />
           </>
         )}
       </span>

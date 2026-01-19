@@ -39,8 +39,8 @@
     color: var(--color-text-error);
   }
 
-  &:hover,
-  &:active {
+  &:not(:disabled):hover,
+  &:not(:disabled):active {
     text-decoration: underline;
   }
 
@@ -1081,20 +1081,36 @@ body > [data-popper-placement] {
   }
 
   a {
+    --text-decoration-default: none;
+    --text-decoration-hover: underline;
+
+    [data-contrast='high'] & {
+      --text-decoration-default: underline;
+      --text-decoration-hover: none;
+    }
+
     color: var(--color-text-status-links);
-    text-decoration: none;
+    text-decoration: var(--text-decoration-default);
     unicode-bidi: isolate;
 
-    &:hover {
-      text-decoration: underline;
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: var(--text-decoration-hover);
     }
 
     &.mention {
-      &:hover {
-        text-decoration: none;
+      text-decoration: none;
 
+      span {
+        text-decoration: var(--text-decoration-default);
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
         span {
-          text-decoration: underline;
+          text-decoration: var(--text-decoration-hover);
         }
       }
     }
@@ -1354,6 +1370,15 @@ body > [data-popper-placement] {
   &:hover,
   &:active {
     text-decoration: underline;
+  }
+
+  [data-contrast='high'] & {
+    text-decoration: underline;
+
+    &:hover,
+    &:active {
+      text-decoration: none;
+    }
   }
 
   .icon {
@@ -6023,6 +6048,10 @@ a.status-card {
 
   @media screen and (width <= $mobile-breakpoint) {
     margin-top: auto;
+
+    &.video-modal {
+      margin-top: 0;
+    }
   }
 }
 

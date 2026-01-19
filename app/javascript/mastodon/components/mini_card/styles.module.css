@@ -1,0 +1,57 @@
+.wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+.list {
+  display: flex;
+  gap: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card,
+.more {
+  border: 1px solid var(--color-border-primary);
+  padding: 8px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.more {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  appearance: none;
+  background: none;
+  aspect-ratio: 1;
+  height: 100%;
+  transition: all 300ms linear;
+}
+
+.more:hover {
+  background-color: var(--color-bg-brand-softer);
+  color: var(--color-text-primary);
+}
+
+.hidden {
+  display: none;
+}
+
+.label {
+  color: var(--color-text-secondary);
+  margin-bottom: 2px;
+}
+
+.value {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.label,
+.value {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
