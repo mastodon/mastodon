@@ -46,7 +46,7 @@ class ActivityPub::Activity::Accept < ActivityPub::Activity
 
   def accept_quote!(quote)
     approval_uri = value_or_id(first_of_value(@json['result']))
-    return if unsupported_uri_scheme?(approval_uri) || quote.quoted_account != @account || !quote.status.local?
+    return if unsupported_uri_scheme?(approval_uri) || quote.quoted_account != @account || !quote.status.local? || !quote.pending?
 
     # NOTE: we are not going through `ActivityPub::VerifyQuoteService` as the `Accept` is as authoritative
     # as the stamp, but this means we are not checking the stamp, which may lead to inconsistencies
