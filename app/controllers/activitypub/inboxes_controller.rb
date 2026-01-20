@@ -3,6 +3,7 @@
 class ActivityPub::InboxesController < ActivityPub::BaseController
   include JsonLdHelper
 
+  before_action :skip_large_payload
   before_action :skip_unknown_actor_activity
   before_action :require_actor_signature!
   skip_before_action :authenticate_user!
@@ -15,6 +16,10 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
   end
 
   private
+
+  def skip_large_payload
+    head 413 if request.content_length > ActivityPub::Activity::MAX_JSON_SIZE
+  end
 
   def skip_unknown_actor_activity
     head 202 if unknown_affected_account?
