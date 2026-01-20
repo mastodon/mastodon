@@ -5,6 +5,7 @@ class ActivityPub::Activity
   include Redisable
   include Lockable
 
+  MAX_JSON_SIZE = 1.megabyte
   SUPPORTED_TYPES = %w(Note Question).freeze
   CONVERTED_TYPES = %w(Image Audio Video Article Page Event).freeze
 
