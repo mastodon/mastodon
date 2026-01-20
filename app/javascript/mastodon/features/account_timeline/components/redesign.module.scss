@@ -39,6 +39,27 @@ h1.name > small {
   }
 }
 
+.badge {
+  background-color: var(--color-bg-secondary);
+  border: none;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+
+  > span {
+    font-weight: unset;
+    opacity: 1;
+  }
+}
+
+svg.badgeIcon {
+  opacity: 1;
+  fill: revert-layer;
+
+  path {
+    fill: revert-layer;
+  }
+}
+
 .fieldList {
   margin-top: 16px;
 }
