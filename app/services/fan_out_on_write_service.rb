@@ -14,6 +14,8 @@ class FanOutOnWriteService < BaseService
     @account   = status.account
     @options   = options
 
+    return if @status.proper.account.suspended?
+
     check_race_condition!
     warm_payload_cache!
 
