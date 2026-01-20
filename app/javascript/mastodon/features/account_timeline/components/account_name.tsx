@@ -12,10 +12,12 @@ import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 import { DomainPill } from '../../account/components/domain_pill';
 import { isRedesignEnabled } from '../common';
 
-import { AccountButtons } from './buttons';
 import classes from './redesign.module.scss';
 
-export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
+export const AccountName: FC<{ accountId: string; className?: string }> = ({
+  accountId,
+  className,
+}) => {
   const intl = useIntl();
   const account = useAccount(accountId);
   const me = useAppSelector((state) => state.meta.get('me') as string);
@@ -27,45 +29,29 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
     return null;
   }
 
-  const [username, domain = localDomain] = account.acct.split('@');
-
-  if (isRedesignEnabled()) {
-    return (
-      <div className={classes.nameWrapper}>
-        <div className={classes.name}>
-          <h1>
-            <DisplayName account={account} variant='simple' />
-          </h1>
-          <p>
-            @{username}@
-            <DomainPill
-              username={username ?? ''}
-              domain={domain}
-              isSelf={me === account.id}
-            >
-              <Icon id='info' icon={InfoIcon} />
-            </DomainPill>
-          </p>
-        </div>
-        <AccountButtons accountId={accountId} />
-      </div>
-    );
-  }
+  const [username = '', domain = localDomain] = account.acct.split('@');
 
   return (
-    <h1>
+    <h1 className={className}>
       <DisplayName account={account} variant='simple' />
       <small>
         <span>
           @{username}
-          <span className='invisible'>@{domain}</span>
+          {isRedesignEnabled() && '@'}
+          <span className='invisible'>
+            {!isRedesignEnabled() && '@'}
+            {domain}
+          </span>
         </span>
         <DomainPill
-          username={username ?? ''}
+          username={username}
           domain={domain}
           isSelf={me === account.id}
-        />
-        {account.locked && (
+          className={(isRedesignEnabled() && classes.domainPill) || ''}
+        >
+          {isRedesignEnabled() && <Icon id='info' icon={InfoIcon} />}
+        </DomainPill>
+        {!isRedesignEnabled() && account.locked && (
           <Icon
             id='lock'
             icon={LockIcon}

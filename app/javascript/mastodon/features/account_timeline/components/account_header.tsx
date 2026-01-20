@@ -25,6 +25,7 @@ import { AccountInfo } from './info';
 import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
 import { AccountNumberFields } from './number_fields';
+import redesignClasses from './redesign.module.scss';
 import { AccountTabs } from './tabs';
 
 const titleFromAccount = (account: Account) => {
@@ -135,8 +136,19 @@ export const AccountHeader: React.FC<{
             )}
           </div>
 
-          <div className='account__header__tabs__name'>
-            <AccountName accountId={accountId} />
+          <div
+            className={classNames(
+              'account__header__tabs__name',
+              isRedesignEnabled() && redesignClasses.nameWrapper,
+            )}
+          >
+            <AccountName
+              accountId={accountId}
+              className={classNames(
+                isRedesignEnabled() && redesignClasses.name,
+              )}
+            />
+            {isRedesignEnabled() && <AccountButtons accountId={accountId} />}
           </div>
 
           <AccountBadges accountId={accountId} />

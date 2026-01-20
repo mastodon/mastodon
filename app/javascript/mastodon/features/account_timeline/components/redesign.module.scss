@@ -5,28 +5,37 @@
 
 .name {
   flex-grow: 1;
-
-  h1 {
-    font-size: 22px;
-    white-space: initial;
-    text-overflow: initial;
-    line-height: normal;
-  }
-
-  button {
-    appearance: none;
-    border: none;
-    background: none;
-    padding: 0;
-    text-decoration: underline;
-    color: inherit;
-  }
+  font-size: 22px;
+  white-space: initial;
+  text-overflow: initial;
+  line-height: normal;
 
   :global(.icon-info) {
     margin-left: 2px;
     width: 1em;
     height: 1em;
     align-self: center;
+  }
+}
+
+// Overrides .account__header__tabs__name h1 small
+h1.name > small {
+  gap: 0;
+}
+
+.domainPill {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  text-decoration: underline;
+  color: inherit;
+  font-size: 1em;
+  font-weight: initial;
+
+  &:global(.active) {
+    background: none;
+    color: inherit;
   }
 }
 
