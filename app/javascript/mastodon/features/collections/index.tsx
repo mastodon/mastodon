@@ -26,12 +26,15 @@ import { areCollectionsEnabled } from './utils';
 const messages = defineMessages({
   heading: { id: 'column.collections', defaultMessage: 'My collections' },
   create: {
-    id: 'lists.create_collection',
+    id: 'collections.create_collection',
     defaultMessage: 'Create collection',
   },
-  view: { id: 'lists.view_collection', defaultMessage: 'View collection' },
+  view: {
+    id: 'collections.view_collection',
+    defaultMessage: 'View collection',
+  },
   delete: {
-    id: 'lists.delete_collection',
+    id: 'collections.delete_collection',
     defaultMessage: 'Delete collection',
   },
   more: { id: 'status.more', defaultMessage: 'More' },
@@ -111,7 +114,7 @@ export const Collections: React.FC<{
         <br />
         <FormattedMessage
           id='collections.create_a_collection_hint'
-          defaultMessage='Create a collection to recommend or share your favourite accounts with others'
+          defaultMessage='Create a collection to recommend or share your favourite accounts with others.'
         />
       </span>
 
