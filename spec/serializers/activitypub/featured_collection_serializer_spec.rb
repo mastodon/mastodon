@@ -45,4 +45,20 @@ RSpec.describe ActivityPub::FeaturedCollectionSerializer do
       'updated' => match_api_datetime_format,
     })
   end
+
+  context 'when a language is set' do
+    before do
+      collection.language = 'en'
+    end
+
+    it 'uses "summaryMap" to include the language' do
+      expect(subject).to include({
+        'summaryMap' => {
+          'en' => 'These are really amazing',
+        },
+      })
+
+      expect(subject).to_not have_key('summary')
+    end
+  end
 end
