@@ -3,12 +3,10 @@
 import type { ApiAccountJSON } from './accounts';
 import type { ApiTagJSON } from './statuses';
 
-interface CollectionAccountItem {
-  account: ApiAccountJSON;
-  state: 'pending' | 'accepted' | 'rejected' | 'revoked';
-  position: number;
-}
-
+/**
+ * Returned when fetching all collections for an account,
+ * doesn't contain account and item data
+ */
 export interface ApiBaseCollectionJSON {
   id: string;
   uri: string;
@@ -25,10 +23,26 @@ export interface ApiBaseCollectionJSON {
   updated_at: string;
 }
 
+/**
+ * Returned when fetching a single collection
+ */
 export interface ApiFullCollectionJSON extends ApiBaseCollectionJSON {
   account: ApiAccountJSON;
   items: CollectionAccountItem[];
 }
+
+/**
+ * Nested account item
+ */
+interface CollectionAccountItem {
+  account: ApiAccountJSON;
+  state: 'pending' | 'accepted' | 'rejected' | 'revoked';
+  position: number;
+}
+
+/**
+ * Payload types
+ */
 
 type CommonPayloadFields = Pick<
   ApiBaseCollectionJSON,
