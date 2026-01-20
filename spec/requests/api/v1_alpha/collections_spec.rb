@@ -115,6 +115,7 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
         {
           name: 'Low-traffic bots',
           description: 'Really nice bots, please follow',
+          language: 'en',
           sensitive: '0',
           discoverable: '1',
         }
