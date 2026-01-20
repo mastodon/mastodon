@@ -63,6 +63,7 @@ import {
   Lists,
   ListEdit,
   ListMembers,
+  Collections,
   Blocks,
   DomainBlocks,
   Mutes,
@@ -227,6 +228,7 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/followed_tags' component={FollowedTags} content={children} />
             <WrappedRoute path='/mutes' component={Mutes} content={children} />
             <WrappedRoute path='/lists' component={Lists} content={children} />
+            <WrappedRoute path='/collections' component={Collections} content={children} />
 
             <Route component={BundleColumnError} />
           </WrappedSwitch>
