@@ -55,6 +55,32 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
           )
       end
     end
+
+    context 'when some collections are not discoverable' do
+      before do
+        Fabricate(:collection, account:, discoverable: false)
+      end
+
+      context 'when requesting user is a third party' do
+        it 'hides the collections that are not discoverable' do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.parsed_body.size).to eq 3
+        end
+      end
+
+      context 'when requesting user owns the collection' do
+        let(:account) { user.account }
+
+        it 'returns all collections, including the ones that are not discoverable' do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.parsed_body.size).to eq 4
+        end
+      end
+    end
   end
 
   describe 'GET /api/v1_alpha/collections/:id' do
