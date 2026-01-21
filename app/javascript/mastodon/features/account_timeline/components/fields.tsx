@@ -63,24 +63,12 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
         .toArray()
         .map(({ value_emojified, name_emojified, verified_at }) => ({
           label: (
-            <EmojiHTML
-              htmlString={name_emojified}
-              extraEmojis={account.emojis}
-              className='translate'
-              as='span'
-              {...htmlHandlers}
-            />
-          ),
-          value: (
             <>
               <EmojiHTML
-                as='span'
-                htmlString={value_emojified}
+                htmlString={name_emojified}
                 extraEmojis={account.emojis}
-                className={classNames(
-                  classes.fieldValue,
-                  !!verified_at && classes.fieldVerified,
-                )}
+                className='translate'
+                as='span'
                 {...htmlHandlers}
               />
               {!!verified_at && (
@@ -91,6 +79,18 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
                 />
               )}
             </>
+          ),
+          value: (
+            <EmojiHTML
+              as='span'
+              htmlString={value_emojified}
+              extraEmojis={account.emojis}
+              {...htmlHandlers}
+            />
+          ),
+          className: classNames(
+            classes.fieldCard,
+            !!verified_at && classes.fieldCardVerified,
           ),
         })),
     [account.emojis, account.fields, htmlHandlers],

@@ -64,19 +64,28 @@ svg.badgeIcon {
   margin-top: 16px;
 }
 
-.fieldValue a {
-  color: var(--color-text-primary);
-  text-decoration: underline;
+.fieldCard {
+  position: relative;
+
+  a {
+    color: var(--color-text-brand);
+    text-decoration: none;
+  }
 }
 
-.fieldVerified a {
-  text-decoration-color: var(--color-border-verified);
+.fieldCardVerified {
+  background-color: var(--color-bg-brand-softer);
+
+  .fieldIconVerified {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+  }
 }
 
 .fieldIconVerified {
   width: 1rem;
-  vertical-align: middle;
-  margin-left: 2px;
+  height: 1rem;
 
   // Need to override .icon path.
   path {
@@ -125,5 +134,10 @@ svg.badgeIcon {
   dd {
     font-weight: 600;
     font-size: 15px;
+  }
+
+  .fieldIconVerified {
+    vertical-align: middle;
+    margin-left: 4px;
   }
 }

@@ -2,8 +2,6 @@ import type { FC } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import classNames from 'classnames';
-
 import IconVerified from '@/images/icons/icon_verified.svg?react';
 import { DisplayName } from '@/mastodon/components/display_name';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
@@ -60,7 +58,10 @@ export const AccountFieldsModal: FC<{
         <AnimateEmojiProvider>
           <dl className={classes.modalFieldsList}>
             {account.fields.map((field, index) => (
-              <div key={index} className={classes.modalFieldItem}>
+              <div
+                key={index}
+                className={`${classes.modalFieldItem} ${classes.fieldCard}`}
+              >
                 <EmojiHTML
                   as='dt'
                   htmlString={field.name_emojified}
@@ -73,10 +74,6 @@ export const AccountFieldsModal: FC<{
                     as='span'
                     htmlString={field.value_emojified}
                     extraEmojis={account.emojis}
-                    className={classNames(
-                      classes.fieldValue,
-                      !!field.verified_at && classes.fieldVerified,
-                    )}
                     {...htmlHandlers}
                   />
                   {!!field.verified_at && (
