@@ -50,9 +50,22 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    theme: {
+      description: 'Theme for the story',
+      toolbar: {
+        title: 'Theme',
+        icon: 'circlehollow',
+        items: [
+          { value: 'light', title: 'Light' },
+          { value: 'dark', title: 'Dark' },
+        ],
+        dynamicTitle: true,
+      },
+    },
   },
   initialGlobals: {
     locale: 'en',
+    theme: 'light',
   },
   decorators: [
     (Story, { parameters, globals, args, argTypes }) => {
@@ -134,6 +147,13 @@ const preview: Preview = {
           <Story />
         </IntlProvider>
       );
+    },
+    (Story, { globals }) => {
+      const theme = (globals.theme as string) || 'light';
+      useEffect(() => {
+        document.body.setAttribute('data-color-scheme', theme);
+      }, [theme]);
+      return <Story />;
     },
     (Story) => (
       <MemoryRouter>
