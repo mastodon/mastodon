@@ -23,18 +23,30 @@ RSpec.describe FanOutOnWriteService do
     Fabricate(:media_attachment, status: status, account: alice)
 
     allow(redis).to receive(:publish)
-
-    subject.call(status)
   end
 
   def home_feed_of(account)
     HomeFeed.new(account).get(10).map(&:id)
   end
 
+  context 'when status account is suspended' do
+    let(:visibility) { 'public' }
+
+    before { alice.suspend! }
+
+    it 'does not execute or broadcast' do
+      expect(subject.call(status))
+        .to be_nil
+      expect_no_broadcasting
+    end
+  end
+
   context 'when status is public' do
     let(:visibility) { 'public' }
 
     it 'adds status to home feed of author and followers and broadcasts', :inline_jobs do
+      subject.call(status)
+
       expect(status.id)
         .to be_in(home_feed_of(alice))
         .and be_in(home_feed_of(bob))
@@ -52,6 +64,8 @@ RSpec.describe FanOutOnWriteService do
     let(:visibility) { 'limited' }
 
     it 'adds status to home feed of author and mentioned followers and does not broadcast', :inline_jobs do
+      subject.call(status)
+
       expect(status.id)
         .to be_in(home_feed_of(alice))
         .and be_in(home_feed_of(bob))
@@ -66,6 +80,8 @@ RSpec.describe FanOutOnWriteService do
     let(:visibility) { 'private' }
 
     it 'adds status to home feed of author and followers and does not broadcast', :inline_jobs do
+      subject.call(status)
+
       expect(status.id)
         .to be_in(home_feed_of(alice))
         .and be_in(home_feed_of(bob))
@@ -79,6 +95,8 @@ RSpec.describe FanOutOnWriteService do
     let(:visibility) { 'direct' }
 
     it 'is added to the home feed of its author and mentioned followers and does not broadcast', :inline_jobs do
+      subject.call(status)
+
       expect(status.id)
         .to be_in(home_feed_of(alice))
         .and be_in(home_feed_of(bob))
