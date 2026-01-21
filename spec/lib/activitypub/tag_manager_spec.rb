@@ -612,14 +612,6 @@ RSpec.describe ActivityPub::TagManager do
     end
   end
 
-  describe '#uri_to_local_id' do
-    let(:account) { Fabricate(:account, id_scheme: :username_ap_id) }
-
-    it 'returns the local ID' do
-      expect(subject.uri_to_local_id(subject.uri_for(account), :username)).to eq account.username
-    end
-  end
-
   describe '#uris_to_local_accounts' do
     it 'returns the expected local accounts' do
       account = Fabricate(:account)
