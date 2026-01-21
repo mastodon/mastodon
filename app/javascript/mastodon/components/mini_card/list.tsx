@@ -10,7 +10,9 @@ import type { MiniCardProps } from '.';
 import classes from './styles.module.css';
 
 interface MiniCardListProps {
-  cards?: (Pick<MiniCardProps, 'label' | 'value'> & { key?: Key })[];
+  cards?: (Pick<MiniCardProps, 'label' | 'value' | 'className'> & {
+    key?: Key;
+  })[];
   className?: string;
   onOverflowClick?: MouseEventHandler;
 }
@@ -42,6 +44,7 @@ export const MiniCardList: FC<MiniCardListProps> = ({
             label={card.label}
             value={card.value}
             hidden={hasOverflow && index >= hiddenIndex}
+            className={card.className}
           />
         ))}
       </dl>
