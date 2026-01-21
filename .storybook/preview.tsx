@@ -55,10 +55,7 @@ const preview: Preview = {
       toolbar: {
         title: 'Theme',
         icon: 'circlehollow',
-        items: [
-          { value: 'light', title: 'Light' },
-          { value: 'dark', title: 'Dark' },
-        ],
+        items: [{ value: 'light' }, { value: 'dark' }],
         dynamicTitle: true,
       },
     },
