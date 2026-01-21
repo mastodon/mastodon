@@ -241,12 +241,6 @@ class ActivityPub::TagManager
     !host.nil? && (::TagManager.instance.local_domain?(host) || ::TagManager.instance.web_domain?(host))
   end
 
-  def uri_to_local_id(uri, param = :id)
-    path_params = Rails.application.routes.recognize_path(uri)
-    path_params[:username] = Rails.configuration.x.local_domain if path_params[:controller] == 'instance_actors'
-    path_params[param]
-  end
-
   def uris_to_local_accounts(uris)
     usernames = []
     ids = []
@@ -264,6 +258,14 @@ class ActivityPub::TagManager
     uri_to_resource(uri, Account)
   end
 
+  def uri_to_local_conversation(uri)
+    path_params = Rails.application.routes.recognize_path(uri)
+    return unless path_params[:controller] == 'activitypub/contexts'
+
+    account_id, conversation_id = path_params[:id].split('-')
+    Conversation.find_by(parent_account_id: account_id, id: conversation_id)
+  end
+
   def uri_to_resource(uri, klass)
     return if uri.nil?
 
@@ -271,6 +273,8 @@ class ActivityPub::TagManager
       case klass.name
       when 'Account'
         uris_to_local_accounts([uri]).first
+      when 'Conversation'
+        uri_to_local_conversation(uri)
       else
         StatusFinder.new(uri).status
       end
