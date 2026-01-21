@@ -51,6 +51,7 @@ class ActivityPub::Parser::StatusParser
     [
       title.presence && "<h2>#{title}</h2>",
       spoiler_text.presence,
+      text.presence,
       linkify(url || uri),
     ].compact.join("\n\n")
   end
