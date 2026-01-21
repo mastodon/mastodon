@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
+  apiCreateCollection,
   apiGetAccountCollections,
   // apiGetCollection,
 } from '@/mastodon/api/collections';
 import type {
   ApiBaseCollectionJSON,
+  ApiCreateCollectionPayload,
   ApiFullCollectionJSON,
 } from '@/mastodon/api_types/collections';
 import {
@@ -39,7 +41,7 @@ const collectionSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     /**
-     * Account collections
+     * Fetching account collections
      */
     builder.addCase(fetchAccountCollections.pending, (state, action) => {
       const { accountId } = action.meta.arg;
@@ -76,6 +78,26 @@ const collectionSlice = createSlice({
         status: 'idle',
       };
     });
+
+    /**
+     * Creating a collection
+     */
+
+    builder.addCase(createCollection.fulfilled, (state, actions) => {
+      const { payload } = actions;
+
+      state.collections[payload.id] = payload;
+      if (state.accountCollections[payload.account.id]) {
+        state.accountCollections[payload.account.id]?.collectionIds.unshift(
+          payload.id,
+        );
+      } else {
+        state.accountCollections[payload.account.id] = {
+          collectionIds: [payload.id],
+          status: 'idle',
+        };
+      }
+    });
   },
 });
 
@@ -92,7 +114,17 @@ export const fetchAccountCollections = createDataLoadingThunk(
 //     apiGetCollection(collectionId),
 // );
 
+export const createCollection = createDataLoadingThunk(
+  `${collectionSlice.name}/createCollection`,
+  ({ payload }: { payload: ApiCreateCollectionPayload }) =>
+    apiCreateCollection(payload),
+);
+
 export const collections = collectionSlice.reducer;
+
+/**
+ * Selectors
+ */
 
 interface AccountCollectionQuery {
   status: QueryStatus;

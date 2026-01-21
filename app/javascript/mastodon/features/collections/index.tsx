@@ -16,6 +16,7 @@ import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import {
+  createCollection,
   fetchAccountCollections,
   selectMyCollections,
 } from 'mastodon/reducers/slices/collections';
@@ -92,10 +93,28 @@ export const Collections: React.FC<{
   const { collections, status } = useAppSelector(selectMyCollections);
 
   useEffect(() => {
-    if (me && areCollectionsEnabled()) {
+    if (areCollectionsEnabled()) {
       void dispatch(fetchAccountCollections({ accountId: me }));
     }
   }, [dispatch, me]);
+
+  const addDummyCollection = useCallback(
+    (event: React.MouseEvent) => {
+      event.preventDefault();
+
+      void dispatch(
+        createCollection({
+          payload: {
+            name: 'Test Collection',
+            description: 'A useful test collection',
+            discoverable: true,
+            sensitive: false,
+          },
+        }),
+      );
+    },
+    [dispatch],
+  );
 
   const isError = status === 'error' || !areCollectionsEnabled();
 
@@ -138,6 +157,7 @@ export const Collections: React.FC<{
             className='column-header__button'
             title={intl.formatMessage(messages.create)}
             aria-label={intl.formatMessage(messages.create)}
+            onClick={addDummyCollection}
           >
             <Icon id='plus' icon={AddIcon} />
           </Link>

@@ -12,16 +12,19 @@ import type {
   ApiPatchCollectionPayload,
 } from '../api_types/collections';
 
-export const apiCreate = (collection: ApiCreateCollectionPayload) =>
+export const apiCreateCollection = (collection: ApiCreateCollectionPayload) =>
   apiRequestPost<ApiFullCollectionJSON>('v1_alpha/collections', collection);
 
-export const apiUpdate = ({ id, ...collection }: ApiPatchCollectionPayload) =>
+export const apiUpdateCollection = ({
+  id,
+  ...collection
+}: ApiPatchCollectionPayload) =>
   apiRequestPut<ApiFullCollectionJSON>(
     `v1_alpha/collections/${id}`,
     collection,
   );
 
-export const apiDelete = (collectionId: string) =>
+export const apiDeleteCollection = (collectionId: string) =>
   apiRequestDelete(`v1_alpha/collections/${collectionId}`);
 
 export const apiGetCollection = (collectionId: string) =>
