@@ -25,3 +25,24 @@
   --color-green-400: #05df72;
   --color-green-600: #00a63e;
 }
+
+@mixin spacing {
+  --spacing-none: 0;
+  --spacing-xxxs: 2px;
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+}
+
+@mixin radius {
+  --radius-none: 0;
+  --radius-xxs: 4px;
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 50%;
+}

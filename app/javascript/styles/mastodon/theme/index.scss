@@ -5,6 +5,8 @@
 
 html {
   @include base.palette;
+  @include base.spacing;
+  @include base.radius;
 }
 
 [data-color-scheme='dark'],
