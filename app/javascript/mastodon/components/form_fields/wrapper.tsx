@@ -5,19 +5,30 @@ import { useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+
 interface InputProps {
   id: string;
   required?: boolean;
   'aria-describedby'?: string;
 }
 
-interface Props {
+interface FieldWrapperProps {
   label: ReactNode;
   hint?: ReactNode;
   required?: boolean;
+  hasError?: boolean;
   inputId?: string;
   children: (inputProps: InputProps) => ReactNode;
 }
+
+/**
+ * These types can be extended when creating individual field components.
+ */
+export type CommonFieldWrapperProps = Pick<
+  FieldWrapperProps,
+  'label' | 'hint' | 'hasError'
+>;
 
 /**
  * A simple form field wrapper for adding a label and hint to enclosed components.
@@ -25,11 +36,12 @@ interface Props {
  * or optional (by explicitly setting `required={false}`)
  */
 
-export const FormFieldWrapper: FC<Props> = ({
+export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   inputId: inputIdProp,
   label,
   hint,
   required,
+  hasError,
   children,
 }) => {
   const uniqueId = useId();
@@ -46,7 +58,11 @@ export const FormFieldWrapper: FC<Props> = ({
   }
 
   return (
-    <div className='input with_block_label'>
+    <div
+      className={classNames('input with_block_label', {
+        field_with_errors: hasError,
+      })}
+    >
       <div className='label_input'>
         <label htmlFor={inputId}>
           {label}

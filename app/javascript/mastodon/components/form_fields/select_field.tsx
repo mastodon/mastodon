@@ -1,12 +1,11 @@
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 import { forwardRef } from 'react';
 
 import { FormFieldWrapper } from './wrapper';
+import type { CommonFieldWrapperProps } from './wrapper';
 
-interface Props extends ComponentPropsWithoutRef<'select'> {
-  label: ReactNode;
-  hint?: ReactNode;
-}
+interface Props
+  extends ComponentPropsWithoutRef<'select'>, CommonFieldWrapperProps {}
 
 /**
  * A simple form field for single-item selections.
@@ -17,11 +16,12 @@ interface Props extends ComponentPropsWithoutRef<'select'> {
  */
 
 export const SelectField = forwardRef<HTMLSelectElement, Props>(
-  ({ id, label, hint, required, children, ...otherProps }, ref) => (
+  ({ id, label, hint, required, hasError, children, ...otherProps }, ref) => (
     <FormFieldWrapper
       label={label}
       hint={hint}
       required={required}
+      hasError={hasError}
       inputId={id}
     >
       {(inputProps) => (

@@ -37,16 +37,19 @@ export const Simple: Story = {};
 
 export const Required: Story = {
   args: {
-    label: 'Favourite fruit',
-    hint: 'This is a description of this form field',
     required: true,
   },
 };
 
 export const Optional: Story = {
   args: {
-    label: 'Favourite fruit',
-    hint: 'This is a description of this form field',
     required: false,
+  },
+};
+
+export const WithError: Story = {
+  args: {
+    required: false,
+    hasError: true,
   },
 };

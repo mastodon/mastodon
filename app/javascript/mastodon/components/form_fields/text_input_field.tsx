@@ -1,13 +1,11 @@
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 import { forwardRef } from 'react';
 
 import { FormFieldWrapper } from './wrapper';
+import type { CommonFieldWrapperProps } from './wrapper';
 
-interface Props extends ComponentPropsWithoutRef<'input'> {
-  label: ReactNode;
-  hint?: ReactNode;
-  type?: string;
-}
+interface Props
+  extends ComponentPropsWithoutRef<'input'>, CommonFieldWrapperProps {}
 
 /**
  * A simple form field for single-line text.
@@ -17,11 +15,15 @@ interface Props extends ComponentPropsWithoutRef<'input'> {
  */
 
 export const TextInputField = forwardRef<HTMLInputElement, Props>(
-  ({ id, label, hint, required, type = 'text', ...otherProps }, ref) => (
+  (
+    { id, label, hint, hasError, required, type = 'text', ...otherProps },
+    ref,
+  ) => (
     <FormFieldWrapper
       label={label}
       hint={hint}
       required={required}
+      hasError={hasError}
       inputId={id}
     >
       {(inputProps) => (
