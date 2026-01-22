@@ -11,6 +11,7 @@ import {
 } from '@/mastodon/actions/timelines_typed';
 import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column_back_button';
+import { FeaturedCarousel } from '@/mastodon/components/featured_carousel';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
 import StatusList from '@/mastodon/components/status_list';
@@ -64,10 +65,15 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     <Column>
       <ColumnBackButton />
 
-      <AccountHeader accountId={accountId} hideTabs={forceEmptyState} />
-
       <StatusList
         alwaysPrepend
+        prepend={
+          <Prepend
+            accountId={accountId}
+            forceEmpty={forceEmptyState}
+            tagged={tagged}
+          />
+        }
         append={<RemoteHint accountId={accountId} />}
         scrollKey='account_timeline'
         statusIds={forceEmptyState ? [] : timeline.items}
@@ -80,6 +86,22 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
         withCounters
       />
     </Column>
+  );
+};
+
+const Prepend: FC<{
+  accountId: string;
+  forceEmpty: boolean;
+  tagged?: string;
+}> = ({ accountId, forceEmpty, tagged }) => {
+  if (forceEmpty) {
+    return <AccountHeader accountId={accountId} hideTabs />;
+  }
+  return (
+    <>
+      <AccountHeader accountId={accountId} hideTabs />
+      <FeaturedCarousel accountId={accountId} tagged={tagged} />
+    </>
   );
 };
 
