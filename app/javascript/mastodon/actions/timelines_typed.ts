@@ -55,14 +55,46 @@ export function timelineKey(params: TimelineParams): string {
   return key.filter(Boolean).join(':');
 }
 
+export const expandTimelineByKey = createAppThunk(
+  (args: { key: string; maxId?: number }, { dispatch }) => {
+    const params = parseTimelineKey(args.key);
+    if (!params) {
+      return;
+    }
+
+    void dispatch(expandTimelineByParams({ ...params, maxId: args.maxId }));
+  },
+);
+
 export const expandTimelineByParams = createAppThunk(
-  (params: TimelineParams, { dispatch }) => {
+  (params: TimelineParams & { maxId?: number }, { dispatch }) => {
     let url = '';
     const extra: Record<string, string | boolean> = {};
+
     if (params.type === 'account') {
       url = `/api/v1/accounts/${params.userId}/statuses`;
+
+      if (!params.replies) {
+        extra.exclude_replies = true;
+      }
+      if (!params.boosts) {
+        extra.exclude_reblogs = true;
+      }
+      if (params.pinned) {
+        extra.pinned = true;
+      }
+      if (params.media) {
+        extra.only_media = true;
+      }
+      if (params.tagged) {
+        extra.tagged = params.tagged;
+      }
     } else if (params.type === 'public') {
       url = '/api/v1/timelines/public';
+    }
+
+    if (params.maxId) {
+      extra.max_id = params.maxId.toString();
     }
 
     return dispatch(expandTimeline(timelineKey(params), url, extra));

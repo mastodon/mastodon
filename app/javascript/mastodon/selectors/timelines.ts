@@ -14,6 +14,17 @@ export interface TimelineState {
   items: string[];
 }
 
+export const selectTimelineByKey = createAppSelector(
+  [
+    (_, key: string) => key,
+    (state) =>
+      state.timelines as ImmutableMap<string, ImmutableMap<string, unknown>>,
+  ],
+  (key, timelines) => {
+    return timelines.get(key)?.toJSON() as TimelineState | undefined;
+  },
+);
+
 export const selectTimelineByParams = createAppSelector(
   [
     (_, params: TimelineParams) => timelineKey(params),
