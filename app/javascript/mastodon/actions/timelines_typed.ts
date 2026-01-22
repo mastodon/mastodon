@@ -6,55 +6,6 @@ import { createAppThunk } from '../store/typed_functions';
 
 import { expandTimeline, TIMELINE_NON_STATUS_MARKERS } from './timelines';
 
-export interface AccountTimelineParams {
-  type: 'account';
-  userId: string;
-  tagged?: string;
-  media?: boolean;
-  pinned?: boolean;
-  boosts?: boolean;
-  replies?: boolean;
-}
-export type PublicTimelineServer = 'local' | 'remote' | 'all';
-export interface PublicTimelineParams {
-  type: 'public';
-  tagged?: string;
-  server?: PublicTimelineServer; // Defaults to 'all'
-  media?: boolean;
-}
-export interface HomeTimelineParams {
-  type: 'home';
-}
-export type TimelineParams =
-  | AccountTimelineParams
-  | PublicTimelineParams
-  | HomeTimelineParams;
-
-export function timelineKey(params: TimelineParams): string {
-  const { type } = params;
-  const key: string[] = [type];
-
-  if (type === 'account') {
-    const view = (['media', 'pinned', 'boosts', 'replies'] as const).reduce(
-      (prev, curr) => prev + (params[curr] ? curr.charAt(0) : ''),
-      '',
-    );
-    key.push(params.userId);
-    key.push(view);
-  } else if (type === 'public') {
-    key.push(params.server ?? 'all');
-    if (params.media) {
-      key.push('media');
-    }
-  }
-
-  if (type !== 'home' && params.tagged) {
-    key.push(params.tagged);
-  }
-
-  return key.filter(Boolean).join(':');
-}
-
 export const expandTimelineByKey = createAppThunk(
   (args: { key: string; maxId?: number }, { dispatch }) => {
     const params = parseTimelineKey(args.key);
@@ -101,6 +52,59 @@ export const expandTimelineByParams = createAppThunk(
   },
 );
 
+export interface AccountTimelineParams {
+  type: 'account';
+  userId: string;
+  tagged?: string;
+  media?: boolean;
+  pinned?: boolean;
+  boosts?: boolean;
+  replies?: boolean;
+}
+export type PublicTimelineServer = 'local' | 'remote' | 'all';
+export interface PublicTimelineParams {
+  type: 'public';
+  tagged?: string;
+  server?: PublicTimelineServer; // Defaults to 'all'
+  media?: boolean;
+}
+export interface HomeTimelineParams {
+  type: 'home';
+}
+export type TimelineParams =
+  | AccountTimelineParams
+  | PublicTimelineParams
+  | HomeTimelineParams;
+
+const ACCOUNT_FILTERS = ['boosts', 'replies', 'media', 'pinned'] as const;
+
+export function timelineKey(params: TimelineParams): string {
+  const { type } = params;
+  const key: string[] = [type];
+
+  if (type === 'account') {
+    key.push(params.userId);
+
+    const view = ACCOUNT_FILTERS.reduce(
+      (prev, curr) => prev + (params[curr] ? '1' : '0'),
+      '',
+    );
+
+    key.push(view);
+  } else if (type === 'public') {
+    key.push(params.server ?? 'all');
+    if (params.media) {
+      key.push('media');
+    }
+  }
+
+  if (type !== 'home' && params.tagged) {
+    key.push(params.tagged);
+  }
+
+  return key.filter(Boolean).join(':');
+}
+
 export function parseTimelineKey(key: string): TimelineParams | null {
   const segments = key.split(':');
   const type = segments[0];
@@ -110,16 +114,21 @@ export function parseTimelineKey(key: string): TimelineParams | null {
     if (!userId) {
       return null;
     }
-    const view = segments[2]?.split('') ?? [];
-    return {
+
+    const parsed: TimelineParams = {
       type: 'account',
       userId,
       tagged: segments[3],
-      media: view.includes('m'),
-      pinned: view.includes('p'),
-      boosts: view.includes('b'),
-      replies: view.includes('r'),
     };
+
+    const view = segments[2]?.split('') ?? [];
+    for (let i = 0; i < view.length; i++) {
+      const flagName = ACCOUNT_FILTERS[i];
+      if (flagName) {
+        parsed[flagName] = view[i] === '1';
+      }
+    }
+    return parsed;
   }
 
   if (type === 'public') {
