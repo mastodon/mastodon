@@ -46,20 +46,20 @@ export const FormFieldWrapper: FC<Props> = ({
   }
 
   return (
-    <div className='input with_label'>
+    <div className='input with_block_label'>
       <div className='label_input'>
         <label htmlFor={inputId}>
           {label}
           {required !== undefined && <RequiredMark required={required} />}
         </label>
 
-        <div className='label_input__wrapper'>{children(inputProps)}</div>
-
         {hasHint && (
           <span className='hint' id={hintId}>
             {hint}
           </span>
         )}
+
+        <div className='label_input__wrapper'>{children(inputProps)}</div>
       </div>
     </div>
   );
