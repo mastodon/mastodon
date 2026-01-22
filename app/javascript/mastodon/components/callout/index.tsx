@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
+import ErrorIcon from '@/material-icons/400-24px/error.svg?react';
 import InfoIcon from '@/material-icons/400-24px/info.svg?react';
 import WarningIcon from '@/material-icons/400-24px/warning.svg?react';
 
@@ -120,6 +121,9 @@ const CalloutIcon: FC<Pick<CalloutProps, 'variant' | 'icon'>> = ({
         break;
       case 'warning':
         icon = WarningIcon;
+        break;
+      case 'error':
+        icon = ErrorIcon;
         break;
       default:
         icon = InfoIcon;
