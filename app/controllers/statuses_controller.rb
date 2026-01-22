@@ -29,7 +29,7 @@ class StatusesController < ApplicationController
       end
 
       format.json do
-        expires_in 3.minutes, public: true if @status.distributable? && public_fetch_mode?
+        expires_in @status.quote&.pending? ? 5.seconds : 3.minutes, public: true if @status.distributable? && public_fetch_mode?
         render_with_cache json: @status, content_type: 'application/activity+json', serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter
       end
     end
