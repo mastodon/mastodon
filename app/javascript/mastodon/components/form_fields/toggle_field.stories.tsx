@@ -50,3 +50,29 @@ export const WithError: Story = {
     hasError: true,
   },
 };
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    checked: true,
+  },
+};
+
+export const Plain: Story = {
+  args: {
+    label: undefined,
+    hint: undefined,
+  },
+};
+
+export const Small: Story = {
+  args: {
+    size: 12,
+  },
+};
+
+export const Large: Story = {
+  args: {
+    size: 36,
+  },
+};
