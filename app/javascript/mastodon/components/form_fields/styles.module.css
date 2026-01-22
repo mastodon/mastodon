@@ -33,6 +33,13 @@
   transition: transform var(--transition);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .toggle::before {
+    transition: none;
+  }
+}
+
 .input:checked + .toggle {
   background: var(--color-bg-brand-base);
 }
@@ -51,4 +58,8 @@
 
 .input:disabled + .toggle {
   opacity: 0.6;
+}
+
+:global([dir='rtl']) .input:checked + .toggle::before {
+  transform: translateX(calc(-1 * (var(--diameter) - (var(--padding) * 2))));
 }
