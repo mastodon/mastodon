@@ -85,7 +85,7 @@ export const MediaModal: FC<MediaModalProps> = forwardRef<
         setIndex(newIndex);
         setZoomedIn(false);
         if (animate) {
-          void api.start({ x: `-${newIndex * 100}%` });
+          void api.start({ x: `calc(-${newIndex * 100}% + 0px)` });
         }
       },
       [api, media.size],

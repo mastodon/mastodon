@@ -163,9 +163,10 @@ RSpec.describe 'API Web Push Subscriptions' do
   end
 
   describe 'PUT /api/web/push_subscriptions/:id' do
-    before { sign_in Fabricate :user }
+    before { sign_in user }
 
-    let(:subscription) { Fabricate :web_push_subscription }
+    let(:user) { Fabricate(:user) }
+    let(:subscription) { Fabricate(:web_push_subscription, user: user) }
 
     it 'gracefully handles invalid nested params' do
       put api_web_push_subscription_path(subscription), params: { data: 'invalid' }

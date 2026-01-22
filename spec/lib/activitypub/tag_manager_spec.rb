@@ -192,6 +192,23 @@ RSpec.describe ActivityPub::TagManager do
         expect(subject.uri_for(status.conversation)).to eq status.conversation.uri
       end
     end
+
+    context 'with a local collection' do
+      let(:collection) { Fabricate(:collection) }
+
+      it 'returns a string starting with web domain and with the expected path' do
+        expect(subject.uri_for(collection))
+          .to eq("#{host_prefix}/ap/users/#{collection.account.id}/collections/#{collection.id}")
+      end
+    end
+
+    context 'with a remote collection' do
+      let(:collection) { Fabricate(:remote_collection) }
+
+      it 'returns the expected URL' do
+        expect(subject.uri_for(collection)).to eq collection.uri
+      end
+    end
   end
 
   describe '#key_uri_for' do
@@ -609,14 +626,6 @@ RSpec.describe ActivityPub::TagManager do
     it 'returns true for local URIs' do
       account = Fabricate(:account)
       expect(subject.local_uri?(subject.uri_for(account))).to be true
-    end
-  end
-
-  describe '#uri_to_local_id' do
-    let(:account) { Fabricate(:account, id_scheme: :username_ap_id) }
-
-    it 'returns the local ID' do
-      expect(subject.uri_to_local_id(subject.uri_for(account), :username)).to eq account.username
     end
   end
 

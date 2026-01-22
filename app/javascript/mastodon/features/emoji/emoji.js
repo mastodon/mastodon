@@ -1,6 +1,6 @@
 import Trie from 'substring-trie';
 
-import { getUserTheme, isDarkMode } from '@/mastodon/utils/theme';
+import { getIsSystemTheme, isDarkMode } from '@/mastodon/utils/theme';
 import { assetHost } from 'mastodon/utils/config';
 
 import { autoPlayGif } from '../../initial_state';
@@ -98,7 +98,7 @@ const emojifyTextNode = (node, customEmojis) => {
       const { filename, shortCode } = unicodeMapping[unicode_emoji];
       const title = shortCode ? `:${shortCode}:` : '';
 
-      const isSystemTheme = getUserTheme() === 'system';
+      const isSystemTheme = getIsSystemTheme();
 
       const theme = (isSystemTheme || !isDarkMode()) ? 'light' : 'dark';
 

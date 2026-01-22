@@ -56,7 +56,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
   end
 
   def revoke_quote
-    @quote = Quote.find_by(approval_uri: object_uri, quoted_account: @account)
+    @quote = Quote.find_by(approval_uri: object_uri, quoted_account: @account, state: [:pending, :accepted])
     return if @quote.nil?
 
     ActivityPub::Forwarder.new(@account, @json, @quote.status).forward! if @quote.status.present?

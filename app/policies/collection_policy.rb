@@ -6,7 +6,7 @@ class CollectionPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    current_account.nil? || !owner.blocking_or_domain_blocking?(current_account)
   end
 
   def create?
@@ -24,6 +24,10 @@ class CollectionPolicy < ApplicationPolicy
   private
 
   def owner?
-    current_account == record.account
+    current_account == owner
+  end
+
+  def owner
+    record.account
   end
 end

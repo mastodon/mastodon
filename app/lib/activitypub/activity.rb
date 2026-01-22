@@ -5,6 +5,7 @@ class ActivityPub::Activity
   include Redisable
   include Lockable
 
+  MAX_JSON_SIZE = 1.megabyte
   SUPPORTED_TYPES = %w(Note Question).freeze
   CONVERTED_TYPES = %w(Image Audio Video Article Page Event).freeze
 
@@ -21,14 +22,13 @@ class ActivityPub::Activity
 
   class << self
     def factory(json, account, **)
-      @json = json
-      klass&.new(json, account, **)
+      klass_for(json)&.new(json, account, **)
     end
 
     private
 
-    def klass
-      case @json['type']
+    def klass_for(json)
+      case json['type']
       when 'Create'
         ActivityPub::Activity::Create
       when 'Announce'

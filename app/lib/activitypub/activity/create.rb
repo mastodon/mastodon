@@ -379,6 +379,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def conversation_from_uri(uri)
     return nil if uri.nil?
     return Conversation.find_by(id: OStatus::TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')) if OStatus::TagManager.instance.local_id?(uri)
+    return ActivityPub::TagManager.instance.uri_to_resource(uri, Conversation) if ActivityPub::TagManager.instance.local_uri?(uri)
 
     begin
       Conversation.find_or_create_by!(uri: uri)
