@@ -27,10 +27,11 @@
     appearance: none;
     border: none;
     background: none;
+    color: inherit;
+    font-weight: 600;
     padding: 0;
     text-decoration: underline;
     transition: color 0.1s ease-in-out;
-    color: inherit;
 
     &:hover {
       color: var(--color-text-brand-soft);
