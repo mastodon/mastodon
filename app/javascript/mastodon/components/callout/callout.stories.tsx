@@ -8,14 +8,10 @@ const meta = {
   args: {
     children: 'Contents here',
     title: 'Title',
-    primaryAction: {
-      label: 'Primary Action',
-      onClick: action('Primary Action Clicked'),
-    },
-    secondaryAction: {
-      label: 'Secondary Action',
-      onClick: action('Secondary Action Clicked'),
-    },
+    primaryAction: action('Primary Action Clicked'),
+    primaryLabel: 'Primary Action',
+    secondaryAction: action('Secondary Action Clicked'),
+    secondaryLabel: 'Secondary Action',
     noClose: false,
   },
   component: Callout,

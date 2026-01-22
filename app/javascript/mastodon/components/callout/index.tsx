@@ -13,11 +13,6 @@ import { IconButton } from '../icon_button';
 
 import classes from './styles.module.css';
 
-interface Action {
-  label: string;
-  onClick: () => void;
-}
-
 interface CalloutProps {
   variant?:
     | 'default'
@@ -32,8 +27,10 @@ interface CalloutProps {
   className?: string;
   /** Set to false to hide the icon. */
   icon?: IconProp | boolean;
-  primaryAction?: Action;
-  secondaryAction?: Action;
+  primaryAction?: () => void;
+  primaryLabel?: string;
+  secondaryAction?: () => void;
+  secondaryLabel?: string;
   noClose?: boolean;
 }
 
@@ -54,7 +51,9 @@ export const Callout: FC<CalloutProps> = ({
   children,
   icon,
   primaryAction,
+  primaryLabel,
   secondaryAction,
+  secondaryLabel,
   noClose,
 }) => {
   const wrapperClassName = classNames(className, classes.wrapper, {
@@ -79,14 +78,14 @@ export const Callout: FC<CalloutProps> = ({
         {(primaryAction ?? secondaryAction) && (
           <div className={classes.action}>
             {secondaryAction && (
-              <button type='button' onClick={secondaryAction.onClick}>
-                {secondaryAction.label}
+              <button type='button' onClick={secondaryAction}>
+                {secondaryLabel ?? 'Click'}
               </button>
             )}
 
             {primaryAction && (
-              <button type='button' onClick={primaryAction.onClick}>
-                {primaryAction.label}
+              <button type='button' onClick={primaryAction}>
+                {primaryLabel ?? 'Click'}
               </button>
             )}
           </div>
