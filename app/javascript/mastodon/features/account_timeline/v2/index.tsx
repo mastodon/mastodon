@@ -76,7 +76,7 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
   return (
     <FilterContext.Provider value={{ boosts, setBoosts, replies, setReplies }}>
-      <Column>
+      <Column bindToDocument={!multiColumn}>
         <ColumnBackButton />
 
         <StatusList
