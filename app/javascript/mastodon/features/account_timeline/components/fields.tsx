@@ -18,8 +18,7 @@ import type { Account } from '@/mastodon/models/account';
 import { useAppDispatch } from '@/mastodon/store';
 
 import { isRedesignEnabled } from '../common';
-
-import classes from './redesign.module.scss';
+import classes from '../redesign.module.scss';
 
 export const AccountHeaderFields: FC<{ accountId: string }> = ({
   accountId,
