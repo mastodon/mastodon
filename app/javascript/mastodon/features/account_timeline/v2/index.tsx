@@ -7,6 +7,7 @@ import { useParams } from 'react-router';
 
 import {
   expandTimelineByKey,
+  parseTimelineKey,
   timelineKey,
 } from '@/mastodon/actions/timelines_typed';
 import { Column } from '@/mastodon/components/column';
@@ -23,6 +24,8 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AccountHeader } from '../components/account_header';
 import { LimitedAccountHint } from '../components/limited_account_hint';
+
+import { AccountFilters } from './filters';
 
 const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const accountId = useAccountId();
@@ -67,13 +70,7 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
       <StatusList
         alwaysPrepend
-        prepend={
-          <Prepend
-            accountId={accountId}
-            forceEmpty={forceEmptyState}
-            tagged={tagged}
-          />
-        }
+        prepend={<Prepend timelineKey={key} forceEmpty={forceEmptyState} />}
         append={<RemoteHint accountId={accountId} />}
         scrollKey='account_timeline'
         statusIds={forceEmptyState ? [] : timeline.items}
@@ -90,17 +87,24 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 };
 
 const Prepend: FC<{
-  accountId: string;
+  timelineKey: string;
   forceEmpty: boolean;
-  tagged?: string;
-}> = ({ accountId, forceEmpty, tagged }) => {
-  if (forceEmpty) {
-    return <AccountHeader accountId={accountId} hideTabs />;
+}> = ({ forceEmpty, timelineKey }) => {
+  const params = parseTimelineKey(timelineKey);
+  if (params?.type !== 'account') {
+    return null;
   }
+  const { userId, tagged } = params;
+
+  if (forceEmpty) {
+    return <AccountHeader accountId={userId} hideTabs />;
+  }
+
   return (
     <>
-      <AccountHeader accountId={accountId} hideTabs />
-      <FeaturedCarousel accountId={accountId} tagged={tagged} />
+      <AccountHeader accountId={userId} hideTabs />
+      <AccountFilters params={params} />
+      <FeaturedCarousel accountId={userId} tagged={tagged} />
     </>
   );
 };
