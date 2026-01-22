@@ -1,5 +1,5 @@
 import { useCallback, useContext, useRef, useState } from 'react';
-import type { FC } from 'react';
+import type { ChangeEventHandler, FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -41,7 +41,18 @@ const FilterDropdown: FC = () => {
     setOpen(false);
   }, []);
 
-  const { boosts, replies } = useContext(FilterContext);
+  const { boosts, replies, setBoosts, setReplies } = useContext(FilterContext);
+  const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
+    (event) => {
+      const { name, checked } = event.target;
+      if (name === 'boosts') {
+        setBoosts(checked);
+      } else if (name === 'replies') {
+        setReplies(checked);
+      }
+    },
+    [setBoosts, setReplies],
+  );
 
   return (
     <>
@@ -97,7 +108,12 @@ const FilterDropdown: FC = () => {
                 defaultMessage='Show replies'
               />
 
-              <input name='replies' type='checkbox' checked={replies} />
+              <input
+                name='replies'
+                type='checkbox'
+                checked={replies}
+                onChange={handleChange}
+              />
             </label>
             <label className={classes.filterToggle}>
               <FormattedMessage
@@ -105,7 +121,12 @@ const FilterDropdown: FC = () => {
                 defaultMessage='Show boosts'
               />
 
-              <input name='boosts' type='checkbox' checked={boosts} />
+              <input
+                name='boosts'
+                type='checkbox'
+                checked={boosts}
+                onChange={handleChange}
+              />
             </label>
           </div>
         )}
