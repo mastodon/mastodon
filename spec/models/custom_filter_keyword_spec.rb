@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe CustomFilterKeyword do
+  describe 'Validations' do
+    it { is_expected.to validate_length_of(:keyword).is_at_most(described_class::KEYWORD_LENGTH_LIMIT) }
+    it { is_expected.to validate_presence_of(:keyword) }
+  end
+
   describe '#to_regex' do
     context 'when whole_word is true' do
       it 'builds a regex with boundaries and the keyword' do
