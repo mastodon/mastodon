@@ -7,6 +7,8 @@ gd:
     hosted_on: Mastodon ’ga òstadh air %{domain}
     title: Mu dhèidhinn
   accounts:
+    errors:
+      cannot_be_added_to_collections: Cha ghabh an cunntas seo a chur ri cruinneachadh.
     followers:
       few: Luchd-leantainn
       one: Neach-leantainn
@@ -874,6 +876,7 @@ gd:
         publish_statistics: Foillsich an stadastaireachd
         title: Rùrachadh
         trends: Treandaichean
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Dhan a h-uile duine
         disabled: Na seall idir
@@ -1354,6 +1357,13 @@ gd:
     hint_html: "<strong>Gliocas:</strong> Chan iarr sinn am facal-faire agad ort a-rithist fad uair a thìde."
     invalid_password: Facal-faire mì-dhligheach
     prompt: Dearbh am facal-faire airson leantainn air adhart
+  color_scheme:
+    auto: Fèin-obrachail
+    dark: Dorcha
+    light: Soilleir
+  contrast:
+    auto: Fèin-obrachail
+    high: Àrd
   crypto:
     errors:
       invalid_key: "– chan e iuchair Ed25519 no Curve25519 dhligheach a th’ ann"
@@ -1784,16 +1794,22 @@ gd:
       body: 'Thug %{name} iomradh ort an-seo:'
       subject: Thug %{name} iomradh ort
       title: Iomradh ùr
+    moderation_warning:
+      subject: Fhuair thu rabhadh on mhaorsainneachd
     poll:
       subject: Thàinig cunntas-bheachd le %{name} gu crìoch
     quote:
       body: 'Chaidh post a luaidh le %{name}:'
       subject: Luaidh %{name} am post agad
       title: Luaidh ùr
+    quoted_update:
+      subject: Dheasaich %{name} post a luaidh thu
     reblog:
       body: 'Chaidh am post agad a bhrosnachadh le %{name}:'
       subject: Bhrosnaich %{name} am post agad
       title: Brosnachadh ùr
+    severed_relationships:
+      subject: Chaill thu dàimhean ri linn co-dhùnadh na maorsainneachd
     status:
       subject: Tha %{name} air post a sgrìobhadh
     update:
@@ -2038,14 +2054,16 @@ gd:
       public: Poblach
       public_long: Neach sam bith taobh a-staigh no a-muigh Mhastodon
       unlisted: Sàmhach
-      unlisted_long: Falaichte o na toraidhean-luirg, na treandaichean ’s na loichnichean-ama poblach
+      unlisted_long: Falaichte o na toraidhean-luirg, na treandaichean ’s na loidhnichean-ama poblach
   statuses_cleanup:
     enabled: Sguab às seann-phostaichean gu fèin-obrachail
     enabled_hint: Sguabaidh seo às na seann-phostaichean agad gu fèin-obrachail nuair a ruigeas iad stairsneach aoise sònraichte ach ma fhreagras iad ri gin dhe na h-eisgeachdan gu h-ìosal
     exceptions: Eisgeachdan
+    explanation: Tha prìomhachas ìosal air an sguabadh às fhèin-obrachail. Dh’fhaoidte gum bi dàil eadar ruigsinn stairsneach na h-aoise agus an toirt air falbh.
     ignore_favs: Leig seachad na h-annsachdan
     ignore_reblogs: Leig seachad na brosnachaidhean
     interaction_exceptions: Eisgeachdan stèidhichte air eadar-ghnìomhan
+    interaction_exceptions_explanation: Faodaidh postaichean mairsinn ma thèid iad thar stairsneach nan annsachdan no brosnachaidhean rè seal fiù ma bhios an cunntas as ìsle an uairsin.
     keep_direct: Cùm na teachdaireachdan dìreach
     keep_direct_hint: Cha dèid gin dhe na teachdaireachdan dìreach agad a sguabadh às
     keep_media: Cùm postaichean le ceanglachan meadhain
@@ -2260,8 +2278,12 @@ gd:
       error: Bha duilgheadas ann le bhith a’ sguabadh às an iuchair tèarainteachd agad. Feuch ris a-rithist.
       success: Chaidh an iuchair tèarainteachd agad a sguabadh às.
     invalid_credential: Iuchair tèarainteachd mì-dhligheach
+    nickname: Far-ainm
     nickname_hint: Cuir a-steach far-ainm na h-iuchrach tèarainteachd ùir agad
     not_enabled: Cha do chuir thu WebAuthn an comas fhathast
     not_supported: Cha chuir am brabhsair seo taic ri iuchraichean tèarainteachd
     otp_required: Mus cleachd thu iuchraichean tèarainteachd, feumaidh tu an dearbhadh dà-cheumnach a chur an comas.
     registered_on: Air a chlàradh %{date}
+  wrapstodon:
+    description: Seall mar a chleachd %{name} Mastodon am bliadhna!
+    title: Wrapstodon %{year} dha %{name}

@@ -1,7 +1,5 @@
 import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
-
 import type { ApiAnnualReportState } from '@/mastodon/api/annual_report';
 import { Button } from '@/mastodon/components/button';
 
@@ -19,7 +17,7 @@ export const AnnualReportAnnouncement: React.FC<
   AnnualReportAnnouncementProps
 > = ({ year, state, onRequestBuild, onOpen, onDismiss }) => {
   return (
-    <div className={classNames('theme-dark', styles.wrapper)}>
+    <div className={styles.wrapper} data-color-scheme='dark'>
       <FormattedMessage
         id='annual_report.announcement.title'
         defaultMessage='Wrapstodon {year} has arrived'

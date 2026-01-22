@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe InstanceModerationNote do
   describe 'chronological' do
     it 'returns the instance notes sorted by oldest first' do
-      instance = Instance.find_or_initialize_by(domain: TagManager.instance.normalize_domain('mastodon.example'))
+      instance = Instance.find_or_initialize_by(domain: 'mastodon.example')
 
       note1 = Fabricate(:instance_moderation_note, domain: instance.domain)
       note2 = Fabricate(:instance_moderation_note, domain: instance.domain)

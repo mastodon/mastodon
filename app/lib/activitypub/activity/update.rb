@@ -30,7 +30,8 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
     @status = Status.find_by(uri: object_uri, account_id: @account.id)
 
     # Ignore updates for old unknown objects, since those are updates we are not interested in
-    return if @status.nil? && object_too_old?
+    # Also ignore unknown objects from suspended users for the same reasons
+    return if @status.nil? && (@account.suspended? || object_too_old?)
 
     # We may be getting `Create` and `Update` out of order
     @status ||= ActivityPub::Activity::Create.new(@json, @account, **@options).perform

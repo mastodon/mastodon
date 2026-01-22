@@ -1,6 +1,6 @@
 import type { List as ImmutableList } from 'immutable';
 
-import type { FlatCompactEmoji, Locale } from 'emojibase';
+import type { CompactEmoji, Locale, SkinTone } from 'emojibase';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 import type { CustomEmoji } from '@/mastodon/models/custom_emoji';
@@ -32,10 +32,20 @@ export interface EmojiAppState {
   currentLocale: Locale;
   mode: EmojiMode;
   darkTheme: boolean;
+  assetHost: string;
 }
 
-export type CustomEmojiData = ApiCustomEmojiJSON;
-export type UnicodeEmojiData = FlatCompactEmoji;
+export type CustomEmojiData = ApiCustomEmojiJSON & { tokens: string[] };
+export interface UnicodeEmojiData extends Omit<
+  CompactEmoji,
+  'emoticon' | 'skins' | 'tags'
+> {
+  shortcodes: string[];
+  tokens: string[];
+  emoticons?: string[];
+  skinHexcodes?: string[];
+  skinTones?: (SkinTone | SkinTone[])[];
+}
 export type AnyEmojiData = CustomEmojiData | UnicodeEmojiData;
 
 type CustomEmojiRenderFields = Pick<

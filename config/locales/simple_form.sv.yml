@@ -65,6 +65,7 @@ sv:
         setting_display_media_hide_all: Dölj alltid all media
         setting_display_media_show_all: Visa alltid media markerad som känslig
         setting_emoji_style: Hur emojier visas. "Automatiskt" kommer att försöka använda webbläsarens emojier, men faller tillbaka till Twemoji för äldre webbläsare.
+        setting_quick_boosting_html: När aktiverad, klicka på %{boost_icon} Boost-ikonen för att omedelbart boosta istället för att öppna boost/citera-rullgardinsmenyn. Flyttar citering till %{options_icon} (Alternativ)-menyn.
         setting_system_scrollbars_ui: Gäller endast för webbläsare som är baserade på Safari och Chrome
         setting_use_blurhash: Gradienter är baserade på färgerna av de dolda objekten men fördunklar alla detaljer
         setting_use_pending_items: Dölj tidslinjeuppdateringar bakom ett klick istället för att automatiskt bläddra i flödet
@@ -78,6 +79,7 @@ sv:
       featured_tag:
         name: 'Här är några av de hashtaggar du använt nyligen:'
       filters:
+        action: Välj vilken åtgärd som ska utföras när ett inlägg matchar filtret
         actions:
           blur: Dölj media bakom en varning utan att dölja själva texten
           hide: Dölj det filtrerade innehållet helt, beter sig som om det inte fanns
@@ -86,10 +88,12 @@ sv:
         activity_api_enabled: Antalet lokalt publicerade inlägg, aktiva användare och nya registrerade konton per vecka
         app_icon: WEBP, PNG, GIF eller JPG. Använd istället för appens egna ikon på mobila enheter.
         backups_retention_period: Användare har möjlighet att generera arkiv av sina inlägg för att ladda ned senare. När det sätts till ett positivt värde raderas dessa arkiv automatiskt från din lagring efter det angivna antalet dagar.
+        bootstrap_timeline_accounts: Dessa konton kommer att fästas på toppen av nya användares följ-rekommendationer. Ange en kommaseparerad lista över konton.
         closed_registrations_message: Visas när nyregistreringar är avstängda
         content_cache_retention_period: Alla inlägg från andra servrar (inklusive booster och svar) kommer att raderas efter det angivna antalet dagar, utan hänsyn till någon lokal användarinteraktion med dessa inlägg. Detta inkluderar inlägg där en lokal användare har markerat det som bokmärke eller favoriter. Privata omnämnanden mellan användare från olika instanser kommer också att gå förlorade och blir omöjliga att återställa. Användningen av denna inställning är avsedd för specialfall och bryter många användarförväntningar när de implementeras för allmänt bruk.
         custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
         favicon: WEBP, PNG, GIF eller JPG. Används på mobila enheter istället för appens egen ikon.
+        landing_page: Väljer vilken sida nya besökare ser när de först anländer till din server. Om du väljer "Trender" måste trenderna aktiveras i Upptäckningsinställningarna. Om du väljer "Lokalt flöde" måste "Åtkomst till live-flöden med lokala inlägg" sättas till "Alla" i Upptäckningsinställningarna.
         mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
         media_cache_retention_period: Mediafiler från inlägg som gjorts av fjärranvändare cachas på din server. När inställd på ett positivt värde kommer media att raderas efter det angivna antalet dagar. Om mediadatat begärs efter att det har raderats, kommer det att laddas ned igen om källinnehållet fortfarande är tillgängligt. På grund av begränsningar för hur ofta förhandsgranskningskort för länkar hämtas från tredjepartswebbplatser, rekommenderas det att ange detta värde till minst 14 dagar, annars kommer förhandsgranskningskorten inte att uppdateras på begäran före den tiden.
         min_age: Användare kommer att bli ombedda att bekräfta sitt födelsedatum under registreringen
@@ -107,6 +111,7 @@ sv:
         thumbnail: En bild i cirka 2:1-proportioner som visas tillsammans med din serverinformation.
         trendable_by_default: Hoppa över manuell granskning av trendande innehåll. Enskilda objekt kan ändå raderas från trender retroaktivt.
         trends: Trender visar vilka inlägg, hashtaggar och nyheter det pratas om på din server.
+        wrapstodon: Erbjud lokala användare att generera en lekfull sammanfattning av deras Mastodon-användning under året. Denna funktion är tillgänglig mellan den 10 och 31 december varje år, och erbjuds till användare som gjort minst ett Offentligt eller Tyst Offentligt inlägg och använt minst en hashtag under året.
       form_challenge:
         current_password: Du går in i ett säkert område
       imports:
@@ -233,6 +238,7 @@ sv:
         setting_aggregate_reblogs: Gruppera boostar i tidslinjer
         setting_always_send_emails: Skicka alltid e-postnotiser
         setting_auto_play_gif: Spela upp GIF:ar automatiskt
+        setting_boost_modal: Kontrollera boost-synlighet
         setting_color_scheme: Läge
         setting_contrast: Kontrast
         setting_default_language: Inläggsspråk

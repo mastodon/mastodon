@@ -38,7 +38,7 @@ et:
       add_email_domain_block: Blokeeri e-posti domeen
       approve: Võta vastu
       approved_msg: Kasutaja %{username} liitumisavaldus rahuldatud
-      are_you_sure: Oled kindel?
+      are_you_sure: Kas oled kindel?
       avatar: Profiilipilt
       by_domain: Domeen
       change_email:
@@ -47,7 +47,7 @@ et:
         label: Muuda e-posti aadressi
         new_email: Uus е-posti aadress
         submit: Muuda e-posti aadressi
-        title: Muuda e-postiaadressi kasutajale %{username}
+        title: Muuda kasutaja %{username} e-posti aadressi
       change_role:
         changed_msg: Roll on muudetud!
         edit_roles: Halda kasutaja rolle
@@ -142,7 +142,7 @@ et:
       security: Turvalisus
       security_measures:
         only_password: Ainult salasõna
-        password_and_2fa: Salasõna ja 2-etapine autentimine (2FA)
+        password_and_2fa: Salasõna ja kahefaktoriline autentimine (2FA)
       sensitive: Tundlik sisu
       sensitized: Märgitud kui tundlik sisu
       shared_inbox_url: Jagatud sisendkausta URL
@@ -292,7 +292,7 @@ et:
         remove_avatar_user_html: "%{name} eemaldas %{target} avatari"
         reopen_report_html: "%{name} taasavas raporti %{target}"
         resend_user_html: "%{name} lähtestas %{target} kinnituskirja e-posti"
-        reset_password_user_html: "%{name} lähtestas %{target} salasõna"
+        reset_password_user_html: "%{name} lähtestas %{target} kasutaja salasõna"
         resolve_report_html: "%{name} lahendas raporti %{target}"
         sensitive_account_html: "%{name} märkis %{target} meedia kui tundlik sisu"
         silence_account_html: "%{name} piiras %{target} konto"
@@ -787,7 +787,7 @@ et:
         manage_taxonomies: Halda taksonoomiaid
         manage_taxonomies_description: Luba kasutajatel populaarset sisu üle vaadata ning uuendada teemaviidete seadistusi
         manage_user_access: Halda kasutajate ligipääsu
-        manage_user_access_description: Võimaldab kasutajatel keelata teiste kasutajate kaheastmelise autentimise, muuta oma e-posti aadressi ja lähtestada oma parooli
+        manage_user_access_description: Võimaldab kasutajatel keelata teiste kasutajate kaheastmelise autentimise, muuta nende e-posti aadressi ja lähtestada oma salasõna
         manage_users: Kasutajate haldamine
         manage_users_description: Lubab kasutajail näha teiste kasutajate üksikasju ja teha nende suhtes modereerimisotsuseid
         manage_webhooks: Halda webhook'e
@@ -1249,7 +1249,7 @@ et:
       suffix: Kasutajakontoga saad jälgida inimesi, postitada uudiseid ning pidada kirjavahetust ükskõik millise Mastodoni serveri kasutajatega ja muudki!
     didnt_get_confirmation: Ei saanud kinnituslinki?
     dont_have_your_security_key: Pole turvavõtit?
-    forgot_password: Salasõna ununenud?
+    forgot_password: Kas unustasid oma salasõna?
     invalid_reset_password_token: Salasõna lähtestusvõti on vale või aegunud. Palun taotle uus.
     link_to_otp: Kaheastmeline kood telefonist või taastekood
     link_to_webauth: Turvavõtmete seadme kasutamine
@@ -1270,7 +1270,7 @@ et:
     register: Loo konto
     registration_closed: "%{instance} ei võta vastu uusi liikmeid"
     resend_confirmation: Saada kinnituslink uuesti
-    reset_password: Salasõna lähtestamine
+    reset_password: Lähtesta salasõna
     rules:
       accept: Nõus
       back: Tagasi
@@ -1280,7 +1280,7 @@ et:
       title: Mõned põhireeglid.
       title_invited: Oled kutsutud.
     security: Turvalisus
-    set_new_password: Uue salasõna määramine
+    set_new_password: Sisesta uus salasõna
     setup:
       email_below_hint_html: Kontrolli rämpsposti kausta või palu uue kirja saatmist. Kui sinu e-posti aadress on vale, siis saad seda parandada.
       email_settings_hint_html: Klõpsa aadressile %{email} saadetud linki, et alustada Mastodoni kasutamist. Me oleme ootel.
@@ -1316,9 +1316,9 @@ et:
     title: Autori tunnustamine
   challenge:
     confirm: Jätka
-    hint_html: "<strong>Nõuanne:</strong> Me ei küsi salasõna uuesti järgmise tunni jooksul."
+    hint_html: "<strong>Nõuanne:</strong> Me ei küsi sinu salasõna uuesti järgmise tunni jooksul."
     invalid_password: Vigane salasõna
-    prompt: Jätkamiseks salasõna veelkord
+    prompt: Jätkamiseks korda salasõna
   color_scheme:
     auto: Auto
     dark: Tume
@@ -1627,7 +1627,7 @@ et:
       password: salasõna
       sign_in_token: e-posti turvvakood
       webauthn: turvavõtmed
-    description_html: Kui paistab tundmatuid tegevusi, tuleks vahetada salasõna ja aktiveerida kaheastmeline autentimine.
+    description_html: Kui paistab tundmatuid tegevusi, palun vaheta salasõna ja aktiveeri kaheastmeline autentimine.
     empty: Autentimisajalugu pole saadaval
     failed_sign_in_html: Nurjunud sisenemine meetodiga %{method} aadressilt %{ip} (%{browser})
     successful_sign_in_html: Edukas sisenemine meetodiga %{method} aadressilt %{ip} (%{browser})
@@ -1973,9 +1973,11 @@ et:
     enabled: Vanade postituste automaatne kustutamine
     enabled_hint: Kustutab automaatselt postitused, mis ületavad määratud ajalimiiti, välja arvatud allpool toodud erandite puhul
     exceptions: Erandid
+    explanation: Automaatne kustutamine toimib madala prioriteetusega protsessi abil. Vanuse ülempiiri ja tegeliku kustutamise vahel võib seetõttu tekkida viivitus.
     ignore_favs: Eira lemmikuid
     ignore_reblogs: Eira jagamisi
     interaction_exceptions: Interaktsioonidel põhinevad erandid
+    interaction_exceptions_explanation: Postitused, mis ajutiselt ületavad lemmikuks lisamise või hooandmise künnise, võivad jääda alles isegi siis, kui nimetatud tegevuste arv hiljem väheneb.
     keep_direct: Säilita otsesõnumid
     keep_direct_hint: Ei kustuta otsesõnumeid
     keep_media: Meedialisanditega postituste säilitamine
@@ -2190,6 +2192,7 @@ et:
       error: Turvavõtme kustutamisel tekkis tõrge. Palun proovi uuesti.
       success: Turvavõtmed edukalt kustutatud.
     invalid_credential: Vigane turvavõti
+    nickname: Hüüdnimi
     nickname_hint: Uue turvavõtme hüüdnimi
     not_enabled: Veebiautentimine pole sisse lülitatud
     not_supported: See veebilehitseja ei toeta turvavõtmeid

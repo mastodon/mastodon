@@ -164,6 +164,13 @@ module Account::Interactions
     end
   end
 
+  def blocking_or_domain_blocking?(other_account)
+    return true if blocking?(other_account)
+    return false if other_account.domain.blank?
+
+    domain_blocking?(other_account.domain)
+  end
+
   def muting?(other_account)
     other_id = other_account.is_a?(Account) ? other_account.id : other_account
 

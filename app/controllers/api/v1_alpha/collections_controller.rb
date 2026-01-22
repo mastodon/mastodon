@@ -74,6 +74,7 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
                            .order(created_at: :desc)
                            .offset(offset_param)
                            .limit(limit_param(DEFAULT_COLLECTIONS_LIMIT))
+    @collections = @collections.discoverable unless @account == current_account
   end
 
   def set_collection
@@ -81,11 +82,11 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
   end
 
   def collection_creation_params
-    params.permit(:name, :description, :sensitive, :discoverable, :tag_name, account_ids: [])
+    params.permit(:name, :description, :language, :sensitive, :discoverable, :tag_name, account_ids: [])
   end
 
   def collection_update_params
-    params.permit(:name, :description, :sensitive, :discoverable, :tag_name)
+    params.permit(:name, :description, :language, :sensitive, :discoverable, :tag_name)
   end
 
   def check_feature_enabled
