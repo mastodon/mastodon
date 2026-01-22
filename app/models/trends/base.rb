@@ -44,12 +44,14 @@ class Trends::Base
   end
 
   def recently_used_ids(at_time = Time.now.utc)
-    redis.smembers(used_key(at_time)).map(&:to_i)
+    with_redis { |redis| redis.smembers(used_key(at_time)) }.map(&:to_i)
   end
 
   def record_used_id(id, at_time = Time.now.utc)
-    redis.sadd(used_key(at_time), id)
-    redis.expire(used_key(at_time), 1.day.seconds)
+    with_redis do |redis|
+      redis.sadd(used_key(at_time), id)
+      redis.expire(used_key(at_time), 1.day.seconds)
+    end
   end
 
   private
