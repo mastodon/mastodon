@@ -50,7 +50,7 @@ class PostStatusService < BaseService
       process_status!
     end
 
-    redis.setex(idempotency_key, 3_600, @status.id) if idempotency_given?
+    with_redis { |redis| redis.setex(idempotency_key, 3_600, @status.id) } if idempotency_given?
 
     unless scheduled?
       postprocess_status!
@@ -205,7 +205,7 @@ class PostStatusService < BaseService
   end
 
   def idempotency_duplicate?
-    @idempotency_duplicate = redis.get(idempotency_key)
+    @idempotency_duplicate = with_redis { |redis| redis.get(idempotency_key) }
   end
 
   def scheduled_in_the_past?

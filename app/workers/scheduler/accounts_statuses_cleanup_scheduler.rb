@@ -118,14 +118,14 @@ class Scheduler::AccountsStatusesCleanupScheduler
   end
 
   def last_processed_id
-    redis.get('account_statuses_cleanup_scheduler:last_policy_id')&.to_i
+    with_redis { |redis| redis.get('account_statuses_cleanup_scheduler:last_policy_id') }&.to_i
   end
 
   def save_last_processed_id(id)
     if id.nil?
-      redis.del('account_statuses_cleanup_scheduler:last_policy_id')
+      with_redis { |redis| redis.del('account_statuses_cleanup_scheduler:last_policy_id') }
     else
-      redis.set('account_statuses_cleanup_scheduler:last_policy_id', id, ex: 1.hour.seconds)
+      with_redis { |redis| redis.set('account_statuses_cleanup_scheduler:last_policy_id', id, ex: 1.hour.seconds) }
     end
   end
 end
