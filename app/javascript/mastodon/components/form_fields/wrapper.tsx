@@ -81,8 +81,6 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   );
 };
 
-FormFieldWrapper.displayName = 'FormFieldWrapper';
-
 /**
  * If `required` is explicitly set to `false` rather than `undefined`,
  * the field will be visually marked as "optional".
