@@ -1,5 +1,9 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import type { FC } from 'react';
+
+import { FormattedMessage } from 'react-intl';
+
+import { useParams } from 'react-router';
 
 import {
   expandTimelineByKey,
@@ -8,15 +12,23 @@ import {
 import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column_back_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { RemoteHint } from '@/mastodon/components/remote_hint';
+import StatusList from '@/mastodon/components/status_list';
 import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_error';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
+import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
 import { selectTimelineByKey } from '@/mastodon/selectors/timelines';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
+import { AccountHeader } from '../components/account_header';
+import { LimitedAccountHint } from '../components/limited_account_hint';
+
 const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const accountId = useAccountId();
-  const key = timelineKey({ type: 'account', userId: accountId ?? '' });
+  const { tagged } = useParams<{ tagged?: string }>();
+  const key = timelineKey({ type: 'account', userId: accountId ?? '', tagged });
   const timeline = useAppSelector((state) => selectTimelineByKey(state, key));
+  const { blockedBy, hidden, suspended } = useAccountVisibility(accountId);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -25,11 +37,20 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     }
   }, [accountId, dispatch, key, timeline]);
 
+  const handleLoadMore = useCallback(
+    (maxId: number) => {
+      if (accountId) {
+        dispatch(expandTimelineByKey({ key, maxId }));
+      }
+    },
+    [accountId, dispatch, key],
+  );
+
   if (accountId === null) {
     return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
   }
 
-  if (!timeline) {
+  if (!timeline || !accountId) {
     return (
       <Column>
         <LoadingIndicator />
@@ -37,10 +58,56 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     );
   }
 
+  const forceEmptyState = blockedBy || hidden || suspended;
+
   return (
     <Column>
       <ColumnBackButton />
+
+      <AccountHeader accountId={accountId} hideTabs={forceEmptyState} />
+
+      <StatusList
+        alwaysPrepend
+        append={<RemoteHint accountId={accountId} />}
+        scrollKey='account_timeline'
+        statusIds={forceEmptyState ? [] : timeline.items}
+        isLoading={timeline.isLoading}
+        hasMore={!forceEmptyState && timeline.hasMore}
+        onLoadMore={handleLoadMore}
+        emptyMessage={<EmptyMessage accountId={accountId} />}
+        bindToDocument={!multiColumn}
+        timelineId='account'
+        withCounters
+      />
     </Column>
+  );
+};
+
+const EmptyMessage: FC<{ accountId: string }> = ({ accountId }) => {
+  const { blockedBy, hidden, suspended } = useAccountVisibility(accountId);
+  if (suspended) {
+    return (
+      <FormattedMessage
+        id='empty_column.account_suspended'
+        defaultMessage='Account suspended'
+      />
+    );
+  } else if (hidden) {
+    return <LimitedAccountHint accountId={accountId} />;
+  } else if (blockedBy) {
+    return (
+      <FormattedMessage
+        id='empty_column.account_unavailable'
+        defaultMessage='Profile unavailable'
+      />
+    );
+  }
+
+  return (
+    <FormattedMessage
+      id='empty_column.account_timeline'
+      defaultMessage='No posts found'
+    />
   );
 };
 
