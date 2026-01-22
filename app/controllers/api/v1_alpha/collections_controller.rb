@@ -28,14 +28,14 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
     cache_if_unauthenticated!
     authorize Collection, :index?
 
-    render json: @collections, each_serializer: REST::BaseCollectionSerializer
+    render json: @collections, each_serializer: REST::CollectionSerializer, adapter: :json
   end
 
   def show
     cache_if_unauthenticated!
     authorize @collection, :show?
 
-    render json: @collection, serializer: REST::CollectionSerializer
+    render json: @collection, serializer: REST::CollectionWithAccountsSerializer
   end
 
   def create
@@ -43,7 +43,7 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
 
     @collection = CreateCollectionService.new.call(collection_creation_params, current_user.account)
 
-    render json: @collection, serializer: REST::CollectionSerializer
+    render json: @collection, serializer: REST::CollectionSerializer, adapter: :json
   end
 
   def update
@@ -51,7 +51,7 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
 
     @collection.update!(collection_update_params) # TODO: Create a service for this to federate changes
 
-    render json: @collection, serializer: REST::CollectionSerializer
+    render json: @collection, serializer: REST::CollectionSerializer, adapter: :json
   end
 
   def destroy
