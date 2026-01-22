@@ -22,8 +22,6 @@ import {
 } from 'mastodon/reducers/slices/collections';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
-import { areCollectionsEnabled } from './utils';
-
 const messages = defineMessages({
   heading: { id: 'column.collections', defaultMessage: 'My collections' },
   create: {
@@ -93,9 +91,7 @@ export const Collections: React.FC<{
   const { collections, status } = useAppSelector(selectMyCollections);
 
   useEffect(() => {
-    if (areCollectionsEnabled()) {
-      void dispatch(fetchAccountCollections({ accountId: me }));
-    }
+    void dispatch(fetchAccountCollections({ accountId: me }));
   }, [dispatch, me]);
 
   const addDummyCollection = useCallback(
@@ -116,30 +112,29 @@ export const Collections: React.FC<{
     [dispatch],
   );
 
-  const isError = status === 'error' || !areCollectionsEnabled();
+  const emptyMessage =
+    status === 'error' ? (
+      <FormattedMessage
+        id='collections.error_loading_collections'
+        defaultMessage='There was an error when trying to load your collections.'
+      />
+    ) : (
+      <>
+        <span>
+          <FormattedMessage
+            id='collections.no_collections_yet'
+            defaultMessage='No collections yet.'
+          />
+          <br />
+          <FormattedMessage
+            id='collections.create_a_collection_hint'
+            defaultMessage='Create a collection to recommend or share your favourite accounts with others.'
+          />
+        </span>
 
-  const emptyMessage = isError ? (
-    <FormattedMessage
-      id='collections.error_loading_collections'
-      defaultMessage='There was an error when trying to load your collections.'
-    />
-  ) : (
-    <>
-      <span>
-        <FormattedMessage
-          id='collections.no_collections_yet'
-          defaultMessage='No collections yet.'
-        />
-        <br />
-        <FormattedMessage
-          id='collections.create_a_collection_hint'
-          defaultMessage='Create a collection to recommend or share your favourite accounts with others.'
-        />
-      </span>
-
-      <SquigglyArrow className='empty-column-indicator__arrow' />
-    </>
-  );
+        <SquigglyArrow className='empty-column-indicator__arrow' />
+      </>
+    );
 
   return (
     <Column

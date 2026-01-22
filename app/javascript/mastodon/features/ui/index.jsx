@@ -86,6 +86,7 @@ import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
+import { areCollectionsEnabled } from '../collections/utils';
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
@@ -228,7 +229,9 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/followed_tags' component={FollowedTags} content={children} />
             <WrappedRoute path='/mutes' component={Mutes} content={children} />
             <WrappedRoute path='/lists' component={Lists} content={children} />
-            <WrappedRoute path='/collections' component={Collections} content={children} />
+            {areCollectionsEnabled() &&
+              <WrappedRoute path='/collections' component={Collections} content={children} />
+            }    
 
             <Route component={BundleColumnError} />
           </WrappedSwitch>
