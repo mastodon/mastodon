@@ -1,19 +1,21 @@
+import { useCallback, useContext, useRef, useState } from 'react';
 import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
 import { useParams } from 'react-router';
 
-import type { AccountTimelineParams } from '@/mastodon/actions/timelines_typed';
+import Overlay from 'react-overlays/esm/Overlay';
+
 import { Icon } from '@/mastodon/components/icon';
 import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
 
 import { AccountTabs } from '../components/tabs';
 import classes from '../redesign.module.scss';
 
-export const AccountFilters: FC<{ params: AccountTimelineParams }> = ({
-  params,
-}) => {
+import { FilterContext } from './context';
+
+export const AccountFilters: FC = () => {
   const { acct } = useParams<{ acct: string }>();
   if (!acct) {
     return null;
@@ -21,43 +23,93 @@ export const AccountFilters: FC<{ params: AccountTimelineParams }> = ({
   return (
     <>
       <AccountTabs acct={acct} />
-      <div className={classes.filters}>
-        <FilterDropdown params={params} />
+      <div className={classes.filtersWrapper}>
+        <FilterDropdown />
       </div>
     </>
   );
 };
 
-const FilterDropdown: FC<{ params: AccountTimelineParams }> = ({
-  params: { boosts, replies },
-}) => {
+const FilterDropdown: FC = () => {
+  const [open, setOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const handleClick = useCallback(() => {
+    setOpen(true);
+  }, []);
+  const handleHide = useCallback(() => {
+    setOpen(false);
+  }, []);
+
+  const { boosts, replies } = useContext(FilterContext);
+
   return (
-    <button type='button'>
-      {boosts && replies && (
-        <FormattedMessage
-          id='account.filters.all'
-          defaultMessage='All activity'
+    <>
+      <button
+        type='button'
+        className={classes.filterSelectButton}
+        ref={buttonRef}
+        onClick={handleClick}
+      >
+        {boosts && replies && (
+          <FormattedMessage
+            id='account.filters.all'
+            defaultMessage='All activity'
+          />
+        )}
+        {!boosts && replies && (
+          <FormattedMessage
+            id='account.filters.posts_replies'
+            defaultMessage='Posts and replies'
+          />
+        )}
+        {boosts && !replies && (
+          <FormattedMessage
+            id='account.filters.posts_boosts'
+            defaultMessage='Posts and boosts'
+          />
+        )}
+        {!boosts && !replies && (
+          <FormattedMessage
+            id='account.filters.posts_only'
+            defaultMessage='Posts'
+          />
+        )}
+        <Icon
+          id='unfold_more'
+          icon={KeyboardArrowDownIcon}
+          className={classes.filterSelectIcon}
         />
-      )}
-      {!boosts && replies && (
-        <FormattedMessage
-          id='account.filters.posts_replies'
-          defaultMessage='Posts and replies'
-        />
-      )}
-      {boosts && !replies && (
-        <FormattedMessage
-          id='account.filters.posts_boosts'
-          defaultMessage='Posts and boosts'
-        />
-      )}
-      {!boosts && !replies && (
-        <FormattedMessage
-          id='account.filters.posts_only'
-          defaultMessage='Posts'
-        />
-      )}
-      <Icon id='unfold_more' icon={KeyboardArrowDownIcon} />
-    </button>
+      </button>
+      <Overlay
+        show={open}
+        target={buttonRef}
+        flip
+        placement='bottom-start'
+        rootClose
+        onHide={handleHide}
+      >
+        {({ props }) => (
+          <div {...props} className={classes.filterOverlay}>
+            <label className={classes.filterToggle}>
+              <FormattedMessage
+                id='account.filters.replies_toggle'
+                defaultMessage='Show replies'
+              />
+
+              <input name='replies' type='checkbox' checked={replies} />
+            </label>
+            <label className={classes.filterToggle}>
+              <FormattedMessage
+                id='account.filters.boosts_toggle'
+                defaultMessage='Show boosts'
+              />
+
+              <input name='boosts' type='checkbox' checked={boosts} />
+            </label>
+          </div>
+        )}
+      </Overlay>
+    </>
   );
 };

@@ -178,6 +178,32 @@ svg.badgeIcon {
   }
 }
 
-.filters {
+.filtersWrapper {
   padding: 16px 24px 8px;
+}
+
+.filterSelectButton {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 8px 0;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.filterSelectIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.filterOverlay {
+  background: var(--color-bg-primary);
+  border-radius: 12px;
+  box-shadow: var(--dropdown-shadow);
+}
+
+.filterToggle {
+  display: block;
+  padding: 8px 16px;
 }

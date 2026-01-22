@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -7,7 +7,6 @@ import { useParams } from 'react-router';
 
 import {
   expandTimelineByKey,
-  parseTimelineKey,
   timelineKey,
 } from '@/mastodon/actions/timelines_typed';
 import { Column } from '@/mastodon/components/column';
@@ -25,12 +24,23 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { AccountHeader } from '../components/account_header';
 import { LimitedAccountHint } from '../components/limited_account_hint';
 
+import { FilterContext } from './context';
 import { AccountFilters } from './filters';
 
 const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const accountId = useAccountId();
+
   const { tagged } = useParams<{ tagged?: string }>();
-  const key = timelineKey({ type: 'account', userId: accountId ?? '', tagged });
+  const [boosts, setBoosts] = useState(false);
+  const [replies, setReplies] = useState(false);
+  const key = timelineKey({
+    type: 'account',
+    userId: accountId ?? '',
+    tagged,
+    boosts,
+    replies,
+  });
+
   const timeline = useAppSelector((state) => selectTimelineByKey(state, key));
   const { blockedBy, hidden, suspended } = useAccountVisibility(accountId);
 
@@ -65,46 +75,49 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const forceEmptyState = blockedBy || hidden || suspended;
 
   return (
-    <Column>
-      <ColumnBackButton />
+    <FilterContext.Provider value={{ boosts, setBoosts, replies, setReplies }}>
+      <Column>
+        <ColumnBackButton />
 
-      <StatusList
-        alwaysPrepend
-        prepend={<Prepend timelineKey={key} forceEmpty={forceEmptyState} />}
-        append={<RemoteHint accountId={accountId} />}
-        scrollKey='account_timeline'
-        statusIds={forceEmptyState ? [] : timeline.items}
-        isLoading={timeline.isLoading}
-        hasMore={!forceEmptyState && timeline.hasMore}
-        onLoadMore={handleLoadMore}
-        emptyMessage={<EmptyMessage accountId={accountId} />}
-        bindToDocument={!multiColumn}
-        timelineId='account'
-        withCounters
-      />
-    </Column>
+        <StatusList
+          alwaysPrepend
+          prepend={
+            <Prepend
+              accountId={accountId}
+              tagged={tagged}
+              forceEmpty={forceEmptyState}
+            />
+          }
+          append={<RemoteHint accountId={accountId} />}
+          scrollKey='account_timeline'
+          statusIds={forceEmptyState ? [] : timeline.items}
+          isLoading={timeline.isLoading}
+          hasMore={!forceEmptyState && timeline.hasMore}
+          onLoadMore={handleLoadMore}
+          emptyMessage={<EmptyMessage accountId={accountId} />}
+          bindToDocument={!multiColumn}
+          timelineId='account'
+          withCounters
+        />
+      </Column>
+    </FilterContext.Provider>
   );
 };
 
 const Prepend: FC<{
-  timelineKey: string;
+  accountId: string;
+  tagged?: string;
   forceEmpty: boolean;
-}> = ({ forceEmpty, timelineKey }) => {
-  const params = parseTimelineKey(timelineKey);
-  if (params?.type !== 'account') {
-    return null;
-  }
-  const { userId, tagged } = params;
-
+}> = ({ forceEmpty, accountId, tagged }) => {
   if (forceEmpty) {
-    return <AccountHeader accountId={userId} hideTabs />;
+    return <AccountHeader accountId={accountId} hideTabs />;
   }
 
   return (
     <>
-      <AccountHeader accountId={userId} hideTabs />
-      <AccountFilters params={params} />
-      <FeaturedCarousel accountId={userId} tagged={tagged} />
+      <AccountHeader accountId={accountId} hideTabs />
+      <AccountFilters />
+      <FeaturedCarousel accountId={accountId} tagged={tagged} />
     </>
   );
 };
