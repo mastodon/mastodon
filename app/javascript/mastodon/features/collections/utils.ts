@@ -1,5 +1,11 @@
-import { isClientFeatureEnabled } from '@/mastodon/utils/environment';
+import {
+  isClientFeatureEnabled,
+  isServerFeatureEnabled,
+} from '@/mastodon/utils/environment';
 
 export function areCollectionsEnabled() {
-  return isClientFeatureEnabled('collections');
+  return (
+    isClientFeatureEnabled('collections') &&
+    isServerFeatureEnabled('collections')
+  );
 }
