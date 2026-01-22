@@ -1,40 +1,18 @@
 import type { FC } from 'react';
 
-import type { Map as ImmutableMap } from 'immutable';
-
-import { timelineKey } from '@/mastodon/actions/timelines_typed';
 import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column_back_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_error';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
-import { createAppSelector, useAppSelector } from '@/mastodon/store';
-
-interface TimelineState {
-  unread: number;
-  online: boolean;
-  top: boolean;
-  isLoading: boolean;
-  hasMore: boolean;
-  pendingItems: string[];
-  items: string[];
-}
-
-const selectTimeline = createAppSelector(
-  [
-    (_, key: string) => key,
-    (state) =>
-      state.timelines as ImmutableMap<string, ImmutableMap<string, unknown>>,
-  ],
-  (key, timelines) => {
-    return timelines.get(key)?.toJSON() as TimelineState | undefined;
-  },
-);
+import { selectTimelineByParams } from '@/mastodon/selectors/timelines';
+import { useAppSelector } from '@/mastodon/store';
 
 const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const accountId = useAccountId();
-  const key = timelineKey({ type: 'account', userId: accountId ?? '' });
-  const timeline = useAppSelector((state) => selectTimeline(state, key));
+  const timeline = useAppSelector((state) =>
+    selectTimelineByParams(state, { type: 'account', userId: accountId ?? '' }),
+  );
 
   if (accountId === null) {
     return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
