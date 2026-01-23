@@ -38,6 +38,7 @@
 
   h3 {
     font-weight: 500;
+    margin-bottom: 5px;
   }
 }
 
@@ -59,6 +60,12 @@
 
   &:hover {
     color: var(--color-text-brand-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: none;
   }
 }
 
