@@ -1,4 +1,4 @@
-import { useCallback, useContext, useRef, useState } from 'react';
+import { useCallback, useContext, useId, useRef, useState } from 'react';
 import type { ChangeEventHandler, FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -7,6 +7,7 @@ import { useParams } from 'react-router';
 
 import Overlay from 'react-overlays/esm/Overlay';
 
+import { PlainToggleField } from '@/mastodon/components/form_fields/toggle_field';
 import { Icon } from '@/mastodon/components/icon';
 import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
 
@@ -53,6 +54,8 @@ const FilterDropdown: FC = () => {
     },
     [setBoosts, setReplies],
   );
+
+  const accessibleId = useId();
 
   return (
     <>
@@ -102,32 +105,31 @@ const FilterDropdown: FC = () => {
       >
         {({ props }) => (
           <div {...props} className={classes.filterOverlay}>
-            <label className={classes.filterToggle}>
+            <label htmlFor={`${accessibleId}-replies`}>
               <FormattedMessage
                 id='account.filters.replies_toggle'
                 defaultMessage='Show replies'
               />
-
-              <input
-                name='replies'
-                type='checkbox'
-                checked={replies}
-                onChange={handleChange}
-              />
             </label>
-            <label className={classes.filterToggle}>
+            <PlainToggleField
+              name='replies'
+              checked={replies}
+              onChange={handleChange}
+              id={`${accessibleId}-replies`}
+            />
+
+            <label htmlFor={`${accessibleId}-boosts`}>
               <FormattedMessage
                 id='account.filters.boosts_toggle'
                 defaultMessage='Show boosts'
               />
-
-              <input
-                name='boosts'
-                type='checkbox'
-                checked={boosts}
-                onChange={handleChange}
-              />
             </label>
+            <PlainToggleField
+              name='boosts'
+              checked={boosts}
+              onChange={handleChange}
+              id={`${accessibleId}-boosts`}
+            />
           </div>
         )}
       </Overlay>

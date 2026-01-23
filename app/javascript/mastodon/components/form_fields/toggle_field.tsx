@@ -32,7 +32,7 @@ ToggleField.displayName = 'ToggleField';
 
 export const PlainToggleField = forwardRef<HTMLInputElement, Props>(
   ({ className, size, ...otherProps }, ref) => (
-    <>
+    <span className={classes.wrapper}>
       <input
         {...otherProps}
         type='checkbox'
@@ -46,7 +46,7 @@ export const PlainToggleField = forwardRef<HTMLInputElement, Props>(
         }
         hidden
       />
-    </>
+    </span>
   ),
 );
 PlainToggleField.displayName = 'PlainToggleField';

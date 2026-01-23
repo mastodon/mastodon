@@ -201,9 +201,16 @@ svg.badgeIcon {
   background: var(--color-bg-primary);
   border-radius: 12px;
   box-shadow: var(--dropdown-shadow);
-}
+  min-width: 230px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: stretch;
+  row-gap: 16px;
+  padding: 8px 12px;
 
-.filterToggle {
-  display: block;
-  padding: 8px 16px;
+  > label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
 }
