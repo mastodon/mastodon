@@ -19,7 +19,7 @@ import classes from './styles.module.css';
 export interface CalloutProps {
   variant?:
     | 'default'
-    | 'subtle'
+    // | 'subtle'
     | 'feature'
     | 'inverted'
     | 'success'
@@ -40,7 +40,7 @@ export interface CalloutProps {
 
 const variantClasses = {
   default: classes.variantDefault as string,
-  subtle: classes.variantSubtle as string,
+  // subtle: classes.variantSubtle as string,
   feature: classes.variantFeature as string,
   inverted: classes.variantInverted as string,
   success: classes.variantSuccess as string,

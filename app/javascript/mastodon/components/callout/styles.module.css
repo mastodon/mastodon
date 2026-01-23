@@ -15,6 +15,32 @@
   height: 1rem;
 }
 
+.content {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+@media screen and (width >= 630px) {
+  .content {
+    flex-direction: row;
+  }
+}
+
+.icon + .content,
+.wrapper:has(.close) .content {
+  margin-top: 2px;
+}
+
+.body {
+  flex-grow: 1;
+
+  h3 {
+    font-weight: 500;
+  }
+}
+
 .actionWrapper {
   display: flex;
   gap: 8px;
@@ -36,29 +62,13 @@
   }
 }
 
-.content {
-  display: flex;
-  gap: 8px;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-@media screen and (width >= 630px) {
-  .content {
-    flex-direction: row;
-  }
-}
-
-.body {
-  flex-grow: 1;
-
-  h3 {
-    font-weight: 500;
-  }
-}
-
 .close {
   color: inherit;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .variantDefault {
@@ -67,21 +77,21 @@
   }
 }
 
-.variantSubtle {
+/* .variantSubtle {
   border: 1px solid var(--color-bg-brand-softer);
   background-color: var(--color-bg-primary);
 
   .icon {
     background-color: var(--color-bg-brand-softer);
   }
-}
+} */
 
 .variantFeature {
   background-color: var(--color-bg-brand-base);
   color: var(--color-text-on-brand-base);
 
   button:hover {
-    color: var(--color-text-brand-on-inverted);
+    color: color-mix(var(--color-text-on-brand-base), transparent 20%);
   }
 }
 

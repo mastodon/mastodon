@@ -47,11 +47,20 @@ export const NoActions: Story = {
   },
 };
 
-export const Subtle: Story = {
+export const OnlyText: Story = {
   args: {
-    variant: 'subtle',
+    onClose: undefined,
+    onPrimary: undefined,
+    onSecondary: undefined,
+    icon: false,
   },
 };
+
+// export const Subtle: Story = {
+//   args: {
+//     variant: 'subtle',
+//   },
+// };
 
 export const Feature: Story = {
   args: {
