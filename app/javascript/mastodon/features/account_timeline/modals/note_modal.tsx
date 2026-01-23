@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ChangeEventHandler, FC } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { submitAccountNote } from '@/mastodon/actions/account_notes';
 import { fetchRelationships } from '@/mastodon/actions/accounts';
+import { Callout } from '@/mastodon/components/callout';
 import { TextAreaField } from '@/mastodon/components/form_fields';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
@@ -14,23 +15,23 @@ import classes from './modals.module.css';
 
 const messages = defineMessages({
   newTitle: {
-    id: 'account_note_modal.title',
+    id: 'account.node_modal.title',
     defaultMessage: 'Add a personal note',
   },
   editTitle: {
-    id: 'account_note_modal.edit_title',
+    id: 'account.node_modal.edit_title',
     defaultMessage: 'Edit personal note',
   },
   save: {
-    id: 'account_note_modal.save',
+    id: 'account.node_modal.save',
     defaultMessage: 'Save',
   },
   fieldLabel: {
-    id: 'account_note_modal.field_label',
+    id: 'account.node_modal.field_label',
     defaultMessage: 'Personal Note',
   },
   errorUnknown: {
-    id: 'account_note_modal.error_unknown',
+    id: 'account.node_modal.error_unknown',
     defaultMessage: 'Could not save the note',
   },
 });
@@ -110,14 +111,22 @@ export const AccountNoteModal: FC<{
           : intl.formatMessage(messages.newTitle)
       }
       extraContent={
-        <TextAreaField
-          value={note}
-          onChange={handleChange}
-          label={intl.formatMessage(messages.fieldLabel)}
-          className={classes.noteInput}
-          hasError={state === 'error'}
-          hint={errorText}
-        />
+        <>
+          <Callout className={classes.noteCallout}>
+            <FormattedMessage
+              id='account.node_modal.callout'
+              defaultMessage='Personal notes are visible only to you.'
+            />
+          </Callout>
+          <TextAreaField
+            value={note}
+            onChange={handleChange}
+            label={intl.formatMessage(messages.fieldLabel)}
+            className={classes.noteInput}
+            hasError={state === 'error'}
+            hint={errorText}
+          />
+        </>
       }
       onClose={handleCancel}
       confirm={intl.formatMessage(messages.save)}
