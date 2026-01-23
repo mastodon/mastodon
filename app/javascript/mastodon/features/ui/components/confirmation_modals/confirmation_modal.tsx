@@ -19,6 +19,8 @@ export const ConfirmationModal: React.FC<
     onConfirm: () => void;
     closeWhenConfirm?: boolean;
     extraContent?: React.ReactNode;
+    updating?: boolean;
+    disabled?: boolean;
   } & BaseConfirmationModalProps
 > = ({
   title,
@@ -31,6 +33,8 @@ export const ConfirmationModal: React.FC<
   onSecondary,
   closeWhenConfirm = true,
   extraContent,
+  updating,
+  disabled,
 }) => {
   const handleClick = useCallback(() => {
     if (closeWhenConfirm) {
@@ -74,16 +78,23 @@ export const ConfirmationModal: React.FC<
                 onClick={handleSecondary}
                 className='link-button'
                 type='button'
+                disabled={disabled}
               >
                 {secondary}
               </button>
             </>
           )}
 
-          {/* eslint-disable-next-line jsx-a11y/no-autofocus -- we are in a modal and thus autofocusing is justified */}
-          <Button onClick={handleClick} autoFocus>
+          {/* eslint-disable jsx-a11y/no-autofocus -- we are in a modal and thus autofocusing is justified */}
+          <Button
+            onClick={handleClick}
+            loading={updating}
+            disabled={disabled}
+            autoFocus
+          >
             {confirm}
           </Button>
+          {/* eslint-enable */}
         </div>
       </div>
     </div>

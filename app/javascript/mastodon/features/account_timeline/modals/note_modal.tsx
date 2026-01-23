@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ChangeEventHandler, FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
@@ -29,6 +29,10 @@ const messages = defineMessages({
     id: 'account_note_modal.field_label',
     defaultMessage: 'Personal Note',
   },
+  errorUnknown: {
+    id: 'account_note_modal.error_unknown',
+    defaultMessage: 'Could not save the note',
+  },
 });
 
 export const AccountNoteModal: FC<{
@@ -36,6 +40,8 @@ export const AccountNoteModal: FC<{
   onClose: () => void;
 }> = ({ accountId, onClose }) => {
   const intl = useIntl();
+
+  // Fetch the note.
   const relationship = useAppSelector((state) =>
     state.relationships.get(accountId),
   );
@@ -46,26 +52,55 @@ export const AccountNoteModal: FC<{
     }
   }, [accountId, dispatch, relationship]);
 
+  // Set up the state.
   const initialContents = relationship?.note ?? '';
-
-  const [saving, setSaving] = useState(false);
   const [note, setNote] = useState(initialContents);
-  const handleChange: ChangeEventHandler<HTMLTextAreaElement> = useCallback(
-    (e) => {
-      setNote(e.target.value);
-    },
-    [],
+  const [errorText, setErrorText] = useState('');
+  const [state, setState] = useState<'idle' | 'dirty' | 'saving' | 'error'>(
+    'idle',
   );
 
+  const handleChange: ChangeEventHandler<HTMLTextAreaElement> = useCallback(
+    (e) => {
+      if (state !== 'saving') {
+        setNote(e.target.value);
+        setState('dirty');
+      }
+    },
+    [state],
+  );
+
+  // Create an abort controller to cancel the request if the modal is closed.
+  const abortController = useRef(new AbortController());
   const handleSave = useCallback(() => {
-    if (saving) {
+    if (state === 'saving' || state === 'idle') {
       return;
     }
-    setSaving(true);
-    void dispatch(submitAccountNote({ accountId, note })).then(() => {
-      setSaving(false);
-    });
-  }, [accountId, dispatch, note, saving]);
+    setState('saving');
+    dispatch(
+      submitAccountNote(
+        { accountId, note },
+        { signal: abortController.current.signal },
+      ),
+    )
+      .then(() => {
+        setState('idle');
+        onClose();
+      })
+      .catch((err: unknown) => {
+        setState('error');
+        if (err instanceof Error) {
+          setErrorText(err.message);
+        } else {
+          setErrorText(intl.formatMessage(messages.errorUnknown));
+        }
+      });
+  }, [accountId, dispatch, intl, note, onClose, state]);
+
+  const handleCancel = useCallback(() => {
+    abortController.current.abort();
+    onClose();
+  }, [onClose]);
 
   return (
     <ConfirmationModal
@@ -80,13 +115,15 @@ export const AccountNoteModal: FC<{
           onChange={handleChange}
           label={intl.formatMessage(messages.fieldLabel)}
           className={classes.noteInput}
-          // eslint-disable-next-line jsx-a11y/no-autofocus -- This is a modal, it's okay.
-          autoFocus
+          hasError={state === 'error'}
+          hint={errorText}
         />
       }
-      onClose={onClose}
+      onClose={handleCancel}
       confirm={intl.formatMessage(messages.save)}
       onConfirm={handleSave}
+      updating={state === 'saving'}
+      closeWhenConfirm={false}
     />
   );
 };
