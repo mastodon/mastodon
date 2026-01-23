@@ -102,6 +102,7 @@ const Favourites: React.FC<{ columnId: string; multiColumn: boolean }> = ({
         emptyMessage={emptyMessage}
         bindToDocument={!multiColumn}
         timelineId='favourites'
+        withCounters
       />
 
       <Helmet>

@@ -63,6 +63,7 @@ export const LinkTimeline: React.FC<{
         trackScroll
         scrollKey={`link_timeline-${decodedUrl}`}
         bindToDocument={!multiColumn}
+        withCounters
       />
 
       <Helmet>

@@ -194,6 +194,7 @@ class HashtagTimeline extends PureComponent {
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
           bindToDocument={!multiColumn}
+          withCounters
         />
 
         <Helmet>

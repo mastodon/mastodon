@@ -102,6 +102,7 @@ const Bookmarks: React.FC<{
         emptyMessage={emptyMessage}
         bindToDocument={!multiColumn}
         timelineId='bookmarks'
+        withCounters
       />
 
       <Helmet>

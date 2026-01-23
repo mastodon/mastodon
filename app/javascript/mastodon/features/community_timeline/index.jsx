@@ -160,6 +160,7 @@ class CommunityTimeline extends PureComponent {
           onLoadMore={this.handleLoadMore}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
+          withCounters
         />
 
         <Helmet>

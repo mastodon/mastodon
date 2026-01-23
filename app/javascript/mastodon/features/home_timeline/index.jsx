@@ -177,6 +177,7 @@ class HomeTimeline extends PureComponent {
             timelineId='home'
             emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up.' />}
             bindToDocument={!multiColumn}
+            withCounters
           />
         ) : <NotSignedInIndicator />}
 
