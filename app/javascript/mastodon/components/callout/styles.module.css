@@ -13,6 +13,7 @@
   border-radius: 9999px;
   width: 1rem;
   height: 1rem;
+  margin-top: -2px;
 }
 
 .content {
@@ -26,11 +27,6 @@
   .content {
     flex-direction: row;
   }
-}
-
-.icon + .content,
-.wrapper:has(.close) .content {
-  margin-top: 2px;
 }
 
 .body {
