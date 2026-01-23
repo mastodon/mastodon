@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 
 import classNames from 'classnames';
 
-import classes from './styles.module.css';
+import classes from './toggle.module.css';
 import type { CommonFieldWrapperProps } from './wrapper';
 import { FormFieldWrapper } from './wrapper';
 
