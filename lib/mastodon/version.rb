@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def suffix
-      '+fediway-0.1.6'
+      '+fediway-0.1.7'
     end
 
     def default_prerelease
