@@ -17,7 +17,7 @@ export interface ApiCollectionJSON {
 
   name: string;
   description: string;
-  tag?: ApiTagJSON;
+  topic?: ApiTagJSON;
   language: string;
   sensitive: boolean;
   discoverable: boolean;
@@ -70,7 +70,7 @@ type CommonPayloadFields = Pick<
   ApiCollectionJSON,
   'name' | 'description' | 'sensitive' | 'discoverable'
 > & {
-  tag?: string;
+  tag_name?: string;
 };
 
 export interface ApiPatchCollectionPayload extends Partial<CommonPayloadFields> {

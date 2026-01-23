@@ -36,14 +36,14 @@ const CollectionSettings: React.FC<{
     id,
     name: initialName = '',
     description: initialDescription = '',
-    tag,
+    topic: initialTopic,
     discoverable: initialDiscoverable = true,
     sensitive: initialSensitive = false,
   } = collection ?? {};
 
   const [name, setName] = useState(initialName);
   const [description, setDescription] = useState(initialDescription);
-  const [topic, setTopic] = useState(tag?.name ?? '');
+  const [topic, setTopic] = useState(initialTopic?.name ?? '');
   const [discoverable] = useState(initialDiscoverable);
   const [sensitive, setSensitive] = useState(initialSensitive);
 
@@ -93,7 +93,7 @@ const CollectionSettings: React.FC<{
           payload: {
             name,
             description,
-            tag: topic,
+            tag_name: topic,
             discoverable,
             sensitive,
           },
