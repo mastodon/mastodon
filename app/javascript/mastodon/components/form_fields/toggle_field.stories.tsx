@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { ToggleField } from './toggle_field';
+import { PlainToggleField, ToggleField } from './toggle_field';
 
 const meta = {
   title: 'Components/Form Fields/ToggleField',
@@ -59,9 +59,8 @@ export const Disabled: Story = {
 };
 
 export const Plain: Story = {
-  args: {
-    label: undefined,
-    hint: undefined,
+  render(props) {
+    return <PlainToggleField {...props} />;
   },
 };
 
