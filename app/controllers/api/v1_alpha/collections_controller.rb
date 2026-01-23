@@ -26,9 +26,11 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
 
   def index
     cache_if_unauthenticated!
-    authorize Collection, :index?
+    authorize @account, :index_collections?
 
     render json: @collections, each_serializer: REST::CollectionSerializer, adapter: :json
+  rescue Mastodon::NotPermittedError
+    render json: { collections: [] }
   end
 
   def show
