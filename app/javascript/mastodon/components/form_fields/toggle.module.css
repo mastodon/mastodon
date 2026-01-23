@@ -48,6 +48,11 @@
   background: var(--color-bg-brand-base-hover);
 }
 
+.input:focus-visible + .toggle {
+  outline: var(--outline-focus-default);
+  outline-offset: 2px;
+}
+
 .input:checked + .toggle::before {
   transform: translateX(calc(var(--diameter) - (var(--padding) * 2)));
 }
