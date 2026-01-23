@@ -15,23 +15,24 @@
   height: 1rem;
 }
 
-.action {
+.actionWrapper {
   display: flex;
   gap: 8px;
+  align-items: start;
+}
 
-  button {
-    appearance: none;
-    border: none;
-    background: none;
-    color: inherit;
-    font-weight: 500;
-    padding: 0;
-    text-decoration: underline;
-    transition: color 0.1s ease-in-out;
+.action {
+  appearance: none;
+  background: none;
+  border: none;
+  color: inherit;
+  font-weight: 500;
+  padding: 0;
+  text-decoration: underline;
+  transition: color 0.1s ease-in-out;
 
-    &:hover {
-      color: var(--color-text-brand-soft);
-    }
+  &:hover {
+    color: var(--color-text-brand-soft);
   }
 }
 

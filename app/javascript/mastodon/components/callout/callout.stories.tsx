@@ -17,7 +17,7 @@ const meta = {
   component: Callout,
   render(args) {
     return (
-      <div style={{ minWidth: '400px' }}>
+      <div style={{ minWidth: 'min(400px, calc(100vw - 2rem))' }}>
         <Callout {...args} />
       </div>
     );

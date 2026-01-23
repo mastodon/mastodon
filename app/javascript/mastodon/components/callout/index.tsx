@@ -83,15 +83,23 @@ export const Callout: FC<CalloutProps> = ({
         </div>
 
         {(primaryAction ?? secondaryAction) && (
-          <div className={classes.action}>
+          <div className={classes.actionWrapper}>
             {secondaryAction && (
-              <button type='button' onClick={secondaryAction}>
+              <button
+                type='button'
+                onClick={secondaryAction}
+                className={classes.action}
+              >
                 {secondaryLabel ?? 'Click'}
               </button>
             )}
 
             {primaryAction && (
-              <button type='button' onClick={primaryAction}>
+              <button
+                type='button'
+                onClick={primaryAction}
+                className={classes.action}
+              >
                 {primaryLabel ?? 'Click'}
               </button>
             )}
