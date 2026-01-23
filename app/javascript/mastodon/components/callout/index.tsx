@@ -1,5 +1,7 @@
 import type { FC, ReactNode } from 'react';
 
+import { useIntl } from 'react-intl';
+
 import classNames from 'classnames';
 
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
@@ -14,7 +16,7 @@ import { IconButton } from '../icon_button';
 
 import classes from './styles.module.css';
 
-interface CalloutProps {
+export interface CalloutProps {
   variant?:
     | 'default'
     | 'subtle'
@@ -28,11 +30,12 @@ interface CalloutProps {
   className?: string;
   /** Set to false to hide the icon. */
   icon?: IconProp | boolean;
-  primaryAction?: () => void;
+  onPrimary?: () => void;
   primaryLabel?: string;
-  secondaryAction?: () => void;
+  onSecondary?: () => void;
   secondaryLabel?: string;
-  noClose?: boolean;
+  onClose?: () => void;
+  id?: string;
 }
 
 const variantClasses = {
@@ -51,12 +54,15 @@ export const Callout: FC<CalloutProps> = ({
   title,
   children,
   icon,
-  primaryAction,
+  onPrimary: primaryAction,
   primaryLabel,
-  secondaryAction,
+  onSecondary: secondaryAction,
   secondaryLabel,
-  noClose,
+  onClose,
+  id,
 }) => {
+  const intl = useIntl();
+
   const wrapperClassName = classNames(className, classes.wrapper, {
     [variantClasses.default]: variant === 'default',
     [variantClasses.subtle]: variant === 'subtle',
@@ -68,10 +74,10 @@ export const Callout: FC<CalloutProps> = ({
   });
 
   return (
-    <aside className={wrapperClassName} data-variant={variant}>
+    <aside className={wrapperClassName} data-variant={variant} id={id}>
       <CalloutIcon variant={variant} icon={icon} />
       <div className={classes.content}>
-        <div>
+        <div className={classes.body}>
           {title && <h3>{title}</h3>}
           {children}
         </div>
@@ -93,12 +99,16 @@ export const Callout: FC<CalloutProps> = ({
         )}
       </div>
 
-      {!noClose && (
+      {onClose && (
         <IconButton
           icon='close'
-          title=''
+          title={intl.formatMessage({
+            id: 'lightbox.close',
+            defaultMessage: 'Close',
+          })}
           iconComponent={CloseIcon}
           className={classes.close}
+          onClick={onClose}
         />
       )}
     </aside>

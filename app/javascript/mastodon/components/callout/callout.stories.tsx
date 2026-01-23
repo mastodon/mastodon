@@ -8,13 +8,20 @@ const meta = {
   args: {
     children: 'Contents here',
     title: 'Title',
-    primaryAction: action('Primary Action Clicked'),
-    primaryLabel: 'Primary Action',
-    secondaryAction: action('Secondary Action Clicked'),
-    secondaryLabel: 'Secondary Action',
-    noClose: false,
+    onPrimary: action('Primary action clicked'),
+    primaryLabel: 'Primary',
+    onSecondary: action('Secondary action clicked'),
+    secondaryLabel: 'Secondary',
+    onClose: action('Close clicked'),
   },
   component: Callout,
+  render(args) {
+    return (
+      <div style={{ minWidth: '400px' }}>
+        <Callout {...args} />
+      </div>
+    );
+  },
 } satisfies Meta<typeof Callout>;
 
 export default meta;
@@ -35,8 +42,8 @@ export const NoIcon: Story = {
 
 export const NoActions: Story = {
   args: {
-    primaryAction: undefined,
-    secondaryAction: undefined,
+    onPrimary: undefined,
+    onSecondary: undefined,
   },
 };
 
