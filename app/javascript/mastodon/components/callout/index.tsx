@@ -63,18 +63,16 @@ export const Callout: FC<CalloutProps> = ({
 }) => {
   const intl = useIntl();
 
-  const wrapperClassName = classNames(className, classes.wrapper, {
-    [variantClasses.default]: variant === 'default',
-    [variantClasses.subtle]: variant === 'subtle',
-    [variantClasses.feature]: variant === 'feature',
-    [variantClasses.inverted]: variant === 'inverted',
-    [variantClasses.success]: variant === 'success',
-    [variantClasses.warning]: variant === 'warning',
-    [variantClasses.error]: variant === 'error',
-  });
-
   return (
-    <aside className={wrapperClassName} data-variant={variant} id={id}>
+    <aside
+      className={classNames(
+        className,
+        classes.wrapper,
+        variantClasses[variant],
+      )}
+      data-variant={variant}
+      id={id}
+    >
       <CalloutIcon variant={variant} icon={icon} />
       <div className={classes.content}>
         <div className={classes.body}>
@@ -111,8 +109,8 @@ export const Callout: FC<CalloutProps> = ({
         <IconButton
           icon='close'
           title={intl.formatMessage({
-            id: 'lightbox.close',
-            defaultMessage: 'Close',
+            id: 'callout.dismiss',
+            defaultMessage: 'Dismiss',
           })}
           iconComponent={CloseIcon}
           className={classes.close}
