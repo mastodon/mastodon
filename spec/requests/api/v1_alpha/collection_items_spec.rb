@@ -26,6 +26,7 @@ RSpec.describe 'Api::V1Alpha::CollectionItems', feature: :collections do
           end.to change(collection.collection_items, :count).by(1)
 
           expect(response).to have_http_status(200)
+          expect(response.parsed_body).to have_key('collection_item')
         end
       end
 
