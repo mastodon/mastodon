@@ -6,9 +6,8 @@ import {
   // apiGetCollection,
 } from '@/mastodon/api/collections';
 import type {
-  ApiBaseCollectionJSON,
+  ApiCollectionJSON,
   ApiCreateCollectionPayload,
-  ApiFullCollectionJSON,
 } from '@/mastodon/api_types/collections';
 import {
   createAppSelector,
@@ -19,7 +18,7 @@ type QueryStatus = 'idle' | 'loading' | 'error';
 
 interface CollectionState {
   // Collections mapped by collection id
-  collections: Record<string, ApiBaseCollectionJSON | ApiFullCollectionJSON>;
+  collections: Record<string, ApiCollectionJSON>;
   // Lists of collection ids mapped by account id
   accountCollections: Record<
     string,
@@ -61,19 +60,19 @@ const collectionSlice = createSlice({
     });
 
     builder.addCase(fetchAccountCollections.fulfilled, (state, actions) => {
-      const { payload, meta } = actions;
+      const { collections } = actions.payload;
 
-      const collectionsMap: Record<string, ApiBaseCollectionJSON> = {};
+      const collectionsMap: Record<string, ApiCollectionJSON> = {};
       const collectionIds: string[] = [];
 
-      payload.forEach((collection) => {
+      collections.forEach((collection) => {
         const { id } = collection;
         collectionsMap[id] = collection;
         collectionIds.push(id);
       });
 
       state.collections = collectionsMap;
-      state.accountCollections[meta.arg.accountId] = {
+      state.accountCollections[actions.meta.arg.accountId] = {
         collectionIds,
         status: 'idle',
       };
@@ -84,16 +83,16 @@ const collectionSlice = createSlice({
      */
 
     builder.addCase(createCollection.fulfilled, (state, actions) => {
-      const { payload } = actions;
+      const { collection } = actions.payload;
 
-      state.collections[payload.id] = payload;
-      if (state.accountCollections[payload.account.id]) {
-        state.accountCollections[payload.account.id]?.collectionIds.unshift(
-          payload.id,
+      state.collections[collection.id] = collection;
+      if (state.accountCollections[collection.account_id]) {
+        state.accountCollections[collection.account_id]?.collectionIds.unshift(
+          collection.id,
         );
       } else {
-        state.accountCollections[payload.account.id] = {
-          collectionIds: [payload.id],
+        state.accountCollections[collection.account_id] = {
+          collectionIds: [collection.id],
           status: 'idle',
         };
       }
@@ -128,7 +127,7 @@ export const collections = collectionSlice.reducer;
 
 interface AccountCollectionQuery {
   status: QueryStatus;
-  collections: ApiBaseCollectionJSON[];
+  collections: ApiCollectionJSON[];
 }
 
 export const selectMyCollections = createAppSelector(
@@ -143,7 +142,7 @@ export const selectMyCollections = createAppSelector(
     if (!myCollectionsQuery) {
       return {
         status: 'error',
-        collections: [] as ApiBaseCollectionJSON[],
+        collections: [] as ApiCollectionJSON[],
       } satisfies AccountCollectionQuery;
     }
 

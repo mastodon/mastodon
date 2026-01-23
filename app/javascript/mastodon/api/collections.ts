@@ -6,20 +6,21 @@ import {
 } from 'mastodon/api';
 
 import type {
-  ApiFullCollectionJSON,
-  ApiBaseCollectionJSON,
+  ApiWrappedCollectionJSON,
+  ApiCollectionWithAccountsJSON,
   ApiCreateCollectionPayload,
   ApiPatchCollectionPayload,
+  ApiCollectionsJSON,
 } from '../api_types/collections';
 
 export const apiCreateCollection = (collection: ApiCreateCollectionPayload) =>
-  apiRequestPost<ApiFullCollectionJSON>('v1_alpha/collections', collection);
+  apiRequestPost<ApiWrappedCollectionJSON>('v1_alpha/collections', collection);
 
 export const apiUpdateCollection = ({
   id,
   ...collection
 }: ApiPatchCollectionPayload) =>
-  apiRequestPut<ApiFullCollectionJSON>(
+  apiRequestPut<ApiWrappedCollectionJSON>(
     `v1_alpha/collections/${id}`,
     collection,
   );
@@ -28,11 +29,11 @@ export const apiDeleteCollection = (collectionId: string) =>
   apiRequestDelete(`v1_alpha/collections/${collectionId}`);
 
 export const apiGetCollection = (collectionId: string) =>
-  apiRequestGet<ApiFullCollectionJSON[]>(
+  apiRequestGet<ApiCollectionWithAccountsJSON[]>(
     `v1_alpha/collections/${collectionId}`,
   );
 
 export const apiGetAccountCollections = (accountId: string) =>
-  apiRequestGet<ApiBaseCollectionJSON[]>(
+  apiRequestGet<ApiCollectionsJSON>(
     `v1_alpha/accounts/${accountId}/collections`,
   );
