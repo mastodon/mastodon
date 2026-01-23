@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Admin::SystemCheck::Message
-  include ActiveModel::Model
-
   attr_reader :key, :value, :action, :critical
 
   def initialize(key, value = nil, action = nil, critical: false)

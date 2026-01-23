@@ -6,7 +6,7 @@
 
 - unless @system_checks.empty?
   .flash-message-stack
-    = render @system_checks
+    = render collection: @system_checks, partial: 'admin/system_check/messages/message'
 
 .dashboard
   .dashboard__item
