@@ -60,13 +60,14 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     [accountId, dispatch, key],
   );
 
+  // Null means accountId does not exist (e.g. invalid acct). Undefined means loading.
   if (accountId === null) {
     return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
   }
 
-  if (!timeline || !accountId) {
+  if (!accountId) {
     return (
-      <Column>
+      <Column bindToDocument={!multiColumn}>
         <LoadingIndicator />
       </Column>
     );
@@ -90,9 +91,11 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           }
           append={<RemoteHint accountId={accountId} />}
           scrollKey='account_timeline'
-          statusIds={forceEmptyState ? [] : timeline.items}
-          isLoading={timeline.isLoading}
-          hasMore={!forceEmptyState && timeline.hasMore}
+          // We want to have this component when timeline is undefined (loading),
+          // because if we don't the prepended component will re-render with every state change.
+          statusIds={forceEmptyState ? [] : (timeline?.items ?? [])}
+          isLoading={timeline?.isLoading ?? true}
+          hasMore={!forceEmptyState && timeline?.hasMore}
           onLoadMore={handleLoadMore}
           emptyMessage={<EmptyMessage accountId={accountId} />}
           bindToDocument={!multiColumn}
