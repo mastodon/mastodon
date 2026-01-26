@@ -193,9 +193,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-two-factor (6.2.0)
+    devise-two-factor (6.3.1)
       activesupport (>= 7.0, < 8.2)
-      devise (~> 4.0)
+      devise (>= 4.0, < 5.0)
       railties (>= 7.0, < 8.2)
       rotp (~> 6.0)
     devise_pam_authenticatable2 (9.2.0)
@@ -700,7 +700,7 @@ GEM
       readline (~> 0.0)
     rdf-normalize (0.7.0)
       rdf (~> 3.3)
-    rdoc (7.0.3)
+    rdoc (7.1.0)
       erb
       psych (>= 4.0.0)
       tsort
