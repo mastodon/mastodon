@@ -10,11 +10,13 @@ class ActivityPub::AddSerializer < ActivityPub::Serializer
   end
 
   def self.serializer_for(model, options)
-    case model.class.name
-    when 'Status'
+    case model
+    when Status
       UriSerializer
-    when 'FeaturedTag'
+    when FeaturedTag
       ActivityPub::HashtagSerializer
+    when Collection
+      ActivityPub::FeaturedCollectionSerializer
     else
       super
     end
