@@ -180,22 +180,11 @@ class ApplicationController < ActionController::Base
   end
 
   def color_scheme
-    current = current_user&.setting_color_scheme
-    return current if current && current != 'auto'
-
-    return 'dark' if current_theme.include?('default') || current_theme.include?('contrast')
-    return 'light' if current_theme.include?('light')
-
-    'auto'
+    current_user&.setting_color_scheme || 'auto'
   end
 
   def contrast
-    current = current_user&.setting_contrast
-    return current if current && current != 'auto'
-
-    return 'high' if current_theme.include?('contrast')
-
-    'auto'
+    current_user&.setting_contrast || 'auto'
   end
 
   def respond_with_error(code)
