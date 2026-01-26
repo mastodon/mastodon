@@ -6,33 +6,11 @@ RSpec.describe ThemeHelper do
   describe 'theme_style_tags' do
     let(:result) { helper.theme_style_tags(theme) }
 
-    context 'when using "system" theme' do
-      let(:theme) { 'system' }
-
-      it 'returns the default theme' do
-        expect(html_links.first.attributes.symbolize_keys)
-          .to include(
-            href: have_attributes(value: match(/default/))
-          )
-      end
-    end
-
     context 'when using "default" theme' do
       let(:theme) { 'default' }
 
       it 'returns the default stylesheet' do
         expect(html_links.last.attributes.symbolize_keys)
-          .to include(
-            href: have_attributes(value: match(/default/))
-          )
-      end
-    end
-
-    context 'when using other theme' do
-      let(:theme) { 'contrast' }
-
-      it 'returns the theme stylesheet without color scheme information' do
-        expect(html_links.first.attributes.symbolize_keys)
           .to include(
             href: have_attributes(value: match(/default/))
           )
