@@ -4,6 +4,7 @@ on:
     paths:
       - 'app/javascript/**'
       - 'vite.config.mts'
+      - .github/workflows/bundlesize-compare.yml
 
 jobs:
   build-head:
