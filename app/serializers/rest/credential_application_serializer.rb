@@ -8,7 +8,7 @@ class REST::CredentialApplicationSerializer < REST::ApplicationSerializer
   end
 
   def client_secret
-    object.secret
+    object.secret if object.confidential?
   end
 
   # Added for future forwards compatibility when we may decide to expire OAuth

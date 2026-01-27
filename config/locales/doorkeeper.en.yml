@@ -89,6 +89,7 @@ en:
         invalid_request:
           missing_param: 'Missing required parameter: %{value}.'
           request_not_authorized: Request need to be authorized. Required parameter for authorizing request is missing or invalid.
+          offline_access_only: The offline_access scope can only be used with other scopes.
           unknown: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
         invalid_resource_owner: The provided resource owner credentials are not valid, or resource owner cannot be found
         invalid_scope: The requested scope is invalid, unknown, or malformed.
@@ -118,6 +119,7 @@ en:
         read: Read-only access
         read/write: Read and write access
         write: Write-only access
+        offline: Access for an extended period of time
       title:
         accounts: Accounts
         admin/accounts: Administration of accounts
@@ -138,6 +140,7 @@ en:
         notifications: Notifications
         profile: Your Mastodon profile
         push: Push notifications
+        offline_access: Offline access
         reports: Reports
         search: Search
         statuses: Posts

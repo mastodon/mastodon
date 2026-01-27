@@ -27,12 +27,14 @@ class AppSignUpService < BaseService
   end
 
   def create_access_token!
+    context = Doorkeeper::OAuth::Authorization::Token.build_context(@app, Doorkeeper::OAuth::AUTHORIZATION_CODE, @app.scopes, @user.id)
+
     @access_token = Doorkeeper::AccessToken.create!(
-      application: @app,
-      resource_owner_id: @user.id,
-      scopes: @app.scopes,
-      expires_in: Doorkeeper.configuration.access_token_expires_in,
-      use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?
+      application: context.client,
+      resource_owner_id: context.resource_owner,
+      scopes: context.scopes,
+      expires_in: Doorkeeper::OAuth::Authorization::Token.access_token_expires_in(Doorkeeper.config, context),
+      use_refresh_token: Doorkeeper::OAuth::Authorization::Token.refresh_token_enabled?(Doorkeeper.config, context)
     )
   end
 

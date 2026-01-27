@@ -3,5 +3,5 @@
 Fabricator(:application, from: Doorkeeper::Application) do
   name         'Example'
   website      'http://example.com'
-  redirect_uri 'http://example.com/callback'
+  redirect_uri 'urn:ietf:wg:oauth:2.0:oob'
 end

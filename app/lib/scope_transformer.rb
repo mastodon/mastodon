@@ -14,6 +14,8 @@ class ScopeTransformer < Parslet::Transform
 
       # # override for profile scope which is read only
       @access = %w(read) if @term == 'profile'
+      # Override offline_access since it doesn't imply read or write access:
+      @access = %w(offline) if @term == 'offline_access'
     end
 
     def key
