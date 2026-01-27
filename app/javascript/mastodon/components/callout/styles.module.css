@@ -13,6 +13,7 @@
   border-radius: 9999px;
   width: 1rem;
   height: 1rem;
+  margin-top: -2px;
 }
 
 .content {
@@ -28,16 +29,12 @@
   }
 }
 
-.icon + .content,
-.wrapper:has(.close) .content {
-  margin-top: 2px;
-}
-
 .body {
   flex-grow: 1;
 
   h3 {
     font-weight: 500;
+    margin-bottom: 5px;
   }
 }
 
@@ -59,6 +56,12 @@
 
   &:hover {
     color: var(--color-text-brand-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: none;
   }
 }
 

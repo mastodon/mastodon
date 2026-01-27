@@ -36,6 +36,7 @@ export interface CalloutProps {
   secondaryLabel?: string;
   onClose?: () => void;
   id?: string;
+  extraContent?: ReactNode;
 }
 
 const variantClasses = {
@@ -59,6 +60,7 @@ export const Callout: FC<CalloutProps> = ({
   onSecondary: secondaryAction,
   secondaryLabel,
   onClose,
+  extraContent,
   id,
 }) => {
   const intl = useIntl();
@@ -104,6 +106,8 @@ export const Callout: FC<CalloutProps> = ({
           </div>
         )}
       </div>
+
+      {extraContent}
 
       {onClose && (
         <IconButton
