@@ -1,4 +1,4 @@
-import { useCallback, useContext, useId, useRef, useState } from 'react';
+import { useCallback, useId, useRef, useState } from 'react';
 import type { ChangeEventHandler, FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -12,8 +12,8 @@ import { Icon } from '@/mastodon/components/icon';
 import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
 
 import { AccountTabs } from '../components/tabs';
+import { useFilters } from '../hooks/useFilters';
 
-import { FilterContext } from './context';
 import classes from './styles.module.scss';
 
 export const AccountFilters: FC = () => {
@@ -42,7 +42,7 @@ const FilterDropdown: FC = () => {
     setOpen(false);
   }, []);
 
-  const { boosts, replies, setBoosts, setReplies } = useContext(FilterContext);
+  const { boosts, replies, setBoosts, setReplies } = useFilters();
   const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       const { name, checked } = event.target;

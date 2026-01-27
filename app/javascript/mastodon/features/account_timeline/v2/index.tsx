@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -25,8 +25,8 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AccountHeader } from '../components/account_header';
 import { LimitedAccountHint } from '../components/limited_account_hint';
+import { useFilters } from '../hooks/useFilters';
 
-import { FilterContext } from './context';
 import { AccountFilters } from './filters';
 
 const emptyList = ImmutableList<string>();
@@ -62,8 +62,7 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
   multiColumn,
 }) => {
   const { tagged } = useParams<{ tagged?: string }>();
-  const [boosts, setBoosts] = useState(false);
-  const [replies, setReplies] = useState(false);
+  const { boosts, replies } = useFilters();
   const key = timelineKey({
     type: 'account',
     userId: accountId,
@@ -94,36 +93,32 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
   const forceEmptyState = blockedBy || hidden || suspended;
 
   return (
-    <FilterContext.Provider value={{ boosts, setBoosts, replies, setReplies }}>
-      <Column bindToDocument={!multiColumn}>
-        <ColumnBackButton />
+    <Column bindToDocument={!multiColumn}>
+      <ColumnBackButton />
 
-        <StatusList
-          alwaysPrepend
-          prepend={
-            <Prepend
-              accountId={accountId}
-              tagged={tagged}
-              forceEmpty={forceEmptyState}
-            />
-          }
-          append={<RemoteHint accountId={accountId} />}
-          scrollKey='account_timeline'
-          // We want to have this component when timeline is undefined (loading),
-          // because if we don't the prepended component will re-render with every filter change.
-          statusIds={
-            forceEmptyState ? emptyList : (timeline?.items ?? emptyList)
-          }
-          isLoading={!!timeline?.isLoading}
-          hasMore={!forceEmptyState && !!timeline?.hasMore}
-          onLoadMore={handleLoadMore}
-          emptyMessage={<EmptyMessage accountId={accountId} />}
-          bindToDocument={!multiColumn}
-          timelineId='account'
-          withCounters
-        />
-      </Column>
-    </FilterContext.Provider>
+      <StatusList
+        alwaysPrepend
+        prepend={
+          <Prepend
+            accountId={accountId}
+            tagged={tagged}
+            forceEmpty={forceEmptyState}
+          />
+        }
+        append={<RemoteHint accountId={accountId} />}
+        scrollKey='account_timeline'
+        // We want to have this component when timeline is undefined (loading),
+        // because if we don't the prepended component will re-render with every filter change.
+        statusIds={forceEmptyState ? emptyList : (timeline?.items ?? emptyList)}
+        isLoading={!!timeline?.isLoading}
+        hasMore={!forceEmptyState && !!timeline?.hasMore}
+        onLoadMore={handleLoadMore}
+        emptyMessage={<EmptyMessage accountId={accountId} />}
+        bindToDocument={!multiColumn}
+        timelineId='account'
+        withCounters
+      />
+    </Column>
   );
 };
 
