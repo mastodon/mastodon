@@ -30,12 +30,39 @@ import { AccountFilters } from './filters';
 const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const accountId = useAccountId();
 
+  // Null means accountId does not exist (e.g. invalid acct). Undefined means loading.
+  if (accountId === null) {
+    return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
+  }
+
+  if (!accountId) {
+    return (
+      <Column bindToDocument={!multiColumn}>
+        <LoadingIndicator />
+      </Column>
+    );
+  }
+
+  // Add this key to remount the timeline when accountId changes.
+  return (
+    <InnerTimeline
+      accountId={accountId}
+      key={accountId}
+      multiColumn={multiColumn}
+    />
+  );
+};
+
+const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
+  accountId,
+  multiColumn,
+}) => {
   const { tagged } = useParams<{ tagged?: string }>();
   const [boosts, setBoosts] = useState(false);
   const [replies, setReplies] = useState(false);
   const key = timelineKey({
     type: 'account',
-    userId: accountId ?? '',
+    userId: accountId,
     tagged,
     boosts,
     replies,
@@ -60,19 +87,6 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     [accountId, dispatch, key],
   );
 
-  // Null means accountId does not exist (e.g. invalid acct). Undefined means loading.
-  if (accountId === null) {
-    return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
-  }
-
-  if (!accountId) {
-    return (
-      <Column bindToDocument={!multiColumn}>
-        <LoadingIndicator />
-      </Column>
-    );
-  }
-
   const forceEmptyState = blockedBy || hidden || suspended;
 
   return (
@@ -92,7 +106,7 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           append={<RemoteHint accountId={accountId} />}
           scrollKey='account_timeline'
           // We want to have this component when timeline is undefined (loading),
-          // because if we don't the prepended component will re-render with every state change.
+          // because if we don't the prepended component will re-render with every filter change.
           statusIds={forceEmptyState ? [] : (timeline?.items ?? [])}
           isLoading={timeline?.isLoading ?? true}
           hasMore={!forceEmptyState && timeline?.hasMore}
