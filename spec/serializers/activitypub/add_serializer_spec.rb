@@ -18,10 +18,38 @@ RSpec.describe ActivityPub::AddSerializer do
       it { is_expected.to eq(ActivityPub::HashtagSerializer) }
     end
 
+    context 'with a Collection model' do
+      let(:model) { Collection.new }
+
+      it { is_expected.to eq(ActivityPub::FeaturedCollectionSerializer) }
+    end
+
     context 'with an Array' do
       let(:model) { [] }
 
       it { is_expected.to eq(ActiveModel::Serializer::CollectionSerializer) }
+    end
+  end
+
+  describe '#target' do
+    subject { described_class.new(object).target }
+
+    context 'when object is a Status' do
+      let(:object) { Fabricate(:status) }
+
+      it { is_expected.to match(%r{/#{object.account_id}/collections/featured$}) }
+    end
+
+    context 'when object is a FeaturedTag' do
+      let(:object) { Fabricate(:featured_tag) }
+
+      it { is_expected.to match(%r{/#{object.account_id}/collections/featured$}) }
+    end
+
+    context 'when object is a Collection' do
+      let(:object) { Fabricate(:collection) }
+
+      it { is_expected.to match(%r{/#{object.account_id}/featured_collections$}) }
     end
   end
 end
