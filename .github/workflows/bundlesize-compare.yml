@@ -1,3 +1,4 @@
+name: Compare JS bundle size
 on:
   pull_request:
     paths:
@@ -11,7 +12,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
         with:
           ref: ${{github.event.pull_request.head.ref}}
 
@@ -22,7 +23,7 @@ jobs:
         run: ANALYZE_BUNDLE_SIZE=1 yarn run build:production
 
       - name: Upload stats.json
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: head-stats
           path: ./stats.json
@@ -33,7 +34,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.base_ref }}
 
@@ -44,7 +45,7 @@ jobs:
         run: ANALYZE_BUNDLE_SIZE=1 yarn run build:production
 
       - name: Upload stats.json
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: base-stats
           path: ./stats.json
