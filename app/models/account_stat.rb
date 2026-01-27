@@ -36,4 +36,12 @@ class AccountStat < ApplicationRecord
   def statuses_count
     [attributes['statuses_count'], 0].max
   end
+
+  def used_languages
+    list = Status.where(account_id: attributes['account_id'])
+          .distinct
+          .reorder(:language)
+          .pluck(:language)
+    list
+  end
 end

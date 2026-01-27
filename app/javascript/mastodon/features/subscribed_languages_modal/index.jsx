@@ -20,10 +20,10 @@ const messages = defineMessages({
 });
 
 const getAccountLanguages = createSelector([
-  (state, accountId) => state.getIn(['timelines', `account:${accountId}`, 'items'], ImmutableList()),
-  state => state.get('statuses'),
-], (statusIds, statuses) =>
-  ImmutableSet(statusIds.map(statusId => statuses.get(statusId)).filter(status => !status.get('reblog')).map(status => status.get('language'))));
+  (state, accountId) => state.getIn(['accounts', accountId, 'used_languages']),
+], (used_languages) => {
+  return ImmutableSet(used_languages);
+});
 
 const mapStateToProps = (state, { accountId }) => ({
   acct: state.getIn(['accounts', accountId, 'acct']),
