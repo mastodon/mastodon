@@ -275,7 +275,7 @@
   height: 24px;
   aspect-ratio: 1;
 
-  path {
+  &:not(.icon--no-fill) path {
     fill: currentColor;
   }
 }

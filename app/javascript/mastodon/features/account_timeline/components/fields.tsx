@@ -76,6 +76,7 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
                   id='verified'
                   icon={IconVerified}
                   className={classes.fieldIconVerified}
+                  noFill
                 />
               )}
             </>

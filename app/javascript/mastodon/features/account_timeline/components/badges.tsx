@@ -37,7 +37,12 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
     let icon: ReactNode = undefined;
     if (isAdminBadge(role)) {
       icon = (
-        <Icon icon={IconAdmin} id='badge-admin' className={classes.badgeIcon} />
+        <Icon
+          icon={IconAdmin}
+          id='badge-admin'
+          className={classes.badgeIcon}
+          noFill
+        />
       );
     }
     badges.push(

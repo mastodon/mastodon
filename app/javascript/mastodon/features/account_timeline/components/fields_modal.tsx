@@ -81,6 +81,7 @@ export const AccountFieldsModal: FC<{
                       id='verified'
                       icon={IconVerified}
                       className={classes.fieldIconVerified}
+                      noFill
                     />
                   )}
                 </dd>

@@ -53,11 +53,6 @@ h1.name > small {
 
 svg.badgeIcon {
   opacity: 1;
-  fill: revert-layer;
-
-  path {
-    fill: revert-layer;
-  }
 }
 
 .fieldList {
@@ -90,11 +85,6 @@ svg.badgeIcon {
 .fieldIconVerified {
   width: 1rem;
   height: 1rem;
-
-  // Need to override .icon path.
-  path {
-    fill: revert-layer;
-  }
 }
 
 .fieldNumbersWrapper {
