@@ -24,6 +24,7 @@
 #  followers_url                 :string           default(""), not null
 #  following_url                 :string           default(""), not null
 #  header_content_type           :string
+#  header_description            :string           default(""), not null
 #  header_file_name              :string
 #  header_file_size              :integer
 #  header_remote_url             :string           default(""), not null
