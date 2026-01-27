@@ -7,6 +7,8 @@ import { submitAccountNote } from '@/mastodon/actions/account_notes';
 import { fetchRelationships } from '@/mastodon/actions/accounts';
 import { Callout } from '@/mastodon/components/callout';
 import { TextAreaField } from '@/mastodon/components/form_fields';
+import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import type { Relationship } from '@/mastodon/models/relationship';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { ConfirmationModal } from '../../ui/components/confirmation_modals';
@@ -40,9 +42,6 @@ export const AccountNoteModal: FC<{
   accountId: string;
   onClose: () => void;
 }> = ({ accountId, onClose }) => {
-  const intl = useIntl();
-
-  // Fetch the note.
   const relationship = useAppSelector((state) =>
     state.relationships.get(accountId),
   );
@@ -53,8 +52,26 @@ export const AccountNoteModal: FC<{
     }
   }, [accountId, dispatch, relationship]);
 
+  if (!relationship) {
+    return <LoadingIndicator />;
+  }
+
+  return (
+    <InnerNodeModal
+      relationship={relationship}
+      accountId={accountId}
+      onClose={onClose}
+    />
+  );
+};
+
+const InnerNodeModal: FC<{
+  relationship: Relationship;
+  accountId: string;
+  onClose: () => void;
+}> = ({ relationship, accountId, onClose }) => {
   // Set up the state.
-  const initialContents = relationship?.note ?? '';
+  const initialContents = relationship.note;
   const [note, setNote] = useState(initialContents);
   const [errorText, setErrorText] = useState('');
   const [state, setState] = useState<'idle' | 'saving' | 'error'>('idle');
@@ -69,8 +86,11 @@ export const AccountNoteModal: FC<{
     [state],
   );
 
+  const intl = useIntl();
+
   // Create an abort controller to cancel the request if the modal is closed.
   const abortController = useRef(new AbortController());
+  const dispatch = useAppDispatch();
   const handleSave = useCallback(() => {
     if (state === 'saving' || !isDirty) {
       return;
