@@ -24,4 +24,20 @@ RSpec.describe ActivityPub::AddSerializer do
       it { is_expected.to eq(ActiveModel::Serializer::CollectionSerializer) }
     end
   end
+
+  describe '#target' do
+    subject { described_class.new(object).target }
+
+    context 'when object is a Status' do
+      let(:object) { Fabricate(:status) }
+
+      it { is_expected.to match(%r{/#{object.account_id}/collections/featured$}) }
+    end
+
+    context 'when object is a FeaturedTag' do
+      let(:object) { Fabricate(:featured_tag) }
+
+      it { is_expected.to match(%r{/#{object.account_id}/collections/tags$}) }
+    end
+  end
 end

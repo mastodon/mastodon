@@ -38,6 +38,11 @@ class ActivityPub::AddSerializer < ActivityPub::Serializer
   end
 
   def target
-    ActivityPub::TagManager.instance.collection_uri_for(object.account, :featured)
+    case object
+    when Status
+      ActivityPub::TagManager.instance.collection_uri_for(object.account, :featured)
+    when FeaturedTag
+      ActivityPub::TagManager.instance.collection_uri_for(object.account, :tags)
+    end
   end
 end
