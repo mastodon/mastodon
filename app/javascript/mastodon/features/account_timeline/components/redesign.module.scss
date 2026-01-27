@@ -7,20 +7,16 @@
   flex-grow: 1;
   font-size: 22px;
   white-space: initial;
-  text-overflow: initial;
   line-height: normal;
-
-  :global(.icon-info) {
-    margin-left: 2px;
-    width: 1em;
-    height: 1em;
-    align-self: center;
-  }
 }
 
-// Overrides .account__header__tabs__name h1 small
-h1.name > small {
-  gap: 0;
+.username {
+  display: flex;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  align-items: center;
+  user-select: all;
+  margin-top: 4px;
 }
 
 .domainPill {
@@ -32,10 +28,20 @@ h1.name > small {
   color: inherit;
   font-size: 1em;
   font-weight: initial;
+  margin-left: 2px;
+  width: 16px;
+  height: 16px;
+  transition: color 0.2s ease-in-out;
 
+  > svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover,
   &:global(.active) {
     background: none;
-    color: inherit;
+    color: var(--color-text-brand-soft);
   }
 }
 
