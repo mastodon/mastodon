@@ -12,9 +12,9 @@ import { Icon } from '@/mastodon/components/icon';
 import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
 
 import { AccountTabs } from '../components/tabs';
-import classes from '../redesign.module.scss';
 
 import { FilterContext } from './context';
+import classes from './styles.module.scss';
 
 export const AccountFilters: FC = () => {
   const { acct } = useParams<{ acct: string }>();

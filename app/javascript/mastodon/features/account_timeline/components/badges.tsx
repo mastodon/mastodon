@@ -8,7 +8,8 @@ import type { AccountRole } from '@/mastodon/models/account';
 import { useAppSelector } from '@/mastodon/store';
 
 import { isRedesignEnabled } from '../common';
-import classes from '../redesign.module.scss';
+
+import classes from './redesign.module.scss';
 
 export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
   const account = useAccount(accountId);

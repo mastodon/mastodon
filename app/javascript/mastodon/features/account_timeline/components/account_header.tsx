@@ -15,7 +15,6 @@ import { getAccountHidden } from 'mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { isRedesignEnabled } from '../common';
-import redesignClasses from '../redesign.module.scss';
 
 import { AccountName } from './account_name';
 import { AccountBadges } from './badges';
@@ -27,6 +26,7 @@ import { MemorialNote } from './memorial_note';
 import { MovedNote } from './moved_note';
 import { AccountNote as AccountNoteRedesign } from './note';
 import { AccountNumberFields } from './number_fields';
+import redesignClasses from './redesign.module.scss';
 import { AccountTabs } from './tabs';
 
 const titleFromAccount = (account: Account) => {

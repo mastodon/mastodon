@@ -13,7 +13,7 @@ import { useElementHandledLink } from '@/mastodon/components/status/handled_link
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import CloseIcon from '@/material-icons/400-24px/close.svg?react';
 
-import classes from '../redesign.module.scss';
+import classes from './redesign.module.scss';
 
 export const AccountFieldsModal: FC<{
   accountId: string;

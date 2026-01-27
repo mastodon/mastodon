@@ -11,7 +11,8 @@ import LockIcon from '@/material-icons/400-24px/lock.svg?react';
 
 import { DomainPill } from '../../account/components/domain_pill';
 import { isRedesignEnabled } from '../common';
-import classes from '../redesign.module.scss';
+
+import classes from './redesign.module.scss';
 
 export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
   const intl = useIntl();

@@ -15,7 +15,8 @@ import { ShortNumber } from '@/mastodon/components/short_number';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 
 import { isRedesignEnabled } from '../common';
-import classes from '../redesign.module.scss';
+
+import classes from './redesign.module.scss';
 
 export const AccountNumberFields: FC<{ accountId: string }> = ({
   accountId,

@@ -5,7 +5,8 @@ import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
 import { isRedesignEnabled } from '../common';
-import classes from '../redesign.module.scss';
+
+import classes from './redesign.module.scss';
 
 export const AccountTabs: FC<{ acct: string }> = ({ acct }) => {
   if (isRedesignEnabled()) {
