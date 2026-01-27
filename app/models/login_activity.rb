@@ -23,4 +23,17 @@ class LoginActivity < ApplicationRecord
   belongs_to :user
 
   validates :authentication_method, inclusion: { in: authentication_methods.keys }
+
+  before_validation :set_ip_address
+  before_validation :set_user_agent
+
+  private
+
+  def set_ip_address
+    self.ip ||= Current.ip_address
+  end
+
+  def set_user_agent
+    self.user_agent ||= Current.user_agent
+  end
 end
