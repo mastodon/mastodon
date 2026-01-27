@@ -4,7 +4,7 @@ module Account::Avatar
   extend ActiveSupport::Concern
 
   AVATAR_IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
-  AVATAR_LIMIT = Rails.configuration.x.use_vips ? 8.megabytes : 2.megabytes
+  AVATAR_LIMIT = 8.megabytes
   AVATAR_DIMENSIONS = [400, 400].freeze
   AVATAR_GEOMETRY = [AVATAR_DIMENSIONS.first, AVATAR_DIMENSIONS.last].join('x')
 

@@ -58,5 +58,5 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           zip: true
           storybookBuildDir: 'storybook-static'
-          exitZeroOnChanges: false # Fail workflow if changes are found
+          exitOnceUploaded: true # Exit immediately after upload
           autoAcceptChanges: 'main' # Auto-accept changes on main branch only

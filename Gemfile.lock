@@ -96,8 +96,8 @@ GEM
     ast (2.4.3)
     attr_required (1.0.2)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1201.0)
-    aws-sdk-core (3.241.3)
+    aws-partitions (1.1206.0)
+    aws-sdk-core (3.241.4)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -105,11 +105,11 @@ GEM
       bigdecimal
       jmespath (~> 1, >= 1.6.1)
       logger
-    aws-sdk-kms (1.120.0)
-      aws-sdk-core (~> 3, >= 3.241.3)
+    aws-sdk-kms (1.121.0)
+      aws-sdk-core (~> 3, >= 3.241.4)
       aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.211.0)
-      aws-sdk-core (~> 3, >= 3.241.3)
+    aws-sdk-s3 (1.212.0)
+      aws-sdk-core (~> 3, >= 3.241.4)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.5)
     aws-sigv4 (1.12.1)
@@ -193,9 +193,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-two-factor (6.2.0)
+    devise-two-factor (6.3.1)
       activesupport (>= 7.0, < 8.2)
-      devise (~> 4.0)
+      devise (>= 4.0, < 5.0)
       railties (>= 7.0, < 8.2)
       rotp (~> 6.0)
     devise_pam_authenticatable2 (9.2.0)
@@ -234,7 +234,7 @@ GEM
     excon (1.3.2)
       logger
     fabrication (3.0.0)
-    faker (3.5.3)
+    faker (3.6.0)
       i18n (>= 1.8.11, < 2)
     faraday (2.14.0)
       faraday-net_http (>= 2.0, < 3.5)
@@ -305,8 +305,8 @@ GEM
     highline (3.1.2)
       reline
     hiredis (0.6.3)
-    hiredis-client (0.26.3)
-      redis-client (= 0.26.3)
+    hiredis-client (0.26.4)
+      redis-client (= 0.26.4)
     hkdf (0.3.0)
     htmlentities (4.3.4)
     http (5.3.1)
@@ -700,7 +700,7 @@ GEM
       readline (~> 0.0)
     rdf-normalize (0.7.0)
       rdf (~> 3.3)
-    rdoc (7.0.3)
+    rdoc (7.1.0)
       erb
       psych (>= 4.0.0)
       tsort
@@ -708,7 +708,7 @@ GEM
       reline
     redcarpet (3.6.1)
     redis (4.8.1)
-    redis-client (0.26.3)
+    redis-client (0.26.4)
       connection_pool
     regexp_parser (2.11.3)
     reline (0.6.3)

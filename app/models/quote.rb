@@ -47,6 +47,8 @@ class Quote < ApplicationRecord
 
   def accept!
     update!(state: :accepted)
+
+    reset_parent_cache! if attribute_previously_changed?(:state)
   end
 
   def reject!
@@ -74,6 +76,15 @@ class Quote < ApplicationRecord
   end
 
   private
+
+  def reset_parent_cache!
+    return if status_id.nil?
+
+    Rails.cache.delete("v3:statuses/#{status_id}")
+
+    # This clears the web cache for the ActivityPub representation
+    Rails.cache.delete("statuses/show:v3:statuses/#{status_id}")
+  end
 
   def set_accounts
     self.account = status.account

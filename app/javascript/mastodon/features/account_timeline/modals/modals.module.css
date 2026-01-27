@@ -1,0 +1,21 @@
+.noteCallout {
+  margin-bottom: 16px;
+}
+
+.noteInput {
+  min-height: 70px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-primary);
+  appearance: none;
+  resize: none;
+  margin-top: 4px;
+}
+
+.noteInput:focus-visible {
+  outline: var(--outline-focus-default);
+  outline-offset: 2px;
+}

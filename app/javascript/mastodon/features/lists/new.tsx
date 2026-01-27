@@ -20,6 +20,7 @@ import { Avatar } from 'mastodon/components/avatar';
 import { AvatarGroup } from 'mastodon/components/avatar_group';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
+import { SelectField, TextInputField } from 'mastodon/components/form_fields';
 import { Icon } from 'mastodon/components/icon';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import type { List } from 'mastodon/models/list';
@@ -149,68 +150,49 @@ const NewList: React.FC<{ list?: List | null }> = ({ list }) => {
   return (
     <form className='simple_form app-form' onSubmit={handleSubmit}>
       <div className='fields-group'>
-        <div className='input with_label'>
-          <div className='label_input'>
-            <label htmlFor='list_title'>
-              <FormattedMessage
-                id='lists.list_name'
-                defaultMessage='List name'
-              />
-            </label>
-
-            <div className='label_input__wrapper'>
-              <input
-                id='list_title'
-                type='text'
-                value={title}
-                onChange={handleTitleChange}
-                maxLength={30}
-                required
-                placeholder=' '
-              />
-            </div>
-          </div>
-        </div>
+        <TextInputField
+          required
+          maxLength={30}
+          label={
+            <FormattedMessage id='lists.list_name' defaultMessage='List name' />
+          }
+          value={title}
+          onChange={handleTitleChange}
+          id='list_title'
+        />
       </div>
 
       <div className='fields-group'>
-        <div className='input with_label'>
-          <div className='label_input'>
-            <label htmlFor='list_replies_policy'>
-              <FormattedMessage
-                id='lists.show_replies_to'
-                defaultMessage='Include replies from list members to'
-              />
-            </label>
-
-            <div className='label_input__wrapper'>
-              <select
-                id='list_replies_policy'
-                value={repliesPolicy}
-                onChange={handleRepliesPolicyChange}
-              >
-                <FormattedMessage
-                  id='lists.replies_policy.none'
-                  defaultMessage='No one'
-                >
-                  {(msg) => <option value='none'>{msg}</option>}
-                </FormattedMessage>
-                <FormattedMessage
-                  id='lists.replies_policy.list'
-                  defaultMessage='Members of the list'
-                >
-                  {(msg) => <option value='list'>{msg}</option>}
-                </FormattedMessage>
-                <FormattedMessage
-                  id='lists.replies_policy.followed'
-                  defaultMessage='Any followed user'
-                >
-                  {(msg) => <option value='followed'>{msg}</option>}
-                </FormattedMessage>
-              </select>
-            </div>
-          </div>
-        </div>
+        <SelectField
+          label={
+            <FormattedMessage
+              id='lists.show_replies_to'
+              defaultMessage='Include replies from list members to'
+            />
+          }
+          value={repliesPolicy}
+          onChange={handleRepliesPolicyChange}
+          id='list_replies_policy'
+        >
+          <FormattedMessage
+            id='lists.replies_policy.none'
+            defaultMessage='No one'
+          >
+            {(msg) => <option value='none'>{msg}</option>}
+          </FormattedMessage>
+          <FormattedMessage
+            id='lists.replies_policy.list'
+            defaultMessage='Members of the list'
+          >
+            {(msg) => <option value='list'>{msg}</option>}
+          </FormattedMessage>
+          <FormattedMessage
+            id='lists.replies_policy.followed'
+            defaultMessage='Any followed user'
+          >
+            {(msg) => <option value='followed'>{msg}</option>}
+          </FormattedMessage>
+        </SelectField>
       </div>
 
       {id && (

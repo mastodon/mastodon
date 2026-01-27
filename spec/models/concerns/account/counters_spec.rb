@@ -21,6 +21,28 @@ RSpec.describe Account::Counters do
 
       expect(account.statuses_count).to eq increment_by
     end
+
+    it 'updates last_status_at when discovering a new post' do
+      status_created_at = Time.now.utc
+
+      expect { account.increment_count!(:statuses_count, status_created_at:) }
+        .to(change { account.reload.last_status_at })
+    end
+
+    it 'does not update last_status_at when discovering an older post' do
+      account_stat = Fabricate(
+        :account_stat,
+        account: account,
+        last_status_at: 1.day.ago.utc,
+        statuses_count: 10
+      )
+
+      status_created_at = 2.days.ago.utc
+
+      expect { account.increment_count!(:statuses_count, status_created_at:) }
+        .to change { account_stat.reload.statuses_count }
+        .and(not_change { account_stat.reload.last_status_at })
+    end
   end
 
   describe '#decrement_count!' do

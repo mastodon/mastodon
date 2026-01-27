@@ -266,6 +266,7 @@ sl:
         create_relay_html: "%{name} je ustvaril/a rele %{target}"
         create_unavailable_domain_html: "%{name} je prekinil/a dostavo v domeno %{target}"
         create_user_role_html: "%{name} je ustvaril/a vlogo %{target}"
+        create_username_block_html: "%{name} je dodal/a pravilo za uporabniška imena, ki vsebujejo %{target}"
         demote_user_html: "%{name} je ponižal/a uporabnika %{target}"
         destroy_announcement_html: "%{name} je izbrisal/a obvestilo %{target}"
         destroy_canonical_email_block_html: "%{name} je odstranil/a s črnega seznama e-pošto s ključnikom %{target}"
@@ -279,6 +280,7 @@ sl:
         destroy_status_html: "%{name} je odstranil/a objavo uporabnika %{target}"
         destroy_unavailable_domain_html: "%{name} je nadaljeval/a dostav v domeno %{target}"
         destroy_user_role_html: "%{name} je izbrisal/a vlogo %{target}"
+        destroy_username_block_html: "%{name} je odstranil/a pravilo za uporabniška imena, ki vsebujejo %{target}"
         disable_2fa_user_html: "%{name} je onemogočil/a dvofaktorsko zahtevo za uporabnika %{target}"
         disable_custom_emoji_html: "%{name} je onemogočil/a emotikone %{target}"
         disable_relay_html: "%{name} je onemogočil/a rele %{target}"
@@ -313,6 +315,7 @@ sl:
         update_report_html: "%{name} je posodobil poročilo %{target}"
         update_status_html: "%{name} je posodobil/a objavo uporabnika %{target}"
         update_user_role_html: "%{name} je spremenil/a vlogo %{target}"
+        update_username_block_html: "%{name} je posodobil/a pravilo za uporabniška imena, ki vsebujejo %{target}"
       deleted_account: izbrisan račun
       empty: Ni najdenih zapisnikov.
       filter_by_action: Filtriraj po dejanjih
@@ -869,6 +872,7 @@ sl:
           public: Vsi
       landing_page:
         values:
+          local_feed: Krajevni vir
           trends: Trendi
       registrations:
         moderation_recommandation: Preden prijave odprete za vse poskrbite, da imate v ekipi moderatorjev zadosti aktivnih članov.
@@ -931,6 +935,7 @@ sl:
       title: Objave računa - @%{name}
       trending: V trendu
       view_publicly: Prikaži javno
+      view_quoted_post: Pokaži citirano objavo
       visibility: Vidnost
       with_media: Z mediji
     strikes:
@@ -1333,8 +1338,11 @@ sl:
     prompt: Potrdite geslo za nadaljevanje
   color_scheme:
     auto: Samodejno
+    dark: Temno
+    light: Svetlo
   contrast:
     auto: Samodejno
+    high: Visoko
   crypto:
     errors:
       invalid_key: ni veljaven ključ Ed25519 ali Curve25519
@@ -1409,6 +1417,7 @@ sl:
     other: Drugo
   emoji_styles:
     auto: Samodejno
+    native: Domoroden
   errors:
     '400': Zahteva, ki ste jo oddali, je neveljavna ali nepravilno oblikovana.
     '403': Nimate dovoljenja za ogled te strani.
@@ -2236,4 +2245,5 @@ sl:
     otp_required: Za uporabo varnostnih ključev morate najprej omogočiti 2FA (dvostopenjsko overjanje).
     registered_on: Datum registracije %{date}
   wrapstodon:
+    description: Oglejte si, kako je %{name} letos uporabljal/a Mastodon!
     title: Wrapstodon %{year} za %{name}
