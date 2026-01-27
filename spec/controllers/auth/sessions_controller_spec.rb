@@ -107,6 +107,8 @@ RSpec.describe Auth::SessionsController do
         it 'redirects to home and logs the user in' do
           expect { subject }
             .to change(user.login_activities.where(success: true), :count).by(1)
+          expect(user.login_activities.last)
+            .to have_attributes(ip: IPAddr.new(request.env['REMOTE_ADDR']), user_agent: request.env['HTTP_USER_AGENT'])
 
           expect(response).to redirect_to(root_path)
 
