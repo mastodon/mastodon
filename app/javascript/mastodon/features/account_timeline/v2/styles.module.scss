@@ -18,7 +18,7 @@
 }
 
 .filterOverlay {
-  background: var(--color-bg-primary);
+  background: var(--color-bg-elevated);
   border-radius: 12px;
   box-shadow: var(--dropdown-shadow);
   min-width: 230px;
@@ -27,6 +27,7 @@
   align-items: stretch;
   row-gap: 16px;
   padding: 8px 12px;
+  z-index: 1;
 
   > label {
     cursor: pointer;

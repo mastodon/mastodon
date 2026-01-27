@@ -56,14 +56,17 @@ const FilterDropdown: FC = () => {
   );
 
   const accessibleId = useId();
+  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <>
+    <div ref={containerRef}>
       <button
         type='button'
         className={classes.filterSelectButton}
         ref={buttonRef}
         onClick={handleClick}
+        aria-expanded={open}
+        aria-controls={`${accessibleId}-wrapper`}
       >
         {boosts && replies && (
           <FormattedMessage
@@ -102,9 +105,14 @@ const FilterDropdown: FC = () => {
         placement='bottom-start'
         rootClose
         onHide={handleHide}
+        container={containerRef}
       >
         {({ props }) => (
-          <div {...props} className={classes.filterOverlay}>
+          <div
+            {...props}
+            id={`${accessibleId}-wrapper`}
+            className={classes.filterOverlay}
+          >
             <label htmlFor={`${accessibleId}-replies`}>
               <FormattedMessage
                 id='account.filters.replies_toggle'
@@ -133,6 +141,6 @@ const FilterDropdown: FC = () => {
           </div>
         )}
       </Overlay>
-    </>
+    </div>
   );
 };
