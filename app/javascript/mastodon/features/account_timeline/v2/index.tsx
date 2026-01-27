@@ -5,6 +5,8 @@ import { FormattedMessage } from 'react-intl';
 
 import { useParams } from 'react-router';
 
+import { List as ImmutableList } from 'immutable';
+
 import {
   expandTimelineByKey,
   timelineKey,
@@ -26,6 +28,8 @@ import { LimitedAccountHint } from '../components/limited_account_hint';
 
 import { FilterContext } from './context';
 import { AccountFilters } from './filters';
+
+const emptyList = ImmutableList<string>();
 
 const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const accountId = useAccountId();
@@ -107,9 +111,11 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
           scrollKey='account_timeline'
           // We want to have this component when timeline is undefined (loading),
           // because if we don't the prepended component will re-render with every filter change.
-          statusIds={forceEmptyState ? [] : (timeline?.items ?? [])}
-          isLoading={timeline?.isLoading ?? true}
-          hasMore={!forceEmptyState && timeline?.hasMore}
+          statusIds={
+            forceEmptyState ? emptyList : (timeline?.items ?? emptyList)
+          }
+          isLoading={!!timeline?.isLoading}
+          hasMore={!forceEmptyState && !!timeline?.hasMore}
           onLoadMore={handleLoadMore}
           emptyMessage={<EmptyMessage accountId={accountId} />}
           bindToDocument={!multiColumn}
