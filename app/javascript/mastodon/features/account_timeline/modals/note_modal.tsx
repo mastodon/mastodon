@@ -57,15 +57,13 @@ export const AccountNoteModal: FC<{
   const initialContents = relationship?.note ?? '';
   const [note, setNote] = useState(initialContents);
   const [errorText, setErrorText] = useState('');
-  const [state, setState] = useState<'idle' | 'dirty' | 'saving' | 'error'>(
-    'idle',
-  );
+  const [state, setState] = useState<'idle' | 'saving' | 'error'>('idle');
+  const isDirty = note !== initialContents;
 
   const handleChange: ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (e) => {
       if (state !== 'saving') {
         setNote(e.target.value);
-        setState('dirty');
       }
     },
     [state],
@@ -74,7 +72,7 @@ export const AccountNoteModal: FC<{
   // Create an abort controller to cancel the request if the modal is closed.
   const abortController = useRef(new AbortController());
   const handleSave = useCallback(() => {
-    if (state === 'saving' || state === 'idle') {
+    if (state === 'saving' || !isDirty) {
       return;
     }
     setState('saving');
@@ -96,7 +94,7 @@ export const AccountNoteModal: FC<{
           setErrorText(intl.formatMessage(messages.errorUnknown));
         }
       });
-  }, [accountId, dispatch, intl, note, onClose, state]);
+  }, [accountId, dispatch, intl, isDirty, note, onClose, state]);
 
   const handleCancel = useCallback(() => {
     abortController.current.abort();
@@ -125,6 +123,8 @@ export const AccountNoteModal: FC<{
             className={classes.noteInput}
             hasError={state === 'error'}
             hint={errorText}
+            // eslint-disable-next-line jsx-a11y/no-autofocus -- We want to focus here as it's a modal.
+            autoFocus
           />
         </>
       }
@@ -132,7 +132,9 @@ export const AccountNoteModal: FC<{
       confirm={intl.formatMessage(messages.save)}
       onConfirm={handleSave}
       updating={state === 'saving'}
+      disabled={!isDirty}
       closeWhenConfirm={false}
+      noFocusButton
     />
   );
 };

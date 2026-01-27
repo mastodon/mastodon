@@ -21,6 +21,7 @@ export const ConfirmationModal: React.FC<
     extraContent?: React.ReactNode;
     updating?: boolean;
     disabled?: boolean;
+    noFocusButton?: boolean;
   } & BaseConfirmationModalProps
 > = ({
   title,
@@ -35,6 +36,7 @@ export const ConfirmationModal: React.FC<
   extraContent,
   updating,
   disabled,
+  noFocusButton = false,
 }) => {
   const handleClick = useCallback(() => {
     if (closeWhenConfirm) {
@@ -90,7 +92,7 @@ export const ConfirmationModal: React.FC<
             onClick={handleClick}
             loading={updating}
             disabled={disabled}
-            autoFocus
+            autoFocus={!noFocusButton}
           >
             {confirm}
           </Button>
