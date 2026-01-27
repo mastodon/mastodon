@@ -45,7 +45,9 @@ RSpec.describe FanOutOnWriteService do
     let(:visibility) { 'public' }
 
     it 'adds status to home feed of author and followers and broadcasts', :inline_jobs do
-      subject.call(status)
+      expect { subject.call(status) }
+        .to change(bob.notifications, :count).by(1)
+        .and change(eve.notifications, :count).by(1)
 
       expect(status.id)
         .to be_in(home_feed_of(alice))
@@ -57,6 +59,14 @@ RSpec.describe FanOutOnWriteService do
       expect(redis).to have_received(:publish).with('timeline:public', anything)
       expect(redis).to have_received(:publish).with('timeline:public:local', anything)
       expect(redis).to have_received(:publish).with('timeline:public:media', anything)
+    end
+
+    context 'with silenced_account_ids' do
+      it 'calls LocalNotificationWorker with the expected arguments' do
+        expect { subject.call(status, silenced_account_ids: [eve.id]) }
+          .to enqueue_sidekiq_job(LocalNotificationWorker).with(bob.id, anything, 'Mention', 'mention')
+          .and enqueue_sidekiq_job(LocalNotificationWorker).with(eve.id, anything, 'Mention', 'mention', { 'silenced' => true })
+      end
     end
   end
 
