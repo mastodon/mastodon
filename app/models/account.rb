@@ -9,6 +9,7 @@
 #  also_known_as                 :string           is an Array
 #  attribution_domains           :string           default([]), is an Array
 #  avatar_content_type           :string
+#  avatar_description            :string           default(""), not null
 #  avatar_file_name              :string
 #  avatar_file_size              :integer
 #  avatar_remote_url             :string
