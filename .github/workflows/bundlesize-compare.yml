@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      ANALYZE_BUNDLE_SIZE: '1'
     steps:
       - uses: actions/checkout@v5
         with:
@@ -20,19 +22,22 @@ jobs:
         uses: ./.github/actions/setup-javascript
 
       - name: Build
-        run: ANALYZE_BUNDLE_SIZE=1 yarn run build:production
+        run: yarn run build:production
 
       - name: Upload stats.json
         uses: actions/upload-artifact@v5
         with:
           name: head-stats
           path: ./stats.json
+          if-no-files-found: error
 
   build-base:
     name: 'Build base'
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      ANALYZE_BUNDLE_SIZE: '1'
     steps:
       - uses: actions/checkout@v5
         with:
@@ -42,13 +47,14 @@ jobs:
         uses: ./.github/actions/setup-javascript
 
       - name: Build
-        run: ANALYZE_BUNDLE_SIZE=1 yarn run build:production
+        run: yarn run build:production
 
       - name: Upload stats.json
         uses: actions/upload-artifact@v5
         with:
           name: base-stats
           path: ./stats.json
+          if-no-files-found: error
 
   compare:
     name: 'Compare base & head bundle sizes'
@@ -57,7 +63,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v5
 
       - uses: twk3/rollup-size-compare-action@v1.0.0
         with:
