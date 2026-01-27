@@ -25,6 +25,7 @@ import { mockHandlers, unhandledRequestHandler } from '@/testing/api';
 // you can change the below to `/application.scss`
 import '../app/javascript/styles/mastodon-light.scss';
 import './styles.css';
+import { modes } from './modes';
 
 const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
   query: { as: 'json' },
@@ -197,6 +198,13 @@ const preview: Preview = {
 
     msw: {
       handlers: mockHandlers,
+    },
+
+    chromatic: {
+      modes: {
+        dark: modes.darkTheme,
+        light: modes.lightTheme,
+      },
     },
   },
 };

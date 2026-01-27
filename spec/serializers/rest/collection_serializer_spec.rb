@@ -28,7 +28,7 @@ RSpec.describe REST::CollectionSerializer do
   it 'includes the relevant attributes' do
     expect(subject)
       .to include(
-        'account' => an_instance_of(Hash),
+        'account_id' => collection.account_id.to_s,
         'id' => '2342',
         'name' => 'Exquisite follows',
         'description' => 'Always worth a follow',
@@ -38,7 +38,9 @@ RSpec.describe REST::CollectionSerializer do
         'discoverable' => false,
         'tag' => a_hash_including('name' => 'discovery'),
         'created_at' => match_api_datetime_format,
-        'updated_at' => match_api_datetime_format
+        'updated_at' => match_api_datetime_format,
+        'item_count' => 0,
+        'items' => []
       )
   end
 end

@@ -52,8 +52,8 @@ Mastodon requires all `POST` requests to be signed, and MAY require `GET` reques
 ## Size limits
 
 Mastodon imposes a few hard limits on federated content.
-These limits are intended to be very generous and way above what the Mastodon user experience is optimized for, so as to accomodate future changes and unusual or unforeseen usage patterns, while still providing some limits for performance reasons.
-The following table attempts to summary those limits.
+These limits are intended to be very generous and way above what the Mastodon user experience is optimized for, so as to accommodate future changes and unusual or unforeseen usage patterns, while still providing some limits for performance reasons.
+The following table summarizes those limits.
 
 | Limited property                                              | Size limit | Consequence of exceeding the limit |
 | ------------------------------------------------------------- | ---------- | ---------------------------------- |

@@ -8,10 +8,17 @@ class CreateCollectionService
     build_items
 
     @collection.save!
+
+    distribute_add_activity if Mastodon::Feature.collections_federation_enabled?
+
     @collection
   end
 
   private
+
+  def distribute_add_activity
+    ActivityPub::AccountRawDistributionWorker.perform_async(activity_json, @account.id)
+  end
 
   def build_items
     return if @accounts_to_add.empty?
@@ -22,5 +29,9 @@ class CreateCollectionService
 
       @collection.collection_items.build(account: account_to_add)
     end
+  end
+
+  def activity_json
+    ActiveModelSerializers::SerializableResource.new(@collection, serializer: ActivityPub::AddSerializer, adapter: ActivityPub::Adapter).to_json
   end
 end

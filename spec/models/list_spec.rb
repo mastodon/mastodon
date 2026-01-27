@@ -6,6 +6,7 @@ RSpec.describe List do
   describe 'Validations' do
     subject { Fabricate.build :list }
 
+    it { is_expected.to validate_length_of(:title).is_at_most(described_class::TITLE_LENGTH_LIMIT) }
     it { is_expected.to validate_presence_of(:title) }
 
     context 'when account has hit max list limit' do

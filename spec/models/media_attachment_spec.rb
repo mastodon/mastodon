@@ -219,9 +219,7 @@ RSpec.describe MediaAttachment, :attachment_processing do
   describe 'ogg with cover art' do
     let(:media) { Fabricate(:media_attachment, file: attachment_fixture('boop.ogg')) }
     let(:expected_media_duration) { 0.235102 }
-
-    # The libvips and ImageMagick implementations produce different results
-    let(:expected_background_color) { Rails.configuration.x.use_vips ? '#268cd9' : '#3088d4' }
+    let(:expected_background_color) { '#268cd9' }
 
     it 'sets correct file metadata' do
       expect(media)

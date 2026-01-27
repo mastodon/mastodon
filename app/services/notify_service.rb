@@ -30,12 +30,13 @@ class NotifyService < BaseService
       annual_report
     ).freeze
 
-    def initialize(notification)
+    def initialize(notification, **options)
       @recipient = notification.account
       @sender = notification.from_account
       @notification = notification
       @policy = NotificationPolicy.find_or_initialize_by(account: @recipient)
       @from_staff = @sender.local? && @sender.user.present? && @sender.user_role&.bypass_block?(@recipient.user_role)
+      @options = options
     end
 
     private
@@ -164,7 +165,7 @@ class NotifyService < BaseService
     end
 
     def blocked_by_limited_accounts_policy?
-      @policy.drop_limited_accounts? && @sender.silenced? && not_following?
+      @policy.drop_limited_accounts? && (@options[:silenced] || @sender.silenced?) && not_following?
     end
   end
 
@@ -200,13 +201,14 @@ class NotifyService < BaseService
     end
 
     def filtered_by_limited_accounts_policy?
-      @policy.filter_limited_accounts? && @sender.silenced? && not_following?
+      @policy.filter_limited_accounts? && (@options[:silenced] || @sender.silenced?) && not_following?
     end
   end
 
-  def call(recipient, type, activity)
+  def call(recipient, type, activity, **options)
     return if recipient.user.nil?
 
+    @options      = options
     @recipient    = recipient
     @activity     = activity
     @notification = Notification.new(account: @recipient, type: type, activity: @activity)
@@ -236,11 +238,11 @@ class NotifyService < BaseService
   private
 
   def drop?
-    DropCondition.new(@notification).drop?
+    DropCondition.new(@notification, silenced: @options[:silenced]).drop?
   end
 
   def filter?
-    FilterCondition.new(@notification).filter?
+    FilterCondition.new(@notification, silenced: @options[:silenced]).filter?
   end
 
   def update_notification_request!

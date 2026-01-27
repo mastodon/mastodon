@@ -9,6 +9,7 @@ module Account::Associations
       # Association where account owns record
       with_options inverse_of: :account do
         has_many :account_moderation_notes
+        has_many :account_notes
         has_many :account_pins
         has_many :account_warnings
         has_many :aliases, class_name: 'AccountAlias'
@@ -45,6 +46,7 @@ module Account::Associations
       # Association where account is targeted by record
       with_options foreign_key: :target_account_id, inverse_of: :target_account do
         has_many :strikes, class_name: 'AccountWarning'
+        has_many :targeted_account_notes, class_name: 'AccountNote'
         has_many :targeted_moderation_notes, class_name: 'AccountModerationNote'
         has_many :targeted_reports, class_name: 'Report'
       end
