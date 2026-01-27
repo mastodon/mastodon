@@ -41,9 +41,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user.login_activities.create(
       success: true,
       authentication_method: :omniauth,
-      provider: @provider,
-      ip: request.remote_ip,
-      user_agent: request.user_agent
+      provider: @provider
     )
   end
 
