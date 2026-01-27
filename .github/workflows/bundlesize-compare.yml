@@ -4,6 +4,8 @@ on:
     paths:
       - 'app/javascript/**'
       - 'vite.config.mts'
+      - 'package.json'
+      - 'yarn.lock'
       - .github/workflows/bundlesize-compare.yml
 
 jobs:
