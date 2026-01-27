@@ -32,3 +32,15 @@ export const Editable: Story = {
     return <EditableTag {...args} onRemove={action('Remove')} />;
   },
 };
+
+export const EditableWithIcon: Story = {
+  render(args) {
+    return (
+      <EditableTag
+        {...args}
+        removeIcon={MusicNoteIcon}
+        onRemove={action('Remove')}
+      />
+    );
+  },
+};

@@ -13,59 +13,82 @@ import { IconButton } from '../icon_button';
 
 import classes from './style.module.css';
 
-type TagProps = {
+export interface TagProps {
   name: ReactNode;
   active?: boolean;
   icon?: IconProp;
-} & ComponentPropsWithoutRef<'button'>;
+  className?: string;
+  children?: ReactNode;
+}
 
-export const Tag = forwardRef<HTMLButtonElement, TagProps>(
-  ({ name, active, icon, className, ...props }, ref) => {
-    if (!name) {
-      return null;
-    }
-    return (
-      <button
-        {...props}
-        type='button'
-        ref={ref}
-        className={classNames(className, classes.tag, active && classes.active)}
-      >
-        {icon && <Icon icon={icon} id='tag-icon' className={classes.icon} />}
-        {typeof name === 'string' ? `#${name}` : name}
-      </button>
-    );
-  },
-);
-Tag.displayName = 'Tag';
-
-export const EditableTag = forwardRef<
-  HTMLSpanElement,
-  TagProps & { onRemove: () => void }
->(({ name, active, icon, className, ...props }, ref) => {
-  const intl = useIntl();
-
+export const Tag = forwardRef<
+  HTMLButtonElement,
+  TagProps & ComponentPropsWithoutRef<'button'>
+>(({ name, active, icon, className, children, ...props }, ref) => {
   if (!name) {
     return null;
   }
   return (
-    <span
+    <button
       {...props}
+      type='button'
       ref={ref}
       className={classNames(className, classes.tag, active && classes.active)}
     >
       {icon && <Icon icon={icon} id='tag-icon' className={classes.icon} />}
       {typeof name === 'string' ? `#${name}` : name}
-      <IconButton
-        className={classes.closeButton}
-        iconComponent={CloseIcon}
-        icon='remove'
-        title={intl.formatMessage({
-          id: 'tag.remove',
-          defaultMessage: 'Remove',
-        })}
-      />
-    </span>
+      {children}
+    </button>
   );
 });
+Tag.displayName = 'Tag';
+
+export const EditableTag = forwardRef<
+  HTMLSpanElement,
+  TagProps & {
+    onRemove: () => void;
+    removeIcon?: IconProp;
+  } & ComponentPropsWithoutRef<'span'>
+>(
+  (
+    {
+      name,
+      active,
+      icon,
+      className,
+      children,
+      removeIcon = CloseIcon,
+      onRemove,
+      ...props
+    },
+    ref,
+  ) => {
+    const intl = useIntl();
+
+    if (!name) {
+      return null;
+    }
+    return (
+      <span
+        {...props}
+        ref={ref}
+        className={classNames(className, classes.tag, active && classes.active)}
+      >
+        {icon && <Icon icon={icon} id='tag-icon' className={classes.icon} />}
+        {typeof name === 'string' ? `#${name}` : name}
+        {children}
+        <IconButton
+          className={classes.closeButton}
+          iconComponent={removeIcon}
+          onClick={onRemove}
+          icon='remove'
+          title={intl.formatMessage({
+            id: 'tag.remove',
+            defaultMessage: 'Remove',
+          })}
+        />
+      </span>
+    );
+  },
+);
 EditableTag.displayName = 'EditableTag';

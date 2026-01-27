@@ -22,7 +22,7 @@ button.tag:focus-visible {
 }
 
 .active {
-  border-color: var(--color-bg-brand-base);
+  border-color: var(--color-text-brand);
   background: var(--color-bg-brand-softer);
   color: var(--color-text-brand);
 }
@@ -41,4 +41,10 @@ button.tag:focus-visible {
 
 .active .closeButton {
   color: inherit;
+}
+
+.tagsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
