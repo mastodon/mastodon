@@ -6,6 +6,7 @@ import {
   apiGetAccountCollections,
   apiUpdateCollection,
   apiGetCollection,
+  apiDeleteCollection,
 } from '@/mastodon/api/collections';
 import type {
   ApiCollectionJSON,
@@ -21,7 +22,7 @@ type QueryStatus = 'idle' | 'loading' | 'error';
 
 interface CollectionState {
   // Collections mapped by collection id
-  collections: Record<string, ApiCollectionJSON>;
+  collections: Map<string, ApiCollectionJSON>;
   // Lists of collection ids mapped by account id
   accountCollections: Record<
     string,
@@ -33,7 +34,7 @@ interface CollectionState {
 }
 
 const initialState: CollectionState = {
-  collections: {},
+  collections: new Map(),
   accountCollections: {},
 };
 
@@ -62,21 +63,20 @@ const collectionSlice = createSlice({
       };
     });
 
-    builder.addCase(fetchAccountCollections.fulfilled, (state, actions) => {
-      const { collections } = actions.payload;
+    builder.addCase(fetchAccountCollections.fulfilled, (state, action) => {
+      const { collections } = action.payload;
 
-      const collectionsMap: Record<string, ApiCollectionJSON> =
-        state.collections;
+      const collectionsMap: Map<string, ApiCollectionJSON> = state.collections;
       const collectionIds: string[] = [];
 
       collections.forEach((collection) => {
         const { id } = collection;
-        collectionsMap[id] = collection;
+        collectionsMap.set(id, collection);
         collectionIds.push(id);
       });
 
       state.collections = collectionsMap;
-      state.accountCollections[actions.meta.arg.accountId] = {
+      state.accountCollections[action.meta.arg.accountId] = {
         collectionIds,
         status: 'idle',
       };
@@ -86,18 +86,27 @@ const collectionSlice = createSlice({
      * Fetching a single collection
      */
 
-    builder.addCase(fetchCollection.fulfilled, (state, actions) => {
-      const { collection } = actions.payload;
-      state.collections[collection.id] = collection;
+    builder.addCase(fetchCollection.fulfilled, (state, action) => {
+      const { collection } = action.payload;
+      state.collections.set(collection.id, collection);
     });
 
     /**
      * Updating a collection
      */
 
-    builder.addCase(updateCollection.fulfilled, (state, actions) => {
-      const { collection } = actions.payload;
-      state.collections[collection.id] = collection;
+    builder.addCase(updateCollection.fulfilled, (state, action) => {
+      const { collection } = action.payload;
+      state.collections.set(collection.id, collection);
+    });
+
+    /**
+     * Deleting a collection
+     */
+
+    builder.addCase(deleteCollection.fulfilled, (state, action) => {
+      const { collectionId } = action.meta.arg;
+      state.collections.delete(collectionId);
     });
 
     /**
@@ -107,7 +116,8 @@ const collectionSlice = createSlice({
     builder.addCase(createCollection.fulfilled, (state, actions) => {
       const { collection } = actions.payload;
 
-      state.collections[collection.id] = collection;
+      state.collections.set(collection.id, collection);
+
       if (state.accountCollections[collection.account_id]) {
         state.accountCollections[collection.account_id]?.collectionIds.unshift(
           collection.id,
@@ -151,6 +161,12 @@ export const updateCollection = createDataLoadingThunk(
     apiUpdateCollection(payload),
 );
 
+export const deleteCollection = createDataLoadingThunk(
+  `${collectionSlice.name}/deleteCollection`,
+  ({ collectionId }: { collectionId: string }) =>
+    apiDeleteCollection(collectionId),
+);
+
 export const collections = collectionSlice.reducer;
 
 /**
@@ -168,7 +184,7 @@ export const selectMyCollections = createAppSelector(
     (state) => state.collections.accountCollections,
     (state) => state.collections.collections,
   ],
-  (me, collectionsByAccountId, collectionsById) => {
+  (me, collectionsByAccountId, collectionsMap) => {
     const myCollectionsQuery = collectionsByAccountId[me];
 
     if (!myCollectionsQuery) {
@@ -183,7 +199,7 @@ export const selectMyCollections = createAppSelector(
     return {
       status,
       collections: collectionIds
-        .map((id) => collectionsById[id])
+        .map((id) => collectionsMap.get(id))
         .filter((c) => !!c),
     } satisfies AccountCollectionQuery;
   },

@@ -232,7 +232,7 @@ export const CollectionEditorPage: React.FC<{
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id?: string }>();
   const collection = useAppSelector((state) =>
-    id ? state.collections.collections[id] : undefined,
+    id ? state.collections.collections.get(id) : undefined,
   );
   const isEditMode = !!id;
   const isLoading = isEditMode && !collection;
