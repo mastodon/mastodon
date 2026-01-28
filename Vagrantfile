@@ -115,7 +115,7 @@ gem install bundler foreman
 bundle install
 
 # Install node modules
-sudo corepack enable
+sudo npm i -g corepack
 corepack prepare
 yarn install
 
