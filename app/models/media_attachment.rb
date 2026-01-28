@@ -214,6 +214,14 @@ class MediaAttachment < ApplicationRecord
   scope :remote, -> { where.not(remote_url: '') }
   scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
   scope :updated_before, ->(value) { where(arel_table[:updated_at].lt(value)) }
+  scope :without_local_interaction, lambda {
+    where.not(Favourite.joins(:account).merge(Account.local).where(Favourite.arel_table[:status_id].eq(MediaAttachment.arel_table[:status_id])).select(1).arel.exists)
+         .where.not(Bookmark.where(Bookmark.arel_table[:status_id].eq(MediaAttachment.arel_table[:status_id])).select(1).arel.exists)
+         .where.not(Status.local.where(Status.arel_table[:in_reply_to_id].eq(MediaAttachment.arel_table[:status_id])).select(1).arel.exists)
+         .where.not(Status.local.where(Status.arel_table[:reblog_of_id].eq(MediaAttachment.arel_table[:status_id])).select(1).arel.exists)
+         .where.not(Quote.joins(:status).merge(Status.local).where(Quote.arel_table[:quoted_status_id].eq(MediaAttachment.arel_table[:status_id])).select(1).arel.exists)
+         .where.not(Quote.joins(:quoted_status).merge(Status.local).where(Quote.arel_table[:status_id].eq(MediaAttachment.arel_table[:status_id])).select(1).arel.exists)
+  }
 
   attr_accessor :skip_download
 
