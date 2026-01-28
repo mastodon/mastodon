@@ -142,14 +142,18 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def set_fetchable_attributes!
     begin
-      @account.avatar_remote_url = image_url('icon') || '' unless skip_download?
+      avatar_url, avatar_description = image_url_and_description('icon')
+      @account.avatar_remote_url = avatar_url || '' unless skip_download?
       @account.avatar = nil if @account.avatar_remote_url.blank?
+      @account.avatar_description = avatar_description || ''
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadAvatarWorker.perform_in(rand(30..600).seconds, @account.id)
     end
     begin
-      @account.header_remote_url = image_url('image') || '' unless skip_download?
+      header_url, header_description = image_url_and_description('image')
+      @account.header_remote_url = header_url || '' unless skip_download?
       @account.header = nil if @account.header_remote_url.blank?
+      @account.header_description = header_description || ''
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadHeaderWorker.perform_in(rand(30..600).seconds, @account.id)
     end
@@ -214,7 +218,7 @@ class ActivityPub::ProcessAccountService < BaseService
     end
   end
 
-  def image_url(key)
+  def image_url_and_description(key)
     value = first_of_value(@json[key])
 
     return if value.nil?
@@ -224,9 +228,21 @@ class ActivityPub::ProcessAccountService < BaseService
       return if value.nil?
     end
 
-    value = first_of_value(value['url']) if value.is_a?(Hash) && value['type'] == 'Image'
-    value = value['href'] if value.is_a?(Hash)
-    value if value.is_a?(String)
+    if value.is_a?(Hash) && value['type'] == 'Image'
+      url = first_of_value(value['url'])
+      url = url['href'] if url.is_a?(Hash)
+      description = value['summary'].presence || value['name'].presence
+      description = description.strip[0...MediaAttachment::MAX_DESCRIPTION_LENGTH] if description.present?
+    else
+      url = value
+    end
+
+    url = url['href'] if url.is_a?(Hash)
+
+    url = nil unless url.is_a?(String)
+    description = nil unless description.is_a?(String)
+
+    [url, description]
   end
 
   def public_key

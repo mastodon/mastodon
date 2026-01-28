@@ -25,6 +25,8 @@ module Account::Header
     validates_attachment_content_type :header, content_type: HEADER_IMAGE_MIME_TYPES
     validates_attachment_size :header, less_than: HEADER_LIMIT
     remotable_attachment :header, HEADER_LIMIT, suppress_errors: false
+
+    validates :header_description, length: { maximum: MediaAttachment::MAX_DESCRIPTION_LENGTH }
   end
 
   def header_original_url
