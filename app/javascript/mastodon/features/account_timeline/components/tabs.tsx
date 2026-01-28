@@ -1,7 +1,9 @@
+import { useCallback } from 'react';
 import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import type { NavLinkProps } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 import { isRedesignEnabled } from '../common';
@@ -9,10 +11,19 @@ import { isRedesignEnabled } from '../common';
 import classes from './redesign.module.scss';
 
 export const AccountTabs: FC<{ acct: string }> = ({ acct }) => {
+  const handleIsActive: Required<NavLinkProps>['isActive'] = useCallback(
+    (match, location) => {
+      return (
+        match?.url === location.pathname ||
+        (!!match?.url && location.pathname.startsWith(`${match.url}/tagged/`))
+      );
+    },
+    [],
+  );
   if (isRedesignEnabled()) {
     return (
       <div className={classes.tabs}>
-        <NavLink exact to={`/@${acct}`}>
+        <NavLink isActive={handleIsActive} to={`/@${acct}`}>
           <FormattedMessage id='account.activity' defaultMessage='Activity' />
         </NavLink>
         <NavLink exact to={`/@${acct}/media`}>
