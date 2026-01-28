@@ -7,15 +7,18 @@ import { useParams, useHistory } from 'react-router-dom';
 
 import { isFulfilled } from '@reduxjs/toolkit';
 
-import type { ApiCollectionJSON } from '@/mastodon/api_types/collections';
-import { Button } from '@/mastodon/components/button';
-import { TextAreaField, ToggleField } from '@/mastodon/components/form_fields';
-import { createCollection } from '@/mastodon/reducers/slices/collections';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
+import type {
+  ApiCollectionJSON,
+  ApiCreateCollectionPayload,
+} from 'mastodon/api_types/collections';
+import { Button } from 'mastodon/components/button';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
+import { TextAreaField, ToggleField } from 'mastodon/components/form_fields';
 import { TextInputField } from 'mastodon/components/form_fields/text_input_field';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
+import { createCollection } from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 const messages = defineMessages({
@@ -36,14 +39,14 @@ const CollectionSettings: React.FC<{
     id,
     name: initialName = '',
     description: initialDescription = '',
-    topic: initialTopic,
+    tag,
     discoverable: initialDiscoverable = true,
     sensitive: initialSensitive = false,
   } = collection ?? {};
 
   const [name, setName] = useState(initialName);
   const [description, setDescription] = useState(initialDescription);
-  const [topic, setTopic] = useState(initialTopic?.name ?? '');
+  const [topic, setTopic] = useState(tag?.name ?? '');
   const [discoverable] = useState(initialDiscoverable);
   const [sensitive, setSensitive] = useState(initialSensitive);
 
@@ -75,48 +78,49 @@ const CollectionSettings: React.FC<{
     [],
   );
 
-  const handleSubmit = useCallback(() => {
-    if (id) {
-      // void dispatch(
-      //   updateList({
-      //     id,
-      //     title,
-      //     exclusive,
-      //     replies_policy: repliesPolicy,
-      //   }),
-      // ).then(() => {
-      //   return '';
-      // });
-    } else {
-      void dispatch(
-        createCollection({
-          payload: {
-            name,
-            description,
-            tag_name: topic,
-            discoverable,
-            sensitive,
-          },
-        }),
-      ).then((result) => {
-        if (isFulfilled(result)) {
-          history.replace(`/collections/${result.payload.collection.id}/edit`);
-          history.push(`/collections/${result.payload.collection.id}/members`);
-        }
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
 
-        return '';
-      });
-    }
-  }, [
-    id,
-    dispatch,
-    name,
-    description,
-    topic,
-    discoverable,
-    sensitive,
-    history,
-  ]);
+      if (id) {
+        // void dispatch(
+        //   updateList({
+        //     id,
+        //     title,
+        //     exclusive,
+        //     replies_policy: repliesPolicy,
+        //   }),
+        // ).then(() => {
+        //   return '';
+        // });
+      } else {
+        const payload: ApiCreateCollectionPayload = {
+          name,
+          description,
+          discoverable,
+          sensitive,
+        };
+        if (topic) {
+          payload.tag_name = topic;
+        }
+        void dispatch(
+          createCollection({
+            payload,
+          }),
+        ).then((result) => {
+          if (isFulfilled(result)) {
+            history.replace(
+              `/collections/${result.payload.collection.id}/edit`,
+            );
+            history.push(`/collections`);
+          }
+
+          return '';
+        });
+      }
+    },
+    [id, dispatch, name, description, topic, discoverable, sensitive, history],
+  );
 
   return (
     <form className='simple_form app-form' onSubmit={handleSubmit}>

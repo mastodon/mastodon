@@ -17,7 +17,7 @@ export interface ApiCollectionJSON {
 
   name: string;
   description: string;
-  topic?: ApiTagJSON;
+  tag?: ApiTagJSON;
   language: string;
   sensitive: boolean;
   discoverable: boolean;
