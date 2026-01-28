@@ -204,7 +204,7 @@ const CollectionSettings: React.FC<{
           hint={
             <FormattedMessage
               id='collections.mark_as_sensitive_hint'
-              defaultMessage="Hides the collection's description and accounts behind a content warning. The title will still be visible."
+              defaultMessage="Hides the collection's description and accounts behind a content warning. The collection name will still be visible."
             />
           }
           checked={sensitive}
