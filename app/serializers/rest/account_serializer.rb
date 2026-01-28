@@ -82,12 +82,20 @@ class REST::AccountSerializer < ActiveModel::Serializer
     full_asset_url(object.unavailable? ? object.avatar.default_url : object.avatar_static_url)
   end
 
+  def avatar_description
+    object.unavailable? ? '' : object.avatar_description
+  end
+
   def header
     full_asset_url(object.unavailable? ? object.header.default_url : object.header_original_url)
   end
 
   def header_static
     full_asset_url(object.unavailable? ? object.header.default_url : object.header_static_url)
+  end
+
+  def header_description
+    object.unavailable? ? '' : object.header_description
   end
 
   def created_at
