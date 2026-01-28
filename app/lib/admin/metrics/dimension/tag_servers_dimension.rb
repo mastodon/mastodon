@@ -22,7 +22,7 @@ class Admin::Metrics::Dimension::TagServersDimension < Admin::Metrics::Dimension
   end
 
   def sql_query_string
-    <<-SQL.squish
+    <<~SQL.squish
       SELECT accounts.domain, count(*) AS value
       FROM statuses
       INNER JOIN accounts ON accounts.id = statuses.account_id
