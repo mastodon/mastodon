@@ -37,7 +37,7 @@
 }
 
 .tagsWrapper {
-  padding: 0 24px 8px;
+  margin: 0 24px 8px;
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;
@@ -45,15 +45,15 @@
 }
 
 .tagsList {
+  display: flex;
+  gap: 4px;
   flex-wrap: nowrap;
   overflow: hidden;
   position: relative;
-  flex-shrink: 0;
 }
 
 .tagsListShowAll {
   flex-wrap: wrap;
   overflow: visible;
   max-width: none !important;
-  flex-shrink: 1;
 }

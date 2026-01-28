@@ -4,34 +4,24 @@ import type { FC, MouseEventHandler } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
+import { useParams } from 'react-router';
 
 import { fetchFeaturedTags } from '@/mastodon/actions/featured_tags';
+import { useAppHistory } from '@/mastodon/components/router';
 import { Tag } from '@/mastodon/components/tags/tag';
-import { Tags } from '@/mastodon/components/tags/tags';
 import { useOverflow } from '@/mastodon/hooks/useOverflow';
 import { selectAccountFeaturedTags } from '@/mastodon/selectors/accounts';
-import {
-  createAppSelector,
-  useAppDispatch,
-  useAppSelector,
-} from '@/mastodon/store';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+
+import { useFilters } from '../hooks/useFilters';
 
 import classes from './styles.module.scss';
 
-const selectFeaturedTags = createAppSelector(
-  [
-    (state, accountId: string) => selectAccountFeaturedTags(state, accountId),
-    (_, _accountId: string, hiddenIndex: number) => hiddenIndex,
-  ],
-  (tags, hiddenIndex) =>
-    tags.map(({ name }, index) => ({
-      name,
-      inert: hiddenIndex > 0 && index >= hiddenIndex ? '' : undefined,
-    })),
-);
-
 export const FeaturedTags: FC<{ accountId: string }> = ({ accountId }) => {
   // Fetch tags.
+  const featuredTags = useAppSelector((state) =>
+    selectAccountFeaturedTags(state, accountId),
+  );
   const dispatch = useAppDispatch();
   useEffect(() => {
     void dispatch(fetchFeaturedTags({ accountId }));
@@ -39,17 +29,15 @@ export const FeaturedTags: FC<{ accountId: string }> = ({ accountId }) => {
 
   // Get list of tags with overflow handling.
   const [showOverflow, setShowOverflow] = useState(false);
-  const { hiddenCount, wrapperRef, listRef, hiddenIndex } = useOverflow({
-    autoResize: true,
-  });
-  const featuredTags = useAppSelector((state) =>
-    selectFeaturedTags(state, accountId, !showOverflow ? hiddenIndex : 0),
-  );
+  const { hiddenCount, wrapperRef, listRef, hiddenIndex, maxWidth } =
+    useOverflow();
 
   // Handle whether to show all tags.
   const handleOverflowClick: MouseEventHandler = useCallback(() => {
     setShowOverflow(true);
   }, []);
+
+  const { onClick, currentTag } = useTagNavigate();
 
   if (featuredTags.length === 0) {
     return null;
@@ -57,14 +45,25 @@ export const FeaturedTags: FC<{ accountId: string }> = ({ accountId }) => {
 
   return (
     <div className={classes.tagsWrapper} ref={wrapperRef}>
-      <Tags
-        tags={featuredTags}
+      <div
         className={classNames(
           classes.tagsList,
           showOverflow && classes.tagsListShowAll,
         )}
+        style={{ maxWidth }}
         ref={listRef}
-      />
+      >
+        {featuredTags.map(({ id, name }, index) => (
+          <Tag
+            name={name}
+            key={id}
+            inert={hiddenIndex > 0 && index >= hiddenIndex ? '' : undefined}
+            onClick={onClick}
+            active={currentTag === name}
+            data-name={name}
+          />
+        ))}
+      </div>
       {!showOverflow && hiddenCount > 0 && (
         <Tag
           onClick={handleOverflowClick}
@@ -80,3 +79,46 @@ export const FeaturedTags: FC<{ accountId: string }> = ({ accountId }) => {
     </div>
   );
 };
+
+function useTagNavigate() {
+  // Get current account, tag, and filters.
+  const { acct, tagged } = useParams<{ acct: string; tagged?: string }>();
+  const { boosts, replies } = useFilters();
+
+  const history = useAppHistory();
+
+  const handleTagClick: MouseEventHandler<HTMLButtonElement> = useCallback(
+    (event) => {
+      const name = event.currentTarget.getAttribute('data-name');
+      if (!name || !acct) {
+        return;
+      }
+
+      // Determine whether to navigate to or from the tag.
+      let url = `/@${acct}/tagged/${encodeURIComponent(name)}`;
+      if (name === tagged) {
+        url = `/@${acct}`;
+      }
+
+      // Append filters.
+      const params = new URLSearchParams();
+      if (boosts) {
+        params.append('boosts', '1');
+      }
+      if (replies) {
+        params.append('replies', '1');
+      }
+
+      history.push({
+        pathname: url,
+        search: params.toString(),
+      });
+    },
+    [acct, tagged, boosts, replies, history],
+  );
+
+  return {
+    onClick: handleTagClick,
+    currentTag: tagged,
+  };
+}
