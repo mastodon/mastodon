@@ -7,9 +7,9 @@
   = form.input :comparison,
                as: :select,
                wrapper: :with_block_label,
-               collection: %w(equals contains),
+               collection: [[:equals, true], [:contains, false]],
                include_blank: false,
-               label_method: ->(type) { I18n.t(type, scope: 'admin.username_blocks.comparison') }
+               label_method: ->(type) { I18n.t(type.first, scope: 'admin.username_blocks.comparison') }
 
 .fields-group
   = form.input :allow_with_approval,
