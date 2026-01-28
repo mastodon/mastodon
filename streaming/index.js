@@ -30,7 +30,8 @@ const dotenvFilePath = path.resolve(
 );
 
 dotenv.config({
-  path: dotenvFilePath
+  path: dotenvFilePath,
+  quiet: true,
 });
 
 initializeLogLevel(process.env, environment);
