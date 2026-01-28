@@ -1,3 +1,5 @@
+import { isClientFeatureEnabled } from '@/mastodon/utils/environment';
+
 export function EmojiPicker () {
   return import('../../emoji/emoji_picker');
 }
@@ -65,6 +67,9 @@ export function PinnedStatuses () {
 }
 
 export function AccountTimeline () {
+  if (isClientFeatureEnabled('profile_redesign')) {
+    return import('../../account_timeline/v2');
+  }
   return import('../../account_timeline');
 }
 

@@ -68,3 +68,8 @@
 :global([dir='rtl']) .input:checked + .toggle::before {
   transform: translateX(calc(-1 * (var(--diameter) - (var(--padding) * 2))));
 }
+
+.wrapper {
+  display: inline-block;
+  position: relative;
+}

@@ -49,7 +49,7 @@
   background-color: var(--color-bg-secondary);
   border: none;
   color: var(--color-text-secondary);
-  font-weight: 600;
+  font-weight: 500;
 
   > span {
     font-weight: unset;
@@ -145,12 +145,35 @@ svg.badgeIcon {
   }
 
   dd {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 15px;
   }
 
   .fieldIconVerified {
     vertical-align: middle;
     margin-left: 4px;
+  }
+}
+
+.tabs {
+  border-bottom: 1px solid var(--color-border-primary);
+  display: flex;
+  gap: 12px;
+  padding: 0 24px;
+
+  a {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 18px 4px;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    border-radius: 0;
+  }
+
+  :global(.active) {
+    color: var(--color-text-brand);
+    border-bottom: 4px solid var(--color-text-brand);
+    padding-bottom: 14px;
   }
 }
