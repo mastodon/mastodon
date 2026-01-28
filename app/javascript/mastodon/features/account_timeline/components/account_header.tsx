@@ -162,11 +162,13 @@ export const AccountHeader: React.FC<{
           {!suspendedOrHidden && (
             <div className='account__header__extra'>
               <div className='account__header__bio'>
-                {me && account.id !== me && isRedesignEnabled() ? (
-                  <AccountNoteRedesign accountId={accountId} />
-                ) : (
-                  <AccountNote accountId={accountId} />
-                )}
+                {me &&
+                  account.id !== me &&
+                  (isRedesignEnabled() ? (
+                    <AccountNoteRedesign accountId={accountId} />
+                  ) : (
+                    <AccountNote accountId={accountId} />
+                  ))}
 
                 <AccountBio
                   accountId={accountId}
