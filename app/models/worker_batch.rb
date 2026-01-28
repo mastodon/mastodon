@@ -16,7 +16,7 @@ class WorkerBatch
   # @param [String] async_refresh_key
   # @param [Float] threshold
   def connect(async_refresh_key, threshold: 1.0)
-    redis.hset(key, { 'async_refresh_key' => async_refresh_key, 'threshold' => threshold })
+    with_redis { |redis| redis.hset(key, { 'async_refresh_key' => async_refresh_key, 'threshold' => threshold }) }
   end
 
   def within
@@ -64,7 +64,7 @@ class WorkerBatch
   end
 
   def finish!
-    async_refresh_key = redis.hget(key, 'async_refresh_key')
+    async_refresh_key = with_redis { |redis| redis.hget(key, 'async_refresh_key') }
 
     if async_refresh_key.present?
       async_refresh = AsyncRefresh.new(async_refresh_key)
@@ -77,13 +77,13 @@ class WorkerBatch
   # Get pending jobs.
   # @returns [Array<String>]
   def jobs
-    redis.smembers(key('jobs'))
+    with_redis { |redis| redis.smembers(key('jobs')) }
   end
 
   # Inspect the batch.
   # @returns [Hash]
   def info
-    redis.hgetall(key)
+    with_redis { |redis| redis.hgetall(key) }
   end
 
   private
@@ -93,6 +93,6 @@ class WorkerBatch
   end
 
   def cleanup
-    redis.del(key, key('jobs'))
+    with_redis { |redis| redis.del(key, key('jobs')) }
   end
 end

@@ -190,6 +190,6 @@ class FanOutOnWriteService < BaseService
   end
 
   def subscribed_to_streaming_api?(account_id)
-    redis.exists?("subscribed:timeline:#{account_id}") || redis.exists?("subscribed:timeline:#{account_id}:notifications")
+    with_redis { |redis| redis.exists?("subscribed:timeline:#{account_id}") || redis.exists?("subscribed:timeline:#{account_id}:notifications") }
   end
 end

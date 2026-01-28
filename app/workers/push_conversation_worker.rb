@@ -9,7 +9,7 @@ class PushConversationWorker
     message      = InlineRenderer.render(conversation, conversation.account, :conversation)
     timeline_id  = "timeline:direct:#{conversation.account_id}"
 
-    redis.publish(timeline_id, Oj.dump(event: :conversation, payload: message))
+    with_redis { |redis| redis.publish(timeline_id, Oj.dump(event: :conversation, payload: message)) }
   rescue ActiveRecord::RecordNotFound
     true
   end
