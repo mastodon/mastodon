@@ -1,5 +1,7 @@
-import { useCallback } from 'react';
+import { forwardRef, useCallback } from 'react';
 import type { ComponentPropsWithoutRef, FC } from 'react';
+
+import classNames from 'classnames';
 
 import classes from './style.module.css';
 import { EditableTag, Tag } from './tag';
@@ -17,31 +19,39 @@ export type TagsProps = {
   | ({ onRemove?: (tag: string) => void } & ComponentPropsWithoutRef<'span'>)
 );
 
-export const Tags: FC<TagsProps> = ({ tags, active, onRemove, ...props }) => {
-  if (onRemove) {
+export const Tags = forwardRef<HTMLDivElement, TagsProps>(
+  ({ tags, active, onRemove, className, ...props }, ref) => {
+    if (onRemove) {
+      return (
+        <div className={classNames(classes.tagsWrapper, className)}>
+          {tags.map((tag) => (
+            <MappedTag
+              key={tag.name}
+              active={tag.name === active}
+              onRemove={onRemove}
+              {...tag}
+              {...props}
+            />
+          ))}
+        </div>
+      );
+    }
+
     return (
-      <div className={classes.tagsWrapper}>
+      <div className={classNames(classes.tagsWrapper, className)} ref={ref}>
         {tags.map((tag) => (
-          <MappedTag
+          <Tag
             key={tag.name}
             active={tag.name === active}
-            onRemove={onRemove}
             {...tag}
             {...props}
           />
         ))}
       </div>
     );
-  }
-
-  return (
-    <div className={classes.tagsWrapper}>
-      {tags.map((tag) => (
-        <Tag key={tag.name} active={tag.name === active} {...tag} {...props} />
-      ))}
-    </div>
-  );
-};
+  },
+);
+Tags.displayName = 'Tags';
 
 const MappedTag: FC<Tag & { onRemove?: (tag: string) => void }> = ({
   onRemove,

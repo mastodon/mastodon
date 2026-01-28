@@ -35,3 +35,25 @@
     align-items: center;
   }
 }
+
+.tagsWrapper {
+  margin: 0 24px 8px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.tagsList {
+  display: flex;
+  gap: 4px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  position: relative;
+}
+
+.tagsListShowAll {
+  flex-wrap: wrap;
+  overflow: visible;
+  max-width: none !important;
+}

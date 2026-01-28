@@ -27,6 +27,7 @@ import { AccountHeader } from '../components/account_header';
 import { LimitedAccountHint } from '../components/limited_account_hint';
 import { useFilters } from '../hooks/useFilters';
 
+import { FeaturedTags } from './featured_tags';
 import { AccountFilters } from './filters';
 
 const emptyList = ImmutableList<string>();
@@ -135,6 +136,7 @@ const Prepend: FC<{
     <>
       <AccountHeader accountId={accountId} hideTabs />
       <AccountFilters />
+      <FeaturedTags accountId={accountId} />
       <FeaturedCarousel accountId={accountId} tagged={tagged} />
     </>
   );
