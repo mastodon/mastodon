@@ -156,7 +156,7 @@ const CollectionSettings: React.FC<{
           }
           hint={
             <FormattedMessage
-              id='collections.name_length_hint'
+              id='collections.description_length_hint'
               defaultMessage='100 characters limit'
             />
           }
