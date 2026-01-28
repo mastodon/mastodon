@@ -24,4 +24,48 @@ RSpec.describe ActivityPub::RemoveSerializer do
       it { is_expected.to eq(ActiveModel::Serializer::CollectionSerializer) }
     end
   end
+
+  describe 'Serialization' do
+    subject { serialized_record_json(object, described_class, adapter: ActivityPub::Adapter) }
+
+    let(:tag_manager) { ActivityPub::TagManager.instance }
+
+    context 'with a status' do
+      let(:object) { Fabricate(:status) }
+
+      it 'serializes to the expected json' do
+        expect(subject).to include({
+          'type' => 'Remove',
+          'actor' => tag_manager.uri_for(object.account),
+          'target' => a_string_matching(%r{/featured$}),
+          'object' => tag_manager.uri_for(object),
+        })
+
+        expect(subject).to_not have_key('id')
+        expect(subject).to_not have_key('published')
+        expect(subject).to_not have_key('to')
+        expect(subject).to_not have_key('cc')
+      end
+    end
+
+    context 'with a featured tag' do
+      let(:object) { Fabricate(:featured_tag) }
+
+      it 'serializes to the expected json' do
+        expect(subject).to include({
+          'type' => 'Remove',
+          'actor' => tag_manager.uri_for(object.account),
+          'target' => a_string_matching(%r{/featured$}),
+          'object' => a_hash_including({
+            'type' => 'Hashtag',
+          }),
+        })
+
+        expect(subject).to_not have_key('id')
+        expect(subject).to_not have_key('published')
+        expect(subject).to_not have_key('to')
+        expect(subject).to_not have_key('cc')
+      end
+    end
+  end
 end
