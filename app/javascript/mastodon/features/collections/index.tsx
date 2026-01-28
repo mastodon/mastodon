@@ -16,7 +16,6 @@ import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { Icon } from 'mastodon/components/icon';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import {
-  createCollection,
   fetchAccountCollections,
   selectMyCollections,
 } from 'mastodon/reducers/slices/collections';
@@ -67,7 +66,7 @@ const ListItem: React.FC<{
 
   return (
     <div className='lists__item'>
-      <Link to={`/collections/${id}`} className='lists__item__title'>
+      <Link to={`/collections/${id}/edit`} className='lists__item__title'>
         <span>{name}</span>
       </Link>
 
@@ -93,24 +92,6 @@ export const Collections: React.FC<{
   useEffect(() => {
     void dispatch(fetchAccountCollections({ accountId: me }));
   }, [dispatch, me]);
-
-  const addDummyCollection = useCallback(
-    (event: React.MouseEvent) => {
-      event.preventDefault();
-
-      void dispatch(
-        createCollection({
-          payload: {
-            name: 'Test Collection',
-            description: 'A useful test collection',
-            discoverable: true,
-            sensitive: false,
-          },
-        }),
-      );
-    },
-    [dispatch],
-  );
 
   const emptyMessage =
     status === 'error' ? (
@@ -152,7 +133,6 @@ export const Collections: React.FC<{
             className='column-header__button'
             title={intl.formatMessage(messages.create)}
             aria-label={intl.formatMessage(messages.create)}
-            onClick={addDummyCollection}
           >
             <Icon id='plus' icon={AddIcon} />
           </Link>
