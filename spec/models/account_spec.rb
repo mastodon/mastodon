@@ -8,6 +8,7 @@ RSpec.describe Account do
 
   describe 'Associations' do
     it { is_expected.to have_many(:account_notes).inverse_of(:account) }
+    it { is_expected.to have_many(:action_logs).class_name('Admin::ActionLog') }
     it { is_expected.to have_many(:targeted_account_notes).inverse_of(:target_account) }
   end
 

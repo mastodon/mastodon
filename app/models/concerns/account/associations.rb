@@ -12,6 +12,7 @@ module Account::Associations
         has_many :account_notes
         has_many :account_pins
         has_many :account_warnings
+        has_many :action_logs, class_name: 'Admin::ActionLog'
         has_many :aliases, class_name: 'AccountAlias'
         has_many :bookmarks
         has_many :collections
