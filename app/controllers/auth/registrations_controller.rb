@@ -130,12 +130,17 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def require_rules_acceptance!
-    return if @rules.empty? || (session[:accept_token].present? && params[:accept] == session[:accept_token])
+    return if @rules.empty? || validated_accept_token?
 
     @accept_token = session[:accept_token] = SecureRandom.hex
-    @invite_code  = invite_code
+    @invite_code = invite_code
+    @rule_translations = @rules.map { |rule| rule.translation_for(I18n.locale) }
 
     render :rules
+  end
+
+  def validated_accept_token?
+    session[:accept_token].present? && params[:accept] == session[:accept_token]
   end
 
   def is_flashing_format? # rubocop:disable Naming/PredicatePrefix
