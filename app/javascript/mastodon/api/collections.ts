@@ -9,7 +9,7 @@ import type {
   ApiWrappedCollectionJSON,
   ApiCollectionWithAccountsJSON,
   ApiCreateCollectionPayload,
-  ApiPatchCollectionPayload,
+  ApiUpdateCollectionPayload,
   ApiCollectionsJSON,
 } from '../api_types/collections';
 
@@ -19,7 +19,7 @@ export const apiCreateCollection = (collection: ApiCreateCollectionPayload) =>
 export const apiUpdateCollection = ({
   id,
   ...collection
-}: ApiPatchCollectionPayload) =>
+}: ApiUpdateCollectionPayload) =>
   apiRequestPut<ApiWrappedCollectionJSON>(
     `v1_alpha/collections/${id}`,
     collection,
@@ -29,7 +29,7 @@ export const apiDeleteCollection = (collectionId: string) =>
   apiRequestDelete(`v1_alpha/collections/${collectionId}`);
 
 export const apiGetCollection = (collectionId: string) =>
-  apiRequestGet<ApiCollectionWithAccountsJSON[]>(
+  apiRequestGet<ApiCollectionWithAccountsJSON>(
     `v1_alpha/collections/${collectionId}`,
   );
 
