@@ -48,11 +48,11 @@ class MoveWorker
     source_local_followers
       .where(account: @target_account.followers.local)
       .in_batches do |follows|
-        ListAccount.where(follow: follows).includes(:list).find_each do |list_account|
-          list_account.list.accounts << @target_account
-        rescue ActiveRecord::RecordInvalid
-          nil
-        end
+      ListAccount.where(follow: follows).includes(:list).find_each do |list_account|
+        list_account.list.accounts << @target_account
+      rescue ActiveRecord::RecordInvalid
+        nil
+      end
     end
 
     # Finally, handle the common case of accounts not following the new account
@@ -60,8 +60,8 @@ class MoveWorker
       .where.not(account: @target_account.followers.local)
       .where.not(account_id: @target_account.id)
       .in_batches do |follows|
-        ListAccount.where(follow: follows).in_batches.update_all(account_id: @target_account.id)
-        num_moved += follows.update_all(target_account_id: @target_account.id)
+      ListAccount.where(follow: follows).in_batches.update_all(account_id: @target_account.id)
+      num_moved += follows.update_all(target_account_id: @target_account.id)
     end
 
     num_moved
