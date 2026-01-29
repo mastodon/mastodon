@@ -1,8 +1,8 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import { forwardRef } from 'react';
 
-import { FormFieldWrapper } from './wrapper';
-import type { CommonFieldWrapperProps } from './wrapper';
+import { FormFieldWrapper } from './form_field_wrapper';
+import type { CommonFieldWrapperProps } from './form_field_wrapper';
 
 interface Props
   extends ComponentPropsWithoutRef<'textarea'>, CommonFieldWrapperProps {}
