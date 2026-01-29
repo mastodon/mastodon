@@ -2,10 +2,13 @@
   --size: 16px;
 
   appearance: none;
-  position: relative;
   box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  margin: 0;
   width: var(--size);
   height: var(--size);
+  vertical-align: top;
   border-radius: calc(var(--size) / 4);
   border: 1px solid var(--color-border-primary);
   background-color: var(--color-bg-primary);
@@ -22,6 +25,28 @@
     cursor: not-allowed;
   }
 
+  /* Tick icon */
+  &::before {
+    content: '';
+    opacity: 0;
+    background-color: var(--color-text-on-brand-base);
+    display: block;
+    margin: auto;
+    width: calc(var(--size) * 0.625);
+    height: calc(var(--size) * 0.5);
+    mask-image: url("data:image/svg+xml;utf8,<svg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M8.29289 0.292893C8.68342 -0.0976311 9.31643 -0.0976311 9.70696 0.292893C10.0975 0.683418 10.0975 1.31643 9.70696 1.70696L4.20696 7.20696C3.81643 7.59748 3.18342 7.59748 2.79289 7.20696L0.292893 4.70696C-0.0976311 4.31643 -0.0976311 3.68342 0.292893 3.29289C0.683418 2.90237 1.31643 2.90237 1.70696 3.29289L3.49992 5.08586L8.29289 0.292893Z' fill='black'/></svg>");
+    mask-position: center;
+    mask-size: 100%;
+    mask-repeat: no-repeat;
+  }
+
+  /* 'Minus' icon */
+  &:indeterminate::before {
+    width: calc(var(--size) * 0.5);
+    height: calc(var(--size) * 0.125);
+    mask-image: url("data:image/svg+xml;utf8,<svg width='8' height='2' viewBox='0 0 8 2' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M7.11111 0C7.60203 0 8 0.447715 8 1C8 1.55228 7.60203 2 7.11111 2H0.888889C0.397969 2 0 1.55228 0 1C0 0.447715 0.397969 0 0.888889 0H7.11111Z' fill='black'/></svg>");
+  }
+
   &:checked,
   &:indeterminate {
     background-color: var(--color-bg-brand-base);
@@ -33,41 +58,9 @@
       color: var(--color-text-on-disabled);
     }
 
-    /* CSS-only tick mark, based on checkbox size for scalability */
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      left: calc(var(--size) * 0.4);
-      border-radius: var(--size);
-      background-color: var(--color-text-on-brand-base);
-      transform: rotate(-45deg);
-      transform-origin: bottom left;
-    }
-
     &::before {
-      top: calc(var(--size) * 0.375);
-      width: calc(var(--size) * 0.15);
-      height: calc(var(--size) * 0.35);
+      opacity: 1;
     }
-
-    &::after {
-      top: calc(var(--size) * 0.58);
-      width: calc(var(--size) * 0.625);
-      height: calc(var(--size) * 0.15);
-    }
-  }
-
-  /* Indeterminate indicator bar */
-  &:indeterminate::after {
-    transform: none;
-    top: calc(var(--size) * 0.375);
-    left: calc(var(--size) * 0.25);
-    width: calc(var(--size) * 0.45);
-  }
-
-  &:indeterminate::before {
-    display: none;
   }
 
   &:focus-visible {
