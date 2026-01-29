@@ -10,12 +10,14 @@ import { openModal } from '@/mastodon/actions/modal';
 import { AccountFields } from '@/mastodon/components/account_fields';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
-import { Icon } from '@/mastodon/components/icon';
+import type { MiniCardProps } from '@/mastodon/components/mini_card/list';
 import { MiniCardList } from '@/mastodon/components/mini_card/list';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import type { Account } from '@/mastodon/models/account';
 import { useAppDispatch } from '@/mastodon/store';
+import { isValidUrl } from '@/mastodon/utils/checks';
+import IconLink from '@/material-icons/400-24px/link.svg?react';
 
 import { isRedesignEnabled } from '../common';
 
@@ -57,43 +59,41 @@ export const AccountHeaderFields: FC<{ accountId: string }> = ({
 
 const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
   const htmlHandlers = useElementHandledLink();
-  const cards = useMemo(
+  const cards: MiniCardProps[] = useMemo(
     () =>
       account.fields
         .toArray()
-        .map(({ value_emojified, name_emojified, verified_at }) => ({
-          label: (
-            <>
-              <EmojiHTML
-                htmlString={name_emojified}
-                extraEmojis={account.emojis}
-                className='translate'
-                as='span'
-                {...htmlHandlers}
-              />
-              {!!verified_at && (
-                <Icon
-                  id='verified'
-                  icon={IconVerified}
-                  className={classes.fieldIconVerified}
-                  noFill
+        .map(
+          ({ value_emojified, name_emojified, verified_at, value_plain }) => {
+            let icon: MiniCardProps['icon'] = undefined;
+            if (verified_at) {
+              icon = IconVerified;
+            } else if (value_plain && isValidUrl(value_plain)) {
+              icon = IconLink;
+            }
+            return {
+              label: (
+                <EmojiHTML
+                  htmlString={name_emojified}
+                  extraEmojis={account.emojis}
+                  className='translate'
+                  as='span'
+                  {...htmlHandlers}
                 />
-              )}
-            </>
-          ),
-          value: (
-            <EmojiHTML
-              as='span'
-              htmlString={value_emojified}
-              extraEmojis={account.emojis}
-              {...htmlHandlers}
-            />
-          ),
-          className: classNames(
-            classes.fieldCard,
-            !!verified_at && classes.fieldCardVerified,
-          ),
-        })),
+              ),
+              value: (
+                <EmojiHTML
+                  as='span'
+                  htmlString={value_emojified}
+                  extraEmojis={account.emojis}
+                  {...htmlHandlers}
+                />
+              ),
+              className: classNames(verified_at && classes.fieldCardVerified),
+              icon,
+            };
+          },
+        ),
     [account.emojis, account.fields, htmlHandlers],
   );
 

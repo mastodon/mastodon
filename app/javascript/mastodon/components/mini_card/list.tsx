@@ -6,13 +6,15 @@ import classNames from 'classnames';
 import type { OmitUnion } from '@/mastodon/utils/types';
 
 import { MiniCard } from '.';
-import type { MiniCardProps } from '.';
+import type { MiniCardProps as BaseCardProps } from '.';
 import classes from './styles.module.css';
 
+export type MiniCardProps = BaseCardProps & {
+  key?: Key;
+};
+
 interface MiniCardListProps {
-  cards?: (MiniCardProps & {
-    key?: Key;
-  })[];
+  cards?: MiniCardProps[];
 }
 
 export const MiniCardList = forwardRef<
