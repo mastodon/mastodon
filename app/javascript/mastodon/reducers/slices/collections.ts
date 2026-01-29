@@ -1,13 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { importFetchedAccounts } from '@/mastodon/actions/importer';
 import {
   apiCreateCollection,
   apiGetAccountCollections,
-  // apiGetCollection,
+  apiUpdateCollection,
+  apiGetCollection,
+  apiDeleteCollection,
 } from '@/mastodon/api/collections';
 import type {
   ApiCollectionJSON,
   ApiCreateCollectionPayload,
+  ApiUpdateCollectionPayload,
 } from '@/mastodon/api_types/collections';
 import {
   createAppSelector,
@@ -59,10 +63,11 @@ const collectionSlice = createSlice({
       };
     });
 
-    builder.addCase(fetchAccountCollections.fulfilled, (state, actions) => {
-      const { collections } = actions.payload;
+    builder.addCase(fetchAccountCollections.fulfilled, (state, action) => {
+      const { collections } = action.payload;
 
-      const collectionsMap: Record<string, ApiCollectionJSON> = {};
+      const collectionsMap: Record<string, ApiCollectionJSON> =
+        state.collections;
       const collectionIds: string[] = [];
 
       collections.forEach((collection) => {
@@ -72,10 +77,38 @@ const collectionSlice = createSlice({
       });
 
       state.collections = collectionsMap;
-      state.accountCollections[actions.meta.arg.accountId] = {
+      state.accountCollections[action.meta.arg.accountId] = {
         collectionIds,
         status: 'idle',
       };
+    });
+
+    /**
+     * Fetching a single collection
+     */
+
+    builder.addCase(fetchCollection.fulfilled, (state, action) => {
+      const { collection } = action.payload;
+      state.collections[collection.id] = collection;
+    });
+
+    /**
+     * Updating a collection
+     */
+
+    builder.addCase(updateCollection.fulfilled, (state, action) => {
+      const { collection } = action.payload;
+      state.collections[collection.id] = collection;
+    });
+
+    /**
+     * Deleting a collection
+     */
+
+    builder.addCase(deleteCollection.fulfilled, (state, action) => {
+      const { collectionId } = action.meta.arg;
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+      delete state.collections[collectionId];
     });
 
     /**
@@ -86,6 +119,7 @@ const collectionSlice = createSlice({
       const { collection } = actions.payload;
 
       state.collections[collection.id] = collection;
+
       if (state.accountCollections[collection.account_id]) {
         state.accountCollections[collection.account_id]?.collectionIds.unshift(
           collection.id,
@@ -105,18 +139,34 @@ export const fetchAccountCollections = createDataLoadingThunk(
   ({ accountId }: { accountId: string }) => apiGetAccountCollections(accountId),
 );
 
-// To be added soon…
-//
-// export const fetchCollection = createDataLoadingThunk(
-//   `${collectionSlice.name}/fetchCollection`,
-//   ({ collectionId }: { collectionId: string }) =>
-//     apiGetCollection(collectionId),
-// );
+export const fetchCollection = createDataLoadingThunk(
+  `${collectionSlice.name}/fetchCollection`,
+  ({ collectionId }: { collectionId: string }) =>
+    apiGetCollection(collectionId),
+  (payload, { dispatch }) => {
+    if (payload.accounts.length > 0) {
+      dispatch(importFetchedAccounts(payload.accounts));
+    }
+    return payload;
+  },
+);
 
 export const createCollection = createDataLoadingThunk(
   `${collectionSlice.name}/createCollection`,
   ({ payload }: { payload: ApiCreateCollectionPayload }) =>
     apiCreateCollection(payload),
+);
+
+export const updateCollection = createDataLoadingThunk(
+  `${collectionSlice.name}/updateCollection`,
+  ({ payload }: { payload: ApiUpdateCollectionPayload }) =>
+    apiUpdateCollection(payload),
+);
+
+export const deleteCollection = createDataLoadingThunk(
+  `${collectionSlice.name}/deleteCollection`,
+  ({ collectionId }: { collectionId: string }) =>
+    apiDeleteCollection(collectionId),
 );
 
 export const collections = collectionSlice.reducer;
@@ -136,7 +186,7 @@ export const selectMyCollections = createAppSelector(
     (state) => state.collections.accountCollections,
     (state) => state.collections.collections,
   ],
-  (me, collectionsByAccountId, collectionsById) => {
+  (me, collectionsByAccountId, collectionsMap) => {
     const myCollectionsQuery = collectionsByAccountId[me];
 
     if (!myCollectionsQuery) {
@@ -151,7 +201,7 @@ export const selectMyCollections = createAppSelector(
     return {
       status,
       collections: collectionIds
-        .map((id) => collectionsById[id])
+        .map((id) => collectionsMap[id])
         .filter((c) => !!c),
     } satisfies AccountCollectionQuery;
   },

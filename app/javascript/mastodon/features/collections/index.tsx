@@ -48,13 +48,14 @@ const ListItem: React.FC<{
   const handleDeleteClick = useCallback(() => {
     dispatch(
       openModal({
-        modalType: 'CONFIRM_DELETE_LIST',
+        modalType: 'CONFIRM_DELETE_COLLECTION',
         modalProps: {
-          listId: id,
+          name,
+          id,
         },
       }),
     );
-  }, [dispatch, id]);
+  }, [dispatch, id, name]);
 
   const menu = useMemo(
     () => [

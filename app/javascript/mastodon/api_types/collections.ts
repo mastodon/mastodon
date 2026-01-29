@@ -73,7 +73,7 @@ type CommonPayloadFields = Pick<
   tag_name?: string;
 };
 
-export interface ApiPatchCollectionPayload extends Partial<CommonPayloadFields> {
+export interface ApiUpdateCollectionPayload extends Partial<CommonPayloadFields> {
   id: string;
 }
 
