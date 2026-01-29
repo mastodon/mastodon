@@ -98,6 +98,7 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
   );
 
   const dispatch = useAppDispatch();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleOverflowClick = useCallback(() => {
     dispatch(
       openModal({
@@ -107,11 +108,5 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
     );
   }, [account.id, dispatch]);
 
-  return (
-    <MiniCardList
-      cards={cards}
-      className={classes.fieldList}
-      onOverflowClick={handleOverflowClick}
-    />
-  );
+  return <MiniCardList cards={cards} className={classes.fieldList} />;
 };

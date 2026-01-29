@@ -1,69 +1,35 @@
-import type { FC, Key, MouseEventHandler } from 'react';
-
-import { FormattedMessage } from 'react-intl';
+import { forwardRef } from 'react';
+import type { ComponentPropsWithoutRef, Key } from 'react';
 
 import classNames from 'classnames';
 
-import { useOverflow } from '@/mastodon/hooks/useOverflow';
+import type { OmitUnion } from '@/mastodon/utils/types';
 
 import { MiniCard } from '.';
 import type { MiniCardProps } from '.';
 import classes from './styles.module.css';
 
 interface MiniCardListProps {
-  cards?: (Pick<MiniCardProps, 'label' | 'value' | 'className'> & {
+  cards?: (MiniCardProps & {
     key?: Key;
   })[];
-  className?: string;
-  onOverflowClick?: MouseEventHandler;
 }
 
-export const MiniCardList: FC<MiniCardListProps> = ({
-  cards = [],
-  className,
-  onOverflowClick,
-}) => {
-  const {
-    wrapperRef,
-    listRef,
-    hiddenCount,
-    hasOverflow,
-    hiddenIndex,
-    maxWidth,
-  } = useOverflow();
-
+export const MiniCardList = forwardRef<
+  HTMLDListElement,
+  OmitUnion<ComponentPropsWithoutRef<'dl'>, MiniCardListProps>
+>(({ cards = [], className, children }, ref) => {
   if (!cards.length) {
     return null;
   }
 
   return (
-    <div className={classNames(classes.wrapper, className)} ref={wrapperRef}>
-      <dl className={classes.list} ref={listRef} style={{ maxWidth }}>
-        {cards.map((card, index) => (
-          <MiniCard
-            key={card.key ?? index}
-            label={card.label}
-            value={card.value}
-            hidden={hasOverflow && index >= hiddenIndex}
-            className={card.className}
-          />
-        ))}
-      </dl>
-      {cards.length > 1 && (
-        <div>
-          <button
-            type='button'
-            className={classNames(classes.more, !hasOverflow && classes.hidden)}
-            onClick={onOverflowClick}
-          >
-            <FormattedMessage
-              id='minicard.more_items'
-              defaultMessage='+{count}'
-              values={{ count: hiddenCount }}
-            />
-          </button>
-        </div>
-      )}
-    </div>
+    <dl className={classNames(classes.list, className)} ref={ref}>
+      {cards.map((card, index) => (
+        <MiniCard key={card.key ?? index} {...card} />
+      ))}
+      {children}
+    </dl>
   );
-};
+});
+MiniCardList.displayName = 'MiniCardList';

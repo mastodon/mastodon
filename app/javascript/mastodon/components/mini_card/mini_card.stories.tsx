@@ -1,14 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { action } from 'storybook/actions';
 
 import { MiniCardList } from './list';
 
 const meta = {
   title: 'Components/MiniCard',
   component: MiniCardList,
-  args: {
-    onOverflowClick: action('Overflow clicked'),
-  },
   render(args) {
     return (
       <div

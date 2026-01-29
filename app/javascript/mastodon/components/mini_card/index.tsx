@@ -1,33 +1,39 @@
-import type { FC, ReactNode } from 'react';
+import { forwardRef } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 import classNames from 'classnames';
 
+import type { OmitUnion } from '@/mastodon/utils/types';
+
+import { Icon } from '../icon';
+import type { IconProp } from '../icon';
+
 import classes from './styles.module.css';
 
-export interface MiniCardProps {
-  label: ReactNode;
-  value: ReactNode;
-  className?: string;
-  hidden?: boolean;
-}
-
-export const MiniCard: FC<MiniCardProps> = ({
-  label,
-  value,
-  className,
-  hidden,
-}) => {
-  if (!label) {
-    return null;
+export type MiniCardProps = OmitUnion<
+  ComponentPropsWithoutRef<'div'>,
+  {
+    label: ReactNode;
+    value: ReactNode;
+    icon?: IconProp;
   }
+>;
 
-  return (
-    <div
-      className={classNames(classes.card, className)}
-      inert={hidden ? '' : undefined}
-    >
-      <dt className={classes.label}>{label}</dt>
-      <dd className={classes.value}>{value}</dd>
-    </div>
-  );
-};
+export const MiniCard = forwardRef<HTMLDivElement, MiniCardProps>(
+  ({ label, value, className, hidden, icon, ...props }, ref) => {
+    if (!label) {
+      return null;
+    }
+
+    return (
+      <div {...props} className={classNames(classes.card, className)} ref={ref}>
+        {icon && (
+          <Icon id={props.id ? `${props.id}-icon` : 'minicard'} icon={icon} />
+        )}
+        <dt className={classes.label}>{label}</dt>
+        <dd className={classes.value}>{value}</dd>
+      </div>
+    );
+  },
+);
+MiniCard.displayName = 'MiniCard';
