@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('.title')
 
-= simple_form_for @custom_emoji, url: admin_custom_emojis_path do |f|
+= simple_form_for [:admin, @custom_emoji] do |f|
   = render 'shared/error_messages', object: @custom_emoji
 
   .fields-group

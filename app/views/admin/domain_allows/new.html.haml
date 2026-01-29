@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('admin.domain_allows.add_new')
 
-= simple_form_for @domain_allow, url: admin_domain_allows_path do |f|
+= simple_form_for [:admin, @domain_allow] do |f|
   = render 'shared/error_messages', object: @domain_allow
 
   .fields-group
