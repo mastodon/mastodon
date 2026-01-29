@@ -20,13 +20,13 @@ interface MiniCardListProps {
 export const MiniCardList = forwardRef<
   HTMLDListElement,
   OmitUnion<ComponentPropsWithoutRef<'dl'>, MiniCardListProps>
->(({ cards = [], className, children }, ref) => {
+>(({ cards = [], className, children, ...props }, ref) => {
   if (!cards.length) {
     return null;
   }
 
   return (
-    <dl className={classNames(classes.list, className)} ref={ref}>
+    <dl {...props} className={classNames(classes.list, className)} ref={ref}>
       {cards.map((card, index) => (
         <MiniCard key={card.key ?? index} {...card} />
       ))}

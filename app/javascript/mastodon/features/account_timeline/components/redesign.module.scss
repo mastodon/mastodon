@@ -74,8 +74,26 @@ svg.badgeIcon {
   }
 }
 
-.fieldList {
+.fieldWrapper {
   margin-top: 16px;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.fieldWrapper::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--color-bg-elevated) 100%
+  );
 }
 
 .fieldCard :is(dt, dd) {
@@ -84,6 +102,31 @@ svg.badgeIcon {
 
 .fieldCardVerified {
   background-color: var(--color-bg-brand-softer);
+}
+
+.fieldArrowButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 4px;
+  background-color: var(--color-bg-elevated);
+  box-shadow: 0 1px 4px 0 var(--color-shadow-primary);
+  border-radius: 9999px;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+  outline-offset: 2px;
+  z-index: 1;
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    background-color: color-mix(
+      in oklab,
+      var(--color-bg-brand-base) var(--overlay-strength-brand),
+      var(--color-bg-elevated)
+    );
+  }
 }
 
 .fieldNumbersWrapper {

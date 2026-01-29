@@ -9,12 +9,14 @@ import IconVerified from '@/images/icons/icon_verified.svg?react';
 import { AccountFields } from '@/mastodon/components/account_fields';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
+import { IconButton } from '@/mastodon/components/icon_button';
 import type { MiniCardProps } from '@/mastodon/components/mini_card/list';
 import { MiniCardList } from '@/mastodon/components/mini_card/list';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import type { Account } from '@/mastodon/models/account';
 import { isValidUrl } from '@/mastodon/utils/checks';
+import IconRightArrow from '@/material-icons/400-24px/chevron_right.svg?react';
 import IconLink from '@/material-icons/400-24px/link.svg?react';
 
 import { isRedesignEnabled } from '../common';
@@ -106,5 +108,15 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
     [account.emojis, account.fields, htmlHandlers],
   );
 
-  return <MiniCardList cards={cards} className={classes.fieldList} />;
+  return (
+    <div className={classes.fieldWrapper}>
+      <MiniCardList cards={cards} />
+      <IconButton
+        icon='more'
+        iconComponent={IconRightArrow}
+        title='more'
+        className={classes.fieldArrowButton}
+      />
+    </div>
+  );
 };
