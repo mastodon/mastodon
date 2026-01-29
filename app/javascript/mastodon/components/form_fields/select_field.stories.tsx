@@ -35,6 +35,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Simple: Story = {};
 
+export const WithoutHint: Story = {
+  args: {
+    hint: undefined,
+  },
+};
+
 export const Required: Story = {
   args: {
     required: true,
