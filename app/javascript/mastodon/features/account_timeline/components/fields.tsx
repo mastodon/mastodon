@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import IconVerified from '@/images/icons/icon_verified.svg?react';
-import { openModal } from '@/mastodon/actions/modal';
 import { AccountFields } from '@/mastodon/components/account_fields';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
@@ -15,7 +14,6 @@ import { MiniCardList } from '@/mastodon/components/mini_card/list';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import type { Account } from '@/mastodon/models/account';
-import { useAppDispatch } from '@/mastodon/store';
 import { isValidUrl } from '@/mastodon/utils/checks';
 import IconLink from '@/material-icons/400-24px/link.svg?react';
 
@@ -96,17 +94,6 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
         ),
     [account.emojis, account.fields, htmlHandlers],
   );
-
-  const dispatch = useAppDispatch();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleOverflowClick = useCallback(() => {
-    dispatch(
-      openModal({
-        modalType: 'ACCOUNT_FIELDS',
-        modalProps: { accountId: account.id },
-      }),
-    );
-  }, [account.id, dispatch]);
 
   return <MiniCardList cards={cards} className={classes.fieldList} />;
 };
