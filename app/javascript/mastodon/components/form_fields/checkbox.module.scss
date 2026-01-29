@@ -1,0 +1,77 @@
+.checkbox {
+  --size: 16px;
+
+  appearance: none;
+  position: relative;
+  box-sizing: border-box;
+  width: var(--size);
+  height: var(--size);
+  border-radius: calc(var(--size) / 4);
+  border: 1px solid var(--color-border-primary);
+  background-color: var(--color-bg-primary);
+  transition: 0.15s ease-out;
+  transition-property: background-color, border-color;
+  cursor: pointer;
+
+  @supports not (appearance: none) {
+    accent-color: var(--color-bg-brand-base);
+  }
+
+  &:disabled {
+    background: var(--color-bg-secondary);
+    cursor: not-allowed;
+  }
+
+  &:checked,
+  &:indeterminate {
+    background-color: var(--color-bg-brand-base);
+    border-color: var(--color-bg-brand-base);
+
+    &:disabled {
+      border-color: var(--color-bg-disabled);
+      background: var(--color-bg-disabled);
+      color: var(--color-text-on-disabled);
+    }
+
+    /* CSS-only tick mark, based on checkbox size for scalability */
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: calc(var(--size) * 0.4);
+      border-radius: var(--size);
+      background-color: var(--color-text-on-brand-base);
+      transform: rotate(-45deg);
+      transform-origin: bottom left;
+    }
+
+    &::before {
+      top: calc(var(--size) * 0.375);
+      width: calc(var(--size) * 0.15);
+      height: calc(var(--size) * 0.35);
+    }
+
+    &::after {
+      top: calc(var(--size) * 0.58);
+      width: calc(var(--size) * 0.625);
+      height: calc(var(--size) * 0.15);
+    }
+  }
+
+  /* Indeterminate indicator bar */
+  &:indeterminate::after {
+    transform: none;
+    top: calc(var(--size) * 0.375);
+    left: calc(var(--size) * 0.25);
+    width: calc(var(--size) * 0.45);
+  }
+
+  &:indeterminate::before {
+    display: none;
+  }
+
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: 2px;
+  }
+}
