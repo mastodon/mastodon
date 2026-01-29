@@ -24,11 +24,15 @@ class ActivityPub::DistributionWorker < ActivityPub::RawDistributionWorker
   end
 
   def payload
-    @payload ||= Oj.dump(serialize_payload(activity, ActivityPub::ActivitySerializer, signer: @account))
+    @payload ||= Oj.dump(serialize_payload(@status, activity_serializer, serializer_options.merge(signer: @account)))
   end
 
-  def activity
-    ActivityPub::ActivityPresenter.from_status(@status)
+  def activity_serializer
+    @status.reblog? ? ActivityPub::AnnounceNoteSerializer : ActivityPub::CreateNoteSerializer
+  end
+
+  def serializer_options
+    {}
   end
 
   def options
