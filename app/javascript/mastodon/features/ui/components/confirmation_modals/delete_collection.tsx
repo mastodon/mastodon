@@ -13,12 +13,11 @@ import { ConfirmationModal } from './confirmation_modal';
 const messages = defineMessages({
   deleteListTitle: {
     id: 'confirmations.delete_collection.title',
-    defaultMessage: 'Delete collection?',
+    defaultMessage: 'Delete "{name}"?',
   },
   deleteListMessage: {
     id: 'confirmations.delete_collection.message',
-    defaultMessage:
-      'Are you sure you want to permanently delete this collection?',
+    defaultMessage: 'This action cannot be undone.',
   },
   deleteListConfirm: {
     id: 'confirmations.delete_collection.confirm',
@@ -28,21 +27,24 @@ const messages = defineMessages({
 
 export const ConfirmDeleteCollectionModal: React.FC<
   {
-    collectionId: string;
+    id: string;
+    name: string;
   } & BaseConfirmationModalProps
-> = ({ collectionId, onClose }) => {
+> = ({ id, name, onClose }) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const history = useHistory();
 
   const onConfirm = useCallback(() => {
-    void dispatch(deleteCollection({ collectionId }));
+    void dispatch(deleteCollection({ collectionId: id }));
     history.push('/collections');
-  }, [dispatch, history, collectionId]);
+  }, [dispatch, history, id]);
 
   return (
     <ConfirmationModal
-      title={intl.formatMessage(messages.deleteListTitle)}
+      title={intl.formatMessage(messages.deleteListTitle, {
+        name,
+      })}
       message={intl.formatMessage(messages.deleteListMessage)}
       confirm={intl.formatMessage(messages.deleteListConfirm)}
       onConfirm={onConfirm}

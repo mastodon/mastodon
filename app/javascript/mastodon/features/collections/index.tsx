@@ -50,11 +50,12 @@ const ListItem: React.FC<{
       openModal({
         modalType: 'CONFIRM_DELETE_COLLECTION',
         modalProps: {
-          collectionId: id,
+          name,
+          id,
         },
       }),
     );
-  }, [dispatch, id]);
+  }, [dispatch, id, name]);
 
   const menu = useMemo(
     () => [
