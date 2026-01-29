@@ -14,8 +14,10 @@ import type { MiniCardProps } from '@/mastodon/components/mini_card/list';
 import { MiniCardList } from '@/mastodon/components/mini_card/list';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
+import { useOverflowCarousel } from '@/mastodon/hooks/useOverflow';
 import type { Account } from '@/mastodon/models/account';
 import { isValidUrl } from '@/mastodon/utils/checks';
+import IconLeftArrow from '@/material-icons/400-24px/chevron_left.svg?react';
 import IconRightArrow from '@/material-icons/400-24px/chevron_right.svg?react';
 import IconLink from '@/material-icons/400-24px/link.svg?react';
 
@@ -108,15 +110,41 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
     [account.emojis, account.fields, htmlHandlers],
   );
 
+  const { listRef, offset, onNext, hasNext, hasPrev, onPrev } =
+    useOverflowCarousel();
+
   return (
-    <div className={classes.fieldWrapper}>
-      <MiniCardList cards={cards} />
-      <IconButton
-        icon='more'
-        iconComponent={IconRightArrow}
-        title='more'
-        className={classes.fieldArrowButton}
+    <div
+      className={classNames(
+        classes.fieldWrapper,
+        hasPrev && classes.fieldWrapperLeft,
+        hasNext && classes.fieldWrapperRight,
+      )}
+    >
+      {hasPrev && (
+        <IconButton
+          icon='more'
+          iconComponent={IconLeftArrow}
+          title='more'
+          className={classes.fieldArrowButton}
+          onClick={onPrev}
+        />
+      )}
+      <MiniCardList
+        cards={cards}
+        ref={listRef}
+        style={{ transform: `translateX(${-offset}px)` }}
+        className={classes.fieldList}
       />
+      {hasNext && (
+        <IconButton
+          icon='more'
+          iconComponent={IconRightArrow}
+          title='more'
+          className={classes.fieldArrowButton}
+          onClick={onNext}
+        />
+      )}
     </div>
   );
 };

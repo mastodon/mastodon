@@ -1,14 +1,15 @@
+import type { MutableRefObject, RefCallback } from 'react';
 import { useState, useRef, useCallback, useEffect } from 'react';
 
 /**
- * Calculate and manage overflow of child elements within a container.
+ * Hook to manage overflow of items in a container with a "more" button.
  *
  * To use, wire up the `wrapperRef` to the container element, and the `listRef` to the
  * child element that contains the items to be measured. If autoResize is true,
  * the list element will have its max-width set to prevent wrapping. The listRef element
  * requires both position:relative and overflow:hidden styles to work correctly.
  */
-export function useOverflow({
+export function useOverflowButton({
   autoResize,
   padding = 4,
 }: { autoResize?: boolean; padding?: number } = {}) {
@@ -76,6 +77,108 @@ export function useOverflow({
     }
   }, [autoResize, maxWidth]);
 
+  const { listRefCallback, wrapperRefCallback } = useOverflowObservers({
+    onRecalculate: handleRecalculate,
+    onListRef: listRef,
+  });
+
+  return {
+    hiddenCount,
+    hasOverflow: hiddenCount > 0,
+    wrapperRef: wrapperRefCallback,
+    hiddenIndex,
+    maxWidth,
+    listRef: listRefCallback,
+    recalculate: handleRecalculate,
+  };
+}
+
+export function useOverflowCarousel() {
+  const listRef = useRef<HTMLElement | null>(null);
+
+  const [offset, setOffset] = useState(0);
+  const [maxOffset, setMaxOffset] = useState(0);
+
+  const handleRecalculate = useCallback(() => {
+    const listEle = listRef.current;
+    if (!listEle) return;
+
+    setMaxOffset(listEle.scrollWidth - listEle.offsetWidth);
+  }, []);
+
+  const handleNext = useCallback(() => {
+    const listEle = listRef.current;
+    if (maxOffset <= 0 || !listEle) return;
+
+    setOffset((prevOffset) => {
+      if (prevOffset >= maxOffset) {
+        return 0;
+      }
+      let nextOffset = prevOffset;
+      for (const child of listEle.children) {
+        if (child instanceof HTMLElement) {
+          const childRight = child.offsetLeft + child.offsetWidth;
+          if (childRight > prevOffset + listEle.offsetWidth) {
+            nextOffset = child.offsetLeft;
+            break;
+          }
+        }
+      }
+      return Math.min(nextOffset, maxOffset);
+    });
+  }, [maxOffset]);
+
+  const handlePrev = useCallback(() => {
+    const listEle = listRef.current;
+    if (maxOffset <= 0 || !listEle) return;
+
+    setOffset((prevOffset) => {
+      if (prevOffset <= 0) {
+        return maxOffset;
+      }
+      let nextOffset = prevOffset;
+      for (let i = listEle.children.length - 1; i >= 0; i--) {
+        const child = listEle.children[i];
+        if (child instanceof HTMLElement) {
+          if (child.offsetLeft < prevOffset) {
+            nextOffset = child.offsetLeft;
+            break;
+          }
+        }
+      }
+      return Math.max(nextOffset, 0);
+    });
+  }, [maxOffset]);
+
+  const { listRefCallback } = useOverflowObservers({
+    onRecalculate: handleRecalculate,
+    onListRef: listRef,
+  });
+
+  return {
+    offset,
+    listRef: listRefCallback,
+    onNext: handleNext,
+    hasNext: offset < maxOffset,
+    onPrev: handlePrev,
+    hasPrev: offset > 0,
+  };
+}
+
+export function useOverflowObservers({
+  onRecalculate,
+  onListRef,
+  onWrapperRef,
+}: {
+  onRecalculate: () => void;
+  onListRef?: RefCallback<HTMLElement> | MutableRefObject<HTMLElement | null>;
+  onWrapperRef?:
+    | RefCallback<HTMLElement>
+    | MutableRefObject<HTMLElement | null>;
+}) {
+  // This is the item container element.
+  const listRef = useRef<HTMLElement | null>(null);
+
   // Set up observers to watch for size and content changes.
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
   const mutationObserverRef = useRef<MutationObserver | null>(null);
@@ -83,10 +186,10 @@ export function useOverflow({
   // Helper to get or create the resize observer.
   const resizeObserver = useCallback(() => {
     const observer = (resizeObserverRef.current ??= new ResizeObserver(
-      handleRecalculate,
+      onRecalculate,
     ));
     return observer;
-  }, [handleRecalculate]);
+  }, [onRecalculate]);
 
   // Iterate through children and observe them for size changes.
   const handleChildrenChange = useCallback(() => {
@@ -100,8 +203,8 @@ export function useOverflow({
         }
       }
     }
-    handleRecalculate();
-  }, [handleRecalculate, resizeObserver]);
+    onRecalculate();
+  }, [onRecalculate, resizeObserver]);
 
   // Helper to get or create the mutation observer.
   const mutationObserver = useCallback(() => {
@@ -129,9 +232,14 @@ export function useOverflow({
       if (node) {
         wrapperRef.current = node;
         handleObserve();
+        if (typeof onWrapperRef === 'function') {
+          onWrapperRef(node);
+        } else if (onWrapperRef && 'current' in onWrapperRef) {
+          onWrapperRef.current = node;
+        }
       }
     },
-    [handleObserve],
+    [handleObserve, onWrapperRef],
   );
 
   // If there are changes to the children, recalculate which are visible.
@@ -140,9 +248,14 @@ export function useOverflow({
       if (node) {
         listRef.current = node;
         handleObserve();
+        if (typeof onListRef === 'function') {
+          onListRef(node);
+        } else if (onListRef && 'current' in onListRef) {
+          onListRef.current = node;
+        }
       }
     },
-    [handleObserve],
+    [handleObserve, onListRef],
   );
 
   useEffect(() => {
@@ -161,12 +274,7 @@ export function useOverflow({
   }, [handleObserve]);
 
   return {
-    hiddenCount,
-    hasOverflow: hiddenCount > 0,
-    wrapperRef: wrapperRefCallback,
-    hiddenIndex,
-    maxWidth,
-    listRef: listRefCallback,
-    recalculate: handleRecalculate,
+    wrapperRefCallback,
+    listRefCallback,
   };
 }
