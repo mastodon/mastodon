@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { PlainToggleField, ToggleField } from './toggle_field';
+import { Toggle, ToggleField } from './toggle_field';
 
 const meta = {
   title: 'Components/Form Fields/ToggleField',
@@ -16,14 +16,6 @@ const meta = {
       control: { type: 'range', min: 10, max: 40, step: 1 },
     },
   },
-  render(args) {
-    // Component styles require a wrapper class at the moment
-    return (
-      <div className='simple_form'>
-        <ToggleField {...args} />
-      </div>
-    );
-  },
 } satisfies Meta<typeof ToggleField>;
 
 export default meta;
@@ -31,6 +23,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Simple: Story = {};
+
+export const WithoutHint: Story = {
+  args: {
+    hint: undefined,
+  },
+};
 
 export const Required: Story = {
   args: {
@@ -60,7 +58,7 @@ export const Disabled: Story = {
 
 export const Plain: Story = {
   render(props) {
-    return <PlainToggleField {...props} />;
+    return <Toggle {...props} />;
   },
 };
 
