@@ -22,7 +22,7 @@ type QueryStatus = 'idle' | 'loading' | 'error';
 
 interface CollectionState {
   // Collections mapped by collection id
-  collections: Map<string, ApiCollectionJSON>;
+  collections: Record<string, ApiCollectionJSON>;
   // Lists of collection ids mapped by account id
   accountCollections: Record<
     string,
@@ -34,7 +34,7 @@ interface CollectionState {
 }
 
 const initialState: CollectionState = {
-  collections: new Map(),
+  collections: {},
   accountCollections: {},
 };
 
@@ -66,12 +66,13 @@ const collectionSlice = createSlice({
     builder.addCase(fetchAccountCollections.fulfilled, (state, action) => {
       const { collections } = action.payload;
 
-      const collectionsMap: Map<string, ApiCollectionJSON> = state.collections;
+      const collectionsMap: Record<string, ApiCollectionJSON> =
+        state.collections;
       const collectionIds: string[] = [];
 
       collections.forEach((collection) => {
         const { id } = collection;
-        collectionsMap.set(id, collection);
+        collectionsMap[id] = collection;
         collectionIds.push(id);
       });
 
@@ -88,7 +89,7 @@ const collectionSlice = createSlice({
 
     builder.addCase(fetchCollection.fulfilled, (state, action) => {
       const { collection } = action.payload;
-      state.collections.set(collection.id, collection);
+      state.collections[collection.id] = collection;
     });
 
     /**
@@ -97,7 +98,7 @@ const collectionSlice = createSlice({
 
     builder.addCase(updateCollection.fulfilled, (state, action) => {
       const { collection } = action.payload;
-      state.collections.set(collection.id, collection);
+      state.collections[collection.id] = collection;
     });
 
     /**
@@ -106,7 +107,8 @@ const collectionSlice = createSlice({
 
     builder.addCase(deleteCollection.fulfilled, (state, action) => {
       const { collectionId } = action.meta.arg;
-      state.collections.delete(collectionId);
+      // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+      delete state.collections[collectionId];
     });
 
     /**
@@ -116,7 +118,7 @@ const collectionSlice = createSlice({
     builder.addCase(createCollection.fulfilled, (state, actions) => {
       const { collection } = actions.payload;
 
-      state.collections.set(collection.id, collection);
+      state.collections[collection.id] = collection;
 
       if (state.accountCollections[collection.account_id]) {
         state.accountCollections[collection.account_id]?.collectionIds.unshift(
@@ -199,7 +201,7 @@ export const selectMyCollections = createAppSelector(
     return {
       status,
       collections: collectionIds
-        .map((id) => collectionsMap.get(id))
+        .map((id) => collectionsMap[id])
         .filter((c) => !!c),
     } satisfies AccountCollectionQuery;
   },
