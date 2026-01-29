@@ -1,0 +1,34 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--color-text-primary);
+  font-size: 15px;
+
+  &[data-input-placement='inline-start'],
+  &[data-input-placement='inline-end'] {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.labelWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 4px;
+}
+
+.label {
+  font-weight: 500;
+}
+
+.hint {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.inputWrapper {
+  display: block;
+}
