@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import LinkIcon from '@/material-icons/400-24px/link.svg?react';
+
 import { MiniCardList } from './list';
 
 const meta = {
@@ -34,10 +36,12 @@ export const Default: Story = {
       {
         label: 'Website',
         value: <a href='https://example.com'>bowie-the-db.meow</a>,
+        icon: LinkIcon,
       },
       {
         label: 'Free playlists',
         value: <a href='https://soundcloud.com/bowie-the-dj'>soundcloud.com</a>,
+        icon: LinkIcon,
       },
       { label: 'Location', value: 'Purris, France' },
     ],
