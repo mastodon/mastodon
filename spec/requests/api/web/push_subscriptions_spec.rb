@@ -163,9 +163,10 @@ RSpec.describe 'API Web Push Subscriptions' do
   end
 
   describe 'PUT /api/web/push_subscriptions/:id' do
-    before { sign_in Fabricate :user }
+    before { sign_in user }
 
-    let(:subscription) { Fabricate :web_push_subscription }
+    let(:user) { Fabricate(:user) }
+    let(:subscription) { Fabricate(:web_push_subscription, user: user) }
 
     it 'gracefully handles invalid nested params' do
       put api_web_push_subscription_path(subscription), params: { data: 'invalid' }
@@ -187,6 +188,17 @@ RSpec.describe 'API Web Push Subscriptions' do
       alert_types.each do |type|
         expect(created_push_subscription.data['alerts'][type])
           .to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
+      end
+    end
+
+    context 'when using other user subscription' do
+      let(:subscription) { Fabricate(:web_push_subscription) }
+
+      it 'does not change settings' do
+        put api_web_push_subscription_path(subscription), params: alerts_payload
+
+        expect(response)
+          .to have_http_status(404)
       end
     end
   end

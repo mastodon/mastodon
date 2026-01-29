@@ -22,3 +22,5 @@ export type OmitValueType<T, V> = {
 };
 
 export type AnyFunction = (...args: never) => unknown;
+
+export type OmitUnion<TUnion, TBase> = TBase & Omit<TUnion, keyof TBase>;

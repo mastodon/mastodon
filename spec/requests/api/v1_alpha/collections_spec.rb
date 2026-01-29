@@ -20,7 +20,7 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
       subject
 
       expect(response).to have_http_status(200)
-      expect(response.parsed_body.size).to eq 3
+      expect(response.parsed_body[:collections].size).to eq 3
     end
 
     context 'with limit param' do
@@ -30,7 +30,7 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
         subject
 
         expect(response).to have_http_status(200)
-        expect(response.parsed_body.size).to eq 1
+        expect(response.parsed_body[:collections].size).to eq 1
 
         expect(response)
           .to include_pagination_headers(
@@ -46,13 +46,52 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
         subject
 
         expect(response).to have_http_status(200)
-        expect(response.parsed_body.size).to eq 1
+        expect(response.parsed_body[:collections].size).to eq 1
 
         expect(response)
           .to include_pagination_headers(
             prev: api_v1_alpha_account_collections_url(account, limit: 1, offset: 0),
             next: api_v1_alpha_account_collections_url(account, limit: 1, offset: 2)
           )
+      end
+    end
+
+    context 'when some collections are not discoverable' do
+      before do
+        Fabricate(:collection, account:, discoverable: false)
+      end
+
+      context 'when requesting user is a third party' do
+        it 'hides the collections that are not discoverable' do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.parsed_body[:collections].size).to eq 3
+        end
+      end
+
+      context 'when requesting user owns the collection' do
+        let(:account) { user.account }
+
+        it 'returns all collections, including the ones that are not discoverable' do
+          subject
+
+          expect(response).to have_http_status(200)
+          expect(response.parsed_body[:collections].size).to eq 4
+        end
+      end
+    end
+
+    context 'when the requesting user is blocked by the given account' do
+      before do
+        account.block!(user.account)
+      end
+
+      it 'returns an empty array' do
+        subject
+
+        expect(response).to have_http_status(200)
+        expect(response.parsed_body[:collections]).to eq []
       end
     end
   end
@@ -70,7 +109,7 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
         subject
 
         expect(response).to have_http_status(200)
-        expect(response.parsed_body[:items].size).to eq 2
+        expect(response.parsed_body[:collection][:items].size).to eq 2
       end
     end
 
@@ -94,8 +133,8 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
           subject
 
           expect(response).to have_http_status(200)
-          expect(response.parsed_body[:items].size).to eq 1
-          expect(response.parsed_body[:items][0]['position']).to eq items.last.position
+          expect(response.parsed_body[:collection][:items].size).to eq 1
+          expect(response.parsed_body[:collection][:items][0]['id']).to eq items.last.id.to_s
         end
       end
     end
@@ -115,6 +154,7 @@ RSpec.describe 'Api::V1Alpha::Collections', feature: :collections do
         {
           name: 'Low-traffic bots',
           description: 'Really nice bots, please follow',
+          language: 'en',
           sensitive: '0',
           discoverable: '1',
         }

@@ -17,12 +17,7 @@
     %p.lead= t('auth.rules.preamble', domain: site_hostname)
 
   %ol.rules-list
-    - @rules.each do |rule|
-      - translation = rule.translation_for(I18n.locale.to_s)
-      %li
-        %button{ type: 'button', aria: { expanded: 'false' } }
-          .rules-list__text= translation.text
-          .rules-list__hint= translation.hint
+    = render collection: @rule_translations, partial: 'auth/rule_translations/rule_translation'
 
   .stacked-actions
     - accept_path = @invite_code.present? ? public_invite_url(invite_code: @invite_code, accept: @accept_token) : new_user_registration_path(accept: @accept_token)

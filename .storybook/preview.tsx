@@ -25,6 +25,7 @@ import { mockHandlers, unhandledRequestHandler } from '@/testing/api';
 // you can change the below to `/application.scss`
 import '../app/javascript/styles/mastodon-light.scss';
 import './styles.css';
+import { modes } from './modes';
 
 const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
   query: { as: 'json' },
@@ -50,9 +51,19 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    theme: {
+      description: 'Theme for the story',
+      toolbar: {
+        title: 'Theme',
+        icon: 'circlehollow',
+        items: [{ value: 'light' }, { value: 'dark' }],
+        dynamicTitle: true,
+      },
+    },
   },
   initialGlobals: {
     locale: 'en',
+    theme: 'light',
   },
   decorators: [
     (Story, { parameters, globals, args, argTypes }) => {
@@ -135,6 +146,13 @@ const preview: Preview = {
         </IntlProvider>
       );
     },
+    (Story, { globals }) => {
+      const theme = (globals.theme as string) || 'light';
+      useEffect(() => {
+        document.body.setAttribute('data-color-scheme', theme);
+      }, [theme]);
+      return <Story />;
+    },
     (Story) => (
       <MemoryRouter>
         <Story />
@@ -180,6 +198,13 @@ const preview: Preview = {
 
     msw: {
       handlers: mockHandlers,
+    },
+
+    chromatic: {
+      modes: {
+        dark: modes.darkTheme,
+        light: modes.lightTheme,
+      },
     },
   },
 };

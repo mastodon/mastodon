@@ -31,6 +31,8 @@ import {
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 
+import { isRedesignEnabled } from '../common';
+
 const messages = defineMessages({
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
@@ -54,6 +56,14 @@ const messages = defineMessages({
   showReblogs: {
     id: 'account.show_reblogs',
     defaultMessage: 'Show boosts from @{name}',
+  },
+  addNote: {
+    id: 'account.add_note',
+    defaultMessage: 'Add a personal note',
+  },
+  editNote: {
+    id: 'account.edit_note',
+    defaultMessage: 'Edit personal note',
   },
   endorse: { id: 'account.endorse', defaultMessage: 'Feature on profile' },
   unendorse: {
@@ -187,7 +197,30 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
         });
         arr.push(null);
       }
+    }
 
+    if (isRedesignEnabled()) {
+      arr.push({
+        text: intl.formatMessage(
+          relationship?.note ? messages.editNote : messages.addNote,
+        ),
+        action: () => {
+          dispatch(
+            openModal({
+              modalType: 'ACCOUNT_NOTE',
+              modalProps: {
+                accountId: account.id,
+              },
+            }),
+          );
+        },
+      });
+      if (!relationship?.following) {
+        arr.push(null);
+      }
+    }
+
+    if (relationship?.following) {
       arr.push({
         text: intl.formatMessage(
           relationship.endorsed ? messages.unendorse : messages.endorse,

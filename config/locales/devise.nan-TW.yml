@@ -1,0 +1,17 @@
+---
+nan-TW:
+  devise:
+    failure:
+      locked: Lí ê口座hőng鎖定ah。
+      not_found_in_database: Bô ha̍p規定ê %{authentication_keys} á是密碼。
+      pending: Lí ê口座iáu teh審查。
+      timeout: Lí ê作業階段kàu期ah。請koh登入，繼續完成。
+    mailer:
+      confirmation_instructions:
+        extra_html: Mā請斟酌讀<a href="%{terms_path}">服侍器規定</a>kap<a href="%{policy_path}">服務規定</a>。
+      two_factor_disabled:
+        title: 雙因素認證關掉ah
+      two_factor_enabled:
+        title: 雙因素認證啟用ah
+      two_factor_recovery_codes_changed:
+        title: 雙因素認證ê恢復碼改ah

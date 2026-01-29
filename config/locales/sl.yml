@@ -7,6 +7,8 @@ sl:
     hosted_on: Mastodon gostuje na %{domain}
     title: O programu
   accounts:
+    errors:
+      cannot_be_added_to_collections: Tega računa ni možno dodati v zbirke.
     followers:
       few: Sledilci
       one: Sledilec
@@ -196,6 +198,7 @@ sl:
         create_relay: Ustvari rele
         create_unavailable_domain: Ustvari domeno, ki ni na voljo
         create_user_role: Ustvari vlogo
+        create_username_block: Ustvari pravilo uporabniškega imena
         demote_user: Ponižaj uporabnika
         destroy_announcement: Izbriši obvestilo
         destroy_canonical_email_block: Izbriši blokado e-naslova
@@ -209,6 +212,7 @@ sl:
         destroy_status: Izbriši objavo
         destroy_unavailable_domain: Izbriši nedosegljivo domeno
         destroy_user_role: Uniči vlogo
+        destroy_username_block: Izbriši pravilo uporabniškega imena
         disable_2fa_user: Onemogoči
         disable_custom_emoji: Onemogoči emotikon po meri
         disable_relay: Onemogoči rele
@@ -243,6 +247,7 @@ sl:
         update_report: Posodobi poročilo
         update_status: Posodobi objavo
         update_user_role: Posodobi vlogo
+        update_username_block: Posodobi pravilo uporabniškega imena
       actions:
         approve_appeal_html: "%{name} je ugodil pritožbi uporabnika %{target} na moderatorsko odločitev"
         approve_user_html: "%{name} je odobril/a registracijo iz %{target}"
@@ -261,6 +266,7 @@ sl:
         create_relay_html: "%{name} je ustvaril/a rele %{target}"
         create_unavailable_domain_html: "%{name} je prekinil/a dostavo v domeno %{target}"
         create_user_role_html: "%{name} je ustvaril/a vlogo %{target}"
+        create_username_block_html: "%{name} je dodal/a pravilo za uporabniška imena, ki vsebujejo %{target}"
         demote_user_html: "%{name} je ponižal/a uporabnika %{target}"
         destroy_announcement_html: "%{name} je izbrisal/a obvestilo %{target}"
         destroy_canonical_email_block_html: "%{name} je odstranil/a s črnega seznama e-pošto s ključnikom %{target}"
@@ -274,6 +280,7 @@ sl:
         destroy_status_html: "%{name} je odstranil/a objavo uporabnika %{target}"
         destroy_unavailable_domain_html: "%{name} je nadaljeval/a dostav v domeno %{target}"
         destroy_user_role_html: "%{name} je izbrisal/a vlogo %{target}"
+        destroy_username_block_html: "%{name} je odstranil/a pravilo za uporabniška imena, ki vsebujejo %{target}"
         disable_2fa_user_html: "%{name} je onemogočil/a dvofaktorsko zahtevo za uporabnika %{target}"
         disable_custom_emoji_html: "%{name} je onemogočil/a emotikone %{target}"
         disable_relay_html: "%{name} je onemogočil/a rele %{target}"
@@ -308,6 +315,7 @@ sl:
         update_report_html: "%{name} je posodobil poročilo %{target}"
         update_status_html: "%{name} je posodobil/a objavo uporabnika %{target}"
         update_user_role_html: "%{name} je spremenil/a vlogo %{target}"
+        update_username_block_html: "%{name} je posodobil/a pravilo za uporabniška imena, ki vsebujejo %{target}"
       deleted_account: izbrisan račun
       empty: Ni najdenih zapisnikov.
       filter_by_action: Filtriraj po dejanjih
@@ -498,21 +506,30 @@ sl:
     fasp:
       debug:
         callbacks:
+          created_at: Ustvarjeno
           delete: Izbriši
           ip: Naslov IP
+          request_body: Telo zahteve
       providers:
+        active: Dejaven
         base_url: Osnovna povezava
         callback: Povratni klic
         delete: Izbriši
         edit: Uredi ponudnika
         finish_registration: Dokončaj registracijo
         name: Ime
+        providers: Ponudniki
+        public_key_fingerprint: Prstni odtis javnega ključa
+        registration_requested: Registracija je obvezna
         registrations:
           confirm: Potrdi
           reject: Zavrni
+          title: Potrdri registracijo FASP
         save: Shrani
         sign_in: Prijava
         status: Stanje
+        title: Ponudniki dodatnih storitev Fediverse
+      title: FASP
     follow_recommendations:
       description_html: "<strong>Sledi priporočilom pomaga novim uporabnikom, da hitro najdejo zanimivo vsebino</strong>. Če uporabnik ni dovolj komuniciral z drugimi, da bi oblikoval prilagojena priporočila za sledenje, se namesto tega priporočajo ti računi. Dnevno se ponovno izračunajo iz kombinacije računov z najvišjimi nedavnimi angažiranostmi in najvišjim številom krajevnih sledilcev za določen jezik."
       language: Za jezik
@@ -844,12 +861,18 @@ sl:
         publish_statistics: Objavi statistiko
         title: Razkrivanje
         trends: Trendi
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Vsem
         disabled: Nikomur
         users: Prijavljenim krajevnim uporabnikom
+      feed_access:
+        modes:
+          authenticated: Samo overjeni uporabniki
+          public: Vsi
       landing_page:
         values:
+          local_feed: Krajevni vir
           trends: Trendi
       registrations:
         moderation_recommandation: Preden prijave odprete za vse poskrbite, da imate v ekipi moderatorjev zadosti aktivnih članov.
@@ -912,6 +935,7 @@ sl:
       title: Objave računa - @%{name}
       trending: V trendu
       view_publicly: Prikaži javno
+      view_quoted_post: Pokaži citirano objavo
       visibility: Vidnost
       with_media: Z mediji
     strikes:
@@ -1103,13 +1127,23 @@ sl:
       trending: V porastu
     username_blocks:
       add_new: Dodaj novo
+      block_registrations: Blokiraj registracije
       comparison:
         contains: Vsebuje
+        equals: Je enako
       contains_html: Vsebuje %{string}
+      created_msg: Pravilo uporabniškega imena uspešno ustvarjeno
       delete: Izbriši
+      edit:
+        title: Uredi pravilo uporabniškega imena
+      matches_exactly_html: Je enako %{string}
       new:
         create: Ustvari pravilo
+        title: Ustvari novo pravilo uporabniškega imena
+      no_username_block_selected: Nobeno pravilo uporabniškega imena ni bilo spremenjeno, ker nobeno ni bilo izbrano
       not_permitted: Ni dovoljeno
+      title: Pravila uporabniškega imena
+      updated_msg: Pravilo uporabniškega imena uspešno posodobljeno
     warning_presets:
       add_new: Dodaj novo
       delete: Izbriši
@@ -1302,6 +1336,13 @@ sl:
     hint_html: "<strong>Namig:</strong> naslednjo uro vas ne bomo več vprašali po vašem geslu."
     invalid_password: Neveljavno geslo
     prompt: Potrdite geslo za nadaljevanje
+  color_scheme:
+    auto: Samodejno
+    dark: Temno
+    light: Svetlo
+  contrast:
+    auto: Samodejno
+    high: Visoko
   crypto:
     errors:
       invalid_key: ni veljaven ključ Ed25519 ali Curve25519
@@ -1376,6 +1417,7 @@ sl:
     other: Drugo
   emoji_styles:
     auto: Samodejno
+    native: Domoroden
   errors:
     '400': Zahteva, ki ste jo oddali, je neveljavna ali nepravilno oblikovana.
     '403': Nimate dovoljenja za ogled te strani.
@@ -1629,6 +1671,7 @@ sl:
     author_html: Avtor/ica %{name}
     potentially_sensitive_content:
       action: Kliknite za prikaz
+      confirm_visit: Ali ste prepričani, da želite odpreti to povezavo?
       hide_button: Skrij
   lists:
     errors:
@@ -1727,10 +1770,13 @@ sl:
       body: "%{name} vas je omenil/a v:"
       subject: "%{name} vas je omenil/a"
       title: Nova omemba
+    moderation_warning:
+      subject: Prejeli ste opozorilo moderatorjev
     poll:
       subject: Anketa, ki jo je pripravil/a %{name}, se je iztekla
     quote:
       body: 'Vašo objavo je citiral/a %{name}:'
+      subject: "%{name} je citiral/a vašo objavo"
       title: Nov citat
     reblog:
       body: 'Vašo objavo je izpostavil/a %{name}:'
@@ -1962,6 +2008,7 @@ sl:
       reblog: Izpostavitev ne more biti pripeta
     quote_error:
       not_available: Objava ni na voljo
+      revoked: Avtor je umaknil objavo
     quote_policies:
       followers: Samo sledilci
       nobody: Samo jaz
@@ -2191,8 +2238,12 @@ sl:
       error: Pri brisanju vašega varnostnega ključa je prišlo do težav. Poskusite znova.
       success: Vaš varnostni ključ je bil uspešno izbrisan.
     invalid_credential: Neveljaven varnostni ključ
+    nickname: Vzdevek
     nickname_hint: Vnesite vzdevek svojega novega varnostnega ključa
     not_enabled: Niste še omogočili WebAuthn
     not_supported: Ta brskalnik ne podpira varnostnih ključev
     otp_required: Za uporabo varnostnih ključev morate najprej omogočiti 2FA (dvostopenjsko overjanje).
     registered_on: Datum registracije %{date}
+  wrapstodon:
+    description: Oglejte si, kako je %{name} letos uporabljal/a Mastodon!
+    title: Wrapstodon %{year} za %{name}

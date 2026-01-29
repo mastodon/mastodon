@@ -6,6 +6,12 @@ RSpec.describe Account do
   it_behaves_like 'Account::Search'
   it_behaves_like 'Reviewable'
 
+  describe 'Associations' do
+    it { is_expected.to have_many(:account_notes).inverse_of(:account) }
+    it { is_expected.to have_many(:action_logs).class_name('Admin::ActionLog') }
+    it { is_expected.to have_many(:targeted_account_notes).inverse_of(:target_account) }
+  end
+
   context 'with an account record' do
     subject { Fabricate(:account) }
 
@@ -563,6 +569,8 @@ RSpec.describe Account do
 
         it { is_expected.to_not allow_values('username', 'Username').for(:username) }
       end
+
+      it { is_expected.to validate_length_of(:username).is_at_most(described_class::USERNAME_LENGTH_HARD_LIMIT) }
 
       it { is_expected.to allow_values('the-doctor', username_over_limit).for(:username) }
       it { is_expected.to_not allow_values('the doctor').for(:username) }
