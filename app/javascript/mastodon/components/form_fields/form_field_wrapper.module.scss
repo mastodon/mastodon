@@ -22,6 +22,10 @@
 
 .label {
   font-weight: 500;
+
+  [data-has-error='true'] & {
+    color: var(--color-text-error);
+  }
 }
 
 .hint {

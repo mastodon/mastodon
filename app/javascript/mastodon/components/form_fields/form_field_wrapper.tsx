@@ -5,8 +5,6 @@ import { useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
-
 import classes from './form_field_wrapper.module.scss';
 
 interface InputProps {
@@ -67,9 +65,8 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
 
   return (
     <div
-      className={classNames(classes.wrapper, {
-        'has-error': hasError,
-      })}
+      className={classes.wrapper}
+      data-has-error={hasError}
       data-input-placement={inputPlacement}
     >
       {inputPlacement === 'inline-start' && input}
