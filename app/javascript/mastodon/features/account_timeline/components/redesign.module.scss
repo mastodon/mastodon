@@ -78,6 +78,10 @@ svg.badgeIcon {
   margin-top: 16px;
 }
 
+.fieldCard :is(dt, dd) {
+  max-width: 200px;
+}
+
 .fieldCardVerified {
   background-color: var(--color-bg-brand-softer);
 }

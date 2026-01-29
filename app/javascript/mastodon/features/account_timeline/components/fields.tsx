@@ -62,7 +62,13 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
       account.fields
         .toArray()
         .map(
-          ({ value_emojified, name_emojified, verified_at, value_plain }) => {
+          ({
+            value_emojified,
+            value_plain,
+            name_emojified,
+            name,
+            verified_at,
+          }) => {
             let icon: MiniCardProps['icon'] = undefined;
             if (verified_at) {
               icon = IconVerified;
@@ -76,6 +82,7 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
                   extraEmojis={account.emojis}
                   className='translate'
                   as='span'
+                  title={name}
                   {...htmlHandlers}
                 />
               ),
@@ -84,10 +91,14 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
                   as='span'
                   htmlString={value_emojified}
                   extraEmojis={account.emojis}
+                  title={value_plain ?? undefined}
                   {...htmlHandlers}
                 />
               ),
-              className: classNames(verified_at && classes.fieldCardVerified),
+              className: classNames(
+                classes.fieldCard,
+                verified_at && classes.fieldCardVerified,
+              ),
               icon,
             };
           },
