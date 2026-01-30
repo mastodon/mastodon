@@ -33,6 +33,7 @@
 #  published_at                 :datetime
 #  image_description            :string           default(""), not null
 #  author_account_id            :bigint(8)
+#  image_remote_url             :string
 #
 
 class PreviewCard < ApplicationRecord
