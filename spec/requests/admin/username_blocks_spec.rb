@@ -25,12 +25,19 @@ RSpec.describe 'Admin Username Blocks' do
     end
 
     it 'creates a username block' do
-      post admin_username_blocks_path(username_block: { username: 'banana', comparison: 'contains', allow_with_approval: '0' })
+      expect do
+        post admin_username_blocks_path(username_block: { username: 'banana', comparison: 'false', allow_with_approval: '0' })
+      end.to change(UsernameBlock, :count).by(1)
 
       expect(response)
         .to redirect_to(admin_username_blocks_path)
-      expect(UsernameBlock.find_by(username: 'banana'))
-        .to_not be_nil
+      expect(UsernameBlock.last)
+        .to be_present
+        .and have_attributes(
+          allow_with_approval: false,
+          exact: false,
+          username: 'banana'
+        )
     end
   end
 
