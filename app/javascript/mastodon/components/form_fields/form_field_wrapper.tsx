@@ -5,7 +5,7 @@ import { useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import classNames from 'classnames';
+import classes from './form_field_wrapper.module.scss';
 
 interface InputProps {
   id: string;
@@ -19,6 +19,7 @@ interface FieldWrapperProps {
   required?: boolean;
   hasError?: boolean;
   inputId?: string;
+  inputPlacement?: 'inline-start' | 'inline-end';
   children: (inputProps: InputProps) => ReactNode;
 }
 
@@ -42,6 +43,7 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   hint,
   required,
   hasError,
+  inputPlacement,
   children,
 }) => {
   const uniqueId = useId();
@@ -57,26 +59,32 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
     inputProps['aria-describedby'] = hintId;
   }
 
+  const input = (
+    <div className={classes.inputWrapper}>{children(inputProps)}</div>
+  );
+
   return (
     <div
-      className={classNames('input with_block_label', {
-        field_with_errors: hasError,
-      })}
+      className={classes.wrapper}
+      data-has-error={hasError}
+      data-input-placement={inputPlacement}
     >
-      <div className='label_input'>
-        <label htmlFor={inputId}>
+      {inputPlacement === 'inline-start' && input}
+
+      <div className={classes.labelWrapper}>
+        <label htmlFor={inputId} className={classes.label}>
           {label}
           {required !== undefined && <RequiredMark required={required} />}
         </label>
 
         {hasHint && (
-          <span className='hint' id={hintId}>
+          <span className={classes.hint} id={hintId}>
             {hint}
           </span>
         )}
-
-        <div className='label_input__wrapper'>{children(inputProps)}</div>
       </div>
+
+      {inputPlacement !== 'inline-start' && input}
     </div>
   );
 };

@@ -1,22 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Toggle, ToggleField } from './toggle_field';
+import { Checkbox, CheckboxField } from './checkbox_field';
 
 const meta = {
-  title: 'Components/Form Fields/ToggleField',
-  component: ToggleField,
+  title: 'Components/Form Fields/CheckboxField',
+  component: CheckboxField,
   args: {
     label: 'Label',
     hint: 'This is a description of this form field',
     disabled: false,
-    size: 20,
   },
   argTypes: {
     size: {
-      control: { type: 'range', min: 10, max: 40, step: 1 },
+      control: { type: 'range', min: 10, max: 64, step: 1 },
     },
   },
-} satisfies Meta<typeof ToggleField>;
+} satisfies Meta<typeof CheckboxField>;
 
 export default meta;
 
@@ -49,27 +48,40 @@ export const WithError: Story = {
   },
 };
 
-export const Disabled: Story = {
+export const DisabledChecked: Story = {
   args: {
     disabled: true,
     checked: true,
   },
 };
 
+export const DisabledUnchecked: Story = {
+  args: {
+    disabled: true,
+    checked: false,
+  },
+};
+
+export const Indeterminate: Story = {
+  args: {
+    indeterminate: true,
+  },
+};
+
 export const Plain: Story = {
   render(props) {
-    return <Toggle {...props} />;
+    return <Checkbox {...props} />;
   },
 };
 
 export const Small: Story = {
   args: {
-    size: 12,
+    size: 14,
   },
 };
 
 export const Large: Story = {
   args: {
-    size: 36,
+    size: 64,
   },
 };

@@ -16,7 +16,7 @@ import type {
 import { Button } from 'mastodon/components/button';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
-import { TextAreaField, ToggleField } from 'mastodon/components/form_fields';
+import { CheckboxField, TextAreaField } from 'mastodon/components/form_fields';
 import { TextInputField } from 'mastodon/components/form_fields/text_input_field';
 import { LoadingIndicator } from 'mastodon/components/loading_indicator';
 import {
@@ -194,7 +194,7 @@ const CollectionSettings: React.FC<{
       </div>
 
       <div className='fields-group'>
-        <ToggleField
+        <CheckboxField
           label={
             <FormattedMessage
               id='collections.mark_as_sensitive'
