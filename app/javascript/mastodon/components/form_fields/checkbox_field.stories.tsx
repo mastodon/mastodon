@@ -39,7 +39,7 @@ export const InFieldset: Story = {
       >
         <CheckboxField label='Option 1' />
         <CheckboxField label='Option 2' />
-        <CheckboxField label='Option 3' />
+        <CheckboxField label='Option 3' defaultChecked />
       </Fieldset>
     );
   },
@@ -55,7 +55,7 @@ export const InFieldsetHorizontal: Story = {
       >
         <CheckboxField label='Option 1' />
         <CheckboxField label='Option 2' />
-        <CheckboxField label='Option 3' />
+        <CheckboxField label='Option 3' defaultChecked />
       </Fieldset>
     );
   },

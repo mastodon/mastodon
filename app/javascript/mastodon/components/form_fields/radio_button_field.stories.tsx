@@ -38,7 +38,7 @@ export const InFieldset: Story = {
         legend='Choose one option'
         hint='This is a description of this set of options'
       >
-        <RadioButtonField label='Option 1' />
+        <RadioButtonField label='Option 1' defaultChecked />
         <RadioButtonField label='Option 2' />
         <RadioButtonField label='Option 3' />
       </Fieldset>
@@ -54,7 +54,7 @@ export const InFieldsetHorizontal: Story = {
         hint='This is a description of this set of options'
         layout='horizontal'
       >
-        <RadioButtonField label='Option 1' />
+        <RadioButtonField label='Option 1' defaultChecked />
         <RadioButtonField label='Option 2' />
         <RadioButtonField label='Option 3' />
       </Fieldset>
