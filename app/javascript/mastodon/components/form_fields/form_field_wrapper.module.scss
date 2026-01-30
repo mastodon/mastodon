@@ -29,6 +29,10 @@
 .label {
   font-weight: 500;
 
+  &[data-has-parent-fieldset='true'] {
+    font-weight: normal;
+  }
+
   [data-has-error='true'] & {
     color: var(--color-text-error);
   }

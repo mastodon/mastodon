@@ -16,12 +16,9 @@
   transition-property: background-color, border-color;
   cursor: pointer;
 
-  @supports not (appearance: none) {
-    accent-color: var(--color-bg-brand-base);
-  }
-
   &:disabled {
-    background: var(--color-bg-secondary);
+    background: var(--color-bg-tertiary);
+    border: none;
     cursor: not-allowed;
   }
 
@@ -53,9 +50,12 @@
     border-color: var(--color-bg-brand-base);
 
     &:disabled {
-      border-color: var(--color-bg-disabled);
-      background: var(--color-bg-disabled);
-      color: var(--color-text-on-disabled);
+      border: none;
+      background-color: var(--color-text-disabled);
+
+      &::before {
+        background-color: var(--color-bg-tertiary);
+      }
     }
 
     &::before {
