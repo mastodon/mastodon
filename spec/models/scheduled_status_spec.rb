@@ -24,7 +24,7 @@ RSpec.describe ScheduledStatus do
 
       it 'is not valid', :aggregate_failures do
         expect(subject).to_not be_valid
-        expect(subject.errors[:base]).to include(I18n.t('scheduled_statuses.over_total_limit', limit: ScheduledStatus::TOTAL_LIMIT))
+        expect(subject.errors[:base]).to include(I18n.t('scheduled_statuses.over_total_limit', count: ScheduledStatus::TOTAL_LIMIT))
       end
     end
 
@@ -43,7 +43,7 @@ RSpec.describe ScheduledStatus do
 
       it 'is not valid', :aggregate_failures do
         expect(subject).to_not be_valid
-        expect(subject.errors[:base]).to include(I18n.t('scheduled_statuses.over_daily_limit', limit: ScheduledStatus::DAILY_LIMIT))
+        expect(subject.errors[:base]).to include(I18n.t('scheduled_statuses.over_daily_limit', count: ScheduledStatus::DAILY_LIMIT))
       end
     end
   end
