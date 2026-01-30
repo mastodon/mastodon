@@ -1,11 +1,20 @@
-import type { FC, ReactNode } from 'react';
+import { useEffect } from 'react';
+import type { FC } from 'react';
 
-import IconAdmin from '@/images/icons/icon_admin.svg?react';
-import { AutomatedBadge, Badge, GroupBadge } from '@/mastodon/components/badge';
-import { Icon } from '@/mastodon/components/icon';
+import classNames from 'classnames';
+
+import { fetchRelationships } from '@/mastodon/actions/accounts';
+import {
+  AdminBadge,
+  AutomatedBadge,
+  Badge,
+  BlockedBadge,
+  GroupBadge,
+  MutedBadge,
+} from '@/mastodon/components/badge';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import type { AccountRole } from '@/mastodon/models/account';
-import { useAppSelector } from '@/mastodon/store';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { isRedesignEnabled } from '../common';
 
@@ -16,6 +25,17 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
   const localDomain = useAppSelector(
     (state) => state.meta.get('domain') as string,
   );
+  const relationship = useAppSelector((state) =>
+    state.relationships.get(accountId),
+  );
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (!relationship) {
+      dispatch(fetchRelationships([accountId]));
+    }
+  }, [accountId, dispatch, relationship]);
+
   const badges = [];
 
   if (!account) {
@@ -24,38 +44,57 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
 
   const className = isRedesignEnabled() ? classes.badge : '';
 
-  if (account.bot) {
-    badges.push(<AutomatedBadge key='bot-badge' className={className} />);
-  } else if (account.group) {
-    badges.push(<GroupBadge key='group-badge' className={className} />);
-  }
-
   const domain = account.acct.includes('@')
     ? account.acct.split('@')[1]
     : localDomain;
   account.roles.forEach((role) => {
-    let icon: ReactNode = undefined;
     if (isAdminBadge(role)) {
-      icon = (
-        <Icon
-          icon={IconAdmin}
-          id='badge-admin'
-          className={classes.badgeIcon}
-          noFill
-        />
+      badges.push(
+        <AdminBadge
+          key={role.id}
+          label={role.name}
+          className={className}
+          domain={`(${domain})`}
+          roleId={role.id}
+        />,
+      );
+    } else {
+      badges.push(
+        <Badge
+          key={role.id}
+          label={role.name}
+          className={className}
+          domain={isRedesignEnabled() ? `(${domain})` : domain}
+          roleId={role.id}
+        />,
       );
     }
-    badges.push(
-      <Badge
-        key={role.id}
-        label={role.name}
-        className={className}
-        domain={isRedesignEnabled() ? `(${domain})` : domain}
-        roleId={role.id}
-        icon={icon}
-      />,
-    );
   });
+
+  if (account.bot) {
+    badges.push(<AutomatedBadge key='bot-badge' className={className} />);
+  }
+  if (account.group) {
+    badges.push(<GroupBadge key='group-badge' className={className} />);
+  }
+  if (isRedesignEnabled()) {
+    if (relationship?.blocking) {
+      badges.push(
+        <BlockedBadge
+          key='blocking'
+          className={classNames(className, classes.badgeBlocked)}
+        />,
+      );
+    }
+    if (relationship?.muting) {
+      badges.push(
+        <MutedBadge
+          key='muted-badge'
+          className={classNames(className, classes.badgeMuted)}
+        />,
+      );
+    }
+  }
 
   if (!badges.length) {
     return null;
