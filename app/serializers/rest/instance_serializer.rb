@@ -90,6 +90,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
         video_frame_rate_limit: MediaAttachment::MAX_VIDEO_FRAME_RATE,
         video_matrix_limit: MediaAttachment::MAX_VIDEO_MATRIX_LIMIT,
         video_size_limit: MediaAttachment::VIDEO_LIMIT,
+        allow_mix_media: MediaAttachment::ALLOW_MIX_MEDIA,
       },
 
       polls: {
