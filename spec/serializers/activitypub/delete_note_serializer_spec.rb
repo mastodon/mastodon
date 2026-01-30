@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::DeleteSerializer do
+RSpec.describe ActivityPub::DeleteNoteSerializer do
   subject { serialized_record_json(status, described_class, adapter: ActivityPub::Adapter) }
 
   let(:tag_manager) { ActivityPub::TagManager.instance }
