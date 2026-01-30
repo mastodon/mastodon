@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Checkbox, CheckboxField } from './checkbox_field';
+import { Fieldset } from './fieldset';
 
 const meta = {
   title: 'Components/Form Fields/CheckboxField',
@@ -26,6 +27,37 @@ export const Simple: Story = {};
 export const WithoutHint: Story = {
   args: {
     hint: undefined,
+  },
+};
+
+export const InFieldset: Story = {
+  render() {
+    return (
+      <Fieldset
+        legend='Choose your options'
+        hint='This is a description of this set of options'
+      >
+        <CheckboxField label='Option 1' />
+        <CheckboxField label='Option 2' />
+        <CheckboxField label='Option 3' />
+      </Fieldset>
+    );
+  },
+};
+
+export const InFieldsetHorizontal: Story = {
+  render() {
+    return (
+      <Fieldset
+        legend='Choose your options'
+        hint='This is a description of this set of options'
+        layout='horizontal'
+      >
+        <CheckboxField label='Option 1' />
+        <CheckboxField label='Option 2' />
+        <CheckboxField label='Option 3' />
+      </Fieldset>
+    );
   },
 };
 
@@ -82,6 +114,6 @@ export const Small: Story = {
 
 export const Large: Story = {
   args: {
-    size: 64,
+    size: 36,
   },
 };
