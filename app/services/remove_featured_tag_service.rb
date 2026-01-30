@@ -26,6 +26,6 @@ class RemoveFeaturedTagService < BaseService
   private
 
   def build_json(featured_tag)
-    Oj.dump(serialize_payload(featured_tag, ActivityPub::RemoveSerializer, signer: @account))
+    Oj.dump(serialize_payload(featured_tag, ActivityPub::RemoveHashtagSerializer, signer: @account))
   end
 end
