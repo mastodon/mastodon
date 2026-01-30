@@ -18,8 +18,6 @@ jobs:
       ANALYZE_BUNDLE_SIZE: '1'
     steps:
       - uses: actions/checkout@v5
-        with:
-          ref: ${{github.event.pull_request.head.ref}}
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
