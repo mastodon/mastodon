@@ -18,7 +18,7 @@ import {
   transformEmojiData,
 } from './normalize';
 import type { AnyEmojiData, EtagTypes } from './types';
-import { emojiLogger } from './utils';
+import { emojiLogger, isCustomEmoji } from './utils';
 
 const loadedLocales = new Set<Locale>();
 
@@ -267,6 +267,18 @@ export async function searchCustomEmojisByShortcodes(shortcodes: string[]) {
   return results.filter((emoji) => shortcodes.includes(emoji.shortcode));
 }
 
+export async function loadEmojisByCodes(codes: string[], localeString: string) {
+  const locale = await toLoadedLocale(localeString);
+  const results = await Promise.all(
+    codes.map((code) =>
+      isCustomEmoji(code)
+        ? loadCustomEmojiByShortcode(code)
+        : loadEmojiByHexcode(code, locale),
+    ),
+  );
+  return results.filter((emoji): emoji is AnyEmojiData => !!emoji);
+}
+
 export async function loadLegacyShortcodesByShortcode(shortcode: string) {
   const db = await loadDB();
   return db.getFromIndex(
@@ -294,6 +306,30 @@ export async function loadLatestEtag(localeString: string) {
 
   const etag = await db.get('etags', locale);
   return etag ?? null;
+}
+
+export async function loadUnicodeEmojiGroup(
+  group: number,
+  localeString: string,
+) {
+  const locale = await toLoadedLocale(localeString);
+  const db = await loadDB();
+  const range = IDBKeyRange.bound([group, 0], [group, Number.MAX_SAFE_INTEGER]);
+  const emojis = await db.getAllFromIndex(locale, 'groupOrder', range);
+  return emojis.toSorted(({ order: a = 0 }, { order: b = 0 }) => a - b);
+}
+
+export async function loadUnicodeEmojiGroupIcon(
+  group: number,
+  localeString: string,
+) {
+  const locale = await toLoadedLocale(localeString);
+  const db = await loadDB();
+  const trx = db.transaction(locale, 'readonly');
+  const index = trx.store.index('groupOrder');
+  const range = IDBKeyRange.bound([group, 0], [group, Number.MAX_SAFE_INTEGER]);
+  const cursor = await index.openCursor(range);
+  return cursor?.value ?? null;
 }
 
 // Private functions
