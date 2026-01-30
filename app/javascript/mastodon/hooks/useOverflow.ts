@@ -93,6 +93,81 @@ export function useOverflowButton({
   };
 }
 
+export function useOverflowScroll({
+  widthOffset = 200,
+  absoluteDistance = false,
+} = {}) {
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const bodyRef = useRef<HTMLElement | null>(null);
+
+  // Recalculate scrollable state
+  const handleRecalculate = useCallback(() => {
+    if (!bodyRef.current) {
+      return;
+    }
+
+    if (getComputedStyle(bodyRef.current).direction === 'rtl') {
+      setCanScrollLeft(
+        bodyRef.current.clientWidth - bodyRef.current.scrollLeft <
+          bodyRef.current.scrollWidth,
+      );
+      setCanScrollRight(bodyRef.current.scrollLeft < 0);
+    } else {
+      setCanScrollLeft(bodyRef.current.scrollLeft > 0);
+      setCanScrollRight(
+        bodyRef.current.scrollLeft + bodyRef.current.clientWidth <
+          bodyRef.current.scrollWidth,
+      );
+    }
+  }, []);
+
+  const { wrapperRefCallback } = useOverflowObservers({
+    onRecalculate: handleRecalculate,
+    onWrapperRef: bodyRef,
+  });
+
+  useEffect(() => {
+    handleRecalculate();
+  }, [handleRecalculate]);
+
+  // Handle scroll event using requestAnimationFrame to avoid excessive recalculations.
+  const handleScroll = useCallback(() => {
+    requestAnimationFrame(handleRecalculate);
+  }, [handleRecalculate]);
+
+  // Jump a full screen minus the width offset so that we don't skip a lot.
+  const handleLeftNav = useCallback(() => {
+    if (!bodyRef.current) {
+      return;
+    }
+
+    bodyRef.current.scrollLeft -= absoluteDistance
+      ? widthOffset
+      : Math.max(widthOffset, bodyRef.current.clientWidth - widthOffset);
+  }, [absoluteDistance, widthOffset]);
+
+  const handleRightNav = useCallback(() => {
+    if (!bodyRef.current) {
+      return;
+    }
+
+    bodyRef.current.scrollLeft += absoluteDistance
+      ? widthOffset
+      : Math.max(widthOffset, bodyRef.current.clientWidth - widthOffset);
+  }, [absoluteDistance, widthOffset]);
+
+  return {
+    bodyRef: wrapperRefCallback,
+    canScrollLeft,
+    canScrollRight,
+    handleLeftNav,
+    handleRightNav,
+    handleScroll,
+  };
+}
+
 export function useOverflowObservers({
   onRecalculate,
   onListRef,
@@ -204,74 +279,5 @@ export function useOverflowObservers({
   return {
     wrapperRefCallback,
     listRefCallback,
-  };
-}
-
-export function useOverflowScroll<
-  ElementType extends HTMLElement = HTMLDivElement,
->({ widthOffset = 200, absoluteDistance = false } = {}) {
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-
-  const bodyRef = useRef<ElementType | null>(null);
-
-  // Recalculate scrollable state
-  const handleRecalculate = useCallback(() => {
-    if (!bodyRef.current) {
-      return;
-    }
-
-    if (getComputedStyle(bodyRef.current).direction === 'rtl') {
-      setCanScrollLeft(
-        bodyRef.current.clientWidth - bodyRef.current.scrollLeft <
-          bodyRef.current.scrollWidth,
-      );
-      setCanScrollRight(bodyRef.current.scrollLeft < 0);
-    } else {
-      setCanScrollLeft(bodyRef.current.scrollLeft > 0);
-      setCanScrollRight(
-        bodyRef.current.scrollLeft + bodyRef.current.clientWidth <
-          bodyRef.current.scrollWidth,
-      );
-    }
-  }, []);
-
-  useEffect(() => {
-    handleRecalculate();
-  }, [handleRecalculate]);
-
-  // Handle scroll event using requestAnimationFrame to avoid excessive recalculations.
-  const handleScroll = useCallback(() => {
-    requestAnimationFrame(handleRecalculate);
-  }, [handleRecalculate]);
-
-  // Jump a full screen minus the width offset so that we don't skip a lot.
-  const handleLeftNav = useCallback(() => {
-    if (!bodyRef.current) {
-      return;
-    }
-
-    bodyRef.current.scrollLeft -= absoluteDistance
-      ? widthOffset
-      : Math.max(widthOffset, bodyRef.current.clientWidth - widthOffset);
-  }, [absoluteDistance, widthOffset]);
-
-  const handleRightNav = useCallback(() => {
-    if (!bodyRef.current) {
-      return;
-    }
-
-    bodyRef.current.scrollLeft += absoluteDistance
-      ? widthOffset
-      : Math.max(widthOffset, bodyRef.current.clientWidth - widthOffset);
-  }, [absoluteDistance, widthOffset]);
-
-  return {
-    bodyRef,
-    canScrollLeft,
-    canScrollRight,
-    handleLeftNav,
-    handleRightNav,
-    handleScroll,
   };
 }

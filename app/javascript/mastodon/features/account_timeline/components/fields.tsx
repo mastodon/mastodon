@@ -67,7 +67,7 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
     handleLeftNav,
     handleRightNav,
     handleScroll,
-  } = useOverflowScroll<HTMLDListElement>();
+  } = useOverflowScroll();
 
   return (
     <div
