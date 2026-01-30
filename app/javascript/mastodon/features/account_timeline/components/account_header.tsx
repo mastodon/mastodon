@@ -101,7 +101,7 @@ export const AccountHeader: React.FC<{
         )}
 
         <div className='account__header__image'>
-          {me !== account.id && relationship && (
+          {me !== account.id && relationship && !isRedesignEnabled() && (
             <AccountInfo relationship={relationship} />
           )}
 
