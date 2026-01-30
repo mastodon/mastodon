@@ -127,15 +127,13 @@ class Api::V1::StatusesController < Api::BaseController
     @status = Status.where(account: current_account).find(params[:id])
     authorize @status, :destroy?
 
-    json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: true
-
     @status.discard_with_reblogs
     StatusPin.find_by(status: @status)&.destroy
-    @status.account.statuses_count = @status.account.statuses_count - 1
+    @status.account.statuses_count = [@status.account.statuses_count - 1, 0].max
 
     RemovalWorker.perform_async(@status.id, { 'redraft' => !truthy_param?(:delete_media) })
 
-    render json: json
+    render json: @status, serializer: REST::StatusSerializer, source_requested: true
   end
 
   private
