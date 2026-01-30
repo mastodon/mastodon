@@ -11,9 +11,9 @@ ARG TARGETPLATFORM=${TARGETPLATFORM}
 ARG BUILDPLATFORM=${BUILDPLATFORM}
 ARG BASE_REGISTRY="docker.io"
 
-# Ruby image to use for base image, change with [--build-arg RUBY_VERSION="3.4.x"]
+# Ruby image to use for base image, change with [--build-arg RUBY_VERSION="4.0.x"]
 # renovate: datasource=docker depName=docker.io/ruby
-ARG RUBY_VERSION="3.4.8"
+ARG RUBY_VERSION="4.0.1"
 # # Node.js version to use in base image, change with [--build-arg NODE_MAJOR_VERSION="22"]
 # renovate: datasource=node-version depName=node
 ARG NODE_MAJOR_VERSION="24"
