@@ -1,30 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { action } from 'storybook/actions';
+
+import LinkIcon from '@/material-icons/400-24px/link_2.svg?react';
 
 import { MiniCardList } from './list';
 
 const meta = {
   title: 'Components/MiniCard',
   component: MiniCardList,
-  args: {
-    onOverflowClick: action('Overflow clicked'),
-  },
-  render(args) {
-    return (
-      <div
-        style={{
-          resize: 'horizontal',
-          padding: '1rem',
-          border: '1px solid gray',
-          overflow: 'auto',
-          width: '400px',
-          minWidth: '100px',
-        }}
-      >
-        <MiniCardList {...args} />
-      </div>
-    );
-  },
 } satisfies Meta<typeof MiniCardList>;
 
 export default meta;
@@ -38,10 +20,12 @@ export const Default: Story = {
       {
         label: 'Website',
         value: <a href='https://example.com'>bowie-the-db.meow</a>,
+        icon: LinkIcon,
       },
       {
         label: 'Free playlists',
         value: <a href='https://soundcloud.com/bowie-the-dj'>soundcloud.com</a>,
+        icon: LinkIcon,
       },
       { label: 'Location', value: 'Purris, France' },
     ],
@@ -54,11 +38,13 @@ export const LongValue: Story = {
       {
         label: 'Username',
         value: 'bowie-the-dj',
+        style: { maxWidth: '250px' },
       },
       {
         label: 'Bio',
         value:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        style: { maxWidth: '250px' },
       },
     ],
   },
