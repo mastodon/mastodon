@@ -24,7 +24,7 @@
                   %span= t('accounts.posts', count: account.statuses_count)
                 %td
                   %b= account_formatted_stat(account.following_count)
-                  %span= t('accounts.following')
+                  %span= t('accounts.following', count: account.following_count)
                 %td
                   %b= account_formatted_stat(account.followers_count)
                   %span= t('accounts.followers', count: account.followers_count)
