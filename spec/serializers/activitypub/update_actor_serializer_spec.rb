@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::UpdateSerializer do
+RSpec.describe ActivityPub::UpdateActorSerializer do
   subject { serialized_record_json(account, described_class, adapter: ActivityPub::Adapter) }
 
   let(:tag_manager) { ActivityPub::TagManager.instance }
