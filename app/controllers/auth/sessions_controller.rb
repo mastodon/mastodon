@@ -135,7 +135,7 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def clear_2fa_attempt_from_user(user)
-    redis.del(second_factor_attempts_key(user))
+    with_redis { |redis| redis.del(second_factor_attempts_key(user)) }
   end
 
   def check_second_factor_rate_limits(user)
@@ -181,7 +181,7 @@ class Auth::SessionsController < Devise::SessionsController
     )
 
     # Only send a notification email every hour at most
-    return if redis.set("2fa_failure_notification:#{user.id}", '1', ex: 1.hour, get: true).present?
+    return if with_redis { |redis| redis.set("2fa_failure_notification:#{user.id}", '1', ex: 1.hour, get: true) }.present?
 
     UserMailer.failed_2fa(user, request.remote_ip, request.user_agent, Time.now.utc).deliver_later!
   end

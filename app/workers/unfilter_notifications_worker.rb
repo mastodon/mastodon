@@ -34,15 +34,15 @@ class UnfilterNotificationsWorker
   end
 
   def decrement_worker_count!
-    value = redis.decr("notification_unfilter_jobs:#{@recipient.id}")
+    value = with_redis { |redis| redis.decr("notification_unfilter_jobs:#{@recipient.id}") }
     push_streaming_event! if value <= 0 && subscribed_to_streaming_api?
   end
 
   def push_streaming_event!
-    redis.publish("timeline:#{@recipient.id}:notifications", Oj.dump(event: :notifications_merged, payload: '1'))
+    with_redis { |redis| redis.publish("timeline:#{@recipient.id}:notifications", Oj.dump(event: :notifications_merged, payload: '1')) }
   end
 
   def subscribed_to_streaming_api?
-    redis.exists?("subscribed:timeline:#{@recipient.id}") || redis.exists?("subscribed:timeline:#{@recipient.id}:notifications")
+    with_redis { |redis| redis.exists?("subscribed:timeline:#{@recipient.id}") || redis.exists?("subscribed:timeline:#{@recipient.id}:notifications") }
   end
 end
