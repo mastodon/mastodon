@@ -30,6 +30,7 @@ namespace :settings do
     resources :lists, only: :index
     resources :domain_blocks, only: :index, controller: :blocked_domains
     resources :bookmarks, only: :index
+    resources :filters, only: :index
   end
 
   resources :two_factor_authentication_methods, only: [:index] do
