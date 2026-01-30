@@ -145,6 +145,14 @@ svg.badgeIcon {
   outline-offset: 2px;
   z-index: 2;
 
+  &:first-child {
+    left: 4px;
+  }
+
+  &:last-child {
+    right: 4px;
+  }
+
   &:hover,
   &:focus,
   &:focus-visible {
@@ -154,14 +162,6 @@ svg.badgeIcon {
       var(--color-bg-elevated)
     );
   }
-}
-
-.fieldWrapperLeft .fieldArrowButton {
-  left: 4px;
-}
-
-.fieldWrapperRight .fieldArrowButton {
-  right: 4px;
 }
 
 .fieldNumbersWrapper {
