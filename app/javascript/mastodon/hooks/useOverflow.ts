@@ -93,78 +93,6 @@ export function useOverflowButton({
   };
 }
 
-export function useOverflowCarousel() {
-  const listRef = useRef<HTMLElement | null>(null);
-
-  const [offset, setOffset] = useState(0);
-  const [maxOffset, setMaxOffset] = useState(0);
-
-  const handleRecalculate = useCallback(() => {
-    const listEle = listRef.current;
-    if (!listEle) return;
-
-    setMaxOffset(listEle.scrollWidth - listEle.offsetWidth);
-  }, []);
-
-  const handleNext = useCallback(() => {
-    const listEle = listRef.current;
-    if (maxOffset <= 0 || !listEle) return;
-
-    setOffset((prevOffset) => {
-      if (prevOffset >= maxOffset) {
-        return 0;
-      }
-      let nextOffset = prevOffset;
-      for (const child of listEle.children) {
-        if (child instanceof HTMLElement) {
-          const childRight = child.offsetLeft + child.offsetWidth;
-          if (childRight > prevOffset + listEle.offsetWidth) {
-            nextOffset = child.offsetLeft;
-            break;
-          }
-        }
-      }
-      return Math.min(nextOffset, maxOffset);
-    });
-  }, [maxOffset]);
-
-  const handlePrev = useCallback(() => {
-    const listEle = listRef.current;
-    if (maxOffset <= 0 || !listEle) return;
-
-    setOffset((prevOffset) => {
-      if (prevOffset <= 0) {
-        return maxOffset;
-      }
-      let nextOffset = prevOffset;
-      for (let i = listEle.children.length - 1; i >= 0; i--) {
-        const child = listEle.children[i];
-        if (child instanceof HTMLElement) {
-          if (child.offsetLeft < prevOffset) {
-            nextOffset = child.offsetLeft;
-            break;
-          }
-        }
-      }
-      return Math.max(nextOffset, 0);
-    });
-  }, [maxOffset]);
-
-  const { listRefCallback } = useOverflowObservers({
-    onRecalculate: handleRecalculate,
-    onListRef: listRef,
-  });
-
-  return {
-    offset,
-    listRef: listRefCallback,
-    onNext: handleNext,
-    hasNext: offset < maxOffset,
-    onPrev: handlePrev,
-    hasPrev: offset > 0,
-  };
-}
-
 export function useOverflowObservers({
   onRecalculate,
   onListRef,
@@ -276,5 +204,74 @@ export function useOverflowObservers({
   return {
     wrapperRefCallback,
     listRefCallback,
+  };
+}
+
+export function useOverflowScroll<
+  ElementType extends HTMLElement = HTMLDivElement,
+>({ widthOffset = 200, absoluteDistance = false } = {}) {
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const bodyRef = useRef<ElementType | null>(null);
+
+  // Recalculate scrollable state
+  const handleRecalculate = useCallback(() => {
+    if (!bodyRef.current) {
+      return;
+    }
+
+    if (getComputedStyle(bodyRef.current).direction === 'rtl') {
+      setCanScrollLeft(
+        bodyRef.current.clientWidth - bodyRef.current.scrollLeft <
+          bodyRef.current.scrollWidth,
+      );
+      setCanScrollRight(bodyRef.current.scrollLeft < 0);
+    } else {
+      setCanScrollLeft(bodyRef.current.scrollLeft > 0);
+      setCanScrollRight(
+        bodyRef.current.scrollLeft + bodyRef.current.clientWidth <
+          bodyRef.current.scrollWidth,
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    handleRecalculate();
+  }, [handleRecalculate]);
+
+  // Handle scroll event using requestAnimationFrame to avoid excessive recalculations.
+  const handleScroll = useCallback(() => {
+    requestAnimationFrame(handleRecalculate);
+  }, [handleRecalculate]);
+
+  // Jump a full screen minus the width offset so that we don't skip a lot.
+  const handleLeftNav = useCallback(() => {
+    if (!bodyRef.current) {
+      return;
+    }
+
+    bodyRef.current.scrollLeft -= absoluteDistance
+      ? widthOffset
+      : Math.max(widthOffset, bodyRef.current.clientWidth - widthOffset);
+  }, [absoluteDistance, widthOffset]);
+
+  const handleRightNav = useCallback(() => {
+    if (!bodyRef.current) {
+      return;
+    }
+
+    bodyRef.current.scrollLeft += absoluteDistance
+      ? widthOffset
+      : Math.max(widthOffset, bodyRef.current.clientWidth - widthOffset);
+  }, [absoluteDistance, widthOffset]);
+
+  return {
+    bodyRef,
+    canScrollLeft,
+    canScrollRight,
+    handleLeftNav,
+    handleRightNav,
+    handleScroll,
   };
 }

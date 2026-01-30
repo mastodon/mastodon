@@ -76,7 +76,6 @@ svg.badgeIcon {
 
 .fieldWrapper {
   margin-top: 16px;
-  overflow: hidden;
   width: 100%;
   position: relative;
 }
@@ -121,11 +120,30 @@ svg.badgeIcon {
 }
 
 .fieldList {
-  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  margin: 2px;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 40px;
+  scroll-padding-right: 40px;
+  scroll-behavior: smooth;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  overflow-y: visible;
 }
 
-.fieldCard :is(dt, dd) {
-  max-width: 200px;
+.fieldCard {
+  scroll-snap-align: start;
+
+  &:focus-visible,
+  &:focus-within {
+    outline: var(--outline-focus-default);
+  }
+
+  :is(dt, dd) {
+    max-width: 200px;
+  }
 }
 
 .fieldCardVerified {

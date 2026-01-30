@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -10,11 +9,10 @@ import { AccountFields } from '@/mastodon/components/account_fields';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
 import { IconButton } from '@/mastodon/components/icon_button';
-import type { MiniCardProps } from '@/mastodon/components/mini_card/list';
-import { MiniCardList } from '@/mastodon/components/mini_card/list';
+import { MiniCard } from '@/mastodon/components/mini_card';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
-import { useOverflowCarousel } from '@/mastodon/hooks/useOverflow';
+import { useOverflowScroll } from '@/mastodon/hooks/useOverflow';
 import type { Account } from '@/mastodon/models/account';
 import { isValidUrl } from '@/mastodon/utils/checks';
 import IconLeftArrow from '@/material-icons/400-24px/chevron_left.svg?react';
@@ -61,26 +59,42 @@ export const AccountHeaderFields: FC<{ accountId: string }> = ({
 
 const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
   const htmlHandlers = useElementHandledLink();
-  const cards: MiniCardProps[] = useMemo(
-    () =>
-      account.fields
-        .toArray()
-        .map(
-          ({
-            value_emojified,
-            value_plain,
-            name_emojified,
-            name,
-            verified_at,
-          }) => {
-            let icon: MiniCardProps['icon'] = undefined;
-            if (verified_at) {
-              icon = IconVerified;
-            } else if (value_plain && isValidUrl(value_plain)) {
-              icon = IconLink;
-            }
-            return {
-              label: (
+
+  const {
+    bodyRef,
+    canScrollLeft,
+    canScrollRight,
+    handleLeftNav,
+    handleRightNav,
+    handleScroll,
+  } = useOverflowScroll<HTMLDListElement>();
+
+  return (
+    <div
+      className={classNames(
+        classes.fieldWrapper,
+        canScrollLeft && classes.fieldWrapperLeft,
+        canScrollRight && classes.fieldWrapperRight,
+      )}
+    >
+      {canScrollLeft && (
+        <IconButton
+          icon='more'
+          iconComponent={IconLeftArrow}
+          title='more'
+          className={classes.fieldArrowButton}
+          onClick={handleLeftNav}
+        />
+      )}
+      <dl ref={bodyRef} className={classes.fieldList} onScroll={handleScroll}>
+        {account.fields.map(
+          (
+            { name, name_emojified, value_emojified, value_plain, verified_at },
+            key,
+          ) => (
+            <MiniCard
+              key={key}
+              label={
                 <EmojiHTML
                   htmlString={name_emojified}
                   extraEmojis={account.emojis}
@@ -89,8 +103,8 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
                   title={name}
                   {...htmlHandlers}
                 />
-              ),
-              value: (
+              }
+              value={
                 <EmojiHTML
                   as='span'
                   htmlString={value_emojified}
@@ -98,53 +112,34 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
                   title={value_plain ?? undefined}
                   {...htmlHandlers}
                 />
-              ),
-              className: classNames(
+              }
+              icon={fieldIcon(verified_at, value_plain)}
+              className={classNames(
                 classes.fieldCard,
                 verified_at && classes.fieldCardVerified,
-              ),
-              icon,
-            };
-          },
-        ),
-    [account.emojis, account.fields, htmlHandlers],
-  );
-
-  const { listRef, offset, onNext, hasNext, hasPrev, onPrev } =
-    useOverflowCarousel();
-
-  return (
-    <div
-      className={classNames(
-        classes.fieldWrapper,
-        hasPrev && classes.fieldWrapperLeft,
-        hasNext && classes.fieldWrapperRight,
-      )}
-    >
-      {hasPrev && (
-        <IconButton
-          icon='more'
-          iconComponent={IconLeftArrow}
-          title='more'
-          className={classes.fieldArrowButton}
-          onClick={onPrev}
-        />
-      )}
-      <MiniCardList
-        cards={cards}
-        ref={listRef}
-        style={{ transform: `translateX(${-offset}px)` }}
-        className={classes.fieldList}
-      />
-      {hasNext && (
+              )}
+            />
+          ),
+        )}
+      </dl>
+      {canScrollRight && (
         <IconButton
           icon='more'
           iconComponent={IconRightArrow}
           title='more'
           className={classes.fieldArrowButton}
-          onClick={onNext}
+          onClick={handleRightNav}
         />
       )}
     </div>
   );
 };
+
+function fieldIcon(verified_at: string | null, value_plain: string | null) {
+  if (verified_at) {
+    return IconVerified;
+  } else if (value_plain && isValidUrl(value_plain)) {
+    return IconLink;
+  }
+  return undefined;
+}
