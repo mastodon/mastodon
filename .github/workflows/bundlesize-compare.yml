@@ -1,0 +1,75 @@
+name: Compare JS bundle size
+on:
+  pull_request:
+    paths:
+      - 'app/javascript/**'
+      - 'vite.config.mts'
+      - 'package.json'
+      - 'yarn.lock'
+      - .github/workflows/bundlesize-compare.yml
+
+jobs:
+  build-head:
+    name: 'Build head'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      ANALYZE_BUNDLE_SIZE: '1'
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{github.event.pull_request.head.ref}}
+
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
+
+      - name: Build
+        run: yarn run build:production
+
+      - name: Upload stats.json
+        uses: actions/upload-artifact@v5
+        with:
+          name: head-stats
+          path: ./stats.json
+          if-no-files-found: error
+
+  build-base:
+    name: 'Build base'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      ANALYZE_BUNDLE_SIZE: '1'
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.base_ref }}
+
+      - name: Set up Javascript environment
+        uses: ./.github/actions/setup-javascript
+
+      - name: Build
+        run: yarn run build:production
+
+      - name: Upload stats.json
+        uses: actions/upload-artifact@v5
+        with:
+          name: base-stats
+          path: ./stats.json
+          if-no-files-found: error
+
+  compare:
+    name: 'Compare base & head bundle sizes'
+    runs-on: ubuntu-latest
+    needs: [build-base, build-head]
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: actions/download-artifact@v5
+
+      - uses: twk3/rollup-size-compare-action@v1.0.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          current-stats-json-path: ./head-stats/stats.json
+          base-stats-json-path: ./base-stats/stats.json

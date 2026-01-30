@@ -26,16 +26,18 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
 
   def index
     cache_if_unauthenticated!
-    authorize Collection, :index?
+    authorize @account, :index_collections?
 
-    render json: @collections, each_serializer: REST::BaseCollectionSerializer
+    render json: @collections, each_serializer: REST::CollectionSerializer, adapter: :json
+  rescue Mastodon::NotPermittedError
+    render json: { collections: [] }
   end
 
   def show
     cache_if_unauthenticated!
     authorize @collection, :show?
 
-    render json: @collection, serializer: REST::CollectionSerializer
+    render json: @collection, serializer: REST::CollectionWithAccountsSerializer
   end
 
   def create
@@ -43,7 +45,7 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
 
     @collection = CreateCollectionService.new.call(collection_creation_params, current_user.account)
 
-    render json: @collection, serializer: REST::CollectionSerializer
+    render json: @collection, serializer: REST::CollectionSerializer, adapter: :json
   end
 
   def update
@@ -51,7 +53,7 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
 
     @collection.update!(collection_update_params) # TODO: Create a service for this to federate changes
 
-    render json: @collection, serializer: REST::CollectionSerializer
+    render json: @collection, serializer: REST::CollectionSerializer, adapter: :json
   end
 
   def destroy
@@ -74,6 +76,7 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
                            .order(created_at: :desc)
                            .offset(offset_param)
                            .limit(limit_param(DEFAULT_COLLECTIONS_LIMIT))
+    @collections = @collections.discoverable unless @account == current_account
   end
 
   def set_collection
@@ -81,11 +84,11 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
   end
 
   def collection_creation_params
-    params.permit(:name, :description, :sensitive, :discoverable, :tag_name, account_ids: [])
+    params.permit(:name, :description, :language, :sensitive, :discoverable, :tag_name, account_ids: [])
   end
 
   def collection_update_params
-    params.permit(:name, :description, :sensitive, :discoverable, :tag_name)
+    params.permit(:name, :description, :language, :sensitive, :discoverable, :tag_name)
   end
 
   def check_feature_enabled

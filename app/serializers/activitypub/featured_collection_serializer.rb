@@ -17,8 +17,11 @@ class ActivityPub::FeaturedCollectionSerializer < ActivityPub::Serializer
     end
   end
 
-  attributes :id, :type, :total_items, :name, :summary, :attributed_to,
+  attributes :id, :type, :total_items, :name, :attributed_to,
              :sensitive, :discoverable, :published, :updated
+
+  attribute :summary, unless: :language_present?
+  attribute :summary_map, if: :language_present?
 
   has_one :tag, key: :topic, serializer: ActivityPub::NoteSerializer::TagSerializer
 
@@ -36,6 +39,10 @@ class ActivityPub::FeaturedCollectionSerializer < ActivityPub::Serializer
     object.description
   end
 
+  def summary_map
+    { object.language => object.description }
+  end
+
   def attributed_to
     ActivityPub::TagManager.instance.uri_for(object.account)
   end
@@ -50,5 +57,9 @@ class ActivityPub::FeaturedCollectionSerializer < ActivityPub::Serializer
 
   def updated
     object.updated_at.iso8601
+  end
+
+  def language_present?
+    object.language.present?
   end
 end

@@ -18,24 +18,23 @@ module ThemeHelper
   end
 
   def theme_style_tags(theme)
-    if theme == 'system'
-      ''.html_safe.tap do |tags|
-        tags << vite_stylesheet_tag('themes/mastodon-light', type: :virtual, media: 'not all and (prefers-color-scheme: dark)', crossorigin: 'anonymous')
-        tags << vite_stylesheet_tag('themes/default', type: :virtual, media: '(prefers-color-scheme: dark)', crossorigin: 'anonymous')
-      end
-    else
-      vite_stylesheet_tag "themes/#{theme}", type: :virtual, media: 'all', crossorigin: 'anonymous'
-    end
+    # TODO: get rid of that when we retire the themes and perform the settings migration
+    theme = 'default' if %w(mastodon-light contrast system).include?(theme)
+
+    vite_stylesheet_tag "themes/#{theme}", type: :virtual, media: 'all', crossorigin: 'anonymous'
   end
 
-  def theme_color_tags(theme)
-    if theme == 'system'
+  def theme_color_tags(color_scheme)
+    case color_scheme
+    when 'auto'
       ''.html_safe.tap do |tags|
         tags << tag.meta(name: 'theme-color', content: Themes::THEME_COLORS[:dark], media: '(prefers-color-scheme: dark)')
         tags << tag.meta(name: 'theme-color', content: Themes::THEME_COLORS[:light], media: '(prefers-color-scheme: light)')
       end
-    else
-      tag.meta name: 'theme-color', content: theme_color_for(theme)
+    when 'light'
+      tag.meta name: 'theme-color', content: Themes::THEME_COLORS[:light]
+    when 'dark'
+      tag.meta name: 'theme-color', content: Themes::THEME_COLORS[:dark]
     end
   end
 
@@ -64,9 +63,5 @@ module ThemeHelper
     Rails.cache.fetch(:setting_digest_custom_css) do
       Setting.custom_css&.then { |content| Digest::SHA256.hexdigest(content) }
     end
-  end
-
-  def theme_color_for(theme)
-    theme == 'mastodon-light' ? Themes::THEME_COLORS[:light] : Themes::THEME_COLORS[:dark]
   end
 end

@@ -23,9 +23,6 @@ module Account::Interactions
     # Hashtag follows
     has_many :tag_follows, inverse_of: :account, dependent: :destroy
 
-    # Account notes
-    has_many :account_notes, dependent: :destroy
-
     # Block relationships
     with_options class_name: 'Block', dependent: :destroy do
       has_many :block_relationships, foreign_key: 'account_id', inverse_of: :account
@@ -162,6 +159,13 @@ module Account::Interactions
     preloaded_relation(:domain_blocking_by_domain, other_domain) do
       domain_blocks.exists?(domain: other_domain)
     end
+  end
+
+  def blocking_or_domain_blocking?(other_account)
+    return true if blocking?(other_account)
+    return false if other_account.domain.blank?
+
+    domain_blocking?(other_account.domain)
   end
 
   def muting?(other_account)

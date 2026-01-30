@@ -214,7 +214,10 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       svgr(),
       // Old library types need to be converted
       optimizeLodashImports() as PluginOption,
-      !!process.env.ANALYZE_BUNDLE_SIZE && (visualizer() as PluginOption),
+      !!process.env.ANALYZE_BUNDLE_SIZE &&
+        (visualizer({
+          template: process.env.CI ? 'raw-data' : 'treemap',
+        }) as PluginOption),
       MastodonNameLookup(),
     ],
   } satisfies UserConfig;

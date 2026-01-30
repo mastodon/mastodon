@@ -14,6 +14,8 @@ class FanOutOnWriteService < BaseService
     @account   = status.account
     @options   = options
 
+    return if @status.proper.account.suspended?
+
     check_race_condition!
     warm_payload_cache!
 
@@ -77,9 +79,11 @@ class FanOutOnWriteService < BaseService
   end
 
   def notify_mentioned_accounts!
-    @status.active_mentions.where.not(id: @options[:silenced_account_ids] || []).joins(:account).merge(Account.local).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
+    @status.active_mentions.joins(:account).merge(Account.local).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
       LocalNotificationWorker.push_bulk(mentions) do |mention|
-        [mention.account_id, mention.id, 'Mention', 'mention']
+        options = { 'silenced' => true } if @options[:silenced_account_ids]&.include?(mention.account_id)
+
+        [mention.account_id, mention.id, 'Mention', 'mention', options].compact
       end
 
       next unless update?

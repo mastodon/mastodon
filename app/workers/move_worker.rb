@@ -45,10 +45,9 @@ class MoveWorker
     end
 
     # Then handle accounts that follow both the old and new account
-    @source_account.passive_relationships
-                   .where(account: Account.local)
-                   .where(account: @target_account.followers.local)
-                   .in_batches do |follows|
+    source_local_followers
+      .where(account: @target_account.followers.local)
+      .in_batches do |follows|
       ListAccount.where(follow: follows).includes(:list).find_each do |list_account|
         list_account.list.accounts << @target_account
       rescue ActiveRecord::RecordInvalid
@@ -57,16 +56,31 @@ class MoveWorker
     end
 
     # Finally, handle the common case of accounts not following the new account
-    @source_account.passive_relationships
-                   .where(account: Account.local)
-                   .where.not(account: @target_account.followers.local)
-                   .where.not(account_id: @target_account.id)
-                   .in_batches do |follows|
+    source_local_followers
+      .where.not(account: @target_account.followers.local)
+      .where.not(account_id: @target_account.id)
+      .in_batches do |follows|
       ListAccount.where(follow: follows).in_batches.update_all(account_id: @target_account.id)
       num_moved += follows.update_all(target_account_id: @target_account.id)
+
+      # Clear any relationship cache, since callbacks are not called
+      Rails.cache.delete_multi(follows.flat_map do |follow|
+        [
+          ['relationship', follow.account_id, follow.target_account_id],
+          ['relationship', follow.target_account_id, follow.account_id],
+          ['relationship', follow.account_id, @target_account.id],
+          ['relationship', @target_account.id, follow.account_id],
+        ]
+      end)
     end
 
     num_moved
+  end
+
+  def source_local_followers
+    @source_account
+      .passive_relationships
+      .where(account: Account.local)
   end
 
   def queue_follow_unfollows!
@@ -80,17 +94,17 @@ class MoveWorker
   end
 
   def copy_account_notes!
-    AccountNote.where(target_account: @source_account).find_each do |note|
+    @source_account.targeted_account_notes.find_each do |note|
       text = I18n.with_locale(note.account.user_locale.presence || I18n.default_locale) do
         I18n.t('move_handler.copy_account_note_text', acct: @source_account.acct)
       end
 
-      new_note = AccountNote.find_by(account: note.account, target_account: @target_account)
+      new_note = @target_account.targeted_account_notes.find_by(account: note.account)
       if new_note.nil?
         begin
-          AccountNote.create!(account: note.account, target_account: @target_account, comment: [text, note.comment].join("\n"))
+          @target_account.targeted_account_notes.create!(account: note.account, comment: [text, note.comment].join("\n"))
         rescue ActiveRecord::RecordInvalid
-          AccountNote.create!(account: note.account, target_account: @target_account, comment: note.comment)
+          @target_account.targeted_account_notes.create!(account: note.account, comment: note.comment)
         end
       else
         new_note.update!(comment: [text, note.comment, "\n", new_note.comment].join("\n"))
@@ -125,7 +139,7 @@ class MoveWorker
   end
 
   def add_account_note_if_needed!(account, id)
-    return if AccountNote.exists?(account: account, target_account: @target_account)
+    return if @target_account.targeted_account_notes.exists?(account:)
 
     text = I18n.with_locale(account.user_locale.presence || I18n.default_locale) do
       I18n.t(id, acct: @source_account.acct)

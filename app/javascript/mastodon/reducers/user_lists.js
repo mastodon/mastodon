@@ -204,9 +204,9 @@ export default function userLists(state = initialState, action) {
     else if (fetchFeaturedTags.rejected.match(action))
       return state.setIn(['featured_tags', action.meta.arg.accountId, 'isLoading'], false);
     else if (fetchDirectory.fulfilled.match(action))
-      return normalizeList(state, ['directory'], action.payload.accounts, undefined);
+      return normalizeList(state, ['directory'], action.payload.accounts, action.payload.isLast ? null : true);
     else if (expandDirectory.fulfilled.match(action))
-      return appendToList(state, ['directory'], action.payload.accounts, undefined);
+      return appendToList(state, ['directory'], action.payload.accounts, action.payload.isLast ? null : true);
     else if (fetchDirectory.pending.match(action) ||
      expandDirectory.pending.match(action))
       return state.setIn(['directory', 'isLoading'], true);

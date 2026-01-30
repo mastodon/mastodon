@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_12_17_091936) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_27_141820) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -201,6 +201,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_17_091936) do
     t.string "following_url", default: "", null: false
     t.integer "id_scheme", default: 1
     t.integer "feature_approval_policy", default: 0, null: false
+    t.string "avatar_description", default: "", null: false
+    t.string "header_description", default: "", null: false
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), COALESCE(lower((domain)::text), ''::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["domain", "id"], name: "index_accounts_on_domain_and_id"
@@ -352,7 +354,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_17_091936) do
     t.index ["reference_account_id"], name: "index_canonical_email_blocks_on_reference_account_id"
   end
 
-  create_table "collection_items", force: :cascade do |t|
+  create_table "collection_items", id: :bigint, default: -> { "timestamp_id('collection_items'::text)" }, force: :cascade do |t|
     t.bigint "collection_id", null: false
     t.bigint "account_id"
     t.integer "position", default: 1, null: false
@@ -369,7 +371,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_17_091936) do
     t.index ["object_uri"], name: "index_collection_items_on_object_uri", unique: true, where: "(activity_uri IS NOT NULL)"
   end
 
-  create_table "collections", force: :cascade do |t|
+  create_table "collections", id: :bigint, default: -> { "timestamp_id('collections'::text)" }, force: :cascade do |t|
     t.bigint "account_id", null: false
     t.string "name", null: false
     t.text "description", null: false
@@ -382,6 +384,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_17_091936) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "item_count", default: 0, null: false
+    t.string "language"
     t.index ["account_id"], name: "index_collections_on_account_id"
     t.index ["tag_id"], name: "index_collections_on_tag_id"
   end

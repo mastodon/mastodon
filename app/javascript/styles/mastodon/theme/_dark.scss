@@ -142,6 +142,7 @@
       var(--border-strength-primary)
     )};
   --color-border-media: rgb(252 248 255 / 15%);
+  --color-border-verified: rgb(220, 3, 240);
   --color-border-on-bg-secondary: #{utils.css-alpha(
       var(--color-indigo-200),
       calc(var(--border-strength-primary) / 1.5)

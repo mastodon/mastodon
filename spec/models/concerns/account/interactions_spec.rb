@@ -450,6 +450,44 @@ RSpec.describe Account::Interactions do
     end
   end
 
+  describe '#blocking_or_domain_blocking?' do
+    subject { account.blocking_or_domain_blocking?(target_account) }
+
+    context 'when blocking target_account' do
+      before do
+        account.block_relationships.create(target_account: target_account)
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+
+        expect(result).to be true
+      end
+    end
+
+    context 'when blocking the domain' do
+      let(:target_account) { Fabricate(:remote_account) }
+
+      before do
+        account_domain_block = Fabricate(:account_domain_block, domain: target_account.domain)
+        account.domain_blocks << account_domain_block
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+        expect(result).to be true
+      end
+    end
+
+    context 'when blocking neither target_account nor its domain' do
+      it 'returns false' do
+        expect(subject).to be false
+      end
+    end
+  end
+
   describe '#muting?' do
     subject { account.muting?(target_account) }
 

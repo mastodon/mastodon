@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.5] - 2026-01-20
+
+### Security
+
+- Fix missing limits on various federated properties [GHSA-gg8q-rcg7-p79g](https://github.com/mastodon/mastodon/security/advisories/GHSA-gg8q-rcg7-p79g)
+- Fix remote user suspension bypass [GHSA-5h2f-wg8j-xqwp](https://github.com/mastodon/mastodon/security/advisories/GHSA-5h2f-wg8j-xqwp)
+- Fix missing length limits on some user-provided fields [GHSA-6x3w-9g92-gvf3](https://github.com/mastodon/mastodon/security/advisories/GHSA-6x3w-9g92-gvf3)
+- Fix missing access check for push notification settings update [GHSA-f3q8-7vw3-69v4](https://github.com/mastodon/mastodon/security/advisories/GHSA-f3q8-7vw3-69v4)
+
+### Changed
+
+- Skip tombstone creation on deleting from 404 (#37533 by @ClearlyClaire)
+
+### Fixed
+
+- Fix potential duplicate handling of quote accept/reject/delete (#37537 by @ClearlyClaire)
+- Fix `FeedManager#filter_from_home` error when handling a reblog of a deleted status (#37486 by @ClearlyClaire)
+- Fix needlessly complicated SQL query in status batch removal (#37469 by @ClearlyClaire)
+- Fix `quote_approval_policy` being reset to user defaults when omitted in status update (#37436 and #37474 by @mjankowski and @shleeable)
+- Fix `Vary` parsing in cache control enforcement (#37426 by @MegaManSec)
+- Fix missing URI scheme test in `QuoteRequest` handling (#37425 by @MegaManSec)
+- Fix thread-unsafe ActivityPub activity dispatch (#37423 by @MegaManSec)
+- Fix URI generation for reblogs by accounts with numerical ActivityPub identifiers (#37415 by @oneiros)
+- Fix SignatureParser accepting duplicate parameters in HTTP Signature header (#37375 by @shleeable)
+- Fix emoji with variant selector not being rendered properly (#37320 by @ChaosExAnima)
+- Fix mobile admin sidebar displaying under batch table toolbar (#37307 by @diondiondion)
+
 ## [4.5.4] - 2026-01-07
 
 ### Security

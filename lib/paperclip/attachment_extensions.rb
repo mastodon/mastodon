@@ -16,8 +16,7 @@ module Paperclip
       # if we're processing the original, close + unlink the source tempfile
       intermediate_files << original if name == :original
 
-      @queued_for_write[name] = style.processors
-                                     .inject(original) do |file, processor|
+      @queued_for_write[name] = style.processors.inject(original) do |file, processor|
         file = Paperclip.processor(processor).make(file, style.processor_options, self)
         intermediate_files << file unless file == original
         file
