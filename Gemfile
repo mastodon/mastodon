@@ -187,7 +187,7 @@ group :development do
   gem 'letter_opener_web', '~> 3.0'
 
   # Security analysis CLI tools
-  gem 'brakeman', '~> 7.0', require: false
+  gem 'brakeman', '~> 8.0', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 
   # Linter CLI for HAML files
