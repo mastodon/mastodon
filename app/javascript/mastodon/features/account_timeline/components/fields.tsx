@@ -19,7 +19,7 @@ import type { Account } from '@/mastodon/models/account';
 import { isValidUrl } from '@/mastodon/utils/checks';
 import IconLeftArrow from '@/material-icons/400-24px/chevron_left.svg?react';
 import IconRightArrow from '@/material-icons/400-24px/chevron_right.svg?react';
-import IconLink from '@/material-icons/400-24px/link.svg?react';
+import IconLink from '@/material-icons/400-24px/link_2.svg?react';
 
 import { isRedesignEnabled } from '../common';
 
