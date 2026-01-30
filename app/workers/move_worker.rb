@@ -64,6 +64,16 @@ class MoveWorker
                    .in_batches do |follows|
       ListAccount.where(follow: follows).in_batches.update_all(account_id: @target_account.id)
       num_moved += follows.update_all(target_account_id: @target_account.id)
+
+      # Clear any relationship cache, since callbacks are not called
+      Rails.cache.delete_multi(follows.flat_map do |follow|
+        [
+          ['relationship', follow.account_id, follow.target_account_id],
+          ['relationship', follow.target_account_id, follow.account_id],
+          ['relationship', follow.account_id, @target_account.id],
+          ['relationship', @target_account.id, follow.account_id],
+        ]
+      end)
     end
 
     num_moved
