@@ -29,6 +29,12 @@ RSpec.describe CreateCollectionService do
         expect(collection).to be_local
       end
 
+      it 'federates an `Add` activity', feature: :collections_federation do
+        subject.call(base_params, author)
+
+        expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
+      end
+
       context 'when given account ids' do
         let(:accounts) do
           Fabricate.times(2, :account)

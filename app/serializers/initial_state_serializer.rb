@@ -140,7 +140,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   end
 
   def serialized_account(account)
-    ActiveModelSerializers::SerializableResource.new(account, serializer: REST::AccountSerializer)
+    ActiveModelSerializers::SerializableResource.new(account, serializer: REST::AccountSerializer, scope_name: :current_user, scope: object.current_account&.user)
   end
 
   def instance_presenter

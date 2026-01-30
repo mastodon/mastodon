@@ -6,6 +6,7 @@ class ActivityPub::ProcessAccountService < BaseService
   include Redisable
   include Lockable
 
+  MAX_PROFILE_FIELDS = 50
   SUBDOMAINS_RATELIMIT = 10
   DISCOVERIES_PER_REQUEST = 400
 
@@ -124,15 +125,15 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def set_immediate_attributes!
     @account.featured_collection_url = valid_collection_uri(@json['featured'])
-    @account.display_name            = @json['name'] || ''
-    @account.note                    = @json['summary'] || ''
+    @account.display_name            = (@json['name'] || '')[0...(Account::DISPLAY_NAME_LENGTH_HARD_LIMIT)]
+    @account.note                    = (@json['summary'] || '')[0...(Account::NOTE_LENGTH_HARD_LIMIT)]
     @account.locked                  = @json['manuallyApprovesFollowers'] || false
     @account.fields                  = property_values || {}
-    @account.also_known_as           = as_array(@json['alsoKnownAs'] || []).map { |item| value_or_id(item) }
+    @account.also_known_as           = as_array(@json['alsoKnownAs'] || []).take(Account::ALSO_KNOWN_AS_HARD_LIMIT).map { |item| value_or_id(item) }
     @account.discoverable            = @json['discoverable'] || false
     @account.indexable               = @json['indexable'] || false
     @account.memorial                = @json['memorial'] || false
-    @account.attribution_domains     = as_array(@json['attributionDomains'] || []).map { |item| value_or_id(item) }
+    @account.attribution_domains     = as_array(@json['attributionDomains'] || []).take(Account::ATTRIBUTION_DOMAINS_HARD_LIMIT).map { |item| value_or_id(item) }
   end
 
   def set_fetchable_key!
@@ -141,14 +142,18 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def set_fetchable_attributes!
     begin
-      @account.avatar_remote_url = image_url('icon') || '' unless skip_download?
+      avatar_url, avatar_description = image_url_and_description('icon')
+      @account.avatar_remote_url = avatar_url || '' unless skip_download?
       @account.avatar = nil if @account.avatar_remote_url.blank?
+      @account.avatar_description = avatar_description || ''
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadAvatarWorker.perform_in(rand(30..600).seconds, @account.id)
     end
     begin
-      @account.header_remote_url = image_url('image') || '' unless skip_download?
+      header_url, header_description = image_url_and_description('image')
+      @account.header_remote_url = header_url || '' unless skip_download?
       @account.header = nil if @account.header_remote_url.blank?
+      @account.header_description = header_description || ''
     rescue Mastodon::UnexpectedResponseError, *Mastodon::HTTP_CONNECTION_ERRORS
       RedownloadHeaderWorker.perform_in(rand(30..600).seconds, @account.id)
     end
@@ -213,7 +218,7 @@ class ActivityPub::ProcessAccountService < BaseService
     end
   end
 
-  def image_url(key)
+  def image_url_and_description(key)
     value = first_of_value(@json[key])
 
     return if value.nil?
@@ -223,9 +228,21 @@ class ActivityPub::ProcessAccountService < BaseService
       return if value.nil?
     end
 
-    value = first_of_value(value['url']) if value.is_a?(Hash) && value['type'] == 'Image'
-    value = value['href'] if value.is_a?(Hash)
-    value if value.is_a?(String)
+    if value.is_a?(Hash) && value['type'] == 'Image'
+      url = first_of_value(value['url'])
+      url = url['href'] if url.is_a?(Hash)
+      description = value['summary'].presence || value['name'].presence
+      description = description.strip[0...MediaAttachment::MAX_DESCRIPTION_LENGTH] if description.present?
+    else
+      url = value
+    end
+
+    url = url['href'] if url.is_a?(Hash)
+
+    url = nil unless url.is_a?(String)
+    description = nil unless description.is_a?(String)
+
+    [url, description]
   end
 
   def public_key
@@ -253,7 +270,10 @@ class ActivityPub::ProcessAccountService < BaseService
   def property_values
     return unless @json['attachment'].is_a?(Array)
 
-    as_array(@json['attachment']).select { |attachment| attachment['type'] == 'PropertyValue' }.map { |attachment| attachment.slice('name', 'value') }
+    as_array(@json['attachment'])
+      .select { |attachment| attachment['type'] == 'PropertyValue' }
+      .take(MAX_PROFILE_FIELDS)
+      .map { |attachment| attachment.slice('name', 'value') }
   end
 
   def mismatching_origin?(url)

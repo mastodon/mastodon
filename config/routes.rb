@@ -124,6 +124,8 @@ Rails.application.routes.draw do
 
   scope path: 'ap', as: 'ap' do
     resources :accounts, path: 'users', only: [:show], param: :id, concerns: :account_resources do
+      resources :featured_collections, only: [:index], module: :activitypub
+
       resources :statuses, only: [:show] do
         member do
           get :activity

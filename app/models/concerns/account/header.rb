@@ -4,7 +4,7 @@ module Account::Header
   extend ActiveSupport::Concern
 
   HEADER_IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
-  HEADER_LIMIT = Rails.configuration.x.use_vips ? 8.megabytes : 2.megabytes
+  HEADER_LIMIT = 8.megabytes
   HEADER_DIMENSIONS = [1500, 500].freeze
   HEADER_GEOMETRY = [HEADER_DIMENSIONS.first, HEADER_DIMENSIONS.last].join('x')
   HEADER_MAX_PIXELS = HEADER_DIMENSIONS.first * HEADER_DIMENSIONS.last
@@ -25,6 +25,8 @@ module Account::Header
     validates_attachment_content_type :header, content_type: HEADER_IMAGE_MIME_TYPES
     validates_attachment_size :header, less_than: HEADER_LIMIT
     remotable_attachment :header, HEADER_LIMIT, suppress_errors: false
+
+    validates :header_description, length: { maximum: MediaAttachment::MAX_DESCRIPTION_LENGTH }
   end
 
   def header_original_url

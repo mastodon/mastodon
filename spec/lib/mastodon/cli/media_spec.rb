@@ -73,6 +73,66 @@ RSpec.describe Mastodon::CLI::Media do
           expect(media_attachment.reload.thumbnail).to be_blank
         end
       end
+
+      context 'with --keep-interacted' do
+        let(:options) { { keep_interacted: true } }
+
+        let!(:favourited_media) { Fabricate(:media_attachment, created_at: 1.month.ago, remote_url: 'https://example.com/image.jpg') }
+        let!(:bookmarked_media) { Fabricate(:media_attachment, created_at: 1.month.ago, remote_url: 'https://example.com/image.jpg') }
+        let!(:replied_to_media) { Fabricate(:media_attachment, created_at: 1.month.ago, remote_url: 'https://example.com/image.jpg') }
+        let!(:reblogged_media) { Fabricate(:media_attachment, created_at: 1.month.ago, remote_url: 'https://example.com/image.jpg') }
+        let!(:remote_quoted_media) { Fabricate(:media_attachment, created_at: 1.month.ago, remote_url: 'https://example.com/image.jpg') }
+        let!(:remote_quoting_media) { Fabricate(:media_attachment, created_at: 1.month.ago, remote_url: 'https://example.com/image.jpg') }
+
+        before do
+          local_account = Fabricate(:account, username: 'alice')
+          remote_account = Fabricate(:account, username: 'bob', domain: 'example.com')
+
+          favourited_status = Fabricate(:status, account: remote_account)
+          bookmarked_status = Fabricate(:status, account: remote_account)
+          replied_to_status = Fabricate(:status, account: remote_account)
+          reblogged_status = Fabricate(:status, account: remote_account)
+
+          favourited_media.update!(status: favourited_status)
+          bookmarked_media.update!(status: bookmarked_status)
+          replied_to_media.update!(status: replied_to_status)
+          reblogged_media.update!(status: reblogged_status)
+
+          local_quoting_status = Fabricate(:status, account: local_account)
+          remote_quoted_status = Fabricate(:status, account: remote_account)
+          local_status_being_quoted = Fabricate(:status, account: local_account)
+          remote_quoting_status = Fabricate(:status, account: remote_account)
+
+          remote_quoted_media.update!(status: remote_quoted_status)
+          remote_quoting_media.update!(status: remote_quoting_status)
+
+          non_interacted_status = Fabricate(:status, account: remote_account)
+
+          media_attachment.update(status: non_interacted_status)
+
+          Fabricate(:favourite, account: local_account, status: favourited_status)
+          Fabricate(:bookmark, account: local_account, status: bookmarked_status)
+          Fabricate(:status, account: local_account, in_reply_to_id: replied_to_status.id)
+          Fabricate(:status, account: local_account, reblog: reblogged_status)
+          Fabricate(:quote, account: local_account, status: local_quoting_status, quoted_status: remote_quoted_status)
+          Fabricate(:quote, account: remote_account, status: remote_quoting_status, quoted_status: local_status_being_quoted)
+        end
+
+        it 'keeps media associated with statuses that have been favourited, bookmarked, replied to, or reblogged by a local account' do
+          expect { subject }
+            .to output_results('Removed 1')
+
+          expect(favourited_media.reload.file).to be_present
+          expect(bookmarked_media.reload.file).to be_present
+          expect(replied_to_media.reload.file).to be_present
+          expect(reblogged_media.reload.file).to be_present
+          expect(remote_quoted_media.reload.file).to be_present
+          expect(remote_quoting_media.reload.file).to be_present
+
+          expect(media_attachment.reload.file).to be_blank
+          expect(media_attachment.reload.thumbnail).to be_blank
+        end
+      end
     end
   end
 

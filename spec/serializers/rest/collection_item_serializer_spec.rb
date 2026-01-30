@@ -8,8 +8,7 @@ RSpec.describe REST::CollectionItemSerializer do
   let(:collection_item) do
     Fabricate(:collection_item,
               id: 2342,
-              state:,
-              position: 4)
+              state:)
   end
 
   context 'when state is `accepted`' do
@@ -19,9 +18,8 @@ RSpec.describe REST::CollectionItemSerializer do
       expect(subject)
         .to include(
           'id' => '2342',
-          'account' => an_instance_of(Hash),
-          'state' => 'accepted',
-          'position' => 4
+          'account_id' => collection_item.account_id.to_s,
+          'state' => 'accepted'
         )
     end
   end
@@ -31,7 +29,7 @@ RSpec.describe REST::CollectionItemSerializer do
       let(:state) { unaccepted_state }
 
       it 'does not include an account' do
-        expect(subject.keys).to_not include('account')
+        expect(subject.keys).to_not include('account_id')
       end
     end
   end

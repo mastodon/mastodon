@@ -11,16 +11,12 @@ class OStatus::TagManager
   def unique_tag_to_local_id(tag, expected_type)
     return nil unless local_id?(tag)
 
-    if ActivityPub::TagManager.instance.local_uri?(tag)
-      ActivityPub::TagManager.instance.uri_to_local_id(tag)
-    else
-      matches = Regexp.new("objectId=([\\d]+):objectType=#{expected_type}").match(tag)
-      matches[1] unless matches.nil?
-    end
+    matches = Regexp.new("objectId=([\\d]+):objectType=#{expected_type}").match(tag)
+    matches[1] unless matches.nil?
   end
 
   def local_id?(id)
-    id.start_with?("tag:#{Rails.configuration.x.local_domain}") || ActivityPub::TagManager.instance.local_uri?(id)
+    id.start_with?("tag:#{Rails.configuration.x.local_domain}")
   end
 
   def uri_for(target)

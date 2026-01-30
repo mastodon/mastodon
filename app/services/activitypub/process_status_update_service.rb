@@ -204,7 +204,11 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
   def update_tags!
     previous_tags = @status.tags.to_a
-    current_tags = @status.tags = Tag.find_or_create_by_names(@raw_tags)
+    current_tags = @status.tags = @raw_tags.flat_map do |tag|
+      Tag.find_or_create_by_names([tag])
+    rescue ActiveRecord::RecordInvalid
+      []
+    end
 
     return unless @status.distributable?
 
