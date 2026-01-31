@@ -64,7 +64,7 @@ vi:
       disable_sign_in_token_auth: Tắt xác minh bằng email
       disable_two_factor_authentication: Vô hiệu hóa xác thực 2 bước
       disabled: Tạm khóa
-      display_name: Biệt danh
+      display_name: Tên gọi
       domain: Máy chủ
       edit: Chỉnh sửa
       email: Email
@@ -426,7 +426,7 @@ vi:
         create: Tạo chặn
         hint: Chặn máy chủ sẽ không ngăn việc hiển thị tút của máy chủ đó trong cơ sở dữ liệu, nhưng sẽ khiến tự động áp dụng các phương pháp kiểm duyệt cụ thể trên các tài khoản đó.
         severity:
-          desc_html: "<strong>Ẩn</strong> sẽ làm cho tút của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Dùng <strong>Cảnh cáo</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
+          desc_html: "<strong>Hạn chế</strong> sẽ làm cho tút của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Dùng <strong>Cảnh cáo</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
           noop: Không hoạt động
           silence: Ẩn
           suspend: Vô hiệu hóa
@@ -1088,7 +1088,7 @@ vi:
         usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
         used_by_over_week:
           other: "%{count} người dùng tuần rồi"
-      title: Đề xuất & Xu hướng
+      title: Đề xuất và Xu hướng
       trending: Xu hướng
     username_blocks:
       add_new: Thêm mới
@@ -1414,7 +1414,7 @@ vi:
     csv: CSV
     domain_blocks: Máy chủ chặn
     lists: Danh sách
-    mutes: Người ẩn
+    mutes: Trạm tút bị phớt lờ
     storage: Tập tin
   featured_tags:
     add_new: Thêm mới
@@ -1507,7 +1507,7 @@ vi:
       lists_html:
         other: Bạn sắp <strong>thay thế danh sách</strong> với nội dung của <strong>%{filename}</strong>. Có <strong>%{count} người</strong> sẽ được thêm vào những danh sách mới.
       muting_html:
-        other: Bạn sắp <strong>they thế danh sách người bạn chặn</strong> với <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
+        other: Bạn sắp <strong>thay thế danh sách trạm tút chặn</strong> tới <strong>%{count} trạm tút</strong> từ <strong>%{filename}</strong>.
     preambles:
       blocking_html:
         other: Bạn sắp <strong>chặn</strong> tới <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
@@ -1520,7 +1520,7 @@ vi:
       lists_html:
         other: Bạn sắp thêm tới <strong>%{count} người</strong> từ <strong>%{filename}</strong> vào <strong>danh sách của bạn</strong>. Những danh sách mới sẽ được tạo nếu không có danh sách để thêm.
       muting_html:
-        other: Bạn sắp <strong>ẩn</strong> tới <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
+        other: Bạn sắp <strong>phớt lờ</strong> tới <strong>%{count} trạm tút</strong> từ <strong>%{filename}</strong>.
     preface: Bạn có thể nhập dữ liệu mà bạn đã xuất từ một máy chủ khác, chẳng hạn danh sách những người đang theo dõi hoặc chặn.
     recent_imports: Đã nhập gần đây
     states:
@@ -1537,11 +1537,11 @@ vi:
       domain_blocking: Đang nhập máy chủ đã chặn
       following: Đang nhập người theo dõi
       lists: Nhập danh sách
-      muting: Đang nhập người đã ẩn
+      muting: Nhập danh sách trạm tút phớt lờ
     type: Kiểu nhập
     type_groups:
       constructive: Theo dõi và lưu
-      destructive: Chặn và ẩn
+      destructive: Chặn và phớt lờ
     types:
       blocking: Danh sách người đã chặn
       bookmarks: Tút đã lưu
@@ -1649,7 +1649,7 @@ vi:
     title: Kiểm duyệt
   move_handler:
     carry_blocks_over_text: Tài khoản này chuyển từ %{acct}, máy chủ mà bạn đã chặn trước đó.
-    carry_mutes_over_text: Tài khoản này chuyển từ %{acct}, máy chủ mà bạn đã ẩn trước đó.
+    carry_mutes_over_text: Trạm tút này chuyển sang từ %{acct}, máy chủ mà bạn đã phớt lờ trước đó.
     copy_account_note_text: 'Tài khoản này chuyển từ %{acct}, đây là lịch sử kiểm duyệt của họ:'
   navigation:
     toggle_menu: Bật/tắt menu

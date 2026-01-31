@@ -846,6 +846,10 @@ ca:
         all: Per a tothom
         disabled: Per a ningú
         users: Per als usuaris locals en línia
+      feed_access:
+        modes:
+          authenticated: Només usuaris autenticats
+          public: Tothom
       registrations:
         moderation_recommandation: Assegureu-vos de tenir un equip de moderadors adient i actiu abans d'obrir l'alta de comptes al públic!
         preamble: Controla qui pot crear un compte en el teu servidor.
@@ -1942,6 +1946,7 @@ ca:
       private: Només seguidors
       public: Públic
       public_long: Tothom dins o fora Mastodon
+      unlisted: Pública però discreta
       unlisted_long: Amagat dels resultats de cerca de Mastodon, de les tendències i de les línies temporals
   statuses_cleanup:
     enabled: Esborra automàticament tuts antics
