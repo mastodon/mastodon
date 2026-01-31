@@ -58,7 +58,7 @@ Bundler.require(:pam_authentication) if ENV['PAM_ENABLED'] == 'true'
 module Mastodon
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 8.0
+    config.load_defaults 8.1
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -104,6 +104,8 @@ module Mastodon
     config.x.omniauth = config_for(:omniauth)
     config.x.translation = config_for(:translation)
     config.x.vapid = config_for(:vapid)
+
+    config.action_controller.action_on_open_redirect = :log
 
     if ENV.fetch('QUERY_LOG_TAGS_ENABLED', 'false') == 'true'
       config.active_record.query_log_tags_enabled = ENV.fetch('QUERY_LOG_TAGS_ENABLED', 'false') == 'true'
