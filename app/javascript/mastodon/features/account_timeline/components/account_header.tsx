@@ -188,6 +188,7 @@ export const AccountHeader: React.FC<{
               <AccountButtons
                 accountId={accountId}
                 className={redesignClasses.buttonsDesktop}
+                noShare
               />
             )}
           </div>
