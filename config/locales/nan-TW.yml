@@ -676,7 +676,7 @@ nan-TW:
       forwarded_replies_explanation: 本報告是tuì別站ê用者送ê，關係別站ê內容。本報告轉hōo lí，因為受檢舉ê內容是回應lí ê服侍器ê用者。
       forwarded_to: 有轉送kàu %{domain}
       mark_as_resolved: 標做「解決ah」
-      mark_as_sensitive: 標做敏感
+      mark_as_sensitive: 標做敏感ê
       mark_as_unresolved: 標做「無解決」
       no_one_assigned: 無lâng
       notes:
@@ -709,7 +709,7 @@ nan-TW:
           suspend_html: Lí teh-beh <strong>停止</strong> <strong>@%{acct}</strong> ê口座權限。Tse ē：
         actions:
           delete_html: Thâi掉冒犯ê PO文
-          mark_as_sensitive_html: Kā冒犯êPO文ê媒體標做敏感
+          mark_as_sensitive_html: Kā冒犯êPO文ê媒體標做敏感ê
           silence_html: Kā in ê個人資料kap內容標做kan-ta有跟tuè ê，á是手動tshiau伊ê個人檔案ê，通看見，來嚴嚴限制 <strong>@%{acct}</strong> ê傳播範圍
           suspend_html: Kā <strong>@%{acct}</strong> 停止權限，koh kā in ê 個人資料kap內容標做bē當用，kap bē當hām in互動
         close_report: 'Kā 檢舉報告 #%{id} 標做解決ah'
@@ -919,7 +919,7 @@ nan-TW:
         disable: "%{name} kā %{target} ê口座冷凍ah"
         mark_statuses_as_sensitive: "%{name} kā %{target} êPO文標做敏感ê內容"
         none: "%{name} 送警告hōo %{target} ah"
-        sensitive: "%{name} kā %{target} ê口座標做敏感"
+        sensitive: "%{name} kā %{target} ê口座標做敏感ê"
         silence: "%{name} 限制 %{target} ê口座"
         suspend: "%{name} kā %{target} ê口座停止權限ah"
       appeal_approved: 投訴ah
@@ -1749,8 +1749,66 @@ nan-TW:
     privacy: 隱私權
     privacy_hint_html: 控制lí想欲為別lâng ê利益，公開guā tsē內容。Lâng用瀏覽別lâng ê跟tuè koh看in用啥物應用程式PO文，來發現心適ê個人資料kap時行ê應用程式，但是lí凡勢beh保持khàm起來。
     reach: 接觸
+    reach_hint_html: 控制lí kám beh 受新lâng發現kap跟tuè。Lí kám beh予lí ê PO文出現佇探索ê頁？Lí kám 想beh予別lâng佇in ê新ê跟tuè建議內看著lí？Lí kám beh允准別lâng自動跟tuè lí，á是beh一ê一ê控制？
+    search: Tshiau-tshuē
+    search_hint_html: 控制lí想beh予lâng發現ê方法。Lí kám beh予別lâng用lí公開PO文ê主題揣著lí？Lí kám beh予Mastodon以外ê lâng，佇網路tshiau-tshuē ê時，tshuē著lí ê個人資料？請注意，公開ê資訊bē當保證lóng總予所有tshiau-tshuē ia̋n-jín排除。
+    title: 隱私kap資訊ê及至
   scheduled_statuses:
     too_soon: Tio̍h用未來ê日期。
+  sessions:
+    browsers:
+      qq: QQ 瀏覽器
+      safari: Safari
+      uc_browser: UC 瀏覽器
+      unknown_browser: 毋知影ê瀏覽器
+      weibo: Weibo
+    current_session: 目前ê session
+    date: 日期
+    description: "%{platform} ê %{browser}"
+    explanation: Tsiah ê是當leh登入lí ê Mastodon 口座ê網頁瀏覽器。
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      kai_os: KaiOS
+      linux: Linux
+      mac: macOS
+      unknown_platform: 毋知影ê平台
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: 撤去
+    revoke_success: Session 撤去成功
+    title: Session
+    view_authentication_history: 看lí ê口座ê驗證歷史
+  settings:
+    account: 口座
+    account_settings: 口座ê設定
+    aliases: 口座ê別名
+    appearance: 外觀
+    authorized_apps: 受授權ê應用程式
+    back: 轉去Mastodon
+    delete: Thâi掉口座
+    development: 開發
+    edit_profile: 編輯個人資料
+    export: 輸出
+    featured_tags: 特色ê hashtag
+    import: 輸入
+    import_and_export: 輸入kap輸出
+    migrate: 口座遷suá
+    notifications: 電子phue ê通知
+    preferences: 偏愛ê設定
+    profile: 個人ê資料
+    relationships: Leh跟tuè ê kap跟tuè lí ê
+    severed_relationships: 斷開ê關係
+    statuses_cleanup: 自動thâi PO文
+    strikes: 管理ê警告
+    two_factor_authentication: 雙因素驗證
+    webauthn_authentication: 安全鎖匙
   statuses:
     default_language: Kap界面ê語言sio kâng
   terms_of_service:
