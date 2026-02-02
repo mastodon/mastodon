@@ -9,14 +9,6 @@ const meta = {
     label: 'Label',
     hint: 'This is a description of this form field',
   },
-  render(args) {
-    // Component styles require a wrapper class at the moment
-    return (
-      <div className='simple_form'>
-        <TextInputField {...args} />
-      </div>
-    );
-  },
 } satisfies Meta<typeof TextInputField>;
 
 export default meta;
