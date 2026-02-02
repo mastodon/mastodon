@@ -1,0 +1,66 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+
+  /* Dropdown indicator icon */
+  &::after {
+    --icon-size: 11px;
+
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    inset-inline-end: 9px;
+    width: var(--icon-size);
+    background-color: var(--color-text-tertiary);
+    pointer-events: none;
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='black'/></svg>");
+    mask-position: right center;
+    mask-size: var(--icon-size);
+    mask-repeat: no-repeat;
+  }
+
+  &:has(.select:focus-visible)::after {
+    background-color: var(--color-text-secondary);
+  }
+
+  &:has(.select:disabled)::after {
+    background-color: var(--color-text-disabled);
+  }
+}
+
+.select {
+  appearance: none;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 41px;
+  padding-inline-start: 10px;
+  padding-inline-end: 30px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 4px;
+  outline: 0;
+
+  @media screen and (width <= 600px) {
+    font-size: 16px;
+  }
+
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: -1px;
+  }
+
+  &:disabled {
+    color: var(--color-text-disabled);
+    border-color: transparent;
+    cursor: not-allowed;
+  }
+
+  [data-has-error='true'] & {
+    border-color: var(--color-text-error);
+  }
+}
