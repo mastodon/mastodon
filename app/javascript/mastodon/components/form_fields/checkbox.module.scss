@@ -1,5 +1,6 @@
 .checkbox {
   --size: 16px;
+  --border-width: 1px;
 
   appearance: none;
   box-sizing: border-box;
@@ -10,11 +11,22 @@
   height: var(--size);
   vertical-align: top;
   border-radius: calc(var(--size) / 4);
-  border: 1px solid var(--color-border-primary);
+  border: var(--border-width) solid var(--color-border-primary);
   background-color: var(--color-bg-primary);
   transition: 0.15s ease-out;
   transition-property: background-color, border-color;
   cursor: pointer;
+
+  /* Increase clickable area, prevents misclicks and covers gap between control and label */
+  &::after {
+    content: '';
+    position: absolute;
+
+    --spread: calc(var(--border-width) + var(--form-field-label-gap, 8px));
+
+    inset-inline: calc(-1 * var(--spread));
+    inset-block: calc(-0.75 * var(--spread));
+  }
 
   &:disabled {
     background: var(--color-bg-tertiary);

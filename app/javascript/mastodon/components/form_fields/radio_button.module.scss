@@ -1,5 +1,6 @@
 .radioButton {
   --size: 16px;
+  --border-width: calc(var(--size) / 4);
 
   appearance: none;
   box-sizing: border-box;
@@ -10,12 +11,23 @@
   height: var(--size);
   vertical-align: top;
   border-radius: 100%;
-  border: calc(var(--size) / 4) solid transparent;
+  border: var(--border-width) solid transparent;
   box-shadow: 0 0 0 1px var(--color-border-primary);
   background-color: var(--color-bg-primary);
   transition: 0.15s ease-out;
   transition-property: border-color;
   cursor: pointer;
+
+  /* Increase clickable area, prevents misclicks and covers gap between control and label */
+  &::after {
+    content: '';
+    position: absolute;
+
+    --spread: calc(var(--border-width) + var(--form-field-label-gap, 8px));
+
+    inset-inline: calc(-1 * var(--spread));
+    inset-block: calc(-0.75 * var(--spread));
+  }
 
   &:disabled {
     background: var(--color-bg-tertiary);
