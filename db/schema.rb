@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_02_09_143308) do
+ActiveRecord::Schema[8.0].define(version: 2026_02_11_132603) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -1288,6 +1288,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_02_09_143308) do
     t.boolean "highlighted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "require_2fa", default: false, null: false
   end
 
   create_table "username_blocks", force: :cascade do |t|
