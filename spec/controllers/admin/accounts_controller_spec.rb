@@ -166,15 +166,6 @@ RSpec.describe Admin::AccountsController do
         expect(user.reload).to_not be_disabled
       end
     end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to enable account' do
-        expect(subject).to have_http_status 403
-        expect(user.reload).to be_disabled
-      end
-    end
   end
 
   describe 'POST #approve' do

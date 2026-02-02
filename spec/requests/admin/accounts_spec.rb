@@ -13,4 +13,24 @@ RSpec.describe 'Admin Accounts' do
         .to redirect_to(admin_accounts_path)
     end
   end
+
+  describe 'POST /admin/accounts/:id/enable' do
+    let(:account) { user.account }
+    let(:user) { Fabricate(:user, disabled: true) }
+
+    context 'when user is not admin' do
+      let(:current_user) { Fabricate(:user, role: UserRole.everyone) }
+
+      before { sign_in current_user }
+
+      it 'fails to enable account' do
+        post enable_admin_account_path(id: account.id)
+
+        expect(response)
+          .to have_http_status(403)
+        expect(user.reload)
+          .to be_disabled
+      end
+    end
+  end
 end
