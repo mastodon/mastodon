@@ -33,4 +33,10 @@
   &:required:user-valid {
     outline-color: var(--color-text-success);
   }
+
+  &:disabled {
+    color: var(--color-text-disabled);
+    border-color: transparent;
+    cursor: not-allowed;
+  }
 }
