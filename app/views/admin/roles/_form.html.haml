@@ -25,6 +25,10 @@
     = form.input :highlighted,
                  wrapper: :with_label
 
+  .fields-group
+    = form.input :require_2fa,
+                 wrapper: :with_label
+
   %hr.spacer/
 
 - unless current_user.role == form.object
