@@ -57,6 +57,16 @@
   }
 }
 
+.badgeMuted {
+  background-color: var(--color-bg-inverted);
+  color: var(--color-text-on-inverted);
+}
+
+.badgeBlocked {
+  background-color: var(--color-bg-error-base);
+  color: var(--color-text-on-error-base);
+}
+
 svg.badgeIcon {
   opacity: 1;
 }
