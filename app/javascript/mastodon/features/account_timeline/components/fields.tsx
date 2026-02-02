@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -59,6 +59,7 @@ export const AccountHeaderFields: FC<{ accountId: string }> = ({
 
 const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
   const htmlHandlers = useElementHandledLink();
+  const intl = useIntl();
 
   const {
     bodyRef,
@@ -81,7 +82,10 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
         <IconButton
           icon='more'
           iconComponent={IconLeftArrow}
-          title='more'
+          title={intl.formatMessage({
+            id: 'account.fields.scroll_prev',
+            defaultMessage: 'Show previous',
+          })}
           className={classes.fieldArrowButton}
           onClick={handleLeftNav}
         />
@@ -126,7 +130,10 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
         <IconButton
           icon='more'
           iconComponent={IconRightArrow}
-          title='more'
+          title={intl.formatMessage({
+            id: 'account.fields.scroll_next',
+            defaultMessage: 'Show next',
+          })}
           className={classes.fieldArrowButton}
           onClick={handleRightNav}
         />

@@ -16,7 +16,7 @@
   color: var(--color-text-secondary);
 }
 
-.cardIcon {
+.cardWithIcon {
   grid-template-columns: 16px 1fr;
 }
 
@@ -52,7 +52,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 
-  .cardIcon & {
+  .cardWithIcon & {
     grid-column: 2;
   }
 }

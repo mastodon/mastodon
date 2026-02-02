@@ -98,7 +98,7 @@ svg.badgeIcon {
   background: linear-gradient(
     to left,
     transparent 0%,
-    var(--color-bg-elevated) 100%
+    var(--color-bg-primary) 100%
   );
 }
 
@@ -107,7 +107,7 @@ svg.badgeIcon {
   background: linear-gradient(
     to right,
     transparent 0%,
-    var(--color-bg-elevated) 100%
+    var(--color-bg-primary) 100%
   );
 }
 
@@ -123,7 +123,6 @@ svg.badgeIcon {
   display: flex;
   flex-wrap: nowrap;
   gap: 4px;
-  margin: 2px;
   scroll-snap-type: x mandatory;
   scroll-padding-left: 40px;
   scroll-padding-right: 40px;
@@ -139,6 +138,7 @@ svg.badgeIcon {
   &:focus-visible,
   &:focus-within {
     outline: var(--outline-focus-default);
+    outline-offset: -2px;
   }
 
   :is(dt, dd) {

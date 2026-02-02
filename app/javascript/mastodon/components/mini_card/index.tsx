@@ -16,12 +16,16 @@ export type MiniCardProps = OmitUnion<
     label: ReactNode;
     value: ReactNode;
     icon?: IconProp;
+    iconId?: string;
     iconClassName?: string;
   }
 >;
 
 export const MiniCard = forwardRef<HTMLDivElement, MiniCardProps>(
-  ({ label, value, className, hidden, icon, iconClassName, ...props }, ref) => {
+  (
+    { label, value, className, hidden, icon, iconId, iconClassName, ...props },
+    ref,
+  ) => {
     if (!label) {
       return null;
     }
@@ -31,14 +35,14 @@ export const MiniCard = forwardRef<HTMLDivElement, MiniCardProps>(
         {...props}
         className={classNames(
           classes.card,
-          icon && classes.cardIcon,
+          icon && classes.cardWithIcon,
           className,
         )}
         ref={ref}
       >
         {icon && (
           <Icon
-            id={props.id ? `${props.id}-icon` : 'minicard'}
+            id={iconId ?? 'minicard'}
             icon={icon}
             className={classNames(classes.icon, iconClassName)}
             noFill
