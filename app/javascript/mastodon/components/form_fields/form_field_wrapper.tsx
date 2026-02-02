@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 
 import type { ReactNode, FC } from 'react';
-import { useId } from 'react';
+import { useContext, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import { FieldsetNameContext } from './fieldset';
 import classes from './form_field_wrapper.module.scss';
 
 interface InputProps {
@@ -51,6 +52,8 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
   const hintId = `${inputIdProp || uniqueId}-hint`;
   const hasHint = !!hint;
 
+  const hasParentFieldset = !!useContext(FieldsetNameContext);
+
   const inputProps: InputProps = {
     required,
     id: inputId,
@@ -72,7 +75,11 @@ export const FormFieldWrapper: FC<FieldWrapperProps> = ({
       {inputPlacement === 'inline-start' && input}
 
       <div className={classes.labelWrapper}>
-        <label htmlFor={inputId} className={classes.label}>
+        <label
+          htmlFor={inputId}
+          className={classes.label}
+          data-has-parent-fieldset={hasParentFieldset}
+        >
           {label}
           {required !== undefined && <RequiredMark required={required} />}
         </label>

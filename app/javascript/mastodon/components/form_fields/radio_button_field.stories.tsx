@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Checkbox, CheckboxField } from './checkbox_field';
 import { Fieldset } from './fieldset';
+import { RadioButton, RadioButtonField } from './radio_button_field';
 
 const meta = {
-  title: 'Components/Form Fields/CheckboxField',
-  component: CheckboxField,
+  title: 'Components/Form Fields/RadioButtonField',
+  component: RadioButtonField,
   args: {
     label: 'Label',
     hint: 'This is a description of this form field',
+    checked: false,
     disabled: false,
   },
   argTypes: {
@@ -16,7 +17,7 @@ const meta = {
       control: { type: 'range', min: 10, max: 64, step: 1 },
     },
   },
-} satisfies Meta<typeof CheckboxField>;
+} satisfies Meta<typeof RadioButtonField>;
 
 export default meta;
 
@@ -34,12 +35,12 @@ export const InFieldset: Story = {
   render() {
     return (
       <Fieldset
-        legend='Choose your options'
+        legend='Choose one option'
         hint='This is a description of this set of options'
       >
-        <CheckboxField label='Option 1' />
-        <CheckboxField label='Option 2' />
-        <CheckboxField label='Option 3' defaultChecked />
+        <RadioButtonField label='Option 1' defaultChecked />
+        <RadioButtonField label='Option 2' />
+        <RadioButtonField label='Option 3' />
       </Fieldset>
     );
   },
@@ -49,21 +50,15 @@ export const InFieldsetHorizontal: Story = {
   render() {
     return (
       <Fieldset
-        legend='Choose your options'
+        legend='Choose one option'
         hint='This is a description of this set of options'
         layout='horizontal'
       >
-        <CheckboxField label='Option 1' />
-        <CheckboxField label='Option 2' />
-        <CheckboxField label='Option 3' defaultChecked />
+        <RadioButtonField label='Option 1' defaultChecked />
+        <RadioButtonField label='Option 2' />
+        <RadioButtonField label='Option 3' />
       </Fieldset>
     );
-  },
-};
-
-export const Required: Story = {
-  args: {
-    required: true,
   },
 };
 
@@ -94,15 +89,9 @@ export const DisabledUnchecked: Story = {
   },
 };
 
-export const Indeterminate: Story = {
-  args: {
-    indeterminate: true,
-  },
-};
-
 export const Plain: Story = {
   render(props) {
-    return <Checkbox {...props} />;
+    return <RadioButton {...props} />;
   },
 };
 
