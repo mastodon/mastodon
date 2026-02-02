@@ -59,7 +59,7 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
   def destroy
     authorize @collection, :destroy?
 
-    @collection.destroy
+    DeleteCollectionService.new.call(@collection)
 
     head 200
   end
