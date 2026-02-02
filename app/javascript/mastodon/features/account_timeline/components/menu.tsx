@@ -33,9 +33,7 @@ import {
 } from '@/mastodon/permissions';
 import type { AppDispatch } from '@/mastodon/store';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
-import MentionIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import BlockIcon from '@/material-icons/400-24px/block.svg?react';
-import ChatIcon from '@/material-icons/400-24px/chat_bubble.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit_square.svg?react';
 import LinkIcon from '@/material-icons/400-24px/link_2.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
@@ -459,6 +457,14 @@ const redesignMessages = defineMessages({
     id: 'account.menu.unblock',
     defaultMessage: 'Unblock account',
   },
+  domainBlock: {
+    id: 'account.menu.block_domain',
+    defaultMessage: 'Block domain ({domain})',
+  },
+  domainUnblock: {
+    id: 'account.menu.unblock_domain',
+    defaultMessage: 'Unblock domain ({domain})',
+  },
   report: { id: 'account.menu.report', defaultMessage: 'Report account' },
   hideReblogs: {
     id: 'account.menu.hide_reblogs',
@@ -474,7 +480,7 @@ const redesignMessages = defineMessages({
   },
   openOriginalPage: {
     id: 'account.menu.open_original_page',
-    defaultMessage: 'Open on {domain}',
+    defaultMessage: 'View on {domain}',
   },
   removeFollower: {
     id: 'account.menu.remove_follower',
@@ -528,7 +534,6 @@ function redesignMenuItems({
         action: () => {
           dispatch(mentionCompose(account));
         },
-        icon: MentionIcon,
       },
 
       {
@@ -536,7 +541,6 @@ function redesignMenuItems({
         action: () => {
           dispatch(directCompose(account));
         },
-        icon: ChatIcon,
       },
       null,
       {
@@ -708,9 +712,7 @@ function redesignMenuItems({
 
   if (!account.suspended) {
     items.push({
-      text: intl.formatMessage(messages.report, {
-        name: account.username,
-      }),
+      text: intl.formatMessage(redesignMessages.report),
       action: () => {
         dispatch(initReport(account));
       },
@@ -723,8 +725,8 @@ function redesignMenuItems({
     items.push({
       text: intl.formatMessage(
         relationship?.domain_blocking
-          ? messages.unblockDomain
-          : messages.blockDomain,
+          ? redesignMessages.domainUnblock
+          : redesignMessages.domainBlock,
         {
           domain: remoteDomain,
         },
@@ -737,6 +739,8 @@ function redesignMenuItems({
         }
       },
       dangerous: true,
+      icon: BlockIcon,
+      iconId: 'domain-block',
     });
   }
 
