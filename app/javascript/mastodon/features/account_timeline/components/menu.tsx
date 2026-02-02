@@ -446,7 +446,7 @@ const redesignMessages = defineMessages({
   },
   mention: { id: 'account.menu.mention', defaultMessage: 'Mention' },
   direct: {
-    id: 'account.direct_short',
+    id: 'account.menu.direct',
     defaultMessage: 'Privately mention',
   },
   mute: { id: 'account.menu.mute', defaultMessage: 'Mute account' },
