@@ -163,4 +163,23 @@ RSpec.describe 'Admin Accounts' do
       end
     end
   end
+
+  describe 'POST /admin/accounts/:id/unsuspend' do
+    let(:account) { Fabricate(:account) }
+
+    before { account.suspend! }
+
+    context 'when user is not admin' do
+      let(:current_user) { Fabricate(:user, role: UserRole.everyone) }
+
+      it 'fails to unsuspend account' do
+        post unsuspend_admin_account_path(id: account.id)
+
+        expect(response)
+          .to have_http_status(403)
+        expect(account)
+          .to be_suspended
+      end
+    end
+  end
 end

@@ -337,16 +337,6 @@ RSpec.describe Admin::AccountsController do
         expect(response).to redirect_to admin_account_path(account.id)
       end
     end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to change account' do
-        subject
-
-        expect(response).to have_http_status 403
-      end
-    end
   end
 
   describe 'POST #destroy' do
