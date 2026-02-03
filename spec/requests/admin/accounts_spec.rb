@@ -146,4 +146,21 @@ RSpec.describe 'Admin Accounts' do
       end
     end
   end
+
+  describe 'POST /admin/accounts/:id/unsilence' do
+    let(:account) { Fabricate(:account, silenced_at: 1.year.ago) }
+
+    context 'when user is not admin' do
+      let(:current_user) { Fabricate(:user, role: UserRole.everyone) }
+
+      it 'fails to unsilence account' do
+        post unsilence_admin_account_path(id: account.id)
+
+        expect(response)
+          .to have_http_status(403)
+        expect(account)
+          .to be_silenced
+      end
+    end
+  end
 end
