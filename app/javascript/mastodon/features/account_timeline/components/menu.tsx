@@ -34,7 +34,6 @@ import {
 import type { AppDispatch } from '@/mastodon/store';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import BlockIcon from '@/material-icons/400-24px/block.svg?react';
-import EditIcon from '@/material-icons/400-24px/edit_square.svg?react';
 import LinkIcon from '@/material-icons/400-24px/link_2.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import PersonRemoveIcon from '@/material-icons/400-24px/person_remove.svg?react';
@@ -447,6 +446,10 @@ const redesignMessages = defineMessages({
     defaultMessage: 'Copied account link to clipboard',
   },
   mention: { id: 'account.menu.mention', defaultMessage: 'Mention' },
+  noteDescription: {
+    id: 'account.menu.note.description',
+    defaultMessage: 'Visible only to you',
+  },
   direct: {
     id: 'account.menu.direct',
     defaultMessage: 'Privately mention',
@@ -527,6 +530,16 @@ function redesignMenuItems({
     });
   }
 
+  // Open on remote page.
+  if (isRemote) {
+    items.push({
+      text: intl.formatMessage(redesignMessages.openOriginalPage, {
+        domain: remoteDomain,
+      }),
+      href: account.url,
+    });
+  }
+
   // Mention and direct message options
   if (signedIn && !account.suspended) {
     items.push(
@@ -549,6 +562,7 @@ function redesignMenuItems({
         text: intl.formatMessage(
           relationship?.note ? messages.editNote : messages.addNote,
         ),
+        description: intl.formatMessage(redesignMessages.noteDescription),
         action: () => {
           dispatch(
             openModal({
@@ -559,20 +573,6 @@ function redesignMenuItems({
             }),
           );
         },
-        icon: EditIcon,
-      },
-      null,
-    );
-  }
-
-  // Open on remote page.
-  if (isRemote) {
-    items.push(
-      {
-        text: intl.formatMessage(redesignMessages.openOriginalPage, {
-          domain: remoteDomain,
-        }),
-        href: account.url,
       },
       null,
     );
