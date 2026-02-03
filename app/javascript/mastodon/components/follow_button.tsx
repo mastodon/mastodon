@@ -5,6 +5,7 @@ import { useIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
 
 import { useIdentity } from '@/mastodon/identity_context';
+import { isClientFeatureEnabled } from '@/mastodon/utils/environment';
 import {
   fetchRelationships,
   followAccount,
@@ -94,7 +95,17 @@ export const FollowButton: React.FC<{
 
     if (accountId === me) {
       return;
-    } else if (relationship.muting) {
+    } else if (relationship.blocking) {
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM_UNBLOCK',
+          modalProps: { account },
+        }),
+      );
+    } else if (
+      relationship.muting &&
+      !isClientFeatureEnabled('profile_redesign')
+    ) {
       dispatch(unmuteAccount(accountId));
     } else if (account && relationship.following) {
       dispatch(
@@ -104,13 +115,6 @@ export const FollowButton: React.FC<{
       dispatch(
         openModal({
           modalType: 'CONFIRM_WITHDRAW_REQUEST',
-          modalProps: { account },
-        }),
-      );
-    } else if (relationship.blocking) {
-      dispatch(
-        openModal({
-          modalType: 'CONFIRM_UNBLOCK',
           modalProps: { account },
         }),
       );
@@ -136,7 +140,10 @@ export const FollowButton: React.FC<{
     label = intl.formatMessage(messages.editProfile);
   } else if (!relationship) {
     label = <LoadingIndicator />;
-  } else if (relationship.muting) {
+  } else if (
+    relationship.muting &&
+    !isClientFeatureEnabled('profile_redesign')
+  ) {
     label = intl.formatMessage(messages.unmute);
   } else if (relationship.following) {
     label = intl.formatMessage(messages.unfollow);
@@ -173,7 +180,7 @@ export const FollowButton: React.FC<{
         (!(relationship?.following || relationship?.requested) &&
           (account?.suspended || !!account?.moved))
       }
-      secondary={following}
+      secondary={following || relationship?.blocking}
       compact={compact}
       className={classNames(className, { 'button--destructive': following })}
     >

@@ -1,3 +1,7 @@
+.barWrapper {
+  border-bottom: none;
+}
+
 .nameWrapper {
   display: flex;
   gap: 16px;
@@ -43,6 +47,43 @@
     background: none;
     color: var(--color-text-brand-soft);
   }
+}
+
+$button-breakpoint: 420px;
+$button-fallback-breakpoint: #{$button-breakpoint} + 55px;
+
+.buttonsDesktop {
+  @container (width < #{$button-breakpoint}) {
+    display: none;
+  }
+
+  @supports (not (container-type: inline-size)) {
+    @media (max-width: #{$button-fallback-breakpoint}) {
+      display: none;
+    }
+  }
+}
+
+.buttonsMobile {
+  position: sticky;
+  bottom: 55px; // Height of bottom nav bar.
+
+  @container (width >= #{$button-breakpoint}) {
+    display: none;
+  }
+
+  @supports (not (container-type: inline-size)) {
+    @media (min-width: (#{$button-fallback-breakpoint} + 1px)) {
+      display: none;
+    }
+  }
+}
+
+.buttonsMobileIsStuck {
+  padding: 12px 16px;
+  background-color: var(--color-bg-primary);
+  border-top: 1px solid var(--color-border-primary);
+  margin: 0 -20px;
 }
 
 .badge {

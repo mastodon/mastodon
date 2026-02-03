@@ -12,6 +12,7 @@ import {
   unpinAccount,
 } from '@/mastodon/actions/accounts';
 import { removeAccountFromFollowers } from '@/mastodon/actions/accounts_typed';
+import { showAlert } from '@/mastodon/actions/alerts';
 import { directCompose, mentionCompose } from '@/mastodon/actions/compose';
 import {
   initDomainBlockModal,
@@ -23,15 +24,77 @@ import { initReport } from '@/mastodon/actions/reports';
 import { Dropdown } from '@/mastodon/components/dropdown_menu';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useIdentity } from '@/mastodon/identity_context';
+import type { Account } from '@/mastodon/models/account';
 import type { MenuItem } from '@/mastodon/models/dropdown_menu';
+import type { Relationship } from '@/mastodon/models/relationship';
 import {
   PERMISSION_MANAGE_FEDERATION,
   PERMISSION_MANAGE_USERS,
 } from '@/mastodon/permissions';
+import type { AppDispatch } from '@/mastodon/store';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import BlockIcon from '@/material-icons/400-24px/block.svg?react';
+import EditIcon from '@/material-icons/400-24px/edit_square.svg?react';
+import LinkIcon from '@/material-icons/400-24px/link_2.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
+import PersonRemoveIcon from '@/material-icons/400-24px/person_remove.svg?react';
+import ReportIcon from '@/material-icons/400-24px/report.svg?react';
+import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 
 import { isRedesignEnabled } from '../common';
+
+export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
+  const intl = useIntl();
+  const { signedIn, permissions } = useIdentity();
+
+  const account = useAccount(accountId);
+  const relationship = useAppSelector((state) =>
+    state.relationships.get(accountId),
+  );
+
+  const dispatch = useAppDispatch();
+  const menuItems = useMemo(() => {
+    if (!account) {
+      return [];
+    }
+
+    if (isRedesignEnabled()) {
+      return redesignMenuItems({
+        account,
+        signedIn,
+        permissions,
+        intl,
+        relationship,
+        dispatch,
+      });
+    }
+    return currentMenuItems({
+      account,
+      signedIn,
+      permissions,
+      intl,
+      relationship,
+      dispatch,
+    });
+  }, [account, signedIn, permissions, intl, relationship, dispatch]);
+  return (
+    <Dropdown
+      disabled={menuItems.length === 0}
+      items={menuItems}
+      icon='ellipsis-v'
+      iconComponent={MoreHorizIcon}
+    />
+  );
+};
+
+interface MenuItemsParams {
+  account: Account;
+  signedIn: boolean;
+  permissions: number;
+  intl: ReturnType<typeof useIntl>;
+  relationship?: Relationship;
+  dispatch: AppDispatch;
+}
 
 const messages = defineMessages({
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
@@ -109,80 +172,78 @@ const messages = defineMessages({
   },
 });
 
-export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
-  const intl = useIntl();
-  const { signedIn, permissions } = useIdentity();
+function currentMenuItems({
+  account,
+  signedIn,
+  permissions,
+  intl,
+  relationship,
+  dispatch,
+}: MenuItemsParams): MenuItem[] {
+  const items: MenuItem[] = [];
+  const isRemote = account.acct !== account.username;
 
-  const account = useAccount(accountId);
-  const relationship = useAppSelector((state) =>
-    state.relationships.get(accountId),
-  );
-
-  const dispatch = useAppDispatch();
-  const menuItems = useMemo(() => {
-    const arr: MenuItem[] = [];
-
-    if (!account) {
-      return arr;
-    }
-
-    const isRemote = account.acct !== account.username;
-
-    if (signedIn && !account.suspended) {
-      arr.push({
+  if (signedIn && !account.suspended) {
+    items.push(
+      {
         text: intl.formatMessage(messages.mention, {
           name: account.username,
         }),
         action: () => {
           dispatch(mentionCompose(account));
         },
-      });
-      arr.push({
+      },
+      {
         text: intl.formatMessage(messages.direct, {
           name: account.username,
         }),
         action: () => {
           dispatch(directCompose(account));
         },
-      });
-      arr.push(null);
-    }
+      },
+      null,
+    );
+  }
 
-    if (isRemote) {
-      arr.push({
+  if (isRemote) {
+    items.push(
+      {
         text: intl.formatMessage(messages.openOriginalPage),
         href: account.url,
-      });
-      arr.push(null);
-    }
+      },
+      null,
+    );
+  }
 
-    if (!signedIn) {
-      return arr;
-    }
+  if (!signedIn) {
+    return items;
+  }
 
-    if (relationship?.following) {
-      if (!relationship.muting) {
-        if (relationship.showing_reblogs) {
-          arr.push({
-            text: intl.formatMessage(messages.hideReblogs, {
-              name: account.username,
-            }),
-            action: () => {
-              dispatch(followAccount(account.id, { reblogs: false }));
-            },
-          });
-        } else {
-          arr.push({
-            text: intl.formatMessage(messages.showReblogs, {
-              name: account.username,
-            }),
-            action: () => {
-              dispatch(followAccount(account.id, { reblogs: true }));
-            },
-          });
-        }
+  if (relationship?.following) {
+    // Timeline options
+    if (!relationship.muting) {
+      if (relationship.showing_reblogs) {
+        items.push({
+          text: intl.formatMessage(messages.hideReblogs, {
+            name: account.username,
+          }),
+          action: () => {
+            dispatch(followAccount(account.id, { reblogs: false }));
+          },
+        });
+      } else {
+        items.push({
+          text: intl.formatMessage(messages.showReblogs, {
+            name: account.username,
+          }),
+          action: () => {
+            dispatch(followAccount(account.id, { reblogs: true }));
+          },
+        });
+      }
 
-        arr.push({
+      items.push(
+        {
           text: intl.formatMessage(messages.languages),
           action: () => {
             dispatch(
@@ -194,13 +255,295 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
               }),
             );
           },
-        });
-        arr.push(null);
-      }
+        },
+        null,
+      );
     }
 
-    if (isRedesignEnabled()) {
-      arr.push({
+    items.push(
+      {
+        text: intl.formatMessage(
+          relationship.endorsed ? messages.unendorse : messages.endorse,
+        ),
+        action: () => {
+          if (relationship.endorsed) {
+            dispatch(unpinAccount(account.id));
+          } else {
+            dispatch(pinAccount(account.id));
+          }
+        },
+      },
+      {
+        text: intl.formatMessage(messages.add_or_remove_from_list),
+        action: () => {
+          dispatch(
+            openModal({
+              modalType: 'LIST_ADDER',
+              modalProps: {
+                accountId: account.id,
+              },
+            }),
+          );
+        },
+      },
+      null,
+    );
+  }
+
+  if (relationship?.followed_by) {
+    const handleRemoveFromFollowers = () => {
+      dispatch(
+        openModal({
+          modalType: 'CONFIRM',
+          modalProps: {
+            title: intl.formatMessage(messages.confirmRemoveFromFollowersTitle),
+            message: intl.formatMessage(
+              messages.confirmRemoveFromFollowersMessage,
+              { name: <strong>{account.acct}</strong> },
+            ),
+            confirm: intl.formatMessage(
+              messages.confirmRemoveFromFollowersButton,
+            ),
+            onConfirm: () => {
+              void dispatch(
+                removeAccountFromFollowers({ accountId: account.id }),
+              );
+            },
+          },
+        }),
+      );
+    };
+
+    items.push({
+      text: intl.formatMessage(messages.removeFromFollowers, {
+        name: account.username,
+      }),
+      action: handleRemoveFromFollowers,
+      dangerous: true,
+    });
+  }
+
+  if (relationship?.muting) {
+    items.push({
+      text: intl.formatMessage(messages.unmute, {
+        name: account.username,
+      }),
+      action: () => {
+        dispatch(unmuteAccount(account.id));
+      },
+    });
+  } else {
+    items.push({
+      text: intl.formatMessage(messages.mute, {
+        name: account.username,
+      }),
+      action: () => {
+        dispatch(initMuteModal(account));
+      },
+      dangerous: true,
+    });
+  }
+
+  if (relationship?.blocking) {
+    items.push({
+      text: intl.formatMessage(messages.unblock, {
+        name: account.username,
+      }),
+      action: () => {
+        dispatch(unblockAccount(account.id));
+      },
+    });
+  } else {
+    items.push({
+      text: intl.formatMessage(messages.block, {
+        name: account.username,
+      }),
+      action: () => {
+        dispatch(blockAccount(account.id));
+      },
+      dangerous: true,
+    });
+  }
+
+  if (!account.suspended) {
+    items.push({
+      text: intl.formatMessage(messages.report, {
+        name: account.username,
+      }),
+      action: () => {
+        dispatch(initReport(account));
+      },
+      dangerous: true,
+    });
+  }
+
+  const remoteDomain = isRemote ? account.acct.split('@')[1] : null;
+  if (remoteDomain) {
+    items.push(null);
+
+    if (relationship?.domain_blocking) {
+      items.push({
+        text: intl.formatMessage(messages.unblockDomain, {
+          domain: remoteDomain,
+        }),
+        action: () => {
+          dispatch(unblockDomain(remoteDomain));
+        },
+      });
+    } else {
+      items.push({
+        text: intl.formatMessage(messages.blockDomain, {
+          domain: remoteDomain,
+        }),
+        action: () => {
+          dispatch(initDomainBlockModal(account));
+        },
+        dangerous: true,
+      });
+    }
+  }
+
+  if (
+    (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS ||
+    (isRemote &&
+      (permissions & PERMISSION_MANAGE_FEDERATION) ===
+        PERMISSION_MANAGE_FEDERATION)
+  ) {
+    items.push(null);
+    if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
+      items.push({
+        text: intl.formatMessage(messages.admin_account, {
+          name: account.username,
+        }),
+        href: `/admin/accounts/${account.id}`,
+      });
+    }
+    if (
+      isRemote &&
+      (permissions & PERMISSION_MANAGE_FEDERATION) ===
+        PERMISSION_MANAGE_FEDERATION
+    ) {
+      items.push({
+        text: intl.formatMessage(messages.admin_domain, {
+          domain: remoteDomain,
+        }),
+        href: `/admin/instances/${remoteDomain}`,
+      });
+    }
+  }
+
+  return items;
+}
+
+const redesignMessages = defineMessages({
+  share: { id: 'account.menu.share', defaultMessage: 'Share…' },
+  copy: { id: 'account.menu.copy', defaultMessage: 'Copy link' },
+  copied: {
+    id: 'account.menu.copied',
+    defaultMessage: 'Copied account link to clipboard',
+  },
+  mention: { id: 'account.menu.mention', defaultMessage: 'Mention' },
+  direct: {
+    id: 'account.menu.direct',
+    defaultMessage: 'Privately mention',
+  },
+  mute: { id: 'account.menu.mute', defaultMessage: 'Mute account' },
+  unmute: {
+    id: 'account.menu.unmute',
+    defaultMessage: 'Unmute account',
+  },
+  block: { id: 'account.menu.block', defaultMessage: 'Block account' },
+  unblock: {
+    id: 'account.menu.unblock',
+    defaultMessage: 'Unblock account',
+  },
+  domainBlock: {
+    id: 'account.menu.block_domain',
+    defaultMessage: 'Block {domain}',
+  },
+  domainUnblock: {
+    id: 'account.menu.unblock_domain',
+    defaultMessage: 'Unblock {domain}',
+  },
+  report: { id: 'account.menu.report', defaultMessage: 'Report account' },
+  hideReblogs: {
+    id: 'account.menu.hide_reblogs',
+    defaultMessage: 'Hide boosts in timeline',
+  },
+  showReblogs: {
+    id: 'account.menu.show_reblogs',
+    defaultMessage: 'Show boosts in timeline',
+  },
+  addToList: {
+    id: 'account.menu.add_to_list',
+    defaultMessage: 'Add to list…',
+  },
+  openOriginalPage: {
+    id: 'account.menu.open_original_page',
+    defaultMessage: 'View on {domain}',
+  },
+  removeFollower: {
+    id: 'account.menu.remove_follower',
+    defaultMessage: 'Remove follower',
+  },
+});
+
+function redesignMenuItems({
+  account,
+  signedIn,
+  permissions,
+  intl,
+  relationship,
+  dispatch,
+}: MenuItemsParams): MenuItem[] {
+  const items: MenuItem[] = [];
+  const isRemote = account.acct !== account.username;
+  const remoteDomain = isRemote ? account.acct.split('@')[1] : null;
+
+  // Share and copy link options
+  if (account.url) {
+    if ('share' in navigator) {
+      items.push({
+        text: intl.formatMessage(redesignMessages.share),
+        action: () => {
+          void navigator.share({
+            url: account.url,
+          });
+        },
+        icon: ShareIcon,
+      });
+    }
+    items.push(
+      {
+        text: intl.formatMessage(redesignMessages.copy),
+        action: () => {
+          void navigator.clipboard.writeText(account.url);
+          dispatch(showAlert({ message: redesignMessages.copied }));
+        },
+        icon: LinkIcon,
+      },
+      null,
+    );
+  }
+
+  // Mention and direct message options
+  if (signedIn && !account.suspended) {
+    items.push(
+      {
+        text: intl.formatMessage(redesignMessages.mention),
+        action: () => {
+          dispatch(mentionCompose(account));
+        },
+      },
+
+      {
+        text: intl.formatMessage(redesignMessages.direct),
+        action: () => {
+          dispatch(directCompose(account));
+        },
+      },
+      null,
+      {
         text: intl.formatMessage(
           relationship?.note ? messages.editNote : messages.addNote,
         ),
@@ -214,27 +557,34 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
             }),
           );
         },
-      });
-      if (!relationship?.following) {
-        arr.push(null);
-      }
-    }
+        icon: EditIcon,
+      },
+      null,
+    );
+  }
 
-    if (relationship?.following) {
-      arr.push({
-        text: intl.formatMessage(
-          relationship.endorsed ? messages.unendorse : messages.endorse,
-        ),
-        action: () => {
-          if (relationship.endorsed) {
-            dispatch(unpinAccount(account.id));
-          } else {
-            dispatch(pinAccount(account.id));
-          }
-        },
-      });
-      arr.push({
-        text: intl.formatMessage(messages.add_or_remove_from_list),
+  // Open on remote page.
+  if (isRemote) {
+    items.push(
+      {
+        text: intl.formatMessage(redesignMessages.openOriginalPage, {
+          domain: remoteDomain,
+        }),
+        href: account.url,
+      },
+      null,
+    );
+  }
+
+  if (!signedIn) {
+    return items;
+  }
+
+  // List and featuring options
+  if (relationship?.following) {
+    items.push(
+      {
+        text: intl.formatMessage(redesignMessages.addToList),
         action: () => {
           dispatch(
             openModal({
@@ -245,12 +595,76 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
             }),
           );
         },
-      });
-      arr.push(null);
+      },
+      {
+        text: intl.formatMessage(
+          relationship.endorsed ? messages.unendorse : messages.endorse,
+        ),
+        action: () => {
+          if (relationship.endorsed) {
+            dispatch(unpinAccount(account.id));
+          } else {
+            dispatch(pinAccount(account.id));
+          }
+        },
+      },
+      null,
+    );
+
+    // Timeline options
+    if (!relationship.muting) {
+      items.push(
+        {
+          text: intl.formatMessage(
+            relationship.showing_reblogs
+              ? redesignMessages.hideReblogs
+              : redesignMessages.showReblogs,
+          ),
+          action: () => {
+            dispatch(
+              followAccount(account.id, {
+                reblogs: !relationship.showing_reblogs,
+              }),
+            );
+          },
+        },
+        {
+          text: intl.formatMessage(messages.languages),
+          action: () => {
+            dispatch(
+              openModal({
+                modalType: 'SUBSCRIBED_LANGUAGES',
+                modalProps: {
+                  accountId: account.id,
+                },
+              }),
+            );
+          },
+        },
+      );
     }
 
-    if (relationship?.followed_by) {
-      const handleRemoveFromFollowers = () => {
+    items.push(
+      {
+        text: intl.formatMessage(
+          relationship.muting ? redesignMessages.unmute : redesignMessages.mute,
+        ),
+        action: () => {
+          if (relationship.muting) {
+            dispatch(unmuteAccount(account.id));
+          } else {
+            dispatch(initMuteModal(account));
+          }
+        },
+      },
+      null,
+    );
+  }
+
+  if (relationship?.followed_by) {
+    items.push({
+      text: intl.formatMessage(redesignMessages.removeFollower),
+      action: () => {
         dispatch(
           openModal({
             modalType: 'CONFIRM',
@@ -273,134 +687,91 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
             },
           }),
         );
-      };
+      },
+      dangerous: true,
+      icon: PersonRemoveIcon,
+    });
+  }
 
-      arr.push({
-        text: intl.formatMessage(messages.removeFromFollowers, {
-          name: account.username,
-        }),
-        action: handleRemoveFromFollowers,
-        dangerous: true,
-      });
-    }
-
-    if (relationship?.muting) {
-      arr.push({
-        text: intl.formatMessage(messages.unmute, {
-          name: account.username,
-        }),
-        action: () => {
-          dispatch(unmuteAccount(account.id));
-        },
-      });
-    } else {
-      arr.push({
-        text: intl.formatMessage(messages.mute, {
-          name: account.username,
-        }),
-        action: () => {
-          dispatch(initMuteModal(account));
-        },
-        dangerous: true,
-      });
-    }
-
-    if (relationship?.blocking) {
-      arr.push({
-        text: intl.formatMessage(messages.unblock, {
-          name: account.username,
-        }),
-        action: () => {
-          dispatch(unblockAccount(account.id));
-        },
-      });
-    } else {
-      arr.push({
-        text: intl.formatMessage(messages.block, {
-          name: account.username,
-        }),
-        action: () => {
-          dispatch(blockAccount(account.id));
-        },
-        dangerous: true,
-      });
-    }
-
-    if (!account.suspended) {
-      arr.push({
-        text: intl.formatMessage(messages.report, {
-          name: account.username,
-        }),
-        action: () => {
-          dispatch(initReport(account));
-        },
-        dangerous: true,
-      });
-    }
-
-    const remoteDomain = isRemote ? account.acct.split('@')[1] : null;
-    if (remoteDomain) {
-      arr.push(null);
-
-      if (relationship?.domain_blocking) {
-        arr.push({
-          text: intl.formatMessage(messages.unblockDomain, {
-            domain: remoteDomain,
-          }),
-          action: () => {
-            dispatch(unblockDomain(remoteDomain));
-          },
-        });
+  items.push({
+    text: intl.formatMessage(
+      relationship?.blocking
+        ? redesignMessages.unblock
+        : redesignMessages.block,
+    ),
+    action: () => {
+      if (relationship?.blocking) {
+        dispatch(unblockAccount(account.id));
       } else {
-        arr.push({
-          text: intl.formatMessage(messages.blockDomain, {
-            domain: remoteDomain,
-          }),
-          action: () => {
-            dispatch(initDomainBlockModal(account));
-          },
-          dangerous: true,
-        });
+        dispatch(blockAccount(account.id));
       }
-    }
+    },
+    dangerous: true,
+    icon: BlockIcon,
+  });
 
+  if (!account.suspended) {
+    items.push({
+      text: intl.formatMessage(redesignMessages.report),
+      action: () => {
+        dispatch(initReport(account));
+      },
+      dangerous: true,
+      icon: ReportIcon,
+    });
+  }
+
+  if (remoteDomain) {
+    items.push({
+      text: intl.formatMessage(
+        relationship?.domain_blocking
+          ? redesignMessages.domainUnblock
+          : redesignMessages.domainBlock,
+        {
+          domain: remoteDomain,
+        },
+      ),
+      action: () => {
+        if (relationship?.domain_blocking) {
+          dispatch(unblockDomain(remoteDomain));
+        } else {
+          dispatch(initDomainBlockModal(account));
+        }
+      },
+      dangerous: true,
+      icon: BlockIcon,
+      iconId: 'domain-block',
+    });
+  }
+
+  if (
+    (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS ||
+    (isRemote &&
+      (permissions & PERMISSION_MANAGE_FEDERATION) ===
+        PERMISSION_MANAGE_FEDERATION)
+  ) {
+    items.push(null);
+    if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
+      items.push({
+        text: intl.formatMessage(messages.admin_account, {
+          name: account.username,
+        }),
+        href: `/admin/accounts/${account.id}`,
+      });
+    }
     if (
-      (permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS ||
-      (isRemote &&
-        (permissions & PERMISSION_MANAGE_FEDERATION) ===
-          PERMISSION_MANAGE_FEDERATION)
+      remoteDomain &&
+      (permissions & PERMISSION_MANAGE_FEDERATION) ===
+        PERMISSION_MANAGE_FEDERATION
     ) {
-      arr.push(null);
-      if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
-        arr.push({
-          text: intl.formatMessage(messages.admin_account, {
-            name: account.username,
-          }),
-          href: `/admin/accounts/${account.id}`,
-        });
-      }
-      if (
-        isRemote &&
-        (permissions & PERMISSION_MANAGE_FEDERATION) ===
-          PERMISSION_MANAGE_FEDERATION
-      ) {
-        arr.push({
-          text: intl.formatMessage(messages.admin_domain, {
-            domain: remoteDomain,
-          }),
-          href: `/admin/instances/${remoteDomain}`,
-        });
-      }
+      items.push({
+        text: intl.formatMessage(messages.admin_domain, {
+          domain: remoteDomain,
+        }),
+        href: `/admin/instances/${remoteDomain}`,
+      });
     }
+  }
 
-    return arr;
-  }, [account, signedIn, permissions, intl, relationship, dispatch]);
-  return (
-    <Dropdown
-      disabled={menuItems.length === 0}
-      items={menuItems}
-      icon='ellipsis-v'
-      iconComponent={MoreHorizIcon}
-    />
-  );
-};
+  return items;
+}

@@ -108,48 +108,6 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
           className={classNames(className, classes.badgeMuted)}
         />,
       );
-    } else if (
-      relationship.followed_by &&
-      (relationship.following || relationship.requested)
-    ) {
-      badges.push(
-        <Badge
-          key='mutuals-badge'
-          label={
-            <FormattedMessage
-              id='account.badges.mutuals'
-              defaultMessage='You follow each other'
-            />
-          }
-          className={className}
-        />,
-      );
-    } else if (relationship.followed_by) {
-      badges.push(
-        <Badge
-          key='follows-you-badge'
-          label={
-            <FormattedMessage
-              id='account.badges.follows_you'
-              defaultMessage='Follows you'
-            />
-          }
-          className={className}
-        />,
-      );
-    } else if (relationship.requested_by) {
-      badges.push(
-        <Badge
-          key='requested-to-follow-badge'
-          label={
-            <FormattedMessage
-              id='account.badges.requested_to_follow'
-              defaultMessage='Requested to follow you'
-            />
-          }
-          className={className}
-        />,
-      );
     }
   }
 
