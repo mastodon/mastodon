@@ -109,43 +109,12 @@ RSpec.describe Admin::AccountsController do
     context 'when user is admin' do
       let(:current_role) { UserRole.find_by(name: 'Admin') }
 
-      context 'when target user is admin' do
-        let(:target_role) { UserRole.find_by(name: 'Admin') }
-
-        it 'fails to memorialize account' do
-          expect(subject).to have_http_status 403
-          expect(account.reload).to_not be_memorial
-        end
-      end
-
       context 'when target user is not admin' do
         let(:target_role) { UserRole.find_by(name: 'Moderator') }
 
         it 'succeeds in memorializing account' do
           expect(subject).to redirect_to admin_account_path(account.id)
           expect(account.reload).to be_memorial
-        end
-      end
-    end
-
-    context 'when user is not admin' do
-      let(:current_role) { UserRole.find_by(name: 'Moderator') }
-
-      context 'when target user is admin' do
-        let(:target_role) { UserRole.find_by(name: 'Admin') }
-
-        it 'fails to memorialize account' do
-          expect(subject).to have_http_status 403
-          expect(account.reload).to_not be_memorial
-        end
-      end
-
-      context 'when target user is not admin' do
-        let(:target_role) { UserRole.find_by(name: 'Moderator') }
-
-        it 'fails to memorialize account' do
-          expect(subject).to have_http_status 403
-          expect(account.reload).to_not be_memorial
         end
       end
     end

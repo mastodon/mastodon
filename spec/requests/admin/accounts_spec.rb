@@ -201,4 +201,56 @@ RSpec.describe 'Admin Accounts' do
       end
     end
   end
+
+  describe 'POST /admin/accounts/:id/memorialize' do
+    let(:account) { user.account }
+    let(:user) { Fabricate(:user, role: target_role) }
+
+    context 'when user is admin' do
+      let(:current_user) { Fabricate(:admin_user) }
+
+      context 'when target user is admin' do
+        let(:target_role) { UserRole.find_by(name: 'Admin') }
+
+        it 'fails to memorialize account' do
+          post memorialize_admin_account_path(id: account.id)
+
+          expect(response)
+            .to have_http_status(403)
+          expect(account.reload)
+            .to_not be_memorial
+        end
+      end
+    end
+
+    context 'when user is not admin' do
+      let(:current_user) { Fabricate(:moderator_user) }
+
+      context 'when target user is admin' do
+        let(:target_role) { UserRole.find_by(name: 'Admin') }
+
+        it 'fails to memorialize account' do
+          post memorialize_admin_account_path(id: account.id)
+
+          expect(response)
+            .to have_http_status(403)
+          expect(account.reload)
+            .to_not be_memorial
+        end
+      end
+
+      context 'when target user is not admin' do
+        let(:target_role) { UserRole.find_by(name: 'Moderator') }
+
+        it 'fails to memorialize account' do
+          post memorialize_admin_account_path(id: account.id)
+
+          expect(response)
+            .to have_http_status(403)
+          expect(account.reload)
+            .to_not be_memorial
+        end
+      end
+    end
+  end
 end
