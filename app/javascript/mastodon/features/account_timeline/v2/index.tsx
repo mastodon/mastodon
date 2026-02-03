@@ -29,6 +29,7 @@ import { useFilters } from '../hooks/useFilters';
 import { FeaturedTags } from './featured_tags';
 import { AccountFilters } from './filters';
 import { PinnedStatuses } from './pinned_statuses';
+import classes from './styles.module.scss';
 
 const emptyList = ImmutableList<string>();
 
@@ -134,6 +135,7 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
         bindToDocument={!multiColumn}
         timelineId='account'
         withCounters
+        className={classes.statusWrapper}
       />
     </Column>
   );

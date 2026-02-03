@@ -58,8 +58,20 @@
   max-width: none !important;
 }
 
-.pinnedWrapper {
+.pinnedWrapper,
+.statusWrapper {
+  :global(.status) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+.pinnedWrapperCollapsed {
   border-bottom: 1px solid var(--color-border-primary);
+
+  :global(.status) {
+    border-bottom: none;
+  }
 }
 
 .pinnedViewAllButton {

@@ -3,6 +3,8 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
+
 import IconPinned from '@/images/icons/icon_pinned.svg?react';
 import {
   expandTimelineByKey,
@@ -51,7 +53,12 @@ export const PinnedStatuses: FC<{ accountId: string; tagged?: string }> = ({
     : pinnedTimeline.items.slice(0, 1);
 
   return (
-    <div className={classes.pinnedWrapper}>
+    <div
+      className={classNames(
+        classes.pinnedWrapper,
+        !showOverflow && classes.pinnedWrapperCollapsed,
+      )}
+    >
       {statuses.map((id) => (
         <StatusQuoteManager
           key={id}
