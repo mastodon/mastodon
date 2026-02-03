@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
-import CancelFillIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import { Hotkeys } from 'mastodon/components/hotkeys';
 import { ContentWarning } from 'mastodon/components/content_warning';
 import { FilterWarning } from 'mastodon/components/filter_warning';
@@ -26,16 +24,12 @@ import { MediaGallery, Video, Audio } from '../features/ui/util/async-components
 import { SensitiveMediaContext } from '../features/ui/util/sensitive_media_context';
 import { displayMedia } from '../initial_state';
 
-import { Avatar } from './avatar';
-import { AvatarOverlay } from './avatar_overlay';
+import { StatusHeader } from './status/header'
 import { LinkedDisplayName } from './display_name';
 import { getHashtagBarForStatus } from './hashtag_bar';
-import { RelativeTimestamp } from './relative_timestamp';
 import StatusActionBar from './status_action_bar';
 import StatusContent from './status_content';
 import { StatusThreadLabel } from './status_thread_label';
-import { VisibilityIcon } from './visibility_icon';
-import { IconButton } from './icon_button';
 
 const domParser = new DOMParser();
 
@@ -405,7 +399,7 @@ class Status extends ImmutablePureComponent {
       onTranslate: this.handleTranslate,
     };
 
-    let media, statusAvatar, prepend, rebloggedByText;
+    let media, prepend, rebloggedByText;
 
     const connectUp = previousId && previousId === status.get('in_reply_to_id');
     const connectToRoot = rootId && rootId === status.get('in_reply_to_id');
@@ -547,12 +541,6 @@ class Status extends ImmutablePureComponent {
       );
     }
 
-    if (account === undefined || account === null) {
-      statusAvatar = <Avatar account={status.get('account')} size={avatarSize} />;
-    } else {
-      statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
-    }
-
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
     return (
       <Hotkeys handlers={handlers} focusable={!unfocusable}>
@@ -575,28 +563,14 @@ class Status extends ImmutablePureComponent {
           >
             {(connectReply || connectUp || connectToRoot) && <div className={classNames('status__line', { 'status__line--full': connectReply, 'status__line--first': !status.get('in_reply_to_id') && !connectToRoot })} />}
 
-            <div onClick={this.handleHeaderClick} onAuxClick={this.handleHeaderClick} className='status__info'>
-              <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`} className='status__relative-time'>
-                <span className='status__visibility-icon'><VisibilityIcon visibility={status.get('visibility')} /></span>
-                <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
-              </Link>
-
-              <LinkedDisplayName displayProps={{account: status.get('account')}} className='status__display-name'>
-                <div className='status__avatar'>
-                  {statusAvatar}
-                </div>
-              </LinkedDisplayName>
-
-              {isQuotedPost && !!this.props.onQuoteCancel &&  (
-                <IconButton
-                  onClick={this.handleQuoteCancel}
-                  className='status__quote-cancel'
-                  title={intl.formatMessage(messages.quote_cancel)}
-                  icon="cancel-fill"
-                  iconComponent={CancelFillIcon}
-                />
-              )}
-            </div>
+            <StatusHeader
+              status={status}
+              account={account}
+              avatarSize={avatarSize}
+              onQuoteCancel={this.props.onQuoteCancel}
+              wrapperProps={{ onClick: this.handleHeaderClick, onAuxClick: this.handleHeaderClick }}
+              messages={messages}
+            />
 
             {matchedFilters && <FilterWarning title={matchedFilters.join(', ')} expanded={this.state.showDespiteFilter} onClick={this.handleFilterToggle} />}
 
