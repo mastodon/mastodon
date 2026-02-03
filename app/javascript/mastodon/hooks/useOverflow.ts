@@ -1,14 +1,15 @@
+import type { MutableRefObject, RefCallback } from 'react';
 import { useState, useRef, useCallback, useEffect } from 'react';
 
 /**
- * Calculate and manage overflow of child elements within a container.
+ * Hook to manage overflow of items in a container with a "more" button.
  *
  * To use, wire up the `wrapperRef` to the container element, and the `listRef` to the
  * child element that contains the items to be measured. If autoResize is true,
  * the list element will have its max-width set to prevent wrapping. The listRef element
  * requires both position:relative and overflow:hidden styles to work correctly.
  */
-export function useOverflow({
+export function useOverflowButton({
   autoResize,
   padding = 4,
 }: { autoResize?: boolean; padding?: number } = {}) {
@@ -76,6 +77,111 @@ export function useOverflow({
     }
   }, [autoResize, maxWidth]);
 
+  const { listRefCallback, wrapperRefCallback } = useOverflowObservers({
+    onRecalculate: handleRecalculate,
+    onListRef: listRef,
+  });
+
+  return {
+    hiddenCount,
+    hasOverflow: hiddenCount > 0,
+    wrapperRef: wrapperRefCallback,
+    hiddenIndex,
+    maxWidth,
+    listRef: listRefCallback,
+    recalculate: handleRecalculate,
+  };
+}
+
+export function useOverflowScroll({
+  widthOffset = 200,
+  absoluteDistance = false,
+} = {}) {
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const bodyRef = useRef<HTMLElement | null>(null);
+
+  // Recalculate scrollable state
+  const handleRecalculate = useCallback(() => {
+    if (!bodyRef.current) {
+      return;
+    }
+
+    if (getComputedStyle(bodyRef.current).direction === 'rtl') {
+      setCanScrollLeft(
+        bodyRef.current.clientWidth - bodyRef.current.scrollLeft <
+          bodyRef.current.scrollWidth,
+      );
+      setCanScrollRight(bodyRef.current.scrollLeft < 0);
+    } else {
+      setCanScrollLeft(bodyRef.current.scrollLeft > 0);
+      setCanScrollRight(
+        bodyRef.current.scrollLeft + bodyRef.current.clientWidth <
+          bodyRef.current.scrollWidth,
+      );
+    }
+  }, []);
+
+  const { wrapperRefCallback } = useOverflowObservers({
+    onRecalculate: handleRecalculate,
+    onWrapperRef: bodyRef,
+  });
+
+  useEffect(() => {
+    handleRecalculate();
+  }, [handleRecalculate]);
+
+  // Handle scroll event using requestAnimationFrame to avoid excessive recalculations.
+  const handleScroll = useCallback(() => {
+    requestAnimationFrame(handleRecalculate);
+  }, [handleRecalculate]);
+
+  // Jump a full screen minus the width offset so that we don't skip a lot.
+  const handleLeftNav = useCallback(() => {
+    if (!bodyRef.current) {
+      return;
+    }
+
+    bodyRef.current.scrollLeft -= absoluteDistance
+      ? widthOffset
+      : Math.max(widthOffset, bodyRef.current.clientWidth - widthOffset);
+  }, [absoluteDistance, widthOffset]);
+
+  const handleRightNav = useCallback(() => {
+    if (!bodyRef.current) {
+      return;
+    }
+
+    bodyRef.current.scrollLeft += absoluteDistance
+      ? widthOffset
+      : Math.max(widthOffset, bodyRef.current.clientWidth - widthOffset);
+  }, [absoluteDistance, widthOffset]);
+
+  return {
+    bodyRef: wrapperRefCallback,
+    canScrollLeft,
+    canScrollRight,
+    handleLeftNav,
+    handleRightNav,
+    handleScroll,
+  };
+}
+
+export function useOverflowObservers({
+  onRecalculate,
+  onListRef,
+  onWrapperRef,
+}: {
+  onRecalculate: () => void;
+  onListRef?: RefCallback<HTMLElement> | MutableRefObject<HTMLElement | null>;
+  onWrapperRef?:
+    | RefCallback<HTMLElement>
+    | MutableRefObject<HTMLElement | null>;
+}) {
+  // This is the item container element.
+  const listRef = useRef<HTMLElement | null>(null);
+
   // Set up observers to watch for size and content changes.
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
   const mutationObserverRef = useRef<MutationObserver | null>(null);
@@ -83,10 +189,10 @@ export function useOverflow({
   // Helper to get or create the resize observer.
   const resizeObserver = useCallback(() => {
     const observer = (resizeObserverRef.current ??= new ResizeObserver(
-      handleRecalculate,
+      onRecalculate,
     ));
     return observer;
-  }, [handleRecalculate]);
+  }, [onRecalculate]);
 
   // Iterate through children and observe them for size changes.
   const handleChildrenChange = useCallback(() => {
@@ -100,8 +206,8 @@ export function useOverflow({
         }
       }
     }
-    handleRecalculate();
-  }, [handleRecalculate, resizeObserver]);
+    onRecalculate();
+  }, [onRecalculate, resizeObserver]);
 
   // Helper to get or create the mutation observer.
   const mutationObserver = useCallback(() => {
@@ -129,9 +235,14 @@ export function useOverflow({
       if (node) {
         wrapperRef.current = node;
         handleObserve();
+        if (typeof onWrapperRef === 'function') {
+          onWrapperRef(node);
+        } else if (onWrapperRef && 'current' in onWrapperRef) {
+          onWrapperRef.current = node;
+        }
       }
     },
-    [handleObserve],
+    [handleObserve, onWrapperRef],
   );
 
   // If there are changes to the children, recalculate which are visible.
@@ -140,9 +251,14 @@ export function useOverflow({
       if (node) {
         listRef.current = node;
         handleObserve();
+        if (typeof onListRef === 'function') {
+          onListRef(node);
+        } else if (onListRef && 'current' in onListRef) {
+          onListRef.current = node;
+        }
       }
     },
-    [handleObserve],
+    [handleObserve, onListRef],
   );
 
   useEffect(() => {
@@ -161,12 +277,7 @@ export function useOverflow({
   }, [handleObserve]);
 
   return {
-    hiddenCount,
-    hasOverflow: hiddenCount > 0,
-    wrapperRef: wrapperRefCallback,
-    hiddenIndex,
-    maxWidth,
-    listRef: listRefCallback,
-    recalculate: handleRecalculate,
+    wrapperRefCallback,
+    listRefCallback,
   };
 }
