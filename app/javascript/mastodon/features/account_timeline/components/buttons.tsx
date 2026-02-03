@@ -16,6 +16,8 @@ import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 
+import { isRedesignEnabled } from '../common';
+
 import { AccountMenu } from './menu';
 
 const messages = defineMessages({
@@ -95,6 +97,7 @@ const AccountButtonsOther: FC<
           accountId={accountId}
           className='account__header__follow-button'
           labelLength='long'
+          withUnmute={!isRedesignEnabled()}
         />
       )}
       {isFollowing && (
