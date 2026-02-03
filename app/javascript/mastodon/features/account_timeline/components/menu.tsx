@@ -51,6 +51,10 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
   const relationship = useAppSelector((state) =>
     state.relationships.get(accountId),
   );
+  const currentAccountId = useAppSelector(
+    (state) => state.meta.get('me') as string,
+  );
+  const isMe = currentAccountId === accountId;
 
   const dispatch = useAppDispatch();
   const menuItems = useMemo(() => {
@@ -61,7 +65,7 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
     if (isRedesignEnabled()) {
       return redesignMenuItems({
         account,
-        signedIn,
+        signedIn: !isMe && signedIn,
         permissions,
         intl,
         relationship,
@@ -76,7 +80,7 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
       relationship,
       dispatch,
     });
-  }, [account, signedIn, permissions, intl, relationship, dispatch]);
+  }, [account, signedIn, isMe, permissions, intl, relationship, dispatch]);
   return (
     <Dropdown
       disabled={menuItems.length === 0}
@@ -513,22 +517,20 @@ function redesignMenuItems({
         icon: ShareIcon,
       });
     }
-    items.push(
-      {
-        text: intl.formatMessage(redesignMessages.copy),
-        action: () => {
-          void navigator.clipboard.writeText(account.url);
-          dispatch(showAlert({ message: redesignMessages.copied }));
-        },
-        icon: LinkIcon,
+    items.push({
+      text: intl.formatMessage(redesignMessages.copy),
+      action: () => {
+        void navigator.clipboard.writeText(account.url);
+        dispatch(showAlert({ message: redesignMessages.copied }));
       },
-      null,
-    );
+      icon: LinkIcon,
+    });
   }
 
   // Mention and direct message options
   if (signedIn && !account.suspended) {
     items.push(
+      null,
       {
         text: intl.formatMessage(redesignMessages.mention),
         action: () => {
@@ -722,7 +724,7 @@ function redesignMenuItems({
   }
 
   if (remoteDomain) {
-    items.push({
+    items.push(null, {
       text: intl.formatMessage(
         relationship?.domain_blocking
           ? redesignMessages.domainUnblock

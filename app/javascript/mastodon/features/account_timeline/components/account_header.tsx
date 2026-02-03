@@ -90,6 +90,7 @@ export const AccountHeader: React.FC<{
 
   const suspendedOrHidden = hidden || account.suspended;
   const isLocal = !account.acct.includes('@');
+  const isMe = me && account.id === me;
 
   return (
     <div className='account-timeline__header'>
@@ -160,14 +161,15 @@ export const AccountHeader: React.FC<{
               <AccountButtons
                 accountId={accountId}
                 className={redesignClasses.buttonsDesktop}
-                noShare
+                noShare={!isMe || 'share' in navigator}
+                forceMenu={'share' in navigator}
               />
             )}
           </div>
 
           <AccountBadges accountId={accountId} />
 
-          {me && account.id !== me && !suspendedOrHidden && (
+          {!isMe && !suspendedOrHidden && (
             <FamiliarFollowers accountId={accountId} />
           )}
 

@@ -35,12 +35,14 @@ interface AccountButtonsProps {
   accountId: string;
   className?: string;
   noShare?: boolean;
+  forceMenu?: boolean;
 }
 
 export const AccountButtons: FC<AccountButtonsProps> = ({
   accountId,
   className,
   noShare,
+  forceMenu,
 }) => {
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
   const me = useAppSelector((state) => state.meta.get('me') as string);
@@ -50,7 +52,7 @@ export const AccountButtons: FC<AccountButtonsProps> = ({
       {!hidden && (
         <AccountButtonsOther accountId={accountId} noShare={noShare} />
       )}
-      {accountId !== me && <AccountMenu accountId={accountId} />}
+      {(accountId !== me || forceMenu) && <AccountMenu accountId={accountId} />}
     </div>
   );
 };
