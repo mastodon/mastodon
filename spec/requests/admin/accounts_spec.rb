@@ -111,4 +111,22 @@ RSpec.describe 'Admin Accounts' do
       end
     end
   end
+
+  describe 'POST /admin/accounts/:id/unblock_email' do
+    let(:account) { Fabricate(:account, suspended: true) }
+
+    before { Fabricate(:canonical_email_block, reference_account: account) }
+
+    context 'when user is not admin' do
+      let(:current_user) { Fabricate(:user, role: UserRole.everyone) }
+
+      it 'fails to unblock email' do
+        expect { post unblock_email_admin_account_path(id: account.id) }
+          .to_not change(CanonicalEmailBlock.where(reference_account: account), :count)
+
+        expect(response)
+          .to have_http_status(403)
+      end
+    end
+  end
 end
