@@ -459,11 +459,11 @@ const redesignMessages = defineMessages({
   },
   domainBlock: {
     id: 'account.menu.block_domain',
-    defaultMessage: 'Block domain ({domain})',
+    defaultMessage: 'Block {domain}',
   },
   domainUnblock: {
     id: 'account.menu.unblock_domain',
-    defaultMessage: 'Unblock domain ({domain})',
+    defaultMessage: 'Unblock {domain}',
   },
   report: { id: 'account.menu.report', defaultMessage: 'Report account' },
   hideReblogs: {
