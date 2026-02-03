@@ -55,4 +55,24 @@ RSpec.describe 'Admin Accounts' do
       end
     end
   end
+
+  describe 'POST /admin/accounts/:id/reject' do
+    let(:account) { user.account }
+    let(:user) { Fabricate(:user) }
+
+    before { account.user.update(approved: false) }
+
+    context 'when user is not admin' do
+      let(:current_user) { Fabricate(:user, role: UserRole.everyone) }
+
+      it 'fails to reject account' do
+        post reject_admin_account_path(id: account.id)
+
+        expect(response)
+          .to have_http_status(403)
+        expect(user.reload)
+          .to_not be_approved
+      end
+    end
+  end
 end

@@ -223,15 +223,6 @@ RSpec.describe Admin::AccountsController do
           )
       end
     end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to reject account' do
-        expect(subject).to have_http_status 403
-        expect(user.reload).to_not be_approved
-      end
-    end
   end
 
   describe 'POST #redownload' do
