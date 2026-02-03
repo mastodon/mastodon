@@ -63,7 +63,7 @@ export const AccountNote: FC<{ accountId: string }> = ({ accountId }) => {
         />
       }
     >
-      {relationship.note}
+      <div className={classes.noteContent}>{relationship.note}</div>
     </Callout>
   );
 };
