@@ -182,4 +182,23 @@ RSpec.describe 'Admin Accounts' do
       end
     end
   end
+
+  describe 'DELETE /admin/accounts/:id' do
+    let(:account) { Fabricate(:account) }
+
+    before { account.suspend! }
+
+    context 'when user is not admin' do
+      let(:current_user) { Fabricate(:user, role: UserRole.everyone) }
+
+      it 'fails to delete account' do
+        delete admin_account_path(id: account.id)
+
+        expect(response)
+          .to have_http_status(403)
+        expect { account.reload }
+          .to_not raise_error
+      end
+    end
+  end
 end
