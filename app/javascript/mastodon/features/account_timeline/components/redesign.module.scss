@@ -66,7 +66,9 @@ $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
 
 .buttonsMobile {
   position: sticky;
-  bottom: 55px; // Height of bottom nav bar.
+  bottom: var(--mobile-bottom-nav-height);
+  padding: 12px 16px;
+  margin: 0 -20px;
 
   @container (width >= #{$button-breakpoint}) {
     display: none;
@@ -80,10 +82,8 @@ $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
 }
 
 .buttonsMobileIsStuck {
-  padding: 12px 16px;
   background-color: var(--color-bg-primary);
   border-top: 1px solid var(--color-border-primary);
-  margin: 0 -20px;
 }
 
 .badge {
