@@ -29,3 +29,23 @@ export const GroupBadge = () => (
 export const AutomatedBadge = () => (
   <Badge icon={<SmartToyIcon />} label={<FormattedMessage id='account.badges.bot' defaultMessage='Automated' />} />
 );
+
+export const AdminBadge = ({ label, domain, roleId, className }) => (
+  <div className={`account-role account-role--admin ${className || ''}`} data-account-role-id={roleId}>
+    {label}
+    {domain && <span className='account-role__domain'>{domain}</span>}
+  </div>
+);
+
+export const BlockedBadge = ({ label, domain, className }) => (
+  <div className={`account-role account-role--blocked ${className || ''}`}>
+    {label || <FormattedMessage id='account.badges.blocked' defaultMessage='Blocked' />}
+    {domain && <span className='account-role__domain'>{domain}</span>}
+  </div>
+);
+
+export const MutedBadge = ({ className }) => (
+  <div className={`account-role account-role--muted ${className || ''}`}>
+    <FormattedMessage id='account.badges.muted' defaultMessage='Muted' />
+  </div>
+);
