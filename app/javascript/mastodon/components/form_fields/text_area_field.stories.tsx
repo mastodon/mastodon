@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { TextAreaField } from './text_area_field';
+import { TextAreaField, TextArea } from './text_area_field';
 
 const meta = {
   title: 'Components/Form Fields/TextAreaField',
@@ -8,14 +8,6 @@ const meta = {
   args: {
     label: 'Label',
     hint: 'This is a description of this form field',
-  },
-  render(args) {
-    // Component styles require a wrapper class at the moment
-    return (
-      <div className='simple_form'>
-        <TextAreaField {...args} />
-      </div>
-    );
   },
 } satisfies Meta<typeof TextAreaField>;
 
@@ -47,5 +39,19 @@ export const WithError: Story = {
   args: {
     required: false,
     hasError: true,
+  },
+};
+
+export const Plain: Story = {
+  render(args) {
+    return <TextArea {...args} />;
+  },
+};
+
+export const Disabled: Story = {
+  ...Plain,
+  args: {
+    disabled: true,
+    defaultValue: "This value can't be changed",
   },
 };
