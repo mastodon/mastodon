@@ -1,0 +1,51 @@
+.wrapper {
+  --form-field-label-gap: 6px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--form-field-label-gap);
+  color: var(--color-text-primary);
+  font-size: 15px;
+
+  &[data-input-placement^='inline'] {
+    flex-direction: row;
+
+    --form-field-label-gap: 8px;
+  }
+
+  &[data-input-placement='inline-start'] {
+    align-items: start;
+  }
+
+  &[data-input-placement='inline-end'] {
+    align-items: center;
+  }
+}
+
+.labelWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 4px;
+}
+
+.label {
+  font-weight: 500;
+
+  &[data-has-parent-fieldset='true'] {
+    font-weight: normal;
+  }
+
+  [data-has-error='true'] & {
+    color: var(--color-text-error);
+  }
+}
+
+.hint {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.inputWrapper {
+  display: block;
+}

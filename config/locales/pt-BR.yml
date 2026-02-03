@@ -848,6 +848,7 @@ pt-BR:
         publish_statistics: Publicar estatísticas
         title: Descobrir
         trends: Tendências
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Para todos
         disabled: Para ninguém
@@ -1318,6 +1319,13 @@ pt-BR:
     hint_html: "<strong>Dica:</strong> Não pediremos novamente sua senha pela próxima hora."
     invalid_password: Senha inválida
     prompt: Confirme sua senha para continuar
+  color_scheme:
+    auto: Automático
+    dark: Escuro
+    light: Claro
+  contrast:
+    auto: Automático
+    high: Alto
   crypto:
     errors:
       invalid_key: não é uma chave Ed25519 ou Curve25519 válida
@@ -1966,9 +1974,11 @@ pt-BR:
     enabled: Excluir publicações antigas automaticamente
     enabled_hint: Exclui suas publicações automaticamente assim que elas alcançam sua validade, a não ser que se enquadrem em alguma das exceções abaixo
     exceptions: Exceções
+    explanation: A eliminação automatizada é realizada com baixa prioridade. Pode haver um atraso entre atingir o limite de idade e ser removido.
     ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar impulsos
     interaction_exceptions: Exceções baseadas nas interações
+    interaction_exceptions_explanation: Postagens que excedem temporariamente  o limite de favoritos ou de impulso podem ser retidos mesmo que posteriormente diminuam.
     keep_direct: Manter mensagens diretas
     keep_direct_hint: Não exclui nenhuma de suas mensagens diretas
     keep_media: Manter publicações com mídia
@@ -2181,6 +2191,7 @@ pt-BR:
       error: Houve um problema ao excluir sua chave de segurança. Tente novamente.
       success: Sua chave de segurança foi excluída.
     invalid_credential: Chave de segurança inválida
+    nickname: Nome
     nickname_hint: Digite o apelido da sua nova chave de segurança
     not_enabled: Você ainda não habilitou o WebAuthn
     not_supported: Este navegador não tem suporte a chaves de segurança
