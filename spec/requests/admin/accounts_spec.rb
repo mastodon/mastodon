@@ -75,4 +75,24 @@ RSpec.describe 'Admin Accounts' do
       end
     end
   end
+
+  describe 'POST /admin/accounts/:id/redownload' do
+    let(:account) { Fabricate(:account, domain: 'example.com', last_webfingered_at: 10.days.ago) }
+    let(:service) { instance_double(ResolveAccountService, call: nil) }
+
+    before { allow(ResolveAccountService).to receive(:new).and_return(service) }
+
+    context 'when user is not admin' do
+      let(:current_user) { Fabricate(:user, role: UserRole.everyone) }
+
+      it 'fails to redownload' do
+        post redownload_admin_account_path(id: account.id)
+
+        expect(response)
+          .to have_http_status(403)
+        expect(account.reload.last_webfingered_at)
+          .to_not be_nil
+      end
+    end
+  end
 end
