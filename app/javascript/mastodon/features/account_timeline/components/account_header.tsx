@@ -1,11 +1,11 @@
-import type { RefCallback } from 'react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
 import { AccountBio } from '@/mastodon/components/account_bio';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
+import { useVisibility } from '@/mastodon/hooks/useVisibility';
 import { openModal } from 'mastodon/actions/modal';
 import { Avatar } from 'mastodon/components/avatar';
 import { AccountNote } from 'mastodon/features/account/components/account_note';
@@ -78,39 +78,11 @@ export const AccountHeader: React.FC<{
     [dispatch, account],
   );
 
-  const [isFooterIntersecting, setIsIntersecting] = useState(false);
-  const handleIntersect: IntersectionObserverCallback = useCallback(
-    (entries) => {
-      const entry = entries.at(0);
-      if (!entry) {
-        return;
-      }
-
-      setIsIntersecting(entry.isIntersecting);
+  const { observedRef, isIntersecting } = useVisibility({
+    observerOptions: {
+      rootMargin: '0px 0px -55px 0px', // Height of bottom nav bar.
     },
-    [],
-  );
-  const [observer] = useState(
-    () =>
-      new IntersectionObserver(handleIntersect, {
-        rootMargin: '0px 0px -55px 0px', // Height of bottom nav bar.
-      }),
-  );
-
-  const handleObserverRef: RefCallback<HTMLDivElement> = useCallback(
-    (node) => {
-      if (node) {
-        observer.observe(node);
-      }
-    },
-    [observer],
-  );
-
-  useEffect(() => {
-    return () => {
-      observer.disconnect();
-    };
-  }, [observer]);
+  });
 
   if (!account) {
     return null;
@@ -234,7 +206,7 @@ export const AccountHeader: React.FC<{
             <AccountButtons
               className={classNames(
                 redesignClasses.buttonsMobile,
-                !isFooterIntersecting && redesignClasses.buttonsMobileIsStuck,
+                !isIntersecting && redesignClasses.buttonsMobileIsStuck,
               )}
               accountId={accountId}
               noShare
@@ -244,7 +216,7 @@ export const AccountHeader: React.FC<{
       </AnimateEmojiProvider>
 
       {!hideTabs && !hidden && <AccountTabs acct={account.acct} />}
-      <div ref={handleObserverRef} />
+      <div ref={observedRef} />
 
       <Helmet>
         <title>{titleFromAccount(account)}</title>
