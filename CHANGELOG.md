@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.4.13] - 2026-02-03
+
+### Security
+
+- Fix ActivityPub collection caching logic for pinned posts and featured tags not checking blocked accounts ([GHSA-ccpr-m53r-mfwr](https://github.com/mastodon/mastodon/security/advisories/GHSA-ccpr-m53r-mfwr))
+
+### Fixed
+
+- Fix relationship cache not being cleared when handling account migrations (#37664 by @ClearlyClaire)
+- Fix error when encountering invalid tag in updated object (#37635 by @ClearlyClaire)
+- Fix recycled connections not being immediately closed (#37335 and #37674 by @ClearlyClaire and @shleeable)
+
 ## [4.4.12] - 2026-01-20
 
 ### Security
