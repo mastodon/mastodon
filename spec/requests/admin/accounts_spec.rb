@@ -129,4 +129,21 @@ RSpec.describe 'Admin Accounts' do
       end
     end
   end
+
+  describe 'POST /admin/accounts/:id/unsensitive' do
+    let(:account) { Fabricate(:account, sensitized_at: 1.year.ago) }
+
+    context 'when user is not admin' do
+      let(:current_user) { Fabricate(:user, role: UserRole.everyone) }
+
+      it 'fails to unsensitive account' do
+        post unsensitive_admin_account_path(id: account.id)
+
+        expect(response)
+          .to have_http_status(403)
+        expect(account)
+          .to be_sensitized
+      end
+    end
+  end
 end
