@@ -95,4 +95,20 @@ RSpec.describe 'Admin Accounts' do
       end
     end
   end
+
+  describe 'POST /admin/accounts/:id/remove_avatar' do
+    let(:account) { Fabricate(:account) }
+
+    context 'when user is not admin' do
+      let(:current_user) { Fabricate(:user, role: UserRole.everyone) }
+
+      it 'fails to remove avatar' do
+        expect { post remove_avatar_admin_account_path(id: account.id) }
+          .to_not change(Admin::ActionLog.where(action: 'remove_avatar'), :count)
+
+        expect(response)
+          .to have_http_status(403)
+      end
+    end
+  end
 end

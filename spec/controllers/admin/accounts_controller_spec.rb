@@ -258,14 +258,6 @@ RSpec.describe Admin::AccountsController do
         expect(subject).to redirect_to admin_account_path(account.id)
       end
     end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to remove avatar' do
-        expect(subject).to have_http_status 403
-      end
-    end
   end
 
   describe 'POST #unblock_email' do
