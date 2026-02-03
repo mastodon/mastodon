@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.5.6] - 2026-02-03
+
+### Security
+
+- Fix ActivityPub collection caching logic for pinned posts and featured tags not checking blocked accounts ([GHSA-ccpr-m53r-mfwr](https://github.com/mastodon/mastodon/security/advisories/GHSA-ccpr-m53r-mfwr))
+
+### Changed
+
+- Shorten caching of quote posts pending approval (#37570 and #37592 by @ClearlyClaire)
+
+### Fixed
+
+- Fix relationship cache not being cleared when handling account migrations (#37664 by @ClearlyClaire)
+- Fix quote cancel button not appearing after edit then delete-and-redraft (#37066 by @PGrayCS)
+- Fix followers with profile subscription (bell icon) being notified of post edits (#37646 by @ClearlyClaire)
+- Fix error when encountering invalid tag in updated object (#37635 by @ClearlyClaire)
+- Fix cross-server conversation tracking (#37559 by @ClearlyClaire)
+- Fix recycled connections not being immediately closed (#37335 and #37674 by @ClearlyClaire and @shleeable)
+
 ## [4.5.5] - 2026-01-20
 
 ### Security
