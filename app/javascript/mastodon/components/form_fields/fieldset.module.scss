@@ -1,0 +1,19 @@
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--color-text-primary);
+  font-size: 15px;
+}
+
+.fieldsWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+
+  &[data-layout='horizontal'] {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 24px;
+  }
+}

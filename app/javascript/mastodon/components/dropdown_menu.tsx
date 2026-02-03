@@ -71,10 +71,15 @@ export const DropdownMenuItemContent: React.FC<{ item: MenuItem }> = ({
     return null;
   }
 
-  const { text, description, icon } = item;
+  const { text, description, icon, iconId } = item;
   return (
     <>
-      {icon && <Icon icon={icon} id={`${text}-icon`} />}
+      {icon && (
+        <Icon
+          icon={icon}
+          id={iconId ?? text.toLowerCase().replaceAll(/[^a-z]+/g, '-')}
+        />
+      )}
       <span className='dropdown-menu__item-content'>
         {text}
         {Boolean(description) && (

@@ -549,8 +549,8 @@ code {
   input[type='email'],
   input[type='password'],
   input[type='datetime-local'] {
-    &:focus:invalid:not(:placeholder-shown),
-    &:required:invalid:not(:placeholder-shown) {
+    &:focus:user-invalid:not(:placeholder-shown),
+    &:required:user-invalid:not(:placeholder-shown) {
       border-color: var(--color-text-error);
     }
   }
@@ -558,16 +558,6 @@ code {
   .input.field_with_errors {
     label {
       color: var(--color-text-error);
-    }
-
-    input[type='text'],
-    input[type='number'],
-    input[type='email'],
-    input[type='password'],
-    input[type='datetime-local'],
-    textarea,
-    select {
-      border-color: var(--color-text-error);
     }
 
     .error {
@@ -732,9 +722,23 @@ code {
   }
 }
 
+.simple_form .input.field_with_errors,
+[data-has-error='true'] {
+  input[type='text'],
+  input[type='number'],
+  input[type='email'],
+  input[type='password'],
+  input[type='datetime-local'],
+  textarea,
+  select {
+    border-color: var(--color-text-error);
+  }
+}
+
 /* Double-chevron icon for custom select components */
 .select-wrapper,
 .select .label_input__wrapper {
+  position: relative;
   width: 100%;
 
   &::after {

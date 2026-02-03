@@ -3,9 +3,9 @@ import { forwardRef } from 'react';
 
 import classNames from 'classnames';
 
+import type { CommonFieldWrapperProps } from './form_field_wrapper';
+import { FormFieldWrapper } from './form_field_wrapper';
 import classes from './toggle.module.css';
-import type { CommonFieldWrapperProps } from './wrapper';
-import { FormFieldWrapper } from './wrapper';
 
 type Props = Omit<ComponentPropsWithoutRef<'input'>, 'type'> & {
   size?: number;
@@ -21,16 +21,15 @@ export const ToggleField = forwardRef<
     required={required}
     hasError={hasError}
     inputId={id}
+    inputPlacement='inline-end'
   >
-    {(inputProps) => (
-      <PlainToggleField {...otherProps} {...inputProps} ref={ref} />
-    )}
+    {(inputProps) => <Toggle {...otherProps} {...inputProps} ref={ref} />}
   </FormFieldWrapper>
 ));
 
 ToggleField.displayName = 'ToggleField';
 
-export const PlainToggleField = forwardRef<HTMLInputElement, Props>(
+export const Toggle = forwardRef<HTMLInputElement, Props>(
   ({ className, size, ...otherProps }, ref) => (
     <span className={classes.wrapper}>
       <input
@@ -49,4 +48,4 @@ export const PlainToggleField = forwardRef<HTMLInputElement, Props>(
     </span>
   ),
 );
-PlainToggleField.displayName = 'PlainToggleField';
+Toggle.displayName = 'Toggle';

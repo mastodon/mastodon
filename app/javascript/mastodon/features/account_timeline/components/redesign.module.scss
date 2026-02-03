@@ -1,3 +1,7 @@
+.barWrapper {
+  border-bottom: none;
+}
+
 .nameWrapper {
   display: flex;
   gap: 16px;
@@ -45,6 +49,43 @@
   }
 }
 
+$button-breakpoint: 420px;
+$button-fallback-breakpoint: #{$button-breakpoint} + 55px;
+
+.buttonsDesktop {
+  @container (width < #{$button-breakpoint}) {
+    display: none;
+  }
+
+  @supports (not (container-type: inline-size)) {
+    @media (max-width: #{$button-fallback-breakpoint}) {
+      display: none;
+    }
+  }
+}
+
+.buttonsMobile {
+  position: sticky;
+  bottom: 55px; // Height of bottom nav bar.
+
+  @container (width >= #{$button-breakpoint}) {
+    display: none;
+  }
+
+  @supports (not (container-type: inline-size)) {
+    @media (min-width: (#{$button-fallback-breakpoint} + 1px)) {
+      display: none;
+    }
+  }
+}
+
+.buttonsMobileIsStuck {
+  padding: 12px 16px;
+  background-color: var(--color-bg-primary);
+  border-top: 1px solid var(--color-border-primary);
+  margin: 0 -20px;
+}
+
 .badge {
   background-color: var(--color-bg-secondary);
   border: none;
@@ -55,6 +96,16 @@
     font-weight: unset;
     opacity: 1;
   }
+}
+
+.badgeMuted {
+  background-color: var(--color-bg-inverted);
+  color: var(--color-text-on-inverted);
+}
+
+.badgeBlocked {
+  background-color: var(--color-bg-error-base);
+  color: var(--color-text-on-error-base);
 }
 
 svg.badgeIcon {
@@ -74,36 +125,112 @@ svg.badgeIcon {
   }
 }
 
-.fieldList {
+.fieldWrapper {
   margin-top: 16px;
+  width: 100%;
+  position: relative;
+}
+
+.fieldWrapper::before,
+.fieldWrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 1;
+}
+
+.fieldWrapper::before {
+  left: 0;
+  background: linear-gradient(
+    to left,
+    transparent 0%,
+    var(--color-bg-primary) 100%
+  );
+}
+
+.fieldWrapper::after {
+  right: 0;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--color-bg-primary) 100%
+  );
+}
+
+.fieldWrapperLeft::before {
+  opacity: 1;
+}
+
+.fieldWrapperRight::after {
+  opacity: 1;
+}
+
+.fieldList {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 40px;
+  scroll-padding-right: 40px;
+  scroll-behavior: smooth;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  overflow-y: visible;
 }
 
 .fieldCard {
-  position: relative;
+  scroll-snap-align: start;
 
-  a {
-    color: var(--color-text-brand);
-    text-decoration: none;
+  &:focus-visible,
+  &:focus-within {
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
+  }
+
+  :is(dt, dd) {
+    max-width: 200px;
   }
 }
 
 .fieldCardVerified {
   background-color: var(--color-bg-brand-softer);
-
-  dt {
-    padding-right: 1rem;
-  }
-
-  .fieldIconVerified {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-  }
 }
 
-.fieldIconVerified {
-  width: 1rem;
-  height: 1rem;
+.fieldArrowButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-bg-elevated);
+  box-shadow: 0 1px 4px 0 var(--color-shadow-primary);
+  border-radius: 9999px;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+  outline-offset: 2px;
+  z-index: 2;
+
+  &:first-child {
+    left: 4px;
+  }
+
+  &:last-child {
+    right: 4px;
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    background-color: color-mix(
+      in oklab,
+      var(--color-bg-brand-base) var(--overlay-strength-brand),
+      var(--color-bg-elevated)
+    );
+  }
 }
 
 .fieldNumbersWrapper {
