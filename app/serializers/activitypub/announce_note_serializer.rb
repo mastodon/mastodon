@@ -36,10 +36,18 @@ class ActivityPub::AnnounceNoteSerializer < ActivityPub::Serializer
   end
 
   def virtual_object
-    if instance_options[:allow_inlining] && object.account == object.proper.account && object.proper.private_visibility? && object.local?
+    if allow_inlining? && object.account == object.proper.account && object.proper.private_visibility? && object.local?
       object.proper
     else
       ActivityPub::TagManager.instance.uri_for(object.proper)
     end
+  end
+
+  private
+
+  def allow_inlining?
+    return instance_options[:allow_inlining] if instance_options.key?(:allow_inlining)
+
+    true
   end
 end

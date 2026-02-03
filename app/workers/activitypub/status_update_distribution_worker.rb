@@ -20,6 +20,6 @@ class ActivityPub::StatusUpdateDistributionWorker < ActivityPub::DistributionWor
   end
 
   def serializer_options
-    { updated_at: @options[:updated_at] }
+    super.merge({ updated_at: @options[:updated_at] })
   end
 end
