@@ -81,6 +81,9 @@ export const COMPOSE_CHANGE_MEDIA_ORDER       = 'COMPOSE_CHANGE_MEDIA_ORDER';
 export const COMPOSE_SET_STATUS = 'COMPOSE_SET_STATUS';
 export const COMPOSE_FOCUS = 'COMPOSE_FOCUS';
 
+export const COMPOSE_CHANGE_IS_SCHEDULED = 'COMPOSE_CHANGE_IS_SCHEDULED';
+export const COMPOSE_CHANGE_SCHEDULE_TIME = 'COMPOSE_CHANGE_SCHEDULE_TIME';
+
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
   uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
@@ -193,6 +196,7 @@ export function submitCompose() {
     const status   = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
     const statusId = getState().getIn(['compose', 'id'], null);
+    const is_scheduled = getState().getIn(['compose', 'is_scheduled']);
 
     if ((!status || !status.length) && media.size === 0) {
       return;
@@ -233,6 +237,7 @@ export function submitCompose() {
         visibility: getState().getIn(['compose', 'privacy']),
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
+        scheduled_at: is_scheduled ? getState().getIn(['compose', 'scheduled_at']) : null,
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -242,8 +247,21 @@ export function submitCompose() {
         browserHistory.goBack();
       }
 
+      
+      if ('scheduled_at' in response.data) {
+        dispatch(showAlert({
+          message: messages.saved,
+          dismissAfter: 10000,
+        }));
+        dispatch(submitComposeSuccess({ ...response.data.params}));
+        return;
+      }
+      
       dispatch(insertIntoTagHistory(response.data.tags, status));
       dispatch(submitComposeSuccess({ ...response.data }));
+
+      
+      
 
       // To make the app more responsive, immediately push the status
       // into the columns
@@ -840,3 +858,16 @@ export const changeMediaOrder = (a, b) => ({
   a,
   b,
 });
+
+export function changeIsScheduled() {
+  return {
+    type: COMPOSE_CHANGE_IS_SCHEDULED,
+  };
+}
+
+export function changeScheduleTime(value) {
+  return {
+    type: COMPOSE_CHANGE_SCHEDULE_TIME,
+    value,
+  };
+}
