@@ -558,23 +558,6 @@ function redesignMenuItems({
         },
       },
       null,
-      {
-        text: intl.formatMessage(
-          relationship?.note ? messages.editNote : messages.addNote,
-        ),
-        description: intl.formatMessage(redesignMessages.noteDescription),
-        action: () => {
-          dispatch(
-            openModal({
-              modalType: 'ACCOUNT_NOTE',
-              modalProps: {
-                accountId: account.id,
-              },
-            }),
-          );
-        },
-      },
-      null,
     );
   }
 
@@ -610,58 +593,77 @@ function redesignMenuItems({
           }
         },
       },
-      null,
     );
+  }
 
-    // Timeline options
-    if (!relationship.muting) {
-      items.push(
-        {
-          text: intl.formatMessage(
-            relationship.showing_reblogs
-              ? redesignMessages.hideReblogs
-              : redesignMessages.showReblogs,
-          ),
-          action: () => {
-            dispatch(
-              followAccount(account.id, {
-                reblogs: !relationship.showing_reblogs,
-              }),
-            );
-          },
-        },
-        {
-          text: intl.formatMessage(messages.languages),
-          action: () => {
-            dispatch(
-              openModal({
-                modalType: 'SUBSCRIBED_LANGUAGES',
-                modalProps: {
-                  accountId: account.id,
-                },
-              }),
-            );
-          },
-        },
-      );
-    }
+  items.push(
+    {
+      text: intl.formatMessage(
+        relationship?.note ? messages.editNote : messages.addNote,
+      ),
+      description: intl.formatMessage(redesignMessages.noteDescription),
+      action: () => {
+        dispatch(
+          openModal({
+            modalType: 'ACCOUNT_NOTE',
+            modalProps: {
+              accountId: account.id,
+            },
+          }),
+        );
+      },
+    },
+    null,
+  );
 
+  // Timeline options
+  if (relationship && !relationship.muting) {
     items.push(
       {
         text: intl.formatMessage(
-          relationship.muting ? redesignMessages.unmute : redesignMessages.mute,
+          relationship.showing_reblogs
+            ? redesignMessages.hideReblogs
+            : redesignMessages.showReblogs,
         ),
         action: () => {
-          if (relationship.muting) {
-            dispatch(unmuteAccount(account.id));
-          } else {
-            dispatch(initMuteModal(account));
-          }
+          dispatch(
+            followAccount(account.id, {
+              reblogs: !relationship.showing_reblogs,
+            }),
+          );
         },
       },
-      null,
+      {
+        text: intl.formatMessage(messages.languages),
+        action: () => {
+          dispatch(
+            openModal({
+              modalType: 'SUBSCRIBED_LANGUAGES',
+              modalProps: {
+                accountId: account.id,
+              },
+            }),
+          );
+        },
+      },
     );
   }
+
+  items.push(
+    {
+      text: intl.formatMessage(
+        relationship?.muting ? redesignMessages.unmute : redesignMessages.mute,
+      ),
+      action: () => {
+        if (relationship?.muting) {
+          dispatch(unmuteAccount(account.id));
+        } else {
+          dispatch(initMuteModal(account));
+        }
+      },
+    },
+    null,
+  );
 
   if (relationship?.followed_by) {
     items.push({
