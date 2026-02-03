@@ -112,6 +112,22 @@ RSpec.describe 'Admin Accounts' do
     end
   end
 
+  describe 'POST /admin/accounts/:id/remove_header' do
+    let(:account) { Fabricate(:account) }
+
+    context 'when user is not admin' do
+      let(:current_user) { Fabricate(:user, role: UserRole.everyone) }
+
+      it 'fails to remove header' do
+        expect { post remove_header_admin_account_path(id: account.id) }
+          .to_not change(Admin::ActionLog.where(action: 'remove_header'), :count)
+
+        expect(response)
+          .to have_http_status(403)
+      end
+    end
+  end
+
   describe 'POST /admin/accounts/:id/unblock_email' do
     let(:account) { Fabricate(:account, suspended: true) }
 
