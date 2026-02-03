@@ -57,3 +57,25 @@
   overflow: visible;
   max-width: none !important;
 }
+
+.pinnedWrapper {
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.pinnedViewAllButton {
+  background-color: var(--color-bg-primary);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-primary);
+  box-sizing: border-box;
+  line-height: normal;
+  margin: 12px 24px;
+  padding: 8px;
+  transition: border-color 0.2s ease-in-out;
+  width: calc(100% - 48px);
+
+  &:hover,
+  &:focus {
+    background-color: inherit;
+    border-color: var(--color-bg-brand-base-hover);
+  }
+}

@@ -13,7 +13,6 @@ import {
 } from '@/mastodon/actions/timelines_typed';
 import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column_back_button';
-import { FeaturedCarousel } from '@/mastodon/components/featured_carousel';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { RemoteHint } from '@/mastodon/components/remote_hint';
 import StatusList from '@/mastodon/components/status_list';
@@ -29,6 +28,7 @@ import { useFilters } from '../hooks/useFilters';
 
 import { FeaturedTags } from './featured_tags';
 import { AccountFilters } from './filters';
+import { PinnedStatuses } from './pinned_statuses';
 
 const emptyList = ImmutableList<string>();
 
@@ -75,12 +75,27 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
   const timeline = useAppSelector((state) => selectTimelineByKey(state, key));
   const { blockedBy, hidden, suspended } = useAccountVisibility(accountId);
 
+  const pinnedKey = timelineKey({
+    type: 'account',
+    userId: accountId,
+    tagged,
+    pinned: true,
+  });
+  const pinnedTimeline = useAppSelector((state) =>
+    selectTimelineByKey(state, pinnedKey),
+  );
+
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (!timeline && !!accountId) {
-      dispatch(expandTimelineByKey({ key }));
+    if (accountId) {
+      if (!timeline) {
+        dispatch(expandTimelineByKey({ key }));
+      }
+      if (!pinnedTimeline) {
+        dispatch(expandTimelineByKey({ key: pinnedKey }));
+      }
     }
-  }, [accountId, dispatch, key, timeline]);
+  }, [accountId, dispatch, key, pinnedKey, pinnedTimeline, timeline]);
 
   const handleLoadMore = useCallback(
     (maxId: number) => {
@@ -92,6 +107,7 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
   );
 
   const forceEmptyState = blockedBy || hidden || suspended;
+  const isLoading = !!timeline?.isLoading || !!pinnedTimeline?.isLoading;
 
   return (
     <Column bindToDocument={!multiColumn}>
@@ -111,7 +127,7 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
         // We want to have this component when timeline is undefined (loading),
         // because if we don't the prepended component will re-render with every filter change.
         statusIds={forceEmptyState ? emptyList : (timeline?.items ?? emptyList)}
-        isLoading={!!timeline?.isLoading}
+        isLoading={isLoading}
         hasMore={!forceEmptyState && !!timeline?.hasMore}
         onLoadMore={handleLoadMore}
         emptyMessage={<EmptyMessage accountId={accountId} />}
@@ -137,7 +153,7 @@ const Prepend: FC<{
       <AccountHeader accountId={accountId} hideTabs />
       <AccountFilters />
       <FeaturedTags accountId={accountId} />
-      <FeaturedCarousel accountId={accountId} tagged={tagged} />
+      <PinnedStatuses accountId={accountId} tagged={tagged} />
     </>
   );
 };
