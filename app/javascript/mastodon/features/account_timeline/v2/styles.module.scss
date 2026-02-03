@@ -10,6 +10,12 @@
   font-weight: 500;
   display: flex;
   align-items: center;
+  transition: color 0.2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: var(--color-text-brand-soft);
+  }
 }
 
 .filterSelectIcon {
