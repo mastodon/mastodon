@@ -17,7 +17,7 @@ import { IconButton } from '../icon_button';
 import { RelativeTimestamp } from '../relative_timestamp';
 import { VisibilityIcon } from '../visibility_icon';
 
-interface StatusHeaderProps {
+export interface StatusHeaderProps {
   status: Status;
   account?: Account;
   avatarSize?: number;
