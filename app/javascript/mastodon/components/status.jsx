@@ -106,7 +106,6 @@ class Status extends ImmutablePureComponent {
     onToggleCollapsed: PropTypes.func,
     onTranslate: PropTypes.func,
     onInteractionModal: PropTypes.func,
-    onQuoteCancel: PropTypes.func,
     muted: PropTypes.bool,
     hidden: PropTypes.bool,
     unread: PropTypes.bool,
@@ -141,7 +140,6 @@ class Status extends ImmutablePureComponent {
     'hidden',
     'unread',
     'pictureInPicture',
-    'onQuoteCancel',
   ];
 
   state = {
@@ -358,10 +356,6 @@ class Status extends ImmutablePureComponent {
   handleFilterToggle = () => {
     this.setState(state => ({ ...state, showDespiteFilter: !state.showDespiteFilter }));
   };
-
-  handleQuoteCancel = () => {
-    this.props.onQuoteCancel?.();
-  }
 
   _properStatus () {
     const { status } = this.props;
