@@ -13,8 +13,6 @@ RSpec.describe 'Auth Confirmation' do
   end
 
   describe 'GET /auth/confirmation' do
-    before { allow(BootstrapTimelineWorker).to receive(:perform_async) }
-
     context 'when user is unconfirmed' do
       let!(:user) { Fabricate(:user, confirmation_token: 'foobar', confirmed_at: nil) }
 
@@ -24,7 +22,7 @@ RSpec.describe 'Auth Confirmation' do
         expect(response)
           .to redirect_to(new_user_session_path)
         expect(BootstrapTimelineWorker)
-          .to have_received(:perform_async).with(user.account_id)
+          .to have_enqueued_sidekiq_job(user.account_id)
       end
     end
 
@@ -80,7 +78,7 @@ RSpec.describe 'Auth Confirmation' do
         expect(response)
           .to redirect_to(new_user_session_path)
         expect(BootstrapTimelineWorker)
-          .to_not have_received(:perform_async)
+          .to_not have_enqueued_sidekiq_job
       end
     end
   end
