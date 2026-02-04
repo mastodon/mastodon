@@ -36,13 +36,9 @@ export const StatusHeader: FC<StatusHeaderProps> = ({
   avatarSize = 48,
   wrapperProps,
   messages,
-  displayNameProps,
 }) => {
-  const intl = useIntl();
   const statusAccount = status.get('account') as Account | undefined;
-  const visibility = status.get('visibility') as string;
   const editedAt = status.get('edited_at') as string;
-  const AccountComponent = account ? AvatarOverlay : Avatar;
 
   return (
     <div {...wrapperProps} className='status__info'>
@@ -50,44 +46,75 @@ export const StatusHeader: FC<StatusHeaderProps> = ({
         to={`/@${statusAccount?.acct}/${status.get('id') as string}`}
         className='status__relative-time'
       >
-        {isStatusVisibility(visibility) && (
-          <span className='status__visibility-icon'>
-            <VisibilityIcon visibility={visibility} />
-          </span>
-        )}
+        <StatusVisibility visibility={status.get('visibility')} />
         <RelativeTimestamp timestamp={status.get('created_at') as string} />
-        {editedAt && (
-          <abbr
-            title={intl.formatMessage(messages.edited, {
-              date: intl.formatDate(editedAt, {
-                year: 'numeric',
-                month: 'short',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-              }),
-            })}
-          >
-            {' '}
-            *
-          </abbr>
-        )}
+        {editedAt && <StatusEditedAt editedAt={editedAt} messages={messages} />}
       </Link>
 
-      <LinkedDisplayName
-        displayProps={{ ...displayNameProps, account: statusAccount }}
-        className='status__display-name'
-      >
-        <div className='status__avatar'>
-          <AccountComponent
-            account={statusAccount}
-            friend={account}
-            size={avatarSize}
-          />
-        </div>
-      </LinkedDisplayName>
+      <StatusDisplayName
+        statusAccount={statusAccount}
+        friendAccount={account}
+        avatarSize={avatarSize}
+      />
 
       {children}
     </div>
+  );
+};
+
+export const StatusVisibility: FC<{ visibility: unknown }> = ({
+  visibility,
+}) => {
+  if (typeof visibility !== 'string' || !isStatusVisibility(visibility)) {
+    return null;
+  }
+  return (
+    <span className='status__visibility-icon'>
+      <VisibilityIcon visibility={visibility} />
+    </span>
+  );
+};
+
+export const StatusEditedAt: FC<
+  { editedAt: string } & Pick<StatusHeaderProps, 'messages'>
+> = ({ editedAt, messages }) => {
+  const intl = useIntl();
+  return (
+    <abbr
+      title={intl.formatMessage(messages.edited, {
+        date: intl.formatDate(editedAt, {
+          year: 'numeric',
+          month: 'short',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+      })}
+    >
+      {' '}
+      *
+    </abbr>
+  );
+};
+
+export const StatusDisplayName: FC<{
+  statusAccount?: Account;
+  friendAccount?: Account;
+  avatarSize: number;
+}> = ({ statusAccount, friendAccount, avatarSize }) => {
+  const AccountComponent = friendAccount ? AvatarOverlay : Avatar;
+  return (
+    <LinkedDisplayName
+      displayProps={{ account: statusAccount }}
+      className='status__display-name'
+    >
+      <div className='status__avatar'>
+        <AccountComponent
+          account={statusAccount}
+          friend={friendAccount}
+          size={avatarSize}
+        />
+      </div>
+    </LinkedDisplayName>
   );
 };
