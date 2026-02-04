@@ -12,7 +12,9 @@ fr-CA:
     followers:
       one: Abonné·e
       other: Abonné·e·s
-    following: Abonnements
+    following:
+      one: Abonnement
+      other: Abonnements
     instance_actor_flash: Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un utilisateur individuel. Il est utilisé à des fins de fédération et ne doit pas être suspendu.
     last_active: dernière activité
     link_verified_on: La propriété de ce lien a été vérifiée le %{date}
@@ -23,11 +25,11 @@ fr-CA:
       one: Message
       other: Messages
     posts_tab_heading: Messages
-    self_follow_error: Il n'est pas possible de suivre votre propre compte
+    self_follow_error: Suivre votre propre compte n'est pas autorisé
   admin:
     account_actions:
       action: Effectuer l'action
-      already_silenced: Ce compte a déjà été limité.
+      already_silenced: Ce compte est déjà limité.
       already_suspended: Ce compte est déjà suspendu.
       title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
@@ -50,7 +52,7 @@ fr-CA:
         title: Modifier le courriel pour %{username}
       change_role:
         changed_msg: Rôle modifié avec succès !
-        edit_roles: Gérer les rôles d'utilisateur·ices
+        edit_roles: Gérer les rôles d'utilisateur·ice
         label: Modifier le rôle
         no_role: Aucun rôle
         title: Modifier le rôle de %{username}
