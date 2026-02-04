@@ -12,7 +12,9 @@ fi:
     followers:
       one: seuraaja
       other: seuraajaa
-    following: seurattavaa
+    following:
+      one: seurattava
+      other: seurattavaa
     instance_actor_flash: Tämä tili on virtuaalinen toimija, jota käytetään edustamaan itse palvelinta eikä yksittäistä käyttäjää. Sitä käytetään federointitarkoituksiin, eikä sitä tule jäädyttää.
     last_active: viimeksi aktiivinen
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
@@ -693,13 +695,13 @@ fi:
       no_one_assigned: Ei kukaan
       notes:
         create: Lisää muistiinpano
-        create_and_resolve: Ratkaise ja jätä muistiinpano
-        create_and_unresolve: Avaa uudelleen ja jätä muistiinpano
+        create_and_resolve: Ratkaise ja lisää muistiinpano
+        create_and_unresolve: Avaa uudelleen ja lisää muistiinpano
         delete: Poista
         placeholder: Kuvaile tehtyjä toimia tai lisää muita käyttäjään liittyviä merkintöjä…
         title: Muistiinpanot
       notes_description_html: Tarkastele ja jätä muistiinpanoja muille moderaattoreille ja itsellesi tulevaisuuteen
-      processed_msg: Raportin nro %{id} käsittely onnistui
+      processed_msg: Raportin nro %{id} käsittely onnistui
       quick_actions_description_html: 'Suorita pikatoiminto tai vieritä alas nähdäksesi raportoitu sisältö:'
       remote_user_placeholder: etäkäyttäjä palvelimelta %{instance}
       reopen: Avaa raportti uudelleen
@@ -724,7 +726,7 @@ fi:
           mark_as_sensitive_html: Merkitse loukkaavien julkaisujen media arkaluonteiseksi
           silence_html: Rajoita merkittävästi käyttäjän <strong>@%{acct}</strong> tavoitettavuutta tekemällä profiilista ja sen sisällöstä näkyviä vain niille, jotka jo seuraavat tiliä tai etsivät sen manuaalisesti
           suspend_html: Jäädytä <strong>@%{acct}</strong>, jolloin hänen profiilinsa ja sisältönsä ei ole käytettävissä ja hänen kanssaan on mahdotonta olla vuorovaikutuksessa
-        close_report: Merkitse raportti nro %{id} ratkaistuksi
+        close_report: Merkitse raportti nro %{id} ratkaistuksi
         close_reports_html: Merkitse <strong>kaikki</strong> käyttäjään <strong>@%{acct}</strong> kohdistuvat raportit ratkaistuiksi
         delete_data_html: Poista käyttäjän <strong>@%{acct}</strong> profiili ja sen sisältö 30 päivän kuluttua, ellei jäädytystä sillä välin kumota
         preview_preamble_html: "<strong>@%{acct}</strong> saa varoituksen, jonka sisältö on seuraava:"
@@ -900,7 +902,7 @@ fi:
       back_to_account: Takaisin tilisivulle
       back_to_report: Takaisin raporttisivulle
       batch:
-        add_to_report: Lisää raporttiin nro %{id}
+        add_to_report: Lisää raporttiin nro %{id}
         remove_from_report: Poista raportista
         report: Raportoi
       contents: Sisältö
@@ -1178,7 +1180,7 @@ fi:
     new_report:
       body: "%{reporter} on raportoinut kohteen %{target}"
       body_remote: Joku palvelimelta %{domain} raportoi kohteen %{target}
-      subject: Uusi raportti palvelimesta %{instance} (nro %{id})
+      subject: Uusi raportti palvelimelta %{instance} (nro %{id})
     new_software_updates:
       body: Uusia Mastodon-versioita on julkaistu, joten saatat haluta päivittää!
       subject: Palvelimelle %{instance} ovat saatavilla uusia Mastodon-versioita!
@@ -1380,7 +1382,7 @@ fi:
       description_html: Nämä ovat tiliisi kohdistuvia toimia sekä varoituksia, jotka palvelimen %{instance} ylläpito on lähettänyt sinulle.
       recipient: Osoitettu käyttäjälle
       reject_appeal: Hylkää valitus
-      status: Julkaisu nro %{id}
+      status: Julkaisu nro %{id}
       status_removed: Julkaisu on jo poistettu järjestelmästä
       title: "%{action} alkaen %{date}"
       title_actions:
@@ -1709,7 +1711,7 @@ fi:
     follow_request:
       action: Hallitse seurantapyyntöjä
       body: "%{name} on pyytänyt lupaa seurata sinua"
-      subject: 'Odottava seuraamispyyntö: %{name}'
+      subject: 'Odottava seuraaja: %{name}'
       title: Uusi seurantapyyntö
     mention:
       action: Vastaa
@@ -1849,7 +1851,7 @@ fi:
       edge: Edge
       electron: Electron
       firefox: Firefox
-      generic: tuntematon selain
+      generic: Tuntematon selain
       huawei_browser: Huawei-selain
       ie: Internet Explorer
       micro_messenger: MicroMessenger
@@ -1860,7 +1862,7 @@ fi:
       qq: QQ Browser
       safari: Safari
       uc_browser: UC Browser
-      unknown_browser: tuntematon selain
+      unknown_browser: Tuntematon selain
       weibo: Weibo
     current_session: Nykyinen istunto
     date: Päivämäärä
@@ -1950,7 +1952,7 @@ fi:
     pin_errors:
       direct: Vain mainituille käyttäjille näkyviä julkaisuja ei voi kiinnittää
       limit: Olet jo kiinnittänyt enimmäismäärän julkaisuja
-      ownership: Muiden julkaisuja ei voi kiinnittää
+      ownership: Toisen julkaisua ei voi kiinnittää
       reblog: Tehostusta ei voi kiinnittää
     quote_error:
       not_available: Julkaisu ei saatavilla
@@ -1968,7 +1970,7 @@ fi:
       public: Julkinen
       public_long: Kuka tahansa Mastodonissa ja sen ulkopuolella
       unlisted: Vaivihkaa julkinen
-      unlisted_long: Piilotettu Mastodonin hakutuloksista, trendeistä ja julkisilta aikajanoilta
+      unlisted_long: Piilotetaan Mastodonin hakutuloksista, trendeistä ja julkisilta aikajanoilta
   statuses_cleanup:
     enabled: Poista vanhat julkaisut automaattisesti
     enabled_hint: Poistaa julkaisusi automaattisesti, kun ne saavuttavat valitun ikäkynnyksen, ellei jokin alla olevista poikkeuksista tule kyseeseen
@@ -2105,7 +2107,7 @@ fi:
         silence: Voit edelleen käyttää tiliäsi, mutta vain sinua jo seuraavat käyttäjät näkevät julkaisusi tällä palvelimella ja sinut voidaan sulkea pois eri löydettävyysominaisuuksista. Toiset voivat kuitenkin edelleen seurata sinua manuaalisesti.
         suspend: Et voi enää käyttää tiliäsi, eivätkä profiilisi ja muut tiedot ole enää käytettävissä. Voit silti kirjautua sisään pyytääksesi tietojesi varmuuskopiota, kunnes tiedot on poistettu kokonaan noin 30 päivän kuluttua. Säilytämme kuitenkin joitain perustietoja, jotka estävät sinua kiertämästä jäädytystä.
       reason: 'Syy:'
-      statuses: 'Julkaisuja lainattu:'
+      statuses: 'Viitatut julkaisut:'
       subject:
         delete_statuses: Julkaisusi tilillä %{acct} on poistettu
         disable: Tilisi %{acct} on jäädytetty
@@ -2138,7 +2140,7 @@ fi:
       feature_audience_title: Rakenna yleisöäsi luottavaisin mielin
       feature_control: Tiedät itse parhaiten, mitä haluat nähdä kotisyötteessäsi. Ei algoritmeja eikä mainoksia tuhlaamassa aikaasi. Seuraa yhdellä tilillä ketä tahansa, miltä tahansa Mastodon-palvelimelta, vastaanota heidän julkaisunsa aikajärjestyksessä ja tee omasta internetin nurkastasi hieman enemmän omanlaisesi.
       feature_control_title: Pidä aikajanasi hallussasi
-      feature_creativity: Mastodon tukee ääni-, video- ja kuvajulkaisuja, saavutettavuuskuvauksia, äänestyksiä, sisältövaroituksia, animoituja avattaria, mukautettuja emojeita, pikkukuvien rajauksen hallintaa ja paljon muuta, mikä auttaa ilmaisemaan itseäsi verkossa. Julkaisetpa sitten taidetta, musiikkia tai podcastia, Mastodon on sinua varten.
+      feature_creativity: Mastodon tukee ääni-, video- ja kuvajulkaisuja, saavutettavuuskuvauksia, äänestyksiä, sisältövaroituksia, animoituja avattaria, mukautettuja emojeita, pienoiskuvien rajauksen hallintaa ja paljon muuta, mikä auttaa ilmaisemaan itseäsi verkossa. Julkaisetpa sitten taidetta, musiikkia tai podcastia, Mastodon on sinua varten.
       feature_creativity_title: Luovuutta vertaansa vailla
       feature_moderation: Mastodon palauttaa päätöksenteon käsiisi. Jokainen palvelin luo omat sääntönsä ja määräyksensä, joita valvotaan paikallisesti eikä ylhäältä alas kuten kaupallisessa sosiaalisessa mediassa, mikä tekee siitä joustavimman vastaamaan eri ihmisryhmien tarpeisiin. Liity palvelimelle, jonka säännöt sopivat sinulle, tai ylläpidä omaa palvelinta.
       feature_moderation_title: Moderointi juuri kuten sen pitäisi olla
@@ -2165,7 +2167,7 @@ fi:
   users:
     follow_limit_reached: Et voi seurata yli %{limit} käyttäjää
     go_to_sso_account_settings: Avaa identiteettitarjoajasi tiliasetukset
-    invalid_otp_token: Virheellinen kaksivaiheisen todennuksen koodi
+    invalid_otp_token: Väärä kaksivaiheisen todennuksen koodi
     otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyden osoitteeseen %{email}
     rate_limited: Liian monta todennusyritystä – yritä uudelleen myöhemmin.
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
