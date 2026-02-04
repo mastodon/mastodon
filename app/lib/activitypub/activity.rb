@@ -90,11 +90,13 @@ class ActivityPub::Activity
   end
 
   def delete_arrived_first?(uri)
+    # TODO: existence is not enough, compare with timestamp
     redis.exists?("delete_upon_arrival:#{@account.id}:#{uri}")
   end
 
-  def delete_later!(uri)
-    redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, true)
+  def delete_later!(uri, timestamp: nil)
+    # TODO: atomically store highest between timestamp and already-stored info
+    redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, timestamp || 6.hours.from_now.utc.to_i)
   end
 
   def status_from_object
