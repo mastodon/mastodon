@@ -227,7 +227,7 @@ module LanguagesHelper
   # to enable the ISO-639-3 language-code with the regional variant but no
   # official name, we use a specific hash for nan-TW
   NAN_TW_CODE = {
-    'nan-TW': '臺語 (Hô-ló話)'
+    'nan-TW': ['Hokkien (Taiwan)', '臺語 (Hô-ló話)'].freeze,
   }.freeze
 
   SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_1_REGIONAL).merge(ISO_639_3).merge(NAN_TW_CODE).freeze
@@ -243,7 +243,7 @@ module LanguagesHelper
     'pt-BR': 'Português (Brasil)',
     'pt-PT': 'Português (Portugal)',
     'sr-Latn': 'Srpski (latinica)',
-  }.merge(NAN_TW_CODE).freeze
+  }
 
   # Helper for self.sorted_locale_keys
   private_class_method def self.locale_name_for_sorting(locale)
