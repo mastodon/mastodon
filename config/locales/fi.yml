@@ -466,7 +466,7 @@ fi:
       domain: Verkkotunnus
       new:
         create: Lisää verkkotunnus
-        resolve: Resolvoi verkkotunnus
+        resolve: Ratkaise verkkotunnus
         title: Estä uusi sähköpostiverkkotunnus
       no_email_domain_block_selected: Sähköpostiverkkotunnusten estoja ei muutettu, koska yhtäkään ei ollut valittuna
       not_permitted: Ei sallittu
@@ -693,8 +693,8 @@ fi:
       no_one_assigned: Ei kukaan
       notes:
         create: Lisää muistiinpano
-        create_and_resolve: Ratkaise ja lisää muistiinpano
-        create_and_unresolve: Avaa uudelleen ja lisää muistiinpano
+        create_and_resolve: Ratkaise ja jätä muistiinpano
+        create_and_unresolve: Avaa uudelleen ja jätä muistiinpano
         delete: Poista
         placeholder: Kuvaile tehtyjä toimia tai lisää muita käyttäjään liittyviä merkintöjä…
         title: Muistiinpanot
@@ -851,7 +851,7 @@ fi:
         wrapstodon: Wrapstodon
       domain_blocks:
         all: Kaikille
-        disabled: Ei kenellekään
+        disabled: Ei kellekään
         users: Kirjautuneille paikallisille käyttäjille
       feed_access:
         modes:
@@ -1006,14 +1006,14 @@ fi:
     terms_of_service:
       back: Takaisin käyttöehtoihin
       changelog: Mikä on muuttunut
-      create: Käytä omiasi
+      create: Käytä omia
       current: Voimassa olevat
       draft: Luonnos
-      generate: Käytä mallia
+      generate: Käytä pohjaa
       generates:
         action: Luo
         chance_to_review_html: "<strong>Luotuja käyttöehtoja ei julkaista automaattisesti.</strong> Sinulla on mahdollisuus tarkistaa lopputulos. Jatka täyttämällä tarvittavat tiedot."
-        explanation_html: Tarjottu käyttöehtomalli on tarkoitettu vain tiedoksi, eikä sitä pidä tulkita oikeudellisena neuvontana missään yhteydessä. Käänny oman oikeusavustajasi puoleen tilanteessasi ja erityisissä oikeudellisissa kysymyksissäsi.
+        explanation_html: Tarjottu käyttöehtopohja on tarkoitettu vain tiedoksi, eikä sitä pidä tulkita oikeudellisena neuvontana missään yhteydessä. Käänny oman oikeusavustajasi puoleen tilanteessasi ja erityisissä oikeudellisissa kysymyksissäsi.
         title: Käyttöehtojen määritys
       going_live_on_html: Voimassa %{date} alkaen
       history: Historia
@@ -1130,9 +1130,9 @@ fi:
     warning_presets:
       add_new: Lisää uusi
       delete: Poista
-      edit_preset: Muokkaa varoituksen esiasetusta
+      edit_preset: Muokkaa varoituspohjaa
       empty: Et ole vielä määrittänyt yhtäkään varoitusten esiasetusta.
-      title: Varoituksen esiasetukset
+      title: Varoituspohjat
     webhooks:
       add_new: Lisää päätepiste
       delete: Poista
@@ -1216,7 +1216,7 @@ fi:
     unsubscribe: Lopeta tilaus
     view: 'Näytä:'
     view_profile: Näytä profiili
-    view_status: Näytä tila
+    view_status: Näytä julkaisu
   applications:
     created: Sovelluksen luonti onnistui
     destroyed: Sovelluksen poisto onnistui
@@ -1317,8 +1317,8 @@ fi:
   challenge:
     confirm: Jatka
     hint_html: "<strong>Vihje:</strong> Emme pyydä sinulta salasanaa uudelleen seuraavan tunnin aikana."
-    invalid_password: Virheellinen salasana
-    prompt: Vahvista salasanasi jatkaaksesi
+    invalid_password: Väärä salasana
+    prompt: Jatka vahvistalla salasanasi
   color_scheme:
     auto: Automaattinen
     dark: Tumma
@@ -1331,8 +1331,8 @@ fi:
       invalid_key: ei ole kelvollinen Ed25519- tai Curve25519-avain
   date:
     formats:
-      default: "%b %d, %Y"
-      with_month_name: "%B %d, %Y"
+      default: "%-d.%-m.%Y"
+      with_month_name: "%-d.%-m.%Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} t"
@@ -1378,7 +1378,7 @@ fi:
       associated_report: Liittyvä raportti
       created_at: Päivätty
       description_html: Nämä ovat tiliisi kohdistuvia toimia sekä varoituksia, jotka palvelimen %{instance} ylläpito on lähettänyt sinulle.
-      recipient: Osoitettu
+      recipient: Osoitettu käyttäjälle
       reject_appeal: Hylkää valitus
       status: Julkaisu nro %{id}
       status_removed: Julkaisu on jo poistettu järjestelmästä
@@ -1411,7 +1411,7 @@ fi:
     '422':
       content: Turvallisuusvahvistus epäonnistui. Oletko estänyt evästeet?
       title: Turvallisuusvahvistus epäonnistui
-    '429': Rajoitettu
+    '429': Liikaa pyyntöjä
     '500':
       content: Valitettavasti jotain meni pieleen meidän päässämme.
       title: Sivu ei ole oikein
@@ -1438,8 +1438,8 @@ fi:
   featured_tags:
     add_new: Lisää uusi
     errors:
-      limit: Suosittelet jo aihetunnisteiden enimmäismäärää
-    hint_html: "<strong>Suosittele tärkeimpiä aihetunnisteitasi profiilissasi.</strong> Erinomainen työkalu, jolla pidät kirjaa luovista teoksistasi ja pitkäaikaisista projekteistasi. Suosittelemasi aihetunnisteet ovat näyttävällä paikalla profiilissasi ja mahdollistavat nopean pääsyn julkaisuihisi."
+      limit: Esittelet jo aihetunnisteiden enimmäismäärää
+    hint_html: "<strong>Esittele tärkeimpiä aihetunnisteitasi profiilissasi.</strong> Erinomainen työkalu, jolla pidät kirjaa luovista teoksistasi ja pitkäaikaisista projekteistasi. Esittelemäsi aihetunnisteet ovat näyttävällä paikalla profiilissasi ja mahdollistavat nopean pääsyn julkaisuihisi."
   filters:
     contexts:
       account: Profiilit
@@ -1565,7 +1565,7 @@ fi:
       finished: Valmis
       in_progress: Käynnissä
       scheduled: Ajastettu
-      unconfirmed: Varmistamaton
+      unconfirmed: Vahvistamaton
     status: Tila
     success: Tietojen lähettäminen onnistui, ja ne käsitellään aivan pian
     time_started: Aloitettu
@@ -1592,14 +1592,14 @@ fi:
     delete: Poista käytöstä
     expired: Vanhentunut
     expires_in:
-      '1800': 30 minuuttia
-      '21600': 6 tuntia
-      '3600': 1 tunti
-      '43200': 12 tuntia
-      '604800': 1 viikko
-      '86400': 1 vuorokausi
+      '1800': 30 minuutissa
+      '21600': 6 tunnissa
+      '3600': 1 tunnissa
+      '43200': 12 tunnissa
+      '604800': 1 viikossa
+      '86400': 1 päivässä
     expires_in_prompt: Ei koskaan
-    generate: Luo
+    generate: Luo kutsulinkki
     invalid: Tämä kutsu ei ole kelvollinen
     invited_by: 'Sinut kutsui:'
     max_uses:
@@ -1743,13 +1743,13 @@ fi:
   number:
     human:
       decimal_units:
-        format: "%n %u"
+        format: "%n %u"
         units:
-          billion: Mrd
-          million: M
-          quadrillion: Brd
-          thousand: k
-          trillion: B
+          billion: mrd.
+          million: milj.
+          quadrillion: brd.
+          thousand: t.
+          trillion: bilj.
   otp_authentication:
     code_hint: Anna todennussovelluksen luoma koodi vahvistaaksesi
     description_html: Jos otat <strong>kaksivaiheisen todennuksen</strong> käyttöön käyttämällä todennussovellusta, kirjautumiseen vaaditaan puhelin, jolla voidaan luoda kirjautumistunnuksia.
@@ -1896,9 +1896,9 @@ fi:
     development: Kehitys
     edit_profile: Muokkaa profiilia
     export: Vie
-    featured_tags: Suositellut aihetunnisteet
-    import: Tuo tietoja
-    import_and_export: Tuonti ja vienti
+    featured_tags: Esiteltävät aihetunnisteet
+    import: Tuo
+    import_and_export: Tuo ja vie
     migrate: Tilin muutto toisaalle
     notifications: Sähköposti-ilmoitukset
     preferences: Asetukset
@@ -2025,10 +2025,10 @@ fi:
     system: Automaattinen (käytä järjestelmän teemaa)
   time:
     formats:
-      default: "%d.%m.%Y klo %H.%M"
-      month: "%b %Y"
-      time: "%H.%M"
-      with_time_zone: "%d.%m.%Y klo %H.%M %Z"
+      default: "%-d.%-m.%Y klo %-H.%M"
+      month: "%-m/%Y"
+      time: "%-H.%M"
+      with_time_zone: "%-d.%-m.%Y klo %-H.%M %Z"
   translation:
     errors:
       quota_exceeded: Palvelimen käännöspalvelun käyttökiintiö on ylitetty.
@@ -2110,7 +2110,7 @@ fi:
         delete_statuses: Julkaisusi tilillä %{acct} on poistettu
         disable: Tilisi %{acct} on jäädytetty
         mark_statuses_as_sensitive: Julkaisusi tilillä %{acct} on merkitty arkaluonteisiksi
-        none: Varoitus %{acct}
+        none: Varoitus käyttäjälle %{acct}
         sensitive: Julkaisusi tilillä %{acct} merkitään arkaluonteisiksi tästä lähtien
         silence: Tiliäsi %{acct} on rajoitettu
         suspend: Tilisi %{acct} on jäädytetty

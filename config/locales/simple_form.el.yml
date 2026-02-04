@@ -177,7 +177,7 @@ el:
         attribution_domains: Ιστοσελίδες που επιτρέπεται να σας αναφέρουν
         discoverable: Παροχή προφίλ και αναρτήσεων σε αλγορίθμους ανακάλυψης
         fields:
-          name: Περιγραφή
+          name: Ετικέτα
           value: Περιεχόμενο
         indexable: Συμπερίληψη δημόσιων αναρτήσεων στα αποτελέσματα αναζήτησης
         show_collections: Εμφάνιση ακολούθων και ακολουθουμένων στο προφίλ
@@ -195,17 +195,17 @@ el:
         text: Προσαρμοσμένη προειδοποίηση
         type: Ενέργεια
         types:
-          disable: Απενεργοποίηση
-          none: Καμία ενέργεια
+          disable: Πάγωμα
+          none: Αποστολή προειδοποίησης
           sensitive: Ευαίσθητο
-          silence: Αποσιώπηση
-          suspend: Αναστολή και αμετάκλητη διαγραφή στοιχείων λογαριασμού
+          silence: Περιορισμός
+          suspend: Αναστολή
         warning_preset_id: Χρήση προκαθορισμένης προειδοποίησης
       announcement:
-        all_day: Ολοήμερο γεγονός
-        ends_at: Λήξη γεγονότος
-        scheduled_at: Προγραμματισμένη δημοσίευση
-        starts_at: Έναρξη γεγονότος
+        all_day: Ολοήμερη εκδήλωση
+        ends_at: Λήξη εκδήλωσης
+        scheduled_at: Προγραμματισμός δημοσίευσης
+        starts_at: Έναρξη εκδήλωσης
         text: Ανακοίνωση
       appeal:
         text: Εξηγήστε γιατί αυτή η απόφαση πρέπει να αντιστραφεί
@@ -219,15 +219,15 @@ el:
         context: Πλαίσια φιλτραρίσματος
         current_password: Τρέχον συνθηματικό
         data: Δεδομένα
-        display_name: Όνομα εμφάνισης
+        display_name: Εμφανιζόμενο όνομα
         email: Διεύθυνση email
         expires_in: Λήξη μετά από
-        fields: Μεταδεδομένα προφίλ
-        header: Επικεφαλίδα
+        fields: Επιπλέον πεδία
+        header: Εικόνα κεφαλίδας
         honeypot: "%{label} (μη συμπληρώνετε)"
         inbox_url: Το URL του inbox του ανταποκριτή (relay)
         irreversible: Απόρριψη αντί για κρύψιμο
-        locale: Γλώσσα χρήσης
+        locale: Γλώσσα διεπαφής
         max_uses: Μέγιστος αριθμός χρήσεων
         new_password: Νέο συνθηματικό
         note: Βιογραφικό
@@ -244,17 +244,17 @@ el:
         setting_default_language: Γλώσσα ανάρτησης
         setting_default_privacy: Ορατότητα ανάρτησης
         setting_default_quote_policy: Ποιος μπορεί να παραθέσει
-        setting_default_sensitive: Σημείωση όλων των πολυμέσων ως ευαίσθητου περιεχομένου
+        setting_default_sensitive: Πάντα σήμανση των πολυμέσων ως ευαίσθητα
         setting_delete_modal: Προειδοποίηση πριν από τη διαγραφή μιας ανάρτησης
         setting_disable_hover_cards: Απενεργοποίηση προεπισκόπησης προφίλ κατά την αιώρηση
         setting_disable_swiping: Απενεργοποίηση κινήσεων συρσίματος
         setting_display_media: Εμφάνιση πολυμέσων
-        setting_display_media_default: Προκαθορισμένο
+        setting_display_media_default: Προεπιλογή
         setting_display_media_hide_all: Απόκρυψη όλων
         setting_display_media_show_all: Εμφάνιση όλων
-        setting_emoji_style: Στυλ Emoji
+        setting_emoji_style: Στυλ emoji
         setting_expand_spoilers: Μόνιμη ανάπτυξη των τουτ με προειδοποίηση περιεχομένου
-        setting_hide_network: Κρύψε τις διασυνδέσεις σου
+        setting_hide_network: Απόκρυψη των διασυνδέσεών σου
         setting_missing_alt_text_modal: Προειδοποίηση πριν από τη δημοσίευση πολυμέσων χωρίς εναλλακτικό κείμενο
         setting_quick_boosting: Ενεργοποίηση γρήγορης ενίσχυσης
         setting_reduce_motion: Μείωση κίνησης κινουμένων στοιχείων
@@ -262,7 +262,7 @@ el:
         setting_system_scrollbars_ui: Χρήση προκαθορισμένης γραμμής κύλισης του συστήματος
         setting_theme: Θέμα ιστότοπου
         setting_trends: Εμφάνιση σημερινών τάσεων
-        setting_unfollow_modal: Επιβεβαίωση πριν τη διακοπή παρακολούθησης κάποιου
+        setting_unfollow_modal: Εμφάνιση διαλόγου επιβεβαίωσης πριν την άρση ακολούθησης κάποιου
         setting_use_blurhash: Χρωματιστή απόκρυψη για τα κρυμμένα πολυμέσα
         setting_use_pending_items: Αργή λειτουργία
         severity: Αυστηρότητα
@@ -270,7 +270,7 @@ el:
         title: Τίτλος
         type: Τύπος εισαγωγής
         username: Όνομα χρηστη
-        username_or_email: Όνομα ή διεύθυνση email χρήστη
+        username_or_email: Όνομα χρήστη ή διεύθυνση email
         whole_word: Ολόκληρη λέξη
       email_domain_block:
         with_dns_records: Συμπερίληψη εγγραφών MX και διευθύνσεων IP του τομέα
@@ -284,23 +284,23 @@ el:
       form_admin_settings:
         activity_api_enabled: Δημοσίευση συγκεντρωτικών στατιστικών σχετικά με τη δραστηριότητα του χρήστη στο API
         app_icon: Εικονίδιο εφαρμογής
-        backups_retention_period: Περίοδος αρχειοθέτησης του χρήστη
+        backups_retention_period: Περίοδος διατήρησης αρχείου χρηστών
         bootstrap_timeline_accounts: Πρότεινε πάντα αυτούς τους λογαριασμούς σε νέους χρήστες
         closed_registrations_message: Προσαρμοσμένο μήνυμα όταν οι εγγραφές δεν είναι διαθέσιμες
         content_cache_retention_period: Περίοδος διατήρησης απομακρυσμένου περιεχομένου
-        custom_css: Προσαρμοσμένο CSS
+        custom_css: Προσαρμοσμένη CSS
         favicon: Favicon
         landing_page: Σελίδα προσγείωσης για νέους επισκέπτες
-        local_live_feed_access: Πρόσβαση σε ζωντανές ροές με τοπικές αναρτήσεις
-        local_topic_feed_access: Πρόσβαση σε ροές ετικετών και συνδέσμων με τοπικές αναρτήσεις
-        mascot: Προσαρμοσμένη μασκότ (απαρχαιωμένο)
+        local_live_feed_access: Πρόσβαση σε ζωντανές ροές με ανάδειξη τοπικών αναρτήσεων
+        local_topic_feed_access: Πρόσβαση σε ροές ετικετών και συνδέσμων με ανάδειξη τοπικών αναρτήσεων
+        mascot: Προσαρμοσμένη μασκότ (legacy)
         media_cache_retention_period: Περίοδος διατήρησης προσωρινής μνήμης πολυμέσων
         min_age: Ελάχιστη απαιτούμενη ηλικία
         peers_api_enabled: Δημοσίευση λίστας των εντοπισμένων διακομιστών στο API
         profile_directory: Ενεργοποίηση καταλόγου προφίλ
         registrations_mode: Ποιος μπορεί να εγγραφεί
-        remote_live_feed_access: Πρόσβαση σε ζωντανές ροές με απομακρυσμένες αναρτήσεις
-        remote_topic_feed_access: Πρόσβαση σε ροές ετικετών και συνδέσμων με απομακρυσμένες αναρτήσεις
+        remote_live_feed_access: Πρόσβαση σε ζωντανές ροές με ανάδειξη απομακρυσμένων αναρτήσεων
+        remote_topic_feed_access: Πρόσβαση σε ροές ετικετών και συνδέσμων με ανάδειξη απομακρυσμένων αναρτήσεων
         require_invite_text: Απαίτησε έναν λόγο για να γίνει κάποιος μέλος
         show_domain_blocks: Εμφάνιση αποκλεισμένων τομέων
         show_domain_blocks_rationale: Εμφάνιση γιατί αποκλείστηκαν οι τομείς
@@ -393,8 +393,8 @@ el:
         username: Λέξη για αντιστοίχιση
       webhook:
         events: Ενεργοποιημένα συμβάντα
-        template: Πρότυπο payload
-        url: Endpoint URL
+        template: Πρότυπο φορτίου
+        url: URL τελικού σημείου
     'no': Όχι
     not_recommended: Δεν προτείνεται
     overridden: Αντικαταστάθηκε
