@@ -243,7 +243,7 @@ module LanguagesHelper
     'pt-BR': 'Português (Brasil)',
     'pt-PT': 'Português (Portugal)',
     'sr-Latn': 'Srpski (latinica)',
-  }
+  }.freeze
 
   # Helper for self.sorted_locale_keys
   private_class_method def self.locale_name_for_sorting(locale)
