@@ -21,12 +21,10 @@ import {
 } from 'mastodon/reducers/slices/collections';
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
+import { messages as editorMessages } from './editor';
+
 const messages = defineMessages({
   heading: { id: 'column.collections', defaultMessage: 'My collections' },
-  create: {
-    id: 'collections.create_collection',
-    defaultMessage: 'Create collection',
-  },
   view: {
     id: 'collections.view_collection',
     defaultMessage: 'View collection',
@@ -60,14 +58,35 @@ const ListItem: React.FC<{
   const menu = useMemo(
     () => [
       { text: intl.formatMessage(messages.view), to: `/collections/${id}` },
-      { text: intl.formatMessage(messages.delete), action: handleDeleteClick },
+      null,
+      {
+        text: intl.formatMessage(editorMessages.manageAccounts),
+        to: `/collections/${id}/edit`,
+      },
+      {
+        text: intl.formatMessage(editorMessages.editDetails),
+        to: `/collections/${id}/edit/details`,
+      },
+      {
+        text: intl.formatMessage(editorMessages.editSettings),
+        to: `/collections/${id}/edit/settings`,
+      },
+      null,
+      {
+        text: intl.formatMessage(messages.delete),
+        action: handleDeleteClick,
+        dangerous: true,
+      },
     ],
     [intl, id, handleDeleteClick],
   );
 
   return (
     <div className='lists__item'>
-      <Link to={`/collections/${id}/edit`} className='lists__item__title'>
+      <Link
+        to={`/collections/${id}/edit/details`}
+        className='lists__item__title'
+      >
         <span>{name}</span>
       </Link>
 
@@ -132,8 +151,8 @@ export const Collections: React.FC<{
           <Link
             to='/collections/new'
             className='column-header__button'
-            title={intl.formatMessage(messages.create)}
-            aria-label={intl.formatMessage(messages.create)}
+            title={intl.formatMessage(editorMessages.create)}
+            aria-label={intl.formatMessage(editorMessages.create)}
           >
             <Icon id='plus' icon={AddIcon} />
           </Link>
