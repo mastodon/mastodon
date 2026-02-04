@@ -1,4 +1,4 @@
-import type { FC, HTMLAttributes, MouseEventHandler } from 'react';
+import type { FC, HTMLAttributes, ReactNode } from 'react';
 
 import type { MessageDescriptor } from 'react-intl';
 import { useIntl } from 'react-intl';
@@ -8,12 +8,11 @@ import { Link } from 'react-router-dom';
 import { isStatusVisibility } from '@/mastodon/api_types/statuses';
 import type { Account } from '@/mastodon/models/account';
 import type { Status } from '@/mastodon/models/status';
-import CancelFillIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 
 import { Avatar } from '../avatar';
 import { AvatarOverlay } from '../avatar_overlay';
+import type { DisplayNameProps } from '../display_name';
 import { LinkedDisplayName } from '../display_name';
-import { IconButton } from '../icon_button';
 import { RelativeTimestamp } from '../relative_timestamp';
 import { VisibilityIcon } from '../visibility_icon';
 
@@ -21,8 +20,9 @@ export interface StatusHeaderProps {
   status: Status;
   account?: Account;
   avatarSize?: number;
-  onQuoteCancel?: MouseEventHandler;
+  children?: ReactNode;
   wrapperProps?: HTMLAttributes<HTMLDivElement>;
+  displayNameProps?: DisplayNameProps;
   messages: {
     edited: MessageDescriptor;
     quote_cancel: MessageDescriptor;
@@ -32,10 +32,11 @@ export interface StatusHeaderProps {
 export const StatusHeader: FC<StatusHeaderProps> = ({
   status,
   account,
+  children,
   avatarSize = 48,
-  onQuoteCancel,
   wrapperProps,
   messages,
+  displayNameProps,
 }) => {
   const intl = useIntl();
   const statusAccount = status.get('account') as Account | undefined;
@@ -74,7 +75,7 @@ export const StatusHeader: FC<StatusHeaderProps> = ({
       </Link>
 
       <LinkedDisplayName
-        displayProps={{ account: statusAccount }}
+        displayProps={{ ...displayNameProps, account: statusAccount }}
         className='status__display-name'
       >
         <div className='status__avatar'>
@@ -86,15 +87,7 @@ export const StatusHeader: FC<StatusHeaderProps> = ({
         </div>
       </LinkedDisplayName>
 
-      {!!onQuoteCancel && (
-        <IconButton
-          onClick={onQuoteCancel}
-          className='status__quote-cancel'
-          title={intl.formatMessage(messages.quote_cancel)}
-          icon='cancel-fill'
-          iconComponent={CancelFillIcon}
-        />
-      )}
+      {children}
     </div>
   );
 };
