@@ -186,7 +186,7 @@ export const CollectionSettings: React.FC<{
             <FormattedMessage id='lists.save' defaultMessage='Save' />
           ) : (
             <FormattedMessage
-              id='collections.create'
+              id='collections.create_collection'
               defaultMessage='Create collection'
             />
           )}

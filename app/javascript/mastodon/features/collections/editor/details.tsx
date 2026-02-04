@@ -160,7 +160,10 @@ export const CollectionDetails: React.FC<{
           {id ? (
             <FormattedMessage id='lists.save' defaultMessage='Save' />
           ) : (
-            <FormattedMessage id='lists.continue' defaultMessage='Continue' />
+            <FormattedMessage
+              id='collections.continue'
+              defaultMessage='Continue'
+            />
           )}
         </Button>
       </div>
