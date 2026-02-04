@@ -225,14 +225,12 @@ module LanguagesHelper
 
   # Since nan is not translated but nan-TW is translated,
   # to enable the ISO-639-3 language-code with the regional variant but no
-  # official name, we use a specific hash for nan-TW 
-  NAN_TW_CODE = {'nan-TW': '臺語 (Hô-ló話)'}.freeze
-
+  # official name, we use a specific hash for nan-TW
+  NAN_TW_CODE = {
+    'nan-TW': '臺語 (Hô-ló話)'
+  }.freeze
 
   SUPPORTED_LOCALES = {}.merge(ISO_639_1).merge(ISO_639_1_REGIONAL).merge(ISO_639_3).merge(NAN_TW_CODE).freeze
-
-
-
 
   # For ISO-639-1 and ISO-639-3 language codes, we have their official
   # names, but for some translations, we need the names of the
