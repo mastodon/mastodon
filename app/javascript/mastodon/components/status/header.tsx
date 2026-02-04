@@ -1,7 +1,6 @@
-import type { FC, HTMLAttributes, ReactNode } from 'react';
+import type { FC, HTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 
-import type { MessageDescriptor } from 'react-intl';
-import { useIntl } from 'react-intl';
+import { defineMessage, useIntl } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
@@ -23,11 +22,10 @@ export interface StatusHeaderProps {
   children?: ReactNode;
   wrapperProps?: HTMLAttributes<HTMLDivElement>;
   displayNameProps?: DisplayNameProps;
-  messages: {
-    edited: MessageDescriptor;
-    quote_cancel: MessageDescriptor;
-  };
+  onHeaderClick?: MouseEventHandler<HTMLDivElement>;
 }
+
+export type StatusHeaderRenderFn = (args: StatusHeaderProps) => ReactNode;
 
 export const StatusHeader: FC<StatusHeaderProps> = ({
   status,
@@ -35,20 +33,27 @@ export const StatusHeader: FC<StatusHeaderProps> = ({
   children,
   avatarSize = 48,
   wrapperProps,
-  messages,
+  onHeaderClick,
 }) => {
   const statusAccount = status.get('account') as Account | undefined;
   const editedAt = status.get('edited_at') as string;
 
   return (
-    <div {...wrapperProps} className='status__info'>
+    /* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
+    <div
+      onClick={onHeaderClick}
+      onAuxClick={onHeaderClick}
+      {...wrapperProps}
+      className='status__info'
+      /* eslint-enable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
+    >
       <Link
         to={`/@${statusAccount?.acct}/${status.get('id') as string}`}
         className='status__relative-time'
       >
         <StatusVisibility visibility={status.get('visibility')} />
         <RelativeTimestamp timestamp={status.get('created_at') as string} />
-        {editedAt && <StatusEditedAt editedAt={editedAt} messages={messages} />}
+        {editedAt && <StatusEditedAt editedAt={editedAt} />}
       </Link>
 
       <StatusDisplayName
@@ -75,13 +80,16 @@ export const StatusVisibility: FC<{ visibility: unknown }> = ({
   );
 };
 
-export const StatusEditedAt: FC<
-  { editedAt: string } & Pick<StatusHeaderProps, 'messages'>
-> = ({ editedAt, messages }) => {
+const editMessage = defineMessage({
+  id: 'status.edited',
+  defaultMessage: 'Edited {date}',
+});
+
+export const StatusEditedAt: FC<{ editedAt: string }> = ({ editedAt }) => {
   const intl = useIntl();
   return (
     <abbr
-      title={intl.formatMessage(messages.edited, {
+      title={intl.formatMessage(editMessage, {
         date: intl.formatDate(editedAt, {
           year: 'numeric',
           month: 'short',

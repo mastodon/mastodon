@@ -9,7 +9,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import AlternateEmailIcon from '@/material-icons/400-24px/alternate_email.svg?react';
 import RepeatIcon from '@/material-icons/400-24px/repeat.svg?react';
-import CancelFillIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import { Hotkeys } from 'mastodon/components/hotkeys';
 import { ContentWarning } from 'mastodon/components/content_warning';
 import { FilterWarning } from 'mastodon/components/filter_warning';
@@ -17,7 +16,6 @@ import { Icon }  from 'mastodon/components/icon';
 import { PictureInPicturePlaceholder } from 'mastodon/components/picture_in_picture_placeholder';
 import { withOptionalRouter, WithOptionalRouterPropTypes } from 'mastodon/utils/react_router';
 
-import { IconButton } from './icon_button';
 import Card from '../features/status/components/card';
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -125,7 +123,7 @@ class Status extends ImmutablePureComponent {
     avatarSize: PropTypes.number,
     deployPictureInPicture: PropTypes.func,
     unfocusable: PropTypes.bool,
-    headerComponent: PropTypes.element,
+    headerRenderFn: PropTypes.func,
     pictureInPicture: ImmutablePropTypes.contains({
       inUse: PropTypes.bool,
       available: PropTypes.bool,
@@ -397,7 +395,6 @@ class Status extends ImmutablePureComponent {
       skipPrepend,
       avatarSize = 46,
       children,
-      headerComponent: HeaderComponent = StatusHeader,
     } = this.props;
 
     let { status, account, ...other } = this.props;
@@ -563,6 +560,18 @@ class Status extends ImmutablePureComponent {
     }
 
     const {statusContentProps, hashtagBar} = getHashtagBarForStatus(status);
+
+    const header = this.props.headerRenderFn
+      ? this.props.headerRenderFn({ status, account, avatarSize, messages, onHeaderClick: this.handleHeaderClick })
+      : (
+        <StatusHeader
+          status={status}
+          account={account}
+          avatarSize={avatarSize}
+          onHeaderClick={this.handleHeaderClick}
+        />
+      );
+
     return (
       <Hotkeys handlers={handlers} focusable={!unfocusable}>
         <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), unread, focusable: !this.props.muted })} tabIndex={this.props.muted || unfocusable ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader({intl, status, rebloggedByText, isQuote: isQuotedPost})} ref={this.handleRef} data-nosnippet={status.getIn(['account', 'noindex'], true) || undefined}>
@@ -584,24 +593,7 @@ class Status extends ImmutablePureComponent {
           >
             {(connectReply || connectUp || connectToRoot) && <div className={classNames('status__line', { 'status__line--full': connectReply, 'status__line--first': !status.get('in_reply_to_id') && !connectToRoot })} />}
 
-            <HeaderComponent
-              status={status}
-              account={account}
-              avatarSize={avatarSize}
-              onQuoteCancel={this.props.onQuoteCancel}
-              wrapperProps={{ onClick: this.handleHeaderClick, onAuxClick: this.handleHeaderClick }}
-              messages={messages}
-            >
-              {isQuotedPost && this.props.onQuoteCancel && (
-                <IconButton
-                  onClick={this.props.onQuoteCancel}
-                  className='status__quote-cancel'
-                  title={intl.formatMessage(messages.quote_cancel)}
-                  icon='cancel-fill'
-                  iconComponent={CancelFillIcon}
-                />
-              )}
-            </HeaderComponent>
+            {header}
 
             {matchedFilters && <FilterWarning title={matchedFilters.join(', ')} expanded={this.state.showDespiteFilter} onClick={this.handleFilterToggle} />}
 
