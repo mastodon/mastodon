@@ -174,7 +174,7 @@ const ComboboxWithRef = <T extends Item>(
       if (highlightedItemIndex === -1) {
         // If no item is highlighted yet, highlight the first or last
         if (direction > 0) {
-          const firstItem = items.at(1);
+          const firstItem = items.at(0);
           setHighlightedItemId(firstItem ? getItemId(firstItem) : null);
         } else {
           const lastItem = items.at(-1);
