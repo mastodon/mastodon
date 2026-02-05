@@ -141,11 +141,14 @@ const ComboboxWithRef = <T extends Item>(
     (itemId: string | null) => {
       const item = items.find((item) => item.id === itemId);
       if (item) {
-        onSelectItem(item);
+        const isDisabled = getIsItemDisabled?.(item) ?? false;
+        if (!isDisabled) {
+          onSelectItem(item);
+        }
       }
       inputRef.current?.focus();
     },
-    [items, onSelectItem],
+    [getIsItemDisabled, items, onSelectItem],
   );
 
   const handleSelectItem = useCallback(
