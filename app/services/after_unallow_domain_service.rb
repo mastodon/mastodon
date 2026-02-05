@@ -5,7 +5,7 @@ class AfterUnallowDomainService < BaseService
     return if domain.blank?
 
     Account.remote.where(domain: domain).find_each do |account|
-      DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true)
+      DeleteAccountService.new.call(account, reserve_username: false)
     end
   end
 end
