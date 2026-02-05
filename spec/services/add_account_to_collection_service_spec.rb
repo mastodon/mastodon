@@ -25,9 +25,9 @@ RSpec.describe AddAccountToCollectionService do
         it 'federates an `Add` activity and schedules a notification' do
           subject.call(collection, account)
 
-          expect(ActivityPub::AccountRawDistributionWorker)
+          expect(ActivityPub::CollectionRawDistributionWorker)
             .to have_enqueued_sidekiq_job
-            .with(anything, collection.account_id)
+            .with(anything, collection.id)
           expect(LocalNotificationWorker)
             .to have_enqueued_sidekiq_job
             .with(account.id, anything, 'CollectionItem', 'added_to_collection')
