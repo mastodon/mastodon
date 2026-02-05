@@ -27,9 +27,9 @@ RSpec.describe DomainValidator do
     end
 
     context 'with a domain that is too long' do
-      before { stub_const 'DomainValidator::MAX_DOMAIN_LENGTH', 8 }
+      let(:long_hostname) { "#{'a' * 300}.com" }
 
-      it { is_expected.to_not allow_value('host.example').for(:domain) }
+      it { is_expected.to_not allow_value(long_hostname).for(:domain) }
     end
 
     context 'with a domain with an empty segment' do
