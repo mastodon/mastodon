@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -107,6 +107,13 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
     [accountId, dispatch, key],
   );
 
+  const statusProps = useMemo(
+    () => ({
+      headerRenderFn: () => null,
+    }),
+    [],
+  );
+
   const forceEmptyState = blockedBy || hidden || suspended;
   const isLoading = !!timeline?.isLoading || !!pinnedTimeline?.isLoading;
 
@@ -136,6 +143,7 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
         timelineId='account'
         withCounters
         className={classes.statusWrapper}
+        statusProps={statusProps}
       />
     </Column>
   );
