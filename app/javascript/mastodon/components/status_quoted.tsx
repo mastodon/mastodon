@@ -226,13 +226,15 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
   const headerRenderFn: StatusHeaderRenderFn = useCallback(
     (props) => (
       <StatusHeader {...props}>
-        <IconButton
-          onClick={onQuoteCancel}
-          className='status__quote-cancel'
-          title={intl.formatMessage(quoteCancelMessage)}
-          icon='cancel-fill'
-          iconComponent={CancelFillIcon}
-        />
+        {onQuoteCancel && (
+          <IconButton
+            onClick={onQuoteCancel}
+            className='status__quote-cancel'
+            title={intl.formatMessage(quoteCancelMessage)}
+            icon='cancel-fill'
+            iconComponent={CancelFillIcon}
+          />
+        )}
       </StatusHeader>
     ),
     [intl, onQuoteCancel],
