@@ -25,7 +25,7 @@ RSpec.describe 'Log in' do
   it 'A invalid email and password user is not able to log in' do
     fill_in_auth_details('invalid_email', 'invalid_password')
 
-    expect(subject).to have_css('.flash-message', text: failure_message('invalid'))
+    expect(subject).to have_css('.flash-message', text: /#{failure_message_invalid}/i)
   end
 
   context 'when confirmed at is nil' do
@@ -38,8 +38,8 @@ RSpec.describe 'Log in' do
     end
   end
 
-  def failure_message(message)
+  def failure_message_invalid
     keys = User.authentication_keys.map { |key| User.human_attribute_name(key) }
-    I18n.t("devise.failure.#{message}", authentication_keys: keys.join('support.array.words_connector'))
+    I18n.t('devise.failure.invalid', authentication_keys: keys.join('support.array.words_connector'))
   end
 end
