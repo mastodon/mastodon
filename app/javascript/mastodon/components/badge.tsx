@@ -11,6 +11,8 @@ import PersonIcon from '@/material-icons/400-24px/person.svg?react';
 import SmartToyIcon from '@/material-icons/400-24px/smart_toy.svg?react';
 import VolumeOffIcon from '@/material-icons/400-24px/volume_off.svg?react';
 
+import { FormattedDateWrapper } from './formatted_date';
+
 interface BadgeProps {
   label: ReactNode;
   icon?: ReactNode;
@@ -36,21 +38,25 @@ export const Badge: FC<BadgeProps> = ({
   </div>
 );
 
-export const AdminBadge: FC<Partial<BadgeProps>> = (props) => (
+export const AdminBadge: FC<Partial<BadgeProps>> = ({ label, ...props }) => (
   <Badge
     icon={<AdminIcon />}
     label={
-      <FormattedMessage id='account.badges.admin' defaultMessage='Admin' />
+      label ?? (
+        <FormattedMessage id='account.badges.admin' defaultMessage='Admin' />
+      )
     }
     {...props}
   />
 );
 
-export const GroupBadge: FC<Partial<BadgeProps>> = (props) => (
+export const GroupBadge: FC<Partial<BadgeProps>> = ({ label, ...props }) => (
   <Badge
     icon={<GroupsIcon />}
     label={
-      <FormattedMessage id='account.badges.group' defaultMessage='Group' />
+      label ?? (
+        <FormattedMessage id='account.badges.group' defaultMessage='Group' />
+      )
     }
     {...props}
   />
@@ -66,21 +72,41 @@ export const AutomatedBadge: FC<{ className?: string }> = ({ className }) => (
   />
 );
 
-export const MutedBadge: FC<Partial<BadgeProps>> = (props) => (
+export const MutedBadge: FC<
+  Partial<BadgeProps> & { expiresAt?: string | null }
+> = ({ expiresAt, label, ...props }) => (
   <Badge
     icon={<VolumeOffIcon />}
     label={
-      <FormattedMessage id='account.badges.muted' defaultMessage='Muted' />
+      label ??
+      (expiresAt ? (
+        <FormattedMessage
+          id='account.badges.muted_until'
+          defaultMessage='Muted until {until}'
+          values={{
+            until: (
+              <FormattedDateWrapper value={expiresAt} dateStyle='medium' />
+            ),
+          }}
+        />
+      ) : (
+        <FormattedMessage id='account.badges.muted' defaultMessage='Muted' />
+      ))
     }
     {...props}
   />
 );
 
-export const BlockedBadge: FC<Partial<BadgeProps>> = (props) => (
+export const BlockedBadge: FC<Partial<BadgeProps>> = ({ label, ...props }) => (
   <Badge
     icon={<BlockIcon />}
     label={
-      <FormattedMessage id='account.badges.blocked' defaultMessage='Blocked' />
+      label ?? (
+        <FormattedMessage
+          id='account.badges.blocked'
+          defaultMessage='Blocked'
+        />
+      )
     }
     {...props}
   />
