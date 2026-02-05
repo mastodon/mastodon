@@ -11,6 +11,8 @@ zh-CN:
       cannot_be_added_to_collections: 此账号无法被添加到收藏列表内。
     followers:
       other: 关注者
+    following:
+      other: 正在关注
     instance_actor_flash: 该账号用来代表虚拟角色，并不代表个人用户，仅代表服务器本身。该账号用于联合目的，不应该被停用。
     last_active: 上次活跃
     link_verified_on: 此链接的所有权已在 %{date} 验证
@@ -1642,7 +1644,7 @@ zh-CN:
       disabled_account: 此后，你的当前账号将无法使用。但是，你仍然有权导出数据或者重新激活。
       followers: 这步操作将把全部关注者从当前账号移动到新账号
       only_redirect_html: 或者，你可以<a href="%{path}">只在你的账号资料上设置一个跳转</a>。
-      other_data: 其他数据不会自动移动（包括您的嘟文及您关注的账号列表）
+      other_data: 其他数据不会自动移动（包括你的嘟文及你关注的账号列表）
       redirect: 在收到一个跳转通知后，你当前的账号资料将会更新，并被排除在搜索范围外
   moderation:
     title: 审核
@@ -1691,7 +1693,7 @@ zh-CN:
       subject: "%{name} 转嘟了你的嘟文"
       title: 新的转嘟
     severed_relationships:
-      subject: 由于管理决定，您已失去网络上的关注关系
+      subject: 由于管理决定，你已失去网络上的关注关系
     status:
       subject: "%{name} 刚刚发布嘟文"
     update:
