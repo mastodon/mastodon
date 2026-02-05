@@ -6,7 +6,14 @@ module CacheConcern
   class_methods do
     def vary_by(value, **kwargs)
       before_action(**kwargs) do |controller|
-        response.headers['Vary'] = value.respond_to?(:call) ? controller.instance_exec(&value) : value
+        new_value = value.respond_to?(:call) ? controller.instance_exec(&value) : value
+        next if new_value.blank?
+
+        if response.headers['Vary'].present?
+          response.headers['Vary'] = "#{response.headers['Vary']}, #{new_value}"
+        else
+          response.headers['Vary'] = new_value
+        end
       end
     end
   end
