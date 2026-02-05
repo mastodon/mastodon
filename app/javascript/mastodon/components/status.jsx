@@ -140,6 +140,7 @@ class Status extends ImmutablePureComponent {
     'hidden',
     'unread',
     'pictureInPicture',
+    'headerRenderFn',
   ];
 
   state = {
