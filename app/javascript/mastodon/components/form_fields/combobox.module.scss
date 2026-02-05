@@ -45,6 +45,7 @@
   border-radius: 4px;
   color: var(--color-text-primary);
   cursor: pointer;
+  user-select: none;
 
   &[aria-selected='true'] {
     color: var(--color-text-on-brand-base);
