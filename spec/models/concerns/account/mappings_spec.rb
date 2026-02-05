@@ -93,13 +93,13 @@ RSpec.describe Account::Mappings do
       context 'when Mute#hide_notifications?' do
         let(:hide) { true }
 
-        it { is_expected.to eq(target_account_id => { notifications: true }) }
+        it { is_expected.to eq(target_account_id => { expires_at: nil, notifications: true }) }
       end
 
       context 'when not Mute#hide_notifications?' do
         let(:hide) { false }
 
-        it { is_expected.to eq(target_account_id => { notifications: false }) }
+        it { is_expected.to eq(target_account_id => { expires_at: nil, notifications: false }) }
       end
     end
 
