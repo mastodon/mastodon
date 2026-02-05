@@ -112,13 +112,19 @@ const ComboboxWithRef = <T extends Item>(
     setShouldMenuOpen(false);
   }, []);
 
+  const resetHighlight = useCallback(() => {
+    const firstItem = items[0];
+    const firstItemId = firstItem ? getItemId(firstItem) : null;
+    setHighlightedItemId(firstItemId);
+  }, [getItemId, items]);
+
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       onChange(e);
-      setHighlightedItemId(null);
+      resetHighlight();
       setShouldMenuOpen(!!e.target.value);
     },
-    [onChange],
+    [onChange, resetHighlight],
   );
 
   const handleHighlightItem = useCallback(
