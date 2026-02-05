@@ -26,4 +26,17 @@ RSpec.describe ActivityPub::UndoAnnounceSerializer do
     expect(subject).to_not have_key('cc')
     expect(subject).to_not have_key('target')
   end
+
+  context 'when status is local and private' do
+    let(:status) { Fabricate(:status, visibility: :private) }
+    let(:reblog) { Fabricate(:status, reblog: status, account: status.account) }
+
+    it 'does not inline the status' do
+      expect(subject).to include({
+        'object' => a_hash_including({
+          'object' => tag_manager.uri_for(status),
+        }),
+      })
+    end
+  end
 end
