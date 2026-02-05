@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -10,8 +10,6 @@ import GroupsIcon from '@/material-icons/400-24px/group.svg?react';
 import PersonIcon from '@/material-icons/400-24px/person.svg?react';
 import SmartToyIcon from '@/material-icons/400-24px/smart_toy.svg?react';
 import VolumeOffIcon from '@/material-icons/400-24px/volume_off.svg?react';
-
-import { FormattedDateWrapper } from './formatted_date';
 
 interface BadgeProps {
   label: ReactNode;
@@ -74,28 +72,41 @@ export const AutomatedBadge: FC<{ className?: string }> = ({ className }) => (
 
 export const MutedBadge: FC<
   Partial<BadgeProps> & { expiresAt?: string | null }
-> = ({ expiresAt, label, ...props }) => (
-  <Badge
-    icon={<VolumeOffIcon />}
-    label={
-      label ??
-      (expiresAt ? (
-        <FormattedMessage
-          id='account.badges.muted_until'
-          defaultMessage='Muted until {until}'
-          values={{
-            until: (
-              <FormattedDateWrapper value={expiresAt} dateStyle='medium' />
-            ),
-          }}
-        />
-      ) : (
-        <FormattedMessage id='account.badges.muted' defaultMessage='Muted' />
-      ))
-    }
-    {...props}
-  />
-);
+> = ({ expiresAt, label, ...props }) => {
+  // Format the date, only showing the year if it's different from the current year.
+  const intl = useIntl();
+  let formattedDate: string | null = null;
+  if (expiresAt) {
+    const expiresDate = new Date(expiresAt);
+    const isCurrentYear =
+      expiresDate.getFullYear() === new Date().getFullYear();
+    formattedDate = intl.formatDate(expiresDate, {
+      month: 'short',
+      day: 'numeric',
+      ...(isCurrentYear ? {} : { year: 'numeric' }),
+    });
+  }
+  return (
+    <Badge
+      icon={<VolumeOffIcon />}
+      label={
+        label ??
+        (formattedDate ? (
+          <FormattedMessage
+            id='account.badges.muted_until'
+            defaultMessage='Muted until {until}'
+            values={{
+              until: formattedDate,
+            }}
+          />
+        ) : (
+          <FormattedMessage id='account.badges.muted' defaultMessage='Muted' />
+        ))
+      }
+      {...props}
+    />
+  );
+};
 
 export const BlockedBadge: FC<Partial<BadgeProps>> = ({ label, ...props }) => (
   <Badge
