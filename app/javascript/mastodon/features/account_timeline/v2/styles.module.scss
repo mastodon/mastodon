@@ -64,7 +64,6 @@
   max-width: none !important;
 }
 
-.pinnedWrapper,
 .statusWrapper {
   :global(.status) {
     padding-left: 24px;
@@ -72,11 +71,13 @@
   }
 }
 
-.pinnedWrapperCollapsed {
-  border-bottom: 1px solid var(--color-border-primary);
-
-  :global(.status) {
+.pinnedCollapsed {
+  :global(.status):has(.pinnedStatusHeader) {
     border-bottom: none;
+  }
+
+  article:has(.pinnedViewAllButton) {
+    border-bottom: 1px solid var(--color-border-primary);
   }
 }
 

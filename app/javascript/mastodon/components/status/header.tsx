@@ -25,6 +25,7 @@ export interface StatusHeaderProps {
   displayNameProps?: DisplayNameProps;
   onHeaderClick?: MouseEventHandler<HTMLDivElement>;
   className?: string;
+  featured?: boolean;
 }
 
 export type StatusHeaderRenderFn = (args: StatusHeaderProps) => ReactNode;

@@ -5,9 +5,10 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import { debounce } from 'lodash';
 
-import { TIMELINE_GAP, TIMELINE_SUGGESTIONS } from 'mastodon/actions/timelines';
+import { TIMELINE_GAP, TIMELINE_PINNED_VIEW_ALL, TIMELINE_SUGGESTIONS } from 'mastodon/actions/timelines';
 import { RegenerationIndicator } from 'mastodon/components/regeneration_indicator';
 import { InlineFollowSuggestions } from 'mastodon/features/home_timeline/components/inline_follow_suggestions';
+import { PinnedShowAllButton } from '@/mastodon/features/account_timeline/v2/pinned_statuses';
 
 import { StatusQuoteManager } from '../components/status_quoted';
 
@@ -92,17 +93,21 @@ export default class StatusList extends ImmutablePureComponent {
     ) : null;
 
     if (scrollableContent && featuredStatusIds) {
-      scrollableContent = featuredStatusIds.map(statusId => (
-        <StatusQuoteManager
-          key={`f-${statusId}`}
-          id={statusId}
-          featured
-          contextType={timelineId}
-          showThread
-          withCounters={this.props.withCounters}
-          {...statusProps}
-        />
-      )).concat(scrollableContent);
+      scrollableContent = featuredStatusIds.map(statusId => {
+        if (statusId === TIMELINE_PINNED_VIEW_ALL) {
+          return <PinnedShowAllButton key={TIMELINE_PINNED_VIEW_ALL} />
+        }
+        return (
+          <StatusQuoteManager
+            key={`f-${statusId}`}
+            id={statusId}
+            featured
+            contextType={timelineId}
+            showThread
+            withCounters={this.props.withCounters}
+            {...statusProps} />
+        );
+      }).concat(scrollableContent);
     }
 
     return (

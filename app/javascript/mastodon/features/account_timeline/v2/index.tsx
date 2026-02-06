@@ -3,6 +3,7 @@ import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
 import { useParams } from 'react-router';
 
 import { List as ImmutableList } from 'immutable';
@@ -28,7 +29,11 @@ import { useFilters } from '../hooks/useFilters';
 
 import { FeaturedTags } from './featured_tags';
 import { AccountFilters } from './filters';
-import { PinnedStatuses } from './pinned_statuses';
+import {
+  PinnedStatusProvider,
+  renderPinnedStatusHeader,
+  usePinnedStatusIds,
+} from './pinned_statuses';
 import classes from './styles.module.scss';
 
 const emptyList = ImmutableList<string>();
@@ -51,11 +56,13 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
   // Add this key to remount the timeline when accountId changes.
   return (
-    <InnerTimeline
-      accountId={accountId}
-      key={accountId}
-      multiColumn={multiColumn}
-    />
+    <PinnedStatusProvider>
+      <InnerTimeline
+        accountId={accountId}
+        key={accountId}
+        multiColumn={multiColumn}
+      />
+    </PinnedStatusProvider>
   );
 };
 
@@ -75,16 +82,7 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
 
   const timeline = useAppSelector((state) => selectTimelineByKey(state, key));
   const { blockedBy, hidden, suspended } = useAccountVisibility(accountId);
-
-  const pinnedKey = timelineKey({
-    type: 'account',
-    userId: accountId,
-    tagged,
-    pinned: true,
-  });
-  const pinnedTimeline = useAppSelector((state) =>
-    selectTimelineByKey(state, pinnedKey),
-  );
+  const forceEmptyState = blockedBy || hidden || suspended;
 
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -92,11 +90,8 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
       if (!timeline) {
         dispatch(expandTimelineByKey({ key }));
       }
-      if (!pinnedTimeline) {
-        dispatch(expandTimelineByKey({ key: pinnedKey }));
-      }
     }
-  }, [accountId, dispatch, key, pinnedKey, pinnedTimeline, timeline]);
+  }, [accountId, dispatch, key, timeline]);
 
   const handleLoadMore = useCallback(
     (maxId: number) => {
@@ -107,8 +102,13 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
     [accountId, dispatch, key],
   );
 
-  const forceEmptyState = blockedBy || hidden || suspended;
-  const isLoading = !!timeline?.isLoading || !!pinnedTimeline?.isLoading;
+  const {
+    isLoading: isPinnedLoading,
+    statusIds: pinnedStatusIds,
+    showAllPinned,
+  } = usePinnedStatusIds({ accountId, tagged, forceEmptyState });
+
+  const isLoading = !!timeline?.isLoading || isPinnedLoading;
 
   return (
     <Column bindToDocument={!multiColumn}>
@@ -116,18 +116,13 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
 
       <StatusList
         alwaysPrepend
-        prepend={
-          <Prepend
-            accountId={accountId}
-            tagged={tagged}
-            forceEmpty={forceEmptyState}
-          />
-        }
+        prepend={<Prepend accountId={accountId} forceEmpty={forceEmptyState} />}
         append={<RemoteHint accountId={accountId} />}
         scrollKey='account_timeline'
         // We want to have this component when timeline is undefined (loading),
         // because if we don't the prepended component will re-render with every filter change.
         statusIds={forceEmptyState ? emptyList : (timeline?.items ?? emptyList)}
+        featuredStatusIds={pinnedStatusIds}
         isLoading={isLoading}
         hasMore={!forceEmptyState && !!timeline?.hasMore}
         onLoadMore={handleLoadMore}
@@ -135,7 +130,11 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
         bindToDocument={!multiColumn}
         timelineId='account'
         withCounters
-        className={classes.statusWrapper}
+        className={classNames(
+          classes.statusWrapper,
+          !showAllPinned && classes.pinnedCollapsed,
+        )}
+        statusProps={{ headerRenderFn: renderPinnedStatusHeader }}
       />
     </Column>
   );
@@ -143,9 +142,8 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
 
 const Prepend: FC<{
   accountId: string;
-  tagged?: string;
   forceEmpty: boolean;
-}> = ({ forceEmpty, accountId, tagged }) => {
+}> = ({ forceEmpty, accountId }) => {
   if (forceEmpty) {
     return <AccountHeader accountId={accountId} hideTabs />;
   }
@@ -155,7 +153,6 @@ const Prepend: FC<{
       <AccountHeader accountId={accountId} hideTabs />
       <AccountFilters />
       <FeaturedTags accountId={accountId} />
-      <PinnedStatuses accountId={accountId} tagged={tagged} />
     </>
   );
 };
