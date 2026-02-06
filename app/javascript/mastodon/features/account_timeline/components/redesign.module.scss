@@ -298,7 +298,7 @@ svg.badgeIcon {
     border-radius: 0;
     transition: color 0.2s ease-in-out;
 
-    &:not(:global(.active)):is(:hover, :focus) {
+    &:not([aria-current='page']):is(:hover, :focus) {
       color: var(--color-text-brand-soft);
     }
   }
