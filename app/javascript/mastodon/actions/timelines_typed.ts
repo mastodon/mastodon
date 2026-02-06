@@ -223,8 +223,8 @@ export const timelineExpandPinnedFromStatus = createAppThunk(
 
     // Iterate over tags and clear those too.
     const tags = status.get('tags') as
-      | ImmutableList<ImmutableMap<'name', string>>
-      | undefined; // We only care about the tag name.
+      | ImmutableList<ImmutableMap<'name', string>> // We only care about the tag name.
+      | undefined;
     if (!tags) {
       return;
     }
