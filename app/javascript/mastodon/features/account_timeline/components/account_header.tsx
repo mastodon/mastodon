@@ -156,7 +156,7 @@ export const AccountHeader: React.FC<{
             >
               <Avatar
                 account={suspendedOrHidden ? undefined : account}
-                size={92}
+                size={isRedesign ? 80 : 92}
               />
             </a>
 
