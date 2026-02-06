@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
+import IconPinned from '@/images/icons/icon_pinned.svg?react';
 import { fetchRelationships } from '@/mastodon/actions/accounts';
 import {
   AdminBadge,
@@ -14,6 +15,7 @@ import {
   GroupBadge,
   MutedBadge,
 } from '@/mastodon/components/badge';
+import { Icon } from '@/mastodon/components/icon';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import type { AccountRole } from '@/mastodon/models/account';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -118,6 +120,16 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
 
   return <div className={'account__header__badges'}>{badges}</div>;
 };
+
+export const PinnedBadge: FC = () => (
+  <Badge
+    className={classes.badge}
+    icon={<Icon id='pinned' icon={IconPinned} />}
+    label={
+      <FormattedMessage id='account.timeline.pinned' defaultMessage='Pinned' />
+    }
+  />
+);
 
 function isAdminBadge(role: AccountRole) {
   const name = role.name.toLowerCase();
