@@ -209,7 +209,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       Tag.find_or_create_by_names([tag]).filter(&:valid?)
     rescue ActiveRecord::RecordInvalid
       []
-    end
+    end.uniq
 
     return unless @status.distributable?
 
