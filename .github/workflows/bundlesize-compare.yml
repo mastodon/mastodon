@@ -17,7 +17,7 @@ jobs:
     env:
       ANALYZE_BUNDLE_SIZE: '1'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
@@ -26,7 +26,7 @@ jobs:
         run: yarn run build:production
 
       - name: Upload stats.json
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
           name: head-stats
           path: ./stats.json
@@ -40,7 +40,7 @@ jobs:
     env:
       ANALYZE_BUNDLE_SIZE: '1'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
         with:
           ref: ${{ github.base_ref }}
 
@@ -51,7 +51,7 @@ jobs:
         run: yarn run build:production
 
       - name: Upload stats.json
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
           name: base-stats
           path: ./stats.json
@@ -64,9 +64,9 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
 
-      - uses: twk3/rollup-size-compare-action@v1.0.0
+      - uses: twk3/rollup-size-compare-action@5d3e409fcfe15d8ebb0edfe87e772c04b287f660 # v1.0.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           current-stats-json-path: ./head-stats/stats.json

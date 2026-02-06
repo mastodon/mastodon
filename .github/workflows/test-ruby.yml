@@ -32,7 +32,7 @@ jobs:
       SECRET_KEY_BASE_DUMMY: 1
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
 
       - name: Set up Ruby environment
         uses: ./.github/actions/setup-ruby
@@ -43,7 +43,7 @@ jobs:
           onlyProduction: 'true'
 
       - name: Cache assets from compilation
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: |
             public/assets
@@ -65,7 +65,7 @@ jobs:
         run: |
           tar --exclude={"*.br","*.gz"} -zcf artifacts.tar.gz public/assets public/packs* tmp/cache/vite/last-build*.json
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         if: matrix.mode == 'test'
         with:
           path: |-
@@ -128,9 +128,9 @@ jobs:
           - '3.3'
           - '.ruby-version'
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           path: './'
           name: ${{ github.sha }}
@@ -151,7 +151,7 @@ jobs:
           bin/flatware fan bin/rails db:test:prepare
 
       - name: Cache RSpec persistence file
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: |
             tmp/rspec/examples.txt
@@ -167,7 +167,7 @@ jobs:
 
       - name: Upload coverage reports to Codecov
         if: matrix.ruby-version == '.ruby-version'
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5
         with:
           files: coverage/lcov/*.lcov
         env:
@@ -222,9 +222,9 @@ jobs:
           - '.ruby-version'
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           path: './'
           name: ${{ github.sha }}
@@ -247,7 +247,7 @@ jobs:
 
       - name: Cache Playwright Chromium browser
         id: playwright-cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.cache/ms-playwright
           key: playwright-browsers-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
@@ -263,14 +263,14 @@ jobs:
       - run: bin/rspec spec/system --tag streaming --tag js
 
       - name: Archive logs
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         if: failure()
         with:
           name: e2e-logs-${{ matrix.ruby-version }}
           path: log/
 
       - name: Archive test screenshots
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         if: failure()
         with:
           name: e2e-screenshots-${{ matrix.ruby-version }}
@@ -360,9 +360,9 @@ jobs:
             search-image: opensearchproject/opensearch:2
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
 
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           path: './'
           name: ${{ github.sha }}
@@ -382,14 +382,14 @@ jobs:
       - run: bin/rspec --tag search
 
       - name: Archive logs
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         if: failure()
         with:
           name: test-search-logs-${{ matrix.ruby-version }}
           path: log/
 
       - name: Archive test screenshots
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         if: failure()
         with:
           name: test-search-screenshots
