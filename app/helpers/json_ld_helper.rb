@@ -244,10 +244,10 @@ module JsonLdHelper
   # @return [Array<Array<Hash>, Integer>, nil]
   #   The collection items and the number of pages fetched
   def collection_items(collection_or_uri, max_pages: 1, max_items: nil, reference_uri: nil, on_behalf_of: nil)
-    collection = fetch_collection(collection_or_uri, reference_uri: reference_uri, on_behalf_of: on_behalf_of)
+    collection = fetch_collection_page(collection_or_uri, reference_uri: reference_uri, on_behalf_of: on_behalf_of)
     return unless collection.is_a?(Hash)
 
-    collection = fetch_collection(collection['first'], reference_uri: reference_uri, on_behalf_of: on_behalf_of) if collection['first'].present?
+    collection = fetch_collection_page(collection['first'], reference_uri: reference_uri, on_behalf_of: on_behalf_of) if collection['first'].present?
     return unless collection.is_a?(Hash)
 
     items = []
@@ -258,7 +258,7 @@ module JsonLdHelper
       break if !max_items.nil? && items.size >= max_items
       break if !max_pages.nil? && n_pages >= max_pages
 
-      collection = collection['next'].present? ? fetch_collection(collection['next'], reference_uri: reference_uri, on_behalf_of: on_behalf_of) : nil
+      collection = collection['next'].present? ? fetch_collection_page(collection['next'], reference_uri: reference_uri, on_behalf_of: on_behalf_of) : nil
       n_pages += 1
     end
 
@@ -285,7 +285,7 @@ module JsonLdHelper
   # @param on_behalf_of [Account, nil]
   #   Sign the request on behalf of the Account, if not nil
   # @return [Hash, nil]
-  def fetch_collection(collection_or_uri, reference_uri: nil, on_behalf_of: nil)
+  def fetch_collection_page(collection_or_uri, reference_uri: nil, on_behalf_of: nil)
     return collection_or_uri if collection_or_uri.is_a?(Hash)
     return if !reference_uri.nil? && non_matching_uri_hosts?(reference_uri, collection_or_uri)
 
