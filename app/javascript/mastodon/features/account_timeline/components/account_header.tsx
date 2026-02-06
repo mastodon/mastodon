@@ -52,6 +52,7 @@ export const AccountHeader: React.FC<{
   hideTabs?: boolean;
 }> = ({ accountId, hideTabs }) => {
   const { multiColumn } = useColumnsContext();
+  const isRedesign = isRedesignEnabled();
 
   const dispatch = useAppDispatch();
   const account = useAppSelector((state) => state.accounts.get(accountId));
@@ -123,10 +124,10 @@ export const AccountHeader: React.FC<{
         <div
           className={classNames(
             'account__header__image',
-            isRedesignEnabled() && redesignClasses.header,
+            isRedesign && redesignClasses.header,
           )}
         >
-          {me !== account.id && relationship && !isRedesignEnabled() && (
+          {me !== account.id && relationship && !isRedesign && (
             <AccountInfo relationship={relationship} />
           )}
 
@@ -142,7 +143,7 @@ export const AccountHeader: React.FC<{
         <div
           className={classNames(
             'account__header__bar',
-            isRedesignEnabled() && redesignClasses.barWrapper,
+            isRedesign && redesignClasses.barWrapper,
           )}
         >
           <div className='account__header__tabs'>
@@ -159,7 +160,7 @@ export const AccountHeader: React.FC<{
               />
             </a>
 
-            {!isRedesignEnabled() && (
+            {!isRedesign && (
               <AccountButtons
                 accountId={accountId}
                 className='account__header__buttons--desktop'
@@ -170,11 +171,11 @@ export const AccountHeader: React.FC<{
           <div
             className={classNames(
               'account__header__tabs__name',
-              isRedesignEnabled() && redesignClasses.nameWrapper,
+              isRedesign && redesignClasses.nameWrapper,
             )}
           >
             <AccountName accountId={accountId} />
-            {isRedesignEnabled() && (
+            {isRedesign && (
               <AccountButtons
                 accountId={accountId}
                 className={redesignClasses.buttonsDesktop}
@@ -190,7 +191,7 @@ export const AccountHeader: React.FC<{
             <FamiliarFollowers accountId={accountId} />
           )}
 
-          {!isRedesignEnabled() && (
+          {!isRedesign && (
             <AccountButtons
               className='account__header__buttons--mobile'
               accountId={accountId}
@@ -203,7 +204,7 @@ export const AccountHeader: React.FC<{
               <div className='account__header__bio'>
                 {me &&
                   account.id !== me &&
-                  (isRedesignEnabled() ? (
+                  (isRedesign ? (
                     <AccountNoteRedesign accountId={accountId} />
                   ) : (
                     <AccountNote accountId={accountId} />
@@ -221,7 +222,7 @@ export const AccountHeader: React.FC<{
             </div>
           )}
 
-          {isRedesignEnabled() && (
+          {isRedesign && (
             <AccountButtons
               className={classNames(
                 redesignClasses.buttonsMobile,
