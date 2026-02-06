@@ -97,3 +97,23 @@
     border-color: var(--color-bg-brand-base-hover);
   }
 }
+
+.pinnedStatusHeader {
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+
+  > :global(.status__relative-time) {
+    grid-column: 2;
+    height: auto;
+  }
+
+  > :global(.status__display-name) {
+    grid-row: span 2;
+  }
+
+  > :global(.account-role) {
+    justify-self: end;
+  }
+}

@@ -12,9 +12,13 @@ import {
 } from '@/mastodon/actions/timelines_typed';
 import { Button } from '@/mastodon/components/button';
 import { Icon } from '@/mastodon/components/icon';
+import { StatusHeader } from '@/mastodon/components/status/header';
+import type { StatusHeaderRenderFn } from '@/mastodon/components/status/header';
 import { StatusQuoteManager } from '@/mastodon/components/status_quoted';
 import { selectTimelineByKey } from '@/mastodon/selectors/timelines';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+
+import { PinnedBadge } from '../components/badges';
 
 import classes from './styles.module.scss';
 
@@ -65,7 +69,8 @@ export const PinnedStatuses: FC<{ accountId: string; tagged?: string }> = ({
           id={id}
           featured
           contextType='account'
-          showThead
+          showThread
+          headerRenderFn={renderHeader}
         />
       ))}
       {!showOverflow && pinnedTimeline.items.size > 1 && (
@@ -83,3 +88,9 @@ export const PinnedStatuses: FC<{ accountId: string; tagged?: string }> = ({
     </div>
   );
 };
+
+const renderHeader: StatusHeaderRenderFn = (args) => (
+  <StatusHeader {...args} className={classes.pinnedStatusHeader}>
+    <PinnedBadge />
+  </StatusHeader>
+);
