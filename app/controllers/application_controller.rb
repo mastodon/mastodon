@@ -61,11 +61,15 @@ class ApplicationController < ActionController::Base
     return if request.referer.blank?
 
     redirect_uri = URI(request.referer)
-    return if redirect_uri.path.start_with?('/auth')
+    return if redirect_uri.path.start_with?('/auth', '/settings/two_factor_authentication', '/settings/otp_authentication')
 
     stored_url = redirect_uri.to_s if redirect_uri.host == request.host && redirect_uri.port == request.port
 
     store_location_for(:user, stored_url)
+  end
+
+  def mfa_setup_path(params = {})
+    settings_two_factor_authentication_methods_path(params)
   end
 
   def require_functional!
@@ -74,7 +78,7 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.any do
         if current_user.missing_2fa?
-          redirect_to settings_two_factor_authentication_methods_path
+          redirect_to mfa_setup_path
         elsif current_user.confirmed?
           redirect_to edit_user_registration_path
         else

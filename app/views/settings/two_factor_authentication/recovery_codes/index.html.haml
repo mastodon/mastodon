@@ -7,3 +7,9 @@
   - @recovery_codes.each do |code|
     %li<
       %samp= code
+
+- if params[:oauth]
+  %hr.spacer/
+
+  .simple_form
+    = link_to t('two_factor_authentication.resume_app_authorization'), return_to_app_url, class: 'button button--block'

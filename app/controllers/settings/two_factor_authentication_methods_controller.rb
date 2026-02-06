@@ -22,7 +22,7 @@ module Settings
     private
 
     def require_otp_enabled
-      redirect_to settings_otp_authentication_path unless current_user.otp_enabled?
+      redirect_to settings_otp_authentication_path(params.permit(:oauth)) unless current_user.otp_enabled?
     end
   end
 end
