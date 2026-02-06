@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { useSearchParam } from '@/mastodon/hooks/useSearchParam';
 
 export function useFilters() {
-  const [boosts, setBoosts] = useSearchParam('boosts');
+  const [boosts = '1', setBoosts] = useSearchParam('boosts');
   const [replies, setReplies] = useSearchParam('replies');
 
   const handleSetBoosts = useCallback(
