@@ -14,6 +14,7 @@ export interface StatusProps {
   muted?: boolean;
   hidden?: boolean;
   unread?: boolean;
+  featured?: boolean;
   showThread?: boolean;
   showActions?: boolean;
   isQuotedPost?: boolean;

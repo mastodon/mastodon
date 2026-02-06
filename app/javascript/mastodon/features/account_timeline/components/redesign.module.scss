@@ -296,6 +296,11 @@ svg.badgeIcon {
     text-decoration: none;
     color: var(--color-text-primary);
     border-radius: 0;
+    transition: color 0.2s ease-in-out;
+
+    &:not([aria-current='page']):is(:hover, :focus) {
+      color: var(--color-text-brand-soft);
+    }
   }
 
   :global(.active) {

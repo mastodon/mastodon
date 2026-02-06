@@ -27,10 +27,12 @@ export const TIMELINE_INSERT          = 'TIMELINE_INSERT';
 // When adding new special markers here, make sure to update TIMELINE_NON_STATUS_MARKERS in actions/timelines_typed.js
 export const TIMELINE_SUGGESTIONS = 'inline-follow-suggestions';
 export const TIMELINE_GAP = null;
+export const TIMELINE_PINNED_VIEW_ALL = 'pinned-view-all';
 
 export const TIMELINE_NON_STATUS_MARKERS = [
   TIMELINE_GAP,
   TIMELINE_SUGGESTIONS,
+  TIMELINE_PINNED_VIEW_ALL,
 ];
 
 export const loadPending = timeline => ({
