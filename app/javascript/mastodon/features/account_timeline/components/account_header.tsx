@@ -3,18 +3,23 @@ import { useCallback } from 'react';
 import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 
+import { openModal } from '@/mastodon/actions/modal';
 import { AccountBio } from '@/mastodon/components/account_bio';
+import { Avatar } from '@/mastodon/components/avatar';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
+import { AccountNote } from '@/mastodon/features/account/components/account_note';
+import FollowRequestNoteContainer from '@/mastodon/features/account/containers/follow_request_note_container';
 import { useVisibility } from '@/mastodon/hooks/useVisibility';
-import { openModal } from 'mastodon/actions/modal';
-import { Avatar } from 'mastodon/components/avatar';
-import { AccountNote } from 'mastodon/features/account/components/account_note';
-import FollowRequestNoteContainer from 'mastodon/features/account/containers/follow_request_note_container';
-import { autoPlayGif, me, domain as localDomain } from 'mastodon/initial_state';
-import type { Account } from 'mastodon/models/account';
-import { getAccountHidden } from 'mastodon/selectors/accounts';
-import { useAppSelector, useAppDispatch } from 'mastodon/store';
+import {
+  autoPlayGif,
+  me,
+  domain as localDomain,
+} from '@/mastodon/initial_state';
+import type { Account } from '@/mastodon/models/account';
+import { getAccountHidden } from '@/mastodon/selectors/accounts';
+import { useAppSelector, useAppDispatch } from '@/mastodon/store';
 
+import { useColumnsContext } from '../../ui/util/columns_context';
 import { isRedesignEnabled } from '../common';
 
 import { AccountName } from './account_name';
@@ -46,6 +51,8 @@ export const AccountHeader: React.FC<{
   accountId: string;
   hideTabs?: boolean;
 }> = ({ accountId, hideTabs }) => {
+  const { multiColumn } = useColumnsContext();
+
   const dispatch = useAppDispatch();
   const account = useAppSelector((state) => state.accounts.get(accountId));
   const relationship = useAppSelector((state) =>
@@ -93,7 +100,12 @@ export const AccountHeader: React.FC<{
   const isMe = me && account.id === me;
 
   return (
-    <div className='account-timeline__header'>
+    <div
+      className={classNames(
+        'account-timeline__header',
+        multiColumn && redesignClasses.isMulticolumn,
+      )}
+    >
       {!hidden && account.memorial && <MemorialNote />}
       {!hidden && account.moved && (
         <MovedNote accountId={account.id} targetAccountId={account.moved} />
@@ -108,7 +120,12 @@ export const AccountHeader: React.FC<{
           <FollowRequestNoteContainer account={account} />
         )}
 
-        <div className='account__header__image'>
+        <div
+          className={classNames(
+            'account__header__image',
+            isRedesignEnabled() && redesignClasses.header,
+          )}
+        >
           {me !== account.id && relationship && !isRedesignEnabled() && (
             <AccountInfo relationship={relationship} />
           )}
