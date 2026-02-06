@@ -44,7 +44,7 @@
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :favicon,
                 as: :file,
-                input_html: { accept: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].join(',') },
+                input_html: { accept: f.object.class::UPLOAD_MIME_TYPES },
                 wrapper: :with_block_label
 
     .fields-row__column.fields-row__column-6.fields-group
@@ -58,7 +58,7 @@
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :app_icon,
                 as: :file,
-                input_html: { accept: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].join(',') },
+                input_html: { accept: f.object.class::UPLOAD_MIME_TYPES },
                 wrapper: :with_block_label
 
     .fields-row__column.fields-row__column-6.fields-group
