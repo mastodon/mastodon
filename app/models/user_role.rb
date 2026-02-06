@@ -161,7 +161,7 @@ class UserRole < ApplicationRecord
     @computed_permissions ||= begin
       permissions = self.class.everyone.permissions | self.permissions
 
-      if permissions & FLAGS[:administrator] == FLAGS[:administrator]
+      if administrator?
         Flags::ALL
       else
         permissions
@@ -171,6 +171,10 @@ class UserRole < ApplicationRecord
 
   def to_log_human_identifier
     name
+  end
+
+  def administrator?
+    permissions & FLAGS[:administrator] == FLAGS[:administrator]
   end
 
   private
@@ -190,6 +194,7 @@ class UserRole < ApplicationRecord
 
     errors.add(:permissions_as_keys, :own_role) if permissions_changed?
     errors.add(:position, :own_role) if position_changed?
+    errors.add(:require_2fa, :own_role) if require_2fa_changed? && !administrator?
   end
 
   def validate_permissions_elevation
