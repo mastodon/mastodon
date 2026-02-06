@@ -17,6 +17,7 @@
 
 .nameWrapper {
   display: flex;
+  align-items: start;
   gap: 16px;
 }
 
@@ -25,6 +26,10 @@
   font-size: 22px;
   white-space: initial;
   line-height: normal;
+
+  > h1 {
+    white-space: initial;
+  }
 }
 
 .username {
