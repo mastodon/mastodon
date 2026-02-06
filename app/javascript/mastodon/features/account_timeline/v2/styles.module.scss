@@ -69,10 +69,8 @@
     padding-left: 24px;
     padding-right: 24px;
   }
-}
 
-.pinnedCollapsed {
-  :global(.status):has(.pinnedStatusHeader) {
+  &:has(.pinnedViewAllButton) :global(.status):has(.pinnedStatusHeader) {
     border-bottom: none;
   }
 

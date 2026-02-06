@@ -102,11 +102,8 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
     [accountId, dispatch, key],
   );
 
-  const {
-    isLoading: isPinnedLoading,
-    statusIds: pinnedStatusIds,
-    showAllPinned,
-  } = usePinnedStatusIds({ accountId, tagged, forceEmptyState });
+  const { isLoading: isPinnedLoading, statusIds: pinnedStatusIds } =
+    usePinnedStatusIds({ accountId, tagged, forceEmptyState });
 
   const isLoading = !!timeline?.isLoading || isPinnedLoading;
 
@@ -130,10 +127,7 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
         bindToDocument={!multiColumn}
         timelineId='account'
         withCounters
-        className={classNames(
-          classes.statusWrapper,
-          !showAllPinned && classes.pinnedCollapsed,
-        )}
+        className={classNames(classes.statusWrapper)}
         statusProps={{ headerRenderFn: renderPinnedStatusHeader }}
       />
     </Column>
