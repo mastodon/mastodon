@@ -64,6 +64,9 @@ RSpec.describe AccountStatusesFilter do
 
         expect(results_for(exclude_reblogs: true))
           .to all(satisfy { |status| !status.reblog? })
+
+        expect(results_for(exclude_direct: true))
+          .to all(satisfy { |status| !status.direct_visibility? })
       end
 
       def results_for(params)
@@ -76,6 +79,18 @@ RSpec.describe AccountStatusesFilter do
     context 'when accessed anonymously' do
       let(:current_account) { nil }
       let(:direct_status) { nil }
+
+      context 'when rejecting direct messages' do
+        let(:params) { { exclude_direct: true } }
+
+        it 'returns only public statuses, public replies, and public reblogs' do
+          expect(results_unique_visibilities).to match_array %w(unlisted public)
+
+          expect(results_in_reply_to_ids).to_not be_empty
+
+          expect(results_reblog_of_ids).to_not be_empty
+        end
+      end
 
       it 'returns only public statuses, public replies, and public reblogs' do
         expect(results_unique_visibilities).to match_array %w(unlisted public)
@@ -93,6 +108,14 @@ RSpec.describe AccountStatusesFilter do
 
       before do
         account.block!(current_account)
+      end
+
+      context 'when rejecting direct messages' do
+        let(:params) { { exclude_direct: true } }
+
+        it 'returns nothing' do
+          expect(subject.to_a).to be_empty
+        end
       end
 
       it 'returns nothing' do
@@ -121,6 +144,18 @@ RSpec.describe AccountStatusesFilter do
         current_account.follow!(account)
       end
 
+      context 'when rejecting direct messages' do
+        let(:params) { { exclude_direct: true } }
+
+        it 'returns private statuses, replies, and reblogs' do
+          expect(results_unique_visibilities).to match_array %w(private unlisted public)
+
+          expect(results_in_reply_to_ids).to_not be_empty
+
+          expect(results_reblog_of_ids).to_not be_empty
+        end
+      end
+
       it 'returns private statuses, replies, and reblogs' do
         expect(results_unique_visibilities).to match_array %w(private unlisted public)
 
@@ -135,6 +170,8 @@ RSpec.describe AccountStatusesFilter do
         it 'returns the direct status' do
           expect(results_ids).to include(direct_status.id)
         end
+
+        it_behaves_like 'filter params'
       end
 
       it_behaves_like 'filter params'
@@ -142,6 +179,18 @@ RSpec.describe AccountStatusesFilter do
 
     context 'when accessed by a non-follower' do
       let(:current_account) { Fabricate(:account) }
+
+      context 'when rejecting direct messages' do
+        let(:params) { { exclude_direct: true } }
+
+        it 'returns private statuses, replies, and reblogs' do
+          expect(results_unique_visibilities).to match_array %w(unlisted public)
+
+          expect(results_in_reply_to_ids).to_not be_empty
+
+          expect(results_reblog_of_ids).to_not be_empty
+        end
+      end
 
       it 'returns only public statuses, replies, and reblogs' do
         expect(results_unique_visibilities).to match_array %w(unlisted public)
@@ -157,6 +206,8 @@ RSpec.describe AccountStatusesFilter do
         it 'returns the private status' do
           expect(results_ids).to include(private_status.id)
         end
+
+        it_behaves_like 'filter params'
       end
 
       context 'when blocking a reblogged account' do
