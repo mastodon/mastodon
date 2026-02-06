@@ -1343,6 +1343,38 @@ body > [data-popper-placement] {
   }
 }
 
+@each $lang in $vertical-lr-langs {
+  // writing-mode and width must be applied to a single element. When
+  // this element inherits a text direction that is opposite to its own,
+  // the start of this element's text is cut off.
+
+  .status:not(.status--is-quote)
+    > .status__content
+    > .status__content__text:lang(#{$lang}),
+  .conversation
+    > .conversation__content
+    > .status__content
+    > .status__content__text:lang(#{$lang}) {
+    writing-mode: vertical-lr;
+    width: 100%; // detecting overflow
+    max-width: calc(100% - mod(100%, 22px)); // avoid cut-offs
+    max-height: 209px; // roughly above 500 characters, readable
+    overflow-x: hidden; // read more
+  }
+
+  .autosuggest-textarea > .autosuggest-textarea__textarea:lang(#{$lang}) {
+    writing-mode: vertical-lr;
+    min-height: 209px; // writable
+  }
+
+  .detailed-status > .status__content > .status__content__text:lang(#{$lang}) {
+    writing-mode: vertical-lr;
+    width: 100%; // detecting overflow
+    max-height: 50vh;
+    overflow-x: auto;
+  }
+}
+
 .status__content.status__content--collapsed {
   max-height: 22px * 15; // 15 lines is roughly above 500 characters
 }
