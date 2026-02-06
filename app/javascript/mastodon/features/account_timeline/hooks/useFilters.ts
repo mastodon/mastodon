@@ -1,27 +1,39 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
-import { useSearchParam } from '@/mastodon/hooks/useSearchParam';
+import { useAccountId } from '@/mastodon/hooks/useAccountId';
+import { useStorage } from '@/mastodon/hooks/useStorage';
 
 export function useFilters() {
-  const [boosts = '1', setBoosts] = useSearchParam('boosts');
-  const [replies, setReplies] = useSearchParam('replies');
+  const accountId = useAccountId();
+  const { getItem, setItem } = useStorage({
+    type: 'session',
+    prefix: `filters-${accountId}:`,
+  });
+  const [boosts, setBoosts] = useState(
+    () => (getItem('boosts') === '0' ? false : true), // Default to enabled.
+  );
+  const [replies, setReplies] = useState(() =>
+    getItem('replies') === '1' ? true : false,
+  );
 
   const handleSetBoosts = useCallback(
     (value: boolean) => {
-      setBoosts(value ? '1' : null);
+      setBoosts(value);
+      setItem('boosts', value ? '1' : '0');
     },
-    [setBoosts],
+    [setBoosts, setItem],
   );
   const handleSetReplies = useCallback(
     (value: boolean) => {
-      setReplies(value ? '1' : null);
+      setReplies(value);
+      setItem('replies', value ? '1' : '0');
     },
-    [setReplies],
+    [setReplies, setItem],
   );
 
   return {
-    boosts: boosts === '1',
-    replies: replies === '1',
+    boosts,
+    replies,
     setBoosts: handleSetBoosts,
     setReplies: handleSetReplies,
   };

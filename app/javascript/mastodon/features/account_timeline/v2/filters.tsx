@@ -101,7 +101,6 @@ const FilterDropdown: FC = () => {
       <Overlay
         show={open}
         target={buttonRef}
-        flip
         placement='bottom-start'
         rootClose
         onHide={handleHide}
