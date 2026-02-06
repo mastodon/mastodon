@@ -178,9 +178,15 @@ export const timelineDelete = createAction<{
 }>('timelines/delete');
 
 export const timelineExpandPinnedFromStatus = createAppThunk(
-  (status: Status, { dispatch }) => {
+  (status: Status, { dispatch, getState }) => {
     const accountId = status.getIn(['account', 'id']) as string;
     if (!accountId) {
+      return;
+    }
+
+    // Verify that any of the relevant timelines are actually expanded before dispatching, to avoid unnecessary API calls.
+    const timelines = getState().timelines as ImmutableMap<string, unknown>;
+    if (!timelines.some((_, key) => key.startsWith(`account:${accountId}:`))) {
       return;
     }
 
