@@ -21,7 +21,7 @@ RSpec.describe ActivityPub::ProcessCollectionService do
     }
   end
 
-  let(:json) { Oj.dump(payload) }
+  let(:json) { JSON.generate(payload) }
 
   describe '#call' do
     context 'when actor is suspended' do
