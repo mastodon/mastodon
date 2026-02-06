@@ -34,7 +34,7 @@ class SuspendAccountService < BaseService
 
     Follow.where(account: @account).find_in_batches do |follows|
       ActivityPub::DeliveryWorker.push_bulk(follows) do |follow|
-        [Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), follow.target_account_id, @account.inbox_url]
+        [JSON.generate(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), follow.target_account_id, @account.inbox_url]
       end
 
       follows.each(&:destroy)
@@ -72,6 +72,6 @@ class SuspendAccountService < BaseService
   end
 
   def signed_activity_json
-    @signed_activity_json ||= Oj.dump(serialize_payload(@account, ActivityPub::UpdateActorSerializer, signer: @account))
+    @signed_activity_json ||= JSON.generate(serialize_payload(@account, ActivityPub::UpdateActorSerializer, signer: @account))
   end
 end

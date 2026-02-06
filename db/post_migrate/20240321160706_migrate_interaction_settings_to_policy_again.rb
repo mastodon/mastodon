@@ -21,7 +21,7 @@ class MigrateInteractionSettingsToPolicyAgain < ActiveRecord::Migration[7.1]
   private
 
   def policy_for_user(user)
-    deserialized_settings = Oj.load(user.attributes_before_type_cast['settings'])
+    deserialized_settings = JSON.parse(user.attributes_before_type_cast['settings'])
     return if deserialized_settings.nil?
     return if user.notification_policy.present?
 

@@ -173,7 +173,7 @@ class User < ApplicationRecord
 
     # This terminates all connections for the given account with the streaming
     # server:
-    redis.publish("timeline:system:#{account.id}", Oj.dump(event: :kill))
+    redis.publish("timeline:system:#{account.id}", JSON.generate(event: :kill))
   end
 
   def enable!
@@ -345,7 +345,7 @@ class User < ApplicationRecord
       # Revoke each access token for the Streaming API, since `update_all``
       # doesn't trigger ActiveRecord Callbacks:
       # TODO: #28793 Combine into a single topic
-      payload = Oj.dump(event: :kill)
+      payload = JSON.generate(event: :kill)
       redis.pipelined do |pipeline|
         batch.ids.each do |id|
           pipeline.publish("timeline:access_token:#{id}", payload)

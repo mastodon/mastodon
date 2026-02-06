@@ -38,7 +38,7 @@ class Api::V1::AccountsController < Api::BaseController
 
     headers.merge!(response.headers)
 
-    self.response_body = Oj.dump(response.body)
+    self.response_body = JSON.generate(response.body)
     self.status        = response.status
   rescue ActiveRecord::RecordInvalid => e
     render json: ValidationErrorFormatter.new(e, 'account.username': :username, 'invite_request.text': :reason).as_json, status: 422
