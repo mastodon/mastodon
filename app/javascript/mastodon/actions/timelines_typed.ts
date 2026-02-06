@@ -125,7 +125,24 @@ export function parseTimelineKey(key: string): TimelineParams | null {
       type: 'account',
       userId,
       tagged: segments[3],
+      pinned: false,
+      boosts: false,
+      replies: false,
+      media: false,
     };
+
+    // Handle legacy keys.
+    const flagsSegment = segments[2];
+    if (!flagsSegment || !/^[01]{4}$/.test(flagsSegment)) {
+      if (flagsSegment === 'pinned') {
+        parsed.pinned = true;
+      } else if (flagsSegment === 'with_replies') {
+        parsed.replies = true;
+      } else if (flagsSegment === 'media') {
+        parsed.media = true;
+      }
+      return parsed;
+    }
 
     const view = segments[2]?.split('') ?? [];
     for (let i = 0; i < view.length; i++) {
@@ -154,6 +171,11 @@ export function parseTimelineKey(key: string): TimelineParams | null {
   }
 
   return null;
+}
+
+export function isTimelineKeyPinned(key: string) {
+  const parsedKey = parseTimelineKey(key);
+  return parsedKey?.type === 'account' && parsedKey.pinned;
 }
 
 export function isNonStatusId(value: unknown) {

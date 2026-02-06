@@ -57,4 +57,29 @@ describe('parseTimelineKey', () => {
       tagged: 'nature',
     });
   });
+
+  test('parses legacy account timeline key with pinned correctly', () => {
+    const params = parseTimelineKey('account:789:pinned:nature');
+    expect(params).toEqual({
+      type: 'account',
+      userId: '789',
+      replies: false,
+      boosts: false,
+      media: false,
+      pinned: true,
+      tagged: 'nature',
+    });
+  });
+
+  test('parses legacy account timeline key with media correctly', () => {
+    const params = parseTimelineKey('account:789:media');
+    expect(params).toEqual({
+      type: 'account',
+      userId: '789',
+      replies: false,
+      boosts: false,
+      media: true,
+      pinned: false,
+    });
+  });
 });
