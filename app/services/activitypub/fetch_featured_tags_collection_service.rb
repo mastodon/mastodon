@@ -11,7 +11,7 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
 
     return unless supported_context?(@json)
 
-    @items, = collection_items(@json, max_items: FeaturedTag::LIMIT, reference_uri: @account.uri, on_behalf_of: local_follower)
+    @items, = collection_items(@json, max_items: FeaturedTag::LIMIT, max_pages: FeaturedTag::LIMIT, reference_uri: @account.uri, on_behalf_of: local_follower)
     process_items(@items)
   end
 
