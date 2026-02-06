@@ -19,7 +19,6 @@ import type { Account } from '@/mastodon/models/account';
 import { getAccountHidden } from '@/mastodon/selectors/accounts';
 import { useAppSelector, useAppDispatch } from '@/mastodon/store';
 
-import { useColumnsContext } from '../../ui/util/columns_context';
 import { isRedesignEnabled } from '../common';
 
 import { AccountName } from './account_name';
@@ -51,7 +50,6 @@ export const AccountHeader: React.FC<{
   accountId: string;
   hideTabs?: boolean;
 }> = ({ accountId, hideTabs }) => {
-  const { multiColumn } = useColumnsContext();
   const isRedesign = isRedesignEnabled();
 
   const dispatch = useAppDispatch();
@@ -101,12 +99,7 @@ export const AccountHeader: React.FC<{
   const isMe = me && account.id === me;
 
   return (
-    <div
-      className={classNames(
-        'account-timeline__header',
-        multiColumn && redesignClasses.isMulticolumn,
-      )}
-    >
+    <div className='account-timeline__header'>
       {!hidden && account.memorial && <MemorialNote />}
       {!hidden && account.moved && (
         <MovedNote accountId={account.id} targetAccountId={account.moved} />

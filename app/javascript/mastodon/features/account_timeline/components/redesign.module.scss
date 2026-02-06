@@ -2,12 +2,8 @@
   height: 120px;
   background: var(--color-bg-secondary);
 
-  @media screen and (width >= 600px) {
+  @container (width >= 500px) {
     height: 160px;
-  }
-
-  .isMulticolumn & {
-    height: 120px; // Force smaller header height in multicolumn mode.
   }
 }
 
