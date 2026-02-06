@@ -19,6 +19,6 @@ class RevokeCollectionItemService < BaseService
   end
 
   def signed_activity_json
-    @signed_activity_json ||= Oj.dump(serialize_payload(@collection_item, ActivityPub::DeleteFeatureAuthorizationSerializer, signer: @account, always_sign: true))
+    @signed_activity_json ||= JSON.generate(serialize_payload(@collection_item, ActivityPub::DeleteFeatureAuthorizationSerializer, signer: @account, always_sign: true))
   end
 end

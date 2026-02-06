@@ -23,7 +23,7 @@ class BackupService < BaseService
     skeleton = serialize(collection_presenter, ActivityPub::CollectionSerializer)
     skeleton[:@context] = full_context
     skeleton[:orderedItems] = ['!PLACEHOLDER!']
-    skeleton = Oj.dump(skeleton)
+    skeleton = JSON.generate(skeleton)
     prepend, append = skeleton.split('"!PLACEHOLDER!"')
     add_comma = false
 
@@ -44,7 +44,7 @@ class BackupService < BaseService
           end
         end
 
-        Oj.dump(item)
+        JSON.generate(item)
       end.join(','))
 
       GC.start
@@ -107,7 +107,7 @@ class BackupService < BaseService
     download_to_zip(zipfile, account.avatar, "avatar#{File.extname(account.avatar.path)}") if account.avatar.exists?
     download_to_zip(zipfile, account.header, "header#{File.extname(account.header.path)}") if account.header.exists?
 
-    json = Oj.dump(actor)
+    json = JSON.generate(actor)
 
     zipfile.get_output_stream('actor.json') do |io|
       io.write(json)
@@ -118,7 +118,7 @@ class BackupService < BaseService
     skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'likes.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
     skeleton.delete(:totalItems)
     skeleton[:orderedItems] = ['!PLACEHOLDER!']
-    skeleton = Oj.dump(skeleton)
+    skeleton = JSON.generate(skeleton)
     prepend, append = skeleton.split('"!PLACEHOLDER!"')
 
     zipfile.get_output_stream('likes.json') do |io|
@@ -131,7 +131,7 @@ class BackupService < BaseService
         add_comma = true
 
         io.write(statuses.map do |status|
-          Oj.dump(ActivityPub::TagManager.instance.uri_for(status))
+          JSON.generate(ActivityPub::TagManager.instance.uri_for(status))
         end.join(','))
 
         GC.start
@@ -145,7 +145,7 @@ class BackupService < BaseService
     skeleton = serialize(ActivityPub::CollectionPresenter.new(id: 'bookmarks.json', type: :ordered, size: 0, items: []), ActivityPub::CollectionSerializer)
     skeleton.delete(:totalItems)
     skeleton[:orderedItems] = ['!PLACEHOLDER!']
-    skeleton = Oj.dump(skeleton)
+    skeleton = JSON.generate(skeleton)
     prepend, append = skeleton.split('"!PLACEHOLDER!"')
 
     zipfile.get_output_stream('bookmarks.json') do |io|
@@ -157,7 +157,7 @@ class BackupService < BaseService
         add_comma = true
 
         io.write(statuses.map do |status|
-          Oj.dump(ActivityPub::TagManager.instance.uri_for(status))
+          JSON.generate(ActivityPub::TagManager.instance.uri_for(status))
         end.join(','))
 
         GC.start
