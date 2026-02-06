@@ -50,7 +50,7 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
 
     if (!next && !isLoadingRecent) mMap.set('hasMore', false);
 
-    if (timeline.endsWith(':pinned')) {
+    if (timeline.includes(':pinned')) {
       mMap.set('items', statuses.map(status => status.get('id')));
     } else if (!statuses.isEmpty()) {
       usePendingItems = isLoadingRecent && (usePendingItems || !mMap.get('pendingItems').isEmpty());

@@ -1,10 +1,16 @@
 import { createAction } from '@reduxjs/toolkit';
+import type { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 
 import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
 
+import type { Status } from '../models/status';
 import { createAppThunk } from '../store/typed_functions';
 
-import { expandTimeline, TIMELINE_NON_STATUS_MARKERS } from './timelines';
+import {
+  expandAccountFeaturedTimeline,
+  expandTimeline,
+  TIMELINE_NON_STATUS_MARKERS,
+} from './timelines';
 
 export const expandTimelineByKey = createAppThunk(
   (args: { key: string; maxId?: number }, { dispatch }) => {
@@ -170,3 +176,47 @@ export const timelineDelete = createAction<{
   references: string[];
   reblogOf: string | null;
 }>('timelines/delete');
+
+export const timelineExpandPinnedFromStatus = createAppThunk(
+  (status: Status, { dispatch }) => {
+    const accountId = status.getIn(['account', 'id']) as string;
+    if (!accountId) {
+      return;
+    }
+
+    void dispatch(
+      expandTimelineByParams({
+        type: 'account',
+        userId: accountId,
+        pinned: true,
+      }),
+    );
+    void dispatch(expandAccountFeaturedTimeline(accountId));
+
+    // Iterate over tags and clear those too.
+    const tags = status.get('tags') as
+      | ImmutableList<ImmutableMap<'name', string>>
+      | undefined; // We only care about the tag name.
+    if (!tags) {
+      return;
+    }
+    tags.forEach((tag) => {
+      const tagName = tag.get('name');
+      if (!tagName) {
+        return;
+      }
+
+      void dispatch(
+        expandTimelineByParams({
+          type: 'account',
+          userId: accountId,
+          pinned: true,
+          tagged: tagName,
+        }),
+      );
+      void dispatch(
+        expandAccountFeaturedTimeline(accountId, { tagged: tagName }),
+      );
+    });
+  },
+);
