@@ -9,6 +9,7 @@ import { Avatar } from '@/mastodon/components/avatar';
 import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 import { AccountNote } from '@/mastodon/features/account/components/account_note';
 import FollowRequestNoteContainer from '@/mastodon/features/account/containers/follow_request_note_container';
+import { useLayout } from '@/mastodon/hooks/useLayout';
 import { useVisibility } from '@/mastodon/hooks/useVisibility';
 import {
   autoPlayGif,
@@ -84,9 +85,10 @@ export const AccountHeader: React.FC<{
     [dispatch, account],
   );
 
+  const { layout } = useLayout();
   const { observedRef, isIntersecting } = useVisibility({
     observerOptions: {
-      rootMargin: '0px 0px -55px 0px', // Height of bottom nav bar.
+      rootMargin: layout === 'mobile' ? '0px 0px -55px 0px' : '', // Height of bottom nav bar.
     },
   });
 

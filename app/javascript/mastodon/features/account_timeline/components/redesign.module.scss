@@ -132,6 +132,11 @@ $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
       display: none;
     }
   }
+
+  // Multi-column layout
+  @media (width >= #{$button-breakpoint}) {
+    bottom: 0;
+  }
 }
 
 .buttonsMobileIsStuck {
