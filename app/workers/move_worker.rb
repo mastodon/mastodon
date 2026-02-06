@@ -66,10 +66,10 @@ class MoveWorker
       # Clear any relationship cache, since callbacks are not called
       Rails.cache.delete_multi(follows.flat_map do |follow|
         [
-          ['relationship', follow.account_id, follow.target_account_id],
-          ['relationship', follow.target_account_id, follow.account_id],
-          ['relationship', follow.account_id, @target_account.id],
-          ['relationship', @target_account.id, follow.account_id],
+          ['relationships', follow.account_id, follow.target_account_id],
+          ['relationships', follow.target_account_id, follow.account_id],
+          ['relationships', follow.account_id, @target_account.id],
+          ['relationships', @target_account.id, follow.account_id],
         ]
       end)
     end
