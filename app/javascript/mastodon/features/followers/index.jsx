@@ -58,7 +58,7 @@ const RemoteHint = ({ accountId, url }) => {
 
   return (
     <TimelineHint
-      url={url}
+      url={`${url}/followers`}
       message={<FormattedMessage id='hints.profiles.followers_may_be_missing' defaultMessage='Followers for this profile may be missing.' />}
       label={<FormattedMessage id='hints.profiles.see_more_followers' defaultMessage='See more followers on {domain}' values={{ domain: <strong>{domain}</strong> }} />}
     />
