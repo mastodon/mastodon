@@ -24,7 +24,7 @@
       %tfoot
         %tr
           %td{ colspan: 3 }
-            = link_to_add_association form, :translations, class: 'table-action-link', partial: 'translation_fields', 'data-association-insertion-node': '.keywords-table tbody', 'data-association-insertion-method': 'append' do
+            = link_to_add_association form, :translations, class: 'table-action-link', partial: 'translation_fields', data: { association_insertion_node: '.keywords-table tbody', association_insertion_method: 'append' } do
               = safe_join([material_symbol('add'), t('admin.rules.add_translation')])
 
   .actions
