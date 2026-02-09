@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
+import IconPinned from '@/images/icons/icon_pinned.svg?react';
 import { fetchRelationships } from '@/mastodon/actions/accounts';
 import {
   AdminBadge,
@@ -14,6 +15,7 @@ import {
   GroupBadge,
   MutedBadge,
 } from '@/mastodon/components/badge';
+import { Icon } from '@/mastodon/components/icon';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import type { AccountRole } from '@/mastodon/models/account';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -106,48 +108,7 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
         <MutedBadge
           key='muted-badge'
           className={classNames(className, classes.badgeMuted)}
-        />,
-      );
-    } else if (
-      relationship.followed_by &&
-      (relationship.following || relationship.requested)
-    ) {
-      badges.push(
-        <Badge
-          key='mutuals-badge'
-          label={
-            <FormattedMessage
-              id='account.badges.mutuals'
-              defaultMessage='You follow each other'
-            />
-          }
-          className={className}
-        />,
-      );
-    } else if (relationship.followed_by) {
-      badges.push(
-        <Badge
-          key='follows-you-badge'
-          label={
-            <FormattedMessage
-              id='account.badges.follows_you'
-              defaultMessage='Follows you'
-            />
-          }
-          className={className}
-        />,
-      );
-    } else if (relationship.requested_by) {
-      badges.push(
-        <Badge
-          key='requested-to-follow-badge'
-          label={
-            <FormattedMessage
-              id='account.badges.requested_to_follow'
-              defaultMessage='Requested to follow you'
-            />
-          }
-          className={className}
+          expiresAt={relationship.muting_expires_at}
         />,
       );
     }
@@ -159,6 +120,16 @@ export const AccountBadges: FC<{ accountId: string }> = ({ accountId }) => {
 
   return <div className={'account__header__badges'}>{badges}</div>;
 };
+
+export const PinnedBadge: FC = () => (
+  <Badge
+    className={classes.badge}
+    icon={<Icon id='pinned' icon={IconPinned} />}
+    label={
+      <FormattedMessage id='account.timeline.pinned' defaultMessage='Pinned' />
+    }
+  />
+);
 
 function isAdminBadge(role: AccountRole) {
   const name = role.name.toLowerCase();

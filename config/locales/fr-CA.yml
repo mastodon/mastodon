@@ -12,7 +12,9 @@ fr-CA:
     followers:
       one: Abonné·e
       other: Abonné·e·s
-    following: Abonnements
+    following:
+      one: Abonnement
+      other: Abonnements
     instance_actor_flash: Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un utilisateur individuel. Il est utilisé à des fins de fédération et ne doit pas être suspendu.
     last_active: dernière activité
     link_verified_on: La propriété de ce lien a été vérifiée le %{date}
@@ -23,11 +25,11 @@ fr-CA:
       one: Message
       other: Messages
     posts_tab_heading: Messages
-    self_follow_error: Il n'est pas possible de suivre votre propre compte
+    self_follow_error: Suivre votre propre compte n'est pas autorisé
   admin:
     account_actions:
       action: Effectuer l'action
-      already_silenced: Ce compte a déjà été limité.
+      already_silenced: Ce compte est déjà limité.
       already_suspended: Ce compte est déjà suspendu.
       title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
@@ -50,7 +52,7 @@ fr-CA:
         title: Modifier le courriel pour %{username}
       change_role:
         changed_msg: Rôle modifié avec succès !
-        edit_roles: Gérer les rôles d'utilisateur·ices
+        edit_roles: Gérer les rôles d'utilisateur·ice
         label: Modifier le rôle
         no_role: Aucun rôle
         title: Modifier le rôle de %{username}
@@ -1789,9 +1791,9 @@ fr-CA:
   privacy:
     hint_html: "<strong>Personnalisez la façon dont votre profil et vos messages peuvent être découverts.</strong> Mastodon peut vous aider à atteindre un public plus large lorsque certains paramètres sont activés. Prenez le temps de les examiner pour vous assurer qu’ils sont configurés comme vous le souhaitez."
     privacy: Confidentialité
-    privacy_hint_html: Contrôlez ce que vous souhaitez divulguer. Les gens découvrent des profils intéressants en parcourant ceux suivis par d’autres personnes et des applications sympas en voyant lesquelles sont utilisées par d’autres pour publier des messages, mais vous préférez peut-être ne pas dévoiler ces informations.
+    privacy_hint_html: Contrôler ce que vous souhaitez divulguer. Les utilisateur·rice·s découvrent des profils intéressants en parcourant ceux suivis par d’autres personnes et des applications sympas en voyant celles utilisées pour publier des messages, mais vous préférez peut-être ne pas dévoiler ces informations.
     reach: Portée
-    reach_hint_html: Contrôlez si vous souhaitez être découvert et suivi par de nouvelles personnes. Voulez-vous que vos publications apparaissent sur l’écran Explorer ? Voulez-vous que d’autres personnes vous voient dans leurs recommandations de suivi ? Souhaitez-vous approuver automatiquement tous les nouveaux abonnés ou avoir un contrôle granulaire sur chacun d’entre eux ?
+    reach_hint_html: Contrôler si vous souhaitez être découvert et suivi par de nouvelles personnes. Voulez-vous que vos messages puissent apparaître dans les tendances ? Voulez-vous que d’autres personnes vous voient dans leurs recommandations de suivi ? Souhaitez-vous approuver automatiquement tous les nouveaux abonnés ou avoir un contrôle granulaire sur chacun d’entre eux ?
     search: Recherche
     search_hint_html: Contrôlez la façon dont vous voulez être retrouvé. Voulez-vous que les gens vous trouvent selon ce que vous avez publié publiquement ? Voulez-vous que des personnes extérieures à Mastodon trouvent votre profil en faisant des recherches sur le web ? N’oubliez pas que l’exclusion totale de tous les moteurs de recherche ne peut être garantie pour les informations publiques.
     title: Vie privée et visibilité

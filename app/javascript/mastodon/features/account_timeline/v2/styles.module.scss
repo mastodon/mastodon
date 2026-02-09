@@ -10,6 +10,12 @@
   font-weight: 500;
   display: flex;
   align-items: center;
+  transition: color 0.2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: var(--color-text-brand-soft);
+  }
 }
 
 .filterSelectIcon {
@@ -56,4 +62,58 @@
   flex-wrap: wrap;
   overflow: visible;
   max-width: none !important;
+}
+
+.statusWrapper {
+  :global(.status) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  &:has(.pinnedViewAllButton) :global(.status):has(.pinnedStatusHeader) {
+    border-bottom: none;
+  }
+
+  article:has(.pinnedViewAllButton) {
+    border-bottom: 1px solid var(--color-border-primary);
+  }
+}
+
+.pinnedViewAllButton {
+  background-color: var(--color-bg-primary);
+  border-radius: 8px;
+  border: 1px solid var(--color-border-primary);
+  box-sizing: border-box;
+  color: var(--color-text-primary);
+  line-height: normal;
+  margin: 12px 24px;
+  padding: 8px;
+  transition: border-color 0.2s ease-in-out;
+  width: calc(100% - 48px);
+
+  &:hover,
+  &:focus {
+    background-color: inherit;
+    border-color: var(--color-bg-brand-base-hover);
+  }
+}
+
+.pinnedStatusHeader {
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+
+  > :global(.status__relative-time) {
+    grid-column: 2;
+    height: auto;
+  }
+
+  > :global(.status__display-name) {
+    grid-row: span 2;
+  }
+
+  > :global(.account-role) {
+    justify-self: end;
+  }
 }

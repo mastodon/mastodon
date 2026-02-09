@@ -32,6 +32,6 @@ class CreateCollectionService
   end
 
   def activity_json
-    ActiveModelSerializers::SerializableResource.new(@collection, serializer: ActivityPub::AddSerializer, adapter: ActivityPub::Adapter).to_json
+    ActiveModelSerializers::SerializableResource.new(@collection, serializer: ActivityPub::AddFeaturedCollectionSerializer, adapter: ActivityPub::Adapter).to_json
   end
 end

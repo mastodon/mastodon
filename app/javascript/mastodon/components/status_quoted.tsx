@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
 
 import type { Map as ImmutableMap } from 'immutable';
 
+import CancelFillIcon from '@/material-icons/400-24px/cancel-fill.svg?react';
 import { fetchRelationships } from 'mastodon/actions/accounts';
 import { revealAccount } from 'mastodon/actions/accounts_typed';
 import { fetchStatus } from 'mastodon/actions/statuses';
@@ -18,6 +19,9 @@ import type { RootState } from 'mastodon/store';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { Button } from './button';
+import { IconButton } from './icon_button';
+import type { StatusHeaderRenderFn } from './status/header';
+import { StatusHeader } from './status/header';
 
 const MAX_QUOTE_POSTS_NESTING_LEVEL = 1;
 
@@ -147,6 +151,11 @@ interface QuotedStatusProps {
   onQuoteCancel?: () => void; // Used for composer.
 }
 
+const quoteCancelMessage = defineMessage({
+  id: 'status.quote.cancel',
+  defaultMessage: 'Cancel quote',
+});
+
 export const QuotedStatus: React.FC<QuotedStatusProps> = ({
   quote,
   contextType,
@@ -212,6 +221,24 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
   useEffect(() => {
     if (accountId && hiddenAccount) dispatch(fetchRelationships([accountId]));
   }, [accountId, hiddenAccount, dispatch]);
+
+  const intl = useIntl();
+  const headerRenderFn: StatusHeaderRenderFn = useCallback(
+    (props) => (
+      <StatusHeader {...props}>
+        {onQuoteCancel && (
+          <IconButton
+            onClick={onQuoteCancel}
+            className='status__quote-cancel'
+            title={intl.formatMessage(quoteCancelMessage)}
+            icon='cancel-fill'
+            iconComponent={CancelFillIcon}
+          />
+        )}
+      </StatusHeader>
+    ),
+    [intl, onQuoteCancel],
+  );
 
   const isFilteredAndHidden = loadingState === 'filtered';
 
@@ -314,7 +341,7 @@ export const QuotedStatus: React.FC<QuotedStatusProps> = ({
         id={quotedStatusId}
         contextType={contextType}
         avatarSize={32}
-        onQuoteCancel={onQuoteCancel}
+        headerRenderFn={headerRenderFn}
       >
         {canRenderChildQuote && (
           <QuotedStatus

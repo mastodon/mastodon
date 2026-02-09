@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  padding: 20px;
+  gap: 16px;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+.content {
+  h3 {
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 15px;
+    margin-top: 8px;
+    color: var(--color-text-secondary);
+  }
+}

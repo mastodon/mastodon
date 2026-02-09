@@ -37,7 +37,7 @@ class StatusesController < ApplicationController
 
   def activity
     expires_in 3.minutes, public: @status.distributable? && public_fetch_mode?
-    render_with_cache json: ActivityPub::ActivityPresenter.from_status(@status), content_type: 'application/activity+json', serializer: ActivityPub::ActivitySerializer, adapter: ActivityPub::Adapter
+    render_with_cache json: @status, content_type: 'application/activity+json', serializer: activity_serializer, adapter: ActivityPub::Adapter
   end
 
   def embed
@@ -68,5 +68,9 @@ class StatusesController < ApplicationController
 
   def redirect_to_original
     redirect_to(ActivityPub::TagManager.instance.url_for(@status.reblog), allow_other_host: true) if @status.reblog?
+  end
+
+  def activity_serializer
+    @status.reblog? ? ActivityPub::AnnounceNoteSerializer : ActivityPub::CreateNoteSerializer
   end
 end

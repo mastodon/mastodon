@@ -96,8 +96,8 @@ GEM
     ast (2.4.3)
     attr_required (1.0.2)
     aws-eventstream (1.4.0)
-    aws-partitions (1.1210.0)
-    aws-sdk-core (3.241.4)
+    aws-partitions (1.1213.0)
+    aws-sdk-core (3.242.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
       aws-sigv4 (~> 1.9)
@@ -129,9 +129,9 @@ GEM
     binding_of_caller (1.0.1)
       debug_inspector (>= 1.2.0)
     blurhash (0.1.8)
-    bootsnap (1.20.1)
+    bootsnap (1.22.0)
       msgpack (~> 1.2)
-    brakeman (8.0.1)
+    brakeman (8.0.2)
       racc
     browser (6.2.0)
     builder (3.3.0)
@@ -187,16 +187,16 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     debug_inspector (1.2.0)
-    devise (4.9.4)
+    devise (5.0.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
+      railties (>= 7.0)
       responders
       warden (~> 1.2.3)
-    devise-two-factor (6.3.1)
-      activesupport (>= 7.0, < 8.2)
-      devise (>= 4.0, < 5.0)
-      railties (>= 7.0, < 8.2)
+    devise-two-factor (6.4.0)
+      activesupport (>= 7.2, < 8.2)
+      devise (>= 4.0, < 6.0)
+      railties (>= 7.2, < 8.2)
       rotp (~> 6.0)
     devise_pam_authenticatable2 (9.2.0)
       devise (>= 4.0.0)
@@ -210,7 +210,7 @@ GEM
       railties (>= 5)
     dotenv (3.2.0)
     drb (2.2.3)
-    dry-cli (1.3.0)
+    dry-cli (1.4.1)
     elasticsearch (7.17.11)
       elasticsearch-api (= 7.17.11)
       elasticsearch-transport (= 7.17.11)
@@ -236,7 +236,7 @@ GEM
     fabrication (3.0.0)
     faker (3.6.0)
       i18n (>= 1.8.11, < 2)
-    faraday (2.14.0)
+    faraday (2.14.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -277,7 +277,7 @@ GEM
       raabro (~> 1.4)
     globalid (1.3.0)
       activesupport (>= 6.1)
-    google-protobuf (4.33.2)
+    google-protobuf (4.33.5)
       bigdecimal
       rake (>= 13)
     googleapis-common-protos-types (1.22.0)
@@ -352,7 +352,7 @@ GEM
       azure-blob (~> 0.5.2)
       hashie (~> 5.0)
     jmespath (1.6.2)
-    json (2.18.0)
+    json (2.18.1)
     json-canonicalization (1.0.0)
     json-jwt (1.17.0)
       activesupport (>= 4.2)
@@ -390,7 +390,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    kt-paperclip (7.2.2)
+    kt-paperclip (7.3.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       marcel (~> 1.0.1)
@@ -446,7 +446,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0924)
+    mime-types-data (3.2026.0203)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     minitest (6.0.1)
@@ -472,7 +472,7 @@ GEM
     nokogiri (1.19.0)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    oj (3.16.13)
+    oj (3.16.15)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
     omniauth (2.1.4)
@@ -528,7 +528,7 @@ GEM
       opentelemetry-instrumentation-active_support (~> 0.10)
     opentelemetry-instrumentation-action_pack (0.15.1)
       opentelemetry-instrumentation-rack (~> 0.29)
-    opentelemetry-instrumentation-action_view (0.11.1)
+    opentelemetry-instrumentation-action_view (0.11.2)
       opentelemetry-instrumentation-active_support (~> 0.10)
     opentelemetry-instrumentation-active_job (0.10.1)
       opentelemetry-instrumentation-base (~> 0.25)
@@ -624,7 +624,7 @@ GEM
       date
       stringio
     public_suffix (7.0.2)
-    puma (7.1.0)
+    puma (7.2.0)
       nio4r (~> 2.0)
     pundit (2.5.2)
       activesupport (>= 3.0.0)
@@ -753,7 +753,7 @@ GEM
       rspec-expectations (~> 3.0)
       rspec-mocks (~> 3.0)
       sidekiq (>= 5, < 9)
-    rspec-support (3.13.6)
+    rspec-support (3.13.7)
     rubocop (1.84.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -862,7 +862,7 @@ GEM
       unicode-display_width (>= 1.1.1, < 4)
     terrapin (1.1.1)
       climate_control
-    test-prof (1.5.1)
+    test-prof (1.5.2)
     thor (1.5.0)
     tilt (2.7.0)
     timeout (0.6.0)
@@ -965,7 +965,7 @@ DEPENDENCIES
   csv (~> 3.2)
   database_cleaner-active_record
   debug (~> 1.8)
-  devise (~> 4.9)
+  devise
   devise-two-factor
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.2)
@@ -1099,4 +1099,4 @@ RUBY VERSION
   ruby 3.4.8
 
 BUNDLED WITH
-  4.0.3
+  4.0.6

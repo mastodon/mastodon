@@ -17,7 +17,7 @@ runs:
         sudo apt-get install -y libicu-dev libidn11-dev libvips42 ${{ inputs.additional-system-dependencies }}
 
     - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@09a7688d3b55cf0e976497ff046b70949eeaccfd # v1
       with:
         ruby-version: ${{ inputs.ruby-version }}
         bundler-cache: true

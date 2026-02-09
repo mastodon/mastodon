@@ -70,7 +70,8 @@ type CommonPayloadFields = Pick<
   ApiCollectionJSON,
   'name' | 'description' | 'sensitive' | 'discoverable'
 > & {
-  tag_name?: string;
+  tag_name?: string | null;
+  language?: ApiCollectionJSON['language'];
 };
 
 export interface ApiUpdateCollectionPayload extends Partial<CommonPayloadFields> {

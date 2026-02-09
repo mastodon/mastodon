@@ -2,21 +2,21 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::UpdateSerializer do
-  subject { serialized_record_json(account, described_class, adapter: ActivityPub::Adapter) }
+RSpec.describe ActivityPub::DeleteNoteSerializer do
+  subject { serialized_record_json(status, described_class, adapter: ActivityPub::Adapter) }
 
   let(:tag_manager) { ActivityPub::TagManager.instance }
-  let(:account) { Fabricate(:account) }
+  let(:status) { Fabricate(:status) }
 
   it 'serializes to the expected json' do
     expect(subject).to include({
-      'id' => "#{tag_manager.uri_for(account)}#updates/#{account.updated_at.to_i}",
-      'type' => 'Update',
-      'actor' => tag_manager.uri_for(account),
+      'id' => "#{tag_manager.uri_for(status)}#delete",
+      'type' => 'Delete',
+      'actor' => tag_manager.uri_for(status.account),
       'to' => ['https://www.w3.org/ns/activitystreams#Public'],
       'object' => a_hash_including({
-        'id' => tag_manager.uri_for(account),
-        'type' => 'Person',
+        'id' => tag_manager.uri_for(status),
+        'type' => 'Tombstone',
       }),
     })
 

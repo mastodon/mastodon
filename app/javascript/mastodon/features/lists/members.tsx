@@ -1,11 +1,9 @@
-import { useCallback, useState, useEffect, useRef } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
 import { useParams, Link } from 'react-router-dom';
-
-import { useDebouncedCallback } from 'use-debounce';
 
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
@@ -14,14 +12,12 @@ import { showAlertForError } from 'mastodon/actions/alerts';
 import { importFetchedAccounts } from 'mastodon/actions/importer';
 import { fetchList } from 'mastodon/actions/lists';
 import { openModal } from 'mastodon/actions/modal';
-import { apiRequest } from 'mastodon/api';
 import { apiFollowAccount } from 'mastodon/api/accounts';
 import {
   apiGetAccounts,
   apiAddAccountToList,
   apiRemoveAccountFromList,
 } from 'mastodon/api/lists';
-import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import { Avatar } from 'mastodon/components/avatar';
 import { Button } from 'mastodon/components/button';
 import { Column } from 'mastodon/components/column';
@@ -34,6 +30,8 @@ import { ShortNumber } from 'mastodon/components/short_number';
 import { VerifiedBadge } from 'mastodon/components/verified_badge';
 import { me } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
+
+import { useSearchAccounts } from './use_search_accounts';
 
 export const messages = defineMessages({
   manageMembers: {
@@ -163,9 +161,22 @@ const ListMembers: React.FC<{
 
   const [searching, setSearching] = useState(false);
   const [accountIds, setAccountIds] = useState<string[]>([]);
-  const [searchAccountIds, setSearchAccountIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(!!id);
   const [mode, setMode] = useState<Mode>('remove');
+
+  const {
+    accountIds: searchAccountIds = [],
+    isLoading: loadingSearchResults,
+    searchAccounts: handleSearch,
+  } = useSearchAccounts({
+    onSettled: (value) => {
+      if (value.trim().length === 0) {
+        setSearching(false);
+      } else {
+        setSearching(true);
+      }
+    },
+  });
 
   useEffect(() => {
     if (id) {
@@ -206,46 +217,6 @@ const ListMembers: React.FC<{
     [accountIds, setAccountIds],
   );
 
-  const searchRequestRef = useRef<AbortController | null>(null);
-
-  const handleSearch = useDebouncedCallback(
-    (value: string) => {
-      if (searchRequestRef.current) {
-        searchRequestRef.current.abort();
-      }
-
-      if (value.trim().length === 0) {
-        setSearching(false);
-        return;
-      }
-
-      setLoading(true);
-
-      searchRequestRef.current = new AbortController();
-
-      void apiRequest<ApiAccountJSON[]>('GET', 'v1/accounts/search', {
-        signal: searchRequestRef.current.signal,
-        params: {
-          q: value,
-          resolve: true,
-        },
-      })
-        .then((data) => {
-          dispatch(importFetchedAccounts(data));
-          setSearchAccountIds(data.map((a) => a.id));
-          setLoading(false);
-          setSearching(true);
-          return '';
-        })
-        .catch(() => {
-          setSearching(true);
-          setLoading(false);
-        });
-    },
-    500,
-    { leading: true, trailing: true },
-  );
-
   let displayedAccountIds: string[];
 
   if (mode === 'add' && searching) {
@@ -279,7 +250,7 @@ const ListMembers: React.FC<{
         scrollKey='list_members'
         trackScroll={!multiColumn}
         bindToDocument={!multiColumn}
-        isLoading={loading}
+        isLoading={loading || loadingSearchResults}
         showLoading={loading && displayedAccountIds.length === 0}
         hasMore={false}
         footer={

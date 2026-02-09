@@ -4,7 +4,7 @@ class REST::RelationshipSerializer < ActiveModel::Serializer
   # Please update `app/javascript/mastodon/api_types/relationships.ts` when making changes to the attributes
 
   attributes :id, :following, :showing_reblogs, :notifying, :languages, :followed_by,
-             :blocking, :blocked_by, :muting, :muting_notifications,
+             :blocking, :blocked_by, :muting, :muting_notifications, :muting_expires_at,
              :requested, :requested_by, :domain_blocking, :endorsed, :note
 
   def id
@@ -50,6 +50,10 @@ class REST::RelationshipSerializer < ActiveModel::Serializer
 
   def muting_notifications
     (instance_options[:relationships].muting[object.id] || {})[:notifications] || false
+  end
+
+  def muting_expires_at
+    (instance_options[:relationships].muting[object.id] || {})[:expires_at]&.iso8601
   end
 
   def requested

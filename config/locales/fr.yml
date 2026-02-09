@@ -12,7 +12,9 @@ fr:
     followers:
       one: Abonné·e
       other: Abonné·e·s
-    following: Abonnements
+    following:
+      one: Abonnement
+      other: Abonnements
     instance_actor_flash: Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un utilisateur individuel. Il est utilisé à des fins de fédération et ne doit pas être suspendu.
     last_active: dernière activité
     link_verified_on: La propriété de ce lien a été vérifiée le %{date}
@@ -23,11 +25,11 @@ fr:
       one: Message
       other: Messages
     posts_tab_heading: Messages
-    self_follow_error: Il n'est pas possible de suivre votre propre compte
+    self_follow_error: Suivre votre propre compte n'est pas autorisé
   admin:
     account_actions:
       action: Effectuer l'action
-      already_silenced: Ce compte a déjà été limité.
+      already_silenced: Ce compte est déjà limité.
       already_suspended: Ce compte est déjà suspendu.
       title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
@@ -46,18 +48,18 @@ fr:
         current_email: Adresse de courriel actuelle
         label: Modifier l’adresse de courriel
         new_email: Nouvelle adresse de courriel
-        submit: Modifier le courriel
+        submit: Modifier l’adresse de courriel
         title: Modifier l’adresse de courriel pour %{username}
       change_role:
         changed_msg: Rôle modifié avec succès !
-        edit_roles: Gérer les rôles d'utilisateur·ices
+        edit_roles: Gérer les rôles d'utilisateur·ice
         label: Modifier le rôle
         no_role: Aucun rôle
         title: Modifier le rôle de %{username}
       confirm: Confirmer
       confirmed: Confirmé
       confirming: Confirmation
-      custom: Personnalisé
+      custom: Personnaliser
       delete: Supprimer les données
       deleted: Supprimé
       demote: Rétrograder
@@ -1789,9 +1791,9 @@ fr:
   privacy:
     hint_html: "<strong>Personnalisez la façon dont votre profil et vos messages peuvent être découverts.</strong> Mastodon peut vous aider à atteindre un public plus large lorsque certains paramètres sont activés. Prenez le temps de les examiner pour vous assurer qu’ils sont configurés comme vous le souhaitez."
     privacy: Confidentialité
-    privacy_hint_html: Contrôlez ce que vous souhaitez divulguer. Les gens découvrent des profils intéressants en parcourant ceux suivis par d’autres personnes et des applications sympas en voyant lesquelles sont utilisées par d’autres pour publier des messages, mais vous préférez peut-être ne pas dévoiler ces informations.
+    privacy_hint_html: Contrôler ce que vous souhaitez divulguer. Les utilisateur·rice·s découvrent des profils intéressants en parcourant ceux suivis par d’autres personnes et des applications sympas en voyant celles utilisées pour publier des messages, mais vous préférez peut-être ne pas dévoiler ces informations.
     reach: Portée
-    reach_hint_html: Contrôlez si vous souhaitez être découvert et suivi par de nouvelles personnes. Voulez-vous que vos publications apparaissent sur l’écran Explorer ? Voulez-vous que d’autres personnes vous voient dans leurs recommandations de suivi ? Souhaitez-vous approuver automatiquement tous les nouveaux abonnés ou avoir un contrôle granulaire sur chacun d’entre eux ?
+    reach_hint_html: Contrôler si vous souhaitez être découvert et suivi par de nouvelles personnes. Voulez-vous que vos messages puissent apparaître dans les tendances ? Voulez-vous que d’autres personnes vous voient dans leurs recommandations de suivi ? Souhaitez-vous approuver automatiquement tous les nouveaux abonnés ou avoir un contrôle granulaire sur chacun d’entre eux ?
     search: Recherche
     search_hint_html: Contrôlez la façon dont vous voulez être retrouvé. Voulez-vous que les gens vous trouvent selon ce que vous avez publié publiquement ? Voulez-vous que des personnes extérieures à Mastodon trouvent votre profil en faisant des recherches sur le web ? N’oubliez pas que l’exclusion totale de tous les moteurs de recherche ne peut être garantie pour les informations publiques.
     title: Vie privée et visibilité
@@ -2105,7 +2107,7 @@ fr:
         disable: Vous ne pouvez plus utiliser votre compte, mais votre profil et d'autres données restent intacts. Vous pouvez demander une sauvegarde de vos données, modifier les paramètres de votre compte ou supprimer votre compte.
         mark_statuses_as_sensitive: Certains de vos messages ont été marqués comme sensibles par l'équipe de modération de %{instance}. Cela signifie qu'il faudra cliquer sur le média pour pouvoir en afficher un aperçu. Vous pouvez marquer les médias comme sensibles vous-même lorsque vous posterez à l'avenir.
         sensitive: Désormais, tous vos fichiers multimédias téléchargés seront marqués comme sensibles et cachés derrière un avertissement à cliquer.
-        silence: Vous pouvez toujours utiliser votre compte, mais seules les personnes qui vous suivent déjà verront vos messages sur ce serveur, et vous pourriez être exclu de diverses fonctions de découverte. Cependant, d'autres personnes peuvent toujours vous suivre manuellement.
+        silence: Vous pouvez toujours utiliser votre compte, mais seules les personnes qui vous suivent déjà verront vos messages sur ce serveur, et votre compte pourra être exclu des fonctions de découverte. Cependant, les utilisateur·rice·s peuvent toujours vous suivre manuellement.
         suspend: Vous ne pouvez plus utiliser votre compte, votre profil et vos autres données ne sont plus accessibles. Vous pouvez toujours vous connecter pour demander une sauvegarde de vos données jusqu'à leur suppression complète dans environ 30 jours, mais nous conserverons certaines données de base pour vous empêcher d'échapper à la suspension.
       reason: 'Motif :'
       statuses: 'Messages cités :'
