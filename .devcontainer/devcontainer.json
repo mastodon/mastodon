@@ -37,9 +37,7 @@
 
   "onCreateCommand": {
     "git": "git config --global --add safe.directory ${containerWorkspaceFolder}",
-    "mise-idiomatic-version-file-ruby": "mise settings add idiomatic_version_file_enable_tools ruby",
-    "mise-idiomatic-version-file-node": "mise settings add idiomatic_version_file_enable_tools node",
-    "mise-install": "mise install -y"
+    "mise": "mise settings add idiomatic_version_file_enable_tools ruby && mise settings add idiomatic_version_file_enable_tools node && mise install -y"
   },
   "postCreateCommand": "bin/setup",
   "waitFor": "postCreateCommand",
