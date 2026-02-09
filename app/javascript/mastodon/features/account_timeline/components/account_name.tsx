@@ -1,7 +1,7 @@
 import { useCallback, useId, useRef, useState } from 'react';
 import type { FC } from 'react';
 
-import { FormattedMessage, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -20,6 +20,18 @@ import { DomainPill } from '../../account/components/domain_pill';
 import { isRedesignEnabled } from '../common';
 
 import classes from './redesign.module.scss';
+
+const messages = defineMessages({
+  lockedInfo: {
+    id: 'account.locked_info',
+    defaultMessage:
+      'This account privacy status is set to locked. The owner manually reviews who can follow them.',
+  },
+  nameInfo: {
+    id: 'account.name_info',
+    defaultMessage: 'What does this mean?',
+  },
+});
 
 export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
   const intl = useIntl();
@@ -53,11 +65,7 @@ export const AccountName: FC<{ accountId: string }> = ({ accountId }) => {
             <Icon
               id='lock'
               icon={LockIcon}
-              aria-label={intl.formatMessage({
-                id: 'account.locked_info',
-                defaultMessage:
-                  'This account privacy status is set to locked. The owner manually reviews who can follow them.',
-              })}
+              aria-label={intl.formatMessage(messages.lockedInfo)}
             />
           )}
         </small>
@@ -88,6 +96,7 @@ const AccountNameHelp: FC<{
   isSelf: boolean;
 }> = ({ username, domain, isSelf }) => {
   const accessibilityId = useId();
+  const intl = useIntl();
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
@@ -105,7 +114,11 @@ const AccountNameHelp: FC<{
         aria-expanded={open}
         aria-controls={accessibilityId}
       >
-        <Icon id='help' icon={HelpIcon} />
+        <Icon
+          id='help'
+          icon={HelpIcon}
+          aria-label={intl.formatMessage(messages.nameInfo)}
+        />
       </button>
 
       <Overlay

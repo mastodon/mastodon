@@ -11,6 +11,11 @@
   border-bottom: none;
 }
 
+.avatarWrapper {
+  margin-top: -64px;
+  padding-top: 0;
+}
+
 .nameWrapper {
   display: flex;
   align-items: start;
@@ -65,7 +70,7 @@
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
   border-radius: 12px;
-  box-shadow: 0 1px 4px 0 var(--color-shadow-primary);
+  box-shadow: var(--dropdown-shadow);
   max-width: 400px;
   box-sizing: border-box;
 

@@ -141,7 +141,12 @@ export const AccountHeader: React.FC<{
             isRedesign && redesignClasses.barWrapper,
           )}
         >
-          <div className='account__header__tabs'>
+          <div
+            className={classNames(
+              'account__header__tabs',
+              isRedesign && redesignClasses.avatarWrapper,
+            )}
+          >
             <a
               className='avatar'
               href={account.avatar}
