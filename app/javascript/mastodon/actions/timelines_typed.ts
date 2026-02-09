@@ -1,10 +1,16 @@
 import { createAction } from '@reduxjs/toolkit';
+import type { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 
 import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
 
+import type { Status } from '../models/status';
 import { createAppThunk } from '../store/typed_functions';
 
-import { expandTimeline, TIMELINE_NON_STATUS_MARKERS } from './timelines';
+import {
+  expandAccountFeaturedTimeline,
+  expandTimeline,
+  TIMELINE_NON_STATUS_MARKERS,
+} from './timelines';
 
 export const expandTimelineByKey = createAppThunk(
   (args: { key: string; maxId?: number }, { dispatch }) => {
@@ -119,7 +125,24 @@ export function parseTimelineKey(key: string): TimelineParams | null {
       type: 'account',
       userId,
       tagged: segments[3],
+      pinned: false,
+      boosts: false,
+      replies: false,
+      media: false,
     };
+
+    // Handle legacy keys.
+    const flagsSegment = segments[2];
+    if (!flagsSegment || !/^[01]{4}$/.test(flagsSegment)) {
+      if (flagsSegment === 'pinned') {
+        parsed.pinned = true;
+      } else if (flagsSegment === 'with_replies') {
+        parsed.replies = true;
+      } else if (flagsSegment === 'media') {
+        parsed.media = true;
+      }
+      return parsed;
+    }
 
     const view = segments[2]?.split('') ?? [];
     for (let i = 0; i < view.length; i++) {
@@ -150,6 +173,11 @@ export function parseTimelineKey(key: string): TimelineParams | null {
   return null;
 }
 
+export function isTimelineKeyPinned(key: string) {
+  const parsedKey = parseTimelineKey(key);
+  return parsedKey?.type === 'account' && parsedKey.pinned;
+}
+
 export function isNonStatusId(value: unknown) {
   return TIMELINE_NON_STATUS_MARKERS.includes(value as string | null);
 }
@@ -170,3 +198,53 @@ export const timelineDelete = createAction<{
   references: string[];
   reblogOf: string | null;
 }>('timelines/delete');
+
+export const timelineExpandPinnedFromStatus = createAppThunk(
+  (status: Status, { dispatch, getState }) => {
+    const accountId = status.getIn(['account', 'id']) as string;
+    if (!accountId) {
+      return;
+    }
+
+    // Verify that any of the relevant timelines are actually expanded before dispatching, to avoid unnecessary API calls.
+    const timelines = getState().timelines as ImmutableMap<string, unknown>;
+    if (!timelines.some((_, key) => key.startsWith(`account:${accountId}:`))) {
+      return;
+    }
+
+    void dispatch(
+      expandTimelineByParams({
+        type: 'account',
+        userId: accountId,
+        pinned: true,
+      }),
+    );
+    void dispatch(expandAccountFeaturedTimeline(accountId));
+
+    // Iterate over tags and clear those too.
+    const tags = status.get('tags') as
+      | ImmutableList<ImmutableMap<'name', string>> // We only care about the tag name.
+      | undefined;
+    if (!tags) {
+      return;
+    }
+    tags.forEach((tag) => {
+      const tagName = tag.get('name');
+      if (!tagName) {
+        return;
+      }
+
+      void dispatch(
+        expandTimelineByParams({
+          type: 'account',
+          userId: accountId,
+          pinned: true,
+          tagged: tagName,
+        }),
+      );
+      void dispatch(
+        expandAccountFeaturedTimeline(accountId, { tagged: tagName }),
+      );
+    });
+  },
+);
