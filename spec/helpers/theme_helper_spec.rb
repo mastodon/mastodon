@@ -140,6 +140,20 @@ RSpec.describe ThemeHelper do
     end
   end
 
+  describe '#page_color_scheme' do
+    subject { helper.page_color_scheme }
+
+    context 'when force_color_scheme is present' do
+      before { helper.content_for(:force_color_scheme) { 'value' } }
+
+      it { is_expected.to eq('value') }
+    end
+
+    context 'when force_color_scheme is absent' do
+      it { is_expected.to eq('auto') }
+    end
+  end
+
   private
 
   def html_links

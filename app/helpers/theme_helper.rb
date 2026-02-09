@@ -60,6 +60,10 @@ module ThemeHelper
     current_user&.setting_contrast || 'auto'
   end
 
+  def page_color_scheme
+    content_for(:force_color_scheme).presence || color_scheme
+  end
+
   private
 
   def active_custom_stylesheet
