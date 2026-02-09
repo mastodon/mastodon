@@ -11,42 +11,11 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
 
     return unless supported_context?(@json)
 
-    process_items(collection_items(@json))
+    @items, = collection_items(@json, max_items: FeaturedTag::LIMIT, max_pages: FeaturedTag::LIMIT, reference_uri: @account.uri, on_behalf_of: local_follower)
+    process_items(@items)
   end
 
   private
-
-  def collection_items(collection)
-    all_items = []
-
-    collection = fetch_collection(collection['first']) if collection['first'].present?
-
-    while collection.is_a?(Hash)
-      items = case collection['type']
-              when 'Collection', 'CollectionPage'
-                collection['items']
-              when 'OrderedCollection', 'OrderedCollectionPage'
-                collection['orderedItems']
-              end
-
-      break if items.blank?
-
-      all_items.concat(items)
-
-      break if all_items.size >= FeaturedTag::LIMIT
-
-      collection = collection['next'].present? ? fetch_collection(collection['next']) : nil
-    end
-
-    all_items
-  end
-
-  def fetch_collection(collection_or_uri)
-    return collection_or_uri if collection_or_uri.is_a?(Hash)
-    return if non_matching_uri_hosts?(@account.uri, collection_or_uri)
-
-    fetch_resource_without_id_validation(collection_or_uri, local_follower, raise_on_error: :temporary)
-  end
 
   def process_items(items)
     names            = items.filter_map { |item| item['type'] == 'Hashtag' && item['name']&.delete_prefix('#') }.take(FeaturedTag::LIMIT)
