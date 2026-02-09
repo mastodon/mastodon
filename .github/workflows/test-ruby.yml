@@ -43,7 +43,7 @@ jobs:
           onlyProduction: 'true'
 
       - name: Cache assets from compilation
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: |
             public/assets
@@ -151,7 +151,7 @@ jobs:
           bin/flatware fan bin/rails db:test:prepare
 
       - name: Cache RSpec persistence file
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: |
             tmp/rspec/examples.txt
@@ -247,7 +247,7 @@ jobs:
 
       - name: Cache Playwright Chromium browser
         id: playwright-cache
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: ~/.cache/ms-playwright
           key: playwright-browsers-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
