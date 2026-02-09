@@ -1,5 +1,5 @@
 import type { RefCallback } from 'react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 export function useVisibility({
   observerOptions,
@@ -18,8 +18,9 @@ export function useVisibility({
     },
     [],
   );
-  const [observer] = useState(
+  const observer = useMemo(
     () => new IntersectionObserver(handleIntersect, observerOptions),
+    [handleIntersect, observerOptions],
   );
 
   const handleObserverRef: RefCallback<HTMLElement> = useCallback(
