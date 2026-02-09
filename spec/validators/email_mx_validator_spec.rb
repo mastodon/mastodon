@@ -26,9 +26,7 @@ RSpec.describe EmailMxValidator do
   end
 
   context 'when there are DNS records for the domain' do
-    let(:a) { resolv_double_a('192.0.2.42') }
-
-    before { configure_resolver('example.com', a:) }
+    before { configure_resolver('example.com', a: resolv_double_a('192.0.2.42')) }
 
     it 'does not add errors to record' do
       subject.validate(user)
@@ -60,10 +58,9 @@ RSpec.describe EmailMxValidator do
   end
 
   context 'when the email domain contains empty labels' do
-    let(:a) { resolv_double_a('192.0.2.42') }
     let(:email) { 'foo@example..com' }
 
-    before { configure_resolver('example..com', a:) }
+    before { configure_resolver('example..com', a: resolv_double_a('192.0.2.42')) }
 
     it 'adds errors to record' do
       subject.validate(user)
@@ -81,10 +78,8 @@ RSpec.describe EmailMxValidator do
   end
 
   context 'when MX record does not lead to an IP' do
-    let(:mx) { resolv_double_mx('mail.example.com') }
-
     before do
-      configure_resolver('example.com', mx:)
+      configure_resolver('example.com', mx: resolv_double_mx('mail.example.com'))
       configure_resolver('mail.example.com')
     end
 
@@ -95,14 +90,17 @@ RSpec.describe EmailMxValidator do
   end
 
   context 'when the MX record has an email domain block' do
-    let(:mx) { resolv_double_mx('mail.example.com') }
-    let(:a) { instance_double(Resolv::DNS::Resource::IN::A, address: '2.3.4.5') }
-    let(:aaaa) { instance_double(Resolv::DNS::Resource::IN::AAAA, address: 'fd00::2') }
-
     before do
       Fabricate :email_domain_block, domain: 'mail.example.com'
-      configure_resolver('example.com', mx:)
-      configure_resolver('mail.example.com', a:, aaaa:)
+      configure_resolver(
+        'example.com',
+        mx: resolv_double_mx('mail.example.com')
+      )
+      configure_resolver(
+        'mail.example.com',
+        a: instance_double(Resolv::DNS::Resource::IN::A, address: '2.3.4.5'),
+        aaaa: instance_double(Resolv::DNS::Resource::IN::AAAA, address: 'fd00::2')
+      )
     end
 
     it 'adds errors to record' do
