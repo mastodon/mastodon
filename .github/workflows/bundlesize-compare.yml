@@ -26,7 +26,7 @@ jobs:
         run: yarn run build:production
 
       - name: Upload stats.json
-        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: head-stats
           path: ./stats.json
@@ -51,7 +51,7 @@ jobs:
         run: yarn run build:production
 
       - name: Upload stats.json
-        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: base-stats
           path: ./stats.json
@@ -64,7 +64,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
 
       - uses: twk3/rollup-size-compare-action@a1f8628fee0e40899ab2b46c1b6e14552b99281e # v1.2.0
         with:
