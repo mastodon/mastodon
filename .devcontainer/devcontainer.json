@@ -39,7 +39,7 @@
     "git": "git config --global --add safe.directory ${containerWorkspaceFolder}",
     "mise": "mise settings add idiomatic_version_file_enable_tools ruby && mise settings add idiomatic_version_file_enable_tools node && mise install -y"
   },
-  "postCreateCommand": "bin/setup",
+  "postCreateCommand": "PATH=\"/home/vscode/.local/share/mise/shims:$PATH\" bin/setup",
   "waitFor": "postCreateCommand",
 
   "customizations": {
