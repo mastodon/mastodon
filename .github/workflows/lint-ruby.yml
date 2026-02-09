@@ -35,15 +35,15 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@09a7688d3b55cf0e976497ff046b70949eeaccfd # v1
         with:
           bundler-cache: true
 
       - name: Set-up RuboCop Problem Matcher
-        uses: r7kamura/rubocop-problem-matchers-action@v1
+        uses: r7kamura/rubocop-problem-matchers-action@59f1a0759f50cc2649849fd850b8487594bb5a81 # v1
 
       - name: Run rubocop
         run: bin/rubocop

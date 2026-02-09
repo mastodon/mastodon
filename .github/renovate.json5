@@ -113,6 +113,7 @@
       ],
       matchUpdateTypes: ['major'],
       groupName: 'artifact actions (major)',
+      extends: ['helpers:pinGitHubActionDigests'],
     },
     {
       // Update @types/* packages every week, with one grouped PR
