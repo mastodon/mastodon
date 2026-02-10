@@ -48,11 +48,11 @@ class MoveWorker
     source_local_followers
       .where(account: @target_account.followers.local)
       .in_batches do |follows|
-      ListAccount.where(follow: follows).includes(:list).find_each do |list_account|
-        list_account.list.accounts << @target_account
-      rescue ActiveRecord::RecordInvalid
-        nil
-      end
+        ListAccount.where(follow: follows).includes(:list).find_each do |list_account|
+          list_account.list.accounts << @target_account
+        rescue ActiveRecord::RecordInvalid
+          nil
+        end
     end
 
     # Finally, handle the common case of accounts not following the new account
@@ -60,18 +60,18 @@ class MoveWorker
       .where.not(account: @target_account.followers.local)
       .where.not(account_id: @target_account.id)
       .in_batches do |follows|
-      ListAccount.where(follow: follows).in_batches.update_all(account_id: @target_account.id)
-      num_moved += follows.update_all(target_account_id: @target_account.id)
+        ListAccount.where(follow: follows).in_batches.update_all(account_id: @target_account.id)
+        num_moved += follows.update_all(target_account_id: @target_account.id)
 
-      # Clear any relationship cache, since callbacks are not called
-      Rails.cache.delete_multi(follows.flat_map do |follow|
-        [
-          ['relationships', follow.account_id, follow.target_account_id],
-          ['relationships', follow.target_account_id, follow.account_id],
-          ['relationships', follow.account_id, @target_account.id],
-          ['relationships', @target_account.id, follow.account_id],
-        ]
-      end)
+        # Clear any relationship cache, since callbacks are not called
+        Rails.cache.delete_multi(follows.flat_map do |follow|
+          [
+            ['relationships', follow.account_id, follow.target_account_id],
+            ['relationships', follow.target_account_id, follow.account_id],
+            ['relationships', follow.account_id, @target_account.id],
+            ['relationships', @target_account.id, follow.account_id],
+          ]
+        end)
     end
 
     num_moved
