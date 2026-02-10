@@ -217,5 +217,22 @@ module Mastodon::CLI
         ActiveRecord::Base.connection.execute('ANALYZE conversations')
       end
     end
+
+    # keep statuses that have a local reply somewhere beneath it in the reply tree
+    def keep_statuses_with_local_replies
+      <<~SQL.squish
+        AND NOT EXISTS (
+          with RECURSIVE thread_cte as
+          (
+            SELECT id, in_reply_to_id, uri, local from statuses parent WHERE id = statuses.id
+            UNION ALL
+            SELECT child.id, child.in_reply_to_id, child.uri, child.local
+            FROM statuses child
+            JOIN thread_cte ON (child.in_reply_to_id = thread_cte.id)
+          )
+          SELECT 1 FROM thread_cte WHERE (thread_cte.uri IS NULL OR thread_cte.local)
+        )
+      SQL
+    end
   end
 end
