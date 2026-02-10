@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
 import type { FC } from 'react';
 
-import { FormattedMessage } from 'react-intl';
-
 import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
 
@@ -14,12 +12,10 @@ import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column_back_button';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import ScrollableList from '@/mastodon/components/scrollable_list';
-import { TimelineHint } from '@/mastodon/components/timeline_hint';
 import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_error';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
-import type { Account as AccountType } from '@/mastodon/models/account';
 import {
   createAppSelector,
   useAppDispatch,
@@ -27,7 +23,9 @@ import {
 } from '@/mastodon/store';
 
 import { AccountHeader } from '../account_timeline/components/account_header';
-import { LimitedAccountHint } from '../account_timeline/components/limited_account_hint';
+
+import { EmptyMessage } from './components/empty';
+import { RemoteHint } from './components/remote';
 
 const selectFollowerList = createAppSelector(
   [
@@ -120,10 +118,7 @@ const Followers: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
         alwaysPrepend
         append={<RemoteHint domain={domain} url={account.url} />}
         emptyMessage={
-          <EmptyMessage
-            account={account}
-            followerIds={followerList?.items ?? ImmutableList<string>()}
-          />
+          <EmptyMessage account={account} followerIds={followerList?.items} />
         }
         bindToDocument={!multiColumn}
       >
@@ -133,80 +128,6 @@ const Followers: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           ))}
       </ScrollableList>
     </Column>
-  );
-};
-
-const RemoteHint: FC<{ domain?: string; url: string }> = ({ domain, url }) => {
-  if (!domain) {
-    return null;
-  }
-  return (
-    <TimelineHint
-      url={url}
-      message={
-        <FormattedMessage
-          id='hints.profiles.followers_may_be_missing'
-          defaultMessage='Followers for this profile may be missing.'
-        />
-      }
-      label={
-        <FormattedMessage
-          id='hints.profiles.see_more_followers'
-          defaultMessage='See more followers on {domain}'
-          values={{ domain: <strong>{domain}</strong> }}
-        />
-      }
-    />
-  );
-};
-
-const EmptyMessage: FC<{
-  account: AccountType;
-  followerIds: ImmutableList<string>;
-}> = ({ account, followerIds }) => {
-  const { blockedBy, hidden, suspended } = useAccountVisibility(account.id);
-
-  if (suspended) {
-    return (
-      <FormattedMessage
-        id='empty_column.account_suspended'
-        defaultMessage='Account suspended'
-      />
-    );
-  }
-
-  if (hidden) {
-    return <LimitedAccountHint accountId={account.id} />;
-  }
-
-  if (blockedBy) {
-    return (
-      <FormattedMessage
-        id='empty_column.account_unavailable'
-        defaultMessage='Profile unavailable'
-      />
-    );
-  }
-
-  if (account.hide_collections && followerIds.isEmpty()) {
-    return (
-      <FormattedMessage
-        id='empty_column.account_hides_collections'
-        defaultMessage='This user has chosen to not make this information available'
-      />
-    );
-  }
-
-  const domain = account.acct.split('@')[1];
-  if (domain && followerIds.isEmpty()) {
-    return <RemoteHint domain={domain} url={account.url} />;
-  }
-
-  return (
-    <FormattedMessage
-      id='account.followers.empty'
-      defaultMessage='No one follows this user yet.'
-    />
   );
 };
 
