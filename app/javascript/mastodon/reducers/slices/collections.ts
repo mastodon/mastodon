@@ -146,7 +146,7 @@ const collectionSlice = createSlice({
     });
 
     /**
-     * Removing an account to a collection
+     * Removing an account from a collection
      */
 
     builder.addCase(removeCollectionItem.fulfilled, (state, action) => {
