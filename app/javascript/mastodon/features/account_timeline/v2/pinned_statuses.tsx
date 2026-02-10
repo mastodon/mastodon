@@ -1,12 +1,5 @@
-import type { FC, ReactNode } from 'react';
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import type { FC } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -28,41 +21,8 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import { isRedesignEnabled } from '../common';
 import { PinnedBadge } from '../components/badges';
 
+import { useAccountContext } from './context';
 import classes from './styles.module.scss';
-
-const PinnedStatusContext = createContext<{
-  showAllPinned: boolean;
-  onShowAllPinned: () => void;
-}>({
-  showAllPinned: false,
-  onShowAllPinned: () => {
-    throw new Error('No onShowAllPinned provided');
-  },
-});
-
-export const PinnedStatusProvider: FC<{ children: ReactNode }> = ({
-  children,
-}) => {
-  const [showAllPinned, setShowAllPinned] = useState(false);
-  const handleShowAllPinned = useCallback(() => {
-    setShowAllPinned(true);
-  }, []);
-
-  // Memoize so the context doesn't change every render.
-  const value = useMemo(
-    () => ({
-      showAllPinned,
-      onShowAllPinned: handleShowAllPinned,
-    }),
-    [handleShowAllPinned, showAllPinned],
-  );
-
-  return (
-    <PinnedStatusContext.Provider value={value}>
-      {children}
-    </PinnedStatusContext.Provider>
-  );
-};
 
 export function usePinnedStatusIds({
   accountId,
@@ -89,7 +49,7 @@ export function usePinnedStatusIds({
     selectTimelineByKey(state, pinnedKey),
   );
 
-  const { showAllPinned } = useContext(PinnedStatusContext);
+  const { showAllPinned } = useAccountContext();
 
   const pinnedTimelineItems = pinnedTimeline?.items; // Make a const to avoid the React Compiler complaining.
   const pinnedStatusIds = useMemo(() => {
@@ -125,7 +85,7 @@ export const renderPinnedStatusHeader: StatusHeaderRenderFn = ({
 };
 
 export const PinnedShowAllButton: FC = () => {
-  const { onShowAllPinned } = useContext(PinnedStatusContext);
+  const { onShowAllPinned } = useAccountContext();
 
   if (!isRedesignEnabled()) {
     return null;
