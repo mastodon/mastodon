@@ -154,6 +154,11 @@ namespace :tests do
         exit(1)
       end
 
+      unless Setting.theme == 'default'
+        puts 'Default theme setting not migrated as expected'
+        exit(1)
+      end
+
       puts 'No errors found. Database state is consistent with a successful migration process.'
     end
 
@@ -177,7 +182,8 @@ namespace :tests do
           (id, thing_type, thing_id, var, value, created_at, updated_at)
         VALUES
           (7, NULL, NULL, 'timeline_preview', E'--- false\n', now(), now()),
-          (8, NULL, NULL, 'trends_as_landing_page', E'--- false\n', now(), now());
+          (8, NULL, NULL, 'trends_as_landing_page', E'--- false\n', now(), now()),
+          (9, NULL, NULL, 'theme', E'--- system', now(), now());
 
         /* Doorkeeper records
            While the `read:me` scope was technically not valid in 3.3.0,
