@@ -217,8 +217,5 @@ module Mastodon::CLI
         ActiveRecord::Base.connection.execute('ANALYZE conversations')
       end
     end
-
-    # keep statuses that have a local reply somewhere beneath it in the reply tree
-    def keep_statuses_with_local_replies; end
   end
 end
