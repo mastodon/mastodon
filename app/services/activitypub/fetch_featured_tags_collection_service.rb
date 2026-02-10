@@ -18,6 +18,8 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
   private
 
   def process_items(items)
+    return if items.nil?
+
     names            = items.filter_map { |item| item['type'] == 'Hashtag' && item['name']&.delete_prefix('#') }.take(FeaturedTag::LIMIT)
     tags             = names.index_by { |name| HashtagNormalizer.new.normalize(name) }
     normalized_names = tags.keys
