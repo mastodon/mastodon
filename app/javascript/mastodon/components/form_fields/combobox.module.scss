@@ -25,12 +25,18 @@
 .popover {
   z-index: 9999;
   box-sizing: border-box;
+  max-height: max(200px, 30dvh);
   padding: 4px;
   border-radius: 4px;
   color: var(--color-text-primary);
   background: var(--color-bg-primary);
   border: 1px solid var(--color-border-primary);
   box-shadow: var(--dropdown-shadow);
+
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  overscroll-behavior-y: contain;
 
   // backdrop-filter: $backdrop-blur-filter;
 }
@@ -47,7 +53,7 @@
   cursor: pointer;
   user-select: none;
 
-  &[aria-selected='true'] {
+  &[data-highlighted='true'] {
     color: var(--color-text-on-brand-base);
     background: var(--color-bg-brand-base);
 
