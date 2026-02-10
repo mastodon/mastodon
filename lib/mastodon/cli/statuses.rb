@@ -52,10 +52,14 @@ module Mastodon::CLI
         # Skip accounts followed by local accounts
         clean_followed_sql = 'AND NOT EXISTS (SELECT 1 FROM follows WHERE statuses.account_id = follows.target_account_id)' unless options[:clean_followed]
 
+        # keep direct replies to local statuses
+        keep_direct_replies_sql = 'AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses.in_reply_to_id = statuses1.id AND (statuses1.uri IS NULL OR statuses1.local))'
+
         ActiveRecord::Base.connection.exec_insert(<<~SQL.squish, 'SQL', [max_id])
           INSERT INTO statuses_to_be_deleted (id)
           SELECT statuses.id FROM statuses WHERE deleted_at IS NULL AND NOT local AND uri IS NOT NULL AND (id < $1)
-          AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses.id = statuses1.in_reply_to_id)
+          #{keep_direct_replies_sql}
+          #{keep_statuses_with_local_replies}
           AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses1.id = statuses.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local))
           AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses.id = statuses1.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local OR statuses1.id >= $1))
           AND NOT EXISTS (SELECT 1 FROM status_pins WHERE statuses.id = status_id)
@@ -198,6 +202,23 @@ module Mastodon::CLI
         say('Running "ANALYZE conversations"...')
         ActiveRecord::Base.connection.execute('ANALYZE conversations')
       end
+    end
+
+    # keep statuses that have a local reply somewhere beneath it in the reply tree
+    def keep_statuses_with_local_replies
+      <<~SQL.squish
+        AND NOT EXISTS (
+          with RECURSIVE thread_cte as
+          (
+            SELECT id, in_reply_to_id, uri, local from statuses parent WHERE id = statuses.id
+            UNION ALL
+            SELECT child.id, child.in_reply_to_id, child.uri, child.local
+            FROM statuses child
+            JOIN thread_cte ON (child.in_reply_to_id = thread_cte.id)
+          )
+          SELECT 1 FROM thread_cte WHERE (thread_cte.uri IS NULL OR thread_cte.local)
+        )
+      SQL
     end
   end
 end
