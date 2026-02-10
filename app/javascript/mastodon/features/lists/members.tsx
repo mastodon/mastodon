@@ -169,6 +169,7 @@ const ListMembers: React.FC<{
     isLoading: loadingSearchResults,
     searchAccounts: handleSearch,
   } = useSearchAccounts({
+    resetOnInputClear: false,
     onSettled: (value) => {
       if (value.trim().length === 0) {
         setSearching(false);
