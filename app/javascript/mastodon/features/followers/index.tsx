@@ -8,11 +8,7 @@ import { List as ImmutableList } from 'immutable';
 
 import { useDebouncedCallback } from 'use-debounce';
 
-import {
-  expandFollowers,
-  fetchFollowers,
-  fetchRelationships,
-} from '@/mastodon/actions/accounts';
+import { expandFollowers, fetchFollowers } from '@/mastodon/actions/accounts';
 import { Account } from '@/mastodon/components/account';
 import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column_back_button';
@@ -22,6 +18,7 @@ import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_e
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useAccountId } from '@/mastodon/hooks/useAccountId';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
+import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import {
   createAppSelector,
   useAppDispatch,
@@ -96,15 +93,7 @@ const Followers: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     { leading: true },
   );
 
-  const relationship = useAppSelector((state) =>
-    accountId ? state.relationships.get(accountId) : null,
-  );
-
-  useEffect(() => {
-    if (accountId && !relationship) {
-      dispatch(fetchRelationships([accountId]));
-    }
-  }, [accountId, dispatch, relationship]);
+  const relationship = useRelationship(accountId);
 
   const { blockedBy, hidden, suspended } = useAccountVisibility(accountId);
   const forceEmptyState = blockedBy || hidden || suspended;
