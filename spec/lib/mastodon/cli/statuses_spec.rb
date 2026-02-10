@@ -32,7 +32,7 @@ RSpec.describe Mastodon::CLI::Statuses do
     end
   end
 
-  describe '#keep_statuses_with_local_replies', :use_transactional_tests do
+  describe '#KEEP_STATUSES_WITH_LOCAL_REPLIES', :use_transactional_tests do
     let(:action) { :remove }
 
     context 'with threaded replies' do
@@ -47,8 +47,7 @@ RSpec.describe Mastodon::CLI::Statuses do
       let!(:unrelated) { Fabricate(:status, account: acct_remote) }
 
       it 'excludes statuses with local replies beneath them from pruning' do
-        obj = described_class.new
-        subject = obj.send(:keep_statuses_with_local_replies)
+        subject = described_class::KEEP_STATUSES_WITH_LOCAL_REPLIES
         query = <<~SQL.squish
           SELECT statuses.id FROM statuses WHERE deleted_at IS NULL AND NOT local AND uri IS NOT NULL
           #{subject}
