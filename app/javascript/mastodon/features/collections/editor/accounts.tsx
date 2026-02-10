@@ -30,7 +30,7 @@ import classes from './styles.module.scss';
 import { WizardStepHeader } from './wizard_step_header';
 
 const MIN_ACCOUNT_COUNT = 1;
-const MAX_ACCOUNT_COUNT = 6;
+const MAX_ACCOUNT_COUNT = 25;
 
 const AddedAccountItem: React.FC<{
   accountId: string;
@@ -300,7 +300,10 @@ export const CollectionAccounts: React.FC<{
                 message={
                   <FormattedMessage
                     id='collections.accounts.empty_description'
-                    defaultMessage='Add up to 25 accounts you follow'
+                    defaultMessage='Add up to {count} accounts you follow'
+                    values={{
+                      count: MAX_ACCOUNT_COUNT,
+                    }}
                   />
                 }
               />
