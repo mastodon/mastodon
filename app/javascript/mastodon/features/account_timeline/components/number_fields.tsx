@@ -70,24 +70,22 @@ export const AccountNumberFields: FC<{ accountId: string }> = ({
       </NavLink>
 
       {isRedesignEnabled() && (
-        <NavLink exact to={`/@${account.acct}`}>
-          <FormattedMessage
-            id='account.joined_long'
-            defaultMessage='Joined on {date}'
-            values={{
-              date: (
-                <strong>
-                  <FormattedDateWrapper
-                    value={account.created_at}
-                    year='numeric'
-                    month='short'
-                    day='2-digit'
-                  />
-                </strong>
-              ),
-            }}
-          />
-        </NavLink>
+        <FormattedMessage
+          id='account.joined_long'
+          defaultMessage='Joined on {date}'
+          values={{
+            date: (
+              <strong>
+                <FormattedDateWrapper
+                  value={account.created_at}
+                  year='numeric'
+                  month='short'
+                  day='2-digit'
+                />
+              </strong>
+            ),
+          }}
+        />
       )}
     </div>
   );

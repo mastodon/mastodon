@@ -16,6 +16,8 @@ import NotificationsIcon from '@/material-icons/400-24px/notifications.svg?react
 import NotificationsActiveIcon from '@/material-icons/400-24px/notifications_active-fill.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 
+import { isRedesignEnabled } from '../common';
+
 import { AccountMenu } from './menu';
 
 const messages = defineMessages({
@@ -35,12 +37,14 @@ interface AccountButtonsProps {
   accountId: string;
   className?: string;
   noShare?: boolean;
+  forceMenu?: boolean;
 }
 
 export const AccountButtons: FC<AccountButtonsProps> = ({
   accountId,
   className,
   noShare,
+  forceMenu,
 }) => {
   const hidden = useAppSelector((state) => getAccountHidden(state, accountId));
   const me = useAppSelector((state) => state.meta.get('me') as string);
@@ -50,7 +54,7 @@ export const AccountButtons: FC<AccountButtonsProps> = ({
       {!hidden && (
         <AccountButtonsOther accountId={accountId} noShare={noShare} />
       )}
-      {accountId !== me && <AccountMenu accountId={accountId} />}
+      {(accountId !== me || forceMenu) && <AccountMenu accountId={accountId} />}
     </div>
   );
 };
@@ -93,6 +97,7 @@ const AccountButtonsOther: FC<
           accountId={accountId}
           className='account__header__follow-button'
           labelLength='long'
+          withUnmute={!isRedesignEnabled()}
         />
       )}
       {isFollowing && (
