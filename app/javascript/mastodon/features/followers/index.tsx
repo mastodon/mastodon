@@ -66,6 +66,9 @@ const selectFollowerList = createAppSelector(
 const Followers: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const accountId = useAccountId();
   const account = useAccount(accountId);
+  const currentAccountId = useAppSelector(
+    (state) => (state.meta.get('me') as string | null) ?? null,
+  );
   const followerList = useAppSelector((state) =>
     selectFollowerList(state, accountId),
   );
@@ -124,7 +127,11 @@ const Followers: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       >
         {!forceEmptyState &&
           followerList?.items.map((followerId) => (
-            <Account key={followerId} id={followerId} />
+            <Account
+              key={followerId}
+              id={followerId}
+              minimal={followerId === currentAccountId}
+            />
           ))}
       </ScrollableList>
     </Column>
