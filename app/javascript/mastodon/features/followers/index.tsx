@@ -1,12 +1,18 @@
 import { useEffect } from 'react';
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
+
+import { FormattedMessage } from 'react-intl';
 
 import type { Map as ImmutableMap } from 'immutable';
 import { List as ImmutableList } from 'immutable';
 
 import { useDebouncedCallback } from 'use-debounce';
 
-import { expandFollowers, fetchFollowers } from '@/mastodon/actions/accounts';
+import {
+  expandFollowers,
+  fetchFollowers,
+  fetchRelationships,
+} from '@/mastodon/actions/accounts';
 import { Account } from '@/mastodon/components/account';
 import { Column } from '@/mastodon/components/column';
 import { ColumnBackButton } from '@/mastodon/components/column_back_button';
@@ -90,6 +96,16 @@ const Followers: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     { leading: true },
   );
 
+  const relationship = useAppSelector((state) =>
+    accountId ? state.relationships.get(accountId) : null,
+  );
+
+  useEffect(() => {
+    if (accountId && !relationship) {
+      dispatch(fetchRelationships([accountId]));
+    }
+  }, [accountId, dispatch, relationship]);
+
   const { blockedBy, hidden, suspended } = useAccountVisibility(accountId);
   const forceEmptyState = blockedBy || hidden || suspended;
 
@@ -108,6 +124,25 @@ const Followers: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
   const domain = account.acct.split('@')[1];
 
+  const followersExceptMeHidden = !!(
+    account.hide_collections &&
+    followerList?.items.isEmpty() &&
+    currentAccountId &&
+    relationship?.following
+  );
+
+  let children: ReactNode[] = [];
+  if (!forceEmptyState && followerList) {
+    children = followerList.items
+      .map((followerId) => <Account key={followerId} id={followerId} />)
+      .toArray();
+  }
+  if (followersExceptMeHidden) {
+    children = [
+      <Account key={currentAccountId} id={currentAccountId} minimal />,
+    ];
+  }
+
   return (
     <Column>
       <ColumnBackButton />
@@ -124,15 +159,18 @@ const Followers: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           <EmptyMessage account={account} followerIds={followerList?.items} />
         }
         bindToDocument={!multiColumn}
+        footer={
+          followersExceptMeHidden && (
+            <div className='empty-column-indicator'>
+              <FormattedMessage
+                id='followers.hide_other_followers'
+                defaultMessage='This user has chosen to not make their other followers visible'
+              />
+            </div>
+          )
+        }
       >
-        {!forceEmptyState &&
-          followerList?.items.map((followerId) => (
-            <Account
-              key={followerId}
-              id={followerId}
-              minimal={followerId === currentAccountId}
-            />
-          ))}
+        {children}
       </ScrollableList>
     </Column>
   );
