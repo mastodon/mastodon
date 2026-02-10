@@ -135,8 +135,8 @@ class Tag < ApplicationRecord
       query = query.merge(matching_name(stripped_term).or(reviewed)) if options[:exclude_unreviewed]
 
       query.order(Arel.sql('LENGTH(name)').asc, name: :asc)
-           .limit(limit)
-           .offset(offset)
+        .limit(limit)
+        .offset(offset)
     end
 
     def find_normalized(name)
