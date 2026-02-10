@@ -46,6 +46,24 @@ module ThemeHelper
     )
   end
 
+  def current_theme
+    return Setting.theme unless Themes.instance.names.include? current_user&.setting_theme
+
+    current_user.setting_theme
+  end
+
+  def color_scheme
+    current_user&.setting_color_scheme || 'auto'
+  end
+
+  def contrast
+    current_user&.setting_contrast || 'auto'
+  end
+
+  def page_color_scheme
+    content_for(:force_color_scheme).presence || color_scheme
+  end
+
   private
 
   def active_custom_stylesheet
