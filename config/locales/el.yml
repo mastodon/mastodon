@@ -245,7 +245,7 @@ el:
         update_user_role: Ενημέρωση ρόλου
         update_username_block: Ενημέρωση Κανόνα Ονόματος Χρήστη
       actions:
-        approve_appeal_html: Ο/Η %{name} ενέκρινε την ένσταση της απόφασης των συντονιστών από %{target}
+        approve_appeal_html: Ο/Η %{name} ενέκρινε την έφεση της απόφασης των συντονιστών από %{target}
         approve_user_html: Ο/Η %{name} ενέκρινε την εγγραφή του χρήστη %{target}
         assigned_to_self_report_html: Ο/Η %{name} ανάθεσε την αναφορά %{target} στον εαυτό του/της
         change_email_user_html: Ο χρήστης %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}
@@ -289,7 +289,7 @@ el:
         memorialize_account_html: O/H %{name} μετέτρεψε τον λογαριασμό του %{target} σε σελίδα εις μνήμην
         promote_user_html: Ο/Η %{name} προβίβασε το χρήστη %{target}
         publish_terms_of_service_html: Ο χρήστης %{name} δημοσίευσε ενημερώσεις για τους όρους της υπηρεσίας
-        reject_appeal_html: Ο/Η %{name} απέρριψε την ένσταση της απόφασης των συντονιστών από %{target}
+        reject_appeal_html: Ο/Η %{name} απέρριψε την έφεση της απόφασης των συντονιστών από %{target}
         reject_user_html: Ο/Η %{name} απέρριψε την εγγραφή του χρήστη %{target}
         remove_avatar_user_html: Ο/Η %{name} αφαίρεσε το άβαταρ του/της %{target}
         reopen_report_html: Ο/Η %{name} ξανάνοιξε την αναφορά %{target}
@@ -403,7 +403,7 @@ el:
       website: Ιστοσελίδα
     disputes:
       appeals:
-        empty: Καμία ένσταση.
+        empty: Δε βρέθηκαν εφέσεις.
         title: Εφέσεις
     domain_allows:
       add_new: Έγκριση τομέα
@@ -1166,7 +1166,7 @@ el:
         mark_statuses_as_sensitive: να επισημάνουν τις αναρτήσεις τους ως ευαίσθητες
         none: μια προειδοποίηση
         sensitive: να επισημάνουν τον λογαριασμό του ως ευαίσθητο
-        silence: να περιορίσουν το λογαριασμό του
+        silence: να περιορίσουν τον λογαριασμό του
         suspend: να αναστείλουν τον λογαριασμό του
       body: 'Ο/Η %{target} κάνει έφεση στην απόφαση συντονισμού που έγινε από τον/την %{action_taken_by} στις %{date}, η οποία ήταν %{type}. Έγραψαν:'
       next_steps: Μπορείς να εγκρίνεις την έφεση για να αναιρέσεις την απόφαση της ομάδας συντονισμού ή να την αγνοήσεις.
@@ -2095,7 +2095,7 @@ el:
       title: Σημαντική ενημέρωση
     warning:
       appeal: Υποβολή έφεσης
-      appeal_description: Αν πιστεύεις ότι έγινε λάθος, μπορείς να υποβάλεις μια αίτηση στο προσωπικό του %{instance}.
+      appeal_description: Αν πιστεύεις ότι έγινε λάθος, μπορείς να υποβάλεις μια έφεση στο προσωπικό του %{instance}.
       categories:
         spam: Ανεπιθύμητο
         violation: Το περιεχόμενο παραβιάζει τις ακόλουθες οδηγίες κοινότητας
