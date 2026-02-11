@@ -20,6 +20,15 @@
     font-size: 16px;
   }
 
+  .iconWrapper & {
+    // Make space for icon displayed at start of input
+    padding-inline-start: 36px;
+  }
+
+  &::placeholder {
+    color: var(--color-text-secondary);
+  }
+
   &:focus {
     outline-color: var(--color-text-brand);
   }
@@ -39,4 +48,18 @@
     border-color: transparent;
     cursor: not-allowed;
   }
+}
+
+.iconWrapper {
+  position: relative;
+}
+
+.icon {
+  pointer-events: none;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  inset-inline-start: 10px;
+  inset-block-start: 10px;
+  color: var(--color-text-secondary);
 }
