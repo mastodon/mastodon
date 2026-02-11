@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useId, useMemo, useState } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -13,7 +13,7 @@ import { Button } from 'mastodon/components/button';
 import { Callout } from 'mastodon/components/callout';
 import { DisplayName } from 'mastodon/components/display_name';
 import { EmptyState } from 'mastodon/components/empty_state';
-import { FormStack, ComboboxField } from 'mastodon/components/form_fields';
+import { FormStack, Combobox } from 'mastodon/components/form_fields';
 import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 import ScrollableList from 'mastodon/components/scrollable_list';
@@ -226,6 +226,12 @@ export const CollectionAccounts: React.FC<{
     [canSubmit, id, history, accountIds],
   );
 
+  const inputId = useId();
+  const inputLabel = intl.formatMessage({
+    id: 'collections.search_accounts_label',
+    defaultMessage: 'Search for accounts to add…',
+  });
+
   return (
     <form onSubmit={handleSubmit} className={classes.form}>
       <FormStack className={classes.formFieldStack}>
@@ -246,21 +252,12 @@ export const CollectionAccounts: React.FC<{
             }
           />
         )}
-        <ComboboxField
-          label={
-            <FormattedMessage
-              id='collections.search_accounts_label'
-              defaultMessage='Search for accounts to add…'
-            />
-          }
-          hint={
-            hasMaxAccounts ? (
-              <FormattedMessage
-                id='collections.search_accounts_max_reached'
-                defaultMessage='You have added the maximum number of accounts'
-              />
-            ) : undefined
-          }
+        <label htmlFor={inputId} className='sr-only'>
+          {inputLabel}
+        </label>
+        <Combobox
+          id={inputId}
+          placeholder={inputLabel}
           value={hasMaxAccounts ? '' : searchValue}
           onChange={handleSearchValueChange}
           onKeyDown={handleSearchKeyDown}
@@ -274,6 +271,12 @@ export const CollectionAccounts: React.FC<{
             isEditMode ? instantToggleAccountItem : toggleAccountItem
           }
         />
+        {hasMaxAccounts && (
+          <FormattedMessage
+            id='collections.search_accounts_max_reached'
+            defaultMessage='You have added the maximum number of accounts'
+          />
+        )}
 
         {hasMinAccounts && (
           <Callout>
