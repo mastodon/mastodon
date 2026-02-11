@@ -1,22 +1,6 @@
 # frozen_string_literal: true
 
 class ActivityPub::FeaturedCollectionSerializer < ActivityPub::Serializer
-  class FeaturedItemSerializer < ActivityPub::Serializer
-    attributes :type, :featured_object, :featured_object_type
-
-    def type
-      'FeaturedItem'
-    end
-
-    def featured_object
-      ActivityPub::TagManager.instance.uri_for(object.account)
-    end
-
-    def featured_object_type
-      object.account.actor_type || 'Person'
-    end
-  end
-
   attributes :id, :type, :total_items, :name, :attributed_to,
              :sensitive, :discoverable, :published, :updated
 
@@ -25,7 +9,7 @@ class ActivityPub::FeaturedCollectionSerializer < ActivityPub::Serializer
 
   has_one :tag, key: :topic, serializer: ActivityPub::NoteSerializer::TagSerializer
 
-  has_many :collection_items, key: :ordered_items, serializer: FeaturedItemSerializer
+  has_many :collection_items, key: :ordered_items, serializer: ActivityPub::FeaturedItemSerializer
 
   def id
     ActivityPub::TagManager.instance.uri_for(object)
