@@ -49,6 +49,7 @@ RSpec.describe ActivityPub::AccountBackfillService do
     before do
       stub_request(:get, 'http://other.com/alice/outbox').to_return(status: 200, body: Oj.dump(outbox), headers: { 'Content-Type': 'application/activity+json' })
       stub_request(:get, 'http://other.com/alice/outbox?page=true').to_return(status: 200, body: Oj.dump(outbox_page), headers: { 'Content-Type': 'application/activity+json' })
+      stub_const('ActivityPub::AccountBackfillService::ENABLED', true)
     end
 
     it 'fetches the items in the outbox' do
@@ -106,6 +107,17 @@ RSpec.describe ActivityPub::AccountBackfillService do
         expect(got_items[0].deep_symbolize_keys).to eq(items[0])
         expect(got_items[1].deep_symbolize_keys).to eq(items[1])
         expect(FetchReplyWorker).to have_received(:push_bulk).with([items[0].stringify_keys, items[1].stringify_keys])
+      end
+    end
+
+    context 'when disabled' do
+      before { stub_const('ActivityPub::AccountBackfillService::ENABLED', false) }
+
+      it 'does not backfill' do
+        allow(FetchReplyWorker).to receive(:push_bulk)
+        got_items = subject.call(account)
+        expect(got_items).to be_nil
+        expect(FetchReplyWorker).to_not have_received(:push_bulk)
       end
     end
   end
