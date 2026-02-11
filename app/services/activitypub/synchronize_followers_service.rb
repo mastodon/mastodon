@@ -14,7 +14,7 @@ class ActivityPub::SynchronizeFollowersService < BaseService
     return unless process_collection!(partial_collection_url)
 
     # Only remove followers if the digests match, as it is a destructive operation
-    remove_unexpected_local_followers! if expected_digest.blank? || @digest == "\x00" * 32
+    remove_unexpected_local_followers! if expected_digest.present? && @digest == "\x00" * 32
   end
 
   private
