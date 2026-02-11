@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 
-import { useStorage } from '@/mastodon/hooks/useStorage';
+import { useStorageState } from '@/mastodon/hooks/useStorage';
 
 interface AccountTimelineContextValue {
   accountId: string;
@@ -26,30 +26,34 @@ export const AccountTimelineProvider: FC<{
   accountId: string;
   children: ReactNode;
 }> = ({ accountId, children }) => {
-  const { getItem, setItem } = useStorage({
+  const storageOptions = {
     type: 'session',
     prefix: `filters-${accountId}:`,
-  });
-  const [boosts, setBoosts] = useState(
-    () => (getItem('boosts') === '0' ? false : true), // Default to enabled.
+  } as const;
+
+  const [boosts, setBoosts] = useStorageState<boolean>(
+    'boosts',
+    true,
+    storageOptions,
   );
-  const [replies, setReplies] = useState(() =>
-    getItem('replies') === '1' ? true : false,
+
+  const [replies, setReplies] = useStorageState<boolean>(
+    'replies',
+    false,
+    storageOptions,
   );
 
   const handleSetBoosts = useCallback(
     (value: boolean) => {
       setBoosts(value);
-      setItem('boosts', value ? '1' : '0');
     },
-    [setBoosts, setItem],
+    [setBoosts],
   );
   const handleSetReplies = useCallback(
     (value: boolean) => {
       setReplies(value);
-      setItem('replies', value ? '1' : '0');
     },
-    [setReplies, setItem],
+    [setReplies],
   );
 
   const [showAllPinned, setShowAllPinned] = useState(false);
