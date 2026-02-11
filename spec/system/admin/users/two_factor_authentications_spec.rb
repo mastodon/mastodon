@@ -26,15 +26,14 @@ RSpec.describe 'Admin Users TwoFactorAuthentications' do
       end
     end
 
-    context 'when user has OTP and WebAuthn enabled' do
-      before { user.update(otp_required_for_login: true, webauthn_id: WebAuthn.generate_user_id) }
+    context 'when user has WebAuthn enabled' do
+      before { user.update(webauthn_id: WebAuthn.generate_user_id) }
 
       it 'disables OTP and webauthn and redirects to admin account page' do
         visit admin_account_path(user.account.id)
 
         expect { disable_two_factor }
-          .to change { user.reload.otp_enabled? }.to(false)
-          .and(change { user.reload.webauthn_enabled? }.to(false))
+          .to change { user.reload.webauthn_enabled? }.to(false)
         expect(page)
           .to have_title(user.account.pretty_acct)
       end
