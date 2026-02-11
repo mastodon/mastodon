@@ -35,7 +35,14 @@ module Mastodon::CLI
       vacuum_and_analyze_conversations
     end
 
-    KEEP_STATUSES_WITH_LOCAL_REPLIES = <<~SQL.squish
+    # Preserve thread parents when there is some local interaction in the tree of replies beneath to avoid breaking threads,
+    # specifically the interactions that imply that the user intends to view the status again,
+    # or another account viewing the interaction would need to see thread parents as context:
+    # - local replies
+    # - local bookmarks
+    # - local reblogs
+    # - local quotes
+    KEEP_THREAD_PARENTS_WITH_LOCAL_INTERACTIONS = <<~SQL.squish
       AND NOT EXISTS (
         with RECURSIVE thread_cte as
         (
@@ -45,7 +52,12 @@ module Mastodon::CLI
           FROM statuses child
           JOIN thread_cte ON (child.in_reply_to_id = thread_cte.id)
         )
-        SELECT 1 FROM thread_cte WHERE (thread_cte.uri IS NULL OR thread_cte.local)
+        SELECT 1 FROM thread_cte WHERE (
+          (thread_cte.uri IS NULL OR thread_cte.local)
+          OR EXISTS (SELECT 1 FROM bookmarks WHERE thread_cte.id = bookmarks.status_id AND bookmarks.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))
+          OR EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE thread_cte.id = statuses1.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local))
+          OR EXISTS (SELECT 1 FROM quotes JOIN statuses statuses1 ON quotes.status_id = statuses1.id WHERE quotes.quoted_status_id = thread_cte.id AND (statuses1.uri IS NULL OR statuses1.local))
+        )
       )
     SQL
 
@@ -73,7 +85,7 @@ module Mastodon::CLI
           INSERT INTO statuses_to_be_deleted (id)
           SELECT statuses.id FROM statuses WHERE deleted_at IS NULL AND NOT local AND uri IS NOT NULL AND (id < $1)
           #{keep_direct_replies_sql}
-          #{KEEP_STATUSES_WITH_LOCAL_REPLIES}
+          #{KEEP_THREAD_PARENTS_WITH_LOCAL_INTERACTIONS}
           AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses1.id = statuses.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local))
           AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses.id = statuses1.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local OR statuses1.id >= $1))
           AND NOT EXISTS (SELECT 1 FROM status_pins WHERE statuses.id = status_id)
