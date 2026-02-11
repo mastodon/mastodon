@@ -47,5 +47,5 @@ export function toTypedTimeline(timeline?: ImmutableMap<string, unknown>) {
       emptyList,
     ) as ImmutableList<string>,
     items: timeline.get('items', emptyList) as ImmutableList<string>,
-  } as TimelineShape;
+  } satisfies TimelineShape;
 }
