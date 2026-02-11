@@ -47,6 +47,17 @@ RSpec.describe UserRole do
 
         it { is_expected.to_not allow_value(100).for(:permissions).against(:permissions_as_keys).with_message(:own_role) }
         it { is_expected.to_not allow_value(100).for(:position).with_message(:own_role) }
+        it { is_expected.to_not allow_value(true).for(:require_2fa).with_message(:own_role) }
+      end
+
+      context 'when current_account is changing their own role and is an admin' do
+        subject { Fabricate(:user_role, permissions: UserRole::FLAGS[:administrator]) }
+
+        let(:account) { Fabricate :account, user: Fabricate(:user, role: subject) }
+
+        it { is_expected.to_not allow_value(100).for(:permissions).against(:permissions_as_keys).with_message(:own_role) }
+        it { is_expected.to_not allow_value(100).for(:position).with_message(:own_role) }
+        it { is_expected.to allow_value(true).for(:require_2fa) }
       end
     end
   end

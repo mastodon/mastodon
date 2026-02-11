@@ -4,11 +4,14 @@ module Settings
   module TwoFactorAuthentication
     class ConfirmationsController < BaseController
       include ChallengableConcern
+      include Devise::Controllers::StoreLocation
 
       skip_before_action :require_functional!
 
       before_action :require_challenge!
       before_action :ensure_otp_secret
+
+      helper_method :return_to_app_url
 
       def new
         prepare_two_factor_form
@@ -36,6 +39,10 @@ module Settings
       end
 
       private
+
+      def return_to_app_url
+        stored_location_for(:user)
+      end
 
       def confirmation_params
         params.expect(form_two_factor_confirmation: [:otp_attempt])

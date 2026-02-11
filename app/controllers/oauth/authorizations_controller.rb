@@ -24,4 +24,8 @@ class OAuth::AuthorizationsController < Doorkeeper::AuthorizationsController
   def truthy_param?(key)
     ActiveModel::Type::Boolean.new.cast(params[key])
   end
+
+  def mfa_setup_path
+    super({ oauth: true })
+  end
 end
