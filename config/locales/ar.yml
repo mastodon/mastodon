@@ -898,6 +898,10 @@ ar:
         all: للجميع
         disabled: لا أحد
         users: للمستخدمين المتصلين محليا
+      landing_page:
+        values:
+          about: عن
+          trends: المتداوَلة
       registrations:
         moderation_recommandation: الرجاء التأكد من أن لديك فريق إشراف كافي وفعال قبل فتح التسجيلات للجميع!
         preamble: تحكّم في مَن الذي يمكنه إنشاء حساب على خادمك الخاص.
@@ -951,6 +955,7 @@ ar:
       no_status_selected: لم يطرأ أي تغيير على أي منشور بما أنه لم يتم اختيار أي واحد
       open: افتح المنشور
       original_status: المنشور الأصلي
+      quotes: الاقتباسات
       reblogs: المعاد تدوينها
       replied_to_html: تم الرد على %{acct_link}
       status_changed: عُدّل المنشور
@@ -958,6 +963,7 @@ ar:
       title: منشورات الحساب - @%{name}
       trending: المتداولة
       view_publicly: رؤية الجزء العلني
+      view_quoted_post: عرض المنشور المقتبس
       visibility: مدى الظهور
       with_media: تحتوي على وسائط
     strikes:
@@ -1251,6 +1257,7 @@ ar:
     hint_html: إذا كنت ترغب في الانتقال من حساب آخر إلى هذا الحساب الحالي، يمكنك إنشاء اسم مستعار هنا، والذي هو مطلوب قبل أن تتمكن من المضي قدما في نقل متابِعيك من الحساب القديم إلى هذا الحساب. هذا الإجراء بحد ذاته هو <strong>غير مؤذي و قابل للعكس</strong>. <strong>تتم بداية تهجير الحساب من الحساب القديم</strong>.
     remove: إلغاء ربط الكنية
   appearance:
+    advanced_settings: الإعدادات المتقدمة
     animations_and_accessibility: الإتاحة والحركة
     discovery: الاستكشاف
     localization:
@@ -1368,6 +1375,12 @@ ar:
     hint_html: "<strong>توصية:</strong> لن نطلب منك ثانية كلمتك السرية في غضون الساعة اللاحقة."
     invalid_password: الكلمة السرية خاطئة
     prompt: أكِّد الكلمة السرية للمواصلة
+  color_scheme:
+    auto: تلقائي
+    dark: داكن
+    light: فاتح
+  contrast:
+    auto: تلقائي
   crypto:
     errors:
       invalid_key: ليس بمفتاح Ed25519 أو Curve25519 صالح
@@ -1733,6 +1746,9 @@ ar:
       expires_at: تنتهي مدة صلاحيتها في
       uses: عدد الاستخدامات
     title: دعوة أشخاص
+  link_preview:
+    potentially_sensitive_content:
+      hide_button: إخفاء
   lists:
     errors:
       limit: لقد بلغت الحد الأقصى للقوائم
@@ -2052,6 +2068,9 @@ ar:
         zero: "%{count} فيديوهات"
     boosted_from_html: تم إعادة ترقيته مِن %{acct_link}
     content_warning: 'تحذير عن المحتوى: %{warning}'
+    content_warnings:
+      hide: إخفاء المنشور
+      show: إظهار المزيد
     default_language: نفس لغة الواجهة
     disallowed_hashtags:
       few: 'يحتوي على وسوم غير مسموح بها: %{tags}'
@@ -2128,11 +2147,6 @@ ar:
     past_preamble_html: لقد غيرنا شروط خدمتنا منذ زيارتكم الأخيرة. نشجعكم على مراجعة الشروط المحدثة.
     review_link: مراجعة شروط الخدمة
     title: شروط خدمة النطاق %{domain} ستتغير
-  themes:
-    contrast: ماستدون (تباين عالٍ)
-    default: ماستدون (داكن)
-    mastodon-light: ماستدون (فاتح)
-    system: تلقائي (استخدم سمة النظام)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -2304,6 +2318,7 @@ ar:
       error: حدثت مشكلة ما خلال حذف مفتاح أمانك. الرجاء المحاولة مرة أخرى.
       success: تم حذف مفتاح الأمان الخاص بك.
     invalid_credential: مفتاح الأمان غير صالح
+    nickname: الكنية
     nickname_hint: أدخل اسم مستعار لمفتاح الأمان الجديد الخاص بك
     not_enabled: لم تقم بتفعيل WebAuthn بعد
     not_supported: هذا المتصفح لا يدعم مفاتيح الأمان
