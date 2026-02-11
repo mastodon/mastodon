@@ -88,13 +88,13 @@ class ApplicationController < ActionController::Base
 
       format.json do
         if !current_user.confirmed?
-          render json: { error: 'Your login is missing a confirmed e-mail address' }, status: 403
+          render json: { error: 'Your login is missing a confirmed e-mail address', error_code: 'unconfirmed_email' }, status: 403
         elsif !current_user.approved?
-          render json: { error: 'Your login is currently pending approval' }, status: 403
+          render json: { error: 'Your login is currently pending approval', error_code: 'account_pending_approval' }, status: 403
         elsif current_user.missing_2fa?
-          render json: { error: 'Your account requires two-factor authentication' }, status: 403
+          render json: { error: 'Your account requires two-factor authentication', error_code: 'unmet_2fa_requirement', action_url: mfa_setup_path }, status: 403
         elsif !current_user.functional?
-          render json: { error: 'Your login is currently disabled' }, status: 403
+          render json: { error: 'Your login is currently disabled', error_code: 'account_disabled' }, status: 403
         end
       end
     end
