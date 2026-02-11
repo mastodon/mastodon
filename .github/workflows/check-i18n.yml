@@ -42,8 +42,7 @@ jobs:
 
       - name: Check for missing strings in English YML
         run: |
-          bin/i18n-tasks add-missing -l en
-          git diff --exit-code
+          bin/i18n-tasks missing -t used -l en
 
       - name: Check for wrong string interpolations
         run: bin/i18n-tasks check-consistent-interpolations

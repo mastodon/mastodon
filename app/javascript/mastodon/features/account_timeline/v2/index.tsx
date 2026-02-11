@@ -25,12 +25,11 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AccountHeader } from '../components/account_header';
 import { LimitedAccountHint } from '../components/limited_account_hint';
-import { useFilters } from '../hooks/useFilters';
 
+import { AccountTimelineProvider, useAccountContext } from './context';
 import { FeaturedTags } from './featured_tags';
 import { AccountFilters } from './filters';
 import {
-  PinnedStatusProvider,
   renderPinnedStatusHeader,
   usePinnedStatusIds,
 } from './pinned_statuses';
@@ -56,13 +55,13 @@ const AccountTimelineV2: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
   // Add this key to remount the timeline when accountId changes.
   return (
-    <PinnedStatusProvider>
+    <AccountTimelineProvider accountId={accountId}>
       <InnerTimeline
         accountId={accountId}
         key={accountId}
         multiColumn={multiColumn}
       />
-    </PinnedStatusProvider>
+    </AccountTimelineProvider>
   );
 };
 
@@ -71,7 +70,7 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
   multiColumn,
 }) => {
   const { tagged } = useParams<{ tagged?: string }>();
-  const { boosts, replies } = useFilters();
+  const { boosts, replies } = useAccountContext();
   const key = timelineKey({
     type: 'account',
     userId: accountId,

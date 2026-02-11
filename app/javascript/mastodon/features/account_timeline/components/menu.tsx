@@ -34,7 +34,6 @@ import {
 import type { AppDispatch } from '@/mastodon/store';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 import BlockIcon from '@/material-icons/400-24px/block.svg?react';
-import EditIcon from '@/material-icons/400-24px/edit_square.svg?react';
 import LinkIcon from '@/material-icons/400-24px/link_2.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import PersonRemoveIcon from '@/material-icons/400-24px/person_remove.svg?react';
@@ -51,6 +50,10 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
   const relationship = useAppSelector((state) =>
     state.relationships.get(accountId),
   );
+  const currentAccountId = useAppSelector(
+    (state) => state.meta.get('me') as string,
+  );
+  const isMe = currentAccountId === accountId;
 
   const dispatch = useAppDispatch();
   const menuItems = useMemo(() => {
@@ -61,7 +64,7 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
     if (isRedesignEnabled()) {
       return redesignMenuItems({
         account,
-        signedIn,
+        signedIn: !isMe && signedIn,
         permissions,
         intl,
         relationship,
@@ -76,7 +79,7 @@ export const AccountMenu: FC<{ accountId: string }> = ({ accountId }) => {
       relationship,
       dispatch,
     });
-  }, [account, signedIn, permissions, intl, relationship, dispatch]);
+  }, [account, signedIn, isMe, permissions, intl, relationship, dispatch]);
   return (
     <Dropdown
       disabled={menuItems.length === 0}
@@ -443,6 +446,10 @@ const redesignMessages = defineMessages({
     defaultMessage: 'Copied account link to clipboard',
   },
   mention: { id: 'account.menu.mention', defaultMessage: 'Mention' },
+  noteDescription: {
+    id: 'account.menu.note.description',
+    defaultMessage: 'Visible only to you',
+  },
   direct: {
     id: 'account.menu.direct',
     defaultMessage: 'Privately mention',
@@ -513,22 +520,30 @@ function redesignMenuItems({
         icon: ShareIcon,
       });
     }
-    items.push(
-      {
-        text: intl.formatMessage(redesignMessages.copy),
-        action: () => {
-          void navigator.clipboard.writeText(account.url);
-          dispatch(showAlert({ message: redesignMessages.copied }));
-        },
-        icon: LinkIcon,
+    items.push({
+      text: intl.formatMessage(redesignMessages.copy),
+      action: () => {
+        void navigator.clipboard.writeText(account.url);
+        dispatch(showAlert({ message: redesignMessages.copied }));
       },
-      null,
-    );
+      icon: LinkIcon,
+    });
+  }
+
+  // Open on remote page.
+  if (isRemote) {
+    items.push({
+      text: intl.formatMessage(redesignMessages.openOriginalPage, {
+        domain: remoteDomain,
+      }),
+      href: account.url,
+    });
   }
 
   // Mention and direct message options
   if (signedIn && !account.suspended) {
     items.push(
+      null,
       {
         text: intl.formatMessage(redesignMessages.mention),
         action: () => {
@@ -541,36 +556,6 @@ function redesignMenuItems({
         action: () => {
           dispatch(directCompose(account));
         },
-      },
-      null,
-      {
-        text: intl.formatMessage(
-          relationship?.note ? messages.editNote : messages.addNote,
-        ),
-        action: () => {
-          dispatch(
-            openModal({
-              modalType: 'ACCOUNT_NOTE',
-              modalProps: {
-                accountId: account.id,
-              },
-            }),
-          );
-        },
-        icon: EditIcon,
-      },
-      null,
-    );
-  }
-
-  // Open on remote page.
-  if (isRemote) {
-    items.push(
-      {
-        text: intl.formatMessage(redesignMessages.openOriginalPage, {
-          domain: remoteDomain,
-        }),
-        href: account.url,
       },
       null,
     );
@@ -608,58 +593,77 @@ function redesignMenuItems({
           }
         },
       },
-      null,
     );
+  }
 
-    // Timeline options
-    if (!relationship.muting) {
-      items.push(
-        {
-          text: intl.formatMessage(
-            relationship.showing_reblogs
-              ? redesignMessages.hideReblogs
-              : redesignMessages.showReblogs,
-          ),
-          action: () => {
-            dispatch(
-              followAccount(account.id, {
-                reblogs: !relationship.showing_reblogs,
-              }),
-            );
-          },
-        },
-        {
-          text: intl.formatMessage(messages.languages),
-          action: () => {
-            dispatch(
-              openModal({
-                modalType: 'SUBSCRIBED_LANGUAGES',
-                modalProps: {
-                  accountId: account.id,
-                },
-              }),
-            );
-          },
-        },
-      );
-    }
+  items.push(
+    {
+      text: intl.formatMessage(
+        relationship?.note ? messages.editNote : messages.addNote,
+      ),
+      description: intl.formatMessage(redesignMessages.noteDescription),
+      action: () => {
+        dispatch(
+          openModal({
+            modalType: 'ACCOUNT_NOTE',
+            modalProps: {
+              accountId: account.id,
+            },
+          }),
+        );
+      },
+    },
+    null,
+  );
 
+  // Timeline options
+  if (relationship && !relationship.muting) {
     items.push(
       {
         text: intl.formatMessage(
-          relationship.muting ? redesignMessages.unmute : redesignMessages.mute,
+          relationship.showing_reblogs
+            ? redesignMessages.hideReblogs
+            : redesignMessages.showReblogs,
         ),
         action: () => {
-          if (relationship.muting) {
-            dispatch(unmuteAccount(account.id));
-          } else {
-            dispatch(initMuteModal(account));
-          }
+          dispatch(
+            followAccount(account.id, {
+              reblogs: !relationship.showing_reblogs,
+            }),
+          );
         },
       },
-      null,
+      {
+        text: intl.formatMessage(messages.languages),
+        action: () => {
+          dispatch(
+            openModal({
+              modalType: 'SUBSCRIBED_LANGUAGES',
+              modalProps: {
+                accountId: account.id,
+              },
+            }),
+          );
+        },
+      },
     );
   }
+
+  items.push(
+    {
+      text: intl.formatMessage(
+        relationship?.muting ? redesignMessages.unmute : redesignMessages.mute,
+      ),
+      action: () => {
+        if (relationship?.muting) {
+          dispatch(unmuteAccount(account.id));
+        } else {
+          dispatch(initMuteModal(account));
+        }
+      },
+    },
+    null,
+  );
 
   if (relationship?.followed_by) {
     items.push({
@@ -722,7 +726,7 @@ function redesignMenuItems({
   }
 
   if (remoteDomain) {
-    items.push({
+    items.push(null, {
       text: intl.formatMessage(
         relationship?.domain_blocking
           ? redesignMessages.domainUnblock

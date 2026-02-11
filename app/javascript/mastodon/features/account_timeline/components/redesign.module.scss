@@ -1,9 +1,24 @@
+.header {
+  height: 120px;
+  background: var(--color-bg-secondary);
+
+  @container (width >= 500px) {
+    height: 160px;
+  }
+}
+
 .barWrapper {
   border-bottom: none;
 }
 
+.avatarWrapper {
+  margin-top: -64px;
+  padding-top: 0;
+}
+
 .nameWrapper {
   display: flex;
+  align-items: start;
   gap: 16px;
 }
 
@@ -12,6 +27,10 @@
   font-size: 22px;
   white-space: initial;
   line-height: normal;
+
+  > h1 {
+    white-space: initial;
+  }
 }
 
 .username {
@@ -23,15 +42,13 @@
   margin-top: 4px;
 }
 
-.domainPill {
+.handleHelpButton {
   appearance: none;
   border: none;
   background: none;
   padding: 0;
-  text-decoration: underline;
   color: inherit;
   font-size: 1em;
-  font-weight: initial;
   margin-left: 2px;
   width: 16px;
   height: 16px;
@@ -43,9 +60,50 @@
   }
 
   &:hover,
-  &:global(.active) {
-    background: none;
+  &:focus {
     color: var(--color-text-brand-soft);
+  }
+}
+
+.handleHelp {
+  padding: 16px;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  border-radius: 12px;
+  box-shadow: var(--dropdown-shadow);
+  max-width: 400px;
+  box-sizing: border-box;
+
+  > h3 {
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  > ol {
+    margin: 12px 0;
+  }
+
+  li {
+    display: flex;
+    gap: 8px;
+    align-items: start;
+
+    &:first-child {
+      margin-bottom: 12px;
+    }
+  }
+
+  svg {
+    background: var(--color-bg-brand-softer);
+    width: 28px;
+    height: 28px;
+    padding: 5px;
+    border-radius: 9999px;
+    box-sizing: border-box;
+  }
+
+  strong {
+    font-weight: 600;
   }
 }
 
@@ -66,7 +124,9 @@ $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
 
 .buttonsMobile {
   position: sticky;
-  bottom: 55px; // Height of bottom nav bar.
+  bottom: var(--mobile-bottom-nav-height);
+  padding: 12px 16px;
+  margin: 0 -20px;
 
   @container (width >= #{$button-breakpoint}) {
     display: none;
@@ -77,13 +137,16 @@ $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
       display: none;
     }
   }
+
+  // Multi-column layout
+  @media (width >= #{$button-breakpoint}) {
+    bottom: 0;
+  }
 }
 
 .buttonsMobileIsStuck {
-  padding: 12px 16px;
   background-color: var(--color-bg-primary);
   border-top: 1px solid var(--color-border-primary);
-  margin: 0 -20px;
 }
 
 .badge {
@@ -114,6 +177,10 @@ svg.badgeIcon {
 
 .note {
   margin-bottom: 16px;
+}
+
+.noteContent {
+  white-space-collapse: preserve-breaks;
 }
 
 .noteEditButton {
@@ -236,6 +303,11 @@ svg.badgeIcon {
 .fieldNumbersWrapper {
   a {
     font-weight: unset;
+  }
+
+  strong {
+    font-weight: 600;
+    color: var(--color-text-primary);
   }
 }
 
