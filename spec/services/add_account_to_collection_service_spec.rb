@@ -20,6 +20,12 @@ RSpec.describe AddAccountToCollectionService do
         expect(new_item.state).to eq 'accepted'
         expect(new_item.account).to eq account
       end
+
+      it 'federates an `Add` activity', feature: :collections_federation do
+        subject.call(collection, account)
+
+        expect(ActivityPub::AccountRawDistributionWorker).to have_enqueued_sidekiq_job
+      end
     end
 
     context 'when given an account that is not featureable' do
