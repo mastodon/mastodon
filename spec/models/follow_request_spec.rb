@@ -8,6 +8,8 @@ RSpec.describe FollowRequest do
     let(:account)         { Fabricate(:account) }
     let(:target_account)  { Fabricate(:account) }
 
+    before { stub_const('ActivityPub::AccountBackfillService::ENABLED', true) }
+
     context 'when the to-be-followed person has been added to a list' do
       let!(:list) { Fabricate(:list, account: account) }
 
