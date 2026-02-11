@@ -27,7 +27,7 @@ Status: Active development
 
 ## Client Flags
 
-Client flags are for incomplete features in the web UI, and are enabled via inputting `localStorage.experiments = 'xyz'`. Multiple flags are separated by a comma.
+Client flags are for incomplete features in the web UI, and are enabled by entering `localStorage.experiments = 'xyz'` in the browser developer console. Multiple flags are separated by a comma.
 
 ### Collections
 
