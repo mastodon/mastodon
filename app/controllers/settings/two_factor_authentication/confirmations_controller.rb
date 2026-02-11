@@ -11,10 +11,6 @@ module Settings
       before_action :require_challenge!
       before_action :ensure_otp_secret
 
-      def return_to_app_url
-        stored_location_for(:user)
-      end
-
       helper_method :return_to_app_url
 
       def new
@@ -43,6 +39,10 @@ module Settings
       end
 
       private
+
+      def return_to_app_url
+        stored_location_for(:user)
+      end
 
       def confirmation_params
         params.expect(form_two_factor_confirmation: [:otp_attempt])

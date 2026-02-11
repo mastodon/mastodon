@@ -20,12 +20,6 @@ module Settings
         redirect_to new_settings_two_factor_authentication_confirmation_path(params.permit(:oauth))
       end
 
-      def permitted_params
-        params.permit(:oauth)
-      end
-
-      helper_method :permitted_params
-
       private
 
       def verify_otp_not_enabled

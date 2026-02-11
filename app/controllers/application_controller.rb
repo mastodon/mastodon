@@ -68,8 +68,8 @@ class ApplicationController < ActionController::Base
     store_location_for(:user, stored_url)
   end
 
-  def mfa_setup_path(params = {})
-    settings_two_factor_authentication_methods_path(params)
+  def mfa_setup_path(path_params = {})
+    settings_two_factor_authentication_methods_path(path_params)
   end
 
   def require_functional!
