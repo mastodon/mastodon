@@ -203,25 +203,6 @@ export const timelineDelete = createAction<{
   reblogOf: string | null;
 }>('timelines/delete');
 
-export const deleteFromTimelines = createAppThunk(
-  (id: string, { dispatch, getState }) => {
-    const statuses = getState().statuses;
-    const accountId = statuses.getIn([id, 'account']) as string | undefined;
-    const references = statuses
-      .filter((status) => status.get('reblog') === id)
-      .map((status) => status.get('id') as string)
-      .valueSeq()
-      .toJSON();
-    const reblogOf = statuses.getIn([id, 'reblog'], null) as string | null;
-
-    if (!accountId) {
-      return;
-    }
-
-    dispatch(timelineDelete({ statusId: id, accountId, references, reblogOf }));
-  },
-);
-
 export const timelineDeleteStatus = createAction<{
   statusId: string;
   timelineKey: string;
