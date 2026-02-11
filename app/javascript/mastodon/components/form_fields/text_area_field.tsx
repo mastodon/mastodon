@@ -1,5 +1,5 @@
 import type { ComponentPropsWithoutRef } from 'react';
-import { forwardRef } from 'react';
+import { forwardRef, useCallback } from 'react';
 
 import classNames from 'classnames';
 
@@ -36,12 +36,26 @@ TextAreaField.displayName = 'TextAreaField';
 export const TextArea = forwardRef<
   HTMLTextAreaElement,
   ComponentPropsWithoutRef<'textarea'>
->(({ className, ...otherProps }, ref) => (
-  <textarea
-    {...otherProps}
-    className={classNames(className, classes.input)}
-    ref={ref}
-  />
-));
+>(({ className, onKeyDown, ...otherProps }, ref) => {
+  const handleSubmitHotkey = useCallback(
+    (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      onKeyDown?.(e);
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        const targetForm = e.currentTarget.form;
+        targetForm?.requestSubmit();
+      }
+    },
+    [onKeyDown],
+  );
+
+  return (
+    <textarea
+      {...otherProps}
+      onKeyDown={handleSubmitHotkey}
+      className={classNames(className, classes.input)}
+      ref={ref}
+    />
+  );
+});
 
 TextArea.displayName = 'TextArea';
