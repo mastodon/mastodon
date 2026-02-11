@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -8,11 +8,21 @@ import type { Account } from '@/mastodon/models/account';
 
 import { RemoteHint } from './remote';
 
-export const EmptyMessage: FC<{
-  account: Account;
-  followerIds?: string[];
-}> = ({ account, followerIds }) => {
-  const { blockedBy, hidden, suspended } = useAccountVisibility(account.id);
+interface BaseEmptyMessageProps {
+  account?: Account;
+  defaultMessage: ReactNode;
+}
+export type EmptyMessageProps = Omit<BaseEmptyMessageProps, 'defaultMessage'>;
+
+export const BaseEmptyMessage: FC<BaseEmptyMessageProps> = ({
+  account,
+  defaultMessage,
+}) => {
+  const { blockedBy, hidden, suspended } = useAccountVisibility(account?.id);
+
+  if (!account) {
+    return null;
+  }
 
   if (suspended) {
     return (
@@ -36,12 +46,7 @@ export const EmptyMessage: FC<{
     );
   }
 
-  // If we don't have the Immutable list, then we're still loading.
-  if (!followerIds) {
-    return null;
-  }
-
-  if (account.hide_collections && followerIds.length === 0) {
+  if (account.hide_collections) {
     return (
       <FormattedMessage
         id='empty_column.account_hides_collections'
@@ -51,14 +56,9 @@ export const EmptyMessage: FC<{
   }
 
   const domain = account.acct.split('@')[1];
-  if (domain && followerIds.length === 0) {
+  if (domain) {
     return <RemoteHint domain={domain} url={account.url} />;
   }
 
-  return (
-    <FormattedMessage
-      id='account.followers.empty'
-      defaultMessage='No one follows this user yet.'
-    />
-  );
+  return defaultMessage;
 };
