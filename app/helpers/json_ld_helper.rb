@@ -70,6 +70,10 @@ module JsonLdHelper
     !json.nil? && equals_or_includes?(json['@context'], ActivityPub::TagManager::CONTEXT)
   end
 
+  def supported_security_context?(json)
+    !json.nil? && equals_or_includes?(json['@context'], 'https://w3id.org/security/v1')
+  end
+
   def unsupported_uri_scheme?(uri)
     uri.nil? || !uri.start_with?('http://', 'https://')
   end
