@@ -1,4 +1,3 @@
-import type { ComponentPropsWithoutRef } from 'react';
 import { forwardRef, useCallback, useId, useRef, useState } from 'react';
 
 import { useIntl } from 'react-intl';
@@ -9,6 +8,7 @@ import Overlay from 'react-overlays/Overlay';
 
 import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
 import KeyboardArrowUpIcon from '@/material-icons/400-24px/keyboard_arrow_up.svg?react';
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 import { matchWidth } from 'mastodon/components/dropdown/utils';
 import { IconButton } from 'mastodon/components/icon_button';
 import { useOnClickOutside } from 'mastodon/hooks/useOnClickOutside';
@@ -17,6 +17,7 @@ import classes from './combobox.module.scss';
 import { FormFieldWrapper } from './form_field_wrapper';
 import type { CommonFieldWrapperProps } from './form_field_wrapper';
 import { TextInput } from './text_input_field';
+import type { TextInputProps } from './text_input_field';
 
 interface ComboboxItem {
   id: string;
@@ -27,17 +28,45 @@ export interface ComboboxItemState {
   isDisabled: boolean;
 }
 
-interface ComboboxProps<
-  T extends ComboboxItem,
-> extends ComponentPropsWithoutRef<'input'> {
+interface ComboboxProps<T extends ComboboxItem> extends TextInputProps {
+  /**
+   * The value of the combobox's text input
+   */
   value: string;
+  /**
+   * Change handler for the text input field
+   */
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  /**
+   * Set this to true when the list of options is dynamic and currently loading.
+   * Causes a loading indicator to be displayed inside of the dropdown menu.
+   */
   isLoading?: boolean;
+  /**
+   * The set of options/suggestions that should be rendered in the dropdown menu.
+   */
   items: T[];
+  /**
+   * A function that must return a unique id for each option passed via `items`
+   */
   getItemId: (item: T) => string;
+  /**
+   * Providing this function turns the combobox into a multi-select box that assumes
+   * multiple options to be selectable. Single-selection is handled automatically.
+   */
   getIsItemSelected?: (item: T) => boolean;
+  /**
+   * Use this function to mark items as disabled, if needed
+   */
   getIsItemDisabled?: (item: T) => boolean;
+  /**
+   * Customise the rendering of each option.
+   * The rendered content must not contain other interactive content!
+   */
   renderItem: (item: T, state: ComboboxItemState) => React.ReactElement;
+  /**
+   * The main selection handler, called when an option is selected or deselected.
+   */
   onSelectItem: (item: T) => void;
 }
 
@@ -45,8 +74,12 @@ interface Props<T extends ComboboxItem>
   extends ComboboxProps<T>, CommonFieldWrapperProps {}
 
 /**
- * The combobox field allows users to select one or multiple items
- * from a large list of options by searching or filtering.
+ * The combobox field allows users to select one or more items
+ * by searching or filtering a large or dynamic list of options.
+ *
+ * It is an implementation of the [APG Combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/),
+ * with inspiration taken from Sarah Higley's extensive combobox
+ * [research & implementations](https://sarahmhigley.com/writing/select-your-poison/).
  */
 
 export const ComboboxFieldWithRef = <T extends ComboboxItem>(
@@ -88,6 +121,7 @@ const ComboboxWithRef = <T extends ComboboxItem>(
     onSelectItem,
     onChange,
     onKeyDown,
+    icon = SearchIcon,
     className,
     ...otherProps
   }: ComboboxProps<T>,
@@ -306,6 +340,7 @@ const ComboboxWithRef = <T extends ComboboxItem>(
         value={value}
         onChange={handleInputChange}
         onKeyDown={handleInputKeyDown}
+        icon={icon}
         className={classNames(classes.input, className)}
         ref={mergeRefs}
       />
