@@ -9,6 +9,7 @@ const config = {
     `yarn i18n:extract`,
     'git diff --exit-code app/javascript/mastodon/locales/en.json',
   ],
+  'yarn.lock': () => 'yarn dedupe',
 };
 
 module.exports = config;
