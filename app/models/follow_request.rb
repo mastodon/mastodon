@@ -41,7 +41,7 @@ class FollowRequest < ApplicationRecord
       MergeWorker.push_bulk(account.owned_lists.with_list_account(target_account).pluck(:id)) do |list_id|
         [target_account.id, list_id, 'list']
       end
-      ActivityPub::AccountBackfillWorker.perform_async(target_account.id) if is_first_follow & ActivityPub::AccountBackfillService::ENABLED
+      ActivityPub::AccountBackfillWorker.perform_async(target_account.id) if ActivityPub::AccountBackfillService::ENABLED && is_first_follow
     end
 
     destroy!
