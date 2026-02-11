@@ -12,8 +12,8 @@ import { Icon } from '@/mastodon/components/icon';
 import KeyboardArrowDownIcon from '@/material-icons/400-24px/keyboard_arrow_down.svg?react';
 
 import { AccountTabs } from '../components/tabs';
-import { useFilters } from '../hooks/useFilters';
 
+import { useAccountContext } from './context';
 import classes from './styles.module.scss';
 
 export const AccountFilters: FC = () => {
@@ -42,7 +42,7 @@ const FilterDropdown: FC = () => {
     setOpen(false);
   }, []);
 
-  const { boosts, replies, setBoosts, setReplies } = useFilters();
+  const { boosts, replies, setBoosts, setReplies } = useAccountContext();
   const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       const { name, checked } = event.target;
@@ -101,7 +101,6 @@ const FilterDropdown: FC = () => {
       <Overlay
         show={open}
         target={buttonRef}
-        flip
         placement='bottom-start'
         rootClose
         onHide={handleHide}

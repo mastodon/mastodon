@@ -43,7 +43,7 @@ jobs:
           bundler-cache: true
 
       - name: Set-up RuboCop Problem Matcher
-        uses: r7kamura/rubocop-problem-matchers-action@59f1a0759f50cc2649849fd850b8487594bb5a81 # v1
+        uses: r7kamura/rubocop-problem-matchers-action@59f1a0759f50cc2649849fd850b8487594bb5a81 # v1.2.2
 
       - name: Run rubocop
         run: bin/rubocop

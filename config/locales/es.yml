@@ -12,6 +12,9 @@ es:
     followers:
       one: Seguidor
       other: Seguidores
+    following:
+      one: Siguiendo
+      other: Siguiendo
     instance_actor_flash: Esta cuenta es un actor virtual utilizado para representar al propio servidor y no a ningún usuario individual. Se utiliza con fines de federación y no debe suspenderse.
     last_active: última conexión
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
@@ -1999,9 +2002,9 @@ es:
       '63113904': 2 años
       '7889238': 3 meses
     min_age_label: Umbral de tiempo
-    min_favs: Mantener mensajes con un número de favoritos mayor que
+    min_favs: Mantener publicaciones con un número de favoritos de al menos
     min_favs_hint: No borra ninguna de las publicaciones que hayan recibido al menos esta cantidad de favoritos. Deja en blanco para eliminar publicaciones sin importar el número de favoritos
-    min_reblogs: Mantener publicaciones reblogueadas más de
+    min_reblogs: Mantener publicaciones impulsadas al menos
     min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido impulsadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de impulsos
   stream_entries:
     sensitive_content: Contenido sensible

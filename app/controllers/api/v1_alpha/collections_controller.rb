@@ -51,7 +51,7 @@ class Api::V1Alpha::CollectionsController < Api::BaseController
   def update
     authorize @collection, :update?
 
-    @collection.update!(collection_update_params) # TODO: Create a service for this to federate changes
+    UpdateCollectionService.new.call(@collection, collection_update_params)
 
     render json: @collection, serializer: REST::CollectionSerializer, adapter: :json
   end

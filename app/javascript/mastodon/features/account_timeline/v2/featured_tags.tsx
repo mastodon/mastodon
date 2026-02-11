@@ -13,8 +13,7 @@ import { useOverflowButton } from '@/mastodon/hooks/useOverflow';
 import { selectAccountFeaturedTags } from '@/mastodon/selectors/accounts';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
-import { useFilters } from '../hooks/useFilters';
-
+import { useAccountContext } from './context';
 import classes from './styles.module.scss';
 
 export const FeaturedTags: FC<{ accountId: string }> = ({ accountId }) => {
@@ -83,7 +82,7 @@ export const FeaturedTags: FC<{ accountId: string }> = ({ accountId }) => {
 function useTagNavigate() {
   // Get current account, tag, and filters.
   const { acct, tagged } = useParams<{ acct: string; tagged?: string }>();
-  const { boosts, replies } = useFilters();
+  const { boosts, replies } = useAccountContext();
 
   const history = useAppHistory();
 
