@@ -2,8 +2,6 @@ import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import type { List as ImmutableList } from 'immutable';
-
 import { LimitedAccountHint } from '@/mastodon/features/account_timeline/components/limited_account_hint';
 import { useAccountVisibility } from '@/mastodon/hooks/useAccountVisibility';
 import type { Account } from '@/mastodon/models/account';
@@ -12,7 +10,7 @@ import { RemoteHint } from './remote';
 
 export const EmptyMessage: FC<{
   account: Account;
-  followerIds?: ImmutableList<string>;
+  followerIds?: string[];
 }> = ({ account, followerIds }) => {
   const { blockedBy, hidden, suspended } = useAccountVisibility(account.id);
 
@@ -43,7 +41,7 @@ export const EmptyMessage: FC<{
     return null;
   }
 
-  if (account.hide_collections && followerIds.isEmpty()) {
+  if (account.hide_collections && followerIds.length === 0) {
     return (
       <FormattedMessage
         id='empty_column.account_hides_collections'
@@ -53,7 +51,7 @@ export const EmptyMessage: FC<{
   }
 
   const domain = account.acct.split('@')[1];
-  if (domain && followerIds.isEmpty()) {
+  if (domain && followerIds.length === 0) {
     return <RemoteHint domain={domain} url={account.url} />;
   }
 

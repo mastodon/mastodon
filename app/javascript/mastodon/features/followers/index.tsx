@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import type { FC, ReactNode } from 'react';
+import { useEffect, useMemo } from 'react';
+import type { FC } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -47,19 +47,13 @@ const selectFollowerList = createAppSelector(
       return null;
     }
 
-    // Gets the items, sorting the current account first.
-    let items = list.get(
-      'items',
-      ImmutableList<string>(),
-    ) as ImmutableList<string>;
-    if (currentAccountId && items.includes(currentAccountId)) {
-      items = ImmutableList([currentAccountId]).concat(
-        items.filter((id) => id !== currentAccountId),
-      );
-    }
-
+    // Returns the list of followers except the current account.
     return {
-      items,
+      items: (
+        list.get('items', ImmutableList<string>()) as ImmutableList<string>
+      )
+        .filter((id) => id !== currentAccountId)
+        .toArray(),
       isLoading: !!list.get('isLoading', true),
       hasMore: !!list.get('hasMore', false),
     };
@@ -94,9 +88,33 @@ const Followers: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   );
 
   const relationship = useRelationship(accountId);
-
   const { blockedBy, hidden, suspended } = useAccountVisibility(accountId);
+
   const forceEmptyState = blockedBy || hidden || suspended;
+  const domain = account?.acct.split('@')[1];
+
+  // Determine children, prepending the current account if they are followed.
+  const isFollower = currentAccountId !== null && !!relationship?.following;
+  const followersExceptMeHidden = !!(
+    account?.hide_collections &&
+    followerList?.items.length === 0 &&
+    isFollower
+  );
+  const children = useMemo(() => {
+    if (forceEmptyState || !followerList) {
+      return [];
+    }
+    const children = followerList.items.map((followerId) => (
+      <Account key={followerId} id={followerId} />
+    ));
+
+    if (isFollower) {
+      children.unshift(
+        <Account key={currentAccountId} id={currentAccountId} minimal />,
+      );
+    }
+    return children;
+  }, [currentAccountId, followerList, isFollower, forceEmptyState]);
 
   // Null means accountId does not exist (e.g. invalid acct). Undefined means loading.
   if (accountId === null) {
@@ -109,27 +127,6 @@ const Followers: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
         <LoadingIndicator />
       </Column>
     );
-  }
-
-  const domain = account.acct.split('@')[1];
-
-  const followersExceptMeHidden = !!(
-    account.hide_collections &&
-    followerList?.items.isEmpty() &&
-    currentAccountId &&
-    relationship?.following
-  );
-
-  let children: ReactNode[] = [];
-  if (!forceEmptyState && followerList) {
-    children = followerList.items
-      .map((followerId) => <Account key={followerId} id={followerId} />)
-      .toArray();
-  }
-  if (followersExceptMeHidden) {
-    children = [
-      <Account key={currentAccountId} id={currentAccountId} minimal />,
-    ];
   }
 
   return (
