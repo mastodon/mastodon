@@ -3,7 +3,7 @@
 class ActivityPub::AccountBackfillService < BaseService
   include JsonLdHelper
 
-  ENABLED = ENV['ACCOUNT_BACKFILL_ENABLED'].nil? || ENV['ACCOUNT_BACKFILL_ENABLED'] == 'true'
+  ENABLED = ENV.key?('ACCOUNT_BACKFILL_ENABLED') && ENV['ACCOUNT_BACKFILL_ENABLED'] == 'true'
   MAX_STATUSES = (ENV['ACCOUNT_BACKFILL_MAX_STATUSES'] || 1000).to_i
   MAX_PAGES = (ENV['ACCOUNT_BACKFILL_MAX_PAGES'] || 200).to_i
 
