@@ -86,9 +86,10 @@ export const AccountHeader: React.FC<{
   );
 
   const { layout } = useLayout();
+  const isMobile = layout === 'mobile';
   const { observedRef, isIntersecting } = useVisibility({
     observerOptions: {
-      rootMargin: layout === 'mobile' ? '0px 0px -55px 0px' : '', // Height of bottom nav bar.
+      rootMargin: isMobile ? '0px 0px -55px 0px' : '', // Height of bottom nav bar.
     },
   });
 
@@ -210,12 +211,15 @@ export const AccountHeader: React.FC<{
                     <AccountNote accountId={accountId} />
                   ))}
 
-                <AccountBio
-                  accountId={accountId}
-                  className='account__header__content'
-                />
-
-                <AccountHeaderFields accountId={accountId} />
+                {(!isRedesign || !isMobile) && (
+                  <>
+                    <AccountBio
+                      accountId={accountId}
+                      className='account__header__content'
+                    />
+                    <AccountHeaderFields accountId={accountId} />
+                  </>
+                )}
               </div>
 
               <AccountNumberFields accountId={accountId} />

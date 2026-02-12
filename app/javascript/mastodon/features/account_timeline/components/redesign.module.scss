@@ -196,7 +196,7 @@ svg.badgeIcon {
   display: grid;
   grid-template-columns: 160px 1fr min-content;
   column-gap: 8px;
-  margin-top: 4px;
+  margin: 4px 0 16px;
 }
 
 .fieldRow {
@@ -257,6 +257,8 @@ svg.badgeIcon {
 }
 
 .fieldNumbersWrapper {
+  padding: 0;
+
   a {
     font-weight: unset;
   }
