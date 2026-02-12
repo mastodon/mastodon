@@ -10510,6 +10510,8 @@ noscript {
     position: relative;
 
     &__scroll-button {
+      --scroll-button-bg: var(--color-bg-brand-base);
+
       position: absolute;
       height: 100%;
       background: transparent;
@@ -10517,7 +10519,6 @@ noscript {
       cursor: pointer;
       top: 0;
       color: var(--color-text-primary);
-      opacity: 0.5;
 
       &.left {
         left: 0;
@@ -10530,7 +10531,7 @@ noscript {
       &__icon {
         border-radius: 50%;
         color: var(--color-text-on-brand-base);
-        background: var(--color-bg-brand-base);
+        background: var(--scroll-button-bg);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -10546,7 +10547,7 @@ noscript {
       &:hover,
       &:focus,
       &:active {
-        opacity: 1;
+        --scroll-button-bg: var(--color-bg-brand-base-hover);
       }
     }
 
