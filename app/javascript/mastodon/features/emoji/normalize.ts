@@ -181,7 +181,7 @@ export function emojiToInversionClassName(emoji: string): string | null {
   return null;
 }
 
-export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg) {
+export function cleanExtraEmojis(extraEmojis?: CustomEmojiMapArg | null) {
   if (!extraEmojis) {
     return null;
   }
