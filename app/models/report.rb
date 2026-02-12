@@ -40,6 +40,8 @@ class Report < ApplicationRecord
     belongs_to :assigned_account, optional: true
   end
 
+  has_many :collection_reports, dependent: :delete_all
+  has_many :collections, through: :collection_reports
   has_many :notes, class_name: 'ReportNote', inverse_of: :report, dependent: :destroy
   has_many :notifications, as: :activity, dependent: :destroy
 
