@@ -121,9 +121,9 @@ module Mastodon::CLI
     def purge
       if options[:suspended_only]
         DomainBlock.where(severity: :suspend).find_each do |domain_block|
-          next unless CustomEmoji.by_domain_and_subdomains(domain_block.domain).exists?
-
-          PurgeCustomEmojiWorker.perform_async(domain_block.domain)
+          CustomEmoji.by_domain_and_subdomains(domain_block.domain).find_in_batches do |custom_emojis|
+            AttachmentBatch.new(CustomEmoji, custom_emojis).delete
+          end
         end
       else
         scope = options[:remote_only] ? CustomEmoji.remote : CustomEmoji
