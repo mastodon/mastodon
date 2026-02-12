@@ -272,7 +272,7 @@ svg.badgeIcon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: var(--color-bg-elevated);
+  background-color: var(--color-bg-primary);
   box-shadow: 0 1px 4px 0 var(--color-shadow-primary);
   border-radius: 9999px;
   transition:
@@ -295,7 +295,7 @@ svg.badgeIcon {
     background-color: color-mix(
       in oklab,
       var(--color-bg-brand-base) var(--overlay-strength-brand),
-      var(--color-bg-elevated)
+      var(--color-bg-primary)
     );
   }
 }
