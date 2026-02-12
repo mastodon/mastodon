@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useCallback } from 'react';
+import { useEffect, useMemo, useCallback, useId } from 'react';
 
 import { defineMessages, useIntl, FormattedMessage } from 'react-intl';
 
+import classNames from 'classnames';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
@@ -85,15 +86,23 @@ const CollectionItem: React.FC<{
     [intl, id, handleDeleteClick],
   );
 
+  const linkId = useId();
+
   return (
-    <div className={classes.collectionItemWrapper}>
+    <article
+      className={classNames(classes.collectionItemWrapper, 'focusable')}
+      tabIndex={-1}
+      aria-labelledby={linkId}
+    >
       <div className={classes.collectionItemContent}>
-        <Link
-          to={`/collections/${id}/edit/details`}
-          className={classes.collectionItemLink}
-        >
-          {name}
-        </Link>
+        <h2 id={linkId}>
+          <Link
+            to={`/collections/${id}/edit/details`}
+            className={classes.collectionItemLink}
+          >
+            {name}
+          </Link>
+        </h2>
         <ul className={classes.collectionItemInfo}>
           <FormattedMessage
             id='collections.account_count'
@@ -124,7 +133,7 @@ const CollectionItem: React.FC<{
         iconComponent={MoreHorizIcon}
         title={intl.formatMessage(messages.more)}
       />
-    </div>
+    </article>
   );
 };
 
