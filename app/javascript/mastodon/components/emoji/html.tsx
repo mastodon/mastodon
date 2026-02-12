@@ -25,7 +25,7 @@ export const EmojiHTML = polymorphicForwardRef<'div', EmojiHTMLProps>(
       extraEmojis,
       htmlString,
       as: asProp = 'div', // Rename for syntax highlighting
-      className = '',
+      className,
       onElement,
       onAttribute,
       ...props

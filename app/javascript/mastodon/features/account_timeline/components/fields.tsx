@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -8,16 +8,11 @@ import IconVerified from '@/images/icons/icon_verified.svg?react';
 import { AccountFields } from '@/mastodon/components/account_fields';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
-import { IconButton } from '@/mastodon/components/icon_button';
-import { MiniCard } from '@/mastodon/components/mini_card';
+import { Icon } from '@/mastodon/components/icon';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
-import { useOverflowScroll } from '@/mastodon/hooks/useOverflow';
 import type { Account } from '@/mastodon/models/account';
 import { isValidUrl } from '@/mastodon/utils/checks';
-import IconLeftArrow from '@/material-icons/400-24px/chevron_left.svg?react';
-import IconRightArrow from '@/material-icons/400-24px/chevron_right.svg?react';
-import IconLink from '@/material-icons/400-24px/link_2.svg?react';
 
 import { isRedesignEnabled } from '../common';
 
@@ -59,94 +54,60 @@ export const AccountHeaderFields: FC<{ accountId: string }> = ({
 
 const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
   const htmlHandlers = useElementHandledLink();
-  const intl = useIntl();
-
-  const {
-    bodyRef,
-    canScrollLeft,
-    canScrollRight,
-    handleLeftNav,
-    handleRightNav,
-    handleScroll,
-  } = useOverflowScroll();
 
   return (
-    <div
-      className={classNames(
-        classes.fieldWrapper,
-        canScrollLeft && classes.fieldWrapperLeft,
-        canScrollRight && classes.fieldWrapperRight,
-      )}
-    >
-      {canScrollLeft && (
-        <IconButton
-          icon='more'
-          iconComponent={IconLeftArrow}
-          title={intl.formatMessage({
-            id: 'account.fields.scroll_prev',
-            defaultMessage: 'Show previous',
-          })}
-          className={classes.fieldArrowButton}
-          onClick={handleLeftNav}
-        />
-      )}
-      <dl ref={bodyRef} className={classes.fieldList} onScroll={handleScroll}>
-        {account.fields.map(
-          (
-            { name, name_emojified, value_emojified, value_plain, verified_at },
-            key,
-          ) => (
-            <MiniCard
-              key={key}
-              label={
-                <EmojiHTML
-                  htmlString={name_emojified}
-                  extraEmojis={account.emojis}
-                  className='translate'
-                  as='span'
-                  title={name}
-                  {...htmlHandlers}
-                />
-              }
-              value={
-                <EmojiHTML
-                  as='span'
-                  htmlString={value_emojified}
-                  extraEmojis={account.emojis}
-                  title={value_plain ?? undefined}
-                  {...htmlHandlers}
-                />
-              }
-              icon={fieldIcon(verified_at, value_plain)}
+    <dl className={classes.fieldList}>
+      {account.fields.map(
+        (
+          { name, name_emojified, value_emojified, value_plain, verified_at },
+          key,
+        ) => (
+          <div
+            key={key}
+            className={classNames(
+              classes.fieldRow,
+              verified_at && classes.fieldVerified,
+            )}
+          >
+            <EmojiHTML
+              htmlString={name_emojified}
+              extraEmojis={account.emojis}
               className={classNames(
-                classes.fieldCard,
-                verified_at && classes.fieldCardVerified,
+                'translate',
+                isValidUrl(name) && classes.fieldLink,
               )}
+              as='dt'
+              title={showTitleOnLength(name, 50)}
+              {...htmlHandlers}
             />
-          ),
-        )}
-      </dl>
-      {canScrollRight && (
-        <IconButton
-          icon='more'
-          iconComponent={IconRightArrow}
-          title={intl.formatMessage({
-            id: 'account.fields.scroll_next',
-            defaultMessage: 'Show next',
-          })}
-          className={classes.fieldArrowButton}
-          onClick={handleRightNav}
-        />
+            <EmojiHTML
+              as='dd'
+              htmlString={value_emojified}
+              extraEmojis={account.emojis}
+              title={showTitleOnLength(value_plain, 120)}
+              className={classNames(
+                value_plain && isValidUrl(value_plain) && classes.fieldLink,
+              )}
+              {...htmlHandlers}
+            />
+            {verified_at && (
+              <Icon
+                id='verified'
+                icon={IconVerified}
+                className={classes.fieldVerifiedIcon}
+                noFill
+              />
+            )}
+          </div>
+        ),
       )}
-    </div>
+    </dl>
   );
 };
 
-function fieldIcon(verified_at: string | null, value_plain: string | null) {
-  if (verified_at) {
-    return IconVerified;
-  } else if (value_plain && isValidUrl(value_plain)) {
-    return IconLink;
+function showTitleOnLength(value: string | null, maxLength: number) {
+  if (value && value.length > maxLength) {
+    return value;
   }
   return undefined;
 }
