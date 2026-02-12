@@ -46,9 +46,10 @@ RSpec.describe Mastodon::CLI::Emoji do
 
       it 'reports a successful purge' do
         expect { subject }
-          .to enqueue_sidekiq_job(PurgeCustomEmojiWorker).with(blocked_domain)
-          .and enqueue_sidekiq_job(PurgeCustomEmojiWorker).with('evil.org')
-          .and output_results('OK')
+          .to change { CustomEmoji.by_domain_and_subdomains(blocked_domain).count }.to(0)
+          .and change { CustomEmoji.by_domain_and_subdomains('evil.org').count }.to(0)
+          .and not_change { CustomEmoji.by_domain_and_subdomains(silenced_domain).count }
+          .and(not_change { CustomEmoji.local.count })
       end
     end
   end
