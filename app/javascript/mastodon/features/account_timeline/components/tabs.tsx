@@ -16,7 +16,7 @@ export const AccountTabs: FC<{ acct: string }> = ({ acct }) => {
   if (isRedesignEnabled()) {
     return (
       <div className={classes.tabs}>
-        {layout === 'mobile' && (
+        {layout !== 'single-column' && (
           <NavLink exact to={`/@${acct}/about`}>
             <FormattedMessage id='account.about' defaultMessage='About' />
           </NavLink>
