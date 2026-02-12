@@ -194,9 +194,13 @@ svg.badgeIcon {
 
 .fieldList {
   display: grid;
-  grid-template-columns: 160px 1fr min-content;
+  grid-template-columns: min(160px, 25vw) 1fr min-content;
   column-gap: 8px;
   margin: 4px 0 16px;
+
+  @container (width < 400px) {
+    display: block;
+  }
 }
 
 .fieldRow {
