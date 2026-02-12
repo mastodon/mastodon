@@ -802,6 +802,7 @@ fi:
         view_devops_description: Sallii käyttäjille pääsyn Sidekiq- ja pgHero-hallintapaneeleihin
         view_feeds: Näytä live- ja aihesyötteet
         view_feeds_description: Sallii käyttäjien tarkastella live- ja aihesyötteitä palvelimen asetuksista riippumatta
+      requires_2fa: Vaatii kaksivaiheisen todennuksen
       title: Roolit
     rules:
       add_new: Lisää sääntö
@@ -2046,6 +2047,8 @@ fi:
     recovery_codes: Ota palautuskoodit talteen
     recovery_codes_regenerated: Uusien palautuskoodien luonti onnistui
     recovery_instructions_html: Jos menetät puhelimesi, voit kirjautua tilillesi jollakin alla olevista palautuskoodeista. <strong>Pidä palautuskoodit hyvässä tallessa</strong>. Voit esimerkiksi tulostaa ne ja säilyttää muiden tärkeiden papereiden joukossa.
+    resume_app_authorization: Jatka sovelluksen valtuutusta
+    role_requirement: "%{domain} vaatii ottamaan kaksivaiheisen todennuksen käyttöön ennen kuin voit käyttää Mastodonia."
     webauthn: Suojausavaimet
   user_mailer:
     announcement_published:

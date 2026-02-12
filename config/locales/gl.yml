@@ -802,6 +802,7 @@ gl:
         view_devops_description: Permite acceder aos taboleiros Sidekiq e phHero
         view_feeds: Ver as canles do directo e temas
         view_feeds_description: Permite ás usuarias acceder ás canles de directo e temas independentemento dos axustes do servidor.
+      requires_2fa: Require un segundo factor de autenticación
       title: Roles
     rules:
       add_new: Engadir regra
@@ -2046,6 +2047,8 @@ gl:
     recovery_codes: Códigos de recuperación do respaldo
     recovery_codes_regenerated: Códigos de recuperación xerados correctamente
     recovery_instructions_html: Se perdeses o acceso ao teu teléfono, podes utilizar un dos códigos de recuperación inferiores para recuperar o acceso á conta. <strong>Garda os códigos nun lugar seguro</strong>. Por exemplo, podes imprimilos e gardalos xunto con outros documentos importantes.
+    resume_app_authorization: Retomar autorización da aplicación
+    role_requirement: "%{domain} require que configures un Segundo Factor de Autenticación para poder usar Mastodon"
     webauthn: Chaves de seguridade
   user_mailer:
     announcement_published:

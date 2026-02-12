@@ -802,6 +802,7 @@ de:
         view_devops_description: Erlaubt es Benutzer*innen, auf die Sidekiq- und pgHero-Dashboards zuzugreifen
         view_feeds: Live-Feeds und Hashtags anzeigen
         view_feeds_description: Ermöglicht Nutzer*innen unabhängig von den Servereinstellungen den Zugriff auf die Live-Feeds und Hashtags
+      requires_2fa: Zwei-Faktor-Authentisierung erforderlich
       title: Rollen
     rules:
       add_new: Regel hinzufügen
@@ -2046,6 +2047,8 @@ de:
     recovery_codes: Wiederherstellungscodes sichern
     recovery_codes_regenerated: Wiederherstellungscodes erfolgreich neu erstellt
     recovery_instructions_html: Falls du jemals den Zugang zu deinem Smartphone verlierst, kannst du einen der unten aufgeführten Wiederherstellungscodes verwenden, um wieder Zugang zu deinem Konto zu erhalten. <strong>Bewahre die Wiederherstellungscodes sicher auf</strong>. Du kannst sie zum Beispiel ausdrucken und zusammen mit anderen wichtigen Dokumenten aufbewahren.
+    resume_app_authorization: Autorisierung der App fortsetzen
+    role_requirement: "%{domain} verlangt das Einrichten einer Zwei-Faktor-Authentisierung, bevor du Mastodon verwenden kannst."
     webauthn: Sicherheitsschlüssel
   user_mailer:
     announcement_published:

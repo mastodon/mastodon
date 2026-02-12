@@ -164,6 +164,7 @@ en-GB:
         name: Public name of the role, if role is set to be displayed as a badge
         permissions_as_keys: Users with this role will have access to...
         position: Higher role decides conflict resolution in certain situations. Certain actions can only be performed on roles with a lower priority
+        require_2fa: Users with this role will be required to set up two-factor authentication to use Mastodon
       username_block:
         allow_with_approval: Instead of preventing sign-up outright, matching sign-ups will require your approval
         comparison: Please be mindful of the Scunthorpe Problem when blocking partial matches
@@ -239,7 +240,7 @@ en-GB:
         setting_always_send_emails: Always send email notifications
         setting_auto_play_gif: Auto-play animated GIFs
         setting_boost_modal: Control boosting visibility
-        setting_color_scheme: Mode
+        setting_color_scheme: Colour scheme
         setting_contrast: Contrast
         setting_default_language: Posting language
         setting_default_privacy: Posting visibility
@@ -387,6 +388,7 @@ en-GB:
         name: Name
         permissions_as_keys: Permissions
         position: Priority
+        require_2fa: Require two-factor authentication
       username_block:
         allow_with_approval: Allow registrations with approval
         comparison: Method of comparison

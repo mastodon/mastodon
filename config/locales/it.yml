@@ -10,8 +10,8 @@ it:
     errors:
       cannot_be_added_to_collections: Questo account non può essere aggiunto alle collezioni.
     followers:
-      one: Seguace
-      other: Seguaci
+      one: Follower
+      other: Follower
     following:
       one: Stai seguendo
       other: Stai seguendo
@@ -77,7 +77,7 @@ it:
       enable_sign_in_token_auth: Abilitare l'autenticazione del token e-mail
       enabled: Abilitato
       enabled_msg: Il profilo di %{username} è stato scongelato correttamente
-      followers: Seguaci
+      followers: Follower
       follows: Seguiti
       header: Intestazione
       inbox_url: URL casella
@@ -521,7 +521,7 @@ it:
         title: Fornitori di Servizi Ausiliari per il Fediverso
       title: FASP
     follow_recommendations:
-      description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di seguaci locali per una data lingua."
+      description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di follower locali per una data lingua."
       language: Per lingua
       status: Stato
       suppress: Nascondi consigli su chi seguire
@@ -563,8 +563,8 @@ it:
       dashboard:
         instance_accounts_dimension: Profili più seguiti
         instance_accounts_measure: profili memorizzati
-        instance_followers_measure: i nostri seguaci lì
-        instance_follows_measure: i loro seguaci qui
+        instance_followers_measure: i nostri follower lì
+        instance_follows_measure: i loro follower qui
         instance_languages_dimension: Lingue preferite
         instance_media_attachments_measure: allegati multimediali memorizzati
         instance_reports_measure: segnalazioni su di loro
@@ -802,6 +802,7 @@ it:
         view_devops_description: Consente agli utenti di accedere alle dashboard Sidekiq e pgHero
         view_feeds: Visualizza feed in diretta e feed di argomenti
         view_feeds_description: Consente agli utenti di accedere ai feed in diretta e ai feed di argomenti indipendentemente dalle impostazioni del server
+      requires_2fa: Richiede l'autenticazione a due fattori
       title: Ruoli
     rules:
       add_new: Aggiungi regola
@@ -1198,7 +1199,7 @@ it:
     created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
     deleted_msg: L'alias è stato eliminato. Lo spostamento da quell'account a questo non sarà più possibile.
     empty: Non hai alias.
-    hint_html: Se vuoi trasferirti da un altro account a questo, qui puoi creare un alias, che è necessario prima di poter spostare i seguaci dal vecchio account a questo. Questa azione è <strong>innocua e reversibile</strong>. <strong>La migrazione dell'account è avviata dal vecchio account</strong>.
+    hint_html: Se vuoi trasferirti da un altro account a questo, qui puoi creare un alias, che è necessario prima di poter spostare i follower dal vecchio account a questo. Questa azione è <strong>innocua e reversibile</strong>. <strong>La migrazione dell'account è avviata dal vecchio account</strong>.
     remove: Scollega alias
   appearance:
     advanced_settings: Impostazioni avanzate
@@ -1658,7 +1659,7 @@ it:
   migrations:
     acct: utente@dominio del nuovo account
     cancel: Annulla ridirezione
-    cancel_explanation: Se annulli il reindirizzamento sarà riattivato il tuo account attuale, ma i seguaci che sono stati spostati all'altro account non saranno riportati indietro.
+    cancel_explanation: Se annulli il reindirizzamento sarà riattivato il tuo account attuale, ma i follower che sono stati spostati all'altro account non saranno riportati indietro.
     cancelled_msg: Reindirizzamento annullato.
     errors:
       already_moved: è lo stesso account su cui ti sei già trasferito
@@ -1666,14 +1667,14 @@ it:
       move_to_self: non può essere l'account attuale
       not_found: non trovato
       on_cooldown: Ti trovi nel periodo di pausa tra un trasferimento e l'altro
-    followers_count: Seguaci al momento dello spostamento
+    followers_count: Follower al momento dello spostamento
     incoming_migrations: In arrivo da un altro account
     incoming_migrations_html: Per spostarti da un altro account a questo, devi prima creare <a href="%{path}">un alias</a>.
     moved_msg: Il tuo account è ora reindirizzato a %{acct} e i tuoi follower sono stati spostati.
     not_redirecting: Il tuo account attualmente non è reindirizzato ad alcun altro account.
     on_cooldown: Hai recentemente trasferito il tuo account. Questa funzione sarà nuovamente disponibile tra %{count} giorni.
     past_migrations: Trasferimenti passati
-    proceed_with_move: Sposta seguaci
+    proceed_with_move: Sposta i follower
     redirected_msg: Il tuo account sta reindirizzando a %{acct}.
     redirecting_to: Il tuo account sta reindirizzando a %{acct}.
     set_redirect: Imposta reindirizzamento
@@ -1707,11 +1708,11 @@ it:
     follow:
       body: "%{name} ti sta seguendo!"
       subject: "%{name} ti sta seguendo"
-      title: Nuovo seguace
+      title: Nuovo follower
     follow_request:
       action: Gestisci richieste di essere seguito
       body: "%{name} ha chiesto di seguirti"
-      subject: 'Seguace in attesa: %{name}'
+      subject: 'Follower in attesa: %{name}'
       title: Nuova richiesta di essere seguito
     mention:
       action: Rispondi
@@ -1790,7 +1791,7 @@ it:
     privacy: Privacy
     privacy_hint_html: Controlla quanto tu voglia mostrare a beneficio degli altri. Le persone scoprono profili interessanti e app fantastiche sfogliando il seguito di altre persone e vedendo da quali app pubblichino, ma potresti preferire tenerlo nascosto.
     reach: Copertura
-    reach_hint_html: Controlla se vuoi essere scoperto e seguito da nuove persone. Vuoi che i tuoi post vengano visualizzati nella schermata Esplora? Vuoi che altre persone ti vedano tra i loro consigli di utenti da seguire? Vuoi accettare automaticamente tutti i nuovi seguaci o avere un controllo granulare su ciascuno di essi?
+    reach_hint_html: Controlla se vuoi essere scoperto e seguito da nuove persone. Vuoi che i tuoi post vengano visualizzati nella schermata Esplora? Vuoi che altre persone ti vedano tra i loro consigli di utenti da seguire? Vuoi accettare automaticamente tutti i nuovi follower o avere un controllo granulare su ciascuno di essi?
     search: Cerca
     search_hint_html: Controlla come vuoi essere trovato. Vuoi che le persone ti trovino in base a ciò che hai postato pubblicamente? Vuoi che le persone al di fuori di Mastodon trovino il tuo profilo durante la ricerca sul web? Si prega di notare che l'esclusione totale da tutti i motori di ricerca non può essere garantita per le informazioni pubbliche.
     title: Privacy e copertura
@@ -1810,8 +1811,8 @@ it:
     confirm_remove_selected_follows: Sei sicuro di voler rimuovere i follow selezionati?
     dormant: Dormiente
     follow_failure: Impossibile seguire alcuni degli account selezionati.
-    follow_selected_followers: Segui i seguaci selezionati
-    followers: Seguaci
+    follow_selected_followers: Segui i follower selezionati
+    followers: Follower
     following: Seguiti
     invited: Invitato
     last_active: Ultima volta attivo
@@ -1820,8 +1821,8 @@ it:
     mutual: Reciproco
     primary: Principale
     relationship: Relazione
-    remove_selected_domains: Rimuovi tutti i seguaci dai domini selezionati
-    remove_selected_followers: Rimuovi i seguaci selezionati
+    remove_selected_domains: Rimuovi tutti i follower dai domini selezionati
+    remove_selected_followers: Rimuovi i follower selezionati
     remove_selected_follows: Smetti di seguire gli utenti selezionati
     status: Stato dell'account
   remote_follow:
@@ -1905,7 +1906,7 @@ it:
     notifications: Notifiche e-mail
     preferences: Preferenze
     profile: Profilo
-    relationships: Follows e followers
+    relationships: Seguiti e follower
     severed_relationships: Relazioni interrotte
     statuses_cleanup: Cancellazione automatica dei post
     strikes: Sanzioni di moderazione
@@ -1917,9 +1918,9 @@ it:
       account_suspension: Sospensione dell'account (%{target_name})
       domain_block: Sospensione del server (%{target_name})
       user_domain_block: Hai bloccato %{target_name}
-    lost_followers: Seguaci persi
+    lost_followers: Follower persi
     lost_follows: Account seguiti persi
-    preamble: Potresti perdere account seguiti e seguaci quando blocchi un dominio o quando i tuoi moderatori decidono di sospendere un server remoto. Quando ciò accadrà, potrai scaricare liste di relazioni interrotte, da consultare ed eventualmente importare su un altro server.
+    preamble: Potresti perdere account seguiti e follower quando blocchi un dominio o quando i tuoi moderatori decidono di sospendere un server remoto. Quando ciò accadrà, potrai scaricare liste di relazioni interrotte, da consultare ed eventualmente importare su un altro server.
     purged: Le informazioni su questo server sono state eliminate dagli amministratori del tuo server.
     type: Evento
   statuses:
@@ -1959,14 +1960,14 @@ it:
       pending_approval: Post in attesa
       revoked: Post rimosso dall'autore
     quote_policies:
-      followers: Solo i seguaci
+      followers: Solo i follower
       nobody: Solo io
       public: Chiunque
     quote_post_author: Citato un post di %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Menzione privata
-      private: Solo i seguaci
+      private: Solo i follower
       public: Pubblico
       public_long: Chiunque dentro e fuori Mastodon
       unlisted: Pubblico silenzioso
@@ -2046,6 +2047,8 @@ it:
     recovery_codes: Codici di recupero del backup
     recovery_codes_regenerated: I codici di recupero sono stati rigenerati
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
+    resume_app_authorization: Riprendere l'autorizzazione dell'applicazione
+    role_requirement: "%{domain} ti richiede di impostare l'autenticazione a due fattori prima di poter usare Mastodon."
     webauthn: Chiavi di sicurezza
   user_mailer:
     announcement_published:

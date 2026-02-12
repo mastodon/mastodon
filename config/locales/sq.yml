@@ -794,6 +794,7 @@ sq:
         view_dashboard: Shihni Pultin
         view_dashboard_description: U lejon përdoruesve të hyjnë te pulti dhe shohin shifra të ndryshme matjesh
         view_devops_description: U lejon përdoruesve të hyjnë në pultet Sidekiq dhe pgHero
+      requires_2fa: Lyp mirëfilltësim dyfaktorësh
       title: Role
     rules:
       add_new: Shtoni rregull
@@ -2004,6 +2005,8 @@ sq:
     past_preamble_html: Kemi ndryshuar termat tanë të shërbimit, që prej vizitës tuaj të fundit. Ju nxisim të shqyrtoni termat e përditësuar.
     review_link: Shqyrtoni termat e shërbimit
     title: Termat e shërbimit të %{domain} po ndryshojnë
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
@@ -2028,6 +2031,8 @@ sq:
     recovery_codes: Kopjeruani kode rikthimesh
     recovery_codes_regenerated: Kodet e rikthimeve u riprodhuan me sukses
     recovery_instructions_html: Në ndodhtë që të humbni hyrje te telefoni juaj, mund të përdorni një nga kodet e rikthimit më poshtë, që të rifitoni hyrje te llogaria juaj. <strong>Mbajini të parrezik kodet e rikthimeve</strong>. Për shembull, mund t’i shtypni dhe t’i ruani tok me dokumente të tjerë të rëndësishëm.
+    resume_app_authorization: Rinis autorizim aplikacioni
+    role_requirement: "%{domain} lyp që të ujdisni Mirëfilltësim Dyfaktorësh, para se të përdorni Mastodon-in."
     webauthn: Kyçe sigurie
   user_mailer:
     announcement_published:

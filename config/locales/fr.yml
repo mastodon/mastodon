@@ -805,6 +805,7 @@ fr:
         view_devops_description: Permet aux utilisateur⋅rice⋅s d'accéder aux tableaux de bord Sidekiq et pgHero
         view_feeds: Voir les flux en direct et les fils de discussion
         view_feeds_description: Permet aux utilisateur·rice·s d'accéder aux flux en direct et de discussion indépendamment des paramètres du serveur
+      requires_2fa: Nécessite une authentification à deux facteurs
       title: Rôles
     rules:
       add_new: Ajouter une règle
@@ -2049,6 +2050,8 @@ fr:
     recovery_codes: Codes de récupération
     recovery_codes_regenerated: Codes de récupération régénérés avec succès
     recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour retrouver l’accès à votre compte. <strong>Conservez les codes de récupération en sécurité</strong>. Par exemple, en les imprimant et en les stockant avec vos autres documents importants.
+    resume_app_authorization: Reprendre l'autorisation de l'application
+    role_requirement: "%{domain} nécessite de configurer une authentification à deux facteurs avant de pouvoir utiliser Mastodon."
     webauthn: Clés de sécurité
   user_mailer:
     announcement_published:

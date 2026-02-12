@@ -66,7 +66,7 @@ es-MX:
       destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Deshabilitar
       disable_sign_in_token_auth: Deshabilitar la autenticación por token de correo electrónico
-      disable_two_factor_authentication: Desactivar autenticación de dos factores
+      disable_two_factor_authentication: Desactivar autenticación de dos pasos
       disabled: Deshabilitada
       display_name: Nombre para mostrar
       domain: Dominio
@@ -277,7 +277,7 @@ es-MX:
         destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
         destroy_user_role_html: "%{name} eliminó el rol %{target}"
         destroy_username_block_html: "%{name} eliminó la regla para los nombres de usuario que contienen %{target}"
-        disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
+        disable_2fa_user_html: "%{name} desactivó el requisito de dos pasos para el usuario %{target}"
         disable_custom_emoji_html: "%{name} desactivó el emoji %{target}"
         disable_relay_html: "%{name} desactivó el relé %{target}"
         disable_sign_in_token_auth_user_html: "%{name} desactivó la autenticación por token de correo electrónico para %{target}"
@@ -789,7 +789,7 @@ es-MX:
         manage_taxonomies: Administrar Taxonomías
         manage_taxonomies_description: Permite a los usuarios revisar el contenido en tendencia y actualizar la configuración de las etiquetas
         manage_user_access: Administrar Acceso de Usuarios
-        manage_user_access_description: Permite a los usuarios desactivar la autenticación de dos factores de otros usuarios, cambiar su dirección de correo electrónico y restablecer su contraseña
+        manage_user_access_description: Permite a los usuarios desactivar la autenticación de dos pasos de otros usuarios, cambiar su dirección de correo electrónico y restablecer su contraseña
         manage_users: Administrar Usuarios
         manage_users_description: Permite a los usuarios ver los detalles de otros usuarios y realizar acciones de moderación contra ellos
         manage_webhooks: Administrar Webhooks
@@ -802,6 +802,7 @@ es-MX:
         view_devops_description: Permite a los usuarios acceder a los paneles de control Sidekiq y pgHero
         view_feeds: Ver temas y feed en vivo
         view_feeds_description: Permitir a los usuarios acceder a temas y feeds en vivo sin importar la configuración de los servidores
+      requires_2fa: Requiere autenticación de dos pasos
       title: Roles
     rules:
       add_new: Añadir norma
@@ -1253,7 +1254,7 @@ es-MX:
     dont_have_your_security_key: "¿No tienes tu clave de seguridad?"
     forgot_password: "¿Olvidaste tu contraseña?"
     invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
-    link_to_otp: Introduce un código de dos factores desde tu teléfono o un código de recuperación
+    link_to_otp: Ingresa un código de dos pasos desde tu teléfono o un código de recuperación
     link_to_webauth: Utilice su dispositivo de clave de seguridad
     log_in_with: Iniciar sesión con
     login: Iniciar sesión
@@ -1629,7 +1630,7 @@ es-MX:
       password: contraseña
       sign_in_token: código de seguridad por correo electrónico
       webauthn: claves de seguridad
-    description_html: Si ve una actividad que no reconoce, considere cambiar su contraseña y habilitar la autenticación de dos factores.
+    description_html: Si observas alguna actividad que no reconoces, considera cambiar tu contraseña y habilitar la autenticación de dos pasos.
     empty: No hay historial de autenticación disponible
     failed_sign_in_html: Intento de inicio de sesión fallido con %{method} de %{ip} (%{browser})
     successful_sign_in_html: Inicio de sesión exitoso con %{method} desde %{ip} (%{browser})
@@ -1754,7 +1755,7 @@ es-MX:
           trillion: B
   otp_authentication:
     code_hint: Introduce el código generado por tu aplicación de autentificación para confirmar
-    description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
+    description_html: Si habilitas <strong>autenticación de dos pasos</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
     enable: Activar
     instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en tu teléfono</strong>. A partir de ahora, esta aplicación generará códigos que tendrás que ingresar cuando quieras iniciar sesión."
     manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
@@ -1909,7 +1910,7 @@ es-MX:
     severed_relationships: Relaciones cortadas
     statuses_cleanup: Eliminación automática de publicaciones
     strikes: Amonestaciones de moderación
-    two_factor_authentication: Autenticación de dos factores
+    two_factor_authentication: Autenticación de dos pasos
     webauthn_authentication: Claves de seguridad
   severed_relationships:
     download: Descargar (%{count})
@@ -2035,17 +2036,19 @@ es-MX:
   two_factor_authentication:
     add: Añadir
     disable: Deshabilitar
-    disabled_success: Autenticación de doble factor desactivada correctamente
+    disabled_success: Autenticación de dos pasos desactivada correctamente
     edit: Editar
-    enabled: La autenticación de dos factores está activada
-    enabled_success: Verificación de dos factores activada exitosamente
-    generate_recovery_codes: generar códigos de recuperación
+    enabled: La autenticación de dos pasos está activada
+    enabled_success: Verificación de dos pasos activada exitosamente
+    generate_recovery_codes: Generar códigos de recuperación
     lost_recovery_codes: Los códigos de recuperación te permiten obtener acceso a tu cuenta si pierdes tu teléfono. Si has perdido tus códigos de recuperación, puedes regenerarlos aquí. Tus viejos códigos de recuperación se harán inválidos.
-    methods: Métodos de autenticación de doble factor
+    methods: Métodos de autenticación de dos pasos
     otp: Aplicación de autenticación
     recovery_codes: Hacer copias de seguridad de tus códigos de recuperación
     recovery_codes_regenerated: Códigos de recuperación regenerados con éxito
     recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
+    resume_app_authorization: Reanudar autorización de aplicación
+    role_requirement: "%{domain} requiere que configures la autenticación de dos pasos antes de poder utilizar Mastodon."
     webauthn: Claves de seguridad
   user_mailer:
     announcement_published:
@@ -2072,13 +2075,13 @@ es-MX:
       details: 'Estos son los detalles del intento de inicio de sesión:'
       explanation: Alguien ha intentado iniciar sesión en tu cuenta pero proporcionó un segundo factor de autenticación inválido.
       further_actions_html: Si no fuiste tú, se recomienda %{action} inmediatamente ya que puede estar comprometido.
-      subject: Fallo de autenticación de segundo factor
-      title: Falló la autenticación de segundo factor
+      subject: Fallo en la autenticación de dos pasos
+      title: Falló la autenticación de dos pasos
     suspicious_sign_in:
       change_password: cambies tu contraseña
       details: 'Aquí están los detalles del inicio de sesión:'
       explanation: Hemos detectado un inicio de sesión en tu cuenta desde una nueva dirección IP.
-      further_actions_html: Si no fuiste tú, te recomendamos que %{action} inmediatamente y habilites la autenticación de dos factores para mantener tu cuenta segura.
+      further_actions_html: Si no fuiste tú, te recomendamos que %{action} inmediatamente y habilites la autenticación de dos pasos para mantener tu cuenta segura.
       subject: Tu cuenta ha sido accedida desde una nueva dirección IP
       title: Un nuevo inicio de sesión
     terms_of_service_changed:
@@ -2164,7 +2167,7 @@ es-MX:
   users:
     follow_limit_reached: No puedes seguir a más de %{limit} personas
     go_to_sso_account_settings: Diríjete a la configuración de la cuenta de su proveedor de identidad
-    invalid_otp_token: Código de dos factores incorrecto
+    invalid_otp_token: Código de dos pasos incorrecto
     otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
     rate_limited: Demasiados intentos de autenticación, inténtalo de nuevo más tarde.
     seamless_external_login: Has iniciado sesión desde un servicio externo, por lo que los ajustes de contraseña y correo electrónico no están disponibles.
@@ -2193,7 +2196,7 @@ es-MX:
     nickname_hint: Introduzca el apodo de su nueva clave de seguridad
     not_enabled: Aún no has activado WebAuthn
     not_supported: Este navegador no soporta claves de seguridad
-    otp_required: Para usar claves de seguridad, por favor habilite primero la autenticación de doble factor.
+    otp_required: Para usar claves de seguridad, por favor habilite primero la autenticación de dos pasos.
     registered_on: Registrado el %{date}
   wrapstodon:
     description: "¡Ve cómo %{name} usó Mastodon este año!"
