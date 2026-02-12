@@ -10,10 +10,12 @@ import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import SquigglyArrow from '@/svg-icons/squiggly_arrow.svg?react';
 import { openModal } from 'mastodon/actions/modal';
+import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { Column } from 'mastodon/components/column';
 import { ColumnHeader } from 'mastodon/components/column_header';
 import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { Icon } from 'mastodon/components/icon';
+import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import {
   fetchAccountCollections,
@@ -22,6 +24,7 @@ import {
 import { useAppSelector, useAppDispatch } from 'mastodon/store';
 
 import { messages as editorMessages } from './editor';
+import classes from './styles.module.scss';
 
 const messages = defineMessages({
   heading: { id: 'column.collections', defaultMessage: 'My collections' },
@@ -36,12 +39,13 @@ const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
 });
 
-const ListItem: React.FC<{
-  id: string;
-  name: string;
-}> = ({ id, name }) => {
+const CollectionItem: React.FC<{
+  collection: ApiCollectionJSON;
+}> = ({ collection }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
+
+  const { id, name } = collection;
 
   const handleDeleteClick = useCallback(() => {
     dispatch(
@@ -82,13 +86,36 @@ const ListItem: React.FC<{
   );
 
   return (
-    <div className='lists__item'>
-      <Link
-        to={`/collections/${id}/edit/details`}
-        className='lists__item__title'
-      >
-        <span>{name}</span>
-      </Link>
+    <div className={classes.collectionItemWrapper}>
+      <div className={classes.collectionItemContent}>
+        <Link
+          to={`/collections/${id}/edit/details`}
+          className={classes.collectionItemLink}
+        >
+          {name}
+        </Link>
+        <ul className={classes.collectionItemInfo}>
+          <FormattedMessage
+            id='collections.account_count'
+            defaultMessage='{count, plural, one {# account} other {# accounts}}'
+            values={{ count: collection.item_count }}
+            tagName='li'
+          />
+          <FormattedMessage
+            id='collections.last_updated_at'
+            defaultMessage='Last updated: {date}'
+            values={{
+              date: (
+                <RelativeTimestamp
+                  timestamp={collection.updated_at}
+                  short={false}
+                />
+              ),
+            }}
+            tagName='li'
+          />
+        </ul>
+      </div>
 
       <Dropdown
         scrollKey='collections'
@@ -166,7 +193,7 @@ export const Collections: React.FC<{
         bindToDocument={!multiColumn}
       >
         {collections.map((item) => (
-          <ListItem key={item.id} id={item.id} name={item.name} />
+          <CollectionItem key={item.id} collection={item} />
         ))}
       </ScrollableList>
 
