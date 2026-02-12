@@ -1,11 +1,15 @@
-import type { FC } from 'react';
+import { useCallback, useMemo } from 'react';
+import type { FC, Key } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
 import classNames from 'classnames';
 
+import htmlConfig from '@/config/html-tags.json';
 import IconVerified from '@/images/icons/icon_verified.svg?react';
 import { AccountFields } from '@/mastodon/components/account_fields';
+import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
+import type { EmojiHTMLProps } from '@/mastodon/components/emoji/html';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
 import { Icon } from '@/mastodon/components/icon';
@@ -13,7 +17,9 @@ import { useElementHandledLink } from '@/mastodon/components/status/handled_link
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import type { Account } from '@/mastodon/models/account';
 import { isValidUrl } from '@/mastodon/utils/checks';
+import type { OnElementHandler } from '@/mastodon/utils/html';
 
+import { cleanExtraEmojis } from '../../emoji/normalize';
 import { isRedesignEnabled } from '../common';
 
 import classes from './redesign.module.scss';
@@ -53,57 +59,136 @@ export const AccountHeaderFields: FC<{ accountId: string }> = ({
 };
 
 const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
-  const htmlHandlers = useElementHandledLink();
+  const emojis = useMemo(
+    () => cleanExtraEmojis(account.emojis),
+    [account.emojis],
+  );
+  const textHasCustomEmoji = useCallback(
+    (text: string) => {
+      if (!emojis) {
+        return false;
+      }
+      for (const emoji of Object.keys(emojis)) {
+        if (text.includes(`:${emoji}:`)) {
+          return true;
+        }
+      }
+      return false;
+    },
+    [emojis],
+  );
+  const htmlHandlers = useElementHandledLink({
+    hashtagAccountId: account.id,
+  });
 
   return (
-    <dl className={classes.fieldList}>
-      {account.fields.map(
-        (
-          { name, name_emojified, value_emojified, value_plain, verified_at },
-          key,
-        ) => (
-          <div
-            key={key}
-            className={classNames(
-              classes.fieldRow,
-              verified_at && classes.fieldVerified,
-            )}
-          >
-            <EmojiHTML
-              htmlString={name_emojified}
-              extraEmojis={account.emojis}
+    <CustomEmojiProvider emojis={emojis}>
+      <dl className={classes.fieldList}>
+        {account.fields.map(
+          (
+            { name, name_emojified, value_emojified, value_plain, verified_at },
+            key,
+          ) => (
+            <div
+              key={key}
               className={classNames(
-                'translate',
-                isValidUrl(name) && classes.fieldLink,
+                classes.fieldRow,
+                verified_at && classes.fieldVerified,
               )}
-              as='dt'
-              title={showTitleOnLength(name, 50)}
-              {...htmlHandlers}
-            />
-            <EmojiHTML
-              as='dd'
-              htmlString={value_emojified}
-              extraEmojis={account.emojis}
-              title={showTitleOnLength(value_plain, 120)}
-              className={classNames(
-                value_plain && isValidUrl(value_plain) && classes.fieldLink,
-              )}
-              {...htmlHandlers}
-            />
-            {verified_at && (
-              <Icon
-                id='verified'
-                icon={IconVerified}
-                className={classes.fieldVerifiedIcon}
-                noFill
+            >
+              <FieldHTML
+                as='dt'
+                text={name}
+                textEmojified={name_emojified}
+                textHasCustomEmoji={textHasCustomEmoji(name)}
+                titleLength={50}
+                className='translate'
+                {...htmlHandlers}
               />
-            )}
-          </div>
-        ),
-      )}
-    </dl>
+              <FieldHTML
+                as='dd'
+                text={value_plain ?? ''}
+                textEmojified={value_emojified}
+                textHasCustomEmoji={textHasCustomEmoji(value_plain ?? '')}
+                titleLength={120}
+                {...htmlHandlers}
+              />
+              {verified_at && (
+                <Icon
+                  id='verified'
+                  icon={IconVerified}
+                  className={classes.fieldVerifiedIcon}
+                  noFill
+                />
+              )}
+            </div>
+          ),
+        )}
+      </dl>
+    </CustomEmojiProvider>
   );
 };
+
+const FieldHTML: FC<
+  {
+    as: 'dd' | 'dt';
+    text: string;
+    textEmojified: string;
+    textHasCustomEmoji: boolean;
+    titleLength: number;
+  } & Omit<EmojiHTMLProps, 'htmlString'>
+> = ({
+  as,
+  className,
+  extraEmojis,
+  text,
+  textEmojified,
+  textHasCustomEmoji,
+  titleLength,
+  onElement,
+  ...props
+}) => {
+  const handleElement: OnElementHandler = useCallback(
+    (element, props, children, extra) => {
+      if (element instanceof HTMLAnchorElement) {
+        // Don't allow custom emoji and links in the same field to prevent verification spoofing.
+        if (textHasCustomEmoji) {
+          return (
+            <span {...filterAttributesForSpan(props)} key={props.key as Key}>
+              {children}
+            </span>
+          );
+        }
+        return onElement?.(element, props, children, extra);
+      }
+      return undefined;
+    },
+    [onElement, textHasCustomEmoji],
+  );
+  return (
+    <EmojiHTML
+      as={as}
+      htmlString={textEmojified}
+      title={showTitleOnLength(text, titleLength)}
+      className={classNames(
+        className,
+        text && isValidUrl(text) && classes.fieldLink,
+      )}
+      onElement={handleElement}
+      {...props}
+    />
+  );
+};
+
+function filterAttributesForSpan(props: Record<string, unknown>) {
+  const validAttributes: Record<string, unknown> = {};
+  for (const key of Object.keys(props)) {
+    if (key in htmlConfig.tags.span.attributes) {
+      validAttributes[key] = props[key];
+    }
+  }
+  return validAttributes;
+}
 
 function showTitleOnLength(value: string | null, maxLength: number) {
   if (value && value.length > maxLength) {
