@@ -802,6 +802,7 @@ da:
         view_devops_description: Tillader brugere at tilgå Sidekiq- og pgHero-dashboards
         view_feeds: Se live- og emne-feeds
         view_feeds_description: Giver brugerne adgang til live- og emne-feeds uanset serverindstillinger
+      requires_2fa: Kræver tofaktorgodkendelse
       title: Roller
     rules:
       add_new: Tilføj regel
@@ -2046,6 +2047,8 @@ da:
     recovery_codes: Reserve-gendannelseskoder
     recovery_codes_regenerated: Gendannelseskoder er regenereret
     recovery_instructions_html: Mister du nogensinde adgang til din mobil, kan en af gendannelseskoderne nedenfor bruges til at opnå adgang til din konto. <strong>Opbevar disse et sikkert sted</strong>. De kan f.eks. udskrives og gemmes sammen med andre vigtige dokumenter.
+    resume_app_authorization: Genoptag godkendelse af applikation
+    role_requirement: "%{domain} kræver, at du konfigurerer tofaktorgodkendelse, før du kan bruge Mastodon."
     webauthn: Sikkerhedsnøgler
   user_mailer:
     announcement_published:

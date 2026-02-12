@@ -787,6 +787,7 @@ zh-TW:
         view_devops_description: 允許使用者存取 Sidekiq 與 pgHero 儀表板
         view_feeds: 檢視即時內容與主題
         view_feeds_description: 允許使用者無論伺服器設定為何皆可存取即時內容與主題
+      requires_2fa: 要求兩階段驗證
       title: 角色
     rules:
       add_new: 新增規則
@@ -2004,6 +2005,8 @@ zh-TW:
     recovery_codes: 備份備用驗證碼
     recovery_codes_regenerated: 成功產生新的備用驗證碼
     recovery_instructions_html: 若您的手機無法使用，您可以使用下列任意一個備用驗證碼來重新獲得帳號的存取權。<strong>請妥善保管好您的備用驗證碼</strong>（例如，可以將它們列印出來，與您的其他重要文件放在一起）。
+    resume_app_authorization: 恢復應用程式授權
+    role_requirement: "%{domain} 要求您設定兩階段驗證以使用 Mastodon。"
     webauthn: 安全金鑰
   user_mailer:
     announcement_published:

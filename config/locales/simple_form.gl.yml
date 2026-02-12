@@ -164,6 +164,7 @@ gl:
         name: Nome público do rol, se o rol se mostra como unha insignia
         permissions_as_keys: As usuarias con este rol terán acceso a...
         position: O rol superior decide nos conflitos en certas situacións. Algunhas accións só poden aplicarse sobre roles cunha prioridade menor
+        require_2fa: Váiselle pedir ás usuarias con este rol que configuren un segundo factor de autenticación para usar Mastodon
       username_block:
         allow_with_approval: No lugar de evitar a cración directa de contas, as contas mediante regras van precisar a túa aprobación
         comparison: Ten en conta o Sunthorpe Problem cando se bloquean coincidencias parciais
@@ -239,7 +240,7 @@ gl:
         setting_always_send_emails: Enviar sempre notificacións por correo electrónico
         setting_auto_play_gif: Reprodución automática de GIFs animados
         setting_boost_modal: Controlar a visibilidade das promocións
-        setting_color_scheme: Modo
+        setting_color_scheme: Abano de cores
         setting_contrast: Contraste
         setting_default_language: Idioma de publicación
         setting_default_privacy: Visibilidade da publicación
@@ -387,6 +388,7 @@ gl:
         name: Nome
         permissions_as_keys: Permisos
         position: Prioridade
+        require_2fa: Requerir un segundo factor de autenticación
       username_block:
         allow_with_approval: Permitir crear contas con aprobación
         comparison: Método de comparación
