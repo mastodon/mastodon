@@ -11,6 +11,7 @@
 #  object_uri                :string
 #  position                  :integer          default(1), not null
 #  state                     :integer          default("pending"), not null
+#  uri                       :string
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  account_id                :bigint(8)
@@ -31,6 +32,7 @@ class CollectionItem < ApplicationRecord
   validates :approval_uri, absence: true, unless: :local?
   validates :account, presence: true, if: :accepted?
   validates :object_uri, presence: true, if: -> { account.nil? }
+  validates :uri, presence: true, if: :remote?
 
   before_validation :set_position, on: :create
 
@@ -40,6 +42,10 @@ class CollectionItem < ApplicationRecord
 
   def local_item_with_remote_account?
     local? && account&.remote?
+  end
+
+  def object_type
+    :featured_item
   end
 
   private

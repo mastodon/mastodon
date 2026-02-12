@@ -14,9 +14,7 @@ RSpec.describe ActivityPub::RemoveFeaturedItemSerializer do
       'type' => 'Remove',
       'actor' => tag_manager.uri_for(collection.account),
       'target' => tag_manager.uri_for(collection),
-      'object' => a_hash_including({
-        'type' => 'FeaturedItem',
-      }),
+      'object' => tag_manager.uri_for(object),
     })
 
     expect(subject).to_not have_key('id')

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_02_11_132603) do
+ActiveRecord::Schema[8.0].define(version: 2026_02_12_113020) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -365,6 +365,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_02_11_132603) do
     t.integer "state", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "uri"
     t.index ["account_id"], name: "index_collection_items_on_account_id"
     t.index ["approval_uri"], name: "index_collection_items_on_approval_uri", unique: true, where: "(approval_uri IS NOT NULL)"
     t.index ["collection_id"], name: "index_collection_items_on_collection_id"

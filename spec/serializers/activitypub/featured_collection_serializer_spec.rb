@@ -31,11 +31,13 @@ RSpec.describe ActivityPub::FeaturedCollectionSerializer do
       'totalItems' => 2,
       'orderedItems' => [
         {
+          'id' => ActivityPub::TagManager.instance.uri_for(collection_items.first),
           'type' => 'FeaturedItem',
           'featuredObject' => ActivityPub::TagManager.instance.uri_for(collection_items.first.account),
           'featuredObjectType' => 'Person',
         },
         {
+          'id' => ActivityPub::TagManager.instance.uri_for(collection_items.last),
           'type' => 'FeaturedItem',
           'featuredObject' => ActivityPub::TagManager.instance.uri_for(collection_items.last.account),
           'featuredObjectType' => 'Person',
