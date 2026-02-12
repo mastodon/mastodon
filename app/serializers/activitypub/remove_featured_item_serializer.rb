@@ -4,7 +4,7 @@ class ActivityPub::RemoveFeaturedItemSerializer < ActivityPub::Serializer
   include RoutingHelper
 
   attributes :type, :actor, :target
-  has_one :object, serializer: ActivityPub::FeaturedItemSerializer
+  has_one :virtual_object, key: :object
 
   def type
     'Remove'
@@ -16,6 +16,10 @@ class ActivityPub::RemoveFeaturedItemSerializer < ActivityPub::Serializer
 
   def target
     ActivityPub::TagManager.instance.uri_for(collection)
+  end
+
+  def virtual_object
+    ActivityPub::TagManager.instance.uri_for(object)
   end
 
   private
