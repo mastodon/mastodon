@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type { FC, Key } from 'react';
 
 import { FormattedMessage } from 'react-intl';
@@ -148,6 +148,11 @@ const FieldHTML: FC<
   onElement,
   ...props
 }) => {
+  const [showAll, setShowAll] = useState(false);
+  const handleClick = useCallback(() => {
+    setShowAll((prev) => !prev);
+  }, []);
+
   const handleElement: OnElementHandler = useCallback(
     (element, props, children, extra) => {
       if (element instanceof HTMLAnchorElement) {
@@ -173,7 +178,9 @@ const FieldHTML: FC<
       className={classNames(
         className,
         text && isValidUrl(text) && classes.fieldLink,
+        showAll && classes.fieldShowAll,
       )}
+      onClick={handleClick}
       onElement={handleElement}
       {...props}
     />

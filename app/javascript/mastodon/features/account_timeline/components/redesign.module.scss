@@ -194,31 +194,33 @@ svg.badgeIcon {
 
 .fieldList {
   display: grid;
-  grid-template-columns: min(160px, 25vw) 1fr min-content;
-  column-gap: 8px;
+  grid-template-columns: 160px 1fr min-content;
+  column-gap: 12px;
   margin: 4px 0 16px;
 
-  @container (width < 400px) {
-    display: block;
+  @container (width < 420px) {
+    grid-template-columns: 100px 1fr min-content;
   }
 }
 
 .fieldRow {
   display: grid;
   grid-column: 1 / -1;
-  align-items: center;
+  align-items: start;
   grid-template-columns: subgrid;
   padding: 0 4px;
 
-  > dt,
-  > dd {
+  > :is(dt, dd) {
     margin: 8px 0;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+    &:not(.fieldShowAll) {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   > dt {
@@ -258,6 +260,7 @@ svg.badgeIcon {
 .fieldVerifiedIcon {
   width: 16px;
   height: 16px;
+  margin-top: 8px;
 }
 
 .fieldNumbersWrapper {
