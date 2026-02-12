@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import type { FC, Key } from 'react';
 
-import { FormattedMessage } from 'react-intl';
+import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
@@ -58,6 +58,18 @@ export const AccountHeaderFields: FC<{ accountId: string }> = ({
   );
 };
 
+const verifyMessage = defineMessage({
+  id: 'account.link_verified_on',
+  defaultMessage: 'Ownership of this link was checked on {date}',
+});
+const dateFormatOptions: Intl.DateTimeFormatOptions = {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+};
+
 const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
   const emojis = useMemo(
     () => cleanExtraEmojis(account.emojis),
@@ -80,6 +92,7 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
   const htmlHandlers = useElementHandledLink({
     hashtagAccountId: account.id,
   });
+  const intl = useIntl();
 
   return (
     <CustomEmojiProvider emojis={emojis}>
@@ -118,6 +131,9 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
                   id='verified'
                   icon={IconVerified}
                   className={classes.fieldVerifiedIcon}
+                  aria-label={intl.formatMessage(verifyMessage, {
+                    date: intl.formatDate(verified_at, dateFormatOptions),
+                  })}
                   noFill
                 />
               )}
