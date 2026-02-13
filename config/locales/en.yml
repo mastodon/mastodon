@@ -1525,6 +1525,9 @@ en:
       overwrite: Overwrite
       overwrite_long: Replace current records with the new ones
     overwrite_preambles:
+      account_notes_html:
+        one: You are about to import <strong>%{count} account note</strong> from <strong>%{filename}</strong>. Any existing account note on this account will be overwritten.
+        other: You are about to import <strong>%{count} account notes</strong> from <strong>%{filename}</strong>. Any existing account notes on these accounts will be overwritten.
       blocking_html:
         one: You are about to <strong>replace your block list</strong> with up to <strong>%{count} account</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>replace your block list</strong> with up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong>.
@@ -1544,6 +1547,9 @@ en:
         one: You are about to <strong>replace your list of muted account</strong> with up to <strong>%{count} account</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>replace your list of muted accounts</strong> with up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong>.
     preambles:
+      account_notes_html:
+        one: You are about to import <strong>%{count} account note</strong> from <strong>%{filename}</strong>.
+        other: You are about to import <strong>%{count} account notes</strong> from <strong>%{filename}</strong>.
       blocking_html:
         one: You are about to <strong>block</strong> up to <strong>%{count} account</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>block</strong> up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong>.
@@ -1573,6 +1579,7 @@ en:
     success: Your data was successfully uploaded and will be processed in due time
     time_started: Started at
     titles:
+      account_notes: Importing account notes
       blocking: Importing blocked accounts
       bookmarks: Importing bookmarks
       domain_blocking: Importing blocked domains
@@ -1583,6 +1590,7 @@ en:
     type_groups:
       constructive: Follows & Bookmarks
       destructive: Blocks & mutes
+      other: Other
     types:
       blocking: Blocking list
       bookmarks: Bookmarks
@@ -1590,6 +1598,7 @@ en:
       following: Following list
       lists: Lists
       muting: Muting list
+      account_notes: Account notes
     upload: Upload
   invites:
     delete: Deactivate
