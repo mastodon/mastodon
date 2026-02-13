@@ -21,7 +21,7 @@ export const AccountTabs: FC<{ acct: string }> = ({ acct }) => {
             <FormattedMessage id='account.about' defaultMessage='About' />
           </NavLink>
         )}
-        <NavLink isActive={isActive} to={`/@${acct}`}>
+        <NavLink isActive={isActive} to={`/@${acct}/posts`}>
           <FormattedMessage id='account.activity' defaultMessage='Activity' />
         </NavLink>
         <NavLink exact to={`/@${acct}/media`}>
