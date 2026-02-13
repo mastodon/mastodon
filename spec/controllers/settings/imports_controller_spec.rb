@@ -229,6 +229,18 @@ RSpec.describe Settings::ImportsController do
 
       it_behaves_like 'export failed rows', "Amigos,user@example.com\nFrenemies,user@org.org\n"
     end
+
+    context 'with filters' do
+      let(:import_type) { 'filters' }
+
+      let(:rows) do
+        [
+          { 'title' => 'Invalid Filter', 'context' => ['waffles'], 'keywords' => ['mean stuff'], 'whole_word' => [true], 'action' => 'hide', 'expires_at' => nil },
+        ]
+      end
+
+      it_behaves_like 'export failed rows', "Invalid Filter,\"[\"\"waffles\"\"]\",\"[\"\"mean stuff\"\"]\",[true],hide,\n"
+    end
   end
 
   describe 'POST #create' do
@@ -277,6 +289,8 @@ RSpec.describe Settings::ImportsController do
     it_behaves_like 'successful import', 'domain_blocking', 'domain_blocks.csv', 'overwrite'
     it_behaves_like 'successful import', 'bookmarks', 'bookmark-imports.txt', 'merge'
     it_behaves_like 'successful import', 'bookmarks', 'bookmark-imports.txt', 'overwrite'
+    it_behaves_like 'successful import', 'filters', 'filters.csv', 'merge'
+    it_behaves_like 'successful import', 'filters', 'filters.csv', 'overwrite'
 
     it_behaves_like 'unsuccessful import', 'following', 'domain_blocks.csv', 'merge'
     it_behaves_like 'unsuccessful import', 'following', 'domain_blocks.csv', 'overwrite'
@@ -284,6 +298,8 @@ RSpec.describe Settings::ImportsController do
     it_behaves_like 'unsuccessful import', 'blocking', 'domain_blocks.csv', 'overwrite'
     it_behaves_like 'unsuccessful import', 'muting', 'domain_blocks.csv', 'merge'
     it_behaves_like 'unsuccessful import', 'muting', 'domain_blocks.csv', 'overwrite'
+    it_behaves_like 'unsuccessful import', 'filters', 'domain_blocks.csv', 'merge'
+    it_behaves_like 'unsuccessful import', 'filters', 'domain_blocks.csv', 'overwrite'
 
     it_behaves_like 'unsuccessful import', 'following', 'empty.csv', 'merge'
     it_behaves_like 'unsuccessful import', 'following', 'empty.csv', 'overwrite'

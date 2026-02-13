@@ -1435,6 +1435,7 @@ en:
     bookmarks: Bookmarks
     csv: CSV
     domain_blocks: Domain blocks
+    filters: Filters
     lists: Lists
     mutes: You mute
     storage: Media storage
@@ -1534,6 +1535,9 @@ en:
       domain_blocking_html:
         one: You are about to <strong>replace your domain block list</strong> with up to <strong>%{count} domain</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>replace your domain block list</strong> with up to <strong>%{count} domains</strong> from <strong>%{filename}</strong>.
+      filters_html:
+        one: You are about to <strong>replace your filters</strong> with up to <strong>%{count} filter</strong> from <strong>%{filename}</strong>.
+        other: You are about to <strong>replace your filters</strong> with up to <strong>%{count} filters</strong> from <strong>%{filename}</strong>.
       following_html:
         one: You are about to <strong>follow</strong> up to <strong>%{count} account</strong> from <strong>%{filename}</strong> and <strong>stop following anyone else</strong>.
         other: You are about to <strong>follow</strong> up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong> and <strong>stop following anyone else</strong>.
@@ -1553,6 +1557,9 @@ en:
       domain_blocking_html:
         one: You are about to <strong>block</strong> up to <strong>%{count} domain</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>block</strong> up to <strong>%{count} domains</strong> from <strong>%{filename}</strong>.
+      filters_html:
+        one: You are about to <strong>add</strong> up to <strong>%{count} filter</strong> from <strong>%{filename}</strong>.
+        other: You are about to <strong>add</strong> up to <strong>%{count} filters</strong> from <strong>%{filename}</strong>.
       following_html:
         one: You are about to <strong>follow</strong> up to <strong>%{count} account</strong> from <strong>%{filename}</strong>.
         other: You are about to <strong>follow</strong> up to <strong>%{count} accounts</strong> from <strong>%{filename}</strong>.
@@ -1587,6 +1594,7 @@ en:
       blocking: Blocking list
       bookmarks: Bookmarks
       domain_blocking: Domain blocking list
+      filters: Filters
       following: Following list
       lists: Lists
       muting: Muting list
