@@ -1,6 +1,7 @@
 import { defineMessages } from 'react-intl';
 
-import { createAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { AxiosError } from 'axios';
 import type { AxiosResponse } from 'axios';
@@ -27,13 +28,36 @@ const messages = defineMessages({
   },
 });
 
-export const dismissAlert = createAction<{ key: number }>('alerts/dismiss');
+const initialState: Alert[] = [];
+let id = 0;
 
-export const clearAlerts = createAction('alerts/clear');
+export const { actions, reducer } = createSlice({
+  name: 'alerts',
+  initialState,
+  reducers: {
+    clearAlerts() {
+      return [];
+    },
 
-export const showAlert = createAction<Omit<Alert, 'key'>>('alerts/show');
+    dismissAlert(state, action: PayloadAction<{ key: number }>) {
+      const { key } = action.payload;
+      return state.filter((item) => item.key !== key);
+    },
 
-const ignoreAlert = createAction('alerts/ignore');
+    ignoreAlert(state) {
+      return state;
+    },
+
+    showAlert(state, action: PayloadAction<Omit<Alert, 'key'>>) {
+      state.push({
+        key: id++,
+        ...action.payload,
+      });
+    },
+  },
+});
+
+export const { clearAlerts, dismissAlert, ignoreAlert, showAlert } = actions;
 
 export const showAlertForError = (error: unknown, skipNotFound = false) => {
   if (error instanceof AxiosError && error.response) {
