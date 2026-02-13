@@ -150,7 +150,41 @@ module Mastodon::CLI
           end
         end
       when :fog
-        fail_with_message 'The fog storage driver is not supported for this operation at this time'
+        fog_directory = Paperclip::Attachment.default_options[:fog_directory]
+        connection = Fog::Storage.new(Paperclip::Attachment.default_options[:fog_credentials])
+        directory = connection.directories.get(fog_directory)
+        last_key = options[:start_after]
+
+        loop do
+          objects = begin
+            directory.files.all(prefix: prefix, marker: last_key, limit: 1000).to_a
+          rescue => e
+            progress.log(pastel.red("Error fetching list of files: #{e}"))
+            progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
+            break
+          end
+
+          break if objects.empty?
+
+          last_key = objects.last.key
+
+          objects.each do |object|
+            path_segments = object.key.split('/')
+            progress.increment
+            next unless orphaned_file?(path_segments)
+
+            begin
+              object.destroy unless dry_run?
+              reclaimed_bytes += object.content_length
+              removed += 1
+              progress.log("Found and removed orphan: #{object.key}")
+            rescue => e
+              progress.log(pastel.red("Error processing #{object.key}: #{e}"))
+            end
+          rescue UnrecognizedOrphanType
+            progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
+          end
+        end
       when :azure
         fail_with_message 'The azure storage driver is not supported for this operation at this time'
       when :filesystem
