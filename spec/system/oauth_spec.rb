@@ -98,27 +98,26 @@ RSpec.describe 'Using OAuth from an external app' do
       context 'when using plain code challenge method' do
         let(:pkce_code_challenge_method) { 'plain' }
 
-        it 'does not include the PKCE values in the response' do
+        it 'shows an error message and does not include the PKCE values or authorize button' do
           subject
 
-          expect(page).to have_no_css('.oauth-prompt input[name=code_challenge]')
-          expect(page).to have_no_css('.oauth-prompt input[name=code_challenge_method]')
-        end
-
-        it 'does not include the authorize button' do
-          subject
-
-          expect(page).to have_no_css('.oauth-prompt button[type="submit"]')
-        end
-
-        it 'includes an error message' do
-          subject
+          expect(page)
+            .to have_no_css('.oauth-prompt input[name=code_challenge]')
+            .and have_no_css('.oauth-prompt input[name=code_challenge_method]')
+            .and have_no_css('.oauth-prompt button[type="submit"]')
 
           within '.form-container .flash-message' do
-            # FIXME: Replace with doorkeeper.errors.messages.invalid_code_challenge_method.one for Doorkeeper > 5.8.0
-            # see: https://github.com/doorkeeper-gem/doorkeeper/pull/1747
-            expect(page).to have_content(I18n.t('doorkeeper.errors.messages.invalid_code_challenge_method'))
+            expect(page)
+              .to have_content(doorkeeper_invalid_code_message)
           end
+        end
+
+        def doorkeeper_invalid_code_message
+          I18n.t(
+            'doorkeeper.errors.messages.invalid_code_challenge_method',
+            challenge_methods: Doorkeeper.configuration.pkce_code_challenge_methods.join(', '),
+            count: Doorkeeper.configuration.pkce_code_challenge_methods.length
+          )
         end
       end
 
