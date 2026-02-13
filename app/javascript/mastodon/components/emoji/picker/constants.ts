@@ -1,0 +1,119 @@
+import { createContext, useContext } from 'react';
+
+import type { GroupKey, GroupMessage, SkinToneKey } from 'emojibase';
+import groupData from 'emojibase-data/meta/groups.json';
+
+import type { CustomEmojiData } from '@/mastodon/features/emoji/types';
+
+export interface PickerContext {
+  skinTone: SkinTone;
+  hiddenGroups: string[];
+  recentlyUsed: string[];
+  favourites: string[];
+  onSelect: (emojiCode: string) => void;
+  onFavourite: (emojiCode: string) => void;
+}
+
+const pickerContext = createContext<PickerContext>({
+  skinTone: 'default',
+  hiddenGroups: [],
+  recentlyUsed: [],
+  favourites: [],
+  onSelect() {
+    throw new Error('onSelect not implemented');
+  },
+  onFavourite() {
+    throw new Error('onFavourite not implemented');
+  },
+});
+
+export const PickerContextProvider = pickerContext.Provider;
+
+export const usePickerContext = () => useContext(pickerContext);
+
+export type CustomGroupMessage = Omit<GroupMessage, 'key'> & {
+  key: string;
+};
+
+export const groupsToHide: readonly GroupKey[] = ['component'];
+
+export const groupKeysToNumber = Object.fromEntries(
+  Object.entries(groupData.groups).map(([number, key]) => [
+    key,
+    Number(number),
+  ]),
+);
+
+export type SkinTone = SkinToneKey | 'default';
+
+export const toneToEmoji: Record<SkinTone, string> = {
+  default: '👋',
+  dark: '👋🏿',
+  'medium-dark': '👋🏾',
+  medium: '👋🏽',
+  'medium-light': '👋🏼',
+  light: '👋🏻',
+};
+
+export const mockCustomGroups = [
+  { key: 'blobcat', message: 'Blobcat', order: 1 },
+  { key: 'lgbt', message: 'LGBTQ+', order: 2 },
+  { key: 'logos', message: 'Logos', order: 3 },
+] satisfies CustomGroupMessage[];
+
+export const mockCustomEmojis = [
+  {
+    shortcode: 'blobcat_heart',
+    url: 'https://pics.ishella.gay/custom_emojis/images/000/001/217/original/abede62a1fe634cf.png',
+    static_url:
+      'https://pics.ishella.gay/custom_emojis/images/000/001/217/static/abede62a1fe634cf.png',
+    visible_in_picker: true,
+    category: 'blobcat',
+    tokens: ['blobcat', 'heart'],
+  },
+  {
+    shortcode: 'blobcat_wave',
+    url: 'https://pics.ishella.gay/custom_emojis/images/000/001/250/original/f924277a36414906.png',
+    static_url:
+      'https://pics.ishella.gay/custom_emojis/images/000/001/250/static/f924277a36414906.png',
+    visible_in_picker: true,
+    category: 'blobcat',
+    tokens: ['blobcat', 'wave'],
+  },
+  {
+    shortcode: 'mastodon',
+    url: 'https://pics.ishella.gay/custom_emojis/images/000/025/993/original/56c38669cdca5d1c.png',
+    static_url:
+      'https://pics.ishella.gay/custom_emojis/images/000/025/993/static/56c38669cdca5d1c.png',
+    visible_in_picker: true,
+    category: 'logos',
+    tokens: ['mastodon'],
+  },
+  {
+    shortcode: 'fediverse',
+    url: 'https://pics.ishella.gay/custom_emojis/images/000/001/198/original/b8041a4f365c4518.png',
+    static_url:
+      'https://pics.ishella.gay/custom_emojis/images/000/001/198/static/b8041a4f365c4518.png',
+    visible_in_picker: true,
+    category: 'logos',
+    tokens: ['fediverse'],
+  },
+  {
+    shortcode: 'ace_heart',
+    url: 'https://pics.ishella.gay/custom_emojis/images/000/001/220/original/8689758e37a1bfbc.png',
+    static_url:
+      'https://pics.ishella.gay/custom_emojis/images/000/001/220/static/8689758e37a1bfbc.png',
+    visible_in_picker: true,
+    category: 'lgbt',
+    tokens: ['ace', 'heart'],
+  },
+  {
+    shortcode: 'nbi_heart',
+    url: 'https://pics.ishella.gay/custom_emojis/images/000/001/199/original/a06d788bce50f260.png',
+    static_url:
+      'https://pics.ishella.gay/custom_emojis/images/000/001/199/static/a06d788bce50f260.png',
+    visible_in_picker: true,
+    category: 'lgbt',
+    tokens: ['nbi', 'heart'],
+  },
+] satisfies (CustomEmojiData & { category: string })[];
