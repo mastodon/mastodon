@@ -8,13 +8,15 @@ import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import { useAppDispatch } from 'mastodon/store';
 
 export function useSearchAccounts({
+  resetOnInputClear = true,
   onSettled,
 }: {
   onSettled?: (value: string) => void;
+  resetOnInputClear?: boolean;
 } = {}) {
   const dispatch = useAppDispatch();
 
-  const [accountIds, setAccountIds] = useState<string[]>();
+  const [accountIds, setAccountIds] = useState<string[]>([]);
   const [loadingState, setLoadingState] = useState<
     'idle' | 'loading' | 'error'
   >('idle');
@@ -29,6 +31,9 @@ export function useSearchAccounts({
 
       if (value.trim().length === 0) {
         onSettled?.('');
+        if (resetOnInputClear) {
+          setAccountIds([]);
+        }
         return;
       }
 

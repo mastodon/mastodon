@@ -165,10 +165,11 @@ const ListMembers: React.FC<{
   const [mode, setMode] = useState<Mode>('remove');
 
   const {
-    accountIds: searchAccountIds = [],
+    accountIds: searchAccountIds,
     isLoading: loadingSearchResults,
     searchAccounts: handleSearch,
   } = useSearchAccounts({
+    resetOnInputClear: false,
     onSettled: (value) => {
       if (value.trim().length === 0) {
         setSearching(false);

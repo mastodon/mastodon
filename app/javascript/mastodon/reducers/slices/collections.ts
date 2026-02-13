@@ -7,6 +7,8 @@ import {
   apiUpdateCollection,
   apiGetCollection,
   apiDeleteCollection,
+  apiAddCollectionItem,
+  apiRemoveCollectionItem,
 } from '@/mastodon/api/collections';
 import type {
   ApiCollectionJSON,
@@ -131,6 +133,32 @@ const collectionSlice = createSlice({
         };
       }
     });
+
+    /**
+     * Adding an account to a collection
+     */
+
+    builder.addCase(addCollectionItem.fulfilled, (state, action) => {
+      const { collection_item } = action.payload;
+      const { collectionId } = action.meta.arg;
+
+      state.collections[collectionId]?.items.push(collection_item);
+    });
+
+    /**
+     * Removing an account from a collection
+     */
+
+    builder.addCase(removeCollectionItem.fulfilled, (state, action) => {
+      const { itemId, collectionId } = action.meta.arg;
+
+      const collection = state.collections[collectionId];
+      if (collection) {
+        collection.items = collection.items.filter(
+          (item) => item.id !== itemId,
+        );
+      }
+    });
   },
 });
 
@@ -167,6 +195,18 @@ export const deleteCollection = createDataLoadingThunk(
   `${collectionSlice.name}/deleteCollection`,
   ({ collectionId }: { collectionId: string }) =>
     apiDeleteCollection(collectionId),
+);
+
+export const addCollectionItem = createDataLoadingThunk(
+  `${collectionSlice.name}/addCollectionItem`,
+  ({ collectionId, accountId }: { collectionId: string; accountId: string }) =>
+    apiAddCollectionItem(collectionId, accountId),
+);
+
+export const removeCollectionItem = createDataLoadingThunk(
+  `${collectionSlice.name}/removeCollectionItem`,
+  ({ collectionId, itemId }: { collectionId: string; itemId: string }) =>
+    apiRemoveCollectionItem(collectionId, itemId),
 );
 
 export const collections = collectionSlice.reducer;
