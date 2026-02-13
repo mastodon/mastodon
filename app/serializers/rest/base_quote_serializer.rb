@@ -13,7 +13,7 @@ class REST::BaseQuoteSerializer < ActiveModel::Serializer
   end
 
   def quoted_status
-    object.quoted_status if object.accepted? && object.quoted_status.present? && !object.quoted_status&.reblog? && status_filter.filter_state_for_quote != 'unauthorized'
+    object.quoted_status if (object.accepted? || instance_options[:source_requested]) && object.quoted_status.present? && !object.quoted_status&.reblog? && status_filter.filter_state_for_quote != 'unauthorized'
   end
 
   private
