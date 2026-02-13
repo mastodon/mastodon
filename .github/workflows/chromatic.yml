@@ -53,7 +53,7 @@ jobs:
         run: yarn build-storybook
 
       - name: Run Chromatic
-        uses: chromaui/action@07791f8243f4cb2698bf4d00426baf4b2d1cb7e0 # v13
+        uses: chromaui/action@a8ce9c58f59be5cc7090cadfc8f130fb08fcf0c3 # v15
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           zip: true
