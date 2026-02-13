@@ -149,10 +149,9 @@ class AccountSearchService < BaseService
             },
 
             {
-              multi_match: {
+              combined_fields: {
                 query: @query,
-                type: 'best_fields',
-                fields: %w(text text.*),
+                fields: %w(username^2 display_name^2 text),
                 operator: 'and',
               },
             },
