@@ -12,5 +12,9 @@ ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../Gemfile", __dir__)
 
 require "rubygems"
 require "bundler/setup"
+require "etc"
+
+# Push standard args in by default, cap parallel limit to match redis DB limit
+ARGV.unshift('rspec', '-r', './spec/flatware_helper.rb', '--workers', [Etc.nprocessors, 15].min)
 
 load Gem.bin_path("flatware", "flatware")
