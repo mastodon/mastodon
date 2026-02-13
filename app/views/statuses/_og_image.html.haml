@@ -38,8 +38,8 @@
       = opengraph 'twitter:player', medium_player_url(media)
       = opengraph 'twitter:player:stream', full_asset_url(media.file.url(:original))
       = opengraph 'twitter:player:stream:content_type', media.file_content_type
-      = opengraph 'twitter:player:width', '670'
-      = opengraph 'twitter:player:height', '380'
+      = opengraph 'twitter:player:width', MediaPlayerHelper::PLAYER_WIDTH
+      = opengraph 'twitter:player:height', MediaPlayerHelper::PLAYER_HEIGHT
   - if player_card
     = opengraph 'twitter:card', 'player'
   - else
