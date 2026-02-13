@@ -4,19 +4,41 @@ import { useParams } from 'react-router';
 
 import { fetchAccount, lookupAccount } from 'mastodon/actions/accounts';
 import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
-import { useAppDispatch, useAppSelector } from 'mastodon/store';
+import {
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from 'mastodon/store';
 
 interface Params {
   acct?: string;
   id?: string;
 }
 
-export const useAccountId = () => {
+const selectNormalizedId = createAppSelector(
+  [
+    (state) => state.accounts_map,
+    (_, acct?: string) => acct,
+    (_, _acct, id?: string) => id,
+  ],
+  (accountsMap, acct, id) => {
+    if (id) {
+      return id;
+    }
+    if (acct) {
+      return accountsMap[normalizeForLookup(acct)];
+    }
+    return undefined;
+  },
+);
+
+export type AccountId = string | null | undefined;
+
+export function useAccountId() {
   const { acct, id } = useParams<Params>();
   const dispatch = useAppDispatch();
-  const accountId = useAppSelector(
-    (state) =>
-      id ?? (acct ? state.accounts_map[normalizeForLookup(acct)] : undefined),
+  const accountId = useAppSelector((state) =>
+    selectNormalizedId(state, acct, id),
   );
   const account = useAppSelector((state) =>
     accountId ? state.accounts.get(accountId) : undefined,
@@ -31,5 +53,5 @@ export const useAccountId = () => {
     }
   }, [dispatch, accountId, acct, accountInStore]);
 
-  return accountId;
-};
+  return accountId satisfies AccountId;
+}

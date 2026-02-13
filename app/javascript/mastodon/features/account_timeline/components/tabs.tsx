@@ -5,15 +5,23 @@ import { FormattedMessage } from 'react-intl';
 import type { NavLinkProps } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
+import { useLayout } from '@/mastodon/hooks/useLayout';
+
 import { isRedesignEnabled } from '../common';
 
 import classes from './redesign.module.scss';
 
 export const AccountTabs: FC<{ acct: string }> = ({ acct }) => {
+  const { layout } = useLayout();
   if (isRedesignEnabled()) {
     return (
       <div className={classes.tabs}>
-        <NavLink isActive={isActive} to={`/@${acct}`}>
+        {layout !== 'single-column' && (
+          <NavLink exact to={`/@${acct}/about`}>
+            <FormattedMessage id='account.about' defaultMessage='About' />
+          </NavLink>
+        )}
+        <NavLink isActive={isActive} to={`/@${acct}/posts`}>
           <FormattedMessage id='account.activity' defaultMessage='Activity' />
         </NavLink>
         <NavLink exact to={`/@${acct}/media`}>

@@ -192,115 +192,80 @@ svg.badgeIcon {
   }
 }
 
-.fieldWrapper {
-  margin-top: 16px;
-  width: 100%;
-  position: relative;
-}
-
-.fieldWrapper::before,
-.fieldWrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 40px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-  z-index: 1;
-}
-
-.fieldWrapper::before {
-  left: 0;
-  background: linear-gradient(
-    to left,
-    transparent 0%,
-    var(--color-bg-primary) 100%
-  );
-}
-
-.fieldWrapper::after {
-  right: 0;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    var(--color-bg-primary) 100%
-  );
-}
-
-.fieldWrapperLeft::before {
-  opacity: 1;
-}
-
-.fieldWrapperRight::after {
-  opacity: 1;
-}
-
 .fieldList {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 4px;
-  scroll-snap-type: x mandatory;
-  scroll-padding-left: 40px;
-  scroll-padding-right: 40px;
-  scroll-behavior: smooth;
-  overflow-x: scroll;
-  scrollbar-width: none;
-  overflow-y: visible;
-}
+  display: grid;
+  grid-template-columns: 160px 1fr min-content;
+  column-gap: 12px;
+  margin: 4px 0 16px;
 
-.fieldCard {
-  scroll-snap-align: start;
-
-  &:focus-visible,
-  &:focus-within {
-    outline: var(--outline-focus-default);
-    outline-offset: -2px;
-  }
-
-  :is(dt, dd) {
-    max-width: 200px;
+  @container (width < 420px) {
+    grid-template-columns: 100px 1fr min-content;
   }
 }
 
-.fieldCardVerified {
+.fieldRow {
+  display: grid;
+  grid-column: 1 / -1;
+  align-items: start;
+  grid-template-columns: subgrid;
+  padding: 0 4px;
+
+  > :is(dt, dd) {
+    margin: 8px 0;
+
+    &:not(.fieldShowAll) {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  > dt {
+    color: var(--color-text-secondary);
+  }
+
+  &:not(.fieldVerified) > dd {
+    grid-column: span 2;
+  }
+
+  a {
+    font-weight: 500;
+    color: var(--color-text-brand);
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+
+    &:hover,
+    &:focus {
+      color: var(--color-text-brand-soft);
+    }
+  }
+}
+
+.fieldVerified {
   background-color: var(--color-bg-brand-softer);
 }
 
-.fieldArrowButton {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--color-bg-primary);
-  box-shadow: 0 1px 4px 0 var(--color-shadow-primary);
-  border-radius: 9999px;
-  transition:
-    color 0.2s ease-in-out,
-    background-color 0.2s ease-in-out;
-  outline-offset: 2px;
-  z-index: 2;
+.fieldLink:is(dd, dt) {
+  margin: 0;
+}
 
-  &:first-child {
-    left: 4px;
-  }
+.fieldLink > a {
+  display: block;
+  padding: 8px 0;
+}
 
-  &:last-child {
-    right: 4px;
-  }
-
-  &:hover,
-  &:focus,
-  &:focus-visible {
-    background-color: color-mix(
-      in oklab,
-      var(--color-bg-brand-base) var(--overlay-strength-brand),
-      var(--color-bg-primary)
-    );
-  }
+.fieldVerifiedIcon {
+  width: 16px;
+  height: 16px;
+  margin-top: 8px;
 }
 
 .fieldNumbersWrapper {
+  padding: 0;
+
   a {
     font-weight: unset;
   }
@@ -358,7 +323,11 @@ svg.badgeIcon {
   border-bottom: 1px solid var(--color-border-primary);
   display: flex;
   gap: 12px;
-  padding: 0 24px;
+  padding: 0 12px;
+
+  @container (width >= 500px) {
+    padding: 0 24px;
+  }
 
   a {
     display: block;
