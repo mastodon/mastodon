@@ -669,13 +669,13 @@ en:
       actions_description_remote_html: Decide which action to take to resolve this report. This will only affect how <strong>your</strong> server communicates with this remote account and handle its content.
       actions_no_posts: This report doesn't have any associated posts to delete
       add_to_report: Add more to report
+      all: all
       already_suspended_badges:
         local: Already suspended on this server
         remote: Already suspended on their server
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
-      by_target_domain: Domain of reported account
       cancel: Cancel
       category: Category
       category_description_html: The reason this account and/or content was reported will be cited in communication with the reported account
@@ -693,6 +693,7 @@ en:
       mark_as_sensitive: Mark as sensitive
       mark_as_unresolved: Mark as unresolved
       no_one_assigned: No one
+      not_assigned: Not Assigned
       notes:
         create: Add note
         create_and_resolve: Resolve with note
@@ -702,15 +703,16 @@ en:
         title: Notes
       notes_description_html: View and leave notes to other moderators and your future self
       processed_msg: 'Report #%{id} successfully processed'
-      quick_actions_description_html: 'Take a quick action or scroll down to see reported content:'
       remote_user_placeholder: the remote user from %{instance}
-      reopen: Reopen report
       report: 'Report #%{id}'
-      reported_account: Reported account
       reported_by: Reported by
       reported_with_application: Reported with application
       resolved: Resolved
       resolved_msg: Report successfully resolved!
+      search_help_html: 'Note: You can only search for reports about <code>@username@domain</code>, as remote reports are only from a domain, not a specific account.'
+      search_term: domain, @username or @username@domain
+      search_type_source: Reports from
+      search_type_target: Reports about
       skip_to_actions: Skip to actions
       status: Status
       statuses: Reported content
@@ -738,7 +740,6 @@ en:
       unassign: Unassign
       unknown_action_msg: 'Unknown action: %{action}'
       unresolved: Unresolved
-      updated_at: Updated
       view_profile: View profile
     roles:
       add_new: Add role

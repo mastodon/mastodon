@@ -14,13 +14,7 @@ class Api::V1::Admin::ReportsController < Api::BaseController
   after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
-  FILTER_PARAMS = %i(
-    resolved
-    account_id
-    target_account_id
-  ).freeze
-
-  PAGINATION_PARAMS = (%i(limit) + FILTER_PARAMS).freeze
+  PAGINATION_PARAMS = (%i(limit) + ReportFilter::ALL_KEYS).freeze
 
   def index
     authorize :report, :index?
@@ -86,7 +80,16 @@ class Api::V1::Admin::ReportsController < Api::BaseController
   end
 
   def filter_params
-    params.permit(*FILTER_PARAMS)
+    filter_params = params.slice(*ReportFilter::API_KEYS).permit(*ReportFilter::API_KEYS)
+
+    resolved = filter_params.delete(:resolved)
+    if resolved.present?
+      filter_params[:status] = ActiveModel::Type::Boolean.new.cast(resolved) ? 'resolved' : 'unresolved'
+    elsif filter_params[:status].nil?
+      filter_params[:status] = 'unresolved'
+    end
+
+    filter_params
   end
 
   def next_path
