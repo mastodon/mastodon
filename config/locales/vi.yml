@@ -787,6 +787,7 @@ vi:
         view_devops_description: Cho phép truy cập trang tổng quan Sidekiq và pgHero
         view_feeds: Xem nguồn cấp dữ liệu trực tiếp và theo chủ đề
         view_feeds_description: Cho phép người dùng truy cập nguồn cấp dữ liệu trực tiếp và theo chủ đề bất kể cài đặt máy chủ
+      requires_2fa: Bắt buộc xác thực 2 bước
       title: Danh sách vai trò
     rules:
       add_new: Thêm nội quy
@@ -2002,6 +2003,8 @@ vi:
     recovery_codes: Mã khôi phục dự phòng
     recovery_codes_regenerated: Mã khôi phục được phục hồi thành công
     recovery_instructions_html: Nếu bạn bị mất điện thoại, hãy dùng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong>. Ví dụ, bạn có thể in chúng ra giấy.
+    resume_app_authorization: Tiếp tục xác thực bằng ứng dụng
+    role_requirement: "%{domain} yêu cầu bạn thiết lập Xác thụec 2 bước trước khi sử dụng Mastodon."
     webauthn: Khóa bảo mật
   user_mailer:
     announcement_published:

@@ -802,6 +802,7 @@ hu:
         view_devops_description: Lehetővé teszi, hogy a felhasználó elérje a Sidekiq és pgHero irányítópultjait
         view_feeds: Élő és témahírfolyamok megtekintése
         view_feeds_description: A kiszolgálóbeállításoktól függetlenül engedélyezi az élő és témahírfolyamok elérését
+      requires_2fa: Kétlépcsős hitelesítés szükséges
       title: Szerepek
     rules:
       add_new: Szabály hozzáadása
@@ -2020,6 +2021,8 @@ hu:
     past_preamble_html: A legutóbbi látogatásod óta módosítottunk a felhasználási feltétleinken. Azt javasoljuk, hogy tekintsd át a frissített feltételeket.
     review_link: Felhasználási feltételek áttekintése
     title: A(z) %{domain} felhasználási feltételei megváltoznak
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%Y. %b %d., %H:%M"
@@ -2044,6 +2047,8 @@ hu:
     recovery_codes: Visszaállítási kódok biztonsági mentése
     recovery_codes_regenerated: A visszaállítási kódokat sikeresen újrageneráltuk
     recovery_instructions_html: A visszaállítási kódok egyikének segítségével tudsz majd belépni, ha elveszítenéd a telefonod. <strong>Tartsd biztos helyen a visszaállítási kódjaid</strong>! Például nyomtasd ki őket és tárold a többi fontos iratoddal együtt.
+    resume_app_authorization: Alkalmazás jogosultság-ellenőrzésének folytatása
+    role_requirement: A(z) %{domain} megköveteli a kétlépcsős hitelesítés beállítása a Mastodon használata előtt.
     webauthn: Biztonsági kulcsok
   user_mailer:
     announcement_published:

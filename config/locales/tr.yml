@@ -802,6 +802,7 @@ tr:
         view_devops_description: Kullanıcıların Sidekiq ve pgHero panellerine erişmesine izin verir
         view_feeds: Canlı ve konu akışlarını görüntüle
         view_feeds_description: Kullanıcıların sunucu ayarlarından bağımsız olarak canlı ve konu akışlarına erişmelerini sağlar
+      requires_2fa: İki aşamalı kimlik doğrulama gerekli
       title: Roller
     rules:
       add_new: Kural ekle
@@ -2046,6 +2047,8 @@ tr:
     recovery_codes: Kurtarma kodlarını yedekle
     recovery_codes_regenerated: Kurtarma kodları başarıyla yeniden oluşturuldu
     recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. <strong>Kurtarma kodlarınızı güvenli halde tutunuz.</strong> Örneğin: kodların çıktısını alıp diğer önemli belgeleriniz ile birlikte saklayabilirsiniz.'
+    resume_app_authorization: Uygulama yetkilendirmeyi sürdür
+    role_requirement: "%{domain} Mastodon'u kullanabilmeniz için İki Aşamalı Kimlik Doğrulama'yı ayarlamanızı gerektirir."
     webauthn: Güvenlik anahtarları
   user_mailer:
     announcement_published:
