@@ -10,6 +10,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 
 import ChevronRightIcon from '@/material-icons/400-24px/chevron_right.svg?react';
+import { translateStatusSuccess } from 'mastodon/actions/statuses';
+import { undoStatusTranslation } from 'mastodon/actions/statuses';
 import { Icon }  from 'mastodon/components/icon';
 import { Poll } from 'mastodon/components/poll';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
@@ -19,6 +21,8 @@ import { EmojiHTML } from './emoji/html';
 import { HandledLink } from './status/handled_link';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
+
+const supportsTranslator = 'Translator' in globalThis;
 
 /**
  *
@@ -67,7 +71,7 @@ class TranslateButton extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  languages: state.getIn(['server', 'translationLanguages', 'items']),
+  languages: supportsTranslator ? new Map() : state.getIn(['server', 'translationLanguages', 'items']),
 });
 
 const compareUrls = (href1, href2) => {
@@ -82,6 +86,14 @@ const compareUrls = (href1, href2) => {
 };
 
 class StatusContent extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showTranslateButton: false,
+    };
+  }
+
   static propTypes = {
     identity: identityContextPropShape,
     status: ImmutablePropTypes.map.isRequired,
@@ -120,8 +132,36 @@ class StatusContent extends PureComponent {
     }
   }
 
-  componentDidMount () {
+  async componentDidMount () {
     this._updateStatusLinks();
+
+    const { status, intl, languages } = this.props;
+    const contentLocale = intl.locale.replace(/[_-].*/, '');
+    const targetLanguages = languages?.get(status.get('language') || 'und');
+
+    // The Translator API translates all locally on the client, so private and direct toots are fine to translate.
+    const allowedVisibilities = supportsTranslator ? ['public', 'unlisted', 'private', 'direct'] : ['public', 'unlisted'];
+    const shouldAttemptTranslate =
+      this.props.onTranslate &&
+      this.props.identity.signedIn &&
+      allowedVisibilities.includes(status.get('visibility')) &&
+      status.get('search_index').trim().length > 0;
+
+    if (!shouldAttemptTranslate) return;
+
+    let available = false;
+    if (supportsTranslator) {
+      available = (await Translator.availability({
+        sourceLanguage: status.get('language'),
+        targetLanguage: contentLocale,
+      })) !== 'unavailable';
+    } else {
+      available = targetLanguages?.includes(contentLocale);
+    }
+
+    if (available) {
+      this.setState({ showTranslateButton: true });
+    }
   }
 
   componentDidUpdate () {
@@ -155,8 +195,37 @@ class StatusContent extends PureComponent {
     this.startXY = null;
   };
 
-  handleTranslate = () => {
-    this.props.onTranslate();
+  handleTranslate = async () => {
+    if (!supportsTranslator) {
+      this.props.onTranslate();
+      return;
+    }
+
+    const { intl, status, statusContent } = this.props;
+
+    if (status.get('translation')) {
+      this.props.dispatch(undoStatusTranslation(status.get('id'), status.get('poll')));
+      return;
+    }
+
+    const sourceLanguage = status.get('language');
+    const targetLanguage = intl.locale.replace(/[_-].*/, '');
+    try {
+      const translator = await Translator.create({
+        sourceLanguage,
+        targetLanguage,
+      });
+      const translatedText = await translator.translate(statusContent);
+      const translation = {
+        content: translatedText,
+        provider: 'Translator API',
+        detected_source_language: sourceLanguage,
+        language: targetLanguage,
+      };
+      this.props.dispatch(translateStatusSuccess(status.get('id'), translation));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   setRef = (c) => {
@@ -185,12 +254,9 @@ class StatusContent extends PureComponent {
   }
 
   render () {
-    const { status, intl, statusContent } = this.props;
+    const { status, statusContent } = this.props;
 
     const renderReadMore = this.props.onClick && status.get('collapsed');
-    const contentLocale = intl.locale.replace(/[_-].*/, '');
-    const targetLanguages = this.props.languages?.get(status.get('language') || 'und');
-    const renderTranslate = this.props.onTranslate && this.props.identity.signedIn && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('search_index').trim().length > 0 && targetLanguages?.includes(contentLocale);
 
     const content = statusContent ?? getStatusContent(status);
     const language = status.getIn(['translation', 'language']) || status.get('language');
@@ -205,7 +271,7 @@ class StatusContent extends PureComponent {
       </button>
     );
 
-    const translateButton = renderTranslate && (
+    const translateButton = this.state.showTranslateButton && (
       <TranslateButton onClick={this.handleTranslate} translation={status.get('translation')} />
     );
 
@@ -254,8 +320,7 @@ class StatusContent extends PureComponent {
         </div>
       );
     }
-  }
-
+  };
 }
 
 export default withRouter(withIdentity(connect(mapStateToProps)(injectIntl(StatusContent))));
