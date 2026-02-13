@@ -2,7 +2,7 @@ import type { Locale } from 'emojibase';
 import { SUPPORTED_LOCALES } from 'emojibase';
 
 import { EMOJI_DB_NAME_SHORTCODES, EMOJI_TYPE_CUSTOM } from './constants';
-import type { EtagTypes, LocaleOrCustom, LocaleWithShortcodes } from './types';
+import type { CacheKey, LocaleOrCustom, LocaleWithShortcodes } from './types';
 
 export function toSupportedLocale(localeBase: string): Locale {
   const locale = localeBase.toLowerCase();
@@ -19,7 +19,7 @@ export function toSupportedLocaleOrCustom(locale: string): LocaleOrCustom {
   return toSupportedLocale(locale);
 }
 
-export function toValidEtagName(input: string): EtagTypes {
+export function toValidCacheKey(input: string): CacheKey {
   const lower = input.toLowerCase();
   if (lower === EMOJI_TYPE_CUSTOM || lower === EMOJI_DB_NAME_SHORTCODES) {
     return lower;
