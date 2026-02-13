@@ -473,9 +473,6 @@ GEM
     nokogiri (1.19.0)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    oj (3.16.15)
-      bigdecimal (>= 3.0)
-      ostruct (>= 0.2)
     omniauth (2.1.4)
       hashie (>= 3.4.6)
       logger
@@ -996,6 +993,7 @@ DEPENDENCIES
   inline_svg
   irb (~> 1.8)
   jd-paperclip-azure (~> 3.0)
+  json
   json-ld
   json-ld-preloaded (~> 3.2)
   json-schema (~> 6.0)
@@ -1014,7 +1012,6 @@ DEPENDENCIES
   net-http (~> 0.6.0)
   net-ldap (~> 0.18)
   nokogiri (~> 1.15)
-  oj (~> 3.14)
   omniauth (~> 2.0)
   omniauth-cas (~> 3.0.0.beta.1)
   omniauth-rails_csrf_protection (~> 2.0)
