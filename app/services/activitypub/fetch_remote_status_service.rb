@@ -11,6 +11,9 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   def call(uri, prefetched_body: nil, on_behalf_of: nil, expected_actor_uri: nil, request_id: nil, depth: nil)
     return if domain_not_allowed?(uri)
 
+    # load the account if given as an ID
+    on_behalf_of = Account.find(on_behalf_of) unless on_behalf_of.nil? || on_behalf_of.is_a?(Account)
+
     @depth = depth || 0
     @request_id = request_id || "#{Time.now.utc.to_i}-status-#{uri}"
     @json = if prefetched_body.nil?
