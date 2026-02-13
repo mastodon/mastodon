@@ -74,6 +74,7 @@ class Account < ApplicationRecord
   STALE_THRESHOLD = 1.day
   DEFAULT_FIELDS_SIZE = 4
   INSTANCE_ACTOR_ID = -99
+  INSTANCE_ACTOR_USERNAME = 'mastodon.internal'
 
   USERNAME_RE   = /[a-z0-9_]+([.-]+[a-z0-9_]+)*/i
   MENTION_RE    = %r{(?<![=/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]]+([.-]+[[:word:]]+)*)?)}
