@@ -12,6 +12,11 @@ policy = ContentSecurityPolicy.new
 assets_host = policy.assets_host
 media_hosts = policy.media_hosts
 
+# Analytics domains (Plausible, Umami)
+analytics_hosts = []
+analytics_hosts << URI.parse(ENV['PLAUSIBLE_SCRIPT']).host if ENV['PLAUSIBLE_SCRIPT'].present?
+analytics_hosts << URI.parse(ENV['UMAMI_SCRIPT']).host if ENV['UMAMI_SCRIPT'].present?
+
 Rails.application.config.content_security_policy do |p|
   p.base_uri        :none
   p.default_src     :none
@@ -34,27 +39,15 @@ Rails.application.config.content_security_policy do |p|
     vite_public_host = ENV.fetch('VITE_DEV_SERVER_PUBLIC', "localhost:#{ViteRuby.config.port}")
     front_end_build_urls = %w(ws http).map { |protocol| "#{protocol}#{'s' if ViteRuby.config.https}://#{vite_public_host}" }
 
-    p.connect_src :self, :data, :blob, *media_hosts, Rails.configuration.x.streaming_api_base_url, *front_end_build_urls
-    p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host
+    p.connect_src :self, :data, :blob, *media_hosts, Rails.configuration.x.streaming_api_base_url, *front_end_build_urls, *analytics_hosts
+    p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host, *analytics_hosts
     p.frame_src   :self, :https, :http
     p.style_src   :self, assets_host, :unsafe_inline
   else
-    p.connect_src :self, :data, :blob, *media_hosts, Rails.configuration.x.streaming_api_base_url
-    p.script_src  :self, assets_host, "'wasm-unsafe-eval'"
+    p.connect_src :self, :data, :blob, *media_hosts, Rails.configuration.x.streaming_api_base_url, *analytics_hosts
+    p.script_src  :self, assets_host, "'wasm-unsafe-eval'", *analytics_hosts
     p.frame_src   :self, :https
     p.style_src   :self, assets_host
-  end
-
-  if ENV['PLAUSIBLE_SCRIPT'].present?
-    plausible_domain = URI.parse(ENV['PLAUSIBLE_SCRIPT']).host
-    p.script_src :self, plausible_domain
-    p.connect_src :self, plausible_domain
-  end
-
-  if ENV['UMAMI_SCRIPT'].present?
-    umami_domain = URI.parse(ENV['UMAMI_SCRIPT']).host
-    p.script_src :self, umami_domain
-    p.connect_src :self, umami_domain
   end
 end
 
