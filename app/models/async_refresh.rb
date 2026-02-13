@@ -9,7 +9,7 @@ class AsyncRefresh
 
   def self.find(id)
     redis_key = Rails.application.message_verifier('async_refreshes').verify(id)
-    new(redis_key) if redis.exists?(redis_key)
+    new(redis_key) if with_redis { |redis| redis.exists?(redis_key) }
   rescue ActiveSupport::MessageVerifier::InvalidSignature
     nil
   end
@@ -17,13 +17,15 @@ class AsyncRefresh
   def self.create(redis_key, count_results: false)
     data = { 'status' => 'running' }
     data['result_count'] = 0 if count_results
-    redis.hset(redis_key, data)
-    redis.expire(redis_key, NEW_REFRESH_EXPIRATION)
+    with_redis do |redis|
+      redis.hset(redis_key, data)
+      redis.expire(redis_key, NEW_REFRESH_EXPIRATION)
+    end
     new(redis_key)
   end
 
   def self.exists?(redis_key)
-    redis.exists?(redis_key)
+    with_redis { |redis| redis.exists?(redis_key) }
   end
 
   attr_reader :status, :result_count
@@ -54,7 +56,7 @@ class AsyncRefresh
   end
 
   def increment_result_count(by: 1)
-    redis.hincrby(@redis_key, 'result_count', by)
+    with_redis { |redis| redis.hincrby(@redis_key, 'result_count', by) }
     fetch_data_from_redis
   end
 

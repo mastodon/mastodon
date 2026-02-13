@@ -38,7 +38,7 @@ class FeedManager
   # @param [Symbol] subtype
   # @return [Integer]
   def timeline_size(type, id, subtype = nil)
-    redis.zcard(key(type, id, subtype))
+    with_redis { |redis| redis.zcard(key(type, id, subtype)) }
   end
 
   # The filter result of the status to a particular feed
@@ -90,7 +90,7 @@ class FeedManager
   def unpush_from_home(account, status, update: false)
     return false unless remove_from_feed(:home, account.id, status, aggregate_reblogs: account.user&.aggregates_reblogs?)
 
-    redis.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s)) unless update
+    with_redis { |redis| redis.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s)) } unless update
     true
   end
 
@@ -117,7 +117,7 @@ class FeedManager
   def unpush_from_list(list, status, update: false)
     return false unless remove_from_feed(:list, list.id, status, aggregate_reblogs: list.account.user&.aggregates_reblogs?)
 
-    redis.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s)) unless update
+    with_redis { |redis| redis.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s)) } unless update
     true
   end
 
@@ -183,7 +183,7 @@ class FeedManager
   # @return [void]
   def unmerge_from_home(from_account, into_account)
     timeline_key        = key(:home, into_account.id)
-    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
+    timeline_status_ids = with_redis { |redis| redis.zrange(timeline_key, 0, -1) }
 
     from_account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).reorder(nil).find_each do |status|
       remove_from_feed(:home, into_account.id, status, aggregate_reblogs: into_account.user&.aggregates_reblogs?)
@@ -196,7 +196,7 @@ class FeedManager
   # @return [void]
   def unmerge_from_list(from_account, list)
     timeline_key        = key(:list, list.id)
-    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
+    timeline_status_ids = with_redis { |redis| redis.zrange(timeline_key, 0, -1) }
 
     from_account.statuses.select(:id, :reblog_of_id).where(id: timeline_status_ids).reorder(nil).find_each do |status|
       remove_from_feed(:list, list.id, status, aggregate_reblogs: list.account.user&.aggregates_reblogs?)
@@ -209,7 +209,7 @@ class FeedManager
   # @return [void]
   def unmerge_tag_from_home(from_tag, into_account)
     timeline_key        = key(:home, into_account.id)
-    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
+    timeline_status_ids = with_redis { |redis| redis.zrange(timeline_key, 0, -1) }
 
     # This is a bit tricky because we need posts tagged with this hashtag that are not
     # also tagged with another followed hashtag or from a followed user
@@ -230,7 +230,7 @@ class FeedManager
   # @return [void]
   def clear_from_home(account, target_account)
     timeline_key        = key(:home, account.id)
-    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
+    timeline_status_ids = with_redis { |redis| redis.zrange(timeline_key, 0, -1) }
     statuses            = Status.where(id: timeline_status_ids).select(:id, :reblog_of_id, :account_id).to_a
     reblogged_ids       = Status.where(id: statuses.filter_map(&:reblog_of_id), account: target_account).pluck(:id)
     with_mentions_ids   = Mention.active.where(status_id: statuses.flat_map { |s| [s.id, s.reblog_of_id] }.compact, account: target_account).pluck(:status_id)
@@ -250,7 +250,7 @@ class FeedManager
   # @return [void]
   def clear_from_list(list, target_account)
     timeline_key        = key(:list, list.id)
-    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
+    timeline_status_ids = with_redis { |redis| redis.zrange(timeline_key, 0, -1) }
     statuses            = Status.where(id: timeline_status_ids).select(:id, :reblog_of_id, :account_id).to_a
     reblogged_ids       = Status.where(id: statuses.filter_map(&:reblog_of_id), account: target_account).pluck(:id)
     with_mentions_ids   = Mention.active.where(status_id: statuses.flat_map { |s| [s.id, s.reblog_of_id] }.compact, account: target_account).pluck(:status_id)
@@ -290,9 +290,9 @@ class FeedManager
     account.following.includes(:account_stat).reorder(nil).find_each do |target_account|
       query = target_account.statuses.list_eligible_visibility.includes(reblog: :account).limit(limit)
 
-      over_limit ||= redis.zcard(timeline_key) >= limit
+      over_limit ||= with_redis { |redis| redis.zcard(timeline_key) } >= limit
       if over_limit
-        oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
+        oldest_home_score = with_redis { |redis| redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i }
         last_status_score = Mastodon::Snowflake.id_at(target_account.last_status_at, with_random: false)
 
         # If the feed is full and this account has not posted more recently
@@ -331,9 +331,9 @@ class FeedManager
     list.active_accounts.includes(:account_stat).reorder(nil).find_each do |target_account|
       query = target_account.statuses.list_eligible_visibility.includes(reblog: :account).limit(limit)
 
-      over_limit ||= redis.zcard(timeline_key) >= limit
+      over_limit ||= with_redis { |redis| redis.zcard(timeline_key) } >= limit
       if over_limit
-        oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
+        oldest_home_score = with_redis { |redis| redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i }
         last_status_score = Mastodon::Snowflake.id_at(target_account.last_status_at, with_random: false)
 
         # If the feed is full and this account has not posted more recently
@@ -428,7 +428,7 @@ class FeedManager
   # @param [String] timeline_key
   # @return [Boolean]
   def push_update_required?(timeline_key)
-    redis.exists?("subscribed:#{timeline_key}")
+    with_redis { |redis| redis.exists?("subscribed:#{timeline_key}") }
   end
 
   # Check if the account is blocking or muting any of the given accounts

@@ -35,10 +35,10 @@ class ActivityPub::Activity::Move < ActivityPub::Activity
   end
 
   def mark_as_processing!
-    redis.set("move_in_progress:#{@account.id}", true, nx: true, ex: PROCESSING_COOLDOWN)
+    with_redis { |redis| redis.set("move_in_progress:#{@account.id}", true, nx: true, ex: PROCESSING_COOLDOWN) }
   end
 
   def unmark_as_processing!
-    redis.del("move_in_progress:#{@account.id}")
+    with_redis { |redis| redis.del("move_in_progress:#{@account.id}") }
   end
 end

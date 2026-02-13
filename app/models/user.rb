@@ -173,7 +173,7 @@ class User < ApplicationRecord
 
     # This terminates all connections for the given account with the streaming
     # server:
-    redis.publish("timeline:system:#{account.id}", Oj.dump(event: :kill))
+    with_redis { |redis| redis.publish("timeline:system:#{account.id}", Oj.dump(event: :kill)) }
   end
 
   def enable!

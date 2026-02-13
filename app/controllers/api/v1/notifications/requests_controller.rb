@@ -22,7 +22,7 @@ class Api::V1::Notifications::RequestsController < Api::BaseController
   end
 
   def merged?
-    render json: { merged: redis.get("notification_unfilter_jobs:#{current_account.id}").to_i <= 0 }
+    render json: { merged: with_redis { |redis| redis.get("notification_unfilter_jobs:#{current_account.id}") }.to_i <= 0 }
   end
 
   def show
