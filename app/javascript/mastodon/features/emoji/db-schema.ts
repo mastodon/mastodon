@@ -10,7 +10,7 @@ import type {
   StoreNames,
 } from 'idb';
 
-import type { CustomEmojiData, EtagTypes, UnicodeEmojiData } from './types';
+import type { CustomEmojiData, CacheKey, UnicodeEmojiData } from './types';
 import { emojiLogger } from './utils';
 
 const log = emojiLogger('database');
@@ -35,7 +35,7 @@ interface EmojiDB extends LocaleTables, DBSchema {
     };
   };
   etags: {
-    key: EtagTypes;
+    key: CacheKey;
     value: string;
   };
 }

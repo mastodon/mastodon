@@ -3,21 +3,16 @@ import type { CompactEmoji, Locale, ShortcodesDataset } from 'emojibase';
 
 import type { ApiCustomEmojiJSON } from '@/mastodon/api_types/custom_emoji';
 
-import { EMOJI_DB_SHORTCODE_TEST } from './constants';
 import { openEmojiDB } from './db-schema';
 import type { Database } from './db-schema';
-import {
-  localeToSegmenter,
-  toSupportedLocale,
-  toSupportedLocaleOrCustom,
-} from './locale';
+import { localeToSegmenter, toSupportedLocale } from './locale';
 import {
   extractTokens,
   skinHexcodeToEmoji,
   transformCustomEmojiData,
   transformEmojiData,
 } from './normalize';
-import type { AnyEmojiData, EtagTypes } from './types';
+import type { AnyEmojiData, CacheKey } from './types';
 import { emojiLogger } from './utils';
 
 const loadedLocales = new Set<Locale>();
@@ -214,16 +209,21 @@ export async function putLegacyShortcodes(shortcodes: ShortcodesDataset) {
   await trx.done;
 }
 
-export async function putLatestEtag(etag: string, name: EtagTypes) {
+export async function loadCacheValue(key: CacheKey) {
   const db = await loadDB();
-  await db.put('etags', etag, name);
+  const value = await db.get('etags', key);
+  return value;
 }
 
-export async function clearEtag(localeString: string) {
-  const locale = toSupportedLocaleOrCustom(localeString);
+export async function putCacheValue(key: CacheKey, value: string) {
   const db = await loadDB();
-  await db.delete('etags', locale);
-  log('Cleared etag for %s', locale);
+  await db.put('etags', value, key);
+}
+
+export async function clearCache(key: CacheKey) {
+  const db = await loadDB();
+  await db.delete('etags', key);
+  log('Cleared cache for %s', key);
 }
 
 export async function loadEmojiByHexcode(
@@ -274,26 +274,6 @@ export async function loadLegacyShortcodesByShortcode(shortcode: string) {
     'shortcodes',
     IDBKeyRange.only(shortcode),
   );
-}
-
-export async function loadLatestEtag(localeString: string) {
-  const locale = toSupportedLocaleOrCustom(localeString);
-  const db = await loadDB();
-  const rowCount = await db.count(locale);
-  if (!rowCount) {
-    return null; // No data for this locale, return null even if there is an etag.
-  }
-
-  // Check if shortcodes exist for the given Unicode locale.
-  if (locale !== 'custom') {
-    const result = await db.get(locale, EMOJI_DB_SHORTCODE_TEST);
-    if (!result?.shortcodes) {
-      return null;
-    }
-  }
-
-  const etag = await db.get('etags', locale);
-  return etag ?? null;
 }
 
 // Private functions
