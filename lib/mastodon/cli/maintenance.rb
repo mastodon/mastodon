@@ -179,6 +179,9 @@ module Mastodon::CLI
     def fix_duplicates
       verify_system_ready!
 
+      # Just in case the server's configuration sets a timeout
+      ActiveRecord::Base.connection.execute 'SET statement_timeout = 0'
+
       process_deduplications
 
       deduplication_cleanup_tasks
@@ -274,7 +277,9 @@ module Mastodon::CLI
         end
       end
 
+    ensure
       say 'Restoring index_accounts_on_username_and_domain_lower…'
+
       if migrator_version < 2020_06_20_164023
         database_connection.add_index :accounts, 'lower (username), lower(domain)', name: 'index_accounts_on_username_and_domain_lower', unique: true
       else
@@ -300,8 +305,9 @@ module Mastodon::CLI
       deduplicate_users_process_confirmation_token
       deduplicate_users_process_remember_token
       deduplicate_users_process_password_token
-
+    ensure
       say 'Restoring users indexes…'
+
       database_connection.add_index :users, ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true
       database_connection.add_index :users, ['email'], name: 'index_users_on_email', unique: true
       database_connection.add_index :users, ['remember_token'], name: 'index_users_on_remember_token', unique: true if migrator_version < 2022_01_18_183010
@@ -371,8 +377,9 @@ module Mastodon::CLI
       duplicate_record_ids(:account_domain_blocks, 'account_id, domain').each do |row|
         AccountDomainBlock.where(id: row['ids'].split(',').drop(1)).delete_all
       end
-
+    ensure
       say 'Restoring account domain blocks indexes…'
+
       database_connection.add_index :account_domain_blocks, %w(account_id domain), name: 'index_account_domain_blocks_on_account_id_and_domain', unique: true
     end
 
@@ -385,6 +392,8 @@ module Mastodon::CLI
       duplicate_record_ids(:account_identity_proofs, 'account_id, provider, provider_username').each do |row|
         AccountIdentityProof.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
+    ensure
+      return unless ActiveRecord::Base.connection.table_exists?(:account_identity_proofs)
 
       say 'Restoring account identity proofs indexes…'
       database_connection.add_index :account_identity_proofs, %w(account_id provider provider_username), name: 'index_account_proofs_on_account_and_provider_and_username', unique: true
@@ -399,6 +408,8 @@ module Mastodon::CLI
       duplicate_record_ids(:announcement_reactions, 'account_id, announcement_id, name').each do |row|
         AnnouncementReaction.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
+    ensure
+      return unless ActiveRecord::Base.connection.table_exists?(:announcement_reactions)
 
       say 'Restoring announcement_reactions indexes…'
       database_connection.add_index :announcement_reactions, %w(account_id announcement_id name), name: 'index_announcement_reactions_on_account_id_and_announcement_id', unique: true
@@ -418,8 +429,9 @@ module Mastodon::CLI
           other.destroy
         end
       end
-
+    ensure
       say 'Restoring conversations indexes…'
+
       if migrator_version < 2022_03_07_083603
         database_connection.add_index :conversations, ['uri'], name: 'index_conversations_on_uri', unique: true
       else
@@ -441,8 +453,9 @@ module Mastodon::CLI
           other.destroy
         end
       end
-
+    ensure
       say 'Restoring custom_emojis indexes…'
+
       database_connection.add_index :custom_emojis, %w(shortcode domain), name: 'index_custom_emojis_on_shortcode_and_domain', unique: true
     end
 
@@ -460,8 +473,9 @@ module Mastodon::CLI
           other.destroy
         end
       end
-
+    ensure
       say 'Restoring custom_emoji_categories indexes…'
+
       database_connection.add_index :custom_emoji_categories, ['name'], name: 'index_custom_emoji_categories_on_name', unique: true
     end
 
@@ -472,8 +486,9 @@ module Mastodon::CLI
       duplicate_record_ids(:domain_allows, 'domain').each do |row|
         DomainAllow.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
-
+    ensure
       say 'Restoring domain_allows indexes…'
+
       database_connection.add_index :domain_allows, ['domain'], name: 'index_domain_allows_on_domain', unique: true
     end
 
@@ -496,8 +511,9 @@ module Mastodon::CLI
 
         domain_blocks.each(&:destroy)
       end
-
+    ensure
       say 'Restoring domain_blocks indexes…'
+
       database_connection.add_index :domain_blocks, ['domain'], name: 'index_domain_blocks_on_domain', unique: true
     end
 
@@ -510,6 +526,8 @@ module Mastodon::CLI
       duplicate_record_ids(:unavailable_domains, 'domain').each do |row|
         UnavailableDomain.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
+    ensure
+      return unless ActiveRecord::Base.connection.table_exists?(:unavailable_domains)
 
       say 'Restoring unavailable_domains indexes…'
       database_connection.add_index :unavailable_domains, ['domain'], name: 'index_unavailable_domains_on_domain', unique: true
@@ -523,8 +541,9 @@ module Mastodon::CLI
         domain_blocks = EmailDomainBlock.where(id: row['ids'].split(',')).order(EmailDomainBlock.arel_table[:parent_id].asc.nulls_first).to_a
         domain_blocks.drop(1).each(&:destroy)
       end
-
+    ensure
       say 'Restoring email_domain_blocks indexes…'
+
       database_connection.add_index :email_domain_blocks, ['domain'], name: 'index_email_domain_blocks_on_domain', unique: true
     end
 
@@ -535,8 +554,9 @@ module Mastodon::CLI
       duplicate_record_ids_without_nulls(:media_attachments, 'shortcode').each do |row|
         MediaAttachment.where(id: row['ids'].split(',').drop(1)).update_all(shortcode: nil)
       end
-
+    ensure
       say 'Restoring media_attachments indexes…'
+
       if migrator_version < 2022_03_10_060626
         database_connection.add_index :media_attachments, ['shortcode'], name: 'index_media_attachments_on_shortcode', unique: true
       else
@@ -551,8 +571,9 @@ module Mastodon::CLI
       duplicate_record_ids(:preview_cards, 'url').each do |row|
         PreviewCard.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
-
+    ensure
       say 'Restoring preview_cards indexes…'
+
       database_connection.add_index :preview_cards, ['url'], name: 'index_preview_cards_on_url', unique: true
     end
 
@@ -568,8 +589,9 @@ module Mastodon::CLI
           status.destroy
         end
       end
-
+    ensure
       say 'Restoring statuses indexes…'
+
       if migrator_version < 2022_03_10_060706
         database_connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true
       else
@@ -590,8 +612,9 @@ module Mastodon::CLI
           tag.destroy
         end
       end
-
+    ensure
       say 'Restoring tags indexes…'
+
       if migrator_version < 2021_04_21_121431
         database_connection.add_index :tags, 'lower((name)::text)', name: 'index_tags_on_name_lower', unique: true
       else
@@ -608,6 +631,8 @@ module Mastodon::CLI
       duplicate_record_ids(:webauthn_credentials, 'external_id').each do |row|
         WebauthnCredential.where(id: row['ids'].split(',')).order(id: :desc).to_a.drop(1).each(&:destroy)
       end
+    ensure
+      return unless ActiveRecord::Base.connection.table_exists?(:webauthn_credentials)
 
       say 'Restoring webauthn_credentials indexes…'
       database_connection.add_index :webauthn_credentials, ['external_id'], name: 'index_webauthn_credentials_on_external_id', unique: true
@@ -622,6 +647,8 @@ module Mastodon::CLI
       duplicate_record_ids(:webhooks, 'url').each do |row|
         Webhook.where(id: row['ids'].split(',')).order(id: :desc).drop(1).each(&:destroy)
       end
+    ensure
+      return unless ActiveRecord::Base.connection.table_exists?(:webhooks)
 
       say 'Restoring webhooks indexes…'
       database_connection.add_index :webhooks, ['url'], name: 'index_webhooks_on_url', unique: true
