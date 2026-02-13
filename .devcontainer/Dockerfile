@@ -1,5 +1,5 @@
 # For details, see https://github.com/devcontainers/images/tree/main/src/ruby
-FROM mcr.microsoft.com/devcontainers/ruby:1-3.3-bookworm
+FROM mcr.microsoft.com/devcontainers/ruby:3.4-trixie
 
 # Install node version from .nvmrc
 WORKDIR /app
