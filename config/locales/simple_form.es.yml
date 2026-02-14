@@ -164,6 +164,7 @@ es:
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a...
         position: Un rol superior decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con menor prioridad
+        require_2fa: Los usuarios con este rol deberán activar la autenticación en dos pasos para usar Mastodon
       username_block:
         allow_with_approval: En lugar de impedir directamente el registro, los registros coincidentes requerirán tu aprobación
         comparison: Por favor, ten en cuenta el problema de Scunthorpe al bloquear coincidencias parciales
@@ -387,6 +388,7 @@ es:
         name: Nombre
         permissions_as_keys: Permisos
         position: Prioridad
+        require_2fa: Requerir autenticación en dos pasos
       username_block:
         allow_with_approval: Permitir registros con aprobación
         comparison: Método de comparación

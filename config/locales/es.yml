@@ -802,6 +802,7 @@ es:
         view_devops_description: Permite a los usuarios acceder a los paneles de control Sidekiq y pgHero
         view_feeds: Visualización de cronologías y tendencias
         view_feeds_description: Permitir a los usuarios acceder a las cronologías públicas y tendencias sin importar la configuración del servidor
+      requires_2fa: Requiere autenticación en dos pasos
       title: Roles
     rules:
       add_new: Añadir norma
@@ -2046,6 +2047,8 @@ es:
     recovery_codes: Hacer copias de seguridad de tus códigos de recuperación
     recovery_codes_regenerated: Códigos de recuperación regenerados con éxito
     recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
+    resume_app_authorization: Reanudar autorización de aplicación
+    role_requirement: "%{domain} requiere que establezcas la autenticación en dos pasos para poder usar Mastodon."
     webauthn: Claves de seguridad
   user_mailer:
     announcement_published:
