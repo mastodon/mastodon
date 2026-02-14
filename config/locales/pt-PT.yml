@@ -802,6 +802,7 @@ pt-PT:
         view_devops_description: Permite aos utilizadores aceder aos painéis de controlo do Sidekiq e pgHero
         view_feeds: Ver cronologia em tempo real e de etiquetas
         view_feeds_description: Permitir aos utilizadores aceder às cronologias em tempo real e de etiquetas independentemente das definições do servidor
+      requires_2fa: Requer autenticação de dois fatores
       title: Funções
     rules:
       add_new: Adicionar regra
@@ -2046,6 +2047,8 @@ pt-PT:
     recovery_codes: Cópia de segurança dos códigos de recuperação
     recovery_codes_regenerated: Os códigos de recuperação foram corretamente gerados
     recovery_instructions_html: Se perderes o seu telemóvel, poderás usar um dos códigos de recuperação para voltares a ter acesso à tua conta. <strong>Guarda os códigos de recuperação em lugar seguro</strong>. Por exemplo, podes imprimi-los e guardá-los junto a outros documentos importantes.
+    resume_app_authorization: Retomar autorização de aplicação
+    role_requirement: "%{domain} requer que configure a Autenticação de Dois Fatores antes de poder utilizar o Mastodon."
     webauthn: Chaves de segurança
   user_mailer:
     announcement_published:
