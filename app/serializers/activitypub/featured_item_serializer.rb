@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class ActivityPub::FeaturedItemSerializer < ActivityPub::Serializer
-  attributes :type, :featured_object, :featured_object_type
+  attributes :id, :type, :featured_object, :featured_object_type
+
+  def id
+    ActivityPub::TagManager.instance.uri_for(object)
+  end
 
   def type
     'FeaturedItem'

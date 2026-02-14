@@ -5,11 +5,12 @@
 # Table name: user_roles
 #
 #  id          :bigint(8)        not null, primary key
-#  name        :string           default(""), not null
 #  color       :string           default(""), not null
-#  position    :integer          default(0), not null
-#  permissions :bigint(8)        default(0), not null
 #  highlighted :boolean          default(FALSE), not null
+#  name        :string           default(""), not null
+#  permissions :bigint(8)        default(0), not null
+#  position    :integer          default(0), not null
+#  require_2fa :boolean          default(FALSE), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
@@ -160,7 +161,7 @@ class UserRole < ApplicationRecord
     @computed_permissions ||= begin
       permissions = self.class.everyone.permissions | self.permissions
 
-      if permissions & FLAGS[:administrator] == FLAGS[:administrator]
+      if administrator?
         Flags::ALL
       else
         permissions
@@ -170,6 +171,10 @@ class UserRole < ApplicationRecord
 
   def to_log_human_identifier
     name
+  end
+
+  def administrator?
+    permissions & FLAGS[:administrator] == FLAGS[:administrator]
   end
 
   private
@@ -189,6 +194,7 @@ class UserRole < ApplicationRecord
 
     errors.add(:permissions_as_keys, :own_role) if permissions_changed?
     errors.add(:position, :own_role) if position_changed?
+    errors.add(:require_2fa, :own_role) if require_2fa_changed? && !administrator?
   end
 
   def validate_permissions_elevation

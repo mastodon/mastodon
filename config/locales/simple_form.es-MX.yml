@@ -164,6 +164,7 @@ es-MX:
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a...
         position: Un rol superior decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con menor prioridad
+        require_2fa: Los usuarios con esta función deberán configurar la autenticación de dos pasos para utilizar Mastodon
       username_block:
         allow_with_approval: En lugar de impedir directamente el registro, los registros coincidentes requerirán tu aprobación
         comparison: Por favor ten en cuenta el problema de Scunthorpe al bloquear coincidencias parciales
@@ -239,7 +240,7 @@ es-MX:
         setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Control de visibilidad de impulsos
-        setting_color_scheme: Modo
+        setting_color_scheme: Esquema de colores
         setting_contrast: Contraste
         setting_default_language: Idioma de publicación
         setting_default_privacy: Visibilidad de publicación
@@ -387,6 +388,7 @@ es-MX:
         name: Nombre
         permissions_as_keys: Permisos
         position: Prioridad
+        require_2fa: Requiere autenticación de dos pasos
       username_block:
         allow_with_approval: Permitir registros con aprobación previa
         comparison: Método de comparación

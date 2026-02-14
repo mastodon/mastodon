@@ -802,6 +802,7 @@ is:
         view_devops_description: Leyfir notendum að skoða Sidekiq og pgHero stjórnborð
         view_feeds: Skoða bein streymi og efnistengd
         view_feeds_description: Gefur notendum aðgang að beinum streymum og efnistengdum, burtséð frá stillingum netþjóns
+      requires_2fa: Krefst tveggja-þátta auðkenningar
       title: Hlutverk
     rules:
       add_new: Skrá reglu
@@ -2050,6 +2051,8 @@ is:
     recovery_codes: Kóðar fyrir endurheimtingu öryggisafrits
     recovery_codes_regenerated: Það tókst að endurgera endurheimtukóða
     recovery_instructions_html: Ef þú tapar símanum þínum geturðu notað einn af endurheimtukóðunum hér fyrir neðan til að fá aftur samband við notandaaðganginn þinn. <strong>Geymdu endurheimtukóðana á öruggum stað</strong>. Sem dæmi gætirðu prentað þá út og geymt með öðrum mikilvægum skjölum.
+    resume_app_authorization: Halda áfram með auðkenningu forrits
+    role_requirement: "%{domain} krefst þess að þú setjir upp tveggja-þátta auðkenningu áður en þú getur notað Mastodon."
     webauthn: Öryggislyklar
   user_mailer:
     announcement_published:

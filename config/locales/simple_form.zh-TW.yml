@@ -163,6 +163,7 @@ zh-TW:
         name: 角色的公開名稱，如果角色設定為顯示為徽章
         permissions_as_keys: 有此角色的使用者將有權存取...
         position: 某些情況下，衝突的解決方式由更高階的角色決定。某些動作只能由優先程度較低的角色執行
+        require_2fa: 此角色之使用者將被要求設定兩階段驗證以使用 Mastodon
       username_block:
         allow_with_approval: 不直接禁止註冊，符合規則之註冊將需要您的審核
         comparison: 當您封鎖部分匹配時，請留心 Scunthorpe 問題
@@ -238,7 +239,7 @@ zh-TW:
         setting_always_send_emails: 總是發送電子郵件通知
         setting_auto_play_gif: 自動播放 GIF 動畫
         setting_boost_modal: 控制轉嘟可見性
-        setting_color_scheme: 模式
+        setting_color_scheme: 佈景主題
         setting_contrast: 對比度
         setting_default_language: 嘟文語言
         setting_default_privacy: 嘟文可見性
@@ -386,6 +387,7 @@ zh-TW:
         name: 名稱
         permissions_as_keys: 權限
         position: 優先權
+        require_2fa: 要求兩階段驗證
       username_block:
         allow_with_approval: 經審核後可註冊
         comparison: 比較方式

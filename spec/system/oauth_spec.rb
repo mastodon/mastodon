@@ -121,6 +121,46 @@ RSpec.describe 'Using OAuth from an external app' do
           end
         end
       end
+
+      context 'when the user has yet to enable TOTP' do
+        let(:new_otp_secret) { ROTP::Base32.random(User.otp_secret_length) }
+
+        before do
+          allow(User).to receive(:generate_otp_secret).and_return(new_otp_secret)
+          user.role.update!(require_2fa: true)
+        end
+
+        it 'when accepting the authorization request' do
+          subject
+
+          # It presents the user with the 2FA setup page
+          expect(page).to have_content(I18n.t('two_factor_authentication.role_requirement', domain: local_domain_uri.host))
+          click_on I18n.t('otp_authentication.setup')
+
+          # Fill in challenge form
+          fill_in 'form_challenge_current_password', with: user.password
+          click_on I18n.t('challenge.confirm')
+
+          # It presents the user with the TOTP confirmation screen
+          expect(page).to have_title(I18n.t('settings.two_factor_authentication'))
+
+          fill_in 'form_two_factor_confirmation_otp_attempt', with: ROTP::TOTP.new(new_otp_secret).at(Time.now.utc)
+          click_on I18n.t('otp_authentication.enable')
+
+          # It presents the user with recovery codes
+          click_on I18n.t('two_factor_authentication.resume_app_authorization')
+
+          # It presents the user with an authorization page
+          expect(page).to have_content(oauth_authorize_text)
+
+          # It grants the app access to the account
+          expect { click_on oauth_authorize_text }
+            .to change { user_has_grant_with_client_app? }.to(true)
+
+          # Upon authorizing, it redirects to the apps' callback URL
+          expect(page).to redirect_to_callback_url
+        end
+      end
     end
   end
 

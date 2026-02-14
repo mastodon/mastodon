@@ -163,6 +163,7 @@ zh-CN:
         name: 角色的公开名称，将在外显为徽章时使用
         permissions_as_keys: 具有此角色的用户将有权访问...
         position: 用于在特定情况下处理决策冲突。一些特定操作只能对优先级更低的角色执行
+        require_2fa: 具有此角色的用户将被要求设置双因素认证以使用 Mastodon
       username_block:
         allow_with_approval: 不直接禁止注册，而是使匹配的新注册需要你的批准
         comparison: 屏蔽部分匹配时请注意潜在的Scunthrope问题（正常单词内部包含被屏蔽的部分）
@@ -238,7 +239,7 @@ zh-CN:
         setting_always_send_emails: 总是发送电子邮件通知
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 控制转嘟可见性
-        setting_color_scheme: 模式
+        setting_color_scheme: 配色方案
         setting_contrast: 对比度
         setting_default_language: 发布语言
         setting_default_privacy: 嘟文可见性
@@ -386,6 +387,7 @@ zh-CN:
         name: 名称
         permissions_as_keys: 权限
         position: 优先级
+        require_2fa: 需要双因素认证
       username_block:
         allow_with_approval: 注册时需要批准
         comparison: 比较方法

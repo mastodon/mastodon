@@ -124,6 +124,7 @@ Rails.application.routes.draw do
 
   scope path: 'ap', as: 'ap' do
     resources :accounts, path: 'users', only: [:show], param: :id, concerns: :account_resources do
+      resources :collection_items, only: [:show]
       resources :featured_collections, only: [:index], module: :activitypub
 
       resources :statuses, only: [:show] do
@@ -154,7 +155,9 @@ Rails.application.routes.draw do
   constraints(username: %r{[^@/.]+}) do
     with_options to: 'accounts#show' do
       get '/@:username', as: :short_account
+      get '/@:username/posts'
       get '/@:username/featured'
+      get '/@:username/about'
       get '/@:username/with_replies', as: :short_account_with_replies
       get '/@:username/media', as: :short_account_media
       get '/@:username/tagged/:tag', as: :short_account_tag

@@ -23,6 +23,35 @@ RSpec.describe Mastodon::CLI::Emoji do
           .to output_results('OK')
       end
     end
+
+    context 'with --suspended-only and existing custom emoji on blocked servers' do
+      let(:blocked_domain) { 'evil.com' }
+      let(:blocked_subdomain) { 'subdomain.evil.org' }
+      let(:blocked_domain_without_emoji) { 'blocked.com' }
+      let(:silenced_domain) { 'silenced.com' }
+
+      let(:options) { { suspended_only: true } }
+
+      before do
+        Fabricate(:custom_emoji)
+        Fabricate(:custom_emoji, domain: blocked_domain)
+        Fabricate(:custom_emoji, domain: blocked_subdomain)
+        Fabricate(:custom_emoji, domain: silenced_domain)
+
+        Fabricate(:domain_block, severity: :suspend, domain: blocked_domain)
+        Fabricate(:domain_block, severity: :suspend, domain: 'evil.org')
+        Fabricate(:domain_block, severity: :suspend, domain: blocked_domain_without_emoji)
+        Fabricate(:domain_block, severity: :silence, domain: silenced_domain)
+      end
+
+      it 'reports a successful purge' do
+        expect { subject }
+          .to change { CustomEmoji.by_domain_and_subdomains(blocked_domain).count }.to(0)
+          .and change { CustomEmoji.by_domain_and_subdomains('evil.org').count }.to(0)
+          .and not_change { CustomEmoji.by_domain_and_subdomains(silenced_domain).count }
+          .and(not_change { CustomEmoji.local.count })
+      end
+    end
   end
 
   describe '#import' do

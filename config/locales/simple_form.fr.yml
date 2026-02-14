@@ -164,6 +164,7 @@ fr:
         name: Nom public du rôle, si le rôle est configuré pour être affiché avec un badge
         permissions_as_keys: Les utilisateur·rice·s ayant ce rôle auront accès à …
         position: Dans certaines situations, un rôle supérieur peut trancher la résolution d'un conflit. Mais certaines opérations ne peuvent être effectuées que sur des rôles ayant une priorité inférieure
+        require_2fa: Les utilisateur·ice·s ayant ce rôle devront configurer l'authentification à deux facteurs pour utiliser Mastodon
       username_block:
         allow_with_approval: Au lieu de bloquer l'inscription, les inscriptions correspondantes nécessiteront votre approbation
         comparison: Veuillez garder à l'esprit le problème de Scunthorpe lors du blocage des correspondances partielles
@@ -239,7 +240,7 @@ fr:
         setting_always_send_emails: Toujours envoyer les notifications par courriel
         setting_auto_play_gif: Lire automatiquement les GIFs animés
         setting_boost_modal: Configurer la visibilité du partage
-        setting_color_scheme: Mode
+        setting_color_scheme: Jeu de couleurs
         setting_contrast: Contraste
         setting_default_language: Langue de publication
         setting_default_privacy: Visibilité de la publication
@@ -387,6 +388,7 @@ fr:
         name: Nom
         permissions_as_keys: Autorisations
         position: Priorité
+        require_2fa: Exiger une authentification à deux facteurs
       username_block:
         allow_with_approval: Autoriser les inscriptions avec approbation
         comparison: Méthode de comparaison

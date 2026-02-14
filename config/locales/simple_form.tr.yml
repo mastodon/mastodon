@@ -164,6 +164,7 @@ tr:
         name: Rolün, eğer rozet olarak görüntülenmesi ayarlandıysa kullanılacak herkese açık ismi
         permissions_as_keys: Bu role sahip kullanıcıların şunlara erişimi var...
         position: Belirli durumlarda çatışmayı çözmek için daha yüksek rol belirleyicidir. Bazı eylemler ancak daha düşük öncelikteki rollere uygulanabilir
+        require_2fa: Bu role sahip kullanıcıların Mastodon'u kullanmak için iki aşamalı kimlik doğrulama ayarlamaları gerekecektir
       username_block:
         allow_with_approval: Kayıt işlemini tamamen engellemek yerine, eşleşen kayıtlar onayınızı gerektirecektir
         comparison: Kısmi eşleşmeleri engellerken lütfen Scunthorpe Problemini aklınızda bulundurun
@@ -239,7 +240,7 @@ tr:
         setting_always_send_emails: Her zaman e-posta bildirimleri gönder
         setting_auto_play_gif: Hareketli GIF'leri otomatik oynat
         setting_boost_modal: Öne çıkarma görünürlüğünü denetleyin
-        setting_color_scheme: Mod
+        setting_color_scheme: Renk düzeni
         setting_contrast: Kontrast
         setting_default_language: Gönderi dili
         setting_default_privacy: Gönderi görünürlüğü
@@ -387,6 +388,7 @@ tr:
         name: Ad
         permissions_as_keys: İzinler
         position: Öncelik
+        require_2fa: İki aşamalı kimlik doğrulama gerektir
       username_block:
         allow_with_approval: Onay ile kayıtlara izin ver
         comparison: Karşılaştırma yöntemi

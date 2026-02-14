@@ -802,6 +802,7 @@ nl:
         view_devops_description: Geeft gebruikers toegang tot de dashboards van Sidekiq en pgHero
         view_feeds: Openbare en hashtagtijdlijnen bekijken
         view_feeds_description: Hiermee kunnen gebruikers toegang krijgen tot de openbare en hashtagtijdlijnen, ongeacht de serverinstellingen
+      requires_2fa: Vereist tweestapsverificatie
       title: Rollen
     rules:
       add_new: Regel toevoegen
@@ -2046,6 +2047,8 @@ nl:
     recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaart</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
+    resume_app_authorization: Applicatie-machtiging hervatten
+    role_requirement: "%{domain} vereist dat je Tweestapsverificatie instelt voordat je Mastodon kunt gebruiken."
     webauthn: Beveiligingssleutels
   user_mailer:
     announcement_published:

@@ -226,7 +226,11 @@ class User < ApplicationRecord
   end
 
   def functional_or_moved?
-    confirmed? && approved? && !disabled? && !account.unavailable? && !account.memorial?
+    confirmed? && approved? && !disabled? && !account.unavailable? && !account.memorial? && !missing_2fa?
+  end
+
+  def missing_2fa?
+    !two_factor_enabled? && role.require_2fa?
   end
 
   def unconfirmed_or_pending?

@@ -64,6 +64,8 @@ class ActivityPub::TagManager
       target.uri
     when :featured_collection
       ap_account_collection_url(target.account.id, target)
+    when :featured_item
+      ap_account_collection_item_url(target.collection.account_id, target)
     end
   end
 

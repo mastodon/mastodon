@@ -164,6 +164,7 @@ is:
         name: Opinbert heiti hlutverks, ef birta á hlutverk sem merki
         permissions_as_keys: Notendur með þetta hlutverk munu hafa aðgang að...
         position: Rétthærra hlutverk ákvarðar lausn árekstra í ákveðnum tilfellum. Sumar aðgerðir er aðeins hægt að framkvæma á hlutverk með lægri forgangi
+        require_2fa: Notendur með þetta hlutverk munu þurfa að setja upp tveggja-þátta auðkenningu til að nota Mastodon
       username_block:
         allow_with_approval: Í stað þess að loka alfarið á nýskráningar, munu samsvarandi nýskráningar þurfa samþykki þitt
         comparison: Hafðu í huga Scunthorpe-vandamálið (Scunthorpe inniheldur orð sem ýmsar síur reyna að banna) þegar þú útilokar samsvarandi orðhluta
@@ -231,7 +232,7 @@ is:
         max_uses: Hámarksfjöldi afnota
         new_password: Nýtt lykilorð
         note: Æviágrip
-        otp_attempt: Teggja-þátta kóði
+        otp_attempt: Tveggja-þátta kóði
         password: Lykilorð
         phrase: Stikkorð eða setning
         setting_advanced_layout: Virkja ítarlegt vefviðmót
@@ -239,7 +240,7 @@ is:
         setting_always_send_emails: Alltaf senda tilkynningar í tölvupósti
         setting_auto_play_gif: Spila sjálfkrafa GIF-hreyfimyndir
         setting_boost_modal: Stýrðu sýnileika endurbirtinga
-        setting_color_scheme: Hamur
+        setting_color_scheme: Litastef
         setting_contrast: Birtuskil
         setting_default_language: Tungumál sem skrifað er á
         setting_default_privacy: Sýnileiki færslna
@@ -387,6 +388,7 @@ is:
         name: Nafn
         permissions_as_keys: Heimildir
         position: Forgangur
+        require_2fa: Krefjast tveggja-þátta auðkenningar
       username_block:
         allow_with_approval: Leyfa skráningar með samþykki
         comparison: Aðferð við samanburð

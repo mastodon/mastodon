@@ -71,7 +71,7 @@ RSpec.describe ActivityPub::FetchRemoteKeyService do
       let(:public_key_id) { 'https://example.com/alice-public-key.json' }
 
       before do
-        stub_request(:get, public_key_id).to_return(body: Oj.dump(key_json.merge({ '@context': ['https://www.w3.org/ns/activitystreams', 'https://w3id.org/security/v1'] })), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, public_key_id).to_return(body: Oj.dump(key_json.merge({ '@context': ['https://w3id.org/security/v1'] })), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it 'returns the expected account' do

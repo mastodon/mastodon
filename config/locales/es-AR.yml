@@ -802,6 +802,7 @@ es-AR:
         view_devops_description: Permite a los usuarios acceder a los paneles de Sidekiq y pgHero
         view_feeds: Ver líneas temporales y por temas
         view_feeds_description: Permite a los usuarios acceder a las líneas temporales en vivo y por temas, sin importar la configuración del servidor
+      requires_2fa: Requiere autenticación de dos factores
       title: Roles
     rules:
       add_new: Agregar regla
@@ -2046,6 +2047,8 @@ es-AR:
     recovery_codes: Resguardar códigos de recuperación
     recovery_codes_regenerated: Los códigos de recuperación se regeneraron exitosamente
     recovery_instructions_html: Si alguna vez perdés el acceso a tu aplicación de 2FA, podés usar uno de los siguientes códigos de recuperación para recuperar el acceso a tu cuenta. <strong>Mantenelos a salvo</strong>. Por ejemplo, podés imprimirlos y guardarlos con otros documentos importantes.
+    resume_app_authorization: Reanudar autorización de aplicación
+    role_requirement: "%{domain} requiere que configurés la autenticación de dos factores antes de poder usar Mastodon."
     webauthn: Llaves de seguridad
   user_mailer:
     announcement_published:

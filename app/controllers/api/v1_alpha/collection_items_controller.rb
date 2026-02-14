@@ -27,7 +27,7 @@ class Api::V1Alpha::CollectionItemsController < Api::BaseController
   def destroy
     authorize @collection, :update?
 
-    @collection_item.destroy
+    DeleteCollectionItemService.new.call(@collection_item)
 
     head 200
   end

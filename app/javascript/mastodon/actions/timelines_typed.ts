@@ -7,8 +7,8 @@ import type { Status } from '../models/status';
 import { createAppThunk } from '../store/typed_functions';
 
 import {
-  expandAccountFeaturedTimeline,
   expandTimeline,
+  insertIntoTimeline,
   TIMELINE_NON_STATUS_MARKERS,
 } from './timelines';
 
@@ -173,9 +173,13 @@ export function parseTimelineKey(key: string): TimelineParams | null {
   return null;
 }
 
-export function isTimelineKeyPinned(key: string) {
+export function isTimelineKeyPinned(key: string, accountId?: string) {
   const parsedKey = parseTimelineKey(key);
-  return parsedKey?.type === 'account' && parsedKey.pinned;
+  const isPinned = parsedKey?.type === 'account' && parsedKey.pinned;
+  if (!accountId || !isPinned) {
+    return isPinned;
+  }
+  return parsedKey.userId === accountId;
 }
 
 export function isNonStatusId(value: unknown) {
@@ -199,52 +203,71 @@ export const timelineDelete = createAction<{
   reblogOf: string | null;
 }>('timelines/delete');
 
-export const timelineExpandPinnedFromStatus = createAppThunk(
+export const timelineDeleteStatus = createAction<{
+  statusId: string;
+  timelineKey: string;
+}>('timelines/deleteStatus');
+
+export const insertPinnedStatusIntoTimelines = createAppThunk(
   (status: Status, { dispatch, getState }) => {
-    const accountId = status.getIn(['account', 'id']) as string;
-    if (!accountId) {
+    const currentAccountId = getState().meta.get('me', null) as string | null;
+    if (!currentAccountId) {
       return;
     }
 
-    // Verify that any of the relevant timelines are actually expanded before dispatching, to avoid unnecessary API calls.
+    const tags =
+      (
+        status.get('tags') as
+          | ImmutableList<ImmutableMap<'name', string>> // We only care about the tag name.
+          | undefined
+      )
+        ?.map((tag) => tag.get('name') as string)
+        .toArray() ?? [];
+
     const timelines = getState().timelines as ImmutableMap<string, unknown>;
-    if (!timelines.some((_, key) => key.startsWith(`account:${accountId}:`))) {
+    const accountTimelines = timelines.filter((_, key) => {
+      if (!key.startsWith(`account:${currentAccountId}:`)) {
+        return false;
+      }
+      const parsed = parseTimelineKey(key);
+      const isPinned = parsed?.type === 'account' && parsed.pinned;
+      if (!isPinned) {
+        return false;
+      }
+
+      return !parsed.tagged || tags.includes(parsed.tagged);
+    });
+
+    accountTimelines.forEach((_, key) => {
+      dispatch(insertIntoTimeline(key, status.get('id') as string, 0));
+    });
+  },
+);
+
+export const removePinnedStatusFromTimelines = createAppThunk(
+  (status: Status, { dispatch, getState }) => {
+    const currentAccountId = getState().meta.get('me', null) as string | null;
+    if (!currentAccountId) {
       return;
     }
 
-    void dispatch(
-      expandTimelineByParams({
-        type: 'account',
-        userId: accountId,
-        pinned: true,
-      }),
-    );
-    void dispatch(expandAccountFeaturedTimeline(accountId));
+    const statusId = status.get('id') as string;
+    const timelines = getState().timelines as ImmutableMap<
+      string,
+      ImmutableMap<'items' | 'pendingItems', ImmutableList<string>>
+    >;
 
-    // Iterate over tags and clear those too.
-    const tags = status.get('tags') as
-      | ImmutableList<ImmutableMap<'name', string>> // We only care about the tag name.
-      | undefined;
-    if (!tags) {
-      return;
-    }
-    tags.forEach((tag) => {
-      const tagName = tag.get('name');
-      if (!tagName) {
+    timelines.forEach((timeline, key) => {
+      if (!isTimelineKeyPinned(key, currentAccountId)) {
         return;
       }
 
-      void dispatch(
-        expandTimelineByParams({
-          type: 'account',
-          userId: accountId,
-          pinned: true,
-          tagged: tagName,
-        }),
-      );
-      void dispatch(
-        expandAccountFeaturedTimeline(accountId, { tagged: tagName }),
-      );
+      if (
+        timeline.get('items')?.includes(statusId) ||
+        timeline.get('pendingItems')?.includes(statusId)
+      ) {
+        dispatch(timelineDeleteStatus({ statusId, timelineKey: key }));
+      }
     });
   },
 );

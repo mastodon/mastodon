@@ -210,12 +210,15 @@ export const AccountHeader: React.FC<{
                     <AccountNote accountId={accountId} />
                   ))}
 
-                <AccountBio
-                  accountId={accountId}
-                  className='account__header__content'
-                />
-
-                <AccountHeaderFields accountId={accountId} />
+                {(!isRedesign || layout === 'single-column') && (
+                  <>
+                    <AccountBio
+                      accountId={accountId}
+                      className='account__header__content'
+                    />
+                    <AccountHeaderFields accountId={accountId} />
+                  </>
+                )}
               </div>
 
               <AccountNumberFields accountId={accountId} />

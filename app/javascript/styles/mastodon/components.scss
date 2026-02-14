@@ -411,7 +411,7 @@ body > [data-popper-placement] {
 
   &__suggestions {
     box-shadow: var(--dropdown-shadow);
-    background: var(--color-bg-elevated);
+    background: var(--color-bg-primary);
     border: 1px solid var(--color-border-primary);
     border-radius: 0 0 4px 4px;
     color: var(--color-text-primary);
@@ -2066,7 +2066,7 @@ body > [data-popper-placement] {
     }
 
     &__popout {
-      background: var(--color-bg-elevated);
+      background: var(--color-bg-primary);
       backdrop-filter: $backdrop-blur-filter;
       border: 1px solid var(--color-border-primary);
       box-shadow: var(--dropdown-shadow);
@@ -2770,7 +2770,7 @@ a.account__display-name {
 }
 
 .dropdown-menu {
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   backdrop-filter: $backdrop-blur-filter;
   border: 1px solid var(--color-border-primary);
   padding: 4px;
@@ -5169,7 +5169,7 @@ a.status-card {
       @include search-popout;
 
       padding: 0;
-      background: var(--color-bg-elevated);
+      background: var(--color-bg-primary);
     }
 
     &__menu-list {
@@ -5339,7 +5339,7 @@ a.status-card {
   position: relative;
   margin-top: 5px;
   z-index: 2;
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   backdrop-filter: $backdrop-blur-filter;
   border: 1px solid var(--color-border-primary);
   box-shadow: var(--dropdown-shadow);
@@ -5366,7 +5366,7 @@ a.status-card {
   z-index: 4;
   top: -5px;
   inset-inline-start: -9px;
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   border: 1px solid var(--color-border-primary);
   border-radius: 4px;
   box-shadow: var(--dropdown-shadow);
@@ -5433,7 +5433,7 @@ a.status-card {
   inset-inline-start: 0;
   z-index: -1;
   border-radius: 4px;
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   box-shadow: 0 0 5px var(--color-shadow-primary);
 }
 
@@ -5538,7 +5538,7 @@ a.status-card {
 .language-dropdown__dropdown,
 .visibility-dropdown__dropdown {
   box-shadow: var(--dropdown-shadow);
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   border: 1px solid var(--color-border-primary);
   padding: 4px;
   border-radius: 4px;
@@ -5653,7 +5653,7 @@ a.status-card {
 
     .emoji-mart-search {
       padding: 10px;
-      background: var(--color-bg-elevated);
+      background: var(--color-bg-primary);
 
       input {
         padding: 8px 12px;
@@ -5686,7 +5686,7 @@ a.status-card {
 
     .emoji-mart-scroll {
       padding: 0 10px 10px;
-      background: var(--color-bg-elevated);
+      background: var(--color-bg-primary);
     }
 
     &__results {
@@ -5812,7 +5812,7 @@ a.status-card {
     inset-inline-start: 0;
     margin-top: -2px;
     width: 100%;
-    background: var(--color-bg-elevated);
+    background: var(--color-bg-primary);
     border: 1px solid var(--color-border-primary);
     border-radius: 0 0 4px 4px;
     box-shadow: var(--dropdown-shadow);
@@ -6569,7 +6569,7 @@ a.status-card {
   width: 588px;
   max-height: 80vh;
   flex-direction: column;
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   backdrop-filter: $backdrop-blur-filter;
   border: 1px solid var(--color-border-primary);
   border-radius: 16px;
@@ -6653,7 +6653,7 @@ a.status-card {
   }
 
   &__popout {
-    background: var(--color-bg-elevated);
+    background: var(--color-bg-primary);
     backdrop-filter: $backdrop-blur-filter;
     border: 1px solid var(--color-border-primary);
     box-shadow: var(--dropdown-shadow);
@@ -6935,7 +6935,7 @@ a.status-card {
 
 .actions-modal {
   border-radius: 8px 8px 0 0;
-  background: var(--color-bg-elevated);
+  background: var(--color-bg-primary);
   backdrop-filter: $backdrop-blur-filter;
   border-color: var(--color-border-primary);
   box-shadow: var(--dropdown-shadow);
@@ -7123,7 +7123,7 @@ a.status-card {
 
   &--solid {
     color: var(--color-text-primary);
-    background: var(--color-bg-elevated);
+    background: var(--color-bg-primary);
     border: 1px solid var(--color-border-primary);
   }
 
@@ -10510,6 +10510,8 @@ noscript {
     position: relative;
 
     &__scroll-button {
+      --scroll-button-bg: var(--color-bg-brand-base);
+
       position: absolute;
       height: 100%;
       background: transparent;
@@ -10517,7 +10519,6 @@ noscript {
       cursor: pointer;
       top: 0;
       color: var(--color-text-primary);
-      opacity: 0.5;
 
       &.left {
         left: 0;
@@ -10530,7 +10531,7 @@ noscript {
       &__icon {
         border-radius: 50%;
         color: var(--color-text-on-brand-base);
-        background: var(--color-bg-brand-base);
+        background: var(--scroll-button-bg);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -10546,7 +10547,7 @@ noscript {
       &:hover,
       &:focus,
       &:active {
-        opacity: 1;
+        --scroll-button-bg: var(--color-bg-brand-base-hover);
       }
     }
 

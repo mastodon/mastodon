@@ -72,7 +72,7 @@ const Followers: FC = () => {
       footer={footer}
       list={followingList}
       loadMore={loadMore}
-      prependAccountId={currentAccountId}
+      prependAccountId={followedId}
       scrollKey='following'
     />
   );
