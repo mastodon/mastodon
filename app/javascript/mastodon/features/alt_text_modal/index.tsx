@@ -54,7 +54,7 @@ const messages = defineMessages({
   },
 });
 
-const MAX_LENGTH = 1500;
+const MAX_LENGTH = 250000;
 
 type FocalPoint = [number, number];
 
