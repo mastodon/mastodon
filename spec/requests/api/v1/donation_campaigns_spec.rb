@@ -28,6 +28,7 @@ RSpec.describe 'Donation campaigns' do
 
     context 'when a donation compaign API is set up' do
       let(:api_url) { 'https://example.org/donations' }
+      let(:seed) { user.account_id % 100 }
 
       around do |example|
         original = Rails.configuration.x.donation_campaigns_url
@@ -40,7 +41,7 @@ RSpec.describe 'Donation campaigns' do
 
       context 'when the donation campaign API does not return a campaign' do
         before do
-          stub_request(:get, "#{api_url}?platform=web&seed=#{user.account_id % 1_000}&locale=en").to_return(status: 204)
+          stub_request(:get, "#{api_url}?platform=web&seed=#{seed}&locale=en").to_return(status: 204)
         end
 
         it 'returns http empty' do
@@ -77,7 +78,7 @@ RSpec.describe 'Donation campaigns' do
         end
 
         before do
-          stub_request(:get, "#{api_url}?platform=web&seed=#{user.account_id % 1_000}&locale=en").to_return(body: Oj.dump(campaign_json), status: 200)
+          stub_request(:get, "#{api_url}?platform=web&seed=#{seed}&locale=en").to_return(body: Oj.dump(campaign_json), status: 200)
         end
 
         it 'returns the expected campaign' do
@@ -92,7 +93,7 @@ RSpec.describe 'Donation campaigns' do
           expect(response.parsed_body)
             .to match(campaign_json)
 
-          expect(redis.get("donation_campaign_request:#{user.account_id % 1_000}:en"))
+          expect(redis.get("donation_campaign_request:#{seed}:en"))
             .to eq 'campaign-1:en'
 
           expect(Oj.load(redis.get('donation_campaign:campaign-1:en')))

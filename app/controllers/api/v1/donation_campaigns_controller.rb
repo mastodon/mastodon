@@ -28,7 +28,7 @@ class Api::V1::DonationCampaignsController < Api::BaseController
   end
 
   def seed
-    current_account.id % 1_000
+    current_account.id % 100
   end
 
   def get_from_cache(redis)
