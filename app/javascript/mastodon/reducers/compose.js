@@ -446,6 +446,7 @@ export const composeReducer = (state = initialState, action) => {
     return state.set('is_submitting', true);
 
   case COMPOSE_REPLY_CANCEL:
+    return state.set('in_reply_to', null);
   case COMPOSE_RESET:
   case COMPOSE_SUBMIT_SUCCESS:
     return clearAll(state);
