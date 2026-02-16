@@ -22,7 +22,7 @@ import { identityContextPropShape, withIdentity } from 'mastodon/identity_contex
 import { layoutFromWindow } from 'mastodon/is_mobile';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 import { checkAnnualReport } from '@/mastodon/reducers/slices/annual_report';
-import { isServerFeatureEnabled } from '@/mastodon/utils/environment';
+import { isClientFeatureEnabled, isServerFeatureEnabled } from '@/mastodon/utils/environment';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
@@ -80,6 +80,7 @@ import {
   TermsOfService,
   AccountFeatured,
   AccountAbout,
+  AccountEdit,
   Quotes,
 } from './util/async-components';
 import { ColumnsContextProvider } from './util/columns_context';
@@ -232,6 +233,8 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
             <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
+            {isClientFeatureEnabled('profile_editing') && <WrappedRoute key="edit" path='/profile/edit' component={AccountEdit} content={children} />}
+
             <WrappedRoute path={['/start', '/start/profile']} exact component={OnboardingProfile} content={children} />
             <WrappedRoute path='/start/follows' component={OnboardingFollows} content={children} />
             <WrappedRoute path='/directory' component={Directory} content={children} />
@@ -241,6 +244,7 @@ class SwitchingColumnsArea extends PureComponent {
 
             {!profileRedesignEnabled && <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />}
             {...profileRedesignRoutes}
+            {...profileEditingRoutes}
             <WrappedRoute path={['/@:acct/featured', '/accounts/:id/featured']} component={AccountFeatured} content={children} />
             <WrappedRoute path='/@:acct/tagged/:tagged?' exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />

@@ -92,6 +92,11 @@ export function AccountAbout() {
     .then((module) => ({ default: module.AccountAbout }));
 }
 
+export function AccountEdit() {
+  return import('../../account_edit')
+  .then((module) => ({ default: module.AccountEdit }));
+}
+
 export function Followers () {
   return import('../../followers');
 }
