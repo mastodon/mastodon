@@ -24,7 +24,7 @@ class Api::V1::DonationCampaignsController < Api::BaseController
   private
 
   def api_url
-    Rails.configuration.x.donation_campaigns_url
+    Rails.configuration.x.donation_campaigns.api_url
   end
 
   def seed
@@ -50,7 +50,7 @@ class Api::V1::DonationCampaignsController < Api::BaseController
 
   def fetch_campaign
     url = Addressable::URI.parse(api_url)
-    url.query_values = { platform: 'web', seed: seed, locale: locale }
+    url.query_values = { platform: 'web', seed: seed, locale: locale, environment: Rails.configuration.x.donation_campaigns.environment }.compact
 
     Request.new(:get, url.to_s).perform do |res|
       return Oj.load(res.body_with_limit, mode: :strict) if res.code == 200

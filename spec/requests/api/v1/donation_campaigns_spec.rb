@@ -31,12 +31,12 @@ RSpec.describe 'Donation campaigns' do
       let(:seed) { user.account_id % 100 }
 
       around do |example|
-        original = Rails.configuration.x.donation_campaigns_url
-        Rails.configuration.x.donation_campaigns_url = api_url
+        original = Rails.configuration.x.donation_campaigns.api_url
+        Rails.configuration.x.donation_campaigns.api_url = api_url
 
         example.run
 
-        Rails.configuration.x.donation_campaigns_url = original
+        Rails.configuration.x.donation_campaigns.api_url = original
       end
 
       context 'when the donation campaign API does not return a campaign' do
