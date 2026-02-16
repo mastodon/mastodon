@@ -74,8 +74,8 @@ nan-TW:
       enable_sign_in_token_auth: 啟用電子phue ê token認證
       enabled: 啟用ah
       enabled_msg: 成功kā %{username} ê口座退冰
-      followers: 跟tuè lí ê
-      follows: Lí跟tuè ê
+      followers: 跟tuè伊ê
+      follows: 伊跟tuè ê
       header: 封面ê圖
       inbox_url: 收件kheh-á ê URL
       invite_request_text: 加入ê理由
@@ -787,6 +787,7 @@ nan-TW:
         view_devops_description: 允准用者接近使用Sidekiq kap pgHero ê la-jí-báng
         view_feeds: 看即時內容kap主題ê feed
         view_feeds_description: 允准用者接近使用即時kap主題feed，無論服侍器ê設定。
+      requires_2fa: 需要雙因素認證
       title: 角色
     rules:
       add_new: 加添規則
@@ -1754,9 +1755,56 @@ nan-TW:
     search: Tshiau-tshuē
     search_hint_html: 控制lí想beh予lâng發現ê方法。Lí kám beh予別lâng用lí公開PO文ê主題揣著lí？Lí kám beh予Mastodon以外ê lâng，佇網路tshiau-tshuē ê時，tshuē著lí ê個人資料？請注意，公開ê資訊bē當保證lóng總予所有tshiau-tshuē ia̋n-jín排除。
     title: 隱私kap資訊ê及至
+  privacy_policy:
+    title: 隱私權政策
+  reactions:
+    errors:
+      limit_reached: Kàu無kâng回應ê限制ah
+      unrecognized_emoji: 毋是ē當辨別ê emoji
+  redirects:
+    prompt: 若是lí信任tsit ê連結，tshi̍h伊繼續。
+    title: Lí teh-beh離開 %{instance}。
+  relationships:
+    activity: 口座ê活動
+    confirm_follow_selected_followers: Lí kám確定beh跟tuè所揀ê跟tuè者？
+    confirm_remove_selected_followers: Lí kám確定beh suá掉所揀ê跟tuè者？
+    confirm_remove_selected_follows: Lí kám確定beh取消跟tuè所揀ê用者？
+    dormant: Teh歇睏
+    follow_failure: Bē當跟tuè一寡所揀ê口座。
+    follow_selected_followers: 跟tuè所揀ê跟tuè者
+    followers: 跟tuè伊ê
+    following: 伊跟tuè ê
+    invited: 邀請ah
+    last_active: 上尾ê活動
+    most_recent: 最近來ê
+    moved: 有suá ah
+    mutual: 相跟tuè
+    primary: 主要ê
+    relationship: 關係
+    remove_selected_domains: Suá掉所揀ê域名內底ê所有跟tuè者
+    remove_selected_followers: Suá掉所揀ê跟tuè者
+    remove_selected_follows: 取消跟tuè所揀ê用者
+    status: 口座ê狀態
+  remote_follow:
+    missing_resource: Bē當tshuē著lí ê口座ê需要ê重轉URL
+  reports:
+    errors:
+      invalid_rules: 無引用有效ê規則
+  rss:
+    content_warning: 內容警告：
+    descriptions:
+      account: 對 @%{acct} 來ê公開ê PO文
+      tag: '有 #%{hashtag} 標簽ê公開PO文'
   scheduled_statuses:
+    over_daily_limit: Lí已經超過今á日預排ê PO文khòo-tah（%{limit}）
+    over_total_limit: Lí已經超過預排ê PO文khòo-tah（%{limit}）
     too_soon: Tio̍h用未來ê日期。
+  self_destruct:
+    lead_html: "<strong>%{domain}</strong>不幸teh-beh永永關掉。Lí若佇hia有口座，lí bē當繼續用tse，但是lí iáu ē當請求lí ê資料ê備份。"
+    title: Tsit ê服侍器teh-beh關掉
   sessions:
+    activity: 上尾ê活動
+    browser: 瀏覽器
     browsers:
       qq: QQ 瀏覽器
       safari: Safari
