@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_02_12_131934) do
+ActiveRecord::Schema[8.0].define(version: 2026_02_17_154542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -203,6 +203,9 @@ ActiveRecord::Schema[8.0].define(version: 2026_02_12_131934) do
     t.integer "feature_approval_policy", default: 0, null: false
     t.string "avatar_description", default: "", null: false
     t.string "header_description", default: "", null: false
+    t.boolean "show_media", default: true, null: false
+    t.boolean "show_media_replies", default: true, null: false
+    t.boolean "show_featured", default: true, null: false
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), COALESCE(lower((domain)::text), ''::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["domain", "id"], name: "index_accounts_on_domain_and_id"
