@@ -24,11 +24,10 @@
 
 .name {
   flex-grow: 1;
-  font-size: 22px;
-  white-space: initial;
-  line-height: normal;
 
   > h1 {
+    font-size: 22px;
+    line-height: normal;
     white-space: initial;
   }
 }
@@ -149,11 +148,21 @@ $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
   border-top: 1px solid var(--color-border-primary);
 }
 
+.bio {
+  font-size: 15px;
+}
+
 .badge {
   background-color: var(--color-bg-secondary);
   border: none;
   color: var(--color-text-secondary);
   font-weight: 500;
+  padding: 4px;
+  font-size: 13px;
+
+  :global(.account__header__badges) > & {
+    line-height: 1;
+  }
 
   > span {
     font-weight: unset;
@@ -264,6 +273,7 @@ svg.badgeIcon {
 }
 
 .fieldNumbersWrapper {
+  font-size: 13px;
   padding: 0;
 
   a {
@@ -323,10 +333,15 @@ svg.badgeIcon {
   border-bottom: 1px solid var(--color-border-primary);
   display: flex;
   gap: 12px;
-  padding: 0 12px;
+  padding: 0 24px;
 
-  @container (width >= 500px) {
-    padding: 0 24px;
+  @container (width < 500px) {
+    padding: 0 12px;
+
+    a {
+      flex: 1 1 0px;
+      text-align: center;
+    }
   }
 
   a {
