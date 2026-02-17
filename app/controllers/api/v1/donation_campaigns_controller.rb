@@ -3,6 +3,9 @@
 class Api::V1::DonationCampaignsController < Api::BaseController
   before_action :require_user!
 
+  STOPLIGHT_COOL_OFF_TIME = 60
+  STOPLIGHT_FAILURE_THRESHOLD = 10
+
   def index
     return head 204 if api_url.blank?
 
@@ -49,14 +52,24 @@ class Api::V1::DonationCampaignsController < Api::BaseController
   end
 
   def fetch_campaign
-    url = Addressable::URI.parse(api_url)
-    url.query_values = { platform: 'web', seed: seed, locale: locale, environment: Rails.configuration.x.donation_campaigns.environment }.compact
+    stoplight_wrapper.run do
+      url = Addressable::URI.parse(api_url)
+      url.query_values = { platform: 'web', seed: seed, locale: locale, environment: Rails.configuration.x.donation_campaigns.environment }.compact
 
-    Request.new(:get, url.to_s).perform do |res|
-      return Oj.load(res.body_with_limit, mode: :strict) if res.code == 200
+      Request.new(:get, url.to_s).perform do |res|
+        return Oj.load(res.body_with_limit, mode: :strict) if res.code == 200
+      end
     end
   rescue *Mastodon::HTTP_CONNECTION_ERRORS, Oj::ParseError
     nil
+  end
+
+  def stoplight_wrapper
+    Stoplight(
+      'donation_campaigns',
+      cool_off_time: STOPLIGHT_COOL_OFF_TIME,
+      threshold: STOPLIGHT_FAILURE_THRESHOLD
+    )
   end
 
   def request_key
