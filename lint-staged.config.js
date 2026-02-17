@@ -1,7 +1,7 @@
 const config = {
   '*': 'oxfmt --no-error-on-unmatched-pattern',
   'Gemfile|*.{rb,ruby,ru,rake}': 'bin/rubocop --force-exclusion -a',
-  '*.{js,jsx,ts,tsx}': 'eslint --fix',
+  '*.{js,jsx,ts,tsx}': 'oxlint --fix',
   '*.{css,scss}': 'stylelint --fix',
   '*.haml': 'bin/haml-lint -a',
   '**/*.ts?(x)': () => 'tsc -p tsconfig.json --noEmit',
