@@ -65,13 +65,13 @@ export const QuietPostQuoteInfoModal: React.FC<{ status: Status }> = ({
 
   return (
     <ConfirmationModal
-      closeWhenConfirm={false} // [1]
       title={intl.formatMessage(messages.title)}
       message={intl.formatMessage(messages.message)}
       confirm={intl.formatMessage(messages.got_it)}
       cancel={intl.formatMessage(messages.dismiss)}
       onConfirm={confirm}
       onClose={dismiss}
+      noCloseOnConfirm
     />
   );
 };

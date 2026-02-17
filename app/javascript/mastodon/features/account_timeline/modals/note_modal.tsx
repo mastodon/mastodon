@@ -153,7 +153,7 @@ const InnerNodeModal: FC<{
       onConfirm={handleSave}
       updating={state === 'saving'}
       disabled={!isDirty}
-      closeWhenConfirm={false}
+      noCloseOnConfirm
       noFocusButton
     />
   );

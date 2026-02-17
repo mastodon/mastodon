@@ -17,8 +17,9 @@ export const ConfirmationModal: React.FC<
     secondary?: React.ReactNode;
     onSecondary?: () => void;
     onConfirm: () => void;
-    closeWhenConfirm?: boolean;
+    noCloseOnConfirm?: boolean;
     extraContent?: React.ReactNode;
+    children?: React.ReactNode;
     updating?: boolean;
     disabled?: boolean;
     noFocusButton?: boolean;
@@ -32,19 +33,20 @@ export const ConfirmationModal: React.FC<
   onConfirm,
   secondary,
   onSecondary,
-  closeWhenConfirm = true,
   extraContent,
+  children,
   updating,
   disabled,
+  noCloseOnConfirm = false,
   noFocusButton = false,
 }) => {
   const handleClick = useCallback(() => {
-    if (closeWhenConfirm) {
+    if (!noCloseOnConfirm) {
       onClose();
     }
 
     onConfirm();
-  }, [onClose, onConfirm, closeWhenConfirm]);
+  }, [onClose, onConfirm, noCloseOnConfirm]);
 
   const handleSecondary = useCallback(() => {
     onClose();
@@ -58,7 +60,7 @@ export const ConfirmationModal: React.FC<
           <h1>{title}</h1>
           {message && <p>{message}</p>}
 
-          {extraContent}
+          {extraContent ?? children}
         </div>
       </div>
 
