@@ -24,3 +24,39 @@
   margin-top: -64px;
   margin-left: 24px;
 }
+
+.section {
+  padding: 24px;
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+
+  > button {
+    border: 1px solid var(--color-border-primary);
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 4px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.sectionTitle {
+  > h3 {
+    font-size: 17px;
+    font-weight: 600;
+    flex-grow: 1;
+  }
+
+  > p {
+    color: var(--color-text-secondary);
+  }
+}
