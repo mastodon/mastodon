@@ -2886,10 +2886,10 @@ __metadata:
     marky: "npm:^1.2.5"
     msw: "npm:^2.12.1"
     msw-storybook-addon: "npm:^2.0.6"
+    oxfmt: "npm:^0.33.0"
     path-complete-extname: "npm:^1.0.0"
     playwright: "npm:^1.57.0"
     postcss-preset-env: "npm:^11.0.0"
-    prettier: "npm:^3.3.3"
     prop-types: "npm:^15.8.1"
     punycode: "npm:^2.3.0"
     react: "npm:^18.2.0"
@@ -3121,6 +3121,139 @@ __metadata:
     estree-walker: "npm:^2.0.2"
     magic-string: "npm:~0.30.11"
   checksum: 10c0/8c32212f2ef49103894a75f91958aae43d0498d9db636fb2b7d043d87f241a5a747bff20d0bd5a1595b8704af92cc293806ce00f90836e86c21c1da02672cd48
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-android-arm-eabi@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-android-arm-eabi@npm:0.33.0"
+  conditions: os=android & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-android-arm64@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-android-arm64@npm:0.33.0"
+  conditions: os=android & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-darwin-arm64@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-darwin-arm64@npm:0.33.0"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-darwin-x64@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-darwin-x64@npm:0.33.0"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-freebsd-x64@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-freebsd-x64@npm:0.33.0"
+  conditions: os=freebsd & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-linux-arm-gnueabihf@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-linux-arm-gnueabihf@npm:0.33.0"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-linux-arm-musleabihf@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-linux-arm-musleabihf@npm:0.33.0"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-linux-arm64-gnu@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-linux-arm64-gnu@npm:0.33.0"
+  conditions: os=linux & cpu=arm64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-linux-arm64-musl@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-linux-arm64-musl@npm:0.33.0"
+  conditions: os=linux & cpu=arm64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-linux-ppc64-gnu@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-linux-ppc64-gnu@npm:0.33.0"
+  conditions: os=linux & cpu=ppc64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-linux-riscv64-gnu@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-linux-riscv64-gnu@npm:0.33.0"
+  conditions: os=linux & cpu=riscv64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-linux-riscv64-musl@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-linux-riscv64-musl@npm:0.33.0"
+  conditions: os=linux & cpu=riscv64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-linux-s390x-gnu@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-linux-s390x-gnu@npm:0.33.0"
+  conditions: os=linux & cpu=s390x & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-linux-x64-gnu@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-linux-x64-gnu@npm:0.33.0"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-linux-x64-musl@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-linux-x64-musl@npm:0.33.0"
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-openharmony-arm64@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-openharmony-arm64@npm:0.33.0"
+  conditions: os=openharmony & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-win32-arm64-msvc@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-win32-arm64-msvc@npm:0.33.0"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-win32-ia32-msvc@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-win32-ia32-msvc@npm:0.33.0"
+  conditions: os=win32 & cpu=ia32
+  languageName: node
+  linkType: hard
+
+"@oxfmt/binding-win32-x64-msvc@npm:0.33.0":
+  version: 0.33.0
+  resolution: "@oxfmt/binding-win32-x64-msvc@npm:0.33.0"
+  conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
@@ -10274,6 +10407,75 @@ __metadata:
   languageName: node
   linkType: hard
 
+"oxfmt@npm:^0.33.0":
+  version: 0.33.0
+  resolution: "oxfmt@npm:0.33.0"
+  dependencies:
+    "@oxfmt/binding-android-arm-eabi": "npm:0.33.0"
+    "@oxfmt/binding-android-arm64": "npm:0.33.0"
+    "@oxfmt/binding-darwin-arm64": "npm:0.33.0"
+    "@oxfmt/binding-darwin-x64": "npm:0.33.0"
+    "@oxfmt/binding-freebsd-x64": "npm:0.33.0"
+    "@oxfmt/binding-linux-arm-gnueabihf": "npm:0.33.0"
+    "@oxfmt/binding-linux-arm-musleabihf": "npm:0.33.0"
+    "@oxfmt/binding-linux-arm64-gnu": "npm:0.33.0"
+    "@oxfmt/binding-linux-arm64-musl": "npm:0.33.0"
+    "@oxfmt/binding-linux-ppc64-gnu": "npm:0.33.0"
+    "@oxfmt/binding-linux-riscv64-gnu": "npm:0.33.0"
+    "@oxfmt/binding-linux-riscv64-musl": "npm:0.33.0"
+    "@oxfmt/binding-linux-s390x-gnu": "npm:0.33.0"
+    "@oxfmt/binding-linux-x64-gnu": "npm:0.33.0"
+    "@oxfmt/binding-linux-x64-musl": "npm:0.33.0"
+    "@oxfmt/binding-openharmony-arm64": "npm:0.33.0"
+    "@oxfmt/binding-win32-arm64-msvc": "npm:0.33.0"
+    "@oxfmt/binding-win32-ia32-msvc": "npm:0.33.0"
+    "@oxfmt/binding-win32-x64-msvc": "npm:0.33.0"
+    tinypool: "npm:2.1.0"
+  dependenciesMeta:
+    "@oxfmt/binding-android-arm-eabi":
+      optional: true
+    "@oxfmt/binding-android-arm64":
+      optional: true
+    "@oxfmt/binding-darwin-arm64":
+      optional: true
+    "@oxfmt/binding-darwin-x64":
+      optional: true
+    "@oxfmt/binding-freebsd-x64":
+      optional: true
+    "@oxfmt/binding-linux-arm-gnueabihf":
+      optional: true
+    "@oxfmt/binding-linux-arm-musleabihf":
+      optional: true
+    "@oxfmt/binding-linux-arm64-gnu":
+      optional: true
+    "@oxfmt/binding-linux-arm64-musl":
+      optional: true
+    "@oxfmt/binding-linux-ppc64-gnu":
+      optional: true
+    "@oxfmt/binding-linux-riscv64-gnu":
+      optional: true
+    "@oxfmt/binding-linux-riscv64-musl":
+      optional: true
+    "@oxfmt/binding-linux-s390x-gnu":
+      optional: true
+    "@oxfmt/binding-linux-x64-gnu":
+      optional: true
+    "@oxfmt/binding-linux-x64-musl":
+      optional: true
+    "@oxfmt/binding-openharmony-arm64":
+      optional: true
+    "@oxfmt/binding-win32-arm64-msvc":
+      optional: true
+    "@oxfmt/binding-win32-ia32-msvc":
+      optional: true
+    "@oxfmt/binding-win32-x64-msvc":
+      optional: true
+  bin:
+    oxfmt: bin/oxfmt
+  checksum: 10c0/77f670459a26a14844bdc9b34e7e06eae0b787138e265e28fa011eb9181f232cf784cd1c40adca1416d2af3f5c1af1ed08d3815860bb4596edcb0c4e3773d1f3
+  languageName: node
+  linkType: hard
+
 "p-limit@npm:^3.0.2":
   version: 3.1.0
   resolution: "p-limit@npm:3.1.0"
@@ -11228,15 +11430,6 @@ __metadata:
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
   checksum: 10c0/b00d617431e7886c520a6f498a2e14c75ec58f6d93ba48c3b639cf241b54232d90daa05d83a9e9b9fef6baa63cb7e1e4602c2372fea5bc169668401eb127d0cd
-  languageName: node
-  linkType: hard
-
-"prettier@npm:^3.3.3":
-  version: 3.7.4
-  resolution: "prettier@npm:3.7.4"
-  bin:
-    prettier: bin/prettier.cjs
-  checksum: 10c0/9675d2cd08eacb1faf1d1a2dbfe24bfab6a912b059fc9defdb380a408893d88213e794a40a2700bd29b140eb3172e0b07c852853f6e22f16f3374659a1a13389
   languageName: node
   linkType: hard
 
@@ -13492,6 +13685,13 @@ __metadata:
     fdir: "npm:^6.5.0"
     picomatch: "npm:^4.0.3"
   checksum: 10c0/869c31490d0d88eedb8305d178d4c75e7463e820df5a9b9d388291daf93e8b1eb5de1dad1c1e139767e4269fe75f3b10d5009b2cc14db96ff98986920a186844
+  languageName: node
+  linkType: hard
+
+"tinypool@npm:2.1.0":
+  version: 2.1.0
+  resolution: "tinypool@npm:2.1.0"
+  checksum: 10c0/9fb1c760558c6264e0f4cfde96a63b12450b43f1730fbe6274aa24ddbdf488745c08924d0dea7a1303b47d555416a6415f2113898c69b6ecf731e75ac95238a5
   languageName: node
   linkType: hard
 
