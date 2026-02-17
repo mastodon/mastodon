@@ -74,6 +74,7 @@ namespace :api, format: false do
     resources :suggestions, only: [:index, :destroy]
     resources :scheduled_statuses, only: [:index, :show, :update, :destroy]
     resources :preferences, only: [:index]
+    resources :donation_campaigns, only: [:index]
 
     resources :annual_reports, only: [:index, :show] do
       member do

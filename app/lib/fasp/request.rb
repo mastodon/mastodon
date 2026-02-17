@@ -27,9 +27,9 @@ class Fasp::Request
     headers = request_headers(verb, url, body)
     key = Linzer.new_ed25519_key(@provider.server_private_key_pem, @provider.remote_identifier)
     response = HTTP
-               .headers(headers)
-               .use(http_signature: { key:, covered_components: COVERED_COMPONENTS })
-               .send(verb, url, body:)
+      .headers(headers)
+      .use(http_signature: { key:, covered_components: COVERED_COMPONENTS })
+      .send(verb, url, body:)
 
     validate!(response)
     @provider.delivery_failure_tracker.track_success!

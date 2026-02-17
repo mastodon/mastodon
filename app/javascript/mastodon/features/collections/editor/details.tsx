@@ -16,7 +16,8 @@ import { updateCollection } from 'mastodon/reducers/slices/collections';
 import { useAppDispatch } from 'mastodon/store';
 
 import type { TempCollectionState } from './state';
-import { getInitialState } from './state';
+import { getCollectionEditorState } from './state';
+import classes from './styles.module.scss';
 import { WizardStepHeader } from './wizard_step_header';
 
 export const CollectionDetails: React.FC<{
@@ -26,10 +27,8 @@ export const CollectionDetails: React.FC<{
   const history = useHistory();
   const location = useLocation<TempCollectionState>();
 
-  const { id, initialName, initialDescription, initialTopic } = getInitialState(
-    collection,
-    location.state,
-  );
+  const { id, initialName, initialDescription, initialTopic, initialItemIds } =
+    getCollectionEditorState(collection, location.state);
 
   const [name, setName] = useState(initialName);
   const [description, setDescription] = useState(initialDescription);
@@ -76,13 +75,14 @@ export const CollectionDetails: React.FC<{
           name,
           description,
           tag_name: topic || null,
+          account_ids: initialItemIds,
         };
 
         history.replace('/collections/new', payload);
         history.push('/collections/new/settings', payload);
       }
     },
-    [id, dispatch, name, description, topic, history],
+    [id, name, description, topic, dispatch, history, initialItemIds],
   );
 
   return (
@@ -155,7 +155,7 @@ export const CollectionDetails: React.FC<{
         maxLength={40}
       />
 
-      <div className='actions'>
+      <div className={classes.actionWrapper}>
         <Button type='submit'>
           {id ? (
             <FormattedMessage id='lists.save' defaultMessage='Save' />

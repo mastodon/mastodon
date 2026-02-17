@@ -5,6 +5,6 @@ module Fasp::Provider::DebugConcern
 
   def perform_debug_call
     Fasp::Request.new(self)
-                 .post('/debug/v0/callback/logs', body: { hello: 'world' })
+      .post('/debug/v0/callback/logs', body: { hello: 'world' })
   end
 end

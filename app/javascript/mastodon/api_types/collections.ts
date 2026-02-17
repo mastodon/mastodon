@@ -53,6 +53,7 @@ export interface ApiCollectionWithAccountsJSON extends ApiWrappedCollectionJSON 
  * Nested account item
  */
 interface CollectionAccountItem {
+  id: string;
   account_id?: string; // Only present when state is 'accepted' (or the collection is your own)
   state: 'pending' | 'accepted' | 'rejected' | 'revoked';
   position: number;

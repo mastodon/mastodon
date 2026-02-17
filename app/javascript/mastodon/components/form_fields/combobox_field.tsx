@@ -18,24 +18,30 @@ import { FormFieldWrapper } from './form_field_wrapper';
 import type { CommonFieldWrapperProps } from './form_field_wrapper';
 import { TextInput } from './text_input_field';
 
-interface Item {
+interface ComboboxItem {
   id: string;
 }
 
+export interface ComboboxItemState {
+  isSelected: boolean;
+  isDisabled: boolean;
+}
+
 interface ComboboxProps<
-  T extends Item,
+  T extends ComboboxItem,
 > extends ComponentPropsWithoutRef<'input'> {
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   isLoading?: boolean;
   items: T[];
   getItemId: (item: T) => string;
+  getIsItemSelected?: (item: T) => boolean;
   getIsItemDisabled?: (item: T) => boolean;
-  renderItem: (item: T) => React.ReactElement;
+  renderItem: (item: T, state: ComboboxItemState) => React.ReactElement;
   onSelectItem: (item: T) => void;
 }
 
-interface Props<T extends Item>
+interface Props<T extends ComboboxItem>
   extends ComboboxProps<T>, CommonFieldWrapperProps {}
 
 /**
@@ -43,7 +49,7 @@ interface Props<T extends Item>
  * from a large list of options by searching or filtering.
  */
 
-export const ComboboxFieldWithRef = <T extends Item>(
+export const ComboboxFieldWithRef = <T extends ComboboxItem>(
   { id, label, hint, hasError, required, ...otherProps }: Props<T>,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) => (
@@ -61,7 +67,7 @@ export const ComboboxFieldWithRef = <T extends Item>(
 // Using a type assertion to maintain the full type signature of ComboboxWithRef
 // (including its generic type) after wrapping it with `forwardRef`.
 export const ComboboxField = forwardRef(ComboboxFieldWithRef) as {
-  <T extends Item>(
+  <T extends ComboboxItem>(
     props: Props<T> & { ref?: React.ForwardedRef<HTMLInputElement> },
   ): ReturnType<typeof ComboboxFieldWithRef>;
   displayName: string;
@@ -69,13 +75,15 @@ export const ComboboxField = forwardRef(ComboboxFieldWithRef) as {
 
 ComboboxField.displayName = 'ComboboxField';
 
-const ComboboxWithRef = <T extends Item>(
+const ComboboxWithRef = <T extends ComboboxItem>(
   {
     value,
     isLoading = false,
     items,
     getItemId,
     getIsItemDisabled,
+    getIsItemSelected,
+    disabled,
     renderItem,
     onSelectItem,
     onChange,
@@ -88,6 +96,7 @@ const ComboboxWithRef = <T extends Item>(
   const intl = useIntl();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement | null>();
+  const popoverRef = useRef<HTMLDivElement>(null);
 
   const [highlightedItemId, setHighlightedItemId] = useState<string | null>(
     null,
@@ -101,11 +110,13 @@ const ComboboxWithRef = <T extends Item>(
   });
   const showStatusMessageInMenu =
     !!statusMessage && value.length > 0 && items.length === 0;
-  const hasMenuContent = items.length > 0 || showStatusMessageInMenu;
+  const hasMenuContent =
+    !disabled && (items.length > 0 || showStatusMessageInMenu);
   const isMenuOpen = shouldMenuOpen && hasMenuContent;
 
   const openMenu = useCallback(() => {
     setShouldMenuOpen(true);
+    inputRef.current?.focus();
   }, []);
 
   const closeMenu = useCallback(() => {
@@ -118,6 +129,18 @@ const ComboboxWithRef = <T extends Item>(
     setHighlightedItemId(firstItemId);
   }, [getItemId, items]);
 
+  const highlightItem = useCallback((id: string | null) => {
+    setHighlightedItemId(id);
+    if (id) {
+      const itemElement = popoverRef.current?.querySelector<HTMLLIElement>(
+        `[data-item-id='${id}']`,
+      );
+      if (itemElement && popoverRef.current) {
+        scrollItemIntoView(itemElement, popoverRef.current);
+      }
+    }
+  }, []);
+
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       onChange(e);
@@ -127,14 +150,14 @@ const ComboboxWithRef = <T extends Item>(
     [onChange, resetHighlight],
   );
 
-  const handleHighlightItem = useCallback(
+  const handleItemMouseEnter = useCallback(
     (e: React.MouseEvent<HTMLLIElement>) => {
       const { itemId } = e.currentTarget.dataset;
       if (itemId) {
-        setHighlightedItemId(itemId);
+        highlightItem(itemId);
       }
     },
-    [],
+    [highlightItem],
   );
 
   const selectItem = useCallback(
@@ -175,10 +198,10 @@ const ComboboxWithRef = <T extends Item>(
         // If no item is highlighted yet, highlight the first or last
         if (direction > 0) {
           const firstItem = items.at(0);
-          setHighlightedItemId(firstItem ? getItemId(firstItem) : null);
+          highlightItem(firstItem ? getItemId(firstItem) : null);
         } else {
           const lastItem = items.at(-1);
-          setHighlightedItemId(lastItem ? getItemId(lastItem) : null);
+          highlightItem(lastItem ? getItemId(lastItem) : null);
         }
       } else {
         // If there is a highlighted item, select the next or previous item
@@ -191,12 +214,12 @@ const ComboboxWithRef = <T extends Item>(
         }
 
         const newHighlightedItem = items[newIndex];
-        setHighlightedItemId(
+        highlightItem(
           newHighlightedItem ? getItemId(newHighlightedItem) : null,
         );
       }
     },
-    [getItemId, highlightedItemId, items],
+    [getItemId, highlightItem, highlightedItemId, items],
   );
 
   useOnClickOutside(wrapperRef, closeMenu);
@@ -231,7 +254,6 @@ const ComboboxWithRef = <T extends Item>(
         if (isMenuOpen) {
           e.preventDefault();
           selectHighlightedItem();
-          closeMenu();
         }
       }
       if (e.key === 'Escape') {
@@ -271,9 +293,10 @@ const ComboboxWithRef = <T extends Item>(
       <TextInput
         role='combobox'
         {...otherProps}
+        disabled={disabled}
         aria-controls={listId}
         aria-expanded={isMenuOpen ? 'true' : 'false'}
-        aria-haspopup='true'
+        aria-haspopup='listbox'
         aria-activedescendant={
           isMenuOpen && highlightedItemId ? highlightedItemId : undefined
         }
@@ -311,11 +334,11 @@ const ComboboxWithRef = <T extends Item>(
         {isMenuOpen && statusMessage}
       </span>
       <Overlay
-        flip
         show={isMenuOpen}
         offset={[0, 1]}
         placement='bottom-start'
         onHide={closeMenu}
+        ref={popoverRef}
         target={inputRef as React.RefObject<HTMLInputElement>}
         container={wrapperRef}
         popperConfig={{
@@ -331,19 +354,30 @@ const ComboboxWithRef = <T extends Item>(
                 {items.map((item) => {
                   const id = getItemId(item);
                   const isDisabled = getIsItemDisabled?.(item);
+                  const isHighlighted = id === highlightedItemId;
+                  // If `getIsItemSelected` is defined, we assume 'multi-select'
+                  // behaviour and don't set `aria-selected` based on highlight,
+                  // but based on selected item state.
+                  const isSelected = getIsItemSelected
+                    ? getIsItemSelected(item)
+                    : isHighlighted;
                   return (
                     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                     <li
                       key={id}
                       role='option'
                       className={classes.menuItem}
-                      aria-selected={id === highlightedItemId}
+                      data-highlighted={isHighlighted}
+                      aria-selected={isSelected}
                       aria-disabled={isDisabled}
                       data-item-id={id}
-                      onMouseEnter={handleHighlightItem}
+                      onMouseEnter={handleItemMouseEnter}
                       onClick={handleSelectItem}
                     >
-                      {renderItem(item)}
+                      {renderItem(item, {
+                        isSelected,
+                        isDisabled: isDisabled ?? false,
+                      })}
                     </li>
                   );
                 })}
@@ -359,7 +393,7 @@ const ComboboxWithRef = <T extends Item>(
 // Using a type assertion to maintain the full type signature of ComboboxWithRef
 // (including its generic type) after wrapping it with `forwardRef`.
 export const Combobox = forwardRef(ComboboxWithRef) as {
-  <T extends Item>(
+  <T extends ComboboxItem>(
     props: ComboboxProps<T> & { ref?: React.ForwardedRef<HTMLInputElement> },
   ): ReturnType<typeof ComboboxWithRef>;
   displayName: string;
@@ -405,4 +439,24 @@ function useGetA11yStatusMessage({
     );
   }
   return '';
+}
+
+const SCROLL_MARGIN = 6;
+
+function scrollItemIntoView(item: HTMLElement, scrollParent: HTMLElement) {
+  const itemTopEdge = item.offsetTop;
+  const itemBottomEdge = itemTopEdge + item.offsetHeight;
+
+  // If item is above scroll area, scroll up
+  if (itemTopEdge < scrollParent.scrollTop) {
+    scrollParent.scrollTop = itemTopEdge - SCROLL_MARGIN;
+  }
+  // If item is below scroll area, scroll down
+  else if (
+    itemBottomEdge >
+    scrollParent.scrollTop + scrollParent.offsetHeight
+  ) {
+    scrollParent.scrollTop =
+      itemBottomEdge - scrollParent.offsetHeight + SCROLL_MARGIN;
+  }
 }

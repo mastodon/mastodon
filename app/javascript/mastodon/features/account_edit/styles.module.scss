@@ -1,0 +1,26 @@
+.column {
+  border: 1px solid var(--color-border-primary);
+  border-top-width: 0;
+}
+
+.header {
+  :global(.column-header__buttons) {
+    align-items: center;
+    padding-inline-end: 16px;
+    height: auto;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 24px 24px 12px;
+
+  > h1 {
+    flex-grow: 1;
+    font-weight: 600;
+    font-size: 15px;
+  }
+}

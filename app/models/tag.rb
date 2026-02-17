@@ -41,7 +41,7 @@ class Tag < ApplicationRecord
   HASHTAG_LAST_SEQUENCE = '([[:word:]_]*[[:alpha:]][[:word:]_]*)'
   HASHTAG_NAME_PAT = "#{HASHTAG_FIRST_SEQUENCE}|#{HASHTAG_LAST_SEQUENCE}".freeze
 
-  HASHTAG_RE = %r{(?<![=/)\p{Alnum}])[#＃](#{HASHTAG_NAME_PAT})}
+  HASHTAG_RE = /(?<=^|\s)[#＃](#{HASHTAG_NAME_PAT})/
   HASHTAG_NAME_RE = /\A(#{HASHTAG_NAME_PAT})\z/i
   HASHTAG_INVALID_CHARS_RE = /[^[:alnum:]\u0E47-\u0E4E#{HASHTAG_SEPARATORS}]/
 
@@ -135,8 +135,8 @@ class Tag < ApplicationRecord
       query = query.merge(matching_name(stripped_term).or(reviewed)) if options[:exclude_unreviewed]
 
       query.order(Arel.sql('LENGTH(name)').asc, name: :asc)
-           .limit(limit)
-           .offset(offset)
+        .limit(limit)
+        .offset(offset)
     end
 
     def find_normalized(name)

@@ -73,6 +73,7 @@ interface AccountProps {
   defaultAction?: 'block' | 'mute';
   withBio?: boolean;
   withMenu?: boolean;
+  children?: React.ReactNode;
 }
 
 export const Account: React.FC<AccountProps> = ({
@@ -83,6 +84,7 @@ export const Account: React.FC<AccountProps> = ({
   defaultAction,
   withBio,
   withMenu = true,
+  children,
 }) => {
   const intl = useIntl();
   const { signedIn } = useIdentity();
@@ -353,6 +355,8 @@ export const Account: React.FC<AccountProps> = ({
             {button}
           </div>
         )}
+
+        {children}
       </div>
     </div>
   );
