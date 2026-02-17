@@ -93,10 +93,10 @@ RSpec.describe 'Donation campaigns' do
           expect(response.parsed_body)
             .to match(campaign_json)
 
-          expect(redis.get("donation_campaign_request:#{seed}:en"))
+          expect(Rails.cache.read("donation_campaign_request:#{seed}:en", raw: true))
             .to eq 'campaign-1:en'
 
-          expect(Oj.load(redis.get('donation_campaign:campaign-1:en')))
+          expect(Oj.load(Rails.cache.read('donation_campaign:campaign-1:en', raw: true)))
             .to match(campaign_json)
         end
       end

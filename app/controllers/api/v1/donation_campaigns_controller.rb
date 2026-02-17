@@ -1,24 +1,20 @@
 # frozen_string_literal: true
 
 class Api::V1::DonationCampaignsController < Api::BaseController
-  include Redisable
-
   before_action :require_user!
 
   def index
     return head 204 if api_url.blank?
 
-    with_redis do |redis|
-      json = get_from_cache(redis)
-      return render json: json if json.present?
+    json = from_cache
+    return render json: json if json.present?
 
-      campaign = fetch_campaign
-      return head 204 if campaign.nil?
+    campaign = fetch_campaign
+    return head 204 if campaign.nil?
 
-      save_to_cache(redis, campaign)
+    save_to_cache!(campaign)
 
-      render json: campaign
-    end
+    render json: campaign
   end
 
   private
@@ -31,21 +27,25 @@ class Api::V1::DonationCampaignsController < Api::BaseController
     current_account.id % 100
   end
 
-  def get_from_cache(redis)
-    key = redis.get(request_key)
+  def from_cache
+    key = Rails.cache.read(request_key, raw: true)
     return if key.blank?
 
-    campaign = redis.get("donation_campaign:#{key}")
+    campaign = Rails.cache.read("donation_campaign:#{key}", raw: true)
     Oj.load(campaign) if campaign.present?
   end
 
-  def save_to_cache(redis, campaign)
+  def save_to_cache!(campaign)
     return if campaign.blank?
 
-    redis.pipelined do |pipeline|
-      pipeline.set(request_key, campaign_key(campaign), ex: 1.hour)
-      pipeline.set("donation_campaign:#{campaign_key(campaign)}", Oj.dump(campaign), ex: 1.hour)
-    end
+    Rails.cache.write_multi(
+      {
+        request_key => campaign_key(campaign),
+        "donation_campaign:#{campaign_key(campaign)}" => Oj.dump(campaign),
+      },
+      expires_in: 1.hour,
+      raw: true
+    )
   end
 
   def fetch_campaign
