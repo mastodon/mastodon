@@ -65,6 +65,7 @@ import {
   ListEdit,
   ListMembers,
   Collections,
+  CollectionDetail,
   CollectionsEditor,
   Blocks,
   DomainBlocks,
@@ -270,6 +271,9 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/lists' component={Lists} content={children} />
             {areCollectionsEnabled() &&
               <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} />
+            }
+            {areCollectionsEnabled() &&
+              <WrappedRoute path='/collections/:id' component={CollectionDetail} content={children} />
             }
             {areCollectionsEnabled() &&
               <WrappedRoute path='/collections' component={Collections} content={children} />

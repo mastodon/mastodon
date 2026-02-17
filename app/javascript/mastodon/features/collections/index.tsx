@@ -97,7 +97,7 @@ const CollectionItem: React.FC<{
       <div className={classes.collectionItemContent}>
         <h2 id={linkId}>
           <Link
-            to={`/collections/${id}/edit/details`}
+            to={`/collections/${id}`}
             className={classes.collectionItemLink}
           >
             {name}

@@ -50,6 +50,12 @@ export function Collections () {
   );
 }
 
+export function CollectionDetail () {
+  return import('../../collections/detail').then(
+    module => ({default: module.CollectionDetailPage})
+  );
+}
+
 export function CollectionsEditor () {
   return import('../../collections/editor').then(
     module => ({default: module.CollectionEditorPage})
