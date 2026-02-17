@@ -13,12 +13,12 @@ import { Link } from 'react-router-dom';
 
 import type { Map as ImmutableMap } from 'immutable';
 
-import Overlay from 'react-overlays/Overlay';
 import type {
   OffsetValue,
   UsePopperOptions,
   Placement,
 } from 'react-overlays/esm/usePopper';
+import Overlay from 'react-overlays/Overlay';
 
 import { fetchRelationships } from 'mastodon/actions/accounts';
 import {
@@ -90,7 +90,7 @@ export const DropdownMenuItemContent: React.FC<{ item: MenuItem }> = ({
   );
 };
 
-export const DropdownMenu = <Item = MenuItem,>({
+export const DropdownMenu = <Item = MenuItem>({
   items,
   loading,
   scrollable,

@@ -366,9 +366,9 @@ on('change', '#account_statuses_cleanup_policy_enabled', ({ target }) => {
   if (!(target instanceof HTMLInputElement) || !target.form) return;
 
   target.form
-    .querySelectorAll<
-      HTMLInputElement | HTMLSelectElement
-    >('input:not([type=hidden], #account_statuses_cleanup_policy_enabled), select')
+    .querySelectorAll<HTMLInputElement | HTMLSelectElement>(
+      'input:not([type=hidden], #account_statuses_cleanup_policy_enabled), select',
+    )
     .forEach((input) => {
       setInputDisabled(input, !target.checked);
     });

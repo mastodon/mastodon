@@ -2,11 +2,11 @@ import { useState, useCallback, useRef, useId } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-import Overlay from 'react-overlays/Overlay';
 import type {
   OffsetValue,
   UsePopperOptions,
 } from 'react-overlays/esm/usePopper';
+import Overlay from 'react-overlays/Overlay';
 
 import { useSelectableClick } from 'mastodon/hooks/useSelectableClick';
 
