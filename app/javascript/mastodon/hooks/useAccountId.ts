@@ -55,3 +55,7 @@ export function useAccountId() {
 
   return accountId satisfies AccountId;
 }
+
+export function useCurrentAccountId() {
+  return useAppSelector((state) => state.meta.get('me', null) as string | null);
+}
