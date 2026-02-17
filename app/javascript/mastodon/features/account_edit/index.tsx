@@ -1,9 +1,12 @@
+import { useCallback } from 'react';
 import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import type { ModalType } from '@/mastodon/actions/modal';
+import { openModal } from '@/mastodon/actions/modal';
 import { AccountBio } from '@/mastodon/components/account_bio';
 import { Avatar } from '@/mastodon/components/avatar';
 import { Column } from '@/mastodon/components/column';
@@ -14,6 +17,7 @@ import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_e
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { autoPlayGif } from '@/mastodon/initial_state';
+import { useAppDispatch } from '@/mastodon/store';
 
 import { AccountEditSection } from './components/section';
 import classes from './styles.module.scss';
@@ -49,6 +53,20 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const accountId = useCurrentAccountId();
   const account = useAccount(accountId);
   const intl = useIntl();
+
+  const dispatch = useAppDispatch();
+  const handleOpenModal = useCallback(
+    (type: ModalType, props?: Record<string, unknown>) => {
+      dispatch(openModal({ modalType: type, modalProps: props ?? {} }));
+    },
+    [dispatch],
+  );
+  const handleNameEdit = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_NAME');
+  }, [handleOpenModal]);
+  const handleBioEdit = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_BIO');
+  }, [handleOpenModal]);
 
   if (!accountId) {
     return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
@@ -89,11 +107,14 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
         <Avatar account={account} size={80} className={classes.avatar} />
       </header>
 
-      <AccountEditSection title={messages.displayNameTitle}>
+      <AccountEditSection
+        title={messages.displayNameTitle}
+        onEdit={handleNameEdit}
+      >
         <DisplayNameSimple account={account} />
       </AccountEditSection>
 
-      <AccountEditSection title={messages.bioTitle}>
+      <AccountEditSection title={messages.bioTitle} onEdit={handleBioEdit}>
         <AccountBio accountId={accountId} />
       </AccountEditSection>
 

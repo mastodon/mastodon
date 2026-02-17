@@ -88,6 +88,8 @@ export const MODAL_COMPONENTS = {
   'ANNUAL_REPORT': AnnualReportModal,
   'COMPOSE_PRIVACY': () => Promise.resolve({ default: VisibilityModal }),
   'ACCOUNT_NOTE': () => import('@/mastodon/features/account_timeline/modals/note_modal').then(module => ({ default: module.AccountNoteModal })),
+  'ACCOUNT_EDIT_NAME': () => import('@/mastodon/features/account_edit/components/name_modal').then(module => ({ default: module.NameModal })),
+  'ACCOUNT_EDIT_BIO': () => import('@/mastodon/features/account_edit/components/bio_modal').then(module => ({ default: module.BioModal })),
 };
 
 export default class ModalRoot extends PureComponent {
