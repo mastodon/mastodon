@@ -1,5 +1,14 @@
 .column {
   border: 1px solid var(--color-border-primary);
+  border-top-width: 0;
+}
+
+.header {
+  :global(.column-header__buttons) {
+    align-items: center;
+    padding-inline-end: 16px;
+    height: auto;
+  }
 }
 
 .nav {
