@@ -149,6 +149,11 @@ $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
 }
 
 .buttonMenu {
+  // Override the modal for mobile.
+  &:global(.actions-modal) {
+    max-height: none;
+  }
+
   li :global(.icon) {
     width: 20px;
     height: 20px;

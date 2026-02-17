@@ -436,6 +436,7 @@ export const Dropdown = <Item extends object | null = MenuItem>({
               modalProps: {
                 actions: items,
                 onClick: handleItemClick,
+                className,
               },
             }),
           );
@@ -464,6 +465,7 @@ export const Dropdown = <Item extends object | null = MenuItem>({
       handleClose,
       statusId,
       needsStatusRefresh,
+      className,
     ],
   );
 
