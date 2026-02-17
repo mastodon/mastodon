@@ -71,7 +71,7 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           id: 'account_edit.column_title',
           defaultMessage: 'Edit Profile',
         })}
-        className={classes.header}
+        className={classes.columnHeader}
         showBackButton
         extraButton={
           <Link to={`/@${account.acct}`} className='button'>
@@ -83,7 +83,7 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
         }
       />
       <header>
-        <div className={classes.header}>
+        <div className={classes.profileImage}>
           {headerSrc && <img src={headerSrc} alt='' />}
         </div>
         <Avatar account={account} size={80} className={classes.avatar} />
