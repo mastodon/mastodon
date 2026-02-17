@@ -215,12 +215,13 @@ svg.badgeIcon {
 
 .fieldList {
   display: grid;
-  grid-template-columns: 160px 1fr min-content;
+  grid-template-columns: 160px 1fr;
   column-gap: 12px;
-  margin: 4px 0 16px;
+  margin: 16px 0;
+  border-top: 0.5px solid var(--color-border-primary);
 
   @container (width < 420px) {
-    grid-template-columns: 100px 1fr min-content;
+    grid-template-columns: 100px 1fr;
   }
 }
 
@@ -229,11 +230,10 @@ svg.badgeIcon {
   grid-column: 1 / -1;
   align-items: start;
   grid-template-columns: subgrid;
-  padding: 0 4px;
+  padding: 8px;
+  border-bottom: 0.5px solid var(--color-border-primary);
 
   > :is(dt, dd) {
-    margin: 8px 0;
-
     &:not(.fieldShowAll) {
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -248,40 +248,30 @@ svg.badgeIcon {
     color: var(--color-text-secondary);
   }
 
-  &:not(.fieldVerified) > dd {
-    grid-column: span 2;
+  > dd {
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 
   a {
-    font-weight: 500;
-    color: var(--color-text-brand);
+    color: inherit;
     text-decoration: none;
-    transition: 0.2s ease-in-out;
 
     &:hover,
     &:focus {
-      color: var(--color-text-brand-soft);
+      text-decoration: underline;
     }
   }
 }
 
 .fieldVerified {
-  background-color: var(--color-bg-brand-softer);
-}
-
-.fieldLink:is(dd, dt) {
-  margin: 0;
-}
-
-.fieldLink > a {
-  display: block;
-  padding: 8px 0;
+  background-color: var(--color-bg-success-softer);
 }
 
 .fieldVerifiedIcon {
   width: 16px;
   height: 16px;
-  margin-top: 8px;
 }
 
 .fieldNumbersWrapper {
