@@ -148,6 +148,13 @@ $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
   border-top: 1px solid var(--color-border-primary);
 }
 
+.buttonMenu {
+  li :global(.icon) {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 .bio {
   font-size: 15px;
 }
