@@ -4,12 +4,14 @@ import { FormattedMessage, useIntl } from 'react-intl';
 
 import { Link } from 'react-router-dom';
 
+import { Avatar } from '@/mastodon/components/avatar';
 import { Column } from '@/mastodon/components/column';
 import { ColumnHeader } from '@/mastodon/components/column_header';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_error';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
+import { autoPlayGif } from '@/mastodon/initial_state';
 
 import classes from './styles.module.scss';
 
@@ -30,6 +32,8 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     );
   }
 
+  const headerSrc = autoPlayGif ? account.header : account.header_static;
+
   return (
     <Column bindToDocument={!multiColumn} className={classes.column}>
       <ColumnHeader
@@ -48,6 +52,12 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
           </Link>
         }
       />
+      <header>
+        <div className={classes.header}>
+          {headerSrc && <img src={headerSrc} alt='' />}
+        </div>
+        <Avatar account={account} size={80} className={classes.avatar} />
+      </header>
     </Column>
   );
 };

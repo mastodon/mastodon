@@ -11,16 +11,16 @@
   }
 }
 
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 24px 24px 12px;
+.header {
+  height: 120px;
+  background: var(--color-bg-secondary);
 
-  > h1 {
-    flex-grow: 1;
-    font-weight: 600;
-    font-size: 15px;
+  @container (width >= 500px) {
+    height: 160px;
   }
+}
+
+.avatar {
+  margin-top: -64px;
+  margin-left: 24px;
 }
