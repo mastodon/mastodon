@@ -24,7 +24,7 @@ class Api::V1::DonationCampaignsController < Api::BaseController
   end
 
   def seed
-    current_account.id % 100
+    @seed ||= Random.new(current_account.id).rand(100)
   end
 
   def from_cache

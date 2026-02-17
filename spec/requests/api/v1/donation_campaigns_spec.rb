@@ -28,7 +28,7 @@ RSpec.describe 'Donation campaigns' do
 
     context 'when a donation compaign API is set up' do
       let(:api_url) { 'https://example.org/donations' }
-      let(:seed) { user.account_id % 100 }
+      let(:seed) { Random.new(user.account_id).rand(100) }
 
       around do |example|
         original = Rails.configuration.x.donation_campaigns.api_url
