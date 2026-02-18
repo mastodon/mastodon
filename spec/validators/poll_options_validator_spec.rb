@@ -3,69 +3,43 @@
 require 'rails_helper'
 
 RSpec.describe PollOptionsValidator do
-  describe '#validate' do
-    before do
-      validator.validate(poll)
+  subject { Fabricate.build :poll }
+
+  context 'when poll has unique valid options' do
+    it { is_expected.to allow_values(%w(One Two)).for(:options) }
+  end
+
+  context 'when poll has too few options' do
+    it { is_expected.to_not allow_values([]).for(:options).with_message(I18n.t('polls.errors.too_few_options')) }
+  end
+
+  context 'when poll has too many options' do
+    before { stub_const 'PollOptionsValidator::MAX_OPTIONS', 2 }
+
+    it { is_expected.to_not allow_values(%w(One Two Three)).for(:options).with_message(I18n.t('polls.errors.too_many_options', max: 2)) }
+  end
+
+  context 'when poll has duplicate options' do
+    it { is_expected.to_not allow_values(%w(One One One)).for(:options).with_message(I18n.t('polls.errors.duplicate_options')) }
+  end
+
+  describe 'poll option length limits' do
+    let(:limit) { 5 }
+
+    before { stub_const 'PollOptionsValidator::MAX_OPTION_CHARS', limit }
+
+    context 'when poll has acceptable length options' do
+      it { is_expected.to allow_values(%w(One Two)).for(:options) }
     end
 
-    let(:validator) { described_class.new }
-    let(:poll) { instance_double(Poll, options: options, expires_at: expires_at, errors: errors) }
-    let(:errors) { instance_double(ActiveModel::Errors, add: nil) }
-    let(:options) { %w(foo bar) }
-    let(:expires_at) { 1.day.from_now }
+    context 'when poll has multibyte and ZWJ emoji options' do
+      let(:options) { ['✨' * limit, '🏳️‍⚧️' * limit] }
 
-    it 'has no errors' do
-      expect(errors).to_not have_received(:add)
+      it { is_expected.to allow_values(options).for(:options) }
     end
 
-    context 'when the poll has duplicate options' do
-      let(:options) { %w(foo foo) }
-
-      it 'adds errors' do
-        expect(errors).to have_received(:add)
-      end
-    end
-
-    context 'when the poll has no options' do
-      let(:options) { [] }
-
-      it 'adds errors' do
-        expect(errors).to have_received(:add)
-      end
-    end
-
-    context 'when the poll has too many options' do
-      let(:options) { Array.new(described_class::MAX_OPTIONS + 1) { |i| "option #{i}" } }
-
-      it 'adds errors' do
-        expect(errors).to have_received(:add)
-      end
-    end
-
-    describe 'character length of poll options' do
-      context 'when poll has acceptable length options' do
-        let(:options) { %w(test this) }
-
-        it 'has no errors' do
-          expect(errors).to_not have_received(:add)
-        end
-      end
-
-      context 'when poll has multibyte and ZWJ emoji options' do
-        let(:options) { ['✨' * described_class::MAX_OPTION_CHARS, '🏳️‍⚧️' * described_class::MAX_OPTION_CHARS] }
-
-        it 'has no errors' do
-          expect(errors).to_not have_received(:add)
-        end
-      end
-
-      context 'when poll has options that are too long' do
-        let(:options) { ['ok', 'a' * (described_class::MAX_OPTION_CHARS**2)] }
-
-        it 'has errors' do
-          expect(errors).to have_received(:add)
-        end
-      end
+    context 'when poll has options that are too long' do
+      it { is_expected.to_not allow_values(%w(Airplane Two Three)).for(:options).with_message(I18n.t('polls.errors.over_character_limit', max: limit)) }
     end
   end
 end
