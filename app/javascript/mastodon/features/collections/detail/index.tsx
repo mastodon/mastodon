@@ -17,6 +17,7 @@ import { LinkedDisplayName } from 'mastodon/components/display_name';
 import { IconButton } from 'mastodon/components/icon_button';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { Tag } from 'mastodon/components/tags/tag';
+import { useAccount } from 'mastodon/hooks/useAccount';
 import { me } from 'mastodon/initial_state';
 import { fetchCollection } from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
@@ -45,7 +46,7 @@ const messages = defineMessages({
 });
 
 const AuthorNote: React.FC<{ id: string }> = ({ id }) => {
-  const account = useAppSelector((state) => state.accounts.get(id));
+  const account = useAccount(id);
   const author = (
     <span className={classes.displayNameWithAvatar}>
       <Avatar size={18} account={account} />
