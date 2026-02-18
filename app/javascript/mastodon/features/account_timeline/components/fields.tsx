@@ -92,6 +92,10 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
     hashtagAccountId: account.id,
   });
 
+  if (account.fields.isEmpty()) {
+    return null;
+  }
+
   return (
     <CustomEmojiProvider emojis={emojis}>
       <dl className={classes.fieldList}>
