@@ -14,6 +14,7 @@
 .profileImage {
   height: 120px;
   background: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border-primary);
 
   @container (width >= 500px) {
     height: 160px;
@@ -22,11 +23,12 @@
 
 .avatar {
   margin-top: -64px;
-  margin-left: 24px;
+  margin-left: 18px;
+  border: 1px solid var(--color-border-primary);
 }
 
 .section {
-  padding: 24px;
+  padding: 20px;
   border-bottom: 1px solid var(--color-border-primary);
 }
 
