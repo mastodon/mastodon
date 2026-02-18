@@ -51,7 +51,7 @@ export function Collections () {
 }
 
 export function CollectionDetail () {
-  return import('../../collections/detail').then(
+  return import('../../collections/detail/index').then(
     module => ({default: module.CollectionDetailPage})
   );
 }
