@@ -30,6 +30,7 @@
 .section {
   padding: 20px;
   border-bottom: 1px solid var(--color-border-primary);
+  font-size: 15px;
 }
 
 .sectionHeader {
@@ -53,15 +54,12 @@
 
 .sectionTitle {
   flex-grow: 1;
+  font-size: 17px;
+  font-weight: 600;
+}
 
-  > h3 {
-    font-size: 17px;
-    font-weight: 600;
-  }
-
-  > p {
-    color: var(--color-text-secondary);
-  }
+.sectionSubtitle {
+  color: var(--color-text-secondary);
 }
 
 .inputWrapper {

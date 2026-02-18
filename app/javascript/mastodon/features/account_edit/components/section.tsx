@@ -15,22 +15,51 @@ const buttonMessage = defineMessage({
   defaultMessage: 'Edit',
 });
 
-export const AccountEditSection: FC<{
+type AccountEditSectionProps = {
   title: MessageDescriptor;
   subtitle?: MessageDescriptor;
+  placeholder?: MessageDescriptor;
+  forcePlaceholder?: boolean;
   onEdit?: () => void;
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   extraButtons?: ReactNode;
-}> = ({ title, subtitle, onEdit, children, className, extraButtons }) => {
+} &
+  // XOR for subtitle and placeholder, as they take up the same space in the UI.
+  (| {
+        /** Subtitle for the section, which is always shown and replaces the placeholder.  */
+        subtitle?: MessageDescriptor;
+        placeholder?: never;
+        forcePlaceholder?: never;
+      }
+    | {
+        subtitle?: never;
+        /** Placeholder, shown when children are nullish or forcePlaceholder is true. Never appears if subtitle is set. */
+        placeholder: MessageDescriptor;
+        /** Forces the placeholder to appear. */
+        forcePlaceholder?: boolean;
+      }
+  );
+
+export const AccountEditSection: FC<AccountEditSectionProps> = ({
+  title,
+  placeholder,
+  subtitle,
+  onEdit,
+  children,
+  className,
+  extraButtons,
+  forcePlaceholder = false,
+}) => {
   const intl = useIntl();
+  const showPlaceholder =
+    !!subtitle || (!!placeholder && (!children || forcePlaceholder));
   return (
     <section className={classNames(className, classes.section)}>
       <header className={classes.sectionHeader}>
-        <div className={classes.sectionTitle}>
-          <FormattedMessage {...title} tagName='h3' />
-          {subtitle && <FormattedMessage {...subtitle} tagName='p' />}
-        </div>
+        <h3 className={classes.sectionTitle}>
+          <FormattedMessage {...title} />
+        </h3>
         {onEdit && (
           <IconButton
             icon='pencil'
@@ -41,6 +70,11 @@ export const AccountEditSection: FC<{
         )}
         {extraButtons}
       </header>
+      {showPlaceholder && (
+        <p className={classes.sectionSubtitle}>
+          <FormattedMessage {...(subtitle ?? placeholder)} />
+        </p>
+      )}
       {children}
     </section>
   );

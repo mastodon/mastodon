@@ -27,17 +27,36 @@ const messages = defineMessages({
     id: 'account_edit.display_name.title',
     defaultMessage: 'Display name',
   },
+  displayNamePlaceholder: {
+    id: 'account_edit.display_name.placeholder',
+    defaultMessage:
+      'Your display name is how your name appears on your profile and in timelines.',
+  },
   bioTitle: {
     id: 'account_edit.bio.title',
     defaultMessage: 'Bio',
+  },
+  bioPlaceholder: {
+    id: 'account_edit.bio.placeholder',
+    defaultMessage: 'Add a short introduction to help others identify you.',
   },
   customFieldsTitle: {
     id: 'account_edit.custom_fields.title',
     defaultMessage: 'Custom fields',
   },
+  customFieldsPlaceholder: {
+    id: 'account_edit.custom_fields.placeholder',
+    defaultMessage:
+      'Add your pronouns, external links, or anything else you’d like to share.',
+  },
   featuredHashtagsTitle: {
     id: 'account_edit.featured_hashtags.title',
     defaultMessage: 'Featured hashtags',
+  },
+  featuredHashtagsPlaceholder: {
+    id: 'account_edit.featured_hashtags.placeholder',
+    defaultMessage:
+      'Help others identify, and have quick access to, your favorite topics.',
   },
   profileTabTitle: {
     id: 'account_edit.profile_tab.title',
@@ -109,29 +128,36 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
       <AccountEditSection
         title={messages.displayNameTitle}
+        placeholder={messages.displayNamePlaceholder}
+        forcePlaceholder={account.display_name.length === 0}
         onEdit={handleNameEdit}
       >
         <DisplayNameSimple account={account} />
       </AccountEditSection>
 
-      <AccountEditSection title={messages.bioTitle} onEdit={handleBioEdit}>
+      <AccountEditSection
+        title={messages.bioTitle}
+        placeholder={messages.bioPlaceholder}
+        onEdit={handleBioEdit}
+      >
         <AccountBio accountId={accountId} />
       </AccountEditSection>
 
-      <AccountEditSection title={messages.customFieldsTitle}>
-        <p>fields here</p>
-      </AccountEditSection>
+      <AccountEditSection
+        title={messages.customFieldsTitle}
+        placeholder={messages.customFieldsPlaceholder}
+        forcePlaceholder={account.fields.isEmpty()}
+      />
 
-      <AccountEditSection title={messages.featuredHashtagsTitle}>
-        <p>featured tags here</p>
-      </AccountEditSection>
+      <AccountEditSection
+        title={messages.featuredHashtagsTitle}
+        placeholder={messages.featuredHashtagsPlaceholder}
+      />
 
       <AccountEditSection
         title={messages.profileTabTitle}
         subtitle={messages.profileTabSubtitle}
-      >
-        <p>tab settings here</p>
-      </AccountEditSection>
+      />
     </Column>
   );
 };
