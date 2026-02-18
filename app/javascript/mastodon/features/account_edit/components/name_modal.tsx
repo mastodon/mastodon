@@ -51,7 +51,7 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
     <ConfirmationModal
       title={intl.formatMessage(messages.editTitle)}
       confirm={intl.formatMessage(messages.save)}
-      onConfirm={onClose}
+      onConfirm={onClose} // To be implemented
       onClose={onClose}
       noCloseOnConfirm
       noFocusButton

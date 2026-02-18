@@ -9,7 +9,6 @@ import type { BaseConfirmationModalProps } from '@/mastodon/features/ui/componen
 import { ConfirmationModal } from '@/mastodon/features/ui/components/confirmation_modals';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
-import { useAppDispatch } from '@/mastodon/store';
 
 import classes from '../styles.module.scss';
 
@@ -49,11 +48,6 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
     setNewBio((prev) => prev + emoji);
   }, []);
 
-  const dispatch = useAppDispatch();
-  const handleConfirm = useCallback(() => {
-    dispatch(() => 'foo');
-  }, [dispatch]);
-
   if (!account) {
     return <LoadingIndicator />;
   }
@@ -64,7 +58,7 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
         account.note_plain ? messages.editTitle : messages.addTitle,
       )}
       confirm={intl.formatMessage(messages.save)}
-      onConfirm={handleConfirm}
+      onConfirm={onClose} // To be implemented
       onClose={onClose}
       noFocusButton
     >
