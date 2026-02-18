@@ -59,8 +59,7 @@ const AuthorNote: React.FC<{ id: string }> = ({ id }) => {
       <p className={classes.authorNote}>
         <FormattedMessage
           id='collections.detail.curated_by_you'
-          defaultMessage='Curated by {author}'
-          values={{ author }}
+          defaultMessage='Curated by you'
         />
       </p>
     );
