@@ -11,6 +11,10 @@ import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { useAppDispatch } from '@/mastodon/store';
 
+import classes from '../styles.module.scss';
+
+import { CharCounter } from './char_counter';
+
 const messages = defineMessages({
   addTitle: {
     id: 'account_edit.bio_modal.add_title',
@@ -60,10 +64,15 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
       onClose={onClose}
       noFocusButton
     >
-      <TextArea value={newBio} onChange={handleChange} />
-      <p>
-        {newBio.length}/{MAX_BIO_LENGTH} characters
-      </p>
+      <TextArea
+        value={newBio}
+        onChange={handleChange}
+        maxLength={MAX_BIO_LENGTH}
+        className={classes.inputText}
+        // eslint-disable-next-line jsx-a11y/no-autofocus -- This is a modal, it's fine.
+        autoFocus
+      />
+      <CharCounter currentLength={newBio.length} maxLength={MAX_BIO_LENGTH} />
     </ConfirmationModal>
   );
 };
