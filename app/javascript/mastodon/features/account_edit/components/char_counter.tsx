@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+
 import { polymorphicForwardRef } from '@/types/polymorphic';
 
 import classes from '../styles.module.scss';
@@ -6,7 +8,13 @@ export const CharCounter = polymorphicForwardRef<
   'p',
   { currentLength: number; maxLength: number }
 >(({ currentLength, maxLength, as: Component = 'p' }, ref) => (
-  <Component ref={ref} className={classes.counter}>
+  <Component
+    ref={ref}
+    className={classNames(
+      classes.counter,
+      currentLength > maxLength && classes.counterError,
+    )}
+  >
     {currentLength}/{maxLength} characters
   </Component>
 ));

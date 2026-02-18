@@ -12,6 +12,7 @@ import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import classes from '../styles.module.scss';
 
 import { CharCounter } from './char_counter';
+import { EmojiPicker } from './emoji_picker';
 
 const messages = defineMessages({
   addTitle: {
@@ -38,10 +39,13 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   const [newName, setNewName] = useState(account?.display_name ?? '');
   const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
-      setNewName(event.currentTarget.value.slice(0, MAX_NAME_LENGTH));
+      setNewName(event.currentTarget.value);
     },
     [],
   );
+  const handlePickEmoji = useCallback((emoji: string) => {
+    setNewName((prev) => prev + emoji);
+  }, []);
 
   return (
     <ConfirmationModal
@@ -52,14 +56,16 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
       noCloseOnConfirm
       noFocusButton
     >
-      <TextInput
-        value={newName}
-        onChange={handleChange}
-        maxLength={MAX_NAME_LENGTH}
-        className={classes.inputText}
-        // eslint-disable-next-line jsx-a11y/no-autofocus -- This is a modal, it's fine.
-        autoFocus
-      />
+      <div className={classes.inputWrapper}>
+        <TextInput
+          value={newName}
+          onChange={handleChange}
+          className={classes.inputText}
+          // eslint-disable-next-line jsx-a11y/no-autofocus -- This is a modal, it's fine.
+          autoFocus
+        />
+        <EmojiPicker onPick={handlePickEmoji} />
+      </div>
       <CharCounter currentLength={newName.length} maxLength={MAX_NAME_LENGTH} />
     </ConfirmationModal>
   );

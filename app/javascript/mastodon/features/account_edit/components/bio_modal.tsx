@@ -14,6 +14,7 @@ import { useAppDispatch } from '@/mastodon/store';
 import classes from '../styles.module.scss';
 
 import { CharCounter } from './char_counter';
+import { EmojiPicker } from './emoji_picker';
 
 const messages = defineMessages({
   addTitle: {
@@ -40,10 +41,13 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   const [newBio, setNewBio] = useState(account?.note_plain ?? '');
   const handleChange: ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
-      setNewBio(event.currentTarget.value.slice(0, MAX_BIO_LENGTH));
+      setNewBio(event.currentTarget.value);
     },
     [],
   );
+  const handlePickEmoji = useCallback((emoji: string) => {
+    setNewBio((prev) => prev + emoji);
+  }, []);
 
   const dispatch = useAppDispatch();
   const handleConfirm = useCallback(() => {
@@ -64,14 +68,16 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
       onClose={onClose}
       noFocusButton
     >
-      <TextArea
-        value={newBio}
-        onChange={handleChange}
-        maxLength={MAX_BIO_LENGTH}
-        className={classes.inputText}
-        // eslint-disable-next-line jsx-a11y/no-autofocus -- This is a modal, it's fine.
-        autoFocus
-      />
+      <div className={classes.inputWrapper}>
+        <TextArea
+          value={newBio}
+          onChange={handleChange}
+          className={classes.inputText}
+          // eslint-disable-next-line jsx-a11y/no-autofocus -- This is a modal, it's fine.
+          autoFocus
+        />
+        <EmojiPicker onPick={handlePickEmoji} />
+      </div>
       <CharCounter currentLength={newBio.length} maxLength={MAX_BIO_LENGTH} />
     </ConfirmationModal>
   );
