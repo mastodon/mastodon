@@ -1,9 +1,10 @@
-import { useCallback, useId, useState } from 'react';
+import { useCallback, useId, useRef, useState } from 'react';
 import type { ChangeEventHandler, FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
 import { TextInput } from '@/mastodon/components/form_fields';
+import { insertEmojiAtPosition } from '@/mastodon/features/emoji/utils';
 import type { BaseConfirmationModalProps } from '@/mastodon/features/ui/components/confirmation_modals';
 import { ConfirmationModal } from '@/mastodon/features/ui/components/confirmation_modals';
 import { useAccount } from '@/mastodon/hooks/useAccount';
@@ -35,6 +36,7 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   const intl = useIntl();
   const titleId = useId();
   const counterId = useId();
+  const inputRef = useRef<HTMLInputElement>(null);
   const accountId = useCurrentAccountId();
   const account = useAccount(accountId);
 
@@ -46,7 +48,10 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
     [],
   );
   const handlePickEmoji = useCallback((emoji: string) => {
-    setNewName((prev) => prev + emoji);
+    setNewName((prev) => {
+      const position = inputRef.current?.selectionStart ?? prev.length;
+      return insertEmojiAtPosition(prev, emoji, position);
+    });
   }, []);
 
   return (
@@ -62,6 +67,7 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
       <div className={classes.inputWrapper}>
         <TextInput
           value={newName}
+          ref={inputRef}
           onChange={handleChange}
           className={classes.inputText}
           aria-labelledby={titleId}

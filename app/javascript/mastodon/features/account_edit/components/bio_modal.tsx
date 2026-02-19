@@ -1,10 +1,11 @@
-import { useCallback, useId, useState } from 'react';
+import { useCallback, useId, useRef, useState } from 'react';
 import type { ChangeEventHandler, FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
 import { TextArea } from '@/mastodon/components/form_fields';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
+import { insertEmojiAtPosition } from '@/mastodon/features/emoji/utils';
 import type { BaseConfirmationModalProps } from '@/mastodon/features/ui/components/confirmation_modals';
 import { ConfirmationModal } from '@/mastodon/features/ui/components/confirmation_modals';
 import { useAccount } from '@/mastodon/hooks/useAccount';
@@ -36,6 +37,7 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   const intl = useIntl();
   const titleId = useId();
   const counterId = useId();
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const accountId = useCurrentAccountId();
   const account = useAccount(accountId);
 
@@ -47,7 +49,10 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
     [],
   );
   const handlePickEmoji = useCallback((emoji: string) => {
-    setNewBio((prev) => prev + emoji);
+    setNewBio((prev) => {
+      const position = textAreaRef.current?.selectionStart ?? prev.length;
+      return insertEmojiAtPosition(prev, emoji, position);
+    });
   }, []);
 
   if (!account) {
@@ -68,6 +73,7 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
       <div className={classes.inputWrapper}>
         <TextArea
           value={newBio}
+          ref={textAreaRef}
           onChange={handleChange}
           className={classes.inputText}
           aria-labelledby={titleId}
