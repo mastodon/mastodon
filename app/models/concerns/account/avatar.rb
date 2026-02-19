@@ -25,7 +25,7 @@ module Account::Avatar
     validates_attachment_size :avatar, less_than: AVATAR_LIMIT
     remotable_attachment :avatar, AVATAR_LIMIT, suppress_errors: false
 
-    validates :avatar_description, length: { maximum: MediaAttachment::MAX_DESCRIPTION_LENGTH }
+    validates :avatar_description, length: { maximum: MediaAttachment::MAX_DESCRIPTION_LENGTH }, if: -> { local? && will_save_change_to_avatar_description? }
   end
 
   def avatar_original_url
