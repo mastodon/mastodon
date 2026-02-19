@@ -1,3 +1,5 @@
+import { FormattedMessage } from 'react-intl';
+
 import classNames from 'classnames';
 
 import { polymorphicForwardRef } from '@/types/polymorphic';
@@ -15,7 +17,11 @@ export const CharCounter = polymorphicForwardRef<
       currentLength > maxLength && classes.counterError,
     )}
   >
-    {currentLength}/{maxLength} characters
+    <FormattedMessage
+      id='account_edit.char_counter'
+      defaultMessage='{currentLength}/{maxLength} characters'
+      values={{ currentLength, maxLength }}
+    />
   </Component>
 ));
 CharCounter.displayName = 'CharCounter';

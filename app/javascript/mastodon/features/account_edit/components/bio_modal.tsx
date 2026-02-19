@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useId, useState } from 'react';
 import type { ChangeEventHandler, FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
@@ -34,6 +34,8 @@ const MAX_BIO_LENGTH = 500;
 
 export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   const intl = useIntl();
+  const titleId = useId();
+  const counterId = useId();
   const accountId = useCurrentAccountId();
   const account = useAccount(accountId);
 
@@ -59,6 +61,7 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
       title={intl.formatMessage(
         account.note_plain ? messages.editTitle : messages.addTitle,
       )}
+      titleId={titleId}
       confirm={intl.formatMessage(messages.save)}
       onConfirm={onClose} // To be implemented
       onClose={onClose}
@@ -73,12 +76,18 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
             // While it would be ideal to use field-sizing, that's not supported in FF yet unfortunately.
             height: `calc(${numLines}lh + 32px)`,
           }}
+          aria-labelledby={titleId}
+          aria-describedby={counterId}
           // eslint-disable-next-line jsx-a11y/no-autofocus -- This is a modal, it's fine.
           autoFocus
         />
         <EmojiPicker onPick={handlePickEmoji} />
       </div>
-      <CharCounter currentLength={newBio.length} maxLength={MAX_BIO_LENGTH} />
+      <CharCounter
+        currentLength={newBio.length}
+        maxLength={MAX_BIO_LENGTH}
+        id={counterId}
+      />
     </ConfirmationModal>
   );
 };

@@ -11,6 +11,7 @@ export interface BaseConfirmationModalProps {
 export const ConfirmationModal: React.FC<
   {
     title: React.ReactNode;
+    titleId?: string;
     message?: React.ReactNode;
     confirm: React.ReactNode;
     cancel?: React.ReactNode;
@@ -26,6 +27,7 @@ export const ConfirmationModal: React.FC<
   } & BaseConfirmationModalProps
 > = ({
   title,
+  titleId,
   message,
   confirm,
   cancel,
@@ -57,7 +59,7 @@ export const ConfirmationModal: React.FC<
     <div className='modal-root__modal safety-action-modal'>
       <div className='safety-action-modal__top'>
         <div className='safety-action-modal__confirmation'>
-          <h1>{title}</h1>
+          <h1 id={titleId}>{title}</h1>
           {message && <p>{message}</p>}
 
           {extraContent ?? children}

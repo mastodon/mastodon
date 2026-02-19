@@ -15,45 +15,26 @@ const buttonMessage = defineMessage({
   defaultMessage: 'Edit',
 });
 
-type AccountEditSectionProps = {
+interface AccountEditSectionProps {
   title: MessageDescriptor;
-  subtitle?: MessageDescriptor;
-  placeholder?: MessageDescriptor;
-  forcePlaceholder?: boolean;
+  description?: MessageDescriptor;
+  showDescription?: boolean;
   onEdit?: () => void;
   children?: ReactNode;
   className?: string;
   extraButtons?: ReactNode;
-} &
-  // XOR for subtitle and placeholder, as they take up the same space in the UI.
-  (| {
-        /** Subtitle for the section, which is always shown and replaces the placeholder.  */
-        subtitle?: MessageDescriptor;
-        placeholder?: never;
-        forcePlaceholder?: never;
-      }
-    | {
-        subtitle?: never;
-        /** Placeholder, shown when children are nullish or forcePlaceholder is true. Never appears if subtitle is set. */
-        placeholder: MessageDescriptor;
-        /** Forces the placeholder to appear. */
-        forcePlaceholder?: boolean;
-      }
-  );
+}
 
 export const AccountEditSection: FC<AccountEditSectionProps> = ({
   title,
-  placeholder,
-  subtitle,
+  description,
+  showDescription,
   onEdit,
   children,
   className,
   extraButtons,
-  forcePlaceholder = false,
 }) => {
   const intl = useIntl();
-  const showPlaceholder =
-    !!subtitle || (!!placeholder && (!children || forcePlaceholder));
   return (
     <section className={classNames(className, classes.section)}>
       <header className={classes.sectionHeader}>
@@ -65,14 +46,14 @@ export const AccountEditSection: FC<AccountEditSectionProps> = ({
             icon='pencil'
             iconComponent={EditIcon}
             onClick={onEdit}
-            title={intl.formatMessage(buttonMessage)}
+            title={`${intl.formatMessage(buttonMessage)} ${intl.formatMessage(title)}`}
           />
         )}
         {extraButtons}
       </header>
-      {showPlaceholder && (
+      {showDescription && (
         <p className={classes.sectionSubtitle}>
-          <FormattedMessage {...(subtitle ?? placeholder)} />
+          <FormattedMessage {...description} />
         </p>
       )}
       {children}

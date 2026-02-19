@@ -128,8 +128,8 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
       <AccountEditSection
         title={messages.displayNameTitle}
-        placeholder={messages.displayNamePlaceholder}
-        forcePlaceholder={account.display_name.length === 0}
+        description={messages.displayNamePlaceholder}
+        showDescription={account.display_name.length === 0}
         onEdit={handleNameEdit}
       >
         <DisplayNameSimple account={account} />
@@ -137,7 +137,8 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
       <AccountEditSection
         title={messages.bioTitle}
-        placeholder={messages.bioPlaceholder}
+        description={messages.bioPlaceholder}
+        showDescription={!account.note_plain}
         onEdit={handleBioEdit}
       >
         <AccountBio accountId={accountId} />
@@ -145,18 +146,20 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
 
       <AccountEditSection
         title={messages.customFieldsTitle}
-        placeholder={messages.customFieldsPlaceholder}
-        forcePlaceholder={account.fields.isEmpty()}
+        description={messages.customFieldsPlaceholder}
+        showDescription
       />
 
       <AccountEditSection
         title={messages.featuredHashtagsTitle}
-        placeholder={messages.featuredHashtagsPlaceholder}
+        description={messages.featuredHashtagsPlaceholder}
+        showDescription
       />
 
       <AccountEditSection
         title={messages.profileTabTitle}
-        subtitle={messages.profileTabSubtitle}
+        description={messages.profileTabSubtitle}
+        showDescription
       />
     </Column>
   );

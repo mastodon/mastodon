@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useId, useState } from 'react';
 import type { ChangeEventHandler, FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
@@ -33,6 +33,8 @@ const MAX_NAME_LENGTH = 30;
 
 export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   const intl = useIntl();
+  const titleId = useId();
+  const counterId = useId();
   const accountId = useCurrentAccountId();
   const account = useAccount(accountId);
 
@@ -50,6 +52,7 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   return (
     <ConfirmationModal
       title={intl.formatMessage(messages.editTitle)}
+      titleId={titleId}
       confirm={intl.formatMessage(messages.save)}
       onConfirm={onClose} // To be implemented
       onClose={onClose}
@@ -61,12 +64,18 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
           value={newName}
           onChange={handleChange}
           className={classes.inputText}
+          aria-labelledby={titleId}
+          aria-describedby={counterId}
           // eslint-disable-next-line jsx-a11y/no-autofocus -- This is a modal, it's fine.
           autoFocus
         />
         <EmojiPicker onPick={handlePickEmoji} />
       </div>
-      <CharCounter currentLength={newName.length} maxLength={MAX_NAME_LENGTH} />
+      <CharCounter
+        currentLength={newName.length}
+        maxLength={MAX_NAME_LENGTH}
+        id={counterId}
+      />
     </ConfirmationModal>
   );
 };
