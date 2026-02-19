@@ -65,6 +65,7 @@ import {
   ListEdit,
   ListMembers,
   Collections,
+  CollectionDetail,
   CollectionsEditor,
   Blocks,
   DomainBlocks,
@@ -269,12 +270,12 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/mutes' component={Mutes} content={children} />
             <WrappedRoute path='/lists' component={Lists} content={children} />
             {areCollectionsEnabled() &&
-              <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} />
+              [
+                <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} />,
+                <WrappedRoute path='/collections/:id' component={CollectionDetail} content={children} />,
+                <WrappedRoute path='/collections' component={Collections} content={children} />
+              ]
             }
-            {areCollectionsEnabled() &&
-              <WrappedRoute path='/collections' component={Collections} content={children} />
-            }
-
             <Route component={BundleColumnError} />
           </WrappedSwitch>
         </ColumnsAreaContainer>

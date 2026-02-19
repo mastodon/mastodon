@@ -46,6 +46,9 @@
 #  reviewed_at                   :datetime
 #  sensitized_at                 :datetime
 #  shared_inbox_url              :string           default(""), not null
+#  show_featured                 :boolean          default(TRUE), not null
+#  show_media                    :boolean          default(TRUE), not null
+#  show_media_replies            :boolean          default(TRUE), not null
 #  silenced_at                   :datetime
 #  suspended_at                  :datetime
 #  suspension_origin             :integer

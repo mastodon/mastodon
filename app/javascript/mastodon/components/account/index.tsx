@@ -297,7 +297,7 @@ export const Account: React.FC<AccountProps> = ({
       >
         <div className='account__info-wrapper'>
           <Link
-            className='account__display-name'
+            className='account__display-name focusable'
             title={account?.acct}
             to={`/@${account?.acct}`}
             data-hover-card-account={id}

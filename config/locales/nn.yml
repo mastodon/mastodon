@@ -802,6 +802,7 @@ nn:
         view_devops_description: Gir brukere tilgang til Sidekiq og pgHero-dashbord
         view_feeds: Sjå direktestraumar og emnestraumar
         view_feeds_description: La brukarar sjå direkte- og emnestraumane uansett innstillingar på tenaren
+      requires_2fa: Krev tofaktorinnlogging
       title: Roller
     rules:
       add_new: Legg til regel
@@ -2020,6 +2021,8 @@ nn:
     past_preamble_html: Me har endra brukarvilkåra våre sidan du var her sist. Det er fint viss du ser på dei oppdaterte vilkåra.
     review_link: Les gjennom brukarvilkåra
     title: Brukarvilkåra på %{domain} er endra
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d.%b %Y, %H:%M"
@@ -2044,6 +2047,8 @@ nn:
     recovery_codes: Reservekoder
     recovery_codes_regenerated: Generering av reservekoder fullført
     recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til din konto. <strong>Oppbevar gjenopprettingskodene sikkert</strong>, for eksempel ved å skrive dem ut og gjemme dem på et lurt sted bare du vet om.
+    resume_app_authorization: Hald fram å godkjenna applikasojnen
+    role_requirement: "%{domain} krev at du set opp tofaktorinnlogging før du kan bruka Mastodon."
     webauthn: Sikkerhetsnøkler
   user_mailer:
     announcement_published:

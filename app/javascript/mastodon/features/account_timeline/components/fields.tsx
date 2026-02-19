@@ -15,8 +15,7 @@ import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
 import { Icon } from '@/mastodon/components/icon';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
-import type { Account } from '@/mastodon/models/account';
-import { isValidUrl } from '@/mastodon/utils/checks';
+import type { Account, AccountFieldShape } from '@/mastodon/models/account';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
 import { cleanExtraEmojis } from '../../emoji/normalize';
@@ -76,8 +75,8 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
     [account.emojis],
   );
   const textHasCustomEmoji = useCallback(
-    (text: string) => {
-      if (!emojis) {
+    (text?: string | null) => {
+      if (!emojis || !text) {
         return false;
       }
       for (const emoji of Object.keys(emojis)) {
@@ -92,62 +91,96 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
   const htmlHandlers = useElementHandledLink({
     hashtagAccountId: account.id,
   });
-  const intl = useIntl();
+
+  if (account.fields.isEmpty()) {
+    return null;
+  }
 
   return (
     <CustomEmojiProvider emojis={emojis}>
       <dl className={classes.fieldList}>
-        {account.fields.map(
-          (
-            { name, name_emojified, value_emojified, value_plain, verified_at },
-            key,
-          ) => (
-            <div
-              key={key}
-              className={classNames(
-                classes.fieldRow,
-                verified_at && classes.fieldVerified,
-              )}
-            >
-              <FieldHTML
-                as='dt'
-                text={name}
-                textEmojified={name_emojified}
-                textHasCustomEmoji={textHasCustomEmoji(name)}
-                titleLength={50}
-                className='translate'
-                {...htmlHandlers}
-              />
-              <FieldHTML
-                as='dd'
-                text={value_plain ?? ''}
-                textEmojified={value_emojified}
-                textHasCustomEmoji={textHasCustomEmoji(value_plain ?? '')}
-                titleLength={120}
-                {...htmlHandlers}
-              />
-              {verified_at && (
-                <Icon
-                  id='verified'
-                  icon={IconVerified}
-                  className={classes.fieldVerifiedIcon}
-                  aria-label={intl.formatMessage(verifyMessage, {
-                    date: intl.formatDate(verified_at, dateFormatOptions),
-                  })}
-                  noFill
-                />
-              )}
-            </div>
-          ),
-        )}
+        {account.fields.map((field, key) => (
+          <FieldRow
+            key={key}
+            {...field.toJSON()}
+            htmlHandlers={htmlHandlers}
+            textHasCustomEmoji={textHasCustomEmoji}
+          />
+        ))}
       </dl>
     </CustomEmojiProvider>
   );
 };
 
+const FieldRow: FC<
+  {
+    textHasCustomEmoji: (text?: string | null) => boolean;
+    htmlHandlers: ReturnType<typeof useElementHandledLink>;
+  } & AccountFieldShape
+> = ({
+  textHasCustomEmoji,
+  htmlHandlers,
+  name,
+  name_emojified,
+  value_emojified,
+  value_plain,
+  verified_at,
+}) => {
+  const intl = useIntl();
+  const [showAll, setShowAll] = useState(false);
+  const handleClick = useCallback(() => {
+    setShowAll((prev) => !prev);
+  }, []);
+
+  return (
+    /* eslint-disable -- This method of showing field contents is not very accessible, but it's what we've got for now */
+    <div
+      className={classNames(
+        classes.fieldRow,
+        verified_at && classes.fieldVerified,
+        showAll && classes.fieldShowAll,
+      )}
+      onClick={handleClick}
+      /* eslint-enable */
+    >
+      <FieldHTML
+        as='dt'
+        text={name}
+        textEmojified={name_emojified}
+        textHasCustomEmoji={textHasCustomEmoji(name)}
+        titleLength={50}
+        className='translate'
+        {...htmlHandlers}
+      />
+      <dd>
+        <FieldHTML
+          as='span'
+          text={value_plain ?? ''}
+          textEmojified={value_emojified}
+          textHasCustomEmoji={textHasCustomEmoji(value_plain ?? '')}
+          titleLength={120}
+          {...htmlHandlers}
+        />
+
+        {verified_at && (
+          <Icon
+            id='verified'
+            icon={IconVerified}
+            className={classes.fieldVerifiedIcon}
+            aria-label={intl.formatMessage(verifyMessage, {
+              date: intl.formatDate(verified_at, dateFormatOptions),
+            })}
+            noFill
+          />
+        )}
+      </dd>
+    </div>
+  );
+};
+
 const FieldHTML: FC<
   {
-    as: 'dd' | 'dt';
+    as?: 'span' | 'dt';
     text: string;
     textEmojified: string;
     textHasCustomEmoji: boolean;
@@ -164,11 +197,6 @@ const FieldHTML: FC<
   onElement,
   ...props
 }) => {
-  const [showAll, setShowAll] = useState(false);
-  const handleClick = useCallback(() => {
-    setShowAll((prev) => !prev);
-  }, []);
-
   const handleElement: OnElementHandler = useCallback(
     (element, props, children, extra) => {
       if (element instanceof HTMLAnchorElement) {
@@ -186,17 +214,13 @@ const FieldHTML: FC<
     },
     [onElement, textHasCustomEmoji],
   );
+
   return (
     <EmojiHTML
       as={as}
       htmlString={textEmojified}
       title={showTitleOnLength(text, titleLength)}
-      className={classNames(
-        className,
-        text && isValidUrl(text) && classes.fieldLink,
-        showAll && classes.fieldShowAll,
-      )}
-      onClick={handleClick}
+      className={className}
       onElement={handleElement}
       {...props}
     />

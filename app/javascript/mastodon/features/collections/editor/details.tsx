@@ -68,7 +68,7 @@ export const CollectionDetails: React.FC<{
         };
 
         void dispatch(updateCollection({ payload })).then(() => {
-          history.push(`/collections`);
+          history.push(`/collections/${id}`);
         });
       } else {
         const payload: Partial<ApiCreateCollectionPayload> = {

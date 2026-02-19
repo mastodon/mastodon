@@ -24,11 +24,10 @@
 
 .name {
   flex-grow: 1;
-  font-size: 22px;
-  white-space: initial;
-  line-height: normal;
 
   > h1 {
+    font-size: 22px;
+    line-height: normal;
     white-space: initial;
   }
 }
@@ -149,11 +148,33 @@ $button-fallback-breakpoint: #{$button-breakpoint} + 55px;
   border-top: 1px solid var(--color-border-primary);
 }
 
+.buttonMenu {
+  // Override the modal for mobile.
+  &:global(.actions-modal) {
+    max-height: none;
+  }
+
+  li :global(.icon) {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.bio {
+  font-size: 15px;
+}
+
 .badge {
   background-color: var(--color-bg-secondary);
   border: none;
   color: var(--color-text-secondary);
   font-weight: 500;
+  padding: 4px;
+  font-size: 13px;
+
+  :global(.account__header__badges) > & {
+    line-height: 1;
+  }
 
   > span {
     font-weight: unset;
@@ -194,12 +215,13 @@ svg.badgeIcon {
 
 .fieldList {
   display: grid;
-  grid-template-columns: 160px 1fr min-content;
+  grid-template-columns: 160px 1fr;
   column-gap: 12px;
-  margin: 4px 0 16px;
+  margin: 16px 0;
+  border-top: 0.5px solid var(--color-border-primary);
 
   @container (width < 420px) {
-    grid-template-columns: 100px 1fr min-content;
+    grid-template-columns: 100px 1fr;
   }
 }
 
@@ -208,11 +230,10 @@ svg.badgeIcon {
   grid-column: 1 / -1;
   align-items: start;
   grid-template-columns: subgrid;
-  padding: 0 4px;
+  padding: 8px;
+  border-bottom: 0.5px solid var(--color-border-primary);
 
   > :is(dt, dd) {
-    margin: 8px 0;
-
     &:not(.fieldShowAll) {
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -227,43 +248,34 @@ svg.badgeIcon {
     color: var(--color-text-secondary);
   }
 
-  &:not(.fieldVerified) > dd {
-    grid-column: span 2;
+  > dd {
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 
   a {
-    font-weight: 500;
-    color: var(--color-text-brand);
+    color: inherit;
     text-decoration: none;
-    transition: 0.2s ease-in-out;
 
     &:hover,
     &:focus {
-      color: var(--color-text-brand-soft);
+      text-decoration: underline;
     }
   }
 }
 
 .fieldVerified {
-  background-color: var(--color-bg-brand-softer);
-}
-
-.fieldLink:is(dd, dt) {
-  margin: 0;
-}
-
-.fieldLink > a {
-  display: block;
-  padding: 8px 0;
+  background-color: var(--color-bg-success-softer);
 }
 
 .fieldVerifiedIcon {
   width: 16px;
   height: 16px;
-  margin-top: 8px;
 }
 
 .fieldNumbersWrapper {
+  font-size: 13px;
   padding: 0;
 
   a {
@@ -323,10 +335,15 @@ svg.badgeIcon {
   border-bottom: 1px solid var(--color-border-primary);
   display: flex;
   gap: 12px;
-  padding: 0 12px;
+  padding: 0 24px;
 
-  @container (width >= 500px) {
-    padding: 0 24px;
+  @container (width < 500px) {
+    padding: 0 12px;
+
+    a {
+      flex: 1 1 0px;
+      text-align: center;
+    }
   }
 
   a {

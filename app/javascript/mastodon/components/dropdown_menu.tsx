@@ -311,6 +311,7 @@ interface DropdownProps<Item extends object | null = MenuItem> {
   status?: ImmutableMap<string, unknown>;
   needsStatusRefresh?: boolean;
   forceDropdown?: boolean;
+  className?: string;
   renderItem?: RenderItemFn<Item>;
   renderHeader?: RenderHeaderFn<Item>;
   onOpen?: // Must use a union type for the full function as a union with void is not allowed.
@@ -335,6 +336,7 @@ export const Dropdown = <Item extends object | null = MenuItem>({
   status,
   needsStatusRefresh,
   forceDropdown = false,
+  className,
   renderItem,
   renderHeader,
   onOpen,
@@ -434,6 +436,7 @@ export const Dropdown = <Item extends object | null = MenuItem>({
               modalProps: {
                 actions: items,
                 onClick: handleItemClick,
+                className,
               },
             }),
           );
@@ -462,6 +465,7 @@ export const Dropdown = <Item extends object | null = MenuItem>({
       handleClose,
       statusId,
       needsStatusRefresh,
+      className,
     ],
   );
 
@@ -515,7 +519,7 @@ export const Dropdown = <Item extends object | null = MenuItem>({
         popperConfig={popperConfig}
       >
         {({ props, arrowProps, placement }) => (
-          <div {...props} id={menuId}>
+          <div {...props} className={className} id={menuId}>
             <div className={`dropdown-animation dropdown-menu ${placement}`}>
               <div
                 className={`dropdown-menu__arrow ${placement}`}

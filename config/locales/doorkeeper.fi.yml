@@ -83,7 +83,10 @@ fi:
         access_denied: Resurssin omistaja tai valtuutuspalvelin hylkäsi pyynnön.
         credential_flow_not_configured: Resurssin omistajan salasanatietojen luku epäonnistui, koska asetusta Doorkeeper.configure.resource_owner_from_credentials ei ole konfiguroitu.
         invalid_client: Asiakasohjelman todennus epäonnistui, koska asiakas on tuntematon, asiakkaan todennus ei ollut mukana tai todennustapaa ei tueta.
-        invalid_code_challenge_method: Koodihaastemenetelmän tulee olla S256 – selväkielistä ei tueta.
+        invalid_code_challenge_method:
+          one: Muuttujan code_challenge_method arvon on oltava %{challenge_methods}.
+          other: 'Muuttujan code_challenge_method arvon on oltava jokin seuraavista: %{challenge_methods}.'
+          zero: Valtuutuspalvelin ei tue PKCE:tä, koska hyväksyttäviä code_challenge_method-arvoja ei ole.
         invalid_grant: Valtuutuslupa on virheellinen, vanhentunut, peruttu, valtuutuspyynnössä käytettyä uudelleenohjaus-URI:tä vastaamaton tai myönnetty toiselle asiakkaalle.
         invalid_redirect_uri: Uudelleenohjaus-URI on virheellinen.
         invalid_request:

@@ -4192,7 +4192,8 @@ a.account__display-name {
     cursor: pointer;
 
     & > div {
-      background: rgb(from var(--color-shadow-primary) r g b / 60%);
+      color: var(--color-text-on-media);
+      background: rgb(from var(--color-bg-media) r g b / 60%);
       border-radius: 8px;
       padding: 12px 9px;
       backdrop-filter: $backdrop-blur-filter;
@@ -4205,7 +4206,7 @@ a.account__display-name {
     button,
     a {
       display: inline;
-      color: var(--color-text-primary);
+      color: var(--color-text-on-media);
       background: transparent;
       border: 0;
       padding: 0 8px;
@@ -4216,7 +4217,7 @@ a.account__display-name {
       &:hover,
       &:active,
       &:focus {
-        color: var(--color-text-primary);
+        color: var(--color-text-on-media);
       }
     }
 

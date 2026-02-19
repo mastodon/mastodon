@@ -11,14 +11,14 @@ export interface ApiCollectionJSON {
   account_id: string;
 
   id: string;
-  uri: string;
+  uri: string | null;
   local: boolean;
   item_count: number;
 
   name: string;
   description: string;
-  tag?: ApiTagJSON;
-  language: string;
+  tag: ApiTagJSON | null;
+  language: string | null;
   sensitive: boolean;
   discoverable: boolean;
 

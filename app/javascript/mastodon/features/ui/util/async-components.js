@@ -44,13 +44,19 @@ export function Lists () {
   return import('../../lists');
 }
 
-export function Collections () {
+export function Collections() {
   return import('../../collections').then(
     module => ({default: module.Collections})
   );
 }
 
-export function CollectionsEditor () {
+export function CollectionDetail() {
+  return import('../../collections/detail/index').then(
+    module => ({default: module.CollectionDetailPage})
+  );
+}
+
+export function CollectionsEditor() {
   return import('../../collections/editor').then(
     module => ({default: module.CollectionEditorPage})
   );
