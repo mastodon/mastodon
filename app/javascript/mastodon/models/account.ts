@@ -69,6 +69,11 @@ export const accountDefaultValues: AccountShape = {
   display_name: '',
   display_name_html: '',
   emojis: ImmutableList<CustomEmoji>(),
+  feature_approval: {
+    automatic: [],
+    manual: [],
+    current_user: 'missing',
+  },
   fields: ImmutableList<AccountField>(),
   group: false,
   header: '',
