@@ -10,6 +10,8 @@ class REST::ProfileSerializer < ActiveModel::Serializer
              :show_media, :show_media_replies, :show_featured,
              :attribution_domains
 
+  has_many :featured_tags, serializer: REST::FeaturedTagSerializer
+
   def id
     object.id.to_s
   end
