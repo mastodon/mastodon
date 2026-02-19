@@ -14,6 +14,11 @@ cs:
       many: Sledujících
       one: Sledující
       other: Sledujících
+    following:
+      few: Sleduje
+      many: Sleduje
+      one: Sleduje
+      other: Sleduje
     instance_actor_flash: Tento účet je virtuální aktér, který představuje server samotný, nikoliv jednotlivého uživatele. Používá se pro účely federace a neměl by být pozastaven.
     last_active: naposledy aktivní
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
@@ -734,7 +739,6 @@ cs:
       resolved_msg: Hlášení úspěšně vyřešeno!
       skip_to_actions: Přeskočit k akcím
       status: Stav
-      statuses: Nahlášený obsah
       statuses_description_html: Obsah porušující pravidla bude uveden v komunikaci s nahlášeným účtem
       summary:
         action_preambles:
@@ -827,6 +831,7 @@ cs:
         view_devops_description: Umožňuje uživatelům přístup k ovládacím panelům Sidekiq a pgHero
         view_feeds: Zobrazit živé a tematické kanály
         view_feeds_description: Umožňuje uživatelům přístup k živým a tematickým kanálům bez ohledu na nastavení serveru
+      requires_2fa: Vyžaduje dvoufázové ověření
       title: Role
     rules:
       add_new: Přidat pravidlo
@@ -2103,6 +2108,8 @@ cs:
     past_preamble_html: Od vaší poslední návštěvy jsme změnili podmínky služby. Doporučujeme vám zkontrolovat aktualizované podmínky.
     review_link: Zkontrolovat podmínky užívání služby
     title: Podmínky služby %{domain} se mění
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
@@ -2127,6 +2134,8 @@ cs:
     recovery_codes: Záložní kódy pro obnovu
     recovery_codes_regenerated: Záložní kódy byly úspěšně znovu vygenerovány
     recovery_instructions_html: Ztratíte-li někdy přístup ke svému telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
+    resume_app_authorization: Pokračovat v autorizaci aplikace
+    role_requirement: "%{domain} vyžaduje nastavení dvoufázového ověření, než budete moci použít Mastodon."
     webauthn: Bezpečnostní klíče
   user_mailer:
     announcement_published:

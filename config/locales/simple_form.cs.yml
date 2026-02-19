@@ -166,6 +166,7 @@ cs:
         name: Veřejný název role, pokud má být role zobrazena jako odznak
         permissions_as_keys: Uživatelé s touto rolí budou moci...
         position: Vyšší role rozhoduje o řešení konfliktů v určitých situacích. Některé akce lze provádět pouze na rolích s nižší prioritou
+        require_2fa: Uživatelé s touto rolí budou muset nastavit dvoufázové ověření pro použití Mastodonu
       username_block:
         allow_with_approval: Namísto toho, aby se zabránilo registraci, bude vyžadováno vaše schválení
         comparison: Mějte prosím na paměti 'Scunthorpe problém' při blokování částečných shod
@@ -225,6 +226,7 @@ cs:
         email: E-mailová adresa
         expires_in: Vypršet za
         fields: Metadata profilu
+        filter_action: Chování filtru
         header: Záhlaví
         honeypot: "%{label} (nevyplňovat)"
         inbox_url: URL příchozí schránky mostu
@@ -241,6 +243,7 @@ cs:
         setting_always_send_emails: Vždy posílat e-mailová oznámení
         setting_auto_play_gif: Automaticky přehrávat animace GIF
         setting_boost_modal: Ovládání viditelnosti boostování
+        setting_color_scheme: Barevné schéma
         setting_contrast: Kontrast
         setting_default_language: Jazyk příspěvků
         setting_default_privacy: Viditelnost příspěvků
@@ -388,6 +391,7 @@ cs:
         name: Název
         permissions_as_keys: Oprávnění
         position: Priorita
+        require_2fa: Vyžadovat dvoufázové ověření
       username_block:
         allow_with_approval: Povolit registrace se schválením
         comparison: Srovnávací metoda
