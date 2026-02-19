@@ -26,7 +26,7 @@ module Account::Header
     validates_attachment_size :header, less_than: HEADER_LIMIT
     remotable_attachment :header, HEADER_LIMIT, suppress_errors: false
 
-    validates :header_description, length: { maximum: MediaAttachment::MAX_DESCRIPTION_LENGTH }
+    validates :header_description, length: { maximum: MediaAttachment::MAX_DESCRIPTION_LENGTH }, if: -> { local? && will_save_change_to_header_description? }
   end
 
   def header_original_url
