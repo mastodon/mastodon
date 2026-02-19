@@ -13,8 +13,9 @@ import { CollectionMenu } from './collection_menu';
 
 export const CollectionMetaData: React.FC<{
   collection: ApiCollectionJSON;
+  extended?: boolean;
   className?: string;
-}> = ({ collection, className }) => {
+}> = ({ collection, extended, className }) => {
   return (
     <ul className={classNames(classes.metaList, className)}>
       <FormattedMessage
@@ -23,6 +24,30 @@ export const CollectionMetaData: React.FC<{
         values={{ count: collection.item_count }}
         tagName='li'
       />
+      {extended && (
+        <>
+          {collection.discoverable ? (
+            <FormattedMessage
+              id='collections.visibility_public'
+              defaultMessage='Public'
+              tagName='li'
+            />
+          ) : (
+            <FormattedMessage
+              id='collections.visibility_unlisted'
+              defaultMessage='Unlisted'
+              tagName='li'
+            />
+          )}
+          {collection.sensitive && (
+            <FormattedMessage
+              id='collections.sensitive'
+              defaultMessage='Sensitive'
+              tagName='li'
+            />
+          )}
+        </>
+      )}
       <FormattedMessage
         id='collections.last_updated_at'
         defaultMessage='Last updated: {date}'

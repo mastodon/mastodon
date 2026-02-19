@@ -114,6 +114,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
       {description && <p className={classes.description}>{description}</p>}
       <AuthorNote id={collection.account_id} />
       <CollectionMetaData
+        extended
         collection={collection}
         className={classes.metaData}
       />
