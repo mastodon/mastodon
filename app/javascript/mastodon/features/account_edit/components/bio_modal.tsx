@@ -40,11 +40,9 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   const account = useAccount(accountId);
 
   const [newBio, setNewBio] = useState(account?.note_plain ?? '');
-  const [numLines, setNumLines] = useState(() => newBio.split('\n').length);
   const handleChange: ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
       setNewBio(event.currentTarget.value);
-      setNumLines(event.currentTarget.value.split('\n').length);
     },
     [],
   );
@@ -72,14 +70,11 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
           value={newBio}
           onChange={handleChange}
           className={classes.inputText}
-          style={{
-            // While it would be ideal to use field-sizing, that's not supported in FF yet unfortunately.
-            height: `calc(${numLines}lh + 32px)`,
-          }}
           aria-labelledby={titleId}
           aria-describedby={counterId}
           // eslint-disable-next-line jsx-a11y/no-autofocus -- This is a modal, it's fine.
           autoFocus
+          autoSize
         />
         <EmojiPicker onPick={handlePickEmoji} />
       </div>
