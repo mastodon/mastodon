@@ -10,8 +10,10 @@ import { useAppDispatch } from 'mastodon/store';
 export function useSearchAccounts({
   resetOnInputClear = true,
   onSettled,
+  filterResults,
 }: {
   onSettled?: (value: string) => void;
+  filterResults?: (account: ApiAccountJSON) => boolean;
   resetOnInputClear?: boolean;
 } = {}) {
   const dispatch = useAppDispatch();
@@ -49,8 +51,9 @@ export function useSearchAccounts({
         },
       })
         .then((data) => {
-          dispatch(importFetchedAccounts(data));
-          setAccountIds(data.map((a) => a.id));
+          const accounts = filterResults ? data.filter(filterResults) : data;
+          dispatch(importFetchedAccounts(accounts));
+          setAccountIds(accounts.map((a) => a.id));
           setLoadingState('idle');
           onSettled?.(value);
         })

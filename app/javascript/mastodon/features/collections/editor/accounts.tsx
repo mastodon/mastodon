@@ -129,7 +129,11 @@ export const CollectionAccounts: React.FC<{
     accountIds: suggestedAccountIds,
     isLoading: isLoadingSuggestions,
     searchAccounts,
-  } = useSearchAccounts();
+  } = useSearchAccounts({
+    filterResults: (account) =>
+      // Only suggest accounts who allow being featured/recommended
+      account.feature_approval.current_user === 'automatic',
+  });
 
   const suggestedItems = suggestedAccountIds.map((id) => ({
     id,
