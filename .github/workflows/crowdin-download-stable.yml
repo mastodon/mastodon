@@ -1,0 +1,69 @@
+name: Crowdin / Download translations (stable branches)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  download-translations-stable:
+    runs-on: ubuntu-latest
+    if: github.repository == 'mastodon/mastodon'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Increase Git http.postBuffer
+        # This is needed due to a bug in Ubuntu's cURL version?
+        # See https://github.com/orgs/community/discussions/55820
+        run: |
+          git config --global http.version HTTP/1.1
+          git config --global http.postBuffer 157286400
+
+      # Download the translation files from Crowdin
+      - name: crowdin action
+        uses: crowdin/github-action@b4b468cffefb50bdd99dd83e5d2eaeb63c880380 # v2
+        with:
+          upload_sources: false
+          upload_translations: false
+          download_translations: true
+          crowdin_branch_name: ${{ github.base_ref || github.ref_name }}
+          push_translations: false
+          create_pull_request: false
+        env:
+          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+      # As the files are extracted from a Docker container, they belong to root:root
+      # We need to fix this before the next steps
+      - name: Fix file permissions
+        run: sudo chown -R runner:docker .
+
+      # This is needed to run the normalize step
+      - name: Set up Ruby environment
+        uses: ./.github/actions/setup-ruby
+
+      - name: Run i18n normalize task
+        run: bin/i18n-tasks normalize
+
+      # Create or update the pull request
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+        with:
+          commit-message: 'New Crowdin translations'
+          title: 'New Crowdin Translations for ${{ github.base_ref || github.ref_name }} (automated)'
+          author: 'GitHub Actions <noreply@github.com>'
+          body: |
+            New Crowdin translations, automated with GitHub Actions
+
+            See `.github/workflows/crowdin-download.yml`
+
+            This PR will be updated every day with new translations.
+
+            Due to a limitation in GitHub Actions, checks are not running on this PR without manual action.
+            If you want to run the checks, then close and re-open it.
+          branch: i18n/crowdin/translations-${{ github.base_ref || github.ref_name }}
+          base: ${{ github.base_ref || github.ref_name }}
+          labels: i18n

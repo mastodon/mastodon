@@ -1,0 +1,18 @@
+-# locals: (status:, is_quote: false)
+- if status.spoiler_text.present?
+  %details<
+    %summary{
+      data: {
+        show: t('statuses.content_warnings.show'),
+        hide: t('statuses.content_warnings.hide'),
+      }
+    }><
+      %strong>
+        = prerender_custom_emojis(h(status.spoiler_text), status.emojis)
+    .status__content><
+      = prerender_custom_emojis(status_content_format(status), status.emojis)
+    = render partial: 'admin/shared/status_attachments', locals: { status: status.proper, is_quote: is_quote }
+- else
+  .status__content><
+    = prerender_custom_emojis(status_content_format(status), status.emojis)
+  = render partial: 'admin/shared/status_attachments', locals: { status: status.proper, is_quote: is_quote }

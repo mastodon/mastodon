@@ -1,17 +1,11 @@
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 import {
-  DIRECTORY_FETCH_REQUEST,
-  DIRECTORY_FETCH_SUCCESS,
-  DIRECTORY_FETCH_FAIL,
-  DIRECTORY_EXPAND_REQUEST,
-  DIRECTORY_EXPAND_SUCCESS,
-  DIRECTORY_EXPAND_FAIL,
+  expandDirectory,
+  fetchDirectory
 } from 'mastodon/actions/directory';
 import {
-  FEATURED_TAGS_FETCH_REQUEST,
-  FEATURED_TAGS_FETCH_SUCCESS,
-  FEATURED_TAGS_FETCH_FAIL,
+  fetchFeaturedTags
 } from 'mastodon/actions/featured_tags';
 
 import {
@@ -35,6 +29,7 @@ import {
   FOLLOW_REQUESTS_EXPAND_FAIL,
   authorizeFollowRequestSuccess,
   rejectFollowRequestSuccess,
+  fetchEndorsedAccounts,
 } from '../actions/accounts';
 import {
   BLOCKS_FETCH_REQUEST,
@@ -117,6 +112,7 @@ const normalizeFeaturedTags = (state, path, featuredTags, accountId) => {
   }));
 };
 
+/** @type {import('@reduxjs/toolkit').Reducer<typeof initialState>} */
 export default function userLists(state = initialState, action) {
   switch(action.type) {
   case FOLLOWERS_FETCH_SUCCESS:
@@ -194,23 +190,30 @@ export default function userLists(state = initialState, action) {
   case MUTES_FETCH_FAIL:
   case MUTES_EXPAND_FAIL:
     return state.setIn(['mutes', 'isLoading'], false);
-  case DIRECTORY_FETCH_SUCCESS:
-    return normalizeList(state, ['directory'], action.accounts, action.next);
-  case DIRECTORY_EXPAND_SUCCESS:
-    return appendToList(state, ['directory'], action.accounts, action.next);
-  case DIRECTORY_FETCH_REQUEST:
-  case DIRECTORY_EXPAND_REQUEST:
-    return state.setIn(['directory', 'isLoading'], true);
-  case DIRECTORY_FETCH_FAIL:
-  case DIRECTORY_EXPAND_FAIL:
-    return state.setIn(['directory', 'isLoading'], false);
-  case FEATURED_TAGS_FETCH_SUCCESS:
-    return normalizeFeaturedTags(state, ['featured_tags', action.id], action.tags, action.id);
-  case FEATURED_TAGS_FETCH_REQUEST:
-    return state.setIn(['featured_tags', action.id, 'isLoading'], true);
-  case FEATURED_TAGS_FETCH_FAIL:
-    return state.setIn(['featured_tags', action.id, 'isLoading'], false);
   default:
-    return state;
+    if (fetchEndorsedAccounts.fulfilled.match(action))
+      return normalizeList(state, ['featured_accounts', action.meta.arg.accountId], action.payload, undefined);
+    else if (fetchEndorsedAccounts.pending.match(action))
+      return state.setIn(['featured_accounts', action.meta.arg.accountId, 'isLoading'], true);
+    else if (fetchEndorsedAccounts.rejected.match(action))
+      return state.setIn(['featured_accounts', action.meta.arg.accountId, 'isLoading'], false);
+    else if (fetchFeaturedTags.fulfilled.match(action))
+      return normalizeFeaturedTags(state, ['featured_tags', action.meta.arg.accountId], action.payload, action.meta.arg.accountId);
+    else if (fetchFeaturedTags.pending.match(action))
+      return state.setIn(['featured_tags', action.meta.arg.accountId, 'isLoading'], true);
+    else if (fetchFeaturedTags.rejected.match(action))
+      return state.setIn(['featured_tags', action.meta.arg.accountId, 'isLoading'], false);
+    else if (fetchDirectory.fulfilled.match(action))
+      return normalizeList(state, ['directory'], action.payload.accounts, action.payload.isLast ? null : true);
+    else if (expandDirectory.fulfilled.match(action))
+      return appendToList(state, ['directory'], action.payload.accounts, action.payload.isLast ? null : true);
+    else if (fetchDirectory.pending.match(action) ||
+     expandDirectory.pending.match(action))
+      return state.setIn(['directory', 'isLoading'], true);
+    else if (fetchDirectory.rejected.match(action) ||
+     expandDirectory.rejected.match(action))
+      return state.setIn(['directory', 'isLoading'], false);
+    else
+      return state;
   }
 }

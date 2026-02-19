@@ -1,0 +1,18 @@
+HTTP/1.1 200 OK
+server: nginx
+date: Thu, 13 Jun 2024 14:33:13 GMT
+content-type: text/html; charset=utf8
+content-length: 192
+accept-ranges: bytes
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Webserver Configs R Us</title>
+</head>
+<body>
+  <h2>Welcome</h2>
+  <p>Sneaky non-UTF character: á</p>
+</body>
+</html>

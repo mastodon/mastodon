@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { openModal, closeModal } from '../../../actions/modal';
 import ModalRoot from '../components/modal_root';
 
+const defaultProps = {};
+
 const mapStateToProps = state => ({
   ignoreFocus: state.getIn(['modal', 'ignoreFocus']),
   type: state.getIn(['modal', 'stack', 0, 'modalType'], null),
-  props: state.getIn(['modal', 'stack', 0, 'modalProps'], {}),
+  props: state.getIn(['modal', 'stack', 0, 'modalProps'], defaultProps),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -14,20 +16,22 @@ const mapDispatchToProps = dispatch => ({
     if (confirmationMessage) {
       dispatch(
         openModal({
+          previousModalProps: confirmationMessage.props,
           modalType: 'CONFIRM',
           modalProps: {
             message: confirmationMessage.message,
             confirm: confirmationMessage.confirm,
             onConfirm: () => dispatch(closeModal({
               modalType: undefined,
-              ignoreFocus: { ignoreFocus },
+              ignoreFocus,
             })),
-          } }),
+          },
+        }),
       );
     } else {
       dispatch(closeModal({
         modalType: undefined,
-        ignoreFocus: { ignoreFocus },
+        ignoreFocus,
       }));
     }
   },

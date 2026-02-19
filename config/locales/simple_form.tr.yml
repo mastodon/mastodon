@@ -3,6 +3,7 @@ tr:
   simple_form:
     hints:
       account:
+        attribution_domains: Her satırda bir tane. Sahte atıflardan korur.
         discoverable: Herkese açık gönderileriniz ve profiliniz Mastodon'un çeşitli kısımlarında öne çıkarılabilir veya önerilebilir ve profiliniz başka kullanıcılara önerilebilir.
         display_name: Tam adınız veya kullanıcı adınız.
         fields: Ana sayfanız, zamirleriniz, yaşınız, istediğiniz herhangi bir şey.
@@ -39,26 +40,33 @@ tr:
         text: Bir eyleme yalnızca bir kere itiraz edebilirsiniz
       defaults:
         autofollow: Davetiyeyle kaydolan kişiler sizi otomatik olarak takip eder
-        avatar: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir
+        avatar: En fazla %{size} olacak şekilde WEBP, PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px boyutuna küçültülecektir
         bot: Bu hesap temelde otomatik eylemler gerçekleştirir ve izlenmeyebilir
         context: Filtrenin geçerli olması gereken bir veya daha fazla içerik
         current_password: Güvenlik nedeniyle lütfen şu anki hesabın parolasını girin
         current_username: Onaylamak için lütfen şu anki hesabın kullanıcı adını girin
         digest: Sadece uzun bir süre hareketsiz kaldıktan sonra ve yalnızca yokluğunuzda herhangi bir kişisel mesaj aldıysanız gönderilir
         email: Onay e-postası gönderilir
-        header: PNG, GIF ya da JPG. En fazla %{size}. %{dimensions}px boyutuna küçültülecek
+        header: WEBP, PNG, GIF veya JPG. En fazla %{size}. %{dimensions}px boyutuna küçültülecektir
         inbox_url: Kullanmak istediğiniz aktarıcının ön sayfasından URL'yi kopyalayın
         irreversible: Süzgeçlenmiş gönderiler, filtre daha sonra kaldırılsa bile, geri dönüşümsüz biçimde kaybolur
         locale: Kullanıcı arayüzünün dili, e-postalar ve push bildirimleri
         password: En az 8 karakter kullanın
         phrase: Metnin büyük/küçük harf durumundan veya gönderinin içerik uyarısından bağımsız olarak eşleştirilecek
         scopes: Uygulamanın erişmesine izin verilen API'ler. Üst seviye bir kapsam seçtiyseniz, bireysel kapsam seçmenize gerek yoktur.
+        setting_advanced_layout: Mastodon'u çok sütunlu bir düzen olarak görüntüleyin, böylece zaman akışını, bildirimleri ve seçtiğiniz üçüncü sütunu görüntüleyebilirsiniz. Küçük ekranlar için önerilmez.
         setting_aggregate_reblogs: Yakın zamanda teşvik edilmiş gönderiler için yeni teşvikleri göstermeyin (yalnızca yeni alınan teşvikleri etkiler)
         setting_always_send_emails: Normalde, Mastodon'u aktif olarak kullanırken e-posta bildirimleri gönderilmeyecektir
+        setting_boost_modal: Etkinleştirildiğinde öne çıkarmanızın görünürlüğünü değiştirebileceğiniz bir onay iletişim kutusu açar.
+        setting_default_quote_policy_private: Mastodon'da sadece takipçilere yönelik gönderiler başkaları tarafından alıntılanamaz.
+        setting_default_quote_policy_unlisted: İnsanlar sizden alıntı yaptığında, onların gönderileri de trend zaman tünellerinden gizlenecektir.
         setting_default_sensitive: Hassas medya varsayılan olarak gizlidir ve bir tıklama ile gösterilebilir
         setting_display_media_default: Hassas olarak işaretlenmiş medyayı gizle
         setting_display_media_hide_all: Medyayı her zaman gizle
         setting_display_media_show_all: Medyayı her zaman göster
+        setting_emoji_style: Emojiler nasıl görüntülensin. "Otomatik" seçeneği yerel emojileri kullanmaya çalışır, ancak eski tarayıcılar için Twemoji'yi kullanır.
+        setting_quick_boosting_html: Etkinleştirildiğinde, %{boost_icon} Öne Çıkar simgesine tıklandığında, öne çıkar/alıntı açılır menüsünü görüntüleme yerine hemen öne çıkarma işlemi gerçekleştirilir. Alıntı işlevi %{options_icon} (Seçenekler) menüsüne taşınır.
+        setting_system_scrollbars_ui: Yalnızca Safari ve Chrome tabanlı masaüstü tarayıcılar için geçerlidir
         setting_use_blurhash: Gradyenler gizli görsellerin renklerine dayanır, ancak detayları gizler
         setting_use_pending_items: Akışı otomatik olarak kaydırmak yerine, zaman çizelgesi güncellemelerini tek bir tıklamayla gizleyin
         username: Harfleri, sayıları veya alt çizgi kullanabilirsiniz
@@ -73,17 +81,22 @@ tr:
       filters:
         action: Bir gönderi filtreyle eşleştiğinde hangi eylemin yapılacağını seçin
         actions:
+          blur: Medyayı, metnin kendisini gizlemeden bir uyarı arkasında gizle
           hide: Filtrelenmiş içeriği tamamen gizle, sanki varolmamış gibi
           warn: Süzgeçlenmiş içeriği, süzgecinin başlığından söz eden bir uyarının arkasında gizle
       form_admin_settings:
         activity_api_enabled: Yerel olarak yayınlanan gönderi, etkin kullanıcı ve yeni kayıtların haftalık sayıları
-        backups_retention_period: Üretilen kullanıcı arşivlerini belirli gün sayısı kadar sakla.
-        bootstrap_timeline_accounts: Bu hesaplar, yeni kullanıcıların takip önerilerinin tepesinde sabitlenecektir.
+        app_icon: WEBP, PNG, GIF veya JPG. Mobil aygıtlarda varsayılan uygulama simgesini isteğe bağlı bir simgeyle değiştirir.
+        backups_retention_period: Kullanıcılar, gönderilerinin arşivlerini daha sonra indirmek üzere oluşturabilirler. Pozitif bir değer verdilğinde bu arşivler verilmiş olan gün sonunda deponuzdan otomatik olarak silinecektir.
+        bootstrap_timeline_accounts: Bu hesaplar, yeni kullanıcıların takip önerilerinin en üstüne sabitlenecektir. Hesapların virgülle ayrılmış bir listesini girin.
         closed_registrations_message: Kayıt olma kapalıyken görüntülenir
-        content_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan gelen gönderiler belirli bir gün sonra silinecektir. Silme geri alınamayabilir.
+        content_cache_retention_period: Diğer sunuculardaki (öne çıkarma ve yanıtlar da dahil olmak üzere) tüm gönderiler belirlenen gün sonunda, yerel bir kullanıcının etkileşimine bakılmadan, silinecektir. Yerel bir kullanıcının yerimlerine veya favorilerine eklediği gönderiler de dahildir. Farklı sunuculardaki kullanıcılar arasındaki özel bahsetmeler de kaybolacak ve geri getirilmeleri mümkün olmayacaktır. Bu ayarın kullanımı özel amaçlı sunucular içindir ve genel amaçlı kullanımda etkinleştirildiğinde kullanıcı beklentilerini karşılamayabilir.
         custom_css: Mastodon'un web sürümüne özel biçimler uygulayabilirsiniz.
+        favicon: WEBP, PNG, GIF veya JPG. Varsayılan Mastodon simgesini isteğe bağlı bir simgeyle değiştirir.
+        landing_page: Yeni ziyaretçilerin sunucunuza ilk geldiklerinde görecekleri sayfayı seçer. "Öne çıkanlar" seçeneğini seçerseniz, Keşif Ayarlarında öne çıkanların etkinleştirilmesi gerekir. "Yerel akış" seçeneğini seçerseniz, Keşif Ayarlarında "Yerel gönderileri içeren canlı akışlara erişim" seçeneğinin "Herkes" olarak ayarlanması gerekir.
         mascot: Gelişmiş web arayüzündeki illüstrasyonu geçersiz kılar.
-        media_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan indirilen medya dosyaları belirli bir gün sonra silinecektir, isteğe bağlı olarak tekrar indirilebilir.
+        media_cache_retention_period: Uzak kullanıcıların gönderilerindeki ortam dosyaları sunucunuzda önbelleklenir. Pozitif bir değer verildiğinde, ortam dosyaları belirlenen gün sonunda silinecektir. Eğer ortam dosyaları silindikten sonra istenirse, kaynak içerik hala mevcutsa, tekrar indirilecektir. Bağlantı önizleme kartlarının üçüncü parti siteleri yoklamasına ilişkin kısıtlamalar nedeniyle, bu değeri en azından 14 gün olarak ayarlamanız önerilir, yoksa bağlantı önizleme kartları bu süreden önce isteğe bağlı olarak güncellenmeyecektir.
+        min_age: Kullanıcılardan kayıt olurken doğum tarihlerini doğrulamaları istenecektir
         peers_api_enabled: Bu sunucunun fediverse'te karşılaştığı alan adlarının bir listesi. İlgili sunucuyla birleştirme mi yapıyorsunuz yoksa sunucunuz sadece onu biliyor mu hakkında bir bilgi burada yok. Bu blgi genel olarak federasyın hakkında istatistik toplamak isteyen hizmetler tarafından kullanılıyor.
         profile_directory: Profil dizini keşfedilebilir olmayı kabul eden tüm kullanıcıları listeler.
         require_invite_text: Kayıt olmak elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
@@ -96,10 +109,9 @@ tr:
         status_page_url: İnsanların bir kesinti halinde sunucunun durumunu görebilecekleri bir sayfanın URL'si
         theme: Giriş yapmamış ziyaretçilerin ve yeni kullanıcıların gördüğü tema.
         thumbnail: Sunucu bilginizin yanında gösterilen yaklaşık 2:1'lik görüntü.
-        timeline_preview: Giriş yapmamış ziyaretçiler, sunucuda mevcut olan en son genel gönderileri tarayabilecekler.
         trendable_by_default: Öne çıkan içeriğin elle incelenmesini atla. Tekil öğeler sonrada öne çıkanlardan kaldırılabilir.
         trends: Öne çıkanlar, sunucunuzda ilgi toplayan gönderileri, etiketleri ve haber yazılarını gösterir.
-        trends_as_landing_page: Giriş yapmış kullanıcılar ve ziyaretçilere sunucunun açıklması yerine öne çıkan içeriği göster. Öne çıkanların etkin olması gerekir.
+        wrapstodon: Yerel kullanıcılara, yıl boyunca Mastodon kullanımlarının eğlenceli bir özetini oluşturma imkanı sunun. Bu özellik, her yıl 10 Aralık ile 31 Aralık tarihleri arasında kullanılabilir ve yıl içinde en az bir adet Halka Açık veya Sessiz Halka Açık gönderi paylaşan ve en az bir hashtag kullanan kullanıcılara sunulur.
       form_challenge:
         current_password: Güvenli bir bölgeye giriyorsunuz
       imports:
@@ -116,6 +128,7 @@ tr:
           sign_up_requires_approval: Yeni kayıt onayınızı gerektirir
         severity: Bu IP'den gelen isteklere ne olacağını seçin
       rule:
+        hint: İsteğe bağlı. Kural hakkında daha fazla ayrıntı verin
         text: Bu sunucu üzerindeki kullanıcılar için bir kural veya gereksinimi tanımlayın. Kuralı kısa ve yalın tutmaya çalışın
       sessions:
         otp: 'Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz:'
@@ -125,21 +138,44 @@ tr:
         show_application: Ne olursa olsun gönderinizi yayınlayan uygulamayı her zaman görebileceksiniz.
       tag:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
+      terms_of_service:
+        changelog: Markdown sözdizimiyle yapılandırılabilir.
+        effective_date: Kullanıcıları bilgilendirmek için mantıklı bir tarih aralığı 10 ile 30 gün arasında olabilir.
+        text: Markdown sözdizimiyle yapılandırılabilir.
+      terms_of_service_generator:
+        admin_email: Yasal bildirimler arasında karşı bildirimler, mahkeme kararları, yayından kaldırma talepleri ve kolluk kuvvetleri talepleri yer alır.
+        arbitration_address: Yukarıdaki fiziksel adresle aynı olabilir, veya e-posta kullanıyorsanız "N/A".
+        arbitration_website: Web formu olabilir, veya e-posta kullanıyorsanız "N/A".
+        choice_of_law: Her türlü iddiayı yönetecek olan iç maddi yasalara ilişkin şehir, bölge, eyalet veya ülke.
+        dmca_address: ABD operatörleri için DMCA Atanmış Temsilci Dizininde kayıtlı adresi kullanın. Doğrudan taleple Posta Kutusu kullanımı mümkündür, Telif Hakkı Ofisine e-posta göndermek için DMCA Atanmış Temsilci Posta Kutusu Feragat Talebini kullanın ve eylemleriniz nedeniyle intikam veya cezalandırılmaktan çekinen ve herkese açık ev adresini kullanmamak için Posta Kutusu kullanması gereken ev tabanlı bir içerik moderatörü olduğunuzu açıklayın.
+        dmca_email: Yukarıdaki "Yasal bildirimler için e-posta adresi" için kullanılan e-posta ile aynı olabilir.
+        domain: Sağladığınız çevrimiçi hizmetin benzersiz tanımlaması.
+        jurisdiction: Faturaları ödeyen kişinin yaşadığı ülkeyi listeleyin. Bir şirket veya başka bir kuruluş ise, kurulduğu ülkeyi ve uygun şekilde şehri, bölgeyi, yöreyi veya eyaleti listeleyin.
+        min_age: Tabi olduğunuz yasaların gerektirdiği yaştan düşük olmamalıdır.
       user:
         chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki gönderiler genel zaman çizelgelerinde görüntülenir
-        role: Rol, kullanıcıların sahip olduğu izinleri denetler
+        date_of_birth:
+          one: "%{domain} kullanmak için en az %{count} yaşında olduğunuzdan emin olmalıyız. Bu bilgiyi saklamıyoruz."
+          other: "%{domain} kullanmak için en az %{count} yaşında olduğunuzdan emin olmalıyız. Bu bilgiyi saklamıyoruz."
+        role: Rol, kullanıcıların sahip olduğu izinleri denetler.
       user_role:
         color: Arayüz boyunca rol için kullanılacak olan renk, hex biçiminde RGB
         highlighted: Bu rolü herkese açık hale getirir
         name: Rolün, eğer rozet olarak görüntülenmesi ayarlandıysa kullanılacak herkese açık ismi
         permissions_as_keys: Bu role sahip kullanıcıların şunlara erişimi var...
         position: Belirli durumlarda çatışmayı çözmek için daha yüksek rol belirleyicidir. Bazı eylemler ancak daha düşük öncelikteki rollere uygulanabilir
+        require_2fa: Bu role sahip kullanıcıların Mastodon'u kullanmak için iki aşamalı kimlik doğrulama ayarlamaları gerekecektir
+      username_block:
+        allow_with_approval: Kayıt işlemini tamamen engellemek yerine, eşleşen kayıtlar onayınızı gerektirecektir
+        comparison: Kısmi eşleşmeleri engellerken lütfen Scunthorpe Problemini aklınızda bulundurun
+        username: '"a" için "4" veya "e" için "3" gibi büyük/küçük harfe ve yaygın homogliflere bakılmaksızın eşleştirilecektir'
       webhook:
         events: Gönderilecek etkinlikleri seçin
         template: Değişken değerleme kullanarak kendi JSON yükünüzü oluşturun. Varsayılan JSON için boş bırakın.
         url: Olayların gönderileceği yer
     labels:
       account:
+        attribution_domains: Size atıf verebilecek websiteleri
         discoverable: Profil ve gönderileri keşif algoritmalarında kullan
         fields:
           name: Etiket
@@ -188,6 +224,7 @@ tr:
         email: E-posta adresi
         expires_in: Bitiş tarihi
         fields: Profil meta verisi
+        filter_action: Eylemi filtrele
         header: Kapak resmi
         honeypot: "%{label} (doldurmayın)"
         inbox_url: Aktarıcı gelen kutusunun URL'si
@@ -203,20 +240,28 @@ tr:
         setting_aggregate_reblogs: Zaman çizelgesindeki boostları grupla
         setting_always_send_emails: Her zaman e-posta bildirimleri gönder
         setting_auto_play_gif: Hareketli GIF'leri otomatik oynat
-        setting_boost_modal: Paylaşmadan önce onay iletişim kutusu göster
+        setting_boost_modal: Öne çıkarma görünürlüğünü denetleyin
+        setting_color_scheme: Renk düzeni
+        setting_contrast: Kontrast
         setting_default_language: Gönderi dili
-        setting_default_privacy: Gönderi gizliliği
+        setting_default_privacy: Gönderi görünürlüğü
+        setting_default_quote_policy: Kimler alıntılayabilir
         setting_default_sensitive: Medyayı her zaman hassas olarak işaretle
-        setting_delete_modal: Bir gönderiyi silmeden önce onay iletişim kutusu göster
+        setting_delete_modal: Bir gönderiyi silmeden beni uyar
+        setting_disable_hover_cards: Üstüne geldiğinde profil önizlemesini devre dışı bırak
         setting_disable_swiping: Kaydırma hareketlerini devre dışı bırak
         setting_display_media: Medya görüntüleme
         setting_display_media_default: Varsayılan
         setting_display_media_hide_all: Tümünü gizle
         setting_display_media_show_all: Tümünü göster
+        setting_emoji_style: Emoji stili
         setting_expand_spoilers: İçerik uyarılarıyla işaretli gönderileri her zaman genişlet
         setting_hide_network: Sosyal grafiğini gizle
+        setting_missing_alt_text_modal: Alternatif metni olmayan bir medya göndermeden önce beni uyar
+        setting_quick_boosting: Hızlı öne çıkarmayı etkinleştir
         setting_reduce_motion: Animasyonlarda hareketi azalt
         setting_system_font_ui: Sistemin varsayılan yazı tipini kullan
+        setting_system_scrollbars_ui: Sistemin varsayılan kaydırma çubuğunu kullan
         setting_theme: Site teması
         setting_trends: Bugünün gündemini göster
         setting_unfollow_modal: Birini takip etmeden önce onay iletişim kutusu göster
@@ -227,7 +272,7 @@ tr:
         title: Başlık
         type: İçeri aktarma türü
         username: Kullanıcı adı
-        username_or_email: Kullanıcı adı ya da e-posta
+        username_or_email: Kullanıcı adı veya e-posta
         whole_word: Tam sözcük
       email_domain_block:
         with_dns_records: Alan adının MX kayıtlarını ve IP'lerini ekleyin
@@ -235,20 +280,29 @@ tr:
         name: Etiket
       filters:
         actions:
+          blur: Medyayı bir uyarıyla gizle
           hide: Tamamen gizle
           warn: Uyarıyla gizle
       form_admin_settings:
         activity_api_enabled: API'deki kullanıcı etkinliği hakkında toplu istatistikler yayınlayın
+        app_icon: Uygulama simgesi
         backups_retention_period: Kullanıcı arşivi saklama süresi
         bootstrap_timeline_accounts: Bu hesapları yeni kullanıcılara her zaman öner
         closed_registrations_message: Kayıt olma mevcut değilken gösterilen özel ileti
-        content_cache_retention_period: İçerik önbelleği saklama süresi
+        content_cache_retention_period: Uzak içerik saklama süresi
         custom_css: Özel CSS
+        favicon: Yer imi simgesi
+        landing_page: Yeni ziyaretçiler için giriş sayfası
+        local_live_feed_access: Yerel gönderileri ön plana çıkaran canlı akışlara erişim
+        local_topic_feed_access: Yerel gönderileri ön plana çıkaran etiket ve bağlantı akışlarına erişim
         mascot: Özel maskot (eski)
         media_cache_retention_period: Medya önbelleği saklama süresi
+        min_age: Azami yaş gereksinimi
         peers_api_enabled: API'de keşfedilen sunucuların listesini yayınla
         profile_directory: Profil dizinini etkinleştir
         registrations_mode: Kim kaydolabilir
+        remote_live_feed_access: Uzaktan gönderileri ön plana çıkaran canlı akışlara erişim
+        remote_topic_feed_access: Uzaktan gönderileri ön plana çıkaran etiket ve bağlantı akışlarına erişim
         require_invite_text: Katılmak için bir gerekçe iste
         show_domain_blocks: Engellenen alan adlarını göster
         show_domain_blocks_rationale: Alan adlarının neden engellendiğini göster
@@ -261,10 +315,9 @@ tr:
         status_page_url: Durum sayfası URL'si
         theme: Öntanımlı tema
         thumbnail: Sunucu küçük resmi
-        timeline_preview: Genel zaman çizelgelerine yetkisiz erişime izin ver
         trendable_by_default: Ön incelemesiz öne çıkanlara izin ver
         trends: Öne çıkanları etkinleştir
-        trends_as_landing_page: Giriş sayfası olarak öne çıkanları kullan
+        wrapstodon: Wrapstodonu Etkinleştir
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle
@@ -282,13 +335,14 @@ tr:
           sign_up_requires_approval: Kayıtları sınırla
         severity: Kural
       notification_emails:
-        appeal: Birisi, bir yönetim kararına itiraz ediyor
+        appeal: Birisi, bir moderatör kararına itiraz ediyor
         digest: Özet e-postaları gönder
         favourite: Birisi gönderinizi beğendi
         follow: Biri seni takip etti
         follow_request: Biri seni takip etmek istedi
         mention: Birisi senden bahsetti
         pending_account: Yeni hesabın incelenmesi gerekiyor
+        quote: Birisi senden alıntı yaptı
         reblog: Birisi gönderini boostladı
         report: Yeni rapor gönderildi
         software_updates:
@@ -299,6 +353,7 @@ tr:
           patch: Yama güncellemelerini bildir
         trending_tag: Yeni eğilimin gözden geçmesi gerekiyor
       rule:
+        hint: Ek bilgi
         text: Kural
       settings:
         indexable: Arama motorları profil sayfasını içersin
@@ -307,8 +362,25 @@ tr:
         listable: Bu etiketin aramalarda ve profil dizininde görünmesine izin ver
         name: Etiket
         trendable: Bu etiketin gündem altında görünmesine izin ver
-        usable: Gönderilerin bu etiketi kullanmasına izin ver
+        usable: Gönderilerin yerelde bu etiketi kullanmasına izin ver
+      terms_of_service:
+        changelog: Ne Değişti?
+        effective_date: Yürürlük tarihi
+        text: Hizmet Şartları
+      terms_of_service_generator:
+        admin_email: Yasal bildirimler için e-posta adresi
+        arbitration_address: Tahkim bildirimleri için fiziksel adres
+        arbitration_website: Tahkim bildirimlerini göndermek için website
+        choice_of_law: Yasa Tercihi
+        dmca_address: DMCA/telif hakkı bildirimleri için fiziksel adres
+        dmca_email: DMCA/telif hakkı bildirimleri için e-posta adresi
+        domain: Alan adı
+        jurisdiction: Yasal yetki alanı
+        min_age: Minimum yaş
       user:
+        date_of_birth_1i: Yıl
+        date_of_birth_2i: Ay
+        date_of_birth_3i: Gün
         role: Rol
         time_zone: Zaman dilimi
       user_role:
@@ -317,6 +389,11 @@ tr:
         name: Ad
         permissions_as_keys: İzinler
         position: Öncelik
+        require_2fa: İki aşamalı kimlik doğrulama gerektir
+      username_block:
+        allow_with_approval: Onay ile kayıtlara izin ver
+        comparison: Karşılaştırma yöntemi
+        username: Eşleşecek kelime
       webhook:
         events: Etkin olaylar
         template: Yük şablonu

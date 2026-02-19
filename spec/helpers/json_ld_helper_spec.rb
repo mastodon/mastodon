@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe JsonLdHelper do
+RSpec.describe JsonLdHelper do
   describe '#equals_or_includes?' do
     it 'returns true when value equals' do
       expect(helper.equals_or_includes?('foo', 'foo')).to be true
@@ -18,6 +18,34 @@ describe JsonLdHelper do
 
     it 'returns false when value is not included' do
       expect(helper.equals_or_includes?(%w(foo baz), 'bar')).to be false
+    end
+  end
+
+  describe '#uri_from_bearcap' do
+    subject { helper.uri_from_bearcap(string) }
+
+    context 'when a bear string has a u param' do
+      let(:string) { 'bear:?t=TOKEN&u=https://example.com/foo' }
+
+      it 'returns the value from the u query param' do
+        expect(subject).to eq('https://example.com/foo')
+      end
+    end
+
+    context 'when a bear string does not have a u param' do
+      let(:string) { 'bear:?t=TOKEN&h=https://example.com/foo' }
+
+      it 'returns nil' do
+        expect(subject).to be_nil
+      end
+    end
+
+    context 'when a non-bear string' do
+      let(:string) { 'http://example.com' }
+
+      it 'returns the string' do
+        expect(subject).to eq('http://example.com')
+      end
     end
   end
 
@@ -151,6 +179,14 @@ describe JsonLdHelper do
         expect(compacted['to']).to eq ['https://www.w3.org/ns/activitystreams#Public']
         expect(compacted.dig('object', 'tag', 0, 'href')).to eq ['foo']
         expect(safe_for_forwarding?(json, compacted)).to be true
+      end
+
+      context 'when array size mismatch exists' do
+        subject { helper.patch_for_forwarding!(json, alternate) }
+
+        let(:alternate) { json.merge('to' => %w(one two three)) }
+
+        it { is_expected.to be_nil }
       end
     end
 

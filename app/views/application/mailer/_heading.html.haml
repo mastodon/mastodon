@@ -1,13 +1,13 @@
+-# locals: (title:, image_url: nil, subtitle: nil)
 %table.email-w-full.email-header-heading-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
   %tr
     %td.email-header-heading-td
       %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
         %tr
-          - if defined?(heading_image_url)
+          - if image_url
             %td.email-header-heading-img-td
-              = image_tag heading_image_url, alt: '', width: 56, height: 56
+              = image_tag image_url, alt: '', width: 56, height: 56
           %td.email-header-heading-txt-td
-            - if defined?(heading_title)
-              %h1= heading_title
-            - if defined?(heading_subtitle)
-              %p= heading_subtitle
+            %h1= title
+            - if subtitle
+              %p= subtitle

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ConnectionPool::SharedConnectionPool do
+RSpec.describe ConnectionPool::SharedConnectionPool do
   subject { described_class.new(size: 5, timeout: 5) { |site| mini_connection_class.new(site) } }
 
   let(:mini_connection_class) do

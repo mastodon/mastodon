@@ -79,19 +79,19 @@ describe('emoji', () => {
         .toEqual('✴︎');
     });
 
-    it('does an simple emoji properly', () => {
+    it('does a simple emoji properly', () => {
       expect(emojify('♀♂'))
         .toEqual('<img draggable="false" class="emojione" alt="♀" title=":female_sign:" src="/emoji/2640.svg"><img draggable="false" class="emojione" alt="♂" title=":male_sign:" src="/emoji/2642.svg">');
     });
 
     it('does an emoji containing ZWJ properly', () => {
       expect(emojify('💂‍♀️💂‍♂️'))
-        .toEqual('<img draggable="false" class="emojione" alt="💂\u200D♀️" title=":female-guard:" src="/emoji/1f482-200d-2640-fe0f_border.svg"><img draggable="false" class="emojione" alt="💂\u200D♂️" title=":male-guard:" src="/emoji/1f482-200d-2642-fe0f_border.svg">');
+        .toEqual('<img draggable="false" class="emojione" alt="💂‍♀️" title=":female-guard:" src="/emoji/1f482-200d-2640-fe0f.svg"><img draggable="false" class="emojione" alt="💂‍♂️" title=":male-guard:" src="/emoji/1f482-200d-2642-fe0f.svg">');
     });
 
     it('keeps ordering as expected (issue fixed by PR 20677)', () => {
-      expect(emojify('<p>💕 <a class="hashtag" href="https://example.com/tags/foo" rel="nofollow noopener noreferrer" target="_blank">#<span>foo</span></a> test: foo.</p>'))
-        .toEqual('<p><img draggable="false" class="emojione" alt="💕" title=":two_hearts:" src="/emoji/1f495.svg"> <a class="hashtag" href="https://example.com/tags/foo" rel="nofollow noopener noreferrer" target="_blank">#<span>foo</span></a> test: foo.</p>');
+      expect(emojify('<p>💕 <a class="hashtag" href="https://example.com/tags/foo" rel="nofollow noopener" target="_blank">#<span>foo</span></a> test: foo.</p>'))
+        .toEqual('<p><img draggable="false" class="emojione" alt="💕" title=":two_hearts:" src="/emoji/1f495.svg"> <a class="hashtag" href="https://example.com/tags/foo" rel="nofollow noopener" target="_blank">#<span>foo</span></a> test: foo.</p>');
     });
   });
 });

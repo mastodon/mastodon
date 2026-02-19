@@ -3,18 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe DomainBlock do
-  describe 'validations' do
-    it 'is invalid without a domain' do
-      domain_block = Fabricate.build(:domain_block, domain: nil)
-      domain_block.valid?
-      expect(domain_block).to model_have_error_on_field(:domain)
-    end
+  describe 'Validations' do
+    it { is_expected.to validate_presence_of(:domain) }
 
-    it 'is invalid if the same normalized domain already exists' do
-      _domain_block = Fabricate(:domain_block, domain: 'にゃん')
-      domain_block_with_normalized_value = Fabricate.build(:domain_block, domain: 'xn--r9j5b5b')
-      domain_block_with_normalized_value.valid?
-      expect(domain_block_with_normalized_value).to model_have_error_on_field(:domain)
+    context 'when a normalized domain exists' do
+      before { Fabricate(:domain_block, domain: 'にゃん') }
+
+      it { is_expected.to_not allow_value('xn--r9j5b5b').for(:domain) }
     end
   end
 
@@ -38,6 +33,17 @@ RSpec.describe DomainBlock do
     it 'returns rule matching a blocked domain' do
       block = Fabricate(:domain_block, domain: 'example.com')
       expect(described_class.rule_for('example.com')).to eq block
+    end
+
+    it 'returns most specific rule matching a blocked domain' do
+      _block = Fabricate(:domain_block, domain: 'example.com')
+      blog_block = Fabricate(:domain_block, domain: 'blog.example.com')
+      expect(described_class.rule_for('host.blog.example.com')).to eq blog_block
+    end
+
+    it 'returns rule matching a blocked domain when string needs normalization' do
+      block = Fabricate(:domain_block, domain: 'example.com')
+      expect(described_class.rule_for('  example.com/')).to eq block
     end
 
     it 'returns a rule matching a subdomain of a blocked domain' do
@@ -107,6 +113,28 @@ RSpec.describe DomainBlock do
       it 'returns the domain value' do
         expect(domain_block.public_domain).to eq 'example.com'
       end
+    end
+  end
+
+  describe '#policies' do
+    subject { domain_block.policies }
+
+    context 'when severity is suspend' do
+      let(:domain_block) { Fabricate.build :domain_block, severity: :suspend }
+
+      it { is_expected.to eq(%i(suspend)) }
+    end
+
+    context 'when severity is noop' do
+      let(:domain_block) { Fabricate.build :domain_block, severity: :noop, reject_media: true }
+
+      it { is_expected.to eq(%i(reject_media)) }
+    end
+
+    context 'when severity is silence' do
+      let(:domain_block) { Fabricate.build :domain_block, severity: :silence, reject_reports: true }
+
+      it { is_expected.to eq(%i(silence reject_reports)) }
     end
   end
 end

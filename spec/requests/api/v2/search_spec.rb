@@ -2,12 +2,9 @@
 
 require 'rails_helper'
 
-describe 'Search API' do
+RSpec.describe 'Search API' do
   context 'with token' do
-    let(:user)    { Fabricate(:user) }
-    let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-    let(:scopes)  { 'read:search' }
-    let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+    include_context 'with API authentication', oauth_scopes: 'read:search'
 
     describe 'GET /api/v2/search' do
       let!(:bob)   { Fabricate(:account, username: 'bob_test') }
@@ -19,6 +16,8 @@ describe 'Search API' do
         get '/api/v2/search', headers: headers, params: params
 
         expect(response).to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
 
       context 'when searching accounts' do
@@ -27,7 +26,7 @@ describe 'Search API' do
         it 'returns all matching accounts' do
           get '/api/v2/search', headers: headers, params: params
 
-          expect(body_as_json[:accounts].pluck(:id)).to contain_exactly(bob.id.to_s, ana.id.to_s, tom.id.to_s)
+          expect(response.parsed_body[:accounts].pluck(:id)).to contain_exactly(bob.id.to_s, ana.id.to_s, tom.id.to_s)
         end
 
         context 'with truthy `resolve`' do
@@ -37,6 +36,8 @@ describe 'Search API' do
             get '/api/v2/search', headers: headers, params: params
 
             expect(response).to have_http_status(200)
+            expect(response.content_type)
+              .to start_with('application/json')
           end
         end
 
@@ -47,6 +48,8 @@ describe 'Search API' do
             get '/api/v2/search', headers: headers, params: params
 
             expect(response).to have_http_status(200)
+            expect(response.content_type)
+              .to start_with('application/json')
           end
         end
 
@@ -57,6 +60,8 @@ describe 'Search API' do
             get '/api/v2/search', headers: headers, params: params
 
             expect(response).to have_http_status(400)
+            expect(response.content_type)
+              .to start_with('application/json')
           end
         end
 
@@ -67,6 +72,8 @@ describe 'Search API' do
             get '/api/v2/search', headers: headers, params: params
 
             expect(response).to have_http_status(400)
+            expect(response.content_type)
+              .to start_with('application/json')
           end
         end
 
@@ -80,7 +87,7 @@ describe 'Search API' do
           it 'returns only the followed accounts' do
             get '/api/v2/search', headers: headers, params: params
 
-            expect(body_as_json[:accounts].pluck(:id)).to contain_exactly(ana.id.to_s)
+            expect(response.parsed_body[:accounts].pluck(:id)).to contain_exactly(ana.id.to_s)
           end
         end
       end
@@ -88,10 +95,12 @@ describe 'Search API' do
       context 'when search raises syntax error' do
         before { allow(Search).to receive(:new).and_raise(Mastodon::SyntaxError) }
 
-        it 'returns http unprocessable_entity' do
+        it 'returns http unprocessable_content' do
           get '/api/v2/search', headers: headers, params: params
 
           expect(response).to have_http_status(422)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
 
@@ -102,6 +111,17 @@ describe 'Search API' do
           get '/api/v2/search', headers: headers, params: params
 
           expect(response).to have_http_status(404)
+          expect(response.content_type)
+            .to start_with('application/json')
+        end
+      end
+
+      context 'when `account_search` FASP is enabled', feature: :fasp do
+        it 'enqueues a retrieval job and adds a header to inform the client' do
+          get '/api/v2/search', headers: headers, params: params
+
+          expect(Fasp::AccountSearchWorker).to have_enqueued_sidekiq_job
+          expect(response.headers['Mastodon-Async-Refresh']).to be_present
         end
       end
     end
@@ -118,6 +138,8 @@ describe 'Search API' do
       context 'without a `q` param' do
         it 'returns http bad_request' do
           expect(response).to have_http_status(400)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
 
@@ -126,6 +148,8 @@ describe 'Search API' do
 
         it 'returns http success' do
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
       end
 
@@ -134,6 +158,8 @@ describe 'Search API' do
 
         it 'returns http success' do
           expect(response).to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
         end
 
         context 'with truthy `resolve`' do
@@ -141,6 +167,8 @@ describe 'Search API' do
 
           it 'returns http unauthorized' do
             expect(response).to have_http_status(401)
+            expect(response.content_type)
+              .to start_with('application/json')
             expect(response.body).to match('resolve remote resources')
           end
         end
@@ -150,6 +178,8 @@ describe 'Search API' do
 
           it 'returns http unauthorized' do
             expect(response).to have_http_status(401)
+            expect(response.content_type)
+              .to start_with('application/json')
             expect(response.body).to match('pagination is not supported')
           end
         end

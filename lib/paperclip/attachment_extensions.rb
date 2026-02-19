@@ -16,8 +16,7 @@ module Paperclip
       # if we're processing the original, close + unlink the source tempfile
       intermediate_files << original if name == :original
 
-      @queued_for_write[name] = style.processors
-                                     .inject(original) do |file, processor|
+      @queued_for_write[name] = style.processors.inject(original) do |file, processor|
         file = Paperclip.processor(processor).make(file, style.processor_options, self)
         intermediate_files << file unless file == original
         file
@@ -25,7 +24,7 @@ module Paperclip
 
       unadapted_file = @queued_for_write[name]
       @queued_for_write[name] = Paperclip.io_adapters
-                                         .for(@queued_for_write[name], @options[:adapter_options])
+        .for(@queued_for_write[name], @options[:adapter_options])
       unadapted_file.close if unadapted_file.respond_to?(:close)
       @queued_for_write[name]
     rescue Paperclip::Errors::NotIdentifiedByImageMagickError => e
@@ -73,8 +72,8 @@ module Paperclip
       @url_generator.for_as_default(style_name)
     end
 
+    STOPLIGHT_COOL_OFF_TIME = 30
     STOPLIGHT_THRESHOLD = 10
-    STOPLIGHT_COOLDOWN  = 30
 
     # We overwrite this method to put a circuit breaker around
     # calls to object storage, to stop hitting APIs that are slow
@@ -84,13 +83,12 @@ module Paperclip
       # Don't go through Stoplight if we don't have anything object-storage-oriented to do
       return super if @queued_for_delete.empty? && @queued_for_write.empty? && !dirty?
 
-      Stoplight('object-storage') { super }.with_threshold(STOPLIGHT_THRESHOLD).with_cool_off_time(STOPLIGHT_COOLDOWN).with_error_handler do |error, handle|
-        if error.is_a?(Seahorse::Client::NetworkingError)
-          handle.call(error)
-        else
-          raise error
-        end
-      end.run
+      Stoplight(
+        'object-storage',
+        cool_off_time: STOPLIGHT_COOL_OFF_TIME,
+        threshold: STOPLIGHT_THRESHOLD,
+        tracked_errors: [Seahorse::Client::NetworkingError]
+      ).run { super }
     end
   end
 end

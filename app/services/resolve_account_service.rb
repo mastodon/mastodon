@@ -2,7 +2,6 @@
 
 class ResolveAccountService < BaseService
   include DomainControlHelper
-  include WebfingerHelper
   include Redisable
   include Lockable
 
@@ -81,7 +80,7 @@ class ResolveAccountService < BaseService
   end
 
   def process_webfinger!(uri)
-    @webfinger                           = webfinger!("acct:#{uri}")
+    @webfinger = Webfinger.new("acct:#{uri}").perform
     confirmed_username, confirmed_domain = split_acct(@webfinger.subject)
 
     if confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
@@ -91,7 +90,7 @@ class ResolveAccountService < BaseService
     end
 
     # Account doesn't match, so it may have been redirected
-    @webfinger         = webfinger!("acct:#{confirmed_username}@#{confirmed_domain}")
+    @webfinger = Webfinger.new("acct:#{confirmed_username}@#{confirmed_domain}").perform
     @username, @domain = split_acct(@webfinger.subject)
 
     raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{uri} (stopped at #{@username}@#{@domain})" unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
@@ -106,8 +105,6 @@ class ResolveAccountService < BaseService
   end
 
   def fetch_account!
-    return unless activitypub_ready?
-
     with_redis_lock("resolve:#{@username}@#{@domain}") do
       @account = ActivityPub::FetchRemoteAccountService.new.call(actor_url, suppress_errors: @options[:suppress_errors])
     end
@@ -122,12 +119,8 @@ class ResolveAccountService < BaseService
     @options[:skip_cache] || @account.nil? || @account.possibly_stale?
   end
 
-  def activitypub_ready?
-    ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@webfinger.link('self', 'type'))
-  end
-
   def actor_url
-    @actor_url ||= @webfinger.link('self', 'href')
+    @actor_url ||= @webfinger.self_link_href
   end
 
   def gone_from_origin?

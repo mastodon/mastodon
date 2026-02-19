@@ -1,0 +1,6 @@
+-# locals(count:, link:)
+
+- if count.zero?
+  = t('generic.none')
+- else
+  = table_link_to 'download', t('severed_relationships.download', count:), link

@@ -1,0 +1,14 @@
+- content_for :page_title do
+  = t('admin.rules.add_new')
+
+%p= t('admin.rules.description_html')
+
+%hr.spacer/
+
+= simple_form_for [:admin, @rule] do |form|
+  = render 'shared/error_messages', object: @rule
+
+  = render form
+
+  .actions
+    = form.button :button, t('admin.rules.add_new'), type: :submit

@@ -6,7 +6,7 @@ class AccountSearchService < BaseService
   MENTION_ONLY_RE = /\A#{Account::MENTION_RE}\z/i
 
   # Min. number of characters to look for non-exact matches
-  MIN_QUERY_LENGTH = 5
+  MIN_QUERY_LENGTH = 3
 
   class QueryBuilder
     def initialize(query, account, options = {})
@@ -28,9 +28,7 @@ class AccountSearchService < BaseService
               },
 
               functions: [
-                reputation_score_function,
                 followers_score_function,
-                time_distance_function,
               ],
             },
           },
@@ -81,36 +79,12 @@ class AccountSearchService < BaseService
       }
     end
 
-    # This function deranks accounts that follow more people than follow them
-    def reputation_score_function
-      {
-        script_score: {
-          script: {
-            source: "(Math.max(doc['followers_count'].value, 0) + 0.0) / (Math.max(doc['followers_count'].value, 0) + Math.max(doc['following_count'].value, 0) + 1)",
-          },
-        },
-      }
-    end
-
     # This function promotes accounts that have more followers
     def followers_score_function
       {
         script_score: {
           script: {
-            source: "(Math.max(doc['followers_count'].value, 0) / (Math.max(doc['followers_count'].value, 0) + 1))",
-          },
-        },
-      }
-    end
-
-    # This function deranks accounts that haven't posted in a long time
-    def time_distance_function
-      {
-        gauss: {
-          last_status_at: {
-            scale: '30d',
-            offset: '30d',
-            decay: 0.3,
+            source: "Math.log10((Math.max(doc['followers_count'].value, 0) + 1))",
           },
         },
       }
@@ -126,10 +100,24 @@ class AccountSearchService < BaseService
 
     def core_query
       {
-        multi_match: {
-          query: @query,
-          type: 'bool_prefix',
-          fields: %w(username^2 username.*^2 display_name display_name.*),
+        dis_max: {
+          queries: [
+            {
+              multi_match: {
+                query: @query,
+                type: 'most_fields',
+                fields: %w(username username.*),
+              },
+            },
+
+            {
+              multi_match: {
+                query: @query,
+                type: 'most_fields',
+                fields: %w(display_name display_name.*),
+              },
+            },
+          ],
         },
       }
     end
@@ -140,24 +128,66 @@ class AccountSearchService < BaseService
 
     def core_query
       {
-        multi_match: {
-          query: @query,
-          type: 'most_fields',
-          fields: %w(username^2 display_name^2 text text.*),
-          operator: 'and',
+        dis_max: {
+          queries: [
+            {
+              match: {
+                username: {
+                  query: @query,
+                  analyzer: 'word_join_analyzer',
+                },
+              },
+            },
+
+            {
+              match: {
+                display_name: {
+                  query: @query,
+                  analyzer: 'word_join_analyzer',
+                },
+              },
+            },
+
+            {
+              multi_match: {
+                query: @query,
+                type: 'best_fields',
+                fields: %w(text text.*),
+                operator: 'and',
+              },
+            },
+          ],
+
+          tie_breaker: 0.5,
         },
       }
     end
   end
 
   def call(query, account = nil, options = {})
-    @query   = query&.strip&.gsub(/\A@/, '')
-    @limit   = options[:limit].to_i
-    @offset  = options[:offset].to_i
-    @options = options
-    @account = account
+    MastodonOTELTracer.in_span('AccountSearchService#call') do |span|
+      @query   = query&.strip&.gsub(/\A@/, '')
+      @limit   = options[:limit].to_i
+      @offset  = options[:offset].to_i
+      @options = options
+      @account = account
 
-    search_service_results.compact.uniq
+      span.add_attributes(
+        'search.offset' => @offset,
+        'search.limit' => @limit,
+        'search.backend' => Chewy.enabled? ? 'elasticsearch' : 'database'
+      )
+
+      # Trigger searching accounts using providers.
+      # This will not return any immediate results but has the
+      # potential to fill the local database with relevant
+      # accounts for the next time the search is performed.
+      Fasp::AccountSearchWorker.perform_async(@query) if options[:query_fasp]
+
+      search_service_results.compact.uniq.tap do |results|
+        span.set_attribute('search.results.count', results.size)
+      end
+    end
   end
 
   private
@@ -226,7 +256,7 @@ class AccountSearchService < BaseService
     ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
 
     records
-  rescue Faraday::ConnectionFailed, Parslet::ParseFailed
+  rescue Faraday::ConnectionFailed, Parslet::ParseFailed, Errno::ENETUNREACH
     nil
   end
 

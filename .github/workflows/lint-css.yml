@@ -1,9 +1,10 @@
 name: CSS Linting
 on:
+  merge_group:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches:
+      - 'main'
+      - 'stable-*'
     paths:
       - 'package.json'
       - 'yarn.lock'
@@ -33,14 +34,10 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
 
-      - uses: xt0rted/stylelint-problem-matcher@v1
-
-      - run: echo "::add-matcher::.github/stylelint-matcher.json"
-
       - name: Stylelint
-        run: yarn lint:sass
+        run: yarn lint:css --custom-formatter @csstools/stylelint-formatter-github

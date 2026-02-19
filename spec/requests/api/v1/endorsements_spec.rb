@@ -2,10 +2,8 @@
 
 require 'rails_helper'
 
-describe 'Endorsements' do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+RSpec.describe 'Endorsements' do
+  include_context 'with API authentication'
 
   describe 'GET /api/v1/endorsements' do
     context 'when not authorized' do
@@ -14,6 +12,8 @@ describe 'Endorsements' do
 
         expect(response)
           .to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -36,8 +36,10 @@ describe 'Endorsements' do
 
           expect(response)
             .to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to be_present
             .and have_attributes(
               first: include(acct: account_pin.target_account.acct)
@@ -51,8 +53,10 @@ describe 'Endorsements' do
 
           expect(response)
             .to have_http_status(200)
+          expect(response.content_type)
+            .to start_with('application/json')
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to_not be_present
         end
       end

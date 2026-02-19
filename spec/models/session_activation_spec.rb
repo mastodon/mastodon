@@ -3,39 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe SessionActivation do
-  describe '#detection' do
-    let(:session_activation) { Fabricate(:session_activation, user_agent: 'Chrome/62.0.3202.89') }
-
-    it 'sets a Browser instance as detection' do
-      expect(session_activation.detection).to be_a Browser::Chrome
-    end
-  end
-
-  describe '#browser' do
-    before do
-      allow(session_activation).to receive(:detection).and_return(detection)
-    end
-
-    let(:detection)          { instance_double(Browser::Chrome, id: 1) }
-    let(:session_activation) { Fabricate(:session_activation) }
-
-    it 'returns detection.id' do
-      expect(session_activation.browser).to be 1
-    end
-  end
-
-  describe '#platform' do
-    before do
-      allow(session_activation).to receive(:detection).and_return(detection)
-    end
-
-    let(:session_activation) { Fabricate(:session_activation) }
-    let(:detection)          { instance_double(Browser::Chrome, platform: instance_double(Browser::Platform, id: 1)) }
-
-    it 'returns detection.platform.id' do
-      expect(session_activation.platform).to be 1
-    end
-  end
+  it_behaves_like 'BrowserDetection'
 
   describe '.active?' do
     subject { described_class.active?(id) }
@@ -71,20 +39,24 @@ RSpec.describe SessionActivation do
   end
 
   describe '.activate' do
-    let(:options) { { user: Fabricate(:user), session_id: '1' } }
+    let(:user) { Fabricate :user }
+    let!(:session_activation) { Fabricate :session_activation, user: }
 
-    it 'calls create! and purge_old' do
-      allow(described_class).to receive(:create!).with(**options)
-      allow(described_class).to receive(:purge_old)
-
-      described_class.activate(**options)
-
-      expect(described_class).to have_received(:create!).with(**options)
-      expect(described_class).to have_received(:purge_old)
+    around do |example|
+      original = Rails.configuration.x.max_session_activations
+      Rails.configuration.x.max_session_activations = 1
+      example.run
+      Rails.configuration.x.max_session_activations = original
     end
 
-    it 'returns an instance of SessionActivation' do
-      expect(described_class.activate(**options)).to be_a described_class
+    it 'creates a new activation and purges older ones' do
+      result = described_class.activate(user: user, session_id: '123')
+
+      expect(result)
+        .to be_a(described_class)
+        .and have_attributes(session_id: '123', user:)
+      expect { session_activation.reload }
+        .to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 

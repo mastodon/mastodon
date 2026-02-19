@@ -3,7 +3,6 @@
 class Auth::PasswordsController < Devise::PasswordsController
   skip_before_action :check_self_destruct!
   before_action :redirect_invalid_reset_token, only: :edit, unless: :reset_password_token_is_valid?
-  before_action :set_body_classes
 
   layout 'auth'
 
@@ -20,12 +19,7 @@ class Auth::PasswordsController < Devise::PasswordsController
   private
 
   def redirect_invalid_reset_token
-    flash[:error] = I18n.t('auth.invalid_reset_password_token')
-    redirect_to new_password_path(resource_name)
-  end
-
-  def set_body_classes
-    @body_classes = 'lighter'
+    redirect_to new_password_path(resource_name), flash: { error: t('auth.invalid_reset_password_token') }
   end
 
   def reset_password_token_is_valid?

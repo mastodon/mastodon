@@ -21,11 +21,12 @@
 /public/system
 /public/assets
 /public/packs
+/public/packs-dev
 /public/packs-test
+stats.html
 .env
 .env.production
-.env.development
-/node_modules/
+node_modules/
 /build/
 
 # Ignore Vagrant files
@@ -69,3 +70,12 @@ yarn-debug.log
 
 # Ignore Docker option files
 docker-compose.override.yml
+
+# Ignore dotenv .local files
+.env*.local
+
+# Ignore local-only rspec configuration
+.rspec-local
+
+*storybook.log
+storybook-static

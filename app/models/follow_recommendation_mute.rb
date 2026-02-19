@@ -14,7 +14,7 @@ class FollowRecommendationMute < ApplicationRecord
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'
 
-  validates :target_account, uniqueness: { scope: :account_id }
+  validates :target_account_id, uniqueness: { scope: :account_id }
 
   after_commit :invalidate_follow_recommendations_cache
 

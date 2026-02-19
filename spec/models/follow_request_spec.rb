@@ -30,7 +30,7 @@ RSpec.describe FollowRequest do
       follow_request.authorize!
 
       expect(account).to have_received(:follow!).with(target_account, reblogs: true, notify: false, uri: follow_request.uri, languages: nil, bypass_limit: true)
-      expect(MergeWorker).to have_received(:perform_async).with(target_account.id, account.id)
+      expect(MergeWorker).to have_received(:perform_async).with(target_account.id, account.id, 'home')
       expect(follow_request).to have_received(:destroy!)
     end
 

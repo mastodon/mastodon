@@ -4,37 +4,18 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
   include JsonLdHelper
 
   def call(account, **options)
-    return if account.featured_collection_url.blank? || account.suspended? || account.local?
+    return if (account.featured_collection_url.blank? && options[:collection].blank?) || account.suspended? || account.local?
 
     @account = account
     @options = options
-    @json    = fetch_resource(@account.featured_collection_url, true, local_follower)
+    @json    = fetch_collection_page(options[:collection].presence || @account.featured_collection_url)
+    return if @json.blank?
 
-    return unless supported_context?(@json)
-
-    process_items(collection_items(@json))
+    @items, = collection_items(@json, max_pages: 1, reference_uri: @account.uri, on_behalf_of: local_follower)
+    process_items(@items)
   end
 
   private
-
-  def collection_items(collection)
-    collection = fetch_collection(collection['first']) if collection['first'].present?
-    return unless collection.is_a?(Hash)
-
-    case collection['type']
-    when 'Collection', 'CollectionPage'
-      as_array(collection['items'])
-    when 'OrderedCollection', 'OrderedCollectionPage'
-      as_array(collection['orderedItems'])
-    end
-  end
-
-  def fetch_collection(collection_or_uri)
-    return collection_or_uri if collection_or_uri.is_a?(Hash)
-    return if non_matching_uri_hosts?(@account.uri, collection_or_uri)
-
-    fetch_resource_without_id_validation(collection_or_uri, local_follower, true)
-  end
 
   def process_items(items)
     return if items.nil?

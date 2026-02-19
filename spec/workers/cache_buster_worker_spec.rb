@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe CacheBusterWorker do
+RSpec.describe CacheBusterWorker do
   let(:worker) { described_class.new }
 
   describe 'perform' do

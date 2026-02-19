@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::AppealFilter do
+RSpec.describe Admin::AppealFilter do
   describe '#results' do
     let(:approved_appeal) { Fabricate(:appeal, approved_at: 10.days.ago) }
     let(:not_approved_appeal) { Fabricate(:appeal, approved_at: nil) }

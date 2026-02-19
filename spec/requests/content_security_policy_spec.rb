@@ -2,26 +2,43 @@
 
 require 'rails_helper'
 
-describe 'Content-Security-Policy' do
-  it 'sets the expected CSP headers' do
-    allow(SecureRandom).to receive(:base64).with(16).and_return('ZbA+JmE7+bK8F5qvADZHuQ==')
+RSpec.describe 'Content-Security-Policy' do
+  before { allow(SecureRandom).to receive(:base64).with(16).and_return('ZbA+JmE7+bK8F5qvADZHuQ==') }
 
+  it 'sets the expected CSP headers' do
     get '/'
-    expect(response.headers['Content-Security-Policy'].split(';').map(&:strip)).to contain_exactly(
-      "base-uri 'none'",
-      "default-src 'none'",
-      "frame-ancestors 'none'",
-      "font-src 'self' https://cb6e6126.ngrok.io",
-      "img-src 'self' data: blob: https://cb6e6126.ngrok.io",
-      "style-src 'self' https://cb6e6126.ngrok.io 'nonce-ZbA+JmE7+bK8F5qvADZHuQ=='",
-      "media-src 'self' data: https://cb6e6126.ngrok.io",
-      "frame-src 'self' https:",
-      "manifest-src 'self' https://cb6e6126.ngrok.io",
-      "form-action 'self'",
-      "child-src 'self' blob: https://cb6e6126.ngrok.io",
-      "worker-src 'self' blob: https://cb6e6126.ngrok.io",
-      "connect-src 'self' data: blob: https://cb6e6126.ngrok.io ws://cb6e6126.ngrok.io:4000",
-      "script-src 'self' https://cb6e6126.ngrok.io 'wasm-unsafe-eval'"
-    )
+
+    expect(response_csp_headers)
+      .to match_array(expected_csp_headers)
+  end
+
+  def response_csp_headers
+    response
+      .headers['Content-Security-Policy']
+      .split(';')
+      .map(&:strip)
+  end
+
+  def expected_csp_headers
+    <<~CSP.split("\n").map(&:strip)
+      base-uri 'none'
+      child-src 'self' blob: #{local_domain}
+      connect-src 'self' data: blob: #{local_domain} #{Rails.configuration.x.streaming_api_base_url}
+      default-src 'none'
+      font-src 'self' #{local_domain}
+      form-action 'none'
+      frame-ancestors 'none'
+      frame-src 'self' https:
+      img-src 'self' data: blob: #{local_domain}
+      manifest-src 'self' #{local_domain}
+      media-src 'self' data: #{local_domain}
+      script-src 'self' #{local_domain} 'wasm-unsafe-eval' 'sha256-Z5KW83D+6/pygIQS3h9XDpF52xW3l3BHc7JL9tj3uMs='
+      style-src 'self' #{local_domain} 'nonce-ZbA+JmE7+bK8F5qvADZHuQ=='
+      worker-src 'self' blob: #{local_domain}
+    CSP
+  end
+
+  def local_domain
+    root_url(host: Rails.configuration.x.local_domain).chop
   end
 end

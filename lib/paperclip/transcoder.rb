@@ -52,8 +52,8 @@ module Paperclip
           @output_options['bufsize'] = bitrate * 5
 
           if high_vfr?(metadata)
+            # TODO: change to `fps_mode` in the future, as `vsync` is being deprecated
             @output_options['vsync'] = 'vfr'
-            @output_options['r'] = @vfr_threshold
           end
         end
       end
@@ -61,7 +61,7 @@ module Paperclip
       command_arguments, interpolations = prepare_command(destination)
 
       begin
-        command = Terrapin::CommandLine.new('ffmpeg', command_arguments.join(' '), logger: Paperclip.logger)
+        command = Terrapin::CommandLine.new(Rails.configuration.x.ffmpeg_binary, command_arguments.join(' '), logger: Paperclip.logger)
         command.run(interpolations)
       rescue Terrapin::ExitStatusError => e
         raise Paperclip::Error, "Error while transcoding #{@basename}: #{e}"

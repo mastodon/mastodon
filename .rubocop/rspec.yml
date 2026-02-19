@@ -1,0 +1,28 @@
+---
+RSpec/ExampleLength:
+  CountAsOne: ['array', 'heredoc', 'method_call']
+  Max: 20 # Override default of 5
+
+RSpec/MultipleExpectations:
+  Max: 10 # Overrides default of 1
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 20 # Overrides default of 5
+
+RSpec/NamedSubject:
+  EnforcedStyle: named_only
+
+RSpec/NestedGroups:
+  Max: 10 # Overrides default of 3
+
+RSpec/NotToNot:
+  EnforcedStyle: to_not
+
+RSpec/SpecFilePathFormat:
+  CustomTransform:
+    ActivityPub: activitypub
+    DeepL: deepl
+    FetchOEmbedService: fetch_oembed_service
+    OAuth: oauth
+    OEmbedController: oembed_controller
+    OStatus: ostatus

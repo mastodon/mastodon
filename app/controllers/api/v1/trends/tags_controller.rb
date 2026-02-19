@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 class Api::V1::Trends::TagsController < Api::BaseController
+  include DeprecationConcern
+
   before_action :set_tags
 
   after_action :insert_pagination_headers
 
   DEFAULT_TAGS_LIMIT = 10
+
+  deprecate_api '2022-03-30', only: :index, if: -> { request.path == '/api/v1/trends' }
 
   def index
     cache_if_unauthenticated!
@@ -27,15 +31,9 @@ class Api::V1::Trends::TagsController < Api::BaseController
   end
 
   def tags_from_trends
-    Trends.tags.query.allowed
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
+    scope = Trends.tags.query.allowed.in_locale(content_locale)
+    scope = scope.filtered_for(current_account) if user_signed_in?
+    scope
   end
 
   def next_path

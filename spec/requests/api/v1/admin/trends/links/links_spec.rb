@@ -2,12 +2,8 @@
 
 require 'rails_helper'
 
-describe 'Links' do
-  let(:role)    { UserRole.find_by(name: 'Admin') }
-  let(:user)    { Fabricate(:user, role: role) }
-  let(:scopes)  { 'admin:read admin:write' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+RSpec.describe 'Links' do
+  include_context 'with API authentication', user_fabricator: :admin_user, oauth_scopes: 'admin:read admin:write'
 
   describe 'GET /api/v1/admin/trends/links' do
     subject do
@@ -18,6 +14,8 @@ describe 'Links' do
       subject
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
   end
 
@@ -36,6 +34,8 @@ describe 'Links' do
         .to change_link_trendable_to_true
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
       expects_correct_link_data
     end
 
@@ -44,7 +44,7 @@ describe 'Links' do
     end
 
     def expects_correct_link_data
-      expect(body_as_json).to match(
+      expect(response.parsed_body).to match(
         a_hash_including(
           url: preview_card.url,
           title: preview_card.title,
@@ -60,6 +60,8 @@ describe 'Links' do
         post '/api/v1/admin/trends/links/-1/approve', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -70,6 +72,8 @@ describe 'Links' do
         subject
 
         expect(response).to have_http_status(403)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -89,6 +93,8 @@ describe 'Links' do
         .to_not change_link_trendable
 
       expect(response).to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
     end
 
     def change_link_trendable
@@ -98,7 +104,7 @@ describe 'Links' do
     it 'returns the link data' do
       subject
 
-      expect(body_as_json).to match(
+      expect(response.parsed_body).to match(
         a_hash_including(
           url: preview_card.url,
           title: preview_card.title,
@@ -114,6 +120,8 @@ describe 'Links' do
         post '/api/v1/admin/trends/links/-1/reject', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -124,6 +132,8 @@ describe 'Links' do
         subject
 
         expect(response).to have_http_status(403)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

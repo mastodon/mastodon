@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Suggestions' do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'read' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read'
 
   describe 'GET /api/v1/suggestions' do
     subject do
@@ -23,19 +20,14 @@ RSpec.describe 'Suggestions' do
 
     it_behaves_like 'forbidden for wrong scope', 'write'
 
-    it 'returns http success' do
+    it 'returns http success with accounts' do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns accounts' do
-      subject
-
-      body = body_as_json
-
-      expect(body.size).to eq 2
-      expect(body.pluck(:id)).to match_array([bob, jeff].map { |i| i.id.to_s })
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body)
+        .to contain_exactly(include(id: bob.id.to_s), include(id: jeff.id.to_s))
     end
 
     context 'with limit param' do
@@ -44,7 +36,7 @@ RSpec.describe 'Suggestions' do
       it 'returns only the requested number of accounts' do
         subject
 
-        expect(body_as_json.size).to eq 1
+        expect(response.parsed_body.size).to eq 1
       end
     end
 
@@ -55,6 +47,8 @@ RSpec.describe 'Suggestions' do
         subject
 
         expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -74,15 +68,12 @@ RSpec.describe 'Suggestions' do
 
     it_behaves_like 'forbidden for wrong scope', 'read'
 
-    it 'returns http success' do
+    it 'returns http success and removes suggestion' do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'removes the specified suggestion' do
-      subject
-
+      expect(response.content_type)
+        .to start_with('application/json')
       expect(FollowRecommendationMute.exists?(account: user.account, target_account: jeff)).to be true
     end
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ExtendedDescription do
+RSpec.describe ExtendedDescription do
   describe '.current' do
     context 'with the default values' do
       it 'makes a new instance' do

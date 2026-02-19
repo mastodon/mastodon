@@ -31,7 +31,7 @@ class BatchedRemoveStatusService < BaseService
     # transaction lock the database, but we use the delete method instead
     # of destroy to avoid all callbacks. We rely on foreign keys to
     # cascade the delete faster without loading the associations.
-    statuses_and_reblogs.each_slice(50) { |slice| Status.where(id: slice.map(&:id)).delete_all }
+    statuses_and_reblogs.each_slice(50) { |slice| Status.unscoped.where(id: slice.pluck(:id)).delete_all }
 
     # Since we skipped all callbacks, we also need to manually
     # deindex the statuses
@@ -92,7 +92,7 @@ class BatchedRemoveStatusService < BaseService
       pipeline.publish(status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', payload)
     end
 
-    status.tags.map { |tag| tag.name.mb_chars.downcase }.each do |hashtag|
+    status.tags.map { |tag| tag.name.downcase }.each do |hashtag|
       pipeline.publish("timeline:hashtag:#{hashtag}", payload)
       pipeline.publish("timeline:hashtag:#{hashtag}:local", payload) if status.local?
     end

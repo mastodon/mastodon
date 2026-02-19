@@ -1,0 +1,24 @@
+Lint/Debugger: # Remove any `binding.pry`
+  Enabled: true
+  Exclude: []
+
+RSpec/Focus: # Require full spec run on CI
+  Enabled: true
+  Exclude: []
+
+Rails/Output: # Remove any `puts` debugging
+  inherit_mode:
+    merge:
+      - Include
+  Enabled: true
+  Exclude: []
+  Include:
+    - spec/**/*.rb
+
+Rails/FindEach: # Using `each` could impact performance, use `find_each`
+  Enabled: true
+  Exclude: []
+
+Rails/UniqBeforePluck: # Require `uniq.pluck` and not `pluck.uniq`
+  Enabled: true
+  Exclude: []

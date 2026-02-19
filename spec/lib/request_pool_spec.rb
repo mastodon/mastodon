@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RequestPool do
+RSpec.describe RequestPool do
   subject { described_class.new }
 
   describe '#with' do

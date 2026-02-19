@@ -4,7 +4,6 @@ class Redirect::BaseController < ApplicationController
   vary_by 'Accept-Language'
 
   before_action :set_resource
-  before_action :set_app_body_class
 
   def show
     @redirect_path = ActivityPub::TagManager.instance.url_for(@resource)
@@ -13,10 +12,6 @@ class Redirect::BaseController < ApplicationController
   end
 
   private
-
-  def set_app_body_class
-    @body_classes = 'app-body'
-  end
 
   def set_resource
     raise NotImplementedError

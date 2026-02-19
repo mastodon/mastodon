@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RegenerationWorker do
+RSpec.describe RegenerationWorker do
   subject { described_class.new }
 
   describe 'perform' do

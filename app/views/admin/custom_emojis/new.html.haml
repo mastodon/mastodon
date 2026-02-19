@@ -1,13 +1,21 @@
 - content_for :page_title do
   = t('.title')
 
-= simple_form_for @custom_emoji, url: admin_custom_emojis_path do |f|
+= simple_form_for [:admin, @custom_emoji] do |f|
   = render 'shared/error_messages', object: @custom_emoji
 
   .fields-group
-    = f.input :shortcode, wrapper: :with_label, label: t('admin.custom_emojis.shortcode'), hint: t('admin.custom_emojis.shortcode_hint')
+    = f.input :shortcode,
+              wrapper: :with_label,
+              label: t('admin.custom_emojis.shortcode'),
+              hint: t('admin.custom_emojis.shortcode_hint')
   .fields-group
-    = f.input :image, wrapper: :with_label, input_html: { accept: CustomEmoji::IMAGE_MIME_TYPES.join(',') }, hint: t('admin.custom_emojis.image_hint', size: number_to_human_size(CustomEmoji::LIMIT))
+    = f.input :image,
+              wrapper: :with_label,
+              input_html: { accept: CustomEmoji::IMAGE_MIME_TYPES.join(',') },
+              hint: t('admin.custom_emojis.image_hint', size: number_to_human_size(CustomEmoji::LIMIT))
 
   .actions
-    = f.button :button, t('admin.custom_emojis.upload'), type: :submit
+    = f.button :button,
+               t('admin.custom_emojis.upload'),
+               type: :submit

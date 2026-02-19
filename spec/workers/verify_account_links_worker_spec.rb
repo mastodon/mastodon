@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe VerifyAccountLinksWorker do
+RSpec.describe VerifyAccountLinksWorker do
   let(:worker) { described_class.new }
 
   describe 'perform' do

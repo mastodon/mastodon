@@ -1,0 +1,128 @@
+.wrapper {
+  display: flex;
+  align-items: start;
+  padding: 12px;
+  gap: 8px;
+  background-color: var(--color-bg-brand-softer);
+  color: var(--color-text-primary);
+  border-radius: 12px;
+}
+
+.icon {
+  padding: 4px;
+  border-radius: 9999px;
+  width: 1rem;
+  height: 1rem;
+  margin-top: -2px;
+}
+
+.content {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+@media screen and (width >= 630px) {
+  .content {
+    flex-direction: row;
+  }
+}
+
+.body {
+  flex-grow: 1;
+
+  h3 {
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+}
+
+.actionWrapper {
+  display: flex;
+  gap: 8px;
+  align-items: start;
+}
+
+.action {
+  appearance: none;
+  background: none;
+  border: none;
+  color: inherit;
+  font-weight: 500;
+  padding: 0;
+  text-decoration: underline;
+  transition: color 0.1s ease-in-out;
+
+  &:hover {
+    color: var(--color-text-brand-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action {
+    transition: none;
+  }
+}
+
+.close {
+  color: inherit;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.variantDefault {
+  .icon {
+    background-color: var(--color-bg-brand-soft);
+  }
+}
+
+/* .variantSubtle {
+  border: 1px solid var(--color-bg-brand-softer);
+  background-color: var(--color-bg-primary);
+
+  .icon {
+    background-color: var(--color-bg-brand-softer);
+  }
+} */
+
+.variantFeature {
+  background-color: var(--color-bg-brand-base);
+  color: var(--color-text-on-brand-base);
+
+  button:hover {
+    color: color-mix(var(--color-text-on-brand-base), transparent 20%);
+  }
+}
+
+.variantInverted {
+  background-color: var(--color-bg-inverted);
+  color: var(--color-text-on-inverted);
+}
+
+.variantSuccess {
+  background-color: var(--color-bg-success-softer);
+
+  .icon {
+    background-color: var(--color-bg-success-soft);
+  }
+}
+
+.variantWarning {
+  background-color: var(--color-bg-warning-softer);
+
+  .icon {
+    background-color: var(--color-bg-warning-soft);
+  }
+}
+
+.variantError {
+  background-color: var(--color-bg-error-softer);
+
+  .icon {
+    background-color: var(--color-bg-error-soft);
+  }
+}

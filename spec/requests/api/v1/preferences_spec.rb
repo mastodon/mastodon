@@ -2,10 +2,8 @@
 
 require 'rails_helper'
 
-describe 'Preferences' do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+RSpec.describe 'Preferences' do
+  include_context 'with API authentication'
 
   describe 'GET /api/v1/preferences' do
     context 'when not authorized' do
@@ -14,6 +12,8 @@ describe 'Preferences' do
 
         expect(response)
           .to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -34,7 +34,10 @@ describe 'Preferences' do
         expect(response)
           .to have_http_status(200)
 
-        expect(body_as_json)
+        expect(response.content_type)
+          .to start_with('application/json')
+
+        expect(response.parsed_body)
           .to be_present
       end
     end

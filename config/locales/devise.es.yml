@@ -7,11 +7,13 @@ es:
       send_paranoid_instructions: Si su dirección de correo electrónico existe en nuestra base de datos, recibirá un correo electrónico con instrucciones sobre cómo confirmar su dirección de correo en pocos minutos.
     failure:
       already_authenticated: Usted ya está registrado.
+      closed_registrations: Su intento de registro ha sido bloqueado debido a una política de red. Si cree que esto es un error, póngase en contacto con %{email}.
       inactive: Su cuenta no ha sido activada aún.
       invalid: "%{authentication_keys} o contraseña inválida."
       last_attempt: Tiene un intento más antes de que tu cuenta sea bloqueada.
       locked: Tu cuenta está bloqueada.
       not_found_in_database: Incorrecto %{authentication_keys} o contraseña.
+      omniauth_user_creation_failure: Error al crear una cuenta para esta identidad.
       pending: Su cuenta aun se encuentra bajo revisión.
       timeout: Tu sesión expiró. Por favor, inicia sesión nuevamente para continuar.
       unauthenticated: Necesitas iniciar sesión o registrarte antes de continuar.
@@ -31,8 +33,8 @@ es:
         subject: 'Mastodon: Correo electrónico cambiado'
         title: Nueva dirección de correo electrónico
       password_change:
-        explanation: La contraseña de su cuenta a sido cambiada.
-        extra: Si usted no a cambiado su contraseña. es probable que alguien a conseguido acceso a su cuenta. Por favor cambie su contraseña inmediatamente o contacte a el administrador de la instancia si usted esta bloqueado de su cuenta.
+        explanation: La contraseña de su cuenta ha sido cambiada.
+        extra: Si usted no ha cambiado su contraseña, es probable que alguien a conseguido acceso a su cuenta. Por favor cambie su contraseña inmediatamente o contacte al administrador de la instancia si usted está bloqueado de su cuenta.
         subject: 'Mastodon: Contraseña cambiada'
         title: Contraseña cambiada
       reconfirmation_instructions:
@@ -93,11 +95,6 @@ es:
       updated_not_active: Tu contraseña se ha cambiado con éxito.
     registrations:
       destroyed: "¡Hasta otra! Tu cuenta ha sido cancelada con éxito. Esperamos verte de nuevo pronto."
-      signed_up: "¡Bienvenido! Te has registrado correctamente."
-      signed_up_but_inactive: Te has registrado con éxito. Sin embargo, no se ha podido iniciar sesión porque tu cuenta aún no está activada.
-      signed_up_but_locked: Te has registrado con éxito. Sin embargo, no se ha podido iniciar sesión porque tu cuenta está bloqueada.
-      signed_up_but_pending: Un mensaje con un enlace de confirmación ha sido enviado a tu dirección de correo electrónico. Después de hacer clic en el enlace, revisaremos tu solicitud. Serás notificado si se aprueba.
-      signed_up_but_unconfirmed: Un mensaje con un enlace de confirmación ha sido enviado a tu dirección de correo electrónico. Por favor, sigue el enlace para activar tu cuenta. Por favor, comprueba tu carpeta de correo no deseado si no recibes dicho correo electrónico.
       update_needs_confirmation: Has actualizado tu cuenta con éxito, pero necesitamos verificar tu nueva dirección de correo electrónico. Por favor, comprueba tu correo electrónico y sigue el enlace de confirmación para confirmar tu nueva dirección de correo electrónico. Por favor, comprueba tu carpeta de correo no deseado si no recibes dicho correo electrónico.
       updated: Tu cuenta se ha actualizado con éxito.
     sessions:

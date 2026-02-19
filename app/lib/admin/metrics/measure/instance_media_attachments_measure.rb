@@ -29,7 +29,7 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
   def perform_total_query
     domain = params[:domain]
     domain = Instance.by_domain_and_subdomains(params[:domain]).select(:domain) if params[:include_subdomains]
-    MediaAttachment.joins(:account).merge(Account.where(domain: domain)).sum('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')
+    MediaAttachment.joins(:account).merge(Account.where(domain: domain)).sum(MediaAttachment.combined_media_file_size)
   end
 
   def perform_previous_total_query
@@ -44,26 +44,22 @@ class Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure < Admin::Metrics:
     <<~SQL.squish
       SELECT axis.*, (
         WITH new_media_attachments AS (
-          SELECT COALESCE(media_attachments.file_file_size, 0) + COALESCE(media_attachments.thumbnail_file_size, 0) AS size
+          SELECT #{media_size_total} AS size
           FROM media_attachments
           INNER JOIN accounts ON accounts.id = media_attachments.account_id
           WHERE date_trunc('day', media_attachments.created_at)::date = axis.period
             AND #{account_domain_sql(params[:include_subdomains])}
         )
-        SELECT SUM(size) FROM new_media_attachments
+        SELECT COALESCE(SUM(size), 0) FROM new_media_attachments
       ) AS value
       FROM (
-        SELECT generate_series(date_trunc('day', :start_at::timestamp)::date, date_trunc('day', :end_at::timestamp)::date, interval '1 day') AS period
+        #{generated_series_days}
       ) AS axis
     SQL
   end
 
-  def time_period
-    (@start_at.to_date..@end_at.to_date)
-  end
-
-  def previous_time_period
-    ((@start_at.to_date - length_of_period)..(@end_at.to_date - length_of_period))
+  def media_size_total
+    MediaAttachment.combined_media_file_size.to_sql
   end
 
   def params

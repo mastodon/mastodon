@@ -1,0 +1,12 @@
+.batch-table__row
+  %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+    = f.check_box :username_block_ids, { multiple: true, include_hidden: false }, username_block.id
+    .sr-only= username_block.username
+  .batch-table__row__content.pending-account
+    .pending-account__header
+      = t(username_block.exact? ? 'admin.username_blocks.matches_exactly_html' : 'admin.username_blocks.contains_html', string: content_tag(:samp, link_to(username_block.username, edit_admin_username_block_path(username_block))))
+      %br/
+      - if username_block.allow_with_approval?
+        = t('admin.email_domain_blocks.allow_registrations_with_approval')
+      - else
+        = t('admin.username_blocks.block_registrations')

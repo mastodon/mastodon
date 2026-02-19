@@ -45,6 +45,45 @@ RSpec.describe Trends::Statuses do
     end
   end
 
+  describe 'Trends::Statuses::Query methods' do
+    subject { described_class.new.query }
+
+    describe '#records' do
+      context 'with scored cards' do
+        let!(:higher_score) { Fabricate :status_trend, score: 10, language: 'en' }
+        let!(:lower_score) { Fabricate :status_trend, score: 1, language: 'es' }
+
+        it 'returns higher score first' do
+          expect(subject.records)
+            .to eq([higher_score.status, lower_score.status])
+        end
+
+        context 'with preferred locale' do
+          before { subject.in_locale!('es') }
+
+          it 'returns in language order' do
+            expect(subject.records)
+              .to eq([lower_score.status, higher_score.status])
+          end
+        end
+
+        context 'when account has chosen languages' do
+          let!(:lang_match_higher_score) { Fabricate :status_trend, score: 10, language: 'is' }
+          let!(:lang_match_lower_score) { Fabricate :status_trend, score: 1, language: 'da' }
+          let(:user) { Fabricate :user, chosen_languages: %w(da is) }
+          let(:account) { Fabricate :account, user: user }
+
+          before { subject.filtered_for!(account) }
+
+          it 'returns results' do
+            expect(subject.records)
+              .to eq([lang_match_higher_score.status, lang_match_lower_score.status, higher_score.status, lower_score.status])
+          end
+        end
+      end
+    end
+  end
+
   describe '#add' do
     let(:status) { Fabricate(:status) }
 
@@ -72,12 +111,16 @@ RSpec.describe Trends::Statuses do
     let!(:yesterday) { today - 1.day }
 
     let!(:status_foo) { Fabricate(:status, text: 'Foo', language: 'en', trendable: true, created_at: yesterday) }
-    let!(:status_bar) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today) }
+    let!(:status_bar) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today, quote: Quote.new(state: :accepted, quoted_status: status_foo)) }
     let!(:status_baz) { Fabricate(:status, text: 'Baz', language: 'en', trendable: true, created_at: today) }
+    let!(:untrendable) { Fabricate(:status, text: 'Untrendable', language: 'en', trendable: true, visibility: :unlisted) }
+    let!(:untrendable_quote) { Fabricate(:status, text: 'Untrendable quote!', language: 'en', trendable: true, created_at: today, quote: Quote.new(state: :accepted, quoted_status: untrendable)) }
 
     before do
       default_threshold_value.times { reblog(status_foo, today) }
       default_threshold_value.times { reblog(status_bar, today) }
+      default_threshold_value.times { reblog(untrendable, today) }
+      default_threshold_value.times { reblog(untrendable_quote, today) }
       (default_threshold_value - 1).times { reblog(status_baz, today) }
     end
 
@@ -90,7 +133,7 @@ RSpec.describe Trends::Statuses do
         results = subject.query.limit(10).to_a
 
         expect(results).to eq [status_bar, status_foo]
-        expect(results).to_not include(status_baz)
+        expect(results).to_not include(status_baz, untrendable, untrendable_quote)
       end
     end
 

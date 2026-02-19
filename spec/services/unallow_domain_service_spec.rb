@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UnallowDomainService, type: :service do
+RSpec.describe UnallowDomainService do
   subject { described_class.new }
 
   let(:bad_domain) { 'evil.org' }
@@ -13,9 +13,9 @@ RSpec.describe UnallowDomainService, type: :service do
   let!(:already_banned_account) { Fabricate(:account, username: 'badguy', domain: bad_domain, suspended: true, silenced: true) }
   let!(:domain_allow) { Fabricate(:domain_allow, domain: bad_domain) }
 
-  context 'with limited federation mode', :sidekiq_inline do
+  context 'with limited federation mode', :inline_jobs do
     before do
-      allow(Rails.configuration.x).to receive(:limited_federation_mode).and_return(true)
+      allow(Rails.configuration.x.mastodon).to receive(:limited_federation_mode).and_return(true)
     end
 
     describe '#call' do
@@ -34,7 +34,7 @@ RSpec.describe UnallowDomainService, type: :service do
 
   context 'without limited federation mode' do
     before do
-      allow(Rails.configuration.x).to receive(:limited_federation_mode).and_return(false)
+      allow(Rails.configuration.x.mastodon).to receive(:limited_federation_mode).and_return(false)
     end
 
     describe '#call' do

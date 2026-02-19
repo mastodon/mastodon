@@ -1,5 +1,11 @@
 .report-header__card
   .account-card
+    - if report.target_account.suspended?
+      .account-card__warning-badge
+        - if report.target_account.suspension_origin_local?
+          = t('admin.reports.already_suspended_badges.local')
+        - else
+          = t('admin.reports.already_suspended_badges.remote')
     .account-card__header
       = image_tag report.target_account.header.url, alt: ''
     .account-card__title
@@ -10,7 +16,7 @@
           %strong.emojify.p-name= display_name(report.target_account, custom_emojify: true)
         %span
           = acct(report.target_account)
-          = fa_icon('lock') if report.target_account.locked?
+          = material_symbol('lock') if report.target_account.locked?
     - if report.target_account.note.present?
       .account-card__bio.emojify
         = prerender_custom_emojis(account_bio_format(report.target_account), report.target_account.emojis)
@@ -18,13 +24,13 @@
       .account-card__counters
         .account-card__counters__item
           = friendly_number_to_human report.target_account.statuses_count
-          %small= t('accounts.posts', count: report.target_account.statuses_count).downcase
+          %small= t('accounts.posts', count: report.target_account.statuses_count)
         .account-card__counters__item
           = friendly_number_to_human report.target_account.followers_count
-          %small= t('accounts.followers', count: report.target_account.followers_count).downcase
+          %small= t('accounts.followers', count: report.target_account.followers_count)
         .account-card__counters__item
           = friendly_number_to_human report.target_account.following_count
-          %small= t('accounts.following', count: report.target_account.following_count).downcase
+          %small= t('accounts.following', count: report.target_account.following_count)
       .account-card__actions__button
         = link_to t('admin.reports.view_profile'), admin_account_path(report.target_account_id), class: 'button'
   .report-header__details.report-header__details--horizontal

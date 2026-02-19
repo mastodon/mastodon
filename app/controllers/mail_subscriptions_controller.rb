@@ -5,7 +5,6 @@ class MailSubscriptionsController < ApplicationController
 
   skip_before_action :require_functional!
 
-  before_action :set_body_classes
   before_action :set_user
   before_action :set_type
 
@@ -23,10 +22,6 @@ class MailSubscriptionsController < ApplicationController
   def set_user
     @user = GlobalID::Locator.locate_signed(params[:token], for: 'unsubscribe')
     not_found unless @user
-  end
-
-  def set_body_classes
-    @body_classes = 'lighter'
   end
 
   def set_type

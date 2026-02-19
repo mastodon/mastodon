@@ -15,16 +15,17 @@
         %td
           %code= @application.secret
       %tr
-        %th{ rowspan: 2 }= t('applications.your_token')
+        %th= t('applications.your_token')
         %td
           %code= current_user.token_for_app(@application).token
       %tr
+        %th
         %td= table_link_to 'refresh', t('applications.regenerate_token'), regenerate_settings_application_path(@application), method: :post
 
 %hr/
 
-= simple_form_for @application, url: settings_application_path(@application), method: :put do |f|
-  = render 'fields', f: f
+= simple_form_for @application, url: settings_application_path(@application) do |form|
+  = render form
 
   .actions
-    = f.button :button, t('generic.save_changes'), type: :submit
+    = form.button :button, t('generic.save_changes'), type: :submit

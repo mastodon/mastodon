@@ -21,7 +21,7 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
     belongs_to :account, class_name: 'MigrationAccount'
     has_many :mentions, dependent: :destroy, inverse_of: :status, class_name: 'MigrationMention', foreign_key: :status_id
     scope :local, -> { where(local: true).or(where(uri: nil)) }
-    enum visibility: { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, _suffix: :visibility
+    enum :visibility, { public: 0, unlisted: 1, private: 2, direct: 3, limited: 4 }, suffix: :visibility
     has_many :active_mentions, -> { active }, class_name: 'MigrationMention', inverse_of: :status, foreign_key: :status_id
   end
 

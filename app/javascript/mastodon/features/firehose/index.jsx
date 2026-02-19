@@ -6,13 +6,15 @@ import { useIntl, defineMessages, FormattedMessage } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { NavLink } from 'react-router-dom';
 
+import { useIdentity } from '@/mastodon/identity_context';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import { addColumn } from 'mastodon/actions/columns';
 import { changeSetting } from 'mastodon/actions/settings';
 import { connectPublicStream, connectCommunityStream } from 'mastodon/actions/streaming';
 import { expandPublicTimeline, expandCommunityTimeline } from 'mastodon/actions/timelines';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
-import initialState, { domain } from 'mastodon/initial_state';
+import { localLiveFeedAccess, remoteLiveFeedAccess, domain } from 'mastodon/initial_state';
+import { canViewFeed } from 'mastodon/permissions';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import Column from '../../components/column';
@@ -22,15 +24,14 @@ import StatusListContainer from '../ui/containers/status_list_container';
 
 const messages = defineMessages({
   title: { id: 'column.firehose', defaultMessage: 'Live feeds' },
-});
-
-// TODO: use a proper React context later on
-const useIdentity = () => ({
-  signedIn: !!initialState.meta.me,
-  accountId: initialState.meta.me,
-  disabledAccountId: initialState.meta.disabled_account_id,
-  accessToken: initialState.meta.access_token,
-  permissions: initialState.role ? initialState.role.permissions : 0,
+  title_local: {
+    id: 'column.firehose_local',
+    defaultMessage: 'Live feed for this server',
+  },
+  title_singular: {
+    id: 'column.firehose_singular',
+    defaultMessage: 'Live feed',
+  },
 });
 
 const ColumnSettings = () => {
@@ -42,15 +43,17 @@ const ColumnSettings = () => {
   );
 
   return (
-    <div>
-      <div className='column-settings__row'>
-        <SettingToggle
-          settings={settings}
-          settingPath={['onlyMedia']}
-          onChange={onChange}
-          label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
-        />
-      </div>
+    <div className='column-settings'>
+      <section>
+        <div className='column-settings__row'>
+          <SettingToggle
+            settings={settings}
+            settingPath={['onlyMedia']}
+            onChange={onChange}
+            label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />}
+          />
+        </div>
+      </section>
     </div>
   );
 };
@@ -58,7 +61,7 @@ const ColumnSettings = () => {
 const Firehose = ({ feedType, multiColumn }) => {
   const dispatch = useAppDispatch();
   const intl = useIntl();
-  const { signedIn } = useIdentity();
+  const { signedIn, permissions } = useIdentity();
   const columnRef = useRef(null);
 
   const onlyMedia = useAppSelector((state) => state.getIn(['settings', 'firehose', 'onlyMedia'], false));
@@ -139,7 +142,7 @@ const Firehose = ({ feedType, multiColumn }) => {
     <DismissableBanner id='public_timeline'>
       <FormattedMessage
         id='dismissable_banner.public_timeline'
-        defaultMessage='These are the most recent public posts from people on the social web that people on {domain} follow.'
+        defaultMessage='These are the most recent public posts from people on the fediverse that people on {domain} follow.'
         values={{ domain }}
       />
     </DismissableBanner>
@@ -157,13 +160,32 @@ const Firehose = ({ feedType, multiColumn }) => {
     />
   );
 
+  const canViewSelectedFeed = canViewFeed(signedIn, permissions, feedType === 'community' ? localLiveFeedAccess : remoteLiveFeedAccess);
+
+  const disabledTimelineMessage = (
+    <FormattedMessage
+      id='empty_column.disabled_feed'
+      defaultMessage='This feed has been disabled by your server administrators.'
+    />
+  );
+
+  let title;
+
+  if (canViewFeed(signedIn, permissions, localLiveFeedAccess) && canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) {
+    title = messages.title;
+  } else if (canViewFeed(signedIn, permissions, localLiveFeedAccess)) {
+    title = messages.title_local;
+  } else {
+    title = messages.title_singular;
+  }
+
   return (
     <Column bindToDocument={!multiColumn} ref={columnRef} label={intl.formatMessage(messages.title)}>
       <ColumnHeader
         icon='globe'
         iconComponent={PublicIcon}
         active={hasUnread}
-        title={intl.formatMessage(messages.title)}
+        title={intl.formatMessage(title)}
         onPin={handlePin}
         onClick={handleHeaderClick}
         multiColumn={multiColumn}
@@ -171,19 +193,21 @@ const Firehose = ({ feedType, multiColumn }) => {
         <ColumnSettings />
       </ColumnHeader>
 
-      <div className='account__section-headline'>
-        <NavLink exact to='/public/local'>
-          <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
-        </NavLink>
+      {(canViewFeed(signedIn, permissions, localLiveFeedAccess) && canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) && (
+        <div className='account__section-headline'>
+          <NavLink exact to='/public/local'>
+            <FormattedMessage tagName='div' id='firehose.local' defaultMessage='This server' />
+          </NavLink>
 
-        <NavLink exact to='/public/remote'>
-          <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
-        </NavLink>
+          <NavLink exact to='/public/remote'>
+            <FormattedMessage tagName='div' id='firehose.remote' defaultMessage='Other servers' />
+          </NavLink>
 
-        <NavLink exact to='/public'>
-          <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
-        </NavLink>
-      </div>
+          <NavLink exact to='/public'>
+            <FormattedMessage tagName='div' id='firehose.all' defaultMessage='All' />
+          </NavLink>
+        </div>
+      )}
 
       <StatusListContainer
         prepend={prependBanner}
@@ -191,7 +215,7 @@ const Firehose = ({ feedType, multiColumn }) => {
         onLoadMore={handleLoadMore}
         trackScroll
         scrollKey='firehose'
-        emptyMessage={emptyMessage}
+        emptyMessage={canViewSelectedFeed ? emptyMessage : disabledTimelineMessage}
         bindToDocument={!multiColumn}
       />
 

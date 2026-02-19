@@ -20,7 +20,7 @@ end
 def find_used_icons
   icons_by_weight_and_size = {}
 
-  Dir[Rails.root.join('app', 'javascript', '**', '*.*s*')].map do |path|
+  Rails.root.glob('app/javascript/**/*.*s*').map do |path|
     File.open(path, 'r') do |file|
       pattern = %r{\Aimport .* from '@/material-icons/(?<weight>[0-9]+)-(?<size>[0-9]+)px/(?<icon>[^-]*)(?<fill>-fill)?.svg\?react';}
       file.each_line do |line|
@@ -35,6 +35,20 @@ def find_used_icons
 
         icons_by_weight_and_size[weight][size] << match['icon']
       end
+    end
+  end
+
+  Rails.root.join('config', 'navigation.rb').open('r') do |file|
+    pattern = /material_symbol\('(?<icon>[^']*)'\)/
+    file.each_line do |line|
+      match = pattern.match(line)
+      next if match.blank?
+
+      # navigation.rb only uses 400x24 icons, per material_symbol() in
+      # app/helpers/application_helper.rb
+      icons_by_weight_and_size[400] ||= {}
+      icons_by_weight_and_size[400][24] ||= Set.new
+      icons_by_weight_and_size[400][24] << match['icon']
     end
   end
 

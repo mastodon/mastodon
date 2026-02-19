@@ -60,7 +60,7 @@ eu:
       error:
         title: Errore bat gertatu da
       new:
-        prompt_html: "%{client_name} bezeroak zure kontura sartzeko baimena nahi du. Hirugarrengoen aplikazio bat da. <strong>Ez bazara fidatzen, ez zenuke baimendu behar.</strong>"
+        prompt_html: "%{client_name}-(e)k zure kontura sartzeko baimena nahi du. <strong>Eskaera hau onartu, iturri hori ezagutu eta harengan konfiantza baduzu</strong>"
         review_permissions: Berrikusi baimenak
         title: Baimena behar da
       show:
@@ -97,7 +97,7 @@ eu:
           unknown: Sarbide token-a baliogabea da
         resource_owner_authenticator_not_configured: Baliabidearen jabearen bilaketak huts egin du Doorkeeper.configure.resource_owner_authenticator konfiguratu gabe dagoelako.
         server_error: Autorizatze zerbitzariak eskaera betetzea eragotzi duen ustekabeko baldintza bat aurkitu du.
-        temporarily_unavailable: Autorizatze zerbitzariak ezin du orain eskaera bete  une batez zerbitzariak gainezka egin duelako edo mantentze lanetan dagoelako.
+        temporarily_unavailable: Baimen-zerbitzariak ezin du orain eskaera bete, une batez zerbitzariak gainezka egin duelako edo mantentze lanetan dagoelako.
         unauthorized_client: Bezeroak ez du eskaera hau metodo hau erabiliz egiteko baimenik.
         unsupported_grant_type: Autorizatze mota ez da onartzen autorizatze zerbitzarian.
         unsupported_response_type: Autorizatze zerbitzari honek ez du onartzen erantzun mota hau.
@@ -135,6 +135,7 @@ eu:
         media: Multimedia eranskinak
         mutes: Mututzeak
         notifications: Jakinarazpenak
+        profile: Zure Mastodon profila
         push: Push jakinarazpenak
         reports: Salaketak
         search: Bilaketak
@@ -165,6 +166,7 @@ eu:
       admin:write:reports: salaketetan moderazio ekintzak burutu
       crypto: erabili muturretik muturrerako zifraketa
       follow: aldatu kontuaren erlazioak
+      profile: irakurri soilik zure kontuaren profileko informazioa
       push: jaso push jakinarazpenak
       read: irakurri zure kontuko datu guztiak
       read:accounts: ikusi kontuaren informazioa

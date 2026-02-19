@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-class Form::CustomEmojiBatch
-  include ActiveModel::Model
-  include Authorization
-  include AccountableConcern
-
-  attr_accessor :custom_emoji_ids, :action, :current_account,
-                :category_id, :category_name, :visible_in_picker
+class Form::CustomEmojiBatch < Form::BaseBatch
+  attr_accessor :category_id,
+                :category_name,
+                :visible_in_picker,
+                :custom_emoji_ids
 
   def save
     case action

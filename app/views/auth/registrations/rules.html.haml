@@ -17,13 +17,9 @@
     %p.lead= t('auth.rules.preamble', domain: site_hostname)
 
   %ol.rules-list
-    - @rules.each do |rule|
-      %li
-        .rules-list__text= rule.text
+    = render collection: @rule_translations, partial: 'auth/rule_translations/rule_translation'
 
   .stacked-actions
     - accept_path = @invite_code.present? ? public_invite_url(invite_code: @invite_code, accept: @accept_token) : new_user_registration_path(accept: @accept_token)
     = link_to t('auth.rules.accept'), accept_path, class: 'button'
-    = link_to t('auth.rules.back'), root_path, class: 'button button-tertiary'
-
-.form-footer= render 'auth/shared/links'
+    = link_to t('auth.rules.back'), root_path, class: 'button button-secondary'

@@ -1,0 +1,5 @@
+.batch-table__row
+  %label.batch-table__row__select.batch-checkbox
+    = f.check_box :status_ids, { multiple: true, include_hidden: false }, status.id
+  .batch-table__row__content
+    = render partial: 'admin/shared/status', object: status

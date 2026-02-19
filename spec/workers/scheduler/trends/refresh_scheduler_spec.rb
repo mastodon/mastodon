@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::Trends::RefreshScheduler do
+RSpec.describe Scheduler::Trends::RefreshScheduler do
   let(:worker) { described_class.new }
 
   describe 'perform' do

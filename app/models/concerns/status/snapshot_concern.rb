@@ -25,11 +25,12 @@ module Status::SnapshotConcern
       poll_options: preloadable_poll&.options&.dup,
       account_id: account_id || self.account_id,
       created_at: at_time || edited_at,
+      quote_id: quote&.id,
       rate_limit: rate_limit
     )
   end
 
-  def snapshot!(**options)
-    build_snapshot(**options).save!
+  def snapshot!(**)
+    build_snapshot(**).save!
   end
 end

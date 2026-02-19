@@ -17,7 +17,7 @@ module UserSettings::Glue
     self.class.definition_for(key)&.type
   end
 
-  def has_attribute?(key) # rubocop:disable Naming/PredicateName
+  def has_attribute?(key) # rubocop:disable Naming/PredicatePrefix
     self.class.definition_for?(key)
   end
 end

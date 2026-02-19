@@ -1,0 +1,19 @@
+- content_for :page_title do
+  = t('admin.fasp.providers.registrations.title')
+
+%p= t('admin.fasp.providers.registrations.description')
+
+%table.table.inline-table
+  %tbody
+    %tr
+      %th= t('admin.fasp.providers.name')
+      %td= @provider.name
+    %tr
+      %th= t('admin.fasp.providers.public_key_fingerprint')
+      %td
+        %code= @provider.provider_public_key_fingerprint
+
+= form_with url: admin_fasp_provider_registration_path(@provider), class: :simple_form do |f|
+  .actions
+    = link_to t('admin.fasp.providers.registrations.reject'), admin_fasp_provider_path(@provider), data: { method: :delete }, class: 'btn negative'
+    = f.button t('admin.fasp.providers.registrations.confirm'), type: :submit, class: 'btn'

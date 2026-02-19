@@ -15,14 +15,14 @@ module Devise
         if resource && !resource.otp_required_for_login?
           success!(resource)
         else
-          fail(:invalid)
+          fail(:invalid) # rubocop:disable Style/SignalException -- method is from Warden::Strategies::Base
         end
       end
 
       protected
 
       def valid_params?
-        params[scope] && params[scope][:password].present?
+        params[scope].is_a?(Hash) && params[scope][:password].present?
       end
     end
   end

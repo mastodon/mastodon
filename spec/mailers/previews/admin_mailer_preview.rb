@@ -32,4 +32,9 @@ class AdminMailerPreview < ActionMailer::Preview
   def new_critical_software_updates
     AdminMailer.with(recipient: Account.first).new_critical_software_updates
   end
+
+  # Preview this email at http://localhost:3000/rails/mailers/admin_mailer/auto_close_registrations
+  def auto_close_registrations
+    AdminMailer.with(recipient: Account.first).auto_close_registrations
+  end
 end

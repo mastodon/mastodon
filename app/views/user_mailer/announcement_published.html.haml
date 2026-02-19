@@ -1,0 +1,12 @@
+= content_for :heading do
+  = render 'application/mailer/heading',
+           image_url: frontend_asset_url('images/mailer-new/heading/user.png'),
+           title: t('user_mailer.announcement_published.title', domain: site_hostname)
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-body-padding-td
+      %table.email-inner-card-table{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-inner-card-td.email-prose
+            %p= t('user_mailer.announcement_published.description', domain: site_hostname)
+            = linkify(@announcement.text)

@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/migration_warning'
 
-describe Mastodon::MigrationWarning do
+RSpec.describe Mastodon::MigrationWarning do
   describe 'migration_duration_warning' do
     before do
       allow(migration).to receive(:valid_environment?).and_return(true)

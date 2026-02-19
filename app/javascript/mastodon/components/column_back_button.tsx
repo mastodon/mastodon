@@ -24,13 +24,13 @@ function useHandleClick(onClick?: OnClickCallback) {
   }, [history, onClick]);
 }
 
-export const ColumnBackButton: React.FC<{ onClick: OnClickCallback }> = ({
+export const ColumnBackButton: React.FC<{ onClick?: OnClickCallback }> = ({
   onClick,
 }) => {
   const handleClick = useHandleClick(onClick);
 
   const component = (
-    <button onClick={handleClick} className='column-back-button'>
+    <button onClick={handleClick} className='column-back-button' type='button'>
       <Icon
         id='chevron-left'
         icon={ArrowBackIcon}

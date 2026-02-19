@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative '../mastodon/database'
 require_relative '../mastodon/snowflake'
 
 module ActiveRecord
@@ -8,6 +9,8 @@ module ActiveRecord
       original_load_schema = instance_method(:load_schema)
 
       define_method(:load_schema) do |db_config, *args|
+        Mastodon::Database.add_post_migrate_path_to_rails(force: true)
+
         ActiveRecord::Base.establish_connection(db_config)
         Mastodon::Snowflake.define_timestamp_id
 

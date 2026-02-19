@@ -29,7 +29,7 @@ cs:
       edit:
         title: Upravit aplikaci
       form:
-        error: A jéje! Zkontrolujte ve formuláři případné chyby
+        error: A jéje! Zkontrolujte formulář pro případné chyby
       help:
         native_redirect_uri: Pro místní testy použijte %{native_redirect_uri}
         redirect_uri: Jedno URI na každý řádek
@@ -60,7 +60,7 @@ cs:
       error:
         title: Vyskytla se chyba
       new:
-        prompt_html: "%{client_name} si přeje oprávnění pro přístup k vašemu účtu. Je to aplikace třetí strany. <strong>Pokud jí nedůvěřujete, pak byste ji neměli autorizovat.</strong>"
+        prompt_html: "%{client_name} by chtěl oprávnění k přístupu k vašemu účtu. <strong>Schvalte tuto žádost pouze pokud rozpoznáte a důvěřujete tomuto zdroji.</strong>"
         review_permissions: Zkontrolujte oprávnění
         title: Je vyžadována autorizace
       show:
@@ -83,8 +83,12 @@ cs:
         access_denied: Vlastník zdroje či autorizační server žádost zamítl.
         credential_flow_not_configured: Proud Resource Owner Password Credentials selhal, protože Doorkeeper.configure.resource_owner_from_credentials nebylo nakonfigurováno.
         invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící klientské autentizaci či nepodporované autentizační metodě.
+        invalid_code_challenge_method:
+          one: code_challenge_method musí být %{challenge_methods}.
+          other: code_challenge_method musí být jedna z %{challenge_methods}.
+          zero: Autorizační server nepodporuje PKCE, protože neexistují žádné akceptované hodnoty kode_challenge_method.
         invalid_grant: Poskytnuté oprávnění je neplatné, vypršela jeho platnost, bylo odvoláno, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
-        invalid_redirect_uri: URI pro přesměrování není platné.
+        invalid_redirect_uri: Zahrnutá přesměrovací URI není platná.
         invalid_request:
           missing_param: 'Chybí potřebný parametr: %{value}.'
           request_not_authorized: Požadavek musí být autorizován. Potřebný parametr pro autorizaci požadavku chybí nebo není platný.
@@ -135,6 +139,7 @@ cs:
         media: Mediální přílohy
         mutes: Skrytí
         notifications: Oznámení
+        profile: Váš Mastodon profil
         push: Push oznámení
         reports: Hlášení
         search: Hledání
@@ -165,6 +170,7 @@ cs:
       admin:write:reports: provádět moderátorské akce s hlášeními
       crypto: používat end-to-end šifrování
       follow: upravovat vztahy mezi profily
+      profile: číst pouze základní informace o vašem účtu
       push: přijímat vaše push oznámení
       read: vidět všechna data vašeho účtu
       read:accounts: vidět informace o účtech

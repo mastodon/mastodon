@@ -2,11 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Media API', :paperclip_processing do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'write' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+RSpec.describe 'Media API', :attachment_processing do
+  include_context 'with API authentication', oauth_scopes: 'write'
 
   describe 'POST /api/v2/media' do
     context 'when small media format attachment is processed immediately' do
@@ -21,8 +18,27 @@ RSpec.describe 'Media API', :paperclip_processing do
         expect(response)
           .to have_http_status(200)
 
-        expect(body_as_json)
+        expect(response.content_type)
+          .to start_with('application/json')
+
+        expect(response.parsed_body)
           .to be_a(Hash)
+      end
+    end
+
+    context 'when media description is too long' do
+      let(:params) do
+        {
+          file: fixture_file_upload('attachment-jpg.123456_abcd', 'image/jpeg'),
+          description: 'a' * MediaAttachment::MAX_DESCRIPTION_LENGTH * 2,
+        }
+      end
+
+      it 'returns http error' do
+        post '/api/v2/media', headers: headers, params: params
+
+        expect(response).to have_http_status(422)
+        expect(response.body).to include 'Description is too long'
       end
     end
 
@@ -38,7 +54,10 @@ RSpec.describe 'Media API', :paperclip_processing do
         expect(response)
           .to have_http_status(202)
 
-        expect(body_as_json)
+        expect(response.content_type)
+          .to start_with('application/json')
+
+        expect(response.parsed_body)
           .to be_a(Hash)
       end
     end
@@ -52,7 +71,7 @@ RSpec.describe 'Media API', :paperclip_processing do
         allow(user.account).to receive(:media_attachments).and_return(media_attachments)
       end
 
-      context 'when imagemagick cannot identify the file type' do
+      context 'when file type cannot be identified' do
         before do
           allow(media_attachments).to receive(:create!).and_raise(Paperclip::Errors::NotIdentifiedByImageMagickError)
         end
@@ -63,7 +82,10 @@ RSpec.describe 'Media API', :paperclip_processing do
           expect(response)
             .to have_http_status(422)
 
-          expect(body_as_json)
+          expect(response.content_type)
+            .to start_with('application/json')
+
+          expect(response.parsed_body)
             .to be_a(Hash)
             .and include(error: /File type/)
         end
@@ -80,7 +102,10 @@ RSpec.describe 'Media API', :paperclip_processing do
           expect(response)
             .to have_http_status(500)
 
-          expect(body_as_json)
+          expect(response.content_type)
+            .to start_with('application/json')
+
+          expect(response.parsed_body)
             .to be_a(Hash)
             .and include(error: /processing/)
         end

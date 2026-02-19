@@ -12,27 +12,19 @@
 #
 
 class CustomFilterStatus < ApplicationRecord
+  include CustomFilterCache
+
   belongs_to :custom_filter
   belongs_to :status
 
-  validates :status, uniqueness: { scope: :custom_filter }
-  validate :validate_status_access
+  validates :status_id, uniqueness: { scope: :custom_filter_id }
+  validate :validate_status_access, if: [:custom_filter_account, :status]
 
-  before_save :prepare_cache_invalidation!
-  before_destroy :prepare_cache_invalidation!
-  after_commit :invalidate_cache!
+  delegate :account, to: :custom_filter, prefix: true, allow_nil: true
 
   private
 
   def validate_status_access
-    errors.add(:status_id, :invalid) unless StatusPolicy.new(custom_filter.account, status).show?
-  end
-
-  def prepare_cache_invalidation!
-    custom_filter.prepare_cache_invalidation!
-  end
-
-  def invalidate_cache!
-    custom_filter.invalidate_cache!
+    errors.add(:status_id, :invalid) unless StatusPolicy.new(custom_filter_account, status).show?
   end
 end

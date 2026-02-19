@@ -12,14 +12,34 @@ else
   bind "tcp://#{ENV.fetch('BIND', '127.0.0.1')}:#{ENV.fetch('PORT', 3000)}"
 end
 
-environment ENV.fetch('RAILS_ENV') { 'development' }
-workers     ENV.fetch('WEB_CONCURRENCY') { 2 }.to_i
+workers ENV.fetch('WEB_CONCURRENCY') { 2 }.to_i
 
 preload_app!
 
-on_worker_boot do
-  ActiveSupport.on_load(:active_record) do
-    ActiveRecord::Base.establish_connection
+if ENV['MASTODON_PROMETHEUS_EXPORTER_ENABLED'] == 'true'
+  require 'prometheus_exporter'
+  require 'prometheus_exporter/instrumentation'
+
+  if ENV['MASTODON_PROMETHEUS_EXPORTER_LOCAL'] == 'true'
+    before_fork do
+      Mastodon::PrometheusExporter::LocalServer.setup!
+    end
+  end
+
+  before_worker_boot do
+    # Ruby process metrics (memory, GC, etc)
+    PrometheusExporter::Instrumentation::Process.start(type: 'puma')
+
+    # ActiveRecord metrics (connection pool usage)
+    PrometheusExporter::Instrumentation::ActiveRecord.start(
+      custom_labels: { type: 'puma' }, # optional params
+      config_labels: [:database, :host] # optional params
+    )
+  end
+
+  after_worker_boot do
+    # Puma metrics
+    PrometheusExporter::Instrumentation::Puma.start unless PrometheusExporter::Instrumentation::Puma.started?
   end
 end
 

@@ -10,6 +10,7 @@ module TestEndpoints
     /.well-known/nodeinfo
     /nodeinfo/2.0
     /manifest
+    /css/custom-1a2s3d4f.css
     /custom.css
     /actor
     /api/v1/instance/extended_description
@@ -39,7 +40,7 @@ module TestEndpoints
     /api/v1/accounts/lookup?acct=alice
     /api/v1/statuses/110224538612341312
     /api/v1/statuses/110224538612341312/context
-    /api/v1/polls/12345
+    /api/v1/polls/123456789
     /api/v1/trends/statuses
     /api/v1/directory
   ).freeze
@@ -118,7 +119,7 @@ module TestEndpoints
   end
 end
 
-describe 'Caching behavior' do
+RSpec.describe 'Caching behavior' do
   shared_examples 'cachable response' do |http_success: false|
     it 'does not set cookies or set public cache control', :aggregate_failures do
       expect(response.cookies).to be_empty
@@ -166,14 +167,18 @@ describe 'Caching behavior' do
     ActionController::Base.allow_forgery_protection = old
   end
 
-  let(:alice) { Fabricate(:account, username: 'alice') }
-  let(:user)  { Fabricate(:user, role: UserRole.find_by(name: 'Moderator')) }
+  let(:alice) { Account.find_by(username: 'alice') }
+  let(:user) { User.find_by(email: 'user@host.example') }
+  let(:token) { Doorkeeper::AccessToken.find_by(resource_owner_id: user.id) }
 
-  before do
-    status = Fabricate(:status, account: alice, id: '110224538612341312')
-    Fabricate(:status, account: alice, id: '110224538643211312', visibility: :private)
+  before_all do
+    alice = Fabricate(:account, username: 'alice')
+    user = Fabricate(:moderator_user, email: 'user@host.example')
+    status = Fabricate(:status, account: alice, id: 110_224_538_612_341_312)
+    Fabricate(:status, account: alice, id: 110_224_538_643_211_312, visibility: :private)
     Fabricate(:invite, code: 'abcdef')
-    Fabricate(:poll, status: status, account: alice, id: '12345')
+    Fabricate(:poll, status: status, account: alice, id: 123_456_789)
+    Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read')
 
     user.account.follow!(alice)
   end
@@ -184,7 +189,7 @@ describe 'Caching behavior' do
         get '/users/alice'
 
         expect(response).to redirect_to('/@alice')
-        expect(response.headers['Vary']&.split(',')&.map { |x| x.strip.downcase }).to include('accept')
+        expect(response_vary_headers).to include('accept')
       end
     end
 
@@ -321,8 +326,6 @@ describe 'Caching behavior' do
   end
 
   context 'with an auth token' do
-    let!(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
-
     TestEndpoints::ALWAYS_CACHED.each do |endpoint|
       describe endpoint do
         before do
@@ -469,12 +472,12 @@ describe 'Caching behavior' do
   context 'when enabling LIMITED_FEDERATION_MODE mode' do
     around do |example|
       ClimateControl.modify LIMITED_FEDERATION_MODE: 'true' do
-        old_limited_federation_mode = Rails.configuration.x.limited_federation_mode
-        Rails.configuration.x.limited_federation_mode = true
+        old_limited_federation_mode = Rails.configuration.x.mastodon.limited_federation_mode
+        Rails.configuration.x.mastodon.limited_federation_mode = true
 
         example.run
 
-        Rails.configuration.x.limited_federation_mode = old_limited_federation_mode
+        Rails.configuration.x.mastodon.limited_federation_mode = old_limited_federation_mode
       end
     end
 
@@ -585,8 +588,6 @@ describe 'Caching behavior' do
     end
 
     context 'with an auth token' do
-      let!(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read') }
-
       TestEndpoints::ALWAYS_CACHED.each do |endpoint|
         describe endpoint do
           before do

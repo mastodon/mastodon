@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AddToPublicStatusesIndexWorker do
+RSpec.describe AddToPublicStatusesIndexWorker do
   describe '#perform' do
     let(:account) { Fabricate(:account, indexable: indexable) }
     let(:account_id) { account.id }

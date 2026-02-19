@@ -35,7 +35,7 @@ class AccountStatusesFilter
     return Status.none if account.unavailable?
 
     if anonymous?
-      account.statuses.where(visibility: %i(public unlisted))
+      account.statuses.distributable_visibility
     elsif author?
       account.statuses.all # NOTE: #merge! does not work without the #all
     elsif blocked?
@@ -70,7 +70,7 @@ class AccountStatusesFilter
   end
 
   def only_media_scope
-    Status.joins(:media_attachments).merge(account.media_attachments).group(Status.arel_table[:id])
+    Status.without_empty_attachments.joins(:media_attachments).merge(account.media_attachments).group(Status.arel_table[:id])
   end
 
   def no_replies_scope

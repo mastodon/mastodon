@@ -1,4 +1,6 @@
-version: '3'
+# This file is designed for production server deployment, not local development work
+# For a containerized local dev environment, see: https://github.com/mastodon/mastodon/blob/main/docs/DEVELOPMENT.md#docker
+
 services:
   db:
     restart: always
@@ -25,7 +27,7 @@ services:
 
   # es:
   #   restart: always
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.17.29
   #   environment:
   #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m -Des.enforce.bootstrap.checks=true"
   #     - "xpack.license.self_generated.type=basic"
@@ -55,8 +57,9 @@ services:
   #     - '127.0.0.1:9200:9200'
 
   web:
-    build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.7
+    # You can uncomment the following line if you want to not use the prebuilt image, for example if you have local code changes
+    # build: .
+    image: ghcr.io/mastodon/mastodon:v4.5.6
     restart: always
     env_file: .env.production
     command: bundle exec puma -C config/puma.rb
@@ -65,7 +68,7 @@ services:
       - internal_network
     healthcheck:
       # prettier-ignore
-      test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:3000/health || exit 1']
+      test: ['CMD-SHELL',"curl -s --noproxy localhost localhost:3000/health | grep -q 'OK' || exit 1"]
     ports:
       - '127.0.0.1:3000:3000'
     depends_on:
@@ -76,17 +79,20 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.7
+    # You can uncomment the following lines if you want to not use the prebuilt image, for example if you have local code changes
+    # build:
+    #   dockerfile: ./streaming/Dockerfile
+    #   context: .
+    image: ghcr.io/mastodon/mastodon-streaming:v4.5.6
     restart: always
     env_file: .env.production
-    command: node ./streaming
+    command: node ./streaming/index.js
     networks:
       - external_network
       - internal_network
     healthcheck:
       # prettier-ignore
-      test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1']
+      test: ['CMD-SHELL', "curl -s --noproxy localhost localhost:4000/api/v1/streaming/health | grep -q 'OK' || exit 1"]
     ports:
       - '127.0.0.1:4000:4000'
     depends_on:
@@ -94,8 +100,9 @@ services:
       - redis
 
   sidekiq:
-    build: .
-    image: ghcr.io/mastodon/mastodon:v4.2.7
+    # You can uncomment the following line if you want to not use the prebuilt image, for example if you have local code changes
+    # build: .
+    image: ghcr.io/mastodon/mastodon:v4.5.6
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq
@@ -108,7 +115,7 @@ services:
     volumes:
       - ./public/system:/mastodon/public/system
     healthcheck:
-      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 8' || false"]
 
   ## Uncomment to enable federation with tor instances along with adding the following ENV variables
   ## http_hidden_proxy=http://privoxy:8118

@@ -7,6 +7,7 @@ es-AR:
       send_paranoid_instructions: Si tu dirección de correo electrónico existe en nuestra base de datos, en unos minutos, vas a recibir un correo electrónico con instrucciones sobre cómo confirmar tu dirección de correo. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
     failure:
       already_authenticated: Ya iniciaste sesión.
+      closed_registrations: Tu intento de registro fue bloqueado debido a una política de red. Si creés que esto es un error, ponete en contacto con %{email}.
       inactive: Tu cuenta todavía no está activada.
       invalid: "%{authentication_keys} o contraseña no válidas."
       last_attempt: Tenés un intento más antes de que se bloquee tu cuenta.
@@ -94,11 +95,6 @@ es-AR:
       updated_not_active: Se cambió exitosamente tu contraseña.
     registrations:
       destroyed: "¡Chauchas! Se canceló exitosamente tu cuenta. Esperamos verte pronto de nuevo."
-      signed_up: "¡Bienvenido! Te registraste exitosamente."
-      signed_up_but_inactive: Te registraste exitosamente. Sin embargo, no podés iniciar sesión porque tu cuenta todavía no está activada.
-      signed_up_but_locked: Te registraste exitosamente. Sin embargo, no podés iniciar sesión porque tu cuenta está bloqueada.
-      signed_up_but_pending: Se envió un correo electrónico a tu dirección de correo con un enlace de confirmación. Después que hagás clic en ese enlace, revisaremos tu pedido. Si sos aprobado, serás notificado.
-      signed_up_but_unconfirmed: Se envió un correo electrónico a tu dirección de correo con un enlace de confirmación. Por favor, seguí ese enlace para activar tu cuenta. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
       update_needs_confirmation: Actualizaste tu cuenta exitosamente. Sin embargo, necesitamos verificar tu nueva dirección de correo electrónico. Por favor, revisá tu correo electrónico y seguí el enlace de confirmación. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
       updated: Se actualizó exitosamente tu cuenta.
     sessions:

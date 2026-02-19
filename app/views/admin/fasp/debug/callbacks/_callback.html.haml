@@ -1,0 +1,10 @@
+%tr
+  %td= callback.fasp_provider.name
+  %td= callback.fasp_provider.base_url
+  %td= callback.ip
+  %td
+    %time.relative-formatted{ datetime: callback.created_at.iso8601 }
+  %td
+    %code= callback.request_body
+  %td
+    = table_link_to 'close', t('admin.fasp.debug.callbacks.delete'), admin_fasp_debug_callback_path(callback), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

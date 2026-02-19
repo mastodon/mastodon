@@ -1,18 +1,12 @@
 # frozen_string_literal: true
 
 class Admin::StatusPolicy < ApplicationPolicy
-  def initialize(current_account, record, preloaded_relations = {})
-    super(current_account, record)
-
-    @preloaded_relations = preloaded_relations
-  end
-
   def index?
     role.can?(:manage_reports, :manage_users)
   end
 
   def show?
-    role.can?(:manage_reports, :manage_users) && (record.public_visibility? || record.unlisted_visibility? || record.reported? || viewable_through_normal_policy?)
+    role.can?(:manage_reports, :manage_users) && eligible_to_show?
   end
 
   def destroy?
@@ -29,7 +23,11 @@ class Admin::StatusPolicy < ApplicationPolicy
 
   private
 
+  def eligible_to_show?
+    record.distributable? || record.reported? || viewable_through_normal_policy?
+  end
+
   def viewable_through_normal_policy?
-    StatusPolicy.new(current_account, record, @preloaded_relations).show?
+    StatusPolicy.new(current_account, record).show?
   end
 end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe LanguagesHelper do
+RSpec.describe LanguagesHelper do
   describe 'the SUPPORTED_LOCALES constant' do
     it 'includes all i18n locales' do
       expect(Set.new(described_class::SUPPORTED_LOCALES.keys + described_class::REGIONAL_LOCALE_NAMES.keys)).to include(*I18n.available_locales)
@@ -83,6 +83,42 @@ describe LanguagesHelper do
     context 'when sorting with local variants' do
       it 'returns variant in-line' do
         expect(described_class.sorted_locale_keys(%w(en eo en-GB))).to eq(%w(en en-GB eo))
+      end
+    end
+  end
+
+  describe '#valid_locale_or_nil' do
+    subject { helper.valid_locale_or_nil(string) }
+
+    context 'when string is nil' do
+      let(:string) { nil }
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when string is empty' do
+      let(:string) { '' }
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when string is valid locale' do
+      let(:string) { 'en' }
+
+      it { is_expected.to eq('en') }
+    end
+
+    context 'when string contains region' do
+      context 'when base locale is valid' do
+        let(:string) { 'en-US' }
+
+        it { is_expected.to eq('en') }
+      end
+
+      context 'when base locale is not valid' do
+        let(:string) { 'qq-US' }
+
+        it { is_expected.to be_nil }
       end
     end
   end

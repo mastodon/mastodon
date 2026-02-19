@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::ScheduledStatusesScheduler do
+RSpec.describe Scheduler::ScheduledStatusesScheduler do
   let(:worker) { described_class.new }
 
   describe 'perform' do

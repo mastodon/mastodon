@@ -1,0 +1,340 @@
+---
+az:
+  about:
+    about_mastodon_html: 'Gələcəyin sosial şəbəkəsi: Reklam yoxdur, korporativ müşahidə yoxdur, etik dizayn və mərkəziyyətsizlik! Mastodon ilə öz verilərinizə sahib çıxın!'
+    contact_missing: Ayarlanmayıb
+    contact_unavailable: Mövcud deyil
+    title: Haqqında
+  admin:
+    account_actions:
+      title: "%{acct} üzərində moderasiya əməliyyatını icra et"
+    account_moderation_notes:
+      created_msg: Moderasiya notu uğurla yaradıldı!
+      destroyed_msg: Moderasiya notu uğurla məhv edildi!
+    accounts:
+      delete: Veriləri sil
+      destroyed_msg: "%{username} - verilərinin tezliklə silinməsi növbədədir"
+      display_name: Ekran adı
+      followers: İzləyicilər
+      follows: İzlənilənlər
+      moderation:
+        title: Moderasiya
+      moderation_notes: Moderasiya notları
+      most_recent_activity: Ən son fəaliyyət
+      most_recent_ip: Ən son IP
+      remote_suspension_irreversible: Bu hesabın veriləri geri qaytarılmayacaq şəkildə silinib.
+      remote_suspension_reversible_hint_html: Hesabın fəaliyyəti öz serverində dayandırılıb və verilər %{date} tarixində tamamilə silinəcək. O vaxta qədər, uzaq server hər hansısa mənfi təsir olmadan bu hesabı bərpa edə bilər. Hesabın bütün verilərini dərhal silmək istəyirsinizsə, bunu aşağıdan edə bilərsiniz.
+      resend_confirmation:
+        send: Təsdiq keçidini təkrar göndər
+      reset_password: Parolu sıfırla
+      security: Təhlükəsizlik
+      security_measures:
+        only_password: Yalnız parol
+        password_and_2fa: Parol və 2FA
+      suspension_irreversible: Bu hesabın veriləri geri qaytarılmayacaq şəkildə silinib. Hesabı istifadəyə yararlı etmək üçün hesab fəaliyyətinin dayandırılma prosesini ləğv edə bilərsiniz, ancaq daha əvvəl sahib olduğunuz heç bir veri geri qaytarılmayacaq.
+    action_logs:
+      action_types:
+        resend_user: Təsdiq poçtunu təkrar göndər
+        reset_password_user: Parolu sıfırla
+      actions:
+        approve_appeal_html: "%{name}, moderasiya qərarına %{target} tərəfindən verilən etirazı təsdiqlədi"
+        reject_appeal_html: "%{name}, moderasiya qərarına %{target} tərəfindən verilən etirazı rədd etdi"
+        reset_password_user_html: "%{name}, %{target} istifadəçisinin parolunu sıfırladı"
+      deleted_account: silinmiş hesab
+    dashboard:
+      media_storage: Media anbarı
+      software: Yazılım
+    domain_allows:
+      export: Xaricə köçür
+    domain_blocks:
+      export: Xaricə köçür
+    export_domain_blocks:
+      import:
+        title: Əngəllənən domenləri daxilə köçür
+      new:
+        title: Əngəllənən domenləri daxilə köçür
+    instances:
+      dashboard:
+        instance_followers_measure: oradakı izləyicilərimiz
+        instance_follows_measure: buradakı izləyiciləri
+      moderation:
+        title: Moderasiya
+      moderation_notes:
+        create: Moderasiya notu əlavə et
+        description_html: Notlara baxın, gələcəkdə özünüz və digər moderatorlar üçün notlar buraxın
+        title: Moderasiya notları
+    reports:
+      actions:
+        suspend_description_html: Hesab və onun bütün məzmunları əlçatmaz olacaq və nəticədə silinəcək və onunla əlaqə qurmaq mümkün olmayacaq. 30 gün ərzində geri qaytarıla bilər. Bu hesaba aid bütün hesabatları bağlayır.
+      assigned: Təyin edilmiş moderator
+      confirm_action: "@%{acct} üzərindəki moderasiya əməliyyatını təsdiqlə"
+      notes_description_html: Notlara baxın, gələcəkdə özünüz və digər moderatorlar üçün notlar buraxın
+      quick_actions_description_html: 'Cəld bir əməliyyat edin və ya bildirilən məzmuna baxmaq üçün aşağı diyirlərin:'
+    roles:
+      categories:
+        moderation: Moderasiya
+      privileges:
+        delete_user_data: İstifadəçi verilərini sil
+        delete_user_data_description: İstifadəçilərin, digər istifadəçilərin verilərini gecikmə olmadan silməsinə icazə verir
+        manage_appeals_description: İstifadəçilərin moderasiya əməliyyatlarına etdiyi etirazları incələməsinə icazə verir
+        manage_reports_description: İstifadəçilərin hesabatları incələməsinə və bunlara qarşı moderasiya əməliyyatlarını icra etməsinə icazə verir
+        manage_settings: Ayarları idarə et
+        manage_settings_description: İstifadəçilərin sayt ayarlarını dəyişdirməsinə icazə verir
+        manage_taxonomies_description: İstifadəçilərin trend məzmunu incələməsinə və mövzu etiketləri ayarlarını güncəlləməsinə icazə verir
+        manage_user_access: İstifadəçi erişimini idarə et
+        manage_user_access_description: İstifadəçilərin, digər istifadəçilərin iki faktorlu kimlik doğrulamasını sıradan çıxartmasına, onların e-poçt ünvanlarını dəyişdirməsinə və onların parolunu sıfırlamasına icazə verir
+        manage_users_description: İstifadəçilərin digər istifadəçilərin detallarını görməsinə və onlara qarşı moderasiya əməliyyatlarını icra etməsinə icazə verir
+        view_dashboard_description: İstifadəçilərin idarəetmə lövhəsinə və müxtəlif metriklərə erişməsinə icazə verir
+        view_devops_description: İstifadəçilərin Sidekiq və pgHero idarəetmə lövhələrinə erişməsinə icazə verir
+    settings:
+      appearance:
+        title: Görünüş
+      discovery:
+        public_timelines: Ümumi zaman xətləri
+        title: Kəşf et
+      registrations:
+        moderation_recommandation: Hər kəs üçün qeydiyyatı açmazdan əvvəl lütfən əmin olun ki, adekvat və reaktiv moderasiya komandanız var!
+      registrations_mode:
+        warning_hint: Moderasiya komandanızın spam və zərərli qeydiyyatları vaxtında idarə edə biləcəyinə əmin deyilsinizsə, “Qeydiyyat üçün təsdiq tələb olunur”dan istifadə etməyi tövsiyə edirik.
+      title: Server ayarları
+    statuses:
+      application: Tətbiq
+      metadata: Meta veri
+    system_checks:
+      elasticsearch_version_check:
+        message_html: 'Uyumlu olmayan Elasticsearch versiyası: %{value}'
+    tags:
+      updated_msg: Mövzu etiketi ayarları uğurla güncəlləndi
+    trends:
+      tags:
+        used_by_over_week:
+          one: Keçən həftə bir nəfər istifadə etdi
+          other: Keçən həftə %{count} nəfər istifadə etdi
+  admin_mailer:
+    auto_close_registrations:
+      body: Son vaxtlarda moderator fəaliyyətinin olmamasına görə, %{instance} üzərindəki qeydiyyatlar avtomatik olaraq manual yoxlanış tələb edəcək şəkildə dəyişdirilib, beləliklə %{instance} potensial zərərli aktyorlar tərəfindən istifadə edilən platforma çevrilməyəcək. İstənilən vaxt açıq qeydiyyat rejiminə qaytara bilərsiniz.
+    new_appeal:
+      body: "%{target}, %{date} tarixində %{action_taken_by} tərəfindən verilmiş %{type} moderasiya qərarına etiraz edir. Yazılanlar:"
+      next_steps: Moderasiya qərarını geri almaq üçün etirazı təsdiqləyə, ya da etirazı yox saya bilərsiniz.
+      subject: "%{username}, %{instance} üzərindəki bir moderasiya qərarına etiraz edir"
+  appearance:
+    animations_and_accessibility: Animasiyalar və erişiləbilənlik
+    discovery: Kəşf et
+    localization:
+      guide_link_text: Hər kəs töhfə verə bilər.
+    sensitive_content: Həssas məzmun
+  applications:
+    created: Tətbiq uğurla yaradıldı
+    destroyed: Tətbiq uğurla silindi
+    regenerate_token: Erişim tokenini təkrar yarat
+    token_regenerated: Erişim tokeni uğurla yaradıldı
+    your_token: Erişim tokeniniz
+  auth:
+    captcha_confirmation:
+      help_html: CAPTCHA-nı həll etməklə bağlı probleminiz varsa, %{email} üzərindən əlaqə saxlaya bilərsiniz, sizə kömək edə bilərik.
+      hint_html: Sadəcə bir şey qaldı! Sizin insan olduğunuzu təsdiqləməyimiz lazımdır (bunu spam-ları əngəlləmək üçün edirik). Aşağıdakı CAPTCHA-nı həll edib "Davam et"ə klikləyin.
+      title: Təhlükəsizlik yoxlanışı
+    confirmations:
+      wrong_email_hint: Əgər bu e-poçt ünvanı doğru deyilsə, hesab ayarlarında onu dəyişdirə bilərsiniz.
+    delete_account: Hesabı sil
+    delete_account_html: Hesabınızı silmək istəyirsinizsə, <a href="%{path}">buradan davam edə</a> bilərsiniz. Sizdən təsdiq etməyiniz soruşulacaq.
+    forgot_password: Parolunuzu unutmusunuz?
+    invalid_reset_password_token: Parol sıfırlama tokeni yararsızdır və ya vaxtı bitib. Lütfən yenisini tələb edin.
+    link_to_otp: Telefonunuzdan iki faktorlu kodu və ya bir geri qaytarma kodunu daxil edin
+    migrate_account: Fərqli bir hesaba daşı
+    migrate_account_html: Bu hesabı başqa bir hesaba yönləndirmək istəyirsinizsə, <a href="%{path}">burada konfiqurasiya edə</a> bilərsiniz.
+    resend_confirmation: Təsdiq keçidini təkrar göndər
+    reset_password: Parolu sıfırla
+    rules:
+      preamble: Bunlar, %{domain} moderatorları tərəfindən təyin edilib və tətbiq edilib.
+      preamble_invited: Davam etməzdən əvvəl, lütfən %{domain} moderatorları tərəfindən təyin edilmiş qaydaları nəzərdən keçirin.
+      title: Bəzi təməl qaydalar.
+    set_new_password: Yeni parol təyin et
+    setup:
+      email_below_hint_html: Spam qovluğunuzu yoxlayın, ya da başqasını tələb edin. Əgər yanlışdırsa, e-poçt ünvanınızı düzəldə bilərsiniz.
+      email_settings_hint_html: Mastodon istifadə etməyə başlamaq üçün %{email} ünvanına göndərdiyimiz keçidə klikləyin. Biz burada gözləyirik.
+      link_not_received: Keçidi almamısınız?
+      title: Gələn qutunuzu yoxlayın
+    sign_up:
+      preamble: Bu Mastodon serveri üzərindəki hesabla, hesabın yarada yerləşməsindən asılı olmayaraq fediverse-dəki istənilən şəxsi izləyə biləcəksiniz.
+      title: "%{domain} üzərində qeydiyyatınızı başladaq."
+    status:
+      account_status: Hesab statusu
+      functional: Hesabınız tamamilə işləkdir.
+      self_destruct: "%{domain} bağlandığı üçün, hesabınıza yalnız məhdud erişiminiz olacaq."
+  challenge:
+    hint_html: "<strong>İpucu:</strong> Sonrakı bir saat ərzində sizdən parolu soruşmayacağıq."
+    invalid_password: Yararsız parol
+    prompt: Davam etmək üçün parolu təsdiqlə
+  deletes:
+    confirm_password: Kimliyinizi doğrulamaq üçün hazırkı parolunuzu daxil edin
+    proceed: Hesabı sil
+    success_msg: Hesabınız uğurla silindi
+  edit_profile:
+    basic_information: Təməl məlumatlar
+    hint_html: "<strong>İnsanların hər kəsə açıq profilinizdə və göndərişlərinizin yanında nə göstərmək istədiyinizi özəlləşdirin.</strong> Doldurulmuş bir profilə və bir profil şəklinə sahib olduğunuz zaman digər şəxslərin sizi izləmə və sizinlə əlaqə qurma ehtimalı yüksəkdir."
+  exports:
+    archive_takeout:
+      hint_html: "<strong>Göndərişlərinizin və yüklədiyiniz medianın</strong> bir arxivini tələb edə bilərsiniz. Xaricə köçürülmüş verilər, istənilən uyumlu yazılım tərəfindən oxuna bilən ActivityPub formatında olacaq. Hər 7 gündə bir dəfə arxiv tələb edə bilərsiniz."
+    domain_blocks: Domen əngəlləmələri
+    storage: Media anbarı
+  filters:
+    contexts:
+      public: Ümumi zaman xətləri
+    edit:
+      statuses_hint_html: Bu filtr, aşağıdakı açar sözləri ilə uyuşmasından asılı olmayaraq fərdi göndərişləri seçmək üçün tətbiq olunur. <a href="%{path}">Göndərişləri incələyin və ya filtrdən silin</a>.
+    index:
+      contexts: "%{contexts} üzrə filtrlər"
+      empty: Filtriniz yoxdur.
+      title: Filtrlər
+  generic:
+    all_matching_items_selected_html:
+      one: Axtarışınızla uyuşan <strong>%{count}</strong> element seçilib.
+      other: Axtarışınızla uyuşan <strong>%{count}</strong> element seçilib.
+    order_by: Sırala
+    select_all_matching_items:
+      one: Axtarışınızla uyuşan <0>%{count}</0> elementi seçin.
+      other: Axtarışınızla uyuşan <0>%{count}</0> elementi seçin.
+  imports:
+    errors:
+      incompatible_type: Seçilmiş daxilə köçürmə növü ilə uyumlu deyil
+    preface: Başqa serverdən xaricə köçürdüyünüz veriləri (məsələn, izlədiyiniz və ya əngəllədiyiniz insanların siyahısını) daxilə köçürə bilərsiniz.
+    type_groups:
+      constructive: İzlənilənlər və Əlfəcinlər
+  invites:
+    max_uses_prompt: Limitsiz
+    prompt: Bu serverə erişim icazəsi vermək üçün keçid yaradın və başqaları ilə paylaşın
+    table:
+      uses: İstifadə
+  login_activities:
+    authentication_methods:
+      otp: iki faktorlu kimlik doğrulama tətbiqi
+      password: parol
+    description_html: Əgər tanımadığınız bir fəaliyyəti görsəniz, parolunuzu dəyişdirməyi və iki faktorlu kimlik doğrulamanı fəallaşdırmağı düşünə bilərsiniz
+  mail_subscriptions:
+    unsubscribe:
+      emails:
+        notification_emails:
+          reblog: təkrar paylaşma bildirişi e-poçtları
+  migrations:
+    incoming_migrations: Fərqli bir hesabdan daşı
+    incoming_migrations_html: Başqa bir hesabdan bu hesaba daşımaq üçün əvvəlcə <a href="%{path}">bir hesab alias-ı yaratmalısınız</a>.
+    proceed_with_move: İzləyiciləri daşı
+    warning:
+      disabled_account: Hazırkı hesabınız daha sonra istifadəyə yararsız olacaq. Ancaq, verilərin xaricə köçürülməsinə, həmçinin təkrar aktivləşdirmə prosesinə erişə biləcəksiniz.
+  moderation:
+    title: Moderasiya
+  notification_mailer:
+    reblog:
+      body: "%{name} göndərişinizi təkrar paylaşdı:"
+      subject: "%{name} göndərişinizi təkrar paylaşdı"
+      title: Yeni təkrar paylaşma
+  notifications:
+    administration_emails: Admin e-poçt bildirişləri
+    email_events: Fəaliyyətlər üçün e-poçt bildirişləri
+    email_events_hint: 'Bildiriş almaq istədiyiniz fəaliyyətləri seçin:'
+  otp_authentication:
+    description_html: Bir kimlik doğrulayıcı tətbiq istifadə edərək <strong>iki addımlı kimlik doğrulamanı</strong> fəallaşdırsanız, giriş etmək üçün telefonunuzun yanınızda olması tələb olunacaq, çünki daxil olmağınız üçün kodlar yaradılacaq.
+  preferences:
+    posting_defaults: Göndəriş ilkin ayarları
+    public_timelines: Ümumi zaman xətləri
+  relationships:
+    activity: Hesab fəaliyyəti
+    confirm_follow_selected_followers: Seçilmiş izləyicləri izləmək istədiyinizə əminsiniz?
+    confirm_remove_selected_followers: Seçilmiş izləyiciləri çıxartmaq istədiyinizə əminsiniz?
+    confirm_remove_selected_follows: Seçilmiş izləmələri çıxartmaq istədiyinizə əminsiniz?
+    dormant: Fəaliyyətsiz
+    follow_failure: Seçilmiş hesablardan bəziləri izlənilə bilmədi.
+    follow_selected_followers: Seçilmiş izləyiciləri izlə
+    followers: İzləyicilər
+    most_recent: Ən son
+    mutual: Ortaq
+    relationship: Münasibət
+    remove_selected_domains: Seçilmiş domenlərin bütün izləyicilərini çıxart
+    remove_selected_followers: Seçilmiş izləyiciləri çıxart
+    remove_selected_follows: Seçilmiş istifadəçiləri izləmədən çıxart
+    status: Hesab statusu
+  sessions:
+    browsers:
+      edge: Microsoft Edge
+    explanation: Bunlar, hazırda Mastodon hesabınıza giriş etmiş veb brauzerlərdir.
+    title: Seanslar
+    view_authentication_history: Hesabınızın kimlik doğrulama tarixçəsinə baxın
+  settings:
+    account_settings: Hesab ayarları
+    appearance: Görünüş
+    development: Gəlişdirmə
+    export: Xaricə köçür
+    import_and_export: Daxilə və xaricə köçürmə
+    notifications: E-poçt bildirişləri
+    relationships: İzlənilənlər və izləyicilər
+    severed_relationships: Kəsilmiş münasibətlər
+    statuses_cleanup: Göndərişin avtomatik silinməsi
+    strikes: Moderasiya pozuntuları
+    two_factor_authentication: İki faktorlu kimlik doğrulama
+  severed_relationships:
+    lost_followers: İtirilən izləyicilər
+    preamble: Bir domeni əngəllədiyiniz zaman və ya moderatorlarınız uzaq bir serverin fəaliyyətini dayandırmağa qərar verdiyi zaman izlədiklərinizi və izləyicilərinizi itirə bilərsiniz. Bu baş verdiyi zaman, kəsilmiş münasibətlərin bir siyahısını endirə, nəzərdən keçirə və bəlkə də başqa bir serverə köçürə biləcəksiniz.
+  statuses:
+    boosted_from_html: "%{acct_link} üzərindən təkrar paylaşdı"
+    default_language: İnterfeys dili ilə eyni
+    pin_errors:
+      reblog: Təkrar paylaşım, sancıla bilməz
+  statuses_cleanup:
+    enabled: Köhnə göndərişləri avtomatik sil
+    enabled_hint: Aşağıdakı istisnalardan heç birinə uyuşmadığı müddətcə, göndərişləriniz qeyd edilmiş yaş həddinə çatdıqda avtomatik silinir
+    exceptions: İstisnalar
+    ignore_reblogs: Təkrar paylaşımları yox say
+    interaction_exceptions: Qarşılıqlı əlaqələrə əsaslanan istisnalar
+    keep_direct: Birbaşa mesajları saxla
+    keep_direct_hint: Birbaşa yazdığınız mesajların heç biri silinməyəcək
+    keep_media: Media qoşmaları olan göndərişləri saxla
+    keep_media_hint: Media qoşması olan göndərişlərinizdən heç biri silinməyəcək
+    keep_pinned: Sancaqlanmış göndərişləri saxla
+    keep_pinned_hint: Sancaqlanmış göndərişlərinizdən heç biri silinməyəcək
+    keep_polls: Anketləri saxla
+    keep_polls_hint: Anketlərinizdən heç biri silinməyəcək
+    keep_self_bookmark: Əlfəcinlərə əlavə etdiyiniz göndərişləri saxla
+    keep_self_bookmark_hint: Öz göndərişlərinizi əlfəcinlərə əlavə etmisinizsə silinməyəcək
+    keep_self_fav: Sevimlilərə əlavə etdiyiniz göndərişləri saxla
+    keep_self_fav_hint: Öz göndərişlərinizi sevimlilərə əlavə etmisinizsə silinməyəcək
+    min_age_label: Yaş həddi
+    min_reblogs: Bu həddən çox təkrar paylaşılan göndərişləri saxla
+    min_reblogs_hint: Bu sayda və ya daha çox təkrar paylaşma alan göndərişləriniz silinməyəcək. Təkrar paylaşılma sayından asılı olmayaraq göndərişlərin silinməsi üçün boş buraxın.
+  stream_entries:
+    sensitive_content: Həssas məzmun
+  tags:
+    does_not_match_previous_name: əvvəlki adla uyuşmur
+  two_factor_authentication:
+    disabled_success: İki faktorlu kimlik doğrulama uğurla sıradan çıxarıldı
+    enabled: İki faktorlu kimlik doğrulama fəallaşdırıldı
+    enabled_success: İki faktorlu kimlik doğrulama uğurla fəallaşdırıldı
+    generate_recovery_codes: Geri qaytarma kodlarını yarat
+    lost_recovery_codes: Geri qaytarma kodları, telefonunuzu itirdiyiniz halda hesabınıza yenidən erişməyinizə imkan verir. Geri qaytarma kodlarınızı itirsəniz, onları təkrar yarada bilərsiniz. Köhnə geri qaytarma kodlarınız yararsız sayılacaq.
+    recovery_codes: Geri qaytarma kodlarını nüsxələ
+    recovery_codes_regenerated: Geri qaytarma kodları uğurla yaradıldı
+    recovery_instructions_html: Telefonunuza erişə bilmirsinizsə, hesabınıza təkrar erişə bilmək üçün aşağıdakı geri qaytarma kodlarından birini istifadə edə bilərsiniz. <strong>Geri qaytarma kodlarını etibarlı yerdə saxlayın</strong>. Misal üçün, bunları çap edib digər vacib sənədlərin yanında saxlaya bilərsiniz.
+  user_mailer:
+    appeal_approved:
+      action: Hesab ayarları
+      explanation: "%{strike_date} tarixində hesabınıza qarşı tətbiq edilən cəza ilə bağlı %{appeal_date} tarixində göndərdiyiniz etirazınız təsdiqlənib. Hesabınız yenidən normal vəziyyətdədir."
+      subject: "%{date} tarixli etirazınız təsdiqlənib"
+      subtitle: Hesabınız yenidən normal vəziyyətdədir.
+      title: Etiraz təsdiqlənib
+    suspicious_sign_in:
+      change_password: parolu dəyişdir
+      subject: Hesabınıza yeni bir IP ünvanından erişildi
+    terms_of_service_changed:
+      title: Vacib güncəlləmə
+    warning:
+      explanation:
+        disable: Artıq hesabınızı istifadə edə bilməzsiniz, ancaq profiliniz və digər veriləriniz olduğu kimi qalacaq. Verilərinizin bir nüsxəsini tələb edə, hesab ayarlarınızı dəyişdirə və ya hesabınızı silə bilərsiniz.
+        suspend: Hesabınızı artıq istifadə edə bilməzsiniz, profiliniz və digər veriləriniz artıq əlçatmazdır. Təxminən 30 gün ərzində verilər tamamilə silinənə qədər verilərinizin bir nüsxəsini tələb etmək üçün hələ də hesabınıza giriş edə bilərsiniz, ancaq hesab fəaliyyətinin dayandırılması prosesini ləğv etməyinizi önləmək üçün bəzi təməl veriləri saxlayacağıq.
+    welcome:
+      edit_profile_step: Profilinizi tam dolduraraq qarşılıqlı əlaqələrinizi artırın.
+      feature_creativity: Mastodon özünüzü onlayn mühitdə ifadə etməyinizə kömək edəcək səs, video və şəkil göndərişləri, erişiləbilənlik açıqlamaları, anketlər, məzmun xəbərdarlıqları, animasiyalı avatarlar, özəl emojilər, kiçik şəkli kəsmə nəzarəti və daha çoxunu dəstəkləyir. Öz sənətinizi, musiqinizi və ya podkastınızı dərc edirsinizsə, Mastodon sizin üçün buradadır.
+      feature_moderation_title: Olmalı olduğu şəkildə moderasiya
+  users:
+    go_to_sso_account_settings: Kimlik provayderinizin hesab ayarlarına gedin
+    otp_lost_help_html: Hər ikisinə də erişə bilmirsinizsə, %{email} ilə əlaqə saxlayın
+    seamless_external_login: Xarici bir server üzərindən giriş etdiyiniz üçün parol və e-poçt ayarları mövcud deyil.

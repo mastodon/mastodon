@@ -24,7 +24,7 @@ class ActivityTracker
   end
 
   def get(start_at, end_at = Time.now.utc)
-    (start_at.to_date...end_at.to_date).map do |date|
+    (start_at.to_date..end_at.to_date).map do |date|
       key = key_at(date.to_time(:utc))
 
       value = case @type

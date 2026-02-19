@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   include UserTrackingConcern
   include SessionTrackingConcern
   include CacheConcern
+  include PreloadingConcern
   include DomainControlHelper
   include DatabaseHelper
   include AuthorizedFetchHelper
@@ -16,23 +17,20 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_account
   helper_method :current_session
-  helper_method :current_theme
   helper_method :single_user_mode?
   helper_method :use_seamless_external_login?
-  helper_method :omniauth_only?
   helper_method :sso_account_settings
   helper_method :limited_federation_mode?
-  helper_method :body_class_string
   helper_method :skip_csrf_meta_tags?
 
   rescue_from ActionController::ParameterMissing, Paperclip::AdapterRegistry::NoHandlerError, with: :bad_request
   rescue_from Mastodon::NotPermittedError, with: :forbidden
   rescue_from ActionController::RoutingError, ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActionController::UnknownFormat, with: :not_acceptable
-  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
+  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_content
   rescue_from Mastodon::RateLimitExceededError, with: :too_many_requests
 
-  rescue_from HTTP::Error, OpenSSL::SSL::SSLError, with: :internal_server_error
+  rescue_from(*Mastodon::HTTP_CONNECTION_ERRORS, with: :internal_server_error)
   rescue_from Mastodon::RaceConditionError, Stoplight::Error::RedLight, ActiveRecord::SerializationFailure, with: :service_unavailable
 
   rescue_from Seahorse::Client::NetworkingError do |e|
@@ -63,15 +61,43 @@ class ApplicationController < ActionController::Base
     return if request.referer.blank?
 
     redirect_uri = URI(request.referer)
-    return if redirect_uri.path.start_with?('/auth')
+    return if redirect_uri.path.start_with?('/auth', '/settings/two_factor_authentication', '/settings/otp_authentication')
 
     stored_url = redirect_uri.to_s if redirect_uri.host == request.host && redirect_uri.port == request.port
 
     store_location_for(:user, stored_url)
   end
 
+  def mfa_setup_path(path_params = {})
+    settings_two_factor_authentication_methods_path(path_params)
+  end
+
   def require_functional!
-    redirect_to edit_user_registration_path unless current_user.functional?
+    return if current_user.functional?
+
+    respond_to do |format|
+      format.any do
+        if current_user.missing_2fa?
+          redirect_to mfa_setup_path
+        elsif current_user.confirmed?
+          redirect_to edit_user_registration_path
+        else
+          redirect_to auth_setup_path
+        end
+      end
+
+      format.json do
+        if !current_user.confirmed?
+          render json: { error: 'Your login is missing a confirmed e-mail address' }, status: 403
+        elsif !current_user.approved?
+          render json: { error: 'Your login is currently pending approval' }, status: 403
+        elsif current_user.missing_2fa?
+          render json: { error: 'Your account requires two-factor authentication' }, status: 403
+        elsif !current_user.functional?
+          render json: { error: 'Your login is currently disabled' }, status: 403
+        end
+      end
+    end
   end
 
   def skip_csrf_meta_tags?
@@ -79,7 +105,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(_resource_or_scope)
-    if ENV['OMNIAUTH_ONLY'] == 'true' && ENV['OIDC_ENABLED'] == 'true'
+    if ENV['OMNIAUTH_ONLY'] == 'true' && Rails.configuration.x.omniauth.oidc_enabled?
       '/auth/auth/openid_connect/logout'
     else
       new_user_session_path
@@ -104,7 +130,7 @@ class ApplicationController < ActionController::Base
     respond_with_error(410)
   end
 
-  def unprocessable_entity
+  def unprocessable_content
     respond_with_error(422)
   end
 
@@ -129,15 +155,11 @@ class ApplicationController < ActionController::Base
   end
 
   def single_user_mode?
-    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.where('id > 0').exists?
+    @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.without_internal.exists?
   end
 
   def use_seamless_external_login?
     Devise.pam_authentication || Devise.ldap_authentication
-  end
-
-  def omniauth_only?
-    ENV['OMNIAUTH_ONLY'] == 'true'
   end
 
   def sso_account_settings
@@ -156,16 +178,6 @@ class ApplicationController < ActionController::Base
     @current_session = SessionActivation.find_by(session_id: cookies.signed['_session_id']) if cookies.signed['_session_id'].present?
   end
 
-  def current_theme
-    return Setting.theme unless Themes.instance.names.include? current_user&.setting_theme
-
-    current_user.setting_theme
-  end
-
-  def body_class_string
-    @body_classes || ''
-  end
-
   def respond_with_error(code)
     respond_to do |format|
       format.any  { render "errors/#{code}", layout: 'error', status: code, formats: [:html] }
@@ -178,7 +190,7 @@ class ApplicationController < ActionController::Base
 
     respond_to do |format|
       format.any  { render 'errors/self_destruct', layout: 'auth', status: 410, formats: [:html] }
-      format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[410] }, status: code }
+      format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[410] }, status: 410 }
     end
   end
 

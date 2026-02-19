@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe RefollowWorker do
+RSpec.describe RefollowWorker do
   subject { described_class.new }
 
   let(:account) { Fabricate(:account, domain: 'example.org', protocol: :activitypub) }

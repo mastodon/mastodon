@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DeleteAccountService, type: :service do
+RSpec.describe DeleteAccountService do
   shared_examples 'common behavior' do
     subject { described_class.new.call(account) }
 
@@ -62,7 +62,7 @@ RSpec.describe DeleteAccountService, type: :service do
     end
   end
 
-  describe '#call on local account', :sidekiq_inline do
+  describe '#call on local account', :inline_jobs do
     before do
       stub_request(:post, remote_alice.inbox_url).to_return(status: 201)
       stub_request(:post, remote_bob.inbox_url).to_return(status: 201)
@@ -71,7 +71,7 @@ RSpec.describe DeleteAccountService, type: :service do
     let!(:remote_alice) { Fabricate(:account, inbox_url: 'https://alice.com/inbox', domain: 'alice.com', protocol: :activitypub) }
     let!(:remote_bob) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', domain: 'bob.com', protocol: :activitypub) }
 
-    include_examples 'common behavior' do
+    it_behaves_like 'common behavior' do
       let(:account) { Fabricate(:account) }
       let(:local_follower) { Fabricate(:account) }
 
@@ -83,12 +83,12 @@ RSpec.describe DeleteAccountService, type: :service do
     end
   end
 
-  describe '#call on remote account', :sidekiq_inline do
+  describe '#call on remote account', :inline_jobs do
     before do
       stub_request(:post, account.inbox_url).to_return(status: 201)
     end
 
-    include_examples 'common behavior' do
+    it_behaves_like 'common behavior' do
       let(:account) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', protocol: :activitypub, domain: 'bob.com') }
       let(:local_follower) { Fabricate(:account) }
 

@@ -3,7 +3,8 @@ name: Crowdin / Upload translations
 on:
   push:
     branches:
-      - main
+      - 'main'
+      - 'stable-*'
     paths:
       - crowdin.yml
       - app/javascript/mastodon/locales/en.json
@@ -13,22 +14,24 @@ on:
       - config/locales/devise.en.yml
       - config/locales/doorkeeper.en.yml
       - .github/workflows/crowdin-upload.yml
+  workflow_dispatch:
 
 jobs:
   upload-translations:
     runs-on: ubuntu-latest
+    if: github.repository == 'mastodon/mastodon'
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: crowdin action
-        uses: crowdin/github-action@v1
+        uses: crowdin/github-action@b4b468cffefb50bdd99dd83e5d2eaeb63c880380 # v2
         with:
           upload_sources: true
           upload_translations: false
           download_translations: false
-          crowdin_branch_name: main
+          crowdin_branch_name: ${{ github.base_ref || github.ref_name }}
 
         env:
           CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}

@@ -18,7 +18,11 @@ module AccountOwnedConcern
   end
 
   def set_account
-    @account = Account.find_local!(username_param)
+    @account = username_param.present? ? Account.find_local!(username_param) : Account.local.find(account_id_param)
+  end
+
+  def account_id_param
+    params[:account_id]
   end
 
   def username_param

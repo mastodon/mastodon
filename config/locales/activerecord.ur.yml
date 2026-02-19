@@ -1,1 +1,27 @@
+---
 ur:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: ڈیڈ لائن
+        options: اپنی مرضی
+      user:
+        agreement: سروس کا معاہدہ
+        email: ای میل ایڈریسز
+        locale: لوکل
+        password: پاس ورڈ
+      user/account:
+        username: یوزر نیم
+      user/invite_request:
+        text: وجہ
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: صرف حروف، نمبر اور انڈر سکور پر مشتمل ہونا چاہیے۔
+              reserved: محفوظ ہے
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ایک درست URL نہیں ہے۔

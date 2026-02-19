@@ -1,8 +1,8 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`<Avatar /> Autoplay renders a animated avatar 1`] = `
-<div
-  className="account__avatar"
+exports[`<Avatar /> > Autoplay > renders a animated avatar 1`] = `
+<span
+  className="account__avatar account__avatar--loading"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={
@@ -14,14 +14,16 @@ exports[`<Avatar /> Autoplay renders a animated avatar 1`] = `
 >
   <img
     alt=""
+    onError={[Function]}
+    onLoad={[Function]}
     src="/animated/alice.gif"
   />
-</div>
+</span>
 `;
 
-exports[`<Avatar /> Still renders a still avatar 1`] = `
-<div
-  className="account__avatar"
+exports[`<Avatar /> > Still > renders a still avatar 1`] = `
+<span
+  className="account__avatar account__avatar--loading"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
   style={
@@ -33,7 +35,9 @@ exports[`<Avatar /> Still renders a still avatar 1`] = `
 >
   <img
     alt=""
+    onError={[Function]}
+    onLoad={[Function]}
     src="/static/alice.jpg"
   />
-</div>
+</span>
 `;

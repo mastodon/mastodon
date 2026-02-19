@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Importer::BaseImporter do
+RSpec.describe Importer::BaseImporter do
   describe 'import!' do
     let(:pool) { Concurrent::FixedThreadPool.new(5) }
     let(:importer) { described_class.new(batch_size: 123, executor: pool) }

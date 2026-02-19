@@ -9,6 +9,7 @@ import PhotoLibraryIcon from '@/material-icons/400-24px/photo_library.svg?react'
 import { Avatar } from 'mastodon/components/avatar';
 import { DisplayName } from 'mastodon/components/display_name';
 import { Icon } from 'mastodon/components/icon';
+import { EmbeddedStatusContent } from 'mastodon/features/notifications_v2/components/embedded_status_content';
 
 export const ReplyIndicator = () => {
   const inReplyToId = useSelector(state => state.getIn(['compose', 'in_reply_to']));
@@ -19,14 +20,12 @@ export const ReplyIndicator = () => {
     return null;
   }
 
-  const content = { __html: status.get('contentHtml') };
-
   return (
     <div className='reply-indicator'>
       <div className='reply-indicator__line' />
 
       <Link to={`/@${account.get('acct')}`} className='detailed-status__display-avatar'>
-        <Avatar account={account} size={46} />
+        <Avatar key={`avatar-${account.get('id')}`} account={account} size={46} />
       </Link>
 
       <div className='reply-indicator__main'>
@@ -34,7 +33,10 @@ export const ReplyIndicator = () => {
           <DisplayName account={account} />
         </Link>
 
-        <div className='reply-indicator__content translate' dangerouslySetInnerHTML={content} />
+        <EmbeddedStatusContent
+          className='reply-indicator__content translate'
+          status={status}
+        />
 
         {(status.get('poll') || status.get('media_attachments').size > 0) && (
           <div className='reply-indicator__attachments'>

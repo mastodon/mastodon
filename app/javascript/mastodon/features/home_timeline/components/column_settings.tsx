@@ -17,50 +17,56 @@ export const ColumnSettings: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const onChange = useCallback(
-    (key: string, checked: boolean) => {
+    (key: string[], checked: boolean) => {
       dispatch(changeSetting(['home', ...key], checked));
     },
     [dispatch],
   );
 
   return (
-    <div>
-      <span className='column-settings__section'>
-        <FormattedMessage
-          id='home.column_settings.basic'
-          defaultMessage='Basic'
-        />
-      </span>
+    <div className='column-settings'>
+      <section>
+        <div className='column-settings__row'>
+          <SettingToggle
+            prefix='home_timeline'
+            settings={settings}
+            settingPath={['shows', 'reblog']}
+            onChange={onChange}
+            label={
+              <FormattedMessage
+                id='home.column_settings.show_reblogs'
+                defaultMessage='Show boosts'
+              />
+            }
+          />
 
-      <div className='column-settings__row'>
-        <SettingToggle
-          prefix='home_timeline'
-          settings={settings}
-          settingPath={['shows', 'reblog']}
-          onChange={onChange}
-          label={
-            <FormattedMessage
-              id='home.column_settings.show_reblogs'
-              defaultMessage='Show boosts'
-            />
-          }
-        />
-      </div>
+          <SettingToggle
+            prefix='home_timeline'
+            settings={settings}
+            settingPath={['shows', 'quote']}
+            onChange={onChange}
+            label={
+              <FormattedMessage
+                id='home.column_settings.show_quotes'
+                defaultMessage='Show quotes'
+              />
+            }
+          />
 
-      <div className='column-settings__row'>
-        <SettingToggle
-          prefix='home_timeline'
-          settings={settings}
-          settingPath={['shows', 'reply']}
-          onChange={onChange}
-          label={
-            <FormattedMessage
-              id='home.column_settings.show_replies'
-              defaultMessage='Show replies'
-            />
-          }
-        />
-      </div>
+          <SettingToggle
+            prefix='home_timeline'
+            settings={settings}
+            settingPath={['shows', 'reply']}
+            onChange={onChange}
+            label={
+              <FormattedMessage
+                id='home.column_settings.show_replies'
+                defaultMessage='Show replies'
+              />
+            }
+          />
+        </div>
+      </section>
     </div>
   );
 };

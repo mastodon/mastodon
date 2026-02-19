@@ -1,0 +1,72 @@
+.wrapper {
+  position: relative;
+}
+
+.input {
+  padding-right: 45px;
+}
+
+.menuButton {
+  position: absolute;
+  inset-inline-end: 0;
+  top: 0;
+  padding: 9px;
+
+  &::before {
+    // Subtle divider line separating the button from the input field
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block: 10px;
+    border-inline-start: 1px solid var(--color-border-primary);
+  }
+}
+
+.popover {
+  z-index: 9999;
+  box-sizing: border-box;
+  max-height: max(200px, 30dvh);
+  padding: 4px;
+  border-radius: 4px;
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-primary);
+  box-shadow: var(--dropdown-shadow);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  overscroll-behavior-y: contain;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 4px;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  user-select: none;
+
+  &[data-highlighted='true'] {
+    color: var(--color-text-on-brand-base);
+    background: var(--color-bg-brand-base);
+
+    &[aria-disabled='true'] {
+      color: var(--color-text-on-disabled);
+      background: var(--color-bg-disabled);
+    }
+  }
+
+  &[aria-disabled='true'] {
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
+  }
+}
+
+.emptyMessage {
+  padding: 8px 16px;
+  font-size: 13px;
+}

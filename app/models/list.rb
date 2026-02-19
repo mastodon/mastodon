@@ -17,23 +17,29 @@ class List < ApplicationRecord
   include Paginable
 
   PER_ACCOUNT_LIMIT = 50
+  TITLE_LENGTH_LIMIT = 256
 
-  enum :replies_policy, { list: 0, followed: 1, none: 2 }, prefix: :show
+  enum :replies_policy, { list: 0, followed: 1, none: 2 }, prefix: :show, validate: true
 
-  belongs_to :account, optional: true
+  belongs_to :account
 
   has_many :list_accounts, inverse_of: :list, dependent: :destroy
   has_many :accounts, through: :list_accounts
+  has_many :active_accounts, -> { merge(ListAccount.active) }, through: :list_accounts, source: :account
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: TITLE_LENGTH_LIMIT }
 
-  validates_each :account_id, on: :create do |record, _attr, value|
-    record.errors.add(:base, I18n.t('lists.errors.limit')) if List.where(account_id: value).count >= PER_ACCOUNT_LIMIT
-  end
+  validate :validate_account_lists_limit, on: :create
 
   before_destroy :clean_feed_manager
 
+  scope :with_list_account, ->(account) { joins(:list_accounts).where(list_accounts: { account: }) }
+
   private
+
+  def validate_account_lists_limit
+    errors.add(:base, I18n.t('lists.errors.limit')) if account.owned_lists.count >= PER_ACCOUNT_LIMIT
+  end
 
   def clean_feed_manager
     FeedManager.instance.clean_feeds!(:list, [id])

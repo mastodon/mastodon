@@ -7,6 +7,7 @@ hu:
       send_paranoid_instructions: Ha az e-mail címed már szerepel az adatbázisunkban, néhány percen belül kapsz egy levelet az e-mail cím megerősítésére vonatkozó utasításokkal. Kérjük, ellenőrizd a spam mappád, ha nem látod az e-mailt.
     failure:
       already_authenticated: Már bejelentkeztél.
+      closed_registrations: 'A regisztrációs kísérlet egy hálózati házirend miatt blokkolva volt. Ha úgy gondolod, hogy ez hiba, akkor vedd fel a kapcsolatot ezen a címen: %{email}.'
       inactive: Fiókodat még nem aktiválták.
       invalid: Helytelen %{authentication_keys} vagy jelszó.
       last_attempt: Már csak egy próbálkozásod maradt, mielőtt a fiókodat zároljuk.
@@ -43,18 +44,18 @@ hu:
         title: Emailcím megerősítése
       reset_password_instructions:
         action: Jelszó módosítása
-        explanation: A fiókodhoz tartozó jelszó módosítását kezdeményezted.
-        extra: Amennyiben nem te kezdeményezted a módosítást, kérjük tekintsd ezt az emailt tárgytalannak. A jelszavad változatlan marad mindaddig, amíg újat nem hozol létre a fenti linkre kattintva.
+        explanation: Új jelszót kértél a fiókodhoz.
+        extra: Ha nem te kérted, tekintsd ezt az e-mailt tárgytalannak. A jelszavad változatlan marad mindaddig, amíg újat nem hozol létre a fenti hivatkozásra kattintva.
         subject: 'Mastodon: Jelszóvisszaállítási utasítások'
         title: Jelszó visszaállítása
       two_factor_disabled:
         explanation: A bejelentkezés most már csupán email címmel és jelszóval lehetséges.
-        subject: Kétlépcsős azonosítás kikapcsolva
+        subject: 'Mastodon: kétlépcsős hitelesítés letiltva'
         subtitle: A kétlépcsős hitelesítés a fiókodhoz ki lett kapcsolva.
         title: Kétlépcsős hitelesítés kikapcsolva
       two_factor_enabled:
         explanation: Egy párosított TOTP appal generált tokenre lesz szükség a bejelentkezéshez.
-        subject: 'Mastodon: Kétlépcsős azonosítás engedélyezve'
+        subject: 'Mastodon: kétlépcsős hitelesítés engedélyezve'
         subtitle: A kétlépcsős hitelesítés a fiókodhoz aktiválva lett.
         title: Kétlépcsős hitelesítés engedélyezve
       two_factor_recovery_codes_changed:
@@ -94,11 +95,6 @@ hu:
       updated_not_active: A jelszavad sikeresen megváltoztatásra került.
     registrations:
       destroyed: Viszlát! A fiókodat sikeresen töröltük. Reméljük hamarosan viszontláthatunk.
-      signed_up: Üdvözlünk! Sikeresen regisztráltál.
-      signed_up_but_inactive: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókodat még nem aktiválták.
-      signed_up_but_locked: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókod le van zárva.
-      signed_up_but_pending: Egy megerősítési hivatkozással ellátott üzenetet kiküldtünk az e-mail címedre. Ha kattintasz a hivatkozásra, átnézzük a kérelmedet. Értesítünk, ha jóváhagytuk.
-      signed_up_but_unconfirmed: Egy megerősítési hivatkozással ellátott üzenetet kiküldtünk az e-mail címedre. Kérjük használd a hivatkozást a fiókod aktiválásához. Ellenőrizd a spam mappádat, ha nem kaptad meg ezt a levelet.
       update_needs_confirmation: Sikeresen frissítetted a fiókodat, de szükségünk van az e-mail címed megerősítésére. Kérlek ellenőrizd az e-mailedet és kövesd a levélben szereplő megerősítési linket az e-mail címed megerősítéséhez. Ellenőrizd a levélszemét mappád, ha nem kaptál volna ilyen levelet.
       updated: A fiókod sikeresen frissítésre került.
     sessions:

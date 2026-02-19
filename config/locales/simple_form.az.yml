@@ -1,0 +1,78 @@
+---
+az:
+  simple_form:
+    hints:
+      admin_account_action:
+        include_statuses: İstifadəçi, hansı göndərişlərin moderasiya əməliyyatına və ya xəbərdarlığına səbəb olduğunu görəcək
+      defaults:
+        current_password: Təhlükəsizlik səbəblərinə görə lütfən hazırkı hesabın parolunu daxil edin
+        phrase: Mətndəki böyük-kiçik hərfdən və ya göndərişin məzmun xəbərdarlığından asılı olmayaraq uyuşdurulacaq
+        setting_aggregate_reblogs: Təzəlikcə təkrar paylaşılmış göndərişlər üçün yeni təkrar paylaşımlar göstərilməsin (yalnız yeni alınan təkrar paylaşımlara təsir edir).
+        setting_always_send_emails: Normalda, Mastodon-u aktiv olaraq istifadə etdiyiniz zaman e-poçt bildirişləri göndərilməyəcək
+        setting_default_sensitive: Həssas media, ilkin olaraq gizlədilir və bir kliklə göstərilə bilər
+        setting_display_media_default: Həssas olaraq işarələnmiş medianı gizlət
+        setting_display_media_hide_all: Medianı həmişə gizlət
+        setting_display_media_show_all: Medianı həmişə göstər
+        setting_system_scrollbars_ui: Yalnız Safari və Chrome əaslı masaüstü brauzerlərinə tətbiq olunur
+        setting_use_blurhash: Meyillər, gizli vizualların rənglərinə əsaslanır, ancaq detalları gizlədir
+        setting_use_pending_items: Lenti avtomatik diyirləmək əvəzinə, zaman xətti güncəlləmələrini tək bir kliklə gizlət
+      featured_tag:
+        name: 'Budur, təzəlikcə istifadə etdiyiniz mövzu etiketlərindən bəziləri:'
+      form_admin_settings:
+        content_cache_retention_period: Digər serverlərdən olan bütün göndərişlər (təkrar paylaşımlar və cavablar daxil olmaqla) göstərilən gün sayından sonra, lokal istifadəçilərin həmin göndərişlərlə qarşılıqlı əlaqəsinə baxılmadan silinəcək. Buna, lokal istifadəçinin həmin göndərişi əlfəcinlərə və ya sevimlilərə əlavə etdiyi hallar da daxildir. Fərqli instansiyalardakı istifadəçilər arasında olan şəxsi adçəkmələr də itəcək və bərpası mümkün olmayacaq. Bu ayarın istifadəsi xüsusi məqsədli instansiyalar üçün nəzərdə tutulub və ümumi məqsədli istifadəyə tətbiq edildikdə bir çox istifadəçi gözləntilərini qarşılamaya bilər.
+      imports:
+        data: Digər Mastodon serverindən xaricə köçürdüyünüz CSV faylı
+      ip_block:
+        severities:
+          no_access: Bütün resurslara erişimi əngəllə
+      sessions:
+        otp: 'Telefon tətbiqiniz tərəfindən yaradılmış iki faktorlu kodu daxil edin və ya geri qaytarma kodlarınızdan birini istifadə edin:'
+      user:
+        chosen_languages: İşarələnsə, yalnız seçilmiş dillərdəki göndərişlər ümumi zaman xətlərində nümayiş etdiriləcək
+      user_role:
+        permissions_as_keys: Bu rola sahib istifadəçilər bunlara erişə biləcək...
+    labels:
+      account:
+        show_collections: Profildə izlənilənləri və izləyiciləri göstər
+      defaults:
+        autofollow: Hesabınızı izləməyə dəvət edin
+        confirm_new_password: Yeni parolu təsdiqlə
+        confirm_password: Parolu təsdiqlə
+        current_password: Hazırkı parol
+        data: Veri
+        display_name: Ekran adı
+        header: Örtük şəkli
+        locale: İnterfeys dili
+        max_uses: Maksimum istifadə sayı
+        new_password: Yeni parol
+        password: Parol
+        setting_advanced_layout: Qabaqcıl veb interfeysini fəallaşdır
+        setting_aggregate_reblogs: Zaman xəttindəki TP-ları qruplaşdır
+        setting_always_send_emails: E-poçt göndərişlərini həmişə göndər
+        setting_auto_play_gif: Animasiyalı GIF-ləri avto-oxut
+        setting_default_sensitive: Medianı həmişə həssas olaraq işarələ
+        setting_disable_hover_cards: Üzərinə gəldikdə profil önizləməsini sıradan çıxart
+        setting_disable_swiping: Sürüşdürmə hərəkətlərini sıradan çıxart
+        setting_display_media: Medianın nümayişi
+        setting_expand_spoilers: Məzmun xəbərdarlığı ilə işarələnmiş göndərişləri həmişə genişləndir
+        setting_reduce_motion: Animasiyalarda hərəkəti azalt
+        setting_system_font_ui: Sistemin ilkin şriftini istifadə et
+        setting_system_scrollbars_ui: Sistemin ilkin sürüşdürmə çubuğunu istifadə et
+        setting_trends: Bugünün trendlərini göstər
+        setting_use_blurhash: Gizli media üçün rəngli meyilləri göstər
+        setting_use_pending_items: Yavaş rejim
+      form_admin_settings:
+        show_domain_blocks: Əngəllənən domenləri göstər
+      ip_block:
+        severities:
+          no_access: Erişimi əngəllə
+      notification_emails:
+        appeal: Kimsə, bir moderasiya qərarına etiraz edir
+        favourite: Kimsə göndərişinizi sevimlilərinə əlavə etdi
+        follow: Kimsə sizi izləyir
+        follow_request: Kimsə sizi izləmək üçün sorğu göndərdi
+        mention: Kimsə adınızı çəkdi
+        quote: Kimsə sizdən sitat gətirdi
+        reblog: Kimsə göndərişinizi təkrar paylaşdı
+      username_block:
+        username: Uyuşacaq söz

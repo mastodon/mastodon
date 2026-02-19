@@ -3,6 +3,8 @@
 class REST::MediaAttachmentSerializer < ActiveModel::Serializer
   include RoutingHelper
 
+  # Please update `app/javascript/mastodon/api_types/media_attachments.ts` when making changes to the attributes
+
   attributes :id, :type, :url, :preview_url,
              :remote_url, :preview_remote_url, :text_url, :meta,
              :description, :blurhash
@@ -14,7 +16,7 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
   def url
     if object.not_processed?
       nil
-    elsif object.needs_redownload?
+    elsif object.needs_redownload? || object.discarded?
       media_proxy_url(object.id, :original)
     else
       full_asset_url(object.file.url(:original))
@@ -26,7 +28,7 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
   end
 
   def preview_url
-    if object.needs_redownload?
+    if object.needs_redownload? || object.discarded?
       media_proxy_url(object.id, :small)
     elsif object.thumbnail.present?
       full_asset_url(object.thumbnail.url(:original))

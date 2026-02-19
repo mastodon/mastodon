@@ -39,14 +39,14 @@ lad:
         text: Solo puedes apelar un amonestamiento una vez
       defaults:
         autofollow: Los utilizadores ke se enrejistren por la envitasyon te segiran otomatikamente
-        avatar: PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
+        avatar: WEBP, PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
         bot: Indika ke este kuento egzekuta prinsipalmente aksyones otomatizadas i podria no ser monitorizada
         context: Uno o multiples kontekstos en los ke deve aplikarse el filtro
         current_password: Por razones de sigurita por favor ingresa el kod del kuento aktual
         current_username: Para konfirmar, por favor ingresa el nombre de utilizador del kuento aktual
         digest: Solo embiado dempues de un eluengo periodo de inaktivita i solo si tienes recibido mesajes personales durante tu ausensya
         email: Se te embiara konfirmasyon por posta elektronika
-        header: PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
+        header: WEBP, PNG, GIF o JPG. Maksimo %{size}. Sera eskalado a %{dimensions}px
         inbox_url: Kopia el URL de la pajina prinsipala del relevo ke keres utilizar
         irreversible: Las publikasyones filtradas dezapareseran irreversivlemente, inkluzo si este filtro es supremido mas adelante
         locale: La lingua de la enterfaz de utilizador, posta i avizos arrepushados
@@ -71,19 +71,14 @@ lad:
       featured_tag:
         name: 'Aki estan algunas de las etiketas ke mas tienes utilizado resientemente:'
       filters:
-        action: Eskoje kuala aksyon realizar kuando una publikasyon koensida kon el filtro
         actions:
           hide: Eskonde kompletamente el kontenido filtrado komo si no existiera
           warn: Eskonde el kontenido filtrado detras de una avertensya enmentando el titolo del filtro
       form_admin_settings:
         activity_api_enabled: Numero de publikasyones publikadas lokalmente, utilizadores activos i enrejistrasyones muevas kada semana
-        backups_retention_period: Manten las dosyas de utilizador djeneradas durante el numero de diyas espesifikado.
-        bootstrap_timeline_accounts: Estos kuentos apareseran en la parte superior de las rekomendasiones de los muevos utilizadores.
         closed_registrations_message: Amostrado kuando las enrejistrasyones estan serrados
-        content_cache_retention_period: Las publikasyones de otros sirvidores se supremiran dempues del numero espesifikado de diyas kuando se establezka una valuta pozitiva. Esto puede ser irreversivle.
         custom_css: Puedes aplikar estilos personalizados a la version web de Mastodon.
         mascot: Reemplaza la ilustrasyon en la enterfaz web avanzada.
-        media_cache_retention_period: Las dosyas de multimedia abashadas se supremiran dempues del numero espesifikado de diyas kuando se establezka una valuta pozitiva, i se reabasharan basho demanda.
         peers_api_enabled: Una lista de nombres de domeno ke este sirvidor tiene topado en el Fediverso. Aki no se inkluye dingun dato sovre si federas kon un sirvidor determinado, solo ke tu sirvidor lo konese. Esto es utilizado por los servisyos ke rekopilan estatistikas sovre la federasyon en un senso djeneral.
         profile_directory: El katalogo de profiles lista a todos los utilizadores ke tienen optado por ke sus kuento pueda ser deskuvierto.
         require_invite_text: Kuando las enrejistrasyones rekieren achetasyon manuala, faze obligatoria la entrada de teksto "Por ke keres unirte?" en lugar de ser opsyonal
@@ -96,10 +91,8 @@ lad:
         status_page_url: Adreso URL de la pajina ande la djente puede ver el estado de este sirvidor durante una insidensya
         theme: El tema ke los vizitantes no enrejistrados i los muevos utilizadores ven.
         thumbnail: Una imaje de aproksimadamente 2:1 se amostra djunto a la enformasyon de tu sirvidor.
-        timeline_preview: Los vizitantes no konektados podran navigar por los mesajes publikos mas resientes desponivles en el sirvidor.
         trendable_by_default: Omite la revizyon manuala del kontenido en trend. Los elementos individuales ainda podran supremirse de los trendes.
         trends: Los trendes amostran ke mesajes, etiketas i haberes estan ganando traksyon en tu sirvidor.
-        trends_as_landing_page: Amostra kontenido en trend para utilizadores i vizitantes en lugar de una deskripsyon de este sirvidor. Rekiere ke los trendes esten kapasitados.
       form_challenge:
         current_password: Estas entrando en un area siguro
       imports:
@@ -116,6 +109,7 @@ lad:
           sign_up_requires_approval: Muevas enrejistrasyones rekeriran tu achetasyon
         severity: Eskoje lo ke pasara kon las petisyones dizde este IP
       rule:
+        hint: Opsyonal. Adjusta mas detalyos sovre la regla
         text: Deskrive una norma o rekerensya para los utilizadores de este sirvidor. Aprova fazerla kurta i kolay
       sessions:
         otp: 'Introduse el kodiche de autentifikasyon de dos pasos djenerado por tu aplikasyon de telefon o uza uno de tus kodiches de recuperasyon:'
@@ -127,7 +121,7 @@ lad:
         name: Solo se puede trokar la kapitalizasyon de las letras, por enshemplo, para ke sea mas meldable
       user:
         chosen_languages: Kuando se marka, solo se amostraran las publikasyones en las linguas eskojidas en las linyas de tiempo publikas
-        role: El rolo kontrola kualos permisos tiene el utilizador
+        role: El rolo kontrola kualos permisos tiene el utilizador.
       user_role:
         color: Color ke se utilizara para el rolo a lo largo de la enterfaz de utilizador, komo RGB en formato heksadesimal
         highlighted: Esto faze ke el rolo sea publikamente visible
@@ -203,16 +197,17 @@ lad:
         setting_aggregate_reblogs: Agrupa repartajasyones en linyas
         setting_always_send_emails: Siempre embia avizos por posta
         setting_auto_play_gif: Siempre reproduse los GIFs animados
-        setting_boost_modal: Amostra ventana de konfirmasyon antes de repartajar
         setting_default_language: Lingua de publikasyones
-        setting_default_privacy: Privasita de publikasyones
+        setting_default_privacy: Vizibilita de puvlikasyones
+        setting_default_quote_policy: Ken puede sitar
         setting_default_sensitive: Syempre marka multimedia komo sensivles
-        setting_delete_modal: Mostra dialogo de konfirmasyon antes de efasar una publikasyon
+        setting_disable_hover_cards: Dezaktiva vista previa del profil al pasar el kursor
         setting_disable_swiping: Inkapasita movimyentos de arresvalamiento
         setting_display_media: Vizualizasyon de multimedia
         setting_display_media_default: Predeterminado
         setting_display_media_hide_all: Eskonde todo
         setting_display_media_show_all: Amostra todo
+        setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Siempre espande las publikasyones markadas kon avertensyas de kontenido
         setting_hide_network: Eskonde tu red sosyala
         setting_reduce_motion: Reduse el movimyento en animasyones
@@ -239,13 +234,15 @@ lad:
           warn: Eskonde kon una avertensya
       form_admin_settings:
         activity_api_enabled: Publika estatistikas adjustadas sovre la aktivita del utilizador kon la API
+        app_icon: Ikono de aplikasyon
         backups_retention_period: Periodo de retensyon de la dosya de utilizador
         bootstrap_timeline_accounts: Rekomenda siempre estos kuentos a muevos utilizadores
         closed_registrations_message: Mesaj personalizado kuando las enrejistrasyones no estan desponivles
-        content_cache_retention_period: Periodo de retensyon de kashe de kontenido
         custom_css: CSS personalizado
+        favicon: Ikona de favoritos
         mascot: Maskota personalizada (legado)
         media_cache_retention_period: Periodo de retensyon de kashe multimedia
+        min_age: Edad minima rekerida
         peers_api_enabled: Publika lista de sirvidores diskuviertos en la API
         profile_directory: Kapasita katalogo de profiles
         registrations_mode: Ken puede enrejistrarse
@@ -261,10 +258,8 @@ lad:
         status_page_url: URL de pajina de estado
         theme: Tema predeterminado
         thumbnail: Minyatura del sirvidor
-        timeline_preview: Permite el akseso no autentifikado a las linyas de tiempo publikas
         trendable_by_default: Permite trendes sin revizyon previa
         trends: Kapasita trendes
-        trends_as_landing_page: Kulanea trendes komo la pajina prinsipala
       interactions:
         must_be_follower: Bloka avizos de personas ke no te sigen
         must_be_following: Bloka avizos de personas a las kualas no siges
@@ -289,6 +284,7 @@ lad:
         follow_request: Alguno tiene solisitado segirte
         mention: Alguno te enmento
         pending_account: Muevo kuento nesesita revizyon
+        quote: Alguno te sita
         reblog: Alguno repartajo tu publikasyon
         report: Muevo raporto fue embiado
         software_updates:
@@ -299,6 +295,7 @@ lad:
           patch: Avizame de aktualizasyones de yerros
         trending_tag: Un muevo trend nesesita revizyon
       rule:
+        hint: Enformasyon adisyonala
         text: Regla
       settings:
         indexable: Inkluye la pajina de profil en los bushkadores
@@ -307,8 +304,18 @@ lad:
         listable: Permite ke esta etiketa apareska en bushkedas i sujestyones
         name: Etiketa
         trendable: Permite ke esta etiketa apareska en trendes
-        usable: Permite ke publikasyones uzen esta etiketa
+        usable: Permite ke publikasyones uzen esta etiketa lokalmente
+      terms_of_service:
+        changelog: Ke troko?
+        text: Terminos de servisyo
+      terms_of_service_generator:
+        choice_of_law: Legislasyon aplikavle
+        domain: Domeno
+        min_age: Edad minima
       user:
+        date_of_birth_1i: Anyo
+        date_of_birth_2i: Mez
+        date_of_birth_3i: Diya
         role: Rolo
         time_zone: Zona de tiempo
       user_role:
@@ -317,6 +324,8 @@ lad:
         name: Nombre
         permissions_as_keys: Permisos
         position: Priorita
+      username_block:
+        allow_with_approval: Permite enrejistrasyones kon aprovasyon
       webhook:
         events: Evenimientos kapasitados
         template: Modelo de kontenido

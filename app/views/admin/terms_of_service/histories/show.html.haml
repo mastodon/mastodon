@@ -1,0 +1,20 @@
+- content_for :page_title do
+  = t('admin.terms_of_service.history')
+
+- content_for :heading do
+  %h2= t('admin.terms_of_service.title')
+  = render partial: 'admin/terms_of_service/links'
+
+- if @terms_of_service.empty?
+  %p= t('admin.terms_of_service.no_history')
+- else
+  %ol.admin__terms-of-service__history
+    - @terms_of_service.each do |terms_of_service|
+      %li
+        .admin__terms-of-service__history__item
+          %h5
+            - if terms_of_service.effective_date.present?
+              = link_to l(terms_of_service.published_at), terms_of_service_version_path(date: terms_of_service.effective_date)
+            - else
+              = l(terms_of_service.published_at)
+          .prose= markdown(terms_of_service.changelog)

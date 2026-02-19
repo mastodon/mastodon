@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ActivityPub::PostUpgradeWorker do
+RSpec.describe ActivityPub::PostUpgradeWorker do
   let(:worker) { described_class.new }
 
   describe '#perform' do

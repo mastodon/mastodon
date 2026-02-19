@@ -1,5 +1,6 @@
 import Trie from 'substring-trie';
 
+import { getIsSystemTheme, isDarkMode } from '@/mastodon/utils/theme';
 import { assetHost } from 'mastodon/utils/config';
 
 import { autoPlayGif } from '../../initial_state';
@@ -17,8 +18,13 @@ const emojiFilenames = (emojis) => {
 const darkEmoji = emojiFilenames(['🎱', '🐜', '⚫', '🖤', '⬛', '◼️', '◾', '◼️', '✒️', '▪️', '💣', '🎳', '📷', '📸', '♣️', '🕶️', '✴️', '🔌', '💂‍♀️', '📽️', '🍳', '🦍', '💂', '🔪', '🕳️', '🕹️', '🕋', '🖊️', '🖋️', '💂‍♂️', '🎤', '🎓', '🎥', '🎼', '♠️', '🎩', '🦃', '📼', '📹', '🎮', '🐃', '🏴', '🐞', '🕺', '📱', '📲', '🚲', '🪮', '🐦‍⬛']);
 const lightEmoji = emojiFilenames(['👽', '⚾', '🐔', '☁️', '💨', '🕊️', '👀', '🍥', '👻', '🐐', '❕', '❔', '⛸️', '🌩️', '🔊', '🔇', '📃', '🌧️', '🐏', '🍚', '🍙', '🐓', '🐑', '💀', '☠️', '🌨️', '🔉', '🔈', '💬', '💭', '🏐', '🏳️', '⚪', '⬜', '◽', '◻️', '▫️', '🪽', '🪿']);
 
-const emojiFilename = (filename) => {
-  const borderedEmoji = (document.body && document.body.classList.contains('theme-mastodon-light')) ? lightEmoji : darkEmoji;
+/**
+ * @param {string} filename
+ * @param {"light" | "dark" } colorScheme
+ * @returns {string}
+ */
+const emojiFilename = (filename, colorScheme) => {
+  const borderedEmoji = colorScheme === "light" ? lightEmoji : darkEmoji;
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
@@ -92,12 +98,30 @@ const emojifyTextNode = (node, customEmojis) => {
       const { filename, shortCode } = unicodeMapping[unicode_emoji];
       const title = shortCode ? `:${shortCode}:` : '';
 
-      replacement = document.createElement('img');
-      replacement.setAttribute('draggable', 'false');
-      replacement.setAttribute('class', 'emojione');
-      replacement.setAttribute('alt', unicode_emoji);
-      replacement.setAttribute('title', title);
-      replacement.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename)}.svg`);
+      const isSystemTheme = getIsSystemTheme();
+
+      const theme = (isSystemTheme || !isDarkMode()) ? 'light' : 'dark';
+
+      const imageFilename = emojiFilename(filename, theme);
+
+      const img = document.createElement('img');
+      img.setAttribute('draggable', 'false');
+      img.setAttribute('class', 'emojione');
+      img.setAttribute('alt', unicode_emoji);
+      img.setAttribute('title', title);
+      img.setAttribute('src', `${assetHost}/emoji/${imageFilename}.svg`);
+
+      if (isSystemTheme && imageFilename !== emojiFilename(filename, 'dark')) {
+        replacement = document.createElement('picture');
+
+        const source = document.createElement('source');
+        source.setAttribute('media', '(prefers-color-scheme: dark)');
+        source.setAttribute('srcset', `${assetHost}/emoji/${emojiFilename(filename, 'dark')}.svg`);
+        replacement.appendChild(source);
+        replacement.appendChild(img);
+      } else {
+        replacement = img;
+      }
     }
 
     // Add the processed-up-to-now string and the emoji replacement
@@ -112,7 +136,7 @@ const emojifyTextNode = (node, customEmojis) => {
 };
 
 const emojifyNode = (node, customEmojis) => {
-  for (const child of node.childNodes) {
+  for (const child of Array.from(node.childNodes)) {
     switch(child.nodeType) {
     case Node.TEXT_NODE:
       emojifyTextNode(child, customEmojis);
@@ -125,6 +149,12 @@ const emojifyNode = (node, customEmojis) => {
   }
 };
 
+/**
+ * Legacy emoji processing function.
+ * @param {string} str
+ * @param {object} customEmojis
+ * @returns {string}
+ */
 const emojify = (str, customEmojis = {}) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = str;

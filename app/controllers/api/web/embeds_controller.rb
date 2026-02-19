@@ -9,7 +9,7 @@ class Api::Web::EmbedsController < Api::Web::BaseController
     return not_found if @status.hidden?
 
     if @status.local?
-      render json: @status, serializer: OEmbedSerializer, width: 400
+      render json: @status, serializer: OEmbedSerializer
     else
       return not_found unless user_signed_in?
 
@@ -30,7 +30,7 @@ class Api::Web::EmbedsController < Api::Web::BaseController
   def set_status
     @status = Status.find(params[:id])
     authorize @status, :show?
-  rescue Mastodon::NotPermittedError
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
   end
 end

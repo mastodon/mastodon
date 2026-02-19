@@ -38,13 +38,20 @@ const scroll = (
 const isScrollBehaviorSupported =
   'scrollBehavior' in document.documentElement.style;
 
-export const scrollRight = (node: Element, position: number) => {
-  if (isScrollBehaviorSupported)
-    node.scrollTo({ left: position, behavior: 'smooth' });
-  else scroll(node, 'scrollLeft', position);
-};
+export const scrollRight = (node: Element, position: number) =>
+  requestIdleCallback(() => {
+    if (isScrollBehaviorSupported) {
+      node.scrollTo({ left: position, behavior: 'smooth' });
+    } else {
+      scroll(node, 'scrollLeft', position);
+    }
+  });
 
-export const scrollTop = (node: Element) => {
-  if (isScrollBehaviorSupported) node.scrollTo({ top: 0, behavior: 'smooth' });
-  else scroll(node, 'scrollTop', 0);
-};
+export const scrollTop = (node: Element) =>
+  requestIdleCallback(() => {
+    if (isScrollBehaviorSupported) {
+      node.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      scroll(node, 'scrollTop', 0);
+    }
+  });

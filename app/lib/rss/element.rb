@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class RSS::Element
-  def self.with(*args, &block)
-    new(*args).tap(&block).to_element
+  def self.with(*, &block)
+    new(*).tap(&block).to_element
   end
 
   def create_element(name, content = nil)

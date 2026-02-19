@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe FollowerAccountsController do
+RSpec.describe FollowerAccountsController do
   render_views
 
   let(:alice) { Fabricate(:account, username: 'alice') }
@@ -39,8 +39,6 @@ describe FollowerAccountsController do
     end
 
     context 'when format is json' do
-      subject(:body) { response.parsed_body }
-
       let(:response) { get :index, params: { account_username: alice.username, page: page, format: :json } }
 
       context 'with page' do
@@ -48,15 +46,46 @@ describe FollowerAccountsController do
 
         it 'returns followers' do
           expect(response).to have_http_status(200)
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to include(
               orderedItems: contain_exactly(
-                include(follow_from_bob.account.username),
-                include(follow_from_chris.account.username)
-              )
+                ActivityPub::TagManager.instance.uri_for(follow_from_bob.account),
+                ActivityPub::TagManager.instance.uri_for(follow_from_chris.account)
+              ),
+              totalItems: eq(2),
+              partOf: be_present
             )
-          expect(body['totalItems']).to eq 2
-          expect(body['partOf']).to be_present
+        end
+
+        context 'when account hides their network' do
+          before { alice.update(hide_collections: true) }
+
+          it 'returns forbidden response' do
+            expect(response)
+              .to have_http_status(403)
+            expect(response.parsed_body)
+              .to include(error: /forbidden/i)
+          end
+        end
+
+        context 'when request is signed in and user blocks an account' do
+          let(:account) { Fabricate :account }
+
+          before do
+            Fabricate :block, account:, target_account: follower_bob
+            sign_in(account.user)
+          end
+
+          it 'returns followers without blocked' do
+            expect(response)
+              .to have_http_status(200)
+            expect(response.parsed_body)
+              .to include(
+                orderedItems: contain_exactly(
+                  include(follow_from_chris.account.id.to_s)
+                )
+              )
+          end
         end
 
         context 'when account is permanently suspended' do
@@ -86,8 +115,11 @@ describe FollowerAccountsController do
 
         it 'returns followers' do
           expect(response).to have_http_status(200)
-          expect(body['totalItems']).to eq 2
-          expect(body['partOf']).to be_blank
+          expect(response.parsed_body)
+            .to include(
+              totalItems: eq(2)
+            )
+            .and not_include(:partOf)
         end
 
         context 'when account hides their network' do
@@ -95,15 +127,17 @@ describe FollowerAccountsController do
             alice.update(hide_collections: true)
           end
 
-          it 'returns followers count' do
-            expect(body['totalItems']).to eq 2
-          end
-
-          it 'does not return items' do
-            expect(body['items']).to be_blank
-            expect(body['orderedItems']).to be_blank
-            expect(body['first']).to be_blank
-            expect(body['last']).to be_blank
+          it 'returns followers count but not any items' do
+            expect(response.parsed_body)
+              .to include(
+                totalItems: eq(2)
+              )
+              .and not_include(
+                :items,
+                :orderedItems,
+                :first,
+                :last
+              )
           end
         end
 

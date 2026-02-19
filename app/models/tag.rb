@@ -21,21 +21,27 @@
 
 class Tag < ApplicationRecord
   include Paginable
+  include Reviewable
+
+  # rubocop:disable Rails/HasAndBelongsToMany
   has_and_belongs_to_many :statuses
   has_and_belongs_to_many :accounts
+  # rubocop:enable Rails/HasAndBelongsToMany
 
   has_many :passive_relationships, class_name: 'TagFollow', inverse_of: :tag, dependent: :destroy
   has_many :featured_tags, dependent: :destroy, inverse_of: :tag
   has_many :followers, through: :passive_relationships, source: :account
 
-  HASHTAG_SEPARATORS = "_\u00B7\u30FB\u200c"
-  HASHTAG_FIRST_SEQUENCE_CHUNK_ONE = "[[:word:]_][[:word:]#{HASHTAG_SEPARATORS}]*[[:alpha:]#{HASHTAG_SEPARATORS}]"
-  HASHTAG_FIRST_SEQUENCE_CHUNK_TWO = "[[:word:]#{HASHTAG_SEPARATORS}]*[[:word:]_]"
-  HASHTAG_FIRST_SEQUENCE = "(#{HASHTAG_FIRST_SEQUENCE_CHUNK_ONE}#{HASHTAG_FIRST_SEQUENCE_CHUNK_TWO})"
-  HASHTAG_LAST_SEQUENCE = '([[:word:]_]*[[:alpha:]][[:word:]_]*)'
-  HASHTAG_NAME_PAT = "#{HASHTAG_FIRST_SEQUENCE}|#{HASHTAG_LAST_SEQUENCE}"
+  has_one :trend, class_name: 'TagTrend', inverse_of: :tag, dependent: :destroy
 
-  HASHTAG_RE = %r{(?<![=/)\w])#(#{HASHTAG_NAME_PAT})}i
+  HASHTAG_SEPARATORS = "_\u00B7\u30FB\u200c"
+  HASHTAG_FIRST_SEQUENCE_CHUNK_ONE = "[[:word:]_][[:word:]#{HASHTAG_SEPARATORS}]*[[:alpha:]#{HASHTAG_SEPARATORS}]".freeze
+  HASHTAG_FIRST_SEQUENCE_CHUNK_TWO = "[[:word:]#{HASHTAG_SEPARATORS}]*[[:word:]_]".freeze
+  HASHTAG_FIRST_SEQUENCE = "(#{HASHTAG_FIRST_SEQUENCE_CHUNK_ONE}#{HASHTAG_FIRST_SEQUENCE_CHUNK_TWO})".freeze
+  HASHTAG_LAST_SEQUENCE = '([[:word:]_]*[[:alpha:]][[:word:]_]*)'
+  HASHTAG_NAME_PAT = "#{HASHTAG_FIRST_SEQUENCE}|#{HASHTAG_LAST_SEQUENCE}".freeze
+
+  HASHTAG_RE = /(?<=^|\s)[#＃](#{HASHTAG_NAME_PAT})/
   HASHTAG_NAME_RE = /\A(#{HASHTAG_NAME_PAT})\z/i
   HASHTAG_INVALID_CHARS_RE = /[^[:alnum:]\u0E47-\u0E4E#{HASHTAG_SEPARATORS}]/
 
@@ -43,22 +49,25 @@ class Tag < ApplicationRecord
 
   validates :name, presence: true, format: { with: HASHTAG_NAME_RE }
   validates :display_name, format: { with: HASHTAG_NAME_RE }
-  validate :validate_name_change, if: -> { !new_record? && name_changed? }
-  validate :validate_display_name_change, if: -> { !new_record? && display_name_changed? }
+  validate :validate_name_change, on: :update, if: :name_changed?
+  validate :validate_display_name_change, on: :update, if: :display_name_changed?
 
-  scope :reviewed, -> { where.not(reviewed_at: nil) }
-  scope :unreviewed, -> { where(reviewed_at: nil) }
   scope :pending_review, -> { unreviewed.where.not(requested_review_at: nil) }
   scope :usable, -> { where(usable: [true, nil]) }
+  scope :not_usable, -> { where(usable: false) }
   scope :listable, -> { where(listable: [true, nil]) }
   scope :trendable, -> { Setting.trendable_by_default ? where(trendable: [true, nil]) : where(trendable: true) }
   scope :not_trendable, -> { where(trendable: false) }
+  scope :suggestions_for_account, ->(account) { recently_used(account).not_featured_by(account) }
+  scope :not_featured_by, ->(account) { where.not(id: account.featured_tags.select(:tag_id)) }
   scope :recently_used, lambda { |account|
                           joins(:statuses)
                             .where(statuses: { id: account.statuses.select(:id).limit(RECENT_STATUS_LIMIT) })
-                            .group(:id).order(Arel.sql('count(*) desc'))
+                            .group(:id).order(Arel.star.count.desc)
                         }
   scope :matches_name, ->(term) { where(arel_table[:name].lower.matches(arel_table.lower("#{sanitize_sql_like(Tag.normalize(term))}%"), nil, true)) } # Search with case-sensitive to use B-tree index
+
+  normalizes :display_name, with: ->(value) { value.gsub(HASHTAG_INVALID_CHARS_RE, '') }
 
   update_index('tags', :self)
 
@@ -68,6 +77,10 @@ class Tag < ApplicationRecord
 
   def display_name
     attributes['display_name'] || name
+  end
+
+  def formatted_name
+    "##{display_name}"
   end
 
   def usable
@@ -88,22 +101,6 @@ class Tag < ApplicationRecord
 
   alias trendable? trendable
 
-  def requires_review?
-    reviewed_at.nil?
-  end
-
-  def reviewed?
-    reviewed_at.present?
-  end
-
-  def requested_review?
-    requested_review_at.present?
-  end
-
-  def requires_review_notification?
-    requires_review? && !requested_review?
-  end
-
   def decaying?
     max_score_at && max_score_at >= Trends.tags.options[:max_score_cooldown].ago && max_score_at < 1.day.ago
   end
@@ -117,8 +114,11 @@ class Tag < ApplicationRecord
       names = Array(name_or_names).map { |str| [normalize(str), str] }.uniq(&:first)
 
       names.map do |(normalized_name, display_name)|
-        tag = matching_name(normalized_name).first || create(name: normalized_name,
-                                                             display_name: display_name.gsub(HASHTAG_INVALID_CHARS_RE, ''))
+        tag = begin
+          matching_name(normalized_name).first || create!(name: normalized_name, display_name:)
+        rescue ActiveRecord::RecordNotUnique
+          find_normalized(normalized_name)
+        end
 
         yield tag if block_given?
 
@@ -128,13 +128,15 @@ class Tag < ApplicationRecord
 
     def search_for(term, limit = 5, offset = 0, options = {})
       stripped_term = term.strip
+      options.reverse_merge!({ exclude_unlistable: true, exclude_unreviewed: false })
 
-      query = Tag.listable.matches_name(stripped_term)
-      query = query.merge(matching_name(stripped_term).or(where.not(reviewed_at: nil))) if options[:exclude_unreviewed]
+      query = Tag.matches_name(stripped_term)
+      query = query.merge(Tag.listable) if options[:exclude_unlistable]
+      query = query.merge(matching_name(stripped_term).or(reviewed)) if options[:exclude_unreviewed]
 
-      query.order(Arel.sql('length(name) ASC, name ASC'))
-           .limit(limit)
-           .offset(offset)
+      query.order(Arel.sql('LENGTH(name)').asc, name: :asc)
+        .limit(limit)
+        .offset(offset)
     end
 
     def find_normalized(name)
@@ -163,13 +165,14 @@ class Tag < ApplicationRecord
   private
 
   def validate_name_change
-    errors.add(:name, I18n.t('tags.does_not_match_previous_name')) unless name_was.mb_chars.casecmp(name.mb_chars).zero?
+    errors.add(:name, I18n.t('tags.does_not_match_previous_name')) unless name_was.casecmp(name).zero?
   end
 
   def validate_display_name_change
-    unless HashtagNormalizer.new.normalize(display_name).casecmp(name.mb_chars).zero?
-      errors.add(:display_name,
-                 I18n.t('tags.does_not_match_previous_name'))
-    end
+    errors.add(:display_name, I18n.t('tags.does_not_match_previous_name')) unless display_name_matches_name?
+  end
+
+  def display_name_matches_name?
+    HashtagNormalizer.new.normalize(display_name).casecmp(name).zero?
   end
 end

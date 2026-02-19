@@ -29,7 +29,10 @@ RSpec.describe TextFormatter do
       let(:text) { '@alice' }
 
       it 'creates a mention link' do
-        expect(subject).to include '<a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span>'
+        expect(subject)
+          .to include(<<~LINK.squish)
+            <a href="https://#{Rails.configuration.x.local_domain}/@alice" class="u-url mention">@<span>alice</span></a>
+          LINK
       end
     end
 
@@ -50,7 +53,7 @@ RSpec.describe TextFormatter do
       end
     end
 
-    context 'when given a stand-alone google URL' do
+    context 'when given a stand-alone Google URL' do
       let(:text) { 'http://google.com' }
 
       it 'matches the full URL' do
@@ -224,6 +227,14 @@ RSpec.describe TextFormatter do
       end
     end
 
+    context 'when given a URL with trailing @ symbol' do
+      let(:text) { 'https://gta.fandom.com/wiki/TW@ Content' }
+
+      it 'matches the full URL' do
+        expect(subject).to include 'href="https://gta.fandom.com/wiki/TW@"'
+      end
+    end
+
     context 'when given a URL containing unsafe code (XSS attack, visible part)' do
       let(:text) { 'http://example.com/b<del>b</del>' }
 
@@ -269,6 +280,26 @@ RSpec.describe TextFormatter do
 
       it 'outputs the raw URL' do
         expect(subject).to eq '<p>http://www\.google\.com</p>'
+      end
+    end
+
+    context 'when given a lengthy URL' do
+      let(:text) { 'lorem https://prepitaph.org/wip/web-dovespair/ ipsum' }
+
+      it 'truncates the URL' do
+        expect(subject).to include '<span class="invisible">https://</span>'
+        expect(subject).to include '<span class="ellipsis">prepitaph.org/wip/web-dovespai</span>'
+        expect(subject).to include '<span class="invisible">r/</span>'
+      end
+    end
+
+    context 'when given a sufficiently short URL' do
+      let(:text) { 'lorem https://prepitaph.org/wip/web-devspair/ ipsum' }
+
+      it 'does not truncate the URL' do
+        expect(subject).to include '<span class="invisible">https://</span>'
+        expect(subject).to include '<span class="">prepitaph.org/wip/web-devspair/</span>'
+        expect(subject).to include '<span class="invisible"></span>'
       end
     end
 

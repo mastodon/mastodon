@@ -3,10 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Tags' do
-  let(:role)    { UserRole.find_by(name: 'Admin') }
-  let(:user)    { Fabricate(:user, role: role) }
-  let(:scopes)  { 'admin:read admin:write' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  include_context 'with API authentication', user_fabricator: :admin_user, oauth_scopes: 'admin:read admin:write'
+
   let(:tag)     { Fabricate(:tag) }
   let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
@@ -20,17 +18,16 @@ RSpec.describe 'Tags' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns http success' do
-      subject
-
-      expect(response).to have_http_status(200)
-    end
-
     context 'when there are no tags' do
       it 'returns an empty list' do
         subject
 
-        expect(body_as_json).to be_empty
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response.parsed_body)
+          .to be_empty
       end
     end
 
@@ -46,8 +43,13 @@ RSpec.describe 'Tags' do
 
       it 'returns the expected tags' do
         subject
+
+        expect(response)
+          .to have_http_status(200)
+        expect(response.content_type)
+          .to start_with('application/json')
         tags.each do |tag|
-          expect(body_as_json.find { |item| item[:id] == tag.id.to_s && item[:name] == tag.name }).to_not be_nil
+          expect(response.parsed_body.find { |item| item[:id] == tag.id.to_s && item[:name] == tag.name }).to_not be_nil
         end
       end
 
@@ -57,7 +59,7 @@ RSpec.describe 'Tags' do
         it 'returns only the requested number of tags' do
           subject
 
-          expect(body_as_json.size).to eq(params[:limit])
+          expect(response.parsed_body.size).to eq(params[:limit])
         end
       end
     end
@@ -73,17 +75,18 @@ RSpec.describe 'Tags' do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns http success' do
+    it 'returns http success and expected tag content' do
       subject
 
       expect(response).to have_http_status(200)
-    end
+      expect(response.content_type)
+        .to start_with('application/json')
 
-    it 'returns expected tag content' do
-      subject
-
-      expect(body_as_json[:id].to_i).to eq(tag.id)
-      expect(body_as_json[:name]).to eq(tag.name)
+      expect(response.parsed_body)
+        .to include(
+          id: tag.id.to_s,
+          name: tag.name
+        )
     end
 
     context 'when the requested tag does not exist' do
@@ -91,6 +94,8 @@ RSpec.describe 'Tags' do
         get '/api/v1/admin/tags/-1', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end
@@ -107,17 +112,18 @@ RSpec.describe 'Tags' do
     it_behaves_like 'forbidden for wrong scope', 'admin:read'
     it_behaves_like 'forbidden for wrong role', ''
 
-    it 'returns http success' do
+    it 'returns http success and updates tag' do
       subject
 
       expect(response).to have_http_status(200)
-    end
+      expect(response.content_type)
+        .to start_with('application/json')
 
-    it 'returns updated tag' do
-      subject
-
-      expect(body_as_json[:id].to_i).to eq(tag.id)
-      expect(body_as_json[:name]).to eq(tag.name.upcase)
+      expect(response.parsed_body)
+        .to include(
+          id: tag.id.to_s,
+          name: tag.name.upcase
+        )
     end
 
     context 'when the updated display name is invalid' do
@@ -127,6 +133,8 @@ RSpec.describe 'Tags' do
         subject
 
         expect(response).to have_http_status(422)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -135,6 +143,8 @@ RSpec.describe 'Tags' do
         get '/api/v1/admin/tags/-1', headers: headers
 
         expect(response).to have_http_status(404)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

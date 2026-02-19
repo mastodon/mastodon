@@ -10,7 +10,7 @@ class VerifyLinkService < BaseService
     return unless link_back_present?
 
     field.mark_verified!
-  rescue OpenSSL::SSL::SSLError, HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, IPAddr::AddressFamilyError => e
+  rescue *Mastodon::HTTP_CONNECTION_ERRORS, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, IPAddr::AddressFamilyError => e
     Rails.logger.debug { "Error fetching link #{@url}: #{e}" }
     nil
   end
@@ -19,14 +19,14 @@ class VerifyLinkService < BaseService
 
   def perform_request!
     @body = Request.new(:get, @url).add_headers('Accept' => 'text/html').perform do |res|
-      res.code == 200 ? res.body_with_limit : nil
+      res.code == 200 ? res.truncated_body : nil
     end
   end
 
   def link_back_present?
     return false if @body.blank?
 
-    links = Nokogiri::HTML5(@body).xpath('//a[contains(concat(" ", normalize-space(@rel), " "), " me ")]|//link[contains(concat(" ", normalize-space(@rel), " "), " me ")]')
+    links = Nokogiri::HTML5(@body).xpath('(//a|//link)[@rel][nokogiri:link_rel_include(@rel, "me")]', NokogiriHandler)
 
     if links.any? { |link| link['href']&.downcase == @link_back.downcase }
       true

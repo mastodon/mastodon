@@ -1,4 +1,8 @@
+import { browserHistory } from 'mastodon/components/router';
+import { debounceWithDispatchAndArguments } from 'mastodon/utils/debounce';
+
 import api, { getLinks } from '../api';
+import { me } from '../initial_state';
 
 import {
   followAccountSuccess, unfollowAccountSuccess,
@@ -9,6 +13,7 @@ import {
   blockAccountSuccess, unblockAccountSuccess,
   pinAccountSuccess, unpinAccountSuccess,
   fetchRelationshipsSuccess,
+  fetchEndorsedAccounts,
 } from './accounts_typed';
 import { importFetchedAccount, importFetchedAccounts } from './importer';
 
@@ -76,11 +81,11 @@ export const ACCOUNT_REVEAL = 'ACCOUNT_REVEAL';
 export * from './accounts_typed';
 
 export function fetchAccount(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(fetchRelationships([id]));
     dispatch(fetchAccountRequest(id));
 
-    api(getState).get(`/api/v1/accounts/${id}`).then(response => {
+    api().get(`/api/v1/accounts/${id}`).then(response => {
       dispatch(importFetchedAccount(response.data));
       dispatch(fetchAccountSuccess());
     }).catch(error => {
@@ -89,10 +94,10 @@ export function fetchAccount(id) {
   };
 }
 
-export const lookupAccount = acct => (dispatch, getState) => {
+export const lookupAccount = acct => (dispatch) => {
   dispatch(lookupAccountRequest(acct));
 
-  api(getState).get('/api/v1/accounts/lookup', { params: { acct } }).then(response => {
+  api().get('/api/v1/accounts/lookup', { params: { acct } }).then(response => {
     dispatch(fetchRelationships([response.data.id]));
     dispatch(importFetchedAccount(response.data));
     dispatch(lookupAccountSuccess());
@@ -139,14 +144,22 @@ export function fetchAccountFail(id, error) {
   };
 }
 
+/**
+ * @param {string} id
+ * @param {Object} options
+ * @param {boolean} [options.reblogs]
+ * @param {boolean} [options.notify]
+ * @returns {function(): void}
+ */
 export function followAccount(id, options = { reblogs: true }) {
   return (dispatch, getState) => {
-    const alreadyFollowing = getState().getIn(['relationships', id, 'following']);
+    const relationship = getState().getIn(['relationships', id]);
+    const alreadyFollowing = relationship?.following || relationship?.requested;
     const locked = getState().getIn(['accounts', id, 'locked'], false);
 
     dispatch(followAccountRequest({ id, locked }));
 
-    api(getState).post(`/api/v1/accounts/${id}/follow`, options).then(response => {
+    api().post(`/api/v1/accounts/${id}/follow`, options).then(response => {
       dispatch(followAccountSuccess({relationship: response.data, alreadyFollowing}));
     }).catch(error => {
       dispatch(followAccountFail({ id, error, locked }));
@@ -158,7 +171,7 @@ export function unfollowAccount(id) {
   return (dispatch, getState) => {
     dispatch(unfollowAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/unfollow`).then(response => {
+    api().post(`/api/v1/accounts/${id}/unfollow`).then(response => {
       dispatch(unfollowAccountSuccess({relationship: response.data, statuses: getState().get('statuses')}));
     }).catch(error => {
       dispatch(unfollowAccountFail({ id, error }));
@@ -170,7 +183,7 @@ export function blockAccount(id) {
   return (dispatch, getState) => {
     dispatch(blockAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/block`).then(response => {
+    api().post(`/api/v1/accounts/${id}/block`).then(response => {
       // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
       dispatch(blockAccountSuccess({ relationship: response.data, statuses: getState().get('statuses') }));
     }).catch(error => {
@@ -180,10 +193,10 @@ export function blockAccount(id) {
 }
 
 export function unblockAccount(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(unblockAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/unblock`).then(response => {
+    api().post(`/api/v1/accounts/${id}/unblock`).then(response => {
       dispatch(unblockAccountSuccess({ relationship: response.data }));
     }).catch(error => {
       dispatch(unblockAccountFail({ id, error }));
@@ -223,7 +236,7 @@ export function muteAccount(id, notifications, duration=0) {
   return (dispatch, getState) => {
     dispatch(muteAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/mute`, { notifications, duration }).then(response => {
+    api().post(`/api/v1/accounts/${id}/mute`, { notifications, duration }).then(response => {
       // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
       dispatch(muteAccountSuccess({ relationship: response.data, statuses: getState().get('statuses') }));
     }).catch(error => {
@@ -233,10 +246,10 @@ export function muteAccount(id, notifications, duration=0) {
 }
 
 export function unmuteAccount(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(unmuteAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/unmute`).then(response => {
+    api().post(`/api/v1/accounts/${id}/unmute`).then(response => {
       dispatch(unmuteAccountSuccess({ relationship: response.data }));
     }).catch(error => {
       dispatch(unmuteAccountFail({ id, error }));
@@ -274,10 +287,10 @@ export function unmuteAccountFail(error) {
 
 
 export function fetchFollowers(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(fetchFollowersRequest(id));
 
-    api(getState).get(`/api/v1/accounts/${id}/followers`).then(response => {
+    api().get(`/api/v1/accounts/${id}/followers`).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(importFetchedAccounts(response.data));
@@ -324,7 +337,7 @@ export function expandFollowers(id) {
 
     dispatch(expandFollowersRequest(id));
 
-    api(getState).get(url).then(response => {
+    api().get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(importFetchedAccounts(response.data));
@@ -361,10 +374,10 @@ export function expandFollowersFail(id, error) {
 }
 
 export function fetchFollowing(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(fetchFollowingRequest(id));
 
-    api(getState).get(`/api/v1/accounts/${id}/following`).then(response => {
+    api().get(`/api/v1/accounts/${id}/following`).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(importFetchedAccounts(response.data));
@@ -411,7 +424,7 @@ export function expandFollowing(id) {
 
     dispatch(expandFollowingRequest(id));
 
-    api(getState).get(url).then(response => {
+    api().get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(importFetchedAccounts(response.data));
@@ -447,6 +460,20 @@ export function expandFollowingFail(id, error) {
   };
 }
 
+const debouncedFetchRelationships = debounceWithDispatchAndArguments((dispatch, ...newAccountIds) => {
+  if (newAccountIds.length === 0) {
+    return;
+  }
+
+  dispatch(fetchRelationshipsRequest(newAccountIds));
+
+  api().get(`/api/v1/accounts/relationships?with_suspended=true&${newAccountIds.map(id => `id[]=${id}`).join('&')}`).then(response => {
+    dispatch(fetchRelationshipsSuccess({ relationships: response.data }));
+  }).catch(error => {
+    dispatch(fetchRelationshipsFail(error));
+  });
+}, { delay: 500 });
+
 export function fetchRelationships(accountIds) {
   return (dispatch, getState) => {
     const state = getState();
@@ -458,13 +485,7 @@ export function fetchRelationships(accountIds) {
       return;
     }
 
-    dispatch(fetchRelationshipsRequest(newAccountIds));
-
-    api(getState).get(`/api/v1/accounts/relationships?with_suspended=true&${newAccountIds.map(id => `id[]=${id}`).join('&')}`).then(response => {
-      dispatch(fetchRelationshipsSuccess({ relationships: response.data }));
-    }).catch(error => {
-      dispatch(fetchRelationshipsFail(error));
-    });
+    debouncedFetchRelationships(dispatch, ...newAccountIds);
   };
 }
 
@@ -486,10 +507,10 @@ export function fetchRelationshipsFail(error) {
 }
 
 export function fetchFollowRequests() {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(fetchFollowRequestsRequest());
 
-    api(getState).get('/api/v1/follow_requests').then(response => {
+    api().get('/api/v1/follow_requests').then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedAccounts(response.data));
       dispatch(fetchFollowRequestsSuccess(response.data, next ? next.uri : null));
@@ -528,7 +549,7 @@ export function expandFollowRequests() {
 
     dispatch(expandFollowRequestsRequest());
 
-    api(getState).get(url).then(response => {
+    api().get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedAccounts(response.data));
       dispatch(expandFollowRequestsSuccess(response.data, next ? next.uri : null));
@@ -558,10 +579,10 @@ export function expandFollowRequestsFail(error) {
 }
 
 export function authorizeFollowRequest(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(authorizeFollowRequestRequest(id));
 
-    api(getState)
+    api()
       .post(`/api/v1/follow_requests/${id}/authorize`)
       .then(() => dispatch(authorizeFollowRequestSuccess({ id })))
       .catch(error => dispatch(authorizeFollowRequestFail(id, error)));
@@ -585,10 +606,10 @@ export function authorizeFollowRequestFail(id, error) {
 
 
 export function rejectFollowRequest(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(rejectFollowRequestRequest(id));
 
-    api(getState)
+    api()
       .post(`/api/v1/follow_requests/${id}/reject`)
       .then(() => dispatch(rejectFollowRequestSuccess({ id })))
       .catch(error => dispatch(rejectFollowRequestFail(id, error)));
@@ -611,11 +632,12 @@ export function rejectFollowRequestFail(id, error) {
 }
 
 export function pinAccount(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(pinAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/pin`).then(response => {
+    api().post(`/api/v1/accounts/${id}/pin`).then(response => {
       dispatch(pinAccountSuccess({ relationship: response.data }));
+      dispatch(fetchEndorsedAccounts({ accountId: me }));
     }).catch(error => {
       dispatch(pinAccountFail(error));
     });
@@ -623,11 +645,12 @@ export function pinAccount(id) {
 }
 
 export function unpinAccount(id) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     dispatch(unpinAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/unpin`).then(response => {
+    api().post(`/api/v1/accounts/${id}/unpin`).then(response => {
       dispatch(unpinAccountSuccess({ relationship: response.data }));
+      dispatch(fetchEndorsedAccounts({ accountId: me }));
     }).catch(error => {
       dispatch(unpinAccountFail(error));
     });
@@ -662,7 +685,7 @@ export function unpinAccountFail(error) {
   };
 }
 
-export const updateAccount = ({ displayName, note, avatar, header, discoverable, indexable }) => (dispatch, getState) => {
+export const updateAccount = ({ displayName, note, avatar, header, discoverable, indexable }) => (dispatch) => {
   const data = new FormData();
 
   data.append('display_name', displayName);
@@ -672,7 +695,17 @@ export const updateAccount = ({ displayName, note, avatar, header, discoverable,
   data.append('discoverable', discoverable);
   data.append('indexable', indexable);
 
-  return api(getState).patch('/api/v1/accounts/update_credentials', data).then(response => {
+  return api().patch('/api/v1/accounts/update_credentials', data).then(response => {
     dispatch(importFetchedAccount(response.data));
   });
+};
+
+export const navigateToProfile = (accountId) => {
+  return (_dispatch, getState) => {
+    const acct = getState().accounts.getIn([accountId, 'acct']);
+
+    if (acct) {
+      browserHistory.push(`/@${acct}`);
+    }
+  };
 };

@@ -6,7 +6,7 @@ require 'rails/generators/testing/assertions'
 
 require 'generators/post_deployment_migration/post_deployment_migration_generator'
 
-describe PostDeploymentMigrationGenerator, type: :generator do
+RSpec.describe PostDeploymentMigrationGenerator, type: :generator do
   include Rails::Generators::Testing::Behavior
   include Rails::Generators::Testing::Assertions
   include FileUtils

@@ -3,10 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Bookmarks' do
-  let(:user)    { Fabricate(:user) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'read:bookmarks' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:bookmarks'
 
   describe 'GET /api/v1/bookmarks' do
     subject do
@@ -24,16 +21,13 @@ RSpec.describe 'Bookmarks' do
 
     it_behaves_like 'forbidden for wrong scope', 'write'
 
-    it 'returns http success' do
+    it 'returns http success and the bookmarked statuses' do
       subject
 
       expect(response).to have_http_status(200)
-    end
-
-    it 'returns the bookmarked statuses' do
-      subject
-
-      expect(body_as_json).to match_array(expected_response)
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body).to match_array(expected_response)
     end
 
     context 'with limit param' do
@@ -42,9 +36,16 @@ RSpec.describe 'Bookmarks' do
       it 'paginates correctly', :aggregate_failures do
         subject
 
-        expect(body_as_json.size).to eq(params[:limit])
-        expect(response.headers['Link'].find_link(%w(rel prev)).href).to eq(api_v1_bookmarks_url(limit: params[:limit], min_id: bookmarks.last.id))
-        expect(response.headers['Link'].find_link(%w(rel next)).href).to eq(api_v1_bookmarks_url(limit: params[:limit], max_id: bookmarks[1].id))
+        expect(response.parsed_body.size)
+          .to eq(params[:limit])
+
+        expect(response.content_type)
+          .to start_with('application/json')
+        expect(response)
+          .to include_pagination_headers(
+            prev: api_v1_bookmarks_url(limit: params[:limit], min_id: bookmarks.last.id),
+            next: api_v1_bookmarks_url(limit: params[:limit], max_id: bookmarks.second.id)
+          )
       end
     end
 
@@ -55,6 +56,8 @@ RSpec.describe 'Bookmarks' do
         subject
 
         expect(response).to have_http_status(401)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
   end

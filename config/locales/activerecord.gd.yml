@@ -15,9 +15,16 @@ gd:
       user/invite_request:
         text: Adhbhar
     errors:
+      attributes:
+        domain:
+          invalid: "– chan eil seo ’na ainm àrainne dligheach"
+      messages:
+        invalid_domain_on_line: Chan eil %{value} ’na ainm àrainne dligheach
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: "– tha luachan ann air a bheil leubail a dhìth"
             username:
               invalid: "– chan fhaod ach litrichean gun sràcan, àireamhan ’s fo-loidhnichean a bhith ’na bhroinn"
               reserved: "– tha e glèidhte"
@@ -25,6 +32,12 @@ gd:
           attributes:
             url:
               invalid: "– chan eil seo ’na URL dligheach"
+        collection:
+          attributes:
+            collection_items:
+              too_many: "– tha cus dhiubh ann, chan eil còrr is %{count} ceadaichte"
+            tag:
+              unusable: "– chan fhaodar seo a chleachdadh"
         doorkeeper/application:
           attributes:
             website:
@@ -33,12 +46,23 @@ gd:
           attributes:
             data:
               malformed: "– chan eil cruth dligheach air"
+        list_account:
+          attributes:
+            account_id:
+              taken: "– tha seo air an liosta mu thràth"
+          must_be_following: "– feumaidh e a bhith ’na chunntas ga leantainn"
         status:
           attributes:
             reblog:
               taken: "– tha seo aig a’ phost mu thràth"
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: "– tha seo ro aithghearr, feumaidh e a bhith nas anmoiche na %{date}"
         user:
           attributes:
+            date_of_birth:
+              below_limit: "– tha seo fo chrìoch na h-aoise"
             email:
               blocked: "– tha seo a’ chleachdadh solaraiche puist-d nach eil ceadaichte"
               unreachable: "– tha coltas nach eil seo ann"

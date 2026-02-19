@@ -2,6 +2,9 @@
 
 class Api::V1::SuggestionsController < Api::BaseController
   include Authorization
+  include DeprecationConcern
+
+  deprecate_api '2021-05-16', only: [:index]
 
   before_action -> { doorkeeper_authorize! :read, :'read:accounts' }, only: :index
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, except: :index

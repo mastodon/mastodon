@@ -17,11 +17,17 @@ class StatusPin < ApplicationRecord
 
   validates_with StatusPinValidator
 
-  after_destroy :invalidate_cleanup_info
+  after_destroy :invalidate_cleanup_info, if: %i(account_matches_status_account? account_local?)
+
+  delegate :local?, to: :account, prefix: true
+
+  private
 
   def invalidate_cleanup_info
-    return unless status&.account_id == account_id && account.local?
-
     account.statuses_cleanup_policy&.invalidate_last_inspected(status, :unpin)
+  end
+
+  def account_matches_status_account?
+    status&.account_id == account_id
   end
 end

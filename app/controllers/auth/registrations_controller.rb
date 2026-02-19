@@ -11,9 +11,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
   before_action :set_strikes, only: [:edit, :update]
-  before_action :set_body_classes, only: [:new, :create, :edit, :update]
   before_action :require_not_suspended!, only: [:update]
-  before_action :set_cache_headers, only: [:edit, :update]
   before_action :set_rules, only: :new
   before_action :require_rules_acceptance!, only: :new
   before_action :set_registration_form_time, only: :new
@@ -23,6 +21,14 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def new
     super(&:build_invite_request)
+  end
+
+  def edit
+    super
+  end
+
+  def create
+    super
   end
 
   def update
@@ -44,7 +50,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def build_resource(hash = nil)
-    super(hash)
+    super
 
     resource.locale                 = I18n.locale
     resource.invite_code            = @invite&.code if resource.invite_code.blank?
@@ -56,7 +62,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-      user_params.permit({ account_attributes: [:username, :display_name], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password)
+      user_params.permit({ account_attributes: [:username, :display_name], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password, :date_of_birth)
     end
   end
 
@@ -83,7 +89,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path unless allowed_registration?(request.remote_ip, @invite)
+    redirect_to new_user_session_path, alert: I18n.t('devise.failure.closed_registrations', email: Setting.site_contact_email) unless allowed_registration?(request.remote_ip, @invite)
   end
 
   def invite_code
@@ -95,10 +101,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   private
-
-  def set_body_classes
-    @body_classes = %w(edit update).include?(action_name) ? 'admin' : 'lighter'
-  end
 
   def set_invite
     @invite = begin
@@ -124,19 +126,28 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_rules
-    @rules = Rule.ordered
+    @rules = Rule.ordered.includes(:translations)
   end
 
   def require_rules_acceptance!
-    return if @rules.empty? || (session[:accept_token].present? && params[:accept] == session[:accept_token])
+    return if @rules.empty? || validated_accept_token?
 
     @accept_token = session[:accept_token] = SecureRandom.hex
-    @invite_code  = invite_code
+    @invite_code = invite_code
+    @rule_translations = @rules.map { |rule| rule.translation_for(I18n.locale) }
 
-    set_locale { render :rules }
+    render :rules
   end
 
-  def set_cache_headers
-    response.cache_control.replace(private: true, no_store: true)
+  def validated_accept_token?
+    session[:accept_token].present? && params[:accept] == session[:accept_token]
+  end
+
+  def is_flashing_format? # rubocop:disable Naming/PredicatePrefix
+    if params[:action] == 'create'
+      false # Disable flash messages for sign-up
+    else
+      super
+    end
   end
 end

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::TagsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :follow, :write, :'write:follows' }, except: :show
+  before_action -> { doorkeeper_authorize! :follow, :write, :'write:follows' }, only: [:follow, :unfollow]
+  before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:feature, :unfeature]
   before_action :require_user!, except: :show
   before_action :set_or_create_tag
 
@@ -20,6 +21,16 @@ class Api::V1::TagsController < Api::BaseController
   def unfollow
     TagFollow.find_by(account: current_account, tag: @tag)&.destroy!
     TagUnmergeWorker.perform_async(@tag.id, current_account.id)
+    render json: @tag, serializer: REST::TagSerializer
+  end
+
+  def feature
+    CreateFeaturedTagService.new.call(current_account, @tag)
+    render json: @tag, serializer: REST::TagSerializer
+  end
+
+  def unfeature
+    RemoveFeaturedTagService.new.call(current_account, @tag)
     render json: @tag, serializer: REST::TagSerializer
   end
 

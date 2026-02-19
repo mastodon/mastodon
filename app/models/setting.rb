@@ -7,10 +7,8 @@
 #  id         :bigint(8)        not null, primary key
 #  var        :string           not null
 #  value      :text
-#  thing_type :string
 #  created_at :datetime
 #  updated_at :datetime
-#  thing_id   :bigint(8)
 #
 
 # This file is derived from a fork of the `rails-settings-cached` gem available at
@@ -46,10 +44,10 @@ class Setting < ApplicationRecord
   after_commit :rewrite_cache, on: %i(create update)
   after_commit :expire_cache, on: %i(destroy)
 
-  # Settings are server-wide settings only, but they were previously
-  # used for users too. This can be dropped later with a database
-  # migration dropping any scoped setting.
-  default_scope { where(thing_type: nil, thing_id: nil) }
+  self.ignored_columns += %w(
+    thing_id
+    thing_type
+  )
 
   class << self
     # get or set a variable with the variable as the called method

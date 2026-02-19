@@ -12,6 +12,13 @@ module Chewy
         base_options.merge(number_of_replicas: 1, number_of_shards: (base_options[:number_of_shards] || 1) * 2)
       end
     end
+
+    def update_specification
+      client.indices.close index: index_name
+      client.indices.put_settings index: index_name, body: { settings: { analysis: settings_hash[:settings][:analysis] } }
+      client.indices.put_mapping index: index_name, body: root.mappings_hash
+      client.indices.open index: index_name
+    end
   end
 end
 

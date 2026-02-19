@@ -7,8 +7,10 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   context :security
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,
-                     :moved_to, :property_value, :discoverable, :olm, :suspended,
-                     :memorial, :indexable
+                     :moved_to, :property_value, :discoverable, :suspended,
+                     :memorial, :indexable, :attribution_domains
+
+  context_extensions :interaction_policies if Mastodon::Feature.collections_enabled?
 
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :featured, :featured_tags,
@@ -16,15 +18,18 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
              :url, :manually_approves_followers,
              :discoverable, :indexable, :published, :memorial
 
+  attribute :interaction_policy, if: -> { Mastodon::Feature.collections_enabled? }
+  attribute :featured_collections, if: -> { Mastodon::Feature.collections_enabled? }
+
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
   has_many :virtual_tags, key: :tag
   has_many :virtual_attachments, key: :attachment
 
-  attribute :devices, unless: :instance_actor?
   attribute :moved_to, if: :moved?
   attribute :also_known_as, if: :also_known_as?
   attribute :suspended, if: :suspended?
+  attribute :attribution_domains, if: -> { object.attribution_domains.any? }
 
   class EndpointsSerializer < ActivityPub::Serializer
     include RoutingHelper
@@ -44,7 +49,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   delegate :suspended?, :instance_actor?, to: :object
 
   def id
-    object.instance_actor? ? instance_actor_url : account_url(object)
+    ActivityPub::TagManager.instance.uri_for(object)
   end
 
   def type
@@ -60,31 +65,27 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def following
-    account_following_index_url(object)
+    ActivityPub::TagManager.instance.following_uri_for(object)
   end
 
   def followers
-    account_followers_url(object)
+    ActivityPub::TagManager.instance.followers_uri_for(object)
   end
 
   def inbox
-    object.instance_actor? ? instance_actor_inbox_url : account_inbox_url(object)
-  end
-
-  def devices
-    account_collection_url(object, :devices)
+    ActivityPub::TagManager.instance.inbox_uri_for(object)
   end
 
   def outbox
-    object.instance_actor? ? instance_actor_outbox_url : account_outbox_url(object)
+    ActivityPub::TagManager.instance.outbox_uri_for(object)
   end
 
   def featured
-    account_collection_url(object, :featured)
+    ActivityPub::TagManager.instance.collection_uri_for(object, :featured)
   end
 
   def featured_tags
-    account_collection_url(object, :tags)
+    ActivityPub::TagManager.instance.collection_uri_for(object, :tags)
   end
 
   def endpoints
@@ -165,6 +166,22 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   def published
     object.created_at.midnight.iso8601
+  end
+
+  def interaction_policy
+    uri = object.discoverable? ? ActivityPub::TagManager::COLLECTIONS[:public] : ActivityPub::TagManager.instance.uri_for(object)
+
+    {
+      canFeature: {
+        automaticApproval: [uri],
+      },
+    }
+  end
+
+  def featured_collections
+    return nil if instance_actor?
+
+    ap_account_featured_collections_url(object.id)
   end
 
   class CustomEmojiSerializer < ActivityPub::EmojiSerializer

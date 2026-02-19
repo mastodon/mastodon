@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
@@ -37,6 +37,20 @@ export const FollowersCounter = (
   <FormattedMessage
     id='account.followers_counter'
     defaultMessage='{count, plural, one {{counter} Follower} other {{counter} Followers}}'
+    values={{
+      count: pluralReady,
+      counter: <strong>{displayNumber}</strong>,
+    }}
+  />
+);
+
+export const FollowersYouKnowCounter = (
+  displayNumber: React.ReactNode,
+  pluralReady: number,
+) => (
+  <FormattedMessage
+    id='account.followers_you_know_counter'
+    defaultMessage='{counter} you know'
     values={{
       count: pluralReady,
       counter: <strong>{displayNumber}</strong>,

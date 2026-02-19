@@ -5,12 +5,12 @@
 # Table name: markers
 #
 #  id           :bigint(8)        not null, primary key
-#  user_id      :bigint(8)
-#  timeline     :string           default(""), not null
-#  last_read_id :bigint(8)        default(0), not null
 #  lock_version :integer          default(0), not null
+#  timeline     :string           default(""), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  last_read_id :bigint(8)        default(0), not null
+#  user_id      :bigint(8)        not null
 #
 
 class Marker < ApplicationRecord

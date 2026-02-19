@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
-  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: [:show]
-  before_action :require_user!, only: [:show]
+  include AsyncRefreshesConcern
+
+  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }
+  before_action :require_user!
 
   PERMITTED_PARAMS = %i(local limit).freeze
 
@@ -11,6 +13,8 @@ class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
       @statuses = load_statuses
       @relationships = StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
     end
+
+    add_async_refresh_header(account_home_feed.async_refresh, retry_seconds: 5)
 
     render json: @statuses,
            each_serializer: REST::StatusSerializer,
@@ -21,11 +25,11 @@ class Api::V1::Timelines::HomeController < Api::V1::Timelines::BaseController
   private
 
   def load_statuses
-    cached_home_statuses
+    preloaded_home_statuses
   end
 
-  def cached_home_statuses
-    cache_collection home_statuses, Status
+  def preloaded_home_statuses
+    preload_collection home_statuses, Status
   end
 
   def home_statuses

@@ -27,7 +27,7 @@ export default class ImpactReport extends PureComponent {
       include_subdomains: true,
     };
 
-    api().post('/api/v1/admin/measures', {
+    api(false).post('/api/v1/admin/measures', {
       keys: ['instance_accounts', 'instance_follows', 'instance_followers'],
       start_at: null,
       end_at: null,

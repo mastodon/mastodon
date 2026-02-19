@@ -10,6 +10,9 @@ class REST::ScheduledStatusSerializer < ActiveModel::Serializer
   end
 
   def params
-    object.params.without(:application_id)
+    object.params.merge(
+      quoted_status_id: object.params['quoted_status_id']&.to_s,
+      quote_approval_policy: InteractionPolicy::POLICY_FLAGS.keys.find { |key| object.params['quote_approval_policy']&.anybits?(InteractionPolicy::POLICY_FLAGS[key] << 16) }&.to_s || 'nobody'
+    )
   end
 end

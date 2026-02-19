@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe FastIpMap do
+RSpec.describe FastIpMap do
   describe '#include?' do
     subject { described_class.new([IPAddr.new('20.4.0.0/16'), IPAddr.new('145.22.30.0/24'), IPAddr.new('189.45.86.3')]) }
 

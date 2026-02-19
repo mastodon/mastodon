@@ -1,0 +1,18 @@
+<style>
+	/* Increase docs font size */
+	.sbdocs.sbdocs-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)),
+	.sbdocs.sbdocs-content :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) {
+		font-size: 1.0666rem; /* 17px */
+		line-height: 1.585; /* 27px */
+	}
+
+	.sbdocs.sbdocs-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) code,
+	.sbdocs.sbdocs-content :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) code {
+		font-size: 0.875rem; /* ~15px */
+	}
+
+	/* Bring numbers back for ordered lists */
+	ol {
+		list-style: revert !important;
+	}
+</style>

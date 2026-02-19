@@ -1,0 +1,175 @@
+---
+az:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Tətbiq adı
+        redirect_uri: Yönləndirmə URL-si
+        website: Tətbiq veb saytı
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: fraqment ehtiva edə bilməz.
+              invalid_uri: yararlı bir URL olmalıdır.
+              relative_uri: mütləq bir URL olmalıdır.
+              secured_uri: HTTPS/SSL URL olmalıdır.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Səlahiyyət ver
+        cancel: İmtina
+        destroy: Məhv et
+        edit: Düzəliş et
+        submit: Təqdim et
+      confirmations:
+        destroy: Əminsiniz?
+      edit:
+        title: Tətbiqə düzəliş et
+      form:
+        error: Ups! Mümkün xətalar üçün formunuzu yoxlayın
+      help:
+        native_redirect_uri: Lokal testlər üçün %{native_redirect_uri} istifadə edin
+        redirect_uri: Hər URL üçün bir sətir istifadə edin
+      index:
+        application: Tətbiq
+        delete: Sil
+        empty: Heç bir tətbiqiniz yoxdur.
+        name: Ad
+        new: Yeni tətbiq
+        show: Göstər
+        title: Tətbiqləriniz
+      new:
+        title: Yeni tətbiq
+      show:
+        actions: Əməliyyatlar
+        application_id: Client açarı
+        secret: Client sirri
+        title: 'Tətbiq: %{name}'
+    authorizations:
+      buttons:
+        authorize: Səlahiyyət ver
+        deny: Rədd et
+      error:
+        title: Bir xəta baş verdi
+      new:
+        prompt_html: "%{client_name} hesabınıza erişmək üçün icazə istəyir. <strong>Yalnız bu mənbəni tanıyırsınızsa və ona güvənirsinizsə bu istəyi təsdiqləyin.</strong>"
+        review_permissions: İcazələri incələ
+        title: Səlahiyyət tələb olunur
+      show:
+        title: Bu səlahiyyət kodunu kopyalayın və tətbiqə yapışdırın.
+    authorized_applications:
+      buttons:
+        revoke: Ləğv et
+      confirmations:
+        revoke: Əminsiniz?
+      index:
+        authorized_at: "%{date} tarixində səlahiyyət verilib"
+        description_html: Bunlar, API istifadə edərək hesabınıza erişəbilən tətbiqlərdir. Əgər burada tanımadığınız tətbiqlər və ya yanlış davranan bir tətbiq varsa, erişimini ləğv edə bilərsiniz.
+        last_used_at: Ən son %{date} istifadə edilib
+        never_used: Heç vaxt istifadə edilməyib
+        scopes: İcazələr
+        superapp: Daxili
+        title: Səlahiyyətli tətbiqləriniz
+    errors:
+      messages:
+        access_denied: Resurs sahibi və ya avtorizasiya serveri istəyə rədd cavabı verdi.
+        invalid_token:
+          expired: Erişim tokeninin vaxtı bitib
+          revoked: Erişim tokeni ləğv edilib
+          unknown: Erişim tokeni yararsızdır
+    flash:
+      applications:
+        create:
+          notice: Tətbiq yaradıldı.
+        destroy:
+          notice: Tətbiq silindi.
+        update:
+          notice: Tətbiq güncəlləndi.
+      authorized_applications:
+        destroy:
+          notice: Tətbiq ləğv edildi.
+    grouped_scopes:
+      access:
+        read: Yalnız oxuma erişimi
+        read/write: Oxuma və yazma erişimi
+        write: Yalnız yazma erişimi
+      title:
+        accounts: Hesablar
+        admin/accounts: Hesabların administrasiyası
+        admin/all: Bütün administrativ funksiyalar
+        admin/reports: Şikayətlərin administrasiyası
+        all: Mastodon hesabınıza tam erişim
+        blocks: Əngəlləmələr
+        bookmarks: Əlfəcinlər
+        conversations: Danışıqlar
+        crypto: Ucdan-uca şifrələmə
+        favourites: Sevimlilər
+        filters: Filtrlər
+        follow: İzləmələr, səsi kəsmələr və əngəlləmələr
+        follows: İzlənilənlər
+        lists: Siyahılar
+        media: Media qoşmaları
+        mutes: Səssizdəkilər
+        notifications: Bildirişlər
+        profile: Mastodon profiliniz
+        push: Ani bildirişlər
+        reports: Şikayətlər
+        search: Axtar
+        statuses: Göndərişlər
+    layouts:
+      admin:
+        nav:
+          applications: Tətbiqlər
+          oauth2_provider: OAuth2 Provayderi
+      application:
+        title: OAuth səlahiyyəti tələb olunur
+    scopes:
+      admin:read: serverdəki bütün veriləri oxuyur
+      admin:read:accounts: bütün hesabların həssas məlumatlarını oxuyur
+      admin:read:canonical_email_blocks: bütün kanonik e-poçt əngəlləmələrinin həssas məlumatlarını oxuyur
+      admin:read:domain_allows: bütün domen icazələrinin həssas məlumatlarını oxuyur
+      admin:read:domain_blocks: bütün əngəllənən domenlərin həssas məlumatlarını oxuyur
+      admin:read:email_domain_blocks: bütün əngəllənən e-poçt domenlərinin həssas məlumatlarını oxuyur
+      admin:read:ip_blocks: bütün IP əngəlləmələrinin həssas məlumatlarını oxuyur
+      admin:read:reports: bütün şikayətlərin və şikayət edilən hesabların həssas məlumatlarını oxuyur
+      admin:write: serverdəki bütün veriləri dəyişdirir
+      admin:write:accounts: hesablarda moderasiya əməliyyatlarını icra edir
+      admin:write:canonical_email_blocks: əngəllənən kanonik e-poçtlar üzərində moderasiya əməliyyatlarını icra edir
+      admin:write:domain_allows: icazə verilən domenlər üzərində moderasiya əməliyyatlarını icra edir
+      admin:write:domain_blocks: əngəllənən domenlər üzərində moderasiya əməliyyatlarını icra edir
+      admin:write:email_domain_blocks: əngəllənən e-poçt domenləri üzərində moderasiya əməliyyatlarını icra edir
+      admin:write:ip_blocks: əngəllənən IP-lər üzərində moderasiya əməliyyatlarını icra edir
+      admin:write:reports: hesabatlarda moderasiya əməliyyatlarını icra edir
+      crypto: ucdan-uca şifrələməni istifadə edir
+      follow: hesab münasibətlərini dəyişdirir
+      profile: hesabınızın yalnız profil məlumatlarını oxuyur
+      push: ani bildirişlərinizi alır
+      read: hesabınızın bütün verilərini oxuyur
+      read:accounts: hesab məlumatlarını görür
+      read:blocks: əngəllədiklərinizi görür
+      read:bookmarks: əlfəcinlərinizi görür
+      read:favourites: sevimlilərinizi görür
+      read:filters: filtrlərinizi görür
+      read:follows: izlədiklərinizi görür
+      read:lists: siyahılarınızı görür
+      read:mutes: səssizə aldıqlarınızı görür
+      read:notifications: bildirişlərinizi görür
+      read:reports: hesabatlarınızı görür
+      read:search: sizin adınıza axtarış edir
+      read:statuses: bütün göndərişləri görür
+      write: hesabınızın bütün verilərini dəyişdirir
+      write:accounts: profilinizi dəyişdirir
+      write:blocks: hesabları və domenləri əngəlləyir
+      write:bookmarks: göndərişləri əlfəcinlərə əlavə edir
+      write:conversations: danışıqları səssizə alır və silir
+      write:favourites: göndərişləri sevimlilərə əlavə edir
+      write:filters: filtrlər yaradır
+      write:follows: insanları izləyir
+      write:lists: siyahılar yaradır
+      write:media: media faylları yükləyir
+      write:mutes: insanları və danışıqları səssizə alır
+      write:notifications: bildirişlərinizi təmizləyir
+      write:reports: digər insanları şikayət edir
+      write:statuses: göndərişləri dərc edir

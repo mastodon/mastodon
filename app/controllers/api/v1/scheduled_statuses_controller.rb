@@ -6,6 +6,7 @@ class Api::V1::ScheduledStatusesController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, except: [:update, :destroy]
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only: [:update, :destroy]
 
+  before_action :require_user!
   before_action :set_statuses, only: :index
   before_action :set_status, except: :index
 
@@ -43,14 +44,6 @@ class Api::V1::ScheduledStatusesController < Api::BaseController
     params.permit(:scheduled_at)
   end
 
-  def pagination_params(core_params)
-    params.slice(:limit).permit(:limit).merge(core_params)
-  end
-
-  def insert_pagination_headers
-    set_pagination_headers(next_path, prev_path)
-  end
-
   def next_path
     api_v1_scheduled_statuses_url pagination_params(max_id: pagination_max_id) if records_continue?
   end
@@ -63,11 +56,7 @@ class Api::V1::ScheduledStatusesController < Api::BaseController
     @statuses.size == limit_param(DEFAULT_STATUSES_LIMIT)
   end
 
-  def pagination_max_id
-    @statuses.last.id
-  end
-
-  def pagination_since_id
-    @statuses.first.id
+  def pagination_collection
+    @statuses
   end
 end

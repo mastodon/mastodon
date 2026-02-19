@@ -3,6 +3,24 @@
 module Status::ThreadingConcern
   extend ActiveSupport::Concern
 
+  class_methods do
+    def permitted_statuses_from_ids(ids, account, stable: false)
+      statuses    = Status.with_accounts(ids).to_a
+      account_ids = statuses.map(&:account_id).uniq
+      domains     = statuses.filter_map(&:account_domain).uniq
+
+      account&.preload_relations!(account_ids, domains)
+
+      statuses.reject! { |status| StatusFilter.new(status, account).filtered? }
+
+      if stable
+        statuses.sort_by! { |status| ids.index(status.id) }
+      else
+        statuses
+      end
+    end
+  end
+
   def ancestors(limit, account = nil)
     find_statuses_from_tree_path(ancestor_ids(limit), account)
   end
@@ -12,7 +30,7 @@ module Status::ThreadingConcern
   end
 
   def self_replies(limit)
-    account.statuses.where(in_reply_to_id: id, visibility: [:public, :unlisted]).reorder(id: :asc).limit(limit)
+    account.statuses.distributable_visibility.where(in_reply_to_id: id).reorder(id: :asc).limit(limit)
   end
 
   private
@@ -31,7 +49,7 @@ module Status::ThreadingConcern
   end
 
   def ancestor_statuses(limit)
-    Status.find_by_sql([<<-SQL.squish, id: in_reply_to_id, limit: limit])
+    Status.find_by_sql([<<~SQL.squish, id: in_reply_to_id, limit: limit])
       WITH RECURSIVE search_tree(id, in_reply_to_id, path)
       AS (
         SELECT id, in_reply_to_id, ARRAY[id]
@@ -55,7 +73,7 @@ module Status::ThreadingConcern
     depth += 1 if depth.present?
     limit += 1 if limit.present?
 
-    descendants_with_self = Status.find_by_sql([<<-SQL.squish, id: id, limit: limit, depth: depth])
+    descendants_with_self = Status.find_by_sql([<<~SQL.squish, id: id, limit: limit, depth: depth])
       WITH RECURSIVE search_tree(id, path) AS (
         SELECT id, ARRAY[id]
         FROM statuses
@@ -76,15 +94,7 @@ module Status::ThreadingConcern
   end
 
   def find_statuses_from_tree_path(ids, account, promote: false)
-    statuses    = Status.with_accounts(ids).to_a
-    account_ids = statuses.map(&:account_id).uniq
-    domains     = statuses.filter_map(&:account_domain).uniq
-    relations   = account&.relations_map(account_ids, domains) || {}
-
-    statuses.reject! { |status| StatusFilter.new(status, account, relations).filtered? }
-
-    # Order ancestors/descendants by tree path
-    statuses.sort_by! { |status| ids.index(status.id) }
+    statuses = Status.permitted_statuses_from_ids(ids, account, stable: true)
 
     # Bring self-replies to the top
     if promote

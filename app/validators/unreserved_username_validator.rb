@@ -28,14 +28,6 @@ class UnreservedUsernameValidator < ActiveModel::Validator
   end
 
   def settings_username_reserved?
-    settings_has_reserved_usernames? && settings_reserves_username?
-  end
-
-  def settings_has_reserved_usernames?
-    Setting.reserved_usernames.present?
-  end
-
-  def settings_reserves_username?
-    Setting.reserved_usernames.include?(@username.downcase)
+    UsernameBlock.matches?(@username, allow_with_approval: false)
   end
 end

@@ -4,9 +4,9 @@ import { Map as ImmutableMap } from 'immutable';
 import {
   followAccountSuccess,
   unfollowAccountSuccess,
-  importAccounts,
   revealAccount,
 } from 'mastodon/actions/accounts_typed';
+import { importAccounts } from 'mastodon/actions/importer/accounts';
 import type { ApiAccountJSON } from 'mastodon/api_types/accounts';
 import { me } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
@@ -57,7 +57,10 @@ export const accountsReducer: Reducer<typeof initialState> = (
     return state.setIn([action.payload.id, 'hidden'], false);
   else if (importAccounts.match(action))
     return normalizeAccounts(state, action.payload.accounts);
-  else if (followAccountSuccess.match(action)) {
+  else if (
+    followAccountSuccess.match(action) &&
+    !action.payload.alreadyFollowing
+  ) {
     return state
       .update(action.payload.relationship.id, (account) =>
         account?.update('followers_count', (n) => n + 1),

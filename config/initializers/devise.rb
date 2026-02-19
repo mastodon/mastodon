@@ -38,42 +38,25 @@ Warden::Manager.before_logout do |_, warden|
 end
 
 module Devise
-  mattr_accessor :pam_authentication
-  @@pam_authentication = false
-  mattr_accessor :pam_controlled_service
-  @@pam_controlled_service = nil
+  mattr_accessor :pam_authentication, default: false
+  mattr_accessor :pam_controlled_service, default: nil
 
-  mattr_accessor :check_at_sign
-  @@check_at_sign = false
+  mattr_accessor :check_at_sign, default: false
 
-  mattr_accessor :ldap_authentication
-  @@ldap_authentication = false
-  mattr_accessor :ldap_host
-  @@ldap_host = nil
-  mattr_accessor :ldap_port
-  @@ldap_port = nil
-  mattr_accessor :ldap_method
-  @@ldap_method = nil
-  mattr_accessor :ldap_base
-  @@ldap_base = nil
-  mattr_accessor :ldap_uid
-  @@ldap_uid = nil
-  mattr_accessor :ldap_mail
-  @@ldap_mail = nil
-  mattr_accessor :ldap_bind_dn
-  @@ldap_bind_dn = nil
-  mattr_accessor :ldap_password
-  @@ldap_password = nil
-  mattr_accessor :ldap_tls_no_verify
-  @@ldap_tls_no_verify = false
-  mattr_accessor :ldap_search_filter
-  @@ldap_search_filter = nil
-  mattr_accessor :ldap_uid_conversion_enabled
-  @@ldap_uid_conversion_enabled = false
-  mattr_accessor :ldap_uid_conversion_search
-  @@ldap_uid_conversion_search = nil
-  mattr_accessor :ldap_uid_conversion_replace
-  @@ldap_uid_conversion_replace = nil
+  mattr_accessor :ldap_authentication, default: false
+  mattr_accessor :ldap_host, default: nil
+  mattr_accessor :ldap_port, default: nil
+  mattr_accessor :ldap_method, default: nil
+  mattr_accessor :ldap_base, default: nil
+  mattr_accessor :ldap_uid, default: nil
+  mattr_accessor :ldap_mail, default: nil
+  mattr_accessor :ldap_bind_dn, default: nil
+  mattr_accessor :ldap_password, default: nil
+  mattr_accessor :ldap_tls_no_verify, default: false
+  mattr_accessor :ldap_search_filter, default: nil
+  mattr_accessor :ldap_uid_conversion_enabled, default: false
+  mattr_accessor :ldap_uid_conversion_search, default: nil
+  mattr_accessor :ldap_uid_conversion_replace, default: nil
 
   module Strategies
     class PamAuthenticatable
@@ -96,9 +79,7 @@ module Devise
           return pass
         end
 
-        if validate(resource)
-          success!(resource)
-        end
+        success!(resource) if validate(resource)
       end
 
       private
@@ -124,11 +105,9 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  #
-  # Set explicitly to Rails default to avoid deprecation warnings.
-  # https://github.com/heartcombo/devise/pull/5645#issuecomment-1871849856
-  # Remove when Devise changes `SecretKeyFinder` to not emit deprecations.
-  config.secret_key = Rails.application.secret_key_base
+  # Devise will use the `secret_key_base` as its `secret_key`
+  # by default. You can change it below and use your own secret key.
+  # config.secret_key = '<%= SecureRandom.hex(64) %>'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -177,13 +156,15 @@ Devise.setup do |config|
   # given strategies, for example, `config.params_authenticatable = [:database]` will
   # enable it only for database (email + password) authentication.
   # config.params_authenticatable = true
+  config.params_authenticatable = true
 
   # Tell if authentication through HTTP Auth is enabled. False by default.
   # It can be set to an array that will enable http authentication only for the
   # given strategies, for example, `config.http_authenticatable = [:database]` will
   # enable it only for database authentication. The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
-  config.http_authenticatable = [:pam, :database]
+  # config.http_authenticatable = [:pam, :database]
+  config.http_authenticatable = false
 
   # If 401 status code should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
@@ -394,7 +375,7 @@ Devise.setup do |config|
     config.usernamefield          = nil
     config.emailfield             = 'email'
     config.check_at_sign          = true
-    config.pam_default_suffix     = ENV.fetch('PAM_EMAIL_DOMAIN') { ENV['LOCAL_DOMAIN'] }
+    config.pam_default_suffix     = ENV.fetch('PAM_EMAIL_DOMAIN') { ENV.fetch('LOCAL_DOMAIN', nil) }
     config.pam_default_service    = ENV.fetch('PAM_DEFAULT_SERVICE') { 'rpam' }
     config.pam_controlled_service = ENV.fetch('PAM_CONTROLLED_SERVICE', nil).presence
   end
@@ -411,7 +392,7 @@ Devise.setup do |config|
     config.ldap_uid            = ENV.fetch('LDAP_UID', 'cn')
     config.ldap_mail           = ENV.fetch('LDAP_MAIL', 'mail')
     config.ldap_tls_no_verify  = ENV['LDAP_TLS_NO_VERIFY'] == 'true'
-    config.ldap_search_filter  = ENV.fetch('LDAP_SEARCH_FILTER', '(|(%{uid}=%{email})(%{mail}=%{email}))')
+    config.ldap_search_filter  = ENV.fetch('LDAP_SEARCH_FILTER', '(|(%<uid>s=%<email>s)(%<mail>s=%<email>s))')
     config.ldap_uid_conversion_enabled  = ENV['LDAP_UID_CONVERSION_ENABLED'] == 'true'
     config.ldap_uid_conversion_search   = ENV.fetch('LDAP_UID_CONVERSION_SEARCH', '.,- ')
     config.ldap_uid_conversion_replace  = ENV.fetch('LDAP_UID_CONVERSION_REPLACE', '_')

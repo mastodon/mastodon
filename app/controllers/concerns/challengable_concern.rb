@@ -42,8 +42,7 @@ module ChallengableConcern
   end
 
   def render_challenge
-    @body_classes = 'lighter'
-    render 'auth/challenges/new', layout: 'auth'
+    render 'auth/challenges/new', layout: params[:oauth] ? 'modal' : 'auth'
   end
 
   def challenge_passed?
@@ -59,6 +58,6 @@ module ChallengableConcern
   end
 
   def challenge_params
-    params.require(:form_challenge).permit(:current_password, :return_to)
+    params.expect(form_challenge: [:current_password, :return_to])
   end
 end

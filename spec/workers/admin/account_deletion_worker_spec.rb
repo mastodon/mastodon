@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-describe Admin::AccountDeletionWorker do
+RSpec.describe Admin::AccountDeletionWorker do
   let(:worker) { described_class.new }
 
   describe 'perform' do
-    let(:account) { Fabricate(:account) }
+    let(:account) { Fabricate(:account, suspended: true) }
     let(:service) { instance_double(DeleteAccountService, call: true) }
 
     it 'calls delete account service' do

@@ -135,19 +135,19 @@ function getData(emoji, skin, set) {
       }
     }
 
-    if (Object.prototype.hasOwnProperty.call(data.short_names, emoji)) {
+    if (Object.hasOwn(data.short_names, emoji)) {
       emoji = data.short_names[emoji];
     }
 
-    if (Object.prototype.hasOwnProperty.call(data.emojis, emoji)) {
+    if (Object.hasOwn(data.emojis, emoji)) {
       emojiData = data.emojis[emoji];
     }
   } else if (emoji.id) {
-    if (Object.prototype.hasOwnProperty.call(data.short_names, emoji.id)) {
+    if (Object.hasOwn(data.short_names, emoji.id)) {
       emoji.id = data.short_names[emoji.id];
     }
 
-    if (Object.prototype.hasOwnProperty.call(data.emojis, emoji.id)) {
+    if (Object.hasOwn(data.emojis, emoji.id)) {
       emojiData = data.emojis[emoji.id];
       skin = skin || emoji.skin;
     }
@@ -209,50 +209,9 @@ function intersect(a, b) {
   return uniqA.filter(item => uniqB.indexOf(item) >= 0);
 }
 
-function deepMerge(a, b) {
-  let o = {};
-
-  for (let key in a) {
-    let originalValue = a[key],
-      value = originalValue;
-
-    if (Object.prototype.hasOwnProperty.call(b, key)) {
-      value = b[key];
-    }
-
-    if (typeof value === 'object') {
-      value = deepMerge(originalValue, value);
-    }
-
-    o[key] = value;
-  }
-
-  return o;
-}
-
-// https://github.com/sonicdoe/measure-scrollbar
-function measureScrollbar() {
-  const div = document.createElement('div');
-
-  div.style.width = '100px';
-  div.style.height = '100px';
-  div.style.overflow = 'scroll';
-  div.style.position = 'absolute';
-  div.style.top = '-9999px';
-
-  document.body.appendChild(div);
-  const scrollbarWidth = div.offsetWidth - div.clientWidth;
-  document.body.removeChild(div);
-
-  return scrollbarWidth;
-}
-
 export {
   getData,
   getSanitizedData,
   uniq,
   intersect,
-  deepMerge,
-  unifiedToNative,
-  measureScrollbar,
 };

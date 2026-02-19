@@ -44,7 +44,8 @@ module Admin
     private
 
     def resource_params
-      params.require(:ip_block).permit(:ip, :severity, :comment, :expires_in)
+      params
+        .expect(ip_block: [:ip, :severity, :comment, :expires_in])
     end
 
     def action_from_button
@@ -52,7 +53,8 @@ module Admin
     end
 
     def form_ip_block_batch_params
-      params.require(:form_ip_block_batch).permit(ip_block_ids: [])
+      params
+        .expect(form_ip_block_batch: [ip_block_ids: []])
     end
   end
 end

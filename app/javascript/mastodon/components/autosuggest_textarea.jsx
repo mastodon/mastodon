@@ -25,11 +25,11 @@ const textAtCursorMatchesToken = (str, caretPosition) => {
     word = str.slice(left, right + caretPosition);
   }
 
-  if (!word || word.trim().length < 3 || ['@', ':', '#'].indexOf(word[0]) === -1) {
+  if (!word || word.trim().length < 3 || ['@', '＠', ':', '#', '＃'].indexOf(word[0]) === -1) {
     return [null, null];
   }
 
-  word = word.trim().toLowerCase();
+  word = word.trim();
 
   if (word.length > 0) {
     return [left + 1, word];
@@ -50,9 +50,11 @@ const AutosuggestTextarea = forwardRef(({
   onKeyUp,
   onKeyDown,
   onPaste,
+  onDrop,
   onFocus,
   autoFocus = true,
   lang,
+  className,
 }, textareaRef) => {
 
   const [suggestionsHidden, setSuggestionsHidden] = useState(true);
@@ -149,11 +151,14 @@ const AutosuggestTextarea = forwardRef(({
   }, [suggestions, onSuggestionSelected, textareaRef]);
 
   const handlePaste = useCallback((e) => {
-    if (e.clipboardData && e.clipboardData.files.length === 1) {
-      onPaste(e.clipboardData.files);
-      e.preventDefault();
-    }
+    onPaste(e);
   }, [onPaste]);
+
+  const handleDrop = useCallback((e) => {
+    if (onDrop) {
+      onDrop(e);
+    }
+  }, [onDrop]);
 
   // Show the suggestions again whenever they change and the textarea is focused
   useEffect(() => {
@@ -161,6 +166,14 @@ const AutosuggestTextarea = forwardRef(({
       setSuggestionsHidden(false);
     }
   }, [suggestions, textareaRef, setSuggestionsHidden]);
+
+  // Hack to force Firefox to change language in autocorrect
+  useEffect(() => {
+    if (lang && textareaRef.current && textareaRef.current === document.activeElement) {
+      textareaRef.current.blur();
+      textareaRef.current.focus();
+    }
+  }, [lang]);
 
   const renderSuggestion = (suggestion, i) => {
     let inner, key;
@@ -184,7 +197,7 @@ const AutosuggestTextarea = forwardRef(({
   };
 
   return (
-    <div className='autosuggest-textarea'>
+    <div className={classNames('autosuggest-textarea', className)}>
       <Textarea
         ref={textareaRef}
         className='autosuggest-textarea__textarea'
@@ -198,6 +211,7 @@ const AutosuggestTextarea = forwardRef(({
         onFocus={handleFocus}
         onBlur={handleBlur}
         onPaste={handlePaste}
+        onDrop={handleDrop}
         dir='auto'
         aria-autocomplete='list'
         aria-label={placeholder}
@@ -229,6 +243,7 @@ AutosuggestTextarea.propTypes = {
   onKeyUp: PropTypes.func,
   onKeyDown: PropTypes.func,
   onPaste: PropTypes.func.isRequired,
+  onDrop: PropTypes.func,
   onFocus:PropTypes.func,
   autoFocus: PropTypes.bool,
   lang: PropTypes.string,

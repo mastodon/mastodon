@@ -8,7 +8,7 @@ RSpec.describe Admin::AccountsController do
   before { sign_in current_user, scope: :user }
 
   describe 'GET #index' do
-    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
+    let(:current_user) { Fabricate(:admin_user) }
     let(:params) do
       {
         origin: 'local',
@@ -40,24 +40,62 @@ RSpec.describe Admin::AccountsController do
 
       expect(response)
         .to have_http_status(200)
-      expect(assigns(:accounts))
-        .to have_attributes(
-          count: eq(1),
-          klass: be(Account)
-        )
+      expect(accounts_table_rows.size)
+        .to eq(1)
       expect(AccountFilter)
         .to have_received(:new)
         .with(hash_including(params))
     end
+
+    def accounts_table_rows
+      response.parsed_body.css('table.accounts-table tr')
+    end
   end
 
   describe 'GET #show' do
-    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
-    let(:account) { Fabricate(:account) }
+    let(:current_user) { Fabricate(:admin_user) }
 
-    it 'returns http success' do
-      get :show, params: { id: account.id }
-      expect(response).to have_http_status(200)
+    describe 'account moderation notes' do
+      let(:account) { Fabricate(:account) }
+
+      it 'includes moderation notes' do
+        note1 = Fabricate(:account_moderation_note, target_account: account, content: 'Note 1 remarks')
+        note2 = Fabricate(:account_moderation_note, target_account: account, content: 'Note 2 remarks')
+
+        get :show, params: { id: account.id }
+        expect(response).to have_http_status(200)
+
+        expect(response.body)
+          .to include(note1.content)
+          .and include(note2.content)
+      end
+    end
+
+    context 'with a remote account' do
+      let(:account) { Fabricate(:account, domain: 'example.com') }
+
+      it 'returns http success' do
+        get :show, params: { id: account.id }
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'with a local account' do
+      let(:account) { Fabricate(:account, domain: nil) }
+
+      it 'returns http success' do
+        get :show, params: { id: account.id }
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'with a local deleted account' do
+      let(:account) { Fabricate(:account, domain: nil, user: nil) }
+
+      it 'returns http success' do
+        get :show, params: { id: account.id }
+        expect(response).to have_http_status(200)
+      end
     end
   end
 
@@ -71,43 +109,12 @@ RSpec.describe Admin::AccountsController do
     context 'when user is admin' do
       let(:current_role) { UserRole.find_by(name: 'Admin') }
 
-      context 'when target user is admin' do
-        let(:target_role) { UserRole.find_by(name: 'Admin') }
-
-        it 'fails to memorialize account' do
-          expect(subject).to have_http_status 403
-          expect(account.reload).to_not be_memorial
-        end
-      end
-
       context 'when target user is not admin' do
         let(:target_role) { UserRole.find_by(name: 'Moderator') }
 
         it 'succeeds in memorializing account' do
           expect(subject).to redirect_to admin_account_path(account.id)
           expect(account.reload).to be_memorial
-        end
-      end
-    end
-
-    context 'when user is not admin' do
-      let(:current_role) { UserRole.find_by(name: 'Moderator') }
-
-      context 'when target user is admin' do
-        let(:target_role) { UserRole.find_by(name: 'Admin') }
-
-        it 'fails to memorialize account' do
-          expect(subject).to have_http_status 403
-          expect(account.reload).to_not be_memorial
-        end
-      end
-
-      context 'when target user is not admin' do
-        let(:target_role) { UserRole.find_by(name: 'Moderator') }
-
-        it 'fails to memorialize account' do
-          expect(subject).to have_http_status 403
-          expect(account.reload).to_not be_memorial
         end
       end
     end
@@ -126,15 +133,6 @@ RSpec.describe Admin::AccountsController do
       it 'succeeds in enabling account' do
         expect(subject).to redirect_to admin_account_path(account.id)
         expect(user.reload).to_not be_disabled
-      end
-    end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to enable account' do
-        expect(subject).to have_http_status 403
-        expect(user.reload).to be_disabled
       end
     end
   end
@@ -166,15 +164,6 @@ RSpec.describe Admin::AccountsController do
           )
       end
     end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to approve account' do
-        expect(subject).to have_http_status 403
-        expect(user.reload).to_not be_approved
-      end
-    end
   end
 
   describe 'POST #reject' do
@@ -203,15 +192,6 @@ RSpec.describe Admin::AccountsController do
           )
       end
     end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to reject account' do
-        expect(subject).to have_http_status 403
-        expect(user.reload).to_not be_approved
-      end
-    end
   end
 
   describe 'POST #redownload' do
@@ -232,14 +212,6 @@ RSpec.describe Admin::AccountsController do
         expect(subject).to redirect_to admin_account_path(account.id)
       end
     end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to redownload' do
-        expect(subject).to have_http_status 403
-      end
-    end
   end
 
   describe 'POST #remove_avatar' do
@@ -253,14 +225,6 @@ RSpec.describe Admin::AccountsController do
 
       it 'succeeds in removing avatar' do
         expect(subject).to redirect_to admin_account_path(account.id)
-      end
-    end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to remove avatar' do
-        expect(subject).to have_http_status 403
       end
     end
   end
@@ -284,15 +248,6 @@ RSpec.describe Admin::AccountsController do
         expect(response).to redirect_to admin_account_path(account.id)
       end
     end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to remove avatar' do
-        subject
-        expect(response).to have_http_status 403
-      end
-    end
   end
 
   describe 'POST #unsensitive' do
@@ -311,16 +266,6 @@ RSpec.describe Admin::AccountsController do
         expect(response).to redirect_to admin_account_path(account.id)
       end
     end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to change account' do
-        subject
-
-        expect(response).to have_http_status 403
-      end
-    end
   end
 
   describe 'POST #unsilence' do
@@ -337,16 +282,6 @@ RSpec.describe Admin::AccountsController do
 
         expect(account.reload).to_not be_silenced
         expect(response).to redirect_to admin_account_path(account.id)
-      end
-    end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to change account' do
-        subject
-
-        expect(response).to have_http_status 403
       end
     end
   end
@@ -369,16 +304,6 @@ RSpec.describe Admin::AccountsController do
 
         expect(account.reload).to_not be_suspended
         expect(response).to redirect_to admin_account_path(account.id)
-      end
-    end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to change account' do
-        subject
-
-        expect(response).to have_http_status 403
       end
     end
   end
@@ -405,16 +330,6 @@ RSpec.describe Admin::AccountsController do
 
         expect(Admin::AccountDeletionWorker).to have_received(:perform_async).with(account.id)
         expect(response).to redirect_to admin_account_path(account.id)
-      end
-    end
-
-    context 'when user is not admin' do
-      let(:role) { UserRole.everyone }
-
-      it 'fails to change account' do
-        subject
-
-        expect(response).to have_http_status 403
       end
     end
   end

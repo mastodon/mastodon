@@ -23,13 +23,13 @@ export const initAddFilter = (status, { contextType }) => dispatch =>
     },
   }));
 
-export const fetchFilters = () => (dispatch, getState) => {
+export const fetchFilters = () => (dispatch) => {
   dispatch({
     type: FILTERS_FETCH_REQUEST,
     skipLoading: true,
   });
 
-  api(getState)
+  api()
     .get('/api/v2/filters')
     .then(({ data }) => dispatch({
       type: FILTERS_FETCH_SUCCESS,
@@ -44,10 +44,10 @@ export const fetchFilters = () => (dispatch, getState) => {
     }));
 };
 
-export const createFilterStatus = (params, onSuccess, onFail) => (dispatch, getState) => {
+export const createFilterStatus = (params, onSuccess, onFail) => (dispatch) => {
   dispatch(createFilterStatusRequest());
 
-  api(getState).post(`/api/v2/filters/${params.filter_id}/statuses`, params).then(response => {
+  api().post(`/api/v2/filters/${params.filter_id}/statuses`, params).then(response => {
     dispatch(createFilterStatusSuccess(response.data));
     if (onSuccess) onSuccess();
   }).catch(error => {
@@ -70,10 +70,10 @@ export const createFilterStatusFail = error => ({
   error,
 });
 
-export const createFilter = (params, onSuccess, onFail) => (dispatch, getState) => {
+export const createFilter = (params, onSuccess, onFail) => (dispatch) => {
   dispatch(createFilterRequest());
 
-  api(getState).post('/api/v2/filters', params).then(response => {
+  api().post('/api/v2/filters', params).then(response => {
     dispatch(createFilterSuccess(response.data));
     if (onSuccess) onSuccess(response.data);
   }).catch(error => {

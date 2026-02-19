@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'parslet/rig/rspec'
 
-describe SearchQueryParser do
+RSpec.describe SearchQueryParser do
   let(:parser) { described_class.new }
 
   context 'with term' do

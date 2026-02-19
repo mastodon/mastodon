@@ -16,11 +16,14 @@ module Admin
     def batch
       authorize :account, :index?
 
-      @form = Form::AccountBatch.new(form_account_batch_params)
-      @form.current_account = current_account
-      @form.action = action_from_button
-      @form.select_all_matching = params[:select_all_matching]
-      @form.query = filtered_accounts
+      @form = Form::AccountBatch.new(
+        form_account_batch_params.merge(
+          action: action_from_button,
+          current_account:,
+          query: filtered_accounts,
+          select_all_matching: params[:select_all_matching]
+        )
+      )
       @form.save
     rescue ActionController::ParameterMissing
       flash[:alert] = I18n.t('admin.accounts.no_account_selected')
@@ -33,7 +36,7 @@ module Admin
 
       @deletion_request        = @account.deletion_request
       @account_moderation_note = current_account.account_moderation_notes.new(target_account: @account)
-      @moderation_notes        = @account.targeted_moderation_notes.latest
+      @moderation_notes        = @account.targeted_moderation_notes.chronological.includes(:account)
       @warnings                = @account.strikes.includes(:target_account, :account, :appeal).latest
       @domain_block            = DomainBlock.rule_for(@account.domain)
     end
@@ -158,7 +161,8 @@ module Admin
     end
 
     def form_account_batch_params
-      params.require(:form_account_batch).permit(:action, account_ids: [])
+      params
+        .expect(form_account_batch: [:action, account_ids: []])
     end
 
     def action_from_button

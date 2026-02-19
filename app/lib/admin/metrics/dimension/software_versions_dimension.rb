@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dimension::BaseDimension
-  include Redisable
+  include Admin::Metrics::Dimension::StoreHelper
 
   def key
     'software_versions'
@@ -10,7 +10,7 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   protected
 
   def perform_query
-    [mastodon_version, ruby_version, postgresql_version, redis_version, elasticsearch_version].compact
+    [mastodon_version, ruby_version, postgresql_version, redis_version, elasticsearch_version, libvips_version, ffmpeg_version].compact
   end
 
   def mastodon_version
@@ -25,14 +25,11 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   end
 
   def ruby_version
-    yjit = defined?(RubyVM::YJIT) && RubyVM::YJIT.enabled?
-    value = "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL}#{yjit ? ' +YJIT' : ''}"
-
     {
       key: 'ruby',
       human_key: 'Ruby',
-      value: value,
-      human_value: value,
+      value: RUBY_DESCRIPTION,
+      human_value: "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL}",
     }
   end
 
@@ -48,13 +45,11 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
   end
 
   def redis_version
-    value = redis_info['redis_version']
-
     {
       key: 'redis',
-      human_key: 'Redis',
-      value: value,
-      human_value: value,
+      human_key: store_name,
+      value: store_version,
+      human_value: store_version,
     }
   end
 
@@ -74,11 +69,26 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
     nil
   end
 
-  def redis_info
-    @redis_info ||= if redis.is_a?(Redis::Namespace)
-                      redis.redis.info
-                    else
-                      redis.info
-                    end
+  def libvips_version
+    {
+      key: 'libvips',
+      human_key: 'libvips',
+      value: Vips.version_string,
+      human_value: Vips.version_string,
+    }
+  end
+
+  def ffmpeg_version
+    version_output = Terrapin::CommandLine.new(Rails.configuration.x.ffprobe_binary, '-show_program_version -v 0 -of json').run
+    version = Oj.load(version_output, mode: :strict, symbol_keys: true).dig(:program_version, :version)
+
+    {
+      key: 'ffmpeg',
+      human_key: 'FFmpeg',
+      value: version,
+      human_value: version,
+    }
+  rescue Terrapin::CommandNotFoundError, Terrapin::ExitStatusError, Oj::ParseError
+    nil
   end
 end

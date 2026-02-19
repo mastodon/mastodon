@@ -23,15 +23,28 @@ module ContextHelper
     indexable: { 'toot' => 'http://joinmastodon.org/ns#', 'indexable' => 'toot:indexable' },
     memorial: { 'toot' => 'http://joinmastodon.org/ns#', 'memorial' => 'toot:memorial' },
     voters_count: { 'toot' => 'http://joinmastodon.org/ns#', 'votersCount' => 'toot:votersCount' },
-    olm: {
-      'toot' => 'http://joinmastodon.org/ns#', 'Device' => 'toot:Device', 'Ed25519Signature' => 'toot:Ed25519Signature', 'Ed25519Key' => 'toot:Ed25519Key', 'Curve25519Key' => 'toot:Curve25519Key', 'EncryptedMessage' => 'toot:EncryptedMessage', 'publicKeyBase64' => 'toot:publicKeyBase64', 'deviceId' => 'toot:deviceId',
-      'claim' => { '@type' => '@id', '@id' => 'toot:claim' },
-      'fingerprintKey' => { '@type' => '@id', '@id' => 'toot:fingerprintKey' },
-      'identityKey' => { '@type' => '@id', '@id' => 'toot:identityKey' },
-      'devices' => { '@type' => '@id', '@id' => 'toot:devices' },
-      'messageFranking' => 'toot:messageFranking', 'messageType' => 'toot:messageType', 'cipherText' => 'toot:cipherText'
-    },
     suspended: { 'toot' => 'http://joinmastodon.org/ns#', 'suspended' => 'toot:suspended' },
+    attribution_domains: { 'toot' => 'http://joinmastodon.org/ns#', 'attributionDomains' => { '@id' => 'toot:attributionDomains', '@type' => '@id' } },
+    quote_requests: { 'QuoteRequest' => 'https://w3id.org/fep/044f#QuoteRequest' },
+    quotes: {
+      'quote' => 'https://w3id.org/fep/044f#quote',
+      'quoteUri' => 'http://fedibird.com/ns#quoteUri',
+      '_misskey_quote' => 'https://misskey-hub.net/ns#_misskey_quote',
+      'quoteAuthorization' => { '@id' => 'https://w3id.org/fep/044f#quoteAuthorization', '@type' => '@id' },
+    },
+    interaction_policies: {
+      'gts' => 'https://gotosocial.org/ns#',
+      'interactionPolicy' => { '@id' => 'gts:interactionPolicy', '@type' => '@id' },
+      'canQuote' => { '@id' => 'gts:canQuote', '@type' => '@id' },
+      'automaticApproval' => { '@id' => 'gts:automaticApproval', '@type' => '@id' },
+      'manualApproval' => { '@id' => 'gts:manualApproval', '@type' => '@id' },
+    },
+    quote_authorizations: {
+      'gts' => 'https://gotosocial.org/ns#',
+      'quoteAuthorization' => { '@id' => 'https://w3id.org/fep/044f#quoteAuthorization', '@type' => '@id' },
+      'interactingObject' => { '@id' => 'gts:interactingObject' },
+      'interactionTarget' => { '@id' => 'gts:interactionTarget' },
+    },
   }.freeze
 
   def full_context
@@ -39,13 +52,11 @@ module ContextHelper
   end
 
   def serialized_context(named_contexts_map, context_extensions_map)
-    context_array = []
-
     named_contexts     = named_contexts_map.keys
     context_extensions = context_extensions_map.keys
 
-    named_contexts.each do |key|
-      context_array << NAMED_CONTEXT_MAP[key]
+    context_array = named_contexts.map do |key|
+      NAMED_CONTEXT_MAP[key]
     end
 
     extensions = context_extensions.each_with_object({}) do |key, h|

@@ -6,6 +6,8 @@ module Mastodon::CLI
   class Media < Base
     include ActionView::Helpers::NumberHelper
 
+    class UnrecognizedOrphanType < StandardError; end
+
     VALID_PATH_SEGMENTS_SIZE = [7, 10].freeze
 
     option :days, type: :numeric, default: 7, aliases: [:d]
@@ -13,7 +15,9 @@ module Mastodon::CLI
     option :remove_headers, type: :boolean, default: false
     option :include_follows, type: :boolean, default: false
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, default: false, aliases: [:v]
     option :dry_run, type: :boolean, default: false
+    option :keep_interacted, type: :boolean, default: false
     desc 'remove', 'Remove remote media files, headers or avatars'
     long_desc <<-DESC
       Removes locally cached copies of media attachments (and optionally profile
@@ -23,6 +27,9 @@ module Mastodon::CLI
       they are removed. In case of avatars and headers, it specifies how old
       the last webfinger request and update to the user has to be before they
       are pruned. It defaults to 7 days.
+      If --keep-interacted is specified, any media attached to a status that
+      was favourited, bookmarked, quoted, replied to, or reblogged by a local
+      account will be preserved.
       If --prune-profiles is specified, only avatars and headers are removed.
       If --remove-headers is specified, only headers are removed.
       If --include-follows is specified along with --prune-profiles or
@@ -58,7 +65,11 @@ module Mastodon::CLI
       end
 
       unless options[:prune_profiles] || options[:remove_headers]
-        processed, aggregate = parallelize_with_progress(MediaAttachment.cached.remote.where(created_at: ..time_ago)) do |media_attachment|
+        attachment_scope = MediaAttachment.cached.remote.where(created_at: ..time_ago)
+
+        attachment_scope = attachment_scope.without_local_interaction if options[:keep_interacted]
+
+        processed, aggregate = parallelize_with_progress(attachment_scope) do |media_attachment|
           next if media_attachment.file.blank?
 
           size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
@@ -119,23 +130,10 @@ module Mastodon::CLI
             object.acl.put(acl: s3_permissions) if options[:fix_permissions] && !dry_run?
 
             path_segments = object.key.split('/')
-            path_segments.delete('cache')
-
-            unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
-              progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
-              next
-            end
-
-            model_name      = path_segments.first.classify
-            attachment_name = path_segments[1].singularize
-            record_id       = path_segments[2..-2].join.to_i
-            file_name       = path_segments.last
-            record          = record_map.dig(model_name, record_id)
-            attachment      = record&.public_send(attachment_name)
 
             progress.increment
 
-            next unless attachment.blank? || !attachment.variant?(file_name)
+            next unless orphaned_file?(path_segments, record_map)
 
             begin
               object.delete unless dry_run?
@@ -147,6 +145,8 @@ module Mastodon::CLI
             rescue => e
               progress.log(pastel.red("Error processing #{object.key}: #{e}"))
             end
+          rescue UnrecognizedOrphanType
+            progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
           end
         end
       when :fog
@@ -156,7 +156,7 @@ module Mastodon::CLI
       when :filesystem
         require 'find'
 
-        root_path = ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')).gsub(':rails_root', Rails.root.to_s)
+        root_path = Rails.configuration.x.file_storage_root_path.gsub(':rails_root', Rails.root.to_s)
 
         Find.find(File.join(*[root_path, prefix].compact)) do |path|
           next if File.directory?(path)
@@ -164,26 +164,10 @@ module Mastodon::CLI
           key = path.gsub("#{root_path}#{File::SEPARATOR}", '')
 
           path_segments = key.split(File::SEPARATOR)
-          path_segments.delete('cache')
-
-          unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
-            progress.log(pastel.yellow("Unrecognized file found: #{key}"))
-            next
-          end
-
-          model_name      = path_segments.first.classify
-          record_id       = path_segments[2..-2].join.to_i
-          attachment_name = path_segments[1].singularize
-          file_name       = path_segments.last
-
-          next unless PRELOAD_MODEL_WHITELIST.include?(model_name)
-
-          record     = model_name.constantize.find_by(id: record_id)
-          attachment = record&.public_send(attachment_name)
 
           progress.increment
 
-          next unless attachment.blank? || !attachment.variant?(file_name)
+          next unless orphaned_file?(path_segments)
 
           begin
             size = File.size(path)
@@ -204,6 +188,8 @@ module Mastodon::CLI
           rescue => e
             progress.log(pastel.red("Error processing #{key}: #{e}"))
           end
+        rescue UnrecognizedOrphanType
+          progress.log(pastel.yellow("Unrecognized file found: #{path}"))
         end
       end
 
@@ -277,14 +263,10 @@ module Mastodon::CLI
 
     desc 'usage', 'Calculate disk space consumed by Mastodon'
     def usage
-      say("Attachments:\t#{number_to_human_size(MediaAttachment.sum(Arel.sql('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')))} (#{number_to_human_size(MediaAttachment.where(account: Account.local).sum(Arel.sql('COALESCE(file_file_size, 0) + COALESCE(thumbnail_file_size, 0)')))} local)")
-      say("Custom emoji:\t#{number_to_human_size(CustomEmoji.sum(:image_file_size))} (#{number_to_human_size(CustomEmoji.local.sum(:image_file_size))} local)")
-      say("Preview cards:\t#{number_to_human_size(PreviewCard.sum(:image_file_size))}")
-      say("Avatars:\t#{number_to_human_size(Account.sum(:avatar_file_size))} (#{number_to_human_size(Account.local.sum(:avatar_file_size))} local)")
-      say("Headers:\t#{number_to_human_size(Account.sum(:header_file_size))} (#{number_to_human_size(Account.local.sum(:header_file_size))} local)")
-      say("Backups:\t#{number_to_human_size(Backup.sum(:dump_file_size))}")
-      say("Imports:\t#{number_to_human_size(Import.sum(:data_file_size))}")
-      say("Settings:\t#{number_to_human_size(SiteUpload.sum(:file_file_size))}")
+      print_table [
+        %w(Object Total Local),
+        *object_storage_summary,
+      ]
     end
 
     desc 'lookup URL', 'Lookup where media is displayed by passing a media URL'
@@ -297,9 +279,9 @@ module Mastodon::CLI
       fail_with_message 'Not a media URL' unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
 
       model_name = path_segments.first.classify
-      record_id  = path_segments[2..-2].join.to_i
+      record_id  = path_segments[2...-2].join.to_i
 
-      fail_with_message "Cannot find corresponding model: #{model_name}" unless PRELOAD_MODEL_WHITELIST.include?(model_name)
+      fail_with_message "Cannot find corresponding model: #{model_name}" unless PRELOADED_MODELS.include?(model_name)
 
       record = model_name.constantize.find_by(id: record_id)
       record = record.status if record.respond_to?(:status)
@@ -315,17 +297,32 @@ module Mastodon::CLI
       fail_with_message 'Invalid URL'
     end
 
-    private
-
-    PRELOAD_MODEL_WHITELIST = %w(
+    PRELOADED_MODELS = %w(
       Account
       Backup
       CustomEmoji
-      Import
       MediaAttachment
       PreviewCard
       SiteUpload
     ).freeze
+
+    private
+
+    def object_storage_summary
+      [
+        [:attachments, MediaAttachment.sum(combined_media_sum), MediaAttachment.where(account: Account.local).sum(combined_media_sum)],
+        [:custom_emoji, CustomEmoji.sum(:image_file_size), CustomEmoji.local.sum(:image_file_size)],
+        [:avatars, Account.sum(:avatar_file_size), Account.local.sum(:avatar_file_size)],
+        [:headers, Account.sum(:header_file_size), Account.local.sum(:header_file_size)],
+        [:preview_cards, PreviewCard.sum(:image_file_size), nil],
+        [:backups, Backup.sum(:dump_file_size), nil],
+        [:settings, SiteUpload.sum(:file_file_size), nil],
+      ].map { |label, total, local| [label.to_s.titleize, number_to_human_size(total), local.present? ? number_to_human_size(local) : nil] }
+    end
+
+    def combined_media_sum
+      MediaAttachment.combined_media_file_size
+    end
 
     def preload_records_from_mixed_objects(objects)
       preload_map = Hash.new { |hash, key| hash[key] = [] }
@@ -337,9 +334,9 @@ module Mastodon::CLI
         next unless VALID_PATH_SEGMENTS_SIZE.include?(segments.size)
 
         model_name = segments.first.classify
-        record_id  = segments[2..-2].join.to_i
+        record_id  = segments[2...-2].join.to_i
 
-        next unless PRELOAD_MODEL_WHITELIST.include?(model_name)
+        next unless PRELOADED_MODELS.include?(model_name)
 
         preload_map[model_name] << record_id
       end
@@ -347,6 +344,24 @@ module Mastodon::CLI
       preload_map.each_with_object({}) do |(model_name, record_ids), model_map|
         model_map[model_name] = model_name.constantize.where(id: record_ids).index_by(&:id)
       end
+    end
+
+    def orphaned_file?(path_segments, record_map = nil)
+      path_segments.delete('cache')
+
+      raise UnrecognizedOrphanType unless VALID_PATH_SEGMENTS_SIZE.include?(path_segments.size)
+
+      model_name      = path_segments.first.classify
+      record_id       = path_segments[2...-2].join.to_i
+      attachment_name = path_segments[1].singularize
+      file_name       = path_segments.last
+
+      raise UnrecognizedOrphanType unless PRELOADED_MODELS.include?(model_name)
+
+      record     = record_map.present? ? record_map.dig(model_name, record_id) : model_name.constantize.find_by(id: record_id)
+      attachment = record&.public_send(attachment_name)
+
+      attachment.blank? || !attachment.variant?(file_name)
     end
   end
 end

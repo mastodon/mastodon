@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Instance do
-  describe 'Scopes' do
-    before { described_class.refresh }
+  before { described_class.refresh }
 
+  describe 'Scopes' do
     describe '#searchable' do
       let(:expected_domain) { 'host.example' }
       let(:blocked_domain) { 'other.example' }

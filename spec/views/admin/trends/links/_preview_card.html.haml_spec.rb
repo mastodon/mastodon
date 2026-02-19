@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'admin/trends/links/_preview_card.html.haml' do
+RSpec.describe 'admin/trends/links/_preview_card.html.haml' do
   it 'correctly escapes user supplied url values' do
     form = instance_double(ActionView::Helpers::FormHelper, check_box: nil)
     trend = PreviewCardTrend.new(allowed: false)

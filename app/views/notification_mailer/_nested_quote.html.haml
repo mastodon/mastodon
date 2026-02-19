@@ -1,0 +1,17 @@
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-quote-header-img
+      = image_tag full_asset_url(status.account.avatar.url), alt: '', width: 34, height: 34
+    %td.email-quote-header-text
+      %h2.email-quote-header-name
+        = display_name(status.account)
+      %p.email-quote-header-handle
+        @#{status.account.pretty_acct}
+
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-status-content
+      = render 'notification_mailer/status_content', status: status
+
+      %p.email-status-footer
+        = link_to l(status.created_at.in_time_zone(time_zone.presence), format: :with_time_zone), web_url("@#{status.account.pretty_acct}/#{status.id}")

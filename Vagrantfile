@@ -29,7 +29,6 @@ sudo apt-get install \
   libpq-dev \
   libxml2-dev \
   libxslt1-dev \
-  imagemagick \
   nodejs \
   redis-server \
   redis-tools \
@@ -54,6 +53,7 @@ sudo apt-get install \
   pkg-config \
   protobuf-compiler \
   zlib1g-dev \
+  libvips42t64 \
   -y
 
 # Install rvm
@@ -134,7 +134,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "ubuntu/focal64"
+  config.vm.box = "bento/ubuntu-24.04"
 
   config.vm.provider :virtualbox do |vb|
     vb.name = "mastodon"
@@ -150,6 +150,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--nictype1", "virtio"]
     vb.customize ["modifyvm", :id, "--nictype2", "virtio"]
   end
+
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.cpus = 3
+    libvirt.memory = 8192
+  end
+
 
   # This uses the vagrant-hostsupdater plugin, and lets you
   # access the development site at http://mastodon.local.
@@ -168,11 +174,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if config.vm.networks.any? { |type, options| type == :private_network }
     config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ['rw', 'actimeo=1']
   else
-    config.vm.synced_folder ".", "/vagrant"
+    config.vm.synced_folder ".", "/vagrant", type: "rsync", create: true, rsync__args: ["--verbose", "--archive", "--delete", "-z"]
   end
 
   # Otherwise, you can access the site at http://localhost:3000 and http://localhost:4000 , http://localhost:8080
   config.vm.network :forwarded_port, guest: 3000, host: 3000
+  config.vm.network :forwarded_port, guest: 3035, host: 3035
   config.vm.network :forwarded_port, guest: 4000, host: 4000
   config.vm.network :forwarded_port, guest: 8080, host: 8080
   config.vm.network :forwarded_port, guest: 9200, host: 9200
@@ -188,7 +195,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.post_up_message = <<MESSAGE
 To start server
-  $ vagrant ssh -c "cd /vagrant && foreman start"
+  $ vagrant ssh -c "cd /vagrant && bin/dev"
 MESSAGE
 
 end

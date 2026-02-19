@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ChangePrimaryKeyToBigintOnStatuses < ActiveRecord::Migration[5.0]
-  def change
+  def up
     change_table(:statuses, bulk: true) do |t|
       t.change :id, :bigint
       t.change :reblog_of_id, :bigint
@@ -15,5 +15,9 @@ class ChangePrimaryKeyToBigintOnStatuses < ActiveRecord::Migration[5.0]
     change_column :reports, :status_ids, :bigint, array: true
     change_column :statuses_tags, :status_id, :bigint
     change_column :stream_entries, :activity_id, :bigint
+  end
+
+  def down
+    raise ActiveRecord::IrreversibleMigration
   end
 end

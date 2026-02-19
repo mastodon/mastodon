@@ -2,7 +2,9 @@
 
 require 'rails_helper'
 
-describe ApplicationController do
+RSpec.describe ApplicationController do
+  render_views
+
   controller do
     def success
       head 200
@@ -21,11 +23,24 @@ describe ApplicationController do
     end
   end
 
-  shared_examples 'respond_with_error' do |code|
+  shared_examples 'error response' do |code|
     it "returns http #{code} for http and renders template" do
-      expect(subject).to render_template("errors/#{code}", layout: 'error')
+      subject
 
-      expect(response).to have_http_status(code)
+      expect(response)
+        .to have_http_status(code)
+      expect(response.parsed_body)
+        .to have_css('body[class=error]')
+      expect(response.parsed_body.css('h1').to_s)
+        .to include(error_content(code))
+    end
+
+    def error_content(code)
+      if code == 422
+        I18n.t('errors.422.content')
+      else
+        I18n.t("errors.#{code}")
+      end
     end
   end
 
@@ -36,7 +51,7 @@ describe ApplicationController do
       post 'success'
     end
 
-    include_examples 'respond_with_error', 422
+    it_behaves_like 'error response', 422
   end
 
   describe 'helper_method :current_account' do
@@ -70,45 +85,13 @@ describe ApplicationController do
     end
   end
 
-  describe 'helper_method :current_theme' do
-    it 'returns "default" when theme wasn\'t changed in admin settings' do
-      allow(Setting).to receive(:default_settings).and_return({ 'theme' => 'default' })
-
-      expect(controller.view_context.current_theme).to eq 'default'
-    end
-
-    it 'returns instances\'s theme when user is not signed in' do
-      allow(Setting).to receive(:[]).with('theme').and_return 'contrast'
-
-      expect(controller.view_context.current_theme).to eq 'contrast'
-    end
-
-    it 'returns instances\'s default theme when user didn\'t set theme' do
-      current_user = Fabricate(:user)
-      current_user.settings.update(theme: 'contrast', noindex: false)
-      current_user.save
-      sign_in current_user
-
-      expect(controller.view_context.current_theme).to eq 'contrast'
-    end
-
-    it 'returns user\'s theme when it is set' do
-      current_user = Fabricate(:user)
-      current_user.settings.update(theme: 'mastodon-light')
-      current_user.save
-      sign_in current_user
-
-      expect(controller.view_context.current_theme).to eq 'mastodon-light'
-    end
-  end
-
   context 'with ActionController::RoutingError' do
     subject do
       routes.draw { get 'routing_error' => 'anonymous#routing_error' }
       get 'routing_error'
     end
 
-    include_examples 'respond_with_error', 404
+    it_behaves_like 'error response', 404
   end
 
   context 'with ActiveRecord::RecordNotFound' do
@@ -117,7 +100,7 @@ describe ApplicationController do
       get 'record_not_found'
     end
 
-    include_examples 'respond_with_error', 404
+    it_behaves_like 'error response', 404
   end
 
   context 'with ActionController::InvalidAuthenticityToken' do
@@ -126,7 +109,7 @@ describe ApplicationController do
       get 'invalid_authenticity_token'
     end
 
-    include_examples 'respond_with_error', 422
+    it_behaves_like 'error response', 422
   end
 
   describe 'before_action :check_suspension' do
@@ -171,7 +154,7 @@ describe ApplicationController do
       get 'route_forbidden'
     end
 
-    include_examples 'respond_with_error', 403
+    it_behaves_like 'error response', 403
   end
 
   describe 'not_found' do
@@ -186,7 +169,7 @@ describe ApplicationController do
       get 'route_not_found'
     end
 
-    include_examples 'respond_with_error', 404
+    it_behaves_like 'error response', 404
   end
 
   describe 'gone' do
@@ -201,56 +184,21 @@ describe ApplicationController do
       get 'route_gone'
     end
 
-    include_examples 'respond_with_error', 410
+    it_behaves_like 'error response', 410
   end
 
-  describe 'unprocessable_entity' do
+  describe 'unprocessable_content' do
     controller do
-      def route_unprocessable_entity
-        unprocessable_entity
+      def route_unprocessable_content
+        unprocessable_content
       end
     end
 
     subject do
-      routes.draw { get 'route_unprocessable_entity' => 'anonymous#route_unprocessable_entity' }
-      get 'route_unprocessable_entity'
+      routes.draw { get 'route_unprocessable_content' => 'anonymous#route_unprocessable_content' }
+      get 'route_unprocessable_content'
     end
 
-    include_examples 'respond_with_error', 422
-  end
-
-  describe 'cache_collection' do
-    subject do
-      Class.new(ApplicationController) do
-        public :cache_collection
-      end
-    end
-
-    shared_examples 'receives :with_includes' do |fabricator, klass|
-      it 'uses raw if it is not an ActiveRecord::Relation' do
-        record = Fabricate(fabricator)
-        expect(subject.new.cache_collection([record], klass)).to eq [record]
-      end
-    end
-
-    shared_examples 'cacheable' do |fabricator, klass|
-      include_examples 'receives :with_includes', fabricator, klass
-
-      it 'calls cache_ids of raw if it is an ActiveRecord::Relation' do
-        record = Fabricate(fabricator)
-        relation = klass.none
-        allow(relation).to receive(:cache_ids).and_return([record])
-        expect(subject.new.cache_collection(relation, klass)).to eq [record]
-      end
-    end
-
-    it 'returns raw unless class responds to :with_includes' do
-      raw = Object.new
-      expect(subject.new.cache_collection(raw, Object)).to eq raw
-    end
-
-    context 'with a Status' do
-      include_examples 'cacheable', :status, Status
-    end
+    it_behaves_like 'error response', 422
   end
 end

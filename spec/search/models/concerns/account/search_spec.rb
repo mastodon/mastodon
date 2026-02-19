@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Account::Search do
+RSpec.describe Account::Search do
   describe 'a non-discoverable account becoming discoverable' do
     let(:account) { Account.find_by(username: 'search_test_account_1') }
 

@@ -2,6 +2,8 @@
 
 import WebSocketClient from '@gamestdio/websocket';
 
+import { getAccessToken } from './initial_state';
+
 /**
  * @type {WebSocketClient | undefined}
  */
@@ -137,16 +139,23 @@ const channelNameWithInlineParams = (channelName, params) => {
 };
 
 /**
+ * @typedef {import('mastodon/store').AppDispatch} Dispatch
+ * @typedef {import('mastodon/store').GetState} GetState
+ */
+
+/**
  * @param {string} channelName
  * @param {Object.<string, string>} params
- * @param {function(Function, Function): { onConnect: (function(): void), onReceive: (function(StreamEvent): void), onDisconnect: (function(): void) }} callbacks
+ * @param {function(Dispatch, GetState): { onConnect: (function(): void), onReceive: (function(StreamEvent): void), onDisconnect: (function(): void) }} callbacks
  * @returns {function(): void}
  */
 // @ts-expect-error
 export const connectStream = (channelName, params, callbacks) => (dispatch, getState) => {
   const streamingAPIBaseURL = getState().getIn(['meta', 'streaming_api_base_url']);
-  const accessToken = getState().getIn(['meta', 'access_token']);
+  const accessToken = getAccessToken();
   const { onConnect, onReceive, onDisconnect } = callbacks(dispatch, getState);
+
+  if(!accessToken) throw new Error("Trying to connect to the streaming server but no access token is available.");
 
   // If we cannot use a websockets connection, we must fall back
   // to using individual connections for each channel
@@ -205,7 +214,6 @@ const KNOWN_EVENT_TYPES = [
   'notification',
   'conversation',
   'filters_changed',
-  'encrypted_message',
   'announcement',
   'announcement.delete',
   'announcement.reaction',
@@ -226,7 +234,7 @@ const handleEventSourceMessage = (e, received) => {
  * @param {string} streamingAPIBaseURL
  * @param {string} accessToken
  * @param {string} channelName
- * @param {{ connected: Function, received: function(StreamEvent): void, disconnected: Function, reconnected: Function }} callbacks
+ * @param {{ connected: function(): void, received: function(StreamEvent): void, disconnected: function(): void, reconnected: function(): void }} callbacks
  * @returns {WebSocketClient | EventSource}
  */
 const createConnection = (streamingAPIBaseURL, accessToken, channelName, { connected, received, disconnected, reconnected }) => {
@@ -239,12 +247,9 @@ const createConnection = (streamingAPIBaseURL, accessToken, channelName, { conne
     // @ts-expect-error
     const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?${params.join('&')}`, accessToken);
 
-    // @ts-expect-error
     ws.onopen = connected;
     ws.onmessage = e => received(JSON.parse(e.data));
-    // @ts-expect-error
     ws.onclose = disconnected;
-    // @ts-expect-error
     ws.onreconnect = reconnected;
 
     return ws;

@@ -8,7 +8,13 @@ class TruncatePreviewCards < ActiveRecord::Migration[5.1]
       t.string     :url, default: '', null: false, index: { unique: true }
       t.string     :title, default: '', null: false
       t.string     :description, default: '', null: false
-      t.attachment :image
+
+      # The following corresponds to `t.attachment :image` in an older version of Paperclip
+      t.string :image_file_name
+      t.string :image_content_type
+      t.integer :image_file_size
+      t.datetime :image_updated_at
+
       t.integer    :type, default: 0, null: false
       t.text       :html, default: '', null: false
       t.string     :author_name, default: '', null: false

@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'pundit/rspec'
 
 RSpec.describe RelayPolicy do
   subject { described_class }
 
-  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+  let(:admin)   { Fabricate(:admin_user).account }
   let(:john)    { Fabricate(:account) }
 
   permissions :update? do

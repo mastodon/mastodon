@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'mastodon/cli/upgrade'
 
-describe Mastodon::CLI::Upgrade do
+RSpec.describe Mastodon::CLI::Upgrade do
   subject { cli.invoke(action, arguments, options) }
 
   let(:cli) { described_class.new }

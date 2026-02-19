@@ -15,10 +15,10 @@ export const initReport = (account, status) => dispatch =>
     },
   }));
 
-export const submitReport = (params, onSuccess, onFail) => (dispatch, getState) => {
+export const submitReport = (params, onSuccess, onFail) => (dispatch) => {
   dispatch(submitReportRequest());
 
-  api(getState).post('/api/v1/reports', params).then(response => {
+  api().post('/api/v1/reports', params).then(response => {
     dispatch(submitReportSuccess(response.data));
     if (onSuccess) onSuccess();
   }).catch(error => {

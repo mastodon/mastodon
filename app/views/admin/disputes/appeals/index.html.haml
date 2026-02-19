@@ -5,7 +5,7 @@
   .filter-subset
     %strong= t('admin.tags.review')
     %ul
-      %li= filter_link_to safe_join([t('admin.accounts.moderation.pending'), "(#{Appeal.pending.count})"], ' '), status: 'pending'
+      %li= filter_link_to safe_join([t('admin.accounts.moderation.pending'), "(#{@pending_appeals_count.value})"], ' '), status: 'pending'
       %li= filter_link_to t('admin.trends.approved'), status: 'approved'
       %li= filter_link_to t('admin.trends.rejected'), status: 'rejected'
 

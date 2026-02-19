@@ -15,9 +15,16 @@ es:
       user/invite_request:
         text: Razón
     errors:
+      attributes:
+        domain:
+          invalid: no es un nombre de dominio válido
+      messages:
+        invalid_domain_on_line: "%{value} no es un nombre de dominio válido"
       models:
         account:
           attributes:
+            fields:
+              fields_with_values_missing_labels: contiene valores con etiquetas que faltan
             username:
               invalid: solo puede contener letras, números y guiones bajos
               reserved: está reservado
@@ -25,6 +32,12 @@ es:
           attributes:
             url:
               invalid: no es una URL válida
+        collection:
+          attributes:
+            collection_items:
+              too_many: son demasiados, no se permiten más de %{count}
+            tag:
+              unusable: podría no utilizarse
         doorkeeper/application:
           attributes:
             website:
@@ -33,12 +46,23 @@ es:
           attributes:
             data:
               malformed: tiene un formato incorrecto
+        list_account:
+          attributes:
+            account_id:
+              taken: ya está en la lista
+          must_be_following: debe ser una cuenta que sigas
         status:
           attributes:
             reblog:
               taken: de la publicación ya existe
+        terms_of_service:
+          attributes:
+            effective_date:
+              too_soon: es demasiado pronto, debe ser posterior a %{date}
         user:
           attributes:
+            date_of_birth:
+              below_limit: está por debajo de la edad mínima
             email:
               blocked: utiliza un proveedor de correo no autorizado
               unreachable: no parece existir
@@ -56,4 +80,4 @@ es:
         webhook:
           attributes:
             events:
-              invalid_permissions: no se pueden incluir eventos para los que no tienes derechos
+              invalid_permissions: no puede incluir eventos para los que no tienes permisos

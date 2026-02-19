@@ -9,6 +9,7 @@ export type ModalType = keyof typeof MODAL_COMPONENTS;
 interface OpenModalPayload {
   modalType: ModalType;
   modalProps: ModalProps;
+  previousModalProps?: ModalProps;
 }
 export const openModal = createAction<OpenModalPayload>('MODAL_OPEN');
 

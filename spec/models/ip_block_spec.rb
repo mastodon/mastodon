@@ -2,14 +2,69 @@
 
 require 'rails_helper'
 
-describe IpBlock do
-  describe 'to_log_human_identifier' do
+RSpec.describe IpBlock do
+  it_behaves_like 'Expireable'
+
+  describe 'Validations' do
+    subject { Fabricate.build :ip_block }
+
+    it { is_expected.to validate_presence_of(:ip) }
+    it { is_expected.to validate_presence_of(:severity) }
+
+    it { is_expected.to validate_uniqueness_of(:ip) }
+
+    it { is_expected.to allow_values(:sign_up_requires_approval, :sign_up_block, :no_access).for(:severity) }
+  end
+
+  describe '#to_log_human_identifier' do
     let(:ip_block) { described_class.new(ip: '192.168.0.1') }
 
     it 'combines the IP and prefix into a string' do
       result = ip_block.to_log_human_identifier
 
       expect(result).to eq('192.168.0.1/32')
+    end
+  end
+
+  describe '#to_cidr' do
+    subject { Fabricate.build(:ip_block, ip:).to_cidr }
+
+    context 'with an IP and a specified prefix' do
+      let(:ip) { '192.168.1.0/24' }
+
+      it { is_expected.to eq('192.168.1.0/24') }
+    end
+
+    context 'with an IP and a default prefix' do
+      let(:ip) { '192.168.1.0' }
+
+      it { is_expected.to eq('192.168.1.0/32') }
+    end
+  end
+
+  describe '.blocked?' do
+    context 'when the IP is blocked' do
+      it 'returns true' do
+        described_class.create!(ip: '127.0.0.1', severity: :no_access)
+
+        expect(described_class.blocked?('127.0.0.1')).to be true
+      end
+    end
+
+    context 'when the IP is not blocked' do
+      it 'returns false' do
+        expect(described_class.blocked?('127.0.0.1')).to be false
+      end
+    end
+  end
+
+  describe 'after_commit' do
+    it 'resets the cache' do
+      allow(Rails.cache).to receive(:delete)
+
+      described_class.create!(ip: '127.0.0.1', severity: :no_access)
+
+      expect(Rails.cache).to have_received(:delete).with(described_class::CACHE_KEY)
     end
   end
 end

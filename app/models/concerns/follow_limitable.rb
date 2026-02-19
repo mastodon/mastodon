@@ -4,14 +4,8 @@ module FollowLimitable
   extend ActiveSupport::Concern
 
   included do
-    validates_with FollowLimitValidator, on: :create, unless: :bypass_follow_limit?
-  end
+    validates_with FollowLimitValidator, on: :create, unless: :bypass_follow_limit
 
-  def bypass_follow_limit=(value)
-    @bypass_follow_limit = value
-  end
-
-  def bypass_follow_limit?
-    @bypass_follow_limit
+    attribute :bypass_follow_limit, :boolean, default: false
   end
 end

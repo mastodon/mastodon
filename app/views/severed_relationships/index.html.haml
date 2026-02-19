@@ -1,0 +1,16 @@
+- content_for :page_title do
+  = t('settings.severed_relationships')
+
+%p.muted-hint= t('severed_relationships.preamble')
+
+- unless @events.empty?
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t('exports.archive_takeout.date')
+          %th= t('severed_relationships.type')
+          %th= t('severed_relationships.lost_follows')
+          %th= t('severed_relationships.lost_followers')
+      %tbody
+        = render partial: 'event', collection: @events

@@ -1,0 +1,116 @@
+---
+az:
+  devise:
+    confirmations:
+      confirmed: E-poçt ünvanınız uğurla təsdiqləndi.
+      send_instructions: Bir neçə dəqiqə ərzində e-poçt ünvanınızı necə təsdiqləyəcəyinizə dair təlimatları olan bir e-məktub alacaqsınız. Bu e-məktubu almamısınızsa, spam qovluğunuzu yoxlayın.
+      send_paranoid_instructions: E-poçt ünvanınız veri bazamızda varsa, bir neçə dəqiqə sonra e-poçt ünvanınızı necə təsdiqləyəcəyinizə dair təlimatları olan bir e-poçt alacaqsınız. Bu e-poçtu almamısınızsa, spam qovluğunuzu yoxlayın.
+    failure:
+      already_authenticated: Siz artıq daxil olmusunuz.
+      inactive: Hesabınız hələ aktivləşdirilməyib.
+      invalid: Yararsız %{authentication_keys} və ya parol.
+      last_attempt: Hesabınız blok olmamışdan əvvəl bir dəfə də cəhdiniz var.
+      locked: Hesabınız kilidlənib.
+      not_found_in_database: Yararsız %{authentication_keys} və ya parol.
+      omniauth_user_creation_failure: Bu kimlik üçün hesab yaradarkən xəta.
+      pending: Hesabınız hələ incələnir.
+      timeout: Sessiyanın vaxtı bitdi. Xahiş edirik davam etmək üçün yenidən daxil olun.
+      unauthenticated: Davam etmək üçün daxil olmaq və ya qeydiyyatdan keçmək lazımdır.
+      unconfirmed: Davam etmək üçün e-poçt ünvanınızı təsdiqləməlisiniz.
+    mailer:
+      confirmation_instructions:
+        action: E-poçt ünvanını doğrula
+        action_with_app: Təsdiqlə və %{app}-a geri qayıt
+        explanation: Bu e-poçt ünvanı ilə %{host} üzərində bir hesab yaratmısınız. Onu aktivləşdirməkdən bir klik uzaqlıqdasınız. Əgər bunu siz etməmisinizsə, lütfən e-poçtu yox sayın.
+        explanation_when_pending: Bu e-poçt ünvanı ilə %{host} ünvanına dəvət üçün müraciət etmisiniz. E-poçt ünvanınızı təsdiqlədikdən sonra müraciətinizi nəzərdən keçirəcəyik. Hesab məlumatlarını dəyişdirmək və ya hesabınızı silmək üçün giriş edə bilərsiniz, ancaq hesabınız təsdiqlənənə qədər əksər funksiyalara erişə bilməyəcəksiniz. Müraciətinizə rədd cavabı gəlsə, veriləriniz silinəcək, sizdən heç bir əməliyyat etməyiniz istənilməyəcək. Əgər bu siz deyilsinizsə, lütfən bu e-poçtu yox sayın.
+        extra_html: Həmçinin zəhmət olmasa, <a href="%{terms_path}">serverin qaydalarını</a> və <a href="%{policy_path}">istifadə şərtlərini</a> oxuyun.
+        subject: 'Mastodon: %{instance} üçün təsdiqlənmə təlimatları'
+        title: E-poçt ünvanını doğrula
+      email_changed:
+        explanation: 'Hesabınız üçün e-poçt ünvanı buna dəyişdirilir:'
+        extra: E-poçtunuzu dəyişməmisinizsə, çox güman ki, kimsə hesabınıza erişib. Hesabınıza giriş edə bilmirsinizsə, lütfən parolunuzu dərhal dəyişdirin və ya server admini ilə əlaqə saxlayın.
+        subject: 'Mastodon: E-poçt dəyişdirildi'
+        title: Yeni e-poçt ünvanı
+      password_change:
+        explanation: Hesabınızın parolu dəyişdirilib.
+        extra: Parolunuzu dəyişməmisinizsə, çox güman ki, kimsə hesabınıza erişib. Hesabınıza giriş edə bilmirsinizsə, lütfən parolunuzu dərhal dəyişdirin və ya server admini ilə əlaqə saxlayın.
+        subject: 'Mastodon: Parol dəyişdirildi'
+        title: Parol dəyişdirildi
+      reconfirmation_instructions:
+        explanation: E-poçtunuzu dəyişdirmək üçün yeni ünvanı təsdiqləyin.
+        extra: Bu dəyişikliyi siz etməmisinizsə, lütfən bu e-poçtu yox sayın. Yuxarıdakı keçidə erişənə qədər Mastodon hesabının e-poçt ünvanı dəyişməyəcək.
+        subject: 'Mastodon: %{instance} üçün e-poçtu təsdiqlə'
+        title: E-poçt ünvanını doğrula
+      reset_password_instructions:
+        action: Parolu dəyiş
+        explanation: Siz hesabınız üçün yeni parol tələb etmisiniz.
+        extra: Bunu siz tələb etməmisinizsə, lütfən bu e-poçtu yox sayın. Parolunuz, yuxarıdakı keçidə erişənə və siz yeni birini yaradana qədər dəyişməyəcək.
+        subject: 'Mastodon: Parol sıfırlama təlimatları'
+        title: Parolu sıfırla
+      two_factor_disabled:
+        explanation: Giriş etmək, indi yalnız e-poçt ünvanı və parol ilə mümkündür.
+        subject: 'Mastodon: İki faktorlu kimlik doğrulama sıradan çıxarılıb'
+        subtitle: İki faktorlu kimlik doğrulama hesabınız üçün sıradan çıxarılıb.
+        title: 2FA sıradan çıxarılıb
+      two_factor_enabled:
+        explanation: Giriş etmək üçün cütləşdirilmiş TOTP tətbiqi tərəfindən yaradılmış bir token tələb olunur.
+        subject: 'Mastodon: İki faktorlu kimlik doğrulama fəaldır'
+        subtitle: İki faktorlu kimlik doğrulama hesabınız üçün fəallaşdırılıb.
+        title: 2FA fəaldır
+      two_factor_recovery_codes_changed:
+        explanation: Əvvəlki geri qaytarma kodları yararsız sayıldı və yeniləri yaradıldı.
+        subject: 'Mastodon: İki faktorlu geri qaytarma kodları təkrar yaradılıb'
+        subtitle: Əvvəlki geri qaytarma kodları yararsız sayıldı və yeniləri yaradıldı.
+        title: 2FA geri qaytarma kodları dəyişdirilib
+      unlock_instructions:
+        subject: 'Mastodon: Kilid açma təlimatları'
+      webauthn_credential:
+        added:
+          explanation: Aşağıdakı güvənlik açarı, hesabınıza əlavə edilib
+          subject: 'Mastodon: Yeni güvənlik açarı'
+          title: Yeni bir güvənlik açarı əlavə edilib
+        deleted:
+          explanation: Aşağıdakı güvənlik açarı, hesabınızdan silinib
+          subject: 'Mastodon: Güvənlik açarı silindi'
+          title: Güvənlik açarlarınızdan biri silinib
+      webauthn_disabled:
+        explanation: Güvənlik açarı ilə kimlik doğrulama hesabınız üçün sıradan çıxarılıb.
+        extra: Giriş, artıq yalnız cütləşdirilmiş TOTP tətbiqi tərəfindən yaradılmış token ilə mümkündür.
+        subject: 'Mastodon: Güvənlik açarları ilə kimlik doğrulama sıradan çıxarılıb'
+        title: Güvənlik açarları sıradan çıxarılıb
+      webauthn_enabled:
+        explanation: Güvənlik açarı ilə kimlik doğrulama hesabınız üçün fəallaşdırılıb.
+        extra: Güvənlik açarınız artıq giriş üçün istifadə edilə bilər
+        subject: 'Mastodon: Güvənlik açarı ilə kimlik doğrulama fəaldır'
+        title: Güvənlik açarları fəaldır
+    omniauth_callbacks:
+      failure: '%{kind} üzərindən kimliyiniz doğrulana bilmədi, çünki "%{reason}".'
+      success: "%{kind} hesabından kimliyiniz uğurla doğrulandı."
+    passwords:
+      no_token: Parol sıfırlama e-poçtunu istifadə etmədən bu səhifəyə erişə bilməzsiniz. Əgər parol sıfırlama e-poçtu ilə bura gəlmisinizsə, lütfən verilmiş tam URL-ni istifadə etdiyinizə əmin olun.
+      send_instructions: E-poçt ünvanınız veri bazamızda varsa, bir neçə dəqiqə sonra e-poçt ünvanınızda parolu geri qaytarma keçidini alacaqsınız. Bu e-poçtu almamısınızsa, spam qovluğunuzu yoxlayın.
+      send_paranoid_instructions: E-poçt ünvanınız veri bazamızda varsa, bir neçə dəqiqə sonra e-poçt ünvanınızda parolu geri qaytarma keçidini alacaqsınız. Bu e-poçtu almamısınızsa, spam qovluğunuzu yoxlayın.
+      updated: Parolunuz uğurla dəyişdirildi. Artıq hesabınıza daxil olmusunuz.
+      updated_not_active: Parolunuz uğurla dəyişdirildi.
+    registrations:
+      destroyed: Xudahafiz! Hesabınız uğurla ləğv edilib. Sizi tezliklə yenidən görməyi ümid edirik.
+      update_needs_confirmation: Hesabınızı uğurla güncəllədiniz, ancaq yeni e-poçt ünvanını doğrulamağımız lazımdır. Lütfən e-poçtunuzu yoxlayın, yeni e-poçt ünvanınızı təsdiqləmək üçün təsdiq keçidini izləyin. Əgər bu e-poçtu almamısınızsa spam qovluğunu yoxlayın.
+      updated: Hesabınız uğurla güncəllənib.
+    sessions:
+      already_signed_out: Uğurla hesabdan çıxış edildi.
+      signed_in: Uğurla hesaba daxil olundu.
+      signed_out: Uğurla hesabdan çıxış edildi.
+    unlocks:
+      send_instructions: Bir neçə dəqiqə ərzində e-poçt ünvanınızın kilidini necə açmaqla bağlı təlimatlar olan bir e-poçt alacaqsınız. Bu e-poçtu almamısınızsa, lütfən spam qovluğunuzu yoxlayın.
+      send_paranoid_instructions: Əgər hesabınız mövcuddursa, bir neçə dəqiqə ərzində e-poçt ünvanınızın kilidini necə açmaqla bağlı təlimatlar olan bir e-poçt alacaqsınız. Bu e-poçtu almamısınızsa, lütfən spam qovluğunuzu yoxlayın.
+      unlocked: Hesabınızın kilidi uğurla açıldı. Davam etmək üçün lütfən giriş edin.
+  errors:
+    messages:
+      already_confirmed: artıq təsdiqlənib, lütfən hesabınıza daxil olmağa çalışın
+      confirmation_period_expired: "%{period} ərzində təsdiqlənməsi lazımdır, lütfən yenisini tələb edin"
+      expired: müddəti bitib, lütfən yenisini tələb edin
+      not_found: tapılmadı
+      not_locked: kilidlənməyib
+      not_saved:
+        one: '1 xəta, bu %{resource} resursunu saxlamağı qadağan etdi:'
+        other: "%{count} xəta, bu %{resource} resursunu saxlamağı qadağan etdi:"

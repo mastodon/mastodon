@@ -1,3 +1,5 @@
+/// <reference types="vite-plugin-svgr/client" />
+
 /* eslint-disable import/no-default-export */
 declare module '*.avif' {
   const path: string;
@@ -17,23 +19,6 @@ declare module '*.jpg' {
 declare module '*.png' {
   const path: string;
   export default path;
-}
-
-declare module '*.svg' {
-  const path: string;
-  export default path;
-}
-
-declare module '*.svg?react' {
-  import type React from 'react';
-
-  interface SVGPropsWithTitle extends React.SVGProps<SVGSVGElement> {
-    title?: string;
-  }
-
-  const ReactComponent: React.FC<SVGPropsWithTitle>;
-
-  export default ReactComponent;
 }
 
 declare module '*.webp' {

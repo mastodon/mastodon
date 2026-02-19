@@ -13,15 +13,15 @@
 #
 
 class CustomFilterKeyword < ApplicationRecord
+  include CustomFilterCache
+
   belongs_to :custom_filter
 
-  validates :keyword, presence: true
+  KEYWORD_LENGTH_LIMIT = 512
+
+  validates :keyword, presence: true, length: { maximum: KEYWORD_LENGTH_LIMIT }
 
   alias_attribute :phrase, :keyword
-
-  before_save :prepare_cache_invalidation!
-  before_destroy :prepare_cache_invalidation!
-  after_commit :invalidate_cache!
 
   def to_regex
     if whole_word?
@@ -39,13 +39,5 @@ class CustomFilterKeyword < ApplicationRecord
 
   def to_regex_eb
     /[[:word:]]\z/.match?(keyword) ? '\b' : ''
-  end
-
-  def prepare_cache_invalidation!
-    custom_filter.prepare_cache_invalidation!
-  end
-
-  def invalidate_cache!
-    custom_filter.invalidate_cache!
   end
 end

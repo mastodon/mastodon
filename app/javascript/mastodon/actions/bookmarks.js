@@ -18,7 +18,7 @@ export function fetchBookmarkedStatuses() {
 
     dispatch(fetchBookmarkedStatusesRequest());
 
-    api(getState).get('/api/v1/bookmarks').then(response => {
+    api().get('/api/v1/bookmarks').then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedStatuses(response.data));
       dispatch(fetchBookmarkedStatusesSuccess(response.data, next ? next.uri : null));
@@ -59,7 +59,7 @@ export function expandBookmarkedStatuses() {
 
     dispatch(expandBookmarkedStatusesRequest());
 
-    api(getState).get(url).then(response => {
+    api().get(url).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedStatuses(response.data));
       dispatch(expandBookmarkedStatusesSuccess(response.data, next ? next.uri : null));

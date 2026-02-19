@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ReportFilter do
+RSpec.describe ReportFilter do
   describe 'with empty params' do
     it 'defaults to unresolved reports list' do
       filter = described_class.new({})
@@ -28,6 +28,19 @@ describe ReportFilter do
       expect(Report).to have_received(:where).with(account_id: '123')
       expect(Report).to have_received(:where).with(target_account_id: '456')
       expect(Report).to have_received(:resolved)
+    end
+  end
+
+  context 'when given remote target_origin and also by_target_domain' do
+    let!(:matching_report) { Fabricate :report, target_account: Fabricate(:account, domain: 'match.example') }
+    let!(:non_matching_report) { Fabricate :report, target_account: Fabricate(:account, domain: 'other.example') }
+
+    it 'preserves the domain value' do
+      filter = described_class.new(by_target_domain: 'match.example', target_origin: 'remote')
+
+      expect(filter.results)
+        .to include(matching_report)
+        .and not_include(non_matching_report)
     end
   end
 end

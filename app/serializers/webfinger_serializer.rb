@@ -13,7 +13,7 @@ class WebfingerSerializer < ActiveModel::Serializer
     if object.instance_actor?
       [instance_actor_url]
     else
-      [short_account_url(object), account_url(object)]
+      [short_account_url(object), ActivityPub::TagManager.instance.uri_for(object)]
     end
   end
 
@@ -33,7 +33,7 @@ class WebfingerSerializer < ActiveModel::Serializer
     media_present = object.avatar.present? && object.avatar.content_type.present?
 
     # Show avatar only if an instance shows profiles to logged out users
-    allowed_by_config = ENV['DISALLOW_UNAUTHENTICATED_API_ACCESS'] != 'true' && !Rails.configuration.x.limited_federation_mode
+    allowed_by_config = ENV['DISALLOW_UNAUTHENTICATED_API_ACCESS'] != 'true' && !Rails.configuration.x.mastodon.limited_federation_mode
 
     media_present && allowed_by_config
   end
@@ -43,6 +43,6 @@ class WebfingerSerializer < ActiveModel::Serializer
   end
 
   def self_href
-    object.instance_actor? ? instance_actor_url : account_url(object)
+    ActivityPub::TagManager.instance.uri_for(object)
   end
 end

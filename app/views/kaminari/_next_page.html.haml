@@ -8,4 +8,4 @@
     remote:        data-remote
 
 %span.next
-  = link_to_unless current_page.last?, safe_join([t('pagination.next'), fa_icon('chevron-right')], ' '), url, rel: 'next', remote: remote
+  = link_to_unless current_page.last?, safe_join([t('pagination.next'), material_symbol('chevron_right')], ' '), url, rel: 'next', remote: remote

@@ -1,9 +1,10 @@
 name: JavaScript Testing
 on:
+  merge_group:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-      - 'renovate/**'
+    branches:
+      - 'main'
+      - 'stable-*'
     paths:
       - 'package.json'
       - 'yarn.lock'
@@ -33,10 +34,10 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Set up Javascript environment
         uses: ./.github/actions/setup-javascript
 
-      - name: Jest testing
-        run: yarn jest --reporters github-actions summary
+      - name: JavaScript testing
+        run: yarn test:js

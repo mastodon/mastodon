@@ -20,11 +20,12 @@ export type StatusLike = Record<{
   contentHTML: string;
   media_attachments: List<unknown>;
   spoiler_text?: string;
+  account: Record<{ id: string }>;
 }>;
 
 function normalizeHashtag(hashtag: string) {
   return (
-    hashtag && hashtag.startsWith('#') ? hashtag.slice(1) : hashtag
+    !!hashtag && hashtag.startsWith('#') ? hashtag.slice(1) : hashtag
   ).normalize('NFKC');
 }
 
@@ -32,7 +33,7 @@ function isNodeLinkHashtag(element: Node): element is HTMLLinkElement {
   return (
     element instanceof HTMLAnchorElement &&
     // it may be a <a> starting with a hashtag
-    (element.textContent?.[0] === '#' ||
+    (element.textContent.startsWith('#') ||
       // or a #<a>
       element.previousSibling?.textContent?.[
         element.previousSibling.textContent.length - 1
@@ -52,7 +53,10 @@ function uniqueHashtagsWithCaseHandling(hashtags: string[]) {
   );
 
   return Object.values(groups).map((tags) => {
-    if (tags.length === 1) return tags[0];
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- we know that the array has at least one element
+    const firstTag = tags[0]!;
+
+    if (tags.length === 1) return firstTag;
 
     // The best match is the one where we have the less difference between upper and lower case letter count
     const best = minBy(tags, (tag) => {
@@ -66,7 +70,7 @@ function uniqueHashtagsWithCaseHandling(hashtags: string[]) {
       return Math.abs(lowerCase - upperCase);
     });
 
-    return best ?? tags[0];
+    return best ?? firstTag;
   });
 }
 
@@ -192,13 +196,19 @@ export function getHashtagBarForStatus(status: StatusLike) {
 
   return {
     statusContentProps,
-    hashtagBar: <HashtagBar hashtags={hashtagsInBar} />,
+    hashtagBar: (
+      <HashtagBar
+        hashtags={hashtagsInBar}
+        accountId={status.getIn(['account', 'id']) as string}
+      />
+    ),
   };
 }
 
 const HashtagBar: React.FC<{
   hashtags: string[];
-}> = ({ hashtags }) => {
+  accountId: string;
+}> = ({ hashtags, accountId }) => {
   const [expanded, setExpanded] = useState(false);
   const handleClick = useCallback(() => {
     setExpanded(true);
@@ -215,13 +225,17 @@ const HashtagBar: React.FC<{
   return (
     <div className='hashtag-bar'>
       {revealedHashtags.map((hashtag) => (
-        <Link key={hashtag} to={`/tags/${hashtag}`}>
+        <Link
+          key={hashtag}
+          to={`/tags/${hashtag}`}
+          data-menu-hashtag={accountId}
+        >
           #<span>{hashtag}</span>
         </Link>
       ))}
 
       {!expanded && hashtags.length > VISIBLE_HASHTAGS && (
-        <button className='link-button' onClick={handleClick}>
+        <button className='link-button' onClick={handleClick} type='button'>
           <FormattedMessage
             id='hashtags.and_other'
             defaultMessage='…and {count, plural, other {# more}}'

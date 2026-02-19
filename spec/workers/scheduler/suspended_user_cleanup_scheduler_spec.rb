@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Scheduler::SuspendedUserCleanupScheduler do
+RSpec.describe Scheduler::SuspendedUserCleanupScheduler do
   let(:worker) { described_class.new }
 
   describe 'perform' do

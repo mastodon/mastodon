@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::ProcessAccountService, type: :service do
+RSpec.describe ActivityPub::ProcessAccountService do
   subject { described_class.new }
 
-  context 'with property values' do
+  context 'with property values, an avatar, and a profile header' do
     let(:payload) do
       {
         id: 'https://foo.test',
@@ -16,10 +16,29 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
           { type: 'PropertyValue', name: 'Occupation', value: 'Unit test' },
           { type: 'PropertyValue', name: 'non-string', value: %w(foo bar) },
         ],
+        image: {
+          type: 'Image',
+          mediaType: 'image/png',
+          url: 'https://foo.test/image.png',
+        },
+        icon: {
+          type: 'Image',
+          url: [
+            {
+              mediaType: 'image/png',
+              href: 'https://foo.test/icon.png',
+            },
+          ],
+        },
       }.with_indifferent_access
     end
 
-    it 'parses out of attachment' do
+    before do
+      stub_request(:get, 'https://foo.test/image.png').to_return(request_fixture('avatar.txt'))
+      stub_request(:get, 'https://foo.test/icon.png').to_return(request_fixture('avatar.txt'))
+    end
+
+    it 'parses property values, avatar and profile header as expected' do
       account = subject.call('alice', 'example.com', payload)
 
       expect(account.fields)
@@ -37,6 +56,51 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
           name: eq('Occupation'),
           value: eq('Unit test')
         )
+      expect(account).to have_attributes(
+        avatar_remote_url: 'https://foo.test/icon.png',
+        header_remote_url: 'https://foo.test/image.png'
+      )
+    end
+  end
+
+  context 'with attribution domains' do
+    let(:payload) do
+      {
+        id: 'https://foo.test',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        attributionDomains: [
+          'example.com',
+        ],
+      }.with_indifferent_access
+    end
+
+    it 'parses attribution domains' do
+      account = subject.call('alice', 'example.com', payload)
+
+      expect(account.attribution_domains)
+        .to match_array(%w(example.com))
+    end
+  end
+
+  context 'with inlined feature collection' do
+    let(:payload) do
+      {
+        id: 'https://foo.test',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        featured: {
+          type: 'OrderedCollection',
+          orderedItems: ['https://example.com/statuses/1'],
+        },
+      }.deep_stringify_keys
+    end
+
+    it 'queues featured collection synchronization', :aggregate_failures do
+      account = subject.call('alice', 'example.com', payload)
+
+      expect(account.featured_collection_url).to eq ''
+      expect(ActivityPub::SynchronizeFeaturedCollectionWorker).to have_enqueued_sidekiq_job(account.id, { 'hashtag' => true, 'request_id' => anything, 'collection' => payload['featured'] })
     end
   end
 
@@ -192,7 +256,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
         }.with_indifferent_access
         webfinger = {
           subject: "acct:user#{i}@foo.test",
-          links: [{ rel: 'self', href: "https://foo.test/users/#{i}" }],
+          links: [{ rel: 'self', href: "https://foo.test/users/#{i}", type: 'application/activity+json' }],
         }.with_indifferent_access
         stub_request(:get, "https://foo.test/users/#{i}").to_return(status: 200, body: actor_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
         stub_request(:get, "https://foo.test/users/#{i}/featured").to_return(status: 200, body: featured_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
@@ -201,10 +265,53 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
       end
     end
 
-    it 'creates accounts without exceeding rate limit', :sidekiq_inline do
+    it 'creates accounts without exceeding rate limit', :inline_jobs do
       expect { subject.call('user1', 'foo.test', payload) }
         .to create_some_remote_accounts
         .and create_fewer_than_rate_limit_accounts
+    end
+  end
+
+  context 'with interaction policy' do
+    let(:payload) do
+      {
+        id: 'https://foo.test',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        followers: 'https://foo.test/followers',
+        following: 'https://foo.test/following',
+        interactionPolicy: {
+          canFeature: {
+            automaticApproval: 'https://foo.test',
+            manualApproval: [
+              'https://foo.test/followers',
+              'https://foo.test/following',
+            ],
+          },
+        },
+      }.with_indifferent_access
+    end
+
+    before do
+      stub_request(:get, %r{^https://foo\.test/follow})
+        .to_return(status: 200, body: '', headers: {})
+    end
+
+    # TODO: Remove when feature flag is removed
+    context 'when collections feature is disabled' do
+      it 'does not set the interaction policy' do
+        account = subject.call('user1', 'foo.test', payload)
+
+        expect(account.feature_approval_policy).to be_zero
+      end
+    end
+
+    context 'when collections feature is enabled', feature: :collections do
+      it 'sets the interaction policy to the correct value' do
+        account = subject.call('user1', 'foo.test', payload)
+
+        expect(account.feature_approval_policy).to eq 0b100000000000000001100
+      end
     end
   end
 

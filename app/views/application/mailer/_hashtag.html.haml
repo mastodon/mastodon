@@ -1,0 +1,18 @@
+%table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+  %tr
+    %td.email-mini-wrapper-td
+      %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+        %tr
+          %td.email-mini-td
+            %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+              %tr
+                %td.email-mini-hashtag-td{ height: 40 }
+                  %h3 ##{hashtag.display_name}
+                  %table.email-w-full{ cellspacing: 0, cellpadding: 0, border: 0, role: 'presentation' }
+                    %tr
+                      %td.email-mini-hashtag-img-td
+                        - recent_tag_users(hashtag).each do |account|
+                          %span.email-mini-hashtag-img-span
+                            = image_tag full_asset_url(account.avatar.url), alt: '', width: 16, height: 16
+                      %td
+                        %p= recent_tag_usage(hashtag)

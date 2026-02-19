@@ -10,23 +10,22 @@ import { createSelector } from '@reduxjs/toolkit';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { useDispatch, useSelector } from 'react-redux';
 
-
-import { HotKeys } from 'react-hotkeys';
-
 import MoreHorizIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 import ReplyIcon from '@/material-icons/400-24px/reply.svg?react';
 import { replyCompose } from 'mastodon/actions/compose';
 import { markConversationRead, deleteConversation } from 'mastodon/actions/conversations';
 import { openModal } from 'mastodon/actions/modal';
-import { muteStatus, unmuteStatus, revealStatus, hideStatus } from 'mastodon/actions/statuses';
+import { muteStatus, unmuteStatus, toggleStatusSpoilers } from 'mastodon/actions/statuses';
+import { Hotkeys } from 'mastodon/components/hotkeys';
 import AttachmentList from 'mastodon/components/attachment_list';
 import AvatarComposite from 'mastodon/components/avatar_composite';
 import { IconButton } from 'mastodon/components/icon_button';
 import { RelativeTimestamp } from 'mastodon/components/relative_timestamp';
 import StatusContent from 'mastodon/components/status_content';
-import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
-import { autoPlayGif } from 'mastodon/initial_state';
+import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { makeGetStatus } from 'mastodon/selectors';
+import { LinkedDisplayName } from '@/mastodon/components/display_name';
+import { AnimateEmojiProvider } from '@/mastodon/components/emoji/context';
 
 const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
@@ -36,8 +35,6 @@ const messages = defineMessages({
   delete: { id: 'conversation.delete', defaultMessage: 'Delete conversation' },
   muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
-  replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
-  replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
 });
 
 const getAccounts = createSelector(
@@ -49,7 +46,7 @@ const getAccounts = createSelector(
 
 const getStatus = makeGetStatus();
 
-export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) => {
+export const Conversation = ({ conversation, scrollKey }) => {
   const id = conversation.get('id');
   const unread = conversation.get('unread');
   const lastStatusId = conversation.get('last_status');
@@ -59,32 +56,6 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
   const history = useHistory();
   const lastStatus = useSelector(state => getStatus(state, { id: lastStatusId }));
   const accounts = useSelector(state => getAccounts(state, accountIds));
-
-  const handleMouseEnter = useCallback(({ currentTarget }) => {
-    if (autoPlayGif) {
-      return;
-    }
-
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
-
-    for (var i = 0; i < emojis.length; i++) {
-      let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-original');
-    }
-  }, []);
-
-  const handleMouseLeave = useCallback(({ currentTarget }) => {
-    if (autoPlayGif) {
-      return;
-    }
-
-    const emojis = currentTarget.querySelectorAll('.custom-emoji');
-
-    for (var i = 0; i < emojis.length; i++) {
-      let emoji = emojis[i];
-      emoji.src = emoji.getAttribute('data-static');
-    }
-  }, []);
 
   const handleClick = useCallback(() => {
     if (unread) {
@@ -103,31 +74,16 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
       let state = getState();
 
       if (state.getIn(['compose', 'text']).trim().length !== 0) {
-        dispatch(openModal({
-          modalType: 'CONFIRM',
-          modalProps: {
-            message: intl.formatMessage(messages.replyMessage),
-            confirm: intl.formatMessage(messages.replyConfirm),
-            onConfirm: () => dispatch(replyCompose(lastStatus, history)),
-          },
-        }));
+        dispatch(openModal({ modalType: 'CONFIRM_REPLY', modalProps: { status: lastStatus } }));
       } else {
-        dispatch(replyCompose(lastStatus, history));
+        dispatch(replyCompose(lastStatus));
       }
     });
-  }, [dispatch, lastStatus, history, intl]);
+  }, [dispatch, lastStatus]);
 
   const handleDelete = useCallback(() => {
     dispatch(deleteConversation(id));
   }, [dispatch, id]);
-
-  const handleHotkeyMoveUp = useCallback(() => {
-    onMoveUp(id);
-  }, [id, onMoveUp]);
-
-  const handleHotkeyMoveDown = useCallback(() => {
-    onMoveDown(id);
-  }, [id, onMoveDown]);
 
   const handleConversationMute = useCallback(() => {
     if (lastStatus.get('muted')) {
@@ -138,11 +94,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
   }, [dispatch, lastStatus]);
 
   const handleShowMore = useCallback(() => {
-    if (lastStatus.get('hidden')) {
-      dispatch(revealStatus(lastStatus.get('id')));
-    } else {
-      dispatch(hideStatus(lastStatus.get('id')));
-    }
+    dispatch(toggleStatusSpoilers(lastStatus.get('id')));
   }, [dispatch, lastStatus]);
 
   if (!lastStatus) {
@@ -162,28 +114,19 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
 
   menu.push({ text: intl.formatMessage(messages.delete), action: handleDelete });
 
-  const names = accounts.map(a => (
-    <Link to={`/@${a.get('acct')}`} key={a.get('id')} title={a.get('acct')}>
-      <bdi>
-        <strong
-          className='display-name__html'
-          dangerouslySetInnerHTML={{ __html: a.get('display_name_html') }}
-        />
-      </bdi>
-    </Link>
+  const names = accounts.map((account) => (
+    <LinkedDisplayName displayProps={{account, variant: 'simple'}} key={account.get('id')} />
   )).reduce((prev, cur) => [prev, ', ', cur]);
 
   const handlers = {
     reply: handleReply,
     open: handleClick,
-    moveUp: handleHotkeyMoveUp,
-    moveDown: handleHotkeyMoveDown,
     toggleHidden: handleShowMore,
   };
 
   return (
-    <HotKeys handlers={handlers}>
-      <div className={classNames('conversation focusable muted', { 'conversation--unread': unread })} tabIndex={0}>
+    <Hotkeys handlers={handlers}>
+      <div className={classNames('conversation focusable muted', { unread })} tabIndex={0}>
         <div className='conversation__avatar' onClick={handleClick} role='presentation'>
           <AvatarComposite accounts={accounts} size={48} />
         </div>
@@ -194,9 +137,9 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
               {unread && <span className='conversation__unread' />} <RelativeTimestamp timestamp={lastStatus.get('created_at')} />
             </div>
 
-            <div className='conversation__content__names' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <AnimateEmojiProvider className='conversation__content__names'>
               <FormattedMessage id='conversation.with' defaultMessage='With {names}' values={{ names: <span>{names}</span> }} />
-            </div>
+            </AnimateEmojiProvider>
           </div>
 
           <StatusContent
@@ -218,7 +161,7 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
             <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' iconComponent={ReplyIcon} onClick={handleReply} />
 
             <div className='status__action-bar-dropdown'>
-              <DropdownMenuContainer
+              <Dropdown
                 scrollKey={scrollKey}
                 status={lastStatus}
                 items={menu}
@@ -232,13 +175,11 @@ export const Conversation = ({ conversation, scrollKey, onMoveUp, onMoveDown }) 
           </div>
         </div>
       </div>
-    </HotKeys>
+    </Hotkeys>
   );
 };
 
 Conversation.propTypes = {
   conversation: ImmutablePropTypes.map.isRequired,
   scrollKey: PropTypes.string,
-  onMoveUp: PropTypes.func,
-  onMoveDown: PropTypes.func,
 };

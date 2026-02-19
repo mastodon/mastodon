@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
-import BarChart4BarsIcon from '@/material-icons/400-24px/bar_chart_4_bars.svg?react';
+import BarChart4BarsIcon from '@/material-icons/400-20px/bar_chart_4_bars.svg?react';
 
 import { IconButton } from '../../../components/icon_button';
 

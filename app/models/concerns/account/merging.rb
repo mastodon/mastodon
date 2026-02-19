@@ -16,12 +16,22 @@ module Account::Merging
       Follow, FollowRequest, Block, Mute,
       AccountModerationNote, AccountPin, AccountStat, ListAccount,
       PollVote, Mention, AccountDeletionRequest, AccountNote, FollowRecommendationSuppression,
-      Appeal
+      Appeal, TagFollow
     ]
 
     owned_classes.each do |klass|
       klass.where(account_id: other_account.id).reorder(nil).find_each do |record|
         record.update_attribute(:account_id, id)
+      rescue ActiveRecord::RecordNotUnique
+        next
+      end
+    end
+
+    [
+      Notification, NotificationPermission, NotificationRequest
+    ].each do |klass|
+      klass.where(from_account_id: other_account.id).reorder(nil).find_each do |record|
+        record.update_attribute(:from_account_id, id)
       rescue ActiveRecord::RecordNotUnique
         next
       end
@@ -46,6 +56,18 @@ module Account::Merging
 
     Appeal.where(account_warning_id: other_account.id).find_each do |record|
       record.update_attribute(:account_warning_id, id)
+    end
+
+    SeveredRelationship.about_local_account(other_account).reorder(nil).find_each do |record|
+      record.update_attribute(:local_account_id, id)
+    rescue ActiveRecord::RecordNotUnique
+      next
+    end
+
+    SeveredRelationship.about_remote_account(other_account).reorder(nil).find_each do |record|
+      record.update_attribute(:remote_account_id, id)
+    rescue ActiveRecord::RecordNotUnique
+      next
     end
 
     # Some follow relationships have moved, so the cache is stale

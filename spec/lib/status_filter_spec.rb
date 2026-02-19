@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe StatusFilter do
+RSpec.describe StatusFilter do
   describe '#filtered?' do
     let(:status) { Fabricate(:status) }
 

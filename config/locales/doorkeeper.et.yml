@@ -60,7 +60,7 @@ et:
       error:
         title: Ilmnes viga
       new:
-        prompt_html: "%{client_name} soovib luba kontole juurdepääsuks. See on kolmanda osapoole rakendus. <strong>Kui see pole usaldusväärne, siis ei tohiks seda lubada.</strong>"
+        prompt_html: "%{client_name} soovib saada ligipääsu su kontole. <strong>Kinnita see taotlus ainult siis, kui sa tunned ja usaldad seda allikat.</strong>"
         review_permissions: Lubade ülevaade
         title: Autoriseerimine vajalik
       show:
@@ -129,12 +129,13 @@ et:
         crypto: Otspunktkrüpteerimine
         favourites: Lemmikud
         filters: Filtrid
-        follow: Jälgitavad, Vaigistatud ja Blokeeritud
+        follow: Jälgitavad, summutamised ja blokeerimised
         follows: Jälgimised
-        lists: Nimekirjad
+        lists: Loetelud
         media: Lisatud meedia
-        mutes: Vaigistused
+        mutes: Summutamised
         notifications: Teavitused
+        profile: Sinu Mastodoni profiil
         push: Tõuketeated
         reports: Teavitused
         search: Otsing
@@ -165,6 +166,7 @@ et:
       admin:write:reports: teostada moderaatori tegevusi teavitustel
       crypto: kasuta otspunktkrüpeerimist
       follow: muuta kontode suhteid
+      profile: loe vaid oma konto profiili infot
       push: saab tõuketeateid
       read: lugeda konto kõiki andmeid
       read:accounts: näha konto informatsiooni
@@ -173,8 +175,8 @@ et:
       read:favourites: näha sinu lemmikuid
       read:filters: näha su filtreid
       read:follows: näha su jälgimisi
-      read:lists: näha su nimekirju
-      read:mutes: näha su vaigistusi
+      read:lists: näha su loetelusid
+      read:mutes: näha su summutamisi
       read:notifications: näha teateid
       read:reports: näha teavitusi
       read:search: otsida sinu nimel
@@ -183,13 +185,13 @@ et:
       write:accounts: muuta profiili
       write:blocks: kontode ja domeenide blokeerimine
       write:bookmarks: lisada postitusele järjehoidja
-      write:conversations: vaigista ja kustuta vestlused
+      write:conversations: summuta ja kustuta vestlused
       write:favourites: lisada postitusi lemmikuks
       write:filters: luua filtreid
       write:follows: jälgida inimesi
-      write:lists: luua nimekirju
+      write:lists: luua loetelusid
       write:media: üles laadida meediafaile
-      write:mutes: vaigista inimesi ja vestluseid
+      write:mutes: summuta inimesi ja vestluseid
       write:notifications: tühjendada teateid
       write:reports: teavitada teistest inimestest
       write:statuses: avaldada postitusi

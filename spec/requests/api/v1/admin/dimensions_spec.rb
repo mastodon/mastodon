@@ -2,10 +2,9 @@
 
 require 'rails_helper'
 
-describe 'Admin Dimensions' do
-  let(:user)    { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+RSpec.describe 'Admin Dimensions' do
+  include_context 'with API authentication', user_fabricator: :admin_user
+
   let(:account) { Fabricate(:account) }
 
   describe 'GET /api/v1/admin/dimensions' do
@@ -15,6 +14,8 @@ describe 'Admin Dimensions' do
 
         expect(response)
           .to have_http_status(403)
+        expect(response.content_type)
+          .to start_with('application/json')
       end
     end
 
@@ -27,7 +28,10 @@ describe 'Admin Dimensions' do
         expect(response)
           .to have_http_status(200)
 
-        expect(body_as_json)
+        expect(response.content_type)
+          .to start_with('application/json')
+
+        expect(response.parsed_body)
           .to be_an(Array)
       end
     end

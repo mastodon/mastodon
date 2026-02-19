@@ -27,6 +27,9 @@ class AccountWarning < ApplicationRecord
     suspend: 4_000,
   }, suffix: :action
 
+  APPEAL_WINDOW = 20.days
+  RECENT_PERIOD = 3.months.freeze
+
   normalizes :text, with: ->(text) { text.to_s }, apply_to_nil: true
 
   belongs_to :account, inverse_of: :account_warnings
@@ -37,7 +40,7 @@ class AccountWarning < ApplicationRecord
 
   scope :latest, -> { order(id: :desc) }
   scope :custom, -> { where.not(text: '') }
-  scope :recent, -> { where('account_warnings.created_at >= ?', 3.months.ago) }
+  scope :recent, -> { where(created_at: RECENT_PERIOD.ago..) }
 
   def statuses
     Status.with_discarded.where(id: status_ids || [])
@@ -45,6 +48,10 @@ class AccountWarning < ApplicationRecord
 
   def overruled?
     overruled_at.present?
+  end
+
+  def appeal_eligible?
+    created_at >= APPEAL_WINDOW.ago
   end
 
   def to_log_human_identifier

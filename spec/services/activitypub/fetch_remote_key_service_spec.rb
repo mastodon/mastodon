@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe ActivityPub::FetchRemoteKeyService, type: :service do
+RSpec.describe ActivityPub::FetchRemoteKeyService do
   subject { described_class.new }
 
-  let(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice' }] } }
+  let(:webfinger) { { subject: 'acct:alice@example.com', links: [{ rel: 'self', href: 'https://example.com/alice', type: 'application/activity+json' }] } }
 
   let(:public_key_pem) do
     <<~TEXT
@@ -71,7 +71,7 @@ RSpec.describe ActivityPub::FetchRemoteKeyService, type: :service do
       let(:public_key_id) { 'https://example.com/alice-public-key.json' }
 
       before do
-        stub_request(:get, public_key_id).to_return(body: Oj.dump(key_json.merge({ '@context': ['https://www.w3.org/ns/activitystreams', 'https://w3id.org/security/v1'] })), headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, public_key_id).to_return(body: Oj.dump(key_json.merge({ '@context': ['https://w3id.org/security/v1'] })), headers: { 'Content-Type': 'application/activity+json' })
       end
 
       it 'returns the expected account' do

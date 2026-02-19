@@ -24,10 +24,10 @@
               .emojify= one_line_preview(status)
               - status.ordered_media_attachments.each do |media_attachment|
                 %abbr{ title: media_attachment.description }
-                  = fa_icon 'link'
+                  = material_symbol 'link'
                   = media_attachment.file_file_name
             .strike-card__statuses-list__item__meta
-              = link_to ActivityPub::TagManager.instance.url_for(status), target: '_blank', rel: 'noopener noreferrer' do
+              = link_to ActivityPub::TagManager.instance.url_for(status), target: '_blank', rel: 'noopener' do
                 %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
               - unless status.application.nil?
                 ·

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'API namespace minimal Content-Security-Policy' do
+RSpec.describe 'API namespace minimal Content-Security-Policy' do
   before { stub_tests_controller }
 
   after { Rails.application.reload_routes! }

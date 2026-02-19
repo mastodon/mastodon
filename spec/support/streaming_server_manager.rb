@@ -12,12 +12,17 @@ class StreamingServerManager
 
     queue = Queue.new
 
+    if ENV['DEBUG_STREAMING_SERVER'].present?
+      logger = Logger.new($stdout)
+      logger.level = 'debug'
+    end
+
     @queue = queue
 
     @running_thread = Thread.new do
       Open3.popen2e(
         {
-          'REDIS_NAMESPACE' => ENV.fetch('REDIS_NAMESPACE'),
+          'REDIS_DB' => (ENV.fetch('TEST_ENV_NUMBER', 0).to_i + 1).to_s,
           'DB_NAME' => "#{ENV.fetch('DB_NAME', 'mastodon')}_test#{ENV.fetch('TEST_ENV_NUMBER', '')}",
           'RAILS_ENV' => ENV.fetch('RAILS_ENV', 'test'),
           'NODE_ENV' => ENV.fetch('STREAMING_NODE_ENV', 'development'),
@@ -31,7 +36,7 @@ class StreamingServerManager
         # Spawn a thread to listen on streaming server output
         output_thread = Thread.new do
           stdout_err.each_line do |line|
-            Rails.logger.info "Streaming server: #{line}"
+            logger&.info "Streaming server: #{line}"
 
             if status == :starting && line.match('Streaming API now listening on')
               status = :started
@@ -80,9 +85,6 @@ end
 RSpec.configure do |config|
   config.before :suite do
     if streaming_examples_present?
-      # Compile assets
-      Webpacker.compile
-
       # Start the node streaming server
       streaming_server_manager.start(port: STREAMING_PORT)
     end
@@ -95,26 +97,36 @@ RSpec.configure do |config|
     end
   end
 
-  config.around :each, type: :system do |example|
+  config.around :each, :streaming, type: :system do |example|
     # Streaming server needs DB access but `use_transactional_tests` rolls back
     # every transaction. Disable this feature for streaming tests, and use
     # DatabaseCleaner to clean the database tables between each test.
     self.use_transactional_tests = false
 
     DatabaseCleaner.cleaning do
+      # NOTE: we switched registrations mode to closed by default, but the specs
+      # very heavily rely on having it enabled by default, as it relies on users
+      # being approved by default except in select cases where explicitly testing
+      # other registration modes
+      # Also needs to be set per-example here because of the database cleaner.
+      Setting.registrations_mode = 'open'
+
+      # Load seeds so we have the default roles otherwise cleared by `DatabaseCleaner`
+      Rails.application.load_seed
+
       example.run
     end
 
     self.use_transactional_tests = true
   end
 
-  private
-
   def streaming_server_manager
     @streaming_server_manager ||= StreamingServerManager.new
   end
 
+  private
+
   def streaming_examples_present?
-    RUN_SYSTEM_SPECS
+    RSpec.world.filtered_examples.values.flatten.any? { |example| example.metadata[:streaming] == true }
   end
 end

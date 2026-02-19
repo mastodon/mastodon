@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Webhooks::PayloadRenderer do
+RSpec.describe Webhooks::PayloadRenderer do
   subject(:renderer) { described_class.new(json) }
 
   let(:event)   { Webhooks::EventPresenter.new(type, object) }

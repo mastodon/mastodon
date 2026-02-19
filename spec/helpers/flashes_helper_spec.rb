@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe FlashesHelper do
+RSpec.describe FlashesHelper do
   describe 'user_facing_flashes' do
     before do
       # rubocop:disable Rails/I18nLocaleTexts

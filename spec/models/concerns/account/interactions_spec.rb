@@ -2,96 +2,9 @@
 
 require 'rails_helper'
 
-describe Account::Interactions do
-  let(:account)            { Fabricate(:account, username: 'account') }
-  let(:account_id)         { account.id }
-  let(:account_ids)        { [account_id] }
-  let(:target_account)     { Fabricate(:account, username: 'target') }
-  let(:target_account_id)  { target_account.id }
-  let(:target_account_ids) { [target_account_id] }
-
-  describe '.following_map' do
-    subject { Account.following_map(target_account_ids, account_id) }
-
-    context 'when Account with Follow' do
-      it 'returns { target_account_id => true }' do
-        Fabricate(:follow, account: account, target_account: target_account)
-        expect(subject).to eq(target_account_id => { reblogs: true, notify: false, languages: nil })
-      end
-    end
-
-    context 'when Account without Follow' do
-      it 'returns {}' do
-        expect(subject).to eq({})
-      end
-    end
-  end
-
-  describe '.followed_by_map' do
-    subject { Account.followed_by_map(target_account_ids, account_id) }
-
-    context 'when Account with Follow' do
-      it 'returns { target_account_id => true }' do
-        Fabricate(:follow, account: target_account, target_account: account)
-        expect(subject).to eq(target_account_id => true)
-      end
-    end
-
-    context 'when Account without Follow' do
-      it 'returns {}' do
-        expect(subject).to eq({})
-      end
-    end
-  end
-
-  describe '.blocking_map' do
-    subject { Account.blocking_map(target_account_ids, account_id) }
-
-    context 'when Account with Block' do
-      it 'returns { target_account_id => true }' do
-        Fabricate(:block, account: account, target_account: target_account)
-        expect(subject).to eq(target_account_id => true)
-      end
-    end
-
-    context 'when Account without Block' do
-      it 'returns {}' do
-        expect(subject).to eq({})
-      end
-    end
-  end
-
-  describe '.muting_map' do
-    subject { Account.muting_map(target_account_ids, account_id) }
-
-    context 'when Account with Mute' do
-      before do
-        Fabricate(:mute, target_account: target_account, account: account, hide_notifications: hide)
-      end
-
-      context 'when Mute#hide_notifications?' do
-        let(:hide) { true }
-
-        it 'returns { target_account_id => { notifications: true } }' do
-          expect(subject).to eq(target_account_id => { notifications: true })
-        end
-      end
-
-      context 'when not Mute#hide_notifications?' do
-        let(:hide) { false }
-
-        it 'returns { target_account_id => { notifications: false } }' do
-          expect(subject).to eq(target_account_id => { notifications: false })
-        end
-      end
-    end
-
-    context 'when Account without Mute' do
-      it 'returns {}' do
-        expect(subject).to eq({})
-      end
-    end
-  end
+RSpec.describe Account::Interactions do
+  let(:account)            { Fabricate(:account) }
+  let(:target_account)     { Fabricate(:account) }
 
   describe '#follow!' do
     it 'creates and returns Follow' do
@@ -250,6 +163,24 @@ describe Account::Interactions do
     end
   end
 
+  describe '#block_idna_domain!' do
+    subject do
+      [
+        account.block_domain!(idna_domain),
+        account.block_domain!(punycode_domain),
+      ]
+    end
+
+    let(:idna_domain) { '대한민국.한국' }
+    let(:punycode_domain) { 'xn--3e0bs9hfvinn1a.xn--3e0b707e' }
+
+    it 'creates single AccountDomainBlock' do
+      expect do
+        expect(subject).to all(be_a AccountDomainBlock)
+      end.to change { account.domain_blocks.count }.by 1
+    end
+  end
+
   describe '#unfollow!' do
     subject { account.unfollow!(target_account) }
 
@@ -345,13 +276,50 @@ describe Account::Interactions do
     end
   end
 
+  describe '#unblock_idna_domain!' do
+    subject { account.unblock_domain!(punycode_domain) }
+
+    let(:idna_domain) { '대한민국.한국' }
+    let(:punycode_domain) { 'xn--3e0bs9hfvinn1a.xn--3e0b707e' }
+
+    context 'when blocking the domain' do
+      it 'returns destroyed AccountDomainBlock' do
+        account_domain_block = Fabricate(:account_domain_block, domain: idna_domain)
+        account.domain_blocks << account_domain_block
+        expect(subject).to be_a AccountDomainBlock
+        expect(subject).to be_destroyed
+      end
+    end
+
+    context 'when unblocking idna domain' do
+      it 'returns nil' do
+        expect(subject).to be_nil
+      end
+    end
+  end
+
   describe '#following?' do
     subject { account.following?(target_account) }
 
     context 'when following target_account' do
-      it 'returns true' do
+      before do
         account.active_relationships.create(target_account: target_account)
-        expect(subject).to be true
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+        expect(result).to be true
+      end
+
+      context 'when relations are preloaded' do
+        it 'does not query the database to get the result' do
+          account.preload_relations!([target_account.id])
+
+          result = nil
+          expect { result = subject }.to_not execute_queries
+          expect(result).to be true
+        end
       end
     end
 
@@ -383,13 +351,64 @@ describe Account::Interactions do
     subject { account.blocking?(target_account) }
 
     context 'when blocking target_account' do
-      it 'returns true' do
+      before do
         account.block_relationships.create(target_account: target_account)
-        expect(subject).to be true
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+
+        expect(result).to be true
+      end
+
+      context 'when relations are preloaded' do
+        it 'does not query the database to get the result' do
+          account.preload_relations!([target_account.id])
+
+          result = nil
+          expect { result = subject }.to_not execute_queries
+
+          expect(result).to be true
+        end
       end
     end
 
     context 'when not blocking target_account' do
+      it 'returns false' do
+        expect(subject).to be false
+      end
+    end
+  end
+
+  describe '#blocked_by?' do
+    subject { account.blocked_by?(target_account) }
+
+    context 'when blocked by target_account' do
+      before do
+        target_account.block_relationships.create(target_account: account)
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+
+        expect(result).to be true
+      end
+
+      context 'when relations are preloaded' do
+        it 'does not query the database to get the result' do
+          account.preload_relations!([target_account.id])
+
+          result = nil
+          expect { result = subject }.to_not execute_queries
+
+          expect(result).to be true
+        end
+      end
+    end
+
+    context 'when not blocked by target_account' do
       it 'returns false' do
         expect(subject).to be false
       end
@@ -402,10 +421,25 @@ describe Account::Interactions do
     let(:domain) { 'example.com' }
 
     context 'when blocking the domain' do
-      it 'returns true' do
+      before do
         account_domain_block = Fabricate(:account_domain_block, domain: domain)
         account.domain_blocks << account_domain_block
-        expect(subject).to be true
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+        expect(result).to be true
+      end
+
+      context 'when relations are preloaded' do
+        it 'does not query the database to get the result' do
+          account.preload_relations!([], [domain])
+
+          result = nil
+          expect { result = subject }.to_not execute_queries
+          expect(result).to be true
+        end
       end
     end
 
@@ -416,14 +450,67 @@ describe Account::Interactions do
     end
   end
 
+  describe '#blocking_or_domain_blocking?' do
+    subject { account.blocking_or_domain_blocking?(target_account) }
+
+    context 'when blocking target_account' do
+      before do
+        account.block_relationships.create(target_account: target_account)
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+
+        expect(result).to be true
+      end
+    end
+
+    context 'when blocking the domain' do
+      let(:target_account) { Fabricate(:remote_account) }
+
+      before do
+        account_domain_block = Fabricate(:account_domain_block, domain: target_account.domain)
+        account.domain_blocks << account_domain_block
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+        expect(result).to be true
+      end
+    end
+
+    context 'when blocking neither target_account nor its domain' do
+      it 'returns false' do
+        expect(subject).to be false
+      end
+    end
+  end
+
   describe '#muting?' do
     subject { account.muting?(target_account) }
 
     context 'when muting target_account' do
-      it 'returns true' do
+      before do
         mute = Fabricate(:mute, account: account, target_account: target_account)
         account.mute_relationships << mute
-        expect(subject).to be true
+      end
+
+      it 'returns true' do
+        result = nil
+        expect { result = subject }.to execute_queries
+        expect(result).to be true
+      end
+
+      context 'when relations are preloaded' do
+        it 'does not query the database to get the result' do
+          account.preload_relations!([target_account.id])
+
+          result = nil
+          expect { result = subject }.to_not execute_queries
+          expect(result).to be true
+        end
       end
     end
 
@@ -609,6 +696,22 @@ describe Account::Interactions do
       expect(remote_alice.local_followers_hash).to eq '0000000000000000000000000000000000000000000000000000000000000000'
       me.follow!(remote_alice)
       expect(remote_alice.local_followers_hash).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
+    end
+
+    context 'when using numeric ID based scheme' do
+      let(:me) { Fabricate(:account, username: 'Me', id_scheme: :numeric_ap_id) }
+
+      it 'returns correct hash for local users' do
+        expect(remote_alice.local_followers_hash).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
+      end
+
+      it 'invalidates cache as needed when removing or adding followers' do
+        expect(remote_alice.local_followers_hash).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
+        me.unfollow!(remote_alice)
+        expect(remote_alice.local_followers_hash).to eq '0000000000000000000000000000000000000000000000000000000000000000'
+        me.follow!(remote_alice)
+        expect(remote_alice.local_followers_hash).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
+      end
     end
   end
 

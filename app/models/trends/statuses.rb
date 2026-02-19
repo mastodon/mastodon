@@ -13,18 +13,9 @@ class Trends::Statuses < Trends::Base
   }
 
   class Query < Trends::Query
-    def filtered_for!(account)
-      @account = account
-      self
-    end
-
-    def filtered_for(account)
-      clone.filtered_for!(account)
-    end
-
     def to_arel
       scope = Status.joins(:trend).reorder(score: :desc)
-      scope = scope.reorder(language_order_clause.desc, score: :desc) if preferred_languages.present?
+      scope = scope.reorder(language_order_clause, score: :desc) if preferred_languages.present?
       scope = scope.merge(StatusTrend.allowed) if @allowed
       scope = scope.not_excluded_by_account(@account).not_domain_blocked_by_account(@account) if @account.present?
       scope = scope.offset(@offset) if @offset.present?
@@ -34,16 +25,8 @@ class Trends::Statuses < Trends::Base
 
     private
 
-    def language_order_clause
-      Arel::Nodes::Case.new.when(StatusTrend.arel_table[:language].in(preferred_languages)).then(1).else(0)
-    end
-
-    def preferred_languages
-      if @account&.chosen_languages.present?
-        @account.chosen_languages
-      else
-        @locale
-      end
+    def trend_class
+      StatusTrend
     end
   end
 
@@ -74,12 +57,12 @@ class Trends::Statuses < Trends::Base
 
     # Now that all trends have up-to-date scores, and all the ones below the threshold have
     # been removed, we can recalculate their positions
-    StatusTrend.connection.exec_update('UPDATE status_trends SET rank = t0.calculated_rank FROM (SELECT id, row_number() OVER w AS calculated_rank FROM status_trends WINDOW w AS (PARTITION BY language ORDER BY score DESC)) t0 WHERE status_trends.id = t0.id')
+    StatusTrend.recalculate_ordered_rank
   end
 
   def request_review
-    StatusTrend.pluck('distinct language').flat_map do |language|
-      score_at_threshold = StatusTrend.where(language: language, allowed: true).order(rank: :desc).where('rank <= ?', options[:review_threshold]).first&.score || 0
+    StatusTrend.locales.flat_map do |language|
+      score_at_threshold = StatusTrend.where(language: language, allowed: true).by_rank.ranked_below(options[:review_threshold]).first&.score || 0
       status_trends      = StatusTrend.where(language: language, allowed: false).joins(:status).includes(status: :account)
 
       status_trends.filter_map do |trend|
@@ -106,7 +89,29 @@ class Trends::Statuses < Trends::Base
   private
 
   def eligible?(status)
-    status.public_visibility? && status.account.discoverable? && !status.account.silenced? && !status.account.sensitized? && status.spoiler_text.blank? && !status.sensitive? && !status.reply? && valid_locale?(status.language)
+    status.created_at.past? &&
+      opted_into_trends?(status) &&
+      !sensitive_content?(status) &&
+      !status.reply? &&
+      valid_locale?(status.language) &&
+      (status.quote.nil? || trendable_quote?(status.quote))
+  end
+
+  def opted_into_trends?(status)
+    status.public_visibility? &&
+      status.account.discoverable? &&
+      !status.account.silenced?
+  end
+
+  def sensitive_content?(status)
+    status.account.sensitized? || status.spoiler_text.present? || status.sensitive?
+  end
+
+  def trendable_quote?(quote)
+    quote.acceptable? &&
+      quote.quoted_status.present? &&
+      opted_into_trends?(quote.quoted_status) &&
+      !sensitive_content?(quote.quoted_status)
   end
 
   def calculate_scores(statuses, at_time)

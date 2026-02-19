@@ -2,15 +2,12 @@
 
 require 'rails_helper'
 
-describe 'GET /api/v1/accounts/relationships' do
+RSpec.describe 'GET /api/v1/accounts/relationships' do
   subject do
     get '/api/v1/accounts/relationships', headers: headers, params: params
   end
 
-  let(:user)    { Fabricate(:user) }
-  let(:scopes)  { 'read:follows' }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', oauth_scopes: 'read:follows'
 
   let(:simon) { Fabricate(:account) }
   let(:lewis) { Fabricate(:account) }
@@ -29,7 +26,9 @@ describe 'GET /api/v1/accounts/relationships' do
 
       expect(response)
         .to have_http_status(200)
-      expect(body_as_json)
+      expect(response.content_type)
+        .to start_with('application/json')
+      expect(response.parsed_body)
         .to be_an(Enumerable)
         .and contain_exactly(
           include(
@@ -50,7 +49,9 @@ describe 'GET /api/v1/accounts/relationships' do
 
           expect(response)
             .to have_http_status(200)
-          expect(body_as_json)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body)
             .to be_an(Enumerable)
             .and have_attributes(
               size: 2
@@ -70,7 +71,9 @@ describe 'GET /api/v1/accounts/relationships' do
 
           expect(response)
             .to have_http_status(200)
-          expect(body_as_json)
+          expect(response.content_type)
+            .to start_with('application/json')
+          expect(response.parsed_body)
             .to be_an(Enumerable)
             .and have_attributes(
               size: 3
@@ -89,7 +92,7 @@ describe 'GET /api/v1/accounts/relationships' do
         it 'removes duplicate account IDs from params' do
           subject
 
-          expect(body_as_json)
+          expect(response.parsed_body)
             .to be_an(Enumerable)
             .and have_attributes(
               size: 2
@@ -141,7 +144,7 @@ describe 'GET /api/v1/accounts/relationships' do
     it 'returns JSON with correct data on previously cached requests' do
       # Initial request including multiple accounts in params
       get '/api/v1/accounts/relationships', headers: headers, params: { id: [simon.id, lewis.id] }
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to have_attributes(size: 2)
 
       # Subsequent request with different id, should override cache from first request
@@ -149,8 +152,10 @@ describe 'GET /api/v1/accounts/relationships' do
 
       expect(response)
         .to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
 
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to be_an(Enumerable)
         .and have_attributes(
           size: 1
@@ -171,8 +176,10 @@ describe 'GET /api/v1/accounts/relationships' do
 
       expect(response)
         .to have_http_status(200)
+      expect(response.content_type)
+        .to start_with('application/json')
 
-      expect(body_as_json)
+      expect(response.parsed_body)
         .to be_an(Enumerable)
         .and contain_exactly(
           include(

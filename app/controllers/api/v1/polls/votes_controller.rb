@@ -8,20 +8,20 @@ class Api::V1::Polls::VotesController < Api::BaseController
   before_action :set_poll
 
   def create
-    VoteService.new.call(current_account, @poll, vote_params[:choices])
+    VoteService.new.call(current_account, @poll, vote_params)
     render json: @poll, serializer: REST::PollSerializer
   end
 
   private
 
   def set_poll
-    @poll = Poll.attached.find(params[:poll_id])
+    @poll = Poll.find(params[:poll_id])
     authorize @poll.status, :show?
-  rescue Mastodon::NotPermittedError
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
   end
 
   def vote_params
-    params.permit(choices: [])
+    params.require(:choices)
   end
 end

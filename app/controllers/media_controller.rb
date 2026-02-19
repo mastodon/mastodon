@@ -19,9 +19,7 @@ class MediaController < ApplicationController
     redirect_to @media_attachment.file.url(:original)
   end
 
-  def player
-    @body_classes = 'player'
-  end
+  def player; end
 
   private
 
@@ -36,7 +34,7 @@ class MediaController < ApplicationController
 
   def verify_permitted_status!
     authorize @media_attachment.status, :show?
-  rescue Mastodon::NotPermittedError
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     not_found
   end
 

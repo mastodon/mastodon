@@ -29,7 +29,7 @@ module Mastodon::CLI
       link     = options[:link] ? 'link-type ' : ''
       scope    = PreviewCard.cached
       scope    = scope.where(type: :link) if options[:link]
-      scope    = scope.where('updated_at < ?', time_ago)
+      scope    = scope.where(updated_at: ...time_ago)
 
       processed, aggregate = parallelize_with_progress(scope) do |preview_card|
         next if preview_card.image.blank?

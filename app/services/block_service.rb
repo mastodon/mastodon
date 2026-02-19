@@ -10,6 +10,8 @@ class BlockService < BaseService
     UnfollowService.new.call(target_account, account) if target_account.following?(account)
     RejectFollowService.new.call(target_account, account) if target_account.requested?(account)
 
+    NotificationPermission.where(account: account, from_account: target_account).destroy_all
+
     block = account.block!(target_account)
 
     BlockWorker.perform_async(account.id, target_account.id)

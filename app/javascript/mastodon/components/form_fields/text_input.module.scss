@@ -1,0 +1,42 @@
+.input {
+  box-sizing: border-box;
+  display: block;
+  resize: vertical;
+  width: 100%;
+  padding: 10px 16px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-primary);
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 4px;
+  outline: var(--outline-focus-default);
+  outline-color: transparent;
+  outline-offset: -1px;
+  transition: outline-color 0.15s ease-out;
+
+  @media screen and (width <= 600px) {
+    font-size: 16px;
+  }
+
+  &:focus {
+    outline-color: var(--color-text-brand);
+  }
+
+  &:focus:user-invalid,
+  &:required:user-invalid,
+  [data-has-error='true'] & {
+    outline-color: var(--color-text-error);
+  }
+
+  &:required:user-valid {
+    outline-color: var(--color-text-success);
+  }
+
+  &:disabled {
+    color: var(--color-text-disabled);
+    border-color: transparent;
+    cursor: not-allowed;
+  }
+}

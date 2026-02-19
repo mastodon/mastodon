@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Flag < ActivityPub::Activity
+  COMMENT_SIZE_LIMIT = 5000
+
   def perform
     return if skip_reports?
 
@@ -38,6 +40,6 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
   end
 
   def report_comment
-    (@json['content'] || '')[0...5000]
+    (@json['content'] || '')[0...COMMENT_SIZE_LIMIT]
   end
 end

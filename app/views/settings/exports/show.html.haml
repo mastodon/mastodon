@@ -6,39 +6,39 @@
     %tbody
       %tr
         %th= t('exports.storage')
-        %td= number_to_human_size @export.total_storage
+        %td= number_to_human_size @export_summary.total_storage
         %td
       %tr
         %th= t('accounts.posts_tab_heading')
-        %td= number_with_delimiter @export.total_statuses
+        %td= number_with_delimiter @export_summary.total_statuses
         %td
       %tr
         %th= t('admin.accounts.follows')
-        %td= number_with_delimiter @export.total_follows
+        %td= number_with_delimiter @export_summary.total_follows
         %td= table_link_to 'download', t('exports.csv'), settings_exports_follows_path(format: :csv)
       %tr
         %th= t('exports.lists')
-        %td= number_with_delimiter @export.total_lists
+        %td= number_with_delimiter @export_summary.total_lists
         %td= table_link_to 'download', t('exports.csv'), settings_exports_lists_path(format: :csv)
       %tr
         %th= t('admin.accounts.followers')
-        %td= number_with_delimiter @export.total_followers
+        %td= number_with_delimiter @export_summary.total_followers
         %td
       %tr
         %th= t('exports.mutes')
-        %td= number_with_delimiter @export.total_mutes
+        %td= number_with_delimiter @export_summary.total_mutes
         %td= table_link_to 'download', t('exports.csv'), settings_exports_mutes_path(format: :csv)
       %tr
         %th= t('exports.blocks')
-        %td= number_with_delimiter @export.total_blocks
+        %td= number_with_delimiter @export_summary.total_blocks
         %td= table_link_to 'download', t('exports.csv'), settings_exports_blocks_path(format: :csv)
       %tr
         %th= t('exports.domain_blocks')
-        %td= number_with_delimiter @export.total_domain_blocks
+        %td= number_with_delimiter @export_summary.total_domain_blocks
         %td= table_link_to 'download', t('exports.csv'), settings_exports_domain_blocks_path(format: :csv)
       %tr
         %th= t('exports.bookmarks')
-        %td= number_with_delimiter @export.total_bookmarks
+        %td= number_with_delimiter @export_summary.total_bookmarks
         %td= table_link_to 'download', t('exports.csv'), settings_exports_bookmarks_path(format: :csv)
 
 %hr.spacer/
@@ -61,7 +61,8 @@
       %tbody
         - @backups.each do |backup|
           %tr
-            %td= l backup.created_at
+            %td
+              %time.formatted{ datetime: backup.created_at.iso8601, title: l(backup.created_at) }= l backup.created_at
             - if backup.processed?
               %td= number_to_human_size backup.dump_file_size
               %td= table_link_to 'download', t('exports.archive_takeout.download'), download_backup_url(backup)

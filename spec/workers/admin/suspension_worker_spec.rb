@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Admin::SuspensionWorker do
+RSpec.describe Admin::SuspensionWorker do
   let(:worker) { described_class.new }
   let(:service) { instance_double(SuspendAccountService, call: true) }
 

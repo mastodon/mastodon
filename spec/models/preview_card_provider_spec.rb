@@ -2,7 +2,9 @@
 
 require 'rails_helper'
 
-describe PreviewCardProvider do
+RSpec.describe PreviewCardProvider do
+  it_behaves_like 'Reviewable'
+
   describe 'scopes' do
     let(:trendable_and_reviewed) { Fabricate(:preview_card_provider, trendable: true, reviewed_at: 5.days.ago) }
     let(:not_trendable_and_not_reviewed) { Fabricate(:preview_card_provider, trendable: false, reviewed_at: nil) }
@@ -22,21 +24,37 @@ describe PreviewCardProvider do
         expect(results).to eq([not_trendable_and_not_reviewed])
       end
     end
+  end
 
-    describe 'reviewed' do
-      it 'returns the relevant records' do
-        results = described_class.reviewed
+  describe '.matching_domain' do
+    subject { described_class.matching_domain(domain) }
 
-        expect(results).to eq([trendable_and_reviewed])
-      end
+    let(:domain) { 'host.example' }
+
+    context 'without matching domains' do
+      it { is_expected.to be_nil }
     end
 
-    describe 'pending_review' do
-      it 'returns the relevant records' do
-        results = described_class.pending_review
+    context 'with exact matching domain' do
+      let!(:preview_card_provider) { Fabricate :preview_card_provider, domain: 'host.example' }
 
-        expect(results).to eq([not_trendable_and_not_reviewed])
-      end
+      it { is_expected.to eq(preview_card_provider) }
+    end
+
+    context 'with matching domain segment' do
+      let!(:preview_card_provider) { Fabricate :preview_card_provider, domain: 'host.example' }
+      let(:domain) { 'www.blog.host.example' }
+
+      it { is_expected.to eq(preview_card_provider) }
+    end
+
+    context 'with multiple matching records' do
+      let!(:preview_card_provider_more) { Fabricate :preview_card_provider, domain: 'blog.host.example' }
+      let(:domain) { 'www.blog.host.example' }
+
+      before { Fabricate :preview_card_provider, domain: 'host.example' }
+
+      it { is_expected.to eq(preview_card_provider_more) }
     end
   end
 end

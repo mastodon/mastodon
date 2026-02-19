@@ -3,7 +3,43 @@
 require 'rails_helper'
 
 RSpec.describe Tag do
-  describe 'validations' do
+  it_behaves_like 'Reviewable'
+
+  describe 'Validations' do
+    describe 'name' do
+      context 'with a new record' do
+        subject { Fabricate.build :tag, name: 'original' }
+
+        it { is_expected.to allow_value('changed').for(:name) }
+      end
+
+      context 'with an existing record' do
+        subject { Fabricate :tag, name: 'original' }
+
+        it { is_expected.to_not allow_value('changed').for(:name).with_message(previous_name_error_message) }
+        it { is_expected.to allow_value('ORIGINAL').for(:name) }
+      end
+    end
+
+    describe 'display_name' do
+      context 'with a new record' do
+        subject { Fabricate.build :tag, name: 'original', display_name: 'OriginalDisplayName' }
+
+        it { is_expected.to allow_value('ChangedDisplayName').for(:display_name) }
+      end
+
+      context 'with an existing record' do
+        subject { Fabricate :tag, name: 'original', display_name: 'OriginalDisplayName' }
+
+        it { is_expected.to_not allow_value('ChangedDisplayName').for(:display_name).with_message(previous_name_error_message) }
+        it { is_expected.to allow_value('ORIGINAL').for(:display_name) }
+      end
+    end
+
+    def previous_name_error_message
+      I18n.t('tags.does_not_match_previous_name')
+    end
+
     it 'invalid with #' do
       expect(described_class.new(name: '#hello_world')).to_not be_valid
     end
@@ -21,8 +57,13 @@ RSpec.describe Tag do
     end
   end
 
+  describe 'Normalizations' do
+    it { is_expected.to normalize(:display_name).from('#HelloWorld').to('HelloWorld') }
+    it { is_expected.to normalize(:display_name).from('Hello❤️World').to('HelloWorld') }
+  end
+
   describe 'HASHTAG_RE' do
-    subject { Tag::HASHTAG_RE }
+    subject { described_class::HASHTAG_RE }
 
     it 'does not match URLs with anchors with non-hashtag characters' do
       expect(subject.match('Check this out https://medium.com/@alice/some-article#.abcdef123')).to be_nil
@@ -36,12 +77,24 @@ RSpec.describe Tag do
       expect(subject.match('https://gcc.gnu.org/bugzilla/show_bug.cgi?id=111895#c4')).to be_nil
     end
 
+    it 'does not match URLs with hashtag-like anchors after a non-ascii character' do
+      expect(subject.match('https://example.org/testé#foo')).to be_nil
+    end
+
     it 'does not match URLs with hashtag-like anchors after an empty query parameter' do
       expect(subject.match('https://en.wikipedia.org/wiki/Ghostbusters_(song)?foo=#Lawsuit')).to be_nil
     end
 
+    it 'does not match URLs with hashtag-like anchors after a dot' do
+      expect(subject.match('https://en.wikipedia.org/wiki/Google_LLC_v._Oracle_America,_Inc.#Decision')).to be_nil
+    end
+
     it 'matches ﻿#ａｅｓｔｈｅｔｉｃ' do
       expect(subject.match('﻿this is #ａｅｓｔｈｅｔｉｃ').to_s).to eq '#ａｅｓｔｈｅｔｉｃ'
+    end
+
+    it 'matches ＃ｆｏｏ' do
+      expect(subject.match('this is ＃ｆｏｏ').to_s).to eq '＃ｆｏｏ'
     end
 
     it 'matches digits at the start' do
@@ -91,12 +144,32 @@ RSpec.describe Tag do
     it 'does not match purely-numeric hashtags' do
       expect(subject.match('hello #0123456')).to be_nil
     end
+
+    it 'matches hashtags immediately following the letter ß' do
+      expect(subject.match('Hello toß #ruby').to_s).to eq '#ruby'
+    end
+
+    it 'matches hashtags containing uppercase characters' do
+      expect(subject.match('Hello #rubyOnRails').to_s).to eq '#rubyOnRails'
+    end
   end
 
   describe '#to_param' do
     it 'returns name' do
       tag = Fabricate(:tag, name: 'foo')
       expect(tag.to_param).to eq 'foo'
+    end
+  end
+
+  describe '#formatted_name' do
+    it 'returns name with a proceeding hash symbol' do
+      tag = Fabricate(:tag, name: 'foo')
+      expect(tag.formatted_name).to eq '#foo'
+    end
+
+    it 'returns display_name with a proceeding hash symbol, if display name present' do
+      tag = Fabricate(:tag, name: 'foobar', display_name: 'FooBar')
+      expect(tag.formatted_name).to eq '#FooBar'
     end
   end
 
@@ -142,6 +215,25 @@ RSpec.describe Tag do
     end
   end
 
+  describe '.not_featured_by' do
+    let!(:account) { Fabricate(:account) }
+    let!(:fun) { Fabricate(:tag, name: 'fun') }
+    let!(:games) { Fabricate(:tag, name: 'games') }
+
+    before do
+      Fabricate :featured_tag, account: account, name: 'games'
+      Fabricate :featured_tag, name: 'fun'
+    end
+
+    it 'returns tags not featured by the account' do
+      results = described_class.not_featured_by(account)
+
+      expect(results)
+        .to include(fun)
+        .and not_include(games)
+    end
+  end
+
   describe '.matches_name' do
     it 'returns tags for multibyte case-insensitive names' do
       upcase_string   = 'abcABCａｂｃＡＢＣやゆよ'
@@ -168,17 +260,44 @@ RSpec.describe Tag do
   end
 
   describe '.find_or_create_by_names' do
-    let(:upcase_string) { 'abcABCａｂｃＡＢＣやゆよ' }
-    let(:downcase_string) { 'abcabcａｂｃａｂｃやゆよ' }
+    context 'when called with a block' do
+      let(:upcase_string) { 'abcABCａｂｃＡＢＣやゆよ' }
+      let(:downcase_string) { 'abcabcａｂｃａｂｃやゆよ' }
+      let(:args) { [upcase_string, downcase_string] }
 
-    it 'runs a passed block once per tag regardless of duplicates' do
-      count = 0
+      it 'runs the block once per normalized tag regardless of duplicates' do
+        expect { |block| described_class.find_or_create_by_names(args, &block) }
+          .to yield_control.once
+      end
+    end
 
-      described_class.find_or_create_by_names([upcase_string, downcase_string]) do |_tag|
-        count += 1
+    context 'when passed an array' do
+      it 'creates multiples tags' do
+        expect { described_class.find_or_create_by_names(%w(tips tags toes)) }
+          .to change(described_class, :count).by(3)
+      end
+    end
+
+    context 'when passed a string' do
+      it 'creates a single tag' do
+        expect { described_class.find_or_create_by_names('test') }
+          .to change(described_class, :count).by(1)
+      end
+    end
+  end
+
+  describe '.find_or_create_by_names_race_condition' do
+    it 'handles simultaneous inserts of the same tag in different cases without error' do
+      tag_name_upper = 'Rails'
+      tag_name_lower = 'rails'
+
+      multi_threaded_execution(2) do |index|
+        described_class.find_or_create_by_names(index.zero? ? tag_name_upper : tag_name_lower)
       end
 
-      expect(count).to eq 1
+      tags = described_class.where('lower(name) = ?', tag_name_lower.downcase)
+      expect(tags.count).to eq(1)
+      expect(tags.first.name.downcase).to eq(tag_name_lower.downcase)
     end
   end
 
@@ -208,6 +327,24 @@ RSpec.describe Tag do
       results = described_class.search_for('match')
 
       expect(results).to eq [tag, similar_tag]
+    end
+
+    it 'finds only listable tags' do
+      tag = Fabricate(:tag, name: 'match')
+      _miss_tag = Fabricate(:tag, name: 'matchunlisted', listable: false)
+
+      results = described_class.search_for('match')
+
+      expect(results).to eq [tag]
+    end
+
+    it 'finds non-listable tags as well via option' do
+      tag = Fabricate(:tag, name: 'match')
+      unlisted_tag = Fabricate(:tag, name: 'matchunlisted', listable: false)
+
+      results = described_class.search_for('match', 5, 0, exclude_unlistable: false)
+
+      expect(results).to eq [tag, unlisted_tag]
     end
   end
 end

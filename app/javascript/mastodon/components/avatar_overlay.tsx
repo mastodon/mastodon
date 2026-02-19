@@ -1,7 +1,6 @@
+import { useHovering } from 'mastodon/hooks/useHovering';
+import { autoPlayGif } from 'mastodon/initial_state';
 import type { Account } from 'mastodon/models/account';
-
-import { useHovering } from '../../hooks/useHovering';
-import { autoPlayGif } from '../initial_state';
 
 interface Props {
   account: Account | undefined; // FIXME: remove `undefined` once we know for sure its always there

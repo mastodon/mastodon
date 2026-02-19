@@ -4,7 +4,7 @@ module Expireable
   extend ActiveSupport::Concern
 
   included do
-    scope :expired, -> { where.not(expires_at: nil).where('expires_at < ?', Time.now.utc) }
+    scope :expired, -> { where.not(expires_at: nil).where(expires_at: ...Time.now.utc) }
 
     def expires_in
       return @expires_in if defined?(@expires_in)

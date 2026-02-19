@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe StatusFinder do
+RSpec.describe StatusFinder do
   include RoutingHelper
 
   describe '#status' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe AuthorizeInteractionsController do
+RSpec.describe AuthorizeInteractionsController do
   render_views
 
   describe 'GET #show' do
@@ -46,8 +46,9 @@ describe AuthorizeInteractionsController do
 
         get :show, params: { acct: 'http://example.com' }
 
-        expect(response).to have_http_status(302)
-        expect(assigns(:resource)).to eq account
+        expect(response)
+          .to have_http_status(302)
+          .and redirect_to(web_url("@#{account.pretty_acct}"))
       end
 
       it 'sets resource from acct uri' do
@@ -58,8 +59,9 @@ describe AuthorizeInteractionsController do
 
         get :show, params: { acct: 'acct:found@hostname' }
 
-        expect(response).to have_http_status(302)
-        expect(assigns(:resource)).to eq account
+        expect(response)
+          .to have_http_status(302)
+          .and redirect_to(web_url("@#{account.pretty_acct}"))
       end
     end
   end

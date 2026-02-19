@@ -20,11 +20,13 @@ class ColumnSettings extends PureComponent {
     const { settings, onChange } = this.props;
 
     return (
-      <div>
-        <div className='column-settings__row'>
-          <SettingToggle settings={settings} settingPath={['other', 'onlyMedia']} onChange={onChange} label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />} />
-          <SettingToggle settings={settings} settingPath={['other', 'onlyRemote']} onChange={onChange} label={<FormattedMessage id='community.column_settings.remote_only' defaultMessage='Remote only' />} />
-        </div>
+      <div className='column-settings'>
+        <section>
+          <div className='column-settings__row'>
+            <SettingToggle settings={settings} settingPath={['other', 'onlyMedia']} onChange={onChange} label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media only' />} />
+            <SettingToggle settings={settings} settingPath={['other', 'onlyRemote']} onChange={onChange} label={<FormattedMessage id='community.column_settings.remote_only' defaultMessage='Remote only' />} />
+          </div>
+        </section>
       </div>
     );
   }

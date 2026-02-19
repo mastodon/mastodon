@@ -3,7 +3,7 @@
 
 - if self_destruct?
   .flash-message.warning
-    = t('auth.status.self_destruct', domain: ENV.fetch('LOCAL_DOMAIN'))
+    = t('auth.status.self_destruct', domain: Rails.configuration.x.local_domain)
 - else
   = render partial: 'status', locals: { user: @user, strikes: @strikes }
 

@@ -2,14 +2,24 @@
 
 class StatusesSearchService < BaseService
   def call(query, account = nil, options = {})
-    @query   = query&.strip
-    @account = account
-    @options = options
-    @limit   = options[:limit].to_i
-    @offset  = options[:offset].to_i
+    MastodonOTELTracer.in_span('StatusesSearchService#call') do |span|
+      @query   = query&.strip
+      @account = account
+      @options = options
+      @limit   = options[:limit].to_i
+      @offset  = options[:offset].to_i
+      convert_deprecated_options!
 
-    convert_deprecated_options!
-    status_search_results
+      span.add_attributes(
+        'search.offset' => @offset,
+        'search.limit' => @limit,
+        'search.backend' => Chewy.enabled? ? 'elasticsearch' : 'database'
+      )
+
+      status_search_results.tap do |results|
+        span.set_attribute('search.results.count', results.size)
+      end
+    end
   end
 
   private
@@ -19,10 +29,11 @@ class StatusesSearchService < BaseService
     results             = request.collapse(field: :id).order(id: { order: :desc }).limit(@limit).offset(@offset).objects.compact
     account_ids         = results.map(&:account_id)
     account_domains     = results.map(&:account_domain)
-    preloaded_relations = @account.relations_map(account_ids, account_domains)
 
-    results.reject { |status| StatusFilter.new(status, @account, preloaded_relations).filtered? }
-  rescue Faraday::ConnectionFailed, Parslet::ParseFailed
+    @account.preload_relations!(account_ids, account_domains)
+
+    results.reject { |status| StatusFilter.new(status, @account).filtered? }
+  rescue Faraday::ConnectionFailed, Parslet::ParseFailed, Errno::ENETUNREACH
     []
   end
 

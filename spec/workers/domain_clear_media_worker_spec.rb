@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe DomainClearMediaWorker do
+RSpec.describe DomainClearMediaWorker do
   subject { described_class.new }
 
   describe 'perform' do

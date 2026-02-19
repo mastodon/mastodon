@@ -31,9 +31,13 @@ class AccountMigration < ApplicationRecord
   validate :validate_migration_cooldown
   validate :validate_target_account
 
-  scope :within_cooldown, ->(now = Time.now.utc) { where(arel_table[:created_at].gteq(now - COOLDOWN_PERIOD)) }
+  scope :within_cooldown, -> { where(created_at: cooldown_duration_ago..) }
 
   attr_accessor :current_password, :current_username
+
+  def self.cooldown_duration_ago
+    Time.current - COOLDOWN_PERIOD
+  end
 
   def save_with_challenge(current_user)
     if current_user.encrypted_password.present?
@@ -57,7 +61,7 @@ class AccountMigration < ApplicationRecord
 
   def set_target_account
     self.target_account = ResolveAccountService.new.call(acct, skip_cache: true)
-  rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::Error, Addressable::URI::InvalidURIError
+  rescue Webfinger::Error, *Mastodon::HTTP_CONNECTION_ERRORS, Mastodon::Error, Addressable::URI::InvalidURIError
     # Validation will take care of it
   end
 
@@ -70,7 +74,7 @@ class AccountMigration < ApplicationRecord
       errors.add(:acct, I18n.t('migrations.errors.not_found'))
     else
       errors.add(:acct, I18n.t('migrations.errors.missing_also_known_as')) unless target_account.also_known_as.include?(ActivityPub::TagManager.instance.uri_for(account))
-      errors.add(:acct, I18n.t('migrations.errors.already_moved')) if account.moved_to_account_id.present? && account.moved_to_account_id == target_account.id
+      errors.add(:acct, I18n.t('migrations.errors.already_moved')) if account.moved? && account.moved_to_account_id == target_account.id
       errors.add(:acct, I18n.t('migrations.errors.move_to_self')) if account.id == target_account.id
     end
   end

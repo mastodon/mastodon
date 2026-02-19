@@ -2,7 +2,7 @@
 
 class CreatePgheroSpaceStats < ActiveRecord::Migration[5.2]
   def change
-    create_table :pghero_space_stats do |t|
+    create_table :pghero_space_stats do |t| # rubocop:disable Rails/CreateTableWithTimestamps
       t.text :database
       t.text :schema
       t.text :relation

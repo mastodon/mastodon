@@ -9,6 +9,8 @@ RSpec.describe Status do
   let(:bob)   { Fabricate(:account, username: 'bob') }
   let(:other) { Fabricate(:status, account: bob, text: 'Skulls for the skull god! The enemy\'s gates are sideways!') }
 
+  it_behaves_like 'Status::Visibility'
+
   describe '#local?' do
     it 'returns true when no remote URI is set' do
       expect(subject.local?).to be true
@@ -84,36 +86,6 @@ RSpec.describe Status do
     end
   end
 
-  describe '#hidden?' do
-    context 'when private_visibility?' do
-      it 'returns true' do
-        subject.visibility = :private
-        expect(subject.hidden?).to be true
-      end
-    end
-
-    context 'when direct_visibility?' do
-      it 'returns true' do
-        subject.visibility = :direct
-        expect(subject.hidden?).to be true
-      end
-    end
-
-    context 'when public_visibility?' do
-      it 'returns false' do
-        subject.visibility = :public
-        expect(subject.hidden?).to be false
-      end
-    end
-
-    context 'when unlisted_visibility?' do
-      it 'returns false' do
-        subject.visibility = :unlisted
-        expect(subject.hidden?).to be false
-      end
-    end
-  end
-
   describe '#content' do
     it 'returns the text of the status if it is not a reblog' do
       expect(subject.content).to eql subject.text
@@ -164,6 +136,31 @@ RSpec.describe Status do
     end
   end
 
+  describe '#untrusted_reblogs_count' do
+    before do
+      alice.update(domain: 'example.com')
+      subject.status_stat.tap do |status_stat|
+        status_stat.untrusted_reblogs_count = 0
+        status_stat.save
+      end
+      subject.save
+    end
+
+    it 'is incremented by the number of reblogs' do
+      Fabricate(:status, account: bob, reblog: subject)
+      Fabricate(:status, account: alice, reblog: subject)
+
+      expect(subject.untrusted_reblogs_count).to eq 2
+    end
+
+    it 'is decremented when reblog is removed' do
+      reblog = Fabricate(:status, account: bob, reblog: subject)
+      expect(subject.untrusted_reblogs_count).to eq 1
+      reblog.destroy
+      expect(subject.untrusted_reblogs_count).to eq 0
+    end
+  end
+
   describe '#replies_count' do
     it 'is the number of replies' do
       Fabricate(:status, account: bob, thread: subject)
@@ -194,6 +191,44 @@ RSpec.describe Status do
     end
   end
 
+  describe '.not_replying_to_account' do
+    let(:account) { Fabricate :account }
+    let!(:status_from_account) { Fabricate :status, account: account }
+    let!(:reply_to_account_status) { Fabricate :status, thread: status_from_account }
+    let!(:reply_to_other) { Fabricate :status, thread: Fabricate(:status) }
+
+    it 'returns records not in reply to provided account' do
+      expect(described_class.not_replying_to_account(account))
+        .to not_include(reply_to_account_status)
+        .and include(reply_to_other)
+    end
+  end
+
+  describe '#untrusted_favourites_count' do
+    before do
+      alice.update(domain: 'example.com')
+      subject.status_stat.tap do |status_stat|
+        status_stat.untrusted_favourites_count = 0
+        status_stat.save
+      end
+      subject.save
+    end
+
+    it 'is incremented by favorites' do
+      Fabricate(:favourite, account: bob, status: subject)
+      Fabricate(:favourite, account: alice, status: subject)
+
+      expect(subject.untrusted_favourites_count).to eq 2
+    end
+
+    it 'is decremented when favourite is removed' do
+      favourite = Fabricate(:favourite, account: bob, status: subject)
+      expect(subject.untrusted_favourites_count).to eq 1
+      favourite.destroy
+      expect(subject.untrusted_favourites_count).to eq 0
+    end
+  end
+
   describe '#proper' do
     it 'is itself for original statuses' do
       expect(subject.proper).to eq subject
@@ -202,6 +237,83 @@ RSpec.describe Status do
     it 'is the source status for reblogs' do
       subject.reblog = other
       expect(subject.proper).to eq other
+    end
+  end
+
+  describe '#reported?' do
+    context 'when the status is not reported' do
+      it 'returns false' do
+        expect(subject.reported?).to be false
+      end
+    end
+
+    context 'when the status is part of an open report' do
+      before do
+        Fabricate(:report, target_account: subject.account, status_ids: [subject.id])
+      end
+
+      it 'returns true' do
+        expect(subject.reported?).to be true
+      end
+    end
+
+    context 'when the status is part of a closed report with an account warning mentioning the account' do
+      before do
+        report = Fabricate(:report, target_account: subject.account, status_ids: [subject.id])
+        report.resolve!(Fabricate(:account))
+        Fabricate(:account_warning, target_account: subject.account, status_ids: [subject.id], report: report)
+      end
+
+      it 'returns true' do
+        expect(subject.reported?).to be true
+      end
+    end
+
+    context 'when the status is part of a closed report with an account warning not mentioning the account' do
+      before do
+        report = Fabricate(:report, target_account: subject.account, status_ids: [subject.id])
+        report.resolve!(Fabricate(:account))
+        Fabricate(:account_warning, target_account: subject.account, report: report)
+      end
+
+      it 'returns false' do
+        expect(subject.reported?).to be false
+      end
+    end
+  end
+
+  describe '#ordered_media_attachments' do
+    let(:status) { Fabricate(:status) }
+
+    let(:first_attachment) { Fabricate(:media_attachment) }
+    let(:second_attachment) { Fabricate(:media_attachment) }
+    let(:last_attachment) { Fabricate(:media_attachment) }
+    let(:extra_attachment) { Fabricate(:media_attachment) }
+
+    before do
+      stub_const('Status::MEDIA_ATTACHMENTS_LIMIT', 3)
+
+      # Add attachments out of order
+      status.media_attachments << second_attachment
+      status.media_attachments << last_attachment
+      status.media_attachments << extra_attachment
+      status.media_attachments << first_attachment
+    end
+
+    context 'when ordered_media_attachment_ids is not set' do
+      it 'returns up to MEDIA_ATTACHMENTS_LIMIT attachments' do
+        expect(status.ordered_media_attachments.size).to eq Status::MEDIA_ATTACHMENTS_LIMIT
+      end
+    end
+
+    context 'when ordered_media_attachment_ids is set' do
+      before do
+        status.update!(ordered_media_attachment_ids: [first_attachment.id, second_attachment.id, last_attachment.id, extra_attachment.id])
+      end
+
+      it 'returns up to MEDIA_ATTACHMENTS_LIMIT attachments in the expected order' do
+        expect(status.ordered_media_attachments).to eq [first_attachment, second_attachment, last_attachment]
+      end
     end
   end
 
@@ -250,6 +362,39 @@ RSpec.describe Status do
     it 'contains true value' do
       Fabricate(:status, account: account, reblog: status)
       expect(subject[status.id]).to be true
+    end
+  end
+
+  describe '.only_reblogs' do
+    let!(:status) { Fabricate :status }
+    let!(:reblog) { Fabricate :status, reblog: Fabricate(:status) }
+
+    it 'returns the expected statuses' do
+      expect(described_class.only_reblogs)
+        .to include(reblog)
+        .and not_include(status)
+    end
+  end
+
+  describe '.only_polls' do
+    let!(:poll_status) { Fabricate :status, poll: Fabricate(:poll) }
+    let!(:no_poll_status) { Fabricate :status }
+
+    it 'returns the expected statuses' do
+      expect(described_class.only_polls)
+        .to include(poll_status)
+        .and not_include(no_poll_status)
+    end
+  end
+
+  describe '.without_polls' do
+    let!(:poll_status) { Fabricate :status, poll: Fabricate(:poll) }
+    let!(:no_poll_status) { Fabricate :status }
+
+    it 'returns the expected statuses' do
+      expect(described_class.without_polls)
+        .to not_include(poll_status)
+        .and include(no_poll_status)
     end
   end
 
@@ -367,47 +512,97 @@ RSpec.describe Status do
     end
   end
 
-  describe 'before_validation' do
-    it 'sets account being replied to correctly over intermediary nodes' do
-      first_status = Fabricate(:status, account: bob)
-      intermediary = Fabricate(:status, thread: first_status, account: alice)
-      final        = Fabricate(:status, thread: intermediary, account: alice)
+  describe 'Validations' do
+    context 'with a remote account' do
+      subject { Fabricate.build :status, account: remote_account }
 
-      expect(final.in_reply_to_account_id).to eq bob.id
-    end
+      let(:remote_account) { Fabricate :account, domain: 'example.com' }
 
-    it 'creates new conversation for stand-alone status' do
-      expect(described_class.create(account: alice, text: 'First').conversation_id).to_not be_nil
-    end
-
-    it 'keeps conversation of parent node' do
-      parent = Fabricate(:status, text: 'First')
-      expect(described_class.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
-    end
-
-    it 'sets `local` to true for status by local account' do
-      expect(described_class.create(account: alice, text: 'foo').local).to be true
-    end
-
-    it 'sets `local` to false for status by remote account' do
-      alice.update(domain: 'example.com')
-      expect(described_class.create(account: alice, text: 'foo').local).to be false
+      it { is_expected.to_not allow_value('').for(:uri) }
     end
   end
 
-  describe 'validation' do
-    it 'disallow empty uri for remote status' do
-      alice.update(domain: 'example.com')
-      status = Fabricate.build(:status, uri: '', account: alice)
-      expect(status).to model_have_error_on_field(:uri)
-    end
-  end
+  describe 'Callbacks' do
+    describe 'Stripping content when required' do
+      context 'with a remote account' do
+        subject { Fabricate.build :status, local: false, account:, text: '   text   ', spoiler_text: '   spoiler   ' }
 
-  describe 'after_create' do
-    it 'saves ActivityPub uri as uri for local status' do
-      status = described_class.create(account: alice, text: 'foo')
-      status.reload
-      expect(status.uri).to start_with('https://')
+        let(:account) { Fabricate.build :account, domain: 'host.example' }
+
+        it 'preserves content' do
+          expect { subject.valid? }
+            .to not_change(subject, :text)
+            .and not_change(subject, :spoiler_text)
+        end
+      end
+
+      context 'with a local account' do
+        let(:account) { Fabricate.build :account, domain: nil }
+
+        context 'with populated fields' do
+          subject { Fabricate.build :status, local: true, account:, text: '   text   ', spoiler_text: '   spoiler   ' }
+
+          it 'strips content' do
+            expect { subject.valid? }
+              .to change(subject, :text).to('text')
+              .and change(subject, :spoiler_text).to('spoiler')
+          end
+        end
+
+        context 'with empty fields' do
+          subject { Fabricate.build :status, local: true, account:, text: nil, spoiler_text: nil }
+
+          it 'preserves content' do
+            expect { subject.valid? }
+              .to not_change(subject, :text)
+              .and not_change(subject, :spoiler_text)
+          end
+        end
+      end
+    end
+
+    describe 'Wiring up replies and conversations' do
+      it 'sets account being replied to correctly over intermediary nodes' do
+        first_status = Fabricate(:status, account: bob)
+        intermediary = Fabricate(:status, thread: first_status, account: alice)
+        final        = Fabricate(:status, thread: intermediary, account: alice)
+
+        expect(final.in_reply_to_account_id).to eq bob.id
+      end
+
+      it 'creates new conversation for stand-alone status' do
+        new_status = nil
+        expect do
+          new_status = described_class.create(account: alice, text: 'First')
+        end.to change(Conversation, :count).by(1)
+
+        expect(new_status.conversation_id).to_not be_nil
+        expect(new_status.conversation.parent_status_id).to eq new_status.id
+      end
+
+      it 'keeps conversation of parent node' do
+        parent = Fabricate(:status, text: 'First')
+        expect(described_class.create(account: alice, thread: parent, text: 'Response').conversation_id).to eq parent.conversation_id
+      end
+    end
+
+    describe 'Setting the `local` flag correctly' do
+      it 'sets `local` to true for status by local account' do
+        expect(described_class.create(account: alice, text: 'foo').local).to be true
+      end
+
+      it 'sets `local` to false for status by remote account' do
+        alice.update(domain: 'example.com')
+        expect(described_class.create(account: alice, text: 'foo').local).to be false
+      end
+    end
+
+    describe 'after_create' do
+      it 'saves ActivityPub uri as uri for local status' do
+        status = described_class.create(account: alice, text: 'foo')
+        status.reload
+        expect(status.uri).to start_with('https://')
+      end
     end
   end
 end

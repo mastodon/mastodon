@@ -15,7 +15,7 @@ export const fetchHistory = statusId => (dispatch, getState) => {
 
   dispatch(fetchHistoryRequest(statusId));
 
-  api(getState).get(`/api/v1/statuses/${statusId}/history`).then(({ data }) => {
+  api().get(`/api/v1/statuses/${statusId}/history`).then(({ data }) => {
     dispatch(importFetchedAccounts(data.map(x => x.account)));
     dispatch(fetchHistorySuccess(statusId, data));
   }).catch(error => dispatch(fetchHistoryFail(error)));

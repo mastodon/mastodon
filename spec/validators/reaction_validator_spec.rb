@@ -2,41 +2,36 @@
 
 require 'rails_helper'
 
-describe ReactionValidator do
-  let(:announcement) { Fabricate(:announcement) }
+RSpec.describe ReactionValidator do
+  subject { Fabricate.build :announcement_reaction }
 
-  describe '#validate' do
-    it 'adds error when not a valid unicode emoji' do
-      reaction = announcement.announcement_reactions.build(name: 'F')
-      subject.validate(reaction)
-      expect(reaction.errors).to_not be_empty
-    end
+  context 'when not valid unicode emoji' do
+    it { is_expected.to_not allow_value('F').for(:name).with_message(I18n.t('reactions.errors.unrecognized_emoji')) }
+  end
 
-    it 'does not add error when non-unicode emoji is a custom emoji' do
-      custom_emoji = Fabricate(:custom_emoji)
-      reaction = announcement.announcement_reactions.build(name: custom_emoji.shortcode, custom_emoji_id: custom_emoji.id)
-      subject.validate(reaction)
-      expect(reaction.errors).to be_empty
-    end
+  context 'when non-unicode emoji is a custom emoji' do
+    let!(:custom_emoji) { Fabricate :custom_emoji }
 
-    it 'adds error when 8 reactions already exist' do
-      %w(🐘 ❤️ 🙉 😍 😋 😂 😞 👍).each do |name|
-        announcement.announcement_reactions.create!(name: name, account: Fabricate(:account))
+    it { is_expected.to allow_value(custom_emoji.shortcode).for(:name) }
+  end
+
+  describe 'limiting reactions' do
+    subject { Fabricate.build :announcement_reaction, announcement: }
+
+    let(:announcement) { Fabricate :announcement }
+
+    before { stub_const 'ReactionValidator::LIMIT', 2 }
+
+    context 'when limit has been reached' do
+      before { %w(🐘 ❤️).each { |name| Fabricate :announcement_reaction, name:, announcement: } }
+
+      context 'with emoji already used' do
+        it { is_expected.to allow_value('❤️').for(:name) }
       end
 
-      reaction = announcement.announcement_reactions.build(name: '😘')
-      subject.validate(reaction)
-      expect(reaction.errors).to_not be_empty
-    end
-
-    it 'does not add error when new reaction is part of the existing ones' do
-      %w(🐘 ❤️ 🙉 😍 😋 😂 😞 👍).each do |name|
-        announcement.announcement_reactions.create!(name: name, account: Fabricate(:account))
+      context 'with emoji not already used' do
+        it { is_expected.to_not allow_value('😘').for(:name).against(:base).with_message(I18n.t('reactions.errors.limit_reached')) }
       end
-
-      reaction = announcement.announcement_reactions.build(name: '😋')
-      subject.validate(reaction)
-      expect(reaction.errors).to be_empty
     end
   end
 end

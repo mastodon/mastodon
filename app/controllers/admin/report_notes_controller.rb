@@ -21,7 +21,7 @@ module Admin
 
         redirect_to after_create_redirect_path, notice: I18n.t('admin.report_notes.created_msg')
       else
-        @report_notes = @report.notes.includes(:account).order(id: :desc)
+        @report_notes = @report.notes.chronological.includes(:account)
         @action_logs  = @report.history.includes(:target)
         @form         = Admin::StatusBatchAction.new
         @statuses     = @report.statuses.with_includes
@@ -47,10 +47,8 @@ module Admin
     end
 
     def resource_params
-      params.require(:report_note).permit(
-        :content,
-        :report_id
-      )
+      params
+        .expect(report_note: [:content, :report_id])
     end
 
     def set_report_note

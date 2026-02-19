@@ -1,46 +1,34 @@
 import { useCallback } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
-import LockOpenIcon from '@/material-icons/400-24px/lock_open.svg?react';
+import { unblockDomain } from 'mastodon/actions/domain_blocks';
+import { useAppDispatch } from 'mastodon/store';
 
-import { IconButton } from './icon_button';
+import { Button } from './button';
 
-const messages = defineMessages({
-  unblockDomain: {
-    id: 'account.unblock_domain',
-    defaultMessage: 'Unblock domain {domain}',
-  },
-});
-
-interface Props {
+export const Domain: React.FC<{
   domain: string;
-  onUnblockDomain: (domain: string) => void;
-}
-
-export const Domain: React.FC<Props> = ({ domain, onUnblockDomain }) => {
-  const intl = useIntl();
+}> = ({ domain }) => {
+  const dispatch = useAppDispatch();
 
   const handleDomainUnblock = useCallback(() => {
-    onUnblockDomain(domain);
-  }, [domain, onUnblockDomain]);
+    dispatch(unblockDomain(domain));
+  }, [dispatch, domain]);
 
   return (
     <div className='domain'>
-      <div className='domain__wrapper'>
-        <span className='domain__domain-name'>
-          <strong>{domain}</strong>
-        </span>
+      <div className='domain__domain-name'>
+        <strong>{domain}</strong>
+      </div>
 
-        <div className='domain__buttons'>
-          <IconButton
-            active
-            icon='unlock'
-            iconComponent={LockOpenIcon}
-            title={intl.formatMessage(messages.unblockDomain, { domain })}
-            onClick={handleDomainUnblock}
+      <div className='domain__buttons'>
+        <Button onClick={handleDomainUnblock}>
+          <FormattedMessage
+            id='account.unblock_domain_short'
+            defaultMessage='Unblock'
           />
-        </div>
+        </Button>
       </div>
     </div>
   );
