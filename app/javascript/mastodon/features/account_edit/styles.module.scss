@@ -11,6 +11,10 @@
   }
 }
 
+.wrapper {
+  padding: 24px;
+}
+
 .profileImage {
   height: 120px;
   background: var(--color-bg-secondary);
@@ -120,4 +124,20 @@ textarea.inputText {
 
 .counterError {
   color: var(--color-text-error);
+}
+
+// Featured Tags Page
+
+.tagSuggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 12px 0;
+
+  > ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
 }
