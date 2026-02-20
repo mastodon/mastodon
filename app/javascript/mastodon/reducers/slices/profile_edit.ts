@@ -1,4 +1,7 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
+
+import { debounce } from 'lodash';
 
 import {
   apiDeleteFeaturedTag,
@@ -6,15 +9,25 @@ import {
   apiGetTagSuggestions,
   apiPostFeaturedTag,
 } from '@/mastodon/api/accounts';
+import { apiGetSearch } from '@/mastodon/api/search';
 import { hashtagToFeaturedTag } from '@/mastodon/api_types/tags';
 import type { ApiFeaturedTagJSON } from '@/mastodon/api_types/tags';
-import { createDataLoadingThunk } from '@/mastodon/store/typed_functions';
+import type { AppDispatch } from '@/mastodon/store';
+import {
+  createAppAsyncThunk,
+  createDataLoadingThunk,
+} from '@/mastodon/store/typed_functions';
 
 interface ProfileEditState {
   tags: ApiFeaturedTagJSON[];
   tagSuggestions: ApiFeaturedTagJSON[];
   isLoading: boolean;
   isPending: boolean;
+  search: {
+    query: string;
+    isLoading: boolean;
+    results?: ApiFeaturedTagJSON[];
+  };
 }
 
 const initialState: ProfileEditState = {
@@ -22,12 +35,30 @@ const initialState: ProfileEditState = {
   tagSuggestions: [],
   isLoading: true,
   isPending: false,
+  search: {
+    query: '',
+    isLoading: false,
+  },
 };
 
 const profileEditSlice = createSlice({
   name: 'profileEdit',
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchQuery(state, action: PayloadAction<string>) {
+      if (state.search.query === action.payload) {
+        return;
+      }
+      state.search.query = action.payload;
+      state.search.isLoading = false;
+      state.search.results = undefined;
+    },
+    clearSearch(state) {
+      state.search.query = '';
+      state.search.isLoading = false;
+      state.search.results = undefined;
+    },
+  },
   extraReducers(builder) {
     builder.addCase(fetchSuggestedTags.fulfilled, (state, action) => {
       state.tagSuggestions = action.payload.map(hashtagToFeaturedTag);
@@ -64,10 +95,23 @@ const profileEditSlice = createSlice({
       state.tags = state.tags.filter((tag) => tag.id !== action.meta.arg.tagId);
       state.isPending = false;
     });
+
+    builder.addCase(fetchSearchResults.pending, (state) => {
+      state.search.isLoading = true;
+    });
+    builder.addCase(fetchSearchResults.rejected, (state) => {
+      state.search.isLoading = false;
+      state.search.results = undefined;
+    });
+    builder.addCase(fetchSearchResults.fulfilled, (state, action) => {
+      state.search.isLoading = false;
+      state.search.results = action.payload.hashtags.map(hashtagToFeaturedTag);
+    });
   },
 });
 
 export const profileEdit = profileEditSlice.reducer;
+export const { clearSearch } = profileEditSlice.actions;
 
 export const fetchFeaturedTags = createDataLoadingThunk(
   `${profileEditSlice.name}/fetchFeaturedTags`,
@@ -89,4 +133,27 @@ export const addFeaturedTag = createDataLoadingThunk(
 export const deleteFeaturedTag = createDataLoadingThunk(
   `${profileEditSlice.name}/deleteFeaturedTag`,
   ({ tagId }: { tagId: string }) => apiDeleteFeaturedTag(tagId),
+);
+
+const debouncedFetchSearchResults = debounce(
+  async (dispatch: AppDispatch, query: string) => {
+    await dispatch(fetchSearchResults({ q: query }));
+  },
+  300,
+);
+
+export const updateSearchQuery = createAppAsyncThunk(
+  `${profileEditSlice.name}/updateSearchQuery`,
+  (query: string, { dispatch }) => {
+    dispatch(profileEditSlice.actions.setSearchQuery(query));
+
+    if (query.trim().length > 0) {
+      void debouncedFetchSearchResults(dispatch, query);
+    }
+  },
+);
+
+export const fetchSearchResults = createDataLoadingThunk(
+  `${profileEditSlice.name}/fetchSearchResults`,
+  ({ q }: { q: string }) => apiGetSearch({ q, type: 'hashtags', limit: 11 }),
 );

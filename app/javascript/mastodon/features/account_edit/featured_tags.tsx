@@ -18,6 +18,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
 import { AccountEditItemList } from './components/item_list';
+import { AccountEditTagSearch } from './components/tag_search';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
@@ -64,6 +65,7 @@ export const AccountEditFeaturedTags: FC = () => {
           defaultMessage='Featured hashtags help users discover and interact with your profile. They appear as filters on your Profile page’s Activity view.'
           tagName='p'
         />
+        <AccountEditTagSearch />
         {tagSuggestions.length > 0 && (
           <div className={classes.tagSuggestions}>
             <FormattedMessage
