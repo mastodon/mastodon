@@ -55,6 +55,24 @@ RSpec.describe Fasp::Request do
         end
       end
     end
+
+    context 'when the provider host name resolves to a private address' do
+      around do |example|
+        WebMock.disable!
+        example.run
+        WebMock.enable!
+      end
+
+      it 'raises Mastodon::ValidationError' do
+        resolver = instance_double(Resolv::DNS)
+
+        allow(resolver).to receive(:getaddresses).with('reqprov.example.com').and_return(%w(0.0.0.0 2001:db8::face))
+        allow(resolver).to receive(:timeouts=).and_return(nil)
+        allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+
+        expect { subject.send(method, '/test_path') }.to raise_error(Mastodon::ValidationError)
+      end
+    end
   end
 
   describe '#get' do
