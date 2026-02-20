@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_03_144409) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_04_105645) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -679,6 +679,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_03_144409) do
     t.integer "severity", default: 0, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["ip"], name: "index_ip_blocks_on_ip", unique: true
+  end
+
+  create_table "keypairs", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "expires_at"
+    t.string "private_key"
+    t.string "public_key", null: false
+    t.boolean "revoked", default: false, null: false
+    t.integer "type", null: false
+    t.datetime "updated_at", null: false
+    t.string "uri", null: false
+    t.index ["account_id"], name: "index_keypairs_on_account_id"
+    t.index ["uri"], name: "index_keypairs_on_uri", unique: true
   end
 
   create_table "list_accounts", force: :cascade do |t|
@@ -1477,6 +1491,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_03_144409) do
   add_foreign_key "identities", "users", name: "fk_bea040f377", on_delete: :cascade
   add_foreign_key "instance_moderation_notes", "accounts", on_delete: :cascade
   add_foreign_key "invites", "users", on_delete: :cascade
+  add_foreign_key "keypairs", "accounts", on_delete: :cascade
   add_foreign_key "list_accounts", "accounts", on_delete: :cascade
   add_foreign_key "list_accounts", "follow_requests", on_delete: :cascade
   add_foreign_key "list_accounts", "follows", on_delete: :cascade
