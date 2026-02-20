@@ -12,20 +12,23 @@ pt-BR:
     followers:
       one: Seguidor
       other: Seguidores
+    following:
+      one: Seguindo
+      other: Seguindo
     instance_actor_flash: Esta conta é um ator virtual usado para representar o próprio servidor e não um usuário individual. É utilizada para fins de federação e não deve ser suspensa.
     last_active: última atividade
-    link_verified_on: O link foi verificado em %{date}
+    link_verified_on: A propriedade do link foi verificada em %{date}
     nothing_here: Nada aqui!
     pin_errors:
-      following: Você deve estar seguindo a pessoa que você deseja sugerir
+      following: Você deve já estar seguindo a pessoa que você deseja sugerir
     posts:
       one: Publicação
       other: Publicações
     posts_tab_heading: Publicações
-    self_follow_error: Seguir sua conta não é permitido
+    self_follow_error: Não é permitido seguir sua própria conta
   admin:
     account_actions:
-      action: Tomar uma atitude
+      action: Efetuar uma ação
       already_silenced: Esta conta já foi limitada.
       already_suspended: Esta conta já foi suspensa.
       title: Moderar %{acct}
@@ -53,6 +56,7 @@ pt-BR:
         label: Alterar função
         no_role: Nenhuma função
         title: Alterar função para %{username}
+      collections: Coleções
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
@@ -337,6 +341,15 @@ pt-BR:
       unpublish: Cancelar publicação
       unpublished_msg: Anúncio desfeito!
       updated_msg: Anúncio atualizado!
+    collections:
+      accounts: Contas
+      collection_title: Coleção de %{name}
+      contents: Conteúdo
+      number_of_accounts:
+        one: 1 conta
+        other: "%{count} contas"
+      open: Abrir
+      view_publicly: Ver publicamente
     critical_update_pending: Atualização crítica pendente
     custom_emojis:
       assign_category: Atribuir categoria
@@ -676,6 +689,7 @@ pt-BR:
       cancel: Cancelar
       category: Categoria
       category_description_html: O motivo pelo qual esta conta e/ou conteúdo foi denunciado será citado na comunicação com a conta denunciada
+      collections: Coleções
       comment:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
@@ -705,11 +719,13 @@ pt-BR:
       report: 'Denúncia #%{id}'
       reported_account: Conta denunciada
       reported_by: Denunciada por
+      reported_content: Conteúdo denunciado
       reported_with_application: Denunciado pelo aplicativo
       resolved: Resolvido
       resolved_msg: Denúncia resolvida!
       skip_to_actions: Pular para ações
       status: Estado
+      statuses: Publicações
       statuses_description_html: Conteúdo ofensivo será citado em comunicação com a conta denunciada
       summary:
         action_preambles:
@@ -798,6 +814,7 @@ pt-BR:
         view_devops_description: Permite aos usuários acessar os painéis da Sidekiq e pgHero
         view_feeds: Veja transmissões ao vivo e por tópico
         view_feeds_description: Permite que os usuários acessem os feeds ao vivo e por tópico, independentemente das configurações do servidor
+      requires_2fa: Requer autenticação de dois fatores
       title: Funções
     rules:
       add_new: Adicionar regra
@@ -2017,6 +2034,8 @@ pt-BR:
     past_preamble_html: Alteramos nossos termos de serviço desde a sua última visita. Recomendamos que você revise os termos atualizados.
     review_link: Revisar os termos do serviço
     title: Os termos de serviço do %{domain} estão mudando
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%H:%M em %d de %b de %Y"
@@ -2041,6 +2060,8 @@ pt-BR:
     recovery_codes: Códigos de recuperação de reserva
     recovery_codes_regenerated: Códigos de recuperação gerados
     recovery_instructions_html: Se você perder acesso ao seu celular, você pode usar um dos códigos de recuperação abaixo para acessar a sua conta. <strong>Mantenha os códigos de recuperação em um local seguro</strong>. Por exemplo, você pode imprimi-los e guardá-los junto a outros documentos importantes.
+    resume_app_authorization: Retomar autorização de aplicativo
+    role_requirement: "%{domain} exige que você configure a autenticação de dois fatores antes de poder utilizar o Mastodon."
     webauthn: Chaves de segurança
   user_mailer:
     announcement_published:

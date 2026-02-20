@@ -53,6 +53,7 @@ zh-CN:
         label: 更改角色
         no_role: 没有角色
         title: 更改 %{username} 的角色
+      collections: 收藏列表
       confirm: 确认
       confirmed: 已确认
       confirming: 等待确认
@@ -336,6 +337,14 @@ zh-CN:
       unpublish: 取消发布
       unpublished_msg: 公告已取消发布！
       updated_msg: 公告已成功更新！
+    collections:
+      accounts: 账号
+      collection_title: "%{name} 的收藏列表"
+      contents: 内容
+      number_of_accounts:
+        other: "%{count} 个账号"
+      open: 打开
+      view_publicly: 以公开身份查看
     critical_update_pending: 紧急更新待处理
     custom_emojis:
       assign_category: 指定类别
@@ -666,6 +675,7 @@ zh-CN:
       cancel: 取消
       category: 类别
       category_description_html: 在与被举报账号的通信时，将引用该账号和/或内容被举报的原因
+      collections: 收藏列表
       comment:
         none: 没有
       comment_description_html: "%{name} 补充道："
@@ -695,11 +705,13 @@ zh-CN:
       report: '举报 #%{id}'
       reported_account: 举报用户
       reported_by: 举报人
+      reported_content: 被举报内容
       reported_with_application: 举报人使用的应用
       resolved: 已处理
       resolved_msg: 举报处理成功！
       skip_to_actions: 跳转到操作
       status: 状态
+      statuses: 嘟文
       statuses_description_html: 在与该账号的通信中将引用违规内容
       summary:
         action_preambles:

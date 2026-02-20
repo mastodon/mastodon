@@ -68,6 +68,7 @@ cy:
         label: Newid rôl
         no_role: Dim rôl
         title: Newid rôl %{username}
+      collections: Casgliadau
       confirm: Cadarnhau
       confirmed: Cadarnhawyd
       confirming: Yn cadarnhau
@@ -356,6 +357,19 @@ cy:
       unpublish: Dadgyhoeddi
       unpublished_msg: Cyhoeddiad wedi'i ddad gyhoeddi'n llwyddiannus!
       updated_msg: Cyhoeddiad wedi'i ddiweddaru'n llwyddiannus!
+    collections:
+      accounts: Cyfrifon
+      collection_title: Casgliad gan %{name}
+      contents: Cynnwys
+      number_of_accounts:
+        few: "%{count} cyfrif"
+        many: "%{count} cyfrif"
+        one: 1 cyfrif
+        other: "%{count} cyfrif"
+        two: "%{count} cyfrif"
+        zero: "%{count} cyfrif"
+      open: Agor
+      view_publicly: Gweld yn gyhoeddus
     critical_update_pending: Diweddariad hanfodol ar ei ffordd
     custom_emojis:
       assign_category: Neilltuo categori
@@ -731,6 +745,7 @@ cy:
       cancel: Canslo
       category: Categori
       category_description_html: Bydd y rheswm dros adrodd am y cyfrif a/neu’r cynnwys hwn yn cael ei ddyfynnu wrth gyfathrebu â’r cyfrif a adroddwyd
+      collections: Casgliadau
       comment:
         none: Dim
       comment_description_html: 'I ddarparu rhagor o wybodaeth, ysgrifennodd %{name}:'
@@ -760,11 +775,13 @@ cy:
       report: 'Adroddiad #%{id}'
       reported_account: Cyfrif wedi ei adrodd
       reported_by: Adroddwyd gan
+      reported_content: Cynnwys wedi'u hadrodd
       reported_with_application: Adroddwyd gydag ap
       resolved: Wedi ei ddatrys
       resolved_msg: Llwyddwyd i ddatrys yr adroddiad!
       skip_to_actions: Mynd i gamau gweithredu
       status: Statws
+      statuses: Postiadau
       statuses_description_html: Bydd cynnwys tramgwyddus yn cael ei ddyfynnu wrth gyfathrebu â'r cyfrif a adroddwyd
       summary:
         action_preambles:

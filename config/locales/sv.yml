@@ -337,6 +337,11 @@ sv:
       unpublish: Avpublicera
       unpublished_msg: Kungörelsen raderades!
       updated_msg: Kungörelsen uppdaterades!
+    collections:
+      accounts: Konton
+      number_of_accounts:
+        one: 1 konto
+        other: "%{count} konton"
     critical_update_pending: Kritisk uppdatering väntar
     custom_emojis:
       assign_category: Tilldela kategori
@@ -705,11 +710,13 @@ sv:
       report: 'Rapport #%{id}'
       reported_account: Anmält konto
       reported_by: Anmäld av
+      reported_content: Rapporterat innehåll
       reported_with_application: Rapporterat med applikation
       resolved: Löst
       resolved_msg: Anmälan har lösts framgångsrikt!
       skip_to_actions: Hoppa till åtgärder
       status: Status
+      statuses: Inlägg
       statuses_description_html: Stötande innehåll kommer att citeras i kommunikationen med det rapporterade kontot
       summary:
         action_preambles:

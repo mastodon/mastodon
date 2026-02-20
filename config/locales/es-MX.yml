@@ -56,6 +56,7 @@ es-MX:
         label: Cambiar de rol
         no_role: Sin rol
         title: Cambiar el rol para %{username}
+      collections: Colecciones
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
@@ -340,6 +341,15 @@ es-MX:
       unpublish: Retirar publicación
       unpublished_msg: "¡Anuncio despublicado con éxito!"
       updated_msg: "¡Anuncio actualizado con éxito!"
+    collections:
+      accounts: Cuentas
+      collection_title: Colección de %{name}
+      contents: Contenidos
+      number_of_accounts:
+        one: 1 cuenta
+        other: "%{count} cuentas"
+      open: Pública
+      view_publicly: Vista pública
     critical_update_pending: Actualización crítica pendiente
     custom_emojis:
       assign_category: Asignar categoría
@@ -679,6 +689,7 @@ es-MX:
       cancel: Cancelar
       category: Categoría
       category_description_html: La razón por la que se reportó esta cuenta o contenido será citada en las comunicaciones con la cuenta reportada
+      collections: Colecciones
       comment:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
@@ -708,11 +719,13 @@ es-MX:
       report: 'Reportar #%{id}'
       reported_account: Cuenta reportada
       reported_by: Reportado por
+      reported_content: Contenido reportado
       reported_with_application: Informado a través de la aplicación
       resolved: Resuelto
       resolved_msg: "¡La denuncia se ha resuelto correctamente!"
       skip_to_actions: Ir directamente a las acciones
       status: Estado
+      statuses: Publicaciones
       statuses_description_html: El contenido ofensivo se citará en comunicación con la cuenta reportada
       summary:
         action_preambles:

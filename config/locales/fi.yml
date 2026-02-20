@@ -56,6 +56,7 @@ fi:
         label: Vaihda rooli
         no_role: Ei roolia
         title: Vaihda käyttäjän %{username} rooli
+      collections: Kokoelmat
       confirm: Vahvista
       confirmed: Vahvistettu
       confirming: Vahvistetaan
@@ -340,6 +341,15 @@ fi:
       unpublish: Lopeta julkaisu
       unpublished_msg: Tiedotteen julkaisun lopetus onnistui!
       updated_msg: Tiedotteen päivitys onnistui!
+    collections:
+      accounts: Tilit
+      collection_title: Kokoelma, koonnut %{name}
+      contents: Sisältö
+      number_of_accounts:
+        one: 1 tili
+        other: "%{count} tiliä"
+      open: Avaa
+      view_publicly: Näytä julkisesti
     critical_update_pending: Kriittinen päivitys odottaa
     custom_emojis:
       assign_category: Aseta luokka
@@ -679,6 +689,7 @@ fi:
       cancel: Peruuta
       category: Luokka
       category_description_html: Syy siihen, miksi tämä tili ja/tai sisältö raportoitiin, mainitaan ilmoitetun tilin kanssa viestiessä
+      collections: Kokoelmat
       comment:
         none: Ei mitään
       comment_description_html: 'Antaakseen lisätietoja %{name} kirjoitti:'
@@ -708,11 +719,13 @@ fi:
       report: Raportti nro %{id}
       reported_account: Raportoitu tili
       reported_by: Raportoinut
+      reported_content: Raportoitu sisältö
       reported_with_application: Raportoitu sovelluksella
       resolved: Ratkaistu
       resolved_msg: Raportin ratkaisu onnistui!
       skip_to_actions: Siirry toimiin
       status: Tila
+      statuses: Julkaisut
       statuses_description_html: Loukkaava sisältö mainitaan raportoidun tilin yhteydessä
       summary:
         action_preambles:

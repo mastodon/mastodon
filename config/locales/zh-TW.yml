@@ -53,6 +53,7 @@ zh-TW:
         label: 變更角色
         no_role: 沒有角色
         title: 為 %{username} 變更角色
+      collections: 收藏名單
       confirm: 確定
       confirmed: 已確定
       confirming: 確定
@@ -336,6 +337,14 @@ zh-TW:
       unpublish: 取消發布
       unpublished_msg: 成功取消發布公告！
       updated_msg: 成功更新公告！
+    collections:
+      accounts: 帳號
+      collection_title: "%{name} 的收藏名單"
+      contents: 內容
+      number_of_accounts:
+        other: "%{count} 個帳號"
+      open: 開啟
+      view_publicly: 公開檢視
     critical_update_pending: 重要更新待升級
     custom_emojis:
       assign_category: 指定分類
@@ -666,6 +675,7 @@ zh-TW:
       cancel: 取消
       category: 分類
       category_description_html: 此帳號及/或被檢舉內容之原因將被引用於檢舉帳號通知中
+      collections: 收藏名單
       comment:
         none: 無
       comment_description_html: 提供更多資訊，%{name} 寫道：
@@ -695,11 +705,13 @@ zh-TW:
       report: '檢舉 #%{id}'
       reported_account: 被檢舉使用者
       reported_by: 檢舉人
+      reported_content: 被檢舉的內容
       reported_with_application: 透過應用程式檢舉
       resolved: 已解決
       resolved_msg: 檢舉報告已處理完成！
       skip_to_actions: 跳過行動
       status: 嘟文
+      statuses: 嘟文
       statuses_description_html: 侵犯性違規內容將被引用於檢舉帳號通知中
       summary:
         action_preambles:
