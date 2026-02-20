@@ -60,17 +60,21 @@ const AddedAccountItem: React.FC<{
     onRemove(accountId);
   }, [accountId, onRemove]);
 
-  const lastPostHint = isOlderThanAWeek(account?.last_status_at) && (
-    <Badge
-      label={
-        <FormattedMessage
-          id='collections.old_last_post_note'
-          defaultMessage='Last posted over a week ago'
+  const lastPostHint = useMemo(
+    () =>
+      isOlderThanAWeek(account?.last_status_at) && (
+        <Badge
+          label={
+            <FormattedMessage
+              id='collections.old_last_post_note'
+              defaultMessage='Last posted over a week ago'
+            />
+          }
+          icon={<WarningIcon />}
+          className={classes.accountBadge}
         />
-      }
-      icon={<WarningIcon />}
-      className={classes.accountBadge}
-    />
+      ),
+    [account?.last_status_at],
   );
 
   return (
