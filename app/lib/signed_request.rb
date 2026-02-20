@@ -23,14 +23,14 @@ class SignedRequest
       %w(rsa-sha256 hs2019).include?(signature_algorithm)
     end
 
-    def verified?(actor)
+    def verified?(keypair)
       signature = Base64.decode64(signature_params['signature'])
       compare_signed_string = build_signed_string(include_query_string: true)
 
-      return true unless verify_signature(actor, signature, compare_signed_string).nil?
+      return true unless verify_signature(keypair, signature, compare_signed_string).nil?
 
       compare_signed_string = build_signed_string(include_query_string: false)
-      return true unless verify_signature(actor, signature, compare_signed_string).nil?
+      return true unless verify_signature(keypair, signature, compare_signed_string).nil?
 
       false
     end
@@ -99,8 +99,8 @@ class SignedRequest
       signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split
     end
 
-    def verify_signature(actor, signature, compare_signed_string)
-      true if actor.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), signature, compare_signed_string)
+    def verify_signature(keypair, signature, compare_signed_string)
+      true if keypair.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), signature, compare_signed_string)
     rescue OpenSSL::PKey::RSAError
       nil
     end
@@ -170,8 +170,8 @@ class SignedRequest
       true
     end
 
-    def verified?(actor)
-      key = Linzer.new_rsa_v1_5_sha256_public_key(actor.public_key)
+    def verified?(keypair)
+      key = Linzer.new_rsa_v1_5_sha256_public_key(keypair.public_key)
 
       Linzer.verify(key, @message, @signature)
     rescue Linzer::VerifyError
@@ -243,7 +243,7 @@ class SignedRequest
       end
   end
 
-  def verified?(actor)
+  def verified?(keypair)
     missing_signature_parameters = @signature.missing_signature_parameters
     raise Mastodon::SignatureVerificationError, "Incompatible request signature. #{missing_signature_parameters.to_sentence} are required" if missing_signature_parameters
     raise Mastodon::SignatureVerificationError, 'Unsupported signature algorithm (only rsa-sha256 and hs2019 are supported)' unless @signature.algorithm_supported?
@@ -251,7 +251,7 @@ class SignedRequest
 
     @signature.verify_signature_strength!
     @signature.verify_body_digest!
-    @signature.verified?(actor)
+    @signature.verified?(keypair)
   end
 
   private
