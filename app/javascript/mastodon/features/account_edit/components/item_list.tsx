@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-import type { FC } from 'react';
 
 import classes from '../styles.module.scss';
 
@@ -17,12 +16,12 @@ interface AccountEditItemListProps<Item extends AnyItem = AnyItem> {
   onDelete?: (item: Item) => void;
 }
 
-export const AccountEditItemList: FC<AccountEditItemListProps> = ({
+export const AccountEditItemList = <Item extends AnyItem>({
   renderItem,
   items,
   onEdit,
   onDelete,
-}) => {
+}: AccountEditItemListProps<Item>) => {
   if (items.length === 0) {
     return null;
   }
@@ -48,11 +47,11 @@ type AccountEditItemButtonsProps<Item extends AnyItem = AnyItem> = Pick<
   'onEdit' | 'onDelete'
 > & { item: Item };
 
-const AccountEditItemButtons: FC<AccountEditItemButtonsProps> = ({
+const AccountEditItemButtons = <Item extends AnyItem>({
   item,
   onDelete,
   onEdit,
-}) => {
+}: AccountEditItemButtonsProps<Item>) => {
   const handleEdit = useCallback(() => {
     onEdit?.(item);
   }, [item, onEdit]);

@@ -3,6 +3,7 @@ import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
+import type { ApiFeaturedTagJSON } from '@/mastodon/api_types/tags';
 import { Tag } from '@/mastodon/components/tags/tag';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
@@ -71,11 +72,31 @@ export const AccountEditFeaturedTags: FC = () => {
             ))}
           </div>
         )}
-        <AccountEditItemList items={tags} onDelete={handleDeleteTag} />
+        <AccountEditItemList
+          items={tags}
+          renderItem={renderTag}
+          onDelete={handleDeleteTag}
+        />
       </div>
     </AccountEditColumn>
   );
 };
+
+function renderTag(tag: ApiFeaturedTagJSON) {
+  return (
+    <div className={classes.tagItem}>
+      <h4>#{tag.name}</h4>
+      {tag.statuses_count > 0 && (
+        <FormattedMessage
+          id='account_edit_tags.tag_status_count'
+          defaultMessage='{count} posts'
+          values={{ count: tag.statuses_count }}
+          tagName='p'
+        />
+      )}
+    </div>
+  );
+}
 
 const SuggestedTag: FC<{ name: string }> = ({ name }) => {
   const isPending = useAppSelector((state) => state.profileEdit.isPending);
