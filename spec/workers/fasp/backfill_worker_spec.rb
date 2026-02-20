@@ -5,8 +5,10 @@ require 'rails_helper'
 RSpec.describe Fasp::BackfillWorker do
   include ProviderRequestHelper
 
-  let(:backfill_request) { Fabricate(:fasp_backfill_request) }
-  let(:provider) { backfill_request.fasp_provider }
+  subject { described_class.new.perform(backfill_request.id) }
+
+  let(:provider) { Fabricate(:confirmed_fasp) }
+  let(:backfill_request) { Fabricate(:fasp_backfill_request, fasp_provider: provider) }
   let(:status) { Fabricate(:status) }
   let!(:stubbed_request) do
     stub_provider_request(provider,

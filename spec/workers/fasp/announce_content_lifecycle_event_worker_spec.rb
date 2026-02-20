@@ -6,10 +6,11 @@ RSpec.describe Fasp::AnnounceContentLifecycleEventWorker do
   include ProviderRequestHelper
 
   let(:status_uri) { 'https://masto.example.com/status/1' }
+  let(:provider) { Fabricate(:confirmed_fasp) }
   let(:subscription) do
-    Fabricate(:fasp_subscription)
+    Fabricate(:fasp_subscription, fasp_provider: provider)
   end
-  let(:provider) { subscription.fasp_provider }
+
   let!(:stubbed_request) do
     stub_provider_request(provider,
                           method: :post,
