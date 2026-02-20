@@ -1,6 +1,8 @@
 import type {
+  Action,
   ActionCreatorWithPreparedPayload,
   GetThunkAPI,
+  UnknownAction,
 } from '@reduxjs/toolkit';
 import {
   createAsyncThunk as rtkCreateAsyncThunk,
@@ -309,4 +311,16 @@ export function createDataLoadingThunk<
       condition: thunkOptions?.condition,
     },
   );
+}
+
+/**
+ * Provides a type guard for legacy string actions.
+ * @param type The action type string.
+ * @example
+ * if (matchAppAction('my_action_type')(action)) {
+ *    // action is now typed
+ * }
+ */
+export function matchAppAction<TAction extends Action>(type: TAction['type']) {
+  return (action: UnknownAction): action is TAction => action.type === type;
 }
