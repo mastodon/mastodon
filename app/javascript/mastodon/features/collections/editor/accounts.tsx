@@ -6,6 +6,9 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import CancelIcon from '@/material-icons/400-24px/cancel.svg?react';
 import CheckIcon from '@/material-icons/400-24px/check.svg?react';
+import { showAlertForError } from 'mastodon/actions/alerts';
+import { openModal } from 'mastodon/actions/modal';
+import { apiFollowAccount } from 'mastodon/api/accounts';
 import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { Account } from 'mastodon/components/account';
 import { Avatar } from 'mastodon/components/avatar';
@@ -18,11 +21,13 @@ import { Icon } from 'mastodon/components/icon';
 import { IconButton } from 'mastodon/components/icon_button';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import { useSearchAccounts } from 'mastodon/features/lists/use_search_accounts';
+import { useAccount } from 'mastodon/hooks/useAccount';
+import { me } from 'mastodon/initial_state';
 import {
   addCollectionItem,
   removeCollectionItem,
 } from 'mastodon/reducers/slices/collections';
-import { useAppDispatch, useAppSelector } from 'mastodon/store';
+import { store, useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import type { TempCollectionState } from './state';
 import { getCollectionEditorState } from './state';
@@ -66,7 +71,7 @@ interface SuggestionItem {
 }
 
 const SuggestedAccountItem: React.FC<SuggestionItem> = ({ id, isSelected }) => {
-  const account = useAppSelector((state) => state.accounts.get(id));
+  const account = useAccount(id);
 
   if (!account) return null;
 
@@ -130,6 +135,7 @@ export const CollectionAccounts: React.FC<{
     isLoading: isLoadingSuggestions,
     searchAccounts,
   } = useSearchAccounts({
+    withRelationships: true,
     filterResults: (account) =>
       // Only suggest accounts who allow being featured/recommended
       account.feature_approval.current_user === 'automatic',
@@ -157,13 +163,66 @@ export const CollectionAccounts: React.FC<{
     [],
   );
 
-  const toggleAccountItem = useCallback((item: SuggestionItem) => {
-    setAccountIds((ids) =>
-      ids.includes(item.id)
-        ? ids.filter((id) => id !== item.id)
-        : [...ids, item.id],
-    );
+  const relationships = useAppSelector((state) => state.relationships);
+
+  const confirmFollowStatus = useCallback(
+    (accountId: string, onFollowing: () => void) => {
+      const relationship = relationships.get(accountId);
+
+      if (!relationship) {
+        return;
+      }
+
+      if (
+        accountId === me ||
+        relationship.following ||
+        relationship.requested
+      ) {
+        onFollowing();
+      } else {
+        dispatch(
+          openModal({
+            modalType: 'CONFIRM_FOLLOW_TO_COLLECTION',
+            modalProps: {
+              accountId,
+              onConfirm: () => {
+                apiFollowAccount(accountId)
+                  .then(onFollowing)
+                  .catch((err: unknown) => {
+                    store.dispatch(showAlertForError(err));
+                  });
+              },
+            },
+          }),
+        );
+      }
+    },
+    [dispatch, relationships],
+  );
+
+  const removeAccountItem = useCallback((accountId: string) => {
+    setAccountIds((ids) => ids.filter((id) => id !== accountId));
   }, []);
+
+  const addAccountItem = useCallback(
+    (accountId: string) => {
+      confirmFollowStatus(accountId, () => {
+        setAccountIds((ids) => [...ids, accountId]);
+      });
+    },
+    [confirmFollowStatus],
+  );
+
+  const toggleAccountItem = useCallback(
+    (item: SuggestionItem) => {
+      if (addedAccountIds.includes(item.id)) {
+        removeAccountItem(item.id);
+      } else {
+        addAccountItem(item.id);
+      }
+    },
+    [addAccountItem, addedAccountIds, removeAccountItem],
+  );
 
   const instantRemoveAccountItem = useCallback(
     (accountId: string) => {
@@ -187,19 +246,24 @@ export const CollectionAccounts: React.FC<{
     [collectionItems, dispatch, id, intl],
   );
 
+  const instantAddAccountItem = useCallback(
+    (collectionId: string, accountId: string) => {
+      confirmFollowStatus(accountId, () => {
+        void dispatch(addCollectionItem({ collectionId, accountId }));
+      });
+    },
+    [confirmFollowStatus, dispatch],
+  );
+
   const instantToggleAccountItem = useCallback(
     (item: SuggestionItem) => {
       if (accountIds.includes(item.id)) {
         instantRemoveAccountItem(item.id);
-      } else {
-        if (id) {
-          void dispatch(
-            addCollectionItem({ collectionId: id, accountId: item.id }),
-          );
-        }
+      } else if (id) {
+        instantAddAccountItem(id, item.id);
       }
     },
-    [accountIds, dispatch, id, instantRemoveAccountItem],
+    [accountIds, id, instantAddAccountItem, instantRemoveAccountItem],
   );
 
   const handleRemoveAccountItem = useCallback(
@@ -207,10 +271,10 @@ export const CollectionAccounts: React.FC<{
       if (isEditMode) {
         instantRemoveAccountItem(accountId);
       } else {
-        setAccountIds((ids) => ids.filter((id) => id !== accountId));
+        removeAccountItem(accountId);
       }
     },
-    [isEditMode, instantRemoveAccountItem],
+    [isEditMode, instantRemoveAccountItem, removeAccountItem],
   );
 
   const handleSubmit = useCallback(
