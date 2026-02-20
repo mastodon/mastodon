@@ -45,7 +45,9 @@ const profileEditSlice = createSlice({
       state.isPending = false;
     });
     builder.addCase(addFeaturedTag.fulfilled, (state, action) => {
-      state.tags.push(action.payload);
+      state.tags = [...state.tags, action.payload].toSorted(
+        (a, b) => b.statuses_count - a.statuses_count,
+      );
       state.tagSuggestions = state.tagSuggestions.filter(
         (tag) => tag.name !== action.meta.arg.name,
       );
