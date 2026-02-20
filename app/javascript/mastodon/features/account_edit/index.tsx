@@ -1,10 +1,11 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
+import { fetchFeaturedTags } from '@/mastodon/actions/featured_tags';
 import type { ModalType } from '@/mastodon/actions/modal';
 import { openModal } from '@/mastodon/actions/modal';
 import { AccountBio } from '@/mastodon/components/account_bio';
@@ -17,8 +18,10 @@ import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_e
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { autoPlayGif } from '@/mastodon/initial_state';
-import { useAppDispatch } from '@/mastodon/store';
+import { selectAccountFeaturedTags } from '@/mastodon/selectors/accounts';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
+import { EditButton } from './components/edit_button';
 import { AccountEditSection } from './components/section';
 import classes from './styles.module.scss';
 
@@ -58,6 +61,10 @@ const messages = defineMessages({
     defaultMessage:
       'Help others identify, and have quick access to, your favorite topics.',
   },
+  featuredHashtagsItem: {
+    id: 'account_edit.featured_hashtags.item',
+    defaultMessage: 'hashtags',
+  },
   profileTabTitle: {
     id: 'account_edit.profile_tab.title',
     defaultMessage: 'Profile tab settings',
@@ -74,6 +81,16 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const intl = useIntl();
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (accountId) {
+      void dispatch(fetchFeaturedTags({ accountId }));
+    }
+  }, [accountId, dispatch]);
+  const featuredTags = useAppSelector((state) =>
+    accountId ? selectAccountFeaturedTags(state, accountId) : null,
+  );
+
   const handleOpenModal = useCallback(
     (type: ModalType, props?: Record<string, unknown>) => {
       dispatch(openModal({ modalType: type, modalProps: props ?? {} }));
@@ -86,6 +103,11 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   const handleBioEdit = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_BIO');
   }, [handleOpenModal]);
+
+  const history = useHistory();
+  const handleFeaturedTagsEdit = useCallback(() => {
+    history.push('/profile/featured_tags');
+  }, [history]);
 
   if (!accountId) {
     return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
@@ -100,6 +122,9 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
   }
 
   const headerSrc = autoPlayGif ? account.header : account.header_static;
+  const hasName = !!account.display_name;
+  const hasBio = !!account.note_plain;
+  const hasTags = Array.isArray(featuredTags);
 
   return (
     <Column bindToDocument={!multiColumn} className={classes.column}>
@@ -129,8 +154,14 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       <AccountEditSection
         title={messages.displayNameTitle}
         description={messages.displayNamePlaceholder}
-        showDescription={account.display_name.length === 0}
-        onEdit={handleNameEdit}
+        showDescription={!hasName}
+        buttons={
+          <EditButton
+            onClick={handleNameEdit}
+            item={messages.displayNameTitle}
+            edit={hasName}
+          />
+        }
       >
         <DisplayNameSimple account={account} />
       </AccountEditSection>
@@ -138,8 +169,14 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       <AccountEditSection
         title={messages.bioTitle}
         description={messages.bioPlaceholder}
-        showDescription={!account.note_plain}
-        onEdit={handleBioEdit}
+        showDescription={!hasBio}
+        buttons={
+          <EditButton
+            onClick={handleBioEdit}
+            item={messages.bioTitle}
+            edit={hasBio}
+          />
+        }
       >
         <AccountBio accountId={accountId} />
       </AccountEditSection>
@@ -153,8 +190,17 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       <AccountEditSection
         title={messages.featuredHashtagsTitle}
         description={messages.featuredHashtagsPlaceholder}
-        showDescription
-      />
+        showDescription={!hasTags}
+        buttons={
+          <EditButton
+            onClick={handleFeaturedTagsEdit}
+            edit={hasTags}
+            item={messages.featuredHashtagsItem}
+          />
+        }
+      >
+        {featuredTags?.map((tag) => `#${tag.name}`).join(', ')}
+      </AccountEditSection>
 
       <AccountEditSection
         title={messages.profileTabTitle}

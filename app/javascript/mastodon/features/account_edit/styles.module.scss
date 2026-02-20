@@ -45,19 +45,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 8px;
-
-  > button {
-    border: 1px solid var(--color-border-primary);
-    border-radius: 8px;
-    box-sizing: border-box;
-    padding: 4px;
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
+  margin-bottom: 16px;
 }
 
 .sectionTitle {
@@ -68,6 +56,31 @@
 
 .sectionSubtitle {
   color: var(--color-text-secondary);
+}
+
+.editButton {
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px;
+
+  &:global(.button) {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-size: 13px;
+    padding: 4px 8px;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: var(--color-bg-brand-softer);
+    }
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .inputWrapper {
