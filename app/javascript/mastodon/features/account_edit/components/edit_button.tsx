@@ -32,6 +32,7 @@ export interface EditButtonProps {
   item: string | MessageDescriptor;
   edit?: boolean;
   icon?: boolean;
+  disabled?: boolean;
 }
 
 export const EditButton: FC<EditButtonProps> = ({
@@ -39,6 +40,7 @@ export const EditButton: FC<EditButtonProps> = ({
   item,
   edit = false,
   icon = edit,
+  disabled,
 }) => {
   const intl = useIntl();
 
@@ -48,11 +50,17 @@ export const EditButton: FC<EditButtonProps> = ({
   });
 
   if (icon) {
-    return <EditIconButton title={label} onClick={onClick} />;
+    return (
+      <EditIconButton title={label} onClick={onClick} disabled={disabled} />
+    );
   }
 
   return (
-    <Button className={classes.editButton} onClick={onClick}>
+    <Button
+      className={classes.editButton}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {label}
     </Button>
   );
@@ -61,20 +69,23 @@ export const EditButton: FC<EditButtonProps> = ({
 export const EditIconButton: FC<{
   onClick: MouseEventHandler;
   title: string;
-}> = ({ title, onClick }) => (
+  disabled?: boolean;
+}> = ({ title, onClick, disabled }) => (
   <IconButton
     icon='pencil'
     iconComponent={EditIcon}
     onClick={onClick}
     className={classes.editButton}
     title={title}
+    disabled={disabled}
   />
 );
 
 export const DeleteIconButton: FC<{
   onClick: MouseEventHandler;
   item: string;
-}> = ({ onClick, item }) => {
+  disabled?: boolean;
+}> = ({ onClick, item, disabled }) => {
   const intl = useIntl();
   return (
     <IconButton
@@ -83,6 +94,7 @@ export const DeleteIconButton: FC<{
       onClick={onClick}
       className={classNames(classes.editButton, classes.deleteButton)}
       title={intl.formatMessage(messages.delete, { item })}
+      disabled={disabled}
     />
   );
 };

@@ -45,6 +45,7 @@ const profileEditSlice = createSlice({
       state.tagSuggestions = state.tagSuggestions.filter(
         (tag) => tag.name !== action.meta.arg.name,
       );
+      state.isPending = false;
     });
 
     builder.addCase(deleteFeaturedTag.pending, (state) => {
@@ -55,6 +56,7 @@ const profileEditSlice = createSlice({
     });
     builder.addCase(deleteFeaturedTag.fulfilled, (state, action) => {
       state.tags = state.tags.filter((tag) => tag.id !== action.meta.arg.tagId);
+      state.isPending = false;
     });
   },
 });

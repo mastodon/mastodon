@@ -14,6 +14,7 @@ interface AccountEditItemListProps<Item extends AnyItem = AnyItem> {
   items: Item[];
   onEdit?: (item: Item) => void;
   onDelete?: (item: Item) => void;
+  disabled?: boolean;
 }
 
 export const AccountEditItemList = <Item extends AnyItem>({
@@ -21,6 +22,7 @@ export const AccountEditItemList = <Item extends AnyItem>({
   items,
   onEdit,
   onDelete,
+  disabled,
 }: AccountEditItemListProps<Item>) => {
   if (items.length === 0) {
     return null;
@@ -32,9 +34,10 @@ export const AccountEditItemList = <Item extends AnyItem>({
         <li key={item.id}>
           <span>{renderItem?.(item) ?? item.name}</span>
           <AccountEditItemButtons
-            onDelete={onDelete}
-            onEdit={onEdit}
             item={item}
+            onEdit={onEdit}
+            onDelete={onDelete}
+            disabled={disabled}
           />
         </li>
       ))}
@@ -44,13 +47,14 @@ export const AccountEditItemList = <Item extends AnyItem>({
 
 type AccountEditItemButtonsProps<Item extends AnyItem = AnyItem> = Pick<
   AccountEditItemListProps<Item>,
-  'onEdit' | 'onDelete'
+  'onEdit' | 'onDelete' | 'disabled'
 > & { item: Item };
 
 const AccountEditItemButtons = <Item extends AnyItem>({
   item,
   onDelete,
   onEdit,
+  disabled,
 }: AccountEditItemButtonsProps<Item>) => {
   const handleEdit = useCallback(() => {
     onEdit?.(item);
@@ -65,8 +69,21 @@ const AccountEditItemButtons = <Item extends AnyItem>({
 
   return (
     <div className={classes.itemListButtons}>
-      {onEdit && <EditButton onClick={handleEdit} item={item.name} edit />}
-      {onDelete && <DeleteIconButton onClick={handleDelete} item={item.name} />}
+      {onEdit && (
+        <EditButton
+          edit
+          item={item.name}
+          disabled={disabled}
+          onClick={handleEdit}
+        />
+      )}
+      {onDelete && (
+        <DeleteIconButton
+          item={item.name}
+          disabled={disabled}
+          onClick={handleDelete}
+        />
+      )}
     </div>
   );
 };

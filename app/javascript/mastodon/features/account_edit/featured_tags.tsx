@@ -31,7 +31,9 @@ export const AccountEditFeaturedTags: FC = () => {
   const account = useAccount(accountId);
   const intl = useIntl();
 
-  const { tags, tagSuggestions } = useAppSelector((state) => state.profileEdit);
+  const { tags, tagSuggestions, isPending } = useAppSelector(
+    (state) => state.profileEdit,
+  );
 
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -68,12 +70,13 @@ export const AccountEditFeaturedTags: FC = () => {
               defaultMessage='Suggestions:'
             />
             {tagSuggestions.map((tag) => (
-              <SuggestedTag name={tag.name} key={tag.id} />
+              <SuggestedTag name={tag.name} key={tag.id} disabled={isPending} />
             ))}
           </div>
         )}
         <AccountEditItemList
           items={tags}
+          disabled={isPending}
           renderItem={renderTag}
           onDelete={handleDeleteTag}
         />
@@ -98,11 +101,13 @@ function renderTag(tag: ApiFeaturedTagJSON) {
   );
 }
 
-const SuggestedTag: FC<{ name: string }> = ({ name }) => {
-  const isPending = useAppSelector((state) => state.profileEdit.isPending);
+const SuggestedTag: FC<{ name: string; disabled?: boolean }> = ({
+  name,
+  disabled,
+}) => {
   const dispatch = useAppDispatch();
   const handleAddTag = useCallback(() => {
     void dispatch(addFeaturedTag({ name }));
   }, [dispatch, name]);
-  return <Tag name={name} onClick={handleAddTag} disabled={isPending} />;
+  return <Tag name={name} onClick={handleAddTag} disabled={disabled} />;
 };
