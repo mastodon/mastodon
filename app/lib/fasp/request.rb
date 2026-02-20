@@ -29,7 +29,7 @@ class Fasp::Request
     response = HTTP
                .headers(headers)
                .use(http_signature: { key:, covered_components: COVERED_COMPONENTS })
-               .send(verb, url, body:)
+               .send(verb, url, body:, socket_class: ::Request::Socket)
 
     validate!(response)
     @provider.delivery_failure_tracker.track_success!
