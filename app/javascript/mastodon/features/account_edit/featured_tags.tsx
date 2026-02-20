@@ -4,6 +4,7 @@ import type { FC } from 'react';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import type { ApiFeaturedTagJSON } from '@/mastodon/api_types/tags';
+import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { Tag } from '@/mastodon/components/tags/tag';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
@@ -31,7 +32,7 @@ export const AccountEditFeaturedTags: FC = () => {
   const account = useAccount(accountId);
   const intl = useIntl();
 
-  const { tags, tagSuggestions, isPending } = useAppSelector(
+  const { tags, tagSuggestions, isLoading, isPending } = useAppSelector(
     (state) => state.profileEdit,
   );
 
@@ -74,6 +75,7 @@ export const AccountEditFeaturedTags: FC = () => {
             ))}
           </div>
         )}
+        {isLoading && <LoadingIndicator />}
         <AccountEditItemList
           items={tags}
           disabled={isPending}

@@ -13,12 +13,14 @@ import { createDataLoadingThunk } from '@/mastodon/store/typed_functions';
 interface ProfileEditState {
   tags: ApiFeaturedTagJSON[];
   tagSuggestions: ApiFeaturedTagJSON[];
+  isLoading: boolean;
   isPending: boolean;
 }
 
 const initialState: ProfileEditState = {
   tags: [],
   tagSuggestions: [],
+  isLoading: true,
   isPending: false,
 };
 
@@ -29,9 +31,11 @@ const profileEditSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(fetchSuggestedTags.fulfilled, (state, action) => {
       state.tagSuggestions = action.payload.map(hashtagToFeaturedTag);
+      state.isLoading = false;
     });
     builder.addCase(fetchFeaturedTags.fulfilled, (state, action) => {
       state.tags = action.payload;
+      state.isLoading = false;
     });
 
     builder.addCase(addFeaturedTag.pending, (state) => {
