@@ -8,12 +8,14 @@ import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import {
   addFeaturedTag,
+  deleteFeaturedTag,
   fetchFeaturedTags,
   fetchSuggestedTags,
 } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
+import { AccountEditItemList } from './components/item_list';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
@@ -36,6 +38,13 @@ export const AccountEditFeaturedTags: FC = () => {
     void dispatch(fetchSuggestedTags());
   }, [dispatch]);
 
+  const handleDeleteTag = useCallback(
+    ({ id }: { id: string }) => {
+      void dispatch(deleteFeaturedTag({ tagId: id }));
+    },
+    [dispatch],
+  );
+
   if (!accountId || !account) {
     return <AccountEditEmptyColumn notFound={!accountId} />;
   }
@@ -57,22 +66,12 @@ export const AccountEditFeaturedTags: FC = () => {
               id='account_edit_tags.suggestions'
               defaultMessage='Suggestions:'
             />
-            <ul>
-              {tagSuggestions.map((tag) => (
-                <li key={tag.id}>
-                  <SuggestedTag name={tag.name} />
-                </li>
-              ))}
-            </ul>
+            {tagSuggestions.map((tag) => (
+              <SuggestedTag name={tag.name} key={tag.id} />
+            ))}
           </div>
         )}
-        {tags.length > 0 && (
-          <ul>
-            {tags.map((tag) => (
-              <li key={tag.id}>{tag.name}</li>
-            ))}
-          </ul>
-        )}
+        <AccountEditItemList items={tags} onDelete={handleDeleteTag} />
       </div>
     </AccountEditColumn>
   );

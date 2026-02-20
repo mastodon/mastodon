@@ -3,8 +3,11 @@ import type { FC, MouseEventHandler } from 'react';
 import type { MessageDescriptor } from 'react-intl';
 import { defineMessages, useIntl } from 'react-intl';
 
+import classNames from 'classnames';
+
 import { Button } from '@/mastodon/components/button';
 import { IconButton } from '@/mastodon/components/icon_button';
+import DeleteIcon from '@/material-icons/400-24px/delete.svg?react';
 import EditIcon from '@/material-icons/400-24px/edit.svg?react';
 
 import classes from '../styles.module.scss';
@@ -17,6 +20,10 @@ const messages = defineMessages({
   edit: {
     id: 'account_edit.button.edit',
     defaultMessage: 'Edit {item}',
+  },
+  delete: {
+    id: 'account_edit.button.delete',
+    defaultMessage: 'Delete {item}',
   },
 });
 
@@ -63,3 +70,19 @@ export const EditIconButton: FC<{
     title={title}
   />
 );
+
+export const DeleteIconButton: FC<{
+  onClick: MouseEventHandler;
+  item: string;
+}> = ({ onClick, item }) => {
+  const intl = useIntl();
+  return (
+    <IconButton
+      icon='delete'
+      iconComponent={DeleteIcon}
+      onClick={onClick}
+      className={classNames(classes.editButton, classes.deleteButton)}
+      title={intl.formatMessage(messages.delete, { item })}
+    />
+  );
+};
