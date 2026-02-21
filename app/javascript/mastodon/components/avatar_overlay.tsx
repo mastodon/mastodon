@@ -10,6 +10,12 @@ interface Props {
   overlaySize?: number;
 }
 
+const fallbackImage = '/avatars/original/missing.png';
+
+const handleImgError = (error: { currentTarget: { src: string } }) => {
+  error.currentTarget.src = fallbackImage;
+};
+
 export const AvatarOverlay: React.FC<Props> = ({
   account,
   friend,
@@ -38,7 +44,13 @@ export const AvatarOverlay: React.FC<Props> = ({
           className='account__avatar'
           style={{ width: `${baseSize}px`, height: `${baseSize}px` }}
         >
-          {accountSrc && <img src={accountSrc} alt={account?.get('acct')} />}
+          {accountSrc && (
+            <img
+              src={accountSrc}
+              alt={account?.get('acct')}
+              onError={handleImgError}
+            />
+          )}
         </div>
       </div>
       <div className='account__avatar-overlay-overlay'>
@@ -46,7 +58,13 @@ export const AvatarOverlay: React.FC<Props> = ({
           className='account__avatar'
           style={{ width: `${overlaySize}px`, height: `${overlaySize}px` }}
         >
-          {friendSrc && <img src={friendSrc} alt={friend?.get('acct')} />}
+          {friendSrc && (
+            <img
+              src={friendSrc}
+              alt={friend?.get('acct')}
+              onError={handleImgError}
+            />
+          )}
         </div>
       </div>
     </div>
