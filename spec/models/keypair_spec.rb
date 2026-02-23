@@ -11,6 +11,29 @@ RSpec.describe Keypair do
     end
   end
 
+  describe '#full_uri' do
+    let(:keypair) { Fabricate(:keypair, account: account) }
+
+    context 'with a remote account' do
+      let(:account) { Fabricate(:remote_account) }
+
+      it 'returns an HTTP URI equals to the stored URI' do
+        expect(keypair.full_uri)
+          .to start_with('https://')
+          .and eq(keypair.uri)
+      end
+    end
+
+    context 'with a local account' do
+      let(:account) { Fabricate(:account) }
+
+      it 'returns an HTTP URI starting with the account URI' do
+        expect(keypair.full_uri)
+          .to start_with(ActivityPub::TagManager.instance.uri_for(account))
+      end
+    end
+  end
+
   describe 'from_keyid' do
     context 'when a key with the given key ID exists' do
       let(:account) { Fabricate(:account, domain: 'example.com') }
