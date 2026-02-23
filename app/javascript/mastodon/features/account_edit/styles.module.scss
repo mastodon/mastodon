@@ -136,14 +136,9 @@ textarea.inputText {
 }
 
 .deleteButton {
-  color: var(--color-text-error);
-
-  &:active,
-  &:focus,
-  &:hover {
-    background-color: var(--color-bg-error-base-hover);
-    color: var(--color-text-on-error-base);
-  }
+  --default-icon-color: var(--color-text-error);
+  --hover-bg-color: var(--color-bg-error-base-hover);
+  --hover-icon-color: var(--color-text-on-error-base);
 }
 
 // Item list component
