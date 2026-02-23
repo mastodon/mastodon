@@ -9,10 +9,10 @@ module SignedRequestHelpers
     headers['Host'] = Rails.configuration.x.local_domain
     signed_headers = headers.merge('(request-target)' => "get #{path}").slice('(request-target)', 'Host', 'Date')
 
-    key_id = ActivityPub::TagManager.instance.key_uri_for(sign_with)
     keypair = sign_with.keypair
+    key_id = keypair.uri
     signed_string = signed_headers.map { |key, value| "#{key.downcase}: #{value}" }.join("\n")
-    signature = Base64.strict_encode64(keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
+    signature = Base64.strict_encode64(keypair.keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
 
     headers['Signature'] = "keyId=\"#{key_id}\",algorithm=\"rsa-sha256\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
 
@@ -29,10 +29,10 @@ module SignedRequestHelpers
 
     signed_headers = headers.merge('(request-target)' => "post #{path}").slice('(request-target)', 'Host', 'Date', 'Digest')
 
-    key_id = ActivityPub::TagManager.instance.key_uri_for(sign_with)
     keypair = sign_with.keypair
+    key_id = keypair.uri
     signed_string = signed_headers.map { |key, value| "#{key.downcase}: #{value}" }.join("\n")
-    signature = Base64.strict_encode64(keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
+    signature = Base64.strict_encode64(keypair.keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
 
     headers['Signature'] = "keyId=\"#{key_id}\",algorithm=\"rsa-sha256\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
 

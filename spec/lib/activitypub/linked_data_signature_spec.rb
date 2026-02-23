@@ -159,6 +159,6 @@ RSpec.describe ActivityPub::LinkedDataSignature do
     options_hash   = Digest::SHA256.hexdigest(canonicalize(options.merge('@context' => ActivityPub::LinkedDataSignature::CONTEXT)))
     document_hash  = Digest::SHA256.hexdigest(canonicalize(document))
     to_be_verified = options_hash + document_hash
-    Base64.strict_encode64(from_actor.keypair.sign(OpenSSL::Digest.new('SHA256'), to_be_verified))
+    Base64.strict_encode64(from_actor.keypair.keypair.sign(OpenSSL::Digest.new('SHA256'), to_be_verified))
   end
 end
