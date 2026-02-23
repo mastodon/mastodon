@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import type { FC } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
@@ -12,9 +12,9 @@ import { Avatar } from '@/mastodon/components/avatar';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
-import { useFeaturedHashtags } from '@/mastodon/hooks/useFeaturedHashtags';
 import { autoPlayGif } from '@/mastodon/initial_state';
-import { useAppDispatch } from '@/mastodon/store';
+import { fetchFeaturedTags } from '@/mastodon/reducers/slices/profile_edit';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
 import { EditButton } from './components/edit_button';
@@ -82,7 +82,12 @@ export const AccountEdit: FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const featuredTags = useFeaturedHashtags(accountId);
+  const { tags: featuredTags, isLoading: isTagsLoading } = useAppSelector(
+    (state) => state.profileEdit,
+  );
+  useEffect(() => {
+    void dispatch(fetchFeaturedTags());
+  }, [dispatch]);
 
   const handleOpenModal = useCallback(
     (type: ModalType, props?: Record<string, unknown>) => {
@@ -109,7 +114,7 @@ export const AccountEdit: FC = () => {
   const headerSrc = autoPlayGif ? account.header : account.header_static;
   const hasName = !!account.display_name;
   const hasBio = !!account.note_plain;
-  const hasTags = Array.isArray(featuredTags);
+  const hasTags = !isTagsLoading && featuredTags.length > 0;
 
   return (
     <AccountEditColumn
@@ -171,7 +176,7 @@ export const AccountEdit: FC = () => {
           />
         }
       >
-        {featuredTags?.map((tag) => `#${tag.name}`).join(', ')}
+        {featuredTags.map((tag) => `#${tag.name}`).join(', ')}
       </AccountEditSection>
 
       <AccountEditSection
