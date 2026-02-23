@@ -7,7 +7,7 @@ RSpec.describe 'ActivityPub Inboxes' do
 
   describe 'POST #create' do
     context 'with signature' do
-      let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub) }
+      let(:remote_account) { Fabricate(:account_with_private_key, domain: 'example.com', protocol: :activitypub) }
 
       context 'without a named account' do
         subject { post inbox_path, params: {}.to_json, sign_with: remote_account }
@@ -68,7 +68,7 @@ RSpec.describe 'ActivityPub Inboxes' do
     context 'with Collection-Synchronization header' do
       subject { post inbox_path, params: {}.to_json, headers: { 'Collection-Synchronization' => synchronization_header }, sign_with: remote_account }
 
-      let(:remote_account) { Fabricate(:account, followers_url: 'https://example.com/followers', domain: 'example.com', uri: 'https://example.com/actor', protocol: :activitypub) }
+      let(:remote_account) { Fabricate(:account_with_private_key, followers_url: 'https://example.com/followers', domain: 'example.com', uri: 'https://example.com/actor', protocol: :activitypub) }
       let(:synchronization_collection) { remote_account.followers_url }
       let(:synchronization_url) { 'https://example.com/followers-for-domain' }
       let(:synchronization_hash) { 'somehash' }

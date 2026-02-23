@@ -7,8 +7,8 @@ RSpec.describe ActivityPub::LinkedDataSignature do
 
   subject { described_class.new(json) }
 
-  let(:keyid) { 'http://example.com/alice#rsa-key' }
-  let!(:sender) { Fabricate(:account, uri: 'http://example.com/alice', domain: 'example.com') }
+  let!(:sender) { Fabricate(:account_with_private_key, uri: 'http://example.com/alice', domain: 'example.com') }
+  let!(:keyid) { sender.keypair.uri }
 
   let(:raw_json) do
     {
@@ -55,8 +55,8 @@ RSpec.describe ActivityPub::LinkedDataSignature do
         signature
 
         # Unset key
-        old_key = sender.public_key
-        sender.update!(private_key: '', public_key: '')
+        old_key = sender.keypair.public_key
+        sender.keypairs.delete_all
 
         allow(ActivityPub::FetchRemoteKeyService).to receive(:new).and_return(service_stub)
 
