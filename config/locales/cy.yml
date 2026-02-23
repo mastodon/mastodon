@@ -30,12 +30,12 @@ cy:
     pin_errors:
       following: Rhaid i chi fod yn dilyn y person rydych am ei gymeradwyo, yn barod
     posts:
-      few: Postiadau
-      many: Postiadau
+      few: Postiad
+      many: Postiad
       one: Postiad
-      other: Postiadau
-      two: Postiadau
-      zero: Postiadau
+      other: Postiad
+      two: Bostiad
+      zero: Postiad
     posts_tab_heading: Postiadau
     self_follow_error: Chewch chi ddim dilyn eich cyfrif eich hun
   admin:
@@ -745,7 +745,7 @@ cy:
       cancel: Canslo
       category: Categori
       category_description_html: Bydd y rheswm dros adrodd am y cyfrif a/neu’r cynnwys hwn yn cael ei ddyfynnu wrth gyfathrebu â’r cyfrif a adroddwyd
-      collections: Casgliadau
+      collections: Casgliadau (%{count})
       comment:
         none: Dim
       comment_description_html: 'I ddarparu rhagor o wybodaeth, ysgrifennodd %{name}:'
@@ -781,7 +781,7 @@ cy:
       resolved_msg: Llwyddwyd i ddatrys yr adroddiad!
       skip_to_actions: Mynd i gamau gweithredu
       status: Statws
-      statuses: Postiadau
+      statuses: Postiadau (%{count})
       statuses_description_html: Bydd cynnwys tramgwyddus yn cael ei ddyfynnu wrth gyfathrebu â'r cyfrif a adroddwyd
       summary:
         action_preambles:
@@ -2213,6 +2213,8 @@ cy:
     past_preamble_html: Rydym wedi newid ein telerau gwasanaeth ers eich ymweliad diwethaf. Rydym yn eich annog i ddarllen y telerau wedi'u diweddaru.
     review_link: Darllen y telerau gwasanaeth
     title: Mae telerau gwasanaeth %{domain} yn newid
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

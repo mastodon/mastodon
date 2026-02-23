@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useId, useMemo, useState } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
@@ -18,10 +18,7 @@ import { Button } from 'flavours/glitch/components/button';
 import { Callout } from 'flavours/glitch/components/callout';
 import { DisplayName } from 'flavours/glitch/components/display_name';
 import { EmptyState } from 'flavours/glitch/components/empty_state';
-import {
-  FormStack,
-  ComboboxField,
-} from 'flavours/glitch/components/form_fields';
+import { FormStack, Combobox } from 'flavours/glitch/components/form_fields';
 import { Icon } from 'flavours/glitch/components/icon';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
@@ -331,6 +328,12 @@ export const CollectionAccounts: React.FC<{
     [canSubmit, id, history, accountIds],
   );
 
+  const inputId = useId();
+  const inputLabel = intl.formatMessage({
+    id: 'collections.search_accounts_label',
+    defaultMessage: 'Search for accounts to add…',
+  });
+
   return (
     <form onSubmit={handleSubmit} className={classes.form}>
       <FormStack className={classes.formFieldStack}>
@@ -351,21 +354,12 @@ export const CollectionAccounts: React.FC<{
             }
           />
         )}
-        <ComboboxField
-          label={
-            <FormattedMessage
-              id='collections.search_accounts_label'
-              defaultMessage='Search for accounts to add…'
-            />
-          }
-          hint={
-            hasMaxAccounts ? (
-              <FormattedMessage
-                id='collections.search_accounts_max_reached'
-                defaultMessage='You have added the maximum number of accounts'
-              />
-            ) : undefined
-          }
+        <label htmlFor={inputId} className='sr-only'>
+          {inputLabel}
+        </label>
+        <Combobox
+          id={inputId}
+          placeholder={inputLabel}
           value={hasMaxAccounts ? '' : searchValue}
           onChange={handleSearchValueChange}
           onKeyDown={handleSearchKeyDown}
@@ -379,6 +373,12 @@ export const CollectionAccounts: React.FC<{
             isEditMode ? instantToggleAccountItem : toggleAccountItem
           }
         />
+        {hasMaxAccounts && (
+          <FormattedMessage
+            id='collections.search_accounts_max_reached'
+            defaultMessage='You have added the maximum number of accounts'
+          />
+        )}
 
         {hasMinAccounts && (
           <Callout>

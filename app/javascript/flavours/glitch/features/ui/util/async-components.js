@@ -103,6 +103,11 @@ export function AccountEdit() {
   .then((module) => ({ default: module.AccountEdit }));
 }
 
+export function AccountEditFeaturedTags() {
+  return import('../../account_edit/featured_tags')
+  .then((module) => ({ default: module.AccountEditFeaturedTags }));
+}
+
 export function Followers () {
   return import('../../followers');
 }

@@ -1670,7 +1670,7 @@ body > [data-popper-placement] {
   .detailed-status__display-name {
     color: var(--color-text-tertiary);
 
-    span {
+    span:not(.account__avatar) {
       display: inline;
     }
 

@@ -1,28 +1,31 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import type { FC } from 'react';
 
-import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import type { ModalType } from '@/mastodon/actions/modal';
 import { openModal } from '@/mastodon/actions/modal';
 import { AccountBio } from '@/mastodon/components/account_bio';
 import { Avatar } from '@/mastodon/components/avatar';
-import { Column } from '@/mastodon/components/column';
-import { ColumnHeader } from '@/mastodon/components/column_header';
 import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
-import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
-import BundleColumnError from '@/mastodon/features/ui/components/bundle_column_error';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { autoPlayGif } from '@/mastodon/initial_state';
-import { useAppDispatch } from '@/mastodon/store';
+import { fetchFeaturedTags } from '@/mastodon/reducers/slices/profile_edit';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
+import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
+import { EditButton } from './components/edit_button';
 import { AccountEditSection } from './components/section';
 import classes from './styles.module.scss';
 
 const messages = defineMessages({
+  columnTitle: {
+    id: 'account_edit.column_title',
+    defaultMessage: 'Edit Profile',
+  },
   displayNameTitle: {
     id: 'account_edit.display_name.title',
     defaultMessage: 'Display name',
@@ -58,6 +61,10 @@ const messages = defineMessages({
     defaultMessage:
       'Help others identify, and have quick access to, your favorite topics.',
   },
+  featuredHashtagsItem: {
+    id: 'account_edit.featured_hashtags.item',
+    defaultMessage: 'hashtags',
+  },
   profileTabTitle: {
     id: 'account_edit.profile_tab.title',
     defaultMessage: 'Profile tab settings',
@@ -68,12 +75,20 @@ const messages = defineMessages({
   },
 });
 
-export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
+export const AccountEdit: FC = () => {
   const accountId = useCurrentAccountId();
   const account = useAccount(accountId);
   const intl = useIntl();
 
   const dispatch = useAppDispatch();
+
+  const { tags: featuredTags, isLoading: isTagsLoading } = useAppSelector(
+    (state) => state.profileEdit,
+  );
+  useEffect(() => {
+    void dispatch(fetchFeaturedTags());
+  }, [dispatch]);
+
   const handleOpenModal = useCallback(
     (type: ModalType, props?: Record<string, unknown>) => {
       dispatch(openModal({ modalType: type, modalProps: props ?? {} }));
@@ -87,38 +102,25 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
     handleOpenModal('ACCOUNT_EDIT_BIO');
   }, [handleOpenModal]);
 
-  if (!accountId) {
-    return <BundleColumnError multiColumn={multiColumn} errorType='routing' />;
-  }
+  const history = useHistory();
+  const handleFeaturedTagsEdit = useCallback(() => {
+    history.push('/profile/featured_tags');
+  }, [history]);
 
-  if (!account) {
-    return (
-      <Column bindToDocument={!multiColumn} className={classes.column}>
-        <LoadingIndicator />
-      </Column>
-    );
+  if (!accountId || !account) {
+    return <AccountEditEmptyColumn notFound={!accountId} />;
   }
 
   const headerSrc = autoPlayGif ? account.header : account.header_static;
+  const hasName = !!account.display_name;
+  const hasBio = !!account.note_plain;
+  const hasTags = !isTagsLoading && featuredTags.length > 0;
 
   return (
-    <Column bindToDocument={!multiColumn} className={classes.column}>
-      <ColumnHeader
-        title={intl.formatMessage({
-          id: 'account_edit.column_title',
-          defaultMessage: 'Edit Profile',
-        })}
-        className={classes.columnHeader}
-        showBackButton
-        extraButton={
-          <Link to={`/@${account.acct}`} className='button'>
-            <FormattedMessage
-              id='account_edit.column_button'
-              defaultMessage='Done'
-            />
-          </Link>
-        }
-      />
+    <AccountEditColumn
+      title={intl.formatMessage(messages.columnTitle)}
+      to={`/@${account.acct}`}
+    >
       <header>
         <div className={classes.profileImage}>
           {headerSrc && <img src={headerSrc} alt='' />}
@@ -129,8 +131,14 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       <AccountEditSection
         title={messages.displayNameTitle}
         description={messages.displayNamePlaceholder}
-        showDescription={account.display_name.length === 0}
-        onEdit={handleNameEdit}
+        showDescription={!hasName}
+        buttons={
+          <EditButton
+            onClick={handleNameEdit}
+            item={messages.displayNameTitle}
+            edit={hasName}
+          />
+        }
       >
         <DisplayNameSimple account={account} />
       </AccountEditSection>
@@ -138,8 +146,14 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       <AccountEditSection
         title={messages.bioTitle}
         description={messages.bioPlaceholder}
-        showDescription={!account.note_plain}
-        onEdit={handleBioEdit}
+        showDescription={!hasBio}
+        buttons={
+          <EditButton
+            onClick={handleBioEdit}
+            item={messages.bioTitle}
+            edit={hasBio}
+          />
+        }
       >
         <AccountBio accountId={accountId} />
       </AccountEditSection>
@@ -153,14 +167,23 @@ export const AccountEdit: FC<{ multiColumn: boolean }> = ({ multiColumn }) => {
       <AccountEditSection
         title={messages.featuredHashtagsTitle}
         description={messages.featuredHashtagsPlaceholder}
-        showDescription
-      />
+        showDescription={!hasTags}
+        buttons={
+          <EditButton
+            onClick={handleFeaturedTagsEdit}
+            edit={hasTags}
+            item={messages.featuredHashtagsItem}
+          />
+        }
+      >
+        {featuredTags.map((tag) => `#${tag.name}`).join(', ')}
+      </AccountEditSection>
 
       <AccountEditSection
         title={messages.profileTabTitle}
         description={messages.profileTabSubtitle}
         showDescription
       />
-    </Column>
+    </AccountEditColumn>
   );
 };

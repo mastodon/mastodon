@@ -1,15 +1,4 @@
-.column {
-  border: 1px solid var(--color-border-primary);
-  border-top-width: 0;
-}
-
-.columnHeader {
-  :global(.column-header__buttons) {
-    align-items: center;
-    padding-inline-end: 16px;
-    height: auto;
-  }
-}
+// Profile Edit Page
 
 .profileImage {
   height: 120px;
@@ -35,40 +24,41 @@
   border: 1px solid var(--color-border-primary);
 }
 
-.section {
-  padding: 20px;
-  border-bottom: 1px solid var(--color-border-primary);
-  font-size: 15px;
+// Featured Tags Page
+
+.wrapper {
+  padding: 24px;
 }
 
-.sectionHeader {
+.autoComplete,
+.tagSuggestions {
+  margin: 12px 0;
+}
+
+.tagSuggestions {
   display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
 
-  > button {
-    border: 1px solid var(--color-border-primary);
-    border-radius: 8px;
-    box-sizing: border-box;
-    padding: 4px;
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
+  // Add more padding to the suggestions label
+  > span {
+    margin-right: 4px;
   }
 }
 
-.sectionTitle {
-  flex-grow: 1;
-  font-size: 17px;
-  font-weight: 600;
+.tagItem {
+  > h4 {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  > p {
+    color: var(--color-text-secondary);
+  }
 }
 
-.sectionSubtitle {
-  color: var(--color-text-secondary);
-}
+// Modals
 
 .inputWrapper {
   position: relative;
@@ -99,6 +89,104 @@ textarea.inputText {
     color: var(--color-text-secondary);
   }
 }
+
+// Column component
+
+.column {
+  border: 1px solid var(--color-border-primary);
+  border-top-width: 0;
+}
+
+.columnHeader {
+  :global(.column-header__buttons) {
+    align-items: center;
+    padding-inline-end: 16px;
+    height: auto;
+  }
+}
+
+// Edit button component
+
+.editButton {
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 4px;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+
+  &:global(.button) {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-size: 13px;
+    padding: 4px 8px;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: var(--color-bg-brand-softer);
+    }
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.deleteButton {
+  --default-icon-color: var(--color-text-error);
+  --hover-bg-color: var(--color-bg-error-base-hover);
+  --hover-icon-color: var(--color-text-on-error-base);
+}
+
+// Item list component
+
+.itemList {
+  > li {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+
+    > :first-child {
+      flex-grow: 1;
+    }
+  }
+}
+
+.itemListButtons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+// Section component
+
+.section {
+  padding: 20px;
+  border-bottom: 1px solid var(--color-border-primary);
+  font-size: 15px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  flex-grow: 1;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.sectionSubtitle {
+  color: var(--color-text-secondary);
+}
+
+// Counter component
 
 .counter {
   margin-top: 4px;
