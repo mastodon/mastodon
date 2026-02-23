@@ -77,6 +77,8 @@ class ActivityPub::TagManager
   end
 
   def key_uri_for(target)
+    return [uri_for(target.actor), '#', target.id].join if target.is_a?(Keypair)
+
     [uri_for(target), '#main-key'].join
   end
 

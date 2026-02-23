@@ -677,6 +677,7 @@ module Mastodon::CLI
       reference_account = accounts.shift
 
       accounts.each do |other_account|
+        # TODO: this needs to get updated
         if other_account.public_key == reference_account.public_key
           # The accounts definitely point to the same resource, so
           # it's safe to re-attribute content and relationships

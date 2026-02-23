@@ -655,7 +655,7 @@ RSpec.describe Mastodon::CLI::Accounts do
 
     context 'when there are duplicate URI accounts' do
       before do
-        Fabricate.times(2, :account, domain: 'host.example', uri: uri)
+        Fabricate.times(2, :account, domain: 'host.example', legacy_keypair: true, uri: uri)
         allow(ActivityPub::FetchRemoteAccountService).to receive(:new).and_return(service_double)
       end
 
