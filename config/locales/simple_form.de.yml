@@ -159,10 +159,10 @@ de:
           other: Wir müssen sicherstellen, dass du mindestens %{count} Jahre alt bist, um %{domain} verwenden zu können. Wir werden diese Information nicht aufbewahren.
         role: Die Rolle bestimmt, welche Berechtigungen das Konto hat.
       user_role:
-        color: Farbe, die für diese Rolle in der gesamten Benutzerschnittstelle verwendet wird, als RGB im Hexadezimalsystem
-        highlighted: Dies macht die Rolle öffentlich im Profil sichtbar
+        color: Farbe, die für diese Rolle im Webinterface verwendet wird, als RGB im Hexadezimalsystem
+        highlighted: Moderative/administrative Rolle im öffentlichen Profil anzeigen
         name: Name der Rolle, der auch öffentlich als Badge angezeigt wird, sofern dies unten aktiviert ist
-        permissions_as_keys: Nutzer*innen mit dieser Rolle haben Zugriff auf …
+        permissions_as_keys: Konten mit dieser Rolle haben eine Berechtigung für …
         position: Eine höherrangige Rolle entscheidet in bestimmten Situationen über Konfliktlösungen. Einige Aktionen können jedoch nur mit untergeordneten Rollen durchgeführt werden
         require_2fa: Profile mit dieser Rolle müssen eine Zwei-Faktor-Authentisierung einrichten, um Mastodon verwenden zu können
       username_block:
@@ -385,7 +385,7 @@ de:
         time_zone: Zeitzone
       user_role:
         color: Badge-Farbe
-        highlighted: Rolle als Badge im Profil anzeigen
+        highlighted: Badge im Profil
         name: Name
         permissions_as_keys: Berechtigungen
         position: Priorität

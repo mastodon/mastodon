@@ -56,6 +56,7 @@ tr:
         label: Rolü değiştir
         no_role: Rol yok
         title: "%{username} için rolü değiştir"
+      collections: Koleksiyonlar
       confirm: Onayla
       confirmed: Onaylandı
       confirming: Onaylanıyor
@@ -340,6 +341,15 @@ tr:
       unpublish: Yayından kaldır
       unpublished_msg: Duyuru başarıyla yayından kaldırıldı!
       updated_msg: Duyuru başarıyla güncellendi!
+    collections:
+      accounts: Hesaplar
+      collection_title: "%{name} koleksiyonu"
+      contents: İçerikler
+      number_of_accounts:
+        one: 1 hesap
+        other: "%{count} hesap"
+      open: Aç
+      view_publicly: Herkese açık görüntüle
     critical_update_pending: Kritik güncelleme bekliyor
     custom_emojis:
       assign_category: Kategori ata
@@ -679,6 +689,7 @@ tr:
       cancel: İptal et
       category: Kategori
       category_description_html: Bu hesap ve/veya içeriğin bildirilme gerekçesi, bildirilen hesapla iletişimde alıntılanacaktır
+      collections: Koleksiyonlar
       comment:
         none: Yok
       comment_description_html: 'Daha fazla bilgi vermek için %{name} şunu yazdı:'
@@ -708,11 +719,13 @@ tr:
       report: 'Şikayet #%{id}'
       reported_account: Şikayet edilen hesap
       reported_by: Şikayet eden
+      reported_content: Bildirilen içerik
       reported_with_application: Uygulamayla bildirildi
       resolved: Giderildi
       resolved_msg: Şikayet başarıyla çözümlendi!
       skip_to_actions: İşlemlere atla
       status: Durum
+      statuses: Gönderiler
       statuses_description_html: İncitici içerik, bildirilen hesapla iletişimde alıntılanacaktır
       summary:
         action_preambles:

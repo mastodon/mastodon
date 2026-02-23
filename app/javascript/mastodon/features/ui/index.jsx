@@ -82,6 +82,7 @@ import {
   AccountFeatured,
   AccountAbout,
   AccountEdit,
+  AccountEditFeaturedTags,
   Quotes,
 } from './util/async-components';
 import { ColumnsContextProvider } from './util/columns_context';
@@ -164,9 +165,8 @@ class SwitchingColumnsArea extends PureComponent {
       redirect = <Redirect from='/' to='/about' exact />;
     }
 
-    const profileRedesignEnabled = isServerFeatureEnabled('profile_redesign');
     const profileRedesignRoutes = [];
-    if (profileRedesignEnabled) {
+    if (isServerFeatureEnabled('profile_redesign')) {
       profileRedesignRoutes.push(
         <WrappedRoute key="posts" path={['/@:acct/posts', '/accounts/:id/posts']} exact component={AccountTimeline} content={children} />,
       );
@@ -188,10 +188,24 @@ class SwitchingColumnsArea extends PureComponent {
         );
       }
     } else {
-      // If the redesign is not enabled but someone shares an /about link, redirect to the root.
       profileRedesignRoutes.push(
+        <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />,
+        // If the redesign is not enabled but someone shares an /about link, redirect to the root.
         <Redirect key="about-acct-redirect" from='/@:acct/about' to='/@:acct' exact />,
         <Redirect key="about-id-redirect" from='/accounts/:id/about' to='/accounts/:id' exact />
+      );
+    }
+
+    if (isClientFeatureEnabled('profile_editing')) {
+      profileRedesignRoutes.push(
+        <WrappedRoute key="edit" path='/profile/edit' component={AccountEdit} content={children} />,
+        <WrappedRoute key="featured_tags" path='/profile/featured_tags' component={AccountEditFeaturedTags} content={children} />
+      )
+    } else {
+      // If profile editing is not enabled, redirect to the home timeline as the current editing pages are outside React Router.
+      profileRedesignRoutes.push(
+        <Redirect key="edit-redirect" from='/profile/edit' to='/' exact />,
+        <Redirect key="featured-tags-redirect" from='/profile/featured_tags' to='/' exact />,
       );
     }
 
@@ -234,8 +248,6 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
             <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
-            {isClientFeatureEnabled('profile_editing') && <WrappedRoute key="edit" path='/profile/edit' component={AccountEdit} content={children} />}
-
             <WrappedRoute path={['/start', '/start/profile']} exact component={OnboardingProfile} content={children} />
             <WrappedRoute path='/start/follows' component={OnboardingFollows} content={children} />
             <WrappedRoute path='/directory' component={Directory} content={children} />
@@ -243,8 +255,8 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/search' component={Search} content={children} />
             <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
 
-            {!profileRedesignEnabled && <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />}
             {...profileRedesignRoutes}
+
             <WrappedRoute path={['/@:acct/featured', '/accounts/:id/featured']} component={AccountFeatured} content={children} />
             <WrappedRoute path='/@:acct/tagged/:tagged?' exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
