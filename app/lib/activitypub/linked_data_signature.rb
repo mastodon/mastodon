@@ -33,18 +33,19 @@ class ActivityPub::LinkedDataSignature
   end
 
   def sign!(creator, sign_with: nil)
+    keypair = sign_with.presence || creator.keypair
+
     options = {
       'type' => 'RsaSignature2017',
-      'creator' => ActivityPub::TagManager.instance.key_uri_for(creator),
+      'creator' => keypair.uri,
       'created' => Time.now.utc.iso8601,
     }
 
     options_hash  = hash(options.without('type', 'id', 'signatureValue').merge('@context' => CONTEXT))
     document_hash = hash(@json.without('signature'))
     to_be_signed  = options_hash + document_hash
-    keypair       = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : creator.keypair
 
-    signature = Base64.strict_encode64(keypair.sign(OpenSSL::Digest.new('SHA256'), to_be_signed))
+    signature = Base64.strict_encode64(keypair.keypair.sign(OpenSSL::Digest.new('SHA256'), to_be_signed))
 
     # Mastodon's context is either an array or a single URL
     context_with_security = Array(@json['@context'])

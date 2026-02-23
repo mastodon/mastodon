@@ -247,9 +247,10 @@ RSpec.describe Account do
   end
 
   describe '#keypair' do
-    it 'returns an RSA key pair' do
+    it 'returns a Keypair object with a RSA key pair' do
       account = Fabricate(:account)
-      expect(account.keypair).to be_instance_of OpenSSL::PKey::RSA
+      expect(account.keypair).to be_instance_of Keypair
+      expect(account.keypair.keypair).to be_instance_of OpenSSL::PKey::RSA
     end
   end
 
@@ -754,7 +755,7 @@ RSpec.describe Account do
       expect(account)
         .to be_private_key
         .and be_public_key
-      expect(account.keypair)
+      expect(account.keypair.keypair)
         .to be_private
         .and be_public
     end
@@ -764,7 +765,7 @@ RSpec.describe Account do
     it 'does not generate keys' do
       key = OpenSSL::PKey::RSA.new(1024).public_key
       account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', username: 'remote_user_with_public', public_key: key.to_pem)
-      expect(account.keypair.params).to eq key.params
+      expect(account.keypair.keypair.params).to eq key.params
     end
 
     it 'normalizes domain' do

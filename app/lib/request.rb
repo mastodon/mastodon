@@ -100,9 +100,8 @@ class Request
   def on_behalf_of(actor, sign_with: nil)
     raise ArgumentError, 'actor must not be nil' if actor.nil?
 
-    key_id = ActivityPub::TagManager.instance.key_uri_for(actor)
-    keypair = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : actor.keypair
-    @signing = HttpSignatureDraft.new(keypair, key_id)
+    keypair = sign_with.presence || actor.keypair
+    @signing = HttpSignatureDraft.new(keypair.keypair, keypair.uri)
 
     self
   end

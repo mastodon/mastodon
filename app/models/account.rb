@@ -289,7 +289,7 @@ class Account < ApplicationRecord
   end
 
   def keypair
-    @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
+    keypairs.usable.first || Keypair.from_legacy_account(self)
   end
 
   def tags_as_strings=(tag_names)
