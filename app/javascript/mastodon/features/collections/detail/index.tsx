@@ -79,7 +79,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   collection,
 }) => {
   const intl = useIntl();
-  const { name, description, tag } = collection;
+  const { name, description, tag, account_id } = collection;
   const dispatch = useAppDispatch();
 
   const handleShare = useCallback(() => {
@@ -114,7 +114,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
       {description && <p className={classes.description}>{description}</p>}
       <AuthorNote id={collection.account_id} />
       <CollectionMetaData
-        extended
+        extended={account_id === me}
         collection={collection}
         className={classes.metaData}
       />
