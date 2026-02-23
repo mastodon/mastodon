@@ -15,6 +15,7 @@ import type {
   ApiCreateCollectionPayload,
   ApiUpdateCollectionPayload,
 } from '@/mastodon/api_types/collections';
+import { me } from '@/mastodon/initial_state';
 import {
   createAppSelector,
   createDataLoadingThunk,
@@ -111,6 +112,14 @@ const collectionSlice = createSlice({
       const { collectionId } = action.meta.arg;
       // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
       delete state.collections[collectionId];
+      if (me) {
+        let accountCollectionIds = state.accountCollections[me]?.collectionIds;
+        if (accountCollectionIds) {
+          accountCollectionIds = accountCollectionIds.filter(
+            (id) => id !== collectionId,
+          );
+        }
+      }
     });
 
     /**

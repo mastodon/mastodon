@@ -21,7 +21,6 @@ import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { CollectionAccounts } from './accounts';
 import { CollectionDetails } from './details';
-import { CollectionSettings } from './settings';
 
 export const messages = defineMessages({
   create: {
@@ -34,19 +33,11 @@ export const messages = defineMessages({
   },
   editDetails: {
     id: 'collections.edit_details',
-    defaultMessage: 'Edit basic details',
+    defaultMessage: 'Edit details',
   },
   manageAccounts: {
     id: 'collections.manage_accounts',
     defaultMessage: 'Manage accounts',
-  },
-  manageAccountsLong: {
-    id: 'collections.manage_accounts_in_collection',
-    defaultMessage: 'Manage accounts in this collection',
-  },
-  editSettings: {
-    id: 'collections.edit_settings',
-    defaultMessage: 'Edit settings',
   },
 });
 
@@ -62,8 +53,6 @@ function usePageTitle(id: string | undefined) {
     return messages.manageAccounts;
   } else if (matchPath(location.pathname, { path: `${path}/details` })) {
     return messages.editDetails;
-  } else if (matchPath(location.pathname, { path: `${path}/settings` })) {
-    return messages.editSettings;
   } else {
     throw new Error('No page title defined for route');
   }
@@ -116,11 +105,6 @@ export const CollectionEditorPage: React.FC<{
               path={`${path}/details`}
               // eslint-disable-next-line react/jsx-no-bind
               render={() => <CollectionDetails collection={collection} />}
-            />
-            <Route
-              path={`${path}/settings`}
-              // eslint-disable-next-line react/jsx-no-bind
-              render={() => <CollectionSettings collection={collection} />}
             />
           </Switch>
         )}

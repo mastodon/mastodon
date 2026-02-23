@@ -86,11 +86,9 @@ const InnerTimeline: FC<{ accountId: string; multiColumn: boolean }> = ({
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (accountId) {
-      if (!timeline) {
-        dispatch(expandTimelineByKey({ key }));
-      }
+      dispatch(expandTimelineByKey({ key }));
     }
-  }, [accountId, dispatch, key, timeline]);
+  }, [accountId, dispatch, key]);
 
   const handleLoadMore = useCallback(
     (maxId: number) => {

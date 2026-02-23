@@ -36,20 +36,22 @@ module.exports = {
         'property-no-unknown': [
           true,
           {
-            ignoreProperties: [
-              '/^mso-/',
-            ] },
+            ignoreProperties: ['/^mso-/'],
+          },
         ],
       },
     },
     {
-      files: ['app/javascript/**/*.module.scss', 'app/javascript/**/*.module.css'],
+      files: [
+        'app/javascript/**/*.module.scss',
+        'app/javascript/**/*.module.css',
+      ],
       rules: {
         'selector-pseudo-class-no-unknown': [
           true,
           { ignorePseudoClasses: ['global'] },
-        ]
-      }
+        ],
+      },
     },
   ],
 };

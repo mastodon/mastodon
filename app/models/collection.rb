@@ -26,6 +26,7 @@ class Collection < ApplicationRecord
   belongs_to :tag, optional: true
 
   has_many :collection_items, dependent: :delete_all
+  has_many :accepted_collection_items, -> { accepted }, class_name: 'CollectionItem', inverse_of: :collection # rubocop:disable Rails/HasManyOrHasOneDependent
   has_many :collection_reports, dependent: :delete_all
 
   validates :name, presence: true

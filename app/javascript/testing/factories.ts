@@ -31,6 +31,11 @@ export const accountFactory: FactoryFunction<ApiAccountJSON> = ({
   created_at: '2023-01-01T00:00:00.000Z',
   discoverable: true,
   emojis: [],
+  feature_approval: {
+    automatic: [],
+    manual: [],
+    current_user: 'missing',
+  },
   fields: [],
   followers_count: 0,
   following_count: 0,

@@ -12,7 +12,7 @@ export const WizardStepHeader: React.FC<{
       <FormattedMessage
         id='collections.create.steps'
         defaultMessage='Step {step}/{total}'
-        values={{ step, total: 3 }}
+        values={{ step, total: 2 }}
       >
         {(content) => <p className={classes.step}>{content}</p>}
       </FormattedMessage>

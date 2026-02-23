@@ -55,10 +55,6 @@ export const CollectionMenu: React.FC<{
         text: intl.formatMessage(editorMessages.editDetails),
         to: `/collections/${id}/edit/details`,
       },
-      {
-        text: intl.formatMessage(editorMessages.editSettings),
-        to: `/collections/${id}/edit/settings`,
-      },
       null,
       {
         text: intl.formatMessage(messages.delete),

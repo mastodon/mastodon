@@ -2,11 +2,11 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
-import Overlay from 'react-overlays/Overlay';
 import type {
   OffsetValue,
   UsePopperOptions,
 } from 'react-overlays/esm/usePopper';
+import Overlay from 'react-overlays/Overlay';
 
 import { HoverCardAccount } from 'mastodon/components/hover_card_account';
 import { useTimeout } from 'mastodon/hooks/useTimeout';

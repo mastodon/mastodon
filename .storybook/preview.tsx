@@ -21,9 +21,10 @@ import { reducerWithInitialState } from '@/mastodon/reducers';
 import { defaultMiddleware } from '@/mastodon/store/store';
 import { mockHandlers, unhandledRequestHandler } from '@/testing/api';
 
+import { modes } from './modes';
+
 import '../app/javascript/styles/application.scss';
 import './styles.css';
-import { modes } from './modes';
 
 const localeFiles = import.meta.glob('@/mastodon/locales/*.json', {
   query: { as: 'json' },

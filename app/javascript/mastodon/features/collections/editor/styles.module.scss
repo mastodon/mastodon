@@ -86,3 +86,12 @@
   margin-inline: auto;
   gap: 8px;
 }
+
+.accountBadge {
+  margin-inline-start: 56px;
+
+  @container (width < 360px) {
+    margin-top: 4px;
+    margin-inline-start: 46px;
+  }
+}
