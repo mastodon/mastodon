@@ -49,7 +49,7 @@ interface ComboboxProps<T extends ComboboxItem> extends TextInputProps {
   /**
    * A function that must return a unique id for each option passed via `items`
    */
-  getItemId: (item: T) => string;
+  getItemId?: (item: T) => string;
   /**
    * Providing this function turns the combobox into a multi-select box that assumes
    * multiple options to be selectable. Single-selection is handled automatically.
@@ -113,7 +113,7 @@ const ComboboxWithRef = <T extends ComboboxItem>(
     value,
     isLoading = false,
     items,
-    getItemId,
+    getItemId = (item) => item.id,
     getIsItemDisabled,
     getIsItemSelected,
     disabled,

@@ -1,10 +1,17 @@
-import { apiRequestPost, apiRequestGet } from 'flavours/glitch/api';
+import {
+  apiRequestPost,
+  apiRequestGet,
+  apiRequestDelete,
+} from 'flavours/glitch/api';
 import type {
   ApiAccountJSON,
   ApiFamiliarFollowersJSON,
 } from 'flavours/glitch/api_types/accounts';
 import type { ApiRelationshipJSON } from 'flavours/glitch/api_types/relationships';
-import type { ApiHashtagJSON } from 'flavours/glitch/api_types/tags';
+import type {
+  ApiFeaturedTagJSON,
+  ApiHashtagJSON,
+} from 'flavours/glitch/api_types/tags';
 
 export const apiSubmitAccountNote = (id: string, value: string) =>
   apiRequestPost<ApiRelationshipJSON>(`v1/accounts/${id}/note`, {
@@ -30,7 +37,19 @@ export const apiRemoveAccountFromFollowers = (id: string) =>
   );
 
 export const apiGetFeaturedTags = (id: string) =>
-  apiRequestGet<ApiHashtagJSON>(`v1/accounts/${id}/featured_tags`);
+  apiRequestGet<ApiHashtagJSON[]>(`v1/accounts/${id}/featured_tags`);
+
+export const apiGetCurrentFeaturedTags = () =>
+  apiRequestGet<ApiFeaturedTagJSON[]>(`v1/featured_tags`);
+
+export const apiPostFeaturedTag = (name: string) =>
+  apiRequestPost<ApiFeaturedTagJSON>('v1/featured_tags', { name });
+
+export const apiDeleteFeaturedTag = (id: string) =>
+  apiRequestDelete(`v1/featured_tags/${id}`);
+
+export const apiGetTagSuggestions = () =>
+  apiRequestGet<ApiHashtagJSON[]>('v1/featured_tags/suggestions');
 
 export const apiGetEndorsedAccounts = (id: string) =>
   apiRequestGet<ApiAccountJSON>(`v1/accounts/${id}/endorsements`);
