@@ -30,12 +30,16 @@
   padding: 24px;
 }
 
+.autoComplete,
+.tagSuggestions {
+  margin: 12px 0;
+}
+
 .tagSuggestions {
   display: flex;
   gap: 4px;
   flex-wrap: wrap;
   align-items: center;
-  margin: 12px 0;
 
   // Add more padding to the suggestions label
   > span {

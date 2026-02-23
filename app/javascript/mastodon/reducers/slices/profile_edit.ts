@@ -105,7 +105,19 @@ const profileEditSlice = createSlice({
     });
     builder.addCase(fetchSearchResults.fulfilled, (state, action) => {
       state.search.isLoading = false;
-      state.search.results = action.payload.hashtags.map(hashtagToFeaturedTag);
+      const searchResults: ApiFeaturedTagJSON[] = [];
+      const currentTags = new Set(state.tags.map((tag) => tag.name));
+
+      for (const tag of action.payload) {
+        if (currentTags.has(tag.name)) {
+          continue;
+        }
+        searchResults.push(hashtagToFeaturedTag(tag));
+        if (searchResults.length >= 10) {
+          break;
+        }
+      }
+      state.search.results = searchResults;
     });
   },
 });
@@ -128,6 +140,12 @@ export const fetchSuggestedTags = createDataLoadingThunk(
 export const addFeaturedTag = createDataLoadingThunk(
   `${profileEditSlice.name}/addFeaturedTag`,
   ({ name }: { name: string }) => apiPostFeaturedTag(name),
+  {
+    condition(arg, { getState }) {
+      const state = getState();
+      return !state.profileEdit.tags.some((tag) => tag.name === arg.name);
+    },
+  },
 );
 
 export const deleteFeaturedTag = createDataLoadingThunk(
@@ -156,4 +174,5 @@ export const updateSearchQuery = createAppAsyncThunk(
 export const fetchSearchResults = createDataLoadingThunk(
   `${profileEditSlice.name}/fetchSearchResults`,
   ({ q }: { q: string }) => apiGetSearch({ q, type: 'hashtags', limit: 11 }),
+  (result) => result.hashtags,
 );

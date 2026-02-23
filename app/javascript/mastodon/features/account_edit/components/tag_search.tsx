@@ -1,14 +1,18 @@
 import type { ChangeEventHandler, FC } from 'react';
-import { useRef, useCallback } from 'react';
+import { useCallback } from 'react';
 
-import Overlay from 'react-overlays/esm/Overlay';
+import { useIntl } from 'react-intl';
 
-import { TextInput } from '@/mastodon/components/form_fields';
+import type { ApiFeaturedTagJSON } from '@/mastodon/api_types/tags';
+import { Combobox } from '@/mastodon/components/form_fields';
 import {
+  addFeaturedTag,
   clearSearch,
   updateSearchQuery,
 } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+
+import classes from '../styles.module.scss';
 
 export const AccountEditTagSearch: FC = () => {
   const { query, isLoading, results } = useAppSelector(
@@ -23,38 +27,32 @@ export const AccountEditTagSearch: FC = () => {
     [dispatch],
   );
 
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const anchorRef = useRef<HTMLInputElement>(null);
-  const handleClose = useCallback(() => {
-    dispatch(clearSearch());
-  }, [dispatch]);
+  const intl = useIntl();
+
+  const handleSelect = useCallback(
+    (item: ApiFeaturedTagJSON) => {
+      void dispatch(clearSearch());
+      void dispatch(addFeaturedTag({ name: item.name }));
+    },
+    [dispatch],
+  );
 
   return (
-    <div ref={wrapperRef}>
-      <TextInput
-        value={query}
-        disabled={isLoading}
-        onChange={handleSearchChange}
-        ref={anchorRef}
-      />
-      <Overlay
-        show={results !== undefined}
-        onHide={handleClose}
-        rootClose
-        container={wrapperRef}
-        target={anchorRef}
-        placement='bottom-start'
-      >
-        {({ props }) => (
-          <div {...props}>
-            <ul>
-              {results?.map((result) => (
-                <li key={result.id}>{result.name}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </Overlay>
-    </div>
+    <Combobox
+      value={query}
+      onChange={handleSearchChange}
+      placeholder={intl.formatMessage({
+        id: 'account_edit_tags.search_placeholder',
+        defaultMessage: 'Enter a hashtag…',
+      })}
+      items={results ?? []}
+      isLoading={isLoading}
+      renderItem={renderItem}
+      onSelectItem={handleSelect}
+      className={classes.autoComplete}
+      type='search'
+    />
   );
 };
+
+const renderItem = (item: ApiFeaturedTagJSON) => <p>#{item.name}</p>;
