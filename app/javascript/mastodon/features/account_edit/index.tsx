@@ -119,7 +119,7 @@ export const AccountEdit: FC = () => {
   return (
     <AccountEditColumn
       title={intl.formatMessage(messages.columnTitle)}
-      acct={account.acct}
+      to={`/@${account.acct}`}
     >
       <header>
         <div className={classes.profileImage}>

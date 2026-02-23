@@ -30,9 +30,9 @@ export const AccountEditEmptyColumn: FC<{
 
 export const AccountEditColumn: FC<{
   title: string;
-  acct: string;
+  to: string;
   children: React.ReactNode;
-}> = ({ acct, title, children }) => {
+}> = ({ to, title, children }) => {
   const { multiColumn } = useColumnsContext();
 
   return (
@@ -42,7 +42,7 @@ export const AccountEditColumn: FC<{
         className={classes.columnHeader}
         showBackButton
         extraButton={
-          <Link to={`/@${acct}`} className='button'>
+          <Link to={to} className='button'>
             <FormattedMessage
               id='account_edit.column_button'
               defaultMessage='Done'

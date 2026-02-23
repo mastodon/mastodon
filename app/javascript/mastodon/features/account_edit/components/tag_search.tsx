@@ -11,6 +11,7 @@ import {
   updateSearchQuery,
 } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import SearchIcon from '@/material-icons/400-24px/search.svg?react';
 
 import classes from '../styles.module.scss';
 
@@ -50,6 +51,7 @@ export const AccountEditTagSearch: FC = () => {
       renderItem={renderItem}
       onSelectItem={handleSelect}
       className={classes.autoComplete}
+      icon={SearchIcon}
       type='search'
     />
   );

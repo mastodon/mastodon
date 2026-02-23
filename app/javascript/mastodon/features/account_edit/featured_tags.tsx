@@ -57,7 +57,7 @@ export const AccountEditFeaturedTags: FC = () => {
   return (
     <AccountEditColumn
       title={intl.formatMessage(messages.columnTitle)}
-      acct={account.acct}
+      to='/profile/edit'
     >
       <div className={classes.wrapper}>
         <FormattedMessage
