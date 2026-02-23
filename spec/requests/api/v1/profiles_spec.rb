@@ -68,6 +68,10 @@ RSpec.describe 'Profile API' do
         locked: false,
         note: 'Hello!',
         attribution_domains: ['example.com'],
+        fields_attributes: [
+          { name: 'pronouns', value: 'she/her' },
+          { name: 'foo', value: 'bar' },
+        ],
       }
     end
 
@@ -106,7 +110,17 @@ RSpec.describe 'Profile API' do
           note: 'Hello!',
           avatar: exist,
           header: exist,
-          attribution_domains: ['example.com']
+          attribution_domains: ['example.com'],
+          fields: contain_exactly(
+            have_attributes(
+              name: 'pronouns',
+              value: 'she/her'
+            ),
+            have_attributes(
+              name: 'foo',
+              value: 'bar'
+            )
+          )
         )
       expect(ActivityPub::UpdateDistributionWorker)
         .to have_enqueued_sidekiq_job(user.account_id)
