@@ -2,6 +2,8 @@ import { useCallback, useMemo } from 'react';
 
 import { defineMessages, useIntl } from 'react-intl';
 
+import { matchPath } from 'react-router';
+
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import MoreVertIcon from '@/material-icons/400-24px/more_vert.svg?react';
 import { openModal } from 'mastodon/actions/modal';
@@ -9,6 +11,7 @@ import type { ApiCollectionJSON } from 'mastodon/api_types/collections';
 import { Dropdown } from 'mastodon/components/dropdown_menu';
 import { IconButton } from 'mastodon/components/icon_button';
 import { me } from 'mastodon/initial_state';
+import type { MenuItem } from 'mastodon/models/dropdown_menu';
 import { useAppDispatch } from 'mastodon/store';
 
 import { messages as editorMessages } from '../editor';
@@ -70,7 +73,7 @@ export const CollectionMenu: React.FC<{
 
   const menu = useMemo(() => {
     if (isOwnCollection) {
-      const commonItems = [
+      const commonItems: MenuItem[] = [
         {
           text: intl.formatMessage(editorMessages.manageAccounts),
           to: `/collections/${id}/edit`,
@@ -97,17 +100,31 @@ export const CollectionMenu: React.FC<{
         return commonItems;
       }
     } else if (ownerAccount) {
-      return [
-        {
-          text: intl.formatMessage(messages.viewOtherCollections),
-          to: `/@${ownerAccount.acct}/featured`,
-        },
-        null,
+      const items: MenuItem[] = [
         {
           text: intl.formatMessage(messages.report),
           action: openReportModal,
         },
       ];
+      const featuredCollectionsPath = `/@${ownerAccount.acct}/featured`;
+      // Don't show menu link to featured collections while on that very page
+      if (
+        !matchPath(location.pathname, {
+          path: featuredCollectionsPath,
+          exact: true,
+        })
+      ) {
+        items.unshift(
+          ...[
+            {
+              text: intl.formatMessage(messages.viewOtherCollections),
+              to: featuredCollectionsPath,
+            },
+            null,
+          ],
+        );
+      }
+      return items;
     } else {
       return [];
     }
