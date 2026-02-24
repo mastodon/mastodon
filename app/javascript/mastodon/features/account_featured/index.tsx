@@ -124,9 +124,15 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
                 defaultMessage='Collections'
               />
             </h4>
-            {publicCollections.map((item) => (
-              <CollectionListItem key={item.id} collection={item} />
-            ))}
+            <section>
+              {publicCollections.map((item, index) => (
+                <CollectionListItem
+                  key={item.id}
+                  collection={item}
+                  withoutBorder={index === publicCollections.length - 1}
+                />
+              ))}
+            </section>
           </>
         )}
         {!featuredTags.isEmpty() && (
