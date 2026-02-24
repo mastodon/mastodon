@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.3.20] - 2026-02-24
+
+### Added
+
+- Add `--suspended-only` option to `tootctl emoji purge` (#37828 and #37861 by @ClearlyClaire and @mjankowski)
+
+### Fixed
+
+- Fix processing of object updates with duplicate hashtags (#37756 by @ClearlyClaire)
+
 ## [4.3.19] - 2026-02-03
 
 ### Security
