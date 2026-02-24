@@ -1216,8 +1216,8 @@ pt-BR:
   appearance:
     advanced_settings: Configurações avançadas
     animations_and_accessibility: Animações e acessibilidade
-    boosting_preferences: Adicionar preferências
-    boosting_preferences_info_html: "<strong>Dica:</strong> Independentemente das configurações, <kbd>Shift</kbd> + <kbd>Clique</kbd> no ícone %{icon} Boost irá impulsionar imediatamente."
+    boosting_preferences: Preferências de impulsionamento
+    boosting_preferences_info_html: "<strong>Dica:</strong> Independentemente das configurações, <kbd>Shift</kbd> + <kbd>Clique</kbd> no ícone %{icon} Impulsionar irá impulsionar imediatamente."
     discovery: Descobrir
     localization:
       body: Mastodon é traduzido por voluntários.
@@ -1503,8 +1503,8 @@ pt-BR:
       one: "<strong>%{count}</strong> item nessa página está selecionado."
       other: Todos os <strong>%{count}</strong> itens nessa página estão selecionados.
     all_matching_items_selected_html:
-      one: "<strong>%{count}</strong> item correspondente à sua pesquisa está selecionado."
-      other: Todos os <strong>%{count}</strong> itens correspondentes à sua pesquisa estão selecionados.
+      one: "<strong>%{count}</strong> item correspondente à sua busca está selecionado."
+      other: Todos os <strong>%{count}</strong> itens correspondentes à sua busca estão selecionados.
     cancel: Cancelar
     changes_saved_msg: Alterações salvas!
     confirm: Confirmar
@@ -1515,8 +1515,8 @@ pt-BR:
     order_by: Ordenar por
     save_changes: Salvar alterações
     select_all_matching_items:
-      one: Selecione %{count} item correspondente à sua pesquisa.
-      other: Selecione todos os %{count} itens correspondentes à sua pesquisa.
+      one: Selecione %{count} item correspondente à sua busca.
+      other: Selecione todos os %{count} itens correspondentes à sua busca.
     today: hoje
     validation_errors:
       one: Algo não está certo! Analise o erro abaixo
@@ -1658,7 +1658,7 @@ pt-BR:
           follow: seguir emails de notificação
           follow_request: emails de seguidores pendentes
           mention: emails de notificação de menções
-          reblog: emails de notificação de boosts
+          reblog: emails de notificação de impulsos
       resubscribe_html: Se você cancelou sua inscrição por engano, você pode se inscrever novamente em suas <a href="%{settings_path}"> configurações de notificações por e-mail</a>.
       success_html: Você não mais receberá %{type} no Mastodon em %{domain} ao seu endereço de e-mail %{email}.
       title: Cancelar inscrição
@@ -1849,7 +1849,7 @@ pt-BR:
       account: Publicações públicas de @%{acct}
       tag: 'Publicações públicas marcadas com #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Você excedeu o limite de %{limit} publicações agendadas para esse dia
+    over_daily_limit: Você excedeu o limite de %{limit} publicações agendadas para hoje
     over_total_limit: Você excedeu o limite de %{limit} publicações agendadas
     too_soon: a data deve ser no futuro
   self_destruct:
@@ -1984,7 +1984,7 @@ pt-BR:
       public: Público
       public_long: Qualquer um dentro ou fora do Mástodon
       unlisted: Publicação silenciada
-      unlisted_long: Oculto aos resultados de pesquisa em Mástodon
+      unlisted_long: Oculto aos resultados de busca, destaques e linhas do tempo públicas no Mastodon
   statuses_cleanup:
     enabled: Excluir publicações antigas automaticamente
     enabled_hint: Exclui suas publicações automaticamente assim que elas alcançam sua validade, a não ser que se enquadrem em alguma das exceções abaixo
@@ -1993,7 +1993,7 @@ pt-BR:
     ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar impulsos
     interaction_exceptions: Exceções baseadas nas interações
-    interaction_exceptions_explanation: Postagens que excedem temporariamente  o limite de favoritos ou de impulso podem ser retidos mesmo que posteriormente diminuam.
+    interaction_exceptions_explanation: Postagens que excedem temporariamente o limite de favoritos ou de impulso podem ser retidos mesmo que posteriormente diminuam.
     keep_direct: Manter mensagens diretas
     keep_direct_hint: Não exclui nenhuma de suas mensagens diretas
     keep_media: Manter publicações com mídia

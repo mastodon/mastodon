@@ -96,7 +96,7 @@ function renderTag(tag: ApiFeaturedTagJSON) {
       {tag.statuses_count > 0 && (
         <FormattedMessage
           id='account_edit_tags.tag_status_count'
-          defaultMessage='{count} posts'
+          defaultMessage='{count, plural, one {# post} other {# posts}}'
           values={{ count: tag.statuses_count }}
           tagName='p'
         />
