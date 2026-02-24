@@ -5,6 +5,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router';
 
+import { useRelationship } from '@/mastodon/hooks/useRelationship';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 import { showAlert } from 'mastodon/actions/alerts';
@@ -123,6 +124,28 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   );
 };
 
+const CollectionAccountItem: React.FC<{
+  accountId: string | undefined;
+  collectionOwnerId: string;
+}> = ({ accountId, collectionOwnerId }) => {
+  const relationship = useRelationship(accountId);
+
+  if (!accountId) {
+    return null;
+  }
+
+  // When viewing your own collection, only show the Follow button
+  // for accounts you're not following (anymore).
+  // Otherwise, always show the follow button in its various states.
+  const withoutButton =
+    accountId === me ||
+    !relationship ||
+    (collectionOwnerId === me &&
+      (relationship.following || relationship.requested));
+
+  return <Account minimal={withoutButton} withMenu={false} id={accountId} />;
+};
+
 export const CollectionDetailPage: React.FC<{
   multiColumn?: boolean;
 }> = ({ multiColumn }) => {
@@ -163,11 +186,13 @@ export const CollectionDetailPage: React.FC<{
           collection ? <CollectionHeader collection={collection} /> : null
         }
       >
-        {collection?.items.map(({ account_id }) =>
-          account_id ? (
-            <Account key={account_id} minimal id={account_id} />
-          ) : null,
-        )}
+        {collection?.items.map(({ account_id }) => (
+          <CollectionAccountItem
+            key={account_id}
+            accountId={account_id}
+            collectionOwnerId={collection.account_id}
+          />
+        ))}
       </ScrollableList>
 
       <Helmet>
