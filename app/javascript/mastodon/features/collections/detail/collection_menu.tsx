@@ -60,13 +60,13 @@ export const CollectionMenu: React.FC<{
   const openReportModal = useCallback(() => {
     dispatch(
       openModal({
-        modalType: 'REPORT',
+        modalType: 'REPORT_COLLECTION',
         modalProps: {
-          accountId: account_id,
+          collection,
         },
       }),
     );
-  }, [account_id, dispatch]);
+  }, [collection, dispatch]);
 
   const menu = useMemo(() => {
     if (isOwnCollection) {

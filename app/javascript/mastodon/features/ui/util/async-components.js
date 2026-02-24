@@ -167,6 +167,11 @@ export function ReportModal () {
   return import('../components/report_modal');
 }
 
+export function ReportCollectionModal () {
+  return import('../components/report_collection_modal')
+    .then((module) => ({ default: module.ReportCollectionModal }));;
+}
+
 export function IgnoreNotificationsModal () {
   return import('../components/ignore_notifications_modal');
 }
