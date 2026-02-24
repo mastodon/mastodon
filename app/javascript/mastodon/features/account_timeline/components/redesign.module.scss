@@ -215,33 +215,26 @@ svg.badgeIcon {
 
 .fieldList {
   display: grid;
-  grid-template-columns: 160px 1fr;
-  column-gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
   margin: 16px 0;
   border-top: 0.5px solid var(--color-border-primary);
 
   @container (width < 420px) {
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 .fieldRow {
-  display: grid;
-  grid-column: 1 / -1;
-  align-items: start;
-  grid-template-columns: subgrid;
+  --col-span: 1;
+
+  grid-column: span var(--col-span);
+  overflow: hidden;
   padding: 8px;
-  border-bottom: 0.5px solid var(--color-border-primary);
+  border: 1px solid red;
 
   > :is(dt, dd) {
-    &:not(.fieldShowAll) {
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      line-clamp: 2;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    white-space: preserve nowrap;
   }
 
   > dt {

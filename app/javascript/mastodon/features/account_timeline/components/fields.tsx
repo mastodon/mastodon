@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { forwardRef, useCallback, useMemo } from 'react';
 import type { FC, Key } from 'react';
 
 import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
@@ -127,38 +127,29 @@ const FieldRow: FC<
   verified_at,
 }) => {
   const intl = useIntl();
-  const [showAll, setShowAll] = useState(false);
-  const handleClick = useCallback(() => {
-    setShowAll((prev) => !prev);
-  }, []);
 
   return (
-    /* eslint-disable -- This method of showing field contents is not very accessible, but it's what we've got for now */
     <div
+      style={{ '--col-span': 1 } as React.CSSProperties}
       className={classNames(
         classes.fieldRow,
         verified_at && classes.fieldVerified,
-        showAll && classes.fieldShowAll,
       )}
-      onClick={handleClick}
-      /* eslint-enable */
     >
-      <FieldHTML
-        as='dt'
-        text={name}
-        textEmojified={name_emojified}
-        textHasCustomEmoji={textHasCustomEmoji(name)}
-        titleLength={50}
-        className='translate'
-        {...htmlHandlers}
-      />
+      <dt>
+        <FieldHTML
+          text={name}
+          textEmojified={name_emojified}
+          textHasCustomEmoji={textHasCustomEmoji(name)}
+          className='translate'
+          {...htmlHandlers}
+        />
+      </dt>
       <dd>
         <FieldHTML
-          as='span'
           text={value_plain ?? ''}
           textEmojified={value_emojified}
           textHasCustomEmoji={textHasCustomEmoji(value_plain ?? '')}
-          titleLength={120}
           {...htmlHandlers}
         />
 
@@ -178,54 +169,52 @@ const FieldRow: FC<
   );
 };
 
-const FieldHTML: FC<
-  {
-    as?: 'span' | 'dt';
-    text: string;
-    textEmojified: string;
-    textHasCustomEmoji: boolean;
-    titleLength: number;
-  } & Omit<EmojiHTMLProps, 'htmlString'>
-> = ({
-  as,
-  className,
-  extraEmojis,
-  text,
-  textEmojified,
-  textHasCustomEmoji,
-  titleLength,
-  onElement,
-  ...props
-}) => {
-  const handleElement: OnElementHandler = useCallback(
-    (element, props, children, extra) => {
-      if (element instanceof HTMLAnchorElement) {
-        // Don't allow custom emoji and links in the same field to prevent verification spoofing.
-        if (textHasCustomEmoji) {
-          return (
-            <span {...filterAttributesForSpan(props)} key={props.key as Key}>
-              {children}
-            </span>
-          );
-        }
-        return onElement?.(element, props, children, extra);
-      }
-      return undefined;
-    },
-    [onElement, textHasCustomEmoji],
-  );
+type FieldHTMLProps = {
+  text: string;
+  textEmojified: string;
+  textHasCustomEmoji: boolean;
+} & Omit<EmojiHTMLProps, 'htmlString'>;
 
-  return (
-    <EmojiHTML
-      as={as}
-      htmlString={textEmojified}
-      title={showTitleOnLength(text, titleLength)}
-      className={className}
-      onElement={handleElement}
-      {...props}
-    />
-  );
-};
+const FieldHTML = forwardRef<HTMLSpanElement, FieldHTMLProps>(
+  ({
+    className,
+    extraEmojis,
+    text,
+    textEmojified,
+    textHasCustomEmoji,
+    onElement,
+    ...props
+  }) => {
+    const handleElement: OnElementHandler = useCallback(
+      (element, props, children, extra) => {
+        if (element instanceof HTMLAnchorElement) {
+          // Don't allow custom emoji and links in the same field to prevent verification spoofing.
+          if (textHasCustomEmoji) {
+            return (
+              <span {...filterAttributesForSpan(props)} key={props.key as Key}>
+                {children}
+              </span>
+            );
+          }
+          return onElement?.(element, props, children, extra);
+        }
+        return undefined;
+      },
+      [onElement, textHasCustomEmoji],
+    );
+
+    return (
+      <EmojiHTML
+        as='span'
+        htmlString={textEmojified}
+        className={className}
+        onElement={handleElement}
+        {...props}
+      />
+    );
+  },
+);
+FieldHTML.displayName = 'FieldHTML';
 
 function filterAttributesForSpan(props: Record<string, unknown>) {
   const validAttributes: Record<string, unknown> = {};
@@ -235,11 +224,4 @@ function filterAttributesForSpan(props: Record<string, unknown>) {
     }
   }
   return validAttributes;
-}
-
-function showTitleOnLength(value: string | null, maxLength: number) {
-  if (value && value.length > maxLength) {
-    return value;
-  }
-  return undefined;
 }
