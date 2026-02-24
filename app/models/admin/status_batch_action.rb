@@ -1,20 +1,14 @@
 # frozen_string_literal: true
 
-class Admin::StatusBatchAction
-  include ActiveModel::Model
-  include ActiveModel::Attributes
-  include AccountableConcern
-  include Authorization
+class Admin::StatusBatchAction < Admin::BaseAction
+  TYPES = %w(
+    delete
+    mark_as_sensitive
+    report
+    remove_from_report
+  ).freeze
 
-  attr_accessor :current_account, :type,
-                :status_ids, :report_id,
-                :text
-
-  attribute :send_email_notification, :boolean
-
-  def save!
-    process_action!
-  end
+  attr_accessor :status_ids
 
   private
 
@@ -115,14 +109,6 @@ class Admin::StatusBatchAction
 
     report.status_ids -= status_ids.map(&:to_i)
     report.save!
-  end
-
-  def report
-    @report ||= Report.find(report_id) if report_id.present?
-  end
-
-  def with_report?
-    !report.nil?
   end
 
   def process_notification!
