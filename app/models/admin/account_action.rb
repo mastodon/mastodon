@@ -12,8 +12,6 @@ class Admin::AccountAction < Admin::BaseAction
   attr_accessor :target_account,
                 :warning_preset_id
 
-  attr_reader :warning
-
   attribute :include_statuses, :boolean, default: true
 
   alias include_statuses? include_statuses
