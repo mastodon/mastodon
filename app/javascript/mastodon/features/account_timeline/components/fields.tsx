@@ -1,11 +1,10 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
-import type { FC, Key } from 'react';
+import type { FC } from 'react';
 
 import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
 
 import classNames from 'classnames';
 
-import htmlConfig from '@/config/html-tags.json';
 import IconVerified from '@/images/icons/icon_verified.svg?react';
 import { openModal } from '@/mastodon/actions/modal';
 import { AccountFields } from '@/mastodon/components/account_fields';
@@ -21,12 +20,12 @@ import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useResizeObserver } from '@/mastodon/hooks/useObserver';
 import type { Account } from '@/mastodon/models/account';
 import { useAppDispatch } from '@/mastodon/store';
-import type { OnElementHandler } from '@/mastodon/utils/html';
 import MoreIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 
 import { cleanExtraEmojis } from '../../emoji/normalize';
 import type { AccountField } from '../common';
 import { isRedesignEnabled } from '../common';
+import { useFieldHtml } from '../hooks/useFieldHtml';
 
 import classes from './redesign.module.scss';
 
@@ -218,23 +217,7 @@ const FieldHTML: FC<FieldHTMLProps> = ({
   ...props
 }) => {
   const intl = useIntl();
-  const handleElement: OnElementHandler = useCallback(
-    (element, props, children, extra) => {
-      if (element instanceof HTMLAnchorElement) {
-        // Don't allow custom emoji and links in the same field to prevent verification spoofing.
-        if (textHasCustomEmoji) {
-          return (
-            <span {...filterAttributesForSpan(props)} key={props.key as Key}>
-              {children}
-            </span>
-          );
-        }
-        return onElement?.(element, props, children, extra);
-      }
-      return undefined;
-    },
-    [onElement, textHasCustomEmoji],
-  );
+  const handleElement = useFieldHtml(textHasCustomEmoji, onElement);
 
   const html = (
     <EmojiHTML
@@ -266,16 +249,6 @@ const FieldHTML: FC<FieldHTMLProps> = ({
     </>
   );
 };
-
-function filterAttributesForSpan(props: Record<string, unknown>) {
-  const validAttributes: Record<string, unknown> = {};
-  for (const key of Object.keys(props)) {
-    if (key in htmlConfig.tags.span.attributes) {
-      validAttributes[key] = props[key];
-    }
-  }
-  return validAttributes;
-}
 
 function useColumnWrap() {
   const listRef = useRef<HTMLDListElement | null>(null);
@@ -381,9 +354,9 @@ function useFieldOverflow() {
 
     const wrapperStyles = getComputedStyle(wrapperEle);
     const maxWidth =
-      wrapperEle.offsetWidth +
-      parseFloat(wrapperStyles.paddingLeft) +
-      parseFloat(wrapperStyles.paddingRight);
+      wrapperEle.offsetWidth -
+      (parseFloat(wrapperStyles.paddingLeft) +
+        parseFloat(wrapperStyles.paddingRight));
 
     const label = wrapperEle.querySelector<HTMLSpanElement>(
       'dt > [data-contents]',
