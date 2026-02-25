@@ -214,64 +214,90 @@ svg.badgeIcon {
 }
 
 .fieldList {
+  --cols: 4;
+
+  position: relative;
   display: grid;
-  grid-template-columns: 160px 1fr;
-  column-gap: 12px;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: 12px;
   margin: 16px 0;
-  border-top: 0.5px solid var(--color-border-primary);
 
   @container (width < 420px) {
-    grid-template-columns: 100px 1fr;
+    --cols: 2;
   }
 }
 
-.fieldRow {
-  display: grid;
-  grid-column: 1 / -1;
-  align-items: start;
-  grid-template-columns: subgrid;
-  padding: 8px;
-  border-bottom: 0.5px solid var(--color-border-primary);
+.fieldItem {
+  --col-span: 1;
 
-  > :is(dt, dd) {
-    &:not(.fieldShowAll) {
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      line-clamp: 2;
-      overflow: hidden;
-      text-overflow: ellipsis;
+  grid-column: span var(--col-span);
+  position: relative;
+
+  @for $col from 2 through 4 {
+    &[data-cols='#{$col}'] {
+      --col-span: #{$col};
     }
   }
 
-  > dt {
-    color: var(--color-text-secondary);
+  dt {
+    font-weight: normal;
   }
 
-  > dd {
-    display: flex;
-    align-items: center;
-    gap: 4px;
+  dd {
+    font-weight: 500;
   }
 
-  a {
-    color: inherit;
-    text-decoration: none;
+  :is(dt, dd) {
+    text-overflow: initial;
 
-    &:hover,
-    &:focus {
-      text-decoration: underline;
+    // Override the MiniCard link styles
+    a {
+      color: inherit;
+      font-weight: inherit;
+
+      &:hover,
+      &:focus {
+        color: inherit;
+        text-decoration: underline;
+      }
     }
   }
 }
 
 .fieldVerified {
   background-color: var(--color-bg-success-softer);
+
+  dt {
+    padding-right: 24px;
+  }
 }
 
 .fieldVerifiedIcon {
   width: 16px;
   height: 16px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.fieldOverflowButton {
+  --default-bg-color: var(--color-bg-secondary-solid);
+  --hover-bg-color: color-mix(
+    in oklab,
+    var(--color-bg-brand-base),
+    var(--default-bg-color) var(--overlay-strength-brand)
+  );
+
+  position: absolute;
+  right: 8px;
+  padding: 0 2px;
+  transition: background-color 0.2s ease-in-out;
+  border: 2px solid var(--color-bg-primary);
+
+  > svg {
+    width: 16px;
+    height: 12px;
+  }
 }
 
 .fieldNumbersWrapper {
