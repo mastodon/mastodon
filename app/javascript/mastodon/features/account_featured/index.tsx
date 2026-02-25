@@ -24,6 +24,7 @@ import {
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
 import { CollectionListItem } from '../collections/detail/collection_list_item';
+import { areCollectionsEnabled } from '../collections/utils';
 
 import { EmptyMessage } from './components/empty_message';
 import { FeaturedTag } from './components/featured_tag';
@@ -48,7 +49,9 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
     if (accountId) {
       void dispatch(fetchFeaturedTags({ accountId }));
       void dispatch(fetchEndorsedAccounts({ accountId }));
-      void dispatch(fetchAccountCollections({ accountId }));
+      if (areCollectionsEnabled()) {
+        void dispatch(fetchAccountCollections({ accountId }));
+      }
     }
   }, [accountId, dispatch]);
 
