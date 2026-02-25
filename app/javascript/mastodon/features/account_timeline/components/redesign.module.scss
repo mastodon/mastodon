@@ -247,15 +247,19 @@ svg.badgeIcon {
     font-weight: 500;
   }
 
-  // Override the MiniCard link styles
-  :is(dd, dt) a {
-    color: inherit;
-    font-weight: inherit;
+  :is(dt, dd) {
+    text-overflow: initial;
 
-    &:hover,
-    &:focus {
+    // Override the MiniCard link styles
+    a {
       color: inherit;
-      text-decoration: underline;
+      font-weight: inherit;
+
+      &:hover,
+      &:focus {
+        color: inherit;
+        text-decoration: underline;
+      }
     }
   }
 }
@@ -274,6 +278,26 @@ svg.badgeIcon {
   position: absolute;
   top: 8px;
   right: 8px;
+}
+
+.fieldOverflowButton {
+  --default-bg-color: var(--color-bg-secondary-solid);
+  --hover-bg-color: color-mix(
+    in oklab,
+    var(--color-bg-brand-base),
+    var(--default-bg-color) var(--overlay-strength-brand)
+  );
+
+  position: absolute;
+  right: 8px;
+  padding: 0 2px;
+  transition: background-color 0.2s ease-in-out;
+  border: 2px solid var(--color-bg-primary);
+
+  > svg {
+    width: 16px;
+    height: 12px;
+  }
 }
 
 .fieldNumbersWrapper {

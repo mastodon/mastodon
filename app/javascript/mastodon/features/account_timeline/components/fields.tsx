@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import type { FC, Key } from 'react';
 
 import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
@@ -7,20 +7,25 @@ import classNames from 'classnames';
 
 import htmlConfig from '@/config/html-tags.json';
 import IconVerified from '@/images/icons/icon_verified.svg?react';
+import { openModal } from '@/mastodon/actions/modal';
 import { AccountFields } from '@/mastodon/components/account_fields';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
 import type { EmojiHTMLProps } from '@/mastodon/components/emoji/html';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
 import { Icon } from '@/mastodon/components/icon';
+import { IconButton } from '@/mastodon/components/icon_button';
 import { MiniCard } from '@/mastodon/components/mini_card';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useResizeObserver } from '@/mastodon/hooks/useObserver';
-import type { Account, AccountFieldShape } from '@/mastodon/models/account';
+import type { Account } from '@/mastodon/models/account';
+import { useAppDispatch } from '@/mastodon/store';
 import type { OnElementHandler } from '@/mastodon/utils/html';
+import MoreIcon from '@/material-icons/400-24px/more_horiz.svg?react';
 
 import { cleanExtraEmojis } from '../../emoji/normalize';
+import type { AccountField } from '../common';
 import { isRedesignEnabled } from '../common';
 
 import classes from './redesign.module.scss';
@@ -71,12 +76,6 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
   minute: '2-digit',
 };
 
-interface AccountField extends AccountFieldShape {
-  nameHasEmojis: boolean;
-  value_plain: string;
-  valueHasEmojis: boolean;
-}
-
 const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
   const emojis = useMemo(
     () => cleanExtraEmojis(account.emojis),
@@ -120,28 +119,40 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
     <CustomEmojiProvider emojis={emojis}>
       <dl className={classes.fieldList} ref={wrapperRef}>
         {fields.map((field, key) => (
-          <FieldRow key={key} {...field} htmlHandlers={htmlHandlers} />
+          <FieldRow key={key} field={field} htmlHandlers={htmlHandlers} />
         ))}
       </dl>
     </CustomEmojiProvider>
   );
 };
 
-const FieldRow: FC<
-  {
-    htmlHandlers: ReturnType<typeof useElementHandledLink>;
-  } & AccountField
-> = ({
-  htmlHandlers,
-  name,
-  name_emojified,
-  nameHasEmojis,
-  value_emojified,
-  value_plain,
-  valueHasEmojis,
-  verified_at,
-}) => {
+const FieldRow: FC<{
+  htmlHandlers: ReturnType<typeof useElementHandledLink>;
+  field: AccountField;
+}> = ({ htmlHandlers, field }) => {
   const intl = useIntl();
+  const {
+    name,
+    name_emojified,
+    nameHasEmojis,
+    value_emojified,
+    value_plain,
+    valueHasEmojis,
+    verified_at,
+  } = field;
+
+  const { wrapperRef, isLabelOverflowing, isValueOverflowing } =
+    useFieldOverflow();
+
+  const dispatch = useAppDispatch();
+  const handleOverflowClick = useCallback(() => {
+    dispatch(
+      openModal({
+        modalType: 'ACCOUNT_FIELD_OVERFLOW',
+        modalProps: { field },
+      }),
+    );
+  }, [dispatch, field]);
 
   return (
     <MiniCard
@@ -155,7 +166,8 @@ const FieldRow: FC<
           textEmojified={name_emojified}
           textHasCustomEmoji={nameHasEmojis}
           className='translate'
-          data-contents
+          isOverflowing={isLabelOverflowing}
+          onOverflowClick={handleOverflowClick}
           {...htmlHandlers}
         />
       }
@@ -164,10 +176,12 @@ const FieldRow: FC<
           text={value_plain}
           textEmojified={value_emojified}
           textHasCustomEmoji={valueHasEmojis}
-          data-contents
+          isOverflowing={isValueOverflowing}
+          onOverflowClick={handleOverflowClick}
           {...htmlHandlers}
         />
       }
+      ref={wrapperRef}
     >
       {verified_at && (
         <Icon
@@ -188,6 +202,8 @@ type FieldHTMLProps = {
   text: string;
   textEmojified: string;
   textHasCustomEmoji: boolean;
+  isOverflowing?: boolean;
+  onOverflowClick?: () => void;
 } & Omit<EmojiHTMLProps, 'htmlString'>;
 
 const FieldHTML: FC<FieldHTMLProps> = ({
@@ -196,9 +212,12 @@ const FieldHTML: FC<FieldHTMLProps> = ({
   text,
   textEmojified,
   textHasCustomEmoji,
+  isOverflowing,
+  onOverflowClick,
   onElement,
   ...props
 }) => {
+  const intl = useIntl();
   const handleElement: OnElementHandler = useCallback(
     (element, props, children, extra) => {
       if (element instanceof HTMLAnchorElement) {
@@ -217,14 +236,34 @@ const FieldHTML: FC<FieldHTMLProps> = ({
     [onElement, textHasCustomEmoji],
   );
 
-  return (
+  const html = (
     <EmojiHTML
       as='span'
       htmlString={textEmojified}
       className={className}
       onElement={handleElement}
+      data-contents
       {...props}
     />
+  );
+  if (!isOverflowing) {
+    return html;
+  }
+
+  return (
+    <>
+      {html}
+      <IconButton
+        icon='ellipsis'
+        iconComponent={MoreIcon}
+        title={intl.formatMessage({
+          id: 'account.field_overflow',
+          defaultMessage: 'Show full content',
+        })}
+        className={classes.fieldOverflowButton}
+        onClick={onOverflowClick}
+      />
+    </>
   );
 };
 
@@ -328,4 +367,50 @@ function useColumnWrap() {
   );
 
   return { wrapperRef: wrapperRefCallback };
+}
+
+function useFieldOverflow() {
+  const [isLabelOverflowing, setIsLabelOverflowing] = useState(false);
+  const [isValueOverflowing, setIsValueOverflowing] = useState(false);
+
+  const wrapperRef = useRef<HTMLElement | null>(null);
+
+  const handleRecalculate = useCallback(() => {
+    const wrapperEle = wrapperRef.current;
+    if (!wrapperEle) return;
+
+    const wrapperStyles = getComputedStyle(wrapperEle);
+    const maxWidth =
+      wrapperEle.offsetWidth +
+      parseFloat(wrapperStyles.paddingLeft) +
+      parseFloat(wrapperStyles.paddingRight);
+
+    const label = wrapperEle.querySelector<HTMLSpanElement>(
+      'dt > [data-contents]',
+    );
+    const value = wrapperEle.querySelector<HTMLSpanElement>(
+      'dd > [data-contents]',
+    );
+
+    setIsLabelOverflowing(label ? label.scrollWidth > maxWidth : false);
+    setIsValueOverflowing(value ? value.scrollWidth > maxWidth : false);
+  }, []);
+
+  const observer = useResizeObserver(handleRecalculate);
+
+  const wrapperRefCallback = useCallback(
+    (element: HTMLElement | null) => {
+      if (element) {
+        wrapperRef.current = element;
+        observer.observe(element);
+      }
+    },
+    [observer],
+  );
+
+  return {
+    isLabelOverflowing,
+    isValueOverflowing,
+    wrapperRef: wrapperRefCallback,
+  };
 }
