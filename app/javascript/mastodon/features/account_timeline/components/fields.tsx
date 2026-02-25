@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import type { FC, Key } from 'react';
 
 import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
@@ -16,6 +16,7 @@ import { Icon } from '@/mastodon/components/icon';
 import { MiniCard } from '@/mastodon/components/mini_card';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
+import { useResizeObserver } from '@/mastodon/hooks/useObserver';
 import type { Account, AccountFieldShape } from '@/mastodon/models/account';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
@@ -314,24 +315,17 @@ function useColumnWrap() {
     }
   }, []);
 
-  // React complains when we assign to ref.current during render,
-  // so it's assigned right afterwards.
-  const observerRef = useRef<ResizeObserver | null>(null);
-  observerRef.current ??= new ResizeObserver(handleRecalculate);
+  const observer = useResizeObserver(handleRecalculate);
 
-  useEffect(() => {
-    const observer = observerRef.current;
-    return () => {
-      observer?.disconnect();
-    };
-  }, []);
-
-  const wrapperRefCallback = useCallback((element: HTMLDListElement | null) => {
-    if (element) {
-      listRef.current = element;
-      observerRef.current?.observe(element);
-    }
-  }, []);
+  const wrapperRefCallback = useCallback(
+    (element: HTMLDListElement | null) => {
+      if (element) {
+        listRef.current = element;
+        observer.observe(element);
+      }
+    },
+    [observer],
+  );
 
   return { wrapperRef: wrapperRefCallback };
 }
