@@ -255,8 +255,6 @@ function useColumnWrap() {
 
     const colWidth = (listWidth - gap * (columnCount - 1)) / columnCount;
 
-    // Iterate over children and set the column span based on content width.
-    let curSpan = 0;
     for (const child of listEle.children) {
       if (!(child instanceof HTMLElement)) {
         continue;
@@ -277,24 +275,7 @@ function useColumnWrap() {
 
       const colSpan = Math.ceil(contentWidth / colWidth);
       const maxColSpan = Math.min(colSpan, columnCount);
-      child.style.setProperty('--col-span', String(maxColSpan));
-
-      if (curSpan + maxColSpan > columnCount) {
-        const prevChild = child.previousElementSibling;
-        if (prevChild instanceof HTMLElement) {
-          const prevChildColSpan = parseInt(
-            prevChild.style.getPropertyValue('--col-span') || '1',
-          );
-
-          prevChild.style.setProperty(
-            '--col-span',
-            String(columnCount - (curSpan - prevChildColSpan)),
-          );
-        }
-        curSpan = 0;
-      } else {
-        curSpan += maxColSpan;
-      }
+      child.dataset.cols = maxColSpan.toString();
     }
   }, []);
 

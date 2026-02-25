@@ -216,13 +216,14 @@ svg.badgeIcon {
 .fieldList {
   --cols: 4;
 
+  position: relative;
   display: grid;
   grid-template-columns: repeat(var(--cols), 1fr);
   gap: 12px;
   margin: 16px 0;
 
   @container (width < 420px) {
-    grid-template-columns: repeat(var(--cols), 1fr);
+    --cols: 2;
   }
 }
 
@@ -231,12 +232,28 @@ svg.badgeIcon {
 
   grid-column: span var(--col-span);
 
-  a {
+  @for $col from 2 through 4 {
+    &[data-cols='#{$col}'] {
+      --col-span: #{$col};
+    }
+  }
+
+  dt {
+    font-weight: normal;
+  }
+
+  dd {
+    font-weight: 500;
+  }
+
+  // Override the MiniCard link styles
+  :is(dd, dt) a {
     color: inherit;
-    text-decoration: none;
+    font-weight: inherit;
 
     &:hover,
     &:focus {
+      color: inherit;
       text-decoration: underline;
     }
   }
