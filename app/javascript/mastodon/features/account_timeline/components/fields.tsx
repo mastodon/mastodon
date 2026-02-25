@@ -71,45 +71,56 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
   minute: '2-digit',
 };
 
+interface AccountField extends AccountFieldShape {
+  nameHasEmojis: boolean;
+  value_plain: string;
+  valueHasEmojis: boolean;
+}
+
 const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
   const emojis = useMemo(
     () => cleanExtraEmojis(account.emojis),
     [account.emojis],
   );
-  const textHasCustomEmoji = useCallback(
-    (text?: string | null) => {
-      if (!emojis || !text) {
-        return false;
-      }
-      for (const emoji of Object.keys(emojis)) {
-        if (text.includes(`:${emoji}:`)) {
-          return true;
-        }
-      }
-      return false;
-    },
-    [emojis],
-  );
+  const fields: AccountField[] = useMemo(() => {
+    const fields = account.fields.toJS();
+    if (!emojis) {
+      return fields.map((field) => ({
+        ...field,
+        nameHasEmojis: false,
+        value_plain: field.value_plain ?? '',
+        valueHasEmojis: false,
+      }));
+    }
+
+    const shortcodes = Object.keys(emojis);
+    return fields.map((field) => ({
+      ...field,
+      nameHasEmojis: shortcodes.some((code) =>
+        field.name.includes(`:${code}:`),
+      ),
+      value_plain: field.value_plain ?? '',
+      valueHasEmojis: shortcodes.some((code) =>
+        field.value_plain?.includes(`:${code}:`),
+      ),
+    }));
+  }, [account.fields, emojis]);
+
   const htmlHandlers = useElementHandledLink({
     hashtagAccountId: account.id,
   });
 
   const { wrapperRef } = useColumnWrap();
 
-  if (account.fields.isEmpty()) {
+  if (fields.length === 0) {
     return null;
   }
 
   return (
     <CustomEmojiProvider emojis={emojis}>
       <dl className={classes.fieldList} ref={wrapperRef}>
-        {account.fields.map((field, key) => (
-          <FieldRow
-            key={key}
-            {...field.toJSON()}
-            htmlHandlers={htmlHandlers}
-            textHasCustomEmoji={textHasCustomEmoji}
-          />
+        {fields.map((field, key) => (
+          <FieldRow key={key} {...field} htmlHandlers={htmlHandlers} />
         ))}
       </dl>
     </CustomEmojiProvider>
@@ -118,16 +129,16 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
 
 const FieldRow: FC<
   {
-    textHasCustomEmoji: (text?: string | null) => boolean;
     htmlHandlers: ReturnType<typeof useElementHandledLink>;
-  } & AccountFieldShape
+  } & AccountField
 > = ({
-  textHasCustomEmoji,
   htmlHandlers,
   name,
   name_emojified,
+  nameHasEmojis,
   value_emojified,
   value_plain,
+  valueHasEmojis,
   verified_at,
 }) => {
   const intl = useIntl();
@@ -142,7 +153,7 @@ const FieldRow: FC<
         <FieldHTML
           text={name}
           textEmojified={name_emojified}
-          textHasCustomEmoji={textHasCustomEmoji(name)}
+          textHasCustomEmoji={nameHasEmojis}
           className='translate'
           data-contents
           {...htmlHandlers}
@@ -150,9 +161,9 @@ const FieldRow: FC<
       }
       value={
         <FieldHTML
-          text={value_plain ?? ''}
+          text={value_plain}
           textEmojified={value_emojified}
-          textHasCustomEmoji={textHasCustomEmoji(value_plain ?? '')}
+          textHasCustomEmoji={valueHasEmojis}
           data-contents
           {...htmlHandlers}
         />
