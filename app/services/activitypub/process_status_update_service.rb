@@ -410,6 +410,11 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     return unless poll.present? && poll.expires_at.present? && poll.votes.exists?
 
+    # Do not schedule notifications for already-expired polls, as the
+    # notification worker would run immediately and re-create notifications
+    # that users may have already dismissed (see #37948)
+    return if poll.expired?
+
     PollExpirationNotifyWorker.remove_from_scheduled(poll.id) if @previous_expires_at.present? && @previous_expires_at > poll.expires_at
     PollExpirationNotifyWorker.perform_at(poll.expires_at + 5.minutes, poll.id)
   end

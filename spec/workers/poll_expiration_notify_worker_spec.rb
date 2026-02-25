@@ -54,5 +54,23 @@ RSpec.describe PollExpirationNotifyWorker do
         end
       end
     end
+
+    context 'when a voter has already dismissed the notification' do
+      let(:voter) { Fabricate(:account, domain: nil) }
+      let(:poll) { Fabricate(:poll, account: status.account, status: status, expires_at: 1.day.ago) }
+
+      before do
+        poll.votes.create!(account: voter, choice: 0)
+        # First run creates the notification
+        described_class.new.perform(poll.id)
+        # User dismisses the notification
+        Notification.where(account: voter, activity: poll, type: :poll).destroy_all
+      end
+
+      it 'does not re-create the notification on a second run' do
+        expect { described_class.new.perform(poll.id) }
+          .to_not change { Notification.where(account: voter, activity: poll, type: :poll).count }.from(0)
+      end
+    end
   end
 end

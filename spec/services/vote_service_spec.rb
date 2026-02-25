@@ -24,6 +24,15 @@ RSpec.describe VoteService do
         end
       end
 
+      context 'when the remote poll has already expired' do
+        let(:poll) { Fabricate(:poll, account: account, options: %w(Foo Bar), expires_at: 1.day.ago) }
+
+        it 'does not schedule a PollExpirationNotifyWorker' do
+          expect { subject.call(voter, poll, [0]) }
+            .to_not change { PollExpirationNotifyWorker.jobs.size }
+        end
+      end
+
       context 'when the poll was created by a remote account' do
         let(:account) { Fabricate(:account, domain: 'host.example') }
 

@@ -51,6 +51,10 @@ class VoteService < BaseService
   def queue_final_poll_check!
     return unless @poll.expires?
 
+    # Do not schedule if the poll has already expired, as the worker would
+    # run immediately and potentially re-create dismissed notifications (#37948)
+    return if @poll.expired?
+
     PollExpirationNotifyWorker.perform_at(@poll.expires_at + 5.minutes, @poll.id)
   end
 

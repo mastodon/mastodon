@@ -136,6 +136,22 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
       end
     end
 
+    context 'when the poll has already expired' do
+      let(:poll) { Fabricate(:poll, status: status, account: status.account, expires_at: 1.day.ago) }
+
+      before do
+        poll.votes.create!(account: Fabricate(:account, domain: nil), choice: 0)
+      end
+
+      it 'does not schedule a PollExpirationNotifyWorker' do
+        expect(PollExpirationNotifyWorker).to_not have_enqueued_sidekiq_job(poll.id)
+
+        subject.call(status, activity_json, object_json)
+
+        expect(PollExpirationNotifyWorker).to_not have_enqueued_sidekiq_job(poll.id)
+      end
+    end
+
     context 'when the status changes a poll despite being not explicitly marked as updated' do
       let(:account) { Fabricate(:account, domain: 'example.com') }
       let!(:expiration) { 10.days.from_now.utc }
