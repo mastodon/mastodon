@@ -159,9 +159,9 @@ GEM
     cbor (0.5.10.1)
     cgi (0.4.2)
     charlock_holmes (0.7.9)
-    chewy (7.6.0)
-      activesupport (>= 5.2)
-      elasticsearch (>= 7.14.0, < 8)
+    chewy (8.0.0)
+      activesupport (>= 7.2)
+      elasticsearch (>= 8.14, < 9.0)
       elasticsearch-dsl
     childprocess (5.1.0)
       logger (~> 1.5)
@@ -214,16 +214,16 @@ GEM
     dotenv (3.2.0)
     drb (2.2.3)
     dry-cli (1.4.1)
-    elasticsearch (7.17.11)
-      elasticsearch-api (= 7.17.11)
-      elasticsearch-transport (= 7.17.11)
-    elasticsearch-api (7.17.11)
+    elastic-transport (8.4.1)
+      faraday (< 3)
+      multi_json
+    elasticsearch (8.19.3)
+      elastic-transport (~> 8.3)
+      elasticsearch-api (= 8.19.3)
+      ostruct
+    elasticsearch-api (8.19.3)
       multi_json
     elasticsearch-dsl (0.1.10)
-    elasticsearch-transport (7.17.11)
-      base64
-      faraday (>= 1, < 3)
-      multi_json
     email_validator (2.2.4)
       activemodel
     erb (6.0.2)
@@ -958,7 +958,7 @@ DEPENDENCIES
   capybara (~> 3.39)
   capybara-playwright-driver
   charlock_holmes (~> 0.7.7)
-  chewy (~> 7.3)
+  chewy
   climate_control
   cocoon (~> 1.2)
   color_diff (~> 0.1)
