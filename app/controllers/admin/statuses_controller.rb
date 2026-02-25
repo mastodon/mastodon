@@ -78,8 +78,6 @@ module Admin
         'report'
       elsif params[:remove_from_report]
         'remove_from_report'
-      elsif params[:delete]
-        'delete'
       end
     end
   end

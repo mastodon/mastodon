@@ -39,4 +39,27 @@ class Admin::BaseAction
   def with_report?
     !report.nil?
   end
+
+  private
+
+  def process_strike!(action = type)
+    @warning = target_account.strikes.create!(
+      account: current_account,
+      report: report,
+      action:,
+      text: text_for_warning,
+      status_ids: status_ids
+    )
+  end
+
+  def process_notification!
+    return unless warnable?
+
+    UserMailer.warning(target_account.user, warning).deliver_later!
+    LocalNotificationWorker.perform_async(target_account.id, warning.id, 'AccountWarning', 'moderation_warning')
+  end
+
+  def warnable?
+    send_email_notification? && target_account.local?
+  end
 end
