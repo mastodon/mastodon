@@ -13,6 +13,7 @@ import type { EmojiHTMLProps } from '@/mastodon/components/emoji/html';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
 import { Icon } from '@/mastodon/components/icon';
+import { MiniCard } from '@/mastodon/components/mini_card';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useOverflowObservers } from '@/mastodon/hooks/useOverflow';
@@ -132,13 +133,12 @@ const FieldRow: FC<
   const intl = useIntl();
 
   return (
-    <div
+    <MiniCard
       className={classNames(
         classes.fieldRow,
         verified_at && classes.fieldVerified,
       )}
-    >
-      <dt>
+      label={
         <FieldHTML
           text={name}
           textEmojified={name_emojified}
@@ -147,8 +147,8 @@ const FieldRow: FC<
           data-contents
           {...htmlHandlers}
         />
-      </dt>
-      <dd>
+      }
+      value={
         <FieldHTML
           text={value_plain ?? ''}
           textEmojified={value_emojified}
@@ -156,20 +156,20 @@ const FieldRow: FC<
           data-contents
           {...htmlHandlers}
         />
-
-        {verified_at && (
-          <Icon
-            id='verified'
-            icon={IconVerified}
-            className={classes.fieldVerifiedIcon}
-            aria-label={intl.formatMessage(verifyMessage, {
-              date: intl.formatDate(verified_at, dateFormatOptions),
-            })}
-            noFill
-          />
-        )}
-      </dd>
-    </div>
+      }
+    >
+      {verified_at && (
+        <Icon
+          id='verified'
+          icon={IconVerified}
+          className={classes.fieldVerifiedIcon}
+          aria-label={intl.formatMessage(verifyMessage, {
+            date: intl.formatDate(verified_at, dateFormatOptions),
+          })}
+          noFill
+        />
+      )}
+    </MiniCard>
   );
 };
 
