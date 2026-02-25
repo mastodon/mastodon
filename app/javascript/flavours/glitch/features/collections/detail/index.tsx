@@ -5,6 +5,7 @@ import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router';
 
+import { useRelationship } from '@/flavours/glitch/hooks/useRelationship';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
 import { showAlert } from 'flavours/glitch/actions/alerts';
@@ -79,7 +80,7 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   collection,
 }) => {
   const intl = useIntl();
-  const { name, description, tag } = collection;
+  const { name, description, tag, account_id } = collection;
   const dispatch = useAppDispatch();
 
   const handleShare = useCallback(() => {
@@ -114,13 +115,35 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
       {description && <p className={classes.description}>{description}</p>}
       <AuthorNote id={collection.account_id} />
       <CollectionMetaData
-        extended
+        extended={account_id === me}
         collection={collection}
         className={classes.metaData}
       />
       <h2 className='sr-only'>{intl.formatMessage(messages.accounts)}</h2>
     </div>
   );
+};
+
+const CollectionAccountItem: React.FC<{
+  accountId: string | undefined;
+  collectionOwnerId: string;
+}> = ({ accountId, collectionOwnerId }) => {
+  const relationship = useRelationship(accountId);
+
+  if (!accountId) {
+    return null;
+  }
+
+  // When viewing your own collection, only show the Follow button
+  // for accounts you're not following (anymore).
+  // Otherwise, always show the follow button in its various states.
+  const withoutButton =
+    accountId === me ||
+    !relationship ||
+    (collectionOwnerId === me &&
+      (relationship.following || relationship.requested));
+
+  return <Account minimal={withoutButton} withMenu={false} id={accountId} />;
 };
 
 export const CollectionDetailPage: React.FC<{
@@ -163,11 +186,13 @@ export const CollectionDetailPage: React.FC<{
           collection ? <CollectionHeader collection={collection} /> : null
         }
       >
-        {collection?.items.map(({ account_id }) =>
-          account_id ? (
-            <Account key={account_id} minimal id={account_id} />
-          ) : null,
-        )}
+        {collection?.items.map(({ account_id }) => (
+          <CollectionAccountItem
+            key={account_id}
+            accountId={account_id}
+            collectionOwnerId={collection.account_id}
+          />
+        ))}
       </ScrollableList>
 
       <Helmet>

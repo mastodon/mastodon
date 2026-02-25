@@ -22,7 +22,7 @@ import { identityContextPropShape, withIdentity } from 'mastodon/identity_contex
 import { layoutFromWindow } from 'mastodon/is_mobile';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
 import { checkAnnualReport } from '@/mastodon/reducers/slices/annual_report';
-import { isClientFeatureEnabled, isServerFeatureEnabled } from '@/mastodon/utils/environment';
+import { isClientFeatureEnabled } from '@/mastodon/utils/environment';
 
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
@@ -80,7 +80,6 @@ import {
   PrivacyPolicy,
   TermsOfService,
   AccountFeatured,
-  AccountAbout,
   AccountEdit,
   AccountEditFeaturedTags,
   Quotes,
@@ -166,36 +165,6 @@ class SwitchingColumnsArea extends PureComponent {
     }
 
     const profileRedesignRoutes = [];
-    if (isServerFeatureEnabled('profile_redesign')) {
-      profileRedesignRoutes.push(
-        <WrappedRoute key="posts" path={['/@:acct/posts', '/accounts/:id/posts']} exact component={AccountTimeline} content={children} />,
-      );
-      // Check if we're in single-column mode. Confusingly, the singleColumn prop includes mobile.
-      if (this.props.layout === 'single-column') {
-        // When in single column mode (desktop w/o advanced view), redirect both the root and about to the posts tab.
-        profileRedesignRoutes.push(
-          <Redirect key="acct-redirect" from='/@:acct' to='/@:acct/posts' exact />,
-          <Redirect key="id-redirect" from='/accounts/:id' to='/accounts/:id/posts' exact />,
-          <Redirect key="about-acct-redirect" from='/@:acct/about' to='/@:acct/posts' exact />,
-          <Redirect key="about-id-redirect" from='/accounts/:id/about' to='/accounts/:id/posts' exact />,
-        );
-      } else {
-        // Otherwise, provide and redirect to the /about page.
-        profileRedesignRoutes.push(
-          <WrappedRoute key="about" path={['/@:acct/about', '/accounts/:id/about']} component={AccountAbout} content={children} />,
-          <Redirect key="acct-redirect" from='/@:acct' to='/@:acct/about' exact />,
-          <Redirect key="id-redirect" from='/accounts/:id' to='/accounts/:id/about' exact />
-        );
-      }
-    } else {
-      profileRedesignRoutes.push(
-        <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />,
-        // If the redesign is not enabled but someone shares an /about link, redirect to the root.
-        <Redirect key="about-acct-redirect" from='/@:acct/about' to='/@:acct' exact />,
-        <Redirect key="about-id-redirect" from='/accounts/:id/about' to='/accounts/:id' exact />
-      );
-    }
-
     if (isClientFeatureEnabled('profile_editing')) {
       profileRedesignRoutes.push(
         <WrappedRoute key="edit" path='/profile/edit' component={AccountEdit} content={children} />,
@@ -257,6 +226,7 @@ class SwitchingColumnsArea extends PureComponent {
 
             {...profileRedesignRoutes}
 
+            <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/featured', '/accounts/:id/featured']} component={AccountFeatured} content={children} />
             <WrappedRoute path='/@:acct/tagged/:tagged?' exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />

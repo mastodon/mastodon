@@ -229,14 +229,16 @@ interface AccountCollectionQuery {
   collections: ApiCollectionJSON[];
 }
 
-export const selectMyCollections = createAppSelector(
+export const selectAccountCollections = createAppSelector(
   [
-    (state) => state.meta.get('me') as string,
+    (_, accountId: string | null) => accountId,
     (state) => state.collections.accountCollections,
     (state) => state.collections.collections,
   ],
-  (me, collectionsByAccountId, collectionsMap) => {
-    const myCollectionsQuery = collectionsByAccountId[me];
+  (accountId, collectionsByAccountId, collectionsMap) => {
+    const myCollectionsQuery = accountId
+      ? collectionsByAccountId[accountId]
+      : null;
 
     if (!myCollectionsQuery) {
       return {

@@ -67,13 +67,18 @@ export const CollectionMetaData: React.FC<{
 
 export const CollectionListItem: React.FC<{
   collection: ApiCollectionJSON;
-}> = ({ collection }) => {
+  withoutBorder?: boolean;
+}> = ({ collection, withoutBorder }) => {
   const { id, name } = collection;
   const linkId = useId();
 
   return (
     <article
-      className={classNames(classes.wrapper, 'focusable')}
+      className={classNames(
+        classes.wrapper,
+        'focusable',
+        withoutBorder && classes.wrapperWithoutBorder,
+      )}
       tabIndex={-1}
       aria-labelledby={linkId}
     >

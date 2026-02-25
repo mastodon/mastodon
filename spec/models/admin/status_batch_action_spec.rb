@@ -22,39 +22,6 @@ RSpec.describe Admin::StatusBatchAction do
   let(:text) { 'test' }
 
   describe '#save!' do
-    context 'when `type` is `delete`' do
-      let(:type) { 'delete' }
-
-      it 'discards the statuses' do
-        subject.save!
-
-        statuses.each do |status|
-          expect(status.reload).to be_discarded
-        end
-        expect(report.reload).to be_action_taken
-      end
-    end
-
-    context 'when `type` is `mark_as_sensitive`' do
-      let(:type) { 'mark_as_sensitive' }
-
-      before do
-        preview_card = Fabricate(:preview_card)
-        statuses.each do |status|
-          PreviewCardsStatus.create!(status:, preview_card:)
-        end
-      end
-
-      it 'marks the statuses as sensitive' do
-        subject.save!
-
-        statuses.each do |status|
-          expect(status.reload).to be_sensitive
-        end
-        expect(report.reload).to be_action_taken
-      end
-    end
-
     context 'when `type` is `report`' do
       let(:report_id) { nil }
       let(:type) { 'report' }

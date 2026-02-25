@@ -23,7 +23,17 @@ export type MiniCardProps = OmitUnion<
 
 export const MiniCard = forwardRef<HTMLDivElement, MiniCardProps>(
   (
-    { label, value, className, hidden, icon, iconId, iconClassName, ...props },
+    {
+      label,
+      value,
+      className,
+      hidden,
+      icon,
+      iconId,
+      iconClassName,
+      children,
+      ...props
+    },
     ref,
   ) => {
     if (!label) {
@@ -50,6 +60,7 @@ export const MiniCard = forwardRef<HTMLDivElement, MiniCardProps>(
         )}
         <dt className={classes.label}>{label}</dt>
         <dd className={classes.value}>{value}</dd>
+        {children}
       </div>
     );
   },
