@@ -345,6 +345,9 @@ nn:
       accounts: Kontoar
       collection_title: Samling av %{name}
       contents: Innhald
+      number_of_accounts:
+        one: 1 konto
+        other: "%{count} kontoar"
       open: Opna
       view_publicly: Vis offentleg
     critical_update_pending: Kritisk oppdatering ventar
@@ -686,6 +689,7 @@ nn:
       cancel: Avbryt
       category: Kategori
       category_description_html: Årsaka til at kontoen og/eller innhaldet vart rapportert vil bli inkludert i kommunikasjonen med den rapporterte kontoen
+      collections: Samlingar (%{count})
       comment:
         none: Ingen
       comment_description_html: 'For å gje meir informasjon, skreiv %{name}:'
@@ -721,6 +725,7 @@ nn:
       resolved_msg: Rapporten er løyst!
       skip_to_actions: Gå til handlingar
       status: Status
+      statuses: Innlegg (%{count})
       statuses_description_html: Støytande innhald vil bli inkludert i kommunikasjonen med den rapporterte kontoen
       summary:
         action_preambles:

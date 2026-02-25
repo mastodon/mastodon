@@ -17,7 +17,14 @@ import BundleColumnError from 'mastodon/features/ui/components/bundle_column_err
 import Column from 'mastodon/features/ui/components/column';
 import { useAccountId } from 'mastodon/hooks/useAccountId';
 import { useAccountVisibility } from 'mastodon/hooks/useAccountVisibility';
+import {
+  fetchAccountCollections,
+  selectAccountCollections,
+} from 'mastodon/reducers/slices/collections';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
+
+import { CollectionListItem } from '../collections/detail/collection_list_item';
+import { areCollectionsEnabled } from '../collections/utils';
 
 import { EmptyMessage } from './components/empty_message';
 import { FeaturedTag } from './components/featured_tag';
@@ -42,6 +49,9 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
     if (accountId) {
       void dispatch(fetchFeaturedTags({ accountId }));
       void dispatch(fetchEndorsedAccounts({ accountId }));
+      if (areCollectionsEnabled()) {
+        void dispatch(fetchAccountCollections({ accountId }));
+      }
     }
   }, [accountId, dispatch]);
 
@@ -63,6 +73,14 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
         ['featured_accounts', accountId, 'items'],
         ImmutableList(),
       ) as ImmutableList<string>,
+  );
+  const { collections, status } = useAppSelector((state) =>
+    selectAccountCollections(state, accountId ?? null),
+  );
+  const publicCollections = collections.filter(
+    // This filter only applies when viewing your own profile, where the endpoint
+    // returns all collections, but we hide unlisted ones here to avoid confusion
+    (item) => item.discoverable,
   );
 
   if (accountId === null) {
@@ -100,6 +118,25 @@ const AccountFeatured: React.FC<{ multiColumn: boolean }> = ({
       <div className='scrollable scrollable--flex'>
         {accountId && (
           <AccountHeader accountId={accountId} hideTabs={forceEmptyState} />
+        )}
+        {publicCollections.length > 0 && status === 'idle' && (
+          <>
+            <h4 className='column-subheading'>
+              <FormattedMessage
+                id='account.featured.collections'
+                defaultMessage='Collections'
+              />
+            </h4>
+            <section>
+              {publicCollections.map((item, index) => (
+                <CollectionListItem
+                  key={item.id}
+                  collection={item}
+                  withoutBorder={index === publicCollections.length - 1}
+                />
+              ))}
+            </section>
+          </>
         )}
         {!featuredTags.isEmpty() && (
           <>

@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { ConfirmationModal } from '../../ui/components/confirmation_modals';
 
-import classes from './modals.module.css';
+import classes from './styles.module.css';
 
 const messages = defineMessages({
   newTitle: {
