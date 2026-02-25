@@ -138,4 +138,18 @@ RSpec.describe Collection do
       expect(subject.object_type).to eq :featured_collection
     end
   end
+
+  describe '#to_log_human_identifier' do
+    subject { Fabricate(:collection) }
+
+    it 'returns the account name' do
+      expect(subject.to_log_human_identifier).to eq subject.account.acct
+    end
+  end
+
+  describe '#to_log_permalink' do
+    it 'includes the URI of the collection' do
+      expect(subject.to_log_permalink).to eq ActivityPub::TagManager.instance.uri_for(subject)
+    end
+  end
 end

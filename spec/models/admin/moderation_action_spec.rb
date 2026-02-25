@@ -32,6 +32,36 @@ RSpec.describe Admin::ModerationAction do
         end
         expect(report.reload).to be_action_taken
       end
+
+      context 'with attached collections', feature: :collections do
+        let(:status_ids) { [] }
+        let(:collections) { Fabricate.times(2, :collection, account: target_account) }
+
+        before do
+          report.collections = collections
+        end
+
+        it 'deletes the collections and creates an action log' do
+          expect { subject.save! }.to change(Collection, :count).by(-2)
+            .and change(Admin::ActionLog, :count).by(3)
+        end
+      end
+
+      context 'with a remote collection', feature: :collections do
+        let(:status_ids) { [] }
+        let(:collection) { Fabricate(:remote_collection) }
+        let(:target_account) { collection.account }
+
+        before do
+          report.collections << collection
+        end
+
+        it 'creates a tombstone' do
+          expect { subject.save! }.to change(Tombstone, :count).by(1)
+
+          expect(Tombstone.last.uri).to eq collection.uri
+        end
+      end
     end
 
     context 'when `type` is `mark_as_sensitive`' do
@@ -51,6 +81,24 @@ RSpec.describe Admin::ModerationAction do
           expect(status.reload).to be_sensitive
         end
         expect(report.reload).to be_action_taken
+      end
+
+      context 'with attached collections', feature: :collections do
+        let(:status_ids) { [] }
+        let(:collections) { Fabricate.times(2, :collection, account: target_account) }
+
+        before do
+          report.collections = collections
+        end
+
+        it 'marks the collections as sensitive' do
+          subject.save!
+
+          collections.each do |collection|
+            expect(collection.reload).to be_sensitive
+          end
+          expect(report.reload).to be_action_taken
+        end
       end
     end
   end

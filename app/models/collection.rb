@@ -69,6 +69,14 @@ class Collection < ApplicationRecord
     :featured_collection
   end
 
+  def to_log_human_identifier
+    account.acct
+  end
+
+  def to_log_permalink
+    ActivityPub::TagManager.instance.uri_for(self)
+  end
+
   private
 
   def tag_is_usable

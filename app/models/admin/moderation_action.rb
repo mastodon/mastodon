@@ -18,6 +18,10 @@ class Admin::ModerationAction < Admin::BaseAction
     @statuses ||= Status.with_discarded.where(id: status_ids).reorder(nil)
   end
 
+  def collections
+    report.collections
+  end
+
   def process_action!
     case type
     when 'delete'
@@ -29,19 +33,16 @@ class Admin::ModerationAction < Admin::BaseAction
 
   def handle_delete!
     statuses.each { |status| authorize([:admin, status], :destroy?) }
+    collections.each { |collection| authorize([:admin, collection], :destroy?) }
 
     ApplicationRecord.transaction do
-      statuses.each do |status|
-        status.discard_with_reblogs
-        log_action(:destroy, status)
-      end
+      delete_statuses!
+      delete_collections!
 
-      report.resolve!(current_account)
-      log_action(:resolve, report)
-
+      resolve_report!
       process_strike!(:delete_statuses)
 
-      statuses.each { |status| Tombstone.find_or_create_by(uri: status.uri, account: status.account, by_moderator: true) } unless target_account.local?
+      create_tombstones! unless target_account.local?
     end
 
     process_notification!
@@ -50,10 +51,39 @@ class Admin::ModerationAction < Admin::BaseAction
   end
 
   def handle_mark_as_sensitive!
-    representative_account = Account.representative
+    collections.each { |collection| authorize([:admin, collection], :update?) }
 
     # Can't use a transaction here because UpdateStatusService queues
     # Sidekiq jobs
+    mark_statuses_as_sensitive!
+    mark_collections_as_sensitive!
+
+    resolve_report!
+    process_strike!(:mark_statuses_as_sensitive)
+    process_notification!
+  end
+
+  def delete_statuses!
+    statuses.each do |status|
+      status.discard_with_reblogs
+      log_action(:destroy, status)
+    end
+  end
+
+  def delete_collections!
+    collections.each do |collection|
+      collection.destroy!
+      log_action(:destroy, collection)
+    end
+  end
+
+  def create_tombstones!
+    (statuses + collections).each { |record| Tombstone.find_or_create_by(uri: record.uri, account: target_account, by_moderator: true) }
+  end
+
+  def mark_statuses_as_sensitive!
+    representative_account = Account.representative
+
     statuses.includes(:media_attachments, preview_cards_status: :preview_card).find_each do |status|
       next if status.discarded? || !(status.with_media? || status.with_preview_card?)
 
@@ -66,14 +96,20 @@ class Admin::ModerationAction < Admin::BaseAction
       end
 
       log_action(:update, status)
-
-      report.resolve!(current_account)
-      log_action(:resolve, report)
     end
+  end
 
-    process_strike!(:mark_statuses_as_sensitive)
+  def mark_collections_as_sensitive!
+    collections.each do |collection|
+      UpdateCollectionService.new.call(collection, sensitive: true)
 
-    process_notification!
+      log_action(:update, collection)
+    end
+  end
+
+  def resolve_report!
+    report.resolve!(current_account)
+    log_action(:resolve, report)
   end
 
   def target_account
