@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import type { FC, Key } from 'react';
 
 import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
@@ -16,7 +16,6 @@ import { Icon } from '@/mastodon/components/icon';
 import { MiniCard } from '@/mastodon/components/mini_card';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
-import { useOverflowObservers } from '@/mastodon/hooks/useOverflow';
 import type { Account, AccountFieldShape } from '@/mastodon/models/account';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
@@ -146,7 +145,7 @@ const FieldRow: FC<
   return (
     <MiniCard
       className={classNames(
-        classes.fieldRow,
+        classes.fieldItem,
         verified_at && classes.fieldVerified,
       )}
       label={
@@ -252,9 +251,13 @@ function useColumnWrap() {
     const gap = parseFloat(styles.columnGap || styles.gap || '0');
     const columnCount = parseInt(styles.getPropertyValue('--cols')) || 2;
     const listWidth = listEle.offsetWidth;
-
     const colWidth = (listWidth - gap * (columnCount - 1)) / columnCount;
 
+    // Matrix to hold the grid layout.
+    const itemGrid: { ele: HTMLElement; span: number }[][] = [];
+
+    // First, determine the column span for each item and populate the grid matrix.
+    let currentRow = 0;
     for (const child of listEle.children) {
       if (!(child instanceof HTMLElement)) {
         continue;
@@ -273,16 +276,62 @@ function useColumnWrap() {
           ...Array.from(contents).map((content) => content.scrollWidth),
         ) + padding;
 
-      const colSpan = Math.ceil(contentWidth / colWidth);
-      const maxColSpan = Math.min(colSpan, columnCount);
-      child.dataset.cols = maxColSpan.toString();
+      const contentSpan = Math.ceil(contentWidth / colWidth);
+      const maxColSpan = Math.min(contentSpan, columnCount);
+
+      const curRow = itemGrid[currentRow] ?? [];
+      const availableCols =
+        columnCount - curRow.reduce((carry, curr) => carry + curr.span, 0);
+      // Move to next row if current item doesn't fit.
+      if (maxColSpan > availableCols) {
+        currentRow++;
+      }
+
+      itemGrid[currentRow] = (itemGrid[currentRow] ?? []).concat({
+        ele: child,
+        span: maxColSpan,
+      });
+    }
+
+    // Next, iterate through the grid matrix and set the column spans and row breaks.
+    for (const row of itemGrid) {
+      let remainingRowSpan = columnCount;
+      for (let i = 0; i < row.length; i++) {
+        const item = row[i];
+        if (!item) {
+          break;
+        }
+        const { ele, span } = item;
+        if (i < row.length - 1) {
+          ele.dataset.cols = span.toString();
+          remainingRowSpan -= span;
+        } else {
+          // Last item in the row takes up remaining space to fill the row.
+          ele.dataset.cols = remainingRowSpan.toString();
+          break;
+        }
+      }
     }
   }, []);
 
-  const { wrapperRefCallback } = useOverflowObservers({
-    onWrapperRef: listRef,
-    onRecalculate: handleRecalculate,
-  });
+  // React complains when we assign to ref.current during render,
+  // so it's assigned right afterwards.
+  const observerRef = useRef<ResizeObserver | null>(null);
+  observerRef.current ??= new ResizeObserver(handleRecalculate);
+
+  useEffect(() => {
+    const observer = observerRef.current;
+    return () => {
+      observer?.disconnect();
+    };
+  }, []);
+
+  const wrapperRefCallback = useCallback((element: HTMLDListElement | null) => {
+    if (element) {
+      listRef.current = element;
+      observerRef.current?.observe(element);
+    }
+  }, []);
 
   return { wrapperRef: wrapperRefCallback };
 }
