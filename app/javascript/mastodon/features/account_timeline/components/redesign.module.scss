@@ -231,6 +231,7 @@ svg.badgeIcon {
   --col-span: 1;
 
   grid-column: span var(--col-span);
+  position: relative;
 
   @for $col from 2 through 4 {
     &[data-cols='#{$col}'] {
@@ -261,11 +262,18 @@ svg.badgeIcon {
 
 .fieldVerified {
   background-color: var(--color-bg-success-softer);
+
+  dt {
+    padding-right: 24px;
+  }
 }
 
 .fieldVerifiedIcon {
   width: 16px;
   height: 16px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }
 
 .fieldNumbersWrapper {
