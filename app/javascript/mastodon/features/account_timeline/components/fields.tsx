@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import type { FC, Key } from 'react';
 
 import { defineMessage, FormattedMessage, useIntl } from 'react-intl';
@@ -15,6 +15,7 @@ import { FormattedDateWrapper } from '@/mastodon/components/formatted_date';
 import { Icon } from '@/mastodon/components/icon';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
 import { useAccount } from '@/mastodon/hooks/useAccount';
+import { useOverflowObservers } from '@/mastodon/hooks/useOverflow';
 import type { Account, AccountFieldShape } from '@/mastodon/models/account';
 import type { OnElementHandler } from '@/mastodon/utils/html';
 
@@ -92,13 +93,15 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
     hashtagAccountId: account.id,
   });
 
+  const { wrapperRef } = useColumnWrap();
+
   if (account.fields.isEmpty()) {
     return null;
   }
 
   return (
     <CustomEmojiProvider emojis={emojis}>
-      <dl className={classes.fieldList}>
+      <dl className={classes.fieldList} ref={wrapperRef}>
         {account.fields.map((field, key) => (
           <FieldRow
             key={key}
@@ -130,7 +133,6 @@ const FieldRow: FC<
 
   return (
     <div
-      style={{ '--col-span': 1 } as React.CSSProperties}
       className={classNames(
         classes.fieldRow,
         verified_at && classes.fieldVerified,
@@ -142,6 +144,7 @@ const FieldRow: FC<
           textEmojified={name_emojified}
           textHasCustomEmoji={textHasCustomEmoji(name)}
           className='translate'
+          data-contents
           {...htmlHandlers}
         />
       </dt>
@@ -150,6 +153,7 @@ const FieldRow: FC<
           text={value_plain ?? ''}
           textEmojified={value_emojified}
           textHasCustomEmoji={textHasCustomEmoji(value_plain ?? '')}
+          data-contents
           {...htmlHandlers}
         />
 
@@ -175,46 +179,43 @@ type FieldHTMLProps = {
   textHasCustomEmoji: boolean;
 } & Omit<EmojiHTMLProps, 'htmlString'>;
 
-const FieldHTML = forwardRef<HTMLSpanElement, FieldHTMLProps>(
-  ({
-    className,
-    extraEmojis,
-    text,
-    textEmojified,
-    textHasCustomEmoji,
-    onElement,
-    ...props
-  }) => {
-    const handleElement: OnElementHandler = useCallback(
-      (element, props, children, extra) => {
-        if (element instanceof HTMLAnchorElement) {
-          // Don't allow custom emoji and links in the same field to prevent verification spoofing.
-          if (textHasCustomEmoji) {
-            return (
-              <span {...filterAttributesForSpan(props)} key={props.key as Key}>
-                {children}
-              </span>
-            );
-          }
-          return onElement?.(element, props, children, extra);
+const FieldHTML: FC<FieldHTMLProps> = ({
+  className,
+  extraEmojis,
+  text,
+  textEmojified,
+  textHasCustomEmoji,
+  onElement,
+  ...props
+}) => {
+  const handleElement: OnElementHandler = useCallback(
+    (element, props, children, extra) => {
+      if (element instanceof HTMLAnchorElement) {
+        // Don't allow custom emoji and links in the same field to prevent verification spoofing.
+        if (textHasCustomEmoji) {
+          return (
+            <span {...filterAttributesForSpan(props)} key={props.key as Key}>
+              {children}
+            </span>
+          );
         }
-        return undefined;
-      },
-      [onElement, textHasCustomEmoji],
-    );
+        return onElement?.(element, props, children, extra);
+      }
+      return undefined;
+    },
+    [onElement, textHasCustomEmoji],
+  );
 
-    return (
-      <EmojiHTML
-        as='span'
-        htmlString={textEmojified}
-        className={className}
-        onElement={handleElement}
-        {...props}
-      />
-    );
-  },
-);
-FieldHTML.displayName = 'FieldHTML';
+  return (
+    <EmojiHTML
+      as='span'
+      htmlString={textEmojified}
+      className={className}
+      onElement={handleElement}
+      {...props}
+    />
+  );
+};
 
 function filterAttributesForSpan(props: Record<string, unknown>) {
   const validAttributes: Record<string, unknown> = {};
@@ -224,4 +225,72 @@ function filterAttributesForSpan(props: Record<string, unknown>) {
     }
   }
   return validAttributes;
+}
+
+function useColumnWrap() {
+  const listRef = useRef<HTMLDListElement | null>(null);
+
+  const handleRecalculate = useCallback(() => {
+    const listEle = listRef.current;
+    if (!listEle) {
+      return;
+    }
+
+    // Calculate dimensions from styles and element size to determine column spans.
+    const styles = getComputedStyle(listEle);
+    const gap = parseFloat(styles.columnGap || styles.gap || '0');
+    const columnCount = parseInt(styles.getPropertyValue('--cols')) || 2;
+    const listWidth = listEle.offsetWidth;
+
+    const colWidth = (listWidth - gap * (columnCount - 1)) / columnCount;
+
+    // Iterate over children and set the column span based on content width.
+    let curSpan = 0;
+    for (const child of listEle.children) {
+      if (!(child instanceof HTMLElement)) {
+        continue;
+      }
+
+      // This uses a data attribute to detect which elements to measure that overflow.
+      const contents = child.querySelectorAll('[data-contents]');
+
+      const childStyles = getComputedStyle(child);
+      const padding =
+        parseFloat(childStyles.paddingLeft) +
+        parseFloat(childStyles.paddingRight);
+
+      const contentWidth =
+        Math.max(
+          ...Array.from(contents).map((content) => content.scrollWidth),
+        ) + padding;
+
+      const colSpan = Math.ceil(contentWidth / colWidth);
+      const maxColSpan = Math.min(colSpan, columnCount);
+      child.style.setProperty('--col-span', String(maxColSpan));
+
+      if (curSpan + maxColSpan > columnCount) {
+        const prevChild = child.previousElementSibling;
+        if (prevChild instanceof HTMLElement) {
+          const prevChildColSpan = parseInt(
+            prevChild.style.getPropertyValue('--col-span') || '1',
+          );
+
+          prevChild.style.setProperty(
+            '--col-span',
+            String(columnCount - (curSpan - prevChildColSpan)),
+          );
+        }
+        curSpan = 0;
+      } else {
+        curSpan += maxColSpan;
+      }
+    }
+  }, []);
+
+  const { wrapperRefCallback } = useOverflowObservers({
+    onWrapperRef: listRef,
+    onRecalculate: handleRecalculate,
+  });
+
+  return { wrapperRef: wrapperRefCallback };
 }

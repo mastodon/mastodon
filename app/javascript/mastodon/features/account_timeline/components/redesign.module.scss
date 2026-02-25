@@ -214,14 +214,15 @@ svg.badgeIcon {
 }
 
 .fieldList {
+  --cols: 4;
+
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(var(--cols), 1fr);
   gap: 12px;
   margin: 16px 0;
-  border-top: 0.5px solid var(--color-border-primary);
 
   @container (width < 420px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(var(--cols), 1fr);
   }
 }
 
@@ -231,7 +232,8 @@ svg.badgeIcon {
   grid-column: span var(--col-span);
   overflow: hidden;
   padding: 8px;
-  border: 1px solid red;
+  border-radius: 8px;
+  border: 0.5px solid var(--color-border-primary);
 
   > :is(dt, dd) {
     white-space: preserve nowrap;
