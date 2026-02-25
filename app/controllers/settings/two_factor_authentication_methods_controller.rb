@@ -22,7 +22,7 @@ module Settings
     private
 
     def require_two_factor_enabled
-      redirect_to settings_otp_authentication_path unless current_user.two_factor_enabled?
+      redirect_to settings_otp_authentication_path(params.permit(:oauth)) unless current_user.two_factor_enabled?
     end
   end
 end

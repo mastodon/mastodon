@@ -1,11 +1,14 @@
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 
 import {
+  changeComposeVisibility,
   changeUploadCompose,
   quoteCompose,
   quoteComposeCancel,
   setComposeQuotePolicy,
-} from 'mastodon/actions/compose_typed';
+  pasteLinkCompose,
+  cancelPasteLinkCompose,
+} from '@/mastodon/actions/compose_typed';
 import { timelineDelete } from 'mastodon/actions/timelines_typed';
 
 import {
@@ -38,7 +41,6 @@ import {
   COMPOSE_SENSITIVITY_CHANGE,
   COMPOSE_SPOILERNESS_CHANGE,
   COMPOSE_SPOILER_TEXT_CHANGE,
-  COMPOSE_VISIBILITY_CHANGE,
   COMPOSE_LANGUAGE_CHANGE,
   COMPOSE_COMPOSING_CHANGE,
   COMPOSE_EMOJI_INSERT,
@@ -93,6 +95,7 @@ const initialState = ImmutableMap({
   quoted_status_id: null,
   quote_policy: 'public',
   default_quote_policy: 'public', // Set in hydration.
+  fetching_link: null,
 });
 
 const initialPoll = ImmutableMap({
@@ -315,7 +318,11 @@ const calculateProgress = (loaded, total) => Math.min(Math.round((loaded / total
 
 /** @type {import('@reduxjs/toolkit').Reducer<typeof initialState>} */
 export const composeReducer = (state = initialState, action) => {
-  if (changeUploadCompose.fulfilled.match(action)) {
+  if (changeComposeVisibility.match(action)) {
+    return state
+      .set('privacy', action.payload)
+      .set('idempotencyKey', uuid());
+  } else if (changeUploadCompose.fulfilled.match(action)) {
     return state
       .set('is_changing_upload', false)
       .update('media_attachments', list => list.map(item => {
@@ -331,20 +338,34 @@ export const composeReducer = (state = initialState, action) => {
     return state.set('is_changing_upload', false);
   } else if (quoteCompose.match(action)) {
     const status = action.payload;
+    const isDirect = state.get('privacy') === 'direct';
     return state
-      .set('quoted_status_id', status.get('id'))
-      .set('spoiler', status.get('sensitive'))
-      .set('spoiler_text', status.get('spoiler_text'))
-      .update('privacy', (visibility) => ['public', 'unlisted'].includes(visibility) && status.get('visibility') === 'private' ? 'private' : visibility);
+      .set('quoted_status_id', isDirect ? null : status.get('id'))
+      .update('spoiler', spoiler => (spoiler) || !!status.get('spoiler_text'))
+      .update('spoiler_text', (spoiler_text) => spoiler_text || status.get('spoiler_text'))
+      .update('privacy', (visibility) => {
+        if (['public', 'unlisted'].includes(visibility) && status.get('visibility') === 'private') {
+          return 'private';
+        }
+        return visibility;
+      });
   } else if (quoteComposeCancel.match(action)) {
     return state.set('quoted_status_id', null);
   } else if (setComposeQuotePolicy.match(action)) {
     return state.set('quote_policy', action.payload);
+  } else if (pasteLinkCompose.pending.match(action)) {
+    return state.set('fetching_link', action.meta.requestId);
+  } else if (pasteLinkCompose.fulfilled.match(action) || pasteLinkCompose.rejected.match(action)) {
+    return action.meta.requestId === state.get('fetching_link') ? state.set('fetching_link', null) : state;
+  } else if (cancelPasteLinkCompose.match(action)) {
+    return state.set('fetching_link', null);
   }
 
   switch(action.type) {
   case STORE_HYDRATE:
-    return hydrate(state, action.state.get('compose'));
+    if (action.state.get('compose'))
+      return hydrate(state, action.state.get('compose'));
+    return state;
   case COMPOSE_MOUNT:
     return state
       .set('mounted', state.get('mounted') + 1)
@@ -383,10 +404,6 @@ export const composeReducer = (state = initialState, action) => {
     return state
       .set('spoiler_text', action.text)
       .set('idempotencyKey', uuid());
-  case COMPOSE_VISIBILITY_CHANGE:
-    return state
-      .set('privacy', action.value)
-      .set('idempotencyKey', uuid());
   case COMPOSE_CHANGE:
     return state
       .set('text', action.text)
@@ -403,6 +420,7 @@ export const composeReducer = (state = initialState, action) => {
       map.set('caretPosition', null);
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
+      map.set('quoted_status_id', null);
 
       map.update('media_attachments', list => list.filter(media => media.get('unattached')));
 
@@ -514,7 +532,7 @@ export const composeReducer = (state = initialState, action) => {
       map.set('sensitive', action.status.get('sensitive'));
       map.set('language', action.status.get('language'));
       map.set('id', null);
-      map.set('quoted_status_id', action.status.getIn(['quote', 'quoted_status']));
+      map.set('quoted_status_id', action.quoted_status_id);
       // Mastodon-authored posts can be expected to have at most one automatic approval policy
       map.set('quote_policy', action.status.getIn(['quote_approval', 'automatic', 0]) || 'nobody');
 
@@ -551,7 +569,7 @@ export const composeReducer = (state = initialState, action) => {
       map.set('idempotencyKey', uuid());
       map.set('sensitive', action.status.get('sensitive'));
       map.set('language', action.status.get('language'));
-      map.set('quoted_status_id', action.status.getIn(['quote', 'quoted_status']));
+      map.set('quoted_status_id', action.status.getIn(['quote', 'quoted_status'], null));
       // Mastodon-authored posts can be expected to have at most one automatic approval policy
       map.set('quote_policy', action.status.getIn(['quote_approval', 'automatic', 0]) || 'nobody');
 

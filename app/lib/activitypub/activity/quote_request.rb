@@ -7,7 +7,7 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
     return if non_matching_uri_hosts?(@account.uri, @json['id'])
 
     quoted_status = status_from_uri(object_uri)
-    return if quoted_status.nil? || !quoted_status.account.local? || !quoted_status.distributable?
+    return if quoted_status.nil? || !quoted_status.account.local? || !quoted_status.distributable? || quoted_status.reblog?
 
     if StatusPolicy.new(@account, quoted_status).quote?
       accept_quote_request!(quoted_status)
@@ -47,7 +47,7 @@ class ActivityPub::Activity::QuoteRequest < ActivityPub::Activity
     # NOTE: Replacing the object's context by that of the parent activity is
     # not sound, but it's consistent with the rest of the codebase
     instrument = @json['instrument'].merge({ '@context' => @json['@context'] })
-    return if non_matching_uri_hosts?(instrument['id'], @account.uri)
+    return if non_matching_uri_hosts?(@account.uri, instrument['id'])
 
     ActivityPub::FetchRemoteStatusService.new.call(instrument['id'], prefetched_body: instrument, on_behalf_of: quoted_status.account, request_id: @options[:request_id])
   end

@@ -65,7 +65,7 @@ export function configFromEnv(env, environment) {
     if (typeof parsedUrl.ssl === 'boolean') {
       baseConfig.ssl = parsedUrl.ssl;
     } else if (typeof parsedUrl.ssl === 'object' && !Array.isArray(parsedUrl.ssl) && parsedUrl.ssl !== null) {
-      /** @type {Record<string, any>} */
+      /** @type {Record<string, unknown>} */
       const sslOptions = parsedUrl.ssl;
       baseConfig.ssl = {};
 

@@ -10,7 +10,6 @@ io:
     followers:
       one: Sequanto
       other: Sequanti
-    following: Sequati
     instance_actor_flash: Ca konto esas virtuala aganto quo uzesas por reprezentar la servilo e ne irga individuala uzanto. Ol uzesas por federskopo e ne debas restriktesar.
     last_active: lasta aktiva tempo
     link_verified_on: Proprieteso di ca ligilo kontrolesis ye %{date}
@@ -661,7 +660,6 @@ io:
       resolved_msg: Raporto sucesoze rezolvesis!
       skip_to_actions: Saltez a agi
       status: Stando
-      statuses: Raportizita kontenajo
       statuses_description_html: Ofensanta kontenajo citesos en komuniko kun raportizita konto
       summary:
         action_preambles:
@@ -780,7 +778,6 @@ io:
         title: Despartoprenigez uzanti de serchilo-indexi quale originala stando
       discovery:
         follow_recommendations: Sequez rekomendaji
-        preamble: Montrar interesanta kontenajo esas importanta ye voligar nova uzanti quo forsan ne savas irgu. Dominacez quale ca deskovrotraiti funcionar en ca servilo.
         profile_directory: Profiluyo
         public_timelines: Publika tempolinei
         publish_statistics: Publikar statistiki
@@ -1504,7 +1501,6 @@ io:
       disabled_account: Vua nuna konto ne esos tote uzebla pose.
       followers: Ca ago transferos omna sequanti de nuna konto a nova konto
       only_redirect_html: Alternative, vu povas <a href="%{path}">nur pozar ridirekto che vua profilo</a>.
-      other_data: Altra informi ne transferesos automate
       redirect: Vua nuna profilo di konto novigesos kun ridirektoavizo e neinkluzesos de trovi
   moderation:
     title: Jero
@@ -1745,11 +1741,9 @@ io:
     enabled: Automata efacez olda posti
     enabled_hint: Automata efacez vua posti pos oli atingar fixita oldeslimito, se oli ne parigesas a 1 de suba ecepti
     exceptions: Ecepti
-    explanation: Pro ke efacar posti esas nechipa procedo, co agas lente progresive kande servilo ne esas okupata. Do, vua posti forsan efacesos kurte pos oli atingas oldeslimito.
     ignore_favs: Ignorez favorati
     ignore_reblogs: Ignorez repeti
     interaction_exceptions: Ecepti segun interagi
-    interaction_exceptions_explanation: Notale, ne existas garantio ke posti efacesos se oli iras sub la favoratala o repetala solii pos iras super oli.
     keep_direct: Retenez direta mesaji
     keep_direct_hint: Ne efacas irga vua direta mesaji
     keep_media: Konservar afishi kun audvidajaddonaji
@@ -1783,10 +1777,6 @@ io:
       too_late: Ol esas tro tarda ye apelar ca strekizo
   tags:
     does_not_match_previous_name: ne parigesas a antea nomo
-  themes:
-    contrast: Mastodon (Alta kontrasteso)
-    default: Mastodon (Obskura)
-    mastodon-light: Mastodon (Brila)
   time:
     formats:
       default: "%d %b, %Y, %H:%M"

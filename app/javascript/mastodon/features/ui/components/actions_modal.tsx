@@ -11,8 +11,9 @@ import {
 export const ActionsModal: React.FC<{
   actions: MenuItem[];
   onClick: React.MouseEventHandler;
-}> = ({ actions, onClick }) => (
-  <div className='modal-root__modal actions-modal'>
+  className?: string;
+}> = ({ actions, onClick, className }) => (
+  <div className={classNames('modal-root__modal actions-modal', className)}>
     <ul>
       {actions.map((option, i: number) => {
         if (option === null) {
@@ -25,7 +26,12 @@ export const ActionsModal: React.FC<{
 
         if (isActionItem(option)) {
           element = (
-            <button onClick={onClick} data-index={i} disabled={disabled}>
+            <button
+              onClick={onClick}
+              data-index={i}
+              disabled={disabled}
+              type='button'
+            >
               <DropdownMenuItemContent item={option} />
             </button>
           );

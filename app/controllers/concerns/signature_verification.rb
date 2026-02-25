@@ -72,10 +72,13 @@ module SignatureVerification
   rescue Mastodon::SignatureVerificationError => e
     fail_with! e.message
   rescue *Mastodon::HTTP_CONNECTION_ERRORS => e
+    @signature_verification_failure_code ||= 503
     fail_with! "Failed to fetch remote data: #{e.message}"
   rescue Mastodon::UnexpectedResponseError
+    @signature_verification_failure_code ||= 503
     fail_with! 'Failed to fetch remote data (got unexpected reply from server)'
   rescue Stoplight::Error::RedLight
+    @signature_verification_failure_code ||= 503
     fail_with! 'Fetching attempt skipped because of recent connection failure'
   end
 

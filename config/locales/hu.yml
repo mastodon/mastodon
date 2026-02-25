@@ -7,10 +7,14 @@ hu:
     hosted_on: "%{domain} Mastodon-kiszolgáló"
     title: Névjegy
   accounts:
+    errors:
+      cannot_be_added_to_collections: Ez a fiók nem adható hozzá gyűjteményekhez.
     followers:
       one: Követő
       other: Követő
-    following: Követett
+    following:
+      one: Követve
+      other: Követve
     instance_actor_flash: Ez a fiók virtuális, magát a kiszolgálót reprezentálja, nem pedig konkrét felhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni.
     last_active: utoljára aktív
     link_verified_on: 'A hivatkozás tulajdonosa ekkor volt ellenőrizve: %{date}'
@@ -52,6 +56,7 @@ hu:
         label: Szerep megváltoztatása
         no_role: Nincs szerep
         title: "%{username} szerepének megváltoztatása"
+      collections: Gyűjtemények
       confirm: Megerősítés
       confirmed: Megerősítve
       confirming: Megerősítés alatt
@@ -99,7 +104,7 @@ hu:
         silenced: Korlátozott
         suspended: Felfüggesztve
         title: Moderáció
-      moderation_notes: Moderációs bejegyzés
+      moderation_notes: Moderációs megjegyzések
       most_recent_activity: Legutóbbi tevékenységek
       most_recent_ip: Legutóbbi IP-cím
       no_account_selected: Nem változott meg egy fiók sem, mert semmi sem volt kiválasztva
@@ -336,6 +341,15 @@ hu:
       unpublish: Közzététel visszavonása
       unpublished_msg: A közlemény közzététele sikeresen visszavonva!
       updated_msg: A közlemény sikeresen frissítve!
+    collections:
+      accounts: Fiókok
+      collection_title: "%{name} gyűjteménye"
+      contents: Tartalom
+      number_of_accounts:
+        one: 1 fiók
+        other: "%{count} fiók"
+      open: Megnyitás
+      view_publicly: Megtekintés nyilvánosan
     critical_update_pending: Függőben levő kritikus frissítés
     custom_emojis:
       assign_category: Kategória hozzárendelése
@@ -645,8 +659,8 @@ hu:
       status: Állapot
       title: Továbbítók
     report_notes:
-      created_msg: Bejelentési feljegyzés létrehozva!
-      destroyed_msg: Bejelentési feljegyzés törölve!
+      created_msg: Bejelentési megjegyzés létrehozva!
+      destroyed_msg: Bejelentési megjegyzés törölve!
     reports:
       account:
         notes:
@@ -691,8 +705,8 @@ hu:
       no_one_assigned: Senki
       notes:
         create: Feljegyzés hozzáadása
-        create_and_resolve: Megoldás feljegyzéssel
-        create_and_unresolve: Újranyitás feljegyzéssel
+        create_and_resolve: Megoldás megjegyzéssel
+        create_and_unresolve: Újranyitás megjegyzéssel
         delete: Törlés
         placeholder: Jegyezd le, mi tettünk az ügy érdekében, vagy bármilyen változást...
         title: Megjegyzések
@@ -704,12 +718,12 @@ hu:
       report: "#%{id} számú jelentés"
       reported_account: Bejelentett fiók
       reported_by: 'Jelentette:'
+      reported_content: Jelentett tartalom
       reported_with_application: Alkalmazással bejelentve
       resolved: Megoldott
       resolved_msg: A bejelentést sikeresen megoldottuk!
       skip_to_actions: Tovább az intézkedésekhez
       status: Állapot
-      statuses: Jelentett tartalom
       statuses_description_html: A sértő tartalmat idézni fogjuk a bejelentett fiókkal való kommunikáció során
       summary:
         action_preambles:
@@ -796,6 +810,9 @@ hu:
         view_dashboard_description: Lehetővé teszi, hogy a felhasználó elérje az irányítópultot és vele számos metrikát
         view_devops: DevOps
         view_devops_description: Lehetővé teszi, hogy a felhasználó elérje a Sidekiq és pgHero irányítópultjait
+        view_feeds: Élő és témahírfolyamok megtekintése
+        view_feeds_description: A kiszolgálóbeállításoktól függetlenül engedélyezi az élő és témahírfolyamok elérését
+      requires_2fa: Kétlépcsős hitelesítés szükséges
       title: Szerepek
     rules:
       add_new: Szabály hozzáadása
@@ -844,6 +861,7 @@ hu:
         publish_statistics: Statisztikák közzététele
         title: Felfedezés
         trends: Trendek
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Mindenkinek
         disabled: Senkinek
@@ -851,7 +869,13 @@ hu:
       feed_access:
         modes:
           authenticated: Csak hitelesített felhasználók
+          disabled: Konkrét felhasználói szerepkör megkövetelése
           public: Mindenki
+      landing_page:
+        values:
+          about: Névjegy
+          local_feed: Helyi idővonal
+          trends: Trendek
       registrations:
         moderation_recommandation: Győződj meg arról, hogy megfelelő és gyors reagálású moderátor csapatod van, mielőtt mindenki számára megnyitod a regisztrációt!
         preamble: Szabályozd, hogy ki hozhat létre fiókot a kiszolgálón.
@@ -905,6 +929,7 @@ hu:
       no_status_selected: Nem változtattunk meg egy bejegyzést sem, mert semmi sem volt kiválasztva
       open: Bejegyzés megnyitása
       original_status: Eredeti bejegyzés
+      quotes: Idézetek
       reblogs: Megosztások
       replied_to_html: 'Válasz neki: %{acct_link}'
       status_changed: A bejegyzés megváltozott
@@ -912,6 +937,7 @@ hu:
       title: Fiók bejegyzései – @%{name}
       trending: Felkapott
       view_publicly: Megtekintés nyilvánosan
+      view_quoted_post: Idézett bejegyzés megtekintése
       visibility: Láthatóság
       with_media: Médiával
     strikes:
@@ -1186,7 +1212,10 @@ hu:
     hint_html: Ha másik fiókról kívánsz átlépni erre a fiókra, itt létrehozhatsz egy aliast, amelyre szükség van, mielőtt folytathatod a követők áthelyezését a régi fiókból erre. Ez az áthelyezés önmagában <strong>ártalmatlan és visszafordítható</strong> folyamat. <strong>A fiók áttelepítése a régi fiókból indul el. </strong>
     remove: Alias szétkapcsolása
   appearance:
+    advanced_settings: Speciális beállítások
     animations_and_accessibility: Animáció és akadálymentesítés
+    boosting_preferences: Megtolási beállítások
+    boosting_preferences_info_html: "<strong>Tipp:</strong> A beállításoktól függetlenül, ha <kbd>Shift</kbd> + <kbd>katinttást</kbd> használsz a %{icon} Megtolás ikonon, akkor azonnal megteszi."
     discovery: Felfedezés
     localization:
       body: A Mastodont önkéntesek fordítják.
@@ -1303,6 +1332,13 @@ hu:
     hint_html: "<strong>Hasznos:</strong> Nem fogjuk megint a jelszavadat kérdezni a következő órában."
     invalid_password: Érvénytelen jelszó
     prompt: Add meg a jelszót a folytatáshoz
+  color_scheme:
+    auto: Automatikus
+    dark: Sötét
+    light: Világos
+  contrast:
+    auto: Automatikus
+    high: Magas
   crypto:
     errors:
       invalid_key: érvénytelen Ed25519 vagy Curve25519 kulcs
@@ -1331,7 +1367,7 @@ hu:
     proceed: Felhasználói fiók törlése
     success_msg: Felhasználói fiókod sikeresen töröltük
     warning:
-      before: 'Mielőtt továbbmész, kérlek olvasd el ezt alaposan:'
+      before: 'Mielőtt továbbmész, alaposan olvasd el ezt:'
       caches: Más szerverek által cache-elt tartalmak még megmaradhatnak
       data_removal: Bejegyzéseid és minden más adatod véglegesen törlődni fog
       email_change_html: <a href="%{path}">Megváltoztathatod az e-mail-címed</a> a fiókod törlése nélkül
@@ -1654,19 +1690,19 @@ hu:
     set_redirect: Átirányítás beállítása
     warning:
       backreference_required: Az új fiókot először be kell úgy állítani, hogy ezt visszahivatkozza
-      before: 'Mielőtt továbbmész, olvasd el ezeket kérlek figyelmesen:'
+      before: 'Mielőtt továbbmész, figyelmesen olvasd el ezeket:'
       cooldown: A költözés után van egy türelmi idő, mely alatt nem tudsz majd újra költözni
       disabled_account: A jelenlegi fiókod nem lesz teljesen használható ezután. Viszont elérhető lesz majd az adatexport funkció, valamint a reaktiválás is.
       followers: Ez a művelet az összes követődet a jelenlegi fiókról az újra fogja költöztetni
       only_redirect_html: Az is lehetséges, hogy <a href="%{path}">csak átirányítást raksz a profilodra</a>.
-      other_data: Más adatot nem fogunk automatikusan mozgatni
+      other_data: Semmilyen más adat (beleértve a bejegyzéseket és a követett fiókokat) nem lesz automatikusan áthelyezve
       redirect: A jelenlegi fiókod profiljára átirányításról szóló figyelmeztetést rakunk, valamint már nem fogjuk mutatni a keresésekben
   moderation:
     title: Moderáció
   move_handler:
     carry_blocks_over_text: 'Ez a felhasználó elköltözött innen: %{acct}, korábban letiltottad.'
     carry_mutes_over_text: 'Ez a felhasználó elköltözött innen: %{acct}, korábban lenémítottad.'
-    copy_account_note_text: 'Ez a fiók elköltözött innen: %{acct}, itt vannak a bejegyzéseid róla:'
+    copy_account_note_text: 'Ez a fiók elköltözött innen: %{acct}, itt vannak az előző megjegyzéseid róla:'
   navigation:
     toggle_menu: Menü be/ki
   notification_mailer:
@@ -1693,16 +1729,22 @@ hu:
       body: "%{name} megemlített téged:"
       subject: "%{name} megemlített téged"
       title: Új említés
+    moderation_warning:
+      subject: Moderációs figyelmeztetést kaptál
     poll:
       subject: "%{name} szavazása véget ért"
     quote:
       body: 'A bejegyzésedet %{name} idézte:'
       subject: "%{name} idézte a bejegyzésedet"
       title: Új idézet
+    quoted_update:
+      subject: "%{name} szerkesztett egy bejegyzést, melyet idéztél"
     reblog:
       body: 'A bejegyzésedet %{name} megtolta:'
       subject: "%{name} megtolta a bejegyzésedet"
       title: Új megtolás
+    severed_relationships:
+      subject: Moderációs döntés miatt kapcsolatokat veszítettél
     status:
       subject: "%{name} bejegyzést írt"
     update:
@@ -1916,16 +1958,22 @@ hu:
     errors:
       in_reply_not_found: Már nem létezik az a bejegyzés, melyre válaszolni szeretnél.
       quoted_status_not_found: Már nem létezik az a bejegyzés, amelyből idézni szeretnél.
+      quoted_user_not_mentioned: Nem idézhet meg nem említett felhasználót egy privát említési bejegyzésben.
     over_character_limit: túllépted a maximális %{max} karakteres keretet
     pin_errors:
       direct: A csak a megemlített felhasználók számára látható bejegyzések nem tűzhetők ki
       limit: Elérted a kitűzhető bejegyzések maximális számát
       ownership: Nem tűzheted ki valaki más bejegyzését
       reblog: Megtolt bejegyzést nem tudsz kitűzni
+    quote_error:
+      not_available: A bejegyzés nem érhető el
+      pending_approval: A bejegyzés függőben van
+      revoked: A szerző eltávolította a bejegyzést
     quote_policies:
       followers: Csak követőknek
       nobody: Csak én
       public: Bárki
+    quote_post_author: Idézte %{acct} bejegyzését
     title: "%{name}: „%{quote}”"
     visibilities:
       direct: Privát említés
@@ -1938,11 +1986,11 @@ hu:
     enabled: Régi bejegyzések automatikus törlése
     enabled_hint: Automatikusan törli a bejegyzéseidet, ahogy azok elérik a megadott korhatárt, kivéve azokat, melyek illeszkednek valamely alábbi kivételre
     exceptions: Kivételek
-    explanation: Mivel a bejegyzések törlése drága művelet, ezért ez időben elnyújtva történik, amikor a kiszolgáló épp nem elfoglalt. Ezért lehetséges, hogy a bejegyzéseid valamivel később lesznek törölve, mint ahogy azok elérik a korhatárukat.
+    explanation: Az automatizált törlés alacsony prioritással történik. Késleltetés lehet a korkorlát elérése és az eltávolítás között.
     ignore_favs: Kedvencek kihagyása
     ignore_reblogs: Megtolások kihagyása
     interaction_exceptions: Interakció alapú kivételek
-    interaction_exceptions_explanation: Nincs arra garancia, hogy olyan bejegyzések törlésre kerüljenek, melyek épp a megadott kedvencnek jelölési vagy megtolási határ alatt vannak, de régebben e fölött is jártak már.
+    interaction_exceptions_explanation: Azok a bejegyzések, melyek ideiglenesen túllépik a kedvencnek jelölési vagy megtolási korlátot meg lesznek tartva, még akkor is, ha később ezek alá esnek.
     keep_direct: Közvetlen üzenetek megtartása
     keep_direct_hint: Nem törli egyetlen közvetlen üzenetedet sem
     keep_media: Médiacsatolmánnyal ellátott bejegyzések megtartása
@@ -1984,10 +2032,7 @@ hu:
     review_link: Felhasználási feltételek áttekintése
     title: A(z) %{domain} felhasználási feltételei megváltoznak
   themes:
-    contrast: Mastodon (nagy kontrasztú)
-    default: Mastodon (sötét)
-    mastodon-light: Mastodon (világos)
-    system: Automatikus (rendszertéma használata)
+    default: Mastodon
   time:
     formats:
       default: "%Y. %b %d., %H:%M"
@@ -2012,6 +2057,8 @@ hu:
     recovery_codes: Visszaállítási kódok biztonsági mentése
     recovery_codes_regenerated: A visszaállítási kódokat sikeresen újrageneráltuk
     recovery_instructions_html: A visszaállítási kódok egyikének segítségével tudsz majd belépni, ha elveszítenéd a telefonod. <strong>Tartsd biztos helyen a visszaállítási kódjaid</strong>! Például nyomtasd ki őket és tárold a többi fontos iratoddal együtt.
+    resume_app_authorization: Alkalmazás jogosultság-ellenőrzésének folytatása
+    role_requirement: A(z) %{domain} megköveteli a kétlépcsős hitelesítés beállítása a Mastodon használata előtt.
     webauthn: Biztonsági kulcsok
   user_mailer:
     announcement_published:
@@ -2155,7 +2202,11 @@ hu:
       error: A biztonsági kulcs törlése közben hiba történt. Kérlek, próbáld újra.
       success: A biztonsági kulcsodat sikeresen töröltük.
     invalid_credential: Érvénytelen biztonsági kulcs
+    nickname: Becenév
     nickname_hint: Írd be az új biztonsági kulcsod becenevét
     not_enabled: Még nem engedélyezted a WebAuthn-t
     not_supported: Ez a böngésző nem támogatja a biztonsági kulcsokat
     registered_on: 'Regisztráció ekkor: %{date}'
+  wrapstodon:
+    description: Nézd meg, hogy %{name} hogyan használta a Mastodont az éven!
+    title: Wrapstodon %{year} – %{name}

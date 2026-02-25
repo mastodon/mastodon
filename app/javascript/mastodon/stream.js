@@ -139,9 +139,14 @@ const channelNameWithInlineParams = (channelName, params) => {
 };
 
 /**
+ * @typedef {import('mastodon/store').AppDispatch} Dispatch
+ * @typedef {import('mastodon/store').GetState} GetState
+ */
+
+/**
  * @param {string} channelName
  * @param {Object.<string, string>} params
- * @param {function(Function, Function): { onConnect: (function(): void), onReceive: (function(StreamEvent): void), onDisconnect: (function(): void) }} callbacks
+ * @param {function(Dispatch, GetState): { onConnect: (function(): void), onReceive: (function(StreamEvent): void), onDisconnect: (function(): void) }} callbacks
  * @returns {function(): void}
  */
 // @ts-expect-error
@@ -229,7 +234,7 @@ const handleEventSourceMessage = (e, received) => {
  * @param {string} streamingAPIBaseURL
  * @param {string} accessToken
  * @param {string} channelName
- * @param {{ connected: Function, received: function(StreamEvent): void, disconnected: Function, reconnected: Function }} callbacks
+ * @param {{ connected: function(): void, received: function(StreamEvent): void, disconnected: function(): void, reconnected: function(): void }} callbacks
  * @returns {WebSocketClient | EventSource}
  */
 const createConnection = (streamingAPIBaseURL, accessToken, channelName, { connected, received, disconnected, reconnected }) => {
@@ -242,12 +247,9 @@ const createConnection = (streamingAPIBaseURL, accessToken, channelName, { conne
     // @ts-expect-error
     const ws = new WebSocketClient(`${streamingAPIBaseURL}/api/v1/streaming/?${params.join('&')}`, accessToken);
 
-    // @ts-expect-error
     ws.onopen = connected;
     ws.onmessage = e => received(JSON.parse(e.data));
-    // @ts-expect-error
     ws.onclose = disconnected;
-    // @ts-expect-error
     ws.onreconnect = reconnected;
 
     return ws;

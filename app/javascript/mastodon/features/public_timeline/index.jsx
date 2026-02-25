@@ -10,7 +10,8 @@ import { connect } from 'react-redux';
 import PublicIcon from '@/material-icons/400-24px/public.svg?react';
 import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
-import { domain } from 'mastodon/initial_state';
+import { domain, localLiveFeedAccess, remoteLiveFeedAccess } from 'mastodon/initial_state';
+import { canViewFeed } from 'mastodon/permissions';
 
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { connectPublicStream } from '../../actions/streaming';
@@ -123,7 +124,20 @@ class PublicTimeline extends PureComponent {
 
   render () {
     const { intl, columnId, hasUnread, multiColumn, onlyMedia, onlyRemote } = this.props;
+    const { signedIn, permissions } = this.props.identity;
     const pinned = !!columnId;
+
+    const emptyMessage = (canViewFeed(signedIn, permissions, localLiveFeedAccess) || canViewFeed(signedIn, permissions, remoteLiveFeedAccess)) ? (
+      <FormattedMessage
+        id='empty_column.public'
+        defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up'
+      />
+    ) : (
+      <FormattedMessage
+        id='empty_column.disabled_feed'
+        defaultMessage='This feed has been disabled by your server administrators.'
+      />
+    );
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
@@ -147,7 +161,7 @@ class PublicTimeline extends PureComponent {
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}
           scrollKey={`public_timeline-${columnId}`}
-          emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up' />}
+          emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         />
 

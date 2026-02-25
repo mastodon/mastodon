@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ActivityPub::Parser::StatusParser
+  include FormattingHelper
   include JsonLdHelper
 
   NORMALIZED_LOCALE_NAMES = LanguagesHelper::SUPPORTED_LOCALES.keys.index_by(&:downcase).freeze
@@ -44,12 +45,28 @@ class ActivityPub::Parser::StatusParser
     end
   end
 
+  def processed_text
+    return text || '' unless converted_object_type?
+
+    [
+      title.presence && "<h2>#{title}</h2>",
+      spoiler_text.presence,
+      linkify(url || uri),
+    ].compact.join("\n\n")
+  end
+
   def spoiler_text
     if @object['summary'].present?
       @object['summary']
     elsif summary_language_map?
       @object['summaryMap'].values.first
     end
+  end
+
+  def processed_spoiler_text
+    return '' if converted_object_type?
+
+    spoiler_text || ''
   end
 
   def title
@@ -145,6 +162,10 @@ class ActivityPub::Parser::StatusParser
     as_array(@object['quoteAuthorization']).first
   end
 
+  def converted_object_type?
+    equals_or_includes_any?(@object['type'], ActivityPub::Activity::CONVERTED_TYPES)
+  end
+
   private
 
   def quote_subpolicy(subpolicy)
@@ -153,15 +174,15 @@ class ActivityPub::Parser::StatusParser
     allowed_actors = as_array(subpolicy).dup
     allowed_actors.uniq!
 
-    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] if allowed_actors.delete('as:Public') || allowed_actors.delete('Public') || allowed_actors.delete('https://www.w3.org/ns/activitystreams#Public')
-    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers] if allowed_actors.delete(@options[:followers_collection])
-    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:following] if allowed_actors.delete(@options[:following_collection])
+    flags |= InteractionPolicy::POLICY_FLAGS[:public] if allowed_actors.delete('as:Public') || allowed_actors.delete('Public') || allowed_actors.delete('https://www.w3.org/ns/activitystreams#Public')
+    flags |= InteractionPolicy::POLICY_FLAGS[:followers] if allowed_actors.delete(@options[:followers_collection])
+    flags |= InteractionPolicy::POLICY_FLAGS[:following] if allowed_actors.delete(@options[:following_collection])
 
     # Remove the special-meaning actor URI
     allowed_actors.delete(@options[:actor_uri])
 
     # Any unrecognized actor is marked as unsupported
-    flags |= Status::QUOTE_APPROVAL_POLICY_FLAGS[:unsupported_policy] unless allowed_actors.empty?
+    flags |= InteractionPolicy::POLICY_FLAGS[:unsupported_policy] unless allowed_actors.empty?
 
     flags
   end

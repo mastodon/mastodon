@@ -1,5 +1,5 @@
 # For details, see https://github.com/devcontainers/images/tree/main/src/ruby
-FROM mcr.microsoft.com/devcontainers/ruby:1-3.3-bookworm
+FROM mcr.microsoft.com/devcontainers/ruby:3.4-trixie
 
 # Install node version from .nvmrc
 WORKDIR /app
@@ -9,7 +9,7 @@ RUN /bin/bash --login -i -c "nvm install"
 # Install additional OS packages
 RUN apt-get update && \
     export DEBIAN_FRONTEND=noninteractive && \
-    apt-get -y install --no-install-recommends libicu-dev libidn11-dev ffmpeg imagemagick libvips42 libpam-dev
+    apt-get -y install --no-install-recommends libicu-dev libidn11-dev ffmpeg libvips42 libpam-dev
 
 # Disable download prompt for Corepack
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0

@@ -109,7 +109,7 @@ export const Dropdown: FC<
         placement='bottom-start'
         onHide={handleClose}
         flip
-        target={buttonRef.current}
+        target={buttonRef}
         popperConfig={{
           strategy: 'fixed',
           modifiers: [matchWidth],

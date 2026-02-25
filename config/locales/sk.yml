@@ -12,7 +12,6 @@ sk:
       many: Sledovateľov
       one: Sledujúci
       other: Sledujúci
-    following: Nasledujem
     instance_actor_flash: Toto konto je virtuálny aktér, ktorý predstavuje samotný server, a nie konkrétneho používateľa. Používa sa na účely federácie a nemal by byť pozastavený.
     last_active: posledná aktivita
     link_verified_on: Vlastníctvo tohto odkazu bolo skontrolované %{date}
@@ -575,7 +574,6 @@ sk:
       resolved_msg: Hlásenie úspešne vyriešené!
       skip_to_actions: Prejsť na akcie
       status: Stav
-      statuses: Nahlásený obsah
       summary:
         action_preambles:
           suspend_html: 'Chystáš sa <strong>pozastaviť</strong> účet <strong>@%{acct}</strong>. To urobí:'
@@ -1121,7 +1119,6 @@ sk:
       disabled_account: Tvoj súčasný účet už po tomto nebude plne použiteľný. Stále ale budeš mať prístup ku stiahnutiu dát a možnosti znovu-aktivácie.
       followers: Tento úkon presunie všetkých následovateľov zo súčasného účtu na nový účet
       only_redirect_html: Ako alternatívu, môžeš <a href="%{path}">iba nastaviť presmerovanie na tvoj profil</a>.
-      other_data: Žiadne iné dáta nebudú presunuté automaticky
       redirect: Tvoj súčastný účet bude aktualizovaný s oznamom o presunutí a bude vylúčený z vyhľadávania
   moderation:
     title: Moderovanie
@@ -1329,11 +1326,9 @@ sk:
     enabled: Automaticky mazať staré príspevky
     enabled_hint: Automaticky vymaže vaše príspevky po dosiahnutí stanoveného veku, pokiaľ nespadajú do niektorej z výnimiek nižšie
     exceptions: Výnimky
-    explanation: Keďže je mazanie príspevkov drahým procesom, bude sa to diať pomaly a postupne v časoch, keď server nie je inak vyťažovaný. Preto môže príspevkom po dosiahnutí stanoveného veku ešte chvíľu trvať, než budú vymazané.
     ignore_favs: Ignorovať hviezdičky
     ignore_reblogs: Ignorovať zdieľania
     interaction_exceptions: Výnimky podľa interakcií
-    interaction_exceptions_explanation: Vymazanie príspevkov nie je zaručené, pokiaľ klesnú pod limit hviezdičkovaní alebo zdieľaní až po kontrole.
     keep_direct: Ponechať súkromné správy
     keep_direct_hint: Vaše súkromné správy nebudú vymazané
     keep_media: Ponechať príspevky s médiami
@@ -1364,10 +1359,6 @@ sk:
     sensitive_content: Senzitívny obsah
   tags:
     does_not_match_previous_name: nezhoduje sa s predošlým názvom
-  themes:
-    contrast: Mastodon (vysoký kontrast)
-    default: Mastodon (tmavý)
-    mastodon-light: Mastodon (svetlý)
   time:
     formats:
       default: "%b %d, %R, %H:%M"

@@ -26,12 +26,18 @@ fr:
             fields:
               fields_with_values_missing_labels: contient des valeurs avec des étiquettes manquantes
             username:
-              invalid: seulement des lettres, des chiffres et des tirets bas
+              invalid: doit contenir uniquement des lettres, chiffres et tirets bas
               reserved: est réservé
         admin/webhook:
           attributes:
             url:
               invalid: n’est pas une URL valide
+        collection:
+          attributes:
+            collection_items:
+              too_many: trop d'éléments, seuls %{count} éléments sont permis
+            tag:
+              unusable: ne peut pas être utilisé
         doorkeeper/application:
           attributes:
             website:
@@ -43,7 +49,7 @@ fr:
         list_account:
           attributes:
             account_id:
-              taken: est déjà sur la liste
+              taken: est déjà dans la liste
           must_be_following: dois être un compte suivi
         status:
           attributes:

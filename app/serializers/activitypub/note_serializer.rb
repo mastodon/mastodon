@@ -235,10 +235,10 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     approved_uris = []
 
     # On outgoing posts, only automatic approval is supported
-    policy = object.quote_approval_policy >> 16
-    approved_uris << ActivityPub::TagManager::COLLECTIONS[:public] if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:public])
-    approved_uris << ActivityPub::TagManager.instance.followers_uri_for(object.account) if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:followers])
-    approved_uris << ActivityPub::TagManager.instance.following_uri_for(object.account) if policy.anybits?(Status::QUOTE_APPROVAL_POLICY_FLAGS[:following])
+    policy = object.quote_interaction_policy.automatic
+    approved_uris << ActivityPub::TagManager::COLLECTIONS[:public] if policy.public?
+    approved_uris << ActivityPub::TagManager.instance.followers_uri_for(object.account) if policy.followers?
+    approved_uris << ActivityPub::TagManager.instance.following_uri_for(object.account) if policy.following?
     approved_uris << ActivityPub::TagManager.instance.uri_for(object.account) if approved_uris.empty?
 
     {

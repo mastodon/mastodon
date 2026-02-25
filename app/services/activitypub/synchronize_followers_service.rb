@@ -67,10 +67,10 @@ class ActivityPub::SynchronizeFollowersService < BaseService
 
   # Only returns true if the whole collection has been processed
   def process_collection!(collection_uri, max_pages: MAX_COLLECTION_PAGES)
-    collection = fetch_collection(collection_uri)
+    collection = fetch_collection_page(collection_uri, reference_uri: @account.uri)
     return false unless collection.is_a?(Hash)
 
-    collection = fetch_collection(collection['first']) if collection['first'].present?
+    collection = fetch_collection_page(collection['first'], reference_uri: @account.uri) if collection['first'].present?
 
     while collection.is_a?(Hash)
       process_page!(as_array(collection_page_items(collection)))
@@ -80,25 +80,9 @@ class ActivityPub::SynchronizeFollowersService < BaseService
       return true if collection['next'].blank? # We reached the end of the collection
       return false if max_pages <= 0 # We reached our pages limit
 
-      collection = fetch_collection(collection['next'])
+      collection = fetch_collection_page(collection['next'])
     end
 
     false
-  end
-
-  def collection_page_items(collection)
-    case collection['type']
-    when 'Collection', 'CollectionPage'
-      collection['items']
-    when 'OrderedCollection', 'OrderedCollectionPage'
-      collection['orderedItems']
-    end
-  end
-
-  def fetch_collection(collection_or_uri)
-    return collection_or_uri if collection_or_uri.is_a?(Hash)
-    return if non_matching_uri_hosts?(@account.uri, collection_or_uri)
-
-    fetch_resource_without_id_validation(collection_or_uri, nil, raise_on_error: :temporary)
   end
 end

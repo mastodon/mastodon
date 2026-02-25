@@ -114,6 +114,6 @@ class AccountRelationshipsPresenter
   end
 
   def relationship_cache_key(account_id)
-    ['relationship', @current_account_id, account_id]
+    ['relationships', @current_account_id, account_id]
   end
 end

@@ -5,7 +5,6 @@
     'customManagers:dockerfileVersions',
     ':labels(dependencies)',
     ':prConcurrentLimitNone', // Remove limit for open PRs at any time.
-    ':prHourlyLimit2', // Rate limit PR creation to a maximum of two per hour.
     ':enableVulnerabilityAlertsWithLabel(security)',
   ],
   rebaseWhen: 'conflicted',
@@ -23,8 +22,6 @@
       // Require Dependency Dashboard Approval for major version bumps of these node packages
       matchManagers: ['npm'],
       matchPackageNames: [
-        'tesseract.js', // Requires code changes
-
         // react-router: Requires manual upgrade
         'history',
         'react-router-dom',
@@ -116,6 +113,7 @@
       ],
       matchUpdateTypes: ['major'],
       groupName: 'artifact actions (major)',
+      extends: ['helpers:pinGitHubActionDigests'],
     },
     {
       // Update @types/* packages every week, with one grouped PR
@@ -156,9 +154,15 @@
       groupName: 'opentelemetry-ruby (non-major)',
     },
     {
-      // Group Playwright Ruby & JS deps in the same PR, as they need to be in sync
-      matchManagers: ['bundler', 'npm'],
-      matchPackageNames: ['playwright-ruby-client', 'playwright'],
+      // The ruby portion of the Playwright group
+      matchManagers: ['bundler'],
+      matchPackageNames: ['playwright-ruby-client'],
+      groupName: 'Playwright',
+    },
+    {
+      // The node portion of the Playwright group
+      matchManagers: ['npm'],
+      matchPackageNames: ['playwright'],
       groupName: 'Playwright',
     },
     // Add labels depending on package manager

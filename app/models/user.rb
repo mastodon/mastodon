@@ -131,11 +131,12 @@ class User < ApplicationRecord
 
   delegate :can?, to: :role
 
-  attr_reader :invite_code, :date_of_birth
+  attr_reader :invite_code
   attr_writer :current_account
 
   attribute :external, :boolean, default: false
   attribute :bypass_registration_checks, :boolean, default: false
+  attribute :date_of_birth, :date
 
   def self.those_who_can(*any_of_privileges)
     matching_role_ids = UserRole.that_can(*any_of_privileges).map(&:id)
@@ -149,17 +150,6 @@ class User < ApplicationRecord
 
   def self.skip_mx_check?
     Rails.env.local?
-  end
-
-  def date_of_birth=(hash_or_string)
-    @date_of_birth = begin
-      if hash_or_string.is_a?(Hash)
-        day, month, year = hash_or_string.values_at(1, 2, 3)
-        "#{day}.#{month}.#{year}"
-      else
-        hash_or_string
-      end
-    end
   end
 
   def role
@@ -236,7 +226,11 @@ class User < ApplicationRecord
   end
 
   def functional_or_moved?
-    confirmed? && approved? && !disabled? && !account.unavailable? && !account.memorial?
+    confirmed? && approved? && !disabled? && !account.unavailable? && !account.memorial? && !missing_2fa?
+  end
+
+  def missing_2fa?
+    !two_factor_enabled? && role.require_2fa?
   end
 
   def unconfirmed_or_pending?

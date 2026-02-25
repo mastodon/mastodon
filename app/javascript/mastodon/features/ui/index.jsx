@@ -21,13 +21,14 @@ import { PictureInPicture } from 'mastodon/features/picture_in_picture';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { layoutFromWindow } from 'mastodon/is_mobile';
 import { WithRouterPropTypes } from 'mastodon/utils/react_router';
+import { checkAnnualReport } from '@/mastodon/reducers/slices/annual_report';
+import { isClientFeatureEnabled } from '@/mastodon/utils/environment';
 
-import { handleAnimateGif } from '../emoji/handlers';
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { clearHeight } from '../../actions/height_cache';
 import { fetchServer, fetchServerTranslationLanguages } from '../../actions/server';
 import { expandHomeTimeline } from '../../actions/timelines';
-import { initialState, me, owner, singleUserMode, trendsEnabled, trendsAsLanding, disableHoverCards, autoPlayGif } from '../../initial_state';
+import { initialState, me, owner, singleUserMode, trendsEnabled, landingPage, localLiveFeedAccess, disableHoverCards } from '../../initial_state';
 
 import BundleColumnError from './components/bundle_column_error';
 import { NavigationBar } from './components/navigation_bar';
@@ -63,6 +64,9 @@ import {
   Lists,
   ListEdit,
   ListMembers,
+  Collections,
+  CollectionDetail,
+  CollectionsEditor,
   Blocks,
   DomainBlocks,
   Mutes,
@@ -76,15 +80,18 @@ import {
   PrivacyPolicy,
   TermsOfService,
   AccountFeatured,
+  AccountEdit,
+  AccountEditFeaturedTags,
   Quotes,
 } from './util/async-components';
 import { ColumnsContextProvider } from './util/columns_context';
-import { focusColumn, getFocusedItemIndex, focusItemSibling } from './util/focusUtils';
+import { focusColumn, getFocusedItemIndex, focusItemSibling, focusFirstItem } from './util/focusUtils';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
+import { areCollectionsEnabled } from '../collections/utils';
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
@@ -106,10 +113,11 @@ class SwitchingColumnsArea extends PureComponent {
     children: PropTypes.node,
     location: PropTypes.object,
     singleColumn: PropTypes.bool,
+    layout: PropTypes.string.isRequired,
     forceOnboarding: PropTypes.bool,
   };
 
-  UNSAFE_componentWillMount () {
+  componentDidMount () {
     document.body.classList.toggle('layout-single-column', this.props.singleColumn);
     document.body.classList.toggle('layout-multiple-columns', !this.props.singleColumn);
   }
@@ -148,10 +156,26 @@ class SwitchingColumnsArea extends PureComponent {
       }
     } else if (singleUserMode && owner && initialState?.accounts[owner]) {
       redirect = <Redirect from='/' to={`/@${initialState.accounts[owner].username}`} exact />;
-    } else if (trendsEnabled && trendsAsLanding) {
+    } else if (trendsEnabled && landingPage === 'trends') {
       redirect = <Redirect from='/' to='/explore' exact />;
+    } else if (localLiveFeedAccess === 'public' && landingPage === 'local_feed') {
+      redirect = <Redirect from='/' to='/public/local' exact />;
     } else {
       redirect = <Redirect from='/' to='/about' exact />;
+    }
+
+    const profileRedesignRoutes = [];
+    if (isClientFeatureEnabled('profile_editing')) {
+      profileRedesignRoutes.push(
+        <WrappedRoute key="edit" path='/profile/edit' component={AccountEdit} content={children} />,
+        <WrappedRoute key="featured_tags" path='/profile/featured_tags' component={AccountEditFeaturedTags} content={children} />
+      )
+    } else {
+      // If profile editing is not enabled, redirect to the home timeline as the current editing pages are outside React Router.
+      profileRedesignRoutes.push(
+        <Redirect key="edit-redirect" from='/profile/edit' to='/' exact />,
+        <Redirect key="featured-tags-redirect" from='/profile/featured_tags' to='/' exact />,
+      );
     }
 
     return (
@@ -200,6 +224,8 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/search' component={Search} content={children} />
             <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
 
+            {...profileRedesignRoutes}
+
             <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
             <WrappedRoute path={['/@:acct/featured', '/accounts/:id/featured']} component={AccountFeatured} content={children} />
             <WrappedRoute path='/@:acct/tagged/:tagged?' exact component={AccountTimeline} content={children} />
@@ -225,7 +251,13 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/followed_tags' component={FollowedTags} content={children} />
             <WrappedRoute path='/mutes' component={Mutes} content={children} />
             <WrappedRoute path='/lists' component={Lists} content={children} />
-
+            {areCollectionsEnabled() &&
+              [
+                <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} />,
+                <WrappedRoute path='/collections/:id' component={CollectionDetail} content={children} />,
+                <WrappedRoute path='/collections' component={Collections} content={children} />
+              ]
+            }
             <Route component={BundleColumnError} />
           </WrappedSwitch>
         </ColumnsAreaContainer>
@@ -380,11 +412,6 @@ class UI extends PureComponent {
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
     window.addEventListener('resize', this.handleResize, { passive: true });
 
-    if (!autoPlayGif) {
-      window.addEventListener('mouseover', handleAnimateGif, { passive: true });
-      window.addEventListener('mouseout', handleAnimateGif, { passive: true });
-    }
-
     document.addEventListener('dragenter', this.handleDragEnter, false);
     document.addEventListener('dragover', this.handleDragOver, false);
     document.addEventListener('drop', this.handleDrop, false);
@@ -400,6 +427,7 @@ class UI extends PureComponent {
       this.props.dispatch(expandHomeTimeline());
       this.props.dispatch(fetchNotifications());
       this.props.dispatch(fetchServerTranslationLanguages());
+      this.props.dispatch(checkAnnualReport());
 
       setTimeout(() => this.props.dispatch(fetchServer()), 3000);
     }
@@ -410,8 +438,6 @@ class UI extends PureComponent {
     window.removeEventListener('blur', this.handleWindowBlur);
     window.removeEventListener('beforeunload', this.handleBeforeUnload);
     window.removeEventListener('resize', this.handleResize);
-    window.removeEventListener('mouseover', handleAnimateGif);
-    window.removeEventListener('mouseout', handleAnimateGif);
 
     document.removeEventListener('dragenter', this.handleDragEnter);
     document.removeEventListener('dragover', this.handleDragOver);
@@ -455,20 +481,21 @@ class UI extends PureComponent {
   };
 
   handleHotkeyFocusColumn = e => {
-    focusColumn({index: e.key * 1});
+    focusColumn(e.key * 1);
   };
 
   handleHotkeyLoadMore = () => {
     document.querySelector('.load-more')?.focus();
   };
 
+  handleMoveToTop = () => {
+    focusFirstItem();
+  };
+
   handleMoveUp = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      focusColumn({
-        index: 1,
-        focusItem: 'first-visible',
-      });
+      focusColumn(1);
     } else {
       focusItemSibling(currentItemIndex, -1);
     }
@@ -477,10 +504,7 @@ class UI extends PureComponent {
   handleMoveDown = () => {
     const currentItemIndex = getFocusedItemIndex();
     if (currentItemIndex === -1) {
-      focusColumn({
-        index: 1,
-        focusItem: 'first-visible',
-      });
+      focusColumn(1);
     } else {
       focusItemSibling(currentItemIndex, 1);
     }
@@ -568,6 +592,7 @@ class UI extends PureComponent {
       focusLoadMore: this.handleHotkeyLoadMore,
       moveDown: this.handleMoveDown,
       moveUp: this.handleMoveUp,
+      moveToTop: this.handleMoveToTop,
       back: this.handleHotkeyBack,
       goToHome: this.handleHotkeyGoToHome,
       goToNotifications: this.handleHotkeyGoToNotifications,
@@ -587,7 +612,13 @@ class UI extends PureComponent {
     return (
       <Hotkeys global handlers={handlers}>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef}>
-          <SwitchingColumnsArea identity={this.props.identity} location={location} singleColumn={layout === 'mobile' || layout === 'single-column'} forceOnboarding={firstLaunch && newAccount}>
+          <SwitchingColumnsArea
+            identity={this.props.identity}
+            location={location}
+            singleColumn={layout === 'mobile' || layout === 'single-column'}
+            layout={layout}
+            forceOnboarding={firstLaunch && newAccount}
+          >
             {children}
           </SwitchingColumnsArea>
 

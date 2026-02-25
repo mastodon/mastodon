@@ -1,16 +1,28 @@
+import type { ComponentProps } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { accountFactoryState, relationshipsFactory } from '@/testing/factories';
 
 import { Account } from './index';
 
+type Props = Omit<ComponentProps<typeof Account>, 'id'> & {
+  name: string;
+  username: string;
+};
+
 const meta = {
   title: 'Components/Account',
-  component: Account,
   argTypes: {
-    id: {
+    name: {
       type: 'string',
-      description: 'ID of the account to display',
+      description: 'The display name of the account',
+      reduxPath: 'accounts.1.display_name_html',
+    },
+    username: {
+      type: 'string',
+      description: 'The username of the account',
+      reduxPath: 'accounts.1.acct',
     },
     size: {
       type: 'number',
@@ -40,7 +52,8 @@ const meta = {
     },
   },
   args: {
-    id: '1',
+    name: 'Test User',
+    username: 'testuser',
     size: 46,
     hidden: false,
     minimal: false,
@@ -55,17 +68,16 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Account>;
+  render(args) {
+    return <Account id='1' {...args} />;
+  },
+} satisfies Meta<Props>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
-  args: {
-    id: '1',
-  },
-};
+export const Primary: Story = {};
 
 export const Hidden: Story = {
   args: {

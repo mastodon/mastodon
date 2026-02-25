@@ -258,6 +258,9 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
           tag: [
             { type: 'Hashtag', name: 'foo' },
             { type: 'Hashtag', name: 'bar' },
+            { type: 'Hashtag', name: '#2024' },
+            { type: 'Hashtag', name: 'Foo Bar' },
+            { type: 'Hashtag', name: 'FooBar' },
           ],
         }
       end
@@ -269,7 +272,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
       it 'updates tags and featured tags' do
         expect { subject.call(status, json, json) }
-          .to change { status.tags.reload.pluck(:name) }.from(contain_exactly('test', 'foo')).to(contain_exactly('foo', 'bar'))
+          .to change { status.tags.reload.pluck(:name) }.from(contain_exactly('test', 'foo')).to(contain_exactly('foo', 'bar', 'foobar'))
           .and change { status.account.featured_tags.find_by(name: 'test').statuses_count }.by(-1)
           .and change { status.account.featured_tags.find_by(name: 'bar').statuses_count }.by(1)
           .and change { status.account.featured_tags.find_by(name: 'bar').last_status_at }.from(nil).to(be_present)
@@ -602,7 +605,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
   context 'when an approved quote of a local post gets updated through an explicit update, removing text' do
     let(:quoted_account) { Fabricate(:account) }
-    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, state: :accepted) }
     let(:approval_uri) { ActivityPub::TagManager.instance.approval_uri_for(quote) }
 
@@ -638,7 +641,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
 
   context 'when an approved quote of a local post gets updated through an explicit update' do
     let(:quoted_account) { Fabricate(:account) }
-    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: Status::QUOTE_APPROVAL_POLICY_FLAGS[:public] << 16) }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account, quote_approval_policy: InteractionPolicy::POLICY_FLAGS[:public] << 16) }
     let!(:quote) { Fabricate(:quote, status: status, quoted_status: quoted_status, state: :accepted) }
     let(:approval_uri) { ActivityPub::TagManager.instance.approval_uri_for(quote) }
 
@@ -807,6 +810,72 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService do
         .to change(status, :quote).from(nil)
       expect(status.quote.approval_uri).to eq approval_uri
       expect(status.quote.state).to eq 'accepted'
+    end
+  end
+
+  context 'when the status adds a verifiable quote of a reblog through an explicit update' do
+    let(:quoted_account) { Fabricate(:account, domain: 'quoted.example.com') }
+    let(:quoted_status) { Fabricate(:status, account: quoted_account, reblog: Fabricate(:status)) }
+    let(:approval_uri) { 'https://quoted.example.com/approvals/1' }
+
+    let(:payload) do
+      {
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            '@id': 'https://w3id.org/fep/044f#quote',
+            '@type': '@id',
+          },
+          {
+            '@id': 'https://w3id.org/fep/044f#quoteAuthorization',
+            '@type': '@id',
+          },
+        ],
+        id: 'foo',
+        type: 'Note',
+        summary: 'Show more',
+        content: 'Hello universe',
+        updated: '2021-09-08T22:39:25Z',
+        quote: ActivityPub::TagManager.instance.uri_for(quoted_status),
+        quoteAuthorization: approval_uri,
+      }
+    end
+
+    before do
+      stub_request(:get, approval_uri).to_return(headers: { 'Content-Type': 'application/activity+json' }, body: Oj.dump({
+        '@context': [
+          'https://www.w3.org/ns/activitystreams',
+          {
+            QuoteAuthorization: 'https://w3id.org/fep/044f#QuoteAuthorization',
+            gts: 'https://gotosocial.org/ns#',
+            interactionPolicy: {
+              '@id': 'gts:interactionPolicy',
+              '@type': '@id',
+            },
+            interactingObject: {
+              '@id': 'gts:interactingObject',
+              '@type': '@id',
+            },
+            interactionTarget: {
+              '@id': 'gts:interactionTarget',
+              '@type': '@id',
+            },
+          },
+        ],
+        type: 'QuoteAuthorization',
+        id: approval_uri,
+        attributedTo: ActivityPub::TagManager.instance.uri_for(quoted_status.account),
+        interactingObject: ActivityPub::TagManager.instance.uri_for(status),
+        interactionTarget: ActivityPub::TagManager.instance.uri_for(quoted_status),
+      }))
+    end
+
+    it 'updates the approval URI but does not verify the quote' do
+      expect { subject.call(status, json, json) }
+        .to change(status, :quote).from(nil)
+      expect(status.quote.approval_uri).to eq approval_uri
+      expect(status.quote.state).to_not eq 'accepted'
+      expect(status.quote.quoted_status).to be_nil
     end
   end
 

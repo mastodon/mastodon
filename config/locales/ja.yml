@@ -9,7 +9,6 @@ ja:
   accounts:
     followers:
       other: フォロワー
-    following: フォロー中
     instance_actor_flash: このアカウントは、個々のユーザーではなく、サーバー自体を表すために使用される仮想のユーザーです。 連合のために使用されるため、停止しないで下さい。
     last_active: 最後の活動
     link_verified_on: このリンクの所有権は%{date}に確認されました
@@ -572,6 +571,8 @@ ja:
         title: モデレーション
       moderation_notes:
         create: モデレーションノートを追加
+        description_html: 他のモデレーターと将来の自分にメモを残してください
+        destroyed_msg: インスタンス・モデレーションノートを正常に削除しました！
         title: モデレーションメモ
       private_comment: コメント (非公開)
       public_comment: コメント (公開)
@@ -690,7 +691,6 @@ ja:
       resolved_msg: 通報を解決済みにしました！
       skip_to_actions: アクションに移動
       status: ステータス
-      statuses: 通報内容
       statuses_description_html: 問題の投稿は通報されたアカウントへの連絡時に引用されます
       summary:
         action_preambles:
@@ -816,7 +816,6 @@ ja:
         title: デフォルトで検索エンジンによるインデックスを拒否する
       discovery:
         follow_recommendations: おすすめフォロー
-        preamble: Mastodon を知らないユーザーを取り込むには、興味深いコンテンツを浮上させることが重要です。サーバー上で様々なディスカバリー機能がどのように機能するかを制御します。
         privacy: プライバシー
         profile_directory: ディレクトリ
         public_timelines: 公開タイムライン
@@ -827,6 +826,9 @@ ja:
         all: 誰にでも許可
         disabled: 誰にも許可しない
         users: ログイン済みローカルユーザーのみ許可
+      landing_page:
+        values:
+          trends: トレンド
       registrations:
         moderation_recommandation: 登録受付を開始する前に、迅速かつ適切にモデレーションを行うチームを編成しましょう！
         preamble: あなたのサーバー上でアカウントを作成できるユーザーを制御します。
@@ -880,6 +882,7 @@ ja:
       no_status_selected: 何も選択されていないため、変更されていません
       open: 投稿を開く
       original_status: オリジナルの投稿
+      quotes: 引用
       reblogs: ブースト
       replied_to_html: "%{acct_link}さんへの返信"
       status_changed: 投稿を変更しました
@@ -887,6 +890,7 @@ ja:
       title: 投稿一覧 - @%{name}
       trending: トレンド
       view_publicly: 元の投稿を開く
+      view_quoted_post: 引用されている投稿を見る
       visibility: 公開範囲
       with_media: メディアあり
     strikes:
@@ -1079,6 +1083,7 @@ ja:
       matches_exactly_html: "%{string}に一致"
       new:
         create: ルールを作成
+        title: ユーザー名ルールを作成
       title: ユーザー名ルール
     warning_presets:
       add_new: 追加
@@ -1151,7 +1156,10 @@ ja:
     hint_html: 他のアカウントからこのアカウントにフォロワーを引き継いで引っ越したい場合、ここでエイリアスを作成しておく必要があります。エイリアス自体は<strong>無害で、取り消す</strong>ことができます。<strong>引っ越しは以前のアカウント側から開始する必要があります</strong>。
     remove: エイリアスを削除
   appearance:
+    advanced_settings: 詳細設定
     animations_and_accessibility: アニメーションとアクセシビリティー
+    boosting_preferences: ブースト設定
+    boosting_preferences_info_html: "<strong>Tip:</strong> 設定に関係なく、<kbd>Shift</kbd> を押しながら %{icon} Boostアイコンを<kbd>クリック</kbd>すると、すぐにブーストされます。"
     discovery: 見つける
     localization:
       body: Mastodonは有志によって翻訳されています。
@@ -1533,6 +1541,9 @@ ja:
       expires_at: 有効期限
       uses: 使用
     title: 新規ユーザーの招待
+  link_preview:
+    potentially_sensitive_content:
+      hide_button: 非表示
   lists:
     errors:
       limit: リストの上限数に達しています
@@ -1597,7 +1608,6 @@ ja:
       disabled_account: 引っ越した後はデータのエクスポートと再有効化を除きほとんどの機能が利用できなくなります
       followers: すべてのフォロワーを現在のアカウントから新しいアカウントに引き継ぎます
       only_redirect_html: または、<a href="%{path}">フォロワーを残したまま引っ越す</a>こともできます。
-      other_data: その他のデータは自動的に引き継がれません
       redirect: プロフィールに引っ越し済みの通知が表示され、検索結果から除外されます
   moderation:
     title: モデレーション
@@ -1682,6 +1692,8 @@ ja:
       too_few_options: は複数必要です
       too_many_options: は%{max}個までです
     vote: 投票
+  posting_defaults:
+    explanation: これらの設定は投稿を新規作成するときにデフォルトとして使用されますが、作成画面で投稿ごとに変更できます。
   preferences:
     other: その他
     posting_defaults: デフォルトの投稿設定
@@ -1852,17 +1864,16 @@ ja:
       public: 誰でも
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: 非公開の返信
       private: フォロワーのみ
       public: 公開
   statuses_cleanup:
     enabled: 古い投稿を自動的に削除する
     enabled_hint: 設定した期間を過ぎた投稿は、以下の例外に該当しない限り、自動的に削除されます
     exceptions: 例外
-    explanation: 投稿の削除はサーバーに負荷がかかるため、サーバーが混み合っていないときに時間をかけて行われます。
     ignore_favs: 設定しない
     ignore_reblogs: 設定しない
     interaction_exceptions: インタラクションに基づく例外
-    interaction_exceptions_explanation: お気に入りやブーストの基準値を一度超えてしまった投稿は、基準値を下回った後であっても、削除される保証はありません。
     keep_direct: ダイレクトメッセージを保持
     keep_direct_hint: ダイレクトメッセージを削除せずに残します
     keep_media: メディア付きの投稿を保持
@@ -1903,11 +1914,6 @@ ja:
     past_preamble_html: 前回の訪問時から利用規約が変更されました。更新された条件を確認することをお勧めします。
     review_link: 利用規約を確認する
     title: "%{domain} の利用規約が変更されています"
-  themes:
-    contrast: Mastodon (ハイコントラスト)
-    default: Mastodon (ダーク)
-    mastodon-light: Mastodon (ライト)
-    system: 自動 (システムのテーマを使用)
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"

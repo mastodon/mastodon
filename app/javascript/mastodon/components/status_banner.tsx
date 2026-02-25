@@ -49,6 +49,7 @@ export const StatusBanner: React.FC<{
 
       <button
         ref={buttonRef}
+        type='button'
         className='link-button'
         onClick={onClick}
         aria-describedby={descriptionId}

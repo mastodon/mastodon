@@ -54,8 +54,10 @@ es-MX:
         password: Usa al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de una publicación
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
+        setting_advanced_layout: Mostrar Mastodon en un diseño de varias columnas, lo que te permite ver la cronología, las notificaciones y una tercera columna de tu elección. No se recomienda para pantallas pequeñas.
         setting_aggregate_reblogs: No mostrar nuevos impulsos para las publicaciones que han sido recientemente impulsadas (sólo afecta a las publicaciones recibidas recientemente)
         setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
+        setting_boost_modal: Cuando está habilitado, impulsar abrirá primero un cuadro de confirmación en el que podrás cambiar la visibilidad de tu impulso.
         setting_default_quote_policy_private: Las publicaciones solo para seguidores hechas en Mastodon no pueden ser citadas por otros usuarios.
         setting_default_quote_policy_unlisted: Cuando las personas te citen, su publicación también se ocultará en las cronologías públicas.
         setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un clic
@@ -63,6 +65,7 @@ es-MX:
         setting_display_media_hide_all: Siempre ocultar todo el contenido multimedia
         setting_display_media_show_all: Mostrar siempre contenido multimedia marcado como sensible
         setting_emoji_style: Cómo se muestran los emojis. «Automático» intentará usar emojis nativos, pero vuelve a Twemoji para los navegadores antiguos.
+        setting_quick_boosting_html: Cuando está activado, pulsar en el icono %{boost_icon} Impulsar impulsará inmediatamente en lugar de abrir el menú desplegable Impulsar/Citas. Mueve la acción de citar al menú %{options_icon} (Opciones).
         setting_system_scrollbars_ui: Solo se aplica a los navegadores de escritorio basados en Safari y Chrome
         setting_use_blurhash: Los degradados se basan en los colores de los elementos visuales ocultos, pero ocultan cualquier detalle
         setting_use_pending_items: Ocultar las publicaciones de la línea de tiempo tras un clic en lugar de desplazar automáticamente el feed
@@ -76,7 +79,7 @@ es-MX:
       featured_tag:
         name: 'Aquí están algunas de las etiquetas que más has usado recientemente:'
       filters:
-        action: Elegir qué acción realizar cuando una publicación coincide con el filtro
+        action: Elige qué acción realizar cuando una publicación coincida con el filtro
         actions:
           blur: Ocultar contenido multimedia detrás de una advertencia, sin ocultar el propio texto
           hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
@@ -85,11 +88,12 @@ es-MX:
         activity_api_enabled: Conteo de publicaciones publicadas localmente, usuarios activos, y nuevos registros en periodos semanales
         app_icon: WEBP, PNG, GIF o JPG. Reemplaza el icono de aplicación predeterminado en dispositivos móviles con un icono personalizado.
         backups_retention_period: Los usuarios tienen la posibilidad de generar archivos de sus mensajes para descargarlos más adelante. Cuando se establece en un valor positivo, estos archivos se eliminarán automáticamente del almacenamiento después del número especificado de días.
-        bootstrap_timeline_accounts: Estas cuentas aparecerán en la parte superior de las recomendaciones de los nuevos usuarios.
+        bootstrap_timeline_accounts: Estas cuentas aparecerán en la parte superior de las recomendaciones de seguimiento de los nuevos usuarios. Proporciona una lista de cuentas separadas por comas.
         closed_registrations_message: Mostrado cuando los registros están cerrados
         content_cache_retention_period: Todas las publicaciones de otros servidores (incluyendo impuestos y respuestas) serán borrados después del número de días especificado, sin tener en cuenta cualquier interacción del usuario local con esas publicaciones. Esto incluye los mensajes que un usuario local haya marcado como favoritos. Las menciones privadas entre usuarios de diferentes instancias también se perderán y será imposible restaurarlas. El uso de esta configuración está pensado para instancias de propósito especial y rompe muchas expectativas de los usuarios cuando se implementa para uso general.
         custom_css: Puedes aplicar estilos personalizados a la versión web de Mastodon.
         favicon: WEBP, PNG, GIF o JPG. Reemplaza el icono predeterminado de Mastodon con un icono personalizado.
+        landing_page: Selecciona qué página ven los nuevos visitantes cuando llegan por primera vez a tu servidor. Si seleccionas "Tendencias", entonces las tendencias deben estar habilitadas en la Configuración de Descubrimiento. Si selecciona "Cronología local", entonces "Acceso a las cronologías que destacan publicaciones locales" debe configurarse a "Todos" en la Configuración de Descubrimiento.
         mascot: Reemplaza la ilustración en la interfaz web avanzada.
         media_cache_retention_period: Los archivos multimedia de las publicaciones realizadas por usuarios remotos se almacenan en caché en su servidor. Si se establece en un valor positivo, los archivos multimedia se eliminarán tras el número de días especificado. Si los datos multimedia se solicitan después de haber sido eliminados, se volverán a descargar, si el contenido de origen sigue estando disponible. Debido a las restricciones sobre la frecuencia con la que las tarjetas de previsualización de enlaces sondean sitios de terceros, se recomienda establecer este valor en al menos 14 días, o las tarjetas de previsualización de enlaces no se actualizarán bajo demanda antes de ese tiempo.
         min_age: Se pedirá a los usuarios que confirmen su fecha de nacimiento al registrarse
@@ -107,7 +111,7 @@ es-MX:
         thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
         trendable_by_default: Omitir la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
         trends: Las tendencias muestran qué mensajes, etiquetas y noticias están ganando tracción en tu servidor.
-        trends_as_landing_page: Mostrar contenido en tendencia para usuarios y visitantes desconectados en lugar de una descripción de este servidor. Requiere tendencias para ser habilitado.
+        wrapstodon: Ofrece a los usuarios locales la posibilidad de generar un resumen divertido de su uso de Mastodon durante el año. Esta función está disponible entre el 10 y el 31 de diciembre de cada año, y se ofrece a los usuarios que hayan publicado al menos una publicación pública o pública silenciosa y hayan utilizado al menos una etiqueta durante el año.
       form_challenge:
         current_password: Estás entrando en un área segura
       imports:
@@ -160,6 +164,7 @@ es-MX:
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a...
         position: Un rol superior decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con menor prioridad
+        require_2fa: Los usuarios con esta función deberán configurar la autenticación de dos pasos para utilizar Mastodon
       username_block:
         allow_with_approval: En lugar de impedir directamente el registro, los registros coincidentes requerirán tu aprobación
         comparison: Por favor ten en cuenta el problema de Scunthorpe al bloquear coincidencias parciales
@@ -219,6 +224,7 @@ es-MX:
         email: Dirección de correo electrónico
         expires_in: Expirar tras
         fields: Metadatos de perfil
+        filter_action: Filtrar acción
         header: Imagen de encabezado
         honeypot: "%{label} (no rellenar)"
         inbox_url: URL de la entrada de relés
@@ -234,12 +240,14 @@ es-MX:
         setting_aggregate_reblogs: Agrupar impulsos en las líneas de tiempo
         setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
-        setting_boost_modal: Mostrar ventana de confirmación antes de impulsar
+        setting_boost_modal: Control de visibilidad de impulsos
+        setting_color_scheme: Esquema de colores
+        setting_contrast: Contraste
         setting_default_language: Idioma de publicación
         setting_default_privacy: Visibilidad de publicación
         setting_default_quote_policy: Quién puede citar
         setting_default_sensitive: Marcar siempre imágenes como sensibles
-        setting_delete_modal: Mostrar diálogo de confirmación antes de borrar una publicación
+        setting_delete_modal: Avisarme antes de eliminar una publicación
         setting_disable_hover_cards: Desactivar vista previa del perfil al pasar el cursor
         setting_disable_swiping: Deshabilitar movimientos de deslizamiento
         setting_display_media: Visualización multimedia
@@ -249,7 +257,8 @@ es-MX:
         setting_emoji_style: Estilo de emoji
         setting_expand_spoilers: Siempre expandir las publicaciones marcadas con advertencias de contenido
         setting_hide_network: Ocultar tu red
-        setting_missing_alt_text_modal: Mostrar cuadro de diálogo de confirmación antes de publicar contenido multimedia sin texto alternativo
+        setting_missing_alt_text_modal: Avisarme antes de publicar contenido multimedia sin descripción de texto
+        setting_quick_boosting: Habilitar impulso rápido
         setting_reduce_motion: Reducir el movimiento de las animaciones
         setting_system_font_ui: Usar la fuente por defecto del sistema
         setting_system_scrollbars_ui: Usar la barra de desplazamiento por defecto del sistema
@@ -283,6 +292,7 @@ es-MX:
         content_cache_retention_period: Periodo de conservación de contenidos remotos
         custom_css: CSS personalizado
         favicon: Favicon
+        landing_page: Página de inicio para nuevos visitantes
         local_live_feed_access: Acceso a las cronologías que destacan publicaciones locales
         local_topic_feed_access: Acceso a las etiquetas y enlaces en tendencia que destacan publicaciones locales
         mascot: Mascota personalizada (legado)
@@ -307,7 +317,7 @@ es-MX:
         thumbnail: Miniatura del servidor
         trendable_by_default: Permitir tendencias sin revisión previa
         trends: Habilitar tendencias
-        trends_as_landing_page: Usar tendencias como página de destino
+        wrapstodon: Habilitar Wrapstodon
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues
@@ -368,9 +378,9 @@ es-MX:
         jurisdiction: Jurisdicción legal
         min_age: Edad mínima
       user:
-        date_of_birth_1i: Día
+        date_of_birth_1i: Año
         date_of_birth_2i: Mes
-        date_of_birth_3i: Año
+        date_of_birth_3i: Día
         role: Rol
         time_zone: Zona horaria
       user_role:
@@ -379,6 +389,7 @@ es-MX:
         name: Nombre
         permissions_as_keys: Permisos
         position: Prioridad
+        require_2fa: Requiere autenticación de dos pasos
       username_block:
         allow_with_approval: Permitir registros con aprobación previa
         comparison: Método de comparación

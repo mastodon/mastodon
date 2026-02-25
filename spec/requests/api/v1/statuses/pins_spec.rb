@@ -57,6 +57,21 @@ RSpec.describe 'Pins' do
       end
     end
 
+    context 'when the account is already at MAX status pins' do
+      before { StatusPinValidator::PIN_LIMIT.times { Fabricate(:status_pin, account: user.account) } }
+
+      it 'returns http unprocessable entity' do
+        subject
+
+        expect(response)
+          .to have_http_status(422)
+        expect(response.media_type)
+          .to eq('application/json')
+        expect(response.parsed_body)
+          .to include(error: /already pinned the maximum/)
+      end
+    end
+
     context 'when the status does not exist' do
       it 'returns http not found' do
         post '/api/v1/statuses/-1/pin', headers: headers

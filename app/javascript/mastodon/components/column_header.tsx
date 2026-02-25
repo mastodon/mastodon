@@ -53,6 +53,7 @@ const BackButton: React.FC<{
         compact: onlyIcon,
       })}
       aria-label={intl.formatMessage(messages.back)}
+      type='button'
     >
       <Icon
         id='chevron-left'
@@ -72,6 +73,7 @@ export interface Props {
   iconComponent?: IconProp;
   active?: boolean;
   children?: React.ReactNode;
+  className?: string;
   pinned?: boolean;
   multiColumn?: boolean;
   extraButton?: React.ReactNode;
@@ -90,6 +92,7 @@ export const ColumnHeader: React.FC<Props> = ({
   iconComponent,
   active,
   children,
+  className,
   pinned,
   multiColumn,
   extraButton,
@@ -140,7 +143,7 @@ export const ColumnHeader: React.FC<Props> = ({
     onPin?.();
   }, [history, pinned, onPin]);
 
-  const wrapperClassName = classNames('column-header__wrapper', {
+  const wrapperClassName = classNames('column-header__wrapper', className, {
     active,
   });
 
@@ -172,6 +175,7 @@ export const ColumnHeader: React.FC<Props> = ({
       <button
         className='text-btn column-header__setting-btn'
         onClick={handlePin}
+        type='button'
       >
         <Icon id='times' icon={CloseIcon} />{' '}
         <FormattedMessage id='column_header.unpin' defaultMessage='Unpin' />
@@ -185,6 +189,7 @@ export const ColumnHeader: React.FC<Props> = ({
           aria-label={intl.formatMessage(messages.moveLeft)}
           className='icon-button column-header__setting-btn'
           onClick={handleMoveLeft}
+          type='button'
         >
           <Icon id='chevron-left' icon={ChevronLeftIcon} />
         </button>
@@ -193,6 +198,7 @@ export const ColumnHeader: React.FC<Props> = ({
           aria-label={intl.formatMessage(messages.moveRight)}
           className='icon-button column-header__setting-btn'
           onClick={handleMoveRight}
+          type='button'
         >
           <Icon id='chevron-right' icon={ChevronRightIcon} />
         </button>
@@ -203,6 +209,7 @@ export const ColumnHeader: React.FC<Props> = ({
       <button
         className='text-btn column-header__setting-btn'
         onClick={handlePin}
+        type='button'
       >
         <Icon id='plus' icon={AddIcon} />{' '}
         <FormattedMessage id='column_header.pin' defaultMessage='Pin' />
@@ -237,6 +244,7 @@ export const ColumnHeader: React.FC<Props> = ({
           collapsed ? messages.show : messages.hide,
         )}
         onClick={handleToggleClick}
+        type='button'
       >
         <i className='icon-with-badge'>
           <Icon
@@ -250,7 +258,8 @@ export const ColumnHeader: React.FC<Props> = ({
   }
 
   const hasIcon = icon && iconComponent;
-  const hasTitle = hasIcon && title;
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  const hasTitle = (hasIcon || backButton) && title;
 
   const component = (
     <div className={wrapperClassName}>
@@ -259,8 +268,12 @@ export const ColumnHeader: React.FC<Props> = ({
           <>
             {backButton}
 
-            <button onClick={handleTitleClick} className='column-header__title'>
-              {!backButton && (
+            <button
+              onClick={handleTitleClick}
+              className='column-header__title'
+              type='button'
+            >
+              {!backButton && hasIcon && (
                 <Icon
                   id={icon}
                   icon={iconComponent}

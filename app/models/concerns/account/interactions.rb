@@ -23,9 +23,6 @@ module Account::Interactions
     # Hashtag follows
     has_many :tag_follows, inverse_of: :account, dependent: :destroy
 
-    # Account notes
-    has_many :account_notes, dependent: :destroy
-
     # Block relationships
     with_options class_name: 'Block', dependent: :destroy do
       has_many :block_relationships, foreign_key: 'account_id', inverse_of: :account
@@ -48,7 +45,7 @@ module Account::Interactions
 
   def follow!(other_account, reblogs: nil, notify: nil, languages: nil, uri: nil, rate_limit: false, bypass_limit: false)
     rel = active_relationships.create_with(show_reblogs: reblogs.nil? || reblogs, notify: notify.nil? ? false : notify, languages: languages, uri: uri, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
-                              .find_or_create_by!(target_account: other_account)
+      .find_or_create_by!(target_account: other_account)
 
     rel.show_reblogs = reblogs   unless reblogs.nil?
     rel.notify       = notify    unless notify.nil?
@@ -61,7 +58,7 @@ module Account::Interactions
 
   def request_follow!(other_account, reblogs: nil, notify: nil, languages: nil, uri: nil, rate_limit: false, bypass_limit: false)
     rel = follow_requests.create_with(show_reblogs: reblogs.nil? || reblogs, notify: notify.nil? ? false : notify, uri: uri, languages: languages, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
-                         .find_or_create_by!(target_account: other_account)
+      .find_or_create_by!(target_account: other_account)
 
     rel.show_reblogs = reblogs   unless reblogs.nil?
     rel.notify       = notify    unless notify.nil?
@@ -74,7 +71,7 @@ module Account::Interactions
 
   def block!(other_account, uri: nil)
     block_relationships.create_with(uri: uri)
-                       .find_or_create_by!(target_account: other_account)
+      .find_or_create_by!(target_account: other_account)
   end
 
   def mute!(other_account, notifications: nil, duration: 0)
@@ -123,7 +120,11 @@ module Account::Interactions
   end
 
   def following?(other_account)
-    active_relationships.exists?(target_account: other_account)
+    other_id = other_account.is_a?(Account) ? other_account.id : other_account
+
+    preloaded_relation(:following, other_id) do
+      active_relationships.exists?(target_account: other_account)
+    end
   end
 
   def following_anyone?
@@ -139,15 +140,40 @@ module Account::Interactions
   end
 
   def blocking?(other_account)
-    block_relationships.exists?(target_account: other_account)
+    other_id = other_account.is_a?(Account) ? other_account.id : other_account
+
+    preloaded_relation(:blocking, other_id) do
+      block_relationships.exists?(target_account: other_account)
+    end
+  end
+
+  def blocked_by?(other_account)
+    other_id = other_account.is_a?(Account) ? other_account.id : other_account
+
+    preloaded_relation(:blocked_by, other_id) do
+      other_account.block_relationships.exists?(target_account: self)
+    end
   end
 
   def domain_blocking?(other_domain)
-    domain_blocks.exists?(domain: other_domain)
+    preloaded_relation(:domain_blocking_by_domain, other_domain) do
+      domain_blocks.exists?(domain: other_domain)
+    end
+  end
+
+  def blocking_or_domain_blocking?(other_account)
+    return true if blocking?(other_account)
+    return false if other_account.domain.blank?
+
+    domain_blocking?(other_account.domain)
   end
 
   def muting?(other_account)
-    mute_relationships.exists?(target_account: other_account)
+    other_id = other_account.is_a?(Account) ? other_account.id : other_account
+
+    preloaded_relation(:muting, other_id) do
+      mute_relationships.exists?(target_account: other_account)
+    end
   end
 
   def muting_conversation?(conversation)
@@ -189,14 +215,14 @@ module Account::Interactions
 
   def followers_for_local_distribution
     followers.local
-             .joins(:user)
-             .merge(User.signed_in_recently)
+      .joins(:user)
+      .merge(User.signed_in_recently)
   end
 
   def lists_for_local_distribution
     scope = lists.joins(account: :user)
     scope.where.not(list_accounts: { follow_id: nil }).or(scope.where(account_id: id))
-         .merge(User.signed_in_recently)
+      .merge(User.signed_in_recently)
   end
 
   def remote_followers_hash(url)
@@ -225,5 +251,11 @@ module Account::Interactions
 
   def normalized_domain(domain)
     TagManager.instance.normalize_domain(domain)
+  end
+
+  private
+
+  def preloaded_relation(type, key)
+    @preloaded_relations && @preloaded_relations[type] ? @preloaded_relations[type][key].present? : yield
   end
 end

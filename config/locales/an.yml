@@ -10,7 +10,6 @@ an:
     followers:
       one: Seguidor
       other: Seguidores
-    following: Seguindo
     instance_actor_flash: Esta cuenta ye un actor virtual utilizau pa representar a lo servidor en ell mesmo y no a garra usuario individual. S'utiliza pa propositos d'a federación y no s'ha de suspender.
     last_active: zaguera connexión
     link_verified_on: La propiedat d'este vinclo estió verificada lo %{date}
@@ -586,7 +585,6 @@ an:
       resolved_msg: La denuncia s'ha resuelto correctament!
       skip_to_actions: Ir dreitament a las accions
       status: Estau
-      statuses: Conteniu denunciau
       statuses_description_html: Lo conteniu ofensivo se citará en a comunicación con a cuenta denunciada
       target_origin: Orichen d'a cuenta denunciada
       title: Reportes
@@ -680,7 +678,6 @@ an:
         title: Excluyir per defecto los usuarios d'a indexación d'os motors de busqueda
       discovery:
         follow_recommendations: Recomendacions de cuentas
-        preamble: Exposar conteniu interesant a la superficie ye fundamental pa incorporar nuevos usuarios que pueden no conoixer a dengún Mastodon. Controla cómo funcionan quantas opcions d'escubrimiento en o tuyo servidor.
         profile_directory: Directorio de perfils
         public_timelines: Linias de tiempo publicas
         publish_statistics: Publicar las estatisticas
@@ -1192,7 +1189,6 @@ an:
       disabled_account: La tuya cuenta actual no será completament utilizable dimpués. Manimenos, tendrás acceso a la exportación de datos asinas como a la reactivación.
       followers: Esta acción migrará a totz los seguidores d'a cuenta actual a la nueva cuenta
       only_redirect_html: Alternativament, nomás puetz <a href="%{path}">meter una redirección en o tuyo perfil</a>.
-      other_data: No se moverán atros datos automaticament
       redirect: Lo perfil d'a tuya cuenta actual s'actualizará con un aviso de redirección y será excluyiu d'as busquedas
   moderation:
     title: Moderación
@@ -1412,11 +1408,9 @@ an:
     enabled: Borrar automaticament publicacions antigas
     enabled_hint: Elimina automaticament las tuyas publicacions una vegada que aconsigan un branquil de tiempo especificau, de no estar que coincidan con bella d'as excepcions detalladas debaixo
     exceptions: Excepcions
-    explanation: A causa que la eliminación de mensaches ye una operación costosa, esto se fa lentament, a lo largo d'un tiempo, quan lo servidor no ye ocupau. Per este motivo, puede que las tuyas publicacions sían borradas bella cosa dimpués que aconsigan lo branquil de tiempo especificau.
     ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar reblogueos
     interaction_exceptions: Excepcions basadas en interaccions
-    interaction_exceptions_explanation: Tiene en cuenta que no i hai guarencia que s'eliminen las publicacions que son per debaixo d'os branquils de favoritos u de reblogueos si los han superau en bell momento.
     keep_direct: Mantener mensaches directos
     keep_direct_hint: No elimina garra d'os tuyos mensaches directos
     keep_media: Mantener publicacions con multimedia adchunto
@@ -1449,10 +1443,6 @@ an:
       too_late: Ye masiau tarde pa apelar esta amonestación
   tags:
     does_not_match_previous_name: no coincide con o nombre anterior
-  themes:
-    contrast: Mastodon (Alto contraste)
-    default: Mastodon (Fosco)
-    mastodon-light: Mastodon (claro)
   time:
     formats:
       default: "%d de %b de %Y, %H:%M"

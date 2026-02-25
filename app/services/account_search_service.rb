@@ -6,7 +6,7 @@ class AccountSearchService < BaseService
   MENTION_ONLY_RE = /\A#{Account::MENTION_RE}\z/i
 
   # Min. number of characters to look for non-exact matches
-  MIN_QUERY_LENGTH = 5
+  MIN_QUERY_LENGTH = 3
 
   class QueryBuilder
     def initialize(query, account, options = {})
@@ -256,7 +256,7 @@ class AccountSearchService < BaseService
     ActiveRecord::Associations::Preloader.new(records: records, associations: [:account_stat, { user: :role }]).call
 
     records
-  rescue Faraday::ConnectionFailed, Parslet::ParseFailed
+  rescue Faraday::ConnectionFailed, Parslet::ParseFailed, Errno::ENETUNREACH
     nil
   end
 

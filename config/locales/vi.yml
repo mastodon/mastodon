@@ -7,9 +7,12 @@ vi:
     hosted_on: "%{domain} vận hành nhờ Mastodon"
     title: Giới thiệu
   accounts:
+    errors:
+      cannot_be_added_to_collections: Tài khoản này không thể thêm vào bộ sưu tập.
     followers:
       other: Người theo dõi
-    following: Theo dõi
+    following:
+      other: Theo dõi
     instance_actor_flash: Tài khoản này được dùng để đại diện cho máy chủ và không phải là người thật. Đừng bao giờ vô hiệu hóa tài khoản này.
     last_active: online
     link_verified_on: Liên kết này đã được xác minh quyền sở hữu vào %{date}
@@ -50,6 +53,7 @@ vi:
         label: Đổi vai trò
         no_role: Chưa có vai trò
         title: Thay đổi vai trò %{username}
+      collections: Collection
       confirm: Phê duyệt
       confirmed: Đã xác minh
       confirming: Chờ xác nhận
@@ -62,7 +66,7 @@ vi:
       disable_sign_in_token_auth: Tắt xác minh bằng email
       disable_two_factor_authentication: Vô hiệu hóa xác thực 2 bước
       disabled: Tạm khóa
-      display_name: Biệt danh
+      display_name: Tên gọi
       domain: Máy chủ
       edit: Chỉnh sửa
       email: Email
@@ -78,7 +82,7 @@ vi:
       invite_request_text: Lý do đăng ký
       invited_by: Được mời bởi
       ip: IP
-      joined: Đã tham gia
+      joined: Tham gia
       location:
         all: Tất cả
         local: Máy chủ này
@@ -213,7 +217,7 @@ vi:
         enable_user: Cho phép đăng nhập
         memorialize_account: Gán tưởng niệm
         promote_user: Nâng vai trò
-        publish_terms_of_service: Đăng Điều khoản Dịch vụ
+        publish_terms_of_service: Tạo Điều khoản Dịch vụ
         reject_appeal: Từ chối khiếu nại
         reject_user: Từ chối đăng ký
         remove_avatar_user: Xóa ảnh đại diện
@@ -333,6 +337,14 @@ vi:
       unpublish: Hủy đăng
       unpublished_msg: Xóa bỏ thông báo thành xong!
       updated_msg: Cập nhật thông báo thành công!
+    collections:
+      accounts: Tài khoản
+      collection_title: Collection bởi %{name}
+      contents: Nội dung
+      number_of_accounts:
+        other: "%{count} tài khoản"
+      open: Mở
+      view_publicly: Xem công khai
     critical_update_pending: Cập nhật quan trọng đang chờ
     custom_emojis:
       assign_category: Xếp vào danh mục
@@ -424,7 +436,7 @@ vi:
         create: Tạo chặn
         hint: Chặn máy chủ sẽ không ngăn việc hiển thị tút của máy chủ đó trong cơ sở dữ liệu, nhưng sẽ khiến tự động áp dụng các phương pháp kiểm duyệt cụ thể trên các tài khoản đó.
         severity:
-          desc_html: "<strong>Ẩn</strong> sẽ làm cho tút của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Dùng <strong>Cảnh cáo</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
+          desc_html: "<strong>Hạn chế</strong> sẽ làm cho tút của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Dùng <strong>Cảnh cáo</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
           noop: Không hoạt động
           silence: Ẩn
           suspend: Vô hiệu hóa
@@ -663,6 +675,7 @@ vi:
       cancel: Hủy bỏ
       category: Phân loại
       category_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
+      collections: Collection (%{count})
       comment:
         none: Không có mô tả
       comment_description_html: "%{name} cho biết thêm:"
@@ -692,12 +705,13 @@ vi:
       report: 'Báo cáo #%{id}'
       reported_account: Tài khoản bị báo cáo
       reported_by: Báo cáo bởi
+      reported_content: Nội dung bị báo cáo
       reported_with_application: Báo cáo bằng ứng dụng
       resolved: Đã xong
       resolved_msg: Đã xử lý báo cáo xong!
       skip_to_actions: Kiểm duyệt
       status: Trạng thái
-      statuses: Nội dung bị báo cáo
+      statuses: Tút (%{count})
       statuses_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
       summary:
         action_preambles:
@@ -782,6 +796,9 @@ vi:
         view_dashboard_description: Cho phép truy cập trang tổng quan và các chỉ số khác
         view_devops: Nhà phát triển
         view_devops_description: Cho phép truy cập trang tổng quan Sidekiq và pgHero
+        view_feeds: Xem nguồn cấp dữ liệu trực tiếp và theo chủ đề
+        view_feeds_description: Cho phép người dùng truy cập nguồn cấp dữ liệu trực tiếp và theo chủ đề bất kể cài đặt máy chủ
+      requires_2fa: Bắt buộc xác thực 2 bước
       title: Danh sách vai trò
     rules:
       add_new: Thêm nội quy
@@ -823,13 +840,14 @@ vi:
         title: Mặc định người dùng không xuất hiện trong công cụ tìm kiếm
       discovery:
         follow_recommendations: Gợi ý theo dõi
-        preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trong Mastodon. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
+        preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trên Mastodon. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
         privacy: Riêng tư
         profile_directory: Danh bạ
         public_timelines: Bảng tin
         publish_statistics: Công khai số liệu thống kê
         title: Khám phá
         trends: Xu hướng
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Tới mọi người
         disabled: Không ai
@@ -837,7 +855,13 @@ vi:
       feed_access:
         modes:
           authenticated: Chỉ những người dùng đã xác minh
+          disabled: Yêu cầu vai trò người dùng cụ thể
           public: Mọi người
+      landing_page:
+        values:
+          about: Giới thiệu
+          local_feed: Bảng tin máy chủ
+          trends: Xu hướng
       registrations:
         moderation_recommandation: Vui lòng đảm bảo rằng bạn có một đội ngũ kiểm duyệt và phản ứng nhanh trước khi mở đăng ký cho mọi người!
         preamble: Kiểm soát những ai có thể tạo tài khoản trên máy chủ của bạn.
@@ -891,6 +915,7 @@ vi:
       no_status_selected: Bạn chưa chọn bất kỳ tút nào
       open: Mở tút
       original_status: Tút gốc
+      quotes: Trích dẫn
       reblogs: Lượt đăng lại
       replied_to_html: Trả lời đến %{acct_link}
       status_changed: Tút đã sửa
@@ -898,6 +923,7 @@ vi:
       title: Tút từ tài khoản - @%{name}
       trending: Xu hướng
       view_publicly: Xem công khai
+      view_quoted_post: Xem những tút được trích dẫn
       visibility: Hiển thị
       with_media: Có media
     strikes:
@@ -1075,7 +1101,7 @@ vi:
         usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
         used_by_over_week:
           other: "%{count} người dùng tuần rồi"
-      title: Đề xuất & Xu hướng
+      title: Đề xuất và Xu hướng
       trending: Xu hướng
     username_blocks:
       add_new: Thêm mới
@@ -1167,7 +1193,10 @@ vi:
     hint_html: Nếu bạn muốn chuyển từ máy chủ khác sang máy chủ này, bắt buộc bạn phải tạo tên người dùng mới thì mới có thể tiến hành chuyển được người theo dõi. Hành động này <strong>không ảnh hưởng gì và có thể đảo ngược</strong>. <strong>Việc di chuyển tài khoản được bắt đầu từ tài khoản cũ</strong>.
     remove: Bỏ liên kết bí danh
   appearance:
+    advanced_settings: Cài đặt nâng cao
     animations_and_accessibility: Hiệu ứng
+    boosting_preferences: Thiết lập đăng lại
+    boosting_preferences_info_html: "<strong>Mẹo:</strong> Bất kể cài đặt, <kbd>Shift</kbd> + <kbd>Click</kbd> trên biểu tượng %{icon} Đăng lại sẽ lập tức đăng lại."
     discovery: Khám phá
     localization:
       body: Mastodon được dịch bởi tình nguyện viên.
@@ -1284,6 +1313,13 @@ vi:
     hint_html: "<strong>Mẹo:</strong> Chúng tôi sẽ không hỏi lại mật khẩu của bạn sau này."
     invalid_password: Mật khẩu không hợp lệ
     prompt: Nhập mật khẩu để tiếp tục
+  color_scheme:
+    auto: Tự động
+    dark: Tối
+    light: Sáng
+  contrast:
+    auto: Tự động
+    high: Cao
   crypto:
     errors:
       invalid_key: không phải là mã khóa Ed25519 hoặc Curve25519 đúng
@@ -1391,7 +1427,7 @@ vi:
     csv: CSV
     domain_blocks: Máy chủ chặn
     lists: Danh sách
-    mutes: Người ẩn
+    mutes: Tài khoản bị phớt lờ
     storage: Tập tin
   featured_tags:
     add_new: Thêm mới
@@ -1484,7 +1520,7 @@ vi:
       lists_html:
         other: Bạn sắp <strong>thay thế danh sách</strong> với nội dung của <strong>%{filename}</strong>. Có <strong>%{count} người</strong> sẽ được thêm vào những danh sách mới.
       muting_html:
-        other: Bạn sắp <strong>they thế danh sách người bạn chặn</strong> với <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
+        other: Bạn sắp <strong>thay thế danh sách tài khoản chặn</strong> tới <strong>%{count} tài khoản</strong> từ <strong>%{filename}</strong>.
     preambles:
       blocking_html:
         other: Bạn sắp <strong>chặn</strong> tới <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
@@ -1497,7 +1533,7 @@ vi:
       lists_html:
         other: Bạn sắp thêm tới <strong>%{count} người</strong> từ <strong>%{filename}</strong> vào <strong>danh sách của bạn</strong>. Những danh sách mới sẽ được tạo nếu không có danh sách để thêm.
       muting_html:
-        other: Bạn sắp <strong>ẩn</strong> tới <strong>%{count} người</strong> từ <strong>%{filename}</strong>.
+        other: Bạn sắp <strong>phớt lờ</strong> tới <strong>%{count} tài khoản</strong> từ <strong>%{filename}</strong>.
     preface: Bạn có thể nhập dữ liệu mà bạn đã xuất từ một máy chủ khác, chẳng hạn danh sách những người đang theo dõi hoặc chặn.
     recent_imports: Đã nhập gần đây
     states:
@@ -1514,11 +1550,11 @@ vi:
       domain_blocking: Đang nhập máy chủ đã chặn
       following: Đang nhập người theo dõi
       lists: Nhập danh sách
-      muting: Đang nhập người đã ẩn
+      muting: Nhập danh sách tài khoản phớt lờ
     type: Kiểu nhập
     type_groups:
       constructive: Theo dõi và lưu
-      destructive: Chặn và ẩn
+      destructive: Chặn và phớt lờ
     types:
       blocking: Danh sách người đã chặn
       bookmarks: Tút đã lưu
@@ -1620,13 +1656,13 @@ vi:
       disabled_account: Tài khoản này sẽ không thể tiếp tục dùng nữa. Tuy nhiên, bạn có quyền truy cập để xuất dữ liệu cũng như kích hoạt lại.
       followers: Hành động này sẽ chuyển tất cả người theo dõi từ tài khoản hiện tại sang tài khoản mới
       only_redirect_html: Ngoài ra, bạn có thể <a href="%{path}">đặt chuyển hướng trên trang hồ sơ của bạn</a>.
-      other_data: Dữ liệu khác sẽ không được di chuyển tự động
+      other_data: Không có dữ liệu nào khác sẽ được tự động di chuyển (bao gồm tút của bạn và danh sách tài khoản bạn theo dõi)
       redirect: Trang hồ sơ hiện tại của bạn sẽ hiển thị thông báo chuyển hướng và bị loại khỏi kết quả tìm kiếm
   moderation:
     title: Kiểm duyệt
   move_handler:
     carry_blocks_over_text: Tài khoản này chuyển từ %{acct}, máy chủ mà bạn đã chặn trước đó.
-    carry_mutes_over_text: Tài khoản này chuyển từ %{acct}, máy chủ mà bạn đã ẩn trước đó.
+    carry_mutes_over_text: Tài khoản này chuyển sang từ %{acct}, máy chủ mà bạn đã phớt lờ trước đó.
     copy_account_note_text: 'Tài khoản này chuyển từ %{acct}, đây là lịch sử kiểm duyệt của họ:'
   navigation:
     toggle_menu: Bật/tắt menu
@@ -1654,16 +1690,22 @@ vi:
       body: 'Bạn vừa được nhắc đến bởi %{name} trong:'
       subject: Bạn vừa được nhắc đến bởi %{name}
       title: Lượt nhắc mới
+    moderation_warning:
+      subject: Bạn vừa nhận một cảnh báo kiểm duyệt
     poll:
       subject: Vốt của %{name} đã kết thúc
     quote:
       body: 'Tút của bạn được trích dẫn bởi %{name}:'
       subject: "%{name} vừa trích dẫn tút của bạn"
       title: Trích dẫn mới
+    quoted_update:
+      subject: "%{name} đã chỉnh sửa tút mà bạn trích dẫn"
     reblog:
       body: Tút của bạn vừa được %{name} đăng lại
       subject: "%{name} vừa đăng lại tút của bạn"
       title: Lượt đăng lại mới
+    severed_relationships:
+      subject: Bạn bị mất các mối quan hệ vì một quyết định kiểm duyệt
     status:
       subject: Bài đăng mới từ %{name}
     update:
@@ -1710,7 +1752,7 @@ vi:
       too_many_options: tối đa %{max} lựa chọn
     vote: Vốt
   posting_defaults:
-    explanation: Các thiết lập này sẽ được sử dụng làm mặc định khi bạn tạo tút mới, nhưng bạn có thể chỉnh sửa cho từng tút khi soạn thảo.
+    explanation: Các thiết lập này sẽ được sử dụng làm mặc định khi bạn tạo tút mới. Bạn vẫn có thể chỉnh sửa từng tút khi soạn thảo.
   preferences:
     other: Khác
     posting_defaults: Mặc định cho tút
@@ -1718,7 +1760,7 @@ vi:
   privacy:
     hint_html: Tùy chỉnh cách mọi người tìm thấy hồ sơ và tút của bạn.
     privacy: Riêng tư
-    privacy_hint_html: Kiểm soát mức độ chi tiết bạn muốn tiết lộ. Mọi người khám phá các hồ sơ thú vị và các ứng dụng thú vị bằng cách theo dõi những người khác và xem họ đăng từ ứng dụng nào, nhưng có thể bạn muốn ẩn nó đi.
+    privacy_hint_html: Kiểm soát mức độ tiết lộ chi tiết. Mọi người khám phá các hồ sơ thú vị và các ứng dụng thú vị bằng cách xem bạn theo dõi ai và bạn đăng bằng ứng dụng nào, nhưng có thể bạn muốn ẩn nó đi.
     reach: Tiếp cận
     reach_hint_html: Kiểm soát cách bạn được đề xuất và theo dõi. Bạn có muốn tút của mình xuất hiện trên trang Khám phá không? Bạn có muốn bạn xuất hiện trong các đề xuất theo dõi của người khác không? Bạn muốn tự động chấp nhận tất cả những người theo dõi mới hay tự duyệt từng người theo dõi?
     search: Tìm kiếm
@@ -1873,16 +1915,22 @@ vi:
     errors:
       in_reply_not_found: Bạn đang trả lời một tút không còn tồn tại.
       quoted_status_not_found: Bạn đang trích dẫn một tút không còn tồn tại.
+      quoted_user_not_mentioned: Không thể trích dẫn người dùng không được nhắc đến trong tút Nhắn riêng.
     over_character_limit: vượt quá giới hạn %{max} ký tự
     pin_errors:
       direct: Không thể ghim những tút nhắn riêng
       limit: Bạn đã ghim quá số lượng tút cho phép
       ownership: Không thể ghim tút của người khác
       reblog: Không thể ghim tút đăng lại
+    quote_error:
+      not_available: Tút không khả dụng
+      pending_approval: Tút đang chờ duyệt
+      revoked: Tút gốc đã bị tác giả gỡ
     quote_policies:
       followers: Chỉ người theo dõi
       nobody: Chỉ tôi
       public: Bất cứ ai
+    quote_post_author: Trích dẫn từ tút của @%{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Nhắn riêng
@@ -1895,11 +1943,11 @@ vi:
     enabled: Tự động xóa những tút cũ
     enabled_hint: Trừ những ngoại lệ bên dưới
     exceptions: Ngoại lệ
-    explanation: Số lượng tút sẽ tăng dần theo năm tháng. Bạn nên xóa những tút cũ khi tới một thời điểm nhất định.
+    explanation: Có thể xảy ra độ trễ nhất định giữa thời điểm đạt ngưỡng và thời điểm tút bị xóa.
     ignore_favs: Số lượt thích
     ignore_reblogs: Số lượt đăng lại
     interaction_exceptions: Ngoại lệ dựa theo tương tác
-    interaction_exceptions_explanation: Lưu ý là không có gì đảm bảo rằng các tút sẽ bị xóa nếu chúng bị giảm lượt thích hoặc đăng lại, dù đã từng đạt.
+    interaction_exceptions_explanation: Những tút vượt ngưỡng tương tác vẫn sẽ được giữ lại, kể cả khi lượt thích/đăng lại giảm sau đó.
     keep_direct: Giữ lại những tút nhắn riêng
     keep_direct_hint: Không xóa những tút nhắn riêng của bạn
     keep_media: Giữ lại những tút có media
@@ -1941,10 +1989,7 @@ vi:
     review_link: Xem lại điều khoản dịch vụ
     title: Sửa đổi điều khoản dịch vụ %{domain}
   themes:
-    contrast: Mastodon (Tương phản)
-    default: Mastodon (Tối)
-    mastodon-light: Mastodon (Sáng)
-    system: Theo hệ thống
+    default: Mastodon
   time:
     formats:
       default: "%-d.%m.%Y %H:%M"
@@ -1969,6 +2014,8 @@ vi:
     recovery_codes: Mã khôi phục dự phòng
     recovery_codes_regenerated: Mã khôi phục được phục hồi thành công
     recovery_instructions_html: Nếu bạn bị mất điện thoại, hãy dùng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong>. Ví dụ, bạn có thể in chúng ra giấy.
+    resume_app_authorization: Tiếp tục xác thực bằng ứng dụng
+    role_requirement: "%{domain} yêu cầu bạn thiết lập Xác thụec 2 bước trước khi sử dụng Mastodon."
     webauthn: Khóa bảo mật
   user_mailer:
     announcement_published:
@@ -2111,7 +2158,11 @@ vi:
       error: Có vấn đề khi xóa khóa bảo mật. Xin thử lại.
       success: Đã xóa khóa bảo mật thành công.
     invalid_credential: Khóa bảo mật không hợp lệ
+    nickname: Biệt danh
     nickname_hint: Nhập tên mới cho khóa bảo mật của bạn
     not_enabled: Bạn chưa kích hoạt WebAuthn
     not_supported: Trình duyệt của bạn không hỗ trợ khóa bảo mật
     registered_on: Đăng ký vào %{date}
+  wrapstodon:
+    description: Xem năm nay %{name} đã dùng Mastodon như thế nào!
+    title: Wrapstodon %{year} cho %{name}

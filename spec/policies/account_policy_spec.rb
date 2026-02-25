@@ -156,4 +156,56 @@ RSpec.describe AccountPolicy do
       end
     end
   end
+
+  permissions :feature? do
+    context 'when account is featureable?' do
+      it 'permits' do
+        expect(subject).to permit(alice, john)
+      end
+    end
+
+    context 'when account is not featureable' do
+      before { allow(alice).to receive(:featureable?).and_return(false) }
+
+      it 'denies' do
+        expect(subject).to_not permit(john, alice)
+      end
+    end
+
+    context 'when account is blocked' do
+      before { alice.block!(john) }
+
+      it 'denies' do
+        expect(subject).to_not permit(alice, john)
+      end
+    end
+
+    context 'when account is blocking' do
+      before { john.block!(alice) }
+
+      it 'denies' do
+        expect(subject).to_not permit(alice, john)
+      end
+    end
+  end
+
+  permissions :index_collections? do
+    it 'permits when no user is given' do
+      expect(subject).to permit(nil, john)
+    end
+
+    it 'permits unblocked users' do
+      expect(subject).to permit(john, john)
+      expect(subject).to permit(alice, john)
+    end
+
+    it 'denies blocked users' do
+      domain_blocked_user = Fabricate(:remote_account)
+      john.block_domain!(domain_blocked_user.domain)
+      john.block!(alice)
+
+      expect(subject).to_not permit(domain_blocked_user, john)
+      expect(subject).to_not permit(alice, john)
+    end
+  end
 end

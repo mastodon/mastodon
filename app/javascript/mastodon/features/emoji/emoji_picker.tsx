@@ -2,7 +2,6 @@ import type { EmojiProps, PickerProps } from 'emoji-mart';
 import EmojiRaw from 'emoji-mart/dist-es/components/emoji/nimble-emoji';
 import PickerRaw from 'emoji-mart/dist-es/components/picker/nimble-picker';
 
-import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
 import { assetHost } from 'mastodon/utils/config';
 
 import { EMOJI_MODE_NATIVE } from './constants';
@@ -27,7 +26,7 @@ const Emoji = ({
       sheetSize={sheetSize}
       sheetColumns={sheetColumns}
       sheetRows={sheetRows}
-      native={mode === EMOJI_MODE_NATIVE && isModernEmojiEnabled()}
+      native={mode === EMOJI_MODE_NATIVE}
       backgroundImageFn={backgroundImageFn}
       {...props}
     />
@@ -51,7 +50,7 @@ const Picker = ({
       sheetColumns={sheetColumns}
       sheetRows={sheetRows}
       backgroundImageFn={backgroundImageFn}
-      native={mode === EMOJI_MODE_NATIVE && isModernEmojiEnabled()}
+      native={mode === EMOJI_MODE_NATIVE}
       {...props}
     />
   );

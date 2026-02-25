@@ -168,9 +168,9 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   def quote_approval
     {
-      automatic: object.quote_policy_as_keys(:automatic),
-      manual: object.quote_policy_as_keys(:manual),
-      current_user: object.quote_policy_for_account(current_user&.account),
+      automatic: object.proper.quote_policy_as_keys(:automatic),
+      manual: object.proper.quote_policy_as_keys(:manual),
+      current_user: object.proper.quote_policy_for_account(current_user&.account),
     }
   end
 

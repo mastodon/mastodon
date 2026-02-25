@@ -10,7 +10,6 @@ eo:
     followers:
       one: Sekvanto
       other: Sekvantoj
-    following: Sekvatoj
     instance_actor_flash: Ĉi tiu konto estas virtuala agento uzata por reprezenti la servilon mem kaj neniun individuan uzanton. Ĝi estas uzata por federaciaj celoj kaj ĝi devas ne esti suspendita.
     last_active: laste aktiva
     link_verified_on: Proprieto de ĉi tiu ligilo estis kontrolita je %{date}
@@ -705,7 +704,6 @@ eo:
       resolved_msg: Signalo sukcese solvita!
       skip_to_actions: Salti al agoj
       status: Afiŝo
-      statuses: Raportita enhavo
       statuses_description_html: Sentema enhavo referencitas kun la raportita konto
       summary:
         action_preambles:
@@ -831,7 +829,6 @@ eo:
         title: Defaŭltigi, ke uzantoj ne estu aŭtomate aldonitaj al la serĉilo-indekso sen sia konsento
       discovery:
         follow_recommendations: Sekvorekomendoj
-        preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
         privacy: Privateco
         profile_directory: Profilujo
         public_timelines: Publikaj templinioj
@@ -1322,7 +1319,7 @@ eo:
     warning:
       before: 'Antau ol dauri, legu ĉi tiujn notojn zorgeme:'
       caches: Enhavo kiu kaŝmemorigitas de aliaj serviloj eble restas
-      data_removal: Viaj afiŝoj kaj aliaj informoj estos forigita por eterne
+      data_removal: Viaj afiŝoj kaj aliaj informoj estos forigita por ĉiam
       email_change_html: Vi povas <a href="%{path}">ŝanĝi vian retadreson</a> sen forigi vian konton
       email_contact_html: Se ĝi ankoraŭ ne alvenas, vi povas retpoŝti al <a href="mailto:%{email}">%{email}</a> por helpo
       email_reconfirmation_html: Se vi ne ricevas la konfirmretpoŝton, vi povas <a href="%{path}">denove peti</a>
@@ -1643,7 +1640,6 @@ eo:
       disabled_account: Via nuna konto ne estos tute uzebla poste.
       followers: Ĉi tiu ago translokigos ĉi tiujn sekvantojn de la nuna konto al la nova konto
       only_redirect_html: Alie, vi povas <a href="%{path}">nur aldoni alidirekton en via profilo</a>.
-      other_data: Neniu alia datumo estos movita aŭtomate
       redirect: Via nuna profilo de konto ĝisdatigotas kun alidirektoavizo
   moderation:
     title: Moderigado
@@ -1919,11 +1915,9 @@ eo:
     enabled: Aŭtomate forigi malnovajn postojn
     enabled_hint: Automate forigi viajn mesaĝojn kiam ili atingas la aĝlimon kaj havas escepton
     exceptions: Esceptoj
-    explanation: Forigi mesaĝojn estas rimeda ago, do ĉi tio malrapide sekve faratas kiam la servilo ne estas okupita.
     ignore_favs: Ignori stelumojn
     ignore_reblogs: Ignori diskonigojn
     interaction_exceptions: Esceptoj lau interagoj
-    interaction_exceptions_explanation: Sciu ke estas neniu garantio ke mesaĝo estos forigita se ĝi iras sub la limo de diskonigoj aŭ stelumoj post atingi ĝin.
     keep_direct: Konservi rektajn mesaĝojn
     keep_direct_hint: Ne forigos viajn rektajn mesagôjn
     keep_media: Konservi afiŝojn kun aŭdovidaj aldonaĵoj
@@ -1962,11 +1956,6 @@ eo:
   terms_of_service_interstitial:
     past_preamble_html: Ni ŝanĝis niajn servkondiĉojn ekde via lasta vizito. Ni instigas vin revizii la ĝisdatigitajn kondiĉojn.
     title: La servkondiĉoj de %{domain} ŝanĝiĝas
-  themes:
-    contrast: Mastodon (Forta kontrasto)
-    default: Mastodon (Malhela)
-    mastodon-light: Mastodon (Hela)
-    system: Aŭtomata (uzu sisteman temon)
   time:
     formats:
       default: "%Y.%b.%d, %H:%M"

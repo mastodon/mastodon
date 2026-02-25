@@ -128,15 +128,18 @@ export default function api(withAuthorization = true) {
 }
 
 type ApiUrl = `v${1 | '1_alpha' | 2}/${string}`;
-type RequestParamsOrData = Record<string, unknown>;
+type RequestParamsOrData<T = unknown> = T | Record<string, unknown>;
 
-export async function apiRequest<ApiResponse = unknown>(
+export async function apiRequest<
+  ApiResponse = unknown,
+  ApiParamsOrData = unknown,
+>(
   method: Method,
   url: string,
   args: {
     signal?: AbortSignal;
-    params?: RequestParamsOrData;
-    data?: RequestParamsOrData;
+    params?: RequestParamsOrData<ApiParamsOrData>;
+    data?: RequestParamsOrData<ApiParamsOrData>;
     timeout?: number;
   } = {},
 ) {
@@ -149,30 +152,30 @@ export async function apiRequest<ApiResponse = unknown>(
   return data;
 }
 
-export async function apiRequestGet<ApiResponse = unknown>(
+export async function apiRequestGet<ApiResponse = unknown, ApiParams = unknown>(
   url: ApiUrl,
-  params?: RequestParamsOrData,
+  params?: RequestParamsOrData<ApiParams>,
 ) {
   return apiRequest<ApiResponse>('GET', url, { params });
 }
 
-export async function apiRequestPost<ApiResponse = unknown>(
+export async function apiRequestPost<ApiResponse = unknown, ApiData = unknown>(
   url: ApiUrl,
-  data?: RequestParamsOrData,
+  data?: RequestParamsOrData<ApiData>,
 ) {
   return apiRequest<ApiResponse>('POST', url, { data });
 }
 
-export async function apiRequestPut<ApiResponse = unknown>(
+export async function apiRequestPut<ApiResponse = unknown, ApiData = unknown>(
   url: ApiUrl,
-  data?: RequestParamsOrData,
+  data?: RequestParamsOrData<ApiData>,
 ) {
   return apiRequest<ApiResponse>('PUT', url, { data });
 }
 
-export async function apiRequestDelete<ApiResponse = unknown>(
-  url: ApiUrl,
-  params?: RequestParamsOrData,
-) {
+export async function apiRequestDelete<
+  ApiResponse = unknown,
+  ApiParams = unknown,
+>(url: ApiUrl, params?: RequestParamsOrData<ApiParams>) {
   return apiRequest<ApiResponse>('DELETE', url, { params });
 }

@@ -5,9 +5,8 @@ import { EmojiHTML } from '../emoji/html';
 import type { DisplayNameProps } from './index';
 
 export const DisplayNameSimple: FC<
-  Omit<DisplayNameProps, 'variant' | 'localDomain'> &
-    ComponentPropsWithoutRef<'span'>
-> = ({ account, ...props }) => {
+  Omit<DisplayNameProps, 'variant'> & ComponentPropsWithoutRef<'span'>
+> = ({ account, localDomain: _, ...props }) => {
   if (!account) {
     return null;
   }

@@ -7,9 +7,12 @@ ko:
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     title: 정보
   accounts:
+    errors:
+      cannot_be_added_to_collections: 이 계정은 컬렉션에 추가할 수 없습니다.
     followers:
       other: 팔로워
-    following: 팔로잉
+    following:
+      other: 팔로잉
     instance_actor_flash: 이 계정은 서버 자신을 나타내기 위한 가상의 계정이며 개인 사용자가 아닙니다. 이 계정은 연합을 위해 사용되며 정지되지 않아야 합니다.
     last_active: 최근 활동
     link_verified_on: "%{date}에 이 링크의 소유가 확인되었습니다"
@@ -657,7 +660,7 @@ ko:
       add_to_report: 신고에 더 추가하기
       already_suspended_badges:
         local: 이 서버에서 이미 정지되었습니다
-        remote: 저 서버에서 이미 정지되었습니다
+        remote: 이미 해당 서버에서 정지함
       are_you_sure: 확실합니까?
       assign_to_self: 나에게 할당하기
       assigned: 할당된 중재자
@@ -699,7 +702,6 @@ ko:
       resolved_msg: 신고를 잘 해결했습니다!
       skip_to_actions: 작업으로 건너뛰기
       status: 상태
-      statuses: 신고된 콘텐츠
       statuses_description_html: 문제가 되는 콘텐츠는 신고된 계정에게 인용되어 전달됩니다
       summary:
         action_preambles:
@@ -784,6 +786,8 @@ ko:
         view_dashboard_description: 사용자가 여러 통계정보를 볼 수 있는 대시보드에 접근할 수 있도록 허용
         view_devops: 데브옵스
         view_devops_description: Sidekiq과 pgHero 대시보드에 접근할 수 있도록 허용
+        view_feeds: 실시간 및 화제 피드 보기
+        view_feeds_description: 서버 설정에 관계 없이 실시간과 해시태그 피드에 접근할 수 있도록 허용
       title: 역할
     rules:
       add_new: 규칙 추가
@@ -825,17 +829,27 @@ ko:
         title: 사용자들이 기본적으로 검색엔진에 인덱싱되지 않도록 합니다
       discovery:
         follow_recommendations: 팔로우 추천
-        preamble: 흥미로운 콘텐츠를 노출하는 것은 마스토돈을 알지 못할 수도 있는 신규 사용자를 유입시키는 데 중요합니다. 이 서버에서 작동하는 다양한 발견하기 기능을 제어합니다.
         privacy: 개인정보
         profile_directory: 프로필 책자
         public_timelines: 공개 타임라인
         publish_statistics: 통계 발행
         title: 발견하기
         trends: 유행
+        wrapstodon: 랩스토돈
       domain_blocks:
         all: 모두에게
         disabled: 아무에게도 안 함
         users: 로그인 한 사용자에게
+      feed_access:
+        modes:
+          authenticated: 로그인한 사용자들만
+          disabled: 특정한 사용자 역할 필요
+          public: 모두
+      landing_page:
+        values:
+          about: 정보
+          local_feed: 로컬 피드
+          trends: 유행
       registrations:
         moderation_recommandation: 모두에게 가입을 열기 전에 적절하고 반응이 빠른 중재 팀을 데리고 있는지 확인해 주세요!
         preamble: 누가 이 서버에 계정을 만들 수 있는지 제어합니다.
@@ -889,6 +903,7 @@ ko:
       no_status_selected: 아무 것도 선택 되지 않아 어떤 게시물도 바뀌지 않았습니다
       open: 게시물 열기
       original_status: 원본 게시물
+      quotes: 인용
       reblogs: 리블로그
       replied_to_html: "%{acct_link} 님에게 답장"
       status_changed: 게시물 변경됨
@@ -896,6 +911,7 @@ ko:
       title: 계정 게시물 - @%{name}
       trending: 유행 중
       view_publicly: 공개시점으로 보기
+      view_quoted_post: 인용된 게시물 보기
       visibility: 공개 설정
       with_media: 미디어 있음
     strikes:
@@ -1165,7 +1181,10 @@ ko:
     hint_html: 다른 계정에서 이 계정으로 옮기길 원하는 경우, 여기에서 별칭을 만들 수 있습니다, 기존 계정의 팔로워를 이쪽으로 옮기고 싶은 경우 필요한 과정입니다. 이 행동 자체는 <strong>해롭지 않고 되돌리기가 가능합니다</strong>.<strong>계정 이주는 이전 계정에서 착수하게 됩니다</strong>
     remove: 별칭 연결 끊기
   appearance:
+    advanced_settings: 고급 설정
     animations_and_accessibility: 애니메이션과 접근성
+    boosting_preferences: 부스팅 설정
+    boosting_preferences_info_html: "<strong>팁:</strong> 설정에 관계 없이 %{icon}을 <kbd>시프트</kbd>+<kbd>클릭</kbd>하여 곧바로 부스트할 수 있습니다."
     discovery: 발견하기
     localization:
       body: 마스토돈은 자원봉사자들에 의해 번역되었습니다.
@@ -1282,6 +1301,13 @@ ko:
     hint_html: "<strong>팁:</strong> 한 시간 동안 다시 암호를 묻지 않을 것입니다."
     invalid_password: 잘못된 암호
     prompt: 계속하려면 암호를 확인하세요
+  color_scheme:
+    auto: 자동
+    dark: 어두움
+    light: 밝음
+  contrast:
+    auto: 자동
+    high: 높음
   crypto:
     errors:
       invalid_key: 유효하지 않은 Ed25519 또는 Curve25519 키
@@ -1547,6 +1573,13 @@ ko:
       expires_at: 만료
       uses: 이용 수
     title: 초대하기
+  link_preview:
+    author_html: "%{name} 작성"
+    potentially_sensitive_content:
+      action: 클릭하여 보기
+      confirm_visit: 정말로 이 링크를 여시겠습니까?
+      hide_button: 숨기기
+      label: 민감한 컨텐츠일 수 있음
   lists:
     errors:
       limit: 리스트 최대 개수를 초과합니다
@@ -1611,7 +1644,7 @@ ko:
       disabled_account: 이 계정은 완전한 사용이 불가능하게 됩니다. 하지만, 데이터 내보내기나 재활성화를 위해 접근할 수 있습니다.
       followers: 이 행동은 현재 계정의 모든 팔로워를 새 계정으로 이동시킵니다
       only_redirect_html: 대신, <a href="%{path}">프로필에 리디렉션만 표시</a>할 수도 있습니다.
-      other_data: 다른 어떤 데이터도 자동적으로 옮겨지지 않을 것입니다
+      other_data: 다른 데이터는 자동으로 이전되지 않을 것입니다 (게시물, 팔로우 목록 등)
       redirect: 현재 계정 프로필은 리다이렉트 알림과 함께 업데이트 되며 검색에서 제외 됩니다
   moderation:
     title: 중재
@@ -1700,6 +1733,8 @@ ko:
       too_few_options: 둘 이상의 항목이 있어야 함
       too_many_options: 항목은 %{max}개를 넘을 수 없습니다
     vote: 투표
+  posting_defaults:
+    explanation: 이 설정은 새 게시물을 작성할 때 기본값으로 쓰이지만, 작성기 내에서 게시물별로 편집할 수 있습니다.
   preferences:
     other: 기타
     posting_defaults: 게시물 기본설정
@@ -1721,7 +1756,7 @@ ko:
       unrecognized_emoji: 인식 되지 않은 에모지입니다
   redirects:
     prompt: 이 링크를 믿을 수 있다면, 클릭해서 계속하세요.
-    title: "%{instance}를 떠나려고 합니다."
+    title: "%{instance}을(를) 떠나려고 합니다."
   relationships:
     activity: 계정 활동
     confirm_follow_selected_followers: 정말로 선택된 팔로워들을 팔로우하시겠습니까?
@@ -1766,7 +1801,7 @@ ko:
     browsers:
       alipay: 알리페이
       blackberry: 블랙베리
-      chrome: 크롬
+      chrome: Chrome
       edge: 마이크로소프트 엣지
       electron: 일렉트론
       firefox: 파이어폭스
@@ -1852,6 +1887,9 @@ ko:
         other: "%{count} 개의 영상"
     boosted_from_html: "%{acct_link}의 글을 부스트"
     content_warning: '열람 주의: %{warning}'
+    content_warnings:
+      hide: 게시물 숨기기
+      show: 더 보기
     default_language: 화면 표시 언어와 동일하게
     disallowed_hashtags:
       other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
@@ -1859,19 +1897,26 @@ ko:
     errors:
       in_reply_not_found: 답장하려는 게시물이 존재하지 않습니다.
       quoted_status_not_found: 인용하려는 게시물이 존재하지 않습니다.
+      quoted_user_not_mentioned: 개인 멘션에서 다른 사람의 게시물을 인용할 수 없습니다.
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
       direct: 멘션된 사용자들에게만 보이는 게시물은 고정될 수 없습니다
       limit: 이미 너무 많은 게시물을 고정했습니다
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
+    quote_error:
+      not_available: 게시물 사용 불가
+      pending_approval: 계류 중인 게시물
+      revoked: 원작성자에 의해 게시물 삭제됨
     quote_policies:
       followers: 팔로워만
       nobody: 나만
       public: 누구나
+    quote_post_author: 인용된 %{acct} 님의 게시물
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: 개인 멘션
+      private: 팔로워만
       public: 공개
       public_long: 마스토돈 내외 모두
       unlisted: 조용한 공개
@@ -1880,11 +1925,9 @@ ko:
     enabled: 오래된 게시물 자동 삭제
     enabled_hint: 아래의 예외 목록에 해당하지 않는다면, 명시된 기한 이후 당신의 게시물을 자동으로 삭제합니다
     exceptions: 예외
-    explanation: 게시물 삭제는 많은 성능이 필요하기 때문에, 서버에서 바쁘지 않을 때 시간을 들여서 천천히 진행합니다. 이런 이유로, 당신의 게시물은 아마도 정해진 기간보다 좀 더 시간이 지난 이후에 삭제될 것입니다.
     ignore_favs: 좋아요 무시
     ignore_reblogs: 부스트 무시
     interaction_exceptions: 상호작용에 기반한 예외들
-    interaction_exceptions_explanation: 좋아요나 부스트 수가 설정한 값을 넘은 후 다시 낮아진 경우에는 게시물이 삭제되는 것을 보장하지 못합니다.
     keep_direct: 다이렉트 메시지 유지
     keep_direct_hint: 다이렉트 메시지를 삭제하지 않습니다
     keep_media: 미디어가 있는 게시물 유지
@@ -1926,10 +1969,7 @@ ko:
     review_link: 이용 약관 검토하기
     title: "%{domain} 도메인의 이용 약관에 변경 있음"
   themes:
-    contrast: 마스토돈 (고대비)
-    default: 마스토돈 (어두움)
-    mastodon-light: 마스토돈 (밝음)
-    system: 자동 (시스템 테마 사용)
+    default: Mastodon
   time:
     formats:
       default: "%Y-%m-%d %H:%M"
@@ -1974,7 +2014,7 @@ ko:
     backup_ready:
       explanation: 마스토돈 계정에 대한 전체 백업을 요청했습니다
       extra: 다운로드 할 준비가 되었습니다!
-      subject: 아카이브를 다운로드할 수 있습니다
+      subject: 다운로드할 아카이의 준비를 마침
       title: 아카이브 테이크아웃
     failed_2fa:
       details: '로그인 시도에 대한 상세 정보입니다:'
@@ -2096,7 +2136,10 @@ ko:
       error: 보안 키를 삭제하는 데 문제가 발생했습니다. 다시 시도해보십시오.
       success: 보안 키가 성공적으로 삭제되었습니다.
     invalid_credential: 올바르지 않은 보안 키
+    nickname: 별명
     nickname_hint: 새 보안 키의 별명을 입력해 주세요
     not_enabled: 아직 WebAuthn을 활성화 하지 않았습니다.
     not_supported: 이 브라우저는 보안 키를 지원하지 않습니다
     registered_on: "%{date}에 등록됨"
+  wrapstodon:
+    title: "%{name} 님의 %{year} 랩스토돈"

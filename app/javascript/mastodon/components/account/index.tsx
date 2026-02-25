@@ -73,6 +73,8 @@ interface AccountProps {
   defaultAction?: 'block' | 'mute';
   withBio?: boolean;
   withMenu?: boolean;
+  extraAccountInfo?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const Account: React.FC<AccountProps> = ({
@@ -83,6 +85,8 @@ export const Account: React.FC<AccountProps> = ({
   defaultAction,
   withBio,
   withMenu = true,
+  extraAccountInfo,
+  children,
 }) => {
   const intl = useIntl();
   const { signedIn } = useIdentity();
@@ -295,7 +299,7 @@ export const Account: React.FC<AccountProps> = ({
       >
         <div className='account__info-wrapper'>
           <Link
-            className='account__display-name'
+            className='account__display-name focusable'
             title={account?.acct}
             to={`/@${account?.acct}`}
             data-hover-card-account={id}
@@ -345,6 +349,8 @@ export const Account: React.FC<AccountProps> = ({
                 />
               </div>
             ))}
+
+          {extraAccountInfo}
         </div>
 
         {!minimal && (
@@ -353,6 +359,8 @@ export const Account: React.FC<AccountProps> = ({
             {button}
           </div>
         )}
+
+        {children}
       </div>
     </div>
   );

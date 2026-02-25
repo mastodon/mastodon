@@ -7,10 +7,11 @@ es:
     hosted_on: Mastodon alojado en %{domain}
     title: Acerca de
   accounts:
+    errors:
+      cannot_be_added_to_collections: Esta cuenta no se puede añadir a las colecciones.
     followers:
       one: Seguidor
       other: Seguidores
-    following: Siguiendo
     instance_actor_flash: Esta cuenta es un actor virtual utilizado para representar al propio servidor y no a ningún usuario individual. Se utiliza con fines de federación y no debe suspenderse.
     last_active: última conexión
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
@@ -52,6 +53,7 @@ es:
         label: Cambiar rol
         no_role: Sin rol
         title: Cambiar rol para %{username}
+      collections: Colecciones
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
@@ -336,6 +338,15 @@ es:
       unpublish: Retirar publicación
       unpublished_msg: "¡Anuncio despublicado con éxito!"
       updated_msg: "¡Anuncio actualizado con éxito!"
+    collections:
+      accounts: Cuentas
+      collection_title: Colección de %{name}
+      contents: Contenidos
+      number_of_accounts:
+        one: 1 cuenta
+        other: "%{count} cuentas"
+      open: Abrir
+      view_publicly: Ver públicamente
     critical_update_pending: Actualización crítica pendiente
     custom_emojis:
       assign_category: Asignar categoría
@@ -517,13 +528,13 @@ es:
         title: Fediverse Auxiliary Service Providers (Proveedores de Servicio Auxiliares del Fediverso)
       title: FASP
     follow_recommendations:
-      description_html: "<strong>Las recomendaciones de cuentas ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para suscitar recomendaciones personalizadas de cuentas a las que seguir, en su lugar se le recomiendan estas cuentas. Se recalculan diariamente a partir de una mezcla de cuentas con el mayor número de interacciones recientes y con el mayor número de seguidores locales con un idioma determinado."
+      description_html: "<strong>Las recomendaciones de cuentas a las que seguir ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para formar recomendaciones personalizadas de seguimiento, estas cuentas se recomiendan en su lugar. Se recalculan diariamente a partir de una mezcla de cuentas con las interacciones más recientes y el mayor número de seguidores para un idioma determinado."
       language: Para el idioma
       status: Estado
-      suppress: Suprimir recomendación de cuentas
+      suppress: Eliminar recomendación de cuentas a las que seguir
       suppressed: Suprimida
-      title: Recomendaciones de cuentas
-      unsuppress: Restaurar recomendaciones de cuentas
+      title: Recomendaciones de cuentas a las que seguir
+      unsuppress: Restaurar recomendaciones de cuentas a las que seguir
     instances:
       audit_log:
         title: Registros de auditoría recientes
@@ -675,6 +686,7 @@ es:
       cancel: Cancelar
       category: Categoría
       category_description_html: La razón por la que se reportó esta cuenta o contenido será citada en las comunicaciones con la cuenta reportada
+      collections: Colecciones (%{count})
       comment:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
@@ -704,12 +716,13 @@ es:
       report: 'Reportar #%{id}'
       reported_account: Cuenta reportada
       reported_by: Reportado por
+      reported_content: Contenido reportado
       reported_with_application: Informado a través de la aplicación
       resolved: Resuelto
       resolved_msg: "¡La denuncia se ha resuelto correctamente!"
       skip_to_actions: Ir directamente a las acciones
       status: Estado
-      statuses: Contenido reportado
+      statuses: Publicaciones (%{count})
       statuses_description_html: El contenido ofensivo se citará en la comunicación con la cuenta reportada
       summary:
         action_preambles:
@@ -796,6 +809,9 @@ es:
         view_dashboard_description: Permite a los usuarios acceder al panel de control y varias métricas
         view_devops: DevOps
         view_devops_description: Permite a los usuarios acceder a los paneles de control Sidekiq y pgHero
+        view_feeds: Visualización de cronologías y tendencias
+        view_feeds_description: Permitir a los usuarios acceder a las cronologías públicas y tendencias sin importar la configuración del servidor
+      requires_2fa: Requiere autenticación en dos pasos
       title: Roles
     rules:
       add_new: Añadir norma
@@ -837,13 +853,14 @@ es:
         title: Excluir por defecto a los usuarios de la indexación del motor de búsqueda
       discovery:
         follow_recommendations: Recomendaciones de cuentas
-        preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controla cómo funcionan varias opciones de descubrimiento en tu servidor.
+        preamble: Exponer contenido interesante es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie en Mastodon. Controla cómo funcionan en tu servidor las diferentes opciones de descubrimiento.
         privacy: Privacidad
         profile_directory: Directorio de perfiles
         public_timelines: Lineas de tiempo públicas
         publish_statistics: Publicar estadísticas
         title: Descubrimiento
         trends: Tendencias
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: A todos
         disabled: A nadie
@@ -851,7 +868,13 @@ es:
       feed_access:
         modes:
           authenticated: Solo usuarios autenticados
+          disabled: Requerir un rol de usuario específico
           public: Todos
+      landing_page:
+        values:
+          about: Acerca de
+          local_feed: Cronología local
+          trends: Tendencias
       registrations:
         moderation_recommandation: Por favor, ¡asegúrate de tener un equipo de moderación adecuado y reactivo antes de abrir los registros a todo el mundo!
         preamble: Controla quién puede crear una cuenta en tu servidor.
@@ -905,6 +928,7 @@ es:
       no_status_selected: No se cambió ninguna publicación al no seleccionar ninguna
       open: Abrir publicación
       original_status: Publicación original
+      quotes: Citas
       reblogs: Impulsos
       replied_to_html: Respondió a %{acct_link}
       status_changed: Publicación cambiada
@@ -912,6 +936,7 @@ es:
       title: Publicaciones de la cuenta - @%{name}
       trending: En tendencia
       view_publicly: Ver públicamente
+      view_quoted_post: Ver publicación citada
       visibility: Visibilidad
       with_media: Con multimedia
     strikes:
@@ -1186,7 +1211,10 @@ es:
     hint_html: Si quieres migrar de otra cuenta a esta, aquí puedes crear un alias, es necesario proceder antes de empezar a mover seguidores de la cuenta anterior a esta. Esta acción por sí misma es <strong>inofensiva y reversible</strong>. <strong>La migración de la cuenta se inicia desde la cuenta antigua</strong>.
     remove: Desvincular alias
   appearance:
+    advanced_settings: Ajustes avanzados
     animations_and_accessibility: Animaciones y accesibilidad
+    boosting_preferences: Preferencias de impulso
+    boosting_preferences_info_html: "<strong>Consejo:</strong> Sin importar los ajustes, pulsar <kbd>Mayus</kbd> al hacer <kbd>clic</kbd> en el icono de %{icon} Impulsar, dará impulso inmediatamente."
     discovery: Descubrir
     localization:
       body: Mastodon es traducido con la ayuda de voluntarios.
@@ -1303,6 +1331,13 @@ es:
     hint_html: "<strong>Tip:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
     invalid_password: Contraseña incorrecta
     prompt: Confirmar contraseña para seguir
+  color_scheme:
+    auto: Automático
+    dark: Oscuro
+    light: Claro
+  contrast:
+    auto: Automático
+    high: Alto
   crypto:
     errors:
       invalid_key: no es una clave Ed25519 o Curve25519 válida
@@ -1659,7 +1694,7 @@ es:
       disabled_account: Tu cuenta actual no será completamente utilizable después. Sin embargo, tendrás acceso a la exportación de datos así como a la reactivación.
       followers: Esta acción migrará a todos los seguidores de la cuenta actual a la nueva cuenta
       only_redirect_html: Alternativamente, solo puedes <a href="%{path}">poner una redirección en tu perfil</a>.
-      other_data: No se moverán otros datos automáticamente
+      other_data: Ningún otro dato se moverá automáticamente (esto incluye tus publicaciones y la lista de cuentas que sigues)
       redirect: El perfil de tu cuenta actual se actualizará con un aviso de redirección y será excluido de las búsquedas
   moderation:
     title: Moderación
@@ -1693,16 +1728,22 @@ es:
       body: 'Fuiste mencionado por %{name} en:'
       subject: Fuiste mencionado por %{name}
       title: Nueva mención
+    moderation_warning:
+      subject: Has recibido una advertencia de moderación
     poll:
       subject: Una encuesta de %{name} ha terminado
     quote:
       body: 'Tu publicación ha sido citada por %{name}:'
       subject: "%{name} citó tu publicación"
       title: Nueva cita
+    quoted_update:
+      subject: "%{name} editó una publicación que has citado"
     reblog:
       body: 'Tu publicación fue impulsada por %{name}:'
       subject: "%{name} impulsó tu publicación"
       title: Nueva difusión
+    severed_relationships:
+      subject: Has perdido conexiones debido a una decisión de moderación
     status:
       subject: "%{name} acaba de publicar"
     update:
@@ -1916,16 +1957,22 @@ es:
     errors:
       in_reply_not_found: La publicación a la que intentas responder no existe.
       quoted_status_not_found: La publicación que estás intentando citar no parece existir.
+      quoted_user_not_mentioned: No se puede citar a un usuario no mencionado en una Mención Privada.
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
       direct: Las publicaciones que son visibles solo para los usuarios mencionados no pueden fijarse
       limit: Ya has fijado el número máximo de publicaciones
       ownership: La publicación de otra persona no puede fijarse
       reblog: Una publicación impulsada no puede fijarse
+    quote_error:
+      not_available: Publicación no disponible
+      pending_approval: Publicación pendiente
+      revoked: Publicación borrada por el autor
     quote_policies:
       followers: Solo seguidores
       nobody: Solo yo
       public: Cualquiera
+    quote_post_author: Citando una publicación de %{acct}
     title: "%{name}: «%{quote}»"
     visibilities:
       direct: Mención privada
@@ -1938,11 +1985,11 @@ es:
     enabled: Borrar automáticamente publicaciones antiguas
     enabled_hint: Elimina automáticamente tus publicaciones una vez que alcancen un umbral de tiempo especificado, a menos que coincidan con alguna de las excepciones detalladas debajo
     exceptions: Excepciones
-    explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente, a lo largo de un tiempo, cuando el servidor no está ocupado. Por este motivo, puede que tus publicaciones sean borradas algo después de que alcancen el umbral de tiempo especificado.
+    explanation: La eliminación automática se realiza con baja prioridad. Puede pasar tiempo desde que las publicaciones alcanzan el límite de edad hasta que se eliminan.
     ignore_favs: Ignorar favoritos
     ignore_reblogs: Ignorar impulsos
     interaction_exceptions: Excepciones basadas en interacciones
-    interaction_exceptions_explanation: Ten en cuenta que no hay garantía de que se eliminen las publicaciones que están por debajo de los umbrales de favoritos o de impulsos si los han superado en algún momento.
+    interaction_exceptions_explanation: Las publicaciones que excedan temporalmente el umbral de favoritos o de impulsos podrían mantenerse incluso si más tarde quedan por debajo.
     keep_direct: Mantener mensajes directos
     keep_direct_hint: No elimina ninguno de tus mensajes directos
     keep_media: Mantener publicaciones con multimedia adjunto
@@ -1965,9 +2012,9 @@ es:
       '63113904': 2 años
       '7889238': 3 meses
     min_age_label: Umbral de tiempo
-    min_favs: Mantener mensajes con un número de favoritos mayor que
+    min_favs: Mantener publicaciones con un número de favoritos de al menos
     min_favs_hint: No borra ninguna de las publicaciones que hayan recibido al menos esta cantidad de favoritos. Deja en blanco para eliminar publicaciones sin importar el número de favoritos
-    min_reblogs: Mantener publicaciones reblogueadas más de
+    min_reblogs: Mantener publicaciones impulsadas al menos
     min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido impulsadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de impulsos
   stream_entries:
     sensitive_content: Contenido sensible
@@ -1984,10 +2031,7 @@ es:
     review_link: Revisar los términos de servicio
     title: Los términos de servicio de %{domain} van a cambiar
   themes:
-    contrast: Mastodon (alto contraste)
-    default: Mastodon (oscuro)
-    mastodon-light: Mastodon (claro)
-    system: Automático (usar tema del sistema)
+    default: Mastodon
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
@@ -2012,6 +2056,8 @@ es:
     recovery_codes: Hacer copias de seguridad de tus códigos de recuperación
     recovery_codes_regenerated: Códigos de recuperación regenerados con éxito
     recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
+    resume_app_authorization: Reanudar autorización de aplicación
+    role_requirement: "%{domain} requiere que establezcas la autenticación en dos pasos para poder usar Mastodon."
     webauthn: Claves de seguridad
   user_mailer:
     announcement_published:
@@ -2155,7 +2201,11 @@ es:
       error: Hubo un problema al añadir su clave de seguridad. Por favor, inténtalo de nuevo.
       success: Su clave de seguridad se ha eliminado correctamente.
     invalid_credential: Clave de seguridad no válida
+    nickname: Apodo
     nickname_hint: Introduzca el apodo de su nueva clave de seguridad
     not_enabled: Aún no has activado WebAuthn
     not_supported: Este navegador no soporta claves de seguridad
     registered_on: Registrado el %{date}
+  wrapstodon:
+    description: "¡Mira cómo %{name} ha usado Mastodon este año!"
+    title: Wrapstodon %{year} para %{name}

@@ -1,3 +1,5 @@
+import { isServerFeatureEnabled } from '@/mastodon/utils/environment';
+
 export function EmojiPicker () {
   return import('../../emoji/emoji_picker');
 }
@@ -42,6 +44,24 @@ export function Lists () {
   return import('../../lists');
 }
 
+export function Collections() {
+  return import('../../collections').then(
+    module => ({default: module.Collections})
+  );
+}
+
+export function CollectionDetail() {
+  return import('../../collections/detail/index').then(
+    module => ({default: module.CollectionDetailPage})
+  );
+}
+
+export function CollectionsEditor() {
+  return import('../../collections/editor').then(
+    module => ({default: module.CollectionEditorPage})
+  );
+}
+
 export function Status () {
   return import('../../status');
 }
@@ -59,6 +79,9 @@ export function PinnedStatuses () {
 }
 
 export function AccountTimeline () {
+  if (isServerFeatureEnabled('profile_redesign')) {
+    return import('../../account_timeline/v2');
+  }
   return import('../../account_timeline');
 }
 
@@ -68,6 +91,16 @@ export function AccountGallery () {
 
 export function AccountFeatured() {
   return import('../../account_featured');
+}
+
+export function AccountEdit() {
+  return import('../../account_edit')
+  .then((module) => ({ default: module.AccountEdit }));
+}
+
+export function AccountEditFeaturedTags() {
+  return import('../../account_edit/featured_tags')
+  .then((module) => ({ default: module.AccountEditFeaturedTags }));
 }
 
 export function Followers () {
@@ -132,6 +165,11 @@ export function DomainBlockModal () {
 
 export function ReportModal () {
   return import('../components/report_modal');
+}
+
+export function ReportCollectionModal () {
+  return import('../components/report_collection_modal')
+    .then((module) => ({ default: module.ReportCollectionModal }));;
 }
 
 export function IgnoreNotificationsModal () {
@@ -227,7 +265,7 @@ export function LinkTimeline () {
 }
 
 export function AnnualReportModal () {
-  return import('../components/annual_report_modal');
+  return import('../../annual_report/modal');
 }
 
 export function ListEdit () {

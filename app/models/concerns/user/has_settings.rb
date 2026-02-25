@@ -31,6 +31,10 @@ module User::HasSettings
     settings['web.reblog_modal']
   end
 
+  def setting_quick_boosting
+    settings['web.quick_boosting']
+  end
+
   def setting_delete_modal
     settings['web.delete_modal']
   end
@@ -53,6 +57,14 @@ module User::HasSettings
 
   def setting_theme
     settings['theme']
+  end
+
+  def setting_color_scheme
+    settings['web.color_scheme']
+  end
+
+  def setting_contrast
+    settings['web.contrast']
   end
 
   def setting_display_media

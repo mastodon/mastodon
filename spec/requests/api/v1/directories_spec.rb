@@ -3,10 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Directories API' do
+  include_context 'with API authentication', oauth_scopes: 'read:follows'
+
   let(:user)    { Fabricate(:user, confirmed_at: nil) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'read:follows' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
 
   describe 'GET /api/v1/directories' do
     context 'with no params' do

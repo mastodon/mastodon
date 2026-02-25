@@ -26,6 +26,22 @@ RSpec.describe IpBlock do
     end
   end
 
+  describe '#to_cidr' do
+    subject { Fabricate.build(:ip_block, ip:).to_cidr }
+
+    context 'with an IP and a specified prefix' do
+      let(:ip) { '192.168.1.0/24' }
+
+      it { is_expected.to eq('192.168.1.0/24') }
+    end
+
+    context 'with an IP and a default prefix' do
+      let(:ip) { '192.168.1.0' }
+
+      it { is_expected.to eq('192.168.1.0/32') }
+    end
+  end
+
   describe '.blocked?' do
     context 'when the IP is blocked' do
       it 'returns true' do

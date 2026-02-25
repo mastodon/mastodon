@@ -7,10 +7,14 @@ nl:
     hosted_on: Mastodon op %{domain}
     title: Over
   accounts:
+    errors:
+      cannot_be_added_to_collections: Dit account kan niet aan collecties worden toegevoegd.
     followers:
       one: Volger
       other: Volgers
-    following: Volgend
+    following:
+      one: Volgend
+      other: Volgend
     instance_actor_flash: Dit account is een 'virtual actor' waarmee de server zichzelf vertegenwoordigt en is dus geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden opgeschort.
     last_active: laatst actief
     link_verified_on: Eigendom van deze link is gecontroleerd op %{date}
@@ -52,6 +56,7 @@ nl:
         label: Rol veranderen
         no_role: Geen rol
         title: Rol van %{username} veranderen
+      collections: Verzamelingen
       confirm: Bevestigen
       confirmed: Bevestigd
       confirming: Bevestiging
@@ -336,6 +341,15 @@ nl:
       unpublish: Uitschakelen
       unpublished_msg: Ongedaan maken van gepubliceerde mededeling geslaagd!
       updated_msg: Bijwerken van mededeling geslaagd!
+    collections:
+      accounts: Accounts
+      collection_title: Verzameling van %{name}
+      contents: Inhoud
+      number_of_accounts:
+        one: 1 account
+        other: "%{count} accounts"
+      open: Openen
+      view_publicly: Openbaar bericht bekijken
     critical_update_pending: Kritieke update in behandeling
     custom_emojis:
       assign_category: Categorie toewijzen
@@ -675,6 +689,7 @@ nl:
       cancel: Annuleren
       category: Category
       category_description_html: De reden waarom dit account en/of inhoud werd gerapporteerd wordt aan het gerapporteerde account medegedeeld
+      collections: Verzamelingen (%{count})
       comment:
         none: Geen
       comment_description_html: 'Om meer informatie te verstrekken, schreef %{name}:'
@@ -704,12 +719,13 @@ nl:
       report: 'Rapportage #%{id}'
       reported_account: Gerapporteerde account
       reported_by: Gerapporteerd door
+      reported_content: Gerapporteerde inhoud
       reported_with_application: Gerapporteerd met applicatie
       resolved: Opgelost
       resolved_msg: Rapportage succesvol opgelost!
       skip_to_actions: Ga direct naar de maatregelen
       status: Rapportages
-      statuses: Gerapporteerde inhoud
+      statuses: Berichten (%{count})
       statuses_description_html: De problematische inhoud wordt aan het gerapporteerde account medegedeeld
       summary:
         action_preambles:
@@ -796,6 +812,9 @@ nl:
         view_dashboard_description: Geeft gebruikers toegang tot het dashboard en verschillende statistieken
         view_devops: DevOps
         view_devops_description: Geeft gebruikers toegang tot de dashboards van Sidekiq en pgHero
+        view_feeds: Openbare en hashtagtijdlijnen bekijken
+        view_feeds_description: Hiermee kunnen gebruikers toegang krijgen tot de openbare en hashtagtijdlijnen, ongeacht de serverinstellingen
+      requires_2fa: Vereist tweestapsverificatie
       title: Rollen
     rules:
       add_new: Regel toevoegen
@@ -837,13 +856,14 @@ nl:
         title: Gebruikers standaard niet door zoekmachines laten indexeren
       discovery:
         follow_recommendations: Aanbevolen accounts
-        preamble: Het tonen van interessante inhoud is van essentieel belang voor het aan boord halen van nieuwe gebruikers, die mogelijk niemand van Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van inhoud en gebruikers op jouw server werken.
+        preamble: Interessante inhoud uitlichten is van essentieel belang voor onboarding van nieuwe gebruikers, die mogelijk niemand op Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van inhoud en gebruikers op jouw server werken.
         privacy: Privacy
         profile_directory: Gebruikersgids
         public_timelines: Openbare tijdlijnen
         publish_statistics: Statistieken publiceren
         title: Ontdekken
         trends: Trends
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: Aan iedereen
         disabled: Aan niemand
@@ -851,7 +871,13 @@ nl:
       feed_access:
         modes:
           authenticated: Alleen ingelogde gebruikers
+          disabled: Specifieke gebruikersrol vereisen
           public: Iedereen
+      landing_page:
+        values:
+          about: Over
+          local_feed: Lokale tijdlijn
+          trends: Trends
       registrations:
         moderation_recommandation: Zorg ervoor dat je een adequaat en responsief moderatieteam hebt voordat je registraties voor iedereen openstelt!
         preamble: Toezicht houden op wie een account op deze server kan registreren.
@@ -905,6 +931,7 @@ nl:
       no_status_selected: Er werden geen berichten gewijzigd, omdat er geen enkele werd geselecteerd
       open: Bericht tonen
       original_status: Oorspronkelijk bericht
+      quotes: Citaten
       reblogs: Boosts
       replied_to_html: Reageerde op %{acct_link}
       status_changed: Bericht veranderd
@@ -912,6 +939,7 @@ nl:
       title: Accountberichten - @%{name}
       trending: Trending
       view_publicly: Openbaar bericht bekijken
+      view_quoted_post: Geciteerde berichten tonen
       visibility: Zichtbaarheid
       with_media: Met media
     strikes:
@@ -1186,7 +1214,10 @@ nl:
     hint_html: Wanneer je vanaf een ander account naar dit account wilt verhuizen, kun je hier een alias aanmaken. Dit is nodig voordat je verder kunt gaan met het verhuizen van volgers van het oude naar dit nieuwe account. Deze actie is op zich <strong>ongevaarlijk en omkeerbaar</strong>. <strong>De accountmigratie wordt gestart vanaf het oude account</strong>.
     remove: Alias ontkoppelen
   appearance:
+    advanced_settings: Geavanceerde instellingen
     animations_and_accessibility: Animaties en toegankelijkheid
+    boosting_preferences: Boosten
+    boosting_preferences_info_html: "<strong>Tip:</strong> Ongeacht je instellingen, kun je met <kbd>Shift</kbd> + <kbd>Klik</kbd> op het %{icon} boostpictogram onmiddelijk boosten."
     discovery: Ontdekken
     localization:
       body: Mastodon wordt door vrijwilligers vertaald.
@@ -1303,6 +1334,13 @@ nl:
     hint_html: "<strong>Tip:</strong> We vragen jou het komende uur niet meer naar jouw wachtwoord."
     invalid_password: Ongeldig wachtwoord
     prompt: Bevestig wachtwoord om door te gaan
+  color_scheme:
+    auto: Auto
+    dark: Donker
+    light: Licht
+  contrast:
+    auto: Auto
+    high: Hoog
   crypto:
     errors:
       invalid_key: is geen geldige Ed25519- of Curve25519-sleutel
@@ -1659,7 +1697,7 @@ nl:
       disabled_account: Jouw huidige account is hierna niet meer volledig bruikbaar. Je hebt echter wel toegang tot het exporteren van je gegevens en tot het opnieuw activeren van je account.
       followers: Deze actie verhuist alle volgers vanaf het huidige account naar het nieuwe account
       only_redirect_html: Je kunt als alternatief ook <a href="%{path}">alleen de doorverwijzing op je profiel zetten</a>.
-      other_data: Geen andere gegevens worden automatisch verhuisd
+      other_data: Geen andere gegevens worden automatisch verhuisd (inclusief jouw berichten en de lijst met accounts die je volgt)
       redirect: Jouw huidige accountprofiel wordt bijgewerkt met een doorverwijzingsmelding en wordt uitgesloten van zoekresultaten
   moderation:
     title: Moderatie
@@ -1693,16 +1731,22 @@ nl:
       body: 'Je bent door %{name} vermeld in:'
       subject: Je bent vermeld door %{name}
       title: Nieuwe vermelding
+    moderation_warning:
+      subject: Je hebt een moderatie-waarschuwing ontvangen
     poll:
       subject: Een peiling van %{name} is beëindigd
     quote:
       body: 'Jouw bericht werd door %{name} geciteerd:'
       subject: "%{name} heeft jouw bericht geciteerd"
       title: Nieuw citaat
+    quoted_update:
+      subject: "%{name} bewerkte een door jou geciteerd bericht"
     reblog:
       body: 'Jouw bericht werd door %{name} geboost:'
       subject: "%{name} boostte jouw bericht"
       title: Nieuwe boost
+    severed_relationships:
+      subject: Door een moderatie-beslissing ben je volgers en/of door jou gevolgde accounts verloren
     status:
       subject: "%{name} heeft zojuist een bericht geplaatst"
     update:
@@ -1752,7 +1796,7 @@ nl:
     explanation: Deze instellingen worden als standaard gebruikt wanneer je nieuwe berichten aanmaakt, maar je kunt ze per bericht aanpassen.
   preferences:
     other: Overig
-    posting_defaults: Instellingen voor berichten
+    posting_defaults: Jouw nieuwe berichten
     public_timelines: Openbare tijdlijnen
   privacy:
     hint_html: "<strong>Hoe wil je dat jouw profiel en berichten kunnen worden gevonden?</strong> Een verscheidenheid aan functies in Mastodon kunnen je helpen om een groter publiek te bereiken als ze zijn ingeschakeld. Neem rustig de tijd om deze instellingen te bekijken, om er zo zeker van te zijn dat ze aan jouw wensen voldoen."
@@ -1916,16 +1960,22 @@ nl:
     errors:
       in_reply_not_found: Het bericht waarop je probeert te reageren lijkt niet te bestaan.
       quoted_status_not_found: Het bericht die je probeert te citeren lijkt niet te bestaan.
+      quoted_user_not_mentioned: Een niet-vermelde gebruiker kan niet in een privébericht worden geciteerd.
     over_character_limit: Limiet van %{max} tekens overschreden
     pin_errors:
       direct: Berichten die alleen zichtbaar zijn voor vermelde gebruikers, kunnen niet worden vastgezet
       limit: Je hebt het maximaal aantal bericht al vastgemaakt
       ownership: Een bericht van iemand anders kan niet worden vastgemaakt
       reblog: Een boost kan niet worden vastgezet
+    quote_error:
+      not_available: Bericht is niet beschikbaar
+      pending_approval: Bericht in afwachting van goedkeuring
+      revoked: Bericht verwijderd door auteur
     quote_policies:
       followers: Alleen volgers
       nobody: Alleen ik
       public: Iedereen
+    quote_post_author: Citeerde een bericht van %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Privébericht
@@ -1936,13 +1986,13 @@ nl:
       unlisted_long: Niet zichtbaar in de zoekresultaten van Mastodon, onder trends, hashtags en op openbare tijdlijnen
   statuses_cleanup:
     enabled: Automatisch oude berichten verwijderen
-    enabled_hint: Verwijder uw berichten automatisch zodra ze een bepaalde leeftijdsgrens bereiken, tenzij ze overeenkomen met een van de onderstaande uitzonderingen
+    enabled_hint: Verwijder jouw berichten automatisch zodra ze een bepaalde leeftijdsgrens bereiken, tenzij ze overeenkomen met een van de onderstaande uitzonderingen
     exceptions: Uitzonderingen
-    explanation: Doordat het verwijderen van berichten de server zwaar belast, gebeurt dit geleidelijk aan op momenten dat de server niet bezig is. Om deze reden kunnen uw berichten een tijdje nadat ze de leeftijdsgrens hebben bereikt worden verwijderd.
+    explanation: Geautomatiseerde verwijdering wordt uitgevoerd met lage prioriteit. Er kan een vertraging optreden tussen het bereiken van de leeftijdsgrens en het verwijderen.
     ignore_favs: Favorieten negeren
     ignore_reblogs: Boosts negeren
     interaction_exceptions: Uitzonderingen op basis van interacties
-    interaction_exceptions_explanation: Merk op dat er geen garantie is dat berichten worden verwijderd, wanneer eenmaal het aantal favorieten of boosts boven de ingestelde grenswaarde zijn geweest.
+    interaction_exceptions_explanation: Berichten die tijdelijk de opgegeven drempel voor favorieten of boosten overschrijden kunnen worden bewaard, zelfs als ze later weer onder die drempel komen.
     keep_direct: Privéberichten behouden
     keep_direct_hint: Verwijdert geen enkel privébericht van jou
     keep_media: Berichten met mediabijlagen behouden
@@ -1984,10 +2034,7 @@ nl:
     review_link: De gebruiksvoorwaarden bekijken
     title: De gebruiksvoorwaarden van %{domain} worden gewijzigd
   themes:
-    contrast: Mastodon (hoog contrast)
-    default: Mastodon (donker)
-    mastodon-light: Mastodon (licht)
-    system: Automatisch (systeemthema gebruiken)
+    default: Mastodon
   time:
     formats:
       default: "%d %B %Y om %H:%M"
@@ -2012,6 +2059,8 @@ nl:
     recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaart</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
+    resume_app_authorization: Applicatie-machtiging hervatten
+    role_requirement: "%{domain} vereist dat je Tweestapsverificatie instelt voordat je Mastodon kunt gebruiken."
     webauthn: Beveiligingssleutels
   user_mailer:
     announcement_published:
@@ -2155,7 +2204,11 @@ nl:
       error: Er deed zich een probleem voor met het verwijderen van jouw beveiligingssleutel. Probeer het nogmaals.
       success: Het verwijderen van jouw beveiligingssleutel is geslaagd.
     invalid_credential: Ongeldige beveiligingssleutel
+    nickname: Bijnaam
     nickname_hint: Voer de bijnaam in van jouw nieuwe beveiligingssleutel
     not_enabled: Je hebt WebAuthn nog niet ingeschakeld
     not_supported: Deze browser ondersteunt geen beveiligingssleutels
     registered_on: Geregistreerd op %{date}
+  wrapstodon:
+    description: Bekijk hoe %{name} dit jaar Mastodon heeft gebruikt!
+    title: Wrapstodon %{year} voor %{name}

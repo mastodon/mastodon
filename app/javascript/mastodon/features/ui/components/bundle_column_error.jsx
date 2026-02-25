@@ -98,7 +98,7 @@ class BundleColumnError extends PureComponent {
             <div className='error-column__message__actions'>
               {errorType === 'network' && <Button onClick={this.handleRetry}><FormattedMessage id='bundle_column_error.retry' defaultMessage='Try again' /></Button>}
               {errorType === 'error' && <CopyButton value={stacktrace}><FormattedMessage id='bundle_column_error.copy_stacktrace' defaultMessage='Copy error report' /></CopyButton>}
-              <Link to='/' className={classNames('button', { 'button-tertiary': errorType !== 'routing' })}><FormattedMessage id='bundle_column_error.return' defaultMessage='Go back home' /></Link>
+              <Link to='/' className={classNames('button', { 'button-secondary': errorType !== 'routing' })}><FormattedMessage id='bundle_column_error.return' defaultMessage='Go back home' /></Link>
             </div>
           </div>
         </div>

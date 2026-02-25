@@ -40,7 +40,6 @@ export function MastodonThemes(): Plugin {
 
       // Get all files mentioned in the themes.yml file.
       const themes = await loadThemesFromConfig(projectRoot);
-
       for (const [themeName, themePath] of Object.entries(themes)) {
         entrypoints[`themes/${themeName}`] = path.resolve(jsRoot, themePath);
       }

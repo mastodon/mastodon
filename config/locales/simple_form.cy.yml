@@ -54,8 +54,10 @@ cy:
         password: Defnyddiwch o leiaf 8 nod
         phrase: Caiff ei gyfateb heb ystyriaeth o briflythrennu mewn testun neu rhybudd ynghylch cynnwys postiad
         scopes: Pa APIs y bydd y rhaglen yn cael mynediad iddynt. Os dewiswch gwmpas lefel uchaf, nid oes angen i chi ddewis rhai unigol.
+        setting_advanced_layout: Dangos Mastodon fel cynllun aml-golofn, sy'n eich galluogi i weld y llinell amser, hysbysiadau, a thrydedd golofn o'ch dewis chi. Nid gyfer sgriniau llai.
         setting_aggregate_reblogs: Peidiwch â dangos hybiau newydd ar bostiadau sydd wedi cael eu hybu'n ddiweddar (dim ond yn effeithio ar hybiau newydd ei dderbyn)
         setting_always_send_emails: Fel arfer ni fydd hysbysiadau e-bost yn cael eu hanfon pan fyddwch chi wrthi'n defnyddio Mastodon
+        setting_boost_modal: Pan fydd wedi'i alluogi, bydd hybu'n agor deialog cadarnhau yn gyntaf lle gallwch newid gwelededd eich hwb.
         setting_default_quote_policy_private: Does dim modd dyfynnu postiadau sydd wedi'u hysgrifennu ar Mastodon ar gyfer dim ond dilynwyr.
         setting_default_quote_policy_unlisted: Pan fydd pobl yn eich dyfynnu, bydd eu postiad hefyd yn cael ei guddio rhag llinellau amser sy'n trendio.
         setting_default_sensitive: Mae cyfryngau sensitif wedi'u cuddio yn rhagosodedig a gellir eu datgelu trwy glicio
@@ -63,6 +65,7 @@ cy:
         setting_display_media_hide_all: Cuddio cyfryngau bob tro
         setting_display_media_show_all: Dangos cyfryngau bob tro
         setting_emoji_style: Sut i arddangos emojis. Bydd "Awto" yn ceisio defnyddio emoji cynhenid, ond mae'n disgyn yn ôl i Twemoji ar gyfer porwyr traddodiadol.
+        setting_quick_boosting_html: Pan fydd wedi'i alluogi, bydd clicio ar yr eicon Hwb %{boost_icon} yn rhoi hwb ar unwaith yn lle agor y gwymplen hwb/dyfynnu. Mae'n symud y weithred dyfynnu i'r ddewislen %{options_icon} (Dewisiadau).
         setting_system_scrollbars_ui: Yn berthnasol i borwyr bwrdd gwaith yn seiliedig ar Safari a Chrome yn unig
         setting_use_blurhash: Mae graddiannau wedi'u seilio ar liwiau'r delweddau cudd ond maen nhw'n cuddio unrhyw fanylion
         setting_use_pending_items: Cuddio diweddariadau llinell amser y tu ôl i glic yn lle sgrolio'n awtomatig
@@ -76,7 +79,7 @@ cy:
       featured_tag:
         name: 'Dyma rai o’r hashnodau a ddefnyddioch chi''n ddiweddar:'
       filters:
-        action: Dewiswch pa weithred i'w chyflawni pan fydd postiad yn cyfateb i'r hidlydd
+        action: Dewiswch pa weithred i'w gyflawni pan fydd postiad yn cyd-fynd â'r hidlydd
         actions:
           blur: Cuddio cyfryngau tu ôl i rybudd, heb guddio'r testun ei hun
           hide: Cuddiwch y cynnwys wedi'i hidlo'n llwyr, gan ymddwyn fel pe na bai'n bodoli
@@ -85,11 +88,12 @@ cy:
         activity_api_enabled: Cyfrif o bostiadau a gyhoeddir yn lleol, defnyddwyr gweithredol, a chofrestriadau newydd mewn bwcedi wythnosol
         app_icon: WEBP, PNG, GIF neu JPG. Yn diystyru'r eicon ap rhagosodedig ar ddyfeisiau symudol gydag eicon cyfaddas.
         backups_retention_period: Mae gan ddefnyddwyr y gallu i gynhyrchu archifau o'u postiadau i'w llwytho i lawr yn ddiweddarach. Pan gânt eu gosod i werth positif, bydd yr archifau hyn yn cael eu dileu'n awtomatig o'ch storfa ar ôl y nifer penodedig o ddyddiau.
-        bootstrap_timeline_accounts: Bydd y cyfrifon hyn yn cael eu pinio i frig argymhellion dilynol defnyddwyr newydd.
+        bootstrap_timeline_accounts: Bydd y cyfrifon yma'n cael eu pinio i frig argymhellion dilyn defnyddwyr newydd. Darparwch restr cyfrifon wedi'u gwahanu gan gollnod.
         closed_registrations_message: Yn cael eu dangos pan fydd cofrestriadau wedi cau
         content_cache_retention_period: Bydd yr holl bostiadau gan weinyddion eraill (gan gynnwys hwb ac atebion) yn cael eu dileu ar ôl y nifer penodedig o ddyddiau, heb ystyried unrhyw ryngweithio defnyddiwr lleol â'r postiadau hynny. Mae hyn yn cynnwys postiadau lle mae defnyddiwr lleol wedi ei farcio fel nodau tudalen neu ffefrynnau. Bydd cyfeiriadau preifat rhwng defnyddwyr o wahanol achosion hefyd yn cael eu colli ac yn amhosibl eu hadfer. Mae'r defnydd o'r gosodiad hwn wedi'i fwriadu ar gyfer achosion pwrpas arbennig ac mae'n torri llawer o ddisgwyliadau defnyddwyr pan gaiff ei weithredu at ddibenion cyffredinol.
         custom_css: Gallwch gymhwyso arddulliau cyfaddas ar fersiwn gwe Mastodon.
         favicon: WEBP, PNG, GIF neu JPG. Yn diystyru'r favicon Mastodon rhagosodedig gydag eicon cyfaddas.
+        landing_page: Yn dewis pa dudalen y mae ymwelwyr newydd yn ei gweld pan fyddan nhw'n cyrraedd eich gweinydd am y tro cyntaf. Os dewiswch "Trendio", yna mae angen galluogi tueddiadau yn y Gosodiadau Darganfod. Os dewiswch "Ffrydiau lleol", yna mae angen gosod "Mynediad i ffrydiau byw sy'n cynnwys postiadau lleol" i "Pawb" yn y Gosodiadau Darganfod.
         mascot: Yn diystyru'r darlun yn y rhyngwyneb gwe uwch.
         media_cache_retention_period: Mae ffeiliau cyfryngau o bostiadau a wneir gan ddefnyddwyr o bell yn cael eu storio ar eich gweinydd. Pan gaiff ei osod i werth positif, bydd y cyfryngau yn cael eu dileu ar ôl y nifer penodedig o ddyddiau. Os gofynnir am y data cyfryngau ar ôl iddo gael ei ddileu, caiff ei ail-lwytho i lawr, os yw'r cynnwys ffynhonnell yn dal i fod ar gael. Oherwydd cyfyngiadau ar ba mor aml y mae cardiau rhagolwg cyswllt yn pleidleisio i wefannau trydydd parti, argymhellir gosod y gwerth hwn i o leiaf 14 diwrnod, neu ni fydd cardiau rhagolwg cyswllt yn cael eu diweddaru ar alw cyn yr amser hwnnw.
         min_age: Mae gofyn i ddefnyddwyr gadarnhau eu dyddiad geni wrth gofrestru
@@ -107,7 +111,7 @@ cy:
         thumbnail: Delwedd tua 2:1 yn cael ei dangos ochr yn ochr â manylion eich gweinydd.
         trendable_by_default: Hepgor adolygiad llaw o gynnwys sy'n tueddu. Gall eitemau unigol gael eu tynnu o dueddiadau o hyd ar ôl y ffaith.
         trends: Mae pynciau llosg yn dangos y postiadau, hashnodau, a newyddion sy'n denu sylw ar eich gweinydd.
-        trends_as_landing_page: Dangos cynnwys tueddiadol i ddefnyddwyr ac ymwelwyr sydd wedi allgofnodi yn lle disgrifiad o'r gweinydd hwn. Mae angen galluogi tueddiadau.
+        wrapstodon: Cynigiwch i ddefnyddwyr lleol greu crynodeb chwareus o'u defnydd o Mastodon yn ystod y flwyddyn. Mae'r nodwedd hon ar gael rhwng y 10fed a'r 31ain o Ragfyr bob blwyddyn, ac mae'n cael ei gynig i ddefnyddwyr a wnaeth o leiaf un postiad Cyhoeddus neu Gyhoeddus Tawel ac sydd wedi defnyddio o leiaf un hashnod o fewn y flwyddyn.
       form_challenge:
         current_password: Rydych chi'n mynd i mewn i ardal ddiogel
       imports:
@@ -164,6 +168,7 @@ cy:
         name: Enw cyhoeddus y rôl, os yw'r rôl wedi'i gosod i'w dangos fel bathodyn
         permissions_as_keys: Bydd defnyddwyr sydd â'r rôl hon yn cael mynediad at...
         position: Mae rôl uwch yn penderfynu ar ddatrys gwrthdrawiadau mewn rhai sefyllfaoedd. Dim ond ar rolau â blaenoriaeth is y gellir cyflawni rhai gweithredoedd
+        require_2fa: Bydd gofyn i ddefnyddwyr sydd â'r rôl hon osod dilysiad dau ffactor i ddefnyddio Mastodon
       username_block:
         allow_with_approval: Yn lle atal cofrestru’n llwyr, bydd angen eich cymeradwyaeth rhag cofrestru cyfatebol
         comparison: Byddwch yn ymwybodol o Broblem Scunthorpe wrth rwystro cyfatebion rhannol
@@ -223,6 +228,7 @@ cy:
         email: Cyfeiriad e-bost
         expires_in: Yn dod i ben ar ôl
         fields: Metadata proffil
+        filter_action: Gweithred hidlo
         header: Pennyn
         honeypot: "%{label} (peidiwch â llenwi)"
         inbox_url: URL y mewnflwch relái
@@ -238,12 +244,14 @@ cy:
         setting_aggregate_reblogs: Grwpio hybiau mewn ffrydiau
         setting_always_send_emails: Anfonwch hysbysiadau e-bost bob amser
         setting_auto_play_gif: Chwarae GIFs wedi'u hanimeiddio yn awtomatig
-        setting_boost_modal: Dangos deialog cadarnhau cyn rhoi hwb
+        setting_boost_modal: Rheoli hybu gwelededd
+        setting_color_scheme: Cynllun lliw
+        setting_contrast: Cyferbyniad
         setting_default_language: Iaith postio
         setting_default_privacy: Gwelededd postio
         setting_default_quote_policy: Pwy sy'n gallu dyfynnu
         setting_default_sensitive: Marcio cyfryngau fel eu bod yn sensitif bob tro
-        setting_delete_modal: Dangos deialog cadarnhau cyn dileu postiad
+        setting_delete_modal: Rhybuddio fi cyn dileu postiad
         setting_disable_hover_cards: Analluogi rhagolwg proffil ar lusgo
         setting_disable_swiping: Analluogi cynigion llusgo
         setting_display_media: Dangos cyfryngau
@@ -253,7 +261,8 @@ cy:
         setting_emoji_style: Arddull Emojis
         setting_expand_spoilers: Dangos postiadau wedi'u marcio â rhybudd cynnwys bob tro
         setting_hide_network: Cuddio eich graff cymdeithasol
-        setting_missing_alt_text_modal: Dangos deialog cadarnhau cyn postio cyfrwng heb destun amgen
+        setting_missing_alt_text_modal: Rhybuddio fi cyn postio cyfryngau heb destun amgen
+        setting_quick_boosting: Galluogi hybu cyflym
         setting_reduce_motion: Lleihau mudiant mewn animeiddiadau
         setting_system_font_ui: Defnyddio ffont rhagosodedig y system
         setting_system_scrollbars_ui: Defnyddiwch far sgrolio rhagosodedig y system
@@ -287,6 +296,7 @@ cy:
         content_cache_retention_period: Cyfnod cadw cynnwys o bell
         custom_css: CSS cyfaddas
         favicon: Favicon
+        landing_page: Tudalen cychwyn ar gyfer ymwelwyr newydd
         local_live_feed_access: Mynediad i ffrydiau byw sy'n cynnwys postiadau lleol
         local_topic_feed_access: Mynediad i ffrydiau hashnod a dolenni sy'n cynnwys postiadau lleol
         mascot: Mascot cyfaddas (hen)
@@ -311,7 +321,7 @@ cy:
         thumbnail: Bawdlun y gweinydd
         trendable_by_default: Caniatáu pynciau llosg heb adolygiad
         trends: Galluogi pynciau llosg
-        trends_as_landing_page: Defnyddio tueddiadau fel y dudalen gartref
+        wrapstodon: Galluogi Wrapstodon
       interactions:
         must_be_follower: Blocio hysbysiadau o bobl nad ydynt yn eich dilyn
         must_be_following: Blocio hysbysiadau o bobl nad ydych yn eu dilyn
@@ -372,9 +382,9 @@ cy:
         jurisdiction: Awdurdodaeth gyfreithiol
         min_age: Isafswm oedran
       user:
-        date_of_birth_1i: Dydd
+        date_of_birth_1i: Blwyddyn
         date_of_birth_2i: Mis
-        date_of_birth_3i: Blwyddyn
+        date_of_birth_3i: Diwrnod
         role: Rôl
         time_zone: Cylchfa amser
       user_role:
@@ -383,6 +393,7 @@ cy:
         name: Enw
         permissions_as_keys: Caniatâd
         position: Blaenoriaeth
+        require_2fa: Gofyn am ddilysiad dau ffactor
       username_block:
         allow_with_approval: Caniatáu cofrestru gyda chymeradwyaeth
         comparison: Dull cymharu

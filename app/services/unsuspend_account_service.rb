@@ -63,6 +63,6 @@ class UnsuspendAccountService < BaseService
   end
 
   def signed_activity_json
-    @signed_activity_json ||= Oj.dump(serialize_payload(@account, ActivityPub::UpdateSerializer, signer: @account))
+    @signed_activity_json ||= Oj.dump(serialize_payload(@account, ActivityPub::UpdateActorSerializer, signer: @account))
   end
 end

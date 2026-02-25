@@ -1,6 +1,8 @@
-import { useState, useEffect, useCallback, forwardRef } from 'react';
+import { useCallback, forwardRef } from 'react';
 
 import classNames from 'classnames';
+
+import { usePrevious } from '../hooks/usePrevious';
 
 import { AnimatedNumber } from './animated_number';
 import type { IconProp } from './icon';
@@ -55,23 +57,6 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
     },
     buttonRef,
   ) => {
-    const [activate, setActivate] = useState(false);
-    const [deactivate, setDeactivate] = useState(false);
-
-    useEffect(() => {
-      if (!animate) {
-        return;
-      }
-
-      if (activate && !active) {
-        setActivate(false);
-        setDeactivate(true);
-      } else if (!activate && active) {
-        setActivate(true);
-        setDeactivate(false);
-      }
-    }, [setActivate, setDeactivate, animate, active, activate]);
-
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = useCallback(
       (e) => {
         e.preventDefault();
@@ -108,12 +93,15 @@ export const IconButton = forwardRef<HTMLButtonElement, Props>(
       ...(active ? activeStyle : {}),
     };
 
+    const previousActive = usePrevious(active) ?? active;
+    const shouldAnimate = animate && active !== previousActive;
+
     const classes = classNames(className, 'icon-button', {
       active,
       disabled,
       inverted,
-      activate,
-      deactivate,
+      activate: shouldAnimate && active,
+      deactivate: shouldAnimate && !active,
       overlayed: overlay,
       'icon-button--with-counter': typeof counter !== 'undefined',
     });

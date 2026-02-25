@@ -8,7 +8,7 @@ import type {
   ShortCodesToEmojiDataKey,
 } from 'virtual:mastodon-emoji-compressed';
 
-import { unicodeToFilename } from './unicode_to_filename';
+import { unicodeToFilename } from './unicode_utils';
 
 type UnicodeMapping = Record<
   FilenameData[number][0],

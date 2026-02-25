@@ -7,8 +7,9 @@ class REST::AccountSerializer < ActiveModel::Serializer
   # Please update `app/javascript/mastodon/api_types/accounts.ts` when making changes to the attributes
 
   attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :indexable, :group, :created_at,
-             :note, :url, :uri, :avatar, :avatar_static, :header, :header_static,
-             :followers_count, :following_count, :statuses_count, :last_status_at, :hide_collections
+             :note, :url, :uri, :avatar, :avatar_static, :avatar_description, :header, :header_static, :header_description,
+             :followers_count, :following_count, :statuses_count, :last_status_at, :hide_collections,
+             :show_media, :show_media_replies, :show_featured
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
 
@@ -19,6 +20,8 @@ class REST::AccountSerializer < ActiveModel::Serializer
   attribute :noindex, if: :local?
 
   attribute :memorial, if: :memorial?
+
+  attribute :feature_approval, if: -> { Mastodon::Feature.collections_enabled? }
 
   class AccountDecorator < SimpleDelegator
     def self.model_name
@@ -80,12 +83,20 @@ class REST::AccountSerializer < ActiveModel::Serializer
     full_asset_url(object.unavailable? ? object.avatar.default_url : object.avatar_static_url)
   end
 
+  def avatar_description
+    object.unavailable? ? '' : object.avatar_description
+  end
+
   def header
     full_asset_url(object.unavailable? ? object.header.default_url : object.header_original_url)
   end
 
   def header_static
     full_asset_url(object.unavailable? ? object.header.default_url : object.header_static_url)
+  end
+
+  def header_description
+    object.unavailable? ? '' : object.header_description
   end
 
   def created_at
@@ -156,5 +167,13 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def moved_and_not_nested?
     object.moved?
+  end
+
+  def feature_approval
+    {
+      automatic: object.feature_policy_as_keys(:automatic),
+      manual: object.feature_policy_as_keys(:manual),
+      current_user: object.feature_policy_for_account(current_user&.account),
+    }
   end
 end

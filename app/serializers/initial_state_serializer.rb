@@ -18,6 +18,7 @@ class InitialStateSerializer < ActiveModel::Serializer
     if object.current_account
       store[:me]                = object.current_account.id.to_s
       store[:boost_modal]       = object_account_user.setting_boost_modal
+      store[:quick_boosting]    = object_account_user.setting_quick_boosting
       store[:delete_modal]      = object_account_user.setting_delete_modal
       store[:missing_alt_text_modal] = object_account_user.settings['web.missing_alt_text_modal']
       store[:auto_play_gif]     = object_account_user.setting_auto_play_gif
@@ -30,7 +31,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:use_blurhash]      = object_account_user.setting_use_blurhash
       store[:use_pending_items] = object_account_user.setting_use_pending_items
       store[:show_trends]       = Setting.trends && object_account_user.setting_trends
-      store[:emoji_style]       = object_account_user.settings['web.emoji_style'] if Mastodon::Feature.modern_emojis_enabled?
+      store[:emoji_style]       = object_account_user.settings['web.emoji_style']
+      store[:wrapstodon]        = wrapstodon
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media
@@ -93,6 +95,16 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   private
 
+  def wrapstodon
+    current_campaign = AnnualReport.current_campaign
+    return if current_campaign.blank?
+
+    {
+      year: current_campaign,
+      state: AnnualReport.new(object.current_account, current_campaign).state,
+    }
+  end
+
   def default_meta_store
     {
       access_token: object.token,
@@ -112,7 +124,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       status_page_url: Setting.status_page_url,
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
       title: instance_presenter.title,
-      trends_as_landing_page: Setting.trends_as_landing_page,
+      landing_page: Setting.landing_page,
       trends_enabled: Setting.trends,
       version: instance_presenter.version,
       terms_of_service_enabled: TermsOfService.current.present?,
@@ -128,7 +140,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   end
 
   def serialized_account(account)
-    ActiveModelSerializers::SerializableResource.new(account, serializer: REST::AccountSerializer)
+    ActiveModelSerializers::SerializableResource.new(account, serializer: REST::AccountSerializer, scope_name: :current_user, scope: object.current_account&.user)
   end
 
   def instance_presenter

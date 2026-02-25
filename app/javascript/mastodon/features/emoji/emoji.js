@@ -1,6 +1,6 @@
 import Trie from 'substring-trie';
 
-import { isModernEmojiEnabled } from '@/mastodon/utils/environment';
+import { getIsSystemTheme, isDarkMode } from '@/mastodon/utils/theme';
 import { assetHost } from 'mastodon/utils/config';
 
 import { autoPlayGif } from '../../initial_state';
@@ -98,9 +98,9 @@ const emojifyTextNode = (node, customEmojis) => {
       const { filename, shortCode } = unicodeMapping[unicode_emoji];
       const title = shortCode ? `:${shortCode}:` : '';
 
-      const isSystemTheme = !!document.body?.classList.contains('theme-system');
+      const isSystemTheme = getIsSystemTheme();
 
-      const theme = (isSystemTheme || document.body?.classList.contains('theme-mastodon-light')) ? 'light' : 'dark';
+      const theme = (isSystemTheme || !isDarkMode()) ? 'light' : 'dark';
 
       const imageFilename = emojiFilename(filename, theme);
 
@@ -153,13 +153,9 @@ const emojifyNode = (node, customEmojis) => {
  * Legacy emoji processing function.
  * @param {string} str
  * @param {object} customEmojis
- * @param {boolean} force If true, always emojify even if modern emoji is enabled
  * @returns {string}
  */
-const emojify = (str, customEmojis = {}, force = false) => {
-  if (isModernEmojiEnabled() && !force) {
-    return str;
-  }
+const emojify = (str, customEmojis = {}) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = str;
 

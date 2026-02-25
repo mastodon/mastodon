@@ -2,6 +2,7 @@
 
 class PostStatusService < BaseService
   include Redisable
+  include Lockable
   include LanguagesHelper
 
   class UnexpectedMentionsError < StandardError
@@ -39,18 +40,16 @@ class PostStatusService < BaseService
     @in_reply_to = @options[:thread]
     @quoted_status = @options[:quoted_status]
 
-    return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
+    with_idempotency do
+      validate_media!
+      preprocess_attributes!
 
-    validate_media!
-    preprocess_attributes!
-
-    if scheduled?
-      schedule_status!
-    else
-      process_status!
+      if scheduled?
+        schedule_status!
+      else
+        process_status!
+      end
     end
-
-    redis.setex(idempotency_key, 3_600, @status.id) if idempotency_given?
 
     unless scheduled?
       postprocess_status!
@@ -80,6 +79,7 @@ class PostStatusService < BaseService
     @status = @account.statuses.new(status_attributes)
     process_mentions_service.call(@status, save_records: false)
     safeguard_mentions!(@status)
+    safeguard_private_mention_quote!(@status)
     attach_quote!(@status)
 
     antispam = Antispam.new(@status)
@@ -90,6 +90,16 @@ class PostStatusService < BaseService
     ApplicationRecord.transaction do
       @status.save!
     end
+  end
+
+  def safeguard_private_mention_quote!(status)
+    return if @quoted_status.nil? || @visibility.to_sym != :direct
+
+    # The mentions array test here is awkward because the relationship is not persisted at this time
+    return if @quoted_status.account_id == @account.id || status.mentions.to_a.any? { |mention| mention.account_id == @quoted_status.account_id && !mention.silent }
+
+    status.errors.add(:base, I18n.t('statuses.errors.quoted_user_not_mentioned'))
+    raise ActiveRecord::RecordInvalid, status
   end
 
   def attach_quote!(status)
@@ -114,6 +124,7 @@ class PostStatusService < BaseService
 
   def schedule_status!
     status_for_validation = @account.statuses.build(status_attributes)
+    safeguard_private_mention_quote!(status_for_validation)
 
     antispam = Antispam.new(status_for_validation)
     antispam.local_preflight_check!
@@ -194,6 +205,18 @@ class PostStatusService < BaseService
 
   def idempotency_duplicate?
     @idempotency_duplicate = redis.get(idempotency_key)
+  end
+
+  def with_idempotency
+    return yield unless idempotency_given?
+
+    with_redis_lock("idempotency:lock:status:#{@account.id}:#{@options[:idempotency]}") do
+      return idempotency_duplicate if idempotency_duplicate?
+
+      yield
+
+      redis.setex(idempotency_key, 3_600, @status.id)
+    end
   end
 
   def scheduled_in_the_past?

@@ -31,7 +31,7 @@ class TextFormatter
   end
 
   def to_s
-    return ''.html_safe if text.blank?
+    return add_quote_fallback('').html_safe if text.blank? # rubocop:disable Rails/OutputSafety
 
     html = rewrite do |entity|
       if entity[:url]

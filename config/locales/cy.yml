@@ -7,6 +7,8 @@ cy:
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     title: Ynghylch
   accounts:
+    errors:
+      cannot_be_added_to_collections: Does dim modd ychwanegu'r cyfrif hwn at gasgliadau.
     followers:
       few: Dilynwyr
       many: Dilynwyr
@@ -14,7 +16,13 @@ cy:
       other: Dilynwyr
       two: Dilynwyr
       zero: Dilynwyr
-    following: Yn dilyn
+    following:
+      few: Yn dilyn
+      many: Yn dilyn
+      one: Yn dilyn
+      other: Yn dilyn
+      two: Yn dilyn
+      zero: Yn dilyn
     instance_actor_flash: Mae'r cyfrif hwn yn actor rhithwir sy'n cael ei ddefnyddio i gynrychioli'r gweinydd ei hun ac nid unrhyw ddefnyddiwr unigol. Mae'n cael ei ddefnyddio at ddibenion ffederasiwn ac ni ddylid ei atal.
     last_active: gweithgar ddiwethaf
     link_verified_on: Gwiriwyd perchnogaeth y ddolen yma ar %{date}
@@ -22,12 +30,12 @@ cy:
     pin_errors:
       following: Rhaid i chi fod yn dilyn y person rydych am ei gymeradwyo, yn barod
     posts:
-      few: Postiadau
-      many: Postiadau
+      few: Postiad
+      many: Postiad
       one: Postiad
-      other: Postiadau
-      two: Postiadau
-      zero: Postiadau
+      other: Postiad
+      two: Bostiad
+      zero: Postiad
     posts_tab_heading: Postiadau
     self_follow_error: Chewch chi ddim dilyn eich cyfrif eich hun
   admin:
@@ -60,6 +68,7 @@ cy:
         label: Newid rôl
         no_role: Dim rôl
         title: Newid rôl %{username}
+      collections: Casgliadau
       confirm: Cadarnhau
       confirmed: Cadarnhawyd
       confirming: Yn cadarnhau
@@ -348,6 +357,19 @@ cy:
       unpublish: Dadgyhoeddi
       unpublished_msg: Cyhoeddiad wedi'i ddad gyhoeddi'n llwyddiannus!
       updated_msg: Cyhoeddiad wedi'i ddiweddaru'n llwyddiannus!
+    collections:
+      accounts: Cyfrifon
+      collection_title: Casgliad gan %{name}
+      contents: Cynnwys
+      number_of_accounts:
+        few: "%{count} cyfrif"
+        many: "%{count} cyfrif"
+        one: 1 cyfrif
+        other: "%{count} cyfrif"
+        two: "%{count} cyfrif"
+        zero: "%{count} cyfrif"
+      open: Agor
+      view_publicly: Gweld yn gyhoeddus
     critical_update_pending: Diweddariad hanfodol ar ei ffordd
     custom_emojis:
       assign_category: Neilltuo categori
@@ -752,12 +774,12 @@ cy:
       report: 'Adroddiad #%{id}'
       reported_account: Cyfrif wedi ei adrodd
       reported_by: Adroddwyd gan
+      reported_content: Cynnwys wedi'u hadrodd
       reported_with_application: Adroddwyd gydag ap
       resolved: Wedi ei ddatrys
       resolved_msg: Llwyddwyd i ddatrys yr adroddiad!
       skip_to_actions: Mynd i gamau gweithredu
       status: Statws
-      statuses: Cynnwys wedi'i adrodd
       statuses_description_html: Bydd cynnwys tramgwyddus yn cael ei ddyfynnu wrth gyfathrebu â'r cyfrif a adroddwyd
       summary:
         action_preambles:
@@ -852,6 +874,9 @@ cy:
         view_dashboard_description: Yn galluogi defnyddwyr i gael mynediad i'r bwrdd gwaith a metrigau amrywiol
         view_devops: DevOps
         view_devops_description: Yn caniatáu i ddefnyddwyr gael mynediad i fyrddau gwaith Sidekiq a pgHero
+        view_feeds: Gweld ffrydiau byw a phynciol
+        view_feeds_description: Yn caniatáu i ddefnyddwyr gael mynediad at y ffrydiau byw a phynciol beth bynnag yw gosodiadau'r gweinydd
+      requires_2fa: Angen dilysu dau ffactor
       title: Rolau
     rules:
       add_new: Ychwanegu rheol
@@ -893,13 +918,14 @@ cy:
         title: Eithrio defnyddwyr o fynegai peiriannau chwilio, fel rhagosodiad
       discovery:
         follow_recommendations: Dilyn yr argymhellion
-        preamble: Mae amlygu cynnwys diddorol yn allweddol ar gyfer derbyn defnyddwyr newydd nad ydynt efallai'n gyfarwydd ag unrhyw un Mastodon. Rheolwch sut mae nodweddion darganfod amrywiol yn gweithio ar eich gweinydd.
+        preamble: Mae amlygu cynnwys diddorol yn allweddol wrth ddenu defnyddwyr newydd sydd ddim o bosib yn adnabod neb ar Mastodon. Rheolwch sut mae gwahanol nodweddion darganfod yn gweithio ar eich gweinydd.
         privacy: Preifatrwydd
         profile_directory: Cyfeiriadur proffiliau
         public_timelines: Ffrydiau cyhoeddus
         publish_statistics: Cyhoeddi ystadegau
         title: Darganfod
         trends: Tueddiadau
+        wrapstodon: Wrapstodon
       domain_blocks:
         all: I bawb
         disabled: I neb
@@ -907,7 +933,13 @@ cy:
       feed_access:
         modes:
           authenticated: Defnyddwyr dilys yn unig
+          disabled: Gofyn am rôl defnyddiwr penodol
           public: Pawb
+      landing_page:
+        values:
+          about: Ynghylch
+          local_feed: Ffrwd leol
+          trends: Trendiau
       registrations:
         moderation_recommandation: Gwnewch yn siŵr bod gennych chi dîm cymedroli digonol ac adweithiol cyn i chi agor cofrestriadau i bawb!
         preamble: Rheoli pwy all greu cyfrif ar eich gweinydd.
@@ -961,6 +993,7 @@ cy:
       no_status_selected: Heb newid postiad gan na ddewiswyd dim un
       open: Agor postiad
       original_status: Postiad gwreiddiol
+      quotes: Dyfyniadau
       reblogs: Ailflogiadau
       replied_to_html: Wedi ymateb i %{acct_link}
       status_changed: Postiad wedi'i newid
@@ -968,6 +1001,7 @@ cy:
       title: Postiadau cyfrif - @%{name}
       trending: Yn trendio
       view_publicly: Gweld yn gyhoeddus
+      view_quoted_post: Gweld y postiad wedi'i ddyfynnu
       visibility: Gwelededd
       with_media: Gyda chyfryngau
     strikes:
@@ -1262,7 +1296,10 @@ cy:
     hint_html: Os ydych chi am symud o gyfrif arall i'r un hwn, gallwch greu enw arall yma, sy'n ofynnol cyn y gallwch symud ymlaen i symud dilynwyr o'r hen gyfrif i'r un hwn. Mae'r weithred hon ynddo'i hun yn <strong>ddiniwed ac yn wrthdroadwy</strong>. <strong>Mae'r mudo cyfrif yn cael ei wneud o'r hen gyfrif</strong>.
     remove: Dadgysylltu'r enw arall
   appearance:
+    advanced_settings: Gosodiadau uwch
     animations_and_accessibility: Animeiddiadau a hygyrchedd
+    boosting_preferences: Dewisiadau hybu
+    boosting_preferences_info_html: "<strong>Awgrym:</strong> Beth bynnag yw'r gosodiadau, bydd <kbd>Shift</kbd> + <kbd>Clici</kbd> ar yr eicon Hybu %{icon} yn hybu'n syth."
     discovery: Darganfod
     localization:
       body: Mae Mastodon yn cael ei gyfieithu gan wirfoddolwyr.
@@ -1379,6 +1416,13 @@ cy:
     hint_html: "<strong>Awgrym:</strong> Fyddwn ni ddim yn gofyn i chi am eich cyfrinair eto am yr awr nesaf."
     invalid_password: Cyfrinair annilys
     prompt: Cadarnhewch gyfrinair i barhau
+  color_scheme:
+    auto: Awto
+    dark: Tywyll
+    light: Golau
+  contrast:
+    auto: Awto
+    high: Uchel
   crypto:
     errors:
       invalid_key: ddim yn allwedd Ed25519 na Curve25519 dilys
@@ -1815,7 +1859,7 @@ cy:
       disabled_account: Ni fydd modd defnyddio'ch cyfrif cyfredol yn llawn wedyn. Fodd bynnag, bydd gennych fynediad i allforio data yn ogystal ag ail agor.
       followers: Bydd y weithred hon yn symud yr holl ddilynwyr o'r cyfrif cyfredol i'r cyfrif newydd
       only_redirect_html: Fel arall, <a href="%{path}">dim ond ailgyfeiriad y gallwch chi ei osod ar eich proffil</a>.
-      other_data: Ni fydd unrhyw data arall yn cael ei symud yn awtomatig
+      other_data: Bydd dim ddata arall yn cael ei symud yn awtomatig (gan gynnwys eich postiadau a'r rhestr o gyfrifon rydych chi'n eu dilyn)
       redirect: Bydd proffil eich cyfrif presennol yn cael ei diweddaru gyda hysbysiad ailgyfeirio ac yn cael ei eithrio o chwiliadau
   moderation:
     title: Cymedroil
@@ -1849,16 +1893,22 @@ cy:
       body: 'Caswoch eich crybwyll gan %{name} yn:'
       subject: Cawsoch eich crybwyll gan %{name}
       title: Crywbylliad newydd
+    moderation_warning:
+      subject: Rydych wedi derbyn rhybudd gan gymedrolwr
     poll:
       subject: Mae arolwg gan %{name} wedi dod i ben
     quote:
       body: 'Mae %{name} wedi dyfynnu eich postiad :'
       subject: Mae %{name} wedi dyfynnu eich postiad
       title: Dyfyniad newydd
+    quoted_update:
+      subject: Golygodd %{name} bostiad rydych chi wedi'i ddyfynnu
     reblog:
       body: 'Cafodd eich postiad ei hybu gan %{name}:'
       subject: Rhoddodd %{name} hwb i'ch postiad
       title: Hwb newydd
+    severed_relationships:
+      subject: Rydych chi wedi colli cysylltiadau oherwydd penderfyniad cymedroli
     status:
       subject: "%{name} newydd ei bostio"
     update:
@@ -2088,16 +2138,22 @@ cy:
     errors:
       in_reply_not_found: Nid yw'n ymddangos bod y postiad rydych chi'n ceisio ei ateb yn bodoli.
       quoted_status_not_found: Nid yw'n ymddangos bod y postiad rydych chi'n ceisio'i ddyfynnu yn bodoli.
+      quoted_user_not_mentioned: Does dim modd dyfynnu defnyddiwr heb ei grybwyll mewn postiad Crybwyll Preifat.
     over_character_limit: wedi mynd y tu hwnt i'r terfyn nodau o %{max}
     pin_errors:
       direct: Nid oes modd pinio postiadau sy'n weladwy i ddefnyddwyr a grybwyllwyd yn unig
       limit: Rydych chi eisoes wedi pinio uchafswm nifer y postiadau
       ownership: Nid oes modd pinio postiad rhywun arall
       reblog: Nid oes modd pinio hwb
+    quote_error:
+      not_available: Dyw'r postiad ddim ar gael
+      pending_approval: Postiad ar ei ffordd
+      revoked: Postiad wedi'i ddileu gan yr awdur
     quote_policies:
       followers: Dilynwyr yn unig
       nobody: Dim ond fi
       public: Pawb
+    quote_post_author: Wedi dyfynnu postiad gan %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Crybwylliad preifat
@@ -2110,11 +2166,11 @@ cy:
     enabled: Dileu hen bostiadau'n awtomatig
     enabled_hint: Yn dileu eich postiadau yn awtomatig ar ôl iddyn nhw gyrraedd trothwy oed penodedig, oni bai eu bod yn cyfateb i un o'r eithriadau isod
     exceptions: Eithriadau
-    explanation: Oherwydd bod dileu postiadau yn weithrediad drud, mae hyn yn cael ei wneud yn araf dros amser pan nad yw'r gweinydd yn brysur fel arall. Am y rheswm hwn, efallai y bydd eich postiadau yn cael eu dileu ychydig ar ôl iddyn nhw gyrraedd y trothwy oed.
+    explanation: Caiff dileu awtomataidd ei berfformio â blaenoriaeth isel. Gall fod oedi rhwng cyrraedd y trothwy oed a chael ei ddileu.
     ignore_favs: Anwybyddu ffefrynnau
     ignore_reblogs: Anwybyddu hybiau
     interaction_exceptions: Eithriadau yn seiliedig ar ryngweithio
-    interaction_exceptions_explanation: Sylwch nad oes unrhyw sicrwydd y bydd postiadau'n cael eu dileu os ydyn nhw'n mynd o dan y trothwy ffefrynnau neu hybu ar ôl mynd drostyn nhw unwaith.
+    interaction_exceptions_explanation: Maen bosib cadw postiadau sy'n mynd dros dro dros y trothwy ffefryn neu hwb hyd yn oed os cawn nhw eu gostwng yn ddiweddarach.
     keep_direct: Cadw negeseuon uniongyrchol
     keep_direct_hint: Nid yw'n dileu unrhyw un o'ch negeseuon uniongyrchol
     keep_media: Cadw postiadau gydag atodiadau cyfryngau
@@ -2156,10 +2212,7 @@ cy:
     review_link: Darllen y telerau gwasanaeth
     title: Mae telerau gwasanaeth %{domain} yn newid
   themes:
-    contrast: Mastodon (Cyferbyniad uchel)
-    default: Mastodon (Tywyll)
-    mastodon-light: Mastodon (Golau)
-    system: Awtomatig (defnyddio thema system)
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -2184,6 +2237,8 @@ cy:
     recovery_codes: Creu copi wrth gefn o godau adfer
     recovery_codes_regenerated: Llwyddwyd i ail greu codau adfer
     recovery_instructions_html: Os ydych chi'n colli mynediad i'ch ffôn, mae modd i chi ddefnyddio un o'r codau adfer isod i gael mynediad at eich cyfrif. <strong>Cadwch y codau adfer yn breifat</strong>. Er enghraifft, gallwch chi eu argraffu a'u cadw gyda dogfennau eraill pwysig.
+    resume_app_authorization: Ailddechrau awdurdodi rhaglen
+    role_requirement: Mae %{domain} yn gofyn i chi osod Dilysu Dau Ffactor cyn y gallwch ddefnyddio Mastodon.
     webauthn: Allweddi diogelwch
   user_mailer:
     announcement_published:
@@ -2331,7 +2386,11 @@ cy:
       error: Bu anhawster wrth ddileu eich allwedd ddiogelwch. Ceisiwch eto, os gwelwch yn dda.
       success: Cafodd eich allwedd ddiogelwch ei dileu'n llwyddiannus.
     invalid_credential: Allwedd ddiogelwch annilys
+    nickname: Llysenw
     nickname_hint: Rhowch lysenw eich allwedd ddiogelwch newydd
     not_enabled: Nid ydych wedi galluogi WebAuthn eto
     not_supported: Nid yw'r porwr hwn yn cynnal allweddi diogelwch
     registered_on: Cofrestrwyd ar %{date}
+  wrapstodon:
+    description: Gweler sut defnyddiodd %{name} Mastodon eleni!
+    title: Wrapstodon %{year} ar gyfer %{name}

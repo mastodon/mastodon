@@ -3,11 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Canonical Email Blocks' do
-  let(:role)    { UserRole.find_by(name: 'Admin') }
-  let(:user)    { Fabricate(:user, role: role) }
-  let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:scopes)  { 'admin:read:canonical_email_blocks admin:write:canonical_email_blocks' }
-  let(:headers) { { 'Authorization' => "Bearer #{token.token}" } }
+  include_context 'with API authentication', user_fabricator: :admin_user, oauth_scopes: 'admin:read:canonical_email_blocks admin:write:canonical_email_blocks'
 
   describe 'GET /api/v1/admin/canonical_email_blocks' do
     subject do

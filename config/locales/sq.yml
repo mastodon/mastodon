@@ -7,10 +7,14 @@ sq:
     hosted_on: Server Mastodon i strehuar në %{domain}
     title: Mbi
   accounts:
+    errors:
+      cannot_be_added_to_collections: Kjo llogari s’mund të shtohet në koleksione.
     followers:
       one: Ndjekës
       other: Ndjekës
-    following: Po ndjek
+    following:
+      one: E ndjekur
+      other: Të ndjekura
     instance_actor_flash: Kjo llogari është një aktor virtual, i përdorur për të përfaqësuar vetë serverin dhe jo ndonjë përdorues. Përdoret për qëllime federimi dhe s’duhet pezulluar.
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
@@ -52,6 +56,7 @@ sq:
         label: Ndryshoni rol
         no_role: Pa rol
         title: Ndryshoni rolin për %{username}
+      collections: Koleksione
       confirm: Ripohojeni
       confirmed: U ripohua
       confirming: Po ripohohet
@@ -336,6 +341,15 @@ sq:
       unpublish: Hiqi publikimin
       unpublished_msg: Lajmërimi u botua me sukses!
       updated_msg: Lajmërimi u përditësua me sukses!
+    collections:
+      accounts: Llogari
+      collection_title: Koleksion nga %{name}
+      contents: Lëndë
+      number_of_accounts:
+        one: 1 llogari
+        other: "%{count} llogari"
+      open: Hape
+      view_publicly: Shiheni publikisht
     critical_update_pending: Përditësim kritik pezull
     custom_emojis:
       assign_category: Caktojini kategori
@@ -671,6 +685,7 @@ sq:
       cancel: Anuloje
       category: Kategori
       category_description_html: Arsyeja pse kjo llogari dhe/ose lëndë raportohet do të citohet te komunikimi me llogarinë e raportuar
+      collections: Koleksione (%{count})
       comment:
         none: Asnjë
       comment_description_html: 'Për të dhënë më tepër informacion, %{name} shkroi:'
@@ -700,12 +715,13 @@ sq:
       report: 'Raportim #%{id}'
       reported_account: Llogari e raportuar
       reported_by: Raportuar nga
+      reported_content: Lëndë e raportuar
       reported_with_application: Raportuar me aplikacion
       resolved: I zgjidhur
       resolved_msg: Raportimi u zgjidh me sukses!
       skip_to_actions: Kaloni te veprimet
       status: Gjendje
-      statuses: Lëndë e raportuar
+      statuses: Postime (%{count})
       statuses_description_html: Lënda problematike do të citohet në komunikimin me llogarinë e raportuar
       summary:
         action_preambles:
@@ -790,6 +806,7 @@ sq:
         view_dashboard: Shihni Pultin
         view_dashboard_description: U lejon përdoruesve të hyjnë te pulti dhe shohin shifra të ndryshme matjesh
         view_devops_description: U lejon përdoruesve të hyjnë në pultet Sidekiq dhe pgHero
+      requires_2fa: Lyp mirëfilltësim dyfaktorësh
       title: Role
     rules:
       add_new: Shtoni rregull
@@ -831,13 +848,14 @@ sq:
         title: Lëri, si parazgjedhje, përdoruesit jashtë indeksimi nga motorë kërkimesh
       discovery:
         follow_recommendations: Rekomandime ndjekjeje
-        preamble: Shpërfaqja e lëndës interesante është me rëndësi kyçe për mirëseardhjen e përdoruesve të rinj që mund të mos njohin njeri në Mastodon. Kontrolloni se si funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi.
+        preamble: Shpërfaqja e lëndës interesante është me rëndësi për mirëseardhjen e përdoruesve të rinj, të cilët mund të mos njohin njeri në Mastodon. Kontrolloni se funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi lënde.
         privacy: Privatësi
         profile_directory: Drejtori profilesh
         public_timelines: Rrjedha kohore publike
         publish_statistics: Publiko statistika
         title: Zbulim
         trends: Në modë
+        wrapstodon: Përmbledhjedon
       domain_blocks:
         all: Për këdo
         disabled: Për askënd
@@ -845,7 +863,13 @@ sq:
       feed_access:
         modes:
           authenticated: Vetëm përdorues të mirëfilltësuar
+          disabled: Lyp doemos rol specifik përdoruesi
           public: Kushdo
+      landing_page:
+        values:
+          about: Mbi
+          local_feed: Prurje vendore
+          trends: Në modë
       registrations:
         moderation_recommandation: Ju lutemi, sigurohuni si keni një ekip adekuat dhe reagues moderimi, përpara se të hapni regjistrimet për këdo!
         preamble: Kontrolloni cilët mund të krijojnë llogari në shërbyesin tuaj.
@@ -875,7 +899,7 @@ sq:
       types:
         major: Hedhje e rëndësishme në qarkullim
         minor: Hedhje e vockël në qarkullim
-        patch: Hedhje në qarkullim arnimesh — ndreqje të meash dhe ndryshime të lehta për t’u aplikuar
+        patch: Hedhje në qarkullim arnimesh — ndreqje të metash dhe ndryshime të lehta për t’u aplikuar
       version: Version
     statuses:
       account: Autor
@@ -899,6 +923,7 @@ sq:
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       open: Hape postimin
       original_status: Postim origjinal
+      quotes: Ctime
       reblogs: Riblogime
       replied_to_html: Iu përgjigj %{acct_link}
       status_changed: Postimi ndryshoi
@@ -906,6 +931,7 @@ sq:
       title: Postime llogarie - @%{name}
       trending: Në modë
       view_publicly: Shiheni publikisht
+      view_quoted_post: Shihni postimin e cituar
       visibility: Dukshmëri
       with_media: Me media
     strikes:
@@ -1177,7 +1203,10 @@ sq:
     hint_html: Nëse doni të kaloni nga një llogari tjetër në këtë këtu, këtu mund të krijoni një alias, i cili është i domosdoshëm përpara se të ecni më tej me kalimin e ndjekësve prej llogarisë së vjetër te kjo këtu. Ky veprim, në vetvete, është <strong>i padëmshëm dhe i prapakthyeshëm</strong>. <strong>Migrimi i llogarisë fillohet prej llogarisë së vjetër</strong>.
     remove: Hiqe aliasin
   appearance:
+    advanced_settings: Rregullime të mëtejshme
     animations_and_accessibility: Animacione dhe përdorim nga persona me aftësi të kufizuara
+    boosting_preferences: Parapëlqime përforcimesh
+    boosting_preferences_info_html: "<strong>Ndihmëz:</strong> Pavarësisht rregullimeve, <kbd>Shift</kbd> + <kbd>Klikim</kbd> mbi ikonën e Përforcimeve %{icon} do të bëjë menjëherë përforcim."
     discovery: Zbulim
     localization:
       body: Mastodon-i përkthehet nga vullnetarë.
@@ -1294,6 +1323,13 @@ sq:
     hint_html: "<strong>Ndihmëz:</strong> S’do t’ju pyesim për fjalëkalimin tuaj sërish, për një orë."
     invalid_password: Fjalëkalim i pavlefshëm
     prompt: Që të vazhdohet, ripohoni fjalëkalimin
+  color_scheme:
+    auto: Automatike
+    dark: E errët
+    light: E çelët
+  contrast:
+    auto: Automatik
+    high: I lartë
   crypto:
     errors:
       invalid_key: s’është kyç Ed25519 ose Curve25519 i vlefshëm
@@ -1646,7 +1682,7 @@ sq:
       disabled_account: Llogaria juaj e tanishme s’do të jetë plotësisht e përdorshme, pas kësaj. Megjithatë, do të mund të bëni eksportim të dhënash, si dhe riaktivizim.
       followers: Ky veprim do të kalojë krejt ndjekësit prej llogarisë së tanishme te llogaria e re
       only_redirect_html: Ndryshe, mund të <a href="%{path}">ujdisni një ridrejtim vetëm te profili juaj</a>.
-      other_data: S’do të lëvizen të dhëna të tjera automatikisht
+      other_data: S’do të lëvizen automatikisht të dhëna të tjera (përfshi postimet tuaja dhe listën e llogarive që ndiqni)
       redirect: Profili i llogarisë tuaj të tanishme do të përditësohet me një shënim ridrejtimi dhe do të përjashtohet prej kërkimesh
   moderation:
     title: Moderim
@@ -1680,16 +1716,22 @@ sq:
       body: 'U përmendët nga %{name} në:'
       subject: U përmendët nga %{name}
       title: Përmendje e re
+    moderation_warning:
+      subject: Ju është dhënë një sinjalizim moderimi
     poll:
       subject: Përfundoi një pyetësor nga %{name}
     quote:
       body: 'Postimi juaj u citua nga %{name}:'
       subject: "%{name} citoi postimin tuaj"
       title: Citim i ri
+    quoted_update:
+      subject: "%{name} përpunoi një postim që keni cituar"
     reblog:
       body: 'Gjendja juaj u përforcua nga %{name}:'
       subject: "%{name} përforcoi gjendjen tuaj"
       title: Përforcim i ri
+    severed_relationships:
+      subject: Keni humbur lidhjet, për shkak të një vendimi moderimi
     status:
       subject: "%{name} sapo postoi"
     update:
@@ -1903,16 +1945,22 @@ sq:
     errors:
       in_reply_not_found: Gjendja të cilës po provoni t’i përgjigjeni s’duket se ekziston.
       quoted_status_not_found: Postimi që po rrekeni të citoni nuk duket se ekziston.
+      quoted_user_not_mentioned: S’mund të citohet një përdorues që s’është përmendur në një postim Përmendje Private.
     over_character_limit: u tejkalua kufi shenjash prej %{max}
     pin_errors:
       direct: Postimet që janë të dukshme vetëm për përdoruesit e përmendur s’mund të fiksohen
       limit: Keni fiksuar tashmë numrin maksimum të mesazheve
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       reblog: S’mund të fiksohet një përforcim
+    quote_error:
+      not_available: Postim që s’mund të kihet
+      pending_approval: Postim pezull
+      revoked: Postim i hequr nga autori
     quote_policies:
       followers: Vetëm ndjekës
       nobody: Thjesht unë
       public: Cilido
+    quote_post_author: U citua një postim nga %{acct}
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Përmendje private
@@ -1924,11 +1972,11 @@ sq:
     enabled: Fshi automatikisht postime të vjetra
     enabled_hint: Fshin automatikisht postimet tuaja, pasi mbërrijnë një prag të caktuar moshe, hiq rastin kur ka përputhje me një nga përjashtimet më poshtë
     exceptions: Përjashtime
-    explanation: Ngaqë fshirja e postimeve është një veprim i shtrenjtë, kjo bëhet ngadalë, gjatë kohës kur shërbyesi s’është i zënë. Për këtë arsye, postimet tuaja mund të fshihen pas ca kohësh pasi të ketë mbërritur pragun e moshës për to.
+    explanation: Fshirja e automatizuar kryhet me përparësi të ulët. Mund të ketë një vonesë mes arritjes së pragut të moshës dhe heqjes faktike.
     ignore_favs: Shpërfilli të parapëlqyerit
     ignore_reblogs: Shpërfilli përforcimet
     interaction_exceptions: Përjashtime bazuar në ndërveprime
-    interaction_exceptions_explanation: Kini parasysh se nuk ka garanci se postimet do të fshihen, nëse kalojnë nën pragun për të parapëlqyerat ose përforcimet, pasi kanë kaluar një herë në to.
+    interaction_exceptions_explanation: Postime të cilët tejkalojnë përkohësisht pragun për si të parapëlqyer ose të përforcimeve, mund të mbahen edhe pse më vonë numri i tyre ulet.
     keep_direct: Mbaj mesazhet e drejtpërdrejtë
     keep_direct_hint: S’fshihet ndonjë nga mesazhet tuaj të drejtpërdrejtë
     keep_media: Mbaj postime me bashkëngjitje media
@@ -1970,10 +2018,7 @@ sq:
     review_link: Shqyrtoni termat e shërbimit
     title: Termat e shërbimit të %{domain} po ndryshojnë
   themes:
-    contrast: Mastodon (Me shumë kontrast)
-    default: Mastodon (I errët)
-    mastodon-light: Mastodon (I çelët)
-    system: E automatizuar (përdor temë sistemi)
+    default: Mastodon
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
@@ -1998,6 +2043,8 @@ sq:
     recovery_codes: Kopjeruani kode rikthimesh
     recovery_codes_regenerated: Kodet e rikthimeve u riprodhuan me sukses
     recovery_instructions_html: Në ndodhtë që të humbni hyrje te telefoni juaj, mund të përdorni një nga kodet e rikthimit më poshtë, që të rifitoni hyrje te llogaria juaj. <strong>Mbajini të parrezik kodet e rikthimeve</strong>. Për shembull, mund t’i shtypni dhe t’i ruani tok me dokumente të tjerë të rëndësishëm.
+    resume_app_authorization: Rinis autorizim aplikacioni
+    role_requirement: "%{domain} lyp që të ujdisni Mirëfilltësim Dyfaktorësh, para se të përdorni Mastodon-in."
     webauthn: Kyçe sigurie
   user_mailer:
     announcement_published:
@@ -2141,7 +2188,11 @@ sq:
       error: Pati një problem me fshirjen e kyçit tuaj të sigurisë. Ju lutemi, riprovoni.
       success: Kyçi juaj i sigurisë u fshi me sukses.
     invalid_credential: Kyç i pavlefshëm sigurie
+    nickname: Nofkë
     nickname_hint: Jepni nofkën e kyçit tuaj të ri të sigurisë
     not_enabled: S’e keni aktivizuar ende WebAuthn-in
     not_supported: Ky shfletues nuk mbulon kyçe sigurie
     registered_on: Regjistruar më %{date}
+  wrapstodon:
+    description: Shihni si u përdor Mastodon-in këtë vit nga %{name}!
+    title: Përmbledhjedon %{year} për %{name}

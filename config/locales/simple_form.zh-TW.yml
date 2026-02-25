@@ -54,15 +54,18 @@ zh-TW:
         password: 使用至少 8 個字元
         phrase: 無論是嘟文的本文或是內容警告都會被過濾
         scopes: 允許使應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
+        setting_advanced_layout: 將 Mastodon 顯示為多欄位介面，使您能檢視時間軸、通知，以及您所選擇之第三欄位。不建議於較小的螢幕使用。
         setting_aggregate_reblogs: 不顯示最近已被轉嘟之嘟文的最新轉嘟（只影響最新收到的嘟文）
         setting_always_send_emails: 一般情況下若您活躍使用 Mastodon ，我們不會寄送電子郵件通知
+        setting_boost_modal: 當啟用時，轉嘟前將先開啟確認對話框，您能於其變更轉嘟之可見性。
         setting_default_quote_policy_private: Mastodon 上發佈之僅限跟隨者嘟文無法被其他使用者引用。
         setting_default_quote_policy_unlisted: 當其他人引用您時，他們的嘟文也會自熱門時間軸隱藏。
-        setting_default_sensitive: 敏感內容媒體預設隱藏，且按一下即可重新顯示
+        setting_default_sensitive: 敏感內容媒體為預設隱藏，且按一下即可重新顯示
         setting_display_media_default: 隱藏標為敏感內容的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
         setting_display_media_show_all: 總是顯示標為敏感內容的媒體
         setting_emoji_style: 如何顯示 emoji 表情符號。「自動」將嘗試使用原生 emoji ，但於老式瀏覽器使用 Twemoji。
+        setting_quick_boosting_html: 當啟用時，點擊 %{boost_icon} 轉嘟圖示將立即轉嘟而非開啟轉嘟/引用之下拉選單。將引用嘟文操作移至 %{options_icon} （選項）選單中。
         setting_system_scrollbars_ui: 僅套用至基於 Safari 或 Chrome 之桌面瀏覽器
         setting_use_blurhash: 彩色漸層圖樣是基於隱藏媒體內容顏色產生，所有細節將變得模糊
         setting_use_pending_items: 關閉自動捲動更新，時間軸僅於點擊後更新
@@ -85,11 +88,12 @@ zh-TW:
         activity_api_enabled: 本站使用者的嘟文數量，以及本站的活躍使用者與一週內新使用者數量
         app_icon: WEBP、PNG、GIF、或 JPG。於行動裝置上使用自訂圖示替代預設應用程式圖示。
         backups_retention_period: 使用者能產生他們嘟文的備份以便日後下載。當設定為正值時，這些嘟文備份將於指定之天數後自您的儲存空間中自動刪除。
-        bootstrap_timeline_accounts: 這些帳號將被釘選於新帳號跟隨推薦之上。
+        bootstrap_timeline_accounts: 這些帳號將被釘選於新帳號跟隨建議之上。請提供以逗號分隔之帳號列表。
         closed_registrations_message: 於註冊關閉時顯示
         content_cache_retention_period: 所有來自其他伺服器之嘟文（包括轉嘟與回嘟）將於指定之天數後自動刪除，不論這些嘟文與本地使用者間的任何互動。這將包含本地使用者已標記為書籤或最愛之嘟文。不同站點使用者間之私訊亦將遺失且不可回復。此設定應適用於特殊情況，若常規使用將超乎多數使用者預期。
         custom_css: 您於 Mastodon 網頁版本中能套用客製化風格。
         favicon: WEBP、PNG、GIF、或 JPG。使用自訂圖示替代預設 Mastodon favicon 圖示。
+        landing_page: 選擇當新訪客第一次造訪您伺服器時所見之頁面。若您選擇「熱門趨勢」，則該功能必須於探索設定中啟用。若您選擇「本站時間軸」，則探索設定中「允許瀏覽本站嘟文之即時內容」功能必須設定為「任何人」。
         mascot: 覆寫進階網頁介面中的圖例。
         media_cache_retention_period: 來自遠端伺服器嘟文中之多媒體內容將快取於您的伺服器。當設定為正值時，這些多媒體內容將於指定之天數後自您的儲存空間中自動刪除。若多媒體資料於刪除後被請求，且原始內容仍可存取，它們將被重新下載。由於連結預覽中第三方網站查詢頻率限制，建議將其設定為至少 14 日，否則於此之前連結預覽將不被即時更新。
         min_age: 使用者將於註冊時被要求確認他們的生日
@@ -105,9 +109,9 @@ zh-TW:
         status_page_url: 當服務中斷時，可以提供使用者了解伺服器資訊頁面之 URL
         theme: 未登入之訪客或新使用者所見之佈景主題。
         thumbnail: 大約 2:1 圖片會顯示於您伺服器資訊之旁。
-        trendable_by_default: 跳過手動審核熱門內容。仍能於登上熱門趨勢後移除個別內容。
-        trends: 熱門趨勢將顯示於您伺服器上正在吸引大量注意力的嘟文、主題標籤、或者新聞。
-        trends_as_landing_page: 顯示熱門趨勢內容至未登入使用者及訪客而不是關於此伺服器之描述。需要啟用熱門趨勢。
+        trendable_by_default: 跳過手動審核熱門內容。您仍能於登上熱門趨勢後移除個別內容。
+        trends: 熱門趨勢將顯示於您伺服器上正在吸引大量注意力之嘟文、主題標籤、或新聞。
+        wrapstodon: 提供替本站使用者產生他們過去一年使用 Mastodon 的趣味總結。此功能於每年十二月十號至三十一號提供至於年中發過至少一則公開嘟文（無論顯示於時間軸與否）及至少使用一則主題標籤之使用者。
       form_challenge:
         current_password: 您正要進入安全區域
       imports:
@@ -159,6 +163,7 @@ zh-TW:
         name: 角色的公開名稱，如果角色設定為顯示為徽章
         permissions_as_keys: 有此角色的使用者將有權存取...
         position: 某些情況下，衝突的解決方式由更高階的角色決定。某些動作只能由優先程度較低的角色執行
+        require_2fa: 此角色之使用者將被要求設定兩階段驗證以使用 Mastodon
       username_block:
         allow_with_approval: 不直接禁止註冊，符合規則之註冊將需要您的審核
         comparison: 當您封鎖部分匹配時，請留心 Scunthorpe 問題
@@ -218,6 +223,7 @@ zh-TW:
         email: 電子郵件地址
         expires_in: 失效時間
         fields: 額外欄位
+        filter_action: 過濾器動作
         header: 封面圖片
         honeypot: "%{label} (請勿填寫)"
         inbox_url: 中繼收件匣 URL
@@ -233,12 +239,14 @@ zh-TW:
         setting_aggregate_reblogs: 於時間軸中不重複顯示轉嘟
         setting_always_send_emails: 總是發送電子郵件通知
         setting_auto_play_gif: 自動播放 GIF 動畫
-        setting_boost_modal: 轉嘟前先詢問我
+        setting_boost_modal: 控制轉嘟可見性
+        setting_color_scheme: 佈景主題
+        setting_contrast: 對比度
         setting_default_language: 嘟文語言
         setting_default_privacy: 嘟文可見性
         setting_default_quote_policy: 誰能引用此嘟文
         setting_default_sensitive: 總是將媒體標記為敏感內容
-        setting_delete_modal: 刪除嘟文前先詢問我
+        setting_delete_modal: 於刪除嘟文前警告我
         setting_disable_hover_cards: 停用於滑鼠懸停時預覽個人檔案
         setting_disable_swiping: 停用滑動手勢
         setting_display_media: 媒體顯示
@@ -248,7 +256,8 @@ zh-TW:
         setting_emoji_style: emoji 風格
         setting_expand_spoilers: 永遠展開標有內容警告的嘟文
         setting_hide_network: 隱藏您的社交網路
-        setting_missing_alt_text_modal: 發表未包含說明文字之多媒體嘟文前先詢問我
+        setting_missing_alt_text_modal: 於發出未含有 ALT 說明文字之嘟文前警告我
+        setting_quick_boosting: 啟用快速轉嘟
         setting_reduce_motion: 減少過渡動畫效果
         setting_system_font_ui: 使用系統預設字型
         setting_system_scrollbars_ui: 使用系統預設捲動軸
@@ -263,7 +272,7 @@ zh-TW:
         type: 匯入類型
         username: 使用者名稱
         username_or_email: 使用者名稱或電子郵件地址
-        whole_word: 整個詞彙
+        whole_word: 完整詞彙
       email_domain_block:
         with_dns_records: 包括網域的 MX 記錄與 IP 位址
       featured_tag:
@@ -282,6 +291,7 @@ zh-TW:
         content_cache_retention_period: 遠端內容保留期限
         custom_css: 自訂 CSS
         favicon: 網站圖示 (Favicon)
+        landing_page: 新訪客之登陸頁面
         local_live_feed_access: 允許瀏覽本站嘟文之即時內容
         local_topic_feed_access: 允許瀏覽本站嘟文之主題標籤與連結
         mascot: 自訂吉祥物 (legacy)
@@ -306,7 +316,7 @@ zh-TW:
         thumbnail: 伺服器縮圖
         trendable_by_default: 允許熱門趨勢直接顯示，不需經過審核
         trends: 啟用熱門趨勢
-        trends_as_landing_page: 以熱門趨勢作為登陸頁面
+        wrapstodon: 啟用 Mastodon 年度回顧
       interactions:
         must_be_follower: 封鎖非跟隨者的通知
         must_be_following: 封鎖您未跟隨之使用者的通知
@@ -350,7 +360,7 @@ zh-TW:
       tag:
         listable: 允許此主題標籤於搜尋及個人檔案目錄中顯示
         name: 主題標籤
-        trendable: 允許此主題標籤於熱門趨勢下顯示
+        trendable: 允許此主題標籤於熱門趨勢中顯示
         usable: 允許嘟文使用此主題標籤
       terms_of_service:
         changelog: 有何異動？
@@ -367,9 +377,9 @@ zh-TW:
         jurisdiction: 司法管轄區
         min_age: 最低年齡
       user:
-        date_of_birth_1i: 日
+        date_of_birth_1i: 年
         date_of_birth_2i: 月
-        date_of_birth_3i: 年
+        date_of_birth_3i: 日
         role: 角色
         time_zone: 時區
       user_role:
@@ -378,6 +388,7 @@ zh-TW:
         name: 名稱
         permissions_as_keys: 權限
         position: 優先權
+        require_2fa: 要求兩階段驗證
       username_block:
         allow_with_approval: 經審核後可註冊
         comparison: 比較方式

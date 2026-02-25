@@ -24,12 +24,12 @@ export default class FollowRequestNote extends ImmutablePureComponent {
         </div>
 
         <div className='follow-request-banner__action'>
-          <button type='button' className='button button-tertiary button--confirmation' onClick={onAuthorize}>
+          <button type='button' className='button button-secondary button--confirmation' onClick={onAuthorize}>
             <Icon id='check' icon={CheckIcon} />
             <FormattedMessage id='follow_request.authorize' defaultMessage='Authorize' />
           </button>
 
-          <button type='button' className='button button-tertiary button--destructive' onClick={onReject}>
+          <button type='button' className='button button-secondary button--destructive' onClick={onReject}>
             <Icon id='times' icon={CloseIcon} />
             <FormattedMessage id='follow_request.reject' defaultMessage='Reject' />
           </button>

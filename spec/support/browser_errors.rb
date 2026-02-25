@@ -4,6 +4,10 @@ module BrowserErrorsHelpers
   def ignore_js_error(error)
     @ignored_js_errors_for_spec << error
   end
+
+  def error_message(error)
+    error.keys.map { |key| "#{key.to_s.titleize}: #{error[key]}" }.join("\n")
+  end
 end
 
 RSpec.configure do |config|
@@ -15,7 +19,7 @@ RSpec.configure do |config|
     example.metadata[:js_console_messages] ||= []
     Capybara.current_session.driver.with_playwright_page do |page|
       page.on('console', lambda { |msg|
-        example.metadata[:js_console_messages] << { type: msg.type, text: msg.text, location: msg.location }
+        example.metadata[:js_console_messages] << { type: msg.type, text: msg.text, location: msg.location, page: msg.page.url }
       })
     end
   end
@@ -34,7 +38,7 @@ RSpec.configure do |config|
     if errors.present?
       aggregate_failures 'browser errrors' do
         errors.each do |error|
-          expect(error[:type]).to_not eq('error'), error[:text]
+          expect(error[:type]).to_not eq('error'), error_message(error)
           next unless error[:type] == 'warning'
 
           warn 'WARN: browser warning'

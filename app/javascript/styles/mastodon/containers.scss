@@ -27,7 +27,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      color: $primary-text-color;
+      color: var(--color-text-primary);
       text-decoration: none;
       outline: 0;
       padding: 12px 16px;
@@ -65,7 +65,7 @@
   padding: 20px 0;
   margin-top: 40px;
   margin-bottom: 10px;
-  border-bottom: 1px solid var(--background-border-color);
+  border-bottom: 1px solid var(--color-border-primary);
 
   @media screen and (width <= 440px) {
     width: 100%;
@@ -89,7 +89,7 @@
 
   .name {
     flex: 1 1 auto;
-    color: $secondary-text-color;
+    color: var(--color-text-primary);
 
     .username {
       display: block;
@@ -97,7 +97,7 @@
       line-height: 24px;
       text-overflow: ellipsis;
       overflow: hidden;
-      color: $primary-text-color;
+      color: var(--color-text-primary);
     }
   }
 
@@ -148,7 +148,7 @@
     }
 
     a {
-      color: $highlight-text-color;
+      color: var(--color-text-brand);
       font-weight: 500;
       text-decoration: none;
 

@@ -15,6 +15,8 @@ export const SKIN_TONE_CODES = [
   0x1f3ff, // Dark skin tone
 ] as const;
 
+export const EMOJI_MIN_TOKEN_LENGTH = 2;
+
 // Emoji rendering modes. A mode is what we are using to render emojis, a style is what the user has selected.
 export const EMOJI_MODE_NATIVE = 'native';
 export const EMOJI_MODE_NATIVE_WITH_FLAGS = 'native-flags';
@@ -22,6 +24,10 @@ export const EMOJI_MODE_TWEMOJI = 'twemoji';
 
 export const EMOJI_TYPE_UNICODE = 'unicode';
 export const EMOJI_TYPE_CUSTOM = 'custom';
+
+export const EMOJI_DB_NAME_SHORTCODES = 'shortcodes';
+
+export const EMOJI_DB_SHORTCODE_TEST = '2122'; // 2122 is the trademark sign, which we know has shortcodes in all datasets.
 
 export const EMOJIS_WITH_DARK_BORDER = [
   '🎱', // 1F3B1
@@ -115,4 +121,30 @@ export const EMOJIS_WITH_LIGHT_BORDER = [
   '▫️', // 25AB-FE0F
   '🪽', // 1FAE8
   '🪿', // 1FABF
+];
+
+export const EMOJIS_REQUIRING_INVERSION_IN_LIGHT_MODE = [
+  '⛓️', // 26D3-FE0F
+];
+
+export const EMOJIS_REQUIRING_INVERSION_IN_DARK_MODE = [
+  '🔜', // 1F51C
+  '🔙', // 1F519
+  '🔛', // 1F51B
+  '🔝', // 1F51D
+  '🔚', // 1F51A
+  '©️', // 00A9 FE0F
+  '➰', // 27B0
+  '💱', // 1F4B1
+  '✔️', // 2714 FE0F
+  '➗', // 2797
+  '💲', // 1F4B2
+  '➖', // 2796
+  '✖️', // 2716 FE0F
+  '➕', // 2795
+  '®️', // 00AE FE0F
+  '🕷️', // 1F577 FE0F
+  '📞', // 1F4DE
+  '™️', // 2122 FE0F
+  '〰️', // 3030 FE0F
 ];

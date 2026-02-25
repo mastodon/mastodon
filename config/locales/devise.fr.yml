@@ -7,6 +7,7 @@ fr:
       send_paranoid_instructions: Si votre adresse électronique existe dans notre base de données, vous allez bientôt recevoir un courriel contenant les instructions de confirmation de votre compte. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
     failure:
       already_authenticated: Vous êtes déjà connecté⋅e.
+      closed_registrations: Votre tentative d'inscription a été bloquée en raison d'une politique de réseau. Si vous pensez qu'il s'agit d'une erreur, contactez %{email}.
       inactive: Votre compte n’est pas encore activé.
       invalid: "%{authentication_keys} ou mot de passe invalide."
       last_attempt: Vous avez droit à une dernière tentative avant que votre compte ne soit verrouillé.
@@ -23,7 +24,7 @@ fr:
         action_with_app: Confirmer et retourner à %{app}
         explanation: Vous avez créé un compte sur %{host} avec cette adresse courriel. Vous êtes à un clic de l’activer. Si ce n’était pas vous, veuillez ignorer ce courriel.
         explanation_when_pending: Vous avez demandé à vous inscrire à %{host} avec cette adresse de courriel. Une fois que vous aurez confirmé cette adresse, nous étudierons votre demande. Vous ne pourrez pas vous connecter d’ici-là. Si votre demande est refusée, vos données seront supprimées du serveur, aucune action supplémentaire de votre part n’est donc requise. Si vous n’êtes pas à l’origine de cette demande, veuillez ignorer ce message.
-        extra_html: Merci de consultez également <a href="%{terms_path}">les règles du serveur</a> et <a href="%{policy_path}">nos conditions d’utilisation</a>.
+        extra_html: Veuillez également consulter <a href="%{terms_path}">les règles du serveur</a> et <a href="%{policy_path}">nos conditions d'utilisation</a>.
         subject: 'Mastodon : Merci de confirmer votre inscription sur %{instance}'
         title: Vérifiez l’adresse de courriel
       email_changed:

@@ -272,6 +272,49 @@ RSpec.describe ActivityPub::ProcessAccountService do
     end
   end
 
+  context 'with interaction policy' do
+    let(:payload) do
+      {
+        id: 'https://foo.test',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        followers: 'https://foo.test/followers',
+        following: 'https://foo.test/following',
+        interactionPolicy: {
+          canFeature: {
+            automaticApproval: 'https://foo.test',
+            manualApproval: [
+              'https://foo.test/followers',
+              'https://foo.test/following',
+            ],
+          },
+        },
+      }.with_indifferent_access
+    end
+
+    before do
+      stub_request(:get, %r{^https://foo\.test/follow})
+        .to_return(status: 200, body: '', headers: {})
+    end
+
+    # TODO: Remove when feature flag is removed
+    context 'when collections feature is disabled' do
+      it 'does not set the interaction policy' do
+        account = subject.call('user1', 'foo.test', payload)
+
+        expect(account.feature_approval_policy).to be_zero
+      end
+    end
+
+    context 'when collections feature is enabled', feature: :collections do
+      it 'sets the interaction policy to the correct value' do
+        account = subject.call('user1', 'foo.test', payload)
+
+        expect(account.feature_approval_policy).to eq 0b100000000000000001100
+      end
+    end
+  end
+
   private
 
   def create_some_remote_accounts

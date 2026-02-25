@@ -1,6 +1,5 @@
 @use 'sass:color';
 @use 'variables' as *;
-@use 'functions' as *;
 
 .card {
   & > a {
@@ -14,7 +13,7 @@
     &:active,
     &:focus {
       .card__bar {
-        background: $ui-base-color;
+        background: var(--color-bg-brand-softer);
       }
     }
   }
@@ -22,8 +21,8 @@
   &__img {
     height: 130px;
     position: relative;
-    background: $ui-base-color;
-    border: 1px solid var(--background-border-color);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-primary);
     border-bottom: none;
 
     img {
@@ -45,8 +44,8 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background: var(--background-color);
-    border: 1px solid var(--background-border-color);
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border-primary);
     border-top: none;
 
     .avatar {
@@ -61,7 +60,7 @@
         display: block;
         margin: 0;
         border-radius: 4px;
-        background: darken($ui-base-color, 8%);
+        background: var(--color-bg-secondary);
         object-fit: cover;
       }
     }
@@ -76,7 +75,7 @@
 
       strong {
         font-size: 15px;
-        color: $primary-text-color;
+        color: var(--color-text-primary);
         font-weight: 500;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -85,7 +84,7 @@
       span {
         display: block;
         font-size: 14px;
-        color: $darker-text-color;
+        color: var(--color-text-secondary);
         font-weight: 400;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -106,7 +105,7 @@
   .page,
   .gap {
     font-size: 14px;
-    color: $primary-text-color;
+    color: var(--color-text-primary);
     font-weight: 500;
     display: inline-block;
     padding: 6px 10px;
@@ -114,9 +113,9 @@
   }
 
   .current {
-    background: $simple-background-color;
+    color: var(--color-bg-primary);
+    background: var(--color-text-primary);
     border-radius: 100px;
-    color: $inverted-text-color;
     cursor: default;
     margin: 0 10px;
   }
@@ -128,7 +127,7 @@
   .older,
   .newer {
     text-transform: uppercase;
-    color: $secondary-text-color;
+    color: var(--color-text-primary);
   }
 
   .older {
@@ -143,7 +142,7 @@
 
   .disabled {
     cursor: default;
-    color: lighten($inverted-text-color, 10%);
+    color: var(--color-text-disabled);
   }
 
   @media screen and (width <= 700px) {
@@ -161,9 +160,8 @@
 }
 
 .nothing-here {
-  background: $ui-base-color;
-  box-shadow: 0 0 15px color.change($base-shadow-color, $alpha: 0.2);
-  color: $darker-text-color;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-primary);
   font-size: 14px;
   font-weight: 500;
   text-align: center;
@@ -174,6 +172,15 @@
   border-radius: 4px;
   padding: 20px;
   min-height: 30vh;
+  border: 1px solid var(--color-border-primary);
+
+  @media screen and (min-width: ($no-gap-breakpoint - 1)) {
+    border-top: 0;
+  }
+
+  &--no-toolbar {
+    border-top: 1px solid var(--color-border-primary);
+  }
 
   &--under-tabs {
     border-radius: 0 0 4px 4px;
@@ -196,7 +203,7 @@
   font-size: 12px;
   line-height: 12px;
   font-weight: 500;
-  color: $ui-secondary-color;
+  color: var(--color-text-primary);
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -206,16 +213,24 @@
 .simple_form .overridden,
 .simple_form .recommended,
 .simple_form .not_recommended {
-  background-color: color.change($ui-secondary-color, $alpha: 0.1);
-  border: 1px solid color.change($ui-secondary-color, $alpha: 0.5);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+}
+
+.information-badge {
+  &.superapp {
+    color: var(--color-text-success);
+    background-color: var(--color-bg-success-softer);
+    border-color: var(--color-border-on-bg-success-softer);
+  }
 }
 
 .account-role {
   display: inline-flex;
   padding: 4px;
   padding-inline-end: 8px;
-  border: 1px solid $highlight-text-color;
-  color: $highlight-text-color;
+  border: 1px solid var(--color-text-brand);
+  color: var(--color-text-brand);
   font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.5px;
@@ -238,18 +253,10 @@
   }
 }
 
-.information-badge {
-  &.superapp {
-    color: $success-green;
-    background-color: color.change($success-green, $alpha: 0.1);
-    border-color: color.change($success-green, $alpha: 0.5);
-  }
-}
-
 .simple_form .not_recommended {
-  color: lighten($error-red, 12%);
-  background-color: rgba(lighten($error-red, 12%), 0.1);
-  border-color: rgba(lighten($error-red, 12%), 0.5);
+  color: var(--color-text-error);
+  background-color: var(--color-bg-error-softer);
+  border-color: var(--color-border-on-bg-error-softer);
 }
 
 .account__header__fields {
@@ -257,14 +264,14 @@
   padding: 0;
   margin: 15px -15px -15px;
   border: 0 none;
-  border-top: 1px solid lighten($ui-base-color, 12%);
-  border-bottom: 1px solid lighten($ui-base-color, 12%);
+  border-top: 1px solid var(--color-border-primary);
+  border-bottom: 1px solid var(--color-border-primary);
   font-size: 14px;
   line-height: 20px;
 
   dl {
     display: flex;
-    border-bottom: 1px solid lighten($ui-base-color, 12%);
+    border-bottom: 1px solid var(--color-border-primary);
   }
 
   dt,
@@ -282,17 +289,17 @@
     font-weight: 500;
     width: 120px;
     flex: 0 0 auto;
-    color: $secondary-text-color;
-    background: rgba(darken($ui-base-color, 8%), 0.5);
+    color: var(--color-text-primary);
+    background: var(--color-bg-secondary);
   }
 
   dd {
     flex: 1 1 auto;
-    color: $darker-text-color;
+    color: var(--color-text-secondary);
   }
 
   a {
-    color: $highlight-text-color;
+    color: var(--color-text-brand);
     text-decoration: none;
 
     &:hover,
@@ -303,16 +310,16 @@
   }
 
   .verified {
-    border: 1px solid color.change($valid-value-color, $alpha: 0.5);
-    background: color.change($valid-value-color, $alpha: 0.25);
+    border: 1px solid var(--color-border-on-bg-success-softer);
+    background: var(--color-bg-success-softer);
 
     a {
-      color: $valid-value-color;
+      color: var(--color-text-success);
       font-weight: 500;
     }
 
     &__mark {
-      color: $valid-value-color;
+      color: var(--color-text-success);
     }
   }
 
@@ -327,10 +334,10 @@
 
 .pending-account {
   &__header {
-    color: $darker-text-color;
+    color: var(--color-text-secondary);
 
     a {
-      color: $ui-secondary-color;
+      color: var(--color-text-primary);
       text-decoration: none;
 
       &:hover,
@@ -341,7 +348,7 @@
     }
 
     strong {
-      color: $primary-text-color;
+      color: var(--color-text-primary);
       font-weight: 700;
     }
 
@@ -356,7 +363,7 @@
 }
 
 .batch-table__row--muted {
-  color: lighten($ui-base-color, 26%);
+  color: var(--color-text-tertiary);
 }
 
 .batch-table__row--muted .pending-account__header,
@@ -365,7 +372,7 @@
   &,
   a,
   strong {
-    color: lighten($ui-base-color, 26%);
+    color: var(--color-text-tertiary);
   }
 }
 
@@ -377,12 +384,12 @@
   tbody td.accounts-table__extra,
   &__count,
   &__count small {
-    color: lighten($ui-base-color, 26%);
+    color: var(--color-text-tertiary);
   }
 }
 
 .batch-table__row--attention {
-  color: $gold-star;
+  color: var(--color-text-warning);
 }
 
 .batch-table__row--attention .pending-account__header,
@@ -391,7 +398,7 @@
   &,
   a,
   strong {
-    color: $gold-star;
+    color: var(--color-text-warning);
   }
 }
 
@@ -399,6 +406,6 @@
   tbody td.accounts-table__extra,
   &__count,
   &__count small {
-    color: $gold-star;
+    color: var(--color-text-warning);
   }
 }

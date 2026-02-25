@@ -70,7 +70,7 @@ class AccountStatusesFilter
   end
 
   def only_media_scope
-    Status.joins(:media_attachments).merge(account.media_attachments).group(Status.arel_table[:id])
+    Status.without_empty_attachments.joins(:media_attachments).merge(account.media_attachments).group(Status.arel_table[:id])
   end
 
   def no_replies_scope

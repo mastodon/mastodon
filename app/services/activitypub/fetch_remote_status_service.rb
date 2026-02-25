@@ -92,7 +92,6 @@ class ActivityPub::FetchRemoteStatusService < BaseService
       existing_status = Status.remote.find_by(uri: uri)
       if existing_status&.distributable?
         Rails.logger.debug { "FetchRemoteStatusService - Got 404 for orphaned status with URI #{uri}, deleting" }
-        Tombstone.find_or_create_by(uri: uri, account: existing_status.account)
         RemoveStatusService.new.call(existing_status, redraft: false)
       end
     end

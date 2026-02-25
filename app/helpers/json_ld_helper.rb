@@ -70,6 +70,10 @@ module JsonLdHelper
     !json.nil? && equals_or_includes?(json['@context'], ActivityPub::TagManager::CONTEXT)
   end
 
+  def supported_security_context?(json)
+    !json.nil? && equals_or_includes?(json['@context'], 'https://w3id.org/security/v1')
+  end
+
   def unsupported_uri_scheme?(uri)
     uri.nil? || !uri.start_with?('http://', 'https://')
   end
@@ -224,6 +228,72 @@ module JsonLdHelper
 
       body_to_json(response.body_with_limit) if response.code == 200 && valid_activitypub_content_type?(response)
     end
+  end
+
+  # Iterate through the pages of an activitypub collection,
+  # returning the collected items and the number of pages that were fetched.
+  #
+  # @param collection_or_uri [String, Hash]
+  #   either the URI or an already-fetched AP object
+  # @param max_pages [Integer, nil]
+  #   Max pages to fetch, if nil, fetch until no more pages
+  # @param max_items [Integer, nil]
+  #   Max items to fetch, if nil, fetch until no more items
+  # @param reference_uri [String, nil]
+  #   If not nil, a URI to compare to the collection URI.
+  #   If the host of the collection URI does not match the reference URI,
+  #   do not fetch the collection page.
+  # @param on_behalf_of [Account, nil]
+  #   Sign the request on behalf of the Account, if not nil
+  # @return [Array<Array<Hash>, Integer>, nil]
+  #   The collection items and the number of pages fetched
+  def collection_items(collection_or_uri, max_pages: 1, max_items: nil, reference_uri: nil, on_behalf_of: nil)
+    collection = fetch_collection_page(collection_or_uri, reference_uri: reference_uri, on_behalf_of: on_behalf_of)
+    return unless collection.is_a?(Hash)
+
+    collection = fetch_collection_page(collection['first'], reference_uri: reference_uri, on_behalf_of: on_behalf_of) if collection['first'].present?
+    return unless collection.is_a?(Hash)
+
+    items = []
+    n_pages = 1
+    while collection.is_a?(Hash)
+      items.concat(as_array(collection_page_items(collection)))
+
+      break if !max_items.nil? && items.size >= max_items
+      break if !max_pages.nil? && n_pages >= max_pages
+
+      collection = collection['next'].present? ? fetch_collection_page(collection['next'], reference_uri: reference_uri, on_behalf_of: on_behalf_of) : nil
+      n_pages += 1
+    end
+
+    [items, n_pages]
+  end
+
+  def collection_page_items(collection)
+    case collection['type']
+    when 'Collection', 'CollectionPage'
+      collection['items']
+    when 'OrderedCollection', 'OrderedCollectionPage'
+      collection['orderedItems']
+    end
+  end
+
+  # Fetch a single collection page
+  # To get the whole collection, use collection_items
+  #
+  # @param collection_or_uri [String, Hash]
+  # @param reference_uri [String, nil]
+  #   If not nil, a URI to compare to the collection URI.
+  #   If the host of the collection URI does not match the reference URI,
+  #   do not fetch the collection page.
+  # @param on_behalf_of [Account, nil]
+  #   Sign the request on behalf of the Account, if not nil
+  # @return [Hash, nil]
+  def fetch_collection_page(collection_or_uri, reference_uri: nil, on_behalf_of: nil)
+    return collection_or_uri if collection_or_uri.is_a?(Hash)
+    return if !reference_uri.nil? && non_matching_uri_hosts?(reference_uri, collection_or_uri)
+
+    fetch_resource_without_id_validation(collection_or_uri, on_behalf_of, raise_on_error: :temporary)
   end
 
   def valid_activitypub_content_type?(response)

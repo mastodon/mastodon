@@ -19,6 +19,25 @@ RSpec.describe REST::StatusSerializer do
   let(:bob)   { Fabricate(:account, username: 'bob', domain: 'other.com') }
   let(:status) { Fabricate(:status, account: alice) }
 
+  context 'with a local status' do
+    context 'with a quote and a CW but no contents' do
+      let(:quoted_status) { Fabricate(:status, account: alice) }
+      let(:status) { Fabricate.build(:status, account: alice, text: '', spoiler_text: 'this is a CW') }
+
+      before do
+        Fabricate(:quote, status: status, quoted_status: quoted_status, state: :accepted)
+      end
+
+      it 'renders the status with a CW and fallback link' do
+        expect(subject)
+          .to include(
+            'content' => /RE: <a/,
+            'spoiler_text' => 'this is a CW'
+          )
+      end
+    end
+  end
+
   context 'with a remote status' do
     let(:status) { Fabricate(:status, account: bob) }
 

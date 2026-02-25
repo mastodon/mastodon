@@ -74,6 +74,6 @@ export const Linked: Story = {
           acct: username,
         })
       : undefined;
-    return <LinkedDisplayName {...args} displayProps={{ account }} />;
+    return <LinkedDisplayName displayProps={{ account, ...args }} />;
   },
 };

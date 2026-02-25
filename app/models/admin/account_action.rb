@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::AccountAction
-  include ActiveModel::Model
-  include ActiveModel::Attributes
-  include AccountableConcern
-  include Authorization
-
+class Admin::AccountAction < Admin::BaseAction
   TYPES = %w(
     none
     disable
@@ -15,49 +10,13 @@ class Admin::AccountAction
   ).freeze
 
   attr_accessor :target_account,
-                :current_account,
-                :type,
-                :text,
-                :report_id,
                 :warning_preset_id
 
-  attr_reader :warning
-
   attribute :include_statuses, :boolean, default: true
-  attribute :send_email_notification, :boolean, default: true
 
-  alias send_email_notification? send_email_notification
   alias include_statuses? include_statuses
 
-  validates :type, :target_account, :current_account, presence: true
-  validates :type, inclusion: { in: TYPES }
-
-  def save
-    return false unless valid?
-
-    ApplicationRecord.transaction do
-      process_action!
-      process_strike!
-      process_reports!
-    end
-
-    process_notification!
-    process_queue!
-
-    true
-  end
-
-  def save!
-    raise ActiveRecord::RecordInvalid, self unless save
-  end
-
-  def report
-    @report ||= Report.find(report_id) if report_id.present?
-  end
-
-  def with_report?
-    !report.nil?
-  end
+  validates :target_account, presence: true
 
   class << self
     def types_for_account(account)
@@ -84,6 +43,17 @@ class Admin::AccountAction
   private
 
   def process_action!
+    ApplicationRecord.transaction do
+      handle_type!
+      process_strike!
+      process_reports!
+    end
+
+    process_notification!
+    process_queue!
+  end
+
+  def handle_type!
     case type
     when 'disable'
       handle_disable!
@@ -94,20 +64,6 @@ class Admin::AccountAction
     when 'suspend'
       handle_suspend!
     end
-  end
-
-  def process_strike!
-    @warning = target_account.strikes.create!(
-      account: current_account,
-      report: report,
-      action: type,
-      text: text_for_warning,
-      status_ids: status_ids
-    )
-
-    # A log entry is only interesting if the warning contains
-    # custom text from someone. Otherwise it's just noise.
-    log_action(:create, @warning) if @warning.text.present? && type == 'none'
   end
 
   def process_reports!
@@ -159,17 +115,6 @@ class Admin::AccountAction
 
   def process_queue!
     queue_suspension_worker! if type == 'suspend'
-  end
-
-  def process_notification!
-    return unless warnable?
-
-    UserMailer.warning(target_account.user, warning).deliver_later!
-    LocalNotificationWorker.perform_async(target_account.id, warning.id, 'AccountWarning', 'moderation_warning')
-  end
-
-  def warnable?
-    send_email_notification? && target_account.local?
   end
 
   def status_ids

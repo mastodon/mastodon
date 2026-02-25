@@ -54,7 +54,7 @@ lv:
         password: Izmanto vismaz 8 rakstzīmes
         phrase: Tiks saskaņots neatkarīgi no ziņas teksta reģistra vai satura brīdinājuma
         scopes: Kuriem API lietotnei būs ļauts piekļūt. Ja atlasa augstākā līmeņa tvērumu, nav nepieciešamas atlasīt atsevišķus.
-        setting_aggregate_reblogs: Nerādīt jaunus izcēlumus ziņām, kas nesen tika palielinātas (ietekmē tikai nesen saņemtos palielinājumus)
+        setting_aggregate_reblogs: Nerādīt jaunus pastiprinājumus ierakstiem, kas nesen tikuši pastiprināti (ietekmēs tikai turpmāk saņemtos pastiprinājumus)
         setting_always_send_emails: Parasti e-pasta paziņojumi netiek sūtīti, kad aktīvi izmantojat Mastodon
         setting_default_sensitive: Pēc noklusējuma jūtīgi informācijas nesēji ir paslēpti, un tos var atklāt ar klikšķi
         setting_display_media_default: Paslēpt attēlus un video, kas atzīmēti kā jūtīgi
@@ -73,7 +73,6 @@ lv:
       featured_tag:
         name: 'Šeit ir daži no pēdējiem lietotajiem tēmturiem:'
       filters:
-        action: Izvēlies, kuru darbību veikt, ja ziņa atbilst filtram
         actions:
           blur: Paslēpt informācijas nesējus aiz brīdinājuma, nepaslēpjot tekstu
           hide: Paslēp filtrēto saturu pilnībā, izturoties tā, it kā tas neeksistētu
@@ -82,7 +81,6 @@ lv:
         activity_api_enabled: Vietēji publicēto ziņu, aktīvo lietotāju un jauno reģistrāciju skaits nedēļas kopās
         app_icon: WEBP, PNG, GIF vai JPG. Mobilajās ierīcēs aizstāj noklusējuma lietotnes ikonu ar pielāgotu.
         backups_retention_period: Lietotājiem ir iespēja izveidot savu ierakstu arhīvu lejupielādēšanai vēlāk. Kad iestatīta pozitīva vērtība, šie arhīvi tiks automātiski izdzēsti no krātuves pēc norādītā dienu skaita.
-        bootstrap_timeline_accounts: Šie konti tiks piesprausti jauno lietotāju sekošanas ieteikumu augšdaļā.
         closed_registrations_message: Tiek rādīts, kad reģistrēšanās ir slēgta
         content_cache_retention_period: Visi ieraksti no citiem serveriem (tajā skaitā pastiprinājumi un atbildes) tiks izdzēsti pēc norādītā dienu skaita, neņemot vērā vietēja lietotāja mijiedarbību ar šādiem ierakstiem. Tas ietver ierakstus, kurus vietējs lietotājs ir atzīmējis kā grāmatzīmi vai pievienojis izlasē. Tiks zaudēti arī privāti pieminējumi starp lietotājiem no dažādiem serveriem, un tos nebūs iespējams atgūt. Šī iestatījuma izmantošana ir paredzēta īpašam nolūkam paredzētiem serveriem un neatbilst tam, ko sagaida vairums lietotāju, kad pielietots vispārējas izmantošanas serveros.
         custom_css: Vari lietot pielāgotus stilus Mastodon tīmekļa versijā.
@@ -104,7 +102,6 @@ lv:
         thumbnail: Aptuveni 2:1 attēls, kas tiek parādīts kopā ar tava servera informāciju.
         trendable_by_default: Izlaist aktuālā satura manuālu pārskatīšanu. Atsevišķas preces joprojām var noņemt no tendencēm pēc fakta.
         trends: Tendences parāda, kuras ziņas, atsauces un ziņu stāsti gūst panākumus tavā serverī.
-        trends_as_landing_page: Šī servera apraksta vietā rādīt aktuālo saturu lietotājiem un apmeklētājiem, kuri ir atteikušies. Nepieciešams iespējot tendences.
       form_challenge:
         current_password: Tu ieej drošā zonā
       imports:
@@ -215,14 +212,12 @@ lv:
         password: Parole
         phrase: Atslēgvārds vai frāze
         setting_advanced_layout: Iespējot paplašināto tīmekļa saskarni
-        setting_aggregate_reblogs: Grupēt izcēlumus ierakstu lentās
+        setting_aggregate_reblogs: Grupēt pastiprinājumus ierakstu lentās
         setting_always_send_emails: Vienmēr sūtīt e-pasta paziņojumus
         setting_auto_play_gif: Automātiski atskaņot animētos GIF
-        setting_boost_modal: Rādīt apstiprinājuma dialogu pirms izcelšanas
         setting_default_language: Publicēšanas valoda
         setting_default_quote_policy: Kas var citēt
         setting_default_sensitive: Vienmēr atzīmēt informācijas nesējus kā jūtīgus
-        setting_delete_modal: Rādīt apstiprinājuma dialogu pirms ziņas dzēšanas
         setting_disable_hover_cards: Atspējot profila priekšskatījumu pēc kursora novietošanas
         setting_disable_swiping: Atspējot vilkšanas kustības
         setting_display_media: Multivides rādīšana
@@ -231,7 +226,6 @@ lv:
         setting_display_media_show_all: Parādīt visu
         setting_expand_spoilers: Vienmēr izvērst ziņas, kas apzīmētas ar brīdinājumiem par saturu
         setting_hide_network: Slēpt savu sociālo grafu
-        setting_missing_alt_text_modal: Rādīt apstiprināšanas lodziņu pirms iesūtīt attēlus vai video bez aprakstošā teksta
         setting_reduce_motion: Ierobežot kustību animācijās
         setting_system_font_ui: Lietot sistēmas noklusējuma fontu
         setting_system_scrollbars_ui: Lietot sistēmas noklusējuma ritjoslu
@@ -285,7 +279,6 @@ lv:
         thumbnail: Servera sīkbilde
         trendable_by_default: Atļaut tendences bez iepriekšējas pārskatīšanas
         trends: Iespējot tendences
-        trends_as_landing_page: Izmantojiet tendences kā galveno lapu
       interactions:
         must_be_follower: Bloķēt paziņojumus no ne-sekotājiem
         must_be_following: Bloķēt paziņojumus no cilvēkiem, kuriem tu neseko
@@ -310,6 +303,7 @@ lv:
         follow_request: Kāds vēlas Tev sekot
         mention: Kāds pieminēja tevi
         pending_account: Jāpārskata jaunu kontu
+        quote: Kāds tevi citēja
         reblog: Kāds izcēla tavu ierakstu
         report: Tika iesniegts jauns ziņojums
         software_updates:
@@ -341,9 +335,7 @@ lv:
         domain: Domēna vārds
         min_age: Mazākais pieļaujamais vecums
       user:
-        date_of_birth_1i: Diena
         date_of_birth_2i: Mēnesis
-        date_of_birth_3i: Gads
         role: Loma
         time_zone: Laika josla
       user_role:

@@ -1,0 +1,74 @@
+.header {
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border-primary);
+}
+
+.titleWithMenu {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+}
+
+.titleWrapper {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.tag {
+  margin-bottom: 4px;
+  margin-inline-start: -8px;
+}
+
+.name {
+  font-size: 28px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.description {
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.headerButtonWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.iconButton {
+  box-sizing: content-box;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border-primary);
+}
+
+.authorNote {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.metaData {
+  margin-top: 16px;
+  font-size: 15px;
+}
+
+.displayNameWithAvatar {
+  display: inline-flex;
+  gap: 4px;
+  align-items: baseline;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  > :global(.account__avatar) {
+    align-self: center;
+  }
+}

@@ -1,5 +1,5 @@
-import path from 'node:path';
 import { readdir } from 'node:fs/promises';
+import path from 'node:path';
 
 import { optimizeLodashImports } from '@optimize-lodash/rollup-plugin';
 import legacy from '@vitejs/plugin-legacy';
@@ -15,17 +15,18 @@ import {
 } from 'vite';
 import manifestSRI from 'vite-plugin-manifest-sri';
 import { VitePWA } from 'vite-plugin-pwa';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
+import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
 import { MastodonEmojiCompressed } from './config/vite/plugin-emoji-compressed';
 import { MastodonThemes } from './config/vite/plugin-mastodon-themes';
 import { MastodonNameLookup } from './config/vite/plugin-name-lookup';
-import { MastodonAssetsManifest } from './config/vite/plugin-assets-manifest';
+import { MastodonServiceWorkerLocales } from './config/vite/plugin-sw-locales';
 
 const jsRoot = path.resolve(__dirname, 'app/javascript');
+
+const cssAliasClasses: ReadonlyArray<string> = ['components', 'features'];
 
 export const config: UserConfigFnPromise = async ({ mode, command }) => {
   const isProdBuild = mode === 'production' && command === 'build';
@@ -49,6 +50,45 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       },
     },
     css: {
+      modules: {
+        generateScopedName(name, filename) {
+          let prefix = '';
+
+          // Use the top two segments of the path as the prefix.
+          const [parentDirName, dirName] = path
+            .dirname(filename)
+            .split(path.sep)
+            .slice(-2)
+            .map((dir) => dir.toLowerCase());
+
+          // If the parent directory is in the cssAliasClasses list, use
+          // the first four letters of it as the prefix, otherwise use the full name.
+          if (parentDirName) {
+            if (cssAliasClasses.includes(parentDirName)) {
+              prefix = parentDirName.slice(0, 4);
+            } else {
+              prefix = parentDirName;
+            }
+          }
+
+          // If we have a directory name, append it to the prefix.
+          if (dirName) {
+            prefix = `${prefix}_${dirName}`;
+          }
+
+          // If the file is not styles.module.scss or style.module.scss,
+          // append the file base name to the prefix.
+          const baseName = path.basename(
+            filename,
+            `.module${path.extname(filename)}`,
+          );
+          if (baseName !== 'styles' && baseName !== 'style') {
+            prefix = `${prefix}_${baseName}`;
+          }
+
+          return `_${prefix}__${name}`;
+        },
+      },
       postcss: {
         plugins: [
           postcssPresetEnv({
@@ -73,7 +113,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       port: 3036,
     },
     build: {
-      target: 'modules',
       commonjsOptions: { transformMixedEsModules: true },
       chunkSizeWarningLimit: 1 * 1024 * 1024, // 1MB
       sourcemap: true,
@@ -81,6 +120,8 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       manifest: true,
       outDir,
       assetsDir: 'assets',
+      assetsInlineLimit: (filePath, _) =>
+        /\.woff2?$/.exec(filePath) ? false : undefined,
       rollupOptions: {
         input: await findEntrypoints(),
         output: {
@@ -115,6 +156,14 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
         },
       },
     },
+    experimental: {
+      /**
+       * Setting this causes Vite to not rely on the base config for import URLs,
+       * and instead uses import.meta.url, which is what we want for proper CDN support.
+       * @see https://github.com/mastodon/mastodon/pull/37310
+       */
+      renderBuiltUrl: () => undefined,
+    },
     worker: {
       format: 'es',
     },
@@ -127,21 +176,6 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       }),
       MastodonThemes(),
       MastodonAssetsManifest(),
-      viteStaticCopy({
-        targets: [
-          {
-            src: path.resolve(
-              __dirname,
-              'node_modules/emojibase-data/**/compact.json',
-            ),
-            dest: 'emoji',
-            rename(_name, ext, dir) {
-              const locale = path.basename(path.dirname(dir));
-              return `${locale}.${ext}`;
-            },
-          },
-        ],
-      }),
       MastodonServiceWorkerLocales(),
       MastodonEmojiCompressed(),
       legacy({
@@ -180,7 +214,10 @@ export const config: UserConfigFnPromise = async ({ mode, command }) => {
       svgr(),
       // Old library types need to be converted
       optimizeLodashImports() as PluginOption,
-      !!process.env.ANALYZE_BUNDLE_SIZE && (visualizer() as PluginOption),
+      !!process.env.ANALYZE_BUNDLE_SIZE &&
+        (visualizer({
+          template: process.env.CI ? 'raw-data' : 'treemap',
+        }) as PluginOption),
       MastodonNameLookup(),
     ],
   } satisfies UserConfig;

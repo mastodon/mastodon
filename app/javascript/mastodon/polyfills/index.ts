@@ -2,9 +2,6 @@
 // If there are no polyfills, then this is just Promise.resolve() which means
 // it will execute in the same tick of the event loop (i.e. near-instant).
 
-// eslint-disable-next-line import/extensions -- This file is virtual so it thinks it has an extension
-import 'vite/modulepreload-polyfill';
-
 import { loadIntlPolyfills } from './intl';
 
 function importExtraPolyfills() {
@@ -17,6 +14,7 @@ export function loadPolyfills() {
   const needsExtraPolyfills = !window.requestIdleCallback;
 
   return Promise.all([
+    loadVitePreloadPolyfill(),
     loadIntlPolyfills(),
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- those properties might not exist in old browsers, even if they are always here in types
     needsExtraPolyfills ? importExtraPolyfills() : Promise.resolve(),
@@ -29,6 +27,14 @@ async function loadEmojiPolyfills() {
   if (!('unicodeSets' in RegExp.prototype)) {
     emojiRegexPolyfill = (await import('emojibase-regex/emoji')).default;
   }
+}
+
+// Loads Vite's module preload polyfill for older browsers, but not in a Worker context.
+function loadVitePreloadPolyfill() {
+  if (typeof document === 'undefined') return;
+  // @ts-expect-error -- This is a virtual module provided by Vite.
+  // eslint-disable-next-line import/extensions
+  return import('vite/modulepreload-polyfill');
 }
 
 // Null unless polyfill is needed.
