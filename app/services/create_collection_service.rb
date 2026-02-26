@@ -9,7 +9,10 @@ class CreateCollectionService
 
     @collection.save!
 
-    distribute_add_activity if Mastodon::Feature.collections_federation_enabled?
+    if Mastodon::Feature.collections_federation_enabled?
+      distribute_add_activity
+      distribute_feature_request_activities
+    end
 
     @collection
   end
@@ -18,6 +21,12 @@ class CreateCollectionService
 
   def distribute_add_activity
     ActivityPub::AccountRawDistributionWorker.perform_async(activity_json, @account.id)
+  end
+
+  def distribute_feature_request_activities
+    @collection.collection_items.select(&:local_item_with_remote_account?).each do |collection_item|
+      ActivityPub::FeatureRequestWorker.perform_async(collection_item.id)
+    end
   end
 
   def build_items

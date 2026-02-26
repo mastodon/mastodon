@@ -35,6 +35,7 @@ class CollectionItem < ApplicationRecord
   validates :uri, presence: true, if: :remote?
 
   before_validation :set_position, on: :create
+  before_validation :set_activity_uri, only: :create, if: :local_item_with_remote_account?
 
   scope :ordered, -> { order(position: :asc) }
   scope :with_accounts, -> { includes(account: [:account_stat, :user]) }
@@ -54,5 +55,9 @@ class CollectionItem < ApplicationRecord
     return if position_changed?
 
     self.position = self.class.where(collection_id:).maximum(:position).to_i + 1
+  end
+
+  def set_activity_uri
+    self.activity_uri = [ActivityPub::TagManager.instance.uri_for(collection.account), '/feature_requests/', SecureRandom.uuid].join
   end
 end
