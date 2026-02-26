@@ -17,7 +17,7 @@ import { ModalShell } from 'mastodon/components/modal_shell';
 import { useAppDispatch } from 'mastodon/store';
 
 import { AuthorNote } from '.';
-import classes from './styles.module.scss';
+import classes from './share_modal.module.scss';
 
 const messages = defineMessages({
   shareTextOwn: {
@@ -65,7 +65,7 @@ export const CollectionShareModal: React.FC<{
   return (
     <ModalShell>
       <ModalShell.Body>
-        <h1 className={classes.shareModalHeading}>
+        <h1 className={classes.heading}>
           {isNew ? (
             <FormattedMessage
               id='collection.share_modal.title_new'
@@ -86,13 +86,13 @@ export const CollectionShareModal: React.FC<{
           })}
           iconComponent={CloseIcon}
           icon='close'
-          className={classes.shareModalCloseButtonDesktop}
+          className={classes.closeButtonDesktop}
           onClick={onClose}
         />
 
-        <div className={classes.sharePreview}>
+        <div className={classes.preview}>
           <div>
-            <h2 className={classes.sharePreviewTitle}>{collection.name}</h2>
+            <h2 className={classes.previewHeading}>{collection.name}</h2>
             <AuthorNote previewMode id={collection.account_id} />
           </div>
           <AvatarGroup>
@@ -114,33 +114,27 @@ export const CollectionShareModal: React.FC<{
         />
       </ModalShell.Body>
 
-      <ModalShell.Actions>
-        <div className={classes.shareModalButtonWrapper}>
-          <div className={classes.primaryButtons}>
-            <Button secondary onClick={handleShareViaPost}>
+      <ModalShell.Actions className={classes.actions}>
+        <div className={classes.shareButtonWrapper}>
+          <Button secondary onClick={handleShareViaPost}>
+            <FormattedMessage
+              id='collection.share_modal.share_via_post'
+              defaultMessage='Post on Mastodon'
+            />
+          </Button>
+          {'share' in navigator && (
+            <Button secondary onClick={handleShareOnDevice}>
               <FormattedMessage
-                id='collection.share_modal.share_via_post'
-                defaultMessage='Post on Mastodon'
+                id='collection.share_modal.share_via_system'
+                defaultMessage='Share to…'
               />
             </Button>
-            {'share' in navigator && (
-              <Button secondary onClick={handleShareOnDevice}>
-                <FormattedMessage
-                  id='collection.share_modal.share_via_system'
-                  defaultMessage='Share to…'
-                />
-              </Button>
-            )}
-          </div>
-
-          <Button
-            plain
-            onClick={onClose}
-            className={classes.shareModalCloseButtonMobile}
-          >
-            <FormattedMessage id='lightbox.close' defaultMessage='Close' />
-          </Button>
+          )}
         </div>
+
+        <Button plain onClick={onClose} className={classes.closeButtonMobile}>
+          <FormattedMessage id='lightbox.close' defaultMessage='Close' />
+        </Button>
       </ModalShell.Actions>
     </ModalShell>
   );

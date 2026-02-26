@@ -70,11 +70,7 @@ export const AuthorNote: React.FC<{ id: string; previewMode?: boolean }> = ({
   const displayAsYou = id === me && !previewMode;
 
   return (
-    <p
-      className={
-        previewMode ? classes.sharePreviewAuthorNote : classes.authorNote
-      }
-    >
+    <p className={previewMode ? classes.previewAuthorNote : classes.authorNote}>
       {displayAsYou ? (
         <FormattedMessage
           id='collections.detail.curated_by_you'
