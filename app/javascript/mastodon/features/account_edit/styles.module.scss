@@ -90,18 +90,20 @@ textarea.inputText {
   }
 }
 
-.formOverride {
-  display: block; // By default the form element has display: flex with a gap.
-}
-
 .toggleInputWrapper {
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-template-rows: repeat(2, auto);
-  padding: 12px 0;
 
-  &:not(:first-child) {
-    border-top: 1px solid var(--color-border-primary);
+  > div {
+    display: grid;
+    grid-column: span 2;
+    grid-template-columns: subgrid;
+    grid-template-rows: repeat(2, auto);
+    padding: 12px 0;
+
+    &:not(:first-child) {
+      border-top: 1px solid var(--color-border-primary);
+    }
   }
 
   h2,
