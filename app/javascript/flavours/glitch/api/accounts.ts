@@ -2,6 +2,7 @@ import {
   apiRequestPost,
   apiRequestGet,
   apiRequestDelete,
+  apiRequestPatch,
 } from 'flavours/glitch/api';
 import type {
   ApiAccountJSON,
@@ -12,6 +13,11 @@ import type {
   ApiFeaturedTagJSON,
   ApiHashtagJSON,
 } from 'flavours/glitch/api_types/tags';
+
+import type {
+  ApiProfileJSON,
+  ApiProfileUpdateParams,
+} from '../api_types/profile';
 
 export const apiSubmitAccountNote = (id: string, value: string) =>
   apiRequestPost<ApiRelationshipJSON>(`v1/accounts/${id}/note`, {
@@ -58,3 +64,8 @@ export const apiGetFamiliarFollowers = (id: string) =>
   apiRequestGet<ApiFamiliarFollowersJSON>('v1/accounts/familiar_followers', {
     id,
   });
+
+export const apiGetProfile = () => apiRequestGet<ApiProfileJSON>('v1/profile');
+
+export const apiPatchProfile = (params: ApiProfileUpdateParams) =>
+  apiRequestPatch<ApiProfileJSON>('v1/profile', params);

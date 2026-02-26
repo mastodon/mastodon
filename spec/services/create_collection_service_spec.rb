@@ -61,6 +61,16 @@ RSpec.describe CreateCollectionService do
             end.to raise_error(Mastodon::NotPermittedError)
           end
         end
+
+        context 'when some accounts are remote' do
+          let(:accounts) { Fabricate.times(2, :remote_account, feature_approval_policy: (0b10 << 16)) }
+
+          it 'federates `FeatureRequest` activities', feature: :collections_federation do
+            subject.call(params, author)
+
+            expect(ActivityPub::FeatureRequestWorker).to have_enqueued_sidekiq_job.exactly(2).times
+          end
+        end
       end
 
       context 'when given a tag' do

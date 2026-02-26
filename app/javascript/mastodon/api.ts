@@ -179,3 +179,10 @@ export async function apiRequestDelete<
 >(url: ApiUrl, params?: RequestParamsOrData<ApiParams>) {
   return apiRequest<ApiResponse>('DELETE', url, { params });
 }
+
+export async function apiRequestPatch<ApiResponse = unknown, ApiData = unknown>(
+  url: ApiUrl,
+  data?: RequestParamsOrData<ApiData>,
+) {
+  return apiRequest<ApiResponse>('PATCH', url, { data });
+}

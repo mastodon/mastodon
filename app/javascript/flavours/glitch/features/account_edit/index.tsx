@@ -7,13 +7,17 @@ import { useHistory } from 'react-router-dom';
 
 import type { ModalType } from '@/flavours/glitch/actions/modal';
 import { openModal } from '@/flavours/glitch/actions/modal';
-import { AccountBio } from '@/flavours/glitch/components/account_bio';
 import { Avatar } from '@/flavours/glitch/components/avatar';
-import { DisplayNameSimple } from '@/flavours/glitch/components/display_name/simple';
+import { CustomEmojiProvider } from '@/flavours/glitch/components/emoji/context';
+import { EmojiHTML } from '@/flavours/glitch/components/emoji/html';
+import { useElementHandledLink } from '@/flavours/glitch/components/status/handled_link';
 import { useAccount } from '@/flavours/glitch/hooks/useAccount';
 import { useCurrentAccountId } from '@/flavours/glitch/hooks/useAccountId';
 import { autoPlayGif } from '@/flavours/glitch/initial_state';
-import { fetchFeaturedTags } from '@/flavours/glitch/reducers/slices/profile_edit';
+import {
+  fetchFeaturedTags,
+  fetchProfile,
+} from '@/flavours/glitch/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/flavours/glitch/store';
 
 import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
@@ -82,11 +86,10 @@ export const AccountEdit: FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const { tags: featuredTags, isLoading: isTagsLoading } = useAppSelector(
-    (state) => state.profileEdit,
-  );
+  const { profile, tags = [] } = useAppSelector((state) => state.profileEdit);
   useEffect(() => {
     void dispatch(fetchFeaturedTags());
+    void dispatch(fetchProfile());
   }, [dispatch]);
 
   const handleOpenModal = useCallback(
@@ -107,14 +110,20 @@ export const AccountEdit: FC = () => {
     history.push('/profile/featured_tags');
   }, [history]);
 
-  if (!accountId || !account) {
+  // Normally we would use the account emoji, but we want all custom emojis to be available to render after editing.
+  const emojis = useAppSelector((state) => state.custom_emojis);
+  const htmlHandlers = useElementHandledLink({
+    hashtagAccountId: profile?.id,
+  });
+
+  if (!accountId || !account || !profile) {
     return <AccountEditEmptyColumn notFound={!accountId} />;
   }
 
-  const headerSrc = autoPlayGif ? account.header : account.header_static;
-  const hasName = !!account.display_name;
-  const hasBio = !!account.note_plain;
-  const hasTags = !isTagsLoading && featuredTags.length > 0;
+  const headerSrc = autoPlayGif ? profile.header : profile.headerStatic;
+  const hasName = !!profile.displayName;
+  const hasBio = !!profile.bio;
+  const hasTags = tags.length > 0;
 
   return (
     <AccountEditColumn
@@ -128,62 +137,64 @@ export const AccountEdit: FC = () => {
         <Avatar account={account} size={80} className={classes.avatar} />
       </header>
 
-      <AccountEditSection
-        title={messages.displayNameTitle}
-        description={messages.displayNamePlaceholder}
-        showDescription={!hasName}
-        buttons={
-          <EditButton
-            onClick={handleNameEdit}
-            item={messages.displayNameTitle}
-            edit={hasName}
-          />
-        }
-      >
-        <DisplayNameSimple account={account} />
-      </AccountEditSection>
+      <CustomEmojiProvider emojis={emojis}>
+        <AccountEditSection
+          title={messages.displayNameTitle}
+          description={messages.displayNamePlaceholder}
+          showDescription={!hasName}
+          buttons={
+            <EditButton
+              onClick={handleNameEdit}
+              item={messages.displayNameTitle}
+              edit={hasName}
+            />
+          }
+        >
+          <EmojiHTML htmlString={profile.displayName} {...htmlHandlers} />
+        </AccountEditSection>
 
-      <AccountEditSection
-        title={messages.bioTitle}
-        description={messages.bioPlaceholder}
-        showDescription={!hasBio}
-        buttons={
-          <EditButton
-            onClick={handleBioEdit}
-            item={messages.bioTitle}
-            edit={hasBio}
-          />
-        }
-      >
-        <AccountBio accountId={accountId} />
-      </AccountEditSection>
+        <AccountEditSection
+          title={messages.bioTitle}
+          description={messages.bioPlaceholder}
+          showDescription={!hasBio}
+          buttons={
+            <EditButton
+              onClick={handleBioEdit}
+              item={messages.bioTitle}
+              edit={hasBio}
+            />
+          }
+        >
+          <EmojiHTML htmlString={profile.bio} {...htmlHandlers} />
+        </AccountEditSection>
 
-      <AccountEditSection
-        title={messages.customFieldsTitle}
-        description={messages.customFieldsPlaceholder}
-        showDescription
-      />
+        <AccountEditSection
+          title={messages.customFieldsTitle}
+          description={messages.customFieldsPlaceholder}
+          showDescription
+        />
 
-      <AccountEditSection
-        title={messages.featuredHashtagsTitle}
-        description={messages.featuredHashtagsPlaceholder}
-        showDescription={!hasTags}
-        buttons={
-          <EditButton
-            onClick={handleFeaturedTagsEdit}
-            edit={hasTags}
-            item={messages.featuredHashtagsItem}
-          />
-        }
-      >
-        {featuredTags.map((tag) => `#${tag.name}`).join(', ')}
-      </AccountEditSection>
+        <AccountEditSection
+          title={messages.featuredHashtagsTitle}
+          description={messages.featuredHashtagsPlaceholder}
+          showDescription={!hasTags}
+          buttons={
+            <EditButton
+              onClick={handleFeaturedTagsEdit}
+              edit={hasTags}
+              item={messages.featuredHashtagsItem}
+            />
+          }
+        >
+          {tags.map((tag) => `#${tag.name}`).join(', ')}
+        </AccountEditSection>
 
-      <AccountEditSection
-        title={messages.profileTabTitle}
-        description={messages.profileTabSubtitle}
-        showDescription
-      />
+        <AccountEditSection
+          title={messages.profileTabTitle}
+          description={messages.profileTabSubtitle}
+          showDescription
+        />
+      </CustomEmojiProvider>
     </AccountEditColumn>
   );
 };

@@ -4,12 +4,11 @@ import type { ChangeEventHandler, FC } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import { TextArea } from '@/flavours/glitch/components/form_fields';
-import { LoadingIndicator } from '@/flavours/glitch/components/loading_indicator';
 import { insertEmojiAtPosition } from '@/flavours/glitch/features/emoji/utils';
 import type { BaseConfirmationModalProps } from '@/flavours/glitch/features/ui/components/confirmation_modals';
 import { ConfirmationModal } from '@/flavours/glitch/features/ui/components/confirmation_modals';
-import { useAccount } from '@/flavours/glitch/hooks/useAccount';
-import { useCurrentAccountId } from '@/flavours/glitch/hooks/useAccountId';
+import { patchProfile } from '@/flavours/glitch/reducers/slices/profile_edit';
+import { useAppDispatch, useAppSelector } from '@/flavours/glitch/store';
 
 import classes from '../styles.module.scss';
 
@@ -38,10 +37,11 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   const titleId = useId();
   const counterId = useId();
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const accountId = useCurrentAccountId();
-  const account = useAccount(accountId);
 
-  const [newBio, setNewBio] = useState(account?.note_plain ?? '');
+  const { profile: { bio } = {}, isPending } = useAppSelector(
+    (state) => state.profileEdit,
+  );
+  const [newBio, setNewBio] = useState(bio ?? '');
   const handleChange: ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
       setNewBio(event.currentTarget.value);
@@ -55,19 +55,22 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
     });
   }, []);
 
-  if (!account) {
-    return <LoadingIndicator />;
-  }
+  const dispatch = useAppDispatch();
+  const handleSave = useCallback(() => {
+    if (!isPending) {
+      void dispatch(patchProfile({ note: newBio })).then(onClose);
+    }
+  }, [dispatch, isPending, newBio, onClose]);
 
   return (
     <ConfirmationModal
-      title={intl.formatMessage(
-        account.note_plain ? messages.editTitle : messages.addTitle,
-      )}
+      title={intl.formatMessage(bio ? messages.editTitle : messages.addTitle)}
       titleId={titleId}
       confirm={intl.formatMessage(messages.save)}
-      onConfirm={onClose} // To be implemented
+      onConfirm={handleSave}
       onClose={onClose}
+      updating={isPending}
+      disabled={newBio.length > MAX_BIO_LENGTH}
       noFocusButton
     >
       <div className={classes.inputWrapper}>

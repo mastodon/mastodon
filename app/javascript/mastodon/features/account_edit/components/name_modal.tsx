@@ -7,8 +7,8 @@ import { TextInput } from '@/mastodon/components/form_fields';
 import { insertEmojiAtPosition } from '@/mastodon/features/emoji/utils';
 import type { BaseConfirmationModalProps } from '@/mastodon/features/ui/components/confirmation_modals';
 import { ConfirmationModal } from '@/mastodon/features/ui/components/confirmation_modals';
-import { useAccount } from '@/mastodon/hooks/useAccount';
-import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
+import { patchProfile } from '@/mastodon/reducers/slices/profile_edit';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import classes from '../styles.module.scss';
 
@@ -37,10 +37,11 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   const titleId = useId();
   const counterId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
-  const accountId = useCurrentAccountId();
-  const account = useAccount(accountId);
 
-  const [newName, setNewName] = useState(account?.display_name ?? '');
+  const { profile: { displayName } = {}, isPending } = useAppSelector(
+    (state) => state.profileEdit,
+  );
+  const [newName, setNewName] = useState(displayName ?? '');
   const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       setNewName(event.currentTarget.value);
@@ -54,13 +55,22 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
     });
   }, []);
 
+  const dispatch = useAppDispatch();
+  const handleSave = useCallback(() => {
+    if (!isPending) {
+      void dispatch(patchProfile({ display_name: newName })).then(onClose);
+    }
+  }, [dispatch, isPending, newName, onClose]);
+
   return (
     <ConfirmationModal
       title={intl.formatMessage(messages.editTitle)}
       titleId={titleId}
       confirm={intl.formatMessage(messages.save)}
-      onConfirm={onClose} // To be implemented
+      onConfirm={handleSave}
       onClose={onClose}
+      updating={isPending}
+      disabled={newName.length > MAX_NAME_LENGTH}
       noCloseOnConfirm
       noFocusButton
     >

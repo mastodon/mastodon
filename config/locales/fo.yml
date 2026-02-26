@@ -12,6 +12,9 @@ fo:
     followers:
       one: Fylgjari
       other: Fylgjarar
+    following:
+      one: Fylgi
+      other: Fylgi
     instance_actor_flash: Hendan kontan er ein tykisligur aktørur, sum verður brúktur til at umboða ambætaran sjálvan og ikki nakran ávísan brúkara. Hon verður brúkt til sameind endamál og eigur ikki at vera tikin úr gildi.
     last_active: virkin seinast
     link_verified_on: Eigaraskapur av hesum leinki var eftirkannaður tann %{date}
@@ -264,6 +267,7 @@ fo:
         demote_user_html: "%{name} lækkaði tignina hjá brúkaranum %{target}"
         destroy_announcement_html: "%{name} strikaðar fráboðanir %{target}"
         destroy_canonical_email_block_html: "%{name} strikaði blokeringina av teldupostin við hashkodu %{target}"
+        destroy_collection_html: "%{name} slettaði savnið hjá %{target}"
         destroy_custom_emoji_html: "%{name} strikaði kensluteknið %{target}"
         destroy_domain_allow_html: "%{name} havnaði sameining við navnaøkið %{target}"
         destroy_domain_block_html: "%{name} strikaði blokering av navnaøkinum %{target}"
@@ -303,6 +307,7 @@ fo:
         unsilence_account_html: "%{name} strikaði avmarkingina av kontuni hjá %{target}"
         unsuspend_account_html: "%{name} setti kontuna hjá %{target} í gildi aftur"
         update_announcement_html: "%{name} dagførdi kunngerðina %{target}"
+        update_collection_html: "%{name} dagførdi savnið hjá %{target}"
         update_custom_emoji_html: "%{name} dagførdi kensluteknið %{target}"
         update_domain_block_html: "%{name} dagførdi navnaøkisblokeringina hjá %{target}"
         update_ip_block_html: "%{name} broytti IP-reglurnar %{target}"
@@ -342,6 +347,9 @@ fo:
       accounts: Kontur
       collection_title: Savn hjá %{name}
       contents: Innihald
+      number_of_accounts:
+        one: 1 konta
+        other: "%{count} kontur"
       open: Opin
       view_publicly: Vís fyri øllum
     critical_update_pending: Kritisk dagføring bíðar
