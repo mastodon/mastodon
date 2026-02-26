@@ -62,6 +62,7 @@ be:
         label: Змяніць ролю
         no_role: Няма ролі
         title: Змяніць ролю для %{username}
+      collections: Калекцыі
       confirm: Пацвердзіць
       confirmed: Пацверджаны
       confirming: Ідзе пацвярджэнне
@@ -274,6 +275,7 @@ be:
         demote_user_html: "%{name} прыбраў карыстальніка %{target}"
         destroy_announcement_html: "%{name} выдаліў аб'яву %{target}"
         destroy_canonical_email_block_html: "%{name} разблакіраваў эл. пошту з хэшам %{target}"
+        destroy_collection_html: "%{name} выдаліў(-ла) калекцыю %{target}"
         destroy_custom_emoji_html: "%{name} выдаліў(-ла) эмодзі %{target}"
         destroy_domain_allow_html: "%{name} зняў(-ла) дазвол на аб’яднанне з даменам %{target}"
         destroy_domain_block_html: "%{name} разблакаваў дамен %{target}"
@@ -313,6 +315,7 @@ be:
         unsilence_account_html: "%{name} зняў ліміт з уліковага запісу %{target}"
         unsuspend_account_html: Уліковы запіс %{target} адноўлены %{name}
         update_announcement_html: "%{name} абнавіў(-ла) аб’яву %{target}"
+        update_collection_html: "%{name} абнавіў(-ла) калекцыю %{target}"
         update_custom_emoji_html: "%{name} абнавіў эмодзі %{target}"
         update_domain_block_html: "%{name} абнавіў блакіроўку дамена для %{target}"
         update_ip_block_html: "%{name} змяніў правіла для IP %{target}"
@@ -348,6 +351,17 @@ be:
       unpublish: Зняць з публікацыі
       unpublished_msg: Аб’ява схавана!
       updated_msg: Аб’ява абноўлена!
+    collections:
+      accounts: Уліковыя запісы
+      collection_title: Калекцыя %{name}
+      contents: Змесціва
+      number_of_accounts:
+        few: "%{count} уліковыя запісы"
+        many: "%{count} уліковых запісаў"
+        one: 1 уліковы запіс
+        other: "%{count} уліковых запісаў"
+      open: Адкрыць
+      view_publicly: Глядзець публічна
     critical_update_pending: Чакаецца абнаўленне
     custom_emojis:
       assign_category: Прызначыць катэгорыю
@@ -705,6 +719,7 @@ be:
       cancel: Скасаваць
       category: Катэгорыя
       category_description_html: Прычына паведамлення аб гэтым уліковым запісе і/або кантэнце будзе згадана ў сувязі з уліковым запісам, на які пададзена скарга
+      collections: Калекцыі (%{count})
       comment:
         none: Пуста
       comment_description_html: 'Каб даць больш інфармацыі, %{name} напісаў:'
@@ -734,11 +749,13 @@ be:
       report: 'Скарга #%{id}'
       reported_account: Уліковы запіс парушальніка
       reported_by: Адпраўнік скаргі
+      reported_content: Змесціва, на якое паскардзіліся
       reported_with_application: Паведамлена праз праграму
       resolved: Вырашана
       resolved_msg: Скарга была паспяхова вырашана!
       skip_to_actions: Прапусціць дзеянні
       status: Стан
+      statuses: Допісы (%{count})
       statuses_description_html: Крыўднае змесціва будзе згадвацца ў зносінах з уліковым запісам, на які пададзена скарга
       summary:
         action_preambles:
