@@ -12,6 +12,9 @@ es:
     followers:
       one: Seguidor
       other: Seguidores
+    following:
+      one: Siguiendo
+      other: Siguiendo
     instance_actor_flash: Esta cuenta es un actor virtual utilizado para representar al propio servidor y no a ningún usuario individual. Se utiliza con fines de federación y no debe suspenderse.
     last_active: última conexión
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
@@ -264,6 +267,7 @@ es:
         demote_user_html: "%{name} degradó al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} desbloqueó el correo electrónico con el hash %{target}"
+        destroy_collection_html: "%{name} eliminó la colección de %{target}"
         destroy_custom_emoji_html: "%{name} eliminó el emoji %{target}"
         destroy_domain_allow_html: "%{name} bloqueó la federación con el dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
@@ -303,6 +307,7 @@ es:
         unsilence_account_html: "%{name} desilenció la cuenta de %{target}"
         unsuspend_account_html: "%{name} reactivó la cuenta de %{target}"
         update_announcement_html: "%{name} actualizó el anuncio %{target}"
+        update_collection_html: "%{name} actualizó la colección de %{target}"
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_ip_block_html: "%{name} cambió la regla para la IP %{target}"

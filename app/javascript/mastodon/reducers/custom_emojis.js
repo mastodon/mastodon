@@ -4,6 +4,7 @@ import { CUSTOM_EMOJIS_FETCH_SUCCESS } from '../actions/custom_emojis';
 import { buildCustomEmojis } from '../features/emoji/emoji';
 import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
 
+/** @type {ImmutableList<import('@/mastodon/models/custom_emoji').CustomEmoji>} */
 const initialState = ImmutableList([]);
 
 export default function custom_emojis(state = initialState, action) {

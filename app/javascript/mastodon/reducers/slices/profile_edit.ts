@@ -6,10 +6,16 @@ import { debounce } from 'lodash';
 import {
   apiDeleteFeaturedTag,
   apiGetCurrentFeaturedTags,
+  apiGetProfile,
   apiGetTagSuggestions,
+  apiPatchProfile,
   apiPostFeaturedTag,
 } from '@/mastodon/api/accounts';
 import { apiGetSearch } from '@/mastodon/api/search';
+import type {
+  ApiProfileJSON,
+  ApiProfileUpdateParams,
+} from '@/mastodon/api_types/profile';
 import { hashtagToFeaturedTag } from '@/mastodon/api_types/tags';
 import type { ApiFeaturedTagJSON } from '@/mastodon/api_types/tags';
 import type { AppDispatch } from '@/mastodon/store';
@@ -17,11 +23,21 @@ import {
   createAppAsyncThunk,
   createDataLoadingThunk,
 } from '@/mastodon/store/typed_functions';
+import type { SnakeToCamelCase } from '@/mastodon/utils/types';
 
-interface ProfileEditState {
-  tags: ApiFeaturedTagJSON[];
-  tagSuggestions: ApiFeaturedTagJSON[];
-  isLoading: boolean;
+type ProfileData = {
+  [Key in keyof Omit<
+    ApiProfileJSON,
+    'note'
+  > as SnakeToCamelCase<Key>]: ApiProfileJSON[Key];
+} & {
+  bio: ApiProfileJSON['note'];
+};
+
+export interface ProfileEditState {
+  profile?: ProfileData;
+  tags?: ApiFeaturedTagJSON[];
+  tagSuggestions?: ApiFeaturedTagJSON[];
   isPending: boolean;
   search: {
     query: string;
@@ -31,9 +47,6 @@ interface ProfileEditState {
 }
 
 const initialState: ProfileEditState = {
-  tags: [],
-  tagSuggestions: [],
-  isLoading: true,
   isPending: false,
   search: {
     query: '',
@@ -49,6 +62,7 @@ const profileEditSlice = createSlice({
       if (state.search.query === action.payload) {
         return;
       }
+
       state.search.query = action.payload;
       state.search.isLoading = false;
       state.search.results = undefined;
@@ -60,13 +74,25 @@ const profileEditSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    builder.addCase(fetchProfile.fulfilled, (state, action) => {
+      state.profile = action.payload;
+    });
     builder.addCase(fetchSuggestedTags.fulfilled, (state, action) => {
       state.tagSuggestions = action.payload.map(hashtagToFeaturedTag);
-      state.isLoading = false;
     });
     builder.addCase(fetchFeaturedTags.fulfilled, (state, action) => {
       state.tags = action.payload;
-      state.isLoading = false;
+    });
+
+    builder.addCase(patchProfile.pending, (state) => {
+      state.isPending = true;
+    });
+    builder.addCase(patchProfile.rejected, (state) => {
+      state.isPending = false;
+    });
+    builder.addCase(patchProfile.fulfilled, (state, action) => {
+      state.profile = action.payload;
+      state.isPending = false;
     });
 
     builder.addCase(addFeaturedTag.pending, (state) => {
@@ -76,12 +102,18 @@ const profileEditSlice = createSlice({
       state.isPending = false;
     });
     builder.addCase(addFeaturedTag.fulfilled, (state, action) => {
+      if (!state.tags) {
+        return;
+      }
+
       state.tags = [...state.tags, action.payload].toSorted(
         (a, b) => b.statuses_count - a.statuses_count,
       );
-      state.tagSuggestions = state.tagSuggestions.filter(
-        (tag) => tag.name !== action.meta.arg.name,
-      );
+      if (state.tagSuggestions) {
+        state.tagSuggestions = state.tagSuggestions.filter(
+          (tag) => tag.name !== action.meta.arg.name,
+        );
+      }
       state.isPending = false;
     });
 
@@ -92,6 +124,10 @@ const profileEditSlice = createSlice({
       state.isPending = false;
     });
     builder.addCase(deleteFeaturedTag.fulfilled, (state, action) => {
+      if (!state.tags) {
+        return;
+      }
+
       state.tags = state.tags.filter((tag) => tag.id !== action.meta.arg.tagId);
       state.isPending = false;
     });
@@ -106,7 +142,7 @@ const profileEditSlice = createSlice({
     builder.addCase(fetchSearchResults.fulfilled, (state, action) => {
       state.search.isLoading = false;
       const searchResults: ApiFeaturedTagJSON[] = [];
-      const currentTags = new Set(state.tags.map((tag) => tag.name));
+      const currentTags = new Set((state.tags ?? []).map((tag) => tag.name));
 
       for (const tag of action.payload) {
         if (currentTags.has(tag.name)) {
@@ -124,6 +160,41 @@ const profileEditSlice = createSlice({
 
 export const profileEdit = profileEditSlice.reducer;
 export const { clearSearch } = profileEditSlice.actions;
+
+const transformProfile = (result: ApiProfileJSON): ProfileData => ({
+  id: result.id,
+  displayName: result.display_name,
+  bio: result.note,
+  fields: result.fields,
+  avatar: result.avatar,
+  avatarStatic: result.avatar_static,
+  avatarDescription: result.avatar_description,
+  header: result.header,
+  headerStatic: result.header_static,
+  headerDescription: result.header_description,
+  locked: result.locked,
+  bot: result.bot,
+  hideCollections: result.hide_collections,
+  discoverable: result.discoverable,
+  indexable: result.indexable,
+  showMedia: result.show_media,
+  showMediaReplies: result.show_media_replies,
+  showFeatured: result.show_featured,
+  attributionDomains: result.attribution_domains,
+});
+
+export const fetchProfile = createDataLoadingThunk(
+  `${profileEditSlice.name}/fetchProfile`,
+  apiGetProfile,
+  transformProfile,
+);
+
+export const patchProfile = createDataLoadingThunk(
+  `${profileEditSlice.name}/patchProfile`,
+  (params: Partial<ApiProfileUpdateParams>) => apiPatchProfile(params),
+  transformProfile,
+  { useLoadingBar: false },
+);
 
 export const fetchFeaturedTags = createDataLoadingThunk(
   `${profileEditSlice.name}/fetchFeaturedTags`,
@@ -143,7 +214,10 @@ export const addFeaturedTag = createDataLoadingThunk(
   {
     condition(arg, { getState }) {
       const state = getState();
-      return !state.profileEdit.tags.some((tag) => tag.name === arg.name);
+      return (
+        !!state.profileEdit.tags &&
+        !state.profileEdit.tags.some((tag) => tag.name === arg.name)
+      );
     },
   },
 );

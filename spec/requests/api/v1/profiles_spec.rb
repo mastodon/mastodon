@@ -48,7 +48,8 @@ RSpec.describe 'Profile API' do
           'note' => account.note,
           'show_featured' => account.show_featured,
           'show_media' => account.show_media,
-          'show_media_replies' => account.show_media_replies
+          'show_media_replies' => account.show_media_replies,
+          'featured_tags' => []
         )
     end
   end

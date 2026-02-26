@@ -14,7 +14,11 @@ import {
   fetchFeaturedTags,
   fetchSuggestedTags,
 } from '@/mastodon/reducers/slices/profile_edit';
-import { useAppDispatch, useAppSelector } from '@/mastodon/store';
+import {
+  createAppSelector,
+  useAppDispatch,
+  useAppSelector,
+} from '@/mastodon/store';
 
 import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
 import { AccountEditItemList } from './components/item_list';
@@ -28,14 +32,23 @@ const messages = defineMessages({
   },
 });
 
+const selectTags = createAppSelector(
+  [(state) => state.profileEdit],
+  (profileEdit) => ({
+    tags: profileEdit.tags ?? [],
+    tagSuggestions: profileEdit.tagSuggestions ?? [],
+    isLoading: !profileEdit.tags || !profileEdit.tagSuggestions,
+    isPending: profileEdit.isPending,
+  }),
+);
+
 export const AccountEditFeaturedTags: FC = () => {
   const accountId = useCurrentAccountId();
   const account = useAccount(accountId);
   const intl = useIntl();
 
-  const { tags, tagSuggestions, isLoading, isPending } = useAppSelector(
-    (state) => state.profileEdit,
-  );
+  const { tags, tagSuggestions, isLoading, isPending } =
+    useAppSelector(selectTags);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
