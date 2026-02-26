@@ -8,8 +8,8 @@ import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { insertEmojiAtPosition } from '@/mastodon/features/emoji/utils';
 import type { BaseConfirmationModalProps } from '@/mastodon/features/ui/components/confirmation_modals';
 import { ConfirmationModal } from '@/mastodon/features/ui/components/confirmation_modals';
-import { useAccount } from '@/mastodon/hooks/useAccount';
-import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
+import { patchProfile } from '@/mastodon/reducers/slices/profile_edit';
+import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import classes from '../styles.module.scss';
 
@@ -38,10 +38,11 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   const titleId = useId();
   const counterId = useId();
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const accountId = useCurrentAccountId();
-  const account = useAccount(accountId);
 
-  const [newBio, setNewBio] = useState(account?.note_plain ?? '');
+  const { profile: { bio } = {}, isPending } = useAppSelector(
+    (state) => state.profileEdit,
+  );
+  const [newBio, setNewBio] = useState(bio ?? '');
   const handleChange: ChangeEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
       setNewBio(event.currentTarget.value);
@@ -55,19 +56,26 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
     });
   }, []);
 
-  if (!account) {
+  const dispatch = useAppDispatch();
+  const handleSave = useCallback(() => {
+    if (!isPending) {
+      void dispatch(patchProfile({ note: newBio })).then(onClose);
+    }
+  }, [dispatch, isPending, newBio, onClose]);
+
+  if (bio === undefined) {
     return <LoadingIndicator />;
   }
 
   return (
     <ConfirmationModal
-      title={intl.formatMessage(
-        account.note_plain ? messages.editTitle : messages.addTitle,
-      )}
+      title={intl.formatMessage(bio ? messages.editTitle : messages.addTitle)}
       titleId={titleId}
       confirm={intl.formatMessage(messages.save)}
-      onConfirm={onClose} // To be implemented
+      onConfirm={handleSave}
       onClose={onClose}
+      updating={isPending}
+      disabled={newBio.length > MAX_BIO_LENGTH}
       noFocusButton
     >
       <div className={classes.inputWrapper}>
