@@ -16,6 +16,8 @@ import { Icon } from 'mastodon/components/icon';
 import { ButtonInTabsBar } from 'mastodon/features/ui/util/columns_context';
 import { useIdentity } from 'mastodon/identity_context';
 
+import { SKIP_LINK_TARGETS } from '../features/ui/components/skip_links';
+
 import { useAppHistory } from './router';
 
 export const messages = defineMessages({
@@ -272,6 +274,7 @@ export const ColumnHeader: React.FC<Props> = ({
               onClick={handleTitleClick}
               className='column-header__title'
               type='button'
+              id={SKIP_LINK_TARGETS.CONTENT}
             >
               {!backButton && hasIcon && (
                 <Icon

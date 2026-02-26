@@ -1,0 +1,35 @@
+.wrapper {
+  position: fixed;
+  margin: 10px;
+  z-index: 1;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  box-shadow: var(--dropdown-shadow);
+
+  :any-link {
+    display: block;
+    padding: 8px;
+    color: inherit;
+    text-decoration-color: var(--color-text-secondary);
+    text-underline-offset: 0.2em;
+
+    &:focus-visible {
+      background: var(--color-bg-brand-softer);
+    }
+  }
+
+  li:not(:first-child) {
+    margin-top: 2px;
+  }
+
+  /* Hide visually when not focused */
+  &:not(:focus-within) {
+    width: 1px;
+    height: 1px;
+    clip-path: inset(50%);
+    overflow: hidden;
+  }
+}
