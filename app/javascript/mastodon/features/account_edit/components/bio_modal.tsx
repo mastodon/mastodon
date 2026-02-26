@@ -4,7 +4,6 @@ import type { ChangeEventHandler, FC } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import { TextArea } from '@/mastodon/components/form_fields';
-import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { insertEmojiAtPosition } from '@/mastodon/features/emoji/utils';
 import type { BaseConfirmationModalProps } from '@/mastodon/features/ui/components/confirmation_modals';
 import { ConfirmationModal } from '@/mastodon/features/ui/components/confirmation_modals';
@@ -62,10 +61,6 @@ export const BioModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
       void dispatch(patchProfile({ note: newBio })).then(onClose);
     }
   }, [dispatch, isPending, newBio, onClose]);
-
-  if (bio === undefined) {
-    return <LoadingIndicator />;
-  }
 
   return (
     <ConfirmationModal
