@@ -262,6 +262,11 @@ svg.badgeIcon {
       }
     }
   }
+
+  // See: https://stackoverflow.com/questions/13226296/is-scrollwidth-property-of-a-span-not-working-on-chrome
+  [data-contents] {
+    display: inline-block;
+  }
 }
 
 .fieldVerified {
