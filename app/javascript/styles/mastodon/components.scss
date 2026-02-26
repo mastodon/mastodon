@@ -4036,15 +4036,17 @@ a.account__display-name {
 }
 
 .column-link {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: 8px;
   width: 100%;
-  padding: 12px;
+  padding: 10px;
+  padding-inline-start: 14px;
+  overflow: hidden;
   font-size: 16px;
   font-weight: 400;
   text-decoration: none;
-  overflow: hidden;
   white-space: nowrap;
   color: color-mix(
     in oklab,
@@ -4052,9 +4054,8 @@ a.account__display-name {
     var(--color-text-secondary)
   );
   background: transparent;
-  border: 0;
-  border-left: 4px solid transparent;
-  box-sizing: border-box;
+  border: 2px solid transparent;
+  border-radius: 4px;
 
   &:hover,
   &:active,
@@ -4066,13 +4067,10 @@ a.account__display-name {
     color: var(--color-text-brand);
   }
 
-  &:focus {
-    outline: 0;
-  }
-
   &:focus-visible {
+    outline: none;
     border-color: var(--color-text-brand);
-    border-radius: 0;
+    background: var(--color-bg-brand-softer);
   }
 
   &--logo {
