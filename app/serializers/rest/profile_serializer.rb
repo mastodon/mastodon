@@ -3,6 +3,7 @@
 class REST::ProfileSerializer < ActiveModel::Serializer
   include RoutingHelper
 
+  # Please update app/javascript/api_types/profile.ts when making changes to the attributes
   attributes :id, :display_name, :note, :fields,
              :avatar, :avatar_static, :avatar_description, :header, :header_static, :header_description,
              :locked, :bot,
