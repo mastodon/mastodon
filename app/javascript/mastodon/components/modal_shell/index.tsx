@@ -5,12 +5,12 @@ interface SimpleComponentProps {
   children?: React.ReactNode;
 }
 
-interface ModalShellProps extends React.FC<SimpleComponentProps> {
+interface ModalShellComponent extends React.FC<SimpleComponentProps> {
   Body: React.FC<SimpleComponentProps>;
   Actions: React.FC<SimpleComponentProps>;
 }
 
-export const ModalShell: ModalShellProps = ({ children, className }) => {
+export const ModalShell: ModalShellComponent = ({ children, className }) => {
   return (
     <div
       className={classNames(
@@ -24,7 +24,10 @@ export const ModalShell: ModalShellProps = ({ children, className }) => {
   );
 };
 
-const ModalShellBody: ModalShellProps['Body'] = ({ children, className }) => {
+const ModalShellBody: ModalShellComponent['Body'] = ({
+  children,
+  className,
+}) => {
   return (
     <div className='safety-action-modal__top'>
       <div
@@ -36,7 +39,7 @@ const ModalShellBody: ModalShellProps['Body'] = ({ children, className }) => {
   );
 };
 
-const ModalShellActions: ModalShellProps['Actions'] = ({
+const ModalShellActions: ModalShellComponent['Actions'] = ({
   children,
   className,
 }) => {
