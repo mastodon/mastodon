@@ -13,7 +13,10 @@ import { DisplayNameSimple } from '@/mastodon/components/display_name/simple';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
 import { autoPlayGif } from '@/mastodon/initial_state';
-import { fetchFeaturedTags } from '@/mastodon/reducers/slices/profile_edit';
+import {
+  fetchFeaturedTags,
+  fetchProfile,
+} from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
 
 import { AccountEditColumn, AccountEditEmptyColumn } from './components/column';
@@ -82,11 +85,10 @@ export const AccountEdit: FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const { tags: featuredTags, isLoading: isTagsLoading } = useAppSelector(
-    (state) => state.profileEdit,
-  );
+  const { profile, tags = [] } = useAppSelector((state) => state.profileEdit);
   useEffect(() => {
     void dispatch(fetchFeaturedTags());
+    void dispatch(fetchProfile());
   }, [dispatch]);
 
   const handleOpenModal = useCallback(
@@ -111,10 +113,10 @@ export const AccountEdit: FC = () => {
     return <AccountEditEmptyColumn notFound={!accountId} />;
   }
 
-  const headerSrc = autoPlayGif ? account.header : account.header_static;
+  const headerSrc = autoPlayGif ? profile?.header : profile?.headerStatic;
   const hasName = !!account.display_name;
   const hasBio = !!account.note_plain;
-  const hasTags = !isTagsLoading && featuredTags.length > 0;
+  const hasTags = tags.length > 0;
 
   return (
     <AccountEditColumn
@@ -176,7 +178,7 @@ export const AccountEdit: FC = () => {
           />
         }
       >
-        {featuredTags.map((tag) => `#${tag.name}`).join(', ')}
+        {tags.map((tag) => `#${tag.name}`).join(', ')}
       </AccountEditSection>
 
       <AccountEditSection
