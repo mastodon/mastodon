@@ -22,6 +22,7 @@ import { useBreakpoint } from '../features/ui/hooks/useBreakpoint';
 
 const longMessages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
+  unfollowMutual: { id: 'account.unfollow_mutual', defaultMessage: 'Unfollow mutual' },
   unblock: { id: 'account.unblock_short', defaultMessage: 'Unblock' },
   unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -147,6 +148,8 @@ export const FollowButton: React.FC<{
     label = <LoadingIndicator />;
   } else if (relationship.muting && withUnmute) {
     label = intl.formatMessage(messages.unmute);
+  } else if (relationship.following && relationship.followed_by) {
+    label = intl.formatMessage(messages.unfollowMutual);
   } else if (relationship.following) {
     label = intl.formatMessage(messages.unfollow);
   } else if (relationship.blocking) {
