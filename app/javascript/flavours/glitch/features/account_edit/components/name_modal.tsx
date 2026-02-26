@@ -7,8 +7,8 @@ import { TextInput } from '@/flavours/glitch/components/form_fields';
 import { insertEmojiAtPosition } from '@/flavours/glitch/features/emoji/utils';
 import type { BaseConfirmationModalProps } from '@/flavours/glitch/features/ui/components/confirmation_modals';
 import { ConfirmationModal } from '@/flavours/glitch/features/ui/components/confirmation_modals';
-import { useAccount } from '@/flavours/glitch/hooks/useAccount';
-import { useCurrentAccountId } from '@/flavours/glitch/hooks/useAccountId';
+import { patchProfile } from '@/flavours/glitch/reducers/slices/profile_edit';
+import { useAppDispatch, useAppSelector } from '@/flavours/glitch/store';
 
 import classes from '../styles.module.scss';
 
@@ -37,10 +37,11 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
   const titleId = useId();
   const counterId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
-  const accountId = useCurrentAccountId();
-  const account = useAccount(accountId);
 
-  const [newName, setNewName] = useState(account?.display_name ?? '');
+  const { profile: { displayName } = {}, isPending } = useAppSelector(
+    (state) => state.profileEdit,
+  );
+  const [newName, setNewName] = useState(displayName ?? '');
   const handleChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     (event) => {
       setNewName(event.currentTarget.value);
@@ -54,13 +55,22 @@ export const NameModal: FC<BaseConfirmationModalProps> = ({ onClose }) => {
     });
   }, []);
 
+  const dispatch = useAppDispatch();
+  const handleSave = useCallback(() => {
+    if (!isPending) {
+      void dispatch(patchProfile({ display_name: newName })).then(onClose);
+    }
+  }, [dispatch, isPending, newName, onClose]);
+
   return (
     <ConfirmationModal
       title={intl.formatMessage(messages.editTitle)}
       titleId={titleId}
       confirm={intl.formatMessage(messages.save)}
-      onConfirm={onClose} // To be implemented
+      onConfirm={handleSave}
       onClose={onClose}
+      updating={isPending}
+      disabled={newName.length > MAX_NAME_LENGTH}
       noCloseOnConfirm
       noFocusButton
     >
