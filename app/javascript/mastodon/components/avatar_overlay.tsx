@@ -10,10 +10,12 @@ interface Props {
   overlaySize?: number;
 }
 
-const fallbackImage = '/avatars/original/missing.png';
-
-const handleImgError = (error: { currentTarget: { src: string } }) => {
-  error.currentTarget.src = fallbackImage;
+const handleImgLoadError = (error: { currentTarget: HTMLElement }) => {
+  //
+  // When the img tag fails to load the image, set the img tag to display: none. This prevents the
+  // alt-text from overrunning the containing div.
+  //
+  error.currentTarget.style.display = 'none';
 };
 
 export const AvatarOverlay: React.FC<Props> = ({
@@ -48,7 +50,7 @@ export const AvatarOverlay: React.FC<Props> = ({
             <img
               src={accountSrc}
               alt={account?.get('acct')}
-              onError={handleImgError}
+              onError={handleImgLoadError}
             />
           )}
         </div>
@@ -62,7 +64,7 @@ export const AvatarOverlay: React.FC<Props> = ({
             <img
               src={friendSrc}
               alt={friend?.get('acct')}
-              onError={handleImgError}
+              onError={handleImgLoadError}
             />
           )}
         </div>

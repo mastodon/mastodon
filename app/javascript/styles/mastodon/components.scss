@@ -2236,11 +2236,6 @@ body > [data-popper-placement] {
   min-width: 0;
 }
 
-/* This visually hides the alt-text if an image fails to load preventing the alt-text from overrunning into the display name account. */
-.account__avatar img::before {
-  visibility: hidden;
-}
-
 .account__avatar {
   display: block;
   position: relative;
