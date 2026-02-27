@@ -118,14 +118,14 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
     <CustomEmojiProvider emojis={emojis}>
       <dl className={classes.fieldList} ref={wrapperRef}>
         {fields.map((field, key) => (
-          <FieldRow key={key} field={field} htmlHandlers={htmlHandlers} />
+          <FieldCard key={key} field={field} htmlHandlers={htmlHandlers} />
         ))}
       </dl>
     </CustomEmojiProvider>
   );
 };
 
-const FieldRow: FC<{
+const FieldCard: FC<{
   htmlHandlers: ReturnType<typeof useElementHandledLink>;
   field: AccountField;
 }> = ({ htmlHandlers, field }) => {
