@@ -78,7 +78,9 @@ export const AccountEditFeaturedTags: FC = () => {
           defaultMessage='Featured hashtags help users discover and interact with your profile. They appear as filters on your Profile page’s Activity view.'
           tagName='p'
         />
+
         <AccountEditTagSearch />
+
         {tagSuggestions.length > 0 && (
           <div className={classes.tagSuggestions}>
             <FormattedMessage
@@ -90,7 +92,9 @@ export const AccountEditFeaturedTags: FC = () => {
             ))}
           </div>
         )}
+
         {isLoading && <LoadingIndicator />}
+
         <AccountEditItemList
           items={tags}
           disabled={isPending}
