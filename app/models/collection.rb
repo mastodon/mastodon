@@ -46,6 +46,7 @@ class Collection < ApplicationRecord
   scope :with_items, -> { includes(:collection_items).merge(CollectionItem.with_accounts) }
   scope :with_tag, -> { includes(:tag) }
   scope :discoverable, -> { where(discoverable: true) }
+  scope :local, -> { where(local: true) }
 
   def remote?
     !local?
