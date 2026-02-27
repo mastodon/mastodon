@@ -278,11 +278,17 @@ svg.badgeIcon {
 }
 
 .fieldVerifiedIcon {
+  display: block;
+  position: absolute;
   width: 16px;
   height: 16px;
-  position: absolute;
   top: 8px;
   right: 8px;
+
+  > svg {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .fieldOverflowButton {

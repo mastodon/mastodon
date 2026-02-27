@@ -183,15 +183,15 @@ const FieldCard: FC<{
       ref={wrapperRef}
     >
       {verified_at && (
-        <Icon
-          id='verified'
-          icon={IconVerified}
+        <span
           className={classes.fieldVerifiedIcon}
-          aria-label={intl.formatMessage(verifyMessage, {
+          role='note'
+          title={intl.formatMessage(verifyMessage, {
             date: intl.formatDate(verified_at, dateFormatOptions),
           })}
-          noFill
-        />
+        >
+          <Icon id='verified' icon={IconVerified} noFill />
+        </span>
       )}
     </MiniCard>
   );
