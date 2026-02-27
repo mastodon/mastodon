@@ -10,6 +10,14 @@ interface Props {
   overlaySize?: number;
 }
 
+const handleImgLoadError = (error: { currentTarget: HTMLElement }) => {
+  //
+  // When the img tag fails to load the image, set the img tag to display: none. This prevents the
+  // alt-text from overrunning the containing div.
+  //
+  error.currentTarget.style.display = 'none';
+};
+
 export const AvatarOverlay: React.FC<Props> = ({
   account,
   friend,
@@ -39,7 +47,13 @@ export const AvatarOverlay: React.FC<Props> = ({
           style={{ width: `${baseSize}px`, height: `${baseSize}px` }}
           data-avatar-of={`@${account?.get('acct')}`}
         >
-          {accountSrc && <img src={accountSrc} alt={account?.get('acct')} />}
+          {accountSrc && (
+            <img
+              src={accountSrc}
+              alt={account?.get('acct')}
+              onError={handleImgLoadError}
+            />
+          )}
         </div>
       </div>
       <div className='account__avatar-overlay-overlay'>
@@ -48,7 +62,13 @@ export const AvatarOverlay: React.FC<Props> = ({
           style={{ width: `${overlaySize}px`, height: `${overlaySize}px` }}
           data-avatar-of={`@${friend?.get('acct')}`}
         >
-          {friendSrc && <img src={friendSrc} alt={friend?.get('acct')} />}
+          {friendSrc && (
+            <img
+              src={friendSrc}
+              alt={friend?.get('acct')}
+              onError={handleImgLoadError}
+            />
+          )}
         </div>
       </div>
     </div>
