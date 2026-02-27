@@ -17,7 +17,7 @@ export interface ApiHashtagJSON extends ApiHashtagBase {
 }
 
 export interface ApiFeaturedTagJSON extends ApiHashtagBase {
-  statuses_count: number;
+  statuses_count: string;
   last_status_at: string | null;
 }
 
@@ -26,7 +26,7 @@ export function hashtagToFeaturedTag(tag: ApiHashtagJSON): ApiFeaturedTagJSON {
     id: tag.id,
     name: tag.name,
     url: tag.url,
-    statuses_count: 0,
+    statuses_count: '0',
     last_status_at: null,
   };
 }

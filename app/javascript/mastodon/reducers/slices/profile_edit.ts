@@ -28,15 +28,24 @@ import type { SnakeToCamelCase } from '@/mastodon/utils/types';
 type ProfileData = {
   [Key in keyof Omit<
     ApiProfileJSON,
-    'note'
+    'note' | 'featured_tags'
   > as SnakeToCamelCase<Key>]: ApiProfileJSON[Key];
 } & {
   bio: ApiProfileJSON['note'];
+  featuredTags: TagData[];
+};
+
+export type TagData = {
+  [Key in keyof Omit<
+    ApiFeaturedTagJSON,
+    'statuses_count'
+  > as SnakeToCamelCase<Key>]: ApiFeaturedTagJSON[Key];
+} & {
+  statusesCount: number;
 };
 
 export interface ProfileEditState {
   profile?: ProfileData;
-  tags?: ApiFeaturedTagJSON[];
   tagSuggestions?: ApiFeaturedTagJSON[];
   isPending: boolean;
   search: {
@@ -80,9 +89,6 @@ const profileEditSlice = createSlice({
     builder.addCase(fetchSuggestedTags.fulfilled, (state, action) => {
       state.tagSuggestions = action.payload.map(hashtagToFeaturedTag);
     });
-    builder.addCase(fetchFeaturedTags.fulfilled, (state, action) => {
-      state.tags = action.payload;
-    });
 
     builder.addCase(patchProfile.pending, (state) => {
       state.isPending = true;
@@ -102,13 +108,14 @@ const profileEditSlice = createSlice({
       state.isPending = false;
     });
     builder.addCase(addFeaturedTag.fulfilled, (state, action) => {
-      if (!state.tags) {
+      if (!state.profile) {
         return;
       }
 
-      state.tags = [...state.tags, action.payload].toSorted(
-        (a, b) => b.statuses_count - a.statuses_count,
-      );
+      state.profile.featuredTags = [
+        ...state.profile.featuredTags,
+        transformTag(action.payload),
+      ].toSorted((a, b) => a.name.localeCompare(b.name));
       if (state.tagSuggestions) {
         state.tagSuggestions = state.tagSuggestions.filter(
           (tag) => tag.name !== action.meta.arg.name,
@@ -124,11 +131,13 @@ const profileEditSlice = createSlice({
       state.isPending = false;
     });
     builder.addCase(deleteFeaturedTag.fulfilled, (state, action) => {
-      if (!state.tags) {
+      if (!state.profile) {
         return;
       }
 
-      state.tags = state.tags.filter((tag) => tag.id !== action.meta.arg.tagId);
+      state.profile.featuredTags = state.profile.featuredTags.filter(
+        (tag) => tag.id !== action.meta.arg.tagId,
+      );
       state.isPending = false;
     });
 
@@ -142,7 +151,9 @@ const profileEditSlice = createSlice({
     builder.addCase(fetchSearchResults.fulfilled, (state, action) => {
       state.search.isLoading = false;
       const searchResults: ApiFeaturedTagJSON[] = [];
-      const currentTags = new Set((state.tags ?? []).map((tag) => tag.name));
+      const currentTags = new Set(
+        (state.profile?.featuredTags ?? []).map((tag) => tag.name),
+      );
 
       for (const tag of action.payload) {
         if (currentTags.has(tag.name)) {
@@ -160,6 +171,14 @@ const profileEditSlice = createSlice({
 
 export const profileEdit = profileEditSlice.reducer;
 export const { clearSearch } = profileEditSlice.actions;
+
+const transformTag = (result: ApiFeaturedTagJSON): TagData => ({
+  id: result.id,
+  name: result.name,
+  url: result.url,
+  statusesCount: Number.parseInt(result.statuses_count),
+  lastStatusAt: result.last_status_at,
+});
 
 const transformProfile = (result: ApiProfileJSON): ProfileData => ({
   id: result.id,
@@ -181,6 +200,7 @@ const transformProfile = (result: ApiProfileJSON): ProfileData => ({
   showMediaReplies: result.show_media_replies,
   showFeatured: result.show_featured,
   attributionDomains: result.attribution_domains,
+  featuredTags: result.featured_tags.map(transformTag),
 });
 
 export const fetchProfile = createDataLoadingThunk(
@@ -215,8 +235,10 @@ export const addFeaturedTag = createDataLoadingThunk(
     condition(arg, { getState }) {
       const state = getState();
       return (
-        !!state.profileEdit.tags &&
-        !state.profileEdit.tags.some((tag) => tag.name === arg.name)
+        !!state.profileEdit.profile &&
+        !state.profileEdit.profile.featuredTags.some(
+          (tag) => tag.name === arg.name,
+        )
       );
     },
   },

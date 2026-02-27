@@ -3,15 +3,15 @@ import type { FC } from 'react';
 
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
-import type { ApiFeaturedTagJSON } from '@/mastodon/api_types/tags';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { Tag } from '@/mastodon/components/tags/tag';
 import { useAccount } from '@/mastodon/hooks/useAccount';
 import { useCurrentAccountId } from '@/mastodon/hooks/useAccountId';
+import type { TagData } from '@/mastodon/reducers/slices/profile_edit';
 import {
   addFeaturedTag,
   deleteFeaturedTag,
-  fetchFeaturedTags,
+  fetchProfile,
   fetchSuggestedTags,
 } from '@/mastodon/reducers/slices/profile_edit';
 import {
@@ -35,9 +35,9 @@ const messages = defineMessages({
 const selectTags = createAppSelector(
   [(state) => state.profileEdit],
   (profileEdit) => ({
-    tags: profileEdit.tags ?? [],
+    tags: profileEdit.profile?.featuredTags ?? [],
     tagSuggestions: profileEdit.tagSuggestions ?? [],
-    isLoading: !profileEdit.tags || !profileEdit.tagSuggestions,
+    isLoading: !profileEdit.profile || !profileEdit.tagSuggestions,
     isPending: profileEdit.isPending,
   }),
 );
@@ -52,7 +52,7 @@ export const AccountEditFeaturedTags: FC = () => {
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    void dispatch(fetchFeaturedTags());
+    void dispatch(fetchProfile());
     void dispatch(fetchSuggestedTags());
   }, [dispatch]);
 
@@ -102,15 +102,15 @@ export const AccountEditFeaturedTags: FC = () => {
   );
 };
 
-function renderTag(tag: ApiFeaturedTagJSON) {
+function renderTag(tag: TagData) {
   return (
     <div className={classes.tagItem}>
       <h4>#{tag.name}</h4>
-      {tag.statuses_count > 0 && (
+      {tag.statusesCount > 0 && (
         <FormattedMessage
           id='account_edit_tags.tag_status_count'
           defaultMessage='{count, plural, one {# post} other {# posts}}'
-          values={{ count: tag.statuses_count }}
+          values={{ count: tag.statusesCount }}
           tagName='p'
         />
       )}
