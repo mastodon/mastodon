@@ -92,7 +92,7 @@ import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
 import { areCollectionsEnabled } from '../collections/utils';
-import { SkipLinks } from './components/skip_links';
+import { SKIP_LINK_TARGETS, SkipLinks } from './components/skip_links';
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
@@ -489,6 +489,10 @@ class UI extends PureComponent {
     document.querySelector('.load-more')?.focus();
   };
 
+  handleHotkeyFocusNavigation = () => {
+    document.querySelector(`#${SKIP_LINK_TARGETS.NAV}`)?.focus();
+  };
+
   handleMoveToTop = () => {
     focusFirstItem();
   };
@@ -591,6 +595,7 @@ class UI extends PureComponent {
       toggleComposeSpoilers: this.handleHotkeyToggleComposeSpoilers,
       focusColumn: this.handleHotkeyFocusColumn,
       focusLoadMore: this.handleHotkeyLoadMore,
+      focusNavigation: this.handleHotkeyFocusNavigation,
       moveDown: this.handleMoveDown,
       moveUp: this.handleMoveUp,
       moveToTop: this.handleMoveToTop,
@@ -613,7 +618,7 @@ class UI extends PureComponent {
     return (
       <Hotkeys global handlers={handlers}>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef}>
-          <SkipLinks />
+          <SkipLinks multiColumn={layout === 'multi-column'} />
           <SwitchingColumnsArea
             identity={this.props.identity}
             location={location}
