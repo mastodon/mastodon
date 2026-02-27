@@ -16,8 +16,10 @@ import type {
   ApiProfileJSON,
   ApiProfileUpdateParams,
 } from '@/mastodon/api_types/profile';
-import { hashtagToFeaturedTag } from '@/mastodon/api_types/tags';
-import type { ApiFeaturedTagJSON } from '@/mastodon/api_types/tags';
+import type {
+  ApiFeaturedTagJSON,
+  ApiHashtagJSON,
+} from '@/mastodon/api_types/tags';
 import type { AppDispatch } from '@/mastodon/store';
 import {
   createAppAsyncThunk,
@@ -46,12 +48,12 @@ export type TagData = {
 
 export interface ProfileEditState {
   profile?: ProfileData;
-  tagSuggestions?: ApiFeaturedTagJSON[];
+  tagSuggestions?: ApiHashtagJSON[];
   isPending: boolean;
   search: {
     query: string;
     isLoading: boolean;
-    results?: ApiFeaturedTagJSON[];
+    results?: ApiHashtagJSON[];
   };
 }
 
@@ -73,7 +75,7 @@ const profileEditSlice = createSlice({
       }
 
       state.search.query = action.payload;
-      state.search.isLoading = false;
+      state.search.isLoading = true;
       state.search.results = undefined;
     },
     clearSearch(state) {
@@ -87,7 +89,7 @@ const profileEditSlice = createSlice({
       state.profile = action.payload;
     });
     builder.addCase(fetchSuggestedTags.fulfilled, (state, action) => {
-      state.tagSuggestions = action.payload.map(hashtagToFeaturedTag);
+      state.tagSuggestions = action.payload;
     });
 
     builder.addCase(patchProfile.pending, (state) => {
@@ -150,7 +152,7 @@ const profileEditSlice = createSlice({
     });
     builder.addCase(fetchSearchResults.fulfilled, (state, action) => {
       state.search.isLoading = false;
-      const searchResults: ApiFeaturedTagJSON[] = [];
+      const searchResults: ApiHashtagJSON[] = [];
       const currentTags = new Set(
         (state.profile?.featuredTags ?? []).map((tag) => tag.name),
       );
@@ -159,7 +161,7 @@ const profileEditSlice = createSlice({
         if (currentTags.has(tag.name)) {
           continue;
         }
-        searchResults.push(hashtagToFeaturedTag(tag));
+        searchResults.push(tag);
         if (searchResults.length >= 10) {
           break;
         }
