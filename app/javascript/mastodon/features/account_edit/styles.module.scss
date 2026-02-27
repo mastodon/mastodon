@@ -91,42 +91,12 @@ textarea.inputText {
 }
 
 .toggleInputWrapper {
-  display: grid;
-  grid-template-columns: 1fr auto;
-
   > div {
-    display: grid;
-    grid-column: span 2;
-    grid-template-columns: subgrid;
-    grid-template-rows: repeat(2, auto);
     padding: 12px 0;
 
     &:not(:first-child) {
       border-top: 1px solid var(--color-border-primary);
     }
-  }
-
-  h2,
-  h3 {
-    line-height: normal;
-  }
-
-  h2 {
-    font-size: 15px;
-    font-weight: 600;
-  }
-
-  h3 {
-    color: var(--color-text-secondary);
-    font-size: 13px;
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  span:has(input[type='checkbox']) {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    align-self: center;
   }
 }
 
