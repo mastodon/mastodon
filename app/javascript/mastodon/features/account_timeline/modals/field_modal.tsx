@@ -20,7 +20,7 @@ export const AccountFieldModal: FC<{
       <div className='safety-action-modal__top'>
         <div className='safety-action-modal__confirmation'>
           <EmojiHTML
-            as='p'
+            as='h2'
             htmlString={field.name_emojified}
             onElement={handleLabelElement}
           />
