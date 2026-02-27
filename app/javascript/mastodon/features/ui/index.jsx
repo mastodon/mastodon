@@ -553,6 +553,14 @@ class UI extends PureComponent {
 
   handleHotkeyGoToStart = () => {
     this.props.history.push('/getting-started');
+    // Set focus to the navigation after a timeout
+    // to allow for it to be displayed first
+    setTimeout(() => {
+      const navbarSkipTarget = document.querySelector(
+        `#${SKIP_LINK_TARGETS.NAV}`,
+      );
+      navbarSkipTarget?.focus();
+    }, 0);
   };
 
   handleHotkeyGoToFavourites = () => {
@@ -613,7 +621,10 @@ class UI extends PureComponent {
     return (
       <Hotkeys global handlers={handlers}>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef}>
-          <SkipLinks multiColumn={layout === 'multi-column'} />
+          <SkipLinks
+            multiColumn={layout === 'multi-column'}
+            onFocusGettingStartedColumn={this.handleHotkeyGoToStart}
+          />
           <SwitchingColumnsArea
             identity={this.props.identity}
             location={location}

@@ -2,8 +2,6 @@ import { useCallback, useId } from 'react';
 
 import { useIntl } from 'react-intl';
 
-import { Link } from 'react-router-dom';
-
 import { useAppSelector } from 'mastodon/store';
 
 import classes from './skip_links.module.scss';
@@ -13,25 +11,23 @@ export const SKIP_LINK_TARGETS = {
   NAV: 'skip-link-target-nav',
 } as const;
 
-export const SkipLinks: React.FC<{ multiColumn: boolean }> = ({
-  multiColumn,
-}) => {
+export const SkipLinks: React.FC<{
+  multiColumn: boolean;
+  onFocusGettingStartedColumn: () => void;
+}> = ({ multiColumn, onFocusGettingStartedColumn }) => {
   const intl = useIntl();
   const columnCount = useAppSelector((state) => {
     const settings = state.settings as Immutable.Collection<string, unknown>;
     return (settings.get('columns') as Immutable.Map<number, unknown>).size;
   });
 
-  const focusMultiColumnNavbar = useCallback(() => {
-    // Using a timeout to allow for the nav panel to be displayed
-    // before attempting to set focus on it
-    setTimeout(() => {
-      const navbarSkipTarget = document.querySelector<HTMLAnchorElement>(
-        `#${SKIP_LINK_TARGETS.NAV}`,
-      );
-      navbarSkipTarget?.focus();
-    }, 0);
-  }, []);
+  const focusMultiColumnNavbar = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      onFocusGettingStartedColumn();
+    },
+    [onFocusGettingStartedColumn],
+  );
 
   return (
     <ul className={classes.list}>
@@ -46,8 +42,7 @@ export const SkipLinks: React.FC<{ multiColumn: boolean }> = ({
       <li className={classes.listItem}>
         <SkipLink
           target={multiColumn ? `/getting-started` : SKIP_LINK_TARGETS.NAV}
-          isRouterLink={multiColumn}
-          onRouterLinkClick={focusMultiColumnNavbar}
+          onRouterLinkClick={multiColumn ? focusMultiColumnNavbar : undefined}
           hotkey={multiColumn ? `${columnCount}` : '2'}
         >
           {intl.formatMessage({
@@ -63,23 +58,16 @@ export const SkipLinks: React.FC<{ multiColumn: boolean }> = ({
 const SkipLink: React.FC<{
   children: string;
   target: string;
-  isRouterLink?: boolean;
-  onRouterLinkClick?: () => void;
+  onRouterLinkClick?: React.MouseEventHandler;
   hotkey: string;
-}> = ({ children, hotkey, target, isRouterLink, onRouterLinkClick }) => {
+}> = ({ children, hotkey, target, onRouterLinkClick }) => {
   const intl = useIntl();
   const id = useId();
   return (
     <>
-      {isRouterLink ? (
-        <Link to={target} onClick={onRouterLinkClick} aria-describedby={id}>
-          {children}
-        </Link>
-      ) : (
-        <a href={`#${target}`} aria-describedby={id}>
-          {children}
-        </a>
-      )}
+      <a href={`#${target}`} aria-describedby={id} onClick={onRouterLinkClick}>
+        {children}
+      </a>
       <span id={id} className={classes.hotkeyHint}>
         {intl.formatMessage(
           {
