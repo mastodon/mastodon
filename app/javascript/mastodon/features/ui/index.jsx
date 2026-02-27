@@ -489,10 +489,6 @@ class UI extends PureComponent {
     document.querySelector('.load-more')?.focus();
   };
 
-  handleHotkeyFocusNavigation = () => {
-    document.querySelector(`#${SKIP_LINK_TARGETS.NAV}`)?.focus();
-  };
-
   handleMoveToTop = () => {
     focusFirstItem();
   };

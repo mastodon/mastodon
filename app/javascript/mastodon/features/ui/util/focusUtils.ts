@@ -23,7 +23,16 @@ function findFirstVisibleWithRect(
 }
 
 function focusColumnTitle(index: number, multiColumn: boolean) {
-  if (!multiColumn) {
+  if (multiColumn) {
+    const column = document.querySelector(`.column:nth-child(${index})`);
+    if (column) {
+      column
+        .querySelector<HTMLAnchorElement>(
+          `#${SKIP_LINK_TARGETS.CONTENT}, #${SKIP_LINK_TARGETS.NAV}`,
+        )
+        ?.focus();
+    }
+  } else {
     if (index === 2) {
       document
         .querySelector<HTMLAnchorElement>(`#${SKIP_LINK_TARGETS.NAV}`)
@@ -47,15 +56,19 @@ export function focusColumn(index = 1) {
     `.column:nth-child(${index + indexOffset})`,
   );
 
-  if (!column) {
+  function fallback() {
     focusColumnTitle(index + indexOffset, isMultiColumnLayout);
+  }
+
+  if (!column) {
+    fallback();
     return;
   }
 
   const container = column.querySelector('.scrollable');
 
   if (!container) {
-    focusColumnTitle(index + indexOffset, isMultiColumnLayout);
+    fallback();
     return;
   }
 
@@ -68,20 +81,23 @@ export function focusColumn(index = 1) {
   // Find first item visible in the viewport
   const itemToFocus = findFirstVisibleWithRect(focusableItems);
 
-  if (itemToFocus) {
-    const viewportWidth =
-      window.innerWidth || document.documentElement.clientWidth;
-    const { item, rect } = itemToFocus;
-
-    if (
-      container.scrollTop > item.offsetTop ||
-      rect.right > viewportWidth ||
-      rect.left < 0
-    ) {
-      itemToFocus.item.scrollIntoView(true);
-    }
-    itemToFocus.item.focus();
+  if (!itemToFocus) {
+    fallback();
+    return;
   }
+
+  const viewportWidth =
+    window.innerWidth || document.documentElement.clientWidth;
+  const { item, rect } = itemToFocus;
+
+  if (
+    container.scrollTop > item.offsetTop ||
+    rect.right > viewportWidth ||
+    rect.left < 0
+  ) {
+    itemToFocus.item.scrollIntoView(true);
+  }
+  itemToFocus.item.focus();
 }
 
 /**
