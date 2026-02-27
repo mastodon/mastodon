@@ -55,7 +55,7 @@ export const SkipLinks: React.FC<{ multiColumn: boolean }> = ({
               defaultMessage: '<span>Hotkey</span> {hotkey}',
             },
             {
-              hotkey: 't',
+              hotkey: multiColumn ? '9' : '2',
               span: (text) => <span className='sr-only'>{text}</span>,
             },
           )}

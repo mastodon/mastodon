@@ -1,3 +1,5 @@
+import { SKIP_LINK_TARGETS } from '../components/skip_links';
+
 /**
  * Out of a list of elements, return the first one whose top edge
  * is inside of the viewport, and return the element and its BoundingClientRect.
@@ -20,9 +22,19 @@ function findFirstVisibleWithRect(
   return null;
 }
 
+function focusColumnTitle(index: number, multiColumn: boolean) {
+  if (!multiColumn) {
+    if (index === 2) {
+      document
+        .querySelector<HTMLAnchorElement>(`#${SKIP_LINK_TARGETS.NAV}`)
+        ?.focus();
+    }
+  }
+}
+
 /**
  * Move focus to the column of the passed index (1-based).
- * Focus is placed on the topmost visible item
+ * Focus is placed on the topmost visible item, or the column title
  */
 export function focusColumn(index = 1) {
   // Skip the leftmost drawer in multi-column mode
@@ -35,11 +47,17 @@ export function focusColumn(index = 1) {
     `.column:nth-child(${index + indexOffset})`,
   );
 
-  if (!column) return;
+  if (!column) {
+    focusColumnTitle(index + indexOffset, isMultiColumnLayout);
+    return;
+  }
 
   const container = column.querySelector('.scrollable');
 
-  if (!container) return;
+  if (!container) {
+    focusColumnTitle(index + indexOffset, isMultiColumnLayout);
+    return;
+  }
 
   const focusableItems = Array.from(
     container.querySelectorAll<HTMLElement>(

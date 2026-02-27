@@ -595,7 +595,6 @@ class UI extends PureComponent {
       toggleComposeSpoilers: this.handleHotkeyToggleComposeSpoilers,
       focusColumn: this.handleHotkeyFocusColumn,
       focusLoadMore: this.handleHotkeyLoadMore,
-      focusNavigation: this.handleHotkeyFocusNavigation,
       moveDown: this.handleMoveDown,
       moveUp: this.handleMoveUp,
       moveToTop: this.handleMoveToTop,
