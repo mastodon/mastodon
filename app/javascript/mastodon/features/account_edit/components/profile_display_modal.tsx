@@ -1,10 +1,10 @@
 import type { ChangeEventHandler, FC } from 'react';
-import { useCallback, useId } from 'react';
+import { useCallback } from 'react';
 
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { Callout } from '@/mastodon/components/callout';
-import { Toggle } from '@/mastodon/components/form_fields';
+import { ToggleField } from '@/mastodon/components/form_fields';
 import { LoadingIndicator } from '@/mastodon/components/loading_indicator';
 import { patchProfile } from '@/mastodon/reducers/slices/profile_edit';
 import { useAppDispatch, useAppSelector } from '@/mastodon/store';
@@ -31,10 +31,6 @@ export const ProfileDisplayModal: FC<DialogModalProps> = ({ onClose }) => {
     [dispatch],
   );
 
-  const showMediaId = useId();
-  const showMediaRepliesId = useId();
-  const showFeaturedId = useId();
-
   if (!profile) {
     return <LoadingIndicator />;
   }
@@ -46,69 +42,62 @@ export const ProfileDisplayModal: FC<DialogModalProps> = ({ onClose }) => {
       noCancelButton
     >
       <div className={classes.toggleInputWrapper}>
-        <div>
-          <label htmlFor={showMediaId}>
+        <ToggleField
+          checked={profile.showMedia}
+          onChange={handleToggleChange}
+          disabled={isPending}
+          name='show_media'
+          label={
             <FormattedMessage
               id='account_edit.profile_tab.show_media.title'
               defaultMessage='Show ‘Media’ tab'
-              tagName='h2'
             />
-          </label>
-          <FormattedMessage
-            id='account_edit.profile_tab.show_media.description'
-            defaultMessage='‘Media’ is an optional tab that shows your posts containing images or videos.'
-            tagName='h3'
-          />
-          <Toggle
-            checked={profile.showMedia}
-            onChange={handleToggleChange}
-            disabled={isPending}
-            name='show_media'
-            id={showMediaId}
-          />
-        </div>
-        <div>
-          <label htmlFor={showMediaRepliesId}>
+          }
+          hint={
+            <FormattedMessage
+              id='account_edit.profile_tab.show_media.description'
+              defaultMessage='‘Media’ is an optional tab that shows your posts containing images or videos.'
+            />
+          }
+        />
+
+        <ToggleField
+          checked={profile.showMediaReplies}
+          onChange={handleToggleChange}
+          disabled={!profile.showMedia || isPending}
+          name='show_media_replies'
+          label={
             <FormattedMessage
               id='account_edit.profile_tab.show_media_replies.title'
               defaultMessage='Include replies on ‘Media’ tab'
-              tagName='h2'
             />
-          </label>
-          <FormattedMessage
-            id='account_edit.profile_tab.show_media_replies.description'
-            defaultMessage='When enabled, Media tab shows both your posts and replies to other people’s posts.'
-            tagName='h3'
-          />
-          <Toggle
-            checked={profile.showMediaReplies}
-            onChange={handleToggleChange}
-            disabled={!profile.showMedia || isPending}
-            name='show_media_replies'
-            id={showMediaRepliesId}
-          />
-        </div>
-        <div>
-          <label htmlFor={showFeaturedId}>
+          }
+          hint={
+            <FormattedMessage
+              id='account_edit.profile_tab.show_media_replies.description'
+              defaultMessage='When enabled, Media tab shows both your posts and replies to other people’s posts.'
+            />
+          }
+        />
+
+        <ToggleField
+          checked={profile.showFeatured}
+          onChange={handleToggleChange}
+          disabled={isPending}
+          name='show_featured'
+          label={
             <FormattedMessage
               id='account_edit.profile_tab.show_featured.title'
               defaultMessage='Show ‘Featured’ tab'
-              tagName='h2'
             />
-          </label>
-          <FormattedMessage
-            id='account_edit.profile_tab.show_featured.description'
-            defaultMessage='‘Featured’ is an optional tab where you can showcase other accounts.'
-            tagName='h3'
-          />
-          <Toggle
-            checked={profile.showFeatured}
-            onChange={handleToggleChange}
-            disabled={isPending}
-            name='show_featured'
-            id={showFeaturedId}
-          />
-        </div>
+          }
+          hint={
+            <FormattedMessage
+              id='account_edit.profile_tab.show_featured.description'
+              defaultMessage='‘Featured’ is an optional tab where you can showcase other accounts.'
+            />
+          }
+        />
       </div>
 
       <Callout
