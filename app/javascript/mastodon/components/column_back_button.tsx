@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import ArrowBackIcon from '@/material-icons/400-24px/arrow_back.svg?react';
 import { Icon } from 'mastodon/components/icon';
+import { SKIP_LINK_TARGETS } from 'mastodon/features/ui/components/skip_links';
 import { ButtonInTabsBar } from 'mastodon/features/ui/util/columns_context';
 
 import { useAppHistory } from './router';
@@ -30,7 +31,12 @@ export const ColumnBackButton: React.FC<{ onClick?: OnClickCallback }> = ({
   const handleClick = useHandleClick(onClick);
 
   const component = (
-    <button onClick={handleClick} className='column-back-button' type='button'>
+    <button
+      onClick={handleClick}
+      id={SKIP_LINK_TARGETS.CONTENT}
+      className='column-back-button'
+      type='button'
+    >
       <Icon
         id='chevron-left'
         icon={ArrowBackIcon}

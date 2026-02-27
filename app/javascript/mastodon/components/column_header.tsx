@@ -35,8 +35,8 @@ export const messages = defineMessages({
 });
 
 const BackButton: React.FC<{
-  onlyIcon: boolean;
-}> = ({ onlyIcon }) => {
+  hasTitle: boolean;
+}> = ({ hasTitle }) => {
   const history = useAppHistory();
   const intl = useIntl();
 
@@ -52,8 +52,9 @@ const BackButton: React.FC<{
     <button
       onClick={handleBackClick}
       className={classNames('column-header__back-button', {
-        compact: onlyIcon,
+        compact: hasTitle,
       })}
+      id={hasTitle ? undefined : SKIP_LINK_TARGETS.CONTENT}
       aria-label={intl.formatMessage(messages.back)}
       type='button'
     >
@@ -62,7 +63,7 @@ const BackButton: React.FC<{
         icon={ArrowBackIcon}
         className='column-back-button__icon'
       />
-      {!onlyIcon && (
+      {!hasTitle && (
         <FormattedMessage id='column_back_button.label' defaultMessage='Back' />
       )}
     </button>
@@ -223,7 +224,7 @@ export const ColumnHeader: React.FC<Props> = ({
     !pinned &&
     ((multiColumn && history.location.state?.fromMastodon) || showBackButton)
   ) {
-    backButton = <BackButton onlyIcon={!!title} />;
+    backButton = <BackButton hasTitle={!!title} />;
   }
 
   const collapsedContent = [extraContent];
