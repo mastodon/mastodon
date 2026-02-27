@@ -1,13 +1,14 @@
 import { useCallback, useEffect } from 'react';
 import type { FC } from 'react';
 
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { useHistory } from 'react-router-dom';
 
 import type { ModalType } from '@/flavours/glitch/actions/modal';
 import { openModal } from '@/flavours/glitch/actions/modal';
 import { Avatar } from '@/flavours/glitch/components/avatar';
+import { Button } from '@/flavours/glitch/components/button';
 import { CustomEmojiProvider } from '@/flavours/glitch/components/emoji/context';
 import { EmojiHTML } from '@/flavours/glitch/components/emoji/html';
 import { useElementHandledLink } from '@/flavours/glitch/components/status/handled_link';
@@ -25,7 +26,7 @@ import { EditButton } from './components/edit_button';
 import { AccountEditSection } from './components/section';
 import classes from './styles.module.scss';
 
-const messages = defineMessages({
+export const messages = defineMessages({
   columnTitle: {
     id: 'account_edit.column_title',
     defaultMessage: 'Edit Profile',
@@ -103,6 +104,9 @@ export const AccountEdit: FC = () => {
   }, [handleOpenModal]);
   const handleBioEdit = useCallback(() => {
     handleOpenModal('ACCOUNT_EDIT_BIO');
+  }, [handleOpenModal]);
+  const handleProfileDisplayEdit = useCallback(() => {
+    handleOpenModal('ACCOUNT_EDIT_PROFILE_DISPLAY');
   }, [handleOpenModal]);
 
   const history = useHistory();
@@ -193,6 +197,17 @@ export const AccountEdit: FC = () => {
           title={messages.profileTabTitle}
           description={messages.profileTabSubtitle}
           showDescription
+          buttons={
+            <Button
+              className={classes.editButton}
+              onClick={handleProfileDisplayEdit}
+            >
+              <FormattedMessage
+                id='account_edit.profile_tab.button_label'
+                defaultMessage='Customize'
+              />
+            </Button>
+          }
         />
       </CustomEmojiProvider>
     </AccountEditColumn>
