@@ -11,6 +11,7 @@ You can contribute in the following ways:
 
 Please review the org-level [contribution guidelines] for high-level acceptance
 criteria guidance and the [DEVELOPMENT] guide for environment-specific details.
+You should also read the project's [AI Policy] to understand how we approach AI-assisted contributions.
 
 ## API Changes and Additions
 
@@ -89,3 +90,4 @@ and API docs. Improvements are made via PRs to the [documentation repository].
 [keepachangelog]: https://keepachangelog.com/en/1.0.0/
 [Mastodon documentation]: https://docs.joinmastodon.org
 [SECURITY]: SECURITY.md
+[AI Policy]: https://github.com/mastodon/.github/blob/main/AI_POLICY.md
