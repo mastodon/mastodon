@@ -185,7 +185,6 @@ const FieldCard: FC<{
       {verified_at && (
         <span
           className={classes.fieldVerifiedIcon}
-          role='note'
           title={intl.formatMessage(verifyMessage, {
             date: intl.formatDate(verified_at, dateFormatOptions),
           })}
