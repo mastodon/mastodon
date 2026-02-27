@@ -90,6 +90,4 @@ export const AccountEditTagSearch: FC = () => {
   );
 };
 
-const renderItem = (item: SearchResult) => (
-  <p>{item.label ?? `#${item.name}`}</p>
-);
+const renderItem = (item: SearchResult) => item.label ?? `#${item.name}`;
