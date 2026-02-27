@@ -1,0 +1,75 @@
+.heading {
+  font-size: 28px;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.preview {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  color: var(--color-text-primary);
+  background: linear-gradient(
+    145deg,
+    var(--color-bg-brand-soft),
+    var(--color-bg-primary)
+  );
+  border: 1px solid var(--color-bg-brand-base);
+}
+
+.previewHeading {
+  font-size: 22px;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+$bottomsheet-breakpoint: 630px;
+
+.shareButtonWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+
+  & > button {
+    flex: 1;
+    min-width: 220px;
+    white-space: normal;
+
+    @media (width > $bottomsheet-breakpoint) {
+      max-width: 50%;
+    }
+  }
+}
+
+.closeButtonDesktop {
+  position: absolute;
+  top: 4px;
+  inset-inline-end: 4px;
+  padding: 8px;
+
+  @media (width <= $bottomsheet-breakpoint) {
+    display: none;
+  }
+}
+
+.closeButtonMobile {
+  margin-top: 16px;
+  margin-bottom: -18px;
+
+  @media (width > $bottomsheet-breakpoint) {
+    display: none;
+  }
+}
