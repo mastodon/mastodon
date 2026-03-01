@@ -118,14 +118,14 @@ const RedesignAccountHeaderFields: FC<{ account: Account }> = ({ account }) => {
     <CustomEmojiProvider emojis={emojis}>
       <dl className={classes.fieldList} ref={wrapperRef}>
         {fields.map((field, key) => (
-          <FieldRow key={key} field={field} htmlHandlers={htmlHandlers} />
+          <FieldCard key={key} field={field} htmlHandlers={htmlHandlers} />
         ))}
       </dl>
     </CustomEmojiProvider>
   );
 };
 
-const FieldRow: FC<{
+const FieldCard: FC<{
   htmlHandlers: ReturnType<typeof useElementHandledLink>;
   field: AccountField;
 }> = ({ htmlHandlers, field }) => {
@@ -183,15 +183,14 @@ const FieldRow: FC<{
       ref={wrapperRef}
     >
       {verified_at && (
-        <Icon
-          id='verified'
-          icon={IconVerified}
+        <span
           className={classes.fieldVerifiedIcon}
-          aria-label={intl.formatMessage(verifyMessage, {
+          title={intl.formatMessage(verifyMessage, {
             date: intl.formatDate(verified_at, dateFormatOptions),
           })}
-          noFill
-        />
+        >
+          <Icon id='verified' icon={IconVerified} noFill />
+        </span>
       )}
     </MiniCard>
   );

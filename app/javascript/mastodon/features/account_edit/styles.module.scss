@@ -90,6 +90,16 @@ textarea.inputText {
   }
 }
 
+.toggleInputWrapper {
+  > div {
+    padding: 12px 0;
+
+    &:not(:first-child) {
+      border-top: 1px solid var(--color-border-primary);
+    }
+  }
+}
+
 // Column component
 
 .column {

@@ -3,18 +3,21 @@ import { useCallback, useEffect } from 'react';
 import { defineMessages, FormattedMessage, useIntl } from 'react-intl';
 
 import { Helmet } from 'react-helmet';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 
+import { openModal } from '@/flavours/glitch/actions/modal';
 import { useRelationship } from '@/flavours/glitch/hooks/useRelationship';
 import ListAltIcon from '@/material-icons/400-24px/list_alt.svg?react';
 import ShareIcon from '@/material-icons/400-24px/share.svg?react';
-import { showAlert } from 'flavours/glitch/actions/alerts';
 import type { ApiCollectionJSON } from 'flavours/glitch/api_types/collections';
 import { Account } from 'flavours/glitch/components/account';
 import { Avatar } from 'flavours/glitch/components/avatar';
 import { Column } from 'flavours/glitch/components/column';
 import { ColumnHeader } from 'flavours/glitch/components/column_header';
-import { LinkedDisplayName } from 'flavours/glitch/components/display_name';
+import {
+  DisplayName,
+  LinkedDisplayName,
+} from 'flavours/glitch/components/display_name';
 import { IconButton } from 'flavours/glitch/components/icon_button';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import { Tag } from 'flavours/glitch/components/tags/tag';
@@ -46,32 +49,40 @@ const messages = defineMessages({
   },
 });
 
-const AuthorNote: React.FC<{ id: string }> = ({ id }) => {
+export const AuthorNote: React.FC<{ id: string; previewMode?: boolean }> = ({
+  id,
+  // When previewMode is enabled, your own display name
+  // will not be replaced with "you"
+  previewMode = false,
+}) => {
   const account = useAccount(id);
   const author = (
     <span className={classes.displayNameWithAvatar}>
       <Avatar size={18} account={account} />
-      <LinkedDisplayName displayProps={{ account, variant: 'simple' }} />
+      {previewMode ? (
+        <DisplayName account={account} variant='simple' />
+      ) : (
+        <LinkedDisplayName displayProps={{ account, variant: 'simple' }} />
+      )}
     </span>
   );
 
-  if (id === me) {
-    return (
-      <p className={classes.authorNote}>
+  const displayAsYou = id === me && !previewMode;
+
+  return (
+    <p className={previewMode ? classes.previewAuthorNote : classes.authorNote}>
+      {displayAsYou ? (
         <FormattedMessage
           id='collections.detail.curated_by_you'
           defaultMessage='Curated by you'
         />
-      </p>
-    );
-  }
-  return (
-    <p className={classes.authorNote}>
-      <FormattedMessage
-        id='collections.detail.curated_by_author'
-        defaultMessage='Curated by {author}'
-        values={{ author }}
-      />
+      ) : (
+        <FormattedMessage
+          id='collections.detail.curated_by_author'
+          defaultMessage='Curated by {author}'
+          values={{ author }}
+        />
+      )}
     </p>
   );
 };
@@ -84,8 +95,23 @@ const CollectionHeader: React.FC<{ collection: ApiCollectionJSON }> = ({
   const dispatch = useAppDispatch();
 
   const handleShare = useCallback(() => {
-    dispatch(showAlert({ message: 'Collection sharing not yet implemented' }));
-  }, [dispatch]);
+    dispatch(
+      openModal({
+        modalType: 'SHARE_COLLECTION',
+        modalProps: {
+          collection,
+        },
+      }),
+    );
+  }, [collection, dispatch]);
+
+  const location = useLocation<{ newCollection?: boolean }>();
+  const wasJustCreated = location.state.newCollection;
+  useEffect(() => {
+    if (wasJustCreated) {
+      handleShare();
+    }
+  }, [handleShare, wasJustCreated]);
 
   return (
     <div className={classes.header}>

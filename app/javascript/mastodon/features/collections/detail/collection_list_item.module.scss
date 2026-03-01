@@ -44,6 +44,7 @@
   --gap: 0.75ch;
 
   display: flex;
+  flex-wrap: wrap;
   gap: var(--gap);
 
   & > li:not(:last-child)::after {

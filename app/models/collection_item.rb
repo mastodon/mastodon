@@ -40,6 +40,7 @@ class CollectionItem < ApplicationRecord
   scope :ordered, -> { order(position: :asc) }
   scope :with_accounts, -> { includes(account: [:account_stat, :user]) }
   scope :not_blocked_by, ->(account) { where.not(accounts: { id: account.blocking }) }
+  scope :local, -> { joins(:collection).merge(Collection.local) }
 
   def local_item_with_remote_account?
     local? && account&.remote?

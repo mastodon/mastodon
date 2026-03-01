@@ -127,7 +127,9 @@ export const CollectionDetails: React.FC<{
             history.replace(
               `/collections/${result.payload.collection.id}/edit/details`,
             );
-            history.push(`/collections/${result.payload.collection.id}`);
+            history.push(`/collections/${result.payload.collection.id}`, {
+              newCollection: true,
+            });
           }
         });
       }
