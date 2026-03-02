@@ -9,6 +9,7 @@ import type { ModalType } from '@/mastodon/actions/modal';
 import { openModal } from '@/mastodon/actions/modal';
 import { Avatar } from '@/mastodon/components/avatar';
 import { Button } from '@/mastodon/components/button';
+import { DismissibleCallout } from '@/mastodon/components/callout/dismissible';
 import { CustomEmojiProvider } from '@/mastodon/components/emoji/context';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
 import { useElementHandledLink } from '@/mastodon/components/status/handled_link';
@@ -53,6 +54,10 @@ export const messages = defineMessages({
     id: 'account_edit.custom_fields.placeholder',
     defaultMessage:
       'Add your pronouns, external links, or anything else you’d like to share.',
+  },
+  customFieldsTipTitle: {
+    id: 'account_edit.custom_fields.tip_title',
+    defaultMessage: 'Tip: Adding verified links',
   },
   featuredHashtagsTitle: {
     id: 'account_edit.featured_hashtags.title',
@@ -126,6 +131,7 @@ export const AccountEdit: FC = () => {
   const headerSrc = autoPlayGif ? profile.header : profile.headerStatic;
   const hasName = !!profile.displayName;
   const hasBio = !!profile.bio;
+  const hasFields = profile.fields.length > 0;
   const hasTags = profile.featuredTags.length > 0;
 
   return (
@@ -174,7 +180,7 @@ export const AccountEdit: FC = () => {
         <AccountEditSection
           title={messages.customFieldsTitle}
           description={messages.customFieldsPlaceholder}
-          showDescription
+          showDescription={!hasFields}
         >
           <Button
             onClick={handleCustomFieldsVerifiedHelp}
@@ -186,6 +192,17 @@ export const AccountEdit: FC = () => {
               defaultMessage='How do I add a verified link?'
             />
           </Button>
+          {!hasFields && (
+            <DismissibleCallout
+              id='profile_edit_fields_tip'
+              title={intl.formatMessage(messages.customFieldsTipTitle)}
+            >
+              <FormattedMessage
+                id='account_edit.custom_fields.tip_content'
+                defaultMessage='You can easily add credibility to your Mastodon account by verifying links to any websites you own.'
+              />
+            </DismissibleCallout>
+          )}
         </AccountEditSection>
 
         <AccountEditSection
