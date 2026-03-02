@@ -47,7 +47,9 @@ export const AccountEditTagSearch: FC = () => {
     const trimmedQuery = query.trim();
     if (
       trimmedQuery.length > 0 &&
-      results.every((result) => result.name.toLowerCase() !== trimmedQuery)
+      results.every(
+        (result) => result.name.toLowerCase() !== trimmedQuery.toLowerCase(),
+      )
     ) {
       results.push({
         id: 'new',
