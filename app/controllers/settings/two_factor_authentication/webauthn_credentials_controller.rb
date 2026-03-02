@@ -3,9 +3,12 @@
 module Settings
   module TwoFactorAuthentication
     class WebauthnCredentialsController < BaseController
+      include ChallengableConcern
+
       skip_before_action :check_self_destruct!
       skip_before_action :require_functional!
 
+      before_action :require_challenge!, only: [:new]
       before_action :redirect_invalid_webauthn, only: [:index, :destroy], unless: -> { current_user.webauthn_enabled? }
 
       def index; end

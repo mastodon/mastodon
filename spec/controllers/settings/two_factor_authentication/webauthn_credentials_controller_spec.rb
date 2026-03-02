@@ -20,10 +20,21 @@ RSpec.describe Settings::TwoFactorAuthentication::WebauthnCredentialsController 
         sign_in user, scope: :user
       end
 
-      it 'returns http success' do
-        get :new
+      context 'when challenge passed' do
+        it 'returns http success' do
+          get :new, session: { challenge_passed_at: Time.now.utc }
 
-        expect(response).to have_http_status(200)
+          expect(response).to have_http_status(200)
+        end
+      end
+
+      context 'when challenge not passed' do
+        it 'renders challenge page' do
+          get :new
+
+          expect(response).to have_http_status(200)
+          expect(response.parsed_body).to have_title(I18n.t('challenge.prompt'))
+        end
       end
     end
   end
