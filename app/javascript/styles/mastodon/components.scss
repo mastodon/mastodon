@@ -3903,6 +3903,11 @@ a.account__display-name {
   &:hover {
     text-decoration: underline;
   }
+
+  &:focus-visible {
+    outline: var(--outline-focus-default);
+    outline-offset: -2px;
+  }
 }
 
 .column-header__back-button {
@@ -4036,15 +4041,17 @@ a.account__display-name {
 }
 
 .column-link {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: 8px;
   width: 100%;
-  padding: 12px;
+  padding: 10px;
+  padding-inline-start: 14px;
+  overflow: hidden;
   font-size: 16px;
   font-weight: 400;
   text-decoration: none;
-  overflow: hidden;
   white-space: nowrap;
   color: color-mix(
     in oklab,
@@ -4052,9 +4059,8 @@ a.account__display-name {
     var(--color-text-secondary)
   );
   background: transparent;
-  border: 0;
-  border-left: 4px solid transparent;
-  box-sizing: border-box;
+  border: 2px solid transparent;
+  border-radius: 4px;
 
   &:hover,
   &:active,
@@ -4066,17 +4072,15 @@ a.account__display-name {
     color: var(--color-text-brand);
   }
 
-  &:focus {
-    outline: 0;
-  }
-
   &:focus-visible {
+    outline: none;
     border-color: var(--color-text-brand);
-    border-radius: 0;
+    background: var(--color-bg-brand-softer);
   }
 
   &--logo {
-    padding: 10px;
+    padding: 8px;
+    padding-inline-start: 12px;
   }
 }
 
@@ -6408,6 +6412,10 @@ a.status-card {
     line-height: 20px;
     color: var(--color-text-secondary);
 
+    /*
+     * Using the :where selector to lower specificity and allow for
+     * easy customisation of modal heading styles
+     */
     :where(h1) {
       font-size: 16px;
       line-height: 24px;
