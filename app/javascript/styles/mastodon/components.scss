@@ -7131,6 +7131,16 @@ a.status-card {
   overflow-y: auto;
   z-index: 10;
 
+  &:focus-visible {
+    box-shadow:
+      var(--dropdown-shadow),
+      inset 0 0 0 2px var(--color-text-on-media);
+
+    // Extend background color for better visibility of the
+    // inset box-shadow "outline"
+    outline: 2px solid var(--color-bg-media);
+  }
+
   &--solid {
     color: var(--color-text-primary);
     background: var(--color-bg-primary);
