@@ -36,11 +36,12 @@ function focusColumnTitle(index: number, multiColumn: boolean) {
         ?.focus();
     }
   } else {
-    if (index === 2) {
-      document
-        .querySelector<HTMLAnchorElement>(`#${getNavigationSkipLinkId()}`)
-        ?.focus();
-    }
+    const idSelector =
+      index === 2
+        ? `#${getNavigationSkipLinkId()}`
+        : `#${getColumnSkipLinkId(1)}`;
+
+    document.querySelector<HTMLAnchorElement>(idSelector)?.focus();
   }
 }
 
