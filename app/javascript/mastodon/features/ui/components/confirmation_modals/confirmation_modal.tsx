@@ -3,7 +3,11 @@ import { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { Button } from 'mastodon/components/button';
-import { ModalShell } from 'mastodon/components/modal_shell';
+import {
+  ModalShell,
+  ModalShellActions,
+  ModalShellBody,
+} from 'mastodon/components/modal_shell';
 
 export interface BaseConfirmationModalProps {
   onClose: () => void;
@@ -58,14 +62,14 @@ export const ConfirmationModal: React.FC<
 
   return (
     <ModalShell>
-      <ModalShell.Body>
+      <ModalShellBody>
         <h1 id={titleId}>{title}</h1>
         {message && <p>{message}</p>}
 
         {extraContent ?? children}
-      </ModalShell.Body>
+      </ModalShellBody>
 
-      <ModalShell.Actions>
+      <ModalShellActions>
         <button onClick={onClose} className='link-button' type='button'>
           {cancel ?? (
             <FormattedMessage
@@ -99,7 +103,7 @@ export const ConfirmationModal: React.FC<
           {confirm}
         </Button>
         {/* eslint-enable */}
-      </ModalShell.Actions>
+      </ModalShellActions>
     </ModalShell>
   );
 };
