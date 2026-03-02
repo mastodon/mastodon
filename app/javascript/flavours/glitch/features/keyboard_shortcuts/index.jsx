@@ -143,6 +143,10 @@ class KeyboardShortcuts extends ImmutablePureComponent {
                 <td><FormattedMessage id='keyboard_shortcuts.home' defaultMessage='to open home timeline' /></td>
               </tr>
               <tr>
+                <td><kbd>g</kbd>+<kbd>e</kbd></td>
+                <td><FormattedMessage id='keyboard_shortcuts.explore' defaultMessage='to open trending timeline' /></td>
+              </tr>
+              <tr>
                 <td><kbd>g</kbd>+<kbd>n</kbd></td>
                 <td><FormattedMessage id='keyboard_shortcuts.notifications' defaultMessage='to open notifications column' /></td>
               </tr>

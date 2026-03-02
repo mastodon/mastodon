@@ -1,4 +1,5 @@
 import type { ApiAccountFieldJSON } from './accounts';
+import type { ApiFeaturedTagJSON } from './tags';
 
 export interface ApiProfileJSON {
   id: string;
@@ -20,6 +21,7 @@ export interface ApiProfileJSON {
   show_media_replies: boolean;
   show_featured: boolean;
   attribution_domains: string[];
+  featured_tags: ApiFeaturedTagJSON[];
 }
 
 export type ApiProfileUpdateParams = Partial<

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Children, cloneElement, useCallback } from 'react';
+import { Children, cloneElement, createContext, useContext, useCallback } from 'react';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -52,6 +52,13 @@ const TabsBarPortal = () => {
 
   return <div id='tabs-bar__portal' ref={setRef} />;
 };
+
+// Simple context to allow column children to know which column they're in
+export const ColumnIndexContext = createContext(1);
+/**
+ * @returns {number}
+ */
+export const useColumnIndexContext = () => useContext(ColumnIndexContext);
 
 export default class ColumnsArea extends ImmutablePureComponent {
   static propTypes = {
@@ -140,18 +147,22 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
     return (
       <div className={`columns-area ${ isModalOpen ? 'unscrollable' : '' }`} ref={this.setRef}>
-        {columns.map(column => {
+        {columns.map((column, index) => {
           const params = column.get('params', null) === null ? null : column.get('params').toJS();
           const other  = params && params.other ? params.other : {};
 
           return (
-            <Bundle key={column.get('uuid')} fetchComponent={componentMap[column.get('id')]} loading={this.renderLoading(column.get('id'))} error={this.renderError}>
-              {SpecificComponent => <SpecificComponent columnId={column.get('uuid')} params={params} multiColumn {...other} />}
-            </Bundle>
+            <ColumnIndexContext.Provider value={index} key={column.get('uuid')}>
+              <Bundle fetchComponent={componentMap[column.get('id')]} loading={this.renderLoading(column.get('id'))} error={this.renderError}>
+                {SpecificComponent => <SpecificComponent columnId={column.get('uuid')} params={params} multiColumn {...other} />}
+              </Bundle>
+            </ColumnIndexContext.Provider>
           );
         })}
 
-        {Children.map(children, child => cloneElement(child, { multiColumn: true }))}
+        <ColumnIndexContext.Provider value={columns.size}>
+          {Children.map(children, child => cloneElement(child, { multiColumn: true }))}
+        </ColumnIndexContext.Provider>
       </div>
     );
   }
