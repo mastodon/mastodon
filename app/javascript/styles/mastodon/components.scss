@@ -5017,6 +5017,13 @@ a.status-card {
         background-color: rgb(from var(--color-bg-media-base) r g b / 90%);
       }
     }
+
+    &:focus-visible {
+      .spoiler-button__overlay__label {
+        outline: 2px solid var(--color-text-on-media);
+        outline-offset: -4px;
+      }
+    }
   }
 }
 
