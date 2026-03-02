@@ -16,7 +16,8 @@ import { Icon } from 'mastodon/components/icon';
 import { ButtonInTabsBar } from 'mastodon/features/ui/util/columns_context';
 import { useIdentity } from 'mastodon/identity_context';
 
-import { SKIP_LINK_TARGETS } from '../features/ui/components/skip_links';
+import { useColumnIndexContext } from '../features/ui/components/columns_area';
+import { getColumnSkipLinkId } from '../features/ui/components/skip_links';
 
 import { useAppHistory } from './router';
 
@@ -39,6 +40,7 @@ const BackButton: React.FC<{
 }> = ({ hasTitle }) => {
   const history = useAppHistory();
   const intl = useIntl();
+  const columnIndex = useColumnIndexContext();
 
   const handleBackClick = useCallback(() => {
     if (history.location.state?.fromMastodon) {
@@ -54,7 +56,7 @@ const BackButton: React.FC<{
       className={classNames('column-header__back-button', {
         compact: hasTitle,
       })}
-      id={hasTitle ? undefined : SKIP_LINK_TARGETS.CONTENT}
+      id={!hasTitle ? getColumnSkipLinkId(columnIndex) : undefined}
       aria-label={intl.formatMessage(messages.back)}
       type='button'
     >
@@ -263,6 +265,7 @@ export const ColumnHeader: React.FC<Props> = ({
   const hasIcon = icon && iconComponent;
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const hasTitle = (hasIcon || backButton) && title;
+  const columnIndex = useColumnIndexContext();
 
   const component = (
     <div className={wrapperClassName}>
@@ -275,7 +278,7 @@ export const ColumnHeader: React.FC<Props> = ({
               onClick={handleTitleClick}
               className='column-header__title'
               type='button'
-              id={SKIP_LINK_TARGETS.CONTENT}
+              id={getColumnSkipLinkId(columnIndex)}
             >
               {!backButton && hasIcon && (
                 <Icon

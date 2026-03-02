@@ -1,4 +1,7 @@
-import { SKIP_LINK_TARGETS } from '../components/skip_links';
+import {
+  getColumnSkipLinkId,
+  getNavigationSkipLinkId,
+} from '../components/skip_links';
 
 /**
  * Out of a list of elements, return the first one whose top edge
@@ -28,14 +31,14 @@ function focusColumnTitle(index: number, multiColumn: boolean) {
     if (column) {
       column
         .querySelector<HTMLAnchorElement>(
-          `#${SKIP_LINK_TARGETS.CONTENT}, #${SKIP_LINK_TARGETS.NAV}`,
+          `#${getColumnSkipLinkId(index - 1)}, #${getNavigationSkipLinkId()}`,
         )
         ?.focus();
     }
   } else {
     if (index === 2) {
       document
-        .querySelector<HTMLAnchorElement>(`#${SKIP_LINK_TARGETS.NAV}`)
+        .querySelector<HTMLAnchorElement>(`#${getNavigationSkipLinkId()}`)
         ?.focus();
     }
   }

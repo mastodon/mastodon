@@ -6,10 +6,9 @@ import { useAppSelector } from 'mastodon/store';
 
 import classes from './skip_links.module.scss';
 
-export const SKIP_LINK_TARGETS = {
-  CONTENT: 'skip-link-target-content',
-  NAV: 'skip-link-target-nav',
-} as const;
+export const getNavigationSkipLinkId = () => 'skip-link-target-nav';
+export const getColumnSkipLinkId = (index: number) =>
+  `skip-link-target-content-${index}`;
 
 export const SkipLinks: React.FC<{
   multiColumn: boolean;
@@ -32,7 +31,7 @@ export const SkipLinks: React.FC<{
   return (
     <ul className={classes.list}>
       <li className={classes.listItem}>
-        <SkipLink target={SKIP_LINK_TARGETS.CONTENT} hotkey='1'>
+        <SkipLink target={getColumnSkipLinkId(1)} hotkey='1'>
           {intl.formatMessage({
             id: 'skip_links.skip_to_content',
             defaultMessage: 'Skip to main content',
@@ -41,7 +40,7 @@ export const SkipLinks: React.FC<{
       </li>
       <li className={classes.listItem}>
         <SkipLink
-          target={multiColumn ? `/getting-started` : SKIP_LINK_TARGETS.NAV}
+          target={multiColumn ? `/getting-started` : getNavigationSkipLinkId()}
           onRouterLinkClick={multiColumn ? focusMultiColumnNavbar : undefined}
           hotkey={multiColumn ? `${columnCount}` : '2'}
         >

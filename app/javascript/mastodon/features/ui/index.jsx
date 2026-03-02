@@ -92,7 +92,7 @@ import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
 import { areCollectionsEnabled } from '../collections/utils';
-import { SKIP_LINK_TARGETS, SkipLinks } from './components/skip_links';
+import { getNavigationSkipLinkId, SkipLinks } from './components/skip_links';
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
@@ -557,7 +557,7 @@ class UI extends PureComponent {
     // to allow for it to be displayed first
     setTimeout(() => {
       const navbarSkipTarget = document.querySelector(
-        `#${SKIP_LINK_TARGETS.NAV}`,
+        `#${getNavigationSkipLinkId()}`,
       );
       navbarSkipTarget?.focus();
     }, 0);

@@ -33,7 +33,7 @@ import { IconWithBadge } from 'mastodon/components/icon_with_badge';
 import { WordmarkLogo } from 'mastodon/components/logo';
 import { Search } from 'mastodon/features/compose/components/search';
 import { ColumnLink } from 'mastodon/features/ui/components/column_link';
-import { SKIP_LINK_TARGETS } from 'mastodon/features/ui/components/skip_links';
+import { getNavigationSkipLinkId } from 'mastodon/features/ui/components/skip_links';
 import { useBreakpoint } from 'mastodon/features/ui/hooks/useBreakpoint';
 import { useIdentity } from 'mastodon/identity_context';
 import {
@@ -228,7 +228,7 @@ export const NavigationPanel: React.FC<{ multiColumn?: boolean }> = ({
         <Link
           to='/'
           className='column-link column-link--logo'
-          id={SKIP_LINK_TARGETS.NAV}
+          id={getNavigationSkipLinkId()}
         >
           <WordmarkLogo />
         </Link>
