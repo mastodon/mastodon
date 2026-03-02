@@ -53,6 +53,16 @@ module SettingsHelper
     end
   end
 
+  def default_content_type_label(content_type)
+    variant = content_type.split('/')[1]
+    safe_join(
+      [
+        t("simple_form.labels.defaults.setting_default_content_type_#{variant}"),
+        content_tag(:span, t("simple_form.hints.defaults.setting_default_content_type_#{variant}"), class: 'hint'),
+      ]
+    )
+  end
+
   private
 
   def links_for_featured_tags(tags)
