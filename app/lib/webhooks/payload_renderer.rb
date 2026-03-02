@@ -39,7 +39,7 @@ class Webhooks::PayloadRenderer
     rule(:digit) { match('[0-9]') }
     rule(:property_name) { match('[a-z_]').repeat(1) }
     rule(:array_index) { digit.repeat(1) }
-    rule(:segment) { (property_name | array_index) }
+    rule(:segment) { property_name | array_index }
     rule(:path) { property_name >> (dot >> segment).repeat }
     rule(:variable) { (str('}}').absent? >> path).repeat.as(:variable) }
     rule(:expression) { str('{{') >> variable >> str('}}') }
