@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { Route } from 'react-router-dom';
 
 import { Provider as ReduxProvider } from 'react-redux';
-
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import { fetchCustomEmojis } from 'mastodon/actions/custom_emojis';
 import { hydrateStore } from 'mastodon/actions/store';
@@ -60,6 +60,7 @@ export default class Mastodon extends PureComponent {
               </Router>
 
               <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
+              <SpeedInsights />
             </ErrorBoundary>
           </ReduxProvider>
         </IntlProvider>
