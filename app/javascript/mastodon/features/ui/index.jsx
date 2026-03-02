@@ -254,9 +254,9 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/lists' component={Lists} content={children} />
             {areCollectionsEnabled() &&
               [
-                <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} />,
-                <WrappedRoute path='/collections/:id' component={CollectionDetail} content={children} />,
-                <WrappedRoute path='/collections' component={Collections} content={children} />
+                <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} key='collections-editor' />,
+                <WrappedRoute path='/collections/:id' component={CollectionDetail} content={children} key='collections-detail' />,
+                <WrappedRoute path='/collections' component={Collections} content={children} key='collections-list' />
               ]
             }
             <Route component={BundleColumnError} />
