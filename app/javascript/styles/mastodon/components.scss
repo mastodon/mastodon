@@ -285,6 +285,7 @@
   --default-bg-color: transparent;
   --hover-icon-color: var(--color-text-primary);
   --hover-bg-color: var(--color-bg-brand-softer);
+  --focus-outline-color: var(--color-text-brand);
 
   display: inline-flex;
   color: var(--default-icon-color);
@@ -313,7 +314,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-text-brand);
+    outline: 2px solid var(--focus-outline-color);
   }
 
   &.disabled {
