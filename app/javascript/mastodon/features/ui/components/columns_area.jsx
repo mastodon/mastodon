@@ -54,7 +54,7 @@ const TabsBarPortal = () => {
 };
 
 // Simple context to allow column children to know which column they're in
-export const ColumnIndexContext = createContext(0);
+export const ColumnIndexContext = createContext(1);
 /**
  * @returns {number}
  */
