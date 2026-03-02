@@ -95,6 +95,7 @@ import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
 import { areCollectionsEnabled } from '../collections/utils';
+import { getNavigationSkipLinkId, SkipLinks } from './components/skip_links';
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
@@ -261,9 +262,9 @@ class SwitchingColumnsArea extends PureComponent {
             <WrappedRoute path='/lists' component={Lists} content={children} />
             {areCollectionsEnabled() &&
               [
-                <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} />,
-                <WrappedRoute path='/collections/:id' component={CollectionDetail} content={children} />,
-                <WrappedRoute path='/collections' component={Collections} content={children} />
+                <WrappedRoute path={['/collections/new', '/collections/:id/edit']} component={CollectionsEditor} content={children} key='collections-editor' />,
+                <WrappedRoute path='/collections/:id' component={CollectionDetail} content={children} key='collections-detail' />,
+                <WrappedRoute path='/collections' component={Collections} content={children} key='collections-list' />
               ]
             }
             <Route component={BundleColumnError} />
@@ -602,6 +603,14 @@ class UI extends PureComponent {
 
   handleHotkeyGoToStart = () => {
     this.props.history.push('/getting-started');
+    // Set focus to the navigation after a timeout
+    // to allow for it to be displayed first
+    setTimeout(() => {
+      const navbarSkipTarget = document.querySelector(
+        `#${getNavigationSkipLinkId()}`,
+      );
+      navbarSkipTarget?.focus();
+    }, 0);
   };
 
   handleHotkeyGoToFavourites = () => {
@@ -670,6 +679,10 @@ class UI extends PureComponent {
     return (
       <Hotkeys global handlers={handlers}>
         <div className={className} ref={this.setRef}>
+          <SkipLinks
+            multiColumn={layout === 'multi-column'}
+            onFocusGettingStartedColumn={this.handleHotkeyGoToStart}
+          />
           {moved && (<div className='flash-message alert'>
             <FormattedMessage
               id='moved_to_warning'
