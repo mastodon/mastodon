@@ -11,7 +11,7 @@ class Api::V1Alpha::CollectionItemsController < Api::BaseController
 
   before_action :set_collection
   before_action :set_account, only: [:create]
-  before_action :set_collection_item, only: [:destroy]
+  before_action :set_collection_item, only: [:destroy, :revoke]
 
   after_action :verify_authorized
 
@@ -28,6 +28,14 @@ class Api::V1Alpha::CollectionItemsController < Api::BaseController
     authorize @collection, :update?
 
     DeleteCollectionItemService.new.call(@collection_item)
+
+    head 200
+  end
+
+  def revoke
+    authorize @collection_item, :revoke?
+
+    RevokeCollectionItemService.new.call(@collection_item)
 
     head 200
   end
