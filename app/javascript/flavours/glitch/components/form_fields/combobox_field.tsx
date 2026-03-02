@@ -63,7 +63,10 @@ interface ComboboxProps<T extends ComboboxItem> extends TextInputProps {
    * Customise the rendering of each option.
    * The rendered content must not contain other interactive content!
    */
-  renderItem: (item: T, state: ComboboxItemState) => React.ReactElement;
+  renderItem: (
+    item: T,
+    state: ComboboxItemState,
+  ) => React.ReactElement | string;
   /**
    * The main selection handler, called when an option is selected or deselected.
    */
