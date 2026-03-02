@@ -69,7 +69,7 @@ class ApplicationController < ActionController::Base
   end
 
   def mfa_setup_path(path_params = {})
-    settings_two_factor_authentication_methods_path(path_params)
+    settings_otp_authentication_path(path_params)
   end
 
   def require_functional!
