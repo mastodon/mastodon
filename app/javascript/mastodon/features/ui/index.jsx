@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
 
+import { scrollRight } from '../../scroll';
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
 import { fetchNotifications } from 'mastodon/actions/notification_groups';
@@ -34,7 +35,7 @@ import BundleColumnError from './components/bundle_column_error';
 import { NavigationBar } from './components/navigation_bar';
 import { UploadArea } from './components/upload_area';
 import { HashtagMenuController } from './components/hashtag_menu_controller';
-import ColumnsAreaContainer from './containers/columns_area_container';
+import { ColumnsArea } from './components/columns_area';
 import LoadingBarContainer from './containers/loading_bar_container';
 import ModalContainer from './containers/modal_container';
 import {
@@ -125,13 +126,23 @@ class SwitchingColumnsArea extends PureComponent {
 
   componentDidUpdate (prevProps) {
     if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
-      this.node.handleChildrenContentChange();
+      this.handleChildrenContentChange();
     }
 
     if (prevProps.singleColumn !== this.props.singleColumn) {
       document.body.classList.toggle('layout-single-column', this.props.singleColumn);
       document.body.classList.toggle('layout-multiple-columns', !this.props.singleColumn);
     }
+  }
+
+  handleChildrenContentChange() {
+    if (!this.props.singleColumn) {
+      const isRtlLayout = document.getElementsByTagName('body')[0]
+        ?.classList.contains('rtl');
+  	  const modifier = isRtlLayout ? -1 : 1;
+
+  	  scrollRight(this.node, (this.node.scrollWidth - window.innerWidth) * modifier);
+  	}
   }
 
   setRef = c => {
@@ -181,7 +192,7 @@ class SwitchingColumnsArea extends PureComponent {
 
     return (
       <ColumnsContextProvider multiColumn={!singleColumn}>
-        <ColumnsAreaContainer ref={this.setRef} singleColumn={singleColumn}>
+        <ColumnsArea ref={this.setRef} singleColumn={singleColumn}>
           <WrappedSwitch>
             {redirect}
 
@@ -261,7 +272,7 @@ class SwitchingColumnsArea extends PureComponent {
             }
             <Route component={BundleColumnError} />
           </WrappedSwitch>
-        </ColumnsAreaContainer>
+        </ColumnsArea>
       </ColumnsContextProvider>
     );
   }
