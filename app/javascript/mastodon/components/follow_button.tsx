@@ -3,8 +3,10 @@ import { useCallback, useEffect } from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
 import { useIdentity } from '@/mastodon/identity_context';
+import { isClientFeatureEnabled } from '@/mastodon/utils/environment';
 import {
   fetchRelationships,
   followAccount,
@@ -158,14 +160,24 @@ export const FollowButton: React.FC<{
   }
 
   if (accountId === me) {
+    const buttonClasses = classNames(className, 'button button-secondary', {
+      'button--compact': compact,
+    });
+
+    if (isClientFeatureEnabled('profile_editing')) {
+      return (
+        <Link to='/profile/edit' className={buttonClasses}>
+          {label}
+        </Link>
+      );
+    }
+
     return (
       <a
         href='/settings/profile'
         target='_blank'
         rel='noopener'
-        className={classNames(className, 'button button-secondary', {
-          'button--compact': compact,
-        })}
+        className={buttonClasses}
       >
         {label}
       </a>

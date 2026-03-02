@@ -1,19 +1,21 @@
-.collectionItemWrapper {
+.wrapper {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-inline: 10px;
-  padding-inline-end: 5px;
-  border-bottom: 1px solid var(--color-border-primary);
+  padding-inline: 16px;
+
+  &:not(.wrapperWithoutBorder) {
+    border-bottom: 1px solid var(--color-border-primary);
+  }
 }
 
-.collectionItemContent {
+.content {
   position: relative;
   flex-grow: 1;
-  padding: 15px 5px;
+  padding-block: 15px;
 }
 
-.collectionItemLink {
+.link {
   display: block;
   margin-bottom: 2px;
   font-size: 15px;
@@ -33,16 +35,20 @@
   }
 }
 
-.collectionItemInfo {
+.info {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.metaList {
   --gap: 0.75ch;
 
   display: flex;
+  flex-wrap: wrap;
   gap: var(--gap);
-  font-size: 13px;
-  color: var(--color-text-secondary);
 
-  & > li:not(:first-child)::before {
+  & > li:not(:last-child)::after {
     content: '·';
-    margin-inline-end: var(--gap);
+    margin-inline-start: var(--gap);
   }
 }

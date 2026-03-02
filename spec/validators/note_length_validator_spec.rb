@@ -3,61 +3,61 @@
 require 'rails_helper'
 
 RSpec.describe NoteLengthValidator do
-  subject { described_class.new(attributes: { note: true }, maximum: 500) }
+  subject { record_class.new }
 
-  describe '#validate' do
-    it 'adds an error when text is over configured character limit' do
-      text = 'a' * 520
-      account = instance_double(Account, note: text, errors: activemodel_errors)
+  let(:record_class) do
+    Class.new do
+      include ActiveModel::Validations
 
-      subject.validate_each(account, 'note', text)
-      expect(account.errors).to have_received(:add)
+      def self.name = 'Record'
+
+      attr_accessor :note
+
+      validates :note, note_length: { maximum: 100 }
     end
+  end
 
-    it 'reduces calculated length of auto-linkable space-separated URLs' do
-      text = [starting_string, example_link].join(' ')
-      account = instance_double(Account, note: text, errors: activemodel_errors)
+  context 'when note is too long' do
+    let(:too_long) { 'a' * 200 }
 
-      subject.validate_each(account, 'note', text)
-      expect(account.errors).to_not have_received(:add)
-    end
+    it { is_expected.to_not allow_value(too_long).for(:note).with_message(too_long_message) }
+  end
 
-    it 'does not reduce calculated length of non-autolinkable URLs' do
-      text = [starting_string, example_link].join
-      account = instance_double(Account, note: text, errors: activemodel_errors)
+  context 'when note has space separated linkable URLs' do
+    let(:text) { [starting_string, example_link].join(' ') }
 
-      subject.validate_each(account, 'note', text)
-      expect(account.errors).to have_received(:add)
-    end
+    it { is_expected.to allow_value(text).for(:note) }
+  end
 
-    it 'counts multi byte emoji as single character' do
-      text = '✨' * 500
-      account = instance_double(Account, note: text, errors: activemodel_errors)
+  context 'when note has non-separated URLs' do
+    let(:text) { [starting_string, example_link].join }
 
-      subject.validate_each(account, 'note', text)
-      expect(account.errors).to_not have_received(:add)
-    end
+    it { is_expected.to_not allow_value(text).for(:note).with_message(too_long_message) }
+  end
 
-    it 'counts ZWJ sequence emoji as single character' do
-      text = '🏳️‍⚧️' * 500
-      account = instance_double(Account, note: text, errors: activemodel_errors)
+  context 'with multi-byte emoji' do
+    let(:text) { '✨' * 100 }
 
-      subject.validate_each(account, 'note', text)
-      expect(account.errors).to_not have_received(:add)
-    end
+    it { is_expected.to allow_value(text).for(:note) }
+  end
 
-    private
+  context 'with ZWJ sequence emoji' do
+    let(:text) { '🏳️‍⚧️' * 100 }
 
-    def starting_string
-      'a' * 476
-    end
+    it { is_expected.to allow_value(text).for(:note) }
+  end
 
-    def example_link
-      "http://#{'b' * 30}.com/example"
-    end
+  private
 
-    def activemodel_errors
-      instance_double(ActiveModel::Errors, add: nil)
-    end
+  def too_long_message
+    I18n.t('statuses.over_character_limit', max: 100)
+  end
+
+  def starting_string
+    'a' * 76
+  end
+
+  def example_link
+    "http://#{'b' * 30}.com/example"
   end
 end

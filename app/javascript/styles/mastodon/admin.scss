@@ -378,6 +378,15 @@ $content-width: 840px;
     }
   }
 
+  details > summary {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    padding-top: 24px;
+    margin-bottom: 8px;
+  }
+
   @media screen and (max-width: $no-columns-breakpoint) {
     display: block;
 

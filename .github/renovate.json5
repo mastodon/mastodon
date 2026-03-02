@@ -154,9 +154,15 @@
       groupName: 'opentelemetry-ruby (non-major)',
     },
     {
-      // Group Playwright Ruby & JS deps in the same PR, as they need to be in sync
-      matchManagers: ['bundler', 'npm'],
-      matchPackageNames: ['playwright-ruby-client', 'playwright'],
+      // The ruby portion of the Playwright group
+      matchManagers: ['bundler'],
+      matchPackageNames: ['playwright-ruby-client'],
+      groupName: 'Playwright',
+    },
+    {
+      // The node portion of the Playwright group
+      matchManagers: ['npm'],
+      matchPackageNames: ['playwright'],
       groupName: 'Playwright',
     },
     // Add labels depending on package manager

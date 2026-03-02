@@ -42,6 +42,13 @@ export const WithError: Story = {
   },
 };
 
+export const AutoSize: Story = {
+  args: {
+    autoSize: true,
+    defaultValue: 'This textarea will grow as you type more lines.',
+  },
+};
+
 export const Plain: Story = {
   render(args) {
     return <TextArea {...args} />;

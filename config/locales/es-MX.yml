@@ -56,6 +56,7 @@ es-MX:
         label: Cambiar de rol
         no_role: Sin rol
         title: Cambiar el rol para %{username}
+      collections: Colecciones
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
@@ -266,6 +267,7 @@ es-MX:
         demote_user_html: "%{name} degradó al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
         destroy_canonical_email_block_html: "%{name} ha desbloqueado el correo electrónico con el hash %{target}"
+        destroy_collection_html: "%{name} eliminó la colección de %{target}"
         destroy_custom_emoji_html: "%{name} eliminó el emoji %{target}"
         destroy_domain_allow_html: "%{name} bloqueó la federación con el dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
@@ -305,6 +307,7 @@ es-MX:
         unsilence_account_html: "%{name} desilenció la cuenta de %{target}"
         unsuspend_account_html: "%{name} reactivó la cuenta de %{target}"
         update_announcement_html: "%{name} actualizó el anuncio %{target}"
+        update_collection_html: "%{name} actualizó la colección de %{target}"
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_ip_block_html: "%{name} cambió la regla para la IP %{target}"
@@ -340,6 +343,15 @@ es-MX:
       unpublish: Retirar publicación
       unpublished_msg: "¡Anuncio despublicado con éxito!"
       updated_msg: "¡Anuncio actualizado con éxito!"
+    collections:
+      accounts: Cuentas
+      collection_title: Colección de %{name}
+      contents: Contenidos
+      number_of_accounts:
+        one: 1 cuenta
+        other: "%{count} cuentas"
+      open: Abrir
+      view_publicly: Ver públicamente
     critical_update_pending: Actualización crítica pendiente
     custom_emojis:
       assign_category: Asignar categoría
@@ -679,6 +691,7 @@ es-MX:
       cancel: Cancelar
       category: Categoría
       category_description_html: La razón por la que se reportó esta cuenta o contenido será citada en las comunicaciones con la cuenta reportada
+      collections: Colecciones (%{count})
       comment:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
@@ -708,12 +721,13 @@ es-MX:
       report: 'Reportar #%{id}'
       reported_account: Cuenta reportada
       reported_by: Reportado por
+      reported_content: Contenido reportado
       reported_with_application: Informado a través de la aplicación
       resolved: Resuelto
       resolved_msg: "¡La denuncia se ha resuelto correctamente!"
       skip_to_actions: Ir directamente a las acciones
       status: Estado
-      statuses: Contenido reportado
+      statuses: Publicaciones (%{count})
       statuses_description_html: El contenido ofensivo se citará en comunicación con la cuenta reportada
       summary:
         action_preambles:

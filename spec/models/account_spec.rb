@@ -790,17 +790,20 @@ RSpec.describe Account do
     end
   end
 
-  describe '#featureable?' do
-    subject { Fabricate.build(:account, domain: (local ? nil : 'example.com'), discoverable:) }
+  describe '#featureable_by?' do
+    subject { Fabricate.build(:account, domain: (local ? nil : 'example.com'), discoverable:, feature_approval_policy:) }
+
+    let(:local_account) { Fabricate(:account) }
 
     context 'when account is local' do
       let(:local) { true }
+      let(:feature_approval_policy) { nil }
 
       context 'when account is discoverable' do
         let(:discoverable) { true }
 
         it 'returns `true`' do
-          expect(subject.featureable?).to be true
+          expect(subject.featureable_by?(local_account)).to be true
         end
       end
 
@@ -808,7 +811,7 @@ RSpec.describe Account do
         let(:discoverable) { false }
 
         it 'returns `false`' do
-          expect(subject.featureable?).to be false
+          expect(subject.featureable_by?(local_account)).to be false
         end
       end
     end
@@ -816,9 +819,26 @@ RSpec.describe Account do
     context 'when account is remote' do
       let(:local) { false }
       let(:discoverable) { true }
+      let(:feature_approval_policy) { (0b10 << 16) | 0 }
 
       it 'returns `false`' do
-        expect(subject.featureable?).to be false
+        expect(subject.featureable_by?(local_account)).to be false
+      end
+
+      context 'when collections federation is enabled', feature: :collections_federation do
+        context 'when the policy allows it' do
+          it 'returns `true`' do
+            expect(subject.featureable_by?(local_account)).to be true
+          end
+        end
+
+        context 'when the policy forbids it' do
+          let(:feature_approval_policy) { 0 }
+
+          it 'returns `false`' do
+            expect(subject.featureable_by?(local_account)).to be false
+          end
+        end
       end
     end
   end

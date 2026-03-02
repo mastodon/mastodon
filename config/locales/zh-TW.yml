@@ -53,6 +53,7 @@ zh-TW:
         label: 變更角色
         no_role: 沒有角色
         title: 為 %{username} 變更角色
+      collections: 收藏名單
       confirm: 確定
       confirmed: 已確定
       confirming: 確定
@@ -262,6 +263,7 @@ zh-TW:
         demote_user_html: "%{name} 將使用者 %{target} 降級"
         destroy_announcement_html: "%{name} 已刪除公告 %{target}"
         destroy_canonical_email_block_html: "%{name} 已解除封鎖 hash 為 %{target} 之電子郵件"
+        destroy_collection_html: "%{name} 已刪除 %{target} 的收藏名單"
         destroy_custom_emoji_html: "%{name} 已刪除 emoji 表情符號 %{target}"
         destroy_domain_allow_html: "%{name} 不允許與網域 %{target} 加入聯邦宇宙"
         destroy_domain_block_html: "%{name} 已解除封鎖網域 %{target}"
@@ -301,6 +303,7 @@ zh-TW:
         unsilence_account_html: "%{name} 已取消使用者 %{target} 的靜音狀態"
         unsuspend_account_html: "%{name} 已取消停權 %{target} 的帳號"
         update_announcement_html: "%{name} 已更新公告 %{target}"
+        update_collection_html: "%{name} 已更新 %{target} 的收藏名單"
         update_custom_emoji_html: "%{name} 已更新自訂 emoji 表情符號 %{target}"
         update_domain_block_html: "%{name} 已更新 %{target} 之網域封鎖"
         update_ip_block_html: "%{name} 已變更 IP %{target} 之規則"
@@ -336,6 +339,14 @@ zh-TW:
       unpublish: 取消發布
       unpublished_msg: 成功取消發布公告！
       updated_msg: 成功更新公告！
+    collections:
+      accounts: 帳號
+      collection_title: "%{name} 的收藏名單"
+      contents: 內容
+      number_of_accounts:
+        other: "%{count} 個帳號"
+      open: 開啟
+      view_publicly: 公開檢視
     critical_update_pending: 重要更新待升級
     custom_emojis:
       assign_category: 指定分類
@@ -666,6 +677,7 @@ zh-TW:
       cancel: 取消
       category: 分類
       category_description_html: 此帳號及/或被檢舉內容之原因將被引用於檢舉帳號通知中
+      collections: 收藏名單 (%{count})
       comment:
         none: 無
       comment_description_html: 提供更多資訊，%{name} 寫道：
@@ -695,12 +707,13 @@ zh-TW:
       report: '檢舉 #%{id}'
       reported_account: 被檢舉使用者
       reported_by: 檢舉人
+      reported_content: 被檢舉的內容
       reported_with_application: 透過應用程式檢舉
       resolved: 已解決
       resolved_msg: 檢舉報告已處理完成！
       skip_to_actions: 跳過行動
       status: 嘟文
-      statuses: 被檢舉的內容
+      statuses: 嘟文 (%{count})
       statuses_description_html: 侵犯性違規內容將被引用於檢舉帳號通知中
       summary:
         action_preambles:
@@ -1743,7 +1756,7 @@ zh-TW:
       too_many_options: 不能包含多於 %{max} 個項目
     vote: 投票
   posting_defaults:
-    explanation: 這些設定將作為您建立新嘟文時之預設值，但您能於編輯器中編輯個別嘟文之設定。
+    explanation: 這些設定將作為您建立新嘟文時之預設值，但您能於嘟文編輯器中編輯個別嘟文之設定。
   preferences:
     other: 其他
     posting_defaults: 嘟文預設值
@@ -1756,7 +1769,7 @@ zh-TW:
     reach_hint_html: 控制您希望被新使用者探索或跟隨之方式。想使您的嘟文出現於探索頁面嗎？想使其他人透過他們的跟隨建議找到您嗎？想自動接受所有新跟隨者嗎？或是想逐一控制跟隨請求嗎？
     search: 搜尋
     search_hint_html: 控制您希望如何被發現。您想透過您的公開嘟文被人們發現嗎？您想透過網頁搜尋被 Mastodon 以外的人找到您的個人檔案嗎？請注意，公開資訊可能無法全面地被所有搜尋引擎所排除。
-    title: 隱私權及觸及
+    title: 隱私權與觸及
   privacy_policy:
     title: 隱私權政策
   reactions:

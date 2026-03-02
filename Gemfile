@@ -5,7 +5,7 @@ ruby '>= 3.2.0', '< 3.5.0'
 
 gem 'propshaft'
 gem 'puma', '~> 7.0'
-gem 'rails', '~> 8.0'
+gem 'rails', '~> 8.1.0'
 gem 'thor', '~> 1.2'
 
 gem 'dotenv'
@@ -180,7 +180,7 @@ group :development do
 
   # Enhanced error message pages for development
   gem 'better_errors', '~> 2.9'
-  gem 'binding_of_caller', '~> 1.0'
+  gem 'binding_of_caller'
 
   # Preview mail in the browser
   gem 'letter_opener', '~> 1.8'

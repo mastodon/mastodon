@@ -1,0 +1,92 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "printWidth": 80,
+  "ignorePatterns": [
+    "/tmp",
+    "/coverage",
+    "/public/assets",
+    "/public/emoji",
+    "/public/packs",
+    "/public/packs-test",
+    "/public/system",
+    "/public/vite*",
+
+    "*.html",
+    "docker-compose.override.yml",
+
+    // Ignore config YAML files that include ERB/ruby code
+    "config/email.yml",
+
+    // Vendored CSS
+    "app/javascript/styles/mastodon/reset.scss",
+
+    // Automatically generated
+    "/app/javascript/mastodon/features/emoji/emoji_map.json",
+    "/app/javascript/mastodon/features/emoji/emoji_data.json",
+    "AUTHORS.md",
+    "/app/javascript/mastodon/locales/*.json",
+    "/config/locales",
+    ".storybook/static/mockServiceWorker.js",
+
+    // do not reformat JS files as this will change too many files and cause merge conflicts with open PRs and forks
+    "app/javascript/**/*.js",
+    "app/javascript/**/*.jsx",
+    "streaming/**/*.js"
+  ],
+  "experimentalSortPackageJson": false,
+  "experimentalSortImports": {
+    "groups": [
+      ["builtin"],
+      ["react"],
+      ["react-intl"],
+      ["react-utils"],
+      ["redux"],
+      ["external", "type-external"],
+      ["internal", "type-internal"],
+      ["mastodon-internals"],
+      ["parent", "type-parent"],
+      ["sibling", "type-sibling", "index", "type-index"],
+      ["side_effect"]
+    ],
+    "customGroups": [
+      {
+        "groupName": "react",
+        "elementNamePattern": [
+          "react",
+          "react-dom",
+          "react-dom/client",
+          "prop-types"
+        ]
+      },
+      {
+        "groupName": "react-intl",
+        "elementNamePattern": ["react-intl", "intl-messageformat"]
+      },
+      {
+        "groupName": "react-utils",
+        "elementNamePattern": [
+          "classnames",
+          "react-helmet",
+          "react-router",
+          "react-router-dom"
+        ]
+      },
+      {
+        "groupName": "redux",
+        "elementNamePattern": [
+          "immutable",
+          "@reduxjs/toolkit",
+          "react-redux",
+          "react-immutable-proptypes",
+          "react-immutable-pure-component"
+        ]
+      },
+      {
+        "groupName": "mastodon-internals",
+        "elementNamePattern": ["mastodon/**", "@/**"]
+      }
+    ]
+  }
+}

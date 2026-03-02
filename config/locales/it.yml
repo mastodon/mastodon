@@ -56,6 +56,7 @@ it:
         label: Cambia il ruolo
         no_role: Nessun ruolo
         title: Cambia il ruolo per %{username}
+      collections: Collezioni
       confirm: Conferma
       confirmed: Confermato
       confirming: Confermando
@@ -266,6 +267,7 @@ it:
         demote_user_html: "%{name} ha retrocesso l'utente %{target}"
         destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
         destroy_canonical_email_block_html: "%{name} ha sbloccato l'e-mail con l'hash %{target}"
+        destroy_collection_html: "%{name} ha rimosso la collezione di %{target}"
         destroy_custom_emoji_html: "%{name} ha eliminato l'emoji %{target}"
         destroy_domain_allow_html: "%{name} non ha consentito la federazione con il dominio %{target}"
         destroy_domain_block_html: "%{name} ha sbloccato il dominio %{target}"
@@ -305,6 +307,7 @@ it:
         unsilence_account_html: "%{name} ha riattivato l'account di %{target}"
         unsuspend_account_html: "%{name} ha annullato la sospensione dell'account di %{target}"
         update_announcement_html: "%{name} ha aggiornato l'annuncio %{target}"
+        update_collection_html: "%{name} ha aggiornato la collezione di %{target}"
         update_custom_emoji_html: "%{name} ha aggiornato emoji %{target}"
         update_domain_block_html: "%{name} ha aggiornato il blocco dominio per %{target}"
         update_ip_block_html: "%{name} ha cambiato la regola per l'IP %{target}"
@@ -340,6 +343,15 @@ it:
       unpublish: Annulla la pubblicazione
       unpublished_msg: Annuncio ritirato!
       updated_msg: Annuncio aggiornato!
+    collections:
+      accounts: Account
+      collection_title: Collezione di %{name}
+      contents: Contenuti
+      number_of_accounts:
+        one: 1 account
+        other: "%{count} account"
+      open: Apri
+      view_publicly: Visualizza pubblicamente
     critical_update_pending: Aggiornamento critico in sospeso
     custom_emojis:
       assign_category: Assegna categoria
@@ -679,6 +691,7 @@ it:
       cancel: Annulla
       category: Categoria
       category_description_html: Il motivo per cui questo account e/o contenuto è stato segnalato sarà citato nella comunicazione con l'account segnalato
+      collections: Collezioni (%{count})
       comment:
         none: Nessuno
       comment_description_html: 'Per fornire ulteriori informazioni, %{name} ha scritto:'
@@ -708,12 +721,13 @@ it:
       report: 'Rapporto #%{id}'
       reported_account: Account segnalato
       reported_by: Inviato da
+      reported_content: Contenuto segnalato
       reported_with_application: Segnalato con applicazione
       resolved: Risolto
       resolved_msg: Rapporto risolto!
       skip_to_actions: Passa alle azioni
       status: Stato
-      statuses: Contenuto segnalato
+      statuses: Post (%{count})
       statuses_description_html: Il contenuto offensivo sarà citato nella comunicazione con l'account segnalato
       summary:
         action_preambles:

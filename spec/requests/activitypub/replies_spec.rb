@@ -100,8 +100,8 @@ RSpec.describe 'ActivityPub Replies' do
               first: be_a(Hash).and(
                 include(
                   items: be_an(Array)
-                  .and(have_attributes(size: 1))
-                  .and(all(satisfy { |item| targets_public_collection?(item) }))
+                    .and(have_attributes(size: 1))
+                    .and(all(satisfy { |item| targets_public_collection?(item) }))
                 )
               )
             )

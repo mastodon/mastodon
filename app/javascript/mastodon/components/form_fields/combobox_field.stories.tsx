@@ -82,11 +82,23 @@ const ComboboxDemo: React.FC = () => {
 
 const meta = {
   title: 'Components/Form Fields/ComboboxField',
-  component: ComboboxDemo,
-} satisfies Meta<typeof ComboboxDemo>;
+  component: ComboboxField,
+  render: () => <ComboboxDemo />,
+} satisfies Meta<typeof ComboboxField>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Example: Story = {};
+export const Example: Story = {
+  args: {
+    // Adding these types to keep TS happy, they're not passed on to `ComboboxDemo`
+    label: '',
+    value: '',
+    onChange: () => undefined,
+    items: [],
+    getItemId: () => '',
+    renderItem: () => <>Nothing</>,
+    onSelectItem: () => undefined,
+  },
+};

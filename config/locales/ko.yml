@@ -660,7 +660,7 @@ ko:
       add_to_report: 신고에 더 추가하기
       already_suspended_badges:
         local: 이 서버에서 이미 정지되었습니다
-        remote: 저 서버에서 이미 정지되었습니다
+        remote: 이미 해당 서버에서 정지함
       are_you_sure: 확실합니까?
       assign_to_self: 나에게 할당하기
       assigned: 할당된 중재자
@@ -702,7 +702,6 @@ ko:
       resolved_msg: 신고를 잘 해결했습니다!
       skip_to_actions: 작업으로 건너뛰기
       status: 상태
-      statuses: 신고된 콘텐츠
       statuses_description_html: 문제가 되는 콘텐츠는 신고된 계정에게 인용되어 전달됩니다
       summary:
         action_preambles:
@@ -1302,6 +1301,13 @@ ko:
     hint_html: "<strong>팁:</strong> 한 시간 동안 다시 암호를 묻지 않을 것입니다."
     invalid_password: 잘못된 암호
     prompt: 계속하려면 암호를 확인하세요
+  color_scheme:
+    auto: 자동
+    dark: 어두움
+    light: 밝음
+  contrast:
+    auto: 자동
+    high: 높음
   crypto:
     errors:
       invalid_key: 유효하지 않은 Ed25519 또는 Curve25519 키

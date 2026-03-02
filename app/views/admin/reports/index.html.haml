@@ -67,6 +67,11 @@
                 = material_symbol('photo_camera')
                 = report.media_attachments_count
 
+              - if Mastodon::Feature.collections_enabled?
+                %span.report-card__summary__item__content__icon{ title: t('admin.accounts.collections') }
+                  = material_symbol('groups-fill')
+                  = report.collections.size
+
               - if report.forwarded?
                 ·
                 = t('admin.reports.forwarded_to', domain: target_account.domain)

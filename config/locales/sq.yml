@@ -56,6 +56,7 @@ sq:
         label: Ndryshoni rol
         no_role: Pa rol
         title: Ndryshoni rolin për %{username}
+      collections: Koleksione
       confirm: Ripohojeni
       confirmed: U ripohua
       confirming: Po ripohohet
@@ -266,6 +267,7 @@ sq:
         demote_user_html: "%{name} zhgradoi përdoruesin %{target}"
         destroy_announcement_html: "%{name} fshiu lajmërimin për %{target}"
         destroy_canonical_email_block_html: "%{name} zhbllokoi email me hashin %{target}"
+        destroy_collection_html: "%{name} hoqi koleksion nga %{target}"
         destroy_custom_emoji_html: "%{name} fshiu emoji-n %{target}"
         destroy_domain_allow_html: "%{name} hoqi lejimin për federim me %{target}"
         destroy_domain_block_html: "%{name} zhbllokoi përkatësinë %{target}"
@@ -305,6 +307,7 @@ sq:
         unsilence_account_html: "%{name} hoqi heshtimin për llogarinë %{target}"
         unsuspend_account_html: "%{name} hoqi pezullimin për llogarinë e %{target}"
         update_announcement_html: "%{name} përditësoi lajmërimin %{target}"
+        update_collection_html: "%{name} përditësoi koleksion nga %{target}"
         update_custom_emoji_html: "%{name} përditësoi emoxhin %{target}"
         update_domain_block_html: "%{name} përditësoi bllokim përkatësish për %{target}"
         update_ip_block_html: "%{name} ndryshoi rregull për IP-në %{target}"
@@ -340,6 +343,15 @@ sq:
       unpublish: Hiqi publikimin
       unpublished_msg: Lajmërimi u botua me sukses!
       updated_msg: Lajmërimi u përditësua me sukses!
+    collections:
+      accounts: Llogari
+      collection_title: Koleksion nga %{name}
+      contents: Lëndë
+      number_of_accounts:
+        one: 1 llogari
+        other: "%{count} llogari"
+      open: Hape
+      view_publicly: Shiheni publikisht
     critical_update_pending: Përditësim kritik pezull
     custom_emojis:
       assign_category: Caktojini kategori
@@ -675,6 +687,7 @@ sq:
       cancel: Anuloje
       category: Kategori
       category_description_html: Arsyeja pse kjo llogari dhe/ose lëndë raportohet do të citohet te komunikimi me llogarinë e raportuar
+      collections: Koleksione (%{count})
       comment:
         none: Asnjë
       comment_description_html: 'Për të dhënë më tepër informacion, %{name} shkroi:'
@@ -704,12 +717,13 @@ sq:
       report: 'Raportim #%{id}'
       reported_account: Llogari e raportuar
       reported_by: Raportuar nga
+      reported_content: Lëndë e raportuar
       reported_with_application: Raportuar me aplikacion
       resolved: I zgjidhur
       resolved_msg: Raportimi u zgjidh me sukses!
       skip_to_actions: Kaloni te veprimet
       status: Gjendje
-      statuses: Lëndë e raportuar
+      statuses: Postime (%{count})
       statuses_description_html: Lënda problematike do të citohet në komunikimin me llogarinë e raportuar
       summary:
         action_preambles:

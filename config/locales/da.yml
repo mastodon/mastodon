@@ -56,6 +56,7 @@ da:
         label: Ændr rolle
         no_role: Ingen rolle
         title: Ændr rolle for %{username}
+      collections: Samlinger
       confirm: Bekræft
       confirmed: Bekræftet
       confirming: Bekræfter
@@ -266,6 +267,7 @@ da:
         demote_user_html: "%{name} degraderede brugeren %{target}"
         destroy_announcement_html: "%{name} slettede bekendtgørelsen %{target}"
         destroy_canonical_email_block_html: "%{name} afblokerede e-mailen med hash'et %{target}"
+        destroy_collection_html: "%{name} fjernede samling af %{target}"
         destroy_custom_emoji_html: "%{name} slettede emojien %{target}"
         destroy_domain_allow_html: "%{name} fjernede federeringstilladelsen med domænet %{target}"
         destroy_domain_block_html: "%{name} afblokerede domænet %{target}"
@@ -305,6 +307,7 @@ da:
         unsilence_account_html: "%{name} fjernede begrænsningen af %{target}s konto"
         unsuspend_account_html: "%{name} fjernede suspenderingen af %{target}s konto"
         update_announcement_html: "%{name} opdaterede bekendtgørelsen %{target}"
+        update_collection_html: "%{name} opdaterede samling af %{target}"
         update_custom_emoji_html: "%{name} opdaterede emoji %{target}"
         update_domain_block_html: "%{name} opdaterede domæneblokeringen for %{target}"
         update_ip_block_html: "%{name} ændrede reglen for IP'en %{target}"
@@ -340,6 +343,15 @@ da:
       unpublish: Afpublicér
       unpublished_msg: Bekendtgørelsen er afpubliceret!
       updated_msg: Bekendtgørelsen er opdateret!
+    collections:
+      accounts: Konti
+      collection_title: Indsamling af %{name}
+      contents: Indhold
+      number_of_accounts:
+        one: 1 konto
+        other: "%{count} konti"
+      open: Åben
+      view_publicly: Vis offentligt
     critical_update_pending: Kritisk opdatering afventer
     custom_emojis:
       assign_category: Tildel kategori
@@ -679,6 +691,7 @@ da:
       cancel: Afbryd
       category: Kategori
       category_description_html: Årsagen til anmeldelsen af denne konto og/eller indhold refereres i kommunikationen med den anmeldte konto
+      collections: Samlinger (%{count})
       comment:
         none: Ingen
       comment_description_html: 'For at give mere information, skrev %{name}:'
@@ -708,12 +721,13 @@ da:
       report: 'Anmeldelse #%{id}'
       reported_account: Anmeldt konto
       reported_by: Anmeldt af
+      reported_content: Anmeldt indhold
       reported_with_application: Rapporteret via applikation
       resolved: Løst
       resolved_msg: Anmeldelse løst!
       skip_to_actions: Overspring til foranstaltninger
       status: Status
-      statuses: Anmeld indhold
+      statuses: Indlæg (%{count})
       statuses_description_html: Krænkende indhold citeres i kommunikationen med den anmeldte konto
       summary:
         action_preambles:
@@ -1499,7 +1513,7 @@ da:
     copy: Kopier
     delete: Slet
     deselect: Afmarkér alle
-    none: Intet
+    none: Ingen
     order_by: Sortér efter
     save_changes: Gem ændringer
     select_all_matching_items:
@@ -1918,8 +1932,8 @@ da:
       account_suspension: Kontosuspendering (%{target_name})
       domain_block: Serversuspendering (%{target_name})
       user_domain_block: "%{target_name} blev blokeret"
-    lost_followers: Tabte følgere
-    lost_follows: Mistet følger
+    lost_followers: Mistet følgere
+    lost_follows: Mistet fulgte
     preamble: Du kan miste fulgte og følgere, når du blokerer et domæne, eller når dine moderatorer beslutter at suspendere en fjernserver. Når det sker, kan du downloade lister over afbrudte forhold til inspektion og eventuelt import til en anden server.
     purged: Oplysninger om denne server er blevet renset af serveradministratoreren.
     type: Begivenhed
@@ -1940,7 +1954,7 @@ da:
     content_warnings:
       hide: Skjul indlæg
       show: Vis mere
-    default_language: Samme som UI-sproget
+    default_language: Samme som grænsefladesproget
     disallowed_hashtags:
       one: 'indeholdte et ikke tilladt hashtag: %{tags}'
       other: 'indeholdte de ikke tilladte etiketter: %{tags}'

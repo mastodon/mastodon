@@ -56,6 +56,7 @@ en-GB:
         label: Change role
         no_role: No role
         title: Change role for %{username}
+      collections: Collections
       confirm: Confirm
       confirmed: Confirmed
       confirming: Confirming
@@ -266,6 +267,7 @@ en-GB:
         demote_user_html: "%{name} demoted user %{target}"
         destroy_announcement_html: "%{name} deleted announcement %{target}"
         destroy_canonical_email_block_html: "%{name} unblocked email with the hash %{target}"
+        destroy_collection_html: "%{name} removed collection by %{target}"
         destroy_custom_emoji_html: "%{name} deleted emoji %{target}"
         destroy_domain_allow_html: "%{name} disallowed federation with domain %{target}"
         destroy_domain_block_html: "%{name} unblocked domain %{target}"
@@ -305,6 +307,7 @@ en-GB:
         unsilence_account_html: "%{name} undid limit of %{target}'s account"
         unsuspend_account_html: "%{name} unsuspended %{target}'s account"
         update_announcement_html: "%{name} updated announcement %{target}"
+        update_collection_html: "%{name} updated collection by %{target}"
         update_custom_emoji_html: "%{name} updated emoji %{target}"
         update_domain_block_html: "%{name} updated domain block for %{target}"
         update_ip_block_html: "%{name} changed rule for IP %{target}"
@@ -340,6 +343,15 @@ en-GB:
       unpublish: Unpublish
       unpublished_msg: Announcement successfully unpublished!
       updated_msg: Announcement successfully updated!
+    collections:
+      accounts: Accounts
+      collection_title: Collection by %{name}
+      contents: Contents
+      number_of_accounts:
+        one: 1 account
+        other: "%{count} accounts"
+      open: Open
+      view_publicly: View publicly
     critical_update_pending: Critical update pending
     custom_emojis:
       assign_category: Assign category
@@ -679,6 +691,7 @@ en-GB:
       cancel: Cancel
       category: Category
       category_description_html: The reason this account and/or content was reported will be cited in communication with the reported account
+      collections: Collections (%{count})
       comment:
         none: None
       comment_description_html: 'To provide more information, %{name} wrote:'
@@ -708,12 +721,13 @@ en-GB:
       report: 'Report #%{id}'
       reported_account: Reported account
       reported_by: Reported by
+      reported_content: Reported content
       reported_with_application: Reported with application
       resolved: Resolved
       resolved_msg: Report successfully resolved!
       skip_to_actions: Skip to actions
       status: Status
-      statuses: Reported content
+      statuses: Posts (%{count})
       statuses_description_html: Offending content will be cited in communication with the reported account
       summary:
         action_preambles:

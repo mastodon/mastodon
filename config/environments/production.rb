@@ -11,8 +11,10 @@ Rails.application.configure do
   # Eager load code on boot for better performance and memory savings (ignored by Rake tasks).
   config.eager_load = true
 
-  # Full error reports are disabled and caching is turned on.
+  # Full error reports are disabled.
   config.consider_all_requests_local = false
+
+  # Turn on fragment caching in view templates.
   config.action_controller.perform_caching = true
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -55,9 +57,8 @@ Rails.application.configure do
   # Use a different cache store in production.
   config.cache_store = :redis_cache_store, REDIS_CONFIGURATION.cache
 
-  # Disable caching for Action Mailer templates even if Action Controller
-  # caching is enabled.
-  config.action_mailer.perform_caching = false
+  # Prevent health checks from clogging up the logs.
+  config.silence_healthcheck_path = '/health'
 
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
@@ -103,6 +104,9 @@ Rails.application.configure do
     'X-XSS-Protection' => '0',
     'Referrer-Policy' => 'same-origin',
   }
+
+  # Only use :id for inspections in production.
+  config.active_record.attributes_for_inspect = [:id]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [

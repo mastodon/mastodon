@@ -26,6 +26,7 @@ class Collection < ApplicationRecord
   belongs_to :tag, optional: true
 
   has_many :collection_items, dependent: :delete_all
+  has_many :accepted_collection_items, -> { accepted }, class_name: 'CollectionItem', inverse_of: :collection # rubocop:disable Rails/HasManyOrHasOneDependent
   has_many :collection_reports, dependent: :delete_all
 
   validates :name, presence: true
@@ -45,6 +46,7 @@ class Collection < ApplicationRecord
   scope :with_items, -> { includes(:collection_items).merge(CollectionItem.with_accounts) }
   scope :with_tag, -> { includes(:tag) }
   scope :discoverable, -> { where(discoverable: true) }
+  scope :local, -> { where(local: true) }
 
   def remote?
     !local?
@@ -66,6 +68,14 @@ class Collection < ApplicationRecord
 
   def object_type
     :featured_collection
+  end
+
+  def to_log_human_identifier
+    account.acct
+  end
+
+  def to_log_permalink
+    ActivityPub::TagManager.instance.uri_for(self)
   end
 
   private

@@ -30,12 +30,12 @@ cy:
     pin_errors:
       following: Rhaid i chi fod yn dilyn y person rydych am ei gymeradwyo, yn barod
     posts:
-      few: Postiadau
-      many: Postiadau
+      few: Postiad
+      many: Postiad
       one: Postiad
-      other: Postiadau
-      two: Postiadau
-      zero: Postiadau
+      other: Postiad
+      two: Bostiad
+      zero: Postiad
     posts_tab_heading: Postiadau
     self_follow_error: Chewch chi ddim dilyn eich cyfrif eich hun
   admin:
@@ -68,6 +68,7 @@ cy:
         label: Newid rôl
         no_role: Dim rôl
         title: Newid rôl %{username}
+      collections: Casgliadau
       confirm: Cadarnhau
       confirmed: Cadarnhawyd
       confirming: Yn cadarnhau
@@ -356,6 +357,19 @@ cy:
       unpublish: Dadgyhoeddi
       unpublished_msg: Cyhoeddiad wedi'i ddad gyhoeddi'n llwyddiannus!
       updated_msg: Cyhoeddiad wedi'i ddiweddaru'n llwyddiannus!
+    collections:
+      accounts: Cyfrifon
+      collection_title: Casgliad gan %{name}
+      contents: Cynnwys
+      number_of_accounts:
+        few: "%{count} cyfrif"
+        many: "%{count} cyfrif"
+        one: 1 cyfrif
+        other: "%{count} cyfrif"
+        two: "%{count} cyfrif"
+        zero: "%{count} cyfrif"
+      open: Agor
+      view_publicly: Gweld yn gyhoeddus
     critical_update_pending: Diweddariad hanfodol ar ei ffordd
     custom_emojis:
       assign_category: Neilltuo categori
@@ -760,12 +774,12 @@ cy:
       report: 'Adroddiad #%{id}'
       reported_account: Cyfrif wedi ei adrodd
       reported_by: Adroddwyd gan
+      reported_content: Cynnwys wedi'u hadrodd
       reported_with_application: Adroddwyd gydag ap
       resolved: Wedi ei ddatrys
       resolved_msg: Llwyddwyd i ddatrys yr adroddiad!
       skip_to_actions: Mynd i gamau gweithredu
       status: Statws
-      statuses: Cynnwys wedi'i adrodd
       statuses_description_html: Bydd cynnwys tramgwyddus yn cael ei ddyfynnu wrth gyfathrebu â'r cyfrif a adroddwyd
       summary:
         action_preambles:
@@ -2197,6 +2211,8 @@ cy:
     past_preamble_html: Rydym wedi newid ein telerau gwasanaeth ers eich ymweliad diwethaf. Rydym yn eich annog i ddarllen y telerau wedi'u diweddaru.
     review_link: Darllen y telerau gwasanaeth
     title: Mae telerau gwasanaeth %{domain} yn newid
+  themes:
+    default: Mastodon
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

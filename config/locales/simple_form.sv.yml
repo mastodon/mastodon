@@ -164,6 +164,7 @@ sv:
         name: Offentligt namn på rollen, om rollen är inställd på att visas som ett emblem
         permissions_as_keys: Användare med denna roll kommer ha tillgång till...
         position: Högre roll avgör konfliktlösning i vissa situationer. Vissa åtgärder kan endast utföras på roller med lägre prioritet
+        require_2fa: Användare med denna roll kommer att krävas för att ställa in tvåfaktorsautentisering för att använda Mastodon
       username_block:
         allow_with_approval: I stället för att förhindra direkt registrering kräver matchning av registreringar ditt godkännande
         comparison: Var uppmärksam på Scunthorpe Problem vid blockering av partiella matcher
@@ -223,6 +224,7 @@ sv:
         email: E-postadress
         expires_in: Utgår efter
         fields: Profil-metadata
+        filter_action: Filtrera åtgärd
         header: Sidhuvud
         honeypot: "%{label} (fyll inte i)"
         inbox_url: Webbadress för ombudsinkorg
@@ -387,6 +389,7 @@ sv:
         name: Namn
         permissions_as_keys: Behörigheter
         position: Prioritet
+        require_2fa: Kräv tvåfaktorsautentisering
       username_block:
         allow_with_approval: Tillåt registreringar med godkännande
         comparison: Jämförelsesätt

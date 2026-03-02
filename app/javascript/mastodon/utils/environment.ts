@@ -18,7 +18,7 @@ export function isServerFeatureEnabled(feature: ServerFeatures) {
   return initialState?.features.includes(feature) ?? false;
 }
 
-type ClientFeatures = 'collections';
+type ClientFeatures = 'collections' | 'profile_editing';
 
 export function isClientFeatureEnabled(feature: ClientFeatures) {
   try {
