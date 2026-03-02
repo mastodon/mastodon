@@ -6412,6 +6412,10 @@ a.status-card {
     line-height: 20px;
     color: var(--color-text-secondary);
 
+    /*
+     * Using the :where selector to lower specificity and allow for
+     * easy customisation of modal heading styles
+     */
     :where(h1) {
       font-size: 16px;
       line-height: 24px;
