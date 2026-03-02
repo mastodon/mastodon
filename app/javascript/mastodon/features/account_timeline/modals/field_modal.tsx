@@ -4,7 +4,11 @@ import { FormattedMessage } from 'react-intl';
 
 import { Button } from '@/mastodon/components/button';
 import { EmojiHTML } from '@/mastodon/components/emoji/html';
-import { ModalShell } from '@/mastodon/components/modal_shell';
+import {
+  ModalShell,
+  ModalShellActions,
+  ModalShellBody,
+} from '@/mastodon/components/modal_shell';
 
 import type { AccountField } from '../common';
 import { useFieldHtml } from '../hooks/useFieldHtml';
@@ -19,7 +23,7 @@ export const AccountFieldModal: FC<{
   const handleValueElement = useFieldHtml(field.valueHasEmojis);
   return (
     <ModalShell>
-      <ModalShell.Body>
+      <ModalShellBody>
         <EmojiHTML
           as='h2'
           htmlString={field.name_emojified}
@@ -31,12 +35,12 @@ export const AccountFieldModal: FC<{
           onElement={handleValueElement}
           className={classes.fieldValue}
         />
-      </ModalShell.Body>
-      <ModalShell.Actions>
+      </ModalShellBody>
+      <ModalShellActions>
         <Button onClick={onClose} plain>
           <FormattedMessage id='lightbox.close' defaultMessage='Close' />
         </Button>
-      </ModalShell.Actions>
+      </ModalShellActions>
     </ModalShell>
   );
 };
